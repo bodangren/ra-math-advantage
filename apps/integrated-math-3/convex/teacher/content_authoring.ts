@@ -65,7 +65,17 @@ import { sanitizeLessonDraft } from "../../lib/teacher/content-authoring/sanitiz
 /* Types                                                                     */
 /* ------------------------------------------------------------------------ */
 
-type Placement = "explore" | "vocabulary" | "learn" | "key_concept" | "worked_example" | "guided_practice" | "independent_practice" | "assessment" | "discourse" | "reflection";
+type Placement =
+  | "explore"
+  | "vocabulary"
+  | "learn"
+  | "key_concept"
+  | "worked_example"
+  | "guided_practice"
+  | "independent_practice"
+  | "assessment"
+  | "discourse"
+  | "reflection";
 
 interface SanitizedAuthoringLesson {
   title: string;
@@ -100,20 +110,13 @@ export interface SaveTeacherDraftResult {
  * rejected | published`). This DTO carries the teacher-facing status so the
  * Phase 3 UI never has to guess the mapping.
  */
-export type TeacherFacingStatus =
-  | "draft"
-  | "submitted"
-  | "approved"
-  | "rejected"
-  | "published";
+export type TeacherFacingStatus = "draft" | "submitted" | "approved" | "rejected" | "published";
 
 /**
  * Map a persisted `lesson_versions.status` to the teacher-facing lifecycle
  * status. The mapping is pinned here as the single source of truth.
  */
-export function toTeacherFacingStatus(
-  persistedStatus: string,
-): TeacherFacingStatus {
+export function toTeacherFacingStatus(persistedStatus: string): TeacherFacingStatus {
   switch (persistedStatus) {
     case "draft":
       return "draft";
@@ -207,10 +210,7 @@ async function findLessonByIdempotencyKey(
   for (const lesson of lessons) {
     const meta = lesson.metadata;
     if (!meta) continue;
-    if (
-      meta.authoringTeacherId === teacherId &&
-      meta.authoringKey === idempotencyKey
-    ) {
+    if (meta.authoringTeacherId === teacherId && meta.authoringKey === idempotencyKey) {
       return lesson;
     }
   }
@@ -271,16 +271,12 @@ async function deleteLessonTree(ctx: MutationCtx, lessonId: Id<"lessons">): Prom
   for (const version of versions) {
     const phases = await ctx.db
       .query("phase_versions")
-      .withIndex("by_lesson_version", (q) =>
-        q.eq("lessonVersionId", version._id),
-      )
+      .withIndex("by_lesson_version", (q) => q.eq("lessonVersionId", version._id))
       .collect();
     for (const phase of phases) {
       const sections = await ctx.db
         .query("phase_sections")
-        .withIndex("by_phase_version", (q) =>
-          q.eq("phaseVersionId", phase._id),
-        )
+        .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phase._id))
         .collect();
       for (const section of sections) {
         if (section.sectionType === "activity") {
@@ -760,9 +756,7 @@ export async function reviewAuthoredLessonHandler(
     const existingReviews = await ctx.db
       .query("component_reviews")
       .withIndex("by_component", (q) =>
-        q
-          .eq("componentKind", placed.componentKind)
-          .eq("componentId", placed.activityId),
+        q.eq("componentKind", placed.componentKind).eq("componentId", placed.activityId),
       )
       .collect();
     const placementReview = existingReviews.find(
@@ -815,9 +809,7 @@ export async function reviewAuthoredLessonHandler(
         const existing = await ctx.db
           .query("component_approvals")
           .withIndex("by_component", (q) =>
-            q
-              .eq("componentKind", placed.componentKind)
-              .eq("componentId", placed.activityId),
+            q.eq("componentKind", placed.componentKind).eq("componentId", placed.activityId),
           )
           .unique();
         if (existing) {
@@ -914,9 +906,7 @@ export async function editRejectedDraftHandler(
     loaded.latest.status !== "approved" &&
     loaded.latest.status !== "draft"
   ) {
-    throw new Error(
-      `Edit-after-decision not allowed in status '${loaded.latest.status}'`,
-    );
+    throw new Error(`Edit-after-decision not allowed in status '${loaded.latest.status}'`);
   }
 
   const lesson = buildSanitizedLesson(args.draft);
@@ -1065,7 +1055,10 @@ export async function publishAuthoredLessonHandler(
   for (const placed of placements) {
     if (placed.componentKind === "activity") {
       const validation = validateActivityConfig(placed.componentKey, placed.props);
-      if (!validation.success) throw new Error(`Activity ${placed.componentKey} failed schema validation: ${validation.errors[0]?.message}`);
+      if (!validation.success)
+        throw new Error(
+          `Activity ${placed.componentKey} failed schema validation: ${validation.errors[0]?.message}`,
+        );
     }
     const currentHash = await computeComponentContentHash({
       componentKind: placed.componentKind,
@@ -1076,9 +1069,7 @@ export async function publishAuthoredLessonHandler(
       const activity = await ctx.db.get("activities", placed.activityId);
       const approval = activity?.approval;
       if (!approval || approval.status !== "approved") {
-        throw new Error(
-          `Activity ${placed.componentKey} (${placed.activityId}) is not approved`,
-        );
+        throw new Error(`Activity ${placed.componentKey} (${placed.activityId}) is not approved`);
       }
       if (!approval.contentHash || approval.contentHash !== currentHash) {
         throw new Error(
@@ -1089,9 +1080,7 @@ export async function publishAuthoredLessonHandler(
       const approvalRecord = await ctx.db
         .query("component_approvals")
         .withIndex("by_component", (q) =>
-          q
-            .eq("componentKind", placed.componentKind)
-            .eq("componentId", placed.activityId),
+          q.eq("componentKind", placed.componentKind).eq("componentId", placed.activityId),
         )
         .unique();
       if (!approvalRecord || approvalRecord.status !== "approved") {
@@ -1099,13 +1088,8 @@ export async function publishAuthoredLessonHandler(
           `Approval missing for ${placed.componentKind} ${placed.componentKey} (${placed.activityId})`,
         );
       }
-      if (
-        !approvalRecord.contentHash ||
-        approvalRecord.contentHash !== currentHash
-      ) {
-        throw new Error(
-          `Approval for ${placed.componentKind} ${placed.componentKey} is stale`,
-        );
+      if (!approvalRecord.contentHash || approvalRecord.contentHash !== currentHash) {
+        throw new Error(`Approval for ${placed.componentKind} ${placed.componentKey} is stale`);
       }
     }
   }
@@ -1287,15 +1271,10 @@ export async function getAuthoredLessonForStudentHandler(
       .unique();
     if (!enrollment || enrollment.status !== "active") continue;
     // Org check: student must be in the same org as the authoring teacher.
-    const teacherId = lesson.metadata?.authoringTeacherId as
-      | Id<"profiles">
-      | undefined;
+    const teacherId = lesson.metadata?.authoringTeacherId as Id<"profiles"> | undefined;
     if (teacherId) {
       const teacher = await ctx.db.get("profiles", teacherId);
-      if (
-        !teacher ||
-        teacher.organizationId !== profile.organizationId
-      ) {
+      if (!teacher || teacher.organizationId !== profile.organizationId) {
         continue;
       }
     }

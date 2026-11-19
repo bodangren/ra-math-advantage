@@ -1,8 +1,16 @@
-import { buildPracticeSubmissionEnvelope, normalizePracticeValue, type PracticeSubmissionPart } from '@/lib/practice/contract';
-import { getCellValue, type TargetCell, type ValidationResult } from '@/lib/activities/spreadsheet-validation';
-import type { SpreadsheetData } from '@/components/activities/spreadsheet/SpreadsheetWrapper';
+import {
+  buildPracticeSubmissionEnvelope,
+  normalizePracticeValue,
+  type PracticeSubmissionPart,
+} from "@/lib/practice/contract";
+import {
+  getCellValue,
+  type TargetCell,
+  type ValidationResult,
+} from "@/lib/activities/spreadsheet-validation";
+import type { SpreadsheetData } from "@/components/activities/spreadsheet/SpreadsheetWrapper";
 
-export type SpreadsheetPracticeMode = 'assessment' | 'guided_practice' | 'independent_practice';
+export type SpreadsheetPracticeMode = "assessment" | "guided_practice" | "independent_practice";
 
 export interface SpreadsheetEvaluatorEnvelopeInput {
   activityId: string;
@@ -22,7 +30,10 @@ export interface SpreadsheetEvaluatorEnvelopeInput {
  */
 export function buildSpreadsheetEvaluatorSubmission(input: SpreadsheetEvaluatorEnvelopeInput) {
   const answers = Object.fromEntries(
-    input.targetCells.map((target) => [target.cell, getCellValue(input.spreadsheetData, target.cell)]),
+    input.targetCells.map((target) => [
+      target.cell,
+      getCellValue(input.spreadsheetData, target.cell),
+    ]),
   );
 
   const feedbackByCell = new Map(
@@ -46,14 +57,14 @@ export function buildSpreadsheetEvaluatorSubmission(input: SpreadsheetEvaluatorE
 
   return buildPracticeSubmissionEnvelope({
     activityId: input.activityId,
-    mode: input.mode ?? 'assessment',
-    status: 'submitted',
+    mode: input.mode ?? "assessment",
+    status: "submitted",
     attemptNumber: input.attemptNumber ?? 1,
     submittedAt: input.submittedAt ?? new Date(),
     answers,
     parts,
     artifact: {
-      kind: 'spreadsheet_evaluator',
+      kind: "spreadsheet_evaluator",
       templateId: input.templateId,
       instructions: input.instructions,
       targetCells: input.targetCells,

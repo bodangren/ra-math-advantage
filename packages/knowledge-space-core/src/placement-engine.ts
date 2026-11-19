@@ -3,8 +3,8 @@
 //   pass → downstream (toward advanced skills)
 //   fail / partial → upstream (toward prerequisites)
 
-import type { KnowledgeSpace } from './types';
-import type { PlacementResult, ProbeAdapter, ProbeResult } from './placement';
+import type { KnowledgeSpace } from "./types";
+import type { PlacementResult, ProbeAdapter, ProbeResult } from "./placement";
 
 // ---------------------------------------------------------------------------
 // Public types
@@ -13,7 +13,7 @@ import type { PlacementResult, ProbeAdapter, ProbeResult } from './placement';
 export interface PlacementEngineResult {
   results: PlacementResult[];
   probesPerformed: number;
-  reason: 'converged' | 'max-probes' | 'empty-graph';
+  reason: "converged" | "max-probes" | "empty-graph";
   converged: boolean;
 }
 
@@ -36,7 +36,7 @@ function buildAdjacency(graph: KnowledgeSpace) {
   const upstream = new Map<string, string[]>();
 
   for (const edge of graph.edges) {
-    if (edge.type !== 'prerequisite_for') continue;
+    if (edge.type !== "prerequisite_for") continue;
     const dl = downstream.get(edge.sourceId) ?? [];
     dl.push(edge.targetId);
     downstream.set(edge.sourceId, dl);
@@ -49,7 +49,7 @@ function buildAdjacency(graph: KnowledgeSpace) {
   return { downstream, upstream };
 }
 
-const VALID_PROBE_RESULTS: ReadonlySet<string> = new Set(['pass', 'fail', 'partial']);
+const VALID_PROBE_RESULTS: ReadonlySet<string> = new Set(["pass", "fail", "partial"]);
 
 /**
  * Assert that a value is a valid ProbeResult, throwing if not.
@@ -57,7 +57,7 @@ const VALID_PROBE_RESULTS: ReadonlySet<string> = new Set(['pass', 'fail', 'parti
  * @throws If the value is not a valid ProbeResult string
  */
 function validateProbeResult(value: unknown): asserts value is ProbeResult {
-  if (typeof value !== 'string' || !VALID_PROBE_RESULTS.has(value)) {
+  if (typeof value !== "string" || !VALID_PROBE_RESULTS.has(value)) {
     throw new Error(
       `Invalid probe result: ${JSON.stringify(value)}. Expected one of: pass, fail, partial.`,
     );
@@ -69,14 +69,17 @@ function validateProbeResult(value: unknown): asserts value is ProbeResult {
  * @param {ProbeResult} result - The probe outcome (pass, fail, or partial)
  * @returns {{ estimate: number; confidence: PlacementResult['confidence'] }} - Object with mastery estimate and confidence level
  */
-function computeMastery(result: ProbeResult): { estimate: number; confidence: PlacementResult['confidence'] } {
+function computeMastery(result: ProbeResult): {
+  estimate: number;
+  confidence: PlacementResult["confidence"];
+} {
   switch (result) {
-    case 'pass':
-      return { estimate: 0.85, confidence: 'medium' };
-    case 'fail':
-      return { estimate: 0.15, confidence: 'low' };
-    case 'partial':
-      return { estimate: 0.4, confidence: 'low' };
+    case "pass":
+      return { estimate: 0.85, confidence: "medium" };
+    case "fail":
+      return { estimate: 0.15, confidence: "low" };
+    case "partial":
+      return { estimate: 0.4, confidence: "low" };
   }
 }
 
@@ -97,14 +100,12 @@ function finalizeResult(
   maxProbes: number,
 ): PlacementEngineResult {
   const hasUnvisitedInQueue = queue.some((n) => !visited.has(n));
-  const reason = probesPerformed >= maxProbes && hasUnvisitedInQueue
-    ? 'max-probes'
-    : 'converged';
+  const reason = probesPerformed >= maxProbes && hasUnvisitedInQueue ? "max-probes" : "converged";
   return {
     results,
     probesPerformed,
     reason,
-    converged: reason === 'converged',
+    converged: reason === "converged",
   };
 }
 
@@ -131,12 +132,12 @@ export function runPlacementTraversal(
   options: TraversalOptions = {},
 ): PlacementEngineResult {
   if (graph.nodes.length === 0) {
-    return { results: [], probesPerformed: 0, reason: 'empty-graph', converged: true };
+    return { results: [], probesPerformed: 0, reason: "empty-graph", converged: true };
   }
 
   const maxProbes = options.maxProbes ?? Infinity;
   if (maxProbes <= 0) {
-    return { results: [], probesPerformed: 0, reason: 'max-probes', converged: false };
+    return { results: [], probesPerformed: 0, reason: "max-probes", converged: false };
   }
 
   const { downstream, upstream } = buildAdjacency(graph);
@@ -153,9 +154,7 @@ export function runPlacementTraversal(
     results.push({ nodeId, masteryEstimate: estimate, confidence });
 
     const neighbors =
-      probeResult === 'pass'
-        ? (downstream.get(nodeId) ?? [])
-        : (upstream.get(nodeId) ?? []);
+      probeResult === "pass" ? (downstream.get(nodeId) ?? []) : (upstream.get(nodeId) ?? []);
 
     for (const neighbor of neighbors) {
       if (!visited.has(neighbor)) {
@@ -177,7 +176,7 @@ export function runPlacementTraversal(
         validateProbeResult(probeResult);
       }
 
-      if (typeof (probeResult as Promise<ProbeResult>).then === 'function') {
+      if (typeof (probeResult as Promise<ProbeResult>).then === "function") {
         return (probeResult as Promise<ProbeResult>).then((resolved) => {
           validateProbeResult(resolved);
           processProbe(nodeId, resolved);

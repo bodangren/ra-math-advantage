@@ -27,11 +27,7 @@
       "severity": "moderate",
       "title": "@cloudflare/vite-plugin vulnerable through miniflare, wrangler, and ws",
       "package": "@cloudflare/vite-plugin",
-      "via": [
-        "miniflare",
-        "wrangler",
-        "ws"
-      ],
+      "via": ["miniflare", "wrangler", "ws"],
       "disposition": "deferred",
       "owner": "apps/integrated-math-{1,2,3} + apps/pre-calculus",
       "follow_up_wave": "W4-framework",
@@ -43,9 +39,7 @@
       "severity": "moderate",
       "title": "@esbuild-kit/core-utils vulnerable through esbuild in drizzle-kit chain",
       "package": "@esbuild-kit/core-utils",
-      "via": [
-        "esbuild"
-      ],
+      "via": ["esbuild"],
       "disposition": "rejected",
       "owner": "apps/bus-math-v2",
       "follow_up_wave": "none",
@@ -57,9 +51,7 @@
       "severity": "moderate",
       "title": "@esbuild-kit/esm-loader vulnerable through @esbuild-kit/core-utils in drizzle-kit chain",
       "package": "@esbuild-kit/esm-loader",
-      "via": [
-        "@esbuild-kit/core-utils"
-      ],
+      "via": ["@esbuild-kit/core-utils"],
       "disposition": "rejected",
       "owner": "apps/bus-math-v2",
       "follow_up_wave": "none",
@@ -71,9 +63,7 @@
       "severity": "moderate",
       "title": "@unpic/react vulnerable through next in vinext chain",
       "package": "@unpic/react",
-      "via": [
-        "next"
-      ],
+      "via": ["next"],
       "disposition": "resolved",
       "owner": "apps/*",
       "follow_up_wave": "W4-framework",
@@ -85,9 +75,7 @@
       "severity": "moderate",
       "title": "brace-expansion: Large numeric range defeats documented max DoS protection",
       "package": "brace-expansion",
-      "via": [
-        "GHSA-jxxr-4gwj-5jf2"
-      ],
+      "via": ["GHSA-jxxr-4gwj-5jf2"],
       "disposition": "deferred",
       "owner": "W4 ESLint/toolchain migration",
       "follow_up_wave": "W4-framework",
@@ -99,9 +87,7 @@
       "severity": "moderate",
       "title": "npm audit suggests downgrading drizzle-kit to 0.18.1",
       "package": "drizzle-kit",
-      "via": [
-        "@esbuild-kit/esm-loader"
-      ],
+      "via": ["@esbuild-kit/esm-loader"],
       "disposition": "rejected",
       "owner": "apps/bus-math-v2",
       "follow_up_wave": "none",
@@ -113,9 +99,7 @@
       "severity": "moderate",
       "title": "esbuild enables any website to send any requests to the development server and read the response",
       "package": "esbuild",
-      "via": [
-        "GHSA-67mh-4wv8-2f99"
-      ],
+      "via": ["GHSA-67mh-4wv8-2f99"],
       "disposition": "rejected",
       "owner": "apps/bus-math-v2",
       "follow_up_wave": "none",
@@ -127,9 +111,7 @@
       "severity": "moderate",
       "title": "geist vulnerable through next",
       "package": "geist",
-      "via": [
-        "next"
-      ],
+      "via": ["next"],
       "disposition": "deferred",
       "owner": "apps/bus-math-v2 + apps/integrated-math-3",
       "follow_up_wave": "W4-framework",
@@ -141,9 +123,7 @@
       "severity": "moderate",
       "title": "miniflare vulnerable through ws",
       "package": "miniflare",
-      "via": [
-        "ws"
-      ],
+      "via": ["ws"],
       "disposition": "deferred",
       "owner": "apps/integrated-math-{1,2,3} + apps/pre-calculus",
       "follow_up_wave": "W4-framework",
@@ -155,9 +135,7 @@
       "severity": "moderate",
       "title": "PostCSS has XSS via Unescaped </style> in its CSS Stringify Output",
       "package": "postcss",
-      "via": [
-        "GHSA-qx2v-qp2m-jg93"
-      ],
+      "via": ["GHSA-qx2v-qp2m-jg93"],
       "disposition": "deferred",
       "owner": "apps/*",
       "follow_up_wave": "W4-framework",
@@ -169,9 +147,7 @@
       "severity": "moderate",
       "title": "wrangler vulnerable through miniflare",
       "package": "wrangler",
-      "via": [
-        "miniflare"
-      ],
+      "via": ["miniflare"],
       "disposition": "deferred",
       "owner": "apps/integrated-math-{1,2,3} + apps/pre-calculus",
       "follow_up_wave": "W4-framework",
@@ -183,9 +159,7 @@
       "severity": "moderate",
       "title": "ws: Uninitialized memory disclosure",
       "package": "ws",
-      "via": [
-        "GHSA-58qx-3vcg-4xpx"
-      ],
+      "via": ["GHSA-58qx-3vcg-4xpx"],
       "disposition": "deferred",
       "owner": "apps/integrated-math-{1,2,3} + apps/pre-calculus + apps/* convex consumers",
       "follow_up_wave": "W4-framework",

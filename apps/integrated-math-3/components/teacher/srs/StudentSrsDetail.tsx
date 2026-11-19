@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { Clock, TrendingUp, AlertCircle, CheckCircle, Circle, RefreshCw } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Clock, TrendingUp, AlertCircle, CheckCircle, Circle, RefreshCw } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-export type CardState = 'new' | 'learning' | 'review' | 'relearning';
+export type CardState = "new" | "learning" | "review" | "relearning";
 
 export interface ObjectiveCardSummary {
   objectiveId: string;
@@ -44,10 +44,10 @@ const STATE_ICONS: Record<CardState, React.ElementType> = {
 };
 
 const STATE_COLORS: Record<CardState, string> = {
-  new: 'text-blue-500 bg-blue-50 dark:bg-blue-950',
-  learning: 'text-orange-500 bg-orange-50 dark:bg-orange-950',
-  review: 'text-green-500 bg-green-50 dark:bg-green-950',
-  relearning: 'text-red-500 bg-red-50 dark:bg-red-950',
+  new: "text-blue-500 bg-blue-50 dark:bg-blue-950",
+  learning: "text-orange-500 bg-orange-50 dark:bg-orange-950",
+  review: "text-green-500 bg-green-50 dark:bg-green-950",
+  relearning: "text-red-500 bg-red-50 dark:bg-red-950",
 };
 
 /**
@@ -58,10 +58,10 @@ const STATE_COLORS: Record<CardState, string> = {
  */
 function CardStateGrid({ summary }: { summary: ObjectiveCardSummary }) {
   const states: { key: CardState; count: number; label: string }[] = [
-    { key: 'new', count: summary.newCount, label: 'New' },
-    { key: 'learning', count: summary.learningCount, label: 'Learning' },
-    { key: 'review', count: summary.reviewCount, label: 'Review' },
-    { key: 'relearning', count: summary.relearningCount, label: 'Relearning' },
+    { key: "new", count: summary.newCount, label: "New" },
+    { key: "learning", count: summary.learningCount, label: "Learning" },
+    { key: "review", count: summary.reviewCount, label: "Review" },
+    { key: "relearning", count: summary.relearningCount, label: "Relearning" },
   ];
 
   return (
@@ -80,7 +80,7 @@ function CardStateGrid({ summary }: { summary: ObjectiveCardSummary }) {
           return (
             <div
               key={key}
-              className={cn('flex items-center gap-1 px-2 py-1 rounded text-xs', STATE_COLORS[key])}
+              className={cn("flex items-center gap-1 px-2 py-1 rounded text-xs", STATE_COLORS[key])}
               title={`${label}: ${count}`}
             >
               <Icon className="h-3 w-3" aria-hidden="true" />
@@ -127,11 +127,11 @@ function ReviewTimeline({ reviews }: { reviews: ReviewHistoryEntry[] }) {
       {reviews.slice(0, 20).map((review, index) => {
         const date = new Date(review.reviewedAt);
         const ratingColor =
-          review.rating === 'easy' || review.rating === 'good'
-            ? 'text-green-500'
-            : review.rating === 'hard'
-              ? 'text-yellow-500'
-              : 'text-red-500';
+          review.rating === "easy" || review.rating === "good"
+            ? "text-green-500"
+            : review.rating === "hard"
+              ? "text-yellow-500"
+              : "text-red-500";
 
         return (
           <div
@@ -143,13 +143,14 @@ function ReviewTimeline({ reviews }: { reviews: ReviewHistoryEntry[] }) {
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
-                <span className={cn('font-medium', ratingColor)}>{review.rating}</span>
+                <span className={cn("font-medium", ratingColor)}>{review.rating}</span>
                 <span className="text-muted-foreground">
                   {review.stateBefore} → {review.stateAfter}
                 </span>
               </div>
               <div className="text-muted-foreground">
-                {date.toLocaleDateString()} {date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                {date.toLocaleDateString()}{" "}
+                {date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
               </div>
             </div>
             {review.retention !== null && (

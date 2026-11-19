@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-import { Brain, Clock } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { useState } from "react";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts";
+import { Brain, Clock } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export interface MisconceptionView {
   tag: string;
@@ -18,9 +18,9 @@ export interface MisconceptionPanelProps {
 }
 
 const TIME_WINDOWS = [
-  { label: '7 days', value: 7 },
-  { label: '14 days', value: 14 },
-  { label: '30 days', value: 30 },
+  { label: "7 days", value: 7 },
+  { label: "14 days", value: 14 },
+  { label: "30 days", value: 30 },
 ];
 
 /**
@@ -29,7 +29,13 @@ const TIME_WINDOWS = [
  * @param {{ active?: boolean; payload?: Array<{ payload: MisconceptionView }> }} props - Tooltip props from Recharts.
  * @returns {JSX.Element} A styled misconception tooltip.
  */
-function CustomTooltip({ active, payload }: { active?: boolean; payload?: Array<{ payload: MisconceptionView }> }) {
+function CustomTooltip({
+  active,
+  payload,
+}: {
+  active?: boolean;
+  payload?: Array<{ payload: MisconceptionView }>;
+}) {
   if (!active || !payload || payload.length === 0) {
     return null;
   }
@@ -40,10 +46,11 @@ function CustomTooltip({ active, payload }: { active?: boolean; payload?: Array<
     <div className="bg-card border border-border rounded-lg p-3 shadow-lg">
       <p className="font-medium text-foreground text-sm">{data.tag}</p>
       <p className="text-xs text-muted-foreground mt-1">
-        {data.count} occurrence{data.count !== 1 ? 's' : ''}
+        {data.count} occurrence{data.count !== 1 ? "s" : ""}
       </p>
       <p className="text-xs text-muted-foreground mt-1">
-        {data.affectedObjectives.length} objective{data.affectedObjectives.length !== 1 ? 's' : ''} affected
+        {data.affectedObjectives.length} objective{data.affectedObjectives.length !== 1 ? "s" : ""}{" "}
+        affected
       </p>
     </div>
   );
@@ -90,10 +97,10 @@ export function MisconceptionPanel({
                   key={window.value}
                   onClick={() => handleWindowChange(window.value)}
                   className={cn(
-                    'px-2 py-1 text-xs font-medium rounded transition-colors',
+                    "px-2 py-1 text-xs font-medium rounded transition-colors",
                     selectedWindow === window.value
-                      ? 'bg-background text-foreground shadow-sm'
-                      : 'text-muted-foreground hover:text-foreground'
+                      ? "bg-background text-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground",
                   )}
                 >
                   {window.label}
@@ -128,10 +135,10 @@ export function MisconceptionPanel({
                   key={window.value}
                   onClick={() => handleWindowChange(window.value)}
                   className={cn(
-                    'px-2 py-1 text-xs font-medium rounded transition-colors',
+                    "px-2 py-1 text-xs font-medium rounded transition-colors",
                     selectedWindow === window.value
-                      ? 'bg-background text-foreground shadow-sm'
-                      : 'text-muted-foreground hover:text-foreground'
+                      ? "bg-background text-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground",
                   )}
                 >
                   {window.label}
@@ -160,7 +167,7 @@ export function MisconceptionPanel({
               {chartData.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
-                  fill={index === 0 ? '#ef4444' : index < 3 ? '#f97316' : '#eab308'}
+                  fill={index === 0 ? "#ef4444" : index < 3 ? "#f97316" : "#eab308"}
                 />
               ))}
             </Bar>
@@ -171,9 +178,7 @@ export function MisconceptionPanel({
       <div className="mt-4 pt-4 border-t border-border">
         <div className="flex items-center justify-between text-xs text-muted-foreground">
           <span>Top {chartData.length} misconceptions</span>
-          <span>
-            {misconceptions.reduce((sum, m) => sum + m.count, 0)} total occurrences
-          </span>
+          <span>{misconceptions.reduce((sum, m) => sum + m.count, 0)} total occurrences</span>
         </div>
       </div>
     </div>

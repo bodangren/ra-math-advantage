@@ -1,29 +1,29 @@
-'use client';
+"use client";
 
-import { useCallback, useMemo, useState } from 'react';
-import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
-import { Calculator, Percent, RotateCcw } from 'lucide-react';
+import { useCallback, useMemo, useState } from "react";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
+import { Calculator, Percent, RotateCcw } from "lucide-react";
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { cn } from '@/lib/utils';
-import type { Activity } from '@/lib/schemas/validators';
-import { type PercentageCalculationSortingActivityProps } from '@/types/activities';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import type { Activity } from "@/lib/schemas/validators";
+import { type PercentageCalculationSortingActivityProps } from "@/types/activities";
 import {
   CATEGORIZATION_SUPPORTED_MODES,
   buildCategorizationPracticeSubmission,
-} from './practiceSubmission';
+} from "./practiceSubmission";
 
 import {
   AVAILABLE_ITEMS_DROPPABLE,
   getZoneDroppableId,
   useCategorizationExercise,
-  type CategorizationItem
-} from './useCategorizationExercise';
+  type CategorizationItem,
+} from "./useCategorizationExercise";
 
-export type PercentageCalculationSortingActivity = Omit<Activity, 'componentKey' | 'props'> & {
-  componentKey: 'percentage-calculation-sorting';
+export type PercentageCalculationSortingActivity = Omit<Activity, "componentKey" | "props"> & {
+  componentKey: "percentage-calculation-sorting";
   props: PercentageCalculationSortingActivityProps;
 };
 
@@ -31,11 +31,11 @@ export const PERCENTAGE_CALCULATION_SORTING_SUPPORTED_MODES = CATEGORIZATION_SUP
 
 interface PercentageCalculationSortingProps {
   activity: PercentageCalculationSortingActivity;
-  onSubmit?: (payload: import('@/lib/practice/contract').PracticeSubmissionCallbackPayload) => void;
+  onSubmit?: (payload: import("@/lib/practice/contract").PracticeSubmissionCallbackPayload) => void;
 }
 
-type ScenarioItem = PercentageCalculationSortingActivityProps['scenarios'][number] & CategorizationItem;
-
+type ScenarioItem = PercentageCalculationSortingActivityProps["scenarios"][number] &
+  CategorizationItem;
 
 /**
  * Map a scenario difficulty level to a Badge variant.
@@ -43,17 +43,16 @@ type ScenarioItem = PercentageCalculationSortingActivityProps['scenarios'][numbe
  * @param difficulty - The difficulty level string
  * @returns The corresponding Badge variant
  */
-function difficultyBadge(difficulty: ScenarioItem['difficulty']) {
+function difficultyBadge(difficulty: ScenarioItem["difficulty"]) {
   switch (difficulty) {
-    case 'easy':
-      return 'secondary';
-    case 'hard':
-      return 'destructive';
+    case "easy":
+      return "secondary";
+    case "hard":
+      return "destructive";
     default:
-      return 'outline';
+      return "outline";
   }
 }
-
 
 /**
  * Renders a drag-and-drop exercise where students sort business
@@ -62,21 +61,28 @@ function difficultyBadge(difficulty: ScenarioItem['difficulty']) {
  * @param props - Activity configuration and submission callback
  * @returns An interactive percentage calculation sorting exercise
  */
-export function PercentageCalculationSorting({ activity, onSubmit }: PercentageCalculationSortingProps) {
+export function PercentageCalculationSorting({
+  activity,
+  onSubmit,
+}: PercentageCalculationSortingProps) {
   const [showHints, setShowHints] = useState(activity.props.showHintsByDefault);
-  const practiceMode = activity.props.showHintsByDefault ? 'guided_practice' : 'independent_practice';
+  const practiceMode = activity.props.showHintsByDefault
+    ? "guided_practice"
+    : "independent_practice";
 
   const calculationTypes = activity.props.calculationTypes;
-  const zoneIds = useMemo(() => calculationTypes.map((category) => category.id), [calculationTypes]);
+  const zoneIds = useMemo(
+    () => calculationTypes.map((category) => category.id),
+    [calculationTypes],
+  );
   const scenarios = useMemo<ScenarioItem[]>(
     () =>
       activity.props.scenarios.map((scenario) => ({
         ...scenario,
-        targetId: scenario.calculationTypeId
+        targetId: scenario.calculationTypeId,
       })),
-    [activity.props.scenarios]
+    [activity.props.scenarios],
   );
-
 
   /**
    * Build and submit the practice submission when the sorting exercise is completed.
@@ -84,7 +90,15 @@ export function PercentageCalculationSorting({ activity, onSubmit }: PercentageC
    * @param payload - Score, attempt count, and final placements
    */
   const handleCompletion = useCallback(
-    ({ score, attempts, placements }: { score: number; attempts: number; placements: Record<string, ScenarioItem[]> }) => {
+    ({
+      score,
+      attempts,
+      placements,
+    }: {
+      score: number;
+      attempts: number;
+      placements: Record<string, ScenarioItem[]>;
+    }) => {
       try {
         onSubmit?.({
           ...buildCategorizationPracticeSubmission({
@@ -93,7 +107,7 @@ export function PercentageCalculationSorting({ activity, onSubmit }: PercentageC
             attemptNumber: attempts,
             completedAt: new Date(),
             family: activity.componentKey,
-            artifactKind: 'categorization_board',
+            artifactKind: "categorization_board",
             items: scenarios,
             placements,
             zones: calculationTypes.map((calculation) => ({
@@ -119,17 +133,26 @@ export function PercentageCalculationSorting({ activity, onSubmit }: PercentageC
           }),
         });
       } catch (err) {
-        console.error('PercentageCalculationSorting submission failed:', err);
+        console.error("PercentageCalculationSorting submission failed:", err);
       }
     },
-    [activity.componentKey, activity.id, calculationTypes, onSubmit, practiceMode, scenarios, showHints]
+    [
+      activity.componentKey,
+      activity.id,
+      calculationTypes,
+      onSubmit,
+      practiceMode,
+      scenarios,
+      showHints,
+    ],
   );
 
-  const { availableItems, placements, attempts, score, completed, handleDragEnd, reset } = useCategorizationExercise(scenarios, zoneIds, {
-    shuffleItems: activity.props.shuffleItems,
-    resetKey: activity.id,
-    onComplete: handleCompletion
-  });
+  const { availableItems, placements, attempts, score, completed, handleDragEnd, reset } =
+    useCategorizationExercise(scenarios, zoneIds, {
+      shuffleItems: activity.props.shuffleItems,
+      resetKey: activity.id,
+      onComplete: handleCompletion,
+    });
 
   return (
     <Card className="w-full">
@@ -150,7 +173,12 @@ export function PercentageCalculationSorting({ activity, onSubmit }: PercentageC
       <CardContent className="space-y-6">
         <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
           <label className="inline-flex items-center gap-2">
-            <input type="checkbox" checked={showHints} onChange={() => setShowHints((prev) => !prev)} className="h-4 w-4" />
+            <input
+              type="checkbox"
+              checked={showHints}
+              onChange={() => setShowHints((prev) => !prev)}
+              className="h-4 w-4"
+            />
             Show formula hints
           </label>
           <div className="inline-flex items-center gap-2">
@@ -184,19 +212,24 @@ export function PercentageCalculationSorting({ activity, onSubmit }: PercentageC
                             style={dragProvided.draggableProps.style as React.CSSProperties}
                             {...dragProvided.dragHandleProps}
                             className={cn(
-                              'rounded-lg border bg-card p-3 transition',
-                              snapshot.isDragging && 'ring-2 ring-primary'
+                              "rounded-lg border bg-card p-3 transition",
+                              snapshot.isDragging && "ring-2 ring-primary",
                             )}
                           >
                             <div className="flex items-center justify-between gap-2">
                               <p className="font-semibold">{scenario.prompt}</p>
-                              <Badge variant={difficultyBadge(scenario.difficulty)} className="text-xxs">
+                              <Badge
+                                variant={difficultyBadge(scenario.difficulty)}
+                                className="text-xxs"
+                              >
                                 {scenario.difficulty.toUpperCase()}
                               </Badge>
                             </div>
                             <p className="text-xs text-muted-foreground">{scenario.dataPoints}</p>
                             {showHints && scenario.businessContext && (
-                              <p className="mt-2 text-xs text-muted-foreground/80">{scenario.businessContext}</p>
+                              <p className="mt-2 text-xs text-muted-foreground/80">
+                                {scenario.businessContext}
+                              </p>
                             )}
                           </div>
                         )}
@@ -204,7 +237,9 @@ export function PercentageCalculationSorting({ activity, onSubmit }: PercentageC
                     ))}
                     {provided.placeholder}
                     {availableItems.length === 0 && (
-                      <p className="text-center text-sm text-muted-foreground">All calculations placed</p>
+                      <p className="text-center text-sm text-muted-foreground">
+                        All calculations placed
+                      </p>
                     )}
                   </div>
                 )}
@@ -220,7 +255,9 @@ export function PercentageCalculationSorting({ activity, onSubmit }: PercentageC
                     {showHints && (
                       <div className="text-xs text-muted-foreground/80">
                         <p className="font-semibold">Formula: {calculation.formula}</p>
-                        {calculation.applications && <p>Applications: {calculation.applications.join(', ')}</p>}
+                        {calculation.applications && (
+                          <p>Applications: {calculation.applications.join(", ")}</p>
+                        )}
                       </div>
                     )}
                   </div>
@@ -239,16 +276,21 @@ export function PercentageCalculationSorting({ activity, onSubmit }: PercentageC
                                 <div
                                   ref={dragProvided.innerRef}
                                   {...dragProvided.draggableProps}
-                            style={dragProvided.draggableProps.style as React.CSSProperties}
+                                  style={dragProvided.draggableProps.style as React.CSSProperties}
                                   {...dragProvided.dragHandleProps}
                                   className={cn(
-                                    'rounded-lg border bg-card p-3 transition',
-                                    attempts > 0 && (isCorrect ? 'border-green-500 bg-green-50' : 'border-destructive bg-destructive/10'),
-                                    snapshot.isDragging && 'ring-2 ring-primary'
+                                    "rounded-lg border bg-card p-3 transition",
+                                    attempts > 0 &&
+                                      (isCorrect
+                                        ? "border-green-500 bg-green-50"
+                                        : "border-destructive bg-destructive/10"),
+                                    snapshot.isDragging && "ring-2 ring-primary",
                                   )}
                                 >
                                   <p className="font-medium">{scenario.prompt}</p>
-                                  <p className="text-xs text-muted-foreground">{scenario.description}</p>
+                                  <p className="text-xs text-muted-foreground">
+                                    {scenario.description}
+                                  </p>
                                 </div>
                               )}
                             </Draggable>
@@ -256,7 +298,9 @@ export function PercentageCalculationSorting({ activity, onSubmit }: PercentageC
                         })}
                         {provided.placeholder}
                         {(placements[calculation.id] ?? []).length === 0 && (
-                          <p className="text-xs text-muted-foreground text-center">Drop scenarios here</p>
+                          <p className="text-xs text-muted-foreground text-center">
+                            Drop scenarios here
+                          </p>
                         )}
                       </div>
                     )}

@@ -17,7 +17,7 @@
 //                                       THIS file confirms the schema's superRefine check
 //                                       across all rejection paths.
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 import {
   applyTransferSkip,
   revertTransferSkip,
@@ -26,25 +26,25 @@ import {
   grantSkipAfterCheck,
   TRANSFER_SKIP_POLICY_DEFAULT,
   transferSkipPolicySchema,
-} from '../transfer-skip';
+} from "../transfer-skip";
 import type {
   TransferSkipPolicy,
   TransferSkipRecord,
   ConfirmationCheckResult,
-} from '../transfer-skip';
+} from "../transfer-skip";
 
 // ---------------------------------------------------------------------------
 // AD8 — Triple idempotence + structured deep-equal
 // ---------------------------------------------------------------------------
 
-describe('AD8 — revertTransferSkip is idempotent across N applications', () => {
-  it('revert(revert(revert(r))) deep-equals revert(r)', () => {
+describe("AD8 — revertTransferSkip is idempotent across N applications", () => {
+  it("revert(revert(revert(r))) deep-equals revert(r)", () => {
     // AD8 says `revert(revert(r)) == revert(r)`. The defense here lifts that
     // to N applications: applying revert any number of times after the
     // first yields the same record.
     const skipped = applyTransferSkip(
-      'math.im3.skill.solve-quadratic',
-      'math.im2',
+      "math.im3.skill.solve-quadratic",
+      "math.im2",
       0.72,
       1_000_000,
     );
@@ -65,13 +65,13 @@ describe('AD8 — revertTransferSkip is idempotent across N applications', () =>
     expect(triple.state).toBe(once.state);
   });
 
-  it('revert preserves the EXISTING revertedAt when no explicit timestamp is passed', () => {
+  it("revert preserves the EXISTING revertedAt when no explicit timestamp is passed", () => {
     // The first revert sets revertedAt = 2_000_000. The second revert
     // without an explicit timestamp must preserve that exact value
     // (it does NOT advance to Date.now()).
     const skipped = applyTransferSkip(
-      'math.im3.skill.solve-quadratic',
-      'math.im2',
+      "math.im3.skill.solve-quadratic",
+      "math.im2",
       0.72,
       1_000_000,
     );
@@ -86,16 +86,16 @@ describe('AD8 — revertTransferSkip is idempotent across N applications', () =>
 // AD10 — buildConfirmationCheck determinism across skill/policy combinations
 // ---------------------------------------------------------------------------
 
-describe('AD10 — buildConfirmationCheck is deterministic across many inputs', () => {
+describe("AD10 — buildConfirmationCheck is deterministic across many inputs", () => {
   const skillIds = [
-    'math.im3.skill.solve-quadratic',
-    'math.im3.skill.factored-form',
-    'math.im3.skill.vertex-form',
-    'math.im3.skill.linear-functions',
+    "math.im3.skill.solve-quadratic",
+    "math.im3.skill.factored-form",
+    "math.im3.skill.vertex-form",
+    "math.im3.skill.linear-functions",
   ];
-  const problems = ['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8'];
+  const problems = ["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8"];
 
-  it('returns the same sample for the same (skillId, problems, policy) on 50 calls', () => {
+  it("returns the same sample for the same (skillId, problems, policy) on 50 calls", () => {
     const policy: TransferSkipPolicy = {
       ...TRANSFER_SKIP_POLICY_DEFAULT,
       minCheckProblems: 3,
@@ -109,7 +109,7 @@ describe('AD10 — buildConfirmationCheck is deterministic across many inputs', 
     }
   });
 
-  it('different skillIds can yield different samples (the hash is skill-dependent)', () => {
+  it("different skillIds can yield different samples (the hash is skill-dependent)", () => {
     // This is the structural defense: if the sample were derived only
     // from `problems`, then two different skillIds fed the same problems
     // would have identical outputs. That would be a degenerate deterministic
@@ -124,19 +124,19 @@ describe('AD10 — buildConfirmationCheck is deterministic across many inputs', 
     // sampler must produce at least one divergent result across the
     // pairwise combinations — i.e. the sampler is skill-dependent.
     const allFour = skillIds.map((id) =>
-      buildConfirmationCheck(id, problems, policy).problems.join(','),
+      buildConfirmationCheck(id, problems, policy).problems.join(","),
     );
     const distinct = new Set(allFour).size;
     expect(distinct).toBeGreaterThan(1);
   });
 
-  it('does not mutate the caller-provided problems array across many calls', () => {
+  it("does not mutate the caller-provided problems array across many calls", () => {
     const policy: TransferSkipPolicy = {
       ...TRANSFER_SKIP_POLICY_DEFAULT,
       minCheckProblems: 2,
       maxCheckProblems: 3,
     };
-    const problemsLocal = ['p1', 'p2', 'p3', 'p4', 'p5'];
+    const problemsLocal = ["p1", "p2", "p3", "p4", "p5"];
     const snapshot = JSON.stringify(problemsLocal);
     for (let i = 0; i < 20; i += 1) {
       buildConfirmationCheck(skillIds[i % skillIds.length], problemsLocal, policy);
@@ -149,19 +149,19 @@ describe('AD10 — buildConfirmationCheck is deterministic across many inputs', 
 // AD11 — Schema rejects every known invalid input shape
 // ---------------------------------------------------------------------------
 
-describe('AD11 — transferSkipPolicySchema rejects every invalid input', () => {
-  it('rejects extra keys (strictObject)', () => {
+describe("AD11 — transferSkipPolicySchema rejects every invalid input", () => {
+  it("rejects extra keys (strictObject)", () => {
     expect(() =>
       transferSkipPolicySchema.parse({
         confirmationThreshold: 0.85,
         minCheckProblems: 2,
         maxCheckProblems: 4,
-        sneaky: 'extra',
+        sneaky: "extra",
       }),
     ).toThrow();
   });
 
-  it('rejects confirmationThreshold at 0 (must be > 0)', () => {
+  it("rejects confirmationThreshold at 0 (must be > 0)", () => {
     expect(() =>
       transferSkipPolicySchema.parse({
         confirmationThreshold: 0,
@@ -171,7 +171,7 @@ describe('AD11 — transferSkipPolicySchema rejects every invalid input', () => 
     ).toThrow();
   });
 
-  it('rejects confirmationThreshold above 1', () => {
+  it("rejects confirmationThreshold above 1", () => {
     expect(() =>
       transferSkipPolicySchema.parse({
         confirmationThreshold: 1.5,
@@ -181,7 +181,7 @@ describe('AD11 — transferSkipPolicySchema rejects every invalid input', () => 
     ).toThrow();
   });
 
-  it('rejects minCheckProblems: 0', () => {
+  it("rejects minCheckProblems: 0", () => {
     expect(() =>
       transferSkipPolicySchema.parse({
         confirmationThreshold: 0.85,
@@ -191,7 +191,7 @@ describe('AD11 — transferSkipPolicySchema rejects every invalid input', () => 
     ).toThrow();
   });
 
-  it('rejects maxCheckProblems: 0', () => {
+  it("rejects maxCheckProblems: 0", () => {
     expect(() =>
       transferSkipPolicySchema.parse({
         confirmationThreshold: 0.85,
@@ -201,7 +201,7 @@ describe('AD11 — transferSkipPolicySchema rejects every invalid input', () => 
     ).toThrow();
   });
 
-  it('rejects min > max (superRefine guard)', () => {
+  it("rejects min > max (superRefine guard)", () => {
     expect(() =>
       transferSkipPolicySchema.parse({
         confirmationThreshold: 0.85,
@@ -211,7 +211,7 @@ describe('AD11 — transferSkipPolicySchema rejects every invalid input', () => 
     ).toThrow();
   });
 
-  it('accepts min === max (boundary)', () => {
+  it("accepts min === max (boundary)", () => {
     // Same value for min and max is degenerate but valid.
     const parsed = transferSkipPolicySchema.parse({
       confirmationThreshold: 0.85,
@@ -227,20 +227,20 @@ describe('AD11 — transferSkipPolicySchema rejects every invalid input', () => 
 // FR5 — Pure output for grantSkipAfterCheck (defense for AD13)
 // ---------------------------------------------------------------------------
 
-describe('grantSkipAfterCheck — pure output, no undefined fields', () => {
-  it('granted=false branch returns a defined reason string', () => {
+describe("grantSkipAfterCheck — pure output, no undefined fields", () => {
+  it("granted=false branch returns a defined reason string", () => {
     const result: ConfirmationCheckResult = {
-      skillId: 'math.im3.skill.solve-quadratic',
+      skillId: "math.im3.skill.solve-quadratic",
       passed: false,
-      confidence: 'low',
+      confidence: "low",
     };
     const outcome = grantSkipAfterCheck(result);
     if (outcome.granted) {
-      throw new Error('expected not-granted outcome');
+      throw new Error("expected not-granted outcome");
     }
-    expect(outcome.reason).toBe('confirmation-check-failed');
+    expect(outcome.reason).toBe("confirmation-check-failed");
     // No undefined fields in the failure payload.
-    expect(outcome).toEqual({ granted: false, reason: 'confirmation-check-failed' });
+    expect(outcome).toEqual({ granted: false, reason: "confirmation-check-failed" });
   });
 });
 
@@ -248,8 +248,8 @@ describe('grantSkipAfterCheck — pure output, no undefined fields', () => {
 // shouldRequireConfirmationCheck — boundary cases (defense for FR5)
 // ---------------------------------------------------------------------------
 
-describe('shouldRequireConfirmationCheck — boundary cases', () => {
-  it('returns true at componentMastery = threshold - 1e-9', () => {
+describe("shouldRequireConfirmationCheck — boundary cases", () => {
+  it("returns true at componentMastery = threshold - 1e-9", () => {
     const policy: TransferSkipPolicy = {
       ...TRANSFER_SKIP_POLICY_DEFAULT,
       confirmationThreshold: 0.85,
@@ -257,7 +257,7 @@ describe('shouldRequireConfirmationCheck — boundary cases', () => {
     expect(shouldRequireConfirmationCheck(policy, 0.85 - 1e-9)).toBe(true);
   });
 
-  it('returns false at componentMastery = threshold exactly (inclusive boundary)', () => {
+  it("returns false at componentMastery = threshold exactly (inclusive boundary)", () => {
     const policy: TransferSkipPolicy = {
       ...TRANSFER_SKIP_POLICY_DEFAULT,
       confirmationThreshold: 0.85,
@@ -270,24 +270,19 @@ describe('shouldRequireConfirmationCheck — boundary cases', () => {
 // applyTransferSkip — record state invariants
 // ---------------------------------------------------------------------------
 
-describe('applyTransferSkip — record shape invariants', () => {
-  it('reversible is always true (every skip is reversible)', () => {
-    const record = applyTransferSkip(
-      'math.im3.skill.foo',
-      'math.im2',
-      0.5,
-      1_000_000,
-    );
+describe("applyTransferSkip — record shape invariants", () => {
+  it("reversible is always true (every skip is reversible)", () => {
+    const record = applyTransferSkip("math.im3.skill.foo", "math.im2", 0.5, 1_000_000);
     const _exhaustive: TransferSkipRecord = record;
     void _exhaustive;
     expect(record.reversible).toBe(true);
   });
 
-  it('skippedAt defaults to a numeric value within the call window', () => {
+  it("skippedAt defaults to a numeric value within the call window", () => {
     const before = Date.now();
-    const record = applyTransferSkip('math.im3.skill.foo', 'math.im2', 0.5);
+    const record = applyTransferSkip("math.im3.skill.foo", "math.im2", 0.5);
     const after = Date.now();
-    expect(typeof record.skippedAt).toBe('number');
+    expect(typeof record.skippedAt).toBe("number");
     expect(record.skippedAt).toBeGreaterThanOrEqual(before);
     expect(record.skippedAt).toBeLessThanOrEqual(after);
   });

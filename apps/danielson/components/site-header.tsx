@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { LogoutButton, useAuth } from '@math-platform/app-shell';
-import { useOrganizationBranding } from '@/components/organization-branding';
-import type { OrganizationBranding } from '@/lib/organization-branding';
+import Link from "next/link";
+import Image from "next/image";
+import { LogoutButton, useAuth } from "@math-platform/app-shell";
+import { useOrganizationBranding } from "@/components/organization-branding";
+import type { OrganizationBranding } from "@/lib/organization-branding";
 
 export function SiteHeader({
   isAuthenticated = false,
@@ -30,18 +30,21 @@ export function SiteHeader({
   const { profile } = useAuth();
   const roles = profile?.metadata?.danielsonRoles;
   if (Array.isArray(roles)) {
-    const canObserve = roles.some((role) => ['hod', 'coach', 'school_head', 'slt'].includes(role));
-    showAdministration = roles.includes('sysadmin');
+    const canObserve = roles.some((role) => ["hod", "coach", "school_head", "slt"].includes(role));
+    showAdministration = roles.includes("sysadmin");
     showObservations = showReports = showImprovementPlans = canObserve;
-    showMyObservations = showMyReport = roles.includes('teacher');
+    showMyObservations = showMyReport = roles.includes("teacher");
   }
   const shellBrand = useOrganizationBranding();
   const currentBranding = shellBrand.branding ?? branding;
-  const currentOrganizationName = shellBrand.organizationName ?? organizationName ?? currentBranding?.displayName;
+  const currentOrganizationName =
+    shellBrand.organizationName ?? organizationName ?? currentBranding?.displayName;
 
   return (
     <header className="site-header">
-      <a className="skip-link" href="#main-content">Skip to content</a>
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
       <div className="site-header-inner">
         <Link className="brand" href="/">
           {currentBranding?.logoPath && currentOrganizationName ? (
@@ -58,7 +61,9 @@ export function SiteHeader({
               <strong>{currentBranding.displayName}</strong>
               <span>Danielson Teacher Growth</span>
             </span>
-          ) : 'Danielson Teacher Growth'}
+          ) : (
+            "Danielson Teacher Growth"
+          )}
         </Link>
         {isAuthenticated ? (
           <nav className="site-nav" aria-label="Main navigation">

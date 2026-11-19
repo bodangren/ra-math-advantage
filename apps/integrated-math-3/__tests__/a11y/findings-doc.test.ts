@@ -1,10 +1,10 @@
-import { describe, it, expect } from 'vitest';
-import { readFileSync, existsSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { describe, it, expect } from "vitest";
+import { readFileSync, existsSync } from "node:fs";
+import { resolve } from "node:path";
 
 const FINDINGS_PATHS = [
-  resolve(process.cwd(), '../../measure/tracks/wcag-aa-remediation_20260605/findings.md'),
-  resolve(process.cwd(), '../../measure/archive/wcag-aa-remediation_20260704/findings.md'),
+  resolve(process.cwd(), "../../measure/tracks/wcag-aa-remediation_20260605/findings.md"),
+  resolve(process.cwd(), "../../measure/archive/wcag-aa-remediation_20260704/findings.md"),
 ];
 
 function findFindingsPath(): string {
@@ -17,22 +17,22 @@ function findFindingsPath(): string {
 
 const FINDINGS_PATH = findFindingsPath();
 
-const REPO_ROOT = resolve(process.cwd(), '../..');
+const REPO_ROOT = resolve(process.cwd(), "../..");
 
 function readFindings(): string {
-  return readFileSync(FINDINGS_PATH, 'utf-8');
+  return readFileSync(FINDINGS_PATH, "utf-8");
 }
 
-describe('findings.md structural guard', () => {
-  it('exists and is non-empty', () => {
+describe("findings.md structural guard", () => {
+  it("exists and is non-empty", () => {
     expect(existsSync(FINDINGS_PATH)).toBe(true);
     const content = readFindings();
     expect(content.trim().length).toBeGreaterThan(0);
   });
 
-  it('has labeled integer counts for every severity', () => {
+  it("has labeled integer counts for every severity", () => {
     const content = readFindings();
-    const severities = ['Critical', 'Serious', 'Moderate', 'Minor'];
+    const severities = ["Critical", "Serious", "Moderate", "Minor"];
 
     for (const severity of severities) {
       const match = content.match(new RegExp(`\\*\\*${severity}:\\*\\*\\s*([0-9]+)`));
@@ -43,11 +43,11 @@ describe('findings.md structural guard', () => {
     }
   });
 
-  it('every cited surface resolves to a real file', () => {
+  it("every cited surface resolves to a real file", () => {
     const content = readFindings();
-    const paths = Array.from(
-      content.matchAll(/`((?:apps|packages)\/[^`]+\.(?:tsx|ts|md))`/g),
-    ).map((m) => m[1]);
+    const paths = Array.from(content.matchAll(/`((?:apps|packages)\/[^`]+\.(?:tsx|ts|md))`/g)).map(
+      (m) => m[1],
+    );
 
     expect(paths.length).toBeGreaterThan(0);
 
@@ -57,9 +57,9 @@ describe('findings.md structural guard', () => {
     }
   });
 
-  it('includes at least one code-inspection evidence path', () => {
+  it("includes at least one code-inspection evidence path", () => {
     const content = readFindings();
-    const evidenceHeader = content.indexOf('## Code-Inspection Evidence');
+    const evidenceHeader = content.indexOf("## Code-Inspection Evidence");
     expect(evidenceHeader).toBeGreaterThan(-1);
 
     const evidenceSection = content.slice(evidenceHeader);

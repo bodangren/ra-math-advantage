@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
 export interface User {
   id: string;
@@ -11,7 +11,7 @@ export interface Profile {
   id: string;
   organization_id: string;
   username: string;
-  role: 'student' | 'teacher' | 'admin';
+  role: "student" | "teacher" | "admin";
   display_name: string | null;
   avatar_url: string | null;
   metadata: Record<string, unknown> | null;
@@ -57,9 +57,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const loadSession = async () => {
       setLoading(true);
       try {
-        const response = await fetch('/api/auth/session', { method: 'GET' });
+        const response = await fetch("/api/auth/session", { method: "GET" });
         if (!response.ok) {
-          throw new Error('Unable to load auth session');
+          throw new Error("Unable to load auth session");
         }
 
         const payload = await response.json();
@@ -94,25 +94,25 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const signIn = async (username: string, password: string) => {
     setLoading(true);
     try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
       });
 
       if (!response.ok) {
         const payload = await response.json().catch(() => null);
-        throw new Error(payload?.error ?? 'Invalid login credentials');
+        throw new Error(payload?.error ?? "Invalid login credentials");
       }
 
-      const sessionResponse = await fetch('/api/auth/session', { method: 'GET' });
+      const sessionResponse = await fetch("/api/auth/session", { method: "GET" });
       if (!sessionResponse.ok) {
-        throw new Error('Unable to load auth session');
+        throw new Error("Unable to load auth session");
       }
 
       const sessionPayload = await sessionResponse.json();
       if (!sessionPayload?.authenticated || !sessionPayload?.user || !sessionPayload?.profile) {
-        throw new Error('Invalid login credentials');
+        throw new Error("Invalid login credentials");
       }
 
       setUser({ id: sessionPayload.user.id });
@@ -123,7 +123,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   };
 
   const signOut = async () => {
-    await fetch('/api/auth/logout', { method: 'POST' });
+    await fetch("/api/auth/logout", { method: "POST" });
     setUser(null);
     setProfile(null);
   };
@@ -143,7 +143,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 export function useAuth() {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 }

@@ -1,7 +1,7 @@
-export type AdjustmentScenarioKind = 'deferral' | 'accrual' | 'depreciation';
-export type DeferralRecordingMethod = 'asset' | 'expense';
-export type AccrualRecordingKind = 'revenue' | 'expense';
-export type DepreciationMethod = 'straight-line' | 'variable-salvage';
+export type AdjustmentScenarioKind = "deferral" | "accrual" | "depreciation";
+export type DeferralRecordingMethod = "asset" | "expense";
+export type AccrualRecordingKind = "revenue" | "expense";
+export type DepreciationMethod = "straight-line" | "variable-salvage";
 
 export interface AdjustmentEntry {
   debitLabel: string;
@@ -20,7 +20,7 @@ export interface AdjustmentScenarioBase {
 }
 
 export interface DeferralAdjustmentScenario extends AdjustmentScenarioBase {
-  kind: 'deferral';
+  kind: "deferral";
   method: DeferralRecordingMethod;
   accountLabel: string;
   assetAccountLabel: string;
@@ -34,7 +34,7 @@ export interface DeferralAdjustmentScenario extends AdjustmentScenarioBase {
 }
 
 export interface AccrualAdjustmentScenario extends AdjustmentScenarioBase {
-  kind: 'accrual';
+  kind: "accrual";
   accrualKind: AccrualRecordingKind;
   accountLabel: string;
   incurredDate: string;
@@ -43,7 +43,7 @@ export interface AccrualAdjustmentScenario extends AdjustmentScenarioBase {
 }
 
 export interface DepreciationAdjustmentScenario extends AdjustmentScenarioBase {
-  kind: 'depreciation';
+  kind: "depreciation";
   method: DepreciationMethod;
   assetCategory: string;
   purchaseDate: string;
@@ -97,16 +97,29 @@ export interface AdjustmentScenarioConfig {
   depreciation?: DepreciationAdjustmentConfig;
 }
 
-const DEFAULT_DEFERRAL_LABELS = ['Insurance', 'Rent', 'Supplies', 'Software Subscription'] as const;
-const DEFAULT_ACCRUAL_REVENUE_LABELS = ['Service Revenue', 'Consulting Revenue', 'Interest Revenue'] as const;
-const DEFAULT_ACCRUAL_EXPENSE_LABELS = ['Wages Expense', 'Utilities Expense', 'Insurance Expense'] as const;
-const DEFAULT_ASSET_CATEGORIES = ['Equipment', 'Office Furniture', 'Computers', 'Delivery Truck'] as const;
+const DEFAULT_DEFERRAL_LABELS = ["Insurance", "Rent", "Supplies", "Software Subscription"] as const;
+const DEFAULT_ACCRUAL_REVENUE_LABELS = [
+  "Service Revenue",
+  "Consulting Revenue",
+  "Interest Revenue",
+] as const;
+const DEFAULT_ACCRUAL_EXPENSE_LABELS = [
+  "Wages Expense",
+  "Utilities Expense",
+  "Insurance Expense",
+] as const;
+const DEFAULT_ASSET_CATEGORIES = [
+  "Equipment",
+  "Office Furniture",
+  "Computers",
+  "Delivery Truck",
+] as const;
 const DEFAULT_DEFERRAL_AMOUNTS = [600, 900, 1200, 1800, 2400] as const;
 const DEFAULT_ACCRUAL_DAILY_RATES = [60, 90, 120, 150, 180, 210] as const;
 const DEFAULT_DEPRECIATION_COSTS = [2400, 3600, 4800, 7200, 9600] as const;
 const DEFAULT_COVERAGE_MONTHS = [6, 9, 12] as const;
 const DEFAULT_USEFUL_LIFE_MONTHS = [12, 24, 36, 60] as const;
-const DEFAULT_SCENARIO_KINDS: AdjustmentScenarioKind[] = ['deferral', 'accrual', 'depreciation'];
+const DEFAULT_SCENARIO_KINDS: AdjustmentScenarioKind[] = ["deferral", "accrual", "depreciation"];
 
 /**
  * Generates a seeded pseudo-random number generator using mulberry32 algorithm.
@@ -179,13 +192,16 @@ function differenceInDays(startDate: string, endDate: string) {
 function differenceInMonthsInclusive(startDate: string, endDate: string) {
   const start = parseIsoDate(startDate);
   const end = parseIsoDate(endDate);
-  const monthDiff = (end.getUTCFullYear() - start.getUTCFullYear()) * 12 + (end.getUTCMonth() - start.getUTCMonth()) + 1;
+  const monthDiff =
+    (end.getUTCFullYear() - start.getUTCFullYear()) * 12 +
+    (end.getUTCMonth() - start.getUTCMonth()) +
+    1;
   return Math.max(1, monthDiff);
 }
 
 /** Formats a number as a US locale currency string. */
 function formatAmount(amount: number) {
-  return amount.toLocaleString('en-US');
+  return amount.toLocaleString("en-US");
 }
 
 /** Builds asset and expense account labels for a prepaid account. */
@@ -202,11 +218,11 @@ function buildAccrualCounterLabel(accountLabel: string) {
   const trimmed = accountLabel.trim();
 
   if (/revenue$/i.test(trimmed)) {
-    return 'Accounts Receivable';
+    return "Accounts Receivable";
   }
 
   if (/expense$/i.test(trimmed)) {
-    return trimmed.replace(/expense$/i, 'Payable').trim();
+    return trimmed.replace(/expense$/i, "Payable").trim();
   }
 
   return `${trimmed} Payable`;
@@ -228,13 +244,17 @@ function buildScenarioPicker(seed: number, requestedKind?: AdjustmentScenarioKin
 }
 
 /** Builds default values for a deferral adjustment scenario. */
-function buildDeferralDefaults(seed: number, config: DeferralAdjustmentConfig = {}): Required<DeferralAdjustmentConfig> {
+function buildDeferralDefaults(
+  seed: number,
+  config: DeferralAdjustmentConfig = {},
+): Required<DeferralAdjustmentConfig> {
   const rng = mulberry32(seed ^ 0x1a2b3c4d);
   const accountLabel = config.accountLabel ?? pick(DEFAULT_DEFERRAL_LABELS, rng);
   const coverageMonths = config.coverageMonths ?? pick(DEFAULT_COVERAGE_MONTHS, rng);
-  const initialRecordingMethod = config.initialRecordingMethod ?? (seed % 2 === 0 ? 'asset' : 'expense');
+  const initialRecordingMethod =
+    config.initialRecordingMethod ?? (seed % 2 === 0 ? "asset" : "expense");
   const amount = config.amount ?? pick(DEFAULT_DEFERRAL_AMOUNTS, rng);
-  const startDate = config.startDate ?? addMonths('2026-01-01', randomInt(rng, 0, 2));
+  const startDate = config.startDate ?? addMonths("2026-01-01", randomInt(rng, 0, 2));
   const elapsedMonths = config.reportingDate
     ? Math.min(coverageMonths, differenceInMonthsInclusive(startDate, config.reportingDate))
     : Math.min(coverageMonths, Math.max(1, randomInt(rng, 1, Math.max(1, coverageMonths - 1))));
@@ -251,16 +271,19 @@ function buildDeferralDefaults(seed: number, config: DeferralAdjustmentConfig = 
 }
 
 /** Builds default values for an accrual adjustment scenario. */
-function buildAccrualDefaults(seed: number, config: AccrualAdjustmentConfig = {}): Required<AccrualAdjustmentConfig> {
+function buildAccrualDefaults(
+  seed: number,
+  config: AccrualAdjustmentConfig = {},
+): Required<AccrualAdjustmentConfig> {
   const rng = mulberry32(seed ^ 0x9e3779b9);
-  const accrualKind = config.accrualKind ?? (seed % 2 === 0 ? 'revenue' : 'expense');
+  const accrualKind = config.accrualKind ?? (seed % 2 === 0 ? "revenue" : "expense");
   const accountLabel =
     config.accountLabel ??
-    (accrualKind === 'revenue'
+    (accrualKind === "revenue"
       ? pick(DEFAULT_ACCRUAL_REVENUE_LABELS, rng)
       : pick(DEFAULT_ACCRUAL_EXPENSE_LABELS, rng));
   const dailyRate = config.dailyRate ?? config.amount ?? pick(DEFAULT_ACCRUAL_DAILY_RATES, rng);
-  const reportingDate = config.reportingDate ?? '2026-03-31';
+  const reportingDate = config.reportingDate ?? "2026-03-31";
   const incurredDate = config.incurredDate ?? addDays(reportingDate, -randomInt(rng, 1, 5));
 
   return {
@@ -274,7 +297,10 @@ function buildAccrualDefaults(seed: number, config: AccrualAdjustmentConfig = {}
 }
 
 /** Builds default values for a depreciation adjustment scenario. */
-function buildDepreciationDefaults(seed: number, config: DepreciationAdjustmentConfig = {}): Required<DepreciationAdjustmentConfig> {
+function buildDepreciationDefaults(
+  seed: number,
+  config: DepreciationAdjustmentConfig = {},
+): Required<DepreciationAdjustmentConfig> {
   const rng = mulberry32(seed ^ 0x85ebca6b);
   const assetCategory = config.assetCategory ?? pick(DEFAULT_ASSET_CATEGORIES, rng);
   const cost = config.cost ?? pick(DEFAULT_DEPRECIATION_COSTS, rng);
@@ -283,8 +309,8 @@ function buildDepreciationDefaults(seed: number, config: DepreciationAdjustmentC
     cost - 1,
     config.salvageValue ?? Math.max(1, Math.round(cost * (0.1 + rng() * 0.15))),
   );
-  const method = config.method ?? (seed % 2 === 0 ? 'straight-line' : 'variable-salvage');
-  const purchaseDate = config.purchaseDate ?? addMonths('2026-01-01', randomInt(rng, 0, 2));
+  const method = config.method ?? (seed % 2 === 0 ? "straight-line" : "variable-salvage");
+  const purchaseDate = config.purchaseDate ?? addMonths("2026-01-01", randomInt(rng, 0, 2));
   const monthsUsed = config.reportingDate
     ? Math.min(usefulLifeMonths, differenceInMonthsInclusive(purchaseDate, config.reportingDate))
     : Math.min(usefulLifeMonths, randomInt(rng, 1, Math.max(1, usefulLifeMonths - 2)));
@@ -314,10 +340,13 @@ export function generateDeferralAdjustmentScenario(
   const defaults = buildDeferralDefaults(seed, config);
   const { assetAccountLabel, expenseAccountLabel } = buildPrepaidLabels(defaults.accountLabel);
   const elapsedMonths = differenceInMonthsInclusive(defaults.startDate, defaults.reportingDate);
-  const adjustmentAmount = Math.max(1, Math.round((defaults.amount * elapsedMonths) / defaults.coverageMonths));
+  const adjustmentAmount = Math.max(
+    1,
+    Math.round((defaults.amount * elapsedMonths) / defaults.coverageMonths),
+  );
   const remainingAmount = Math.max(0, defaults.amount - adjustmentAmount);
   const entry =
-    defaults.initialRecordingMethod === 'asset'
+    defaults.initialRecordingMethod === "asset"
       ? {
           debitLabel: expenseAccountLabel,
           creditLabel: assetAccountLabel,
@@ -331,14 +360,14 @@ export function generateDeferralAdjustmentScenario(
 
   return {
     seed,
-    kind: 'deferral',
-    title: `${defaults.initialRecordingMethod === 'asset' ? 'Adjust' : 'Correct'} prepaid ${defaults.accountLabel}`,
+    kind: "deferral",
+    title: `${defaults.initialRecordingMethod === "asset" ? "Adjust" : "Correct"} prepaid ${defaults.accountLabel}`,
     stem:
-      defaults.initialRecordingMethod === 'asset'
+      defaults.initialRecordingMethod === "asset"
         ? `The business paid $${formatAmount(defaults.amount)} for ${defaults.accountLabel} in advance on ${defaults.startDate} and recorded it as an asset. Prepare the ${defaults.reportingDate} adjustment after ${elapsedMonths} of ${defaults.coverageMonths} months have passed.`
         : `The business paid $${formatAmount(defaults.amount)} for ${defaults.accountLabel} in advance on ${defaults.startDate} but recorded it as expense immediately. Prepare the ${defaults.reportingDate} correcting adjustment to reclassify the unexpired portion after ${elapsedMonths} of ${defaults.coverageMonths} months have passed.`,
     reportingDate: defaults.reportingDate,
-    amount: defaults.initialRecordingMethod === 'asset' ? adjustmentAmount : remainingAmount,
+    amount: defaults.initialRecordingMethod === "asset" ? adjustmentAmount : remainingAmount,
     entry,
     method: defaults.initialRecordingMethod,
     accountLabel: defaults.accountLabel,
@@ -367,9 +396,9 @@ export function generateAccrualAdjustmentScenario(
   const daysAccrued = differenceInDays(defaults.incurredDate, defaults.reportingDate);
   const amount = Math.max(1, Math.round(defaults.dailyRate * daysAccrued));
   const entry =
-    defaults.accrualKind === 'revenue'
+    defaults.accrualKind === "revenue"
       ? {
-          debitLabel: 'Accounts Receivable',
+          debitLabel: "Accounts Receivable",
           creditLabel: defaults.accountLabel,
           amount,
         }
@@ -381,13 +410,13 @@ export function generateAccrualAdjustmentScenario(
 
   return {
     seed,
-    kind: 'accrual',
+    kind: "accrual",
     title:
-      defaults.accrualKind === 'revenue'
+      defaults.accrualKind === "revenue"
         ? `Record accrued ${defaults.accountLabel}`
-        : `Record accrued ${defaults.accountLabel.replace(/ expense$/i, '').trim()}`,
+        : `Record accrued ${defaults.accountLabel.replace(/ expense$/i, "").trim()}`,
     stem:
-      defaults.accrualKind === 'revenue'
+      defaults.accrualKind === "revenue"
         ? `The business earns $${formatAmount(defaults.dailyRate)} per day of ${defaults.accountLabel}. As of ${defaults.reportingDate}, ${daysAccrued} days have been earned but not billed.`
         : `The business incurs $${formatAmount(defaults.dailyRate)} per day of ${defaults.accountLabel}. As of ${defaults.reportingDate}, ${daysAccrued} days have been incurred but not yet recorded.`,
     reportingDate: defaults.reportingDate,
@@ -424,16 +453,16 @@ export function generateDepreciationAdjustmentScenario(
 
   return {
     seed,
-    kind: 'depreciation',
+    kind: "depreciation",
     title: `Record depreciation for ${defaults.assetCategory}`,
     stem:
-      defaults.method === 'straight-line'
+      defaults.method === "straight-line"
         ? `The business purchased ${defaults.assetCategory} on ${defaults.purchaseDate} for $${formatAmount(defaults.cost)} with $${formatAmount(defaults.salvageValue)} salvage value and a ${defaults.usefulLifeMonths}-month useful life. Prepare the ${defaults.reportingDate} straight-line depreciation adjustment.`
         : `The business purchased ${defaults.assetCategory} on ${defaults.purchaseDate} for $${formatAmount(defaults.cost)} and the asset has a variable salvage estimate of $${formatAmount(defaults.salvageValue)} across a ${defaults.usefulLifeMonths}-month useful life. Prepare the ${defaults.reportingDate} depreciation adjustment.`,
     reportingDate: defaults.reportingDate,
     amount: depreciationExpense,
     entry: {
-      debitLabel: 'Depreciation Expense',
+      debitLabel: "Depreciation Expense",
       creditLabel: buildDepreciationCreditLabel(defaults.assetCategory),
       amount: depreciationExpense,
     },
@@ -463,11 +492,11 @@ export function generateAdjustmentScenario(
 ): AdjustmentScenario {
   const scenarioKind = buildScenarioPicker(seed, config.scenarioKind);
 
-  if (scenarioKind === 'deferral') {
+  if (scenarioKind === "deferral") {
     return generateDeferralAdjustmentScenario(seed, config.deferral);
   }
 
-  if (scenarioKind === 'accrual') {
+  if (scenarioKind === "accrual") {
     return generateAccrualAdjustmentScenario(seed, config.accrual);
   }
 

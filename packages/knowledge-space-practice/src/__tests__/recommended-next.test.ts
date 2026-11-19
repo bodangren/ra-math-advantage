@@ -31,32 +31,28 @@
  * `nodeId.localeCompare` ascending.
  */
 
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { getRecommendedNext } from '../planner/recommended-next';
-import {
-  makePlannerChain,
-  makePlannerEmpty,
-  defaultPriorityWeights,
-} from './planner-fixtures';
+import { getRecommendedNext } from "../planner/recommended-next";
+import { makePlannerChain, makePlannerEmpty, defaultPriorityWeights } from "./planner-fixtures";
 
-const READY = { 'chain.n1': 0.1, 'chain.n2': 0.2, 'chain.n3': 0.3, 'chain.n4': 0.4 } as const;
+const READY = { "chain.n1": 0.1, "chain.n2": 0.2, "chain.n3": 0.3, "chain.n4": 0.4 } as const;
 
 // ---------------------------------------------------------------------------
 // Empty / degenerate inputs
 // ---------------------------------------------------------------------------
 
-describe('recommendedNext — empty graph', () => {
-  it('returns an empty list for an empty graph', () => {
+describe("recommendedNext — empty graph", () => {
+  it("returns an empty list for an empty graph", () => {
     const graph = makePlannerEmpty();
     expect(getRecommendedNext(graph, defaultPriorityWeights)).toEqual([]);
   });
 });
 
-describe('recommendedNext — single node', () => {
-  it('returns the single node id when the graph has one node', () => {
-    const graph = makePlannerChain({ length: 1, goalIds: ['chain.n1'], readiness: READY });
-    expect(getRecommendedNext(graph, defaultPriorityWeights)).toEqual(['chain.n1']);
+describe("recommendedNext — single node", () => {
+  it("returns the single node id when the graph has one node", () => {
+    const graph = makePlannerChain({ length: 1, goalIds: ["chain.n1"], readiness: READY });
+    expect(getRecommendedNext(graph, defaultPriorityWeights)).toEqual(["chain.n1"]);
   });
 });
 
@@ -64,8 +60,8 @@ describe('recommendedNext — single node', () => {
 // Top-N by priority descending
 // ---------------------------------------------------------------------------
 
-describe('recommendedNext — top-N by priority (default weights)', () => {
-  it('returns nodes sorted by priority descending (chain.n1 wins, chain.n4 last)', () => {
+describe("recommendedNext — top-N by priority (default weights)", () => {
+  it("returns nodes sorted by priority descending (chain.n1 wins, chain.n4 last)", () => {
     // chain.n1 -> chain.n2 -> chain.n3 -> chain.n4, goal = n4
     // default weights (1,1,1,1):
     //   n1: 0.1 + 3 + 0.25 + 0 = 3.35
@@ -73,47 +69,47 @@ describe('recommendedNext — top-N by priority (default weights)', () => {
     //   n3: 0.3 + 1 + 0.5 + 0 = 1.8
     //   n4: 0.4 + 0 + 1 + 0 = 1.4
     // Expected order: n1, n2, n3, n4
-    const graph = makePlannerChain({ length: 4, goalIds: ['chain.n4'], readiness: READY });
+    const graph = makePlannerChain({ length: 4, goalIds: ["chain.n4"], readiness: READY });
     expect(getRecommendedNext(graph, defaultPriorityWeights)).toEqual([
-      'chain.n1',
-      'chain.n2',
-      'chain.n3',
-      'chain.n4',
+      "chain.n1",
+      "chain.n2",
+      "chain.n3",
+      "chain.n4",
     ]);
   });
 
-  it('topN=2 returns the two highest-priority nodes', () => {
-    const graph = makePlannerChain({ length: 4, goalIds: ['chain.n4'], readiness: READY });
-    expect(getRecommendedNext(graph, defaultPriorityWeights, 2)).toEqual(['chain.n1', 'chain.n2']);
+  it("topN=2 returns the two highest-priority nodes", () => {
+    const graph = makePlannerChain({ length: 4, goalIds: ["chain.n4"], readiness: READY });
+    expect(getRecommendedNext(graph, defaultPriorityWeights, 2)).toEqual(["chain.n1", "chain.n2"]);
   });
 
-  it('topN=3 returns the three highest-priority nodes', () => {
-    const graph = makePlannerChain({ length: 4, goalIds: ['chain.n4'], readiness: READY });
+  it("topN=3 returns the three highest-priority nodes", () => {
+    const graph = makePlannerChain({ length: 4, goalIds: ["chain.n4"], readiness: READY });
     expect(getRecommendedNext(graph, defaultPriorityWeights, 3)).toEqual([
-      'chain.n1',
-      'chain.n2',
-      'chain.n3',
+      "chain.n1",
+      "chain.n2",
+      "chain.n3",
     ]);
   });
 
-  it('topN larger than the graph size returns every node', () => {
-    const graph = makePlannerChain({ length: 4, goalIds: ['chain.n4'], readiness: READY });
+  it("topN larger than the graph size returns every node", () => {
+    const graph = makePlannerChain({ length: 4, goalIds: ["chain.n4"], readiness: READY });
     expect(getRecommendedNext(graph, defaultPriorityWeights, 100)).toEqual([
-      'chain.n1',
-      'chain.n2',
-      'chain.n3',
-      'chain.n4',
+      "chain.n1",
+      "chain.n2",
+      "chain.n3",
+      "chain.n4",
     ]);
   });
 
-  it('topN=0 returns an empty list', () => {
-    const graph = makePlannerChain({ length: 4, goalIds: ['chain.n4'], readiness: READY });
+  it("topN=0 returns an empty list", () => {
+    const graph = makePlannerChain({ length: 4, goalIds: ["chain.n4"], readiness: READY });
     expect(getRecommendedNext(graph, defaultPriorityWeights, 0)).toEqual([]);
   });
 
-  it('default topN is 5 (matches current visualization slice-of-5)', () => {
+  it("default topN is 5 (matches current visualization slice-of-5)", () => {
     // chain length 7 ensures the default slice truncates to 5
-    const graph = makePlannerChain({ length: 7, goalIds: ['chain.n7'] });
+    const graph = makePlannerChain({ length: 7, goalIds: ["chain.n7"] });
     const result = getRecommendedNext(graph, defaultPriorityWeights);
     expect(result).toHaveLength(5);
   });
@@ -123,18 +119,18 @@ describe('recommendedNext — top-N by priority (default weights)', () => {
 // Single-weight regression (sanity check)
 // ---------------------------------------------------------------------------
 
-describe('recommendedNext — single-weight regression (b=0 collapses to readiness-only)', () => {
-  it('readiness-only weights sort by readiness descending, then nodeId tie-break', () => {
+describe("recommendedNext — single-weight regression (b=0 collapses to readiness-only)", () => {
+  it("readiness-only weights sort by readiness descending, then nodeId tie-break", () => {
     // With b=c=d=0 and a=1, the composite is just readiness.
     // readiness: n1=0.1, n2=0.2, n3=0.3, n4=0.4
     // Expected order: n4 (0.4), n3 (0.3), n2 (0.2), n1 (0.1)
-    const graph = makePlannerChain({ length: 4, goalIds: ['chain.n4'], readiness: READY });
+    const graph = makePlannerChain({ length: 4, goalIds: ["chain.n4"], readiness: READY });
     const weights = { a: 1, b: 0, c: 0, d: 0 };
     expect(getRecommendedNext(graph, weights)).toEqual([
-      'chain.n4',
-      'chain.n3',
-      'chain.n2',
-      'chain.n1',
+      "chain.n4",
+      "chain.n3",
+      "chain.n2",
+      "chain.n1",
     ]);
   });
 });
@@ -143,8 +139,8 @@ describe('recommendedNext — single-weight regression (b=0 collapses to readine
 // Ready-before-unknown ordering
 // ---------------------------------------------------------------------------
 
-describe('recommendedNext — ready-before-unknown ordering', () => {
-  it('places nodes with positive readiness ahead of nodes with zero readiness, regardless of priority', () => {
+describe("recommendedNext — ready-before-unknown ordering", () => {
+  it("places nodes with positive readiness ahead of nodes with zero readiness, regardless of priority", () => {
     // chain.n1 -> chain.n2 -> chain.n3 -> chain.n4, goal = n4.
     // Set readiness: n1=0.4 (ready), n2=0.3 (ready), n3=0 (unknown), n4=0.2 (ready).
     // n3 is "unknown" because readiness=0; the rest are "ready".
@@ -153,29 +149,29 @@ describe('recommendedNext — ready-before-unknown ordering', () => {
     // Default weights: n1=3.65, n2=2.633, n3=1.5, n4=1.6
     // Expected order: n1, n2 (ready), then n4, n3 (unknown). n4 has higher
     // priority than n3 (1.6 vs 1.5) and is "ready", so n4 must precede n3.
-    const readiness = { 'chain.n1': 0.4, 'chain.n2': 0.3, 'chain.n3': 0, 'chain.n4': 0.2 } as const;
-    const graph = makePlannerChain({ length: 4, goalIds: ['chain.n4'], readiness });
+    const readiness = { "chain.n1": 0.4, "chain.n2": 0.3, "chain.n3": 0, "chain.n4": 0.2 } as const;
+    const graph = makePlannerChain({ length: 4, goalIds: ["chain.n4"], readiness });
     expect(getRecommendedNext(graph, defaultPriorityWeights)).toEqual([
-      'chain.n1',
-      'chain.n2',
-      'chain.n4',
-      'chain.n3',
+      "chain.n1",
+      "chain.n2",
+      "chain.n4",
+      "chain.n3",
     ]);
   });
 
-  it('places nodes with missing readinessByNode entries at the back (treated as unknown)', () => {
+  it("places nodes with missing readinessByNode entries at the back (treated as unknown)", () => {
     // readiness is empty -> all nodes are "unknown" by the (readiness > 0) convention.
     // The ranker still produces a total order by priority among the unknown set.
     // chain.n1 -> chain.n2 -> chain.n3 -> chain.n4, goal = n4
     // unlockValue: n1=3, n2=2, n3=1, n4=0
     // goalProximity: n1=0.25, n2=1/3, n3=0.5, n4=1
     // Expected order: n1, n2, n3, n4 (priority descending, all "unknown")
-    const graph = makePlannerChain({ length: 4, goalIds: ['chain.n4'] });
+    const graph = makePlannerChain({ length: 4, goalIds: ["chain.n4"] });
     expect(getRecommendedNext(graph, defaultPriorityWeights)).toEqual([
-      'chain.n1',
-      'chain.n2',
-      'chain.n3',
-      'chain.n4',
+      "chain.n1",
+      "chain.n2",
+      "chain.n3",
+      "chain.n4",
     ]);
   });
 });
@@ -184,8 +180,8 @@ describe('recommendedNext — ready-before-unknown ordering', () => {
 // Tie-break stability
 // ---------------------------------------------------------------------------
 
-describe('recommendedNext — tie-break stability (nodeId.localeCompare ascending)', () => {
-  it('falls back to nodeId.localeCompare ascending when priority is tied', () => {
+describe("recommendedNext — tie-break stability (nodeId.localeCompare ascending)", () => {
+  it("falls back to nodeId.localeCompare ascending when priority is tied", () => {
     // Hand-rolled graph: 3 nodes, no edges (so unlockValue=0 and
     // goalProximity=0 everywhere). readiness: tied at 0.5 for all
     // three. weaknessFit=0. Composite is the same for every node:
@@ -193,16 +189,16 @@ describe('recommendedNext — tie-break stability (nodeId.localeCompare ascendin
     // Tie-break is by nodeId.localeCompare ascending.
     const graph = {
       nodes: [
-        { id: 'tie.c', kind: 'skill', title: 'C', domain: 'math.test.planner' },
-        { id: 'tie.a', kind: 'skill', title: 'A', domain: 'math.test.planner' },
-        { id: 'tie.b', kind: 'skill', title: 'B', domain: 'math.test.planner' },
+        { id: "tie.c", kind: "skill", title: "C", domain: "math.test.planner" },
+        { id: "tie.a", kind: "skill", title: "A", domain: "math.test.planner" },
+        { id: "tie.b", kind: "skill", title: "B", domain: "math.test.planner" },
       ],
       edges: [],
-      readinessByNode: { 'tie.a': 0.5, 'tie.b': 0.5, 'tie.c': 0.5 },
+      readinessByNode: { "tie.a": 0.5, "tie.b": 0.5, "tie.c": 0.5 },
       goalNodeIds: [],
       misconceptionLinks: [],
     };
-    expect(getRecommendedNext(graph, defaultPriorityWeights)).toEqual(['tie.a', 'tie.b', 'tie.c']);
+    expect(getRecommendedNext(graph, defaultPriorityWeights)).toEqual(["tie.a", "tie.b", "tie.c"]);
   });
 });
 
@@ -210,9 +206,9 @@ describe('recommendedNext — tie-break stability (nodeId.localeCompare ascendin
 // Determinism and purity
 // ---------------------------------------------------------------------------
 
-describe('recommendedNext — determinism and purity', () => {
-  it('repeated calls with the same input return the same output', () => {
-    const graph = makePlannerChain({ length: 4, goalIds: ['chain.n4'], readiness: READY });
+describe("recommendedNext — determinism and purity", () => {
+  it("repeated calls with the same input return the same output", () => {
+    const graph = makePlannerChain({ length: 4, goalIds: ["chain.n4"], readiness: READY });
     const first = getRecommendedNext(graph, defaultPriorityWeights);
     const second = getRecommendedNext(graph, defaultPriorityWeights);
     const third = getRecommendedNext(graph, defaultPriorityWeights);
@@ -220,8 +216,8 @@ describe('recommendedNext — determinism and purity', () => {
     expect(second).toEqual(third);
   });
 
-  it('does not mutate the input PlannerInput', () => {
-    const graph = makePlannerChain({ length: 4, goalIds: ['chain.n4'], readiness: READY });
+  it("does not mutate the input PlannerInput", () => {
+    const graph = makePlannerChain({ length: 4, goalIds: ["chain.n4"], readiness: READY });
     const snap = JSON.stringify({
       nodes: graph.nodes,
       edges: graph.edges,

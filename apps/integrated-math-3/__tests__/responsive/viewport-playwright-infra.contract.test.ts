@@ -47,33 +47,33 @@
 // Resolution from the test file's location (lessons-learned 2026-05-03):
 // `fileURLToPath(import.meta.url)` + `dirname()` — never `process.cwd()`.
 
-import { describe, it, expect, beforeAll } from 'vitest';
-import { existsSync, readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { describe, it, expect, beforeAll } from "vitest";
+import { existsSync, readFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const APP_ROOT = resolve(HERE, '..', '..');
-const PLAYWRIGHT_SPEC_PATH = resolve(APP_ROOT, 'e2e', 'viewport-guard.spec.ts');
-const PLAYWRIGHT_CONFIG_PATH = resolve(APP_ROOT, 'playwright.config.ts');
+const APP_ROOT = resolve(HERE, "..", "..");
+const PLAYWRIGHT_SPEC_PATH = resolve(APP_ROOT, "e2e", "viewport-guard.spec.ts");
+const PLAYWRIGHT_CONFIG_PATH = resolve(APP_ROOT, "playwright.config.ts");
 
 // Strategy §2 VIEWPORTS — phone 390×844, tablet 768×1024, desktop 1280×800.
 // Each assertion accepts both dimension-order forms and the canonical name
 // so the spec can use either, but ALL three breakpoints must be present.
 const REQUIRED_VIEWPORT_TOKENS = [
-  { name: 'phone', dims: ['390x844', '390×844'] },
-  { name: 'tablet', dims: ['768x1024', '768×1024'] },
-  { name: 'desktop', dims: ['1280x800', '1280×800'] },
+  { name: "phone", dims: ["390x844", "390×844"] },
+  { name: "tablet", dims: ["768x1024", "768×1024"] },
+  { name: "desktop", dims: ["1280x800", "1280×800"] },
 ] as const;
 
 type LoadedFile = { exists: boolean; content: string };
 
 function loadFile(path: string): LoadedFile {
-  if (!existsSync(path)) return { exists: false, content: '' };
-  return { exists: true, content: readFileSync(path, 'utf8') };
+  if (!existsSync(path)) return { exists: false, content: "" };
+  return { exists: true, content: readFileSync(path, "utf8") };
 }
 
-describe('IM3 responsive/mobile audit — Phase 1 Playwright viewport infra contract (AC5, strategy §5)', () => {
+describe("IM3 responsive/mobile audit — Phase 1 Playwright viewport infra contract (AC5, strategy §5)", () => {
   let spec: LoadedFile;
   let config: LoadedFile;
 
@@ -82,7 +82,7 @@ describe('IM3 responsive/mobile audit — Phase 1 Playwright viewport infra cont
     config = loadFile(PLAYWRIGHT_CONFIG_PATH);
   });
 
-  it('Playwright spec exists at apps/integrated-math-3/e2e/viewport-guard.spec.ts', () => {
+  it("Playwright spec exists at apps/integrated-math-3/e2e/viewport-guard.spec.ts", () => {
     // Strategy §5: "Stand up the `viewport` Playwright project + guard spec."
     // The path is pinned to e2e/ (matching the existing IM3 spec layout —
     // see e2e/accessibility.spec.ts, e2e/auth.spec.ts, etc.) so the
@@ -92,40 +92,41 @@ describe('IM3 responsive/mobile audit — Phase 1 Playwright viewport infra cont
     expect(
       spec.exists,
       `expected Playwright spec at ${PLAYWRIGHT_SPEC_PATH} but it was not found. ` +
-        'The Phase 1 Green role must author e2e/viewport-guard.spec.ts as part of the ' +
-        'viewport guard stand-up (strategy §5).',
+        "The Phase 1 Green role must author e2e/viewport-guard.spec.ts as part of the " +
+        "viewport guard stand-up (strategy §5).",
     ).toBe(true);
   });
 
-  it('Playwright spec references all 3 VIEWPORTS breakpoints (strategy §2)', () => {
+  it("Playwright spec references all 3 VIEWPORTS breakpoints (strategy §2)", () => {
     // The spec must cover phone (390×844), tablet (768×1024), and
     // desktop (1280×800). Without all three, the `--project=viewport`
     // project has nothing to validate. We accept either dimension-order
     // form (390x844 / 390×844) so the author can choose notation.
-    expect(spec.exists, 'viewport-guard.spec.ts must exist before asserting content').toBe(true);
+    expect(spec.exists, "viewport-guard.spec.ts must exist before asserting content").toBe(true);
     const lowered = spec.content.toLowerCase();
     const missing = REQUIRED_VIEWPORT_TOKENS.filter(
-      ({ dims, name }) => !dims.some((d) => lowered.includes(d.toLowerCase())) && !lowered.includes(name),
+      ({ dims, name }) =>
+        !dims.some((d) => lowered.includes(d.toLowerCase())) && !lowered.includes(name),
     );
     expect(
       missing.map((m) => m.name),
-      `viewport-guard.spec.ts is missing required VIEWPORTS tokens: ${missing.map((m) => m.name).join(', ')}. ` +
-        'Strategy §2 requires phone 390×844, tablet 768×1024, desktop 1280×800.',
+      `viewport-guard.spec.ts is missing required VIEWPORTS tokens: ${missing.map((m) => m.name).join(", ")}. ` +
+        "Strategy §2 requires phone 390×844, tablet 768×1024, desktop 1280×800.",
     ).toEqual([]);
   });
 
-  it('Playwright spec marks the known-bad fixture case as test.fixme (strategy §8)', () => {
+  it("Playwright spec marks the known-bad fixture case as test.fixme (strategy §8)", () => {
     // Strategy §8: "the known-bad assertion is a one-shot Red captured in
     // the P1 task commit note (run, observe fail, tag), then committed as
     // `test.fixme(..., 'owned by P2 [~] activity remediation')` — never a
     // permanently-red aggregate case." The spec must contain BOTH the
     // `test.fixme` invocation AND the ownership string so the deliberate
     // Red is excluded from `test:e2e`/`test:a11y` aggregates until P3.
-    expect(spec.exists, 'viewport-guard.spec.ts must exist before asserting content').toBe(true);
+    expect(spec.exists, "viewport-guard.spec.ts must exist before asserting content").toBe(true);
     expect(
-      spec.content.includes('test.fixme'),
-      'viewport-guard.spec.ts must use test.fixme(...) for the known-bad fixture case ' +
-        '(strategy §8 — keep the deliberate Red out of default aggregates).',
+      spec.content.includes("test.fixme"),
+      "viewport-guard.spec.ts must use test.fixme(...) for the known-bad fixture case " +
+        "(strategy §8 — keep the deliberate Red out of default aggregates).",
     ).toBe(true);
     expect(
       /owned by P\d/i.test(spec.content),
@@ -133,7 +134,7 @@ describe('IM3 responsive/mobile audit — Phase 1 Playwright viewport infra cont
     ).toBe(true);
   });
 
-  it('playwright.config.ts declares a `viewport` project (strategy §4 + §5)', () => {
+  it("playwright.config.ts declares a `viewport` project (strategy §4 + §5)", () => {
     // Strategy §4: "Keep runners separate: viewport guard is Playwright,
     // never imported into Vitest (`npm run test`). Add a new `viewport`
     // project (3 device presets); do NOT fold into the existing
@@ -141,15 +142,17 @@ describe('IM3 responsive/mobile audit — Phase 1 Playwright viewport infra cont
     // Strategy §5: the project must exist so the §7 command
     // `--project=viewport e2e/viewport-guard.spec.ts -g "known-bad fixture"`
     // resolves.
-    expect(config.exists, 'playwright.config.ts must exist before asserting project shape').toBe(true);
+    expect(config.exists, "playwright.config.ts must exist before asserting project shape").toBe(
+      true,
+    );
     expect(
       /name:\s*['"]viewport['"]/i.test(config.content),
-      'playwright.config.ts must declare a `viewport` project. Strategy §4 forbids folding the ' +
-        'viewport guard into the existing `chromium` Desktop-Chrome a11y/flow project.',
+      "playwright.config.ts must declare a `viewport` project. Strategy §4 forbids folding the " +
+        "viewport guard into the existing `chromium` Desktop-Chrome a11y/flow project.",
     ).toBe(true);
   });
 
-  it('`viewport` project does NOT fold into the existing `chromium` project (strategy §4)', () => {
+  it("`viewport` project does NOT fold into the existing `chromium` project (strategy §4)", () => {
     // Strategy §4 explicit guardrail: "do NOT fold into the existing
     // `chromium` Desktop-Chrome a11y/flow project." The `viewport`
     // project must be a distinct entry in the projects array — not a
@@ -157,18 +160,20 @@ describe('IM3 responsive/mobile audit — Phase 1 Playwright viewport infra cont
     // `viewport` entry appears AFTER the `chromium` entry and that the
     // project block uses `use: { ...devices[...] }` rather than mutating
     // the chromium project.
-    expect(config.exists, 'playwright.config.ts must exist before asserting project shape').toBe(true);
+    expect(config.exists, "playwright.config.ts must exist before asserting project shape").toBe(
+      true,
+    );
     const chromiumIdx = config.content.search(/name:\s*['"]chromium['"]/i);
     const viewportIdx = config.content.search(/name:\s*['"]viewport['"]/i);
-    expect(viewportIdx, '`viewport` project not found in playwright.config.ts').toBeGreaterThan(-1);
+    expect(viewportIdx, "`viewport` project not found in playwright.config.ts").toBeGreaterThan(-1);
     expect(
       chromiumIdx === -1 || viewportIdx > chromiumIdx,
-      '`viewport` project must be a separate entry from `chromium` in playwright.config.ts ' +
-        '(strategy §4 — do not fold viewport guard into the Desktop-Chrome project).',
+      "`viewport` project must be a separate entry from `chromium` in playwright.config.ts " +
+        "(strategy §4 — do not fold viewport guard into the Desktop-Chrome project).",
     ).toBe(true);
   });
 
-  it('`viewport` project references Playwright device presets (not custom widths only)', () => {
+  it("`viewport` project references Playwright device presets (not custom widths only)", () => {
     // Strategy §4: "Add a new `viewport` project (3 device presets);"
     // The project must reference the Playwright `devices` registry so the
     // three breakpoints are bound to standard device emulation presets
@@ -178,7 +183,9 @@ describe('IM3 responsive/mobile audit — Phase 1 Playwright viewport infra cont
     // `viewport: { viewport: { width, height } }` with no device preset,
     // which would defeat the strategy's intent of standardizing on the
     // Playwright device matrix.
-    expect(config.exists, 'playwright.config.ts must exist before asserting project shape').toBe(true);
+    expect(config.exists, "playwright.config.ts must exist before asserting project shape").toBe(
+      true,
+    );
     // Locate the viewport project block; the regex requires a `viewport`
     // entry to anchor the match, so when the project is missing the
     // match is null and the assertion below fails for the right reason.
@@ -187,19 +194,19 @@ describe('IM3 responsive/mobile audit — Phase 1 Playwright viewport infra cont
     );
     expect(
       viewportBlockMatch !== null,
-      '`viewport` project block not found in playwright.config.ts. Strategy §4 requires a ' +
-        'dedicated `viewport` project (3 device presets) — the sibling `chromium` Desktop-Chrome ' +
-        'project cannot host viewport guard cases.',
+      "`viewport` project block not found in playwright.config.ts. Strategy §4 requires a " +
+        "dedicated `viewport` project (3 device presets) — the sibling `chromium` Desktop-Chrome " +
+        "project cannot host viewport guard cases.",
     ).not.toBeNull();
     const block = viewportBlockMatch![0];
     expect(
       /devices\[/.test(block),
-      '`viewport` project must reference at least one Playwright `devices[...]` preset ' +
-        '(strategy §4 — 3 device presets, not custom widths).',
+      "`viewport` project must reference at least one Playwright `devices[...]` preset " +
+        "(strategy §4 — 3 device presets, not custom widths).",
     ).toBe(true);
   });
 
-  it('known-bad overflow fixture route exists with a 200vw overflow host (strategy §2)', () => {
+  it("known-bad overflow fixture route exists with a 200vw overflow host (strategy §2)", () => {
     // Adversarial regression guard: the e2e/viewport-guard.spec.ts test.fixme
     // cases silently skip if the fixture route is missing or replaced, so a
     // green Playwright run would not detect the broken infra. This test
@@ -211,13 +218,19 @@ describe('IM3 responsive/mobile audit — Phase 1 Playwright viewport infra cont
     // The path is pinned to the Next.js app router convention used by IM3
     // (`app/<route>/page.tsx`) — the `playwright.config.ts` baseURL resolves
     // the `/responsive-fixtures/known-bad-overflow` URL from this file.
-    const fixturePath = resolve(APP_ROOT, 'app', 'responsive-fixtures', 'known-bad-overflow', 'page.tsx');
+    const fixturePath = resolve(
+      APP_ROOT,
+      "app",
+      "responsive-fixtures",
+      "known-bad-overflow",
+      "page.tsx",
+    );
     const fixture = loadFile(fixturePath);
     expect(
       fixture.exists,
       `known-bad overflow fixture missing at ${fixturePath}. The e2e/viewport-guard.spec.ts ` +
-        'test.fixme cases navigate to /responsive-fixtures/known-bad-overflow; without this route ' +
-        'the Playwright spec silently skips the §7 one-shot Red proof.',
+        "test.fixme cases navigate to /responsive-fixtures/known-bad-overflow; without this route " +
+        "the Playwright spec silently skips the §7 one-shot Red proof.",
     ).toBe(true);
     // Isolate the JSX className/style region so that the assertion is not
     // fooled by prose mentioning "200vw" in a JSDoc comment block. A naive
@@ -231,12 +244,12 @@ describe('IM3 responsive/mobile audit — Phase 1 Playwright viewport infra cont
     const classNameMatches = [
       ...fixture.content.matchAll(/className\s*=\s*\{?\s*["'`]([^"'`]+)["'`]/g),
     ].map((m) => m[1]);
-    const styleMatches = [
-      ...fixture.content.matchAll(/style\s*=\s*\{\{([^}]+)\}\}/g),
-    ].flatMap((m) => m[1].split(','));
+    const styleMatches = [...fixture.content.matchAll(/style\s*=\s*\{\{([^}]+)\}\}/g)].flatMap(
+      (m) => m[1].split(","),
+    );
     const widthRelevantAttrs = [...classNameMatches, ...styleMatches]
       .map((s) => s.toLowerCase())
-      .join('\n');
+      .join("\n");
     // Accept either Tailwind arbitrary-value syntax `w-[200vw]` or an
     // inline `style={{ width: '200vw' }}`. Anything weaker than 200vw
     // would not exceed the desktop 1280×800 viewport and would defeat the
@@ -248,19 +261,19 @@ describe('IM3 responsive/mobile audit — Phase 1 Playwright viewport infra cont
     expect(
       hasOverflowClass,
       `fixture at ${fixturePath} must declare a 200vw overflow host on the rendered element ` +
-        '(className or style). Anything weaker would not exceed the desktop 1280×800 ' +
-        'breakpoint and the §7 one-shot Red would never fire.',
+        "(className or style). Anything weaker would not exceed the desktop 1280×800 " +
+        "breakpoint and the §7 one-shot Red would never fire.",
     ).toBe(true);
     expect(
       fixture.content.includes('data-testid="known-bad-overflow-host"') ||
         fixture.content.includes("data-testid='known-bad-overflow-host'"),
       `fixture at ${fixturePath} must carry data-testid="known-bad-overflow-host" so the e2e spec ` +
-        'and the vitest sentinel can locate the overflow host after render.',
+        "and the vitest sentinel can locate the overflow host after render.",
     ).toBe(true);
     expect(
       /aria-label\s*=\s*["'`]/i.test(fixture.content),
       `fixture at ${fixturePath} must carry an aria-label attribute so screen readers and the ` +
-        'Playwright spec have a stable accessibility handle independent of data-testid.',
+        "Playwright spec have a stable accessibility handle independent of data-testid.",
     ).toBe(true);
   });
 });

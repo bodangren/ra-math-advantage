@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -78,7 +78,8 @@ export const seedLesson8_2 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "A restaurant uses a random number generator to pick a daily winner from 200 customers. Which best describes the probability of any single customer winning?",
+                    question:
+                      "A restaurant uses a random number generator to pick a daily winner from 200 customers. Which best describes the probability of any single customer winning?",
                     options: ["1/200", "50/200", "1/100", "200/200"],
                     correctIndex: 0,
                   },
@@ -142,13 +143,20 @@ export const seedLesson8_2 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "What is the theoretical probability of rolling an 8 on a fair eight-sided die?",
+                    question:
+                      "What is the theoretical probability of rolling an 8 on a fair eight-sided die?",
                     options: ["1/8", "42/200", "1/6", "8/200"],
                     correctIndex: 0,
                   },
                   {
-                    question: "As the number of rolls increases, what happens to experimental probability?",
-                    options: ["It stays the same", "It approaches theoretical probability", "It moves away from theoretical probability", "It becomes random"],
+                    question:
+                      "As the number of rolls increases, what happens to experimental probability?",
+                    options: [
+                      "It stays the same",
+                      "It approaches theoretical probability",
+                      "It moves away from theoretical probability",
+                      "It becomes random",
+                    ],
                     correctIndex: 1,
                   },
                 ],
@@ -195,13 +203,19 @@ export const seedLesson8_2 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "In a 1-in-8 promotion, what number represents a win using a 1-8 random number generator?",
+                    question:
+                      "In a 1-in-8 promotion, what number represents a win using a 1-8 random number generator?",
                     options: ["Any number", "1 only", "8 only", "2 through 8"],
                     correctIndex: 1,
                   },
                   {
                     question: "What is the first step in conducting a simulation?",
-                    options: ["Choose the number of trials", "Describe the probability model", "Determine each possible outcome and its theoretical probability", "Generate random numbers"],
+                    options: [
+                      "Choose the number of trials",
+                      "Describe the probability model",
+                      "Determine each possible outcome and its theoretical probability",
+                      "Generate random numbers",
+                    ],
                     correctIndex: 2,
                   },
                 ],
@@ -232,13 +246,25 @@ export const seedLesson8_2 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "Why might a customer buying 20 tickets and winning nothing still be consistent with a 1-in-10 probability?",
-                    options: ["The tickets are biased", "Multiple simulations show long losing streaks can occur naturally", "The customer is unlucky", "The store is cheating"],
+                    question:
+                      "Why might a customer buying 20 tickets and winning nothing still be consistent with a 1-in-10 probability?",
+                    options: [
+                      "The tickets are biased",
+                      "Multiple simulations show long losing streaks can occur naturally",
+                      "The customer is unlucky",
+                      "The store is cheating",
+                    ],
                     correctIndex: 1,
                   },
                   {
-                    question: "When evaluating a simulation, why might running multiple simulations be necessary?",
-                    options: ["To make the results more complicated", "To check whether an outcome is unusual or expected by chance", "To prove the customer wrong", "To waste time"],
+                    question:
+                      "When evaluating a simulation, why might running multiple simulations be necessary?",
+                    options: [
+                      "To make the results more complicated",
+                      "To check whether an outcome is unusual or expected by chance",
+                      "To prove the customer wrong",
+                      "To waste time",
+                    ],
                     correctIndex: 1,
                   },
                 ],
@@ -258,7 +284,7 @@ export const seedLesson8_2 = internalMutation({
             sectionType: "text" as const,
             content: {
               markdown:
-                "## Discussion Questions\n\n1. How does the phrase \"The house always wins\" relate to experimental and theoretical probability?\n2. Why is it important to run multiple simulations when evaluating a probability model?\n3. How can simulations help when real experimentation is difficult or impractical?\n4. What factors might cause experimental probability to differ from theoretical probability?",
+                '## Discussion Questions\n\n1. How does the phrase "The house always wins" relate to experimental and theoretical probability?\n2. Why is it important to run multiple simulations when evaluating a probability model?\n3. How can simulations help when real experimentation is difficult or impractical?\n4. What factors might cause experimental probability to differ from theoretical probability?',
             },
           },
           {
@@ -270,12 +296,22 @@ export const seedLesson8_2 = internalMutation({
                 questions: [
                   {
                     question: "What does the Law of Large Numbers describe?",
-                    options: ["Experimental probability stays the same as sample size increases", "Experimental probability approaches theoretical probability as sample size increases", "Theoretical probability changes with more data", "Probability is always exact"],
+                    options: [
+                      "Experimental probability stays the same as sample size increases",
+                      "Experimental probability approaches theoretical probability as sample size increases",
+                      "Theoretical probability changes with more data",
+                      "Probability is always exact",
+                    ],
                     correctIndex: 1,
                   },
                   {
                     question: "What is a simulation used for?",
-                    options: ["To replace real experiments entirely", "To imitate a process when real experimentation is impractical", "To make probability problems harder", "To avoid using probability entirely"],
+                    options: [
+                      "To replace real experiments entirely",
+                      "To imitate a process when real experimentation is impractical",
+                      "To make probability problems harder",
+                      "To avoid using probability entirely",
+                    ],
                     correctIndex: 1,
                   },
                 ],
@@ -309,7 +345,7 @@ export const seedLesson8_2 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { RefreshCw, Plus, ToggleLeft, Loader2 } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Dialog, AlertDialog } from '@/components/ui/dialog';
-import type { ObjectivePriority } from '@math-platform/srs-engine';
+import { useState } from "react";
+import { RefreshCw, Plus, ToggleLeft, Loader2 } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Dialog, AlertDialog } from "@/components/ui/dialog";
+import type { ObjectivePriority } from "@math-platform/srs-engine";
 
 export interface ObjectiveIntervention {
   objectiveId: string;
@@ -52,7 +52,7 @@ export function InterventionActions({
     if (!onUpdatePriority) return;
 
     const newPriority: ObjectivePriority =
-      objective.currentPriority === 'essential' ? 'triaged' : 'essential';
+      objective.currentPriority === "essential" ? "triaged" : "essential";
 
     setIsLoading(true);
     setError(null);
@@ -60,7 +60,7 @@ export function InterventionActions({
       await onUpdatePriority(objective.objectiveId, newPriority);
       setSelectedObjective(null);
     } catch {
-      setError('Failed to update priority. Please try again.');
+      setError("Failed to update priority. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -76,7 +76,7 @@ export function InterventionActions({
       setShowResetDialog(false);
       setSelectedStudent(null);
     } catch {
-      setError('Failed to reset cards. Please try again.');
+      setError("Failed to reset cards. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -92,7 +92,7 @@ export function InterventionActions({
       setShowExtraCardsDialog(false);
       setSelectedStudent(null);
     } catch {
-      setError('Failed to add extra cards. Please try again.');
+      setError("Failed to add extra cards. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -129,8 +129,8 @@ export function InterventionActions({
             className="w-full"
           >
             {selectedObjective
-              ? `${selectedObjective.currentPriority === 'essential' ? 'Triaged' : 'Essential'} Priority`
-              : 'Select Objective'}
+              ? `${selectedObjective.currentPriority === "essential" ? "Triaged" : "Essential"} Priority`
+              : "Select Objective"}
           </Button>
         </div>
 
@@ -192,7 +192,8 @@ export function InterventionActions({
       >
         <div className="space-y-4">
           <p className="text-sm text-muted-foreground">
-            The student will receive new practice cards for this objective on their next practice session.
+            The student will receive new practice cards for this objective on their next practice
+            session.
           </p>
           <div className="flex justify-end gap-3">
             <Button variant="outline" onClick={() => setShowExtraCardsDialog(false)}>
@@ -205,7 +206,7 @@ export function InterventionActions({
                   Adding...
                 </>
               ) : (
-                'Add Cards'
+                "Add Cards"
               )}
             </Button>
           </div>
@@ -232,14 +233,14 @@ export function InterventionActions({
  */
 export function ObjectivePriorityBadge({ priority }: { priority: ObjectivePriority }) {
   const variants: Record<ObjectivePriority, string> = {
-    essential: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
-    supporting: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
-    extension: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
-    triaged: 'bg-muted text-muted-foreground',
+    essential: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
+    supporting: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200",
+    extension: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
+    triaged: "bg-muted text-muted-foreground",
   };
 
   return (
-    <Badge variant="secondary" className={cn('text-xs', variants[priority])}>
+    <Badge variant="secondary" className={cn("text-xs", variants[priority])}>
       {priority}
     </Badge>
   );

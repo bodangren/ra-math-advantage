@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 
 // WCAG 2.1 contrast math test for the IM3 light-theme design tokens.
 //
@@ -25,7 +25,7 @@ const TOKENS: Record<string, Oklch> = {
   foreground: { L: 0.13, C: 0.016, H: 45 },
   primary: { L: 0.55, C: 0.19, H: 40 },
   primaryFg: { L: 0.98, C: 0.003, H: 40 },
-  mutedFg: { L: 0.50, C: 0.012, H: 60 },
+  mutedFg: { L: 0.5, C: 0.012, H: 60 },
   destructive: { L: 0.55, C: 0.22, H: 15 },
   destructiveFg: { L: 0.98, C: 0.003, H: 250 },
 };
@@ -71,47 +71,53 @@ function contrastRatio(a: number, b: number): number {
   return (lighter + 0.05) / (darker + 0.05);
 }
 
-describe('Design token contrast (Task 12 Group A/B)', () => {
+describe("Design token contrast (Task 12 Group A/B)", () => {
   const bg = luminanceOf(TOKENS.background);
 
   const cases: Array<{ name: string; fg: Oklch; min: number }> = [
-    { name: 'foreground on background (body text)', fg: TOKENS.foreground, min: 4.5 },
-    { name: 'muted-foreground on background', fg: TOKENS.mutedFg, min: 4.5 },
-    { name: 'primary-foreground on primary (button)', fg: TOKENS.primaryFg, min: 4.5 },
-    { name: 'destructive-foreground on destructive (button)', fg: TOKENS.destructiveFg, min: 4.5 },
+    { name: "foreground on background (body text)", fg: TOKENS.foreground, min: 4.5 },
+    { name: "muted-foreground on background", fg: TOKENS.mutedFg, min: 4.5 },
+    { name: "primary-foreground on primary (button)", fg: TOKENS.primaryFg, min: 4.5 },
+    { name: "destructive-foreground on destructive (button)", fg: TOKENS.destructiveFg, min: 4.5 },
   ];
 
   for (const { name, fg, min } of cases) {
     it(`${name} meets WCAG AA ratio ≥ ${min}:1`, () => {
-      const bgForCase = name.includes('on primary')
+      const bgForCase = name.includes("on primary")
         ? luminanceOf(TOKENS.primary)
-        : name.includes('on destructive')
+        : name.includes("on destructive")
           ? luminanceOf(TOKENS.destructive)
           : bg;
       const fgLum = luminanceOf(fg);
       const ratio = contrastRatio(fgLum, bgForCase);
-      expect(ratio, `contrast ratio ${name} = ${ratio.toFixed(2)}:1 (want ≥ ${min}:1)`).toBeGreaterThanOrEqual(min);
+      expect(
+        ratio,
+        `contrast ratio ${name} = ${ratio.toFixed(2)}:1 (want ≥ ${min}:1)`,
+      ).toBeGreaterThanOrEqual(min);
     });
   }
 });
 
-describe('Adversarial: contrast-ratio math edge cases', () => {
-  it('pure black (#000, luminance 0) on pure white (#fff, luminance 1) is exactly 21:1', () => {
+describe("Adversarial: contrast-ratio math edge cases", () => {
+  it("pure black (#000, luminance 0) on pure white (#fff, luminance 1) is exactly 21:1", () => {
     // #000 sRGB (0,0,0) → linear (0,0,0) → luminance = 0
     // #fff sRGB (1,1,1) → linear (1,1,1) → luminance = 0.2126+0.7152+0.0722 = 1.0
     const black = 0;
     const white = 1.0;
     const ratio = contrastRatio(black, white);
-    expect(Math.abs(ratio - 21), `pure B/W ratio must be 21:1, got ${ratio.toFixed(4)}:1`).toBeLessThan(1e-9);
+    expect(
+      Math.abs(ratio - 21),
+      `pure B/W ratio must be 21:1, got ${ratio.toFixed(4)}:1`,
+    ).toBeLessThan(1e-9);
   });
 
-  it('contrast ratio is symmetric (a on b == b on a)', () => {
+  it("contrast ratio is symmetric (a on b == b on a)", () => {
     const a = luminanceOf(TOKENS.foreground);
     const b = luminanceOf(TOKENS.background);
     expect(Math.abs(contrastRatio(a, b) - contrastRatio(b, a))).toBeLessThan(1e-12);
   });
 
-  it('identical colors yield a ratio of 1:1', () => {
+  it("identical colors yield a ratio of 1:1", () => {
     const lum = luminanceOf(TOKENS.background);
     expect(contrastRatio(lum, lum)).toBeCloseTo(1, 9);
   });

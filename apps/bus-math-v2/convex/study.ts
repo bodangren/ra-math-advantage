@@ -1,11 +1,16 @@
 import { internalMutation, internalQuery } from "./_generated/server";
 import { v, ConvexError } from "convex/values";
-import { scheduleNewTerm, processReview as processFsrsReview, proficiencyBand, updateMastery } from "../lib/study/srs";
+import {
+  scheduleNewTerm,
+  processReview as processFsrsReview,
+  proficiencyBand,
+  updateMastery,
+} from "../lib/study/srs";
 import type { SerializedCardState } from "../lib/study/srs";
 import { getGlossaryTermsByUnit } from "../lib/study/glossary";
 
 export const getStudyPreferences = internalQuery({
-  args: { userId: v.id("profiles"),},
+  args: { userId: v.id("profiles") },
   handler: async (ctx, args) => {
     const profile = await ctx.db.get(args.userId);
     if (!profile) throw new ConvexError("Profile not found");
@@ -15,19 +20,22 @@ export const getStudyPreferences = internalQuery({
       .withIndex("by_user", (q) => q.eq("userId", profile._id))
       .unique();
 
-    return preferences ?? {
-      languageMode: "en_to_en",
-    };
+    return (
+      preferences ?? {
+        languageMode: "en_to_en",
+      }
+    );
   },
 });
 
 export const updatePreferences = internalMutation({
-  args: { userId: v.id("profiles"),
+  args: {
+    userId: v.id("profiles"),
     languageMode: v.union(
       v.literal("en_to_en"),
       v.literal("en_to_zh"),
       v.literal("zh_to_en"),
-      v.literal("zh_to_zh")
+      v.literal("zh_to_zh"),
     ),
   },
   handler: async (ctx, args) => {
@@ -73,13 +81,13 @@ export const getTermMasteryByUnit = internalQuery({
     if (args.unitNumber === undefined) return mastery;
 
     const unitTerms = getGlossaryTermsByUnit(args.unitNumber);
-    const unitSlugs = new Set(unitTerms.map(t => t.slug));
-    return mastery.filter(m => unitSlugs.has(m.termSlug));
+    const unitSlugs = new Set(unitTerms.map((t) => t.slug));
+    return mastery.filter((m) => unitSlugs.has(m.termSlug));
   },
 });
 
 export const getDueTerms = internalQuery({
-  args: { userId: v.id("profiles"),},
+  args: { userId: v.id("profiles") },
   handler: async (ctx, args) => {
     const profile = await ctx.db.get(args.userId);
     if (!profile) throw new ConvexError("Profile not found");
@@ -88,9 +96,7 @@ export const getDueTerms = internalQuery({
 
     const allReviews = await ctx.db
       .query("due_reviews")
-      .withIndex("by_user", (q) =>
-        q.eq("userId", profile._id)
-      )
+      .withIndex("by_user", (q) => q.eq("userId", profile._id))
       .collect();
 
     return allReviews.filter((review) => review.scheduledFor <= now);
@@ -114,14 +120,10 @@ export const getRecentSessions = internalQuery({
 });
 
 export const processReview = internalMutation({
-  args: { userId: v.id("profiles"),
+  args: {
+    userId: v.id("profiles"),
     termSlug: v.string(),
-    rating: v.union(
-      v.literal("again"),
-      v.literal("hard"),
-      v.literal("good"),
-      v.literal("easy")
-    ),
+    rating: v.union(v.literal("again"), v.literal("hard"), v.literal("good"), v.literal("easy")),
   },
   handler: async (ctx, args) => {
     const profile = await ctx.db.get(args.userId);
@@ -132,14 +134,14 @@ export const processReview = internalMutation({
     const mastery = await ctx.db
       .query("term_mastery")
       .withIndex("by_user_and_term", (q) =>
-        q.eq("userId", profile._id).eq("termSlug", args.termSlug)
+        q.eq("userId", profile._id).eq("termSlug", args.termSlug),
       )
       .unique();
 
     const dueReview = await ctx.db
       .query("due_reviews")
       .withIndex("by_user_and_term", (q) =>
-        q.eq("userId", profile._id).eq("termSlug", args.termSlug)
+        q.eq("userId", profile._id).eq("termSlug", args.termSlug),
       )
       .unique();
 
@@ -154,7 +156,7 @@ export const processReview = internalMutation({
           fsrsState: dueReview.fsrsState as SerializedCardState,
           scheduledFor: dueReview.scheduledFor,
         },
-        args.rating
+        args.rating,
       );
     }
 
@@ -182,10 +184,8 @@ export const processReview = internalMutation({
         masteryScore: newScore,
         proficiencyBand: newBand,
         seenCount: mastery.seenCount + 1,
-        correctCount:
-          mastery.correctCount + (args.rating !== "again" ? 1 : 0),
-        incorrectCount:
-          mastery.incorrectCount + (args.rating === "again" ? 1 : 0),
+        correctCount: mastery.correctCount + (args.rating !== "again" ? 1 : 0),
+        incorrectCount: mastery.incorrectCount + (args.rating === "again" ? 1 : 0),
         lastReviewedAt: now,
         updatedAt: now,
       });
@@ -215,29 +215,34 @@ export const processReview = internalMutation({
 });
 
 export const recordSession = internalMutation({
-  args: { userId: v.id("profiles"),
+  args: {
+    userId: v.id("profiles"),
     activityType: v.union(
       v.literal("flashcards"),
       v.literal("matching"),
       v.literal("matching_game"),
       v.literal("speed_round"),
       v.literal("srs_review"),
-      v.literal("practice_test")
+      v.literal("practice_test"),
     ),
     termCount: v.optional(v.number()),
     correctCount: v.optional(v.number()),
     totalCount: v.optional(v.number()),
     maxStreak: v.optional(v.number()),
-    curriculumScope: v.optional(v.object({
-      type: v.union(v.literal("all_units"), v.literal("unit")),
-      unitNumber: v.optional(v.number()),
-    })),
-    results: v.optional(v.object({
-      itemsSeen: v.number(),
-      itemsCorrect: v.number(),
-      itemsIncorrect: v.number(),
-      durationSeconds: v.number(),
-    })),
+    curriculumScope: v.optional(
+      v.object({
+        type: v.union(v.literal("all_units"), v.literal("unit")),
+        unitNumber: v.optional(v.number()),
+      }),
+    ),
+    results: v.optional(
+      v.object({
+        itemsSeen: v.number(),
+        itemsCorrect: v.number(),
+        itemsIncorrect: v.number(),
+        durationSeconds: v.number(),
+      }),
+    ),
     startedAt: v.optional(v.number()),
     endedAt: v.optional(v.number()),
   },
@@ -266,18 +271,35 @@ export const recordSession = internalMutation({
 });
 
 export const getExportData = internalQuery({
-  args: { userId: v.id("profiles"),},
+  args: { userId: v.id("profiles") },
   handler: async (ctx, args) => {
     const profile = await ctx.db.get(args.userId);
     if (!profile) throw new ConvexError("Profile not found");
 
-    const [preferences, termMastery, dueReviews, studySessions, practiceTestResults] = await Promise.all([
-      ctx.db.query("study_preferences").withIndex("by_user", (q) => q.eq("userId", profile._id)).unique(),
-      ctx.db.query("term_mastery").withIndex("by_user", (q) => q.eq("userId", profile._id)).collect(),
-      ctx.db.query("due_reviews").withIndex("by_user", (q) => q.eq("userId", profile._id)).collect(),
-      ctx.db.query("study_sessions").withIndex("by_user_and_started", (q) => q.eq("userId", profile._id)).order("desc").collect(),
-      ctx.db.query("practice_test_results").withIndex("by_user", (q) => q.eq("userId", profile._id)).collect(),
-    ]);
+    const [preferences, termMastery, dueReviews, studySessions, practiceTestResults] =
+      await Promise.all([
+        ctx.db
+          .query("study_preferences")
+          .withIndex("by_user", (q) => q.eq("userId", profile._id))
+          .unique(),
+        ctx.db
+          .query("term_mastery")
+          .withIndex("by_user", (q) => q.eq("userId", profile._id))
+          .collect(),
+        ctx.db
+          .query("due_reviews")
+          .withIndex("by_user", (q) => q.eq("userId", profile._id))
+          .collect(),
+        ctx.db
+          .query("study_sessions")
+          .withIndex("by_user_and_started", (q) => q.eq("userId", profile._id))
+          .order("desc")
+          .collect(),
+        ctx.db
+          .query("practice_test_results")
+          .withIndex("by_user", (q) => q.eq("userId", profile._id))
+          .collect(),
+      ]);
 
     return {
       preferences,
@@ -305,7 +327,7 @@ export const getPracticeTestResults = internalQuery({
       resultsQuery = ctx.db
         .query("practice_test_results")
         .withIndex("by_user_and_unit", (q) =>
-          q.eq("userId", profile._id).eq("unitNumber", unitNumber)
+          q.eq("userId", profile._id).eq("unitNumber", unitNumber),
         );
     }
 
@@ -315,7 +337,8 @@ export const getPracticeTestResults = internalQuery({
 });
 
 export const savePracticeTestResult = internalMutation({
-  args: { userId: v.id("profiles"),
+  args: {
+    userId: v.id("profiles"),
     unitNumber: v.number(),
     lessonsTested: v.array(v.string()),
     questionCount: v.number(),
@@ -325,7 +348,7 @@ export const savePracticeTestResult = internalMutation({
         lessonId: v.string(),
         correct: v.number(),
         total: v.number(),
-      })
+      }),
     ),
   },
   handler: async (ctx, args) => {

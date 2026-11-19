@@ -1,19 +1,19 @@
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import {
   getAuthJwtSecret,
   SESSION_COOKIE_NAME,
   verifySessionToken,
   type SessionClaims,
-} from '@/lib/auth/session';
+} from "@/lib/auth/session";
 import {
   buildRequestForbiddenResponse,
   requireActiveRequestSessionClaims,
-} from '@math-platform/core-auth';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
+} from "@math-platform/core-auth";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
 
-const LOGIN_PATH = '/auth/login';
-const CHANGE_PASSWORD_PATH = '/auth/change-password';
+const LOGIN_PATH = "/auth/login";
+const CHANGE_PASSWORD_PATH = "/auth/change-password";
 
 export async function getServerSessionClaims(): Promise<SessionClaims | null> {
   const cookieStore = await cookies();
@@ -34,7 +34,7 @@ export async function getCurrentDanielsonAccount(claims: SessionClaims) {
   };
 }
 
-export async function requireDanielsonSession(path = '/') {
+export async function requireDanielsonSession(path = "/") {
   const claims = await getServerSessionClaims();
   if (!claims) redirect(`${LOGIN_PATH}?redirect=${encodeURIComponent(path)}`);
   const account = await getCurrentDanielsonAccount(claims);
@@ -53,11 +53,17 @@ export async function requireDanielsonApiSession(
     request,
     (token) => verifySessionToken(token, getAuthJwtSecret()),
     async (claims) => {
-      const account = await fetchInternalQuery(internal.auth.getAccountById, { accountId: claims.sub });
-      return Boolean(account?.accountIsActive && account.organizationIsActive && account.credentialIsActive
-        && account.credentialUpdatedAt === (claims as SessionClaims).credentialUpdatedAt);
+      const account = await fetchInternalQuery(internal.auth.getAccountById, {
+        accountId: claims.sub,
+      });
+      return Boolean(
+        account?.accountIsActive &&
+        account.organizationIsActive &&
+        account.credentialIsActive &&
+        account.credentialUpdatedAt === (claims as SessionClaims).credentialUpdatedAt,
+      );
     },
-    { cookieName: SESSION_COOKIE_NAME, unauthorizedMessage: 'Unauthorized' },
+    { cookieName: SESSION_COOKIE_NAME, unauthorizedMessage: "Unauthorized" },
   );
   if (claimsOrResponse instanceof Response) return claimsOrResponse;
 
@@ -65,7 +71,7 @@ export async function requireDanielsonApiSession(
     accountId: claimsOrResponse.sub,
   });
   if (account?.mustChangePassword && !options.allowTemporaryCredential) {
-    return buildRequestForbiddenResponse('Password change required');
+    return buildRequestForbiddenResponse("Password change required");
   }
   return claimsOrResponse;
 }

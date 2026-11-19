@@ -56,13 +56,10 @@ describe("IM2 activity submission route", () => {
     [{ ...validBody, rawResponse: "x".repeat(129) }, "retry-key"],
     [validBody, ""],
     [validBody, "x".repeat(81)],
-  ])(
-    "rejects an invalid body or key before database work",
-    async (body, key) => {
-      expect((await POST(request(body, key), context)).status).toBe(400);
-      expect(mocks.mutate).not.toHaveBeenCalled();
-    },
-  );
+  ])("rejects an invalid body or key before database work", async (body, key) => {
+    expect((await POST(request(body, key), context)).status).toBe(400);
+    expect(mocks.mutate).not.toHaveBeenCalled();
+  });
 
   it("routes a strict triangle prefix to the bounded mutation", async () => {
     const body = {

@@ -9,7 +9,7 @@ import "./globals.css";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
-  : process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  : (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000");
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   description: "An interactive textbook for Integrated Math 3.",
   authors: [{ name: "Daniel Bodanske" }],
   icons: {
-    icon: '/favicon.svg',
-    apple: '/favicon.svg',
+    icon: "/favicon.svg",
+    apple: "/favicon.svg",
   },
 };
 

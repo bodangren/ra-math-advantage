@@ -52,9 +52,7 @@ describe("StrugglingStudentsPanel", () => {
     render(<StrugglingStudentsPanel students={[]} isLoading={false} />);
 
     expect(screen.getByText("Struggling Students")).toBeInTheDocument();
-    expect(
-      screen.getByText(/No students with struggling cards right now/i)
-    ).toBeInTheDocument();
+    expect(screen.getByText(/No students with struggling cards right now/i)).toBeInTheDocument();
   });
 
   it("renders students with correct data", () => {
@@ -97,7 +95,7 @@ describe("StrugglingStudentsPanel", () => {
         students={sampleStudents}
         onResetCard={handleReset}
         isLoading={false}
-      />
+      />,
     );
 
     const resetButtons = screen.getAllByText("Reset Card");

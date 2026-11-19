@@ -1,9 +1,9 @@
-import { requireStudentSessionClaims } from '@/lib/auth/server';
-import { PracticeTestPageClient } from '@/components/student/PracticeTestPageClient';
-import { getModuleConfig } from '@/lib/practice-tests/question-banks';
-import { notFound } from 'next/navigation';
+import { requireStudentSessionClaims } from "@/lib/auth/server";
+import { PracticeTestPageClient } from "@/components/student/PracticeTestPageClient";
+import { getModuleConfig } from "@/lib/practice-tests/question-banks";
+import { notFound } from "next/navigation";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 interface PracticeTestModulePageProps {
   params: Promise<{ moduleNumber: string }>;
@@ -23,7 +23,7 @@ export default async function PracticeTestModulePage({ params }: PracticeTestMod
     notFound();
   }
 
-  await requireStudentSessionClaims('/auth/login');
+  await requireStudentSessionClaims("/auth/login");
 
   const moduleConfig = getModuleConfig(moduleNum);
   if (!moduleConfig) {

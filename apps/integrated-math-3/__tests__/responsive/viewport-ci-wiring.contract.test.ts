@@ -51,17 +51,17 @@
 // Resolution from the test file's location (lessons-learned 2026-05-03):
 // `fileURLToPath(import.meta.url)` + `dirname()` — never `process.cwd()`.
 
-import { describe, it, expect, beforeAll } from 'vitest';
-import { existsSync, readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { describe, it, expect, beforeAll } from "vitest";
+import { existsSync, readFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const APP_ROOT = resolve(HERE, '..', '..');
-const REPO_ROOT = resolve(APP_ROOT, '..', '..');
-const CI_WORKFLOW_PATH = resolve(REPO_ROOT, '.github', 'workflows', 'ci.yml');
-const PLAYWRIGHT_SPEC_PATH = resolve(APP_ROOT, 'e2e', 'viewport-guard.spec.ts');
-const PLAYWRIGHT_CONFIG_PATH = resolve(APP_ROOT, 'playwright.config.ts');
+const APP_ROOT = resolve(HERE, "..", "..");
+const REPO_ROOT = resolve(APP_ROOT, "..", "..");
+const CI_WORKFLOW_PATH = resolve(REPO_ROOT, ".github", "workflows", "ci.yml");
+const PLAYWRIGHT_SPEC_PATH = resolve(APP_ROOT, "e2e", "viewport-guard.spec.ts");
+const PLAYWRIGHT_CONFIG_PATH = resolve(APP_ROOT, "playwright.config.ts");
 
 // Strategy §7 bounded command (must match the CI step verbatim — the
 // command-construction test fails if any of these tokens drift):
@@ -71,9 +71,9 @@ const PLAYWRIGHT_CONFIG_PATH = resolve(APP_ROOT, 'playwright.config.ts');
 // (e.g. forgets `-g "@smoke"`, or forgets `--project=viewport`) fails
 // with a precise diagnostic.
 const REQUIRED_CI_COMMAND_TOKENS = [
-  '--project=viewport',
-  'e2e/viewport-guard.spec.ts',
-  '-g',
+  "--project=viewport",
+  "e2e/viewport-guard.spec.ts",
+  "-g",
   '"@smoke"',
 ] as const;
 
@@ -85,8 +85,8 @@ const REQUIRED_CI_COMMAND_TOKENS = [
 type LoadedFile = { exists: boolean; content: string };
 
 function loadFile(path: string): LoadedFile {
-  if (!existsSync(path)) return { exists: false, content: '' };
-  return { exists: true, content: readFileSync(path, 'utf8') };
+  if (!existsSync(path)) return { exists: false, content: "" };
+  return { exists: true, content: readFileSync(path, "utf8") };
 }
 
 // Extract every `run:` step command from the CI workflow. The shape is:
@@ -103,7 +103,7 @@ function extractRunSteps(workflow: string): string[] {
   const lines: string[] = [];
   const runLineRe = /^\s*run:\s*(.*)$/;
   const indentedRe = /^\s{6,}(\S.*)$/; // a continuation line under a `run: |` block
-  const linesArr = workflow.split('\n');
+  const linesArr = workflow.split("\n");
   for (let i = 0; i < linesArr.length; i += 1) {
     const line = linesArr[i];
     const m = runLineRe.exec(line);
@@ -129,7 +129,7 @@ function extractRunSteps(workflow: string): string[] {
   return lines;
 }
 
-describe('IM3 responsive/mobile audit — Phase 3 CI wiring command-construction contract (AC5, strategy §7)', () => {
+describe("IM3 responsive/mobile audit — Phase 3 CI wiring command-construction contract (AC5, strategy §7)", () => {
   let workflow: LoadedFile;
   let spec: LoadedFile;
   let config: LoadedFile;
@@ -140,7 +140,7 @@ describe('IM3 responsive/mobile audit — Phase 3 CI wiring command-construction
     config = loadFile(PLAYWRIGHT_CONFIG_PATH);
   });
 
-  it('CI workflow .github/workflows/ci.yml exists at the monorepo root', () => {
+  it("CI workflow .github/workflows/ci.yml exists at the monorepo root", () => {
     // Strategy §7 + AGENTS.md "Architecture" reference: the monorepo
     // shares one CI workflow (`.github/workflows/ci.yml`) that runs
     // for all apps. The viewport-guard step must live in this file so
@@ -148,8 +148,8 @@ describe('IM3 responsive/mobile audit — Phase 3 CI wiring command-construction
     expect(
       workflow.exists,
       `expected CI workflow at ${CI_WORKFLOW_PATH} but it was not found. ` +
-        'The Phase 3 Green role must add a viewport-guard step to the monorepo ' +
-        'CI workflow so the bounded non-fake smoke runs on every PR.',
+        "The Phase 3 Green role must add a viewport-guard step to the monorepo " +
+        "CI workflow so the bounded non-fake smoke runs on every PR.",
     ).toBe(true);
   });
 
@@ -157,13 +157,15 @@ describe('IM3 responsive/mobile audit — Phase 3 CI wiring command-construction
     // Strategy §7: the CI step's command string must be the bounded
     // `--project=viewport -g "@smoke"` invocation. The exact tokens
     // are pinned in REQUIRED_CI_COMMAND_TOKENS above.
-    expect(workflow.exists, 'CI workflow must exist before asserting command construction').toBe(true);
+    expect(workflow.exists, "CI workflow must exist before asserting command construction").toBe(
+      true,
+    );
     const runSteps = extractRunSteps(workflow.content);
-    const viewportRunStep = runSteps.find((step) => step.includes('--project=viewport'));
+    const viewportRunStep = runSteps.find((step) => step.includes("--project=viewport"));
     expect(
       viewportRunStep,
-      'CI workflow must contain a `run:` step that includes `--project=viewport` ' +
-        '(strategy §7 — viewport guard must run in CI). Existing run steps: ' +
+      "CI workflow must contain a `run:` step that includes `--project=viewport` " +
+        "(strategy §7 — viewport guard must run in CI). Existing run steps: " +
         JSON.stringify(runSteps, null, 2),
     ).not.toBeUndefined();
 
@@ -174,34 +176,38 @@ describe('IM3 responsive/mobile audit — Phase 3 CI wiring command-construction
       expect(
         viewportRunStep!.includes(token),
         `CI viewport-guard step is missing required token "${token}". ` +
-          'Strategy §7 pins the command construction verbatim: ' +
-          '`npx playwright test --config=apps/integrated-math-3/playwright.config.ts ' +
+          "Strategy §7 pins the command construction verbatim: " +
+          "`npx playwright test --config=apps/integrated-math-3/playwright.config.ts " +
           '--project=viewport e2e/viewport-guard.spec.ts -g "@smoke"`. ' +
-          'Current step: "' + viewportRunStep + '".',
+          'Current step: "' +
+          viewportRunStep +
+          '".',
       ).toBe(true);
     }
   });
 
-  it('CI workflow does NOT include a bare `npx playwright test` viewport step (strategy §7 anti-pattern)', () => {
+  it("CI workflow does NOT include a bare `npx playwright test` viewport step (strategy §7 anti-pattern)", () => {
     // Strategy §7 anti-pattern: an unbounded `npx playwright test` would
     // fall through to the full suite and waste CI minutes. A future PR
     // that adds a viewport step WITHOUT the `--project=viewport` flag
     // (or the `-g "@smoke"` filter) must fail this assertion.
-    expect(workflow.exists, 'CI workflow must exist before asserting command construction').toBe(true);
+    expect(workflow.exists, "CI workflow must exist before asserting command construction").toBe(
+      true,
+    );
     const runSteps = extractRunSteps(workflow.content);
     const barePlaywrightSteps = runSteps.filter(
       (step) => /\bnpx\s+playwright\s+test\b/i.test(step) && !/--project=viewport/.test(step),
     );
     expect(
       barePlaywrightSteps,
-      'CI workflow must NOT contain a bare `npx playwright test` step that lacks ' +
-        '`--project=viewport`. The viewport guard must be bounded by `--project=viewport` ' +
+      "CI workflow must NOT contain a bare `npx playwright test` step that lacks " +
+        "`--project=viewport`. The viewport guard must be bounded by `--project=viewport` " +
         'and `-g "@smoke"` (strategy §7). Found unbounded steps: ' +
         JSON.stringify(barePlaywrightSteps, null, 2),
     ).toEqual([]);
   });
 
-  it('CI viewport-guard step pins `--workers 1` so the bounded smoke is deterministic (strategy §7)', () => {
+  it("CI viewport-guard step pins `--workers 1` so the bounded smoke is deterministic (strategy §7)", () => {
     // Strategy §7: the bounded smoke must run with `--workers 1` so
     // it cannot parallelise into a full-suite drain. A future PR that
     // removes the worker pin (or relies on the default `workers: 1`
@@ -209,12 +215,12 @@ describe('IM3 responsive/mobile audit — Phase 3 CI wiring command-construction
     // explicitly pins `--workers 1` OR the `viewport` project block
     // in playwright.config.ts pins `workers: 1`. We accept either
     // path so the Green role can choose.
-    expect(workflow.exists, 'CI workflow must exist before asserting workers').toBe(true);
+    expect(workflow.exists, "CI workflow must exist before asserting workers").toBe(true);
     const runSteps = extractRunSteps(workflow.content);
-    const viewportRunStep = runSteps.find((step) => step.includes('--project=viewport'));
+    const viewportRunStep = runSteps.find((step) => step.includes("--project=viewport"));
     expect(
       viewportRunStep,
-      'CI viewport-guard step must exist before asserting workers pin (see sibling test).',
+      "CI viewport-guard step must exist before asserting workers pin (see sibling test).",
     ).not.toBeUndefined();
 
     const stepPinsWorkers = /--workers\s+1\b/.test(viewportRunStep!);
@@ -228,13 +234,15 @@ describe('IM3 responsive/mobile audit — Phase 3 CI wiring command-construction
     }
     expect(
       stepPinsWorkers || configPinsWorkers,
-      'CI viewport-guard step OR the `viewport` project block must pin `--workers 1` ' +
-        '(strategy §7 — bounded smoke must be deterministic). ' +
-        'Step: "' + viewportRunStep + '".',
+      "CI viewport-guard step OR the `viewport` project block must pin `--workers 1` " +
+        "(strategy §7 — bounded smoke must be deterministic). " +
+        'Step: "' +
+        viewportRunStep +
+        '".',
     ).toBe(true);
   });
 
-  it('e2e/viewport-guard.spec.ts contains a non-fixme `@smoke` test (strategy §7 bounded smoke)', () => {
+  it("e2e/viewport-guard.spec.ts contains a non-fixme `@smoke` test (strategy §7 bounded smoke)", () => {
     // Strategy §7: the bounded non-fake smoke runs against a single
     // route/viewport, tagged `@smoke`. The Phase 1 stand-up committed
     // the known-bad-fixture cases as `test.fixme` (strategy §8 — owned
@@ -243,7 +251,9 @@ describe('IM3 responsive/mobile audit — Phase 3 CI wiring command-construction
     // targets a single representative route (e.g. /teacher/dashboard)
     // at a single viewport (e.g. tablet 768x1024). The command's
     // `-g "@smoke"` grep will then resolve to exactly this test.
-    expect(spec.exists, 'e2e/viewport-guard.spec.ts must exist before asserting @smoke tag').toBe(true);
+    expect(spec.exists, "e2e/viewport-guard.spec.ts must exist before asserting @smoke tag").toBe(
+      true,
+    );
 
     // Find any test() block that:
     //   - Is NOT test.fixme
@@ -254,7 +264,7 @@ describe('IM3 responsive/mobile audit — Phase 3 CI wiring command-construction
     // Playwright grep accepts both. The check is a single regex that
     // requires the @smoke token to appear on a line whose
     // `test(...)`/`test.describe(...)` invocation is NOT `test.fixme`.
-    const lines = spec.content.split('\n');
+    const lines = spec.content.split("\n");
     const hasNonFixmeSmoke = lines.some((line, idx) => {
       if (!/test(?:\.fixme)?\s*\(/.test(line) && !/test\.describe\s*\(/.test(line)) return false;
       if (/test\.fixme\s*\(/.test(line)) return false;
@@ -270,10 +280,10 @@ describe('IM3 responsive/mobile audit — Phase 3 CI wiring command-construction
     });
     expect(
       hasNonFixmeSmoke,
-      'e2e/viewport-guard.spec.ts must contain a non-fixme `@smoke` test (strategy §7 — ' +
-        'the bounded non-fake smoke must run in CI, not the `test.fixme` known-bad-fixture ' +
+      "e2e/viewport-guard.spec.ts must contain a non-fixme `@smoke` test (strategy §7 — " +
+        "the bounded non-fake smoke must run in CI, not the `test.fixme` known-bad-fixture " +
         'cases owned by P2). Add a new `test("... @smoke ...", ...)` that targets a single ' +
-        'representative route (e.g. /teacher/dashboard) at a single viewport (tablet 768x1024).',
+        "representative route (e.g. /teacher/dashboard) at a single viewport (tablet 768x1024).",
     ).toBe(true);
   });
 });

@@ -1,5 +1,5 @@
-import React from 'react';
-import Katex from '@matejmazur/react-katex';
+import React from "react";
+import Katex from "@matejmazur/react-katex";
 
 export interface MathInlineProps {
   math: string;
@@ -12,7 +12,7 @@ export interface MathInlineProps {
  * @param {MathInlineProps} props - Math inline configuration.
  * @returns {JSX.Element} A span containing the rendered math.
  */
-export function MathInline({ math, className = '' }: MathInlineProps) {
+export function MathInline({ math, className = "" }: MathInlineProps) {
   return (
     <span className={`math-inline ${className}`}>
       <Katex math={math} />

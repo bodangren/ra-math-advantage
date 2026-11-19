@@ -13,14 +13,14 @@
  * Deterministic: same seed → identical output. Uses mulberry32.
  */
 
-import { mulberry32 } from './utils/prng';
-import { formatQuadratic } from './utils/expression-builder';
+import { mulberry32 } from "./utils/prng";
+import { formatQuadratic } from "./utils/expression-builder";
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
-export type QuadraticFormulaRootType = 'real' | 'irrational' | 'complex';
+export type QuadraticFormulaRootType = "real" | "irrational" | "complex";
 
 export interface QuadraticFormulaRoot {
   value: number | string;
@@ -52,7 +52,7 @@ function randNonZero(rand: () => number, hi: number): number {
     n = randInt(rand, -hi, hi);
   } while (n === 0 && safety++ < 100);
   if (n === 0) {
-    throw new Error('randNonZero: unable to select a non-zero value after 100 attempts');
+    throw new Error("randNonZero: unable to select a non-zero value after 100 attempts");
   }
   return n;
 }
@@ -72,7 +72,7 @@ interface Case {
   b: number;
   c: number;
   roots: QuadraticFormulaRoot[];
-  rootKind: 'integer' | 'repeated' | 'irrational' | 'complex';
+  rootKind: "integer" | "repeated" | "irrational" | "complex";
   rootTypeDesc: string;
 }
 
@@ -85,13 +85,15 @@ function caseIntegerRoots(rand: () => number): Case {
   const b = -a * (r1 + r2);
   const c = a * r1 * r2;
   return {
-    a, b, c,
+    a,
+    b,
+    c,
     roots: [
-      { value: r1, type: 'real' },
-      { value: r2, type: 'real' },
+      { value: r1, type: "real" },
+      { value: r2, type: "real" },
     ],
-    rootKind: 'integer',
-    rootTypeDesc: 'two distinct real integer roots',
+    rootKind: "integer",
+    rootTypeDesc: "two distinct real integer roots",
   };
 }
 
@@ -101,10 +103,12 @@ function caseRepeated(rand: () => number): Case {
   const b = -2 * a * r;
   const c = a * r * r;
   return {
-    a, b, c,
-    roots: [{ value: r, type: 'real' }],
-    rootKind: 'repeated',
-    rootTypeDesc: 'one repeated real root',
+    a,
+    b,
+    c,
+    roots: [{ value: r, type: "real" }],
+    rootKind: "repeated",
+    rootTypeDesc: "one repeated real root",
   };
 }
 
@@ -131,13 +135,15 @@ function caseIrrational(rand: () => number): Case {
   const plusRoot = `(${negB} + √${disc})/${den}`;
   const minusRoot = `(${negB} - √${disc})/${den}`;
   return {
-    a: aa, b: bb, c: cc,
+    a: aa,
+    b: bb,
+    c: cc,
     roots: [
-      { value: plusRoot, type: 'irrational' },
-      { value: minusRoot, type: 'irrational' },
+      { value: plusRoot, type: "irrational" },
+      { value: minusRoot, type: "irrational" },
     ],
-    rootKind: 'irrational',
-    rootTypeDesc: 'two irrational roots (radical form)',
+    rootKind: "irrational",
+    rootTypeDesc: "two irrational roots (radical form)",
   };
 }
 
@@ -163,13 +169,15 @@ function caseComplex(rand: () => number): Case {
   const plusRoot = `(${negB} + i√${radMag})/${den}`;
   const minusRoot = `(${negB} - i√${radMag})/${den}`;
   return {
-    a: aa, b: bb, c: cc,
+    a: aa,
+    b: bb,
+    c: cc,
     roots: [
-      { value: plusRoot, type: 'complex' },
-      { value: minusRoot, type: 'complex' },
+      { value: plusRoot, type: "complex" },
+      { value: minusRoot, type: "complex" },
     ],
-    rootKind: 'complex',
-    rootTypeDesc: 'two complex conjugate roots',
+    rootKind: "complex",
+    rootTypeDesc: "two complex conjugate roots",
   };
 }
 
@@ -186,16 +194,22 @@ function buildSteps(
   rootSample: string,
 ): string[] {
   const steps: string[] = [];
-  steps.push(`Identify the coefficients: a = ${a}, b = ${b}, c = ${c}. The quadratic is ${formatQuadratic(a, b, c)}.`);
+  steps.push(
+    `Identify the coefficients: a = ${a}, b = ${b}, c = ${c}. The quadratic is ${formatQuadratic(a, b, c)}.`,
+  );
   steps.push(`Compute the discriminant: b^2 - 4ac = (${b})^2 - 4(${a})(${c}) = ${disc}.`);
-  steps.push(`Because the discriminant is ${disc > 0 ? 'positive' : disc === 0 ? 'zero' : 'negative'}, the root type (nature) is ${rootTypeDesc}.`);
-  steps.push(`Apply the quadratic formula: x = (-b ± √(discriminant)) / (2a) = (-(${b}) ± √${disc}) / (2·${a}).`);
+  steps.push(
+    `Because the discriminant is ${disc > 0 ? "positive" : disc === 0 ? "zero" : "negative"}, the root type (nature) is ${rootTypeDesc}.`,
+  );
+  steps.push(
+    `Apply the quadratic formula: x = (-b ± √(discriminant)) / (2a) = (-(${b}) ± √${disc}) / (2·${a}).`,
+  );
   steps.push(`Simplify to obtain the root(s): x = ${rootSample}.`);
   return steps;
 }
 
 function rootSample(roots: QuadraticFormulaRoot[]): string {
-  return roots.map((root) => String(root.value)).join(', ');
+  return roots.map((root) => String(root.value)).join(", ");
 }
 
 // ---------------------------------------------------------------------------
@@ -214,11 +228,19 @@ export function generateQuadraticFormula(options: { seed: number }): QuadraticFo
   const mode = Math.floor(rand() * 4);
   let cs: Case;
   switch (mode) {
-    case 0: cs = caseIntegerRoots(rand); break;
-    case 1: cs = caseRepeated(rand); break;
-    case 2: cs = caseIrrational(rand); break;
+    case 0:
+      cs = caseIntegerRoots(rand);
+      break;
+    case 1:
+      cs = caseRepeated(rand);
+      break;
+    case 2:
+      cs = caseIrrational(rand);
+      break;
     case 3:
-    default: cs = caseComplex(rand); break;
+    default:
+      cs = caseComplex(rand);
+      break;
   }
 
   const { a, b, c, roots, rootTypeDesc } = cs;

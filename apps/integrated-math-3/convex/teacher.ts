@@ -2,8 +2,16 @@ import { internalQuery, type QueryCtx } from "./_generated/server";
 import type { Id } from "./_generated/dataModel";
 import { v } from "convex/values";
 import { getAuthorizedTeacher } from "./auth";
-import { assembleCourseOverviewRows, type CourseOverviewRow, type UnitColumn } from "@math-platform/teacher-reporting-core";
-import { assembleGradebookRows, type GradebookRow, type GradebookLesson } from "@math-platform/teacher-reporting-core";
+import {
+  assembleCourseOverviewRows,
+  type CourseOverviewRow,
+  type UnitColumn,
+} from "@math-platform/teacher-reporting-core";
+import {
+  assembleGradebookRows,
+  type GradebookRow,
+  type GradebookLesson,
+} from "@math-platform/teacher-reporting-core";
 import {
   assembleCompetencyHeatmapRows,
   assembleStudentCompetencyDetail,
@@ -30,10 +38,10 @@ interface TeacherProgressSnapshot {
   progressPercentage: number;
   lastActive: string | null;
   currentLesson: string | null;
-  atGlanceStatus: 'on-track' | 'behind' | 'not-started';
+  atGlanceStatus: "on-track" | "behind" | "not-started";
 }
 
-type AtGlanceStatus = 'on-track' | 'behind' | 'not-started';
+type AtGlanceStatus = "on-track" | "behind" | "not-started";
 
 /**
  * Determines at-a-glance status from progress percentage.
@@ -41,9 +49,9 @@ type AtGlanceStatus = 'on-track' | 'behind' | 'not-started';
  * @returns {AtGlanceStatus} atGlanceStatus string: 'not-started', 'on-track', or 'behind'
  */
 function computeAtGlanceStatus(progressPercentage: number): AtGlanceStatus {
-  if (progressPercentage === 0) return 'not-started';
-  if (progressPercentage >= 50) return 'on-track';
-  return 'behind';
+  if (progressPercentage === 0) return "not-started";
+  if (progressPercentage >= 50) return "on-track";
+  return "behind";
 }
 
 interface TeacherStudentDetailUnitRow {
@@ -82,7 +90,7 @@ interface PracticeSubmissionEvidence {
 }
 
 interface SubmissionEvidence {
-  kind: 'spreadsheet' | 'practice';
+  kind: "spreadsheet" | "practice";
   activityId: string;
   activityTitle: string;
   componentKey: string;
@@ -96,12 +104,12 @@ interface SubmissionEvidence {
 }
 
 const DEFAULT_PHASE_NAMES: Record<number, string> = {
-  1: 'Hook',
-  2: 'Introduction',
-  3: 'Guided Practice',
-  4: 'Independent Practice',
-  5: 'Assessment',
-  6: 'Closing',
+  1: "Hook",
+  2: "Introduction",
+  3: "Guided Practice",
+  4: "Independent Practice",
+  5: "Assessment",
+  6: "Closing",
 };
 
 /**
@@ -126,18 +134,13 @@ function sortStudentsByName<
  * @param {Id<"organizations">} organizationId - The organization to list students for
  * @returns {Promise<Doc<"profiles">[]>} Sorted array of student profiles
  */
-async function listOrganizationStudents(
-  ctx: QueryCtx,
-  organizationId: Id<"organizations">,
-) {
+async function listOrganizationStudents(ctx: QueryCtx, organizationId: Id<"organizations">) {
   const allProfiles = await ctx.db
     .query("profiles")
     .withIndex("by_organization", (q) => q.eq("organizationId", organizationId))
     .collect();
 
-  return sortStudentsByName(
-    allProfiles.filter((profile) => profile.role === "student"),
-  );
+  return sortStudentsByName(allProfiles.filter((profile) => profile.role === "student"));
 }
 
 /**
@@ -146,10 +149,7 @@ async function listOrganizationStudents(
  * @param {Id<"organizations">} organizationId - The organization to look up
  * @returns {Promise<string>} The organization name or a default fallback
  */
-async function getOrganizationName(
-  ctx: QueryCtx,
-  organizationId: Id<"organizations">,
-) {
+async function getOrganizationName(ctx: QueryCtx, organizationId: Id<"organizations">) {
   const organization = await ctx.db.get(organizationId);
   return organization?.name ?? "Your organization";
 }
@@ -160,14 +160,9 @@ async function getOrganizationName(
  * @param {string[] | undefined} lessonIds - Optional filter to specific lesson IDs
  * @returns {Promise<Doc<"lesson_versions">[]>} Array of latest published lesson version documents
  */
-async function listLatestPublishedLessonVersions(
-  ctx: QueryCtx,
-  lessonIds?: string[],
-) {
+async function listLatestPublishedLessonVersions(ctx: QueryCtx, lessonIds?: string[]) {
   const lessonVersions = await ctx.db.query("lesson_versions").collect();
-  return [
-    ...buildLatestPublishedLessonVersionMap(lessonVersions, lessonIds).values(),
-  ];
+  return [...buildLatestPublishedLessonVersionMap(lessonVersions, lessonIds).values()];
 }
 
 /**
@@ -175,9 +170,7 @@ async function listLatestPublishedLessonVersions(
  * @param {QueryCtx} ctx - The query context
  * @returns {Promise<Set<Id<"phase_versions">>>} Set of active phase version IDs
  */
-async function listActivePhaseIds(
-  ctx: QueryCtx,
-): Promise<Set<Id<"phase_versions">>> {
+async function listActivePhaseIds(ctx: QueryCtx): Promise<Set<Id<"phase_versions">>> {
   const [lessonRows, lessonVersions, phaseVersions] = await Promise.all([
     ctx.db.query("lessons").collect(),
     ctx.db.query("lesson_versions").collect(),
@@ -213,7 +206,12 @@ async function buildStudentProgressSnapshot(
   });
 
   let currentLesson: string | null = null;
-  if (phaseVersionLessonMap && lessonVersionLessonMap && lessonTitleMap && progressRows.length > 0) {
+  if (
+    phaseVersionLessonMap &&
+    lessonVersionLessonMap &&
+    lessonTitleMap &&
+    progressRows.length > 0
+  ) {
     let mostRecentRow = progressRows[0];
     let mostRecentTime = progressRows[0].updatedAt ?? 0;
 
@@ -323,8 +321,8 @@ export const getTeacherDashboardData = internalQuery({
         ctx.db
           .query("student_progress")
           .withIndex("by_user", (q) => q.eq("userId", studentId))
-          .collect()
-      )
+          .collect(),
+      ),
     );
     for (let i = 0; i < studentIds.length; i++) {
       const studentId = studentIds[i];
@@ -350,7 +348,7 @@ export const getTeacherDashboardData = internalQuery({
         progressPercentage: snapshot?.progressPercentage ?? 0,
         lastActive: snapshot?.lastActive ?? null,
         currentLesson: snapshot?.currentLesson ?? null,
-        atGlanceStatus: snapshot?.atGlanceStatus ?? 'not-started',
+        atGlanceStatus: snapshot?.atGlanceStatus ?? "not-started",
       };
     });
 
@@ -392,10 +390,12 @@ export async function getTeacherCourseOverviewDataHandler(
     return { rows: [], units: [] };
   }
 
-  const rawLessonVersions = (await listLatestPublishedLessonVersions(
-    ctx,
-    rawLessons.map((lesson) => lesson.id),
-  )).map((version) => ({
+  const rawLessonVersions = (
+    await listLatestPublishedLessonVersions(
+      ctx,
+      rawLessons.map((lesson) => lesson.id),
+    )
+  ).map((version) => ({
     id: version._id,
     lessonId: version.lessonId,
     status: version.status,
@@ -414,10 +414,7 @@ export async function getTeacherCourseOverviewDataHandler(
 
   const lessonVersionIds = new Set(rawLessonVersions.map((version) => version.id));
   const rawPrimaryStandards = (await ctx.db.query("lesson_standards").collect())
-    .filter(
-      (standard) =>
-        standard.isPrimary && lessonVersionIds.has(standard.lessonVersionId),
-    )
+    .filter((standard) => standard.isPrimary && lessonVersionIds.has(standard.lessonVersionId))
     .map((standard) => ({
       lessonVersionId: standard.lessonVersionId,
       standardId: standard.standardId,
@@ -496,10 +493,12 @@ export async function getTeacherGradebookDataHandler(
     return { rows: [], lessons: [] };
   }
 
-  const rawLessonVersions = (await listLatestPublishedLessonVersions(
-    ctx,
-    rawLessons.map((lesson) => lesson.id),
-  )).map((version) => ({
+  const rawLessonVersions = (
+    await listLatestPublishedLessonVersions(
+      ctx,
+      rawLessons.map((lesson) => lesson.id),
+    )
+  ).map((version) => ({
     id: version._id,
     lessonId: version.lessonId,
     status: version.status,
@@ -520,10 +519,7 @@ export async function getTeacherGradebookDataHandler(
     }));
 
   const rawPrimaryStandards = (await ctx.db.query("lesson_standards").collect())
-    .filter(
-      (standard) =>
-        standard.isPrimary && lessonVersionIds.has(standard.lessonVersionId),
-    )
+    .filter((standard) => standard.isPrimary && lessonVersionIds.has(standard.lessonVersionId))
     .map((standard) => ({
       lessonVersionId: standard.lessonVersionId,
       standardId: standard.standardId,
@@ -538,7 +534,15 @@ export async function getTeacherGradebookDataHandler(
   }));
 
   if (students.length === 0) {
-    return assembleGradebookRows([], rawLessons, rawLessonVersions, rawPhaseVersions, rawPrimaryStandards, [], []);
+    return assembleGradebookRows(
+      [],
+      rawLessons,
+      rawLessonVersions,
+      rawPhaseVersions,
+      rawPrimaryStandards,
+      [],
+      [],
+    );
   }
 
   const phaseIds = new Set(rawPhaseVersions.map((phase) => phase.id));
@@ -620,16 +624,14 @@ export async function getTeacherCompetencyHeatmapDataHandler(
     return null;
   }
 
-  const standards = (await ctx.db.query("competency_standards").collect()).map(
-    (standard) => ({
-      id: standard._id,
-      code: standard.code,
-      description: standard.description,
-      studentFriendlyDescription: standard.studentFriendlyDescription ?? null,
-      category: standard.category ?? null,
-      isActive: standard.isActive,
-    }),
-  );
+  const standards = (await ctx.db.query("competency_standards").collect()).map((standard) => ({
+    id: standard._id,
+    code: standard.code,
+    description: standard.description,
+    studentFriendlyDescription: standard.studentFriendlyDescription ?? null,
+    category: standard.category ?? null,
+    isActive: standard.isActive,
+  }));
 
   const students = await listOrganizationStudents(ctx, teacher.organizationId);
   const rawStudents = students.map((student) => ({
@@ -692,11 +694,7 @@ export async function getTeacherStudentCompetencyDetailHandler(
   }
 
   const student = await ctx.db.get(args.studentId);
-  if (
-    !student ||
-    student.role !== "student" ||
-    student.organizationId !== teacher.organizationId
-  ) {
+  if (!student || student.role !== "student" || student.organizationId !== teacher.organizationId) {
     return null;
   }
 
@@ -706,27 +704,26 @@ export async function getTeacherStudentCompetencyDetailHandler(
     displayName: student.displayName ?? null,
   };
 
-  const [standards, competencyRows, rawLessonVersions, rawLessons, rawLessonStandards] = await Promise.all([
-    ctx.db.query("competency_standards").collect(),
-    ctx.db
-      .query("student_competency")
-      .withIndex("by_student", (q) => q.eq("studentId", student._id))
-      .collect(),
-    ctx.db.query("lesson_versions").collect(),
-    ctx.db.query("lessons").collect(),
-    ctx.db.query("lesson_standards").collect(),
-  ]);
+  const [standards, competencyRows, rawLessonVersions, rawLessons, rawLessonStandards] =
+    await Promise.all([
+      ctx.db.query("competency_standards").collect(),
+      ctx.db
+        .query("student_competency")
+        .withIndex("by_student", (q) => q.eq("studentId", student._id))
+        .collect(),
+      ctx.db.query("lesson_versions").collect(),
+      ctx.db.query("lessons").collect(),
+      ctx.db.query("lesson_standards").collect(),
+    ]);
 
-  const mappedStandards = standards.map(
-    (standard) => ({
-      id: standard._id,
-      code: standard.code,
-      description: standard.description,
-      studentFriendlyDescription: standard.studentFriendlyDescription ?? null,
-      category: standard.category ?? null,
-      isActive: standard.isActive,
-    }),
-  );
+  const mappedStandards = standards.map((standard) => ({
+    id: standard._id,
+    code: standard.code,
+    description: standard.description,
+    studentFriendlyDescription: standard.studentFriendlyDescription ?? null,
+    category: standard.category ?? null,
+    isActive: standard.isActive,
+  }));
 
   const mappedCompetencyRows = competencyRows.map((row) => ({
     studentId: row.studentId,
@@ -737,13 +734,11 @@ export async function getTeacherStudentCompetencyDetailHandler(
     updatedBy: row.updatedBy ?? null,
   }));
 
-  const mappedLessonVersions = rawLessonVersions.map(
-    (version) => ({
-      id: version._id,
-      lessonId: version.lessonId,
-      version: version.version,
-    }),
-  );
+  const mappedLessonVersions = rawLessonVersions.map((version) => ({
+    id: version._id,
+    lessonId: version.lessonId,
+    version: version.version,
+  }));
 
   const mappedLessons = rawLessons.map((lesson) => ({
     id: lesson._id,
@@ -751,13 +746,11 @@ export async function getTeacherStudentCompetencyDetailHandler(
     title: lesson.title,
   }));
 
-  const mappedLessonStandards = rawLessonStandards.map(
-    (ls) => ({
-      standardId: ls.standardId,
-      lessonVersionId: ls.lessonVersionId,
-      isPrimary: ls.isPrimary,
-    }),
-  );
+  const mappedLessonStandards = rawLessonStandards.map((ls) => ({
+    standardId: ls.standardId,
+    lessonVersionId: ls.lessonVersionId,
+    isPrimary: ls.isPrimary,
+  }));
 
   return assembleStudentCompetencyDetail(
     rawStudent,
@@ -870,9 +863,7 @@ export const getTeacherLessonMonitoringData = internalQuery({
         ? []
         : await ctx.db
             .query("phase_versions")
-            .withIndex("by_lesson_version", (q) =>
-              q.eq("lessonVersionId", selectedVersion._id),
-            )
+            .withIndex("by_lesson_version", (q) => q.eq("lessonVersionId", selectedVersion._id))
             .collect();
 
     phases.sort((a, b) => a.phaseNumber - b.phaseNumber);
@@ -933,7 +924,12 @@ export const getTeacherLessonMonitoringData = internalQuery({
  */
 export async function getSubmissionDetailHandler(
   ctx: QueryCtx,
-  args: { userId: Id<"profiles">; studentId: Id<"profiles">; lessonId: Id<"lessons">; studentName: string },
+  args: {
+    userId: Id<"profiles">;
+    studentId: Id<"profiles">;
+    lessonId: Id<"lessons">;
+    studentName: string;
+  },
 ): Promise<{
   studentName: string;
   lessonTitle: string;
@@ -954,11 +950,7 @@ export async function getSubmissionDetailHandler(
   }
 
   const student = await ctx.db.get(args.studentId);
-  if (
-    !student ||
-    student.role !== "student" ||
-    student.organizationId !== teacher.organizationId
-  ) {
+  if (!student || student.role !== "student" || student.organizationId !== teacher.organizationId) {
     return null;
   }
 
@@ -1048,10 +1040,10 @@ export async function getSubmissionDetailHandler(
 
         const activity = activityById.get(row.activityId);
         const evidence: SubmissionEvidence = {
-          kind: 'spreadsheet',
+          kind: "spreadsheet",
           activityId: row.activityId,
-          activityTitle: activity?.displayName ?? 'Spreadsheet activity',
-          componentKey: activity?.componentKey ?? 'spreadsheet',
+          activityTitle: activity?.displayName ?? "Spreadsheet activity",
+          componentKey: activity?.componentKey ?? "spreadsheet",
           submittedAt: new Date(row.updatedAt).toISOString(),
           spreadsheetData: spreadsheetRow.spreadsheetData,
         };
@@ -1064,7 +1056,7 @@ export async function getSubmissionDetailHandler(
 
     const latestPracticeByActivity = new Map<string, (typeof practiceRows)[number]>();
     for (const row of practiceRows) {
-      if (row.submissionData.status === 'draft') continue;
+      if (row.submissionData.status === "draft") continue;
       const current = latestPracticeByActivity.get(row.activityId);
       if (!current) {
         latestPracticeByActivity.set(row.activityId, row);
@@ -1086,15 +1078,17 @@ export async function getSubmissionDetailHandler(
       }
 
       const activity = activityById.get(activityId);
-      const submissionData = row.submissionData as PracticeSubmissionEvidence | Record<string, unknown>;
+      const submissionData = row.submissionData as
+        | PracticeSubmissionEvidence
+        | Record<string, unknown>;
       const evidence: SubmissionEvidence = {
-        kind: 'practice',
+        kind: "practice",
         activityId,
-        activityTitle: activity?.displayName ?? 'Practice submission',
-        componentKey: activity?.componentKey ?? 'practice',
+        activityTitle: activity?.displayName ?? "Practice submission",
+        componentKey: activity?.componentKey ?? "practice",
         submittedAt: new Date(row.submittedAt).toISOString(),
         attemptNumber:
-          typeof submissionData.attemptNumber === 'number' ? submissionData.attemptNumber : 1,
+          typeof submissionData.attemptNumber === "number" ? submissionData.attemptNumber : 1,
         score: row.score ?? null,
         maxScore: row.maxScore ?? null,
         feedback: row.feedback ?? null,
@@ -1136,9 +1130,9 @@ export async function getSubmissionDetailHandler(
   const practiceEnvelopes = [];
   for (const evidenceList of evidenceByPhaseNumber.values()) {
     for (const evidence of evidenceList) {
-      if (evidence.kind === 'practice' && evidence.submissionData) {
+      if (evidence.kind === "practice" && evidence.submissionData) {
         const data = evidence.submissionData as Record<string, unknown>;
-        if (data.contractVersion === 'practice.v1') {
+        if (data.contractVersion === "practice.v1") {
           practiceEnvelopes.push(data);
         }
       }
@@ -1147,16 +1141,11 @@ export async function getSubmissionDetailHandler(
 
   let studentErrorSummary = null;
   if (practiceEnvelopes.length > 0) {
-    const { buildDeterministicSummary } = await import(
-      "@math-platform/practice-core"
-    );
+    const { buildDeterministicSummary } = await import("@math-platform/practice-core");
 
     const studentIdMap = new Map<string, string>();
     for (const env of practiceEnvelopes) {
-      studentIdMap.set(
-        env.activityId as string,
-        args.studentId,
-      );
+      studentIdMap.set(env.activityId as string, args.studentId);
     }
 
     studentErrorSummary = buildDeterministicSummary(
@@ -1239,18 +1228,18 @@ export const getLessonErrorSummary = internalQuery({
 
     const studentIds = [...new Set(completions.map((c) => c.studentId))];
 
-    const orgStudentIds = (await Promise.all(
-      studentIds.map(async (sid) => {
-        const profile = await ctx.db.get(sid as Id<"profiles">);
-        return profile?.organizationId === teacher.organizationId ? sid : null;
-      }),
-    )).filter((x): x is Id<"profiles"> => x !== null);
+    const orgStudentIds = (
+      await Promise.all(
+        studentIds.map(async (sid) => {
+          const profile = await ctx.db.get(sid as Id<"profiles">);
+          return profile?.organizationId === teacher.organizationId ? sid : null;
+        }),
+      )
+    ).filter((x): x is Id<"profiles"> => x !== null);
 
     if (orgStudentIds.length === 0) return null;
 
-    const orgCompletions = completions.filter((c) =>
-      orgStudentIds.includes(c.studentId),
-    );
+    const orgCompletions = completions.filter((c) => orgStudentIds.includes(c.studentId));
     const activityIds = [...new Set(orgCompletions.map((c) => c.activityId))];
     if (activityIds.length === 0) return null;
 
@@ -1265,24 +1254,20 @@ export const getLessonErrorSummary = internalQuery({
 
     const flatSubmissions = allSubmissions.flat();
 
-    const studentSubmissions = flatSubmissions.filter((row) =>
-      orgStudentIds.includes(row.userId) && row.submissionData.status !== 'draft',
+    const studentSubmissions = flatSubmissions.filter(
+      (row) => orgStudentIds.includes(row.userId) && row.submissionData.status !== "draft",
     );
 
     if (studentSubmissions.length === 0) return null;
 
-    const latestByStudentAndActivity = new Map<
-      string,
-      (typeof studentSubmissions)[number]
-    >();
+    const latestByStudentAndActivity = new Map<string, (typeof studentSubmissions)[number]>();
     for (const row of studentSubmissions) {
       const key = `${row.userId}:${row.activityId}`;
       const current = latestByStudentAndActivity.get(key);
       if (
         !current ||
         row.submittedAt > current.submittedAt ||
-        (row.submittedAt === current.submittedAt &&
-          row.updatedAt >= current.updatedAt)
+        (row.submittedAt === current.submittedAt && row.updatedAt >= current.updatedAt)
       ) {
         latestByStudentAndActivity.set(key, row);
       }
@@ -1302,15 +1287,9 @@ export const getLessonErrorSummary = internalQuery({
 
     if (envelopes.length === 0) return null;
 
-    const { buildDeterministicSummary } = await import(
-      "@math-platform/practice-core"
-    );
+    const { buildDeterministicSummary } = await import("@math-platform/practice-core");
 
-    return buildDeterministicSummary(
-      args.lessonId,
-      envelopes as never,
-      studentIdMap,
-    );
+    return buildDeterministicSummary(args.lessonId, envelopes as never, studentIdMap);
   },
 });
 
@@ -1362,20 +1341,30 @@ export const getTeacherLessonPreview = internalQuery({
 
     phases.sort((a, b) => a.phaseNumber - b.phaseNumber);
 
-    const sectionsByPhaseId = new Map<string, { id: string; sequenceOrder: number; sectionType: string; content: unknown }[]>();
-    const phaseIds = phases.map(p => p._id);
+    const sectionsByPhaseId = new Map<
+      string,
+      { id: string; sequenceOrder: number; sectionType: string; content: unknown }[]
+    >();
+    const phaseIds = phases.map((p) => p._id);
     const allSections = await Promise.all(
-      phaseIds.map(phaseId =>
+      phaseIds.map((phaseId) =>
         ctx.db
           .query("phase_sections")
           .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phaseId))
-          .collect()
-      )
+          .collect(),
+      ),
     );
     phaseIds.forEach((phaseId, i) => {
-      sectionsByPhaseId.set(phaseId, allSections[i]
-        .sort((a, b) => a.sequenceOrder - b.sequenceOrder)
-        .map(s => ({ id: s._id, sequenceOrder: s.sequenceOrder, sectionType: s.sectionType, content: s.content }))
+      sectionsByPhaseId.set(
+        phaseId,
+        allSections[i]
+          .sort((a, b) => a.sequenceOrder - b.sequenceOrder)
+          .map((s) => ({
+            id: s._id,
+            sequenceOrder: s.sequenceOrder,
+            sectionType: s.sectionType,
+            content: s.content,
+          })),
       );
     });
 
@@ -1383,13 +1372,13 @@ export const getTeacherLessonPreview = internalQuery({
       lessonTitle: lesson.title,
       unitNumber: lesson.unitNumber,
       lessonNumber: lesson.orderIndex,
-      phases: phases.map(p => ({
+      phases: phases.map((p) => ({
         phaseId: p._id,
         phaseNumber: p.phaseNumber,
         phaseType: p.phaseType,
-        title: p.title ?? DEFAULT_PHASE_LABELS[p.phaseType] ?? 'Phase',
+        title: p.title ?? DEFAULT_PHASE_LABELS[p.phaseType] ?? "Phase",
         sections: sectionsByPhaseId.get(p._id) ?? [],
-        status: 'available' as const,
+        status: "available" as const,
         completed: false,
       })),
     };
@@ -1397,16 +1386,16 @@ export const getTeacherLessonPreview = internalQuery({
 });
 
 const DEFAULT_PHASE_LABELS: Record<string, string> = {
-  explore: 'Explore',
-  vocabulary: 'Vocabulary',
-  learn: 'Learn',
-  key_concept: 'Key Concept',
-  worked_example: 'Example',
-  guided_practice: 'Guided Practice',
-  independent_practice: 'Practice',
-  assessment: 'Assessment',
-  discourse: 'Think About It',
-  reflection: 'Reflection',
+  explore: "Explore",
+  vocabulary: "Vocabulary",
+  learn: "Learn",
+  key_concept: "Key Concept",
+  worked_example: "Example",
+  guided_practice: "Guided Practice",
+  independent_practice: "Practice",
+  assessment: "Assessment",
+  discourse: "Think About It",
+  reflection: "Reflection",
 };
 
 /**
@@ -1422,12 +1411,13 @@ export const getStandardsCoverage = internalQuery({
     }
 
     const allStandards = await ctx.db.query("competency_standards").collect();
-    const activeStandards = allStandards.filter(s => s.isActive);
+    const activeStandards = allStandards.filter((s) => s.isActive);
 
     const allLessons = await ctx.db.query("lessons").collect();
-    const moduleLessons = args.unitNumber != null
-      ? allLessons.filter(l => l.unitNumber === args.unitNumber)
-      : allLessons;
+    const moduleLessons =
+      args.unitNumber != null
+        ? allLessons.filter((l) => l.unitNumber === args.unitNumber)
+        : allLessons;
     moduleLessons.sort((a, b) => {
       if (a.unitNumber !== b.unitNumber) return a.unitNumber - b.unitNumber;
       return a.orderIndex - b.orderIndex;
@@ -1438,7 +1428,7 @@ export const getStandardsCoverage = internalQuery({
 
     const lessonStandards = await ctx.db.query("lesson_standards").collect();
 
-    const standardsCoverage = activeStandards.map(standard => {
+    const standardsCoverage = activeStandards.map((standard) => {
       const lessonsCoveringStandard: Array<{
         lessonId: string;
         lessonTitle: string;
@@ -1452,7 +1442,7 @@ export const getStandardsCoverage = internalQuery({
         if (!latestVersion) continue;
 
         const lessonStandardEntries = lessonStandards.filter(
-          ls => ls.lessonVersionId === latestVersion._id && ls.standardId === standard._id
+          (ls) => ls.lessonVersionId === latestVersion._id && ls.standardId === standard._id,
         );
 
         for (const ls of lessonStandardEntries) {
@@ -1478,7 +1468,7 @@ export const getStandardsCoverage = internalQuery({
 
     return {
       standards: standardsCoverage,
-      lessons: moduleLessons.map(l => ({
+      lessons: moduleLessons.map((l) => ({
         id: l._id,
         title: l.title,
         slug: l.slug,
@@ -1550,24 +1540,22 @@ export const getTeacherSrsDashboardData = internalQuery({
           ctx.db
             .query("srs_cards")
             .withIndex("by_student", (q) => q.eq("studentId", studentId))
-            .collect()
-        )
+            .collect(),
+        ),
       ),
       Promise.all(
         studentIds.map((studentId) =>
           ctx.db
             .query("srs_sessions")
             .withIndex("by_student", (q) => q.eq("studentId", studentId))
-            .collect()
-        )
+            .collect(),
+        ),
       ),
       Promise.all(studentIds.map((studentId) => ctx.db.get("profiles", studentId))),
     ]);
 
     const profilesMap = new Map(
-      profilesResults
-        .filter((p): p is NonNullable<typeof p> => p !== null)
-        .map((p) => [p._id, p])
+      profilesResults.filter((p): p is NonNullable<typeof p> => p !== null).map((p) => [p._id, p]),
     );
 
     let totalActiveStudents = 0;
@@ -1606,7 +1594,7 @@ export const getTeacherSrsDashboardData = internalQuery({
       if (completedSessions.length === 0) continue;
 
       const practicedTodaySession = completedSessions.some(
-        (s) => s.completedAt && s.completedAt >= todayStartMs
+        (s) => s.completedAt && s.completedAt >= todayStartMs,
       );
       if (practicedTodaySession) {
         practicedToday++;
@@ -1617,8 +1605,8 @@ export const getTeacherSrsDashboardData = internalQuery({
           completedSessions.map((s) => {
             const d = new Date(s.completedAt!);
             return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
-          })
-        )
+          }),
+        ),
       ).sort((a, b) => b - a);
 
       const mostRecent = uniqueDays[0];
@@ -1652,9 +1640,15 @@ export const getTeacherSrsDashboardData = internalQuery({
     const avgRetention = cardCount > 0 ? totalRetention / cardCount : 0;
 
     const [weakObjectives, strugglingStudents, misconceptions] = await Promise.all([
-      getWeakObjectivesHandler(ctx, { classId: currentClassId as unknown as string }).catch(() => []),
-      getStrugglingStudentsHandler(ctx, { classId: currentClassId as unknown as string }).catch(() => []),
-      getMisconceptionSummaryHandler(ctx, { classId: currentClassId as unknown as string }).catch(() => []),
+      getWeakObjectivesHandler(ctx, { classId: currentClassId as unknown as string }).catch(
+        () => [],
+      ),
+      getStrugglingStudentsHandler(ctx, { classId: currentClassId as unknown as string }).catch(
+        () => [],
+      ),
+      getMisconceptionSummaryHandler(ctx, { classId: currentClassId as unknown as string }).catch(
+        () => [],
+      ),
     ]);
 
     return {

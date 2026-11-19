@@ -16,7 +16,6 @@ interface TeacherCredentialsSheetProps {
   organizationName?: string;
 }
 
-
 /**
  * Renders a printable credentials sheet for student accounts, showing
  * username and password cards for each student.
@@ -113,7 +112,9 @@ export function TeacherCredentialsSheet({
       <header className="flex items-center justify-between border-b px-6 py-4 bg-background print:hidden">
         <div>
           <h2 className="text-xl font-semibold">Student Credentials Sheet</h2>
-          <p className="text-sm text-muted-foreground">Print or download these for your students.</p>
+          <p className="text-sm text-muted-foreground">
+            Print or download these for your students.
+          </p>
         </div>
         <div className="flex items-center gap-2">
           <Button variant="outline" size="sm" className="gap-2" onClick={handlePrint}>
@@ -134,29 +135,37 @@ export function TeacherCredentialsSheet({
         >
           <div className="mb-8 border-b-2 border-primary pb-4">
             <h1 className="text-2xl font-bold text-primary">{organizationName}</h1>
-            <p className="text-sm text-muted-foreground">Student Login Credentials &mdash; {new Date().toLocaleDateString()}</p>
+            <p className="text-sm text-muted-foreground">
+              Student Login Credentials &mdash; {new Date().toLocaleDateString()}
+            </p>
           </div>
 
           <div className="grid grid-cols-2 gap-4 print:grid-cols-2">
             {students.map((student, index) => (
-              <div 
+              <div
                 key={index}
                 className="border-2 border-dashed border-muted-foreground/30 p-4 rounded-lg space-y-3 break-inside-avoid"
               >
                 <div className="flex justify-between items-start border-b pb-2">
                   <div className="font-bold text-lg">{student.displayName}</div>
-                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">Student Card</div>
+                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
+                    Student Card
+                  </div>
                 </div>
-                
+
                 <div className="grid grid-cols-3 gap-2 text-xs">
                   <div className="text-muted-foreground font-medium">URL:</div>
-                  <div className="col-span-2 font-mono truncate text-primary">{window.location.origin}</div>
-                  
+                  <div className="col-span-2 font-mono truncate text-primary">
+                    {window.location.origin}
+                  </div>
+
                   <div className="text-muted-foreground font-medium">Username:</div>
                   <div className="col-span-2 font-mono font-bold">{student.username}</div>
-                  
+
                   <div className="text-muted-foreground font-medium">Password:</div>
-                  <div className="col-span-2 font-mono font-bold bg-muted/50 px-1 rounded">{student.password}</div>
+                  <div className="col-span-2 font-mono font-bold bg-muted/50 px-1 rounded">
+                    {student.password}
+                  </div>
                 </div>
 
                 <div className="pt-2 text-[9px] text-muted-foreground italic leading-tight">
@@ -171,7 +180,6 @@ export function TeacherCredentialsSheet({
           </footer>
         </div>
       </main>
-
     </div>
   );
 }

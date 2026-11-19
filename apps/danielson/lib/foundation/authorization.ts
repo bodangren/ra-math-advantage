@@ -1,106 +1,105 @@
 export const DANIELSON_ROLES = [
-  'teacher',
-  'hod',
-  'coach',
-  'school_head',
-  'slt',
-  'sysadmin',
+  "teacher",
+  "hod",
+  "coach",
+  "school_head",
+  "slt",
+  "sysadmin",
 ] as const;
 
 export type DanielsonRole = (typeof DANIELSON_ROLES)[number];
 
 export const DANIELSON_CAPABILITIES = {
-  teacher: ['published_record:read', 'teacher_response:write', 'pip_acknowledgment:write'],
+  teacher: ["published_record:read", "teacher_response:write", "pip_acknowledgment:write"],
   hod: [
-    'teacher_report:read',
-    'private_leadership:read',
-    'observation_comment:write',
-    'walkthrough:submit',
-    'walkthrough:amend',
-    'q1_observation:submit',
-    'q1_observation:amend',
-    'pip:propose',
-    'pip_supervisor_acknowledgment:write',
+    "teacher_report:read",
+    "private_leadership:read",
+    "observation_comment:write",
+    "walkthrough:submit",
+    "walkthrough:amend",
+    "q1_observation:submit",
+    "q1_observation:amend",
+    "pip:propose",
+    "pip_supervisor_acknowledgment:write",
   ],
   coach: [
-    'teacher_report:read',
-    'private_leadership:read',
-    'observation_comment:write',
-    'walkthrough:submit',
-    'walkthrough:amend',
-    'q1_observation:submit',
-    'q1_observation:amend',
-    'pip:propose',
-    'pip_supervisor_acknowledgment:write',
+    "teacher_report:read",
+    "private_leadership:read",
+    "observation_comment:write",
+    "walkthrough:submit",
+    "walkthrough:amend",
+    "q1_observation:submit",
+    "q1_observation:amend",
+    "pip:propose",
+    "pip_supervisor_acknowledgment:write",
   ],
   school_head: [
-    'teacher_report:read',
-    'private_leadership:read',
-    'observation_comment:write',
-    'walkthrough:submit',
-    'walkthrough:amend',
-    'q1_observation:submit',
-    'q1_observation:amend',
-    'q4_observation:submit',
-    'q4_observation:amend',
-    'gbf:assign',
-    'pip:propose',
-    'pip_supervisor_acknowledgment:write',
+    "teacher_report:read",
+    "private_leadership:read",
+    "observation_comment:write",
+    "walkthrough:submit",
+    "walkthrough:amend",
+    "q1_observation:submit",
+    "q1_observation:amend",
+    "q4_observation:submit",
+    "q4_observation:amend",
+    "gbf:assign",
+    "pip:propose",
+    "pip_supervisor_acknowledgment:write",
   ],
   slt: [
-    'teacher_report:read',
-    'private_leadership:read',
-    'observation_comment:write',
-    'walkthrough:submit',
-    'walkthrough:amend',
-    'q1_observation:submit',
-    'q1_observation:amend',
-    'q4_observation:submit',
-    'q4_observation:amend',
-    'gbf:assign',
-    'pip:propose',
-    'pip:approve',
-    'pip:close',
-    'pip_supervisor_acknowledgment:write',
+    "teacher_report:read",
+    "private_leadership:read",
+    "observation_comment:write",
+    "walkthrough:submit",
+    "walkthrough:amend",
+    "q1_observation:submit",
+    "q1_observation:amend",
+    "q4_observation:submit",
+    "q4_observation:amend",
+    "gbf:assign",
+    "pip:propose",
+    "pip:approve",
+    "pip:close",
+    "pip_supervisor_acknowledgment:write",
   ],
-  sysadmin: ['accounts:manage', 'departments:manage', 'assignments:manage'],
+  sysadmin: ["accounts:manage", "departments:manage", "assignments:manage"],
 } as const satisfies Record<DanielsonRole, readonly string[]>;
 
-export type DanielsonCapability =
-  (typeof DANIELSON_CAPABILITIES)[DanielsonRole][number];
+export type DanielsonCapability = (typeof DANIELSON_CAPABILITIES)[DanielsonRole][number];
 
 export type DanielsonAction =
   | DanielsonCapability
-  | 'teacher_report:read'
-  | 'private_leadership:read'
-  | 'observation_comment:write'
-  | 'walkthrough:submit'
-  | 'walkthrough:amend'
-  | 'q1_observation:submit'
-  | 'q1_observation:amend'
-  | 'q4_observation:submit'
-  | 'q4_observation:amend'
-  | 'gbf:assign'
-  | 'pip:propose'
-  | 'pip:approve'
-  | 'pip:close'
-  | 'pip_supervisor_acknowledgment:write'
-  | 'accounts:manage'
-  | 'departments:manage'
-  | 'assignments:manage';
+  | "teacher_report:read"
+  | "private_leadership:read"
+  | "observation_comment:write"
+  | "walkthrough:submit"
+  | "walkthrough:amend"
+  | "q1_observation:submit"
+  | "q1_observation:amend"
+  | "q4_observation:submit"
+  | "q4_observation:amend"
+  | "gbf:assign"
+  | "pip:propose"
+  | "pip:approve"
+  | "pip:close"
+  | "pip_supervisor_acknowledgment:write"
+  | "accounts:manage"
+  | "departments:manage"
+  | "assignments:manage";
 
 export type DanielsonDecisionReason =
-  | 'unauthenticated'
-  | 'account_inactive'
-  | 'organization_inactive'
-  | 'cross_organization'
-  | 'capability_not_granted'
-  | 'target_out_of_scope'
-  | 'self_private_denied'
-  | 'self_evaluation_denied'
-  | 'self_pip_denied'
-  | 'target_inactive'
-  | 'final_active_sysadmin';
+  | "unauthenticated"
+  | "account_inactive"
+  | "organization_inactive"
+  | "cross_organization"
+  | "capability_not_granted"
+  | "target_out_of_scope"
+  | "self_private_denied"
+  | "self_evaluation_denied"
+  | "self_pip_denied"
+  | "target_inactive"
+  | "final_active_sysadmin";
 
 export type DanielsonAccessContext = {
   actor: {
@@ -119,19 +118,19 @@ export type DanielsonAccessContext = {
     accountId: string;
     organizationId: string;
     role: DanielsonRole;
-    status?: 'active' | 'revoked';
+    status?: "active" | "revoked";
   }>;
   hodDepartmentAssignments: Array<{
     accountId: string;
     organizationId: string;
     departmentId: string;
-    status?: 'active' | 'revoked';
+    status?: "active" | "revoked";
   }>;
   coachTeacherAssignments: Array<{
     accountId: string;
     organizationId: string;
     teacherAccountId: string;
-    status?: 'active' | 'revoked';
+    status?: "active" | "revoked";
   }>;
 };
 
@@ -139,26 +138,26 @@ export type DanielsonDecision =
   | { allowed: true; reason: null }
   | { allowed: false; reason: DanielsonDecisionReason };
 
-const SUPERVISOR_ROLES = new Set<DanielsonRole>(['hod', 'coach', 'school_head', 'slt']);
+const SUPERVISOR_ROLES = new Set<DanielsonRole>(["hod", "coach", "school_head", "slt"]);
 const EVALUATION_ACTIONS = new Set<DanielsonAction>([
-  'walkthrough:submit',
-  'walkthrough:amend',
-  'q1_observation:submit',
-  'q1_observation:amend',
-  'q4_observation:submit',
-  'q4_observation:amend',
-  'observation_comment:write',
-  'gbf:assign',
+  "walkthrough:submit",
+  "walkthrough:amend",
+  "q1_observation:submit",
+  "q1_observation:amend",
+  "q4_observation:submit",
+  "q4_observation:amend",
+  "observation_comment:write",
+  "gbf:assign",
 ]);
 const PIP_ACTIONS = new Set<DanielsonAction>([
-  'pip:propose',
-  'pip:approve',
-  'pip:close',
-  'pip_supervisor_acknowledgment:write',
+  "pip:propose",
+  "pip:approve",
+  "pip:close",
+  "pip_supervisor_acknowledgment:write",
 ]);
 
-function active<T extends { status?: 'active' | 'revoked' }>(value: T): boolean {
-  return value.status !== 'revoked';
+function active<T extends { status?: "active" | "revoked" }>(value: T): boolean {
+  return value.status !== "revoked";
 }
 
 function hasTargetScope(context: DanielsonAccessContext, role: DanielsonRole): boolean {
@@ -166,25 +165,27 @@ function hasTargetScope(context: DanielsonAccessContext, role: DanielsonRole): b
   const subject = context.subject;
   if (!actor || !subject) return false;
 
-  if (role === 'teacher') return actor.accountId === subject.accountId;
-  if (role === 'school_head' || role === 'slt') return true;
+  if (role === "teacher") return actor.accountId === subject.accountId;
+  if (role === "school_head" || role === "slt") return true;
 
-  if (role === 'hod') {
+  if (role === "hod") {
     const subjectDepartments = new Set(subject.departmentIds);
-    return context.hodDepartmentAssignments.some((assignment) =>
-      assignment.accountId === actor.accountId
-      && assignment.organizationId === actor.organizationId
-      && active(assignment)
-      && subjectDepartments.has(assignment.departmentId),
+    return context.hodDepartmentAssignments.some(
+      (assignment) =>
+        assignment.accountId === actor.accountId &&
+        assignment.organizationId === actor.organizationId &&
+        active(assignment) &&
+        subjectDepartments.has(assignment.departmentId),
     );
   }
 
-  if (role === 'coach') {
-    return context.coachTeacherAssignments.some((assignment) =>
-      assignment.accountId === actor.accountId
-      && assignment.organizationId === actor.organizationId
-      && assignment.teacherAccountId === subject.accountId
-      && active(assignment),
+  if (role === "coach") {
+    return context.coachTeacherAssignments.some(
+      (assignment) =>
+        assignment.accountId === actor.accountId &&
+        assignment.organizationId === actor.organizationId &&
+        assignment.teacherAccountId === subject.accountId &&
+        active(assignment),
     );
   }
 
@@ -192,7 +193,9 @@ function hasTargetScope(context: DanielsonAccessContext, role: DanielsonRole): b
 }
 
 function isSelf(context: DanielsonAccessContext): boolean {
-  return Boolean(context.actor && context.subject && context.actor.accountId === context.subject.accountId);
+  return Boolean(
+    context.actor && context.subject && context.actor.accountId === context.subject.accountId,
+  );
 }
 
 export function authorizeDanielsonAction(
@@ -200,55 +203,58 @@ export function authorizeDanielsonAction(
   action: DanielsonAction,
 ): DanielsonDecision {
   const actor = context.actor;
-  if (!actor) return { allowed: false, reason: 'unauthenticated' };
-  if (!actor.isActive) return { allowed: false, reason: 'account_inactive' };
-  if (!actor.organizationIsActive) return { allowed: false, reason: 'organization_inactive' };
+  if (!actor) return { allowed: false, reason: "unauthenticated" };
+  if (!actor.isActive) return { allowed: false, reason: "account_inactive" };
+  if (!actor.organizationIsActive) return { allowed: false, reason: "organization_inactive" };
 
-  const subjectAction = action !== 'accounts:manage'
-    && action !== 'departments:manage'
-    && action !== 'assignments:manage';
+  const subjectAction =
+    action !== "accounts:manage" &&
+    action !== "departments:manage" &&
+    action !== "assignments:manage";
 
   if (subjectAction) {
     const subject = context.subject;
-    if (!subject) return { allowed: false, reason: 'target_inactive' };
+    if (!subject) return { allowed: false, reason: "target_inactive" };
     if (subject.organizationId !== actor.organizationId) {
-      return { allowed: false, reason: 'cross_organization' };
+      return { allowed: false, reason: "cross_organization" };
     }
-    if (!subject.isActive) return { allowed: false, reason: 'target_inactive' };
+    if (!subject.isActive) return { allowed: false, reason: "target_inactive" };
 
-    if (isSelf(context) && action === 'private_leadership:read') {
-      return { allowed: false, reason: 'self_private_denied' };
+    if (isSelf(context) && action === "private_leadership:read") {
+      return { allowed: false, reason: "self_private_denied" };
     }
 
-    const activeSupervisor = context.roleAssignments.some((assignment) =>
-      assignment.accountId === actor.accountId
-      && assignment.organizationId === actor.organizationId
-      && SUPERVISOR_ROLES.has(assignment.role)
-      && active(assignment),
+    const activeSupervisor = context.roleAssignments.some(
+      (assignment) =>
+        assignment.accountId === actor.accountId &&
+        assignment.organizationId === actor.organizationId &&
+        SUPERVISOR_ROLES.has(assignment.role) &&
+        active(assignment),
     );
     if (isSelf(context) && activeSupervisor && EVALUATION_ACTIONS.has(action)) {
-      return { allowed: false, reason: 'self_evaluation_denied' };
+      return { allowed: false, reason: "self_evaluation_denied" };
     }
     if (isSelf(context) && activeSupervisor && PIP_ACTIONS.has(action)) {
-      return { allowed: false, reason: 'self_pip_denied' };
+      return { allowed: false, reason: "self_pip_denied" };
     }
   }
 
   const eligibleRoles = context.roleAssignments
-    .filter((assignment) =>
-      assignment.accountId === actor.accountId
-      && assignment.organizationId === actor.organizationId
-      && active(assignment)
-      && (DANIELSON_CAPABILITIES[assignment.role] as readonly string[]).includes(action),
+    .filter(
+      (assignment) =>
+        assignment.accountId === actor.accountId &&
+        assignment.organizationId === actor.organizationId &&
+        active(assignment) &&
+        (DANIELSON_CAPABILITIES[assignment.role] as readonly string[]).includes(action),
     )
     .map((assignment) => assignment.role);
 
-  if (eligibleRoles.length === 0) return { allowed: false, reason: 'capability_not_granted' };
+  if (eligibleRoles.length === 0) return { allowed: false, reason: "capability_not_granted" };
   if (!subjectAction) return { allowed: true, reason: null };
 
   if (eligibleRoles.some((role) => hasTargetScope(context, role))) {
     return { allowed: true, reason: null };
   }
 
-  return { allowed: false, reason: 'target_out_of_scope' };
+  return { allowed: false, reason: "target_out_of_scope" };
 }

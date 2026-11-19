@@ -5,8 +5,8 @@
  * Promises to mimic async network round-trips.
  */
 
-import type { CardStore, ReviewLogStore } from '@math-platform/srs-engine';
-import type { SrsCardState, SrsReviewLogEntry } from '@math-platform/srs-engine';
+import type { CardStore, ReviewLogStore } from "@math-platform/srs-engine";
+import type { SrsCardState, SrsReviewLogEntry } from "@math-platform/srs-engine";
 
 export class RestAdapterStub implements CardStore, ReviewLogStore {
   private cards = new Map<string, SrsCardState>();
@@ -17,25 +17,20 @@ export class RestAdapterStub implements CardStore, ReviewLogStore {
   }
 
   async getCardsByStudent(studentId: string): Promise<SrsCardState[]> {
-    return Array.from(this.cards.values()).filter(
-      (card) => card.studentId === studentId
-    );
+    return Array.from(this.cards.values()).filter((card) => card.studentId === studentId);
   }
 
   async getCardsByObjective(objectiveId: string): Promise<SrsCardState[]> {
-    return Array.from(this.cards.values()).filter(
-      (card) => card.objectiveId === objectiveId
-    );
+    return Array.from(this.cards.values()).filter((card) => card.objectiveId === objectiveId);
   }
 
   async getCardByStudentAndVariant(
     studentId: string,
-    variantKey: string
+    variantKey: string,
   ): Promise<SrsCardState | null> {
     return (
       Array.from(this.cards.values()).find(
-        (card) =>
-          card.studentId === studentId && card.variantKey === variantKey
+        (card) => card.studentId === studentId && card.variantKey === variantKey,
       ) ?? null
     );
   }
@@ -66,16 +61,10 @@ export class RestAdapterStub implements CardStore, ReviewLogStore {
   async getReviewsByCard(cardId: string): Promise<SrsReviewLogEntry[]> {
     return this.reviews
       .filter((review) => review.cardId === cardId)
-      .sort(
-        (a, b) =>
-          new Date(a.reviewedAt).getTime() - new Date(b.reviewedAt).getTime()
-      );
+      .sort((a, b) => new Date(a.reviewedAt).getTime() - new Date(b.reviewedAt).getTime());
   }
 
-  async getReviewsByStudent(
-    studentId: string,
-    since?: string
-  ): Promise<SrsReviewLogEntry[]> {
+  async getReviewsByStudent(studentId: string, since?: string): Promise<SrsReviewLogEntry[]> {
     const sinceMs = since ? new Date(since).getTime() : undefined;
     return this.reviews
       .filter((review) => {
@@ -83,9 +72,6 @@ export class RestAdapterStub implements CardStore, ReviewLogStore {
         if (sinceMs === undefined) return true;
         return new Date(review.reviewedAt).getTime() >= sinceMs;
       })
-      .sort(
-        (a, b) =>
-          new Date(a.reviewedAt).getTime() - new Date(b.reviewedAt).getTime()
-      );
+      .sort((a, b) => new Date(a.reviewedAt).getTime() - new Date(b.reviewedAt).getTime());
   }
 }

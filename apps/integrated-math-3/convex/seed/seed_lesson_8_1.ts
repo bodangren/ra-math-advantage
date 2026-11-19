@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -171,7 +171,11 @@ export const seedLesson8_1 = internalMutation({
                 questions: [
                   {
                     question: "Why is the traffic commission sample biased?",
-                    options: ["It was taken during rush hour only", "The sample size is too small", "Both of the above"],
+                    options: [
+                      "It was taken during rush hour only",
+                      "The sample size is too small",
+                      "Both of the above",
+                    ],
                     correctIndex: 2,
                   },
                 ],
@@ -203,7 +207,11 @@ export const seedLesson8_1 = internalMutation({
                 questions: [
                   {
                     question: "What makes the restaurant owner's question biased?",
-                    options: ["It offers only two choices", "The wording favors steak", "It is too long"],
+                    options: [
+                      "It offers only two choices",
+                      "The wording favors steak",
+                      "It is too long",
+                    ],
                     correctIndex: 1,
                   },
                 ],
@@ -271,7 +279,7 @@ export const seedLesson8_1 = internalMutation({
             sectionType: "text" as const,
             content: {
               markdown:
-                "## Example 5 — Design a Survey\n\nA company owner wants to know whether employees would use an exercise room if a conference room were converted.\n\n**Step 1**: State the objective — Determine employee interest in converting the room.\n\n**Step 2**: Identify the population — All employees who work in the building.\n\n**Step 3**: Write an unbiased question — \"If available, would you use an exercise room in the building if it were created by converting a conference room?\"",
+                '## Example 5 — Design a Survey\n\nA company owner wants to know whether employees would use an exercise room if a conference room were converted.\n\n**Step 1**: State the objective — Determine employee interest in converting the room.\n\n**Step 2**: Identify the population — All employees who work in the building.\n\n**Step 3**: Write an unbiased question — "If available, would you use an exercise room in the building if it were created by converting a conference room?"',
             },
           },
           {
@@ -283,7 +291,11 @@ export const seedLesson8_1 = internalMutation({
                 questions: [
                   {
                     question: "Which step identifies who the survey targets?",
-                    options: ["State the objective", "Identify the population", "Write an unbiased question"],
+                    options: [
+                      "State the objective",
+                      "Identify the population",
+                      "Write an unbiased question",
+                    ],
                     correctIndex: 1,
                   },
                 ],
@@ -347,7 +359,11 @@ export const seedLesson8_1 = internalMutation({
                 questions: [
                   {
                     question: "What is a major flaw in the music study?",
-                    options: ["The test was too hard", "The groups were not randomly selected", "Music was too loud"],
+                    options: [
+                      "The test was too hard",
+                      "The groups were not randomly selected",
+                      "Music was too loud",
+                    ],
                     correctIndex: 1,
                   },
                 ],
@@ -378,7 +394,8 @@ export const seedLesson8_1 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "Which sampling method gives every member an equal chance of selection?",
+                    question:
+                      "Which sampling method gives every member an equal chance of selection?",
                     options: ["Simple random", "Convenience", "Self-selected"],
                     correctIndex: 0,
                   },
@@ -418,7 +435,7 @@ export const seedLesson8_1 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

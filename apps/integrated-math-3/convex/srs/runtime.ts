@@ -1,4 +1,9 @@
-import { internalMutation, internalQuery, type MutationCtx, type QueryCtx } from "../_generated/server";
+import {
+  internalMutation,
+  internalQuery,
+  type MutationCtx,
+  type QueryCtx,
+} from "../_generated/server";
 import { v } from "convex/values";
 import { classifyRuntimeComparison } from "../../lib/srs/runtime-comparison";
 import { KST_SRS_V3_2_MIGRATION_VERSION } from "../../lib/srs/v3-runtime-contract";
@@ -72,12 +77,20 @@ export async function setRuntimeModeHandler(
 export async function recordRuntimeComparisonHandler(
   ctx: MutationCtx,
   args: {
-    subject: "knowledge_state" | "dashboard_recommendation" | "daily_queue" | "review_day_message" | "placement";
+    subject:
+      | "knowledge_state"
+      | "dashboard_recommendation"
+      | "daily_queue"
+      | "review_day_message"
+      | "placement";
     v2: unknown;
     v3_2: unknown;
     now?: number;
   },
-): Promise<{ recorded: boolean; classification: "intended_contract_change" | "data_gap" | "unexpected" | null }> {
+): Promise<{
+  recorded: boolean;
+  classification: "intended_contract_change" | "data_gap" | "unexpected" | null;
+}> {
   const event = classifyRuntimeComparison(args);
   if (event === null) return { recorded: false, classification: null };
 

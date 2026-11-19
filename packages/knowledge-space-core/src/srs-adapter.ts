@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 /**
  * The only SRS-to-KST boundary accepted by the v3 core.
@@ -17,4 +17,3 @@ export const objectiveStateEvidenceSchema = z.strictObject({
 });
 
 export type ObjectiveStateEvidence = z.infer<typeof objectiveStateEvidenceSchema>;
-

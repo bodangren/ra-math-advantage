@@ -43,13 +43,9 @@ function base64UrlEncodeBytes(bytes: Uint8Array): string {
  */
 async function pbkdf2Hash(password: string, salt: string, iterations: number): Promise<string> {
   const enc = new TextEncoder();
-  const keyMaterial = await crypto.subtle.importKey(
-    "raw",
-    enc.encode(password),
-    "PBKDF2",
-    false,
-    ["deriveBits"],
-  );
+  const keyMaterial = await crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, [
+    "deriveBits",
+  ]);
   const derived = await crypto.subtle.deriveBits(
     { name: "PBKDF2", hash: "SHA-256", salt: enc.encode(salt), iterations },
     keyMaterial,
@@ -63,20 +59,21 @@ async function pbkdf2Hash(password: string, salt: string, iterations: number): P
  * @param activity - An activity with componentKey, displayName, and description.
  * @returns A "::-delimited" composite key for deduplication.
  */
-function activitySignature(activity: Pick<PublishedActivity, "componentKey" | "displayName" | "description">) {
-  return [
-    activity.componentKey,
-    activity.displayName,
-    activity.description ?? "",
-  ].join("::");
+function activitySignature(
+  activity: Pick<PublishedActivity, "componentKey" | "displayName" | "description">,
+) {
+  return [activity.componentKey, activity.displayName, activity.description ?? ""].join("::");
 }
 
 /** Compare stored JSON values without depending on database object key order. */
 function canonicalContent(value: unknown): string {
-  if (Array.isArray(value)) return `[${value.map(canonicalContent).join(',')}]`;
-  if (value && typeof value === 'object') return `{${Object.entries(value)
-    .filter(([, item]) => item !== undefined).sort(([a], [b]) => a.localeCompare(b))
-    .map(([key, item]) => `${JSON.stringify(key)}:${canonicalContent(item)}`).join(',')}}`;
+  if (Array.isArray(value)) return `[${value.map(canonicalContent).join(",")}]`;
+  if (value && typeof value === "object")
+    return `{${Object.entries(value)
+      .filter(([, item]) => item !== undefined)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([key, item]) => `${JSON.stringify(key)}:${canonicalContent(item)}`)
+      .join(",")}}`;
   return JSON.stringify(value ?? null);
 }
 
@@ -105,7 +102,9 @@ async function ensureCompetencyStandard(
     .withIndex("by_code", (q) => q.eq("code", code))
     .unique();
 
-  const capability = capabilityGraph.nodes.find((node) => node.metadata.standardCodes.includes(code));
+  const capability = capabilityGraph.nodes.find((node) =>
+    node.metadata.standardCodes.includes(code),
+  );
   if (!capability) throw new Error(`Missing capability description for ${code}`);
   const descriptions = {
     description: capability.description,
@@ -148,7 +147,8 @@ async function ensureActivity(
   cache: Map<string, Id<"activities">>,
   referencedActivityIds: Set<string>,
 ) {
-  const signature = activitySignature(activity) + canonicalContent([activity.props, activity.gradingConfig]);
+  const signature =
+    activitySignature(activity) + canonicalContent([activity.props, activity.gradingConfig]);
   const cached = cache.get(signature);
   if (cached) {
     return cached;
@@ -157,26 +157,47 @@ async function ensureActivity(
   const pilotSource = BM2_LEARNING_EVIDENCE_PILOT.mappings[0].source;
   const isPilot = activity.key === pilotSource.activityKey;
   const stableActivityId = isPilot ? pilotSource.activityId : undefined;
-  let existing = (stableActivityId === undefined
-    ? undefined
-    : existingActivities.find(
-        (candidate) => candidate.stableActivityId === stableActivityId,
-      )) ?? existingActivities.find(
-    (candidate) =>
-      candidate.componentKey === activity.componentKey &&
-      candidate.displayName === activity.displayName &&
-      (candidate.description ?? null) === (activity.description ?? null),
-  );
+  let existing =
+    (stableActivityId === undefined
+      ? undefined
+      : existingActivities.find((candidate) => candidate.stableActivityId === stableActivityId)) ??
+    existingActivities.find(
+      (candidate) =>
+        candidate.componentKey === activity.componentKey &&
+        candidate.displayName === activity.displayName &&
+        (candidate.description ?? null) === (activity.description ?? null),
+    );
 
-  if (existing && referencedActivityIds.has(existing._id)
-    && canonicalContent([existing.componentKey, existing.displayName, existing.description, existing.props, existing.gradingConfig])
-      !== canonicalContent([activity.componentKey, activity.displayName, activity.description, activity.props, activity.gradingConfig])) {
-    if (isPilot) throw new Error('Changing the published pilot requires a new lesson version and an explicit pilot mapping.');
+  if (
+    existing &&
+    referencedActivityIds.has(existing._id) &&
+    canonicalContent([
+      existing.componentKey,
+      existing.displayName,
+      existing.description,
+      existing.props,
+      existing.gradingConfig,
+    ]) !==
+      canonicalContent([
+        activity.componentKey,
+        activity.displayName,
+        activity.description,
+        activity.props,
+        activity.gradingConfig,
+      ])
+  ) {
+    if (isPilot)
+      throw new Error(
+        "Changing the published pilot requires a new lesson version and an explicit pilot mapping.",
+      );
     // Keep the earlier activity for saved work and the earlier lesson version.
-    existing = existingActivities.find(candidate => candidate.componentKey === activity.componentKey
-      && candidate.displayName === activity.displayName
-      && canonicalContent([candidate.description, candidate.props, candidate.gradingConfig])
-        === canonicalContent([activity.description, activity.props, activity.gradingConfig]));
+    existing = existingActivities.find(
+      (candidate) =>
+        candidate.componentKey === activity.componentKey &&
+        candidate.displayName === activity.displayName &&
+        canonicalContent([candidate.description, candidate.props, candidate.gradingConfig]) ===
+          canonicalContent([activity.description, activity.props, activity.gradingConfig]),
+    );
   }
 
   if (existing) {
@@ -262,10 +283,7 @@ function normalizeSectionContent(
   section: PublishedSection,
   activityIdByLogicalKey: Map<string, Id<"activities">>,
 ) {
-  if (
-    section.sectionType === "activity" &&
-    typeof section.content.activityId === "string"
-  ) {
+  if (section.sectionType === "activity" && typeof section.content.activityId === "string") {
     const resolvedActivityId = activityIdByLogicalKey.get(section.content.activityId);
     if (!resolvedActivityId) {
       throw new Error(`Missing activity mapping for ${section.content.activityId}`);
@@ -344,8 +362,12 @@ async function upsertPublishedLesson(
     .unique();
 
   if (lessonVersion) {
-    if (lessonVersion.status === 'published' && (lessonVersion.title !== lesson.version.title || lessonVersion.description !== lesson.version.description)) {
-      throw new Error('Changing published lesson content requires a new lesson version.');
+    if (
+      lessonVersion.status === "published" &&
+      (lessonVersion.title !== lesson.version.title ||
+        lessonVersion.description !== lesson.version.description)
+    ) {
+      throw new Error("Changing published lesson content requires a new lesson version.");
     }
     await ctx.db.patch(lessonVersion._id, {
       title: lesson.version.title,
@@ -376,32 +398,56 @@ async function upsertPublishedLesson(
   }
 
   await replaceLessonStandards(ctx, lessonVersion._id, standardIds, now);
-  const existingPhases = await ctx.db.query("phase_versions")
+  const existingPhases = await ctx.db
+    .query("phase_versions")
     .withIndex("by_lesson_version", (q) => q.eq("lessonVersionId", lessonVersion._id))
     .collect();
-  if (existingPhases.some((phase) => !lesson.phases.some((planned) => planned.phaseNumber === phase.phaseNumber))) {
+  if (
+    existingPhases.some(
+      (phase) => !lesson.phases.some((planned) => planned.phaseNumber === phase.phaseNumber),
+    )
+  ) {
     throw new Error("Removing a published phase requires a new lesson version.");
   }
 
   const activityIdByLogicalKey = new Map<string, Id<"activities">>();
   for (const activity of lesson.activities) {
-    const activityId = await ensureActivity(ctx, activity, now, existingActivities, activityCache, referencedActivityIds);
+    const activityId = await ensureActivity(
+      ctx,
+      activity,
+      now,
+      existingActivities,
+      activityCache,
+      referencedActivityIds,
+    );
     activityIdByLogicalKey.set(activity.key, activityId);
   }
 
   if (existingPhases.length > 0) {
     for (const phase of lesson.phases) {
-      const savedPhase = existingPhases.find(candidate => candidate.phaseNumber === phase.phaseNumber);
-      if (!savedPhase) throw new Error('Adding published phases requires a new lesson version.');
-      const savedSections = await ctx.db.query('phase_sections')
-        .withIndex('by_phase_version', q => q.eq('phaseVersionId', savedPhase._id)).collect();
+      const savedPhase = existingPhases.find(
+        (candidate) => candidate.phaseNumber === phase.phaseNumber,
+      );
+      if (!savedPhase) throw new Error("Adding published phases requires a new lesson version.");
+      const savedSections = await ctx.db
+        .query("phase_sections")
+        .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", savedPhase._id))
+        .collect();
       savedSections.sort((a, b) => a.sequenceOrder - b.sequenceOrder);
-      const savedContent = savedSections.map(section => ({ sectionType: section.sectionType, content: section.content }));
-      const plannedContent = phase.sections.map(section => ({ sectionType: section.sectionType,
-        content: normalizeSectionContent(section, activityIdByLogicalKey) }));
-      if (savedPhase.title !== phase.title || savedPhase.estimatedMinutes !== phase.estimatedMinutes
-        || canonicalContent(savedContent) !== canonicalContent(plannedContent)) {
-        throw new Error('Changing published phase content requires a new lesson version.');
+      const savedContent = savedSections.map((section) => ({
+        sectionType: section.sectionType,
+        content: section.content,
+      }));
+      const plannedContent = phase.sections.map((section) => ({
+        sectionType: section.sectionType,
+        content: normalizeSectionContent(section, activityIdByLogicalKey),
+      }));
+      if (
+        savedPhase.title !== phase.title ||
+        savedPhase.estimatedMinutes !== phase.estimatedMinutes ||
+        canonicalContent(savedContent) !== canonicalContent(plannedContent)
+      ) {
+        throw new Error("Changing published phase content requires a new lesson version.");
       }
     }
     return lessonRow._id;
@@ -440,8 +486,11 @@ async function seedPublishedCurriculumHandler(ctx: MutationCtx) {
   const now = Date.now();
   const seedPlan = buildPublishedCurriculumSeedPlan();
   const existingActivities = await ctx.db.query("activities").collect();
-  const referencedActivityIds = new Set((await ctx.db.query('phase_sections').collect())
-    .filter(section => section.sectionType === 'activity').map(section => String(section.content.activityId)));
+  const referencedActivityIds = new Set(
+    (await ctx.db.query("phase_sections").collect())
+      .filter((section) => section.sectionType === "activity")
+      .map((section) => String(section.content.activityId)),
+  );
   const standardCache = new Map<string, Id<"competency_standards">>();
   const activityCache = new Map<string, Id<"activities">>();
 
@@ -546,7 +595,8 @@ async function repairPublishedActivityPropsHandler(ctx: MutationCtx) {
           activityRow.displayName !== plannedActivity.displayName ||
           (activityRow.description ?? null) !== (plannedActivity.description ?? null) ||
           JSON.stringify(activityRow.props) !== JSON.stringify(plannedActivity.props) ||
-          JSON.stringify(activityRow.gradingConfig ?? null) !== JSON.stringify(plannedActivity.gradingConfig ?? null);
+          JSON.stringify(activityRow.gradingConfig ?? null) !==
+            JSON.stringify(plannedActivity.gradingConfig ?? null);
 
         if (!shouldPatch) {
           continue;

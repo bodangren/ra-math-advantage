@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import { requireServerSessionClaims } from '@/lib/auth/server';
-import { ChangePasswordForm } from '@/components/auth/ChangePasswordForm';
+import Link from "next/link";
+import { requireServerSessionClaims } from "@/lib/auth/server";
+import { ChangePasswordForm } from "@/components/auth/ChangePasswordForm";
 
 /**
  * Renders the settings page with a password change form for the authenticated user.
@@ -8,10 +8,9 @@ import { ChangePasswordForm } from '@/components/auth/ChangePasswordForm';
  * @returns {JSX.Element} The rendered settings page JSX.
  */
 export default async function SettingsPage() {
-  const claims = await requireServerSessionClaims('/auth/login');
+  const claims = await requireServerSessionClaims("/auth/login");
 
-  const dashboardHref =
-    claims.role === 'student' ? '/student/dashboard' : '/teacher/dashboard';
+  const dashboardHref = claims.role === "student" ? "/student/dashboard" : "/teacher/dashboard";
 
   return (
     <div className="max-w-2xl mx-auto space-y-10 py-8">

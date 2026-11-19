@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const MODULE2_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Polynomial Operations (HSA-APR.A.1)

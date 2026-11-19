@@ -1,10 +1,10 @@
-import { cookies } from 'next/headers';
-import { NextResponse } from 'next/server';
+import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
-import { SESSION_COOKIE_NAME, getAuthJwtSecret } from '@/lib/auth/constants';
-import { verifySessionToken } from '@/lib/auth/session';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
-import type { Id } from '@/convex/_generated/dataModel';
+import { SESSION_COOKIE_NAME, getAuthJwtSecret } from "@/lib/auth/constants";
+import { verifySessionToken } from "@/lib/auth/session";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
+import type { Id } from "@/convex/_generated/dataModel";
 
 /**
  * Returns the current session status by verifying the session cookie.
@@ -23,18 +23,18 @@ export async function GET() {
 
     const claims = await verifySessionToken(token, getAuthJwtSecret());
     if (!claims) {
-      cookieStore.set(SESSION_COOKIE_NAME, '', {
+      cookieStore.set(SESSION_COOKIE_NAME, "", {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        path: '/',
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        path: "/",
         expires: new Date(0),
       });
       return NextResponse.json({ authenticated: false });
     }
 
     const profile = await fetchInternalQuery(internal.activities.getProfileById, {
-      profileId: claims.sub as Id<'profiles'>,
+      profileId: claims.sub as Id<"profiles">,
     });
 
     if (!profile) {
@@ -61,7 +61,7 @@ export async function GET() {
       },
     });
   } catch (error) {
-    console.error('[session] Unexpected error:', error);
+    console.error("[session] Unexpected error:", error);
     return NextResponse.json({ authenticated: false });
   }
 }

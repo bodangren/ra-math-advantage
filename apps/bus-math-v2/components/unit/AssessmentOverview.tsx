@@ -1,12 +1,11 @@
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { type UnitAssessment } from '@/types/curriculum';
-import { CheckCircle, Star, Target } from 'lucide-react';
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { type UnitAssessment } from "@/types/curriculum";
+import { CheckCircle, Star, Target } from "lucide-react";
 
 interface AssessmentOverviewProps {
   assessment: UnitAssessment;
 }
-
 
 /**
  * Renders the assessment overview section with performance task, milestones, and rubric.
@@ -70,7 +69,10 @@ export function AssessmentOverview({ assessment }: AssessmentOverviewProps) {
                 <p className="mb-3 text-sm text-muted-foreground">{milestone.description}</p>
                 <ul className="space-y-1 text-xs">
                   {milestone.criteria.map((criterion, index) => (
-                    <li key={`${milestone.id}-criterion-${index}`} className="flex items-start gap-2">
+                    <li
+                      key={`${milestone.id}-criterion-${index}`}
+                      className="flex items-start gap-2"
+                    >
                       <span className="mt-1 text-blue-600">•</span>
                       <span>{criterion}</span>
                     </li>

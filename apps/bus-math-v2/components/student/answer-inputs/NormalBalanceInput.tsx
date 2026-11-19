@@ -1,10 +1,13 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import type { DailyPracticeAnswerInputProps } from '@/lib/srs/answer-inputs/registry';
-import type { NormalBalanceDefinition, NormalBalanceResponse, NormalBalanceSide } from '@/lib/practice/engine/families/normal-balance';
-
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import type { DailyPracticeAnswerInputProps } from "@/lib/srs/answer-inputs/registry";
+import type {
+  NormalBalanceDefinition,
+  NormalBalanceResponse,
+  NormalBalanceSide,
+} from "@/lib/practice/engine/families/normal-balance";
 
 /**
  * Renders an answer input for normal balance problems, showing accounts
@@ -16,7 +19,11 @@ import type { NormalBalanceDefinition, NormalBalanceResponse, NormalBalanceSide 
  * @param props.onSubmit - Callback to submit the graded practice envelope.
  * @returns A problem display with debit/credit buttons and submit/grade result.
  */
-export function NormalBalanceInput({ family, definition, onSubmit }: DailyPracticeAnswerInputProps) {
+export function NormalBalanceInput({
+  family,
+  definition,
+  onSubmit,
+}: DailyPracticeAnswerInputProps) {
   const def = definition as NormalBalanceDefinition;
   const [submitted, setSubmitted] = useState(false);
   const [selections, setSelections] = useState<Record<string, NormalBalanceSide>>({});
@@ -26,7 +33,6 @@ export function NormalBalanceInput({ family, definition, onSubmit }: DailyPracti
     maxScore: number;
     parts: Array<{ partId: string; isCorrect: boolean }>;
   } | null>(null);
-
 
   /**
    * Updates the debit/credit selection for a given part.
@@ -38,7 +44,6 @@ export function NormalBalanceInput({ family, definition, onSubmit }: DailyPracti
     if (submitted) return;
     setSelections((prev) => ({ ...prev, [partId]: side }));
   };
-
 
   /**
    * Grades all selections and submits the practice envelope.
@@ -73,17 +78,22 @@ export function NormalBalanceInput({ family, definition, onSubmit }: DailyPracti
     <div className="space-y-6">
       <div className="bg-muted/50 p-4 rounded-lg">
         <h3 className="font-medium mb-3 text-sm text-muted-foreground">Problem</h3>
-        <p className="text-sm mb-4">{def.prompt?.stem ?? 'Choose debit or credit for each account.'}</p>
+        <p className="text-sm mb-4">
+          {def.prompt?.stem ?? "Choose debit or credit for each account."}
+        </p>
         <div className="space-y-3">
           {def.parts.map((part) => (
-            <div key={part.id} className="flex items-center justify-between p-3 bg-background rounded border">
+            <div
+              key={part.id}
+              className="flex items-center justify-between p-3 bg-background rounded border"
+            >
               <span className="font-medium">{part.label}</span>
               <div className="flex gap-2">
-                {(['debit', 'credit'] as NormalBalanceSide[]).map((side) => (
+                {(["debit", "credit"] as NormalBalanceSide[]).map((side) => (
                   <Button
                     key={side}
                     type="button"
-                    variant={selections[part.id] === side ? 'default' : 'outline'}
+                    variant={selections[part.id] === side ? "default" : "outline"}
                     size="sm"
                     onClick={() => handleSelect(part.id, side)}
                     disabled={submitted}
@@ -102,10 +112,12 @@ export function NormalBalanceInput({ family, definition, onSubmit }: DailyPracti
         <div className="bg-muted/50 p-4 rounded-lg space-y-3">
           <div
             className={`text-sm font-medium ${
-              gradeResult.isCorrect ? 'text-green-600' : 'text-red-600'
+              gradeResult.isCorrect ? "text-green-600" : "text-red-600"
             }`}
           >
-            {gradeResult.isCorrect ? 'Correct!' : `Incorrect — ${gradeResult.score}/${gradeResult.maxScore} correct`}
+            {gradeResult.isCorrect
+              ? "Correct!"
+              : `Incorrect — ${gradeResult.score}/${gradeResult.maxScore} correct`}
           </div>
           <div className="space-y-1">
             {gradeResult.parts.map((part) => {
@@ -113,9 +125,9 @@ export function NormalBalanceInput({ family, definition, onSubmit }: DailyPracti
               return (
                 <div
                   key={part.partId}
-                  className={`text-sm ${part.isCorrect ? 'text-green-600' : 'text-red-600'}`}
+                  className={`text-sm ${part.isCorrect ? "text-green-600" : "text-red-600"}`}
                 >
-                  {partDef?.label ?? part.partId}: {part.isCorrect ? 'Correct' : 'Incorrect'}
+                  {partDef?.label ?? part.partId}: {part.isCorrect ? "Correct" : "Incorrect"}
                 </div>
               );
             })}

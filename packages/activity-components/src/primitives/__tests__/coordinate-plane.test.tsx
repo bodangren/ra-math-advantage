@@ -15,10 +15,10 @@
 // component file does NOT exist at HEAD, so this test is expected to FAIL with a
 // module-not-found error until Phase 3 (Green) lands CoordinatePlane.tsx.
 
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
-import React from 'react';
-import { CoordinatePlane } from '../coordinate-plane/CoordinatePlane';
+import { describe, it, expect, vi } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
+import React from "react";
+import { CoordinatePlane } from "../coordinate-plane/CoordinatePlane";
 
 /**
  * Stub the SVG element's bounding rect so GraphingCanvas's `handleClick` guard
@@ -28,7 +28,7 @@ import { CoordinatePlane } from '../coordinate-plane/CoordinatePlane';
  * @param {number} height - The stubbed height in CSS pixels.
  */
 function stubSvgRect(svg: SVGSVGElement, width = 600, height = 600): void {
-  Object.defineProperty(svg, 'getBoundingClientRect', {
+  Object.defineProperty(svg, "getBoundingClientRect", {
     configurable: true,
     value: () => ({
       x: 0,
@@ -50,33 +50,36 @@ function stubSvgRect(svg: SVGSVGElement, width = 600, height = 600): void {
  * @returns {SVGSVGElement} - The first `<svg>` element in the tree.
  */
 function findSvg(container: HTMLElement): SVGSVGElement {
-  const svg = container.querySelector('svg');
-  if (!svg) throw new Error('No <svg> rendered by CoordinatePlane');
+  const svg = container.querySelector("svg");
+  if (!svg) throw new Error("No <svg> rendered by CoordinatePlane");
   return svg;
 }
 
-describe('CoordinatePlane — FR-4 controlled-component contract (primitive layer)', () => {
-  it('renders the controlled value.points — text label of each point is visible in the DOM', () => {
+describe("CoordinatePlane — FR-4 controlled-component contract (primitive layer)", () => {
+  it("renders the controlled value.points — text label of each point is visible in the DOM", () => {
     render(
       <CoordinatePlane
-        value={{ points: [{ x: 1, y: 2 }, { x: -3, y: 4 }] }}
+        value={{
+          points: [
+            { x: 1, y: 2 },
+            { x: -3, y: 4 },
+          ],
+        }}
       />,
     );
-    expect(screen.getByText('1.0, 2.0')).toBeTruthy();
-    expect(screen.getByText('-3.0, 4.0')).toBeTruthy();
+    expect(screen.getByText("1.0, 2.0")).toBeTruthy();
+    expect(screen.getByText("-3.0, 4.0")).toBeTruthy();
   });
 
-  it('fires onChange with the appended point when the user clicks the canvas in default (interactive) mode', () => {
+  it("fires onChange with the appended point when the user clicks the canvas in default (interactive) mode", () => {
     const onChange = vi.fn();
-    const { container } = render(
-      <CoordinatePlane value={{ points: [] }} onChange={onChange} />,
-    );
+    const { container } = render(<CoordinatePlane value={{ points: [] }} onChange={onChange} />);
     const svg = findSvg(container);
     stubSvgRect(svg);
     fireEvent.click(svg, { clientX: 300, clientY: 300 });
     expect(onChange).toHaveBeenCalledTimes(1);
     const next = onChange.mock.calls[0][0];
-    expect(next).toHaveProperty('points');
+    expect(next).toHaveProperty("points");
     expect(Array.isArray(next.points)).toBe(true);
     expect(next.points).toHaveLength(1);
     expect(next.points[0]).toMatchObject({
@@ -88,11 +91,7 @@ describe('CoordinatePlane — FR-4 controlled-component contract (primitive laye
   it('fires onChange with mode="interactive" (explicit) — same behavior as the omitted-mode default', () => {
     const onChange = vi.fn();
     const { container } = render(
-      <CoordinatePlane
-        mode="interactive"
-        value={{ points: [] }}
-        onChange={onChange}
-      />,
+      <CoordinatePlane mode="interactive" value={{ points: [] }} onChange={onChange} />,
     );
     const svg = findSvg(container);
     stubSvgRect(svg);
@@ -103,11 +102,7 @@ describe('CoordinatePlane — FR-4 controlled-component contract (primitive laye
   it('does NOT fire onChange when mode="readonly" — clicking the canvas is a no-op', () => {
     const onChange = vi.fn();
     const { container } = render(
-      <CoordinatePlane
-        mode="readonly"
-        value={{ points: [] }}
-        onChange={onChange}
-      />,
+      <CoordinatePlane mode="readonly" value={{ points: [] }} onChange={onChange} />,
     );
     const svg = findSvg(container);
     stubSvgRect(svg);
@@ -118,11 +113,7 @@ describe('CoordinatePlane — FR-4 controlled-component contract (primitive laye
   it('does NOT fire onChange when mode="static" — clicking the canvas is a no-op', () => {
     const onChange = vi.fn();
     const { container } = render(
-      <CoordinatePlane
-        mode="static"
-        value={{ points: [] }}
-        onChange={onChange}
-      />,
+      <CoordinatePlane mode="static" value={{ points: [] }} onChange={onChange} />,
     );
     const svg = findSvg(container);
     stubSvgRect(svg);
@@ -130,15 +121,10 @@ describe('CoordinatePlane — FR-4 controlled-component contract (primitive laye
     expect(onChange).not.toHaveBeenCalled();
   });
 
-  it('does NOT fire onChange when disabled=true — even in interactive mode', () => {
+  it("does NOT fire onChange when disabled=true — even in interactive mode", () => {
     const onChange = vi.fn();
     const { container } = render(
-      <CoordinatePlane
-        mode="interactive"
-        disabled
-        value={{ points: [] }}
-        onChange={onChange}
-      />,
+      <CoordinatePlane mode="interactive" disabled value={{ points: [] }} onChange={onChange} />,
     );
     const svg = findSvg(container);
     stubSvgRect(svg);
@@ -146,7 +132,7 @@ describe('CoordinatePlane — FR-4 controlled-component contract (primitive laye
     expect(onChange).not.toHaveBeenCalled();
   });
 
-  it('does not throw and does not fire onChange when onChange is omitted (uncontrolled-style usage)', () => {
+  it("does not throw and does not fire onChange when onChange is omitted (uncontrolled-style usage)", () => {
     const { container } = render(<CoordinatePlane value={{ points: [] }} />);
     const svg = findSvg(container);
     stubSvgRect(svg);

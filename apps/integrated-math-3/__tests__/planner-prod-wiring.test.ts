@@ -165,10 +165,8 @@ function collectSourceFiles(absRoot: string, relRoot: string): SourceFileHit[] {
 // Both patterns are wired in P2 / P3; both are absent at HEAD.
 // ---------------------------------------------------------------------------
 
-const PLANNER_IMPORT_PATTERN =
-  /\bprojectStudentVisualization\b/;
-const INTERNAL_QUERY_PATTERN =
-  /\binternal\.student\.getStudentVisualization\b/;
+const PLANNER_IMPORT_PATTERN = /\bprojectStudentVisualization\b/;
+const INTERNAL_QUERY_PATTERN = /\binternal\.student\.getStudentVisualization\b/;
 
 interface CallerMatch {
   readonly relPath: string;

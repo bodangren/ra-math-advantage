@@ -1,9 +1,9 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from "node:fs";
+import path from "node:path";
 
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { getGenerator } from '@math-platform/math-content/knowledge-space';
+import { getGenerator } from "@math-platform/math-content/knowledge-space";
 
 import {
   PRECALCULUS_PILOT_ACTIVITY_ID,
@@ -13,7 +13,7 @@ import {
   PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_GUIDED_GRADING_CONFIG,
   PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_INDEPENDENT_GRADING_CONFIG,
   PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_WORKED_GRADING_CONFIG,
-} from '@/convex/activities';
+} from "@/convex/activities";
 import {
   PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS,
   PRECALCULUS_PHYSICAL_CONTEXT_GUIDED_ACTIVITY_ID,
@@ -51,11 +51,11 @@ import {
   PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_INDEPENDENT_ACTIVITY_ID,
   PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_NODE_ID,
   PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_WORKED_ACTIVITY_ID,
-} from '@/lib/learning-evidence/precalc-pilot';
+} from "@/lib/learning-evidence/precalc-pilot";
 
 const AP_PROJECTION_PATH = path.resolve(
   process.cwd(),
-  'curriculum/skill-graph/projection/practice-v1-activity-map.json',
+  "curriculum/skill-graph/projection/practice-v1-activity-map.json",
 );
 
 const EXISTING_ACTIVITY_IDS = [
@@ -100,10 +100,10 @@ const EXTREMA_ACTIVITY_IDS = [
   PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_INDEPENDENT_ACTIVITY_ID,
 ];
 
-describe('Topic 1.4 polynomial extrema activity constants', () => {
-  it('defines exact identity, projections, configs, and enabled evidence', () => {
+describe("Topic 1.4 polynomial extrema activity constants", () => {
+  it("defines exact identity, projections, configs, and enabled evidence", () => {
     expect(PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_NODE_ID).toBe(
-      'math.precalc.skill.1.4.identify-relative-and-absolute-extrema-from-graphs',
+      "math.precalc.skill.1.4.identify-relative-and-absolute-extrema-from-graphs",
     );
     expect(EXTREMA_ACTIVITY_IDS).toEqual([
       `${PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_NODE_ID}.worked_example`,
@@ -115,22 +115,28 @@ describe('Topic 1.4 polynomial extrema activity constants', () => {
       EXISTING_ACTIVITY_IDS.length + EXTREMA_ACTIVITY_IDS.length,
     );
 
-    const projection = JSON.parse(fs.readFileSync(AP_PROJECTION_PATH, 'utf8')) as {
+    const projection = JSON.parse(fs.readFileSync(AP_PROJECTION_PATH, "utf8")) as {
       activities: Array<{ nodeId: string; stableActivityId: string; mode: string }>;
     };
     const projectedActivities = projection.activities.filter(
       (activity) => activity.nodeId === PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_NODE_ID,
     );
     expect(projectedActivities).toHaveLength(3);
-    expect(projectedActivities.map((activity) => activity.stableActivityId)).toEqual(EXTREMA_ACTIVITY_IDS);
+    expect(projectedActivities.map((activity) => activity.stableActivityId)).toEqual(
+      EXTREMA_ACTIVITY_IDS,
+    );
     expect(projectedActivities.map((activity) => activity.mode)).toEqual([
-      'worked_example',
-      'guided_practice',
-      'independent_practice',
+      "worked_example",
+      "guided_practice",
+      "independent_practice",
     ]);
 
-    expect(PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_COMPONENT_KEY).toBe('polynomial-extrema-from-graph');
-    expect(PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_GENERATOR_KEY).toBe('topic14-polynomial-extrema-from-graph');
+    expect(PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_COMPONENT_KEY).toBe(
+      "polynomial-extrema-from-graph",
+    );
+    expect(PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_GENERATOR_KEY).toBe(
+      "topic14-polynomial-extrema-from-graph",
+    );
     expect(PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_WORKED_GRADING_CONFIG).toEqual({
       generatorKey: PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_GENERATOR_KEY,
       variantSeed: 0,
@@ -161,28 +167,30 @@ describe('Topic 1.4 polynomial extrema activity constants', () => {
     expect(generator.nodeIds).toEqual([PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_NODE_ID]);
   });
 
-  it('connects the accepted extrema runtime paths', () => {
+  it("connects the accepted extrema runtime paths", () => {
     const activitiesSource = fs.readFileSync(
-      path.resolve(process.cwd(), 'convex/activities.ts'),
-      'utf8',
+      path.resolve(process.cwd(), "convex/activities.ts"),
+      "utf8",
     );
     const evidenceSource = fs.readFileSync(
-      path.resolve(process.cwd(), 'convex/learningEvidence.ts'),
-      'utf8',
+      path.resolve(process.cwd(), "convex/learningEvidence.ts"),
+      "utf8",
     );
     const seedSource = fs.readFileSync(
-      path.resolve(process.cwd(), 'convex/seed/seed_lesson_1_4.ts'),
-      'utf8',
+      path.resolve(process.cwd(), "convex/seed/seed_lesson_1_4.ts"),
+      "utf8",
     );
 
-    expect(activitiesSource).toContain('createTopic14PolynomialExtremaFromGraphSubmission');
-    expect(activitiesSource).toContain('createTopic14PolynomialExtremaWorkedSubmission');
-    expect(evidenceSource).toContain('PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_GUIDED_ACTIVITY_ID');
-    expect(evidenceSource).toContain('PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_INDEPENDENT_ACTIVITY_ID');
-    expect(evidenceSource).toContain('submitTopic14PolynomialExtremaWorkedSubmission');
-    expect(evidenceSource).toContain('getPrecalculusTopic14PolynomialExtremaKnowledgeState');
-    expect(seedSource).toContain('PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_WORKED_ACTIVITY_ID');
-    expect(seedSource).toContain('PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_GUIDED_ACTIVITY_ID');
-    expect(seedSource).toContain('PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_INDEPENDENT_ACTIVITY_ID');
+    expect(activitiesSource).toContain("createTopic14PolynomialExtremaFromGraphSubmission");
+    expect(activitiesSource).toContain("createTopic14PolynomialExtremaWorkedSubmission");
+    expect(evidenceSource).toContain("PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_GUIDED_ACTIVITY_ID");
+    expect(evidenceSource).toContain(
+      "PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_INDEPENDENT_ACTIVITY_ID",
+    );
+    expect(evidenceSource).toContain("submitTopic14PolynomialExtremaWorkedSubmission");
+    expect(evidenceSource).toContain("getPrecalculusTopic14PolynomialExtremaKnowledgeState");
+    expect(seedSource).toContain("PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_WORKED_ACTIVITY_ID");
+    expect(seedSource).toContain("PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_GUIDED_ACTIVITY_ID");
+    expect(seedSource).toContain("PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_INDEPENDENT_ACTIVITY_ID");
   });
 });

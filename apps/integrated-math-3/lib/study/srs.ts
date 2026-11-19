@@ -1,5 +1,5 @@
-import { createEmptyCard, Card, Rating, FSRS, Grade } from 'ts-fsrs';
-import type { ScheduledTerm, ReviewResult, ProficiencyBand } from './types';
+import { createEmptyCard, Card, Rating, FSRS, Grade } from "ts-fsrs";
+import type { ScheduledTerm, ReviewResult, ProficiencyBand } from "./types";
 
 const fsrs = new FSRS({});
 
@@ -19,7 +19,7 @@ export function scheduleNewTerm(termSlug: string): ScheduledTerm {
 /** Processes an SRS review, returning the updated FSRS state and mastery delta. */
 export function processReview(
   scheduledTerm: ScheduledTerm,
-  rating: 'again' | 'hard' | 'good' | 'easy'
+  rating: "again" | "hard" | "good" | "easy",
 ): ReviewResult {
   const card = scheduledTerm.fsrsState as Card;
   const now = new Date();
@@ -50,17 +50,17 @@ export function processReview(
 /** Filters scheduled terms to those due on or before the given timestamp. */
 export function getDueTerms(
   scheduledTerms: ScheduledTerm[],
-  now: number = Date.now()
+  now: number = Date.now(),
 ): ScheduledTerm[] {
   return scheduledTerms.filter((term) => term.scheduledFor <= now);
 }
 
 /** Maps a mastery score to a discrete proficiency band. */
 export function proficiencyBand(masteryScore: number): ProficiencyBand {
-  if (masteryScore === 0) return 'new';
-  if (masteryScore < 0.3) return 'learning';
-  if (masteryScore < 0.7) return 'familiar';
-  return 'mastered';
+  if (masteryScore === 0) return "new";
+  if (masteryScore < 0.3) return "learning";
+  if (masteryScore < 0.7) return "familiar";
+  return "mastered";
 }
 
 /** Applies a mastery delta and clamps the result to the [0, 1] range. */

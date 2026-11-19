@@ -1,12 +1,12 @@
-import { redirect } from 'next/navigation';
+import { redirect } from "next/navigation";
 
-import { ObservationAmendmentForm } from '@/components/observation-amendment-form';
-import { SiteHeader } from '@/components/site-header';
+import { ObservationAmendmentForm } from "@/components/observation-amendment-form";
+import { SiteHeader } from "@/components/site-header";
 import {
   canAmendPublishedObservation,
   getPublishedObservationPage,
-} from '@/lib/observations/observation-page';
-import { buildDanielsonGraph } from '@/lib/proficiency/graph';
+} from "@/lib/observations/observation-page";
+import { buildDanielsonGraph } from "@/lib/proficiency/graph";
 
 export default async function AmendObservationPage({
   params,
@@ -22,10 +22,15 @@ export default async function AmendObservationPage({
   const titleById = new Map(buildDanielsonGraph().graph.nodes.map((node) => [node.id, node.title]));
   const record = result.record as {
     observationType: string;
-    items: Array<{ itemId: string; componentId: string; skillId?: string; evidenceNote: string | null }>;
+    items: Array<{
+      itemId: string;
+      componentId: string;
+      skillId?: string;
+      evidenceNote: string | null;
+    }>;
   };
   if (!canAmendPublishedObservation(roles, record.observationType, result.isSelf)) {
-    redirect('/unauthorized');
+    redirect("/unauthorized");
   }
   return (
     <>
@@ -33,13 +38,18 @@ export default async function AmendObservationPage({
       <main id="main-content" className="page-shell">
         <p className="eyebrow">Observation amendment</p>
         <h1>Correct the published record</h1>
-        <p className="lede">The original record stays unchanged. Give a reason and select only the fields that must change.</p>
+        <p className="lede">
+          The original record stays unchanged. Give a reason and select only the fields that must
+          change.
+        </p>
         <ObservationAmendmentForm
           observationId={recordId}
           expectedVersion={result.amendmentCount}
           items={record.items.map((item) => ({
             itemId: item.itemId,
-            label: (item.skillId ? titleById.get(item.skillId) : titleById.get(item.componentId)) ?? item.itemId,
+            label:
+              (item.skillId ? titleById.get(item.skillId) : titleById.get(item.componentId)) ??
+              item.itemId,
             evidenceNote: item.evidenceNote,
           }))}
         />

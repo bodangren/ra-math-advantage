@@ -20,9 +20,13 @@ export default function LoginPage() {
 
     try {
       await signIn(username, password);
-      const requested = new URLSearchParams(window.location.search).get('redirect');
-      const destination = requested && /^\/(student|teacher|curriculum|settings)(\/|\?|$)/.test(requested)
-        && !requested.includes('\\') ? requested : '/dashboard';
+      const requested = new URLSearchParams(window.location.search).get("redirect");
+      const destination =
+        requested &&
+        /^\/(student|teacher|curriculum|settings)(\/|\?|$)/.test(requested) &&
+        !requested.includes("\\")
+          ? requested
+          : "/dashboard";
       router.push(destination);
       router.refresh();
     } catch (err) {
@@ -36,12 +40,10 @@ export default function LoginPage() {
     <div className="min-h-[80vh] flex items-center justify-center px-6">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-primary-text mb-2" style={{ fontSize: '32px', fontWeight: 510 }}>
+          <h1 className="text-primary-text mb-2" style={{ fontSize: "32px", fontWeight: 510 }}>
             Sign In
           </h1>
-          <p className="text-secondary-text">
-            Sign in to AP Precalculus
-          </p>
+          <p className="text-secondary-text">Sign in to AP Precalculus</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -52,7 +54,11 @@ export default function LoginPage() {
           )}
 
           <div>
-            <label htmlFor="username" className="block text-sm text-secondary-text mb-1" style={{ fontWeight: 510 }}>
+            <label
+              htmlFor="username"
+              className="block text-sm text-secondary-text mb-1"
+              style={{ fontWeight: 510 }}
+            >
               Username
             </label>
             <input
@@ -68,7 +74,11 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm text-secondary-text mb-1" style={{ fontWeight: 510 }}>
+            <label
+              htmlFor="password"
+              className="block text-sm text-secondary-text mb-1"
+              style={{ fontWeight: 510 }}
+            >
               Password
             </label>
             <input
@@ -94,7 +104,10 @@ export default function LoginPage() {
 
         <p className="text-center text-muted-text text-sm mt-6">
           Don&apos;t have an account?{" "}
-          <Link href="/auth/register" className="text-accent hover:text-accent-light transition-colors">
+          <Link
+            href="/auth/register"
+            className="text-accent hover:text-accent-light transition-colors"
+          >
             Register
           </Link>
         </p>

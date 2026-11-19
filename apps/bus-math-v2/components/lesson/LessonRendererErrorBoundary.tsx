@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { Component, ReactNode } from 'react';
-import { ErrorFallback } from '@/components/error-fallback';
+import { Component, ReactNode } from "react";
+import { ErrorFallback } from "@/components/error-fallback";
 
 interface Props {
   children: ReactNode;
@@ -23,7 +23,7 @@ export class LessonRendererErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('LessonRenderer error:', error, errorInfo);
+    console.error("LessonRenderer error:", error, errorInfo);
   }
 
   render() {

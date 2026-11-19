@@ -14,30 +14,30 @@
 // - A7 (over-broad filter): string checks are anchored to specific known
 //   strings, not bare English words.
 
-import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import {
   MASTERY_THRESHOLDS_DEFAULT,
   masteryThresholdsSchema,
   knowledgeStateEntrySchema,
   getKnowledgeState,
   getOuterFringe,
-} from '../index';
-import { knowledgeStateSchema } from '../level-projection';
-import { syntheticMathFixture } from '../fixtures';
-import type { KnowledgeSpace } from '../types';
+} from "../index";
+import { knowledgeStateSchema } from "../level-projection";
+import { syntheticMathFixture } from "../fixtures";
+import type { KnowledgeSpace } from "../types";
 import type {
   MasteryState,
   MasteryThresholds,
   KnowledgeStateEntry,
   ReadinessFn,
   ObjectiveProficiencyResult,
-} from '../index';
+} from "../index";
 
-const MEASURE_DIR = resolve(__dirname, '../../../../measure');
-const KNOWLEDGE_SPACE_MD = resolve(MEASURE_DIR, 'knowledge-space.md');
-const INDEX_MD = resolve(MEASURE_DIR, 'index.md');
+const MEASURE_DIR = resolve(__dirname, "../../../../measure");
+const KNOWLEDGE_SPACE_MD = resolve(MEASURE_DIR, "knowledge-space.md");
+const INDEX_MD = resolve(MEASURE_DIR, "index.md");
 
 // ---------------------------------------------------------------------------
 // Probe 1 — Threshold-order invariant regression
@@ -50,28 +50,28 @@ const INDEX_MD = resolve(MEASURE_DIR, 'index.md');
 // flips these values (e.g., masteryEnter: 0.70, masteryExit: 0.90), the
 // hysteresis loop either collapses or inverts. This probe catches the flip.
 
-describe('probe 1: threshold-order invariant', () => {
-  it('MASTERY_THRESHOLDS_DEFAULT satisfies masteryEnter > masteryExit (hysteresis)', () => {
+describe("probe 1: threshold-order invariant", () => {
+  it("MASTERY_THRESHOLDS_DEFAULT satisfies masteryEnter > masteryExit (hysteresis)", () => {
     expect(MASTERY_THRESHOLDS_DEFAULT.masteryEnter).toBeGreaterThan(
       MASTERY_THRESHOLDS_DEFAULT.masteryExit,
     );
   });
 
-  it('MASTERY_THRESHOLDS_DEFAULT satisfies readyThreshold > nearThreshold (readiness ladder)', () => {
+  it("MASTERY_THRESHOLDS_DEFAULT satisfies readyThreshold > nearThreshold (readiness ladder)", () => {
     expect(MASTERY_THRESHOLDS_DEFAULT.readyThreshold).toBeGreaterThan(
       MASTERY_THRESHOLDS_DEFAULT.nearThreshold,
     );
   });
 
-  it('schema parses an inverted-threshold object but a downstream caller would observe the wrong hysteresis range', () => {
+  it("schema parses an inverted-threshold object but a downstream caller would observe the wrong hysteresis range", () => {
     // The schema permits any values in [0,1] — order is an invariant, not a
     // parse-time fact. Document the gap: if a future Phase 2 implementation
     // relies on the schema to reject inverted orders, this probe fails.
     const inverted: MasteryThresholds = {
-      masteryEnter: 0.70,
-      masteryExit: 0.90, // <-- inverted, would break hysteresis
-      readyThreshold: 0.50,
-      nearThreshold: 0.80, // <-- inverted, would break readiness ladder
+      masteryEnter: 0.7,
+      masteryExit: 0.9, // <-- inverted, would break hysteresis
+      readyThreshold: 0.5,
+      nearThreshold: 0.8, // <-- inverted, would break readiness ladder
     };
     const parsed = masteryThresholdsSchema.parse(inverted);
     // Schema accepts (no order check); the runtime invariant is upstream.
@@ -92,26 +92,23 @@ describe('probe 1: threshold-order invariant', () => {
 // (no throw), revealing the regression. The strict-mode test catches the
 // case where someone replaced Object.freeze with a non-frozen const.
 
-describe('probe 2: frozen-thresholds no-mutation', () => {
+describe("probe 2: frozen-thresholds no-mutation", () => {
   // The Vite/ESM runtime executes module code in strict mode, so the
   // mutation-attempt path throws TypeError. In non-strict (sloppy) scripts
   // the same path would be a silent no-op. Both outcomes are acceptable
   // proofs of frozen-ness; what matters is that freezing was NOT removed.
 
-  it('property descriptors are non-writable and non-configurable', () => {
+  it("property descriptors are non-writable and non-configurable", () => {
     // The strongest check — descriptor-level. A future agent who replaces
     // Object.freeze with a non-frozen const (or removes the freeze) fails here.
-    const desc = Object.getOwnPropertyDescriptor(
-      MASTERY_THRESHOLDS_DEFAULT,
-      'masteryEnter',
-    );
+    const desc = Object.getOwnPropertyDescriptor(MASTERY_THRESHOLDS_DEFAULT, "masteryEnter");
     expect(desc).toBeDefined();
     expect(desc!.writable).toBe(false);
     expect(desc!.configurable).toBe(false);
     expect(desc!.enumerable).toBe(true);
   });
 
-  it('mutation in strict mode throws TypeError', () => {
+  it("mutation in strict mode throws TypeError", () => {
     // Vitest runs module code in strict mode — a TypeError is the expected
     // outcome for a frozen-object assignment. If a future agent removes the
     // freeze, this test fails because the assignment would silently succeed.
@@ -133,13 +130,13 @@ describe('probe 2: frozen-thresholds no-mutation', () => {
     expect(String(caught)).toMatch(/read only/i);
   });
 
-  it('deletion attempts throw TypeError in strict mode', () => {
+  it("deletion attempts throw TypeError in strict mode", () => {
     expect(() => {
       delete (MASTERY_THRESHOLDS_DEFAULT as unknown as Record<string, unknown>).masteryEnter;
     }).toThrow(TypeError);
   });
 
-  it('frozen value remains unchanged after a failed mutation', () => {
+  it("frozen value remains unchanged after a failed mutation", () => {
     const before = MASTERY_THRESHOLDS_DEFAULT.masteryEnter;
     try {
       (MASTERY_THRESHOLDS_DEFAULT as unknown as { masteryEnter: number }).masteryEnter = 0.5;
@@ -159,17 +156,17 @@ describe('probe 2: frozen-thresholds no-mutation', () => {
 // extra keys (silent drift — A7-adjacent). This probe asserts the rejection
 // for several kinds of extra keys.
 
-describe('probe 3: zod strictObject rejects extra keys', () => {
-  it('rejects string extra keys', () => {
+describe("probe 3: zod strictObject rejects extra keys", () => {
+  it("rejects string extra keys", () => {
     expect(() =>
       masteryThresholdsSchema.parse({
         ...MASTERY_THRESHOLDS_DEFAULT,
-        extraKey: 'x',
+        extraKey: "x",
       }),
     ).toThrow();
   });
 
-  it('rejects numeric extra keys', () => {
+  it("rejects numeric extra keys", () => {
     expect(() =>
       masteryThresholdsSchema.parse({
         ...MASTERY_THRESHOLDS_DEFAULT,
@@ -178,7 +175,7 @@ describe('probe 3: zod strictObject rejects extra keys', () => {
     ).toThrow();
   });
 
-  it('rejects boolean extra keys', () => {
+  it("rejects boolean extra keys", () => {
     expect(() =>
       masteryThresholdsSchema.parse({
         ...MASTERY_THRESHOLDS_DEFAULT,
@@ -187,7 +184,7 @@ describe('probe 3: zod strictObject rejects extra keys', () => {
     ).toThrow();
   });
 
-  it('rejects null extra keys', () => {
+  it("rejects null extra keys", () => {
     expect(() =>
       masteryThresholdsSchema.parse({
         ...MASTERY_THRESHOLDS_DEFAULT,
@@ -196,15 +193,15 @@ describe('probe 3: zod strictObject rejects extra keys', () => {
     ).toThrow();
   });
 
-  it('knowledgeStateEntrySchema rejects unknown state values', () => {
+  it("knowledgeStateEntrySchema rejects unknown state values", () => {
     // Distinct from extra keys — an invalid enum value should also be rejected.
     expect(() =>
       knowledgeStateEntrySchema.parse({
-        nodeId: 'math.im3.skill.test',
+        nodeId: "math.im3.skill.test",
         mastery: 0.85,
         retention: 0.95,
         isProficient: true,
-        state: 'unknown' as unknown as MasteryState,
+        state: "unknown" as unknown as MasteryState,
       }),
     ).toThrow();
   });
@@ -223,49 +220,49 @@ describe('probe 3: zod strictObject rejects extra keys', () => {
 // structural keys, so a future agent who collapses the two types would
 // fail this probe before they even hit the compile-time guard.
 
-describe('probe 4: KnowledgeStateEntry vs KnowledgeState structural distinctness', () => {
-  it('v2 entry schema carries state/mastery/retention/isProficient keys', () => {
+describe("probe 4: KnowledgeStateEntry vs KnowledgeState structural distinctness", () => {
+  it("v2 entry schema carries state/mastery/retention/isProficient keys", () => {
     // The v2 entry has the four-way state and richer mastery/retention.
     const entryKeys = Object.keys(knowledgeStateEntrySchema.shape);
-    expect(entryKeys).toContain('state');
-    expect(entryKeys).toContain('mastery');
-    expect(entryKeys).toContain('retention');
-    expect(entryKeys).toContain('isProficient');
+    expect(entryKeys).toContain("state");
+    expect(entryKeys).toContain("mastery");
+    expect(entryKeys).toContain("retention");
+    expect(entryKeys).toContain("isProficient");
   });
 
-  it('projection schema does NOT carry state/mastery/retention/isProficient', () => {
+  it("projection schema does NOT carry state/mastery/retention/isProficient", () => {
     // The projection is a flat skills list — it should NOT carry v2 keys.
     const projectionKeys = Object.keys(knowledgeStateSchema.shape);
-    expect(projectionKeys).not.toContain('state');
-    expect(projectionKeys).not.toContain('retention');
-    expect(projectionKeys).not.toContain('isProficient');
+    expect(projectionKeys).not.toContain("state");
+    expect(projectionKeys).not.toContain("retention");
+    expect(projectionKeys).not.toContain("isProficient");
   });
 
-  it('projection schema carries the flat skills array', () => {
+  it("projection schema carries the flat skills array", () => {
     const projectionKeys = Object.keys(knowledgeStateSchema.shape);
-    expect(projectionKeys).toContain('skills');
+    expect(projectionKeys).toContain("skills");
   });
 
-  it('v2 entry schema does NOT carry a flat skills array', () => {
+  it("v2 entry schema does NOT carry a flat skills array", () => {
     const entryKeys = Object.keys(knowledgeStateEntrySchema.shape);
-    expect(entryKeys).not.toContain('skills');
+    expect(entryKeys).not.toContain("skills");
   });
 
-  it('projection schema rejects a v2 entry payload (skills vs flat-list shape)', () => {
+  it("projection schema rejects a v2 entry payload (skills vs flat-list shape)", () => {
     // A v2 entry should NOT pass the projection schema — the projection is
     // { skills: [{ nodeId, mastery }] }, the entry has state/retention/etc.
     const v2Entry: KnowledgeStateEntry = {
-      nodeId: 'math.im3.skill.test',
+      nodeId: "math.im3.skill.test",
       mastery: 0.85,
       retention: 0.95,
       isProficient: true,
-      state: 'mastered',
+      state: "mastered",
     };
     expect(knowledgeStateSchema.safeParse(v2Entry).success).toBe(false);
   });
 
-  it('v2 entry schema rejects the projection flat-list payload', () => {
-    const flatList = { skills: [{ nodeId: 'math.im3.skill.test', mastery: 0.85 }] };
+  it("v2 entry schema rejects the projection flat-list payload", () => {
+    const flatList = { skills: [{ nodeId: "math.im3.skill.test", mastery: 0.85 }] };
     expect(knowledgeStateEntrySchema.safeParse(flatList).success).toBe(false);
   });
 });
@@ -281,15 +278,15 @@ describe('probe 4: KnowledgeStateEntry vs KnowledgeState structural distinctness
 // readinessFn that records every call, passes it through, and asserts the
 // call is type-compatible and the function does not throw.
 
-describe('probe 5: readinessFn seam is injectable', () => {
-  it('accepts a readinessFn that returns a number', () => {
+describe("probe 5: readinessFn seam is injectable", () => {
+  it("accepts a readinessFn that returns a number", () => {
     const state = new Map<string, KnowledgeStateEntry>();
     const readinessFn: ReadinessFn = (_nodeId, _state) => 0.8;
     const fringe = getOuterFringe(state, syntheticMathFixture as KnowledgeSpace, readinessFn);
     expect(Array.isArray(fringe)).toBe(true);
   });
 
-  it('accepts a readinessFn that records calls', () => {
+  it("accepts a readinessFn that records calls", () => {
     const state = new Map<string, KnowledgeStateEntry>();
     const calls: Array<{ nodeId: string; stateSize: number }> = [];
     const readinessFn: ReadinessFn = (nodeId, stateArg) => {
@@ -307,17 +304,17 @@ describe('probe 5: readinessFn seam is injectable', () => {
     expect(Array.isArray(calls)).toBe(true);
   });
 
-  it('omitting readinessFn is the Phase 1 default (binary gating)', () => {
+  it("omitting readinessFn is the Phase 1 default (binary gating)", () => {
     const state = new Map<string, KnowledgeStateEntry>();
     const fringe = getOuterFringe(state, syntheticMathFixture as KnowledgeSpace);
     expect(Array.isArray(fringe)).toBe(true);
   });
 
-  it('getKnowledgeState is composable with the same readinessFn seam (signature independence)', () => {
+  it("getKnowledgeState is composable with the same readinessFn seam (signature independence)", () => {
     // getKnowledgeState does not consume readinessFn itself; only getOuterFringe
     // does. But the engine must produce a Map that the fringe can consume.
     const state = getKnowledgeState(
-      { id: 'student.test' },
+      { id: "student.test" },
       [],
       syntheticMathFixture as KnowledgeSpace,
       0,
@@ -341,7 +338,7 @@ describe('probe 5: readinessFn seam is injectable', () => {
 // require updating this literal (compile-time failure), and the runtime
 // key snapshot catches a runtime value-shape change.
 
-describe('probe 6: ObjectiveProficiencyResult local structural snapshot', () => {
+describe("probe 6: ObjectiveProficiencyResult local structural snapshot", () => {
   // The locally-declared ObjectiveProficiencyResult in srs-bridge.ts is
   // intentionally narrower than the srs-engine one. Track 3's round-trip
   // test is the real source-of-truth for drift; this snapshot is the
@@ -353,10 +350,10 @@ describe('probe 6: ObjectiveProficiencyResult local structural snapshot', () => 
   //  (b) Runtime snapshot (vitest): the `Object.keys(sample).length === 4`
   //      assertion fails if a runtime value carries extra fields.
 
-  it('the locally-declared ObjectiveProficiencyResult has the expected narrow shape (4 fields)', () => {
+  it("the locally-declared ObjectiveProficiencyResult has the expected narrow shape (4 fields)", () => {
     // Type-level: if the declaration changes, this assignment fails at tsc.
     const sample: ObjectiveProficiencyResult = {
-      objectiveId: 'objective.test',
+      objectiveId: "objective.test",
       retentionStrength: 0.8,
       practiceCoverage: 0.7,
       isProficient: true,
@@ -364,32 +361,32 @@ describe('probe 6: ObjectiveProficiencyResult local structural snapshot', () => 
     // Runtime-level: snapshot the keys; if the assignment somehow compiled
     // (e.g., esbuild stripping types), this still fails on key count.
     expect(Object.keys(sample).sort()).toEqual([
-      'isProficient',
-      'objectiveId',
-      'practiceCoverage',
-      'retentionStrength',
+      "isProficient",
+      "objectiveId",
+      "practiceCoverage",
+      "retentionStrength",
     ]);
   });
 
-  it('the locally-declared ObjectiveProficiencyResult has the expected field types', () => {
+  it("the locally-declared ObjectiveProficiencyResult has the expected field types", () => {
     const sample: ObjectiveProficiencyResult = {
-      objectiveId: 'objective.test',
+      objectiveId: "objective.test",
       retentionStrength: 0.8,
       practiceCoverage: 0.7,
       isProficient: true,
     };
-    expect(typeof sample.objectiveId).toBe('string');
-    expect(typeof sample.retentionStrength).toBe('number');
-    expect(typeof sample.practiceCoverage).toBe('number');
-    expect(typeof sample.isProficient).toBe('boolean');
+    expect(typeof sample.objectiveId).toBe("string");
+    expect(typeof sample.retentionStrength).toBe("number");
+    expect(typeof sample.practiceCoverage).toBe("number");
+    expect(typeof sample.isProficient).toBe("boolean");
   });
 
-  it('the local re-declaration is intentionally narrower than the srs-engine one', () => {
+  it("the local re-declaration is intentionally narrower than the srs-engine one", () => {
     // If a future agent expands the local declaration to mirror srs-engine
     // (e.g., adding `priority`, `fluencyConfidence`, `reasons`,
     // `problemFamilyDetails`, `evidenceConfidence`), this snapshot fails.
     const sample: ObjectiveProficiencyResult = {
-      objectiveId: 'objective.test',
+      objectiveId: "objective.test",
       retentionStrength: 0.8,
       practiceCoverage: 0.7,
       isProficient: true,
@@ -398,23 +395,23 @@ describe('probe 6: ObjectiveProficiencyResult local structural snapshot', () => 
     expect(localKeyCount).toBe(4);
   });
 
-  it('snapshot rejects the srs-engine-only fields by name (defends drift in declaration)', () => {
+  it("snapshot rejects the srs-engine-only fields by name (defends drift in declaration)", () => {
     // The locally-declared ObjectiveProficiencyResult intentionally lacks
     // these srs-engine fields. If a future agent adds any of them to the
     // local declaration, the typed-literal assignment in the previous
     // tests forces them to update this snapshot — making the drift visible.
     const snapshotKeys = [
-      'isProficient',
-      'objectiveId',
-      'practiceCoverage',
-      'retentionStrength',
+      "isProficient",
+      "objectiveId",
+      "practiceCoverage",
+      "retentionStrength",
     ] as const;
     const forbidden: string[] = [
-      'priority',
-      'fluencyConfidence',
-      'evidenceConfidence',
-      'reasons',
-      'problemFamilyDetails',
+      "priority",
+      "fluencyConfidence",
+      "evidenceConfidence",
+      "reasons",
+      "problemFamilyDetails",
     ];
     for (const key of forbidden) {
       expect(snapshotKeys).not.toContain(key);
@@ -432,28 +429,28 @@ describe('probe 6: ObjectiveProficiencyResult local structural snapshot', () => 
 // Space Contract" row to `measure/index.md`. This probe catches a future
 // agent reversing those reconciliations.
 
-describe('probe 7: docs reconciliation reversal', () => {
-  it('measure/knowledge-space.md does not claim to be the source of truth', () => {
-    const content = readFileSync(KNOWLEDGE_SPACE_MD, 'utf-8');
+describe("probe 7: docs reconciliation reversal", () => {
+  it("measure/knowledge-space.md does not claim to be the source of truth", () => {
+    const content = readFileSync(KNOWLEDGE_SPACE_MD, "utf-8");
     // Case-insensitive — the original phrase appears as "source of truth" or
     // "Source Of Truth". Reject any capitalization.
     expect(content.toLowerCase()).not.toMatch(/source\s+of\s+truth/);
   });
 
-  it('measure/knowledge-space.md points at the canonical SPECIFICATION.md', () => {
-    const content = readFileSync(KNOWLEDGE_SPACE_MD, 'utf-8');
+  it("measure/knowledge-space.md points at the canonical SPECIFICATION.md", () => {
+    const content = readFileSync(KNOWLEDGE_SPACE_MD, "utf-8");
     expect(content).toMatch(/kst-srs\.v3\.2\/SPECIFICATION\.md/);
   });
 
-  it('measure/index.md contains a Knowledge Space Contract row', () => {
-    const content = readFileSync(INDEX_MD, 'utf-8');
+  it("measure/index.md contains a Knowledge Space Contract row", () => {
+    const content = readFileSync(INDEX_MD, "utf-8");
     // Look for the exact row name in a table-like context. A row is
     // "| **Knowledge Space Contract** | ..." somewhere in the file.
     expect(content).toMatch(/\|\s*\*\*Knowledge Space Contract\*\*\s*\|/);
   });
 
-  it('measure/index.md Knowledge Space Contract row points at the spec path', () => {
-    const content = readFileSync(INDEX_MD, 'utf-8');
+  it("measure/index.md Knowledge Space Contract row points at the spec path", () => {
+    const content = readFileSync(INDEX_MD, "utf-8");
     // The row's path column should reference SPECIFICATION.md (either at
     // kst-srs.v3.2/... or packages/knowledge-space-core/...).
     const rowMatch = content.match(/\|\s*\*\*Knowledge Space Contract\*\*\s*\|\s*([^|]+)\|/);
@@ -462,11 +459,11 @@ describe('probe 7: docs reconciliation reversal', () => {
     expect(pathCell).toMatch(/SPECIFICATION\.md/);
   });
 
-  it('measure/knowledge-space.md defers mastery-model theory to the spec, not the doc', () => {
+  it("measure/knowledge-space.md defers mastery-model theory to the spec, not the doc", () => {
     // A reversal would put mastery-model theory back into knowledge-space.md.
     // The Phase 1 doc is an architecture summary; it must not redefine
     // hysteresis or readiness formulas inline.
-    const content = readFileSync(KNOWLEDGE_SPACE_MD, 'utf-8');
+    const content = readFileSync(KNOWLEDGE_SPACE_MD, "utf-8");
     // Look for the pointer language — the doc explicitly defers to the spec.
     expect(content.toLowerCase()).toMatch(/canonical|defers|pointer|specification/);
   });

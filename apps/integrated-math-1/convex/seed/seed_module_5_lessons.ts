@@ -471,7 +471,7 @@ export const seedModule5Lessons = internalMutation({
                 sectionType: "text" as const,
                 content: {
                   markdown:
-                    "## Review Notes\n\n* Problems 1–4, 8–10, 13, 14, and 19 rely on scatter plot images that cannot be described in text; these require visual review.\n* Problems 7, 11, 12, 15, and 16 include data tables presented as images; tabular values should be verified during review.\n* Problem 18 presents four situations as an image for a \"Which One Doesn't Belong\" analysis; the text content needs visual verification.",
+                    '## Review Notes\n\n* Problems 1–4, 8–10, 13, 14, and 19 rely on scatter plot images that cannot be described in text; these require visual review.\n* Problems 7, 11, 12, 15, and 16 include data tables presented as images; tabular values should be verified during review.\n* Problem 18 presents four situations as an image for a "Which One Doesn\'t Belong" analysis; the text content needs visual verification.',
                 },
               },
             ],
@@ -933,7 +933,7 @@ export const seedModule5Lessons = internalMutation({
         const existingPhase = await ctx.db
           .query("phase_versions")
           .withIndex("by_lesson_version_and_phase", (q) =>
-            q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+            q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
           )
           .first();
 

@@ -14,7 +14,7 @@
  * the type module that Phase 2 (calibration core) and Phase 3 (persistence)
  * will build on.
  */
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 import type {
   CalibrationStatus,
   CalibrationVerdict,
@@ -23,29 +23,29 @@ import type {
   EdgeCalibration,
   CalibrationNecessityResult,
   CalibrationReviewQueueItem,
-} from '../srs/edge-calibration';
-import { CALIBRATION_STATUS_VALUES } from '../srs/edge-calibration';
+} from "../srs/edge-calibration";
+import { CALIBRATION_STATUS_VALUES } from "../srs/edge-calibration";
 
 // ---------------------------------------------------------------------------
 // Task 1.1 — Status enum exhaustiveness
 // ---------------------------------------------------------------------------
 
-describe('contract — CalibrationStatus enum', () => {
-  it('exposes exactly the three values defined in spec FR5', () => {
+describe("contract — CalibrationStatus enum", () => {
+  it("exposes exactly the three values defined in spec FR5", () => {
     expect([...CALIBRATION_STATUS_VALUES].sort()).toEqual(
-      ['confirmed', 'refuted', 'untested'].sort(),
+      ["confirmed", "refuted", "untested"].sort(),
     );
   });
 
-  it('has a case in the exhaustive switch for every status value', () => {
+  it("has a case in the exhaustive switch for every status value", () => {
     const labelFor = (s: CalibrationStatus): string => {
       switch (s) {
-        case 'confirmed':
-          return 'evidence supports the authored edge';
-        case 'refuted':
-          return 'evidence contradicts the authored edge';
-        case 'untested':
-          return 'no student has attempted B without a verdict on A (FR5 guardrail)';
+        case "confirmed":
+          return "evidence supports the authored edge";
+        case "refuted":
+          return "evidence contradicts the authored edge";
+        case "untested":
+          return "no student has attempted B without a verdict on A (FR5 guardrail)";
         default: {
           const _exhaustive: never = s;
           return _exhaustive;
@@ -55,7 +55,7 @@ describe('contract — CalibrationStatus enum', () => {
 
     for (const status of CALIBRATION_STATUS_VALUES) {
       const label = labelFor(status);
-      expect(typeof label).toBe('string');
+      expect(typeof label).toBe("string");
       expect(label.length).toBeGreaterThan(0);
     }
   });
@@ -65,21 +65,21 @@ describe('contract — CalibrationStatus enum', () => {
 // Task 1.2 — Observation type shape
 // ---------------------------------------------------------------------------
 
-describe('contract — CalibrationObservation', () => {
-  it('carries the student id and the paired (A, B) verdicts', () => {
+describe("contract — CalibrationObservation", () => {
+  it("carries the student id and the paired (A, B) verdicts", () => {
     const obs: CalibrationObservation = {
-      studentId: 'student-1',
+      studentId: "student-1",
       a: true,
       b: false,
     };
-    expect(obs.studentId).toBe('student-1');
+    expect(obs.studentId).toBe("student-1");
     expect(obs.a).toBe(true);
     expect(obs.b).toBe(false);
   });
 
-  it('accepts a CalibrationVerdict (boolean) on each side', () => {
+  it("accepts a CalibrationVerdict (boolean) on each side", () => {
     const verdict: CalibrationVerdict = true;
-    const obs: CalibrationObservation = { studentId: 's', a: verdict, b: verdict };
+    const obs: CalibrationObservation = { studentId: "s", a: verdict, b: verdict };
     expect(obs.a).toBe(verdict);
     expect(obs.b).toBe(verdict);
   });
@@ -89,8 +89,8 @@ describe('contract — CalibrationObservation', () => {
 // Task 1.3 — Contingency table shape (FR2)
 // ---------------------------------------------------------------------------
 
-describe('contract — CalibrationContingencyTable', () => {
-  it('exposes the 2x2 counts (A-proficient x B-proficient)', () => {
+describe("contract — CalibrationContingencyTable", () => {
+  it("exposes the 2x2 counts (A-proficient x B-proficient)", () => {
     const table: CalibrationContingencyTable = {
       proficientAProficientB: 10,
       proficientANotProficientB: 2,
@@ -108,31 +108,31 @@ describe('contract — CalibrationContingencyTable', () => {
 // Task 1.4 — EdgeCalibration record shape (FR3, FR7)
 // ---------------------------------------------------------------------------
 
-describe('contract — EdgeCalibration', () => {
-  it('carries the Beta(α, β) parameters, status, and lastUpdated', () => {
+describe("contract — EdgeCalibration", () => {
+  it("carries the Beta(α, β) parameters, status, and lastUpdated", () => {
     const rec: EdgeCalibration = {
-      edgeId: 'edge.prereq.a-to-b',
+      edgeId: "edge.prereq.a-to-b",
       alpha: 12,
       beta: 3,
-      status: 'confirmed',
+      status: "confirmed",
       lastUpdated: 1700000000000,
     };
-    expect(rec.edgeId).toBe('edge.prereq.a-to-b');
+    expect(rec.edgeId).toBe("edge.prereq.a-to-b");
     expect(rec.alpha).toBe(12);
     expect(rec.beta).toBe(3);
-    expect(rec.status).toBe('confirmed');
+    expect(rec.status).toBe("confirmed");
     expect(rec.lastUpdated).toBe(1700000000000);
   });
 
   it('permits the "untested" status to distinguish it from "confirmed" (FR5)', () => {
     const rec: EdgeCalibration = {
-      edgeId: 'edge.prereq.x-to-y',
+      edgeId: "edge.prereq.x-to-y",
       alpha: 1,
       beta: 1,
-      status: 'untested',
+      status: "untested",
       lastUpdated: 1700000000000,
     };
-    expect(rec.status).toBe('untested');
+    expect(rec.status).toBe("untested");
   });
 });
 
@@ -140,19 +140,19 @@ describe('contract — EdgeCalibration', () => {
 // Task 1.5 — Necessity / informativeness result shape (FR2)
 // ---------------------------------------------------------------------------
 
-describe('contract — CalibrationNecessityResult', () => {
-  it('exposes necessity, informativeness, sample size, and a derived status', () => {
+describe("contract — CalibrationNecessityResult", () => {
+  it("exposes necessity, informativeness, sample size, and a derived status", () => {
     const result: CalibrationNecessityResult = {
-      edgeId: 'edge.prereq.a-to-b',
+      edgeId: "edge.prereq.a-to-b",
       necessity: 0.83,
       informativeness: 0.41,
       sampleSize: 18,
-      status: 'confirmed',
+      status: "confirmed",
     };
     expect(result.necessity).toBe(0.83);
     expect(result.informativeness).toBe(0.41);
     expect(result.sampleSize).toBe(18);
-    expect(result.status).toBe('confirmed');
+    expect(result.status).toBe("confirmed");
   });
 });
 
@@ -160,10 +160,10 @@ describe('contract — CalibrationNecessityResult', () => {
 // Task 1.6 — Review queue item shape (FR6)
 // ---------------------------------------------------------------------------
 
-describe('contract — CalibrationReviewQueueItem', () => {
-  it('attaches the contingency table and both authored and calibrated weights/confidences', () => {
+describe("contract — CalibrationReviewQueueItem", () => {
+  it("attaches the contingency table and both authored and calibrated weights/confidences", () => {
     const item: CalibrationReviewQueueItem = {
-      edgeId: 'edge.prereq.a-to-b',
+      edgeId: "edge.prereq.a-to-b",
       contingencyTable: {
         proficientAProficientB: 10,
         proficientANotProficientB: 2,
@@ -171,20 +171,20 @@ describe('contract — CalibrationReviewQueueItem', () => {
         notProficientANotProficientB: 5,
       },
       authoredWeight: 0.9,
-      authoredConfidence: 'high',
+      authoredConfidence: "high",
       calibratedWeight: 0.6,
-      calibratedConfidence: 'medium',
+      calibratedConfidence: "medium",
       necessity: 0.83,
       informativeness: 0.41,
       divergence: 0.3,
       flaggedAt: 1700000000000,
     };
-    expect(item.edgeId).toBe('edge.prereq.a-to-b');
+    expect(item.edgeId).toBe("edge.prereq.a-to-b");
     expect(item.contingencyTable.proficientAProficientB).toBe(10);
     expect(item.authoredWeight).toBe(0.9);
-    expect(item.authoredConfidence).toBe('high');
+    expect(item.authoredConfidence).toBe("high");
     expect(item.calibratedWeight).toBe(0.6);
-    expect(item.calibratedConfidence).toBe('medium');
+    expect(item.calibratedConfidence).toBe("medium");
     expect(item.divergence).toBe(0.3);
   });
 });

@@ -1,42 +1,41 @@
-'use client';
+"use client";
 
-import { useMemo, useState } from 'react';
-import { CheckCircle2, RefreshCw, XCircle } from 'lucide-react';
+import { useMemo, useState } from "react";
+import { CheckCircle2, RefreshCw, XCircle } from "lucide-react";
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { type ComprehensionQuizActivityProps } from '@/types/activities';
-import { type Activity } from '@/lib/schemas/validators';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { type ComprehensionQuizActivityProps } from "@/types/activities";
+import { type Activity } from "@/lib/schemas/validators";
 import {
   buildPracticeSubmissionEnvelope,
   buildPracticeSubmissionParts,
   normalizePracticeValue,
   type PracticeSubmissionCallbackPayload,
-} from '@math-platform/practice-core/contract';
+} from "@math-platform/practice-core/contract";
 
-export type ComprehensionCheckActivity = Omit<Activity, 'componentKey' | 'props'> & {
-  componentKey: 'comprehension-quiz';
+export type ComprehensionCheckActivity = Omit<Activity, "componentKey" | "props"> & {
+  componentKey: "comprehension-quiz";
   props: ComprehensionQuizActivityProps;
 };
 
 export const COMPREHENSION_CHECK_SUPPORTED_MODES = [
-  'guided_practice',
-  'independent_practice',
-  'assessment',
+  "guided_practice",
+  "independent_practice",
+  "assessment",
 ] as const;
-const COMPREHENSION_CHECK_DEFAULT_MODE = 'assessment' as const;
+const COMPREHENSION_CHECK_DEFAULT_MODE = "assessment" as const;
 
 interface ComprehensionCheckProps {
   activity: ComprehensionCheckActivity;
   onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void;
 }
 
-type Question = ComprehensionQuizActivityProps['questions'][number];
+type Question = ComprehensionQuizActivityProps["questions"][number];
 
 type ShuffledQuestion = Question & { options: string[] };
-
 
 /**
  * Compute a stable unsigned 32-bit hash of a string value.
@@ -51,7 +50,6 @@ function stableHash(value: string) {
   }
   return hash;
 }
-
 
 /**
  * Sort multiple-choice options in a deterministic order based on a question
@@ -77,7 +75,6 @@ function sortOptionsDeterministically(questionId: string, options: string[]) {
     .map((entry) => entry.option);
 }
 
-
 /**
  * Comprehension quiz activity with shuffled options, score tracking, and
  * submission via the practice contract.
@@ -88,15 +85,17 @@ function sortOptionsDeterministically(questionId: string, options: string[]) {
 export function ComprehensionCheck({ activity, onSubmit }: ComprehensionCheckProps) {
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
-  const hasAnswerKeys = activity.props.questions.every((question) => question.correctAnswer !== undefined);
+  const hasAnswerKeys = activity.props.questions.every(
+    (question) => question.correctAnswer !== undefined,
+  );
 
   const questions = activity.props.questions;
 
   const preparedQuestions = useMemo<ShuffledQuestion[]>(() => {
     return questions.map((question) => {
       let baseOptions = question.options;
-      if (!baseOptions && question.type === 'true-false') {
-        baseOptions = ['True', 'False'];
+      if (!baseOptions && question.type === "true-false") {
+        baseOptions = ["True", "False"];
       }
 
       if (baseOptions) {
@@ -122,13 +121,15 @@ export function ComprehensionCheck({ activity, onSubmit }: ComprehensionCheckPro
 
     return {
       question,
-      answer: answer ?? '',
+      answer: answer ?? "",
       isCorrect,
     };
   });
-  const score = questionEvaluations.reduce((count, evaluation) => (evaluation.isCorrect ? count + 1 : count), 0);
+  const score = questionEvaluations.reduce(
+    (count, evaluation) => (evaluation.isCorrect ? count + 1 : count),
+    0,
+  );
   const percentage = totalQuestions === 0 ? 0 : Math.round((score / totalQuestions) * 100);
-
 
   /**
    * Record a student's response to a question.
@@ -140,7 +141,6 @@ export function ComprehensionCheck({ activity, onSubmit }: ComprehensionCheckPro
     if (submitted) return;
     setSelectedAnswers((prev) => ({ ...prev, [questionId]: answer }));
   };
-
 
   /**
    * Submit the quiz, building the practice submission envelope with scored
@@ -163,7 +163,7 @@ export function ComprehensionCheck({ activity, onSubmit }: ComprehensionCheckPro
         buildPracticeSubmissionEnvelope({
           activityId: activity.id,
           mode: activity.props.mode ?? COMPREHENSION_CHECK_DEFAULT_MODE,
-          status: 'submitted',
+          status: "submitted",
           attemptNumber: 1,
           submittedAt: new Date(),
           answers: selectedAnswers,
@@ -176,11 +176,10 @@ export function ComprehensionCheck({ activity, onSubmit }: ComprehensionCheckPro
         }),
       );
     } catch (err) {
-      console.error('ComprehensionCheck submission failed:', err);
+      console.error("ComprehensionCheck submission failed:", err);
       setSubmitted(false);
     }
   };
-
 
   /**
    * Reset the quiz to allow a retry attempt.
@@ -196,10 +195,10 @@ export function ComprehensionCheck({ activity, onSubmit }: ComprehensionCheckPro
         <CardTitle className="flex items-center gap-3 text-2xl">
           {activity.props.title}
           <Badge variant="outline" className="uppercase">
-            {(activity.props.mode ?? COMPREHENSION_CHECK_DEFAULT_MODE).replace('_', ' ')}
+            {(activity.props.mode ?? COMPREHENSION_CHECK_DEFAULT_MODE).replace("_", " ")}
           </Badge>
           {submitted && hasAnswerKeys && (
-            <Badge variant={percentage >= 70 ? 'default' : 'destructive'}>
+            <Badge variant={percentage >= 70 ? "default" : "destructive"}>
               {score}/{totalQuestions} correct ({percentage}%)
             </Badge>
           )}
@@ -236,26 +235,31 @@ export function ComprehensionCheck({ activity, onSubmit }: ComprehensionCheckPro
                     const isSelected = selected === option;
                     const showCorrect = submitted && hasAnswerKeys && option === selected;
                     const optionIsCorrect =
-                      normalizePracticeValue(option) === normalizePracticeValue(question.correctAnswer);
+                      normalizePracticeValue(option) ===
+                      normalizePracticeValue(question.correctAnswer);
 
                     return (
                       <Button
                         key={`${question.id}-${option}-${optionIndex}`}
-                        variant={isSelected ? 'secondary' : 'outline'}
+                        variant={isSelected ? "secondary" : "outline"}
                         className="justify-start text-left h-auto p-4"
                         onClick={() => recordResponse(question.id, option)}
                         disabled={submitted}
                       >
                         <span className="flex-1">{option}</span>
-                        {showCorrect && optionIsCorrect && <CheckCircle2 className="h-4 w-4 text-green-600" />}
-                        {showCorrect && !optionIsCorrect && <XCircle className="h-4 w-4 text-destructive" />}
+                        {showCorrect && optionIsCorrect && (
+                          <CheckCircle2 className="h-4 w-4 text-green-600" />
+                        )}
+                        {showCorrect && !optionIsCorrect && (
+                          <XCircle className="h-4 w-4 text-destructive" />
+                        )}
                       </Button>
                     );
                   })}
                 </div>
               ) : (
                 <Input
-                  value={selected ?? ''}
+                  value={selected ?? ""}
                   onChange={(event) => recordResponse(question.id, event.target.value)}
                   placeholder="Type your answer"
                   disabled={submitted}

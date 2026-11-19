@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { ErrorFallback } from '@/components/error-fallback';
-import { studentDashboardPath } from '@/lib/student/navigation';
+import { useEffect } from "react";
+import { ErrorFallback } from "@/components/error-fallback";
+import { studentDashboardPath } from "@/lib/student/navigation";
 
 interface LessonErrorProps {
   error: Error & { digest?: string };
@@ -19,7 +19,7 @@ interface LessonErrorProps {
  */
 export default function LessonError({ error, reset }: LessonErrorProps) {
   useEffect(() => {
-    console.error('Lesson route error:', error);
+    console.error("Lesson route error:", error);
   }, [error]);
 
   return (

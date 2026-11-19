@@ -20,16 +20,16 @@
 // path is supplied as an argument. Wiring the resolver into the app seam
 // is Phase 3 (app-local).
 
-import { z } from 'zod';
-import type { EquivalenceComponent } from './cross-course-equivalence';
-import type { KnowledgeStateEntry } from './mastery-state';
+import { z } from "zod";
+import type { EquivalenceComponent } from "./cross-course-equivalence";
+import type { KnowledgeStateEntry } from "./mastery-state";
 import {
   aggregateComponentMastery,
   computeTransferCredit,
   resolveEquivalenceComponent,
   TRANSFER_POLICY_DEFAULT,
   transferPolicySchema,
-} from './transfer-credit';
+} from "./transfer-credit";
 
 // ---------------------------------------------------------------------------
 // Public types
@@ -143,7 +143,7 @@ export const transferEligibilitySchema = z.strictObject({
  * `transfer-credit.ts` so the behavior is identical at the app seam.
  */
 function courseFromId(nodeId: string): string {
-  return nodeId.split('.').slice(0, 2).join('.');
+  return nodeId.split(".").slice(0, 2).join(".");
 }
 
 /**
@@ -152,7 +152,7 @@ function courseFromId(nodeId: string): string {
  * (kept private here to avoid expanding the FR1 surface).
  */
 function hasEvidence(entry: KnowledgeStateEntry | undefined): boolean {
-  return entry != null && entry.state !== 'untouched';
+  return entry != null && entry.state !== "untouched";
 }
 
 // ---------------------------------------------------------------------------
@@ -163,10 +163,7 @@ function hasEvidence(entry: KnowledgeStateEntry | undefined): boolean {
  * Return `true` iff `componentMastery >= threshold` (inclusive boundary —
  * AD4: a skill at exactly the threshold is eligible). Pure.
  */
-export function isTransferEligible(
-  componentMastery: number,
-  threshold: number,
-): boolean {
+export function isTransferEligible(componentMastery: number, threshold: number): boolean {
   return componentMastery >= threshold;
 }
 
@@ -228,18 +225,18 @@ function flagOne(
   // 1. Resolve component.
   const component = resolveEquivalenceComponent(skillId, components);
   if (!component) {
-    return { skillId, eligible: false, reason: 'no-equivalence-component' };
+    return { skillId, eligible: false, reason: "no-equivalence-component" };
   }
 
   // 2. Size guard (AD5 — single-node false positive).
   if (component.nodeIds.length < config.requireMinComponentSize) {
-    return { skillId, eligible: false, reason: 'component-too-small' };
+    return { skillId, eligible: false, reason: "component-too-small" };
   }
 
   // 3. Already mastered? Skip is meaningless (the student has it).
   const targetEntry = state.get(skillId);
-  if (targetEntry && targetEntry.state === 'mastered') {
-    return { skillId, eligible: false, reason: 'already-mastered' };
+  if (targetEntry && targetEntry.state === "mastered") {
+    return { skillId, eligible: false, reason: "already-mastered" };
   }
 
   // 4. Source-course-only mastery mean. Excludes the target itself and any
@@ -258,14 +255,14 @@ function flagOne(
   }
 
   if (sourceCount === 0) {
-    return { skillId, eligible: false, reason: 'no-source-evidence' };
+    return { skillId, eligible: false, reason: "no-source-evidence" };
   }
 
   const componentMastery = sourceSum / sourceCount;
 
   // 5. Threshold gate (AD4 inclusive boundary).
   if (!isTransferEligible(componentMastery, config.eligibilityThreshold)) {
-    return { skillId, eligible: false, reason: 'insufficient-mastery' };
+    return { skillId, eligible: false, reason: "insufficient-mastery" };
   }
 
   // 6. Reuse FR2 pipeline for the seeded mastery + source-course label.
@@ -274,7 +271,7 @@ function flagOne(
   //    locked in cross-course sufficiency.
   const credit = computeTransferCredit(skillId, components, state);
   if (!credit.applied) {
-    return { skillId, eligible: false, reason: 'credit-not-applied' };
+    return { skillId, eligible: false, reason: "credit-not-applied" };
   }
 
   return {
@@ -284,7 +281,7 @@ function flagOne(
     componentId: credit.componentId,
     seededMastery: credit.seededMastery,
     componentMastery,
-    reason: 'transfer-credit',
+    reason: "transfer-credit",
   };
 }
 

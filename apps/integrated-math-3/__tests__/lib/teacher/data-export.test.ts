@@ -13,36 +13,28 @@ describe("toCsv", () => {
   });
 
   it("escapes fields containing commas", () => {
-    const data = [
-      { name: "Smith, John", value: 1 },
-    ];
+    const data = [{ name: "Smith, John", value: 1 }];
 
     const result = toCsv(data);
     expect(result).toBe('name,value\n"Smith, John",1');
   });
 
   it("escapes fields containing double quotes", () => {
-    const data = [
-      { name: 'She said "hello"', value: 1 },
-    ];
+    const data = [{ name: 'She said "hello"', value: 1 }];
 
     const result = toCsv(data);
     expect(result).toBe('name,value\n"She said ""hello""",1');
   });
 
   it("escapes fields containing newlines", () => {
-    const data = [
-      { name: "line1\nline2", value: 1 },
-    ];
+    const data = [{ name: "line1\nline2", value: 1 }];
 
     const result = toCsv(data);
     expect(result).toBe('name,value\n"line1\nline2",1');
   });
 
   it("handles null and undefined values as empty strings", () => {
-    const data = [
-      { name: "Alice", score: null, extra: undefined },
-    ];
+    const data = [{ name: "Alice", score: null, extra: undefined }];
 
     const result = toCsv(data);
     expect(result).toBe("name,score,extra\nAlice,,");
@@ -205,7 +197,7 @@ describe("formatClassExport", () => {
   });
 });
 
-it('neutralizes formula-leading text while preserving numeric values', () => {
-  expect(toCsv([{ name: '=1+1', score: -2 }])).toBe('name,score\n"\'=1+1",-2');
-  expect(toCsv([{ name: '  @SUM(A1)' }])).toContain("'  @SUM(A1)");
+it("neutralizes formula-leading text while preserving numeric values", () => {
+  expect(toCsv([{ name: "=1+1", score: -2 }])).toBe('name,score\n"\'=1+1",-2');
+  expect(toCsv([{ name: "  @SUM(A1)" }])).toContain("'  @SUM(A1)");
 });

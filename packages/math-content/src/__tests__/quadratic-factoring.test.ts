@@ -1,8 +1,8 @@
-import { describe, it, expect, vi } from 'vitest';
-import { generateQuadraticFactoring } from '../quadratic-factoring';
-import { multiplyPoly } from '../utils/polynomial';
-import { checkEquivalence } from '../algebraic';
-import * as prng from '../utils/prng';
+import { describe, it, expect, vi } from "vitest";
+import { generateQuadraticFactoring } from "../quadratic-factoring";
+import { multiplyPoly } from "../utils/polynomial";
+import { checkEquivalence } from "../algebraic";
+import * as prng from "../utils/prng";
 
 /**
  * quadratic-factoring.ts — Quadratic factoring problem generator
@@ -33,20 +33,20 @@ interface ParsedFactoredForm {
 }
 
 function parseBinomial(inner: string): { m: number; n: number } {
-  const s = inner.replace(/\s/g, '');
-  if (!s.includes('x')) {
+  const s = inner.replace(/\s/g, "");
+  if (!s.includes("x")) {
     return { m: 0, n: Number(s) };
   }
-  const [coeffPart, tail] = s.split('x');
+  const [coeffPart, tail] = s.split("x");
   let m: number;
-  if (coeffPart === '' || coeffPart === '+') {
+  if (coeffPart === "" || coeffPart === "+") {
     m = 1;
-  } else if (coeffPart === '-') {
+  } else if (coeffPart === "-") {
     m = -1;
   } else {
     m = Number(coeffPart);
   }
-  const n = tail === '' ? 0 : Number(tail);
+  const n = tail === "" ? 0 : Number(tail);
   if (!Number.isFinite(m) || !Number.isFinite(n)) {
     throw new Error(`Cannot parse binomial "${inner}"`);
   }
@@ -54,7 +54,7 @@ function parseBinomial(inner: string): { m: number; n: number } {
 }
 
 function parseFactoredForm(form: string): ParsedFactoredForm {
-  const trimmed = form.replace(/\s/g, '');
+  const trimmed = form.replace(/\s/g, "");
 
   // Optional integer leading coefficient before the first factor, e.g. "2(x-1)(x+3)".
   let leading = 1;
@@ -107,27 +107,27 @@ function expandFactoredForm(form: string): number[] {
 // Return shape
 // ---------------------------------------------------------------------------
 
-describe('quadratic-factoring return shape', () => {
-  it('returns all required top-level keys', () => {
+describe("quadratic-factoring return shape", () => {
+  it("returns all required top-level keys", () => {
     const r = generateQuadraticFactoring({ seed: 1 }) as QuadraticFactoringProblem;
-    expect(r).toHaveProperty('quadratic');
-    expect(r).toHaveProperty('factoredForm');
-    expect(r).toHaveProperty('a');
-    expect(r).toHaveProperty('b');
-    expect(r).toHaveProperty('c');
-    expect(r).toHaveProperty('roots');
-    expect(r).toHaveProperty('steps');
+    expect(r).toHaveProperty("quadratic");
+    expect(r).toHaveProperty("factoredForm");
+    expect(r).toHaveProperty("a");
+    expect(r).toHaveProperty("b");
+    expect(r).toHaveProperty("c");
+    expect(r).toHaveProperty("roots");
+    expect(r).toHaveProperty("steps");
   });
 
-  it('quadratic and factoredForm are non-empty strings', () => {
+  it("quadratic and factoredForm are non-empty strings", () => {
     const r = generateQuadraticFactoring({ seed: 1 }) as QuadraticFactoringProblem;
-    expect(typeof r.quadratic).toBe('string');
+    expect(typeof r.quadratic).toBe("string");
     expect(r.quadratic.length).toBeGreaterThan(0);
-    expect(typeof r.factoredForm).toBe('string');
+    expect(typeof r.factoredForm).toBe("string");
     expect(r.factoredForm.length).toBeGreaterThan(0);
   });
 
-  it('coefficients a, b, c are finite integers', () => {
+  it("coefficients a, b, c are finite integers", () => {
     const r = generateQuadraticFactoring({ seed: 1 }) as QuadraticFactoringProblem;
     expect(Number.isFinite(r.a)).toBe(true);
     expect(Number.isFinite(r.b)).toBe(true);
@@ -137,7 +137,7 @@ describe('quadratic-factoring return shape', () => {
     expect(Number.isInteger(r.c)).toBe(true);
   });
 
-  it('roots is a pair of finite numbers', () => {
+  it("roots is a pair of finite numbers", () => {
     const r = generateQuadraticFactoring({ seed: 1 }) as QuadraticFactoringProblem;
     expect(Array.isArray(r.roots)).toBe(true);
     expect(r.roots).toHaveLength(2);
@@ -145,12 +145,12 @@ describe('quadratic-factoring return shape', () => {
     expect(Number.isFinite(r.roots[1])).toBe(true);
   });
 
-  it('steps is a non-empty string array', () => {
+  it("steps is a non-empty string array", () => {
     const r = generateQuadraticFactoring({ seed: 1 }) as QuadraticFactoringProblem;
     expect(Array.isArray(r.steps)).toBe(true);
     expect(r.steps.length).toBeGreaterThan(0);
     for (const s of r.steps) {
-      expect(typeof s).toBe('string');
+      expect(typeof s).toBe("string");
       expect(s.length).toBeGreaterThan(0);
     }
   });
@@ -160,14 +160,14 @@ describe('quadratic-factoring return shape', () => {
 // Determinism
 // ---------------------------------------------------------------------------
 
-describe('quadratic-factoring determinism', () => {
-  it('same seed produces identical output', () => {
+describe("quadratic-factoring determinism", () => {
+  it("same seed produces identical output", () => {
     const a = generateQuadraticFactoring({ seed: 1 });
     const b = generateQuadraticFactoring({ seed: 1 });
     expect(a).toEqual(b);
   });
 
-  it('same seed produces identical output across 10 consecutive seeds', () => {
+  it("same seed produces identical output across 10 consecutive seeds", () => {
     for (let seed = 0; seed < 10; seed++) {
       const first = generateQuadraticFactoring({ seed });
       const second = generateQuadraticFactoring({ seed });
@@ -175,7 +175,7 @@ describe('quadratic-factoring determinism', () => {
     }
   });
 
-  it('different seeds produce different output', () => {
+  it("different seeds produce different output", () => {
     const a = generateQuadraticFactoring({ seed: 1 }) as QuadraticFactoringProblem;
     const b = generateQuadraticFactoring({ seed: 99 }) as QuadraticFactoringProblem;
     const same =
@@ -192,22 +192,22 @@ describe('quadratic-factoring determinism', () => {
 // Backward-generation correctness falsifier
 // ---------------------------------------------------------------------------
 
-describe('quadratic-factoring backward-generation correctness', () => {
-  it('expansion of factoredForm equals ax^2 + bx + c for seed 1', () => {
+describe("quadratic-factoring backward-generation correctness", () => {
+  it("expansion of factoredForm equals ax^2 + bx + c for seed 1", () => {
     const r = generateQuadraticFactoring({ seed: 1 }) as QuadraticFactoringProblem;
     const expanded = expandFactoredForm(r.factoredForm);
     const expected = normalizePoly([r.c, r.b, r.a]);
     expect(expanded).toEqual(expected);
   });
 
-  it('coefficients match the roots via Vieta for seed 1', () => {
+  it("coefficients match the roots via Vieta for seed 1", () => {
     const r = generateQuadraticFactoring({ seed: 1 }) as QuadraticFactoringProblem;
     const [r1, r2] = r.roots;
     expect(r.b).toBe(-r.a * (r1 + r2));
     expect(r.c).toBe(r.a * r1 * r2);
   });
 
-  it('factoredForm expands to the quadratic across 50 seeds', () => {
+  it("factoredForm expands to the quadratic across 50 seeds", () => {
     for (let seed = 1; seed <= 50; seed++) {
       const r = generateQuadraticFactoring({ seed }) as QuadraticFactoringProblem;
       const expanded = expandFactoredForm(r.factoredForm);
@@ -216,7 +216,7 @@ describe('quadratic-factoring backward-generation correctness', () => {
     }
   });
 
-  it('roots satisfy the quadratic across 50 seeds', () => {
+  it("roots satisfy the quadratic across 50 seeds", () => {
     for (let seed = 1; seed <= 50; seed++) {
       const r = generateQuadraticFactoring({ seed }) as QuadraticFactoringProblem;
       for (const root of r.roots) {
@@ -231,8 +231,8 @@ describe('quadratic-factoring backward-generation correctness', () => {
 // Formatting guards
 // ---------------------------------------------------------------------------
 
-describe('quadratic-factoring formatting guards', () => {
-  it('quadratic string never contains forbidden formatting artifacts', () => {
+describe("quadratic-factoring formatting guards", () => {
+  it("quadratic string never contains forbidden formatting artifacts", () => {
     for (let seed = 0; seed < 50; seed++) {
       const r = generateQuadraticFactoring({ seed }) as QuadraticFactoringProblem;
       expect(r.quadratic).not.toMatch(/(^|[^0-9])1x\^2/);
@@ -242,7 +242,7 @@ describe('quadratic-factoring formatting guards', () => {
     }
   });
 
-  it('factoredForm string never contains forbidden formatting artifacts', () => {
+  it("factoredForm string never contains forbidden formatting artifacts", () => {
     for (let seed = 0; seed < 50; seed++) {
       const r = generateQuadraticFactoring({ seed }) as QuadraticFactoringProblem;
       expect(r.factoredForm).not.toMatch(/(^|[^0-9])1x\^2/);
@@ -257,16 +257,16 @@ describe('quadratic-factoring formatting guards', () => {
 // Step content
 // ---------------------------------------------------------------------------
 
-describe('quadratic-factoring solution steps', () => {
-  it('steps include the required grouping-step phrases', () => {
+describe("quadratic-factoring solution steps", () => {
+  it("steps include the required grouping-step phrases", () => {
     const r = generateQuadraticFactoring({ seed: 1 }) as QuadraticFactoringProblem;
-    const joined = r.steps.join('\n').toLowerCase();
-    expect(joined).toContain('quadratic');
-    expect(joined).toContain('factor pair');
-    expect(joined).toContain('rewrite');
-    expect(joined).toContain('middle');
-    expect(joined).toContain('group');
-    expect(joined).toContain('factored form');
+    const joined = r.steps.join("\n").toLowerCase();
+    expect(joined).toContain("quadratic");
+    expect(joined).toContain("factor pair");
+    expect(joined).toContain("rewrite");
+    expect(joined).toContain("middle");
+    expect(joined).toContain("group");
+    expect(joined).toContain("factored form");
   });
 });
 
@@ -274,8 +274,8 @@ describe('quadratic-factoring solution steps', () => {
 // Case coverage
 // ---------------------------------------------------------------------------
 
-describe('quadratic-factoring case coverage', () => {
-  it('covers all required special forms across 100 seeds', () => {
+describe("quadratic-factoring case coverage", () => {
+  it("covers all required special forms across 100 seeds", () => {
     let monicEasy = false;
     let aGreaterThanOne = false;
     let perfectSquare = false;
@@ -308,10 +308,10 @@ describe('quadratic-factoring case coverage', () => {
 // Expression-equivalence grading sanity
 // ---------------------------------------------------------------------------
 
-describe('quadratic-factoring expression equivalence', () => {
-  it('checkEquivalence accepts both orderings of the factors', () => {
-    const stored = '(x - 2)(x + 3)';
-    const swapped = '(x + 3)(x - 2)';
+describe("quadratic-factoring expression equivalence", () => {
+  it("checkEquivalence accepts both orderings of the factors", () => {
+    const stored = "(x - 2)(x + 3)";
+    const swapped = "(x + 3)(x - 2)";
     expect(checkEquivalence(stored, swapped)).toBe(true);
   });
 });
@@ -320,9 +320,9 @@ describe('quadratic-factoring expression equivalence', () => {
 // Single-pass generation (no re-roll) — FR-8
 // ---------------------------------------------------------------------------
 
-describe('quadratic-factoring single-pass generation', () => {
-  it('makes exactly one call to mulberry32 per generation', () => {
-    const spy = vi.spyOn(prng, 'mulberry32');
+describe("quadratic-factoring single-pass generation", () => {
+  it("makes exactly one call to mulberry32 per generation", () => {
+    const spy = vi.spyOn(prng, "mulberry32");
     try {
       for (let seed = 1; seed <= 20; seed++) {
         spy.mockClear();

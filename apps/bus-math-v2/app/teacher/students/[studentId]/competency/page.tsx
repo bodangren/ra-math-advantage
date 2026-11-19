@@ -1,10 +1,10 @@
-import { redirect } from 'next/navigation';
-import Link from 'next/link';
-import { ChevronLeft } from 'lucide-react';
-import { requireTeacherSessionClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
-import { StudentCompetencyDetailGrid } from '@/components/teacher/StudentCompetencyDetailGrid';
-import type { StudentCompetencyDetail } from '@math-platform/teacher-reporting-core';
+import { redirect } from "next/navigation";
+import Link from "next/link";
+import { ChevronLeft } from "lucide-react";
+import { requireTeacherSessionClaims } from "@/lib/auth/server";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
+import { StudentCompetencyDetailGrid } from "@/components/teacher/StudentCompetencyDetailGrid";
+import type { StudentCompetencyDetail } from "@math-platform/teacher-reporting-core";
 
 /**
  * Page wrapper for viewing a specific student's competency detail.
@@ -13,8 +13,12 @@ import type { StudentCompetencyDetail } from '@math-platform/teacher-reporting-c
  * @param props.params - The route parameters containing the student ID.
  * @returns The student competency detail page or a redirect.
  */
-export default async function TeacherStudentCompetencyPage({ params }: { params: { studentId: string } }) {
-  const claims = await requireTeacherSessionClaims('/teacher/students/[studentId]/competency');
+export default async function TeacherStudentCompetencyPage({
+  params,
+}: {
+  params: { studentId: string };
+}) {
+  const claims = await requireTeacherSessionClaims("/teacher/students/[studentId]/competency");
 
   const studentCompetencyDetail = await fetchInternalQuery(
     internal.teacher.getTeacherStudentCompetencyDetail,
@@ -24,7 +28,7 @@ export default async function TeacherStudentCompetencyPage({ params }: { params:
     },
   );
 
-  if (!studentCompetencyDetail) redirect('/teacher/competency');
+  if (!studentCompetencyDetail) redirect("/teacher/competency");
 
   const detail = studentCompetencyDetail as StudentCompetencyDetail;
 
@@ -32,7 +36,10 @@ export default async function TeacherStudentCompetencyPage({ params }: { params:
     <main className="min-h-screen bg-muted/10 py-10">
       <div className="container mx-auto px-4 space-y-6">
         <header className="space-y-1">
-          <Link href="/teacher/competency" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
+          <Link
+            href="/teacher/competency"
+            className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+          >
             <ChevronLeft className="size-4" aria-hidden="true" />
             Competency Heatmap
           </Link>

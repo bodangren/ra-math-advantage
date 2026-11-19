@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import type { ReactNode } from 'react';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import type { ReactNode } from "react";
 
 export interface NavItem {
   href: string;
@@ -37,8 +37,8 @@ export function HeaderSimple({
   brandFull,
   brandIcon,
   brandSubtitle,
-  accentColor = 'oklch(0.62 0.18 264)',
-  bgClassName = 'bg-slate-dark',
+  accentColor = "oklch(0.62 0.18 264)",
+  bgClassName = "bg-slate-dark",
   userMenu,
 }: HeaderSimpleProps) {
   const pathname = usePathname();
@@ -57,7 +57,7 @@ export function HeaderSimple({
             {brandIcon && (
               <div
                 className="flex items-center justify-center w-8 h-8 rounded font-mono-num text-base font-bold text-white shrink-0"
-                style={{ backgroundColor: accentColor.replace('0.62', '0.46') }}
+                style={{ backgroundColor: accentColor.replace("0.62", "0.46") }}
                 aria-hidden="true"
               >
                 {brandIcon}
@@ -76,10 +76,7 @@ export function HeaderSimple({
             </div>
           </Link>
 
-          <nav
-            className="hidden md:flex items-center gap-0.5 flex-1"
-            aria-label="Main navigation"
-          >
+          <nav className="hidden md:flex items-center gap-0.5 flex-1" aria-label="Main navigation">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
               return (
@@ -87,9 +84,7 @@ export function HeaderSimple({
                   key={item.href}
                   href={item.href}
                   className={`relative px-3 py-2 text-sm font-body font-medium rounded-md transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
-                    isActive
-                      ? 'text-white'
-                      : 'text-white/55 hover:text-white hover:bg-white/[0.07]'
+                    isActive ? "text-white" : "text-white/55 hover:text-white hover:bg-white/[0.07]"
                   }`}
                 >
                   {item.label}
@@ -104,11 +99,7 @@ export function HeaderSimple({
             })}
           </nav>
 
-          {userMenu && (
-            <div className="ml-auto md:ml-0 flex items-center shrink-0">
-              {userMenu}
-            </div>
-          )}
+          {userMenu && <div className="ml-auto md:ml-0 flex items-center shrink-0">{userMenu}</div>}
         </div>
       </div>
     </header>

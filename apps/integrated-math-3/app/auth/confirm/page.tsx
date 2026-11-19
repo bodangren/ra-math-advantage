@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 /**
  * Renders the account confirmation success page shown after email verification.
@@ -15,7 +15,7 @@ export default function ConfirmPage() {
       <Link
         href="/auth/login"
         className="inline-block rounded-md px-4 py-2 text-sm font-medium text-primary-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring"
-        style={{ backgroundColor: 'oklch(0.46 0.18 264)' }}
+        style={{ backgroundColor: "oklch(0.46 0.18 264)" }}
       >
         Sign In
       </Link>

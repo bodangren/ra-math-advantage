@@ -7,9 +7,9 @@
  */
 
 export type MathSegment =
-  | { type: 'markdown'; content: string }
-  | { type: 'block-math'; content: string }
-  | { type: 'inline-math'; content: string };
+  | { type: "markdown"; content: string }
+  | { type: "block-math"; content: string }
+  | { type: "inline-math"; content: string };
 
 /**
  * Splits a content string into segments, extracting block and inline math.
@@ -28,8 +28,8 @@ export function parseMathSegments(content: string): MathSegment[] {
       const textBefore = content.slice(lastIndex, match.index);
       segments.push(...splitInlineMath(textBefore));
     }
-    const mathContent = (match[1] ?? match[2] ?? '').trim();
-    segments.push({ type: 'block-math', content: mathContent });
+    const mathContent = (match[1] ?? match[2] ?? "").trim();
+    segments.push({ type: "block-math", content: mathContent });
     lastIndex = match.index + match[0].length;
   }
 
@@ -55,14 +55,14 @@ function splitInlineMath(text: string): MathSegment[] {
 
   while ((match = inlineMathRe.exec(text)) !== null) {
     if (match.index > lastIndex) {
-      segments.push({ type: 'markdown', content: text.slice(lastIndex, match.index) });
+      segments.push({ type: "markdown", content: text.slice(lastIndex, match.index) });
     }
-    segments.push({ type: 'inline-math', content: match[1].trim() });
+    segments.push({ type: "inline-math", content: match[1].trim() });
     lastIndex = match.index + match[0].length;
   }
 
   if (lastIndex < text.length) {
-    segments.push({ type: 'markdown', content: text.slice(lastIndex) });
+    segments.push({ type: "markdown", content: text.slice(lastIndex) });
   }
 
   return segments;

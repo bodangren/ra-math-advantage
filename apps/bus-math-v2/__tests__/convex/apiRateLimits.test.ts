@@ -1,6 +1,10 @@
-import { describe, expect, it, vi, beforeEach } from 'vitest';
+import { describe, expect, it, vi, beforeEach } from "vitest";
 import type { Id } from "../../convex/_generated/dataModel";
-import { checkAndIncrementApiRateLimitHandler, RATE_LIMIT_CONFIG, logRateLimitViolation } from "../../convex/apiRateLimits";
+import {
+  checkAndIncrementApiRateLimitHandler,
+  RATE_LIMIT_CONFIG,
+  logRateLimitViolation,
+} from "../../convex/apiRateLimits";
 
 const mockInsert = vi.fn();
 const mockPatch = vi.fn();
@@ -11,7 +15,7 @@ const mockConsoleError = vi.fn();
 
 const mockGetUserIdentity = vi.fn().mockResolvedValue({ email: "test@example.com" });
 
-vi.stubGlobal('console', {
+vi.stubGlobal("console", {
   ...console,
   error: mockConsoleError,
 });
@@ -189,22 +193,20 @@ describe("apiRateLimits handler", () => {
         endpoint: "teacher/ai-error-summary",
       });
       expect(aiErrorResult.remaining).toBe(
-        RATE_LIMIT_CONFIG["teacher/ai-error-summary"].maxRequests - 1
+        RATE_LIMIT_CONFIG["teacher/ai-error-summary"].maxRequests - 1,
       );
     });
     it("handles concurrent requests gracefully - second request catches duplicate and patches", async () => {
       const now = Date.now();
       const ctx = createMockCtx();
 
-      mockUnique
-        .mockResolvedValueOnce(null)
-        .mockResolvedValueOnce({
-          _id: "existing-id",
-          userId: "test-user-id",
-          endpoint: "phases/complete",
-          requestCount: 1,
-          windowStart: now,
-        });
+      mockUnique.mockResolvedValueOnce(null).mockResolvedValueOnce({
+        _id: "existing-id",
+        userId: "test-user-id",
+        endpoint: "phases/complete",
+        requestCount: 1,
+        windowStart: now,
+      });
 
       mockInsert.mockRejectedValueOnce(new Error("duplicate key value violates unique constraint"));
 
@@ -226,15 +228,13 @@ describe("apiRateLimits handler", () => {
       const now = Date.now();
       const ctx = createMockCtx();
 
-      mockUnique
-        .mockResolvedValueOnce(null)
-        .mockResolvedValueOnce({
-          _id: "existing-id",
-          userId: "test-user-id",
-          endpoint: "phases/complete",
-          requestCount: 60,
-          windowStart: now,
-        });
+      mockUnique.mockResolvedValueOnce(null).mockResolvedValueOnce({
+        _id: "existing-id",
+        userId: "test-user-id",
+        endpoint: "phases/complete",
+        requestCount: 60,
+        windowStart: now,
+      });
 
       mockInsert.mockRejectedValueOnce(new Error("duplicate key value violates unique constraint"));
       mockConsoleError.mockClear();
@@ -299,10 +299,13 @@ describe("RATE_LIMIT_CONFIG", () => {
 
       expect(result.allowed).toBe(true);
       expect(result.remaining).toBe(limit - 1);
-      expect(mockInsert).toHaveBeenCalledWith("api_rate_limits", expect.objectContaining({
-        requestCount: 1,
-        endpoint,
-      }));
+      expect(mockInsert).toHaveBeenCalledWith(
+        "api_rate_limits",
+        expect.objectContaining({
+          requestCount: 1,
+          endpoint,
+        }),
+      );
     }
   });
 });
@@ -345,7 +348,7 @@ describe("logRateLimitViolation", () => {
         "test-id" as unknown as Id<"profiles">,
         endpoint,
         expectedLimit,
-        Date.now() + 60000
+        Date.now() + 60000,
       );
 
       const loggedObj = JSON.parse(mockConsoleError.mock.calls[0][0] as string);

@@ -20,25 +20,25 @@ import type {
   GeneratorInput,
   GeneratorOutput,
   GradingMetadata,
-} from '@math-platform/knowledge-space-practice';
-import { generateLinearEquation } from '../../linear-equation-solver';
-import { generateSystemOfEquations } from '../../system-of-equations-solver';
-import { generateQuadraticFactoring } from '../../quadratic-factoring';
-import { generateQuadraticFormula } from '../../quadratic-formula';
-import type { MathGenerator } from './registry';
+} from "@math-platform/knowledge-space-practice";
+import { generateLinearEquation } from "../../linear-equation-solver";
+import { generateSystemOfEquations } from "../../system-of-equations-solver";
+import { generateQuadraticFactoring } from "../../quadratic-factoring";
+import { generateQuadraticFormula } from "../../quadratic-formula";
+import type { MathGenerator } from "./registry";
 
 // ---------------------------------------------------------------------------
 // linear-equation-solver adapter
 // ---------------------------------------------------------------------------
 
 export const linearEquationAdapter: MathGenerator = {
-  key: 'linear-equation-solver',
+  key: "linear-equation-solver",
   nodeIds: [
     // Real IM1 skill IDs that exist in packages/math-content/src/knowledge-space/cross-course-edges.json
-    'math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides',
+    "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
   ],
   description:
-    'Generates single-variable linear equations of the form a*x + b = c via backward construction. The answer is sometimes integer, sometimes rational.',
+    "Generates single-variable linear equations of the form a*x + b = c via backward construction. The answer is sometimes integer, sometimes rational.",
   generate: (input: GeneratorInput): GeneratorOutput => {
     const problem = generateLinearEquation({ seed: input.seed });
 
@@ -50,7 +50,7 @@ export const linearEquationAdapter: MathGenerator = {
     const gradingMetadata: GradingMetadata = {
       partAnswers: { x: problem.answer },
       partMaxScores: { x: 1 },
-      partGradingRules: { x: 'numeric_tolerance' },
+      partGradingRules: { x: "numeric_tolerance" },
       partTolerances: { x: 1e-9 },
     };
 
@@ -75,14 +75,14 @@ export const linearEquationAdapter: MathGenerator = {
 // ---------------------------------------------------------------------------
 
 export const systemOfEquationsAdapter: MathGenerator = {
-  key: 'system-of-equations-solver',
+  key: "system-of-equations-solver",
   nodeIds: [
     // Real IM1 skill IDs that exist in packages/math-content/src/knowledge-space/cross-course-edges.json
-    'math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met',
-    'math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit',
+    "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
+    "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
   ],
   description:
-    'Generates 2×2 systems of linear equations with a unique integer solution. Backward construction guarantees the answer satisfies both equations.',
+    "Generates 2×2 systems of linear equations with a unique integer solution. Backward construction guarantees the answer satisfies both equations.",
   generate: (input: GeneratorInput): GeneratorOutput => {
     const problem = generateSystemOfEquations({ seed: input.seed });
 
@@ -95,7 +95,7 @@ export const systemOfEquationsAdapter: MathGenerator = {
     const gradingMetadata: GradingMetadata = {
       partAnswers: { x: problem.answer.x, y: problem.answer.y },
       partMaxScores: { x: 1, y: 1 },
-      partGradingRules: { x: 'numeric_tolerance', y: 'numeric_tolerance' },
+      partGradingRules: { x: "numeric_tolerance", y: "numeric_tolerance" },
       partTolerances: { x: 1e-9, y: 1e-9 },
     };
 
@@ -123,12 +123,10 @@ export const systemOfEquationsAdapter: MathGenerator = {
 // ---------------------------------------------------------------------------
 
 export const quadraticFactoringAdapter: MathGenerator = {
-  key: 'quadratic-factoring',
-  nodeIds: [
-    'math.im3.skill.1.4.solve-quadratic-equations-by-factoring',
-  ],
+  key: "quadratic-factoring",
+  nodeIds: ["math.im3.skill.1.4.solve-quadratic-equations-by-factoring"],
   description:
-    'Generates quadratic factoring problems (monic, a>1, perfect square, difference of squares) via backward construction. The expected answer is the factored form; grading uses expression_equivalence so (x+3)(x-2) and (x-2)(x+3) both score.',
+    "Generates quadratic factoring problems (monic, a>1, perfect square, difference of squares) via backward construction. The expected answer is the factored form; grading uses expression_equivalence so (x+3)(x-2) and (x-2)(x+3) both score.",
   generate: (input: GeneratorInput): GeneratorOutput => {
     const problem = generateQuadraticFactoring({ seed: input.seed });
 
@@ -137,7 +135,7 @@ export const quadraticFactoringAdapter: MathGenerator = {
     const gradingMetadata: GradingMetadata = {
       partAnswers: { factoredForm: problem.factoredForm },
       partMaxScores: { factoredForm: 1 },
-      partGradingRules: { factoredForm: 'expression_equivalence' },
+      partGradingRules: { factoredForm: "expression_equivalence" },
     };
 
     return {
@@ -161,12 +159,10 @@ export const quadraticFactoringAdapter: MathGenerator = {
 // ---------------------------------------------------------------------------
 
 export const quadraticFormulaAdapter: MathGenerator = {
-  key: 'quadratic-formula',
-  nodeIds: [
-    'math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations',
-  ],
+  key: "quadratic-formula",
+  nodeIds: ["math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations"],
   description:
-    'Generates quadratic equations covering integer, repeated, irrational, and complex-conjugate root regimes. Applies the quadratic formula and presents simplified roots.',
+    "Generates quadratic equations covering integer, repeated, irrational, and complex-conjugate root regimes. Applies the quadratic formula and presents simplified roots.",
   generate: (input: GeneratorInput): GeneratorOutput => {
     const problem = generateQuadraticFormula({ seed: input.seed });
 
@@ -174,7 +170,10 @@ export const quadraticFormulaAdapter: MathGenerator = {
 
     const partAnswers: Record<string, unknown> = { discriminant: problem.discriminant };
     const partMaxScores: Record<string, number> = { discriminant: 1 };
-    const partGradingRules: Record<string, 'exact_match' | 'numeric_tolerance' | 'expression_equivalence'> = { discriminant: 'numeric_tolerance' };
+    const partGradingRules: Record<
+      string,
+      "exact_match" | "numeric_tolerance" | "expression_equivalence"
+    > = { discriminant: "numeric_tolerance" };
     const partTolerances: Record<string, number> = { discriminant: 1e-9 };
 
     for (let i = 0; i < problem.roots.length; i++) {
@@ -182,11 +181,11 @@ export const quadraticFormulaAdapter: MathGenerator = {
       const root = problem.roots[i];
       partAnswers[key] = root.value;
       partMaxScores[key] = 1;
-      if (typeof root.value === 'number') {
-        partGradingRules[key] = 'numeric_tolerance';
+      if (typeof root.value === "number") {
+        partGradingRules[key] = "numeric_tolerance";
         partTolerances[key] = 1e-9;
       } else {
-        partGradingRules[key] = 'exact_match';
+        partGradingRules[key] = "exact_match";
       }
     }
 

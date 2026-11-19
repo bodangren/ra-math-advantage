@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const MODULE9_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Unit Circle and Special Angles (HSF-TF.A.1, HSF-TF.A.2)
@@ -36,7 +36,8 @@ export const MODULE9_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "graphing-explorer:sine-cosine-graphs",
     componentKey: "graphing-explorer",
     displayName: "Graph Sine and Cosine Functions",
-    description: "Graph and analyze sine and cosine functions with amplitude, period, and phase shifts",
+    description:
+      "Graph and analyze sine and cosine functions with amplitude, period, and phase shifts",
     objectiveIds: ["HSF-TF.B.5"],
     difficulty: "standard",
     metadata: { module: 9, topic: "trig-graphs" },
@@ -76,7 +77,8 @@ export const MODULE9_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "step-by-step-solver:symmetry-periodicity",
     componentKey: "step-by-step-solver",
     displayName: "Symmetry and Periodicity",
-    description: "Use the unit circle to explain symmetry and periodicity of trigonometric functions",
+    description:
+      "Use the unit circle to explain symmetry and periodicity of trigonometric functions",
     objectiveIds: ["HSF-TF.A.4"],
     difficulty: "standard",
     metadata: { module: 9, topic: "unit-circle" },

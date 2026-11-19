@@ -1,16 +1,16 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { practiceSubmissionEnvelopeSchema } from '@/lib/practice/contract';
+import { practiceSubmissionEnvelopeSchema } from "@/lib/practice/contract";
 import {
   buildTrialBalanceErrorReviewFeedback,
   trialBalanceErrorFamily,
   type TrialBalanceErrorDefinition,
   type TrialBalanceErrorResponse,
-} from '@/lib/practice/engine/families/trial-balance-errors';
-import type { ProblemFamily } from '@/lib/practice/engine/types';
+} from "@/lib/practice/engine/families/trial-balance-errors";
+import type { ProblemFamily } from "@/lib/practice/engine/types";
 
-describe('trial balance error analysis family', () => {
-  it('deterministically generates multi-scenario problems across seeds', () => {
+describe("trial balance error analysis family", () => {
+  it("deterministically generates multi-scenario problems across seeds", () => {
     const family: ProblemFamily<
       TrialBalanceErrorDefinition,
       TrialBalanceErrorResponse,
@@ -19,7 +19,7 @@ describe('trial balance error analysis family', () => {
 
     for (let seed = 1; seed <= 10; seed += 1) {
       const config = {
-        mode: 'guided_practice' as const,
+        mode: "guided_practice" as const,
         scenarioCount: 4,
         includeBalancedScenarios: true,
       };
@@ -28,28 +28,39 @@ describe('trial balance error analysis family', () => {
       const repeat = family.generate(seed, config);
 
       expect(definition).toEqual(repeat);
-      expect(definition.familyKey).toBe('trial-balance-errors');
+      expect(definition.familyKey).toBe("trial-balance-errors");
       expect(definition.scenarios).toHaveLength(4);
       expect(definition.parts).toHaveLength(12);
-      expect(definition.columns.map((column) => column.id)).toEqual(['balanced', 'difference', 'larger-column']);
-      expect(definition.scenarios.every((scenario) => scenario.rowId.startsWith('scenario-'))).toBe(true);
+      expect(definition.columns.map((column) => column.id)).toEqual([
+        "balanced",
+        "difference",
+        "larger-column",
+      ]);
+      expect(definition.scenarios.every((scenario) => scenario.rowId.startsWith("scenario-"))).toBe(
+        true,
+      );
     }
   });
 
-  it('scores scenario outcomes and round-trips the practice envelope', () => {
+  it("scores scenario outcomes and round-trips the practice envelope", () => {
     const definition: TrialBalanceErrorDefinition = trialBalanceErrorFamily.generate(2026, {
-      mode: 'assessment',
+      mode: "assessment",
       scenarioCount: 3,
       includeBalancedScenarios: true,
     });
 
     const solution = trialBalanceErrorFamily.solve(definition);
-    const firstScenario = definition.scenarios.find((scenario) => scenario.archetypeId === 'transposition') ?? definition.scenarios[0];
+    const firstScenario =
+      definition.scenarios.find((scenario) => scenario.archetypeId === "transposition") ??
+      definition.scenarios[0];
     const studentResponse: TrialBalanceErrorResponse = {
       ...solution,
-      [`${firstScenario.rowId}:balanced`]: firstScenario.expectedBalanced === 'still-balances' ? 'out-of-balance' : 'still-balances',
-      [`${firstScenario.rowId}:difference`]: Number(solution[`${firstScenario.rowId}:difference`]) + 9,
-      [`${firstScenario.rowId}:larger-column`]: firstScenario.expectedLargerColumn === 'debit' ? 'credit' : 'debit',
+      [`${firstScenario.rowId}:balanced`]:
+        firstScenario.expectedBalanced === "still-balances" ? "out-of-balance" : "still-balances",
+      [`${firstScenario.rowId}:difference`]:
+        Number(solution[`${firstScenario.rowId}:difference`]) + 9,
+      [`${firstScenario.rowId}:larger-column`]:
+        firstScenario.expectedLargerColumn === "debit" ? "credit" : "debit",
     };
 
     const gradeResult = trialBalanceErrorFamily.grade(definition, studentResponse);
@@ -58,36 +69,38 @@ describe('trial balance error analysis family', () => {
 
     expect(gradeResult.score).toBeLessThan(gradeResult.maxScore);
     expect(reviewed[`${firstScenario.rowId}:balanced`]).toMatchObject({
-      status: 'incorrect',
+      status: "incorrect",
       expectedLabel: expect.stringMatching(/still balances|out of balance/i),
     });
-    expect(reviewed[`${firstScenario.rowId}:difference`].message).toContain('difference');
-    if (firstScenario.archetypeId === 'transposition') {
-      expect(reviewed[`${firstScenario.rowId}:difference`].message).toContain('10a + b');
+    expect(reviewed[`${firstScenario.rowId}:difference`].message).toContain("difference");
+    if (firstScenario.archetypeId === "transposition") {
+      expect(reviewed[`${firstScenario.rowId}:difference`].message).toContain("10a + b");
     }
 
     const parsed = practiceSubmissionEnvelopeSchema.safeParse(envelope);
     expect(parsed.success).toBe(true);
     if (!parsed.success) {
-      throw new Error('Expected trial-balance-errors envelope to parse');
+      throw new Error("Expected trial-balance-errors envelope to parse");
     }
 
-    expect(parsed.data.contractVersion).toBe('practice.v1');
+    expect(parsed.data.contractVersion).toBe("practice.v1");
     expect(parsed.data.answers).toEqual(studentResponse);
     expect(parsed.data.artifact).toMatchObject({
-      kind: 'trial-balance-error-analysis',
-      family: 'trial-balance-errors',
+      kind: "trial-balance-error-analysis",
+      family: "trial-balance-errors",
     });
   });
 
-  it('includes actual digit values in transposition feedback', () => {
+  it("includes actual digit values in transposition feedback", () => {
     const definition: TrialBalanceErrorDefinition = trialBalanceErrorFamily.generate(2026, {
-      mode: 'assessment',
+      mode: "assessment",
       scenarioCount: 10,
       includeBalancedScenarios: true,
     });
 
-    const transpositionScenario = definition.scenarios.find((scenario) => scenario.archetypeId === 'transposition');
+    const transpositionScenario = definition.scenarios.find(
+      (scenario) => scenario.archetypeId === "transposition",
+    );
     if (!transpositionScenario) {
       return;
     }
@@ -102,7 +115,7 @@ describe('trial balance error analysis family', () => {
     const reviewed = buildTrialBalanceErrorReviewFeedback(definition, studentResponse, gradeResult);
 
     const feedbackMessage = reviewed[`${transpositionScenario.rowId}:difference`].message;
-    expect(feedbackMessage).toContain('$');
+    expect(feedbackMessage).toContain("$");
     expect(feedbackMessage).toMatch(/\$\d+/);
   });
 });

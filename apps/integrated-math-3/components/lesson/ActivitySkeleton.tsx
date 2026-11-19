@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
 interface ActivitySkeletonProps {
   className?: string;
@@ -15,7 +15,7 @@ interface ActivitySkeletonProps {
 export function ActivitySkeleton({ className }: ActivitySkeletonProps) {
   return (
     <div
-      className={cn('space-y-4 p-4 rounded-lg border bg-card', className)}
+      className={cn("space-y-4 p-4 rounded-lg border bg-card", className)}
       data-testid="activity-skeleton"
     >
       <div className="space-y-2" data-testid="skeleton-activity-content">

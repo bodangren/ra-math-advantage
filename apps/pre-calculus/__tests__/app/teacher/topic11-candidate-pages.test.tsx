@@ -1,8 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, expect, it, vi } from "vitest";
 
-const NODE =
-  "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs";
+const NODE = "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs";
 const SOURCE = `${NODE}.worked_example`;
 vi.mock("@/curriculum/skill-graph/nodes.json", async (importOriginal) => {
   const original = await importOriginal<{
@@ -11,7 +10,9 @@ vi.mock("@/curriculum/skill-graph/nodes.json", async (importOriginal) => {
   return {
     default: {
       nodes: original.default.nodes.map((node) =>
-        node.id === 'math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs' ? { ...node, reviewStatus: "approved" } : node,
+        node.id === "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs"
+          ? { ...node, reviewStatus: "approved" }
+          : node,
       ),
     },
   };
@@ -23,7 +24,9 @@ vi.mock("@/curriculum/skill-graph/blueprints.json", async (importOriginal) => {
   return {
     default: {
       blueprints: original.default.blueprints.map((row) =>
-        row.nodeId === 'math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs' ? { ...row, reviewStatus: "approved" } : row,
+        row.nodeId === "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs"
+          ? { ...row, reviewStatus: "approved" }
+          : row,
       ),
     },
   };
@@ -34,15 +37,10 @@ vi.mock("@/lib/auth/server", () => ({
   requireTeacherRequestClaims: vi.fn().mockResolvedValue({ sub: "teacher" }),
 }));
 vi.mock("@/lib/convex/server", async () => {
-  const { getTopic11TeacherCandidatesHandler } =
-    await import("@/convex/course");
-  const { submitTopic11TeacherSubmission } =
-    await import("@/convex/learningEvidence");
+  const { getTopic11TeacherCandidatesHandler } = await import("@/convex/course");
+  const { submitTopic11TeacherSubmission } = await import("@/convex/learningEvidence");
   const handler = (value: unknown) =>
-    Reflect.get(value as object, "_handler") as (
-      ctx: any,
-      args: any,
-    ) => Promise<any>;
+    Reflect.get(value as object, "_handler") as (ctx: any, args: any) => Promise<any>;
   return {
     internal: {
       course: {
@@ -76,10 +74,7 @@ import GradebookPage from "@/app/teacher/gradebook/page";
 import { createTopic11DailySubmission } from "@/convex/activities";
 import { PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY } from "@/lib/learning-evidence/precalc-pilot";
 const handler = (value: unknown) =>
-  Reflect.get(value as object, "_handler") as (
-    ctx: any,
-    args: any,
-  ) => Promise<any>;
+  Reflect.get(value as object, "_handler") as (ctx: any, args: any) => Promise<any>;
 function database() {
   const rows: Record<string, any[]> = {
     profiles: [
@@ -115,9 +110,7 @@ function database() {
         isActive: true,
       },
     ],
-    classes: [
-      { _id: "class", teacherId: "teacher", name: "Period 1", archived: false },
-    ],
+    classes: [{ _id: "class", teacherId: "teacher", name: "Period 1", archived: false }],
     class_enrollments: [
       {
         _id: "enrollment",
@@ -224,8 +217,7 @@ function database() {
           return found[0] ?? null;
         },
         collect: async () => found,
-        first: async () =>
-          direction === "desc" ? (found.at(-1) ?? null) : (found[0] ?? null),
+        first: async () => (direction === "desc" ? (found.at(-1) ?? null) : (found[0] ?? null)),
         order: (value: string) => {
           direction = value;
           return result;
@@ -277,24 +269,16 @@ it.each([
         submittedAt: index + 11,
       })),
     );
-    vi.stubGlobal(
-      "fetch",
-      async (_input: RequestInfo | URL, init?: RequestInit) =>
-        POST(new Request("http://local.test/api/teacher/course", init)),
+    vi.stubGlobal("fetch", async (_input: RequestInfo | URL, init?: RequestInit) =>
+      POST(new Request("http://local.test/api/teacher/course", init)),
     );
     const view = render(await Page());
     expect(screen.getByText("Student One")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /Change in Tandem/ })).toBeInTheDocument();
-    expect(screen.getByRole("combobox", { name: "Class" })).toHaveValue(
-      "class",
-    );
-    fireEvent.click(
-      screen.getByRole("button", { name: "Confirm classroom introduction" }),
-    );
+    expect(screen.getByRole("combobox", { name: "Class" })).toHaveValue("class");
+    fireEvent.click(screen.getByRole("button", { name: "Confirm classroom introduction" }));
     await waitFor(() =>
-      expect(
-        screen.getByText("Classroom introduction confirmed."),
-      ).toBeInTheDocument(),
+      expect(screen.getByText("Classroom introduction confirmed.")).toBeInTheDocument(),
     );
     expect(rows.learning_evidence).toHaveLength(1);
     expect(rows.learning_evidence[0]).toMatchObject({
@@ -308,9 +292,7 @@ it.each([
     view.unmount();
     render(await Page());
     expect(
-      screen.getByText(
-        "No Topic 1.1 classroom introductions are waiting for confirmation.",
-      ),
+      screen.getByText("No Topic 1.1 classroom introductions are waiting for confirmation."),
     ).toBeInTheDocument();
   },
 );

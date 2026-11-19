@@ -5,21 +5,21 @@
   "purpose": "Source-of-truth inventory of the 36 direct upgrade candidates. The audit-contract suite asserts that the durable audit report's upgradeCandidates field has exactly 36 rows and that every family in this matrix is present. Wave assignments must be respected by the upgrade plan; intentional changes require updating this file and re-running the contract test.",
 
   "wave_definitions": {
-    "W2-security":      "Phase 2 — Urgent Security Remediation. Vitest 2.x in PTE, Next 15.5.x patch, React 19.2.7, Convex 1.40.x, @vitejs/plugin-rsc 0.5.27.",
-    "W3-in-range":      "Phase 3 — In-Range Refresh & Declaration Alignment. All audit-confirmed in-range direct deps; KaTeX/Lucide/tailwind-merge/ts-fsrs/Vitest/ESLint/eslint-config-next/Node type declaration alignment.",
-    "W4-framework":     "Phase 4 — Coordinated Framework & Toolchain Majors. vinext 0.0.55, Vite 7→8, @vitejs/plugin-react 4→6, Next 15→16, eslint-config-next 15→16, TypeScript 5→6, ESLint 9→10, @eslint/js 9→10, @types/node.",
-    "W5-remaining":     "Phase 5 — Remaining Majors. Tailwind CSS 3→4, KaTeX 0.16→0.17, Lucide React 0.x→1.x, jsdom 26→29."
+    "W2-security": "Phase 2 — Urgent Security Remediation. Vitest 2.x in PTE, Next 15.5.x patch, React 19.2.7, Convex 1.40.x, @vitejs/plugin-rsc 0.5.27.",
+    "W3-in-range": "Phase 3 — In-Range Refresh & Declaration Alignment. All audit-confirmed in-range direct deps; KaTeX/Lucide/tailwind-merge/ts-fsrs/Vitest/ESLint/eslint-config-next/Node type declaration alignment.",
+    "W4-framework": "Phase 4 — Coordinated Framework & Toolchain Majors. vinext 0.0.55, Vite 7→8, @vitejs/plugin-react 4→6, Next 15→16, eslint-config-next 15→16, TypeScript 5→6, ESLint 9→10, @eslint/js 9→10, @types/node.",
+    "W5-remaining": "Phase 5 — Remaining Majors. Tailwind CSS 3→4, KaTeX 0.16→0.17, Lucide React 0.x→1.x, jsdom 26→29."
   },
 
   "rows": [
     {
       "package": "next",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "latest" },
+        { "workspace": "apps/bus-math-v2", "range": "latest" },
         { "workspace": "apps/integrated-math-1", "range": "latest" },
         { "workspace": "apps/integrated-math-2", "range": "latest" },
         { "workspace": "apps/integrated-math-3", "range": "latest" },
-        { "workspace": "apps/pre-calculus",      "range": "latest" }
+        { "workspace": "apps/pre-calculus", "range": "latest" }
       ],
       "target_after_all_waves": "16.x",
       "primary_wave": "W4-framework",
@@ -31,11 +31,11 @@
     {
       "package": "react",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^19.0.0" },
+        { "workspace": "apps/bus-math-v2", "range": "^19.0.0" },
         { "workspace": "apps/integrated-math-1", "range": "^19.0.0" },
         { "workspace": "apps/integrated-math-2", "range": "^19.0.0" },
         { "workspace": "apps/integrated-math-3", "range": "^19.0.0" },
-        { "workspace": "apps/pre-calculus",      "range": "^19.0.0" }
+        { "workspace": "apps/pre-calculus", "range": "^19.0.0" }
       ],
       "target_after_all_waves": "19.2.7",
       "primary_wave": "W3-in-range",
@@ -47,11 +47,11 @@
     {
       "package": "react-dom",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^19.0.0" },
+        { "workspace": "apps/bus-math-v2", "range": "^19.0.0" },
         { "workspace": "apps/integrated-math-1", "range": "^19.0.0" },
         { "workspace": "apps/integrated-math-2", "range": "^19.0.0" },
         { "workspace": "apps/integrated-math-3", "range": "^19.0.0" },
-        { "workspace": "apps/pre-calculus",      "range": "^19.0.0" }
+        { "workspace": "apps/pre-calculus", "range": "^19.0.0" }
       ],
       "target_after_all_waves": "19.2.7",
       "primary_wave": "W3-in-range",
@@ -63,12 +63,12 @@
     {
       "package": "convex",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",                 "range": "^1.32.0" },
-        { "workspace": "apps/integrated-math-1",           "range": "^1.32.0" },
-        { "workspace": "apps/integrated-math-2",           "range": "^1.32.0" },
-        { "workspace": "apps/integrated-math-3",           "range": "^1.32.0" },
-        { "workspace": "apps/pre-calculus",                "range": "^1.32.0" },
-        { "workspace": "packages/app-shell",               "range": "^1.32.0" }
+        { "workspace": "apps/bus-math-v2", "range": "^1.32.0" },
+        { "workspace": "apps/integrated-math-1", "range": "^1.32.0" },
+        { "workspace": "apps/integrated-math-2", "range": "^1.32.0" },
+        { "workspace": "apps/integrated-math-3", "range": "^1.32.0" },
+        { "workspace": "apps/pre-calculus", "range": "^1.32.0" },
+        { "workspace": "packages/app-shell", "range": "^1.32.0" }
       ],
       "target_after_all_waves": "1.40.0",
       "primary_wave": "W3-in-range",
@@ -80,11 +80,11 @@
     {
       "package": "@vitejs/plugin-rsc",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^0.5.20" },
+        { "workspace": "apps/bus-math-v2", "range": "^0.5.20" },
         { "workspace": "apps/integrated-math-1", "range": "^0.5.20" },
         { "workspace": "apps/integrated-math-2", "range": "^0.5.20" },
         { "workspace": "apps/integrated-math-3", "range": "^0.5.20" },
-        { "workspace": "apps/pre-calculus",      "range": "^0.5.20" }
+        { "workspace": "apps/pre-calculus", "range": "^0.5.20" }
       ],
       "target_after_all_waves": "0.5.27",
       "primary_wave": "W3-in-range",
@@ -96,28 +96,32 @@
     {
       "package": "vitest",
       "current_declarations": [
-        { "workspace": "packages/practice-test-engine", "range": "^2.0.0",  "note": "intentional — Vitest 2.x per security finding" },
-        { "workspace": "apps/bus-math-v2",             "range": "^4.0.16" },
-        { "workspace": "apps/integrated-math-1",       "range": "^4.0.16" },
-        { "workspace": "apps/integrated-math-2",       "range": "^4.0.16" },
-        { "workspace": "apps/integrated-math-3",       "range": "^4.0.16" },
-        { "workspace": "apps/pre-calculus",            "range": "^4.0.16" },
-        { "workspace": "packages/activity-components",  "range": "^4.0.16" },
-        { "workspace": "packages/activity-runtime",    "range": "^4.0.16" },
-        { "workspace": "packages/ai-tutoring",         "range": "^4.0.16" },
-        { "workspace": "packages/component-approval",  "range": "^4.0.16" },
-        { "workspace": "packages/core-auth",           "range": "^4.0.16" },
-        { "workspace": "packages/core-convex",         "range": "^4.0.16" },
-        { "workspace": "packages/graphing-core",       "range": "^4.0.16" },
-        { "workspace": "packages/knowledge-space-core","range": "^4.0.16" },
-        { "workspace": "packages/knowledge-space-practice","range": "^4.0.16" },
-        { "workspace": "packages/math-content",        "range": "^4.0.16" },
-        { "workspace": "packages/practice-core",       "range": "^4.0.16" },
-        { "workspace": "packages/rate-limiter",        "range": "^4.0.16" },
-        { "workspace": "packages/srs-engine",          "range": "^4.0.16" },
-        { "workspace": "packages/study-hub-core",      "range": "^4.0.16" },
-        { "workspace": "packages/teacher-reporting-core","range": "^4.0.16" },
-        { "workspace": "packages/workbook-pipeline",   "range": "^4.0.16" }
+        {
+          "workspace": "packages/practice-test-engine",
+          "range": "^2.0.0",
+          "note": "intentional — Vitest 2.x per security finding"
+        },
+        { "workspace": "apps/bus-math-v2", "range": "^4.0.16" },
+        { "workspace": "apps/integrated-math-1", "range": "^4.0.16" },
+        { "workspace": "apps/integrated-math-2", "range": "^4.0.16" },
+        { "workspace": "apps/integrated-math-3", "range": "^4.0.16" },
+        { "workspace": "apps/pre-calculus", "range": "^4.0.16" },
+        { "workspace": "packages/activity-components", "range": "^4.0.16" },
+        { "workspace": "packages/activity-runtime", "range": "^4.0.16" },
+        { "workspace": "packages/ai-tutoring", "range": "^4.0.16" },
+        { "workspace": "packages/component-approval", "range": "^4.0.16" },
+        { "workspace": "packages/core-auth", "range": "^4.0.16" },
+        { "workspace": "packages/core-convex", "range": "^4.0.16" },
+        { "workspace": "packages/graphing-core", "range": "^4.0.16" },
+        { "workspace": "packages/knowledge-space-core", "range": "^4.0.16" },
+        { "workspace": "packages/knowledge-space-practice", "range": "^4.0.16" },
+        { "workspace": "packages/math-content", "range": "^4.0.16" },
+        { "workspace": "packages/practice-core", "range": "^4.0.16" },
+        { "workspace": "packages/rate-limiter", "range": "^4.0.16" },
+        { "workspace": "packages/srs-engine", "range": "^4.0.16" },
+        { "workspace": "packages/study-hub-core", "range": "^4.0.16" },
+        { "workspace": "packages/teacher-reporting-core", "range": "^4.0.16" },
+        { "workspace": "packages/workbook-pipeline", "range": "^4.0.16" }
       ],
       "target_after_all_waves": "4.1.8",
       "primary_wave": "W3-in-range",
@@ -133,7 +137,7 @@
         { "workspace": "apps/integrated-math-1", "range": "^1.31.2" },
         { "workspace": "apps/integrated-math-2", "range": "^1.31.2" },
         { "workspace": "apps/integrated-math-3", "range": "^1.31.2" },
-        { "workspace": "apps/pre-calculus",      "range": "^1.31.2" }
+        { "workspace": "apps/pre-calculus", "range": "^1.31.2" }
       ],
       "target_after_all_waves": "latest in-range",
       "primary_wave": "W3-in-range",
@@ -145,7 +149,7 @@
     {
       "package": "@playwright/test",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^1.56.1" },
+        { "workspace": "apps/bus-math-v2", "range": "^1.56.1" },
         { "workspace": "apps/integrated-math-3", "range": "^1.56.1" }
       ],
       "target_after_all_waves": "latest in-range",
@@ -158,7 +162,7 @@
     {
       "package": "@radix-ui/react-avatar",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^1.1.11" },
+        { "workspace": "apps/bus-math-v2", "range": "^1.1.11" },
         { "workspace": "apps/integrated-math-3", "range": "^1.1.11" }
       ],
       "target_after_all_waves": "latest in-range",
@@ -171,7 +175,7 @@
     {
       "package": "@radix-ui/react-checkbox",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^1.3.1" },
+        { "workspace": "apps/bus-math-v2", "range": "^1.3.1" },
         { "workspace": "apps/integrated-math-3", "range": "^1.3.1" }
       ],
       "target_after_all_waves": "latest in-range",
@@ -184,7 +188,7 @@
     {
       "package": "@radix-ui/react-dropdown-menu",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^2.1.14" },
+        { "workspace": "apps/bus-math-v2", "range": "^2.1.14" },
         { "workspace": "apps/integrated-math-3", "range": "^2.1.14" }
       ],
       "target_after_all_waves": "latest in-range",
@@ -197,7 +201,7 @@
     {
       "package": "@radix-ui/react-label",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^2.1.6" },
+        { "workspace": "apps/bus-math-v2", "range": "^2.1.6" },
         { "workspace": "apps/integrated-math-3", "range": "^2.1.6" }
       ],
       "target_after_all_waves": "latest in-range",
@@ -210,7 +214,7 @@
     {
       "package": "@radix-ui/react-slot",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^1.2.2" },
+        { "workspace": "apps/bus-math-v2", "range": "^1.2.2" },
         { "workspace": "apps/integrated-math-3", "range": "^1.2.2" }
       ],
       "target_after_all_waves": "latest in-range",
@@ -223,7 +227,7 @@
     {
       "package": "@radix-ui/react-tabs",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^1.1.13" },
+        { "workspace": "apps/bus-math-v2", "range": "^1.1.13" },
         { "workspace": "apps/integrated-math-3", "range": "^1.1.13" }
       ],
       "target_after_all_waves": "latest in-range",
@@ -236,11 +240,11 @@
     {
       "package": "@types/react",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^19" },
+        { "workspace": "apps/bus-math-v2", "range": "^19" },
         { "workspace": "apps/integrated-math-1", "range": "^19" },
         { "workspace": "apps/integrated-math-2", "range": "^19" },
         { "workspace": "apps/integrated-math-3", "range": "^19" },
-        { "workspace": "apps/pre-calculus",      "range": "^19" }
+        { "workspace": "apps/pre-calculus", "range": "^19" }
       ],
       "target_after_all_waves": "latest in-range",
       "primary_wave": "W3-in-range",
@@ -251,9 +255,7 @@
     },
     {
       "package": "baseline-browser-mapping",
-      "current_declarations": [
-        { "workspace": "apps/bus-math-v2", "range": "^2.8.32" }
-      ],
+      "current_declarations": [{ "workspace": "apps/bus-math-v2", "range": "^2.8.32" }],
       "target_after_all_waves": "latest in-range",
       "primary_wave": "W3-in-range",
       "waves": ["W3-in-range"],
@@ -264,7 +266,7 @@
     {
       "package": "geist",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^1.5.1" },
+        { "workspace": "apps/bus-math-v2", "range": "^1.5.1" },
         { "workspace": "apps/integrated-math-3", "range": "^1.5.1" }
       ],
       "target_after_all_waves": "latest in-range",
@@ -277,11 +279,11 @@
     {
       "package": "postcss",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^8" },
+        { "workspace": "apps/bus-math-v2", "range": "^8" },
         { "workspace": "apps/integrated-math-1", "range": "^8" },
         { "workspace": "apps/integrated-math-2", "range": "^8" },
         { "workspace": "apps/integrated-math-3", "range": "^8" },
-        { "workspace": "apps/pre-calculus",      "range": "^8" }
+        { "workspace": "apps/pre-calculus", "range": "^8" }
       ],
       "target_after_all_waves": "latest in-range",
       "primary_wave": "W3-in-range",
@@ -293,12 +295,12 @@
     {
       "package": "tailwind-merge",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^3.3.0" },
+        { "workspace": "apps/bus-math-v2", "range": "^3.3.0" },
         { "workspace": "apps/integrated-math-1", "range": "^3.3.0" },
         { "workspace": "apps/integrated-math-2", "range": "^3.3.0" },
         { "workspace": "apps/integrated-math-3", "range": "^3.3.0" },
-        { "workspace": "apps/pre-calculus",      "range": "^3.3.0" },
-        { "workspace": "packages/lesson-renderer","range": "^3.0.2" }
+        { "workspace": "apps/pre-calculus", "range": "^3.3.0" },
+        { "workspace": "packages/lesson-renderer", "range": "^3.0.2" }
       ],
       "target_after_all_waves": "latest in-range",
       "primary_wave": "W3-in-range",
@@ -310,9 +312,9 @@
     {
       "package": "ts-fsrs",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^5.3.2" },
+        { "workspace": "apps/bus-math-v2", "range": "^5.3.2" },
         { "workspace": "apps/integrated-math-3", "range": "^5.3.2" },
-        { "workspace": "packages/srs-engine",    "range": "^5.0.0" }
+        { "workspace": "packages/srs-engine", "range": "^5.0.0" }
       ],
       "target_after_all_waves": "latest in-range",
       "primary_wave": "W3-in-range",
@@ -324,7 +326,7 @@
     {
       "package": "tsx",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^4.20.6" },
+        { "workspace": "apps/bus-math-v2", "range": "^4.20.6" },
         { "workspace": "apps/integrated-math-3", "range": "^4.20.6" }
       ],
       "target_after_all_waves": "latest in-range",
@@ -337,22 +339,22 @@
     {
       "package": "typescript-eslint",
       "current_declarations": [
-        { "workspace": "packages/activity-components",  "range": "^8" },
-        { "workspace": "packages/activity-runtime",    "range": "^8" },
-        { "workspace": "packages/ai-tutoring",         "range": "^8" },
-        { "workspace": "packages/component-approval",  "range": "^8" },
-        { "workspace": "packages/core-auth",           "range": "^8" },
-        { "workspace": "packages/core-convex",         "range": "^8" },
-        { "workspace": "packages/graphing-core",       "range": "^8" },
-        { "workspace": "packages/knowledge-space-core","range": "^8" },
-        { "workspace": "packages/knowledge-space-practice","range": "^8" },
-        { "workspace": "packages/math-content",        "range": "^8" },
-        { "workspace": "packages/practice-core",       "range": "^8" },
-        { "workspace": "packages/rate-limiter",        "range": "^8" },
-        { "workspace": "packages/srs-engine",          "range": "^8" },
-        { "workspace": "packages/study-hub-core",      "range": "^8" },
-        { "workspace": "packages/teacher-reporting-core","range": "^8" },
-        { "workspace": "packages/workbook-pipeline",   "range": "^8" }
+        { "workspace": "packages/activity-components", "range": "^8" },
+        { "workspace": "packages/activity-runtime", "range": "^8" },
+        { "workspace": "packages/ai-tutoring", "range": "^8" },
+        { "workspace": "packages/component-approval", "range": "^8" },
+        { "workspace": "packages/core-auth", "range": "^8" },
+        { "workspace": "packages/core-convex", "range": "^8" },
+        { "workspace": "packages/graphing-core", "range": "^8" },
+        { "workspace": "packages/knowledge-space-core", "range": "^8" },
+        { "workspace": "packages/knowledge-space-practice", "range": "^8" },
+        { "workspace": "packages/math-content", "range": "^8" },
+        { "workspace": "packages/practice-core", "range": "^8" },
+        { "workspace": "packages/rate-limiter", "range": "^8" },
+        { "workspace": "packages/srs-engine", "range": "^8" },
+        { "workspace": "packages/study-hub-core", "range": "^8" },
+        { "workspace": "packages/teacher-reporting-core", "range": "^8" },
+        { "workspace": "packages/workbook-pipeline", "range": "^8" }
       ],
       "target_after_all_waves": "latest in-range",
       "primary_wave": "W3-in-range",
@@ -367,7 +369,7 @@
         { "workspace": "apps/integrated-math-1", "range": "^4.81.1" },
         { "workspace": "apps/integrated-math-2", "range": "^4.81.1" },
         { "workspace": "apps/integrated-math-3", "range": "^4.81.1" },
-        { "workspace": "apps/pre-calculus",      "range": "^4.81.1" }
+        { "workspace": "apps/pre-calculus", "range": "^4.81.1" }
       ],
       "target_after_all_waves": "latest in-range",
       "primary_wave": "W3-in-range",
@@ -379,16 +381,16 @@
     {
       "package": "zod",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",                 "range": "^4.1.12" },
-        { "workspace": "apps/integrated-math-1",           "range": "^4.1.12" },
-        { "workspace": "apps/integrated-math-2",           "range": "^4.1.12" },
-        { "workspace": "apps/integrated-math-3",           "range": "^4.1.12" },
-        { "workspace": "apps/pre-calculus",                "range": "^4.1.12" },
-        { "workspace": "packages/activity-components",     "range": "^4.1.12" },
-        { "workspace": "packages/knowledge-space-core",   "range": "^4.1.12" },
-        { "workspace": "packages/knowledge-space-practice","range": "^4.1.12" },
-        { "workspace": "packages/math-content",            "range": "^4.1.12" },
-        { "workspace": "packages/practice-core",           "range": "^4.1.12" }
+        { "workspace": "apps/bus-math-v2", "range": "^4.1.12" },
+        { "workspace": "apps/integrated-math-1", "range": "^4.1.12" },
+        { "workspace": "apps/integrated-math-2", "range": "^4.1.12" },
+        { "workspace": "apps/integrated-math-3", "range": "^4.1.12" },
+        { "workspace": "apps/pre-calculus", "range": "^4.1.12" },
+        { "workspace": "packages/activity-components", "range": "^4.1.12" },
+        { "workspace": "packages/knowledge-space-core", "range": "^4.1.12" },
+        { "workspace": "packages/knowledge-space-practice", "range": "^4.1.12" },
+        { "workspace": "packages/math-content", "range": "^4.1.12" },
+        { "workspace": "packages/practice-core", "range": "^4.1.12" }
       ],
       "target_after_all_waves": "latest in-range",
       "primary_wave": "W3-in-range",
@@ -401,11 +403,11 @@
     {
       "package": "vinext",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^0.0.5" },
+        { "workspace": "apps/bus-math-v2", "range": "^0.0.5" },
         { "workspace": "apps/integrated-math-1", "range": "^0.0.5" },
         { "workspace": "apps/integrated-math-2", "range": "^0.0.5" },
         { "workspace": "apps/integrated-math-3", "range": "^0.0.5" },
-        { "workspace": "apps/pre-calculus",      "range": "^0.0.5" }
+        { "workspace": "apps/pre-calculus", "range": "^0.0.5" }
       ],
       "target_after_all_waves": "0.0.55",
       "primary_wave": "W4-framework",
@@ -417,11 +419,11 @@
     {
       "package": "vite",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^7.3.1" },
+        { "workspace": "apps/bus-math-v2", "range": "^7.3.1" },
         { "workspace": "apps/integrated-math-1", "range": "^7.3.1" },
         { "workspace": "apps/integrated-math-2", "range": "^7.3.1" },
         { "workspace": "apps/integrated-math-3", "range": "^7.3.1" },
-        { "workspace": "apps/pre-calculus",      "range": "^7.3.1" }
+        { "workspace": "apps/pre-calculus", "range": "^7.3.1" }
       ],
       "target_after_all_waves": "8.x",
       "primary_wave": "W4-framework",
@@ -433,11 +435,11 @@
     {
       "package": "@vitejs/plugin-react",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^4.3.4" },
+        { "workspace": "apps/bus-math-v2", "range": "^4.3.4" },
         { "workspace": "apps/integrated-math-1", "range": "^4.3.4" },
         { "workspace": "apps/integrated-math-2", "range": "^4.3.4" },
         { "workspace": "apps/integrated-math-3", "range": "^4.3.4" },
-        { "workspace": "apps/pre-calculus",      "range": "^4.3.4" }
+        { "workspace": "apps/pre-calculus", "range": "^4.3.4" }
       ],
       "target_after_all_waves": "6.x",
       "primary_wave": "W4-framework",
@@ -449,11 +451,11 @@
     {
       "package": "eslint-config-next",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^15.3.1" },
+        { "workspace": "apps/bus-math-v2", "range": "^15.3.1" },
         { "workspace": "apps/integrated-math-1", "range": "15.3.1" },
         { "workspace": "apps/integrated-math-2", "range": "15.3.1" },
         { "workspace": "apps/integrated-math-3", "range": "15.3.1" },
-        { "workspace": "apps/pre-calculus",      "range": "15.3.1" }
+        { "workspace": "apps/pre-calculus", "range": "15.3.1" }
       ],
       "target_after_all_waves": "16.x",
       "primary_wave": "W4-framework",
@@ -465,12 +467,12 @@
     {
       "package": "typescript",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^5" },
+        { "workspace": "apps/bus-math-v2", "range": "^5" },
         { "workspace": "apps/integrated-math-1", "range": "^5" },
         { "workspace": "apps/integrated-math-2", "range": "^5" },
         { "workspace": "apps/integrated-math-3", "range": "^5" },
-        { "workspace": "apps/pre-calculus",      "range": "^5" },
-        { "workspace": "packages/*",             "range": "^5" }
+        { "workspace": "apps/pre-calculus", "range": "^5" },
+        { "workspace": "packages/*", "range": "^5" }
       ],
       "target_after_all_waves": "6.x",
       "primary_wave": "W4-framework",
@@ -482,12 +484,12 @@
     {
       "package": "eslint",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^9.39.4" },
+        { "workspace": "apps/bus-math-v2", "range": "^9.39.4" },
         { "workspace": "apps/integrated-math-1", "range": "^9" },
         { "workspace": "apps/integrated-math-2", "range": "^9" },
         { "workspace": "apps/integrated-math-3", "range": "^9" },
-        { "workspace": "apps/pre-calculus",      "range": "^9" },
-        { "workspace": "packages/*",             "range": "^9" }
+        { "workspace": "apps/pre-calculus", "range": "^9" },
+        { "workspace": "packages/*", "range": "^9" }
       ],
       "target_after_all_waves": "10.x",
       "primary_wave": "W4-framework",
@@ -498,9 +500,7 @@
     },
     {
       "package": "@eslint/js",
-      "current_declarations": [
-        { "workspace": "packages/*", "range": "^9" }
-      ],
+      "current_declarations": [{ "workspace": "packages/*", "range": "^9" }],
       "target_after_all_waves": "10.x",
       "primary_wave": "W4-framework",
       "waves": ["W4-framework"],
@@ -525,11 +525,11 @@
     {
       "package": "tailwindcss",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^3.4.1" },
+        { "workspace": "apps/bus-math-v2", "range": "^3.4.1" },
         { "workspace": "apps/integrated-math-1", "range": "^3.4.1" },
         { "workspace": "apps/integrated-math-2", "range": "^3.4.1" },
         { "workspace": "apps/integrated-math-3", "range": "^3.4.1" },
-        { "workspace": "apps/pre-calculus",      "range": "^3.4.1" }
+        { "workspace": "apps/pre-calculus", "range": "^3.4.1" }
       ],
       "target_after_all_waves": "4.x",
       "primary_wave": "W5-remaining",
@@ -541,43 +541,51 @@
     {
       "package": "katex",
       "current_declarations": [
-        { "workspace": "apps/integrated-math-3",         "range": "^0.16.45" },
-        { "workspace": "packages/activity-components",   "range": "^0.16.21" },
-        { "workspace": "packages/lesson-renderer",       "range": "^0.16.21" }
+        { "workspace": "apps/integrated-math-3", "range": "^0.16.45" },
+        { "workspace": "packages/activity-components", "range": "^0.16.21" },
+        { "workspace": "packages/lesson-renderer", "range": "^0.16.21" }
       ],
       "target_after_all_waves": "0.17.x",
       "primary_wave": "W5-remaining",
       "waves": ["W5-remaining"],
-      "manifest_owners": ["apps/integrated-math-3/package.json", "packages/activity-components/package.json", "packages/lesson-renderer/package.json"],
+      "manifest_owners": [
+        "apps/integrated-math-3/package.json",
+        "packages/activity-components/package.json",
+        "packages/lesson-renderer/package.json"
+      ],
       "compatibility_notes": "Run packages/lesson-renderer + packages/activity-components suites first. May break shared component consumers.",
       "baseline_verification_state": "unverified"
     },
     {
       "package": "lucide-react",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",             "range": "^0.511.0" },
-        { "workspace": "apps/integrated-math-1",       "range": "^0.511.0" },
-        { "workspace": "apps/integrated-math-2",       "range": "^0.511.0" },
-        { "workspace": "apps/integrated-math-3",       "range": "^0.511.0" },
-        { "workspace": "apps/pre-calculus",            "range": "^0.511.0" },
-        { "workspace": "packages/app-shell",           "range": "^0.468.0" },
-        { "workspace": "packages/lesson-renderer",     "range": "^0.475.0" }
+        { "workspace": "apps/bus-math-v2", "range": "^0.511.0" },
+        { "workspace": "apps/integrated-math-1", "range": "^0.511.0" },
+        { "workspace": "apps/integrated-math-2", "range": "^0.511.0" },
+        { "workspace": "apps/integrated-math-3", "range": "^0.511.0" },
+        { "workspace": "apps/pre-calculus", "range": "^0.511.0" },
+        { "workspace": "packages/app-shell", "range": "^0.468.0" },
+        { "workspace": "packages/lesson-renderer", "range": "^0.475.0" }
       ],
       "target_after_all_waves": "1.x",
       "primary_wave": "W5-remaining",
       "waves": ["W5-remaining"],
-      "manifest_owners": ["apps/*/package.json", "packages/app-shell/package.json", "packages/lesson-renderer/package.json"],
+      "manifest_owners": [
+        "apps/*/package.json",
+        "packages/app-shell/package.json",
+        "packages/lesson-renderer/package.json"
+      ],
       "compatibility_notes": "Run packages/lesson-renderer suite first. May break shared component consumers.",
       "baseline_verification_state": "unverified"
     },
     {
       "package": "jsdom",
       "current_declarations": [
-        { "workspace": "apps/bus-math-v2",       "range": "^26.0.0" },
+        { "workspace": "apps/bus-math-v2", "range": "^26.0.0" },
         { "workspace": "apps/integrated-math-1", "range": "^26.0.0" },
         { "workspace": "apps/integrated-math-2", "range": "^26.0.0" },
         { "workspace": "apps/integrated-math-3", "range": "^26.0.0" },
-        { "workspace": "apps/pre-calculus",      "range": "^26.0.0" }
+        { "workspace": "apps/pre-calculus", "range": "^26.0.0" }
       ],
       "target_after_all_waves": "29.x",
       "primary_wave": "W5-remaining",

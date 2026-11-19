@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 /**
  * Phase 3 — Composer UI & Preview
@@ -20,9 +20,9 @@
  *   through `SanitizedText` from the Phase 1 sanitizer module.
  */
 
-import { useCallback, useMemo, useState } from 'react';
-import { CalloutBox } from '@/components/textbook/CalloutBox';
-import { SanitizedText } from '@/lib/teacher/content-authoring/sanitize-authored-text';
+import { useCallback, useMemo, useState } from "react";
+import { CalloutBox } from "@/components/textbook/CalloutBox";
+import { SanitizedText } from "@/lib/teacher/content-authoring/sanitize-authored-text";
 import {
   type ComposerActivity,
   type ComposerPhase,
@@ -35,12 +35,12 @@ import {
   createComposerState,
   deriveActivityFormFields,
   sanitizeComposerState,
-} from '@/lib/teacher/content-authoring/composer-state';
+} from "@/lib/teacher/content-authoring/composer-state";
 import {
   getTeacherAuthoringStatusView,
   type TeacherAuthoringStatusView,
-} from '@/lib/teacher/content-authoring/get-teacher-authoring-status-view';
-import type { TeacherFacingStatus } from '../../../convex/teacher/content_authoring';
+} from "@/lib/teacher/content-authoring/get-teacher-authoring-status-view";
+import type { TeacherFacingStatus } from "../../../convex/teacher/content_authoring";
 
 export interface LessonComposerClient {
   saveTeacherDraft: (...args: unknown[]) => Promise<unknown>;
@@ -69,29 +69,29 @@ export interface LessonComposerProps {
 }
 
 const COMPONENT_KEYS: ReadonlyArray<string> = [
-  'graphing-explorer',
-  'comprehension-quiz',
-  'fill-in-the-blank',
-  'rate-of-change-calculator',
-  'discriminant-analyzer',
-  'step-by-step-solver',
+  "graphing-explorer",
+  "comprehension-quiz",
+  "fill-in-the-blank",
+  "rate-of-change-calculator",
+  "discriminant-analyzer",
+  "step-by-step-solver",
 ];
 
 const PHASE_TYPES: ReadonlyArray<string> = [
-  'explore',
-  'vocabulary',
-  'learn',
-  'key_concept',
-  'worked_example',
-  'guided_practice',
-  'independent_practice',
-  'assessment',
-  'discourse',
-  'reflection',
+  "explore",
+  "vocabulary",
+  "learn",
+  "key_concept",
+  "worked_example",
+  "guided_practice",
+  "independent_practice",
+  "assessment",
+  "discourse",
+  "reflection",
 ];
 
 function statusViewOrDefault(
-  dto: LessonComposerProps['initialStatus'],
+  dto: LessonComposerProps["initialStatus"],
 ): TeacherAuthoringStatusView | null {
   if (!dto) return null;
   try {
@@ -108,38 +108,31 @@ export function LessonComposer({
   initialStatus,
   onPreview,
 }: LessonComposerProps) {
-  const [state, setState] = useState<ComposerState>(() =>
-    createComposerState(initialDraft),
-  );
+  const [state, setState] = useState<ComposerState>(() => createComposerState(initialDraft));
   const [status] = useState<TeacherAuthoringStatusView | null>(() =>
     statusViewOrDefault(initialStatus),
   );
-  const [lastAction, setLastAction] = useState<string>('idle');
+  const [lastAction, setLastAction] = useState<string>("idle");
 
-  const saveable =
-    canSaveComposerState(state) && (status === null || status.canSave);
-  const previewable =
-    canPreviewComposerState(state) && (status === null || status.canSave);
+  const saveable = canSaveComposerState(state) && (status === null || status.canSave);
+  const previewable = canPreviewComposerState(state) && (status === null || status.canSave);
 
-  const dispatch = useCallback(
-    (action: Parameters<typeof composerReducer>[1]) => {
-      setState((prev) => composerReducer(prev, action));
-    },
-    [],
-  );
+  const dispatch = useCallback((action: Parameters<typeof composerReducer>[1]) => {
+    setState((prev) => composerReducer(prev, action));
+  }, []);
 
   const onAddPhase = useCallback(() => {
     dispatch({
-      type: 'ADD_PHASE',
-      payload: { title: 'New phase', phaseType: 'explore' },
+      type: "ADD_PHASE",
+      payload: { title: "New phase", phaseType: "explore" },
     });
-    setLastAction('add_phase');
+    setLastAction("add_phase");
   }, [dispatch]);
 
   const onAddSection = useCallback(
     (phaseId: string) => {
-      dispatch({ type: 'ADD_SECTION', payload: { phaseId, title: 'New section' } });
-      setLastAction('add_section');
+      dispatch({ type: "ADD_SECTION", payload: { phaseId, title: "New section" } });
+      setLastAction("add_section");
     },
     [dispatch],
   );
@@ -156,10 +149,10 @@ export function LessonComposer({
   const onAddActivity = useCallback(
     (phaseId: string, sectionId: string, componentKey: string) => {
       dispatch({
-        type: 'ADD_ACTIVITY',
+        type: "ADD_ACTIVITY",
         payload: { phaseId, sectionId, componentKey, props: defaultPropsFor(componentKey) },
       });
-      setLastAction('add_activity');
+      setLastAction("add_activity");
     },
     [dispatch],
   );
@@ -171,60 +164,60 @@ export function LessonComposer({
       onAddSectionToLast();
       return;
     }
-    onAddActivity(lastPhase.id, lastSection.id, 'graphing-explorer');
+    onAddActivity(lastPhase.id, lastSection.id, "graphing-explorer");
   }, [state.lesson.phases, onAddActivity, onAddSectionToLast]);
 
   const onRemovePhase = useCallback(
     (phaseId: string) => {
-      dispatch({ type: 'REMOVE_PHASE', payload: { phaseId } });
-      setLastAction('remove_phase');
+      dispatch({ type: "REMOVE_PHASE", payload: { phaseId } });
+      setLastAction("remove_phase");
     },
     [dispatch],
   );
 
   const onRemoveSection = useCallback(
     (phaseId: string, sectionId: string) => {
-      dispatch({ type: 'REMOVE_SECTION', payload: { phaseId, sectionId } });
-      setLastAction('remove_section');
+      dispatch({ type: "REMOVE_SECTION", payload: { phaseId, sectionId } });
+      setLastAction("remove_section");
     },
     [dispatch],
   );
 
   const onRemoveActivity = useCallback(
     (phaseId: string, sectionId: string, activityId: string) => {
-      dispatch({ type: 'REMOVE_ACTIVITY', payload: { phaseId, sectionId, activityId } });
-      setLastAction('remove_activity');
+      dispatch({ type: "REMOVE_ACTIVITY", payload: { phaseId, sectionId, activityId } });
+      setLastAction("remove_activity");
     },
     [dispatch],
   );
 
   const onReorderPhases = useCallback(
     (fromIndex: number, toIndex: number) => {
-      dispatch({ type: 'REORDER_PHASES', payload: { fromIndex, toIndex } });
-      setLastAction('reorder_phase');
+      dispatch({ type: "REORDER_PHASES", payload: { fromIndex, toIndex } });
+      setLastAction("reorder_phase");
     },
     [dispatch],
   );
 
   const onReorderSections = useCallback(
     (phaseId: string, fromIndex: number, toIndex: number) => {
-      dispatch({ type: 'REORDER_SECTIONS', payload: { phaseId, fromIndex, toIndex } });
-      setLastAction('reorder_section');
+      dispatch({ type: "REORDER_SECTIONS", payload: { phaseId, fromIndex, toIndex } });
+      setLastAction("reorder_section");
     },
     [dispatch],
   );
 
   const onReorderActivities = useCallback(
     (phaseId: string, sectionId: string, fromIndex: number, toIndex: number) => {
-      dispatch({ type: 'REORDER_ACTIVITIES', payload: { phaseId, sectionId, fromIndex, toIndex } });
-      setLastAction('reorder_activity');
+      dispatch({ type: "REORDER_ACTIVITIES", payload: { phaseId, sectionId, fromIndex, toIndex } });
+      setLastAction("reorder_activity");
     },
     [dispatch],
   );
 
   const onPropsChange = useCallback(
     (activityId: string, props: Record<string, unknown>) => {
-      dispatch({ type: 'UPDATE_ACTIVITY_PROPS', payload: { activityId, props } });
+      dispatch({ type: "UPDATE_ACTIVITY_PROPS", payload: { activityId, props } });
     },
     [dispatch],
   );
@@ -351,7 +344,7 @@ export function LessonComposer({
         </button>
         <button
           type="button"
-          disabled={!(status?.canSubmit)}
+          disabled={!status?.canSubmit}
           onClick={() => void onSubmit()}
           className="px-4 py-2 rounded-md border border-border hover:bg-muted/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Submit for review"
@@ -374,12 +367,12 @@ export function LessonComposer({
         <CalloutBox variant="caution" title="Validation issues">
           <ul className="list-disc pl-5 space-y-1 text-sm">
             {state.errors.map((err, idx) => (
-              <li key={`${err.componentKey ?? 'root'}-${idx}`} role="alert">
+              <li key={`${err.componentKey ?? "root"}-${idx}`} role="alert">
                 {err.componentKey && (
                   <span className="font-mono text-xs mr-1">[{err.componentKey}]</span>
                 )}
                 <span className="font-mono text-xs mr-1">
-                  {err.path.length > 0 ? `${err.path.join('.')}: ` : ''}
+                  {err.path.length > 0 ? `${err.path.join(".")}: ` : ""}
                 </span>
                 {err.message}
               </li>
@@ -444,12 +437,12 @@ function buildActivityErrorMap(state: ComposerState): Map<string, ComposerActivi
     if (!err.componentKey) continue;
     // Path looks like ['phases', '0', 'sections', '1', 'activities', '0', 'equation'].
     // We try to find the matching activity id from the path index.
-    const activityIdx = err.path.indexOf('activities');
+    const activityIdx = err.path.indexOf("activities");
     if (activityIdx === -1) continue;
     const idx = Number(err.path[activityIdx + 1]);
     if (!Number.isFinite(idx)) continue;
     // For now, key by componentKey+path to keep error grouping simple.
-    const key = `${err.componentKey}:${err.path.slice(0, activityIdx + 2).join('.')}`;
+    const key = `${err.componentKey}:${err.path.slice(0, activityIdx + 2).join(".")}`;
     const entry: ComposerActivityError = {
       path: err.path.slice(activityIdx + 2),
       message: err.message,
@@ -464,35 +457,35 @@ function buildActivityErrorMap(state: ComposerState): Map<string, ComposerActivi
 
 function defaultPropsFor(componentKey: string): Record<string, unknown> {
   switch (componentKey) {
-    case 'graphing-explorer':
-      return { equation: 'x^2' };
-    case 'comprehension-quiz':
+    case "graphing-explorer":
+      return { equation: "x^2" };
+    case "comprehension-quiz":
       return {
         questions: [
           {
-            id: 'q1',
-            prompt: 'Question?',
-            correctAnswer: 'A',
+            id: "q1",
+            prompt: "Question?",
+            correctAnswer: "A",
           },
         ],
       };
-    case 'fill-in-the-blank':
+    case "fill-in-the-blank":
       return {
-        template: 'A quadratic has degree {{blank:degree}}.',
-        blanks: [{ id: 'degree', correctAnswer: '2' }],
+        template: "A quadratic has degree {{blank:degree}}.",
+        blanks: [{ id: "degree", correctAnswer: "2" }],
       };
-    case 'rate-of-change-calculator':
+    case "rate-of-change-calculator":
       return {
-        sourceType: 'table',
+        sourceType: "table",
         data: { x: [1, 2, 3], y: [2, 4, 6] },
         interval: { start: 1, end: 3 },
       };
-    case 'discriminant-analyzer':
-      return { equation: 'x^2 + 3x - 4 = 0' };
-    case 'step-by-step-solver':
+    case "discriminant-analyzer":
+      return { equation: "x^2 + 3x - 4 = 0" };
+    case "step-by-step-solver":
       return {
-        problemType: 'factoring',
-        equation: 'x^2 + 3x - 4 = 0',
+        problemType: "factoring",
+        equation: "x^2 + 3x - 4 = 0",
       };
     default:
       return {};
@@ -513,7 +506,7 @@ function PhaseBlock(props: PhaseBlockProps) {
           <select
             aria-label={`Phase ${phaseIndex + 1} placement`}
             className="rounded-md border border-border bg-card px-2 py-1 text-sm"
-            defaultValue={phase.phaseType ?? 'explore'}
+            defaultValue={phase.phaseType ?? "explore"}
           >
             {PHASE_TYPES.map((type) => (
               <option key={type} value={type}>
@@ -561,14 +554,10 @@ function PhaseBlock(props: PhaseBlockProps) {
           errorsByActivity={errorsByActivity}
           onAddActivity={(key) => props.onAddActivity(section.id, key)}
           onRemoveActivity={(activityId) => props.onRemoveActivity(section.id, activityId)}
-          onReorderActivities={(from, to) =>
-            props.onReorderActivities(section.id, from, to)
-          }
+          onReorderActivities={(from, to) => props.onReorderActivities(section.id, from, to)}
           onPropsChange={props.onPropsChange}
           onRemoveSection={() => props.onRemoveSection(section.id)}
-          onReorderSections={(from, to) =>
-            props.onReorderSections(from, to)
-          }
+          onReorderSections={(from, to) => props.onReorderSections(from, to)}
         />
       ))}
 
@@ -640,10 +629,10 @@ function SectionBlock(props: SectionBlockProps) {
           )}
         </div>
       </div>
-      {typeof section.markdown === 'string' && section.markdown.length > 0 && (
+      {typeof section.markdown === "string" && section.markdown.length > 0 && (
         <SanitizedText html={section.markdown} as="p" />
       )}
-      {typeof section.callout === 'string' && section.callout.length > 0 && (
+      {typeof section.callout === "string" && section.callout.length > 0 && (
         <CalloutBox variant="remember">
           <SanitizedText html={section.callout} />
         </CalloutBox>
@@ -711,7 +700,7 @@ function ActivityBlock(props: ActivityBlockProps) {
   };
 
   const errorIds = props.errors
-    .map((e) => e.path.join('.'))
+    .map((e) => e.path.join("."))
     .filter((id, idx, arr) => arr.indexOf(id) === idx);
 
   return (
@@ -776,10 +765,13 @@ function ActivityBlock(props: ActivityBlockProps) {
       })}
 
       {props.errors.length > 0 && (
-        <div role="alert" className="rounded-md border border-destructive/30 bg-destructive/10 p-2 text-sm text-destructive">
+        <div
+          role="alert"
+          className="rounded-md border border-destructive/30 bg-destructive/10 p-2 text-sm text-destructive"
+        >
           {props.errors.map((err, idx) => (
             <div key={idx} data-testid={`activity-error-${idx}`}>
-              <span className="font-mono text-xs mr-1">[{err.path.join('.')}]</span>
+              <span className="font-mono text-xs mr-1">[{err.path.join(".")}]</span>
               {err.message}
             </div>
           ))}
@@ -806,8 +798,8 @@ function FieldRenderer({ id, field, value, onChange, error }: FieldRendererProps
   const common = {
     id,
     name: field.name,
-    'aria-describedby': error ? `${id}-error` : undefined,
-    className: 'w-full rounded-md border border-border bg-card px-3 py-2 text-sm',
+    "aria-describedby": error ? `${id}-error` : undefined,
+    className: "w-full rounded-md border border-border bg-card px-3 py-2 text-sm",
   };
 
   return (
@@ -815,30 +807,30 @@ function FieldRenderer({ id, field, value, onChange, error }: FieldRendererProps
       <label htmlFor={id} className="block text-xs font-medium text-muted-foreground">
         {field.name}
         {field.required ? <span className="text-destructive"> *</span> : null}
-        {field.kind !== 'string' && (
+        {field.kind !== "string" && (
           <span className="ml-2 text-[10px] uppercase tracking-wider">{field.kind}</span>
         )}
       </label>
-      {field.kind === 'string' && (
+      {field.kind === "string" && (
         <input
           {...common}
           type="text"
-          value={typeof value === 'string' ? value : ''}
+          value={typeof value === "string" ? value : ""}
           onChange={(e) => onChange(e.target.value)}
         />
       )}
-      {field.kind === 'number' && (
+      {field.kind === "number" && (
         <input
           {...common}
           type="number"
-          value={typeof value === 'number' ? value : ''}
+          value={typeof value === "number" ? value : ""}
           onChange={(e) => {
-            const parsed = e.target.value === '' ? undefined : Number(e.target.value);
+            const parsed = e.target.value === "" ? undefined : Number(e.target.value);
             onChange(parsed);
           }}
         />
       )}
-      {field.kind === 'boolean' && (
+      {field.kind === "boolean" && (
         <input
           {...common}
           type="checkbox"
@@ -846,10 +838,10 @@ function FieldRenderer({ id, field, value, onChange, error }: FieldRendererProps
           onChange={(e) => onChange(e.target.checked)}
         />
       )}
-      {field.kind === 'enum' && (
+      {field.kind === "enum" && (
         <select
           {...common}
-          value={typeof value === 'string' ? value : ''}
+          value={typeof value === "string" ? value : ""}
           onChange={(e) => onChange(e.target.value)}
         >
           <option value="">— select —</option>
@@ -860,9 +852,10 @@ function FieldRenderer({ id, field, value, onChange, error }: FieldRendererProps
           ))}
         </select>
       )}
-      {field.kind === 'array' && (
+      {field.kind === "array" && (
         <div className="text-sm text-muted-foreground" data-testid={`${id}-array-hint`}>
-          Array{field.itemFields && field.itemFields.length > 0 && (
+          Array
+          {field.itemFields && field.itemFields.length > 0 && (
             <ul className="list-disc pl-5 mt-1">
               {field.itemFields.map((child) => (
                 <li key={child.name}>
@@ -874,7 +867,7 @@ function FieldRenderer({ id, field, value, onChange, error }: FieldRendererProps
           )}
         </div>
       )}
-      {(field.kind === 'object' || field.kind === 'tuple' || field.kind === 'union') && (
+      {(field.kind === "object" || field.kind === "tuple" || field.kind === "union") && (
         <div className="text-sm text-muted-foreground">
           <em>{field.name}</em> ({field.kind})
         </div>
@@ -895,25 +888,20 @@ interface StatusStripProps {
 
 function StatusStrip({ status }: StatusStripProps) {
   if (!status) {
-    return (
-      <div className="section-label">No status</div>
-    );
+    return <div className="section-label">No status</div>;
   }
   return (
     <div className="card-workbook p-3 flex flex-wrap items-center gap-2" role="status">
-      <span
-        className="section-label"
-        data-testid={`composer-status-${status.teacherFacingStatus}`}
-      >
+      <span className="section-label" data-testid={`composer-status-${status.teacherFacingStatus}`}>
         {status.label}
       </span>
-      {status.isPublishReady && status.teacherFacingStatus !== 'published' && (
+      {status.isPublishReady && status.teacherFacingStatus !== "published" && (
         <span className="text-sm text-accent">Ready to publish</span>
       )}
-      {status.teacherFacingStatus === 'published' && (
+      {status.teacherFacingStatus === "published" && (
         <span className="text-sm text-muted-foreground">Available to assign to a class</span>
       )}
-      {typeof status.rejectionComment === 'string' && (
+      {typeof status.rejectionComment === "string" && (
         <CalloutBox variant="caution" title="Reviewer comment">
           <SanitizedText html={status.rejectionComment} />
         </CalloutBox>

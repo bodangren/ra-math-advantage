@@ -1,9 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  toCsv,
-  formatStudentExport,
-  formatClassExport,
-} from "../../../lib/teacher/data-export";
+import { toCsv, formatStudentExport, formatClassExport } from "../../../lib/teacher/data-export";
 import { studentExportFixture } from "../../fixtures/exports/studentExportFixture";
 import { classExportFixture } from "../../fixtures/exports/classExportFixture";
 
@@ -27,9 +23,7 @@ describe("data-export CSV contract (snapshot)", () => {
 
   it("locks the formatClassExport → toCsv column order and escaping", () => {
     const csv = toCsv(
-      formatClassExport(
-        classExportFixture as unknown as Parameters<typeof formatClassExport>[0],
-      ),
+      formatClassExport(classExportFixture as unknown as Parameters<typeof formatClassExport>[0]),
     );
 
     expect(csv).toMatchInlineSnapshot(

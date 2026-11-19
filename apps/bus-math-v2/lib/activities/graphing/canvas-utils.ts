@@ -1,10 +1,10 @@
-import { parseQuadratic, parseLinear } from '@math-platform/graphing-core';
+import { parseQuadratic, parseLinear } from "@math-platform/graphing-core";
 
 export interface Point {
   x: number;
   y: number;
   label?: string;
-  type?: 'vertex' | 'intercept' | 'intersection' | 'custom';
+  type?: "vertex" | "intercept" | "intersection" | "custom";
 }
 
 export interface FunctionPlot {
@@ -91,10 +91,7 @@ export function transformCanvasToData(
  * @param step - The grid step size (default 1)
  * @returns Value snapped to nearest step
  */
-export function snapToGridValue(
-  value: number,
-  step: number = 1,
-): number {
+export function snapToGridValue(value: number, step: number = 1): number {
   return Math.round(value / step) * step;
 }
 
@@ -106,12 +103,7 @@ export function snapToGridValue(
  * @param c - Constant term
  * @returns The computed y value
  */
-export function evaluateQuadratic(
-  x: number,
-  a: number,
-  b: number,
-  c: number,
-): number {
+export function evaluateQuadratic(x: number, a: number, b: number, c: number): number {
   return a * x * x + b * x + c;
 }
 
@@ -122,11 +114,7 @@ export function evaluateQuadratic(
  * @param b - Y-intercept
  * @returns The computed y value
  */
-export function evaluateLinear(
-  x: number,
-  m: number,
-  b: number,
-): number {
+export function evaluateLinear(x: number, m: number, b: number): number {
   return m * x + b;
 }
 
@@ -136,16 +124,13 @@ export function evaluateLinear(
  * @param x - The input value
  * @returns The computed y value, or 0 if parsing fails
  */
-export function evaluateFunction(
-  expression: string,
-  x: number,
-): number {
-  if (expression.includes('x^2')) {
+export function evaluateFunction(expression: string, x: number): number {
+  if (expression.includes("x^2")) {
     const coeffs = parseQuadratic(expression);
     if (coeffs) {
       return evaluateQuadratic(x, coeffs.a, coeffs.b, coeffs.c);
     }
-  } else if (expression.includes('x')) {
+  } else if (expression.includes("x")) {
     const coeffs = parseLinear(expression);
     if (coeffs) {
       return evaluateLinear(x, coeffs.m, coeffs.b);
@@ -185,5 +170,5 @@ export function generateFunctionPath(
     }
   }
 
-  return points.join(' ');
+  return points.join(" ");
 }

@@ -32,25 +32,31 @@
 //    re-published with the touch-action change reverted but the
 //    IM3 import is still active, this test detects the drift.
 
-import { describe, it, expect, beforeAll } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { ComprehensionQuiz } from '@math-platform/activity-components/quiz';
-import { GraphingCanvas } from '@math-platform/activity-components/graphing';
-import { StepByStepSolverActivity } from '@/components/activities/algebraic/StepByStepSolverActivity';
-import { LessonStepper, type StepperPhase } from '@/components/lesson/LessonStepper';
-import { PhaseCompleteButton } from '@/components/lesson/PhaseCompleteButton';
-import { Dialog } from '@/components/ui/dialog';
-import { StudentNavigation } from '@/components/student/StudentNavigation';
-import 'katex/dist/katex.min.css';
+import { describe, it, expect, beforeAll } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { ComprehensionQuiz } from "@math-platform/activity-components/quiz";
+import { GraphingCanvas } from "@math-platform/activity-components/graphing";
+import { StepByStepSolverActivity } from "@/components/activities/algebraic/StepByStepSolverActivity";
+import { LessonStepper, type StepperPhase } from "@/components/lesson/LessonStepper";
+import { PhaseCompleteButton } from "@/components/lesson/PhaseCompleteButton";
+import { Dialog } from "@/components/ui/dialog";
+import { StudentNavigation } from "@/components/student/StudentNavigation";
+import "katex/dist/katex.min.css";
 
 const PHASES: StepperPhase[] = [
-  { phaseNumber: 1, phaseId: 'p1', phaseType: 'explore', title: 'Explore', status: 'completed' },
-  { phaseNumber: 2, phaseId: 'p2', phaseType: 'learn', title: 'Learn', status: 'current' },
-  { phaseNumber: 3, phaseId: 'p3', phaseType: 'worked_example', title: 'Example', status: 'locked' },
+  { phaseNumber: 1, phaseId: "p1", phaseType: "explore", title: "Explore", status: "completed" },
+  { phaseNumber: 2, phaseId: "p2", phaseType: "learn", title: "Learn", status: "current" },
+  {
+    phaseNumber: 3,
+    phaseId: "p3",
+    phaseType: "worked_example",
+    title: "Example",
+    status: "locked",
+  },
 ];
 
-describe('Adversarial — strict non-default touch-action (closes audit #11 vacuous-truth gap)', () => {
-  it('GraphingCanvas SVG declares a NON-DEFAULT touch-action value', () => {
+describe("Adversarial — strict non-default touch-action (closes audit #11 vacuous-truth gap)", () => {
+  it("GraphingCanvas SVG declares a NON-DEFAULT touch-action value", () => {
     // The audit #11 finding calls out the default (auto) behavior as
     // broken for touch point placement. A regression that declares
     // `touch-action: auto` would not fix the bug. This test excludes
@@ -67,15 +73,14 @@ describe('Adversarial — strict non-default touch-action (closes audit #11 vacu
       />,
     );
 
-    const svg = screen.getByRole('img');
-    const style = svg.getAttribute('style') ?? '';
-    const className = svg.getAttribute('class') ?? '';
+    const svg = screen.getByRole("img");
+    const style = svg.getAttribute("style") ?? "";
+    const className = svg.getAttribute("class") ?? "";
 
     // Acceptable non-default values per CSS Touch Action spec:
     // none | pan-x | pan-y | manipulation | pinch-zoom
     const inlineRe = /touch-action\s*:\s*(none|pan-x|pan-y|manipulation|pinch-zoom)\b/i;
-    const tailwindRe =
-      /\btouch-action-(?:none|pan-x|pan-y|manipulation|pinch-zoom)\b/;
+    const tailwindRe = /\btouch-action-(?:none|pan-x|pan-y|manipulation|pinch-zoom)\b/;
 
     const inlineMatch = inlineRe.exec(style);
     const tailwindMatch = tailwindRe.exec(className);
@@ -107,8 +112,8 @@ describe('Adversarial — strict non-default touch-action (closes audit #11 vacu
       />,
     );
 
-    const svg = screen.getByRole('img');
-    const style = svg.getAttribute('style') ?? '';
+    const svg = screen.getByRole("img");
+    const style = svg.getAttribute("style") ?? "";
     expect(
       /touch-action\s*:\s*auto\b/i.test(style),
       `GraphingCanvas SVG inline style must NOT contain ` +
@@ -118,8 +123,8 @@ describe('Adversarial — strict non-default touch-action (closes audit #11 vacu
   });
 });
 
-describe('Adversarial — both axes required when inline-style is the carrier (closes Phase 2 vacuous-truth)', () => {
-  it('hit-target predicate requires BOTH height AND width when class-based declaration is absent', () => {
+describe("Adversarial — both axes required when inline-style is the carrier (closes Phase 2 vacuous-truth)", () => {
+  it("hit-target predicate requires BOTH height AND width when class-based declaration is absent", () => {
     // Reproduce the predicate from hit-target.test.tsx and feed it a
     // synthetic element that declares only ONE axis inline. The original
     // predicate returns `true` in this case (widthOk defaults to true),
@@ -131,14 +136,14 @@ describe('Adversarial — both axes required when inline-style is the carrier (c
     const bothAxesInline = `<button style="min-height: 44px; min-width: 44px;">x</button>`;
     const classOnly = `<button class="min-h-[44px] min-w-[44px]">x</button>`;
 
-    const container = document.createElement('div');
+    const container = document.createElement("div");
     container.innerHTML = onlyHeightInline + onlyWidthInline + bothAxesInline + classOnly;
     document.body.appendChild(container);
 
     const MIN = 44;
     const strictMeets = (el: Element): boolean => {
-      const className = el.getAttribute('class') ?? '';
-      const style = el.getAttribute('style') ?? '';
+      const className = el.getAttribute("class") ?? "";
+      const style = el.getAttribute("style") ?? "";
       const mh = /min-height\s*:\s*([0-9.]+)px/i.exec(style);
       const mw = /min-width\s*:\s*([0-9.]+)px/i.exec(style);
       const heightOk = mh ? parseFloat(mh[1]) >= MIN : false;
@@ -150,7 +155,7 @@ describe('Adversarial — both axes required when inline-style is the carrier (c
       return hasMinH && hasMinW;
     };
 
-    const buttons = container.querySelectorAll('button');
+    const buttons = container.querySelectorAll("button");
     expect(buttons.length).toBe(4);
 
     // Only-height inline should FAIL strict contract (the regression test
@@ -167,11 +172,11 @@ describe('Adversarial — both axes required when inline-style is the carrier (c
   });
 });
 
-describe('Adversarial — Dialog mobile max-w form must precede breakpoint form (closes ordering gap)', () => {
+describe("Adversarial — Dialog mobile max-w form must precede breakpoint form (closes ordering gap)", () => {
   // jsdom does not implement `HTMLDialogElement.showModal()`.
   beforeAll(() => {
-    if (!('showModal' in HTMLDialogElement.prototype)) {
-      Object.defineProperty(HTMLDialogElement.prototype, 'showModal', {
+    if (!("showModal" in HTMLDialogElement.prototype)) {
+      Object.defineProperty(HTMLDialogElement.prototype, "showModal", {
         configurable: true,
         writable: true,
         value: function showModal() {
@@ -179,8 +184,8 @@ describe('Adversarial — Dialog mobile max-w form must precede breakpoint form 
         },
       });
     }
-    if (!('close' in HTMLDialogElement.prototype)) {
-      Object.defineProperty(HTMLDialogElement.prototype, 'close', {
+    if (!("close" in HTMLDialogElement.prototype)) {
+      Object.defineProperty(HTMLDialogElement.prototype, "close", {
         configurable: true,
         writable: true,
         value: function close() {
@@ -190,7 +195,7 @@ describe('Adversarial — Dialog mobile max-w form must precede breakpoint form 
     }
   });
 
-  it('Dialog card carries BOTH a mobile viewport-aware max-w AND a desktop breakpoint cap', () => {
+  it("Dialog card carries BOTH a mobile viewport-aware max-w AND a desktop breakpoint cap", () => {
     // The Phase 2 fix is `max-w-[calc(100vw-2rem)] sm:max-w-md` — the
     // mobile form MUST come first so that Tailwind's later-source-wins
     // rule does not collapse the dialog to `max-w-md` on phones (where
@@ -203,11 +208,11 @@ describe('Adversarial — Dialog mobile max-w form must precede breakpoint form 
       </Dialog>,
     );
 
-    const dialog = screen.getByRole('dialog');
-    const card = dialog.querySelector('div');
+    const dialog = screen.getByRole("dialog");
+    const card = dialog.querySelector("div");
     expect(card).not.toBeNull();
 
-    const className = card?.getAttribute('class') ?? '';
+    const className = card?.getAttribute("class") ?? "";
 
     // Locate both forms. Capture their character offsets.
     const mobileForms = [
@@ -248,8 +253,8 @@ describe('Adversarial — Dialog mobile max-w form must precede breakpoint form 
   });
 });
 
-describe('Adversarial — StepByStepSolverActivity Next button is reachable (post-remediation interaction smoke)', () => {
-  it('guided-mode Next button is focusable and not disabled after correct selection', () => {
+describe("Adversarial — StepByStepSolverActivity Next button is reachable (post-remediation interaction smoke)", () => {
+  it("guided-mode Next button is focusable and not disabled after correct selection", () => {
     // Phase 2 Red selects the correct option then asserts the Next
     // button renders with hit-target classes. This test goes one step
     // further: the Next button must be focusable AND its hit-target
@@ -259,14 +264,14 @@ describe('Adversarial — StepByStepSolverActivity Next button is reachable (pos
     // rendering layer does not.
     const steps = [
       {
-        expression: 'x^2 + 5x + 6',
-        explanation: 'Write the quadratic in standard form',
-        distractors: ['x + 5', '2x + 3'],
+        expression: "x^2 + 5x + 6",
+        explanation: "Write the quadratic in standard form",
+        distractors: ["x + 5", "2x + 3"],
       },
       {
-        expression: '(x + 2)(x + 3)',
-        explanation: 'Factor the trinomial',
-        distractors: ['(x - 2)(x - 3)', '(x + 1)(x + 6)'],
+        expression: "(x + 2)(x + 3)",
+        explanation: "Factor the trinomial",
+        distractors: ["(x - 2)(x - 3)", "(x + 1)(x + 6)"],
       },
     ];
 
@@ -280,18 +285,16 @@ describe('Adversarial — StepByStepSolverActivity Next button is reachable (pos
       />,
     );
 
-    const optionButtons = screen.getAllByRole('button');
-    const correctButton = optionButtons.find((b) =>
-      (b.textContent ?? '').includes('x^2 + 5x + 6'),
-    );
-    expect(correctButton, 'must render correct option button').toBeDefined();
+    const optionButtons = screen.getAllByRole("button");
+    const correctButton = optionButtons.find((b) => (b.textContent ?? "").includes("x^2 + 5x + 6"));
+    expect(correctButton, "must render correct option button").toBeDefined();
 
     fireEvent.click(correctButton!);
 
-    const nextButton = screen.getByText('Next');
-    expect(nextButton.tagName.toLowerCase()).toBe('button');
+    const nextButton = screen.getByText("Next");
+    expect(nextButton.tagName.toLowerCase()).toBe("button");
 
-    const className = nextButton.getAttribute('class') ?? '';
+    const className = nextButton.getAttribute("class") ?? "";
     expect(
       /\bmin-h-\[\s*44px\s*\]/.test(className) ||
         /\bmin-w-\[\s*44px\s*\]/.test(className) ||
@@ -305,33 +308,33 @@ describe('Adversarial — StepByStepSolverActivity Next button is reachable (pos
   });
 });
 
-describe('Adversarial — ComprehensionQuiz submit button declares min-w axis (not only min-h)', () => {
-  it('practice-mode submit button className contains BOTH min-h-[44px] AND min-w-[44px]', async () => {
+describe("Adversarial — ComprehensionQuiz submit button declares min-w axis (not only min-h)", () => {
+  it("practice-mode submit button className contains BOTH min-h-[44px] AND min-w-[44px]", async () => {
     // The original Phase 2 predicate accepted a button with only a
     // height-axis declaration inline. This test pins both axes in the
     // SAME Tailwind class list — a regression that drops `min-w-[44px]`
     // would now fail.
-    const user = (await import('@testing-library/user-event')).default.setup();
+    const user = (await import("@testing-library/user-event")).default.setup();
     render(
       <ComprehensionQuiz
         activityId="quiz-strict-both"
         mode="practice"
         questions={[
           {
-            id: 'q1',
-            type: 'true_false',
-            prompt: 'Touch targets should be at least 44x44.',
-            options: ['True', 'False'],
-            correctAnswer: 'True',
+            id: "q1",
+            type: "true_false",
+            prompt: "Touch targets should be at least 44x44.",
+            options: ["True", "False"],
+            correctAnswer: "True",
           },
         ]}
         onSubmit={() => {}}
       />,
     );
 
-    await user.click(screen.getByText('True'));
+    await user.click(screen.getByText("True"));
     const submit = await screen.findByText(/submit/i);
-    const className = submit.getAttribute('class') ?? '';
+    const className = submit.getAttribute("class") ?? "";
 
     expect(
       /\bmin-h-\[\s*44px\s*\]/.test(className),
@@ -351,15 +354,15 @@ describe('Adversarial — ComprehensionQuiz submit button declares min-w axis (n
   });
 });
 
-describe('Adversarial — shell components carry min-h-[44px] AND min-w-[44px] (not just one axis)', () => {
-  it('LessonStepper compact step button declares BOTH axes', () => {
+describe("Adversarial — shell components carry min-h-[44px] AND min-w-[44px] (not just one axis)", () => {
+  it("LessonStepper compact step button declares BOTH axes", () => {
     render(<LessonStepper phases={PHASES} currentPhase={2} />);
     const numbered = screen
-      .getAllByRole('button')
-      .filter((b) => /^\d+$/.test((b.textContent ?? '').trim()));
+      .getAllByRole("button")
+      .filter((b) => /^\d+$/.test((b.textContent ?? "").trim()));
     expect(numbered.length).toBeGreaterThan(0);
     for (const btn of numbered) {
-      const className = btn.getAttribute('class') ?? '';
+      const className = btn.getAttribute("class") ?? "";
       expect(
         /\bmin-h-\[\s*44px\s*\]/.test(className),
         `LessonStepper compact button missing min-h-[44px]. className: "${className}".`,
@@ -371,20 +374,18 @@ describe('Adversarial — shell components carry min-h-[44px] AND min-w-[44px] (
     }
   });
 
-  it('PhaseCompleteButton Mark Complete declares BOTH axes', () => {
-    render(
-      <PhaseCompleteButton lessonId="x" phaseNumber={1} phaseType="learn" />,
-    );
-    const btn = screen.getByRole('button', { name: /mark complete/i });
-    const className = btn.getAttribute('class') ?? '';
+  it("PhaseCompleteButton Mark Complete declares BOTH axes", () => {
+    render(<PhaseCompleteButton lessonId="x" phaseNumber={1} phaseType="learn" />);
+    const btn = screen.getByRole("button", { name: /mark complete/i });
+    const className = btn.getAttribute("class") ?? "";
     expect(/\bmin-h-\[\s*44px\s*\]/.test(className)).toBe(true);
     expect(/\bmin-w-\[\s*44px\s*\]/.test(className)).toBe(true);
   });
 
-  it('StudentNavigation mobile toggle declares BOTH axes', () => {
+  it("StudentNavigation mobile toggle declares BOTH axes", () => {
     render(<StudentNavigation activeRoute="/x" />);
-    const btn = screen.getByRole('button', { name: /toggle menu/i });
-    const className = btn.getAttribute('class') ?? '';
+    const btn = screen.getByRole("button", { name: /toggle menu/i });
+    const className = btn.getAttribute("class") ?? "";
     expect(/\bmin-h-\[\s*44px\s*\]/.test(className)).toBe(true);
     expect(/\bmin-w-\[\s*44px\s*\]/.test(className)).toBe(true);
   });

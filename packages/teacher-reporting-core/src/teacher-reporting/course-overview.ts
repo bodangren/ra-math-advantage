@@ -1,4 +1,4 @@
-import { computeMasteryColor, type CellColor } from './gradebook';
+import { computeMasteryColor, type CellColor } from "./gradebook";
 
 export type { CellColor };
 
@@ -19,11 +19,29 @@ export interface CourseOverviewRow {
   cells: CourseOverviewCell[];
 }
 
-export interface RawCOLesson        { id: string; unitNumber: number }
-export interface RawCOLessonVersion { id: string; lessonId: string }
-export interface RawCOLessonStandard { lessonVersionId: string; standardId: string; isPrimary: boolean }
-export interface RawCOStudent        { id: string; username: string; displayName: string | null }
-export interface RawCOCompetency     { studentId: string; standardId: string; masteryLevel: number }
+export interface RawCOLesson {
+  id: string;
+  unitNumber: number;
+}
+export interface RawCOLessonVersion {
+  id: string;
+  lessonId: string;
+}
+export interface RawCOLessonStandard {
+  lessonVersionId: string;
+  standardId: string;
+  isPrimary: boolean;
+}
+export interface RawCOStudent {
+  id: string;
+  username: string;
+  displayName: string | null;
+}
+export interface RawCOCompetency {
+  studentId: string;
+  standardId: string;
+  masteryLevel: number;
+}
 
 /**
  * Assemble course overview rows with per-unit average mastery for each student.
@@ -41,11 +59,13 @@ export function assembleCourseOverviewRows(
   rawPrimaryStandards: RawCOLessonStandard[],
   competencyRows: RawCOCompetency[],
 ): { rows: CourseOverviewRow[]; units: UnitColumn[] } {
-  const unitNumbers = [...new Set(rawLessons.map(l => l.unitNumber))].sort((a, b) => a - b);
-  const units: UnitColumn[] = unitNumbers.map(n => ({ unitNumber: n }));
+  const unitNumbers = [...new Set(rawLessons.map((l) => l.unitNumber))].sort((a, b) => a - b);
+  const units: UnitColumn[] = unitNumbers.map((n) => ({ unitNumber: n }));
 
-  const unitByLesson   = new Map<string, number>(rawLessons.map(l => [l.id, l.unitNumber]));
-  const lessonByVersion = new Map<string, string>(rawLessonVersions.map(lv => [lv.id, lv.lessonId]));
+  const unitByLesson = new Map<string, number>(rawLessons.map((l) => [l.id, l.unitNumber]));
+  const lessonByVersion = new Map<string, string>(
+    rawLessonVersions.map((lv) => [lv.id, lv.lessonId]),
+  );
 
   const standardsByUnit = new Map<number, Set<string>>();
   for (const ls of rawPrimaryStandards) {
@@ -64,11 +84,11 @@ export function assembleCourseOverviewRows(
     competencyIndex.set(`${row.studentId}|${row.standardId}`, row.masteryLevel);
   }
 
-  const rows: CourseOverviewRow[] = students.map(student => {
-    const cells: CourseOverviewCell[] = unitNumbers.map(unitNumber => {
+  const rows: CourseOverviewRow[] = students.map((student) => {
+    const cells: CourseOverviewCell[] = unitNumbers.map((unitNumber) => {
       const standardIds = standardsByUnit.get(unitNumber);
       if (!standardIds || standardIds.size === 0) {
-        return { unitNumber, avgMastery: null, color: 'gray' };
+        return { unitNumber, avgMastery: null, color: "gray" };
       }
 
       const values: number[] = [];
@@ -78,7 +98,7 @@ export function assembleCourseOverviewRows(
       }
 
       if (values.length === 0) {
-        return { unitNumber, avgMastery: null, color: 'gray' };
+        return { unitNumber, avgMastery: null, color: "gray" };
       }
 
       const avg = Math.round(values.reduce((s, v) => s + v, 0) / values.length);

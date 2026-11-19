@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -31,7 +31,8 @@ export const seedLesson6_3 = internalMutation({
           unitNumber: 6,
           title: "Common Logarithms",
           slug: lessonSlug,
-          description: "Students solve exponential equations by using common logarithms and evaluate logarithmic expressions by using the Change of Base Formula.",
+          description:
+            "Students solve exponential equations by using common logarithms and evaluate logarithmic expressions by using the Change of Base Formula.",
           orderIndex: 3,
           createdAt: now,
           updatedAt: now,
@@ -48,7 +49,8 @@ export const seedLesson6_3 = internalMutation({
           lessonId,
           version: 1,
           title: "Common Logarithms",
-          description: "Students solve exponential equations by using common logarithms and evaluate logarithmic expressions by using the Change of Base Formula.",
+          description:
+            "Students solve exponential equations by using common logarithms and evaluate logarithmic expressions by using the Change of Base Formula.",
           status: "published",
           createdAt: now,
         });
@@ -137,8 +139,14 @@ export const seedLesson6_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "log 8",
                 steps: [
-                  { expression: "log 8", explanation: "Start with the common logarithm expression" },
-                  { expression: "log 8 ≈ 0.9031", explanation: "Use a calculator to evaluate to the nearest ten-thousandth" },
+                  {
+                    expression: "log 8",
+                    explanation: "Start with the common logarithm expression",
+                  },
+                  {
+                    expression: "log 8 ≈ 0.9031",
+                    explanation: "Use a calculator to evaluate to the nearest ten-thousandth",
+                  },
                 ],
               },
             },
@@ -168,7 +176,10 @@ export const seedLesson6_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "log E = 11.8 + 1.5M",
                 steps: [
-                  { expression: "log E = 11.8 + 1.5(7)", explanation: "Substitute M = 7 into the equation" },
+                  {
+                    expression: "log E = 11.8 + 1.5(7)",
+                    explanation: "Substitute M = 7 into the equation",
+                  },
                   { expression: "log E = 22.3", explanation: "Simplify the right side" },
                   { expression: "E = 10^{22.3}", explanation: "Rewrite in exponential form" },
                   { expression: "E ≈ 2 × 10^{22}", explanation: "Use a calculator to evaluate" },
@@ -202,9 +213,18 @@ export const seedLesson6_3 = internalMutation({
                 equation: "11^x = 101",
                 steps: [
                   { expression: "11^x = 101", explanation: "Start with the exponential equation" },
-                  { expression: "log 11^x = log 101", explanation: "Take the common logarithm of both sides" },
-                  { expression: "x log 11 = log 101", explanation: "Apply the Power Property of Logarithms" },
-                  { expression: "x = log 101 / log 11", explanation: "Divide both sides by log 11" },
+                  {
+                    expression: "log 11^x = log 101",
+                    explanation: "Take the common logarithm of both sides",
+                  },
+                  {
+                    expression: "x log 11 = log 101",
+                    explanation: "Apply the Power Property of Logarithms",
+                  },
+                  {
+                    expression: "x = log 101 / log 11",
+                    explanation: "Divide both sides by log 11",
+                  },
                   { expression: "x ≈ 1.9247", explanation: "Evaluate with a calculator" },
                 ],
               },
@@ -235,11 +255,27 @@ export const seedLesson6_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "6^{2y - 5} < 5^{3y}",
                 steps: [
-                  { expression: "log(6^{2y - 5}) < log(5^{3y})", explanation: "Take common logarithms of both sides" },
-                  { expression: "(2y - 5) log 6 < 3y log 5", explanation: "Apply the Power Property" },
-                  { expression: "2y log 6 - 5 log 6 < 3y log 5", explanation: "Distribute log 6 on the left side" },
-                  { expression: "-5 log 6 < y(3 log 5 - 2 log 6)", explanation: "Collect y-terms on the right side" },
-                  { expression: "y > (-5 log 6) / (3 log 5 - 2 log 6)", explanation: "Divide; the denominator is positive, so inequality direction stays the same" },
+                  {
+                    expression: "log(6^{2y - 5}) < log(5^{3y})",
+                    explanation: "Take common logarithms of both sides",
+                  },
+                  {
+                    expression: "(2y - 5) log 6 < 3y log 5",
+                    explanation: "Apply the Power Property",
+                  },
+                  {
+                    expression: "2y log 6 - 5 log 6 < 3y log 5",
+                    explanation: "Distribute log 6 on the left side",
+                  },
+                  {
+                    expression: "-5 log 6 < y(3 log 5 - 2 log 6)",
+                    explanation: "Collect y-terms on the right side",
+                  },
+                  {
+                    expression: "y > (-5 log 6) / (3 log 5 - 2 log 6)",
+                    explanation:
+                      "Divide; the denominator is positive, so inequality direction stays the same",
+                  },
                   { expression: "y > -7.1970", explanation: "Evaluate with a calculator" },
                 ],
               },
@@ -286,7 +322,10 @@ export const seedLesson6_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "log_2 11",
                 steps: [
-                  { expression: "log_2 11 = log 11 / log 2", explanation: "Apply the Change of Base Formula with common logarithms" },
+                  {
+                    expression: "log_2 11 = log 11 / log 2",
+                    explanation: "Apply the Change of Base Formula with common logarithms",
+                  },
                   { expression: "≈ 3.4594", explanation: "Evaluate with a calculator" },
                 ],
               },
@@ -317,9 +356,18 @@ export const seedLesson6_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "n = 1200(log_2(a/1661.22))",
                 steps: [
-                  { expression: "1600 = 1200(log_2(a/1661.22))", explanation: "Substitute known values n = 1600 and b = 1661.22" },
-                  { expression: "4/3 = log_2(a/1661.22)", explanation: "Divide both sides by 1200" },
-                  { expression: "4/3 = log(a/1661.22) / log 2", explanation: "Apply the Change of Base Formula" },
+                  {
+                    expression: "1600 = 1200(log_2(a/1661.22))",
+                    explanation: "Substitute known values n = 1600 and b = 1661.22",
+                  },
+                  {
+                    expression: "4/3 = log_2(a/1661.22)",
+                    explanation: "Divide both sides by 1200",
+                  },
+                  {
+                    expression: "4/3 = log(a/1661.22) / log 2",
+                    explanation: "Apply the Change of Base Formula",
+                  },
                   { expression: "a ≈ 4186.01", explanation: "Solve using a graphing calculator" },
                 ],
               },
@@ -349,12 +397,14 @@ export const seedLesson6_3 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "What is the approximate value of log 8 to the nearest ten-thousandth?",
+                    question:
+                      "What is the approximate value of log 8 to the nearest ten-thousandth?",
                     options: ["0.8031", "0.9031", "1.9031"],
                     correctIndex: 1,
                   },
                   {
-                    question: "Which expression is equivalent to log_2 11 using the Change of Base Formula?",
+                    question:
+                      "Which expression is equivalent to log_2 11 using the Change of Base Formula?",
                     options: ["log 2 / log 11", "log 11 / log 2", "11 / log 2"],
                     correctIndex: 1,
                   },
@@ -389,7 +439,7 @@ export const seedLesson6_3 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

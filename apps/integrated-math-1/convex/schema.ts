@@ -89,7 +89,12 @@ export default defineSchema({
     version: v.number(),
     title: v.optional(v.string()),
     description: v.optional(v.string()),
-    status: v.union(v.literal("draft"), v.literal("review"), v.literal("published"), v.literal("archived")),
+    status: v.union(
+      v.literal("draft"),
+      v.literal("review"),
+      v.literal("published"),
+      v.literal("archived"),
+    ),
     createdAt: v.number(),
   })
     .index("by_lesson", ["lessonId"])
@@ -157,7 +162,13 @@ export default defineSchema({
   activities: defineTable({
     stableActivityId: v.optional(v.string()),
     masteryNodeId: v.optional(v.string()),
-    learningEvidenceMode: v.optional(v.union(v.literal("worked_example"), v.literal("guided_practice"), v.literal("independent_practice"))),
+    learningEvidenceMode: v.optional(
+      v.union(
+        v.literal("worked_example"),
+        v.literal("guided_practice"),
+        v.literal("independent_practice"),
+      ),
+    ),
     srsEligible: v.optional(v.boolean()),
     generatorSeed: v.optional(v.number()),
     generatorDifficulty: v.optional(v.number()),
@@ -167,21 +178,24 @@ export default defineSchema({
     props: v.any(),
     gradingConfig: v.optional(v.any()),
     standardId: v.optional(v.id("competency_standards")),
-    approval: v.optional(v.object({
-      status: v.union(
-        v.literal("unreviewed"),
-        v.literal("approved"),
-        v.literal("needs_changes"),
-        v.literal("rejected"),
-      ),
-      contentHash: v.optional(v.string()),
-      reviewedAt: v.optional(v.number()),
-      reviewedBy: v.optional(v.id("profiles")),
-      reviewId: v.optional(v.id("component_reviews")),
-    })),
+    approval: v.optional(
+      v.object({
+        status: v.union(
+          v.literal("unreviewed"),
+          v.literal("approved"),
+          v.literal("needs_changes"),
+          v.literal("rejected"),
+        ),
+        contentHash: v.optional(v.string()),
+        reviewedAt: v.optional(v.number()),
+        reviewedBy: v.optional(v.id("profiles")),
+        reviewId: v.optional(v.id("component_reviews")),
+      }),
+    ),
     createdAt: v.number(),
     updatedAt: v.number(),
-  }).index("by_standard", ["standardId"])
+  })
+    .index("by_standard", ["standardId"])
     .index("by_stable_activity_id", ["stableActivityId"]),
 
   student_competency: defineTable({
@@ -221,7 +235,12 @@ export default defineSchema({
   student_progress: defineTable({
     userId: v.id("profiles"),
     phaseId: v.id("phase_versions"),
-    status: v.union(v.literal("not_started"), v.literal("in_progress"), v.literal("completed"), v.literal("skipped")),
+    status: v.union(
+      v.literal("not_started"),
+      v.literal("in_progress"),
+      v.literal("completed"),
+      v.literal("skipped"),
+    ),
     startedAt: v.optional(v.number()),
     completedAt: v.optional(v.number()),
     timeSpentSeconds: v.optional(v.number()),
@@ -262,9 +281,21 @@ export default defineSchema({
     activityId: v.string(),
     attemptOrdinal: v.number(),
     origin: v.union(v.literal("teacher_led"), v.literal("mastery_advantage")),
-    mode: v.union(v.literal("worked_example"), v.literal("guided_practice"), v.literal("independent_practice"), v.literal("assessment"), v.literal("teaching")),
+    mode: v.union(
+      v.literal("worked_example"),
+      v.literal("guided_practice"),
+      v.literal("independent_practice"),
+      v.literal("assessment"),
+      v.literal("teaching"),
+    ),
     occurredAt: v.string(),
-    gradedEvidence: v.optional(v.object({ isCorrect: v.optional(v.boolean()), score: v.optional(v.number()), maxScore: v.optional(v.number()) })),
+    gradedEvidence: v.optional(
+      v.object({
+        isCorrect: v.optional(v.boolean()),
+        score: v.optional(v.number()),
+        maxScore: v.optional(v.number()),
+      }),
+    ),
     idempotencyKey: v.string(),
     masteryBearing: v.optional(v.boolean()),
     createdAt: v.number(),
@@ -315,13 +346,15 @@ export default defineSchema({
     comment: v.optional(v.string()),
     issueTags: v.optional(v.array(v.string())),
     priority: v.optional(v.union(v.literal("low"), v.literal("medium"), v.literal("high"))),
-    placement: v.optional(v.object({
-      lessonId: v.optional(v.string()),
-      lessonVersionId: v.optional(v.string()),
-      phaseId: v.optional(v.string()),
-      phaseNumber: v.optional(v.number()),
-      sectionId: v.optional(v.string()),
-    })),
+    placement: v.optional(
+      v.object({
+        lessonId: v.optional(v.string()),
+        lessonVersionId: v.optional(v.string()),
+        phaseId: v.optional(v.string()),
+        phaseNumber: v.optional(v.number()),
+        sectionId: v.optional(v.string()),
+      }),
+    ),
     createdBy: v.id("profiles"),
     createdAt: v.number(),
     resolvedAt: v.optional(v.number()),
@@ -407,7 +440,7 @@ export default defineSchema({
       v.literal("new"),
       v.literal("learning"),
       v.literal("review"),
-      v.literal("relearning")
+      v.literal("relearning"),
     ),
     dueDate: v.string(),
     elapsedDays: v.number(),
@@ -458,7 +491,7 @@ export default defineSchema({
       v.literal("matching"),
       v.literal("speed_round"),
       v.literal("srs_review"),
-      v.literal("practice_test")
+      v.literal("practice_test"),
     ),
     curriculumScope: v.object({
       type: v.union(v.literal("all_units"), v.literal("module")),
@@ -484,12 +517,14 @@ export default defineSchema({
     lessonsTested: v.array(v.string()),
     questionCount: v.number(),
     score: v.number(),
-    perLessonBreakdown: v.array(v.object({
-      lessonId: v.string(),
-      lessonTitle: v.string(),
-      correct: v.number(),
-      total: v.number(),
-    })),
+    perLessonBreakdown: v.array(
+      v.object({
+        lessonId: v.string(),
+        lessonTitle: v.string(),
+        correct: v.number(),
+        total: v.number(),
+      }),
+    ),
     completedAt: v.number(),
     createdAt: v.number(),
   })
@@ -505,7 +540,7 @@ export default defineSchema({
       v.literal("new"),
       v.literal("learning"),
       v.literal("familiar"),
-      v.literal("mastered")
+      v.literal("mastered"),
     ),
     seenCount: v.number(),
     correctCount: v.number(),
@@ -542,6 +577,5 @@ export default defineSchema({
     windowStart: v.number(),
     createdAt: v.number(),
     updatedAt: v.number(),
-  })
-    .index("by_user", ["userId"]),
+  }).index("by_user", ["userId"]),
 });

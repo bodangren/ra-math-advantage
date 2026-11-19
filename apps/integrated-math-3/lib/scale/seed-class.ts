@@ -10,9 +10,9 @@ import {
   SCALE_REVIEWS_PER_CARD,
   SCALE_STUDENT_COUNT_CLASS,
   SCALE_SUBMISSIONS_PER_STUDENT,
-} from '@/lib/scale/constants';
+} from "@/lib/scale/constants";
 
-export const SCALE_RNG_SEED = 'load-2026' as const;
+export const SCALE_RNG_SEED = "load-2026" as const;
 
 export interface ClassSeedInput {
   organizationSlug: string;
@@ -48,62 +48,64 @@ function hashString(str: string): number {
 }
 
 export function generateClassSeed(input: ClassSeedInput): ClassSeedResult {
-  const scopeNum = hashString([
-    input.rngSeed ?? SCALE_RNG_SEED,
-    input.organizationSlug,
-    input.className,
-    input.teacherUsername,
-  ].join('|'));
+  const scopeNum = hashString(
+    [
+      input.rngSeed ?? SCALE_RNG_SEED,
+      input.organizationSlug,
+      input.className,
+      input.teacherUsername,
+    ].join("|"),
+  );
   const salt = (scopeNum >>> 0).toString(36);
   let seq = 0;
   const id = (prefix: string) => `${prefix}${salt}${(seq++).toString(36)}`;
 
   const org = { slug: input.organizationSlug };
-  const teacher = { id: id('t'), username: input.teacherUsername };
+  const teacher = { id: id("t"), username: input.teacherUsername };
   const classRoom = {
-    id: id('c'),
+    id: id("c"),
     name: input.className,
     teacherId: teacher.id,
   };
 
   const students = Array.from({ length: SCALE_STUDENT_COUNT_CLASS }, (_, i) => ({
-    id: id('s'),
+    id: id("s"),
     username: `student${i}@${input.organizationSlug}`,
     organizationSlug: input.organizationSlug,
   }));
 
   const enrollments = students.map((s) => ({
-    id: id('e'),
+    id: id("e"),
     studentId: s.id,
     classId: classRoom.id,
-    status: 'active',
+    status: "active",
   }));
 
-  const srsCards: ClassSeedResult['srsCards'] = [];
+  const srsCards: ClassSeedResult["srsCards"] = [];
   for (let i = 0; i < students.length; i++) {
     const sid = students[i].id;
     for (let j = 0; j < SCALE_CARDS_PER_STUDENT; j++) {
-      srsCards.push({ id: id('k'), studentId: sid });
+      srsCards.push({ id: id("k"), studentId: sid });
     }
   }
 
-  const reviewLog: ClassSeedResult['reviewLog'] = [];
+  const reviewLog: ClassSeedResult["reviewLog"] = [];
   for (let i = 0; i < srsCards.length; i++) {
     const card = srsCards[i];
     for (let k = 0; k < SCALE_REVIEWS_PER_CARD; k++) {
       reviewLog.push({
-        id: id('r'),
+        id: id("r"),
         studentId: card.studentId,
         cardId: card.id,
       });
     }
   }
 
-  const submissions: ClassSeedResult['submissions'] = [];
+  const submissions: ClassSeedResult["submissions"] = [];
   for (let i = 0; i < students.length; i++) {
     const sid = students[i].id;
     for (let m = 0; m < SCALE_SUBMISSIONS_PER_STUDENT; m++) {
-      submissions.push({ id: id('b'), studentId: sid });
+      submissions.push({ id: id("b"), studentId: sid });
     }
   }
 

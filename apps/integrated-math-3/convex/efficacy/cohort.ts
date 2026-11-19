@@ -1,10 +1,7 @@
 import { internalQuery, type QueryCtx } from "../_generated/server";
 import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
-import {
-  computeRetentionCurve,
-  computeReviewSuccessRate,
-} from "@math-platform/efficacy-core";
+import { computeRetentionCurve, computeReviewSuccessRate } from "@math-platform/efficacy-core";
 import type { SrsCardState, SrsReviewLogEntry } from "@math-platform/srs-engine";
 import type { MetricResult, RetentionPoint, ReviewSuccessRate } from "@math-platform/efficacy-core";
 import { resolveCanonicalVariantKey } from "../../lib/srs/v3-runtime-contract";
@@ -36,9 +33,7 @@ export async function aggregateCohortMetricsHandler(
     .withIndex("by_class", (q) => q.eq("classId", classId))
     .collect();
 
-  const activeEnrollments = allEnrollments.filter(
-    (e) => e.status === "active",
-  );
+  const activeEnrollments = allEnrollments.filter((e) => e.status === "active");
 
   const activeStudentIds = new Set(activeEnrollments.map((e) => e.studentId));
   const n = activeStudentIds.size;
@@ -52,40 +47,36 @@ export async function aggregateCohortMetricsHandler(
     };
   }
 
-  const allCards = await ctx.db
-    .query("srs_cards")
-    .withIndex("by_student")
-    .take(5_000);
+  const allCards = await ctx.db.query("srs_cards").withIndex("by_student").take(5_000);
   const studentCards: SrsCardState[] = allCards
     .filter((c) => activeStudentIds.has(c.studentId))
     .flatMap((c) => {
       try {
-        return [{
-          cardId: c._id as unknown as string,
-          studentId: c.studentId,
-          objectiveId: c.objectiveId,
-          variantKey: resolveCanonicalVariantKey(c).variantKey,
-          stability: c.stability,
-          difficulty: c.difficulty,
-          state: c.state as SrsCardState["state"],
-          dueDate: c.dueDate,
-          elapsedDays: c.elapsedDays,
-          scheduledDays: c.scheduledDays,
-          reps: c.reps,
-          lapses: c.lapses,
-          lastReview: c.lastReview ?? null,
-          createdAt: new Date(c.createdAt).toISOString(),
-          updatedAt: new Date(c.updatedAt).toISOString(),
-        }];
+        return [
+          {
+            cardId: c._id as unknown as string,
+            studentId: c.studentId,
+            objectiveId: c.objectiveId,
+            variantKey: resolveCanonicalVariantKey(c).variantKey,
+            stability: c.stability,
+            difficulty: c.difficulty,
+            state: c.state as SrsCardState["state"],
+            dueDate: c.dueDate,
+            elapsedDays: c.elapsedDays,
+            scheduledDays: c.scheduledDays,
+            reps: c.reps,
+            lapses: c.lapses,
+            lastReview: c.lastReview ?? null,
+            createdAt: new Date(c.createdAt).toISOString(),
+            updatedAt: new Date(c.updatedAt).toISOString(),
+          },
+        ];
       } catch {
         return [];
       }
     });
 
-  const allReviews = await ctx.db
-    .query("srs_review_log")
-    .withIndex("by_student")
-    .collect();
+  const allReviews = await ctx.db.query("srs_review_log").withIndex("by_student").collect();
   const studentReviews: SrsReviewLogEntry[] = allReviews
     .filter((r) => activeStudentIds.has(r.studentId))
     .filter((r) => r.reviewedAt >= windowStartMs && r.reviewedAt < windowEndMs)

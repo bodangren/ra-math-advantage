@@ -17,11 +17,8 @@
  *   - Incremental ≡ batch (replay N observations one-at-a-time vs. batched
  *     yields identical α, β in the decay-free regime)
  */
-import { describe, it, expect } from 'vitest';
-import type {
-  CalibrationObservation,
-  EdgeCalibration,
-} from '../srs/edge-calibration';
+import { describe, it, expect } from "vitest";
+import type { CalibrationObservation, EdgeCalibration } from "../srs/edge-calibration";
 import {
   posteriorMean,
   posteriorVariance,
@@ -30,7 +27,7 @@ import {
   bucketVariance,
   EDGE_CALIBRATION_POSTERIOR_VERSION,
   requiresPosteriorRecompute,
-} from '../srs/edge-calibration';
+} from "../srs/edge-calibration";
 
 // ---------------------------------------------------------------------------
 // Factories
@@ -43,10 +40,10 @@ import {
  */
 function makeCalibration(overrides: Partial<EdgeCalibration> = {}): EdgeCalibration {
   return {
-    edgeId: 'edge.prereq.a-to-b',
+    edgeId: "edge.prereq.a-to-b",
     alpha: 1,
     beta: 1,
-    status: 'untested',
+    status: "untested",
     lastUpdated: 1700000000000,
     ...overrides,
   };
@@ -59,29 +56,29 @@ function makeCalibration(overrides: Partial<EdgeCalibration> = {}): EdgeCalibrat
  * @returns {CalibrationObservation} - CalibrationObservation with a fixed student ID
  */
 function makeObservation(a: boolean, b: boolean): CalibrationObservation {
-  return { studentId: 's', a, b };
+  return { studentId: "s", a, b };
 }
 
 // ---------------------------------------------------------------------------
 // Task 2.5 — posteriorMean (FR3, AC3)
 // ---------------------------------------------------------------------------
 
-describe('posteriorMean (FR3, AC3)', () => {
-  it('is 0.5 for the uniform Beta(1, 1) prior', () => {
+describe("posteriorMean (FR3, AC3)", () => {
+  it("is 0.5 for the uniform Beta(1, 1) prior", () => {
     expect(posteriorMean(1, 1)).toBeCloseTo(0.5, 10);
   });
 
-  it('is the ratio α / (α + β)', () => {
+  it("is the ratio α / (α + β)", () => {
     expect(posteriorMean(8, 2)).toBeCloseTo(0.8, 10);
     expect(posteriorMean(1, 4)).toBeCloseTo(0.2, 10);
     expect(posteriorMean(50, 50)).toBeCloseTo(0.5, 10);
   });
 
-  it('approaches 0 as β dominates', () => {
+  it("approaches 0 as β dominates", () => {
     expect(posteriorMean(1, 1000)).toBeCloseTo(0.001, 5);
   });
 
-  it('approaches 1 as α dominates', () => {
+  it("approaches 1 as α dominates", () => {
     expect(posteriorMean(1000, 1)).toBeCloseTo(0.999, 3);
   });
 });
@@ -90,18 +87,18 @@ describe('posteriorMean (FR3, AC3)', () => {
 // Task 2.6 — posteriorVariance (FR3, AC3)
 // ---------------------------------------------------------------------------
 
-describe('posteriorVariance (FR3, AC3)', () => {
-  it('is 1/12 ≈ 0.0833 for Beta(1, 1) — the prior', () => {
+describe("posteriorVariance (FR3, AC3)", () => {
+  it("is 1/12 ≈ 0.0833 for Beta(1, 1) — the prior", () => {
     expect(posteriorVariance(1, 1)).toBeCloseTo(1 / 12, 10);
   });
 
-  it('is maximum at α = β = 1 (uniform prior)', () => {
+  it("is maximum at α = β = 1 (uniform prior)", () => {
     const uniformVar = posteriorVariance(1, 1);
     expect(posteriorVariance(2, 2)).toBeLessThan(uniformVar);
     expect(posteriorVariance(10, 10)).toBeLessThan(posteriorVariance(2, 2));
   });
 
-  it('decreases as either parameter grows (more evidence → tighter posterior)', () => {
+  it("decreases as either parameter grows (more evidence → tighter posterior)", () => {
     const v1 = posteriorVariance(2, 2);
     const v2 = posteriorVariance(10, 10);
     const v3 = posteriorVariance(100, 100);
@@ -109,7 +106,7 @@ describe('posteriorVariance (FR3, AC3)', () => {
     expect(v2).toBeGreaterThan(v3);
   });
 
-  it('matches the closed-form alpha*beta / ((α+β)^2 (α+β+1))', () => {
+  it("matches the closed-form alpha*beta / ((α+β)^2 (α+β+1))", () => {
     const a = 7;
     const b = 3;
     const expected = (a * b) / (Math.pow(a + b, 2) * (a + b + 1));
@@ -121,8 +118,8 @@ describe('posteriorVariance (FR3, AC3)', () => {
 // Task 2.7 — updatePosterior (FR3, AC3)
 // ---------------------------------------------------------------------------
 
-describe('updatePosterior (FR3, AC3)', () => {
-  it('does not update the necessity posterior from the proficient-A rows', () => {
+describe("updatePosterior (FR3, AC3)", () => {
+  it("does not update the necessity posterior from the proficient-A rows", () => {
     const before = makeCalibration({ alpha: 5, beta: 2 });
     expect(updatePosterior(before, makeObservation(true, true))).toMatchObject({
       alpha: 5,
@@ -134,7 +131,7 @@ describe('updatePosterior (FR3, AC3)', () => {
     });
   });
 
-  it('increments β on a cell-c violation (!A, B)', () => {
+  it("increments β on a cell-c violation (!A, B)", () => {
     const before = makeCalibration({ alpha: 5, beta: 2 });
     expect(updatePosterior(before, makeObservation(false, true))).toMatchObject({
       alpha: 5,
@@ -142,7 +139,7 @@ describe('updatePosterior (FR3, AC3)', () => {
     });
   });
 
-  it('increments α on a cell-d necessity observation (!A, !B)', () => {
+  it("increments α on a cell-d necessity observation (!A, !B)", () => {
     const before = makeCalibration({ alpha: 5, beta: 2 });
     expect(updatePosterior(before, makeObservation(false, false))).toMatchObject({
       alpha: 6,
@@ -150,7 +147,7 @@ describe('updatePosterior (FR3, AC3)', () => {
     });
   });
 
-  it('matches the v3 worked example Beta(7, 5) from a=470, b=20, c=4, d=6', () => {
+  it("matches the v3 worked example Beta(7, 5) from a=470, b=20, c=4, d=6", () => {
     const observations: CalibrationObservation[] = [
       ...Array.from({ length: 470 }, () => makeObservation(true, true)),
       ...Array.from({ length: 20 }, () => makeObservation(true, false)),
@@ -171,27 +168,25 @@ describe('updatePosterior (FR3, AC3)', () => {
     );
   });
 
-  it('preserves the edgeId on every update', () => {
-    const before = makeCalibration({ edgeId: 'edge.prereq.x-to-y' });
-    expect(updatePosterior(before, makeObservation(true, true)).edgeId).toBe(
-      'edge.prereq.x-to-y'
-    );
+  it("preserves the edgeId on every update", () => {
+    const before = makeCalibration({ edgeId: "edge.prereq.x-to-y" });
+    expect(updatePosterior(before, makeObservation(true, true)).edgeId).toBe("edge.prereq.x-to-y");
   });
 
-  it('updates lastUpdated to the provided timestamp', () => {
+  it("updates lastUpdated to the provided timestamp", () => {
     const before = makeCalibration({ lastUpdated: 1000 });
     const after = updatePosterior(before, makeObservation(true, true), { now: 9999 });
     expect(after.lastUpdated).toBe(9999);
   });
 
-  it('does not mutate the input state', () => {
+  it("does not mutate the input state", () => {
     const before = makeCalibration({ alpha: 5, beta: 2 });
     const snapshot = { ...before };
     updatePosterior(before, makeObservation(true, true));
     expect(before).toEqual(snapshot);
   });
 
-  it('is order-independent across a shuffled stream (commutativity property)', () => {
+  it("is order-independent across a shuffled stream (commutativity property)", () => {
     // 20 necessity observations + 5 violations, shuffled — two orderings must yield
     // identical α, β in the decay-free regime.
     const stream: CalibrationObservation[] = [];
@@ -206,8 +201,7 @@ describe('updatePosterior (FR3, AC3)', () => {
     }
 
     const initial = makeCalibration({ alpha: 1, beta: 1 });
-    const apply = (s: EdgeCalibration, o: CalibrationObservation) =>
-      updatePosterior(s, o);
+    const apply = (s: EdgeCalibration, o: CalibrationObservation) => updatePosterior(s, o);
 
     const a = stream.reduce(apply, initial);
     const b = reverse.reduce(apply, initial);
@@ -219,7 +213,7 @@ describe('updatePosterior (FR3, AC3)', () => {
     expect(a.beta).toBe(c.beta);
   });
 
-  it('incremental update ≡ batched replay of the same stream', () => {
+  it("incremental update ≡ batched replay of the same stream", () => {
     const stream: CalibrationObservation[] = [
       makeObservation(true, true),
       makeObservation(true, false),
@@ -228,10 +222,7 @@ describe('updatePosterior (FR3, AC3)', () => {
       makeObservation(false, false),
     ];
     const initial = makeCalibration({ alpha: 1, beta: 1 });
-    const incremental = stream.reduce(
-      (s, o) => updatePosterior(s, o),
-      initial
-    );
+    const incremental = stream.reduce((s, o) => updatePosterior(s, o), initial);
     // Batched = one observation object with the same counts; verify the
     // counters the batch would produce match the incremental result.
     let aInc = 0;
@@ -245,13 +236,13 @@ describe('updatePosterior (FR3, AC3)', () => {
   });
 });
 
-describe('v3 posterior persistence boundary', () => {
-  it('requires recomputation for missing and v2-derived posterior versions', () => {
+describe("v3 posterior persistence boundary", () => {
+  it("requires recomputation for missing and v2-derived posterior versions", () => {
     expect(requiresPosteriorRecompute()).toBe(true);
-    expect(requiresPosteriorRecompute('edge-calibration.v2')).toBe(true);
+    expect(requiresPosteriorRecompute("edge-calibration.v2")).toBe(true);
   });
 
-  it('accepts only the canonical v3 posterior version as current', () => {
+  it("accepts only the canonical v3 posterior version as current", () => {
     expect(requiresPosteriorRecompute(EDGE_CALIBRATION_POSTERIOR_VERSION)).toBe(false);
   });
 });
@@ -260,52 +251,52 @@ describe('v3 posterior persistence boundary', () => {
 // Task 2.8 — applyDecay (FR4, AC4)
 // ---------------------------------------------------------------------------
 
-describe('applyDecay (FR4, AC4)', () => {
-  it('multiplies α and β by λ in a single decay step', () => {
+describe("applyDecay (FR4, AC4)", () => {
+  it("multiplies α and β by λ in a single decay step", () => {
     const before = makeCalibration({ alpha: 10, beta: 5 });
     const after = applyDecay(before, 0.5, 2000);
     expect(after.alpha).toBeCloseTo(5, 10);
     expect(after.beta).toBeCloseTo(2.5, 10);
   });
 
-  it('does not change α or β at λ = 1 (no decay)', () => {
+  it("does not change α or β at λ = 1 (no decay)", () => {
     const before = makeCalibration({ alpha: 10, beta: 5 });
     const after = applyDecay(before, 1, 2000);
     expect(after.alpha).toBe(10);
     expect(after.beta).toBe(5);
   });
 
-  it('does not change α or β at λ = 0 (full reset to 0)', () => {
+  it("does not change α or β at λ = 0 (full reset to 0)", () => {
     const before = makeCalibration({ alpha: 10, beta: 5 });
     const after = applyDecay(before, 0, 2000);
     expect(after.alpha).toBe(0);
     expect(after.beta).toBe(0);
   });
 
-  it('updates lastUpdated to the provided timestamp', () => {
+  it("updates lastUpdated to the provided timestamp", () => {
     const before = makeCalibration({ lastUpdated: 1000 });
     const after = applyDecay(before, 0.9, 9999);
     expect(after.lastUpdated).toBe(9999);
   });
 
-  it('does not mutate the input state', () => {
+  it("does not mutate the input state", () => {
     const before = makeCalibration({ alpha: 10, beta: 5 });
     const snapshot = { ...before };
     applyDecay(before, 0.5, 2000);
     expect(before).toEqual(snapshot);
   });
 
-  it('increases posterior variance when λ < 1 (decay removes evidence → wider posterior)', () => {
+  it("increases posterior variance when λ < 1 (decay removes evidence → wider posterior)", () => {
     // Decay reduces α+β, moving the posterior back toward the uniform prior.
     // With α = β the mean stays at 0.5 but variance increases.
     const established = makeCalibration({ alpha: 100, beta: 100 });
     const decayed = applyDecay(established, 0.5, 2000);
     expect(posteriorVariance(decayed.alpha, decayed.beta)).toBeGreaterThan(
-      posteriorVariance(established.alpha, established.beta)
+      posteriorVariance(established.alpha, established.beta),
     );
   });
 
-  it('variance increases monotonically as more decay steps are applied', () => {
+  it("variance increases monotonically as more decay steps are applied", () => {
     let state = makeCalibration({ alpha: 100, beta: 5 });
     const v0 = posteriorVariance(state.alpha, state.beta);
     const variances: number[] = [v0];
@@ -318,7 +309,7 @@ describe('applyDecay (FR4, AC4)', () => {
     }
   });
 
-  it('mean stays at 0.5 when α and β are equal (decay is symmetric)', () => {
+  it("mean stays at 0.5 when α and β are equal (decay is symmetric)", () => {
     let state = makeCalibration({ alpha: 100, beta: 100 });
     for (let i = 0; i < 5; i++) {
       state = applyDecay(state, 0.7, 2000 + i);
@@ -326,7 +317,7 @@ describe('applyDecay (FR4, AC4)', () => {
     }
   });
 
-  it('mean is preserved under symmetric decay (decay scales α and β equally)', () => {
+  it("mean is preserved under symmetric decay (decay scales α and β equally)", () => {
     // Symmetric decay multiplies both α and β by the same λ, so the ratio
     // α/(α+β) — and therefore the posterior mean — is unchanged. The mean
     // only shifts toward 0.5 when new observations arrive at the prior mean.
@@ -345,21 +336,21 @@ describe('applyDecay (FR4, AC4)', () => {
 // Task 2.9 — bucketVariance (FR3, AC3)
 // ---------------------------------------------------------------------------
 
-describe('bucketVariance (FR3, AC3)', () => {
-  it('returns a string bucket label', () => {
+describe("bucketVariance (FR3, AC3)", () => {
+  it("returns a string bucket label", () => {
     const bucket = bucketVariance(0.05);
-    expect(typeof bucket).toBe('string');
+    expect(typeof bucket).toBe("string");
     expect(bucket.length).toBeGreaterThan(0);
   });
 
-  it('returns the lowest-confidence bucket when no evidence (α + β = 0)', () => {
+  it("returns the lowest-confidence bucket when no evidence (α + β = 0)", () => {
     // With zero evidence, confidence must be the lowest possible bucket
     const bucket = bucketVariance(posteriorVariance(0, 0), 0, 0);
-    expect(bucket).toBe('none');
+    expect(bucket).toBe("none");
   });
 
-  it('returns a higher-confidence bucket as variance shrinks', () => {
-    const order = ['low', 'medium', 'high'];
+  it("returns a higher-confidence bucket as variance shrinks", () => {
+    const order = ["low", "medium", "high"];
     const lo = order.indexOf(bucketVariance(0.2, 2, 2));
     const mid = order.indexOf(bucketVariance(0.05, 50, 50));
     const hi = order.indexOf(bucketVariance(0.001, 1000, 1000));
@@ -368,8 +359,8 @@ describe('bucketVariance (FR3, AC3)', () => {
     expect(mid).toBeGreaterThanOrEqual(lo);
   });
 
-  it('returns one of the four canonical buckets', () => {
-    const allowed = new Set(['none', 'low', 'medium', 'high']);
+  it("returns one of the four canonical buckets", () => {
+    const allowed = new Set(["none", "low", "medium", "high"]);
     for (const v of [0, 0.001, 0.05, 0.1, 0.2, 0.3, 1 / 12]) {
       expect(allowed.has(bucketVariance(v))).toBe(true);
     }

@@ -1,8 +1,8 @@
-import { ConvexHttpClient } from 'convex/browser';
-import type { FunctionReference, FunctionReturnType, FunctionArgs } from 'convex/server';
-import type { ResolveConvexAdminAuthOptions, ConvexAdminAuth } from './admin.js';
-import { resolveConvexAdminAuth } from './admin.js';
-import { getConvexUrl } from './config.js';
+import { ConvexHttpClient } from "convex/browser";
+import type { FunctionReference, FunctionReturnType, FunctionArgs } from "convex/server";
+import type { ResolveConvexAdminAuthOptions, ConvexAdminAuth } from "./admin.js";
+import { resolveConvexAdminAuth } from "./admin.js";
+import { getConvexUrl } from "./config.js";
 
 export interface ConvexClientWithAdminAuth extends ConvexHttpClient {
   setAdminAuth: (token: string, actingAsIdentity?: string) => void;
@@ -68,7 +68,7 @@ export function resetInternalClient(): void {
  * @param {FunctionArgs<Query>} args - Query arguments
  * @returns {Promise<FunctionReturnType<Query>>} - Query result
  */
-export async function fetchPublicQuery<Query extends FunctionReference<'query', 'public'>>(
+export async function fetchPublicQuery<Query extends FunctionReference<"query", "public">>(
   ref: Query,
   args: FunctionArgs<Query>,
 ): Promise<FunctionReturnType<Query>> {
@@ -82,7 +82,7 @@ export async function fetchPublicQuery<Query extends FunctionReference<'query', 
  * @param {FunctionArgs<Mutation>} args - Mutation arguments
  * @returns {Promise<FunctionReturnType<Mutation>>} - Mutation result
  */
-export async function fetchPublicMutation<Mutation extends FunctionReference<'mutation', 'public'>>(
+export async function fetchPublicMutation<Mutation extends FunctionReference<"mutation", "public">>(
   ref: Mutation,
   args: FunctionArgs<Mutation>,
 ): Promise<FunctionReturnType<Mutation>> {
@@ -98,13 +98,17 @@ export async function fetchPublicMutation<Mutation extends FunctionReference<'mu
  * @param {CreateInternalClientOptions} options - Options including convexUrl override
  * @returns {Promise<FunctionReturnType<Query>>} - Query result
  */
-export async function fetchInternalQuery<Query extends FunctionReference<'query', 'public' | 'internal'>>(
+export async function fetchInternalQuery<
+  Query extends FunctionReference<"query", "public" | "internal">,
+>(
   ref: Query,
   args: FunctionArgs<Query>,
   options: CreateInternalClientOptions = {},
 ): Promise<FunctionReturnType<Query>> {
   const client = await getInternalConvexClient(options);
-  return client.query(ref as FunctionReference<'query'>, args) as Promise<FunctionReturnType<Query>>;
+  return client.query(ref as FunctionReference<"query">, args) as Promise<
+    FunctionReturnType<Query>
+  >;
 }
 
 /**
@@ -114,12 +118,16 @@ export async function fetchInternalQuery<Query extends FunctionReference<'query'
  * @param {CreateInternalClientOptions} options - Options including convexUrl override
  * @returns {Promise<FunctionReturnType<Mutation>>} - Mutation result
  */
-export async function fetchInternalMutation<Mutation extends FunctionReference<'mutation', 'public' | 'internal'>>(
+export async function fetchInternalMutation<
+  Mutation extends FunctionReference<"mutation", "public" | "internal">,
+>(
   ref: Mutation,
   args: FunctionArgs<Mutation>,
   options: CreateInternalClientOptions = {},
 ): Promise<FunctionReturnType<Mutation>> {
   const client = await getInternalConvexClient(options);
   // Keep each request independent. Callers await dependent mutations explicitly.
-  return client.mutation(ref as FunctionReference<'mutation'>, args, { skipQueue: true }) as Promise<FunctionReturnType<Mutation>>;
+  return client.mutation(ref as FunctionReference<"mutation">, args, {
+    skipQueue: true,
+  }) as Promise<FunctionReturnType<Mutation>>;
 }

@@ -23,12 +23,9 @@
  * property assertions do not depend on call order or shared state.
  */
 
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import {
-  getUnlockValue,
-  computeUnlockValues,
-} from '../planner/unlock-value';
+import { getUnlockValue, computeUnlockValues } from "../planner/unlock-value";
 import {
   makePlannerChain,
   makePlannerTree,
@@ -38,23 +35,23 @@ import {
   makePlannerNode,
   makePrereqEdge,
   makeNonPrereqEdge,
-} from './planner-fixtures';
+} from "./planner-fixtures";
 
 // ---------------------------------------------------------------------------
 // Leaf and unknown node
 // ---------------------------------------------------------------------------
 
-describe('unlockValue — leaf node', () => {
-  it('returns 0 for a leaf node (no outgoing prerequisite_for edges)', () => {
+describe("unlockValue — leaf node", () => {
+  it("returns 0 for a leaf node (no outgoing prerequisite_for edges)", () => {
     const graph = makePlannerChain({ length: 5 });
-    expect(getUnlockValue('chain.n5', graph)).toBe(0);
+    expect(getUnlockValue("chain.n5", graph)).toBe(0);
   });
 });
 
-describe('unlockValue — unknown node', () => {
-  it('returns 0 for a node id that is not present in the graph', () => {
+describe("unlockValue — unknown node", () => {
+  it("returns 0 for a node id that is not present in the graph", () => {
     const graph = makePlannerChain({ length: 3 });
-    expect(getUnlockValue('chain.does-not-exist', graph)).toBe(0);
+    expect(getUnlockValue("chain.does-not-exist", graph)).toBe(0);
   });
 });
 
@@ -62,18 +59,18 @@ describe('unlockValue — unknown node', () => {
 // Linear chain
 // ---------------------------------------------------------------------------
 
-describe('unlockValue — linear chain (chain.n1 -> ... -> chain.nN)', () => {
-  it('returns N-1 for the root of a chain of length N', () => {
+describe("unlockValue — linear chain (chain.n1 -> ... -> chain.nN)", () => {
+  it("returns N-1 for the root of a chain of length N", () => {
     const graph = makePlannerChain({ length: 5 });
     // chain.n1 -> chain.n2 -> chain.n3 -> chain.n4 -> chain.n5
-    expect(getUnlockValue('chain.n1', graph)).toBe(4);
-    expect(getUnlockValue('chain.n2', graph)).toBe(3);
-    expect(getUnlockValue('chain.n3', graph)).toBe(2);
-    expect(getUnlockValue('chain.n4', graph)).toBe(1);
-    expect(getUnlockValue('chain.n5', graph)).toBe(0);
+    expect(getUnlockValue("chain.n1", graph)).toBe(4);
+    expect(getUnlockValue("chain.n2", graph)).toBe(3);
+    expect(getUnlockValue("chain.n3", graph)).toBe(2);
+    expect(getUnlockValue("chain.n4", graph)).toBe(1);
+    expect(getUnlockValue("chain.n5", graph)).toBe(0);
   });
 
-  it('is monotonic non-increasing along the chain (descendants never grow as we move downstream)', () => {
+  it("is monotonic non-increasing along the chain (descendants never grow as we move downstream)", () => {
     const graph = makePlannerChain({ length: 6 });
     const values: number[] = [];
     for (let i = 1; i <= 6; i++) {
@@ -89,21 +86,21 @@ describe('unlockValue — linear chain (chain.n1 -> ... -> chain.nN)', () => {
 // Tree (branching)
 // ---------------------------------------------------------------------------
 
-describe('unlockValue — balanced tree', () => {
-  it('returns the total descendant count for the root of a depth-2, branching-2 tree', () => {
+describe("unlockValue — balanced tree", () => {
+  it("returns the total descendant count for the root of a depth-2, branching-2 tree", () => {
     // tree.root -> { tree.n1.0.1, tree.n1.0.2 } (4 nodes total, 3 edges)
     // root has 2 descendants.
     const graph = makePlannerTree({ depth: 2, branching: 2 });
-    expect(getUnlockValue('tree.root', graph)).toBe(2);
+    expect(getUnlockValue("tree.root", graph)).toBe(2);
   });
 
-  it('returns the full subtree count for the root of a depth-3, branching-2 tree (7 descendants)', () => {
+  it("returns the full subtree count for the root of a depth-3, branching-2 tree (7 descendants)", () => {
     // depth=3, branching=2 -> 1 + 2 + 4 = 7 nodes; root has 6 descendants.
     const graph = makePlannerTree({ depth: 3, branching: 2 });
-    expect(getUnlockValue('tree.root', graph)).toBe(6);
+    expect(getUnlockValue("tree.root", graph)).toBe(6);
   });
 
-  it('returns 0 for every leaf in a balanced tree', () => {
+  it("returns 0 for every leaf in a balanced tree", () => {
     const graph = makePlannerTree({ depth: 3, branching: 2 });
     // For depth=3, leaf nodes have prefix `tree.n2.` (the number is the
     // parent's level in makePlannerTree). Nodes are: tree.root, tree.n1.*,
@@ -120,23 +117,23 @@ describe('unlockValue — balanced tree', () => {
 // Empty / disconnected graphs
 // ---------------------------------------------------------------------------
 
-describe('unlockValue — empty graph', () => {
-  it('returns 0 for an arbitrary id against an empty graph', () => {
+describe("unlockValue — empty graph", () => {
+  it("returns 0 for an arbitrary id against an empty graph", () => {
     const graph = makePlannerEmpty();
-    expect(getUnlockValue('any-id', graph)).toBe(0);
+    expect(getUnlockValue("any-id", graph)).toBe(0);
   });
 });
 
-describe('unlockValue — disconnected graph', () => {
-  it('does not cross connected components (chain B is invisible from chain A)', () => {
+describe("unlockValue — disconnected graph", () => {
+  it("does not cross connected components (chain B is invisible from chain A)", () => {
     const graph = makePlannerDisconnected();
     // chain A: a1 -> a2 -> a3 (a1 has 2 descendants)
-    expect(getUnlockValue('disc.a1', graph)).toBe(2);
-    expect(getUnlockValue('disc.a2', graph)).toBe(1);
-    expect(getUnlockValue('disc.a3', graph)).toBe(0);
+    expect(getUnlockValue("disc.a1", graph)).toBe(2);
+    expect(getUnlockValue("disc.a2", graph)).toBe(1);
+    expect(getUnlockValue("disc.a3", graph)).toBe(0);
     // chain B: b1 -> b2 (b1 has 1 descendant, no shared nodes with chain A)
-    expect(getUnlockValue('disc.b1', graph)).toBe(1);
-    expect(getUnlockValue('disc.b2', graph)).toBe(0);
+    expect(getUnlockValue("disc.b1", graph)).toBe(1);
+    expect(getUnlockValue("disc.b2", graph)).toBe(0);
   });
 });
 
@@ -144,8 +141,8 @@ describe('unlockValue — disconnected graph', () => {
 // Edge-type filtering
 // ---------------------------------------------------------------------------
 
-describe('unlockValue — edge-type filtering', () => {
-  it('ignores non-prerequisite_for edges (supports, extends, common_misconception_with)', () => {
+describe("unlockValue — edge-type filtering", () => {
+  it("ignores non-prerequisite_for edges (supports, extends, common_misconception_with)", () => {
     // Hand-rolled graph: a -> b via `prerequisite_for` (counts), a -> c via
     // `supports` (ignored), a -> d via `extends` (ignored). a's unlock value
     // must be 1 (only b).
@@ -154,21 +151,21 @@ describe('unlockValue — edge-type filtering', () => {
       edges: readonly ReturnType<typeof makePrereqEdge | typeof makeNonPrereqEdge>[];
     } = {
       nodes: [
-        makePlannerNode('filt.a'),
-        makePlannerNode('filt.b'),
-        makePlannerNode('filt.c'),
-        makePlannerNode('filt.d'),
+        makePlannerNode("filt.a"),
+        makePlannerNode("filt.b"),
+        makePlannerNode("filt.c"),
+        makePlannerNode("filt.d"),
       ],
       edges: [
-        makePrereqEdge('filt.a', 'filt.b'),
-        makeNonPrereqEdge('supports', 'filt.a', 'filt.c'),
-        makeNonPrereqEdge('extends', 'filt.a', 'filt.d'),
+        makePrereqEdge("filt.a", "filt.b"),
+        makeNonPrereqEdge("supports", "filt.a", "filt.c"),
+        makeNonPrereqEdge("extends", "filt.a", "filt.d"),
       ],
       readinessByNode: {},
       goalNodeIds: [],
       misconceptionLinks: [],
     };
-    expect(getUnlockValue('filt.a', graph)).toBe(1);
+    expect(getUnlockValue("filt.a", graph)).toBe(1);
   });
 });
 
@@ -176,14 +173,14 @@ describe('unlockValue — edge-type filtering', () => {
 // Cycle safety (defense-in-depth)
 // ---------------------------------------------------------------------------
 
-describe('unlockValue — cycle safety', () => {
-  it('terminates on a cyclic prerequisite_for graph (no infinite loop)', () => {
+describe("unlockValue — cycle safety", () => {
+  it("terminates on a cyclic prerequisite_for graph (no infinite loop)", () => {
     // 3-node cycle: a -> b -> c -> a. Each node has 2 descendants.
     // The traversal must terminate, not loop forever.
     const graph = makePlannerCyclic();
-    const a = getUnlockValue('cyc.a', graph);
-    const b = getUnlockValue('cyc.b', graph);
-    const c = getUnlockValue('cyc.c', graph);
+    const a = getUnlockValue("cyc.a", graph);
+    const b = getUnlockValue("cyc.b", graph);
+    const c = getUnlockValue("cyc.c", graph);
     // All three are reachable from each other downstream — each has
     // exactly 2 distinct downstream nodes.
     expect(a).toBe(2);
@@ -196,8 +193,8 @@ describe('unlockValue — cycle safety', () => {
 // Bulk precompute API
 // ---------------------------------------------------------------------------
 
-describe('unlockValue — computeUnlockValues (bulk precompute)', () => {
-  it('returns a map keyed by every node id in the graph', () => {
+describe("unlockValue — computeUnlockValues (bulk precompute)", () => {
+  it("returns a map keyed by every node id in the graph", () => {
     const graph = makePlannerChain({ length: 5 });
     const map = computeUnlockValues(graph);
     expect(map).toBeInstanceOf(Map);
@@ -206,7 +203,7 @@ describe('unlockValue — computeUnlockValues (bulk precompute)', () => {
     }
   });
 
-  it('matches the per-node oracle for every node in the graph', () => {
+  it("matches the per-node oracle for every node in the graph", () => {
     const graph = makePlannerTree({ depth: 3, branching: 2 });
     const map = computeUnlockValues(graph);
     for (const node of graph.nodes) {
@@ -214,12 +211,12 @@ describe('unlockValue — computeUnlockValues (bulk precompute)', () => {
     }
   });
 
-  it('returns an empty map for an empty graph', () => {
+  it("returns an empty map for an empty graph", () => {
     const graph = makePlannerEmpty();
     expect(computeUnlockValues(graph).size).toBe(0);
   });
 
-  it('is deterministic across repeated invocations on the same input', () => {
+  it("is deterministic across repeated invocations on the same input", () => {
     const graph = makePlannerTree({ depth: 4, branching: 2 });
     const m1 = computeUnlockValues(graph);
     const m2 = computeUnlockValues(graph);
@@ -229,7 +226,7 @@ describe('unlockValue — computeUnlockValues (bulk precompute)', () => {
     }
   });
 
-  it('is pure (does not mutate the input graph)', () => {
+  it("is pure (does not mutate the input graph)", () => {
     const graph = makePlannerTree({ depth: 3, branching: 2 });
     const snap = JSON.stringify({
       nodes: graph.nodes,

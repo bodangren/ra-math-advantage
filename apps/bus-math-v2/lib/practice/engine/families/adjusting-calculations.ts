@@ -4,8 +4,8 @@ import {
   type ProblemDefinition,
   type ProblemFamily,
   type ProblemPartDefinition,
-} from '@/lib/practice/engine/types';
-import { practiceAccounts, getAccountById } from '@/lib/practice/engine/accounts';
+} from "@/lib/practice/engine/types";
+import { practiceAccounts, getAccountById } from "@/lib/practice/engine/accounts";
 import {
   generateAdjustmentScenario,
   type AdjustmentScenario,
@@ -14,9 +14,9 @@ import {
   type AccrualAdjustmentScenario,
   type DeferralAdjustmentScenario,
   type DepreciationAdjustmentScenario,
-} from '@/lib/practice/engine/adjustments';
+} from "@/lib/practice/engine/adjustments";
 
-export type AdjustingCalculationsPresentation = 'calculation' | 'journal-entry';
+export type AdjustingCalculationsPresentation = "calculation" | "journal-entry";
 
 export interface AdjustingCalculationsJournalLine {
   id: string;
@@ -29,17 +29,17 @@ export interface AdjustingCalculationsJournalLine {
 
 export interface AdjustingCalculationsPart extends ProblemPartDefinition {
   id: string;
-  kind: 'numeric' | 'journal-entry';
+  kind: "numeric" | "journal-entry";
   label: string;
   targetId: number | string;
   details: {
     scenarioKind: AdjustmentScenarioKind;
     presentation: AdjustingCalculationsPresentation;
-    rowRole: 'calculation' | 'journal-entry';
+    rowRole: "calculation" | "journal-entry";
     lineIndex?: number;
     accountId?: string;
     accountLabel?: string;
-    side?: 'debit' | 'credit';
+    side?: "debit" | "credit";
     tolerance: number;
     explanation: string;
   };
@@ -60,17 +60,20 @@ export interface AdjustingCalculationsDefinition extends ProblemDefinition {
   workedExample?: Record<string, unknown>;
 }
 
-export type AdjustingCalculationsResponse = Record<string, number | string | AdjustingCalculationsJournalLine | undefined>;
+export type AdjustingCalculationsResponse = Record<
+  string,
+  number | string | AdjustingCalculationsJournalLine | undefined
+>;
 
 export interface AdjustingCalculationsConfig extends AdjustmentScenarioConfig {
-  mode?: ProblemDefinition['mode'];
+  mode?: ProblemDefinition["mode"];
   presentation?: AdjustingCalculationsPresentation;
   scenarioKind?: AdjustmentScenarioKind;
   tolerance?: number;
 }
 
 export interface AdjustingCalculationsReviewFeedback {
-  status: 'correct' | 'incorrect' | 'partial';
+  status: "correct" | "incorrect" | "partial";
   selectedLabel?: string;
   expectedLabel?: string;
   misconceptionTags?: string[];
@@ -78,21 +81,31 @@ export interface AdjustingCalculationsReviewFeedback {
 }
 
 const CALCULATION_LABELS = {
-  deferral: 'Adjustment amount',
-  accrual: 'Accrual amount',
-  depreciation: 'Depreciation expense',
+  deferral: "Adjustment amount",
+  accrual: "Accrual amount",
+  depreciation: "Depreciation expense",
 } as const;
 
 const CALCULATION_IDS = {
-  deferral: 'adjustment-amount',
-  accrual: 'accrual-amount',
-  depreciation: 'depreciation-expense',
+  deferral: "adjustment-amount",
+  accrual: "accrual-amount",
+  depreciation: "depreciation-expense",
 } as const;
 
-const DEFERRAL_LABELS = ['Insurance', 'Rent'] as const;
-const ACCRUAL_REVENUE_LABELS = ['Service Revenue', 'Consulting Revenue', 'Interest Revenue'] as const;
-const ACCRUAL_EXPENSE_LABELS = ['Insurance Expense', 'Rent Expense', 'Salaries Expense', 'Utilities Expense', 'Depreciation Expense'] as const;
-const DEPRECIATION_ASSET_LABELS = ['Equipment', 'Buildings'] as const;
+const DEFERRAL_LABELS = ["Insurance", "Rent"] as const;
+const ACCRUAL_REVENUE_LABELS = [
+  "Service Revenue",
+  "Consulting Revenue",
+  "Interest Revenue",
+] as const;
+const ACCRUAL_EXPENSE_LABELS = [
+  "Insurance Expense",
+  "Rent Expense",
+  "Salaries Expense",
+  "Utilities Expense",
+  "Depreciation Expense",
+] as const;
+const DEPRECIATION_ASSET_LABELS = ["Equipment", "Buildings"] as const;
 
 /**
  * Generates a pseudorandom number generator using the mulberry32 algorithm.
@@ -125,7 +138,7 @@ function pick<T>(items: readonly T[], rng: () => number) {
  * @returns The formatted amount string
  */
 function formatAmount(amount: number) {
-  return amount.toLocaleString('en-US');
+  return amount.toLocaleString("en-US");
 }
 
 /**
@@ -134,7 +147,7 @@ function formatAmount(amount: number) {
  * @returns The normalized label string
  */
 function normalizeLabel(value: string) {
-  return value.toLowerCase().replace(/[^a-z0-9]+/g, '');
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "");
 }
 
 /**
@@ -153,26 +166,29 @@ function findAccountIdByLabel(label: string) {
  * @param scenarioKind - The type of adjustment scenario to build
  * @returns Configuration object for generating the scenario
  */
-function buildScenarioConfig(seed: number, scenarioKind: AdjustmentScenarioKind): AdjustmentScenarioConfig {
+function buildScenarioConfig(
+  seed: number,
+  scenarioKind: AdjustmentScenarioKind,
+): AdjustmentScenarioConfig {
   const rng = mulberry32(seed ^ 0x4f6c1b23);
 
-  if (scenarioKind === 'deferral') {
+  if (scenarioKind === "deferral") {
     return {
       scenarioKind,
       deferral: {
         accountLabel: pick(DEFERRAL_LABELS, rng),
-        initialRecordingMethod: pick(['asset', 'expense'] as const, rng),
+        initialRecordingMethod: pick(["asset", "expense"] as const, rng),
       },
     };
   }
 
-  if (scenarioKind === 'accrual') {
-    const accrualKind = seed % 2 === 0 ? 'revenue' : 'expense';
+  if (scenarioKind === "accrual") {
+    const accrualKind = seed % 2 === 0 ? "revenue" : "expense";
     return {
       scenarioKind,
       accrual: {
         accountLabel:
-          accrualKind === 'revenue'
+          accrualKind === "revenue"
             ? pick(ACCRUAL_REVENUE_LABELS, rng)
             : pick(ACCRUAL_EXPENSE_LABELS, rng),
         accrualKind,
@@ -194,36 +210,39 @@ function buildScenarioConfig(seed: number, scenarioKind: AdjustmentScenarioKind)
  * @param tolerance - The numeric tolerance for grading
  * @returns A configured AdjustingCalculationsPart
  */
-function buildCalculationPart(scenario: AdjustmentScenario, tolerance: number): AdjustingCalculationsPart {
+function buildCalculationPart(
+  scenario: AdjustmentScenario,
+  tolerance: number,
+): AdjustingCalculationsPart {
   const label = CALCULATION_LABELS[scenario.kind];
   return {
     id: CALCULATION_IDS[scenario.kind],
-    kind: 'numeric',
+    kind: "numeric",
     label,
     prompt: `What is the ${label.toLowerCase()}?`,
-    expectedAnswerShape: 'number',
+    expectedAnswerShape: "number",
     canonicalAnswer: scenario.amount,
     explanation:
-      scenario.kind === 'deferral'
-        ? 'Use the elapsed coverage to compute the amount that has expired.'
-        : scenario.kind === 'accrual'
-          ? 'The accrued amount is the amount to recognize at period end.'
-          : 'Use the depreciable base and months used to compute depreciation expense.',
-    misconceptionTags: [`adjusting-calculations:${scenario.kind}`, 'calculation-error'],
-    standardCode: `ACC-M7-J-${scenario.kind.replace(/-/g, '').toUpperCase()}`,
+      scenario.kind === "deferral"
+        ? "Use the elapsed coverage to compute the amount that has expired."
+        : scenario.kind === "accrual"
+          ? "The accrued amount is the amount to recognize at period end."
+          : "Use the depreciable base and months used to compute depreciation expense.",
+    misconceptionTags: [`adjusting-calculations:${scenario.kind}`, "calculation-error"],
+    standardCode: `ACC-M7-J-${scenario.kind.replace(/-/g, "").toUpperCase()}`,
     artifactTarget: String(scenario.amount),
     targetId: scenario.amount,
     details: {
       scenarioKind: scenario.kind,
-      presentation: 'calculation',
-      rowRole: 'calculation',
+      presentation: "calculation",
+      rowRole: "calculation",
       tolerance,
       explanation:
-        scenario.kind === 'deferral'
-          ? 'Compute the expired portion of the prepaid amount.'
-          : scenario.kind === 'accrual'
-            ? 'Enter the amount to accrue at period end.'
-            : 'Enter the depreciation expense for the reporting date.',
+        scenario.kind === "deferral"
+          ? "Compute the expired portion of the prepaid amount."
+          : scenario.kind === "accrual"
+            ? "Enter the amount to accrue at period end."
+            : "Enter the depreciation expense for the reporting date.",
     },
   };
 }
@@ -238,10 +257,16 @@ function buildJournalEntryLines(scenario: AdjustmentScenario): AdjustingCalculat
   const reportingDate = scenario.reportingDate;
   const adjustmentAmount = scenario.amount;
 
-  if (scenario.kind === 'deferral') {
+  if (scenario.kind === "deferral") {
     const deferralScenario = scenario as DeferralAdjustmentScenario;
-    const debitLabel = deferralScenario.method === 'asset' ? deferralScenario.expenseAccountLabel : deferralScenario.assetAccountLabel;
-    const creditLabel = deferralScenario.method === 'asset' ? deferralScenario.assetAccountLabel : deferralScenario.expenseAccountLabel;
+    const debitLabel =
+      deferralScenario.method === "asset"
+        ? deferralScenario.expenseAccountLabel
+        : deferralScenario.assetAccountLabel;
+    const creditLabel =
+      deferralScenario.method === "asset"
+        ? deferralScenario.assetAccountLabel
+        : deferralScenario.expenseAccountLabel;
     const debitAccountId = findAccountIdByLabel(debitLabel);
     const creditAccountId = findAccountIdByLabel(creditLabel);
 
@@ -251,29 +276,29 @@ function buildJournalEntryLines(scenario: AdjustmentScenario): AdjustingCalculat
 
     return [
       {
-        id: 'line-1',
+        id: "line-1",
         date: reportingDate,
         accountId: debitAccountId,
         debit: adjustmentAmount,
         credit: 0,
-        memo: `Record the ${deferralScenario.method === 'asset' ? 'expired expense' : 'correction'} adjustment.`,
+        memo: `Record the ${deferralScenario.method === "asset" ? "expired expense" : "correction"} adjustment.`,
       },
       {
-        id: 'line-2',
+        id: "line-2",
         date: reportingDate,
         accountId: creditAccountId,
         debit: 0,
         credit: adjustmentAmount,
-        memo: `Record the ${deferralScenario.method === 'asset' ? 'expired asset' : 'correction'} adjustment.`,
+        memo: `Record the ${deferralScenario.method === "asset" ? "expired asset" : "correction"} adjustment.`,
       },
     ];
   }
 
-  if (scenario.kind === 'accrual') {
+  if (scenario.kind === "accrual") {
     const accrualScenario = scenario as AccrualAdjustmentScenario;
-    const revenueAccrual = accrualScenario.accrualKind === 'revenue';
-    const debitLabel = revenueAccrual ? 'Accounts Receivable' : accrualScenario.accountLabel;
-    const creditLabel = revenueAccrual ? accrualScenario.accountLabel : 'Accounts Payable';
+    const revenueAccrual = accrualScenario.accrualKind === "revenue";
+    const debitLabel = revenueAccrual ? "Accounts Receivable" : accrualScenario.accountLabel;
+    const creditLabel = revenueAccrual ? accrualScenario.accountLabel : "Accounts Payable";
     const debitAccountId = findAccountIdByLabel(debitLabel);
     const creditAccountId = findAccountIdByLabel(creditLabel);
 
@@ -283,20 +308,20 @@ function buildJournalEntryLines(scenario: AdjustmentScenario): AdjustingCalculat
 
     return [
       {
-        id: 'line-1',
+        id: "line-1",
         date: reportingDate,
         accountId: debitAccountId,
         debit: adjustmentAmount,
         credit: 0,
-        memo: revenueAccrual ? 'Record accrued revenue.' : 'Record accrued expense.',
+        memo: revenueAccrual ? "Record accrued revenue." : "Record accrued expense.",
       },
       {
-        id: 'line-2',
+        id: "line-2",
         date: reportingDate,
         accountId: creditAccountId,
         debit: 0,
         credit: adjustmentAmount,
-        memo: revenueAccrual ? 'Record the receivable.' : 'Record the payable.',
+        memo: revenueAccrual ? "Record the receivable." : "Record the payable.",
       },
     ];
   }
@@ -306,20 +331,22 @@ function buildJournalEntryLines(scenario: AdjustmentScenario): AdjustingCalculat
   const accumulatedDepreciationAccountId = findAccountIdByLabel(accumulatedDepreciationLabel);
 
   if (!accumulatedDepreciationAccountId) {
-    throw new Error(`Unable to resolve depreciation account for ${depreciationScenario.assetCategory}`);
+    throw new Error(
+      `Unable to resolve depreciation account for ${depreciationScenario.assetCategory}`,
+    );
   }
 
   return [
     {
-      id: 'line-1',
+      id: "line-1",
       date: reportingDate,
-      accountId: 'depreciation-expense',
+      accountId: "depreciation-expense",
       debit: adjustmentAmount,
       credit: 0,
       memo: `Record depreciation on ${depreciationScenario.assetCategory.toLowerCase()}.`,
     },
     {
-      id: 'line-2',
+      id: "line-2",
       date: reportingDate,
       accountId: accumulatedDepreciationAccountId,
       debit: 0,
@@ -356,12 +383,17 @@ function buildAvailableAccounts(seed: number, entryLines: AdjustingCalculationsJ
   const usedAccountTypes = new Set(
     entryLines
       .map((line) => getAccountById(line.accountId)?.accountType)
-      .filter((accountType): accountType is (typeof practiceAccounts)[number]['accountType'] => Boolean(accountType)),
+      .filter((accountType): accountType is (typeof practiceAccounts)[number]["accountType"] =>
+        Boolean(accountType),
+      ),
   );
   const usedNormalBalances = new Set(
     entryLines
       .map((line) => getAccountById(line.accountId)?.normalBalance)
-      .filter((normalBalance): normalBalance is (typeof practiceAccounts)[number]['normalBalance'] => Boolean(normalBalance)),
+      .filter(
+        (normalBalance): normalBalance is (typeof practiceAccounts)[number]["normalBalance"] =>
+          Boolean(normalBalance),
+      ),
   );
 
   const primaryPool = practiceAccounts.filter(
@@ -371,20 +403,30 @@ function buildAvailableAccounts(seed: number, entryLines: AdjustingCalculationsJ
     (account) => !usedAccountIds.has(account.id) && usedNormalBalances.has(account.normalBalance),
   );
   const fallbackPool = practiceAccounts.filter((account) => !usedAccountIds.has(account.id));
-  const neighborhoodPool = primaryPool.length >= 3 ? primaryPool : secondaryPool.length >= 3 ? secondaryPool : fallbackPool;
+  const neighborhoodPool =
+    primaryPool.length >= 3
+      ? primaryPool
+      : secondaryPool.length >= 3
+        ? secondaryPool
+        : fallbackPool;
   const rng = mulberry32(seed ^ 0x3b9aca6d ^ entryLines.length);
   const distractorCount = Math.min(5, 3 + Math.floor(rng() * 3));
-  const distractors = shuffleAccounts(neighborhoodPool, rng).slice(0, distractorCount).map((account) => ({
-    id: account.id,
-    label: account.label,
-  }));
+  const distractors = shuffleAccounts(neighborhoodPool, rng)
+    .slice(0, distractorCount)
+    .map((account) => ({
+      id: account.id,
+      label: account.label,
+    }));
 
   return Array.from(
     new Map(
       [...entryLines, ...distractors].map((lineOrAccount) => {
-        if ('debit' in lineOrAccount) {
+        if ("debit" in lineOrAccount) {
           const account = getAccountById(lineOrAccount.accountId);
-          return [lineOrAccount.accountId, { id: lineOrAccount.accountId, label: account?.label ?? lineOrAccount.accountId }] as const;
+          return [
+            lineOrAccount.accountId,
+            { id: lineOrAccount.accountId, label: account?.label ?? lineOrAccount.accountId },
+          ] as const;
         }
 
         return [lineOrAccount.id, lineOrAccount] as const;
@@ -401,25 +443,30 @@ function buildAvailableAccounts(seed: number, entryLines: AdjustingCalculationsJ
  * @param tolerance - The numeric tolerance for grading
  * @returns A configured AdjustingCalculationsPart
  */
-function buildEntryPart(line: AdjustingCalculationsJournalLine, lineIndex: number, scenario: AdjustmentScenario, tolerance: number): AdjustingCalculationsPart {
+function buildEntryPart(
+  line: AdjustingCalculationsJournalLine,
+  lineIndex: number,
+  scenario: AdjustmentScenario,
+  tolerance: number,
+): AdjustingCalculationsPart {
   const account = getAccountById(line.accountId);
-  const lineRole = line.debit > 0 ? 'debit' : 'credit';
+  const lineRole = line.debit > 0 ? "debit" : "credit";
   return {
     id: line.id,
-    kind: 'journal-entry',
-    label: `${lineRole === 'debit' ? 'Debit' : 'Credit'} line`,
+    kind: "journal-entry",
+    label: `${lineRole === "debit" ? "Debit" : "Credit"} line`,
     prompt: `Enter the ${lineRole} line for the adjustment.`,
-    expectedAnswerShape: 'journal-entry-line',
+    expectedAnswerShape: "journal-entry-line",
     canonicalAnswer: line,
     explanation: line.memo,
     misconceptionTags: [`adjusting-calculations:${scenario.kind}`, `${line.id}-error`],
-    standardCode: `ACC-M7-J-${scenario.kind.replace(/-/g, '').toUpperCase()}`,
+    standardCode: `ACC-M7-J-${scenario.kind.replace(/-/g, "").toUpperCase()}`,
     artifactTarget: line.accountId,
     targetId: line.id,
     details: {
       scenarioKind: scenario.kind,
-      presentation: 'journal-entry',
-      rowRole: 'journal-entry',
+      presentation: "journal-entry",
+      rowRole: "journal-entry",
       lineIndex,
       accountId: line.accountId,
       accountLabel: account?.label ?? line.accountId,
@@ -437,7 +484,8 @@ function buildEntryPart(line: AdjustingCalculationsJournalLine, lineIndex: numbe
  */
 function formatJournalEntryLine(line: AdjustingCalculationsJournalLine) {
   const accountLabel = getAccountById(line.accountId)?.label ?? line.accountId;
-  const movement = line.debit > 0 ? `debit $${formatAmount(line.debit)}` : `credit $${formatAmount(line.credit)}`;
+  const movement =
+    line.debit > 0 ? `debit $${formatAmount(line.debit)}` : `credit $${formatAmount(line.credit)}`;
   return `${line.date} • ${accountLabel} ${movement}`;
 }
 
@@ -453,7 +501,7 @@ function lineSignature(line: AdjustingCalculationsJournalLine) {
     Number(line.debit ?? 0).toFixed(2),
     Number(line.credit ?? 0).toFixed(2),
     line.memo.trim().toLowerCase(),
-  ].join('|');
+  ].join("|");
 }
 
 /**
@@ -469,7 +517,7 @@ function scoreNumericPart(expected: number, actual: unknown, tolerance: number) 
     return {
       isCorrect: false,
       score: 0,
-      normalizedAnswer: '',
+      normalizedAnswer: "",
     };
   }
 
@@ -488,20 +536,25 @@ function scoreNumericPart(expected: number, actual: unknown, tolerance: number) 
  * @param tolerance - The acceptable numeric difference threshold
  * @returns An object with isCorrect, score, and normalizedAnswer
  */
-function scoreJournalLine(expected: AdjustingCalculationsJournalLine, actual: unknown, tolerance: number) {
+function scoreJournalLine(
+  expected: AdjustingCalculationsJournalLine,
+  actual: unknown,
+  tolerance: number,
+) {
   const line = actual as AdjustingCalculationsJournalLine | undefined;
   if (!line) {
     return {
       isCorrect: false,
       score: 0,
-      normalizedAnswer: '',
+      normalizedAnswer: "",
     };
   }
 
   const accountMatches = line.accountId === expected.accountId;
   const dateMatches = line.date.trim().toLowerCase() === expected.date.trim().toLowerCase();
   const debitMatches = Math.abs(Number(line.debit ?? 0) - Number(expected.debit ?? 0)) <= tolerance;
-  const creditMatches = Math.abs(Number(line.credit ?? 0) - Number(expected.credit ?? 0)) <= tolerance;
+  const creditMatches =
+    Math.abs(Number(line.credit ?? 0) - Number(expected.credit ?? 0)) <= tolerance;
   const isCorrect = accountMatches && dateMatches && debitMatches && creditMatches;
 
   return {
@@ -523,23 +576,24 @@ function buildReviewFeedback(
   definition: AdjustingCalculationsDefinition,
   part: AdjustingCalculationsPart,
   studentResponse: AdjustingCalculationsResponse,
-  gradeResultPart: GradeResult['parts'][number],
+  gradeResultPart: GradeResult["parts"][number],
 ): AdjustingCalculationsReviewFeedback {
   const selectedValue = studentResponse[part.id];
   const scenario = definition.scenario as AdjustmentScenario;
   const chain =
-    scenario.kind === 'deferral'
-      ? scenario.method === 'asset'
+    scenario.kind === "deferral"
+      ? scenario.method === "asset"
         ? `$${formatAmount(scenario.originalAmount)} × (${scenario.elapsedMonths}/${scenario.coverageMonths}) = $${formatAmount(scenario.amount)}`
         : `$${formatAmount(scenario.originalAmount)} − $${formatAmount(scenario.adjustmentAmount)} = $${formatAmount(scenario.remainingAmount)}`
-      : scenario.kind === 'accrual'
+      : scenario.kind === "accrual"
         ? `$${formatAmount(scenario.dailyRate)} × ${scenario.daysAccrued} = $${formatAmount(scenario.amount)}`
         : `($${formatAmount(scenario.depreciableBase)} ÷ ${scenario.usefulLifeMonths}) × ${scenario.monthsUsed} = $${formatAmount(scenario.depreciationExpense)}`;
 
-  if (part.kind === 'numeric') {
+  if (part.kind === "numeric") {
     return {
-      status: gradeResultPart.isCorrect ? 'correct' : 'incorrect',
-      selectedLabel: selectedValue === undefined ? 'Not entered' : formatAmount(Number(selectedValue)),
+      status: gradeResultPart.isCorrect ? "correct" : "incorrect",
+      selectedLabel:
+        selectedValue === undefined ? "Not entered" : formatAmount(Number(selectedValue)),
       expectedLabel: formatAmount(Number(part.targetId)),
       misconceptionTags: gradeResultPart.misconceptionTags,
       message: gradeResultPart.isCorrect
@@ -549,11 +603,11 @@ function buildReviewFeedback(
   }
 
   return {
-    status: gradeResultPart.isCorrect ? 'correct' : 'incorrect',
+    status: gradeResultPart.isCorrect ? "correct" : "incorrect",
     selectedLabel:
-      selectedValue && typeof selectedValue === 'object' && 'accountId' in selectedValue
+      selectedValue && typeof selectedValue === "object" && "accountId" in selectedValue
         ? formatJournalEntryLine(selectedValue as AdjustingCalculationsJournalLine)
-        : 'Not entered',
+        : "Not entered",
     expectedLabel: formatJournalEntryLine(part.canonicalAnswer as AdjustingCalculationsJournalLine),
     misconceptionTags: gradeResultPart.misconceptionTags,
     message: gradeResultPart.isCorrect
@@ -580,11 +634,11 @@ export function buildAdjustingCalculationsReviewFeedback(
         return [
           partResult.partId,
           {
-            status: partResult.isCorrect ? 'correct' : 'incorrect',
-            selectedLabel: 'Not entered',
-            expectedLabel: 'Unknown',
+            status: partResult.isCorrect ? "correct" : "incorrect",
+            selectedLabel: "Not entered",
+            expectedLabel: "Unknown",
             misconceptionTags: partResult.misconceptionTags,
-            message: 'Review data unavailable.',
+            message: "Review data unavailable.",
           },
         ] as const;
       }
@@ -601,38 +655,42 @@ export function buildAdjustingCalculationsReviewFeedback(
  * @param scenario - The adjustment scenario
  * @returns A calculation-mode AdjustingCalculationsDefinition
  */
-function buildCalculationDefinition(seed: number, config: AdjustingCalculationsConfig, scenario: AdjustmentScenario) {
+function buildCalculationDefinition(
+  seed: number,
+  config: AdjustingCalculationsConfig,
+  scenario: AdjustmentScenario,
+) {
   const part = buildCalculationPart(scenario, config.tolerance ?? 0);
 
   return {
-    contractVersion: 'practice.v1',
-    familyKey: 'adjusting-calculations',
-    mode: config.mode ?? 'guided_practice',
+    contractVersion: "practice.v1",
+    familyKey: "adjusting-calculations",
+    mode: config.mode ?? "guided_practice",
     activityId: `adjusting-calculations-${scenario.kind}-calculation-${seed}`,
     prompt: {
       title: `Calculate the ${part.label.toLowerCase()}`,
       stem: `${scenario.stem} First compute the amount to record.`,
     },
     scenario,
-    presentation: 'calculation' as const,
+    presentation: "calculation" as const,
     availableAccounts: [],
     entryLines: [],
     parts: [part],
     scaffolding: {
-      modeLabel: 'Numeric calculation',
+      modeLabel: "Numeric calculation",
       guidance: scenario.stem,
       amountLabel: part.label,
       bridgeText: `Use ${formatAmount(scenario.amount)} as the amount to record.`,
     },
     grading: {
-      strategy: 'numeric',
+      strategy: "numeric",
       partialCredit: false,
     },
     analyticsConfig: {
-      generator: 'adjusting-calculations-family',
+      generator: "adjusting-calculations-family",
       seed,
       scenarioKind: scenario.kind,
-      presentation: 'calculation',
+      presentation: "calculation",
     },
   } satisfies AdjustingCalculationsDefinition;
 }
@@ -644,40 +702,46 @@ function buildCalculationDefinition(seed: number, config: AdjustingCalculationsC
  * @param scenario - The adjustment scenario
  * @returns A journal-entry-mode AdjustingCalculationsDefinition
  */
-function buildJournalEntryDefinition(seed: number, config: AdjustingCalculationsConfig, scenario: AdjustmentScenario) {
+function buildJournalEntryDefinition(
+  seed: number,
+  config: AdjustingCalculationsConfig,
+  scenario: AdjustmentScenario,
+) {
   const entryLines = buildJournalEntryLines(scenario);
-  const parts = entryLines.map((line, index) => buildEntryPart(line, index, scenario, config.tolerance ?? 0));
+  const parts = entryLines.map((line, index) =>
+    buildEntryPart(line, index, scenario, config.tolerance ?? 0),
+  );
   const availableAccounts = buildAvailableAccounts(seed, entryLines);
 
   return {
-    contractVersion: 'practice.v1',
-    familyKey: 'adjusting-calculations',
-    mode: config.mode ?? 'guided_practice',
+    contractVersion: "practice.v1",
+    familyKey: "adjusting-calculations",
+    mode: config.mode ?? "guided_practice",
     activityId: `adjusting-calculations-${scenario.kind}-journal-entry-${seed}`,
     prompt: {
-      title: `Record the ${scenario.kind.replace(/-/g, ' ')}`,
+      title: `Record the ${scenario.kind.replace(/-/g, " ")}`,
       stem: `${scenario.stem} Record the adjustment as a journal entry after you compute the amount.`,
     },
     scenario,
-    presentation: 'journal-entry' as const,
+    presentation: "journal-entry" as const,
     availableAccounts,
     entryLines,
     parts,
     scaffolding: {
-      modeLabel: 'Journal entry recording',
+      modeLabel: "Journal entry recording",
       guidance: scenario.stem,
       amountLabel: CALCULATION_LABELS[scenario.kind],
       bridgeText: `Use ${formatAmount(scenario.amount)} as the amount to record in the journal entry.`,
     },
     grading: {
-      strategy: 'exact',
+      strategy: "exact",
       partialCredit: true,
     },
     analyticsConfig: {
-      generator: 'adjusting-calculations-family',
+      generator: "adjusting-calculations-family",
       seed,
       scenarioKind: scenario.kind,
-      presentation: 'journal-entry',
+      presentation: "journal-entry",
     },
   } satisfies AdjustingCalculationsDefinition;
 }
@@ -689,18 +753,19 @@ export const adjustingCalculationsFamily: ProblemFamily<
 > = {
   generate(seed, config = {}) {
     const rng = mulberry32(seed ^ 0x6c4e1a7d);
-    const scenarioKind = config.scenarioKind ?? pick(['deferral', 'accrual', 'depreciation'] as const, rng);
-    const presentation = config.presentation ?? 'calculation';
+    const scenarioKind =
+      config.scenarioKind ?? pick(["deferral", "accrual", "depreciation"] as const, rng);
+    const presentation = config.presentation ?? "calculation";
     const scenarioConfig = buildScenarioConfig(seed, scenarioKind);
     const scenario = generateAdjustmentScenario(seed, scenarioConfig);
 
-    return presentation === 'journal-entry'
+    return presentation === "journal-entry"
       ? buildJournalEntryDefinition(seed, config, scenario)
       : buildCalculationDefinition(seed, config, scenario);
   },
 
   solve(definition) {
-    if (definition.presentation === 'journal-entry') {
+    if (definition.presentation === "journal-entry") {
       return Object.fromEntries(definition.entryLines.map((line) => [line.id, { ...line }]));
     }
 
@@ -709,8 +774,12 @@ export const adjustingCalculationsFamily: ProblemFamily<
 
   grade(definition, studentResponse) {
     const parts = definition.parts.map((part) => {
-      if (part.kind === 'numeric') {
-        const scoreResult = scoreNumericPart(Number(part.targetId), studentResponse[part.id], part.details.tolerance);
+      if (part.kind === "numeric") {
+        const scoreResult = scoreNumericPart(
+          Number(part.targetId),
+          studentResponse[part.id],
+          part.details.tolerance,
+        );
         return {
           partId: part.id,
           rawAnswer: studentResponse[part.id],
@@ -718,12 +787,18 @@ export const adjustingCalculationsFamily: ProblemFamily<
           isCorrect: scoreResult.isCorrect,
           score: scoreResult.score,
           maxScore: 1,
-          misconceptionTags: scoreResult.isCorrect ? [] : ['calculation-error', `${part.details.scenarioKind}-adjustment-error`],
+          misconceptionTags: scoreResult.isCorrect
+            ? []
+            : ["calculation-error", `${part.details.scenarioKind}-adjustment-error`],
         };
       }
 
       const expectedLine = part.canonicalAnswer as AdjustingCalculationsJournalLine;
-      const scoreResult = scoreJournalLine(expectedLine, studentResponse[part.id], part.details.tolerance);
+      const scoreResult = scoreJournalLine(
+        expectedLine,
+        studentResponse[part.id],
+        part.details.tolerance,
+      );
       return {
         partId: part.id,
         rawAnswer: studentResponse[part.id],
@@ -731,7 +806,9 @@ export const adjustingCalculationsFamily: ProblemFamily<
         isCorrect: scoreResult.isCorrect,
         score: scoreResult.score,
         maxScore: 1,
-        misconceptionTags: scoreResult.isCorrect ? [] : [`adjusting-calculations:${part.details.scenarioKind}:${part.details.side ?? 'line'}`],
+        misconceptionTags: scoreResult.isCorrect
+          ? []
+          : [`adjusting-calculations:${part.details.scenarioKind}:${part.details.side ?? "line"}`],
       };
     });
 
@@ -740,8 +817,8 @@ export const adjustingCalculationsFamily: ProblemFamily<
       maxScore: parts.length,
       parts,
       feedback: parts.every((part) => part.isCorrect)
-        ? 'All adjusting-calculation entries are correct.'
-        : 'Recheck the adjustment amount and the journal entry lines.',
+        ? "All adjusting-calculation entries are correct."
+        : "Recheck the adjustment amount and the journal entry lines.",
     };
   },
 

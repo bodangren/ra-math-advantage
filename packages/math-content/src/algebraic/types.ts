@@ -1,11 +1,11 @@
 export type DistractorType =
-  | 'factoring'
-  | 'linear'
-  | 'quadratic_formula'
-  | 'complex'
-  | 'completing_square'
-  | 'discriminant'
-  | 'system';
+  | "factoring"
+  | "linear"
+  | "quadratic_formula"
+  | "complex"
+  | "completing_square"
+  | "discriminant"
+  | "system";
 
 export interface DistractorGenerator {
   (correctAnswer: string): string[];

@@ -1,25 +1,25 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { getGenerator } from '@math-platform/math-content/knowledge-space';
+import { getGenerator } from "@math-platform/math-content/knowledge-space";
 import {
   PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_COMPONENT_KEY,
   PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_GENERATOR_KEY,
   PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_GUIDED_GRADING_CONFIG,
   PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_INDEPENDENT_GRADING_CONFIG,
   PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_WORKED_GRADING_CONFIG,
-} from '@/convex/activities';
+} from "@/convex/activities";
 import {
   PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS,
   PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_GUIDED_ACTIVITY_ID,
   PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_INDEPENDENT_ACTIVITY_ID,
   PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_NODE_ID,
   PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_WORKED_ACTIVITY_ID,
-} from '@/lib/learning-evidence/precalc-pilot';
+} from "@/lib/learning-evidence/precalc-pilot";
 
-describe('Topic 1.2 negative-rate context activity constants', () => {
-  it('defines exact IDs, configs, generator identity, and enabled evidence node', () => {
+describe("Topic 1.2 negative-rate context activity constants", () => {
+  it("defines exact IDs, configs, generator identity, and enabled evidence node", () => {
     expect(PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_NODE_ID).toBe(
-      'math.precalc.skill.1.2.model-negative-rate-contexts',
+      "math.precalc.skill.1.2.model-negative-rate-contexts",
     );
     expect(PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_WORKED_ACTIVITY_ID).toBe(
       `${PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_NODE_ID}.worked_example`,
@@ -30,20 +30,28 @@ describe('Topic 1.2 negative-rate context activity constants', () => {
     expect(PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_INDEPENDENT_ACTIVITY_ID).toBe(
       `${PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_NODE_ID}.independent_practice`,
     );
-    expect(new Set([
-      PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_WORKED_ACTIVITY_ID,
-      PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_GUIDED_ACTIVITY_ID,
-      PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_INDEPENDENT_ACTIVITY_ID,
-    ]).size).toBe(3);
-    expect(PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS.filter(
-      (nodeId) => nodeId === PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_NODE_ID,
-    )).toHaveLength(1);
+    expect(
+      new Set([
+        PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_WORKED_ACTIVITY_ID,
+        PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_GUIDED_ACTIVITY_ID,
+        PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_INDEPENDENT_ACTIVITY_ID,
+      ]).size,
+    ).toBe(3);
+    expect(
+      PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS.filter(
+        (nodeId) => nodeId === PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_NODE_ID,
+      ),
+    ).toHaveLength(1);
     expect(new Set(PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS).size).toBe(
       PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS.length,
     );
 
-    expect(PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_COMPONENT_KEY).toBe('negative-rate-context-choice');
-    expect(PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_GENERATOR_KEY).toBe('topic12-negative-rate-context-choice');
+    expect(PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_COMPONENT_KEY).toBe(
+      "negative-rate-context-choice",
+    );
+    expect(PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_GENERATOR_KEY).toBe(
+      "topic12-negative-rate-context-choice",
+    );
     expect(PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_WORKED_GRADING_CONFIG).toEqual({
       generatorKey: PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_GENERATOR_KEY,
       variantSeed: 0,

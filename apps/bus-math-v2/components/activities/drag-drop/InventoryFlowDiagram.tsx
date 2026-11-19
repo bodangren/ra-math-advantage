@@ -1,23 +1,20 @@
-'use client';
+"use client";
 
-import { useCallback, useMemo, useState } from 'react';
-import { DragDropContext, Draggable, Droppable, type DropResult } from '@hello-pangea/dnd';
-import { ArrowRight, BarChart3, Package, RotateCcw, Warehouse } from 'lucide-react';
+import { useCallback, useMemo, useState } from "react";
+import { DragDropContext, Draggable, Droppable, type DropResult } from "@hello-pangea/dnd";
+import { ArrowRight, BarChart3, Package, RotateCcw, Warehouse } from "lucide-react";
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
-import { cn } from '@/lib/utils';
-import type { Activity } from '@/lib/schemas/validators';
-import { type InventoryFlowDiagramActivityProps } from '@/types/activities';
-import {
-  SEQUENCE_SUPPORTED_MODES,
-  buildSequentialPracticeSubmission,
-} from './practiceSubmission';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
+import type { Activity } from "@/lib/schemas/validators";
+import { type InventoryFlowDiagramActivityProps } from "@/types/activities";
+import { SEQUENCE_SUPPORTED_MODES, buildSequentialPracticeSubmission } from "./practiceSubmission";
 
-export type InventoryFlowDiagramActivity = Omit<Activity, 'componentKey' | 'props'> & {
-  componentKey: 'inventory-flow-diagram';
+export type InventoryFlowDiagramActivity = Omit<Activity, "componentKey" | "props"> & {
+  componentKey: "inventory-flow-diagram";
   props: InventoryFlowDiagramActivityProps;
 };
 
@@ -25,15 +22,14 @@ export const INVENTORY_FLOW_DIAGRAM_SUPPORTED_MODES = SEQUENCE_SUPPORTED_MODES;
 
 interface InventoryFlowDiagramProps {
   activity: InventoryFlowDiagramActivity;
-  onSubmit?: (payload: import('@/lib/practice/contract').PracticeSubmissionCallbackPayload) => void;
+  onSubmit?: (payload: import("@/lib/practice/contract").PracticeSubmissionCallbackPayload) => void;
 }
 
-type InventoryScenario = InventoryFlowDiagramActivityProps['scenarios'][number];
-type InventoryLot = InventoryScenario['lots'][number];
+type InventoryScenario = InventoryFlowDiagramActivityProps["scenarios"][number];
+type InventoryLot = InventoryScenario["lots"][number];
 
-export const INVENTORY_AVAILABLE_DROPPABLE = 'inventory-available';
-export const INVENTORY_ARRANGEMENT_DROPPABLE = 'inventory-arrangement';
-
+export const INVENTORY_AVAILABLE_DROPPABLE = "inventory-available";
+export const INVENTORY_ARRANGEMENT_DROPPABLE = "inventory-arrangement";
 
 /**
  * Renders an inventory flow diagram exercise where students arrange
@@ -44,19 +40,21 @@ export const INVENTORY_ARRANGEMENT_DROPPABLE = 'inventory-arrangement';
  */
 export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagramProps) {
   const scenarios = activity.props.scenarios;
-  const [scenarioId, setScenarioId] = useState(scenarios[0]?.id ?? '');
-  const practiceMode = 'independent_practice' as const;
+  const [scenarioId, setScenarioId] = useState(scenarios[0]?.id ?? "");
+  const practiceMode = "independent_practice" as const;
 
   const activeScenario = useMemo<InventoryScenario>(
     () => scenarios.find((scenario) => scenario.id === scenarioId) ?? scenarios[0],
-    [scenarioId, scenarios]
+    [scenarioId, scenarios],
   );
 
-  const [methodId, setMethodId] = useState(() => activeScenario?.flowModes[0]?.id ?? '');
+  const [methodId, setMethodId] = useState(() => activeScenario?.flowModes[0]?.id ?? "");
 
   const activeMode = useMemo(
-    () => activeScenario?.flowModes.find((mode) => mode.id === methodId) ?? activeScenario?.flowModes[0],
-    [activeScenario, methodId]
+    () =>
+      activeScenario?.flowModes.find((mode) => mode.id === methodId) ??
+      activeScenario?.flowModes[0],
+    [activeScenario, methodId],
   );
 
   const [availableLots, setAvailableLots] = useState<InventoryLot[]>(() => {
@@ -81,20 +79,25 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
     doReset(activeScenario);
   }, [activeScenario, doReset]);
 
-  const handleScenarioChange = useCallback((newScenarioId: string) => {
-    setScenarioId(newScenarioId);
-    const newScenario = scenarios.find((s) => s.id === newScenarioId);
-    if (newScenario) {
-      setMethodId(newScenario.flowModes[0]?.id ?? '');
-      doReset(newScenario);
-    }
-  }, [scenarios, doReset]);
+  const handleScenarioChange = useCallback(
+    (newScenarioId: string) => {
+      setScenarioId(newScenarioId);
+      const newScenario = scenarios.find((s) => s.id === newScenarioId);
+      if (newScenario) {
+        setMethodId(newScenario.flowModes[0]?.id ?? "");
+        doReset(newScenario);
+      }
+    },
+    [scenarios, doReset],
+  );
 
-  const handleMethodChange = useCallback((newMethodId: string) => {
-    setMethodId(newMethodId);
-    doReset(activeScenario);
-  }, [activeScenario, doReset]);
-
+  const handleMethodChange = useCallback(
+    (newMethodId: string) => {
+      setMethodId(newMethodId);
+      doReset(activeScenario);
+    },
+    [activeScenario, doReset],
+  );
 
   /**
    * Score the current arrangement against the target order and
@@ -114,7 +117,8 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
           correct += 1;
         }
       }
-      const nextScore = targetOrder.length === 0 ? 0 : Math.round((correct / targetOrder.length) * 100);
+      const nextScore =
+        targetOrder.length === 0 ? 0 : Math.round((correct / targetOrder.length) * 100);
       setScore(nextScore);
 
       if (!completed && targetOrder.length > 0 && correct === targetOrder.length) {
@@ -127,7 +131,7 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
               attemptNumber: upcomingAttempts,
               completedAt: new Date(),
               family: activity.componentKey,
-              artifactKind: 'inventory_flow',
+              artifactKind: "inventory_flow",
               arrangement: nextArrangement,
               expectedOrder: targetOrder,
               describeItem: (item) => ({
@@ -147,19 +151,21 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
                 totalQuantity: nextArrangement.reduce((sum, lot) => sum + lot.quantity, 0),
                 averageCost:
                   nextArrangement.reduce((sum, lot) => sum + lot.quantity * lot.unitCost, 0) /
-                  Math.max(1, nextArrangement.reduce((sum, lot) => sum + lot.quantity, 0)),
+                  Math.max(
+                    1,
+                    nextArrangement.reduce((sum, lot) => sum + lot.quantity, 0),
+                  ),
               },
             }),
           });
         } catch (err) {
-          console.error('InventoryFlowDiagram submission failed:', err);
+          console.error("InventoryFlowDiagram submission failed:", err);
           setCompleted(false);
         }
       }
     },
-    [activity.componentKey, activity.id, activeMode, activeScenario.id, completed, onSubmit]
+    [activity.componentKey, activity.id, activeMode, activeScenario.id, completed, onSubmit],
   );
-
 
   /**
    * Handle drag-end events by moving lots between the available
@@ -171,7 +177,8 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
     (result: DropResult) => {
       const { source, destination } = result;
       if (!destination) return;
-      if (destination.droppableId === source.droppableId && destination.index === source.index) return;
+      if (destination.droppableId === source.droppableId && destination.index === source.index)
+        return;
 
       const nextAvailable = [...availableLots];
       const nextArrangement = [...arrangement];
@@ -201,7 +208,7 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
         return upcomingAttempts;
       });
     },
-    [arrangement, availableLots, evaluate]
+    [arrangement, availableLots, evaluate],
   );
 
   if (!activeScenario || !activeMode) {
@@ -275,7 +282,9 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
               Sales target: {activeScenario.salesQuantity} units
             </Badge>
           </div>
-          {activeScenario.context && <p className="mt-2 text-sm text-muted-foreground">{activeScenario.context}</p>}
+          {activeScenario.context && (
+            <p className="mt-2 text-sm text-muted-foreground">{activeScenario.context}</p>
+          )}
           <Separator className="my-3" />
           <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
             <span className="font-medium">{activeMode.name}</span>
@@ -288,7 +297,9 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
             <section className="rounded-xl border bg-muted/20 p-4">
               <div className="mb-3 flex items-center gap-2">
                 <Warehouse className="h-4 w-4" />
-                <h3 className="text-sm font-semibold uppercase text-muted-foreground">Available lots</h3>
+                <h3 className="text-sm font-semibold uppercase text-muted-foreground">
+                  Available lots
+                </h3>
               </div>
               <Droppable droppableId={INVENTORY_AVAILABLE_DROPPABLE}>
                 {(provided) => (
@@ -306,8 +317,8 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
                             style={dragProvided.draggableProps.style as React.CSSProperties}
                             {...dragProvided.dragHandleProps}
                             className={cn(
-                              'rounded-lg border bg-card p-3 transition',
-                              snapshot.isDragging && 'ring-2 ring-primary'
+                              "rounded-lg border bg-card p-3 transition",
+                              snapshot.isDragging && "ring-2 ring-primary",
                             )}
                           >
                             <p className="font-semibold">{lot.label}</p>
@@ -316,14 +327,18 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
                               <span>Qty: {lot.quantity}</span>
                               <span>Unit: ${lot.unitCost.toFixed(2)}</span>
                             </div>
-                            {lot.notes && <p className="text-xs text-muted-foreground/80">{lot.notes}</p>}
+                            {lot.notes && (
+                              <p className="text-xs text-muted-foreground/80">{lot.notes}</p>
+                            )}
                           </div>
                         )}
                       </Draggable>
                     ))}
                     {provided.placeholder}
                     {availableLots.length === 0 && (
-                      <p className="text-center text-sm text-muted-foreground">All lots are in the flow</p>
+                      <p className="text-center text-sm text-muted-foreground">
+                        All lots are in the flow
+                      </p>
                     )}
                   </div>
                 )}
@@ -333,7 +348,9 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
             <section className="rounded-xl border bg-muted/20 p-4">
               <div className="mb-3 flex items-center gap-2">
                 <ArrowRight className="h-4 w-4" />
-                <h3 className="text-sm font-semibold uppercase text-muted-foreground">Flow arrangement</h3>
+                <h3 className="text-sm font-semibold uppercase text-muted-foreground">
+                  Flow arrangement
+                </h3>
               </div>
               <Droppable droppableId={INVENTORY_ARRANGEMENT_DROPPABLE}>
                 {(provided) => (
@@ -352,13 +369,13 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
                             <div
                               ref={dragProvided.innerRef}
                               {...dragProvided.draggableProps}
-                            style={dragProvided.draggableProps.style as React.CSSProperties}
+                              style={dragProvided.draggableProps.style as React.CSSProperties}
                               {...dragProvided.dragHandleProps}
                               className={cn(
-                                'rounded-lg border bg-card p-3 transition',
-                                isCorrectPosition && 'border-green-500 bg-green-50',
-                                isIncorrectPosition && 'border-destructive bg-destructive/10',
-                                snapshot.isDragging && 'ring-2 ring-primary'
+                                "rounded-lg border bg-card p-3 transition",
+                                isCorrectPosition && "border-green-500 bg-green-50",
+                                isIncorrectPosition && "border-destructive bg-destructive/10",
+                                snapshot.isDragging && "ring-2 ring-primary",
                               )}
                             >
                               <div className="flex items-center justify-between">
@@ -377,7 +394,9 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
                     })}
                     {provided.placeholder}
                     {arrangement.length === 0 && (
-                      <p className="text-center text-sm text-muted-foreground">Drag lots here to build the cost flow</p>
+                      <p className="text-center text-sm text-muted-foreground">
+                        Drag lots here to build the cost flow
+                      </p>
                     )}
                   </div>
                 )}

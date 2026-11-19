@@ -45,7 +45,7 @@ export const checkNextPhaseExists = internalQuery({
     const nextPhase = await ctx.db
       .query("phase_versions")
       .withIndex("by_lesson_version_and_phase", (q) =>
-        q.eq("lessonVersionId", args.lessonVersionId).eq("phaseNumber", args.phaseNumber + 1)
+        q.eq("lessonVersionId", args.lessonVersionId).eq("phaseNumber", args.phaseNumber + 1),
       )
       .unique();
     return !!nextPhase;
@@ -71,7 +71,7 @@ export const getPhaseContext = internalQuery({
     const phase = await ctx.db
       .query("phase_versions")
       .withIndex("by_lesson_version_and_phase", (q) =>
-        q.eq("lessonVersionId", latestVersion._id).eq("phaseNumber", args.phaseNumber)
+        q.eq("lessonVersionId", latestVersion._id).eq("phaseNumber", args.phaseNumber),
       )
       .unique();
 
@@ -93,7 +93,7 @@ export const getStudentProgressByPhase = internalQuery({
     const progress = await ctx.db
       .query("student_progress")
       .withIndex("by_user_and_phase", (q) =>
-        q.eq("userId", args.userId).eq("phaseId", args.phaseId)
+        q.eq("userId", args.userId).eq("phaseId", args.phaseId),
       )
       .unique();
     return progress;
@@ -126,48 +126,94 @@ export const completePhaseMutation = internalMutation({
   returns: v.object({ success: v.boolean(), completedAt: v.number(), existing: v.boolean() }),
   handler: async (ctx, args) => {
     const now = Date.now();
-    const priorKey = await ctx.db.query("student_progress")
-      .withIndex("by_user_and_idempotency_key", (q) => q.eq("userId", args.userId).eq("idempotencyKey", args.idempotencyKey)).unique();
+    const priorKey = await ctx.db
+      .query("student_progress")
+      .withIndex("by_user_and_idempotency_key", (q) =>
+        q.eq("userId", args.userId).eq("idempotencyKey", args.idempotencyKey),
+      )
+      .unique();
     if (priorKey && priorKey.phaseId !== args.phaseId) throw new Error("idempotency_conflict");
-    const existing = await ctx.db.query("student_progress")
-      .withIndex("by_user_and_phase", (q) => q.eq("userId", args.userId).eq("phaseId", args.phaseId)).unique();
+    const existing = await ctx.db
+      .query("student_progress")
+      .withIndex("by_user_and_phase", (q) =>
+        q.eq("userId", args.userId).eq("phaseId", args.phaseId),
+      )
+      .unique();
     if (existing?.status === "completed") {
-      return { success: true, completedAt: existing.completedAt ?? existing.updatedAt, existing: true };
+      return {
+        success: true,
+        completedAt: existing.completedAt ?? existing.updatedAt,
+        existing: true,
+      };
     }
     const phase = await ctx.db.get(args.phaseId);
     const version = phase ? await ctx.db.get(phase.lessonVersionId) : null;
     if (!phase || version?.status !== "published") throw new Error("phase_unavailable");
-    const versions = await ctx.db.query("lesson_versions")
-      .withIndex("by_lesson", (q) => q.eq("lessonId", version.lessonId)).collect();
-    if (resolveLatestPublishedLessonVersion(versions)?._id !== version._id) throw new Error("phase_unavailable");
+    const versions = await ctx.db
+      .query("lesson_versions")
+      .withIndex("by_lesson", (q) => q.eq("lessonId", version.lessonId))
+      .collect();
+    if (resolveLatestPublishedLessonVersion(versions)?._id !== version._id)
+      throw new Error("phase_unavailable");
     if (phase.phaseNumber > 1) {
-      const previous = await ctx.db.query("phase_versions")
-        .withIndex("by_lesson_version_and_phase", (q) => q.eq("lessonVersionId", phase.lessonVersionId).eq("phaseNumber", phase.phaseNumber - 1)).unique();
-      const progress = previous ? await ctx.db.query("student_progress")
-        .withIndex("by_user_and_phase", (q) => q.eq("userId", args.userId).eq("phaseId", previous._id)).unique() : null;
+      const previous = await ctx.db
+        .query("phase_versions")
+        .withIndex("by_lesson_version_and_phase", (q) =>
+          q.eq("lessonVersionId", phase.lessonVersionId).eq("phaseNumber", phase.phaseNumber - 1),
+        )
+        .unique();
+      const progress = previous
+        ? await ctx.db
+            .query("student_progress")
+            .withIndex("by_user_and_phase", (q) =>
+              q.eq("userId", args.userId).eq("phaseId", previous._id),
+            )
+            .unique()
+        : null;
       if (progress?.status !== "completed") throw new Error("previous_phase_incomplete");
     }
-    const sections = await ctx.db.query("phase_sections")
-      .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", args.phaseId)).collect();
+    const sections = await ctx.db
+      .query("phase_sections")
+      .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", args.phaseId))
+      .collect();
     for (const section of sections) {
       if (section.sectionType !== "activity" || section.content.required === false) continue;
       const activityId = section.content.activityId as Id<"activities">;
       const activity = await ctx.db.get(activityId);
       if (!activity) throw new Error("required_activity_incomplete");
-      const submissions = await ctx.db.query("activity_submissions")
-        .withIndex("by_user_and_activity", (q) => q.eq("userId", args.userId).eq("activityId", activityId)).collect();
+      const submissions = await ctx.db
+        .query("activity_submissions")
+        .withIndex("by_user_and_activity", (q) =>
+          q.eq("userId", args.userId).eq("activityId", activityId),
+        )
+        .collect();
       const passing = activity.gradingConfig?.passingScore ?? 70;
-      const completed = submissions.some((submission) => submission.submissionData.status !== "draft"
-        && (!activity.gradingConfig?.autoGrade || (typeof submission.score === "number" && (submission.maxScore ?? 0) > 0
-          && submission.score / submission.maxScore! * 100 >= passing)));
+      const completed = submissions.some(
+        (submission) =>
+          submission.submissionData.status !== "draft" &&
+          (!activity.gradingConfig?.autoGrade ||
+            (typeof submission.score === "number" &&
+              (submission.maxScore ?? 0) > 0 &&
+              (submission.score / submission.maxScore!) * 100 >= passing)),
+      );
       if (!completed) throw new Error("required_activity_incomplete");
     }
-    const values = { status: "completed" as const, completedAt: now,
+    const values = {
+      status: "completed" as const,
+      completedAt: now,
       timeSpentSeconds: (existing?.timeSpentSeconds ?? 0) + args.timeSpent,
-      idempotencyKey: args.idempotencyKey, updatedAt: now };
+      idempotencyKey: args.idempotencyKey,
+      updatedAt: now,
+    };
     if (existing) await ctx.db.patch(existing._id, values);
-    else await ctx.db.insert("student_progress", { userId: args.userId, phaseId: args.phaseId,
-      startedAt: now - args.timeSpent * 1000, createdAt: now, ...values });
+    else
+      await ctx.db.insert("student_progress", {
+        userId: args.userId,
+        phaseId: args.phaseId,
+        startedAt: now - args.timeSpent * 1000,
+        createdAt: now,
+        ...values,
+      });
     // Phase completion records participation. Assessment evidence owns competency credit.
     return { success: true, completedAt: now, existing: Boolean(existing) };
   },
@@ -261,7 +307,7 @@ export const canAccessPhase = internalQuery({
     const prevPhase = await ctx.db
       .query("phase_versions")
       .withIndex("by_lesson_version_and_phase", (q) =>
-        q.eq("lessonVersionId", latestVersion._id).eq("phaseNumber", args.phaseNumber - 1)
+        q.eq("lessonVersionId", latestVersion._id).eq("phaseNumber", args.phaseNumber - 1),
       )
       .unique();
 
@@ -270,7 +316,7 @@ export const canAccessPhase = internalQuery({
     const progress = await ctx.db
       .query("student_progress")
       .withIndex("by_user_and_phase", (q) =>
-        q.eq("userId", args.userId).eq("phaseId", prevPhase._id)
+        q.eq("userId", args.userId).eq("phaseId", prevPhase._id),
       )
       .unique();
 

@@ -54,10 +54,10 @@
 // The pattern matches the existing Phase 5 boundary lint at
 // `apps/integrated-math-3/__tests__/lib/placement/phase5-docs-and-doctor.test.ts`.
 
-import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
-import { join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 // ---------------------------------------------------------------------------
 // Path resolution
@@ -77,20 +77,14 @@ import { fileURLToPath } from 'node:url';
 // apps/integrated-math-3/__tests__/components/parent/projection-boundary.test.ts
 // (Phase 2 — fixed in attempt-3 after the attempt-2 off-by-one bug).
 
-const __dirname = resolve(fileURLToPath(import.meta.url), '..');
-const REPO_ROOT = resolve(__dirname, '../../../../..');
-const PARENT_DIR = join(
-  REPO_ROOT,
-  'apps',
-  'integrated-math-3',
-  'convex',
-  'parent',
-);
-const LINKS_TS = join(PARENT_DIR, 'links.ts');
-const VISUALIZATION_TS = join(PARENT_DIR, 'visualization.ts');
+const __dirname = resolve(fileURLToPath(import.meta.url), "..");
+const REPO_ROOT = resolve(__dirname, "../../../../..");
+const PARENT_DIR = join(REPO_ROOT, "apps", "integrated-math-3", "convex", "parent");
+const LINKS_TS = join(PARENT_DIR, "links.ts");
+const VISUALIZATION_TS = join(PARENT_DIR, "visualization.ts");
 
 function readParentSources(): string {
-  return [LINKS_TS, VISUALIZATION_TS].map((p) => readFileSync(p, 'utf-8')).join('\n');
+  return [LINKS_TS, VISUALIZATION_TS].map((p) => readFileSync(p, "utf-8")).join("\n");
 }
 
 // ---------------------------------------------------------------------------
@@ -127,35 +121,37 @@ function readParentSource(): string {
 // Tests
 // ---------------------------------------------------------------------------
 
-describe('Phase 3 — parent-portal Convex export contract', () => {
-  describe('source file presence', () => {
-    it('convex/parent/links.ts and convex/parent/visualization.ts exist at the contract paths', () => {
+describe("Phase 3 — parent-portal Convex export contract", () => {
+  describe("source file presence", () => {
+    it("convex/parent/links.ts and convex/parent/visualization.ts exist at the contract paths", () => {
       const source = readParentSource();
       expect(source.length).toBeGreaterThan(0);
     });
   });
 
-  describe('mutation exports — read-only contract guardrail', () => {
-    it('every mutation export is built with internalMutation (no public mutations)', () => {
+  describe("mutation exports — read-only contract guardrail", () => {
+    it("every mutation export is built with internalMutation (no public mutations)", () => {
       const exports = listExportedBuilders(readParentSource());
-      const mutations = exports.filter((e) => e.builder === 'mutation' || e.builder === 'internalMutation');
+      const mutations = exports.filter(
+        (e) => e.builder === "mutation" || e.builder === "internalMutation",
+      );
 
       // At least one mutation must exist (the link/revoke flows).
       expect(mutations.length).toBeGreaterThan(0);
 
       // Every mutation must be `internalMutation`, not the public `mutation` builder.
-      const publicMutations = mutations.filter((e) => e.builder === 'mutation');
+      const publicMutations = mutations.filter((e) => e.builder === "mutation");
       expect(publicMutations).toEqual([]);
 
       // Every `internalMutation` export is, by definition, an `internalMutation`.
       for (const m of mutations) {
-        expect(m.builder).toBe('internalMutation');
+        expect(m.builder).toBe("internalMutation");
       }
     });
 
-    it('mutation exports are limited to createParentLink* and revokeParentLink* (link/revoke flows)', () => {
+    it("mutation exports are limited to createParentLink* and revokeParentLink* (link/revoke flows)", () => {
       const exports = listExportedBuilders(readParentSource());
-      const mutations = exports.filter((e) => e.builder === 'internalMutation');
+      const mutations = exports.filter((e) => e.builder === "internalMutation");
 
       for (const m of mutations) {
         const isLinkFlow = /^createParentLink/i.test(m.name);
@@ -168,48 +164,46 @@ describe('Phase 3 — parent-portal Convex export contract', () => {
       }
     });
 
-    it('does NOT export any non-link/revoke mutation (e.g., teacher/admin mutations)', () => {
+    it("does NOT export any non-link/revoke mutation (e.g., teacher/admin mutations)", () => {
       // Regression guard: someone could add a teacher-side mutation
       // (e.g., for invite approval) under convex/parent/ by mistake.
       // Per test-strategy.md §4, only link/revoke flows belong here.
       const exports = listExportedBuilders(readParentSource());
-      const mutations = exports.filter((e) => e.builder === 'internalMutation');
+      const mutations = exports.filter((e) => e.builder === "internalMutation");
       const forbidden = mutations.filter((m) => {
         const name = m.name;
-        const isAllowed =
-          /^createParentLink/i.test(name) || /^revokeParentLink/i.test(name);
+        const isAllowed = /^createParentLink/i.test(name) || /^revokeParentLink/i.test(name);
         return !isAllowed;
       });
       expect(forbidden, JSON.stringify(forbidden)).toEqual([]);
     });
   });
 
-  describe('query exports — read-only contract guardrail', () => {
-    it('every query export is built with internalQuery (no public queries)', () => {
+  describe("query exports — read-only contract guardrail", () => {
+    it("every query export is built with internalQuery (no public queries)", () => {
       const exports = listExportedBuilders(readParentSource());
-      const queries = exports.filter((e) => e.builder === 'query' || e.builder === 'internalQuery');
+      const queries = exports.filter((e) => e.builder === "query" || e.builder === "internalQuery");
 
       // At least one query must exist (listParentLinks).
       expect(queries.length).toBeGreaterThan(0);
 
       // Every query must be `internalQuery`, not the public `query` builder.
-      const publicQueries = queries.filter((e) => e.builder === 'query');
+      const publicQueries = queries.filter((e) => e.builder === "query");
       expect(publicQueries).toEqual([]);
 
       // Every `internalQuery` export is, by definition, an `internalQuery`.
       for (const q of queries) {
-        expect(q.builder).toBe('internalQuery');
+        expect(q.builder).toBe("internalQuery");
       }
     });
 
-    it('query exports are limited to listParentLinks* and projectParentVisualization*', () => {
+    it("query exports are limited to listParentLinks* and projectParentVisualization*", () => {
       const exports = listExportedBuilders(readParentSource());
-      const queries = exports.filter((e) => e.builder === 'internalQuery');
+      const queries = exports.filter((e) => e.builder === "internalQuery");
 
       for (const q of queries) {
         const isAllowed =
-          /^listParentLinks/i.test(q.name) ||
-          /^projectParentVisualization/i.test(q.name);
+          /^listParentLinks/i.test(q.name) || /^projectParentVisualization/i.test(q.name);
         expect(
           isAllowed,
           `unexpected query export name: ${q.name} ` +
@@ -219,15 +213,15 @@ describe('Phase 3 — parent-portal Convex export contract', () => {
     });
   });
 
-  describe('complete enumeration — every exported Convex wrapper is internal', () => {
-    it('every Convex wrapper export is either internalMutation or internalQuery (no raw handler exports)', () => {
+  describe("complete enumeration — every exported Convex wrapper is internal", () => {
+    it("every Convex wrapper export is either internalMutation or internalQuery (no raw handler exports)", () => {
       // Catches a future regression where someone adds
       // `export const foo = someOtherBuilder({...})` — every Convex
       // wrapper under convex/parent/ MUST be one of the two internal
       // builders. This is the strongest assertion in the contract test:
       // it fails on ANY unexpected wrapper shape.
       const exports = listExportedBuilders(readParentSource());
-      const allowed = new Set(['internalMutation', 'internalQuery']);
+      const allowed = new Set(["internalMutation", "internalQuery"]);
       const violations = exports.filter((e) => !allowed.has(e.builder));
       expect(
         violations,
@@ -235,10 +229,10 @@ describe('Phase 3 — parent-portal Convex export contract', () => {
       ).toEqual([]);
     });
 
-    it('exports at least one mutation (link/revoke flow) and one query (read-only)', () => {
+    it("exports at least one mutation (link/revoke flow) and one query (read-only)", () => {
       const exports = listExportedBuilders(readParentSource());
-      const mutations = exports.filter((e) => e.builder === 'internalMutation');
-      const queries = exports.filter((e) => e.builder === 'internalQuery');
+      const mutations = exports.filter((e) => e.builder === "internalMutation");
+      const queries = exports.filter((e) => e.builder === "internalQuery");
       expect(mutations.length).toBeGreaterThan(0);
       expect(queries.length).toBeGreaterThan(0);
     });

@@ -39,13 +39,13 @@
 // Resolution from the test file's location (lessons-learned 2026-05-03):
 // `fileURLToPath(import.meta.url)` + `dirname()` — never `process.cwd()`.
 
-import { describe, it, expect } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { ComprehensionQuiz } from '@math-platform/activity-components/quiz';
-import { GraphingCanvas } from '@math-platform/activity-components/graphing';
-import { StepByStepSolverActivity } from '@/components/activities/algebraic/StepByStepSolverActivity';
-import 'katex/dist/katex.min.css';
+import { describe, it, expect } from "vitest";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { ComprehensionQuiz } from "@math-platform/activity-components/quiz";
+import { GraphingCanvas } from "@math-platform/activity-components/graphing";
+import { StepByStepSolverActivity } from "@/components/activities/algebraic/StepByStepSolverActivity";
+import "katex/dist/katex.min.css";
 
 // Strategy §2 + audit-finding contract: 44×44 minimum touch target, shared
 // with the wcag-aa-remediation track (test-strategy §2). Pixel and rem forms
@@ -72,8 +72,8 @@ function meetsHitTargetContract(el: Element): boolean {
   // Either the class declares the contract or the inline style declares it.
   // We require BOTH axes when neither is explicit (height-only classes fail
   // the width axis contract).
-  const className = el.getAttribute('class') ?? '';
-  const styleAttr = el.getAttribute('style') ?? '';
+  const className = el.getAttribute("class") ?? "";
+  const styleAttr = el.getAttribute("style") ?? "";
   // Inline style escape hatch: explicit min-height/min-width ≥ 44px counts.
   const mh = /min-height\s*:\s*([0-9.]+)px/i.exec(styleAttr);
   const mw = /min-width\s*:\s*([0-9.]+)px/i.exec(styleAttr);
@@ -91,56 +91,56 @@ function meetsHitTargetContract(el: Element): boolean {
   return hasHeightClass && hasWidthClass;
 }
 
-describe('Phase 2 — activity components min hit target (FR2 / AC2, audit #11 + #13)', () => {
-  describe('min hit target', () => {
-    it('ComprehensionQuiz practice-mode submit button meets 44x44 min hit target', async () => {
+describe("Phase 2 — activity components min hit target (FR2 / AC2, audit #11 + #13)", () => {
+  describe("min hit target", () => {
+    it("ComprehensionQuiz practice-mode submit button meets 44x44 min hit target", async () => {
       // Audit finding #13: "Quiz/activity submit buttons ... lack minimum
       // touch target sizing." Current submit button is `px-6 py-2` =
       // ~32px height. The Green role must add `min-h-[44px]` (or an
       // equivalent Tailwind/inline form) to the submit button.
       const user = userEvent.setup();
       const props = {
-        activityId: 'quiz-hit-target',
-        mode: 'practice' as const,
+        activityId: "quiz-hit-target",
+        mode: "practice" as const,
         questions: [
           {
-            id: 'q1',
-            type: 'true_false' as const,
-            prompt: 'Touch targets should be at least 44x44.',
-            options: ['True', 'False'],
-            correctAnswer: 'True',
+            id: "q1",
+            type: "true_false" as const,
+            prompt: "Touch targets should be at least 44x44.",
+            options: ["True", "False"],
+            correctAnswer: "True",
           },
         ],
         onSubmit: () => {},
       };
 
       render(<ComprehensionQuiz {...props} />);
-      await user.click(screen.getByText('True'));
+      await user.click(screen.getByText("True"));
       const submit = await screen.findByText(/submit/i, {}, { timeout: 2000 });
       expect(
         meetsHitTargetContract(submit),
-        'ComprehensionQuiz practice-mode submit button must meet 44x44 hit target ' +
-          '(audit #13). Current rendered classes: ' +
-          (submit.getAttribute('class') ?? '(none)') +
-          ' / inline style: ' +
-          (submit.getAttribute('style') ?? '(none)'),
+        "ComprehensionQuiz practice-mode submit button must meet 44x44 hit target " +
+          "(audit #13). Current rendered classes: " +
+          (submit.getAttribute("class") ?? "(none)") +
+          " / inline style: " +
+          (submit.getAttribute("style") ?? "(none)"),
       ).toBe(true);
     });
 
-    it('StepByStepSolverActivity guided-mode Next button meets 44x44 min hit target', async () => {
+    it("StepByStepSolverActivity guided-mode Next button meets 44x44 min hit target", async () => {
       // Audit finding #13 (generalised): "interactive controls lack minimum
       // touch target sizing." The StepByStepper Next button uses `py-2` =
       // ~32px height in guided mode. The Green role must remediate.
       const steps = [
         {
-          expression: 'x^2 + 5x + 6',
-          explanation: 'Write the quadratic in standard form',
-          distractors: ['x + 5', '2x + 3'],
+          expression: "x^2 + 5x + 6",
+          explanation: "Write the quadratic in standard form",
+          distractors: ["x + 5", "2x + 3"],
         },
         {
-          expression: '(x + 2)(x + 3)',
-          explanation: 'Factor the trinomial',
-          distractors: ['(x - 2)(x - 3)', '(x + 1)(x + 6)'],
+          expression: "(x + 2)(x + 3)",
+          explanation: "Factor the trinomial",
+          distractors: ["(x - 2)(x - 3)", "(x + 1)(x + 6)"],
         },
       ];
 
@@ -158,33 +158,31 @@ describe('Phase 2 — activity components min hit target (FR2 / AC2, audit #11 +
       // 2 distractors). KaTeX fragments the expression across nested
       // spans, so match the option button by its concatenated textContent
       // (mirrors the pattern in StepByStepper-guided.test.tsx).
-      const options = await screen.findAllByRole('button');
-      const correctButton = options.find((btn) =>
-        (btn.textContent ?? '').includes('x^2 + 5x + 6'),
-      );
-      expect(correctButton, 'guided mode must render a correct option button').toBeDefined();
+      const options = await screen.findAllByRole("button");
+      const correctButton = options.find((btn) => (btn.textContent ?? "").includes("x^2 + 5x + 6"));
+      expect(correctButton, "guided mode must render a correct option button").toBeDefined();
 
       // fireEvent bypasses userEvent timing jitter; we only need to flip
       // the component into the post-explanation state where the Next
       // button renders.
-      const { fireEvent } = await import('@testing-library/react');
+      const { fireEvent } = await import("@testing-library/react");
       fireEvent.click(correctButton!);
 
-      const nextButton = await screen.findByText('Next');
+      const nextButton = await screen.findByText("Next");
       expect(
         meetsHitTargetContract(nextButton),
-        'StepByStepSolverActivity guided-mode Next button must meet 44x44 hit target ' +
+        "StepByStepSolverActivity guided-mode Next button must meet 44x44 hit target " +
           '(audit #13). Current rendered classes: "' +
-          (nextButton.getAttribute('class') ?? '(none)') +
+          (nextButton.getAttribute("class") ?? "(none)") +
           '" / inline style: "' +
-          (nextButton.getAttribute('style') ?? '(none)') +
+          (nextButton.getAttribute("style") ?? "(none)") +
           '"',
       ).toBe(true);
 
       await waitFor(() => expect(nextButton).toBeInTheDocument());
     });
 
-    it('GraphingCanvas SVG declares a touch-action style for touch pan/zoom', () => {
+    it("GraphingCanvas SVG declares a touch-action style for touch pan/zoom", () => {
       // Audit finding #11 (critical): "GraphingCanvas ... has no
       // `touch-action` handling, no `pointer: coarse` media query, and no
       // pan/zoom. Placing points precisely on touch screens causes
@@ -203,20 +201,23 @@ describe('Phase 2 — activity components min hit target (FR2 / AC2, audit #11 +
         />,
       );
 
-      const svg = screen.getByRole('img');
-      const className = svg.getAttribute('class') ?? '';
-      const style = svg.getAttribute('style') ?? '';
+      const svg = screen.getByRole("img");
+      const className = svg.getAttribute("class") ?? "";
+      const style = svg.getAttribute("style") ?? "";
       // Acceptable forms: inline `touch-action: <value>` declaration OR
       // a Tailwind `touch-action-*` utility (none / pan-x / pan-y / etc.).
       const hasInlineTouchAction = /touch-action\s*:/i.test(style);
-      const hasTailwindTouchAction = /\btouch-action-(?:none|pan-x|pan-y|manipulation|pinch-zoom|auto)\b/.test(
-        className,
-      );
+      const hasTailwindTouchAction =
+        /\btouch-action-(?:none|pan-x|pan-y|manipulation|pinch-zoom|auto)\b/.test(className);
       expect(
         hasInlineTouchAction || hasTailwindTouchAction,
-        'GraphingCanvas SVG must declare a touch-action style so touch pan/zoom is controlled ' +
-          '(audit #11 — touch scrolling interferes with point placement). ' +
-          'Inline style: "' + style + '" / className: "' + className + '"',
+        "GraphingCanvas SVG must declare a touch-action style so touch pan/zoom is controlled " +
+          "(audit #11 — touch scrolling interferes with point placement). " +
+          'Inline style: "' +
+          style +
+          '" / className: "' +
+          className +
+          '"',
       ).toBe(true);
     });
   });

@@ -41,12 +41,12 @@
 //     __tests__/components/lesson/shell-responsive.test.tsx -t "min hit target"
 // Expected fail count at HEAD: 4/4.
 
-import { describe, it, expect, beforeAll } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { LessonStepper, type StepperPhase } from '@/components/lesson/LessonStepper';
-import { PhaseCompleteButton } from '@/components/lesson/PhaseCompleteButton';
-import { Dialog } from '@/components/ui/dialog';
-import { StudentNavigation } from '@/components/student/StudentNavigation';
+import { describe, it, expect, beforeAll } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { LessonStepper, type StepperPhase } from "@/components/lesson/LessonStepper";
+import { PhaseCompleteButton } from "@/components/lesson/PhaseCompleteButton";
+import { Dialog } from "@/components/ui/dialog";
+import { StudentNavigation } from "@/components/student/StudentNavigation";
 
 const MIN_HIT_TARGET_PX = 44;
 
@@ -64,8 +64,8 @@ const HIT_TARGET_CLASS_PATTERNS: ReadonlyArray<RegExp> = [
 ];
 
 function meetsHitTargetContract(el: Element): boolean {
-  const className = el.getAttribute('class') ?? '';
-  const style = el.getAttribute('style') ?? '';
+  const className = el.getAttribute("class") ?? "";
+  const style = el.getAttribute("style") ?? "";
   // Inline style escape hatch: explicit min-height/min-width ≥ 44px counts.
   const mh = /min-height\s*:\s*([0-9.]+)px/i.exec(style);
   const mw = /min-width\s*:\s*([0-9.]+)px/i.exec(style);
@@ -84,20 +84,26 @@ function meetsHitTargetContract(el: Element): boolean {
 }
 
 const SAMPLE_PHASES: StepperPhase[] = [
-  { phaseNumber: 1, phaseId: 'p1', phaseType: 'explore', title: 'Explore', status: 'completed' },
-  { phaseNumber: 2, phaseId: 'p2', phaseType: 'learn', title: 'Learn', status: 'current' },
-  { phaseNumber: 3, phaseId: 'p3', phaseType: 'worked_example', title: 'Example', status: 'locked' },
+  { phaseNumber: 1, phaseId: "p1", phaseType: "explore", title: "Explore", status: "completed" },
+  { phaseNumber: 2, phaseId: "p2", phaseType: "learn", title: "Learn", status: "current" },
+  {
+    phaseNumber: 3,
+    phaseId: "p3",
+    phaseType: "worked_example",
+    title: "Example",
+    status: "locked",
+  },
 ];
 
-describe('Phase 2 — app shell min hit target (FR3 / AC3, audit #9 + #13 + #14)', () => {
+describe("Phase 2 — app shell min hit target (FR3 / AC3, audit #9 + #13 + #14)", () => {
   // jsdom does not implement `HTMLDialogElement.showModal()` — the Dialog
   // component calls it from a useEffect on mount. Without the stub below
   // the component would crash and the assertion would never run, masking
   // the contract gap. The stub is a no-op so the dialog host stays in the
   // DOM and the className probe can inspect the rendered Tailwind classes.
   beforeAll(() => {
-    if (!('showModal' in HTMLDialogElement.prototype)) {
-      Object.defineProperty(HTMLDialogElement.prototype, 'showModal', {
+    if (!("showModal" in HTMLDialogElement.prototype)) {
+      Object.defineProperty(HTMLDialogElement.prototype, "showModal", {
         configurable: true,
         writable: true,
         value: function showModal() {
@@ -105,8 +111,8 @@ describe('Phase 2 — app shell min hit target (FR3 / AC3, audit #9 + #13 + #14)
         },
       });
     }
-    if (!('close' in HTMLDialogElement.prototype)) {
-      Object.defineProperty(HTMLDialogElement.prototype, 'close', {
+    if (!("close" in HTMLDialogElement.prototype)) {
+      Object.defineProperty(HTMLDialogElement.prototype, "close", {
         configurable: true,
         writable: true,
         value: function close() {
@@ -116,8 +122,8 @@ describe('Phase 2 — app shell min hit target (FR3 / AC3, audit #9 + #13 + #14)
     }
   });
 
-  describe('min hit target', () => {
-    it('LessonStepper compact (mobile) step button meets 44x44 min hit target', () => {
+  describe("min hit target", () => {
+    it("LessonStepper compact (mobile) step button meets 44x44 min hit target", () => {
       // Audit finding #9 + #13: mobile stepper uses `h-9 w-9` (36×36) on
       // the compact (mobile) branch. The Green role must bump the
       // compact branch to a 44×44 minimum via min-h-[44px]/min-w-[44px]
@@ -128,69 +134,65 @@ describe('Phase 2 — app shell min hit target (FR3 / AC3, audit #9 + #13 + #14)
       // `<span className="text-sm font-semibold">{phaseNumber}</span>`
       // instead of the desktop icon — that's the discriminator.
       const numberedButtons = screen
-        .getAllByRole('button')
-        .filter((btn) => /^\d+$/.test((btn.textContent ?? '').trim()));
+        .getAllByRole("button")
+        .filter((btn) => /^\d+$/.test((btn.textContent ?? "").trim()));
       expect(
         numberedButtons.length,
-        'mobile (compact) branch must render numbered step buttons',
+        "mobile (compact) branch must render numbered step buttons",
       ).toBeGreaterThan(0);
 
       for (const btn of numberedButtons) {
         expect(
           meetsHitTargetContract(btn),
-          'LessonStepper compact (mobile) step button must meet 44x44 hit target ' +
+          "LessonStepper compact (mobile) step button must meet 44x44 hit target " +
             '(audit #9 + #13). Current classes: "' +
-            (btn.getAttribute('class') ?? '(none)') +
+            (btn.getAttribute("class") ?? "(none)") +
             '" / inline style: "' +
-            (btn.getAttribute('style') ?? '(none)') +
+            (btn.getAttribute("style") ?? "(none)") +
             '"',
         ).toBe(true);
       }
     });
 
-    it('PhaseCompleteButton Mark Complete meets 44x44 min hit target', () => {
+    it("PhaseCompleteButton Mark Complete meets 44x44 min hit target", () => {
       // Audit #13 generalised: every primary action button should meet
       // the 44×44 minimum. PhaseCompleteButton renders the
       // `<Button variant="default" ...>Mark Complete</Button>` which uses
       // the size="default" CVA size = `h-9` (36px). Green must add
       // min-h-[44px] (or similar) at the call site or via a new CVA size.
       render(
-        <PhaseCompleteButton
-          lessonId="hit-target-lesson"
-          phaseNumber={1}
-          phaseType="learn"
-        />,
+        <PhaseCompleteButton lessonId="hit-target-lesson" phaseNumber={1} phaseType="learn" />,
       );
-      const completeButton = screen.getByRole('button', { name: /mark complete/i });
+      const completeButton = screen.getByRole("button", { name: /mark complete/i });
       expect(
         meetsHitTargetContract(completeButton),
-        'PhaseCompleteButton Mark Complete must meet 44x44 hit target ' +
+        "PhaseCompleteButton Mark Complete must meet 44x44 hit target " +
           '(audit #13). Current classes: "' +
-          (completeButton.getAttribute('class') ?? '(none)') +
+          (completeButton.getAttribute("class") ?? "(none)") +
           '" / inline style: "' +
-          (completeButton.getAttribute('style') ?? '(none)') +
+          (completeButton.getAttribute("style") ?? "(none)") +
           '"',
       ).toBe(true);
     });
 
-    it('StudentNavigation mobile toggle button meets 44x44 min hit target', () => {
+    it("StudentNavigation mobile toggle button meets 44x44 min hit target", () => {
       // The mobile toggle is `md:hidden fixed top-4 left-4 z-50 p-2` with
       // a 24×24 icon = ~40px hit target. Audit #13 demands ≥ 44px. Green
       // must bump the button to min-h-[44px]/min-w-[44px].
       render(<StudentNavigation activeRoute="/student/dashboard" />);
-      const toggle = screen.getByRole('button', { name: /toggle menu/i });
+      const toggle = screen.getByRole("button", { name: /toggle menu/i });
       expect(
         meetsHitTargetContract(toggle),
-        'StudentNavigation mobile toggle must meet 44x44 hit target ' +
+        "StudentNavigation mobile toggle must meet 44x44 hit target " +
           '(audit #13). Current classes: "' +
-          (toggle.getAttribute('class') ?? '(none)') +
+          (toggle.getAttribute("class") ?? "(none)") +
           '" / inline style: "' +
-          (toggle.getAttribute('style') ?? '(none)') +
+          (toggle.getAttribute("style") ?? "(none)") +
           '"',
       ).toBe(true);
     });
 
-    it('Dialog content max-width respects phone viewport (390px wide)', () => {
+    it("Dialog content max-width respects phone viewport (390px wide)", () => {
       // Audit #14 generalised: dialogs must have a viewport-aware max-width
       // so they cannot overflow the 390px phone viewport. Current Dialog
       // content uses `w-full max-w-md` = 448px which overflows a 390px
@@ -206,8 +208,8 @@ describe('Phase 2 — app shell min hit target (FR3 / AC3, audit #9 + #13 + #14)
       // The native `<dialog>` is the layout host; the inner card div is
       // the visible content panel. Both must carry a viewport-aware
       // max-width contract.
-      const dialog = screen.getByRole('dialog');
-      const card = dialog.querySelector('div');
+      const dialog = screen.getByRole("dialog");
+      const card = dialog.querySelector("div");
 
       // Acceptable forms: viewport-relative arbitrary max-width
       // (`max-w-[calc(100vw-Nrem)]`, `max-w-[100vw]`) OR Tailwind
@@ -216,8 +218,8 @@ describe('Phase 2 — app shell min hit target (FR3 / AC3, audit #9 + #13 + #14)
       // at least one such form.
       const hasViewportAwareMaxWidth = (el: Element | null): boolean => {
         if (!el) return false;
-        const className = el.getAttribute('class') ?? '';
-        const style = el.getAttribute('style') ?? '';
+        const className = el.getAttribute("class") ?? "";
+        const style = el.getAttribute("style") ?? "";
         return (
           /\bmax-w-\[\s*calc\(\s*100vw\b/i.test(className) ||
           /\bmax-w-\[\s*100vw\s*\]/i.test(className) ||
@@ -236,11 +238,11 @@ describe('Phase 2 — app shell min hit target (FR3 / AC3, audit #9 + #13 + #14)
       const cardOk = hasViewportAwareMaxWidth(card);
       expect(
         hostOk || cardOk,
-        'Dialog must declare a viewport-aware max-width so it cannot overflow the ' +
+        "Dialog must declare a viewport-aware max-width so it cannot overflow the " +
           '390px phone viewport (audit #14 generalised). Dialog className: "' +
-          (dialog.getAttribute('class') ?? '(none)') +
+          (dialog.getAttribute("class") ?? "(none)") +
           '" / Card className: "' +
-          (card?.getAttribute('class') ?? '(none)') +
+          (card?.getAttribute("class") ?? "(none)") +
           '". Accepted forms: max-w-[calc(100vw-...)] / max-w-[100vw] / sm:max-w-md / md:max-w-md.',
       ).toBe(true);
     });

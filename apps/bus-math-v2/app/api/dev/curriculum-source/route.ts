@@ -1,15 +1,15 @@
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { getSourceDocumentByKey } from '@/app/(dev)/blueprint-qa/source-documents';
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { getSourceDocumentByKey } from "@/app/(dev)/blueprint-qa/source-documents";
 
-const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../../../');
+const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../../../../../");
 
 export async function GET(request: Request): Promise<Response> {
-  if (process.env.NODE_ENV !== 'development') {
+  if (process.env.NODE_ENV !== "development") {
     return new Response(null, { status: 404 });
   }
 
-  const key = new URL(request.url).searchParams.get('document');
+  const key = new URL(request.url).searchParams.get("document");
   const document = key ? getSourceDocumentByKey(key) : undefined;
   if (!document) {
     return new Response(null, { status: 404 });

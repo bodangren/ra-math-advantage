@@ -2,7 +2,10 @@ import { describe, expect, it } from "vitest";
 import type { PracticeSubmissionEnvelope } from "@math-platform/practice-core/contract";
 
 import type { MutationCtx } from "@/convex/_generated/server";
-import { createServerOwnedSubmission, createServerOwnedSubmissionHandler } from "@/convex/activities";
+import {
+  createServerOwnedSubmission,
+  createServerOwnedSubmissionHandler,
+} from "@/convex/activities";
 import {
   IM3_GUIDED_PRACTICE_ACTIVITY_ID,
   IM3_MASTERY_ADVANTAGE_ACTIVITY_ID,
@@ -130,9 +133,7 @@ function createHarness() {
           return {
             withIndex: (
               name: string,
-              configure: (q: {
-                eq: (field: string, value: unknown) => unknown;
-              }) => unknown,
+              configure: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
             ) => {
               expect(name).toBe("by_username");
               const conditions = new Map<string, unknown>();
@@ -146,22 +147,18 @@ function createHarness() {
               return {
                 unique: async () =>
                   [...conditions].every(
-                    ([field, value]) =>
-                      (credential as Record<string, unknown>)[field] === value,
+                    ([field, value]) => (credential as Record<string, unknown>)[field] === value,
                   )
                     ? credential
                     : null,
               };
             },
           };
-        if (tableName !== "activity_submissions")
-          throw new Error(`Unexpected table: ${tableName}`);
+        if (tableName !== "activity_submissions") throw new Error(`Unexpected table: ${tableName}`);
         return {
           withIndex: (
             indexName: string,
-            configure: (query: {
-              eq(field: string, value: unknown): unknown;
-            }) => unknown,
+            configure: (query: { eq(field: string, value: unknown): unknown }) => unknown,
           ) => {
             const conditions = new Map<string, unknown>();
             const index = {
@@ -173,9 +170,7 @@ function createHarness() {
             configure(index);
             const selected = () =>
               submissions.filter((submission) =>
-                [...conditions].every(
-                  ([field, value]) => submission[field] === value,
-                ),
+                [...conditions].every(([field, value]) => submission[field] === value),
               );
             if (indexName === "by_user_activity_idempotency_key") {
               return { unique: async () => selected()[0] ?? null };
@@ -204,10 +199,7 @@ function createHarness() {
   return { ctx, submissions, activity, profile, credential };
 }
 
-function createInput(
-  idempotencyKey: string,
-  submissionData = makeSubmission(),
-) {
+function createInput(idempotencyKey: string, submissionData = makeSubmission()) {
   return {
     userId: LEARNER_ID,
     activityId: ACTIVITY_ID,
@@ -221,10 +213,7 @@ describe("IM3 server-owned create idempotency authority", () => {
     const { ctx, submissions } = createHarness();
 
     await expect(
-      createServerOwnedSubmissionHandler(
-        ctx as never,
-        createInput("draft-catalog") as never,
-      ),
+      createServerOwnedSubmissionHandler(ctx as never, createInput("draft-catalog") as never),
     ).rejects.toThrow("approved server-owned create mapping");
     expect(submissions).toEqual([]);
   });
@@ -234,9 +223,7 @@ describe("IM3 server-owned create idempotency authority", () => {
     async (idempotencyKey) => {
       const { ctx, submissions } = createHarness();
 
-      await expect(
-        createHandler(ctx, createInput(idempotencyKey)),
-      ).rejects.toThrow(/idempotency/i);
+      await expect(createHandler(ctx, createInput(idempotencyKey))).rejects.toThrow(/idempotency/i);
       expect(submissions).toEqual([]);
     },
   );
@@ -245,20 +232,12 @@ describe("IM3 server-owned create idempotency authority", () => {
     const { ctx, submissions } = createHarness();
     const payload = makeSubmission();
 
-    const first = await createHandler(
-      ctx,
-      createInput("im3-create-key-one", payload),
-    );
-    const second = await createHandler(
-      ctx,
-      createInput("im3-create-key-two", payload),
-    );
+    const first = await createHandler(ctx, createInput("im3-create-key-one", payload));
+    const second = await createHandler(ctx, createInput("im3-create-key-two", payload));
 
     expect(second.submissionId).not.toBe(first.submissionId);
     expect(submissions).toHaveLength(2);
-    expect(submissions.map((submission) => submission.attemptOrdinal)).toEqual([
-      1, 2,
-    ]);
+    expect(submissions.map((submission) => submission.attemptOrdinal)).toEqual([1, 2]);
   });
 
   it("replays the original opaque ID only for the same learner, activity, key, and canonical payload", async () => {
@@ -388,7 +367,9 @@ describe("IM3 server-owned create idempotency authority", () => {
 
     await expect(
       createHandler(ctx, createInput("im3-invalid-shape-key", submissionData)),
-    ).rejects.toThrow(/Invalid selected IM3|canonical answer|canonical part|part rawAnswer must match/);
+    ).rejects.toThrow(
+      /Invalid selected IM3|canonical answer|canonical part|part rawAnswer must match/,
+    );
     expect(submissions).toEqual([]);
   });
   it.each([
@@ -398,9 +379,9 @@ describe("IM3 server-owned create idempotency authority", () => {
   ])("rejects %s before storage", async (_name, change) => {
     const { ctx, submissions, activity } = createHarness();
     Object.assign(activity, change);
-    await expect(
-      createHandler(ctx, createInput("strict-identity")),
-    ).rejects.toThrow(/approved server-owned create mapping/);
+    await expect(createHandler(ctx, createInput("strict-identity"))).rejects.toThrow(
+      /approved server-owned create mapping/,
+    );
     expect(submissions).toEqual([]);
   });
   it("treats changed assistance telemetry as an idempotency conflict", async () => {
@@ -410,9 +391,9 @@ describe("IM3 server-owned create idempotency authority", () => {
     await createHandler(ctx, createInput("assistance-key", first));
     const changed = makeSubmission();
     changed.parts[0] = { ...changed.parts[0], hintsUsed: 2 };
-    await expect(
-      createHandler(ctx, createInput("assistance-key", changed)),
-    ).rejects.toThrow("idempotency_conflict");
+    await expect(createHandler(ctx, createInput("assistance-key", changed))).rejects.toThrow(
+      "idempotency_conflict",
+    );
   });
 });
 
@@ -434,9 +415,9 @@ describe("selected writer identity and replay boundaries", () => {
   it("rejects a nonstudent profile", async () => {
     const t = createHarness();
     t.profile.role = "teacher";
-    await expect(
-      createHandler(t.ctx, createInput("profile-role")),
-    ).rejects.toThrow("Inactive student identity");
+    await expect(createHandler(t.ctx, createInput("profile-role"))).rejects.toThrow(
+      "Inactive student identity",
+    );
     expect(t.submissions).toEqual([]);
   });
   it("rejects a missing profile", async () => {
@@ -451,18 +432,16 @@ describe("selected writer identity and replay boundaries", () => {
   });
   it("rejects a key over 80 characters", async () => {
     const t = createHarness();
-    await expect(
-      createHandler(t.ctx, createInput("a".repeat(81))),
-    ).rejects.toThrow("Invalid idempotency key");
+    await expect(createHandler(t.ctx, createInput("a".repeat(81)))).rejects.toThrow(
+      "Invalid idempotency key",
+    );
     expect(t.submissions).toEqual([]);
   });
   it("rejects a different contract version", async () => {
     const t = createHarness();
     const input = createInput("contract");
     Object.assign(input.submissionData, { contractVersion: "practice.v2" });
-    await expect(createHandler(t.ctx, input)).rejects.toThrow(
-      "Invalid practice contract",
-    );
+    await expect(createHandler(t.ctx, input)).rejects.toThrow("Invalid practice contract");
     expect(t.submissions).toEqual([]);
   });
   it("stores a correct Guided submission for the matching Guided activity", async () => {
@@ -485,9 +464,9 @@ describe("selected writer identity and replay boundaries", () => {
     Object.assign(t.activity, {
       stableActivityId: IM3_GUIDED_PRACTICE_ACTIVITY_ID,
     });
-    await expect(
-      createHandler(t.ctx, createInput("guided-cross")),
-    ).rejects.toThrow("approved server-owned create mapping");
+    await expect(createHandler(t.ctx, createInput("guided-cross"))).rejects.toThrow(
+      "approved server-owned create mapping",
+    );
     expect(t.submissions).toEqual([]);
   });
   it("rejects Guided mode for the Independent activity", async () => {
@@ -508,19 +487,14 @@ describe("selected writer identity and replay boundaries", () => {
     expect(await createHandler(t.ctx, retry)).toEqual(saved);
     expect(t.submissions).toHaveLength(1);
   });
-  it.each(["hintsUsed", "changedCount"])(
-    "rejects changed %s on replay",
-    async (field) => {
-      const t = createHarness();
-      await createHandler(t.ctx, createInput("assistance"));
-      const retry = createInput("assistance");
-      Object.assign(retry.submissionData.parts[0], { [field]: 1 });
-      await expect(createHandler(t.ctx, retry)).rejects.toThrow(
-        "idempotency_conflict",
-      );
-      expect(t.submissions).toHaveLength(1);
-    },
-  );
+  it.each(["hintsUsed", "changedCount"])("rejects changed %s on replay", async (field) => {
+    const t = createHarness();
+    await createHandler(t.ctx, createInput("assistance"));
+    const retry = createInput("assistance");
+    Object.assign(retry.submissionData.parts[0], { [field]: 1 });
+    await expect(createHandler(t.ctx, retry)).rejects.toThrow("idempotency_conflict");
+    expect(t.submissions).toHaveLength(1);
+  });
   it("rejects unsupported reveal telemetry before replay comparison", async () => {
     const t = createHarness();
     await createHandler(t.ctx, createInput("assistance-reveal"));
@@ -533,12 +507,13 @@ describe("selected writer identity and replay boundaries", () => {
   });
 });
 
-
 it("runs the registered writer boundary and rejects the real draft catalog", async () => {
   const t = createHarness();
   const registered = createServerOwnedSubmission as unknown as {
     _handler: (ctx: MutationCtx, args: unknown) => Promise<unknown>;
   };
-  await expect(registered._handler(t.ctx, createInput("registered-draft"))).rejects.toThrow("approved server-owned create mapping");
+  await expect(registered._handler(t.ctx, createInput("registered-draft"))).rejects.toThrow(
+    "approved server-owned create mapping",
+  );
   expect(t.submissions).toEqual([]);
 });

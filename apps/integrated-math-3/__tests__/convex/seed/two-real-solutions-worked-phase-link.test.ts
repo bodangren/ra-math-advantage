@@ -13,7 +13,12 @@ type TestSection = {
 type TestPhase = { _id: string };
 
 type OptionalWorkedPhaseLink =
-  ((ctx: never, lessonVersionId: Id<"lesson_versions">, activityId: Id<"activities">) => Promise<void>) | undefined;
+  | ((
+      ctx: never,
+      lessonVersionId: Id<"lesson_versions">,
+      activityId: Id<"activities">,
+    ) => Promise<void>)
+  | undefined;
 
 function makeContext(
   sections: TestSection[],
@@ -32,45 +37,51 @@ function makeContext(
     operations.push(`query:${tableName}`);
     if (tableName === "phase_versions") {
       return {
-        withIndex: vi.fn((index: string, callback: (query: {
-          eq: (field: string, value: unknown) => unknown;
-        }) => unknown) => {
-          operations.push(`index:${index}`);
-          const queryBuilder = {
-            eq: vi.fn(function (this: typeof queryBuilder, field: string, value: unknown) {
-              operations.push(`eq:${field}:${String(value)}`);
-              return this;
-            }),
-          };
-          callback(queryBuilder);
-          return {
-            first: vi.fn(async () => {
-              operations.push("first");
-              return phase;
-            }),
-          };
-        }),
+        withIndex: vi.fn(
+          (
+            index: string,
+            callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) => {
+            operations.push(`index:${index}`);
+            const queryBuilder = {
+              eq: vi.fn(function (this: typeof queryBuilder, field: string, value: unknown) {
+                operations.push(`eq:${field}:${String(value)}`);
+                return this;
+              }),
+            };
+            callback(queryBuilder);
+            return {
+              first: vi.fn(async () => {
+                operations.push("first");
+                return phase;
+              }),
+            };
+          },
+        ),
       };
     }
     if (tableName === "phase_sections") {
       return {
-        withIndex: vi.fn((index: string, callback: (query: {
-          eq: (field: string, value: unknown) => unknown;
-        }) => unknown) => {
-          operations.push(`index:${index}`);
-          callback({
-            eq: vi.fn((field: string, value: unknown) => {
-              operations.push(`eq:${field}:${String(value)}`);
-              return undefined;
-            }),
-          });
-          return {
-            collect: vi.fn(async () => {
-              operations.push("collect");
-              return sections;
-            }),
-          };
-        }),
+        withIndex: vi.fn(
+          (
+            index: string,
+            callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) => {
+            operations.push(`index:${index}`);
+            callback({
+              eq: vi.fn((field: string, value: unknown) => {
+                operations.push(`eq:${field}:${String(value)}`);
+                return undefined;
+              }),
+            });
+            return {
+              collect: vi.fn(async () => {
+                operations.push("collect");
+                return sections;
+              }),
+            };
+          },
+        ),
       };
     }
     throw new Error(`Unexpected table ${tableName}`);
@@ -163,7 +174,8 @@ describe("IM3 two-real-solutions Worked Phase 5 link", () => {
     expect(ctx.insert).not.toHaveBeenCalled();
     expect(ctx.delete).not.toHaveBeenCalled();
     expect(sections[0]?.content).toEqual({
-      markdown: "## Example 2: Two Real Solutions\n\nUse a quadratic equation to find two real numbers with a sum of 24 and a product of 143.",
+      markdown:
+        "## Example 2: Two Real Solutions\n\nUse a quadratic equation to find two real numbers with a sum of 24 and a product of 143.",
     });
     expect(sections[1]?.content).toEqual({
       componentKey: "graphing-explorer",
@@ -199,34 +211,40 @@ describe("IM3 two-real-solutions Worked Phase 5 link", () => {
       {
         name: "text section",
         phase: { _id: "phase_versions:5" },
-        sections: [{
-          _id: "phase_sections:worked",
-          sequenceOrder: 2,
-          sectionType: "activity",
-          content: {},
-        }],
+        sections: [
+          {
+            _id: "phase_sections:worked",
+            sequenceOrder: 2,
+            sectionType: "activity",
+            content: {},
+          },
+        ],
         message: "Lesson 1.2 Phase 5 text section is missing",
       },
       {
         name: "activity section",
         phase: { _id: "phase_versions:5" },
-        sections: [{
-          _id: "phase_sections:text",
-          sequenceOrder: 1,
-          sectionType: "text",
-          content: {},
-        }],
+        sections: [
+          {
+            _id: "phase_sections:text",
+            sequenceOrder: 1,
+            sectionType: "text",
+            content: {},
+          },
+        ],
         message: "Lesson 1.2 Phase 5 activity section is missing",
       },
     ];
 
     for (const testCase of cases) {
       const ctx = makeContext(testCase.sections, testCase.phase);
-      await expect(linkWorkedPhase(
-        ctx.ctx,
-        "lesson_versions:2" as Id<"lesson_versions">,
-        "activities:two-real-solutions-worked" as Id<"activities">,
-      )).rejects.toThrow(testCase.message);
+      await expect(
+        linkWorkedPhase(
+          ctx.ctx,
+          "lesson_versions:2" as Id<"lesson_versions">,
+          "activities:two-real-solutions-worked" as Id<"activities">,
+        ),
+      ).rejects.toThrow(testCase.message);
       expect(ctx.patch).not.toHaveBeenCalled();
       expect(ctx.insert).not.toHaveBeenCalled();
       expect(ctx.delete).not.toHaveBeenCalled();

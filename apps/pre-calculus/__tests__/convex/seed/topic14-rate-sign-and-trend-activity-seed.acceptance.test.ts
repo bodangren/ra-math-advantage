@@ -1,16 +1,14 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { rateSignAndTrendFromGraphSchema } from '@math-platform/math-content';
-import {
-  generateTopic14RateSignAndTrendOutput,
-} from '@math-platform/math-content/knowledge-space';
+import { rateSignAndTrendFromGraphSchema } from "@math-platform/math-content";
+import { generateTopic14RateSignAndTrendOutput } from "@math-platform/math-content/knowledge-space";
 import {
   PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_COMPONENT_KEY,
   PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_GRADING_CONFIG,
   PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_INDEPENDENT_GRADING_CONFIG,
   PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_WORKED_GRADING_CONFIG,
-} from '@/convex/activities';
-import { seedLesson1_4 } from '@/convex/seed/seed_lesson_1_4';
+} from "@/convex/activities";
+import { seedLesson1_4 } from "@/convex/seed/seed_lesson_1_4";
 import {
   PRECALCULUS_TOPIC_14_POLYNOMIAL_DEGREE_LEADING_COEFFICIENT_GUIDED_ACTIVITY_ID,
   PRECALCULUS_TOPIC_14_POLYNOMIAL_DEGREE_LEADING_COEFFICIENT_INDEPENDENT_ACTIVITY_ID,
@@ -24,7 +22,7 @@ import {
   PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_ACTIVITY_ID,
   PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_INDEPENDENT_ACTIVITY_ID,
   PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_WORKED_ACTIVITY_ID,
-} from '@/lib/learning-evidence/precalc-pilot';
+} from "@/lib/learning-evidence/precalc-pilot";
 
 type Row = Record<string, unknown> & { _id: string };
 
@@ -52,27 +50,27 @@ const END_BEHAVIOR_ACTIVITY_IDS = [
 ] as const;
 
 const BANNED_AUTHORITY_KEYS = new Set([
-  'answer',
-  'answerKey',
-  'correctAnswer',
-  'correctAnswers',
-  'expectedAnswer',
-  'grading',
-  'gradingMetadata',
-  'isCorrect',
-  'maxScore',
-  'normalizedAnswer',
-  'score',
-  'solution',
-  'solutionSteps',
-  'steps',
-  'finalAnswer',
-  'authority',
+  "answer",
+  "answerKey",
+  "correctAnswer",
+  "correctAnswers",
+  "expectedAnswer",
+  "grading",
+  "gradingMetadata",
+  "isCorrect",
+  "maxScore",
+  "normalizedAnswer",
+  "score",
+  "solution",
+  "solutionSteps",
+  "steps",
+  "finalAnswer",
+  "authority",
 ]);
 
 function collectObjectKeys(value: unknown, keys: string[] = []): string[] {
   if (Array.isArray(value)) value.forEach((item) => collectObjectKeys(item, keys));
-  else if (value && typeof value === 'object') {
+  else if (value && typeof value === "object") {
     Object.entries(value).forEach(([key, nestedValue]) => {
       keys.push(key);
       collectObjectKeys(nestedValue, keys);
@@ -86,9 +84,12 @@ function expectNoAuthority(value: unknown): void {
 }
 
 function getHandler() {
-  const handler = Reflect.get(seedLesson1_4, '_handler');
-  if (typeof handler !== 'function') throw new Error('seedLesson1_4 must expose its handler.');
-  return handler as (context: { db: Record<string, unknown> }, args: Record<string, never>) => Promise<unknown>;
+  const handler = Reflect.get(seedLesson1_4, "_handler");
+  if (typeof handler !== "function") throw new Error("seedLesson1_4 must expose its handler.");
+  return handler as (
+    context: { db: Record<string, unknown> },
+    args: Record<string, never>,
+  ) => Promise<unknown>;
 }
 
 function createHarness() {
@@ -116,9 +117,10 @@ function createHarness() {
           },
         };
         configure(index);
-        const select = () => (rows[table] ?? []).filter((row) => (
-          [...conditions].every(([field, value]) => row[field] === value)
-        ));
+        const select = () =>
+          (rows[table] ?? []).filter((row) =>
+            [...conditions].every(([field, value]) => row[field] === value),
+          );
         return {
           first: async () => select()[0] ?? null,
           unique: async () => {
@@ -137,7 +139,9 @@ function createHarness() {
       return row._id;
     },
     patch: async (id: string, document: Record<string, unknown>) => {
-      const row = Object.values(rows).flat().find((candidate) => candidate._id === id);
+      const row = Object.values(rows)
+        .flat()
+        .find((candidate) => candidate._id === id);
       if (!row) throw new Error(`Unknown patch target ${id}`);
       Object.assign(row, document);
       patches.push({ id, document });
@@ -148,13 +152,13 @@ function createHarness() {
 }
 
 function targetRows(rows: Row[]): Row[] {
-  return rows.filter((row) => TARGET_ACTIVITY_IDS.includes(
-    row.stableActivityId as typeof TARGET_ACTIVITY_IDS[number],
-  ));
+  return rows.filter((row) =>
+    TARGET_ACTIVITY_IDS.includes(row.stableActivityId as (typeof TARGET_ACTIVITY_IDS)[number]),
+  );
 }
 
-describe('Precalculus Topic 1.4 rate sign and trend activity seed', () => {
-  it('upserts three generated modes without phase or lesson attachment', async () => {
+describe("Precalculus Topic 1.4 rate sign and trend activity seed", () => {
+  it("upserts three generated modes without phase or lesson attachment", async () => {
     const harness = createHarness();
     const handler = getHandler();
 
@@ -165,18 +169,37 @@ describe('Precalculus Topic 1.4 rate sign and trend activity seed', () => {
 
     expect(firstTargetRows).toHaveLength(3);
     expect(firstTargetRows.map((row) => row.stableActivityId)).toEqual(TARGET_ACTIVITY_IDS);
-    expect(harness.inserts.filter(({ table, document }) => (
-      table === 'activities' && TARGET_ACTIVITY_IDS.includes(
-        document.stableActivityId as typeof TARGET_ACTIVITY_IDS[number],
-      )
-    ))).toHaveLength(3);
+    expect(
+      harness.inserts.filter(
+        ({ table, document }) =>
+          table === "activities" &&
+          TARGET_ACTIVITY_IDS.includes(
+            document.stableActivityId as (typeof TARGET_ACTIVITY_IDS)[number],
+          ),
+      ),
+    ).toHaveLength(3);
     expect((firstResult as { activitiesCreated: number }).activitiesCreated).toBe(12);
     expect(harness.rows.activities).toHaveLength(12);
 
     const expectedModes = [
-      ['worked', 0, 'worked_example', PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_WORKED_GRADING_CONFIG],
-      ['guided', 1, 'guided_practice', PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_GRADING_CONFIG],
-      ['independent', 2, 'independent_practice', PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_INDEPENDENT_GRADING_CONFIG],
+      [
+        "worked",
+        0,
+        "worked_example",
+        PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_WORKED_GRADING_CONFIG,
+      ],
+      [
+        "guided",
+        1,
+        "guided_practice",
+        PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_GRADING_CONFIG,
+      ],
+      [
+        "independent",
+        2,
+        "independent_practice",
+        PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_INDEPENDENT_GRADING_CONFIG,
+      ],
     ] as const;
     for (const [mode, seed, presentationMode, gradingConfig] of expectedModes) {
       const row = firstTargetRows[seed]!;
@@ -184,41 +207,46 @@ describe('Precalculus Topic 1.4 rate sign and trend activity seed', () => {
       expect(row).toMatchObject({
         stableActivityId: TARGET_ACTIVITY_IDS[seed],
         componentKey: PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_COMPONENT_KEY,
-        description: 'Determine the sign and trend of the rate of change on an interval.',
+        description: "Determine the sign and trend of the rate of change on an interval.",
         gradingConfig,
       });
       expect(rateSignAndTrendFromGraphSchema.safeParse(props).success).toBe(true);
       expect(props.presentationMode).toBe(presentationMode);
 
-      if (mode === 'worked') {
+      if (mode === "worked") {
         const output = generateTopic14RateSignAndTrendOutput(0);
-        const publicProps = (output.data as { rendererProps: Record<string, unknown> }).rendererProps;
-        expect(row.displayName).toBe('Worked Example: Rate Sign and Trend');
+        const publicProps = (output.data as { rendererProps: Record<string, unknown> })
+          .rendererProps;
+        expect(row.displayName).toBe("Worked Example: Rate Sign and Trend");
         expect(props).toEqual({
           ...publicProps,
-          presentationMode: 'worked_example',
+          presentationMode: "worked_example",
           correctAnswers: output.expectedAnswer,
           steps: output.solutionSteps.map((step) => step.description),
-          finalAnswer: 'The rate of change is positive and decreasing on (3, 4).',
+          finalAnswer: "The rate of change is positive and decreasing on (3, 4).",
         });
-      } else if (mode === 'guided') {
+      } else if (mode === "guided") {
         const output = generateTopic14RateSignAndTrendOutput(1);
-        const publicProps = (output.data as { rendererProps: Record<string, unknown> }).rendererProps;
-        expect(row.displayName).toBe('Guided Practice: Rate Sign and Trend');
+        const publicProps = (output.data as { rendererProps: Record<string, unknown> })
+          .rendererProps;
+        expect(row.displayName).toBe("Guided Practice: Rate Sign and Trend");
         expect(props).toEqual({
           ...publicProps,
-          presentationMode: 'guided_practice',
+          presentationMode: "guided_practice",
           guidedSteps: [
-            'Determine whether h rises or falls on the interval.',
-            'Determine whether the rate of change increases or decreases as x increases.',
+            "Determine whether h rises or falls on the interval.",
+            "Determine whether the rate of change increases or decreases as x increases.",
           ],
-          fieldHelp: 'A positive rate means h rises. A decreasing rate means the graph flattens as x increases.',
+          fieldHelp:
+            "A positive rate means h rises. A decreasing rate means the graph flattens as x increases.",
         });
         expectNoAuthority(props);
       } else {
         const output = generateTopic14RateSignAndTrendOutput(2);
-        expect(row.displayName).toBe('Independent Practice: Rate Sign and Trend');
-        expect(props).toEqual((output.data as { rendererProps: Record<string, unknown> }).rendererProps);
+        expect(row.displayName).toBe("Independent Practice: Rate Sign and Trend");
+        expect(props).toEqual(
+          (output.data as { rendererProps: Record<string, unknown> }).rendererProps,
+        );
         expectNoAuthority(props);
       }
     }
@@ -229,42 +257,63 @@ describe('Precalculus Topic 1.4 rate sign and trend activity seed', () => {
     expect(secondTargetRows.map((row) => row._id)).toEqual(firstDocumentIds);
     expect(secondTargetRows.map((row) => row.createdAt)).toEqual(firstCreatedAt);
     expect((secondResult as { activitiesCreated: number }).activitiesCreated).toBe(0);
-    expect(harness.inserts.filter(({ table, document }) => (
-      table === 'activities' && TARGET_ACTIVITY_IDS.includes(
-        document.stableActivityId as typeof TARGET_ACTIVITY_IDS[number],
-      )
-    ))).toHaveLength(3);
+    expect(
+      harness.inserts.filter(
+        ({ table, document }) =>
+          table === "activities" &&
+          TARGET_ACTIVITY_IDS.includes(
+            document.stableActivityId as (typeof TARGET_ACTIVITY_IDS)[number],
+          ),
+      ),
+    ).toHaveLength(3);
     expect(harness.patches.filter(({ id }) => firstDocumentIds.includes(id))).toHaveLength(3);
-    expect(harness.patches
-      .filter(({ id }) => firstDocumentIds.includes(id))
-      .every(({ document }) => !Object.hasOwn(document, 'createdAt'))).toBe(true);
+    expect(
+      harness.patches
+        .filter(({ id }) => firstDocumentIds.includes(id))
+        .every(({ document }) => !Object.hasOwn(document, "createdAt")),
+    ).toBe(true);
 
     const targetDocumentIds = new Set(firstDocumentIds);
     const phaseReferences = harness.rows.phase_sections.filter((row) => {
       const activityId = (row.content as Record<string, unknown> | undefined)?.activityId;
-      return TARGET_ACTIVITY_IDS.includes(activityId as typeof TARGET_ACTIVITY_IDS[number])
-        || targetDocumentIds.has(activityId as string);
+      return (
+        TARGET_ACTIVITY_IDS.includes(activityId as (typeof TARGET_ACTIVITY_IDS)[number]) ||
+        targetDocumentIds.has(activityId as string)
+      );
     });
     expect(phaseReferences).toHaveLength(0);
 
     expect(harness.rows.phase_versions).toHaveLength(7);
     expect(harness.rows.phase_versions.map((row) => row.title)).toEqual([
-      'Explore',
-      'Vocabulary',
-      'Learn',
-      'Worked Example',
-      'Guided Practice',
-      'Independent Practice',
-      'Reflection',
+      "Explore",
+      "Vocabulary",
+      "Learn",
+      "Worked Example",
+      "Guided Practice",
+      "Independent Practice",
+      "Reflection",
     ]);
     expect(harness.rows.phase_sections).toHaveLength(7);
-    expect(harness.rows.phase_sections.map((row) => row.sectionType)).toEqual(Array(7).fill('text'));
+    expect(harness.rows.phase_sections.map((row) => row.sectionType)).toEqual(
+      Array(7).fill("text"),
+    );
     expect(targetRows(harness.rows.activities)).toHaveLength(3);
-    expect(harness.rows.activities.filter((row) => (
-      !TARGET_ACTIVITY_IDS.includes(row.stableActivityId as typeof TARGET_ACTIVITY_IDS[number])
-      && !DEGREE_ACTIVITY_IDS.includes(row.stableActivityId as typeof DEGREE_ACTIVITY_IDS[number])
-      && !EXTREMA_ACTIVITY_IDS.includes(row.stableActivityId as typeof EXTREMA_ACTIVITY_IDS[number])
-      && !END_BEHAVIOR_ACTIVITY_IDS.includes(row.stableActivityId as typeof END_BEHAVIOR_ACTIVITY_IDS[number])
-    ))).toHaveLength(0);
+    expect(
+      harness.rows.activities.filter(
+        (row) =>
+          !TARGET_ACTIVITY_IDS.includes(
+            row.stableActivityId as (typeof TARGET_ACTIVITY_IDS)[number],
+          ) &&
+          !DEGREE_ACTIVITY_IDS.includes(
+            row.stableActivityId as (typeof DEGREE_ACTIVITY_IDS)[number],
+          ) &&
+          !EXTREMA_ACTIVITY_IDS.includes(
+            row.stableActivityId as (typeof EXTREMA_ACTIVITY_IDS)[number],
+          ) &&
+          !END_BEHAVIOR_ACTIVITY_IDS.includes(
+            row.stableActivityId as (typeof END_BEHAVIOR_ACTIVITY_IDS)[number],
+          ),
+      ),
+    ).toHaveLength(0);
   });
 });

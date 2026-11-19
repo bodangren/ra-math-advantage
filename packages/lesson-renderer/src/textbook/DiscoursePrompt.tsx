@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { MessageSquare, ChevronDown, ChevronUp } from 'lucide-react';
+import { useState } from "react";
+import { MessageSquare, ChevronDown, ChevronUp } from "lucide-react";
 
 export interface DiscoursePromptProps {
   prompt: string;
@@ -13,11 +13,15 @@ export interface DiscoursePromptProps {
  * Render a discourse prompt with an optional expandable response area.
  * @param {DiscoursePromptProps} props - Prompt text, title, and optional expandable content
  */
-export function DiscoursePrompt({ prompt, title = 'Think About It', expandableArea }: DiscoursePromptProps) {
+export function DiscoursePrompt({
+  prompt,
+  title = "Think About It",
+  expandableArea,
+}: DiscoursePromptProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpanded = () => {
-    setIsExpanded(prev => !prev);
+    setIsExpanded((prev) => !prev);
   };
 
   return (
@@ -27,12 +31,8 @@ export function DiscoursePrompt({ prompt, title = 'Think About It', expandableAr
           <MessageSquare className="w-5 h-5 text-accent" />
         </div>
         <div className="flex-1">
-          <h4 className="font-display font-semibold text-base text-accent mb-2">
-            {title}
-          </h4>
-          <p className="text-foreground/90 leading-relaxed whitespace-pre-wrap">
-            {prompt}
-          </p>
+          <h4 className="font-display font-semibold text-base text-accent mb-2">{title}</h4>
+          <p className="text-foreground/90 leading-relaxed whitespace-pre-wrap">{prompt}</p>
         </div>
       </div>
 

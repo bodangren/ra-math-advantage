@@ -15,17 +15,17 @@
 //   - FR4 duplicate       → report has a failing 'distractor-validity' check.
 //   - FR5 degenerate      → report has a failing 'invariants' check.
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 
-import { verifyGenerator } from '../verify-generator';
-import { wellFormedStubOracle } from './fixtures/numericOracle';
+import { verifyGenerator } from "../verify-generator";
+import { wellFormedStubOracle } from "./fixtures/numericOracle";
 import {
   createNonDeterministicGenerator,
   createWrongAnswerGenerator,
   createDuplicateDistractorGenerator,
   createDegenerateGenerator,
-} from './fixtures/badGenerators';
-import { DEFAULT_NUM_SEEDS } from './fixtures/seedCorpus';
+} from "./fixtures/badGenerators";
+import { DEFAULT_NUM_SEEDS } from "./fixtures/seedCorpus";
 
 /**
  * Find a failed check with the given name in a verification report.
@@ -33,10 +33,7 @@ import { DEFAULT_NUM_SEEDS } from './fixtures/seedCorpus';
  * @param {string} name - Check name to find
  * @returns {import("../verify-generator").VerifyGeneratorCheck | undefined} The failed check, or undefined if not found
  */
-function failedCheckNamed(
-  report: ReturnType<typeof verifyGenerator>,
-  name: string,
-) {
+function failedCheckNamed(report: ReturnType<typeof verifyGenerator>, name: string) {
   return report.checks.find((c) => c.name === name && !c.passed);
 }
 
@@ -53,37 +50,37 @@ function expectReadableFailure(
 ) {
   const failed = failedCheckNamed(report, checkName);
   expect(failed, `expected a failing '${checkName}' check`).toBeDefined();
-  expect(failed?.message ?? '').toMatch(messagePattern);
-  expect(report.verdict).toBe('fail');
+  expect(failed?.message ?? "").toMatch(messagePattern);
+  expect(report.verdict).toBe("fail");
   expect(report.errors.length).toBeGreaterThan(0);
   expect(report.errors.some((e) => e.checkName === checkName)).toBe(true);
 }
 
-describe('Injected bad generators — consolidated negative suite', () => {
-  it('FR2 — nonDeterministicGen fails the determinism check (readable message, verdict=fail)', () => {
+describe("Injected bad generators — consolidated negative suite", () => {
+  it("FR2 — nonDeterministicGen fails the determinism check (readable message, verdict=fail)", () => {
     const bad = createNonDeterministicGenerator();
     const report = verifyGenerator(bad, { numSeeds: DEFAULT_NUM_SEEDS });
-    expectReadableFailure(report, 'determinism', /seed/i);
+    expectReadableFailure(report, "determinism", /seed/i);
   });
 
-  it('FR3 — wrongAnswerGen fails the unique-answer check when an oracle is supplied', () => {
+  it("FR3 — wrongAnswerGen fails the unique-answer check when an oracle is supplied", () => {
     const bad = createWrongAnswerGenerator();
     const report = verifyGenerator(bad, {
       numSeeds: DEFAULT_NUM_SEEDS,
       oracle: wellFormedStubOracle,
     });
-    expectReadableFailure(report, 'unique-answer', /seed/i);
+    expectReadableFailure(report, "unique-answer", /seed/i);
   });
 
-  it('FR4 — duplicateDistractorGen fails the distractor-validity check', () => {
+  it("FR4 — duplicateDistractorGen fails the distractor-validity check", () => {
     const bad = createDuplicateDistractorGenerator();
     const report = verifyGenerator(bad, { numSeeds: DEFAULT_NUM_SEEDS });
-    expectReadableFailure(report, 'distractor-validity', /seed|duplicate|distinct|collide/i);
+    expectReadableFailure(report, "distractor-validity", /seed|duplicate|distinct|collide/i);
   });
 
-  it('FR5 — degenerateGen fails the invariants check', () => {
+  it("FR5 — degenerateGen fails the invariants check", () => {
     const bad = createDegenerateGenerator();
     const report = verifyGenerator(bad, { numSeeds: DEFAULT_NUM_SEEDS });
-    expectReadableFailure(report, 'invariants', /seed|invariant|denominator|solvab/i);
+    expectReadableFailure(report, "invariants", /seed|invariant|denominator|solvab/i);
   });
 });

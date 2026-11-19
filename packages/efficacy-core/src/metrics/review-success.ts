@@ -1,5 +1,5 @@
-import type { SrsReviewLogEntry } from '@math-platform/srs-engine';
-import type { MetricResult, ReviewSuccessRate } from '../contracts';
+import type { SrsReviewLogEntry } from "@math-platform/srs-engine";
+import type { MetricResult, ReviewSuccessRate } from "../contracts";
 
 export interface ComputeReviewSuccessRateInput {
   reviewLogs: SrsReviewLogEntry[];
@@ -22,7 +22,7 @@ export function computeReviewSuccessRate(
 
   for (const log of inWindow) {
     breakdown[log.rating] += 1;
-    if (log.rating === 'Good' || log.rating === 'Easy') {
+    if (log.rating === "Good" || log.rating === "Easy") {
       successCount += 1;
     }
   }

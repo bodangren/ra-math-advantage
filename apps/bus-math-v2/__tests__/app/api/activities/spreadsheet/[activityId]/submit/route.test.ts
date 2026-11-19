@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mockRequireActiveRequestSessionClaims = vi.fn();
 const mockRequireActiveStudentRequestClaims = vi.fn();
@@ -7,39 +7,37 @@ const mockFetchInternalMutation = vi.fn();
 const mockValidateSpreadsheetData = vi.fn();
 const mockValidateSubmission = vi.fn();
 
-vi.mock('@/lib/auth/server', () => ({
+vi.mock("@/lib/auth/server", () => ({
   requireActiveRequestSessionClaims: mockRequireActiveRequestSessionClaims,
   requireActiveStudentRequestClaims: mockRequireActiveStudentRequestClaims,
 }));
 
-vi.mock('@/lib/convex/server', async () => {
-  const actual = await vi.importActual<typeof import('@/lib/convex/server')>(
-    '@/lib/convex/server',
-  );
+vi.mock("@/lib/convex/server", async () => {
+  const actual = await vi.importActual<typeof import("@/lib/convex/server")>("@/lib/convex/server");
   return {
     ...actual,
     fetchInternalQuery: mockFetchInternalQuery,
     fetchInternalMutation: mockFetchInternalMutation,
     internal: {
       activities: {
-        getProfileByUserId: 'internal.activities.getProfileByUserId',
-        getProfileById: 'internal.activities.getProfileById',
-        getSpreadsheetResponse: 'internal.activities.getSpreadsheetResponse',
-        getActivityForValidation: 'internal.activities.getActivityForValidation',
-        submitSpreadsheet: 'internal.activities.submitSpreadsheet',
-        submitAssessment: 'internal.activities.submitAssessment',
-        updateCompetency: 'internal.activities.updateCompetency',
+        getProfileByUserId: "internal.activities.getProfileByUserId",
+        getProfileById: "internal.activities.getProfileById",
+        getSpreadsheetResponse: "internal.activities.getSpreadsheetResponse",
+        getActivityForValidation: "internal.activities.getActivityForValidation",
+        submitSpreadsheet: "internal.activities.submitSpreadsheet",
+        submitAssessment: "internal.activities.submitAssessment",
+        updateCompetency: "internal.activities.updateCompetency",
       },
     },
   };
 });
 
-vi.mock('@/lib/activities/spreadsheet-validation', () => ({
+vi.mock("@/lib/activities/spreadsheet-validation", () => ({
   validateSpreadsheetData: mockValidateSpreadsheetData,
   validateSubmission: mockValidateSubmission,
   getCellValue: (data: Array<Array<{ value?: string | number }>>, cellRef: string) => {
     const match = cellRef.match(/^([A-Z]+)([0-9]+)$/);
-    if (!match) return '';
+    if (!match) return "";
 
     const colLabel = match[1];
     const rowIndex = Number(match[2]) - 1;
@@ -49,74 +47,73 @@ vi.mock('@/lib/activities/spreadsheet-validation', () => ({
     }
     colIndex -= 1;
 
-    return data[rowIndex]?.[colIndex]?.value ?? '';
+    return data[rowIndex]?.[colIndex]?.value ?? "";
   },
 }));
 
-const { GET, POST } = await import(
-  '../../../../../../../app/api/activities/spreadsheet/[activityId]/submit/route'
-);
+const { GET, POST } =
+  await import("../../../../../../../app/api/activities/spreadsheet/[activityId]/submit/route");
 
-function buildContext(activityId = 'activity_123') {
+function buildContext(activityId = "activity_123") {
   return {
     params: Promise.resolve({ activityId }),
   };
 }
 
 function buildPostRequest(body: unknown) {
-  return new Request('http://localhost/api/activities/spreadsheet/activity_123/submit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Idempotency-Key': 'sheet-attempt-1' },
+  return new Request("http://localhost/api/activities/spreadsheet/activity_123/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Idempotency-Key": "sheet-attempt-1" },
     body: JSON.stringify(body),
   });
 }
 
 function buildGetRequest(studentId?: string) {
-  const url = new URL('http://localhost/api/activities/spreadsheet/activity_123/submit');
+  const url = new URL("http://localhost/api/activities/spreadsheet/activity_123/submit");
   if (studentId) {
-    url.searchParams.set('studentId', studentId);
+    url.searchParams.set("studentId", studentId);
   }
-  return new Request(url.toString(), { method: 'GET' });
+  return new Request(url.toString(), { method: "GET" });
 }
 
 function setDefaultFetchQueryMocks() {
   mockFetchInternalQuery.mockImplementation(async (name: string) => {
-    if (name === 'internal.activities.getProfileByUserId') {
+    if (name === "internal.activities.getProfileByUserId") {
       return {
-        role: 'student',
-        organizationId: 'org_1',
+        role: "student",
+        organizationId: "org_1",
       };
     }
 
-    if (name === 'internal.activities.getSpreadsheetResponse') {
+    if (name === "internal.activities.getSpreadsheetResponse") {
       return {
-        studentId: 'profile_student',
+        studentId: "profile_student",
         spreadsheetData: [[{ value: 100 }]],
         draftData: [[{ value: 100 }]],
         isCompleted: true,
         attempts: 2,
         lastValidationResult: null,
-        submittedAt: '2026-02-26T10:00:00.000Z',
-        updatedAt: '2026-02-26T10:00:00.000Z',
+        submittedAt: "2026-02-26T10:00:00.000Z",
+        updatedAt: "2026-02-26T10:00:00.000Z",
       };
     }
 
-    if (name === 'internal.activities.getActivityForValidation') {
+    if (name === "internal.activities.getActivityForValidation") {
       return {
-        componentKey: 'spreadsheet-evaluator',
+        componentKey: "spreadsheet-evaluator",
         standardId: null,
         props: {
-          templateId: 'seeded-template',
-          instructions: 'Use server-defined targets',
-          targetCells: [{ cell: 'A1', expectedValue: 100 }],
+          templateId: "seeded-template",
+          instructions: "Use server-defined targets",
+          targetCells: [{ cell: "A1", expectedValue: 100 }],
         },
       };
     }
 
-    if (name === 'internal.activities.getProfileById') {
+    if (name === "internal.activities.getProfileById") {
       return {
-        role: 'student',
-        organizationId: 'org_1',
+        role: "student",
+        organizationId: "org_1",
       };
     }
 
@@ -124,15 +121,15 @@ function setDefaultFetchQueryMocks() {
   });
 }
 
-describe('POST /api/activities/spreadsheet/[activityId]/submit', () => {
+describe("POST /api/activities/spreadsheet/[activityId]/submit", () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
     mockRequireActiveStudentRequestClaims.mockImplementation(async () => {
       return {
-        sub: 'profile_student',
-        username: 'student',
-        role: 'student',
+        sub: "profile_student",
+        username: "student",
+        role: "student",
         iat: 1,
         exp: 2,
       };
@@ -147,7 +144,7 @@ describe('POST /api/activities/spreadsheet/[activityId]/submit', () => {
       isComplete: false,
       feedback: [
         {
-          cell: 'A1',
+          cell: "A1",
           isCorrect: false,
           expectedValue: 100,
           actualValue: 0,
@@ -156,15 +153,21 @@ describe('POST /api/activities/spreadsheet/[activityId]/submit', () => {
     });
   });
 
-  it.each(['idempotency_conflict', 'Maximum attempts (3) reached for this activity.'])('returns 409 for %s', async (message) => {
-    mockFetchInternalMutation.mockRejectedValue(new Error(message));
-    const response = await POST(buildPostRequest({ spreadsheetData: [[{ value: 0 }]] }), buildContext());
-    expect(response.status).toBe(409);
-  });
+  it.each(["idempotency_conflict", "Maximum attempts (3) reached for this activity."])(
+    "returns 409 for %s",
+    async (message) => {
+      mockFetchInternalMutation.mockRejectedValue(new Error(message));
+      const response = await POST(
+        buildPostRequest({ spreadsheetData: [[{ value: 0 }]] }),
+        buildContext(),
+      );
+      expect(response.status).toBe(409);
+    },
+  );
 
-  it('returns 401 when unauthenticated or deactivated', async () => {
+  it("returns 401 when unauthenticated or deactivated", async () => {
     mockRequireActiveStudentRequestClaims.mockResolvedValue(
-      Response.json({ error: 'Unauthorized' }, { status: 401 }),
+      Response.json({ error: "Unauthorized" }, { status: 401 }),
     );
 
     const response = await POST(
@@ -179,9 +182,9 @@ describe('POST /api/activities/spreadsheet/[activityId]/submit', () => {
     expect(mockFetchInternalMutation).not.toHaveBeenCalled();
   });
 
-  it('returns 401 when student session is deactivated', async () => {
+  it("returns 401 when student session is deactivated", async () => {
     mockRequireActiveStudentRequestClaims.mockResolvedValue(
-      Response.json({ error: 'Session revoked' }, { status: 401 }),
+      Response.json({ error: "Session revoked" }, { status: 401 }),
     );
 
     const response = await POST(
@@ -196,9 +199,9 @@ describe('POST /api/activities/spreadsheet/[activityId]/submit', () => {
     expect(mockFetchInternalMutation).not.toHaveBeenCalled();
   });
 
-  it('returns 403 when a teacher session attempts to submit spreadsheet work', async () => {
+  it("returns 403 when a teacher session attempts to submit spreadsheet work", async () => {
     mockRequireActiveStudentRequestClaims.mockImplementation(async () => {
-      return Response.json({ error: 'Forbidden' }, { status: 403 });
+      return Response.json({ error: "Forbidden" }, { status: 403 });
     });
 
     const response = await POST(
@@ -209,12 +212,12 @@ describe('POST /api/activities/spreadsheet/[activityId]/submit', () => {
     );
 
     expect(response.status).toBe(403);
-    await expect(response.json()).resolves.toMatchObject({ error: 'Forbidden' });
+    await expect(response.json()).resolves.toMatchObject({ error: "Forbidden" });
     expect(mockFetchInternalQuery).not.toHaveBeenCalled();
     expect(mockFetchInternalMutation).not.toHaveBeenCalled();
   });
 
-  it('uses server-side target cells and stores submission for claims subject', async () => {
+  it("uses server-side target cells and stores submission for claims subject", async () => {
     const response = await POST(
       buildPostRequest({
         spreadsheetData: [[{ value: 0 }]],
@@ -228,32 +231,32 @@ describe('POST /api/activities/spreadsheet/[activityId]/submit', () => {
 
     expect(mockValidateSubmission).toHaveBeenCalledWith(
       [[{ value: 0 }]],
-      [{ cell: 'A1', expectedValue: 100 }],
+      [{ cell: "A1", expectedValue: 100 }],
     );
 
     expect(mockFetchInternalMutation).toHaveBeenCalledWith(
-      'internal.activities.submitSpreadsheet',
+      "internal.activities.submitSpreadsheet",
       expect.objectContaining({
-        userId: 'profile_student',
-        activityId: 'activity_123',
+        userId: "profile_student",
+        activityId: "activity_123",
         submissionData: expect.objectContaining({
-          contractVersion: 'practice.v1',
-          activityId: 'activity_123',
-          mode: 'assessment',
+          contractVersion: "practice.v1",
+          activityId: "activity_123",
+          mode: "assessment",
         }),
       }),
     );
   });
 
-  it('returns 422 when server activity config is missing target cells', async () => {
+  it("returns 422 when server activity config is missing target cells", async () => {
     mockFetchInternalQuery.mockImplementation(async (name: string) => {
-      if (name === 'internal.activities.getActivityForValidation') {
+      if (name === "internal.activities.getActivityForValidation") {
         return {
-          componentKey: 'spreadsheet-evaluator',
+          componentKey: "spreadsheet-evaluator",
           standardId: null,
           props: {
-            templateId: 'seeded-template',
-            instructions: 'Invalid config',
+            templateId: "seeded-template",
+            instructions: "Invalid config",
           },
         };
       }
@@ -274,14 +277,14 @@ describe('POST /api/activities/spreadsheet/[activityId]/submit', () => {
   });
 });
 
-describe('GET /api/activities/spreadsheet/[activityId]/submit', () => {
+describe("GET /api/activities/spreadsheet/[activityId]/submit", () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
     mockRequireActiveRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_student',
-      username: 'student',
-      role: 'student',
+      sub: "profile_student",
+      username: "student",
+      role: "student",
       iat: 1,
       exp: 2,
     });
@@ -289,92 +292,92 @@ describe('GET /api/activities/spreadsheet/[activityId]/submit', () => {
     setDefaultFetchQueryMocks();
   });
 
-  it('returns read-only replay payload for the authenticated student', async () => {
+  it("returns read-only replay payload for the authenticated student", async () => {
     const response = await GET(buildGetRequest(), buildContext());
 
     expect(response.status).toBe(200);
     const body = await response.json();
     expect(body.readOnly).toBe(true);
-    expect(body.studentId).toBe('profile_student');
+    expect(body.studentId).toBe("profile_student");
     expect(body.isCompleted).toBe(true);
   });
 
-  it('allows teacher replay for a student in the same organization', async () => {
+  it("allows teacher replay for a student in the same organization", async () => {
     mockRequireActiveRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_teacher',
-      username: 'teacher',
-      role: 'teacher',
+      sub: "profile_teacher",
+      username: "teacher",
+      role: "teacher",
       iat: 1,
       exp: 2,
     });
 
     mockFetchInternalQuery.mockImplementation(async (name: string) => {
-      if (name === 'internal.activities.getProfileByUserId') {
+      if (name === "internal.activities.getProfileByUserId") {
         return {
-          role: 'teacher',
-          organizationId: 'org_1',
+          role: "teacher",
+          organizationId: "org_1",
         };
       }
 
-      if (name === 'internal.activities.getProfileById') {
+      if (name === "internal.activities.getProfileById") {
         return {
-          role: 'student',
-          organizationId: 'org_1',
+          role: "student",
+          organizationId: "org_1",
         };
       }
 
-      if (name === 'internal.activities.getSpreadsheetResponse') {
+      if (name === "internal.activities.getSpreadsheetResponse") {
         return {
-          studentId: 'profile_student_2',
+          studentId: "profile_student_2",
           spreadsheetData: [[{ value: 55 }]],
           draftData: [[{ value: 55 }]],
           isCompleted: true,
           attempts: 3,
           lastValidationResult: null,
-          submittedAt: '2026-02-26T10:00:00.000Z',
-          updatedAt: '2026-02-26T10:00:00.000Z',
+          submittedAt: "2026-02-26T10:00:00.000Z",
+          updatedAt: "2026-02-26T10:00:00.000Z",
         };
       }
 
       return null;
     });
 
-    const response = await GET(buildGetRequest('profile_student_2'), buildContext());
+    const response = await GET(buildGetRequest("profile_student_2"), buildContext());
 
     expect(response.status).toBe(200);
     const body = await response.json();
-    expect(body.studentId).toBe('profile_student_2');
+    expect(body.studentId).toBe("profile_student_2");
     expect(body.readOnly).toBe(true);
   });
 
-  it('rejects teacher replay requests for students outside the teacher organization', async () => {
+  it("rejects teacher replay requests for students outside the teacher organization", async () => {
     mockRequireActiveRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_teacher',
-      username: 'teacher',
-      role: 'teacher',
+      sub: "profile_teacher",
+      username: "teacher",
+      role: "teacher",
       iat: 1,
       exp: 2,
     });
 
     mockFetchInternalQuery.mockImplementation(async (name: string) => {
-      if (name === 'internal.activities.getProfileByUserId') {
+      if (name === "internal.activities.getProfileByUserId") {
         return {
-          role: 'teacher',
-          organizationId: 'org_1',
+          role: "teacher",
+          organizationId: "org_1",
         };
       }
 
-      if (name === 'internal.activities.getProfileById') {
+      if (name === "internal.activities.getProfileById") {
         return {
-          role: 'student',
-          organizationId: 'org_2',
+          role: "student",
+          organizationId: "org_2",
         };
       }
 
       return null;
     });
 
-    const response = await GET(buildGetRequest('profile_student_2'), buildContext());
+    const response = await GET(buildGetRequest("profile_student_2"), buildContext());
 
     expect(response.status).toBe(403);
     const body = await response.json();

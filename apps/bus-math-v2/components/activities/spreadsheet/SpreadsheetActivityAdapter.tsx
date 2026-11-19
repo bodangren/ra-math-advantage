@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { useCallback, useRef } from 'react';
-import { SpreadsheetActivity } from './SpreadsheetActivity';
-import type { Activity } from '@/lib/schemas/validators';
-import type { SpreadsheetActivityProps } from '@/types/activities';
+import { useCallback, useRef } from "react";
+import { SpreadsheetActivity } from "./SpreadsheetActivity";
+import type { Activity } from "@/lib/schemas/validators";
+import type { SpreadsheetActivityProps } from "@/types/activities";
 import {
   buildPracticeSubmissionEnvelope,
   buildPracticeSubmissionParts,
   type PracticeSubmissionCallbackPayload,
-} from '@/lib/practice/contract';
-import type { SpreadsheetData } from './index';
+} from "@/lib/practice/contract";
+import type { SpreadsheetData } from "./index";
 
 interface SpreadsheetActivityAdapterProps {
   activity: Activity;
@@ -45,9 +45,11 @@ export function SpreadsheetActivityAdapter({
       if (submittedRef.current) return;
 
       const cellCount = data.spreadsheetData.flat().length;
-      const filledCells = data.spreadsheetData.flat().filter(
-        (cell) => cell && cell.value !== '' && cell.value !== undefined && cell.value !== null,
-      ).length;
+      const filledCells = data.spreadsheetData
+        .flat()
+        .filter(
+          (cell) => cell && cell.value !== "" && cell.value !== undefined && cell.value !== null,
+        ).length;
 
       const answers: Record<string, unknown> = {
         cellCount,
@@ -59,16 +61,16 @@ export function SpreadsheetActivityAdapter({
       const parts = buildPracticeSubmissionParts(answers);
 
       const envelope = buildPracticeSubmissionEnvelope({
-        activityId: activity.id || 'spreadsheet',
-        mode: 'guided_practice',
-        status: 'submitted',
+        activityId: activity.id || "spreadsheet",
+        mode: "guided_practice",
+        status: "submitted",
         attemptNumber: 1,
         submittedAt: new Date(),
         answers,
         parts,
         artifact: {
-          kind: 'spreadsheet',
-          title: props.title ?? 'Spreadsheet Activity',
+          kind: "spreadsheet",
+          title: props.title ?? "Spreadsheet Activity",
           template: props.template,
           cellCount,
           filledCells,
@@ -87,7 +89,7 @@ export function SpreadsheetActivityAdapter({
         if (onSubmit) await onSubmit(envelope);
         else await onComplete?.();
       } catch (err) {
-        console.error('SpreadsheetActivityAdapter submission failed:', err);
+        console.error("SpreadsheetActivityAdapter submission failed:", err);
         submittedRef.current = false;
       }
     },

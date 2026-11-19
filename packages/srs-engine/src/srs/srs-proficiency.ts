@@ -4,8 +4,8 @@
  * Functions for converting FSRS card state into objective proficiency evidence.
  */
 
-import type { PracticeTimingBaseline } from '@math-platform/practice-core';
-import type { EvidenceConfidence, PracticeVariantEvidence } from './objective-proficiency';
+import type { PracticeTimingBaseline } from "@math-platform/practice-core";
+import type { EvidenceConfidence, PracticeVariantEvidence } from "./objective-proficiency";
 
 /** FSRS retention-curve factor. */
 export const FSRS_RETENTION_FACTOR = 19 / 81;
@@ -40,7 +40,7 @@ export type TimingBaselines = Record<string, PracticeTimingBaseline | undefined>
  */
 function deriveFluencyConfidence(
   cards: ProficiencyCardInput[],
-  baselines: TimingBaselines
+  baselines: TimingBaselines,
 ): { confidence: EvidenceConfidence; timingReliable: boolean; baselineSampleCount: number } {
   const variantKeys = [...new Set(cards.map((c) => c.variantKey))];
   let totalSampleCount = 0;
@@ -65,17 +65,17 @@ function deriveFluencyConfidence(
 
   const timingReliable = totalSampleCount > 0 && totalReviewedCards > 0;
   if (!timingReliable) {
-    return { confidence: 'none', timingReliable: false, baselineSampleCount: totalSampleCount };
+    return { confidence: "none", timingReliable: false, baselineSampleCount: totalSampleCount };
   }
 
   const ratio = reliableCount / (totalReviewedCards || 1);
   if (ratio >= 0.8) {
-    return { confidence: 'high', timingReliable: true, baselineSampleCount: totalSampleCount };
+    return { confidence: "high", timingReliable: true, baselineSampleCount: totalSampleCount };
   }
   if (ratio >= 0.5) {
-    return { confidence: 'medium', timingReliable: true, baselineSampleCount: totalSampleCount };
+    return { confidence: "medium", timingReliable: true, baselineSampleCount: totalSampleCount };
   }
-  return { confidence: 'low', timingReliable: true, baselineSampleCount: totalSampleCount };
+  return { confidence: "low", timingReliable: true, baselineSampleCount: totalSampleCount };
 }
 
 /**
@@ -100,7 +100,7 @@ export function stabilityToRetention(stability: number, elapsedDays: number): nu
   if (elapsedDays === Infinity) return 0;
   if (!Number.isFinite(elapsedDays)) return 0;
 
-  return (1 + FSRS_RETENTION_FACTOR * elapsedDays / stability) ** FSRS_RETENTION_DECAY;
+  return (1 + (FSRS_RETENTION_FACTOR * elapsedDays) / stability) ** FSRS_RETENTION_DECAY;
 }
 
 /**
@@ -134,7 +134,7 @@ export function objectiveLiveRetention(cards: ProficiencyCardInput[]): number | 
  */
 export function aggregateCardsToEvidence(
   cards: ProficiencyCardInput[],
-  baselines: TimingBaselines
+  baselines: TimingBaselines,
 ): PracticeVariantEvidence[] {
   if (cards.length === 0) return [];
 
@@ -150,9 +150,7 @@ export function aggregateCardsToEvidence(
   for (const [variantKey, familyCards] of byVariant) {
     const reviewedCards = familyCards.filter((c) => c.reps > 0);
     const retentionStrength = objectiveLiveRetention(reviewedCards) ?? 0;
-    const practiceCoverage = familyCards.length > 0
-      ? reviewedCards.length / familyCards.length
-      : 0;
+    const practiceCoverage = familyCards.length > 0 ? reviewedCards.length / familyCards.length : 0;
 
     const fluency = deriveFluencyConfidence(familyCards, baselines);
 

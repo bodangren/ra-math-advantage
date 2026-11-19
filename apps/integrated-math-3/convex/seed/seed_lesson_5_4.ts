@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -138,10 +138,22 @@ export const seedLesson5_4 = internalMutation({
                 equation: "2, 6, 15, 30, ...",
                 steps: [
                   { expression: "6/2 = 3", explanation: "Calculate ratio between first two terms" },
-                  { expression: "15/6 = 2.5", explanation: "Calculate ratio between second and third terms" },
-                  { expression: "30/15 = 2", explanation: "Calculate ratio between third and fourth terms" },
-                  { expression: "Ratios are not equal (3, 2.5, 2)", explanation: "For a geometric sequence, all ratios must be the same" },
-                  { expression: "The sequence is NOT geometric", explanation: "Conclude based on unequal ratios" },
+                  {
+                    expression: "15/6 = 2.5",
+                    explanation: "Calculate ratio between second and third terms",
+                  },
+                  {
+                    expression: "30/15 = 2",
+                    explanation: "Calculate ratio between third and fourth terms",
+                  },
+                  {
+                    expression: "Ratios are not equal (3, 2.5, 2)",
+                    explanation: "For a geometric sequence, all ratios must be the same",
+                  },
+                  {
+                    expression: "The sequence is NOT geometric",
+                    explanation: "Conclude based on unequal ratios",
+                  },
                 ],
               },
             },
@@ -176,7 +188,10 @@ export const seedLesson5_4 = internalMutation({
                   { expression: "a_4 = -4 * 2 = -8", explanation: "Continue sequence" },
                   { expression: "a_5 = -8 * 2 = -16", explanation: "Continue sequence" },
                   { expression: "a_6 = -16 * 2 = -32", explanation: "Continue sequence" },
-                  { expression: "First six terms: -1, -2, -4, -8, -16, -32", explanation: "Final answer" },
+                  {
+                    expression: "First six terms: -1, -2, -4, -8, -16, -32",
+                    explanation: "Final answer",
+                  },
                 ],
               },
             },
@@ -206,7 +221,10 @@ export const seedLesson5_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "a_n = 25(1/2)^(n-1), find a_5",
                 steps: [
-                  { expression: "a_1 = 25, r = 1/2", explanation: "Identify first term and common ratio" },
+                  {
+                    expression: "a_1 = 25, r = 1/2",
+                    explanation: "Identify first term and common ratio",
+                  },
                   { expression: "a_n = 25(1/2)^(n-1)", explanation: "Write explicit formula" },
                   { expression: "a_5 = 25(1/2)^(5-1)", explanation: "Substitute n = 5 for Friday" },
                   { expression: "a_5 = 25(1/2)^4", explanation: "Simplify exponent" },
@@ -242,10 +260,19 @@ export const seedLesson5_4 = internalMutation({
                 equation: "Find nth term: -1, 3, -9, 27, ...",
                 steps: [
                   { expression: "r = 3/(-1) = -3", explanation: "Find common ratio" },
-                  { expression: "a_n = -1(-3)^(n-1)", explanation: "Write explicit formula with a_1 = -1" },
-                  { expression: "For a_8 = 5: 5 = a_1(1/2)^7", explanation: "Set up equation for second part" },
+                  {
+                    expression: "a_n = -1(-3)^(n-1)",
+                    explanation: "Write explicit formula with a_1 = -1",
+                  },
+                  {
+                    expression: "For a_8 = 5: 5 = a_1(1/2)^7",
+                    explanation: "Set up equation for second part",
+                  },
                   { expression: "a_1 = 5 / (1/2)^7 = 640", explanation: "Solve for a_1" },
-                  { expression: "a_n = 640(1/2)^(n-1)", explanation: "Write explicit formula for second part" },
+                  {
+                    expression: "a_n = 640(1/2)^(n-1)",
+                    explanation: "Write explicit formula for second part",
+                  },
                 ],
               },
             },
@@ -275,10 +302,22 @@ export const seedLesson5_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "Convert: a_1 = 5, a_n = (1/5)a_(n-1)",
                 steps: [
-                  { expression: "a_1 = 5, r = 1/5", explanation: "Identify first term and common ratio from recursive form" },
-                  { expression: "a_n = 5(1/5)^(n-1)", explanation: "Write explicit form using a_n = a_1 * r^(n-1)" },
-                  { expression: "For a_n = (2/3)(7)^(n-1): a_1 = 2/3, r = 7", explanation: "Identify from explicit form" },
-                  { expression: "Recursive: a_1 = 2/3, a_n = 7a_(n-1)", explanation: "Write recursive form" },
+                  {
+                    expression: "a_1 = 5, r = 1/5",
+                    explanation: "Identify first term and common ratio from recursive form",
+                  },
+                  {
+                    expression: "a_n = 5(1/5)^(n-1)",
+                    explanation: "Write explicit form using a_n = a_1 * r^(n-1)",
+                  },
+                  {
+                    expression: "For a_n = (2/3)(7)^(n-1): a_1 = 2/3, r = 7",
+                    explanation: "Identify from explicit form",
+                  },
+                  {
+                    expression: "Recursive: a_1 = 2/3, a_n = 7a_(n-1)",
+                    explanation: "Write recursive form",
+                  },
                 ],
               },
             },
@@ -308,12 +347,18 @@ export const seedLesson5_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "Find 4 geometric means between 243 and 32",
                 steps: [
-                  { expression: "n = 6 (4 means + 2 endpoints)", explanation: "Total terms needed" },
+                  {
+                    expression: "n = 6 (4 means + 2 endpoints)",
+                    explanation: "Total terms needed",
+                  },
                   { expression: "a_1 = 243, a_6 = 32", explanation: "Identify endpoints" },
                   { expression: "32 = 243 * r^5", explanation: "Use a_n = a_1 * r^(n-1)" },
                   { expression: "r^5 = 32/243", explanation: "Solve for r^5" },
                   { expression: "r = (32/243)^(1/5) = 2/3", explanation: "Take fifth root" },
-                  { expression: "Geometric means: 162, 108, 72, 48", explanation: "Multiply by r progressively" },
+                  {
+                    expression: "Geometric means: 162, 108, 72, 48",
+                    explanation: "Multiply by r progressively",
+                  },
                 ],
               },
             },
@@ -360,7 +405,10 @@ export const seedLesson5_4 = internalMutation({
                 equation: "S_6 with a_1=1, r=2",
                 steps: [
                   { expression: "a_1 = 1, r = 2, n = 6", explanation: "Identify given values" },
-                  { expression: "S_n = (a_1 - a_1*r^n)/(1-r)", explanation: "Use geometric series sum formula" },
+                  {
+                    expression: "S_n = (a_1 - a_1*r^n)/(1-r)",
+                    explanation: "Use geometric series sum formula",
+                  },
                   { expression: "S_6 = (1 - 1*2^6)/(1-2)", explanation: "Substitute values" },
                   { expression: "2^6 = 64", explanation: "Calculate exponent" },
                   { expression: "S_6 = (1-64)/(-1) = 63", explanation: "Simplify" },
@@ -394,11 +442,23 @@ export const seedLesson5_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "Find a_1: S_5=21.3125, r=1/2",
                 steps: [
-                  { expression: "S_n = (a_1 - a_1*r^n)/(1-r)", explanation: "Geometric series sum formula" },
-                  { expression: "21.3125 = (a_1 - a_1*(1/2)^5)/(1-1/2)", explanation: "Substitute given values" },
+                  {
+                    expression: "S_n = (a_1 - a_1*r^n)/(1-r)",
+                    explanation: "Geometric series sum formula",
+                  },
+                  {
+                    expression: "21.3125 = (a_1 - a_1*(1/2)^5)/(1-1/2)",
+                    explanation: "Substitute given values",
+                  },
                   { expression: "(1/2)^5 = 1/32", explanation: "Calculate the power" },
-                  { expression: "21.3125 = (a_1 - a_1/32)/(1/2)", explanation: "Simplify denominator" },
-                  { expression: "21.3125 = 2*(a_1 - a_1/32)", explanation: "Multiply both sides by 2" },
+                  {
+                    expression: "21.3125 = (a_1 - a_1/32)/(1/2)",
+                    explanation: "Simplify denominator",
+                  },
+                  {
+                    expression: "21.3125 = 2*(a_1 - a_1/32)",
+                    explanation: "Multiply both sides by 2",
+                  },
                   { expression: "a_1 = 11", explanation: "Solve for a_1" },
                 ],
               },
@@ -429,12 +489,21 @@ export const seedLesson5_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "Sum: sum(k=5 to 12) 3(-2)^(k-1)",
                 steps: [
-                  { expression: "a_1 = 3(-2)^(5-1) = 48", explanation: "Find first term of the series" },
+                  {
+                    expression: "a_1 = 3(-2)^(5-1) = 48",
+                    explanation: "Find first term of the series",
+                  },
                   { expression: "r = -2", explanation: "Common ratio from the expression" },
                   { expression: "n = 12 - 5 + 1 = 8", explanation: "Number of terms" },
-                  { expression: "S_n = (48 - 48*(-2)^8)/(1-(-2))", explanation: "Apply geometric series formula" },
+                  {
+                    expression: "S_n = (48 - 48*(-2)^8)/(1-(-2))",
+                    explanation: "Apply geometric series formula",
+                  },
                   { expression: "(-2)^8 = 256", explanation: "Calculate power" },
-                  { expression: "S_n = (48 - 48*256)/3 = -4080", explanation: "Simplify to get final sum" },
+                  {
+                    expression: "S_n = (48 - 48*256)/3 = -4080",
+                    explanation: "Simplify to get final sum",
+                  },
                 ],
               },
             },
@@ -452,7 +521,7 @@ export const seedLesson5_4 = internalMutation({
             sectionType: "text" as const,
             content: {
               markdown:
-                "## Discussion Questions\n\n1. How do you determine whether a sequence is geometric?\n2. Why is the common ratio called the \"common ratio\"?\n3. How is the formula for the sum of a geometric series related to the formula for the nth term?\n4. In what real-world situations might you use sigma notation to represent a geometric series?",
+                '## Discussion Questions\n\n1. How do you determine whether a sequence is geometric?\n2. Why is the common ratio called the "common ratio"?\n3. How is the formula for the sum of a geometric series related to the formula for the nth term?\n4. In what real-world situations might you use sigma notation to represent a geometric series?',
             },
           },
           {
@@ -503,7 +572,7 @@ export const seedLesson5_4 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

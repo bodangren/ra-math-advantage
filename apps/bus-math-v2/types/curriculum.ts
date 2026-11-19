@@ -1,8 +1,8 @@
 import type {
   ContentBlock as SchemaContentBlock,
   PhaseMetadata as SchemaPhaseMetadata,
-} from '../lib/schemas/phase-content';
-import { contentBlockSchema as schemaContentBlockSchema } from '../lib/schemas/phase-content';
+} from "../lib/schemas/phase-content";
+import { contentBlockSchema as schemaContentBlockSchema } from "../lib/schemas/phase-content";
 import type {
   LessonMetadata as SchemaLessonMetadata,
   UnitAssessment as SchemaUnitAssessment,
@@ -15,8 +15,8 @@ import type {
   UnitPrerequisites as SchemaUnitPrerequisites,
   UnitStudentChoices as SchemaUnitStudentChoices,
   UnitIntroduction as SchemaUnitIntroduction,
-} from '../lib/schemas/lessons';
-import type { Phase as SchemaPhase, NewPhase as SchemaNewPhase } from '../lib/schemas/validators';
+} from "../lib/schemas/lessons";
+import type { Phase as SchemaPhase, NewPhase as SchemaNewPhase } from "../lib/schemas/validators";
 
 export const CURRICULUM_PHASE_COUNT = 6;
 export const contentBlockSchema = schemaContentBlockSchema;

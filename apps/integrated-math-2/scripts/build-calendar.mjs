@@ -2,24 +2,10 @@ import { readFile, writeFile, readdir, unlink } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 const root = fileURLToPath(new URL("../curriculum/", import.meta.url));
-const lessons = JSON.parse(
-  await readFile(path.join(root, "lessons.json"), "utf8"),
-);
-const questions = JSON.parse(
-  await readFile(path.join(root, "questions.json"), "utf8"),
-);
+const lessons = JSON.parse(await readFile(path.join(root, "lessons.json"), "utf8"));
+const questions = JSON.parse(await readFile(path.join(root, "questions.json"), "utf8"));
 const units = JSON.parse(await readFile(path.join(root, "units.json"), "utf8"));
-const assessmentBlocks = [
-  [1],
-  [2],
-  [3, 4],
-  [5, 6],
-  [7],
-  [8, 9],
-  [10],
-  [11, 12],
-  [13],
-];
+const assessmentBlocks = [[1], [2], [3, 4], [5, 6], [7], [8, 9], [10], [11, 12], [13]];
 const extendedGroupModules = [1, 4, 6, 9, 12];
 const periods = [];
 const check = process.argv.includes("--check");
@@ -30,8 +16,7 @@ async function emit(target, content) {
   } else await writeFile(target, content);
 }
 function add(unit, dayType, data) {
-  const index =
-    periods.filter((period) => period.unitNumber === unit).length + 1;
+  const index = periods.filter((period) => period.unitNumber === unit).length + 1;
   periods.push({
     periodId: `m${unit}-p${String(index).padStart(2, "0")}`,
     number: periods.length + 1,
@@ -55,15 +40,11 @@ function examples(lesson) {
     .map((phase) => phase.title);
 }
 for (const unit of units) {
-  const sourceLessons = lessons.filter(
-    (lesson) => lesson.unitNumber === unit.number,
-  );
+  const sourceLessons = lessons.filter((lesson) => lesson.unitNumber === unit.number);
   const expanded =
     unit.number === 13
       ? null
-      : [...sourceLessons].sort(
-          (a, b) => examples(b).length - examples(a).length,
-        )[0];
+      : [...sourceLessons].sort((a, b) => examples(b).length - examples(a).length)[0];
   let masteryCount = 0;
   const masteryTarget = unit.number <= 10 ? 3 : 2;
   for (const [index, lesson] of sourceLessons.entries()) {
@@ -76,18 +57,14 @@ for (const unit of units) {
       embeddedObjectives: objectiveList.slice(1),
       workedExamples: selected,
       dailyPhases: {
-        warmUp: previous
-          ? questions[previous.slug].prompt
-          : questions[lesson.slug].prompt,
+        warmUp: previous ? questions[previous.slug].prompt : questions[lesson.slug].prompt,
         conceptDevelopment: {
           sourceLesson: lesson.slug,
           workedExamples: selected.slice(0, 1),
         },
         guidedPractice: {
           sourceLesson: lesson.slug,
-          workedExamples: selected.slice(1).length
-            ? selected.slice(1)
-            : selected,
+          workedExamples: selected.slice(1).length ? selected.slice(1) : selected,
         },
         independentPractice: {
           questionId: lesson.slug,
@@ -99,8 +76,7 @@ for (const unit of units) {
     });
     if (lesson === expanded) {
       const extension = examples(lesson).slice(2, 5);
-      if (!extension.length)
-        throw Error(`Missing extension examples for ${lesson.slug}`);
+      if (!extension.length) throw Error(`Missing extension examples for ${lesson.slug}`);
       add(unit.number, "instruction", {
         sourceLesson: lesson.slug,
         objective: objectiveList[1] ?? objectiveList[0],
@@ -114,9 +90,7 @@ for (const unit of units) {
           },
           guidedPractice: {
             sourceLesson: lesson.slug,
-            workedExamples: extension.slice(1).length
-              ? extension.slice(1)
-              : extension,
+            workedExamples: extension.slice(1).length ? extension.slice(1) : extension,
           },
           independentPractice: {
             sourceLesson: lesson.slug,
@@ -127,13 +101,9 @@ for (const unit of units) {
         },
       });
     }
-    const target = Math.floor(
-      ((index + 1) * masteryTarget) / sourceLessons.length,
-    );
+    const target = Math.floor(((index + 1) * masteryTarget) / sourceLessons.length);
     if (target > masteryCount) {
-      const covered = sourceLessons
-        .slice(0, index + 1)
-        .map((lesson) => lesson.slug);
+      const covered = sourceLessons.slice(0, index + 1).map((lesson) => lesson.slug);
       add(unit.number, "mastery", {
         sourceLessons: covered,
         questionIds: covered,
@@ -171,17 +141,13 @@ for (const unit of units) {
     });
   }
 }
-if (periods.length !== 180)
-  throw Error(`Expected 180 periods, found ${periods.length}`);
+if (periods.length !== 180) throw Error(`Expected 180 periods, found ${periods.length}`);
 const calendar = {
   schemaVersion: "im2-calendar.v1",
   assessmentBlocks,
   periods,
 };
-await emit(
-  path.join(root, "calendar.json"),
-  JSON.stringify(calendar, null, 2) + "\n",
-);
+await emit(path.join(root, "calendar.json"), JSON.stringify(calendar, null, 2) + "\n");
 const packageDir = path.join(root, "implementation/class-period-packages");
 for (const filename of await readdir(packageDir))
   if (/^module-\d+-p\d+\.json$/.test(filename)) {
@@ -189,9 +155,7 @@ for (const filename of await readdir(packageDir))
     await unlink(path.join(packageDir, filename));
   }
 for (const unit of units) {
-  const unitPeriods = periods.filter(
-    (period) => period.unitNumber === unit.number,
-  );
+  const unitPeriods = periods.filter((period) => period.unitNumber === unit.number);
   await emit(
     path.join(packageDir, `unit-${unit.number}.json`),
     JSON.stringify(
@@ -233,11 +197,6 @@ for (const unit of units) {
     "Review and test periods belong to nine assessment blocks. A block can cover more than one module. The 180-period course budget includes all blocks.",
     "",
   );
-  await emit(
-    path.join(root, `module-${unit.number}-class-period-plan.md`),
-    lines.join("\n"),
-  );
+  await emit(path.join(root, `module-${unit.number}-class-period-plan.md`), lines.join("\n"));
 }
-console.log(
-  `Built ${periods.length} class periods across ${units.length} modules.`,
-);
+console.log(`Built ${periods.length} class periods across ${units.length} modules.`);

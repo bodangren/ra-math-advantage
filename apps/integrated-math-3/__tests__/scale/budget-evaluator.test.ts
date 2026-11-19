@@ -24,15 +24,11 @@
  *
  * Companion files: `regression-proof.test.ts`, `ci-command.test.ts`.
  */
-import { readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { describe, it, expect } from 'vitest';
-import {
-  SCALE_HOT_PATHS,
-  type CostRecord,
-  type HotPath,
-} from '@/lib/scale/cost-record';
+import { readFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import { describe, it, expect } from "vitest";
+import { SCALE_HOT_PATHS, type CostRecord, type HotPath } from "@/lib/scale/cost-record";
 import {
   budgetSchema,
   evaluate,
@@ -43,13 +39,13 @@ import {
   type Budget,
   type EvaluationResult,
   type ReportEvaluationResult,
-} from '@/lib/scale/budget-evaluator';
+} from "@/lib/scale/budget-evaluator";
 
 const TEST_DIR = dirname(fileURLToPath(import.meta.url));
-const APP_ROOT = resolve(TEST_DIR, '../..');
+const APP_ROOT = resolve(TEST_DIR, "../..");
 
 const ZERO_RECORD: CostRecord = {
-  path: 'daily-practice',
+  path: "daily-practice",
   docsRead: 0,
   bytesRead: 0,
   fnTimeMs: 0,
@@ -57,33 +53,33 @@ const ZERO_RECORD: CostRecord = {
 };
 
 function recordWith(overrides: Partial<CostRecord>): CostRecord {
-  return { ...ZERO_RECORD, path: 'daily-practice', ...overrides };
+  return { ...ZERO_RECORD, path: "daily-practice", ...overrides };
 }
 
-describe('scale — Phase 3 Red: budget-evaluator (FR4)', () => {
-  describe('module surface', () => {
-    it('exports budgetSchema as a Zod schema (with .parse method)', () => {
+describe("scale — Phase 3 Red: budget-evaluator (FR4)", () => {
+  describe("module surface", () => {
+    it("exports budgetSchema as a Zod schema (with .parse method)", () => {
       expect(budgetSchema).toBeDefined();
-      expect(typeof budgetSchema.parse).toBe('function');
+      expect(typeof budgetSchema.parse).toBe("function");
     });
 
-    it('exports evaluate as a function', () => {
-      expect(typeof evaluate).toBe('function');
+    it("exports evaluate as a function", () => {
+      expect(typeof evaluate).toBe("function");
     });
 
-    it('exports evaluateReport as a function', () => {
-      expect(typeof evaluateReport).toBe('function');
+    it("exports evaluateReport as a function", () => {
+      expect(typeof evaluateReport).toBe("function");
     });
 
-    it('exports isPathWithinBudget as a function', () => {
-      expect(typeof isPathWithinBudget).toBe('function');
+    it("exports isPathWithinBudget as a function", () => {
+      expect(typeof isPathWithinBudget).toBe("function");
     });
 
-    it('exports unboundedBudget as a function', () => {
-      expect(typeof unboundedBudget).toBe('function');
+    it("exports unboundedBudget as a function", () => {
+      expect(typeof unboundedBudget).toBe("function");
     });
 
-    it('exports defaultBudget as a function or value', () => {
+    it("exports defaultBudget as a function or value", () => {
       const b = defaultBudget();
       expect(b).toBeDefined();
       const result = budgetSchema.safeParse(b);
@@ -91,27 +87,27 @@ describe('scale — Phase 3 Red: budget-evaluator (FR4)', () => {
     });
   });
 
-  describe('unboundedBudget — sentinel for un-budgeted metrics', () => {
-    it('returns a budget whose per-metric limits are all Infinity', () => {
-      const b = unboundedBudget('daily-practice');
-      expect(b.path).toBe('daily-practice');
+  describe("unboundedBudget — sentinel for un-budgeted metrics", () => {
+    it("returns a budget whose per-metric limits are all Infinity", () => {
+      const b = unboundedBudget("daily-practice");
+      expect(b.path).toBe("daily-practice");
       expect(b.maxDocsRead).toBe(Infinity);
       expect(b.maxBytesRead).toBe(Infinity);
       expect(b.maxFnTimeMs).toBe(Infinity);
       expect(b.maxOccConflicts).toBe(Infinity);
     });
 
-    it('parses cleanly through budgetSchema (Infinity is a valid Zod number)', () => {
-      const b = unboundedBudget('gradebook');
+    it("parses cleanly through budgetSchema (Infinity is a valid Zod number)", () => {
+      const b = unboundedBudget("gradebook");
       const result = budgetSchema.safeParse(b);
       expect(result.success).toBe(true);
     });
   });
 
-  describe('evaluate — single-record, per-metric verdict', () => {
-    it('returns pass:true and empty deltas for an under-budget record', () => {
+  describe("evaluate — single-record, per-metric verdict", () => {
+    it("returns pass:true and empty deltas for an under-budget record", () => {
       const b: Budget = budgetSchema.parse({
-        path: 'daily-practice',
+        path: "daily-practice",
         maxDocsRead: 1000,
         maxBytesRead: 2_000_000,
         maxFnTimeMs: 1500,
@@ -128,9 +124,9 @@ describe('scale — Phase 3 Red: budget-evaluator (FR4)', () => {
       expect(result.deltas).toEqual([]);
     });
 
-    it('returns pass:true and empty deltas for an exact-budget record', () => {
+    it("returns pass:true and empty deltas for an exact-budget record", () => {
       const b: Budget = budgetSchema.parse({
-        path: 'daily-practice',
+        path: "daily-practice",
         maxDocsRead: 1000,
         maxBytesRead: 2_000_000,
         maxFnTimeMs: 1500,
@@ -147,9 +143,9 @@ describe('scale — Phase 3 Red: budget-evaluator (FR4)', () => {
       expect(result.deltas).toEqual([]);
     });
 
-    it('returns pass:false and a docsRead delta when docsRead exceeds the limit', () => {
+    it("returns pass:false and a docsRead delta when docsRead exceeds the limit", () => {
       const b: Budget = budgetSchema.parse({
-        path: 'daily-practice',
+        path: "daily-practice",
         maxDocsRead: 1000,
         maxBytesRead: 2_000_000,
         maxFnTimeMs: 1500,
@@ -159,68 +155,68 @@ describe('scale — Phase 3 Red: budget-evaluator (FR4)', () => {
       const result = evaluate(rec, b);
       expect(result.pass).toBe(false);
       expect(result.deltas).toEqual([
-        expect.objectContaining({ metric: 'docsRead', actual: 1500, limit: 1000 }),
+        expect.objectContaining({ metric: "docsRead", actual: 1500, limit: 1000 }),
       ]);
     });
 
-    it('returns pass:false and a bytesRead delta when bytesRead exceeds the limit', () => {
+    it("returns pass:false and a bytesRead delta when bytesRead exceeds the limit", () => {
       const b: Budget = budgetSchema.parse({
-        path: 'gradebook',
+        path: "gradebook",
         maxDocsRead: 1000,
         maxBytesRead: 2_000_000,
         maxFnTimeMs: 1500,
         maxOccConflicts: 1,
       });
-      const rec = recordWith({ path: 'gradebook', bytesRead: 3_000_000 });
+      const rec = recordWith({ path: "gradebook", bytesRead: 3_000_000 });
       const result = evaluate(rec, b);
       expect(result.pass).toBe(false);
       expect(result.deltas).toEqual([
-        expect.objectContaining({ metric: 'bytesRead', actual: 3_000_000, limit: 2_000_000 }),
+        expect.objectContaining({ metric: "bytesRead", actual: 3_000_000, limit: 2_000_000 }),
       ]);
     });
 
-    it('returns pass:false and a fnTimeMs delta when fnTimeMs exceeds the limit', () => {
+    it("returns pass:false and a fnTimeMs delta when fnTimeMs exceeds the limit", () => {
       const b: Budget = budgetSchema.parse({
-        path: 'heatmap',
+        path: "heatmap",
         maxDocsRead: 1000,
         maxBytesRead: 2_000_000,
         maxFnTimeMs: 1500,
         maxOccConflicts: 1,
       });
-      const rec = recordWith({ path: 'heatmap', fnTimeMs: 2200 });
+      const rec = recordWith({ path: "heatmap", fnTimeMs: 2200 });
       const result = evaluate(rec, b);
       expect(result.pass).toBe(false);
       expect(result.deltas).toEqual([
-        expect.objectContaining({ metric: 'fnTimeMs', actual: 2200, limit: 1500 }),
+        expect.objectContaining({ metric: "fnTimeMs", actual: 2200, limit: 1500 }),
       ]);
     });
 
-    it('returns pass:false and an occConflicts delta when OCC exceeds the ceiling', () => {
+    it("returns pass:false and an occConflicts delta when OCC exceeds the ceiling", () => {
       const b: Budget = budgetSchema.parse({
-        path: 'proficiency',
+        path: "proficiency",
         maxDocsRead: 1000,
         maxBytesRead: 2_000_000,
         maxFnTimeMs: 1500,
         maxOccConflicts: 1,
       });
-      const rec = recordWith({ path: 'proficiency', occConflicts: 3 });
+      const rec = recordWith({ path: "proficiency", occConflicts: 3 });
       const result = evaluate(rec, b);
       expect(result.pass).toBe(false);
       expect(result.deltas).toEqual([
-        expect.objectContaining({ metric: 'occConflicts', actual: 3, limit: 1 }),
+        expect.objectContaining({ metric: "occConflicts", actual: 3, limit: 1 }),
       ]);
     });
 
-    it('aggregates multiple deltas in a single pass:false result', () => {
+    it("aggregates multiple deltas in a single pass:false result", () => {
       const b: Budget = budgetSchema.parse({
-        path: 'curriculum-summaries',
+        path: "curriculum-summaries",
         maxDocsRead: 1000,
         maxBytesRead: 2_000_000,
         maxFnTimeMs: 1500,
         maxOccConflicts: 1,
       });
       const rec = recordWith({
-        path: 'curriculum-summaries',
+        path: "curriculum-summaries",
         docsRead: 1500,
         fnTimeMs: 2200,
       });
@@ -228,38 +224,38 @@ describe('scale — Phase 3 Red: budget-evaluator (FR4)', () => {
       expect(result.pass).toBe(false);
       expect(result.deltas).toHaveLength(2);
       const metrics = result.deltas.map((d) => d.metric).sort();
-      expect(metrics).toEqual(['docsRead', 'fnTimeMs']);
+      expect(metrics).toEqual(["docsRead", "fnTimeMs"]);
     });
 
-    it('passes when every limit is Infinity (unbounded budget)', () => {
+    it("passes when every limit is Infinity (unbounded budget)", () => {
       const rec = recordWith({
         docsRead: 1_000_000,
         bytesRead: 1_000_000_000,
         fnTimeMs: 1_000_000,
         occConflicts: 1_000_000,
       });
-      const result = evaluate(rec, unboundedBudget('daily-practice'));
+      const result = evaluate(rec, unboundedBudget("daily-practice"));
       expect(result.pass).toBe(true);
       expect(result.deltas).toEqual([]);
     });
 
-    it('throws on path mismatch between record and budget (fail closed)', () => {
+    it("throws on path mismatch between record and budget (fail closed)", () => {
       const b: Budget = budgetSchema.parse({
-        path: 'daily-practice',
+        path: "daily-practice",
         maxDocsRead: 1000,
         maxBytesRead: 2_000_000,
         maxFnTimeMs: 1500,
         maxOccConflicts: 1,
       });
-      const rec = recordWith({ path: 'gradebook' });
+      const rec = recordWith({ path: "gradebook" });
       expect(() => evaluate(rec, b)).toThrow(/path/i);
     });
   });
 
-  describe('isPathWithinBudget — boolean helper for the report writer', () => {
-    it('returns true for an under-budget record', () => {
+  describe("isPathWithinBudget — boolean helper for the report writer", () => {
+    it("returns true for an under-budget record", () => {
       const b: Budget = budgetSchema.parse({
-        path: 'daily-practice',
+        path: "daily-practice",
         maxDocsRead: 1000,
         maxBytesRead: 2_000_000,
         maxFnTimeMs: 1500,
@@ -269,9 +265,9 @@ describe('scale — Phase 3 Red: budget-evaluator (FR4)', () => {
       expect(isPathWithinBudget(rec, b)).toBe(true);
     });
 
-    it('returns false for an over-budget record', () => {
+    it("returns false for an over-budget record", () => {
       const b: Budget = budgetSchema.parse({
-        path: 'daily-practice',
+        path: "daily-practice",
         maxDocsRead: 1000,
         maxBytesRead: 2_000_000,
         maxFnTimeMs: 1500,
@@ -282,18 +278,18 @@ describe('scale — Phase 3 Red: budget-evaluator (FR4)', () => {
     });
   });
 
-  describe('evaluateReport — per-path aggregation + top-level pass', () => {
-    it('returns pass:true when every path is within its budget', () => {
+  describe("evaluateReport — per-path aggregation + top-level pass", () => {
+    it("returns pass:true when every path is within its budget", () => {
       const budgets: Record<HotPath, Budget> = {
-        'daily-practice': unboundedBudget('daily-practice'),
-        gradebook: unboundedBudget('gradebook'),
-        heatmap: unboundedBudget('heatmap'),
-        proficiency: unboundedBudget('proficiency'),
-        'curriculum-summaries': unboundedBudget('curriculum-summaries'),
+        "daily-practice": unboundedBudget("daily-practice"),
+        gradebook: unboundedBudget("gradebook"),
+        heatmap: unboundedBudget("heatmap"),
+        proficiency: unboundedBudget("proficiency"),
+        "curriculum-summaries": unboundedBudget("curriculum-summaries"),
       };
       const report = {
-        generatedAt: '2026-06-14T00:00:00Z',
-        deployment: 'https://example.convex.cloud',
+        generatedAt: "2026-06-14T00:00:00Z",
+        deployment: "https://example.convex.cloud",
         paths: SCALE_HOT_PATHS.map((p) => ({
           path: p,
           docsRead: 100,
@@ -310,26 +306,26 @@ describe('scale — Phase 3 Red: budget-evaluator (FR4)', () => {
       }
     });
 
-    it('returns pass:false and identifies the failing paths when one is over budget', () => {
+    it("returns pass:false and identifies the failing paths when one is over budget", () => {
       const budgets: Record<HotPath, Budget> = {
-        'daily-practice': budgetSchema.parse({
-          path: 'daily-practice',
+        "daily-practice": budgetSchema.parse({
+          path: "daily-practice",
           maxDocsRead: 100,
           maxBytesRead: 1000,
           maxFnTimeMs: 50,
           maxOccConflicts: 1,
         }),
-        gradebook: unboundedBudget('gradebook'),
-        heatmap: unboundedBudget('heatmap'),
-        proficiency: unboundedBudget('proficiency'),
-        'curriculum-summaries': unboundedBudget('curriculum-summaries'),
+        gradebook: unboundedBudget("gradebook"),
+        heatmap: unboundedBudget("heatmap"),
+        proficiency: unboundedBudget("proficiency"),
+        "curriculum-summaries": unboundedBudget("curriculum-summaries"),
       };
       const report = {
-        generatedAt: '2026-06-14T00:00:00Z',
-        deployment: 'https://example.convex.cloud',
+        generatedAt: "2026-06-14T00:00:00Z",
+        deployment: "https://example.convex.cloud",
         paths: SCALE_HOT_PATHS.map((p) => ({
           path: p,
-          docsRead: p === 'daily-practice' ? 500 : 50,
+          docsRead: p === "daily-practice" ? 500 : 50,
           bytesRead: 1000,
           fnTimeMs: 50,
           occConflicts: 0,
@@ -339,30 +335,30 @@ describe('scale — Phase 3 Red: budget-evaluator (FR4)', () => {
       expect(result.pass).toBe(false);
       const failing = result.perPath.filter((e) => !e.pass);
       expect(failing).toHaveLength(1);
-      expect(failing[0]?.path).toBe('daily-practice');
+      expect(failing[0]?.path).toBe("daily-practice");
     });
 
-    it('throws when the report is missing a path that the budgets expect', () => {
+    it("throws when the report is missing a path that the budgets expect", () => {
       const budgets: Record<HotPath, Budget> = {
-        'daily-practice': unboundedBudget('daily-practice'),
-        gradebook: unboundedBudget('gradebook'),
-        heatmap: unboundedBudget('heatmap'),
-        proficiency: unboundedBudget('proficiency'),
-        'curriculum-summaries': unboundedBudget('curriculum-summaries'),
+        "daily-practice": unboundedBudget("daily-practice"),
+        gradebook: unboundedBudget("gradebook"),
+        heatmap: unboundedBudget("heatmap"),
+        proficiency: unboundedBudget("proficiency"),
+        "curriculum-summaries": unboundedBudget("curriculum-summaries"),
       };
       const report = {
-        generatedAt: '2026-06-14T00:00:00Z',
-        deployment: 'https://example.convex.cloud',
+        generatedAt: "2026-06-14T00:00:00Z",
+        deployment: "https://example.convex.cloud",
         paths: [ZERO_RECORD], // only one path
       };
       expect(() => evaluateReport(report, budgets)).toThrow();
     });
   });
 
-  describe('JSON-serializability', () => {
-    it('EvaluationResult round-trips through JSON.stringify', () => {
+  describe("JSON-serializability", () => {
+    it("EvaluationResult round-trips through JSON.stringify", () => {
       const b: Budget = budgetSchema.parse({
-        path: 'daily-practice',
+        path: "daily-practice",
         maxDocsRead: 1000,
         maxBytesRead: 2_000_000,
         maxFnTimeMs: 1500,
@@ -376,17 +372,17 @@ describe('scale — Phase 3 Red: budget-evaluator (FR4)', () => {
       expect(parsed.deltas).toHaveLength(2);
     });
 
-    it('ReportEvaluationResult round-trips through JSON.stringify', () => {
+    it("ReportEvaluationResult round-trips through JSON.stringify", () => {
       const budgets: Record<HotPath, Budget> = {
-        'daily-practice': unboundedBudget('daily-practice'),
-        gradebook: unboundedBudget('gradebook'),
-        heatmap: unboundedBudget('heatmap'),
-        proficiency: unboundedBudget('proficiency'),
-        'curriculum-summaries': unboundedBudget('curriculum-summaries'),
+        "daily-practice": unboundedBudget("daily-practice"),
+        gradebook: unboundedBudget("gradebook"),
+        heatmap: unboundedBudget("heatmap"),
+        proficiency: unboundedBudget("proficiency"),
+        "curriculum-summaries": unboundedBudget("curriculum-summaries"),
       };
       const report = {
-        generatedAt: '2026-06-14T00:00:00Z',
-        deployment: 'https://example.convex.cloud',
+        generatedAt: "2026-06-14T00:00:00Z",
+        deployment: "https://example.convex.cloud",
         paths: SCALE_HOT_PATHS.map((p) => ({
           path: p,
           docsRead: 100,
@@ -403,20 +399,14 @@ describe('scale — Phase 3 Red: budget-evaluator (FR4)', () => {
     });
   });
 
-  describe('source boundary contract', () => {
-    it('lib/scale/budget-evaluator.ts does not import test fixtures', () => {
-      const source = readFileSync(
-        resolve(APP_ROOT, 'lib/scale/budget-evaluator.ts'),
-        'utf8',
-      );
+  describe("source boundary contract", () => {
+    it("lib/scale/budget-evaluator.ts does not import test fixtures", () => {
+      const source = readFileSync(resolve(APP_ROOT, "lib/scale/budget-evaluator.ts"), "utf8");
       expect(source).not.toMatch(/@\/__tests__/);
     });
 
-    it('lib/scale/budget-evaluator.ts does not shell out to npx convex', () => {
-      const source = readFileSync(
-        resolve(APP_ROOT, 'lib/scale/budget-evaluator.ts'),
-        'utf8',
-      );
+    it("lib/scale/budget-evaluator.ts does not shell out to npx convex", () => {
+      const source = readFileSync(resolve(APP_ROOT, "lib/scale/budget-evaluator.ts"), "utf8");
       expect(source).not.toMatch(/spawn|exec|convex\s+insights/);
     });
   });

@@ -1,8 +1,8 @@
-import type { GlossaryTerm } from '@math-platform/math-content/glossary';
+import type { GlossaryTerm } from "@math-platform/math-content/glossary";
 
 // Re-export for backward compatibility
-export { IM3_GLOSSARY as GLOSSARY } from '@math-platform/math-content/glossary';
-export type { GlossaryTerm } from '@math-platform/math-content/glossary';
+export { IM3_GLOSSARY as GLOSSARY } from "@math-platform/math-content/glossary";
+export type { GlossaryTerm } from "@math-platform/math-content/glossary";
 
 import {
   getGlossaryTermBySlug as _getBySlug,
@@ -10,7 +10,7 @@ import {
   getAllGlossaryModules as _getAllModules,
   getAllGlossaryTopics as _getAllTopics,
   IM3_GLOSSARY,
-} from '@math-platform/math-content/glossary';
+} from "@math-platform/math-content/glossary";
 
 /** Looks up a glossary term by its URL slug. */
 export function getGlossaryTermBySlug(slug: string): GlossaryTerm | undefined {

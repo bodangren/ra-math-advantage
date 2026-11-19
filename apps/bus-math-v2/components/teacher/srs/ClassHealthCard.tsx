@@ -1,12 +1,7 @@
 "use client";
 
 import { Brain, AlertCircle, CalendarClock, Users } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export interface ClassHealthSummary {
   totalStudents: number;
@@ -21,7 +16,6 @@ export interface ClassHealthSummary {
 interface ClassHealthCardProps {
   health: ClassHealthSummary | null;
 }
-
 
 /**
  * Renders a class health summary card showing SRS metrics like retention rate,

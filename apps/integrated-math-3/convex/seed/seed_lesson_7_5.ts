@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -139,7 +139,10 @@ export const seedLesson7_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "y = kx",
                 steps: [
-                  { expression: "y1/x1 = y2/x2", explanation: "Set up the direct variation proportion" },
+                  {
+                    expression: "y1/x1 = y2/x2",
+                    explanation: "Set up the direct variation proportion",
+                  },
                   { expression: "-3/24 = y/(-16)", explanation: "Substitute the known values" },
                   { expression: "y = 2", explanation: "Solve for y" },
                 ],
@@ -171,8 +174,14 @@ export const seedLesson7_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "y = kxz",
                 steps: [
-                  { expression: "y1/(x1z1) = y2/(x2z2)", explanation: "Set up the joint variation proportion" },
-                  { expression: "y/(4(-3)) = -15/(-6(1))", explanation: "Substitute the known values" },
+                  {
+                    expression: "y1/(x1z1) = y2/(x2z2)",
+                    explanation: "Set up the joint variation proportion",
+                  },
+                  {
+                    expression: "y/(4(-3)) = -15/(-6(1))",
+                    explanation: "Substitute the known values",
+                  },
                   { expression: "y/(-12) = -15/(-6)", explanation: "Simplify the denominators" },
                   { expression: "y = -30", explanation: "Solve for y" },
                 ],
@@ -220,7 +229,10 @@ export const seedLesson7_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "m = k/n",
                 steps: [
-                  { expression: "m1/n2 = m2/n1", explanation: "Set up the inverse variation proportion" },
+                  {
+                    expression: "m1/n2 = m2/n1",
+                    explanation: "Set up the inverse variation proportion",
+                  },
                   { expression: "-4/(-10) = m/6", explanation: "Substitute the known values" },
                   { expression: "-24 = -10m", explanation: "Cross multiply to solve for m" },
                   { expression: "m = 2.4", explanation: "Solve for m" },
@@ -253,8 +265,14 @@ export const seedLesson7_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "a = kb/c",
                 steps: [
-                  { expression: "a1c1/b1 = a2c2/b2", explanation: "Set up the combined variation proportion using constant k" },
-                  { expression: "6(28)/b = (-49)(3)/7", explanation: "Substitute the known values" },
+                  {
+                    expression: "a1c1/b1 = a2c2/b2",
+                    explanation: "Set up the combined variation proportion using constant k",
+                  },
+                  {
+                    expression: "6(28)/b = (-49)(3)/7",
+                    explanation: "Substitute the known values",
+                  },
                   { expression: "168/b = -21", explanation: "Simplify both sides" },
                   { expression: "b = -8", explanation: "Solve for b" },
                 ],
@@ -286,10 +304,19 @@ export const seedLesson7_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "x = kpf/r",
                 steps: [
-                  { expression: "x1r1/(p1f1) = x2r2/(p2f2)", explanation: "Set up the combined variation proportion for gear speed" },
-                  { expression: "17.1(16)/(70(50)) = x(23)/(70(34))", explanation: "Substitute the known values" },
+                  {
+                    expression: "x1r1/(p1f1) = x2r2/(p2f2)",
+                    explanation: "Set up the combined variation proportion for gear speed",
+                  },
+                  {
+                    expression: "17.1(16)/(70(50)) = x(23)/(70(34))",
+                    explanation: "Substitute the known values",
+                  },
                   { expression: "273.6/3500 = 23x/2380", explanation: "Simplify both sides" },
-                  { expression: "x ≈ 8.1", explanation: "Solve for x to get approximately 8.1 mph" },
+                  {
+                    expression: "x ≈ 8.1",
+                    explanation: "Solve for x to get approximately 8.1 mph",
+                  },
                 ],
               },
             },
@@ -323,7 +350,8 @@ export const seedLesson7_5 = internalMutation({
                     correctIndex: 0,
                   },
                   {
-                    question: "If y varies jointly as x and z, which equation represents this relationship?",
+                    question:
+                      "If y varies jointly as x and z, which equation represents this relationship?",
                     options: ["y = kx + z", "y = kxz", "y = kx/z", "y = kx - z"],
                     correctIndex: 1,
                   },
@@ -358,7 +386,7 @@ export const seedLesson7_5 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

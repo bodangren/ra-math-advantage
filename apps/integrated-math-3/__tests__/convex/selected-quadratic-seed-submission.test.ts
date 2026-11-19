@@ -42,9 +42,7 @@ function memoryContext() {
       return {
         withIndex(
           _index: string,
-          configure: (query: {
-            eq(field: string, value: unknown): unknown;
-          }) => unknown,
+          configure: (query: { eq(field: string, value: unknown): unknown }) => unknown,
         ) {
           const conditions = new Map<string, unknown>();
           const query = {
@@ -147,11 +145,7 @@ describe("selected IM3 seed to server submission", () => {
           userId: learnerId,
           activityId: independent._id,
           idempotencyKey: "draft",
-          submissionData: submission(
-            independent._id,
-            "independent_practice",
-            INDEPENDENT_POINTS,
-          ),
+          submissionData: submission(independent._id, "independent_practice", INDEPENDENT_POINTS),
         } as never,
         publication,
       ),
@@ -166,11 +160,7 @@ describe("selected IM3 seed to server submission", () => {
       userId: learnerId,
       activityId: independent._id,
       idempotencyKey: "independent",
-      submissionData: submission(
-        independent._id,
-        "independent_practice",
-        INDEPENDENT_POINTS,
-      ),
+      submissionData: submission(independent._id, "independent_practice", INDEPENDENT_POINTS),
     };
     const first = await createServerOwnedSubmissionHandler(
       ctx as never,
@@ -191,11 +181,7 @@ describe("selected IM3 seed to server submission", () => {
         userId: learnerId,
         activityId: guided._id,
         idempotencyKey: "guided",
-        submissionData: submission(
-          guided._id,
-          "guided_practice",
-          GUIDED_POINTS,
-        ),
+        submissionData: submission(guided._id, "guided_practice", GUIDED_POINTS),
       } as never,
       publication,
     );
@@ -205,11 +191,7 @@ describe("selected IM3 seed to server submission", () => {
         ctx as never,
         {
           ...independentInput,
-          submissionData: submission(
-            independent._id,
-            "independent_practice",
-            GUIDED_POINTS,
-          ),
+          submissionData: submission(independent._id, "independent_practice", GUIDED_POINTS),
         } as never,
         publication,
       ),

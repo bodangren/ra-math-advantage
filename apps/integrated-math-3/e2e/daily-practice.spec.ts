@@ -1,4 +1,4 @@
-import { test, expect } from './fixtures';
+import { test, expect } from "./fixtures";
 
 // Phase 3 SEL keys live inline in this spec file (test code) to keep the
 // Red-phase boundary clean. The shared apps/integrated-math-3/e2e/selectors.ts
@@ -7,22 +7,22 @@ import { test, expect } from './fixtures';
 // keeps the Phase 3 selector contract inside the test files (the .spec.ts
 // files ARE test files per the Red-phase boundary).
 const SEL_PHASE3_DAILY_PRACTICE = {
-  practiceCardRenderer: 'practice-card-renderer',
-  cardCounter: 'card-counter',
-  submissionFeedback: 'submission-feedback',
-  completionCheck: 'completion-check',
-  dailyPracticeCard: 'daily-practice-card',
-  streakValue: 'streak-value',
+  practiceCardRenderer: "practice-card-renderer",
+  cardCounter: "card-counter",
+  submissionFeedback: "submission-feedback",
+  completionCheck: "completion-check",
+  dailyPracticeCard: "daily-practice-card",
+  streakValue: "streak-value",
 } as const;
 
 const KEBAB_CASE_PATTERN = /^[a-z][a-z0-9]*(-[a-z0-9]+)*$/;
 
-test.describe('Phase 3 daily-practice SEL contract', () => {
-  test('every SEL_PHASE3_DAILY_PRACTICE value is a non-empty kebab-case token', () => {
+test.describe("Phase 3 daily-practice SEL contract", () => {
+  test("every SEL_PHASE3_DAILY_PRACTICE value is a non-empty kebab-case token", () => {
     const entries = Object.entries(SEL_PHASE3_DAILY_PRACTICE);
     expect(entries.length).toBeGreaterThan(0);
     for (const [name, value] of entries) {
-      expect(typeof value, `SEL_PHASE3_DAILY_PRACTICE.${name} should be a string`).toBe('string');
+      expect(typeof value, `SEL_PHASE3_DAILY_PRACTICE.${name} should be a string`).toBe("string");
       expect(
         (value as string).length,
         `SEL_PHASE3_DAILY_PRACTICE.${name} should be a non-empty string`,
@@ -34,14 +34,16 @@ test.describe('Phase 3 daily-practice SEL contract', () => {
     }
   });
 
-  test('SEL_PHASE3_DAILY_PRACTICE values are unique', () => {
+  test("SEL_PHASE3_DAILY_PRACTICE values are unique", () => {
     const values = Object.values(SEL_PHASE3_DAILY_PRACTICE) as string[];
     const unique = new Set(values);
-    expect(unique.size, 'duplicate selector values found in SEL_PHASE3_DAILY_PRACTICE').toBe(values.length);
+    expect(unique.size, "duplicate selector values found in SEL_PHASE3_DAILY_PRACTICE").toBe(
+      values.length,
+    );
   });
 });
 
-test.describe('Daily Practice — Phase 3 Red: session submission + streak = 1', () => {
+test.describe("Daily Practice — Phase 3 Red: session submission + streak = 1", () => {
   // Strategy §5: "Daily-practice spec submits exactly 3 cards and asserts
   // streak = 1." Strategy §3 (Daily-practice streak, FR4): `calculateStreak`
   // (apps/integrated-math-3/convex/srs/dashboard.ts) reads completion
@@ -57,10 +59,12 @@ test.describe('Daily Practice — Phase 3 Red: session submission + streak = 1',
   //     render the streak-value testid as "1".
   // The spec fails on the first card's submit-button click (or, if the
   // click somehow lands, on the completion-check visibility).
-  test('student submits 3 daily-practice cards and the dashboard streak is 1', async ({ studentPage: page }) => {
+  test("student submits 3 daily-practice cards and the dashboard streak is 1", async ({
+    studentPage: page,
+  }) => {
     // 1. Open the daily-practice page and wait for the session to load.
-    await page.goto('/student/practice');
-    await page.waitForLoadState('networkidle');
+    await page.goto("/student/practice");
+    await page.waitForLoadState("networkidle");
 
     await expect(
       page.locator(`[data-testid="${SEL_PHASE3_DAILY_PRACTICE.cardCounter}"]`),
@@ -83,7 +87,9 @@ test.describe('Daily Practice — Phase 3 Red: session submission + streak = 1',
       // submit button. Once components adopt a stable data-testid the
       // selector below can be tightened to a family-specific testid.
       const submitButton = page
-        .locator(`[data-testid="${SEL_PHASE3_DAILY_PRACTICE.practiceCardRenderer}"] button[type="submit"]`)
+        .locator(
+          `[data-testid="${SEL_PHASE3_DAILY_PRACTICE.practiceCardRenderer}"] button[type="submit"]`,
+        )
         .first();
       await expect(submitButton, `card ${i + 1} must expose a stable submit button`).toBeVisible({
         timeout: 15_000,
@@ -103,8 +109,8 @@ test.describe('Daily Practice — Phase 3 Red: session submission + streak = 1',
     ).toBeVisible({ timeout: 20_000 });
 
     // 4. The dashboard's DailyPracticeCard must report the new streak.
-    await page.goto('/student/dashboard');
-    await page.waitForLoadState('networkidle');
+    await page.goto("/student/dashboard");
+    await page.waitForLoadState("networkidle");
 
     await expect(
       page.locator(`[data-testid="${SEL_PHASE3_DAILY_PRACTICE.dailyPracticeCard}"]`),
@@ -112,6 +118,6 @@ test.describe('Daily Practice — Phase 3 Red: session submission + streak = 1',
 
     await expect(
       page.locator(`[data-testid="${SEL_PHASE3_DAILY_PRACTICE.streakValue}"]`),
-    ).toHaveText('1', { timeout: 15_000 });
+    ).toHaveText("1", { timeout: 15_000 });
   });
 });

@@ -1,7 +1,7 @@
-export const SESSION_COOKIE_NAME = 'bm_session';
+export const SESSION_COOKIE_NAME = "bm_session";
 export const SESSION_TTL_SECONDS = 60 * 60 * 12;
 export const PASSWORD_HASH_ITERATIONS = 120000;
-export const PASSWORD_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789';
+export const PASSWORD_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
 
 /**
  * Gets the JWT secret from AUTH_JWT_SECRET env var or dev fallback.
@@ -14,10 +14,12 @@ export function getAuthJwtSecret(): string {
     return envSecret;
   }
 
-  if (process.env.NODE_ENV !== 'production') {
-    console.warn('[core-auth] WARNING: Using insecure dev JWT secret. Set AUTH_JWT_SECRET for all non-local environments.');
-    return 'dev-insecure-auth-secret-change-me';
+  if (process.env.NODE_ENV !== "production") {
+    console.warn(
+      "[core-auth] WARNING: Using insecure dev JWT secret. Set AUTH_JWT_SECRET for all non-local environments.",
+    );
+    return "dev-insecure-auth-secret-change-me";
   }
 
-  throw new Error('Missing AUTH_JWT_SECRET');
+  throw new Error("Missing AUTH_JWT_SECRET");
 }

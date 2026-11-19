@@ -16,22 +16,13 @@
 
   "npmrc_invariant": {
     "expected_files": [],
-    "forbidden_keys": [
-      "legacy-peer-deps=true",
-      "legacy-peer-deps",
-      "force"
-    ],
+    "forbidden_keys": ["legacy-peer-deps=true", "legacy-peer-deps", "force"],
     "notes": "No .npmrc is present. Adding one (especially with --legacy-peer-deps) is a workaround that must be justified in tech-debt.md."
   },
 
   "workspaces_invariant": {
     "root_workspaces_field": ["apps/*", "packages/*"],
-    "forbidden_new_globs": [
-      "apps",
-      "apps/**",
-      "packages",
-      "packages/**"
-    ],
+    "forbidden_new_globs": ["apps", "apps/**", "packages", "packages/**"],
     "notes": "No new workspace globs. Adding nested workspaces (e.g., apps/integrated-math-3/*) violates the flat workspace rule."
   }
 }

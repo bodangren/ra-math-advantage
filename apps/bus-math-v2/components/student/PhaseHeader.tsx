@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 import {
   ArrowRight,
   BookOpen,
@@ -7,30 +7,30 @@ import {
   Lightbulb,
   PlayCircle,
   Target,
-  Users
-} from 'lucide-react';
+  Users,
+} from "lucide-react";
 
-import { Badge } from '@/components/ui/badge';
-import { Card, CardHeader, CardTitle } from '@/components/ui/card';
-import { Progress } from '@/components/ui/progress';
-import type { Lesson } from '@/lib/schemas/validators';
+import { Badge } from "@/components/ui/badge";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import type { Lesson } from "@/lib/schemas/validators";
 import {
   formatCurriculumSegmentLabel,
   formatCurriculumSegmentLessonLabel,
-} from '@/lib/curriculum/segment-labels';
-import type { ContentBlock, PhaseMetadata } from '@/types/curriculum';
-import { cn } from '@/lib/utils';
-import { ResourceBasePathFixer } from '@/components/ResourceBasePathFixer';
+} from "@/lib/curriculum/segment-labels";
+import type { ContentBlock, PhaseMetadata } from "@/types/curriculum";
+import { cn } from "@/lib/utils";
+import { ResourceBasePathFixer } from "@/components/ResourceBasePathFixer";
 
 interface PhaseLike {
   id: string;
   phaseNumber: number;
   title: string;
-  metadata?: { phaseType?: PhaseMetadata['phaseType'] } | null;
+  metadata?: { phaseType?: PhaseMetadata["phaseType"] } | null;
   contentBlocks?: ContentBlock[];
 }
 
-type PhaseThemeKey = NonNullable<NonNullable<PhaseLike['metadata']>['phaseType']> | 'default';
+type PhaseThemeKey = NonNullable<NonNullable<PhaseLike["metadata"]>["phaseType"]> | "default";
 
 const phaseThemes: Record<
   PhaseThemeKey,
@@ -41,40 +41,46 @@ const phaseThemes: Record<
   }
 > = {
   intro: {
-    label: 'Hook',
+    label: "Hook",
     icon: PlayCircle,
-    className: 'text-red-600 bg-red-50/60 border-red-200/60 dark:bg-red-950/20 dark:border-red-900/30'
+    className:
+      "text-red-600 bg-red-50/60 border-red-200/60 dark:bg-red-950/20 dark:border-red-900/30",
   },
   example: {
-    label: 'Introduction',
+    label: "Introduction",
     icon: BookOpen,
-    className: 'text-primary bg-primary/5 border-primary/20 dark:bg-primary/10 dark:border-primary/30'
+    className:
+      "text-primary bg-primary/5 border-primary/20 dark:bg-primary/10 dark:border-primary/30",
   },
   practice: {
-    label: 'Guided Practice',
+    label: "Guided Practice",
     icon: Users,
-    className: 'text-green-700 bg-green-50/60 border-green-200/60 dark:bg-green-950/20 dark:border-green-800/30'
+    className:
+      "text-green-700 bg-green-50/60 border-green-200/60 dark:bg-green-950/20 dark:border-green-800/30",
   },
   challenge: {
-    label: 'Independent Practice',
+    label: "Independent Practice",
     icon: Target,
-    className: 'text-purple-700 bg-purple-50/60 border-purple-200/60 dark:bg-purple-950/20 dark:border-purple-800/30'
+    className:
+      "text-purple-700 bg-purple-50/60 border-purple-200/60 dark:bg-purple-950/20 dark:border-purple-800/30",
   },
   assessment: {
-    label: 'Assessment',
+    label: "Assessment",
     icon: CheckCircle2,
-    className: 'text-orange-700 bg-orange-50/60 border-orange-200/60 dark:bg-orange-950/20 dark:border-orange-800/30'
+    className:
+      "text-orange-700 bg-orange-50/60 border-orange-200/60 dark:bg-orange-950/20 dark:border-orange-800/30",
   },
   reflection: {
-    label: 'Reflection',
+    label: "Reflection",
     icon: Lightbulb,
-    className: 'text-indigo-700 bg-indigo-50/60 border-indigo-200/60 dark:bg-indigo-950/20 dark:border-indigo-800/30'
+    className:
+      "text-indigo-700 bg-indigo-50/60 border-indigo-200/60 dark:bg-indigo-950/20 dark:border-indigo-800/30",
   },
   default: {
-    label: 'Phase',
+    label: "Phase",
     icon: PlayCircle,
-    className: 'text-primary bg-muted/30 border-border/50'
-  }
+    className: "text-primary bg-muted/30 border-border/50",
+  },
 };
 
 export interface PhaseHeaderNavigationOverrides {
@@ -94,7 +100,6 @@ export interface PhaseHeaderProps {
   navigationOverrides?: PhaseHeaderNavigationOverrides;
 }
 
-
 /**
  * Renders a phase header with breadcrumb navigation, progress bar,
  * and a themed phase title card.
@@ -107,24 +112,34 @@ export interface PhaseHeaderProps {
  * @param props.navigationOverrides - Optional overrides for navigation labels and hrefs.
  * @returns A header section with breadcrumbs, progress bar, and phase title.
  */
-export function PhaseHeader({ lesson, phase, phases, unit, navigationOverrides }: PhaseHeaderProps) {
+export function PhaseHeader({
+  lesson,
+  phase,
+  phases,
+  unit,
+  navigationOverrides,
+}: PhaseHeaderProps) {
   const sortedPhases = [...phases].sort((a, b) => a.phaseNumber - b.phaseNumber);
   const phaseIndex = Math.max(
     0,
-    sortedPhases.findIndex((entry) => entry.id === phase.id || entry.phaseNumber === phase.phaseNumber)
+    sortedPhases.findIndex(
+      (entry) => entry.id === phase.id || entry.phaseNumber === phase.phaseNumber,
+    ),
   );
   const progress = ((phaseIndex + 1) / sortedPhases.length) * 100;
 
-  const unitNumber = lesson.unitNumber.toString().padStart(2, '0');
-  const lessonNumber = lesson.orderIndex.toString().padStart(2, '0');
+  const unitNumber = lesson.unitNumber.toString().padStart(2, "0");
+  const lessonNumber = lesson.orderIndex.toString().padStart(2, "0");
   const baseLessonHref = lesson.slug
-    ? (lesson.slug.startsWith('/student') ? lesson.slug : `/student/${lesson.slug}`)
+    ? lesson.slug.startsWith("/student")
+      ? lesson.slug
+      : `/student/${lesson.slug}`
     : `/student/unit${unitNumber}/lesson${lessonNumber}`;
 
   const unitHref = navigationOverrides?.unitHref ?? `/student/unit${unitNumber}`;
   const lessonHref = navigationOverrides?.lessonHref ?? baseLessonHref;
 
-  const theme = phaseThemes[phase.metadata?.phaseType ?? 'default'];
+  const theme = phaseThemes[phase.metadata?.phaseType ?? "default"];
   const Icon = theme.icon;
   const breadcrumbPhaseLabel = navigationOverrides?.phaseLabel ?? phase.title;
   const breadcrumbLessonLabel = navigationOverrides?.lessonLabel ?? `Lesson ${lesson.orderIndex}`;
@@ -133,7 +148,10 @@ export function PhaseHeader({ lesson, phase, phases, unit, navigationOverrides }
     <div className="mx-auto mb-8 max-w-4xl space-y-6 px-4">
       <ResourceBasePathFixer />
 
-      <nav className="flex items-center space-x-2 text-sm text-muted-foreground" aria-label="Breadcrumb">
+      <nav
+        className="flex items-center space-x-2 text-sm text-muted-foreground"
+        aria-label="Breadcrumb"
+      >
         <Link href="/student" className="flex items-center gap-1 hover:text-foreground">
           <Home className="h-3 w-3" />
           Student
@@ -163,7 +181,7 @@ export function PhaseHeader({ lesson, phase, phases, unit, navigationOverrides }
         </div>
       </div>
 
-      <Card className={cn('shadow-lg', theme.className)}>
+      <Card className={cn("shadow-lg", theme.className)}>
         <CardHeader className="pb-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -173,10 +191,7 @@ export function PhaseHeader({ lesson, phase, phases, unit, navigationOverrides }
               <div>
                 <div className="mb-2 flex flex-wrap items-center gap-2">
                   <Badge variant="outline" className="text-xs font-medium">
-                    {formatCurriculumSegmentLessonLabel(
-                      lesson.unitNumber,
-                      lesson.orderIndex,
-                    )}
+                    {formatCurriculumSegmentLessonLabel(lesson.unitNumber, lesson.orderIndex)}
                   </Badge>
                   <Badge variant="secondary" className="text-xs font-medium">
                     {theme.label}
@@ -193,7 +208,7 @@ export function PhaseHeader({ lesson, phase, phases, unit, navigationOverrides }
           </div>
           {(() => {
             const firstBlock = phase.contentBlocks?.[0];
-            if (firstBlock && firstBlock.type === 'markdown') {
+            if (firstBlock && firstBlock.type === "markdown") {
               return (
                 <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                   {firstBlock.content}

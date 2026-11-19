@@ -26,7 +26,7 @@
  *     server-issued IDs.
  */
 
-import { SCHEMA_REGISTRY } from '../../activities/schemas';
+import { SCHEMA_REGISTRY } from "../../activities/schemas";
 
 export interface AuthoringActivity {
   id: string;
@@ -43,16 +43,16 @@ export interface AuthoringSection {
 }
 
 export type AuthoringPhaseType =
-  | 'explore'
-  | 'vocabulary'
-  | 'learn'
-  | 'key_concept'
-  | 'worked_example'
-  | 'guided_practice'
-  | 'independent_practice'
-  | 'assessment'
-  | 'discourse'
-  | 'reflection';
+  | "explore"
+  | "vocabulary"
+  | "learn"
+  | "key_concept"
+  | "worked_example"
+  | "guided_practice"
+  | "independent_practice"
+  | "assessment"
+  | "discourse"
+  | "reflection";
 
 export interface AuthoringPhase {
   id: string;
@@ -85,27 +85,30 @@ export type NormalizeLessonDraftResult =
 
 function isAuthoringPhaseType(value: string): value is AuthoringPhaseType {
   return [
-    'explore', 'vocabulary', 'learn', 'key_concept', 'worked_example',
-    'guided_practice', 'independent_practice', 'assessment', 'discourse',
-    'reflection',
+    "explore",
+    "vocabulary",
+    "learn",
+    "key_concept",
+    "worked_example",
+    "guided_practice",
+    "independent_practice",
+    "assessment",
+    "discourse",
+    "reflection",
   ].includes(value);
 }
 
 /** Derive a stable, position-based id for a node in the draft. */
 function makeStableId(prefix: string, path: ReadonlyArray<string | number>): string {
-  const segments = path.length > 0 ? path.join('_') : 'root';
+  const segments = path.length > 0 ? path.join("_") : "root";
   return `${prefix}_${segments}`;
 }
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
-  return value != null && typeof value === 'object' && !Array.isArray(value);
+  return value != null && typeof value === "object" && !Array.isArray(value);
 }
 
-function pushError(
-  errors: AuthoringError[],
-  path: (string | number)[],
-  message: string,
-): void {
+function pushError(errors: AuthoringError[], path: (string | number)[], message: string): void {
   errors.push({ path, message });
 }
 
@@ -125,15 +128,15 @@ export function normalizeLessonDraft(input: unknown): NormalizeLessonDraftResult
   if (!isPlainObject(input)) {
     return {
       success: false,
-      errors: [{ path: [], message: 'Lesson draft must be an object' }],
+      errors: [{ path: [], message: "Lesson draft must be an object" }],
     };
   }
 
   const title = input.title;
-  if (typeof title !== 'string' || title.length === 0) {
+  if (typeof title !== "string" || title.length === 0) {
     return {
       success: false,
-      errors: [{ path: ['title'], message: 'Lesson must have a non-empty title' }],
+      errors: [{ path: ["title"], message: "Lesson must have a non-empty title" }],
     };
   }
 
@@ -141,7 +144,7 @@ export function normalizeLessonDraft(input: unknown): NormalizeLessonDraftResult
   if (!Array.isArray(phasesInput) || phasesInput.length === 0) {
     return {
       success: false,
-      errors: [{ path: ['phases'], message: 'Lesson must contain at least one phase' }],
+      errors: [{ path: ["phases"], message: "Lesson must contain at least one phase" }],
     };
   }
 
@@ -150,13 +153,13 @@ export function normalizeLessonDraft(input: unknown): NormalizeLessonDraftResult
 
   phasesInput.forEach((rawPhase, phaseIdx) => {
     if (!isPlainObject(rawPhase)) {
-      pushError(errors, ['phases', phaseIdx], 'Phase must be an object');
+      pushError(errors, ["phases", phaseIdx], "Phase must be an object");
       return;
     }
 
     const phaseTitle = rawPhase.title;
-    if (typeof phaseTitle !== 'string' || phaseTitle.length === 0) {
-      pushError(errors, ['phases', phaseIdx, 'title'], 'Phase must have a non-empty title');
+    if (typeof phaseTitle !== "string" || phaseTitle.length === 0) {
+      pushError(errors, ["phases", phaseIdx, "title"], "Phase must have a non-empty title");
       return;
     }
 
@@ -164,8 +167,8 @@ export function normalizeLessonDraft(input: unknown): NormalizeLessonDraftResult
     if (!Array.isArray(sectionsInput) || sectionsInput.length === 0) {
       pushError(
         errors,
-        ['phases', phaseIdx, 'sections'],
-        'Phase must contain at least one section',
+        ["phases", phaseIdx, "sections"],
+        "Phase must contain at least one section",
       );
       return;
     }
@@ -174,16 +177,20 @@ export function normalizeLessonDraft(input: unknown): NormalizeLessonDraftResult
 
     sectionsInput.forEach((rawSection, sectionIdx) => {
       if (!isPlainObject(rawSection)) {
-        pushError(errors, ['phases', phaseIdx, 'sections', sectionIdx], 'Section must be an object');
+        pushError(
+          errors,
+          ["phases", phaseIdx, "sections", sectionIdx],
+          "Section must be an object",
+        );
         return;
       }
 
       const sectionTitle = rawSection.title;
-      if (typeof sectionTitle !== 'string' || sectionTitle.length === 0) {
+      if (typeof sectionTitle !== "string" || sectionTitle.length === 0) {
         pushError(
           errors,
-          ['phases', phaseIdx, 'sections', sectionIdx, 'title'],
-          'Section must have a non-empty title',
+          ["phases", phaseIdx, "sections", sectionIdx, "title"],
+          "Section must have a non-empty title",
         );
         return;
       }
@@ -192,8 +199,8 @@ export function normalizeLessonDraft(input: unknown): NormalizeLessonDraftResult
       if (!Array.isArray(activitiesInput) || activitiesInput.length === 0) {
         pushError(
           errors,
-          ['phases', phaseIdx, 'sections', sectionIdx, 'activities'],
-          'Section must contain at least one activity',
+          ["phases", phaseIdx, "sections", sectionIdx, "activities"],
+          "Section must contain at least one activity",
         );
         return;
       }
@@ -204,18 +211,18 @@ export function normalizeLessonDraft(input: unknown): NormalizeLessonDraftResult
         if (!isPlainObject(rawActivity)) {
           pushError(
             errors,
-            ['phases', phaseIdx, 'sections', sectionIdx, 'activities', activityIdx],
-            'Activity must be an object',
+            ["phases", phaseIdx, "sections", sectionIdx, "activities", activityIdx],
+            "Activity must be an object",
           );
           return;
         }
 
         const componentKey = rawActivity.componentKey;
-        if (typeof componentKey !== 'string' || componentKey.length === 0) {
+        if (typeof componentKey !== "string" || componentKey.length === 0) {
           pushError(
             errors,
-            ['phases', phaseIdx, 'sections', sectionIdx, 'activities', activityIdx, 'componentKey'],
-            'Activity must have a non-empty componentKey',
+            ["phases", phaseIdx, "sections", sectionIdx, "activities", activityIdx, "componentKey"],
+            "Activity must have a non-empty componentKey",
           );
           return;
         }
@@ -223,18 +230,17 @@ export function normalizeLessonDraft(input: unknown): NormalizeLessonDraftResult
         if (!(componentKey in SCHEMA_REGISTRY)) {
           pushError(
             errors,
-            ['phases', phaseIdx, 'sections', sectionIdx, 'activities', activityIdx, 'componentKey'],
+            ["phases", phaseIdx, "sections", sectionIdx, "activities", activityIdx, "componentKey"],
             `Activity key '${componentKey}' is not a registered canonical schema key. Authoring only accepts canonical activity keys.`,
           );
           return;
         }
 
         const rawProps = rawActivity.props;
-        const props: Record<string, unknown> =
-          isPlainObject(rawProps) ? { ...rawProps } : {};
+        const props: Record<string, unknown> = isPlainObject(rawProps) ? { ...rawProps } : {};
 
         normalizedActivities.push({
-          id: makeStableId('act', [phaseIdx, sectionIdx, activityIdx]),
+          id: makeStableId("act", [phaseIdx, sectionIdx, activityIdx]),
           componentKey,
           props,
         });
@@ -245,15 +251,15 @@ export function normalizeLessonDraft(input: unknown): NormalizeLessonDraftResult
       }
 
       const normalizedSection: AuthoringSection = {
-        id: makeStableId('sec', [phaseIdx, sectionIdx]),
+        id: makeStableId("sec", [phaseIdx, sectionIdx]),
         title: sectionTitle,
         activities: normalizedActivities,
       };
 
-      if (typeof rawSection.markdown === 'string') {
+      if (typeof rawSection.markdown === "string") {
         normalizedSection.markdown = rawSection.markdown;
       }
-      if (typeof rawSection.callout === 'string') {
+      if (typeof rawSection.callout === "string") {
         normalizedSection.callout = rawSection.callout;
       }
 
@@ -265,11 +271,12 @@ export function normalizeLessonDraft(input: unknown): NormalizeLessonDraftResult
     }
 
     normalizedPhases.push({
-      id: makeStableId('phase', [phaseIdx]),
+      id: makeStableId("phase", [phaseIdx]),
       title: phaseTitle,
-      phaseType: typeof rawPhase.phaseType === 'string' && isAuthoringPhaseType(rawPhase.phaseType)
-        ? rawPhase.phaseType
-        : undefined,
+      phaseType:
+        typeof rawPhase.phaseType === "string" && isAuthoringPhaseType(rawPhase.phaseType)
+          ? rawPhase.phaseType
+          : undefined,
       sections: normalizedSections,
     });
   });
@@ -281,14 +288,14 @@ export function normalizeLessonDraft(input: unknown): NormalizeLessonDraftResult
   if (normalizedPhases.length === 0) {
     return {
       success: false,
-      errors: [{ path: ['phases'], message: 'Lesson must contain at least one phase' }],
+      errors: [{ path: ["phases"], message: "Lesson must contain at least one phase" }],
     };
   }
 
   return {
     success: true,
     data: {
-      id: makeStableId('lesson', []),
+      id: makeStableId("lesson", []),
       title,
       phases: normalizedPhases,
     },

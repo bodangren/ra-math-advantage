@@ -1,21 +1,31 @@
-import { NextResponse } from 'next/server';
-import { z } from 'zod';
-import { requireActiveStudentRequestClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, fetchInternalMutation, fetchQuery, api, internal } from '@/lib/convex/server';
-import { COMPETENCY_STANDARD_CODE_PATTERN } from '@/lib/curriculum/standards';
-import { formatRateLimitError } from '@/convex/apiRateLimits';
-import type { Id } from '@/convex/_generated/dataModel';
-import type { CompletePhaseRequest, CompletePhaseResponse } from '@/types/api';
+import { NextResponse } from "next/server";
+import { z } from "zod";
+import { requireActiveStudentRequestClaims } from "@/lib/auth/server";
+import {
+  fetchInternalQuery,
+  fetchInternalMutation,
+  fetchQuery,
+  api,
+  internal,
+} from "@/lib/convex/server";
+import { COMPETENCY_STANDARD_CODE_PATTERN } from "@/lib/curriculum/standards";
+import { formatRateLimitError } from "@/convex/apiRateLimits";
+import type { Id } from "@/convex/_generated/dataModel";
+import type { CompletePhaseRequest, CompletePhaseResponse } from "@/types/api";
 
 const CompletePhaseSchema = z.object({
-  lessonId: z.string().trim().min(1, 'Lesson identifier is required'),
-  phaseNumber: z.number().int().positive('Phase number must be a positive integer'),
-  timeSpent: z.number().int().nonnegative('Time spent must be non-negative').max(86400, 'Time spent cannot exceed 24 hours'),
-  idempotencyKey: z.string().uuid('Invalid idempotency key format'),
+  lessonId: z.string().trim().min(1, "Lesson identifier is required"),
+  phaseNumber: z.number().int().positive("Phase number must be a positive integer"),
+  timeSpent: z
+    .number()
+    .int()
+    .nonnegative("Time spent must be non-negative")
+    .max(86400, "Time spent cannot exceed 24 hours"),
+  idempotencyKey: z.string().uuid("Invalid idempotency key format"),
   linkedStandardId: z
     .string()
     .trim()
-    .regex(COMPETENCY_STANDARD_CODE_PATTERN, 'Invalid standard code format')
+    .regex(COMPETENCY_STANDARD_CODE_PATTERN, "Invalid standard code format")
     .optional(),
 });
 
@@ -34,13 +44,13 @@ export async function POST(request: Request) {
   try {
     const claimsOrResponse = await requireActiveStudentRequestClaims(
       request,
-      'Unauthorized. Please sign in to complete phases.',
+      "Unauthorized. Please sign in to complete phases.",
     );
     if (claimsOrResponse instanceof Response) {
       return claimsOrResponse;
     }
 
-    const userId = claimsOrResponse.sub as Id<'profiles'>;
+    const userId = claimsOrResponse.sub as Id<"profiles">;
 
     const body = await request.json();
     const validationResult = CompletePhaseSchema.safeParse(body);
@@ -48,10 +58,10 @@ export async function POST(request: Request) {
     if (!validationResult.success) {
       return NextResponse.json(
         {
-          error: 'Invalid request data',
+          error: "Invalid request data",
           details: validationResult.error.flatten().fieldErrors,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -63,10 +73,13 @@ export async function POST(request: Request) {
       linkedStandardId,
     }: CompletePhasePayload = validationResult.data;
 
-    const rateLimitResult = await fetchInternalMutation(internal.apiRateLimits.checkAndIncrementApiRateLimit, {
-      userId,
-      endpoint: 'phases/complete',
-    });
+    const rateLimitResult = await fetchInternalMutation(
+      internal.apiRateLimits.checkAndIncrementApiRateLimit,
+      {
+        userId,
+        endpoint: "phases/complete",
+      },
+    );
     if (!rateLimitResult.allowed) {
       return formatRateLimitError(rateLimitResult.windowExpiresAt);
     }
@@ -75,20 +88,22 @@ export async function POST(request: Request) {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const apiAny = api as any;
-    const lesson = await fetchQuery(apiAny.api.getLessonBySlugOrId, { identifier: lessonIdentifier });
+    const lesson = await fetchQuery(apiAny.api.getLessonBySlugOrId, {
+      identifier: lessonIdentifier,
+    });
     if (!lesson) {
       return NextResponse.json(
         {
-          error: 'Lesson not found',
-          details: 'No lesson exists for the provided identifier',
+          error: "Lesson not found",
+          details: "No lesson exists for the provided identifier",
         },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
     const canAccess = await fetchInternalQuery(internal.api.canAccessPhase, {
       userId: userId,
-      lessonId: lesson._id as Id<'lessons'>,
+      lessonId: lesson._id as Id<"lessons">,
       phaseNumber,
     });
 
@@ -97,42 +112,45 @@ export async function POST(request: Request) {
         {
           success: false,
           nextPhaseUnlocked: false,
-          error: 'Cannot complete this phase. Previous phase must be completed first.',
+          error: "Cannot complete this phase. Previous phase must be completed first.",
         },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
     const phaseContext = await fetchInternalQuery(internal.api.getPhaseContext, {
-      lessonId: lesson._id as Id<'lessons'>,
+      lessonId: lesson._id as Id<"lessons">,
       phaseNumber,
     });
 
     if (!phaseContext) {
       return NextResponse.json(
         {
-          error: 'Phase not found',
-          details: 'No versioned phase exists for this lesson and phase number',
+          error: "Phase not found",
+          details: "No versioned phase exists for this lesson and phase number",
         },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
     const { phaseId, lessonVersionId } = phaseContext;
 
-    const existingWithKey = await fetchInternalQuery(internal.api.getStudentProgressByIdempotencyKey, {
-      userId: userId,
-      idempotencyKey,
-    });
+    const existingWithKey = await fetchInternalQuery(
+      internal.api.getStudentProgressByIdempotencyKey,
+      {
+        userId: userId,
+        idempotencyKey,
+      },
+    );
 
     if (existingWithKey) {
       if (existingWithKey.phaseId !== phaseId) {
         return NextResponse.json(
           {
-            error: 'Idempotency key already used for a different phase',
-            details: 'This idempotency key has been used for another completion',
+            error: "Idempotency key already used for a different phase",
+            details: "This idempotency key has been used for another completion",
           },
-          { status: 409 }
+          { status: 409 },
         );
       }
 
@@ -144,9 +162,11 @@ export async function POST(request: Request) {
       return NextResponse.json({
         success: true,
         nextPhaseUnlocked: nextPhaseExists,
-        message: 'Phase already completed (idempotent request)',
+        message: "Phase already completed (idempotent request)",
         phaseId,
-        completedAt: existingWithKey.completedAt ? new Date(existingWithKey.completedAt).toISOString() : serverTimestamp,
+        completedAt: existingWithKey.completedAt
+          ? new Date(existingWithKey.completedAt).toISOString()
+          : serverTimestamp,
       });
     }
 
@@ -155,7 +175,11 @@ export async function POST(request: Request) {
       phaseId,
     });
 
-    if (existingProgress && existingProgress.idempotencyKey && existingProgress.idempotencyKey !== idempotencyKey) {
+    if (
+      existingProgress &&
+      existingProgress.idempotencyKey &&
+      existingProgress.idempotencyKey !== idempotencyKey
+    ) {
       const nextPhaseExists = await fetchInternalQuery(internal.api.checkNextPhaseExists, {
         lessonVersionId,
         phaseNumber,
@@ -167,9 +191,11 @@ export async function POST(request: Request) {
           nextPhaseUnlocked: nextPhaseExists,
           message: `Phase ${phaseNumber} was already completed.`,
           phaseId,
-          completedAt: existingProgress.completedAt ? new Date(existingProgress.completedAt).toISOString() : serverTimestamp,
+          completedAt: existingProgress.completedAt
+            ? new Date(existingProgress.completedAt).toISOString()
+            : serverTimestamp,
         },
-        { status: 200 }
+        { status: 200 },
       );
     }
 
@@ -193,19 +219,24 @@ export async function POST(request: Request) {
         ? `Phase ${phaseNumber} completed. Phase ${phaseNumber + 1} unlocked.`
         : `Phase ${phaseNumber} completed. This was the final phase.`,
       phaseId,
-      completedAt: result.completedAt ? new Date(result.completedAt).toISOString() : serverTimestamp,
+      completedAt: result.completedAt
+        ? new Date(result.completedAt).toISOString()
+        : serverTimestamp,
     };
 
     return NextResponse.json(response, { status: 200 });
   } catch (error) {
-    const message = error instanceof Error ? error.message : '';
-    if (message.includes('idempotency_conflict')) return NextResponse.json({ error: 'This request key is already used.' }, { status: 409 });
-    if (message.includes('required_activity_incomplete')) return NextResponse.json({ error: 'Save and pass each required activity before you complete this phase.' }, { status: 409 });
-    if (message.includes('previous_phase_incomplete') || message.includes('phase_unavailable')) return NextResponse.json({ error: 'This phase is not available.' }, { status: 403 });
-    console.error('Unexpected error in /api/phases/complete:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    const message = error instanceof Error ? error.message : "";
+    if (message.includes("idempotency_conflict"))
+      return NextResponse.json({ error: "This request key is already used." }, { status: 409 });
+    if (message.includes("required_activity_incomplete"))
+      return NextResponse.json(
+        { error: "Save and pass each required activity before you complete this phase." },
+        { status: 409 },
+      );
+    if (message.includes("previous_phase_incomplete") || message.includes("phase_unavailable"))
+      return NextResponse.json({ error: "This phase is not available." }, { status: 403 });
+    console.error("Unexpected error in /api/phases/complete:", error);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

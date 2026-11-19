@@ -1,1 +1,1 @@
-export { getPasswordRequirementText, validatePasswordForRole } from '@math-platform/core-auth';
+export { getPasswordRequirementText, validatePasswordForRole } from "@math-platform/core-auth";

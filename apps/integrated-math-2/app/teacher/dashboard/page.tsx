@@ -5,10 +5,9 @@ import type { Id } from "@/convex/_generated/dataModel";
 import { createClass } from "../actions";
 export default async function TeacherDashboard() {
   const claims = await requireTeacherSessionClaims("/teacher/dashboard");
-  const data = await fetchInternalQuery(
-    internal.teacher.getTeacherDashboardData,
-    { teacherId: claims.sub as Id<"profiles"> },
-  );
+  const data = await fetchInternalQuery(internal.teacher.getTeacherDashboardData, {
+    teacherId: claims.sub as Id<"profiles">,
+  });
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
       <h1 className="text-3xl font-display mb-6">My classes</h1>
@@ -34,9 +33,7 @@ export default async function TeacherDashboard() {
         <ul className="space-y-4">
           {data.classes.map((classroom) => (
             <li key={classroom.id} className="card-surface p-5">
-              <Link href={`/teacher/classes/${classroom.id}`}>
-                {classroom.name}
-              </Link>
+              <Link href={`/teacher/classes/${classroom.id}`}>{classroom.name}</Link>
             </li>
           ))}
         </ul>

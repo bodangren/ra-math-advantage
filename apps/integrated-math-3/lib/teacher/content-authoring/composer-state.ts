@@ -31,13 +31,8 @@ import {
   type AuthoringPhaseType,
   type AuthoringSection,
 } from "./authoring-model";
-import {
-  validateActivityConfig,
-} from "./activity-config-validation";
-import {
-  sanitizeAuthoringText,
-  sanitizeLessonDraft,
-} from "./sanitize-authored-text";
+import { validateActivityConfig } from "./activity-config-validation";
+import { sanitizeAuthoringText, sanitizeLessonDraft } from "./sanitize-authored-text";
 import { SCHEMA_REGISTRY, getPropsSchema } from "../../activities/schemas";
 
 /* ------------------------------------------------------------------------ */
@@ -165,14 +160,16 @@ function deriveField(name: string, rawSchema: unknown, requiredHint: boolean): F
       return { name, kind: "object", required };
     case "union": {
       const options = Array.isArray(def.options) ? def.options : [];
-      const variantFields = options.map((variant: { shape?: Record<string, unknown> }, idx: number) => {
-        if (variant.shape) {
-          return Object.entries(variant.shape).map(([childName, childSchema]) =>
-            deriveField(childName, childSchema, true),
-          );
-        }
-        return deriveField(`variant_${idx}`, variant, true);
-      }).flat();
+      const variantFields = options
+        .map((variant: { shape?: Record<string, unknown> }, idx: number) => {
+          if (variant.shape) {
+            return Object.entries(variant.shape).map(([childName, childSchema]) =>
+              deriveField(childName, childSchema, true),
+            );
+          }
+          return deriveField(`variant_${idx}`, variant, true);
+        })
+        .flat();
       return { name, kind: "union", required, variantFields };
     }
     default:
@@ -212,9 +209,7 @@ export function deriveActivityFormFields(componentKey: string): FormField[] {
       `Schema for activity key '${componentKey}' is not an object schema and cannot be used to derive fields.`,
     );
   }
-  return Object.entries(shape).map(([name, fieldSchema]) =>
-    deriveField(name, fieldSchema, true),
-  );
+  return Object.entries(shape).map(([name, fieldSchema]) => deriveField(name, fieldSchema, true));
 }
 
 /* ------------------------------------------------------------------------ */
@@ -372,7 +367,13 @@ function sanitizeProps(props: Record<string, unknown>): Record<string, unknown> 
 export function composerReducer(state: ComposerState, action: ComposerAction): ComposerState {
   switch (action.type) {
     case "ADD_PHASE": {
-      const phases = state.lesson.phases.map((p) => ({ ...p, sections: p.sections.map((s) => ({ ...s, activities: s.activities.map((a) => ({ ...a })) })) }));
+      const phases = state.lesson.phases.map((p) => ({
+        ...p,
+        sections: p.sections.map((s) => ({
+          ...s,
+          activities: s.activities.map((a) => ({ ...a })),
+        })),
+      }));
       phases.push({
         id: freshId("phase"),
         title: action.payload.title,
@@ -571,9 +572,7 @@ export function composerReducer(state: ComposerState, action: ComposerAction): C
             if (section.id !== action.payload.sectionId) return section;
             return {
               ...section,
-              activities: section.activities.filter(
-                (a) => a.id !== action.payload.activityId,
-              ),
+              activities: section.activities.filter((a) => a.id !== action.payload.activityId),
             };
           }),
         };

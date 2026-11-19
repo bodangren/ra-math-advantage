@@ -1,11 +1,11 @@
-const percentageFormatter = new Intl.NumberFormat('en-US', {
+const percentageFormatter = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 1,
   minimumFractionDigits: 0,
 });
 
-const dateTimeFormatter = new Intl.DateTimeFormat('en-US', {
-  dateStyle: 'medium',
-  timeStyle: 'short',
+const dateTimeFormatter = new Intl.DateTimeFormat("en-US", {
+  dateStyle: "medium",
+  timeStyle: "short",
 });
 
 /**
@@ -34,12 +34,12 @@ export function formatTeacherProgressPercentage(value: number) {
  */
 export function formatTeacherLastActive(value: string | null) {
   if (!value) {
-    return 'No activity recorded';
+    return "No activity recorded";
   }
 
   const parsed = new Date(value);
   if (Number.isNaN(parsed.getTime())) {
-    return 'No activity recorded';
+    return "No activity recorded";
   }
 
   return dateTimeFormatter.format(parsed);
@@ -51,13 +51,13 @@ export function formatTeacherLastActive(value: string | null) {
  */
 export function formatTeacherLastActiveDate(value: string | null) {
   if (!value) {
-    return '';
+    return "";
   }
 
   const parsed = new Date(value);
   if (Number.isNaN(parsed.getTime())) {
-    return '';
+    return "";
   }
 
-  return parsed.toISOString().split('T')[0];
+  return parsed.toISOString().split("T")[0];
 }

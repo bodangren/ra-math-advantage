@@ -4,11 +4,7 @@ import { requireStudentSessionClaims } from "@/lib/auth/server";
 import { fetchInternalQuery, internal } from "@/lib/convex/server";
 import type { Id } from "@/convex/_generated/dataModel";
 import { LearningSession } from "@/components/lesson/LearningSession";
-export default async function LessonPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function LessonPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const claims = await requireStudentSessionClaims(`/student/lessons/${slug}`);
   const lesson = await fetchInternalQuery(internal.learning.getLesson, {

@@ -9,8 +9,6 @@ import { StrugglingStudentsPanel, type StudentStruggleMetrics } from "./Struggli
 import { ResetCardModal } from "./ResetCardModal";
 import { BumpPriorityModal } from "./BumpPriorityModal";
 
-
-
 interface TeacherClass {
   id: string;
   name: string;
@@ -23,7 +21,6 @@ interface TeacherSRSDashboardClientProps {
   classes: TeacherClass[];
   initialClassId?: string;
 }
-
 
 /**
  * Renders the SRS practice analytics dashboard for teachers, with class health,
@@ -42,11 +39,13 @@ export function TeacherSRSDashboardClient({
   initialClassId,
 }: TeacherSRSDashboardClientProps) {
   const [selectedClassId, setSelectedClassId] = useState<string>(
-    initialClassId ?? classes[0]?.id ?? ""
+    initialClassId ?? classes[0]?.id ?? "",
   );
   const [classHealth, setClassHealth] = useState<ClassHealthSummary | null>(null);
   const [weakFamilies, setWeakFamilies] = useState<FamilyPerformance[] | null>(null);
-  const [strugglingStudents, setStrugglingStudents] = useState<StudentStruggleMetrics[] | null>(null);
+  const [strugglingStudents, setStrugglingStudents] = useState<StudentStruggleMetrics[] | null>(
+    null,
+  );
   const [loadError, setLoadError] = useState<string | null>(null);
   const [isLoadingData, setIsLoadingData] = useState(classes.length > 0);
 
@@ -55,7 +54,6 @@ export function TeacherSRSDashboardClient({
   const [resetStudentName, setResetStudentName] = useState<string>("");
 
   const [isBumpModalOpen, setIsBumpModalOpen] = useState(false);
-
 
   /**
    * Loads SRS health, weak families, and struggling students for the given class.
@@ -66,13 +64,14 @@ export function TeacherSRSDashboardClient({
     setIsLoadingData(true);
     try {
       setLoadError(null);
-      const response = await fetch(`/api/teacher/srs?classId=${encodeURIComponent(classId)}`, { cache: 'no-store' });
+      const response = await fetch(`/api/teacher/srs?classId=${encodeURIComponent(classId)}`, {
+        cache: "no-store",
+      });
       const result = await response.json();
-      if (!response.ok) throw new Error(result.error ?? 'Unable to load practice data.');
+      if (!response.ok) throw new Error(result.error ?? "Unable to load practice data.");
       setClassHealth(result.health);
       setWeakFamilies(result.families);
       setStrugglingStudents(result.students);
-
     } catch (err) {
       setLoadError(err instanceof Error ? err.message : "Unable to load practice data.");
       setClassHealth(null);
@@ -89,7 +88,6 @@ export function TeacherSRSDashboardClient({
     }
   }, [selectedClassId, loadClassData]);
 
-
   /**
    * Updates the selected class and triggers a data reload.
    *
@@ -99,7 +97,6 @@ export function TeacherSRSDashboardClient({
     setSelectedClassId(newClassId);
   };
 
-
   /**
    * Resets a student's SRS card for the given problem family.
    *
@@ -107,15 +104,18 @@ export function TeacherSRSDashboardClient({
    */
   const handleResetCard = async (problemFamilyId: string) => {
     try {
-      const response = await fetch('/api/teacher/srs', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'reset', studentId: resetStudentId, problemFamilyId }) });
-      if (!response.ok) throw new Error('Unable to reset this card.');
+      const response = await fetch("/api/teacher/srs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "reset", studentId: resetStudentId, problemFamilyId }),
+      });
+      if (!response.ok) throw new Error("Unable to reset this card.");
       await loadClassData(selectedClassId);
     } catch (err) {
       console.error("Failed to reset card:", err);
       throw err;
     }
   };
-
 
   /**
    * Bumps the priority for a problem family, making cards due immediately.
@@ -124,15 +124,18 @@ export function TeacherSRSDashboardClient({
    */
   const handleBumpPriority = async (problemFamilyId: string) => {
     try {
-      const response = await fetch('/api/teacher/srs', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'bump', classId: selectedClassId, problemFamilyId }) });
-      if (!response.ok) throw new Error('Unable to change this family priority.');
+      const response = await fetch("/api/teacher/srs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "bump", classId: selectedClassId, problemFamilyId }),
+      });
+      if (!response.ok) throw new Error("Unable to change this family priority.");
       await loadClassData(selectedClassId);
     } catch (err) {
       console.error("Failed to bump priority:", err);
       throw err;
     }
   };
-
 
   /**
    * Opens the reset card modal for the given student.
@@ -145,7 +148,6 @@ export function TeacherSRSDashboardClient({
     setResetStudentName(studentName);
     setIsResetModalOpen(true);
   };
-
 
   /**
    * Opens the bump priority modal.

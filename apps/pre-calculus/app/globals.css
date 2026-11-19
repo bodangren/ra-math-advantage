@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;510;590&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;510;590&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap");
 
 @import "tailwindcss";
 @config "../tailwind.config.ts";
@@ -15,28 +15,28 @@
 @layer base {
   :root {
     --radius: 0.5rem;
-    --font-sans: 'Inter Variable', 'SF Pro Display', -apple-system, system-ui, sans-serif;
-    --font-mono: 'Fira Code', 'ui-monospace', 'SF Mono', Menlo, monospace;
+    --font-sans: "Inter Variable", "SF Pro Display", -apple-system, system-ui, sans-serif;
+    --font-mono: "Fira Code", "ui-monospace", "SF Mono", Menlo, monospace;
 
     --background: 0.06 0.015 260;
     --foreground: 0.95 0.02 250;
-    --card: 0.10 0.018 255;
+    --card: 0.1 0.018 255;
     --card-foreground: 0.95 0.02 250;
-    --popover: 0.12 0.020 255;
+    --popover: 0.12 0.02 255;
     --popover-foreground: 0.95 0.02 250;
-    --primary: 0.50 0.19 265;
+    --primary: 0.5 0.19 265;
     --primary-foreground: 0.98 0.003 250;
     --secondary: 0.14 0.025 255;
     --secondary-foreground: 0.95 0.02 250;
-    --muted: 0.12 0.020 255;
+    --muted: 0.12 0.02 255;
     --muted-foreground: 0.65 0.025 250;
-    --accent: 0.70 0.15 210;
+    --accent: 0.7 0.15 210;
     --accent-foreground: 0.06 0.015 210;
-    --destructive: 0.60 0.22 15;
+    --destructive: 0.6 0.22 15;
     --destructive-foreground: 0.95 0.02 250;
     --border: 0.16 0.025 255;
     --input: 0.14 0.025 255;
-    --ring: 0.50 0.19 265;
+    --ring: 0.5 0.19 265;
   }
 }
 
@@ -55,7 +55,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-weight: 510;
     line-height: 1.2;
   }
@@ -66,20 +71,42 @@
     font-family: var(--font-mono);
   }
 
-  .bg-canvas { background-color: #080a0f; }
-  .bg-panel { background-color: #141820; }
-  .bg-surface { background-color: #1e2330; }
-  .bg-surface-light { background-color: #2a3040; }
+  .bg-canvas {
+    background-color: #080a0f;
+  }
+  .bg-panel {
+    background-color: #141820;
+  }
+  .bg-surface {
+    background-color: #1e2330;
+  }
+  .bg-surface-light {
+    background-color: #2a3040;
+  }
 
-  .text-primary-text { color: #f1f5f9; }
-  .text-secondary-text { color: #cbd5e1; }
-  .text-muted-text { color: #94a3b8; }
+  .text-primary-text {
+    color: #f1f5f9;
+  }
+  .text-secondary-text {
+    color: #cbd5e1;
+  }
+  .text-muted-text {
+    color: #94a3b8;
+  }
 
-  .text-brand { color: #5e6ad2; }
-  .text-accent { color: #38bdf8; }
+  .text-brand {
+    color: #5e6ad2;
+  }
+  .text-accent {
+    color: #38bdf8;
+  }
 
-  .border-subtle { border-color: rgba(255,255,255,0.10); }
-  .border-strong { border-color: rgba(255,255,255,0.18); }
+  .border-subtle {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  .border-strong {
+    border-color: rgba(255, 255, 255, 0.18);
+  }
 
   .shadow-elevated {
     box-shadow:
@@ -89,14 +116,18 @@
   }
 
   .shadow-focus {
-    box-shadow: 0 0 0 2px #080a0f, 0 0 0 4px #38bdf8;
+    box-shadow:
+      0 0 0 2px #080a0f,
+      0 0 0 4px #38bdf8;
   }
 
   .card-surface {
     background-color: #1e2330;
-    border: 1px solid rgba(255,255,255,0.18);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 8px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
   }
   .card-surface:hover {
     transform: translateY(-3px);
@@ -112,7 +143,9 @@
     border-radius: 6px;
     font-size: 16px;
     font-weight: 510;
-    transition: background-color 0.15s ease, transform 0.15s ease;
+    transition:
+      background-color 0.15s ease,
+      transform 0.15s ease;
   }
   .btn-primary:hover {
     background-color: #4f5bc0;
@@ -124,10 +157,12 @@
     color: #f8fafc;
     padding: 12px 24px;
     border-radius: 6px;
-    border: 1px solid rgba(255,255,255,0.18);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     font-size: 16px;
     font-weight: 510;
-    transition: background-color 0.15s ease, border-color 0.15s ease;
+    transition:
+      background-color 0.15s ease,
+      border-color 0.15s ease;
   }
   .btn-secondary:hover {
     background-color: #2a3040;
@@ -136,7 +171,7 @@
 
   .input-field {
     background-color: #1e2330;
-    border: 1px solid rgba(255,255,255,0.10);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 6px;
     padding: 12px 14px;
     color: #f1f5f9;
@@ -160,23 +195,30 @@
     border-radius: 3px;
     background-color: rgba(94, 106, 210, 0.15);
     color: #5e6ad2;
-    border: 1px solid rgba(94, 106, 210, 0.30);
+    border: 1px solid rgba(94, 106, 210, 0.3);
   }
 
-  .animate-fade-up { animation: fadeUp 0.5s ease both; }
-  .animate-fade-up-1 { animation: fadeUp 0.5s 0.07s ease both; }
-  .animate-fade-up-2 { animation: fadeUp 0.5s 0.14s ease both; }
-  .animate-fade-up-3 { animation: fadeUp 0.5s 0.21s ease both; }
-  .animate-fade-up-4 { animation: fadeUp 0.5s 0.28s ease both; }
-  .animate-fade-up-5 { animation: fadeUp 0.5s 0.35s ease both; }
+  .animate-fade-up {
+    animation: fadeUp 0.5s ease both;
+  }
+  .animate-fade-up-1 {
+    animation: fadeUp 0.5s 0.07s ease both;
+  }
+  .animate-fade-up-2 {
+    animation: fadeUp 0.5s 0.14s ease both;
+  }
+  .animate-fade-up-3 {
+    animation: fadeUp 0.5s 0.21s ease both;
+  }
+  .animate-fade-up-4 {
+    animation: fadeUp 0.5s 0.28s ease both;
+  }
+  .animate-fade-up-5 {
+    animation: fadeUp 0.5s 0.35s ease both;
+  }
 
   .gradient-hero {
-    background: linear-gradient(
-      135deg,
-      #080a0f 0%,
-      #0d1117 40%,
-      #111827 100%
-    );
+    background: linear-gradient(135deg, #080a0f 0%, #0d1117 40%, #111827 100%);
   }
 
   .gradient-brand {
@@ -191,6 +233,12 @@
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

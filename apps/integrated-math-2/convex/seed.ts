@@ -77,84 +77,32 @@ export const seedAll = internalAction({
   handler: async (ctx): Promise<{ lessons: number }> => {
     await ctx.runMutation(internal.seed.seed_standards.seedStandards, {});
     let lessons = 0;
-    lessons += (
-      await ctx.runMutation(
-        internal.seed.seed_module_1_lessons.seedModule1Lessons,
-        {},
-      )
-    ).lessons.length;
-    lessons += (
-      await ctx.runMutation(
-        internal.seed.seed_module_2_lessons.seedModule2Lessons,
-        {},
-      )
-    ).lessons.length;
-    lessons += (
-      await ctx.runMutation(
-        internal.seed.seed_module_3_lessons.seedModule3Lessons,
-        {},
-      )
-    ).lessons.length;
-    lessons += (
-      await ctx.runMutation(
-        internal.seed.seed_module_4_lessons.seedModule4Lessons,
-        {},
-      )
-    ).lessons.length;
-    lessons += (
-      await ctx.runMutation(
-        internal.seed.seed_module_5_lessons.seedModule5Lessons,
-        {},
-      )
-    ).lessons.length;
-    lessons += (
-      await ctx.runMutation(
-        internal.seed.seed_module_6_lessons.seedModule6Lessons,
-        {},
-      )
-    ).lessons.length;
-    lessons += (
-      await ctx.runMutation(
-        internal.seed.seed_module_7_lessons.seedModule7Lessons,
-        {},
-      )
-    ).lessons.length;
-    lessons += (
-      await ctx.runMutation(
-        internal.seed.seed_module_8_lessons.seedModule8Lessons,
-        {},
-      )
-    ).lessons.length;
-    lessons += (
-      await ctx.runMutation(
-        internal.seed.seed_module_9_lessons.seedModule9Lessons,
-        {},
-      )
-    ).lessons.length;
-    lessons += (
-      await ctx.runMutation(
-        internal.seed.seed_module_10_lessons.seedModule10Lessons,
-        {},
-      )
-    ).lessons.length;
-    lessons += (
-      await ctx.runMutation(
-        internal.seed.seed_module_11_lessons.seedModule11Lessons,
-        {},
-      )
-    ).lessons.length;
-    lessons += (
-      await ctx.runMutation(
-        internal.seed.seed_module_12_lessons.seedModule12Lessons,
-        {},
-      )
-    ).lessons.length;
-    lessons += (
-      await ctx.runMutation(
-        internal.seed.seed_module_13_lessons.seedModule13Lessons,
-        {},
-      )
-    ).lessons.length;
+    lessons += (await ctx.runMutation(internal.seed.seed_module_1_lessons.seedModule1Lessons, {}))
+      .lessons.length;
+    lessons += (await ctx.runMutation(internal.seed.seed_module_2_lessons.seedModule2Lessons, {}))
+      .lessons.length;
+    lessons += (await ctx.runMutation(internal.seed.seed_module_3_lessons.seedModule3Lessons, {}))
+      .lessons.length;
+    lessons += (await ctx.runMutation(internal.seed.seed_module_4_lessons.seedModule4Lessons, {}))
+      .lessons.length;
+    lessons += (await ctx.runMutation(internal.seed.seed_module_5_lessons.seedModule5Lessons, {}))
+      .lessons.length;
+    lessons += (await ctx.runMutation(internal.seed.seed_module_6_lessons.seedModule6Lessons, {}))
+      .lessons.length;
+    lessons += (await ctx.runMutation(internal.seed.seed_module_7_lessons.seedModule7Lessons, {}))
+      .lessons.length;
+    lessons += (await ctx.runMutation(internal.seed.seed_module_8_lessons.seedModule8Lessons, {}))
+      .lessons.length;
+    lessons += (await ctx.runMutation(internal.seed.seed_module_9_lessons.seedModule9Lessons, {}))
+      .lessons.length;
+    lessons += (await ctx.runMutation(internal.seed.seed_module_10_lessons.seedModule10Lessons, {}))
+      .lessons.length;
+    lessons += (await ctx.runMutation(internal.seed.seed_module_11_lessons.seedModule11Lessons, {}))
+      .lessons.length;
+    lessons += (await ctx.runMutation(internal.seed.seed_module_12_lessons.seedModule12Lessons, {}))
+      .lessons.length;
+    lessons += (await ctx.runMutation(internal.seed.seed_module_13_lessons.seedModule13Lessons, {}))
+      .lessons.length;
     await ctx.runMutation(internal.seed.seed_im2_module_1_standards.seedModule1LessonStandards, {});
     await ctx.runMutation(internal.seed.seed_im2_module_2_standards.seedModule2LessonStandards, {});
     await ctx.runMutation(internal.seed.seed_im2_module_3_standards.seedModule3LessonStandards, {});
@@ -164,10 +112,22 @@ export const seedAll = internalAction({
     await ctx.runMutation(internal.seed.seed_im2_module_7_standards.seedModule7LessonStandards, {});
     await ctx.runMutation(internal.seed.seed_im2_module_8_standards.seedModule8LessonStandards, {});
     await ctx.runMutation(internal.seed.seed_im2_module_9_standards.seedModule9LessonStandards, {});
-    await ctx.runMutation(internal.seed.seed_im2_module_10_standards.seedModule10LessonStandards, {});
-    await ctx.runMutation(internal.seed.seed_im2_module_11_standards.seedModule11LessonStandards, {});
-    await ctx.runMutation(internal.seed.seed_im2_module_12_standards.seedModule12LessonStandards, {});
-    await ctx.runMutation(internal.seed.seed_im2_module_13_standards.seedModule13LessonStandards, {});
+    await ctx.runMutation(
+      internal.seed.seed_im2_module_10_standards.seedModule10LessonStandards,
+      {},
+    );
+    await ctx.runMutation(
+      internal.seed.seed_im2_module_11_standards.seedModule11LessonStandards,
+      {},
+    );
+    await ctx.runMutation(
+      internal.seed.seed_im2_module_12_standards.seedModule12LessonStandards,
+      {},
+    );
+    await ctx.runMutation(
+      internal.seed.seed_im2_module_13_standards.seedModule13LessonStandards,
+      {},
+    );
     return { lessons };
   },
 });

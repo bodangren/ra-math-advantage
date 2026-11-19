@@ -12,21 +12,21 @@
 //   - A backslash-form `from "apps\..."` style string.
 //   - A quoted path inside a JS comment that *could* be mistaken for a real import.
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 
 const FORBIDDEN_IMPORT_PATTERNS: Array<{ pattern: RegExp; label: string }> = [
-  { pattern: /from\s+['"]\s*apps\//, label: 'apps/' },
-  { pattern: /from\s+['"]\s*convex\/_generated/, label: 'convex/_generated/' },
-  { pattern: /from\s+['"]\s*[^'"]*lib\/practice/, label: 'lib/practice (practice-submission lib)' },
+  { pattern: /from\s+['"]\s*apps\//, label: "apps/" },
+  { pattern: /from\s+['"]\s*convex\/_generated/, label: "convex/_generated/" },
+  { pattern: /from\s+['"]\s*[^'"]*lib\/practice/, label: "lib/practice (practice-submission lib)" },
   {
     pattern: /from\s+['"]\s*[^'"]*practice-core\/contract/,
-    label: '@math-platform/practice-core/contract (practice.v1 envelope)',
+    label: "@math-platform/practice-core/contract (practice.v1 envelope)",
   },
 ];
 
 function checkImports(source: string): Array<{ line: string; label: string }> {
   const violations: Array<{ line: string; label: string }> = [];
-  const lines = source.split('\n');
+  const lines = source.split("\n");
   for (const line of lines) {
     for (const { pattern, label } of FORBIDDEN_IMPORT_PATTERNS) {
       if (pattern.test(line)) {
@@ -37,8 +37,8 @@ function checkImports(source: string): Array<{ line: string; label: string }> {
   return violations;
 }
 
-describe('boundary scanner — adversarial fixture gaps', () => {
-  it('DEMO: scanner MISSES relative ../apps/ imports (regression risk)', () => {
+describe("boundary scanner — adversarial fixture gaps", () => {
+  it("DEMO: scanner MISSES relative ../apps/ imports (regression risk)", () => {
     // The spec forbids any import from `apps/`. A primitive is "leaf" — it
     // can't reach into the apps directory. This is a real regression risk.
     const badCode = `import { foo } from '../../../apps/integrated-math-3/convex/seed/seed_practice_items';`;
@@ -47,17 +47,17 @@ describe('boundary scanner — adversarial fixture gaps', () => {
     expect(caught).toHaveLength(0);
   });
 
-  it('scanner correctly catches direct apps/ imports (baseline)', () => {
+  it("scanner correctly catches direct apps/ imports (baseline)", () => {
     const badCode = `import { foo } from 'apps/integrated-math-3/lib/foo';`;
     expect(checkImports(badCode)).toHaveLength(1);
   });
 
-  it('scanner correctly catches convex/_generated/ imports (baseline)', () => {
+  it("scanner correctly catches convex/_generated/ imports (baseline)", () => {
     const badCode = `import type { Doc } from "convex/_generated/dataModel";`;
     expect(checkImports(badCode)).toHaveLength(1);
   });
 
-  it('scanner correctly catches practice-core/contract imports (baseline)', () => {
+  it("scanner correctly catches practice-core/contract imports (baseline)", () => {
     const badCode = `import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';`;
     expect(checkImports(badCode)).toHaveLength(1);
   });

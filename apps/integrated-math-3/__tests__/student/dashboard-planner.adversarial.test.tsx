@@ -44,28 +44,28 @@
  * The mock setup mirrors the P3 file (string-sentinel `internal.*` refs,
  * jest-dom matchers from `vitest.setup.ts`).
  */
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, cleanup } from '@testing-library/react';
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { render, screen, cleanup } from "@testing-library/react";
 
 const mockClaims = {
-  sub: 'p1',
-  username: 'student1',
-  role: 'student' as const,
-  organizationId: 'org1',
+  sub: "p1",
+  username: "student1",
+  role: "student" as const,
+  organizationId: "org1",
   iat: 0,
   exp: 9999999999,
 };
 
-vi.mock('@/lib/auth/server', () => ({
+vi.mock("@/lib/auth/server", () => ({
   requireStudentSessionClaims: vi.fn().mockResolvedValue(mockClaims),
 }));
 
-const mockStudentVizRef = 'student/knowledge_state:getStudentKnowledgeState';
-const mockPracticeStatsRef = 'mock-practice-stats';
-const mockGetDashboardDataRef = 'mock-get-dashboard-data';
+const mockStudentVizRef = "student/knowledge_state:getStudentKnowledgeState";
+const mockPracticeStatsRef = "mock-practice-stats";
+const mockGetDashboardDataRef = "mock-get-dashboard-data";
 
 interface MockVisualization {
-  schemaVersion: 'v1';
+  schemaVersion: "v1";
   mastered: unknown[];
   ready: unknown[];
   blocked: unknown[];
@@ -74,7 +74,7 @@ interface MockVisualization {
     nodeId: string;
     title: string;
     description?: string;
-    state: 'mastered' | 'ready' | 'blocked' | 'review_due' | 'unknown';
+    state: "mastered" | "ready" | "blocked" | "review_due" | "unknown";
     difficulty?: number;
     domain?: string;
   }>;
@@ -86,13 +86,13 @@ function defaultDashboardUnits() {
   return [
     {
       unitNumber: 1,
-      unitTitle: 'Quadratic Functions',
+      unitTitle: "Quadratic Functions",
       lessons: [
         {
-          id: 'l1',
+          id: "l1",
           unitNumber: 1,
-          title: 'Intro',
-          slug: 'intro',
+          title: "Intro",
+          slug: "intro",
           description: null,
           completedPhases: 0,
           totalPhases: 6,
@@ -107,7 +107,7 @@ let mockedFetchInternalQuery: ReturnType<typeof vi.fn>;
 
 beforeEach(async () => {
   cleanup();
-  const mod = await import('@/lib/convex/server');
+  const mod = await import("@/lib/convex/server");
   mockedFetchInternalQuery = mod.fetchInternalQuery as unknown as ReturnType<typeof vi.fn>;
   mockedFetchInternalQuery.mockReset();
   mockedFetchInternalQuery.mockImplementation((ref: unknown) => {
@@ -119,7 +119,7 @@ beforeEach(async () => {
     }
     if (ref === mockStudentVizRef) {
       return Promise.resolve({
-        schemaVersion: 'v1',
+        schemaVersion: "v1",
         mastered: [],
         ready: [],
         blocked: [],
@@ -133,7 +133,7 @@ beforeEach(async () => {
   });
 });
 
-vi.mock('@/lib/convex/server', () => ({
+vi.mock("@/lib/convex/server", () => ({
   fetchInternalQuery: vi.fn().mockImplementation((ref: unknown) => {
     if (ref === mockPracticeStatsRef) {
       return Promise.resolve({ dueCount: 0, streak: 0, lastPracticedAt: null });
@@ -142,13 +142,13 @@ vi.mock('@/lib/convex/server', () => ({
       return Promise.resolve([
         {
           unitNumber: 1,
-          unitTitle: 'Quadratic Functions',
+          unitTitle: "Quadratic Functions",
           lessons: [
             {
-              id: 'l1',
+              id: "l1",
               unitNumber: 1,
-              title: 'Intro',
-              slug: 'intro',
+              title: "Intro",
+              slug: "intro",
               description: null,
               completedPhases: 0,
               totalPhases: 6,
@@ -160,7 +160,7 @@ vi.mock('@/lib/convex/server', () => ({
     }
     if (ref === mockStudentVizRef) {
       return Promise.resolve({
-        schemaVersion: 'v1',
+        schemaVersion: "v1",
         mastered: [],
         ready: [],
         blocked: [],
@@ -183,7 +183,7 @@ vi.mock('@/lib/convex/server', () => ({
 
 function setVisualization(visualization: Partial<MockVisualization>) {
   const full: MockVisualization = {
-    schemaVersion: 'v1',
+    schemaVersion: "v1",
     mastered: [],
     ready: [],
     blocked: [],
@@ -218,30 +218,28 @@ function setVisualization(visualization: Partial<MockVisualization>) {
 // chain (FR-5) and the P3 contract (FR-2) would silently break.
 // ---------------------------------------------------------------------------
 
-describe('P3 wire-level link contract', () => {
-  it('encodes the recommended item nodeId into the focus link href', async () => {
+describe("P3 wire-level link contract", () => {
+  it("encodes the recommended item nodeId into the focus link href", async () => {
     setVisualization({
       recommendedNext: [
         {
-          nodeId: 'im3-m1-linear-functions',
-          title: 'Linear Functions',
-          state: 'ready',
+          nodeId: "im3-m1-linear-functions",
+          title: "Linear Functions",
+          state: "ready",
           difficulty: 0.45,
         },
       ],
     });
 
-    const { default: DashboardPage } = await import('@/app/student/dashboard/page');
+    const { default: DashboardPage } = await import("@/app/student/dashboard/page");
     const jsx = await DashboardPage();
     render(jsx);
 
-    const item = screen.getByTestId('recommended-next-item');
-    expect(item.getAttribute('href')).toBe(
-      '/student/study?focus=im3-m1-linear-functions',
-    );
+    const item = screen.getByTestId("recommended-next-item");
+    expect(item.getAttribute("href")).toBe("/student/study?focus=im3-m1-linear-functions");
   });
 
-  it('URL-encodes nodeId values that contain special characters', async () => {
+  it("URL-encodes nodeId values that contain special characters", async () => {
     // Real planner nodeIds use the shape `math.im3.<area>.<id>` (dots are
     // safe in path segments but not in raw query strings) plus potentially
     // Unicode titles for internationalized subjects. Verify the panel
@@ -249,31 +247,31 @@ describe('P3 wire-level link contract', () => {
     setVisualization({
       recommendedNext: [
         {
-          nodeId: 'math.im3.module 1/skill & functions',
-          title: 'Module 1: Functions',
-          state: 'ready',
+          nodeId: "math.im3.module 1/skill & functions",
+          title: "Module 1: Functions",
+          state: "ready",
           difficulty: 0.5,
         },
         {
-          nodeId: '中文-技能',
-          title: '中文技能',
-          state: 'ready',
+          nodeId: "中文-技能",
+          title: "中文技能",
+          state: "ready",
           difficulty: 0.5,
         },
       ],
     });
 
-    const { default: DashboardPage } = await import('@/app/student/dashboard/page');
+    const { default: DashboardPage } = await import("@/app/student/dashboard/page");
     const jsx = await DashboardPage();
     render(jsx);
 
-    const items = screen.getAllByTestId('recommended-next-item');
+    const items = screen.getAllByTestId("recommended-next-item");
     expect(items).toHaveLength(2);
-    expect(items[0].getAttribute('href')).toBe(
-      `/student/study?focus=${encodeURIComponent('math.im3.module 1/skill & functions')}`,
+    expect(items[0].getAttribute("href")).toBe(
+      `/student/study?focus=${encodeURIComponent("math.im3.module 1/skill & functions")}`,
     );
-    expect(items[1].getAttribute('href')).toBe(
-      `/student/study?focus=${encodeURIComponent('中文-技能')}`,
+    expect(items[1].getAttribute("href")).toBe(
+      `/student/study?focus=${encodeURIComponent("中文-技能")}`,
     );
   });
 });
@@ -288,30 +286,30 @@ describe('P3 wire-level link contract', () => {
 // future change that switches to `dangerouslySetInnerHTML`.
 // ---------------------------------------------------------------------------
 
-describe('P3 XSS-safety boundary', () => {
-  it('escapes HTML/script tags in recommended item titles and descriptions', async () => {
-    const xssTitle = '<script>window.__pwned=true</script>';
+describe("P3 XSS-safety boundary", () => {
+  it("escapes HTML/script tags in recommended item titles and descriptions", async () => {
+    const xssTitle = "<script>window.__pwned=true</script>";
     const xssDescription = '<img src=x onerror="window.__pwned=true">';
     setVisualization({
       recommendedNext: [
         {
-          nodeId: 'safe-id',
+          nodeId: "safe-id",
           title: xssTitle,
           description: xssDescription,
-          state: 'ready',
+          state: "ready",
           difficulty: 0.5,
         },
       ],
     });
 
-    const { default: DashboardPage } = await import('@/app/student/dashboard/page');
+    const { default: DashboardPage } = await import("@/app/student/dashboard/page");
     const jsx = await DashboardPage();
     render(jsx);
 
     // The escaped text must be present in the DOM as text content, not
     // interpreted as a script. Using `getByText` with `normalizer` disabled
     // so that a successful match requires the literal text to exist.
-    const item = screen.getByTestId('recommended-next-item');
+    const item = screen.getByTestId("recommended-next-item");
     expect(item.textContent).toContain(xssTitle);
     expect(item.textContent).toContain(xssDescription);
     expect((globalThis as { __pwned?: boolean }).__pwned).toBeUndefined();
@@ -331,21 +329,21 @@ describe('P3 XSS-safety boundary', () => {
 // over an empty state.
 // ---------------------------------------------------------------------------
 
-describe('P3 empty-list / non-zero-count boundary', () => {
-  it('suppresses the active-misconception badge when recommendedNext is empty but count > 0', async () => {
+describe("P3 empty-list / non-zero-count boundary", () => {
+  it("suppresses the active-misconception badge when recommendedNext is empty but count > 0", async () => {
     setVisualization({
       recommendedNext: [],
       activeMisconceptionCount: 5,
     });
 
-    const { default: DashboardPage } = await import('@/app/student/dashboard/page');
+    const { default: DashboardPage } = await import("@/app/student/dashboard/page");
     const jsx = await DashboardPage();
     render(jsx);
 
-    expect(screen.getByTestId('recommended-next-panel')).toBeInTheDocument();
-    expect(screen.getByText('No recommendations yet')).toBeInTheDocument();
-    expect(screen.queryByTestId('recommended-next-item')).not.toBeInTheDocument();
-    expect(screen.queryByTestId('active-misconception-count')).not.toBeInTheDocument();
+    expect(screen.getByTestId("recommended-next-panel")).toBeInTheDocument();
+    expect(screen.getByText("No recommendations yet")).toBeInTheDocument();
+    expect(screen.queryByTestId("recommended-next-item")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("active-misconception-count")).not.toBeInTheDocument();
   });
 });
 
@@ -361,19 +359,19 @@ describe('P3 empty-list / non-zero-count boundary', () => {
 // "0% difficulty" (not "NaN% difficulty") and NaN must still render "".
 // ---------------------------------------------------------------------------
 
-describe('P3 difficulty boundary at the rendered layer', () => {
+describe("P3 difficulty boundary at the rendered layer", () => {
   const cases: ReadonlyArray<{
     label: string;
     difficulty: number;
     expected: string;
   }> = [
-    { label: 'difficulty = 0', difficulty: 0, expected: '0% difficulty' },
-    { label: 'difficulty = 1', difficulty: 1, expected: '100% difficulty' },
-    { label: 'difficulty = NaN', difficulty: Number.NaN, expected: '' },
+    { label: "difficulty = 0", difficulty: 0, expected: "0% difficulty" },
+    { label: "difficulty = 1", difficulty: 1, expected: "100% difficulty" },
+    { label: "difficulty = NaN", difficulty: Number.NaN, expected: "" },
     {
-      label: 'difficulty = 0.5 (rounds to 50%)',
+      label: "difficulty = 0.5 (rounds to 50%)",
       difficulty: 0.5,
-      expected: '50% difficulty',
+      expected: "50% difficulty",
     },
   ];
 
@@ -382,22 +380,22 @@ describe('P3 difficulty boundary at the rendered layer', () => {
       setVisualization({
         recommendedNext: [
           {
-            nodeId: `node-${label.replace(/\W+/g, '-')}`,
+            nodeId: `node-${label.replace(/\W+/g, "-")}`,
             title: label,
-            state: 'ready',
+            state: "ready",
             difficulty,
           },
         ],
       });
 
-      const { default: DashboardPage } = await import('@/app/student/dashboard/page');
+      const { default: DashboardPage } = await import("@/app/student/dashboard/page");
       const jsx = await DashboardPage();
       render(jsx);
 
-      const item = screen.getByTestId('recommended-next-item');
-      if (expected === '') {
+      const item = screen.getByTestId("recommended-next-item");
+      if (expected === "") {
         // Empty string: the difficulty span should have no text content.
-        expect(item.textContent ?? '').not.toMatch(/% difficulty/);
+        expect(item.textContent ?? "").not.toMatch(/% difficulty/);
       } else {
         expect(item.textContent).toContain(expected);
       }
@@ -417,8 +415,8 @@ describe('P3 difficulty boundary at the rendered layer', () => {
 // contract.
 // ---------------------------------------------------------------------------
 
-describe('P3 null visualization payload boundary', () => {
-  it('falls back to the empty state when the visualization ref resolves to null', async () => {
+describe("P3 null visualization payload boundary", () => {
+  it("falls back to the empty state when the visualization ref resolves to null", async () => {
     mockedFetchInternalQuery.mockImplementation((ref: unknown) => {
       if (ref === mockPracticeStatsRef) {
         return Promise.resolve({ dueCount: 0, streak: 0, lastPracticedAt: null });
@@ -432,14 +430,14 @@ describe('P3 null visualization payload boundary', () => {
       return Promise.resolve(null);
     });
 
-    const { default: DashboardPage } = await import('@/app/student/dashboard/page');
+    const { default: DashboardPage } = await import("@/app/student/dashboard/page");
     const jsx = await DashboardPage();
     render(jsx);
 
-    expect(screen.getByTestId('recommended-next-panel')).toBeInTheDocument();
-    expect(screen.getByText('No recommendations yet')).toBeInTheDocument();
-    expect(screen.queryByTestId('recommended-next-item')).not.toBeInTheDocument();
-    expect(screen.queryByTestId('active-misconception-count')).not.toBeInTheDocument();
+    expect(screen.getByTestId("recommended-next-panel")).toBeInTheDocument();
+    expect(screen.getByText("No recommendations yet")).toBeInTheDocument();
+    expect(screen.queryByTestId("recommended-next-item")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("active-misconception-count")).not.toBeInTheDocument();
   });
 });
 
@@ -454,28 +452,28 @@ describe('P3 null visualization payload boundary', () => {
 // string and renders the description safely.
 // ---------------------------------------------------------------------------
 
-describe('P3 minimal-payload boundary', () => {
-  it('renders an item with empty title and non-empty description without crashing', async () => {
+describe("P3 minimal-payload boundary", () => {
+  it("renders an item with empty title and non-empty description without crashing", async () => {
     setVisualization({
       recommendedNext: [
         {
-          nodeId: 'minimal-payload',
-          title: '',
-          description: 'A description only.',
-          state: 'ready',
+          nodeId: "minimal-payload",
+          title: "",
+          description: "A description only.",
+          state: "ready",
           // No difficulty, no domain.
         },
       ],
     });
 
-    const { default: DashboardPage } = await import('@/app/student/dashboard/page');
+    const { default: DashboardPage } = await import("@/app/student/dashboard/page");
     const jsx = await DashboardPage();
     render(jsx);
 
-    const item = screen.getByTestId('recommended-next-item');
-    expect(item.textContent).toContain('A description only.');
+    const item = screen.getByTestId("recommended-next-item");
+    expect(item.textContent).toContain("A description only.");
     // No difficulty span: the `formatDifficulty` helper returns '' for
     // undefined, so the percentage label is absent.
-    expect(item.textContent ?? '').not.toMatch(/% difficulty/);
+    expect(item.textContent ?? "").not.toMatch(/% difficulty/);
   });
 });

@@ -1,27 +1,27 @@
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
 
-import { StudentChoices } from '../../../components/unit/StudentChoices';
-import { buildUnitContent } from '@/lib/test-utils/mock-factories';
+import { StudentChoices } from "../../../components/unit/StudentChoices";
+import { buildUnitContent } from "@/lib/test-utils/mock-factories";
 
-describe('StudentChoices', () => {
-  it('renders venture, role, and presentation sections when provided', () => {
+describe("StudentChoices", () => {
+  it("renders venture, role, and presentation sections when provided", () => {
     const unitContent = buildUnitContent({
       studentChoices: {
-        ventures: ['TechStart', 'Nova'],
-        roles: ['CFO'],
-        presentationFormats: ['Live demo']
-      }
+        ventures: ["TechStart", "Nova"],
+        roles: ["CFO"],
+        presentationFormats: ["Live demo"],
+      },
     });
 
     render(<StudentChoices studentChoices={unitContent.studentChoices} />);
 
-    expect(screen.getByText('TechStart')).toBeInTheDocument();
-    expect(screen.getByText('CFO')).toBeInTheDocument();
-    expect(screen.getByText('Live demo')).toBeInTheDocument();
+    expect(screen.getByText("TechStart")).toBeInTheDocument();
+    expect(screen.getByText("CFO")).toBeInTheDocument();
+    expect(screen.getByText("Live demo")).toBeInTheDocument();
   });
 
-  it('returns null when no options exist', () => {
+  it("returns null when no options exist", () => {
     const unitContent = buildUnitContent({ studentChoices: undefined });
 
     const { container } = render(<StudentChoices studentChoices={unitContent.studentChoices} />);

@@ -14,20 +14,20 @@
  * - deterministic UTC bucketing (no DST math)
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 
-import { computeRetentionCurve } from '../../src/metrics/retention';
-import { stabilityToRetention } from '@math-platform/srs-engine';
+import { computeRetentionCurve } from "../../src/metrics/retention";
+import { stabilityToRetention } from "@math-platform/srs-engine";
 import {
   COHORT_WINDOW_START_MS,
   COHORT_WINDOW_END_MS,
   MS_PER_DAY,
   isoAt,
   makeCard,
-} from '../fixtures/efficacy.fixtures';
+} from "../fixtures/efficacy.fixtures";
 
-describe('computeRetentionCurve', () => {
-  it('returns an empty curve and n=0 for an empty card set', () => {
+describe("computeRetentionCurve", () => {
+  it("returns an empty curve and n=0 for an empty card set", () => {
     const result = computeRetentionCurve({
       cards: [],
       windowStartMs: COHORT_WINDOW_START_MS,
@@ -40,11 +40,11 @@ describe('computeRetentionCurve', () => {
     expect(result.inputs.windowMs).toEqual([COHORT_WINDOW_START_MS, COHORT_WINDOW_END_MS]);
   });
 
-  it('excludes cards with reps === 0 from the retention curve', () => {
+  it("excludes cards with reps === 0 from the retention curve", () => {
     const result = computeRetentionCurve({
       cards: [
-        makeCard({ cardId: 'c_new', reps: 0, stability: 0 }),
-        makeCard({ cardId: 'c_new_2', reps: 0, stability: 12 }),
+        makeCard({ cardId: "c_new", reps: 0, stability: 0 }),
+        makeCard({ cardId: "c_new_2", reps: 0, stability: 12 }),
       ],
       windowStartMs: COHORT_WINDOW_START_MS,
       windowEndMs: COHORT_WINDOW_END_MS,
@@ -54,26 +54,26 @@ describe('computeRetentionCurve', () => {
     expect(result.n).toBe(0);
   });
 
-  it('buckets retention by UTC day, inclusive start, exclusive end', () => {
+  it("buckets retention by UTC day, inclusive start, exclusive end", () => {
     const reviewedDay1 = COHORT_WINDOW_START_MS + 0 * MS_PER_DAY;
     const reviewedDay2 = COHORT_WINDOW_START_MS + 1 * MS_PER_DAY;
 
     const result = computeRetentionCurve({
       cards: [
         makeCard({
-          cardId: 'c_day1_a',
+          cardId: "c_day1_a",
           reps: 3,
           stability: 30,
           lastReview: isoAt(reviewedDay1),
         }),
         makeCard({
-          cardId: 'c_day1_b',
+          cardId: "c_day1_b",
           reps: 3,
           stability: 90,
           lastReview: isoAt(reviewedDay1 + 60_000),
         }),
         makeCard({
-          cardId: 'c_day2_a',
+          cardId: "c_day2_a",
           reps: 5,
           stability: 30,
           lastReview: isoAt(reviewedDay2),
@@ -108,16 +108,26 @@ describe('computeRetentionCurve', () => {
     expect(day1!.bucketEndMs).toBe(reviewedDay1 + MS_PER_DAY);
   });
 
-  it('excludes cards whose lastReview falls outside the window (start inclusive, end exclusive)', () => {
+  it("excludes cards whose lastReview falls outside the window (start inclusive, end exclusive)", () => {
     const justBeforeWindow = COHORT_WINDOW_START_MS - 1;
     const atWindowStart = COHORT_WINDOW_START_MS;
     const atWindowEnd = COHORT_WINDOW_END_MS;
 
     const result = computeRetentionCurve({
       cards: [
-        makeCard({ cardId: 'c_before', reps: 3, stability: 30, lastReview: isoAt(justBeforeWindow) }),
-        makeCard({ cardId: 'c_at_start', reps: 3, stability: 30, lastReview: isoAt(atWindowStart) }),
-        makeCard({ cardId: 'c_at_end', reps: 3, stability: 30, lastReview: isoAt(atWindowEnd) }),
+        makeCard({
+          cardId: "c_before",
+          reps: 3,
+          stability: 30,
+          lastReview: isoAt(justBeforeWindow),
+        }),
+        makeCard({
+          cardId: "c_at_start",
+          reps: 3,
+          stability: 30,
+          lastReview: isoAt(atWindowStart),
+        }),
+        makeCard({ cardId: "c_at_end", reps: 3, stability: 30, lastReview: isoAt(atWindowEnd) }),
       ],
       windowStartMs: COHORT_WINDOW_START_MS,
       windowEndMs: COHORT_WINDOW_END_MS,
@@ -130,11 +140,11 @@ describe('computeRetentionCurve', () => {
     expect(result.value[0].cardCount).toBe(1);
   });
 
-  it('emits MetricResult shape with n equal to included card count and inputs trace', () => {
+  it("emits MetricResult shape with n equal to included card count and inputs trace", () => {
     const result = computeRetentionCurve({
       cards: [
-        makeCard({ cardId: 'c_a', reps: 2, stability: 30 }),
-        makeCard({ cardId: 'c_b', reps: 0, stability: 30 }), // excluded
+        makeCard({ cardId: "c_a", reps: 2, stability: 30 }),
+        makeCard({ cardId: "c_b", reps: 0, stability: 30 }), // excluded
       ],
       windowStartMs: COHORT_WINDOW_START_MS,
       windowEndMs: COHORT_WINDOW_END_MS,

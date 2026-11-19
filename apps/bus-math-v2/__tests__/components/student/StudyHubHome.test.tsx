@@ -47,10 +47,7 @@ describe("StudyHubHome", () => {
   });
 
   it("shows due review count", () => {
-    (useStudyHooks.useDueTerms as Mock).mockReturnValue([
-      { slug: "term-1" },
-      { slug: "term-2" },
-    ]);
+    (useStudyHooks.useDueTerms as Mock).mockReturnValue([{ slug: "term-1" }, { slug: "term-2" }]);
     render(<StudyHubHome />);
     expect(screen.getByText("2 terms")).toBeInTheDocument();
   });

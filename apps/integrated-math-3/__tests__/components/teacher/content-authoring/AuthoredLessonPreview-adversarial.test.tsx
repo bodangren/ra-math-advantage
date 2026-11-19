@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, waitFor, cleanup } from '@testing-library/react';
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { render, screen, waitFor, cleanup } from "@testing-library/react";
 
 /**
  * Phase 3 — AuthoredLessonPreview adversarial tests.
@@ -26,8 +26,8 @@ import { render, screen, waitFor, cleanup } from '@testing-library/react';
  *  - Multiple valid activities in the same section all render in order.
  */
 
-import { registerActivity, clearActivityRegistry } from '../../../../lib/activities/registry';
-import type { AuthoredDraft } from '@/components/teacher/content-authoring/AuthoredLessonPreview';
+import { registerActivity, clearActivityRegistry } from "../../../../lib/activities/registry";
+import type { AuthoredDraft } from "@/components/teacher/content-authoring/AuthoredLessonPreview";
 
 interface CapturedActivity {
   activityId: string;
@@ -44,7 +44,7 @@ const GraphingExplorerProbe = vi.fn(({ activityId, mode, ...rest }: CapturedActi
   <div
     data-testid={`probe-graphing-${activityId}`}
     data-mode={mode}
-    data-equation={String(rest.equation ?? '')}
+    data-equation={String(rest.equation ?? "")}
   >
     graphing-probe
   </div>
@@ -54,7 +54,7 @@ const ComprehensionQuizProbe = vi.fn(({ activityId, mode, ...rest }: CapturedAct
   <div
     data-testid={`probe-quiz-${activityId}`}
     data-mode={mode}
-    data-questions-count={Array.isArray(rest.questions) ? String(rest.questions.length) : '0'}
+    data-questions-count={Array.isArray(rest.questions) ? String(rest.questions.length) : "0"}
   >
     quiz-probe
   </div>
@@ -64,80 +64,80 @@ const FillInTheBlankProbe = vi.fn(({ activityId, mode, ...rest }: CapturedActivi
   <div
     data-testid={`probe-blank-${activityId}`}
     data-mode={mode}
-    data-template={String(rest.template ?? '')}
+    data-template={String(rest.template ?? "")}
   >
     blank-probe
   </div>
 ));
 
 const VALID_PROPS: Record<string, Record<string, unknown>> = {
-  'graphing-explorer': { equation: 'x^2 + 3x - 4' },
-  'comprehension-quiz': {
+  "graphing-explorer": { equation: "x^2 + 3x - 4" },
+  "comprehension-quiz": {
     questions: [
       {
-        id: 'q1',
-        prompt: 'What is the vertex form of a quadratic?',
-        correctAnswer: 'y = a(x - h)^2 + k',
+        id: "q1",
+        prompt: "What is the vertex form of a quadratic?",
+        correctAnswer: "y = a(x - h)^2 + k",
       },
       {
-        id: 'q2',
-        prompt: 'What does the discriminant tell us?',
-        correctAnswer: 'Number of real roots',
+        id: "q2",
+        prompt: "What does the discriminant tell us?",
+        correctAnswer: "Number of real roots",
       },
     ],
   },
-  'fill-in-the-blank': {
-    template: 'A quadratic has degree {{blank:degree}}.',
-    blanks: [{ id: 'degree', correctAnswer: '2' }],
+  "fill-in-the-blank": {
+    template: "A quadratic has degree {{blank:degree}}.",
+    blanks: [{ id: "degree", correctAnswer: "2" }],
   },
 };
 
 function buildMultiTypeDraft(): AuthoredDraft {
   return {
-    title: 'Multi-type preview',
+    title: "Multi-type preview",
     phases: [
       {
-        title: 'Explore',
-        phaseType: 'explore',
+        title: "Explore",
+        phaseType: "explore",
         sections: [
           {
-            title: 'Graphing',
-            markdown: 'Use the graphing tool.',
+            title: "Graphing",
+            markdown: "Use the graphing tool.",
             activities: [
               {
-                componentKey: 'graphing-explorer',
-                props: { equation: 'x^2 + 3x - 4' },
+                componentKey: "graphing-explorer",
+                props: { equation: "x^2 + 3x - 4" },
               },
             ],
           },
         ],
       },
       {
-        title: 'Worked Example',
-        phaseType: 'worked_example',
+        title: "Worked Example",
+        phaseType: "worked_example",
         sections: [
           {
-            title: 'Example',
-            callout: 'Remember the vertex form.',
+            title: "Example",
+            callout: "Remember the vertex form.",
             activities: [
               {
-                componentKey: 'comprehension-quiz',
-                props: VALID_PROPS['comprehension-quiz'],
+                componentKey: "comprehension-quiz",
+                props: VALID_PROPS["comprehension-quiz"],
               },
             ],
           },
         ],
       },
       {
-        title: 'Guided Practice',
-        phaseType: 'guided_practice',
+        title: "Guided Practice",
+        phaseType: "guided_practice",
         sections: [
           {
-            title: 'Practice',
+            title: "Practice",
             activities: [
               {
-                componentKey: 'fill-in-the-blank',
-                props: VALID_PROPS['fill-in-the-blank'],
+                componentKey: "fill-in-the-blank",
+                props: VALID_PROPS["fill-in-the-blank"],
               },
             ],
           },
@@ -147,15 +147,15 @@ function buildMultiTypeDraft(): AuthoredDraft {
   };
 }
 
-describe('Phase 3 adversarial: preview forwards authored props for multiple activity types', () => {
+describe("Phase 3 adversarial: preview forwards authored props for multiple activity types", () => {
   beforeEach(() => {
     clearActivityRegistry();
     GraphingExplorerProbe.mockClear();
     ComprehensionQuizProbe.mockClear();
     FillInTheBlankProbe.mockClear();
-    registerActivity('graphing-explorer', GraphingExplorerProbe as never);
-    registerActivity('comprehension-quiz', ComprehensionQuizProbe as never);
-    registerActivity('fill-in-the-blank', FillInTheBlankProbe as never);
+    registerActivity("graphing-explorer", GraphingExplorerProbe as never);
+    registerActivity("comprehension-quiz", ComprehensionQuizProbe as never);
+    registerActivity("fill-in-the-blank", FillInTheBlankProbe as never);
   });
 
   afterEach(() => {
@@ -163,10 +163,9 @@ describe('Phase 3 adversarial: preview forwards authored props for multiple acti
     clearActivityRegistry();
   });
 
-  it('renders every activity in the draft through its registered preview component', async () => {
-    const { AuthoredLessonPreview } = await import(
-      '@/components/teacher/content-authoring/AuthoredLessonPreview'
-    );
+  it("renders every activity in the draft through its registered preview component", async () => {
+    const { AuthoredLessonPreview } =
+      await import("@/components/teacher/content-authoring/AuthoredLessonPreview");
 
     render(<AuthoredLessonPreview draft={buildMultiTypeDraft()} lessonId="lesson_adv_1" />);
 
@@ -188,10 +187,9 @@ describe('Phase 3 adversarial: preview forwards authored props for multiple acti
     expect(new Set([...graphIds, ...quizIds, ...blankIds]).size).toBe(3);
   });
 
-  it('comprehension-quiz preview receives its OWN authored questions (not graphing-explorer equation)', async () => {
-    const { AuthoredLessonPreview } = await import(
-      '@/components/teacher/content-authoring/AuthoredLessonPreview'
-    );
+  it("comprehension-quiz preview receives its OWN authored questions (not graphing-explorer equation)", async () => {
+    const { AuthoredLessonPreview } =
+      await import("@/components/teacher/content-authoring/AuthoredLessonPreview");
 
     render(<AuthoredLessonPreview draft={buildMultiTypeDraft()} lessonId="lesson_adv_2" />);
 
@@ -203,58 +201,56 @@ describe('Phase 3 adversarial: preview forwards authored props for multiple acti
     expect((lastQuizCall.questions as unknown[]).length).toBe(2);
     // The first question's prompt and correctAnswer match the authored fixture.
     const q0 = (lastQuizCall.questions as Array<{ prompt: string; correctAnswer: string }>)[0];
-    expect(q0.prompt).toBe('What is the vertex form of a quadratic?');
-    expect(q0.correctAnswer).toBe('y = a(x - h)^2 + k');
+    expect(q0.prompt).toBe("What is the vertex form of a quadratic?");
+    expect(q0.correctAnswer).toBe("y = a(x - h)^2 + k");
     // The graphing-explorer `equation` must NOT be smuggled in as a quiz prop.
     expect(lastQuizCall.equation).toBeUndefined();
   });
 
-  it('fill-in-the-blank preview receives its OWN authored template + blanks', async () => {
-    const { AuthoredLessonPreview } = await import(
-      '@/components/teacher/content-authoring/AuthoredLessonPreview'
-    );
+  it("fill-in-the-blank preview receives its OWN authored template + blanks", async () => {
+    const { AuthoredLessonPreview } =
+      await import("@/components/teacher/content-authoring/AuthoredLessonPreview");
 
     render(<AuthoredLessonPreview draft={buildMultiTypeDraft()} lessonId="lesson_adv_3" />);
 
     await waitFor(() => expect(FillInTheBlankProbe).toHaveBeenCalled());
 
     const lastBlankCall = FillInTheBlankProbe.mock.calls.at(-1)![0] as CapturedActivity;
-    expect(lastBlankCall.template).toBe('A quadratic has degree {{blank:degree}}.');
+    expect(lastBlankCall.template).toBe("A quadratic has degree {{blank:degree}}.");
     expect(Array.isArray(lastBlankCall.blanks)).toBe(true);
     expect((lastBlankCall.blanks as Array<{ id: string; correctAnswer: string }>)[0]).toEqual({
-      id: 'degree',
-      correctAnswer: '2',
+      id: "degree",
+      correctAnswer: "2",
     });
     // Cross-key props from the other activities must not leak in.
     expect(lastBlankCall.equation).toBeUndefined();
     expect(lastBlankCall.questions).toBeUndefined();
   });
 
-  it('graphing-explorer preview receives its OWN equation (not questions/template from other activities)', async () => {
-    const { AuthoredLessonPreview } = await import(
-      '@/components/teacher/content-authoring/AuthoredLessonPreview'
-    );
+  it("graphing-explorer preview receives its OWN equation (not questions/template from other activities)", async () => {
+    const { AuthoredLessonPreview } =
+      await import("@/components/teacher/content-authoring/AuthoredLessonPreview");
 
     render(<AuthoredLessonPreview draft={buildMultiTypeDraft()} lessonId="lesson_adv_4" />);
 
     await waitFor(() => expect(GraphingExplorerProbe).toHaveBeenCalled());
 
     const lastGraphCall = GraphingExplorerProbe.mock.calls.at(-1)![0] as CapturedActivity;
-    expect(lastGraphCall.equation).toBe('x^2 + 3x - 4');
+    expect(lastGraphCall.equation).toBe("x^2 + 3x - 4");
     expect(lastGraphCall.questions).toBeUndefined();
     expect(lastGraphCall.template).toBeUndefined();
   });
 });
 
-describe('Phase 3 adversarial: preview DOM safety', () => {
+describe("Phase 3 adversarial: preview DOM safety", () => {
   beforeEach(() => {
     clearActivityRegistry();
     GraphingExplorerProbe.mockClear();
     ComprehensionQuizProbe.mockClear();
     FillInTheBlankProbe.mockClear();
-    registerActivity('graphing-explorer', GraphingExplorerProbe as never);
-    registerActivity('comprehension-quiz', ComprehensionQuizProbe as never);
-    registerActivity('fill-in-the-blank', FillInTheBlankProbe as never);
+    registerActivity("graphing-explorer", GraphingExplorerProbe as never);
+    registerActivity("comprehension-quiz", ComprehensionQuizProbe as never);
+    registerActivity("fill-in-the-blank", FillInTheBlankProbe as never);
   });
 
   afterEach(() => {
@@ -262,25 +258,24 @@ describe('Phase 3 adversarial: preview DOM safety', () => {
     clearActivityRegistry();
   });
 
-  it('does not insert a <script> element into the DOM for unsafe authored callout', async () => {
-    const { AuthoredLessonPreview } = await import(
-      '@/components/teacher/content-authoring/AuthoredLessonPreview'
-    );
+  it("does not insert a <script> element into the DOM for unsafe authored callout", async () => {
+    const { AuthoredLessonPreview } =
+      await import("@/components/teacher/content-authoring/AuthoredLessonPreview");
 
     const draft: AuthoredDraft = {
-      title: 'Unsafe callout',
+      title: "Unsafe callout",
       phases: [
         {
-          title: 'P1',
-          phaseType: 'explore',
+          title: "P1",
+          phaseType: "explore",
           sections: [
             {
-              title: 'S1',
-              callout: '<script>window.__pwned=true</script>Remember the vertex form.',
+              title: "S1",
+              callout: "<script>window.__pwned=true</script>Remember the vertex form.",
               activities: [
                 {
-                  componentKey: 'graphing-explorer',
-                  props: { equation: 'x^2' },
+                  componentKey: "graphing-explorer",
+                  props: { equation: "x^2" },
                 },
               ],
             },
@@ -294,33 +289,31 @@ describe('Phase 3 adversarial: preview DOM safety', () => {
     );
 
     // No <script> element was injected by the authored callout.
-    expect(container.querySelectorAll('script').length).toBe(0);
+    expect(container.querySelectorAll("script").length).toBe(0);
     // The meaningful text survives.
-    expect(container.textContent).toContain('Remember the vertex form.');
+    expect(container.textContent).toContain("Remember the vertex form.");
     // The hostile fragment does not appear as a literal node attribute.
-    expect(container.innerHTML).not.toContain('window.__pwned');
+    expect(container.innerHTML).not.toContain("window.__pwned");
   });
 
-  it('does not insert event-handler attributes for unsafe authored markdown', async () => {
-    const { AuthoredLessonPreview } = await import(
-      '@/components/teacher/content-authoring/AuthoredLessonPreview'
-    );
+  it("does not insert event-handler attributes for unsafe authored markdown", async () => {
+    const { AuthoredLessonPreview } =
+      await import("@/components/teacher/content-authoring/AuthoredLessonPreview");
 
     const draft: AuthoredDraft = {
-      title: 'Unsafe markdown',
+      title: "Unsafe markdown",
       phases: [
         {
-          title: 'P1',
-          phaseType: 'explore',
+          title: "P1",
+          phaseType: "explore",
           sections: [
             {
-              title: 'S1',
-              markdown:
-                'Walk through <img src=x onerror="window.__pwned=true"> the steps.',
+              title: "S1",
+              markdown: 'Walk through <img src=x onerror="window.__pwned=true"> the steps.',
               activities: [
                 {
-                  componentKey: 'graphing-explorer',
-                  props: { equation: 'x^2' },
+                  componentKey: "graphing-explorer",
+                  props: { equation: "x^2" },
                 },
               ],
             },
@@ -335,30 +328,28 @@ describe('Phase 3 adversarial: preview DOM safety', () => {
 
     // The DOM must not contain any `on*=` attribute string.
     expect(container.innerHTML).not.toMatch(/\bon[a-z]+\s*=/i);
-    expect(container.textContent).toContain('Walk through');
-    expect(container.textContent).toContain('the steps.');
+    expect(container.textContent).toContain("Walk through");
+    expect(container.textContent).toContain("the steps.");
   });
 
-  it('does not insert javascript: URLs into the DOM for authored callout', async () => {
-    const { AuthoredLessonPreview } = await import(
-      '@/components/teacher/content-authoring/AuthoredLessonPreview'
-    );
+  it("does not insert javascript: URLs into the DOM for authored callout", async () => {
+    const { AuthoredLessonPreview } =
+      await import("@/components/teacher/content-authoring/AuthoredLessonPreview");
 
     const draft: AuthoredDraft = {
-      title: 'Unsafe URL',
+      title: "Unsafe URL",
       phases: [
         {
-          title: 'P1',
-          phaseType: 'explore',
+          title: "P1",
+          phaseType: "explore",
           sections: [
             {
-              title: 'S1',
-              callout:
-                'See <a href="javascript:window.__pwned=true()">this</a> for details.',
+              title: "S1",
+              callout: 'See <a href="javascript:window.__pwned=true()">this</a> for details.',
               activities: [
                 {
-                  componentKey: 'graphing-explorer',
-                  props: { equation: 'x^2' },
+                  componentKey: "graphing-explorer",
+                  props: { equation: "x^2" },
                 },
               ],
             },
@@ -371,18 +362,18 @@ describe('Phase 3 adversarial: preview DOM safety', () => {
       <AuthoredLessonPreview draft={draft} lessonId="lesson_adv_unsafe_3" />,
     );
 
-    expect(container.innerHTML.toLowerCase()).not.toContain('javascript:');
-    expect(container.textContent).toContain('See');
-    expect(container.textContent).toContain('this');
-    expect(container.textContent).toContain('for details.');
+    expect(container.innerHTML.toLowerCase()).not.toContain("javascript:");
+    expect(container.textContent).toContain("See");
+    expect(container.textContent).toContain("this");
+    expect(container.textContent).toContain("for details.");
   });
 });
 
-describe('Phase 3 adversarial: phase placement-to-mode coverage', () => {
+describe("Phase 3 adversarial: phase placement-to-mode coverage", () => {
   beforeEach(() => {
     clearActivityRegistry();
     GraphingExplorerProbe.mockClear();
-    registerActivity('graphing-explorer', GraphingExplorerProbe as never);
+    registerActivity("graphing-explorer", GraphingExplorerProbe as never);
   });
 
   afterEach(() => {
@@ -390,35 +381,30 @@ describe('Phase 3 adversarial: phase placement-to-mode coverage', () => {
     clearActivityRegistry();
   });
 
-  it('independent_practice and assessment phases both map to practice mode', async () => {
-    const { AuthoredLessonPreview } = await import(
-      '@/components/teacher/content-authoring/AuthoredLessonPreview'
-    );
+  it("independent_practice and assessment phases both map to practice mode", async () => {
+    const { AuthoredLessonPreview } =
+      await import("@/components/teacher/content-authoring/AuthoredLessonPreview");
 
     const draft: AuthoredDraft = {
-      title: 'Practice mode coverage',
+      title: "Practice mode coverage",
       phases: [
         {
-          title: 'Independent Practice',
-          phaseType: 'independent_practice',
+          title: "Independent Practice",
+          phaseType: "independent_practice",
           sections: [
             {
-              title: 'S1',
-              activities: [
-                { componentKey: 'graphing-explorer', props: { equation: 'x^2' } },
-              ],
+              title: "S1",
+              activities: [{ componentKey: "graphing-explorer", props: { equation: "x^2" } }],
             },
           ],
         },
         {
-          title: 'Assessment',
-          phaseType: 'assessment',
+          title: "Assessment",
+          phaseType: "assessment",
           sections: [
             {
-              title: 'S2',
-              activities: [
-                { componentKey: 'graphing-explorer', props: { equation: 'x^3' } },
-              ],
+              title: "S2",
+              activities: [{ componentKey: "graphing-explorer", props: { equation: "x^3" } }],
             },
           ],
         },
@@ -430,50 +416,43 @@ describe('Phase 3 adversarial: phase placement-to-mode coverage', () => {
     await waitFor(() => expect(GraphingExplorerProbe).toHaveBeenCalledTimes(2));
 
     const modes = GraphingExplorerProbe.mock.calls.map((c) => c[0].mode);
-    expect(modes).toEqual(['practice', 'practice']);
+    expect(modes).toEqual(["practice", "practice"]);
   });
 
-  it('vocabulary / learn / key_concept phases all map to teaching mode', async () => {
-    const { AuthoredLessonPreview } = await import(
-      '@/components/teacher/content-authoring/AuthoredLessonPreview'
-    );
+  it("vocabulary / learn / key_concept phases all map to teaching mode", async () => {
+    const { AuthoredLessonPreview } =
+      await import("@/components/teacher/content-authoring/AuthoredLessonPreview");
 
     const draft: AuthoredDraft = {
-      title: 'Teaching mode coverage',
+      title: "Teaching mode coverage",
       phases: [
         {
-          title: 'Vocab',
-          phaseType: 'vocabulary',
+          title: "Vocab",
+          phaseType: "vocabulary",
           sections: [
             {
-              title: 'S1',
-              activities: [
-                { componentKey: 'graphing-explorer', props: { equation: 'x^2' } },
-              ],
+              title: "S1",
+              activities: [{ componentKey: "graphing-explorer", props: { equation: "x^2" } }],
             },
           ],
         },
         {
-          title: 'Learn',
-          phaseType: 'learn',
+          title: "Learn",
+          phaseType: "learn",
           sections: [
             {
-              title: 'S2',
-              activities: [
-                { componentKey: 'graphing-explorer', props: { equation: 'x^3' } },
-              ],
+              title: "S2",
+              activities: [{ componentKey: "graphing-explorer", props: { equation: "x^3" } }],
             },
           ],
         },
         {
-          title: 'Key concept',
-          phaseType: 'key_concept',
+          title: "Key concept",
+          phaseType: "key_concept",
           sections: [
             {
-              title: 'S3',
-              activities: [
-                { componentKey: 'graphing-explorer', props: { equation: 'x^4' } },
-              ],
+              title: "S3",
+              activities: [{ componentKey: "graphing-explorer", props: { equation: "x^4" } }],
             },
           ],
         },
@@ -485,15 +464,15 @@ describe('Phase 3 adversarial: phase placement-to-mode coverage', () => {
     await waitFor(() => expect(GraphingExplorerProbe).toHaveBeenCalledTimes(3));
 
     const modes = GraphingExplorerProbe.mock.calls.map((c) => c[0].mode);
-    expect(modes).toEqual(['teaching', 'teaching', 'teaching']);
+    expect(modes).toEqual(["teaching", "teaching", "teaching"]);
   });
 });
 
-describe('Phase 3 adversarial: per-phase error isolation', () => {
+describe("Phase 3 adversarial: per-phase error isolation", () => {
   beforeEach(() => {
     clearActivityRegistry();
     GraphingExplorerProbe.mockClear();
-    registerActivity('graphing-explorer', GraphingExplorerProbe as never);
+    registerActivity("graphing-explorer", GraphingExplorerProbe as never);
   });
 
   afterEach(() => {
@@ -501,24 +480,23 @@ describe('Phase 3 adversarial: per-phase error isolation', () => {
     clearActivityRegistry();
   });
 
-  it('one invalid phase does not crash the rendering of valid sibling phases', async () => {
-    const { AuthoredLessonPreview } = await import(
-      '@/components/teacher/content-authoring/AuthoredLessonPreview'
-    );
+  it("one invalid phase does not crash the rendering of valid sibling phases", async () => {
+    const { AuthoredLessonPreview } =
+      await import("@/components/teacher/content-authoring/AuthoredLessonPreview");
 
     const draft: AuthoredDraft = {
-      title: 'Isolation',
+      title: "Isolation",
       phases: [
         {
-          title: 'Broken phase',
-          phaseType: 'explore',
+          title: "Broken phase",
+          phaseType: "explore",
           sections: [
             {
-              title: 'Broken',
+              title: "Broken",
               activities: [
                 {
                   // Wrong type: equation must be a string.
-                  componentKey: 'graphing-explorer',
+                  componentKey: "graphing-explorer",
                   props: { equation: 123 },
                 },
               ],
@@ -526,15 +504,15 @@ describe('Phase 3 adversarial: per-phase error isolation', () => {
           ],
         },
         {
-          title: 'Healthy phase',
-          phaseType: 'worked_example',
+          title: "Healthy phase",
+          phaseType: "worked_example",
           sections: [
             {
-              title: 'Healthy',
+              title: "Healthy",
               activities: [
                 {
-                  componentKey: 'graphing-explorer',
-                  props: { equation: 'x^2 + 3x - 4' },
+                  componentKey: "graphing-explorer",
+                  props: { equation: "x^2 + 3x - 4" },
                 },
               ],
             },
@@ -548,7 +526,7 @@ describe('Phase 3 adversarial: per-phase error isolation', () => {
     await waitFor(() => expect(GraphingExplorerProbe).toHaveBeenCalled());
 
     // The accessible error from the broken phase is visible.
-    expect(screen.getByRole('alert')).toBeInTheDocument();
+    expect(screen.getByRole("alert")).toBeInTheDocument();
     // The healthy phase's activity still renders through the registered
     // component (the broken phase did not poison the rest of the preview).
     // Match only the phase sections, not the per-phase error indicators.
@@ -557,7 +535,7 @@ describe('Phase 3 adversarial: per-phase error isolation', () => {
     // The healthy phase's probe DID receive its authored equation.
     const probeCalls = GraphingExplorerProbe.mock.calls;
     const healthyCall = probeCalls.find(
-      (c) => (c[0] as CapturedActivity).equation === 'x^2 + 3x - 4',
+      (c) => (c[0] as CapturedActivity).equation === "x^2 + 3x - 4",
     );
     expect(healthyCall).toBeDefined();
   });

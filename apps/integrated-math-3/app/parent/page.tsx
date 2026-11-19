@@ -1,12 +1,12 @@
-import type { ReactElement } from 'react';
-import type { ParentVisualizationV1 } from '@math-platform/knowledge-space-practice';
+import type { ReactElement } from "react";
+import type { ParentVisualizationV1 } from "@math-platform/knowledge-space-practice";
 
-import { requireParentServerSessionClaims } from '@/lib/auth/parent-server-guards';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
-import { ParentEmptyStates } from '@/components/parent/ParentEmptyStates';
-import { ParentPortalClient } from '@/components/parent/ParentPortalClient';
-import type { StudentOption } from '@/components/parent/StudentSwitcher';
-import type { ParentEmptyStateLink } from '@/components/parent/ParentEmptyStates';
+import { requireParentServerSessionClaims } from "@/lib/auth/parent-server-guards";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
+import { ParentEmptyStates } from "@/components/parent/ParentEmptyStates";
+import { ParentPortalClient } from "@/components/parent/ParentPortalClient";
+import type { StudentOption } from "@/components/parent/StudentSwitcher";
+import type { ParentEmptyStateLink } from "@/components/parent/ParentEmptyStates";
 
 interface PageProps {
   searchParams?: Promise<{ student?: string }>;
@@ -14,7 +14,7 @@ interface PageProps {
 
 interface ParentLinkRow {
   studentId: string;
-  status: 'active' | 'pending' | 'revoked';
+  status: "active" | "pending" | "revoked";
 }
 
 interface ProfileNameRow {
@@ -44,16 +44,13 @@ interface ProfileNameRow {
  * page-level guard and the internal queries. The client component only
  * owns the selected-student state for the switcher.
  */
-export default async function ParentPage({
-  searchParams,
-}: PageProps = {}): Promise<ReactElement> {
-  const claims = await requireParentServerSessionClaims('/parent');
+export default async function ParentPage({ searchParams }: PageProps = {}): Promise<ReactElement> {
+  const claims = await requireParentServerSessionClaims("/parent");
 
   // FR-2 — fetch parent links from the live backend surface.
-  const rawLinks = (await fetchInternalQuery(
-    internal.parent.links.listParentLinksQuery,
-    { parentProfileId: claims.sub },
-  )) as ParentLinkRow[] | null;
+  const rawLinks = (await fetchInternalQuery(internal.parent.links.listParentLinksQuery, {
+    parentProfileId: claims.sub,
+  })) as ParentLinkRow[] | null;
 
   const allLinks: ParentLinkRow[] = Array.isArray(rawLinks) ? rawLinks : [];
 
@@ -72,7 +69,7 @@ export default async function ParentPage({
     status: l.status,
   }));
 
-  const activeLinks = normalizedLinks.filter((l) => l.status === 'active');
+  const activeLinks = normalizedLinks.filter((l) => l.status === "active");
 
   // No active links (all are pending/revoked) — show the pending empty state.
   if (activeLinks.length === 0) {
@@ -107,19 +104,14 @@ export default async function ParentPage({
   if (Object.keys(projectionsByStudentId).length === 0) {
     return (
       <div className="max-w-4xl mx-auto py-8 px-4">
-        <ParentEmptyStates
-          links={normalizedLinks}
-          hasProjectionNodes={false}
-        />
+        <ParentEmptyStates links={normalizedLinks} hasProjectionNodes={false} />
       </div>
     );
   }
 
   // Resolve student display names for the dashboard and switcher.
   const studentIds = Object.keys(projectionsByStudentId);
-  const studentOptions: StudentOption[] = await resolveStudentOptions(
-    studentIds,
-  );
+  const studentOptions: StudentOption[] = await resolveStudentOptions(studentIds);
 
   // Pick the initially selected student: search-param override → first
   // projected student. The switcher re-renders without an additional
@@ -172,10 +164,9 @@ async function resolveStudentOptions(studentIds: string[]): Promise<StudentOptio
   for (const id of studentIds) {
     let displayName: string | undefined;
     try {
-      const profile = (await fetchInternalQuery(
-        internal.activities.getProfileById,
-        { profileId: id },
-      )) as ProfileNameRow | null;
+      const profile = (await fetchInternalQuery(internal.activities.getProfileById, {
+        profileId: id,
+      })) as ProfileNameRow | null;
       displayName = profile?.displayName ?? profile?.username ?? undefined;
     } catch {
       displayName = undefined;
@@ -197,5 +188,5 @@ function humanizeId(id: string): string {
     .split(/[_-]+/)
     .filter(Boolean)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(' ');
+    .join(" ");
 }

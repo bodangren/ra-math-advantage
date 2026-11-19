@@ -1,55 +1,61 @@
-'use client'
+"use client";
 
-import { useState, useCallback, useRef } from 'react'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { CheckCircle2, AlertTriangle, Search, XCircle, CheckCircle } from 'lucide-react'
-import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract'
-import { buildSimulationSubmissionEnvelope, createSimulationPart } from '@/lib/practice/simulation-submission'
+import { useState, useCallback, useRef } from "react";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { CheckCircle2, AlertTriangle, Search, XCircle, CheckCircle } from "lucide-react";
+import type { PracticeSubmissionEnvelope } from "@/lib/practice/contract";
+import {
+  buildSimulationSubmissionEnvelope,
+  createSimulationPart,
+} from "@/lib/practice/simulation-submission";
 
 interface DataRow {
-  id: string
-  data: Record<string, string | number | null | undefined>
-  issues: { type: 'missing' | 'inconsistent' | 'duplicate' | 'format'; description: string; severity: 'low' | 'medium' | 'high' }[]
+  id: string;
+  data: Record<string, string | number | null | undefined>;
+  issues: {
+    type: "missing" | "inconsistent" | "duplicate" | "format";
+    description: string;
+    severity: "low" | "medium" | "high";
+  }[];
 }
 
 const sampleData: DataRow[] = [
   {
-    id: 'row-1',
-    data: { name: 'Alice', email: 'alice@example.com', sales: 1500 },
+    id: "row-1",
+    data: { name: "Alice", email: "alice@example.com", sales: 1500 },
     issues: [],
   },
   {
-    id: 'row-2',
-    data: { name: 'Bob', email: null, sales: 2000 },
-    issues: [{ type: 'missing', description: 'Email address is missing', severity: 'medium' }],
+    id: "row-2",
+    data: { name: "Bob", email: null, sales: 2000 },
+    issues: [{ type: "missing", description: "Email address is missing", severity: "medium" }],
   },
   {
-    id: 'row-3',
-    data: { name: 'charlie', email: 'charlie@example.com', sales: '1800' },
+    id: "row-3",
+    data: { name: "charlie", email: "charlie@example.com", sales: "1800" },
     issues: [
-      { type: 'inconsistent', description: 'Name is not capitalized', severity: 'low' },
-      { type: 'format', description: 'Sales should be a number, not a string', severity: 'medium' },
+      { type: "inconsistent", description: "Name is not capitalized", severity: "low" },
+      { type: "format", description: "Sales should be a number, not a string", severity: "medium" },
     ],
   },
   {
-    id: 'row-4',
-    data: { name: 'Alice', email: 'alice@example.com', sales: 1500 },
-    issues: [{ type: 'duplicate', description: 'Duplicate of row 1', severity: 'high' }],
+    id: "row-4",
+    data: { name: "Alice", email: "alice@example.com", sales: 1500 },
+    issues: [{ type: "duplicate", description: "Duplicate of row 1", severity: "high" }],
   },
-]
+];
 
 export interface ErrorCheckingSystemProps {
   activity: {
-    id?: string
+    id?: string;
     props?: {
-      validationCategories?: string[]
-    }
-  }
-  onSubmit?: (submission: PracticeSubmissionEnvelope) => void
-  onComplete?: () => void
+      validationCategories?: string[];
+    };
+  };
+  onSubmit?: (submission: PracticeSubmissionEnvelope) => void;
+  onComplete?: () => void;
 }
-
 
 /**
  * Renders an error checking activity where users identify and mark
@@ -60,11 +66,10 @@ export interface ErrorCheckingSystemProps {
  * @param onComplete - Callback fired when the audit is finalized
  */
 export function ErrorCheckingSystem({ activity, onSubmit, onComplete }: ErrorCheckingSystemProps) {
-  const [checkedRows, setCheckedRows] = useState<Set<string>>(new Set())
-  const [markedIssues, setMarkedIssues] = useState<Set<string>>(new Set())
-  const [completed, setCompleted] = useState(false)
-  const submittedRef = useRef(false)
-
+  const [checkedRows, setCheckedRows] = useState<Set<string>>(new Set());
+  const [markedIssues, setMarkedIssues] = useState<Set<string>>(new Set());
+  const [completed, setCompleted] = useState(false);
+  const submittedRef = useRef(false);
 
   /**
    * Toggles the checked state of a data row.
@@ -72,17 +77,16 @@ export function ErrorCheckingSystem({ activity, onSubmit, onComplete }: ErrorChe
    * @param rowId - The ID of the row to toggle
    */
   const handleRowCheck = useCallback((rowId: string) => {
-    setCheckedRows(prev => {
-      const next = new Set(prev)
+    setCheckedRows((prev) => {
+      const next = new Set(prev);
       if (next.has(rowId)) {
-        next.delete(rowId)
+        next.delete(rowId);
       } else {
-        next.add(rowId)
+        next.add(rowId);
       }
-      return next
-    })
-  }, [])
-
+      return next;
+    });
+  }, []);
 
   /**
    * Toggles the marked state of a specific issue within a data row.
@@ -91,38 +95,38 @@ export function ErrorCheckingSystem({ activity, onSubmit, onComplete }: ErrorChe
    * @param issueIndex - The index of the issue within the row
    */
   const handleIssueMark = useCallback((rowId: string, issueIndex: number) => {
-    const key = `${rowId}-${issueIndex}`
-    setMarkedIssues(prev => {
-      const next = new Set(prev)
+    const key = `${rowId}-${issueIndex}`;
+    setMarkedIssues((prev) => {
+      const next = new Set(prev);
       if (next.has(key)) {
-        next.delete(key)
+        next.delete(key);
       } else {
-        next.add(key)
+        next.add(key);
       }
-      return next
-    })
-  }, [])
-
+      return next;
+    });
+  }, []);
 
   /**
    * Finalizes the audit, evaluates whether all issues were found, and submits
    * the result envelope.
    */
   const handleComplete = useCallback(() => {
-    if (submittedRef.current) return
-    submittedRef.current = true
-    setCompleted(true)
+    if (submittedRef.current) return;
+    submittedRef.current = true;
+    setCompleted(true);
 
-    const allIssuesFound = sampleData.every(row =>
-      row.issues.length === 0 || row.issues.every((_, i) => markedIssues.has(`${row.id}-${i}`))
-    )
-    const allRowsChecked = sampleData.every(row => checkedRows.has(row.id))
+    const allIssuesFound = sampleData.every(
+      (row) =>
+        row.issues.length === 0 || row.issues.every((_, i) => markedIssues.has(`${row.id}-${i}`)),
+    );
+    const allRowsChecked = sampleData.every((row) => checkedRows.has(row.id));
 
     try {
       onSubmit?.(
         buildSimulationSubmissionEnvelope({
-          activityId: activity.id ?? 'error-checking-system',
-          mode: 'independent_practice',
+          activityId: activity.id ?? "error-checking-system",
+          mode: "independent_practice",
           answers: {
             checkedRows: Array.from(checkedRows),
             markedIssues: Array.from(markedIssues),
@@ -130,22 +134,25 @@ export function ErrorCheckingSystem({ activity, onSubmit, onComplete }: ErrorChe
             allRowsChecked,
           },
           parts: [
-            createSimulationPart('checked-rows', checkedRows.size),
-            createSimulationPart('marked-issues', markedIssues.size),
-            createSimulationPart('total-issues', sampleData.reduce((sum, row) => sum + row.issues.length, 0)),
+            createSimulationPart("checked-rows", checkedRows.size),
+            createSimulationPart("marked-issues", markedIssues.size),
+            createSimulationPart(
+              "total-issues",
+              sampleData.reduce((sum, row) => sum + row.issues.length, 0),
+            ),
           ],
           artifact: {
             sampleData,
           },
         }),
-      )
-      onComplete?.()
+      );
+      onComplete?.();
     } catch (err) {
-      console.error('ErrorCheckingSystem submission failed:', err)
-      submittedRef.current = false
-      setCompleted(false)
+      console.error("ErrorCheckingSystem submission failed:", err);
+      submittedRef.current = false;
+      setCompleted(false);
     }
-  }, [checkedRows, markedIssues, onSubmit, onComplete, activity.id])
+  }, [checkedRows, markedIssues, onSubmit, onComplete, activity.id]);
 
   return (
     <div className="space-y-6">
@@ -180,8 +187,8 @@ export function ErrorCheckingSystem({ activity, onSubmit, onComplete }: ErrorChe
                         disabled={completed}
                         className={`p-1 rounded border-2 ${
                           checkedRows.has(row.id)
-                            ? 'border-green-500 bg-green-50'
-                            : 'border-gray-200 hover:border-gray-300'
+                            ? "border-green-500 bg-green-50"
+                            : "border-gray-200 hover:border-gray-300"
                         }`}
                       >
                         {checkedRows.has(row.id) ? (
@@ -192,7 +199,9 @@ export function ErrorCheckingSystem({ activity, onSubmit, onComplete }: ErrorChe
                       </button>
                     </td>
                     <td className="p-3">{row.data.name}</td>
-                    <td className="p-3">{row.data.email ?? <span className="text-red-500">Missing</span>}</td>
+                    <td className="p-3">
+                      {row.data.email ?? <span className="text-red-500">Missing</span>}
+                    </td>
                     <td className="p-3 text-right">{row.data.sales}</td>
                     <td className="p-3">
                       {row.issues.length === 0 ? (
@@ -209,17 +218,22 @@ export function ErrorCheckingSystem({ activity, onSubmit, onComplete }: ErrorChe
                               disabled={completed}
                               className={`flex items-center gap-1 text-left p-1 rounded ${
                                 markedIssues.has(`${row.id}-${i}`)
-                                  ? 'bg-green-50 text-green-800'
-                                  : 'hover:bg-gray-50'
+                                  ? "bg-green-50 text-green-800"
+                                  : "hover:bg-gray-50"
                               }`}
                             >
                               {markedIssues.has(`${row.id}-${i}`) ? (
                                 <CheckCircle className="h-4 w-4" />
                               ) : (
-                                <AlertTriangle className={`h-4 w-4 ${
-                                  issue.severity === 'high' ? 'text-red-600' :
-                                  issue.severity === 'medium' ? 'text-amber-600' : 'text-gray-600'
-                                }`} />
+                                <AlertTriangle
+                                  className={`h-4 w-4 ${
+                                    issue.severity === "high"
+                                      ? "text-red-600"
+                                      : issue.severity === "medium"
+                                        ? "text-amber-600"
+                                        : "text-gray-600"
+                                  }`}
+                                />
                               )}
                               <span className="text-xs">{issue.description}</span>
                             </button>
@@ -243,9 +257,7 @@ export function ErrorCheckingSystem({ activity, onSubmit, onComplete }: ErrorChe
           {completed && (
             <div className="mt-4 bg-green-50 p-3 rounded border border-green-200 flex items-center gap-2">
               <CheckCircle2 className="h-5 w-5 text-green-600" />
-              <p className="text-sm text-green-800 font-medium">
-                Audit complete!
-              </p>
+              <p className="text-sm text-green-800 font-medium">Audit complete!</p>
             </div>
           )}
         </CardContent>
@@ -257,19 +269,27 @@ export function ErrorCheckingSystem({ activity, onSubmit, onComplete }: ErrorChe
           <ul className="text-sm text-amber-700 space-y-1">
             <li className="flex items-center gap-2">
               <XCircle className="h-4 w-4 text-red-600" />
-              <span><strong>Missing:</strong> Required data is absent</span>
+              <span>
+                <strong>Missing:</strong> Required data is absent
+              </span>
             </li>
             <li className="flex items-center gap-2">
               <AlertTriangle className="h-4 w-4 text-amber-600" />
-              <span><strong>Inconsistent:</strong> Data doesn&apos;t follow expected format</span>
+              <span>
+                <strong>Inconsistent:</strong> Data doesn&apos;t follow expected format
+              </span>
             </li>
             <li className="flex items-center gap-2">
               <AlertTriangle className="h-4 w-4 text-red-600" />
-              <span><strong>Duplicate:</strong> Same data appears more than once</span>
+              <span>
+                <strong>Duplicate:</strong> Same data appears more than once
+              </span>
             </li>
             <li className="flex items-center gap-2">
               <AlertTriangle className="h-4 w-4 text-amber-600" />
-              <span><strong>Format:</strong> Wrong data type or format</span>
+              <span>
+                <strong>Format:</strong> Wrong data type or format
+              </span>
             </li>
           </ul>
         </div>
@@ -283,5 +303,5 @@ export function ErrorCheckingSystem({ activity, onSubmit, onComplete }: ErrorChe
         </div>
       </div>
     </div>
-  )
+  );
 }

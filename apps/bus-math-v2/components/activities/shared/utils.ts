@@ -6,20 +6,19 @@
  * @returns A formatted string or a dash for empty/nullish values.
  */
 export function formatAccountingAmount(value: number | string | null | undefined) {
-  if (value === null || value === undefined || value === '') {
-    return '—';
+  if (value === null || value === undefined || value === "") {
+    return "—";
   }
 
-  const numericValue = typeof value === 'number' ? value : Number(value);
+  const numericValue = typeof value === "number" ? value : Number(value);
   if (!Number.isFinite(numericValue)) {
     return String(value);
   }
 
-  return new Intl.NumberFormat('en-US', {
+  return new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 2,
   }).format(numericValue);
 }
-
 
 /**
  * Coerce a value to a finite number, returning 0 for non-numeric inputs.
@@ -28,18 +27,17 @@ export function formatAccountingAmount(value: number | string | null | undefined
  * @returns A finite number or 0.
  */
 export function toNumber(value: unknown) {
-  if (typeof value === 'number') {
+  if (typeof value === "number") {
     return Number.isFinite(value) ? value : 0;
   }
 
-  if (typeof value === 'string') {
+  if (typeof value === "string") {
     const parsed = Number(value);
     return Number.isFinite(parsed) ? parsed : 0;
   }
 
   return 0;
 }
-
 
 /**
  * Sum an array of numeric or string values, coercing non-numeric entries to 0.
@@ -54,7 +52,6 @@ export function sumValues(values: Array<number | string | null | undefined>) {
 export interface ProjectionRow {
   id: string;
 }
-
 
 /**
  * Project source values onto row identifiers, optionally coercing to strings.
@@ -72,11 +69,13 @@ export function projectToRowValues<T extends Record<string, unknown>>(
   return Object.fromEntries(
     rows.map((row) => {
       const raw = source[row.id];
-      return [row.id, coerceToString && raw !== undefined && raw !== null ? String(raw) : (raw as string)];
+      return [
+        row.id,
+        coerceToString && raw !== undefined && raw !== null ? String(raw) : (raw as string),
+      ];
     }),
   );
 }
-
 
 /**
  * Project source selection values onto row identifiers, filtering out
@@ -91,6 +90,8 @@ export function projectToRowSelections(
   source: Record<string, string | string[] | number | undefined>,
 ): Record<string, string | string[]> {
   return Object.fromEntries(
-    rows.map((row) => [row.id, source[row.id] as string | string[]]).filter(([, value]) => value !== undefined),
+    rows
+      .map((row) => [row.id, source[row.id] as string | string[]])
+      .filter(([, value]) => value !== undefined),
   );
 }

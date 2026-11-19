@@ -138,10 +138,7 @@ describe("selected IM3 quadratic server grader", () => {
       props: { ...ACTIVITY.props, equation: "y = x^2 - x - 2" },
     };
     expect(
-      gradeServerOwnedSubmission(
-        activity,
-        envelope(NONZERO_B_POINTS, NONZERO_B_POINTS),
-      ),
+      gradeServerOwnedSubmission(activity, envelope(NONZERO_B_POINTS, NONZERO_B_POINTS)),
     ).toMatchObject({ score: 2, maxScore: 2 });
   });
 
@@ -150,44 +147,42 @@ describe("selected IM3 quadratic server grader", () => {
       x: point.x + 0.25,
       y: point.y - 0.25,
     }));
-    expect(
-      gradeServerOwnedSubmission(ACTIVITY, envelope(POINTS, boundary)),
-    ).toMatchObject({ score: 2, maxScore: 2 });
+    expect(gradeServerOwnedSubmission(ACTIVITY, envelope(POINTS, boundary))).toMatchObject({
+      score: 2,
+      maxScore: 2,
+    });
   });
 
   it("rejects a plot point outside the tolerance boundary", () => {
     const outside = POINTS.map((point, index) =>
       index === 0 ? { x: point.x + 0.2501, y: point.y } : point,
     );
-    expect(
-      gradeServerOwnedSubmission(ACTIVITY, envelope(POINTS, outside)),
-    ).toMatchObject({ score: 1, maxScore: 2 });
+    expect(gradeServerOwnedSubmission(ACTIVITY, envelope(POINTS, outside))).toMatchObject({
+      score: 1,
+      maxScore: 2,
+    });
   });
 
   it("grades a wrong graph without trusting client grading fields", () => {
-    const wrong = POINTS.map((point, index) =>
-      index === 0 ? { ...point, y: 0 } : point,
-    );
-    expect(
-      gradeServerOwnedSubmission(ACTIVITY, envelope(POINTS, wrong)),
-    ).toMatchObject({ score: 1, maxScore: 2 });
+    const wrong = POINTS.map((point, index) => (index === 0 ? { ...point, y: 0 } : point));
+    expect(gradeServerOwnedSubmission(ACTIVITY, envelope(POINTS, wrong))).toMatchObject({
+      score: 1,
+      maxScore: 2,
+    });
   });
 
   it.each([
     ["missing point", POINTS.slice(1)],
     ["duplicate point", [POINTS[0], POINTS[0], ...POINTS.slice(2)]],
   ])("rejects a %s as incorrect", (_name, points) => {
-    expect(
-      gradeServerOwnedSubmission(ACTIVITY, envelope(points, points)),
-    ).toMatchObject({ score: 0, maxScore: 2 });
+    expect(gradeServerOwnedSubmission(ACTIVITY, envelope(points, points))).toMatchObject({
+      score: 0,
+      maxScore: 2,
+    });
   });
 
   it.each([
-    [
-      "wrong node",
-      { ...ACTIVITY, masteryNodeId: "math.im3.skill.other" },
-      envelope(),
-    ],
+    ["wrong node", { ...ACTIVITY, masteryNodeId: "math.im3.skill.other" }, envelope()],
     [
       "wrong activity",
       {
@@ -196,11 +191,7 @@ describe("selected IM3 quadratic server grader", () => {
       },
       envelope(),
     ],
-    [
-      "wrong component",
-      { ...ACTIVITY, componentKey: "fill-in-the-blank" },
-      envelope(),
-    ],
+    ["wrong component", { ...ACTIVITY, componentKey: "fill-in-the-blank" }, envelope()],
     [
       "Independent activity with Guided mode",
       ACTIVITY,
@@ -211,27 +202,21 @@ describe("selected IM3 quadratic server grader", () => {
       { ...ACTIVITY, stableActivityId: IM3_GUIDED_PRACTICE_ACTIVITY_ID },
       envelope(),
     ],
-  ])(
-    "does not apply the selected pilot grade with the %s",
-    (_name, activity, submission) => {
-      const result = gradeServerOwnedSubmission(activity, submission);
-      expect(result).not.toHaveProperty("score");
-      expect(result).not.toHaveProperty("maxScore");
-      expect(result).not.toHaveProperty("masteryContractVersion");
-      expect(result.submissionData.status).toBe("submitted");
-      for (const part of result.submissionData.parts) {
-        expect(part).not.toHaveProperty("isCorrect");
-        expect(part).not.toHaveProperty("score");
-        expect(part).not.toHaveProperty("maxScore");
-      }
-    },
-  );
+  ])("does not apply the selected pilot grade with the %s", (_name, activity, submission) => {
+    const result = gradeServerOwnedSubmission(activity, submission);
+    expect(result).not.toHaveProperty("score");
+    expect(result).not.toHaveProperty("maxScore");
+    expect(result).not.toHaveProperty("masteryContractVersion");
+    expect(result.submissionData.status).toBe("submitted");
+    for (const part of result.submissionData.parts) {
+      expect(part).not.toHaveProperty("isCorrect");
+      expect(part).not.toHaveProperty("score");
+      expect(part).not.toHaveProperty("maxScore");
+    }
+  });
 
   it.each([
-    [
-      "missing equation",
-      { variant: "plot_from_equation", responseVariant: "table_graph" },
-    ],
+    ["missing equation", { variant: "plot_from_equation", responseVariant: "table_graph" }],
     [
       "non-string equation",
       {
@@ -273,9 +258,9 @@ describe("selected IM3 quadratic server grader", () => {
       },
     ],
   ])("rejects canonical grading data with a %s", (_name, props) => {
-    expect(() =>
-      gradeServerOwnedSubmission({ ...ACTIVITY, props }, envelope()),
-    ).toThrow("IM3 pilot activity is missing canonical server grading data");
+    expect(() => gradeServerOwnedSubmission({ ...ACTIVITY, props }, envelope())).toThrow(
+      "IM3 pilot activity is missing canonical server grading data",
+    );
   });
 
   it.each([
@@ -331,23 +316,42 @@ describe("selected IM3 quadratic server grader", () => {
       },
     ],
   ])("rejects a rubric with %s", (_name, gradingConfig) => {
-    expect(() =>
-      gradeServerOwnedSubmission({ ...ACTIVITY, gradingConfig }, envelope()),
-    ).toThrow("IM3 pilot activity is missing canonical server grading data");
+    expect(() => gradeServerOwnedSubmission({ ...ACTIVITY, gradingConfig }, envelope())).toThrow(
+      "IM3 pilot activity is missing canonical server grading data",
+    );
   });
 });
 
 describe("Lesson 1.6 private quiz grader", () => {
   it("grades all 16 ordered answer pairs with the required totals", () => {
-    const first = ["The sum of the roots", "The number and type of solutions", "The product of the roots", "The axis of symmetry"];
+    const first = [
+      "The sum of the roots",
+      "The number and type of solutions",
+      "The product of the roots",
+      "The axis of symmetry",
+    ];
     const second = ["0", "1", "2", "Cannot determine"];
-    const scores = first.flatMap(left => second.map(right => {
-      const answers = { "discriminant-purpose": left, "zero-discriminant-real-solution-count": right };
-      const envelope = { contractVersion: "practice.v1", activityId: "activities:quiz", mode: "independent_practice", status: "submitted", attemptNumber: 1, submittedAt: "2026-09-09T00:00:00.000Z", answers, parts: Object.entries(answers).map(([partId, rawAnswer]) => ({ partId, rawAnswer })) } as unknown as PracticeSubmissionEnvelope;
-      return gradeLesson16Quiz(envelope).parts.reduce((sum, part) => sum + (part.score ?? 0), 0);
-    }));
-    expect(scores.filter(score => score === 0)).toHaveLength(9);
-    expect(scores.filter(score => score === 1)).toHaveLength(6);
-    expect(scores.filter(score => score === 2)).toHaveLength(1);
+    const scores = first.flatMap((left) =>
+      second.map((right) => {
+        const answers = {
+          "discriminant-purpose": left,
+          "zero-discriminant-real-solution-count": right,
+        };
+        const envelope = {
+          contractVersion: "practice.v1",
+          activityId: "activities:quiz",
+          mode: "independent_practice",
+          status: "submitted",
+          attemptNumber: 1,
+          submittedAt: "2026-09-09T00:00:00.000Z",
+          answers,
+          parts: Object.entries(answers).map(([partId, rawAnswer]) => ({ partId, rawAnswer })),
+        } as unknown as PracticeSubmissionEnvelope;
+        return gradeLesson16Quiz(envelope).parts.reduce((sum, part) => sum + (part.score ?? 0), 0);
+      }),
+    );
+    expect(scores.filter((score) => score === 0)).toHaveLength(9);
+    expect(scores.filter((score) => score === 1)).toHaveLength(6);
+    expect(scores.filter((score) => score === 2)).toHaveLength(1);
   });
 });

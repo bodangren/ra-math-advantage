@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { Circle, CircleDot, Check, Lock } from 'lucide-react';
+import { Circle, CircleDot, Check, Lock } from "lucide-react";
 
-import { cn } from '@/lib/utils';
-import type { PhaseStatus } from '@/hooks/usePhaseProgress';
+import { cn } from "@/lib/utils";
+import type { PhaseStatus } from "@/hooks/usePhaseProgress";
 
 export interface StepperPhase {
   phaseNumber: number;
@@ -18,7 +18,6 @@ interface LessonStepperProps {
   onPhaseClick?: (phaseNumber: number, phaseId: string) => void;
   className?: string;
 }
-
 
 /**
  * Renders a horizontal stepper showing lesson phase progress with clickable steps.
@@ -39,17 +38,17 @@ export function LessonStepper({
    */
   const handlePhaseClick = (phase: StepperPhase) => {
     // Allow clicking on completed, current, or available phases
-    if (phase.status === 'completed' || phase.status === 'current' || phase.status === 'available') {
+    if (
+      phase.status === "completed" ||
+      phase.status === "current" ||
+      phase.status === "available"
+    ) {
       onPhaseClick?.(phase.phaseNumber, phase.phaseId);
     }
   };
 
   return (
-    <nav
-      role="navigation"
-      aria-label="Lesson progress stepper"
-      className={cn('w-full', className)}
-    >
+    <nav role="navigation" aria-label="Lesson progress stepper" className={cn("w-full", className)}>
       {/* Desktop: Horizontal stepper */}
       <ol className="hidden md:flex items-center justify-between gap-2">
         {phases.map((phase, index) => (
@@ -60,7 +59,7 @@ export function LessonStepper({
               onClick={() => handlePhaseClick(phase)}
             />
             {index < phases.length - 1 && (
-              <StepConnector completed={phase.status === 'completed'} />
+              <StepConnector completed={phase.status === "completed"} />
             )}
           </li>
         ))}
@@ -90,7 +89,6 @@ interface StepButtonProps {
   compact?: boolean;
 }
 
-
 /**
  * Renders a single phase button in the lesson stepper.
  *
@@ -99,11 +97,11 @@ interface StepButtonProps {
  */
 function getStepIcon(status: PhaseStatus) {
   switch (status) {
-    case 'completed':
+    case "completed":
       return <Check className="h-4 w-4" aria-hidden="true" />;
-    case 'current':
+    case "current":
       return <CircleDot className="h-4 w-4" aria-hidden="true" />;
-    case 'locked':
+    case "locked":
       return <Lock className="h-4 w-4" aria-hidden="true" />;
     default:
       return <Circle className="h-4 w-4" aria-hidden="true" />;
@@ -120,22 +118,21 @@ function getStepIcon(status: PhaseStatus) {
  * @returns A button element styled by phase status and clickability.
  */
 function StepButton({ phase, isCurrent, onClick, compact = false }: StepButtonProps) {
-  const isClickable = phase.status === 'completed' || phase.status === 'current' || phase.status === 'available';
-  const isLocked = phase.status === 'locked';
+  const isClickable =
+    phase.status === "completed" || phase.status === "current" || phase.status === "available";
+  const isLocked = phase.status === "locked";
 
   // Treat 'available' as 'current' visually if it is the active phase
-  const effectiveStatus = isCurrent && phase.status === 'available' ? 'current' : phase.status;
+  const effectiveStatus = isCurrent && phase.status === "available" ? "current" : phase.status;
 
   const statusColors = {
-    completed: 'bg-green-600 text-white border-green-600',
-    current: 'bg-blue-600 text-white border-blue-600',
-    available: 'bg-white text-gray-700 border-gray-300 hover:border-blue-400',
-    locked: 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed',
+    completed: "bg-green-600 text-white border-green-600",
+    current: "bg-blue-600 text-white border-blue-600",
+    available: "bg-white text-gray-700 border-gray-300 hover:border-blue-400",
+    locked: "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed",
   };
 
-  const tooltipText = isLocked
-    ? 'Complete previous phase to unlock'
-    : phase.title;
+  const tooltipText = isLocked ? "Complete previous phase to unlock" : phase.title;
 
   return (
     <button
@@ -143,14 +140,14 @@ function StepButton({ phase, isCurrent, onClick, compact = false }: StepButtonPr
       onClick={onClick}
       disabled={!isClickable}
       aria-label={`Phase ${phase.phaseNumber}: ${phase.title}`}
-      aria-current={isCurrent ? 'step' : undefined}
+      aria-current={isCurrent ? "step" : undefined}
       title={tooltipText}
       className={cn(
-        'flex items-center justify-center rounded-full border-2 transition-all',
-        'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
-        compact ? 'h-10 w-10' : 'h-12 w-12',
+        "flex items-center justify-center rounded-full border-2 transition-all",
+        "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
+        compact ? "h-10 w-10" : "h-12 w-12",
         statusColors[effectiveStatus],
-        isClickable && !isLocked && 'hover:scale-110',
+        isClickable && !isLocked && "hover:scale-110",
       )}
     >
       {compact ? (
@@ -167,7 +164,6 @@ interface StepConnectorProps {
   completed: boolean;
 }
 
-
 /**
  * Renders a horizontal connector line between stepper steps.
  *
@@ -177,10 +173,7 @@ interface StepConnectorProps {
 function StepConnector({ completed }: StepConnectorProps) {
   return (
     <div
-      className={cn(
-        'h-0.5 flex-1 transition-colors',
-        completed ? 'bg-green-600' : 'bg-gray-300',
-      )}
+      className={cn("h-0.5 flex-1 transition-colors", completed ? "bg-green-600" : "bg-gray-300")}
       aria-hidden="true"
     />
   );

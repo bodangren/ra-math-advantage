@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -136,7 +136,7 @@ export const seedLesson8_5 = internalMutation({
                       "The exact population mean",
                       "How far the sample mean may be from the population mean",
                       "The sample size needed",
-                      "The standard deviation of the population"
+                      "The standard deviation of the population",
                     ],
                     correctIndex: 1,
                   },
@@ -178,7 +178,7 @@ export const seedLesson8_5 = internalMutation({
                       "95% of sample means equal 8.61",
                       "We are 95% confident the population mean is between 7.89 and 9.33",
                       "95% of students scored between 7.89 and 9.33",
-                      "The population mean is exactly 8.61"
+                      "The population mean is exactly 8.61",
                     ],
                     correctIndex: 1,
                   },
@@ -232,7 +232,12 @@ export const seedLesson8_5 = internalMutation({
                   },
                   {
                     question: "What is the 90% confidence interval for the population proportion?",
-                    options: ["[0.413, 0.547]", "[0.480, 0.520]", "[0.350, 0.610]", "[0.450, 0.550]"],
+                    options: [
+                      "[0.413, 0.547]",
+                      "[0.480, 0.520]",
+                      "[0.350, 0.610]",
+                      "[0.450, 0.550]",
+                    ],
                     correctIndex: 0,
                   },
                 ],
@@ -268,18 +273,13 @@ export const seedLesson8_5 = internalMutation({
                       "The sample size is too small",
                       "They reported 50% instead of the actual sample proportion 45%",
                       "The margin of error is too large",
-                      "The confidence level is too low"
+                      "The confidence level is too low",
                     ],
                     correctIndex: 1,
                   },
                   {
                     question: "What should the group have honestly reported?",
-                    options: [
-                      "50% ± 5%",
-                      "45% ± 5%",
-                      "40% ± 10%",
-                      "90% support"
-                    ],
+                    options: ["50% ± 5%", "45% ± 5%", "40% ± 10%", "90% support"],
                     correctIndex: 1,
                   },
                 ],
@@ -310,12 +310,13 @@ export const seedLesson8_5 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "What happens to the width of a confidence interval as sample size increases?",
+                    question:
+                      "What happens to the width of a confidence interval as sample size increases?",
                     options: [
                       "It gets wider",
                       "It gets narrower",
                       "It stays the same",
-                      "It becomes negative"
+                      "It becomes negative",
                     ],
                     correctIndex: 1,
                   },
@@ -325,7 +326,7 @@ export const seedLesson8_5 = internalMutation({
                       "Using a 95% confidence level",
                       "Reporting the most favorable point estimate instead of the actual sample proportion",
                       "Using a large sample size",
-                      "Checking np-hat and nq-hat"
+                      "Checking np-hat and nq-hat",
                     ],
                     correctIndex: 1,
                   },
@@ -360,7 +361,7 @@ export const seedLesson8_5 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

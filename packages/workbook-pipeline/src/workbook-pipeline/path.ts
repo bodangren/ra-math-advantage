@@ -1,4 +1,4 @@
-export type WorkbookType = 'student' | 'teacher';
+export type WorkbookType = "student" | "teacher";
 
 /**
  * Format a unit number as a zero-padded two-digit string.
@@ -6,7 +6,7 @@ export type WorkbookType = 'student' | 'teacher';
  * @returns {string} - Zero-padded string (e.g., "01", "09")
  */
 export function formatUnitNumber(unitNumber: number): string {
-  return String(unitNumber).padStart(2, '0');
+  return String(unitNumber).padStart(2, "0");
 }
 
 /**
@@ -15,7 +15,7 @@ export function formatUnitNumber(unitNumber: number): string {
  * @returns {string} - Zero-padded string (e.g., "01", "09")
  */
 export function formatLessonNumber(lessonNumber: number): string {
-  return String(lessonNumber).padStart(2, '0');
+  return String(lessonNumber).padStart(2, "0");
 }
 
 /**
@@ -28,7 +28,7 @@ export function formatLessonNumber(lessonNumber: number): string {
 export function buildWorkbookFilename(
   unitNumber: number,
   lessonNumber: number,
-  type: WorkbookType
+  type: WorkbookType,
 ): string {
   const unitStr = formatUnitNumber(unitNumber);
   const lessonStr = formatLessonNumber(lessonNumber);
@@ -45,7 +45,7 @@ export function buildWorkbookFilename(
 export function buildWorkbookPublicPath(
   unitNumber: number,
   lessonNumber: number,
-  type: WorkbookType
+  type: WorkbookType,
 ): string {
   return `/workbooks/${buildWorkbookFilename(unitNumber, lessonNumber, type)}`;
 }
@@ -58,9 +58,9 @@ export function buildWorkbookPublicPath(
  */
 export function buildCapstoneFilename(
   type: WorkbookType,
-  baseName = 'investor_ready_workbook'
+  baseName = "investor_ready_workbook",
 ): string {
-  if (type === 'teacher') {
+  if (type === "teacher") {
     return `capstone_${baseName}_teacher.xlsx`;
   }
   return `capstone_${baseName}.xlsx`;
@@ -74,7 +74,7 @@ export function buildCapstoneFilename(
  */
 export function buildCapstonePublicPath(
   type: WorkbookType,
-  baseName = 'investor_ready_workbook'
+  baseName = "investor_ready_workbook",
 ): string {
   return `/workbooks/${buildCapstoneFilename(type, baseName)}`;
 }

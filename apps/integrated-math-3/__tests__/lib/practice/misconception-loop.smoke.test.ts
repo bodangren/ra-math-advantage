@@ -33,14 +33,14 @@
  * is updated to match).
  */
 
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
+import type { PracticeSubmissionEnvelope } from "@math-platform/practice-core/contract";
 
 import {
   makeAlgebraicSubmission,
   MISCONCEPTION_LOOP_RESOLUTION_THRESHOLD,
-} from './misconception-content.fixtures';
+} from "./misconception-content.fixtures";
 
 interface MinimalStudentMisconceptionState {
   active: readonly string[];
@@ -53,21 +53,18 @@ interface MinimalT6LoopInput {
   resolutionThreshold: number;
 }
 
-const REAL_T6_PATH =
-  '@math-platform/knowledge-space-practice/misconception-loop';
+const REAL_T6_PATH = "@math-platform/knowledge-space-practice/misconception-loop";
 
-describe('real T6 mechanism — bounded smoke gate', () => {
-  it('exports `runRealT6Loop` as a function from the planned dep-track path', async () => {
+describe("real T6 mechanism — bounded smoke gate", () => {
+  it("exports `runRealT6Loop` as a function from the planned dep-track path", async () => {
     const mod = await import(REAL_T6_PATH);
     expect(mod).toBeDefined();
-    expect(typeof mod.runRealT6Loop).toBe('function');
+    expect(typeof mod.runRealT6Loop).toBe("function");
   });
 
-  it('does not throw when called with a minimal valid input', async () => {
+  it("does not throw when called with a minimal valid input", async () => {
     const { runRealT6Loop } = await import(REAL_T6_PATH);
-    const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: true },
-    ]);
+    const submission = makeAlgebraicSubmission([{ partId: "p1", isCorrect: true }]);
     const state: MinimalStudentMisconceptionState = {
       active: [],
       cleanStreaks: {},
@@ -80,11 +77,9 @@ describe('real T6 mechanism — bounded smoke gate', () => {
     expect(() => runRealT6Loop(input)).not.toThrow();
   });
 
-  it('returns an object with the four output buckets (no shape assertion beyond existence)', async () => {
+  it("returns an object with the four output buckets (no shape assertion beyond existence)", async () => {
     const { runRealT6Loop } = await import(REAL_T6_PATH);
-    const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: true },
-    ]);
+    const submission = makeAlgebraicSubmission([{ partId: "p1", isCorrect: true }]);
     const input: MinimalT6LoopInput = {
       submission,
       state: { active: [], cleanStreaks: {} },

@@ -1,17 +1,17 @@
-import { practiceAccounts } from '@/lib/practice/engine/accounts';
+import { practiceAccounts } from "@/lib/practice/engine/accounts";
 
 export type TrialBalanceErrorType =
-  | 'wrong-side'
-  | 'wrong-amount'
-  | 'double-post'
-  | 'both-sides-wrong'
-  | 'omission'
-  | 'transposition'
-  | 'slide';
+  | "wrong-side"
+  | "wrong-amount"
+  | "double-post"
+  | "both-sides-wrong"
+  | "omission"
+  | "transposition"
+  | "slide";
 
-export type TrialBalanceSide = 'debit' | 'credit';
-export type TrialBalanceLargerColumn = TrialBalanceSide | 'neither';
-export type TrialBalanceBalanceAnswer = 'still-balances' | 'out-of-balance';
+export type TrialBalanceSide = "debit" | "credit";
+export type TrialBalanceLargerColumn = TrialBalanceSide | "neither";
+export type TrialBalanceBalanceAnswer = "still-balances" | "out-of-balance";
 
 export interface TrialBalanceAccountRef {
   id: string;
@@ -41,7 +41,7 @@ export interface TrialBalanceErrorScenario {
   whatHappened: string;
   whatToDecideFirst: string;
   correctEntry: TrialBalanceEntry;
-  errorSide: TrialBalanceSide | 'both';
+  errorSide: TrialBalanceSide | "both";
   correctAmount: number;
   erroneousAmount: number;
   balance: TrialBalanceErrorOutcome;
@@ -71,28 +71,44 @@ export interface TrialBalanceErrorGenerationConfig {
 }
 
 const TRIAL_BALANCE_BALANCE_OPTIONS: Array<{ id: TrialBalanceBalanceAnswer; label: string }> = [
-  { id: 'still-balances', label: 'Still balances' },
-  { id: 'out-of-balance', label: 'Out of balance' },
+  { id: "still-balances", label: "Still balances" },
+  { id: "out-of-balance", label: "Out of balance" },
 ];
 
 const TRIAL_BALANCE_LARGER_OPTIONS: Array<{ id: TrialBalanceLargerColumn; label: string }> = [
-  { id: 'debit', label: 'Debit' },
-  { id: 'credit', label: 'Credit' },
-  { id: 'neither', label: 'Neither' },
+  { id: "debit", label: "Debit" },
+  { id: "credit", label: "Credit" },
+  { id: "neither", label: "Neither" },
 ];
 
 const TRIAL_BALANCE_ARCHETYPE_CATALOG: TrialBalanceErrorArchetype[] = [
-  { id: 'wrong-side', label: 'Wrong side', description: 'The correct amount is posted to the opposite column.' },
-  { id: 'wrong-amount', label: 'Wrong amount', description: 'One side is posted for the wrong dollar amount.' },
-  { id: 'double-post', label: 'Double post', description: 'One side is recorded twice.' },
-  { id: 'both-sides-wrong', label: 'Both sides wrong', description: 'Both sides use the same incorrect amount.' },
-  { id: 'omission', label: 'Omission', description: 'One side is left out entirely.' },
-  { id: 'transposition', label: 'Transposition', description: 'Digits are reversed in a single amount.' },
-  { id: 'slide', label: 'Slide', description: 'A digit slips out of a single amount.' },
+  {
+    id: "wrong-side",
+    label: "Wrong side",
+    description: "The correct amount is posted to the opposite column.",
+  },
+  {
+    id: "wrong-amount",
+    label: "Wrong amount",
+    description: "One side is posted for the wrong dollar amount.",
+  },
+  { id: "double-post", label: "Double post", description: "One side is recorded twice." },
+  {
+    id: "both-sides-wrong",
+    label: "Both sides wrong",
+    description: "Both sides use the same incorrect amount.",
+  },
+  { id: "omission", label: "Omission", description: "One side is left out entirely." },
+  {
+    id: "transposition",
+    label: "Transposition",
+    description: "Digits are reversed in a single amount.",
+  },
+  { id: "slide", label: "Slide", description: "A digit slips out of a single amount." },
 ];
 
-const DEBIT_ACCOUNTS = practiceAccounts.filter((account) => account.normalBalance === 'debit');
-const CREDIT_ACCOUNTS = practiceAccounts.filter((account) => account.normalBalance === 'credit');
+const DEBIT_ACCOUNTS = practiceAccounts.filter((account) => account.normalBalance === "debit");
+const CREDIT_ACCOUNTS = practiceAccounts.filter((account) => account.normalBalance === "credit");
 /**
  * Generates a pseudorandom number generator using the mulberry32 algorithm.
  * @param seed - The seed value for the RNG
@@ -151,7 +167,7 @@ function capitalize(value: string) {
  * @returns The formatted currency string (e.g., "$1,234")
  */
 function formatAmount(amount: number) {
-  return `$${amount.toLocaleString('en-US')}`;
+  return `$${amount.toLocaleString("en-US")}`;
 }
 
 /**
@@ -256,7 +272,13 @@ function pickTranspositionAmount(rng: () => number, min: number, max: number) {
     const amount = hundreds * 100 + tens * 10 + ones;
     const transposed = transposeAmount(amount);
 
-    if (amount >= min && amount <= max && transposed !== amount && transposed >= min && transposed <= max) {
+    if (
+      amount >= min &&
+      amount <= max &&
+      transposed !== amount &&
+      transposed >= min &&
+      transposed <= max
+    ) {
       return amount;
     }
   }
@@ -273,7 +295,11 @@ function pickTranspositionAmount(rng: () => number, min: number, max: number) {
  */
 function pickSlideAmount(rng: () => number, min: number, max: number) {
   for (let attempt = 0; attempt < 24; attempt += 1) {
-    const base = randomInt(rng, Math.max(1, Math.ceil(min / 10)), Math.max(1, Math.floor(max / 10)));
+    const base = randomInt(
+      rng,
+      Math.max(1, Math.ceil(min / 10)),
+      Math.max(1, Math.floor(max / 10)),
+    );
     const amount = base * 10;
     const slid = slideAmount(amount);
 
@@ -312,7 +338,9 @@ function generateDifferenceOptions(rng: () => number, difference: number, isBala
     options.add(Math.max(0, roundToNearestFive(difference + randomInt(rng, 1, 4) * 5)));
   }
 
-  return Array.from(options).slice(0, 4).sort((left, right) => left - right);
+  return Array.from(options)
+    .slice(0, 4)
+    .sort((left, right) => left - right);
 }
 
 /**
@@ -328,7 +356,7 @@ function buildOutcome(debitTotal: number, creditTotal: number): TrialBalanceErro
   return {
     balanced,
     difference,
-    largerColumn: balanced ? 'neither' : debitTotal > creditTotal ? 'debit' : 'credit',
+    largerColumn: balanced ? "neither" : debitTotal > creditTotal ? "debit" : "credit",
   };
 }
 
@@ -348,7 +376,7 @@ function buildScenarioFromOutcome(input: {
   whatHappened: string;
   whatToDecideFirst: string;
   correctEntry: TrialBalanceEntry;
-  errorSide: TrialBalanceSide | 'both';
+  errorSide: TrialBalanceSide | "both";
   correctAmount: number;
   erroneousAmount: number;
   debitTotal: number;
@@ -377,7 +405,7 @@ function buildScenarioFromOutcome(input: {
     correctAmount: input.correctAmount,
     erroneousAmount: input.erroneousAmount,
     balance,
-    expectedBalanced: balance.balanced ? 'still-balances' : 'out-of-balance',
+    expectedBalanced: balance.balanced ? "still-balances" : "out-of-balance",
     expectedDifference: balance.difference,
     expectedLargerColumn: balance.largerColumn,
     balancedOptions: [...TRIAL_BALANCE_BALANCE_OPTIONS],
@@ -394,25 +422,29 @@ function buildScenarioFromOutcome(input: {
  * @param rowIndex - The index of this scenario in the generation
  * @returns A configured TrialBalanceErrorScenario
  */
-function buildWrongSideScenario(seed: number, options: Required<TrialBalanceErrorGenerationConfig>, rowIndex: number) {
+function buildWrongSideScenario(
+  seed: number,
+  options: Required<TrialBalanceErrorGenerationConfig>,
+  rowIndex: number,
+) {
   const rng = mulberry32(seed ^ 0x9e3779b9 ^ rowIndex);
   const correctEntry = pickAccountPair(rng);
   const correctAmount = pickGenericAmount(rng, options.amountRange.min, options.amountRange.max);
-  const errorSide = rng() > 0.5 ? 'debit' : 'credit';
-  const debitTotal = errorSide === 'credit' ? correctAmount * 2 : 0;
-  const creditTotal = errorSide === 'debit' ? correctAmount * 2 : 0;
-  const misTags = ['wrong-side-posting'];
+  const errorSide = rng() > 0.5 ? "debit" : "credit";
+  const debitTotal = errorSide === "credit" ? correctAmount * 2 : 0;
+  const creditTotal = errorSide === "debit" ? correctAmount * 2 : 0;
+  const misTags = ["wrong-side-posting"];
 
   return buildScenarioFromOutcome({
     id: `scenario-${rowIndex + 1}`,
     rowId: `scenario-${rowIndex + 1}`,
     rowLabel: `Scenario ${String.fromCharCode(65 + rowIndex)}`,
-    archetypeId: 'wrong-side',
-    archetypeLabel: 'Wrong side',
+    archetypeId: "wrong-side",
+    archetypeLabel: "Wrong side",
     title: `${String.fromCharCode(65 + rowIndex)}. Wrong side posting`,
     narrative: `The ${errorSide} side was posted to the opposite column instead of the intended side.`,
     whatHappened: `The ${errorSide} side was posted on the wrong side.`,
-    whatToDecideFirst: 'Decide whether the mistake still leaves debits equal to credits.',
+    whatToDecideFirst: "Decide whether the mistake still leaves debits equal to credits.",
     correctEntry,
     errorSide,
     correctAmount,
@@ -431,36 +463,45 @@ function buildWrongSideScenario(seed: number, options: Required<TrialBalanceErro
  * @param rowIndex - The index of this scenario in the generation
  * @returns A configured TrialBalanceErrorScenario
  */
-function buildWrongAmountScenario(seed: number, options: Required<TrialBalanceErrorGenerationConfig>, rowIndex: number) {
+function buildWrongAmountScenario(
+  seed: number,
+  options: Required<TrialBalanceErrorGenerationConfig>,
+  rowIndex: number,
+) {
   const rng = mulberry32(seed ^ 0x51ed270b ^ rowIndex);
   const correctEntry = pickAccountPair(rng);
   const correctAmount = pickGenericAmount(rng, options.amountRange.min, options.amountRange.max);
-  const errorSide = rng() > 0.5 ? 'debit' : 'credit';
+  const errorSide = rng() > 0.5 ? "debit" : "credit";
   let erroneousAmount = pickGenericAmount(rng, options.amountRange.min, options.amountRange.max);
   if (erroneousAmount === correctAmount) {
-    erroneousAmount = clampAmount(erroneousAmount + 15, options.amountRange.min, options.amountRange.max);
+    erroneousAmount = clampAmount(
+      erroneousAmount + 15,
+      options.amountRange.min,
+      options.amountRange.max,
+    );
   }
 
-  const debitTotal = errorSide === 'debit' ? erroneousAmount : correctAmount;
-  const creditTotal = errorSide === 'credit' ? erroneousAmount : correctAmount;
+  const debitTotal = errorSide === "debit" ? erroneousAmount : correctAmount;
+  const creditTotal = errorSide === "credit" ? erroneousAmount : correctAmount;
 
   return buildScenarioFromOutcome({
     id: `scenario-${rowIndex + 1}`,
     rowId: `scenario-${rowIndex + 1}`,
     rowLabel: `Scenario ${String.fromCharCode(65 + rowIndex)}`,
-    archetypeId: 'wrong-amount',
-    archetypeLabel: 'Wrong amount',
+    archetypeId: "wrong-amount",
+    archetypeLabel: "Wrong amount",
     title: `${String.fromCharCode(65 + rowIndex)}. Wrong amount`,
     narrative: `The ${errorSide} side was recorded for ${formatAmount(erroneousAmount)} instead of ${formatAmount(correctAmount)}.`,
     whatHappened: `One side was posted for the wrong dollar amount.`,
-    whatToDecideFirst: 'Decide whether the wrong amount changes the balance before comparing the columns.',
+    whatToDecideFirst:
+      "Decide whether the wrong amount changes the balance before comparing the columns.",
     correctEntry,
     errorSide,
     correctAmount,
     erroneousAmount,
     debitTotal,
     creditTotal,
-    misconceptionTags: ['wrong-amount-posting'],
+    misconceptionTags: ["wrong-amount-posting"],
     rng,
   });
 }
@@ -472,31 +513,35 @@ function buildWrongAmountScenario(seed: number, options: Required<TrialBalanceEr
  * @param rowIndex - The index of this scenario in the generation
  * @returns A configured TrialBalanceErrorScenario
  */
-function buildDoublePostScenario(seed: number, options: Required<TrialBalanceErrorGenerationConfig>, rowIndex: number) {
+function buildDoublePostScenario(
+  seed: number,
+  options: Required<TrialBalanceErrorGenerationConfig>,
+  rowIndex: number,
+) {
   const rng = mulberry32(seed ^ 0x94d049bb ^ rowIndex);
   const correctEntry = pickAccountPair(rng);
   const correctAmount = pickGenericAmount(rng, options.amountRange.min, options.amountRange.max);
-  const errorSide = rng() > 0.5 ? 'debit' : 'credit';
-  const debitTotal = errorSide === 'debit' ? correctAmount * 2 : correctAmount;
-  const creditTotal = errorSide === 'credit' ? correctAmount * 2 : correctAmount;
+  const errorSide = rng() > 0.5 ? "debit" : "credit";
+  const debitTotal = errorSide === "debit" ? correctAmount * 2 : correctAmount;
+  const creditTotal = errorSide === "credit" ? correctAmount * 2 : correctAmount;
 
   return buildScenarioFromOutcome({
     id: `scenario-${rowIndex + 1}`,
     rowId: `scenario-${rowIndex + 1}`,
     rowLabel: `Scenario ${String.fromCharCode(65 + rowIndex)}`,
-    archetypeId: 'double-post',
-    archetypeLabel: 'Double post',
+    archetypeId: "double-post",
+    archetypeLabel: "Double post",
     title: `${String.fromCharCode(65 + rowIndex)}. Double post`,
     narrative: `The ${errorSide} side was entered twice.`,
     whatHappened: `One side was posted twice.`,
-    whatToDecideFirst: 'Decide which side is duplicated, then compare the totals.',
+    whatToDecideFirst: "Decide which side is duplicated, then compare the totals.",
     correctEntry,
     errorSide,
     correctAmount,
     erroneousAmount: correctAmount,
     debitTotal,
     creditTotal,
-    misconceptionTags: ['double-posting'],
+    misconceptionTags: ["double-posting"],
     rng,
   });
 }
@@ -508,32 +553,41 @@ function buildDoublePostScenario(seed: number, options: Required<TrialBalanceErr
  * @param rowIndex - The index of this scenario in the generation
  * @returns A configured TrialBalanceErrorScenario
  */
-function buildBothSidesWrongScenario(seed: number, options: Required<TrialBalanceErrorGenerationConfig>, rowIndex: number) {
+function buildBothSidesWrongScenario(
+  seed: number,
+  options: Required<TrialBalanceErrorGenerationConfig>,
+  rowIndex: number,
+) {
   const rng = mulberry32(seed ^ 0xc2b2ae35 ^ rowIndex);
   const correctEntry = pickAccountPair(rng);
   const correctAmount = pickGenericAmount(rng, options.amountRange.min, options.amountRange.max);
   let erroneousAmount = pickGenericAmount(rng, options.amountRange.min, options.amountRange.max);
   if (erroneousAmount === correctAmount) {
-    erroneousAmount = clampAmount(erroneousAmount + 20, options.amountRange.min, options.amountRange.max);
+    erroneousAmount = clampAmount(
+      erroneousAmount + 20,
+      options.amountRange.min,
+      options.amountRange.max,
+    );
   }
 
   return buildScenarioFromOutcome({
     id: `scenario-${rowIndex + 1}`,
     rowId: `scenario-${rowIndex + 1}`,
     rowLabel: `Scenario ${String.fromCharCode(65 + rowIndex)}`,
-    archetypeId: 'both-sides-wrong',
-    archetypeLabel: 'Both sides wrong',
+    archetypeId: "both-sides-wrong",
+    archetypeLabel: "Both sides wrong",
     title: `${String.fromCharCode(65 + rowIndex)}. Both sides wrong`,
     narrative: `Both sides were recorded for ${formatAmount(erroneousAmount)} instead of ${formatAmount(correctAmount)}.`,
-    whatHappened: 'Both sides used the same wrong amount.',
-    whatToDecideFirst: 'Check whether the equal wrong amounts still keep the trial balance in agreement.',
+    whatHappened: "Both sides used the same wrong amount.",
+    whatToDecideFirst:
+      "Check whether the equal wrong amounts still keep the trial balance in agreement.",
     correctEntry,
-    errorSide: 'both',
+    errorSide: "both",
     correctAmount,
     erroneousAmount,
     debitTotal: erroneousAmount,
     creditTotal: erroneousAmount,
-    misconceptionTags: ['both-sides-wrong-balances'],
+    misconceptionTags: ["both-sides-wrong-balances"],
     rng,
   });
 }
@@ -545,31 +599,35 @@ function buildBothSidesWrongScenario(seed: number, options: Required<TrialBalanc
  * @param rowIndex - The index of this scenario in the generation
  * @returns A configured TrialBalanceErrorScenario
  */
-function buildOmissionScenario(seed: number, options: Required<TrialBalanceErrorGenerationConfig>, rowIndex: number) {
+function buildOmissionScenario(
+  seed: number,
+  options: Required<TrialBalanceErrorGenerationConfig>,
+  rowIndex: number,
+) {
   const rng = mulberry32(seed ^ 0x165667b1 ^ rowIndex);
   const correctEntry = pickAccountPair(rng);
   const correctAmount = pickGenericAmount(rng, options.amountRange.min, options.amountRange.max);
-  const errorSide = rng() > 0.5 ? 'debit' : 'credit';
-  const debitTotal = errorSide === 'debit' ? 0 : correctAmount;
-  const creditTotal = errorSide === 'credit' ? 0 : correctAmount;
+  const errorSide = rng() > 0.5 ? "debit" : "credit";
+  const debitTotal = errorSide === "debit" ? 0 : correctAmount;
+  const creditTotal = errorSide === "credit" ? 0 : correctAmount;
 
   return buildScenarioFromOutcome({
     id: `scenario-${rowIndex + 1}`,
     rowId: `scenario-${rowIndex + 1}`,
     rowLabel: `Scenario ${String.fromCharCode(65 + rowIndex)}`,
-    archetypeId: 'omission',
-    archetypeLabel: 'Omission',
+    archetypeId: "omission",
+    archetypeLabel: "Omission",
     title: `${String.fromCharCode(65 + rowIndex)}. Omission`,
     narrative: `The ${errorSide} side was omitted entirely.`,
-    whatHappened: 'One side never made it into the trial balance.',
-    whatToDecideFirst: 'Check whether the remaining side leaves one column larger.',
+    whatHappened: "One side never made it into the trial balance.",
+    whatToDecideFirst: "Check whether the remaining side leaves one column larger.",
     correctEntry,
     errorSide,
     correctAmount,
     erroneousAmount: 0,
     debitTotal,
     creditTotal,
-    misconceptionTags: ['omission-always-debit-heavy'],
+    misconceptionTags: ["omission-always-debit-heavy"],
     rng,
   });
 }
@@ -581,32 +639,40 @@ function buildOmissionScenario(seed: number, options: Required<TrialBalanceError
  * @param rowIndex - The index of this scenario in the generation
  * @returns A configured TrialBalanceErrorScenario
  */
-function buildTranspositionScenario(seed: number, options: Required<TrialBalanceErrorGenerationConfig>, rowIndex: number) {
+function buildTranspositionScenario(
+  seed: number,
+  options: Required<TrialBalanceErrorGenerationConfig>,
+  rowIndex: number,
+) {
   const rng = mulberry32(seed ^ 0x27d4eb2f ^ rowIndex);
   const correctEntry = pickAccountPair(rng);
-  const correctAmount = pickTranspositionAmount(rng, options.amountRange.min, options.amountRange.max);
-  const errorSide = rng() > 0.5 ? 'debit' : 'credit';
+  const correctAmount = pickTranspositionAmount(
+    rng,
+    options.amountRange.min,
+    options.amountRange.max,
+  );
+  const errorSide = rng() > 0.5 ? "debit" : "credit";
   const erroneousAmount = transposeAmount(correctAmount);
-  const debitTotal = errorSide === 'debit' ? erroneousAmount : correctAmount;
-  const creditTotal = errorSide === 'credit' ? erroneousAmount : correctAmount;
+  const debitTotal = errorSide === "debit" ? erroneousAmount : correctAmount;
+  const creditTotal = errorSide === "credit" ? erroneousAmount : correctAmount;
 
   return buildScenarioFromOutcome({
     id: `scenario-${rowIndex + 1}`,
     rowId: `scenario-${rowIndex + 1}`,
     rowLabel: `Scenario ${String.fromCharCode(65 + rowIndex)}`,
-    archetypeId: 'transposition',
-    archetypeLabel: 'Transposition',
+    archetypeId: "transposition",
+    archetypeLabel: "Transposition",
     title: `${String.fromCharCode(65 + rowIndex)}. Transposition`,
     narrative: `One ${errorSide} amount was transposed from ${formatAmount(correctAmount)} to ${formatAmount(erroneousAmount)}.`,
     whatHappened: `A digit swap changed the ${errorSide} amount.`,
-    whatToDecideFirst: 'Check whether the digit swap leaves a difference that is divisible by 9.',
+    whatToDecideFirst: "Check whether the digit swap leaves a difference that is divisible by 9.",
     correctEntry,
     errorSide,
     correctAmount,
     erroneousAmount,
     debitTotal,
     creditTotal,
-    misconceptionTags: ['transposition-vs-slide'],
+    misconceptionTags: ["transposition-vs-slide"],
     rng,
   });
 }
@@ -618,32 +684,36 @@ function buildTranspositionScenario(seed: number, options: Required<TrialBalance
  * @param rowIndex - The index of this scenario in the generation
  * @returns A configured TrialBalanceErrorScenario
  */
-function buildSlideScenario(seed: number, options: Required<TrialBalanceErrorGenerationConfig>, rowIndex: number) {
+function buildSlideScenario(
+  seed: number,
+  options: Required<TrialBalanceErrorGenerationConfig>,
+  rowIndex: number,
+) {
   const rng = mulberry32(seed ^ 0x85ebca77 ^ rowIndex);
   const correctEntry = pickAccountPair(rng);
   const correctAmount = pickSlideAmount(rng, options.amountRange.min, options.amountRange.max);
-  const errorSide = rng() > 0.5 ? 'debit' : 'credit';
+  const errorSide = rng() > 0.5 ? "debit" : "credit";
   const erroneousAmount = slideAmount(correctAmount);
-  const debitTotal = errorSide === 'debit' ? erroneousAmount : correctAmount;
-  const creditTotal = errorSide === 'credit' ? erroneousAmount : correctAmount;
+  const debitTotal = errorSide === "debit" ? erroneousAmount : correctAmount;
+  const creditTotal = errorSide === "credit" ? erroneousAmount : correctAmount;
 
   return buildScenarioFromOutcome({
     id: `scenario-${rowIndex + 1}`,
     rowId: `scenario-${rowIndex + 1}`,
     rowLabel: `Scenario ${String.fromCharCode(65 + rowIndex)}`,
-    archetypeId: 'slide',
-    archetypeLabel: 'Slide',
+    archetypeId: "slide",
+    archetypeLabel: "Slide",
     title: `${String.fromCharCode(65 + rowIndex)}. Slide`,
     narrative: `One ${errorSide} amount slid from ${formatAmount(correctAmount)} to ${formatAmount(erroneousAmount)}.`,
     whatHappened: `A digit slipped out of the ${errorSide} amount.`,
-    whatToDecideFirst: 'Decide whether the slipped amount changes the balance and by how much.',
+    whatToDecideFirst: "Decide whether the slipped amount changes the balance and by how much.",
     correctEntry,
     errorSide,
     correctAmount,
     erroneousAmount,
     debitTotal,
     creditTotal,
-    misconceptionTags: ['slide-error-size'],
+    misconceptionTags: ["slide-error-size"],
     rng,
   });
 }
@@ -681,19 +751,19 @@ export function buildTrialBalanceErrorScenario(
   const archetypeId = config.archetypeId ?? pick(trialBalanceErrorArchetypes, rng).id;
 
   switch (archetypeId) {
-    case 'wrong-side':
+    case "wrong-side":
       return buildWrongSideScenario(seed, options, 0);
-    case 'wrong-amount':
+    case "wrong-amount":
       return buildWrongAmountScenario(seed, options, 0);
-    case 'double-post':
+    case "double-post":
       return buildDoublePostScenario(seed, options, 0);
-    case 'both-sides-wrong':
+    case "both-sides-wrong":
       return buildBothSidesWrongScenario(seed, options, 0);
-    case 'omission':
+    case "omission":
       return buildOmissionScenario(seed, options, 0);
-    case 'transposition':
+    case "transposition":
       return buildTranspositionScenario(seed, options, 0);
-    case 'slide':
+    case "slide":
       return buildSlideScenario(seed, options, 0);
     default:
       return buildWrongSideScenario(seed, options, 0);
@@ -713,7 +783,7 @@ function pickWeightedArchetype(
   allowBalancedScenarios: boolean,
 ) {
   const candidates = trialBalanceErrorArchetypes
-    .filter((archetype) => allowBalancedScenarios || archetype.id !== 'both-sides-wrong')
+    .filter((archetype) => allowBalancedScenarios || archetype.id !== "both-sides-wrong")
     .map((archetype) => ({
       archetype,
       weight: weights[archetype.id] ?? 1,
@@ -723,7 +793,9 @@ function pickWeightedArchetype(
   const total = candidates.reduce((sum, entry) => sum + entry.weight, 0);
   if (total <= 0) {
     return pick(
-      trialBalanceErrorArchetypes.filter((archetype) => allowBalancedScenarios || archetype.id !== 'both-sides-wrong'),
+      trialBalanceErrorArchetypes.filter(
+        (archetype) => allowBalancedScenarios || archetype.id !== "both-sides-wrong",
+      ),
       rng,
     ).id;
   }
@@ -736,7 +808,7 @@ function pickWeightedArchetype(
     }
   }
 
-  return candidates[candidates.length - 1]?.archetype.id ?? 'wrong-side';
+  return candidates[candidates.length - 1]?.archetype.id ?? "wrong-side";
 }
 
 /**
@@ -763,31 +835,42 @@ export function generateTrialBalanceErrorScenarios(
   const scenarioCount = clampAmount(normalizedConfig.scenarioCount, 3, 6);
 
   const scenarios = Array.from({ length: scenarioCount }, (_, index) => {
-    const archetypeId = pickWeightedArchetype(rng, normalizedConfig.errorTypeWeights, normalizedConfig.includeBalancedScenarios);
+    const archetypeId = pickWeightedArchetype(
+      rng,
+      normalizedConfig.errorTypeWeights,
+      normalizedConfig.includeBalancedScenarios,
+    );
     const scenarioSeed = seed + index * 101;
 
     switch (archetypeId) {
-      case 'wrong-side':
+      case "wrong-side":
         return buildWrongSideScenario(scenarioSeed, normalizedConfig, index);
-      case 'wrong-amount':
+      case "wrong-amount":
         return buildWrongAmountScenario(scenarioSeed, normalizedConfig, index);
-      case 'double-post':
+      case "double-post":
         return buildDoublePostScenario(scenarioSeed, normalizedConfig, index);
-      case 'both-sides-wrong':
+      case "both-sides-wrong":
         return buildBothSidesWrongScenario(scenarioSeed, normalizedConfig, index);
-      case 'omission':
+      case "omission":
         return buildOmissionScenario(scenarioSeed, normalizedConfig, index);
-      case 'transposition':
+      case "transposition":
         return buildTranspositionScenario(scenarioSeed, normalizedConfig, index);
-      case 'slide':
+      case "slide":
         return buildSlideScenario(scenarioSeed, normalizedConfig, index);
       default:
         return buildWrongSideScenario(scenarioSeed, normalizedConfig, index);
     }
   });
 
-  if (normalizedConfig.includeBalancedScenarios && !scenarios.some((scenario) => scenario.balance.balanced)) {
-    const replacement = buildBothSidesWrongScenario(seed + 999, normalizedConfig, scenarios.length - 1);
+  if (
+    normalizedConfig.includeBalancedScenarios &&
+    !scenarios.some((scenario) => scenario.balance.balanced)
+  ) {
+    const replacement = buildBothSidesWrongScenario(
+      seed + 999,
+      normalizedConfig,
+      scenarios.length - 1,
+    );
     scenarios[scenarios.length - 1] = replacement;
   }
 
@@ -806,7 +889,7 @@ export function generateTrialBalanceErrorScenarios(
  * @returns Human-readable label string
  */
 export function formatTrialBalanceBalanceAnswer(value: TrialBalanceBalanceAnswer) {
-  return value === 'still-balances' ? 'Still balances' : 'Out of balance';
+  return value === "still-balances" ? "Still balances" : "Out of balance";
 }
 
 /**
@@ -815,8 +898,8 @@ export function formatTrialBalanceBalanceAnswer(value: TrialBalanceBalanceAnswer
  * @returns Human-readable column label
  */
 export function formatTrialBalanceLargerColumn(value: TrialBalanceLargerColumn) {
-  if (value === 'neither') {
-    return 'Neither';
+  if (value === "neither") {
+    return "Neither";
   }
 
   return capitalize(value);

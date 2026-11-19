@@ -1,4 +1,4 @@
-import { generateTopic14PolynomialExtremaFromGraphOutput } from '@math-platform/math-content/knowledge-space';
+import { generateTopic14PolynomialExtremaFromGraphOutput } from "@math-platform/math-content/knowledge-space";
 
 export interface Topic14PolynomialExtremaFromGraphAnswers {
   readonly relative_minimum_x: string;
@@ -6,14 +6,10 @@ export interface Topic14PolynomialExtremaFromGraphAnswers {
   readonly absolute_minimum_x: string;
 }
 
-const PART_IDS = [
-  'relative_minimum_x',
-  'relative_maximum_x',
-  'absolute_minimum_x',
-] as const;
+const PART_IDS = ["relative_minimum_x", "relative_maximum_x", "absolute_minimum_x"] as const;
 
 function parseDecimal(rawAnswer: unknown): number | null {
-  if (typeof rawAnswer !== 'string') return null;
+  if (typeof rawAnswer !== "string") return null;
   const trimmed = rawAnswer.trim();
   if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(trimmed)) return null;
   const parsed = Number(trimmed);

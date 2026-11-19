@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const MODULE3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Solving Polynomial Equations (HSA-REI.B.4, HSA-APR.C.4)

@@ -1,7 +1,11 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { cellBgClass, type GradebookRow, type GradebookLesson } from '@math-platform/teacher-reporting-core';
+import Link from "next/link";
+import {
+  cellBgClass,
+  type GradebookRow,
+  type GradebookLesson,
+} from "@math-platform/teacher-reporting-core";
 
 interface GradebookGridProps {
   rows: GradebookRow[];
@@ -67,7 +71,9 @@ export function GradebookGrid({ rows, lessons, onCellClick }: GradebookGridProps
                 className="text-center px-2 py-3 font-medium text-muted-foreground min-w-24"
                 title={lesson.lessonTitle}
               >
-                <span className={`block max-w-40 mx-auto ${lesson.isUnitTest ? 'font-semibold' : ''}`}>
+                <span
+                  className={`block max-w-40 mx-auto ${lesson.isUnitTest ? "font-semibold" : ""}`}
+                >
                   {lesson.lessonTitle}
                 </span>
               </th>
@@ -97,7 +103,7 @@ export function GradebookGrid({ rows, lessons, onCellClick }: GradebookGridProps
                       title={`${cell.lesson.lessonTitle} - ${cell.completionStatus}`}
                       data-testid="teacher-gradebook-cell"
                     >
-                      {cell.masteryLevel !== null ? `${cell.masteryLevel}%` : '—'}
+                      {cell.masteryLevel !== null ? `${cell.masteryLevel}%` : "—"}
                     </button>
                   ) : (
                     <Link
@@ -106,7 +112,7 @@ export function GradebookGrid({ rows, lessons, onCellClick }: GradebookGridProps
                       title={`${cell.lesson.lessonTitle} - ${cell.completionStatus}`}
                       data-testid="teacher-gradebook-cell"
                     >
-                      {cell.masteryLevel !== null ? `${cell.masteryLevel}%` : '—'}
+                      {cell.masteryLevel !== null ? `${cell.masteryLevel}%` : "—"}
                     </Link>
                   )}
                 </td>

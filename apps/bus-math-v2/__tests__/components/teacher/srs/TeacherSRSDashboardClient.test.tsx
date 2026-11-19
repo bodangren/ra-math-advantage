@@ -12,23 +12,25 @@ vi.mock("next/navigation", () => ({
   default: () => ({}),
 }));
 
-
 import { TeacherSRSDashboardClient } from "../../../../components/teacher/srs/TeacherSRSDashboardClient";
 
 describe("TeacherSRSDashboardClient", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    vi.stubGlobal('fetch', async (url: string, options?: RequestInit) => {
-      if (options?.method === 'POST') {
+    vi.stubGlobal("fetch", async (url: string, options?: RequestInit) => {
+      if (options?.method === "POST") {
         const { action, ...args } = JSON.parse(String(options.body));
-        const result = await mockFetchInternalMutation(`api.srs.${action === 'reset' ? 'resetStudentCard' : 'bumpFamilyPriority'}`, args);
+        const result = await mockFetchInternalMutation(
+          `api.srs.${action === "reset" ? "resetStudentCard" : "bumpFamilyPriority"}`,
+          args,
+        );
         return Response.json(result ?? null);
       }
-      const classId = new URL(url, 'http://localhost').searchParams.get('classId');
+      const classId = new URL(url, "http://localhost").searchParams.get("classId");
       const args = { classId };
-      const health = await mockFetchInternalQuery('api.srs.getClassSrsHealth', args);
-      const families = await mockFetchInternalQuery('api.srs.getWeakFamilies', args);
-      const students = await mockFetchInternalQuery('api.srs.getStrugglingStudents', args);
+      const health = await mockFetchInternalQuery("api.srs.getClassSrsHealth", args);
+      const families = await mockFetchInternalQuery("api.srs.getWeakFamilies", args);
+      const students = await mockFetchInternalQuery("api.srs.getStrugglingStudents", args);
       return Response.json({ health, families, students: students?.students ?? [] });
     });
     mockFetchInternalQuery.mockResolvedValue(null);
@@ -36,14 +38,12 @@ describe("TeacherSRSDashboardClient", () => {
   });
 
   it("shows empty state when there are no classes", () => {
-    render(
-      <TeacherSRSDashboardClient organizationName="Test School" classes={[]} />
-    );
+    render(<TeacherSRSDashboardClient organizationName="Test School" classes={[]} />);
 
     expect(
       screen.getByText(
-        /You don't have any classes yet\. Create a class to start tracking SRS data\./i
-      )
+        /You don't have any classes yet\. Create a class to start tracking SRS data\./i,
+      ),
     ).toBeInTheDocument();
   });
 
@@ -105,7 +105,7 @@ describe("TeacherSRSDashboardClient", () => {
             academicYear: "2026",
           },
         ]}
-      />
+      />,
     );
 
     await waitFor(() => {
@@ -159,13 +159,13 @@ describe("TeacherSRSDashboardClient", () => {
             academicYear: "2026",
           },
         ]}
-      />
+      />,
     );
 
     await waitFor(() => {
       expect(mockFetchInternalQuery).toHaveBeenCalledWith(
         "api.srs.getClassSrsHealth",
-        expect.objectContaining({ classId: "class-1" })
+        expect.objectContaining({ classId: "class-1" }),
       );
     });
 
@@ -196,7 +196,7 @@ describe("TeacherSRSDashboardClient", () => {
     await waitFor(() => {
       expect(mockFetchInternalQuery).toHaveBeenCalledWith(
         "api.srs.getClassSrsHealth",
-        expect.objectContaining({ classId: "class-2" })
+        expect.objectContaining({ classId: "class-2" }),
       );
     });
   });
@@ -259,7 +259,7 @@ describe("TeacherSRSDashboardClient", () => {
             academicYear: "2026",
           },
         ]}
-      />
+      />,
     );
 
     await waitFor(() => {
@@ -288,7 +288,7 @@ describe("TeacherSRSDashboardClient", () => {
         expect.objectContaining({
           studentId: "student-1",
           problemFamilyId: "family-a",
-        })
+        }),
       );
     });
   });
@@ -338,7 +338,7 @@ describe("TeacherSRSDashboardClient", () => {
             academicYear: "2026",
           },
         ]}
-      />
+      />,
     );
 
     await waitFor(() => {
@@ -367,7 +367,7 @@ describe("TeacherSRSDashboardClient", () => {
         expect.objectContaining({
           classId: "class-1",
           problemFamilyId: "family-a",
-        })
+        }),
       );
     });
   });

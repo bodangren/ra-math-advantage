@@ -1,4 +1,4 @@
-export const template = 'package-template';
+export const template = "package-template";
 
 export type PackageTemplate = {
   name: string;

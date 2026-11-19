@@ -1,7 +1,21 @@
-import { buildPracticeSubmissionEnvelope, normalizePracticeValue, type PracticeSubmissionEnvelope } from '@/lib/practice/contract';
-import type { GradeResult, ProblemDefinition, ProblemFamily, ProblemPartDefinition } from '@/lib/practice/engine/types';
-import { misconceptionTags } from '@/lib/practice/misconception-taxonomy';
-import { buildTransactionEvent, type TransactionBuildOptions, type TransactionEffect, type TransactionEvent } from '@/lib/practice/engine/transactions';
+import {
+  buildPracticeSubmissionEnvelope,
+  normalizePracticeValue,
+  type PracticeSubmissionEnvelope,
+} from "@/lib/practice/contract";
+import type {
+  GradeResult,
+  ProblemDefinition,
+  ProblemFamily,
+  ProblemPartDefinition,
+} from "@/lib/practice/engine/types";
+import { misconceptionTags } from "@/lib/practice/misconception-taxonomy";
+import {
+  buildTransactionEvent,
+  type TransactionBuildOptions,
+  type TransactionEffect,
+  type TransactionEvent,
+} from "@/lib/practice/engine/transactions";
 import {
   buildAccountEffectSummary,
   buildEffectDescription,
@@ -12,14 +26,14 @@ import {
   transactionReasonColumns,
   type TransactionDirection,
   type TransactionReasonId,
-} from './transaction-analysis-utils';
+} from "./transaction-analysis-utils";
 
 export interface TransactionEffectsRow {
   id: string;
   label: string;
   description: string;
   hint?: string;
-  selectionMode?: 'single';
+  selectionMode?: "single";
 }
 
 export interface TransactionEffectsColumn {
@@ -30,15 +44,15 @@ export interface TransactionEffectsColumn {
 
 export interface TransactionEffectsPart extends ProblemPartDefinition {
   id: string;
-  kind: 'selection' | 'numeric';
+  kind: "selection" | "numeric";
   label: string;
   description?: string;
   targetId: string | number;
   details: {
-    kind: 'effect' | 'summary' | 'amount' | 'reason';
+    kind: "effect" | "summary" | "amount" | "reason";
     accountId?: string;
     accountLabel?: string;
-    accountType?: TransactionEffect['accountType'];
+    accountType?: TransactionEffect["accountType"];
     expectedDirection?: TransactionDirection;
     expectedAmount?: number;
     reason?: TransactionReasonId;
@@ -60,11 +74,11 @@ export interface TransactionEffectsDefinition extends ProblemDefinition {
 export type TransactionEffectsResponse = Record<string, string | number>;
 
 export interface TransactionEffectsConfig extends TransactionBuildOptions {
-  mode?: ProblemDefinition['mode'];
+  mode?: ProblemDefinition["mode"];
 }
 
 export interface TransactionEffectsReviewFeedback {
-  status: 'correct' | 'incorrect' | 'partial';
+  status: "correct" | "incorrect" | "partial";
   scoreLabel?: string;
   selectedLabel?: string;
   expectedLabel?: string;
@@ -80,25 +94,29 @@ function buildEffectRows(event: TransactionEvent) {
   const effectRows: TransactionEffectsRow[] = event.effects.map((effect) => ({
     id: effect.accountId,
     label: effect.label,
-    description: buildEffectDescription(event, effect.label, effect.direction === 'increase' ? 'increase' : 'decrease'),
+    description: buildEffectDescription(
+      event,
+      effect.label,
+      effect.direction === "increase" ? "increase" : "decrease",
+    ),
     hint: `${effect.accountType} account • ${effect.normalBalance} normal balance`,
   }));
 
   const summaryRows: TransactionEffectsRow[] = [
     {
-      id: 'assets',
-      label: 'Assets',
-      description: `${formatDirectionLabel(buildAccountEffectSummary(event, 'asset'))} across the asset accounts.`,
+      id: "assets",
+      label: "Assets",
+      description: `${formatDirectionLabel(buildAccountEffectSummary(event, "asset"))} across the asset accounts.`,
     },
     {
-      id: 'liabilities',
-      label: 'Liabilities',
-      description: `${formatDirectionLabel(buildAccountEffectSummary(event, 'liability'))} across the liability accounts.`,
+      id: "liabilities",
+      label: "Liabilities",
+      description: `${formatDirectionLabel(buildAccountEffectSummary(event, "liability"))} across the liability accounts.`,
     },
     {
-      id: 'equity',
+      id: "equity",
       label: "Owner's Equity",
-      description: `Net equity effect: ${formatDirectionLabel(event.equityEffect === 'increases' ? 'increase' : event.equityEffect === 'decreases' ? 'decrease' : 'no-effect')}.`,
+      description: `Net equity effect: ${formatDirectionLabel(event.equityEffect === "increases" ? "increase" : event.equityEffect === "decreases" ? "decrease" : "no-effect")}.`,
     },
   ];
 
@@ -111,23 +129,26 @@ function buildEffectRows(event: TransactionEvent) {
  * @returns The constructed result
  */
 function buildParts(event: TransactionEvent): TransactionEffectsPart[] {
-  const reason = transactionReasonColumns.find((entry) => entry.id === getReasonTag(event).slice('reason:'.length)) ?? transactionReasonColumns[1];
+  const reason =
+    transactionReasonColumns.find(
+      (entry) => entry.id === getReasonTag(event).slice("reason:".length),
+    ) ?? transactionReasonColumns[1];
 
   const effectParts: TransactionEffectsPart[] = event.effects.map((effect) => ({
     id: effect.accountId,
-    kind: 'selection' as const,
+    kind: "selection" as const,
     label: effect.label,
     description: `${effect.accountType} account`,
     prompt: `Select the direction for ${effect.label}.`,
-    expectedAnswerShape: 'direction-id',
+    expectedAnswerShape: "direction-id",
     canonicalAnswer: effect.direction,
     explanation: buildEffectDescription(event, effect.label, effect.direction),
     misconceptionTags: [`${effect.accountId}-direction-error`],
-    standardCode: 'ACC-M7-TX-EFFECT',
+    standardCode: "ACC-M7-TX-EFFECT",
     artifactTarget: effect.direction,
     targetId: effect.direction,
     details: {
-      kind: 'effect',
+      kind: "effect",
       accountId: effect.accountId,
       accountLabel: effect.label,
       accountType: effect.accountType,
@@ -140,104 +161,124 @@ function buildParts(event: TransactionEvent): TransactionEffectsPart[] {
 
   const summaryParts: TransactionEffectsPart[] = [
     {
-      id: 'assets',
-      kind: 'selection',
-      label: 'Assets',
-      description: 'Net asset impact',
-      prompt: 'Choose the asset-category effect.',
-      expectedAnswerShape: 'direction-id',
-      canonicalAnswer: buildAccountEffectSummary(event, 'asset'),
-      explanation: `Asset accounts move ${formatDirectionLabel(buildAccountEffectSummary(event, 'asset')).toLowerCase()}.`,
-      misconceptionTags: ['asset-summary-error'],
-      standardCode: 'ACC-M7-TX-SUMMARY',
-      artifactTarget: buildAccountEffectSummary(event, 'asset'),
-      targetId: buildAccountEffectSummary(event, 'asset'),
+      id: "assets",
+      kind: "selection",
+      label: "Assets",
+      description: "Net asset impact",
+      prompt: "Choose the asset-category effect.",
+      expectedAnswerShape: "direction-id",
+      canonicalAnswer: buildAccountEffectSummary(event, "asset"),
+      explanation: `Asset accounts move ${formatDirectionLabel(buildAccountEffectSummary(event, "asset")).toLowerCase()}.`,
+      misconceptionTags: ["asset-summary-error"],
+      standardCode: "ACC-M7-TX-SUMMARY",
+      artifactTarget: buildAccountEffectSummary(event, "asset"),
+      targetId: buildAccountEffectSummary(event, "asset"),
       details: {
-        kind: 'summary',
-        expectedDirection: buildAccountEffectSummary(event, 'asset'),
+        kind: "summary",
+        expectedDirection: buildAccountEffectSummary(event, "asset"),
         reason: reason.id,
         reasonLabel: reason.label,
-        explanation: `Asset accounts move ${formatDirectionLabel(buildAccountEffectSummary(event, 'asset')).toLowerCase()}.`,
+        explanation: `Asset accounts move ${formatDirectionLabel(buildAccountEffectSummary(event, "asset")).toLowerCase()}.`,
       },
     },
     {
-      id: 'liabilities',
-      kind: 'selection',
-      label: 'Liabilities',
-      description: 'Net liability impact',
-      prompt: 'Choose the liability-category effect.',
-      expectedAnswerShape: 'direction-id',
-      canonicalAnswer: buildAccountEffectSummary(event, 'liability'),
-      explanation: `Liability accounts move ${formatDirectionLabel(buildAccountEffectSummary(event, 'liability')).toLowerCase()}.`,
-      misconceptionTags: ['liability-summary-error'],
-      standardCode: 'ACC-M7-TX-SUMMARY',
-      artifactTarget: buildAccountEffectSummary(event, 'liability'),
-      targetId: buildAccountEffectSummary(event, 'liability'),
+      id: "liabilities",
+      kind: "selection",
+      label: "Liabilities",
+      description: "Net liability impact",
+      prompt: "Choose the liability-category effect.",
+      expectedAnswerShape: "direction-id",
+      canonicalAnswer: buildAccountEffectSummary(event, "liability"),
+      explanation: `Liability accounts move ${formatDirectionLabel(buildAccountEffectSummary(event, "liability")).toLowerCase()}.`,
+      misconceptionTags: ["liability-summary-error"],
+      standardCode: "ACC-M7-TX-SUMMARY",
+      artifactTarget: buildAccountEffectSummary(event, "liability"),
+      targetId: buildAccountEffectSummary(event, "liability"),
       details: {
-        kind: 'summary',
-        expectedDirection: buildAccountEffectSummary(event, 'liability'),
+        kind: "summary",
+        expectedDirection: buildAccountEffectSummary(event, "liability"),
         reason: reason.id,
         reasonLabel: reason.label,
-        explanation: `Liability accounts move ${formatDirectionLabel(buildAccountEffectSummary(event, 'liability')).toLowerCase()}.`,
+        explanation: `Liability accounts move ${formatDirectionLabel(buildAccountEffectSummary(event, "liability")).toLowerCase()}.`,
       },
     },
     {
-      id: 'equity',
-      kind: 'selection',
+      id: "equity",
+      kind: "selection",
       label: "Owner's Equity",
-      description: 'Net owner-claim impact',
+      description: "Net owner-claim impact",
       prompt: "Choose the owner's equity effect.",
-      expectedAnswerShape: 'direction-id',
-      canonicalAnswer: event.equityEffect === 'increases' ? 'increase' : event.equityEffect === 'decreases' ? 'decrease' : 'no-effect',
+      expectedAnswerShape: "direction-id",
+      canonicalAnswer:
+        event.equityEffect === "increases"
+          ? "increase"
+          : event.equityEffect === "decreases"
+            ? "decrease"
+            : "no-effect",
       explanation: event.equityReason,
       misconceptionTags: [`equity-${event.equityEffect}`],
-      standardCode: 'ACC-M7-TX-SUMMARY',
-      artifactTarget: event.equityEffect === 'increases' ? 'increase' : event.equityEffect === 'decreases' ? 'decrease' : 'no-effect',
-      targetId: event.equityEffect === 'increases' ? 'increase' : event.equityEffect === 'decreases' ? 'decrease' : 'no-effect',
+      standardCode: "ACC-M7-TX-SUMMARY",
+      artifactTarget:
+        event.equityEffect === "increases"
+          ? "increase"
+          : event.equityEffect === "decreases"
+            ? "decrease"
+            : "no-effect",
+      targetId:
+        event.equityEffect === "increases"
+          ? "increase"
+          : event.equityEffect === "decreases"
+            ? "decrease"
+            : "no-effect",
       details: {
-        kind: 'summary',
-        expectedDirection: event.equityEffect === 'increases' ? 'increase' : event.equityEffect === 'decreases' ? 'decrease' : 'no-effect',
+        kind: "summary",
+        expectedDirection:
+          event.equityEffect === "increases"
+            ? "increase"
+            : event.equityEffect === "decreases"
+              ? "decrease"
+              : "no-effect",
         reason: reason.id,
         reasonLabel: reason.label,
         explanation: event.equityReason,
       },
     },
     {
-      id: 'amount',
-      kind: 'numeric',
-      label: 'Amount',
-      description: 'Transaction amount',
-      prompt: 'Enter the transaction amount.',
-      expectedAnswerShape: 'number',
+      id: "amount",
+      kind: "numeric",
+      label: "Amount",
+      description: "Transaction amount",
+      prompt: "Enter the transaction amount.",
+      expectedAnswerShape: "number",
       canonicalAnswer: event.amount,
-      explanation: `The transaction amount is $${event.amount.toLocaleString('en-US')}.`,
-      misconceptionTags: ['amount-error'],
-      standardCode: 'ACC-M7-TX-AMOUNT',
+      explanation: `The transaction amount is $${event.amount.toLocaleString("en-US")}.`,
+      misconceptionTags: ["amount-error"],
+      standardCode: "ACC-M7-TX-AMOUNT",
       artifactTarget: event.amount.toString(),
       targetId: event.amount,
       details: {
-        kind: 'amount',
+        kind: "amount",
         expectedAmount: event.amount,
         reason: reason.id,
         reasonLabel: reason.label,
-        explanation: `The transaction amount is $${event.amount.toLocaleString('en-US')}.`,
+        explanation: `The transaction amount is $${event.amount.toLocaleString("en-US")}.`,
       },
     },
     {
-      id: 'equity-reason',
-      kind: 'selection',
-      label: 'Why equity changes',
-      description: 'The economic story behind the equity effect',
-      prompt: 'Choose the reason equity changes.',
-      expectedAnswerShape: 'reason-id',
+      id: "equity-reason",
+      kind: "selection",
+      label: "Why equity changes",
+      description: "The economic story behind the equity effect",
+      prompt: "Choose the reason equity changes.",
+      expectedAnswerShape: "reason-id",
       canonicalAnswer: reason.id,
       explanation: reason.description,
       misconceptionTags: [`reason-${reason.id}`],
-      standardCode: 'ACC-M7-TX-REASON',
+      standardCode: "ACC-M7-TX-REASON",
       artifactTarget: reason.id,
       targetId: reason.id,
       details: {
-        kind: 'reason',
+        kind: "reason",
         reason: reason.id,
         reasonLabel: reason.label,
         explanation: reason.description,
@@ -259,11 +300,16 @@ function buildResponse(definition: TransactionEffectsDefinition): TransactionEff
     response[effect.accountId] = effect.direction;
   }
 
-  response.assets = buildAccountEffectSummary(definition.event, 'asset');
-  response.liabilities = buildAccountEffectSummary(definition.event, 'liability');
-  response.equity = definition.event.equityEffect === 'increases' ? 'increase' : definition.event.equityEffect === 'decreases' ? 'decrease' : 'no-effect';
+  response.assets = buildAccountEffectSummary(definition.event, "asset");
+  response.liabilities = buildAccountEffectSummary(definition.event, "liability");
+  response.equity =
+    definition.event.equityEffect === "increases"
+      ? "increase"
+      : definition.event.equityEffect === "decreases"
+        ? "decrease"
+        : "no-effect";
   response.amount = definition.event.amount;
-  response['equity-reason'] = getReasonTag(definition.event).slice('reason:'.length);
+  response["equity-reason"] = getReasonTag(definition.event).slice("reason:".length);
 
   return response;
 }
@@ -278,42 +324,42 @@ function buildResponse(definition: TransactionEffectsDefinition): TransactionEff
 function buildPartFeedback(
   part: TransactionEffectsPart,
   studentResponse: TransactionEffectsResponse,
-  gradeResultPart: GradeResult['parts'][number],
+  gradeResultPart: GradeResult["parts"][number],
 ): TransactionEffectsReviewFeedback {
   const selectedValue = studentResponse[part.id];
   const selectedLabel =
-    part.kind === 'numeric'
-      ? `$${Number(selectedValue ?? 0).toLocaleString('en-US')}`
-      : typeof selectedValue === 'string'
-        ? selectedValue === 'no-effect'
-          ? 'No effect'
-          : selectedValue.replace(/-/g, ' ').replace(/^\w/, (char) => char.toUpperCase())
-        : 'Not selected';
+    part.kind === "numeric"
+      ? `$${Number(selectedValue ?? 0).toLocaleString("en-US")}`
+      : typeof selectedValue === "string"
+        ? selectedValue === "no-effect"
+          ? "No effect"
+          : selectedValue.replace(/-/g, " ").replace(/^\w/, (char) => char.toUpperCase())
+        : "Not selected";
   const expectedLabel =
-    part.kind === 'numeric'
-      ? `$${Number(part.targetId).toLocaleString('en-US')}`
-      : typeof part.targetId === 'number'
-        ? `$${part.targetId.toLocaleString('en-US')}`
-        : part.targetId === 'no-effect'
-          ? 'No effect'
+    part.kind === "numeric"
+      ? `$${Number(part.targetId).toLocaleString("en-US")}`
+      : typeof part.targetId === "number"
+        ? `$${part.targetId.toLocaleString("en-US")}`
+        : part.targetId === "no-effect"
+          ? "No effect"
           : part.targetId[0].toUpperCase() + part.targetId.slice(1);
 
   return {
-    status: gradeResultPart.isCorrect ? 'correct' : 'incorrect',
+    status: gradeResultPart.isCorrect ? "correct" : "incorrect",
     scoreLabel: `${gradeResultPart.score}/${gradeResultPart.maxScore}`,
     selectedLabel,
     expectedLabel,
     misconceptionTags: gradeResultPart.misconceptionTags,
     message: gradeResultPart.isCorrect
-      ? part.details.kind === 'reason'
+      ? part.details.kind === "reason"
         ? `${part.details.reasonLabel} explains the equity change.`
-        : part.details.kind === 'amount'
-          ? `Correct amount: $${Number(part.targetId).toLocaleString('en-US')}.`
+        : part.details.kind === "amount"
+          ? `Correct amount: $${Number(part.targetId).toLocaleString("en-US")}.`
           : `Correct ${part.label.toLowerCase()}.`
-      : part.details.kind === 'reason'
+      : part.details.kind === "reason"
         ? `You treated this transaction as ${selectedLabel.toLowerCase()}, but it is ${part.details.reasonLabel?.toLowerCase()} because ${part.details.explanation}.`
-        : part.details.kind === 'amount'
-          ? `The amount is $${Number(part.targetId).toLocaleString('en-US')}.`
+        : part.details.kind === "amount"
+          ? `The amount is $${Number(part.targetId).toLocaleString("en-US")}.`
           : `${part.label} should be ${expectedLabel.toLowerCase()}. ${part.details.explanation}`,
   };
 }
@@ -337,12 +383,12 @@ export function buildTransactionEffectsReviewFeedback(
         return [
           gradeResultPart.partId,
           {
-            status: gradeResultPart.isCorrect ? 'correct' : 'incorrect',
+            status: gradeResultPart.isCorrect ? "correct" : "incorrect",
             scoreLabel: `${gradeResultPart.score}/${gradeResultPart.maxScore}`,
-            selectedLabel: 'Not selected',
-            expectedLabel: 'Unknown',
+            selectedLabel: "Not selected",
+            expectedLabel: "Unknown",
             misconceptionTags: gradeResultPart.misconceptionTags,
-            message: 'Review data unavailable.',
+            message: "Review data unavailable.",
           },
         ] as const;
       }
@@ -358,23 +404,23 @@ export const transactionEffectsFamily: ProblemFamily<
   TransactionEffectsConfig
 > = {
   generate(seed, config = {}) {
-    const event = buildTransactionEvent(config.archetypeId ?? 'earn-revenue', {
+    const event = buildTransactionEvent(config.archetypeId ?? "earn-revenue", {
       ...config,
       seed,
-      context: config.context ?? 'service',
-      settlement: config.settlement ?? 'cash',
+      context: config.context ?? "service",
+      settlement: config.settlement ?? "cash",
     });
     const rows = buildEffectRows(event);
     const parts = buildParts(event);
 
     return {
-      contractVersion: 'practice.v1',
-      familyKey: 'transaction-effects',
-      mode: config.mode ?? 'guided_practice',
+      contractVersion: "practice.v1",
+      familyKey: "transaction-effects",
+      mode: config.mode ?? "guided_practice",
       activityId: `transaction-effects-${event.archetypeId}-${seed}`,
       prompt: {
-        title: 'Transaction effects on accounts',
-        stem: 'Use the transaction narrative to identify how the major accounts change and why equity changes.',
+        title: "Transaction effects on accounts",
+        stem: "Use the transaction narrative to identify how the major accounts change and why equity changes.",
       },
       event,
       rows,
@@ -394,14 +440,14 @@ export const transactionEffectsFamily: ProblemFamily<
         showReasonStrip: true,
       },
       grading: {
-        strategy: 'exact',
+        strategy: "exact",
         partialCredit: false,
         rubric: {
           archetypeId: event.archetypeId,
         },
       },
       analyticsConfig: {
-        generator: 'transaction-effects-family',
+        generator: "transaction-effects-family",
         seed,
         archetypeId: event.archetypeId,
         context: event.context,
@@ -420,7 +466,7 @@ export const transactionEffectsFamily: ProblemFamily<
       const rawAnswer = studentResponse[part.id];
       const normalizedAnswer = normalizePracticeValue(rawAnswer);
       const expectedAnswer =
-        part.kind === 'numeric'
+        part.kind === "numeric"
           ? normalizePracticeValue(part.targetId)
           : normalizePracticeValue(part.targetId);
       const isCorrect = normalizedAnswer === expectedAnswer;
@@ -428,10 +474,10 @@ export const transactionEffectsFamily: ProblemFamily<
       const tags: string[] = [];
       if (!isCorrect) {
         const contextTag = `transaction-effects:${part.id}`;
-        if (part.details.kind === 'effect') {
-          tags.push(...misconceptionTags('classification-error', contextTag));
-        } else if (part.details.kind === 'amount') {
-          tags.push(...misconceptionTags('computation-error', contextTag));
+        if (part.details.kind === "effect") {
+          tags.push(...misconceptionTags("classification-error", contextTag));
+        } else if (part.details.kind === "amount") {
+          tags.push(...misconceptionTags("computation-error", contextTag));
         } else {
           tags.push(contextTag);
         }
@@ -460,7 +506,7 @@ export const transactionEffectsFamily: ProblemFamily<
 
   toEnvelope(definition, studentResponse, gradeResult): PracticeSubmissionEnvelope {
     const artifact = {
-      kind: 'transaction-effects-analysis',
+      kind: "transaction-effects-analysis",
       family: definition.familyKey,
       event: definition.event,
       rows: definition.rows,
@@ -486,7 +532,7 @@ export const transactionEffectsFamily: ProblemFamily<
     return buildPracticeSubmissionEnvelope({
       activityId: definition.activityId,
       mode: definition.mode,
-      status: 'submitted',
+      status: "submitted",
       attemptNumber: 1,
       answers: studentResponse,
       parts: gradeResult.parts.map((part) => ({

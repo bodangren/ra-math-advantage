@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useState, useCallback } from 'react';
-import Link from 'next/link';
-import { FlashcardPlayer } from '@/components/student/FlashcardPlayer';
-import type { GlossaryTerm } from '@/lib/study/types';
-import { getGlossaryTermsByModule } from '@/lib/study/glossary';
-import { fetchInternalMutation, internal } from '@/lib/convex/server';
-import type { Id } from '@/convex/_generated/dataModel';
+import { useState, useCallback } from "react";
+import Link from "next/link";
+import { FlashcardPlayer } from "@/components/student/FlashcardPlayer";
+import type { GlossaryTerm } from "@/lib/study/types";
+import { getGlossaryTermsByModule } from "@/lib/study/glossary";
+import { fetchInternalMutation, internal } from "@/lib/convex/server";
+import type { Id } from "@/convex/_generated/dataModel";
 
 interface FlashcardsPageClientProps {
   allTerms: GlossaryTerm[];
@@ -51,19 +51,19 @@ export function FlashcardsPageClient({
     }) => {
       try {
         await fetchInternalMutation(internal.study.recordStudySession, {
-          userId: studentId as Id<'profiles'>,
-          activityType: 'flashcards',
+          userId: studentId as Id<"profiles">,
+          activityType: "flashcards",
           curriculumScope:
             selectedModule !== null
-              ? { type: 'module', moduleNumber: selectedModule }
-              : { type: 'all_units' },
+              ? { type: "module", moduleNumber: selectedModule }
+              : { type: "all_units" },
           results,
         });
       } catch (err) {
-        console.error('Failed to record flashcard session:', err);
+        console.error("Failed to record flashcard session:", err);
       }
     },
-    [studentId, selectedModule]
+    [studentId, selectedModule],
   );
 
   if (showPlayer) {
@@ -91,12 +91,8 @@ export function FlashcardsPageClient({
         >
           ← Back to Study Hub
         </Link>
-        <h1 className="text-3xl font-display font-bold text-foreground mt-2">
-          Flashcards
-        </h1>
-        <p className="text-muted-foreground">
-          Select a module to review, or study all terms
-        </p>
+        <h1 className="text-3xl font-display font-bold text-foreground mt-2">Flashcards</h1>
+        <p className="text-muted-foreground">Select a module to review, or study all terms</p>
       </div>
 
       <div className="space-y-4">
@@ -105,8 +101,8 @@ export function FlashcardsPageClient({
             onClick={() => handleModuleSelect(null)}
             className={`rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${
               selectedModule === null
-                ? 'border-primary bg-primary/10 text-primary'
-                : 'border-border bg-card text-foreground hover:border-primary/40'
+                ? "border-primary bg-primary/10 text-primary"
+                : "border-border bg-card text-foreground hover:border-primary/40"
             }`}
           >
             All Modules ({allTerms.length} terms)
@@ -119,8 +115,8 @@ export function FlashcardsPageClient({
                 onClick={() => handleModuleSelect(mod)}
                 className={`rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${
                   selectedModule === mod
-                    ? 'border-primary bg-primary/10 text-primary'
-                    : 'border-border bg-card text-foreground hover:border-primary/40'
+                    ? "border-primary bg-primary/10 text-primary"
+                    : "border-border bg-card text-foreground hover:border-primary/40"
                 }`}
               >
                 Module {mod} ({modTerms.length} terms)
@@ -144,8 +140,7 @@ export function FlashcardsPageClient({
                 ))}
               {getGlossaryTermsByModule(selectedModule).length > 5 && (
                 <li className="text-sm text-muted-foreground">
-                  ...and{' '}
-                  {getGlossaryTermsByModule(selectedModule).length - 5} more
+                  ...and {getGlossaryTermsByModule(selectedModule).length - 5} more
                 </li>
               )}
             </ul>

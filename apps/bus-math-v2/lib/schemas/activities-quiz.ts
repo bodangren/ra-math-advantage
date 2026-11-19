@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 const parameterDefSchema = z
   .object({
@@ -7,7 +7,7 @@ const parameterDefSchema = z
     step: z.number().positive(),
   })
   .refine((parameter) => parameter.max >= parameter.min, {
-    message: 'max must be greater than or equal to min',
+    message: "max must be greater than or equal to min",
   });
 
 const problemTemplateSchema = z.object({
@@ -42,7 +42,7 @@ const journalEntryLineSchema = z
     credit: z.number().min(0).default(0),
   })
   .refine((entry) => !(entry.debit > 0 && entry.credit > 0), {
-    message: 'Debit and credit cannot both be greater than zero',
+    message: "Debit and credit cannot both be greater than zero",
   });
 
 const journalScenarioSchema = z.object({
@@ -54,7 +54,7 @@ const journalScenarioSchema = z.object({
 
 const reflectionPromptSchema = z.object({
   id: z.string(),
-  category: z.enum(['courage', 'adaptability', 'persistence']).default('courage'),
+  category: z.enum(["courage", "adaptability", "persistence"]).default("courage"),
   prompt: z.string(),
   placeholder: z.string().optional(),
 });
@@ -72,14 +72,14 @@ const questionSchema = z.object({
   id: z.string(),
   text: z.string(),
   type: z.enum([
-    'multiple-choice',
-    'true-false',
-    'short-answer',
-    'matching',
-    'fill-in-the-blank',
-    'numeric-entry',
-    'categorization',
-    'equation-solver',
+    "multiple-choice",
+    "true-false",
+    "short-answer",
+    "matching",
+    "fill-in-the-blank",
+    "numeric-entry",
+    "categorization",
+    "equation-solver",
   ]),
   options: z.array(z.string()).optional(),
   correctAnswer: z.union([
@@ -90,7 +90,7 @@ const questionSchema = z.object({
     z.array(z.number()),
   ]),
   explanation: z.string().optional(),
-  tier: z.enum(['knowledge', 'understanding', 'application']).optional(),
+  tier: z.enum(["knowledge", "understanding", "application"]).optional(),
   standardCode: z.string().optional(),
   problemTemplate: problemTemplateSchema.optional(),
 });
@@ -104,9 +104,9 @@ const applicationProblemSchema = z.object({
 });
 
 const baseAssessmentSchema = z.object({
-  mode: z.enum(['guided_practice', 'independent_practice', 'assessment']).optional(),
-  title: z.string().default('Comprehension Check'),
-  description: z.string().default('Test your understanding of the lesson.'),
+  mode: z.enum(["guided_practice", "independent_practice", "assessment"]).optional(),
+  title: z.string().default("Comprehension Check"),
+  description: z.string().default("Test your understanding of the lesson."),
   showExplanations: z.boolean().default(true),
   allowRetry: z.boolean().default(true),
   maxAttempts: z.number().int().positive().optional(),
@@ -116,11 +116,11 @@ const baseAssessmentSchema = z.object({
 });
 
 export const quizActivityPropsSchemas = {
-  'comprehension-quiz': baseAssessmentSchema,
-  'tiered-assessment': baseAssessmentSchema.extend({
-    tier: z.enum(['knowledge', 'understanding', 'application']),
+  "comprehension-quiz": baseAssessmentSchema,
+  "tiered-assessment": baseAssessmentSchema.extend({
+    tier: z.enum(["knowledge", "understanding", "application"]),
   }),
-  'fill-in-the-blank': z.object({
+  "fill-in-the-blank": z.object({
     title: z.string(),
     description: z.string(),
     sentences: z.array(blankSentenceSchema).min(1),
@@ -128,21 +128,21 @@ export const quizActivityPropsSchemas = {
     randomizeWordOrder: z.boolean().default(true),
     showHints: z.boolean().default(false),
   }),
-  'journal-entry-building': z.object({
-    title: z.string().default('Journal Entry Builder'),
-    description: z.string().default('Practice building balanced journal entries.'),
+  "journal-entry-building": z.object({
+    title: z.string().default("Journal Entry Builder"),
+    description: z.string().default("Practice building balanced journal entries."),
     availableAccounts: z.array(z.string()).default([]),
     scenarios: z.array(journalScenarioSchema).min(1),
     showInstructionsDefaultOpen: z.boolean().default(false),
   }),
-  'reflection-journal': z.object({
-    unitTitle: z.string().default('Learning Reflection'),
+  "reflection-journal": z.object({
+    unitTitle: z.string().default("Learning Reflection"),
     description: z.string().optional(),
     prompts: z.array(reflectionPromptSchema).min(1),
   }),
-  'peer-critique-form': z.object({
-    projectTitle: z.string().default('Project Presentation'),
-    peerName: z.string().default('Peer'),
+  "peer-critique-form": z.object({
+    projectTitle: z.string().default("Project Presentation"),
+    peerName: z.string().default("Peer"),
     unitNumber: z.number().int().positive().optional(),
     reviewerNameLabel: z.string().optional(),
     categories: z.array(peerCritiqueCategorySchema).min(1),

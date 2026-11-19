@@ -44,9 +44,7 @@ export const seedDemoProgress = internalMutation({
     for (const progress of studentProgress) {
       const student = await ctx.db
         .query("profiles")
-        .withIndex("by_username", (q) =>
-          q.eq("username", progress.studentUsername),
-        )
+        .withIndex("by_username", (q) => q.eq("username", progress.studentUsername))
         .unique();
 
       if (!student) {
@@ -87,8 +85,7 @@ export const seedDemoProgress = internalMutation({
       }
 
       let completionsCreated = 0;
-      const phasesToComplete =
-        progress.status === "not_started" ? 0 : progress.phaseNumber;
+      const phasesToComplete = progress.status === "not_started" ? 0 : progress.phaseNumber;
 
       for (let phase = 1; phase <= phasesToComplete; phase++) {
         const phaseVersion = await ctx.db
@@ -119,9 +116,7 @@ export const seedDemoProgress = internalMutation({
 
           const existing = await ctx.db
             .query("activity_completions")
-            .withIndex("by_idempotency_key", (q) =>
-              q.eq("idempotencyKey", idempotencyKey),
-            )
+            .withIndex("by_idempotency_key", (q) => q.eq("idempotencyKey", idempotencyKey))
             .unique();
 
           if (existing) continue;
@@ -148,9 +143,7 @@ export const seedDemoProgress = internalMutation({
 
           const existing = await ctx.db
             .query("activity_completions")
-            .withIndex("by_idempotency_key", (q) =>
-              q.eq("idempotencyKey", idempotencyKey),
-            )
+            .withIndex("by_idempotency_key", (q) => q.eq("idempotencyKey", idempotencyKey))
             .unique();
 
           if (!existing) {

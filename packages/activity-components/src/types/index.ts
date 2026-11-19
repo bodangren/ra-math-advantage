@@ -3,7 +3,7 @@ export type {
   GradingConfig,
   ActivityComponentProps,
   ActivityRegistration,
-} from '../schemas';
+} from "../schemas";
 
-import type { ActivityMode } from '@math-platform/activity-runtime/modes';
+import type { ActivityMode } from "@math-platform/activity-runtime/modes";
 export type { ActivityMode };

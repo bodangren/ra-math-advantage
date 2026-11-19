@@ -1,31 +1,30 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from "vitest";
 
-import { generateTopic14PolynomialExtremaFromGraphOutput } from '@math-platform/math-content/knowledge-space';
+import { generateTopic14PolynomialExtremaFromGraphOutput } from "@math-platform/math-content/knowledge-space";
 
-import type { MutationCtx } from '@/convex/_generated/server';
+import type { MutationCtx } from "@/convex/_generated/server";
 import {
   PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_COMPONENT_KEY,
   PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_WORKED_GRADING_CONFIG,
-} from '@/convex/activities';
+} from "@/convex/activities";
 import {
   PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_NODE_ID,
   PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_WORKED_ACTIVITY_ID,
-} from '@/lib/learning-evidence/precalc-pilot';
+} from "@/lib/learning-evidence/precalc-pilot";
 
-const LEARNER_ID = 'profiles:extrema-worked-evidence-learner';
-const OTHER_LEARNER_ID = 'profiles:extrema-worked-evidence-other';
-const ACTIVITY_DOCUMENT_ID = 'activities:extrema-worked-evidence';
-const CLIENT_SUBMITTED_AT = '2026-08-29T10:00:00.000Z';
-const PART_IDS = [
-  'relative_minimum_x',
-  'relative_maximum_x',
-  'absolute_minimum_x',
-] as const;
+const LEARNER_ID = "profiles:extrema-worked-evidence-learner";
+const OTHER_LEARNER_ID = "profiles:extrema-worked-evidence-other";
+const ACTIVITY_DOCUMENT_ID = "activities:extrema-worked-evidence";
+const CLIENT_SUBMITTED_AT = "2026-08-29T10:00:00.000Z";
+const PART_IDS = ["relative_minimum_x", "relative_maximum_x", "absolute_minimum_x"] as const;
 type PartId = (typeof PART_IDS)[number];
 type Answers = Record<PartId, string>;
 
 function sourceAnswers(): Answers {
-  const expected = generateTopic14PolynomialExtremaFromGraphOutput(0).expectedAnswer as Record<PartId, number>;
+  const expected = generateTopic14PolynomialExtremaFromGraphOutput(0).expectedAnswer as Record<
+    PartId,
+    number
+  >;
   return {
     relative_minimum_x: String(expected.relative_minimum_x),
     relative_maximum_x: String(expected.relative_maximum_x),
@@ -38,10 +37,10 @@ function makeEnvelope(
   overrides: Record<string, unknown> = {},
 ): Record<string, unknown> {
   return {
-    contractVersion: 'practice.v1',
+    contractVersion: "practice.v1",
     activityId: PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_WORKED_ACTIVITY_ID,
-    mode: 'worked_example',
-    status: 'submitted',
+    mode: "worked_example",
+    status: "submitted",
     attemptNumber: 99,
     submittedAt: CLIENT_SUBMITTED_AT,
     answers,
@@ -51,49 +50,63 @@ function makeEnvelope(
 }
 
 type Row = Record<string, unknown> & { _id: string };
-type Consumer = (ctx: MutationCtx, args: { learnerId: string; submissionId: string }) => Promise<Record<string, unknown>>;
-type Producer = (ctx: MutationCtx, args: {
-  userId: string;
-  activityId: string;
-  idempotencyKey: string;
-  submissionData: Record<string, unknown>;
-}) => Promise<{ submissionId: string; attemptOrdinal: number; submittedAt: string }>;
+type Consumer = (
+  ctx: MutationCtx,
+  args: { learnerId: string; submissionId: string },
+) => Promise<Record<string, unknown>>;
+type Producer = (
+  ctx: MutationCtx,
+  args: {
+    userId: string;
+    activityId: string;
+    idempotencyKey: string;
+    submissionData: Record<string, unknown>;
+  },
+) => Promise<{ submissionId: string; attemptOrdinal: number; submittedAt: string }>;
 
 async function loadConsumer(): Promise<Consumer> {
-  const importedModule = await vi.importActual<Record<string, unknown>>('@/convex/learningEvidence');
-  const mutation = importedModule.submitTopic14PolynomialExtremaWorkedSubmission as {
-    _handler?: unknown;
-  } | undefined;
-  if (typeof mutation?._handler !== 'function') {
-    throw new Error('AP Precalculus must export the Topic 1.4 extrema Worked evidence consumer.');
+  const importedModule = await vi.importActual<Record<string, unknown>>(
+    "@/convex/learningEvidence",
+  );
+  const mutation = importedModule.submitTopic14PolynomialExtremaWorkedSubmission as
+    | {
+        _handler?: unknown;
+      }
+    | undefined;
+  if (typeof mutation?._handler !== "function") {
+    throw new Error("AP Precalculus must export the Topic 1.4 extrema Worked evidence consumer.");
   }
   return mutation._handler as Consumer;
 }
 
 async function loadProducer(): Promise<Producer> {
-  const importedModule = await vi.importActual<Record<string, unknown>>('@/convex/activities');
-  const mutation = importedModule.createTopic14PolynomialExtremaWorkedSubmission as {
-    _handler?: unknown;
-  } | undefined;
-  if (typeof mutation?._handler !== 'function') {
-    throw new Error('AP Precalculus must export the Topic 1.4 extrema Worked producer.');
+  const importedModule = await vi.importActual<Record<string, unknown>>("@/convex/activities");
+  const mutation = importedModule.createTopic14PolynomialExtremaWorkedSubmission as
+    | {
+        _handler?: unknown;
+      }
+    | undefined;
+  if (typeof mutation?._handler !== "function") {
+    throw new Error("AP Precalculus must export the Topic 1.4 extrema Worked producer.");
   }
   return mutation._handler as Producer;
 }
 
 function createHarness() {
   const rows: Record<string, Row[]> = {
-    activities: [{
-      _id: ACTIVITY_DOCUMENT_ID,
-      stableActivityId: PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_WORKED_ACTIVITY_ID,
-      componentKey: PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_COMPONENT_KEY,
-      props: { presentationMode: 'worked_example' },
-      gradingConfig: {
-        ...PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_WORKED_GRADING_CONFIG,
+    activities: [
+      {
+        _id: ACTIVITY_DOCUMENT_ID,
+        stableActivityId: PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_WORKED_ACTIVITY_ID,
+        componentKey: PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_COMPONENT_KEY,
+        props: { presentationMode: "worked_example" },
+        gradingConfig: {
+          ...PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_WORKED_GRADING_CONFIG,
+        },
+        createdAt: 1,
+        updatedAt: 1,
       },
-      createdAt: 1,
-      updatedAt: 1,
-    }],
+    ],
     activity_submissions: [],
     learning_evidence: [],
     learning_evidence_receipts: [],
@@ -114,12 +127,15 @@ function createHarness() {
         return index;
       },
     };
-    const select = () => (rows[tableName] ?? []).filter((row) => (
-      [...conditions].every(([field, value]) => row[field] === value)
-      && [...upperBounds].every(([field, value]) => (
-        typeof row[field] === 'number' && typeof value === 'number' && row[field] <= value
-      ))
-    ));
+    const select = () =>
+      (rows[tableName] ?? []).filter(
+        (row) =>
+          [...conditions].every(([field, value]) => row[field] === value) &&
+          [...upperBounds].every(
+            ([field, value]) =>
+              typeof row[field] === "number" && typeof value === "number" && row[field] <= value,
+          ),
+      );
     const result = {
       unique: async () => {
         const matches = select();
@@ -139,9 +155,10 @@ function createHarness() {
 
   const ctx = {
     db: {
-      get: async (_tableName: string, id: string) => (
-        Object.values(rows).flat().find((row) => row._id === id) ?? null
-      ),
+      get: async (_tableName: string, id: string) =>
+        Object.values(rows)
+          .flat()
+          .find((row) => row._id === id) ?? null,
       query,
       insert: async (tableName: string, document: Record<string, unknown>) => {
         const tableRows = rows[tableName] ?? (rows[tableName] = []);
@@ -161,7 +178,7 @@ async function createStoredSubmission() {
   const created = await producer(harness.ctx, {
     userId: LEARNER_ID,
     activityId: PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_WORKED_ACTIVITY_ID,
-    idempotencyKey: 'extrema-worked-evidence-create-1',
+    idempotencyKey: "extrema-worked-evidence-create-1",
     submissionData: makeEnvelope(),
   });
   return { ...harness, created };
@@ -174,8 +191,8 @@ function expectNoEffects(harness: ReturnType<typeof createHarness>): void {
   expect(harness.rows.srs_review_log).toHaveLength(0);
 }
 
-describe('Topic 1.4 polynomial extrema Worked evidence', () => {
-  it('consumes the real seed-0 source review as one exact ungraded teacher exposure', async () => {
+describe("Topic 1.4 polynomial extrema Worked evidence", () => {
+  it("consumes the real seed-0 source review as one exact ungraded teacher exposure", async () => {
     const consumer = await loadConsumer();
     const harness = await createStoredSubmission();
     const stored = harness.rows.activity_submissions[0]!;
@@ -188,51 +205,74 @@ describe('Topic 1.4 polynomial extrema Worked evidence', () => {
       absolute_minimum_x: 1,
     });
     expect(storedData.answers).toEqual(answers);
-    expect(storedData.parts).toEqual(PART_IDS.map((partId) => ({ partId, rawAnswer: answers[partId] })));
+    expect(storedData.parts).toEqual(
+      PART_IDS.map((partId) => ({ partId, rawAnswer: answers[partId] })),
+    );
     expect(stored.attemptOrdinal).toBe(1);
     expect(stored.submittedAt).not.toBe(Date.parse(CLIENT_SUBMITTED_AT));
     for (const field of [
-      'masteryContractVersion', 'score', 'maxScore', 'feedback', 'gradedAt',
-      'correctness', 'isCorrect', 'answer', 'answerKey', 'correctAnswer',
-      'correctAnswers', 'expectedAnswer', 'grading', 'gradingMetadata',
-      'normalizedAnswer', 'solution', 'solutions', 'solutionSteps', 'steps',
-      'finalAnswer', 'authority',
-    ]) expect(stored[field]).toBeUndefined();
+      "masteryContractVersion",
+      "score",
+      "maxScore",
+      "feedback",
+      "gradedAt",
+      "correctness",
+      "isCorrect",
+      "answer",
+      "answerKey",
+      "correctAnswer",
+      "correctAnswers",
+      "expectedAnswer",
+      "grading",
+      "gradingMetadata",
+      "normalizedAnswer",
+      "solution",
+      "solutions",
+      "solutionSteps",
+      "steps",
+      "finalAnswer",
+      "authority",
+    ])
+      expect(stored[field]).toBeUndefined();
 
-    await expect(consumer(harness.ctx, {
-      learnerId: LEARNER_ID,
-      submissionId: harness.created.submissionId,
-    })).resolves.toStrictEqual({
+    await expect(
+      consumer(harness.ctx, {
+        learnerId: LEARNER_ID,
+        submissionId: harness.created.submissionId,
+      }),
+    ).resolves.toStrictEqual({
       persisted: true,
       masteryApplied: false,
       kstApplied: false,
-      delivery: 'new',
+      delivery: "new",
       decision: {
-        idempotency: 'new',
-        exposureState: 'introduced',
+        idempotency: "new",
+        exposureState: "introduced",
         eligible: false,
-        reason: 'teacher_led',
+        reason: "teacher_led",
         masteryBearing: false,
       },
     });
     expect(harness.rows.learning_evidence).toHaveLength(1);
-    expect(harness.rows.learning_evidence[0]).toStrictEqual(expect.objectContaining({
-      learnerId: LEARNER_ID,
-      nodeId: PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_NODE_ID,
-      activityId: PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_WORKED_ACTIVITY_ID,
-      attemptOrdinal: 1,
-      origin: 'teacher_led',
-      mode: 'worked_example',
-      occurredAt: stored.submittedAt,
-      idempotencyKey: `precalc:topic-1-4-polynomial-extrema:teacher-led:submission:${harness.created.submissionId}`,
-    }));
+    expect(harness.rows.learning_evidence[0]).toStrictEqual(
+      expect.objectContaining({
+        learnerId: LEARNER_ID,
+        nodeId: PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_NODE_ID,
+        activityId: PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_WORKED_ACTIVITY_ID,
+        attemptOrdinal: 1,
+        origin: "teacher_led",
+        mode: "worked_example",
+        occurredAt: stored.submittedAt,
+        idempotencyKey: `precalc:topic-1-4-polynomial-extrema:teacher-led:submission:${harness.created.submissionId}`,
+      }),
+    );
     expect(harness.rows.learning_evidence[0]!.gradedEvidence).toBeUndefined();
     expect(harness.rows.learning_evidence_receipts).toHaveLength(0);
     expect(harness.rows.srs_cards).toHaveLength(0);
     expect(harness.rows.srs_review_log).toHaveLength(0);
   });
 
-  it('replays without a duplicate teacher exposure and preserves teacher-led gating', async () => {
+  it("replays without a duplicate teacher exposure and preserves teacher-led gating", async () => {
     const consumer = await loadConsumer();
     const harness = await createStoredSubmission();
     const input = { learnerId: LEARNER_ID, submissionId: harness.created.submissionId };
@@ -243,12 +283,12 @@ describe('Topic 1.4 polynomial extrema Worked evidence', () => {
       persisted: false,
       masteryApplied: false,
       kstApplied: false,
-      delivery: 'replay',
+      delivery: "replay",
       decision: {
-        idempotency: 'replay',
-        exposureState: 'introduced',
+        idempotency: "replay",
+        exposureState: "introduced",
         eligible: false,
-        reason: 'teacher_led',
+        reason: "teacher_led",
         masteryBearing: false,
       },
     });
@@ -258,72 +298,310 @@ describe('Topic 1.4 polynomial extrema Worked evidence', () => {
     expect(harness.rows.srs_review_log).toHaveLength(0);
   });
 
-  it('rejects missing and foreign rows without effects', async () => {
+  it("rejects missing and foreign rows without effects", async () => {
     const consumer = await loadConsumer();
     const missing = createHarness();
-    await expect(consumer(missing.ctx, {
-      learnerId: LEARNER_ID,
-      submissionId: 'activity_submissions:missing',
-    })).resolves.toStrictEqual({ accepted: false, reason: 'submission_not_found' });
+    await expect(
+      consumer(missing.ctx, {
+        learnerId: LEARNER_ID,
+        submissionId: "activity_submissions:missing",
+      }),
+    ).resolves.toStrictEqual({ accepted: false, reason: "submission_not_found" });
     expectNoEffects(missing);
 
     const stored = await createStoredSubmission();
-    await expect(consumer(stored.ctx, {
-      learnerId: OTHER_LEARNER_ID,
-      submissionId: stored.created.submissionId,
-    })).resolves.toStrictEqual({ accepted: false, reason: 'submission_not_found' });
+    await expect(
+      consumer(stored.ctx, {
+        learnerId: OTHER_LEARNER_ID,
+        submissionId: stored.created.submissionId,
+      }),
+    ).resolves.toStrictEqual({ accepted: false, reason: "submission_not_found" });
     expectNoEffects(stored);
   });
 
   it.each([
-    ['wrong activity document', (harness: ReturnType<typeof createHarness>) => { harness.rows.activity_submissions[0]!.activityId = 'activities:wrong'; }],
-    ['wrong row stable ID', (harness: ReturnType<typeof createHarness>) => { harness.rows.activity_submissions[0]!.stableActivityId = 'wrong.stable'; }],
-    ['wrong provisioned stable ID', (harness: ReturnType<typeof createHarness>) => { harness.rows.activities[0]!.stableActivityId = 'wrong.provisioned'; }],
-    ['wrong component', (harness: ReturnType<typeof createHarness>) => { harness.rows.activities[0]!.componentKey = 'wrong-component'; }],
-    ['wrong props mode', (harness: ReturnType<typeof createHarness>) => { (harness.rows.activities[0]!.props as Record<string, unknown>).presentationMode = 'guided_practice'; }],
-    ['wrong generator', (harness: ReturnType<typeof createHarness>) => { (harness.rows.activities[0]!.gradingConfig as Record<string, unknown>).generatorKey = 'wrong-generator'; }],
-    ['extra grading config', (harness: ReturnType<typeof createHarness>) => { (harness.rows.activities[0]!.gradingConfig as Record<string, unknown>).extra = true; }],
-    ['wrong seed', (harness: ReturnType<typeof createHarness>) => { (harness.rows.activities[0]!.gradingConfig as Record<string, unknown>).variantSeed = 1; }],
-    ['extra envelope', (harness: ReturnType<typeof createHarness>) => { (harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>).extra = true; }],
-    ['wrong contract', (harness: ReturnType<typeof createHarness>) => { (harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>).contractVersion = 'wrong'; }],
-    ['wrong envelope activity', (harness: ReturnType<typeof createHarness>) => { (harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>).activityId = 'wrong'; }],
-    ['wrong mode', (harness: ReturnType<typeof createHarness>) => { (harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>).mode = 'guided_practice'; }],
-    ['wrong status', (harness: ReturnType<typeof createHarness>) => { (harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>).status = 'graded'; }],
-    ['extra answer', (harness: ReturnType<typeof createHarness>) => { (harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>).answers = { ...sourceAnswers(), extra: 'x' }; }],
-    ['missing answer', (harness: ReturnType<typeof createHarness>) => { const data = harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>; data.answers = { relative_minimum_x: sourceAnswers().relative_minimum_x, relative_maximum_x: sourceAnswers().relative_maximum_x }; }],
-    ['another valid answer', (harness: ReturnType<typeof createHarness>) => { const data = harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>; const answers = { ...sourceAnswers(), relative_minimum_x: '2' }; data.answers = answers; data.parts = PART_IDS.map((partId) => ({ partId, rawAnswer: answers[partId] })); }],
-    ['missing part', (harness: ReturnType<typeof createHarness>) => { const data = harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>; data.parts = (data.parts as unknown[]).slice(1); }],
-    ['extra part field', (harness: ReturnType<typeof createHarness>) => { ((harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>).parts as Record<string, unknown>[])[0]!.score = 1; }],
-    ['reordered parts', (harness: ReturnType<typeof createHarness>) => { const data = harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>; data.parts = [...(data.parts as unknown[])].reverse(); }],
-    ['duplicate part', (harness: ReturnType<typeof createHarness>) => { const data = harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>; data.parts = [ ...(data.parts as unknown[]).slice(0, 2), { ...(data.parts as Record<string, unknown>[])[1] } ]; }],
-    ['raw part mismatch', (harness: ReturnType<typeof createHarness>) => { ((harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>).parts as Record<string, unknown>[])[0]!.rawAnswer = '2'; }],
-    ['invalid ordinal', (harness: ReturnType<typeof createHarness>) => { harness.rows.activity_submissions[0]!.attemptOrdinal = 0; }],
-    ['fractional ordinal', (harness: ReturnType<typeof createHarness>) => { harness.rows.activity_submissions[0]!.attemptOrdinal = 1.5; }],
-    ['ordinal mismatch', (harness: ReturnType<typeof createHarness>) => { harness.rows.activity_submissions[0]!.attemptOrdinal = 2; }],
-    ['invalid envelope time', (harness: ReturnType<typeof createHarness>) => { (harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>).submittedAt = 'not-a-date'; }],
-    ['envelope time mismatch', (harness: ReturnType<typeof createHarness>) => { (harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>).submittedAt = '2026-08-29T11:00:00.000Z'; }],
-    ['invalid stored time', (harness: ReturnType<typeof createHarness>) => { harness.rows.activity_submissions[0]!.submittedAt = Number.NaN; }],
-    ['stored time mismatch', (harness: ReturnType<typeof createHarness>) => { harness.rows.activity_submissions[0]!.submittedAt = Date.parse('2026-08-29T11:00:00.000Z'); }],
-    ['invalid created time', (harness: ReturnType<typeof createHarness>) => { harness.rows.activity_submissions[0]!.createdAt = Number.NaN; }],
-    ['created time mismatch', (harness: ReturnType<typeof createHarness>) => { harness.rows.activity_submissions[0]!.createdAt = 1; }],
-    ['invalid updated time', (harness: ReturnType<typeof createHarness>) => { harness.rows.activity_submissions[0]!.updatedAt = Number.NaN; }],
-    ['updated time mismatch', (harness: ReturnType<typeof createHarness>) => { harness.rows.activity_submissions[0]!.updatedAt = 1; }],
+    [
+      "wrong activity document",
+      (harness: ReturnType<typeof createHarness>) => {
+        harness.rows.activity_submissions[0]!.activityId = "activities:wrong";
+      },
+    ],
+    [
+      "wrong row stable ID",
+      (harness: ReturnType<typeof createHarness>) => {
+        harness.rows.activity_submissions[0]!.stableActivityId = "wrong.stable";
+      },
+    ],
+    [
+      "wrong provisioned stable ID",
+      (harness: ReturnType<typeof createHarness>) => {
+        harness.rows.activities[0]!.stableActivityId = "wrong.provisioned";
+      },
+    ],
+    [
+      "wrong component",
+      (harness: ReturnType<typeof createHarness>) => {
+        harness.rows.activities[0]!.componentKey = "wrong-component";
+      },
+    ],
+    [
+      "wrong props mode",
+      (harness: ReturnType<typeof createHarness>) => {
+        (harness.rows.activities[0]!.props as Record<string, unknown>).presentationMode =
+          "guided_practice";
+      },
+    ],
+    [
+      "wrong generator",
+      (harness: ReturnType<typeof createHarness>) => {
+        (harness.rows.activities[0]!.gradingConfig as Record<string, unknown>).generatorKey =
+          "wrong-generator";
+      },
+    ],
+    [
+      "extra grading config",
+      (harness: ReturnType<typeof createHarness>) => {
+        (harness.rows.activities[0]!.gradingConfig as Record<string, unknown>).extra = true;
+      },
+    ],
+    [
+      "wrong seed",
+      (harness: ReturnType<typeof createHarness>) => {
+        (harness.rows.activities[0]!.gradingConfig as Record<string, unknown>).variantSeed = 1;
+      },
+    ],
+    [
+      "extra envelope",
+      (harness: ReturnType<typeof createHarness>) => {
+        (harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>).extra =
+          true;
+      },
+    ],
+    [
+      "wrong contract",
+      (harness: ReturnType<typeof createHarness>) => {
+        (
+          harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>
+        ).contractVersion = "wrong";
+      },
+    ],
+    [
+      "wrong envelope activity",
+      (harness: ReturnType<typeof createHarness>) => {
+        (
+          harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>
+        ).activityId = "wrong";
+      },
+    ],
+    [
+      "wrong mode",
+      (harness: ReturnType<typeof createHarness>) => {
+        (harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>).mode =
+          "guided_practice";
+      },
+    ],
+    [
+      "wrong status",
+      (harness: ReturnType<typeof createHarness>) => {
+        (harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>).status =
+          "graded";
+      },
+    ],
+    [
+      "extra answer",
+      (harness: ReturnType<typeof createHarness>) => {
+        (harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>).answers =
+          { ...sourceAnswers(), extra: "x" };
+      },
+    ],
+    [
+      "missing answer",
+      (harness: ReturnType<typeof createHarness>) => {
+        const data = harness.rows.activity_submissions[0]!.submissionData as Record<
+          string,
+          unknown
+        >;
+        data.answers = {
+          relative_minimum_x: sourceAnswers().relative_minimum_x,
+          relative_maximum_x: sourceAnswers().relative_maximum_x,
+        };
+      },
+    ],
+    [
+      "another valid answer",
+      (harness: ReturnType<typeof createHarness>) => {
+        const data = harness.rows.activity_submissions[0]!.submissionData as Record<
+          string,
+          unknown
+        >;
+        const answers = { ...sourceAnswers(), relative_minimum_x: "2" };
+        data.answers = answers;
+        data.parts = PART_IDS.map((partId) => ({ partId, rawAnswer: answers[partId] }));
+      },
+    ],
+    [
+      "missing part",
+      (harness: ReturnType<typeof createHarness>) => {
+        const data = harness.rows.activity_submissions[0]!.submissionData as Record<
+          string,
+          unknown
+        >;
+        data.parts = (data.parts as unknown[]).slice(1);
+      },
+    ],
+    [
+      "extra part field",
+      (harness: ReturnType<typeof createHarness>) => {
+        (
+          (harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>)
+            .parts as Record<string, unknown>[]
+        )[0]!.score = 1;
+      },
+    ],
+    [
+      "reordered parts",
+      (harness: ReturnType<typeof createHarness>) => {
+        const data = harness.rows.activity_submissions[0]!.submissionData as Record<
+          string,
+          unknown
+        >;
+        data.parts = [...(data.parts as unknown[])].reverse();
+      },
+    ],
+    [
+      "duplicate part",
+      (harness: ReturnType<typeof createHarness>) => {
+        const data = harness.rows.activity_submissions[0]!.submissionData as Record<
+          string,
+          unknown
+        >;
+        data.parts = [
+          ...(data.parts as unknown[]).slice(0, 2),
+          { ...(data.parts as Record<string, unknown>[])[1] },
+        ];
+      },
+    ],
+    [
+      "raw part mismatch",
+      (harness: ReturnType<typeof createHarness>) => {
+        (
+          (harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>)
+            .parts as Record<string, unknown>[]
+        )[0]!.rawAnswer = "2";
+      },
+    ],
+    [
+      "invalid ordinal",
+      (harness: ReturnType<typeof createHarness>) => {
+        harness.rows.activity_submissions[0]!.attemptOrdinal = 0;
+      },
+    ],
+    [
+      "fractional ordinal",
+      (harness: ReturnType<typeof createHarness>) => {
+        harness.rows.activity_submissions[0]!.attemptOrdinal = 1.5;
+      },
+    ],
+    [
+      "ordinal mismatch",
+      (harness: ReturnType<typeof createHarness>) => {
+        harness.rows.activity_submissions[0]!.attemptOrdinal = 2;
+      },
+    ],
+    [
+      "invalid envelope time",
+      (harness: ReturnType<typeof createHarness>) => {
+        (
+          harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>
+        ).submittedAt = "not-a-date";
+      },
+    ],
+    [
+      "envelope time mismatch",
+      (harness: ReturnType<typeof createHarness>) => {
+        (
+          harness.rows.activity_submissions[0]!.submissionData as Record<string, unknown>
+        ).submittedAt = "2026-08-29T11:00:00.000Z";
+      },
+    ],
+    [
+      "invalid stored time",
+      (harness: ReturnType<typeof createHarness>) => {
+        harness.rows.activity_submissions[0]!.submittedAt = Number.NaN;
+      },
+    ],
+    [
+      "stored time mismatch",
+      (harness: ReturnType<typeof createHarness>) => {
+        harness.rows.activity_submissions[0]!.submittedAt = Date.parse("2026-08-29T11:00:00.000Z");
+      },
+    ],
+    [
+      "invalid created time",
+      (harness: ReturnType<typeof createHarness>) => {
+        harness.rows.activity_submissions[0]!.createdAt = Number.NaN;
+      },
+    ],
+    [
+      "created time mismatch",
+      (harness: ReturnType<typeof createHarness>) => {
+        harness.rows.activity_submissions[0]!.createdAt = 1;
+      },
+    ],
+    [
+      "invalid updated time",
+      (harness: ReturnType<typeof createHarness>) => {
+        harness.rows.activity_submissions[0]!.updatedAt = Number.NaN;
+      },
+    ],
+    [
+      "updated time mismatch",
+      (harness: ReturnType<typeof createHarness>) => {
+        harness.rows.activity_submissions[0]!.updatedAt = 1;
+      },
+    ],
     ...[
-      'masteryContractVersion', 'score', 'maxScore', 'feedback', 'gradedAt',
-      'correctness', 'isCorrect', 'answer', 'answerKey', 'correctAnswer',
-      'correctAnswers', 'expectedAnswer', 'grading', 'gradingMetadata',
-      'normalizedAnswer', 'solution', 'solutions', 'solutionSteps', 'steps',
-      'finalAnswer', 'authority',
-    ].map((field) => [field, (harness: ReturnType<typeof createHarness>) => { harness.rows.activity_submissions[0]![field] = 'forged'; }] as const),
-  ] as const)('rejects %s without effects', async (_label, corrupt) => {
+      "masteryContractVersion",
+      "score",
+      "maxScore",
+      "feedback",
+      "gradedAt",
+      "correctness",
+      "isCorrect",
+      "answer",
+      "answerKey",
+      "correctAnswer",
+      "correctAnswers",
+      "expectedAnswer",
+      "grading",
+      "gradingMetadata",
+      "normalizedAnswer",
+      "solution",
+      "solutions",
+      "solutionSteps",
+      "steps",
+      "finalAnswer",
+      "authority",
+    ].map(
+      (field) =>
+        [
+          field,
+          (harness: ReturnType<typeof createHarness>) => {
+            harness.rows.activity_submissions[0]![field] = "forged";
+          },
+        ] as const,
+    ),
+  ] as const)("rejects %s without effects", async (_label, corrupt) => {
     const consumer = await loadConsumer();
     const harness = await createStoredSubmission();
     corrupt(harness);
 
-    await expect(consumer(harness.ctx, {
-      learnerId: LEARNER_ID,
-      submissionId: harness.created.submissionId,
-    })).resolves.toStrictEqual({ accepted: false, reason: 'submission_not_found' });
+    await expect(
+      consumer(harness.ctx, {
+        learnerId: LEARNER_ID,
+        submissionId: harness.created.submissionId,
+      }),
+    ).resolves.toStrictEqual({ accepted: false, reason: "submission_not_found" });
     expectNoEffects(harness);
   });
 });

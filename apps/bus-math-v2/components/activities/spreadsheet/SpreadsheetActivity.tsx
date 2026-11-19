@@ -9,7 +9,6 @@ type SpreadsheetActivityComponentProps = Omit<SpreadsheetActivityProps, "initial
   initialData?: SpreadsheetData;
 };
 
-
 /**
  * Renders a configurable spreadsheet activity with optional template,
  * formula validation, and submission support.
@@ -25,21 +24,34 @@ type SpreadsheetActivityComponentProps = Omit<SpreadsheetActivityProps, "initial
  * @param validateFormulas - Whether to validate formula syntax
  * @param onSubmit - Callback to submit the spreadsheet data
  */
-export function SpreadsheetActivity({ title, description, template, customTemplate, initialData, showColumnLabels = true, showRowLabels = true, readOnly = false, validateFormulas = true, onSubmit, }: SpreadsheetActivityComponentProps) {
+export function SpreadsheetActivity({
+  title,
+  description,
+  template,
+  customTemplate,
+  initialData,
+  showColumnLabels = true,
+  showRowLabels = true,
+  readOnly = false,
+  validateFormulas = true,
+  onSubmit,
+}: SpreadsheetActivityComponentProps) {
   const [data, setData] = useState<SpreadsheetData>(() => {
     // Use initialData if provided, otherwise use template
     if (initialData) return initialData;
-    
-    if (template === 'custom' && customTemplate) {
+
+    if (template === "custom" && customTemplate) {
       return customTemplate.data;
     }
-    
+
     const templateData = getTemplateByKey(template);
-    return templateData?.data || [
-      [{ value: "" }, { value: "" }, { value: "" }],
-      [{ value: "" }, { value: "" }, { value: "" }],
-      [{ value: "" }, { value: "" }, { value: "" }],
-    ];
+    return (
+      templateData?.data || [
+        [{ value: "" }, { value: "" }, { value: "" }],
+        [{ value: "" }, { value: "" }, { value: "" }],
+        [{ value: "" }, { value: "" }, { value: "" }],
+      ]
+    );
   });
 
   const [errors, setErrors] = useState<string[]>([]);
@@ -51,7 +63,6 @@ export function SpreadsheetActivity({ title, description, template, customTempla
     }
   }, [initialData]);
 
-
   /**
    * Handles spreadsheet data changes, updating state and validating formulas.
    *
@@ -59,16 +70,16 @@ export function SpreadsheetActivity({ title, description, template, customTempla
    */
   const handleChange = (newData: SpreadsheetData) => {
     setData(newData);
-    
+
     // Validate formulas if enabled
     if (validateFormulas) {
       const formulaErrors: string[] = [];
-      
+
       newData.forEach((row, rowIndex) => {
         row.forEach((cell, colIndex) => {
           if (!cell) return;
           if (typeof cell.value === "string" && cell.value.startsWith("=")) {
-            // Basic formula validation - in a real implementation, 
+            // Basic formula validation - in a real implementation,
             // you'd want more sophisticated formula parsing
             try {
               // Check for balanced parentheses
@@ -80,12 +91,14 @@ export function SpreadsheetActivity({ title, description, template, customTempla
               }
               if (openParens !== 0) throw new Error("Unbalanced parentheses");
             } catch (error) {
-              formulaErrors.push(`Cell ${String.fromCharCode(65 + colIndex)}${rowIndex + 1}: ${error}`);
+              formulaErrors.push(
+                `Cell ${String.fromCharCode(65 + colIndex)}${rowIndex + 1}: ${error}`,
+              );
             }
           }
         });
       });
-      
+
       setErrors(formulaErrors);
     }
   };
@@ -100,9 +113,7 @@ export function SpreadsheetActivity({ title, description, template, customTempla
     <div className="space-y-4">
       <div>
         <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-        {description && (
-          <p className="text-sm text-gray-600 mt-1">{description}</p>
-        )}
+        {description && <p className="text-sm text-gray-600 mt-1">{description}</p>}
       </div>
 
       {errors.length > 0 && (

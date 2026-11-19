@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 // ---------------------------------------------------------------------------
 // visualization.v1 Zod schemas
@@ -8,7 +8,7 @@ export const visualNodeV1Schema = z.object({
   nodeId: z.string().min(1),
   title: z.string().min(1),
   description: z.string().optional(),
-  state: z.enum(['mastered', 'ready', 'nearly_ready', 'blocked', 'review_due', 'unknown']),
+  state: z.enum(["mastered", "ready", "nearly_ready", "blocked", "review_due", "unknown"]),
   difficulty: z.number().min(0).max(1).optional(),
   domain: z.string().optional(),
 });
@@ -16,12 +16,12 @@ export const visualNodeV1Schema = z.object({
 export const visualEdgeV1Schema = z.object({
   sourceId: z.string().min(1),
   targetId: z.string().min(1),
-  type: z.enum(['prerequisite', 'supports', 'extends']),
+  type: z.enum(["prerequisite", "supports", "extends"]),
   weight: z.number().min(0).max(1),
 });
 
 export const studentVisualizationV1Schema = z.object({
-  schemaVersion: z.literal('v1'),
+  schemaVersion: z.literal("v1"),
   mastered: z.array(visualNodeV1Schema),
   ready: z.array(visualNodeV1Schema),
   nearlyReady: z.array(visualNodeV1Schema),
@@ -30,15 +30,15 @@ export const studentVisualizationV1Schema = z.object({
   recommendedNext: z.array(visualNodeV1Schema),
   edges: z.array(visualEdgeV1Schema),
   activeMisconceptionCount: z.number().int().min(0),
-  reviewLoadState: z.enum(['normal', 'elevated', 'saturated']).optional(),
+  reviewLoadState: z.enum(["normal", "elevated", "saturated"]).optional(),
 });
 
 export const parentVisualizationV1Schema = z.object({
-  schemaVersion: z.literal('v1'),
+  schemaVersion: z.literal("v1"),
   canDoSummary: z.string(),
   nextFocus: z.string(),
   blockers: z.array(z.string()),
-  progressTrend: z.enum(['improving', 'stable', 'declining', 'unknown']),
+  progressTrend: z.enum(["improving", "stable", "declining", "unknown"]),
   nodes: z.array(visualNodeV1Schema),
 });
 
@@ -54,7 +54,7 @@ const prerequisiteGapSchema = z.object({
   nodeId: z.string().min(1),
   title: z.string().min(1),
   missingPrerequisites: z.array(z.string()),
-  blockingLevel: z.enum(['full', 'partial']),
+  blockingLevel: z.enum(["full", "partial"]),
 });
 
 const interventionGroupSchema = z.object({
@@ -76,7 +76,7 @@ const standardsCoverageSchema = z.object({
 });
 
 export const teacherVisualizationV1Schema = z.object({
-  schemaVersion: z.literal('v1'),
+  schemaVersion: z.literal("v1"),
   heatmap: z.array(teacherHeatmapCellSchema),
   bottleneckNodes: z.array(visualNodeV1Schema),
   prerequisiteGaps: z.array(prerequisiteGapSchema),
@@ -84,8 +84,7 @@ export const teacherVisualizationV1Schema = z.object({
   interventionGroups: z.array(interventionGroupSchema),
   standardsCoverage: z.array(standardsCoverageSchema),
   activeMisconceptionStudentCount: z.number().int().min(0),
-  reviewLoadStates: z.record(
-    z.string().min(1),
-    z.enum(['normal', 'elevated', 'saturated']),
-  ).optional(),
+  reviewLoadStates: z
+    .record(z.string().min(1), z.enum(["normal", "elevated", "saturated"]))
+    .optional(),
 });

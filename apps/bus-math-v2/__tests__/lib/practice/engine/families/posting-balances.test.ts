@@ -1,16 +1,16 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { practiceSubmissionEnvelopeSchema } from '@/lib/practice/contract';
+import { practiceSubmissionEnvelopeSchema } from "@/lib/practice/contract";
 import {
   buildPostingBalanceReviewFeedback,
   postingBalancesFamily,
   type PostingBalanceDefinition,
   type PostingBalanceResponse,
-} from '@/lib/practice/engine/families/posting-balances';
-import type { ProblemFamily } from '@/lib/practice/engine/types';
+} from "@/lib/practice/engine/families/posting-balances";
+import type { ProblemFamily } from "@/lib/practice/engine/types";
 
-describe('posting balances family', () => {
-  it('generates deterministic posting boards with unchanged rows represented explicitly', () => {
+describe("posting balances family", () => {
+  it("generates deterministic posting boards with unchanged rows represented explicitly", () => {
     const family: ProblemFamily<
       PostingBalanceDefinition,
       PostingBalanceResponse,
@@ -19,7 +19,7 @@ describe('posting balances family', () => {
 
     for (let seed = 1; seed <= 10; seed += 1) {
       const config = {
-        mode: 'guided_practice' as const,
+        mode: "guided_practice" as const,
         targetAccountCount: 4,
         postingAccountCount: 3,
       };
@@ -28,23 +28,24 @@ describe('posting balances family', () => {
       const repeat = family.generate(seed, config);
 
       expect(definition).toEqual(repeat);
-      expect(definition.familyKey).toBe('posting-balances');
+      expect(definition.familyKey).toBe("posting-balances");
       expect(definition.rows.length).toBeGreaterThanOrEqual(3);
       expect(definition.postingLines.length).toBeGreaterThan(0);
       expect(definition.rows.some((row) => row.details.netChange === 0)).toBe(true);
     }
   });
 
-  it('scores ending balances and round-trips the practice envelope', () => {
+  it("scores ending balances and round-trips the practice envelope", () => {
     const definition = postingBalancesFamily.generate(2026, {
-      mode: 'assessment',
+      mode: "assessment",
       targetAccountCount: 4,
       postingAccountCount: 3,
       tolerance: 1,
     });
 
     const solution = postingBalancesFamily.solve(definition);
-    const changedRow = definition.rows.find((row) => row.details.netChange !== 0) ?? definition.rows[0];
+    const changedRow =
+      definition.rows.find((row) => row.details.netChange !== 0) ?? definition.rows[0];
     const studentResponse: PostingBalanceResponse = {
       ...solution,
       [changedRow.id]: (solution[changedRow.id] ?? 0) + 2,
@@ -56,24 +57,24 @@ describe('posting balances family', () => {
 
     expect(gradeResult.score).toBeLessThan(gradeResult.maxScore);
     expect(reviewed[changedRow.id]).toMatchObject({
-      status: 'incorrect',
+      status: "incorrect",
       expectedLabel: String(changedRow.targetId),
     });
 
     const parsed = practiceSubmissionEnvelopeSchema.safeParse(envelope);
     expect(parsed.success).toBe(true);
     if (!parsed.success) {
-      throw new Error('Expected posting-balances envelope to parse');
+      throw new Error("Expected posting-balances envelope to parse");
     }
 
-    expect(parsed.data.contractVersion).toBe('practice.v1');
+    expect(parsed.data.contractVersion).toBe("practice.v1");
     expect(parsed.data.answers[changedRow.id]).toBe(studentResponse[changedRow.id]);
     expect(parsed.data.parts).toHaveLength(definition.parts.length);
   });
 
-  it('emits sign-error tag when student enters wrong sign on a nonzero balance', () => {
+  it("emits sign-error tag when student enters wrong sign on a nonzero balance", () => {
     const definition = postingBalancesFamily.generate(2026, {
-      mode: 'assessment',
+      mode: "assessment",
       targetAccountCount: 4,
       postingAccountCount: 3,
       tolerance: 1,
@@ -94,13 +95,13 @@ describe('posting balances family', () => {
     expect(partGrade).toBeDefined();
     expect(partGrade!.isCorrect).toBe(false);
     expect(partGrade!.misconceptionTags).toEqual(
-      expect.arrayContaining([expect.stringContaining('sign-error')]),
+      expect.arrayContaining([expect.stringContaining("sign-error")]),
     );
   });
 
-  it('emits computation-error tag when student enters wrong amount with correct sign', () => {
+  it("emits computation-error tag when student enters wrong amount with correct sign", () => {
     const definition = postingBalancesFamily.generate(2026, {
-      mode: 'assessment',
+      mode: "assessment",
       targetAccountCount: 4,
       postingAccountCount: 3,
       tolerance: 1,
@@ -123,13 +124,13 @@ describe('posting balances family', () => {
     expect(partGrade).toBeDefined();
     expect(partGrade!.isCorrect).toBe(false);
     expect(partGrade!.misconceptionTags).toEqual(
-      expect.arrayContaining([expect.stringContaining('computation-error')]),
+      expect.arrayContaining([expect.stringContaining("computation-error")]),
     );
   });
 
-  it('emits no misconception tags on correct answers', () => {
+  it("emits no misconception tags on correct answers", () => {
     const definition = postingBalancesFamily.generate(2026, {
-      mode: 'assessment',
+      mode: "assessment",
       targetAccountCount: 4,
       postingAccountCount: 3,
       tolerance: 1,

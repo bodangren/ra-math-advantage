@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { evaluateFunction } from '@math-platform/graphing-core/canvas-utils';
+import React, { useState, useEffect } from "react";
+import { evaluateFunction } from "@math-platform/graphing-core/canvas-utils";
 
 export interface InteractiveTableOfValuesProps {
   xValues: number[];
@@ -9,7 +9,7 @@ export interface InteractiveTableOfValuesProps {
   onTableComplete: (points: Array<{ x: number; y: number }>) => void;
   readonly?: boolean;
   preFilledValues?: Record<number, number>;
-  assessmentMode?: 'immediate' | 'deferred';
+  assessmentMode?: "immediate" | "deferred";
 }
 
 interface TableRow {
@@ -30,39 +30,41 @@ export function InteractiveTableOfValues({
   onTableComplete,
   readonly = false,
   preFilledValues = {},
-  assessmentMode = 'immediate',
+  assessmentMode = "immediate",
 }: InteractiveTableOfValuesProps) {
   const [rows, setRows] = useState<TableRow[]>(
-    xValues.map(x => ({
+    xValues.map((x) => ({
       x,
-      y: preFilledValues[x] !== undefined ? String(preFilledValues[x]) : '',
+      y: preFilledValues[x] !== undefined ? String(preFilledValues[x]) : "",
       isCorrect: null,
       isEmpty: preFilledValues[x] === undefined,
-    }))
+    })),
   );
 
   useEffect(() => {
-    if (assessmentMode === 'deferred') {
-      const allFinite = rows.length > 0 && rows.every(row => (
-        row.y.trim() !== '' && Number.isFinite(Number(row.y))
-      ));
+    if (assessmentMode === "deferred") {
+      const allFinite =
+        rows.length > 0 &&
+        rows.every((row) => row.y.trim() !== "" && Number.isFinite(Number(row.y)));
 
       if (allFinite) {
-        onTableComplete(rows.map(row => ({
-          x: row.x,
-          y: Number(row.y),
-        })));
+        onTableComplete(
+          rows.map((row) => ({
+            x: row.x,
+            y: Number(row.y),
+          })),
+        );
       } else {
         onTableComplete([]);
       }
       return;
     }
 
-    const allFilled = rows.every(row => !row.isEmpty);
-    const allCorrect = rows.every(row => row.isCorrect === true);
+    const allFilled = rows.every((row) => !row.isEmpty);
+    const allCorrect = rows.every((row) => row.isCorrect === true);
 
     if (allFilled && allCorrect) {
-      const points = rows.map(row => ({
+      const points = rows.map((row) => ({
         x: row.x,
         y: parseFloat(row.y),
       }));
@@ -73,18 +75,18 @@ export function InteractiveTableOfValues({
   const handleInputChange = (index: number, value: string) => {
     const x = rows[index].x;
 
-    if (assessmentMode === 'deferred') {
-      const hasFiniteValue = value.trim() !== '' && Number.isFinite(Number(value));
+    if (assessmentMode === "deferred") {
+      const hasFiniteValue = value.trim() !== "" && Number.isFinite(Number(value));
 
-      setRows(prevRows => prevRows.map((row, i) => (
-        i === index
-          ? { ...row, y: value, isCorrect: null, isEmpty: !hasFiniteValue }
-          : row
-      )));
+      setRows((prevRows) =>
+        prevRows.map((row, i) =>
+          i === index ? { ...row, y: value, isCorrect: null, isEmpty: !hasFiniteValue } : row,
+        ),
+      );
       return;
     }
 
-    const isEmpty = value.trim() === '';
+    const isEmpty = value.trim() === "";
     let isCorrect: boolean | null = null;
 
     if (!isEmpty) {
@@ -96,23 +98,21 @@ export function InteractiveTableOfValues({
       }
     }
 
-    setRows(prevRows => {
+    setRows((prevRows) => {
       const newRows = prevRows.map((row, i) =>
-        i === index
-          ? { ...row, y: value, isCorrect, isEmpty }
-          : row
+        i === index ? { ...row, y: value, isCorrect, isEmpty } : row,
       );
       return newRows;
     });
   };
 
   const getRowClassName = (row: TableRow) => {
-    if (readonly) return '';
-    if (assessmentMode === 'deferred') return '';
-    if (row.isEmpty) return '';
-    if (row.isCorrect === true) return 'bg-green-100';
-    if (row.isCorrect === false) return 'bg-red-100';
-    return '';
+    if (readonly) return "";
+    if (assessmentMode === "deferred") return "";
+    if (row.isEmpty) return "";
+    if (row.isCorrect === true) return "bg-green-100";
+    if (row.isCorrect === false) return "bg-red-100";
+    return "";
   };
 
   return (

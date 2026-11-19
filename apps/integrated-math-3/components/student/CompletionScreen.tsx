@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useEffect, useRef } from 'react';
-import { STUDENT_DAILY_PRACTICE_COPY } from '@math-platform/srs-engine/contract';
+import Link from "next/link";
+import { useEffect, useRef } from "react";
+import { STUDENT_DAILY_PRACTICE_COPY } from "@math-platform/srs-engine/contract";
 
 interface CompletionScreenProps {
   completedCount: number;
@@ -24,12 +24,7 @@ export function CompletionScreen({ completedCount, totalCount }: CompletionScree
 
   return (
     <div className="max-w-2xl mx-auto py-12 px-4 text-center">
-      <div
-        role="status"
-        aria-live="polite"
-        aria-atomic="true"
-        className="sr-only"
-      >
+      <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
         Session complete. Completed {completedCount} of {totalCount} cards.
       </div>
       <div className="rounded-xl border border-border bg-card p-8">
@@ -60,9 +55,7 @@ export function CompletionScreen({ completedCount, totalCount }: CompletionScree
           Session complete
         </h1>
 
-        <p className="text-lg text-foreground mb-2">
-          {STUDENT_DAILY_PRACTICE_COPY.allDone}
-        </p>
+        <p className="text-lg text-foreground mb-2">{STUDENT_DAILY_PRACTICE_COPY.allDone}</p>
 
         <p className="text-sm text-muted-foreground mb-6">
           Completed {completedCount} of {totalCount} cards.

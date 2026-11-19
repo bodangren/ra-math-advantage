@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -145,11 +145,26 @@ export const seedLesson5_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "Examine scatter plot to determine model type",
                 steps: [
-                  { expression: "Plot data on graphing calculator", explanation: "Create scatter plot" },
-                  { expression: "Observe asymptote at y = -3", explanation: "Identify horizontal asymptote" },
-                  { expression: "Observe rapid increase as x increases", explanation: "Note end behavior" },
-                  { expression: "Compare function types: linear, quadratic, exponential", explanation: "Consider growth patterns" },
-                  { expression: "Exponential function best fits the data", explanation: "Based on asymptote and growth pattern" },
+                  {
+                    expression: "Plot data on graphing calculator",
+                    explanation: "Create scatter plot",
+                  },
+                  {
+                    expression: "Observe asymptote at y = -3",
+                    explanation: "Identify horizontal asymptote",
+                  },
+                  {
+                    expression: "Observe rapid increase as x increases",
+                    explanation: "Note end behavior",
+                  },
+                  {
+                    expression: "Compare function types: linear, quadratic, exponential",
+                    explanation: "Consider growth patterns",
+                  },
+                  {
+                    expression: "Exponential function best fits the data",
+                    explanation: "Based on asymptote and growth pattern",
+                  },
                 ],
               },
             },
@@ -179,12 +194,30 @@ export const seedLesson5_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "y ≈ 0.655 * 1.317^x",
                 steps: [
-                  { expression: "Enter data points into calculator", explanation: "Years since opening vs. number of shops" },
-                  { expression: "Compare regression models", explanation: "Test linear, quadratic, and exponential" },
-                  { expression: "Exponential: r^2 ≈ 0.964", explanation: "Strongest fit among models tested" },
-                  { expression: "Regression equation: y ≈ 0.655(1.317)^x", explanation: "Best-fit exponential model" },
-                  { expression: "After 10 years: y ≈ 0.655(1.317)^10 ≈ 10 shops", explanation: "Evaluate model at x = 10" },
-                  { expression: "After 42 years: y ≈ 0.655(1.317)^42 ≈ 70,116 shops", explanation: "Evaluate model at x = 42" },
+                  {
+                    expression: "Enter data points into calculator",
+                    explanation: "Years since opening vs. number of shops",
+                  },
+                  {
+                    expression: "Compare regression models",
+                    explanation: "Test linear, quadratic, and exponential",
+                  },
+                  {
+                    expression: "Exponential: r^2 ≈ 0.964",
+                    explanation: "Strongest fit among models tested",
+                  },
+                  {
+                    expression: "Regression equation: y ≈ 0.655(1.317)^x",
+                    explanation: "Best-fit exponential model",
+                  },
+                  {
+                    expression: "After 10 years: y ≈ 0.655(1.317)^10 ≈ 10 shops",
+                    explanation: "Evaluate model at x = 10",
+                  },
+                  {
+                    expression: "After 42 years: y ≈ 0.655(1.317)^42 ≈ 70,116 shops",
+                    explanation: "Evaluate model at x = 42",
+                  },
                 ],
               },
             },
@@ -213,7 +246,8 @@ export const seedLesson5_5 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "What does an r^2 value close to 1 indicate about a regression model?",
+                    question:
+                      "What does an r^2 value close to 1 indicate about a regression model?",
                     options: ["A strong fit", "A weak fit", "A linear relationship only"],
                     correctIndex: 0,
                   },
@@ -253,7 +287,7 @@ export const seedLesson5_5 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

@@ -1,4 +1,4 @@
-import { computeComponentContentHash, type ComponentKind } from './content-hash';
+import { computeComponentContentHash, type ComponentKind } from "./content-hash";
 
 export interface PhaseSection {
   _id: string;
@@ -65,7 +65,7 @@ export function resolveComponentKind(phaseType: string): ComponentKind {
  */
 export function buildActivityPlacementMap(
   sections: Array<Pick<PhaseSection, "_id" | "phaseVersionId" | "content">>,
-  phases: Array<Pick<PhaseVersion, "_id" | "phaseType">>
+  phases: Array<Pick<PhaseVersion, "_id" | "phaseType">>,
 ): Map<string, ActivityPlacement> {
   const phaseMap = new Map(phases.map((p) => [p._id, p]));
   const map = new Map<string, ActivityPlacement>();
@@ -107,7 +107,10 @@ export interface ReviewQueueItem {
 }
 
 interface AssembleArgs {
-  activity: Pick<ActivityDoc, "_id" | "componentKey" | "displayName" | "props" | "gradingConfig" | "approval">;
+  activity: Pick<
+    ActivityDoc,
+    "_id" | "componentKey" | "displayName" | "props" | "gradingConfig" | "approval"
+  >;
   placement?: ActivityPlacement;
   approvalRecord?: ApprovalRecord;
   filterKind?: ComponentKind;
@@ -129,9 +132,7 @@ export async function assembleReviewQueueItem({
   filterStatus,
   onlyStale,
 }: AssembleArgs): Promise<ReviewQueueItem | null> {
-  const componentKind = placement
-    ? resolveComponentKind(placement.phaseType)
-    : "activity";
+  const componentKind = placement ? resolveComponentKind(placement.phaseType) : "activity";
 
   if (filterKind && filterKind !== componentKind) {
     return null;
@@ -201,7 +202,10 @@ export async function assembleReviewQueueItem({
     approval,
     storedProps: activity.props ?? undefined,
     steps: Array.isArray((activity.props as Record<string, unknown> | null)?.steps)
-      ? ((activity.props as Record<string, unknown>)?.steps as Array<{ expression: string; explanation: string }>)
+      ? ((activity.props as Record<string, unknown>)?.steps as Array<{
+          expression: string;
+          explanation: string;
+        }>)
       : undefined,
   };
 }

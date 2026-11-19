@@ -28,14 +28,10 @@
  *     handler runs, so data tables scoped to the unowned class
  *     (`class_enrollments`, etc.) are never queried.
  */
-import { describe, it, expect, vi } from 'vitest';
-import type { Id } from '@/convex/_generated/dataModel';
-import type { QueryCtx } from '@/convex/_generated/server';
-import {
-  getStudentExport,
-  getClassExport,
-  getSubmissionExport,
-} from '@/convex/exports';
+import { describe, it, expect, vi } from "vitest";
+import type { Id } from "@/convex/_generated/dataModel";
+import type { QueryCtx } from "@/convex/_generated/server";
+import { getStudentExport, getClassExport, getSubmissionExport } from "@/convex/exports";
 
 /**
  * The Convex `internalQuery` / `query` builders return a `FunctionReference`
@@ -51,15 +47,15 @@ import {
  */
 type ClassExportCallable = (
   ctx: QueryCtx,
-  args: { userId: Id<'profiles'>; classId: Id<'classes'>; startDate?: number; endDate?: number },
+  args: { userId: Id<"profiles">; classId: Id<"classes">; startDate?: number; endDate?: number },
 ) => Promise<unknown>;
 type StudentExportCallable = (
   ctx: QueryCtx,
-  args: { userId: Id<'profiles'>; studentId: Id<'profiles'>; startDate?: number; endDate?: number },
+  args: { userId: Id<"profiles">; studentId: Id<"profiles">; startDate?: number; endDate?: number },
 ) => Promise<unknown>;
 type SubmissionExportCallable = (
   ctx: QueryCtx,
-  args: { userId: Id<'profiles'>; classId: Id<'classes'>; endDate: number; limit?: number },
+  args: { userId: Id<"profiles">; classId: Id<"classes">; endDate: number; limit?: number },
 ) => Promise<unknown>;
 
 const callGetClassExport = getClassExport as unknown as ClassExportCallable;
@@ -75,34 +71,34 @@ const callGetSubmissionExport = getSubmissionExport as unknown as SubmissionExpo
  * ------------------------------------------------------------------ */
 
 interface ClassEnrollmentRow {
-  _id: Id<'class_enrollments'>;
-  classId: Id<'classes'>;
-  studentId: Id<'profiles'>;
-  status: 'active' | 'withdrawn' | 'completed';
+  _id: Id<"class_enrollments">;
+  classId: Id<"classes">;
+  studentId: Id<"profiles">;
+  status: "active" | "withdrawn" | "completed";
   enrolledAt: number;
   createdAt: number;
   updatedAt: number;
 }
 
 interface ProfileRow {
-  _id: Id<'profiles'>;
+  _id: Id<"profiles">;
   username: string;
   displayName?: string;
-  role: 'student' | 'teacher' | 'admin';
-  organizationId: Id<'organizations'>;
+  role: "student" | "teacher" | "admin";
+  organizationId: Id<"organizations">;
 }
 
 interface ClassRow {
-  _id: Id<'classes'>;
+  _id: Id<"classes">;
   name: string;
-  teacherId: Id<'profiles'>;
+  teacherId: Id<"profiles">;
   archived?: boolean;
   createdAt: number;
   updatedAt: number;
 }
 
 interface LessonRow {
-  _id: Id<'lessons'>;
+  _id: Id<"lessons">;
   slug: string;
   title: string;
   unitNumber: number;
@@ -112,31 +108,33 @@ interface LessonRow {
 }
 
 interface LessonVersionRow {
-  _id: Id<'lesson_versions'>;
-  lessonId: Id<'lessons'>;
+  _id: Id<"lesson_versions">;
+  lessonId: Id<"lessons">;
   version: number;
-  status: 'archived' | 'draft' | 'review' | 'published';
+  status: "archived" | "draft" | "review" | "published";
   createdAt: number;
 }
 
 interface PhaseVersionRow {
-  _id: Id<'phase_versions'>;
-  lessonVersionId: Id<'lesson_versions'>;
+  _id: Id<"phase_versions">;
+  lessonVersionId: Id<"lesson_versions">;
   phaseNumber: number;
   phaseType: string;
   createdAt: number;
 }
 
-function makeExportsMockCtx(options: {
-  profiles?: ProfileRow[];
-  classes?: ClassRow[];
-  enrollments?: ClassEnrollmentRow[];
-  lessons?: LessonRow[];
-  lessonVersions?: LessonVersionRow[];
-  phaseVersions?: PhaseVersionRow[];
-  submissions?: Array<Record<string, unknown>>;
-  activities?: Array<Record<string, unknown>>;
-} = {}) {
+function makeExportsMockCtx(
+  options: {
+    profiles?: ProfileRow[];
+    classes?: ClassRow[];
+    enrollments?: ClassEnrollmentRow[];
+    lessons?: LessonRow[];
+    lessonVersions?: LessonVersionRow[];
+    phaseVersions?: PhaseVersionRow[];
+    submissions?: Array<Record<string, unknown>>;
+    activities?: Array<Record<string, unknown>>;
+  } = {},
+) {
   const {
     profiles = [],
     classes = [],
@@ -150,7 +148,7 @@ function makeExportsMockCtx(options: {
 
   const classEnrollmentCallLog: Array<{
     indexName: string;
-    capturedClassId: Id<'classes'> | null;
+    capturedClassId: Id<"classes"> | null;
   }> = [];
 
   // Build per-table id indexes for the two-arg form `db.get(table, id)`
@@ -182,83 +180,92 @@ function makeExportsMockCtx(options: {
   });
 
   const mockQuery = vi.fn().mockImplementation((table: string) => {
-    if (table === 'class_enrollments') {
+    if (table === "class_enrollments") {
       return {
-        withIndex: vi.fn().mockImplementation(
-          (
-            indexName: string,
-            fn?: (q: {
-              eq: (field: string, value: unknown) => unknown;
-            }) => void,
-          ) => {
-            let capturedClassId: Id<'classes'> | null = null;
-            if (fn) {
-              const mockQ = {
+        withIndex: vi
+          .fn()
+          .mockImplementation(
+            (
+              indexName: string,
+              fn?: (q: { eq: (field: string, value: unknown) => unknown }) => void,
+            ) => {
+              let capturedClassId: Id<"classes"> | null = null;
+              if (fn) {
+                const mockQ = {
+                  eq: (field: string, value: unknown) => {
+                    if (field === "classId") {
+                      capturedClassId = value as Id<"classes">;
+                    }
+                    return mockQ;
+                  },
+                };
+                fn(mockQ);
+              }
+              classEnrollmentCallLog.push({ indexName, capturedClassId });
+              return {
+                collect: vi
+                  .fn()
+                  .mockResolvedValue(
+                    enrollments.filter((e) => !capturedClassId || e.classId === capturedClassId),
+                  ),
+              };
+            },
+          ),
+      };
+    }
+    if (table === "student_progress") {
+      return {
+        withIndex: vi.fn().mockReturnValue({
+          collect: vi.fn().mockResolvedValue([]),
+        }),
+      };
+    }
+    if (table === "activity_submissions") {
+      return {
+        withIndex: vi
+          .fn()
+          .mockImplementation(
+            (
+              _indexName: string,
+              fn?: (q: { eq: (field: string, value: unknown) => unknown }) => void,
+            ) => {
+              let userId: unknown;
+              const q = {
                 eq: (field: string, value: unknown) => {
-                  if (field === 'classId') {
-                    capturedClassId = value as Id<'classes'>;
-                  }
-                  return mockQ;
+                  if (field === "userId") userId = value;
+                  return q;
                 },
               };
-              fn(mockQ);
-            }
-            classEnrollmentCallLog.push({ indexName, capturedClassId });
-            return {
-              collect: vi.fn().mockResolvedValue(
-                enrollments.filter(
-                  (e) =>
-                    !capturedClassId ||
-                    e.classId === capturedClassId,
-                ),
-              ),
-            };
-          },
-        ),
+              fn?.(q);
+              return {
+                collect: vi
+                  .fn()
+                  .mockResolvedValue(
+                    submissions.filter((row) => userId === undefined || row.userId === userId),
+                  ),
+              };
+            },
+          ),
       };
     }
-    if (table === 'student_progress') {
+    if (table === "srs_cards") {
       return {
         withIndex: vi.fn().mockReturnValue({
           collect: vi.fn().mockResolvedValue([]),
         }),
       };
     }
-    if (table === 'activity_submissions') {
-      return {
-        withIndex: vi.fn().mockImplementation((_indexName: string, fn?: (q: {
-          eq: (field: string, value: unknown) => unknown;
-        }) => void) => {
-          let userId: unknown;
-          const q = { eq: (field: string, value: unknown) => {
-            if (field === 'userId') userId = value;
-            return q;
-          } };
-          fn?.(q);
-          return { collect: vi.fn().mockResolvedValue(
-            submissions.filter((row) => userId === undefined || row.userId === userId),
-          ) };
-        }),
-      };
-    }
-    if (table === 'srs_cards') {
-      return {
-        withIndex: vi.fn().mockReturnValue({
-          collect: vi.fn().mockResolvedValue([]),
-        }),
-      };
-    }
-    if (table === 'lessons') {
+    if (table === "lessons") {
       return {
         collect: vi.fn().mockResolvedValue(lessons),
       };
     }
-    if (table === 'lesson_versions') {
+    if (table === "lesson_versions") {
       return {
         collect: vi.fn().mockResolvedValue(lessonVersions),
       };
     }
-    if (table === 'phase_versions') {
+    if (table === "phase_versions") {
       return {
         collect: vi.fn().mockResolvedValue(phaseVersions),
       };
@@ -285,42 +292,42 @@ function makeExportsMockCtx(options: {
  * Fixture builders
  * ------------------------------------------------------------------ */
 
-const TEACHER_A_ID = 'teacher_a' as Id<'profiles'>;
-const TEACHER_B_ID = 'teacher_b' as Id<'profiles'>;
-const STUDENT_A1_ID = 'student_a1' as Id<'profiles'>;
-const STUDENT_B1_ID = 'student_b1' as Id<'profiles'>;
-const ORG_A_ID = 'org_a' as Id<'organizations'>;
-const ORG_B_ID = 'org_b' as Id<'organizations'>;
-const CLASS_A_ID = 'class_a' as Id<'classes'>;
-const CLASS_B_ID = 'class_b' as Id<'classes'>;
+const TEACHER_A_ID = "teacher_a" as Id<"profiles">;
+const TEACHER_B_ID = "teacher_b" as Id<"profiles">;
+const STUDENT_A1_ID = "student_a1" as Id<"profiles">;
+const STUDENT_B1_ID = "student_b1" as Id<"profiles">;
+const ORG_A_ID = "org_a" as Id<"organizations">;
+const ORG_B_ID = "org_b" as Id<"organizations">;
+const CLASS_A_ID = "class_a" as Id<"classes">;
+const CLASS_B_ID = "class_b" as Id<"classes">;
 
 const baseProfiles: ProfileRow[] = [
   {
     _id: TEACHER_A_ID,
-    username: 'teacher_a',
-    displayName: 'Teacher A',
-    role: 'teacher',
+    username: "teacher_a",
+    displayName: "Teacher A",
+    role: "teacher",
     organizationId: ORG_A_ID,
   },
   {
     _id: TEACHER_B_ID,
-    username: 'teacher_b',
-    displayName: 'Teacher B',
-    role: 'teacher',
+    username: "teacher_b",
+    displayName: "Teacher B",
+    role: "teacher",
     organizationId: ORG_B_ID,
   },
   {
     _id: STUDENT_A1_ID,
-    username: 'student_a1',
-    displayName: 'Student A1',
-    role: 'student',
+    username: "student_a1",
+    displayName: "Student A1",
+    role: "student",
     organizationId: ORG_A_ID,
   },
   {
     _id: STUDENT_B1_ID,
-    username: 'student_b1',
-    displayName: 'Student B1',
-    role: 'student',
+    username: "student_b1",
+    displayName: "Student B1",
+    role: "student",
     organizationId: ORG_B_ID,
   },
 ];
@@ -328,7 +335,7 @@ const baseProfiles: ProfileRow[] = [
 const baseClasses: ClassRow[] = [
   {
     _id: CLASS_A_ID,
-    name: 'Period 1',
+    name: "Period 1",
     teacherId: TEACHER_A_ID,
     archived: false,
     createdAt: 1,
@@ -336,7 +343,7 @@ const baseClasses: ClassRow[] = [
   },
   {
     _id: CLASS_B_ID,
-    name: 'Period 2',
+    name: "Period 2",
     teacherId: TEACHER_B_ID,
     archived: false,
     createdAt: 2,
@@ -346,19 +353,19 @@ const baseClasses: ClassRow[] = [
 
 const baseEnrollments: ClassEnrollmentRow[] = [
   {
-    _id: 'enr_a1' as Id<'class_enrollments'>,
+    _id: "enr_a1" as Id<"class_enrollments">,
     classId: CLASS_A_ID,
     studentId: STUDENT_A1_ID,
-    status: 'active',
+    status: "active",
     enrolledAt: 1,
     createdAt: 1,
     updatedAt: 1,
   },
   {
-    _id: 'enr_b1' as Id<'class_enrollments'>,
+    _id: "enr_b1" as Id<"class_enrollments">,
     classId: CLASS_B_ID,
     studentId: STUDENT_B1_ID,
-    status: 'active',
+    status: "active",
     enrolledAt: 2,
     createdAt: 2,
     updatedAt: 2,
@@ -369,9 +376,9 @@ const baseEnrollments: ClassEnrollmentRow[] = [
  * Phase 3 — Red-phase tests
  * ------------------------------------------------------------------ */
 
-describe('Phase 3 — public export query wrappers (Red)', () => {
-  describe('getClassExport — class dataset', () => {
-    it('allows a teacher who owns the class to fetch the export', async () => {
+describe("Phase 3 — public export query wrappers (Red)", () => {
+  describe("getClassExport — class dataset", () => {
+    it("allows a teacher who owns the class to fetch the export", async () => {
       const { mockCtx } = makeExportsMockCtx({
         profiles: baseProfiles,
         classes: baseClasses,
@@ -387,7 +394,7 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
       expect(Array.isArray(result)).toBe(true);
     });
 
-    it('throws when a teacher does not own the requested class (cross-class denial)', async () => {
+    it("throws when a teacher does not own the requested class (cross-class denial)", async () => {
       const { mockCtx } = makeExportsMockCtx({
         profiles: baseProfiles,
         classes: baseClasses,
@@ -403,7 +410,7 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
       ).rejects.toThrow(/unauthorized|forbidden|not.*own/i);
     });
 
-    it('throws when the caller is a student (not a teacher)', async () => {
+    it("throws when the caller is a student (not a teacher)", async () => {
       const { mockCtx } = makeExportsMockCtx({
         profiles: baseProfiles,
         classes: baseClasses,
@@ -418,7 +425,7 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
       ).rejects.toThrow(/unauthorized|forbidden|teacher/i);
     });
 
-    it('throws when the userId does not exist in profiles (unauthenticated)', async () => {
+    it("throws when the userId does not exist in profiles (unauthenticated)", async () => {
       const { mockCtx } = makeExportsMockCtx({
         profiles: baseProfiles,
         classes: baseClasses,
@@ -427,13 +434,13 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
 
       await expect(
         callGetClassExport(mockCtx, {
-          userId: 'ghost_teacher' as Id<'profiles'>,
+          userId: "ghost_teacher" as Id<"profiles">,
           classId: CLASS_A_ID,
         }),
       ).rejects.toThrow(/unauthorized|forbidden|not.*found/i);
     });
 
-    it('does NOT query class_enrollments for a class the teacher does not own', async () => {
+    it("does NOT query class_enrollments for a class the teacher does not own", async () => {
       const { mockCtx, classEnrollmentCallLog } = makeExportsMockCtx({
         profiles: baseProfiles,
         classes: baseClasses,
@@ -458,33 +465,71 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
     });
   });
 
-  describe('getSubmissionExport — submissions dataset', () => {
-    it('excludes a newer pending allocation before sorting and limiting finalized rows', async () => {
-      const finalized = { _id: 'sub:final', userId: STUDENT_A1_ID, activityId: 'activity:qf',
-        submissionData: { contractVersion: 'practice.v1', activityId: 'activity:qf', mode: 'guided_practice',
-          status: 'graded', attemptNumber: 1, submittedAt: '2026-01-01T00:00:00.000Z',
-          answers: { discriminant: '16', x1: '2', x2: '-2' }, parts: [
-            { partId: 'discriminant', rawAnswer: '16', isCorrect: true, score: 1, maxScore: 1 },
-            { partId: 'x1', rawAnswer: '2', isCorrect: true, score: 1, maxScore: 1 },
-            { partId: 'x2', rawAnswer: '-2', isCorrect: true, score: 1, maxScore: 1 },
-          ] }, score: 3, maxScore: 3, submittedAt: 100, updatedAt: 100 };
-      const pending = { _id: 'sub:pending', userId: STUDENT_A1_ID, activityId: 'activity:qf',
-        submissionData: { contractVersion: 'practice.v1', activityId: 'activity:qf', mode: 'guided_practice',
-          status: 'draft', attemptNumber: 2, submittedAt: '2026-01-01T00:01:00.000Z', answers: {}, parts: [] },
-        submittedAt: 200, updatedAt: 200, allocatedVariantKey: 'PRIVATE_VARIANT' };
-      const { mockCtx } = makeExportsMockCtx({ profiles: baseProfiles, classes: baseClasses,
-        enrollments: baseEnrollments, submissions: [pending, finalized],
-        activities: [{ _id: 'activity:qf', componentKey: 'quadratic-formula' }] });
+  describe("getSubmissionExport — submissions dataset", () => {
+    it("excludes a newer pending allocation before sorting and limiting finalized rows", async () => {
+      const finalized = {
+        _id: "sub:final",
+        userId: STUDENT_A1_ID,
+        activityId: "activity:qf",
+        submissionData: {
+          contractVersion: "practice.v1",
+          activityId: "activity:qf",
+          mode: "guided_practice",
+          status: "graded",
+          attemptNumber: 1,
+          submittedAt: "2026-01-01T00:00:00.000Z",
+          answers: { discriminant: "16", x1: "2", x2: "-2" },
+          parts: [
+            { partId: "discriminant", rawAnswer: "16", isCorrect: true, score: 1, maxScore: 1 },
+            { partId: "x1", rawAnswer: "2", isCorrect: true, score: 1, maxScore: 1 },
+            { partId: "x2", rawAnswer: "-2", isCorrect: true, score: 1, maxScore: 1 },
+          ],
+        },
+        score: 3,
+        maxScore: 3,
+        submittedAt: 100,
+        updatedAt: 100,
+      };
+      const pending = {
+        _id: "sub:pending",
+        userId: STUDENT_A1_ID,
+        activityId: "activity:qf",
+        submissionData: {
+          contractVersion: "practice.v1",
+          activityId: "activity:qf",
+          mode: "guided_practice",
+          status: "draft",
+          attemptNumber: 2,
+          submittedAt: "2026-01-01T00:01:00.000Z",
+          answers: {},
+          parts: [],
+        },
+        submittedAt: 200,
+        updatedAt: 200,
+        allocatedVariantKey: "PRIVATE_VARIANT",
+      };
+      const { mockCtx } = makeExportsMockCtx({
+        profiles: baseProfiles,
+        classes: baseClasses,
+        enrollments: baseEnrollments,
+        submissions: [pending, finalized],
+        activities: [{ _id: "activity:qf", componentKey: "quadratic-formula" }],
+      });
       for (const limit of [1, 10]) {
-        const result = await callGetSubmissionExport(mockCtx, {
-          userId: TEACHER_A_ID, classId: CLASS_A_ID, endDate: 300, limit,
-        }) as { rows: Array<{ submissionId: string; score: number | null }>; hasMore: boolean };
-        expect(result.rows).toEqual([expect.objectContaining({ submissionId: 'sub:final', score: 3 })]);
+        const result = (await callGetSubmissionExport(mockCtx, {
+          userId: TEACHER_A_ID,
+          classId: CLASS_A_ID,
+          endDate: 300,
+          limit,
+        })) as { rows: Array<{ submissionId: string; score: number | null }>; hasMore: boolean };
+        expect(result.rows).toEqual([
+          expect.objectContaining({ submissionId: "sub:final", score: 3 }),
+        ]);
         expect(result.hasMore).toBe(false);
-        expect(JSON.stringify(result)).not.toContain('PRIVATE_VARIANT');
+        expect(JSON.stringify(result)).not.toContain("PRIVATE_VARIANT");
       }
     });
-    it('allows a teacher who owns the class', async () => {
+    it("allows a teacher who owns the class", async () => {
       const { mockCtx } = makeExportsMockCtx({
         profiles: baseProfiles,
         classes: baseClasses,
@@ -502,7 +547,7 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
       expect(result.hasMore).toBe(false);
     });
 
-    it('throws when a teacher does not own the requested class', async () => {
+    it("throws when a teacher does not own the requested class", async () => {
       const { mockCtx } = makeExportsMockCtx({
         profiles: baseProfiles,
         classes: baseClasses,
@@ -518,7 +563,7 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
       ).rejects.toThrow(/unauthorized|forbidden|not.*own/i);
     });
 
-    it('does NOT query class_enrollments for a class the teacher does not own', async () => {
+    it("does NOT query class_enrollments for a class the teacher does not own", async () => {
       const { mockCtx, classEnrollmentCallLog } = makeExportsMockCtx({
         profiles: baseProfiles,
         classes: baseClasses,
@@ -540,8 +585,8 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
     });
   });
 
-  describe('getStudentExport — student dataset', () => {
-    it('allows a teacher in the same organization as the student', async () => {
+  describe("getStudentExport — student dataset", () => {
+    it("allows a teacher in the same organization as the student", async () => {
       const { mockCtx } = makeExportsMockCtx({
         profiles: baseProfiles,
         classes: baseClasses,
@@ -556,7 +601,7 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
       expect(result).not.toBeNull();
     });
 
-    it('throws when a teacher is in a different organization than the student', async () => {
+    it("throws when a teacher is in a different organization than the student", async () => {
       const { mockCtx } = makeExportsMockCtx({
         profiles: baseProfiles,
         classes: baseClasses,
@@ -572,7 +617,7 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
       ).rejects.toThrow(/unauthorized|forbidden|organization/i);
     });
 
-    it('throws when the target profile is not a student', async () => {
+    it("throws when the target profile is not a student", async () => {
       const { mockCtx } = makeExportsMockCtx({
         profiles: baseProfiles,
         classes: baseClasses,
@@ -588,7 +633,7 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
       ).rejects.toThrow(/unauthorized|forbidden|not a student|not.*student/i);
     });
 
-    it('throws when the caller is not a teacher', async () => {
+    it("throws when the caller is not a teacher", async () => {
       const { mockCtx } = makeExportsMockCtx({
         profiles: baseProfiles,
         classes: baseClasses,

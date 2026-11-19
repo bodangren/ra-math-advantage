@@ -1,161 +1,172 @@
-import { describe, it, expect } from 'vitest';
-import type { SeedLesson, SeedPhase } from '@/convex/seed/types';
+import { describe, it, expect } from "vitest";
+import type { SeedLesson, SeedPhase } from "@/convex/seed/types";
 
-describe('seed-lesson-7-3', () => {
-  describe('Lesson 7-3: Graphing Reciprocal Functions', () => {
+describe("seed-lesson-7-3", () => {
+  describe("Lesson 7-3: Graphing Reciprocal Functions", () => {
     const lesson7_3Seed: SeedLesson = {
       unitNumber: 7,
-      title: 'Graphing Reciprocal Functions',
-      slug: 'module-7-lesson-3',
-      description: 'Students graph reciprocal functions by making tables of values and by using transformations.',
+      title: "Graphing Reciprocal Functions",
+      slug: "module-7-lesson-3",
+      description:
+        "Students graph reciprocal functions by making tables of values and by using transformations.",
       orderIndex: 3,
       phases: [
-        { phaseNumber: 1, title: 'Explore', phaseType: 'explore', sections: [] },
-        { phaseNumber: 2, title: 'Vocabulary', phaseType: 'vocabulary', sections: [] },
-        { phaseNumber: 3, title: 'Learn: Graphing Reciprocal Functions', phaseType: 'learn', sections: [] },
-        { phaseNumber: 4, title: 'Worked Example 1', phaseType: 'worked_example', sections: [] },
-        { phaseNumber: 5, title: 'Worked Example 2', phaseType: 'worked_example', sections: [] },
-        { phaseNumber: 6, title: 'Worked Example 3', phaseType: 'worked_example', sections: [] },
-        { phaseNumber: 7, title: 'Discourse', phaseType: 'discourse', sections: [] },
-        { phaseNumber: 8, title: 'Learn: Transformations of Reciprocal Functions', phaseType: 'learn', sections: [] },
-        { phaseNumber: 9, title: 'Worked Example 4', phaseType: 'worked_example', sections: [] },
-        { phaseNumber: 10, title: 'Worked Example 5', phaseType: 'worked_example', sections: [] },
-        { phaseNumber: 11, title: 'Reflection', phaseType: 'reflection', sections: [] },
+        { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
+        { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Graphing Reciprocal Functions",
+          phaseType: "learn",
+          sections: [],
+        },
+        { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 7, title: "Discourse", phaseType: "discourse", sections: [] },
+        {
+          phaseNumber: 8,
+          title: "Learn: Transformations of Reciprocal Functions",
+          phaseType: "learn",
+          sections: [],
+        },
+        { phaseNumber: 9, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 10, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 11, title: "Reflection", phaseType: "reflection", sections: [] },
       ],
     };
 
-    it('lesson has correct metadata', () => {
+    it("lesson has correct metadata", () => {
       expect(lesson7_3Seed.unitNumber).toBe(7);
-      expect(lesson7_3Seed.title).toBe('Graphing Reciprocal Functions');
-      expect(lesson7_3Seed.slug).toBe('module-7-lesson-3');
+      expect(lesson7_3Seed.title).toBe("Graphing Reciprocal Functions");
+      expect(lesson7_3Seed.slug).toBe("module-7-lesson-3");
       expect(lesson7_3Seed.orderIndex).toBe(3);
     });
 
-    it('has exactly 11 phases', () => {
+    it("has exactly 11 phases", () => {
       expect(lesson7_3Seed.phases).toHaveLength(11);
     });
 
-    it('correct phase sequence: explore, vocab, learn, 3xworked_example, discourse, learn, 2xworked_example, reflection', () => {
-      const expectedSequence: SeedPhase['phaseType'][] = [
-        'explore',
-        'vocabulary',
-        'learn',
-        'worked_example',
-        'worked_example',
-        'worked_example',
-        'discourse',
-        'learn',
-        'worked_example',
-        'worked_example',
-        'reflection',
+    it("correct phase sequence: explore, vocab, learn, 3xworked_example, discourse, learn, 2xworked_example, reflection", () => {
+      const expectedSequence: SeedPhase["phaseType"][] = [
+        "explore",
+        "vocabulary",
+        "learn",
+        "worked_example",
+        "worked_example",
+        "worked_example",
+        "discourse",
+        "learn",
+        "worked_example",
+        "worked_example",
+        "reflection",
       ];
 
       const actualSequence = lesson7_3Seed.phases.map((p) => p.phaseType);
       expect(actualSequence).toEqual(expectedSequence);
     });
 
-    it('explore phase is phase 1', () => {
-      const explorePhase = lesson7_3Seed.phases.find((p) => p.phaseType === 'explore');
+    it("explore phase is phase 1", () => {
+      const explorePhase = lesson7_3Seed.phases.find((p) => p.phaseType === "explore");
       expect(explorePhase?.phaseNumber).toBe(1);
     });
 
-    it('vocabulary phase is phase 2', () => {
-      const vocabPhase = lesson7_3Seed.phases.find((p) => p.phaseType === 'vocabulary');
+    it("vocabulary phase is phase 2", () => {
+      const vocabPhase = lesson7_3Seed.phases.find((p) => p.phaseType === "vocabulary");
       expect(vocabPhase?.phaseNumber).toBe(2);
     });
 
-    it('first learn phase is phase 3', () => {
-      const learnPhases = lesson7_3Seed.phases.filter((p) => p.phaseType === 'learn');
+    it("first learn phase is phase 3", () => {
+      const learnPhases = lesson7_3Seed.phases.filter((p) => p.phaseType === "learn");
       expect(learnPhases[0]?.phaseNumber).toBe(3);
     });
 
-    it('second learn phase is phase 8', () => {
-      const learnPhases = lesson7_3Seed.phases.filter((p) => p.phaseType === 'learn');
+    it("second learn phase is phase 8", () => {
+      const learnPhases = lesson7_3Seed.phases.filter((p) => p.phaseType === "learn");
       expect(learnPhases[1]?.phaseNumber).toBe(8);
     });
 
-    it('discourse phase is phase 7', () => {
-      const discoursePhase = lesson7_3Seed.phases.find((p) => p.phaseType === 'discourse');
+    it("discourse phase is phase 7", () => {
+      const discoursePhase = lesson7_3Seed.phases.find((p) => p.phaseType === "discourse");
       expect(discoursePhase?.phaseNumber).toBe(7);
     });
 
-    it('reflection phase is phase 11', () => {
-      const reflectionPhase = lesson7_3Seed.phases.find((p) => p.phaseType === 'reflection');
+    it("reflection phase is phase 11", () => {
+      const reflectionPhase = lesson7_3Seed.phases.find((p) => p.phaseType === "reflection");
       expect(reflectionPhase?.phaseNumber).toBe(11);
     });
 
-    it('has exactly 5 worked_example phases', () => {
-      const workedExamples = lesson7_3Seed.phases.filter((p) => p.phaseType === 'worked_example');
+    it("has exactly 5 worked_example phases", () => {
+      const workedExamples = lesson7_3Seed.phases.filter((p) => p.phaseType === "worked_example");
       expect(workedExamples).toHaveLength(5);
     });
 
-    it('worked examples are numbered 1-5 in order', () => {
-      const workedExamples = lesson7_3Seed.phases.filter((p) => p.phaseType === 'worked_example');
+    it("worked examples are numbered 1-5 in order", () => {
+      const workedExamples = lesson7_3Seed.phases.filter((p) => p.phaseType === "worked_example");
       workedExamples.forEach((we, idx) => {
         expect(we.title).toBe(`Worked Example ${idx + 1}`);
       });
     });
   });
 
-  describe('activity records for lesson 7-3', () => {
+  describe("activity records for lesson 7-3", () => {
     const validComponentKeys = [
-      'graphing-explorer',
-      'step-by-step-solver',
-      'comprehension-quiz',
-      'fill-in-the-blank',
-      'rate-of-change-calculator',
-      'discriminant-analyzer',
+      "graphing-explorer",
+      "step-by-step-solver",
+      "comprehension-quiz",
+      "fill-in-the-blank",
+      "rate-of-change-calculator",
+      "discriminant-analyzer",
     ] as const;
 
-    it('explore phase should have graphing-explorer activity', () => {
+    it("explore phase should have graphing-explorer activity", () => {
       const exploreSection = {
         sequenceOrder: 1,
-        sectionType: 'activity' as const,
+        sectionType: "activity" as const,
         content: {
-          componentKey: 'graphing-explorer' as const,
+          componentKey: "graphing-explorer" as const,
           props: {
-            variant: 'explore',
-            equation: 'y = 1/x',
-            title: 'Reciprocal Functions',
+            variant: "explore",
+            equation: "y = 1/x",
+            title: "Reciprocal Functions",
           },
         },
       };
 
-      expect(exploreSection.content.componentKey).toBe('graphing-explorer');
+      expect(exploreSection.content.componentKey).toBe("graphing-explorer");
       expect(validComponentKeys).toContain(exploreSection.content.componentKey);
     });
 
-    it('worked examples should use step-by-step-solver activity', () => {
+    it("worked examples should use step-by-step-solver activity", () => {
       const workedExampleSection = {
         sequenceOrder: 1,
-        sectionType: 'activity' as const,
+        sectionType: "activity" as const,
         content: {
-          componentKey: 'step-by-step-solver' as const,
+          componentKey: "step-by-step-solver" as const,
           props: {
-            problemType: 'polynomial' as const,
-            equation: 'g(x) = 1/(2x - 5) + 2',
+            problemType: "polynomial" as const,
+            equation: "g(x) = 1/(2x - 5) + 2",
             steps: [],
           },
         },
       };
 
-      expect(workedExampleSection.content.componentKey).toBe('step-by-step-solver');
+      expect(workedExampleSection.content.componentKey).toBe("step-by-step-solver");
       expect(validComponentKeys).toContain(workedExampleSection.content.componentKey);
     });
 
-    it('discourse phase should have comprehension-quiz activity', () => {
+    it("discourse phase should have comprehension-quiz activity", () => {
       const discourseSection = {
         sequenceOrder: 2,
-        sectionType: 'activity' as const,
+        sectionType: "activity" as const,
         content: {
-          componentKey: 'comprehension-quiz' as const,
+          componentKey: "comprehension-quiz" as const,
           props: {
             questions: [],
           },
         },
       };
 
-      expect(discourseSection.content.componentKey).toBe('comprehension-quiz');
+      expect(discourseSection.content.componentKey).toBe("comprehension-quiz");
       expect(validComponentKeys).toContain(discourseSection.content.componentKey);
     });
   });

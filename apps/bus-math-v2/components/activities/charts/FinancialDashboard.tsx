@@ -43,7 +43,7 @@ const DEFAULT_MONTHLY_DATA: ChartDataPoint[] = [
   { month: "Mar", revenue: 18200, expenses: 14000, profit: 4200, cashFlow: 3900 },
   { month: "Apr", revenue: 21000, expenses: 16200, profit: 4800, cashFlow: 4200 },
   { month: "May", revenue: 22500, expenses: 17100, profit: 5400, cashFlow: 4500 },
-  { month: "Jun", revenue: 24000, expenses: 18000, profit: 6000, cashFlow: 5100 }
+  { month: "Jun", revenue: 24000, expenses: 18000, profit: 6000, cashFlow: 5100 },
 ];
 
 const DEFAULT_ACCOUNTS: ChartSegment[] = [
@@ -51,26 +51,37 @@ const DEFAULT_ACCOUNTS: ChartSegment[] = [
   { id: "receivables", label: "Receivables", value: 3800 },
   { id: "inventory", label: "Inventory", value: 5400 },
   { id: "equipment", label: "Equipment", value: 15000 },
-  { id: "payables", label: "Payables", value: 3200 }
+  { id: "payables", label: "Payables", value: 3200 },
 ];
 
 const DEFAULT_KPIS: FinancialKpi[] = [
-  { title: "Total Revenue", value: "$118,200", change: 12.4, trend: "up", helperText: "vs last 6 months" },
+  {
+    title: "Total Revenue",
+    value: "$118,200",
+    change: 12.4,
+    trend: "up",
+    helperText: "vs last 6 months",
+  },
   { title: "Net Profit", value: "$27,650", change: 8.1, trend: "up", helperText: "margin 23.4%" },
-  { title: "Operating Cash", value: "$24,000", change: -2.3, trend: "down", helperText: "due to inventory buys" },
-  { title: "Profit Margin", value: "22.3%", change: 1.2, trend: "up", helperText: "target 20%" }
+  {
+    title: "Operating Cash",
+    value: "$24,000",
+    change: -2.3,
+    trend: "down",
+    helperText: "due to inventory buys",
+  },
+  { title: "Profit Margin", value: "22.3%", change: 1.2, trend: "up", helperText: "target 20%" },
 ];
 
 const PERFORMANCE_SERIES: ChartSeries[] = [
   { key: "revenue", label: "Revenue" },
-  { key: "expenses", label: "Expenses" }
+  { key: "expenses", label: "Expenses" },
 ];
 
 const CASHFLOW_SERIES: ChartSeries[] = [
   { key: "profit", label: "Profit" },
-  { key: "cashFlow", label: "Cash Flow" }
+  { key: "cashFlow", label: "Cash Flow" },
 ];
-
 
 /**
  * Renders a financial dashboard with KPI cards, line/bar/doughnut charts,
@@ -91,20 +102,22 @@ export function FinancialDashboard({
   refreshable = true,
   exportable = true,
   onRefresh,
-  onExport
+  onExport,
 }: FinancialDashboardProps) {
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const totals = useMemo(() => {
     const latest = monthlyMetrics[monthlyMetrics.length - 1] ?? {};
-    const cumulativeRevenue = monthlyMetrics.reduce((sum, point) => sum + Number(point.revenue ?? 0), 0);
+    const cumulativeRevenue = monthlyMetrics.reduce(
+      (sum, point) => sum + Number(point.revenue ?? 0),
+      0,
+    );
     return {
       latestRevenue: latest.revenue ?? 0,
       latestProfit: latest.profit ?? 0,
-      cumulativeRevenue
+      cumulativeRevenue,
     };
   }, [monthlyMetrics]);
-
 
   /**
    * Trigger the refresh callback and manage the refreshing state.

@@ -28,14 +28,14 @@ interface MinimalPhase {
  */
 export function sanitizeMarkdownForPrompt(text: string): string {
   return text
-    .replace(/`/g, '')
-    .replace(/\[/g, '(')
-    .replace(/\]/g, ')')
-    .replace(/>/g, '')
-    .replace(/^#{1,6}\s+/gm, '')
-    .replace(/^\s*[-*+]\s+/gm, '')
-    .replace(/^\s*>\s+/gm, '')
-    .replace(/(?:\n){3,}/g, '\n\n')
+    .replace(/`/g, "")
+    .replace(/\[/g, "(")
+    .replace(/\]/g, ")")
+    .replace(/>/g, "")
+    .replace(/^#{1,6}\s+/gm, "")
+    .replace(/^\s*[-*+]\s+/gm, "")
+    .replace(/^\s*>\s+/gm, "")
+    .replace(/(?:\n){3,}/g, "\n\n")
     .trim();
 }
 
@@ -45,7 +45,10 @@ export function sanitizeMarkdownForPrompt(text: string): string {
  * @returns {string} - Plain text with tags removed
  */
 function stripHtml(html: string): string {
-  return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+  return html
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 /**
@@ -57,8 +60,8 @@ function stripHtml(html: string): string {
 function truncate(text: string, maxLength: number): string {
   if (text.length <= maxLength) return text;
   const truncated = text.slice(0, maxLength - 3);
-  const lastSpace = truncated.lastIndexOf(' ');
-  return (lastSpace > 0 ? truncated.slice(0, lastSpace) : truncated) + '...';
+  const lastSpace = truncated.lastIndexOf(" ");
+  return (lastSpace > 0 ? truncated.slice(0, lastSpace) : truncated) + "...";
 }
 
 /**

@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useCallback, useRef, useState } from 'react';
-import { CheckCircle2, Loader2, SkipForward } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { completePhaseRequest, skipPhaseRequest } from '@/lib/phase-completion/client';
-import { cn } from '@/lib/utils';
-import { isSkippable, type PhaseType } from '@math-platform/activity-runtime/phase-types';
-import type { CompletePhaseRequest } from '@/types/api';
+import { useCallback, useRef, useState } from "react";
+import { CheckCircle2, Loader2, SkipForward } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { completePhaseRequest, skipPhaseRequest } from "@/lib/phase-completion/client";
+import { cn } from "@/lib/utils";
+import { isSkippable, type PhaseType } from "@math-platform/activity-runtime/phase-types";
+import type { CompletePhaseRequest } from "@/types/api";
 
-type ProgressStatus = 'not_started' | 'in_progress' | 'completed' | 'skipped';
+type ProgressStatus = "not_started" | "in_progress" | "completed" | "skipped";
 
 export interface PhaseCompleteButtonProps {
   lessonId: string;
@@ -32,24 +32,27 @@ export interface PhaseCompleteButtonProps {
 export function PhaseCompleteButton({
   lessonId,
   phaseNumber,
-  initialStatus = 'not_started',
+  initialStatus = "not_started",
   disabled = false,
   className,
-  idleLabel = 'Mark Complete',
-  completedLabel = 'Completed',
-  skippedLabel = 'Skipped',
+  idleLabel = "Mark Complete",
+  completedLabel = "Completed",
+  skippedLabel = "Skipped",
   phaseType,
   onStatusChange,
 }: PhaseCompleteButtonProps) {
   const [status, setStatus] = useState<ProgressStatus>(initialStatus);
   const [isCompleting, setIsCompleting] = useState(false);
   const [isSkipping, setIsSkipping] = useState(false);
-  const [requestError, setRequestError] = useState<{ message: string; retryCompletion: boolean } | null>(null);
+  const [requestError, setRequestError] = useState<{
+    message: string;
+    retryCompletion: boolean;
+  } | null>(null);
   const pendingCompletion = useRef<CompletePhaseRequest | null>(null);
   const [startTime] = useState(() => Date.now());
 
-  const isCompleted = status === 'completed';
-  const isSkipped = status === 'skipped';
+  const isCompleted = status === "completed";
+  const isSkipped = status === "skipped";
   const canSkip = phaseType && isSkippable(phaseType);
   const isDisabled = disabled || isCompleting || isSkipping || isCompleted || isSkipped;
 
@@ -70,10 +73,11 @@ export function PhaseCompleteButton({
       await completePhaseRequest(request);
 
       pendingCompletion.current = null;
-      setStatus('completed');
-      onStatusChange?.('completed');
+      setStatus("completed");
+      onStatusChange?.("completed");
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Unable to save progress. Please try again.';
+      const message =
+        err instanceof Error ? err.message : "Unable to save progress. Please try again.";
       setRequestError({ message, retryCompletion: true });
     } finally {
       setIsCompleting(false);
@@ -93,10 +97,11 @@ export function PhaseCompleteButton({
         idempotencyKey: `${lessonId}-${phaseNumber}-skip-${Date.now()}`,
       });
 
-      setStatus('skipped');
-      onStatusChange?.('skipped');
+      setStatus("skipped");
+      onStatusChange?.("skipped");
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Unable to skip phase. Please try again.';
+      const message =
+        err instanceof Error ? err.message : "Unable to skip phase. Please try again.";
       setRequestError({ message, retryCompletion: false });
     } finally {
       setIsSkipping(false);
@@ -104,17 +109,21 @@ export function PhaseCompleteButton({
   }, [isDisabled, canSkip, lessonId, phaseNumber, onStatusChange]);
 
   return (
-    <div className={cn('w-full max-w-sm space-y-2', className)} data-testid="phase-complete-status" data-status={status}>
+    <div
+      className={cn("w-full max-w-sm space-y-2", className)}
+      data-testid="phase-complete-status"
+      data-status={status}
+    >
       <Button
         type="button"
-        variant={isCompleted ? 'outline' : 'default'}
+        variant={isCompleted ? "outline" : "default"}
         aria-pressed={isCompleted}
         disabled={isDisabled}
         onClick={handleComplete}
         data-testid="phase-complete-button"
         className={cn(
-          'w-full justify-center font-semibold min-h-[44px] min-w-[44px]',
-          isCompleted ? 'border-green-300 text-green-700 dark:text-green-300' : '',
+          "w-full justify-center font-semibold min-h-[44px] min-w-[44px]",
+          isCompleted ? "border-green-300 text-green-700 dark:text-green-300" : "",
         )}
       >
         {isCompleting && <Loader2 className="h-4 w-4 animate-spin mr-2" aria-hidden />}
@@ -122,7 +131,7 @@ export function PhaseCompleteButton({
         {isCompleted
           ? completedLabel
           : requestError?.retryCompletion
-            ? 'Retry completion'
+            ? "Retry completion"
             : idleLabel}
       </Button>
 
@@ -140,11 +149,7 @@ export function PhaseCompleteButton({
         </Button>
       )}
 
-      {isSkipped && (
-        <p className="text-sm text-center text-muted-foreground">
-          {skippedLabel}
-        </p>
-      )}
+      {isSkipped && <p className="text-sm text-center text-muted-foreground">{skippedLabel}</p>}
 
       {requestError && (
         <div className="grid gap-2 text-sm text-destructive" role="alert">

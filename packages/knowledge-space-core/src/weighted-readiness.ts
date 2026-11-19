@@ -3,13 +3,9 @@
 // Pure, deterministic computation of prerequisite-weighted readiness.
 // Domain-neutral: no app, convex, or curriculum imports.
 
-import type { KnowledgeSpace } from './types';
-import type {
-  KnowledgeStateEntry,
-  MasteryConfig,
-  ReadinessState,
-} from './mastery-state';
-import { normalizeMasteryConfig } from './mastery-state';
+import type { KnowledgeSpace } from "./types";
+import type { KnowledgeStateEntry, MasteryConfig, ReadinessState } from "./mastery-state";
+import { normalizeMasteryConfig } from "./mastery-state";
 
 /**
  * Result of a weighted readiness computation.
@@ -49,12 +45,12 @@ export function computeWeightedReadiness(
 
   // Filter prerequisite edges targeting this node
   const prereqEdges = graph.edges.filter(
-    (e) => e.type === 'prerequisite_for' && e.targetId === nodeId,
+    (e) => e.type === "prerequisite_for" && e.targetId === nodeId,
   );
 
   // No prerequisites → full readiness
   if (prereqEdges.length === 0) {
-    return { score: 1, state: 'ready' };
+    return { score: 1, state: "ready" };
   }
 
   const hardPrerequisites = prereqEdges.filter(
@@ -64,33 +60,30 @@ export function computeWeightedReadiness(
     (edge) => edge.weight < normalizedConfig.hardGateThreshold,
   );
 
-  const gate = hardPrerequisites.length === 0
-    ? 1
-    : Math.min(
-        ...hardPrerequisites.map((edge) => state.get(edge.sourceId)?.mastery ?? 0),
-      );
+  const gate =
+    hardPrerequisites.length === 0
+      ? 1
+      : Math.min(...hardPrerequisites.map((edge) => state.get(edge.sourceId)?.mastery ?? 0));
 
-  const totalSoftWeight = softPrerequisites.reduce(
-    (sum, edge) => sum + edge.weight,
-    0,
-  );
-  const comp = totalSoftWeight === 0
-    ? 1
-    : softPrerequisites.reduce(
-        (sum, edge) => sum + edge.weight * (state.get(edge.sourceId)?.mastery ?? 0),
-        0,
-      ) / totalSoftWeight;
+  const totalSoftWeight = softPrerequisites.reduce((sum, edge) => sum + edge.weight, 0);
+  const comp =
+    totalSoftWeight === 0
+      ? 1
+      : softPrerequisites.reduce(
+          (sum, edge) => sum + edge.weight * (state.get(edge.sourceId)?.mastery ?? 0),
+          0,
+        ) / totalSoftWeight;
 
   const score = gate * comp;
 
   // Map to readiness state band (kst-srs.v2 §5.2)
   let s: ReadinessState;
   if (score >= normalizedConfig.readyThreshold) {
-    s = 'ready';
+    s = "ready";
   } else if (score >= normalizedConfig.nearThreshold) {
-    s = 'nearly_ready';
+    s = "nearly_ready";
   } else {
-    s = 'blocked';
+    s = "blocked";
   }
 
   return { score, state: s };

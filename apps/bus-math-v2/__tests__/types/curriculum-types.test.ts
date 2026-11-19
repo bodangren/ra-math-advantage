@@ -1,5 +1,5 @@
-import { describe, expect, expectTypeOf, it } from 'vitest';
-import { CURRICULUM_PHASE_COUNT } from '@/types/curriculum';
+import { describe, expect, expectTypeOf, it } from "vitest";
+import { CURRICULUM_PHASE_COUNT } from "@/types/curriculum";
 import type {
   ContentBlock,
   LessonMetadata,
@@ -7,10 +7,10 @@ import type {
   PhaseMetadata,
   PhaseRow,
   UnitContent,
-} from '@/types/curriculum';
+} from "@/types/curriculum";
 
-describe('types/curriculum exports', () => {
-  it('exports centralized lesson, phase, and content-block contracts', () => {
+describe("types/curriculum exports", () => {
+  it("exports centralized lesson, phase, and content-block contracts", () => {
     expect(CURRICULUM_PHASE_COUNT).toBe(6);
 
     expectTypeOf<LessonRow>().toMatchTypeOf<{

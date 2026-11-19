@@ -1,8 +1,13 @@
-import type { ActivityMode } from '@math-platform/activity-runtime/modes';
+import type { ActivityMode } from "@math-platform/activity-runtime/modes";
 
-export type PracticeMode = 'worked_example' | 'guided_practice' | 'independent_practice' | 'assessment' | 'teaching';
+export type PracticeMode =
+  | "worked_example"
+  | "guided_practice"
+  | "independent_practice"
+  | "assessment"
+  | "teaching";
 
-export type PracticeSubmissionStatus = 'draft' | 'submitted' | 'graded' | 'returned';
+export type PracticeSubmissionStatus = "draft" | "submitted" | "graded" | "returned";
 
 export interface PracticeSubmissionPart {
   partId: string;
@@ -18,7 +23,7 @@ export interface PracticeSubmissionPart {
 }
 
 export interface PracticeSubmissionEnvelope {
-  contractVersion: 'practice.v1';
+  contractVersion: "practice.v1";
   activityId: string;
   mode: PracticeMode;
   status: PracticeSubmissionStatus;

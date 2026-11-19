@@ -21,11 +21,8 @@
 //     payload, or a non-linked student's nodes being rendered) shows up in the
 //     snapshot/JSON assertions.
 
-import { parentVisualizationV1Schema } from '@math-platform/knowledge-space-practice';
-import type {
-  ParentVisualizationV1,
-  VisualNodeV1,
-} from '@math-platform/knowledge-space-practice';
+import { parentVisualizationV1Schema } from "@math-platform/knowledge-space-practice";
+import type { ParentVisualizationV1, VisualNodeV1 } from "@math-platform/knowledge-space-practice";
 
 export type { ParentVisualizationV1, VisualNodeV1 };
 
@@ -37,15 +34,15 @@ export type { ParentVisualizationV1, VisualNodeV1 };
 // distinct id space here makes it easy to assert that the parent component
 // renders these exact ids (and never leaks ids from other fixtures).
 
-export const PARENT_FIXTURE_NODE_ALPHA = 'parent.skill.alpha.quadratics';
-export const PARENT_FIXTURE_NODE_BETA = 'parent.skill.beta.polynomials';
-export const PARENT_FIXTURE_NODE_GAMMA = 'parent.skill.gamma.functions';
-export const PARENT_FIXTURE_NODE_DELTA = 'parent.skill.delta.trig';
+export const PARENT_FIXTURE_NODE_ALPHA = "parent.skill.alpha.quadratics";
+export const PARENT_FIXTURE_NODE_BETA = "parent.skill.beta.polynomials";
+export const PARENT_FIXTURE_NODE_GAMMA = "parent.skill.gamma.functions";
+export const PARENT_FIXTURE_NODE_DELTA = "parent.skill.delta.trig";
 
 // Other-student node id, used by the cross-student privacy test. It must never
 // appear in a render of student A's parent dashboard.
-export const PARENT_FIXTURE_OTHER_STUDENT_NODE = 'parent.skill.epsilon.calculus';
-export const PARENT_FIXTURE_OTHER_STUDENT_ID = 'other_student_profile_id';
+export const PARENT_FIXTURE_OTHER_STUDENT_NODE = "parent.skill.epsilon.calculus";
+export const PARENT_FIXTURE_OTHER_STUDENT_ID = "other_student_profile_id";
 
 // ---------------------------------------------------------------------------
 // Minimal payload — covers the empty-graph / no-activity branch (Phase 3 will
@@ -54,11 +51,11 @@ export const PARENT_FIXTURE_OTHER_STUDENT_ID = 'other_student_profile_id';
 // ---------------------------------------------------------------------------
 
 export const emptyParentProjection: ParentVisualizationV1 = parentVisualizationV1Schema.parse({
-  schemaVersion: 'v1',
-  canDoSummary: 'No skills mastered yet',
-  nextFocus: 'Continue current practice',
+  schemaVersion: "v1",
+  canDoSummary: "No skills mastered yet",
+  nextFocus: "Continue current practice",
   blockers: [],
-  progressTrend: 'unknown',
+  progressTrend: "unknown",
   nodes: [],
 });
 
@@ -71,32 +68,32 @@ export const emptyParentProjection: ParentVisualizationV1 = parentVisualizationV
 const alphaNodes: VisualNodeV1[] = [
   {
     nodeId: PARENT_FIXTURE_NODE_ALPHA,
-    title: 'Quadratic basics',
-    state: 'mastered',
+    title: "Quadratic basics",
+    state: "mastered",
   },
   {
     nodeId: PARENT_FIXTURE_NODE_BETA,
-    title: 'Polynomials',
-    state: 'ready',
+    title: "Polynomials",
+    state: "ready",
   },
   {
     nodeId: PARENT_FIXTURE_NODE_GAMMA,
-    title: 'Function composition',
-    state: 'blocked',
+    title: "Function composition",
+    state: "blocked",
   },
   {
     nodeId: PARENT_FIXTURE_NODE_DELTA,
-    title: 'Trig identities',
-    state: 'review_due',
+    title: "Trig identities",
+    state: "review_due",
   },
 ];
 
 export const richParentProjection: ParentVisualizationV1 = parentVisualizationV1Schema.parse({
-  schemaVersion: 'v1',
-  canDoSummary: 'Can Quadratic basics',
-  nextFocus: 'Practice: Polynomials',
-  blockers: ['Function composition'],
-  progressTrend: 'improving',
+  schemaVersion: "v1",
+  canDoSummary: "Can Quadratic basics",
+  nextFocus: "Practice: Polynomials",
+  blockers: ["Function composition"],
+  progressTrend: "improving",
   nodes: alphaNodes,
 });
 
@@ -109,24 +106,25 @@ export const richParentProjection: ParentVisualizationV1 = parentVisualizationV1
 const betaNodes: VisualNodeV1[] = [
   {
     nodeId: PARENT_FIXTURE_OTHER_STUDENT_NODE,
-    title: 'Calculus foundations',
-    state: 'mastered',
+    title: "Calculus foundations",
+    state: "mastered",
   },
   {
-    nodeId: 'parent.skill.zeta.vectors',
-    title: 'Vector basics',
-    state: 'ready',
+    nodeId: "parent.skill.zeta.vectors",
+    title: "Vector basics",
+    state: "ready",
   },
 ];
 
-export const otherStudentParentProjection: ParentVisualizationV1 = parentVisualizationV1Schema.parse({
-  schemaVersion: 'v1',
-  canDoSummary: 'Can Calculus foundations',
-  nextFocus: 'Practice: Vector basics',
-  blockers: [],
-  progressTrend: 'stable',
-  nodes: betaNodes,
-});
+export const otherStudentParentProjection: ParentVisualizationV1 =
+  parentVisualizationV1Schema.parse({
+    schemaVersion: "v1",
+    canDoSummary: "Can Calculus foundations",
+    nextFocus: "Practice: Vector basics",
+    blockers: [],
+    progressTrend: "stable",
+    nodes: betaNodes,
+  });
 
 // ---------------------------------------------------------------------------
 // Payload keyed by student id — convenience for the switcher test. The map's
@@ -149,13 +147,13 @@ export const parentProjectionsByStudentId: Record<string, ParentVisualizationV1>
 // ---------------------------------------------------------------------------
 
 export const TEACHER_ONLY_KEYS = [
-  'heatmap',
-  'bottleneckNodes',
-  'prerequisiteGaps',
-  'misconceptionClusters',
-  'interventionGroups',
-  'standardsCoverage',
-  'activeMisconceptionStudentCount',
+  "heatmap",
+  "bottleneckNodes",
+  "prerequisiteGaps",
+  "misconceptionClusters",
+  "interventionGroups",
+  "standardsCoverage",
+  "activeMisconceptionStudentCount",
 ] as const;
 
 export type TeacherOnlyKey = (typeof TEACHER_ONLY_KEYS)[number];

@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -31,7 +31,8 @@ export const seedLesson5 = internalMutation({
           unitNumber: 1,
           title: "Solving Quadratic Equations by Completing the Square",
           slug: lessonSlug,
-          description: "Solve quadratic equations by using the Square Root Property and completing the square.",
+          description:
+            "Solve quadratic equations by using the Square Root Property and completing the square.",
           orderIndex: 5,
           createdAt: now,
           updatedAt: now,
@@ -48,7 +49,8 @@ export const seedLesson5 = internalMutation({
           lessonId,
           version: 1,
           title: "Solving Quadratic Equations by Completing the Square",
-          description: "Solve quadratic equations by using the Square Root Property and completing the square.",
+          description:
+            "Solve quadratic equations by using the Square Root Property and completing the square.",
           status: "published",
           createdAt: now,
         });
@@ -64,7 +66,8 @@ export const seedLesson5 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Explore: The Square Root Property\n\nConsider this: If $x^2 = 25$, what are the possible values of $x$?\n\nRemember that both $5^2 = 25$ and $(-5)^2 = 25$, so $x = \\pm 5$.\n\nThis is the **Square Root Property**. Today you'll use it to solve equations that can be written as a perfect square equals a constant.",
+              markdown:
+                "## Explore: The Square Root Property\n\nConsider this: If $x^2 = 25$, what are the possible values of $x$?\n\nRemember that both $5^2 = 25$ and $(-5)^2 = 25$, so $x = \\pm 5$.\n\nThis is the **Square Root Property**. Today you'll use it to solve equations that can be written as a perfect square equals a constant.",
             },
           },
           {
@@ -75,7 +78,11 @@ export const seedLesson5 = internalMutation({
               props: {
                 problemType: "completing-square",
                 equation: "x^2 - 4x - 5 = 0",
-                steps: [{"expression": "(x-2)^2=9", "explanation": "Add 9 after completing the square."}, {"expression": "x-2=\u00b13", "explanation": "Take both square roots."}, {"expression": "x=5 or x=-1", "explanation": "Add 2 to each solution."}],
+                steps: [
+                  { expression: "(x-2)^2=9", explanation: "Add 9 after completing the square." },
+                  { expression: "x-2=\u00b13", explanation: "Take both square roots." },
+                  { expression: "x=5 or x=-1", explanation: "Add 2 to each solution." },
+                ],
               },
             },
           },
@@ -91,7 +98,8 @@ export const seedLesson5 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Key Terms\n\n- **Square Root Property**: If $x^2 = n$, then $x = \\pm\\sqrt{n}$\n- **Completing the square**: Adding $(\\frac{b}{2})^2$ to $x^2 + bx$ to form a perfect square trinomial\n- **Vertex form**: $y = a(x - h)^2 + k$ — reveals the vertex $(h, k)$ of a parabola\n- **Perfect square trinomial**: A trinomial that factors as $(x + p)^2$\n\n**Remember**: When completing the square, the coefficient of $x^2$ must be 1 first!",
+              markdown:
+                "## Key Terms\n\n- **Square Root Property**: If $x^2 = n$, then $x = \\pm\\sqrt{n}$\n- **Completing the square**: Adding $(\\frac{b}{2})^2$ to $x^2 + bx$ to form a perfect square trinomial\n- **Vertex form**: $y = a(x - h)^2 + k$ — reveals the vertex $(h, k)$ of a parabola\n- **Perfect square trinomial**: A trinomial that factors as $(x + p)^2$\n\n**Remember**: When completing the square, the coefficient of $x^2$ must be 1 first!",
             },
           },
         ],
@@ -106,7 +114,8 @@ export const seedLesson5 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## The Square Root Property\n\nFor any number $n \\geq 0$, if $x^2 = n$, then:\n\n$$x = \\pm\\sqrt{n}$$\n\nThis property lets you solve equations once one side is a perfect square.\n\n### Solving with the Square Root Property\n\n1. **Isolate** the squared term\n2. **Take** the square root of both sides\n3. **Remember** to include both $\\pm$ solutions\n4. **Simplify** radicals when possible",
+              markdown:
+                "## The Square Root Property\n\nFor any number $n \\geq 0$, if $x^2 = n$, then:\n\n$$x = \\pm\\sqrt{n}$$\n\nThis property lets you solve equations once one side is a perfect square.\n\n### Solving with the Square Root Property\n\n1. **Isolate** the squared term\n2. **Take** the square root of both sides\n3. **Remember** to include both $\\pm$ solutions\n4. **Simplify** radicals when possible",
             },
           },
         ],
@@ -121,7 +130,8 @@ export const seedLesson5 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 1: Rational Roots\n\nSolve $(x - 2)^2 = 25$\n\n**Step 1**: Apply the Square Root Property\n$$x - 2 = \\pm 5$$\n\n**Step 2**: Solve each equation\n$$x = 2 + 5 = 7 \\quad \\text{or} \\quad x = 2 - 5 = -3$$",
+              markdown:
+                "## Example 1: Rational Roots\n\nSolve $(x - 2)^2 = 25$\n\n**Step 1**: Apply the Square Root Property\n$$x - 2 = \\pm 5$$\n\n**Step 2**: Solve each equation\n$$x = 2 + 5 = 7 \\quad \\text{or} \\quad x = 2 - 5 = -3$$",
             },
           },
           {
@@ -152,7 +162,8 @@ export const seedLesson5 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 2: Irrational Roots\n\nSolve $(x + 12)^2 = 192$\n\n**Step 1**: Apply the Square Root Property\n$$x + 12 = \\pm\\sqrt{192}$$\n\n**Step 2**: Simplify the radical\n$$\\sqrt{192} = \\sqrt{64 \\cdot 3} = 8\\sqrt{3}$$\n\n**Step 3**: Solutions\n$$x = -12 + 8\\sqrt{3} \\approx 1.86 \\quad \\text{or} \\quad x = -12 - 8\\sqrt{3} \\approx -25.86$$",
+              markdown:
+                "## Example 2: Irrational Roots\n\nSolve $(x + 12)^2 = 192$\n\n**Step 1**: Apply the Square Root Property\n$$x + 12 = \\pm\\sqrt{192}$$\n\n**Step 2**: Simplify the radical\n$$\\sqrt{192} = \\sqrt{64 \\cdot 3} = 8\\sqrt{3}$$\n\n**Step 3**: Solutions\n$$x = -12 + 8\\sqrt{3} \\approx 1.86 \\quad \\text{or} \\quad x = -12 - 8\\sqrt{3} \\approx -25.86$$",
             },
           },
           {
@@ -184,7 +195,8 @@ export const seedLesson5 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 3: Complex Solutions\n\nSolve $(x - 23)^2 = -36$\n\n**Step 1**: Apply the Square Root Property\n$$x - 23 = \\pm\\sqrt{-36}$$\n\n**Step 2**: Simplify the imaginary radical\n$$\\sqrt{-36} = 6i$$\n\n**Step 3**: Solutions\n$$x = 23 + 6i \\quad \\text{or} \\quad x = 23 - 6i$$",
+              markdown:
+                "## Example 3: Complex Solutions\n\nSolve $(x - 23)^2 = -36$\n\n**Step 1**: Apply the Square Root Property\n$$x - 23 = \\pm\\sqrt{-36}$$\n\n**Step 2**: Simplify the imaginary radical\n$$\\sqrt{-36} = 6i$$\n\n**Step 3**: Solutions\n$$x = 23 + 6i \\quad \\text{or} \\quad x = 23 - 6i$$",
             },
           },
           {
@@ -216,7 +228,8 @@ export const seedLesson5 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Completing the Square\n\nFor an expression of the form $x^2 + bx$:\n\n1. Find one half of $b$: $\\frac{b}{2}$\n2. Square that value: $(\\frac{b}{2})^2$\n3. Add the result to $x^2 + bx$\n\nSymbolically:\n\n$$x^2 + bx + (\\frac{b}{2})^2 = (x + \\frac{b}{2})^2$$\n\n### Example\n\nFor $x^2 + 6x$, half of 6 is 3, and $3^2 = 9$.\n\n$$x^2 + 6x + 9 = (x + 3)^2$$",
+              markdown:
+                "## Completing the Square\n\nFor an expression of the form $x^2 + bx$:\n\n1. Find one half of $b$: $\\frac{b}{2}$\n2. Square that value: $(\\frac{b}{2})^2$\n3. Add the result to $x^2 + bx$\n\nSymbolically:\n\n$$x^2 + bx + (\\frac{b}{2})^2 = (x + \\frac{b}{2})^2$$\n\n### Example\n\nFor $x^2 + 6x$, half of 6 is 3, and $3^2 = 9$.\n\n$$x^2 + 6x + 9 = (x + 3)^2$$",
             },
           },
         ],
@@ -231,7 +244,8 @@ export const seedLesson5 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 4: Complete the Square\n\nFind the value of $c$ that makes $x^2 - 7x + c$ a perfect square.\n\n**Step 1**: Half of $-7$ is $-3.5$\n\n**Step 2**: Square it:\n$$(-3.5)^2 = 12.25$$\n\n**Step 3**: Result:\n$$x^2 - 7x + 12.25 = (x - 3.5)^2$$",
+              markdown:
+                "## Example 4: Complete the Square\n\nFind the value of $c$ that makes $x^2 - 7x + c$ a perfect square.\n\n**Step 1**: Half of $-7$ is $-3.5$\n\n**Step 2**: Square it:\n$$(-3.5)^2 = 12.25$$\n\n**Step 3**: Result:\n$$x^2 - 7x + 12.25 = (x - 3.5)^2$$",
             },
           },
           {
@@ -263,7 +277,8 @@ export const seedLesson5 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 5: Solve by Completing the Square\n\nSolve $x^2 + 8x + 5 = 0$\n\n**Step 1**: Move the constant.\n$$x^2 + 8x = -5$$\n\n**Step 2**: Complete the square. Half of 8 is 4, and $4^2 = 16$.\n$$x^2 + 8x + 16 = -5 + 16$$\n\n**Step 3**: Write the left side as a square.\n$$(x + 4)^2 = 11$$\n\n**Step 4**: Apply the Square Root Property.\n$$x = -4 \\pm \\sqrt{11}$$",
+              markdown:
+                "## Example 5: Solve by Completing the Square\n\nSolve $x^2 + 8x + 5 = 0$\n\n**Step 1**: Move the constant.\n$$x^2 + 8x = -5$$\n\n**Step 2**: Complete the square. Half of 8 is 4, and $4^2 = 16$.\n$$x^2 + 8x + 16 = -5 + 16$$\n\n**Step 3**: Write the left side as a square.\n$$(x + 4)^2 = 11$$\n\n**Step 4**: Apply the Square Root Property.\n$$x = -4 \\pm \\sqrt{11}$$",
             },
           },
           {
@@ -295,7 +310,8 @@ export const seedLesson5 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 6: Complete the Square with a Leading Coefficient\n\nRewrite $2x^2 + 12x + 7$ by completing the square.\n\n**Step 1**: Factor 2 from the quadratic and linear terms.\n$$2(x^2 + 6x) + 7$$\n\n**Step 2**: Complete the square inside the parentheses. Half of 6 is 3, and $3^2 = 9$.\n$$2(x^2 + 6x + 9 - 9) + 7$$\n\n**Step 3**: Simplify.\n$$2(x + 3)^2 - 18 + 7 = 2(x + 3)^2 - 11$$",
+              markdown:
+                "## Example 6: Complete the Square with a Leading Coefficient\n\nRewrite $2x^2 + 12x + 7$ by completing the square.\n\n**Step 1**: Factor 2 from the quadratic and linear terms.\n$$2(x^2 + 6x) + 7$$\n\n**Step 2**: Complete the square inside the parentheses. Half of 6 is 3, and $3^2 = 9$.\n$$2(x^2 + 6x + 9 - 9) + 7$$\n\n**Step 3**: Simplify.\n$$2(x + 3)^2 - 18 + 7 = 2(x + 3)^2 - 11$$",
             },
           },
           {
@@ -307,8 +323,14 @@ export const seedLesson5 = internalMutation({
                 problemType: "completing-square",
                 equation: "2x^2 + 12x + 7",
                 steps: [
-                  { expression: "2(x^2 + 6x) + 7", explanation: "Factor out the leading coefficient" },
-                  { expression: "2(x^2 + 6x + 9 - 9) + 7", explanation: "Complete the square inside" },
+                  {
+                    expression: "2(x^2 + 6x) + 7",
+                    explanation: "Factor out the leading coefficient",
+                  },
+                  {
+                    expression: "2(x^2 + 6x + 9 - 9) + 7",
+                    explanation: "Complete the square inside",
+                  },
                   { expression: "2(x + 3)^2 - 11", explanation: "Simplify" },
                 ],
               },
@@ -326,7 +348,8 @@ export const seedLesson5 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 7: Solve When $a$ Is Not 1\n\nSolve $2x^2 - 8x - 3 = 0$.\n\n**Step 1**: Move the constant and divide by 2.\n$$2x^2 - 8x = 3$$\n$$x^2 - 4x = \\frac{3}{2}$$\n\n**Step 2**: Complete the square. Half of $-4$ is $-2$, and $(-2)^2 = 4$.\n$$x^2 - 4x + 4 = \\frac{3}{2} + 4$$\n\n**Step 3**: Solve.\n$$(x - 2)^2 = \\frac{11}{2}$$\n$$x = 2 \\pm \\sqrt{\\frac{11}{2}} = 2 \\pm \\frac{\\sqrt{22}}{2}$$",
+              markdown:
+                "## Example 7: Solve When $a$ Is Not 1\n\nSolve $2x^2 - 8x - 3 = 0$.\n\n**Step 1**: Move the constant and divide by 2.\n$$2x^2 - 8x = 3$$\n$$x^2 - 4x = \\frac{3}{2}$$\n\n**Step 2**: Complete the square. Half of $-4$ is $-2$, and $(-2)^2 = 4$.\n$$x^2 - 4x + 4 = \\frac{3}{2} + 4$$\n\n**Step 3**: Solve.\n$$(x - 2)^2 = \\frac{11}{2}$$\n$$x = 2 \\pm \\sqrt{\\frac{11}{2}} = 2 \\pm \\frac{\\sqrt{22}}{2}$$",
             },
           },
           {
@@ -338,7 +361,10 @@ export const seedLesson5 = internalMutation({
                 problemType: "completing-square",
                 equation: "2x^2 - 8x - 3 = 0",
                 steps: [
-                  { expression: "x^2 - 4x = 3/2", explanation: "Move the constant and divide by 2" },
+                  {
+                    expression: "x^2 - 4x = 3/2",
+                    explanation: "Move the constant and divide by 2",
+                  },
                   { expression: "x^2 - 4x + 4 = 11/2", explanation: "Complete the square" },
                   { expression: "(x - 2)^2 = 11/2", explanation: "Write as a square" },
                   { expression: "x = 2 ± √22/2", explanation: "Solve" },
@@ -358,7 +384,8 @@ export const seedLesson5 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 8: Solve Equations with Imaginary Solutions\n\nSolve $x^2 + 6x + 13 = 0$ by completing the square.\n\n**Step 1**: Move the constant.\n$$x^2 + 6x = -13$$\n\n**Step 2**: Complete the square. Half of 6 is 3, and $3^2 = 9$.\n$$x^2 + 6x + 9 = -4$$\n\n**Step 3**: Use the Square Root Property.\n$$(x + 3)^2 = -4$$\n$$x + 3 = \\pm 2i$$\n\n**Solution**: $x = -3 \\pm 2i$",
+              markdown:
+                "## Example 8: Solve Equations with Imaginary Solutions\n\nSolve $x^2 + 6x + 13 = 0$ by completing the square.\n\n**Step 1**: Move the constant.\n$$x^2 + 6x = -13$$\n\n**Step 2**: Complete the square. Half of 6 is 3, and $3^2 = 9$.\n$$x^2 + 6x + 9 = -4$$\n\n**Step 3**: Use the Square Root Property.\n$$(x + 3)^2 = -4$$\n$$x + 3 = \\pm 2i$$\n\n**Solution**: $x = -3 \\pm 2i$",
             },
           },
           {
@@ -390,7 +417,8 @@ export const seedLesson5 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Vertex Form of a Quadratic Function\n\nWhen a quadratic is written in standard form $y = ax^2 + bx + c$, you can complete the square to reveal key features.\n\n### Key Concept: Vertex Form\n\n$$y = a(x - h)^2 + k$$\n\n- **Vertex**: $(h, k)$\n- **Axis of symmetry**: $x = h$\n- If $a > 0$, the vertex is a **minimum**\n- If $a < 0$, the vertex is a **maximum**\n\n### Writing in Vertex Form\n\n1. Factor out $a$ from the $x^2$ and $x$ terms\n2. Complete the square inside the parentheses\n3. Simplify by distributing $a$ and combining constants",
+              markdown:
+                "## Vertex Form of a Quadratic Function\n\nWhen a quadratic is written in standard form $y = ax^2 + bx + c$, you can complete the square to reveal key features.\n\n### Key Concept: Vertex Form\n\n$$y = a(x - h)^2 + k$$\n\n- **Vertex**: $(h, k)$\n- **Axis of symmetry**: $x = h$\n- If $a > 0$, the vertex is a **minimum**\n- If $a < 0$, the vertex is a **maximum**\n\n### Writing in Vertex Form\n\n1. Factor out $a$ from the $x^2$ and $x$ terms\n2. Complete the square inside the parentheses\n3. Simplify by distributing $a$ and combining constants",
             },
           },
         ],
@@ -405,7 +433,8 @@ export const seedLesson5 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 9: Write Functions in Vertex Form\n\nWrite $y = x^2 + 10x + 21$ in vertex form.\n\n**Step 1**: Group the quadratic and linear terms.\n$$y = (x^2 + 10x) + 21$$\n\n**Step 2**: Complete the square. Half of 10 is 5, and $5^2 = 25$.\n$$y = (x^2 + 10x + 25) + 21 - 25$$\n\n**Step 3**: Simplify.\n$$y = (x + 5)^2 - 4$$\n\nThe vertex is $(-5, -4)$.",
+              markdown:
+                "## Example 9: Write Functions in Vertex Form\n\nWrite $y = x^2 + 10x + 21$ in vertex form.\n\n**Step 1**: Group the quadratic and linear terms.\n$$y = (x^2 + 10x) + 21$$\n\n**Step 2**: Complete the square. Half of 10 is 5, and $5^2 = 25$.\n$$y = (x^2 + 10x + 25) + 21 - 25$$\n\n**Step 3**: Simplify.\n$$y = (x + 5)^2 - 4$$\n\nThe vertex is $(-5, -4)$.",
             },
           },
           {
@@ -418,7 +447,10 @@ export const seedLesson5 = internalMutation({
                 equation: "y = x^2 + 10x + 21",
                 steps: [
                   { expression: "y = (x^2 + 10x) + 21", explanation: "Group x-terms" },
-                  { expression: "y = (x^2 + 10x + 25) + 21 - 25", explanation: "Complete the square" },
+                  {
+                    expression: "y = (x^2 + 10x + 25) + 21 - 25",
+                    explanation: "Complete the square",
+                  },
                   { expression: "y = (x + 5)^2 - 4", explanation: "Write vertex form" },
                 ],
               },
@@ -436,7 +468,8 @@ export const seedLesson5 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 10: Determine the Vertex and Axis of Symmetry\n\nFind the vertex and axis of symmetry for $y = 2(x - 3)^2 - 7$.\n\nThis function is already in vertex form:\n$$y = a(x - h)^2 + k$$\n\nSo $h = 3$ and $k = -7$.\n\n**Vertex**: $(3, -7)$\n\n**Axis of symmetry**: $x = 3$\n\nBecause $a = 2 > 0$, the parabola opens upward and has a minimum at the vertex.",
+              markdown:
+                "## Example 10: Determine the Vertex and Axis of Symmetry\n\nFind the vertex and axis of symmetry for $y = 2(x - 3)^2 - 7$.\n\nThis function is already in vertex form:\n$$y = a(x - h)^2 + k$$\n\nSo $h = 3$ and $k = -7$.\n\n**Vertex**: $(3, -7)$\n\n**Axis of symmetry**: $x = 3$\n\nBecause $a = 2 > 0$, the parabola opens upward and has a minimum at the vertex.",
             },
           },
           {
@@ -462,7 +495,8 @@ export const seedLesson5 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 11: Model with a Quadratic Function\n\nA fountain stream reaches a maximum height of 12 feet after traveling 4 feet horizontally. The water hits the ground 8 feet from the nozzle. Write a quadratic model in vertex form.\n\n**Step 1**: Use the vertex $(4, 12)$.\n$$y = a(x - 4)^2 + 12$$\n\n**Step 2**: Use the point where the water lands, $(8, 0)$.\n$$0 = a(8 - 4)^2 + 12$$\n$$0 = 16a + 12$$\n$$a = -\\frac{3}{4}$$\n\n**Model**:\n$$y = -\\frac{3}{4}(x - 4)^2 + 12$$",
+              markdown:
+                "## Example 11: Model with a Quadratic Function\n\nA fountain stream reaches a maximum height of 12 feet after traveling 4 feet horizontally. The water hits the ground 8 feet from the nozzle. Write a quadratic model in vertex form.\n\n**Step 1**: Use the vertex $(4, 12)$.\n$$y = a(x - 4)^2 + 12$$\n\n**Step 2**: Use the point where the water lands, $(8, 0)$.\n$$0 = a(8 - 4)^2 + 12$$\n$$0 = 16a + 12$$\n$$a = -\\frac{3}{4}$$\n\n**Model**:\n$$y = -\\frac{3}{4}(x - 4)^2 + 12$$",
             },
           },
           {
@@ -488,7 +522,8 @@ export const seedLesson5 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Discussion Questions\n\n1. Why does completing the square reveal the vertex of a parabola?\n2. Why must the coefficient of $x^2$ be 1 before you complete the square?\n3. What's the relationship between the Square Root Property and completing the square?\n4. When might you get complex (imaginary) solutions?",
+              markdown:
+                "## Discussion Questions\n\n1. Why does completing the square reveal the vertex of a parabola?\n2. Why must the coefficient of $x^2$ be 1 before you complete the square?\n3. What's the relationship between the Square Root Property and completing the square?\n4. When might you get complex (imaginary) solutions?",
             },
           },
           {
@@ -524,7 +559,8 @@ export const seedLesson5 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Reflection\n\nToday you learned to solve quadratic equations by completing the square.\n\n- What patterns do you look for when completing the square?\n- How does vertex form help you graph quadratic functions?\n- What common mistakes should you avoid?\n\n**Preview**: Next, you'll learn the Quadratic Formula — a powerful tool that works for any quadratic equation!",
+              markdown:
+                "## Reflection\n\nToday you learned to solve quadratic equations by completing the square.\n\n- What patterns do you look for when completing the square?\n- How does vertex form help you graph quadratic functions?\n- What common mistakes should you avoid?\n\n**Preview**: Next, you'll learn the Quadratic Formula — a powerful tool that works for any quadratic equation!",
             },
           },
         ],
@@ -538,7 +574,7 @@ export const seedLesson5 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

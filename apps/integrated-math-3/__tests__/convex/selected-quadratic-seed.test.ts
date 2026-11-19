@@ -21,14 +21,8 @@ import {
 describe("selected IM3 quadratic seed documents", () => {
   it("keeps all three physical activities inactive pending activity review", () => {
     const worked = buildIm3WorkedPilotSeedDocument(10);
-    const guided = buildIm3GuidedPilotSeedDocuments(
-      "activities:guided" as never,
-      10,
-    );
-    const independent = buildIm3PilotSeedDocuments(
-      "activities:independent" as never,
-      10,
-    );
+    const guided = buildIm3GuidedPilotSeedDocuments("activities:guided" as never, 10);
+    const independent = buildIm3PilotSeedDocuments("activities:independent" as never, 10);
     expect([
       worked.stableActivityId,
       guided.activity.stableActivityId,
@@ -48,14 +42,8 @@ describe("selected IM3 quadratic seed documents", () => {
 
   it("uses complete public mode props and canonical snake-case rubric parts", () => {
     const worked = buildIm3WorkedPilotSeedDocument(10);
-    const guided = buildIm3GuidedPilotSeedDocuments(
-      "activities:guided" as never,
-      10,
-    );
-    const independent = buildIm3PilotSeedDocuments(
-      "activities:independent" as never,
-      10,
-    );
+    const guided = buildIm3GuidedPilotSeedDocuments("activities:guided" as never, 10);
+    const independent = buildIm3PilotSeedDocuments("activities:independent" as never, 10);
     expect(worked.learningEvidenceMode).toBe("worked_example");
     expect(worked.props).toMatchObject({
       variant: "plot_from_equation",
@@ -67,17 +55,9 @@ describe("selected IM3 quadratic seed documents", () => {
     expect(independent.activity.props).toMatchObject({
       responseVariant: "table_graph",
     });
-    expect(guided.activity.gradingConfig.partIds).toEqual([
-      "table_values",
-      "placed_points",
-    ]);
-    expect(independent.activity.gradingConfig.partIds).toEqual([
-      "table_values",
-      "placed_points",
-    ]);
-    expect(Object.keys(independent.activity.props)).not.toContain(
-      "expectedAnswer",
-    );
+    expect(guided.activity.gradingConfig.partIds).toEqual(["table_values", "placed_points"]);
+    expect(independent.activity.gradingConfig.partIds).toEqual(["table_values", "placed_points"]);
+    expect(Object.keys(independent.activity.props)).not.toContain("expectedAnswer");
   });
 
   it("upserts one physical row per mode and links the exact Worked phase", async () => {
@@ -86,10 +66,7 @@ describe("selected IM3 quadratic seed documents", () => {
         {
           _id: "activities:source",
           componentKey: "step-by-step-solver",
-          props: normalizeSeedProps(
-            "step-by-step-solver",
-            IM3_PHASE_FOUR_WORKED_PROPS,
-          ),
+          props: normalizeSeedProps("step-by-step-solver", IM3_PHASE_FOUR_WORKED_PROPS),
         },
       ],
       practice_variants: [],
@@ -148,9 +125,7 @@ describe("selected IM3 quadratic seed documents", () => {
         return {
           withIndex(
             _name: string,
-            configure: (query: {
-              eq(field: string, value: unknown): unknown;
-            }) => unknown,
+            configure: (query: { eq(field: string, value: unknown): unknown }) => unknown,
           ) {
             const conditions = new Map<string, unknown>();
             const query = {
@@ -167,8 +142,7 @@ describe("selected IM3 quadratic seed documents", () => {
             return {
               unique: async () => {
                 const matches = selected();
-                if (matches.length > 1)
-                  throw new Error("Non-unique test query");
+                if (matches.length > 1) throw new Error("Non-unique test query");
                 return matches[0] ?? null;
               },
               first: async () => selected()[0] ?? null,
@@ -191,20 +165,13 @@ describe("selected IM3 quadratic seed documents", () => {
       },
     };
 
-    const originalSourceContent = structuredClone(
-      rows.phase_sections[0].content,
-    );
+    const originalSourceContent = structuredClone(rows.phase_sections[0].content);
     rows.phase_sections[0].content = {
-      markdown:
-        "## Example 1: Graph $f(x) = x^2$ Using a Table\n\nInstead graph f(x) = x^2 + 9.",
+      markdown: "## Example 1: Graph $f(x) = x^2$ Using a Table\n\nInstead graph f(x) = x^2 + 9.",
     };
     const beforeWrongSource = structuredClone(rows);
     await expect(
-      upsertIm3SelectedPilotSeed(
-        { db } as never,
-        "lesson-version:1" as never,
-        9,
-      ),
+      upsertIm3SelectedPilotSeed({ db } as never, "lesson-version:1" as never, 9),
     ).rejects.toThrow("source sections must be unique");
     expect(rows).toEqual(beforeWrongSource);
     rows.phase_sections[0].content = originalSourceContent;
@@ -213,11 +180,7 @@ describe("selected IM3 quadratic seed documents", () => {
     rows.activities[0].props = { equation: "f(x) = x^2 + 9" };
     const beforeWrongActivity = structuredClone(rows);
     await expect(
-      upsertIm3SelectedPilotSeed(
-        { db } as never,
-        "lesson-version:1" as never,
-        9,
-      ),
+      upsertIm3SelectedPilotSeed({ db } as never, "lesson-version:1" as never, 9),
     ).rejects.toThrow("Worked activity source is invalid");
     expect(rows).toEqual(beforeWrongActivity);
     rows.activities[0].props = originalProps;
@@ -240,23 +203,14 @@ describe("selected IM3 quadratic seed documents", () => {
       IM3_MASTERY_ADVANTAGE_ACTIVITY_ID,
     ]);
     expect(
-      rows.activities.filter((row) =>
-        selectedActivityIds.has(row.stableActivityId as never),
-      ),
+      rows.activities.filter((row) => selectedActivityIds.has(row.stableActivityId as never)),
     ).toHaveLength(3);
-    const selectedVariantKeys = new Set([
-      IM3_GUIDED_VARIANT_KEY,
-      IM3_PILOT_VARIANT_KEY,
-    ]);
+    const selectedVariantKeys = new Set([IM3_GUIDED_VARIANT_KEY, IM3_PILOT_VARIANT_KEY]);
     expect(
-      rows.practice_variants.filter((row) =>
-        selectedVariantKeys.has(row.variantKey as never),
-      ),
+      rows.practice_variants.filter((row) => selectedVariantKeys.has(row.variantKey as never)),
     ).toHaveLength(2);
     expect(
-      rows.practice_items.filter((row) =>
-        selectedVariantKeys.has(row.variantKey as never),
-      ),
+      rows.practice_items.filter((row) => selectedVariantKeys.has(row.variantKey as never)),
     ).toHaveLength(2);
     expect(
       rows.activities
@@ -268,9 +222,7 @@ describe("selected IM3 quadratic seed documents", () => {
       activityId: first.workedActivityId,
     });
 
-    const independent = rows.activities.find(
-      (row) => row._id === first.independentActivityId,
-    )!;
+    const independent = rows.activities.find((row) => row._id === first.independentActivityId)!;
     independent.approval = {
       status: "approved",
       reviewedBy: "profiles:reviewer",
@@ -281,11 +233,7 @@ describe("selected IM3 quadratic seed documents", () => {
       Object.entries(independent.props as Record<string, unknown>).reverse(),
     );
     await expect(
-      upsertIm3SelectedPilotSeed(
-        { db } as never,
-        "lesson-version:1" as never,
-        25,
-      ),
+      upsertIm3SelectedPilotSeed({ db } as never, "lesson-version:1" as never, 25),
     ).resolves.toEqual(first);
 
     expect(independent.approval).toEqual({
@@ -295,16 +243,10 @@ describe("selected IM3 quadratic seed documents", () => {
     });
     expect(independent.srsEligible).toBe(true);
 
-    const guided = rows.activities.find(
-      (row) => row._id === first.guidedActivityId,
-    )!;
+    const guided = rows.activities.find((row) => row._id === first.guidedActivityId)!;
     guided.srsEligible = true;
     guided.props = { variant: "plot_from_equation", equation: "y = changed" };
-    await upsertIm3SelectedPilotSeed(
-      { db } as never,
-      "lesson-version:1" as never,
-      26,
-    );
+    await upsertIm3SelectedPilotSeed({ db } as never, "lesson-version:1" as never, 26);
     expect(guided).toMatchObject({
       approval: { status: "unreviewed" },
       srsEligible: false,
@@ -316,11 +258,7 @@ describe("selected IM3 quadratic seed documents", () => {
       equation: "y = changed",
     };
     await expect(
-      upsertIm3SelectedPilotSeed(
-        { db } as never,
-        "lesson-version:1" as never,
-        30,
-      ),
+      upsertIm3SelectedPilotSeed({ db } as never, "lesson-version:1" as never, 30),
     ).rejects.toThrow("Approved selected IM3 activity content changed");
 
     independent.approval = { status: "unreviewed" };
@@ -335,14 +273,8 @@ describe("selected IM3 quadratic seed documents", () => {
       practiceItemId: "wrong",
     });
     await expect(
-      upsertIm3SelectedPilotSeed(
-        { db } as never,
-        "lesson-version:1" as never,
-        31,
-      ),
-    ).rejects.toThrow(
-      /conflicting selected IM3 practice-item mapping|Non-unique test query/,
-    );
+      upsertIm3SelectedPilotSeed({ db } as never, "lesson-version:1" as never, 31),
+    ).rejects.toThrow(/conflicting selected IM3 practice-item mapping|Non-unique test query/);
   });
 
   it("runs the selected upsert from the existing lesson seed mutation", async () => {
@@ -361,9 +293,7 @@ describe("selected IM3 quadratic seed documents", () => {
         return {
           withIndex(
             _name: string,
-            configure: (query: {
-              eq(field: string, value: unknown): unknown;
-            }) => unknown,
+            configure: (query: { eq(field: string, value: unknown): unknown }) => unknown,
           ) {
             const conditions = new Map<string, unknown>();
             const query = {
@@ -380,8 +310,7 @@ describe("selected IM3 quadratic seed documents", () => {
             return {
               unique: async () => {
                 const matches = selected();
-                if (matches.length > 1)
-                  throw new Error("Non-unique test query");
+                if (matches.length > 1) throw new Error("Non-unique test query");
                 return matches[0] ?? null;
               },
               first: async () => selected()[0] ?? null,
@@ -409,16 +338,11 @@ describe("selected IM3 quadratic seed documents", () => {
     };
     await handler._handler({ db });
 
-    const phaseFour = tableRows("phase_versions").find(
-      (row) => row.phaseNumber === 4,
-    );
+    const phaseFour = tableRows("phase_versions").find((row) => row.phaseNumber === 4);
     const phaseFourSections = () =>
       tableRows("phase_sections")
         .filter((row) => row.phaseVersionId === phaseFour?._id)
-        .sort(
-          (left, right) =>
-            (left.sequenceOrder as number) - (right.sequenceOrder as number),
-        );
+        .sort((left, right) => (left.sequenceOrder as number) - (right.sequenceOrder as number));
     const selectedWorked = tableRows("activities").find(
       (row) => row.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID,
     );
@@ -426,14 +350,10 @@ describe("selected IM3 quadratic seed documents", () => {
       (row) => row.stableActivityId === IM3_DOMAIN_RANGE_WORKED_ACTIVITY_ID,
     );
     const firstPhaseFourSections = structuredClone(phaseFourSections());
-    const preservedSequenceThree = firstPhaseFourSections.find(
-      (row) => row.sequenceOrder === 3,
-    );
+    const preservedSequenceThree = firstPhaseFourSections.find((row) => row.sequenceOrder === 3);
     const preservedSequenceThreeActivity = tableRows("activities").find(
       (row) =>
-        row._id ===
-        (preservedSequenceThree?.content as { activityId?: unknown })
-          ?.activityId,
+        row._id === (preservedSequenceThree?.content as { activityId?: unknown })?.activityId,
     );
     expect(preservedSequenceThreeActivity?.props).toMatchObject({
       variant: "plot_from_equation",
@@ -484,9 +404,7 @@ describe("selected IM3 quadratic seed documents", () => {
     for (const activityId of [selectedWorked?._id, domainRangeWorked?._id]) {
       expect(
         tableRows("phase_sections").filter(
-          (row) =>
-            (row.content as { activityId?: unknown })?.activityId ===
-            activityId,
+          (row) => (row.content as { activityId?: unknown })?.activityId === activityId,
         ),
       ).toHaveLength(1);
     }
@@ -496,10 +414,7 @@ describe("selected IM3 quadratic seed documents", () => {
       IM3_GUIDED_PRACTICE_ACTIVITY_ID,
       IM3_MASTERY_ADVANTAGE_ACTIVITY_ID,
     ]);
-    const selectedVariantKeys = new Set([
-      IM3_GUIDED_VARIANT_KEY,
-      IM3_PILOT_VARIANT_KEY,
-    ]);
+    const selectedVariantKeys = new Set([IM3_GUIDED_VARIANT_KEY, IM3_PILOT_VARIANT_KEY]);
     const selectedActivities = tableRows("activities").filter((row) =>
       selectedActivityIds.has(row.stableActivityId as never),
     );
@@ -510,16 +425,12 @@ describe("selected IM3 quadratic seed documents", () => {
       ),
     ).toHaveLength(2);
     expect(
-      tableRows("practice_items").filter((row) =>
-        selectedVariantKeys.has(row.variantKey as never),
-      ),
+      tableRows("practice_items").filter((row) => selectedVariantKeys.has(row.variantKey as never)),
     ).toHaveLength(2);
 
     const version = tableRows("lesson_versions")[0];
     version.status = "draft";
-    await expect(handler._handler({ db })).rejects.toThrow(
-      "Lesson 1.1 has no published version",
-    );
+    await expect(handler._handler({ db })).rejects.toThrow("Lesson 1.1 has no published version");
     version.status = "published";
     tableRows("lesson_versions").push({
       ...version,
@@ -531,10 +442,7 @@ describe("selected IM3 quadratic seed documents", () => {
   });
 
   it("rejects missing Phase 4 and missing sequence-2 activity sections", async () => {
-    const makeContext = (
-      hasPhase: boolean,
-      sections: Array<Record<string, unknown>>,
-    ) => {
+    const makeContext = (hasPhase: boolean, sections: Array<Record<string, unknown>>) => {
       const activities: Array<Record<string, unknown>> = [];
       const tables: Record<string, Array<Record<string, unknown>>> = {
         activities,
@@ -574,9 +482,7 @@ describe("selected IM3 quadratic seed documents", () => {
             return {
               withIndex(
                 _name: string,
-                configure: (query: {
-                  eq(field: string, value: unknown): unknown;
-                }) => unknown,
+                configure: (query: { eq(field: string, value: unknown): unknown }) => unknown,
               ) {
                 const conditions = new Map<string, unknown>();
                 const query = {
@@ -588,15 +494,12 @@ describe("selected IM3 quadratic seed documents", () => {
                 configure(query);
                 const selected = () =>
                   tables[table].filter((row) =>
-                    [...conditions].every(
-                      ([field, value]) => row[field] === value,
-                    ),
+                    [...conditions].every(([field, value]) => row[field] === value),
                   );
                 return {
                   unique: async () => {
                     const matches = selected();
-                    if (matches.length > 1)
-                      throw new Error("Non-unique test query");
+                    if (matches.length > 1) throw new Error("Non-unique test query");
                     return matches[0] ?? null;
                   },
                   first: async () => selected()[0] ?? null,
@@ -616,18 +519,10 @@ describe("selected IM3 quadratic seed documents", () => {
       };
     };
     await expect(
-      upsertIm3SelectedPilotSeed(
-        makeContext(false, []) as never,
-        "lesson-version:1" as never,
-        10,
-      ),
+      upsertIm3SelectedPilotSeed(makeContext(false, []) as never, "lesson-version:1" as never, 10),
     ).rejects.toThrow("Worked Phase 4 must be unique");
     await expect(
-      upsertIm3SelectedPilotSeed(
-        makeContext(true, []) as never,
-        "lesson-version:1" as never,
-        10,
-      ),
+      upsertIm3SelectedPilotSeed(makeContext(true, []) as never, "lesson-version:1" as never, 10),
     ).rejects.toThrow("source sections must be unique");
     await expect(
       upsertIm3SelectedPilotSeed(

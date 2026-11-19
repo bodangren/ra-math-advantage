@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 import {
   deterministicIntervalFuzzV3_2,
@@ -6,9 +6,12 @@ import {
   sessionCompositionArtifactV3_2Schema,
   type IntervalLoadBalancingDecisionV3_2,
   type SessionCompositionArtifactV3_2,
-} from './session-composition-contract';
+} from "./session-composition-contract";
 
-const idSchema = z.string().min(1).refine((value) => value.trim() === value);
+const idSchema = z
+  .string()
+  .min(1)
+  .refine((value) => value.trim() === value);
 const priorityOrder = { essential: 0, supporting: 1, extension: 2 } as const;
 
 function compareStrings(left: string, right: string): number {
@@ -18,8 +21,8 @@ function compareStrings(left: string, right: string): number {
 export interface SelectedSessionCardV3_2 {
   readonly cardId: string;
   readonly objectiveId: string;
-  readonly objectivePriority: 'essential' | 'supporting' | 'extension';
-  readonly queueKind: 'review' | 'new';
+  readonly objectivePriority: "essential" | "supporting" | "extension";
+  readonly queueKind: "review" | "new";
   readonly selectionRank: number;
 }
 
@@ -28,9 +31,9 @@ export function composeSessionV3_2(
 ): SessionCompositionArtifactV3_2 {
   const reviewsByObjective = new Map<
     string,
-    { priority: SelectedSessionCardV3_2['objectivePriority']; cards: SelectedSessionCardV3_2[] }
+    { priority: SelectedSessionCardV3_2["objectivePriority"]; cards: SelectedSessionCardV3_2[] }
   >();
-  for (const card of selected.filter((item) => item.queueKind === 'review')) {
+  for (const card of selected.filter((item) => item.queueKind === "review")) {
     const group = reviewsByObjective.get(card.objectiveId) ?? {
       priority: card.objectivePriority,
       cards: [],
@@ -60,13 +63,13 @@ export function composeSessionV3_2(
   }
   presentationIds.push(
     ...selected
-      .filter((item) => item.queueKind === 'new')
+      .filter((item) => item.queueKind === "new")
       .sort((left, right) => left.selectionRank - right.selectionRank)
       .map((item) => item.cardId),
   );
   return sessionCompositionArtifactV3_2Schema.parse({
-    schemaVersion: 'srs.session-composition.v3.2',
-    policy: 'review_objective_round_robin_then_new.v1',
+    schemaVersion: "srs.session-composition.v3.2",
+    policy: "review_objective_round_robin_then_new.v1",
     selected,
     presented: presentationIds.map((cardId, index) => ({
       cardId,
@@ -93,9 +96,7 @@ const scheduleInputSchema = z
   })
   .strict();
 
-export type ScheduleIntervalWithLoadBalancingInputV3_2 = z.input<
-  typeof scheduleInputSchema
->;
+export type ScheduleIntervalWithLoadBalancingInputV3_2 = z.input<typeof scheduleInputSchema>;
 
 export function scheduleIntervalWithLoadBalancingV3_2(
   rawInput: ScheduleIntervalWithLoadBalancingInputV3_2,
@@ -123,16 +124,16 @@ export function scheduleIntervalWithLoadBalancingV3_2(
         Math.abs(right.dayOffset - preferredDayOffset) ||
       left.dayOffset - right.dayOffset,
   )[0];
-  if (!selected) throw new Error('Projected day loads cannot be empty');
+  if (!selected) throw new Error("Projected day loads cannot be empty");
   const selectedDueDate = new Date(
     Date.parse(input.anchorDate) + selected.dayOffset * 86_400_000,
   ).toISOString();
   return intervalLoadBalancingDecisionV3_2Schema.parse({
-    schemaVersion: 'srs.interval-load-balancing.v3.2',
+    schemaVersion: "srs.interval-load-balancing.v3.2",
     cardId: input.cardId,
     reps: input.reps,
     deterministicKey: `${input.cardId}:${input.reps}`,
-    fuzzAlgorithm: 'fnv1a32-code-unit-uniform.v1',
+    fuzzAlgorithm: "fnv1a32-code-unit-uniform.v1",
     fuzzHash: fuzz.fuzzHash,
     anchorDate: input.anchorDate,
     baseIntervalDays,
@@ -146,6 +147,6 @@ export function scheduleIntervalWithLoadBalancingV3_2(
     selectedDayOffset: selected.dayOffset,
     selectedProjectedLoad: selected.load,
     selectedDueDate,
-    tieBreak: 'load_asc_fuzz_distance_asc_day_asc.v1',
+    tieBreak: "load_asc_fuzz_distance_asc_day_asc.v1",
   });
 }

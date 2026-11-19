@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { getPhaseDisplayInfo, type PhaseType } from '@math-platform/activity-runtime/phase-types';
+import { ReactNode } from "react";
+import { getPhaseDisplayInfo, type PhaseType } from "@math-platform/activity-runtime/phase-types";
 
 export interface PhaseContainerProps {
   phaseType: PhaseType;
@@ -8,16 +8,16 @@ export interface PhaseContainerProps {
 
 // Maps phaseType bgColor tokens (Tailwind) to matching border color
 const borderColorMap: Record<string, string> = {
-  'bg-blue-50':   'border-blue-200',
-  'bg-purple-50': 'border-purple-200',
-  'bg-amber-50':  'border-amber-200',
-  'bg-yellow-50': 'border-yellow-200',
-  'bg-green-50':  'border-green-200',
-  'bg-cyan-50':   'border-cyan-200',
-  'bg-indigo-50': 'border-indigo-200',
-  'bg-red-50':    'border-red-200',
-  'bg-pink-50':   'border-pink-200',
-  'bg-gray-50':   'border-gray-200',
+  "bg-blue-50": "border-blue-200",
+  "bg-purple-50": "border-purple-200",
+  "bg-amber-50": "border-amber-200",
+  "bg-yellow-50": "border-yellow-200",
+  "bg-green-50": "border-green-200",
+  "bg-cyan-50": "border-cyan-200",
+  "bg-indigo-50": "border-indigo-200",
+  "bg-red-50": "border-red-200",
+  "bg-pink-50": "border-pink-200",
+  "bg-gray-50": "border-gray-200",
 };
 
 /**
@@ -28,7 +28,7 @@ const borderColorMap: Record<string, string> = {
  */
 export function PhaseContainer({ phaseType, children }: PhaseContainerProps) {
   const { label, color, bgColor } = getPhaseDisplayInfo(phaseType);
-  const borderColor = borderColorMap[bgColor] ?? 'border-border';
+  const borderColor = borderColorMap[bgColor] ?? "border-border";
 
   return (
     <section

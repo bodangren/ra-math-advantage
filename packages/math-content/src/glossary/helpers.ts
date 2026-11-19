@@ -1,4 +1,4 @@
-import type { GlossaryTerm } from './types';
+import type { GlossaryTerm } from "./types";
 
 /**
  * Find a glossary term by its slug.
@@ -6,7 +6,10 @@ import type { GlossaryTerm } from './types';
  * @param {string} slug - Slug to search for
  * @returns {GlossaryTerm | undefined} - Matching term or undefined
  */
-export function getGlossaryTermBySlug(terms: GlossaryTerm[], slug: string): GlossaryTerm | undefined {
+export function getGlossaryTermBySlug(
+  terms: GlossaryTerm[],
+  slug: string,
+): GlossaryTerm | undefined {
   return terms.find((term) => term.slug === slug);
 }
 
@@ -36,7 +39,10 @@ export function getGlossaryTermsByTopic(terms: GlossaryTerm[], topic: string): G
  * @param {number} moduleNumber - Module number to filter by
  * @returns {GlossaryTerm[]} - Array of matching terms
  */
-export function getGlossaryTermsByModule(terms: GlossaryTerm[], moduleNumber: number): GlossaryTerm[] {
+export function getGlossaryTermsByModule(
+  terms: GlossaryTerm[],
+  moduleNumber: number,
+): GlossaryTerm[] {
   return terms.filter((term) => term.modules?.includes(moduleNumber));
 }
 

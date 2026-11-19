@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 import {
   EVALUATION_CONTRACT_VERSION,
@@ -8,17 +8,14 @@ import {
   syntheticCohortSchema,
   syntheticInvariantMetricSchema,
   syntheticLearnerSchema,
-} from './evaluation-contract';
+} from "./evaluation-contract";
 import type {
   SyntheticCohortV31,
   SyntheticInvariantMetric,
   SyntheticLearnerV31,
-} from './evaluation-contract';
+} from "./evaluation-contract";
 
-const sha256Schema = z.string().regex(
-  /^[a-f0-9]{64}$/,
-  'must be a lowercase SHA-256 hex digest',
-);
+const sha256Schema = z.string().regex(/^[a-f0-9]{64}$/, "must be a lowercase SHA-256 hex digest");
 
 const syntheticCohortInputSchema = z.strictObject({
   cohortId: z.string().min(1),
@@ -55,7 +52,7 @@ const provisionalMasteryAuditSchema = z.strictObject({
 
 const progressionDecisionAuditSchema = z.strictObject({
   activeMisconception: z.boolean(),
-  nextAction: z.enum(['misconception_remediation', 'normal_progression']),
+  nextAction: z.enum(["misconception_remediation", "normal_progression"]),
 });
 
 const syntheticInvariantAuditSchema = z.strictObject({
@@ -70,98 +67,102 @@ const syntheticInvariantMetricsSchema = z.array(syntheticInvariantMetricSchema).
 
 const MAX_TOTAL_SYNTHETIC_ATTEMPTS = 100_000;
 
-const correctnessProbabilityInputSchema = z.strictObject({
-  guessProb: z.number().finite().min(0).max(1),
-  slipProb: z.number().finite().min(0).max(1),
-  mastery: z.number().finite().min(0).max(1),
-}).refine(
-  (input) => input.guessProb + input.slipProb <= 1,
-  {
-    path: ['slipProb'],
-    message: 'guessProb + slipProb must not exceed 1',
-  },
-);
+const correctnessProbabilityInputSchema = z
+  .strictObject({
+    guessProb: z.number().finite().min(0).max(1),
+    slipProb: z.number().finite().min(0).max(1),
+    mastery: z.number().finite().min(0).max(1),
+  })
+  .refine((input) => input.guessProb + input.slipProb <= 1, {
+    path: ["slipProb"],
+    message: "guessProb + slipProb must not exceed 1",
+  });
 
 const syntheticLearnerParametersSchema = z.strictObject({
   learner: syntheticLearnerSchema,
   initialMastery: z.number().finite().min(0).max(1),
 });
 
-const syntheticSimulationInputSchema = z.strictObject({
-  seed: z.number().int().nonnegative().max(MAX_DETERMINISTIC_SEED),
-  configHash: sha256Schema,
-  runLength: z.number().int().positive().max(MAX_SIMULATION_DAYS),
-  learnerParameters: z.array(syntheticLearnerParametersSchema)
-    .min(1)
-    .max(MAX_SYNTHETIC_COHORT_SIZE),
-  activeMisconceptionLearnerIds: z.array(z.string().min(1)),
-}).superRefine((input, ctx) => {
-  if (input.runLength * input.learnerParameters.length > MAX_TOTAL_SYNTHETIC_ATTEMPTS) {
-    ctx.addIssue({
-      code: 'custom',
-      path: ['runLength'],
-      message: `runLength × learnerParameters cannot exceed ${MAX_TOTAL_SYNTHETIC_ATTEMPTS}`,
-    });
-  }
-
-  const learnerIds = new Set<string>();
-  input.learnerParameters.forEach((parameters, index) => {
-    const learnerId = parameters.learner.learnerId;
-    if (learnerIds.has(learnerId)) {
+const syntheticSimulationInputSchema = z
+  .strictObject({
+    seed: z.number().int().nonnegative().max(MAX_DETERMINISTIC_SEED),
+    configHash: sha256Schema,
+    runLength: z.number().int().positive().max(MAX_SIMULATION_DAYS),
+    learnerParameters: z
+      .array(syntheticLearnerParametersSchema)
+      .min(1)
+      .max(MAX_SYNTHETIC_COHORT_SIZE),
+    activeMisconceptionLearnerIds: z.array(z.string().min(1)),
+  })
+  .superRefine((input, ctx) => {
+    if (input.runLength * input.learnerParameters.length > MAX_TOTAL_SYNTHETIC_ATTEMPTS) {
       ctx.addIssue({
-        code: 'custom',
-        path: ['learnerParameters', index, 'learner', 'learnerId'],
-        message: 'learnerId must be unique within the parameter grid',
+        code: "custom",
+        path: ["runLength"],
+        message: `runLength × learnerParameters cannot exceed ${MAX_TOTAL_SYNTHETIC_ATTEMPTS}`,
       });
     }
-    learnerIds.add(learnerId);
+
+    const learnerIds = new Set<string>();
+    input.learnerParameters.forEach((parameters, index) => {
+      const learnerId = parameters.learner.learnerId;
+      if (learnerIds.has(learnerId)) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["learnerParameters", index, "learner", "learnerId"],
+          message: "learnerId must be unique within the parameter grid",
+        });
+      }
+      learnerIds.add(learnerId);
+    });
+
+    const misconceptionIds = new Set<string>();
+    input.activeMisconceptionLearnerIds.forEach((learnerId, index) => {
+      if (misconceptionIds.has(learnerId)) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["activeMisconceptionLearnerIds", index],
+          message: "active misconception learner IDs must be unique",
+        });
+      }
+      if (!learnerIds.has(learnerId)) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["activeMisconceptionLearnerIds", index],
+          message: "activeMisconceptionLearnerIds must reference the declared parameter grid",
+        });
+      }
+      misconceptionIds.add(learnerId);
+    });
   });
 
-  const misconceptionIds = new Set<string>();
-  input.activeMisconceptionLearnerIds.forEach((learnerId, index) => {
-    if (misconceptionIds.has(learnerId)) {
+const syntheticAttemptSchema = z
+  .strictObject({
+    learnerId: z.string().min(1),
+    attemptNumber: z.number().int().positive().max(MAX_SIMULATION_DAYS),
+    ability: z.number().finite().min(0).max(1),
+    forgetRateMultiplier: z.number().finite().gt(0).max(10),
+    guessProb: z.number().finite().min(0).max(1),
+    slipProb: z.number().finite().min(0).max(1),
+    complianceProbability: z.number().finite().min(0).max(1),
+    masteryBefore: z.number().finite().min(0).max(1),
+    correctnessProbability: z.number().finite().min(0).max(1),
+    completionDraw: z.number().finite().min(0).lt(1),
+    completed: z.boolean(),
+    correctnessDraw: z.number().finite().min(0).lt(1).nullable(),
+    correct: z.boolean().nullable(),
+    masteryAfter: z.number().finite().min(0).max(1),
+  })
+  .superRefine((attempt, ctx) => {
+    const hasOutcome = attempt.correctnessDraw !== null && attempt.correct !== null;
+    if (attempt.completed !== hasOutcome) {
       ctx.addIssue({
-        code: 'custom',
-        path: ['activeMisconceptionLearnerIds', index],
-        message: 'active misconception learner IDs must be unique',
+        code: "custom",
+        path: ["correct"],
+        message: "completed attempts require a draw and outcome; skipped attempts require neither",
       });
     }
-    if (!learnerIds.has(learnerId)) {
-      ctx.addIssue({
-        code: 'custom',
-        path: ['activeMisconceptionLearnerIds', index],
-        message: 'activeMisconceptionLearnerIds must reference the declared parameter grid',
-      });
-    }
-    misconceptionIds.add(learnerId);
   });
-});
-
-const syntheticAttemptSchema = z.strictObject({
-  learnerId: z.string().min(1),
-  attemptNumber: z.number().int().positive().max(MAX_SIMULATION_DAYS),
-  ability: z.number().finite().min(0).max(1),
-  forgetRateMultiplier: z.number().finite().gt(0).max(10),
-  guessProb: z.number().finite().min(0).max(1),
-  slipProb: z.number().finite().min(0).max(1),
-  complianceProbability: z.number().finite().min(0).max(1),
-  masteryBefore: z.number().finite().min(0).max(1),
-  correctnessProbability: z.number().finite().min(0).max(1),
-  completionDraw: z.number().finite().min(0).lt(1),
-  completed: z.boolean(),
-  correctnessDraw: z.number().finite().min(0).lt(1).nullable(),
-  correct: z.boolean().nullable(),
-  masteryAfter: z.number().finite().min(0).max(1),
-}).superRefine((attempt, ctx) => {
-  const hasOutcome = attempt.correctnessDraw !== null && attempt.correct !== null;
-  if (attempt.completed !== hasOutcome) {
-    ctx.addIssue({
-      code: 'custom',
-      path: ['correct'],
-      message: 'completed attempts require a draw and outcome; skipped attempts require neither',
-    });
-  }
-});
 
 const syntheticSimulationResultSchema = z.strictObject({
   seed: z.number().int().nonnegative().max(MAX_DETERMINISTIC_SEED),
@@ -170,10 +171,13 @@ const syntheticSimulationResultSchema = z.strictObject({
   attempts: z.array(syntheticAttemptSchema).min(1).max(MAX_TOTAL_SYNTHETIC_ATTEMPTS),
 });
 
-const strictEngineVersionSchema = z.string().min(1).refine(
-  (version) => version === version.trim(),
-  'engineVersion must not have surrounding whitespace',
-);
+const strictEngineVersionSchema = z
+  .string()
+  .min(1)
+  .refine(
+    (version) => version === version.trim(),
+    "engineVersion must not have surrounding whitespace",
+  );
 
 const hardGateRecommendationSchema = z.strictObject({
   recommended: z.boolean(),
@@ -186,14 +190,12 @@ const provisionalMasteryProjectionSchema = z.strictObject({
 });
 
 const nextActionSelectionSchema = z.strictObject({
-  nextAction: z.enum(['misconception_remediation', 'normal_progression']),
+  nextAction: z.enum(["misconception_remediation", "normal_progression"]),
 });
 
-const engineCallbackSchema = z.custom<(
-  state: SyntheticEvaluationLearnerState,
-) => unknown>(
-  (callback) => typeof callback === 'function',
-  'engine callback must be a function',
+const engineCallbackSchema = z.custom<(state: SyntheticEvaluationLearnerState) => unknown>(
+  (callback) => typeof callback === "function",
+  "engine callback must be a function",
 );
 
 const syntheticEvaluationEngineSchema = z.strictObject({
@@ -254,12 +256,8 @@ export interface SyntheticEvaluationEngine {
     state: SyntheticEvaluationLearnerState,
   ) => HardGateRecommendation;
   /** Return the worst per-day queue/new-card counts observed across the supplied trace. */
-  readonly constructDailyQueue: (
-    state: SyntheticEvaluationLearnerState,
-  ) => SyntheticDailyQueue;
-  readonly runPlacement: (
-    state: SyntheticEvaluationLearnerState,
-  ) => SyntheticPlacement;
+  readonly constructDailyQueue: (state: SyntheticEvaluationLearnerState) => SyntheticDailyQueue;
+  readonly runPlacement: (state: SyntheticEvaluationLearnerState) => SyntheticPlacement;
   /** Return the worst no-review decay projection needed to falsify immortal provisional mastery. */
   readonly projectProvisionalMastery: (
     state: SyntheticEvaluationLearnerState,
@@ -282,7 +280,7 @@ function createSeededPrng(seed: number): () => number {
 }
 
 function metric(
-  name: SyntheticInvariantMetric['name'],
+  name: SyntheticInvariantMetric["name"],
   checkedCount: number,
   violationCount: number,
 ): SyntheticInvariantMetric {
@@ -307,8 +305,7 @@ function clampProbability(value: number): number {
  */
 export function computeSyntheticCorrectnessProbability(input: unknown): number {
   const parsed = correctnessProbabilityInputSchema.parse(input);
-  return parsed.guessProb
-    + ((1 - parsed.guessProb - parsed.slipProb) * parsed.mastery);
+  return parsed.guessProb + (1 - parsed.guessProb - parsed.slipProb) * parsed.mastery;
 }
 
 /**
@@ -330,12 +327,12 @@ export function generateSyntheticCohort(input: unknown): SyntheticCohortV31 {
     configHash: parsed.configHash,
     simulationDays: parsed.simulationDays,
     learners: Array.from({ length: parsed.learnerCount }, (_, index) => ({
-      learnerId: `${parsed.cohortId}:learner:${String(index + 1).padStart(learnerIdWidth, '0')}`,
+      learnerId: `${parsed.cohortId}:learner:${String(index + 1).padStart(learnerIdWidth, "0")}`,
       ability: random(),
-      forgetRateMultiplier: 0.5 + (1.5 * random()),
-      guessProb: 0.05 + (0.2 * random()),
-      slipProb: 0.03 + (0.17 * random()),
-      complianceRate: 0.6 + (0.4 * random()),
+      forgetRateMultiplier: 0.5 + 1.5 * random(),
+      guessProb: 0.05 + 0.2 * random(),
+      slipProb: 0.03 + 0.17 * random(),
+      complianceRate: 0.6 + 0.4 * random(),
     })),
   };
 
@@ -359,9 +356,10 @@ export function simulateSyntheticAttempts(input: unknown): SyntheticSimulationRe
     let masteryAfterPreviousAttempt = initialMastery;
 
     for (let attemptIndex = 0; attemptIndex < parsed.runLength; attemptIndex += 1) {
-      const masteryBefore = attemptIndex === 0
-        ? initialMastery
-        : masteryAfterPreviousAttempt * Math.exp(-learner.forgetRateMultiplier / 30);
+      const masteryBefore =
+        attemptIndex === 0
+          ? initialMastery
+          : masteryAfterPreviousAttempt * Math.exp(-learner.forgetRateMultiplier / 30);
       const correctnessProbability = computeSyntheticCorrectnessProbability({
         guessProb: learner.guessProb,
         slipProb: learner.slipProb,
@@ -370,13 +368,10 @@ export function simulateSyntheticAttempts(input: unknown): SyntheticSimulationRe
       const completionDraw = random();
       const completed = completionDraw < learner.complianceRate;
       const correctnessDraw = completed ? random() : null;
-      const correct = correctnessDraw === null
-        ? null
-        : correctnessDraw < correctnessProbability;
+      const correct = correctnessDraw === null ? null : correctnessDraw < correctnessProbability;
       const learningMultiplier = correct === null ? 0 : correct ? 0.1 : 0.05;
       const masteryAfter = clampProbability(
-        masteryBefore
-          + (learner.ability * (1 - masteryBefore) * learningMultiplier),
+        masteryBefore + learner.ability * (1 - masteryBefore) * learningMultiplier,
       );
       const attempt = syntheticAttemptSchema.parse({
         learnerId: learner.learnerId,
@@ -415,52 +410,40 @@ export function simulateSyntheticAttempts(input: unknown): SyntheticSimulationRe
  * @returns One validated metric per invariant in canonical order.
  * @throws {z.ZodError} When observations are missing or malformed.
  */
-export function evaluateSyntheticInvariants(
-  input: unknown,
-): SyntheticInvariantMetric[] {
+export function evaluateSyntheticInvariants(input: unknown): SyntheticInvariantMetric[] {
   const audit = syntheticInvariantAuditSchema.parse(input);
 
   const hardGateViolations = audit.recommendations.filter(
     (recommendation) => recommendation.recommended && !recommendation.hardGateReady,
   ).length;
   const queueCapViolations = audit.dailyQueues.filter(
-    (queue) => (
-      queue.queueSize > queue.queueCap
-      || queue.newCardCount > queue.newCardsPerDay
-    ),
+    (queue) => queue.queueSize > queue.queueCap || queue.newCardCount > queue.newCardsPerDay,
   ).length;
   const placementViolations = audit.placements.filter(
     (placement) => !placement.terminated || placement.probeCount > placement.probeBudget,
   ).length;
   const provisionalMasteryViolations = audit.provisionalMastery.filter(
-    (observation) => (
-      !observation.reviewed
-      && observation.elapsedDays > 0
-      && observation.previousMastery > 0
-      && observation.currentMastery >= observation.previousMastery
-    ),
+    (observation) =>
+      !observation.reviewed &&
+      observation.elapsedDays > 0 &&
+      observation.previousMastery > 0 &&
+      observation.currentMastery >= observation.previousMastery,
   ).length;
   const misconceptionViolations = audit.progressionDecisions.filter(
-    (decision) => (
-      decision.activeMisconception
-      && decision.nextAction !== 'misconception_remediation'
-    ),
+    (decision) =>
+      decision.activeMisconception && decision.nextAction !== "misconception_remediation",
   ).length;
 
   return syntheticInvariantMetricsSchema.parse([
-    metric('hard_gate_readiness', audit.recommendations.length, hardGateViolations),
-    metric('queue_caps', audit.dailyQueues.length, queueCapViolations),
-    metric('placement_probe_budget', audit.placements.length, placementViolations),
+    metric("hard_gate_readiness", audit.recommendations.length, hardGateViolations),
+    metric("queue_caps", audit.dailyQueues.length, queueCapViolations),
+    metric("placement_probe_budget", audit.placements.length, placementViolations),
     metric(
-      'provisional_mastery_decay',
+      "provisional_mastery_decay",
       audit.provisionalMastery.length,
       provisionalMasteryViolations,
     ),
-    metric(
-      'misconception_precedence',
-      audit.progressionDecisions.length,
-      misconceptionViolations,
-    ),
+    metric("misconception_precedence", audit.progressionDecisions.length, misconceptionViolations),
   ]);
 }
 
@@ -499,22 +482,22 @@ export function runSyntheticEvaluation(
     }) satisfies SyntheticEvaluationLearnerState;
   });
 
-  const candidatePredictions = states.map((state) => candidatePredictionSchema.parse({
-    learnerId: state.learner.learnerId,
-    engineVersion: candidateEngine.engineVersion,
-    configHash: parsed.configHash,
-    hardGateRecommendation: hardGateRecommendationSchema.parse(
-      candidateEngine.evaluateHardGateRecommendation(state),
-    ),
-    dailyQueue: dailyQueueAuditSchema.parse(candidateEngine.constructDailyQueue(state)),
-    placement: placementAuditSchema.parse(candidateEngine.runPlacement(state)),
-    provisionalMasteryProjection: provisionalMasteryProjectionSchema.parse(
-      candidateEngine.projectProvisionalMastery(state),
-    ),
-    nextActionSelection: nextActionSelectionSchema.parse(
-      candidateEngine.selectNextAction(state),
-    ),
-  }));
+  const candidatePredictions = states.map((state) =>
+    candidatePredictionSchema.parse({
+      learnerId: state.learner.learnerId,
+      engineVersion: candidateEngine.engineVersion,
+      configHash: parsed.configHash,
+      hardGateRecommendation: hardGateRecommendationSchema.parse(
+        candidateEngine.evaluateHardGateRecommendation(state),
+      ),
+      dailyQueue: dailyQueueAuditSchema.parse(candidateEngine.constructDailyQueue(state)),
+      placement: placementAuditSchema.parse(candidateEngine.runPlacement(state)),
+      provisionalMasteryProjection: provisionalMasteryProjectionSchema.parse(
+        candidateEngine.projectProvisionalMastery(state),
+      ),
+      nextActionSelection: nextActionSelectionSchema.parse(candidateEngine.selectNextAction(state)),
+    }),
+  );
 
   const audit: SyntheticInvariantAudit = {
     recommendations: candidatePredictions.map(({ hardGateRecommendation }) => ({

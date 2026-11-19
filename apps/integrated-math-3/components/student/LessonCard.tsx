@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { cn } from '@/lib/utils';
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export interface LessonCardProps {
   lessonNumber: number;
@@ -17,26 +17,20 @@ export interface LessonCardProps {
  * @param {LessonCardProps} props - Lesson card configuration.
  * @returns {JSX.Element} A styled lesson card.
  */
-export function LessonCard({
-  lessonNumber,
-  title,
-  phaseCount,
-  completed,
-  href,
-}: LessonCardProps) {
-  const phaseLabel = phaseCount === 1 ? '1 phase' : `${phaseCount} phases`;
-  const statusLabel = completed ? 'Completed' : 'Not started';
-  const statusColor = completed ? 'text-green-600' : 'text-muted-foreground';
-  const borderColor = completed ? 'border-green-600' : 'border-border hover:border-orange-600';
+export function LessonCard({ lessonNumber, title, phaseCount, completed, href }: LessonCardProps) {
+  const phaseLabel = phaseCount === 1 ? "1 phase" : `${phaseCount} phases`;
+  const statusLabel = completed ? "Completed" : "Not started";
+  const statusColor = completed ? "text-green-600" : "text-muted-foreground";
+  const borderColor = completed ? "border-green-600" : "border-border hover:border-orange-600";
 
   return (
     <Link
       href={href}
       aria-label={`Lesson ${lessonNumber}: ${title}`}
       className={cn(
-        'block bg-card border-2 rounded-lg p-5 transition-all duration-200',
-        'hover:shadow-md',
-        borderColor
+        "block bg-card border-2 rounded-lg p-5 transition-all duration-200",
+        "hover:shadow-md",
+        borderColor,
       )}
     >
       <div className="flex items-start justify-between gap-4">
@@ -48,7 +42,7 @@ export function LessonCard({
           <p className="text-sm text-muted-foreground">{phaseLabel}</p>
         </div>
         <div className="flex-shrink-0">
-          <span className={cn('text-sm font-medium', statusColor)}>{statusLabel}</span>
+          <span className={cn("text-sm font-medium", statusColor)}>{statusLabel}</span>
         </div>
       </div>
     </Link>

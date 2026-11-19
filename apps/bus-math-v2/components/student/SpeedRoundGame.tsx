@@ -16,7 +16,6 @@ type SpeedRoundQuestion = {
   termSlug: string;
 };
 
-
 /**
  * Renders a timed speed-round quiz game where students answer as many
  * multiple-choice term-definition questions as possible before time runs out.
@@ -55,15 +54,12 @@ export function SpeedRoundGame() {
   const feedbackTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const terms = useMemo(() => {
-    let availableTerms = unitParam
-      ? getGlossaryTermsByUnit(parseInt(unitParam, 10))
-      : GLOSSARY;
+    let availableTerms = unitParam ? getGlossaryTermsByUnit(parseInt(unitParam, 10)) : GLOSSARY;
     if (availableTerms.length < 4) {
       availableTerms = GLOSSARY;
     }
     return availableTerms;
   }, [unitParam]);
-
 
   /**
    * Generates a new speed-round question from available terms.
@@ -134,7 +130,6 @@ export function SpeedRoundGame() {
     };
   }, []);
 
-
   /**
    * Processes the user's answer, updates streak/lives, and advances the game.
    *
@@ -202,7 +197,6 @@ export function SpeedRoundGame() {
     }
   };
 
-
   /**
    * Resets all game state to start a fresh speed round.
    */
@@ -228,7 +222,6 @@ export function SpeedRoundGame() {
       termSlug: question.termSlug,
     });
   };
-
 
   /**
    * Formats seconds into a "M:SS" time string.
@@ -309,11 +302,21 @@ export function SpeedRoundGame() {
 
           <div className="flex items-center justify-between text-sm">
             <p>Streak: {streak}</p>
-            <p>Correct: {correctAnswers}/{totalQuestions}</p>
+            <p>
+              Correct: {correctAnswers}/{totalQuestions}
+            </p>
           </div>
 
           {currentQuestion && (
-            <Card className={feedback === "correct" ? "border-emerald-300 bg-emerald-50" : feedback === "wrong" ? "border-red-300 bg-red-50" : ""}>
+            <Card
+              className={
+                feedback === "correct"
+                  ? "border-emerald-300 bg-emerald-50"
+                  : feedback === "wrong"
+                    ? "border-red-300 bg-red-50"
+                    : ""
+              }
+            >
               <CardHeader>
                 <CardTitle className="text-xl">{currentQuestion.term}</CardTitle>
               </CardHeader>

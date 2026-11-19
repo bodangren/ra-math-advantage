@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useAuth } from '../auth/AuthProvider';
-import { useRouter } from 'next/navigation';
+import { useAuth } from "../auth/AuthProvider";
+import { useRouter } from "next/navigation";
 
 interface LogoutButtonProps {
   className?: string;
@@ -13,7 +13,7 @@ interface LogoutButtonProps {
  * @param {LogoutButtonProps} props - className and redirectTo path after logout
  * @returns {import("react").JSX.Element} Logout button element
  */
-export function LogoutButton({ className, redirectTo = '/auth/login' }: LogoutButtonProps) {
+export function LogoutButton({ className, redirectTo = "/auth/login" }: LogoutButtonProps) {
   const router = useRouter();
   const { signOut } = useAuth();
 
@@ -23,7 +23,13 @@ export function LogoutButton({ className, redirectTo = '/auth/login' }: LogoutBu
   };
 
   return (
-    <button onClick={logout} className={className ?? 'inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent'}>
+    <button
+      onClick={logout}
+      className={
+        className ??
+        "inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent"
+      }
+    >
       Logout
     </button>
   );

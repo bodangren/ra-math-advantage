@@ -1,8 +1,11 @@
-import Link from 'next/link';
-import { requireTeacherSessionClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
-import { SubmissionReviewPanel } from '@/components/teacher/SubmissionReviewPanel';
-import { Im3GraphExposureForm, type Im3GraphExposureCandidate } from '@/components/teacher/Im3GraphExposureForm';
+import Link from "next/link";
+import { requireTeacherSessionClaims } from "@/lib/auth/server";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
+import { SubmissionReviewPanel } from "@/components/teacher/SubmissionReviewPanel";
+import {
+  Im3GraphExposureForm,
+  type Im3GraphExposureCandidate,
+} from "@/components/teacher/Im3GraphExposureForm";
 
 interface StudentRow {
   id: string;
@@ -12,7 +15,7 @@ interface StudentRow {
   totalPhases: number;
   progressPercentage: number;
   lastActive: string | null;
-  atGlanceStatus: 'on-track' | 'behind' | 'not-started';
+  atGlanceStatus: "on-track" | "behind" | "not-started";
   currentLesson: string | null;
 }
 
@@ -34,7 +37,7 @@ interface StudentDetailUnit {
 }
 
 interface StudentDetail {
-  status: 'success' | 'unauthorized' | 'not_found';
+  status: "success" | "unauthorized" | "not_found";
   organizationName?: string;
   student?: { id: string; username: string; displayName: string | null };
   snapshot?: {
@@ -43,7 +46,7 @@ interface StudentDetail {
     progressPercentage: number;
     lastActive: string | null;
     currentLesson: string | null;
-    atGlanceStatus: 'on-track' | 'behind' | 'not-started';
+    atGlanceStatus: "on-track" | "behind" | "not-started";
   };
   units?: StudentDetailUnit[];
 }
@@ -53,15 +56,15 @@ interface PageProps {
 }
 
 const STATUS_LABELS: Record<string, string> = {
-  'on-track': 'On Track',
-  'behind': 'Behind',
-  'not-started': 'Not Started',
+  "on-track": "On Track",
+  behind: "Behind",
+  "not-started": "Not Started",
 };
 
 const STATUS_COLORS: Record<string, string> = {
-  'on-track': 'bg-green-100 text-green-800',
-  'behind': 'bg-red-100 text-red-800',
-  'not-started': 'bg-muted text-muted-foreground',
+  "on-track": "bg-green-100 text-green-800",
+  behind: "bg-red-100 text-red-800",
+  "not-started": "bg-muted text-muted-foreground",
 };
 
 /**
@@ -85,10 +88,10 @@ function LessonCard({
   const isTarget = index === scrollTarget;
   const progressColor =
     lesson.progressPercentage === 100
-      ? 'bg-green-500'
+      ? "bg-green-500"
       : lesson.progressPercentage > 0
-        ? 'bg-yellow-500'
-        : 'bg-muted';
+        ? "bg-yellow-500"
+        : "bg-muted";
 
   return (
     <div
@@ -96,9 +99,9 @@ function LessonCard({
       data-lesson-index={index}
       data-testid="teacher-student-detail-lesson-card"
       className={[
-        'card-workbook p-4 space-y-3 border',
-        isTarget ? 'border-primary/50 ring-2 ring-primary/20' : 'border-border',
-      ].join(' ')}
+        "card-workbook p-4 space-y-3 border",
+        isTarget ? "border-primary/50 ring-2 ring-primary/20" : "border-border",
+      ].join(" ")}
     >
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
@@ -111,13 +114,13 @@ function LessonCard({
         </div>
         <span
           className={[
-            'shrink-0 px-2 py-0.5 rounded-full text-xs font-medium',
+            "shrink-0 px-2 py-0.5 rounded-full text-xs font-medium",
             lesson.progressPercentage === 100
-              ? 'bg-green-100 text-green-800'
+              ? "bg-green-100 text-green-800"
               : lesson.progressPercentage > 0
-                ? 'bg-yellow-100 text-yellow-800'
-                : 'bg-muted text-muted-foreground',
-          ].join(' ')}
+                ? "bg-yellow-100 text-yellow-800"
+                : "bg-muted text-muted-foreground",
+          ].join(" ")}
         >
           {lesson.completedPhases}/{lesson.totalPhases}
         </span>
@@ -158,14 +161,14 @@ function StudentDetailView({
   detail: StudentDetail;
   scrollTarget: number;
 }) {
-  if (detail.status !== 'success' || !detail.student || !detail.snapshot || !detail.units) {
+  if (detail.status !== "success" || !detail.student || !detail.snapshot || !detail.units) {
     return (
       <div className="text-center py-12 text-muted-foreground">
-        {detail.status === 'unauthorized'
-          ? 'You are not authorized to view this student.'
-          : detail.status === 'not_found'
-            ? 'Student not found.'
-            : 'Unable to load student details.'}
+        {detail.status === "unauthorized"
+          ? "You are not authorized to view this student."
+          : detail.status === "not_found"
+            ? "Student not found."
+            : "Unable to load student details."}
       </div>
     );
   }
@@ -194,9 +197,9 @@ function StudentDetailView({
           </div>
           <span
             className={[
-              'px-3 py-1 rounded-full text-sm font-medium',
+              "px-3 py-1 rounded-full text-sm font-medium",
               STATUS_COLORS[snapshot.atGlanceStatus],
-            ].join(' ')}
+            ].join(" ")}
           >
             {STATUS_LABELS[snapshot.atGlanceStatus]}
           </span>
@@ -239,7 +242,7 @@ function StudentDetailView({
               <h3 className="text-lg font-semibold text-foreground">{unit.unitTitle}</h3>
               <span className="text-sm text-muted-foreground">Module {unit.unitNumber}</span>
             </div>
-        <div className="grid gap-3">
+            <div className="grid gap-3">
               {unit.lessons.map((lesson, index) => (
                 <LessonCard
                   key={lesson.id}
@@ -266,7 +269,7 @@ function StudentDetailView({
  * @returns {JSX.Element} The rendered students page JSX.
  */
 export default async function StudentsPage({ searchParams }: PageProps) {
-  const claims = await requireTeacherSessionClaims('/auth/login');
+  const claims = await requireTeacherSessionClaims("/auth/login");
   const { id: selectedId, lesson: lessonParam } = await searchParams;
 
   const scrollTarget = lessonParam != null ? parseInt(lessonParam, 10) - 1 : -1;
@@ -294,23 +297,29 @@ export default async function StudentsPage({ searchParams }: PageProps) {
     ]);
   }
 
-  const showDetail = detail?.status === 'success';
+  const showDetail = detail?.status === "success";
 
   return (
     <div className="max-w-5xl mx-auto space-y-8 py-8">
       <div className="space-y-1">
         <h1 className="text-3xl font-display font-bold text-foreground">
-          {showDetail ? (detail!.student?.displayName ?? detail!.student?.username ?? 'Student') : 'Students'}
+          {showDetail
+            ? (detail!.student?.displayName ?? detail!.student?.username ?? "Student")
+            : "Students"}
         </h1>
         <p className="text-muted-foreground text-sm">
-          {showDetail ? 'Lesson progress detail' : `${students.length} enrolled`}
+          {showDetail ? "Lesson progress detail" : `${students.length} enrolled`}
         </p>
       </div>
 
       {showDetail ? (
         <>
           <StudentDetailView detail={detail!} scrollTarget={scrollTarget} />
-          <Im3GraphExposureForm candidates={exposureCandidates.filter((candidate) => candidate.studentId === selectedId)} />
+          <Im3GraphExposureForm
+            candidates={exposureCandidates.filter(
+              (candidate) => candidate.studentId === selectedId,
+            )}
+          />
         </>
       ) : (
         <div className="grid gap-3" data-testid="teacher-student-list">
@@ -324,9 +333,9 @@ export default async function StudentsPage({ searchParams }: PageProps) {
                   key={student.id}
                   data-testid="teacher-student-list-row"
                   className={[
-                    'card-workbook p-4 space-y-2 transition-all',
-                    isSelected ? 'border-primary/50 bg-primary/5' : '',
-                  ].join(' ')}
+                    "card-workbook p-4 space-y-2 transition-all",
+                    isSelected ? "border-primary/50 bg-primary/5" : "",
+                  ].join(" ")}
                 >
                   <div className="flex items-center justify-between">
                     <div>
@@ -363,13 +372,13 @@ export default async function StudentsPage({ searchParams }: PageProps) {
                     )}
                     <span
                       className={[
-                        'px-2 py-0.5 rounded-full text-xs font-medium',
-                        student.atGlanceStatus === 'on-track'
-                          ? 'bg-green-100 text-green-800'
-                          : student.atGlanceStatus === 'behind'
-                            ? 'bg-red-100 text-red-800'
-                            : 'bg-muted text-muted-foreground',
-                      ].join(' ')}
+                        "px-2 py-0.5 rounded-full text-xs font-medium",
+                        student.atGlanceStatus === "on-track"
+                          ? "bg-green-100 text-green-800"
+                          : student.atGlanceStatus === "behind"
+                            ? "bg-red-100 text-red-800"
+                            : "bg-muted text-muted-foreground",
+                      ].join(" ")}
                     >
                       {STATUS_LABELS[student.atGlanceStatus]}
                     </span>

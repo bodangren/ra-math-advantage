@@ -1,12 +1,12 @@
 export const DATABASE_TABLE_NAMES = [
-  'organizations',
-  'lessons',
-  'lesson_versions',
-  'phase_versions',
-  'phase_sections',
-  'profiles',
-  'activities',
-  'student_progress',
+  "organizations",
+  "lessons",
+  "lesson_versions",
+  "phase_versions",
+  "phase_sections",
+  "profiles",
+  "activities",
+  "student_progress",
 ] as const;
 
 export type DatabaseTableName = (typeof DATABASE_TABLE_NAMES)[number];
@@ -119,5 +119,5 @@ export interface DatabaseTables {
   student_progress: { row: StudentProgressRow; insert: NewStudentProgressRow };
 }
 
-export type TableRow<T extends DatabaseTableName> = DatabaseTables[T]['row'];
-export type TableInsert<T extends DatabaseTableName> = DatabaseTables[T]['insert'];
+export type TableRow<T extends DatabaseTableName> = DatabaseTables[T]["row"];
+export type TableInsert<T extends DatabaseTableName> = DatabaseTables[T]["insert"];

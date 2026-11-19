@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const UNIT7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Basic Probability
@@ -16,7 +16,8 @@ export const UNIT7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "step-by-step-solver:fundamental-counting-principle",
     componentKey: "step-by-step-solver",
     displayName: "Fundamental Counting Principle",
-    description: "Use the fundamental counting principle to determine the number of possible outcomes",
+    description:
+      "Use the fundamental counting principle to determine the number of possible outcomes",
     objectiveIds: ["S-CP.A.1"],
     difficulty: "standard",
     metadata: { unit: 7, topic: "counting" },
@@ -36,7 +37,8 @@ export const UNIT7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "step-by-step-solver:combinations",
     componentKey: "step-by-step-solver",
     displayName: "Combinations",
-    description: "Calculate combinations to find the number of selections when order does not matter",
+    description:
+      "Calculate combinations to find the number of selections when order does not matter",
     objectiveIds: ["S-CP.A.1"],
     difficulty: "standard",
     metadata: { unit: 7, topic: "combinations" },

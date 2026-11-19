@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useState, useCallback } from 'react';
-import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
-import { MatchingGame } from '@/components/student/MatchingGame';
-import type { GlossaryTerm } from '@/lib/study/types';
-import { getGlossaryTermsByModule } from '@/lib/study/glossary';
-import { fetchInternalMutation, internal } from '@/lib/convex/server';
-import type { Id } from '@/convex/_generated/dataModel';
+import { useState, useCallback } from "react";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { MatchingGame } from "@/components/student/MatchingGame";
+import type { GlossaryTerm } from "@/lib/study/types";
+import { getGlossaryTermsByModule } from "@/lib/study/glossary";
+import { fetchInternalMutation, internal } from "@/lib/convex/server";
+import type { Id } from "@/convex/_generated/dataModel";
 
 interface MatchingPageClientProps {
   allTerms: GlossaryTerm[];
@@ -28,7 +28,7 @@ export function MatchingPageClient({
 }: MatchingPageClientProps) {
   const searchParams = useSearchParams();
   const [selectedModule, setSelectedModule] = useState<number | null>(() => {
-    const moduleParam = searchParams.get('module');
+    const moduleParam = searchParams.get("module");
     if (moduleParam) {
       const moduleNumber = parseInt(moduleParam, 10);
       if (!isNaN(moduleNumber) && moduleNumbers.includes(moduleNumber)) {
@@ -38,7 +38,7 @@ export function MatchingPageClient({
     return null;
   });
   const [sessionTerms, setSessionTerms] = useState<GlossaryTerm[]>(() => {
-    const moduleParam = searchParams.get('module');
+    const moduleParam = searchParams.get("module");
     if (moduleParam) {
       const moduleNumber = parseInt(moduleParam, 10);
       if (!isNaN(moduleNumber) && moduleNumbers.includes(moduleNumber)) {
@@ -58,7 +58,7 @@ export function MatchingPageClient({
         setSessionTerms(getGlossaryTermsByModule(moduleNumber));
       }
     },
-    [allTerms]
+    [allTerms],
   );
 
   const handleStartGame = () => {
@@ -74,19 +74,19 @@ export function MatchingPageClient({
     }) => {
       try {
         await fetchInternalMutation(internal.study.recordStudySession, {
-          userId: studentId as Id<'profiles'>,
-          activityType: 'matching',
+          userId: studentId as Id<"profiles">,
+          activityType: "matching",
           curriculumScope:
             selectedModule !== null
-              ? { type: 'module', moduleNumber: selectedModule }
-              : { type: 'all_units' },
+              ? { type: "module", moduleNumber: selectedModule }
+              : { type: "all_units" },
           results,
         });
       } catch (err) {
-        console.error('Failed to record matching session:', err);
+        console.error("Failed to record matching session:", err);
       }
     },
-    [studentId, selectedModule]
+    [studentId, selectedModule],
   );
 
   if (showGame) {
@@ -114,9 +114,7 @@ export function MatchingPageClient({
         >
           ← Back to Study Hub
         </Link>
-        <h1 className="text-3xl font-display font-bold text-foreground mt-2">
-          Matching Game
-        </h1>
+        <h1 className="text-3xl font-display font-bold text-foreground mt-2">Matching Game</h1>
         <p className="text-muted-foreground">
           Match terms with their definitions. Select a module or play with all terms.
         </p>
@@ -128,8 +126,8 @@ export function MatchingPageClient({
             onClick={() => handleModuleSelect(null)}
             className={`rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${
               selectedModule === null
-                ? 'border-primary bg-primary/10 text-primary'
-                : 'border-border bg-card text-foreground hover:border-primary/40'
+                ? "border-primary bg-primary/10 text-primary"
+                : "border-border bg-card text-foreground hover:border-primary/40"
             }`}
           >
             All Modules ({allTerms.length} terms)
@@ -142,8 +140,8 @@ export function MatchingPageClient({
                 onClick={() => handleModuleSelect(mod)}
                 className={`rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${
                   selectedModule === mod
-                    ? 'border-primary bg-primary/10 text-primary'
-                    : 'border-border bg-card text-foreground hover:border-primary/40'
+                    ? "border-primary bg-primary/10 text-primary"
+                    : "border-border bg-card text-foreground hover:border-primary/40"
                 }`}
               >
                 Module {mod} ({modTerms.length} terms)
@@ -167,8 +165,7 @@ export function MatchingPageClient({
                 ))}
               {getGlossaryTermsByModule(selectedModule).length > 5 && (
                 <li className="text-sm text-muted-foreground">
-                  ...and{' '}
-                  {getGlossaryTermsByModule(selectedModule).length - 5} more
+                  ...and {getGlossaryTermsByModule(selectedModule).length - 5} more
                 </li>
               )}
             </ul>

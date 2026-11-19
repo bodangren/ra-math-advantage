@@ -1,33 +1,30 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import {
-  buildStudentDashboardViewModel,
-  type StudentDashboardUnit,
-} from '@/lib/student/dashboard';
+import { buildStudentDashboardViewModel, type StudentDashboardUnit } from "@/lib/student/dashboard";
 
-describe('buildStudentDashboardViewModel', () => {
-  it('derives course metrics, unit progress, and next in-progress lesson', () => {
+describe("buildStudentDashboardViewModel", () => {
+  it("derives course metrics, unit progress, and next in-progress lesson", () => {
     const units: StudentDashboardUnit[] = [
       {
         unitNumber: 1,
-        unitTitle: 'Unit 1: Balance by Design',
+        unitTitle: "Unit 1: Balance by Design",
         lessons: [
           {
-            id: 'lesson-1',
+            id: "lesson-1",
             unitNumber: 1,
-            title: 'Lesson 1',
-            slug: 'unit-1-lesson-1',
-            description: 'Intro lesson',
+            title: "Lesson 1",
+            slug: "unit-1-lesson-1",
+            description: "Intro lesson",
             completedPhases: 6,
             totalPhases: 6,
             progressPercentage: 100,
           },
           {
-            id: 'lesson-2',
+            id: "lesson-2",
             unitNumber: 1,
-            title: 'Lesson 2',
-            slug: 'unit-1-lesson-2',
-            description: 'Resume this lesson',
+            title: "Lesson 2",
+            slug: "unit-1-lesson-2",
+            description: "Resume this lesson",
             completedPhases: 2,
             totalPhases: 6,
             progressPercentage: 33,
@@ -36,14 +33,14 @@ describe('buildStudentDashboardViewModel', () => {
       },
       {
         unitNumber: 2,
-        unitTitle: 'Unit 2: Flow of Transactions',
+        unitTitle: "Unit 2: Flow of Transactions",
         lessons: [
           {
-            id: 'lesson-3',
+            id: "lesson-3",
             unitNumber: 2,
-            title: 'Lesson 3',
-            slug: 'unit-2-lesson-1',
-            description: 'Not started',
+            title: "Lesson 3",
+            slug: "unit-2-lesson-1",
+            description: "Not started",
             completedPhases: 0,
             totalPhases: 6,
             progressPercentage: 0,
@@ -58,37 +55,37 @@ describe('buildStudentDashboardViewModel', () => {
     expect(viewModel.summary.completedLessons).toBe(1);
     expect(viewModel.summary.inProgressLessons).toBe(1);
     expect(viewModel.summary.completedUnits).toBe(0);
-    expect(viewModel.nextLesson?.title).toBe('Lesson 2');
-    expect(viewModel.nextLesson?.actionLabel).toBe('Resume Lesson');
-    expect(viewModel.units[0].status).toBe('in_progress');
+    expect(viewModel.nextLesson?.title).toBe("Lesson 2");
+    expect(viewModel.nextLesson?.actionLabel).toBe("Resume Lesson");
+    expect(viewModel.units[0].status).toBe("in_progress");
     expect(viewModel.units[0].completedLessons).toBe(1);
     expect(viewModel.units[0].progressPercentage).toBe(67);
-    expect(viewModel.units[0].nextLesson?.slug).toBe('unit-1-lesson-2');
-    expect(viewModel.units[1].status).toBe('not_started');
-    expect(viewModel.units[1].nextLesson?.actionLabel).toBe('Start Lesson');
+    expect(viewModel.units[0].nextLesson?.slug).toBe("unit-1-lesson-2");
+    expect(viewModel.units[1].status).toBe("not_started");
+    expect(viewModel.units[1].nextLesson?.actionLabel).toBe("Start Lesson");
   });
 
-  it('weights unit progress by phases instead of averaging lesson percentages', () => {
+  it("weights unit progress by phases instead of averaging lesson percentages", () => {
     const units: StudentDashboardUnit[] = [
       {
         unitNumber: 3,
-        unitTitle: 'Unit 3',
+        unitTitle: "Unit 3",
         lessons: [
           {
-            id: 'lesson-short',
+            id: "lesson-short",
             unitNumber: 3,
-            title: 'Short lesson',
-            slug: 'short-lesson',
+            title: "Short lesson",
+            slug: "short-lesson",
             description: null,
             completedPhases: 2,
             totalPhases: 2,
             progressPercentage: 100,
           },
           {
-            id: 'lesson-long',
+            id: "lesson-long",
             unitNumber: 3,
-            title: 'Long lesson',
-            slug: 'long-lesson',
+            title: "Long lesson",
+            slug: "long-lesson",
             description: null,
             completedPhases: 0,
             totalPhases: 8,
@@ -104,17 +101,17 @@ describe('buildStudentDashboardViewModel', () => {
     expect(viewModel.summary.progressPercentage).toBe(20);
   });
 
-  it('returns no next lesson when course is fully complete', () => {
+  it("returns no next lesson when course is fully complete", () => {
     const units: StudentDashboardUnit[] = [
       {
         unitNumber: 1,
-        unitTitle: 'Unit 1',
+        unitTitle: "Unit 1",
         lessons: [
           {
-            id: 'lesson-1',
+            id: "lesson-1",
             unitNumber: 1,
-            title: 'Lesson 1',
-            slug: 'unit-1-lesson-1',
+            title: "Lesson 1",
+            slug: "unit-1-lesson-1",
             description: null,
             completedPhases: 4,
             totalPhases: 4,
@@ -130,10 +127,10 @@ describe('buildStudentDashboardViewModel', () => {
     expect(viewModel.summary.completedUnits).toBe(1);
     expect(viewModel.summary.completedLessons).toBe(1);
     expect(viewModel.nextLesson).toBeNull();
-    expect(viewModel.units[0].status).toBe('completed');
+    expect(viewModel.units[0].status).toBe("completed");
   });
 
-  it('handles an empty dashboard without crashing', () => {
+  it("handles an empty dashboard without crashing", () => {
     const viewModel = buildStudentDashboardViewModel([]);
 
     expect(viewModel.summary.totalLessons).toBe(0);

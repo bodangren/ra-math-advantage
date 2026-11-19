@@ -1,4 +1,4 @@
-export type { GlossaryTerm } from '@math-platform/math-content/glossary';
+export type { GlossaryTerm } from "@math-platform/math-content/glossary";
 
 export interface ScheduledTerm {
   termSlug: string;
@@ -12,4 +12,4 @@ export interface ReviewResult {
   scheduledFor: number;
 }
 
-export type ProficiencyBand = 'new' | 'learning' | 'familiar' | 'mastered';
+export type ProficiencyBand = "new" | "learning" | "familiar" | "mastered";

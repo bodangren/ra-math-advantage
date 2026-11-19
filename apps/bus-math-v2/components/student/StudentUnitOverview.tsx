@@ -1,11 +1,11 @@
-import Link from 'next/link';
-import { ArrowRight, BookOpen, Clock, Rocket, Target, Trophy, Wrench } from 'lucide-react';
+import Link from "next/link";
+import { ArrowRight, BookOpen, Clock, Rocket, Target, Trophy, Wrench } from "lucide-react";
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import type { Lesson } from '@/lib/schemas/validators';
-import { studentLessonPath } from '@/lib/student/navigation';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type { Lesson } from "@/lib/schemas/validators";
+import { studentLessonPath } from "@/lib/student/navigation";
 
 interface UnitOverview {
   id: string;
@@ -30,55 +30,54 @@ const practiceTestMessages: Record<
   }
 > = {
   1: {
-    title: 'Practice Test & Investor Rehearsal',
+    title: "Practice Test & Investor Rehearsal",
     description:
-      'Run the Unit 1 practice test to rehearse investor questions, pull randomized items from every lesson, and capture explanations you can teach back.',
-    tip: 'Finish Lesson 07 first so you can apply Sarah’s audit trail standards while you review results.'
+      "Run the Unit 1 practice test to rehearse investor questions, pull randomized items from every lesson, and capture explanations you can teach back.",
+    tip: "Finish Lesson 07 first so you can apply Sarah’s audit trail standards while you review results.",
   },
   2: {
-    title: 'Practice Test & Month-End Drill',
+    title: "Practice Test & Month-End Drill",
     description:
-      'Launch the Unit 2 drill to refresh adjusting entries, reconciliation controls, and data validation with fresh question draws every time.',
-    tip: 'Complete the capstone lesson before the drill so you can narrate the end-to-end close process during review.'
+      "Launch the Unit 2 drill to refresh adjusting entries, reconciliation controls, and data validation with fresh question draws every time.",
+    tip: "Complete the capstone lesson before the drill so you can narrate the end-to-end close process during review.",
   },
   3: {
-    title: 'Practice Test & Storyboard Mastery',
+    title: "Practice Test & Storyboard Mastery",
     description:
-      'Trigger the Unit 3 practice test to rehearse integrated statements, dashboard storytelling, and QA checklists.',
-    tip: 'Complete the integration sprint before reviewing so you can map answers back to Sarah’s business rules.'
+      "Trigger the Unit 3 practice test to rehearse integrated statements, dashboard storytelling, and QA checklists.",
+    tip: "Complete the integration sprint before reviewing so you can map answers back to Sarah’s business rules.",
   },
   4: {
-    title: 'Practice Test & Café Analysis Confidence',
+    title: "Practice Test & Café Analysis Confidence",
     description:
-      'Use the Unit 4 practice test to sharpen data cleaning, regression analysis, and insight writing before showcasing your café playbook.',
-    tip: 'Finish the pitch rehearsal lesson first to leverage the same visual storytelling techniques while reviewing responses.'
+      "Use the Unit 4 practice test to sharpen data cleaning, regression analysis, and insight writing before showcasing your café playbook.",
+    tip: "Finish the pitch rehearsal lesson first to leverage the same visual storytelling techniques while reviewing responses.",
   },
   5: {
-    title: 'Practice Test & Payroll Mastery',
+    title: "Practice Test & Payroll Mastery",
     description:
-      'Launch the Unit 5 drill to validate gross-to-net calculations, overtime logic, and compliance guardrails.',
-    tip: 'Complete the QA automation lesson before reviewing so you can double-check every scenario with the same rubric.'
+      "Launch the Unit 5 drill to validate gross-to-net calculations, overtime logic, and compliance guardrails.",
+    tip: "Complete the QA automation lesson before reviewing so you can double-check every scenario with the same rubric.",
   },
   6: {
-    title: 'Practice Test & Pricing Strategy Confidence',
+    title: "Practice Test & Pricing Strategy Confidence",
     description:
-      'Use the Unit 6 test to rehearse contribution margin decisions, break-even modeling, and markup vs. margin storytelling.',
-    tip: 'Finish the production optimization sprint before the test to apply QA polishing to your answer review.'
+      "Use the Unit 6 test to rehearse contribution margin decisions, break-even modeling, and markup vs. margin storytelling.",
+    tip: "Finish the production optimization sprint before the test to apply QA polishing to your answer review.",
   },
   7: {
-    title: 'Practice Test & Asset Strategy Mastery',
+    title: "Practice Test & Asset Strategy Mastery",
     description:
-      'Launch the Unit 7 drill to practice depreciation trade-offs, FIFO/LIFO implications, and strategic recommendations.',
-    tip: 'Complete the board readiness lesson before review so you can annotate responses with the same storytelling arc.'
+      "Launch the Unit 7 drill to practice depreciation trade-offs, FIFO/LIFO implications, and strategic recommendations.",
+    tip: "Complete the board readiness lesson before review so you can annotate responses with the same storytelling arc.",
   },
   8: {
-    title: 'Practice Test & Investor Readiness',
+    title: "Practice Test & Investor Readiness",
     description:
-      'Use the Unit 8 test to rehearse investor Q&A, integrated models, and year-one strategy decks.',
-    tip: 'Complete the investor rehearsal sprint first so you can cross-check each answer with presentation criteria.'
-  }
+      "Use the Unit 8 test to rehearse investor Q&A, integrated models, and year-one strategy decks.",
+    tip: "Complete the investor rehearsal sprint first so you can cross-check each answer with presentation criteria.",
+  },
 };
-
 
 /**
  * Extracts unique skill tags from an array of lessons.
@@ -90,7 +89,6 @@ function uniqueSkills(lessons: Lesson[]) {
   const tags = lessons.flatMap((lesson) => lesson.metadata?.tags ?? []);
   return Array.from(new Set(tags)).slice(0, 8);
 }
-
 
 /**
  * Extracts the first 4 learning objectives from an array of lessons.
@@ -105,7 +103,6 @@ function buildingGoals(lessons: Lesson[]) {
     .slice(0, 4);
 }
 
-
 /**
  * Computes the total instructional hours from an array of lessons.
  *
@@ -117,7 +114,6 @@ function totalHours(lessons: Lesson[]) {
   return Math.round((minutes / 60) * 10) / 10;
 }
 
-
 /**
  * Builds the student-facing navigation path for a lesson.
  *
@@ -126,14 +122,13 @@ function totalHours(lessons: Lesson[]) {
  */
 function lessonPath(lesson: Lesson) {
   if (lesson.slug) {
-    return lesson.slug.startsWith('/student') ? lesson.slug : studentLessonPath(lesson.slug);
+    return lesson.slug.startsWith("/student") ? lesson.slug : studentLessonPath(lesson.slug);
   }
 
-  const unit = lesson.unitNumber.toString().padStart(2, '0');
-  const lessonNumber = lesson.orderIndex.toString().padStart(2, '0');
+  const unit = lesson.unitNumber.toString().padStart(2, "0");
+  const lessonNumber = lesson.orderIndex.toString().padStart(2, "0");
   return studentLessonPath(`unit${unit}-lesson${lessonNumber}`);
 }
-
 
 /**
  * Renders a student-facing unit overview with business challenge description,
@@ -146,9 +141,9 @@ function lessonPath(lesson: Lesson) {
  */
 export function StudentUnitOverview({ unit, lessons }: StudentUnitOverviewProps) {
   const practiceTest = practiceTestMessages[unit.sequence] ?? {
-    title: 'Practice Test Ready',
+    title: "Practice Test Ready",
     description: `Launch the practice test to rehearse skills from Unit ${unit.sequence}.`,
-    tip: 'Complete the latest lesson first so you can reinforce the freshest skills during review.'
+    tip: "Complete the latest lesson first so you can reinforce the freshest skills during review.",
   };
 
   const lessonHours = totalHours(lessons);
@@ -236,7 +231,9 @@ export function StudentUnitOverview({ unit, lessons }: StudentUnitOverviewProps)
         </CardHeader>
         <CardContent className="space-y-3 text-sm text-purple-900 dark:text-purple-100">
           <p>Every unit concludes with a professional presentation or live demonstration.</p>
-          <p>Use your dashboards, models, and practice test reflections to narrate Sarah’s growth.</p>
+          <p>
+            Use your dashboards, models, and practice test reflections to narrate Sarah’s growth.
+          </p>
         </CardContent>
       </Card>
 
@@ -255,7 +252,7 @@ export function StudentUnitOverview({ unit, lessons }: StudentUnitOverviewProps)
             >
               <div>
                 <p className="text-sm font-semibold text-muted-foreground">
-                  Lesson {lesson.orderIndex.toString().padStart(2, '0')}
+                  Lesson {lesson.orderIndex.toString().padStart(2, "0")}
                 </p>
                 <h3 className="text-lg font-medium">{lesson.title}</h3>
                 <p className="text-sm text-muted-foreground">{lesson.description}</p>
@@ -287,7 +284,12 @@ export function StudentUnitOverview({ unit, lessons }: StudentUnitOverviewProps)
           <p>{practiceTest.description}</p>
           <p className="font-medium text-foreground">{practiceTest.tip}</p>
           <Button asChild className="mt-2 w-fit">
-            <Link href={unit.practiceTestHref ?? `/student/unit${unit.sequence.toString().padStart(2, '0')}/practice-test`}>
+            <Link
+              href={
+                unit.practiceTestHref ??
+                `/student/unit${unit.sequence.toString().padStart(2, "0")}/practice-test`
+              }
+            >
               Launch Practice Test
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>

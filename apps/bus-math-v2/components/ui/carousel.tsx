@@ -1,17 +1,16 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface CarouselProps {
-  children: React.ReactNode[]
-  className?: string
-  itemsPerView?: number
-  gap?: string
+  children: React.ReactNode[];
+  className?: string;
+  itemsPerView?: number;
+  gap?: string;
 }
-
 
 /**
  * Renders a navigable carousel with prev/next buttons and dot indicators.
@@ -19,51 +18,44 @@ interface CarouselProps {
  * @param props - Child slides, itemsPerView, gap, and className
  * @returns A carousel component with navigation controls
  */
-export function Carousel({ 
-  children, 
-  className,
-  itemsPerView = 1,
-  gap = "gap-4"
-}: CarouselProps) {
-  const [currentIndex, setCurrentIndex] = React.useState(0)
-  const maxIndex = Math.max(0, children.length - itemsPerView)
-
+export function Carousel({ children, className, itemsPerView = 1, gap = "gap-4" }: CarouselProps) {
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const maxIndex = Math.max(0, children.length - itemsPerView);
 
   /**
    * Advances the carousel to the next slide.
    */
   const next = () => {
-    setCurrentIndex((prev) => Math.min(prev + 1, maxIndex))
-  }
-
+    setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
+  };
 
   /**
    * Moves the carousel to the previous slide.
    */
   const prev = () => {
-    setCurrentIndex((prev) => Math.max(prev - 1, 0))
-  }
+    setCurrentIndex((prev) => Math.max(prev - 1, 0));
+  };
 
-  const canGoNext = currentIndex < maxIndex
-  const canGoPrev = currentIndex > 0
+  const canGoNext = currentIndex < maxIndex;
+  const canGoPrev = currentIndex > 0;
 
   return (
     <div className={cn("relative", className)}>
       <div className="overflow-hidden">
-        <div 
+        <div
           className={cn("flex transition-transform duration-300 ease-in-out", gap)}
           style={{
-            transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`
+            transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
           }}
         >
           {children.map((child, index) => (
-            <div 
+            <div
               key={index}
               className={cn("flex-shrink-0", {
-                'w-full': itemsPerView === 1,
-                'w-1/2': itemsPerView === 2,
-                'w-1/3': itemsPerView === 3,
-                'w-1/4': itemsPerView === 4,
+                "w-full": itemsPerView === 1,
+                "w-1/2": itemsPerView === 2,
+                "w-1/3": itemsPerView === 3,
+                "w-1/4": itemsPerView === 4,
               })}
             >
               {child}
@@ -102,9 +94,9 @@ export function Carousel({
             key={index}
             className={cn(
               "w-2 h-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background",
-              index === currentIndex 
-                ? "bg-primary" 
-                : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+              index === currentIndex
+                ? "bg-primary"
+                : "bg-muted-foreground/30 hover:bg-muted-foreground/50",
             )}
             onClick={() => setCurrentIndex(index)}
           >
@@ -113,5 +105,5 @@ export function Carousel({
         ))}
       </div>
     </div>
-  )
+  );
 }

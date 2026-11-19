@@ -51,8 +51,8 @@ const LESSONS = [
             sectionType: "text" as const,
             content: {
               markdown:
-                "## Explore: What Is a \"Typical\" Value?\n\n" +
-                "Students discuss what it means for a value to be \"typical\" or \"average\" for a group. They consider a data set with one very large or very small value and debate whether the mean, median, or mode best represents the group.\n\n" +
+                '## Explore: What Is a "Typical" Value?\n\n' +
+                'Students discuss what it means for a value to be "typical" or "average" for a group. They consider a data set with one very large or very small value and debate whether the mean, median, or mode best represents the group.\n\n' +
                 "**Inquiry Question:** How can different measures of center give very different pictures of the same data set?",
             },
           },
@@ -70,7 +70,7 @@ const LESSONS = [
             content: {
               markdown:
                 "## Learn: Measures of Center\n\n" +
-                "The three main measures of center describe the \"typical\" value in a data set in different ways.\n\n" +
+                'The three main measures of center describe the "typical" value in a data set in different ways.\n\n' +
                 "### Key Concept: Mean, Median, and Mode\n\n" +
                 "* **Mean** — Add all values and divide by the number of values.\n" +
                 "\n" +
@@ -194,7 +194,7 @@ const LESSONS = [
                 "  * Image7 — Volunteer hours table for problem 26.\n" +
                 "  * Image8 — Pet adoptions table for problem 28.\n" +
                 "  * Image9 — Bowling scores table for problem 30.\n" +
-                "  * Image10 — \"Which One Doesn't Belong\" options for problem 36.\n" +
+                '  * Image10 — "Which One Doesn\'t Belong" options for problem 36.\n' +
                 "  A human reviewer should verify that all tables and charts are correctly represented or transcribed into the digital curriculum.",
             },
           },
@@ -562,7 +562,7 @@ const LESSONS = [
                 "Analyze survey questions and the context in which they appear to identify potential bias. Determine whose interests may be served by a biased question.\n\n" +
                 "### Step 1: Read the Question Carefully\n\n" +
                 "Look for leading phrases, emotional language, or assumptions that suggest a preferred answer.\n\n" +
-                "*Example:* \"Music education enriches student learning. Do you support music education in schools?\" uses a leading premise that encourages a positive response.\n\n" +
+                '*Example:* "Music education enriches student learning. Do you support music education in schools?" uses a leading premise that encourages a positive response.\n\n' +
                 "### Step 2: Consider Contextual Bias\n\n" +
                 "Examine where the question appears. Placement next to an opinion piece or advertisement can influence responses.\n\n" +
                 "*Example:* A poll about mayoral candidates placed on the same page as an opinion piece supporting one candidate introduces contextual bias.\n\n" +
@@ -1471,7 +1471,7 @@ const LESSONS = [
                 "\\text{Small watermelon} = 12\\% \\text{ of } 125 = 15\n" +
                 "\n" +
                 "### Step 3: Use Differences and Relationships to Fill Remaining Cells\n\n" +
-                "Use clues such as \"15 more than\" or \"most popular\" to find missing joint frequencies, then subtract to find the remaining values.\n" +
+                'Use clues such as "15 more than" or "most popular" to find missing joint frequencies, then subtract to find the remaining values.\n' +
                 "\n" +
                 "\\text{Cherry} = \\text{Grape} + 15 = 40 + 15 = 55\n" +
                 "\n" +
@@ -1666,7 +1666,7 @@ export const seedModule9Lessons = internalMutation({
         const existingPhase = await ctx.db
           .query("phase_versions")
           .withIndex("by_lesson_version_and_phase", (q) =>
-            q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+            q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
           )
           .first();
 

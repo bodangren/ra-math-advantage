@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 import {
   domainUtilityRegistryV3_2Schema,
@@ -12,9 +12,12 @@ import {
   utilityReleaseIdentityV3_2Schema,
   type UtilityReleaseIdentityV3_2,
   bindDomainUtilityProviderV3_2,
-} from './v3-2-domain-utility-contract';
+} from "./v3-2-domain-utility-contract";
 
-const idSchema = z.string().min(1).refine((value) => value.trim() === value);
+const idSchema = z
+  .string()
+  .min(1)
+  .refine((value) => value.trim() === value);
 
 export interface DomainUtilityRegistryV3_2Runtime {
   readonly registrations: readonly BoundDomainUtilityProviderV3_2[];
@@ -29,11 +32,13 @@ export function createDomainUtilityRegistryV3_2(
   );
   const manifests = rebound.map((registration) => registration.manifest);
   domainUtilityRegistryV3_2Schema.parse({
-    schemaVersion: 'planner.utility-registry.v3.2',
+    schemaVersion: "planner.utility-registry.v3.2",
     registrations: manifests,
   });
   const copied = Object.freeze([...rebound]);
-  const byDomain = new Map(copied.map((registration) => [registration.manifest.domain, registration]));
+  const byDomain = new Map(
+    copied.map((registration) => [registration.manifest.domain, registration]),
+  );
   return Object.freeze({
     registrations: copied,
     get(domain: string) {
@@ -54,23 +59,21 @@ export function resolveDomainUtilityV3_2(
   input: ResolveDomainUtilityInputV3_2,
 ): UtilityResolutionV3_2 {
   const domain = idSchema.parse(input.domain);
-  const graphReleaseIdentity = utilityReleaseIdentityV3_2Schema.parse(
-    input.graphReleaseIdentity,
-  );
+  const graphReleaseIdentity = utilityReleaseIdentityV3_2Schema.parse(input.graphReleaseIdentity);
   const nodeId = idSchema.parse(input.nodeId);
   const context = learnerUtilityContextV3_2Schema.parse(input.context);
   if (context.domain !== domain || graphReleaseIdentity.domain !== domain) {
-    throw new Error('Utility learner context domain does not match the requested adapter');
+    throw new Error("Utility learner context domain does not match the requested adapter");
   }
   const registration = input.registry.get(domain);
   if (!registration) {
     return utilityResolutionV3_2Schema.parse({
-      schemaVersion: 'planner.utility-resolution.v3.2',
-      kind: 'inert',
+      schemaVersion: "planner.utility-resolution.v3.2",
+      kind: "inert",
       releaseIdentity: graphReleaseIdentity,
       utility: 0,
       signals: [],
-      reason: 'no-provider',
+      reason: "no-provider",
       weightsRenormalized: false,
     });
   }
@@ -81,14 +84,14 @@ export function resolveDomainUtilityV3_2(
     registration.manifest.graphContentHash !== graphReleaseIdentity.graphContentHash ||
     registration.manifest.precomputeInputHash !== graphReleaseIdentity.precomputeInputHash
   ) {
-    throw new Error('Utility provider registration does not match the requested graph release');
+    throw new Error("Utility provider registration does not match the requested graph release");
   }
   const result = utilityProviderResultV3_2Schema.parse(
     registration.provider.getUtility(nodeId, context),
   );
   return utilityResolutionV3_2Schema.parse({
-    schemaVersion: 'planner.utility-resolution.v3.2',
-    kind: 'provider',
+    schemaVersion: "planner.utility-resolution.v3.2",
+    kind: "provider",
     releaseIdentity: graphReleaseIdentity,
     providerKey: registration.provider.providerKey,
     providerVersion: registration.provider.version,

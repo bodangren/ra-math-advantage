@@ -1,6 +1,4 @@
-export {
-  shuffleArray,
-} from './study/shuffle';
+export { shuffleArray } from "./study/shuffle";
 
 export {
   type StudyTerm,
@@ -8,14 +6,9 @@ export {
   type StudySessionResult,
   type StudySessionState,
   RATING_DELTAS,
-} from './study/types';
+} from "./study/types";
 
-export {
-  BaseReviewSession,
-} from './study/base-session';
+export { BaseReviewSession } from "./study/base-session";
 
-export {
-  MatchingGame,
-  SpeedRoundGame,
-} from './games';
-export type { MatchingGameProps, SpeedRoundGameProps } from './games';
+export { MatchingGame, SpeedRoundGame } from "./games";
+export type { MatchingGameProps, SpeedRoundGameProps } from "./games";

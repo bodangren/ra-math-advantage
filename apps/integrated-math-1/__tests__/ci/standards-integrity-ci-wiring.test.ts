@@ -27,15 +27,10 @@ function readCiWorkflow(): string {
 }
 
 function extractJobSection(workflowText: string, jobId: string): string {
-  const pattern = new RegExp(
-    `^  ${jobId}:[\\s\\S]*?(?=\\n  [a-zA-Z][a-zA-Z0-9_-]*:)`,
-    "m"
-  );
+  const pattern = new RegExp(`^  ${jobId}:[\\s\\S]*?(?=\\n  [a-zA-Z][a-zA-Z0-9_-]*:)`, "m");
   const match = workflowText.match(pattern);
   if (!match) {
-    throw new Error(
-      `Job '${jobId}' not found in CI workflow at ${CI_WORKFLOW_PATH}`
-    );
+    throw new Error(`Job '${jobId}' not found in CI workflow at ${CI_WORKFLOW_PATH}`);
   }
   return match[0];
 }

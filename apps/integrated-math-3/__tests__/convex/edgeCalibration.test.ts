@@ -23,28 +23,28 @@
  * Follows the hand-rolled `makeMockCtx` pattern from
  * `__tests__/convex/objectiveProficiency.test.ts:5` (no convex-test).
  */
-import { describe, it, expect, vi } from 'vitest';
-import type { Id } from '@/convex/_generated/dataModel';
+import { describe, it, expect, vi } from "vitest";
+import type { Id } from "@/convex/_generated/dataModel";
 import {
   refreshCalibrationReviewQueueHandler,
   listCalibrationReviewQueueHandler,
-} from '@/convex/edgeCalibration';
+} from "@/convex/edgeCalibration";
 
 // ---------------------------------------------------------------------------
 // Types mirroring the IM3 schema for the two new tables
 // ---------------------------------------------------------------------------
 
 type EdgeCalibrationRow = {
-  _id: Id<'edge_calibration'>;
+  _id: Id<"edge_calibration">;
   edgeId: string;
   alpha: number;
   beta: number;
   lastUpdated: number;
-  status: 'confirmed' | 'refuted' | 'untested';
+  status: "confirmed" | "refuted" | "untested";
 };
 
 type CalibrationReviewQueueRow = {
-  _id: Id<'calibration_review_queue'>;
+  _id: Id<"calibration_review_queue">;
   edgeId: string;
   contingencyTable: {
     proficientAProficientB: number;
@@ -64,14 +64,13 @@ type CalibrationReviewQueueRow = {
 // Mock ctx factory (mirrors objectiveProficiency.test.ts pattern)
 // ---------------------------------------------------------------------------
 
-function makeMockCtx(overrides: {
-  edgeCalibrations?: EdgeCalibrationRow[];
-  reviewQueue?: CalibrationReviewQueueRow[];
-} = {}) {
-  const {
-    edgeCalibrations = [],
-    reviewQueue = [],
-  } = overrides;
+function makeMockCtx(
+  overrides: {
+    edgeCalibrations?: EdgeCalibrationRow[];
+    reviewQueue?: CalibrationReviewQueueRow[];
+  } = {},
+) {
+  const { edgeCalibrations = [], reviewQueue = [] } = overrides;
 
   // ---- query mocks ----
 
@@ -86,11 +85,13 @@ function makeMockCtx(overrides: {
 
   const reviewQueueQueryMock = {
     withIndex: vi.fn().mockImplementation((indexName: string) => {
-      if (indexName === 'by_flagged_at') {
+      if (indexName === "by_flagged_at") {
         return {
-          collect: vi.fn().mockImplementation(() =>
-            Promise.resolve([...reviewQueue].sort((a, b) => b.flaggedAt - a.flaggedAt))
-          ),
+          collect: vi
+            .fn()
+            .mockImplementation(() =>
+              Promise.resolve([...reviewQueue].sort((a, b) => b.flaggedAt - a.flaggedAt)),
+            ),
         };
       }
       return {
@@ -100,8 +101,8 @@ function makeMockCtx(overrides: {
   };
 
   const mockQuery = vi.fn().mockImplementation((tableName: string) => {
-    if (tableName === 'edge_calibration') return edgeCalibrationQueryMock;
-    if (tableName === 'calibration_review_queue') return reviewQueueQueryMock;
+    if (tableName === "edge_calibration") return edgeCalibrationQueryMock;
+    if (tableName === "calibration_review_queue") return reviewQueueQueryMock;
     return {
       withIndex: vi.fn().mockReturnValue({
         collect: vi.fn().mockResolvedValue([]),
@@ -115,16 +116,18 @@ function makeMockCtx(overrides: {
   const insertedEdgeCalibrations: Array<Record<string, unknown>> = [];
   const insertedQueueItems: Array<Record<string, unknown>> = [];
 
-  const mockInsert = vi.fn().mockImplementation((tableName: string, doc: Record<string, unknown>) => {
-    insertCounter++;
-    const id = `mock-id-${insertCounter}` as Id<'edge_calibration'>;
-    if (tableName === 'edge_calibration') {
-      insertedEdgeCalibrations.push(doc);
-    } else if (tableName === 'calibration_review_queue') {
-      insertedQueueItems.push(doc);
-    }
-    return Promise.resolve(id);
-  });
+  const mockInsert = vi
+    .fn()
+    .mockImplementation((tableName: string, doc: Record<string, unknown>) => {
+      insertCounter++;
+      const id = `mock-id-${insertCounter}` as Id<"edge_calibration">;
+      if (tableName === "edge_calibration") {
+        insertedEdgeCalibrations.push(doc);
+      } else if (tableName === "calibration_review_queue") {
+        insertedQueueItems.push(doc);
+      }
+      return Promise.resolve(id);
+    });
 
   const mockDelete = vi.fn().mockResolvedValue(undefined);
 
@@ -160,7 +163,7 @@ function makeDivergingEdge(edgeId: string) {
   return {
     edgeId,
     authoredWeight: 0.9,
-    authoredConfidence: 'high' as const,
+    authoredConfidence: "high" as const,
     observations: [
       makeObservation(false, true),
       makeObservation(false, true),
@@ -180,7 +183,7 @@ function makeMatchingEdge(edgeId: string) {
   return {
     edgeId,
     authoredWeight: 0.7,
-    authoredConfidence: 'medium' as const,
+    authoredConfidence: "medium" as const,
     observations: [
       makeObservation(false, false),
       makeObservation(false, false),
@@ -196,30 +199,30 @@ function makeMatchingEdge(edgeId: string) {
 // Task 3.6 — refreshCalibrationReviewQueueHandler: shape and behavior
 // ---------------------------------------------------------------------------
 
-describe('refreshCalibrationReviewQueueHandler (FR7, AC6)', () => {
-  it('is exported from apps/integrated-math-3/convex/edgeCalibration', () => {
-    expect(typeof refreshCalibrationReviewQueueHandler).toBe('function');
+describe("refreshCalibrationReviewQueueHandler (FR7, AC6)", () => {
+  it("is exported from apps/integrated-math-3/convex/edgeCalibration", () => {
+    expect(typeof refreshCalibrationReviewQueueHandler).toBe("function");
   });
 
-  it('returns zero flagged when no edges are provided', async () => {
+  it("returns zero flagged when no edges are provided", async () => {
     const { db } = makeMockCtx();
     const result = await refreshCalibrationReviewQueueHandler(
-      { db } as unknown as import('@/convex/_generated/server').MutationCtx,
-      { courseKey: 'integrated-math-3', edges: [] },
+      { db } as unknown as import("@/convex/_generated/server").MutationCtx,
+      { courseKey: "integrated-math-3", edges: [] },
     );
     expect(result.flagged).toBe(0);
   });
 
-  it('persists a queue item only for edges that diverge beyond threshold', async () => {
+  it("persists a queue item only for edges that diverge beyond threshold", async () => {
     const { db, insertedQueueItems, insertedEdgeCalibrations } = makeMockCtx();
     const result = await refreshCalibrationReviewQueueHandler(
-      { db } as unknown as import('@/convex/_generated/server').MutationCtx,
+      { db } as unknown as import("@/convex/_generated/server").MutationCtx,
       {
-        courseKey: 'integrated-math-3',
+        courseKey: "integrated-math-3",
         edges: [
-          makeDivergingEdge('edge.flag-1'),
-          makeMatchingEdge('edge.ok-1'),
-          makeDivergingEdge('edge.flag-2'),
+          makeDivergingEdge("edge.flag-1"),
+          makeMatchingEdge("edge.ok-1"),
+          makeDivergingEdge("edge.flag-2"),
         ],
       },
     );
@@ -227,32 +230,34 @@ describe('refreshCalibrationReviewQueueHandler (FR7, AC6)', () => {
     expect(result.flagged).toBe(2);
     expect(insertedQueueItems).toHaveLength(2);
     const queuedIds = insertedQueueItems.map((q) => (q as { edgeId: string }).edgeId).sort();
-    expect(queuedIds).toEqual(['edge.flag-1', 'edge.flag-2']);
+    expect(queuedIds).toEqual(["edge.flag-1", "edge.flag-2"]);
 
     // The matching edge is not queued.
-    expect(insertedQueueItems.some((q) => (q as { edgeId: string }).edgeId === 'edge.ok-1')).toBe(false);
+    expect(insertedQueueItems.some((q) => (q as { edgeId: string }).edgeId === "edge.ok-1")).toBe(
+      false,
+    );
 
     // Each queued item carries the canonical queue shape.
     const first = insertedQueueItems[0] as Record<string, unknown>;
-    expect(first).toHaveProperty('edgeId');
-    expect(first).toHaveProperty('contingencyTable');
-    expect(first).toHaveProperty('authoredWeight');
-    expect(first).toHaveProperty('authoredConfidence');
-    expect(first).toHaveProperty('calibratedWeight');
-    expect(first).toHaveProperty('calibratedConfidence');
-    expect(first).toHaveProperty('divergence');
-    expect(first).toHaveProperty('flaggedAt');
+    expect(first).toHaveProperty("edgeId");
+    expect(first).toHaveProperty("contingencyTable");
+    expect(first).toHaveProperty("authoredWeight");
+    expect(first).toHaveProperty("authoredConfidence");
+    expect(first).toHaveProperty("calibratedWeight");
+    expect(first).toHaveProperty("calibratedConfidence");
+    expect(first).toHaveProperty("divergence");
+    expect(first).toHaveProperty("flaggedAt");
 
     // Edge calibration state should also be upserted for every edge
     // (the adapter is the source of truth for per-edge α, β persistence).
     expect(insertedEdgeCalibrations).toHaveLength(3);
   });
 
-  it('attaches the full contingency table to each queued item', async () => {
+  it("attaches the full contingency table to each queued item", async () => {
     const { db, insertedQueueItems } = makeMockCtx();
     await refreshCalibrationReviewQueueHandler(
-      { db } as unknown as import('@/convex/_generated/server').MutationCtx,
-      { courseKey: 'integrated-math-3', edges: [makeDivergingEdge('edge.observed')] },
+      { db } as unknown as import("@/convex/_generated/server").MutationCtx,
+      { courseKey: "integrated-math-3", edges: [makeDivergingEdge("edge.observed")] },
     );
 
     expect(insertedQueueItems).toHaveLength(1);
@@ -265,18 +270,18 @@ describe('refreshCalibrationReviewQueueHandler (FR7, AC6)', () => {
     expect(ct.notProficientANotProficientB).toBe(2);
   });
 
-  it('does not write to the queue for edges that are untested (FR5 confounding guardrail)', async () => {
+  it("does not write to the queue for edges that are untested (FR5 confounding guardrail)", async () => {
     const { db, insertedQueueItems } = makeMockCtx();
     // No observations → no paired verdicts → confounding guardrail → untested → not flagged
     await refreshCalibrationReviewQueueHandler(
-      { db } as unknown as import('@/convex/_generated/server').MutationCtx,
+      { db } as unknown as import("@/convex/_generated/server").MutationCtx,
       {
-        courseKey: 'integrated-math-3',
+        courseKey: "integrated-math-3",
         edges: [
           {
-            edgeId: 'edge.untested',
+            edgeId: "edge.untested",
             authoredWeight: 0.9,
-            authoredConfidence: 'high',
+            authoredConfidence: "high",
             observations: [],
           },
         ],
@@ -290,21 +295,21 @@ describe('refreshCalibrationReviewQueueHandler (FR7, AC6)', () => {
 // Task 3.7 — N+1 guard: batch reads and writes (test-strategy.md §3)
 // ---------------------------------------------------------------------------
 
-describe('refreshCalibrationReviewQueueHandler — N+1 guard', () => {
-  it('reads from edge_calibration with a single batched call regardless of edge count', async () => {
+describe("refreshCalibrationReviewQueueHandler — N+1 guard", () => {
+  it("reads from edge_calibration with a single batched call regardless of edge count", async () => {
     const N = 10;
     const edges = Array.from({ length: N }, (_, i) => makeDivergingEdge(`edge.${i}`));
 
     const { db, mockQuery, edgeCalibrationCollect } = makeMockCtx();
     await refreshCalibrationReviewQueueHandler(
-      { db } as unknown as import('@/convex/_generated/server').MutationCtx,
-      { courseKey: 'integrated-math-3', edges },
+      { db } as unknown as import("@/convex/_generated/server").MutationCtx,
+      { courseKey: "integrated-math-3", edges },
     );
 
     // Total `db.query` invocations should be O(1) (one for the existing
     // edge_calibration rows, one for the existing queue) — not O(N).
     const edgeCalibrationQueryCalls = mockQuery.mock.calls.filter(
-      ([t]) => t === 'edge_calibration',
+      ([t]) => t === "edge_calibration",
     ).length;
     expect(edgeCalibrationQueryCalls).toBeLessThanOrEqual(1);
 
@@ -312,14 +317,14 @@ describe('refreshCalibrationReviewQueueHandler — N+1 guard', () => {
     expect(edgeCalibrationCollect).toHaveBeenCalledTimes(1);
   });
 
-  it('writes queue items in a single batched Promise.all (no per-edge awaits)', async () => {
+  it("writes queue items in a single batched Promise.all (no per-edge awaits)", async () => {
     const N = 10;
     const edges = Array.from({ length: N }, (_, i) => makeDivergingEdge(`edge.${i}`));
 
     const { db, mockInsert } = makeMockCtx();
     await refreshCalibrationReviewQueueHandler(
-      { db } as unknown as import('@/convex/_generated/server').MutationCtx,
-      { courseKey: 'integrated-math-3', edges },
+      { db } as unknown as import("@/convex/_generated/server").MutationCtx,
+      { courseKey: "integrated-math-3", edges },
     );
 
     // N queue inserts issued, but all inside a single Promise.all. We
@@ -327,20 +332,20 @@ describe('refreshCalibrationReviewQueueHandler — N+1 guard', () => {
     // number of times (N queue + N edge_calibration) and that the queue
     // inserts land synchronously before any await on them.
     const insertCalls = mockInsert.mock.calls;
-    const queueInserts = insertCalls.filter(([t]) => t === 'calibration_review_queue');
-    const edgeCalibrationInserts = insertCalls.filter(([t]) => t === 'edge_calibration');
+    const queueInserts = insertCalls.filter(([t]) => t === "calibration_review_queue");
+    const edgeCalibrationInserts = insertCalls.filter(([t]) => t === "edge_calibration");
     expect(queueInserts).toHaveLength(N);
     expect(edgeCalibrationInserts).toHaveLength(N);
   });
 
-  it('does not issue any per-edge queries against knowledge-space tables (graph is read-only)', async () => {
+  it("does not issue any per-edge queries against knowledge-space tables (graph is read-only)", async () => {
     const N = 5;
     const edges = Array.from({ length: N }, (_, i) => makeDivergingEdge(`edge.${i}`));
 
     const { db, mockQuery } = makeMockCtx();
     await refreshCalibrationReviewQueueHandler(
-      { db } as unknown as import('@/convex/_generated/server').MutationCtx,
-      { courseKey: 'integrated-math-3', edges },
+      { db } as unknown as import("@/convex/_generated/server").MutationCtx,
+      { courseKey: "integrated-math-3", edges },
     );
 
     // The adapter must only touch the two calibration tables — never
@@ -349,7 +354,7 @@ describe('refreshCalibrationReviewQueueHandler — N+1 guard', () => {
     // per-edge).
     const tablesTouched = new Set(mockQuery.mock.calls.map(([t]) => t));
     for (const t of tablesTouched) {
-      expect(['edge_calibration', 'calibration_review_queue']).toContain(t);
+      expect(["edge_calibration", "calibration_review_queue"]).toContain(t);
     }
   });
 });
@@ -358,16 +363,16 @@ describe('refreshCalibrationReviewQueueHandler — N+1 guard', () => {
 // Task 3.8 — listCalibrationReviewQueueHandler: shape and ordering
 // ---------------------------------------------------------------------------
 
-describe('listCalibrationReviewQueueHandler (FR7, AC6)', () => {
-  it('is exported from apps/integrated-math-3/convex/edgeCalibration', () => {
-    expect(typeof listCalibrationReviewQueueHandler).toBe('function');
+describe("listCalibrationReviewQueueHandler (FR7, AC6)", () => {
+  it("is exported from apps/integrated-math-3/convex/edgeCalibration", () => {
+    expect(typeof listCalibrationReviewQueueHandler).toBe("function");
   });
 
-  it('returns queue items sorted by flaggedAt desc (newest first)', async () => {
+  it("returns queue items sorted by flaggedAt desc (newest first)", async () => {
     const reviewQueue: CalibrationReviewQueueRow[] = [
       {
-        _id: 'q-1' as Id<'calibration_review_queue'>,
-        edgeId: 'edge.old',
+        _id: "q-1" as Id<"calibration_review_queue">,
+        edgeId: "edge.old",
         contingencyTable: {
           proficientAProficientB: 1,
           proficientANotProficientB: 0,
@@ -375,15 +380,15 @@ describe('listCalibrationReviewQueueHandler (FR7, AC6)', () => {
           notProficientANotProficientB: 0,
         },
         authoredWeight: 0.9,
-        authoredConfidence: 'high',
+        authoredConfidence: "high",
         calibratedWeight: 0.1,
-        calibratedConfidence: 'low',
+        calibratedConfidence: "low",
         divergence: 0.8,
         flaggedAt: 1_700_000_000_000,
       },
       {
-        _id: 'q-2' as Id<'calibration_review_queue'>,
-        edgeId: 'edge.new',
+        _id: "q-2" as Id<"calibration_review_queue">,
+        edgeId: "edge.new",
         contingencyTable: {
           proficientAProficientB: 1,
           proficientANotProficientB: 0,
@@ -391,9 +396,9 @@ describe('listCalibrationReviewQueueHandler (FR7, AC6)', () => {
           notProficientANotProficientB: 0,
         },
         authoredWeight: 0.9,
-        authoredConfidence: 'high',
+        authoredConfidence: "high",
         calibratedWeight: 0.1,
-        calibratedConfidence: 'low',
+        calibratedConfidence: "low",
         divergence: 0.8,
         flaggedAt: 1_800_000_000_000,
       },
@@ -401,21 +406,18 @@ describe('listCalibrationReviewQueueHandler (FR7, AC6)', () => {
 
     const { db } = makeMockCtx({ reviewQueue });
     const result = await listCalibrationReviewQueueHandler(
-      { db } as unknown as import('@/convex/_generated/server').QueryCtx,
-      { courseKey: 'integrated-math-3' },
+      { db } as unknown as import("@/convex/_generated/server").QueryCtx,
+      { courseKey: "integrated-math-3" },
     );
 
-    expect(result.map((r: { edgeId: string }) => r.edgeId)).toEqual([
-      'edge.new',
-      'edge.old',
-    ]);
+    expect(result.map((r: { edgeId: string }) => r.edgeId)).toEqual(["edge.new", "edge.old"]);
   });
 
-  it('returns an empty array when the queue is empty', async () => {
+  it("returns an empty array when the queue is empty", async () => {
     const { db } = makeMockCtx({ reviewQueue: [] });
     const result = await listCalibrationReviewQueueHandler(
-      { db } as unknown as import('@/convex/_generated/server').QueryCtx,
-      { courseKey: 'integrated-math-3' },
+      { db } as unknown as import("@/convex/_generated/server").QueryCtx,
+      { courseKey: "integrated-math-3" },
     );
     expect(result).toEqual([]);
   });

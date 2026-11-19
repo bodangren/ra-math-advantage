@@ -157,11 +157,7 @@ describe("IM3 teacher-led source preservation", () => {
         },
       },
     ] satisfies TestRow[];
-    const ctx = makeContext(
-      { [domainActivity._id]: domainActivity },
-      sections,
-      null,
-    );
+    const ctx = makeContext({ [domainActivity._id]: domainActivity }, sections, null);
 
     const result = await ensureIm3TeacherLedSourceActivity(
       ctx as never,
@@ -281,11 +277,7 @@ describe("IM3 teacher-led source preservation", () => {
         },
       },
     ] satisfies TestRow[];
-    const ctx = makeContext(
-      { [legacyActivity._id]: legacyActivity },
-      sections,
-      null,
-    );
+    const ctx = makeContext({ [legacyActivity._id]: legacyActivity }, sections, null);
 
     const result = await ensureIm3TeacherLedSourceActivity(
       ctx as never,

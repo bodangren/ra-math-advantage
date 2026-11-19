@@ -1,24 +1,20 @@
-import { redirect } from 'next/navigation';
+import { redirect } from "next/navigation";
 
-import { requireDanielsonSession } from '@/lib/auth/server';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
-import type {
-  ImprovementPlanListView,
-  ImprovementPlanProgress,
-  ImprovementPlanView,
-} from './view';
+import { requireDanielsonSession } from "@/lib/auth/server";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
+import type { ImprovementPlanListView, ImprovementPlanProgress, ImprovementPlanView } from "./view";
 
 export async function getImprovementPlanList(cursor: string | null) {
-  const session = await requireDanielsonSession('/improvement-plans');
+  const session = await requireDanielsonSession("/improvement-plans");
   const result = await fetchInternalQuery(internal.improvementPlans.listScopedImprovementPlans, {
     actorAccountId: session.claims.sub,
     paginationOpts: { cursor, numItems: 25 },
     now: Date.now(),
   });
-  if (result.kind === 'capacity_exceeded') {
-    throw new Error('The improvement plan list exceeded its safe capacity.');
+  if (result.kind === "capacity_exceeded") {
+    throw new Error("The improvement plan list exceeded its safe capacity.");
   }
-  if (result.kind !== 'allowed') redirect('/unauthorized');
+  if (result.kind !== "allowed") redirect("/unauthorized");
   return {
     session,
     page: result.page as {
@@ -36,8 +32,9 @@ export async function getImprovementPlanProposalWorkspace(teacherProfileId: stri
     internal.improvementPlans.readImprovementPlanProposalWorkspace,
     { actorAccountId: session.claims.sub, teacherProfileId },
   );
-  if (result.kind === 'capacity_exceeded') throw new Error('The proposal workspace exceeded its safe capacity.');
-  if (result.kind !== 'allowed') redirect('/unauthorized');
+  if (result.kind === "capacity_exceeded")
+    throw new Error("The proposal workspace exceeded its safe capacity.");
+  if (result.kind !== "allowed") redirect("/unauthorized");
   return { session, workspace: result };
 }
 
@@ -49,8 +46,9 @@ export async function getImprovementPlan(planId: string) {
     planId,
     now: Date.now(),
   });
-  if (result.kind === 'capacity_exceeded') throw new Error('The improvement plan exceeded its safe capacity.');
-  if (result.kind !== 'allowed') redirect('/unauthorized');
+  if (result.kind === "capacity_exceeded")
+    throw new Error("The improvement plan exceeded its safe capacity.");
+  if (result.kind !== "allowed") redirect("/unauthorized");
   const progressResult = await fetchInternalQuery(
     internal.improvementPlans.readImprovementPlanReportProjection,
     {
@@ -60,8 +58,9 @@ export async function getImprovementPlan(planId: string) {
       now: Date.now(),
     },
   );
-  if (progressResult.kind === 'capacity_exceeded') throw new Error('The plan evidence exceeded its safe capacity.');
-  if (progressResult.kind !== 'allowed') redirect('/unauthorized');
+  if (progressResult.kind === "capacity_exceeded")
+    throw new Error("The plan evidence exceeded its safe capacity.");
+  if (progressResult.kind !== "allowed") redirect("/unauthorized");
   return {
     session,
     plan: result.plan as ImprovementPlanView,

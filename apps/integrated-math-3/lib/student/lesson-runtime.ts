@@ -1,8 +1,5 @@
-import type { DashboardLessonActionLink } from '@/lib/student/dashboard-presentation';
-import {
-  buildStudentDashboardViewModel,
-  type StudentDashboardUnit,
-} from '@/lib/student/dashboard';
+import type { DashboardLessonActionLink } from "@/lib/student/dashboard-presentation";
+import { buildStudentDashboardViewModel, type StudentDashboardUnit } from "@/lib/student/dashboard";
 
 /** Determines the phase number to land on when navigating to a lesson. */
 export function resolveLessonLandingPhase({

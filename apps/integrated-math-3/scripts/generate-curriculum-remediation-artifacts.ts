@@ -1,6 +1,6 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { parseAleksPracticeMap, parseClassPeriodPlan } from '../lib/curriculum/audit';
+import fs from "node:fs";
+import path from "node:path";
+import { parseAleksPracticeMap, parseClassPeriodPlan } from "../lib/curriculum/audit";
 
 interface PeriodPackage {
   periodId: string;
@@ -27,8 +27,8 @@ interface PeriodPackage {
 }
 
 const rootDir = process.cwd();
-const implementationDir = path.join(rootDir, 'curriculum', 'implementation');
-const packageDir = path.join(implementationDir, 'class-period-packages');
+const implementationDir = path.join(rootDir, "curriculum", "implementation");
+const packageDir = path.join(implementationDir, "class-period-packages");
 
 /**
  * Reads a UTF-8 text file from disk and returns its content as a string.
@@ -38,7 +38,7 @@ const packageDir = path.join(implementationDir, 'class-period-packages');
  * @throws {Error} If the file does not exist or cannot be read.
  */
 function readText(filePath: string): string {
-  return fs.readFileSync(filePath, 'utf8');
+  return fs.readFileSync(filePath, "utf8");
 }
 
 /**
@@ -51,7 +51,7 @@ function readText(filePath: string): string {
  */
 function writeJson(filePath: string, value: unknown) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, JSON.stringify(value, null, 2) + '\n');
+  fs.writeFileSync(filePath, JSON.stringify(value, null, 2) + "\n");
 }
 
 /**
@@ -73,7 +73,7 @@ function writeText(filePath: string, value: string) {
  * @returns Absolute path to the module's class-period plan file.
  */
 function planPath(module: number): string {
-  return path.join(rootDir, 'curriculum', `module-${module}-class-period-plan.md`);
+  return path.join(rootDir, "curriculum", `module-${module}-class-period-plan.md`);
 }
 
 /**
@@ -84,7 +84,7 @@ function planPath(module: number): string {
  * @returns A string like "m01-p03".
  */
 function periodId(module: number, period: number): string {
-  return `m${String(module).padStart(2, '0')}-p${String(period).padStart(2, '0')}`;
+  return `m${String(module).padStart(2, "0")}-p${String(period).padStart(2, "0")}`;
 }
 
 /**
@@ -106,7 +106,7 @@ function objectiveCode(objective: string): string | undefined {
  * @returns The objective text without the code prefix.
  */
 function objectiveText(objective: string): string {
-  return objective.replace(/^\d+[a-z]\.\s*/, '').trim();
+  return objective.replace(/^\d+[a-z]\.\s*/, "").trim();
 }
 
 /**
@@ -117,7 +117,7 @@ function objectiveText(objective: string): string {
  * @returns An array of extracted objective code strings.
  */
 function embeddedObjectives(value: string): string[] {
-  if (!value || value === '—') return [];
+  if (!value || value === "—") return [];
   return [...value.matchAll(/`([^`]+)`/g)].map((match) => match[1]);
 }
 
@@ -140,9 +140,9 @@ function expandAleksReferences(value: string): string[] {
     const start = Number(match[2]);
     const end = Number(match[3]);
     for (let index = start; index <= end; index += 1) {
-      refs.push(`ALEKS ${prefix}.${String(index).padStart(2, '0')}`);
+      refs.push(`ALEKS ${prefix}.${String(index).padStart(2, "0")}`);
     }
-    cleaned = cleaned.replace(match[0], '');
+    cleaned = cleaned.replace(match[0], "");
   }
 
   for (const match of cleaned.matchAll(/ALEKS M\d+-L\d+-\d+\.\d{2}/g)) {
@@ -160,17 +160,20 @@ function expandAleksReferences(value: string): string[] {
  * @param aleks - Array of ALEKS topic strings aligned to this period.
  * @returns A fully populated PeriodPackage for an instruction day.
  */
-function packageForInstruction(period: ReturnType<typeof parseClassPeriodPlan>[number], aleks: string[]): PeriodPackage {
+function packageForInstruction(
+  period: ReturnType<typeof parseClassPeriodPlan>[number],
+  aleks: string[],
+): PeriodPackage {
   const code = objectiveCode(period.objective) ?? `m${period.module}p${period.period}`;
   const objective = objectiveText(period.objective);
-  const refs = expandAleksReferences(aleks[0] ?? '');
+  const refs = expandAleksReferences(aleks[0] ?? "");
   const hasDirectAleks = refs.length > 0;
 
   return {
     periodId: periodId(period.module, period.period),
     module: period.module,
     period: period.period,
-    dayType: 'instruction',
+    dayType: "instruction",
     sourceLesson: period.sourceLesson,
     objectiveCode: code,
     objective,
@@ -186,7 +189,7 @@ function packageForInstruction(period: ReturnType<typeof parseClassPeriodPlan>[n
       conceptDevelopment: `Use ${period.workedExamples} to develop: ${objective}.`,
       guidedPractice: `Students complete a scaffolded problem modeled on ${period.workedExamples}; teacher checks notation and reasoning.`,
       independentPractice: hasDirectAleks
-        ? `Students complete aligned ALEKS/SRS practice: ${refs.join(', ')}.`
+        ? `Students complete aligned ALEKS/SRS practice: ${refs.join(", ")}.`
         : `Students complete worked-example-derived SRS practice because no direct ALEKS export is available.`,
       assessment: `Exit ticket: one fresh problem assessing ${code} and one short explanation prompt.`,
       capReflection: `CAP reflection: Name the strategy that helped you persist with ${objective.toLowerCase()}.`,
@@ -201,7 +204,9 @@ function packageForInstruction(period: ReturnType<typeof parseClassPeriodPlan>[n
  * @param period - The parsed class-period plan entry.
  * @returns A PeriodPackage with day-type-specific artifact metadata.
  */
-function packageForNonInstruction(period: ReturnType<typeof parseClassPeriodPlan>[number]): PeriodPackage {
+function packageForNonInstruction(
+  period: ReturnType<typeof parseClassPeriodPlan>[number],
+): PeriodPackage {
   const id = periodId(period.module, period.period);
   const base = {
     periodId: id,
@@ -211,43 +216,56 @@ function packageForNonInstruction(period: ReturnType<typeof parseClassPeriodPlan
     notes: period.notes,
   };
 
-  if (period.dayType === 'mastery') {
+  if (period.dayType === "mastery") {
     return {
       ...base,
       nonInstructionArtifact: {
-        artifactType: 'mastery',
+        artifactType: "mastery",
         objectiveScope: period.notes,
-        srsSources: ['worked-example-derived practice', 'ALEKS topic practice where available', 'prior-unit spiral review'],
-        remediationGrouping: 'Group students by recent objective evidence and misconception patterns.',
-        extensionOptions: 'Offer synthesis problems that combine current objectives with prior modules.',
-        evidence: 'Student completes due SRS items and submits one corrected-error reflection.',
+        srsSources: [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review",
+        ],
+        remediationGrouping:
+          "Group students by recent objective evidence and misconception patterns.",
+        extensionOptions:
+          "Offer synthesis problems that combine current objectives with prior modules.",
+        evidence: "Student completes due SRS items and submits one corrected-error reflection.",
       },
     };
   }
 
-  if (period.dayType === 'jigsaw') {
+  if (period.dayType === "jigsaw") {
     return {
       ...base,
       nonInstructionArtifact: {
-        artifactType: 'jigsaw',
+        artifactType: "jigsaw",
         groupTask: period.notes,
-        sourceWorkedExamples: 'Use the prior instruction periods named in the notes as the problem bank.',
-        deliverable: 'Group solution poster or shared explanation with one strategy comparison.',
-        facilitationNotes: 'Assign roles for graphing, algebra, checking, and explanation.',
-        completionCriteria: 'Correct method, accurate result, clear justification, and response to peer question.',
+        sourceWorkedExamples:
+          "Use the prior instruction periods named in the notes as the problem bank.",
+        deliverable: "Group solution poster or shared explanation with one strategy comparison.",
+        facilitationNotes: "Assign roles for graphing, algebra, checking, and explanation.",
+        completionCriteria:
+          "Correct method, accurate result, clear justification, and response to peer question.",
       },
     };
   }
 
-  if (period.dayType === 'review') {
+  if (period.dayType === "review") {
     return {
       ...base,
       nonInstructionArtifact: {
-        artifactType: 'review',
+        artifactType: "review",
         objectiveCoverage: period.notes,
-        reviewActivities: ['mixed retrieval set', 'misconception sort', 'student-selected retry set'],
-        misconceptionTargets: 'Use recent mastery and SRS evidence to select the highest-frequency errors.',
-        readinessCheck: 'Short diagnostic covering representative module objectives.',
+        reviewActivities: [
+          "mixed retrieval set",
+          "misconception sort",
+          "student-selected retry set",
+        ],
+        misconceptionTargets:
+          "Use recent mastery and SRS evidence to select the highest-frequency errors.",
+        readinessCheck: "Short diagnostic covering representative module objectives.",
       },
     };
   }
@@ -255,11 +273,17 @@ function packageForNonInstruction(period: ReturnType<typeof parseClassPeriodPlan
   return {
     ...base,
     nonInstructionArtifact: {
-      artifactType: 'test',
+      artifactType: "test",
       objectiveCoverage: period.notes,
-      assessmentStructure: ['fluency section', 'conceptual reasoning section', 'modeling/application section'],
-      gradingExpectations: 'Grade against module objectives and record evidence for mastery updates.',
-      retakeRelationship: 'Retake eligibility follows the course mastery policy after targeted remediation.',
+      assessmentStructure: [
+        "fluency section",
+        "conceptual reasoning section",
+        "modeling/application section",
+      ],
+      gradingExpectations:
+        "Grade against module objectives and record evidence for mastery updates.",
+      retakeRelationship:
+        "Retake eligibility follows the course mastery policy after targeted remediation.",
     },
   };
 }
@@ -276,10 +300,12 @@ function generatePackages() {
   for (let moduleNumber = 1; moduleNumber <= 9; moduleNumber += 1) {
     const plan = readText(planPath(moduleNumber));
     const periods = parseClassPeriodPlan(plan, moduleNumber);
-    const aleksRows = new Map(parseAleksPracticeMap(plan, moduleNumber).map((row) => [row.period, row]));
+    const aleksRows = new Map(
+      parseAleksPracticeMap(plan, moduleNumber).map((row) => [row.period, row]),
+    );
     const packages = periods.map((period) => {
       const row = aleksRows.get(period.period);
-      if (period.dayType === 'instruction') {
+      if (period.dayType === "instruction") {
         return packageForInstruction(period, row ? [row.topics] : []);
       }
       return packageForNonInstruction(period);
@@ -287,7 +313,7 @@ function generatePackages() {
 
     allPackages.push(...packages);
     writeJson(path.join(packageDir, `module-${moduleNumber}.json`), {
-      schemaVersion: 'class-period-package.v1',
+      schemaVersion: "class-period-package.v1",
       module: moduleNumber,
       generatedFrom: `curriculum/module-${moduleNumber}-class-period-plan.md`,
       periods: packages,
@@ -302,16 +328,62 @@ function generatePackages() {
  * and lesson source exceptions across all modules.
  */
 function generateExceptions() {
-  writeJson(path.join(implementationDir, 'exceptions.json'), {
-    schemaVersion: 'curriculum-exceptions.v1',
+  writeJson(path.join(implementationDir, "exceptions.json"), {
+    schemaVersion: "curriculum-exceptions.v1",
     aleksTopicGaps: [
-      { module: 2, declaredTopics: 23, listedTopics: 13, reason: 'Source HTML exposes only 13 rendered topic rows for this module export.', replacementPlan: 'Use worked-example-derived SRS for uncovered periods.' },
-      { module: 3, declaredTopics: 30, listedTopics: 4, reason: 'Source HTML exposes only 4 rendered topic rows for this module export.', replacementPlan: 'Use worked-example-derived SRS for uncovered polynomial-equation objectives.' },
-      { module: 4, declaredTopics: 92, listedTopics: 88, reason: 'Source HTML exposes 88 rendered topic rows for this module export.', replacementPlan: 'Use worked-example-derived SRS only where no direct topic aligns.' },
-      { module: 5, declaredTopics: 59, listedTopics: 43, reason: 'Source HTML exposes 43 rendered topic rows for this module export.', replacementPlan: 'Use worked-example-derived SRS for exponential inequalities and series gaps.' },
-      { module: 6, declaredTopics: 29, listedTopics: 21, reason: 'Source HTML exposes 21 rendered topic rows and includes Module 5 carryover groups.', replacementPlan: 'Use worked-example-derived SRS for natural-log notation and decay contexts.' },
-      { module: 7, declaredTopics: 86, listedTopics: 82, reason: 'Source HTML exposes 82 rendered topic rows for this module export.', replacementPlan: 'Use worked-example-derived SRS for reciprocal graphing gaps.' },
-      { module: 9, declaredTopics: 45, listedTopics: 31, reason: 'Source HTML exposes 31 rendered topic rows for this module export.', replacementPlan: 'Use worked-example-derived SRS for translation and inverse-trig gaps.' },
+      {
+        module: 2,
+        declaredTopics: 23,
+        listedTopics: 13,
+        reason: "Source HTML exposes only 13 rendered topic rows for this module export.",
+        replacementPlan: "Use worked-example-derived SRS for uncovered periods.",
+      },
+      {
+        module: 3,
+        declaredTopics: 30,
+        listedTopics: 4,
+        reason: "Source HTML exposes only 4 rendered topic rows for this module export.",
+        replacementPlan:
+          "Use worked-example-derived SRS for uncovered polynomial-equation objectives.",
+      },
+      {
+        module: 4,
+        declaredTopics: 92,
+        listedTopics: 88,
+        reason: "Source HTML exposes 88 rendered topic rows for this module export.",
+        replacementPlan: "Use worked-example-derived SRS only where no direct topic aligns.",
+      },
+      {
+        module: 5,
+        declaredTopics: 59,
+        listedTopics: 43,
+        reason: "Source HTML exposes 43 rendered topic rows for this module export.",
+        replacementPlan:
+          "Use worked-example-derived SRS for exponential inequalities and series gaps.",
+      },
+      {
+        module: 6,
+        declaredTopics: 29,
+        listedTopics: 21,
+        reason:
+          "Source HTML exposes 21 rendered topic rows and includes Module 5 carryover groups.",
+        replacementPlan:
+          "Use worked-example-derived SRS for natural-log notation and decay contexts.",
+      },
+      {
+        module: 7,
+        declaredTopics: 86,
+        listedTopics: 82,
+        reason: "Source HTML exposes 82 rendered topic rows for this module export.",
+        replacementPlan: "Use worked-example-derived SRS for reciprocal graphing gaps.",
+      },
+      {
+        module: 9,
+        declaredTopics: 45,
+        listedTopics: 31,
+        reason: "Source HTML exposes 31 rendered topic rows for this module export.",
+        replacementPlan: "Use worked-example-derived SRS for translation and inverse-trig gaps.",
+      },
     ],
     lessonSourceExceptions: [],
   });
@@ -323,35 +395,35 @@ function generateExceptions() {
  */
 function generateReadme() {
   writeText(
-    path.join(implementationDir, 'README.md'),
+    path.join(implementationDir, "README.md"),
     [
-      '# Curriculum Implementation Artifacts',
-      '',
-      'This directory contains generated planning artifacts that bridge the source curriculum to app implementation.',
-      '',
-      '## Files',
-      '',
-      '- `class-period-packages/module-*.json`: one package for each planned class period.',
-      '- `exceptions.json`: explicit source limitations and replacement plans.',
-      '- `audit/latest.json`: latest machine-readable curriculum audit report.',
-      '',
-      '## Class-Period Package Schema',
-      '',
-      'Instruction packages include `periodId`, `module`, `period`, `dayType`, `sourceLesson`, `objectiveCode`, `objective`, `workedExamples`, `aleksSrsPractice` or `srsSubstitute`, and six daily phases: `warmUp`, `conceptDevelopment`, `guidedPractice`, `independentPractice`, `assessment`, and `capReflection`.',
-      '',
-      'Non-instruction packages include a `nonInstructionArtifact` object for `mastery`, `jigsaw`, `review`, or `test` day work.',
-      '',
-      '## Validation',
-      '',
-      'Run:',
-      '',
-      '```bash',
-      'npm run curriculum:audit',
-      '```',
-      '',
-      'The audit verifies curriculum counts, lesson source quality, ALEKS coverage documentation, package coverage, and class-period package coverage. Run `npm test` to validate the seeded runtime activities.',
-      '',
-    ].join('\n'),
+      "# Curriculum Implementation Artifacts",
+      "",
+      "This directory contains generated planning artifacts that bridge the source curriculum to app implementation.",
+      "",
+      "## Files",
+      "",
+      "- `class-period-packages/module-*.json`: one package for each planned class period.",
+      "- `exceptions.json`: explicit source limitations and replacement plans.",
+      "- `audit/latest.json`: latest machine-readable curriculum audit report.",
+      "",
+      "## Class-Period Package Schema",
+      "",
+      "Instruction packages include `periodId`, `module`, `period`, `dayType`, `sourceLesson`, `objectiveCode`, `objective`, `workedExamples`, `aleksSrsPractice` or `srsSubstitute`, and six daily phases: `warmUp`, `conceptDevelopment`, `guidedPractice`, `independentPractice`, `assessment`, and `capReflection`.",
+      "",
+      "Non-instruction packages include a `nonInstructionArtifact` object for `mastery`, `jigsaw`, `review`, or `test` day work.",
+      "",
+      "## Validation",
+      "",
+      "Run:",
+      "",
+      "```bash",
+      "npm run curriculum:audit",
+      "```",
+      "",
+      "The audit verifies curriculum counts, lesson source quality, ALEKS coverage documentation, package coverage, and class-period package coverage. Run `npm test` to validate the seeded runtime activities.",
+      "",
+    ].join("\n"),
   );
 }
 

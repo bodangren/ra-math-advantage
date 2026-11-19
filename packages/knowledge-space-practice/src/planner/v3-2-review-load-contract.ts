@@ -1,8 +1,8 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 const EPSILON = 1e-9;
 
-export const reviewLoadStateV3_2Schema = z.enum(['normal', 'elevated', 'saturated']);
+export const reviewLoadStateV3_2Schema = z.enum(["normal", "elevated", "saturated"]);
 
 export const reviewLoadConfigV3_2Schema = z
   .object({
@@ -15,7 +15,7 @@ export const reviewLoadConfigV3_2Schema = z
 
 export const reviewLoadAssessmentV3_2Schema = z
   .object({
-    schemaVersion: z.literal('planner.review-load.v3.2'),
+    schemaVersion: z.literal("planner.review-load.v3.2"),
     asOf: z.string().datetime({ offset: true }),
     dueWithinHorizon: z.number().int().min(0),
     horizonDays: z.literal(7),
@@ -25,8 +25,8 @@ export const reviewLoadAssessmentV3_2Schema = z
     budgetPerDay: z.number().finite().positive(),
     elevatedBudgetFraction: z.literal(0.6),
     reviewLoadState: reviewLoadStateV3_2Schema,
-    newSkillAllowance: z.enum(['allowed', 'zero']),
-    guidance: z.enum(['continue', 'review-day']),
+    newSkillAllowance: z.enum(["allowed", "zero"]),
+    guidance: z.enum(["continue", "review-day"]),
   })
   .strict()
   .superRefine((assessment, ctx) => {
@@ -34,25 +34,40 @@ export const reviewLoadAssessmentV3_2Schema = z
     const budget = assessment.maxReviewsPerDay * assessment.loadBudgetFactor;
     const state =
       projected > budget
-        ? 'saturated'
+        ? "saturated"
         : projected >= budget * assessment.elevatedBudgetFraction
-          ? 'elevated'
-          : 'normal';
+          ? "elevated"
+          : "normal";
     if (Math.abs(assessment.projectedDailyLoad - projected) > EPSILON) {
-      ctx.addIssue({ code: 'custom', path: ['projectedDailyLoad'], message: 'Projected load must be due cards divided by seven' });
+      ctx.addIssue({
+        code: "custom",
+        path: ["projectedDailyLoad"],
+        message: "Projected load must be due cards divided by seven",
+      });
     }
     if (Math.abs(assessment.budgetPerDay - budget) > EPSILON) {
-      ctx.addIssue({ code: 'custom', path: ['budgetPerDay'], message: 'Budget must be max reviews times 0.8' });
+      ctx.addIssue({
+        code: "custom",
+        path: ["budgetPerDay"],
+        message: "Budget must be max reviews times 0.8",
+      });
     }
     if (assessment.reviewLoadState !== state) {
-      ctx.addIssue({ code: 'custom', path: ['reviewLoadState'], message: 'State does not match the load thresholds' });
+      ctx.addIssue({
+        code: "custom",
+        path: ["reviewLoadState"],
+        message: "State does not match the load thresholds",
+      });
     }
-    const saturated = state === 'saturated';
+    const saturated = state === "saturated";
     if (
-      assessment.newSkillAllowance !== (saturated ? 'zero' : 'allowed') ||
-      assessment.guidance !== (saturated ? 'review-day' : 'continue')
+      assessment.newSkillAllowance !== (saturated ? "zero" : "allowed") ||
+      assessment.guidance !== (saturated ? "review-day" : "continue")
     ) {
-      ctx.addIssue({ code: 'custom', message: 'Saturated load must suppress new skills and surface review-day guidance' });
+      ctx.addIssue({
+        code: "custom",
+        message: "Saturated load must suppress new skills and surface review-day guidance",
+      });
     }
   });
 

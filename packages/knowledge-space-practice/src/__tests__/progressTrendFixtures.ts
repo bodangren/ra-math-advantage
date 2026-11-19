@@ -13,10 +13,7 @@
 // graph actually contains, so the test driver can pass the same graph to
 // `projectParentVisualization` and the trend logic operates on real ids.
 
-import type {
-  MasterySnapshot,
-  ProgressTrendHistory,
-} from '@math-platform/knowledge-space-core';
+import type { MasterySnapshot, ProgressTrendHistory } from "@math-platform/knowledge-space-core";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -34,8 +31,8 @@ const BASE_TIMESTAMP = 1_700_000_000_000;
 // ---------------------------------------------------------------------------
 // Skill ids from `syntheticMathFixture` (knowledge-space-core/fixtures.ts)
 // ---------------------------------------------------------------------------
-const SKILL_IDENTIFY_ROOTS = 'math.im3.skill.m1.l2.identify-roots';
-const SKILL_SOLVE_FACTORING = 'math.im3.skill.m1.l2.solve-quadratic-by-factoring';
+const SKILL_IDENTIFY_ROOTS = "math.im3.skill.m1.l2.identify-roots";
+const SKILL_SOLVE_FACTORING = "math.im3.skill.m1.l2.solve-quadratic-by-factoring";
 
 // ---------------------------------------------------------------------------
 // Fixtures

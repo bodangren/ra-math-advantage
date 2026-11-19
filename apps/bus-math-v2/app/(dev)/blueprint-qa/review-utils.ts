@@ -6,16 +6,22 @@ import type {
   SkillNode,
   SourceDocument,
   SourceReference,
-} from './types';
+} from "./types";
 
-function locationValue(node: SkillNode, field: 'module' | 'lesson' | 'exampleNumber'): unknown {
-  if (field === 'module') return node.metadata.module ?? node.metadata.unit;
+function locationValue(node: SkillNode, field: "module" | "lesson" | "exampleNumber"): unknown {
+  if (field === "module") return node.metadata.module ?? node.metadata.unit;
   return node.metadata[field];
 }
 
 function compareNumericLabels(left: unknown, right: unknown): number {
-  const leftParts = String(left ?? '').match(/\d+/g)?.map(Number) ?? [];
-  const rightParts = String(right ?? '').match(/\d+/g)?.map(Number) ?? [];
+  const leftParts =
+    String(left ?? "")
+      .match(/\d+/g)
+      ?.map(Number) ?? [];
+  const rightParts =
+    String(right ?? "")
+      .match(/\d+/g)
+      ?.map(Number) ?? [];
   const length = Math.max(leftParts.length, rightParts.length);
 
   for (let index = 0; index < length; index += 1) {
@@ -23,19 +29,25 @@ function compareNumericLabels(left: unknown, right: unknown): number {
     if (difference !== 0) return difference;
   }
 
-  return String(left ?? '').localeCompare(String(right ?? ''), undefined, { numeric: true });
+  return String(left ?? "").localeCompare(String(right ?? ""), undefined, { numeric: true });
 }
 
 export function compareCurriculumNodes(left: SkillNode, right: SkillNode): number {
-  const moduleOrder = compareNumericLabels(locationValue(left, 'module'), locationValue(right, 'module'));
+  const moduleOrder = compareNumericLabels(
+    locationValue(left, "module"),
+    locationValue(right, "module"),
+  );
   if (moduleOrder !== 0) return moduleOrder;
 
-  const lessonOrder = compareNumericLabels(locationValue(left, 'lesson'), locationValue(right, 'lesson'));
+  const lessonOrder = compareNumericLabels(
+    locationValue(left, "lesson"),
+    locationValue(right, "lesson"),
+  );
   if (lessonOrder !== 0) return lessonOrder;
 
   const exampleOrder = compareNumericLabels(
-    locationValue(left, 'exampleNumber'),
-    locationValue(right, 'exampleNumber'),
+    locationValue(left, "exampleNumber"),
+    locationValue(right, "exampleNumber"),
   );
   if (exampleOrder !== 0) return exampleOrder;
 
@@ -45,8 +57,8 @@ export function compareCurriculumNodes(left: SkillNode, right: SkillNode): numbe
 
 function sameLocation(left: SkillNode, right: SkillNode): boolean {
   return (
-    String(locationValue(left, 'module') ?? '') === String(locationValue(right, 'module') ?? '') &&
-    String(locationValue(left, 'lesson') ?? '') === String(locationValue(right, 'lesson') ?? '')
+    String(locationValue(left, "module") ?? "") === String(locationValue(right, "module") ?? "") &&
+    String(locationValue(left, "lesson") ?? "") === String(locationValue(right, "lesson") ?? "")
   );
 }
 
@@ -57,7 +69,10 @@ export function getWorkedExamplesForSkill(
 ): SkillNode[] {
   const linked = new Set(sourceNodeIds);
   return nodes
-    .filter((node) => node.kind === 'worked_example' && (linked.has(node.id) || sameLocation(node, skill)))
+    .filter(
+      (node) =>
+        node.kind === "worked_example" && (linked.has(node.id) || sameLocation(node, skill)),
+    )
     .sort((left, right) => {
       const linkOrder = Number(linked.has(right.id)) - Number(linked.has(left.id));
       return linkOrder !== 0 ? linkOrder : compareCurriculumNodes(left, right);
@@ -65,9 +80,9 @@ export function getWorkedExamplesForSkill(
 }
 
 function sourceReferenceValues(reference: SourceReference): string[] {
-  if (typeof reference === 'string') return [reference];
+  if (typeof reference === "string") return [reference];
   return [reference.url, reference.location, reference.source].filter(
-    (value): value is string => typeof value === 'string',
+    (value): value is string => typeof value === "string",
   );
 }
 
@@ -92,16 +107,16 @@ export function resolvePdfReference(
 
 export function isReviewDecisionComplete(decision: ReviewDecision | undefined): boolean {
   if (!decision) return false;
-  return decision.status === 'approved' || decision.note.trim().length > 0;
+  return decision.status === "approved" || decision.note.trim().length > 0;
 }
 
 export function isSkillApproved(review: ReviewStore[string] | undefined): boolean {
   if (!review) return false;
   return (
-    Object.values(review.sourceAlignments).some((decision) => decision.status === 'approved') &&
-    review.worked_example?.status === 'approved' &&
-    review.guided_practice?.status === 'approved' &&
-    review.independent_practice?.status === 'approved'
+    Object.values(review.sourceAlignments).some((decision) => decision.status === "approved") &&
+    review.worked_example?.status === "approved" &&
+    review.guided_practice?.status === "approved" &&
+    review.independent_practice?.status === "approved"
   );
 }
 
@@ -121,7 +136,9 @@ export function buildReviewExport(courseKey: CourseKey, store: ReviewStore): Rev
           modalities: {
             ...(review.worked_example ? { worked_example: review.worked_example } : {}),
             ...(review.guided_practice ? { guided_practice: review.guided_practice } : {}),
-            ...(review.independent_practice ? { independent_practice: review.independent_practice } : {}),
+            ...(review.independent_practice
+              ? { independent_practice: review.independent_practice }
+              : {}),
           },
         };
       }),

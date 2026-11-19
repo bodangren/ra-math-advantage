@@ -14,9 +14,24 @@ export const seedDemoProgress = internalMutation({
     const now = Date.now();
 
     const studentProgress: SeedStudentProgress[] = [
-      { studentUsername: "demo_student_1", lessonSlug: "1-1-change-in-tandem", phaseNumber: 4, status: "completed" },
-      { studentUsername: "demo_student_1", lessonSlug: "1-2-rates-of-change", phaseNumber: 3, status: "in_progress" },
-      { studentUsername: "demo_student_1", lessonSlug: "1-3-rates-of-change-linear-quadratic", phaseNumber: 2, status: "in_progress" },
+      {
+        studentUsername: "demo_student_1",
+        lessonSlug: "1-1-change-in-tandem",
+        phaseNumber: 4,
+        status: "completed",
+      },
+      {
+        studentUsername: "demo_student_1",
+        lessonSlug: "1-2-rates-of-change",
+        phaseNumber: 3,
+        status: "in_progress",
+      },
+      {
+        studentUsername: "demo_student_1",
+        lessonSlug: "1-3-rates-of-change-linear-quadratic",
+        phaseNumber: 2,
+        status: "in_progress",
+      },
     ];
 
     const results: SeedDemoProgressResult[] = [];
@@ -65,15 +80,13 @@ export const seedDemoProgress = internalMutation({
       }
 
       let completionsCreated = 0;
-      const phasesToComplete = progress.status === "not_started"
-        ? 0
-        : progress.phaseNumber;
+      const phasesToComplete = progress.status === "not_started" ? 0 : progress.phaseNumber;
 
       for (let phase = 1; phase <= phasesToComplete; phase++) {
         const phaseVersion = await ctx.db
           .query("phase_versions")
           .withIndex("by_lesson_version_and_phase", (q) =>
-            q.eq("lessonVersionId", lessonVersion._id).eq("phaseNumber", phase)
+            q.eq("lessonVersionId", lessonVersion._id).eq("phaseNumber", phase),
           )
           .first();
 
@@ -82,12 +95,12 @@ export const seedDemoProgress = internalMutation({
         const phaseSections = await ctx.db
           .query("phase_sections")
           .withIndex("by_phase_version_and_sequence", (q) =>
-            q.eq("phaseVersionId", phaseVersion._id)
+            q.eq("phaseVersionId", phaseVersion._id),
           )
           .collect();
 
         const activitySections = phaseSections.filter(
-          (section) => section.sectionType === "activity"
+          (section) => section.sectionType === "activity",
         );
 
         for (const section of activitySections) {

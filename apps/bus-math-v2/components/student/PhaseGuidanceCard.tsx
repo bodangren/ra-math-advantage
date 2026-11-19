@@ -1,14 +1,13 @@
-import { BookCheck, Target } from 'lucide-react';
+import { BookCheck, Target } from "lucide-react";
 
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import type { PhaseGuidance } from '@/lib/curriculum/phase-guidance';
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type { PhaseGuidance } from "@/lib/curriculum/phase-guidance";
 
 interface PhaseGuidanceCardProps {
   guidance: PhaseGuidance;
   learningObjectives: string[] | null;
 }
-
 
 /**
  * Renders a phase guidance card showing the phase focus, success criteria,
@@ -19,10 +18,7 @@ interface PhaseGuidanceCardProps {
  * @param props.learningObjectives - Optional lesson learning objectives.
  * @returns A styled guidance card with criteria and objectives.
  */
-export function PhaseGuidanceCard({
-  guidance,
-  learningObjectives,
-}: PhaseGuidanceCardProps) {
+export function PhaseGuidanceCard({ guidance, learningObjectives }: PhaseGuidanceCardProps) {
   return (
     <Card className="border-primary/20 bg-primary/5">
       <CardHeader className="space-y-3">
@@ -43,7 +39,10 @@ export function PhaseGuidanceCard({
           </div>
           <ul className="space-y-2 text-sm text-muted-foreground">
             {guidance.successCriteria.map((criterion) => (
-              <li key={criterion} className="rounded-md border border-border/50 bg-background/80 px-3 py-2">
+              <li
+                key={criterion}
+                className="rounded-md border border-border/50 bg-background/80 px-3 py-2"
+              >
                 {criterion}
               </li>
             ))}

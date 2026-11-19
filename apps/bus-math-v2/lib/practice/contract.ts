@@ -19,4 +19,4 @@ export {
   type PracticeSubmissionInput,
   normalizePracticeSubmissionInput,
   normalizePracticeValue,
-} from '@math-platform/practice-core/contract';
+} from "@math-platform/practice-core/contract";

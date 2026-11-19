@@ -14,57 +14,62 @@ export interface MisconceptionTagDefinition {
   /** Short description of the error pattern */
   description: string;
   /** Semantic category for grouping in UI */
-  category: 'mechanics' | 'classification' | 'computation' | 'completeness';
+  category: "mechanics" | "classification" | "computation" | "completeness";
 }
 
 export const MISCONCEPTION_TAGS = {
-  'debit-credit-reversal': {
-    slug: 'debit-credit-reversal',
-    label: 'Debit/Credit Reversal',
-    description: 'Student debited an account that should have been credited, or vice versa.',
-    category: 'mechanics',
+  "debit-credit-reversal": {
+    slug: "debit-credit-reversal",
+    label: "Debit/Credit Reversal",
+    description: "Student debited an account that should have been credited, or vice versa.",
+    category: "mechanics",
   },
-  'omitted-entry': {
-    slug: 'omitted-entry',
-    label: 'Omitted Entry',
-    description: 'Student left out a required journal line, table row, or response part.',
-    category: 'completeness',
+  "omitted-entry": {
+    slug: "omitted-entry",
+    label: "Omitted Entry",
+    description: "Student left out a required journal line, table row, or response part.",
+    category: "completeness",
   },
-  'wrong-normal-balance': {
-    slug: 'wrong-normal-balance',
-    label: 'Wrong Normal Balance',
-    description: 'Student selected the wrong normal balance side (debit vs credit) for an account.',
-    category: 'mechanics',
+  "wrong-normal-balance": {
+    slug: "wrong-normal-balance",
+    label: "Wrong Normal Balance",
+    description: "Student selected the wrong normal balance side (debit vs credit) for an account.",
+    category: "mechanics",
   },
-  'sign-error': {
-    slug: 'sign-error',
-    label: 'Sign Error',
-    description: 'Student used the wrong sign or direction for an amount (e.g., negative where positive expected).',
-    category: 'computation',
+  "sign-error": {
+    slug: "sign-error",
+    label: "Sign Error",
+    description:
+      "Student used the wrong sign or direction for an amount (e.g., negative where positive expected).",
+    category: "computation",
   },
-  'classification-error': {
-    slug: 'classification-error',
-    label: 'Classification Error',
-    description: 'Student placed an account in the wrong category (account type, statement placement, or permanent/temporary).',
-    category: 'classification',
+  "classification-error": {
+    slug: "classification-error",
+    label: "Classification Error",
+    description:
+      "Student placed an account in the wrong category (account type, statement placement, or permanent/temporary).",
+    category: "classification",
   },
-  'wrong-account-type': {
-    slug: 'wrong-account-type',
-    label: 'Wrong Account Type',
-    description: 'Student confused the account type (e.g., treated a liability as equity, or an expense as an asset).',
-    category: 'classification',
+  "wrong-account-type": {
+    slug: "wrong-account-type",
+    label: "Wrong Account Type",
+    description:
+      "Student confused the account type (e.g., treated a liability as equity, or an expense as an asset).",
+    category: "classification",
   },
-  'computation-error': {
-    slug: 'computation-error',
-    label: 'Computation Error',
-    description: 'Student performed an arithmetic or formula error when calculating a subtotal, ratio, or derived value.',
-    category: 'computation',
+  "computation-error": {
+    slug: "computation-error",
+    label: "Computation Error",
+    description:
+      "Student performed an arithmetic or formula error when calculating a subtotal, ratio, or derived value.",
+    category: "computation",
   },
-  'incomplete-entry': {
-    slug: 'incomplete-entry',
-    label: 'Incomplete Entry',
-    description: 'Student provided a partial answer that is missing required fields (e.g., journal line without amount, or matrix cell left blank).',
-    category: 'completeness',
+  "incomplete-entry": {
+    slug: "incomplete-entry",
+    label: "Incomplete Entry",
+    description:
+      "Student provided a partial answer that is missing required fields (e.g., journal line without amount, or matrix cell left blank).",
+    category: "completeness",
   },
 } as const satisfies Record<string, MisconceptionTagDefinition>;
 

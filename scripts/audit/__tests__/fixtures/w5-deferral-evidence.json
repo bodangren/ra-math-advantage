@@ -5,8 +5,8 @@
   "purpose": "Phase 5 — Final Audit & Closure (Task 4 / FR5 / AC5). Documents the disposition of every one of the 36 direct upgrade candidates in the matrix: every row is either (a) upgraded — with the wave that landed the upgrade and the concrete installed version, or (b) deferred — with a compatibility-evidence note and an explicit follow-up owner. The w5 Red-phase TDD suite asserts this fixture exists, has the documented schema, and that every matrix row is present with a non-empty disposition.",
 
   "disposition_taxonomy": {
-    "upgraded":  "A manifest, lockfile, and audit-contract change landed in the named wave that resolved the upgrade candidate.",
-    "deferred":  "The upgrade is intentionally not landed in this track. The follow-up_owner MUST be a workspace path, a person, or a future track ID; compatibility_evidence MUST cite at least one of: spec NFR, peer-dep conflict, upstream status, or test-strategy.md reference."
+    "upgraded": "A manifest, lockfile, and audit-contract change landed in the named wave that resolved the upgrade candidate.",
+    "deferred": "The upgrade is intentionally not landed in this track. The follow-up_owner MUST be a workspace path, a person, or a future track ID; compatibility_evidence MUST cite at least one of: spec NFR, peer-dep conflict, upstream status, or test-strategy.md reference."
   },
 
   "candidates": [

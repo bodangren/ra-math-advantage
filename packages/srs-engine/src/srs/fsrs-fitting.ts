@@ -13,13 +13,13 @@ import {
   type FsrsParameterResolutionAttempt,
   type FsrsParameterResolutionV31,
   type FsrsPopulationKey,
-} from './fsrs-fitting-contract';
-import { BUILTIN_FSRS_PARAMS_VERSION } from './scheduler-policy-contract';
+} from "./fsrs-fitting-contract";
+import { BUILTIN_FSRS_PARAMS_VERSION } from "./scheduler-policy-contract";
 
 // Keep the `./fsrs-fitting` subpath backward compatible when it points at this
 // behavior module: existing contract imports remain available alongside the
 // lifecycle functions.
-export * from './fsrs-fitting-contract';
+export * from "./fsrs-fitting-contract";
 
 export interface FsrsFitResultV31 {
   candidate: FsrsFittedParameterReference;
@@ -57,20 +57,20 @@ export interface ResolveReleasedFsrsParametersInputV31 {
 export function evaluateFsrsFitLifecycle(
   input: EvaluateFsrsFitLifecycleInputV31,
 ): FsrsFitArtifactV31 {
-  const failureReasons: Array<'insufficient_reviews' | 'insufficient_students'> = [];
+  const failureReasons: Array<"insufficient_reviews" | "insufficient_students"> = [];
   if (input.dataset.reviewCount < FSRS_FIT_MIN_REVIEW_COUNT) {
-    failureReasons.push('insufficient_reviews');
+    failureReasons.push("insufficient_reviews");
   }
   if (input.dataset.distinctStudentCount < FSRS_FIT_MIN_STUDENT_COUNT) {
-    failureReasons.push('insufficient_students');
+    failureReasons.push("insufficient_students");
   }
 
   if (failureReasons.length > 0) {
     if (input.fitResult !== undefined) {
-      throw new Error('FSRS fitting is forbidden before the volume gate passes');
+      throw new Error("FSRS fitting is forbidden before the volume gate passes");
     }
     if (input.humanRelease !== undefined) {
-      throw new Error('FSRS release decisions are forbidden before the volume gate passes');
+      throw new Error("FSRS release decisions are forbidden before the volume gate passes");
     }
 
     return fsrsFitArtifactSchema.parse({
@@ -87,49 +87,48 @@ export function evaluateFsrsFitLifecycle(
       incumbent: input.incumbent,
       candidate: null,
       holdoutComparison: null,
-      approvalState: 'blocked_volume_gate',
+      approvalState: "blocked_volume_gate",
       humanRelease: null,
     });
   }
 
   if (input.fitResult === undefined) {
-    throw new Error('A volume-eligible FSRS fit requires candidate and holdout results');
+    throw new Error("A volume-eligible FSRS fit requires candidate and holdout results");
   }
 
   const populationVersionPrefix = `fsrs-params.${input.population.domain}.${input.population.ageBand}.v`;
   if (
-    input.incumbent.paramsVersion.startsWith(populationVersionPrefix)
-    && input.fitResult.candidate.paramsVersion.startsWith(populationVersionPrefix)
+    input.incumbent.paramsVersion.startsWith(populationVersionPrefix) &&
+    input.fitResult.candidate.paramsVersion.startsWith(populationVersionPrefix)
   ) {
     const incumbentRevision = input.incumbent.paramsVersion.slice(populationVersionPrefix.length);
     const candidateRevision = input.fitResult.candidate.paramsVersion.slice(
       populationVersionPrefix.length,
     );
     if (!/^[1-9]\d*$/.test(incumbentRevision) || !/^[1-9]\d*$/.test(candidateRevision)) {
-      throw new Error('Population FSRS parameter references require positive integer revisions');
+      throw new Error("Population FSRS parameter references require positive integer revisions");
     }
     if (BigInt(candidateRevision) <= BigInt(incumbentRevision)) {
-      throw new Error('Candidate FSRS population revision must advance the incumbent revision');
+      throw new Error("Candidate FSRS population revision must advance the incumbent revision");
     }
   }
 
-  const rawImprovement = input.fitResult.incumbentLogLoss
-    - input.fitResult.candidateLogLoss;
+  const rawImprovement = input.fitResult.incumbentLogLoss - input.fitResult.candidateLogLoss;
   const improvesIncumbent = rawImprovement > 0;
 
   if (!improvesIncumbent && input.humanRelease !== undefined) {
-    throw new Error('A non-improving FSRS fit cannot receive a human release decision');
+    throw new Error("A non-improving FSRS fit cannot receive a human release decision");
   }
   if (
-    input.humanRelease !== undefined
-    && Date.parse(input.humanRelease.decidedAt) < Date.parse(input.dataset.window.endsAt)
+    input.humanRelease !== undefined &&
+    Date.parse(input.humanRelease.decidedAt) < Date.parse(input.dataset.window.endsAt)
   ) {
-    throw new Error('A human FSRS release decision cannot predate the fitting dataset window');
+    throw new Error("A human FSRS release decision cannot predate the fitting dataset window");
   }
 
   const approvalState = !improvesIncumbent
-    ? 'blocked_holdout_regression'
-    : input.humanRelease?.decision ?? 'pending_human_review';
+    ? "blocked_holdout_regression"
+    : (input.humanRelease?.decision ?? "pending_human_review");
 
   return fsrsFitArtifactSchema.parse({
     contractVersion: FSRS_FITTING_CONTRACT_VERSION,
@@ -156,7 +155,7 @@ export function evaluateFsrsFitLifecycle(
 }
 
 function attempt(
-  scope: FsrsParameterResolutionAttempt['scope'],
+  scope: FsrsParameterResolutionAttempt["scope"],
   input: ParameterAvailabilityInput,
 ): FsrsParameterResolutionAttempt {
   return {
@@ -182,33 +181,41 @@ export function resolveReleasedFsrsParameters(
   }
 
   const attempts = [
-    attempt({
-      kind: 'population',
-      domain: input.requestedPopulation.domain,
-      ageBand: input.requestedPopulation.ageBand,
-    }, input.population),
-    attempt({
-      kind: 'domain',
-      domain: input.requestedPopulation.domain,
-    }, input.domain),
-    attempt({ kind: 'defaults' }, input.defaults),
+    attempt(
+      {
+        kind: "population",
+        domain: input.requestedPopulation.domain,
+        ageBand: input.requestedPopulation.ageBand,
+      },
+      input.population,
+    ),
+    attempt(
+      {
+        kind: "domain",
+        domain: input.requestedPopulation.domain,
+      },
+      input.domain,
+    ),
+    attempt({ kind: "defaults" }, input.defaults),
   ] as const;
 
-  const selectedAttempt = attempts[0].availability === 'released'
-    ? attempts[0]
-    : attempts[1].availability === 'released'
-      ? attempts[1]
-      : attempts[2];
+  const selectedAttempt =
+    attempts[0].availability === "released"
+      ? attempts[0]
+      : attempts[1].availability === "released"
+        ? attempts[1]
+        : attempts[2];
 
   if (selectedAttempt.paramsVersion === null) {
-    throw new Error('FSRS parameter resolution reached an available set without a version');
+    throw new Error("FSRS parameter resolution reached an available set without a version");
   }
 
-  const reason = selectedAttempt.scope.kind === 'population'
-    ? 'exact_population'
-    : selectedAttempt.scope.kind === 'domain'
-      ? 'domain_fallback'
-      : 'fsrs_defaults';
+  const reason =
+    selectedAttempt.scope.kind === "population"
+      ? "exact_population"
+      : selectedAttempt.scope.kind === "domain"
+        ? "domain_fallback"
+        : "fsrs_defaults";
 
   return fsrsParameterResolutionSchema.parse({
     contractVersion: FSRS_FITTING_CONTRACT_VERSION,

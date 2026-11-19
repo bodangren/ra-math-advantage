@@ -43,19 +43,19 @@
     "guard:fr5-typed-params:self-test": "TYPED_PARAMS_SCOPE=measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/fixtures/typed-params-bad-sample.ts bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^6.3.0",
-    "react-server-dom-webpack": "^19.3.1",
-    "typescript6": "npm:@typescript/typescript6@^6.0.2",
-    "@typescript/native": "npm:typescript@^7.0.2",
-    "vinext": "^1.4.5",
-    "js-yaml": "^5.5.0",
     "@oxlint/plugins": "^1.79.0",
+    "@typescript/native": "npm:typescript@^7.0.2",
+    "@vitejs/plugin-react": "^6.3.0",
     "@vitest/coverage-v8": "^4.1.8",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
+    "js-yaml": "^5.5.0",
     "oxfmt": "0.78.0",
     "oxlint": "^1.79.0",
+    "oxlint-plugin-eslint": "^1.79.0",
+    "react-server-dom-webpack": "^19.3.1",
     "tsrs": "0.25.0-ts7.1.0-beta",
-    "oxlint-plugin-eslint": "^1.79.0"
+    "typescript6": "npm:@typescript/typescript6@^6.0.2",
+    "vinext": "^1.4.5"
   }
 }

@@ -28,16 +28,16 @@
 // failing test file, not a syntax error in the test file itself. The
 // pattern mirrors the parent-role-guard Phase 1 red command.
 
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, within } from '@testing-library/react';
-import type { ReactElement } from 'react';
+import { describe, it, expect, beforeEach, vi } from "vitest";
+import { render, screen, within } from "@testing-library/react";
+import type { ReactElement } from "react";
 
 import {
   richParentProjection,
   emptyParentProjection,
   TEACHER_ONLY_KEYS,
   type ParentVisualizationV1,
-} from '@/__tests__/_fixtures/parent-portal/parentProjection';
+} from "@/__tests__/_fixtures/parent-portal/parentProjection";
 
 // ---------------------------------------------------------------------------
 // Module-shape helpers
@@ -52,7 +52,7 @@ type ParentDashboardProps = {
 type ParentDashboardComponent = (props: ParentDashboardProps) => ReactElement;
 
 async function loadParentDashboard(): Promise<ParentDashboardComponent> {
-  const mod = await import('@/components/parent/ParentDashboard');
+  const mod = await import("@/components/parent/ParentDashboard");
   return mod.ParentDashboard as ParentDashboardComponent;
 }
 
@@ -60,20 +60,20 @@ async function loadParentDashboard(): Promise<ParentDashboardComponent> {
 // Tests
 // ---------------------------------------------------------------------------
 
-describe('ParentDashboard (Phase 2.1 — render parent projection payload)', () => {
+describe("ParentDashboard (Phase 2.1 — render parent projection payload)", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  describe('existence and module surface', () => {
-    it('exports a ParentDashboard component', async () => {
+  describe("existence and module surface", () => {
+    it("exports a ParentDashboard component", async () => {
       const ParentDashboard = await loadParentDashboard();
-      expect(typeof ParentDashboard).toBe('function');
+      expect(typeof ParentDashboard).toBe("function");
     });
   });
 
-  describe('can-do summary', () => {
-    it('renders the canDoSummary text from the projection payload', async () => {
+  describe("can-do summary", () => {
+    it("renders the canDoSummary text from the projection payload", async () => {
       const ParentDashboard = await loadParentDashboard();
       render(
         <ParentDashboard
@@ -83,7 +83,7 @@ describe('ParentDashboard (Phase 2.1 — render parent projection payload)', () 
         />,
       );
 
-      const canDoRegion = screen.getByTestId('parent-dashboard-can-do');
+      const canDoRegion = screen.getByTestId("parent-dashboard-can-do");
       expect(canDoRegion).toHaveTextContent(/Quadratic basics/i);
     });
 
@@ -97,14 +97,12 @@ describe('ParentDashboard (Phase 2.1 — render parent projection payload)', () 
         />,
       );
 
-      expect(
-        screen.getByText(/No skills mastered yet/i),
-      ).toBeInTheDocument();
+      expect(screen.getByText(/No skills mastered yet/i)).toBeInTheDocument();
     });
   });
 
-  describe('next focus', () => {
-    it('renders the nextFocus text from the projection payload', async () => {
+  describe("next focus", () => {
+    it("renders the nextFocus text from the projection payload", async () => {
       const ParentDashboard = await loadParentDashboard();
       render(
         <ParentDashboard
@@ -114,14 +112,12 @@ describe('ParentDashboard (Phase 2.1 — render parent projection payload)', () 
         />,
       );
 
-      expect(
-        screen.getByText(/Practice: Polynomials/i),
-      ).toBeInTheDocument();
+      expect(screen.getByText(/Practice: Polynomials/i)).toBeInTheDocument();
     });
   });
 
-  describe('blockers', () => {
-    it('renders each blocker as its own list item', async () => {
+  describe("blockers", () => {
+    it("renders each blocker as its own list item", async () => {
       const ParentDashboard = await loadParentDashboard();
       render(
         <ParentDashboard
@@ -131,13 +127,13 @@ describe('ParentDashboard (Phase 2.1 — render parent projection payload)', () 
         />,
       );
 
-      const blockersList = screen.getByTestId('parent-dashboard-blockers');
-      const items = within(blockersList).getAllByRole('listitem');
+      const blockersList = screen.getByTestId("parent-dashboard-blockers");
+      const items = within(blockersList).getAllByRole("listitem");
       expect(items).toHaveLength(1);
       expect(items[0]).toHaveTextContent(/Function composition/i);
     });
 
-    it('renders an empty-blockers region when no blockers exist', async () => {
+    it("renders an empty-blockers region when no blockers exist", async () => {
       const ParentDashboard = await loadParentDashboard();
       render(
         <ParentDashboard
@@ -147,13 +143,13 @@ describe('ParentDashboard (Phase 2.1 — render parent projection payload)', () 
         />,
       );
 
-      const blockersList = screen.getByTestId('parent-dashboard-blockers');
-      const items = within(blockersList).queryAllByRole('listitem');
+      const blockersList = screen.getByTestId("parent-dashboard-blockers");
+      const items = within(blockersList).queryAllByRole("listitem");
       expect(items).toHaveLength(0);
     });
   });
 
-  describe('progress trend', () => {
+  describe("progress trend", () => {
     it('renders a plain-language label for progressTrend = "improving"', async () => {
       const ParentDashboard = await loadParentDashboard();
       render(
@@ -164,7 +160,7 @@ describe('ParentDashboard (Phase 2.1 — render parent projection payload)', () 
         />,
       );
 
-      const trendRegion = screen.getByTestId('parent-dashboard-trend');
+      const trendRegion = screen.getByTestId("parent-dashboard-trend");
       expect(trendRegion).toHaveTextContent(/improving/i);
       // The component must NOT show the raw enum value as the only label;
       // the test asserts a human-readable phrasing exists alongside the
@@ -182,13 +178,13 @@ describe('ParentDashboard (Phase 2.1 — render parent projection payload)', () 
         />,
       );
 
-      const trendRegion = screen.getByTestId('parent-dashboard-trend');
+      const trendRegion = screen.getByTestId("parent-dashboard-trend");
       expect(trendRegion).toHaveTextContent(/unknown|not enough data|no data/i);
     });
   });
 
-  describe('visual nodes', () => {
-    it('renders every visual node from the payload by title', async () => {
+  describe("visual nodes", () => {
+    it("renders every visual node from the payload by title", async () => {
       const ParentDashboard = await loadParentDashboard();
       render(
         <ParentDashboard
@@ -198,17 +194,17 @@ describe('ParentDashboard (Phase 2.1 — render parent projection payload)', () 
         />,
       );
 
-      const visualNodesRegion = screen.getByTestId('parent-dashboard-visual-nodes');
+      const visualNodesRegion = screen.getByTestId("parent-dashboard-visual-nodes");
       for (const node of richParentProjection.nodes) {
         expect(
-          within(visualNodesRegion).getByText(new RegExp(escapeRegExp(node.title), 'i')),
+          within(visualNodesRegion).getByText(new RegExp(escapeRegExp(node.title), "i")),
         ).toBeInTheDocument();
       }
     });
   });
 
-  describe('schema-validated payload acceptance', () => {
-    it('accepts a payload that parses with parentVisualizationV1Schema (no transform)', async () => {
+  describe("schema-validated payload acceptance", () => {
+    it("accepts a payload that parses with parentVisualizationV1Schema (no transform)", async () => {
       // The component must accept the canonical payload shape — i.e. it
       // does not re-project or re-shape the data on render. This test
       // uses an exhaustive fixture (every required field present) and
@@ -232,7 +228,7 @@ describe('ParentDashboard (Phase 2.1 — render parent projection payload)', () 
 // ---------------------------------------------------------------------------
 
 function escapeRegExp(s: string): string {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 // ---------------------------------------------------------------------------
@@ -241,8 +237,8 @@ function escapeRegExp(s: string): string {
 // behavior, which is unreliable across vitest versions).
 // ---------------------------------------------------------------------------
 
-describe('ParentDashboard — fixture sanity', () => {
-  it('TEACHER_ONLY_KEYS is non-empty so the privacy scan has forbidden keys to check', () => {
+describe("ParentDashboard — fixture sanity", () => {
+  it("TEACHER_ONLY_KEYS is non-empty so the privacy scan has forbidden keys to check", () => {
     expect(TEACHER_ONLY_KEYS.length).toBeGreaterThan(0);
   });
 });

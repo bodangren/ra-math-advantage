@@ -1,79 +1,80 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { GraphingExplorer } from '@math-platform/activity-components/graphing';
+import { describe, it, expect, vi } from "vitest";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { GraphingExplorer } from "@math-platform/activity-components/graphing";
 
-describe('GraphingExplorer - plot_from_equation variant', () => {
+describe("GraphingExplorer - plot_from_equation variant", () => {
   const defaultProps = {
-    activityId: 'test-activity-1',
-    variant: 'plot_from_equation' as const,
-    equation: 'y = x^2 - 4',
+    activityId: "test-activity-1",
+    variant: "plot_from_equation" as const,
+    equation: "y = x^2 - 4",
     domain: [-10, 10] as [number, number],
     range: [-10, 10] as [number, number],
   };
 
-  describe('teaching mode', () => {
-    it('renders the graph with function plotted', () => {
+  describe("teaching mode", () => {
+    it("renders the graph with function plotted", () => {
       const { container } = render(<GraphingExplorer {...defaultProps} mode="teaching" />);
 
       expect(screen.getByText(/graph the function/i)).toBeInTheDocument();
       expect(container.querySelector('[data-testid="worked-equation"] .katex')).toBeInTheDocument();
     });
 
-    it('shows all key points labeled (vertex, intercepts)', () => {
+    it("shows all key points labeled (vertex, intercepts)", () => {
       const propsWithPoints = {
         ...defaultProps,
         points: [[0, -4]] as [number, number][],
       };
       render(<GraphingExplorer {...propsWithPoints} mode="teaching" />);
 
-      expect(Array.from(document.querySelectorAll('.point-label')).map((label) => label.textContent))
-        .toContain('0.0, -4.0');
+      expect(
+        Array.from(document.querySelectorAll(".point-label")).map((label) => label.textContent),
+      ).toContain("0.0, -4.0");
     });
 
-    it('is read-only - no interaction allowed', () => {
+    it("is read-only - no interaction allowed", () => {
       render(<GraphingExplorer {...defaultProps} mode="teaching" />);
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       expect(canvas).toBeInTheDocument();
     });
   });
 
-  describe('guided mode', () => {
-    it('shows table of values before canvas plotting', () => {
+  describe("guided mode", () => {
+    it("shows table of values before canvas plotting", () => {
       render(<GraphingExplorer {...defaultProps} mode="guided" />);
 
       expect(screen.getByText(/table of values/i)).toBeInTheDocument();
     });
 
-    it('validates table entries in real-time', async () => {
+    it("validates table entries in real-time", async () => {
       render(<GraphingExplorer {...defaultProps} mode="guided" />);
 
-      const firstInput = screen.getAllByRole('spinbutton')[0];
-      fireEvent.change(firstInput, { target: { value: '5' } });
+      const firstInput = screen.getAllByRole("spinbutton")[0];
+      fireEvent.change(firstInput, { target: { value: "5" } });
 
       await waitFor(() => {
-        expect(firstInput.closest('tr')).toHaveClass('bg-red-100');
+        expect(firstInput.closest("tr")).toHaveClass("bg-red-100");
       });
     });
 
-    it('enables canvas plotting after table is complete', async () => {
+    it("enables canvas plotting after table is complete", async () => {
       const onSubmit = vi.fn();
       render(<GraphingExplorer {...defaultProps} mode="guided" onSubmit={onSubmit} />);
 
-      const inputs = screen.getAllByRole('spinbutton');
-      fireEvent.change(inputs[0], { target: { value: '-3' } });
-      fireEvent.change(inputs[1], { target: { value: '-2' } });
-      fireEvent.change(inputs[2], { target: { value: '-1' } });
-      fireEvent.change(inputs[3], { target: { value: '0' } });
-      fireEvent.change(inputs[4], { target: { value: '1' } });
+      const inputs = screen.getAllByRole("spinbutton");
+      fireEvent.change(inputs[0], { target: { value: "-3" } });
+      fireEvent.change(inputs[1], { target: { value: "-2" } });
+      fireEvent.change(inputs[2], { target: { value: "-1" } });
+      fireEvent.change(inputs[3], { target: { value: "0" } });
+      fireEvent.change(inputs[4], { target: { value: "1" } });
 
       await waitFor(() => {
-        const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+        const canvas = screen.getByRole("img", { name: /coordinate plane/i });
         expect(canvas).not.toBeDisabled();
       });
     });
 
-    it('shows hints panel with axis of symmetry, vertex, direction', () => {
+    it("shows hints panel with axis of symmetry, vertex, direction", () => {
       render(<GraphingExplorer {...defaultProps} mode="guided" />);
 
       expect(screen.getByText(/hints/i)).toBeInTheDocument();
@@ -82,14 +83,14 @@ describe('GraphingExplorer - plot_from_equation variant', () => {
       expect(screen.getByText(/show direction/i)).toBeInTheDocument();
     });
 
-    it('records hint usage in submission', async () => {
+    it("records hint usage in submission", async () => {
       const onSubmit = vi.fn();
       render(<GraphingExplorer {...defaultProps} mode="guided" onSubmit={onSubmit} />);
 
       const hintButton = screen.getByText(/show vertex/i);
       fireEvent.click(hintButton);
 
-      const inputs = screen.getAllByRole('spinbutton');
+      const inputs = screen.getAllByRole("spinbutton");
       inputs.forEach((input, index) => {
         const xValues = [-2, -1, 0, 1, 2];
         fireEvent.change(input, { target: { value: String(xValues[index] ** 2 - 4) } });
@@ -107,18 +108,16 @@ describe('GraphingExplorer - plot_from_equation variant', () => {
         expect(onSubmit).toHaveBeenCalled();
         const submission = onSubmit.mock.calls[0][0];
         expect(submission.interactionHistory).toEqual(
-          expect.arrayContaining([
-            expect.objectContaining({ type: 'hint_used' }),
-          ])
+          expect.arrayContaining([expect.objectContaining({ type: "hint_used" })]),
         );
       });
     });
 
-    it('allows point placement on canvas after table completion', async () => {
+    it("allows point placement on canvas after table completion", async () => {
       const onSubmit = vi.fn();
       render(<GraphingExplorer {...defaultProps} mode="guided" onSubmit={onSubmit} />);
 
-      const inputs = screen.getAllByRole('spinbutton');
+      const inputs = screen.getAllByRole("spinbutton");
       inputs.forEach((input, index) => {
         const xValues = [-2, -1, 0, 1, 2];
         fireEvent.change(input, { target: { value: String(xValues[index] ** 2 - 4) } });
@@ -128,15 +127,18 @@ describe('GraphingExplorer - plot_from_equation variant', () => {
         expect(screen.getByText(/now plot the points/i)).toBeInTheDocument();
       });
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 300, clientY: 300 });
 
-      await waitFor(() => {
-        expect(screen.getByText(/0, 0/i)).toBeInTheDocument();
-      }, { timeout: 3000 });
+      await waitFor(
+        () => {
+          expect(screen.getByText(/0, 0/i)).toBeInTheDocument();
+        },
+        { timeout: 3000 },
+      );
     });
 
-    it('submits a deferred table-and-graph envelope for Guided table_graph mode', async () => {
+    it("submits a deferred table-and-graph envelope for Guided table_graph mode", async () => {
       const onSubmit = vi.fn();
       const tableValues = [-2, -1, 0, 1, 2].map((x) => ({ x, y: x ** 2 - 4 }));
       const { container } = render(
@@ -148,53 +150,58 @@ describe('GraphingExplorer - plot_from_equation variant', () => {
         />,
       );
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 300, clientY: 300 });
-      expect(container.querySelectorAll('.point-label')).toHaveLength(0);
-      expect(screen.queryByRole('button', { name: 'Submit' })).not.toBeInTheDocument();
+      expect(container.querySelectorAll(".point-label")).toHaveLength(0);
+      expect(screen.queryByRole("button", { name: "Submit" })).not.toBeInTheDocument();
       expect(screen.getByText(/hints/i)).toBeInTheDocument();
 
-      screen.getAllByRole('spinbutton').forEach((input, index) => {
+      screen.getAllByRole("spinbutton").forEach((input, index) => {
         fireEvent.change(input, { target: { value: String(tableValues[index].y) } });
       });
 
       await waitFor(() => {
-        expect(container.querySelectorAll('.point-label')).toHaveLength(0);
-        expect(screen.getByRole('button', { name: 'Submit' })).toBeEnabled();
+        expect(container.querySelectorAll(".point-label")).toHaveLength(0);
+        expect(screen.getByRole("button", { name: "Submit" })).toBeEnabled();
       });
 
-      container.querySelectorAll('tr').forEach((row) => {
-        expect(row).not.toHaveClass('bg-red-100');
-        expect(row).not.toHaveClass('bg-green-100');
+      container.querySelectorAll("tr").forEach((row) => {
+        expect(row).not.toHaveClass("bg-red-100");
+        expect(row).not.toHaveClass("bg-green-100");
       });
 
-      fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
+      fireEvent.click(screen.getByRole("button", { name: "Submit" }));
 
       await waitFor(() => expect(onSubmit).toHaveBeenCalledOnce());
       const submission = onSubmit.mock.calls[0][0];
-      expect(submission.mode).toBe('guided_practice');
-      expect(Object.keys(submission.answers).sort()).toEqual(['placedPoints', 'tableValues']);
+      expect(submission.mode).toBe("guided_practice");
+      expect(Object.keys(submission.answers).sort()).toEqual(["placedPoints", "tableValues"]);
       expect(submission.answers).toEqual({ tableValues, placedPoints: [] });
       expect(submission.parts).toEqual([
-        { partId: 'table_values', rawAnswer: tableValues },
-        { partId: 'placed_points', rawAnswer: [] },
+        { partId: "table_values", rawAnswer: tableValues },
+        { partId: "placed_points", rawAnswer: [] },
       ]);
-      expect(submission.parts.every((part: Record<string, unknown>) => (
-        !('isCorrect' in part) && !('score' in part) && !('maxScore' in part)
-      ))).toBe(true);
+      expect(
+        submission.parts.every(
+          (part: Record<string, unknown>) =>
+            !("isCorrect" in part) && !("score" in part) && !("maxScore" in part),
+        ),
+      ).toBe(true);
       expect(submission.artifact.graphState).toEqual({
-        equation: 'y = x^2 - 4',
+        equation: "y = x^2 - 4",
         tableValues,
         placedPoints: [],
       });
-      expect(screen.getByTestId('deferred-submission-recorded')).toHaveTextContent('Submission recorded for grading.');
+      expect(screen.getByTestId("deferred-submission-recorded")).toHaveTextContent(
+        "Submission recorded for grading.",
+      );
       expect(screen.queryByText(/correct solution/i)).not.toBeInTheDocument();
       expect(screen.getByText(/hints/i)).toBeInTheDocument();
     });
   });
 
-  describe('practice mode', () => {
-    it('uses deferred table-and-graph submission without client grading', async () => {
+  describe("practice mode", () => {
+    it("uses deferred table-and-graph submission without client grading", async () => {
       const onSubmit = vi.fn();
       const { container } = render(
         <GraphingExplorer
@@ -205,26 +212,26 @@ describe('GraphingExplorer - plot_from_equation variant', () => {
         />,
       );
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 300, clientY: 300 });
-      expect(container.querySelectorAll('.point-label')).toHaveLength(0);
+      expect(container.querySelectorAll(".point-label")).toHaveLength(0);
 
       const tableValues = [7, 8, 9, 10, 11];
-      screen.getAllByRole('spinbutton').forEach((input, index) => {
+      screen.getAllByRole("spinbutton").forEach((input, index) => {
         fireEvent.change(input, { target: { value: String(tableValues[index]) } });
       });
 
       await waitFor(() => {
-        expect(screen.getByRole('button', { name: 'Submit' })).toBeEnabled();
+        expect(screen.getByRole("button", { name: "Submit" })).toBeEnabled();
       });
 
-      container.querySelectorAll('tr').forEach((row) => {
-        expect(row).not.toHaveClass('bg-red-100');
-        expect(row).not.toHaveClass('bg-green-100');
+      container.querySelectorAll("tr").forEach((row) => {
+        expect(row).not.toHaveClass("bg-red-100");
+        expect(row).not.toHaveClass("bg-green-100");
       });
       expect(screen.queryByText(/hints/i)).not.toBeInTheDocument();
 
-      fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
+      fireEvent.click(screen.getByRole("button", { name: "Submit" }));
 
       await waitFor(() => expect(onSubmit).toHaveBeenCalledOnce());
       const submission = onSubmit.mock.calls[0][0];
@@ -233,44 +240,53 @@ describe('GraphingExplorer - plot_from_equation variant', () => {
         placedPoints: [],
       });
       expect(submission.parts).toEqual([
-        { partId: 'table_values', rawAnswer: expect.any(Array) },
-        { partId: 'placed_points', rawAnswer: [] },
+        { partId: "table_values", rawAnswer: expect.any(Array) },
+        { partId: "placed_points", rawAnswer: [] },
       ]);
-      expect(submission.parts.every((part: Record<string, unknown>) => !('isCorrect' in part))).toBe(true);
+      expect(
+        submission.parts.every((part: Record<string, unknown>) => !("isCorrect" in part)),
+      ).toBe(true);
       expect(submission.artifact.graphState).toEqual({
-        equation: 'y = x^2 - 4',
+        equation: "y = x^2 - 4",
         tableValues: submission.answers.tableValues,
         placedPoints: [],
       });
-      expect(screen.getByTestId('deferred-submission-recorded')).toHaveTextContent('Submission recorded for grading.');
+      expect(screen.getByTestId("deferred-submission-recorded")).toHaveTextContent(
+        "Submission recorded for grading.",
+      );
       expect(screen.queryByText(/correct solution/i)).not.toBeInTheDocument();
     });
 
-    it('shows problem statement without table scaffold', () => {
+    it("shows problem statement without table scaffold", () => {
       const { container } = render(<GraphingExplorer {...defaultProps} mode="practice" />);
 
       expect(screen.getByText(/graph the function/i)).toBeInTheDocument();
-      expect(container.querySelector('[data-testid="graphing-equation"] .katex')).toBeInTheDocument();
+      expect(
+        container.querySelector('[data-testid="graphing-equation"] .katex'),
+      ).toBeInTheDocument();
       expect(screen.queryByText(/table of values/i)).not.toBeInTheDocument();
     });
 
-    it('allows direct plotting without table', async () => {
+    it("allows direct plotting without table", async () => {
       const onSubmit = vi.fn();
       render(<GraphingExplorer {...defaultProps} mode="practice" onSubmit={onSubmit} />);
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 300, clientY: 300 });
 
-      await waitFor(() => {
-        expect(screen.getByText(/0, 0/i)).toBeInTheDocument();
-      }, { timeout: 3000 });
+      await waitFor(
+        () => {
+          expect(screen.getByText(/0, 0/i)).toBeInTheDocument();
+        },
+        { timeout: 3000 },
+      );
     });
 
-    it('overlays correct solution after submission', async () => {
+    it("overlays correct solution after submission", async () => {
       const onSubmit = vi.fn();
       render(<GraphingExplorer {...defaultProps} mode="practice" onSubmit={onSubmit} />);
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 300, clientY: 300 });
 
       const submitButton = screen.getByText(/submit/i);
@@ -281,11 +297,11 @@ describe('GraphingExplorer - plot_from_equation variant', () => {
       });
     });
 
-    it('assesses placed points for correctness', async () => {
+    it("assesses placed points for correctness", async () => {
       const onSubmit = vi.fn();
       render(<GraphingExplorer {...defaultProps} mode="practice" onSubmit={onSubmit} />);
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
 
       fireEvent.click(canvas, { clientX: 300, clientY: 300 });
 
@@ -298,21 +314,21 @@ describe('GraphingExplorer - plot_from_equation variant', () => {
         expect(submission.parts).toEqual(
           expect.arrayContaining([
             expect.objectContaining({
-              partId: 'placed_points',
+              partId: "placed_points",
               isCorrect: expect.any(Boolean),
             }),
-          ])
+          ]),
         );
       });
     });
   });
 
-  describe('submission envelope', () => {
-    it('includes placed points in answers', async () => {
+  describe("submission envelope", () => {
+    it("includes placed points in answers", async () => {
       const onSubmit = vi.fn();
       render(<GraphingExplorer {...defaultProps} mode="practice" onSubmit={onSubmit} />);
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 300, clientY: 300 });
 
       const submitButton = screen.getByText(/submit/i);
@@ -324,16 +340,16 @@ describe('GraphingExplorer - plot_from_equation variant', () => {
         expect(submission.answers.placedPoints).toEqual(
           expect.arrayContaining([
             expect.objectContaining({ x: expect.any(Number), y: expect.any(Number) }),
-          ])
+          ]),
         );
       });
     });
 
-    it('includes per-part correctness in parts array', async () => {
+    it("includes per-part correctness in parts array", async () => {
       const onSubmit = vi.fn();
       render(<GraphingExplorer {...defaultProps} mode="practice" onSubmit={onSubmit} />);
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 300, clientY: 300 });
 
       const submitButton = screen.getByText(/submit/i);
@@ -343,15 +359,15 @@ describe('GraphingExplorer - plot_from_equation variant', () => {
         expect(onSubmit).toHaveBeenCalled();
         const submission = onSubmit.mock.calls[0][0];
         expect(submission.parts).toHaveLength(2);
-        expect(submission.parts[0]).toHaveProperty('isCorrect');
+        expect(submission.parts[0]).toHaveProperty("isCorrect");
       });
     });
 
-    it('includes graph state in artifact', async () => {
+    it("includes graph state in artifact", async () => {
       const onSubmit = vi.fn();
       render(<GraphingExplorer {...defaultProps} mode="practice" onSubmit={onSubmit} />);
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 300, clientY: 300 });
 
       const submitButton = screen.getByText(/submit/i);
@@ -360,19 +376,19 @@ describe('GraphingExplorer - plot_from_equation variant', () => {
       await waitFor(() => {
         expect(onSubmit).toHaveBeenCalled();
         const submission = onSubmit.mock.calls[0][0];
-        expect(submission.artifact).toHaveProperty('graphState');
-        expect(submission.artifact.graphState).toHaveProperty('placedPoints');
+        expect(submission.artifact).toHaveProperty("graphState");
+        expect(submission.artifact.graphState).toHaveProperty("placedPoints");
       });
     });
 
-    it('includes interaction history if hints were used', async () => {
+    it("includes interaction history if hints were used", async () => {
       const onSubmit = vi.fn();
       render(<GraphingExplorer {...defaultProps} mode="guided" onSubmit={onSubmit} />);
 
       const hintButton = screen.getByText(/show vertex/i);
       fireEvent.click(hintButton);
 
-      const inputs = screen.getAllByRole('spinbutton');
+      const inputs = screen.getAllByRole("spinbutton");
       inputs.forEach((input, index) => {
         const xValues = [-2, -1, 0, 1, 2];
         fireEvent.change(input, { target: { value: String(xValues[index] ** 2 - 4) } });
@@ -395,31 +411,39 @@ describe('GraphingExplorer - plot_from_equation variant', () => {
   });
 });
 
-describe('GraphingExplorer - find_intercepts variant', () => {
+describe("GraphingExplorer - find_intercepts variant", () => {
   const defaultProps = {
-    activityId: 'test-activity-3',
-    variant: 'find_intercepts' as const,
-    equation: 'y = x^2 - 4',
+    activityId: "test-activity-3",
+    variant: "find_intercepts" as const,
+    equation: "y = x^2 - 4",
     domain: [-10, 10] as [number, number],
     range: [-10, 10] as [number, number],
   };
 
-  describe('teaching mode', () => {
-    it('renders the graph with intercepts highlighted', () => {
+  describe("teaching mode", () => {
+    it("renders the graph with intercepts highlighted", () => {
       const props = {
         ...defaultProps,
-        points: [[-2, 0], [2, 0]] as [number, number][],
+        points: [
+          [-2, 0],
+          [2, 0],
+        ] as [number, number][],
       };
       const { container } = render(<GraphingExplorer {...props} mode="teaching" />);
 
       expect(screen.getByText(/find the x-intercepts/i)).toBeInTheDocument();
-      expect(container.querySelector('[data-testid="graphing-equation"] .katex')).toBeInTheDocument();
+      expect(
+        container.querySelector('[data-testid="graphing-equation"] .katex'),
+      ).toBeInTheDocument();
     });
 
-    it('shows all x-intercepts labeled', () => {
+    it("shows all x-intercepts labeled", () => {
       const props = {
         ...defaultProps,
-        points: [[-2, 0], [2, 0]] as [number, number][],
+        points: [
+          [-2, 0],
+          [2, 0],
+        ] as [number, number][],
       };
       render(<GraphingExplorer {...props} mode="teaching" />);
 
@@ -429,26 +453,26 @@ describe('GraphingExplorer - find_intercepts variant', () => {
       expect(intercept2Labels.length).toBeGreaterThan(0);
     });
 
-    it('is read-only - no interaction allowed', () => {
+    it("is read-only - no interaction allowed", () => {
       render(<GraphingExplorer {...defaultProps} mode="teaching" />);
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       expect(canvas).toBeInTheDocument();
     });
   });
 
-  describe('guided mode', () => {
-    it('shows instruction to find x-intercepts', () => {
+  describe("guided mode", () => {
+    it("shows instruction to find x-intercepts", () => {
       render(<GraphingExplorer {...defaultProps} mode="guided" />);
 
       expect(screen.getByText(/find the x-intercepts/i)).toBeInTheDocument();
     });
 
-    it('allows student to identify intercepts by tapping on graph', async () => {
+    it("allows student to identify intercepts by tapping on graph", async () => {
       const onSubmit = vi.fn();
       render(<GraphingExplorer {...defaultProps} mode="guided" onSubmit={onSubmit} />);
 
-      const inputs = screen.getAllByRole('spinbutton');
+      const inputs = screen.getAllByRole("spinbutton");
       inputs.forEach((input, index) => {
         const xValues = [-2, -1, 0, 1, 2];
         fireEvent.change(input, { target: { value: String(xValues[index] ** 2 - 4) } });
@@ -458,28 +482,34 @@ describe('GraphingExplorer - find_intercepts variant', () => {
         expect(screen.getByText(/now plot the points/i)).toBeInTheDocument();
       });
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 240, clientY: 300 });
       fireEvent.click(canvas, { clientX: 360, clientY: 300 });
 
-      await waitFor(() => {
-        const intercept1Labels = screen.queryAllByText(/-2\.0, 0\.0/i);
-        const intercept2Labels = screen.queryAllByText(/2\.0, 0\.0/i);
-        expect(intercept1Labels.length).toBeGreaterThan(0);
-        expect(intercept2Labels.length).toBeGreaterThan(0);
-      }, { timeout: 3000 });
+      await waitFor(
+        () => {
+          const intercept1Labels = screen.queryAllByText(/-2\.0, 0\.0/i);
+          const intercept2Labels = screen.queryAllByText(/2\.0, 0\.0/i);
+          expect(intercept1Labels.length).toBeGreaterThan(0);
+          expect(intercept2Labels.length).toBeGreaterThan(0);
+        },
+        { timeout: 3000 },
+      );
     });
 
-    it('provides feedback when intercepts are correctly identified', async () => {
+    it("provides feedback when intercepts are correctly identified", async () => {
       const onSubmit = vi.fn();
       const props = {
         ...defaultProps,
-        points: [[-2, 0], [2, 0]] as [number, number][],
+        points: [
+          [-2, 0],
+          [2, 0],
+        ] as [number, number][],
         onSubmit,
       };
       render(<GraphingExplorer {...props} mode="guided" />);
 
-      const inputs = screen.getAllByRole('spinbutton');
+      const inputs = screen.getAllByRole("spinbutton");
       inputs.forEach((input, index) => {
         const xValues = [-2, -1, 0, 1, 2];
         fireEvent.change(input, { target: { value: String(xValues[index] ** 2 - 4) } });
@@ -490,7 +520,7 @@ describe('GraphingExplorer - find_intercepts variant', () => {
         expect(submitButton).toBeInTheDocument();
       });
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 240, clientY: 300 });
       fireEvent.click(canvas, { clientX: 360, clientY: 300 });
 
@@ -502,10 +532,10 @@ describe('GraphingExplorer - find_intercepts variant', () => {
       });
     });
 
-    it('handles case of no real intercepts', async () => {
+    it("handles case of no real intercepts", async () => {
       const props = {
         ...defaultProps,
-        equation: 'y = x^2 + 4',
+        equation: "y = x^2 + 4",
         points: [] as [number, number][],
       };
       render(<GraphingExplorer {...props} mode="guided" />);
@@ -513,16 +543,19 @@ describe('GraphingExplorer - find_intercepts variant', () => {
       expect(screen.getByText(/this function has no real x-intercepts/i)).toBeInTheDocument();
     });
 
-    it('records intercept identification in submission', async () => {
+    it("records intercept identification in submission", async () => {
       const onSubmit = vi.fn();
       const props = {
         ...defaultProps,
-        points: [[-2, 0], [2, 0]] as [number, number][],
+        points: [
+          [-2, 0],
+          [2, 0],
+        ] as [number, number][],
         onSubmit,
       };
       render(<GraphingExplorer {...props} mode="guided" />);
 
-      const inputs = screen.getAllByRole('spinbutton');
+      const inputs = screen.getAllByRole("spinbutton");
       inputs.forEach((input, index) => {
         const xValues = [-2, -1, 0, 1, 2];
         fireEvent.change(input, { target: { value: String(xValues[index] ** 2 - 4) } });
@@ -533,7 +566,7 @@ describe('GraphingExplorer - find_intercepts variant', () => {
         expect(submitButton).toBeInTheDocument();
       });
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 240, clientY: 300 });
       fireEvent.click(canvas, { clientX: 360, clientY: 300 });
 
@@ -547,48 +580,54 @@ describe('GraphingExplorer - find_intercepts variant', () => {
         expect(submission.parts).toEqual(
           expect.arrayContaining([
             expect.objectContaining({
-              partId: 'intercepts',
+              partId: "intercepts",
               isCorrect: expect.any(Boolean),
             }),
-          ])
+          ]),
         );
       });
     });
   });
 
-  describe('practice mode', () => {
-    it('shows instruction to find x-intercepts', () => {
+  describe("practice mode", () => {
+    it("shows instruction to find x-intercepts", () => {
       render(<GraphingExplorer {...defaultProps} mode="practice" />);
 
       expect(screen.getByText(/find the x-intercepts/i)).toBeInTheDocument();
     });
 
-    it('allows direct plotting without table', async () => {
+    it("allows direct plotting without table", async () => {
       const onSubmit = vi.fn();
       render(<GraphingExplorer {...defaultProps} mode="practice" onSubmit={onSubmit} />);
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 240, clientY: 300 });
       fireEvent.click(canvas, { clientX: 360, clientY: 300 });
 
-      await waitFor(() => {
-        const intercept1Labels = screen.queryAllByText(/-2\.0, 0\.0/i);
-        const intercept2Labels = screen.queryAllByText(/2\.0, 0\.0/i);
-        expect(intercept1Labels.length).toBeGreaterThan(0);
-        expect(intercept2Labels.length).toBeGreaterThan(0);
-      }, { timeout: 3000 });
+      await waitFor(
+        () => {
+          const intercept1Labels = screen.queryAllByText(/-2\.0, 0\.0/i);
+          const intercept2Labels = screen.queryAllByText(/2\.0, 0\.0/i);
+          expect(intercept1Labels.length).toBeGreaterThan(0);
+          expect(intercept2Labels.length).toBeGreaterThan(0);
+        },
+        { timeout: 3000 },
+      );
     });
 
-    it('overlays correct intercepts after submission', async () => {
+    it("overlays correct intercepts after submission", async () => {
       const onSubmit = vi.fn();
       const props = {
         ...defaultProps,
-        points: [[-2, 0], [2, 0]] as [number, number][],
+        points: [
+          [-2, 0],
+          [2, 0],
+        ] as [number, number][],
         onSubmit,
       };
       render(<GraphingExplorer {...props} mode="practice" />);
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 240, clientY: 300 });
       fireEvent.click(canvas, { clientX: 360, clientY: 300 });
 
@@ -604,16 +643,19 @@ describe('GraphingExplorer - find_intercepts variant', () => {
       });
     });
 
-    it('assesses intercept identification for correctness', async () => {
+    it("assesses intercept identification for correctness", async () => {
       const onSubmit = vi.fn();
       const props = {
         ...defaultProps,
-        points: [[-2, 0], [2, 0]] as [number, number][],
+        points: [
+          [-2, 0],
+          [2, 0],
+        ] as [number, number][],
         onSubmit,
       };
       render(<GraphingExplorer {...props} mode="practice" />);
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 240, clientY: 300 });
       fireEvent.click(canvas, { clientX: 360, clientY: 300 });
 
@@ -626,44 +668,50 @@ describe('GraphingExplorer - find_intercepts variant', () => {
         expect(submission.parts).toEqual(
           expect.arrayContaining([
             expect.objectContaining({
-              partId: 'intercepts',
+              partId: "intercepts",
               isCorrect: true,
             }),
-          ])
+          ]),
         );
       });
     });
   });
 });
 
-describe('GraphingExplorer - graph_system variant', () => {
+describe("GraphingExplorer - graph_system variant", () => {
   const defaultProps = {
-    activityId: 'test-activity-4',
-    variant: 'graph_system' as const,
-    equation: 'y = x^2 - 4',
-    linearEquation: 'y = x',
+    activityId: "test-activity-4",
+    variant: "graph_system" as const,
+    equation: "y = x^2 - 4",
+    linearEquation: "y = x",
     domain: [-10, 10] as [number, number],
     range: [-10, 10] as [number, number],
   };
 
-  describe('teaching mode', () => {
-    it('renders two functions (quadratic and linear) with different colors', () => {
+  describe("teaching mode", () => {
+    it("renders two functions (quadratic and linear) with different colors", () => {
       const props = {
         ...defaultProps,
-        points: [[-2, -2], [2, 2]] as [number, number][],
+        points: [
+          [-2, -2],
+          [2, 2],
+        ] as [number, number][],
       };
       render(<GraphingExplorer {...props} mode="teaching" />);
 
       expect(screen.getByText(/graph the system of equations/i)).toBeInTheDocument();
       const equationContainer = screen.getByText(/y = x\^2 - 4/).parentElement;
-      expect(equationContainer?.textContent).toContain('y = x^2 - 4');
-      expect(equationContainer?.textContent).toContain('y = x');
+      expect(equationContainer?.textContent).toContain("y = x^2 - 4");
+      expect(equationContainer?.textContent).toContain("y = x");
     });
 
-    it('shows intersection points labeled', () => {
+    it("shows intersection points labeled", () => {
       const props = {
         ...defaultProps,
-        points: [[-2, -2], [2, 2]] as [number, number][],
+        points: [
+          [-2, -2],
+          [2, 2],
+        ] as [number, number][],
       };
       render(<GraphingExplorer {...props} mode="teaching" />);
 
@@ -673,26 +721,26 @@ describe('GraphingExplorer - graph_system variant', () => {
       expect(point2Labels.length).toBeGreaterThan(0);
     });
 
-    it('is read-only - no interaction allowed', () => {
+    it("is read-only - no interaction allowed", () => {
       render(<GraphingExplorer {...defaultProps} mode="teaching" />);
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       expect(canvas).toBeInTheDocument();
     });
   });
 
-  describe('guided mode', () => {
-    it('shows instruction to find intersection points', () => {
+  describe("guided mode", () => {
+    it("shows instruction to find intersection points", () => {
       render(<GraphingExplorer {...defaultProps} mode="guided" />);
 
       expect(screen.getByText(/find the intersection points/i)).toBeInTheDocument();
     });
 
-    it('allows student to identify intersection points by tapping on graph', async () => {
+    it("allows student to identify intersection points by tapping on graph", async () => {
       const onSubmit = vi.fn();
       render(<GraphingExplorer {...defaultProps} mode="guided" onSubmit={onSubmit} />);
 
-      const inputs = screen.getAllByRole('spinbutton');
+      const inputs = screen.getAllByRole("spinbutton");
       inputs.forEach((input, index) => {
         const xValues = [-2, -1, 0, 1, 2];
         fireEvent.change(input, { target: { value: String(xValues[index] ** 2 - 4) } });
@@ -702,28 +750,34 @@ describe('GraphingExplorer - graph_system variant', () => {
         expect(screen.getByText(/now plot the points/i)).toBeInTheDocument();
       });
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 240, clientY: 360 });
       fireEvent.click(canvas, { clientX: 360, clientY: 240 });
 
-      await waitFor(() => {
-        const point1Labels = screen.queryAllByText(/-2\.0, -2\.0/i);
-        const point2Labels = screen.queryAllByText(/2\.0, 2\.0/i);
-        expect(point1Labels.length).toBeGreaterThan(0);
-        expect(point2Labels.length).toBeGreaterThan(0);
-      }, { timeout: 3000 });
+      await waitFor(
+        () => {
+          const point1Labels = screen.queryAllByText(/-2\.0, -2\.0/i);
+          const point2Labels = screen.queryAllByText(/2\.0, 2\.0/i);
+          expect(point1Labels.length).toBeGreaterThan(0);
+          expect(point2Labels.length).toBeGreaterThan(0);
+        },
+        { timeout: 3000 },
+      );
     });
 
-    it('provides feedback when intersection points are correctly identified', async () => {
+    it("provides feedback when intersection points are correctly identified", async () => {
       const onSubmit = vi.fn();
       const props = {
         ...defaultProps,
-        points: [[-2, -2], [2, 2]] as [number, number][],
+        points: [
+          [-2, -2],
+          [2, 2],
+        ] as [number, number][],
         onSubmit,
       };
       render(<GraphingExplorer {...props} mode="guided" />);
 
-      const inputs = screen.getAllByRole('spinbutton');
+      const inputs = screen.getAllByRole("spinbutton");
       inputs.forEach((input, index) => {
         const xValues = [-2, -1, 0, 1, 2];
         fireEvent.change(input, { target: { value: String(xValues[index] ** 2 - 4) } });
@@ -734,7 +788,7 @@ describe('GraphingExplorer - graph_system variant', () => {
         expect(submitButton).toBeInTheDocument();
       });
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 240, clientY: 360 });
       fireEvent.click(canvas, { clientX: 360, clientY: 240 });
 
@@ -746,11 +800,11 @@ describe('GraphingExplorer - graph_system variant', () => {
       });
     });
 
-    it('handles case of no real intersection points', async () => {
+    it("handles case of no real intersection points", async () => {
       const props = {
         ...defaultProps,
-        equation: 'y = x^2 + 4',
-        linearEquation: 'y = 0',
+        equation: "y = x^2 + 4",
+        linearEquation: "y = 0",
         points: [] as [number, number][],
       };
       render(<GraphingExplorer {...props} mode="guided" />);
@@ -758,16 +812,19 @@ describe('GraphingExplorer - graph_system variant', () => {
       expect(screen.getByText(/this system has no real intersection points/i)).toBeInTheDocument();
     });
 
-    it('records intersection point identification in submission', async () => {
+    it("records intersection point identification in submission", async () => {
       const onSubmit = vi.fn();
       const props = {
         ...defaultProps,
-        points: [[-2, -2], [2, 2]] as [number, number][],
+        points: [
+          [-2, -2],
+          [2, 2],
+        ] as [number, number][],
         onSubmit,
       };
       render(<GraphingExplorer {...props} mode="guided" />);
 
-      const inputs = screen.getAllByRole('spinbutton');
+      const inputs = screen.getAllByRole("spinbutton");
       inputs.forEach((input, index) => {
         const xValues = [-2, -1, 0, 1, 2];
         fireEvent.change(input, { target: { value: String(xValues[index] ** 2 - 4) } });
@@ -778,7 +835,7 @@ describe('GraphingExplorer - graph_system variant', () => {
         expect(submitButton).toBeInTheDocument();
       });
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 240, clientY: 360 });
       fireEvent.click(canvas, { clientX: 360, clientY: 240 });
 
@@ -792,48 +849,54 @@ describe('GraphingExplorer - graph_system variant', () => {
         expect(submission.parts).toEqual(
           expect.arrayContaining([
             expect.objectContaining({
-              partId: 'intersections',
+              partId: "intersections",
               isCorrect: expect.any(Boolean),
             }),
-          ])
+          ]),
         );
       });
     });
   });
 
-  describe('practice mode', () => {
-    it('shows instruction to find intersection points', () => {
+  describe("practice mode", () => {
+    it("shows instruction to find intersection points", () => {
       render(<GraphingExplorer {...defaultProps} mode="practice" />);
 
       expect(screen.getByText(/find the intersection points/i)).toBeInTheDocument();
     });
 
-    it('allows direct plotting without table', async () => {
+    it("allows direct plotting without table", async () => {
       const onSubmit = vi.fn();
       render(<GraphingExplorer {...defaultProps} mode="practice" onSubmit={onSubmit} />);
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 240, clientY: 360 });
       fireEvent.click(canvas, { clientX: 360, clientY: 240 });
 
-      await waitFor(() => {
-        const point1Labels = screen.queryAllByText(/-2\.0, -2\.0/i);
-        const point2Labels = screen.queryAllByText(/2\.0, 2\.0/i);
-        expect(point1Labels.length).toBeGreaterThan(0);
-        expect(point2Labels.length).toBeGreaterThan(0);
-      }, { timeout: 3000 });
+      await waitFor(
+        () => {
+          const point1Labels = screen.queryAllByText(/-2\.0, -2\.0/i);
+          const point2Labels = screen.queryAllByText(/2\.0, 2\.0/i);
+          expect(point1Labels.length).toBeGreaterThan(0);
+          expect(point2Labels.length).toBeGreaterThan(0);
+        },
+        { timeout: 3000 },
+      );
     });
 
-    it('overlays correct intersection points after submission', async () => {
+    it("overlays correct intersection points after submission", async () => {
       const onSubmit = vi.fn();
       const props = {
         ...defaultProps,
-        points: [[-2, -2], [2, 2]] as [number, number][],
+        points: [
+          [-2, -2],
+          [2, 2],
+        ] as [number, number][],
         onSubmit,
       };
       render(<GraphingExplorer {...props} mode="practice" />);
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 240, clientY: 360 });
       fireEvent.click(canvas, { clientX: 360, clientY: 240 });
 
@@ -849,16 +912,19 @@ describe('GraphingExplorer - graph_system variant', () => {
       });
     });
 
-    it('assesses intersection point identification for correctness', async () => {
+    it("assesses intersection point identification for correctness", async () => {
       const onSubmit = vi.fn();
       const props = {
         ...defaultProps,
-        points: [[-2, -2], [2, 2]] as [number, number][],
+        points: [
+          [-2, -2],
+          [2, 2],
+        ] as [number, number][],
         onSubmit,
       };
       render(<GraphingExplorer {...props} mode="practice" />);
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       fireEvent.click(canvas, { clientX: 240, clientY: 360 });
       fireEvent.click(canvas, { clientX: 360, clientY: 240 });
 
@@ -871,92 +937,92 @@ describe('GraphingExplorer - graph_system variant', () => {
         expect(submission.parts).toEqual(
           expect.arrayContaining([
             expect.objectContaining({
-              partId: 'intersections',
+              partId: "intersections",
               isCorrect: true,
             }),
-          ])
+          ]),
         );
       });
     });
   });
 });
 
-describe('GraphingExplorer - compare_functions variant', () => {
+describe("GraphingExplorer - compare_functions variant", () => {
   const defaultProps = {
-    activityId: 'test-activity-2',
-    variant: 'compare_functions' as const,
-    equation: 'y = x^2 - 4',
+    activityId: "test-activity-2",
+    variant: "compare_functions" as const,
+    equation: "y = x^2 - 4",
     domain: [-10, 10] as [number, number],
     range: [-10, 10] as [number, number],
   };
 
-  describe('teaching mode', () => {
-    it('renders two functions with different colors', () => {
+  describe("teaching mode", () => {
+    it("renders two functions with different colors", () => {
       const props = {
         ...defaultProps,
-        comparisonEquation: 'y = x^2',
-        comparisonQuestion: 'Which function has a greater y-intercept?',
-        comparisonAnswer: 'second' as const,
+        comparisonEquation: "y = x^2",
+        comparisonQuestion: "Which function has a greater y-intercept?",
+        comparisonAnswer: "second" as const,
       };
       render(<GraphingExplorer {...props} mode="teaching" />);
 
       expect(screen.getByText(/compare the functions/i)).toBeInTheDocument();
       const equationContainer = screen.getByText(/y = x\^2 - 4/).parentElement;
-      expect(equationContainer?.textContent).toContain('y = x^2 - 4');
-      expect(equationContainer?.textContent).toContain('y = x^2');
+      expect(equationContainer?.textContent).toContain("y = x^2 - 4");
+      expect(equationContainer?.textContent).toContain("y = x^2");
     });
 
-    it('shows the correct answer for comparison question', () => {
+    it("shows the correct answer for comparison question", () => {
       const props = {
         ...defaultProps,
-        comparisonEquation: 'y = x^2',
-        comparisonQuestion: 'Which function has a greater y-intercept?',
-        comparisonAnswer: 'second' as const,
+        comparisonEquation: "y = x^2",
+        comparisonQuestion: "Which function has a greater y-intercept?",
+        comparisonAnswer: "second" as const,
       };
       render(<GraphingExplorer {...props} mode="teaching" />);
 
       expect(screen.getByText(/correct answer: second function/i)).toBeInTheDocument();
     });
 
-    it('is read-only - no interaction allowed', () => {
+    it("is read-only - no interaction allowed", () => {
       const props = {
         ...defaultProps,
-        comparisonEquation: 'y = x^2',
-        comparisonQuestion: 'Which function has a greater y-intercept?',
-        comparisonAnswer: 'second' as const,
+        comparisonEquation: "y = x^2",
+        comparisonQuestion: "Which function has a greater y-intercept?",
+        comparisonAnswer: "second" as const,
       };
       render(<GraphingExplorer {...props} mode="teaching" />);
 
-      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      const canvas = screen.getByRole("img", { name: /coordinate plane/i });
       expect(canvas).toBeInTheDocument();
     });
   });
 
-  describe('guided mode', () => {
-    it('shows comparison question with radio button options', () => {
+  describe("guided mode", () => {
+    it("shows comparison question with radio button options", () => {
       const props = {
         ...defaultProps,
-        comparisonEquation: 'y = x^2',
-        comparisonQuestion: 'Which function has a greater y-intercept?',
-        comparisonAnswer: 'second' as const,
+        comparisonEquation: "y = x^2",
+        comparisonQuestion: "Which function has a greater y-intercept?",
+        comparisonAnswer: "second" as const,
       };
       render(<GraphingExplorer {...props} mode="guided" />);
 
       expect(screen.getByText(/which function has a greater y-intercept\?/i)).toBeInTheDocument();
-      expect(screen.getByRole('radio', { name: /first function/i })).toBeInTheDocument();
-      expect(screen.getByRole('radio', { name: /second function/i })).toBeInTheDocument();
+      expect(screen.getByRole("radio", { name: /first function/i })).toBeInTheDocument();
+      expect(screen.getByRole("radio", { name: /second function/i })).toBeInTheDocument();
     });
 
-    it('allows selecting an answer for comparison question', async () => {
+    it("allows selecting an answer for comparison question", async () => {
       const props = {
         ...defaultProps,
-        comparisonEquation: 'y = x^2',
-        comparisonQuestion: 'Which function has a greater y-intercept?',
-        comparisonAnswer: 'second' as const,
+        comparisonEquation: "y = x^2",
+        comparisonQuestion: "Which function has a greater y-intercept?",
+        comparisonAnswer: "second" as const,
       };
       render(<GraphingExplorer {...props} mode="guided" />);
 
-      const firstRadio = screen.getByRole('radio', { name: /first function/i });
+      const firstRadio = screen.getByRole("radio", { name: /first function/i });
       fireEvent.click(firstRadio);
 
       await waitFor(() => {
@@ -964,18 +1030,18 @@ describe('GraphingExplorer - compare_functions variant', () => {
       });
     });
 
-    it('shows correct feedback when answer is correct', async () => {
+    it("shows correct feedback when answer is correct", async () => {
       const onSubmit = vi.fn();
       const props = {
         ...defaultProps,
-        comparisonEquation: 'y = x^2',
-        comparisonQuestion: 'Which function has a greater y-intercept?',
-        comparisonAnswer: 'second' as const,
+        comparisonEquation: "y = x^2",
+        comparisonQuestion: "Which function has a greater y-intercept?",
+        comparisonAnswer: "second" as const,
         onSubmit,
       };
       render(<GraphingExplorer {...props} mode="guided" />);
 
-      const secondRadio = screen.getByRole('radio', { name: /second function/i });
+      const secondRadio = screen.getByRole("radio", { name: /second function/i });
       fireEvent.click(secondRadio);
 
       await waitFor(() => {
@@ -991,18 +1057,18 @@ describe('GraphingExplorer - compare_functions variant', () => {
       });
     });
 
-    it('shows incorrect feedback when answer is wrong', async () => {
+    it("shows incorrect feedback when answer is wrong", async () => {
       const onSubmit = vi.fn();
       const props = {
         ...defaultProps,
-        comparisonEquation: 'y = x^2',
-        comparisonQuestion: 'Which function has a greater y-intercept?',
-        comparisonAnswer: 'second' as const,
+        comparisonEquation: "y = x^2",
+        comparisonQuestion: "Which function has a greater y-intercept?",
+        comparisonAnswer: "second" as const,
         onSubmit,
       };
       render(<GraphingExplorer {...props} mode="guided" />);
 
-      const firstRadio = screen.getByRole('radio', { name: /first function/i });
+      const firstRadio = screen.getByRole("radio", { name: /first function/i });
       fireEvent.click(firstRadio);
 
       await waitFor(() => {
@@ -1018,18 +1084,18 @@ describe('GraphingExplorer - compare_functions variant', () => {
       });
     });
 
-    it('records comparison answer in submission', async () => {
+    it("records comparison answer in submission", async () => {
       const onSubmit = vi.fn();
       const props = {
         ...defaultProps,
-        comparisonEquation: 'y = x^2',
-        comparisonQuestion: 'Which function has a greater y-intercept?',
-        comparisonAnswer: 'second' as const,
+        comparisonEquation: "y = x^2",
+        comparisonQuestion: "Which function has a greater y-intercept?",
+        comparisonAnswer: "second" as const,
         onSubmit,
       };
       render(<GraphingExplorer {...props} mode="guided" />);
 
-      const secondRadio = screen.getByRole('radio', { name: /second function/i });
+      const secondRadio = screen.getByRole("radio", { name: /second function/i });
       fireEvent.click(secondRadio);
 
       await waitFor(() => {
@@ -1043,46 +1109,46 @@ describe('GraphingExplorer - compare_functions variant', () => {
       await waitFor(() => {
         expect(onSubmit).toHaveBeenCalled();
         const submission = onSubmit.mock.calls[0][0];
-        expect(submission.answers.comparisonAnswer).toBe('second');
+        expect(submission.answers.comparisonAnswer).toBe("second");
         expect(submission.parts).toEqual(
           expect.arrayContaining([
             expect.objectContaining({
-              partId: 'comparison',
+              partId: "comparison",
               isCorrect: true,
             }),
-          ])
+          ]),
         );
       });
     });
   });
 
-  describe('practice mode', () => {
-    it('shows comparison question with radio button options', () => {
+  describe("practice mode", () => {
+    it("shows comparison question with radio button options", () => {
       const props = {
         ...defaultProps,
-        comparisonEquation: 'y = x^2',
-        comparisonQuestion: 'Which function has a greater y-intercept?',
-        comparisonAnswer: 'second' as const,
+        comparisonEquation: "y = x^2",
+        comparisonQuestion: "Which function has a greater y-intercept?",
+        comparisonAnswer: "second" as const,
       };
       render(<GraphingExplorer {...props} mode="practice" />);
 
       expect(screen.getByText(/which function has a greater y-intercept\?/i)).toBeInTheDocument();
-      expect(screen.getByRole('radio', { name: /first function/i })).toBeInTheDocument();
-      expect(screen.getByRole('radio', { name: /second function/i })).toBeInTheDocument();
+      expect(screen.getByRole("radio", { name: /first function/i })).toBeInTheDocument();
+      expect(screen.getByRole("radio", { name: /second function/i })).toBeInTheDocument();
     });
 
-    it('overlays correct solution after submission', async () => {
+    it("overlays correct solution after submission", async () => {
       const onSubmit = vi.fn();
       const props = {
         ...defaultProps,
-        comparisonEquation: 'y = x^2',
-        comparisonQuestion: 'Which function has a greater y-intercept?',
-        comparisonAnswer: 'second' as const,
+        comparisonEquation: "y = x^2",
+        comparisonQuestion: "Which function has a greater y-intercept?",
+        comparisonAnswer: "second" as const,
         onSubmit,
       };
       render(<GraphingExplorer {...props} mode="practice" />);
 
-      const firstRadio = screen.getByRole('radio', { name: /first function/i });
+      const firstRadio = screen.getByRole("radio", { name: /first function/i });
       fireEvent.click(firstRadio);
 
       const submitButton = screen.getByText(/submit/i);
@@ -1093,18 +1159,18 @@ describe('GraphingExplorer - compare_functions variant', () => {
       });
     });
 
-    it('assesses comparison answer for correctness', async () => {
+    it("assesses comparison answer for correctness", async () => {
       const onSubmit = vi.fn();
       const props = {
         ...defaultProps,
-        comparisonEquation: 'y = x^2',
-        comparisonQuestion: 'Which function has a greater y-intercept?',
-        comparisonAnswer: 'second' as const,
+        comparisonEquation: "y = x^2",
+        comparisonQuestion: "Which function has a greater y-intercept?",
+        comparisonAnswer: "second" as const,
         onSubmit,
       };
       render(<GraphingExplorer {...props} mode="practice" />);
 
-      const secondRadio = screen.getByRole('radio', { name: /second function/i });
+      const secondRadio = screen.getByRole("radio", { name: /second function/i });
       fireEvent.click(secondRadio);
 
       const submitButton = screen.getByText(/submit/i);
@@ -1116,10 +1182,10 @@ describe('GraphingExplorer - compare_functions variant', () => {
         expect(submission.parts).toEqual(
           expect.arrayContaining([
             expect.objectContaining({
-              partId: 'comparison',
+              partId: "comparison",
               isCorrect: true,
             }),
-          ])
+          ]),
         );
       });
     });

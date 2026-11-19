@@ -1,29 +1,29 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { getGenerator } from '@math-platform/math-content/knowledge-space';
+import { getGenerator } from "@math-platform/math-content/knowledge-space";
 import {
   PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_COMPONENT_KEY,
   PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_GENERATOR_KEY,
   PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_GUIDED_GRADING_CONFIG,
   PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_INDEPENDENT_GRADING_CONFIG,
   PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_WORKED_GRADING_CONFIG,
-} from '@/convex/activities';
+} from "@/convex/activities";
 import {
   PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS,
   PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_GUIDED_ACTIVITY_ID,
   PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_INDEPENDENT_ACTIVITY_ID,
   PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_NODE_ID,
   PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_WORKED_ACTIVITY_ID,
-} from '@/lib/learning-evidence/precalc-pilot';
+} from "@/lib/learning-evidence/precalc-pilot";
 
-const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const PROJECTION_PATH = path.resolve(
   appRoot,
-  'curriculum/skill-graph/projection/practice-v1-activity-map.json',
+  "curriculum/skill-graph/projection/practice-v1-activity-map.json",
 );
 
 const ACTIVITY_IDS = [
@@ -32,10 +32,10 @@ const ACTIVITY_IDS = [
   PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_INDEPENDENT_ACTIVITY_ID,
 ] as const;
 
-describe('Topic 1.5 real zeros and multiplicities activity constants', () => {
-  it('defines exact identities, projected rows, configs, and generator mapping', () => {
+describe("Topic 1.5 real zeros and multiplicities activity constants", () => {
+  it("defines exact identities, projected rows, configs, and generator mapping", () => {
     expect(PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_NODE_ID).toBe(
-      'math.precalc.skill.1.5.find-real-zeros-and-multiplicities-from-factored-form',
+      "math.precalc.skill.1.5.find-real-zeros-and-multiplicities-from-factored-form",
     );
     expect(ACTIVITY_IDS).toEqual([
       `${PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_NODE_ID}.worked_example`,
@@ -44,7 +44,7 @@ describe('Topic 1.5 real zeros and multiplicities activity constants', () => {
     ]);
     expect(new Set(ACTIVITY_IDS).size).toBe(3);
 
-    const projection = JSON.parse(fs.readFileSync(PROJECTION_PATH, 'utf8')) as {
+    const projection = JSON.parse(fs.readFileSync(PROJECTION_PATH, "utf8")) as {
       activities: Array<{
         nodeId: string;
         stableActivityId: string;
@@ -66,19 +66,19 @@ describe('Topic 1.5 real zeros and multiplicities activity constants', () => {
       PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_COMPONENT_KEY,
     ]);
     expect(projectedActivities.map((activity) => activity.mode)).toEqual([
-      'worked_example',
-      'guided_practice',
-      'independent_practice',
+      "worked_example",
+      "guided_practice",
+      "independent_practice",
     ]);
     for (const activityId of ACTIVITY_IDS) {
       expect(allStableActivityIds.filter((candidate) => candidate === activityId)).toHaveLength(1);
     }
 
     expect(PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_COMPONENT_KEY).toBe(
-      'real-zeros-and-multiplicities',
+      "real-zeros-and-multiplicities",
     );
     expect(PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_GENERATOR_KEY).toBe(
-      'topic15-real-zeros-and-multiplicities-from-factored-form',
+      "topic15-real-zeros-and-multiplicities-from-factored-form",
     );
     expect(PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_WORKED_GRADING_CONFIG).toEqual({
       generatorKey: PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_GENERATOR_KEY,
@@ -93,13 +93,17 @@ describe('Topic 1.5 real zeros and multiplicities activity constants', () => {
       variantSeed: 2,
     });
 
-    const generator = getGenerator(PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_GENERATOR_KEY);
+    const generator = getGenerator(
+      PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_GENERATOR_KEY,
+    );
     expect(generator.key).toBe(PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_GENERATOR_KEY);
     expect(generator.nodeIds).toEqual([PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_NODE_ID]);
 
-    expect(PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS.filter(
-      (nodeId) => nodeId === PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_NODE_ID,
-    )).toHaveLength(1);
+    expect(
+      PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS.filter(
+        (nodeId) => nodeId === PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_NODE_ID,
+      ),
+    ).toHaveLength(1);
     expect(new Set(PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS).size).toBe(
       PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS.length,
     );

@@ -1,14 +1,12 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 import {
   buildPracticeSubmissionEnvelope,
   type LearningEvidenceV1,
-} from '@math-platform/practice-core';
-import {
-  InMemorySubmissionSrsAdapter,
-} from '@math-platform/srs-engine';
-import { buildKstState } from '@math-platform/knowledge-space-core';
+} from "@math-platform/practice-core";
+import { InMemorySubmissionSrsAdapter } from "@math-platform/srs-engine";
+import { buildKstState } from "@math-platform/knowledge-space-core";
 
-import { loadFullCurriculumGraph } from '@/lib/curriculum/skill-graph-loader';
+import { loadFullCurriculumGraph } from "@/lib/curriculum/skill-graph-loader";
 
 // Green target for Task 3.2. The app-owned adapter does not exist at the Red
 // baseline. It must persist exposure separately and invoke the established
@@ -55,18 +53,17 @@ import {
   IM3_TEACHER_LED_ACTIVITY_ID,
   type Im3LearningEvidenceStore,
   type Im3MasteryAdvantageBridge,
-} from '@/lib/practice/learning-evidence-pilot';
+} from "@/lib/practice/learning-evidence-pilot";
 
-const LEARNER_ID = 'student-im3-pilot';
-const PILOT_NODE_ID = 'math.im3.skill.1.1.graph-quadratic-functions';
-const NON_PILOT_NODE_ID = 'math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change';
-const COMPARE_MAXIMUM_NODE_ID =
-  'math.im3.skill.1.1.compare-maximum-values-of-quadratic-functions';
+const LEARNER_ID = "student-im3-pilot";
+const PILOT_NODE_ID = "math.im3.skill.1.1.graph-quadratic-functions";
+const NON_PILOT_NODE_ID = "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change";
+const COMPARE_MAXIMUM_NODE_ID = "math.im3.skill.1.1.compare-maximum-values-of-quadratic-functions";
 const COMPARE_MAXIMUM_WORKED_ACTIVITY_ID = `${COMPARE_MAXIMUM_NODE_ID}.worked_example`;
 const COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID = `${COMPARE_MAXIMUM_NODE_ID}.guided_practice`;
 const COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID = `${COMPARE_MAXIMUM_NODE_ID}.independent_practice`;
 const PILOT_ACTIVITY_ID = `${PILOT_NODE_ID}.independent_practice`;
-const KST_NOW = Date.parse('2026-08-19T12:00:00.000Z');
+const KST_NOW = Date.parse("2026-08-19T12:00:00.000Z");
 
 class InMemoryEvidenceStore implements Im3LearningEvidenceStore {
   readonly events: Array<{ learnerId: string; evidence: LearningEvidenceV1 }> = [];
@@ -75,10 +72,12 @@ class InMemoryEvidenceStore implements Im3LearningEvidenceStore {
     learnerId: string,
     idempotencyKey: string,
   ): Promise<LearningEvidenceV1 | null> {
-    return this.events.find((entry) =>
-      entry.learnerId === learnerId
-      && entry.evidence.idempotencyKey === idempotencyKey,
-    )?.evidence ?? null;
+    return (
+      this.events.find(
+        (entry) =>
+          entry.learnerId === learnerId && entry.evidence.idempotencyKey === idempotencyKey,
+      )?.evidence ?? null
+    );
   }
 
   async listByLearnerAndNode(
@@ -95,18 +94,16 @@ class InMemoryEvidenceStore implements Im3LearningEvidenceStore {
   }
 }
 
-function makeEvidence(
-  overrides: Partial<LearningEvidenceV1> = {},
-): LearningEvidenceV1 {
+function makeEvidence(overrides: Partial<LearningEvidenceV1> = {}): LearningEvidenceV1 {
   return {
-    contractVersion: 'learning-evidence.v1',
+    contractVersion: "learning-evidence.v1",
     nodeId: PILOT_NODE_ID,
     activityId: PILOT_ACTIVITY_ID,
     attemptOrdinal: 1,
-    origin: 'teacher_led',
-    mode: 'teaching',
-    occurredAt: '2026-08-19T08:30:00.000Z',
-    idempotencyKey: 'teacher-led-pilot-001',
+    origin: "teacher_led",
+    mode: "teaching",
+    occurredAt: "2026-08-19T08:30:00.000Z",
+    idempotencyKey: "teacher-led-pilot-001",
     ...overrides,
   };
 }
@@ -114,17 +111,19 @@ function makeEvidence(
 function makeFullScoreSubmission() {
   return buildPracticeSubmissionEnvelope({
     activityId: PILOT_ACTIVITY_ID,
-    mode: 'independent_practice',
+    mode: "independent_practice",
     attemptNumber: 1,
-    submittedAt: '2026-08-19T09:00:00.000Z',
-    answers: { graph: 'complete' },
-    parts: [{
-      partId: 'graph',
-      rawAnswer: 'complete',
-      isCorrect: true,
-      score: 6,
-      maxScore: 6,
-    }],
+    submittedAt: "2026-08-19T09:00:00.000Z",
+    answers: { graph: "complete" },
+    parts: [
+      {
+        partId: "graph",
+        rawAnswer: "complete",
+        isCorrect: true,
+        score: 6,
+        maxScore: 6,
+      },
+    ],
   });
 }
 
@@ -139,14 +138,10 @@ async function snapshotKstAndSrs(adapter: InMemorySubmissionSrsAdapter) {
     practiceCoverage: card.reps > 0 ? 1 : 0,
     isProficient: card.reps > 0,
   }));
-  const kst = buildKstState(
-    cards,
-    proficiencies,
-    loadFullCurriculumGraph(),
-    KST_NOW,
+  const kst = buildKstState(cards, proficiencies, loadFullCurriculumGraph(), KST_NOW);
+  const state = Array.from(kst.state.values()).sort((left, right) =>
+    left.nodeId.localeCompare(right.nodeId),
   );
-  const state = Array.from(kst.state.values())
-    .sort((left, right) => left.nodeId.localeCompare(right.nodeId));
 
   return {
     cards,
@@ -177,7 +172,7 @@ function createHarness() {
       submission: makeFullScoreSubmission(),
     });
     if (!result.ok) {
-      throw new Error('the established IM3 SRS path rejected eligible evidence');
+      throw new Error("the established IM3 SRS path rejected eligible evidence");
     }
   };
 
@@ -189,35 +184,31 @@ function createHarness() {
   };
 }
 
-describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
-  it('exports the exact profit-model Independent activity identity', () => {
+describe("IM3 teacher-led Mastery Advantage pilot boundary", () => {
+  it("exports the exact profit-model Independent activity identity", () => {
     expect(IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID).toBe(
-      'math.im3.skill.1.1.build-and-simplify-a-quadratic-profit-model-from-context.independent_practice',
+      "math.im3.skill.1.1.build-and-simplify-a-quadratic-profit-model-from-context.independent_practice",
     );
   });
 
-  it('exports the exact maximum-profit Guided activity identity', () => {
+  it("exports the exact maximum-profit Guided activity identity", () => {
     expect(IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID).toBe(
-      'math.im3.skill.1.1.find-and-interpret-the-maximum-of-a-quadratic-profit-model.guided_practice',
+      "math.im3.skill.1.1.find-and-interpret-the-maximum-of-a-quadratic-profit-model.guided_practice",
     );
   });
 
-  it('exports the exact maximum-profit Independent activity identity', () => {
+  it("exports the exact maximum-profit Independent activity identity", () => {
     expect(IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID).toBe(
-      'math.im3.skill.1.1.find-and-interpret-the-maximum-of-a-quadratic-profit-model.independent_practice',
+      "math.im3.skill.1.1.find-and-interpret-the-maximum-of-a-quadratic-profit-model.independent_practice",
     );
   });
 
-  it('exports the exact second graph Guided seed identity', () => {
-    expect(IM3_GRAPH_GUIDED_SEED_2_ACTIVITY_ID).toBe(
-      `${IM3_GUIDED_PRACTICE_ACTIVITY_ID}:seed-2`,
-    );
-    expect(IM3_GRAPH_GUIDED_SEED_2_VARIANT_KEY).toBe(
-      `${IM3_GUIDED_PRACTICE_ACTIVITY_ID}:seed-2`,
-    );
+  it("exports the exact second graph Guided seed identity", () => {
+    expect(IM3_GRAPH_GUIDED_SEED_2_ACTIVITY_ID).toBe(`${IM3_GUIDED_PRACTICE_ACTIVITY_ID}:seed-2`);
+    expect(IM3_GRAPH_GUIDED_SEED_2_VARIANT_KEY).toBe(`${IM3_GUIDED_PRACTICE_ACTIVITY_ID}:seed-2`);
   });
 
-  it('exports the exact second graph Independent seed identity', () => {
+  it("exports the exact second graph Independent seed identity", () => {
     expect(IM3_GRAPH_INDEPENDENT_SEED_2_ACTIVITY_ID).toBe(
       `${IM3_MASTERY_ADVANTAGE_ACTIVITY_ID}:seed-2`,
     );
@@ -226,9 +217,9 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
     );
   });
 
-  it('exports maximum-reading runtime identities with the exact evidence mapping', () => {
+  it("exports maximum-reading runtime identities with the exact evidence mapping", () => {
     expect(IM3_MAXIMUM_READING_NODE).toBe(
-      'math.im3.skill.1.1.identify-a-quadratic-maximum-from-its-graph',
+      "math.im3.skill.1.1.identify-a-quadratic-maximum-from-its-graph",
     );
     expect(IM3_MAXIMUM_READING_WORKED_ACTIVITY_ID).toBe(
       `${IM3_MAXIMUM_READING_NODE}.worked_example`,
@@ -265,74 +256,84 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
       nodeId: IM3_MAXIMUM_READING_NODE,
       source: {
         activityId: IM3_MAXIMUM_READING_WORKED_ACTIVITY_ID,
-        mode: 'worked_example',
+        mode: "worked_example",
       },
       guided: {
         activityId: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
-        mode: 'guided_practice',
+        mode: "guided_practice",
         variantKey: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
       },
       masteryAdvantage: {
         activityId: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
-        mode: 'independent_practice',
+        mode: "independent_practice",
         variantKey: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
       },
     });
-    expect(IM3_LEARNING_EVIDENCE_PILOT.mappings.filter(
-      (mapping) => mapping.nodeId === IM3_MAXIMUM_READING_NODE,
-    )).toHaveLength(1);
+    expect(
+      IM3_LEARNING_EVIDENCE_PILOT.mappings.filter(
+        (mapping) => mapping.nodeId === IM3_MAXIMUM_READING_NODE,
+      ),
+    ).toHaveLength(1);
   });
 
-  it('exports symmetry runtime identities with the exact evidence mapping', () => {
+  it("exports symmetry runtime identities with the exact evidence mapping", () => {
     expect(IM3_SYMMETRY_NODE).toBe(
-      'math.im3.skill.1.1.graph-a-quadratic-from-a-vertex-and-y-intercept-using-symmetry',
+      "math.im3.skill.1.1.graph-a-quadratic-from-a-vertex-and-y-intercept-using-symmetry",
     );
     expect(IM3_SYMMETRY_WORKED_ACTIVITY_ID).toBe(
-      'math.im3.skill.1.1.graph-a-quadratic-from-a-vertex-and-y-intercept-using-symmetry.worked_example',
+      "math.im3.skill.1.1.graph-a-quadratic-from-a-vertex-and-y-intercept-using-symmetry.worked_example",
     );
     expect(IM3_SYMMETRY_GUIDED_ACTIVITY_ID).toBe(
-      'math.im3.skill.1.1.graph-a-quadratic-from-a-vertex-and-y-intercept-using-symmetry.guided_practice',
+      "math.im3.skill.1.1.graph-a-quadratic-from-a-vertex-and-y-intercept-using-symmetry.guided_practice",
     );
     expect(IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID).toBe(
-      'math.im3.skill.1.1.graph-a-quadratic-from-a-vertex-and-y-intercept-using-symmetry.independent_practice',
+      "math.im3.skill.1.1.graph-a-quadratic-from-a-vertex-and-y-intercept-using-symmetry.independent_practice",
     );
-    expect(IM3_LEARNING_EVIDENCE_PILOT.mappings.filter(
-      (mapping) => mapping.nodeId === IM3_SYMMETRY_NODE,
-    )).toEqual([{
-      nodeId: IM3_SYMMETRY_NODE,
-      source: {
-        activityId: IM3_SYMMETRY_WORKED_ACTIVITY_ID,
-        mode: 'worked_example',
+    expect(
+      IM3_LEARNING_EVIDENCE_PILOT.mappings.filter(
+        (mapping) => mapping.nodeId === IM3_SYMMETRY_NODE,
+      ),
+    ).toEqual([
+      {
+        nodeId: IM3_SYMMETRY_NODE,
+        source: {
+          activityId: IM3_SYMMETRY_WORKED_ACTIVITY_ID,
+          mode: "worked_example",
+        },
+        guided: {
+          activityId: IM3_SYMMETRY_GUIDED_ACTIVITY_ID,
+          mode: "guided_practice",
+          variantKey: IM3_SYMMETRY_GUIDED_ACTIVITY_ID,
+        },
+        masteryAdvantage: {
+          activityId: IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID,
+          mode: "independent_practice",
+          variantKey: IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID,
+        },
       },
-      guided: {
-        activityId: IM3_SYMMETRY_GUIDED_ACTIVITY_ID,
-        mode: 'guided_practice',
-        variantKey: IM3_SYMMETRY_GUIDED_ACTIVITY_ID,
-      },
-      masteryAdvantage: {
-        activityId: IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID,
-        mode: 'independent_practice',
-        variantKey: IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID,
-      },
-    }]);
+    ]);
   });
 
-  it('exports compare-maximum runtime identities with the exact evidence mapping', () => {
-    expect(IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS.filter(
-      (nodeId) => String(nodeId) === COMPARE_MAXIMUM_NODE_ID,
-    )).toHaveLength(1);
-    const pilotNodeIndex = IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS
-      .map((nodeId) => String(nodeId))
-      .indexOf(COMPARE_MAXIMUM_NODE_ID);
+  it("exports compare-maximum runtime identities with the exact evidence mapping", () => {
+    expect(
+      IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS.filter(
+        (nodeId) => String(nodeId) === COMPARE_MAXIMUM_NODE_ID,
+      ),
+    ).toHaveLength(1);
+    const pilotNodeIndex = IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS.map((nodeId) =>
+      String(nodeId),
+    ).indexOf(COMPARE_MAXIMUM_NODE_ID);
     expect(pilotNodeIndex).toBe(
       IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS.indexOf(IM3_SYMMETRY_NODE) + 1,
     );
     expect(pilotNodeIndex).toBe(
       IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS.indexOf(IM3_PROFIT_MODEL_NODE) - 1,
     );
-    expect(IM3_LEARNING_EVIDENCE_PILOT.enabledNodeIds.filter(
-      (nodeId) => String(nodeId) === COMPARE_MAXIMUM_NODE_ID,
-    )).toHaveLength(1);
+    expect(
+      IM3_LEARNING_EVIDENCE_PILOT.enabledNodeIds.filter(
+        (nodeId) => String(nodeId) === COMPARE_MAXIMUM_NODE_ID,
+      ),
+    ).toHaveLength(1);
     const enabledNodeIndex = IM3_LEARNING_EVIDENCE_PILOT.enabledNodeIds
       .map((nodeId) => String(nodeId))
       .indexOf(COMPARE_MAXIMUM_NODE_ID);
@@ -342,28 +343,32 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
     expect(enabledNodeIndex).toBe(
       IM3_LEARNING_EVIDENCE_PILOT.enabledNodeIds.indexOf(IM3_PROFIT_MODEL_NODE) - 1,
     );
-    expect(IM3_LEARNING_EVIDENCE_PILOT.mappings.filter(
-      (mapping) => String(mapping.nodeId) === COMPARE_MAXIMUM_NODE_ID,
-    )).toEqual([{
-      nodeId: COMPARE_MAXIMUM_NODE_ID,
-      source: {
-        activityId: COMPARE_MAXIMUM_WORKED_ACTIVITY_ID,
-        mode: 'worked_example',
+    expect(
+      IM3_LEARNING_EVIDENCE_PILOT.mappings.filter(
+        (mapping) => String(mapping.nodeId) === COMPARE_MAXIMUM_NODE_ID,
+      ),
+    ).toEqual([
+      {
+        nodeId: COMPARE_MAXIMUM_NODE_ID,
+        source: {
+          activityId: COMPARE_MAXIMUM_WORKED_ACTIVITY_ID,
+          mode: "worked_example",
+        },
+        guided: {
+          activityId: COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID,
+          mode: "guided_practice",
+          variantKey: COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID,
+        },
+        masteryAdvantage: {
+          activityId: COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
+          mode: "independent_practice",
+          variantKey: COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
+        },
       },
-      guided: {
-        activityId: COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID,
-        mode: 'guided_practice',
-        variantKey: COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID,
-      },
-      masteryAdvantage: {
-        activityId: COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
-        mode: 'independent_practice',
-        variantKey: COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
-      },
-    }]);
+    ]);
   });
 
-  it('freezes the enabled IM3 pilot nodes', () => {
+  it("freezes the enabled IM3 pilot nodes", () => {
     expect(IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS).toEqual([
       PILOT_NODE_ID,
       IM3_EQUATION_RATE_NODE,
@@ -376,12 +381,13 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
       IM3_ONE_REAL_SOLUTION_NODE,
       IM3_TWO_REAL_SOLUTIONS_NODE,
     ]);
-    expect(new Set(IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS).size)
-      .toBe(IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS.length);
+    expect(new Set(IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS).size).toBe(
+      IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS.length,
+    );
     expect(IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS).not.toContain(NON_PILOT_NODE_ID);
   });
 
-  it('maps the enabled IM3 nodes to exact source, Guided, and Independent identities', () => {
+  it("maps the enabled IM3 nodes to exact source, Guided, and Independent identities", () => {
     expect(IM3_LEARNING_EVIDENCE_PILOT.enabledNodeIds).toEqual([
       IM3_PILOT_NODE,
       IM3_DOMAIN_RANGE_NODE,
@@ -392,23 +398,24 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
       IM3_PROFIT_MAXIMUM_NODE,
       IM3_ONE_REAL_SOLUTION_NODE,
     ]);
-    expect(new Set(IM3_LEARNING_EVIDENCE_PILOT.enabledNodeIds).size)
-      .toBe(IM3_LEARNING_EVIDENCE_PILOT.enabledNodeIds.length);
+    expect(new Set(IM3_LEARNING_EVIDENCE_PILOT.enabledNodeIds).size).toBe(
+      IM3_LEARNING_EVIDENCE_PILOT.enabledNodeIds.length,
+    );
     expect(IM3_LEARNING_EVIDENCE_PILOT.mappings).toEqual([
       {
         nodeId: IM3_PILOT_NODE,
         source: {
           activityId: IM3_TEACHER_LED_ACTIVITY_ID,
-          mode: 'worked_example',
+          mode: "worked_example",
         },
         guided: {
           activityId: IM3_GUIDED_PRACTICE_ACTIVITY_ID,
-          mode: 'guided_practice',
+          mode: "guided_practice",
           variantKey: IM3_GUIDED_VARIANT_KEY,
         },
         masteryAdvantage: {
           activityId: IM3_MASTERY_ADVANTAGE_ACTIVITY_ID,
-          mode: 'independent_practice',
+          mode: "independent_practice",
           variantKey: IM3_PILOT_VARIANT_KEY,
         },
       },
@@ -416,16 +423,16 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
         nodeId: IM3_DOMAIN_RANGE_NODE,
         source: {
           activityId: IM3_DOMAIN_RANGE_WORKED_ACTIVITY_ID,
-          mode: 'worked_example',
+          mode: "worked_example",
         },
         guided: {
           activityId: IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID,
-          mode: 'guided_practice',
+          mode: "guided_practice",
           variantKey: IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID,
         },
         masteryAdvantage: {
           activityId: IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID,
-          mode: 'independent_practice',
+          mode: "independent_practice",
           variantKey: IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID,
         },
       },
@@ -433,16 +440,16 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
         nodeId: IM3_MAXIMUM_READING_NODE,
         source: {
           activityId: IM3_MAXIMUM_READING_WORKED_ACTIVITY_ID,
-          mode: 'worked_example',
+          mode: "worked_example",
         },
         guided: {
           activityId: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
-          mode: 'guided_practice',
+          mode: "guided_practice",
           variantKey: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
         },
         masteryAdvantage: {
           activityId: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
-          mode: 'independent_practice',
+          mode: "independent_practice",
           variantKey: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
         },
       },
@@ -450,16 +457,16 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
         nodeId: IM3_SYMMETRY_NODE,
         source: {
           activityId: IM3_SYMMETRY_WORKED_ACTIVITY_ID,
-          mode: 'worked_example',
+          mode: "worked_example",
         },
         guided: {
           activityId: IM3_SYMMETRY_GUIDED_ACTIVITY_ID,
-          mode: 'guided_practice',
+          mode: "guided_practice",
           variantKey: IM3_SYMMETRY_GUIDED_ACTIVITY_ID,
         },
         masteryAdvantage: {
           activityId: IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID,
-          mode: 'independent_practice',
+          mode: "independent_practice",
           variantKey: IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID,
         },
       },
@@ -467,16 +474,16 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
         nodeId: COMPARE_MAXIMUM_NODE_ID,
         source: {
           activityId: COMPARE_MAXIMUM_WORKED_ACTIVITY_ID,
-          mode: 'worked_example',
+          mode: "worked_example",
         },
         guided: {
           activityId: COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID,
-          mode: 'guided_practice',
+          mode: "guided_practice",
           variantKey: COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID,
         },
         masteryAdvantage: {
           activityId: COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
-          mode: 'independent_practice',
+          mode: "independent_practice",
           variantKey: COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
         },
       },
@@ -484,16 +491,16 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
         nodeId: IM3_PROFIT_MODEL_NODE,
         source: {
           activityId: IM3_PROFIT_MODEL_WORKED_ACTIVITY_ID,
-          mode: 'worked_example',
+          mode: "worked_example",
         },
         guided: {
           activityId: IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID,
-          mode: 'guided_practice',
+          mode: "guided_practice",
           variantKey: IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID,
         },
         masteryAdvantage: {
           activityId: IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID,
-          mode: 'independent_practice',
+          mode: "independent_practice",
           variantKey: IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID,
         },
       },
@@ -501,16 +508,16 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
         nodeId: IM3_PROFIT_MAXIMUM_NODE,
         source: {
           activityId: IM3_PROFIT_MAXIMUM_WORKED_ACTIVITY_ID,
-          mode: 'worked_example',
+          mode: "worked_example",
         },
         guided: {
           activityId: IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID,
-          mode: 'guided_practice',
+          mode: "guided_practice",
           variantKey: IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID,
         },
         masteryAdvantage: {
           activityId: IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
-          mode: 'independent_practice',
+          mode: "independent_practice",
           variantKey: IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
         },
       },
@@ -518,48 +525,48 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
         nodeId: IM3_ONE_REAL_SOLUTION_NODE,
         source: {
           activityId: IM3_ONE_REAL_SOLUTION_WORKED_ACTIVITY_ID,
-          mode: 'worked_example',
+          mode: "worked_example",
         },
         guided: {
           activityId: IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID,
-          mode: 'guided_practice',
+          mode: "guided_practice",
           variantKey: IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID,
         },
         masteryAdvantage: {
           activityId: IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID,
-          mode: 'independent_practice',
+          mode: "independent_practice",
           variantKey: IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID,
         },
       },
     ]);
-    expect(new Set(IM3_LEARNING_EVIDENCE_PILOT.mappings.map((mapping) => mapping.nodeId)).size)
-      .toBe(IM3_LEARNING_EVIDENCE_PILOT.mappings.length);
-    expect(IM3_LEARNING_EVIDENCE_PILOT.mappings.map((mapping) => mapping.nodeId))
-      .toEqual([
-        IM3_PILOT_NODE,
-        IM3_DOMAIN_RANGE_NODE,
-        IM3_MAXIMUM_READING_NODE,
-        IM3_SYMMETRY_NODE,
-        COMPARE_MAXIMUM_NODE_ID,
-        IM3_PROFIT_MODEL_NODE,
-        IM3_PROFIT_MAXIMUM_NODE,
-        IM3_ONE_REAL_SOLUTION_NODE,
-      ]);
+    expect(
+      new Set(IM3_LEARNING_EVIDENCE_PILOT.mappings.map((mapping) => mapping.nodeId)).size,
+    ).toBe(IM3_LEARNING_EVIDENCE_PILOT.mappings.length);
+    expect(IM3_LEARNING_EVIDENCE_PILOT.mappings.map((mapping) => mapping.nodeId)).toEqual([
+      IM3_PILOT_NODE,
+      IM3_DOMAIN_RANGE_NODE,
+      IM3_MAXIMUM_READING_NODE,
+      IM3_SYMMETRY_NODE,
+      COMPARE_MAXIMUM_NODE_ID,
+      IM3_PROFIT_MODEL_NODE,
+      IM3_PROFIT_MAXIMUM_NODE,
+      IM3_ONE_REAL_SOLUTION_NODE,
+    ]);
     const profitMapping = IM3_LEARNING_EVIDENCE_PILOT.mappings[5];
     expect(profitMapping).toMatchObject({
       nodeId: IM3_PROFIT_MODEL_NODE,
       source: {
         activityId: IM3_PROFIT_MODEL_WORKED_ACTIVITY_ID,
-        mode: 'worked_example',
+        mode: "worked_example",
       },
       guided: {
         activityId: IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID,
-        mode: 'guided_practice',
+        mode: "guided_practice",
         variantKey: IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID,
       },
       masteryAdvantage: {
         activityId: IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID,
-        mode: 'independent_practice',
+        mode: "independent_practice",
         variantKey: IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID,
       },
     });
@@ -568,22 +575,22 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
       nodeId: IM3_PROFIT_MAXIMUM_NODE,
       source: {
         activityId: IM3_PROFIT_MAXIMUM_WORKED_ACTIVITY_ID,
-        mode: 'worked_example',
+        mode: "worked_example",
       },
       guided: {
         activityId: IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID,
-        mode: 'guided_practice',
+        mode: "guided_practice",
         variantKey: IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID,
       },
       masteryAdvantage: {
         activityId: IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
-        mode: 'independent_practice',
+        mode: "independent_practice",
         variantKey: IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
       },
     });
   });
 
-  it('introduces a full-score teacher-led pilot exactly once without changing KST or SRS bytes', async () => {
+  it("introduces a full-score teacher-led pilot exactly once without changing KST or SRS bytes", async () => {
     const { adapter, masteryEvents, srsAdapter, store } = createHarness();
     const before = await snapshotKstAndSrs(srsAdapter);
 
@@ -605,10 +612,10 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
       persisted: true,
       masteryApplied: false,
       decision: {
-        idempotency: 'new',
-        exposureState: 'introduced',
+        idempotency: "new",
+        exposureState: "introduced",
         eligible: false,
-        reason: 'teacher_led',
+        reason: "teacher_led",
         masteryBearing: false,
       },
     });
@@ -616,10 +623,10 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
       persisted: false,
       masteryApplied: false,
       decision: {
-        idempotency: 'replay',
-        exposureState: 'introduced',
+        idempotency: "replay",
+        exposureState: "introduced",
         eligible: false,
-        reason: 'teacher_led',
+        reason: "teacher_led",
         masteryBearing: false,
       },
     });
@@ -629,17 +636,17 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
     expect((await snapshotKstAndSrs(srsAdapter)).serialized).toBe(before.serialized);
   });
 
-  it('returns awaiting_teacher_exposure before exposure and performs no KST or SRS write', async () => {
+  it("returns awaiting_teacher_exposure before exposure and performs no KST or SRS write", async () => {
     const { adapter, masteryEvents, srsAdapter } = createHarness();
     const before = await snapshotKstAndSrs(srsAdapter);
 
     const result = await adapter.process({
       learnerId: LEARNER_ID,
       evidence: makeEvidence({
-        origin: 'mastery_advantage',
-        mode: 'independent_practice',
-        occurredAt: '2026-08-19T09:00:00.000Z',
-        idempotencyKey: 'mastery-before-teacher',
+        origin: "mastery_advantage",
+        mode: "independent_practice",
+        occurredAt: "2026-08-19T09:00:00.000Z",
+        idempotencyKey: "mastery-before-teacher",
         gradedEvidence: { isCorrect: true, score: 6, maxScore: 6 },
       }),
     });
@@ -648,10 +655,10 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
       persisted: false,
       masteryApplied: false,
       decision: {
-        idempotency: 'new',
-        exposureState: 'awaiting_teacher_exposure',
+        idempotency: "new",
+        exposureState: "awaiting_teacher_exposure",
         eligible: false,
-        reason: 'awaiting_teacher_exposure',
+        reason: "awaiting_teacher_exposure",
         masteryBearing: false,
       },
     });
@@ -659,7 +666,7 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
     expect((await snapshotKstAndSrs(srsAdapter)).serialized).toBe(before.serialized);
   });
 
-  it('sends one later graded Mastery Advantage event through the established IM3 SRS-to-KST path', async () => {
+  it("sends one later graded Mastery Advantage event through the established IM3 SRS-to-KST path", async () => {
     const { adapter, masteryEvents, srsAdapter } = createHarness();
     const before = await snapshotKstAndSrs(srsAdapter);
 
@@ -670,10 +677,10 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
     const result = await adapter.process({
       learnerId: LEARNER_ID,
       evidence: makeEvidence({
-        origin: 'mastery_advantage',
-        mode: 'independent_practice',
-        occurredAt: '2026-08-19T09:00:00.000Z',
-        idempotencyKey: 'mastery-after-teacher',
+        origin: "mastery_advantage",
+        mode: "independent_practice",
+        occurredAt: "2026-08-19T09:00:00.000Z",
+        idempotencyKey: "mastery-after-teacher",
         gradedEvidence: { isCorrect: true, score: 6, maxScore: 6 },
       }),
     });
@@ -683,10 +690,10 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
       persisted: true,
       masteryApplied: true,
       decision: {
-        idempotency: 'new',
-        exposureState: 'introduced',
+        idempotency: "new",
+        exposureState: "introduced",
         eligible: true,
-        reason: 'eligible',
+        reason: "eligible",
         masteryBearing: true,
       },
     });
@@ -699,11 +706,11 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
       mastery: 1,
       retention: 1,
       isProficient: true,
-      state: 'mastered',
+      state: "mastered",
     });
   });
 
-  it('keeps a non-pilot IM3 node disabled without persistence or mastery effects', async () => {
+  it("keeps a non-pilot IM3 node disabled without persistence or mastery effects", async () => {
     const { adapter, masteryEvents, srsAdapter, store } = createHarness();
     const before = await snapshotKstAndSrs(srsAdapter);
 
@@ -712,7 +719,7 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
       evidence: makeEvidence({
         nodeId: NON_PILOT_NODE_ID,
         activityId: `${NON_PILOT_NODE_ID}.independent_practice`,
-        idempotencyKey: 'non-pilot-teacher-exposure',
+        idempotencyKey: "non-pilot-teacher-exposure",
         gradedEvidence: { isCorrect: true, score: 6, maxScore: 6 },
       }),
     });
@@ -721,10 +728,10 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
       persisted: false,
       masteryApplied: false,
       decision: {
-        idempotency: 'new',
-        exposureState: 'awaiting_teacher_exposure',
+        idempotency: "new",
+        exposureState: "awaiting_teacher_exposure",
         eligible: false,
-        reason: 'node_not_enabled',
+        reason: "node_not_enabled",
         masteryBearing: false,
       },
     });

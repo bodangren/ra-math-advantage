@@ -7,10 +7,7 @@ import {
   BM2_PILOT_SOURCE_ACTIVITY_ID,
   isBm2PilotPublished,
 } from "../lib/learning-evidence/bm2-pilot";
-import {
-  spreadsheetDataValidator,
-  validationResultValidator,
-} from "./spreadsheet_validators";
+import { spreadsheetDataValidator, validationResultValidator } from "./spreadsheet_validators";
 import {
   getBm2AccountingEquationEventActivity,
   isBm2AccountingEquationEventPublished,
@@ -28,7 +25,7 @@ export const getSpreadsheetDraft = internalQuery({
     const response = await ctx.db
       .query("student_spreadsheet_responses")
       .withIndex("by_student_and_activity", (q) =>
-        q.eq("studentId", args.userId).eq("activityId", args.activityId)
+        q.eq("studentId", args.userId).eq("activityId", args.activityId),
       )
       .unique();
 
@@ -55,7 +52,7 @@ export const saveSpreadsheetDraft = internalMutation({
     const existingResponse = await ctx.db
       .query("student_spreadsheet_responses")
       .withIndex("by_student_and_activity", (q) =>
-        q.eq("studentId", args.userId).eq("activityId", args.activityId)
+        q.eq("studentId", args.userId).eq("activityId", args.activityId),
       )
       .unique();
 
@@ -89,7 +86,7 @@ export const getSpreadsheetResponse = internalQuery({
     const response = await ctx.db
       .query("student_spreadsheet_responses")
       .withIndex("by_student_and_activity", (q) =>
-        q.eq("studentId", args.studentId).eq("activityId", args.activityId)
+        q.eq("studentId", args.studentId).eq("activityId", args.activityId),
       )
       .unique();
 
@@ -101,7 +98,7 @@ export const getSpreadsheetResponse = internalQuery({
     const attempts = await ctx.db
       .query("spreadsheet_submission_attempts")
       .withIndex("by_student_and_activity", (q) =>
-        q.eq("studentId", args.studentId).eq("activityId", args.activityId)
+        q.eq("studentId", args.studentId).eq("activityId", args.activityId),
       )
       .collect();
 
@@ -154,7 +151,7 @@ export const submitSpreadsheet = internalMutation({
     const existingResponse = await ctx.db
       .query("student_spreadsheet_responses")
       .withIndex("by_student_and_activity", (q) =>
-        q.eq("studentId", args.userId).eq("activityId", args.activityId)
+        q.eq("studentId", args.userId).eq("activityId", args.activityId),
       )
       .unique();
 
@@ -163,36 +160,34 @@ export const submitSpreadsheet = internalMutation({
     const existingAttempts = await ctx.db
       .query("spreadsheet_submission_attempts")
       .withIndex("by_student_and_activity", (q) =>
-        q.eq("studentId", args.userId).eq("activityId", args.activityId)
+        q.eq("studentId", args.userId).eq("activityId", args.activityId),
       )
       .collect();
 
-    const replay = args.idempotencyKey ? existingAttempts.find((attempt) => attempt.idempotencyKey === args.idempotencyKey) : undefined;
+    const replay = args.idempotencyKey
+      ? existingAttempts.find((attempt) => attempt.idempotencyKey === args.idempotencyKey)
+      : undefined;
     if (replay) {
-      if (JSON.stringify(replay.spreadsheetData) !== JSON.stringify(args.spreadsheetData)) throw new Error('idempotency_conflict');
+      if (JSON.stringify(replay.spreadsheetData) !== JSON.stringify(args.spreadsheetData))
+        throw new Error("idempotency_conflict");
       return { success: true, attemptId: replay._id, attemptNumber: replay.attemptNumber };
     }
     if (existingAttempts.length >= maxAttempts) {
-      throw new Error(
-        `Maximum attempts (${maxAttempts}) reached for this activity.`
-      );
+      throw new Error(`Maximum attempts (${maxAttempts}) reached for this activity.`);
     }
 
     const attemptNumber = existingAttempts.length + 1;
 
-    const attemptId = await ctx.db.insert(
-      "spreadsheet_submission_attempts",
-      {
-        studentId: args.userId,
-        activityId: args.activityId,
-        idempotencyKey: args.idempotencyKey,
-        attemptNumber,
-        spreadsheetData: args.spreadsheetData,
-        validationResult: args.validationResult,
-        submittedAt: now,
-        createdAt: now,
-      }
-    );
+    const attemptId = await ctx.db.insert("spreadsheet_submission_attempts", {
+      studentId: args.userId,
+      activityId: args.activityId,
+      idempotencyKey: args.idempotencyKey,
+      attemptNumber,
+      spreadsheetData: args.spreadsheetData,
+      validationResult: args.validationResult,
+      submittedAt: now,
+      createdAt: now,
+    });
 
     if (existingResponse) {
       await ctx.db.patch(existingResponse._id, {
@@ -217,18 +212,47 @@ export const submitSpreadsheet = internalMutation({
     }
 
     if (args.submissionData) {
-      await ctx.db.insert('activity_submissions', { userId: args.userId, activityId: args.activityId,
-        idempotencyKey: args.idempotencyKey, attemptOrdinal: attemptNumber,
-        submissionData: { ...args.submissionData, attemptNumber, status: 'graded', submittedAt: new Date(now).toISOString() },
-        score: args.validationResult.correctCells, maxScore: args.validationResult.totalCells,
-        submittedAt: now, gradedAt: now, createdAt: now, updatedAt: now });
+      await ctx.db.insert("activity_submissions", {
+        userId: args.userId,
+        activityId: args.activityId,
+        idempotencyKey: args.idempotencyKey,
+        attemptOrdinal: attemptNumber,
+        submissionData: {
+          ...args.submissionData,
+          attemptNumber,
+          status: "graded",
+          submittedAt: new Date(now).toISOString(),
+        },
+        score: args.validationResult.correctCells,
+        maxScore: args.validationResult.totalCells,
+        submittedAt: now,
+        gradedAt: now,
+        createdAt: now,
+        updatedAt: now,
+      });
       const activity = await ctx.db.get(args.activityId);
       if (args.isCompleted && activity?.standardId) {
-        const existing = await ctx.db.query('student_competency')
-          .withIndex('by_student_and_standard', (q) => q.eq('studentId', args.userId).eq('standardId', activity.standardId!)).unique();
-        if (existing) await ctx.db.patch(existing._id, { masteryLevel: Math.min(existing.masteryLevel + 10, 100), evidenceActivityId: args.activityId, lastUpdated: now });
-        else await ctx.db.insert('student_competency', { studentId: args.userId, standardId: activity.standardId,
-          masteryLevel: 10, evidenceActivityId: args.activityId, lastUpdated: now, createdAt: now });
+        const existing = await ctx.db
+          .query("student_competency")
+          .withIndex("by_student_and_standard", (q) =>
+            q.eq("studentId", args.userId).eq("standardId", activity.standardId!),
+          )
+          .unique();
+        if (existing)
+          await ctx.db.patch(existing._id, {
+            masteryLevel: Math.min(existing.masteryLevel + 10, 100),
+            evidenceActivityId: args.activityId,
+            lastUpdated: now,
+          });
+        else
+          await ctx.db.insert("student_competency", {
+            studentId: args.userId,
+            standardId: activity.standardId,
+            masteryLevel: 10,
+            evidenceActivityId: args.activityId,
+            lastUpdated: now,
+            createdAt: now,
+          });
       }
     }
     return { success: true, attemptId, attemptNumber };
@@ -248,7 +272,7 @@ export const updateCompetency = internalMutation({
     const existingCompetency = await ctx.db
       .query("student_competency")
       .withIndex("by_student_and_standard", (q) =>
-        q.eq("studentId", args.studentId).eq("standardId", args.standardId)
+        q.eq("studentId", args.studentId).eq("standardId", args.standardId),
       )
       .unique();
 
@@ -364,7 +388,7 @@ export const getSpreadsheetAttempts = internalQuery({
     const attempts = await ctx.db
       .query("spreadsheet_submission_attempts")
       .withIndex("by_student_and_activity", (q) =>
-        q.eq("studentId", args.studentId).eq("activityId", args.activityId)
+        q.eq("studentId", args.studentId).eq("activityId", args.activityId),
       )
       .order("asc")
       .collect();
@@ -426,10 +450,17 @@ export const submitAssessment = internalMutation({
   },
   handler: async (ctx, args) => {
     const activity = await ctx.db.get(args.activityId);
-    if (activity?.componentKey === 'reflection-journal' && args.submissionData.status !== 'draft'
-      && Array.isArray(activity.props.prompts) && activity.props.prompts.some((prompt: { id: string }) =>
-        typeof args.submissionData.answers[prompt.id] !== 'string' || !String(args.submissionData.answers[prompt.id]).trim())) {
-      throw new Error('required_answers_missing');
+    if (
+      activity?.componentKey === "reflection-journal" &&
+      args.submissionData.status !== "draft" &&
+      Array.isArray(activity.props.prompts) &&
+      activity.props.prompts.some(
+        (prompt: { id: string }) =>
+          typeof args.submissionData.answers[prompt.id] !== "string" ||
+          !String(args.submissionData.answers[prompt.id]).trim(),
+      )
+    ) {
+      throw new Error("required_answers_missing");
     }
     const stableActivityId = activity?.stableActivityId;
     const idempotencyKey = args.idempotencyKey;
@@ -437,20 +468,29 @@ export const submitAssessment = internalMutation({
     if (idempotencyKey !== undefined) {
       const existing = await ctx.db
         .query("activity_submissions")
-        .withIndex("by_user_and_idempotency_key", (query) => (
-          query.eq("userId", args.userId).eq("idempotencyKey", idempotencyKey)
-        ))
+        .withIndex("by_user_and_idempotency_key", (query) =>
+          query.eq("userId", args.userId).eq("idempotencyKey", idempotencyKey),
+        )
         .unique();
       if (existing) {
         const existingSubmissionData = existing.submissionData;
-        const sameCanonicalSubmission = existing.activityId === args.activityId
-          && existingSubmissionData.mode === args.submissionData.mode
-          && JSON.stringify(existingSubmissionData.answers) === JSON.stringify(args.submissionData.answers)
-          && JSON.stringify(existingSubmissionData.artifact ?? null) === JSON.stringify(args.submissionData.artifact ?? null);
+        const sameCanonicalSubmission =
+          existing.activityId === args.activityId &&
+          existingSubmissionData.mode === args.submissionData.mode &&
+          JSON.stringify(existingSubmissionData.answers) ===
+            JSON.stringify(args.submissionData.answers) &&
+          JSON.stringify(existingSubmissionData.artifact ?? null) ===
+            JSON.stringify(args.submissionData.artifact ?? null);
         if (!sameCanonicalSubmission) {
-          throw new Error('idempotency_conflict');
+          throw new Error("idempotency_conflict");
         }
-        return { id: existing._id, attemptOrdinal: existing.attemptOrdinal, score: existing.score, maxScore: existing.maxScore, feedback: existing.feedback };
+        return {
+          id: existing._id,
+          attemptOrdinal: existing.attemptOrdinal,
+          score: existing.score,
+          maxScore: existing.maxScore,
+          feedback: existing.feedback,
+        };
       }
     }
 
@@ -458,23 +498,21 @@ export const submitAssessment = internalMutation({
       const now = Date.now();
       const latestQuery = ctx.db
         .query("activity_submissions")
-        .withIndex("by_user_and_activity_and_attempt_ordinal", (query) => (
-          query.eq("userId", args.userId).eq("activityId", args.activityId)
-        ));
+        .withIndex("by_user_and_activity_and_attempt_ordinal", (query) =>
+          query.eq("userId", args.userId).eq("activityId", args.activityId),
+        );
       const latest = await latestQuery.order("desc").first();
       const attemptOrdinal = (latest?.attemptOrdinal ?? 0) + 1;
       const submittedAt = new Date(now).toISOString();
       const storedParts = args.submissionData.parts.map((part) => ({
         partId: part.partId,
         rawAnswer: part.rawAnswer,
-        ...(part.normalizedAnswer !== undefined
-          ? { normalizedAnswer: part.normalizedAnswer }
-          : {}),
+        ...(part.normalizedAnswer !== undefined ? { normalizedAnswer: part.normalizedAnswer } : {}),
       }));
       const storedSubmissionData = {
         ...args.submissionData,
         activityId: String(args.activityId),
-        status: 'graded' as const,
+        status: "graded" as const,
         attemptNumber: attemptOrdinal,
         submittedAt,
         parts: storedParts,
@@ -485,7 +523,7 @@ export const submitAssessment = internalMutation({
         activityId: args.activityId,
         stableActivityId: BM2_PILOT_SOURCE_ACTIVITY_ID,
         submissionData: storedSubmissionData,
-        masteryContractVersion: 'learning-evidence.v1',
+        masteryContractVersion: "learning-evidence.v1",
         ...(idempotencyKey === undefined ? {} : { idempotencyKey }),
         score: args.score,
         maxScore: args.maxScore,
@@ -496,27 +534,65 @@ export const submitAssessment = internalMutation({
         createdAt: now,
         updatedAt: now,
       });
-      return { id, attemptOrdinal, score: args.score, maxScore: args.maxScore, feedback: args.feedback };
+      return {
+        id,
+        attemptOrdinal,
+        score: args.score,
+        maxScore: args.maxScore,
+        feedback: args.feedback,
+      };
     }
 
     const now = Date.now();
     if (!activity) throw new Error("activity_unavailable");
-    const prior = await ctx.db.query("activity_submissions")
-      .withIndex("by_user_and_activity", (q) => q.eq("userId", args.userId).eq("activityId", args.activityId)).collect();
+    const prior = await ctx.db
+      .query("activity_submissions")
+      .withIndex("by_user_and_activity", (q) =>
+        q.eq("userId", args.userId).eq("activityId", args.activityId),
+      )
+      .collect();
     const limit = activity.props.maxAttempts ?? activity.gradingConfig?.maxAttempts;
-    if (args.submissionData.status !== "draft" && typeof limit === "number" && prior.filter(row => row.submissionData?.status !== "draft").length >= limit) throw new Error("attempt_limit_reached");
+    if (
+      args.submissionData.status !== "draft" &&
+      typeof limit === "number" &&
+      prior.filter((row) => row.submissionData?.status !== "draft").length >= limit
+    )
+      throw new Error("attempt_limit_reached");
     const attemptOrdinal = prior.length + 1;
-    const submissionData = { ...args.submissionData, attemptNumber: attemptOrdinal,
-      submittedAt: new Date(now).toISOString(), status: args.submissionData.status === "draft" ? "draft" as const : args.maxScore ? "graded" as const : "submitted" as const,
-      parts: args.submissionData.parts.map(({ partId, rawAnswer }) => ({ partId, rawAnswer })) };
+    const submissionData = {
+      ...args.submissionData,
+      attemptNumber: attemptOrdinal,
+      submittedAt: new Date(now).toISOString(),
+      status:
+        args.submissionData.status === "draft"
+          ? ("draft" as const)
+          : args.maxScore
+            ? ("graded" as const)
+            : ("submitted" as const),
+      parts: args.submissionData.parts.map(({ partId, rawAnswer }) => ({ partId, rawAnswer })),
+    };
     const id = await ctx.db.insert("activity_submissions", {
-      userId: args.userId, activityId: args.activityId, submissionData,
-      ...(idempotencyKey ? { idempotencyKey } : {}), attemptOrdinal,
-      score: args.score, maxScore: args.maxScore, feedback: args.feedback,
-      submittedAt: now, ...(args.maxScore ? { gradedAt: now } : {}), createdAt: now, updatedAt: now,
+      userId: args.userId,
+      activityId: args.activityId,
+      submissionData,
+      ...(idempotencyKey ? { idempotencyKey } : {}),
+      attemptOrdinal,
+      score: args.score,
+      maxScore: args.maxScore,
+      feedback: args.feedback,
+      submittedAt: now,
+      ...(args.maxScore ? { gradedAt: now } : {}),
+      createdAt: now,
+      updatedAt: now,
     });
 
-    return { id, attemptOrdinal, score: args.score, maxScore: args.maxScore, feedback: args.feedback };
+    return {
+      id,
+      attemptOrdinal,
+      score: args.score,
+      maxScore: args.maxScore,
+      feedback: args.feedback,
+    };
   },
 });
 
@@ -541,29 +617,42 @@ function sameEventSubmission(
   stableActivityId: string,
   submissionData: unknown,
 ): boolean {
-  if (existing.stableActivityId !== stableActivityId
-    || typeof existing.submissionData !== "object"
-    || existing.submissionData === null
-    || typeof submissionData !== "object"
-    || submissionData === null) return false;
+  if (
+    existing.stableActivityId !== stableActivityId ||
+    typeof existing.submissionData !== "object" ||
+    existing.submissionData === null ||
+    typeof submissionData !== "object" ||
+    submissionData === null
+  )
+    return false;
   const stored = existing.submissionData as Record<string, unknown>;
   const incoming = submissionData as Record<string, unknown>;
-  const canonicalParts = (value: unknown) => Array.isArray(value) ? value.map((part) => {
-    if (typeof part !== "object" || part === null) return part;
-    const candidate = part as Record<string, unknown>;
-    return {
-      partId: candidate.partId,
-      rawAnswer: candidate.rawAnswer,
-      ...(candidate.hintsUsed === undefined ? {} : { hintsUsed: candidate.hintsUsed }),
-      ...(candidate.revealStepsSeen === undefined ? {} : { revealStepsSeen: candidate.revealStepsSeen }),
-      ...(candidate.changedCount === undefined ? {} : { changedCount: candidate.changedCount }),
-    };
-  }) : value;
-  return stored.mode === incoming.mode
-    && normalizePracticeValue(stored.answers) === normalizePracticeValue(incoming.answers)
-    && normalizePracticeValue(canonicalParts(stored.parts))
-      === normalizePracticeValue(canonicalParts(incoming.parts))
-    && normalizePracticeValue(stored.artifact ?? null) === normalizePracticeValue(incoming.artifact ?? null);
+  const canonicalParts = (value: unknown) =>
+    Array.isArray(value)
+      ? value.map((part) => {
+          if (typeof part !== "object" || part === null) return part;
+          const candidate = part as Record<string, unknown>;
+          return {
+            partId: candidate.partId,
+            rawAnswer: candidate.rawAnswer,
+            ...(candidate.hintsUsed === undefined ? {} : { hintsUsed: candidate.hintsUsed }),
+            ...(candidate.revealStepsSeen === undefined
+              ? {}
+              : { revealStepsSeen: candidate.revealStepsSeen }),
+            ...(candidate.changedCount === undefined
+              ? {}
+              : { changedCount: candidate.changedCount }),
+          };
+        })
+      : value;
+  return (
+    stored.mode === incoming.mode &&
+    normalizePracticeValue(stored.answers) === normalizePracticeValue(incoming.answers) &&
+    normalizePracticeValue(canonicalParts(stored.parts)) ===
+      normalizePracticeValue(canonicalParts(incoming.parts)) &&
+    normalizePracticeValue(stored.artifact ?? null) ===
+      normalizePracticeValue(incoming.artifact ?? null)
+  );
 }
 
 /** Store one exact BM2 event response without creating learning evidence. */
@@ -577,7 +666,8 @@ export const createAccountingEquationEventSubmission = internalMutation({
   returns: accountingEquationEventSubmissionResultValidator,
   handler: async (ctx, args) => {
     const learner = await ctx.db.get(args.userId);
-    const credential = await ctx.db.query("auth_credentials")
+    const credential = await ctx.db
+      .query("auth_credentials")
       .withIndex("by_profile", (query) => query.eq("profileId", args.userId))
       .unique();
     if (learner?.role !== "student" || credential?.isActive !== true) {
@@ -588,46 +678,59 @@ export const createAccountingEquationEventSubmission = internalMutation({
     }
 
     const mappedActivity = getBm2AccountingEquationEventActivity(args.activityId);
-    if (!mappedActivity
-      || args.idempotencyKey.trim().length === 0
-      || args.submissionData.activityId !== args.activityId
-      || args.submissionData.mode !== mappedActivity.mode
-      || args.submissionData.status !== "submitted") {
+    if (
+      !mappedActivity ||
+      args.idempotencyKey.trim().length === 0 ||
+      args.submissionData.activityId !== args.activityId ||
+      args.submissionData.mode !== mappedActivity.mode ||
+      args.submissionData.status !== "submitted"
+    ) {
       throw new Error("Invalid BM2 accounting equation event submission");
     }
-    const storedActivity = await ctx.db.query("activities")
-      .withIndex("by_stable_activity_id", (query) => (
-        query.eq("stableActivityId", mappedActivity.stableActivityId)
-      ))
+    const storedActivity = await ctx.db
+      .query("activities")
+      .withIndex("by_stable_activity_id", (query) =>
+        query.eq("stableActivityId", mappedActivity.stableActivityId),
+      )
       .unique();
-    if (!storedActivity || !isBm2AccountingEquationEventStoredActivity(mappedActivity, storedActivity)) {
+    if (
+      !storedActivity ||
+      !isBm2AccountingEquationEventStoredActivity(mappedActivity, storedActivity)
+    ) {
       throw new Error("BM2 accounting equation event activity metadata is invalid");
     }
 
     const isWorked = mappedActivity.mode === "worked_example";
     if (isWorked) {
       const artifact = args.submissionData.artifact;
-      if (Object.keys(args.submissionData.answers).length !== 0
-        || args.submissionData.parts.length !== 0
-        || !artifact
-        || Object.keys(artifact).length !== 1
-        || artifact.kind !== "accounting-equation-event-acknowledgement") {
+      if (
+        Object.keys(args.submissionData.answers).length !== 0 ||
+        args.submissionData.parts.length !== 0 ||
+        !artifact ||
+        Object.keys(artifact).length !== 1 ||
+        artifact.kind !== "accounting-equation-event-acknowledgement"
+      ) {
         throw new Error("Invalid BM2 Worked acknowledgement");
       }
     }
 
     const grade = isWorked ? null : gradeAccountingEquationEventSubmission(args.submissionData);
-    const existing = await ctx.db.query("activity_submissions")
-      .withIndex("by_user_and_idempotency_key", (query) => (
-        query.eq("userId", args.userId).eq("idempotencyKey", args.idempotencyKey)
-      ))
+    const existing = await ctx.db
+      .query("activity_submissions")
+      .withIndex("by_user_and_idempotency_key", (query) =>
+        query.eq("userId", args.userId).eq("idempotencyKey", args.idempotencyKey),
+      )
       .unique();
     if (existing) {
       if (!sameEventSubmission(existing, args.activityId, args.submissionData)) {
         throw new Error("idempotency_conflict");
       }
       if (isWorked) {
-        return { submissionId: existing._id, acknowledged: true as const, attemptOrdinal: existing.attemptOrdinal ?? 1 };
+        return {
+          submissionId: existing._id,
+          acknowledged: true as const,
+          attemptOrdinal: existing.attemptOrdinal ?? 1,
+        };
       }
       if (!grade || existing.score === undefined || existing.maxScore === undefined) {
         throw new Error("Stored BM2 event submission is incomplete");
@@ -642,10 +745,11 @@ export const createAccountingEquationEventSubmission = internalMutation({
       };
     }
 
-    const latest = await ctx.db.query("activity_submissions")
-      .withIndex("by_user_and_activity_and_attempt_ordinal", (query) => (
-        query.eq("userId", args.userId).eq("activityId", storedActivity._id)
-      ))
+    const latest = await ctx.db
+      .query("activity_submissions")
+      .withIndex("by_user_and_activity_and_attempt_ordinal", (query) =>
+        query.eq("userId", args.userId).eq("activityId", storedActivity._id),
+      )
       .order("desc")
       .first();
     const attemptOrdinal = (latest?.attemptOrdinal ?? 0) + 1;
@@ -752,11 +856,7 @@ function parseGeneratedAccountingVariant(activityId: string): {
 
   const seed = Number(match[1]);
   const hiddenTermId = match[2];
-  if (
-    hiddenTermId !== "assets"
-    && hiddenTermId !== "liabilities"
-    && hiddenTermId !== "equity"
-  ) {
+  if (hiddenTermId !== "assets" && hiddenTermId !== "liabilities" && hiddenTermId !== "equity") {
     return null;
   }
   if (!Number.isSafeInteger(seed) || seed < 0) return null;
@@ -785,14 +885,14 @@ export const createServerOwnedSubmission = internalMutation({
       throw new Error("Invalid generated BM2 accounting-equation activity");
     }
     if (
-      args.submissionData.mode !== "independent_practice"
-      || args.submissionData.status !== "submitted"
+      args.submissionData.mode !== "independent_practice" ||
+      args.submissionData.status !== "submitted"
     ) {
-      throw new Error("Generated BM2 submissions require independent_practice and submitted status");
+      throw new Error(
+        "Generated BM2 submissions require independent_practice and submitted status",
+      );
     }
-    if (
-      args.idempotencyKey.trim().length === 0
-    ) {
+    if (args.idempotencyKey.trim().length === 0) {
       throw new Error("Invalid create idempotency key");
     }
 
@@ -808,17 +908,17 @@ export const createServerOwnedSubmission = internalMutation({
     }
     const submittedPart = args.submissionData.parts[0];
     if (
-      submittedPart.partId !== variant.hiddenTermId
-      || submittedPart.rawAnswer !== answers[variant.hiddenTermId]
+      submittedPart.partId !== variant.hiddenTermId ||
+      submittedPart.rawAnswer !== answers[variant.hiddenTermId]
     ) {
       throw new Error("Generated BM2 submission part does not match the answer");
     }
 
     const sourceActivity = await ctx.db
       .query("activities")
-      .withIndex("by_stable_activity_id", (query) => (
-        query.eq("stableActivityId", BM2_PILOT_SOURCE_ACTIVITY_ID)
-      ))
+      .withIndex("by_stable_activity_id", (query) =>
+        query.eq("stableActivityId", BM2_PILOT_SOURCE_ACTIVITY_ID),
+      )
       .unique();
     if (!sourceActivity) {
       throw new Error("BM2 pilot source activity is not provisioned");
@@ -829,24 +929,24 @@ export const createServerOwnedSubmission = internalMutation({
 
     const existing = await ctx.db
       .query("activity_submissions")
-      .withIndex("by_user_and_idempotency_key", (query) => (
-        query.eq("userId", args.userId).eq("idempotencyKey", args.idempotencyKey)
-      ))
+      .withIndex("by_user_and_idempotency_key", (query) =>
+        query.eq("userId", args.userId).eq("idempotencyKey", args.idempotencyKey),
+      )
       .unique();
     if (existing) {
       const existingAnswers = existing.submissionData.answers;
       if (
-        existing.stableActivityId !== args.activityId
-        || existing.submissionData.mode !== "independent_practice"
-        || existingAnswers[variant.hiddenTermId] !== answers[variant.hiddenTermId]
+        existing.stableActivityId !== args.activityId ||
+        existing.submissionData.mode !== "independent_practice" ||
+        existingAnswers[variant.hiddenTermId] !== answers[variant.hiddenTermId]
       ) {
         throw new Error("idempotency_conflict");
       }
       if (
-        existing.score === undefined
-        || existing.maxScore === undefined
-        || existing.feedback === undefined
-        || existing.attemptOrdinal === undefined
+        existing.score === undefined ||
+        existing.maxScore === undefined ||
+        existing.feedback === undefined ||
+        existing.attemptOrdinal === undefined
       ) {
         throw new Error("Stored BM2 submission is incomplete");
       }
@@ -869,11 +969,11 @@ export const createServerOwnedSubmission = internalMutation({
     const grade = accountingEquationFamily.grade(definition, {
       [variant.hiddenTermId]: answers[variant.hiddenTermId],
     });
-    const feedback = grade.feedback ?? (
-      grade.score === grade.maxScore
+    const feedback =
+      grade.feedback ??
+      (grade.score === grade.maxScore
         ? "Correct equation balance."
-        : "Recheck the accounting equation."
-    );
+        : "Recheck the accounting equation.");
     const storedParts = grade.parts.map((part) => {
       const rawAnswer = answers[part.partId];
       if (rawAnswer === undefined) {
@@ -887,11 +987,9 @@ export const createServerOwnedSubmission = internalMutation({
 
     const latest = await ctx.db
       .query("activity_submissions")
-      .withIndex("by_user_and_activity_and_attempt_ordinal", (query) => (
-        query
-          .eq("userId", args.userId)
-          .eq("activityId", sourceActivity._id)
-      ))
+      .withIndex("by_user_and_activity_and_attempt_ordinal", (query) =>
+        query.eq("userId", args.userId).eq("activityId", sourceActivity._id),
+      )
       .order("desc")
       .first();
     const attemptOrdinal = (latest?.attemptOrdinal ?? 0) + 1;

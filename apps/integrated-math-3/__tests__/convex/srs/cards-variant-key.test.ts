@@ -30,86 +30,82 @@
  * is that artifact, and they must be paired with a live-behavior proof or an
  * explicit plan note saying which later role owns the live gate").
  */
-import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 
 function readCardsSource(): string {
   // apps/integrated-math-3/__tests__/convex/srs/cards-variant-key.test.ts
   //   ^__tests__/convex/srs                 ^package root
-  const path = resolve(__dirname, '../../../convex/srs/cards.ts');
-  return readFileSync(path, 'utf-8');
+  const path = resolve(__dirname, "../../../convex/srs/cards.ts");
+  return readFileSync(path, "utf-8");
 }
 
 function readProcessReviewSource(): string {
-  const path = resolve(__dirname, '../../../convex/srs/processReview.ts');
-  return readFileSync(path, 'utf-8');
+  const path = resolve(__dirname, "../../../convex/srs/processReview.ts");
+  return readFileSync(path, "utf-8");
 }
 
-describe('convex/srs/cards.ts (artifact rename, FR1/FR5)', () => {
-  it('retains the migration input adapter for legacy variant identities', () => {
+describe("convex/srs/cards.ts (artifact rename, FR1/FR5)", () => {
+  it("retains the migration input adapter for legacy variant identities", () => {
     const content = readCardsSource();
-    expect(
-      content,
-      'cards.ts must retain the migration input adapter',
-    ).toMatch(/resolveCanonicalVariantKey/);
+    expect(content, "cards.ts must retain the migration input adapter").toMatch(
+      /resolveCanonicalVariantKey/,
+    );
   });
 
-  it('accepts legacyProblemFamilyId during the existing migration', () => {
+  it("accepts legacyProblemFamilyId during the existing migration", () => {
     const content = readCardsSource();
-    expect(
-      content,
-      'cards.ts must not reference the legacy ProblemFamily identifier',
-    ).toMatch(/legacyProblemFamilyId/);
+    expect(content, "cards.ts must not reference the legacy ProblemFamily identifier").toMatch(
+      /legacyProblemFamilyId/,
+    );
   });
 
-  it('references the renamed `variantKey` identifier (positive contract, FR1)', () => {
+  it("references the renamed `variantKey` identifier (positive contract, FR1)", () => {
     const content = readCardsSource();
-    expect(
-      content,
-      'cards.ts must reference the renamed variantKey identifier',
-    ).toMatch(/variantKey/);
+    expect(content, "cards.ts must reference the renamed variantKey identifier").toMatch(
+      /variantKey/,
+    );
   });
 
-  it('does not reference the legacy `by_student_and_problem_family` index name', () => {
+  it("does not reference the legacy `by_student_and_problem_family` index name", () => {
     const content = readCardsSource();
     expect(
       content,
-      'cards.ts must not reference the legacy by_student_and_problem_family index name',
+      "cards.ts must not reference the legacy by_student_and_problem_family index name",
     ).not.toMatch(/by_student_and_problem_family/);
   });
 
-  it('references the renamed `by_student_and_variant` index name (positive contract, FR1)', () => {
+  it("references the renamed `by_student_and_variant` index name (positive contract, FR1)", () => {
     const content = readCardsSource();
     expect(
       content,
-      'cards.ts must reference the renamed by_student_and_variant index name',
+      "cards.ts must reference the renamed by_student_and_variant index name",
     ).toMatch(/by_student_and_variant/);
   });
 
-  it('keeps the legacy handler as a temporary adapter', () => {
+  it("keeps the legacy handler as a temporary adapter", () => {
     const content = readCardsSource();
     expect(
       content,
-      'cards.ts must not export the legacy getCardByStudentAndFamily handler',
+      "cards.ts must not export the legacy getCardByStudentAndFamily handler",
     ).toMatch(/findCardByStudentAndVariant/);
   });
 });
 
-describe('convex/srs/processReview.ts (artifact rename, FR1/FR5)', () => {
-  it('does not reference the legacy `problemFamilyId` identifier', () => {
+describe("convex/srs/processReview.ts (artifact rename, FR1/FR5)", () => {
+  it("does not reference the legacy `problemFamilyId` identifier", () => {
     const content = readProcessReviewSource();
     expect(
       content,
-      'processReview.ts must not reference the legacy problemFamilyId identifier',
+      "processReview.ts must not reference the legacy problemFamilyId identifier",
     ).not.toMatch(/problemFamilyId/);
   });
 
-  it('references the renamed `variantKey` identifier (positive contract, FR1)', () => {
+  it("references the renamed `variantKey` identifier (positive contract, FR1)", () => {
     const content = readProcessReviewSource();
-    expect(
-      content,
-      'processReview.ts must reference the renamed variantKey identifier',
-    ).toMatch(/variantKey/);
+    expect(content, "processReview.ts must reference the renamed variantKey identifier").toMatch(
+      /variantKey/,
+    );
   });
 });

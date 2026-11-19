@@ -2,12 +2,17 @@ import {
   buildPracticeSubmissionEnvelope,
   normalizePracticeValue,
   type PracticeSubmissionEnvelope,
-} from '@/lib/practice/contract';
-import { practiceAccounts, type PracticeAccount } from '@/lib/practice/engine/accounts';
-import { misconceptionTags } from '@/lib/practice/misconception-taxonomy';
-import type { GradeResult, ProblemDefinition, ProblemFamily, ProblemPartDefinition } from '@/lib/practice/engine/types';
+} from "@/lib/practice/contract";
+import { practiceAccounts, type PracticeAccount } from "@/lib/practice/engine/accounts";
+import { misconceptionTags } from "@/lib/practice/misconception-taxonomy";
+import type {
+  GradeResult,
+  ProblemDefinition,
+  ProblemFamily,
+  ProblemPartDefinition,
+} from "@/lib/practice/engine/types";
 
-type ClassificationCategorySetKey = 'account-type' | 'statement-placement' | 'permanent-temporary';
+type ClassificationCategorySetKey = "account-type" | "statement-placement" | "permanent-temporary";
 
 export interface ClassificationCategory {
   id: string;
@@ -18,14 +23,14 @@ export interface ClassificationCategory {
 
 export interface ClassificationPart extends ProblemPartDefinition {
   id: string;
-  kind: 'categorization';
+  kind: "categorization";
   label: string;
   description?: string;
   targetId: string;
   details: {
-    accountType: PracticeAccount['accountType'];
-    normalBalance: PracticeAccount['normalBalance'];
-    statementPlacement: PracticeAccount['statementPlacement'];
+    accountType: PracticeAccount["accountType"];
+    normalBalance: PracticeAccount["normalBalance"];
+    statementPlacement: PracticeAccount["statementPlacement"];
     retailApplicable: boolean;
     subcategory: string;
     commonConfusionPairs: string[];
@@ -43,7 +48,7 @@ export interface ClassificationDefinition extends ProblemDefinition {
 export type ClassificationResponse = Record<string, string>;
 
 export interface ClassificationConfig {
-  mode?: ProblemDefinition['mode'];
+  mode?: ProblemDefinition["mode"];
   categorySet?: ClassificationCategorySetKey;
   itemCount?: number;
   confusionPairDensity?: number;
@@ -65,42 +70,54 @@ interface CandidateItem {
 }
 
 const CLASSIFICATION_PRESETS: Record<ClassificationCategorySetKey, ClassificationPreset> = {
-  'account-type': {
-    title: 'Classify the account type',
-    stem: 'Place each account into the correct account-type category.',
+  "account-type": {
+    title: "Classify the account type",
+    stem: "Place each account into the correct account-type category.",
     categories: [
-      { id: 'asset', label: 'Assets', description: 'Resources the business owns' },
-      { id: 'liability', label: 'Liabilities', description: 'Debts and obligations' },
-      { id: 'equity', label: 'Equity', description: 'Owner claim on the business' },
-      { id: 'revenue', label: 'Revenue', description: 'Earned inflows from operations' },
-      { id: 'expense', label: 'Expenses', description: 'Costs and outflows' },
+      { id: "asset", label: "Assets", description: "Resources the business owns" },
+      { id: "liability", label: "Liabilities", description: "Debts and obligations" },
+      { id: "equity", label: "Equity", description: "Owner claim on the business" },
+      { id: "revenue", label: "Revenue", description: "Earned inflows from operations" },
+      { id: "expense", label: "Expenses", description: "Costs and outflows" },
     ],
     resolveCategoryId: (account) => account.accountType,
   },
-  'statement-placement': {
-    title: 'Classify the statement placement',
-    stem: 'Place each account into the statement where it belongs.',
+  "statement-placement": {
+    title: "Classify the statement placement",
+    stem: "Place each account into the statement where it belongs.",
     categories: [
-      { id: 'balance-sheet', label: 'Balance Sheet', description: 'Assets, liabilities, and equity' },
-      { id: 'income-statement', label: 'Income Statement', description: 'Revenue and expense accounts' },
-      { id: 'equity-statement', label: 'Equity Statement', description: 'Owner equity changes and closing items' },
+      {
+        id: "balance-sheet",
+        label: "Balance Sheet",
+        description: "Assets, liabilities, and equity",
+      },
+      {
+        id: "income-statement",
+        label: "Income Statement",
+        description: "Revenue and expense accounts",
+      },
+      {
+        id: "equity-statement",
+        label: "Equity Statement",
+        description: "Owner equity changes and closing items",
+      },
     ],
     resolveCategoryId: (account) => account.statementPlacement,
   },
-  'permanent-temporary': {
-    title: 'Classify permanent and temporary accounts',
-    stem: 'Place each account into permanent or temporary.',
+  "permanent-temporary": {
+    title: "Classify permanent and temporary accounts",
+    stem: "Place each account into permanent or temporary.",
     categories: [
-      { id: 'permanent', label: 'Permanent', description: 'Carry forward after closing' },
-      { id: 'temporary', label: 'Temporary', description: 'Closed at period end' },
+      { id: "permanent", label: "Permanent", description: "Carry forward after closing" },
+      { id: "temporary", label: "Temporary", description: "Closed at period end" },
     ],
     resolveCategoryId: (account) =>
-      account.accountType === 'revenue' ||
-      account.accountType === 'expense' ||
-      account.id === 'dividends' ||
-      account.id === 'withdrawals'
-        ? 'temporary'
-        : 'permanent',
+      account.accountType === "revenue" ||
+      account.accountType === "expense" ||
+      account.id === "dividends" ||
+      account.id === "withdrawals"
+        ? "temporary"
+        : "permanent",
   },
 };
 
@@ -215,17 +232,26 @@ function buildSelectionOrder(
       category.id,
       candidates
         .filter((candidate) => candidate.targetId === category.id)
-        .sort((left, right) => right.priority - left.priority || left.account.label.localeCompare(right.account.label)),
+        .sort(
+          (left, right) =>
+            right.priority - left.priority || left.account.label.localeCompare(right.account.label),
+        ),
     );
   }
 
   if (!evenlyDistributed) {
     return [...candidates]
-      .sort((left, right) => right.priority - left.priority || left.account.label.localeCompare(right.account.label))
+      .sort(
+        (left, right) =>
+          right.priority - left.priority || left.account.label.localeCompare(right.account.label),
+      )
       .slice(0, itemCount);
   }
 
-  const categoryOrder = shuffle(preset.categories.map((category) => category.id), rng);
+  const categoryOrder = shuffle(
+    preset.categories.map((category) => category.id),
+    rng,
+  );
   const selected: CandidateItem[] = [];
   let progressed = true;
 
@@ -264,14 +290,16 @@ function buildParts(
 
   return selected.map((candidate) => ({
     id: candidate.account.id,
-    kind: 'categorization',
+    kind: "categorization",
     label: candidate.account.label,
-    description: `${candidate.account.accountType} - ${candidate.account.statementPlacement.replace('-', ' ')}`,
+    description: `${candidate.account.accountType} - ${candidate.account.statementPlacement.replace("-", " ")}`,
     prompt: `Classify ${candidate.account.label}.`,
-    expectedAnswerShape: 'category-id',
+    expectedAnswerShape: "category-id",
     canonicalAnswer: candidate.targetId,
     explanation: `This is categorized as ${preset.categories.find((category) => category.id === candidate.targetId)?.label ?? candidate.targetId}.`,
-    misconceptionTags: candidate.account.commonConfusionPairs?.map((confusionId) => `confused-with:${confusionId}`),
+    misconceptionTags: candidate.account.commonConfusionPairs?.map(
+      (confusionId) => `confused-with:${confusionId}`,
+    ),
     hintIds: candidate.account.commonConfusionPairs,
     standardCode: candidate.account.subcategory,
     artifactTarget: candidate.targetId,
@@ -296,7 +324,7 @@ function buildParts(
 function getExpectedCategoryId(categorySet: ClassificationCategorySetKey, accountId: string) {
   const preset = getPreset(categorySet);
   const account = practiceAccounts.find((entry) => entry.id === accountId);
-  return account ? preset.resolveCategoryId(account) : '';
+  return account ? preset.resolveCategoryId(account) : "";
 }
 
 /**
@@ -319,7 +347,9 @@ export function buildClassificationReviewFeedback(
   studentResponse: ClassificationResponse,
   gradeResult: GradeResult,
 ) {
-  const categoryLabelById = new Map(definition.categories.map((category) => [category.id, category.label]));
+  const categoryLabelById = new Map(
+    definition.categories.map((category) => [category.id, category.label]),
+  );
 
   return Object.fromEntries(
     gradeResult.parts.map((part) => {
@@ -327,19 +357,19 @@ export function buildClassificationReviewFeedback(
       const expectedZoneLabel = categoryLabelById.get(expectedCategoryId) ?? expectedCategoryId;
       const selectedCategoryId = normalizePracticeValue(studentResponse[part.partId]);
       const selectedZoneLabel = selectedCategoryId
-        ? categoryLabelById.get(selectedCategoryId) ?? selectedCategoryId
-        : 'Not placed';
+        ? (categoryLabelById.get(selectedCategoryId) ?? selectedCategoryId)
+        : "Not placed";
 
       return [
         part.partId,
         {
-          status: part.isCorrect ? 'correct' : part.score > 0 ? 'partial' : 'incorrect',
+          status: part.isCorrect ? "correct" : part.score > 0 ? "partial" : "incorrect",
           scoreLabel: `${part.score}/${part.maxScore}`,
           expectedZoneLabel,
           selectedZoneLabel,
           misconceptionTags: part.misconceptionTags,
           message: part.isCorrect
-            ? 'Correct placement.'
+            ? "Correct placement."
             : part.score > 0
               ? `Close match: ${selectedZoneLabel}.`
               : `Expected ${expectedZoneLabel}.`,
@@ -354,16 +384,25 @@ export function buildClassificationReviewFeedback(
  * @param scenario - The classification scenario
  * @returns Array of expected account placements
  */
-export function buildClassificationReviewPlacements(definition: ClassificationDefinition, studentResponse: ClassificationResponse) {
+export function buildClassificationReviewPlacements(
+  definition: ClassificationDefinition,
+  studentResponse: ClassificationResponse,
+) {
   return definition.categories.reduce<Record<string, ClassificationPart[]>>((acc, category) => {
-    acc[category.id] = definition.parts.filter((part) => normalizePracticeValue(studentResponse[part.id]) === category.id);
+    acc[category.id] = definition.parts.filter(
+      (part) => normalizePracticeValue(studentResponse[part.id]) === category.id,
+    );
     return acc;
   }, {});
 }
 
-export const classificationFamily: ProblemFamily<ClassificationDefinition, ClassificationResponse, ClassificationConfig> = {
+export const classificationFamily: ProblemFamily<
+  ClassificationDefinition,
+  ClassificationResponse,
+  ClassificationConfig
+> = {
   generate(seed, config = {}) {
-    const categorySet = config.categorySet ?? 'account-type';
+    const categorySet = config.categorySet ?? "account-type";
     const preset = getPreset(categorySet);
     const rng = mulberry32(seed);
     const confusionPairDensity = clamp(config.confusionPairDensity ?? 0.6, 0, 1);
@@ -374,14 +413,20 @@ export const classificationFamily: ProblemFamily<ClassificationDefinition, Class
       preset.categories.length,
       candidates.length,
     );
-    const selected = buildSelectionOrder(candidates, categorySet, evenlyDistributed, rng, itemCount);
+    const selected = buildSelectionOrder(
+      candidates,
+      categorySet,
+      evenlyDistributed,
+      rng,
+      itemCount,
+    );
 
     const parts = buildParts(selected, categorySet);
 
     return {
-      contractVersion: 'practice.v1',
-      familyKey: 'classification',
-      mode: config.mode ?? 'guided_practice',
+      contractVersion: "practice.v1",
+      familyKey: "classification",
+      mode: config.mode ?? "guided_practice",
       activityId: `classification-${categorySet}-${seed}`,
       prompt: {
         title: preset.title,
@@ -390,21 +435,22 @@ export const classificationFamily: ProblemFamily<ClassificationDefinition, Class
       categories: preset.categories,
       categorySet,
       parts,
-      workedExample: parts.length > 0
-        ? {
-            itemId: parts[0].id,
-            categoryId: parts[0].targetId,
-            label: parts[0].label,
-            explanation: parts[0].explanation,
-          }
-        : undefined,
+      workedExample:
+        parts.length > 0
+          ? {
+              itemId: parts[0].id,
+              categoryId: parts[0].targetId,
+              label: parts[0].label,
+              explanation: parts[0].explanation,
+            }
+          : undefined,
       scaffolding: {
         showCategoryDescriptions: true,
         confusionPairDensity,
         evenlyDistributed,
       },
       grading: {
-        strategy: 'exact',
+        strategy: "exact",
         partialCredit: true,
         rubric: {
           confusionPairDensity,
@@ -412,7 +458,7 @@ export const classificationFamily: ProblemFamily<ClassificationDefinition, Class
         },
       },
       analyticsConfig: {
-        generator: 'classification-family',
+        generator: "classification-family",
         seed,
         categorySet,
         itemCount: parts.length,
@@ -440,14 +486,18 @@ export const classificationFamily: ProblemFamily<ClassificationDefinition, Class
 
       const tags: string[] = [];
       if (!isCorrect) {
-        tags.push(...misconceptionTags('classification-error'));
+        tags.push(...misconceptionTags("classification-error"));
         if (isPartial) {
           tags.push(`confused-with:${normalizedAnswer}`);
         }
-        if (definition.categorySet === 'account-type' && normalizedAnswer) {
-          tags.push(...misconceptionTags('wrong-account-type'));
+        if (definition.categorySet === "account-type" && normalizedAnswer) {
+          tags.push(...misconceptionTags("wrong-account-type"));
         }
-        tags.push(...(part.details.commonConfusionPairs ?? []).map((confusionId) => `confused-with:${confusionId}`));
+        tags.push(
+          ...(part.details.commonConfusionPairs ?? []).map(
+            (confusionId) => `confused-with:${confusionId}`,
+          ),
+        );
       }
 
       return {
@@ -471,7 +521,9 @@ export const classificationFamily: ProblemFamily<ClassificationDefinition, Class
   },
 
   toEnvelope(definition, studentResponse, gradeResult): PracticeSubmissionEnvelope {
-    const categoryLabelById = new Map(definition.categories.map((category) => [category.id, category.label]));
+    const categoryLabelById = new Map(
+      definition.categories.map((category) => [category.id, category.label]),
+    );
     const placements = definition.categories.reduce<Record<string, string[]>>((acc, category) => {
       acc[category.id] = [];
       return acc;
@@ -501,7 +553,7 @@ export const classificationFamily: ProblemFamily<ClassificationDefinition, Class
     return buildPracticeSubmissionEnvelope({
       activityId: definition.activityId,
       mode: definition.mode,
-      status: 'submitted',
+      status: "submitted",
       attemptNumber: 1,
       answers: studentResponse,
       parts: gradeResult.parts.map((part) => ({
@@ -514,7 +566,7 @@ export const classificationFamily: ProblemFamily<ClassificationDefinition, Class
         misconceptionTags: part.misconceptionTags,
       })),
       artifact: {
-        kind: 'classification-board',
+        kind: "classification-board",
         family: definition.familyKey,
         categorySet: definition.categorySet,
         categories: definition.categories,

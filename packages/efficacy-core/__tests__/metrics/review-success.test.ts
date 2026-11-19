@@ -16,18 +16,18 @@
  * - time-window filter excludes out-of-window reviews
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 
-import { computeReviewSuccessRate } from '../../src/metrics/review-success';
+import { computeReviewSuccessRate } from "../../src/metrics/review-success";
 import {
   COHORT_WINDOW_START_MS,
   COHORT_WINDOW_END_MS,
   MS_PER_DAY,
   makeReviewLog,
-} from '../fixtures/efficacy.fixtures';
+} from "../fixtures/efficacy.fixtures";
 
-describe('computeReviewSuccessRate', () => {
-  it('returns successRate=null and all-zero ratingBreakdown for empty input', () => {
+describe("computeReviewSuccessRate", () => {
+  it("returns successRate=null and all-zero ratingBreakdown for empty input", () => {
     const result = computeReviewSuccessRate({
       reviewLogs: [],
       windowStartMs: COHORT_WINDOW_START_MS,
@@ -40,23 +40,23 @@ describe('computeReviewSuccessRate', () => {
     expect(result.n).toBe(0);
   });
 
-  it('returns successRate=0 when every review is Again', () => {
+  it("returns successRate=0 when every review is Again", () => {
     const baseMs = COHORT_WINDOW_START_MS;
     const result = computeReviewSuccessRate({
       reviewLogs: [
         makeReviewLog({
-          reviewId: 'r1',
-          rating: 'Again',
+          reviewId: "r1",
+          rating: "Again",
           reviewedAtMs: baseMs,
-          stateBefore: { stability: 1, difficulty: 0, state: 'review', reps: 1, lapses: 0 },
-          stateAfter: { stability: 0.5, difficulty: 0, state: 'relearning', reps: 2, lapses: 1 },
+          stateBefore: { stability: 1, difficulty: 0, state: "review", reps: 1, lapses: 0 },
+          stateAfter: { stability: 0.5, difficulty: 0, state: "relearning", reps: 2, lapses: 1 },
         }),
         makeReviewLog({
-          reviewId: 'r2',
-          rating: 'Again',
+          reviewId: "r2",
+          rating: "Again",
           reviewedAtMs: baseMs + 1 * MS_PER_DAY,
-          stateBefore: { stability: 0.5, difficulty: 0, state: 'relearning', reps: 2, lapses: 1 },
-          stateAfter: { stability: 0.3, difficulty: 0, state: 'relearning', reps: 3, lapses: 2 },
+          stateBefore: { stability: 0.5, difficulty: 0, state: "relearning", reps: 2, lapses: 1 },
+          stateAfter: { stability: 0.3, difficulty: 0, state: "relearning", reps: 3, lapses: 2 },
         }),
       ],
       windowStartMs: COHORT_WINDOW_START_MS,
@@ -70,12 +70,12 @@ describe('computeReviewSuccessRate', () => {
     expect(result.n).toBe(2);
   });
 
-  it('returns successRate=1 when every review is Easy', () => {
+  it("returns successRate=1 when every review is Easy", () => {
     const baseMs = COHORT_WINDOW_START_MS;
     const result = computeReviewSuccessRate({
       reviewLogs: [
-        makeReviewLog({ reviewId: 'r1', rating: 'Easy', reviewedAtMs: baseMs }),
-        makeReviewLog({ reviewId: 'r2', rating: 'Easy', reviewedAtMs: baseMs + 1000 }),
+        makeReviewLog({ reviewId: "r1", rating: "Easy", reviewedAtMs: baseMs }),
+        makeReviewLog({ reviewId: "r2", rating: "Easy", reviewedAtMs: baseMs + 1000 }),
       ],
       windowStartMs: COHORT_WINDOW_START_MS,
       windowEndMs: COHORT_WINDOW_END_MS,
@@ -87,15 +87,15 @@ describe('computeReviewSuccessRate', () => {
     expect(result.value.ratingBreakdown.Good).toBe(0);
   });
 
-  it('classifies Good and Easy as success; Again and Hard as failure', () => {
+  it("classifies Good and Easy as success; Again and Hard as failure", () => {
     const baseMs = COHORT_WINDOW_START_MS;
     const result = computeReviewSuccessRate({
       reviewLogs: [
-        makeReviewLog({ reviewId: 'r1', rating: 'Again', reviewedAtMs: baseMs }),
-        makeReviewLog({ reviewId: 'r2', rating: 'Hard', reviewedAtMs: baseMs + 1000 }),
-        makeReviewLog({ reviewId: 'r3', rating: 'Good', reviewedAtMs: baseMs + 2000 }),
-        makeReviewLog({ reviewId: 'r4', rating: 'Good', reviewedAtMs: baseMs + 3000 }),
-        makeReviewLog({ reviewId: 'r5', rating: 'Easy', reviewedAtMs: baseMs + 4000 }),
+        makeReviewLog({ reviewId: "r1", rating: "Again", reviewedAtMs: baseMs }),
+        makeReviewLog({ reviewId: "r2", rating: "Hard", reviewedAtMs: baseMs + 1000 }),
+        makeReviewLog({ reviewId: "r3", rating: "Good", reviewedAtMs: baseMs + 2000 }),
+        makeReviewLog({ reviewId: "r4", rating: "Good", reviewedAtMs: baseMs + 3000 }),
+        makeReviewLog({ reviewId: "r5", rating: "Easy", reviewedAtMs: baseMs + 4000 }),
       ],
       windowStartMs: COHORT_WINDOW_START_MS,
       windowEndMs: COHORT_WINDOW_END_MS,
@@ -106,12 +106,20 @@ describe('computeReviewSuccessRate', () => {
     expect(result.value.ratingBreakdown).toEqual({ Again: 1, Hard: 1, Good: 2, Easy: 1 });
   });
 
-  it('excludes reviews whose reviewedAt is outside [windowStart, windowEnd)', () => {
+  it("excludes reviews whose reviewedAt is outside [windowStart, windowEnd)", () => {
     const result = computeReviewSuccessRate({
       reviewLogs: [
-        makeReviewLog({ reviewId: 'r_before', rating: 'Good', reviewedAtMs: COHORT_WINDOW_START_MS - 1 }),
-        makeReviewLog({ reviewId: 'r_at_start', rating: 'Good', reviewedAtMs: COHORT_WINDOW_START_MS }),
-        makeReviewLog({ reviewId: 'r_at_end', rating: 'Good', reviewedAtMs: COHORT_WINDOW_END_MS }),
+        makeReviewLog({
+          reviewId: "r_before",
+          rating: "Good",
+          reviewedAtMs: COHORT_WINDOW_START_MS - 1,
+        }),
+        makeReviewLog({
+          reviewId: "r_at_start",
+          rating: "Good",
+          reviewedAtMs: COHORT_WINDOW_START_MS,
+        }),
+        makeReviewLog({ reviewId: "r_at_end", rating: "Good", reviewedAtMs: COHORT_WINDOW_END_MS }),
       ],
       windowStartMs: COHORT_WINDOW_START_MS,
       windowEndMs: COHORT_WINDOW_END_MS,
@@ -121,10 +129,10 @@ describe('computeReviewSuccessRate', () => {
     expect(result.n).toBe(1);
   });
 
-  it('echoes the time window in the inputs descriptor for traceability', () => {
+  it("echoes the time window in the inputs descriptor for traceability", () => {
     const result = computeReviewSuccessRate({
       reviewLogs: [
-        makeReviewLog({ reviewId: 'r1', rating: 'Good', reviewedAtMs: COHORT_WINDOW_START_MS }),
+        makeReviewLog({ reviewId: "r1", rating: "Good", reviewedAtMs: COHORT_WINDOW_START_MS }),
       ],
       windowStartMs: COHORT_WINDOW_START_MS,
       windowEndMs: COHORT_WINDOW_END_MS,

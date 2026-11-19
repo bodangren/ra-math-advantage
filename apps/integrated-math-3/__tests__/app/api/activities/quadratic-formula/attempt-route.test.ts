@@ -18,10 +18,7 @@ vi.mock("@/lib/convex/server", () => ({
   fetchInternalQuery: mocks.query,
   fetchInternalMutation: mocks.mutate,
 }));
-import {
-  GET,
-  POST,
-} from "@/app/api/activities/quadratic-formula/attempt/route";
+import { GET, POST } from "@/app/api/activities/quadratic-formula/attempt/route";
 
 const url =
   "http://local/api/activities/quadratic-formula/attempt?activityId=activities:qf&mode=guided_practice";
@@ -132,13 +129,8 @@ describe("quadratic-formula attempt route", () => {
     expect(response.status).toBe(200);
     expect((await response.json()).maxScore).toBe(2);
   });
-  it.each(["assessment", "", "Guided"])(
-    "rejects an invalid mode",
-    async (mode) => {
-      const response = await GET(
-        new Request(url.replace("guided_practice", mode)),
-      );
-      expect(response.status).toBe(400);
-    },
-  );
+  it.each(["assessment", "", "Guided"])("rejects an invalid mode", async (mode) => {
+    const response = await GET(new Request(url.replace("guided_practice", mode)));
+    expect(response.status).toBe(400);
+  });
 });

@@ -1,14 +1,18 @@
-'use client';
+"use client";
 
-import { useState, useRef } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Badge } from '@/components/ui/badge';
-import type { PracticeTestUnitConfig } from '@/lib/practice-tests/types';
-import { filterQuestionsByLessonIds, drawRandomQuestions, shuffleAnswers } from '@/lib/practice-tests/question-banks';
+import { useState, useRef } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
+import type { PracticeTestUnitConfig } from "@/lib/practice-tests/types";
+import {
+  filterQuestionsByLessonIds,
+  drawRandomQuestions,
+  shuffleAnswers,
+} from "@/lib/practice-tests/question-banks";
 
 interface PracticeTestEngineProps {
   unitConfig: PracticeTestUnitConfig;
@@ -25,7 +29,13 @@ interface PracticeTestEngineProps {
   }) => void;
 }
 
-type Phase = 'hook' | 'introduction' | 'guided-practice' | 'independent-practice' | 'assessment' | 'closing';
+type Phase =
+  | "hook"
+  | "introduction"
+  | "guided-practice"
+  | "independent-practice"
+  | "assessment"
+  | "closing";
 
 /**
  * Renders a multi-phase practice test engine with question selection,
@@ -35,13 +45,21 @@ type Phase = 'hook' | 'introduction' | 'guided-practice' | 'independent-practice
  * @param onComplete - Optional callback fired when the test finishes
  */
 export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeTestEngineProps) {
-  const [currentPhase, setCurrentPhase] = useState<Phase>('hook');
-  const [selectedLessonIds, setSelectedLessonIds] = useState<string[]>(unitConfig.lessons.map((l) => l.id));
-  const [questionCount, setQuestionCount] = useState<number>(Math.min(10, unitConfig.questions.length));
-  const [testQuestions, setTestQuestions] = useState<{ question: ReturnType<typeof shuffleAnswers>; original: typeof unitConfig.questions[0] }[]>([]);
+  const [currentPhase, setCurrentPhase] = useState<Phase>("hook");
+  const [selectedLessonIds, setSelectedLessonIds] = useState<string[]>(
+    unitConfig.lessons.map((l) => l.id),
+  );
+  const [questionCount, setQuestionCount] = useState<number>(
+    Math.min(10, unitConfig.questions.length),
+  );
+  const [testQuestions, setTestQuestions] = useState<
+    { question: ReturnType<typeof shuffleAnswers>; original: (typeof unitConfig.questions)[0] }[]
+  >([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
-  const [perLessonBreakdown, setPerLessonBreakdown] = useState<Record<string, { correct: number; total: number }>>({});
+  const [perLessonBreakdown, setPerLessonBreakdown] = useState<
+    Record<string, { correct: number; total: number }>
+  >({});
   const [hasSeenFeedback, setHasSeenFeedback] = useState(false);
   const [lastAnswerCorrect, setLastAnswerCorrect] = useState(false);
 
@@ -50,30 +68,41 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
   const breakdownRef = useRef<Record<string, { correct: number; total: number }>>({});
   const hasCalledOnCompleteRef = useRef(false);
 
-
   /**
    * Advances to the next phase in the test sequence.
    */
   const handleNextPhase = () => {
-    const phases: Phase[] = ['hook', 'introduction', 'guided-practice', 'independent-practice', 'assessment', 'closing'];
+    const phases: Phase[] = [
+      "hook",
+      "introduction",
+      "guided-practice",
+      "independent-practice",
+      "assessment",
+      "closing",
+    ];
     const currentIndex = phases.indexOf(currentPhase);
     if (currentIndex < phases.length - 1) {
       setCurrentPhase(phases[currentIndex + 1]);
     }
   };
 
-
   /**
    * Returns to the previous phase in the test sequence.
    */
   const handlePreviousPhase = () => {
-    const phases: Phase[] = ['hook', 'introduction', 'guided-practice', 'independent-practice', 'assessment', 'closing'];
+    const phases: Phase[] = [
+      "hook",
+      "introduction",
+      "guided-practice",
+      "independent-practice",
+      "assessment",
+      "closing",
+    ];
     const currentIndex = phases.indexOf(currentPhase);
     if (currentIndex > 0) {
       setCurrentPhase(phases[currentIndex - 1]);
     }
   };
-
 
   /**
    * Toggles a lesson's inclusion in the selected lesson set.
@@ -82,10 +111,9 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
    */
   const handleToggleLesson = (lessonId: string) => {
     setSelectedLessonIds((prev) =>
-      prev.includes(lessonId) ? prev.filter((id) => id !== lessonId) : [...prev, lessonId]
+      prev.includes(lessonId) ? prev.filter((id) => id !== lessonId) : [...prev, lessonId],
     );
   };
-
 
   /**
    * Selects all available lessons for the test.
@@ -94,14 +122,12 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
     setSelectedLessonIds(unitConfig.lessons.map((l) => l.id));
   };
 
-
   /**
    * Clears all selected lessons.
    */
   const handleClearAllLessons = () => {
     setSelectedLessonIds([]);
   };
-
 
   /**
    * Draws random questions from the selected lessons and starts the test.
@@ -128,9 +154,8 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
     });
     breakdownRef.current = breakdown;
     setPerLessonBreakdown(breakdown);
-    setCurrentPhase('assessment');
+    setCurrentPhase("assessment");
   };
-
 
   /**
    * Processes the user's answer selection and shows feedback.
@@ -143,7 +168,7 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
     const { question, original } = current;
     const isCorrect = selectedAnswer === question.choices[question.correctIndex];
     setLastAnswerCorrect(isCorrect);
-    
+
     if (isCorrect) {
       scoreRef.current += 1;
       setScore((prev) => prev + 1);
@@ -165,7 +190,6 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
     setHasSeenFeedback(true);
   };
 
-
   /**
    * Advances to the next question or transitions to the closing phase.
    */
@@ -175,15 +199,17 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
       setHasSeenFeedback(false);
       setLastAnswerCorrect(false);
     } else {
-      setCurrentPhase('closing');
-      
+      setCurrentPhase("closing");
+
       if (onComplete && !hasCalledOnCompleteRef.current) {
         hasCalledOnCompleteRef.current = true;
-        const perLessonBreakdownArray = Object.entries(breakdownRef.current).map(([lessonId, data]) => ({
-          lessonId,
-          correct: data.correct,
-          total: data.total,
-        }));
+        const perLessonBreakdownArray = Object.entries(breakdownRef.current).map(
+          ([lessonId, data]) => ({
+            lessonId,
+            correct: data.correct,
+            total: data.total,
+          }),
+        );
         onComplete({
           unitNumber: unitConfig.unitNumber,
           lessonsTested: selectedLessonIds,
@@ -194,7 +220,6 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
       }
     }
   };
-
 
   /**
    * Resets the test state and returns to the introduction phase.
@@ -207,7 +232,7 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
     setCurrentQuestionIndex(0);
     setScore(0);
     setPerLessonBreakdown({});
-    setCurrentPhase('introduction');
+    setCurrentPhase("introduction");
   };
 
   return (
@@ -217,7 +242,7 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
           <CardTitle>Unit {unitConfig.unitNumber} Practice Test</CardTitle>
         </CardHeader>
         <CardContent>
-          {currentPhase === 'hook' && (
+          {currentPhase === "hook" && (
             <div>
               <p className="text-lg mb-6">{unitConfig.phaseContent.hook}</p>
               <div className="flex justify-end">
@@ -226,15 +251,19 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
             </div>
           )}
 
-          {currentPhase === 'introduction' && (
+          {currentPhase === "introduction" && (
             <div>
               <p className="text-lg mb-6">{unitConfig.phaseContent.introduction}</p>
-              
+
               <div className="mb-6">
                 <h3 className="text-md font-semibold mb-3">Select Lessons</h3>
                 <div className="flex gap-2 mb-3">
-                  <Button variant="secondary" size="sm" onClick={handleSelectAllLessons}>Select All</Button>
-                  <Button variant="secondary" size="sm" onClick={handleClearAllLessons}>Clear All</Button>
+                  <Button variant="secondary" size="sm" onClick={handleSelectAllLessons}>
+                    Select All
+                  </Button>
+                  <Button variant="secondary" size="sm" onClick={handleClearAllLessons}>
+                    Clear All
+                  </Button>
                 </div>
                 <div className="space-y-2">
                   {unitConfig.lessons.map((lesson) => (
@@ -258,59 +287,88 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
                   min={1}
                   max={filterQuestionsByLessonIds(unitConfig.questions, selectedLessonIds).length}
                   value={questionCount}
-                  onChange={(e) => setQuestionCount(Math.max(1, Math.min(parseInt(e.target.value) || 1, filterQuestionsByLessonIds(unitConfig.questions, selectedLessonIds).length)))}
+                  onChange={(e) =>
+                    setQuestionCount(
+                      Math.max(
+                        1,
+                        Math.min(
+                          parseInt(e.target.value) || 1,
+                          filterQuestionsByLessonIds(unitConfig.questions, selectedLessonIds)
+                            .length,
+                        ),
+                      ),
+                    )
+                  }
                 />
               </div>
 
               <div className="flex justify-between">
-                <Button variant="secondary" onClick={handlePreviousPhase}>Back</Button>
-                <Button onClick={handleNextPhase} disabled={selectedLessonIds.length === 0}>Next</Button>
+                <Button variant="secondary" onClick={handlePreviousPhase}>
+                  Back
+                </Button>
+                <Button onClick={handleNextPhase} disabled={selectedLessonIds.length === 0}>
+                  Next
+                </Button>
               </div>
             </div>
           )}
 
-          {currentPhase === 'guided-practice' && (
+          {currentPhase === "guided-practice" && (
             <div>
               <p className="text-lg mb-6">{unitConfig.phaseContent.guidedPractice}</p>
               <div className="flex justify-between">
-                <Button variant="secondary" onClick={handlePreviousPhase}>Back</Button>
+                <Button variant="secondary" onClick={handlePreviousPhase}>
+                  Back
+                </Button>
                 <Button onClick={handleNextPhase}>Next</Button>
               </div>
             </div>
           )}
 
-          {currentPhase === 'independent-practice' && (
+          {currentPhase === "independent-practice" && (
             <div>
               <p className="text-lg mb-6">{unitConfig.phaseContent.independentPractice}</p>
               <div className="mb-4">
                 <Badge variant="secondary">Lessons: {selectedLessonIds.length}</Badge>
-                <Badge variant="secondary" className="ml-2">Questions: {questionCount}</Badge>
+                <Badge variant="secondary" className="ml-2">
+                  Questions: {questionCount}
+                </Badge>
               </div>
               <div className="flex justify-between">
-                <Button variant="secondary" onClick={handlePreviousPhase}>Back</Button>
+                <Button variant="secondary" onClick={handlePreviousPhase}>
+                  Back
+                </Button>
                 <Button onClick={handleStartTest}>Start Test</Button>
               </div>
             </div>
           )}
 
-          {currentPhase === 'assessment' && (
+          {currentPhase === "assessment" && (
             <div>
               <div className="mb-6">
-                <Badge variant="secondary">Question {currentQuestionIndex + 1} of {testQuestions.length}</Badge>
+                <Badge variant="secondary">
+                  Question {currentQuestionIndex + 1} of {testQuestions.length}
+                </Badge>
               </div>
-              <h3 className="text-lg font-semibold mb-4">{testQuestions[currentQuestionIndex].original.prompt}</h3>
+              <h3 className="text-lg font-semibold mb-4">
+                {testQuestions[currentQuestionIndex].original.prompt}
+              </h3>
               <div className="space-y-3 mb-6">
                 {testQuestions[currentQuestionIndex].question.choices.map((option, index) => {
-                  const isCorrectAnswer = option === testQuestions[currentQuestionIndex].question.choices[testQuestions[currentQuestionIndex].question.correctIndex];
+                  const isCorrectAnswer =
+                    option ===
+                    testQuestions[currentQuestionIndex].question.choices[
+                      testQuestions[currentQuestionIndex].question.correctIndex
+                    ];
                   return (
                     <Button
                       key={index}
                       variant="secondary"
                       className={`w-full justify-start text-left ${
-                        hasSeenFeedback && isCorrectAnswer ? 'bg-green-100 border-green-500 border-2' : ''
-                      } ${
-                        hasSeenFeedback && !isCorrectAnswer ? 'opacity-50' : ''
-                      }`}
+                        hasSeenFeedback && isCorrectAnswer
+                          ? "bg-green-100 border-green-500 border-2"
+                          : ""
+                      } ${hasSeenFeedback && !isCorrectAnswer ? "opacity-50" : ""}`}
                       onClick={() => handleAnswerQuestion(option)}
                       disabled={hasSeenFeedback}
                     >
@@ -321,27 +379,31 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
               </div>
               {hasSeenFeedback && (
                 <div className="mb-4">
-                  <div className={`text-lg font-semibold mb-2 ${lastAnswerCorrect ? 'text-green-600' : 'text-red-600'}`}>
-                    {lastAnswerCorrect ? 'Correct!' : 'Incorrect'}
+                  <div
+                    className={`text-lg font-semibold mb-2 ${lastAnswerCorrect ? "text-green-600" : "text-red-600"}`}
+                  >
+                    {lastAnswerCorrect ? "Correct!" : "Incorrect"}
                   </div>
                   <div className="text-sm text-gray-600 mb-4">
                     {testQuestions[currentQuestionIndex].original.explanation}
                   </div>
-                  <Button onClick={handleContinueQuestion}>
-                    Continue
-                  </Button>
+                  <Button onClick={handleContinueQuestion}>Continue</Button>
                 </div>
               )}
             </div>
           )}
 
-          {currentPhase === 'closing' && (
+          {currentPhase === "closing" && (
             <div>
               <p className="text-lg mb-6">{unitConfig.phaseContent.closing}</p>
               <div className="mb-6">
                 <h3 className="text-md font-semibold mb-3">Your Score</h3>
-                <div className="text-4xl font-bold mb-2">{score}/{testQuestions.length}</div>
-                <div className="text-lg text-gray-600">{testQuestions.length > 0 ? Math.round((score / testQuestions.length) * 100) : 0}%</div>
+                <div className="text-4xl font-bold mb-2">
+                  {score}/{testQuestions.length}
+                </div>
+                <div className="text-lg text-gray-600">
+                  {testQuestions.length > 0 ? Math.round((score / testQuestions.length) * 100) : 0}%
+                </div>
               </div>
               <div className="mb-6">
                 <h3 className="text-md font-semibold mb-3">Per-lesson breakdown</h3>
@@ -351,14 +413,18 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
                     return (
                       <div key={lessonId} className="flex justify-between">
                         <span>{lesson?.title}</span>
-                        <span>{data.correct}/{data.total}</span>
+                        <span>
+                          {data.correct}/{data.total}
+                        </span>
                       </div>
                     );
                   })}
                 </div>
               </div>
               <div className="flex gap-2">
-                <Button variant="secondary" onClick={handleRetryTest}>Retry Test</Button>
+                <Button variant="secondary" onClick={handleRetryTest}>
+                  Retry Test
+                </Button>
               </div>
             </div>
           )}

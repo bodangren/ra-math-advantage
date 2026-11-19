@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
-import { X } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
+import { useEffect, useRef } from "react";
+import { X } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 export interface DialogProps {
   open: boolean;
@@ -50,8 +50,8 @@ export function Dialog({ open, onOpenChange, title, description, children }: Dia
       onOpenChange(false);
     };
 
-    dialog.addEventListener('close', handleClose);
-    return () => dialog.removeEventListener('close', handleClose);
+    dialog.addEventListener("close", handleClose);
+    return () => dialog.removeEventListener("close", handleClose);
   }, [onOpenChange]);
 
   const handleBackdropClick = (e: React.MouseEvent) => {
@@ -67,9 +67,9 @@ export function Dialog({ open, onOpenChange, title, description, children }: Dia
       aria-modal="true"
       aria-label={title}
       className={cn(
-        'p-0 rounded-xl shadow-2xl backdrop:bg-black/50 backdrop:backdrop-blur-sm',
-        'open:animate-in open:fade-in-0 open:zoom-in-95',
-        'closed:animate-out closed:fade-out-0 closed:zoom-out-95'
+        "p-0 rounded-xl shadow-2xl backdrop:bg-black/50 backdrop:backdrop-blur-sm",
+        "open:animate-in open:fade-in-0 open:zoom-in-95",
+        "closed:animate-out closed:fade-out-0 closed:zoom-out-95",
       )}
       onClick={handleBackdropClick}
     >
@@ -77,9 +77,7 @@ export function Dialog({ open, onOpenChange, title, description, children }: Dia
         <div className="flex items-center justify-between p-4 border-b border-border">
           <div>
             <h2 className="text-lg font-semibold text-foreground">{title}</h2>
-            {description && (
-              <p className="text-sm text-muted-foreground mt-0.5">{description}</p>
-            )}
+            {description && <p className="text-sm text-muted-foreground mt-0.5">{description}</p>}
           </div>
           <Button
             variant="ghost"
@@ -105,7 +103,7 @@ export interface AlertDialogProps {
   confirmLabel?: string;
   cancelLabel?: string;
   onConfirm: () => void;
-  variant?: 'default' | 'destructive';
+  variant?: "default" | "destructive";
 }
 
 /**
@@ -119,10 +117,10 @@ export function AlertDialog({
   onOpenChange,
   title,
   description,
-  confirmLabel = 'Confirm',
-  cancelLabel = 'Cancel',
+  confirmLabel = "Confirm",
+  cancelLabel = "Cancel",
   onConfirm,
-  variant = 'default',
+  variant = "default",
 }: AlertDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange} title={title} description={description}>
@@ -131,7 +129,7 @@ export function AlertDialog({
           {cancelLabel}
         </Button>
         <Button
-          variant={variant === 'destructive' ? 'destructive' : 'default'}
+          variant={variant === "destructive" ? "destructive" : "default"}
           onClick={() => {
             onConfirm();
             onOpenChange(false);

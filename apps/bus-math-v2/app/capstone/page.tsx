@@ -1,10 +1,10 @@
-import Link from 'next/link';
+import Link from "next/link";
 import { ConvexHttpClient } from "convex/browser";
 import { api } from "@/convex/_generated/api";
 import { getConvexUrl } from "@math-platform/core-convex";
-import { CapstoneWorkbookDownloads } from '@/components/capstone/CapstoneWorkbookDownloads';
+import { CapstoneWorkbookDownloads } from "@/components/capstone/CapstoneWorkbookDownloads";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 interface CapstoneUnit {
   unitNumber: number;
@@ -34,10 +34,10 @@ function getConvexClient() {
 /** Group units into narrative arcs by phase range. */
 function buildNarrativeArcs(units: CapstoneUnit[]) {
   const phases: { range: [number, number]; label: string }[] = [
-    { range: [1, 2], label: 'Units 1-2' },
-    { range: [3, 4], label: 'Units 3-4' },
-    { range: [5, 6], label: 'Units 5-6' },
-    { range: [7, 8], label: 'Units 7-8' },
+    { range: [1, 2], label: "Units 1-2" },
+    { range: [3, 4], label: "Units 3-4" },
+    { range: [5, 6], label: "Units 5-6" },
+    { range: [7, 8], label: "Units 7-8" },
   ];
 
   return phases
@@ -50,12 +50,12 @@ function buildNarrativeArcs(units: CapstoneUnit[]) {
       const scenarios = phaseUnits
         .map((u) => u.scenario)
         .filter(Boolean)
-        .join(' ');
+        .join(" ");
 
       return {
         phase: phase.label,
-        headline: phaseUnits.map((u) => u.title).join(' & '),
-        detail: scenarios || 'See unit details for the full scenario.',
+        headline: phaseUnits.map((u) => u.title).join(" & "),
+        detail: scenarios || "See unit details for the full scenario.",
       };
     })
     .filter(Boolean) as { phase: string; headline: string; detail: string }[];
@@ -70,7 +70,15 @@ function buildNarrativeArcs(units: CapstoneUnit[]) {
  * @param props.description - Supporting description paragraph.
  * @returns The section header JSX element.
  */
-function SectionHeader({ label, title, description }: { label: string; title: string; description: string }) {
+function SectionHeader({
+  label,
+  title,
+  description,
+}: {
+  label: string;
+  title: string;
+  description: string;
+}) {
   return (
     <div className="text-center space-y-3">
       <span className="section-label">{label}</span>
@@ -90,20 +98,17 @@ export default async function CapstonePage() {
 
   let data: CapstonePageData = { instructionalUnits: [], capstone: null };
   try {
-    data = await convex.query(api.public.getCapstonePageData) as CapstonePageData;
+    data = (await convex.query(api.public.getCapstonePageData)) as CapstonePageData;
   } catch (err) {
     console.error("[capstone] Failed to load capstone page data from Convex", err);
   }
 
-  const allUnits = [
-    ...data.instructionalUnits,
-    ...(data.capstone ? [data.capstone] : []),
-  ];
+  const allUnits = [...data.instructionalUnits, ...(data.capstone ? [data.capstone] : [])];
 
   const drivingQuestions = allUnits
     .filter((u) => u.drivingQuestion)
     .map((u) => ({
-      label: u.unitNumber <= 8 ? `Unit ${u.unitNumber}` : 'Capstone',
+      label: u.unitNumber <= 8 ? `Unit ${u.unitNumber}` : "Capstone",
       question: u.drivingQuestion!,
       audience: u.audience,
     }));
@@ -120,12 +125,12 @@ export default async function CapstonePage() {
         <div className="relative container mx-auto max-w-6xl px-4 py-14 text-center space-y-4">
           <span className="section-label section-label-light">Capstone Overview</span>
           <h1 className="font-display text-4xl md:text-5xl font-bold text-white mt-4">
-            {data.capstone?.title ?? 'Investor-Ready Capstone Project'}
+            {data.capstone?.title ?? "Investor-Ready Capstone Project"}
           </h1>
           <p className="text-lg md:text-xl text-white/75 font-body max-w-4xl mx-auto">
             {data.capstone?.deliverable
               ? `${data.capstone.deliverable} — every unit artifact fuels a final, linked Excel workbook, business plan, and investor pitch.`
-              : '13 weeks of authentic business modeling where every unit artifact fuels a final, linked Excel workbook, business plan, and investor pitch.'}
+              : "13 weeks of authentic business modeling where every unit artifact fuels a final, linked Excel workbook, business plan, and investor pitch."}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4">
             <Link
@@ -149,7 +154,21 @@ export default async function CapstonePage() {
           </div>
           <CapstoneWorkbookDownloads />
           <p className="text-sm text-white/70 font-body">
-            Need specifics? Review the <Link className="underline text-white/70 hover:text-white transition-colors" href="/capstone/guidelines">Capstone Guidelines</Link> and <Link className="underline text-white/70 hover:text-white transition-colors" href="/capstone/rubrics">Rubrics</Link> before Demo Day.
+            Need specifics? Review the{" "}
+            <Link
+              className="underline text-white/70 hover:text-white transition-colors"
+              href="/capstone/guidelines"
+            >
+              Capstone Guidelines
+            </Link>{" "}
+            and{" "}
+            <Link
+              className="underline text-white/70 hover:text-white transition-colors"
+              href="/capstone/rubrics"
+            >
+              Rubrics
+            </Link>{" "}
+            before Demo Day.
           </p>
         </div>
       </header>
@@ -164,13 +183,14 @@ export default async function CapstonePage() {
           />
           {allUnits.length === 0 ? (
             <div className="text-center text-muted-foreground font-body border rounded-xl p-12 bg-card">
-              Curriculum data isn&apos;t available yet. Please publish lessons to populate this page.
+              Curriculum data isn&apos;t available yet. Please publish lessons to populate this
+              page.
             </div>
           ) : (
             <div className="grid gap-4 md:grid-cols-2">
               {allUnits.map((unit) => {
-                const label = unit.unitNumber <= 8 ? `Unit ${unit.unitNumber}` : 'Capstone';
-                const watermark = unit.unitNumber <= 8 ? String(unit.unitNumber) : '\u2605';
+                const label = unit.unitNumber <= 8 ? `Unit ${unit.unitNumber}` : "Capstone";
+                const watermark = unit.unitNumber <= 8 ? String(unit.unitNumber) : "\u2605";
                 return (
                   <div key={unit.unitNumber} className="card-workbook p-5 relative overflow-hidden">
                     <span
@@ -181,7 +201,9 @@ export default async function CapstonePage() {
                       {watermark}
                     </span>
                     <div className="flex items-center justify-between text-sm text-muted-foreground mb-2">
-                      <span className="font-mono-num text-xs tracking-wider uppercase">{label}</span>
+                      <span className="font-mono-num text-xs tracking-wider uppercase">
+                        {label}
+                      </span>
                       <span className="section-label">{unit.title}</span>
                     </div>
                     <h3 className="font-display text-lg font-semibold text-foreground mb-1">
@@ -218,11 +240,17 @@ export default async function CapstonePage() {
             <div className="grid gap-4 md:grid-cols-2">
               {drivingQuestions.map((item) => (
                 <div key={item.label} className="card-workbook p-5">
-                  <p className="font-mono-num text-xs tracking-wider uppercase text-muted-foreground mb-1">{item.label}</p>
+                  <p className="font-mono-num text-xs tracking-wider uppercase text-muted-foreground mb-1">
+                    {item.label}
+                  </p>
                   {item.audience && (
-                    <p className="text-xs text-primary font-medium font-body mb-2">{item.audience}</p>
+                    <p className="text-xs text-primary font-medium font-body mb-2">
+                      {item.audience}
+                    </p>
                   )}
-                  <p className="text-sm text-foreground font-body italic leading-relaxed">&ldquo;{item.question}&rdquo;</p>
+                  <p className="text-sm text-foreground font-body italic leading-relaxed">
+                    &ldquo;{item.question}&rdquo;
+                  </p>
                 </div>
               ))}
             </div>
@@ -244,11 +272,20 @@ export default async function CapstonePage() {
                 <div
                   key={moment.phase}
                   className="rounded-lg p-5"
-                  style={{ background: "oklch(var(--primary) / 0.05)", border: "1px solid oklch(var(--primary) / 0.12)" }}
+                  style={{
+                    background: "oklch(var(--primary) / 0.05)",
+                    border: "1px solid oklch(var(--primary) / 0.12)",
+                  }}
                 >
-                  <p className="font-mono-num text-xs tracking-wider uppercase text-primary/70 mb-1">{moment.phase}</p>
-                  <h3 className="font-display text-base font-semibold text-foreground mb-2">{moment.headline}</h3>
-                  <p className="text-sm text-muted-foreground font-body leading-relaxed">{moment.detail}</p>
+                  <p className="font-mono-num text-xs tracking-wider uppercase text-primary/70 mb-1">
+                    {moment.phase}
+                  </p>
+                  <h3 className="font-display text-base font-semibold text-foreground mb-2">
+                    {moment.headline}
+                  </h3>
+                  <p className="text-sm text-muted-foreground font-body leading-relaxed">
+                    {moment.detail}
+                  </p>
                 </div>
               ))}
             </div>
@@ -261,15 +298,24 @@ export default async function CapstonePage() {
         <div className="container mx-auto max-w-6xl px-4 font-body">
           <div className="card-statement rounded-lg overflow-hidden max-w-2xl mx-auto">
             <div className="excel-header px-6 py-3">
-              <h3 className="font-display text-base font-semibold text-primary">Quality standards for submission</h3>
-              <p className="text-xs text-muted-foreground">Simple guardrails that keep every workbook investor-ready.</p>
+              <h3 className="font-display text-base font-semibold text-primary">
+                Quality standards for submission
+              </h3>
+              <p className="text-xs text-muted-foreground">
+                Simple guardrails that keep every workbook investor-ready.
+              </p>
             </div>
             <div className="px-6 py-4">
               <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1.5">
                 <li>Linked formulas only — no hard-coded totals or plug values.</li>
                 <li>Document data sources and annotate complex logic with concise comments.</li>
-                <li>Use validation checks &amp; KPI indicators so issues surface before Demo Day.</li>
-                <li>Keep formatting professional: consistent currency, alignment, and label conventions.</li>
+                <li>
+                  Use validation checks &amp; KPI indicators so issues surface before Demo Day.
+                </li>
+                <li>
+                  Keep formatting professional: consistent currency, alignment, and label
+                  conventions.
+                </li>
               </ul>
             </div>
           </div>

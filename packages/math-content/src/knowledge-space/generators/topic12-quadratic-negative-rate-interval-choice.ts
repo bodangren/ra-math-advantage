@@ -1,8 +1,8 @@
-import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
+import type { GeneratorOutput } from "@math-platform/knowledge-space-practice";
 
-import { mulberry32 } from '../../utils/prng';
+import { mulberry32 } from "../../utils/prng";
 
-export type Topic12QuadraticNegativeRateIntervalRateSign = 'positive' | 'negative';
+export type Topic12QuadraticNegativeRateIntervalRateSign = "positive" | "negative";
 
 export interface Topic12QuadraticNegativeRateIntervalChoiceOption {
   readonly id: string;
@@ -24,16 +24,17 @@ export interface Topic12QuadraticNegativeRateIntervalChoiceVariant {
 }
 
 export const TOPIC12_QUADRATIC_NEGATIVE_RATE_INTERVAL_CHOICE_NODE_ID =
-  'math.precalc.skill.1.2.determine-negative-rate-intervals-for-quadratics';
+  "math.precalc.skill.1.2.determine-negative-rate-intervals-for-quadratics";
 
-const SOURCE_PROMPT = 'The function k is defined by k(x) = 3.16 + 4.2x - 0.85x^2 for -10 <= x <= 10. Which statement about k is correct?';
-const GENERATED_FUNCTION_NAME = 'k';
+const SOURCE_PROMPT =
+  "The function k is defined by k(x) = 3.16 + 4.2x - 0.85x^2 for -10 <= x <= 10. Which statement about k is correct?";
+const GENERATED_FUNCTION_NAME = "k";
 
 const SOURCE_OPTIONS: readonly Topic12QuadraticNegativeRateIntervalChoiceOption[] = [
-  { id: 'A', label: 'A', rateSign: 'positive', startInput: -10, endInput: 8.348 },
-  { id: 'B', label: 'B', rateSign: 'positive', startInput: -0.663, endInput: 5.605 },
-  { id: 'C', label: 'C', rateSign: 'negative', startInput: -10, endInput: 2.470 },
-  { id: 'D', label: 'D', rateSign: 'negative', startInput: 2.470, endInput: 10 },
+  { id: "A", label: "A", rateSign: "positive", startInput: -10, endInput: 8.348 },
+  { id: "B", label: "B", rateSign: "positive", startInput: -0.663, endInput: 5.605 },
+  { id: "C", label: "C", rateSign: "negative", startInput: -10, endInput: 2.47 },
+  { id: "D", label: "D", rateSign: "negative", startInput: 2.47, endInput: 10 },
 ];
 
 function roundToHundredth(value: number): number {
@@ -78,23 +79,26 @@ function generatedVariant(seed: number): Topic12QuadraticNegativeRateIntervalCho
   const leftOfVertex = roundToThousandth(vertexFloor - 1.5);
   const rightOfVertex = roundToThousandth(vertexCeil + 1.5);
 
-  const statements: readonly Omit<Topic12QuadraticNegativeRateIntervalChoiceOption, 'id' | 'label'>[] = [
-    { rateSign: 'negative', startInput: domain[0], endInput: leftOfVertex },
-    { rateSign: 'positive', startInput: domain[0], endInput: rightOfVertex },
-    { rateSign: 'positive', startInput: leftOfVertex, endInput: domain[1] },
-    { rateSign: 'negative', startInput: vertexCeil, endInput: domain[1] },
+  const statements: readonly Omit<
+    Topic12QuadraticNegativeRateIntervalChoiceOption,
+    "id" | "label"
+  >[] = [
+    { rateSign: "negative", startInput: domain[0], endInput: leftOfVertex },
+    { rateSign: "positive", startInput: domain[0], endInput: rightOfVertex },
+    { rateSign: "positive", startInput: leftOfVertex, endInput: domain[1] },
+    { rateSign: "negative", startInput: vertexCeil, endInput: domain[1] },
   ];
   const options = shuffle(statements, random).map((statement, index) => ({
     ...statement,
     id: String.fromCharCode(65 + index),
     label: String.fromCharCode(65 + index),
   }));
-  const linearTerm = linearCoefficient >= 0
-    ? `+ ${linearCoefficient}x`
-    : `- ${Math.abs(linearCoefficient)}x`;
-  const quadraticTerm = quadraticCoefficient < 0
-    ? `- ${Math.abs(quadraticCoefficient)}x^2`
-    : `+ ${quadraticCoefficient}x^2`;
+  const linearTerm =
+    linearCoefficient >= 0 ? `+ ${linearCoefficient}x` : `- ${Math.abs(linearCoefficient)}x`;
+  const quadraticTerm =
+    quadraticCoefficient < 0
+      ? `- ${Math.abs(quadraticCoefficient)}x^2`
+      : `+ ${quadraticCoefficient}x^2`;
   const equation = `${constantTerm} ${linearTerm} ${quadraticTerm}`;
 
   return {
@@ -113,20 +117,21 @@ export function generateTopic12QuadraticNegativeRateIntervalChoice(
   seed: number,
 ): Topic12QuadraticNegativeRateIntervalChoiceVariant {
   if (!Number.isInteger(seed) || seed < 0) {
-    throw new RangeError('seed must be a non-negative integer');
+    throw new RangeError("seed must be a non-negative integer");
   }
   return seed === 0 ? sourceVariant() : generatedVariant(seed);
 }
 
 function correctOptionId(variant: Topic12QuadraticNegativeRateIntervalChoiceVariant): string {
   const vertexX = -variant.linearCoefficient / (2 * variant.quadraticCoefficient);
-  const option = variant.options.find((candidate) => (
-    candidate.rateSign === 'negative'
-    && candidate.startInput >= vertexX - 0.001
-    && candidate.endInput > vertexX
-  ));
+  const option = variant.options.find(
+    (candidate) =>
+      candidate.rateSign === "negative" &&
+      candidate.startInput >= vertexX - 0.001 &&
+      candidate.endInput > vertexX,
+  );
   if (!option) {
-    throw new Error('quadratic negative-rate interval generator has no valid negative-rate option');
+    throw new Error("quadratic negative-rate interval generator has no valid negative-rate option");
   }
   return option.id;
 }
@@ -137,20 +142,22 @@ function buildSolutionSteps(
   const answer = correctOptionId(variant);
   if (variant.seed === 0) {
     return [
-      'The quadratic opens downward.',
-      'The vertex is at x = 2.470.',
-      'The rate is negative to the right of the vertex, so option D is correct.',
+      "The quadratic opens downward.",
+      "The vertex is at x = 2.470.",
+      "The rate is negative to the right of the vertex, so option D is correct.",
     ];
   }
   const vertexX = -variant.linearCoefficient / (2 * variant.quadraticCoefficient);
   return [
-    'The quadratic coefficient is negative, so the parabola opens downward.',
+    "The quadratic coefficient is negative, so the parabola opens downward.",
     `The vertex is at x = ${vertexX.toFixed(3)}.`,
     `The rate is negative to the right of the vertex, so option ${answer} is correct.`,
   ];
 }
 
-export function generateTopic12QuadraticNegativeRateIntervalChoiceOutput(seed: number): GeneratorOutput {
+export function generateTopic12QuadraticNegativeRateIntervalChoiceOutput(
+  seed: number,
+): GeneratorOutput {
   const variant = generateTopic12QuadraticNegativeRateIntervalChoice(seed);
   const answer = { selectedOptionId: correctOptionId(variant) };
   const rendererProps = {
@@ -161,7 +168,7 @@ export function generateTopic12QuadraticNegativeRateIntervalChoiceOutput(seed: n
     quadraticCoefficient: variant.quadraticCoefficient,
     domain: variant.domain,
     options: variant.options,
-    presentationMode: 'independent_practice' as const,
+    presentationMode: "independent_practice" as const,
   };
 
   return {
@@ -172,7 +179,7 @@ export function generateTopic12QuadraticNegativeRateIntervalChoiceOutput(seed: n
     gradingMetadata: {
       partAnswers: answer,
       partMaxScores: { selectedOptionId: 1 },
-      partGradingRules: { selectedOptionId: 'exact_match' },
+      partGradingRules: { selectedOptionId: "exact_match" },
     },
   };
 }

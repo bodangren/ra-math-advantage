@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { getGenerator } from '@math-platform/math-content/knowledge-space';
+import { getGenerator } from "@math-platform/math-content/knowledge-space";
 
 import {
   PRECALCULUS_PILOT_ACTIVITY_ID,
@@ -10,7 +10,7 @@ import {
   PRECALCULUS_TOPIC_13_CONCAVITY_GUIDED_GRADING_CONFIG,
   PRECALCULUS_TOPIC_13_CONCAVITY_INDEPENDENT_GRADING_CONFIG,
   PRECALCULUS_TOPIC_13_CONCAVITY_WORKED_GRADING_CONFIG,
-} from '@/convex/activities';
+} from "@/convex/activities";
 import {
   PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS,
   PRECALCULUS_PHYSICAL_CONTEXT_GUIDED_ACTIVITY_ID,
@@ -42,7 +42,7 @@ import {
   PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_GUIDED_ACTIVITY_ID,
   PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_INDEPENDENT_ACTIVITY_ID,
   PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_WORKED_ACTIVITY_ID,
-} from '@/lib/learning-evidence/precalc-pilot';
+} from "@/lib/learning-evidence/precalc-pilot";
 
 const EXISTING_ACTIVITY_IDS = [
   PRECALCULUS_PILOT_ACTIVITY_ID,
@@ -74,10 +74,10 @@ const EXISTING_ACTIVITY_IDS = [
   PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_INDEPENDENT_ACTIVITY_ID,
 ];
 
-describe('Topic 1.3 concavity activity constants', () => {
-  it('defines exact identity and grading constants with enabled evidence', () => {
+describe("Topic 1.3 concavity activity constants", () => {
+  it("defines exact identity and grading constants with enabled evidence", () => {
     expect(PRECALCULUS_TOPIC_13_CONCAVITY_NODE_ID).toBe(
-      'math.precalc.skill.1.3.determine-concavity-from-rate-of-change',
+      "math.precalc.skill.1.3.determine-concavity-from-rate-of-change",
     );
     const activityIds = [
       PRECALCULUS_TOPIC_13_CONCAVITY_WORKED_ACTIVITY_ID,
@@ -97,8 +97,8 @@ describe('Topic 1.3 concavity activity constants', () => {
       PRECALCULUS_TOPIC_13_CONCAVITY_NODE_ID,
     );
 
-    expect(PRECALCULUS_TOPIC_13_CONCAVITY_COMPONENT_KEY).toBe('concavity-from-rate-change');
-    expect(PRECALCULUS_TOPIC_13_CONCAVITY_GENERATOR_KEY).toBe('topic13-concavity-from-rate-change');
+    expect(PRECALCULUS_TOPIC_13_CONCAVITY_COMPONENT_KEY).toBe("concavity-from-rate-change");
+    expect(PRECALCULUS_TOPIC_13_CONCAVITY_GENERATOR_KEY).toBe("topic13-concavity-from-rate-change");
     expect(PRECALCULUS_TOPIC_13_CONCAVITY_WORKED_GRADING_CONFIG).toEqual({
       generatorKey: PRECALCULUS_TOPIC_13_CONCAVITY_GENERATOR_KEY,
       variantSeed: 0,

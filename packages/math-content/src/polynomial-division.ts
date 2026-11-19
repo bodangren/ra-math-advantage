@@ -1,6 +1,6 @@
-import { addPoly, multiplyPoly } from './utils/polynomial';
-import { seededRandom } from './utils/prng';
-import { generateCoefficients } from './utils/coefficients';
+import { addPoly, multiplyPoly } from "./utils/polynomial";
+import { seededRandom } from "./utils/prng";
+import { generateCoefficients } from "./utils/coefficients";
 
 /**
  * Polynomial long-division problem expressed as Q(x)·D(x) + R(x) = P(x).
@@ -24,9 +24,7 @@ export interface PolynomialDivision {
  *
  * Deterministic: same seed → same {dividend, divisor, quotient, remainder}.
  */
-export function generatePolynomialDivision(options: {
-  seed: number;
-}): PolynomialDivision {
+export function generatePolynomialDivision(options: { seed: number }): PolynomialDivision {
   const { seed } = options;
   const rand = seededRandom(seed);
 
@@ -40,8 +38,7 @@ export function generatePolynomialDivision(options: {
   // Remainder degree MUST be strictly less than divisor degree, so the
   // division is proper and the resulting P = Q·D + R identity holds.
   const maxRemainderDeg = divisorDeg - 1;
-  const remainderDeg =
-    maxRemainderDeg > 0 ? Math.floor(rand() * (maxRemainderDeg + 1)) : 0;
+  const remainderDeg = maxRemainderDeg > 0 ? Math.floor(rand() * (maxRemainderDeg + 1)) : 0;
 
   // Leading coefficient of R may legitimately be 0 (remainder can vanish),
   // so leadingRange starts at 0.

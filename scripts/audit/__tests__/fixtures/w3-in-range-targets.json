@@ -20,58 +20,37 @@
     {
       "package": "@playwright/test",
       "target_version": "1.60.0",
-      "owners": [
-        "apps/bus-math-v2",
-        "apps/integrated-math-3"
-      ]
+      "owners": ["apps/bus-math-v2", "apps/integrated-math-3"]
     },
     {
       "package": "@radix-ui/react-avatar",
       "target_version": "1.1.12",
-      "owners": [
-        "apps/bus-math-v2",
-        "apps/integrated-math-3"
-      ]
+      "owners": ["apps/bus-math-v2", "apps/integrated-math-3"]
     },
     {
       "package": "@radix-ui/react-checkbox",
       "target_version": "1.3.4",
-      "owners": [
-        "apps/bus-math-v2",
-        "apps/integrated-math-3"
-      ]
+      "owners": ["apps/bus-math-v2", "apps/integrated-math-3"]
     },
     {
       "package": "@radix-ui/react-dropdown-menu",
       "target_version": "2.1.17",
-      "owners": [
-        "apps/bus-math-v2",
-        "apps/integrated-math-3"
-      ]
+      "owners": ["apps/bus-math-v2", "apps/integrated-math-3"]
     },
     {
       "package": "@radix-ui/react-label",
       "target_version": "2.1.9",
-      "owners": [
-        "apps/bus-math-v2",
-        "apps/integrated-math-3"
-      ]
+      "owners": ["apps/bus-math-v2", "apps/integrated-math-3"]
     },
     {
       "package": "@radix-ui/react-slot",
       "target_version": "1.2.5",
-      "owners": [
-        "apps/bus-math-v2",
-        "apps/integrated-math-3"
-      ]
+      "owners": ["apps/bus-math-v2", "apps/integrated-math-3"]
     },
     {
       "package": "@radix-ui/react-tabs",
       "target_version": "1.1.14",
-      "owners": [
-        "apps/bus-math-v2",
-        "apps/integrated-math-3"
-      ]
+      "owners": ["apps/bus-math-v2", "apps/integrated-math-3"]
     },
     {
       "package": "@types/react",
@@ -87,17 +66,12 @@
     {
       "package": "baseline-browser-mapping",
       "target_version": "2.10.34",
-      "owners": [
-        "apps/bus-math-v2"
-      ]
+      "owners": ["apps/bus-math-v2"]
     },
     {
       "package": "geist",
       "target_version": "1.7.2",
-      "owners": [
-        "apps/bus-math-v2",
-        "apps/integrated-math-3"
-      ]
+      "owners": ["apps/bus-math-v2", "apps/integrated-math-3"]
     },
     {
       "package": "postcss",
@@ -125,19 +99,12 @@
     {
       "package": "ts-fsrs",
       "target_version": "5.4.1",
-      "owners": [
-        "apps/bus-math-v2",
-        "apps/integrated-math-3",
-        "packages/srs-engine"
-      ]
+      "owners": ["apps/bus-math-v2", "apps/integrated-math-3", "packages/srs-engine"]
     },
     {
       "package": "tsx",
       "target_version": "4.22.4",
-      "owners": [
-        "apps/bus-math-v2",
-        "apps/integrated-math-3"
-      ]
+      "owners": ["apps/bus-math-v2", "apps/integrated-math-3"]
     },
     {
       "package": "typescript-eslint",

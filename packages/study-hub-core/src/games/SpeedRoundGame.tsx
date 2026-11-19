@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import type { StudyTerm } from '../study/types';
-import { shuffleArray } from '../study/shuffle';
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import type { StudyTerm } from "../study/types";
+import { shuffleArray } from "../study/shuffle";
 
 export interface SpeedRoundGameProps {
   terms: StudyTerm[];
@@ -36,9 +36,7 @@ function generateQuestions(terms: StudyTerm[], count: number): Question[] {
   const selectedTerms = shuffledTerms.slice(0, Math.min(count, shuffledTerms.length));
 
   return selectedTerms.map((term) => {
-    const otherDefs = terms
-      .filter((t) => t.slug !== term.slug)
-      .map((t) => t.definition);
+    const otherDefs = terms.filter((t) => t.slug !== term.slug).map((t) => t.definition);
 
     const wrongOptions = shuffleArray(otherDefs).slice(0, OPTIONS_COUNT - 1);
     const options = shuffleArray([term.definition, ...wrongOptions]);
@@ -67,7 +65,7 @@ export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
   const [itemsCorrect, setItemsCorrect] = useState(0);
   const [itemsIncorrect, setItemsIncorrect] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
-  const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null);
+  const [feedback, setFeedback] = useState<"correct" | "wrong" | null>(null);
   const [startTime] = useState(() => Date.now());
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
 
@@ -136,7 +134,7 @@ export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
           setBestStreak((bs) => Math.max(bs, next));
           return next;
         });
-        setFeedback('correct');
+        setFeedback("correct");
       } else {
         setItemsIncorrect((prev) => prev + 1);
         setStreak(0);
@@ -147,7 +145,7 @@ export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
           }
           return newLives;
         });
-        setFeedback('wrong');
+        setFeedback("wrong");
       }
 
       if (feedbackTimerRef.current) {
@@ -159,7 +157,7 @@ export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
         setCurrentIndex((prev) => prev + 1);
       }, 800);
     },
-    [feedback, isComplete, currentIndex, questions]
+    [feedback, isComplete, currentIndex, questions],
   );
 
   if (questions.length === 0) {
@@ -177,12 +175,13 @@ export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
     return (
       <div className="max-w-2xl mx-auto py-12 px-4 text-center space-y-6">
         <h2 className="text-3xl font-display font-bold text-foreground">
-          {lives <= 0 ? 'Game Over!' : "Time's Up!"}
+          {lives <= 0 ? "Game Over!" : "Time's Up!"}
         </h2>
-        <div className="text-5xl">{lives <= 0 ? '💔' : '⏱️'}</div>
+        <div className="text-5xl">{lives <= 0 ? "💔" : "⏱️"}</div>
         <div className="space-y-2">
           <p className="text-lg text-muted-foreground">
-            Final Score: <span className="font-semibold text-foreground">{itemsCorrect}</span> correct
+            Final Score: <span className="font-semibold text-foreground">{itemsCorrect}</span>{" "}
+            correct
           </p>
           <p className="text-sm text-muted-foreground">
             You saw {itemsSeen} questions in {durationSeconds}s
@@ -202,15 +201,17 @@ export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
       <div className="flex items-center justify-between text-sm font-medium">
         <div className="flex items-center gap-1">
           <span className="text-muted-foreground">Time:</span>
-          <span className={`font-mono-num ${timeLeft <= 10 ? 'text-red-500 animate-pulse' : 'text-foreground'}`}>
+          <span
+            className={`font-mono-num ${timeLeft <= 10 ? "text-red-500 animate-pulse" : "text-foreground"}`}
+          >
             {timeLeft}s
           </span>
         </div>
         <div className="flex items-center gap-1">
           <span className="text-muted-foreground">Lives:</span>
           <span className="text-foreground">
-            {'❤️'.repeat(lives)}
-            {'🖤'.repeat(INITIAL_LIVES - lives)}
+            {"❤️".repeat(lives)}
+            {"🖤".repeat(INITIAL_LIVES - lives)}
           </span>
         </div>
         <div className="flex items-center gap-1">
@@ -235,16 +236,16 @@ export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
         {currentQuestion.options.map((option, idx) => {
           const isSelected = selectedAnswer === option;
           const isCorrectAnswer = option === currentQuestion.correctDef;
-          let buttonClass = 'bg-card border-border text-foreground hover:border-primary/40';
+          let buttonClass = "bg-card border-border text-foreground hover:border-primary/40";
 
           if (feedback !== null && isSelected) {
-            if (feedback === 'correct') {
-              buttonClass = 'bg-green-100 border-green-300 text-green-800';
+            if (feedback === "correct") {
+              buttonClass = "bg-green-100 border-green-300 text-green-800";
             } else {
-              buttonClass = 'bg-red-100 border-red-300 text-red-800';
+              buttonClass = "bg-red-100 border-red-300 text-red-800";
             }
           } else if (feedback !== null && isCorrectAnswer) {
-            buttonClass = 'bg-green-100 border-green-300 text-green-800';
+            buttonClass = "bg-green-100 border-green-300 text-green-800";
           }
 
           return (
@@ -263,10 +264,10 @@ export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
       {feedback && (
         <div
           className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-6xl font-bold animate-bounce ${
-            feedback === 'correct' ? 'text-green-500' : 'text-red-500'
+            feedback === "correct" ? "text-green-500" : "text-red-500"
           }`}
         >
-          {feedback === 'correct' ? '✓' : '✗'}
+          {feedback === "correct" ? "✓" : "✗"}
         </div>
       )}
     </div>

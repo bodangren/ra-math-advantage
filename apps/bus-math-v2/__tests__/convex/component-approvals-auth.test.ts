@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
   getComponentApprovalHandler,
   getComponentVersionHashHandler,
@@ -8,9 +8,9 @@ import {
   getAuditSummaryHandler,
   submitComponentReviewHandler,
   resolveReviewHandler,
-} from '@/convex/component_approvals';
-vi.mock('@/lib/component-approval/version-hashes', () => ({
-  computeComponentVersionHash: vi.fn().mockResolvedValue('mock-hash'),
+} from "@/convex/component_approvals";
+vi.mock("@/lib/component-approval/version-hashes", () => ({
+  computeComponentVersionHash: vi.fn().mockResolvedValue("mock-hash"),
 }));
 
 const mockGetUserIdentity = vi.fn();
@@ -20,14 +20,12 @@ const mockFilter = vi.fn();
 const mockCollect = vi.fn();
 const mockFirst = vi.fn();
 const mockOrder = vi.fn();
-const mockInsert = vi.fn().mockResolvedValue('new_id_123');
+const mockInsert = vi.fn().mockResolvedValue("new_id_123");
 const mockPatch = vi.fn().mockResolvedValue(undefined);
-const mockGet = vi.fn().mockResolvedValue({ _id: 'review_123' });
+const mockGet = vi.fn().mockResolvedValue({ _id: "review_123" });
 
 function createMockCtx(role: string | null = null, authenticated = true) {
-  mockGetUserIdentity.mockResolvedValue(
-    authenticated ? { email: 'test@example.com' } : null
-  );
+  mockGetUserIdentity.mockResolvedValue(authenticated ? { email: "test@example.com" } : null);
 
   mockFirst.mockResolvedValue(null);
   mockCollect.mockResolvedValue([]);
@@ -57,7 +55,7 @@ function createMockCtx(role: string | null = null, authenticated = true) {
     auth: { getUserIdentity: mockGetUserIdentity },
     db: {
       query: (table: string) => {
-        if (table === 'profiles') {
+        if (table === "profiles") {
           return profileQuery as unknown as ReturnType<typeof mockQuery>;
         }
         return mockQuery(table);
@@ -69,251 +67,263 @@ function createMockCtx(role: string | null = null, authenticated = true) {
   };
 }
 
-describe('convex/component_approvals query auth', () => {
+describe("convex/component_approvals query auth", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  describe('getComponentApprovalHandler', () => {
-    it('rejects unauthenticated callers', async () => {
+  describe("getComponentApprovalHandler", () => {
+    it("rejects unauthenticated callers", async () => {
       const ctx = createMockCtx(null, false);
       await expect(
-        getComponentApprovalHandler(ctx as never, { componentType: 'activity', componentId: 'test' }),
-      ).rejects.toThrow('Unauthorized');
+        getComponentApprovalHandler(ctx as never, {
+          componentType: "activity",
+          componentId: "test",
+        }),
+      ).rejects.toThrow("Unauthorized");
     });
 
-    it('rejects student role', async () => {
-      const ctx = createMockCtx('student');
+    it("rejects student role", async () => {
+      const ctx = createMockCtx("student");
       await expect(
-        getComponentApprovalHandler(ctx as never, { componentType: 'activity', componentId: 'test' }),
-      ).rejects.toThrow('Unauthorized');
+        getComponentApprovalHandler(ctx as never, {
+          componentType: "activity",
+          componentId: "test",
+        }),
+      ).rejects.toThrow("Unauthorized");
     });
 
-    it('rejects teacher role', async () => {
-      const ctx = createMockCtx('teacher');
+    it("rejects teacher role", async () => {
+      const ctx = createMockCtx("teacher");
       await expect(
-        getComponentApprovalHandler(ctx as never, { componentType: 'activity', componentId: 'test' }),
-      ).rejects.toThrow('Unauthorized');
+        getComponentApprovalHandler(ctx as never, {
+          componentType: "activity",
+          componentId: "test",
+        }),
+      ).rejects.toThrow("Unauthorized");
     });
 
-    it('allows admin role', async () => {
-      const ctx = createMockCtx('admin');
+    it("allows admin role", async () => {
+      const ctx = createMockCtx("admin");
       await expect(
-        getComponentApprovalHandler(ctx as never, { componentType: 'activity', componentId: 'test' }),
+        getComponentApprovalHandler(ctx as never, {
+          componentType: "activity",
+          componentId: "test",
+        }),
       ).resolves.toBeNull();
     });
   });
 
-  describe('getComponentVersionHashHandler', () => {
-    it('rejects unauthenticated callers', async () => {
+  describe("getComponentVersionHashHandler", () => {
+    it("rejects unauthenticated callers", async () => {
       const ctx = createMockCtx(null, false);
       await expect(
-        getComponentVersionHashHandler(ctx as never, { componentType: 'activity', componentId: 'test' }),
-      ).rejects.toThrow('Unauthorized');
+        getComponentVersionHashHandler(ctx as never, {
+          componentType: "activity",
+          componentId: "test",
+        }),
+      ).rejects.toThrow("Unauthorized");
     });
 
-    it('rejects student role', async () => {
-      const ctx = createMockCtx('student');
+    it("rejects student role", async () => {
+      const ctx = createMockCtx("student");
       await expect(
-        getComponentVersionHashHandler(ctx as never, { componentType: 'activity', componentId: 'test' }),
-      ).rejects.toThrow('Unauthorized');
+        getComponentVersionHashHandler(ctx as never, {
+          componentType: "activity",
+          componentId: "test",
+        }),
+      ).rejects.toThrow("Unauthorized");
     });
 
-    it('rejects teacher role', async () => {
-      const ctx = createMockCtx('teacher');
+    it("rejects teacher role", async () => {
+      const ctx = createMockCtx("teacher");
       await expect(
-        getComponentVersionHashHandler(ctx as never, { componentType: 'activity', componentId: 'test' }),
-      ).rejects.toThrow('Unauthorized');
+        getComponentVersionHashHandler(ctx as never, {
+          componentType: "activity",
+          componentId: "test",
+        }),
+      ).rejects.toThrow("Unauthorized");
     });
   });
 
-  describe('getReviewQueueHandler', () => {
-    it('rejects unauthenticated callers', async () => {
+  describe("getReviewQueueHandler", () => {
+    it("rejects unauthenticated callers", async () => {
       const ctx = createMockCtx(null, false);
-      await expect(getReviewQueueHandler(ctx as never, {})).rejects.toThrow(
-        'Unauthorized',
-      );
+      await expect(getReviewQueueHandler(ctx as never, {})).rejects.toThrow("Unauthorized");
     });
 
-    it('rejects student role', async () => {
-      const ctx = createMockCtx('student');
-      await expect(getReviewQueueHandler(ctx as never, {})).rejects.toThrow(
-        'Unauthorized',
-      );
+    it("rejects student role", async () => {
+      const ctx = createMockCtx("student");
+      await expect(getReviewQueueHandler(ctx as never, {})).rejects.toThrow("Unauthorized");
     });
 
-    it('rejects teacher role', async () => {
-      const ctx = createMockCtx('teacher');
-      await expect(getReviewQueueHandler(ctx as never, {})).rejects.toThrow(
-        'Unauthorized',
-      );
+    it("rejects teacher role", async () => {
+      const ctx = createMockCtx("teacher");
+      await expect(getReviewQueueHandler(ctx as never, {})).rejects.toThrow("Unauthorized");
     });
 
-    it('allows admin role', async () => {
-      const ctx = createMockCtx('admin');
+    it("allows admin role", async () => {
+      const ctx = createMockCtx("admin");
       await expect(getReviewQueueHandler(ctx as never, {})).resolves.toEqual([]);
     });
   });
 
-  describe('getComponentReviewsHandler', () => {
-    it('rejects unauthenticated callers', async () => {
+  describe("getComponentReviewsHandler", () => {
+    it("rejects unauthenticated callers", async () => {
       const ctx = createMockCtx(null, false);
       await expect(
-        getComponentReviewsHandler(ctx as never, { componentType: 'activity', componentId: 'test' }),
-      ).rejects.toThrow('Unauthorized');
+        getComponentReviewsHandler(ctx as never, {
+          componentType: "activity",
+          componentId: "test",
+        }),
+      ).rejects.toThrow("Unauthorized");
     });
 
-    it('rejects student role', async () => {
-      const ctx = createMockCtx('student');
+    it("rejects student role", async () => {
+      const ctx = createMockCtx("student");
       await expect(
-        getComponentReviewsHandler(ctx as never, { componentType: 'activity', componentId: 'test' }),
-      ).rejects.toThrow('Unauthorized');
+        getComponentReviewsHandler(ctx as never, {
+          componentType: "activity",
+          componentId: "test",
+        }),
+      ).rejects.toThrow("Unauthorized");
     });
 
-    it('rejects teacher role', async () => {
-      const ctx = createMockCtx('teacher');
+    it("rejects teacher role", async () => {
+      const ctx = createMockCtx("teacher");
       await expect(
-        getComponentReviewsHandler(ctx as never, { componentType: 'activity', componentId: 'test' }),
-      ).rejects.toThrow('Unauthorized');
+        getComponentReviewsHandler(ctx as never, {
+          componentType: "activity",
+          componentId: "test",
+        }),
+      ).rejects.toThrow("Unauthorized");
     });
   });
 
-  describe('getUnresolvedReviewsHandler', () => {
-    it('rejects unauthenticated callers', async () => {
+  describe("getUnresolvedReviewsHandler", () => {
+    it("rejects unauthenticated callers", async () => {
       const ctx = createMockCtx(null, false);
-      await expect(getUnresolvedReviewsHandler(ctx as never, {})).rejects.toThrow(
-        'Unauthorized',
-      );
+      await expect(getUnresolvedReviewsHandler(ctx as never, {})).rejects.toThrow("Unauthorized");
     });
 
-    it('rejects student role', async () => {
-      const ctx = createMockCtx('student');
-      await expect(getUnresolvedReviewsHandler(ctx as never, {})).rejects.toThrow(
-        'Unauthorized',
-      );
+    it("rejects student role", async () => {
+      const ctx = createMockCtx("student");
+      await expect(getUnresolvedReviewsHandler(ctx as never, {})).rejects.toThrow("Unauthorized");
     });
 
-    it('rejects teacher role', async () => {
-      const ctx = createMockCtx('teacher');
-      await expect(getUnresolvedReviewsHandler(ctx as never, {})).rejects.toThrow(
-        'Unauthorized',
-      );
+    it("rejects teacher role", async () => {
+      const ctx = createMockCtx("teacher");
+      await expect(getUnresolvedReviewsHandler(ctx as never, {})).rejects.toThrow("Unauthorized");
     });
 
-    it('allows admin role', async () => {
-      const ctx = createMockCtx('admin');
+    it("allows admin role", async () => {
+      const ctx = createMockCtx("admin");
       await expect(getUnresolvedReviewsHandler(ctx as never, {})).resolves.toEqual([]);
     });
   });
 
-  describe('getAuditSummaryHandler', () => {
-    it('rejects unauthenticated callers', async () => {
+  describe("getAuditSummaryHandler", () => {
+    it("rejects unauthenticated callers", async () => {
       const ctx = createMockCtx(null, false);
-      await expect(getAuditSummaryHandler(ctx as never, {})).rejects.toThrow(
-        'Unauthorized',
-      );
+      await expect(getAuditSummaryHandler(ctx as never, {})).rejects.toThrow("Unauthorized");
     });
 
-    it('rejects student role', async () => {
-      const ctx = createMockCtx('student');
-      await expect(getAuditSummaryHandler(ctx as never, {})).rejects.toThrow(
-        'Unauthorized',
-      );
+    it("rejects student role", async () => {
+      const ctx = createMockCtx("student");
+      await expect(getAuditSummaryHandler(ctx as never, {})).rejects.toThrow("Unauthorized");
     });
 
-    it('rejects teacher role', async () => {
-      const ctx = createMockCtx('teacher');
-      await expect(getAuditSummaryHandler(ctx as never, {})).rejects.toThrow(
-        'Unauthorized',
-      );
+    it("rejects teacher role", async () => {
+      const ctx = createMockCtx("teacher");
+      await expect(getAuditSummaryHandler(ctx as never, {})).rejects.toThrow("Unauthorized");
     });
 
-    it('allows admin role and returns empty summary', async () => {
-      const ctx = createMockCtx('admin');
+    it("allows admin role and returns empty summary", async () => {
+      const ctx = createMockCtx("admin");
       await expect(getAuditSummaryHandler(ctx as never, {})).resolves.toEqual({});
     });
   });
 
-  describe('submitComponentReviewHandler', () => {
-    it('rejects unauthenticated callers', async () => {
+  describe("submitComponentReviewHandler", () => {
+    it("rejects unauthenticated callers", async () => {
       const ctx = createMockCtx(null, false);
       await expect(
         submitComponentReviewHandler(ctx as never, {
-          componentType: 'activity',
-          componentId: 'test',
-          componentVersionHash: 'mock-hash',
-          status: 'approved',
+          componentType: "activity",
+          componentId: "test",
+          componentVersionHash: "mock-hash",
+          status: "approved",
           issueCategories: [],
         }),
-      ).rejects.toThrow('Unauthorized');
+      ).rejects.toThrow("Unauthorized");
     });
 
-    it('rejects student role', async () => {
-      const ctx = createMockCtx('student');
+    it("rejects student role", async () => {
+      const ctx = createMockCtx("student");
       await expect(
         submitComponentReviewHandler(ctx as never, {
-          componentType: 'activity',
-          componentId: 'test',
-          componentVersionHash: 'mock-hash',
-          status: 'approved',
+          componentType: "activity",
+          componentId: "test",
+          componentVersionHash: "mock-hash",
+          status: "approved",
           issueCategories: [],
         }),
-      ).rejects.toThrow('Unauthorized');
+      ).rejects.toThrow("Unauthorized");
     });
 
-    it('rejects teacher role', async () => {
-      const ctx = createMockCtx('teacher');
+    it("rejects teacher role", async () => {
+      const ctx = createMockCtx("teacher");
       await expect(
         submitComponentReviewHandler(ctx as never, {
-          componentType: 'activity',
-          componentId: 'test',
-          componentVersionHash: 'mock-hash',
-          status: 'approved',
+          componentType: "activity",
+          componentId: "test",
+          componentVersionHash: "mock-hash",
+          status: "approved",
           issueCategories: [],
         }),
-      ).rejects.toThrow('Unauthorized');
+      ).rejects.toThrow("Unauthorized");
     });
 
-    it('allows admin role', async () => {
-      const ctx = createMockCtx('admin');
+    it("allows admin role", async () => {
+      const ctx = createMockCtx("admin");
       await expect(
         submitComponentReviewHandler(ctx as never, {
-          componentType: 'activity',
-          componentId: 'test',
-          componentVersionHash: 'mock-hash',
-          status: 'approved',
+          componentType: "activity",
+          componentId: "test",
+          componentVersionHash: "mock-hash",
+          status: "approved",
           issueCategories: [],
         }),
       ).resolves.toEqual({ reviewId: expect.any(String) });
     });
   });
 
-  describe('resolveReviewHandler', () => {
-    it('rejects unauthenticated callers', async () => {
+  describe("resolveReviewHandler", () => {
+    it("rejects unauthenticated callers", async () => {
       const ctx = createMockCtx(null, false);
       await expect(
-        resolveReviewHandler(ctx as never, { reviewId: 'review_123' as never }),
-      ).rejects.toThrow('Unauthorized');
+        resolveReviewHandler(ctx as never, { reviewId: "review_123" as never }),
+      ).rejects.toThrow("Unauthorized");
     });
 
-    it('rejects student role', async () => {
-      const ctx = createMockCtx('student');
+    it("rejects student role", async () => {
+      const ctx = createMockCtx("student");
       await expect(
-        resolveReviewHandler(ctx as never, { reviewId: 'review_123' as never }),
-      ).rejects.toThrow('Unauthorized');
+        resolveReviewHandler(ctx as never, { reviewId: "review_123" as never }),
+      ).rejects.toThrow("Unauthorized");
     });
 
-    it('rejects teacher role', async () => {
-      const ctx = createMockCtx('teacher');
+    it("rejects teacher role", async () => {
+      const ctx = createMockCtx("teacher");
       await expect(
-        resolveReviewHandler(ctx as never, { reviewId: 'review_123' as never }),
-      ).rejects.toThrow('Unauthorized');
+        resolveReviewHandler(ctx as never, { reviewId: "review_123" as never }),
+      ).rejects.toThrow("Unauthorized");
     });
 
-    it('allows admin role', async () => {
-      const ctx = createMockCtx('admin');
+    it("allows admin role", async () => {
+      const ctx = createMockCtx("admin");
       await expect(
-        resolveReviewHandler(ctx as never, { reviewId: 'review_123' as never }),
+        resolveReviewHandler(ctx as never, { reviewId: "review_123" as never }),
       ).resolves.toEqual({ success: true });
     });
   });

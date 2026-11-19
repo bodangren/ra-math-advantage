@@ -1,24 +1,23 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-import type { NextRequest } from 'next/server';
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import type { NextRequest } from "next/server";
 
 const mockRequireActiveRequestSessionClaims = vi.fn();
 
-vi.mock('@/lib/auth/server', () => ({
+vi.mock("@/lib/auth/server", () => ({
   requireActiveRequestSessionClaims: mockRequireActiveRequestSessionClaims,
 }));
 
 const mockExistsSync = vi.fn();
 const mockReadFileSync = vi.fn();
 
-vi.mock('@/lib/server/lesson-assets', () => ({
-  getWorkbookAsset: (name: string, type: string) => mockExistsSync() ? mockReadFileSync(name, type) : null,
+vi.mock("@/lib/server/lesson-assets", () => ({
+  getWorkbookAsset: (name: string, type: string) =>
+    mockExistsSync() ? mockReadFileSync(name, type) : null,
 }));
 
-const { GET } = await import(
-  '@/app/api/workbooks/capstone/[type]/route'
-);
+const { GET } = await import("@/app/api/workbooks/capstone/[type]/route");
 
-function buildContext(type: 'student' | 'teacher') {
+function buildContext(type: "student" | "teacher") {
   return {
     params: Promise.resolve({ type }),
   };
@@ -28,98 +27,98 @@ function buildRequest(url: string) {
   return new Request(url) as NextRequest;
 }
 
-describe('GET /api/workbooks/capstone/[type]', () => {
+describe("GET /api/workbooks/capstone/[type]", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  it('returns 401 when unauthenticated', async () => {
+  it("returns 401 when unauthenticated", async () => {
     mockRequireActiveRequestSessionClaims.mockResolvedValue(
-      new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 })
+      new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 }),
     );
 
     const response = await GET(
-      buildRequest('http://localhost/api/workbooks/capstone/student'),
-      buildContext('student')
+      buildRequest("http://localhost/api/workbooks/capstone/student"),
+      buildContext("student"),
     );
 
     expect(response.status).toBe(401);
   });
 
-  it('returns 403 when student tries to access teacher workbook', async () => {
+  it("returns 403 when student tries to access teacher workbook", async () => {
     mockRequireActiveRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_123',
-      username: 'student',
-      role: 'student',
+      sub: "profile_123",
+      username: "student",
+      role: "student",
       iat: 1,
       exp: 2,
     });
 
     const response = await GET(
-      buildRequest('http://localhost/api/workbooks/capstone/teacher'),
-      buildContext('teacher')
+      buildRequest("http://localhost/api/workbooks/capstone/teacher"),
+      buildContext("teacher"),
     );
 
     expect(response.status).toBe(403);
   });
 
-  it('returns 200 with student workbook when student accesses student type', async () => {
+  it("returns 200 with student workbook when student accesses student type", async () => {
     mockRequireActiveRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_123',
-      username: 'student',
-      role: 'student',
+      sub: "profile_123",
+      username: "student",
+      role: "student",
       iat: 1,
       exp: 2,
     });
 
     mockExistsSync.mockReturnValue(true);
-    mockReadFileSync.mockReturnValue(Buffer.from('test content'));
+    mockReadFileSync.mockReturnValue(Buffer.from("test content"));
 
     const response = await GET(
-      buildRequest('http://localhost/api/workbooks/capstone/student'),
-      buildContext('student')
+      buildRequest("http://localhost/api/workbooks/capstone/student"),
+      buildContext("student"),
     );
 
     expect(response.status).toBe(200);
-    expect(response.headers.get('Content-Type')).toBe(
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    expect(response.headers.get("Content-Type")).toBe(
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     );
-    expect(response.headers.get('Content-Disposition')).toBe(
-      'attachment; filename="capstone_investor_ready_workbook.xlsx"'
+    expect(response.headers.get("Content-Disposition")).toBe(
+      'attachment; filename="capstone_investor_ready_workbook.xlsx"',
     );
   });
 
-  it('returns 200 with teacher workbook when teacher accesses teacher type', async () => {
+  it("returns 200 with teacher workbook when teacher accesses teacher type", async () => {
     mockRequireActiveRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_456',
-      username: 'teacher',
-      role: 'teacher',
+      sub: "profile_456",
+      username: "teacher",
+      role: "teacher",
       iat: 1,
       exp: 2,
     });
 
     mockExistsSync.mockReturnValue(true);
-    mockReadFileSync.mockReturnValue(Buffer.from('test content'));
+    mockReadFileSync.mockReturnValue(Buffer.from("test content"));
 
     const response = await GET(
-      buildRequest('http://localhost/api/workbooks/capstone/teacher'),
-      buildContext('teacher')
+      buildRequest("http://localhost/api/workbooks/capstone/teacher"),
+      buildContext("teacher"),
     );
 
     expect(response.status).toBe(200);
-    expect(response.headers.get('Content-Type')).toBe(
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    expect(response.headers.get("Content-Type")).toBe(
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     );
-    expect(response.headers.get('Content-Disposition')).toBe(
-      'attachment; filename="capstone_investor_ready_workbook_teacher.xlsx"'
+    expect(response.headers.get("Content-Disposition")).toBe(
+      'attachment; filename="capstone_investor_ready_workbook_teacher.xlsx"',
     );
   });
 
-  it('returns 404 when student file not found', async () => {
+  it("returns 404 when student file not found", async () => {
     mockRequireActiveRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_123',
-      username: 'student',
-      role: 'student',
+      sub: "profile_123",
+      username: "student",
+      role: "student",
       iat: 1,
       exp: 2,
     });
@@ -127,18 +126,18 @@ describe('GET /api/workbooks/capstone/[type]', () => {
     mockExistsSync.mockReturnValue(false);
 
     const response = await GET(
-      buildRequest('http://localhost/api/workbooks/capstone/student'),
-      buildContext('student')
+      buildRequest("http://localhost/api/workbooks/capstone/student"),
+      buildContext("student"),
     );
 
     expect(response.status).toBe(404);
   });
 
-  it('returns 404 when teacher file not found', async () => {
+  it("returns 404 when teacher file not found", async () => {
     mockRequireActiveRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_456',
-      username: 'teacher',
-      role: 'teacher',
+      sub: "profile_456",
+      username: "teacher",
+      role: "teacher",
       iat: 1,
       exp: 2,
     });
@@ -146,25 +145,25 @@ describe('GET /api/workbooks/capstone/[type]', () => {
     mockExistsSync.mockReturnValue(false);
 
     const response = await GET(
-      buildRequest('http://localhost/api/workbooks/capstone/teacher'),
-      buildContext('teacher')
+      buildRequest("http://localhost/api/workbooks/capstone/teacher"),
+      buildContext("teacher"),
     );
 
     expect(response.status).toBe(404);
   });
 
-  it('returns 400 for invalid type parameter', async () => {
+  it("returns 400 for invalid type parameter", async () => {
     mockRequireActiveRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_123',
-      username: 'student',
-      role: 'student',
+      sub: "profile_123",
+      username: "student",
+      role: "student",
       iat: 1,
       exp: 2,
     });
 
     const response = await GET(
-      buildRequest('http://localhost/api/workbooks/capstone/admin'),
-      buildContext('admin' as 'student')
+      buildRequest("http://localhost/api/workbooks/capstone/admin"),
+      buildContext("admin" as "student"),
     );
 
     expect(response.status).toBe(400);

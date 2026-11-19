@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import React, { useState, useCallback, useRef } from 'react';
-import { evaluateFunction, transformDataToCanvas } from '@math-platform/graphing-core/canvas-utils';
-import { parseQuadratic } from '@math-platform/graphing-core/quadratic-parser';
-import { parseLinear } from '@math-platform/graphing-core/linear-parser';
+import React, { useState, useCallback, useRef } from "react";
+import { evaluateFunction, transformDataToCanvas } from "@math-platform/graphing-core/canvas-utils";
+import { parseQuadratic } from "@math-platform/graphing-core/quadratic-parser";
+import { parseLinear } from "@math-platform/graphing-core/linear-parser";
 
 export interface InterceptData {
-  type: 'intercept' | 'no_intercepts';
+  type: "intercept" | "no_intercepts";
   data: { x: number; y: number } | null;
   timestamp: number;
 }
@@ -38,13 +38,15 @@ export function InterceptIdentification({
   readonly = false,
 }: InterceptIdentificationProps) {
   const [identifiedIntercepts, setIdentifiedIntercepts] = useState<IdentifiedIntercept[]>([]);
-  const [feedback, setFeedback] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+  const [feedback, setFeedback] = useState<{ message: string; type: "success" | "error" } | null>(
+    null,
+  );
   const svgRef = useRef<SVGSVGElement>(null);
 
   const calculateXIntercepts = useCallback((expr: string): number[] => {
     const trimmedExpr = expr.trim();
 
-    if (!trimmedExpr.includes('x')) {
+    if (!trimmedExpr.includes("x")) {
       const c = parseFloat(trimmedExpr);
       if (Math.abs(c) < 0.0001) {
         return [];
@@ -52,7 +54,7 @@ export function InterceptIdentification({
       return [];
     }
 
-    if (trimmedExpr.includes('x^2')) {
+    if (trimmedExpr.includes("x^2")) {
       const coeffs = parseQuadratic(expr);
       if (coeffs) {
         const { a, b, c } = coeffs;
@@ -90,41 +92,44 @@ export function InterceptIdentification({
     return intercepts.length > 0;
   }, [functionExpression, calculateXIntercepts]);
 
-  const findNearestIntercept = useCallback((clickCanvasX: number, clickCanvasY: number): { x: number; y: number } | null => {
-    const intercepts = calculateXIntercepts(functionExpression);
-    if (intercepts.length === 0) return null;
+  const findNearestIntercept = useCallback(
+    (clickCanvasX: number, clickCanvasY: number): { x: number; y: number } | null => {
+      const intercepts = calculateXIntercepts(functionExpression);
+      if (intercepts.length === 0) return null;
 
-    const actualIntercepts = intercepts.map(x => ({
-      x,
-      y: evaluateFunction(functionExpression, x),
-    }));
+      const actualIntercepts = intercepts.map((x) => ({
+        x,
+        y: evaluateFunction(functionExpression, x),
+      }));
 
-    let nearest = null;
-    let minDistance = 50;
+      let nearest = null;
+      let minDistance = 50;
 
-    actualIntercepts.forEach(intercept => {
-      const { canvasX: interceptCanvasX, canvasY: interceptCanvasY } = transformDataToCanvas(
-        intercept.x,
-        intercept.y,
-        CANVAS_DOMAIN,
-        CANVAS_RANGE,
-        CANVAS_WIDTH,
-        CANVAS_HEIGHT
-      );
+      actualIntercepts.forEach((intercept) => {
+        const { canvasX: interceptCanvasX, canvasY: interceptCanvasY } = transformDataToCanvas(
+          intercept.x,
+          intercept.y,
+          CANVAS_DOMAIN,
+          CANVAS_RANGE,
+          CANVAS_WIDTH,
+          CANVAS_HEIGHT,
+        );
 
-      const distance = Math.sqrt(
-        Math.pow(clickCanvasX - interceptCanvasX, 2) +
-        Math.pow(clickCanvasY - interceptCanvasY, 2)
-      );
+        const distance = Math.sqrt(
+          Math.pow(clickCanvasX - interceptCanvasX, 2) +
+            Math.pow(clickCanvasY - interceptCanvasY, 2),
+        );
 
-      if (distance < minDistance) {
-        minDistance = distance;
-        nearest = intercept;
-      }
-    });
+        if (distance < minDistance) {
+          minDistance = distance;
+          nearest = intercept;
+        }
+      });
 
-    return nearest;
-  }, [functionExpression, calculateXIntercepts]);
+      return nearest;
+    },
+    [functionExpression, calculateXIntercepts],
+  );
 
   const handleCanvasClick = useCallback(
     (event: React.MouseEvent<SVGSVGElement>) => {
@@ -141,33 +146,33 @@ export function InterceptIdentification({
 
       if (nearestIntercept) {
         const isAlreadyIdentified = identifiedIntercepts.some(
-          i => Math.abs(i.x - nearestIntercept!.x) < 0.1
+          (i) => Math.abs(i.x - nearestIntercept!.x) < 0.1,
         );
 
         if (!isAlreadyIdentified) {
-          setIdentifiedIntercepts(prev => [...prev, nearestIntercept!]);
-          setFeedback({ message: 'Correct!', type: 'success' });
+          setIdentifiedIntercepts((prev) => [...prev, nearestIntercept!]);
+          setFeedback({ message: "Correct!", type: "success" });
 
           onInterceptIdentified({
-            type: 'intercept',
+            type: "intercept",
             data: nearestIntercept,
             timestamp: Date.now(),
           });
         }
       } else {
-        setFeedback({ message: 'Try again', type: 'error' });
+        setFeedback({ message: "Try again", type: "error" });
       }
 
       setTimeout(() => setFeedback(null), 2000);
     },
-    [readonly, identifiedIntercepts, findNearestIntercept, onInterceptIdentified]
+    [readonly, identifiedIntercepts, findNearestIntercept, onInterceptIdentified],
   );
 
   const handleNoInterceptsClick = useCallback(() => {
     if (readonly || hasRealIntercepts()) return;
 
     onInterceptIdentified({
-      type: 'no_intercepts',
+      type: "no_intercepts",
       data: null,
       timestamp: Date.now(),
     });
@@ -192,7 +197,14 @@ export function InterceptIdentification({
           <line x1="300" y1="0" x2="300" y2="400" stroke="#374151" strokeWidth={2} />
 
           {identifiedIntercepts.map((intercept, index) => {
-            const { canvasX, canvasY } = transformDataToCanvas(intercept.x, intercept.y, CANVAS_DOMAIN, CANVAS_RANGE, CANVAS_WIDTH, CANVAS_HEIGHT);
+            const { canvasX, canvasY } = transformDataToCanvas(
+              intercept.x,
+              intercept.y,
+              CANVAS_DOMAIN,
+              CANVAS_RANGE,
+              CANVAS_WIDTH,
+              CANVAS_HEIGHT,
+            );
             return (
               <g key={index}>
                 <circle
@@ -217,7 +229,9 @@ export function InterceptIdentification({
         {feedback && (
           <div
             className={`absolute top-2 right-2 px-3 py-1 rounded-md text-sm font-medium ${
-              feedback.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+              feedback.type === "success"
+                ? "bg-green-100 text-green-800"
+                : "bg-red-100 text-red-800"
             }`}
           >
             {feedback.message}

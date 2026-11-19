@@ -8,8 +8,8 @@
 
 export class EmptyResponseError extends Error {
   constructor() {
-    super('Empty response from AI provider');
-    this.name = 'EmptyResponseError';
+    super("Empty response from AI provider");
+    this.name = "EmptyResponseError";
   }
 }
 
@@ -43,7 +43,7 @@ function isRetryableError(error: unknown): boolean {
   if (error instanceof EmptyResponseError) {
     return true;
   }
-  if (error instanceof DOMException && error.name === 'AbortError') {
+  if (error instanceof DOMException && error.name === "AbortError") {
     return false;
   }
 
@@ -61,8 +61,15 @@ function isRetryableError(error: unknown): boolean {
     if (directStatusMatch) {
       return isRetryableStatus(parseInt(directStatusMatch[1], 10));
     }
-    const networkPatterns = ['fetch failed', 'ECONNRESET', 'ECONNREFUSED', 'ETIMEDOUT', 'ENOTFOUND', 'network'];
-    if (networkPatterns.some(p => message.includes(p))) {
+    const networkPatterns = [
+      "fetch failed",
+      "ECONNRESET",
+      "ECONNREFUSED",
+      "ETIMEDOUT",
+      "ENOTFOUND",
+      "network",
+    ];
+    if (networkPatterns.some((p) => message.includes(p))) {
       return true;
     }
     return false;
@@ -81,21 +88,21 @@ function isRetryableError(error: unknown): boolean {
 function sleep(ms: number, signal?: AbortSignal): Promise<void> {
   return new Promise((resolve, reject) => {
     if (signal?.aborted) {
-      reject(signal.reason ?? new DOMException('Aborted', 'AbortError'));
+      reject(signal.reason ?? new DOMException("Aborted", "AbortError"));
       return;
     }
 
     const timeout = setTimeout(() => {
-      signal?.removeEventListener('abort', onAbort);
+      signal?.removeEventListener("abort", onAbort);
       resolve();
     }, ms);
 
     const onAbort = () => {
       clearTimeout(timeout);
-      reject(signal?.reason ?? new DOMException('Aborted', 'AbortError'));
+      reject(signal?.reason ?? new DOMException("Aborted", "AbortError"));
     };
 
-    signal?.addEventListener('abort', onAbort, { once: true });
+    signal?.addEventListener("abort", onAbort, { once: true });
   });
 }
 
@@ -106,22 +113,14 @@ function sleep(ms: number, signal?: AbortSignal): Promise<void> {
  * Throws immediately on non-retryable errors (4xx except 429, aborts).
  * Supports AbortSignal for cancellation.
  */
-export async function withRetry<T>(
-  fn: () => Promise<T>,
-  options: RetryOptions = {},
-): Promise<T> {
-  const {
-    maxRetries = 2,
-    baseDelayMs = 500,
-    maxDelayMs = 8000,
-    signal,
-  } = options;
+export async function withRetry<T>(fn: () => Promise<T>, options: RetryOptions = {}): Promise<T> {
+  const { maxRetries = 2, baseDelayMs = 500, maxDelayMs = 8000, signal } = options;
 
   let lastError: unknown;
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     if (signal?.aborted) {
-      throw signal.reason ?? new DOMException('Aborted', 'AbortError');
+      throw signal.reason ?? new DOMException("Aborted", "AbortError");
     }
 
     try {

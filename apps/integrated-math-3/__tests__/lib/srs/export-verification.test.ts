@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 
 // ============================================
 // 1. Import every public symbol from contract.ts
@@ -25,41 +25,31 @@ import {
   type SrsReviewLogEntryV31,
   type SrsSessionConfig,
   type SrsSession,
-} from '@math-platform/srs-engine';
+} from "@math-platform/srs-engine";
 import type {
   EvidenceConfidence,
   ObjectiveProficiencyResult,
   StudentProficiencyView,
   TeacherProficiencyView,
-} from '@math-platform/srs-engine';
+} from "@math-platform/srs-engine";
 
 // ============================================
 // 2. Import public interfaces from other SRS modules
 // ============================================
-import type {
-  CardStore,
-  ReviewLogStore,
-} from '@math-platform/srs-engine';
-import type {
-  SchedulerConfig,
-} from '@math-platform/srs-engine';
-import type {
-  ReviewProcessorInput,
-  ReviewProcessorResult,
-} from '@math-platform/srs-engine';
-import type {
-  QueueItem,
-} from '@math-platform/srs-engine';
+import type { CardStore, ReviewLogStore } from "@math-platform/srs-engine";
+import type { SchedulerConfig } from "@math-platform/srs-engine";
+import type { ReviewProcessorInput, ReviewProcessorResult } from "@math-platform/srs-engine";
+import type { QueueItem } from "@math-platform/srs-engine";
 
-describe('SRS type export verification', () => {
-  it('should export the expected value constants', () => {
-    expect(SRS_CONTRACT_VERSION).toBe('srs.contract.v3');
-    expect(typeof PRIORITY_DEFAULTS).toBe('object');
-    expect(typeof STUDENT_DAILY_PRACTICE_COPY).toBe('object');
-    expect(typeof TEACHER_DAILY_PRACTICE_COPY).toBe('object');
+describe("SRS type export verification", () => {
+  it("should export the expected value constants", () => {
+    expect(SRS_CONTRACT_VERSION).toBe("srs.contract.v3");
+    expect(typeof PRIORITY_DEFAULTS).toBe("object");
+    expect(typeof STUDENT_DAILY_PRACTICE_COPY).toBe("object");
+    expect(typeof TEACHER_DAILY_PRACTICE_COPY).toBe("object");
   });
 
-  it('should have all integration types available from contract.ts', () => {
+  it("should have all integration types available from contract.ts", () => {
     // This test compiles only if every type below can be resolved from the
     // contract module. It is intentionally a no-op runtime test — its value
     // is entirely at the TypeScript level.
@@ -88,7 +78,7 @@ describe('SRS type export verification', () => {
     expect(_witness).toBeDefined();
   });
 
-  it('should use only exported types in public CardStore signatures', () => {
+  it("should use only exported types in public CardStore signatures", () => {
     // Compile-time assertion: if CardStore references any type not exported
     // from contract (or built-in), this assignment pattern breaks.
     const _store: CardStore = {
@@ -103,7 +93,7 @@ describe('SRS type export verification', () => {
     expect(_store).toBeDefined();
   });
 
-  it('should use only exported types in public ReviewLogStore signatures', () => {
+  it("should use only exported types in public ReviewLogStore signatures", () => {
     const _store: ReviewLogStore = {
       saveReview: async (_entry: SrsReviewLogEntry) => {},
       getReviewsByCard: async (_cardId: string) => [],
@@ -112,7 +102,7 @@ describe('SRS type export verification', () => {
     expect(_store).toBeDefined();
   });
 
-  it('should use only exported types in public scheduler signatures', () => {
+  it("should use only exported types in public scheduler signatures", () => {
     const _config: SchedulerConfig = {
       requestRetention: 0.9,
       maximumInterval: 365,
@@ -121,14 +111,14 @@ describe('SRS type export verification', () => {
     expect(_config).toBeDefined();
   });
 
-  it('should use only exported types in public review processor signatures', () => {
+  it("should use only exported types in public review processor signatures", () => {
     const _input: ReviewProcessorInput = {
       card: {} as SrsCardState,
       submission: {} as PracticeSubmissionEnvelope,
       now: new Date().toISOString(),
     };
     const _result: ReviewProcessorResult = {
-      rating: 'Good',
+      rating: "Good",
       updatedCard: {} as SrsCardState,
       reviewLog: {} as SrsReviewLogEntryV31,
     };
@@ -136,10 +126,10 @@ describe('SRS type export verification', () => {
     expect(_result).toBeDefined();
   });
 
-  it('should use only exported types in public queue signatures', () => {
+  it("should use only exported types in public queue signatures", () => {
     const _item: QueueItem = {
       card: {} as SrsCardState,
-      objectivePriority: 'essential',
+      objectivePriority: "essential",
       isOverdue: false,
       daysOverdue: 0,
     };

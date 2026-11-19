@@ -139,10 +139,7 @@ export function buildPublishedLessonPhaseIdsByLessonId<
   lessonVersions: readonly TLessonVersion[];
   phaseVersions: readonly TPhaseVersion[];
 }): Map<string, string[]> {
-  const latestPublishedByLessonId = buildLatestPublishedLessonVersionMap(
-    lessonVersions,
-    lessonIds,
-  );
+  const latestPublishedByLessonId = buildLatestPublishedLessonVersionMap(lessonVersions, lessonIds);
   const lessonIdByVersionId = new Map<string, string>();
 
   for (const [lessonId, version] of latestPublishedByLessonId.entries()) {
@@ -185,9 +182,7 @@ export function buildPublishedPhaseIdSet<
     phaseVersions,
   });
 
-  return new Set(
-    [...phaseIdsByLessonId.values()].flat(),
-  );
+  return new Set([...phaseIdsByLessonId.values()].flat());
 }
 
 /** Computes a progress snapshot by counting completed phases against the active phase ID set. */
@@ -211,7 +206,10 @@ export function buildPublishedProgressSnapshot({
     }
 
     const updatedAt = row.updatedAt ?? null;
-    if (typeof updatedAt === "number" && (latestActiveTimestamp === null || updatedAt > latestActiveTimestamp)) {
+    if (
+      typeof updatedAt === "number" &&
+      (latestActiveTimestamp === null || updatedAt > latestActiveTimestamp)
+    ) {
       latestActiveTimestamp = updatedAt;
     }
   }
@@ -222,13 +220,9 @@ export function buildPublishedProgressSnapshot({
     completedPhases,
     totalPhases,
     progressPercentage:
-      totalPhases > 0
-        ? Number(((completedPhases / totalPhases) * 100).toFixed(1))
-        : 0,
+      totalPhases > 0 ? Number(((completedPhases / totalPhases) * 100).toFixed(1)) : 0,
     lastActive:
-      latestActiveTimestamp === null
-        ? null
-        : new Date(latestActiveTimestamp).toISOString(),
+      latestActiveTimestamp === null ? null : new Date(latestActiveTimestamp).toISOString(),
   };
 }
 
@@ -266,10 +260,7 @@ export function buildPublishedUnitProgressRows<
   }
 
   const lessonIds = sortedLessons.map((lesson) => lesson._id);
-  const latestVersionByLessonId = buildLatestPublishedLessonVersionMap(
-    lessonVersions,
-    lessonIds,
-  );
+  const latestVersionByLessonId = buildLatestPublishedLessonVersionMap(lessonVersions, lessonIds);
   const phaseIdsByLessonId = buildPublishedLessonPhaseIdsByLessonId({
     lessonIds,
     lessonVersions,
@@ -282,7 +273,7 @@ export function buildPublishedUnitProgressRows<
   );
 
   const units = new Map<number, UnitProgressRow>();
-  const phaseVersionById = new Map(phaseVersions.map(pv => [pv._id, pv]));
+  const phaseVersionById = new Map(phaseVersions.map((pv) => [pv._id, pv]));
 
   for (const lesson of sortedLessons) {
     const versionedLesson = latestVersionByLessonId.get(lesson._id);
@@ -303,8 +294,7 @@ export function buildPublishedUnitProgressRows<
     const unit = units.get(lesson.unitNumber) ?? {
       unitNumber: lesson.unitNumber,
       unitTitle:
-        lesson.metadata?.unitContent?.introduction?.unitTitle ??
-        `Unit ${lesson.unitNumber}`,
+        lesson.metadata?.unitContent?.introduction?.unitTitle ?? `Unit ${lesson.unitNumber}`,
       lessons: [],
     };
 

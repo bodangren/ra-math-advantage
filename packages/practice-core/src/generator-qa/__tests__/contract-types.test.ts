@@ -5,29 +5,25 @@
 // file. Once the contract is implemented (Green phase) the imports resolve
 // and the shape/type assertions evaluate against the real contract.
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 import {
   GENERATOR_CORRECTNESS_CONTRACT_VERSION,
   type GeneratorCorrectnessContract,
-} from '../contract';
+} from "../contract";
 
-describe('GeneratorCorrectnessContract (FR1)', () => {
-  it('exports a version constant matching generator-correctness.vN', () => {
-    expect(typeof GENERATOR_CORRECTNESS_CONTRACT_VERSION).toBe('string');
-    expect(GENERATOR_CORRECTNESS_CONTRACT_VERSION).toMatch(
-      /^generator-correctness\.v\d+$/,
-    );
+describe("GeneratorCorrectnessContract (FR1)", () => {
+  it("exports a version constant matching generator-correctness.vN", () => {
+    expect(typeof GENERATOR_CORRECTNESS_CONTRACT_VERSION).toBe("string");
+    expect(GENERATOR_CORRECTNESS_CONTRACT_VERSION).toMatch(/^generator-correctness\.v\d+$/);
   });
 
-  it('declares a problem field on the contract', () => {
-    type _HasProblem = GeneratorCorrectnessContract extends { problem: unknown }
-      ? true
-      : false;
+  it("declares a problem field on the contract", () => {
+    type _HasProblem = GeneratorCorrectnessContract extends { problem: unknown } ? true : false;
     const _check: _HasProblem = true;
     expect(_check).toBe(true);
   });
 
-  it('declares a correctAnswer field on the contract', () => {
+  it("declares a correctAnswer field on the contract", () => {
     type _HasAnswer = GeneratorCorrectnessContract extends {
       correctAnswer: unknown;
     }
@@ -37,7 +33,7 @@ describe('GeneratorCorrectnessContract (FR1)', () => {
     expect(_check).toBe(true);
   });
 
-  it('declares a distractors array on the contract', () => {
+  it("declares a distractors array on the contract", () => {
     type _HasDistractors = GeneratorCorrectnessContract extends {
       distractors: readonly unknown[];
     }
@@ -47,7 +43,7 @@ describe('GeneratorCorrectnessContract (FR1)', () => {
     expect(_check).toBe(true);
   });
 
-  it('declares optional solutionSteps on the contract', () => {
+  it("declares optional solutionSteps on the contract", () => {
     type _HasSteps = GeneratorCorrectnessContract extends {
       solutionSteps?: readonly unknown[];
     }
@@ -57,7 +53,7 @@ describe('GeneratorCorrectnessContract (FR1)', () => {
     expect(_check).toBe(true);
   });
 
-  it('declares optional invariants on the contract', () => {
+  it("declares optional invariants on the contract", () => {
     type _HasInvariants = GeneratorCorrectnessContract extends {
       invariants?: readonly unknown[];
     }

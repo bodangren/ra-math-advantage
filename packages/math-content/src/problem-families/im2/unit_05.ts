@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const UNIT5_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Circle Vocabulary
@@ -6,7 +6,8 @@ export const UNIT5_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "fill-in-the-blank:circle-vocabulary",
     componentKey: "fill-in-the-blank",
     displayName: "Circle Vocabulary",
-    description: "Identify and define parts of a circle including radius, chord, diameter, arc, and sector",
+    description:
+      "Identify and define parts of a circle including radius, chord, diameter, arc, and sector",
     objectiveIds: ["G-C.A.1"],
     difficulty: "introductory",
     metadata: { unit: 5, topic: "vocabulary" },
@@ -36,7 +37,8 @@ export const UNIT5_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "step-by-step-solver:tangents-secants",
     componentKey: "step-by-step-solver",
     displayName: "Tangents and Secants",
-    description: "Solve problems involving tangent lines, secant lines, and their angle/segment relationships",
+    description:
+      "Solve problems involving tangent lines, secant lines, and their angle/segment relationships",
     objectiveIds: ["G-C.A.2", "G-C.A.3"],
     difficulty: "standard",
     metadata: { unit: 5, topic: "tangents-secants" },
@@ -46,7 +48,8 @@ export const UNIT5_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "graphing-explorer:circle-equations",
     componentKey: "graphing-explorer",
     displayName: "Circle Equations",
-    description: "Write and graph equations of circles from center and radius on the coordinate plane",
+    description:
+      "Write and graph equations of circles from center and radius on the coordinate plane",
     objectiveIds: ["G-GPE.A.1"],
     difficulty: "standard",
     metadata: { unit: 5, topic: "circle-equations" },

@@ -1,7 +1,7 @@
 /**
  * Interaction mode for a primitive.
  */
-export type PrimitiveMode = 'static' | 'interactive' | 'readonly';
+export type PrimitiveMode = "static" | "interactive" | "readonly";
 
 /**
  * Base props every math primitive accepts. Primitives are CONTROLLED:

@@ -1,12 +1,9 @@
-import type { SrsCardState } from './contract';
+import type { SrsCardState } from "./contract";
 
 /**
  * Pick of SrsCardState fields relevant for transition validation.
  */
-type SrsStatePick = Pick<
-  SrsCardState,
-  'stability' | 'difficulty' | 'state' | 'reps' | 'lapses'
->;
+type SrsStatePick = Pick<SrsCardState, "stability" | "difficulty" | "state" | "reps" | "lapses">;
 
 /**
  * Valid state transitions produced by the ts-fsrs scheduler.
@@ -16,14 +13,11 @@ type SrsStatePick = Pick<
  * learning first. The scheduler never produces relearning in practice,
  * but we keep it in the type for completeness.
  */
-const VALID_STATE_TRANSITIONS: Record<
-  SrsCardState['state'],
-  SrsCardState['state'][]
-> = {
-  new: ['learning', 'review'],
-  learning: ['learning', 'review'],
-  review: ['learning', 'review', 'relearning'],
-  relearning: ['learning', 'review', 'relearning'],
+const VALID_STATE_TRANSITIONS: Record<SrsCardState["state"], SrsCardState["state"][]> = {
+  new: ["learning", "review"],
+  learning: ["learning", "review"],
+  review: ["learning", "review", "relearning"],
+  relearning: ["learning", "review", "relearning"],
 };
 
 /**
@@ -40,29 +34,24 @@ const VALID_STATE_TRANSITIONS: Record<
  *
  * @throws Error if the transition violates any rule.
  */
-export function validateSrsTransition(
-  stateBefore: SrsStatePick,
-  stateAfter: SrsStatePick,
-): void {
+export function validateSrsTransition(stateBefore: SrsStatePick, stateAfter: SrsStatePick): void {
   // Rule 1: reps must increase by exactly 1
   if (stateAfter.reps !== stateBefore.reps + 1) {
     throw new Error(
-      `reps must increase by exactly 1 (before: ${stateBefore.reps}, after: ${stateAfter.reps})`
+      `reps must increase by exactly 1 (before: ${stateBefore.reps}, after: ${stateAfter.reps})`,
     );
   }
 
   // Rule 2: lapses cannot decrease
   if (stateAfter.lapses < stateBefore.lapses) {
     throw new Error(
-      `lapses cannot decrease (before: ${stateBefore.lapses}, after: ${stateAfter.lapses})`
+      `lapses cannot decrease (before: ${stateBefore.lapses}, after: ${stateAfter.lapses})`,
     );
   }
 
   // Rule 3: state transition must be valid
   const allowedNextStates = VALID_STATE_TRANSITIONS[stateBefore.state];
   if (!allowedNextStates.includes(stateAfter.state)) {
-    throw new Error(
-      `invalid state transition: ${stateBefore.state} → ${stateAfter.state}`
-    );
+    throw new Error(`invalid state transition: ${stateBefore.state} → ${stateAfter.state}`);
   }
 }

@@ -10,13 +10,13 @@ import {
   verifyGenerator,
   type VerifyGeneratorReport,
   type GeneratorLike,
-} from '@math-platform/practice-core/generator-qa';
+} from "@math-platform/practice-core/generator-qa";
 
-import type { MathGenerator } from './registry';
+import type { MathGenerator } from "./registry";
 
 // ── Exported types ────────────────────────────────────────────────────
 
-export type { QaSkipSpec } from './registry';
+export type { QaSkipSpec } from "./registry";
 
 export interface DebtLogEntry {
   readonly key: string;
@@ -38,7 +38,7 @@ export interface PerKeyReport {
 }
 
 export interface RegistrySweepReport {
-  readonly verdict: 'pass' | 'fail';
+  readonly verdict: "pass" | "fail";
   readonly totalGenerators: number;
   readonly passedKeys: readonly string[];
   readonly failedKeys: readonly string[];
@@ -49,7 +49,7 @@ export interface RegistrySweepReport {
 
 // ── Constants ─────────────────────────────────────────────────────────
 
-const TRACK_ID = 'generated-math-correctness-qa_20260605';
+const TRACK_ID = "generated-math-correctness-qa_20260605";
 
 // ── Helpers ───────────────────────────────────────────────────────────
 
@@ -101,7 +101,7 @@ export function runRegistrySweep(
     if (quarantined) {
       const skippedChecks: string[] = [];
       if (skip!.uniqueAnswer) {
-        skippedChecks.push('unique-answer');
+        skippedChecks.push("unique-answer");
       }
 
       const report = verifyGenerator(adaptToGeneratorLike(gen));
@@ -136,17 +136,15 @@ export function runRegistrySweep(
   }
 
   const passedKeys = perKey
-    .filter((p) => !p.quarantined && p.report.verdict === 'pass')
+    .filter((p) => !p.quarantined && p.report.verdict === "pass")
     .map((p) => p.key);
   const failedKeys = perKey
-    .filter((p) => !p.quarantined && p.report.verdict === 'fail')
+    .filter((p) => !p.quarantined && p.report.verdict === "fail")
     .map((p) => p.key);
-  const quarantinedKeys = perKey
-    .filter((p) => p.quarantined)
-    .map((p) => p.key);
+  const quarantinedKeys = perKey.filter((p) => p.quarantined).map((p) => p.key);
 
   return {
-    verdict: failedKeys.length === 0 ? 'pass' : 'fail',
+    verdict: failedKeys.length === 0 ? "pass" : "fail",
     totalGenerators: perKey.length,
     passedKeys,
     failedKeys,

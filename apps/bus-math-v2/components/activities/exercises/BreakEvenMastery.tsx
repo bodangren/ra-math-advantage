@@ -1,40 +1,57 @@
-'use client'
+"use client";
 
-import { useState, useCallback, useEffect, useRef, useMemo } from 'react'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Progress } from '@/components/ui/progress'
-import { CheckCircle, XCircle, RefreshCw, HelpCircle, Target, Calculator } from 'lucide-react'
-import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract'
-import { buildSimulationSubmissionEnvelope, createSimulationPart } from '@/lib/practice/simulation-submission'
-import { seededShuffle } from '@/lib/study/utils'
+import { useState, useCallback, useEffect, useRef, useMemo } from "react";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { CheckCircle, XCircle, RefreshCw, HelpCircle, Target, Calculator } from "lucide-react";
+import type { PracticeSubmissionEnvelope } from "@/lib/practice/contract";
+import {
+  buildSimulationSubmissionEnvelope,
+  createSimulationPart,
+} from "@/lib/practice/simulation-submission";
+import { seededShuffle } from "@/lib/study/utils";
 
 interface BreakEvenProblem {
-  id: string
-  productName: string
-  fixedCosts: number
-  variableCostPerUnit: number
-  sellingPricePerUnit: number
-  correctBreakEvenUnits: number
-  correctBreakEvenDollars: number
+  id: string;
+  productName: string;
+  fixedCosts: number;
+  variableCostPerUnit: number;
+  sellingPricePerUnit: number;
+  correctBreakEvenUnits: number;
+  correctBreakEvenDollars: number;
   distractors: {
-    breakEvenUnits: number
-    breakEvenDollars: number
-    label: string
-  }[]
+    breakEvenUnits: number;
+    breakEvenDollars: number;
+    label: string;
+  }[];
 }
 
 const productPool = [
-  { name: 'custom t-shirt', fixedRange: [500, 2000], variableRange: [3, 8], sellingRange: [15, 30] },
-  { name: 'handmade candle', fixedRange: [200, 800], variableRange: [2, 5], sellingRange: [10, 20] },
-  { name: 'art print', fixedRange: [300, 1200], variableRange: [1, 4], sellingRange: [8, 18] },
-  { name: 'phone case', fixedRange: [800, 3000], variableRange: [2, 6], sellingRange: [12, 25] },
-  { name: 'water bottle', fixedRange: [600, 2500], variableRange: [3, 7], sellingRange: [15, 28] },
-  { name: 'notebook set', fixedRange: [400, 1500], variableRange: [2, 5], sellingRange: [10, 22] },
-  { name: 'keychain', fixedRange: [150, 600], variableRange: [0.5, 2], sellingRange: [5, 12] },
-  { name: 'sticker pack', fixedRange: [100, 500], variableRange: [0.3, 1.5], sellingRange: [4, 10] },
-]
-
+  {
+    name: "custom t-shirt",
+    fixedRange: [500, 2000],
+    variableRange: [3, 8],
+    sellingRange: [15, 30],
+  },
+  {
+    name: "handmade candle",
+    fixedRange: [200, 800],
+    variableRange: [2, 5],
+    sellingRange: [10, 20],
+  },
+  { name: "art print", fixedRange: [300, 1200], variableRange: [1, 4], sellingRange: [8, 18] },
+  { name: "phone case", fixedRange: [800, 3000], variableRange: [2, 6], sellingRange: [12, 25] },
+  { name: "water bottle", fixedRange: [600, 2500], variableRange: [3, 7], sellingRange: [15, 28] },
+  { name: "notebook set", fixedRange: [400, 1500], variableRange: [2, 5], sellingRange: [10, 22] },
+  { name: "keychain", fixedRange: [150, 600], variableRange: [0.5, 2], sellingRange: [5, 12] },
+  {
+    name: "sticker pack",
+    fixedRange: [100, 500],
+    variableRange: [0.3, 1.5],
+    sellingRange: [4, 10],
+  },
+];
 
 /**
  * Generates a random integer between min and max, inclusive.
@@ -44,9 +61,8 @@ const productPool = [
  * @returns A random integer in the given range
  */
 function randInt(min: number, max: number): number {
-  return Math.floor(Math.random() * (max - min + 1)) + min
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
 
 /**
  * Generates a random break-even problem with realistic product data
@@ -55,42 +71,45 @@ function randInt(min: number, max: number): number {
  * @returns A new BreakEvenProblem with computed break-even values
  */
 function generateProblem(): BreakEvenProblem {
-  const product = productPool[Math.floor(Math.random() * productPool.length)]
-  const fixedCosts = randInt(product.fixedRange[0], product.fixedRange[1])
-  const variableCostPerUnit = randInt(product.variableRange[0] * 100, product.variableRange[1] * 100) / 100
-  const sellingPricePerUnit = randInt(product.sellingRange[0] * 100, product.sellingRange[1] * 100) / 100
-  if (sellingPricePerUnit <= variableCostPerUnit) return generateProblem()
+  const product = productPool[Math.floor(Math.random() * productPool.length)];
+  const fixedCosts = randInt(product.fixedRange[0], product.fixedRange[1]);
+  const variableCostPerUnit =
+    randInt(product.variableRange[0] * 100, product.variableRange[1] * 100) / 100;
+  const sellingPricePerUnit =
+    randInt(product.sellingRange[0] * 100, product.sellingRange[1] * 100) / 100;
+  if (sellingPricePerUnit <= variableCostPerUnit) return generateProblem();
 
-  const contributionMarginPerUnit = sellingPricePerUnit - variableCostPerUnit
-  const correctBreakEvenUnits = Math.ceil(fixedCosts / contributionMarginPerUnit)
-  const correctBreakEvenDollars = correctBreakEvenUnits * sellingPricePerUnit
+  const contributionMarginPerUnit = sellingPricePerUnit - variableCostPerUnit;
+  const correctBreakEvenUnits = Math.ceil(fixedCosts / contributionMarginPerUnit);
+  const correctBreakEvenDollars = correctBreakEvenUnits * sellingPricePerUnit;
 
-  const wrongMethods: { breakEvenUnits: number; breakEvenDollars: number; label: string }[] = []
+  const wrongMethods: { breakEvenUnits: number; breakEvenDollars: number; label: string }[] = [];
 
-  const wrongUnits1 = Math.ceil(fixedCosts / sellingPricePerUnit)
-  const wrongDollars1 = wrongUnits1 * sellingPricePerUnit
+  const wrongUnits1 = Math.ceil(fixedCosts / sellingPricePerUnit);
+  const wrongDollars1 = wrongUnits1 * sellingPricePerUnit;
   wrongMethods.push({
     breakEvenUnits: wrongUnits1,
     breakEvenDollars: wrongDollars1,
-    label: 'Forgot to subtract variable costs from selling price (used selling price instead of contribution margin)',
-  })
+    label:
+      "Forgot to subtract variable costs from selling price (used selling price instead of contribution margin)",
+  });
 
-  const wrongUnits2 = Math.ceil((fixedCosts + variableCostPerUnit) / sellingPricePerUnit)
-  const wrongDollars2 = wrongUnits2 * sellingPricePerUnit
+  const wrongUnits2 = Math.ceil((fixedCosts + variableCostPerUnit) / sellingPricePerUnit);
+  const wrongDollars2 = wrongUnits2 * sellingPricePerUnit;
   wrongMethods.push({
     breakEvenUnits: wrongUnits2,
     breakEvenDollars: wrongDollars2,
-    label: 'Treated variable cost as a one-time fixed cost instead of per-unit',
-  })
+    label: "Treated variable cost as a one-time fixed cost instead of per-unit",
+  });
 
   if (variableCostPerUnit > 0) {
-    const wrongUnits3 = Math.ceil(fixedCosts / variableCostPerUnit)
-    const wrongDollars3 = wrongUnits3 * sellingPricePerUnit
+    const wrongUnits3 = Math.ceil(fixedCosts / variableCostPerUnit);
+    const wrongDollars3 = wrongUnits3 * sellingPricePerUnit;
     wrongMethods.push({
       breakEvenUnits: wrongUnits3,
       breakEvenDollars: wrongDollars3,
-      label: 'Mixed up variable cost and contribution margin entirely',
-    })
+      label: "Mixed up variable cost and contribution margin entirely",
+    });
   }
 
   return {
@@ -102,20 +121,19 @@ function generateProblem(): BreakEvenProblem {
     correctBreakEvenUnits,
     correctBreakEvenDollars,
     distractors: wrongMethods,
-  }
+  };
 }
 
 export interface BreakEvenMasteryProps {
   activity: {
-    id?: string
+    id?: string;
     props?: {
-      masteryThreshold?: number
-    }
-  }
-  onSubmit?: (submission: PracticeSubmissionEnvelope) => void
-  onComplete?: () => void
+      masteryThreshold?: number;
+    };
+  };
+  onSubmit?: (submission: PracticeSubmissionEnvelope) => void;
+  onComplete?: () => void;
 }
-
 
 /**
  * Renders a break-even mastery activity where users calculate break-even
@@ -126,31 +144,31 @@ export interface BreakEvenMasteryProps {
  * @param onComplete - Callback fired when mastery is achieved
  */
 export function BreakEvenMastery({ activity, onSubmit, onComplete }: BreakEvenMasteryProps) {
-  const masteryTarget = activity.props?.masteryThreshold ?? 5
-  const [problem, setProblem] = useState<BreakEvenProblem>(generateProblem)
-  const [userAnswer, setUserAnswer] = useState<string>('')
-  const [submitted, setSubmitted] = useState(false)
-  const [correct, setCorrect] = useState<boolean | null>(null)
-  const [streak, setStreak] = useState(0)
-  const [consecutiveCorrect, setConsecutiveCorrect] = useState(0)
-  const [showWorkedExample, setShowWorkedExample] = useState(false)
-  const [selectedDistractor, setSelectedDistractor] = useState<number | null>(null)
-  const hasCompleted = useRef(false)
-  const submittedRef = useRef(false)
+  const masteryTarget = activity.props?.masteryThreshold ?? 5;
+  const [problem, setProblem] = useState<BreakEvenProblem>(generateProblem);
+  const [userAnswer, setUserAnswer] = useState<string>("");
+  const [submitted, setSubmitted] = useState(false);
+  const [correct, setCorrect] = useState<boolean | null>(null);
+  const [streak, setStreak] = useState(0);
+  const [consecutiveCorrect, setConsecutiveCorrect] = useState(0);
+  const [showWorkedExample, setShowWorkedExample] = useState(false);
+  const [selectedDistractor, setSelectedDistractor] = useState<number | null>(null);
+  const hasCompleted = useRef(false);
+  const submittedRef = useRef(false);
 
   useEffect(() => {
     if (consecutiveCorrect >= masteryTarget && !hasCompleted.current) {
-      hasCompleted.current = true
-      onComplete?.()
+      hasCompleted.current = true;
+      onComplete?.();
     }
-  }, [consecutiveCorrect, masteryTarget, onComplete])
+  }, [consecutiveCorrect, masteryTarget, onComplete]);
 
   const shuffledOptions = useMemo(() => {
     const opts: {
-      label: string
-      isCorrect: boolean
-      distractorIndex?: number
-      distractorLabel?: string
+      label: string;
+      isCorrect: boolean;
+      distractorIndex?: number;
+      distractorLabel?: string;
     }[] = [
       {
         label: `Break-Even: ${problem.correctBreakEvenUnits} units ($${problem.correctBreakEvenDollars.toFixed(2)})`,
@@ -162,40 +180,39 @@ export function BreakEvenMastery({ activity, onSubmit, onComplete }: BreakEvenMa
         distractorIndex: i,
         distractorLabel: d.label,
       })),
-    ]
-    return seededShuffle(opts, problem.id)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [problem.id])
-
+    ];
+    return seededShuffle(opts, problem.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [problem.id]);
 
   /**
    * Validates the selected answer, updates streak state, and submits
    * the result envelope.
    */
   const handleSubmit = useCallback(() => {
-    if (submittedRef.current) return
-    const selectedOption = shuffledOptions.find(o => o.label === userAnswer)
-    const isCorrect = selectedOption?.isCorrect ?? false
-    if (!selectedOption) return
+    if (submittedRef.current) return;
+    const selectedOption = shuffledOptions.find((o) => o.label === userAnswer);
+    const isCorrect = selectedOption?.isCorrect ?? false;
+    if (!selectedOption) return;
 
-    submittedRef.current = true
-    setCorrect(isCorrect)
-    setSubmitted(true)
+    submittedRef.current = true;
+    setCorrect(isCorrect);
+    setSubmitted(true);
     if (selectedOption.distractorIndex !== undefined) {
-      setSelectedDistractor(selectedOption.distractorIndex)
+      setSelectedDistractor(selectedOption.distractorIndex);
     }
     if (isCorrect) {
-      setConsecutiveCorrect(prev => prev + 1)
-      setStreak(prev => prev + 1)
+      setConsecutiveCorrect((prev) => prev + 1);
+      setStreak((prev) => prev + 1);
     } else {
-      setConsecutiveCorrect(0)
+      setConsecutiveCorrect(0);
     }
 
     try {
       onSubmit?.(
         buildSimulationSubmissionEnvelope({
-          activityId: activity.id ?? 'break-even-mastery',
-          mode: 'independent_practice',
+          activityId: activity.id ?? "break-even-mastery",
+          mode: "independent_practice",
           answers: {
             selectedAnswer: userAnswer,
             isCorrect,
@@ -203,8 +220,10 @@ export function BreakEvenMastery({ activity, onSubmit, onComplete }: BreakEvenMa
             breakEvenDollars: problem.correctBreakEvenDollars,
           },
           parts: [
-            createSimulationPart('break-even-units', problem.correctBreakEvenUnits, { isCorrect }),
-            createSimulationPart('break-even-dollars', problem.correctBreakEvenDollars, { isCorrect }),
+            createSimulationPart("break-even-units", problem.correctBreakEvenUnits, { isCorrect }),
+            createSimulationPart("break-even-dollars", problem.correctBreakEvenDollars, {
+              isCorrect,
+            }),
           ],
           artifact: {
             productName: problem.productName,
@@ -213,39 +232,37 @@ export function BreakEvenMastery({ activity, onSubmit, onComplete }: BreakEvenMa
             sellingPricePerUnit: problem.sellingPricePerUnit,
           },
         }),
-      )
+      );
     } catch (err) {
-      console.error('BreakEvenMastery submission failed:', err)
-      submittedRef.current = false
-      setSubmitted(false)
-      setCorrect(null)
+      console.error("BreakEvenMastery submission failed:", err);
+      submittedRef.current = false;
+      setSubmitted(false);
+      setCorrect(null);
     }
-  }, [userAnswer, shuffledOptions, onSubmit, activity.id, problem])
-
+  }, [userAnswer, shuffledOptions, onSubmit, activity.id, problem]);
 
   /**
    * Resets the component state and generates a new random break-even problem.
    */
   const handleNewProblem = useCallback(() => {
-    setProblem(generateProblem())
-    setUserAnswer('')
-    setSubmitted(false)
-    setCorrect(null)
-    setShowWorkedExample(false)
-    setSelectedDistractor(null)
-    submittedRef.current = false
-  }, [])
-
+    setProblem(generateProblem());
+    setUserAnswer("");
+    setSubmitted(false);
+    setCorrect(null);
+    setShowWorkedExample(false);
+    setSelectedDistractor(null);
+    submittedRef.current = false;
+  }, []);
 
   /**
    * Displays a worked example showing the break-even formula steps.
    */
   const handleShowExample = useCallback(() => {
-    setShowWorkedExample(true)
-  }, [])
+    setShowWorkedExample(true);
+  }, []);
 
-  const progressToMastery = (consecutiveCorrect / masteryTarget) * 100
-  const selectedDistractorData = problem.distractors[selectedDistractor ?? -1]
+  const progressToMastery = (consecutiveCorrect / masteryTarget) * 100;
+  const selectedDistractorData = problem.distractors[selectedDistractor ?? -1];
 
   return (
     <Card className="border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50">
@@ -255,20 +272,27 @@ export function BreakEvenMastery({ activity, onSubmit, onComplete }: BreakEvenMa
           Break-Even Mastery
         </CardTitle>
         <CardDescription className="text-blue-600">
-          Calculate break-even point in units and dollars. Target: {masteryTarget} consecutive correct answers.
+          Calculate break-even point in units and dollars. Target: {masteryTarget} consecutive
+          correct answers.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
-            <span className="text-gray-600">Current streak: <strong>{streak}</strong></span>
-            <span className="text-gray-600">Mastery progress: <strong>{Math.round(progressToMastery)}%</strong></span>
+            <span className="text-gray-600">
+              Current streak: <strong>{streak}</strong>
+            </span>
+            <span className="text-gray-600">
+              Mastery progress: <strong>{Math.round(progressToMastery)}%</strong>
+            </span>
           </div>
           <Progress value={progressToMastery} className="h-2" />
           {consecutiveCorrect >= masteryTarget && (
             <div className="flex items-center gap-2 text-green-700 bg-green-50 p-2 rounded">
               <CheckCircle className="h-4 w-4" />
-              <span className="font-medium">Mastery achieved! {masteryTarget} correct in a row.</span>
+              <span className="font-medium">
+                Mastery achieved! {masteryTarget} correct in a row.
+              </span>
             </div>
           )}
         </div>
@@ -286,11 +310,15 @@ export function BreakEvenMastery({ activity, onSubmit, onComplete }: BreakEvenMa
               </div>
               <div className="bg-blue-100 rounded-lg p-3">
                 <p className="text-xs text-blue-600 uppercase">Variable Cost/Unit</p>
-                <p className="text-lg font-bold text-blue-800">${problem.variableCostPerUnit.toFixed(2)}</p>
+                <p className="text-lg font-bold text-blue-800">
+                  ${problem.variableCostPerUnit.toFixed(2)}
+                </p>
               </div>
               <div className="bg-indigo-100 rounded-lg p-3">
                 <p className="text-xs text-indigo-600 uppercase">Selling Price/Unit</p>
-                <p className="text-lg font-bold text-indigo-800">${problem.sellingPricePerUnit.toFixed(2)}</p>
+                <p className="text-lg font-bold text-indigo-800">
+                  ${problem.sellingPricePerUnit.toFixed(2)}
+                </p>
               </div>
             </div>
 
@@ -310,10 +338,10 @@ export function BreakEvenMastery({ activity, onSubmit, onComplete }: BreakEvenMa
                     userAnswer === option.label
                       ? submitted
                         ? option.isCorrect
-                          ? 'border-green-500 bg-green-50'
-                          : 'border-red-500 bg-red-50'
-                        : 'border-blue-500 bg-blue-50'
-                      : 'border-gray-200 hover:border-gray-300 bg-white'
+                          ? "border-green-500 bg-green-50"
+                          : "border-red-500 bg-red-50"
+                        : "border-blue-500 bg-blue-50"
+                      : "border-gray-200 hover:border-gray-300 bg-white"
                   }`}
                 >
                   <p className="text-sm text-gray-800">{option.label}</p>
@@ -324,10 +352,18 @@ export function BreakEvenMastery({ activity, onSubmit, onComplete }: BreakEvenMa
             <div className="flex gap-2 justify-center pt-2">
               {!submitted ? (
                 <>
-                  <Button onClick={handleSubmit} disabled={!userAnswer} className="bg-blue-600 hover:bg-blue-700">
+                  <Button
+                    onClick={handleSubmit}
+                    disabled={!userAnswer}
+                    className="bg-blue-600 hover:bg-blue-700"
+                  >
                     Check Answer
                   </Button>
-                  <Button variant="outline" onClick={handleShowExample} className="border-blue-300 text-blue-700">
+                  <Button
+                    variant="outline"
+                    onClick={handleShowExample}
+                    className="border-blue-300 text-blue-700"
+                  >
                     <HelpCircle className="h-4 w-4 mr-1" />
                     Show Example
                   </Button>
@@ -350,13 +386,20 @@ export function BreakEvenMastery({ activity, onSubmit, onComplete }: BreakEvenMa
                 <p className="font-semibold text-green-800">Correct! Here is the breakdown:</p>
                 <div className="mt-2 bg-white p-3 rounded border border-green-200 space-y-1">
                   <p className="text-sm text-green-700">
-                    <strong>Contribution Margin per Unit:</strong> ${problem.sellingPricePerUnit.toFixed(2)} − ${problem.variableCostPerUnit.toFixed(2)} = ${(problem.sellingPricePerUnit - problem.variableCostPerUnit).toFixed(2)}
+                    <strong>Contribution Margin per Unit:</strong> $
+                    {problem.sellingPricePerUnit.toFixed(2)} − $
+                    {problem.variableCostPerUnit.toFixed(2)} = $
+                    {(problem.sellingPricePerUnit - problem.variableCostPerUnit).toFixed(2)}
                   </p>
                   <p className="text-sm text-green-700">
-                    <strong>Break-Even Units:</strong> ${problem.fixedCosts.toFixed(2)} ÷ ${(problem.sellingPricePerUnit - problem.variableCostPerUnit).toFixed(2)} = {problem.correctBreakEvenUnits} units (rounded up)
+                    <strong>Break-Even Units:</strong> ${problem.fixedCosts.toFixed(2)} ÷ $
+                    {(problem.sellingPricePerUnit - problem.variableCostPerUnit).toFixed(2)} ={" "}
+                    {problem.correctBreakEvenUnits} units (rounded up)
                   </p>
                   <p className="text-sm text-green-700">
-                    <strong>Break-Even Dollars:</strong> {problem.correctBreakEvenUnits} × ${problem.sellingPricePerUnit.toFixed(2)} = ${problem.correctBreakEvenDollars.toFixed(2)}
+                    <strong>Break-Even Dollars:</strong> {problem.correctBreakEvenUnits} × $
+                    {problem.sellingPricePerUnit.toFixed(2)} = $
+                    {problem.correctBreakEvenDollars.toFixed(2)}
                   </p>
                 </div>
               </div>
@@ -369,7 +412,9 @@ export function BreakEvenMastery({ activity, onSubmit, onComplete }: BreakEvenMa
             <div className="flex items-start gap-3">
               <XCircle className="h-6 w-6 text-red-600 flex-shrink-0" />
               <div className="flex-1">
-                <p className="font-semibold text-red-800">Not quite. Let us work through the correct answer.</p>
+                <p className="font-semibold text-red-800">
+                  Not quite. Let us work through the correct answer.
+                </p>
                 {selectedDistractorData && (
                   <div className="mt-2 bg-white p-3 rounded border border-red-200">
                     <p className="font-medium text-red-800 flex items-center gap-1">
@@ -380,13 +425,20 @@ export function BreakEvenMastery({ activity, onSubmit, onComplete }: BreakEvenMa
                 )}
                 <div className="mt-2 bg-white p-3 rounded border border-red-200 space-y-1">
                   <p className="text-sm text-red-700">
-                    <strong>Contribution Margin per Unit:</strong> ${problem.sellingPricePerUnit.toFixed(2)} − ${problem.variableCostPerUnit.toFixed(2)} = ${(problem.sellingPricePerUnit - problem.variableCostPerUnit).toFixed(2)}
+                    <strong>Contribution Margin per Unit:</strong> $
+                    {problem.sellingPricePerUnit.toFixed(2)} − $
+                    {problem.variableCostPerUnit.toFixed(2)} = $
+                    {(problem.sellingPricePerUnit - problem.variableCostPerUnit).toFixed(2)}
                   </p>
                   <p className="text-sm text-red-700">
-                    <strong>Break-Even Units:</strong> ${problem.fixedCosts.toFixed(2)} ÷ ${(problem.sellingPricePerUnit - problem.variableCostPerUnit).toFixed(2)} = {problem.correctBreakEvenUnits} units (rounded up)
+                    <strong>Break-Even Units:</strong> ${problem.fixedCosts.toFixed(2)} ÷ $
+                    {(problem.sellingPricePerUnit - problem.variableCostPerUnit).toFixed(2)} ={" "}
+                    {problem.correctBreakEvenUnits} units (rounded up)
                   </p>
                   <p className="text-sm text-red-700">
-                    <strong>Break-Even Dollars:</strong> {problem.correctBreakEvenUnits} × ${problem.sellingPricePerUnit.toFixed(2)} = ${problem.correctBreakEvenDollars.toFixed(2)}
+                    <strong>Break-Even Dollars:</strong> {problem.correctBreakEvenUnits} × $
+                    {problem.sellingPricePerUnit.toFixed(2)} = $
+                    {problem.correctBreakEvenDollars.toFixed(2)}
                   </p>
                 </div>
               </div>
@@ -398,9 +450,18 @@ export function BreakEvenMastery({ activity, onSubmit, onComplete }: BreakEvenMa
           <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
             <h4 className="font-semibold text-blue-800 mb-2">Break-Even Formula</h4>
             <div className="text-sm text-blue-700 space-y-2">
-              <p><strong>Step 1:</strong> Calculate contribution margin per unit = Selling Price − Variable Cost per Unit</p>
-              <p><strong>Step 2:</strong> Break-Even Units = Fixed Costs ÷ Contribution Margin per Unit (round up if needed)</p>
-              <p><strong>Step 3:</strong> Break-Even Dollars = Break-Even Units × Selling Price per Unit</p>
+              <p>
+                <strong>Step 1:</strong> Calculate contribution margin per unit = Selling Price −
+                Variable Cost per Unit
+              </p>
+              <p>
+                <strong>Step 2:</strong> Break-Even Units = Fixed Costs ÷ Contribution Margin per
+                Unit (round up if needed)
+              </p>
+              <p>
+                <strong>Step 3:</strong> Break-Even Dollars = Break-Even Units × Selling Price per
+                Unit
+              </p>
               <p className="pt-2 font-medium text-blue-800">
                 Contribution margin covers fixed costs first, then becomes profit!
               </p>
@@ -428,5 +489,5 @@ export function BreakEvenMastery({ activity, onSubmit, onComplete }: BreakEvenMa
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

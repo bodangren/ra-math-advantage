@@ -30,34 +30,32 @@
  * fail because the implementation reads the legacy field names.
  */
 
-import { describe, it, expect } from 'vitest';
-import { createCard, reviewCard } from '../srs/scheduler';
-import { aggregateCardsToEvidence } from '../srs/srs-proficiency';
+import { describe, it, expect } from "vitest";
+import { createCard, reviewCard } from "../srs/scheduler";
+import { aggregateCardsToEvidence } from "../srs/srs-proficiency";
 import {
   computeObjectiveProficiency,
   PROFICIENCY_THRESHOLD_DEFAULTS,
-} from '../srs/objective-proficiency';
-import { InMemoryCardStore } from '../srs/adapters';
-import {
-  InMemoryTimingBaselineResolver,
-} from '../srs/submission-srs-adapter';
-import { createMockSrsCard } from '../srs/fixtures';
+} from "../srs/objective-proficiency";
+import { InMemoryCardStore } from "../srs/adapters";
+import { InMemoryTimingBaselineResolver } from "../srs/submission-srs-adapter";
+import { createMockSrsCard } from "../srs/fixtures";
 
 // ============================================
 // Contract layer: SrsCardState carries variantKey
 // ============================================
 
-describe('SrsCardState (contract rename)', () => {
-  it('mock card from createMockSrsCard carries variantKey, not problemFamilyId', () => {
+describe("SrsCardState (contract rename)", () => {
+  it("mock card from createMockSrsCard carries variantKey, not problemFamilyId", () => {
     const card = createMockSrsCard();
-    expect(card).toHaveProperty('variantKey');
-    expect(card).not.toHaveProperty('problemFamilyId');
+    expect(card).toHaveProperty("variantKey");
+    expect(card).not.toHaveProperty("problemFamilyId");
   });
 
-  it('mock card override { variantKey } round-trips into the output', () => {
-    const card = createMockSrsCard({ variantKey: 'variant:custom' } as never);
-    expect(card).toHaveProperty('variantKey', 'variant:custom');
-    expect(card).not.toHaveProperty('problemFamilyId');
+  it("mock card override { variantKey } round-trips into the output", () => {
+    const card = createMockSrsCard({ variantKey: "variant:custom" } as never);
+    expect(card).toHaveProperty("variantKey", "variant:custom");
+    expect(card).not.toHaveProperty("problemFamilyId");
   });
 });
 
@@ -65,55 +63,55 @@ describe('SrsCardState (contract rename)', () => {
 // Scheduler layer: createCard uses variantKey
 // ============================================
 
-describe('createCard (scheduler rename + FR2 default)', () => {
-  const mockNow = '2026-04-18T00:00:00.000Z';
+describe("createCard (scheduler rename + FR2 default)", () => {
+  const mockNow = "2026-04-18T00:00:00.000Z";
 
-  it('createCard({ variantKey }) produces a card keyed by variantKey', () => {
+  it("createCard({ variantKey }) produces a card keyed by variantKey", () => {
     const card = createCard({
-      studentId: 'stu_001',
-      objectiveId: 'obj_quadratic_roots',
-      variantKey: 'variant:subdivision-A',
+      studentId: "stu_001",
+      objectiveId: "obj_quadratic_roots",
+      variantKey: "variant:subdivision-A",
       now: mockNow,
     } as never);
 
-    expect(card).toHaveProperty('variantKey', 'variant:subdivision-A');
-    expect(card).not.toHaveProperty('problemFamilyId');
+    expect(card).toHaveProperty("variantKey", "variant:subdivision-A");
+    expect(card).not.toHaveProperty("problemFamilyId");
   });
 
-  it('reviewCard preserves variantKey after a review', () => {
+  it("reviewCard preserves variantKey after a review", () => {
     const card = createCard({
-      studentId: 'stu_001',
-      objectiveId: 'obj_quadratic_roots',
-      variantKey: 'variant:subdivision-A',
+      studentId: "stu_001",
+      objectiveId: "obj_quadratic_roots",
+      variantKey: "variant:subdivision-A",
       now: mockNow,
     } as never);
 
-    const updated = reviewCard(card, 'Good', mockNow);
-    expect(updated).toHaveProperty('variantKey', 'variant:subdivision-A');
-    expect(updated).not.toHaveProperty('problemFamilyId');
+    const updated = reviewCard(card, "Good", mockNow);
+    expect(updated).toHaveProperty("variantKey", "variant:subdivision-A");
+    expect(updated).not.toHaveProperty("problemFamilyId");
   });
 
-  it('FR2 single-variant default — variantKey defaults to objectiveId when omitted', () => {
+  it("FR2 single-variant default — variantKey defaults to objectiveId when omitted", () => {
     const card = createCard({
-      studentId: 'stu_001',
-      objectiveId: 'obj_quadratic',
+      studentId: "stu_001",
+      objectiveId: "obj_quadratic",
       now: mockNow,
     } as never);
 
-    expect(card).toHaveProperty('variantKey', 'obj_quadratic');
-    expect(card).toHaveProperty('objectiveId', 'obj_quadratic');
-    expect(card).not.toHaveProperty('problemFamilyId');
+    expect(card).toHaveProperty("variantKey", "obj_quadratic");
+    expect(card).toHaveProperty("objectiveId", "obj_quadratic");
+    expect(card).not.toHaveProperty("problemFamilyId");
   });
 
-  it('FR2 — explicit variantKey overrides the objectiveId default', () => {
+  it("FR2 — explicit variantKey overrides the objectiveId default", () => {
     const card = createCard({
-      studentId: 'stu_001',
-      objectiveId: 'obj_quadratic',
-      variantKey: 'variant:subdivision-B',
+      studentId: "stu_001",
+      objectiveId: "obj_quadratic",
+      variantKey: "variant:subdivision-B",
       now: mockNow,
     } as never);
 
-    expect(card).toHaveProperty('variantKey', 'variant:subdivision-B');
+    expect(card).toHaveProperty("variantKey", "variant:subdivision-B");
   });
 });
 
@@ -121,34 +119,64 @@ describe('createCard (scheduler rename + FR2 default)', () => {
 // SRS Proficiency layer: variantKey threading
 // ============================================
 
-describe('aggregateCardsToEvidence (srs-proficiency rename)', () => {
+describe("aggregateCardsToEvidence (srs-proficiency rename)", () => {
   const emptyBaselines = {};
 
-  it('groups cards by variantKey (not problemFamilyId) when threading the new field', () => {
+  it("groups cards by variantKey (not problemFamilyId) when threading the new field", () => {
     const cards = [
-      { stability: 30, elapsedDays: 30, difficulty: 3, reps: 1, lapses: 0, variantKey: 'variant:pf1' },
-      { stability: 30, elapsedDays: 30, difficulty: 3, reps: 1, lapses: 0, variantKey: 'variant:pf2' },
-      { stability: 30, elapsedDays: 30, difficulty: 3, reps: 1, lapses: 0, variantKey: 'variant:pf3' },
-    ];
-    const result = aggregateCardsToEvidence(cards as never, emptyBaselines);
-    expect(result).toHaveLength(3);
-    expect((result[0] as { variantKey?: string }).variantKey).toBeDefined();
-    expect((result[0] as { problemFamilyId?: string }).problemFamilyId).toBeUndefined();
-    expect(
-      result.map((e: unknown) => (e as { variantKey: string }).variantKey).sort(),
-    ).toEqual(['variant:pf1', 'variant:pf2', 'variant:pf3']);
-  });
-
-  it('preserves variant grouping while applying v3 live-retention semantics', () => {
-    const cards = [
-      { stability: 0, elapsedDays: 0, difficulty: 3, reps: 0, lapses: 0, variantKey: 'variant:pf1' },
       {
         stability: 30,
         elapsedDays: 30,
         difficulty: 3,
         reps: 1,
         lapses: 0,
-        variantKey: 'variant:pf1',
+        variantKey: "variant:pf1",
+      },
+      {
+        stability: 30,
+        elapsedDays: 30,
+        difficulty: 3,
+        reps: 1,
+        lapses: 0,
+        variantKey: "variant:pf2",
+      },
+      {
+        stability: 30,
+        elapsedDays: 30,
+        difficulty: 3,
+        reps: 1,
+        lapses: 0,
+        variantKey: "variant:pf3",
+      },
+    ];
+    const result = aggregateCardsToEvidence(cards as never, emptyBaselines);
+    expect(result).toHaveLength(3);
+    expect((result[0] as { variantKey?: string }).variantKey).toBeDefined();
+    expect((result[0] as { problemFamilyId?: string }).problemFamilyId).toBeUndefined();
+    expect(result.map((e: unknown) => (e as { variantKey: string }).variantKey).sort()).toEqual([
+      "variant:pf1",
+      "variant:pf2",
+      "variant:pf3",
+    ]);
+  });
+
+  it("preserves variant grouping while applying v3 live-retention semantics", () => {
+    const cards = [
+      {
+        stability: 0,
+        elapsedDays: 0,
+        difficulty: 3,
+        reps: 0,
+        lapses: 0,
+        variantKey: "variant:pf1",
+      },
+      {
+        stability: 30,
+        elapsedDays: 30,
+        difficulty: 3,
+        reps: 1,
+        lapses: 0,
+        variantKey: "variant:pf1",
         reviewDurationMs: 10000,
       },
       {
@@ -157,45 +185,49 @@ describe('aggregateCardsToEvidence (srs-proficiency rename)', () => {
         difficulty: 5,
         reps: 5,
         lapses: 1,
-        variantKey: 'variant:pf2',
+        variantKey: "variant:pf2",
         reviewDurationMs: 90000,
       },
     ];
     const baselines = {
-      'variant:pf1': {
-        variantKey: 'variant:pf1',
+      "variant:pf1": {
+        variantKey: "variant:pf1",
         sampleCount: 20,
         medianActiveMs: 30000,
         minSamplesMet: true,
-        lastComputedAt: '2026-04-18T00:00:00.000Z',
+        lastComputedAt: "2026-04-18T00:00:00.000Z",
       },
-      'variant:pf2': {
-        variantKey: 'variant:pf2',
+      "variant:pf2": {
+        variantKey: "variant:pf2",
         sampleCount: 20,
         medianActiveMs: 30000,
         minSamplesMet: true,
-        lastComputedAt: '2026-04-18T00:00:00.000Z',
+        lastComputedAt: "2026-04-18T00:00:00.000Z",
       },
     };
     const result = aggregateCardsToEvidence(cards as never, baselines);
     expect(result).toHaveLength(2);
-    const pf1 = result.find((e: unknown) => (e as { variantKey: string }).variantKey === 'variant:pf1');
-    const pf2 = result.find((e: unknown) => (e as { variantKey: string }).variantKey === 'variant:pf2');
+    const pf1 = result.find(
+      (e: unknown) => (e as { variantKey: string }).variantKey === "variant:pf1",
+    );
+    const pf2 = result.find(
+      (e: unknown) => (e as { variantKey: string }).variantKey === "variant:pf2",
+    );
     expect(pf1).toBeDefined();
     expect(pf2).toBeDefined();
     // PF1: the reps=0 card is excluded; R(30,30)=0.9. Coverage remains 1/2.
     //      1 fast out of 1 reliable → ratio 1.0 → high.
     expect((pf1 as { retentionStrength: number }).retentionStrength).toBe(0.9);
     expect((pf1 as { practiceCoverage: number }).practiceCoverage).toBe(0.5);
-    expect((pf1 as { fluencyConfidence: string }).fluencyConfidence).toBe('high');
+    expect((pf1 as { fluencyConfidence: string }).fluencyConfidence).toBe("high");
     // PF2: R(300,30)=0.988... → rounded 0.99. Coverage = 1.0.
     //      1 slow out of 1 reliable → ratio 0 → low.
     expect((pf2 as { retentionStrength: number }).retentionStrength).toBe(0.99);
     expect((pf2 as { practiceCoverage: number }).practiceCoverage).toBe(1);
-    expect((pf2 as { fluencyConfidence: string }).fluencyConfidence).toBe('low');
+    expect((pf2 as { fluencyConfidence: string }).fluencyConfidence).toBe("low");
   });
 
-  it('returns empty array when given no cards (FR-invariant)', () => {
+  it("returns empty array when given no cards (FR-invariant)", () => {
     expect(aggregateCardsToEvidence([], emptyBaselines)).toEqual([]);
   });
 });
@@ -204,57 +236,57 @@ describe('aggregateCardsToEvidence (srs-proficiency rename)', () => {
 // Objective Proficiency layer: minVariants, variantEvidences
 // ============================================
 
-describe('computeObjectiveProficiency (rename)', () => {
-  it('PROFICIENCY_THRESHOLD_DEFAULTS.essential.minVariants === 3 (no minProblemFamilies)', () => {
+describe("computeObjectiveProficiency (rename)", () => {
+  it("PROFICIENCY_THRESHOLD_DEFAULTS.essential.minVariants === 3 (no minProblemFamilies)", () => {
     const defaults = PROFICIENCY_THRESHOLD_DEFAULTS.essential as unknown as Record<string, number>;
     expect(defaults.minVariants).toBe(3);
     expect(defaults.minProblemFamilies).toBeUndefined();
   });
 
-  it('PROFICIENCY_THRESHOLD_DEFAULTS.supporting.minVariants === 2', () => {
+  it("PROFICIENCY_THRESHOLD_DEFAULTS.supporting.minVariants === 2", () => {
     const defaults = PROFICIENCY_THRESHOLD_DEFAULTS.supporting as unknown as Record<string, number>;
     expect(defaults.minVariants).toBe(2);
     expect(defaults.minProblemFamilies).toBeUndefined();
   });
 
-  it('PROFICIENCY_THRESHOLD_DEFAULTS.extension.minVariants === 1', () => {
+  it("PROFICIENCY_THRESHOLD_DEFAULTS.extension.minVariants === 1", () => {
     const defaults = PROFICIENCY_THRESHOLD_DEFAULTS.extension as unknown as Record<string, number>;
     expect(defaults.minVariants).toBe(1);
     expect(defaults.minProblemFamilies).toBeUndefined();
   });
 
-  it('PROFICIENCY_THRESHOLD_DEFAULTS.triaged.minVariants === 0', () => {
+  it("PROFICIENCY_THRESHOLD_DEFAULTS.triaged.minVariants === 0", () => {
     const defaults = PROFICIENCY_THRESHOLD_DEFAULTS.triaged as unknown as Record<string, number>;
     expect(defaults.minVariants).toBe(0);
     expect(defaults.minProblemFamilies).toBeUndefined();
   });
 
-  it('computeObjectiveProficiency accepts variantEvidences + minVariants and is proficient', () => {
+  it("computeObjectiveProficiency accepts variantEvidences + minVariants and is proficient", () => {
     const result = computeObjectiveProficiency({
-      objectiveId: 'obj-1',
-      priority: 'essential',
+      objectiveId: "obj-1",
+      priority: "essential",
       variantEvidences: [
         {
-          variantKey: 'variant:a',
+          variantKey: "variant:a",
           retentionStrength: 1,
           practiceCoverage: 1,
-          fluencyConfidence: 'high',
+          fluencyConfidence: "high",
           baselineSampleCount: 10,
           timingReliable: true,
         },
         {
-          variantKey: 'variant:b',
+          variantKey: "variant:b",
           retentionStrength: 1,
           practiceCoverage: 1,
-          fluencyConfidence: 'high',
+          fluencyConfidence: "high",
           baselineSampleCount: 10,
           timingReliable: true,
         },
         {
-          variantKey: 'variant:c',
+          variantKey: "variant:c",
           retentionStrength: 1,
           practiceCoverage: 1,
-          fluencyConfidence: 'high',
+          fluencyConfidence: "high",
           baselineSampleCount: 10,
           timingReliable: true,
         },
@@ -262,20 +294,20 @@ describe('computeObjectiveProficiency (rename)', () => {
       minVariants: 3,
     } as never);
     expect(result.isProficient).toBe(true);
-    expect(result.evidenceConfidence).toBe('high');
-    expect(result.objectiveId).toBe('obj-1');
+    expect(result.evidenceConfidence).toBe("high");
+    expect(result.objectiveId).toBe("obj-1");
   });
 
-  it('computeObjectiveProficiency emits variantKey on detail rows (not problemFamilyId)', () => {
+  it("computeObjectiveProficiency emits variantKey on detail rows (not problemFamilyId)", () => {
     const result = computeObjectiveProficiency({
-      objectiveId: 'obj-2',
-      priority: 'essential',
+      objectiveId: "obj-2",
+      priority: "essential",
       variantEvidences: [
         {
-          variantKey: 'variant:alpha',
+          variantKey: "variant:alpha",
           retentionStrength: 0.9,
           practiceCoverage: 0.8,
-          fluencyConfidence: 'high',
+          fluencyConfidence: "high",
           baselineSampleCount: 10,
           timingReliable: true,
         },
@@ -284,7 +316,7 @@ describe('computeObjectiveProficiency (rename)', () => {
     } as never);
     expect(result.problemFamilyDetails).toHaveLength(1);
     const detail = result.problemFamilyDetails[0] as unknown as Record<string, unknown>;
-    expect(detail.variantKey).toBe('variant:alpha');
+    expect(detail.variantKey).toBe("variant:alpha");
     expect(detail.problemFamilyId).toBeUndefined();
   });
 });
@@ -293,21 +325,21 @@ describe('computeObjectiveProficiency (rename)', () => {
 // Adapters layer: getCardByStudentAndVariant
 // ============================================
 
-describe('InMemoryCardStore (rename)', () => {
-  it('exposes getCardByStudentAndVariant (not getCardByStudentAndFamily)', () => {
+describe("InMemoryCardStore (rename)", () => {
+  it("exposes getCardByStudentAndVariant (not getCardByStudentAndFamily)", () => {
     const store = new InMemoryCardStore();
     expect(typeof (store as unknown as Record<string, unknown>).getCardByStudentAndVariant).toBe(
-      'function',
+      "function",
     );
     expect((store as unknown as Record<string, unknown>).getCardByStudentAndFamily).toBeUndefined();
   });
 
-  it('getCardByStudentAndVariant retrieves a card keyed by variantKey', async () => {
+  it("getCardByStudentAndVariant retrieves a card keyed by variantKey", async () => {
     const store = new InMemoryCardStore();
     const card = createMockSrsCard({
-      cardId: 'card_test_001',
-      studentId: 'stu_001',
-      variantKey: 'variant:subdivision-A',
+      cardId: "card_test_001",
+      studentId: "stu_001",
+      variantKey: "variant:subdivision-A",
     } as never);
     await store.saveCard(card);
 
@@ -318,30 +350,27 @@ describe('InMemoryCardStore (rename)', () => {
           variantKey: string,
         ): Promise<typeof card | null>;
       }
-    ).getCardByStudentAndVariant('stu_001', 'variant:subdivision-A');
+    ).getCardByStudentAndVariant("stu_001", "variant:subdivision-A");
 
     expect(found).not.toBeNull();
-    expect(found).toHaveProperty('variantKey', 'variant:subdivision-A');
-    expect(found).not.toHaveProperty('problemFamilyId');
+    expect(found).toHaveProperty("variantKey", "variant:subdivision-A");
+    expect(found).not.toHaveProperty("problemFamilyId");
   });
 
-  it('getCardByStudentAndVariant returns null when no card matches the variantKey', async () => {
+  it("getCardByStudentAndVariant returns null when no card matches the variantKey", async () => {
     const store = new InMemoryCardStore();
     const card = createMockSrsCard({
-      cardId: 'card_test_002',
-      studentId: 'stu_001',
-      variantKey: 'variant:subdivision-A',
+      cardId: "card_test_002",
+      studentId: "stu_001",
+      variantKey: "variant:subdivision-A",
     } as never);
     await store.saveCard(card);
 
     const found = await (
       store as unknown as {
-        getCardByStudentAndVariant(
-          studentId: string,
-          variantKey: string,
-        ): Promise<unknown>;
+        getCardByStudentAndVariant(studentId: string, variantKey: string): Promise<unknown>;
       }
-    ).getCardByStudentAndVariant('stu_001', 'variant:does-not-exist');
+    ).getCardByStudentAndVariant("stu_001", "variant:does-not-exist");
 
     expect(found).toBeNull();
   });
@@ -351,48 +380,48 @@ describe('InMemoryCardStore (rename)', () => {
 // Submission Adapter layer: PracticeVariantResolver + TimingBaselineResolver
 // ============================================
 
-describe('InMemoryPracticeVariantResolver (rename)', () => {
-  it('module exports InMemoryPracticeVariantResolver (not InMemoryProblemFamilyResolver)', async () => {
+describe("InMemoryPracticeVariantResolver (rename)", () => {
+  it("module exports InMemoryPracticeVariantResolver (not InMemoryProblemFamilyResolver)", async () => {
     // Dynamic import so the assertion is runtime, not type-erased.
-    const mod = (await import('../srs/submission-srs-adapter')) as Record<string, unknown>;
-    expect(typeof mod.InMemoryPracticeVariantResolver).toBe('function');
+    const mod = (await import("../srs/submission-srs-adapter")) as Record<string, unknown>;
+    expect(typeof mod.InMemoryPracticeVariantResolver).toBe("function");
     expect(mod.InMemoryProblemFamilyResolver).toBeUndefined();
   });
 
-  it('module exports the PracticeVariantResolver interface name', async () => {
+  it("module exports the PracticeVariantResolver interface name", async () => {
     // Interfaces are erased at runtime, so this contract is enforced at
     // tsc --noEmit; the runtime check below proves the rename reaches the
     // module surface (a class implementing the interface is exported).
-    const mod = (await import('../srs/submission-srs-adapter')) as Record<string, unknown>;
+    const mod = (await import("../srs/submission-srs-adapter")) as Record<string, unknown>;
     // The renamed class must be constructable.
     const Ctor = mod.InMemoryPracticeVariantResolver as new () => unknown;
     expect(new Ctor()).toBeDefined();
   });
 
-  it('PracticeVariantInfo type re-export carries variantKey, not problemFamilyId', async () => {
+  it("PracticeVariantInfo type re-export carries variantKey, not problemFamilyId", async () => {
     // The renamed type alias is erased at runtime; assert the module surface
     // exposes a constructor that returns an object whose resolve() returns
     // a record with `variantKey` only.
-    const mod = (await import('../srs/submission-srs-adapter')) as Record<string, unknown>;
+    const mod = (await import("../srs/submission-srs-adapter")) as Record<string, unknown>;
     const Ctor = mod.InMemoryPracticeVariantResolver as new () => {
       register(activityId: string, info: Record<string, string>): void;
       resolve(activityId: string): Promise<Record<string, string> | null>;
     };
     const resolver = new Ctor();
-    resolver.register('act_1', { variantKey: 'variant:alpha', objectiveId: 'obj_1' });
-    const resolved = await resolver.resolve('act_1');
-    expect(resolved).toEqual({ variantKey: 'variant:alpha', objectiveId: 'obj_1' });
-    expect(resolved).not.toHaveProperty('problemFamilyId');
+    resolver.register("act_1", { variantKey: "variant:alpha", objectiveId: "obj_1" });
+    const resolved = await resolver.resolve("act_1");
+    expect(resolved).toEqual({ variantKey: "variant:alpha", objectiveId: "obj_1" });
+    expect(resolved).not.toHaveProperty("problemFamilyId");
   });
 });
 
-describe('InMemoryTimingBaselineResolver (rename)', () => {
-  it('module exports InMemoryTimingBaselineResolver (not removed by the rename)', () => {
+describe("InMemoryTimingBaselineResolver (rename)", () => {
+  it("module exports InMemoryTimingBaselineResolver (not removed by the rename)", () => {
     // The resolver itself is not renamed by FR1, but it must continue to
     // exist after the srs-engine rename. Sanity check that its methods
     // are present.
     const resolver = new InMemoryTimingBaselineResolver();
-    expect(typeof resolver.setBaseline).toBe('function');
-    expect(typeof resolver.getBaseline).toBe('function');
+    expect(typeof resolver.setBaseline).toBe("function");
+    expect(typeof resolver.getBaseline).toBe("function");
   });
 });

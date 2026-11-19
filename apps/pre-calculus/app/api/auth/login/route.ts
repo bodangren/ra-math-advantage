@@ -14,14 +14,28 @@ export async function POST(request: Request) {
     const username = typeof body?.username === "string" ? body.username.trim() : "";
     const password = body?.password;
 
-    if (!username || username.length > 255 || typeof password !== "string" || !password || password.length > 255) {
+    if (
+      !username ||
+      username.length > 255 ||
+      typeof password !== "string" ||
+      !password ||
+      password.length > 255
+    ) {
       return NextResponse.json({ error: "Username and password are required" }, { status: 400 });
     }
 
-    const limit = await fetchInternalMutation(internal.auth.checkAuthAttempt, { username, operation: "login" });
-    if (!limit.allowed) return NextResponse.json({ error: "Too many attempts. Try again later." }, {
-      status: 429, headers: { "Retry-After": String(limit.retryAfter) },
+    const limit = await fetchInternalMutation(internal.auth.checkAuthAttempt, {
+      username,
+      operation: "login",
     });
+    if (!limit.allowed)
+      return NextResponse.json(
+        { error: "Too many attempts. Try again later." },
+        {
+          status: 429,
+          headers: { "Retry-After": String(limit.retryAfter) },
+        },
+      );
     const credential = await fetchInternalQuery(internal.auth.getCredentialByUsername, {
       username,
     });
@@ -30,7 +44,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }
 
-    const isValid = await verifyPassword(password, { salt: credential.passwordSalt, iterations: credential.passwordHashIterations, passwordHash: credential.passwordHash });
+    const isValid = await verifyPassword(password, {
+      salt: credential.passwordSalt,
+      iterations: credential.passwordHashIterations,
+      passwordHash: credential.passwordHash,
+    });
     if (!isValid) {
       return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }

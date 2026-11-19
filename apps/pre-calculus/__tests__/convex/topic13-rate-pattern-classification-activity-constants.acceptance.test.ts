@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { getGenerator } from '@math-platform/math-content/knowledge-space';
+import { getGenerator } from "@math-platform/math-content/knowledge-space";
 
 import {
   PRECALCULUS_PILOT_ACTIVITY_ID,
@@ -10,7 +10,7 @@ import {
   PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_GUIDED_GRADING_CONFIG,
   PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_INDEPENDENT_GRADING_CONFIG,
   PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_WORKED_GRADING_CONFIG,
-} from '@/convex/activities';
+} from "@/convex/activities";
 import {
   PRECALCULUS_PHYSICAL_CONTEXT_GUIDED_ACTIVITY_ID,
   PRECALCULUS_PHYSICAL_CONTEXT_INDEPENDENT_ACTIVITY_ID,
@@ -38,7 +38,7 @@ import {
   PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_INDEPENDENT_ACTIVITY_ID,
   PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_NODE_ID,
   PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_WORKED_ACTIVITY_ID,
-} from '@/lib/learning-evidence/precalc-pilot';
+} from "@/lib/learning-evidence/precalc-pilot";
 
 const EXISTING_TOPIC_1_1_AND_1_2_ACTIVITY_IDS = [
   PRECALCULUS_PILOT_ACTIVITY_ID,
@@ -67,10 +67,10 @@ const EXISTING_TOPIC_1_1_AND_1_2_ACTIVITY_IDS = [
   PRECALCULUS_TOPIC_12_POINTWISE_LEAST_RATE_INDEPENDENT_ACTIVITY_ID,
 ];
 
-describe('Topic 1.3 rate-pattern classification activity constants', () => {
-  it('defines exact node, stable IDs, unique keys, configs, and generator identity', () => {
+describe("Topic 1.3 rate-pattern classification activity constants", () => {
+  it("defines exact node, stable IDs, unique keys, configs, and generator identity", () => {
     expect(PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_NODE_ID).toBe(
-      'math.precalc.skill.1.3.classify-linear-vs-quadratic-from-rate-patterns',
+      "math.precalc.skill.1.3.classify-linear-vs-quadratic-from-rate-patterns",
     );
     expect(PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_WORKED_ACTIVITY_ID).toBe(
       `${PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_NODE_ID}.worked_example`,
@@ -91,8 +91,12 @@ describe('Topic 1.3 rate-pattern classification activity constants', () => {
       EXISTING_TOPIC_1_1_AND_1_2_ACTIVITY_IDS.length + newActivityIds.length,
     );
 
-    expect(PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_COMPONENT_KEY).toBe('rate-pattern-classification');
-    expect(PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_GENERATOR_KEY).toBe('topic13-rate-pattern-classification');
+    expect(PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_COMPONENT_KEY).toBe(
+      "rate-pattern-classification",
+    );
+    expect(PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_GENERATOR_KEY).toBe(
+      "topic13-rate-pattern-classification",
+    );
     expect(PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_WORKED_GRADING_CONFIG).toEqual({
       generatorKey: PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_GENERATOR_KEY,
       variantSeed: 0,

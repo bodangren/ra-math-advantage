@@ -1,26 +1,32 @@
-'use client';
+"use client";
 
-import React, { useState, useCallback } from 'react';
-import { GraphingCanvas, Point, FunctionPlot } from './GraphingCanvas';
-import { InteractiveTableOfValues } from './InteractiveTableOfValues';
-import { HintPanel, HintData } from './HintPanel';
-import { InterceptIdentification, InterceptData } from './InterceptIdentification';
-import { parseLinear, parseQuadratic } from '@math-platform/graphing-core';
-import { toConvexActivityId } from '@math-platform/practice-core';
-import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract';
+import React, { useState, useCallback } from "react";
+import { GraphingCanvas, Point, FunctionPlot } from "./GraphingCanvas";
+import { InteractiveTableOfValues } from "./InteractiveTableOfValues";
+import { HintPanel, HintData } from "./HintPanel";
+import { InterceptIdentification, InterceptData } from "./InterceptIdentification";
+import { parseLinear, parseQuadratic } from "@math-platform/graphing-core";
+import { toConvexActivityId } from "@math-platform/practice-core";
+import type { PracticeSubmissionEnvelope } from "@/lib/practice/contract";
 
 export interface GraphingExplorerProps {
   activityId: string;
-  mode: 'teaching' | 'guided' | 'practice' | 'explore';
+  mode: "teaching" | "guided" | "practice" | "explore";
   onSubmit?: (payload: PracticeSubmissionEnvelope) => void;
-  variant?: 'plot_from_equation' | 'compare_functions' | 'find_intercepts' | 'graph_system' | 'compare_lines' | 'multi_curve';
+  variant?:
+    | "plot_from_equation"
+    | "compare_functions"
+    | "find_intercepts"
+    | "graph_system"
+    | "compare_lines"
+    | "multi_curve";
   equation: string;
   domain?: [number, number];
   range?: [number, number];
   points?: [number, number][];
   comparisonEquation?: string;
   comparisonQuestion?: string;
-  comparisonAnswer?: 'first' | 'second';
+  comparisonAnswer?: "first" | "second";
   linearEquation?: string;
   exploreQuestion?: string;
   explorationPrompts?: string[];
@@ -31,7 +37,6 @@ export interface GraphingExplorerProps {
 
 const DEFAULT_DOMAIN: [number, number] = [-10, 10];
 const DEFAULT_RANGE: [number, number] = [-10, 10];
-
 
 /**
  * Full graphing explorer activity combining canvas, table of values, hints,
@@ -46,7 +51,7 @@ export function GraphingExplorer({
   activityId,
   mode,
   onSubmit,
-  variant = 'plot_from_equation',
+  variant = "plot_from_equation",
   equation,
   domain = DEFAULT_DOMAIN,
   range = DEFAULT_RANGE,
@@ -65,15 +70,18 @@ export function GraphingExplorer({
   const [tableComplete, setTableComplete] = useState(false);
   const [hints, setHints] = useState<HintData[]>([]);
   const [intercepts, setIntercepts] = useState<InterceptData[]>([]);
-  const [interactionHistory, setInteractionHistory] = useState<Array<{ type: string; timestamp: number; data?: unknown }>>([]);
+  const [interactionHistory, setInteractionHistory] = useState<
+    Array<{ type: string; timestamp: number; data?: unknown }>
+  >([]);
   const [showSolution, setShowSolution] = useState(false);
-  const [comparisonAnswerSelected, setComparisonAnswerSelected] = useState<'first' | 'second' | null>(null);
+  const [comparisonAnswerSelected, setComparisonAnswerSelected] = useState<
+    "first" | "second" | null
+  >(null);
   const [showComparisonFeedback, setShowComparisonFeedback] = useState(false);
   const [intersectionPoints, setIntersectionPoints] = useState<Point[]>([]);
   const [sliderA, setSliderA] = useState(sliderDefaults?.a ?? 1);
   const [sliderB, setSliderB] = useState(sliderDefaults?.b ?? 0);
   const [sliderC, setSliderC] = useState(sliderDefaults?.c ?? 0);
-
 
   /**
    * Record an interaction event in the activity history.
@@ -82,100 +90,119 @@ export function GraphingExplorer({
    * @param data - Optional payload associated with the interaction.
    */
   const addInteraction = useCallback((type: string, data?: unknown) => {
-    setInteractionHistory(prev => [...prev, { type, timestamp: Date.now(), data }]);
+    setInteractionHistory((prev) => [...prev, { type, timestamp: Date.now(), data }]);
   }, []);
-
 
   /**
    * Handle adding a point to the graph canvas.
    *
    * @param point - The data-space coordinates of the placed point.
    */
-  const handlePointAdd = useCallback((point: Point) => {
-    setPlacedPoints(prev => [...prev, { ...point, label: `${point.x.toFixed(1)}, ${point.y.toFixed(1)}` }]);
-    addInteraction('point_placed', point);
+  const handlePointAdd = useCallback(
+    (point: Point) => {
+      setPlacedPoints((prev) => [
+        ...prev,
+        { ...point, label: `${point.x.toFixed(1)}, ${point.y.toFixed(1)}` },
+      ]);
+      addInteraction("point_placed", point);
 
-    if (variant === 'find_intercepts' && Math.abs(point.y) < 1.0) {
-      setIntercepts(prev => [...prev, {
-        type: 'intercept',
-        data: { x: point.x, y: 0 },
-        timestamp: Date.now(),
-      }]);
-      addInteraction('intercept_identified', { x: point.x, y: 0 });
-    }
+      if (variant === "find_intercepts" && Math.abs(point.y) < 1.0) {
+        setIntercepts((prev) => [
+          ...prev,
+          {
+            type: "intercept",
+            data: { x: point.x, y: 0 },
+            timestamp: Date.now(),
+          },
+        ]);
+        addInteraction("intercept_identified", { x: point.x, y: 0 });
+      }
 
-    if (variant === 'graph_system') {
-      setIntersectionPoints(prev => [...prev, point]);
-      addInteraction('intersection_identified', point);
-    }
-  }, [addInteraction, variant]);
-
+      if (variant === "graph_system") {
+        setIntersectionPoints((prev) => [...prev, point]);
+        addInteraction("intersection_identified", point);
+      }
+    },
+    [addInteraction, variant],
+  );
 
   /**
    * Handle removing a point from the graph canvas by its label.
    *
    * @param label - The display label identifying the point to remove.
    */
-  const handlePointRemove = useCallback((label: string) => {
-    setPlacedPoints(prev => prev.filter(p => p.label !== label));
-    if (variant === 'find_intercepts') {
-      setIntercepts(prev => prev.filter(i => {
-        if (i.type === 'intercept' && i.data) {
-          return i.data.x.toFixed(1) !== label.split(', ')[0];
-        }
-        return true;
-      }));
-    }
-    if (variant === 'graph_system') {
-      setIntersectionPoints(prev => prev.filter(p => p.label !== label));
-    }
-    addInteraction('point_removed', { label });
-  }, [addInteraction, variant]);
-
+  const handlePointRemove = useCallback(
+    (label: string) => {
+      setPlacedPoints((prev) => prev.filter((p) => p.label !== label));
+      if (variant === "find_intercepts") {
+        setIntercepts((prev) =>
+          prev.filter((i) => {
+            if (i.type === "intercept" && i.data) {
+              return i.data.x.toFixed(1) !== label.split(", ")[0];
+            }
+            return true;
+          }),
+        );
+      }
+      if (variant === "graph_system") {
+        setIntersectionPoints((prev) => prev.filter((p) => p.label !== label));
+      }
+      addInteraction("point_removed", { label });
+    },
+    [addInteraction, variant],
+  );
 
   /**
    * Handle completion of the interactive table of values.
    *
    * @param points - The computed table points.
    */
-  const handleTableComplete = useCallback((points: Array<{ x: number; y: number }>) => {
-    setTableComplete(true);
-    addInteraction('table_complete', { points });
-  }, [addInteraction]);
-
+  const handleTableComplete = useCallback(
+    (points: Array<{ x: number; y: number }>) => {
+      setTableComplete(true);
+      addInteraction("table_complete", { points });
+    },
+    [addInteraction],
+  );
 
   /**
    * Handle a hint being used by the student.
    *
    * @param hint - The hint data that was revealed.
    */
-  const handleHintUsed = useCallback((hint: HintData) => {
-    setHints(prev => [...prev, hint]);
-    addInteraction('hint_used', { hintType: hint.type, data: hint.data });
-  }, [addInteraction]);
-
+  const handleHintUsed = useCallback(
+    (hint: HintData) => {
+      setHints((prev) => [...prev, hint]);
+      addInteraction("hint_used", { hintType: hint.type, data: hint.data });
+    },
+    [addInteraction],
+  );
 
   /**
    * Handle identification of an x-intercept by the student.
    *
    * @param intercept - The identified intercept data.
    */
-  const handleInterceptIdentified = useCallback((intercept: InterceptData) => {
-    setIntercepts(prev => [...prev, intercept]);
-    addInteraction('intercept_identified', intercept);
-  }, [addInteraction]);
-
+  const handleInterceptIdentified = useCallback(
+    (intercept: InterceptData) => {
+      setIntercepts((prev) => [...prev, intercept]);
+      addInteraction("intercept_identified", intercept);
+    },
+    [addInteraction],
+  );
 
   /**
    * Handle selection of a comparison answer in the compare-functions variant.
    *
    * @param answer - The selected comparison answer.
    */
-  const handleComparisonAnswerSelect = useCallback((answer: 'first' | 'second') => {
-    setComparisonAnswerSelected(answer);
-    addInteraction('comparison_answer_selected', { answer });
-  }, [addInteraction]);
-
+  const handleComparisonAnswerSelect = useCallback(
+    (answer: "first" | "second") => {
+      setComparisonAnswerSelected(answer);
+      addInteraction("comparison_answer_selected", { answer });
+    },
+    [addInteraction],
+  );
 
   /**
    * Assess whether all placed points match the expected initial points.
@@ -187,10 +214,9 @@ export function GraphingExplorer({
     if (placedPoints.length === 0) return false;
 
     return initialPoints.every(([expectedX, expectedY]) =>
-      placedPoints.some(p => Math.abs(p.x - expectedX) < 0.1 && Math.abs(p.y - expectedY) < 0.1)
+      placedPoints.some((p) => Math.abs(p.x - expectedX) < 0.1 && Math.abs(p.y - expectedY) < 0.1),
     );
   }, [initialPoints, placedPoints]);
-
 
   /**
    * Assess whether at least one intercept has been identified.
@@ -200,7 +226,6 @@ export function GraphingExplorer({
   const assessInterceptsCorrectness = useCallback((): boolean => {
     return intercepts.length > 0;
   }, [intercepts]);
-
 
   /**
    * Assess whether the selected comparison answer is correct.
@@ -212,20 +237,18 @@ export function GraphingExplorer({
     return comparisonAnswerSelected === comparisonAnswer;
   }, [comparisonAnswer, comparisonAnswerSelected]);
 
-
   /**
    * Check whether the quadratic equation has real x-intercepts.
    *
    * @returns `true` if the discriminant is non-negative.
    */
   const hasRealIntercepts = useCallback((): boolean => {
-    const coeffs = parseQuadratic(equation.replace(/^y\s*=\s*/, '').trim());
+    const coeffs = parseQuadratic(equation.replace(/^y\s*=\s*/, "").trim());
     if (!coeffs || coeffs.a === 0) return true;
 
     const discriminant = coeffs.b * coeffs.b - 4 * coeffs.a * coeffs.c;
     return discriminant >= 0;
   }, [equation]);
-
 
   /**
    * Check whether the quadratic and linear equations have real intersection
@@ -236,7 +259,7 @@ export function GraphingExplorer({
   const hasRealIntersections = useCallback((): boolean => {
     if (!linearEquation) return true;
 
-    const quadCoeffs = parseQuadratic(equation.replace(/^y\s*=\s*/, '').trim());
+    const quadCoeffs = parseQuadratic(equation.replace(/^y\s*=\s*/, "").trim());
     if (!quadCoeffs || quadCoeffs.a === 0) return true;
 
     let m = 0;
@@ -247,7 +270,7 @@ export function GraphingExplorer({
       m = linearCoeffs.m;
       k = linearCoeffs.b;
     } else {
-      const linearNoPrefix = parseLinear(linearEquation.replace(/^y\s*=\s*/, '').trim());
+      const linearNoPrefix = parseLinear(linearEquation.replace(/^y\s*=\s*/, "").trim());
       if (linearNoPrefix) {
         m = linearNoPrefix.m;
         k = linearNoPrefix.b;
@@ -259,7 +282,6 @@ export function GraphingExplorer({
     const discriminant = (quadCoeffs.b - m) ** 2 - 4 * quadCoeffs.a * (quadCoeffs.c - k);
     return discriminant >= 0;
   }, [equation, linearEquation]);
-
 
   /**
    * Build and submit the practice submission envelope with all activity data.
@@ -274,12 +296,12 @@ export function GraphingExplorer({
       hintsUsed?: number;
     }> = [
       {
-        partId: 'placed_points',
-        rawAnswer: placedPoints.map(p => ({ x: p.x, y: p.y })),
+        partId: "placed_points",
+        rawAnswer: placedPoints.map((p) => ({ x: p.x, y: p.y })),
         isCorrect: assessPointsCorrectness(),
       },
       {
-        partId: 'intercepts',
+        partId: "intercepts",
         rawAnswer: intercepts,
         isCorrect: assessInterceptsCorrectness(),
         hintsUsed: hints.length,
@@ -287,22 +309,22 @@ export function GraphingExplorer({
     ];
 
     const answers: Record<string, unknown> = {
-      placedPoints: placedPoints.map(p => ({ x: p.x, y: p.y })),
+      placedPoints: placedPoints.map((p) => ({ x: p.x, y: p.y })),
       intercepts: intercepts,
     };
 
-    if (variant === 'compare_functions' && comparisonAnswerSelected) {
+    if (variant === "compare_functions" && comparisonAnswerSelected) {
       parts.push({
-        partId: 'comparison',
+        partId: "comparison",
         rawAnswer: comparisonAnswerSelected,
         isCorrect: assessComparisonCorrectness(),
       });
       answers.comparisonAnswer = comparisonAnswerSelected;
     }
 
-    if (variant === 'graph_system') {
+    if (variant === "graph_system") {
       parts.push({
-        partId: 'intersections',
+        partId: "intersections",
         rawAnswer: intersectionPoints,
         isCorrect: assessPointsCorrectness(),
       });
@@ -310,10 +332,14 @@ export function GraphingExplorer({
     }
 
     const envelope: PracticeSubmissionEnvelope = {
-      contractVersion: 'practice.v1',
+      contractVersion: "practice.v1",
       activityId: toConvexActivityId(activityId),
-      mode: (mode === 'practice' ? 'independent_practice' : mode === 'guided' ? 'guided_practice' : mode) as PracticeSubmissionEnvelope['mode'],
-      status: 'submitted',
+      mode: (mode === "practice"
+        ? "independent_practice"
+        : mode === "guided"
+          ? "guided_practice"
+          : mode) as PracticeSubmissionEnvelope["mode"],
+      status: "submitted",
       attemptNumber: 1,
       submittedAt: new Date().toISOString(),
       answers,
@@ -336,36 +362,63 @@ export function GraphingExplorer({
     onSubmit(envelope);
     setShowSolution(true);
     setShowComparisonFeedback(true);
-  }, [activityId, mode, onSubmit, placedPoints, intercepts, hints, interactionHistory, equation, comparisonEquation, linearEquation, domain, range, assessPointsCorrectness, assessInterceptsCorrectness, variant, comparisonAnswerSelected, assessComparisonCorrectness, intersectionPoints]);
+  }, [
+    activityId,
+    mode,
+    onSubmit,
+    placedPoints,
+    intercepts,
+    hints,
+    interactionHistory,
+    equation,
+    comparisonEquation,
+    linearEquation,
+    domain,
+    range,
+    assessPointsCorrectness,
+    assessInterceptsCorrectness,
+    variant,
+    comparisonAnswerSelected,
+    assessComparisonCorrectness,
+    intersectionPoints,
+  ]);
 
   const functions: FunctionPlot[] = [
     {
       expression: equation,
-      color: '#3b82f6',
+      color: "#3b82f6",
     },
-    ...(variant === 'compare_functions' && comparisonEquation
-      ? [{
-          expression: comparisonEquation,
-          color: '#ef4444',
-        }]
+    ...(variant === "compare_functions" && comparisonEquation
+      ? [
+          {
+            expression: comparisonEquation,
+            color: "#ef4444",
+          },
+        ]
       : []),
-    ...(variant === 'graph_system' && linearEquation
-      ? [{
-          expression: linearEquation,
-          color: '#10b981',
-        }]
+    ...(variant === "graph_system" && linearEquation
+      ? [
+          {
+            expression: linearEquation,
+            color: "#10b981",
+          },
+        ]
       : []),
-    ...(variant === 'compare_lines' && secondEquation
-      ? [{
-          expression: secondEquation,
-          color: '#ef4444',
-        }]
+    ...(variant === "compare_lines" && secondEquation
+      ? [
+          {
+            expression: secondEquation,
+            color: "#ef4444",
+          },
+        ]
       : []),
-    ...(variant === 'multi_curve' && secondEquation
-      ? [{
-          expression: secondEquation,
-          color: '#10b981',
-        }]
+    ...(variant === "multi_curve" && secondEquation
+      ? [
+          {
+            expression: secondEquation,
+            color: "#10b981",
+          },
+        ]
       : []),
   ];
 
@@ -373,14 +426,13 @@ export function GraphingExplorer({
     x,
     y,
     label: `${x.toFixed(1)}, ${y.toFixed(1)}`,
-    type: 'vertex',
+    type: "vertex",
   }));
 
-  const isTeaching = mode === 'teaching';
-  const isGuided = mode === 'guided';
-  const isPractice = mode === 'practice';
-  const isExplore = mode === 'explore';
-
+  const isTeaching = mode === "teaching";
+  const isGuided = mode === "guided";
+  const isPractice = mode === "practice";
+  const isExplore = mode === "explore";
 
   /**
    * Format a coefficient and variable into a display string for an equation.
@@ -391,22 +443,21 @@ export function GraphingExplorer({
    * @returns The formatted term string.
    */
   const formatCoefficient = (coeff: number, variable: string, isFirst: boolean): string => {
-    if (coeff === 0) return '';
-    const sign = coeff > 0 ? (isFirst ? '' : ' + ') : ' - ';
+    if (coeff === 0) return "";
+    const sign = coeff > 0 ? (isFirst ? "" : " + ") : " - ";
     const absCoeff = Math.abs(coeff);
-    const coeffStr = absCoeff === 1 && variable ? '' : absCoeff.toString();
+    const coeffStr = absCoeff === 1 && variable ? "" : absCoeff.toString();
     return `${sign}${coeffStr}${variable}`;
   };
 
   const exploreEquation = (() => {
-    let result = 'y = ';
-    const aPart = formatCoefficient(sliderA, 'x²', true);
-    const bPart = formatCoefficient(sliderB, 'x', !aPart);
-    const cPart = formatCoefficient(sliderC, '', !aPart && !bPart);
+    let result = "y = ";
+    const aPart = formatCoefficient(sliderA, "x²", true);
+    const bPart = formatCoefficient(sliderB, "x", !aPart);
+    const cPart = formatCoefficient(sliderC, "", !aPart && !bPart);
     result += aPart + bPart + cPart;
-    return result || 'y = 0';
+    return result || "y = 0";
   })();
-
 
   /**
    * Reset exploration sliders to their default values.
@@ -417,8 +468,7 @@ export function GraphingExplorer({
     setSliderC(sliderDefaults?.c ?? 0);
   };
 
-  const exploreFunctions: FunctionPlot[] = [{ expression: exploreEquation, color: '#3b82f6' }];
-
+  const exploreFunctions: FunctionPlot[] = [{ expression: exploreEquation, color: "#3b82f6" }];
 
   /**
    * Get the display title for the current graphing variant.
@@ -427,18 +477,18 @@ export function GraphingExplorer({
    */
   const getVariantTitle = () => {
     switch (variant) {
-      case 'compare_functions':
-        return 'Compare the Functions';
-      case 'find_intercepts':
-        return 'Find the X-Intercepts';
-      case 'graph_system':
-        return 'Graph the System of Equations';
-      case 'compare_lines':
-        return secondEquationLabel || 'Compare the Lines';
-      case 'multi_curve':
-        return secondEquationLabel || 'Compare the Curves';
+      case "compare_functions":
+        return "Compare the Functions";
+      case "find_intercepts":
+        return "Find the X-Intercepts";
+      case "graph_system":
+        return "Graph the System of Equations";
+      case "compare_lines":
+        return secondEquationLabel || "Compare the Lines";
+      case "multi_curve":
+        return secondEquationLabel || "Compare the Curves";
       default:
-        return 'Graph the Function';
+        return "Graph the Function";
     }
   };
 
@@ -514,9 +564,7 @@ export function GraphingExplorer({
             </div>
 
             <div className="pt-2 border-t border-slate-200">
-              <p className="text-lg font-mono text-center text-blue-700">
-                {exploreEquation}
-              </p>
+              <p className="text-lg font-mono text-center text-blue-700">{exploreEquation}</p>
             </div>
           </div>
 
@@ -549,201 +597,216 @@ export function GraphingExplorer({
           />
         </>
       ) : (
-      <>
-        <div>
-          <h2 className="text-xl font-semibold text-foreground mb-2">
-            {getVariantTitle()}
-          </h2>
-          <p className="text-muted-foreground">
-            {equation}
-            {variant === 'compare_functions' && comparisonEquation && (
-              <>
-                <br />
-                {comparisonEquation}
-              </>
-            )}
-            {variant === 'graph_system' && linearEquation && (
-              <>
-                <br />
-                {linearEquation}
-              </>
-            )}
-            {variant === 'compare_lines' && secondEquation && (
-              <>
-                <br />
-                {secondEquationLabel || secondEquation}
-              </>
-            )}
-            {variant === 'multi_curve' && secondEquation && (
-              <>
-                <br />
-                {secondEquationLabel || secondEquation}
-              </>
-            )}
-          </p>
-        </div>
-
-        {variant === 'graph_system' && (
-        <p className="text-sm text-muted-foreground">
-          Find the intersection points
-        </p>
-      )}
-
-      {isGuided && !tableComplete && (
-        <InteractiveTableOfValues
-          xValues={[-2, -1, 0, 1, 2]}
-          functionExpression={equation}
-          onTableComplete={handleTableComplete}
-          readonly={isTeaching}
-        />
-      )}
-
-      {isGuided && tableComplete && (
-        <div className="bg-green-50 border border-green-200 rounded-md p-3">
-          <p className="text-green-800 text-sm">Great! Now plot the points on the graph.</p>
-        </div>
-      )}
-
-      {isGuided && (
-        <HintPanel
-          functionExpression={equation}
-          onHintUsed={handleHintUsed}
-          readonly={isTeaching}
-        />
-      )}
-
-      <GraphingCanvas
-        domain={domain}
-        range={range}
-        functions={functions}
-        points={[...preSetPoints, ...placedPoints]}
-        onPointAdd={(!isTeaching && (isPractice || tableComplete)) ? handlePointAdd : undefined}
-        onPointRemove={(!isTeaching && (isPractice || tableComplete)) ? handlePointRemove : undefined}
-        readonly={isTeaching}
-        snapToGrid={isGuided}
-      />
-
-      {isGuided && tableComplete && (
-        <InterceptIdentification
-          functionExpression={equation}
-          onInterceptIdentified={handleInterceptIdentified}
-          readonly={isTeaching}
-        />
-      )}
-
-      {variant === 'find_intercepts' && !hasRealIntercepts() && (
-        <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4">
-          <p className="text-sm text-yellow-800 font-medium">
-            This function has no real x-intercepts.
-          </p>
-          <p className="text-xs text-yellow-700 mt-1">
-            The graph does not cross the x-axis.
-          </p>
-        </div>
-      )}
-
-      {variant === 'graph_system' && !hasRealIntersections() && (
-        <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4">
-          <p className="text-sm text-yellow-800 font-medium">
-            This system has no real intersection points.
-          </p>
-          <p className="text-xs text-yellow-700 mt-1">
-            The quadratic and linear functions do not intersect.
-          </p>
-        </div>
-      )}
-
-      {variant === 'compare_functions' && comparisonQuestion && (
-        <div className="bg-white border border-gray-200 rounded-md p-4">
-          <p className="font-medium text-foreground mb-3">{comparisonQuestion}</p>
-          {!isTeaching ? (
-            <div className="space-y-2">
-              <label className="flex items-center space-x-2 cursor-pointer">
-                <input
-                  type="radio"
-                  name="comparison"
-                  value="first"
-                  checked={comparisonAnswerSelected === 'first'}
-                  onChange={(e) => handleComparisonAnswerSelect(e.target.value as 'first' | 'second')}
-                  className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
-                />
-                <span className="text-foreground">First function: {equation}</span>
-              </label>
-              <label className="flex items-center space-x-2 cursor-pointer">
-                <input
-                  type="radio"
-                  name="comparison"
-                  value="second"
-                  checked={comparisonAnswerSelected === 'second'}
-                  onChange={(e) => handleComparisonAnswerSelect(e.target.value as 'first' | 'second')}
-                  className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
-                />
-                <span className="text-foreground">Second function: {comparisonEquation}</span>
-              </label>
-            </div>
-          ) : (
-            <p className="text-sm text-green-700 font-medium">
-              Correct answer: {comparisonAnswer === 'first' ? 'First' : 'Second'} function
-            </p>
-          )}
-        </div>
-      )}
-
-      {showSolution && (
         <>
-          {showComparisonFeedback && variant === 'compare_functions' && comparisonAnswerSelected && (
-            <div className={`border rounded-md p-4 ${assessComparisonCorrectness() ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
-              <h3 className={`font-semibold mb-2 ${assessComparisonCorrectness() ? 'text-green-900' : 'text-red-900'}`}>
-                {assessComparisonCorrectness() ? 'Correct!' : 'Incorrect'}
-              </h3>
-              {!assessComparisonCorrectness() && (
-                <p className={`text-sm ${assessComparisonCorrectness() ? 'text-green-800' : 'text-red-800'}`}>
-                  The correct answer is: {comparisonAnswer === 'first' ? 'First' : 'Second'} function
+          <div>
+            <h2 className="text-xl font-semibold text-foreground mb-2">{getVariantTitle()}</h2>
+            <p className="text-muted-foreground">
+              {equation}
+              {variant === "compare_functions" && comparisonEquation && (
+                <>
+                  <br />
+                  {comparisonEquation}
+                </>
+              )}
+              {variant === "graph_system" && linearEquation && (
+                <>
+                  <br />
+                  {linearEquation}
+                </>
+              )}
+              {variant === "compare_lines" && secondEquation && (
+                <>
+                  <br />
+                  {secondEquationLabel || secondEquation}
+                </>
+              )}
+              {variant === "multi_curve" && secondEquation && (
+                <>
+                  <br />
+                  {secondEquationLabel || secondEquation}
+                </>
+              )}
+            </p>
+          </div>
+
+          {variant === "graph_system" && (
+            <p className="text-sm text-muted-foreground">Find the intersection points</p>
+          )}
+
+          {isGuided && !tableComplete && (
+            <InteractiveTableOfValues
+              xValues={[-2, -1, 0, 1, 2]}
+              functionExpression={equation}
+              onTableComplete={handleTableComplete}
+              readonly={isTeaching}
+            />
+          )}
+
+          {isGuided && tableComplete && (
+            <div className="bg-green-50 border border-green-200 rounded-md p-3">
+              <p className="text-green-800 text-sm">Great! Now plot the points on the graph.</p>
+            </div>
+          )}
+
+          {isGuided && (
+            <HintPanel
+              functionExpression={equation}
+              onHintUsed={handleHintUsed}
+              readonly={isTeaching}
+            />
+          )}
+
+          <GraphingCanvas
+            domain={domain}
+            range={range}
+            functions={functions}
+            points={[...preSetPoints, ...placedPoints]}
+            onPointAdd={!isTeaching && (isPractice || tableComplete) ? handlePointAdd : undefined}
+            onPointRemove={
+              !isTeaching && (isPractice || tableComplete) ? handlePointRemove : undefined
+            }
+            readonly={isTeaching}
+            snapToGrid={isGuided}
+          />
+
+          {isGuided && tableComplete && (
+            <InterceptIdentification
+              functionExpression={equation}
+              onInterceptIdentified={handleInterceptIdentified}
+              readonly={isTeaching}
+            />
+          )}
+
+          {variant === "find_intercepts" && !hasRealIntercepts() && (
+            <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4">
+              <p className="text-sm text-yellow-800 font-medium">
+                This function has no real x-intercepts.
+              </p>
+              <p className="text-xs text-yellow-700 mt-1">The graph does not cross the x-axis.</p>
+            </div>
+          )}
+
+          {variant === "graph_system" && !hasRealIntersections() && (
+            <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4">
+              <p className="text-sm text-yellow-800 font-medium">
+                This system has no real intersection points.
+              </p>
+              <p className="text-xs text-yellow-700 mt-1">
+                The quadratic and linear functions do not intersect.
+              </p>
+            </div>
+          )}
+
+          {variant === "compare_functions" && comparisonQuestion && (
+            <div className="bg-white border border-gray-200 rounded-md p-4">
+              <p className="font-medium text-foreground mb-3">{comparisonQuestion}</p>
+              {!isTeaching ? (
+                <div className="space-y-2">
+                  <label className="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="comparison"
+                      value="first"
+                      checked={comparisonAnswerSelected === "first"}
+                      onChange={(e) =>
+                        handleComparisonAnswerSelect(e.target.value as "first" | "second")
+                      }
+                      className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                    />
+                    <span className="text-foreground">First function: {equation}</span>
+                  </label>
+                  <label className="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="comparison"
+                      value="second"
+                      checked={comparisonAnswerSelected === "second"}
+                      onChange={(e) =>
+                        handleComparisonAnswerSelect(e.target.value as "first" | "second")
+                      }
+                      className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                    />
+                    <span className="text-foreground">Second function: {comparisonEquation}</span>
+                  </label>
+                </div>
+              ) : (
+                <p className="text-sm text-green-700 font-medium">
+                  Correct answer: {comparisonAnswer === "first" ? "First" : "Second"} function
                 </p>
               )}
             </div>
           )}
-          {variant === 'find_intercepts' && (
-            <div className={`border rounded-md p-4 ${assessInterceptsCorrectness() ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
-              <h3 className={`font-semibold mb-2 ${assessInterceptsCorrectness() ? 'text-green-900' : 'text-red-900'}`}>
-                {assessInterceptsCorrectness() ? 'Correct!' : 'Incorrect'}
-              </h3>
-            </div>
-          )}
-          {variant === 'graph_system' && (
-            <div className={`border rounded-md p-4 ${assessPointsCorrectness() ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
-              <h3 className={`font-semibold mb-2 ${assessPointsCorrectness() ? 'text-green-900' : 'text-red-900'}`}>
-                {assessPointsCorrectness() ? 'Correct!' : 'Incorrect'}
-              </h3>
-            </div>
-          )}
-          <div className="bg-blue-50 border border-blue-200 rounded-md p-4">
-            <h3 className="font-semibold text-blue-900 mb-2">Correct Solution</h3>
-            <div className="text-sm text-blue-800 space-y-1">
-              {preSetPoints.map((point, index) => (
-                <div key={index}>
-                  Point: ({point.x.toFixed(1)}, {point.y.toFixed(1)})
-                </div>
-              ))}
-            </div>
-          </div>
-        </>
-      )}
 
-      {!isTeaching && (
-        (variant === 'compare_functions'
-          ? comparisonAnswerSelected
-          : isPractice || tableComplete
-        ) && (
-          <button
-            onClick={handleSubmit}
-            className="px-6 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
-          >
-            Submit
-          </button>
-        )
-      )}
-      </>
+          {showSolution && (
+            <>
+              {showComparisonFeedback &&
+                variant === "compare_functions" &&
+                comparisonAnswerSelected && (
+                  <div
+                    className={`border rounded-md p-4 ${assessComparisonCorrectness() ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"}`}
+                  >
+                    <h3
+                      className={`font-semibold mb-2 ${assessComparisonCorrectness() ? "text-green-900" : "text-red-900"}`}
+                    >
+                      {assessComparisonCorrectness() ? "Correct!" : "Incorrect"}
+                    </h3>
+                    {!assessComparisonCorrectness() && (
+                      <p
+                        className={`text-sm ${assessComparisonCorrectness() ? "text-green-800" : "text-red-800"}`}
+                      >
+                        The correct answer is: {comparisonAnswer === "first" ? "First" : "Second"}{" "}
+                        function
+                      </p>
+                    )}
+                  </div>
+                )}
+              {variant === "find_intercepts" && (
+                <div
+                  className={`border rounded-md p-4 ${assessInterceptsCorrectness() ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"}`}
+                >
+                  <h3
+                    className={`font-semibold mb-2 ${assessInterceptsCorrectness() ? "text-green-900" : "text-red-900"}`}
+                  >
+                    {assessInterceptsCorrectness() ? "Correct!" : "Incorrect"}
+                  </h3>
+                </div>
+              )}
+              {variant === "graph_system" && (
+                <div
+                  className={`border rounded-md p-4 ${assessPointsCorrectness() ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"}`}
+                >
+                  <h3
+                    className={`font-semibold mb-2 ${assessPointsCorrectness() ? "text-green-900" : "text-red-900"}`}
+                  >
+                    {assessPointsCorrectness() ? "Correct!" : "Incorrect"}
+                  </h3>
+                </div>
+              )}
+              <div className="bg-blue-50 border border-blue-200 rounded-md p-4">
+                <h3 className="font-semibold text-blue-900 mb-2">Correct Solution</h3>
+                <div className="text-sm text-blue-800 space-y-1">
+                  {preSetPoints.map((point, index) => (
+                    <div key={index}>
+                      Point: ({point.x.toFixed(1)}, {point.y.toFixed(1)})
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
+
+          {!isTeaching &&
+            (variant === "compare_functions"
+              ? comparisonAnswerSelected
+              : isPractice || tableComplete) && (
+              <button
+                onClick={handleSubmit}
+                className="px-6 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+              >
+                Submit
+              </button>
+            )}
+        </>
       )}
     </div>
   );

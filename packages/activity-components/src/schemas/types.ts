@@ -1,4 +1,4 @@
-import type { ActivityMode } from '@math-platform/activity-runtime/modes';
+import type { ActivityMode } from "@math-platform/activity-runtime/modes";
 
 /**
  * Canonical Activity interface representing a practice activity definition.

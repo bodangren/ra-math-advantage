@@ -1,4 +1,4 @@
-import workbookManifest from '@/lib/workbooks-manifest.json';
+import workbookManifest from "@/lib/workbooks-manifest.json";
 import {
   buildWorkbookFilename,
   buildCapstoneFilename,
@@ -8,12 +8,16 @@ import {
   hasCapstoneStudentWorkbook as hasCapstoneStudentWorkbookBase,
   hasCapstoneTeacherWorkbook as hasCapstoneTeacherWorkbookBase,
   validateWorkbookManifest,
-} from '@math-platform/workbook-pipeline';
+} from "@math-platform/workbook-pipeline";
 
 const manifest = validateWorkbookManifest(workbookManifest);
 
 /** Returns the public URL path for a workbook PDF by unit, lesson, and type. */
-export function getWorkbookPath(unitNumber: number, lessonNumber: number, type: 'student' | 'teacher'): string {
+export function getWorkbookPath(
+  unitNumber: number,
+  lessonNumber: number,
+  type: "student" | "teacher",
+): string {
   return `/workbooks/${buildWorkbookFilename(unitNumber, lessonNumber, type)}`;
 }
 
@@ -43,6 +47,6 @@ export function hasCapstoneTeacherWorkbook(): boolean {
 }
 
 /** Returns the public URL path for a capstone workbook PDF by type. */
-export function getCapstoneWorkbookPath(type: 'student' | 'teacher'): string {
+export function getCapstoneWorkbookPath(type: "student" | "teacher"): string {
   return `/workbooks/${buildCapstoneFilename(type)}`;
 }

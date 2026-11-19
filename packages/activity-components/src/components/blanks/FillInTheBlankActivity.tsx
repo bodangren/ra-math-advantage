@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { FillInTheBlank } from './FillInTheBlank';
+import { FillInTheBlank } from "./FillInTheBlank";
 
 export interface FillInTheBlankActivityProps {
   activityId: string;
-  mode: 'teaching' | 'guided' | 'practice';
+  mode: "teaching" | "guided" | "practice";
   onSubmit?: (payload: unknown) => void;
   onComplete?: () => void;
   template: string;

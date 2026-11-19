@@ -1,27 +1,28 @@
-import { describe, expect, it } from 'vitest';
-import type { Id } from '@/convex/_generated/dataModel';
+import { describe, expect, it } from "vitest";
+import type { Id } from "@/convex/_generated/dataModel";
 import {
   buildIm3CompareMaximumIndependentSeedDocuments,
   upsertIm3CompareMaximumIndependentActivity,
-} from '@/convex/seed/seed_lesson_1_1';
+} from "@/convex/seed/seed_lesson_1_1";
 import {
   IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
   IM3_COMPARE_MAXIMUM_NODE,
-} from '@/lib/practice/learning-evidence-pilot';
+} from "@/lib/practice/learning-evidence-pilot";
 
-describe('IM3 compare-maximum Independent activity upsert', () => {
-  it('upserts the exact Independent activity by stable identity', async () => {
+describe("IM3 compare-maximum Independent activity upsert", () => {
+  it("upserts the exact Independent activity by stable identity", async () => {
     const operations: string[] = [];
     let stored: Record<string, unknown> | undefined;
-    const storedActivityId = 'activities:compare-maximum-independent' as Id<'activities'>;
+    const storedActivityId = "activities:compare-maximum-independent" as Id<"activities">;
     const ctx = {
       db: {
         query(table: string) {
           operations.push(`query:${table}`);
           return {
-            withIndex(index: string, callback: (query: {
-              eq: (field: string, value: unknown) => unknown;
-            }) => unknown) {
+            withIndex(
+              index: string,
+              callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+            ) {
               operations.push(`index:${index}`);
               callback({
                 eq: (field: string, value: unknown) => {
@@ -31,7 +32,7 @@ describe('IM3 compare-maximum Independent activity upsert', () => {
               });
               return {
                 unique: async () => {
-                  operations.push('unique');
+                  operations.push("unique");
                   return stored ? { ...stored, _id: storedActivityId } : null;
                 },
               };
@@ -43,7 +44,7 @@ describe('IM3 compare-maximum Independent activity upsert', () => {
           stored = { ...document, _id: storedActivityId };
           return storedActivityId;
         },
-        patch: async (id: Id<'activities'>, document: Record<string, unknown>) => {
+        patch: async (id: Id<"activities">, document: Record<string, unknown>) => {
           operations.push(`patch:${id}`);
           stored = { ...stored, ...document, _id: id };
         },
@@ -56,15 +57,15 @@ describe('IM3 compare-maximum Independent activity upsert', () => {
     expect(firstId).toBe(storedActivityId);
     expect(secondId).toBe(storedActivityId);
     expect(operations).toEqual([
-      'query:activities',
-      'index:by_stable_activity_id',
+      "query:activities",
+      "index:by_stable_activity_id",
       `eq:stableActivityId:${IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID}`,
-      'unique',
-      'insert:activities',
-      'query:activities',
-      'index:by_stable_activity_id',
+      "unique",
+      "insert:activities",
+      "query:activities",
+      "index:by_stable_activity_id",
       `eq:stableActivityId:${IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID}`,
-      'unique',
+      "unique",
       `patch:${storedActivityId}`,
     ]);
     expect(stored).toEqual({
@@ -77,8 +78,11 @@ describe('IM3 compare-maximum Independent activity upsert', () => {
       masteryNodeId: IM3_COMPARE_MAXIMUM_NODE,
       srsEligible: true,
     });
-    expect(operations.filter((operation) => (
-      operation.includes('practice_variants') || operation.includes('practice_items')
-    ))).toEqual([]);
+    expect(
+      operations.filter(
+        (operation) =>
+          operation.includes("practice_variants") || operation.includes("practice_items"),
+      ),
+    ).toEqual([]);
   });
 });

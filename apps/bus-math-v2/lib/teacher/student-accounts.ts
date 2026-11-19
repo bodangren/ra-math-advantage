@@ -1,10 +1,6 @@
-import type { Id } from '@/convex/_generated/dataModel';
-import { PASSWORD_HASH_ITERATIONS } from '@/lib/auth/constants';
-import {
-  generatePasswordSalt,
-  generateRandomPassword,
-  hashPassword,
-} from '@/lib/auth/session';
+import type { Id } from "@/convex/_generated/dataModel";
+import { PASSWORD_HASH_ITERATIONS } from "@/lib/auth/constants";
+import { generatePasswordSalt, generateRandomPassword, hashPassword } from "@/lib/auth/session";
 
 interface TeacherClaimsLike {
   role: string;
@@ -42,7 +38,7 @@ interface CreatedStudentAccount {
  * @returns True if role is 'teacher' or 'admin'
  */
 export function isTeacherOrAdminRole(role: string | undefined): boolean {
-  return role === 'teacher' || role === 'admin';
+  return role === "teacher" || role === "admin";
 }
 
 /**
@@ -52,10 +48,7 @@ export function isTeacherOrAdminRole(role: string | undefined): boolean {
  * @param message - Error message to include in the 403 response
  * @returns null if authorized, Response with 403 status if not
  */
-export function requireTeacherClaims(
-  claims: TeacherClaimsLike,
-  message: string,
-): Response | null {
+export function requireTeacherClaims(claims: TeacherClaimsLike, message: string): Response | null {
   if (isTeacherOrAdminRole(claims.role)) {
     return null;
   }
@@ -68,8 +61,8 @@ export function requireTeacherClaims(
  * @param claims - The auth claims containing the sub field
  * @returns The profile ID as a Convex Id type
  */
-export function getTeacherProfileId(claims: TeacherClaimsLike): Id<'profiles'> {
-  return claims.sub as Id<'profiles'>;
+export function getTeacherProfileId(claims: TeacherClaimsLike): Id<"profiles"> {
+  return claims.sub as Id<"profiles">;
 }
 
 /**
@@ -85,11 +78,7 @@ export async function prepareStudentAccounts(
     students.map(async (student) => {
       const password = generateRandomPassword(12);
       const passwordSalt = generatePasswordSalt();
-      const passwordHash = await hashPassword(
-        password,
-        passwordSalt,
-        PASSWORD_HASH_ITERATIONS,
-      );
+      const passwordHash = await hashPassword(password, passwordSalt, PASSWORD_HASH_ITERATIONS);
 
       return {
         firstName: student.firstName,
@@ -110,9 +99,7 @@ export async function prepareStudentAccounts(
  * @param students - Array of prepared student accounts
  * @returns Array of payloads suitable for Convex mutations
  */
-export function toStudentMutationPayloads(
-  students: PreparedStudentAccount[],
-) {
+export function toStudentMutationPayloads(students: PreparedStudentAccount[]) {
   return students.map((student) => ({
     firstName: student.firstName,
     lastName: student.lastName,

@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const UNIT3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Periodic Phenomena (HSF-TF.A.4, HSF-TF.B.5)
@@ -54,7 +54,8 @@ export const UNIT3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "step-by-step-solver:sinusoidal-modeling",
     componentKey: "step-by-step-solver",
     displayName: "Sinusoidal Modeling",
-    description: "Write sinusoidal functions to model real-world periodic phenomena with specified parameters",
+    description:
+      "Write sinusoidal functions to model real-world periodic phenomena with specified parameters",
     objectiveIds: ["HSF-TF.B.5"],
     difficulty: "challenging",
     metadata: { unit: 3, topic: "sinusoidal" },

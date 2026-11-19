@@ -1,8 +1,8 @@
-import { describe, it, expect } from 'vitest';
-import schema from '../../convex/schema';
+import { describe, it, expect } from "vitest";
+import schema from "../../convex/schema";
 
-describe('Convex Schema Translation', () => {
-  it('should export a valid convex schema with all expected tables', () => {
+describe("Convex Schema Translation", () => {
+  it("should export a valid convex schema with all expected tables", () => {
     // Convex's defineSchema returns a schema object with a tables property
     expect(schema).toBeDefined();
 
@@ -11,78 +11,82 @@ describe('Convex Schema Translation', () => {
     expect(tableNames.length).toBe(38);
 
     // Check study tables
-    expect(tableNames).toContain('study_preferences');
-    expect(tableNames).toContain('term_mastery');
-    expect(tableNames).toContain('due_reviews');
-    expect(tableNames).toContain('study_sessions');
-    expect(tableNames).toContain('practice_test_results');
+    expect(tableNames).toContain("study_preferences");
+    expect(tableNames).toContain("term_mastery");
+    expect(tableNames).toContain("due_reviews");
+    expect(tableNames).toContain("study_sessions");
+    expect(tableNames).toContain("practice_test_results");
 
     // Check component approval tables
-    expect(tableNames).toContain('componentApprovals');
-    expect(tableNames).toContain('componentReviews');
+    expect(tableNames).toContain("componentApprovals");
+    expect(tableNames).toContain("componentReviews");
 
     // Check chatbot rate limits table
-    expect(tableNames).toContain('chatbot_rate_limits');
+    expect(tableNames).toContain("chatbot_rate_limits");
 
     // Check login rate limits table
-    expect(tableNames).toContain('login_rate_limits');
+    expect(tableNames).toContain("login_rate_limits");
 
     // Check api rate limits table
-    expect(tableNames).toContain('api_rate_limits');
+    expect(tableNames).toContain("api_rate_limits");
 
     // Check learning evidence table and its app-owned query indexes
-    expect(tableNames).toContain('learning_evidence');
-    expect(tableNames).toContain('learning_evidence_receipts');
+    expect(tableNames).toContain("learning_evidence");
+    expect(tableNames).toContain("learning_evidence_receipts");
     const learningEvidenceTable = schema.tables.learning_evidence;
     expect(Object.keys(learningEvidenceTable.validator.fields)).toEqual([
-      'fingerprint',
-      'studentId',
-      'submissionId',
-      'contractVersion',
-      'nodeId',
-      'activityId',
-      'attemptOrdinal',
-      'origin',
-      'mode',
-      'occurredAt',
-      'gradedEvidence',
-      'idempotencyKey',
-      'createdAt',
+      "fingerprint",
+      "studentId",
+      "submissionId",
+      "contractVersion",
+      "nodeId",
+      "activityId",
+      "attemptOrdinal",
+      "origin",
+      "mode",
+      "occurredAt",
+      "gradedEvidence",
+      "idempotencyKey",
+      "createdAt",
     ]);
-    expect(Reflect.get(learningEvidenceTable, 'indexes')).toEqual(expect.arrayContaining([
-      {
-        indexDescriptor: 'by_student_and_node',
-        fields: ['studentId', 'nodeId'],
-      },
-      {
-        indexDescriptor: 'by_student_node_origin_occurred_at',
-        fields: ['studentId', 'nodeId', 'origin', 'occurredAt'],
-      },
-      {
-        indexDescriptor: 'by_student_node_activity_origin_attempt',
-        fields: ['studentId', 'nodeId', 'activityId', 'origin', 'attemptOrdinal'],
-      },
-      {
-        indexDescriptor: 'by_student_and_submission_id',
-        fields: ['studentId', 'submissionId'],
-      },
-    ]));
+    expect(Reflect.get(learningEvidenceTable, "indexes")).toEqual(
+      expect.arrayContaining([
+        {
+          indexDescriptor: "by_student_and_node",
+          fields: ["studentId", "nodeId"],
+        },
+        {
+          indexDescriptor: "by_student_node_origin_occurred_at",
+          fields: ["studentId", "nodeId", "origin", "occurredAt"],
+        },
+        {
+          indexDescriptor: "by_student_node_activity_origin_attempt",
+          fields: ["studentId", "nodeId", "activityId", "origin", "attemptOrdinal"],
+        },
+        {
+          indexDescriptor: "by_student_and_submission_id",
+          fields: ["studentId", "submissionId"],
+        },
+      ]),
+    );
 
     // Check SRS tables
-    expect(tableNames).toContain('srs_cards');
-    expect(tableNames).toContain('srs_review_log');
-    expect(tableNames).toContain('srs_interventions');
-    expect(Object.keys(schema.tables.srs_cards.validator.fields)).toContain('problemFamilyId');
-    expect(Object.keys(schema.tables.srs_review_log.validator.fields)).toContain('problemFamilyId');
-    expect(Object.keys(schema.tables.srs_interventions.validator.fields)).toContain('problemFamilyId');
+    expect(tableNames).toContain("srs_cards");
+    expect(tableNames).toContain("srs_review_log");
+    expect(tableNames).toContain("srs_interventions");
+    expect(Object.keys(schema.tables.srs_cards.validator.fields)).toContain("problemFamilyId");
+    expect(Object.keys(schema.tables.srs_review_log.validator.fields)).toContain("problemFamilyId");
+    expect(Object.keys(schema.tables.srs_interventions.validator.fields)).toContain(
+      "problemFamilyId",
+    );
 
     // Check some specific core tables
-    expect(tableNames).toContain('organizations');
-    expect(tableNames).toContain('profiles');
-    expect(tableNames).toContain('lessons');
-    expect(tableNames).toContain('activities');
-    expect(tableNames).toContain('student_progress');
-    expect(tableNames).toContain('competency_standards');
-    expect(tableNames).toContain('auth_credentials');
+    expect(tableNames).toContain("organizations");
+    expect(tableNames).toContain("profiles");
+    expect(tableNames).toContain("lessons");
+    expect(tableNames).toContain("activities");
+    expect(tableNames).toContain("student_progress");
+    expect(tableNames).toContain("competency_standards");
+    expect(tableNames).toContain("auth_credentials");
   });
 });

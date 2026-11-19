@@ -1,16 +1,8 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import {
-  Target,
-  CheckCircle,
-  BookOpen,
-  Clock,
-  Users,
-  FileText,
-  TrendingUp
-} from "lucide-react"
-import { type Lesson } from '@/lib/schemas/validators';
-import { formatCurriculumSegmentTitle } from '@/lib/curriculum/segment-labels';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Target, CheckCircle, BookOpen, Clock, Users, FileText, TrendingUp } from "lucide-react";
+import { type Lesson } from "@/lib/schemas/validators";
+import { formatCurriculumSegmentTitle } from "@/lib/curriculum/segment-labels";
 
 interface UnitOverviewProps {
   lesson: Lesson;
@@ -18,7 +10,6 @@ interface UnitOverviewProps {
   course?: string;
   capstoneConnection?: string;
 }
-
 
 /**
  * Renders a student-facing unit overview with essential question, learning targets,
@@ -31,7 +22,12 @@ interface UnitOverviewProps {
  * @param props.capstoneConnection - Optional override for capstone connection text.
  * @returns A structured unit overview page.
  */
-export function UnitOverview({ lesson, gradeLevel = "9-12", course = "Business Operations", capstoneConnection }: UnitOverviewProps) {
+export function UnitOverview({
+  lesson,
+  gradeLevel = "9-12",
+  course = "Business Operations",
+  capstoneConnection,
+}: UnitOverviewProps) {
   // Extract unit content from lesson metadata
   const unitContent = lesson.metadata?.unitContent;
   const drivingQuestion = unitContent?.drivingQuestion?.question;
@@ -41,11 +37,13 @@ export function UnitOverview({ lesson, gradeLevel = "9-12", course = "Business O
   const learningTargets = lesson.learningObjectives || [];
 
   // Extract skills from objectives
-  const excelSkills = unitContent?.objectives?.skills?.filter(skill =>
-    skill.toLowerCase().includes('excel') ||
-    skill.toLowerCase().includes('formula') ||
-    skill.toLowerCase().includes('spreadsheet')
-  ) || [];
+  const excelSkills =
+    unitContent?.objectives?.skills?.filter(
+      (skill) =>
+        skill.toLowerCase().includes("excel") ||
+        skill.toLowerCase().includes("formula") ||
+        skill.toLowerCase().includes("spreadsheet"),
+    ) || [];
 
   const businessSkills = unitContent?.objectives?.content || [];
 
@@ -55,13 +53,14 @@ export function UnitOverview({ lesson, gradeLevel = "9-12", course = "Business O
     keyAssessments.push(unitContent.assessment.performanceTask.title);
   }
   if (unitContent?.assessment?.milestones) {
-    unitContent.assessment.milestones.forEach(milestone => {
+    unitContent.assessment.milestones.forEach((milestone) => {
       keyAssessments.push(`${milestone.title} (Day ${milestone.day})`);
     });
   }
 
   // Use provided capstone connection or build from unit content
-  const capstoneText = capstoneConnection ||
+  const capstoneText =
+    capstoneConnection ||
     unitContent?.introduction?.projectOverview?.deliverable ||
     "This unit builds essential skills for the semester capstone project.";
 
@@ -72,23 +71,27 @@ export function UnitOverview({ lesson, gradeLevel = "9-12", course = "Business O
         <h1 className="text-3xl font-bold mb-4">
           {formatCurriculumSegmentTitle(lesson.unitNumber, lesson.title)}
         </h1>
-        <p className="text-lg text-muted-foreground mb-4">
-          {lesson.description}
-        </p>
+        <p className="text-lg text-muted-foreground mb-4">{lesson.description}</p>
 
         {/* Unit Meta */}
         <div className="flex flex-wrap gap-4 p-4 bg-slate-50 dark:bg-slate-950/20 rounded-lg">
           <div className="flex items-center gap-2">
             <Clock className="h-4 w-4" />
-            <span><strong>Duration:</strong> {durationLabel}</span>
+            <span>
+              <strong>Duration:</strong> {durationLabel}
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <Users className="h-4 w-4" />
-            <span><strong>Grade Level:</strong> {gradeLevel}</span>
+            <span>
+              <strong>Grade Level:</strong> {gradeLevel}
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <BookOpen className="h-4 w-4" />
-            <span><strong>Course:</strong> {course}</span>
+            <span>
+              <strong>Course:</strong> {course}
+            </span>
           </div>
         </div>
       </header>
@@ -202,7 +205,10 @@ export function UnitOverview({ lesson, gradeLevel = "9-12", course = "Business O
             <CardContent>
               <div className="grid gap-4">
                 {keyAssessments.map((assessment, index) => (
-                  <div key={index} className="flex items-center gap-3 p-3 bg-orange-50 dark:bg-orange-950/10 rounded-lg">
+                  <div
+                    key={index}
+                    className="flex items-center gap-3 p-3 bg-orange-50 dark:bg-orange-950/10 rounded-lg"
+                  >
                     <Badge variant="secondary">Assessment {index + 1}</Badge>
                     <span className="text-orange-700 dark:text-orange-300">{assessment}</span>
                   </div>
@@ -224,12 +230,10 @@ export function UnitOverview({ lesson, gradeLevel = "9-12", course = "Business O
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-green-700 dark:text-green-300">
-              {capstoneText}
-            </p>
+            <p className="text-green-700 dark:text-green-300">{capstoneText}</p>
           </CardContent>
         </Card>
       </section>
     </div>
-  )
+  );
 }

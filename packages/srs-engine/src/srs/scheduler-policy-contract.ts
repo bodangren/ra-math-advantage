@@ -1,17 +1,12 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 /** Contract version for the v3.1 scheduler-policy additions. */
-export const SCHEDULER_POLICY_VERSION = 'scheduler-policy.v3.1' as const;
+export const SCHEDULER_POLICY_VERSION = "scheduler-policy.v3.1" as const;
 
 /** Canonical provenance for the exact built-in ts-fsrs v5 parameter set. */
-export const BUILTIN_FSRS_PARAMS_VERSION = 'fsrs-defaults.ts-fsrs.v5.4.1' as const;
+export const BUILTIN_FSRS_PARAMS_VERSION = "fsrs-defaults.ts-fsrs.v5.4.1" as const;
 
-export const OBJECTIVE_PRIORITIES = [
-  'essential',
-  'supporting',
-  'extension',
-  'triaged',
-] as const;
+export const OBJECTIVE_PRIORITIES = ["essential", "supporting", "extension", "triaged"] as const;
 
 export const objectivePrioritySchema = z.enum(OBJECTIVE_PRIORITIES);
 
@@ -74,8 +69,7 @@ export function resolveRequestedRetention(
   priority: ObjectivePriorityV31,
 ): number {
   const normalized = normalizeSchedulerConfig(config);
-  return normalized.requestRetentionByPriority?.[priority]
-    ?? normalized.requestRetention;
+  return normalized.requestRetentionByPriority?.[priority] ?? normalized.requestRetention;
 }
 
 export function isSchedulerConfigV31(value: unknown): value is SchedulerConfigV31 {
@@ -87,11 +81,12 @@ export function isSchedulerConfigV31(value: unknown): value is SchedulerConfigV3
  * It is persisted on every review log so replay evaluation can attribute the
  * prediction to the correct fitted/default parameter artifact (§12.10, §17.2).
  */
-export const paramsVersionSchema = z.string()
+export const paramsVersionSchema = z
+  .string()
   .min(1)
   .max(200)
   .refine((value) => value.trim() === value && value.length > 0, {
-    message: 'paramsVersion must be non-blank and have no surrounding whitespace',
+    message: "paramsVersion must be non-blank and have no surrounding whitespace",
   });
 
 /** Standalone strict stamp intended to be spread onto a review-log entry. */
@@ -113,9 +108,7 @@ export function isParamsVersionStampV31(value: unknown): value is ParamsVersionS
 export function hasStampedParamsVersion(
   value: unknown,
 ): value is Record<string, unknown> & ParamsVersionStampV31 {
-  if (value === null || typeof value !== 'object' || Array.isArray(value)) return false;
-  if (!Object.prototype.hasOwnProperty.call(value, 'paramsVersion')) return false;
-  return paramsVersionSchema.safeParse(
-    (value as Record<string, unknown>).paramsVersion,
-  ).success;
+  if (value === null || typeof value !== "object" || Array.isArray(value)) return false;
+  if (!Object.prototype.hasOwnProperty.call(value, "paramsVersion")) return false;
+  return paramsVersionSchema.safeParse((value as Record<string, unknown>).paramsVersion).success;
 }

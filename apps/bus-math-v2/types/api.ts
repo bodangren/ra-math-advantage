@@ -1,9 +1,4 @@
-export const API_PHASE_STATUSES = [
-  'completed',
-  'current',
-  'available',
-  'locked',
-] as const;
+export const API_PHASE_STATUSES = ["completed", "current", "available", "locked"] as const;
 
 export type PhaseStatus = (typeof API_PHASE_STATUSES)[number];
 

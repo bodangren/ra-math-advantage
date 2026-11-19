@@ -3,18 +3,12 @@
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { InfoIcon } from "lucide-react";
-
 
 /**
  * Renders a login form with demo account shortcuts and role-based redirect.
@@ -22,10 +16,7 @@ import { InfoIcon } from "lucide-react";
  * @param props - Standard div props with optional className
  * @returns A card containing the login form
  */
-export function LoginForm({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -35,17 +26,15 @@ export function LoginForm({
   const { signIn, profile, user } = useAuth();
   const shouldRedirectRef = useRef(false);
 
-
   /**
    * Provisions demo users if needed before attempting sign-in.
    */
   const ensureDemoUsers = async () => {
-    const response = await fetch('/api/users/ensure-demo', { method: 'POST' });
+    const response = await fetch("/api/users/ensure-demo", { method: "POST" });
     if (!response.ok) {
-      throw new Error('Failed to provision demo users');
+      throw new Error("Failed to provision demo users");
     }
   };
-
 
   /**
    * Attempts to sign in, provisioning demo users for demo credentials first.
@@ -55,8 +44,8 @@ export function LoginForm({
    */
   const trySignIn = async (loginUsername: string, loginPassword: string) => {
     const isDemoLogin =
-      (loginUsername === 'demo_student' || loginUsername === 'demo_teacher') &&
-      loginPassword === 'demo123';
+      (loginUsername === "demo_student" || loginUsername === "demo_teacher") &&
+      loginPassword === "demo123";
 
     if (isDemoLogin) {
       try {
@@ -68,7 +57,6 @@ export function LoginForm({
 
     await signIn(loginUsername, loginPassword);
   };
-
 
   /**
    * Handles the login form submission with error messaging.
@@ -88,15 +76,15 @@ export function LoginForm({
     } catch (error: unknown) {
       // Display user-friendly error messages without technical details
       if (error instanceof Error) {
-        if (error.message.includes('Invalid login credentials')) {
-          setError('Invalid username or password. Please try again.');
-        } else if (error.message.includes('Email not confirmed')) {
-          setError('Please verify your email before logging in.');
+        if (error.message.includes("Invalid login credentials")) {
+          setError("Invalid username or password. Please try again.");
+        } else if (error.message.includes("Email not confirmed")) {
+          setError("Please verify your email before logging in.");
         } else {
-          setError('Unable to log in. Please try again later.');
+          setError("Unable to log in. Please try again later.");
         }
       } else {
-        setError('An unexpected error occurred. Please try again.');
+        setError("An unexpected error occurred. Please try again.");
       }
       setIsLoading(false);
       shouldRedirectRef.current = false;
@@ -107,25 +95,24 @@ export function LoginForm({
   useEffect(() => {
     // Redirect if we have a user and profile
     if (user && profile) {
-      const redirect = searchParams.get('redirect');
+      const redirect = searchParams.get("redirect");
 
       if (redirect) {
         router.push(redirect);
       } else {
         // Default redirects based on role
-        if (profile.role === 'admin') {
-          router.push('/teacher/dashboard');
-        } else if (profile.role === 'teacher') {
-          router.push('/teacher/dashboard');
+        if (profile.role === "admin") {
+          router.push("/teacher/dashboard");
+        } else if (profile.role === "teacher") {
+          router.push("/teacher/dashboard");
         } else {
-          router.push('/student/dashboard');
+          router.push("/student/dashboard");
         }
       }
       // Reset loading state
       queueMicrotask(() => setIsLoading(false));
     }
   }, [profile, user, router, searchParams]);
-
 
   /**
    * Populates the login form with demo credentials.
@@ -143,9 +130,7 @@ export function LoginForm({
       <Card>
         <CardHeader>
           <h1 className="text-2xl font-semibold">Login</h1>
-          <CardDescription>
-            Enter your username and password to access your account
-          </CardDescription>
+          <CardDescription>Enter your username and password to access your account</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleLogin}>
@@ -192,12 +177,7 @@ export function LoginForm({
                   <p className="text-sm text-red-800">{error}</p>
                 </div>
               )}
-              <Button
-                type="submit"
-                className="w-full"
-                disabled={isLoading}
-                aria-busy={isLoading}
-              >
+              <Button type="submit" className="w-full" disabled={isLoading} aria-busy={isLoading}>
                 {isLoading ? "Logging in..." : "Login"}
               </Button>
             </div>
@@ -215,7 +195,7 @@ export function LoginForm({
                 type="button"
                 variant="outline"
                 className="w-full justify-start text-left border-blue-400 hover:bg-blue-200"
-                onClick={() => handleDemoLogin('demo_student', 'demo123')}
+                onClick={() => handleDemoLogin("demo_student", "demo123")}
                 aria-label="Use demo student credentials"
               >
                 <div className="flex flex-col items-start">
@@ -227,7 +207,7 @@ export function LoginForm({
                 type="button"
                 variant="outline"
                 className="w-full justify-start text-left border-blue-400 hover:bg-blue-200"
-                onClick={() => handleDemoLogin('demo_teacher', 'demo123')}
+                onClick={() => handleDemoLogin("demo_teacher", "demo123")}
                 aria-label="Use demo teacher credentials"
               >
                 <div className="flex flex-col items-start">

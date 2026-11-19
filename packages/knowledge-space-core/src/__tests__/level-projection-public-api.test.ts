@@ -18,20 +18,20 @@
 // Test count: 2 tests. Targeted command:
 //   npx vitest run packages/knowledge-space-core/src/__tests__/level-projection-public-api.test.ts
 
-import { describe, it, expect } from 'vitest';
-import * as rootExports from '@math-platform/knowledge-space-core';
-import * as subpathExports from '@math-platform/knowledge-space-core/level-projection';
+import { describe, it, expect } from "vitest";
+import * as rootExports from "@math-platform/knowledge-space-core";
+import * as subpathExports from "@math-platform/knowledge-space-core/level-projection";
 
 // ---------------------------------------------------------------------------
 // 1. Package root export
 // ---------------------------------------------------------------------------
 
-describe('Level Projection — public API contract: package root (kst-srs.v2 §11.2)', () => {
-  it('re-exports projectDisplayLevel from @math-platform/knowledge-space-core', () => {
+describe("Level Projection — public API contract: package root (kst-srs.v2 §11.2)", () => {
+  it("re-exports projectDisplayLevel from @math-platform/knowledge-space-core", () => {
     // Re-exported by `packages/knowledge-space-core/src/index.ts` from
     // `./level-projection` as a named `projectDisplayLevel` symbol.
     const fn = (rootExports as Record<string, unknown>).projectDisplayLevel;
-    expect(typeof fn).toBe('function');
+    expect(typeof fn).toBe("function");
   });
 });
 
@@ -39,12 +39,12 @@ describe('Level Projection — public API contract: package root (kst-srs.v2 §1
 // 2. Subpath export
 // ---------------------------------------------------------------------------
 
-describe('Level Projection — public API contract: subpath (kst-srs.v2 §11.2)', () => {
-  it('exports projectDisplayLevel from @math-platform/knowledge-space-core/level-projection', () => {
+describe("Level Projection — public API contract: subpath (kst-srs.v2 §11.2)", () => {
+  it("exports projectDisplayLevel from @math-platform/knowledge-space-core/level-projection", () => {
     // The subpath is wired in `package.json` exports, so the import resolves
     // directly to `./level-projection.ts`, which exports the `projectDisplayLevel`
     // function.
     const fn = (subpathExports as Record<string, unknown>).projectDisplayLevel;
-    expect(typeof fn).toBe('function');
+    expect(typeof fn).toBe("function");
   });
 });

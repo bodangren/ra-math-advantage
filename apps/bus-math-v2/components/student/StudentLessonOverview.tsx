@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 import {
   ArrowRight,
   BookOpen,
@@ -7,18 +7,18 @@ import {
   Lightbulb,
   PlayCircle,
   Target,
-  Users
-} from 'lucide-react';
+  Users,
+} from "lucide-react";
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import type { Lesson, Phase } from '@/lib/schemas/validators';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type { Lesson, Phase } from "@/lib/schemas/validators";
 import {
   studentDashboardPath,
   studentLessonPhasePath,
   studentUnitAnchor,
-} from '@/lib/student/navigation';
+} from "@/lib/student/navigation";
 
 interface LessonUnitSummary {
   title: string;
@@ -37,15 +37,14 @@ const phaseIcons: Record<string, typeof PlayCircle> = {
   practice: Users,
   challenge: Target,
   assessment: CheckCircle2,
-  reflection: Lightbulb
+  reflection: Lightbulb,
 };
 
 const defaultPedagogy = [
-  'Authentic scenario planning tied to Sarah Chen’s TechStart journey',
-  'Guided collaboration routines with turn-and-talk prompts',
-  'Hands-on spreadsheets with immediate instructor feedback'
+  "Authentic scenario planning tied to Sarah Chen’s TechStart journey",
+  "Guided collaboration routines with turn-and-talk prompts",
+  "Hands-on spreadsheets with immediate instructor feedback",
 ];
-
 
 /**
  * Formats a lesson's duration metadata into hours as a number.
@@ -57,7 +56,6 @@ function formattedDuration(lesson: Lesson) {
   const hours = (lesson.metadata?.duration ?? 60) / 60;
   return Math.round(hours * 10) / 10;
 }
-
 
 /**
  * Renders a student-facing lesson overview with breadcrumbs, learning objectives,
@@ -76,7 +74,10 @@ export function StudentLessonOverview({ lesson, unit, phases = [] }: StudentLess
 
   return (
     <div className="mx-auto max-w-4xl space-y-8 px-4">
-      <nav className="flex items-center space-x-2 text-sm text-muted-foreground" aria-label="Breadcrumb">
+      <nav
+        className="flex items-center space-x-2 text-sm text-muted-foreground"
+        aria-label="Breadcrumb"
+      >
         <Link href={studentDashboardPath()} className="hover:text-foreground">
           Student
         </Link>
@@ -95,12 +96,12 @@ export function StudentLessonOverview({ lesson, unit, phases = [] }: StudentLess
           </Badge>
           <Badge variant="secondary" className="text-sm">
             <Clock className="mr-1 h-3 w-3" />
-            {formattedDuration(lesson)}h {formattedDuration(lesson) > 1 ? '• Multi-day' : ''}
+            {formattedDuration(lesson)}h {formattedDuration(lesson) > 1 ? "• Multi-day" : ""}
           </Badge>
         </div>
         <h1 className="text-4xl font-bold tracking-tight">{lesson.title}</h1>
         <p className="mx-auto max-w-2xl text-xl text-muted-foreground">
-          {lesson.description ?? 'Lesson description forthcoming once Supabase content is seeded.'}
+          {lesson.description ?? "Lesson description forthcoming once Supabase content is seeded."}
         </p>
       </div>
 
@@ -114,12 +115,14 @@ export function StudentLessonOverview({ lesson, unit, phases = [] }: StudentLess
           </CardHeader>
           <CardContent>
             <ul className="space-y-3">
-              {(lesson.learningObjectives ?? ['Learning objectives coming soon.']).map((objective, index) => (
-                <li key={`${objective}-${index}`} className="flex items-start gap-2">
-                  <span className="mt-1 text-blue-600">▶</span>
-                  <span className="text-sm leading-relaxed">{objective}</span>
-                </li>
-              ))}
+              {(lesson.learningObjectives ?? ["Learning objectives coming soon."]).map(
+                (objective, index) => (
+                  <li key={`${objective}-${index}`} className="flex items-start gap-2">
+                    <span className="mt-1 text-blue-600">▶</span>
+                    <span className="text-sm leading-relaxed">{objective}</span>
+                  </li>
+                ),
+              )}
             </ul>
           </CardContent>
         </Card>
@@ -135,16 +138,23 @@ export function StudentLessonOverview({ lesson, unit, phases = [] }: StudentLess
             {concepts.length > 0 ? (
               <div className="space-y-2">
                 {concepts.slice(0, 3).map((concept, index) => (
-                  <div key={`${concept}-${index}`} className="rounded-md bg-green-50 p-2 text-sm font-medium text-green-800 dark:bg-green-950/20 dark:text-green-200">
+                  <div
+                    key={`${concept}-${index}`}
+                    className="rounded-md bg-green-50 p-2 text-sm font-medium text-green-800 dark:bg-green-950/20 dark:text-green-200"
+                  >
                     {concept}
                   </div>
                 ))}
                 {concepts.length > 3 && (
-                  <p className="text-xs text-muted-foreground">+{concepts.length - 3} more concepts</p>
+                  <p className="text-xs text-muted-foreground">
+                    +{concepts.length - 3} more concepts
+                  </p>
                 )}
               </div>
             ) : (
-              <p className="text-sm text-muted-foreground">Concept tags will surface after lessons are migrated.</p>
+              <p className="text-sm text-muted-foreground">
+                Concept tags will surface after lessons are migrated.
+              </p>
             )}
           </CardContent>
         </Card>
@@ -158,12 +168,13 @@ export function StudentLessonOverview({ lesson, unit, phases = [] }: StudentLess
               Lesson Phases
             </CardTitle>
             <p className="text-sm text-muted-foreground">
-              Every lesson follows the six-phase routine to keep Sarah’s business narrative grounded in data.
+              Every lesson follows the six-phase routine to keep Sarah’s business narrative grounded
+              in data.
             </p>
           </CardHeader>
           <CardContent className="space-y-3">
             {sortedPhases.map((phase) => {
-              const Icon = phaseIcons[phase.metadata.phaseType ?? 'intro'] ?? PlayCircle;
+              const Icon = phaseIcons[phase.metadata.phaseType ?? "intro"] ?? PlayCircle;
 
               return (
                 <div
@@ -177,8 +188,8 @@ export function StudentLessonOverview({ lesson, unit, phases = [] }: StudentLess
                     <div>
                       <h4 className="font-medium">{phase.title}</h4>
                       <p className="text-sm text-muted-foreground">
-                        {phase.contentBlocks.find((block) => block.type === 'markdown')?.content ??
-                          'Phase description will appear when content blocks are populated.'}
+                        {phase.contentBlocks.find((block) => block.type === "markdown")?.content ??
+                          "Phase description will appear when content blocks are populated."}
                       </p>
                     </div>
                   </div>

@@ -24,13 +24,13 @@
 //   - getImportSummary(ctx, { classId, importId })
 //   - listImportsForClass(ctx, { classId })
 
-import { vi } from 'vitest';
-import type { Id } from '@/convex/_generated/dataModel';
+import { vi } from "vitest";
+import type { Id } from "@/convex/_generated/dataModel";
 
 export interface ClassRow {
-  _id: Id<'classes'>;
+  _id: Id<"classes">;
   _creationTime: number;
-  teacherId: Id<'profiles'>;
+  teacherId: Id<"profiles">;
   name: string;
   description?: string;
   academicYear?: string;
@@ -41,22 +41,22 @@ export interface ClassRow {
 }
 
 export interface ClassEnrollmentRow {
-  _id: Id<'class_enrollments'>;
+  _id: Id<"class_enrollments">;
   _creationTime: number;
-  classId: Id<'classes'>;
-  studentId: Id<'profiles'>;
+  classId: Id<"classes">;
+  studentId: Id<"profiles">;
   enrolledAt: number;
-  status: 'active' | 'withdrawn' | 'completed';
+  status: "active" | "withdrawn" | "completed";
   createdAt: number;
   updatedAt: number;
 }
 
 export interface ProfileRow {
-  _id: Id<'profiles'>;
+  _id: Id<"profiles">;
   _creationTime: number;
-  organizationId: Id<'organizations'>;
+  organizationId: Id<"organizations">;
   username: string;
-  role: 'student' | 'teacher' | 'admin';
+  role: "student" | "teacher" | "admin";
   displayName?: string;
   avatarUrl?: string;
   metadata?: Record<string, unknown>;
@@ -65,12 +65,12 @@ export interface ProfileRow {
 }
 
 export interface AuthCredentialRow {
-  _id: Id<'auth_credentials'>;
+  _id: Id<"auth_credentials">;
   _creationTime: number;
-  profileId: Id<'profiles'>;
+  profileId: Id<"profiles">;
   username: string;
-  role: 'student' | 'teacher' | 'admin';
-  organizationId: Id<'organizations'>;
+  role: "student" | "teacher" | "admin";
+  organizationId: Id<"organizations">;
   passwordHash: string;
   passwordSalt: string;
   passwordHashIterations: number;
@@ -80,10 +80,10 @@ export interface AuthCredentialRow {
 }
 
 export interface RosterImportRow {
-  _id: Id<'roster_imports'>;
+  _id: Id<"roster_imports">;
   _creationTime: number;
-  classId: Id<'classes'>;
-  importedBy: Id<'profiles'>;
+  classId: Id<"classes">;
+  importedBy: Id<"profiles">;
   importedAt: number;
   source: {
     fileName?: string;
@@ -94,11 +94,11 @@ export interface RosterImportRow {
   skipped: number;
   errors: Array<{
     rowIndex: number;
-    column?: 'name' | 'email' | 'sisId' | 'section';
-    code: 'missing_required' | 'invalid_email' | 'duplicate_identifier' | 'malformed_row';
+    column?: "name" | "email" | "sisId" | "section";
+    code: "missing_required" | "invalid_email" | "duplicate_identifier" | "malformed_row";
     message: string;
   }>;
-  createdStudentIds: Id<'profiles'>[];
+  createdStudentIds: Id<"profiles">[];
 }
 
 export interface MakeRosterCtxOptions {
@@ -107,18 +107,20 @@ export interface MakeRosterCtxOptions {
   profiles?: ProfileRow[];
   authCredentials?: AuthCredentialRow[];
   rosterImports?: RosterImportRow[];
-  organizationId?: Id<'organizations'>;
+  organizationId?: Id<"organizations">;
 }
 
 type EqBuilder = {
   eq: (field: string, value: unknown) => EqBuilder;
 };
 
-function makeIndexChain<T>(
-  rows: T[],
-): { withIndex: (...args: unknown[]) => unknown; queryMock: { withIndex: (...args: unknown[]) => unknown } } {
-  const withIndex = vi.fn().mockImplementation(
-    (_indexName: string, builder?: (q: EqBuilder) => unknown) => {
+function makeIndexChain<T>(rows: T[]): {
+  withIndex: (...args: unknown[]) => unknown;
+  queryMock: { withIndex: (...args: unknown[]) => unknown };
+} {
+  const withIndex = vi
+    .fn()
+    .mockImplementation((_indexName: string, builder?: (q: EqBuilder) => unknown) => {
       let filtered: T[] = [...rows];
       const eqChain: EqBuilder = {
         eq: (field: string, value: unknown) => {
@@ -136,8 +138,7 @@ function makeIndexChain<T>(
         order: vi.fn().mockReturnThis(),
         take: (n: number) => Promise.resolve(filtered.slice(0, n)),
       };
-    },
-  );
+    });
   return { withIndex, queryMock: { withIndex } };
 }
 
@@ -172,9 +173,7 @@ let authCredentialIdCounter = 1;
 let classIdCounter = 1;
 let rosterImportIdCounter = 1;
 
-export function makeRosterMockCtx(
-  options: MakeRosterCtxOptions = {},
-): RosterMockCtx {
+export function makeRosterMockCtx(options: MakeRosterCtxOptions = {}): RosterMockCtx {
   const classes: ClassRow[] = options.classes ? [...options.classes] : [];
   const classEnrollments: ClassEnrollmentRow[] = options.classEnrollments
     ? [...options.classEnrollments]
@@ -183,9 +182,7 @@ export function makeRosterMockCtx(
   const authCredentials: AuthCredentialRow[] = options.authCredentials
     ? [...options.authCredentials]
     : [];
-  const rosterImports: RosterImportRow[] = options.rosterImports
-    ? [...options.rosterImports]
-    : [];
+  const rosterImports: RosterImportRow[] = options.rosterImports ? [...options.rosterImports] : [];
 
   let classEnrollmentsByClassAndStudentCalls = 0;
   let classEnrollmentsByClassCalls = 0;
@@ -197,128 +194,122 @@ export function makeRosterMockCtx(
   // Wrap the withIndex so we can detect which index name was requested
   // (for N+1 assertions). The test-strategy requires that index usage
   // be observable in the mock.
-  const classEnrollmentsWrappedWithIndex = vi.fn().mockImplementation(
-    (indexName: string, builder?: (q: EqBuilder) => unknown) => {
-      if (indexName === 'by_class_and_student') {
+  const classEnrollmentsWrappedWithIndex = vi
+    .fn()
+    .mockImplementation((indexName: string, builder?: (q: EqBuilder) => unknown) => {
+      if (indexName === "by_class_and_student") {
         classEnrollmentsByClassAndStudentCalls++;
-      } else if (indexName === 'by_class') {
+      } else if (indexName === "by_class") {
         classEnrollmentsByClassCalls++;
       }
       return classEnrollmentsChain.withIndex(indexName, builder);
-    },
-  );
+    });
   const classEnrollmentsQuery = {
     withIndex: classEnrollmentsWrappedWithIndex,
   };
 
   const profilesChain = makeIndexChain(profiles);
-  const profilesWrappedWithIndex = vi.fn().mockImplementation(
-    (indexName: string, builder?: (q: EqBuilder) => unknown) => {
-      if (indexName === 'by_username') {
+  const profilesWrappedWithIndex = vi
+    .fn()
+    .mockImplementation((indexName: string, builder?: (q: EqBuilder) => unknown) => {
+      if (indexName === "by_username") {
         profilesByUsernameCalls++;
       }
       return profilesChain.withIndex(indexName, builder);
-    },
-  );
+    });
   const profilesQuery = { withIndex: profilesWrappedWithIndex };
 
   const authCredentialsChain = makeIndexChain(authCredentials);
-  const authCredentialsWrappedWithIndex = vi.fn().mockImplementation(
-    (indexName: string, builder?: (q: EqBuilder) => unknown) => {
-      if (indexName === 'by_username') {
+  const authCredentialsWrappedWithIndex = vi
+    .fn()
+    .mockImplementation((indexName: string, builder?: (q: EqBuilder) => unknown) => {
+      if (indexName === "by_username") {
         authCredentialsByUsernameCalls++;
       }
       return authCredentialsChain.withIndex(indexName, builder);
-    },
-  );
+    });
   const authCredentialsQuery = { withIndex: authCredentialsWrappedWithIndex };
 
   const rosterImportsChain = makeIndexChain(rosterImports);
-  const rosterImportsWrappedWithIndex = vi.fn().mockImplementation(
-    (indexName: string, builder?: (q: EqBuilder) => unknown) => {
-      if (indexName === 'by_class') {
+  const rosterImportsWrappedWithIndex = vi
+    .fn()
+    .mockImplementation((indexName: string, builder?: (q: EqBuilder) => unknown) => {
+      if (indexName === "by_class") {
         rosterImportsByClassCalls++;
       }
       return rosterImportsChain.withIndex(indexName, builder);
-    },
-  );
+    });
   const rosterImportsQuery = { withIndex: rosterImportsWrappedWithIndex };
 
   const classesChain = makeIndexChain(classes);
   const classesQuery = { withIndex: classesChain.withIndex };
 
-  const insertSpy = vi.fn().mockImplementation(
-    (table: string, doc: Record<string, unknown>) => {
-      const now = Date.now();
-      switch (table) {
-        case 'classes': {
-          const id = `classes_${classIdCounter++}` as Id<'classes'>;
-          const row: ClassRow = { _id: id, _creationTime: now, ...doc } as ClassRow;
-          classes.push(row);
-          return Promise.resolve(id);
-        }
-        case 'class_enrollments': {
-          const id = `class_enrollments_${enrollmentIdCounter++}` as Id<'class_enrollments'>;
-          const row = { _id: id, _creationTime: now, ...doc } as ClassEnrollmentRow;
-          classEnrollments.push(row);
-          return Promise.resolve(id);
-        }
-        case 'profiles': {
-          const id = `profiles_${profileIdCounter++}` as Id<'profiles'>;
-          const row = { _id: id, _creationTime: now, ...doc } as ProfileRow;
-          profiles.push(row);
-          return Promise.resolve(id);
-        }
-        case 'auth_credentials': {
-          const id = `auth_credentials_${authCredentialIdCounter++}` as Id<'auth_credentials'>;
-          const row = { _id: id, _creationTime: now, ...doc } as AuthCredentialRow;
-          authCredentials.push(row);
-          return Promise.resolve(id);
-        }
-        case 'roster_imports': {
-          const id = `roster_imports_${rosterImportIdCounter++}` as Id<'roster_imports'>;
-          const row = { _id: id, _creationTime: now, ...doc } as RosterImportRow;
-          rosterImports.push(row);
-          return Promise.resolve(id);
-        }
-        default:
-          return Promise.resolve(`unknown_${table}_1` as unknown as Id<'classes'>);
+  const insertSpy = vi.fn().mockImplementation((table: string, doc: Record<string, unknown>) => {
+    const now = Date.now();
+    switch (table) {
+      case "classes": {
+        const id = `classes_${classIdCounter++}` as Id<"classes">;
+        const row: ClassRow = { _id: id, _creationTime: now, ...doc } as ClassRow;
+        classes.push(row);
+        return Promise.resolve(id);
       }
-    },
-  );
+      case "class_enrollments": {
+        const id = `class_enrollments_${enrollmentIdCounter++}` as Id<"class_enrollments">;
+        const row = { _id: id, _creationTime: now, ...doc } as ClassEnrollmentRow;
+        classEnrollments.push(row);
+        return Promise.resolve(id);
+      }
+      case "profiles": {
+        const id = `profiles_${profileIdCounter++}` as Id<"profiles">;
+        const row = { _id: id, _creationTime: now, ...doc } as ProfileRow;
+        profiles.push(row);
+        return Promise.resolve(id);
+      }
+      case "auth_credentials": {
+        const id = `auth_credentials_${authCredentialIdCounter++}` as Id<"auth_credentials">;
+        const row = { _id: id, _creationTime: now, ...doc } as AuthCredentialRow;
+        authCredentials.push(row);
+        return Promise.resolve(id);
+      }
+      case "roster_imports": {
+        const id = `roster_imports_${rosterImportIdCounter++}` as Id<"roster_imports">;
+        const row = { _id: id, _creationTime: now, ...doc } as RosterImportRow;
+        rosterImports.push(row);
+        return Promise.resolve(id);
+      }
+      default:
+        return Promise.resolve(`unknown_${table}_1` as unknown as Id<"classes">);
+    }
+  });
 
-  const patchSpy = vi.fn().mockImplementation(
-    (id: string, updates: Record<string, unknown>) => {
-      const applyTo = (
-        list: Array<{ _id: string }>,
-      ): boolean => {
-        const found = list.find((d) => d._id === id);
-        if (!found) return false;
-        Object.assign(found, updates, { updatedAt: Date.now() });
-        return true;
-      };
-      applyTo(classEnrollments);
-      applyTo(profiles);
-      applyTo(classes);
-      applyTo(authCredentials);
-      applyTo(rosterImports);
-      return Promise.resolve(undefined);
-    },
-  );
+  const patchSpy = vi.fn().mockImplementation((id: string, updates: Record<string, unknown>) => {
+    const applyTo = (list: Array<{ _id: string }>): boolean => {
+      const found = list.find((d) => d._id === id);
+      if (!found) return false;
+      Object.assign(found, updates, { updatedAt: Date.now() });
+      return true;
+    };
+    applyTo(classEnrollments);
+    applyTo(profiles);
+    applyTo(classes);
+    applyTo(authCredentials);
+    applyTo(rosterImports);
+    return Promise.resolve(undefined);
+  });
 
   const ctx: RosterMockCtx = {
     db: {
       query: vi.fn().mockImplementation((tableName: string) => {
         switch (tableName) {
-          case 'classes':
+          case "classes":
             return classesQuery;
-          case 'class_enrollments':
+          case "class_enrollments":
             return classEnrollmentsQuery;
-          case 'profiles':
+          case "profiles":
             return profilesQuery;
-          case 'auth_credentials':
+          case "auth_credentials":
             return authCredentialsQuery;
-          case 'roster_imports':
+          case "roster_imports":
             return rosterImportsQuery;
           default:
             return {
@@ -359,37 +350,35 @@ export function makeRosterMockCtx(
   };
 
   // Track counters via property descriptors so tests can read after.
-  Object.defineProperty(ctx, 'classEnrollmentsByClassAndStudentCalls', {
+  Object.defineProperty(ctx, "classEnrollmentsByClassAndStudentCalls", {
     get: () => classEnrollmentsByClassAndStudentCalls,
   });
-  Object.defineProperty(ctx, 'classEnrollmentsByClassCalls', {
+  Object.defineProperty(ctx, "classEnrollmentsByClassCalls", {
     get: () => classEnrollmentsByClassCalls,
   });
-  Object.defineProperty(ctx, 'profilesByUsernameCalls', {
+  Object.defineProperty(ctx, "profilesByUsernameCalls", {
     get: () => profilesByUsernameCalls,
   });
-  Object.defineProperty(ctx, 'authCredentialsByUsernameCalls', {
+  Object.defineProperty(ctx, "authCredentialsByUsernameCalls", {
     get: () => authCredentialsByUsernameCalls,
   });
-  Object.defineProperty(ctx, 'rosterImportsByClassCalls', {
+  Object.defineProperty(ctx, "rosterImportsByClassCalls", {
     get: () => rosterImportsByClassCalls,
   });
 
   return ctx;
 }
 
-export const FIXED_TEST_ORG = 'organizations_test_1' as Id<'organizations'>;
+export const FIXED_TEST_ORG = "organizations_test_1" as Id<"organizations">;
 
-export function makeTestTeacher(
-  overrides: Partial<ProfileRow> = {},
-): ProfileRow {
+export function makeTestTeacher(overrides: Partial<ProfileRow> = {}): ProfileRow {
   return {
-    _id: 'profiles_teacher_1' as Id<'profiles'>,
+    _id: "profiles_teacher_1" as Id<"profiles">,
     _creationTime: 1_780_000_000_000,
     organizationId: FIXED_TEST_ORG,
-    username: 'teacher.test',
-    role: 'teacher',
-    displayName: 'Test Teacher',
+    username: "teacher.test",
+    role: "teacher",
+    displayName: "Test Teacher",
     metadata: {},
     createdAt: 1_780_000_000_000,
     updatedAt: 1_780_000_000_000,
@@ -397,16 +386,14 @@ export function makeTestTeacher(
   };
 }
 
-export function makeTestClass(
-  overrides: Partial<ClassRow> = {},
-): ClassRow {
+export function makeTestClass(overrides: Partial<ClassRow> = {}): ClassRow {
   return {
-    _id: 'classes_test_1' as Id<'classes'>,
+    _id: "classes_test_1" as Id<"classes">,
     _creationTime: 1_780_000_000_000,
     teacherId: makeTestTeacher()._id,
-    name: 'Period 3 — Algebra',
-    description: 'Integrated Math 3 — Spring',
-    academicYear: '2025-2026',
+    name: "Period 3 — Algebra",
+    description: "Integrated Math 3 — Spring",
+    academicYear: "2025-2026",
     archived: false,
     metadata: {},
     createdAt: 1_780_000_000_000,

@@ -23,7 +23,11 @@ async function setup() {
     organizationId: "org1",
   });
   const teacherCredential = await t.db.insert("auth_credentials", {
-    profileId: teacher, username: "teacher", role: "teacher", organizationId: "org1", isActive: true,
+    profileId: teacher,
+    username: "teacher",
+    role: "teacher",
+    organizationId: "org1",
+    isActive: true,
   });
   const classroom = await t.db.insert("classes", {
     teacherId: teacher,
@@ -119,35 +123,55 @@ it("replays a submission without writing duplicate evidence and rejects a change
   await invoke(submitAnswer, t.ctx, args);
   await invoke(submitAnswer, t.ctx, args);
   expect(t.tables.activity_submissions).toHaveLength(1);
-  await expect(
-    invoke(submitAnswer, t.ctx, { ...args, answer: "8" }),
-  ).rejects.toThrow();
+  await expect(invoke(submitAnswer, t.ctx, { ...args, answer: "8" })).rejects.toThrow();
 });
 
 it("retains correct evidence after more than 100 later incorrect attempts", async () => {
   const t = await setup();
   await invoke(completePhase, t.ctx, { userId: t.user, phaseId: t.first });
-  await invoke(submitAnswer, t.ctx, { userId: t.user, phaseId: t.second, activityId: t.activity, answer: "5", submissionKey: "correct" });
+  await invoke(submitAnswer, t.ctx, {
+    userId: t.user,
+    phaseId: t.second,
+    activityId: t.activity,
+    answer: "5",
+    submissionKey: "correct",
+  });
   for (let n = 0; n < 101; n++) {
-    await t.db.insert("activity_submissions", { userId: t.user, phaseId: t.second, activityId: t.activity, score: 0, maxScore: 1 });
+    await t.db.insert("activity_submissions", {
+      userId: t.user,
+      phaseId: t.second,
+      activityId: t.activity,
+      score: 0,
+      maxScore: 1,
+    });
   }
-  await expect(invoke(completePhase, t.ctx, { userId: t.user, phaseId: t.second })).resolves.toBeNull();
+  await expect(
+    invoke(completePhase, t.ctx, { userId: t.user, phaseId: t.second }),
+  ).resolves.toBeNull();
 });
 
 it("rejects a class whose teacher account is inactive", async () => {
   const t = await setup();
   await t.db.patch(t.teacherCredential, { isActive: false });
-  await expect(invoke(completePhase, t.ctx, { userId: t.user, phaseId: t.first })).rejects.toThrow("not_allowed");
+  await expect(invoke(completePhase, t.ctx, { userId: t.user, phaseId: t.first })).rejects.toThrow(
+    "not_allowed",
+  );
 });
 
 it("keeps a current class accessible after more than 100 closed enrollments", async () => {
   const t = await setup();
   const current = t.tables.class_enrollments.shift()!;
   for (let n = 0; n < 101; n++) {
-    await t.db.insert("class_enrollments", { classId: current.classId, studentId: t.user, status: n % 2 ? "withdrawn" : "completed" });
+    await t.db.insert("class_enrollments", {
+      classId: current.classId,
+      studentId: t.user,
+      status: n % 2 ? "withdrawn" : "completed",
+    });
   }
   t.tables.class_enrollments.push(current);
-  await expect(invoke(completePhase, t.ctx, { userId: t.user, phaseId: t.first })).resolves.toBeNull();
+  await expect(
+    invoke(completePhase, t.ctx, { userId: t.user, phaseId: t.first }),
+  ).resolves.toBeNull();
   const dashboard = await invoke(getDashboardData, t.ctx, { userId: t.user });
   expect(dashboard).toHaveLength(1);
 });

@@ -1,6 +1,6 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import type { SessionClaims } from '@math-platform/core-auth';
+import type { SessionClaims } from "@math-platform/core-auth";
 
 const mocks = vi.hoisted(() => ({
   account: vi.fn(),
@@ -11,26 +11,27 @@ const mocks = vi.hoisted(() => ({
   verifySessionToken: vi.fn(),
 }));
 
-vi.mock('@/lib/convex/server', () => ({ fetchInternalQuery: mocks.account, internal: { auth: { getAccountSettingsContext: 'account' } } }));
+vi.mock("@/lib/convex/server", () => ({
+  fetchInternalQuery: mocks.account,
+  internal: { auth: { getAccountSettingsContext: "account" } },
+}));
 
-vi.mock('next/headers', () => ({
+vi.mock("next/headers", () => ({
   cookies: mocks.cookies,
 }));
 
-vi.mock('next/navigation', () => ({
+vi.mock("next/navigation", () => ({
   redirect: mocks.redirect,
 }));
 
-vi.mock('next/server', () => ({
+vi.mock("next/server", () => ({
   NextResponse: {
-    json: (body: unknown, init?: ResponseInit) => (
-      new Response(JSON.stringify(body), init)
-    ),
+    json: (body: unknown, init?: ResponseInit) => new Response(JSON.stringify(body), init),
   },
 }));
 
-vi.mock('@math-platform/core-auth', () => ({
-  SESSION_COOKIE_NAME: 'precalc-session',
+vi.mock("@math-platform/core-auth", () => ({
+  SESSION_COOKIE_NAME: "precalc-session",
   getAuthJwtSecret: mocks.getAuthJwtSecret,
   verifySessionToken: mocks.verifySessionToken,
 }));
@@ -43,17 +44,19 @@ import {
   requireStudentSessionClaims,
   requireTeacherRequestClaims,
   requireTeacherSessionClaims,
-} from '@/lib/auth/server';
+} from "@/lib/auth/server";
 
-function claims(role: 'student' | 'teacher' | 'admin'): SessionClaims {
+function claims(role: "student" | "teacher" | "admin"): SessionClaims {
   return {
-    sub: `precalc-${role}-user`, username: role, organizationId: 'org',
+    sub: `precalc-${role}-user`,
+    username: role,
+    organizationId: "org",
     role,
   } as SessionClaims;
 }
 
 function requestWithCookie(cookie: string | null): Request {
-  return new Request('http://localhost/precalc-auth-test', {
+  return new Request("http://localhost/precalc-auth-test", {
     headers: cookie === null ? {} : { cookie },
   });
 }
@@ -65,138 +68,144 @@ async function expectErrorResponse(value: SessionClaims | Response, status: numb
   await expect(response.json()).resolves.toEqual({ error });
 }
 
-describe('Precalculus server authentication boundaries', () => {
+describe("Precalculus server authentication boundaries", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mocks.account.mockImplementation(async (_ref, { profileId }) => { const role = profileId.split('-')[1]; return { username: role, role, organizationId: 'org' }; });
+    mocks.account.mockImplementation(async (_ref, { profileId }) => {
+      const role = profileId.split("-")[1];
+      return { username: role, role, organizationId: "org" };
+    });
     mocks.cookies.mockResolvedValue({ get: mocks.cookieGet });
     mocks.cookieGet.mockReturnValue(undefined);
-    mocks.getAuthJwtSecret.mockReturnValue('precalc-test-secret');
+    mocks.getAuthJwtSecret.mockReturnValue("precalc-test-secret");
     mocks.redirect.mockImplementation((destination: string) => {
       throw new Error(`redirect:${destination}`);
     });
   });
 
-  it('reads a server cookie only when it contains a token', async () => {
+  it("reads a server cookie only when it contains a token", async () => {
     await expect(getServerSessionClaims()).resolves.toBeNull();
     expect(mocks.verifySessionToken).not.toHaveBeenCalled();
 
-    const student = claims('student');
-    mocks.cookieGet.mockReturnValue({ value: 'server-session-token' });
+    const student = claims("student");
+    mocks.cookieGet.mockReturnValue({ value: "server-session-token" });
     mocks.verifySessionToken.mockResolvedValueOnce(student);
 
     await expect(getServerSessionClaims()).resolves.toEqual(student);
-    expect(mocks.cookieGet).toHaveBeenCalledWith('precalc-session');
+    expect(mocks.cookieGet).toHaveBeenCalledWith("precalc-session");
     expect(mocks.verifySessionToken).toHaveBeenCalledWith(
-      'server-session-token',
-      'precalc-test-secret',
+      "server-session-token",
+      "precalc-test-secret",
     );
   });
 
-  it('parses the request cookie without accepting malformed or unrelated entries', async () => {
+  it("parses the request cookie without accepting malformed or unrelated entries", async () => {
     await expect(getRequestSessionClaims(requestWithCookie(null))).resolves.toBeNull();
     expect(mocks.verifySessionToken).not.toHaveBeenCalled();
 
-    const student = claims('student');
+    const student = claims("student");
     mocks.verifySessionToken.mockResolvedValueOnce(student);
     const request = requestWithCookie(
-      '; malformed; =missing-name; unrelated=value; precalc-session=encoded%2Dtoken',
+      "; malformed; =missing-name; unrelated=value; precalc-session=encoded%2Dtoken",
     );
 
     await expect(getRequestSessionClaims(request)).resolves.toEqual(student);
-    expect(mocks.verifySessionToken).toHaveBeenCalledWith(
-      'encoded-token',
-      'precalc-test-secret',
-    );
+    expect(mocks.verifySessionToken).toHaveBeenCalledWith("encoded-token", "precalc-test-secret");
   });
 
-  it('requires an authenticated student for request-boundary access', async () => {
+  it("requires an authenticated student for request-boundary access", async () => {
     const noSession = await requireStudentRequestClaims(
       requestWithCookie(null),
-      'Sign in first',
-      'Students only',
+      "Sign in first",
+      "Students only",
     );
-    await expectErrorResponse(noSession, 401, 'Sign in first');
+    await expectErrorResponse(noSession, 401, "Sign in first");
 
-    mocks.verifySessionToken.mockResolvedValueOnce(claims('teacher'));
+    mocks.verifySessionToken.mockResolvedValueOnce(claims("teacher"));
     const teacher = await requireStudentRequestClaims(
-      requestWithCookie('precalc-session=teacher-token'),
-      'Sign in first',
-      'Students only',
+      requestWithCookie("precalc-session=teacher-token"),
+      "Sign in first",
+      "Students only",
     );
-    await expectErrorResponse(teacher, 403, 'Students only');
+    await expectErrorResponse(teacher, 403, "Students only");
 
-    const student = claims('student');
+    const student = claims("student");
     mocks.verifySessionToken.mockResolvedValueOnce(student);
-    await expect(requireStudentRequestClaims(
-      requestWithCookie('precalc-session=student-token'),
-    )).resolves.toEqual(student);
+    await expect(
+      requireStudentRequestClaims(requestWithCookie("precalc-session=student-token")),
+    ).resolves.toEqual(student);
   });
 
-  it.each(['teacher', 'admin'] as const)(
-    'accepts an authenticated %s at the teacher request boundary',
+  it.each(["teacher", "admin"] as const)(
+    "accepts an authenticated %s at the teacher request boundary",
     async (role) => {
       const authorized = claims(role);
       mocks.verifySessionToken.mockResolvedValueOnce(authorized);
 
-      await expect(requireTeacherRequestClaims(
-        requestWithCookie(`precalc-session=${role}-token`),
-      )).resolves.toEqual(authorized);
+      await expect(
+        requireTeacherRequestClaims(requestWithCookie(`precalc-session=${role}-token`)),
+      ).resolves.toEqual(authorized);
     },
   );
 
-  it('rejects a student at the teacher request boundary', async () => {
-    mocks.verifySessionToken.mockResolvedValueOnce(claims('student'));
+  it("rejects a student at the teacher request boundary", async () => {
+    mocks.verifySessionToken.mockResolvedValueOnce(claims("student"));
 
     const result = await requireTeacherRequestClaims(
-      requestWithCookie('precalc-session=student-token'),
-      'Sign in first',
-      'Teacher role required',
+      requestWithCookie("precalc-session=student-token"),
+      "Sign in first",
+      "Teacher role required",
     );
 
-    await expectErrorResponse(result, 403, 'Teacher role required');
+    await expectErrorResponse(result, 403, "Teacher role required");
   });
 
-  it('redirects an unauthenticated server request and returns authenticated claims', async () => {
-    await expect(requireServerSessionClaims('/student/dashboard')).rejects.toThrow(
-      'redirect:/auth/login?redirect=/student/dashboard',
+  it("redirects an unauthenticated server request and returns authenticated claims", async () => {
+    await expect(requireServerSessionClaims("/student/dashboard")).rejects.toThrow(
+      "redirect:/auth/login?redirect=/student/dashboard",
     );
 
-    const student = claims('student');
-    mocks.cookieGet.mockReturnValue({ value: 'server-student-token' });
+    const student = claims("student");
+    mocks.cookieGet.mockReturnValue({ value: "server-student-token" });
     mocks.verifySessionToken.mockResolvedValueOnce(student);
 
-    await expect(requireServerSessionClaims('/student/dashboard')).resolves.toEqual(student);
+    await expect(requireServerSessionClaims("/student/dashboard")).resolves.toEqual(student);
   });
 
-  it('keeps teacher-page and student-page role redirects separate', async () => {
-    mocks.cookieGet.mockReturnValue({ value: 'server-role-token' });
-    mocks.verifySessionToken.mockResolvedValueOnce(claims('student'));
-    await expect(requireTeacherSessionClaims('/teacher', '/student/dashboard')).rejects.toThrow(
-      'redirect:/student/dashboard',
+  it("keeps teacher-page and student-page role redirects separate", async () => {
+    mocks.cookieGet.mockReturnValue({ value: "server-role-token" });
+    mocks.verifySessionToken.mockResolvedValueOnce(claims("student"));
+    await expect(requireTeacherSessionClaims("/teacher", "/student/dashboard")).rejects.toThrow(
+      "redirect:/student/dashboard",
     );
 
-    const admin = claims('admin');
+    const admin = claims("admin");
     mocks.verifySessionToken.mockResolvedValueOnce(admin);
-    await expect(requireTeacherSessionClaims('/teacher')).resolves.toEqual(admin);
+    await expect(requireTeacherSessionClaims("/teacher")).resolves.toEqual(admin);
 
-    mocks.verifySessionToken.mockResolvedValueOnce(claims('teacher'));
-    await expect(requireStudentSessionClaims('/student/dashboard')).rejects.toThrow('redirect:/teacher/dashboard');
+    mocks.verifySessionToken.mockResolvedValueOnce(claims("teacher"));
+    await expect(requireStudentSessionClaims("/student/dashboard")).rejects.toThrow(
+      "redirect:/teacher/dashboard",
+    );
 
-    const student = claims('student');
+    const student = claims("student");
     mocks.verifySessionToken.mockResolvedValueOnce(student);
-    await expect(requireStudentSessionClaims('/student/dashboard')).resolves.toEqual(student);
+    await expect(requireStudentSessionClaims("/student/dashboard")).resolves.toEqual(student);
   });
 });
 
-it('rejects revoked sessions and malformed cookie escapes', async () => {
+it("rejects revoked sessions and malformed cookie escapes", async () => {
   mocks.account.mockResolvedValue(null);
-  mocks.verifySessionToken.mockResolvedValue(claims('student'));
-  expect(await getRequestSessionClaims(requestWithCookie('precalc-session=token'))).toBeNull();
-  expect(await getRequestSessionClaims(requestWithCookie('precalc-session=%ZZ'))).toBeNull();
+  mocks.verifySessionToken.mockResolvedValue(claims("student"));
+  expect(await getRequestSessionClaims(requestWithCookie("precalc-session=token"))).toBeNull();
+  expect(await getRequestSessionClaims(requestWithCookie("precalc-session=%ZZ"))).toBeNull();
 });
-it('uses the current role instead of an old token role', async () => {
-  mocks.verifySessionToken.mockResolvedValue(claims('teacher'));
-  mocks.account.mockResolvedValue({ username: 'teacher', role: 'student', organizationId: 'org' });
-  await expectErrorResponse(await requireTeacherRequestClaims(requestWithCookie('precalc-session=token')), 403, 'Forbidden');
+it("uses the current role instead of an old token role", async () => {
+  mocks.verifySessionToken.mockResolvedValue(claims("teacher"));
+  mocks.account.mockResolvedValue({ username: "teacher", role: "student", organizationId: "org" });
+  await expectErrorResponse(
+    await requireTeacherRequestClaims(requestWithCookie("precalc-session=token")),
+    403,
+    "Forbidden",
+  );
 });

@@ -1,8 +1,6 @@
-import { requireStudentRequestClaims } from '@/lib/auth/server';
-import { fetchInternalMutation, internal } from '@/lib/convex/server';
-import {
-  PRECALCULUS_PHYSICAL_CONTEXT_WORKED_ACTIVITY_ID,
-} from '@/lib/learning-evidence/precalc-pilot';
+import { requireStudentRequestClaims } from "@/lib/auth/server";
+import { fetchInternalMutation, internal } from "@/lib/convex/server";
+import { PRECALCULUS_PHYSICAL_CONTEXT_WORKED_ACTIVITY_ID } from "@/lib/learning-evidence/precalc-pilot";
 
 type StudentClaims = {
   sub: string;
@@ -19,12 +17,12 @@ type TeacherLedEvidenceResult = {
   persisted: boolean;
   masteryApplied: false;
   kstApplied: false;
-  delivery: 'new' | 'replay';
+  delivery: "new" | "replay";
   decision: {
-    idempotency: 'new' | 'replay';
-    exposureState: 'introduced';
+    idempotency: "new" | "replay";
+    exposureState: "introduced";
     eligible: false;
-    reason: 'teacher_led';
+    reason: "teacher_led";
     masteryBearing: false;
   };
 };
@@ -32,69 +30,72 @@ type TeacherLedEvidenceResult = {
 function jsonResponse(body: unknown, status: number): Response {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { 'content-type': 'application/json' },
+    headers: { "content-type": "application/json" },
   });
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value);
+  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 function parseIdempotencyKey(request: Request): string | null {
-  const key = request.headers.get('Idempotency-Key')?.trim() ?? '';
+  const key = request.headers.get("Idempotency-Key")?.trim() ?? "";
   return key.length > 0 ? key : null;
 }
 
 function parseSelectedOption(body: unknown): string | null {
-  if (!isRecord(body) || Object.keys(body).join('|') !== 'selectedOptionId') {
+  if (!isRecord(body) || Object.keys(body).join("|") !== "selectedOptionId") {
     return null;
   }
-  return typeof body.selectedOptionId === 'string' && body.selectedOptionId.trim().length > 0
+  return typeof body.selectedOptionId === "string" && body.selectedOptionId.trim().length > 0
     ? body.selectedOptionId
     : null;
 }
 
 function validateSubmissionResult(value: unknown): PhysicalContextWorkedSubmissionResult {
   if (
-    !isRecord(value)
-    || Object.keys(value).sort().join('|') !== 'attemptOrdinal|submissionId|submittedAt'
-    || typeof value.submissionId !== 'string'
-    || value.submissionId.trim().length === 0
-    || typeof value.attemptOrdinal !== 'number'
-    || !Number.isInteger(value.attemptOrdinal)
-    || value.attemptOrdinal < 1
-    || typeof value.submittedAt !== 'string'
-    || !Number.isFinite(Date.parse(value.submittedAt))
+    !isRecord(value) ||
+    Object.keys(value).sort().join("|") !== "attemptOrdinal|submissionId|submittedAt" ||
+    typeof value.submissionId !== "string" ||
+    value.submissionId.trim().length === 0 ||
+    typeof value.attemptOrdinal !== "number" ||
+    !Number.isInteger(value.attemptOrdinal) ||
+    value.attemptOrdinal < 1 ||
+    typeof value.submittedAt !== "string" ||
+    !Number.isFinite(Date.parse(value.submittedAt))
   ) {
-    throw new Error('Invalid server physical-context Worked submission result');
+    throw new Error("Invalid server physical-context Worked submission result");
   }
   return value as unknown as PhysicalContextWorkedSubmissionResult;
 }
 
 function validateTeacherLedEvidenceResult(value: unknown): TeacherLedEvidenceResult {
   if (!isRecord(value)) {
-    throw new Error('Invalid server physical-context Worked evidence result');
+    throw new Error("Invalid server physical-context Worked evidence result");
   }
-  if (Object.keys(value).sort().join('|') !== 'decision|delivery|kstApplied|masteryApplied|persisted') {
-    throw new Error('Invalid server physical-context Worked evidence result');
+  if (
+    Object.keys(value).sort().join("|") !== "decision|delivery|kstApplied|masteryApplied|persisted"
+  ) {
+    throw new Error("Invalid server physical-context Worked evidence result");
   }
   const decision = value.decision;
   if (
-    typeof value.persisted !== 'boolean'
-    || value.masteryApplied !== false
-    || value.kstApplied !== false
-    || (value.delivery !== 'new' && value.delivery !== 'replay')
-    || !isRecord(decision)
-    || Object.keys(decision).sort().join('|') !== 'eligible|exposureState|idempotency|masteryBearing|reason'
-    || (decision.idempotency !== 'new' && decision.idempotency !== 'replay')
-    || decision.exposureState !== 'introduced'
-    || decision.eligible !== false
-    || decision.reason !== 'teacher_led'
-    || decision.masteryBearing !== false
-    || value.delivery !== decision.idempotency
-    || value.persisted !== (value.delivery === 'new')
+    typeof value.persisted !== "boolean" ||
+    value.masteryApplied !== false ||
+    value.kstApplied !== false ||
+    (value.delivery !== "new" && value.delivery !== "replay") ||
+    !isRecord(decision) ||
+    Object.keys(decision).sort().join("|") !==
+      "eligible|exposureState|idempotency|masteryBearing|reason" ||
+    (decision.idempotency !== "new" && decision.idempotency !== "replay") ||
+    decision.exposureState !== "introduced" ||
+    decision.eligible !== false ||
+    decision.reason !== "teacher_led" ||
+    decision.masteryBearing !== false ||
+    value.delivery !== decision.idempotency ||
+    value.persisted !== (value.delivery === "new")
   ) {
-    throw new Error('Invalid server physical-context Worked evidence result');
+    throw new Error("Invalid server physical-context Worked evidence result");
   }
   return value as unknown as TeacherLedEvidenceResult;
 }
@@ -104,58 +105,59 @@ export async function POST(request: Request): Promise<Response> {
   try {
     claimsOrResponse = await requireStudentRequestClaims(request);
   } catch {
-    return jsonResponse({ error: 'Unable to authenticate request' }, 500);
+    return jsonResponse({ error: "Unable to authenticate request" }, 500);
   }
   if (claimsOrResponse instanceof Response) return claimsOrResponse;
-  if (!claimsOrResponse.sub) return jsonResponse({ error: 'Unauthorized' }, 401);
-  if (claimsOrResponse.role !== 'student') return jsonResponse({ error: 'Forbidden' }, 403);
+  if (!claimsOrResponse.sub) return jsonResponse({ error: "Unauthorized" }, 401);
+  if (claimsOrResponse.role !== "student") return jsonResponse({ error: "Forbidden" }, 403);
 
   const idempotencyKey = parseIdempotencyKey(request);
-  if (!idempotencyKey) return jsonResponse({ error: 'Idempotency-Key is required' }, 400);
+  if (!idempotencyKey) return jsonResponse({ error: "Idempotency-Key is required" }, 400);
 
   let body: unknown;
   try {
     body = await request.json();
   } catch {
-    return jsonResponse({ error: 'Invalid JSON body' }, 400);
+    return jsonResponse({ error: "Invalid JSON body" }, 400);
   }
   const selectedOptionId = parseSelectedOption(body);
   if (!selectedOptionId) {
-    return jsonResponse({ error: 'Only one raw selected option is accepted' }, 400);
+    return jsonResponse({ error: "Only one raw selected option is accepted" }, 400);
   }
 
   try {
-    const submission = validateSubmissionResult(await fetchInternalMutation(
-      internal.activities.createPhysicalContextWorkedSubmission,
-      {
+    const submission = validateSubmissionResult(
+      await fetchInternalMutation(internal.activities.createPhysicalContextWorkedSubmission, {
         userId: claimsOrResponse.sub,
         activityId: PRECALCULUS_PHYSICAL_CONTEXT_WORKED_ACTIVITY_ID,
         idempotencyKey,
         submissionData: {
-          contractVersion: 'practice.v1' as const,
+          contractVersion: "practice.v1" as const,
           activityId: PRECALCULUS_PHYSICAL_CONTEXT_WORKED_ACTIVITY_ID,
-          mode: 'worked_example' as const,
-          status: 'submitted' as const,
+          mode: "worked_example" as const,
+          status: "submitted" as const,
           attemptNumber: 1,
           submittedAt: new Date().toISOString(),
           answers: { selectedOptionId },
-          parts: [{ partId: 'selectedOptionId' as const, rawAnswer: selectedOptionId }],
+          parts: [{ partId: "selectedOptionId" as const, rawAnswer: selectedOptionId }],
         },
-      },
-    ));
-    validateTeacherLedEvidenceResult(await fetchInternalMutation(
-      internal.learningEvidence.submitPhysicalContextWorkedSubmission,
-      {
+      }),
+    );
+    validateTeacherLedEvidenceResult(
+      await fetchInternalMutation(internal.learningEvidence.submitPhysicalContextWorkedSubmission, {
         learnerId: claimsOrResponse.sub,
         submissionId: submission.submissionId,
-      },
-    ));
+      }),
+    );
     return jsonResponse(submission, 200);
   } catch (error) {
-    if (error instanceof Error && error.message === 'idempotency_conflict') {
-      return jsonResponse({ error: 'Idempotency key was already used for a different submission' }, 409);
+    if (error instanceof Error && error.message === "idempotency_conflict") {
+      return jsonResponse(
+        { error: "Idempotency key was already used for a different submission" },
+        409,
+      );
     }
-    return jsonResponse({ error: 'Unable to record the physical-context Worked submission' }, 500);
+    return jsonResponse({ error: "Unable to record the physical-context Worked submission" }, 500);
   }
 }
 

@@ -1,9 +1,9 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { LessonCompleteScreen } from '@/components/lesson/LessonCompleteScreen';
+import { describe, it, expect, vi } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { LessonCompleteScreen } from "@/components/lesson/LessonCompleteScreen";
 
-describe('LessonCompleteScreen', () => {
-  it('renders completion screen', () => {
+describe("LessonCompleteScreen", () => {
+  it("renders completion screen", () => {
     render(
       <LessonCompleteScreen
         lessonTitle="Introduction to Linear Functions"
@@ -11,12 +11,12 @@ describe('LessonCompleteScreen', () => {
         phasesCompleted={6}
         totalPhases={6}
         onContinue={() => {}}
-      />
+      />,
     );
-    expect(screen.getByTestId('lesson-complete-screen')).toBeInTheDocument();
+    expect(screen.getByTestId("lesson-complete-screen")).toBeInTheDocument();
   });
 
-  it('displays lesson title', () => {
+  it("displays lesson title", () => {
     render(
       <LessonCompleteScreen
         lessonTitle="Introduction to Linear Functions"
@@ -24,12 +24,12 @@ describe('LessonCompleteScreen', () => {
         phasesCompleted={6}
         totalPhases={6}
         onContinue={() => {}}
-      />
+      />,
     );
-    expect(screen.getByText('Introduction to Linear Functions')).toBeInTheDocument();
+    expect(screen.getByText("Introduction to Linear Functions")).toBeInTheDocument();
   });
 
-  it('displays lesson number', () => {
+  it("displays lesson number", () => {
     render(
       <LessonCompleteScreen
         lessonTitle="Test Lesson"
@@ -37,12 +37,12 @@ describe('LessonCompleteScreen', () => {
         phasesCompleted={6}
         totalPhases={6}
         onContinue={() => {}}
-      />
+      />,
     );
-    expect(screen.getByText((content) => content.includes('Lesson 3'))).toBeInTheDocument();
+    expect(screen.getByText((content) => content.includes("Lesson 3"))).toBeInTheDocument();
   });
 
-  it('displays phase completion progress', () => {
+  it("displays phase completion progress", () => {
     render(
       <LessonCompleteScreen
         lessonTitle="Test Lesson"
@@ -50,12 +50,12 @@ describe('LessonCompleteScreen', () => {
         phasesCompleted={4}
         totalPhases={6}
         onContinue={() => {}}
-      />
+      />,
     );
-    expect(screen.getByText('4 / 6 phases completed')).toBeInTheDocument();
+    expect(screen.getByText("4 / 6 phases completed")).toBeInTheDocument();
   });
 
-  it('shows continue button that calls onContinue', () => {
+  it("shows continue button that calls onContinue", () => {
     const onContinue = vi.fn();
     render(
       <LessonCompleteScreen
@@ -64,14 +64,14 @@ describe('LessonCompleteScreen', () => {
         phasesCompleted={6}
         totalPhases={6}
         onContinue={onContinue}
-      />
+      />,
     );
-    const continueBtn = screen.getByTestId('lesson-complete-continue-btn');
+    const continueBtn = screen.getByTestId("lesson-complete-continue-btn");
     fireEvent.click(continueBtn);
     expect(onContinue).toHaveBeenCalledTimes(1);
   });
 
-  it('shows all phases complete message when 100%', () => {
+  it("shows all phases complete message when 100%", () => {
     render(
       <LessonCompleteScreen
         lessonTitle="Test Lesson"
@@ -79,8 +79,8 @@ describe('LessonCompleteScreen', () => {
         phasesCompleted={6}
         totalPhases={6}
         onContinue={() => {}}
-      />
+      />,
     );
-    expect(screen.getByText('All phases complete!')).toBeInTheDocument();
+    expect(screen.getByText("All phases complete!")).toBeInTheDocument();
   });
 });

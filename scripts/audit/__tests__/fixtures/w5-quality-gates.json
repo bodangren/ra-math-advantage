@@ -133,9 +133,7 @@
         "apps/integrated-math-3",
         "apps/pre-calculus"
       ],
-      "families_touched": [
-        "tailwindcss"
-      ],
+      "families_touched": ["tailwindcss"],
       "results": {
         "lint": {
           "exit_status": 1,
@@ -160,10 +158,7 @@
         "apps/integrated-math-3",
         "apps/pre-calculus"
       ],
-      "families_touched": [
-        "katex",
-        "lucide-react"
-      ],
+      "families_touched": ["katex", "lucide-react"],
       "results": {
         "lint": {
           "exit_status": 1,
@@ -188,9 +183,7 @@
         "apps/integrated-math-3",
         "apps/pre-calculus"
       ],
-      "families_touched": [
-        "jsdom"
-      ],
+      "families_touched": ["jsdom"],
       "tsc_and_vitest_required": true,
       "results": {
         "lint": {

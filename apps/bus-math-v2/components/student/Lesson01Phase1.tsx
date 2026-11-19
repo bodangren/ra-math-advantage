@@ -1,22 +1,21 @@
-import type { ReactNode } from 'react';
-import Image from 'next/image';
+import type { ReactNode } from "react";
+import Image from "next/image";
 
-import type { Lesson, Phase } from '@/lib/schemas/validators';
-import type { ContentBlock } from '@/types/curriculum';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { PhaseHeader } from './PhaseHeader';
-import { PhaseFooter } from './PhaseFooter';
+import type { Lesson, Phase } from "@/lib/schemas/validators";
+import type { ContentBlock } from "@/types/curriculum";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { PhaseHeader } from "./PhaseHeader";
+import { PhaseFooter } from "./PhaseFooter";
 
-type CalloutVariant = Extract<ContentBlock, { type: 'callout' }>['variant'];
+type CalloutVariant = Extract<ContentBlock, { type: "callout" }>["variant"];
 
 const calloutVariants: Record<CalloutVariant, string> = {
-  'why-this-matters': 'border-amber-300 bg-amber-50 dark:bg-amber-950/20 dark:border-amber-900/30',
-  tip: 'border-blue-300 bg-blue-50 dark:bg-blue-950/20 dark:border-blue-900/30',
-  warning: 'border-red-300 bg-red-50 dark:bg-red-950/20 dark:border-red-900/30',
-  example: 'border-green-300 bg-green-50 dark:bg-green-950/20 dark:border-green-900/30'
+  "why-this-matters": "border-amber-300 bg-amber-50 dark:bg-amber-950/20 dark:border-amber-900/30",
+  tip: "border-blue-300 bg-blue-50 dark:bg-blue-950/20 dark:border-blue-900/30",
+  warning: "border-red-300 bg-red-50 dark:bg-red-950/20 dark:border-red-900/30",
+  example: "border-green-300 bg-green-50 dark:bg-green-950/20 dark:border-green-900/30",
 };
-
 
 /**
  * Renders a markdown content block as a styled card with paragraph splitting.
@@ -25,7 +24,7 @@ const calloutVariants: Record<CalloutVariant, string> = {
  * @returns A card element with rendered paragraphs.
  */
 function renderMarkdown(content: string) {
-  const paragraphs = content.split('\n').filter(Boolean);
+  const paragraphs = content.split("\n").filter(Boolean);
   return (
     <Card className="border-border/40 bg-card/60 shadow-sm">
       <CardContent className="space-y-4 text-base leading-relaxed text-foreground">
@@ -37,19 +36,18 @@ function renderMarkdown(content: string) {
   );
 }
 
-
 /**
  * Renders a callout content block with variant-specific styling.
  *
  * @param block - The callout content block to render.
  * @returns A styled callout card element.
  */
-function renderCallout(block: Extract<ContentBlock, { type: 'callout' }>) {
+function renderCallout(block: Extract<ContentBlock, { type: "callout" }>) {
   return (
     <Card className={`${calloutVariants[block.variant]} border-2`}>
       <CardHeader>
         <CardTitle className="text-base font-semibold capitalize text-foreground">
-          {block.variant.replace(/-/g, ' ')}
+          {block.variant.replace(/-/g, " ")}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -59,14 +57,13 @@ function renderCallout(block: Extract<ContentBlock, { type: 'callout' }>) {
   );
 }
 
-
 /**
  * Renders a video content block as an embedded iframe with optional transcript.
  *
  * @param block - The video content block to render.
  * @returns A video embed element with optional transcript.
  */
-function renderVideo(block: Extract<ContentBlock, { type: 'video' }>) {
+function renderVideo(block: Extract<ContentBlock, { type: "video" }>) {
   return (
     <div className="overflow-hidden rounded-xl border border-border/50 shadow-lg">
       <iframe
@@ -84,14 +81,13 @@ function renderVideo(block: Extract<ContentBlock, { type: 'video' }>) {
   );
 }
 
-
 /**
  * Renders an interactive activity content block placeholder.
  *
  * @param block - The activity content block to render.
  * @returns A card element with activity metadata.
  */
-function renderActivity(block: Extract<ContentBlock, { type: 'activity' }>) {
+function renderActivity(block: Extract<ContentBlock, { type: "activity" }>) {
   return (
     <Card className="border-dashed border-primary/40">
       <CardHeader>
@@ -99,12 +95,11 @@ function renderActivity(block: Extract<ContentBlock, { type: 'activity' }>) {
       </CardHeader>
       <CardContent className="space-y-2 text-sm text-muted-foreground">
         <p>Activity ID: {block.activityId}</p>
-        <p>{block.required ? 'Required to advance' : 'Optional enrichment'}</p>
+        <p>{block.required ? "Required to advance" : "Optional enrichment"}</p>
       </CardContent>
     </Card>
   );
 }
-
 
 /**
  * Renders an image content block with optional caption.
@@ -112,7 +107,7 @@ function renderActivity(block: Extract<ContentBlock, { type: 'activity' }>) {
  * @param block - The image content block to render.
  * @returns A figure element with image and optional caption.
  */
-function renderImage(block: Extract<ContentBlock, { type: 'image' }>) {
+function renderImage(block: Extract<ContentBlock, { type: "image" }>) {
   return (
     <figure className="overflow-hidden rounded-xl border border-border/40 bg-background shadow-sm">
       <Image
@@ -132,24 +127,23 @@ function renderImage(block: Extract<ContentBlock, { type: 'image' }>) {
   );
 }
 
-
 /**
  * Dispatches a content block to the appropriate renderer based on its type.
  *
  * @param block - The content block to render.
  * @returns A React node for the block, or null for unknown types.
  */
-function renderBlock(block: ContentBlock) : ReactNode {
+function renderBlock(block: ContentBlock): ReactNode {
   switch (block.type) {
-    case 'markdown':
+    case "markdown":
       return renderMarkdown(block.content);
-    case 'callout':
+    case "callout":
       return renderCallout(block);
-    case 'video':
+    case "video":
       return renderVideo(block);
-    case 'activity':
+    case "activity":
       return renderActivity(block);
-    case 'image':
+    case "image":
       return renderImage(block);
     default:
       return null;
@@ -183,7 +177,7 @@ export default function Lesson01Phase1({
   unit,
   phase,
   phases,
-  contentBlocks
+  contentBlocks,
 }: Lesson01Phase1Props) {
   const resolvedBlocks = contentBlocks ?? phase.contentBlocks;
 
@@ -204,7 +198,11 @@ export default function Lesson01Phase1({
         )}
 
         {resolvedBlocks.map((block) => (
-          <div key={block.id} data-block-type={block.type} data-testid={`content-block-${block.type}`}>
+          <div
+            key={block.id}
+            data-block-type={block.type}
+            data-testid={`content-block-${block.type}`}
+          >
             {renderBlock(block)}
           </div>
         ))}

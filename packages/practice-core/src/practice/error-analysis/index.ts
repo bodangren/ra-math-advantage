@@ -6,7 +6,7 @@
  * misconception tags from the grading layer.
  */
 
-import type { PracticeSubmissionEnvelope, PracticeSubmissionPart } from '../contract';
+import type { PracticeSubmissionEnvelope, PracticeSubmissionPart } from "../contract";
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -34,7 +34,7 @@ export interface PracticeSubmissionEvidence {
 }
 
 export interface SubmissionEvidence {
-  kind: 'spreadsheet' | 'practice';
+  kind: "spreadsheet" | "practice";
   activityId: string;
   activityTitle: string;
   componentKey: string;
@@ -77,7 +77,7 @@ export interface LessonErrorSummary {
 }
 
 export interface DeterministicErrorSummary {
-  type: 'deterministic';
+  type: "deterministic";
   lessonId: string;
   generatedAt: number;
   partSummaries: PartOutcomeSummary[];
@@ -96,7 +96,7 @@ export interface AISummaryInput {
 }
 
 export interface AISummaryOutput {
-  type: 'ai-assisted';
+  type: "ai-assisted";
   likelyMisunderstanding: string;
   evidenceObserved: string;
   suggestedIntervention: string;
@@ -133,7 +133,7 @@ export function canTeacherAccessSubmission(
   teacherOrgId: string,
   submissionOrgId: string,
   teacherId: string,
-  submissionTeacherId?: string
+  submissionTeacherId?: string,
 ): boolean {
   if (teacherOrgId !== submissionOrgId) return false;
   if (submissionTeacherId && submissionTeacherId !== teacherId) return false;
@@ -152,7 +152,7 @@ export function canTeacherAccessLessonSummary(
   teacherOrgId: string,
   lessonOrgId: string,
   teacherId: string,
-  lessonTeacherId?: string
+  lessonTeacherId?: string,
 ): boolean {
   if (teacherOrgId !== lessonOrgId) return false;
   if (lessonTeacherId && lessonTeacherId !== teacherId) return false;
@@ -169,7 +169,7 @@ export function canTeacherAccessLessonSummary(
  */
 export function aggregateMisconceptionTags(
   submissions: PracticeSubmissionEnvelope[],
-  studentIdMap?: Map<string, string>
+  studentIdMap?: Map<string, string>,
 ): MisconceptionSummary[] {
   const tagMap = new Map<string, MisconceptionSummary>();
 
@@ -209,7 +209,7 @@ export function aggregateMisconceptionTags(
  */
 export function summarizePartOutcomes(
   submissions: PracticeSubmissionEnvelope[],
-  studentIdMap?: Map<string, string>
+  studentIdMap?: Map<string, string>,
 ): PartOutcomeSummary[] {
   const partMap = new Map<string, PartOutcomeSummary>();
 
@@ -227,7 +227,7 @@ export function summarizePartOutcomes(
         existing.accuracyRate = existing.correctCount / existing.totalAttempts;
 
         for (const tag of part.misconceptionTags ?? []) {
-          const misExisting = existing.commonMisconceptions.find(m => m.tag === tag);
+          const misExisting = existing.commonMisconceptions.find((m) => m.tag === tag);
           if (misExisting) {
             misExisting.count++;
             if (!misExisting.affectedParts.includes(part.partId)) {
@@ -252,7 +252,7 @@ export function summarizePartOutcomes(
           correctCount: part.isCorrect ? 1 : 0,
           incorrectCount: part.isCorrect ? 0 : 1,
           accuracyRate: part.isCorrect ? 1 : 0,
-          commonMisconceptions: (part.misconceptionTags ?? []).map(tag => ({
+          commonMisconceptions: (part.misconceptionTags ?? []).map((tag) => ({
             tag,
             count: 1,
             affectedParts: [part.partId],
@@ -274,12 +274,12 @@ export function summarizePartOutcomes(
  */
 export function buildStudentProfiles(
   submissions: PracticeSubmissionEnvelope[],
-  studentIdMap?: Map<string, string>
+  studentIdMap?: Map<string, string>,
 ): StudentErrorProfile[] {
-  return submissions.map(submission => {
+  return submissions.map((submission) => {
     const studentId = studentIdMap?.get(submission.activityId) ?? submission.activityId;
-    const correctParts = submission.parts.filter(p => p.isCorrect).length;
-    const misconceptions = submission.parts.flatMap(p => p.misconceptionTags ?? []);
+    const correctParts = submission.parts.filter((p) => p.isCorrect).length;
+    const misconceptions = submission.parts.flatMap((p) => p.misconceptionTags ?? []);
 
     return {
       studentId,
@@ -304,7 +304,7 @@ export function buildStudentProfiles(
 export function buildDeterministicSummary(
   lessonId: string,
   submissions: PracticeSubmissionEnvelope[],
-  studentIdMap?: Map<string, string>
+  studentIdMap?: Map<string, string>,
 ): DeterministicErrorSummary {
   const partSummaries = summarizePartOutcomes(submissions, studentIdMap);
   const topMisconceptions = aggregateMisconceptionTags(submissions, studentIdMap);
@@ -314,7 +314,7 @@ export function buildDeterministicSummary(
   const totalCorrect = partSummaries.reduce((sum, p) => sum + p.correctCount, 0);
 
   return {
-    type: 'deterministic',
+    type: "deterministic",
     lessonId,
     generatedAt: Date.now(),
     partSummaries,
@@ -334,7 +334,7 @@ export function buildDeterministicSummary(
  */
 export async function generateAISummary(
   input: AISummaryInput,
-  aiProvider?: (prompt: string) => Promise<string>
+  aiProvider?: (prompt: string) => Promise<string>,
 ): Promise<AISummaryOutput | null> {
   if (!aiProvider) {
     return null;
@@ -345,7 +345,7 @@ export async function generateAISummary(
     const response = await aiProvider(prompt);
     return parseAIResponse(response, input);
   } catch (err) {
-    console.error('[error-analysis] generateAISummary failed:', err);
+    console.error("[error-analysis] generateAISummary failed:", err);
     return null;
   }
 }
@@ -369,10 +369,10 @@ Student Answers:
 ${JSON.stringify(rawEvidence.answers, null, 2)}
 
 Part Results:
-${submission.parts.map(p => `- ${p.partId}: ${p.isCorrect ? 'Correct' : 'Incorrect'} (Score: ${p.score ?? 'N/A'}/${p.maxScore ?? 'N/A'})`).join('\n')}
+${submission.parts.map((p) => `- ${p.partId}: ${p.isCorrect ? "Correct" : "Incorrect"} (Score: ${p.score ?? "N/A"}/${p.maxScore ?? "N/A"})`).join("\n")}
 
 Misconception Tags:
-${submission.parts.flatMap(p => p.misconceptionTags ?? []).join(', ') || 'None'}
+${submission.parts.flatMap((p) => p.misconceptionTags ?? []).join(", ") || "None"}
 
 Class Average Accuracy: ${(deterministicSummary.averageAccuracy * 100).toFixed(1)}%
 
@@ -389,21 +389,20 @@ Provide:
  * @param {AISummaryInput} input - Original summary input for context
  * @returns {AISummaryOutput} - Structured AI summary output
  */
-function parseAIResponse(
-  response: string,
-  input: AISummaryInput
-): AISummaryOutput {
-  const lines = response.split('\n').filter(l => l.trim());
-  const misconceptionTags = Array.from(new Set(input.submission.parts.flatMap(p => p.misconceptionTags ?? [])));
+function parseAIResponse(response: string, input: AISummaryInput): AISummaryOutput {
+  const lines = response.split("\n").filter((l) => l.trim());
+  const misconceptionTags = Array.from(
+    new Set(input.submission.parts.flatMap((p) => p.misconceptionTags ?? [])),
+  );
 
   return {
-    type: 'ai-assisted',
-    likelyMisunderstanding: lines[0] || 'Unable to determine misunderstanding',
-    evidenceObserved: lines[1] || 'No specific evidence identified',
-    suggestedIntervention: lines[2] || 'Review with student individually',
+    type: "ai-assisted",
+    likelyMisunderstanding: lines[0] || "Unable to determine misunderstanding",
+    evidenceObserved: lines[1] || "No specific evidence identified",
+    suggestedIntervention: lines[2] || "Review with student individually",
     sourceSubmissionId: `${input.submission.activityId}-${input.submission.attemptNumber}`,
     sourceEvidence: {
-      partIds: input.submission.parts.map(p => p.partId),
+      partIds: input.submission.parts.map((p) => p.partId),
       misconceptionTags,
     },
     generatedAt: Date.now(),
@@ -422,7 +421,7 @@ function parseAIResponse(
 export function buildTeacherErrorView(
   submission: PracticeSubmissionEnvelope,
   deterministicSummary: DeterministicErrorSummary,
-  aiSummary: AISummaryOutput | null = null
+  aiSummary: AISummaryOutput | null = null,
 ): TeacherErrorView {
   return {
     submissionId: `${submission.activityId}-${submission.attemptNumber}`,

@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useCallback, useEffect } from 'react';
-import type { StepMode } from '@/components/textbook/StepRevealContainer';
-import type { AlgebraicStep } from '@math-platform/activity-components/algebraic';
+import { useState, useCallback, useEffect } from "react";
+import type { StepMode } from "@/components/textbook/StepRevealContainer";
+import type { AlgebraicStep } from "@math-platform/activity-components/algebraic";
 
 interface ExampleReviewHarnessProps {
   componentKey: string;
@@ -35,7 +35,7 @@ export function ExampleReviewHarness({
   onCoherentFeedbackChecked,
   onCanApproveChange,
 }: ExampleReviewHarnessProps) {
-  const [activeMode, setActiveMode] = useState<StepMode>('teaching');
+  const [activeMode, setActiveMode] = useState<StepMode>("teaching");
   const [reviewedModes, setReviewedModes] = useState<ReviewedModes>({
     teaching: false,
     guided: false,
@@ -45,26 +45,33 @@ export function ExampleReviewHarness({
   const [algorithmicChecked, setAlgorithmicChecked] = useState(false);
   const [coherentFeedbackChecked, setCoherentFeedbackChecked] = useState(false);
 
-  const handleModeSwitch = useCallback((mode: StepMode) => {
-    const currentMode = activeMode;
-    setActiveMode(mode);
-    if (currentMode !== mode && !reviewedModes[currentMode]) {
-      setReviewedModes(prev => ({ ...prev, [currentMode]: true }));
-      onModeReviewed?.(currentMode);
-    }
-    if (!reviewedModes[mode]) {
-      setReviewedModes(prev => ({ ...prev, [mode]: true }));
-      onModeReviewed?.(mode);
-    }
-  }, [activeMode, reviewedModes, onModeReviewed]);
+  const handleModeSwitch = useCallback(
+    (mode: StepMode) => {
+      const currentMode = activeMode;
+      setActiveMode(mode);
+      if (currentMode !== mode && !reviewedModes[currentMode]) {
+        setReviewedModes((prev) => ({ ...prev, [currentMode]: true }));
+        onModeReviewed?.(currentMode);
+      }
+      if (!reviewedModes[mode]) {
+        setReviewedModes((prev) => ({ ...prev, [mode]: true }));
+        onModeReviewed?.(mode);
+      }
+    },
+    [activeMode, reviewedModes, onModeReviewed],
+  );
 
   const handleGenerateVariant = useCallback(() => {
-    setPracticeVariantCount(prev => prev + 1);
+    setPracticeVariantCount((prev) => prev + 1);
     onVariantGenerated?.();
   }, [onVariantGenerated]);
 
-  const canApprove = reviewedModes.teaching && reviewedModes.guided && reviewedModes.practice
-    && algorithmicChecked && coherentFeedbackChecked;
+  const canApprove =
+    reviewedModes.teaching &&
+    reviewedModes.guided &&
+    reviewedModes.practice &&
+    algorithmicChecked &&
+    coherentFeedbackChecked;
 
   useEffect(() => {
     onCanApproveChange?.(canApprove);
@@ -82,21 +89,21 @@ export function ExampleReviewHarness({
         <div className="flex gap-2">
           <ModeButton
             mode="teaching"
-            active={activeMode === 'teaching'}
+            active={activeMode === "teaching"}
             reviewed={reviewedModes.teaching}
-            onClick={() => handleModeSwitch('teaching')}
+            onClick={() => handleModeSwitch("teaching")}
           />
           <ModeButton
             mode="guided"
-            active={activeMode === 'guided'}
+            active={activeMode === "guided"}
             reviewed={reviewedModes.guided}
-            onClick={() => handleModeSwitch('guided')}
+            onClick={() => handleModeSwitch("guided")}
           />
           <ModeButton
             mode="practice"
-            active={activeMode === 'practice'}
+            active={activeMode === "practice"}
             reviewed={reviewedModes.practice}
-            onClick={() => handleModeSwitch('practice')}
+            onClick={() => handleModeSwitch("practice")}
           />
         </div>
       </div>
@@ -110,7 +117,7 @@ export function ExampleReviewHarness({
         </div>
       </div>
 
-      {activeMode === 'practice' && (
+      {activeMode === "practice" && (
         <div className="space-y-3">
           <button
             type="button"
@@ -194,13 +201,13 @@ function ModeButton({
       onClick={onClick}
       className={`px-4 py-2 rounded capitalize transition-colors ${
         active
-          ? 'bg-primary text-primary-foreground'
+          ? "bg-primary text-primary-foreground"
           : reviewed
-          ? 'bg-green-100 text-green-800 hover:bg-green-200'
-          : 'bg-muted hover:bg-muted/80'
+            ? "bg-green-100 text-green-800 hover:bg-green-200"
+            : "bg-muted hover:bg-muted/80"
       }`}
     >
-      {mode} {reviewed && !active && '✓'}
+      {mode} {reviewed && !active && "✓"}
     </button>
   );
 }
@@ -215,10 +222,10 @@ function StatusBadge({ label, checked }: { label: string; checked: boolean }) {
   return (
     <span
       className={`text-xs px-2 py-1 rounded ${
-        checked ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+        checked ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"
       }`}
     >
-      {label}: {checked ? 'Reviewed' : 'Pending'}
+      {label}: {checked ? "Reviewed" : "Pending"}
     </span>
   );
 }
@@ -238,7 +245,7 @@ function ExamplePreview({
   steps: AlgebraicStep[];
   variant: number;
 }) {
-  if (variant > 0 && mode === 'practice') {
+  if (variant > 0 && mode === "practice") {
     return (
       <div className="space-y-2">
         <div className="text-sm text-muted-foreground">Practice Variant #{variant}</div>
@@ -254,11 +261,13 @@ function ExamplePreview({
   return (
     <div className="space-y-2">
       <div className="text-xs text-muted-foreground">
-        {mode === 'teaching' ? 'Full step reveal mode' : mode === 'guided' ? 'Interactive step-by-step' : 'Practice input mode'}
+        {mode === "teaching"
+          ? "Full step reveal mode"
+          : mode === "guided"
+            ? "Interactive step-by-step"
+            : "Practice input mode"}
       </div>
-      <div className="text-sm">
-        {steps.length} steps available
-      </div>
+      <div className="text-sm">{steps.length} steps available</div>
       {steps.length > 0 && (
         <div className="text-xs text-muted-foreground font-mono">
           First step: {steps[0].expression}
@@ -284,11 +293,11 @@ export function useExampleReviewHarnessState() {
   const [coherentFeedbackVerified, setCoherentFeedbackVerified] = useState(false);
 
   const markModeReviewed = useCallback((mode: StepMode) => {
-    setReviewedModes(prev => ({ ...prev, [mode]: true }));
+    setReviewedModes((prev) => ({ ...prev, [mode]: true }));
   }, []);
 
   const generateVariant = useCallback(() => {
-    setVariantCount(prev => prev + 1);
+    setVariantCount((prev) => prev + 1);
   }, []);
 
   const verifyAlgorithmic = useCallback(() => {
@@ -299,8 +308,12 @@ export function useExampleReviewHarnessState() {
     setCoherentFeedbackVerified(true);
   }, []);
 
-  const canApprove = reviewedModes.teaching && reviewedModes.guided && reviewedModes.practice
-    && algorithmicVerified && coherentFeedbackVerified;
+  const canApprove =
+    reviewedModes.teaching &&
+    reviewedModes.guided &&
+    reviewedModes.practice &&
+    algorithmicVerified &&
+    coherentFeedbackVerified;
 
   return {
     reviewedModes,

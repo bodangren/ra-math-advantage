@@ -1,28 +1,28 @@
-import { renderHook } from '@testing-library/react';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { renderHook } from "@testing-library/react";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   practiceTimingSummarySchema,
   type PracticeTimingSummary,
-} from '@math-platform/practice-core/contract';
-import { usePracticeTiming } from '@/components/practice-timing';
+} from "@math-platform/practice-core/contract";
+import { usePracticeTiming } from "@/components/practice-timing";
 
-describe('usePracticeTiming wall-clock timestamps', () => {
+describe("usePracticeTiming wall-clock timestamps", () => {
   afterEach(() => {
     vi.restoreAllMocks();
   });
 
-  it('uses the browser time origin for modern practice timing timestamps', () => {
-    const epochMs = Date.parse('2026-09-05T10:00:00.000Z');
+  it("uses the browser time origin for modern practice timing timestamps", () => {
+    const epochMs = Date.parse("2026-09-05T10:00:00.000Z");
     const startElapsedMs = 1000;
     const submittedElapsedMs = 3500;
-    const originalTimeOrigin = Object.getOwnPropertyDescriptor(performance, 'timeOrigin');
+    const originalTimeOrigin = Object.getOwnPropertyDescriptor(performance, "timeOrigin");
 
-    Object.defineProperty(performance, 'timeOrigin', {
+    Object.defineProperty(performance, "timeOrigin", {
       configurable: true,
       value: epochMs,
     });
     let elapsedMs = startElapsedMs;
-    vi.spyOn(performance, 'now').mockImplementation(() => elapsedMs);
+    vi.spyOn(performance, "now").mockImplementation(() => elapsedMs);
 
     try {
       const { result } = renderHook(() => usePracticeTiming());
@@ -32,7 +32,7 @@ describe('usePracticeTiming wall-clock timestamps', () => {
       const timing: PracticeTimingSummary | null = result.current.getTiming();
 
       expect(timing).not.toBeNull();
-      if (!timing) throw new Error('Expected practice timing after tracking started.');
+      if (!timing) throw new Error("Expected practice timing after tracking started.");
 
       expect(timing.startedAt).toBe(new Date(epochMs + startElapsedMs).toISOString());
       expect(timing.submittedAt).toBe(new Date(epochMs + submittedElapsedMs).toISOString());
@@ -46,7 +46,7 @@ describe('usePracticeTiming wall-clock timestamps', () => {
       expect(practiceTimingSummarySchema.safeParse(timing).success).toBe(true);
     } finally {
       if (originalTimeOrigin) {
-        Object.defineProperty(performance, 'timeOrigin', originalTimeOrigin);
+        Object.defineProperty(performance, "timeOrigin", originalTimeOrigin);
       } else {
         delete (performance as { timeOrigin?: number }).timeOrigin;
       }

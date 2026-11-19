@@ -1,13 +1,11 @@
-import { officialTechniques } from '@/content/learn/techniques';
+import { officialTechniques } from "@/content/learn/techniques";
 
-export { learnHref } from './href';
-export type { Technique } from '@/content/learn/types';
+export { learnHref } from "./href";
+export type { Technique } from "@/content/learn/types";
 
 export const LEARN_TECHNIQUES = Object.freeze([...officialTechniques]);
 
-const techniqueById = new Map(
-  LEARN_TECHNIQUES.map((technique) => [technique.id, technique]),
-);
+const techniqueById = new Map(LEARN_TECHNIQUES.map((technique) => [technique.id, technique]));
 
 export function getLearnTechnique(slug: string) {
   return techniqueById.get(slug);

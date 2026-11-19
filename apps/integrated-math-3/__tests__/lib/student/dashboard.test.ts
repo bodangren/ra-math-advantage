@@ -1,22 +1,19 @@
-import { describe, it, expect } from 'vitest';
-import {
-  buildStudentDashboardViewModel,
-  type StudentDashboardUnit,
-} from '@/lib/student/dashboard';
+import { describe, it, expect } from "vitest";
+import { buildStudentDashboardViewModel, type StudentDashboardUnit } from "@/lib/student/dashboard";
 
-describe('buildStudentDashboardViewModel', () => {
-  describe('estimatedMinutes', () => {
-    it('includes estimatedMinutes sum from lessons', () => {
+describe("buildStudentDashboardViewModel", () => {
+  describe("estimatedMinutes", () => {
+    it("includes estimatedMinutes sum from lessons", () => {
       const units: StudentDashboardUnit[] = [
         {
           unitNumber: 1,
-          unitTitle: 'Quadratic Functions',
+          unitTitle: "Quadratic Functions",
           lessons: [
             {
-              id: 'l1',
+              id: "l1",
               unitNumber: 1,
-              title: 'Intro to Quadratics',
-              slug: 'intro',
+              title: "Intro to Quadratics",
+              slug: "intro",
               description: null,
               completedPhases: 0,
               totalPhases: 6,
@@ -33,17 +30,17 @@ describe('buildStudentDashboardViewModel', () => {
       expect(vm.units[0].lessons[0].estimatedMinutes).toBe(85);
     });
 
-    it('sums estimatedMinutes across all phases for a lesson', () => {
+    it("sums estimatedMinutes across all phases for a lesson", () => {
       const units: StudentDashboardUnit[] = [
         {
           unitNumber: 1,
-          unitTitle: 'Quadratic Functions',
+          unitTitle: "Quadratic Functions",
           lessons: [
             {
-              id: 'l1',
+              id: "l1",
               unitNumber: 1,
-              title: 'Lesson 1',
-              slug: 'lesson-1',
+              title: "Lesson 1",
+              slug: "lesson-1",
               description: null,
               completedPhases: 3,
               totalPhases: 6,
@@ -52,10 +49,10 @@ describe('buildStudentDashboardViewModel', () => {
               isLocked: false,
             },
             {
-              id: 'l2',
+              id: "l2",
               unitNumber: 1,
-              title: 'Lesson 2',
-              slug: 'lesson-2',
+              title: "Lesson 2",
+              slug: "lesson-2",
               description: null,
               completedPhases: 0,
               totalPhases: 4,
@@ -73,17 +70,17 @@ describe('buildStudentDashboardViewModel', () => {
       expect(vm.units[0].lessons[1].estimatedMinutes).toBe(60);
     });
 
-    it('handles missing estimatedMinutes as undefined', () => {
+    it("handles missing estimatedMinutes as undefined", () => {
       const units: StudentDashboardUnit[] = [
         {
           unitNumber: 1,
-          unitTitle: 'Quadratic Functions',
+          unitTitle: "Quadratic Functions",
           lessons: [
             {
-              id: 'l1',
+              id: "l1",
               unitNumber: 1,
-              title: 'Lesson 1',
-              slug: 'lesson-1',
+              title: "Lesson 1",
+              slug: "lesson-1",
               description: null,
               completedPhases: 0,
               totalPhases: 6,
@@ -100,18 +97,18 @@ describe('buildStudentDashboardViewModel', () => {
     });
   });
 
-  describe('lesson lock/unlock state', () => {
-    it('marks first lesson as unlocked', () => {
+  describe("lesson lock/unlock state", () => {
+    it("marks first lesson as unlocked", () => {
       const units: StudentDashboardUnit[] = [
         {
           unitNumber: 1,
-          unitTitle: 'Quadratic Functions',
+          unitTitle: "Quadratic Functions",
           lessons: [
             {
-              id: 'l1',
+              id: "l1",
               unitNumber: 1,
-              title: 'Lesson 1',
-              slug: 'lesson-1',
+              title: "Lesson 1",
+              slug: "lesson-1",
               description: null,
               completedPhases: 0,
               totalPhases: 6,
@@ -127,17 +124,17 @@ describe('buildStudentDashboardViewModel', () => {
       expect(vm.units[0].lessons[0].isLocked).toBe(false);
     });
 
-    it('marks subsequent lessons as locked when prior lesson not complete', () => {
+    it("marks subsequent lessons as locked when prior lesson not complete", () => {
       const units: StudentDashboardUnit[] = [
         {
           unitNumber: 1,
-          unitTitle: 'Quadratic Functions',
+          unitTitle: "Quadratic Functions",
           lessons: [
             {
-              id: 'l1',
+              id: "l1",
               unitNumber: 1,
-              title: 'Lesson 1',
-              slug: 'lesson-1',
+              title: "Lesson 1",
+              slug: "lesson-1",
               description: null,
               completedPhases: 3,
               totalPhases: 6,
@@ -145,10 +142,10 @@ describe('buildStudentDashboardViewModel', () => {
               isLocked: false,
             },
             {
-              id: 'l2',
+              id: "l2",
               unitNumber: 1,
-              title: 'Lesson 2',
-              slug: 'lesson-2',
+              title: "Lesson 2",
+              slug: "lesson-2",
               description: null,
               completedPhases: 0,
               totalPhases: 4,
@@ -165,17 +162,17 @@ describe('buildStudentDashboardViewModel', () => {
       expect(vm.units[0].lessons[1].isLocked).toBe(true);
     });
 
-    it('unlocks lesson when prior lesson assessment phase is complete', () => {
+    it("unlocks lesson when prior lesson assessment phase is complete", () => {
       const units: StudentDashboardUnit[] = [
         {
           unitNumber: 1,
-          unitTitle: 'Quadratic Functions',
+          unitTitle: "Quadratic Functions",
           lessons: [
             {
-              id: 'l1',
+              id: "l1",
               unitNumber: 1,
-              title: 'Lesson 1',
-              slug: 'lesson-1',
+              title: "Lesson 1",
+              slug: "lesson-1",
               description: null,
               completedPhases: 6,
               totalPhases: 6,
@@ -183,10 +180,10 @@ describe('buildStudentDashboardViewModel', () => {
               isLocked: false,
             },
             {
-              id: 'l2',
+              id: "l2",
               unitNumber: 1,
-              title: 'Lesson 2',
-              slug: 'lesson-2',
+              title: "Lesson 2",
+              slug: "lesson-2",
               description: null,
               completedPhases: 0,
               totalPhases: 4,
@@ -204,18 +201,18 @@ describe('buildStudentDashboardViewModel', () => {
     });
   });
 
-  describe('continueUrl smart navigation', () => {
-    it('provides continueUrl to first lesson phase 1 when no progress', () => {
+  describe("continueUrl smart navigation", () => {
+    it("provides continueUrl to first lesson phase 1 when no progress", () => {
       const units: StudentDashboardUnit[] = [
         {
           unitNumber: 1,
-          unitTitle: 'Quadratic Functions',
+          unitTitle: "Quadratic Functions",
           lessons: [
             {
-              id: 'l1',
+              id: "l1",
               unitNumber: 1,
-              title: 'Lesson 1',
-              slug: 'lesson-1',
+              title: "Lesson 1",
+              slug: "lesson-1",
               description: null,
               completedPhases: 0,
               totalPhases: 6,
@@ -228,20 +225,20 @@ describe('buildStudentDashboardViewModel', () => {
 
       const vm = buildStudentDashboardViewModel(units);
 
-      expect(vm.continueUrl).toBe('/student/lesson/lesson-1?phase=1');
+      expect(vm.continueUrl).toBe("/student/lesson/lesson-1?phase=1");
     });
 
-    it('provides continueUrl to in-progress lesson at first incomplete phase', () => {
+    it("provides continueUrl to in-progress lesson at first incomplete phase", () => {
       const units: StudentDashboardUnit[] = [
         {
           unitNumber: 1,
-          unitTitle: 'Quadratic Functions',
+          unitTitle: "Quadratic Functions",
           lessons: [
             {
-              id: 'l1',
+              id: "l1",
               unitNumber: 1,
-              title: 'Lesson 1',
-              slug: 'lesson-1',
+              title: "Lesson 1",
+              slug: "lesson-1",
               description: null,
               completedPhases: 3,
               totalPhases: 6,
@@ -254,20 +251,20 @@ describe('buildStudentDashboardViewModel', () => {
 
       const vm = buildStudentDashboardViewModel(units);
 
-      expect(vm.continueUrl).toBe('/student/lesson/lesson-1?phase=4');
+      expect(vm.continueUrl).toBe("/student/lesson/lesson-1?phase=4");
     });
 
-    it('provides continueUrl to completion summary when all lessons complete', () => {
+    it("provides continueUrl to completion summary when all lessons complete", () => {
       const units: StudentDashboardUnit[] = [
         {
           unitNumber: 1,
-          unitTitle: 'Quadratic Functions',
+          unitTitle: "Quadratic Functions",
           lessons: [
             {
-              id: 'l1',
+              id: "l1",
               unitNumber: 1,
-              title: 'Lesson 1',
-              slug: 'lesson-1',
+              title: "Lesson 1",
+              slug: "lesson-1",
               description: null,
               completedPhases: 6,
               totalPhases: 6,
@@ -280,10 +277,10 @@ describe('buildStudentDashboardViewModel', () => {
 
       const vm = buildStudentDashboardViewModel(units);
 
-      expect(vm.continueUrl).toBe('/student/dashboard?complete=module-1');
+      expect(vm.continueUrl).toBe("/student/dashboard?complete=module-1");
     });
 
-    it('returns null continueUrl when no lessons exist', () => {
+    it("returns null continueUrl when no lessons exist", () => {
       const units: StudentDashboardUnit[] = [];
 
       const vm = buildStudentDashboardViewModel(units);

@@ -10,8 +10,8 @@
  * the full deterministic summary and raw evidence.
  */
 
-import type { LessonErrorSummary } from './error-summary';
-import { withRetry } from '@math-platform/ai-tutoring';
+import type { LessonErrorSummary } from "./error-summary";
+import { withRetry } from "@math-platform/ai-tutoring";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -45,11 +45,11 @@ export interface AIInterpretationConfig {
  * Returns a disabled config by default so the feature is opt-in.
  */
 export function getAIConfig(): AIInterpretationConfig {
-  const enabled = process.env.AI_INTERPRETATION_ENABLED === 'true';
+  const enabled = process.env.AI_INTERPRETATION_ENABLED === "true";
   const provider = process.env.AI_INTERPRETATION_PROVIDER;
   const apiKey = process.env.AI_INTERPRETATION_API_KEY;
-  const maxTokens = parseInt(process.env.AI_INTERPRETATION_MAX_TOKENS ?? '500', 10);
-  const timeoutMs = parseInt(process.env.AI_INTERPRETATION_TIMEOUT_MS ?? '5000', 10);
+  const maxTokens = parseInt(process.env.AI_INTERPRETATION_MAX_TOKENS ?? "500", 10);
+  const timeoutMs = parseInt(process.env.AI_INTERPRETATION_TIMEOUT_MS ?? "5000", 10);
 
   return {
     enabled,
@@ -82,58 +82,71 @@ export function getAIConfig(): AIInterpretationConfig {
 function buildAIPrompt(summary: LessonErrorSummary): string {
   const lines: string[] = [];
 
-  lines.push('You are an expert accounting education assistant.');
-  lines.push('Analyze the following student practice evidence and provide a concise interpretation.');
-  lines.push('');
+  lines.push("You are an expert accounting education assistant.");
+  lines.push(
+    "Analyze the following student practice evidence and provide a concise interpretation.",
+  );
+  lines.push("");
 
   lines.push(`Student: ${summary.studentName}`);
   lines.push(`Lesson: ${summary.lessonTitle}`);
-  lines.push('');
+  lines.push("");
 
   if (summary.overallCorrectnessRate !== null) {
     const pct = Math.round(summary.overallCorrectnessRate * 100);
-    lines.push(`Overall performance: ${pct}% correct (${summary.correctParts}/${summary.totalParts} parts)`);
+    lines.push(
+      `Overall performance: ${pct}% correct (${summary.correctParts}/${summary.totalParts} parts)`,
+    );
   }
 
   if (summary.topMisconceptions.length > 0) {
-    lines.push('');
-    lines.push('Top misconceptions:');
+    lines.push("");
+    lines.push("Top misconceptions:");
     for (const m of summary.topMisconceptions.slice(0, 5)) {
-      lines.push(`  - "${m.tag}" (${m.count} occurrences across parts: ${m.partIds.join(', ')})`);
+      lines.push(`  - "${m.tag}" (${m.count} occurrences across parts: ${m.partIds.join(", ")})`);
     }
   }
 
   if (summary.totalHintsUsed > 0 || summary.totalRevealsSeen > 0 || summary.totalEditsMade > 0) {
-    lines.push('');
-    lines.push(`Scaffold usage: ${summary.totalHintsUsed} hints, ${summary.totalRevealsSeen} reveals, ${summary.totalEditsMade} edits`);
+    lines.push("");
+    lines.push(
+      `Scaffold usage: ${summary.totalHintsUsed} hints, ${summary.totalRevealsSeen} reveals, ${summary.totalEditsMade} edits`,
+    );
   }
 
   if (summary.activities.length > 0) {
-    lines.push('');
-    lines.push('Activity breakdown:');
+    lines.push("");
+    lines.push("Activity breakdown:");
     for (const activity of summary.activities) {
-      const pct = activity.correctnessRate !== null
-        ? `${Math.round(activity.correctnessRate * 100)}%`
-        : 'unscored';
-      lines.push(`  - ${activity.activityTitle}: ${activity.correctParts}/${activity.totalParts} correct (${pct})`);
+      const pct =
+        activity.correctnessRate !== null
+          ? `${Math.round(activity.correctnessRate * 100)}%`
+          : "unscored";
+      lines.push(
+        `  - ${activity.activityTitle}: ${activity.correctParts}/${activity.totalParts} correct (${pct})`,
+      );
       if (activity.misconceptionTags.length > 0) {
-        const tags = activity.misconceptionTags.map((t) => t.tag).join(', ');
+        const tags = activity.misconceptionTags.map((t) => t.tag).join(", ");
         lines.push(`    Tags: ${tags}`);
       }
     }
   }
 
-  lines.push('');
-  lines.push('Return a JSON object with these fields:');
-  lines.push('  - likelyMisunderstanding: string — the most probable conceptual gap');
-  lines.push('  - evidenceObserved: string[] — 2-4 specific evidence points from the submission');
-  lines.push('  - suggestedReteach: string — a concrete reteaching direction');
-  lines.push('  - groundedIn: string[] — which submission data points your interpretation is based on');
-  lines.push('');
-  lines.push('Be concise. Only reference evidence that is actually present in the data above.');
-  lines.push('If the student performed well, say so and suggest enrichment rather than reteaching.');
+  lines.push("");
+  lines.push("Return a JSON object with these fields:");
+  lines.push("  - likelyMisunderstanding: string — the most probable conceptual gap");
+  lines.push("  - evidenceObserved: string[] — 2-4 specific evidence points from the submission");
+  lines.push("  - suggestedReteach: string — a concrete reteaching direction");
+  lines.push(
+    "  - groundedIn: string[] — which submission data points your interpretation is based on",
+  );
+  lines.push("");
+  lines.push("Be concise. Only reference evidence that is actually present in the data above.");
+  lines.push(
+    "If the student performed well, say so and suggest enrichment rather than reteaching.",
+  );
 
-  return lines.join('\n');
+  return lines.join("\n");
 }
 
 // ---------------------------------------------------------------------------
@@ -145,17 +158,14 @@ function buildAIPrompt(summary: LessonErrorSummary): string {
  *
  * Returns the raw response string or throws on error.
  */
-async function callAIProvider(
-  prompt: string,
-  config: AIInterpretationConfig,
-): Promise<string> {
-  const provider = config.provider ?? 'openai';
+async function callAIProvider(prompt: string, config: AIInterpretationConfig): Promise<string> {
+  const provider = config.provider ?? "openai";
   const apiKey = config.apiKey;
   const maxTokens = config.maxTokens ?? 500;
   const timeoutMs = config.timeoutMs ?? 5000;
 
   if (!apiKey) {
-    throw new Error('AI API key is not configured');
+    throw new Error("AI API key is not configured");
   }
 
   return withRetry(async () => {
@@ -163,9 +173,9 @@ async function callAIProvider(
     const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
     try {
-      if (provider === 'openai') {
+      if (provider === "openai") {
         return await callOpenAI(prompt, apiKey, maxTokens, controller.signal);
-      } else if (provider === 'anthropic') {
+      } else if (provider === "anthropic") {
         return await callAnthropic(prompt, apiKey, maxTokens, controller.signal);
       } else {
         throw new Error(`Unknown AI provider: ${provider}`);
@@ -190,15 +200,15 @@ async function callOpenAI(
   maxTokens: number,
   signal: AbortSignal,
 ): Promise<string> {
-  const response = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
+  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
-      model: 'gpt-4o-mini',
-      messages: [{ role: 'user', content: prompt }],
+      model: "gpt-4o-mini",
+      messages: [{ role: "user", content: prompt }],
       max_tokens: maxTokens,
       temperature: 0.3,
     }),
@@ -211,7 +221,7 @@ async function callOpenAI(
   }
 
   const data = await response.json();
-  return data.choices?.[0]?.message?.content ?? '';
+  return data.choices?.[0]?.message?.content ?? "";
 }
 
 /**
@@ -228,17 +238,17 @@ async function callAnthropic(
   maxTokens: number,
   signal: AbortSignal,
 ): Promise<string> {
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
+  const response = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
+      "Content-Type": "application/json",
+      "x-api-key": apiKey,
+      "anthropic-version": "2023-06-01",
     },
     body: JSON.stringify({
-      model: 'claude-3-haiku-20240307',
+      model: "claude-3-haiku-20240307",
       max_tokens: maxTokens,
-      messages: [{ role: 'user', content: prompt }],
+      messages: [{ role: "user", content: prompt }],
     }),
     signal,
   });
@@ -249,7 +259,7 @@ async function callAnthropic(
   }
 
   const data = await response.json();
-  return data.content?.[0]?.text ?? '';
+  return data.content?.[0]?.text ?? "";
 }
 
 // ---------------------------------------------------------------------------
@@ -272,24 +282,21 @@ function parseAIResponse(rawResponse: string, provider: string): AIInterpretatio
     const parsed = JSON.parse(jsonStr) as Record<string, unknown>;
 
     const evidenceObserved = Array.isArray(parsed.evidenceObserved)
-      ? parsed.evidenceObserved.filter((e): e is string => typeof e === 'string')
+      ? parsed.evidenceObserved.filter((e): e is string => typeof e === "string")
       : [];
 
     const groundedIn = Array.isArray(parsed.groundedIn)
-      ? parsed.groundedIn.filter((g): g is string => typeof g === 'string')
+      ? parsed.groundedIn.filter((g): g is string => typeof g === "string")
       : [];
 
     return {
-      interpretation: typeof parsed.likelyMisunderstanding === 'string'
-        ? parsed.likelyMisunderstanding
-        : null,
-      likelyMisunderstanding: typeof parsed.likelyMisunderstanding === 'string'
-        ? parsed.likelyMisunderstanding
-        : null,
+      interpretation:
+        typeof parsed.likelyMisunderstanding === "string" ? parsed.likelyMisunderstanding : null,
+      likelyMisunderstanding:
+        typeof parsed.likelyMisunderstanding === "string" ? parsed.likelyMisunderstanding : null,
       evidenceObserved,
-      suggestedReteach: typeof parsed.suggestedReteach === 'string'
-        ? parsed.suggestedReteach
-        : null,
+      suggestedReteach:
+        typeof parsed.suggestedReteach === "string" ? parsed.suggestedReteach : null,
       groundedIn,
       providerUsed: provider,
       error: null,
@@ -302,7 +309,7 @@ function parseAIResponse(rawResponse: string, provider: string): AIInterpretatio
       suggestedReteach: null,
       groundedIn: [],
       providerUsed: provider,
-      error: 'Failed to parse AI response as structured JSON',
+      error: "Failed to parse AI response as structured JSON",
     };
   }
 }
@@ -334,7 +341,7 @@ export async function generateAIInterpretation(
       suggestedReteach: null,
       groundedIn: [],
       providerUsed: null,
-      error: 'AI interpretation is disabled',
+      error: "AI interpretation is disabled",
     };
   }
 
@@ -346,16 +353,16 @@ export async function generateAIInterpretation(
       suggestedReteach: null,
       groundedIn: [],
       providerUsed: cfg.provider ?? null,
-      error: 'No practice evidence available to analyze',
+      error: "No practice evidence available to analyze",
     };
   }
 
   try {
     const prompt = buildAIPrompt(summary);
     const rawResponse = await callAIProvider(prompt, cfg);
-    return parseAIResponse(rawResponse, cfg.provider ?? 'unknown');
+    return parseAIResponse(rawResponse, cfg.provider ?? "unknown");
   } catch (err) {
-    const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+    const errorMessage = err instanceof Error ? err.message : "Unknown error";
     return {
       interpretation: null,
       likelyMisunderstanding: null,

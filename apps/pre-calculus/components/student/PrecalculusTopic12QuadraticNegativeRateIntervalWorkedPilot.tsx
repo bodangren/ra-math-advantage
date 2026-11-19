@@ -1,24 +1,27 @@
-'use client';
-import { useRouter } from 'next/navigation';
+"use client";
+import { useRouter } from "next/navigation";
 
-import { useRef, useState } from 'react';
+import { useRef, useState } from "react";
 
-import { QuadraticNegativeRateIntervalChoiceActivity } from '@math-platform/activity-components';
-import type { QuadraticNegativeRateIntervalChoiceProps } from '@math-platform/math-content';
+import { QuadraticNegativeRateIntervalChoiceActivity } from "@math-platform/activity-components";
+import type { QuadraticNegativeRateIntervalChoiceProps } from "@math-platform/math-content";
 import {
   generateTopic12QuadraticNegativeRateIntervalChoice,
   generateTopic12QuadraticNegativeRateIntervalChoiceOutput,
-} from '@math-platform/math-content/knowledge-space';
+} from "@math-platform/math-content/knowledge-space";
 
-import { PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_WORKED_ACTIVITY_ID } from '@/lib/learning-evidence/precalc-pilot';
+import { PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_WORKED_ACTIVITY_ID } from "@/lib/learning-evidence/precalc-pilot";
 
 const sourceVariant = generateTopic12QuadraticNegativeRateIntervalChoice(0);
 const sourceOutput = generateTopic12QuadraticNegativeRateIntervalChoiceOutput(0);
-const finalAnswer = 'Option D is correct because the rate is negative to the right of the vertex.';
-type WorkedProps = Extract<QuadraticNegativeRateIntervalChoiceProps, { presentationMode: 'worked_example' }>;
+const finalAnswer = "Option D is correct because the rate is negative to the right of the vertex.";
+type WorkedProps = Extract<
+  QuadraticNegativeRateIntervalChoiceProps,
+  { presentationMode: "worked_example" }
+>;
 
 function createIdempotencyKey(): string {
-  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
     return crypto.randomUUID();
   }
   return `precalc-topic-1-2-quadratic-negative-rate-interval-worked-${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -26,15 +29,15 @@ function createIdempotencyKey(): string {
 
 async function readJson(response: Response): Promise<Record<string, unknown>> {
   const body: unknown = await response.json().catch(() => null);
-  if (typeof body !== 'object' || body === null || Array.isArray(body)) {
-    throw new Error('Unable to record the quadratic negative-rate interval Worked example review.');
+  if (typeof body !== "object" || body === null || Array.isArray(body)) {
+    throw new Error("Unable to record the quadratic negative-rate interval Worked example review.");
   }
   return body as Record<string, unknown>;
 }
 
 export function PrecalculusTopic12QuadraticNegativeRateIntervalWorkedPilot() {
   const router = useRouter();
-  const [status, setStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
   const [message, setMessage] = useState<string | null>(null);
   const idempotencyKeyRef = useRef<string | null>(null);
 
@@ -47,44 +50,49 @@ export function PrecalculusTopic12QuadraticNegativeRateIntervalWorkedPilot() {
     domain: [...sourceVariant.domain] as [number, number],
     options: sourceVariant.options.map((option) => ({
       ...option,
-      id: option.id as WorkedProps['options'][number]['id'],
-      label: option.label as WorkedProps['options'][number]['label'],
+      id: option.id as WorkedProps["options"][number]["id"],
+      label: option.label as WorkedProps["options"][number]["label"],
     })),
-    presentationMode: 'worked_example',
-    correctOptionId: sourceOutput.expectedAnswer.selectedOptionId as WorkedProps['correctOptionId'],
+    presentationMode: "worked_example",
+    correctOptionId: sourceOutput.expectedAnswer.selectedOptionId as WorkedProps["correctOptionId"],
     steps: sourceOutput.solutionSteps.map((step) => step.description),
     finalAnswer,
   };
 
   async function submit() {
-    if (status === 'saving' || status === 'saved') return;
+    if (status === "saving" || status === "saved") return;
     idempotencyKeyRef.current ??= createIdempotencyKey();
-    setStatus('saving');
+    setStatus("saving");
     setMessage(null);
 
     try {
-      const response = await fetch('/api/activities/precalculus-topic-1-2-quadratic-negative-rate-interval-worked/submissions', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-          'Idempotency-Key': idempotencyKeyRef.current,
+      const response = await fetch(
+        "/api/activities/precalculus-topic-1-2-quadratic-negative-rate-interval-worked/submissions",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            "Idempotency-Key": idempotencyKeyRef.current,
+          },
+          body: JSON.stringify({ selectedOptionId: sourceOutput.expectedAnswer.selectedOptionId }),
         },
-        body: JSON.stringify({ selectedOptionId: sourceOutput.expectedAnswer.selectedOptionId }),
-      });
+      );
       const body = await readJson(response);
       if (
-        !response.ok
-        || typeof body.submissionId !== 'string'
-        || body.submissionId.trim().length === 0
+        !response.ok ||
+        typeof body.submissionId !== "string" ||
+        body.submissionId.trim().length === 0
       ) {
-        throw new Error('Unable to record the quadratic negative-rate interval Worked example review.');
+        throw new Error(
+          "Unable to record the quadratic negative-rate interval Worked example review.",
+        );
       }
-      setStatus('saved');
+      setStatus("saved");
       router.refresh();
-      setMessage('Quadratic negative-rate interval Worked example review saved.');
+      setMessage("Quadratic negative-rate interval Worked example review saved.");
     } catch {
-      setStatus('error');
-      setMessage('Unable to record the quadratic negative-rate interval Worked example review.');
+      setStatus("error");
+      setMessage("Unable to record the quadratic negative-rate interval Worked example review.");
     }
   }
 
@@ -101,21 +109,23 @@ export function PrecalculusTopic12QuadraticNegativeRateIntervalWorkedPilot() {
       <button
         type="button"
         className="btn-primary mt-6"
-        disabled={status === 'saving' || status === 'saved'}
+        disabled={status === "saving" || status === "saved"}
         onClick={submit}
       >
-        {status === 'saving'
-          ? 'Saving…'
-          : status === 'error'
-            ? 'Retry quadratic negative-rate interval Worked example review'
-            : status === 'saved'
-              ? 'Quadratic negative-rate interval Worked example reviewed'
-              : 'Mark worked example reviewed'}
+        {status === "saving"
+          ? "Saving…"
+          : status === "error"
+            ? "Retry quadratic negative-rate interval Worked example review"
+            : status === "saved"
+              ? "Quadratic negative-rate interval Worked example reviewed"
+              : "Mark worked example reviewed"}
       </button>
-      {status === 'saved' && message && (
-        <p className="mt-4" role="status">{message}</p>
+      {status === "saved" && message && (
+        <p className="mt-4" role="status">
+          {message}
+        </p>
       )}
-      {status === 'error' && message && (
+      {status === "error" && message && (
         <div className="mt-4" role="alert">
           <p>{message}</p>
         </div>

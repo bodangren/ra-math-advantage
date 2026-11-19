@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
 import {
   COMPONENT_1E,
@@ -6,44 +6,51 @@ import {
   createFixtureGraph,
   type FixtureEdge,
   type FixtureNode,
-} from './fixtures';
+} from "./fixtures";
 
-const graphModule = () => import('../../lib/proficiency/graph');
+const graphModule = () => import("../../lib/proficiency/graph");
 
-describe('Danielson graph content', () => {
-  it('builds the approved Danielson hierarchy and imports each standalone TLAC skill once', async () => {
+describe("Danielson graph content", () => {
+  it("builds the approved Danielson hierarchy and imports each standalone TLAC skill once", async () => {
     const { buildDanielsonGraph, validateDanielsonGraph } = await graphModule();
 
     const result = buildDanielsonGraph();
     const nodes = result.graph.nodes;
     const edges = result.graph.edges;
-    const rootNodes = nodes.filter((node: FixtureNode) => node.kind === 'domain');
-    const domainNodes = nodes.filter((node: FixtureNode) => node.kind === 'content_group');
-    const componentNodes = nodes.filter((node: FixtureNode) => node.kind === 'instructional_unit');
-    const approvedSkills = nodes.filter((node: FixtureNode) => (
-      node.kind === 'skill' && node.reviewStatus === 'approved'
-    ));
+    const rootNodes = nodes.filter((node: FixtureNode) => node.kind === "domain");
+    const domainNodes = nodes.filter((node: FixtureNode) => node.kind === "content_group");
+    const componentNodes = nodes.filter((node: FixtureNode) => node.kind === "instructional_unit");
+    const approvedSkills = nodes.filter(
+      (node: FixtureNode) => node.kind === "skill" && node.reviewStatus === "approved",
+    );
 
     expect(rootNodes).toHaveLength(1);
     expect(domainNodes).toHaveLength(4);
     expect(componentNodes).toHaveLength(22);
-    expect(componentNodes.map((node: FixtureNode) => node.metadata.componentId).sort())
-      .toEqual([...DANIELSON_COMPONENT_IDS].sort());
+    expect(componentNodes.map((node: FixtureNode) => node.metadata.componentId).sort()).toEqual(
+      [...DANIELSON_COMPONENT_IDS].sort(),
+    );
     expect(approvedSkills).toHaveLength(63);
     expect(new Set(approvedSkills.map((node: FixtureNode) => node.id)).size).toBe(63);
-    expect(approvedSkills.every((node: FixtureNode) => node.sourceRefs.some((ref) => (
-      typeof ref === 'string' ? ref === 'Teach Like a Champion 3.0' : ref.source === 'Teach Like a Champion 3.0'
-    )))).toBe(true);
+    expect(
+      approvedSkills.every((node: FixtureNode) =>
+        node.sourceRefs.some((ref) =>
+          typeof ref === "string"
+            ? ref === "Teach Like a Champion 3.0"
+            : ref.source === "Teach Like a Champion 3.0",
+        ),
+      ),
+    ).toBe(true);
 
     for (const item of [...nodes, ...edges] as Array<FixtureNode | FixtureEdge>) {
       expect(item.sourceRefs.length).toBeGreaterThan(0);
       expect(item.reviewStatus).toBeDefined();
     }
-    expect(edges.some((edge: FixtureEdge) => edge.type === 'prerequisite_for')).toBe(false);
+    expect(edges.some((edge: FixtureEdge) => edge.type === "prerequisite_for")).toBe(false);
     expect(validateDanielsonGraph(result.graph)).toMatchObject({ valid: true, issues: [] });
   });
 
-  it('rejects duplicate IDs, dangling endpoints, invalid containment, cycles, and active GBF prerequisites', async () => {
+  it("rejects duplicate IDs, dangling endpoints, invalid containment, cycles, and active GBF prerequisites", async () => {
     const { validateDanielsonGraph } = await graphModule();
     const validGraph = createFixtureGraph();
 
@@ -57,41 +64,41 @@ describe('Danielson graph content', () => {
     duplicateEdgeId.edges[1].id = duplicateEdgeId.edges[0].id;
     expect(validateDanielsonGraph(duplicateEdgeId)).toMatchObject({
       valid: false,
-      issues: expect.arrayContaining([expect.objectContaining({ code: 'DUPLICATE_EDGE_ID' })]),
+      issues: expect.arrayContaining([expect.objectContaining({ code: "DUPLICATE_EDGE_ID" })]),
     });
 
     const danglingEndpoint = structuredClone(validGraph);
-    danglingEndpoint.edges[0].targetId = 'danielson.framework.missing.node';
+    danglingEndpoint.edges[0].targetId = "danielson.framework.missing.node";
     expect(validateDanielsonGraph(danglingEndpoint)).toMatchObject({ valid: false });
 
     const invalidContainment = structuredClone(validGraph);
-    invalidContainment.edges[0].targetId = 'danielson.tlac.skill.double-plan';
+    invalidContainment.edges[0].targetId = "danielson.tlac.skill.double-plan";
     expect(validateDanielsonGraph(invalidContainment)).toMatchObject({ valid: false });
 
     const cycle = structuredClone(validGraph);
     cycle.edges.push({
-      id: 'danielson.edge.contains.prohibited-cycle',
-      type: 'contains',
+      id: "danielson.edge.contains.prohibited-cycle",
+      type: "contains",
       sourceId: COMPONENT_1E,
-      targetId: 'danielson.framework.2022',
+      targetId: "danielson.framework.2022",
       weight: 1,
-      confidence: 'high',
-      sourceRefs: [{ source: 'test' }],
-      reviewStatus: 'approved',
+      confidence: "high",
+      sourceRefs: [{ source: "test" }],
+      reviewStatus: "approved",
       metadata: {},
     });
     expect(validateDanielsonGraph(cycle)).toMatchObject({ valid: false });
 
     const activePrerequisite = structuredClone(validGraph);
     activePrerequisite.edges.push({
-      id: 'danielson.edge.prerequisite.not-track-two',
-      type: 'prerequisite_for',
-      sourceId: 'danielson.tlac.skill.double-plan',
-      targetId: 'danielson.tlac.skill.change-the-pace',
+      id: "danielson.edge.prerequisite.not-track-two",
+      type: "prerequisite_for",
+      sourceId: "danielson.tlac.skill.double-plan",
+      targetId: "danielson.tlac.skill.change-the-pace",
       weight: 1,
-      confidence: 'high',
-      sourceRefs: [{ source: 'GBF 2.0' }],
-      reviewStatus: 'reviewed',
+      confidence: "high",
+      sourceRefs: [{ source: "GBF 2.0" }],
+      reviewStatus: "reviewed",
       metadata: {},
     });
     expect(validateDanielsonGraph(activePrerequisite)).toMatchObject({ valid: false });

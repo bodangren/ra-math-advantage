@@ -1,11 +1,16 @@
-import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from '@math-platform/knowledge-space-core';
-import type { ProjectedActivity } from './types';
-import type { KnowledgeBlueprint, WorkedExampleSpec, GuidedPracticeSpec, IndependentPracticeSpec } from '../blueprints';
+import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from "@math-platform/knowledge-space-core";
+import type { ProjectedActivity } from "./types";
+import type {
+  KnowledgeBlueprint,
+  WorkedExampleSpec,
+  GuidedPracticeSpec,
+  IndependentPracticeSpec,
+} from "../blueprints";
 import {
   workedExampleSpecSchema,
   guidedPracticeSpecSchema,
   independentPracticeSpecSchema,
-} from '../blueprints';
+} from "../blueprints";
 
 const MODE_SORT_ORDER: Record<string, number> = {
   worked_example: 0,
@@ -15,13 +20,17 @@ const MODE_SORT_ORDER: Record<string, number> = {
 };
 
 const SPEC_TO_MODE: Array<{
-  specKey: 'workedExampleSpec' | 'guidedPracticeSpec' | 'independentPracticeSpec';
-  rendererModeKey: 'worked' | 'guidedPractice' | 'independentPractice';
-  mode: ProjectedActivity['mode'];
+  specKey: "workedExampleSpec" | "guidedPracticeSpec" | "independentPracticeSpec";
+  rendererModeKey: "worked" | "guidedPractice" | "independentPractice";
+  mode: ProjectedActivity["mode"];
 }> = [
-  { specKey: 'workedExampleSpec', rendererModeKey: 'worked', mode: 'worked_example' },
-  { specKey: 'guidedPracticeSpec', rendererModeKey: 'guidedPractice', mode: 'guided_practice' },
-  { specKey: 'independentPracticeSpec', rendererModeKey: 'independentPractice', mode: 'independent_practice' },
+  { specKey: "workedExampleSpec", rendererModeKey: "worked", mode: "worked_example" },
+  { specKey: "guidedPracticeSpec", rendererModeKey: "guidedPractice", mode: "guided_practice" },
+  {
+    specKey: "independentPracticeSpec",
+    rendererModeKey: "independentPractice",
+    mode: "independent_practice",
+  },
 ];
 
 const SPEC_SCHEMAS = {
@@ -41,12 +50,12 @@ export function findChildSkills(
   nodes: KnowledgeSpaceNode[],
   edges: KnowledgeSpaceEdge[],
 ): KnowledgeSpaceNode[] {
-  if (conceptNode.kind !== 'concept') return [];
+  if (conceptNode.kind !== "concept") return [];
 
   return edges
-    .filter((e) => e.type === 'contains' && e.sourceId === conceptNode.id)
+    .filter((e) => e.type === "contains" && e.sourceId === conceptNode.id)
     .map((e) => nodes.find((n) => n.id === e.targetId))
-    .filter((n): n is KnowledgeSpaceNode => n != null && n.kind === 'skill');
+    .filter((n): n is KnowledgeSpaceNode => n != null && n.kind === "skill");
 }
 
 /**
@@ -81,7 +90,7 @@ export function projectActivityMap(
   edges: KnowledgeSpaceEdge[],
   blueprints: KnowledgeBlueprint[],
 ): ProjectedActivity[] {
-  edges = edges.filter(edge => edge.reviewStatus !== 'rejected');
+  edges = edges.filter((edge) => edge.reviewStatus !== "rejected");
   const rows: ProjectedActivity[] = [];
 
   for (const bp of blueprints) {
@@ -90,17 +99,16 @@ export function projectActivityMap(
     // assesses the same work, so it is not projectable.
     const blueprintNode = nodes.find((n) => n.id === bp.nodeId);
     if (
-      !blueprintNode
-      || (blueprintNode.kind !== 'skill' && blueprintNode.kind !== 'task_blueprint')
-    ) continue;
+      !blueprintNode ||
+      (blueprintNode.kind !== "skill" && blueprintNode.kind !== "task_blueprint")
+    )
+      continue;
 
     // Enrich sourceNodeIds from prerequisite/supports edges targeting this node
     const edgeSourceIds = edges
       .filter(
         (e) =>
-          (e.type === 'prerequisite_for' ||
-            e.type === 'supports' ||
-            e.type === 'extends') &&
+          (e.type === "prerequisite_for" || e.type === "supports" || e.type === "extends") &&
           e.targetId === bp.nodeId,
       )
       .map((e) => e.sourceId);
@@ -110,9 +118,7 @@ export function projectActivityMap(
 
     // Enrich alignmentNodeIds from aligned_to_standard edges
     const edgeAlignmentIds = edges
-      .filter(
-        (e) => e.type === 'aligned_to_standard' && e.sourceId === bp.nodeId,
-      )
+      .filter((e) => e.type === "aligned_to_standard" && e.sourceId === bp.nodeId)
       .map((e) => e.targetId);
 
     const allAlignmentIds = [...new Set([...bp.alignmentNodeIds, ...edgeAlignmentIds])];
@@ -138,7 +144,7 @@ export function projectActivityMap(
       let props: Record<string, unknown> = {};
       if (spec.rendererProps) {
         props = spec.rendererProps;
-      } else if (specKey === 'workedExampleSpec') {
+      } else if (specKey === "workedExampleSpec") {
         const wspec = spec as WorkedExampleSpec;
         props = {
           prompt: wspec.prompt,
@@ -146,7 +152,7 @@ export function projectActivityMap(
           steps: wspec.steps,
           explanation: wspec.explanation,
         };
-      } else if (specKey === 'guidedPracticeSpec') {
+      } else if (specKey === "guidedPracticeSpec") {
         const gspec = spec as GuidedPracticeSpec;
         props = {
           scaffoldedPrompt: gspec.scaffoldedPrompt,
@@ -155,7 +161,7 @@ export function projectActivityMap(
           checksPerStep: gspec.checksPerStep,
           revealPolicy: gspec.revealPolicy,
         };
-      } else if (specKey === 'independentPracticeSpec') {
+      } else if (specKey === "independentPracticeSpec") {
         const ispec = spec as IndependentPracticeSpec;
         props = {
           variantParameters: ispec.variantParameters,
@@ -175,10 +181,10 @@ export function projectActivityMap(
         props,
         gradingConfig,
         srsEligible:
-          (mode === 'guided_practice' || mode === 'independent_practice') &&
+          (mode === "guided_practice" || mode === "independent_practice") &&
           blueprintNode.independentPracticeReady === true &&
-          blueprintNode.reviewStatus === 'approved' &&
-          bp.reviewStatus === 'approved',
+          blueprintNode.reviewStatus === "approved" &&
+          bp.reviewStatus === "approved",
       });
     }
   }
@@ -187,9 +193,7 @@ export function projectActivityMap(
   rows.sort((a, b) => {
     const nodeCmp = a.nodeId.localeCompare(b.nodeId);
     if (nodeCmp !== 0) return nodeCmp;
-    return (
-      (MODE_SORT_ORDER[a.mode] ?? 99) - (MODE_SORT_ORDER[b.mode] ?? 99)
-    );
+    return (MODE_SORT_ORDER[a.mode] ?? 99) - (MODE_SORT_ORDER[b.mode] ?? 99);
   });
 
   return rows;

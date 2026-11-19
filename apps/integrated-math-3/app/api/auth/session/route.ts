@@ -1,8 +1,12 @@
-import { cookies } from 'next/headers';
-import { NextResponse } from 'next/server';
+import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
-import { SESSION_COOKIE_NAME, getAuthJwtSecret, verifySessionToken } from '@math-platform/core-auth';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
+import {
+  SESSION_COOKIE_NAME,
+  getAuthJwtSecret,
+  verifySessionToken,
+} from "@math-platform/core-auth";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
 
 /**
  * Handles GET requests to check the current authentication session.
@@ -21,11 +25,11 @@ export async function GET() {
 
   const claims = await verifySessionToken(token, getAuthJwtSecret());
   if (!claims) {
-    cookieStore.set(SESSION_COOKIE_NAME, '', {
+    cookieStore.set(SESSION_COOKIE_NAME, "", {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      path: '/',
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
       expires: new Date(0),
     });
     return NextResponse.json({ authenticated: false });

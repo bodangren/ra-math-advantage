@@ -1,12 +1,12 @@
-import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { AccountingEquationInput } from '@/components/student/answer-inputs/AccountingEquationInput';
-import { accountingEquationFamily } from '@/lib/practice/engine/families/accounting-equation';
+import { describe, expect, it, vi, beforeEach } from "vitest";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { AccountingEquationInput } from "@/components/student/answer-inputs/AccountingEquationInput";
+import { accountingEquationFamily } from "@/lib/practice/engine/families/accounting-equation";
 
-describe('AccountingEquationInput', () => {
+describe("AccountingEquationInput", () => {
   const mockOnSubmit = vi.fn();
-  const definition = accountingEquationFamily.generate(1, { hiddenTermId: 'equity', tolerance: 0 });
+  const definition = accountingEquationFamily.generate(1, { hiddenTermId: "equity", tolerance: 0 });
   const expectedEquity = definition.equation.equity;
 
   beforeEach(() => {
@@ -14,7 +14,7 @@ describe('AccountingEquationInput', () => {
     mockOnSubmit.mockResolvedValue(undefined);
   });
 
-  it('renders the problem prompt and visible facts', () => {
+  it("renders the problem prompt and visible facts", () => {
     render(
       <AccountingEquationInput
         family={accountingEquationFamily}
@@ -26,10 +26,10 @@ describe('AccountingEquationInput', () => {
     expect(screen.getByText(/problem/i)).toBeInTheDocument();
     expect(screen.getByText(/assets:/i)).toBeInTheDocument();
     expect(screen.getByText(/liabilities:/i)).toBeInTheDocument();
-    expect(screen.getByRole('spinbutton')).toBeInTheDocument();
+    expect(screen.getByRole("spinbutton")).toBeInTheDocument();
   });
 
-  it('submits a correct answer and calls onSubmit with a practice envelope', async () => {
+  it("submits a correct answer and calls onSubmit with a practice envelope", async () => {
     render(
       <AccountingEquationInput
         family={accountingEquationFamily}
@@ -38,23 +38,23 @@ describe('AccountingEquationInput', () => {
       />,
     );
 
-    const input = screen.getByRole('spinbutton');
+    const input = screen.getByRole("spinbutton");
     await userEvent.clear(input);
     await userEvent.type(input, String(expectedEquity));
 
-    const submitButton = screen.getByRole('button', { name: /submit answer/i });
+    const submitButton = screen.getByRole("button", { name: /submit answer/i });
     await userEvent.click(submitButton);
 
     expect(mockOnSubmit).toHaveBeenCalledTimes(1);
     const envelope = mockOnSubmit.mock.calls[0][0];
-    expect(envelope.contractVersion).toBe('practice.v1');
+    expect(envelope.contractVersion).toBe("practice.v1");
     expect(envelope.activityId).toBe(definition.activityId);
-    expect(envelope.mode).toBe('assessment');
+    expect(envelope.mode).toBe("assessment");
     expect(envelope.answers).toEqual({ equity: expectedEquity });
     expect(envelope.parts[0].isCorrect).toBe(true);
   });
 
-  it('submits an incorrect answer and shows the expected value', async () => {
+  it("submits an incorrect answer and shows the expected value", async () => {
     render(
       <AccountingEquationInput
         family={accountingEquationFamily}
@@ -63,21 +63,23 @@ describe('AccountingEquationInput', () => {
       />,
     );
 
-    const input = screen.getByRole('spinbutton');
+    const input = screen.getByRole("spinbutton");
     await userEvent.clear(input);
     await userEvent.type(input, String(expectedEquity + 999));
 
-    const submitButton = screen.getByRole('button', { name: /submit answer/i });
+    const submitButton = screen.getByRole("button", { name: /submit answer/i });
     await userEvent.click(submitButton);
 
     expect(mockOnSubmit).toHaveBeenCalledTimes(1);
     const envelope = mockOnSubmit.mock.calls[0][0];
     expect(envelope.parts[0].isCorrect).toBe(false);
     expect(screen.getByText(/incorrect/i)).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`Expected: ${expectedEquity.toLocaleString('en-US')}`))).toBeInTheDocument();
+    expect(
+      screen.getByText(new RegExp(`Expected: ${expectedEquity.toLocaleString("en-US")}`)),
+    ).toBeInTheDocument();
   });
 
-  it('hides the submit button after grading and shows the result', async () => {
+  it("hides the submit button after grading and shows the result", async () => {
     render(
       <AccountingEquationInput
         family={accountingEquationFamily}
@@ -86,21 +88,23 @@ describe('AccountingEquationInput', () => {
       />,
     );
 
-    const input = screen.getByRole('spinbutton');
-    await userEvent.type(input, '123');
+    const input = screen.getByRole("spinbutton");
+    await userEvent.type(input, "123");
 
-    const submitButton = screen.getByRole('button', { name: /submit answer/i });
+    const submitButton = screen.getByRole("button", { name: /submit answer/i });
     await userEvent.click(submitButton);
 
-    expect(screen.queryByRole('button', { name: /submit answer/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /submit answer/i })).not.toBeInTheDocument();
     expect(screen.getByText(/incorrect/i)).toBeInTheDocument();
   });
 
-  it('does not disclose the expected answer before durable submission completes', async () => {
+  it("does not disclose the expected answer before durable submission completes", async () => {
     let completeSubmission: (() => void) | undefined;
-    mockOnSubmit.mockReturnValue(new Promise<void>((resolve) => {
-      completeSubmission = resolve;
-    }));
+    mockOnSubmit.mockReturnValue(
+      new Promise<void>((resolve) => {
+        completeSubmission = resolve;
+      }),
+    );
     render(
       <AccountingEquationInput
         family={accountingEquationFamily}
@@ -109,18 +113,20 @@ describe('AccountingEquationInput', () => {
       />,
     );
 
-    await userEvent.type(screen.getByRole('spinbutton'), String(expectedEquity + 999));
-    await userEvent.click(screen.getByRole('button', { name: /submit answer/i }));
+    await userEvent.type(screen.getByRole("spinbutton"), String(expectedEquity + 999));
+    await userEvent.click(screen.getByRole("button", { name: /submit answer/i }));
 
     expect(screen.queryByText(/incorrect/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(new RegExp(`Expected: ${expectedEquity.toLocaleString('en-US')}`))).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(new RegExp(`Expected: ${expectedEquity.toLocaleString("en-US")}`)),
+    ).not.toBeInTheDocument();
 
     completeSubmission?.();
     expect(await screen.findByText(/incorrect/i)).toBeInTheDocument();
   });
 
-  it('keeps the expected answer concealed when durable submission fails', async () => {
-    mockOnSubmit.mockRejectedValue(new Error('save failed'));
+  it("keeps the expected answer concealed when durable submission fails", async () => {
+    mockOnSubmit.mockRejectedValue(new Error("save failed"));
     render(
       <AccountingEquationInput
         family={accountingEquationFamily}
@@ -129,11 +135,13 @@ describe('AccountingEquationInput', () => {
       />,
     );
 
-    await userEvent.type(screen.getByRole('spinbutton'), String(expectedEquity + 999));
-    await userEvent.click(screen.getByRole('button', { name: /submit answer/i }));
+    await userEvent.type(screen.getByRole("spinbutton"), String(expectedEquity + 999));
+    await userEvent.click(screen.getByRole("button", { name: /submit answer/i }));
 
     await waitFor(() => expect(mockOnSubmit).toHaveBeenCalledTimes(1));
     expect(screen.queryByText(/incorrect/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(new RegExp(`Expected: ${expectedEquity.toLocaleString('en-US')}`))).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(new RegExp(`Expected: ${expectedEquity.toLocaleString("en-US")}`)),
+    ).not.toBeInTheDocument();
   });
 });

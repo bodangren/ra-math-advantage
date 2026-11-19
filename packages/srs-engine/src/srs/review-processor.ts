@@ -16,19 +16,16 @@ import {
   mapPracticeToSrsRatingV31,
   type SrsRatingInputV31,
   type SrsRatingResult,
-} from '@math-platform/practice-core/srs-rating';
-import type { SrsRatingResultV31 } from '@math-platform/practice-core/v3-1-contracts';
-import { deriveTimingFeatures } from '@math-platform/practice-core/timing-baseline';
-import {
-  scheduleReview,
-  type ReviewSchedulerContext,
-} from './scheduler';
+} from "@math-platform/practice-core/srs-rating";
+import type { SrsRatingResultV31 } from "@math-platform/practice-core/v3-1-contracts";
+import { deriveTimingFeatures } from "@math-platform/practice-core/timing-baseline";
+import { scheduleReview, type ReviewSchedulerContext } from "./scheduler";
 import type {
   PracticeSubmissionEnvelope,
   PracticeTimingBaseline,
   SrsCardState,
   SrsReviewLogEntryV31,
-} from './contract';
+} from "./contract";
 
 /**
  * Input payload for `processReview`.
@@ -57,7 +54,7 @@ export type ReviewProcessorInput = {
  */
 export type ReviewProcessorResult = {
   /** Final FSRS rating applied to the card. */
-  rating: SrsRatingResult['rating'];
+  rating: SrsRatingResult["rating"];
   /** Card state after the FSRS review has been applied. */
   updatedCard: SrsCardState;
   /** Immutable audit entry capturing before/after state and evidence. */
@@ -83,8 +80,8 @@ export function processReview(input: ReviewProcessorInput): ReviewProcessorResul
       ? deriveTimingFeatures(submission.timing, baseline)
       : {
           hasReliableTiming: false as const,
-          confidence: 'low' as const,
-          reasons: ['timing_missing'],
+          confidence: "low" as const,
+          reasons: ["timing_missing"],
         };
 
     ratingResult = mapPracticeToSrsRating({
@@ -100,7 +97,7 @@ export function processReview(input: ReviewProcessorInput): ReviewProcessorResul
 
     evidenceReasons = submission.timing
       ? ratingResult.reasons
-      : ['timing_missing', ...ratingResult.reasons];
+      : ["timing_missing", ...ratingResult.reasons];
   }
 
   const scheduled = scheduleReview({
@@ -154,7 +151,7 @@ function generateReviewId(): string {
   const bytes = new Uint8Array(16);
   crypto.getRandomValues(bytes);
   const hex = Array.from(bytes)
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
   return `rev_${hex}`;
 }

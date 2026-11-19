@@ -1,11 +1,11 @@
-import { redirect, notFound } from 'next/navigation';
-import Link from 'next/link';
-import { ChevronLeft } from 'lucide-react';
-import { requireTeacherSessionClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
-import { GradebookGrid } from '@/components/teacher/GradebookGrid';
-import type { GradebookLesson, GradebookRow } from '@/lib/teacher/gradebook';
-import { formatCurriculumSegmentLabel } from '@/lib/curriculum/segment-labels';
+import { redirect, notFound } from "next/navigation";
+import Link from "next/link";
+import { ChevronLeft } from "lucide-react";
+import { requireTeacherSessionClaims } from "@/lib/auth/server";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
+import { GradebookGrid } from "@/components/teacher/GradebookGrid";
+import type { GradebookLesson, GradebookRow } from "@/lib/teacher/gradebook";
+import { formatCurriculumSegmentLabel } from "@/lib/curriculum/segment-labels";
 
 interface PageProps {
   params: Promise<{ unitNumber: string }>;
@@ -28,16 +28,13 @@ export default async function UnitGradebookPage({ params }: PageProps) {
 
   const claims = await requireTeacherSessionClaims(`/teacher/units/${unitNumber}`);
 
-  const gradebook = await fetchInternalQuery(
-    internal.teacher.getTeacherGradebookData,
-    {
-      userId: claims.sub as never,
-      unitNumber,
-    },
-  );
+  const gradebook = await fetchInternalQuery(internal.teacher.getTeacherGradebookData, {
+    userId: claims.sub as never,
+    unitNumber,
+  });
 
   if (!gradebook) {
-    redirect('/teacher');
+    redirect("/teacher");
   }
 
   const { rows, lessons } = gradebook as {
@@ -60,9 +57,9 @@ export default async function UnitGradebookPage({ params }: PageProps) {
             {formatCurriculumSegmentLabel(unitNumber)} — Gradebook
           </h1>
           <p className="text-sm text-muted-foreground">
-            {rows.length} student{rows.length !== 1 ? 's' : ''} ·{' '}
-            {lessons.length} lesson{lessons.length !== 1 ? 's' : ''}
-            {lessons.some(l => l.isUnitTest) ? ' (including unit test)' : ''}
+            {rows.length} student{rows.length !== 1 ? "s" : ""} · {lessons.length} lesson
+            {lessons.length !== 1 ? "s" : ""}
+            {lessons.some((l) => l.isUnitTest) ? " (including unit test)" : ""}
           </p>
         </header>
 

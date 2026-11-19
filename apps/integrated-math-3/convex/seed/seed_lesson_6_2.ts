@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -31,7 +31,8 @@ export const seedLesson6_2 = internalMutation({
           unitNumber: 6,
           title: "Properties of Logarithms",
           slug: lessonSlug,
-          description: "Students solve logarithmic equations using properties of equality, and simplify expressions using properties of logarithms.",
+          description:
+            "Students solve logarithmic equations using properties of equality, and simplify expressions using properties of logarithms.",
           orderIndex: 2,
           createdAt: now,
           updatedAt: now,
@@ -48,7 +49,8 @@ export const seedLesson6_2 = internalMutation({
           lessonId,
           version: 1,
           title: "Properties of Logarithms",
-          description: "Students solve logarithmic equations using properties of equality, and simplify expressions using properties of logarithms.",
+          description:
+            "Students solve logarithmic equations using properties of equality, and simplify expressions using properties of logarithms.",
           status: "published",
           createdAt: now,
         });
@@ -137,10 +139,19 @@ export const seedLesson6_2 = internalMutation({
                 problemType: "polynomial",
                 equation: "log4 x = 5/2",
                 steps: [
-                  { expression: "log4 x = 5/2", explanation: "Start with the logarithmic equation" },
+                  {
+                    expression: "log4 x = 5/2",
+                    explanation: "Start with the logarithmic equation",
+                  },
                   { expression: "x = 4^(5/2)", explanation: "Rewrite in exponential form" },
-                  { expression: "4 = 2^2", explanation: "Express the base as a power of its square root" },
-                  { expression: "x = (2^2)^(5/2) = 2^5", explanation: "Apply the power of a power rule" },
+                  {
+                    expression: "4 = 2^2",
+                    explanation: "Express the base as a power of its square root",
+                  },
+                  {
+                    expression: "x = (2^2)^(5/2) = 2^5",
+                    explanation: "Apply the power of a power rule",
+                  },
                   { expression: "x = 32", explanation: "Simplify to get the final answer" },
                 ],
               },
@@ -171,12 +182,18 @@ export const seedLesson6_2 = internalMutation({
                 problemType: "polynomial",
                 equation: "log5(2x^2 - 6) = log5(4x)",
                 steps: [
-                  { expression: "2x^2 - 6 = 4x", explanation: "Apply Property of Equality since bases match" },
+                  {
+                    expression: "2x^2 - 6 = 4x",
+                    explanation: "Apply Property of Equality since bases match",
+                  },
                   { expression: "2x^2 - 4x - 6 = 0", explanation: "Move all terms to one side" },
                   { expression: "x^2 - 2x - 3 = 0", explanation: "Divide by 2" },
                   { expression: "(x - 3)(x + 1) = 0", explanation: "Factor the quadratic" },
                   { expression: "x = 3 or x = -1", explanation: "Apply zero product property" },
-                  { expression: "x = 3 (valid), x = -1 (extraneous)", explanation: "Check each solution in original equation" },
+                  {
+                    expression: "x = 3 (valid), x = -1 (extraneous)",
+                    explanation: "Check each solution in original equation",
+                  },
                 ],
               },
             },
@@ -222,11 +239,23 @@ export const seedLesson6_2 = internalMutation({
                 problemType: "polynomial",
                 equation: "log3 405",
                 steps: [
-                  { expression: "405 = 3^4 * 5", explanation: "Factor 405 into a power of 3 and 5" },
-                  { expression: "log3 405 = log3(3^4 * 5)", explanation: "Apply the factorization" },
-                  { expression: "= log3(3^4) + log3 5", explanation: "Apply the Product Property of Logarithms" },
+                  {
+                    expression: "405 = 3^4 * 5",
+                    explanation: "Factor 405 into a power of 3 and 5",
+                  },
+                  {
+                    expression: "log3 405 = log3(3^4 * 5)",
+                    explanation: "Apply the factorization",
+                  },
+                  {
+                    expression: "= log3(3^4) + log3 5",
+                    explanation: "Apply the Product Property of Logarithms",
+                  },
                   { expression: "= 4 + log3 5", explanation: "Simplify log3(3^4) to 4" },
-                  { expression: "≈ 4 + 1.465 = 5.465", explanation: "Substitute the given approximation" },
+                  {
+                    expression: "≈ 4 + 1.465 = 5.465",
+                    explanation: "Substitute the given approximation",
+                  },
                 ],
               },
             },
@@ -257,10 +286,19 @@ export const seedLesson6_2 = internalMutation({
                 equation: "log3(9/5)",
                 steps: [
                   { expression: "9/5 = 3^2 / 5", explanation: "Express 9 as a power of 3" },
-                  { expression: "log3(9/5) = log3(3^2 / 5)", explanation: "Apply the rewritten form" },
-                  { expression: "= log3(3^2) - log3 5", explanation: "Apply the Quotient Property of Logarithms" },
+                  {
+                    expression: "log3(9/5) = log3(3^2 / 5)",
+                    explanation: "Apply the rewritten form",
+                  },
+                  {
+                    expression: "= log3(3^2) - log3 5",
+                    explanation: "Apply the Quotient Property of Logarithms",
+                  },
                   { expression: "= 2 - log3 5", explanation: "Simplify log3(3^2) to 2" },
-                  { expression: "≈ 2 - 1.465 = 0.535", explanation: "Substitute the given approximation" },
+                  {
+                    expression: "≈ 2 - 1.465 = 0.535",
+                    explanation: "Substitute the given approximation",
+                  },
                 ],
               },
             },
@@ -291,9 +329,18 @@ export const seedLesson6_2 = internalMutation({
                 equation: "log2 1296",
                 steps: [
                   { expression: "1296 = 6^4", explanation: "Recognize that 1296 is a power of 6" },
-                  { expression: "log2 1296 = log2(6^4)", explanation: "Rewrite using the factorization" },
-                  { expression: "= 4 log2 6", explanation: "Apply the Power Property of Logarithms" },
-                  { expression: "≈ 4(2.585) = 10.34", explanation: "Substitute the given approximation" },
+                  {
+                    expression: "log2 1296 = log2(6^4)",
+                    explanation: "Rewrite using the factorization",
+                  },
+                  {
+                    expression: "= 4 log2 6",
+                    explanation: "Apply the Power Property of Logarithms",
+                  },
+                  {
+                    expression: "≈ 4(2.585) = 10.34",
+                    explanation: "Substitute the given approximation",
+                  },
                 ],
               },
             },
@@ -323,8 +370,14 @@ export const seedLesson6_2 = internalMutation({
                 problemType: "polynomial",
                 equation: "L = 10 log10(x * 10^6)",
                 steps: [
-                  { expression: "R = x * 10^6", explanation: "Total relative intensity with x singers" },
-                  { expression: "80 = 10 log10(x * 10^6)", explanation: "Substitute into the loudness formula" },
+                  {
+                    expression: "R = x * 10^6",
+                    explanation: "Total relative intensity with x singers",
+                  },
+                  {
+                    expression: "80 = 10 log10(x * 10^6)",
+                    explanation: "Substitute into the loudness formula",
+                  },
                   { expression: "8 = log10(x * 10^6)", explanation: "Divide both sides by 10" },
                   { expression: "10^8 = x * 10^6", explanation: "Rewrite in exponential form" },
                   { expression: "x = 10^2 = 100", explanation: "Solve for x" },
@@ -396,7 +449,7 @@ export const seedLesson6_2 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

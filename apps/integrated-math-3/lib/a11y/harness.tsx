@@ -18,10 +18,10 @@
 // jsdom limitations are documented in
 // `measure/tracks/wcag-aa-remediation_20260605/test-strategy.md` §0;
 // this harness does NOT change those rules of thumb.
-import { render } from '@testing-library/react';
-import type { ReactElement } from 'react';
-import axe from 'axe-core';
-import type { Result, RuleObject } from 'axe-core';
+import { render } from "@testing-library/react";
+import type { ReactElement } from "react";
+import axe from "axe-core";
+import type { Result, RuleObject } from "axe-core";
 
 /**
  * Tags the harness runs by default. These map to WCAG 2.0 + 2.1 A and AA
@@ -29,7 +29,7 @@ import type { Result, RuleObject } from 'axe-core';
  * `wcag21{a,aa,aaa}`; AAA is intentionally excluded by this track
  * (spec.md Out of Scope).
  */
-const DEFAULT_TAGS: readonly string[] = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'];
+const DEFAULT_TAGS: readonly string[] = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"];
 
 /**
  * Rules axe-core cannot evaluate truthfully inside jsdom and which are
@@ -46,8 +46,8 @@ const DEFAULT_TAGS: readonly string[] = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21
  * they have a justified, file-local reason.
  */
 const DEFAULT_DISABLED_RULES: RuleObject = {
-  'color-contrast': { enabled: false },
-  'color-contrast-enhanced': { enabled: false },
+  "color-contrast": { enabled: false },
+  "color-contrast-enhanced": { enabled: false },
 };
 
 /**
@@ -97,7 +97,7 @@ export async function runAxeOnRendered(
     ...(options.rules ?? {}),
   };
   const results = await axe.run(container, {
-    runOnly: { type: 'tag', values: tags },
+    runOnly: { type: "tag", values: tags },
     rules,
   });
   const violations = results.violations;
@@ -106,8 +106,8 @@ export async function runAxeOnRendered(
     passes: results.passes,
     incomplete: results.incomplete,
     inapplicable: results.inapplicable,
-    critical: violations.filter((v) => v.impact === 'critical').length,
-    serious: violations.filter((v) => v.impact === 'serious').length,
+    critical: violations.filter((v) => v.impact === "critical").length,
+    serious: violations.filter((v) => v.impact === "serious").length,
   };
 }
 
@@ -116,12 +116,8 @@ export async function runAxeOnRendered(
  * violations? Provided so tests can write readable assertions
  * (`expect(hasSeriousViolations(results)).toBe(false)`).
  */
-export function hasSeriousViolations(
-  summary: Pick<AxeRunSummary, 'violations'>,
-): boolean {
-  return summary.violations.some(
-    (v) => v.impact === 'critical' || v.impact === 'serious',
-  );
+export function hasSeriousViolations(summary: Pick<AxeRunSummary, "violations">): boolean {
+  return summary.violations.some((v) => v.impact === "critical" || v.impact === "serious");
 }
 
 /**
@@ -135,12 +131,10 @@ export function hasSeriousViolations(
  */
 export function expectNoSeriousViolations(summary: AxeRunSummary): void {
   const serious = summary.violations.filter(
-    (v) => v.impact === 'critical' || v.impact === 'serious',
+    (v) => v.impact === "critical" || v.impact === "serious",
   );
   if (serious.length === 0) return;
-  const detail = serious
-    .map((v) => `  - ${v.id} [${v.impact ?? 'unknown'}]: ${v.help}`)
-    .join('\n');
+  const detail = serious.map((v) => `  - ${v.id} [${v.impact ?? "unknown"}]: ${v.help}`).join("\n");
   throw new Error(
     `Expected no critical/serious a11y violations; found ${serious.length}:\n${detail}`,
   );

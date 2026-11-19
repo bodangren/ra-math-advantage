@@ -37,24 +37,16 @@ export class ConvexReviewLogStore implements ReviewLogStore {
     return result.map((r) => ({ ...r, rating: r.rating as SrsRating }));
   }
 
-  async getReviewsByStudent(
-    studentId: string,
-    since?: string
-  ): Promise<SrsReviewLogEntry[]> {
-    const result = await this.ctx.runQuery(
-      internal.srs.reviews.getReviewsByStudent,
-      {
-        studentId: studentId as Id<"profiles">,
-        since,
-      }
-    );
+  async getReviewsByStudent(studentId: string, since?: string): Promise<SrsReviewLogEntry[]> {
+    const result = await this.ctx.runQuery(internal.srs.reviews.getReviewsByStudent, {
+      studentId: studentId as Id<"profiles">,
+      since,
+    });
     return result.map((r) => ({ ...r, rating: r.rating as SrsRating }));
   }
 }
 
 /** Creates a Convex-backed review-log store instance for the given mutation context. */
-export function createConvexReviewLogStore(
-  ctx: MutationCtx
-): ConvexReviewLogStore {
+export function createConvexReviewLogStore(ctx: MutationCtx): ConvexReviewLogStore {
   return new ConvexReviewLogStore(ctx);
 }

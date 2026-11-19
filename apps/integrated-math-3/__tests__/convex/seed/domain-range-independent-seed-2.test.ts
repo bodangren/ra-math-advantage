@@ -1,29 +1,38 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { graphingExplorerSchema } from '@math-platform/math-content';
-import { getGenerator } from '@math-platform/math-content/knowledge-space';
-import type { Id } from '@/convex/_generated/dataModel';
+import { graphingExplorerSchema } from "@math-platform/math-content";
+import { getGenerator } from "@math-platform/math-content/knowledge-space";
+import type { Id } from "@/convex/_generated/dataModel";
 import {
   buildIm3DomainRangeIndependentSeedDocuments,
   buildIm3DomainRangeIndependentSeed2Documents,
   upsertIm3DomainRangeIndependentSeed2Activity,
   upsertIm3DomainRangeIndependentSeed2PracticeItem,
   upsertIm3DomainRangeIndependentSeed2Variant,
-} from '@/convex/seed/seed_lesson_1_1';
+} from "@/convex/seed/seed_lesson_1_1";
 import {
   IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID,
   IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_ACTIVITY_ID,
   IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY,
   IM3_DOMAIN_RANGE_NODE,
-} from '@/lib/practice/learning-evidence-pilot';
+} from "@/lib/practice/learning-evidence-pilot";
 
-const ACTIVITY_ID = 'activities:domain-range-independent-seed-2' as Id<'activities'>;
+const ACTIVITY_ID = "activities:domain-range-independent-seed-2" as Id<"activities">;
 const NOW = 100;
 
 const FORBIDDEN_PROP_KEYS = new Set([
-  'answer', 'answers', 'correctAnswer', 'expectedAnswer',
-  'gradingRules', 'gradingMetadata', 'partAnswers', 'finalAnswer',
-  'solutionSteps', 'isCorrect', 'score', 'maxScore',
+  "answer",
+  "answers",
+  "correctAnswer",
+  "expectedAnswer",
+  "gradingRules",
+  "gradingMetadata",
+  "partAnswers",
+  "finalAnswer",
+  "solutionSteps",
+  "isCorrect",
+  "score",
+  "maxScore",
 ]);
 
 function expectNoForbiddenPropKeys(value: unknown): void {
@@ -31,36 +40,44 @@ function expectNoForbiddenPropKeys(value: unknown): void {
     value.forEach(expectNoForbiddenPropKeys);
     return;
   }
-  if (value === null || typeof value !== 'object') return;
+  if (value === null || typeof value !== "object") return;
   Object.entries(value).forEach(([key, nestedValue]) => {
     expect(FORBIDDEN_PROP_KEYS.has(key)).toBe(false);
     expectNoForbiddenPropKeys(nestedValue);
   });
 }
 
-function makeUniqueContext(table: 'activities' | 'practice_variants') {
+function makeUniqueContext(table: "activities" | "practice_variants") {
   const operations: string[] = [];
   let stored: Record<string, unknown> | undefined;
-  const storedId = table + ':domain-range-independent-seed-2';
+  const storedId = table + ":domain-range-independent-seed-2";
   const ctx = {
     db: {
       query(queryTable: string) {
-        operations.push('query:' + queryTable);
+        operations.push("query:" + queryTable);
         return {
-          withIndex(index: string, callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown) {
-            operations.push('index:' + index);
-            callback({ eq: (field, value) => { operations.push('eq:' + field + ':' + String(value)); return undefined; } });
+          withIndex(
+            index: string,
+            callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) {
+            operations.push("index:" + index);
+            callback({
+              eq: (field, value) => {
+                operations.push("eq:" + field + ":" + String(value));
+                return undefined;
+              },
+            });
             return { unique: async () => stored && { ...stored, _id: storedId } };
           },
         };
       },
       insert: async (queryTable: string, document: Record<string, unknown>) => {
-        operations.push('insert:' + queryTable);
+        operations.push("insert:" + queryTable);
         stored = document;
         return storedId;
       },
       patch: async (id: string, document: Record<string, unknown>) => {
-        operations.push('patch:' + id);
+        operations.push("patch:" + id);
         stored = document;
       },
     },
@@ -74,26 +91,37 @@ function makePracticeItemContext(rows: Record<string, unknown>[] = []) {
   const ctx = {
     db: {
       query(table: string) {
-        operations.push('query:' + table);
+        operations.push("query:" + table);
         return {
-          withIndex(index: string, callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown) {
-            operations.push('index:' + index);
-            callback({ eq: (field, value) => { operations.push('eq:' + field + ':' + String(value)); return undefined; } });
+          withIndex(
+            index: string,
+            callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) {
+            operations.push("index:" + index);
+            callback({
+              eq: (field, value) => {
+                operations.push("eq:" + field + ":" + String(value));
+                return undefined;
+              },
+            });
             return {
-              take: async () => index === 'by_variantKey'
-                ? storedRows.filter((row) => row.variantKey === IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY)
-                : storedRows.filter((row) => String(row.activityId) === String(ACTIVITY_ID)),
+              take: async () =>
+                index === "by_variantKey"
+                  ? storedRows.filter(
+                      (row) => row.variantKey === IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY,
+                    )
+                  : storedRows.filter((row) => String(row.activityId) === String(ACTIVITY_ID)),
             };
           },
         };
       },
       insert: async (table: string, document: Record<string, unknown>) => {
-        operations.push('insert:' + table);
-        storedRows = [{ ...document, _id: 'practice_items:domain-range-independent-seed-2' }];
-        return 'practice_items:domain-range-independent-seed-2';
+        operations.push("insert:" + table);
+        storedRows = [{ ...document, _id: "practice_items:domain-range-independent-seed-2" }];
+        return "practice_items:domain-range-independent-seed-2";
       },
       patch: async (id: string, document: Record<string, unknown>) => {
-        operations.push('patch:' + id);
+        operations.push("patch:" + id);
         storedRows = [{ ...document, _id: id }];
       },
     },
@@ -101,37 +129,37 @@ function makePracticeItemContext(rows: Record<string, unknown>[] = []) {
   return { ctx, operations, getStoredRows: () => storedRows };
 }
 
-describe('IM3 domain-and-range Independent seed 2', () => {
-  it('builds generated documents with exact identities and answers', () => {
+describe("IM3 domain-and-range Independent seed 2", () => {
+  it("builds generated documents with exact identities and answers", () => {
     const first = buildIm3DomainRangeIndependentSeed2Documents(ACTIVITY_ID, NOW);
     const second = buildIm3DomainRangeIndependentSeed2Documents(ACTIVITY_ID, NOW);
     const base = buildIm3DomainRangeIndependentSeedDocuments(ACTIVITY_ID, NOW);
-    const generated = getGenerator('quadratic-graph-analysis').generate({
+    const generated = getGenerator("quadratic-graph-analysis").generate({
       nodeId: IM3_DOMAIN_RANGE_NODE,
       seed: 3,
       difficulty: 0.5,
     });
 
     expect(IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_ACTIVITY_ID).toBe(
-      IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID + ':seed-2',
+      IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID + ":seed-2",
     );
     expect(IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY).toBe(
       IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_ACTIVITY_ID,
     );
     expect(first).toEqual(second);
     expect(generated.data.rendererProps).toEqual({
-      equation: 'y = x^2 - x + 2',
-      variant: 'plot_from_equation',
-      responseVariant: 'domain_range',
+      equation: "y = x^2 - x + 2",
+      variant: "plot_from_equation",
+      responseVariant: "domain_range",
       domain: [-5, 5],
       range: [-10, 10],
     });
     expect(generated.expectedAnswer).toEqual({
-      domain: 'all_real_numbers',
-      range: { relation: 'gte', boundary: 1.75 },
+      domain: "all_real_numbers",
+      range: { relation: "gte", boundary: 1.75 },
     });
     expect(first.activity).toMatchObject({
-      componentKey: 'graphing-explorer',
+      componentKey: "graphing-explorer",
       props: generated.data.rendererProps,
       stableActivityId: IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_ACTIVITY_ID,
       masteryNodeId: IM3_DOMAIN_RANGE_NODE,
@@ -143,16 +171,16 @@ describe('IM3 domain-and-range Independent seed 2', () => {
       autoGrade: true,
       passingScore: 2,
       partialCredit: true,
-      partIds: ['domain', 'range'],
+      partIds: ["domain", "range"],
       rubric: [
-        { criteria: 'Correct domain', partId: 'domain', points: 1 },
-        { criteria: 'Correct range', partId: 'range', points: 1 },
+        { criteria: "Correct domain", partId: "domain", points: 1 },
+        { criteria: "Correct range", partId: "range", points: 1 },
       ],
     });
     expect(first.variant).toMatchObject({
       variantKey: IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY,
       legacyProblemFamilyId: IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY,
-      componentKey: 'graphing-explorer',
+      componentKey: "graphing-explorer",
       objectiveIds: [IM3_DOMAIN_RANGE_NODE],
       metadata: { stableActivityId: IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_ACTIVITY_ID },
     });
@@ -161,60 +189,74 @@ describe('IM3 domain-and-range Independent seed 2', () => {
       activityId: ACTIVITY_ID,
       variantKey: IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY,
       legacyProblemFamilyId: IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY,
-      migrationVersion: 'kst-srs.v3.2',
+      migrationVersion: "kst-srs.v3.2",
       sourceTimestamp: NOW,
-      variantLabel: 'Seed 2',
+      variantLabel: "Seed 2",
     });
     expect(first.activity.props).toEqual(generated.data.rendererProps);
     expect(graphingExplorerSchema.parse(first.activity.props)).toEqual(first.activity.props);
     expectNoForbiddenPropKeys(first.activity.props);
     expect(base.activity.props).toEqual({
-      equation: 'y = -x^2 - 1',
-      variant: 'plot_from_equation',
-      responseVariant: 'domain_range',
+      equation: "y = -x^2 - 1",
+      variant: "plot_from_equation",
+      responseVariant: "domain_range",
       domain: [-5, 5],
       range: [-10, 10],
     });
-    expect(base.item.practiceItemId).toBe(IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID + ':seed-0');
+    expect(base.item.practiceItemId).toBe(IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID + ":seed-0");
   });
 
-  it('exposes the three upserts with the existing arity', () => {
+  it("exposes the three upserts with the existing arity", () => {
     expect(upsertIm3DomainRangeIndependentSeed2Activity).toHaveLength(2);
     expect(upsertIm3DomainRangeIndependentSeed2Variant).toHaveLength(2);
     expect(upsertIm3DomainRangeIndependentSeed2PracticeItem).toHaveLength(3);
   });
 
-  it('converges activity, variant, and item writes', async () => {
-    const activityContext = makeUniqueContext('activities');
+  it("converges activity, variant, and item writes", async () => {
+    const activityContext = makeUniqueContext("activities");
     const activityId = await upsertIm3DomainRangeIndependentSeed2Activity(activityContext.ctx, NOW);
     await upsertIm3DomainRangeIndependentSeed2Activity(activityContext.ctx, NOW + 1);
-    expect(activityId).toBe('activities:domain-range-independent-seed-2');
-    expect(activityContext.operations.filter((op) => op.startsWith('insert:'))).toEqual(['insert:activities']);
-    expect(activityContext.operations.filter((op) => op.startsWith('patch:'))).toHaveLength(1);
+    expect(activityId).toBe("activities:domain-range-independent-seed-2");
+    expect(activityContext.operations.filter((op) => op.startsWith("insert:"))).toEqual([
+      "insert:activities",
+    ]);
+    expect(activityContext.operations.filter((op) => op.startsWith("patch:"))).toHaveLength(1);
     expect(activityContext.getStored()).toMatchObject({
       stableActivityId: IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_ACTIVITY_ID,
       masteryNodeId: IM3_DOMAIN_RANGE_NODE,
     });
 
-    const variantContext = makeUniqueContext('practice_variants');
+    const variantContext = makeUniqueContext("practice_variants");
     const variantId = await upsertIm3DomainRangeIndependentSeed2Variant(variantContext.ctx, NOW);
     await upsertIm3DomainRangeIndependentSeed2Variant(variantContext.ctx, NOW + 1);
-    expect(variantId).toBe('practice_variants:domain-range-independent-seed-2');
-    expect(variantContext.operations.filter((op) => op.startsWith('insert:'))).toEqual(['insert:practice_variants']);
-    expect(variantContext.operations.filter((op) => op.startsWith('patch:'))).toHaveLength(1);
+    expect(variantId).toBe("practice_variants:domain-range-independent-seed-2");
+    expect(variantContext.operations.filter((op) => op.startsWith("insert:"))).toEqual([
+      "insert:practice_variants",
+    ]);
+    expect(variantContext.operations.filter((op) => op.startsWith("patch:"))).toHaveLength(1);
     expect(variantContext.getStored()).toMatchObject({
       variantKey: IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY,
       objectiveIds: [IM3_DOMAIN_RANGE_NODE],
     });
 
     const itemContext = makePracticeItemContext();
-    const itemId = await upsertIm3DomainRangeIndependentSeed2PracticeItem(itemContext.ctx, ACTIVITY_ID, NOW);
-    const secondItemId = await upsertIm3DomainRangeIndependentSeed2PracticeItem(itemContext.ctx, ACTIVITY_ID, NOW + 1);
-    expect(itemId).toBe('practice_items:domain-range-independent-seed-2');
+    const itemId = await upsertIm3DomainRangeIndependentSeed2PracticeItem(
+      itemContext.ctx,
+      ACTIVITY_ID,
+      NOW,
+    );
+    const secondItemId = await upsertIm3DomainRangeIndependentSeed2PracticeItem(
+      itemContext.ctx,
+      ACTIVITY_ID,
+      NOW + 1,
+    );
+    expect(itemId).toBe("practice_items:domain-range-independent-seed-2");
     expect(secondItemId).toBe(itemId);
     expect(itemContext.getStoredRows()).toHaveLength(1);
-    expect(itemContext.operations.filter((op) => op.startsWith('insert:'))).toEqual(['insert:practice_items']);
-    expect(itemContext.operations.filter((op) => op.startsWith('patch:'))).toHaveLength(1);
+    expect(itemContext.operations.filter((op) => op.startsWith("insert:"))).toEqual([
+      "insert:practice_items",
+    ]);
+    expect(itemContext.operations.filter((op) => op.startsWith("patch:"))).toHaveLength(1);
     expect(itemContext.getStoredRows()[0]).toMatchObject({
       practiceItemId: IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY,
       activityId: ACTIVITY_ID,
@@ -222,25 +264,34 @@ describe('IM3 domain-and-range Independent seed 2', () => {
     });
   });
 
-  it('rejects conflicting and invalid item mappings before writes', async () => {
-    const conflictContext = makePracticeItemContext([{
-      _id: 'practice_items:conflict',
-      practiceItemId: 'wrong-item',
-      activityId: 'activities:wrong' as Id<'activities'>,
-      variantKey: IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY,
-      legacyProblemFamilyId: IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY,
-      variantLabel: 'Seed 2',
-    }]);
-    await expect(upsertIm3DomainRangeIndependentSeed2PracticeItem(conflictContext.ctx, ACTIVITY_ID, NOW))
-      .rejects.toThrow('Duplicate or conflicting IM3 domain-range Independent seed-2 practice-item mapping');
-    expect(conflictContext.operations.filter((op) => op.startsWith('insert:'))).toEqual([]);
-    expect(conflictContext.operations.filter((op) => op.startsWith('patch:'))).toEqual([]);
+  it("rejects conflicting and invalid item mappings before writes", async () => {
+    const conflictContext = makePracticeItemContext([
+      {
+        _id: "practice_items:conflict",
+        practiceItemId: "wrong-item",
+        activityId: "activities:wrong" as Id<"activities">,
+        variantKey: IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY,
+        legacyProblemFamilyId: IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY,
+        variantLabel: "Seed 2",
+      },
+    ]);
+    await expect(
+      upsertIm3DomainRangeIndependentSeed2PracticeItem(conflictContext.ctx, ACTIVITY_ID, NOW),
+    ).rejects.toThrow(
+      "Duplicate or conflicting IM3 domain-range Independent seed-2 practice-item mapping",
+    );
+    expect(conflictContext.operations.filter((op) => op.startsWith("insert:"))).toEqual([]);
+    expect(conflictContext.operations.filter((op) => op.startsWith("patch:"))).toEqual([]);
 
     const invalidContext = makePracticeItemContext();
-    await expect(upsertIm3DomainRangeIndependentSeed2PracticeItem(
-      invalidContext.ctx, '' as Id<'activities'>, NOW,
-    )).rejects.toThrow(/IM3 domain-range Independent seed-2 practice item is invalid/);
-    expect(invalidContext.operations.filter((op) => op.startsWith('insert:'))).toEqual([]);
-    expect(invalidContext.operations.filter((op) => op.startsWith('patch:'))).toEqual([]);
+    await expect(
+      upsertIm3DomainRangeIndependentSeed2PracticeItem(
+        invalidContext.ctx,
+        "" as Id<"activities">,
+        NOW,
+      ),
+    ).rejects.toThrow(/IM3 domain-range Independent seed-2 practice item is invalid/);
+    expect(invalidContext.operations.filter((op) => op.startsWith("insert:"))).toEqual([]);
+    expect(invalidContext.operations.filter((op) => op.startsWith("patch:"))).toEqual([]);
   });
 });

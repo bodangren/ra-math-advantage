@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { Users, TrendingUp, AlertCircle, Flame } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Users, TrendingUp, AlertCircle, Flame } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export interface ClassHealth {
   totalActiveStudents: number;
@@ -62,11 +62,12 @@ export function SrsDashboardPanel({
     );
   }
 
-  const retentionColor = classHealth.avgRetention >= 0.8
-    ? 'text-green-600'
-    : classHealth.avgRetention >= 0.5
-      ? 'text-yellow-600'
-      : 'text-red-600';
+  const retentionColor =
+    classHealth.avgRetention >= 0.8
+      ? "text-green-600"
+      : classHealth.avgRetention >= 0.5
+        ? "text-yellow-600"
+        : "text-red-600";
 
   return (
     <div className="bg-card border border-border rounded-lg p-6 shadow-sm">
@@ -78,9 +79,7 @@ export function SrsDashboardPanel({
             <Users className="h-5 w-5 text-blue-600" aria-hidden="true" />
             <span className="text-sm text-muted-foreground">Active Students</span>
           </div>
-          <p className="text-2xl font-bold text-blue-600">
-            {classHealth.totalActiveStudents}
-          </p>
+          <p className="text-2xl font-bold text-blue-600">{classHealth.totalActiveStudents}</p>
           <p className="text-xs text-muted-foreground mt-1">
             {classHealth.practicedToday} practiced today
           </p>
@@ -88,10 +87,10 @@ export function SrsDashboardPanel({
 
         <article className="bg-muted/50 border border-border rounded-lg p-4">
           <div className="flex items-center gap-2 mb-2">
-            <TrendingUp className={cn('h-5 w-5', retentionColor)} aria-hidden="true" />
+            <TrendingUp className={cn("h-5 w-5", retentionColor)} aria-hidden="true" />
             <span className="text-sm text-muted-foreground">Avg Retention</span>
           </div>
-          <p className={cn('text-2xl font-bold', retentionColor)}>
+          <p className={cn("text-2xl font-bold", retentionColor)}>
             {(classHealth.avgRetention * 100).toFixed(0)}%
           </p>
           <p className="text-xs text-muted-foreground mt-1">
@@ -99,27 +98,34 @@ export function SrsDashboardPanel({
           </p>
         </article>
 
-        <article className={cn(
-          'border rounded-lg p-4',
-          (overdueLoad?.totalOverdue ?? 0) > 0
-            ? 'bg-red-50 dark:bg-red-950 border-red-200'
-            : 'bg-muted/50 border-border'
-        )}>
+        <article
+          className={cn(
+            "border rounded-lg p-4",
+            (overdueLoad?.totalOverdue ?? 0) > 0
+              ? "bg-red-50 dark:bg-red-950 border-red-200"
+              : "bg-muted/50 border-border",
+          )}
+        >
           <div className="flex items-center gap-2 mb-2">
-            <AlertCircle className={cn(
-              'h-5 w-5',
-              (overdueLoad?.totalOverdue ?? 0) > 0 ? 'text-red-600' : 'text-muted-foreground'
-            )} aria-hidden="true" />
+            <AlertCircle
+              className={cn(
+                "h-5 w-5",
+                (overdueLoad?.totalOverdue ?? 0) > 0 ? "text-red-600" : "text-muted-foreground",
+              )}
+              aria-hidden="true"
+            />
             <span className="text-sm text-muted-foreground">Overdue Cards</span>
           </div>
-          <p className={cn(
-            'text-2xl font-bold',
-            (overdueLoad?.totalOverdue ?? 0) > 0 ? 'text-red-600' : 'text-foreground'
-          )}>
+          <p
+            className={cn(
+              "text-2xl font-bold",
+              (overdueLoad?.totalOverdue ?? 0) > 0 ? "text-red-600" : "text-foreground",
+            )}
+          >
             {overdueLoad?.totalOverdue ?? 0}
           </p>
           <p className="text-xs text-muted-foreground mt-1">
-            across {overdueLoad?.perStudent.filter(s => s.overdueCount > 0).length ?? 0} students
+            across {overdueLoad?.perStudent.filter((s) => s.overdueCount > 0).length ?? 0} students
           </p>
         </article>
 
@@ -132,7 +138,7 @@ export function SrsDashboardPanel({
             {streaks.length > 0 ? streaks[0].streak : 0}
           </p>
           <p className="text-xs text-muted-foreground mt-1">
-            {streaks.length > 0 ? streaks[0].displayName : 'No active streaks'}
+            {streaks.length > 0 ? streaks[0].displayName : "No active streaks"}
           </p>
         </article>
       </div>

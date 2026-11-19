@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { LessonRendererErrorBoundary } from './LessonRendererErrorBoundary';
-import { LessonRenderer } from '@/components/student/LessonRenderer';
-import type { DashboardLessonActionLink } from '@/lib/student/dashboard-presentation';
-import type { ContentBlock, LessonMetadata, PhaseMetadata } from '@/types/curriculum';
+import { LessonRendererErrorBoundary } from "./LessonRendererErrorBoundary";
+import { LessonRenderer } from "@/components/student/LessonRenderer";
+import type { DashboardLessonActionLink } from "@/lib/student/dashboard-presentation";
+import type { ContentBlock, LessonMetadata, PhaseMetadata } from "@/types/curriculum";
 
 interface Phase {
   id: string;
@@ -33,7 +33,6 @@ interface LessonRendererClientProps {
   isLessonComplete?: boolean;
   recommendedLesson?: DashboardLessonActionLink | null;
 }
-
 
 /**
  * Client wrapper that renders the lesson inside an error boundary.

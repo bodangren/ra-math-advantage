@@ -1,9 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import type { Id } from "@/convex/_generated/dataModel";
-import {
-  buildIm3TwoRealSolutionsIndependentPracticeSeedDocuments,
-} from "@/convex/seed/seed_lesson_1_2";
+import { buildIm3TwoRealSolutionsIndependentPracticeSeedDocuments } from "@/convex/seed/seed_lesson_1_2";
 import * as seedLesson12 from "@/convex/seed/seed_lesson_1_2";
 import {
   IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
@@ -11,7 +9,8 @@ import {
 } from "@/lib/practice/learning-evidence-pilot";
 
 type OptionalIndependentVariantUpsert =
-  ((ctx: never, now: number) => Promise<Id<"practice_variants">>) | undefined;
+  | ((ctx: never, now: number) => Promise<Id<"practice_variants">>)
+  | undefined;
 
 describe("IM3 two-real-solutions Independent variant upsert", () => {
   it("upserts the exact two-real-solutions Independent variant by stable identity", async () => {
@@ -25,15 +24,17 @@ describe("IM3 two-real-solutions Independent variant upsert", () => {
 
     const operations: string[] = [];
     let stored: Record<string, unknown> | undefined;
-    const storedVariantId = "practice_variants:two-real-solutions-independent" as Id<"practice_variants">;
+    const storedVariantId =
+      "practice_variants:two-real-solutions-independent" as Id<"practice_variants">;
     const ctx = {
       db: {
         query(table: string) {
           operations.push(`query:${table}`);
           return {
-            withIndex(index: string, callback: (query: {
-              eq: (field: string, value: unknown) => unknown;
-            }) => unknown) {
+            withIndex(
+              index: string,
+              callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+            ) {
               operations.push(`index:${index}`);
               callback({
                 eq: (field: string, value: unknown) => {
@@ -91,8 +92,10 @@ describe("IM3 two-real-solutions Independent variant upsert", () => {
       objectiveIds: [IM3_TWO_REAL_SOLUTIONS_NODE],
       metadata: { stableActivityId: IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID },
     });
-    expect(operations.filter((operation) => (
-      operation.includes("activities") || operation.includes("practice_items")
-    ))).toEqual([]);
+    expect(
+      operations.filter(
+        (operation) => operation.includes("activities") || operation.includes("practice_items"),
+      ),
+    ).toEqual([]);
   });
 });

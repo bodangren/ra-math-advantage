@@ -1,4 +1,9 @@
-import { internalMutation, internalQuery, type MutationCtx, type QueryCtx } from "../_generated/server";
+import {
+  internalMutation,
+  internalQuery,
+  type MutationCtx,
+  type QueryCtx,
+} from "../_generated/server";
 import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
 
@@ -24,9 +29,7 @@ function mapDbSessionToContract(session: {
     sessionId: session._id,
     studentId: session.studentId,
     startedAt: new Date(session.startedAt).toISOString(),
-    completedAt: session.completedAt
-      ? new Date(session.completedAt).toISOString()
-      : null,
+    completedAt: session.completedAt ? new Date(session.completedAt).toISOString() : null,
     plannedCards: session.plannedCards,
     completedCards: session.completedCards,
     config: session.config,
@@ -68,7 +71,7 @@ export type CompleteSessionArgs = {
  */
 export async function createSessionHandler(
   ctx: MutationCtx,
-  args: CreateSessionArgs
+  args: CreateSessionArgs,
 ): Promise<Id<"srs_sessions">> {
   const id = await ctx.db.insert("srs_sessions", {
     studentId: args.studentId as Id<"profiles">,
@@ -101,7 +104,7 @@ export const createSession = internalMutation({
  */
 export async function completeSessionHandler(
   ctx: MutationCtx,
-  args: CompleteSessionArgs
+  args: CompleteSessionArgs,
 ): Promise<Id<"srs_sessions">> {
   const session = await ctx.db.get(args.sessionId as Id<"srs_sessions">);
   if (!session) {
@@ -134,15 +137,10 @@ export const completeSession = internalMutation({
  * @param {{ studentId: string }} args - The student ID
  * @returns {Promise<object | null>} The active session in contract format, or null if none exists
  */
-export async function getActiveSessionHandler(
-  ctx: QueryCtx,
-  args: { studentId: string }
-) {
+export async function getActiveSessionHandler(ctx: QueryCtx, args: { studentId: string }) {
   const active = await ctx.db
     .query("srs_sessions")
-    .withIndex("by_student_and_status", (q) =>
-      q.eq("studentId", args.studentId as Id<"profiles">)
-    )
+    .withIndex("by_student_and_status", (q) => q.eq("studentId", args.studentId as Id<"profiles">))
     // Explicit filter avoids relying on undefined sort order in the index.
     // Sessions per student are bounded (~1/day), so filter cost is negligible.
     .filter((q) => q.eq(q.field("completedAt"), undefined))
@@ -174,17 +172,12 @@ export type GetSessionHistoryArgs = {
  * @param {GetSessionHistoryArgs} args - The student ID with optional limit and cursor
  * @returns {Promise<{ sessions: Array<object>; nextCursor: string | null }>} Paginated sessions in contract format
  */
-export async function getSessionHistoryHandler(
-  ctx: QueryCtx,
-  args: GetSessionHistoryArgs
-) {
+export async function getSessionHistoryHandler(ctx: QueryCtx, args: GetSessionHistoryArgs) {
   const limit = args.limit ?? 50;
 
   const paginated = await ctx.db
     .query("srs_sessions")
-    .withIndex("by_student_and_status", (q) =>
-      q.eq("studentId", args.studentId as Id<"profiles">)
-    )
+    .withIndex("by_student_and_status", (q) => q.eq("studentId", args.studentId as Id<"profiles">))
     .order("desc")
     .filter((q) => q.neq(q.field("completedAt"), undefined))
     .paginate({ cursor: args.cursor ?? null, numItems: limit });

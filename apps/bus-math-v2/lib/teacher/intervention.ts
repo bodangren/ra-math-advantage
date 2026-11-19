@@ -80,10 +80,7 @@ export function deriveStudentIntervention(
   const progressPercentage = clampPercentage(student.progressPercentage);
   const isCompleted = progressPercentage >= COMPLETED_THRESHOLD;
   const isAtRisk = progressPercentage < AT_RISK_THRESHOLD;
-  const isRecentlyActive = isActiveWithinDays(
-    student.lastActive,
-    RECENT_ACTIVITY_WINDOW_DAYS,
-  );
+  const isRecentlyActive = isActiveWithinDays(student.lastActive, RECENT_ACTIVITY_WINDOW_DAYS);
   const isInactive = !isCompleted && !isRecentlyActive;
 
   let status: InterventionStatus = "on_track";
@@ -130,26 +127,24 @@ function interventionPriority(student: DerivedStudentIntervention) {
 export function prioritizeInterventionRows(
   students: StudentDashboardRow[],
 ): DerivedStudentIntervention[] {
-  return students
-    .map(deriveStudentIntervention)
-    .sort((a, b) => {
-      const priorityDiff = interventionPriority(a) - interventionPriority(b);
-      if (priorityDiff !== 0) {
-        return priorityDiff;
-      }
+  return students.map(deriveStudentIntervention).sort((a, b) => {
+    const priorityDiff = interventionPriority(a) - interventionPriority(b);
+    if (priorityDiff !== 0) {
+      return priorityDiff;
+    }
 
-      if (a.progressPercentage !== b.progressPercentage) {
-        return a.progressPercentage - b.progressPercentage;
-      }
+    if (a.progressPercentage !== b.progressPercentage) {
+      return a.progressPercentage - b.progressPercentage;
+    }
 
-      const timeA = a.lastActiveTimestamp ?? Number.NEGATIVE_INFINITY;
-      const timeB = b.lastActiveTimestamp ?? Number.NEGATIVE_INFINITY;
-      if (timeA !== timeB) {
-        return timeA - timeB;
-      }
+    const timeA = a.lastActiveTimestamp ?? Number.NEGATIVE_INFINITY;
+    const timeB = b.lastActiveTimestamp ?? Number.NEGATIVE_INFINITY;
+    if (timeA !== timeB) {
+      return timeA - timeB;
+    }
 
-      return a.sortName.localeCompare(b.sortName);
-    });
+    return a.sortName.localeCompare(b.sortName);
+  });
 }
 
 /**
@@ -171,8 +166,7 @@ export function applyInterventionFilter(
       return derived.filter((student) => student.isInactive);
     case "on_track":
       return derived.filter(
-        (student) =>
-          !student.isCompleted && !student.isAtRisk && !student.isInactive,
+        (student) => !student.isCompleted && !student.isAtRisk && !student.isInactive,
       );
     case "completed":
       return derived.filter((student) => student.isCompleted);
@@ -196,8 +190,7 @@ export function buildInterventionSummary(students: StudentDashboardRow[]) {
     inactive: derived.filter((student) => student.isInactive).length,
     completed: derived.filter((student) => student.isCompleted).length,
     onTrack: derived.filter(
-      (student) =>
-        !student.isCompleted && !student.isAtRisk && !student.isInactive,
+      (student) => !student.isCompleted && !student.isAtRisk && !student.isInactive,
     ).length,
     needsAttention: derived.filter((student) => student.needsAttention).length,
   };

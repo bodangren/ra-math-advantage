@@ -1,10 +1,10 @@
-import type { PracticeSubmissionEnvelope, PracticeTimingSummary } from '../practice/contract';
-import type { PracticeTimingBaseline } from '../practice/timing-baseline';
-import { deriveTimingFeatures } from '../practice/timing-baseline';
-import { mapPracticeToSrsRating } from '../practice/srs-rating';
-import { createCard, reviewCard } from './scheduler';
-import type { SrsCardState } from '@math-platform/srs-engine';
-import type { SrsReviewLog, SrsReviewResult } from './contract';
+import type { PracticeSubmissionEnvelope, PracticeTimingSummary } from "../practice/contract";
+import type { PracticeTimingBaseline } from "../practice/timing-baseline";
+import { deriveTimingFeatures } from "../practice/timing-baseline";
+import { mapPracticeToSrsRating } from "../practice/srs-rating";
+import { createCard, reviewCard } from "./scheduler";
+import type { SrsCardState } from "@math-platform/srs-engine";
+import type { SrsReviewLog, SrsReviewResult } from "./contract";
 
 /**
  * Processes practice submission
@@ -25,7 +25,7 @@ export function processPracticeSubmission(
   const effectiveTiming = timing ?? envelope.timing;
   const timingFeatures = effectiveTiming
     ? deriveTimingFeatures(effectiveTiming, baseline)
-    : { hasReliableTiming: false, confidence: 'low' as const, reasons: ['timing_missing'] };
+    : { hasReliableTiming: false, confidence: "low" as const, reasons: ["timing_missing"] };
 
   const ratingResult = mapPracticeToSrsRating({
     parts: envelope.parts.map((p) => ({
@@ -38,7 +38,7 @@ export function processPracticeSubmission(
   });
 
   if (!studentId && !cardState?.studentId) {
-    throw new Error('studentId is required when no existing card state is provided');
+    throw new Error("studentId is required when no existing card state is provided");
   }
   const effectiveStudentId = studentId ?? cardState!.studentId;
 
@@ -74,10 +74,14 @@ export function processPracticeSubmission(
   const now = new Date().toISOString();
   const reviewedCard = reviewCard(cardState, ratingResult.rating, now);
 
-  const lastReviewDate = cardState.lastReview ? new Date(cardState.lastReview) : new Date(cardState.createdAt);
+  const lastReviewDate = cardState.lastReview
+    ? new Date(cardState.lastReview)
+    : new Date(cardState.createdAt);
   const reviewedAtMs = Date.now();
   const elapsedDays = Math.floor((reviewedAtMs - lastReviewDate.getTime()) / (24 * 60 * 60 * 1000));
-  const scheduledDays = Math.floor((new Date(reviewedCard.dueDate).getTime() - reviewedAtMs) / (24 * 60 * 60 * 1000));
+  const scheduledDays = Math.floor(
+    (new Date(reviewedCard.dueDate).getTime() - reviewedAtMs) / (24 * 60 * 60 * 1000),
+  );
 
   const reviewLog: SrsReviewLog = {
     problemFamilyId: reviewedCard.variantKey,

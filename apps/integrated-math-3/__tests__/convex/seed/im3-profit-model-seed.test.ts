@@ -186,39 +186,45 @@ describe("IM3 profit-model Independent seed documents", () => {
     const query = vi.fn((table: string) => {
       if (table === "phase_versions") {
         return {
-          withIndex: vi.fn((indexName: string, configure: (q: {
-            eq: (field: string, value: unknown) => unknown;
-          }) => unknown) => {
-            expect(indexName).toBe("by_lesson_version_and_phase");
-            const indexQuery = {
-              eq: vi.fn((field: string, value: unknown) => {
-                expect(field === "lessonVersionId" || field === "phaseNumber").toBe(true);
-                expect(value === lessonVersionId || value === 6).toBe(true);
-                return indexQuery;
-              }),
-            };
-            configure(indexQuery);
-            return {
-              first: vi.fn(async () => ({ _id: "phase-versions:profit-6" })),
-            };
-          }),
+          withIndex: vi.fn(
+            (
+              indexName: string,
+              configure: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+            ) => {
+              expect(indexName).toBe("by_lesson_version_and_phase");
+              const indexQuery = {
+                eq: vi.fn((field: string, value: unknown) => {
+                  expect(field === "lessonVersionId" || field === "phaseNumber").toBe(true);
+                  expect(value === lessonVersionId || value === 6).toBe(true);
+                  return indexQuery;
+                }),
+              };
+              configure(indexQuery);
+              return {
+                first: vi.fn(async () => ({ _id: "phase-versions:profit-6" })),
+              };
+            },
+          ),
         };
       }
       expect(table).toBe("phase_sections");
       return {
-        withIndex: vi.fn((indexName: string, configure: (q: {
-          eq: (field: string, value: unknown) => unknown;
-        }) => unknown) => {
-          expect(indexName).toBe("by_phase_version");
-          configure({
-            eq: vi.fn((field: string, value: unknown) => {
-              expect(field).toBe("phaseVersionId");
-              expect(value).toBe("phase-versions:profit-6");
-              return undefined;
-            }),
-          });
-          return { collect: vi.fn(async () => sections) };
-        }),
+        withIndex: vi.fn(
+          (
+            indexName: string,
+            configure: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) => {
+            expect(indexName).toBe("by_phase_version");
+            configure({
+              eq: vi.fn((field: string, value: unknown) => {
+                expect(field).toBe("phaseVersionId");
+                expect(value).toBe("phase-versions:profit-6");
+                return undefined;
+              }),
+            });
+            return { collect: vi.fn(async () => sections) };
+          },
+        ),
       };
     });
     const ctx = { db: { query, patch } } as never;
@@ -232,10 +238,14 @@ describe("IM3 profit-model Independent seed documents", () => {
           "## Example 3: Use Quadratic Functions\n\nA ski resort sold 680 holiday weekend passes at &#36;120 per pass. For each &#36;5 price increase, it expects to sell 20 fewer passes. Let x be the number of &#36;5 price increases. Build and simplify P(x) = (120 + 5x)(680 - 20x).",
       },
     });
-    const patchedMarkdown = (patch.mock.calls[0]?.[1] as {
-      content: { markdown: string };
-    }).content.markdown;
-    expect(parseMathSegments(patchedMarkdown).filter(segment => segment.type === "inline-math")).toEqual([]);
+    const patchedMarkdown = (
+      patch.mock.calls[0]?.[1] as {
+        content: { markdown: string };
+      }
+    ).content.markdown;
+    expect(
+      parseMathSegments(patchedMarkdown).filter((segment) => segment.type === "inline-math"),
+    ).toEqual([]);
     expect(patch).toHaveBeenNthCalledWith(2, "phase-sections:profit-activity", {
       content: {
         componentKey: "fill-in-the-blank",
@@ -245,7 +255,7 @@ describe("IM3 profit-model Independent seed documents", () => {
   });
 
   it("upserts the Guided activity by stable ID and preserves createdAt", async () => {
-    let storedActivity: Record<string, unknown> & { _id: string } | null = null;
+    let storedActivity: (Record<string, unknown> & { _id: string }) | null = null;
     let nextActivityId = 1;
     const insert = vi.fn(async (table: string, document: Record<string, unknown>) => {
       expect(table).toBe("activities");
@@ -260,17 +270,22 @@ describe("IM3 profit-model Independent seed documents", () => {
     const query = vi.fn((table: string) => {
       expect(table).toBe("activities");
       return {
-        withIndex: vi.fn((indexName: string, indexQuery: (q: { eq: (field: string, value: string) => unknown }) => unknown) => {
-          expect(indexName).toBe("by_stable_activity_id");
-          indexQuery({
-            eq: vi.fn((field: string, value: string) => {
-              expect(field).toBe("stableActivityId");
-              expect(value).toBe(GUIDED_STABLE_ACTIVITY_ID);
-              return undefined;
-            }),
-          });
-          return { unique: vi.fn(async () => storedActivity) };
-        }),
+        withIndex: vi.fn(
+          (
+            indexName: string,
+            indexQuery: (q: { eq: (field: string, value: string) => unknown }) => unknown,
+          ) => {
+            expect(indexName).toBe("by_stable_activity_id");
+            indexQuery({
+              eq: vi.fn((field: string, value: string) => {
+                expect(field).toBe("stableActivityId");
+                expect(value).toBe(GUIDED_STABLE_ACTIVITY_ID);
+                return undefined;
+              }),
+            });
+            return { unique: vi.fn(async () => storedActivity) };
+          },
+        ),
       };
     });
     const ctx = { db: { query, insert, patch } } as never;
@@ -322,19 +337,22 @@ describe("IM3 profit-model Independent seed documents", () => {
     const query = vi.fn((table: string) => {
       expect(table).toBe("activities");
       return {
-        withIndex: vi.fn((indexName: string, indexQuery: (q: {
-          eq: (field: string, value: unknown) => unknown;
-        }) => unknown) => {
-          expect(indexName).toBe("by_stable_activity_id");
-          indexQuery({
-            eq: vi.fn((field: string, value: unknown) => {
-              expect(field).toBe("stableActivityId");
-              expect(value).toBe(WORKED_STABLE_ACTIVITY_ID);
-              return undefined;
-            }),
-          });
-          return { unique: vi.fn(async () => storedActivity) };
-        }),
+        withIndex: vi.fn(
+          (
+            indexName: string,
+            indexQuery: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) => {
+            expect(indexName).toBe("by_stable_activity_id");
+            indexQuery({
+              eq: vi.fn((field: string, value: unknown) => {
+                expect(field).toBe("stableActivityId");
+                expect(value).toBe(WORKED_STABLE_ACTIVITY_ID);
+                return undefined;
+              }),
+            });
+            return { unique: vi.fn(async () => storedActivity) };
+          },
+        ),
       };
     });
     const ctx = { db: { query, insert, patch } } as never;
@@ -370,11 +388,14 @@ describe("IM3 profit-model Independent seed documents", () => {
   });
 
   it("upserts the Guided variant by variant key and preserves its physical ID", async () => {
-    let storedVariant: Record<string, unknown> & { _id: string } | null = null;
+    let storedVariant: (Record<string, unknown> & { _id: string }) | null = null;
     let nextVariantId = 1;
     const insert = vi.fn(async (table: string, document: Record<string, unknown>) => {
       expect(table).toBe("practice_variants");
-      storedVariant = { _id: `practice-variants:profit-model-guided-${nextVariantId++}`, ...document };
+      storedVariant = {
+        _id: `practice-variants:profit-model-guided-${nextVariantId++}`,
+        ...document,
+      };
       return storedVariant._id;
     });
     const patch = vi.fn(async (variantId: string, document: Record<string, unknown>) => {
@@ -385,17 +406,22 @@ describe("IM3 profit-model Independent seed documents", () => {
     const query = vi.fn((table: string) => {
       expect(table).toBe("practice_variants");
       return {
-        withIndex: vi.fn((indexName: string, indexQuery: (q: { eq: (field: string, value: string) => unknown }) => unknown) => {
-          expect(indexName).toBe("by_variantKey");
-          indexQuery({
-            eq: vi.fn((field: string, value: string) => {
-              expect(field).toBe("variantKey");
-              expect(value).toBe(GUIDED_STABLE_ACTIVITY_ID);
-              return undefined;
-            }),
-          });
-          return { unique: vi.fn(async () => storedVariant) };
-        }),
+        withIndex: vi.fn(
+          (
+            indexName: string,
+            indexQuery: (q: { eq: (field: string, value: string) => unknown }) => unknown,
+          ) => {
+            expect(indexName).toBe("by_variantKey");
+            indexQuery({
+              eq: vi.fn((field: string, value: string) => {
+                expect(field).toBe("variantKey");
+                expect(value).toBe(GUIDED_STABLE_ACTIVITY_ID);
+                return undefined;
+              }),
+            });
+            return { unique: vi.fn(async () => storedVariant) };
+          },
+        ),
       };
     });
     const ctx = { db: { query, insert, patch } } as never;
@@ -538,7 +564,7 @@ describe("IM3 profit-model Independent seed documents", () => {
   });
 
   it("inserts once and patches the same activity on a later upsert", async () => {
-    let storedActivity: Record<string, unknown> & { _id: string } | null = null;
+    let storedActivity: (Record<string, unknown> & { _id: string }) | null = null;
     let nextActivityId = 1;
     const insert = vi.fn(async (_table: string, document: Record<string, unknown>) => {
       storedActivity = { _id: `activities:profit-model-${nextActivityId++}`, ...document };
@@ -552,17 +578,22 @@ describe("IM3 profit-model Independent seed documents", () => {
     const query = vi.fn((table: string) => {
       expect(table).toBe("activities");
       return {
-        withIndex: vi.fn((indexName: string, indexQuery: (q: { eq: (field: string, value: string) => unknown }) => unknown) => {
-          expect(indexName).toBe("by_stable_activity_id");
-          indexQuery({
-            eq: vi.fn((field: string, value: string) => {
-              expect(field).toBe("stableActivityId");
-              expect(value).toBe(STABLE_ACTIVITY_ID);
-              return undefined;
-            }),
-          });
-          return { unique: vi.fn(async () => storedActivity) };
-        }),
+        withIndex: vi.fn(
+          (
+            indexName: string,
+            indexQuery: (q: { eq: (field: string, value: string) => unknown }) => unknown,
+          ) => {
+            expect(indexName).toBe("by_stable_activity_id");
+            indexQuery({
+              eq: vi.fn((field: string, value: string) => {
+                expect(field).toBe("stableActivityId");
+                expect(value).toBe(STABLE_ACTIVITY_ID);
+                return undefined;
+              }),
+            });
+            return { unique: vi.fn(async () => storedActivity) };
+          },
+        ),
       };
     });
     const ctx = { db: { query, insert, patch } } as never;
@@ -587,7 +618,7 @@ describe("IM3 profit-model Independent seed documents", () => {
   });
 
   it("inserts once and patches the same variant on a later upsert", async () => {
-    let storedVariant: Record<string, unknown> & { _id: string } | null = null;
+    let storedVariant: (Record<string, unknown> & { _id: string }) | null = null;
     const insert = vi.fn(async (table: string, document: Record<string, unknown>) => {
       expect(table).toBe("practice_variants");
       storedVariant = { _id: "practice-variants:profit-model-1", ...document };
@@ -601,17 +632,22 @@ describe("IM3 profit-model Independent seed documents", () => {
     const query = vi.fn((table: string) => {
       expect(table).toBe("practice_variants");
       return {
-        withIndex: vi.fn((indexName: string, indexQuery: (q: { eq: (field: string, value: string) => unknown }) => unknown) => {
-          expect(indexName).toBe("by_variantKey");
-          indexQuery({
-            eq: vi.fn((field: string, value: string) => {
-              expect(field).toBe("variantKey");
-              expect(value).toBe(STABLE_ACTIVITY_ID);
-              return undefined;
-            }),
-          });
-          return { unique: vi.fn(async () => storedVariant) };
-        }),
+        withIndex: vi.fn(
+          (
+            indexName: string,
+            indexQuery: (q: { eq: (field: string, value: string) => unknown }) => unknown,
+          ) => {
+            expect(indexName).toBe("by_variantKey");
+            indexQuery({
+              eq: vi.fn((field: string, value: string) => {
+                expect(field).toBe("variantKey");
+                expect(value).toBe(STABLE_ACTIVITY_ID);
+                return undefined;
+              }),
+            });
+            return { unique: vi.fn(async () => storedVariant) };
+          },
+        ),
       };
     });
     const ctx = { db: { query, insert, patch } } as never;
@@ -651,26 +687,41 @@ describe("IM3 profit-model Independent seed documents", () => {
     const query = vi.fn((table: string) => {
       expect(table).toBe("practice_items");
       return {
-        withIndex: vi.fn((indexName: string, indexQuery: (q: { eq: (field: string, value: string) => unknown }) => unknown) => {
-          const filter = { field: "", value: "" };
-          indexQuery({
-            eq: vi.fn((field: string, value: string) => {
-              filter.field = field;
-              filter.value = value;
-              return undefined;
-            }),
-          });
-          expect(["by_variantKey", "by_activityId"]).toContain(indexName);
-          return {
-            take: vi.fn(async () => storedItems.filter((item) => String(item[filter.field]) === filter.value)),
-          };
-        }),
+        withIndex: vi.fn(
+          (
+            indexName: string,
+            indexQuery: (q: { eq: (field: string, value: string) => unknown }) => unknown,
+          ) => {
+            const filter = { field: "", value: "" };
+            indexQuery({
+              eq: vi.fn((field: string, value: string) => {
+                filter.field = field;
+                filter.value = value;
+                return undefined;
+              }),
+            });
+            expect(["by_variantKey", "by_activityId"]).toContain(indexName);
+            return {
+              take: vi.fn(async () =>
+                storedItems.filter((item) => String(item[filter.field]) === filter.value),
+              ),
+            };
+          },
+        ),
       };
     });
     const ctx = { db: { query, insert, patch } } as never;
 
-    const firstId = await upsertIm3ProfitModelIndependentPracticeItem(ctx, activityId as never, 100);
-    const secondId = await upsertIm3ProfitModelIndependentPracticeItem(ctx, activityId as never, 200);
+    const firstId = await upsertIm3ProfitModelIndependentPracticeItem(
+      ctx,
+      activityId as never,
+      100,
+    );
+    const secondId = await upsertIm3ProfitModelIndependentPracticeItem(
+      ctx,
+      activityId as never,
+      200,
+    );
 
     expect(firstId).toBe("practice-items:profit-model-1");
     expect(secondId).toBe(firstId);
@@ -705,23 +756,28 @@ describe("IM3 profit-model Independent seed documents", () => {
     const query = vi.fn((table: string) => {
       expect(table).toBe("practice_items");
       return {
-        withIndex: vi.fn((indexName: string, indexQuery: (q: { eq: (field: string, value: string) => unknown }) => unknown) => {
-          const filter = { field: "", value: "" };
-          indexQuery({
-            eq: vi.fn((field: string, value: string) => {
-              filter.field = field;
-              filter.value = value;
-              return undefined;
-            }),
-          });
-          expect(["by_variantKey", "by_activityId"]).toContain(indexName);
-          return {
-            take: vi.fn(async (limit: number) => {
-              expect(limit).toBe(2);
-              return storedItems.filter((item) => String(item[filter.field]) === filter.value);
-            }),
-          };
-        }),
+        withIndex: vi.fn(
+          (
+            indexName: string,
+            indexQuery: (q: { eq: (field: string, value: string) => unknown }) => unknown,
+          ) => {
+            const filter = { field: "", value: "" };
+            indexQuery({
+              eq: vi.fn((field: string, value: string) => {
+                filter.field = field;
+                filter.value = value;
+                return undefined;
+              }),
+            });
+            expect(["by_variantKey", "by_activityId"]).toContain(indexName);
+            return {
+              take: vi.fn(async (limit: number) => {
+                expect(limit).toBe(2);
+                return storedItems.filter((item) => String(item[filter.field]) === filter.value);
+              }),
+            };
+          },
+        ),
       };
     });
     const ctx = { db: { query, insert, patch } } as never;
@@ -751,24 +807,29 @@ describe("IM3 profit-model Independent seed documents", () => {
     const query = vi.fn((table: string) => {
       expect(table).toBe("practice_items");
       return {
-        withIndex: vi.fn((indexName: string, indexQuery: (q: { eq: (field: string, value: string) => unknown }) => unknown) => {
-          indexQuery({
-            eq: vi.fn((field: string, value: string) => {
-              if (indexName === "by_variantKey") {
-                expect(field).toBe("variantKey");
-                expect(value).toBe(GUIDED_STABLE_ACTIVITY_ID);
-              } else {
-                expect(indexName).toBe("by_activityId");
-                expect(field).toBe("activityId");
-                expect(value).toBe(activityId);
-              }
-              return undefined;
-            }),
-          });
-          return {
-            take: vi.fn(async () => indexName === "by_variantKey" ? [conflictingItem] : []),
-          };
-        }),
+        withIndex: vi.fn(
+          (
+            indexName: string,
+            indexQuery: (q: { eq: (field: string, value: string) => unknown }) => unknown,
+          ) => {
+            indexQuery({
+              eq: vi.fn((field: string, value: string) => {
+                if (indexName === "by_variantKey") {
+                  expect(field).toBe("variantKey");
+                  expect(value).toBe(GUIDED_STABLE_ACTIVITY_ID);
+                } else {
+                  expect(indexName).toBe("by_activityId");
+                  expect(field).toBe("activityId");
+                  expect(value).toBe(activityId);
+                }
+                return undefined;
+              }),
+            });
+            return {
+              take: vi.fn(async () => (indexName === "by_variantKey" ? [conflictingItem] : [])),
+            };
+          },
+        ),
       };
     });
     const insert = vi.fn();
@@ -803,24 +864,29 @@ describe("IM3 profit-model Independent seed documents", () => {
     const query = vi.fn((table: string) => {
       expect(table).toBe("practice_items");
       return {
-        withIndex: vi.fn((indexName: string, indexQuery: (q: { eq: (field: string, value: string) => unknown }) => unknown) => {
-          indexQuery({
-            eq: vi.fn((field: string, value: string) => {
-              if (indexName === "by_variantKey") {
-                expect(field).toBe("variantKey");
-                expect(value).toBe(STABLE_ACTIVITY_ID);
-              } else {
-                expect(indexName).toBe("by_activityId");
-                expect(field).toBe("activityId");
-                expect(value).toBe(activityId);
-              }
-              return undefined;
-            }),
-          });
-          return {
-            take: vi.fn(async () => indexName === "by_variantKey" ? duplicateItems : []),
-          };
-        }),
+        withIndex: vi.fn(
+          (
+            indexName: string,
+            indexQuery: (q: { eq: (field: string, value: string) => unknown }) => unknown,
+          ) => {
+            indexQuery({
+              eq: vi.fn((field: string, value: string) => {
+                if (indexName === "by_variantKey") {
+                  expect(field).toBe("variantKey");
+                  expect(value).toBe(STABLE_ACTIVITY_ID);
+                } else {
+                  expect(indexName).toBe("by_activityId");
+                  expect(field).toBe("activityId");
+                  expect(value).toBe(activityId);
+                }
+                return undefined;
+              }),
+            });
+            return {
+              take: vi.fn(async () => (indexName === "by_variantKey" ? duplicateItems : [])),
+            };
+          },
+        ),
       };
     });
     const ctx = { db: { query, insert: vi.fn(), patch: vi.fn() } } as never;

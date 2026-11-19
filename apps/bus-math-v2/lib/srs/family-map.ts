@@ -1,4 +1,4 @@
-import { practiceFamilyRegistry } from '../practice/engine/family-registry';
+import { practiceFamilyRegistry } from "../practice/engine/family-registry";
 
 /**
  * Gets problem family id

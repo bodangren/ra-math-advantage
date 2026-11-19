@@ -1,55 +1,50 @@
-'use client';
+"use client";
 
-import { useId, useState } from 'react';
+import { useId, useState } from "react";
 
-import { buildPracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
-import type { PolynomialLimitNotationEndBehaviorProps } from '../../schemas';
+import { buildPracticeSubmissionEnvelope } from "@math-platform/practice-core/contract";
+import type { PolynomialLimitNotationEndBehaviorProps } from "../../schemas";
 
 export type PolynomialLimitNotationEndBehaviorActivityProps =
   PolynomialLimitNotationEndBehaviorProps & {
     activityId: string;
-    mode: 'teaching' | 'guided' | 'practice';
+    mode: "teaching" | "guided" | "practice";
     onSubmit?: (payload: unknown) => void;
     onComplete?: () => void;
   };
 
-type PartId = `${'a' | 'b'}_${'leftLimit' | 'rightLimit'}`;
-type Side = 'leftLimit' | 'rightLimit';
-type LimitEnd = 'positive_infinity' | 'negative_infinity';
-type Direction = 'positive_infinity' | 'negative_infinity' | '';
+type PartId = `${"a" | "b"}_${"leftLimit" | "rightLimit"}`;
+type Side = "leftLimit" | "rightLimit";
+type LimitEnd = "positive_infinity" | "negative_infinity";
+type Direction = "positive_infinity" | "negative_infinity" | "";
 
-const PART_IDS: readonly PartId[] = [
-  'a_leftLimit',
-  'a_rightLimit',
-  'b_leftLimit',
-  'b_rightLimit',
-];
+const PART_IDS: readonly PartId[] = ["a_leftLimit", "a_rightLimit", "b_leftLimit", "b_rightLimit"];
 
 const EMPTY_ANSWERS: Record<PartId, Direction> = {
-  a_leftLimit: '',
-  a_rightLimit: '',
-  b_leftLimit: '',
-  b_rightLimit: '',
+  a_leftLimit: "",
+  a_rightLimit: "",
+  b_leftLimit: "",
+  b_rightLimit: "",
 };
 
 function expectedPresentationMode(
-  mode: PolynomialLimitNotationEndBehaviorActivityProps['mode'],
-): PolynomialLimitNotationEndBehaviorProps['presentationMode'] {
-  if (mode === 'teaching') return 'worked_example';
-  if (mode === 'guided') return 'guided_practice';
-  return 'independent_practice';
+  mode: PolynomialLimitNotationEndBehaviorActivityProps["mode"],
+): PolynomialLimitNotationEndBehaviorProps["presentationMode"] {
+  if (mode === "teaching") return "worked_example";
+  if (mode === "guided") return "guided_practice";
+  return "independent_practice";
 }
 
 function formalFrame(functionName: string, side: Side): string {
-  return `lim(x → ${side === 'leftLimit' ? '−∞' : '∞'}) ${functionName}(x) =`;
+  return `lim(x → ${side === "leftLimit" ? "−∞" : "∞"}) ${functionName}(x) =`;
 }
 
 function resultText(answer: LimitEnd): string {
-  return answer === 'positive_infinity' ? 'Positive infinity' : 'Negative infinity';
+  return answer === "positive_infinity" ? "Positive infinity" : "Negative infinity";
 }
 
 function resultSymbol(answer: LimitEnd): string {
-  return answer === 'positive_infinity' ? '∞' : '−∞';
+  return answer === "positive_infinity" ? "∞" : "−∞";
 }
 
 export function PolynomialLimitNotationEndBehaviorActivity({
@@ -67,19 +62,21 @@ export function PolynomialLimitNotationEndBehaviorActivity({
     return <p role="alert">This activity is unavailable for this presentation mode.</p>;
   }
 
-  const title = props.title ?? (mode === 'teaching'
-    ? 'Worked Example: Polynomial Limit Notation End Behavior'
-    : mode === 'guided'
-      ? 'Guided Practice: Polynomial Limit Notation End Behavior'
-      : 'Independent Practice: Polynomial Limit Notation End Behavior');
-  const isWorked = props.presentationMode === 'worked_example';
-  const canSubmit = !isWorked && PART_IDS.every((partId) => answers[partId] !== '');
+  const title =
+    props.title ??
+    (mode === "teaching"
+      ? "Worked Example: Polynomial Limit Notation End Behavior"
+      : mode === "guided"
+        ? "Guided Practice: Polynomial Limit Notation End Behavior"
+        : "Independent Practice: Polynomial Limit Notation End Behavior");
+  const isWorked = props.presentationMode === "worked_example";
+  const canSubmit = !isWorked && PART_IDS.every((partId) => answers[partId] !== "");
 
   const submit = () => {
     if (!canSubmit || isWorked) return;
     const envelope = buildPracticeSubmissionEnvelope({
       activityId,
-      mode: mode === 'guided' ? 'guided_practice' : 'independent_practice',
+      mode: mode === "guided" ? "guided_practice" : "independent_practice",
       answers,
       parts: PART_IDS.map((partId) => ({ partId, rawAnswer: answers[partId] })),
     });
@@ -89,18 +86,22 @@ export function PolynomialLimitNotationEndBehaviorActivity({
 
   return (
     <section aria-labelledby={`${instanceId}-heading`} className="space-y-4 p-4 text-foreground">
-      <h2 id={`${instanceId}-heading`} className="text-xl font-semibold">{title}</h2>
+      <h2 id={`${instanceId}-heading`} className="text-xl font-semibold">
+        {title}
+      </h2>
       <p>{props.prompt}</p>
 
       <div className="grid gap-4">
         {props.items.map((item) => (
           <article key={item.id} className="space-y-2">
-            <h3>{item.id}) {item.functionName}</h3>
+            <h3>
+              {item.id}) {item.functionName}
+            </h3>
             <p>{item.expression}</p>
 
             {isWorked ? (
               <div className="space-y-1">
-                {(['leftLimit', 'rightLimit'] as const).map((side) => {
+                {(["leftLimit", "rightLimit"] as const).map((side) => {
                   const partId = `${item.id}_${side}` as PartId;
                   const answer = props.correctAnswers[partId as keyof typeof props.correctAnswers];
                   return (
@@ -113,26 +114,32 @@ export function PolynomialLimitNotationEndBehaviorActivity({
               </div>
             ) : (
               <div className="grid gap-3">
-                {(['leftLimit', 'rightLimit'] as const).map((side) => {
+                {(["leftLimit", "rightLimit"] as const).map((side) => {
                   const partId = `${item.id}_${side}` as PartId;
                   const groupName = `${instanceId}-${activityId}-${partId}`;
                   return (
                     <fieldset key={partId} className="space-y-2 rounded border border-subtle p-3">
                       <legend>{formalFrame(item.functionName, side)}</legend>
                       <div className="flex gap-4">
-                        {(['positive_infinity', 'negative_infinity'] as const).map((direction) => {
+                        {(["positive_infinity", "negative_infinity"] as const).map((direction) => {
                           const label = resultText(direction);
                           const inputId = `${groupName}-${direction}`;
                           return (
-                            <label key={direction} htmlFor={inputId} className="flex items-center gap-2">
+                            <label
+                              key={direction}
+                              htmlFor={inputId}
+                              className="flex items-center gap-2"
+                            >
                               <input
                                 id={inputId}
                                 type="radio"
                                 name={groupName}
                                 value={direction}
-                                aria-label={`${item.id} ${item.functionName} ${side === 'leftLimit' ? 'Left end' : 'Right end'} ${formalFrame(item.functionName, side)} ${label}`}
+                                aria-label={`${item.id} ${item.functionName} ${side === "leftLimit" ? "Left end" : "Right end"} ${formalFrame(item.functionName, side)} ${label}`}
                                 checked={answers[partId] === direction}
-                                onChange={() => setAnswers((current) => ({ ...current, [partId]: direction }))}
+                                onChange={() =>
+                                  setAnswers((current) => ({ ...current, [partId]: direction }))
+                                }
                               />
                               {label}
                             </label>
@@ -151,16 +158,22 @@ export function PolynomialLimitNotationEndBehaviorActivity({
       {isWorked ? (
         <>
           <ol className="list-decimal space-y-2 pl-5">
-            {props.steps.map((step, index) => <li key={`${index}-${step}`}>{step}</li>)}
+            {props.steps.map((step, index) => (
+              <li key={`${index}-${step}`}>{step}</li>
+            ))}
           </ol>
-          <p><strong>Answer:</strong> {props.finalAnswer}</p>
+          <p>
+            <strong>Answer:</strong> {props.finalAnswer}
+          </p>
         </>
       ) : (
         <>
-          {props.presentationMode === 'guided_practice' ? (
+          {props.presentationMode === "guided_practice" ? (
             <>
               <ol className="list-decimal space-y-2 pl-5">
-                {props.guidedSteps.map((step, index) => <li key={`${index}-${step}`}>{step}</li>)}
+                {props.guidedSteps.map((step, index) => (
+                  <li key={`${index}-${step}`}>{step}</li>
+                ))}
               </ol>
               <p>{props.fieldHelp}</p>
             </>

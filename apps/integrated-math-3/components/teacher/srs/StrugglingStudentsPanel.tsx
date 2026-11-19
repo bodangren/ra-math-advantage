@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { AlertCircle, TrendingDown, User } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { AlertCircle, TrendingDown, User } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export interface StrugglingStudentView {
   studentId: string;
@@ -34,25 +34,25 @@ function StudentCard({
 }) {
   const retentionColor =
     student.avgRetention >= 0.8
-      ? 'text-green-600'
+      ? "text-green-600"
       : student.avgRetention >= 0.5
-        ? 'text-yellow-600'
-        : 'text-red-600';
+        ? "text-yellow-600"
+        : "text-red-600";
 
   return (
     <div
       className={cn(
-        'bg-card border rounded-lg p-4 transition-colors',
-        onClick ? 'cursor-pointer hover:bg-muted/30' : ''
+        "bg-card border rounded-lg p-4 transition-colors",
+        onClick ? "cursor-pointer hover:bg-muted/30" : "",
       )}
       onClick={() => onClick?.(student.studentId)}
       onKeyDown={(e) => {
-        if (onClick && (e.key === 'Enter' || e.key === ' ')) {
+        if (onClick && (e.key === "Enter" || e.key === " ")) {
           e.preventDefault();
           onClick(student.studentId);
         }
       }}
-      role={onClick ? 'button' : undefined}
+      role={onClick ? "button" : undefined}
       tabIndex={onClick ? 0 : undefined}
     >
       <div className="flex items-start justify-between gap-3">
@@ -78,8 +78,8 @@ function StudentCard({
               )}
               <span
                 className={cn(
-                  'text-lg font-bold font-mono-num',
-                  student.overdueCount > 0 ? 'text-red-600' : 'text-foreground'
+                  "text-lg font-bold font-mono-num",
+                  student.overdueCount > 0 ? "text-red-600" : "text-foreground",
                 )}
               >
                 {student.overdueCount}
@@ -89,8 +89,8 @@ function StudentCard({
           </div>
 
           <div className="text-right">
-            <p className={cn('text-lg font-bold font-mono-num', retentionColor)}>
-              {student.avgRetention > 0 ? `${(student.avgRetention * 100).toFixed(0)}%` : '—'}
+            <p className={cn("text-lg font-bold font-mono-num", retentionColor)}>
+              {student.avgRetention > 0 ? `${(student.avgRetention * 100).toFixed(0)}%` : "—"}
             </p>
             <p className="text-xs text-muted-foreground">retention</p>
           </div>
@@ -150,9 +150,7 @@ export function StrugglingStudentsPanel({
     <div className="bg-card border border-border rounded-lg p-6 shadow-sm">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-semibold text-foreground">Struggling Students</h2>
-        <span className="text-xs text-muted-foreground">
-          {students.length} need attention
-        </span>
+        <span className="text-xs text-muted-foreground">{students.length} need attention</span>
       </div>
 
       <div className="space-y-3">

@@ -41,9 +41,9 @@ export const getDashboardData = internalQuery({
 });
 
 export const getLessonProgress = internalQuery({
-  args: { 
+  args: {
     userId: v.id("profiles"),
-    lessonIdentifier: v.string() // slug or id
+    lessonIdentifier: v.string(), // slug or id
   },
   handler: async (ctx, args) => {
     // 1. Find lesson by slug or id
@@ -78,7 +78,7 @@ export const getLessonProgress = internalQuery({
       .query("phase_versions")
       .withIndex("by_lesson_version", (q) => q.eq("lessonVersionId", latestVersion._id))
       .collect();
-    
+
     // 4. Get student progress
     const userProgress = await ctx.db
       .query("student_progress")
@@ -91,7 +91,7 @@ export const getLessonProgress = internalQuery({
         progressRows: userProgress,
       }),
     };
-  }
+  },
 });
 
 export const completePhase = internalMutation({
@@ -129,8 +129,8 @@ export const completePhase = internalMutation({
     // 3. Find specific phase
     const phase = await ctx.db
       .query("phase_versions")
-      .withIndex("by_lesson_version_and_phase", (q) => 
-        q.eq("lessonVersionId", latestVersion._id).eq("phaseNumber", args.phaseNumber)
+      .withIndex("by_lesson_version_and_phase", (q) =>
+        q.eq("lessonVersionId", latestVersion._id).eq("phaseNumber", args.phaseNumber),
       )
       .unique();
     if (!phase) throw new ConvexError("Phase not found");
@@ -138,9 +138,7 @@ export const completePhase = internalMutation({
     // 4. Check idempotency
     const existing = await ctx.db
       .query("student_progress")
-      .withIndex("by_user_and_phase", (q) => 
-        q.eq("userId", args.userId).eq("phaseId", phase._id)
-      )
+      .withIndex("by_user_and_phase", (q) => q.eq("userId", args.userId).eq("phaseId", phase._id))
       .unique();
 
     if (existing?.status === "completed") {
@@ -163,7 +161,7 @@ export const completePhase = internalMutation({
         userId: args.userId,
         phaseId: phase._id,
         status: "completed",
-        startedAt: now - (args.timeSpent * 1000),
+        startedAt: now - args.timeSpent * 1000,
         completedAt: now,
         timeSpentSeconds: args.timeSpent,
         idempotencyKey: args.idempotencyKey,
@@ -178,15 +176,15 @@ export const completePhase = internalMutation({
         .query("competency_standards")
         .withIndex("by_code", (q) => q.eq("code", args.linkedStandardId!))
         .unique();
-      
+
       if (standard) {
         const existingComp = await ctx.db
           .query("student_competency")
-          .withIndex("by_student_and_standard", (q) => 
-            q.eq("studentId", args.userId).eq("standardId", standard._id)
+          .withIndex("by_student_and_standard", (q) =>
+            q.eq("studentId", args.userId).eq("standardId", standard._id),
           )
           .unique();
-        
+
         if (existingComp) {
           await ctx.db.patch(existingComp._id, {
             masteryLevel: Math.max(existingComp.masteryLevel, 1), // Basic completion = level 1
@@ -204,9 +202,9 @@ export const completePhase = internalMutation({
       }
     }
 
-    return { 
-      success: true, 
-      nextPhaseUnlocked: true // Simplified for now
+    return {
+      success: true,
+      nextPhaseUnlocked: true, // Simplified for now
     };
-  }
+  },
 });

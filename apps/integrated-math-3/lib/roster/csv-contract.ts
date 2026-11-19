@@ -1,10 +1,10 @@
-export const ROSTER_COLUMNS = ['name', 'email', 'sisId', 'section'] as const;
+export const ROSTER_COLUMNS = ["name", "email", "sisId", "section"] as const;
 
 export type RosterColumn = (typeof ROSTER_COLUMNS)[number];
 
-export const REQUIRED_COLUMNS = new Set<RosterColumn>(['name', 'email']);
+export const REQUIRED_COLUMNS = new Set<RosterColumn>(["name", "email"]);
 
-export const IDENTIFIER_PRECEDENCE: readonly string[] = ['email', 'sisId'];
+export const IDENTIFIER_PRECEDENCE: readonly string[] = ["email", "sisId"];
 
 export interface RosterRow {
   rowIndex: number;
@@ -17,7 +17,7 @@ export interface RosterRow {
 export interface RosterImportError {
   rowIndex: number;
   column?: RosterColumn;
-  code: 'missing_required' | 'invalid_email' | 'duplicate_identifier' | 'malformed_row';
+  code: "missing_required" | "invalid_email" | "duplicate_identifier" | "malformed_row";
   message: string;
 }
 

@@ -1,6 +1,4 @@
-import {
-  computeWeightedReadiness,
-} from '@math-platform/knowledge-space-core';
+import { computeWeightedReadiness } from "@math-platform/knowledge-space-core";
 import type {
   KnowledgeSpaceNode,
   KnowledgeSpaceEdge,
@@ -8,7 +6,7 @@ import type {
   KnowledgeStateEntry,
   MasteryConfig,
   ProgressTrendHistory,
-} from '@math-platform/knowledge-space-core';
+} from "@math-platform/knowledge-space-core";
 import type {
   VisualNodeV1,
   VisualEdgeV1,
@@ -20,8 +18,8 @@ import type {
   TeacherHeatmapCell,
   PrerequisiteGap,
   InterventionGroup,
-} from './types';
-import { getRecommendedNext } from '../planner/recommended-next';
+} from "./types";
+import { getRecommendedNext } from "../planner/recommended-next";
 
 // ---------------------------------------------------------------------------
 // Node state helpers
@@ -37,40 +35,35 @@ import { getRecommendedNext } from '../planner/recommended-next';
  */
 function computeNodeState(
   nodeId: string,
-  learnerState: Record<string, 'mastered' | 'ready' | 'nearly_ready' | 'blocked' | 'review_due'>,
+  learnerState: Record<string, "mastered" | "ready" | "nearly_ready" | "blocked" | "review_due">,
   graph: KnowledgeSpace,
   masteredIds: Set<string>,
   knowledgeState?: ReadonlyMap<string, KnowledgeStateEntry>,
   masteryConfig?: Partial<MasteryConfig>,
-): 'mastered' | 'ready' | 'nearly_ready' | 'blocked' | 'review_due' | 'unknown' {
-  if (learnerState[nodeId] === 'review_due') return 'review_due';
+): "mastered" | "ready" | "nearly_ready" | "blocked" | "review_due" | "unknown" {
+  if (learnerState[nodeId] === "review_due") return "review_due";
 
   if (knowledgeState) {
-    if (knowledgeState.get(nodeId)?.state === 'mastered') return 'mastered';
-    return computeWeightedReadiness(
-      nodeId,
-      knowledgeState,
-      graph,
-      masteryConfig,
-    ).state;
+    if (knowledgeState.get(nodeId)?.state === "mastered") return "mastered";
+    return computeWeightedReadiness(nodeId, knowledgeState, graph, masteryConfig).state;
   }
 
   if (learnerState[nodeId]) return learnerState[nodeId];
-  if (masteredIds.has(nodeId)) return 'mastered';
+  if (masteredIds.has(nodeId)) return "mastered";
 
   // Check if prerequisites are met
   const prereqEdges = graph.edges.filter(
-    (e) => e.type === 'prerequisite_for' && e.targetId === nodeId,
+    (e) => e.type === "prerequisite_for" && e.targetId === nodeId,
   );
   if (prereqEdges.length > 0) {
-    const allPrereqsMet = prereqEdges.every((e) =>
-      masteredIds.has(e.sourceId) || learnerState[e.sourceId] === 'mastered',
+    const allPrereqsMet = prereqEdges.every(
+      (e) => masteredIds.has(e.sourceId) || learnerState[e.sourceId] === "mastered",
     );
-    if (!allPrereqsMet) return 'blocked';
-    return 'ready';
+    if (!allPrereqsMet) return "blocked";
+    return "ready";
   }
 
-  return 'unknown';
+  return "unknown";
 }
 
 /**
@@ -79,10 +72,7 @@ function computeNodeState(
  * @param {VisualNodeV1['state']} state - Computed mastery state
  * @returns {VisualNodeV1} - Visual node for rendering
  */
-function toVisualNode(
-  node: KnowledgeSpaceNode,
-  state: VisualNodeV1['state'],
-): VisualNodeV1 {
+function toVisualNode(node: KnowledgeSpaceNode, state: VisualNodeV1["state"]): VisualNodeV1 {
   return {
     nodeId: node.id,
     title: node.title,
@@ -101,12 +91,12 @@ function toVisualNode(
  */
 function toVisualEdges(
   edges: KnowledgeSpaceEdge[],
-  edgeTypes: Array<'prerequisite' | 'supports' | 'extends'>,
+  edgeTypes: Array<"prerequisite" | "supports" | "extends">,
 ): VisualEdgeV1[] {
-  const edgeTypeMap: Record<string, VisualEdgeV1['type']> = {
-    prerequisite_for: 'prerequisite',
-    supports: 'supports',
-    extends: 'extends',
+  const edgeTypeMap: Record<string, VisualEdgeV1["type"]> = {
+    prerequisite_for: "prerequisite",
+    supports: "supports",
+    extends: "extends",
   };
 
   return edges
@@ -114,7 +104,7 @@ function toVisualEdges(
     .map((e) => ({
       sourceId: e.sourceId,
       targetId: e.targetId,
-      type: edgeTypeMap[e.type] as VisualEdgeV1['type'],
+      type: edgeTypeMap[e.type] as VisualEdgeV1["type"],
       weight: e.weight,
     }));
 }
@@ -140,25 +130,24 @@ function toVisualEdges(
 export function projectStudentVisualization(
   nodes: KnowledgeSpaceNode[],
   edges: KnowledgeSpaceEdge[],
-  learnerState: Record<string, 'mastered' | 'ready' | 'nearly_ready' | 'blocked' | 'review_due'> = {},
+  learnerState: Record<
+    string,
+    "mastered" | "ready" | "nearly_ready" | "blocked" | "review_due"
+  > = {},
   options?: StudentVisualizationOptions,
 ): StudentVisualizationV1 {
   const nodeMap = new Map(nodes.map((n) => [n.id, n]));
   const graph: KnowledgeSpace = { nodes, edges };
-  const masteredIds = new Set(
-    [
-      ...Object.entries(learnerState)
-        .filter(([, s]) => s === 'mastered')
-        .map(([id]) => id),
-      ...[...(options?.knowledgeState?.entries() ?? [])]
-        .filter(([, entry]) => entry.state === 'mastered')
-        .map(([id]) => id),
-    ],
-  );
+  const masteredIds = new Set([
+    ...Object.entries(learnerState)
+      .filter(([, s]) => s === "mastered")
+      .map(([id]) => id),
+    ...[...(options?.knowledgeState?.entries() ?? [])]
+      .filter(([, entry]) => entry.state === "mastered")
+      .map(([id]) => id),
+  ]);
 
-  const skillAndTaskNodes = nodes.filter(
-    (n) => n.kind === 'skill' || n.kind === 'task_blueprint',
-  );
+  const skillAndTaskNodes = nodes.filter((n) => n.kind === "skill" || n.kind === "task_blueprint");
 
   const mastered: VisualNodeV1[] = [];
   const ready: VisualNodeV1[] = [];
@@ -166,7 +155,7 @@ export function projectStudentVisualization(
   const blocked: VisualNodeV1[] = [];
   const reviewDue: VisualNodeV1[] = [];
   const unknown: VisualNodeV1[] = [];
-  const stateByNodeId = new Map<string, VisualNodeV1['state']>();
+  const stateByNodeId = new Map<string, VisualNodeV1["state"]>();
 
   for (const node of skillAndTaskNodes) {
     const state = computeNodeState(
@@ -181,19 +170,19 @@ export function projectStudentVisualization(
     const vn = toVisualNode(node, state);
 
     switch (state) {
-      case 'mastered':
+      case "mastered":
         mastered.push(vn);
         break;
-      case 'ready':
+      case "ready":
         ready.push(vn);
         break;
-      case 'nearly_ready':
+      case "nearly_ready":
         nearlyReady.push(vn);
         break;
-      case 'blocked':
+      case "blocked":
         blocked.push(vn);
         break;
-      case 'review_due':
+      case "review_due":
         reviewDue.push(vn);
         break;
       default:
@@ -209,7 +198,7 @@ export function projectStudentVisualization(
 
   const candidateNodes = skillAndTaskNodes.filter((n) => {
     const state = stateByNodeId.get(n.id);
-    return state === 'ready' || (!options?.knowledgeState && state === 'unknown');
+    return state === "ready" || (!options?.knowledgeState && state === "unknown");
   });
 
   const plannerReadiness: Record<string, number> = {};
@@ -224,9 +213,11 @@ export function projectStudentVisualization(
     } else {
       const ls = learnerState[node.id];
       plannerReadiness[node.id] =
-        ls === 'ready' || ls === 'review_due' || ls === 'nearly_ready' ? 0.5
-        : ls === 'mastered' ? 1
-        : 0;
+        ls === "ready" || ls === "review_due" || ls === "nearly_ready"
+          ? 0.5
+          : ls === "mastered"
+            ? 1
+            : 0;
     }
   }
 
@@ -238,7 +229,7 @@ export function projectStudentVisualization(
       domain: n.domain,
     })),
     edges: edges
-      .filter((e) => e.type === 'prerequisite_for')
+      .filter((e) => e.type === "prerequisite_for")
       .map((e) => ({
         id: e.id,
         type: e.type,
@@ -251,9 +242,10 @@ export function projectStudentVisualization(
     misconceptionLinks: [],
   };
 
-  const rankedIds = options?.reviewLoadState === 'saturated'
-    ? []
-    : getRecommendedNext(plannerInput, defaultWeights, 5);
+  const rankedIds =
+    options?.reviewLoadState === "saturated"
+      ? []
+      : getRecommendedNext(plannerInput, defaultWeights, 5);
 
   const recommendedNext: VisualNodeV1[] = rankedIds
     .map((id) => {
@@ -271,11 +263,10 @@ export function projectStudentVisualization(
     })
     .filter((n): n is VisualNodeV1 => n !== null);
 
-  const visualEdges = toVisualEdges(edges, ['prerequisite', 'supports', 'extends']);
+  const visualEdges = toVisualEdges(edges, ["prerequisite", "supports", "extends"]);
 
   // Stable sort each bucket
-  const sortNodes = (arr: VisualNodeV1[]) =>
-    arr.sort((a, b) => a.nodeId.localeCompare(b.nodeId));
+  const sortNodes = (arr: VisualNodeV1[]) => arr.sort((a, b) => a.nodeId.localeCompare(b.nodeId));
 
   sortNodes(mastered);
   sortNodes(ready);
@@ -290,7 +281,7 @@ export function projectStudentVisualization(
   });
 
   return {
-    schemaVersion: 'v1',
+    schemaVersion: "v1",
     mastered,
     ready,
     nearlyReady,
@@ -327,33 +318,29 @@ export function projectParentVisualization(
   const studentViz = projectStudentVisualization(
     nodes,
     edges,
-    learnerState as Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'>,
+    learnerState as Record<string, "mastered" | "ready" | "blocked" | "review_due">,
   );
 
   // Can-do summary from mastered nodes
   const masteredTitles = studentViz.mastered.map((n) => n.title);
   const canDoSummary =
-    masteredTitles.length > 0
-      ? `Can ${masteredTitles.join(', ')}`
-      : 'No skills mastered yet';
+    masteredTitles.length > 0 ? `Can ${masteredTitles.join(", ")}` : "No skills mastered yet";
 
   // Next focus from recommended next
   const nextFocus =
     studentViz.recommendedNext.length > 0
       ? `Practice: ${studentViz.recommendedNext[0].title}`
-      : 'Continue current practice';
+      : "Continue current practice";
 
   // Blockers from blocked nodes
   const blockers = studentViz.blocked.map((n) => n.title);
 
   // Progress trend — time-delta over a 7-day window (FR3 fix)
   const trendNodeIds = new Set(
-    nodes
-      .filter((n) => n.kind === 'skill' || n.kind === 'task_blueprint')
-      .map((n) => n.id),
+    nodes.filter((n) => n.kind === "skill" || n.kind === "task_blueprint").map((n) => n.id),
   );
 
-  let progressTrend: ParentVisualizationV1['progressTrend'] = 'unknown';
+  let progressTrend: ParentVisualizationV1["progressTrend"] = "unknown";
   if (trendNodeIds.size > 0 && history.length >= 2) {
     const now = Math.max(...history.map((s) => s.timestamp));
     const windowStart = now - 7 * 24 * 60 * 60 * 1000;
@@ -367,9 +354,9 @@ export function projectParentVisualization(
       const delta =
         countMasteredInGraph(inWindow[inWindow.length - 1].masteredNodeIds) -
         countMasteredInGraph(inWindow[0].masteredNodeIds);
-      if (delta > 0) progressTrend = 'improving';
-      else if (delta === 0) progressTrend = 'stable';
-      else progressTrend = 'declining';
+      if (delta > 0) progressTrend = "improving";
+      else if (delta === 0) progressTrend = "stable";
+      else progressTrend = "declining";
     }
   }
 
@@ -383,7 +370,7 @@ export function projectParentVisualization(
   allNodes.sort((a, b) => a.nodeId.localeCompare(b.nodeId));
 
   return {
-    schemaVersion: 'v1',
+    schemaVersion: "v1",
     canDoSummary,
     nextFocus,
     blockers,
@@ -416,7 +403,7 @@ export function projectTeacherVisualization(
 
   // --- Heatmap ---
   const heatmap: TeacherHeatmapCell[] = [];
-  const skillNodes = nodes.filter((n) => n.kind === 'skill' || n.kind === 'task_blueprint');
+  const skillNodes = nodes.filter((n) => n.kind === "skill" || n.kind === "task_blueprint");
 
   for (const node of skillNodes) {
     const stats = classStats[node.id];
@@ -437,7 +424,7 @@ export function projectTeacherVisualization(
   const bottleneckNodes: VisualNodeV1[] = sortedByProficiency.slice(0, 3).map((c) => ({
     nodeId: c.nodeId,
     title: c.title,
-    state: c.proficiencyRate < 0.4 ? 'blocked' : c.proficiencyRate < 0.7 ? 'review_due' : 'ready',
+    state: c.proficiencyRate < 0.4 ? "blocked" : c.proficiencyRate < 0.7 ? "review_due" : "ready",
     difficulty: nodeMap.get(c.nodeId)?.difficulty,
   }));
 
@@ -445,7 +432,7 @@ export function projectTeacherVisualization(
   const prerequisiteGaps: PrerequisiteGap[] = [];
   for (const node of skillNodes) {
     const prereqEdges = edges.filter(
-      (e) => e.type === 'prerequisite_for' && e.targetId === node.id,
+      (e) => e.type === "prerequisite_for" && e.targetId === node.id,
     );
     if (prereqEdges.length === 0) continue;
 
@@ -457,20 +444,19 @@ export function projectTeacherVisualization(
         nodeId: node.id,
         title: node.title,
         missingPrerequisites: prereqEdges.map((e) => e.sourceId),
-        blockingLevel: proficiency < 0.3 ? 'full' : 'partial',
+        blockingLevel: proficiency < 0.3 ? "full" : "partial",
       });
     }
   }
   prerequisiteGaps.sort((a, b) => a.nodeId.localeCompare(b.nodeId));
 
   // --- Misconception clusters ---
-  const misconceptionNodes = nodes.filter((n) => n.kind === 'misconception');
+  const misconceptionNodes = nodes.filter((n) => n.kind === "misconception");
   const misconceptionClusters = misconceptionNodes.map((m) => {
     const relatedNodeIds = edges
       .filter(
         (e) =>
-          e.type === 'common_misconception_with' &&
-          (e.sourceId === m.id || e.targetId === m.id),
+          e.type === "common_misconception_with" && (e.sourceId === m.id || e.targetId === m.id),
       )
       .map((e) => (e.sourceId === m.id ? e.targetId : e.sourceId));
 
@@ -489,20 +475,18 @@ export function projectTeacherVisualization(
   const interventionGroups: InterventionGroup[] = [];
   if (lowNodes.length > 0) {
     interventionGroups.push({
-      groupId: 'intervention.low-proficiency',
-      label: 'Low Proficiency Skills',
+      groupId: "intervention.low-proficiency",
+      label: "Low Proficiency Skills",
       nodeIds: lowNodes.map((c) => c.nodeId),
       studentCount: Math.max(...lowNodes.map((c) => c.totalCount - c.masteredCount), 0),
     });
   }
 
   // --- Standards coverage ---
-  const standardNodes = nodes.filter((n) => n.kind === 'standard');
+  const standardNodes = nodes.filter((n) => n.kind === "standard");
   const standardsCoverage = standardNodes.map((std) => {
     const alignedSkillIds = edges
-      .filter(
-        (e) => e.type === 'aligned_to_standard' && e.targetId === std.id,
-      )
+      .filter((e) => e.type === "aligned_to_standard" && e.targetId === std.id)
       .map((e) => e.sourceId);
 
     let totalProficiency = 0;
@@ -524,13 +508,12 @@ export function projectTeacherVisualization(
   standardsCoverage.sort((a, b) => a.standardId.localeCompare(b.standardId));
 
   const activeMisconceptionStudentCount = options?.perStudentActiveMisconceptions
-    ? Object.values(options.perStudentActiveMisconceptions).filter(
-        (slugs) => slugs.length > 0,
-      ).length
+    ? Object.values(options.perStudentActiveMisconceptions).filter((slugs) => slugs.length > 0)
+        .length
     : 0;
 
   return {
-    schemaVersion: 'v1',
+    schemaVersion: "v1",
     heatmap,
     bottleneckNodes,
     prerequisiteGaps,

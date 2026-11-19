@@ -1,8 +1,8 @@
-import { ZodIssue } from 'zod';
+import { ZodIssue } from "zod";
 
-import { resolveActivityComponentKey } from '@/lib/activities/component-keys';
-import { activityPropsSchemas, ActivityComponentKey } from '@/lib/schemas/activity-props';
-import { contentBlockSchema } from '@/lib/schemas/phase-content';
+import { resolveActivityComponentKey } from "@/lib/activities/component-keys";
+import { activityPropsSchemas, ActivityComponentKey } from "@/lib/schemas/activity-props";
+import { contentBlockSchema } from "@/lib/schemas/phase-content";
 
 export type ValidationError = {
   path: string;
@@ -21,7 +21,7 @@ export type ValidationResult = {
  */
 function formatZodIssues(issues: ZodIssue[]): ValidationError[] {
   return issues.map((issue) => ({
-    path: issue.path.join('.') || '(root)',
+    path: issue.path.join(".") || "(root)",
     message: issue.message,
   }));
 }
@@ -40,7 +40,7 @@ export function validateContentBlocks(blocks: unknown[]): ValidationResult {
       const formatted = formatZodIssues(result.error.issues);
       formatted.forEach((issue) => {
         errors.push({
-          path: `contentBlocks[${index}]${issue.path === '(root)' ? '' : `.${issue.path}`}`,
+          path: `contentBlocks[${index}]${issue.path === "(root)" ? "" : `.${issue.path}`}`,
           message: issue.message,
         });
       });
@@ -58,15 +58,16 @@ export function validateContentBlocks(blocks: unknown[]): ValidationResult {
  */
 export function validateActivityProps(componentKey: string, props: unknown): ValidationResult {
   const canonicalComponentKey = resolveActivityComponentKey(componentKey);
-  const schema =
-    canonicalComponentKey ? activityPropsSchemas[canonicalComponentKey as ActivityComponentKey] : null;
+  const schema = canonicalComponentKey
+    ? activityPropsSchemas[canonicalComponentKey as ActivityComponentKey]
+    : null;
 
   if (!schema) {
     return {
       valid: false,
       errors: [
         {
-          path: 'componentKey',
+          path: "componentKey",
           message: `Unknown activity component: ${componentKey}`,
         },
       ],

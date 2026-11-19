@@ -13,23 +13,19 @@
  * workflow asserts the runner's command-construction proof (separate test).
  */
 
-import { z } from 'zod';
-import { SCALE_HOT_PATHS, type CostRecord, type HotPath } from '@/lib/scale/cost-record';
+import { z } from "zod";
+import { SCALE_HOT_PATHS, type CostRecord, type HotPath } from "@/lib/scale/cost-record";
 
-const METRIC_KEYS = ['docsRead', 'bytesRead', 'fnTimeMs', 'occConflicts'] as const;
+const METRIC_KEYS = ["docsRead", "bytesRead", "fnTimeMs", "occConflicts"] as const;
 type MetricKey = (typeof METRIC_KEYS)[number];
 
-type MetricLimitKey =
-  | 'maxDocsRead'
-  | 'maxBytesRead'
-  | 'maxFnTimeMs'
-  | 'maxOccConflicts';
+type MetricLimitKey = "maxDocsRead" | "maxBytesRead" | "maxFnTimeMs" | "maxOccConflicts";
 
 const METRIC_TO_LIMIT: Record<MetricKey, MetricLimitKey> = {
-  docsRead: 'maxDocsRead',
-  bytesRead: 'maxBytesRead',
-  fnTimeMs: 'maxFnTimeMs',
-  occConflicts: 'maxOccConflicts',
+  docsRead: "maxDocsRead",
+  bytesRead: "maxBytesRead",
+  fnTimeMs: "maxFnTimeMs",
+  occConflicts: "maxOccConflicts",
 };
 
 const nonNegativeNumber = z.union([z.literal(Infinity), z.number().nonnegative()]);
@@ -133,26 +129,19 @@ export function isPathWithinBudget(record: CostRecord, budget: Budget): boolean 
  * evaluate report.
  * @throws {Error} Thrown when the operation fails.
  */
-export function evaluateReport(
-  report: ReportShape,
-  budgets: BudgetMap,
-): ReportEvaluationResult {
+export function evaluateReport(report: ReportShape, budgets: BudgetMap): ReportEvaluationResult {
   const perPath: EvaluationResult[] = [];
   const seen = new Set<string>();
 
   for (const record of report.paths) {
     if (seen.has(record.path)) {
-      throw new Error(
-        `budget-evaluator: duplicate path "${record.path}" in report`,
-      );
+      throw new Error(`budget-evaluator: duplicate path "${record.path}" in report`);
     }
     seen.add(record.path);
 
     const budget = budgets[record.path as HotPath];
     if (!budget) {
-      throw new Error(
-        `budget-evaluator: no budget defined for path "${record.path}"`,
-      );
+      throw new Error(`budget-evaluator: no budget defined for path "${record.path}"`);
     }
 
     perPath.push(evaluate(record, budget));

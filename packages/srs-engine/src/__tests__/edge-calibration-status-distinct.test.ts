@@ -21,41 +21,41 @@
  * This test is Red in Phase 1 — `../srs/edge-calibration` does not exist yet.
  * Once Phase 1 Green lands, this guard stays in place to prevent regression.
  */
-import { describe, it, expect } from 'vitest';
-import type { ReviewStatus } from '@math-platform/knowledge-space-core';
-import type { CalibrationStatus } from '../srs/edge-calibration';
-import { CALIBRATION_STATUS_VALUES } from '../srs/edge-calibration';
+import { describe, it, expect } from "vitest";
+import type { ReviewStatus } from "@math-platform/knowledge-space-core";
+import type { CalibrationStatus } from "../srs/edge-calibration";
+import { CALIBRATION_STATUS_VALUES } from "../srs/edge-calibration";
 
 // ReviewStatus is the existing graph-review enum (knowledge-space-core/types.ts:31).
 // It is duplicated here as a local const (not imported as a value) to avoid
 // forcing a runtime dependency on the new module for the assertion below —
 // the disjointness test only needs the *known* value set.
 const REVIEW_STATUS_VALUES: readonly ReviewStatus[] = [
-  'draft',
-  'reviewed',
-  'approved',
-  'rejected',
+  "draft",
+  "reviewed",
+  "approved",
+  "rejected",
 ] as const;
 
 // ---------------------------------------------------------------------------
 // Task 1.7 — CalibrationStatus disjointness from ReviewStatus
 // ---------------------------------------------------------------------------
 
-describe('contract — CalibrationStatus is distinct from ReviewStatus', () => {
-  it('shares no literal value with ReviewStatus (no accidental aliasing)', () => {
+describe("contract — CalibrationStatus is distinct from ReviewStatus", () => {
+  it("shares no literal value with ReviewStatus (no accidental aliasing)", () => {
     const calibrationValues: readonly CalibrationStatus[] = CALIBRATION_STATUS_VALUES;
     const reviewValues: readonly string[] = REVIEW_STATUS_VALUES;
     const overlap = calibrationValues.filter((v) => reviewValues.includes(v));
     expect(overlap).toEqual([]);
   });
 
-  it('has a different arity from ReviewStatus (3 vs 4)', () => {
+  it("has a different arity from ReviewStatus (3 vs 4)", () => {
     expect(CALIBRATION_STATUS_VALUES).toHaveLength(3);
     expect(REVIEW_STATUS_VALUES).toHaveLength(4);
     expect(CALIBRATION_STATUS_VALUES.length).not.toBe(REVIEW_STATUS_VALUES.length);
   });
 
-  it('does not name its values with graph-review terminology', () => {
+  it("does not name its values with graph-review terminology", () => {
     // Spec FR5 names the three calibration statuses after the *evidence*
     // relationship to the authored edge ("confirmed" / "refuted" / "untested"),
     // not the human-review lifecycle ("draft" / "reviewed" / "approved" / "rejected").
@@ -66,7 +66,7 @@ describe('contract — CalibrationStatus is distinct from ReviewStatus', () => {
     }
   });
 
-  it('is exported as its own type — not aliased to ReviewStatus', () => {
+  it("is exported as its own type — not aliased to ReviewStatus", () => {
     // Compile-time assertion: a `CalibrationStatus` value is NOT assignable to
     // a `ReviewStatus` variable without an explicit cast. (TypeScript catches
     // the literal-level disjointness; this test renders the same guarantee as

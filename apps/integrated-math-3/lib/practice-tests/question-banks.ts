@@ -5,10 +5,7 @@
  * practice test questions.
  */
 
-import type {
-  PracticeTestQuestion,
-  PracticeTestModuleConfig,
-} from './types';
+import type { PracticeTestQuestion, PracticeTestModuleConfig } from "./types";
 
 /**
  * Filter questions by lesson IDs.
@@ -20,7 +17,7 @@ import type {
  */
 export function filterQuestionsByLessonIds(
   questions: PracticeTestQuestion[],
-  lessonIds: string[]
+  lessonIds: string[],
 ): PracticeTestQuestion[] {
   const lessonIdSet = new Set(lessonIds);
   return questions.filter((q) => lessonIdSet.has(q.lessonId));
@@ -40,7 +37,7 @@ export function filterQuestionsByLessonIds(
  */
 export function drawRandomQuestions(
   questions: PracticeTestQuestion[],
-  count: number
+  count: number,
 ): PracticeTestQuestion[] {
   if (count <= 0) return [];
   if (questions.length === 0) return [];
@@ -119,22 +116,40 @@ export function getRegisteredModules(): number[] {
   return Array.from(MODULE_CONFIGS.keys()).sort((a, b) => a - b);
 }
 /** Calculates study-test scores from the registered server question bank. */
-export function gradePracticeTest(moduleNumber: number, answers: Array<{ questionId: string; answer: string }>) {
+export function gradePracticeTest(
+  moduleNumber: number,
+  answers: Array<{ questionId: string; answer: string }>,
+) {
   const config = getModuleConfig(moduleNumber);
-  if (!config || answers.length < 1 || answers.length > 100) throw new Error('Invalid practice test');
+  if (!config || answers.length < 1 || answers.length > 100)
+    throw new Error("Invalid practice test");
   const seen = new Set<string>();
-  const breakdown = new Map<string, { lessonId: string; lessonTitle: string; correct: number; total: number }>();
+  const breakdown = new Map<
+    string,
+    { lessonId: string; lessonTitle: string; correct: number; total: number }
+  >();
   let score = 0;
   for (const answer of answers) {
     const question = config.questions.find((item) => item.id === answer.questionId);
-    if (!question || seen.has(question.id)) throw new Error('Invalid practice question');
+    if (!question || seen.has(question.id)) throw new Error("Invalid practice question");
     seen.add(question.id);
     const correct = answer.answer === question.correctAnswer;
     if (correct) score++;
-    const lesson = breakdown.get(question.lessonId) ?? { lessonId: question.lessonId, lessonTitle: question.lessonTitle, correct: 0, total: 0 };
+    const lesson = breakdown.get(question.lessonId) ?? {
+      lessonId: question.lessonId,
+      lessonTitle: question.lessonTitle,
+      correct: 0,
+      total: 0,
+    };
     lesson.total++;
     if (correct) lesson.correct++;
     breakdown.set(question.lessonId, lesson);
   }
-  return { moduleNumber, lessonsTested: [...breakdown.keys()], questionCount: answers.length, score, perLessonBreakdown: [...breakdown.values()] };
+  return {
+    moduleNumber,
+    lessonsTested: [...breakdown.keys()],
+    questionCount: answers.length,
+    score,
+    perLessonBreakdown: [...breakdown.values()],
+  };
 }

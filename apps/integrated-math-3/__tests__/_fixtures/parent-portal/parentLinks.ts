@@ -23,32 +23,32 @@
 
 export interface ParentLinkFixture {
   studentId: string;
-  status: 'active' | 'pending' | 'revoked';
+  status: "active" | "pending" | "revoked";
 }
 
-export const STUDENT_ALPHA_ID = 'student_alpha';
-export const STUDENT_BETA_ID = 'student_beta';
-export const STUDENT_REVOKED_ID = 'student_revoked';
-export const STUDENT_PENDING_ID = 'student_pending';
+export const STUDENT_ALPHA_ID = "student_alpha";
+export const STUDENT_BETA_ID = "student_beta";
+export const STUDENT_REVOKED_ID = "student_revoked";
+export const STUDENT_PENDING_ID = "student_pending";
 
 export const singleStudentLinks: ParentLinkFixture[] = [
-  { studentId: STUDENT_ALPHA_ID, status: 'active' },
+  { studentId: STUDENT_ALPHA_ID, status: "active" },
 ];
 
 export const multiStudentLinks: ParentLinkFixture[] = [
-  { studentId: STUDENT_ALPHA_ID, status: 'active' },
-  { studentId: STUDENT_BETA_ID, status: 'active' },
+  { studentId: STUDENT_ALPHA_ID, status: "active" },
+  { studentId: STUDENT_BETA_ID, status: "active" },
 ];
 
 export const linksWithOneRevoked: ParentLinkFixture[] = [
-  { studentId: STUDENT_ALPHA_ID, status: 'active' },
-  { studentId: STUDENT_BETA_ID, status: 'active' },
-  { studentId: STUDENT_REVOKED_ID, status: 'revoked' },
+  { studentId: STUDENT_ALPHA_ID, status: "active" },
+  { studentId: STUDENT_BETA_ID, status: "active" },
+  { studentId: STUDENT_REVOKED_ID, status: "revoked" },
 ];
 
 // Phase 3 — pending-link fixture (parent has been linked but the link is
 // still awaiting teacher/admin approval). The dispatcher UI must show a
 // "pending" empty state, not the active dashboard.
 export const pendingParentLinks: ParentLinkFixture[] = [
-  { studentId: STUDENT_PENDING_ID, status: 'pending' },
+  { studentId: STUDENT_PENDING_ID, status: "pending" },
 ];

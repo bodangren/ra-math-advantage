@@ -3,22 +3,19 @@ import { ArrowRight, BookOpenCheck, CheckCircle2, Compass, GraduationCap } from 
 import { requireStudentSessionClaims } from "@/lib/auth/server";
 import { fetchInternalQuery, internal } from "@/lib/convex/server";
 import { buildStudentDashboardViewModel, type StudentDashboardUnit } from "@/lib/student/dashboard";
-import { dashboardStatusBadgeClassName, dashboardStatusLabel } from "@/lib/student/dashboard-presentation";
+import {
+  dashboardStatusBadgeClassName,
+  dashboardStatusLabel,
+} from "@/lib/student/dashboard-presentation";
 import { formatCurriculumSegmentLabel } from "@/lib/curriculum/segment-labels";
 import { studentLessonPath } from "@/lib/student/navigation";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { NextLessonCard } from "@/components/dashboard/NextLessonCard";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 const metricCards = [
   {
@@ -47,9 +44,9 @@ const metricCards = [
 export default async function StudentDashboard() {
   const claims = await requireStudentSessionClaims("/student/dashboard");
 
-  const studentUnits = await fetchInternalQuery(internal.student.getDashboardData, {
+  const studentUnits = (await fetchInternalQuery(internal.student.getDashboardData, {
     userId: claims.sub as never,
-  }) as StudentDashboardUnit[];
+  })) as StudentDashboardUnit[];
   const dashboard = buildStudentDashboardViewModel(studentUnits);
 
   return (
@@ -132,9 +129,9 @@ export default async function StudentDashboard() {
 
           {dashboard.units.length === 0 ? (
             <div className="rounded-xl border bg-background p-12 text-center text-muted-foreground">
-            No lessons available yet. Please check back later or contact your teacher.
-          </div>
-        ) : (
+              No lessons available yet. Please check back later or contact your teacher.
+            </div>
+          ) : (
             <section className="space-y-6" aria-label="Unit progress">
               {dashboard.units.map((unit) => (
                 <Card key={unit.unitNumber} id={`unit-${unit.unitNumber}`}>
@@ -144,7 +141,10 @@ export default async function StudentDashboard() {
                         <Badge variant="outline">
                           {formatCurriculumSegmentLabel(unit.unitNumber)}
                         </Badge>
-                        <Badge variant="outline" className={dashboardStatusBadgeClassName(unit.status)}>
+                        <Badge
+                          variant="outline"
+                          className={dashboardStatusBadgeClassName(unit.status)}
+                        >
                           {dashboardStatusLabel(unit.status)}
                         </Badge>
                       </div>
@@ -153,15 +153,18 @@ export default async function StudentDashboard() {
                         {unit.completedLessons} of {unit.lessons.length} lessons complete
                       </CardDescription>
                     </div>
-                  {unit.nextLesson ? (
-                    <Button asChild variant="outline" className="w-full md:w-auto">
+                    {unit.nextLesson ? (
+                      <Button asChild variant="outline" className="w-full md:w-auto">
                         <Link href={`/student/lesson/${unit.nextLesson.slug}`}>
                           {unit.nextLesson.actionLabel}
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                       </Button>
                     ) : (
-                      <Badge variant="outline" className="w-fit border-emerald-200 bg-emerald-50 text-emerald-700">
+                      <Badge
+                        variant="outline"
+                        className="w-fit border-emerald-200 bg-emerald-50 text-emerald-700"
+                      >
                         Unit Complete
                       </Badge>
                     )}
@@ -188,18 +191,20 @@ export default async function StudentDashboard() {
 
                     <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
                       {unit.lessons.map((lesson) => {
-                        const status = lesson.totalPhases > 0 && lesson.completedPhases >= lesson.totalPhases
-                          ? 'completed'
-                          : lesson.completedPhases > 0 || lesson.progressPercentage > 0
-                            ? 'in_progress'
-                            : 'not_started';
-                        
-                        const actionLabel = status === 'in_progress' 
-                          ? 'Resume Lesson' 
-                          : status === 'completed' 
-                            ? 'Review Lesson' 
-                            : 'Start Lesson';
-                        
+                        const status =
+                          lesson.totalPhases > 0 && lesson.completedPhases >= lesson.totalPhases
+                            ? "completed"
+                            : lesson.completedPhases > 0 || lesson.progressPercentage > 0
+                              ? "in_progress"
+                              : "not_started";
+
+                        const actionLabel =
+                          status === "in_progress"
+                            ? "Resume Lesson"
+                            : status === "completed"
+                              ? "Review Lesson"
+                              : "Start Lesson";
+
                         return (
                           <Card key={lesson.id} className="border-border/60 shadow-none">
                             <CardHeader className="pb-3">
@@ -226,7 +231,11 @@ export default async function StudentDashboard() {
                               <p className="text-sm text-muted-foreground">
                                 {lesson.completedPhases}/{lesson.totalPhases} phases complete
                               </p>
-                              <Button asChild variant={status === 'completed' ? 'outline' : 'default'} className="w-full">
+                              <Button
+                                asChild
+                                variant={status === "completed" ? "outline" : "default"}
+                                className="w-full"
+                              >
                                 <Link href={studentLessonPath(lesson.slug)}>
                                   {actionLabel}
                                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -241,7 +250,7 @@ export default async function StudentDashboard() {
                 </Card>
               ))}
             </section>
-        )}
+          )}
         </div>
       </div>
     </main>

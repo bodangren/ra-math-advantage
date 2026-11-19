@@ -1,10 +1,6 @@
 // @vitest-environment node
 import { describe, it, expect } from "vitest";
-import {
-  registerStudent,
-  activeAccount,
-  consumeAuthAttempt,
-} from "../../convex/auth";
+import { registerStudent, activeAccount, consumeAuthAttempt } from "../../convex/auth";
 import { database, invoke } from "../helpers/database";
 import type { Id } from "../../convex/_generated/dataModel";
 const args = {
@@ -41,9 +37,10 @@ describe("registration storage", () => {
   it("does not replace existing credentials or role", async () => {
     const t = await setup();
     const original = structuredClone(t.tables.auth_credentials);
-    expect(
-      await invoke(registerStudent, t.ctx, { ...args, username: "teacher" }),
-    ).toEqual({ ok: false, reason: "username_taken" });
+    expect(await invoke(registerStudent, t.ctx, { ...args, username: "teacher" })).toEqual({
+      ok: false,
+      reason: "username_taken",
+    });
     expect(t.tables.auth_credentials).toEqual(original);
     expect(t.tables.profiles).toHaveLength(1);
   });
@@ -67,9 +64,10 @@ describe("registration storage", () => {
   });
   it("does not create rows for an invalid class", async () => {
     const t = await setup();
-    expect(
-      await invoke(registerStudent, t.ctx, { ...args, classCode: "wrong" }),
-    ).toEqual({ ok: false, reason: "invalid_class" });
+    expect(await invoke(registerStudent, t.ctx, { ...args, classCode: "wrong" })).toEqual({
+      ok: false,
+      reason: "invalid_class",
+    });
     expect(t.tables.profiles).toHaveLength(1);
   });
   it("does not accept archived classes or inactive teachers", async () => {
@@ -86,9 +84,7 @@ describe("registration storage", () => {
   });
   it("rejects mismatched stored role and inactive accounts", async () => {
     const t = await setup();
-    expect(
-      await activeAccount(t.ctx, t.teacher as Id<"profiles">),
-    ).not.toBeNull();
+    expect(await activeAccount(t.ctx, t.teacher as Id<"profiles">)).not.toBeNull();
     t.tables.auth_credentials[0].role = "student";
     expect(await activeAccount(t.ctx, t.teacher as Id<"profiles">)).toBeNull();
   });
@@ -128,9 +124,7 @@ it("retires expired rate-limit buckets without removing current limits", async (
       operation: "login",
     });
   expect(
-    t.tables.auth_rate_limits.filter((row) =>
-      String(row.key).startsWith("old:"),
-    ),
+    t.tables.auth_rate_limits.filter((row) => String(row.key).startsWith("old:")),
   ).toHaveLength(0);
   expect(
     await invoke(consumeAuthAttempt, t.ctx, {

@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { useId, useState } from 'react';
-import { buildPracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
-import type { IntervalClassificationProps } from '../../schemas/interval-classification.schema';
+import { useId, useState } from "react";
+import { buildPracticeSubmissionEnvelope } from "@math-platform/practice-core/contract";
+import type { IntervalClassificationProps } from "../../schemas/interval-classification.schema";
 
 const ANSWER_FIELDS = [
-  ['increasingIntervals', 'Increasing intervals'],
-  ['decreasingIntervals', 'Decreasing intervals'],
-  ['constantIntervals', 'Constant intervals'],
+  ["increasingIntervals", "Increasing intervals"],
+  ["decreasingIntervals", "Decreasing intervals"],
+  ["constantIntervals", "Constant intervals"],
 ] as const;
 
 export type IntervalClassificationActivityProps = IntervalClassificationProps & {
   activityId: string;
-  mode: 'teaching' | 'guided' | 'practice';
+  mode: "teaching" | "guided" | "practice";
   onSubmit?: (payload: unknown) => void | Promise<void>;
   onComplete?: () => void;
 };
@@ -31,9 +31,9 @@ export function IntervalClassificationActivity(props: IntervalClassificationActi
   } = props;
   const instanceId = useId();
   const [answers, setAnswers] = useState({
-    increasingIntervals: '',
-    decreasingIntervals: '',
-    constantIntervals: '',
+    increasingIntervals: "",
+    decreasingIntervals: "",
+    constantIntervals: "",
   });
   const [pending, setPending] = useState(false);
   const [submitError, setSubmitError] = useState<string>();
@@ -50,9 +50,10 @@ export function IntervalClassificationActivity(props: IntervalClassificationActi
   const right = 10;
   const top = 10;
   const bottom = 22;
-  const xScale = (x: number) => left + ((x - domainStart) / (domainEnd - domainStart)) * (width - left - right);
+  const xScale = (x: number) =>
+    left + ((x - domainStart) / (domainEnd - domainStart)) * (width - left - right);
   const yScale = (y: number) => top + ((maxY - y) / ySpan) * (height - top - bottom);
-  const graphPoints = points.map((point) => `${xScale(point.x)},${yScale(point.y)}`).join(' ');
+  const graphPoints = points.map((point) => `${xScale(point.x)},${yScale(point.y)}`).join(" ");
 
   const submit = async () => {
     if (pending) return;
@@ -60,13 +61,13 @@ export function IntervalClassificationActivity(props: IntervalClassificationActi
     setSubmitError(undefined);
     const envelope = buildPracticeSubmissionEnvelope({
       activityId,
-      mode: mode === 'practice' ? 'independent_practice' : 'guided_practice',
+      mode: mode === "practice" ? "independent_practice" : "guided_practice",
       answers,
     });
     try {
       await onSubmit?.(envelope);
     } catch {
-      setSubmitError('Your answer could not be saved. Try again.');
+      setSubmitError("Your answer could not be saved. Try again.");
       return;
     } finally {
       setPending(false);
@@ -77,11 +78,12 @@ export function IntervalClassificationActivity(props: IntervalClassificationActi
   return (
     <section aria-labelledby={`${instanceId}-heading`} className="space-y-6 p-4 text-foreground">
       <h2 id={`${instanceId}-heading`} className="text-xl font-semibold">
-        {title ?? (mode === 'teaching'
-          ? 'Worked Example: Classify Graph Intervals'
-          : mode === 'guided'
-            ? 'Guided Practice: Classify Graph Intervals'
-            : 'Independent Practice: Classify Graph Intervals')}
+        {title ??
+          (mode === "teaching"
+            ? "Worked Example: Classify Graph Intervals"
+            : mode === "guided"
+              ? "Guided Practice: Classify Graph Intervals"
+              : "Independent Practice: Classify Graph Intervals")}
       </h2>
       <p>{prompt}</p>
 
@@ -93,7 +95,7 @@ export function IntervalClassificationActivity(props: IntervalClassificationActi
       >
         <title id={graphTitleId}>Interval graph</title>
         <desc id={graphDescriptionId}>
-          {`Domain ${domainStart} to ${domainEnd}. Line segments connect these points from left to right: ${points.map((point) => `(${point.x}, ${point.y})`).join(', ')}.`}
+          {`Domain ${domainStart} to ${domainEnd}. Line segments connect these points from left to right: ${points.map((point) => `(${point.x}, ${point.y})`).join(", ")}.`}
         </desc>
         <path
           d={`M${left - 14} ${height - bottom}H${width - right}M${left} ${height - bottom + 8}V${top}`}
@@ -111,11 +113,13 @@ export function IntervalClassificationActivity(props: IntervalClassificationActi
         </g>
       </svg>
 
-      {!((mode === 'teaching' && presentationMode === 'worked_example')
-        || (mode === 'guided' && presentationMode === 'guided_practice')
-        || (mode === 'practice' && presentationMode === 'independent_practice')) ? (
+      {!(
+        (mode === "teaching" && presentationMode === "worked_example") ||
+        (mode === "guided" && presentationMode === "guided_practice") ||
+        (mode === "practice" && presentationMode === "independent_practice")
+      ) ? (
         <p role="alert">This activity is unavailable for this presentation mode.</p>
-      ) : presentationMode === 'worked_example' ? (
+      ) : presentationMode === "worked_example" ? (
         <>
           <ol className="list-decimal space-y-2 pl-5">
             {props.steps.map((step) => (
@@ -127,12 +131,16 @@ export function IntervalClassificationActivity(props: IntervalClassificationActi
               </li>
             ))}
           </ol>
-          <p><strong>Answer:</strong> {props.finalAnswer}</p>
+          <p>
+            <strong>Answer:</strong> {props.finalAnswer}
+          </p>
         </>
-      ) : presentationMode === 'guided_practice' ? (
+      ) : presentationMode === "guided_practice" ? (
         <>
           <ol className="list-decimal space-y-2 pl-5">
-            {props.guidedSteps.map((step) => <li key={step}>{step}</li>)}
+            {props.guidedSteps.map((step) => (
+              <li key={step}>{step}</li>
+            ))}
           </ol>
           <div className="grid gap-4">
             {ANSWER_FIELDS.map(([field, label]) => {
@@ -146,16 +154,20 @@ export function IntervalClassificationActivity(props: IntervalClassificationActi
                     aria-describedby={helpId}
                     aria-label={label}
                     value={answers[field]}
-                    onChange={(event) => setAnswers((current) => ({
-                      ...current,
-                      [field]: event.target.value,
-                    }))}
+                    onChange={(event) =>
+                      setAnswers((current) => ({
+                        ...current,
+                        [field]: event.target.value,
+                      }))
+                    }
                   />
                 </label>
               );
             })}
           </div>
-          <button type="button" disabled={pending} onClick={submit}>{pending ? 'Saving answer…' : 'Submit answer'}</button>
+          <button type="button" disabled={pending} onClick={submit}>
+            {pending ? "Saving answer…" : "Submit answer"}
+          </button>
         </>
       ) : (
         <>
@@ -164,18 +176,22 @@ export function IntervalClassificationActivity(props: IntervalClassificationActi
               <label key={field} className="grid gap-2">
                 <span>{label}</span>
                 <input
-                    disabled={pending}
+                  disabled={pending}
                   aria-label={label}
                   value={answers[field]}
-                  onChange={(event) => setAnswers((current) => ({
-                    ...current,
-                    [field]: event.target.value,
-                  }))}
+                  onChange={(event) =>
+                    setAnswers((current) => ({
+                      ...current,
+                      [field]: event.target.value,
+                    }))
+                  }
                 />
               </label>
             ))}
           </div>
-          <button type="button" disabled={pending} onClick={submit}>{pending ? 'Saving answer…' : 'Submit answer'}</button>
+          <button type="button" disabled={pending} onClick={submit}>
+            {pending ? "Saving answer…" : "Submit answer"}
+          </button>
         </>
       )}
       {submitError && <p role="alert">{submitError}</p>}

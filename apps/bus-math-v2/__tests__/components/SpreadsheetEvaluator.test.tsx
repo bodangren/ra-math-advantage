@@ -1,33 +1,33 @@
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi, beforeEach, type Mock } from 'vitest';
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { describe, expect, it, vi, beforeEach, type Mock } from "vitest";
 
 import {
   SpreadsheetEvaluator,
   type SpreadsheetEvaluatorActivity,
-} from '@/components/activities/spreadsheet/SpreadsheetEvaluator';
-import type { SpreadsheetEvaluatorConfig } from '@/components/activities/spreadsheet/SpreadsheetEvaluator';
+} from "@/components/activities/spreadsheet/SpreadsheetEvaluator";
+import type { SpreadsheetEvaluatorConfig } from "@/components/activities/spreadsheet/SpreadsheetEvaluator";
 
 // Mock fetch globally
 global.fetch = vi.fn() as Mock;
 
 const buildActivity = (
-  overrides: Partial<SpreadsheetEvaluatorConfig> = {}
+  overrides: Partial<SpreadsheetEvaluatorConfig> = {},
 ): SpreadsheetEvaluatorActivity => ({
-  id: 'test-activity-123',
-  componentKey: 'spreadsheet-evaluator',
-  displayName: 'Budget Exercise',
-  description: 'Complete the budget spreadsheet',
+  id: "test-activity-123",
+  componentKey: "spreadsheet-evaluator",
+  displayName: "Budget Exercise",
+  description: "Complete the budget spreadsheet",
   props: {
-    templateId: 'simple-budget',
-    instructions: 'Fill in the cells with the correct values',
+    templateId: "simple-budget",
+    instructions: "Fill in the cells with the correct values",
     targetCells: [
-      { cell: 'A1', expectedValue: 100 },
-      { cell: 'B1', expectedValue: 'Revenue' },
+      { cell: "A1", expectedValue: 100 },
+      { cell: "B1", expectedValue: "Revenue" },
     ],
     initialData: [
-      [{ value: '' }, { value: '' }],
-      [{ value: '' }, { value: '' }],
+      [{ value: "" }, { value: "" }],
+      [{ value: "" }, { value: "" }],
     ],
     ...overrides,
   },
@@ -37,7 +37,7 @@ const buildActivity = (
   updatedAt: new Date(),
 });
 
-describe('SpreadsheetEvaluator', () => {
+describe("SpreadsheetEvaluator", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     // Mock successful fetch responses
@@ -51,25 +51,23 @@ describe('SpreadsheetEvaluator', () => {
     });
   });
 
-  it('renders the component with activity details', () => {
+  it("renders the component with activity details", () => {
     const activity = buildActivity();
     render(<SpreadsheetEvaluator activity={activity} />);
 
-    expect(screen.getByText('Budget Exercise')).toBeInTheDocument();
-    expect(screen.getByText('Complete the budget spreadsheet')).toBeInTheDocument();
-    expect(
-      screen.getByText('Fill in the cells with the correct values')
-    ).toBeInTheDocument();
+    expect(screen.getByText("Budget Exercise")).toBeInTheDocument();
+    expect(screen.getByText("Complete the budget spreadsheet")).toBeInTheDocument();
+    expect(screen.getByText("Fill in the cells with the correct values")).toBeInTheDocument();
   });
 
-  it('displays Check Answer button when not submitted', () => {
+  it("displays Check Answer button when not submitted", () => {
     const activity = buildActivity();
     render(<SpreadsheetEvaluator activity={activity} />);
 
-    expect(screen.getByRole('button', { name: /Check Answer/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Check Answer/i })).toBeInTheDocument();
   });
 
-  it('calls API endpoint on submission', async () => {
+  it("calls API endpoint on submission", async () => {
     const user = userEvent.setup();
     const activity = buildActivity();
 
@@ -79,56 +77,61 @@ describe('SpreadsheetEvaluator', () => {
         success: true,
         isComplete: true,
         feedback: [
-          { cell: 'A1', isCorrect: true },
-          { cell: 'B1', isCorrect: true },
+          { cell: "A1", isCorrect: true },
+          { cell: "B1", isCorrect: true },
         ],
       }),
     });
 
     render(<SpreadsheetEvaluator activity={activity} />);
 
-    const submitButton = screen.getByRole('button', { name: /Check Answer/i });
+    const submitButton = screen.getByRole("button", { name: /Check Answer/i });
     await user.click(submitButton);
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
         `/api/activities/spreadsheet/${activity.id}/submit`,
         expect.objectContaining({
-          method: 'POST',
-          headers: expect.objectContaining({ 'Content-Type': 'application/json', 'Idempotency-Key': expect.any(String) }),
-        })
+          method: "POST",
+          headers: expect.objectContaining({
+            "Content-Type": "application/json",
+            "Idempotency-Key": expect.any(String),
+          }),
+        }),
       );
     });
   });
 
-  it('displays success message when all cells are correct', async () => {
+  it("displays success message when all cells are correct", async () => {
     const user = userEvent.setup();
     const activity = buildActivity();
 
-    (global.fetch as Mock).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
-      const url = String(input);
-      if (url.includes('/draft') && !init?.method) {
-        return { ok: true, json: async () => ({ draftData: null }) };
-      }
-      if (url.includes('/submit')) {
-        return {
-          ok: true,
-          json: async () => ({
-            success: true,
-            isComplete: true,
-            feedback: [
-              { cell: 'A1', isCorrect: true, message: 'Correct!' },
-              { cell: 'B1', isCorrect: true, message: 'Correct!' },
-            ],
-          }),
-        };
-      }
-      return { ok: true, json: async () => ({}) };
-    });
+    (global.fetch as Mock).mockImplementation(
+      async (input: RequestInfo | URL, init?: RequestInit) => {
+        const url = String(input);
+        if (url.includes("/draft") && !init?.method) {
+          return { ok: true, json: async () => ({ draftData: null }) };
+        }
+        if (url.includes("/submit")) {
+          return {
+            ok: true,
+            json: async () => ({
+              success: true,
+              isComplete: true,
+              feedback: [
+                { cell: "A1", isCorrect: true, message: "Correct!" },
+                { cell: "B1", isCorrect: true, message: "Correct!" },
+              ],
+            }),
+          };
+        }
+        return { ok: true, json: async () => ({}) };
+      },
+    );
 
     render(<SpreadsheetEvaluator activity={activity} />);
 
-    const submitButton = screen.getByRole('button', { name: /Check Answer/i });
+    const submitButton = screen.getByRole("button", { name: /Check Answer/i });
     await user.click(submitButton);
 
     await waitFor(() => {
@@ -136,34 +139,36 @@ describe('SpreadsheetEvaluator', () => {
     });
   });
 
-  it('displays error feedback when cells are incorrect', async () => {
+  it("displays error feedback when cells are incorrect", async () => {
     const user = userEvent.setup();
     const activity = buildActivity();
 
-    (global.fetch as Mock).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
-      const url = String(input);
-      if (url.includes('/draft') && !init?.method) {
-        return { ok: true, json: async () => ({ draftData: null }) };
-      }
-      if (url.includes('/submit')) {
-        return {
-          ok: true,
-          json: async () => ({
-            success: true,
-            isComplete: false,
-            feedback: [
-              { cell: 'A1', isCorrect: false, message: 'Cell A1: Expected "100", but got ""' },
-              { cell: 'B1', isCorrect: true, message: 'Correct!' },
-            ],
-          }),
-        };
-      }
-      return { ok: true, json: async () => ({}) };
-    });
+    (global.fetch as Mock).mockImplementation(
+      async (input: RequestInfo | URL, init?: RequestInit) => {
+        const url = String(input);
+        if (url.includes("/draft") && !init?.method) {
+          return { ok: true, json: async () => ({ draftData: null }) };
+        }
+        if (url.includes("/submit")) {
+          return {
+            ok: true,
+            json: async () => ({
+              success: true,
+              isComplete: false,
+              feedback: [
+                { cell: "A1", isCorrect: false, message: 'Cell A1: Expected "100", but got ""' },
+                { cell: "B1", isCorrect: true, message: "Correct!" },
+              ],
+            }),
+          };
+        }
+        return { ok: true, json: async () => ({}) };
+      },
+    );
 
     render(<SpreadsheetEvaluator activity={activity} />);
 
-    const submitButton = screen.getByRole('button', { name: /Check Answer/i });
+    const submitButton = screen.getByRole("button", { name: /Check Answer/i });
     await user.click(submitButton);
 
     await waitFor(() => {
@@ -172,24 +177,26 @@ describe('SpreadsheetEvaluator', () => {
     });
   });
 
-  it('handles API errors gracefully', async () => {
+  it("handles API errors gracefully", async () => {
     const user = userEvent.setup();
     const activity = buildActivity();
 
-    (global.fetch as Mock).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
-      const url = String(input);
-      if (url.includes('/draft') && !init?.method) {
-        return { ok: true, json: async () => ({ draftData: null }) };
-      }
-      if (url.includes('/submit')) {
-        return { ok: false, json: async () => ({ error: 'Submission failed' }) };
-      }
-      return { ok: true, json: async () => ({}) };
-    });
+    (global.fetch as Mock).mockImplementation(
+      async (input: RequestInfo | URL, init?: RequestInit) => {
+        const url = String(input);
+        if (url.includes("/draft") && !init?.method) {
+          return { ok: true, json: async () => ({ draftData: null }) };
+        }
+        if (url.includes("/submit")) {
+          return { ok: false, json: async () => ({ error: "Submission failed" }) };
+        }
+        return { ok: true, json: async () => ({}) };
+      },
+    );
 
     render(<SpreadsheetEvaluator activity={activity} />);
 
-    const submitButton = screen.getByRole('button', { name: /Check Answer/i });
+    const submitButton = screen.getByRole("button", { name: /Check Answer/i });
     await user.click(submitButton);
 
     await waitFor(() => {
@@ -197,64 +204,66 @@ describe('SpreadsheetEvaluator', () => {
     });
   });
 
-  it('calls onSubmit callback when provided', async () => {
+  it("calls onSubmit callback when provided", async () => {
     const user = userEvent.setup();
     const onSubmit = vi.fn();
     const activity = buildActivity();
 
-    (global.fetch as Mock).mockImplementation(async (input: RequestInfo | URL, init?: RequestInit) => {
-      const url = String(input);
-      if (url.includes('/draft') && !init?.method) {
-        return { ok: true, json: async () => ({ draftData: null }) };
-      }
-      if (url.includes('/submit')) {
-        return {
-          ok: true,
-          json: async () => ({
-            success: true,
-            isComplete: true,
-            feedback: [
-              { cell: 'A1', isCorrect: true },
-              { cell: 'B1', isCorrect: true },
-            ],
-          }),
-        };
-      }
-      return { ok: true, json: async () => ({}) };
-    });
+    (global.fetch as Mock).mockImplementation(
+      async (input: RequestInfo | URL, init?: RequestInit) => {
+        const url = String(input);
+        if (url.includes("/draft") && !init?.method) {
+          return { ok: true, json: async () => ({ draftData: null }) };
+        }
+        if (url.includes("/submit")) {
+          return {
+            ok: true,
+            json: async () => ({
+              success: true,
+              isComplete: true,
+              feedback: [
+                { cell: "A1", isCorrect: true },
+                { cell: "B1", isCorrect: true },
+              ],
+            }),
+          };
+        }
+        return { ok: true, json: async () => ({}) };
+      },
+    );
 
     render(<SpreadsheetEvaluator activity={activity} onSubmit={onSubmit} />);
 
-    const submitButton = screen.getByRole('button', { name: /Check Answer/i });
+    const submitButton = screen.getByRole("button", { name: /Check Answer/i });
     await user.click(submitButton);
 
     await waitFor(() => {
       expect(onSubmit).toHaveBeenCalledWith(
         expect.objectContaining({
-          contractVersion: 'practice.v1',
+          contractVersion: "practice.v1",
           activityId: activity.id,
-          mode: 'assessment',
+          mode: "assessment",
           artifact: expect.objectContaining({
-            kind: 'spreadsheet_evaluator',
+            kind: "spreadsheet_evaluator",
           }),
-        })
+        }),
       );
     });
   });
 
-  it('displays save draft button', () => {
+  it("displays save draft button", () => {
     const activity = buildActivity();
     render(<SpreadsheetEvaluator activity={activity} />);
 
-    expect(screen.getByRole('button', { name: /Save Draft/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Save Draft/i })).toBeInTheDocument();
   });
 
-  it('loads draft data on mount', async () => {
+  it("loads draft data on mount", async () => {
     const activity = buildActivity();
 
     const draftData = [
-      [{ value: 50 }, { value: 'Test' }],
-      [{ value: 100 }, { value: 'Data' }],
+      [{ value: 50 }, { value: "Test" }],
+      [{ value: 100 }, { value: "Data" }],
     ];
 
     (global.fetch as Mock).mockResolvedValueOnce({
@@ -268,10 +277,7 @@ describe('SpreadsheetEvaluator', () => {
     render(<SpreadsheetEvaluator activity={activity} />);
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledWith(
-        `/api/activities/spreadsheet/${activity.id}/draft`
-      );
+      expect(global.fetch).toHaveBeenCalledWith(`/api/activities/spreadsheet/${activity.id}/draft`);
     });
   });
 });
-

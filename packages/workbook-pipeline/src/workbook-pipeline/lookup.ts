@@ -1,5 +1,5 @@
-import type { WorkbookManifest } from './manifest.js';
-import { buildUnitLessonKey } from './manifest.js';
+import type { WorkbookManifest } from "./manifest.js";
+import { buildUnitLessonKey } from "./manifest.js";
 
 /**
  * Check whether a student workbook exists for a given unit and lesson.
@@ -11,7 +11,7 @@ import { buildUnitLessonKey } from './manifest.js';
 export function hasStudentWorkbook(
   manifest: WorkbookManifest,
   unitNumber: number,
-  lessonNumber: number
+  lessonNumber: number,
 ): boolean {
   const key = buildUnitLessonKey(unitNumber, lessonNumber);
   const entry = manifest.byUnitAndLesson[key];
@@ -28,7 +28,7 @@ export function hasStudentWorkbook(
 export function hasTeacherWorkbook(
   manifest: WorkbookManifest,
   unitNumber: number,
-  lessonNumber: number
+  lessonNumber: number,
 ): boolean {
   const key = buildUnitLessonKey(unitNumber, lessonNumber);
   const entry = manifest.byUnitAndLesson[key];
@@ -45,10 +45,12 @@ export function hasTeacherWorkbook(
 export function lessonHasWorkbooks(
   manifest: WorkbookManifest,
   unitNumber: number,
-  lessonNumber: number
+  lessonNumber: number,
 ): boolean {
-  return hasStudentWorkbook(manifest, unitNumber, lessonNumber) ||
-         hasTeacherWorkbook(manifest, unitNumber, lessonNumber);
+  return (
+    hasStudentWorkbook(manifest, unitNumber, lessonNumber) ||
+    hasTeacherWorkbook(manifest, unitNumber, lessonNumber)
+  );
 }
 
 /**
@@ -56,9 +58,7 @@ export function lessonHasWorkbooks(
  * @param {WorkbookManifest} manifest - The workbook manifest to check
  * @returns {boolean} - True if a student capstone workbook is registered
  */
-export function hasCapstoneStudentWorkbook(
-  manifest: WorkbookManifest
-): boolean {
+export function hasCapstoneStudentWorkbook(manifest: WorkbookManifest): boolean {
   return manifest.byCapstone.student;
 }
 
@@ -67,9 +67,7 @@ export function hasCapstoneStudentWorkbook(
  * @param {WorkbookManifest} manifest - The workbook manifest to check
  * @returns {boolean} - True if a teacher capstone workbook is registered
  */
-export function hasCapstoneTeacherWorkbook(
-  manifest: WorkbookManifest
-): boolean {
+export function hasCapstoneTeacherWorkbook(manifest: WorkbookManifest): boolean {
   return manifest.byCapstone.teacher;
 }
 
@@ -83,10 +81,10 @@ export function hasCapstoneTeacherWorkbook(
 export function lessonHasAnyWorkbook(
   manifest: WorkbookManifest,
   unitNumber: number,
-  lessonNumber: number
+  lessonNumber: number,
 ): boolean {
   return lessonHasWorkbooks(manifest, unitNumber, lessonNumber);
 }
 
-export type { WorkbookManifest } from './manifest.js';
-export type { WorkbookType } from './path.js';
+export type { WorkbookManifest } from "./manifest.js";
+export type { WorkbookType } from "./path.js";

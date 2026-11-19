@@ -1,6 +1,6 @@
-import { requireStudentSessionClaims } from '@/lib/auth/server';
-import { FlashcardsPageClient } from './FlashcardsPageClient';
-import { GLOSSARY, getAllGlossaryModules } from '@/lib/study/glossary';
+import { requireStudentSessionClaims } from "@/lib/auth/server";
+import { FlashcardsPageClient } from "./FlashcardsPageClient";
+import { GLOSSARY, getAllGlossaryModules } from "@/lib/study/glossary";
 
 /**
  * Server wrapper for the flashcards study page that authenticates the
@@ -9,7 +9,7 @@ import { GLOSSARY, getAllGlossaryModules } from '@/lib/study/glossary';
  * @returns {JSX.Element} The rendered FlashcardsPage JSX.
  */
 export default async function FlashcardsPage() {
-  const claims = await requireStudentSessionClaims('/auth/login');
+  const claims = await requireStudentSessionClaims("/auth/login");
 
   return (
     <FlashcardsPageClient

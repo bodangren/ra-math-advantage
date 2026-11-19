@@ -1,7 +1,7 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 
-describe('Curriculum Page', () => {
-  it('renders without crashing', () => {
+describe("Curriculum Page", () => {
+  it("renders without crashing", () => {
     expect(true).toBe(true);
   });
 });

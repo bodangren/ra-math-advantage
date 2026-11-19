@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { AlertTriangle } from 'lucide-react';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { AlertTriangle } from "lucide-react";
 
 interface ErrorFallbackProps {
   error?: Error;
@@ -11,7 +11,6 @@ interface ErrorFallbackProps {
   description?: string;
   showRefreshFallback?: boolean;
 }
-
 
 /**
  * Renders a user-friendly error card with optional reset and refresh actions.
@@ -22,8 +21,8 @@ interface ErrorFallbackProps {
 export function ErrorFallback({
   error,
   reset,
-  title = 'Something went wrong',
-  description = 'An unexpected error occurred. Please try again or refresh the page.',
+  title = "Something went wrong",
+  description = "An unexpected error occurred. Please try again or refresh the page.",
   showRefreshFallback = true,
 }: ErrorFallbackProps) {
   return (
@@ -37,12 +36,12 @@ export function ErrorFallback({
         </CardHeader>
         <CardContent>
           <p className="text-sm text-red-700">{description}</p>
-          {process.env.NODE_ENV === 'development' && error && (
+          {process.env.NODE_ENV === "development" && error && (
             <details className="mt-4">
               <summary className="text-xs cursor-pointer text-red-800">Error details</summary>
               <pre className="text-xs mt-2 p-2 bg-red-100 rounded overflow-auto text-red-900">
                 {error.message}
-                {'\n'}
+                {"\n"}
                 {error.stack}
               </pre>
             </details>

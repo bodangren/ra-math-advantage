@@ -45,9 +45,7 @@ describe("IM3 profit maximum Worked seed", () => {
     expect(IM3_PROFIT_MAXIMUM_NODE).toBe(
       "math.im3.skill.1.1.find-and-interpret-the-maximum-of-a-quadratic-profit-model",
     );
-    expect(IM3_PROFIT_MAXIMUM_WORKED_ACTIVITY_ID).toBe(
-      `${IM3_PROFIT_MAXIMUM_NODE}.worked_example`,
-    );
+    expect(IM3_PROFIT_MAXIMUM_WORKED_ACTIVITY_ID).toBe(`${IM3_PROFIT_MAXIMUM_NODE}.worked_example`);
     expect(activity).toEqual({
       componentKey: "fill-in-the-blank",
       displayName: "Find and interpret the maximum of a quadratic profit model",
@@ -114,19 +112,22 @@ describe("IM3 profit maximum Worked seed", () => {
     const query = vi.fn((table: string) => {
       expect(table).toBe("activities");
       return {
-        withIndex: vi.fn((indexName: string, indexQuery: (q: {
-          eq: (field: string, value: unknown) => unknown;
-        }) => unknown) => {
-          expect(indexName).toBe("by_stable_activity_id");
-          indexQuery({
-            eq: vi.fn((field: string, value: unknown) => {
-              expect(field).toBe("stableActivityId");
-              expect(value).toBe(IM3_PROFIT_MAXIMUM_WORKED_ACTIVITY_ID);
-              return undefined;
-            }),
-          });
-          return { unique: vi.fn(async () => storedActivity) };
-        }),
+        withIndex: vi.fn(
+          (
+            indexName: string,
+            indexQuery: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) => {
+            expect(indexName).toBe("by_stable_activity_id");
+            indexQuery({
+              eq: vi.fn((field: string, value: unknown) => {
+                expect(field).toBe("stableActivityId");
+                expect(value).toBe(IM3_PROFIT_MAXIMUM_WORKED_ACTIVITY_ID);
+                return undefined;
+              }),
+            });
+            return { unique: vi.fn(async () => storedActivity) };
+          },
+        ),
       };
     });
     const ctx = { db: { query, insert, patch } } as never;
@@ -178,19 +179,22 @@ describe("IM3 profit maximum Worked seed", () => {
     const query = vi.fn((table: string) => {
       expect(table).toBe("activities");
       return {
-        withIndex: vi.fn((indexName: string, indexQuery: (q: {
-          eq: (field: string, value: unknown) => unknown;
-        }) => unknown) => {
-          expect(indexName).toBe("by_stable_activity_id");
-          indexQuery({
-            eq: vi.fn((field: string, value: unknown) => {
-              expect(field).toBe("stableActivityId");
-              expect(value).toBe(IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID);
-              return undefined;
-            }),
-          });
-          return { unique: vi.fn(async () => storedActivity) };
-        }),
+        withIndex: vi.fn(
+          (
+            indexName: string,
+            indexQuery: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) => {
+            expect(indexName).toBe("by_stable_activity_id");
+            indexQuery({
+              eq: vi.fn((field: string, value: unknown) => {
+                expect(field).toBe("stableActivityId");
+                expect(value).toBe(IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID);
+                return undefined;
+              }),
+            });
+            return { unique: vi.fn(async () => storedActivity) };
+          },
+        ),
       };
     });
     const ctx = { db: { query, insert, patch } } as never;
@@ -259,19 +263,22 @@ describe("IM3 profit maximum Worked seed", () => {
     const query = vi.fn((table: string) => {
       expect(table).toBe("activities");
       return {
-        withIndex: vi.fn((indexName: string, indexQuery: (q: {
-          eq: (field: string, value: unknown) => unknown;
-        }) => unknown) => {
-          expect(indexName).toBe("by_stable_activity_id");
-          indexQuery({
-            eq: vi.fn((field: string, value: unknown) => {
-              expect(field).toBe("stableActivityId");
-              expect(value).toBe(IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID);
-              return undefined;
-            }),
-          });
-          return { unique: vi.fn(async () => storedActivity) };
-        }),
+        withIndex: vi.fn(
+          (
+            indexName: string,
+            indexQuery: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) => {
+            expect(indexName).toBe("by_stable_activity_id");
+            indexQuery({
+              eq: vi.fn((field: string, value: unknown) => {
+                expect(field).toBe("stableActivityId");
+                expect(value).toBe(IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID);
+                return undefined;
+              }),
+            });
+            return { unique: vi.fn(async () => storedActivity) };
+          },
+        ),
       };
     });
     const ctx = { db: { query, insert, patch } } as never;
@@ -357,19 +364,22 @@ describe("IM3 profit maximum Worked seed", () => {
     const query = vi.fn((table: string) => {
       expect(table).toBe("practice_variants");
       return {
-        withIndex: vi.fn((indexName: string, indexQuery: (q: {
-          eq: (field: string, value: unknown) => unknown;
-        }) => unknown) => {
-          expect(indexName).toBe("by_variantKey");
-          indexQuery({
-            eq: vi.fn((field: string, value: unknown) => {
-              expect(field).toBe("variantKey");
-              expect(value).toBe(IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID);
-              return undefined;
-            }),
-          });
-          return { unique: vi.fn(async () => storedVariant) };
-        }),
+        withIndex: vi.fn(
+          (
+            indexName: string,
+            indexQuery: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) => {
+            expect(indexName).toBe("by_variantKey");
+            indexQuery({
+              eq: vi.fn((field: string, value: unknown) => {
+                expect(field).toBe("variantKey");
+                expect(value).toBe(IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID);
+                return undefined;
+              }),
+            });
+            return { unique: vi.fn(async () => storedVariant) };
+          },
+        ),
       };
     });
     const ctx = { db: { query, insert, patch } } as never;
@@ -441,19 +451,22 @@ describe("IM3 profit maximum Worked seed", () => {
     const query = vi.fn((table: string) => {
       expect(table).toBe("practice_variants");
       return {
-        withIndex: vi.fn((indexName: string, indexQuery: (q: {
-          eq: (field: string, value: unknown) => unknown;
-        }) => unknown) => {
-          expect(indexName).toBe("by_variantKey");
-          indexQuery({
-            eq: vi.fn((field: string, value: unknown) => {
-              expect(field).toBe("variantKey");
-              expect(value).toBe(IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID);
-              return undefined;
-            }),
-          });
-          return { unique: vi.fn(async () => storedVariant) };
-        }),
+        withIndex: vi.fn(
+          (
+            indexName: string,
+            indexQuery: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) => {
+            expect(indexName).toBe("by_variantKey");
+            indexQuery({
+              eq: vi.fn((field: string, value: unknown) => {
+                expect(field).toBe("variantKey");
+                expect(value).toBe(IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID);
+                return undefined;
+              }),
+            });
+            return { unique: vi.fn(async () => storedVariant) };
+          },
+        ),
       };
     });
     const ctx = { db: { query, insert, patch } } as never;
@@ -529,28 +542,32 @@ describe("IM3 profit maximum Worked seed", () => {
     const query = vi.fn((table: string) => {
       expect(table).toBe("practice_items");
       return {
-        withIndex: vi.fn((indexName: string, indexQuery: (q: {
-          eq: (field: string, value: unknown) => unknown;
-        }) => unknown) => {
-          const expectedField = indexName === "by_variantKey" ? "variantKey" : "activityId";
-          const expectedValue = indexName === "by_variantKey"
-            ? IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID
-            : activityId;
-          expect(indexName).toMatch(/^(by_variantKey|by_activityId)$/);
-          indexQuery({
-            eq: vi.fn((field: string, value: unknown) => {
-              expect(field).toBe(expectedField);
-              expect(value).toBe(expectedValue);
-              return undefined;
-            }),
-          });
-          return {
-            take: vi.fn(async (limit: number) => {
-              expect(limit).toBe(2);
-              return storedItem ? [storedItem] : [];
-            }),
-          };
-        }),
+        withIndex: vi.fn(
+          (
+            indexName: string,
+            indexQuery: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) => {
+            const expectedField = indexName === "by_variantKey" ? "variantKey" : "activityId";
+            const expectedValue =
+              indexName === "by_variantKey"
+                ? IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID
+                : activityId;
+            expect(indexName).toMatch(/^(by_variantKey|by_activityId)$/);
+            indexQuery({
+              eq: vi.fn((field: string, value: unknown) => {
+                expect(field).toBe(expectedField);
+                expect(value).toBe(expectedValue);
+                return undefined;
+              }),
+            });
+            return {
+              take: vi.fn(async (limit: number) => {
+                expect(limit).toBe(2);
+                return storedItem ? [storedItem] : [];
+              }),
+            };
+          },
+        ),
       };
     });
     const ctx = { db: { query, insert, patch } } as never;
@@ -633,35 +650,43 @@ describe("IM3 profit maximum Worked seed", () => {
       const query = vi.fn((table: string) => {
         expect(table).toBe("practice_items");
         return {
-          withIndex: vi.fn((indexName: string, indexQuery: (q: {
-            eq: (field: string, value: unknown) => unknown;
-          }) => unknown) => {
-            const expectedField = indexName === "by_variantKey" ? "variantKey" : "activityId";
-            const expectedValue = indexName === "by_variantKey"
-              ? IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID
-              : activityId;
-            expect(indexName).toMatch(/^(by_variantKey|by_activityId)$/);
-            indexQuery({
-              eq: vi.fn((field: string, value: unknown) => {
-                expect(field).toBe(expectedField);
-                expect(value).toBe(expectedValue);
-                return undefined;
-              }),
-            });
-            return {
-              take: vi.fn(async (limit: number) => {
-                expect(limit).toBe(2);
-                return indexName === "by_variantKey" ? corruption.byVariant : corruption.byActivity;
-              }),
-            };
-          }),
+          withIndex: vi.fn(
+            (
+              indexName: string,
+              indexQuery: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+            ) => {
+              const expectedField = indexName === "by_variantKey" ? "variantKey" : "activityId";
+              const expectedValue =
+                indexName === "by_variantKey"
+                  ? IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID
+                  : activityId;
+              expect(indexName).toMatch(/^(by_variantKey|by_activityId)$/);
+              indexQuery({
+                eq: vi.fn((field: string, value: unknown) => {
+                  expect(field).toBe(expectedField);
+                  expect(value).toBe(expectedValue);
+                  return undefined;
+                }),
+              });
+              return {
+                take: vi.fn(async (limit: number) => {
+                  expect(limit).toBe(2);
+                  return indexName === "by_variantKey"
+                    ? corruption.byVariant
+                    : corruption.byActivity;
+                }),
+              };
+            },
+          ),
         };
       });
       const ctx = { db: { query, insert, patch } } as never;
 
       await expect(
         upsertIm3ProfitMaximumIndependentPracticeItem(ctx, activityId, 100),
-      ).rejects.toThrow("Duplicate or conflicting IM3 maximum-profit Independent practice-item mapping");
+      ).rejects.toThrow(
+        "Duplicate or conflicting IM3 maximum-profit Independent practice-item mapping",
+      );
       expect(insert).not.toHaveBeenCalled();
       expect(patch).not.toHaveBeenCalled();
       expect(query).toHaveBeenCalledTimes(2);
@@ -685,28 +710,30 @@ describe("IM3 profit maximum Worked seed", () => {
     const query = vi.fn((table: string) => {
       expect(table).toBe("practice_items");
       return {
-        withIndex: vi.fn((indexName: string, indexQuery: (q: {
-          eq: (field: string, value: unknown) => unknown;
-        }) => unknown) => {
-          const expectedField = indexName === "by_variantKey" ? "variantKey" : "activityId";
-          const expectedValue = indexName === "by_variantKey"
-            ? IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID
-            : activityId;
-          expect(indexName).toMatch(/^(by_variantKey|by_activityId)$/);
-          indexQuery({
-            eq: vi.fn((field: string, value: unknown) => {
-              expect(field).toBe(expectedField);
-              expect(value).toBe(expectedValue);
-              return undefined;
-            }),
-          });
-          return {
-            take: vi.fn(async (limit: number) => {
-              expect(limit).toBe(2);
-              return storedItem ? [storedItem] : [];
-            }),
-          };
-        }),
+        withIndex: vi.fn(
+          (
+            indexName: string,
+            indexQuery: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) => {
+            const expectedField = indexName === "by_variantKey" ? "variantKey" : "activityId";
+            const expectedValue =
+              indexName === "by_variantKey" ? IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID : activityId;
+            expect(indexName).toMatch(/^(by_variantKey|by_activityId)$/);
+            indexQuery({
+              eq: vi.fn((field: string, value: unknown) => {
+                expect(field).toBe(expectedField);
+                expect(value).toBe(expectedValue);
+                return undefined;
+              }),
+            });
+            return {
+              take: vi.fn(async (limit: number) => {
+                expect(limit).toBe(2);
+                return storedItem ? [storedItem] : [];
+              }),
+            };
+          },
+        ),
       };
     });
     const ctx = { db: { query, insert, patch } } as never;
@@ -788,34 +815,38 @@ describe("IM3 profit maximum Worked seed", () => {
       const query = vi.fn((table: string) => {
         expect(table).toBe("practice_items");
         return {
-          withIndex: vi.fn((indexName: string, indexQuery: (q: {
-            eq: (field: string, value: unknown) => unknown;
-          }) => unknown) => {
-            const expectedField = indexName === "by_variantKey" ? "variantKey" : "activityId";
-            const expectedValue = indexName === "by_variantKey"
-              ? IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID
-              : activityId;
-            indexQuery({
-              eq: vi.fn((field: string, value: unknown) => {
-                expect(field).toBe(expectedField);
-                expect(value).toBe(expectedValue);
-                return undefined;
-              }),
-            });
-            return {
-              take: vi.fn(async (limit: number) => {
-                expect(limit).toBe(2);
-                return indexName === "by_variantKey" ? corruption.byVariant : corruption.byActivity;
-              }),
-            };
-          }),
+          withIndex: vi.fn(
+            (
+              indexName: string,
+              indexQuery: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+            ) => {
+              const expectedField = indexName === "by_variantKey" ? "variantKey" : "activityId";
+              const expectedValue =
+                indexName === "by_variantKey" ? IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID : activityId;
+              indexQuery({
+                eq: vi.fn((field: string, value: unknown) => {
+                  expect(field).toBe(expectedField);
+                  expect(value).toBe(expectedValue);
+                  return undefined;
+                }),
+              });
+              return {
+                take: vi.fn(async (limit: number) => {
+                  expect(limit).toBe(2);
+                  return indexName === "by_variantKey"
+                    ? corruption.byVariant
+                    : corruption.byActivity;
+                }),
+              };
+            },
+          ),
         };
       });
       const ctx = { db: { query, insert, patch } } as never;
 
-      await expect(
-        upsertIm3ProfitMaximumGuidedPracticeItem(ctx, activityId, 100),
-      ).rejects.toThrow("Duplicate or conflicting IM3 maximum-profit Guided practice-item mapping");
+      await expect(upsertIm3ProfitMaximumGuidedPracticeItem(ctx, activityId, 100)).rejects.toThrow(
+        "Duplicate or conflicting IM3 maximum-profit Guided practice-item mapping",
+      );
       expect(insert).not.toHaveBeenCalled();
       expect(patch).not.toHaveBeenCalled();
       expect(query).toHaveBeenCalledTimes(2);
@@ -849,9 +880,7 @@ describe("IM3 profit maximum Worked seed", () => {
       salesDecrease: 10,
       coefficients: { a: -100, b: 400, c: 62100 },
     });
-    expect(generated.prompt).toContain(
-      "Given P(x) = -100x^2 + 400x + 62100",
-    );
+    expect(generated.prompt).toContain("Given P(x) = -100x^2 + 400x + 62100");
     expect(generated.expectedAnswer).toEqual({
       optimalIncreases: "2",
       optimalPrice: "250",
@@ -941,7 +970,11 @@ describe("IM3 profit maximum Worked seed", () => {
     ]);
     expect(second.activity).toEqual({ ...first.activity, createdAt: 200, updatedAt: 200 });
     expect(second.variant).toEqual({ ...first.variant, sourceTimestamp: 200 });
-    expect(second.item).toEqual({ ...first.item, activityId: secondActivityId, sourceTimestamp: 200 });
+    expect(second.item).toEqual({
+      ...first.item,
+      activityId: secondActivityId,
+      sourceTimestamp: 200,
+    });
   });
 
   it("builds the exact generator-backed Independent activity, variant, and item", () => {
@@ -970,9 +1003,7 @@ describe("IM3 profit maximum Worked seed", () => {
       salesDecrease: 30,
       coefficients: { a: -150, b: 1800, c: 129600 },
     });
-    expect(generated.prompt).toContain(
-      "Given P(x) = -150x^2 + 1800x + 129600",
-    );
+    expect(generated.prompt).toContain("Given P(x) = -150x^2 + 1800x + 129600");
     expect(generated.expectedAnswer).toEqual({
       optimalIncreases: "6",
       optimalPrice: "150",
@@ -1084,46 +1115,54 @@ describe("IM3 profit maximum Worked seed", () => {
         phaseVersionId: phase._id,
         sequenceOrder: 2,
         sectionType: "activity",
-        content: { componentKey: "fill-in-the-blank", activityId: "activities:profit-model-worked" },
+        content: {
+          componentKey: "fill-in-the-blank",
+          activityId: "activities:profit-model-worked",
+        },
       },
     ];
     const initialSections = structuredClone(sections);
     const query = vi.fn((table: string) => ({
-      withIndex: vi.fn((indexName: string, indexQuery: (q: {
-        eq: (field: string, value: unknown) => unknown;
-      }) => unknown) => {
-        if (table === "phase_versions") {
-          expect(indexName).toBe("by_lesson_version_and_phase");
+      withIndex: vi.fn(
+        (
+          indexName: string,
+          indexQuery: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+        ) => {
+          if (table === "phase_versions") {
+            expect(indexName).toBe("by_lesson_version_and_phase");
+            indexQuery({
+              eq: vi.fn((field: string, value: unknown) => {
+                if (field === "lessonVersionId") expect(value).toBe("lesson-version-1");
+                if (field === "phaseNumber") expect(value).toBe(6);
+                return {
+                  eq: vi.fn((nextField: string, nextValue: unknown) => {
+                    expect(nextField).toBe("phaseNumber");
+                    expect(nextValue).toBe(6);
+                    return undefined;
+                  }),
+                };
+              }),
+            });
+            return { first: vi.fn(async () => phase) };
+          }
+          expect(table).toBe("phase_sections");
+          expect(indexName).toBe("by_phase_version");
           indexQuery({
             eq: vi.fn((field: string, value: unknown) => {
-              if (field === "lessonVersionId") expect(value).toBe("lesson-version-1");
-              if (field === "phaseNumber") expect(value).toBe(6);
-              return {
-                eq: vi.fn((nextField: string, nextValue: unknown) => {
-                  expect(nextField).toBe("phaseNumber");
-                  expect(nextValue).toBe(6);
-                  return undefined;
-                }),
-              };
+              expect(field).toBe("phaseVersionId");
+              expect(value).toBe(phase._id);
+              return undefined;
             }),
           });
-          return { first: vi.fn(async () => phase) };
-        }
-        expect(table).toBe("phase_sections");
-        expect(indexName).toBe("by_phase_version");
-        indexQuery({
-          eq: vi.fn((field: string, value: unknown) => {
-            expect(field).toBe("phaseVersionId");
-            expect(value).toBe(phase._id);
-            return undefined;
-          }),
-        });
-        return { collect: vi.fn(async () => sections) };
-      }),
+          return { collect: vi.fn(async () => sections) };
+        },
+      ),
     }));
     const insert = vi.fn(async (table: string, document: Record<string, unknown>) => {
       expect(table).toBe("phase_sections");
-      const section = { _id: "section-3", ...document } as Record<string, unknown> & { _id: string };
+      const section = { _id: "section-3", ...document } as Record<string, unknown> & {
+        _id: string;
+      };
       sections.push(section);
       return section._id;
     });
@@ -1134,8 +1173,18 @@ describe("IM3 profit maximum Worked seed", () => {
     });
     const ctx = { db: { query, insert, patch } } as never;
 
-    await linkIm3ProfitMaximumWorkedPhase(ctx, "lesson-version-1" as never, "activities:profit-maximum-worked" as never, 100);
-    await linkIm3ProfitMaximumWorkedPhase(ctx, "lesson-version-1" as never, "activities:profit-maximum-worked" as never, 200);
+    await linkIm3ProfitMaximumWorkedPhase(
+      ctx,
+      "lesson-version-1" as never,
+      "activities:profit-maximum-worked" as never,
+      100,
+    );
+    await linkIm3ProfitMaximumWorkedPhase(
+      ctx,
+      "lesson-version-1" as never,
+      "activities:profit-maximum-worked" as never,
+      200,
+    );
 
     expect(sections).toHaveLength(3);
     expect(sections.slice(0, 2)).toEqual(initialSections);
@@ -1157,26 +1206,34 @@ describe("IM3 profit maximum Worked seed", () => {
 
   it("repairs only the exact maximum activity section component", async () => {
     const phase = { _id: "phase-6" };
-    const sections: Array<Record<string, unknown> & { _id: string }> = [{
-      _id: "section-3",
-      phaseVersionId: phase._id,
-      sequenceOrder: 3,
-      sectionType: "activity",
-      content: { componentKey: "step-by-step-solver", activityId: "activities:profit-maximum-worked" },
-    }];
+    const sections: Array<Record<string, unknown> & { _id: string }> = [
+      {
+        _id: "section-3",
+        phaseVersionId: phase._id,
+        sequenceOrder: 3,
+        sectionType: "activity",
+        content: {
+          componentKey: "step-by-step-solver",
+          activityId: "activities:profit-maximum-worked",
+        },
+      },
+    ];
     const query = vi.fn((table: string) => ({
-      withIndex: vi.fn((indexName: string, indexQuery: (q: {
-        eq: (field: string, value: unknown) => unknown;
-      }) => unknown) => {
-        if (table === "phase_versions") {
-          expect(indexName).toBe("by_lesson_version_and_phase");
-          indexQuery({ eq: vi.fn(() => ({ eq: vi.fn(() => undefined) })) });
-          return { first: vi.fn(async () => phase) };
-        }
-        expect(indexName).toBe("by_phase_version");
-        indexQuery({ eq: vi.fn(() => undefined) });
-        return { collect: vi.fn(async () => sections) };
-      }),
+      withIndex: vi.fn(
+        (
+          indexName: string,
+          indexQuery: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+        ) => {
+          if (table === "phase_versions") {
+            expect(indexName).toBe("by_lesson_version_and_phase");
+            indexQuery({ eq: vi.fn(() => ({ eq: vi.fn(() => undefined) })) });
+            return { first: vi.fn(async () => phase) };
+          }
+          expect(indexName).toBe("by_phase_version");
+          indexQuery({ eq: vi.fn(() => undefined) });
+          return { collect: vi.fn(async () => sections) };
+        },
+      ),
     }));
     const insert = vi.fn();
     const patch = vi.fn(async (sectionId: string, document: Record<string, unknown>) => {
@@ -1185,7 +1242,12 @@ describe("IM3 profit maximum Worked seed", () => {
     });
     const ctx = { db: { query, insert, patch } } as never;
 
-    await linkIm3ProfitMaximumWorkedPhase(ctx, "lesson-version-1" as never, "activities:profit-maximum-worked" as never, 100);
+    await linkIm3ProfitMaximumWorkedPhase(
+      ctx,
+      "lesson-version-1" as never,
+      "activities:profit-maximum-worked" as never,
+      100,
+    );
 
     expect(insert).not.toHaveBeenCalled();
     expect(patch).toHaveBeenCalledWith("section-3", {
@@ -1199,21 +1261,29 @@ describe("IM3 profit maximum Worked seed", () => {
 
   it("rejects a missing Phase 6 without writes", async () => {
     const query = vi.fn((table: string) => ({
-      withIndex: vi.fn((indexName: string, indexQuery: (q: {
-        eq: (field: string, value: unknown) => unknown;
-      }) => unknown) => {
+      withIndex: vi.fn(
+        (
+          indexName: string,
+          indexQuery: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+        ) => {
           expect(table).toBe("phase_versions");
           expect(indexName).toBe("by_lesson_version_and_phase");
           indexQuery({ eq: vi.fn(() => ({ eq: vi.fn(() => undefined) })) });
-        return { first: vi.fn(async () => null) };
-      }),
+          return { first: vi.fn(async () => null) };
+        },
+      ),
     }));
     const insert = vi.fn();
     const patch = vi.fn();
     const ctx = { db: { query, insert, patch } } as never;
 
     await expect(
-      linkIm3ProfitMaximumWorkedPhase(ctx, "lesson-version-1" as never, "activities:profit-maximum-worked" as never, 100),
+      linkIm3ProfitMaximumWorkedPhase(
+        ctx,
+        "lesson-version-1" as never,
+        "activities:profit-maximum-worked" as never,
+        100,
+      ),
     ).rejects.toThrow("Lesson 1.1 Phase 6 is missing");
     expect(insert).not.toHaveBeenCalled();
     expect(patch).not.toHaveBeenCalled();
@@ -1221,33 +1291,43 @@ describe("IM3 profit maximum Worked seed", () => {
 
   it("rejects an occupied Phase 6 sequence 3 without writes", async () => {
     const phase = { _id: "phase-6" };
-    const sections = [{
-      _id: "other-section",
-      phaseVersionId: phase._id,
-      sequenceOrder: 3,
-      sectionType: "text",
-      content: { markdown: "Other content" },
-    }];
+    const sections = [
+      {
+        _id: "other-section",
+        phaseVersionId: phase._id,
+        sequenceOrder: 3,
+        sectionType: "text",
+        content: { markdown: "Other content" },
+      },
+    ];
     const query = vi.fn((table: string) => ({
-      withIndex: vi.fn((indexName: string, indexQuery: (q: {
-        eq: (field: string, value: unknown) => unknown;
-      }) => unknown) => {
-        if (table === "phase_versions") {
-          expect(indexName).toBe("by_lesson_version_and_phase");
-          indexQuery({ eq: vi.fn(() => ({ eq: vi.fn(() => undefined) })) });
-          return { first: vi.fn(async () => phase) };
-        }
-        expect(indexName).toBe("by_phase_version");
-        indexQuery({ eq: vi.fn(() => undefined) });
-        return { collect: vi.fn(async () => sections) };
-      }),
+      withIndex: vi.fn(
+        (
+          indexName: string,
+          indexQuery: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+        ) => {
+          if (table === "phase_versions") {
+            expect(indexName).toBe("by_lesson_version_and_phase");
+            indexQuery({ eq: vi.fn(() => ({ eq: vi.fn(() => undefined) })) });
+            return { first: vi.fn(async () => phase) };
+          }
+          expect(indexName).toBe("by_phase_version");
+          indexQuery({ eq: vi.fn(() => undefined) });
+          return { collect: vi.fn(async () => sections) };
+        },
+      ),
     }));
     const insert = vi.fn();
     const patch = vi.fn();
     const ctx = { db: { query, insert, patch } } as never;
 
     await expect(
-      linkIm3ProfitMaximumWorkedPhase(ctx, "lesson-version-1" as never, "activities:profit-maximum-worked" as never, 100),
+      linkIm3ProfitMaximumWorkedPhase(
+        ctx,
+        "lesson-version-1" as never,
+        "activities:profit-maximum-worked" as never,
+        100,
+      ),
     ).rejects.toThrow("Lesson 1.1 Phase 6 sequence 3 is occupied");
     expect(insert).not.toHaveBeenCalled();
     expect(patch).not.toHaveBeenCalled();
@@ -1255,15 +1335,22 @@ describe("IM3 profit maximum Worked seed", () => {
 
   it("wires the maximum Worked, Guided, and Independent upserts in seedLesson1 order", () => {
     const source = (seedLesson1 as unknown as { _handler: () => unknown })._handler.toString();
-    const upsertStatement = "const profitMaximumWorkedActivityId = await upsertIm3ProfitMaximumWorkedActivity(ctx, now);";
-    const linkStatement = "await linkIm3ProfitMaximumWorkedPhase(ctx, lessonVersionId, profitMaximumWorkedActivityId, now);";
-    const workedLinkStatement = "await linkIm3ProfitModelWorkedPhase(ctx, lessonVersionId, profitModelWorkedActivityId);";
-    const guidedActivityStatement = "const profitMaximumGuidedActivityId = await upsertIm3ProfitMaximumGuidedActivity(ctx, now);";
+    const upsertStatement =
+      "const profitMaximumWorkedActivityId = await upsertIm3ProfitMaximumWorkedActivity(ctx, now);";
+    const linkStatement =
+      "await linkIm3ProfitMaximumWorkedPhase(ctx, lessonVersionId, profitMaximumWorkedActivityId, now);";
+    const workedLinkStatement =
+      "await linkIm3ProfitModelWorkedPhase(ctx, lessonVersionId, profitModelWorkedActivityId);";
+    const guidedActivityStatement =
+      "const profitMaximumGuidedActivityId = await upsertIm3ProfitMaximumGuidedActivity(ctx, now);";
     const guidedVariantStatement = "await upsertIm3ProfitMaximumGuidedVariant(ctx, now);";
-    const guidedPracticeItemStatement = "await upsertIm3ProfitMaximumGuidedPracticeItem(ctx, profitMaximumGuidedActivityId, now);";
-    const independentActivityStatement = "const profitMaximumIndependentActivityId = await upsertIm3ProfitMaximumIndependentActivity(ctx, now);";
+    const guidedPracticeItemStatement =
+      "await upsertIm3ProfitMaximumGuidedPracticeItem(ctx, profitMaximumGuidedActivityId, now);";
+    const independentActivityStatement =
+      "const profitMaximumIndependentActivityId = await upsertIm3ProfitMaximumIndependentActivity(ctx, now);";
     const independentVariantStatement = "await upsertIm3ProfitMaximumIndependentVariant(ctx, now);";
-    const independentPracticeItemStatement = "await upsertIm3ProfitMaximumIndependentPracticeItem(ctx, profitMaximumIndependentActivityId, now);";
+    const independentPracticeItemStatement =
+      "await upsertIm3ProfitMaximumIndependentPracticeItem(ctx, profitMaximumIndependentActivityId, now);";
 
     expect(source).toContain(upsertStatement);
     expect(source).toContain(linkStatement);
@@ -1276,11 +1363,21 @@ describe("IM3 profit maximum Worked seed", () => {
     expect(source.indexOf(upsertStatement)).toBeGreaterThan(source.indexOf(workedLinkStatement));
     expect(source.indexOf(linkStatement)).toBeGreaterThan(source.indexOf(upsertStatement));
     expect(source.indexOf(guidedActivityStatement)).toBeGreaterThan(source.indexOf(linkStatement));
-    expect(source.indexOf(guidedVariantStatement)).toBeGreaterThan(source.indexOf(guidedActivityStatement));
-    expect(source.indexOf(guidedPracticeItemStatement)).toBeGreaterThan(source.indexOf(guidedVariantStatement));
-    expect(source.indexOf(independentActivityStatement)).toBeGreaterThan(source.indexOf(guidedPracticeItemStatement));
-    expect(source.indexOf(independentVariantStatement)).toBeGreaterThan(source.indexOf(independentActivityStatement));
-    expect(source.indexOf(independentPracticeItemStatement)).toBeGreaterThan(source.indexOf(independentVariantStatement));
+    expect(source.indexOf(guidedVariantStatement)).toBeGreaterThan(
+      source.indexOf(guidedActivityStatement),
+    );
+    expect(source.indexOf(guidedPracticeItemStatement)).toBeGreaterThan(
+      source.indexOf(guidedVariantStatement),
+    );
+    expect(source.indexOf(independentActivityStatement)).toBeGreaterThan(
+      source.indexOf(guidedPracticeItemStatement),
+    );
+    expect(source.indexOf(independentVariantStatement)).toBeGreaterThan(
+      source.indexOf(independentActivityStatement),
+    );
+    expect(source.indexOf(independentPracticeItemStatement)).toBeGreaterThan(
+      source.indexOf(independentVariantStatement),
+    );
     expect(source).not.toContain("linkIm3ProfitMaximumGuidedPhase");
 
     const guidedActivity = buildIm3ProfitMaximumGuidedSeedDocuments(

@@ -1,5 +1,5 @@
-import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core';
-import type { MetricResult, AccuracyTrendPoint } from '../contracts';
+import type { PracticeSubmissionEnvelope } from "@math-platform/practice-core";
+import type { MetricResult, AccuracyTrendPoint } from "../contracts";
 
 export interface ComputeAccuracyTrendInput {
   submissions: PracticeSubmissionEnvelope[];

@@ -1,6 +1,6 @@
-import type { ProjectedActivity } from '@math-platform/knowledge-space-practice';
+import type { ProjectedActivity } from "@math-platform/knowledge-space-practice";
 
-export type CourseKey = 'im1' | 'im2' | 'im3' | 'precalc' | 'bm2';
+export type CourseKey = "im1" | "im2" | "im3" | "precalc" | "bm2";
 
 export type SourceReference =
   | string
@@ -28,7 +28,7 @@ export interface SkillNode {
 export interface SourceDocument {
   key: string;
   title: string;
-  courseKey: Exclude<CourseKey, 'bm2'>;
+  courseKey: Exclude<CourseKey, "bm2">;
   module: string;
   repositoryPath: string;
 }
@@ -88,7 +88,7 @@ export interface GraphData {
   unavailableReason?: string;
 }
 
-export type PracticeMode = 'worked_example' | 'guided_practice' | 'independent_practice';
+export type PracticeMode = "worked_example" | "guided_practice" | "independent_practice";
 
 export interface SubmissionEntry {
   partId: string;
@@ -106,7 +106,7 @@ export interface HarnessState {
   lastSubmission: SubmissionEntry | null;
 }
 
-export type ReviewDecisionStatus = 'approved' | 'needs_fix';
+export type ReviewDecisionStatus = "approved" | "needs_fix";
 
 export interface ReviewDecision {
   status: ReviewDecisionStatus;

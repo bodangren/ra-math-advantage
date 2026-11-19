@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { RateOfChangeCalculator } from '@math-platform/activity-components/roc';
-import type { RateOfChangeCalculatorProps } from '@/lib/activities/schemas/rate-of-change-calculator.schema';
+import React from "react";
+import { RateOfChangeCalculator } from "@math-platform/activity-components/roc";
+import type { RateOfChangeCalculatorProps } from "@/lib/activities/schemas/rate-of-change-calculator.schema";
 
 export interface RateOfChangeCalculatorActivityProps extends RateOfChangeCalculatorProps {
   activityId: string;
-  mode: 'teaching' | 'guided' | 'practice';
+  mode: "teaching" | "guided" | "practice";
   onSubmit?: (payload: unknown) => void | Promise<void>;
   onComplete?: () => void;
 }

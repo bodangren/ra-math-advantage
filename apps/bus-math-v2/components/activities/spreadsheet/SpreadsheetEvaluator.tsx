@@ -1,22 +1,22 @@
-'use client';
+"use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { CheckCircle2, Loader2, Save, XCircle } from 'lucide-react';
-import { z } from 'zod';
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { CheckCircle2, Loader2, Save, XCircle } from "lucide-react";
+import { z } from "zod";
 
-import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   SpreadsheetWrapper,
   type SpreadsheetData,
   type SpreadsheetCell,
   a1ToCoordinates,
-} from '@/components/activities/spreadsheet';
-import type { Activity } from '@/lib/schemas/validators';
-import type { PracticeSubmissionCallbackPayload } from '@/lib/practice/contract';
-import { buildSpreadsheetEvaluatorSubmission } from '@/lib/activities/spreadsheet-practice';
+} from "@/components/activities/spreadsheet";
+import type { Activity } from "@/lib/schemas/validators";
+import type { PracticeSubmissionCallbackPayload } from "@/lib/practice/contract";
+import { buildSpreadsheetEvaluatorSubmission } from "@/lib/activities/spreadsheet-practice";
 
 const targetCellSchema = z.object({
   cell: z.string(),
@@ -33,13 +33,13 @@ export const spreadsheetEvaluatorConfigSchema = z.object({
 
 export type SpreadsheetEvaluatorConfig = z.infer<typeof spreadsheetEvaluatorConfigSchema>;
 
-export type SpreadsheetEvaluatorActivity = Omit<Activity, 'componentKey' | 'props'> & {
-  componentKey: 'spreadsheet-evaluator';
+export type SpreadsheetEvaluatorActivity = Omit<Activity, "componentKey" | "props"> & {
+  componentKey: "spreadsheet-evaluator";
   props: SpreadsheetEvaluatorConfig;
 };
 
-export const SPREADSHEET_EVALUATOR_SUPPORTED_MODES = ['assessment'] as const;
-const SPREADSHEET_EVALUATOR_DEFAULT_MODE = 'assessment' as const;
+export const SPREADSHEET_EVALUATOR_SUPPORTED_MODES = ["assessment"] as const;
+const SPREADSHEET_EVALUATOR_DEFAULT_MODE = "assessment" as const;
 
 interface SpreadsheetEvaluatorProps {
   activity: SpreadsheetEvaluatorActivity;
@@ -55,7 +55,6 @@ interface CellFeedback {
 
 const AUTO_SAVE_DELAY = 30000;
 
-
 /**
  * Normalizes a cell value to a lowercase trimmed string for comparison.
  *
@@ -63,9 +62,10 @@ const AUTO_SAVE_DELAY = 30000;
  * @returns A normalized string
  */
 function normalizeValue(value: string | number): string {
-  return typeof value === 'number' ? value.toString().toLowerCase().trim() : value.toString().toLowerCase().trim();
+  return typeof value === "number"
+    ? value.toString().toLowerCase().trim()
+    : value.toString().toLowerCase().trim();
 }
-
 
 /**
  * Creates a 10x10 empty spreadsheet with all cells set to empty strings.
@@ -73,11 +73,8 @@ function normalizeValue(value: string | number): string {
  * @returns A new empty SpreadsheetData grid
  */
 function getEmptySpreadsheet(): SpreadsheetData {
-  return Array.from({ length: 10 }, () =>
-    Array.from({ length: 10 }, () => ({ value: '' })),
-  );
+  return Array.from({ length: 10 }, () => Array.from({ length: 10 }, () => ({ value: "" })));
 }
-
 
 /**
  * Initializes a spreadsheet from optional initial data, normalizing
@@ -91,9 +88,9 @@ function initializeSpreadsheet(initialData?: SpreadsheetData): SpreadsheetData {
     return initialData.map((row) =>
       row.map((cell) => {
         if (cell === null || cell === undefined) {
-          return { value: '' };
+          return { value: "" };
         }
-        if (typeof cell === 'object' && 'value' in cell) {
+        if (typeof cell === "object" && "value" in cell) {
           return cell as SpreadsheetCell;
         }
         return { value: cell };
@@ -130,7 +127,6 @@ interface SpreadsheetAttempt {
   gradedAt?: number;
 }
 
-
 /**
  * Renders a spreadsheet evaluator activity where students fill in target
  * cells, validate against expected values, and receive AI feedback.
@@ -138,9 +134,15 @@ interface SpreadsheetAttempt {
  * @param activity - The spreadsheet evaluator activity configuration
  * @param onSubmit - Callback to submit practice results
  */
-export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: SpreadsheetEvaluatorProps) {
+export function SpreadsheetEvaluator({
+  activity,
+  onSubmit,
+  onComplete,
+}: SpreadsheetEvaluatorProps) {
   const submissionKeyRef = useRef<string | null>(null);
-  const [data, setData] = useState<SpreadsheetData>(() => initializeSpreadsheet(activity.props.initialData));
+  const [data, setData] = useState<SpreadsheetData>(() =>
+    initializeSpreadsheet(activity.props.initialData),
+  );
   const [feedback, setFeedback] = useState<CellFeedback[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -167,8 +169,8 @@ export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: Spreads
     setIsSaving(true);
     try {
       const response = await fetch(`/api/activities/spreadsheet/${activity.id}/draft`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ draftData: data }),
       });
 
@@ -178,38 +180,43 @@ export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: Spreads
         setHasUnsavedChanges(false);
       }
     } catch (saveError) {
-      console.error('Auto-save failed:', saveError);
+      console.error("Auto-save failed:", saveError);
     } finally {
       setIsSaving(false);
     }
   }, [activity.id, data]);
-
 
   /**
    * Handles spreadsheet data changes, setting up auto-save timers.
    *
    * @param newData - The updated spreadsheet data
    */
-  const handleChange = useCallback((newData: SpreadsheetData) => {
-    setData(newData);
-    hasUnsavedChangesRef.current = true;
-    setHasUnsavedChanges(true);
-    setError(null);
+  const handleChange = useCallback(
+    (newData: SpreadsheetData) => {
+      setData(newData);
+      hasUnsavedChangesRef.current = true;
+      setHasUnsavedChanges(true);
+      setError(null);
 
-    if (autoSaveTimerRef.current) {
-      clearTimeout(autoSaveTimerRef.current);
-    }
+      if (autoSaveTimerRef.current) {
+        clearTimeout(autoSaveTimerRef.current);
+      }
 
-    autoSaveTimerRef.current = setTimeout(() => {
-      void saveAsDraft();
-    }, AUTO_SAVE_DELAY);
-  }, [saveAsDraft]);
+      autoSaveTimerRef.current = setTimeout(() => {
+        void saveAsDraft();
+      }, AUTO_SAVE_DELAY);
+    },
+    [saveAsDraft],
+  );
 
-  useEffect(() => () => {
-    if (autoSaveTimerRef.current) {
-      clearTimeout(autoSaveTimerRef.current);
-    }
-  }, []);
+  useEffect(
+    () => () => {
+      if (autoSaveTimerRef.current) {
+        clearTimeout(autoSaveTimerRef.current);
+      }
+    },
+    [],
+  );
 
   useEffect(() => {
     const loadInitialState = async () => {
@@ -238,7 +245,7 @@ export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: Spreads
           }
         }
       } catch (loadError) {
-        console.error('Failed to load initial state:', loadError);
+        console.error("Failed to load initial state:", loadError);
       } finally {
         setIsInitialLoaded(true);
       }
@@ -262,13 +269,12 @@ export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: Spreads
           }
         }
       } catch (loadError) {
-        console.error('Failed to load draft:', loadError);
+        console.error("Failed to load draft:", loadError);
       }
     };
 
     void loadDraft();
   }, [activity.id, isInitialLoaded, submitted]);
-
 
   /**
    * Retrieves the value of a cell by its A1 reference.
@@ -276,16 +282,18 @@ export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: Spreads
    * @param cellRef - The cell reference in A1 notation (e.g. "B3")
    * @returns The cell value, or empty string if not found
    */
-  const getCellValue = useCallback((cellRef: string): string | number => {
-    try {
-      const { row, col } = a1ToCoordinates(cellRef);
-      const cell = data[row]?.[col];
-      return cell?.value ?? '';
-    } catch {
-      return '';
-    }
-  }, [data]);
-
+  const getCellValue = useCallback(
+    (cellRef: string): string | number => {
+      try {
+        const { row, col } = a1ToCoordinates(cellRef);
+        const cell = data[row]?.[col];
+        return cell?.value ?? "";
+      } catch {
+        return "";
+      }
+    },
+    [data],
+  );
 
   /**
    * Validates all target cells against their expected values.
@@ -295,7 +303,11 @@ export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: Spreads
   const validateSpreadsheet = useCallback((): CellFeedback[] => {
     return targetCells.map((target) => {
       if (target.expectedValue === undefined) {
-        return { cell: target.cell, isCorrect: false, message: 'Submit this worksheet for a server check.' };
+        return {
+          cell: target.cell,
+          isCorrect: false,
+          message: "Submit this worksheet for a server check.",
+        };
       }
       const actualValue = getCellValue(target.cell);
       const isCorrect = normalizeValue(actualValue) === normalizeValue(target.expectedValue);
@@ -310,7 +322,6 @@ export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: Spreads
     });
   }, [getCellValue, targetCells]);
 
-
   /**
    * Returns spreadsheet data with cells highlighted based on validation
    * feedback (green for correct, red for incorrect).
@@ -318,38 +329,44 @@ export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: Spreads
    * @param currentFeedback - The validation feedback array
    * @returns A new SpreadsheetData with highlight classes applied
    */
-  const getHighlightedData = useCallback((currentFeedback: CellFeedback[]): SpreadsheetData => {
-    if (!submitted || currentFeedback.length === 0) {
-      return data;
-    }
-
-    const highlighted = data.map((row) =>
-      row.map((cell) => ({
-        value: cell?.value ?? '',
-        readOnly: cell?.readOnly,
-        className: cell?.className,
-      } as SpreadsheetCell)),
-    );
-
-    for (const entry of currentFeedback) {
-      try {
-        const { row, col } = a1ToCoordinates(entry.cell);
-        if (highlighted[row]?.[col]) {
-          highlighted[row][col] = {
-            value: highlighted[row][col].value,
-            readOnly: highlighted[row][col].readOnly,
-            className: entry.isCorrect
-              ? 'bg-green-100 border-green-500'
-              : 'bg-red-100 border-red-500',
-          };
-        }
-      } catch (highlightError) {
-        console.error(`Failed to highlight cell ${entry.cell}:`, highlightError);
+  const getHighlightedData = useCallback(
+    (currentFeedback: CellFeedback[]): SpreadsheetData => {
+      if (!submitted || currentFeedback.length === 0) {
+        return data;
       }
-    }
 
-    return highlighted;
-  }, [data, submitted]);
+      const highlighted = data.map((row) =>
+        row.map(
+          (cell) =>
+            ({
+              value: cell?.value ?? "",
+              readOnly: cell?.readOnly,
+              className: cell?.className,
+            }) as SpreadsheetCell,
+        ),
+      );
+
+      for (const entry of currentFeedback) {
+        try {
+          const { row, col } = a1ToCoordinates(entry.cell);
+          if (highlighted[row]?.[col]) {
+            highlighted[row][col] = {
+              value: highlighted[row][col].value,
+              readOnly: highlighted[row][col].readOnly,
+              className: entry.isCorrect
+                ? "bg-green-100 border-green-500"
+                : "bg-red-100 border-red-500",
+            };
+          }
+        } catch (highlightError) {
+          console.error(`Failed to highlight cell ${entry.cell}:`, highlightError);
+        }
+      }
+
+      return highlighted;
+    },
+    [data, submitted],
+  );
 
   const targetStatuses = useMemo(() => {
     const feedbackByCell = new Map(feedback.map((entry) => [entry.cell, entry] as const));
@@ -361,15 +378,15 @@ export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: Spreads
         return {
           cell: target.cell,
           expectedValue: target.expectedValue,
-          status: 'pending' as const,
-          message: 'Not checked yet',
+          status: "pending" as const,
+          message: "Not checked yet",
         };
       }
 
       return {
         cell: target.cell,
         expectedValue: target.expectedValue,
-        status: result?.isCorrect ? 'correct' as const : 'incorrect' as const,
+        status: result?.isCorrect ? ("correct" as const) : ("incorrect" as const),
         message: result?.message ?? `Cell ${target.cell} needs attention.`,
       };
     });
@@ -377,12 +394,11 @@ export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: Spreads
 
   const statusAnnouncement = submitted
     ? feedback.every((entry) => entry.isCorrect)
-      ? 'All target cells are correct.'
+      ? "All target cells are correct."
       : `${feedback.filter((entry) => entry.isCorrect).length} of ${feedback.length} target cells are correct.`
     : hasUnsavedChanges
-      ? 'Unsaved changes are present.'
-      : 'Worksheet ready for review.';
-
+      ? "Unsaved changes are present."
+      : "Worksheet ready for review.";
 
   /**
    * Submits the spreadsheet for server-side validation and AI feedback,
@@ -398,8 +414,11 @@ export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: Spreads
     try {
       submissionKeyRef.current ??= crypto.randomUUID();
       const response = await fetch(`/api/activities/spreadsheet/${activity.id}/submit`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Idempotency-Key': submissionKeyRef.current },
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Idempotency-Key": submissionKeyRef.current,
+        },
         body: JSON.stringify({
           spreadsheetData: data,
           targetCells,
@@ -408,7 +427,7 @@ export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: Spreads
 
       if (!response.ok) {
         const body = await response.json();
-        throw new Error(body.error || 'Submission failed');
+        throw new Error(body.error || "Submission failed");
       }
 
       const result = await response.json();
@@ -447,34 +466,45 @@ export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: Spreads
 
       if (onComplete) {
         if (result.isComplete) await onComplete();
-      } else onSubmit?.(
-        buildSpreadsheetEvaluatorSubmission({
-          activityId: activity.id,
-          templateId: activity.props.templateId,
-          instructions: activity.props.instructions,
-          targetCells,
-          spreadsheetData: data,
-          validationResult: {
-            isComplete: Boolean(result.isComplete),
-            totalCells: localValidation.length,
-            correctCells: mergedFeedback.filter((entry: CellFeedback) => entry.isCorrect).length,
-            feedback: mergedFeedback.map((entry: CellFeedback) => ({
-              cell: entry.cell,
-              isCorrect: entry.isCorrect,
-              message: entry.message,
-            })),
-            timestamp: new Date().toISOString(),
-          },
-          attemptNumber: attemptNumber + 1,
-          mode: SPREADSHEET_EVALUATOR_DEFAULT_MODE,
-        }),
-      );
+      } else
+        onSubmit?.(
+          buildSpreadsheetEvaluatorSubmission({
+            activityId: activity.id,
+            templateId: activity.props.templateId,
+            instructions: activity.props.instructions,
+            targetCells,
+            spreadsheetData: data,
+            validationResult: {
+              isComplete: Boolean(result.isComplete),
+              totalCells: localValidation.length,
+              correctCells: mergedFeedback.filter((entry: CellFeedback) => entry.isCorrect).length,
+              feedback: mergedFeedback.map((entry: CellFeedback) => ({
+                cell: entry.cell,
+                isCorrect: entry.isCorrect,
+                message: entry.message,
+              })),
+              timestamp: new Date().toISOString(),
+            },
+            attemptNumber: attemptNumber + 1,
+            mode: SPREADSHEET_EVALUATOR_DEFAULT_MODE,
+          }),
+        );
     } catch (submitError) {
-      setError(submitError instanceof Error ? submitError.message : 'An unexpected error occurred');
+      setError(submitError instanceof Error ? submitError.message : "An unexpected error occurred");
     } finally {
       setIsSubmitting(false);
     }
-  }, [activity.id, activity.props.instructions, activity.props.templateId, attemptNumber, data, onSubmit, onComplete, targetCells, validateSpreadsheet]);
+  }, [
+    activity.id,
+    activity.props.instructions,
+    activity.props.templateId,
+    attemptNumber,
+    data,
+    onSubmit,
+    onComplete,
+    targetCells,
+    validateSpreadsheet,
+  ]);
 
   const handleRevise = useCallback(() => {
     submissionKeyRef.current = null;
@@ -496,31 +526,35 @@ export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: Spreads
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="space-y-2">
             <CardTitle className="flex flex-wrap items-center gap-3 text-2xl">
-              {activity.displayName || 'Spreadsheet Exercise'}
+              {activity.displayName || "Spreadsheet Exercise"}
               <Badge variant="outline" className="uppercase">
-                {SPREADSHEET_EVALUATOR_DEFAULT_MODE.replace('_', ' ')}
+                {SPREADSHEET_EVALUATOR_DEFAULT_MODE.replace("_", " ")}
               </Badge>
               {submitted ? (
-                <Badge variant={isComplete ? 'default' : 'destructive'}>
+                <Badge variant={isComplete ? "default" : "destructive"}>
                   {correctCount}/{totalCount} correct
                 </Badge>
               ) : (
-                <Badge variant="secondary">
-                  {targetCells.length} targets
-                </Badge>
+                <Badge variant="secondary">{targetCells.length} targets</Badge>
               )}
             </CardTitle>
             <CardDescription>{activity.description}</CardDescription>
           </div>
           <div className="flex flex-col items-end gap-2 text-xs text-muted-foreground">
-            {lastSaved && !isSaving ? <div>Last saved: {lastSaved.toLocaleTimeString()}</div> : null}
+            {lastSaved && !isSaving ? (
+              <div>Last saved: {lastSaved.toLocaleTimeString()}</div>
+            ) : null}
             {isSaving ? (
               <div className="flex items-center gap-1">
                 <Loader2 className="h-3 w-3 animate-spin" />
                 Saving...
               </div>
             ) : null}
-            {attemptNumber > 0 ? <div>Attempt {attemptNumber} of {maxAttempts}</div> : null}
+            {attemptNumber > 0 ? (
+              <div>
+                Attempt {attemptNumber} of {maxAttempts}
+              </div>
+            ) : null}
           </div>
         </div>
         <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
@@ -581,7 +615,9 @@ export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: Spreads
                     <div
                       key={entry.cell}
                       className={`flex items-start gap-2 rounded-md border p-3 text-sm ${
-                        entry.isCorrect ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'
+                        entry.isCorrect
+                          ? "border-green-200 bg-green-50"
+                          : "border-red-200 bg-red-50"
                       }`}
                     >
                       {entry.isCorrect ? (
@@ -589,7 +625,7 @@ export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: Spreads
                       ) : (
                         <XCircle className="mt-0.5 h-4 w-4 text-red-600" />
                       )}
-                      <span className={entry.isCorrect ? 'text-green-800' : 'text-red-800'}>
+                      <span className={entry.isCorrect ? "text-green-800" : "text-red-800"}>
                         {entry.message}
                       </span>
                     </div>
@@ -604,12 +640,16 @@ export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: Spreads
                   <h3 className="text-sm font-semibold text-purple-900 dark:text-purple-100">
                     AI Preliminary Feedback
                   </h3>
-                  <Badge variant="outline" className="text-purple-700 dark:text-purple-300 border-purple-300 dark:border-purple-700">
+                  <Badge
+                    variant="outline"
+                    className="text-purple-700 dark:text-purple-300 border-purple-300 dark:border-purple-700"
+                  >
                     Score: {aiFeedback.preliminaryScore}/40
                   </Badge>
                 </div>
                 <p className="text-xs text-purple-600 dark:text-purple-400">
-                  This is AI-generated preliminary feedback and not a final grade. Your teacher will review your work.
+                  This is AI-generated preliminary feedback and not a final grade. Your teacher will
+                  review your work.
                 </p>
 
                 {aiFeedback.strengths.length > 0 && (
@@ -657,7 +697,8 @@ export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: Spreads
               <Alert className="border-orange-200 bg-orange-50">
                 <AlertTitle className="text-orange-800">Awaiting Teacher Review</AlertTitle>
                 <AlertDescription className="text-orange-700">
-You have used all {maxAttempts} attempts. Your teacher will review your work and provide a final grade.
+                  You have used all {maxAttempts} attempts. Your teacher will review your work and
+                  provide a final grade.
                 </AlertDescription>
               </Alert>
             )}
@@ -676,11 +717,11 @@ You have used all {maxAttempts} attempts. Your teacher will review your work and
                   <div
                     key={target.cell}
                     className={`rounded-md border p-3 ${
-                      target.status === 'correct'
-                        ? 'border-green-200 bg-green-50'
-                        : target.status === 'incorrect'
-                          ? 'border-red-200 bg-red-50'
-                          : 'border-blue-200 bg-white'
+                      target.status === "correct"
+                        ? "border-green-200 bg-green-50"
+                        : target.status === "incorrect"
+                          ? "border-red-200 bg-red-50"
+                          : "border-blue-200 bg-white"
                     }`}
                   >
                     <div className="flex items-center justify-between gap-3">
@@ -689,12 +730,12 @@ You have used all {maxAttempts} attempts. Your teacher will review your work and
                         {target.status}
                       </Badge>
                     </div>
-                    {target.expectedValue !== undefined && <div className="mt-1 text-xs text-muted-foreground">
-                      Expected: {String(target.expectedValue)}
-                    </div>}
-                    <div className="mt-2 text-sm text-slate-700">
-                      {target.message}
-                    </div>
+                    {target.expectedValue !== undefined && (
+                      <div className="mt-1 text-xs text-muted-foreground">
+                        Expected: {String(target.expectedValue)}
+                      </div>
+                    )}
+                    <div className="mt-2 text-sm text-slate-700">{target.message}</div>
                   </div>
                 ))}
               </CardContent>
@@ -708,19 +749,19 @@ You have used all {maxAttempts} attempts. Your teacher will review your work and
                 <div className="flex items-center justify-between">
                   <span>Targets validated</span>
                   <span className="font-medium text-foreground">
-                    {submitted ? `${correctCount}/${totalCount}` : 'Not checked'}
+                    {submitted ? `${correctCount}/${totalCount}` : "Not checked"}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span>Draft status</span>
                   <span className="font-medium text-foreground">
-                    {hasUnsavedChanges ? 'Unsaved changes' : 'Saved'}
+                    {hasUnsavedChanges ? "Unsaved changes" : "Saved"}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span>Mode</span>
                   <span className="font-medium text-foreground">
-                    {SPREADSHEET_EVALUATOR_DEFAULT_MODE.replace('_', ' ')}
+                    {SPREADSHEET_EVALUATOR_DEFAULT_MODE.replace("_", " ")}
                   </span>
                 </div>
               </CardContent>
@@ -766,8 +807,10 @@ You have used all {maxAttempts} attempts. Your teacher will review your work and
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                         Checking...
                       </>
+                    ) : attemptNumber > 0 ? (
+                      "Resubmit"
                     ) : (
-                      attemptNumber > 0 ? 'Resubmit' : 'Check Answer'
+                      "Check Answer"
                     )}
                   </Button>
                 </>

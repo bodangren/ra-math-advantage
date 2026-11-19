@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 /**
  * Client-side composer shell for `/teacher/content-authoring`. Splits
@@ -17,12 +17,15 @@
  * the teacher can return to the composer.
  */
 
-import { useCallback } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { LessonComposer } from '@/components/teacher/content-authoring/LessonComposer';
-import { AuthoredLessonPreview, type AuthoredDraft } from '@/components/teacher/content-authoring/AuthoredLessonPreview';
-import type { TeacherFacingStatus } from '../../../convex/teacher/content_authoring';
+import { useCallback } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { LessonComposer } from "@/components/teacher/content-authoring/LessonComposer";
+import {
+  AuthoredLessonPreview,
+  type AuthoredDraft,
+} from "@/components/teacher/content-authoring/AuthoredLessonPreview";
+import type { TeacherFacingStatus } from "../../../convex/teacher/content_authoring";
 
 export interface ComposerSeed {
   lessonId: string;
@@ -40,17 +43,17 @@ interface ClientComposerProps {
 
 const NOOP = async () => ({
   success: true,
-  lessonId: 'noop',
-  lessonVersionId: 'noop',
+  lessonId: "noop",
+  lessonVersionId: "noop",
   activityIds: [],
-  idempotencyKey: 'noop',
+  idempotencyKey: "noop",
 });
 
 export function ClientComposer({ seed, preview }: ClientComposerProps) {
   const router = useRouter();
 
   const handlePreview = useCallback(() => {
-    router.push('/teacher/content-authoring?preview=1');
+    router.push("/teacher/content-authoring?preview=1");
   }, [router]);
 
   if (preview) {
@@ -66,10 +69,7 @@ export function ClientComposer({ seed, preview }: ClientComposerProps) {
             Back to editing
           </Link>
         </div>
-        <AuthoredLessonPreview
-          draft={seedDraft(seed)}
-          lessonId={seed.lessonId}
-        />
+        <AuthoredLessonPreview draft={seedDraft(seed)} lessonId={seed.lessonId} />
       </div>
     );
   }
@@ -94,11 +94,11 @@ export function ClientComposer({ seed, preview }: ClientComposerProps) {
 }
 
 function seedDraft(seed: ComposerSeed): AuthoredDraft {
-  if (seed.draft && typeof seed.draft === 'object') {
+  if (seed.draft && typeof seed.draft === "object") {
     return seed.draft as AuthoredDraft;
   }
   return {
-    title: 'Empty lesson',
+    title: "Empty lesson",
     phases: [],
   };
 }

@@ -21,19 +21,19 @@ export function shuffleArray<T>(array: T[]): T[] {
  * @returns A new shuffled array (does not mutate original)
  */
 export function seededShuffle<T>(array: T[], seed: string): T[] {
-  let hash = seed.split('').reduce((a, b) => {
-    const next = ((a << 5) - a + b.charCodeAt(0)) | 0
-    return next < 0 ? -next : next
-  }, 0)
+  let hash = seed.split("").reduce((a, b) => {
+    const next = ((a << 5) - a + b.charCodeAt(0)) | 0;
+    return next < 0 ? -next : next;
+  }, 0);
   const rng = () => {
-    hash = (hash * 9301 + 49297) % 233280
-    return hash / 233280
-  }
-  const shuffled = [...array]
+    hash = (hash * 9301 + 49297) % 233280;
+    return hash / 233280;
+  };
+  const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(rng() * (i + 1))
-    const safeJ = Math.max(0, Math.min(j, i))
-    ;[shuffled[i], shuffled[safeJ]] = [shuffled[safeJ], shuffled[i]]
+    const j = Math.floor(rng() * (i + 1));
+    const safeJ = Math.max(0, Math.min(j, i));
+    [shuffled[i], shuffled[safeJ]] = [shuffled[safeJ], shuffled[i]];
   }
-  return shuffled
+  return shuffled;
 }

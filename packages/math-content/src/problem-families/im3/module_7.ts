@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const MODULE7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Simplify Rational Expressions (HSA-APR.D.6)
@@ -56,7 +56,8 @@ export const MODULE7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "graphing-explorer:rational-functions",
     componentKey: "graphing-explorer",
     displayName: "Graph Rational Functions",
-    description: "Graph rational functions and identify vertical, horizontal, and oblique asymptotes",
+    description:
+      "Graph rational functions and identify vertical, horizontal, and oblique asymptotes",
     objectiveIds: ["HSF-IF.C.7d"],
     difficulty: "challenging",
     metadata: { module: 7, topic: "rational-functions", generatorKey: "rational-analyzer" },

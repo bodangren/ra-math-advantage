@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  useEffect,
-  useId,
-  useRef,
-  useState,
-  useSyncExternalStore,
-} from "react";
+import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { Users, FileText, CheckCircle2, AlertCircle } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -36,7 +30,6 @@ type Step = "input" | "review" | "submitting" | "success";
 const FOCUSABLE_SELECTORS =
   'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
-
 /**
  * Renders a bulk import dialog for creating multiple student accounts from
  * pasted names, with review step and credentials sheet output.
@@ -57,7 +50,7 @@ export function TeacherBulkImportDialog() {
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<BulkCreateResponse | null>(null);
   const [showCredentials, setShowCredentials] = useState(false);
-  
+
   const titleId = useId();
   const descriptionId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -97,7 +90,6 @@ export function TeacherBulkImportDialog() {
     };
   }, [isOpen]);
 
-
   /**
    * Closes the dialog and resets the form if not currently submitting.
    */
@@ -106,7 +98,6 @@ export function TeacherBulkImportDialog() {
     setIsOpen(false);
     resetForm();
   };
-
 
   /**
    * Resets all form state to initial values.
@@ -118,7 +109,6 @@ export function TeacherBulkImportDialog() {
     setError(null);
     setResult(null);
   };
-
 
   /**
    * Parses the input text into student names and generates username previews.
@@ -148,14 +138,15 @@ export function TeacherBulkImportDialog() {
     }
 
     const usernames = buildUsernamePreview(parsed);
-    setStudents(parsed.map((student, index) => ({
-      ...student,
-      username: usernames[index] ?? "student",
-    })));
+    setStudents(
+      parsed.map((student, index) => ({
+        ...student,
+        username: usernames[index] ?? "student",
+      })),
+    );
     setStep("review");
     setError(null);
   };
-
 
   /**
    * Submits the parsed student list to the bulk-create API endpoint.
@@ -190,7 +181,6 @@ export function TeacherBulkImportDialog() {
     }
   };
 
-
   /**
    * Updates a student's username at the given index and re-normalizes all usernames.
    *
@@ -204,10 +194,12 @@ export function TeacherBulkImportDialog() {
     }));
     const normalizedUsernames = buildUsernamePreview(updated);
 
-    setStudents(updated.map((student, studentIndex) => ({
-      ...student,
-      username: normalizedUsernames[studentIndex] ?? "student",
-    })));
+    setStudents(
+      updated.map((student, studentIndex) => ({
+        ...student,
+        username: normalizedUsernames[studentIndex] ?? "student",
+      })),
+    );
   };
 
   if (!isMounted) return null;
@@ -248,10 +240,13 @@ export function TeacherBulkImportDialog() {
                     {step === "success" ? "Import Successful" : "Bulk Import Students"}
                   </h2>
                   <p id={descriptionId} className="text-sm text-muted-foreground">
-                    {step === "input" && "Paste student names (one per line). Format: 'First Last' or 'First, Last'"}
-                    {step === "review" && "Review and customize usernames before creating accounts."}
+                    {step === "input" &&
+                      "Paste student names (one per line). Format: 'First Last' or 'First, Last'"}
+                    {step === "review" &&
+                      "Review and customize usernames before creating accounts."}
                     {step === "submitting" && "Creating student accounts and profiles..."}
-                    {step === "success" && `Successfully created ${result?.totalCreated} student accounts.`}
+                    {step === "success" &&
+                      `Successfully created ${result?.totalCreated} student accounts.`}
                   </p>
                 </div>
 
@@ -275,8 +270,12 @@ export function TeacherBulkImportDialog() {
                       </Alert>
                     )}
                     <div className="flex justify-end gap-2">
-                      <Button variant="ghost" onClick={closeDialog}>Cancel</Button>
-                      <Button onClick={handleParse} disabled={!inputText.trim()}>Next: Review</Button>
+                      <Button variant="ghost" onClick={closeDialog}>
+                        Cancel
+                      </Button>
+                      <Button onClick={handleParse} disabled={!inputText.trim()}>
+                        Next: Review
+                      </Button>
                     </div>
                   </div>
                 )}
@@ -284,7 +283,8 @@ export function TeacherBulkImportDialog() {
                 {step === "review" && (
                   <div className="space-y-4">
                     <p className="text-sm text-muted-foreground">
-                      Usernames are normalized before account creation. Existing roster conflicts may still add a numeric suffix.
+                      Usernames are normalized before account creation. Existing roster conflicts
+                      may still add a numeric suffix.
                     </p>
                     <div className="max-h-[300px] overflow-y-auto border rounded-md">
                       <table className="w-full text-sm">
@@ -297,7 +297,9 @@ export function TeacherBulkImportDialog() {
                         <tbody className="divide-y">
                           {students.map((student, index) => (
                             <tr key={index}>
-                              <td className="px-4 py-2">{student.firstName} {student.lastName}</td>
+                              <td className="px-4 py-2">
+                                {student.firstName} {student.lastName}
+                              </td>
                               <td className="px-4 py-2">
                                 <input
                                   type="text"
@@ -319,7 +321,13 @@ export function TeacherBulkImportDialog() {
                       </Alert>
                     )}
                     <div className="flex justify-end gap-2">
-                      <Button variant="ghost" onClick={() => setStep("input")} disabled={isSubmitting}>Back</Button>
+                      <Button
+                        variant="ghost"
+                        onClick={() => setStep("input")}
+                        disabled={isSubmitting}
+                      >
+                        Back
+                      </Button>
                       <Button onClick={handleSubmit} disabled={isSubmitting}>
                         {isSubmitting ? "Creating..." : `Create ${students.length} Accounts`}
                       </Button>
@@ -330,7 +338,9 @@ export function TeacherBulkImportDialog() {
                 {step === "submitting" && (
                   <div className="py-12 flex flex-col items-center justify-center space-y-4">
                     <div className="size-8 rounded-full border-4 border-primary border-t-transparent animate-spin" />
-                    <p className="text-sm text-muted-foreground animate-pulse">Processing batch...</p>
+                    <p className="text-sm text-muted-foreground animate-pulse">
+                      Processing batch...
+                    </p>
                   </div>
                 )}
 
@@ -347,14 +357,15 @@ export function TeacherBulkImportDialog() {
                         <span>Credentials Generated</span>
                       </div>
                       <p className="text-sm text-muted-foreground">
-                        The next step is to generate a printable credentials sheet for your students.
+                        The next step is to generate a printable credentials sheet for your
+                        students.
                       </p>
                     </div>
 
                     <div className="flex justify-end gap-2">
                       <Button onClick={closeDialog}>Close</Button>
-                      <Button 
-                        variant="default" 
+                      <Button
+                        variant="default"
                         className="bg-primary"
                         onClick={() => setShowCredentials(true)}
                       >
@@ -370,7 +381,7 @@ export function TeacherBulkImportDialog() {
         )}
 
       {showCredentials && result && (
-        <TeacherCredentialsSheet 
+        <TeacherCredentialsSheet
           students={result.students}
           onClose={() => setShowCredentials(false)}
         />

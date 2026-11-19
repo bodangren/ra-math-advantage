@@ -47,10 +47,7 @@ export async function refreshCalibrationReviewQueueHandler(
     return { flagged: 0 };
   }
 
-  const existingRows = await ctx.db
-    .query("edge_calibration")
-    .withIndex("by_edge")
-    .collect();
+  const existingRows = await ctx.db.query("edge_calibration").withIndex("by_edge").collect();
 
   const existingByEdge = new Map<string, EdgeCalibration>();
   for (const row of existingRows) {
@@ -95,20 +92,18 @@ export async function refreshCalibrationReviewQueueHandler(
     const hasConfoundingBreaker = [...verdicts.values()].some(
       (v) => v.b !== undefined && v.a === undefined,
     );
-    const hasPairedObs = [...verdicts.values()].some(
-      (v) => v.a !== undefined && v.b !== undefined,
-    );
+    const hasPairedObs = [...verdicts.values()].some((v) => v.a !== undefined && v.b !== undefined);
     if (hasConfoundingBreaker || !hasPairedObs) {
-      state = { ...state, status: 'untested' };
+      state = { ...state, status: "untested" };
     } else {
       const mean = posteriorMean(state.alpha, state.beta);
       const totalEvidence = state.alpha + state.beta;
       if (mean > 0.5 && totalEvidence > 2) {
-        state = { ...state, status: 'confirmed' };
+        state = { ...state, status: "confirmed" };
       } else if (mean < 0.5 && totalEvidence > 2) {
-        state = { ...state, status: 'refuted' };
+        state = { ...state, status: "refuted" };
       } else {
-        state = { ...state, status: 'untested' };
+        state = { ...state, status: "untested" };
       }
     }
 
@@ -197,10 +192,7 @@ export async function listCalibrationReviewQueueHandler(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _args: { courseKey: string },
 ) {
-  const rows = await ctx.db
-    .query("calibration_review_queue")
-    .withIndex("by_flagged_at")
-    .collect();
+  const rows = await ctx.db.query("calibration_review_queue").withIndex("by_flagged_at").collect();
 
   return rows;
 }

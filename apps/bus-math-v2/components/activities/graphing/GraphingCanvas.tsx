@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from "react";
 import {
   Point,
   GraphingCanvasProps,
@@ -8,10 +8,9 @@ import {
   transformCanvasToData,
   snapToGridValue,
   generateFunctionPath,
-} from '@/lib/activities/graphing/canvas-utils';
+} from "@/lib/activities/graphing/canvas-utils";
 
-export type { Point, FunctionPlot } from '@/lib/activities/graphing/canvas-utils';
-
+export type { Point, FunctionPlot } from "@/lib/activities/graphing/canvas-utils";
 
 /**
  * Interactive SVG coordinate plane for plotting functions and placing points.
@@ -53,7 +52,6 @@ export function GraphingCanvas({
     return () => resizeObserver.disconnect();
   }, []);
 
-
   /**
    * Handle a click on the SVG canvas to add a new point.
    *
@@ -91,7 +89,6 @@ export function GraphingCanvas({
     }
   };
 
-
   /**
    * Handle a click on an existing point to remove it.
    *
@@ -107,7 +104,6 @@ export function GraphingCanvas({
       onPointRemove(point.label);
     }
   };
-
 
   /**
    * Render horizontal and vertical grid lines across the canvas.
@@ -159,7 +155,6 @@ export function GraphingCanvas({
     return gridLines;
   };
 
-
   /**
    * Render the x-axis and y-axis lines through the origin.
    *
@@ -195,7 +190,6 @@ export function GraphingCanvas({
     );
   };
 
-
   /**
    * Render numeric tick labels along both axes.
    *
@@ -222,7 +216,7 @@ export function GraphingCanvas({
           y={canvasY + 20}
           textAnchor="middle"
           className="tick-label"
-          style={{ fontSize: '12px', fill: '#6b7280' }}
+          style={{ fontSize: "12px", fill: "#6b7280" }}
         >
           {x.toFixed(1)}
         </text>,
@@ -240,7 +234,7 @@ export function GraphingCanvas({
           y={canvasY + 5}
           textAnchor="end"
           className="tick-label"
-          style={{ fontSize: '12px', fill: '#6b7280' }}
+          style={{ fontSize: "12px", fill: "#6b7280" }}
         >
           {y.toFixed(1)}
         </text>,
@@ -249,7 +243,6 @@ export function GraphingCanvas({
 
     return labels;
   };
-
 
   /**
    * Render SVG path elements for each configured function expression.
@@ -275,7 +268,6 @@ export function GraphingCanvas({
     });
   };
 
-
   /**
    * Render interactive point markers on the canvas.
    *
@@ -286,31 +278,24 @@ export function GraphingCanvas({
     const { width: w, height: h } = canvasSize;
 
     return points.map((point, index) => {
-      const { canvasX, canvasY } = transformDataToCanvas(
-        point.x,
-        point.y,
-        domain,
-        range,
-        w,
-        h,
-      );
+      const { canvasX, canvasY } = transformDataToCanvas(point.x, point.y, domain, range, w, h);
 
-      const isVertex = point.type === 'vertex';
+      const isVertex = point.type === "vertex";
 
       return (
         <g
           key={`point-${index}`}
           onClick={(e) => handlePointClick(point, e)}
-          style={{ cursor: readonly ? 'default' : 'pointer' }}
+          style={{ cursor: readonly ? "default" : "pointer" }}
         >
           <circle
             cx={canvasX}
             cy={canvasY}
             r={isVertex ? 8 : 6}
-            fill={isVertex ? '#f59e0b' : '#3b82f6'}
+            fill={isVertex ? "#f59e0b" : "#3b82f6"}
             stroke="#ffffff"
             strokeWidth={2}
-            className={`point-marker ${point.type || ''}`}
+            className={`point-marker ${point.type || ""}`}
           />
           {point.label && (
             <text
@@ -318,7 +303,7 @@ export function GraphingCanvas({
               y={canvasY - 12}
               textAnchor="middle"
               className="point-label"
-              style={{ fontSize: '11px', fill: '#374151', fontWeight: '500' }}
+              style={{ fontSize: "11px", fill: "#374151", fontWeight: "500" }}
             >
               {`${point.x.toFixed(1)}, ${point.y.toFixed(1)}`}
             </text>
@@ -329,13 +314,13 @@ export function GraphingCanvas({
   };
 
   return (
-    <div style={{ width: '100%', maxWidth: '800px', margin: '0 auto' }}>
+    <div style={{ width: "100%", maxWidth: "800px", margin: "0 auto" }}>
       <svg
         ref={svgRef}
         width="100%"
         height="100%"
         viewBox={`0 0 ${canvasSize.width} ${canvasSize.height}`}
-        style={{ width: '100%', minHeight: '400px', backgroundColor: '#ffffff' }}
+        style={{ width: "100%", minHeight: "400px", backgroundColor: "#ffffff" }}
         onClick={handleClick}
         role="img"
         aria-label="Coordinate plane for graphing"

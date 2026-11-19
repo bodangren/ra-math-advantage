@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 
 /**
  * Phase 3 — Status-view adversarial tests.
@@ -26,90 +26,86 @@ import { describe, it, expect } from 'vitest';
  *    submitted / approved / published).
  */
 
-describe('Phase 3 adversarial: status labels are distinct', () => {
-  it('every teacherFacingStatus maps to a distinct, non-empty label', async () => {
-    const { getTeacherAuthoringStatusView } = await import(
-      '../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view'
-    );
+describe("Phase 3 adversarial: status labels are distinct", () => {
+  it("every teacherFacingStatus maps to a distinct, non-empty label", async () => {
+    const { getTeacherAuthoringStatusView } =
+      await import("../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view");
 
-    const states = ['draft', 'submitted', 'rejected', 'approved', 'published'] as const;
-    const labels = states.map((s) =>
-      getTeacherAuthoringStatusView({
-        teacherFacingStatus: s,
-        lessonId: 'lesson_x',
-        lessonVersionId: 'lv_x',
-      }).label,
+    const states = ["draft", "submitted", "rejected", "approved", "published"] as const;
+    const labels = states.map(
+      (s) =>
+        getTeacherAuthoringStatusView({
+          teacherFacingStatus: s,
+          lessonId: "lesson_x",
+          lessonVersionId: "lv_x",
+        }).label,
     );
 
     expect(new Set(labels).size).toBe(states.length);
     for (const l of labels) {
-      expect(typeof l).toBe('string');
+      expect(typeof l).toBe("string");
       expect(l.length).toBeGreaterThan(0);
     }
   });
 
-  it('every teacherFacingStatus view echoes the canonical teacherFacingStatus back', async () => {
-    const { getTeacherAuthoringStatusView } = await import(
-      '../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view'
-    );
+  it("every teacherFacingStatus view echoes the canonical teacherFacingStatus back", async () => {
+    const { getTeacherAuthoringStatusView } =
+      await import("../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view");
 
-    const states = ['draft', 'submitted', 'rejected', 'approved', 'published'] as const;
+    const states = ["draft", "submitted", "rejected", "approved", "published"] as const;
     for (const s of states) {
       const view = getTeacherAuthoringStatusView({
         teacherFacingStatus: s,
-        lessonId: 'l',
-        lessonVersionId: 'lv',
+        lessonId: "l",
+        lessonVersionId: "lv",
       });
       expect(view.teacherFacingStatus).toBe(s);
     }
   });
 });
 
-describe('Phase 3 adversarial: rejection comment surfacing', () => {
-  it('a rejected DTO surfaces the rejection comment verbatim', async () => {
-    const { getTeacherAuthoringStatusView } = await import(
-      '../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view'
-    );
+describe("Phase 3 adversarial: rejection comment surfacing", () => {
+  it("a rejected DTO surfaces the rejection comment verbatim", async () => {
+    const { getTeacherAuthoringStatusView } =
+      await import("../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view");
 
-    const comment = 'Fix equation on line 2 — see reviewer note #17';
+    const comment = "Fix equation on line 2 — see reviewer note #17";
     const view = getTeacherAuthoringStatusView({
-      teacherFacingStatus: 'rejected',
+      teacherFacingStatus: "rejected",
       rejectionComment: comment,
-      lessonId: 'l',
-      lessonVersionId: 'lv',
+      lessonId: "l",
+      lessonVersionId: "lv",
     });
 
-    expect(view.label).toBe('Rejected');
+    expect(view.label).toBe("Rejected");
     expect(view.rejectionComment).toBe(comment);
     expect(view.canEditAfterReject).toBe(true);
   });
 
-  it('a rejected DTO without rejectionComment has rejectionComment === undefined (not empty string)', async () => {
-    const { getTeacherAuthoringStatusView } = await import(
-      '../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view'
-    );
+  it("a rejected DTO without rejectionComment has rejectionComment === undefined (not empty string)", async () => {
+    const { getTeacherAuthoringStatusView } =
+      await import("../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view");
 
     const view = getTeacherAuthoringStatusView({
-      teacherFacingStatus: 'rejected',
-      lessonId: 'l',
-      lessonVersionId: 'lv',
+      teacherFacingStatus: "rejected",
+      lessonId: "l",
+      lessonVersionId: "lv",
     });
 
-    expect(view.label).toBe('Rejected');
+    expect(view.label).toBe("Rejected");
     expect(view.rejectionComment).toBeUndefined();
-    expect('rejectionComment' in view).toBe(false);
+    expect("rejectionComment" in view).toBe(false);
   });
 
   it('an empty-string rejectionComment is treated as no comment (not surfaced as "")', async () => {
-    const { getTeacherAuthoringStatusView } = await import(
-      '../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view'
-    );
+    const { getTeacherAuthoringStatusView } =
+      await import("../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view");
 
     const view = getTeacherAuthoringStatusView({
-      teacherFacingStatus: 'rejected',
-      rejectionComment: '',
-      lessonId: 'l',
-      lessonVersionId: 'lv',
+      teacherFacingStatus: "rejected",
+      rejectionComment: "",
+      lessonId: "l",
+      lessonVersionId: "lv",
     });
 
     // Empty rejection is a meaningful "no comment yet" signal that the
@@ -119,107 +115,101 @@ describe('Phase 3 adversarial: rejection comment surfacing', () => {
   });
 });
 
-describe('Phase 3 adversarial: edit-after-reject is only true for rejected', () => {
-  it('canEditAfterReject is true ONLY for the rejected status', async () => {
-    const { getTeacherAuthoringStatusView } = await import(
-      '../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view'
-    );
+describe("Phase 3 adversarial: edit-after-reject is only true for rejected", () => {
+  it("canEditAfterReject is true ONLY for the rejected status", async () => {
+    const { getTeacherAuthoringStatusView } =
+      await import("../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view");
 
     const states: Array<{
-      s: 'draft' | 'submitted' | 'rejected' | 'approved' | 'published';
+      s: "draft" | "submitted" | "rejected" | "approved" | "published";
       expected: boolean;
     }> = [
-      { s: 'draft', expected: false },
-      { s: 'submitted', expected: false },
-      { s: 'rejected', expected: true },
-      { s: 'approved', expected: false },
-      { s: 'published', expected: false },
+      { s: "draft", expected: false },
+      { s: "submitted", expected: false },
+      { s: "rejected", expected: true },
+      { s: "approved", expected: false },
+      { s: "published", expected: false },
     ];
 
     for (const { s, expected } of states) {
       const view = getTeacherAuthoringStatusView({
         teacherFacingStatus: s,
-        lessonId: 'l',
-        lessonVersionId: 'lv',
+        lessonId: "l",
+        lessonVersionId: "lv",
       });
       expect(view.canEditAfterReject).toBe(expected);
     }
   });
 });
 
-describe('Phase 3 adversarial: persisted vs teacher-facing naming', () => {
+describe("Phase 3 adversarial: persisted vs teacher-facing naming", () => {
   it('persisted status "review" (Phase 2 internal) THROWS — UI must not silently render it', async () => {
-    const { getTeacherAuthoringStatusView } = await import(
-      '../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view'
-    );
+    const { getTeacherAuthoringStatusView } =
+      await import("../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view");
 
     expect(() =>
       getTeacherAuthoringStatusView({
-        teacherFacingStatus: 'review' as unknown as 'submitted',
-        lessonId: 'l',
-        lessonVersionId: 'lv',
+        teacherFacingStatus: "review" as unknown as "submitted",
+        lessonId: "l",
+        lessonVersionId: "lv",
       }),
     ).toThrow();
   });
 
   it('persisted status "archived" (Phase 2 internal for needs_changes/rejected) THROWS', async () => {
-    const { getTeacherAuthoringStatusView } = await import(
-      '../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view'
-    );
+    const { getTeacherAuthoringStatusView } =
+      await import("../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view");
 
     expect(() =>
       getTeacherAuthoringStatusView({
-        teacherFacingStatus: 'archived' as unknown as 'rejected',
-        rejectionComment: 'needs changes',
-        lessonId: 'l',
-        lessonVersionId: 'lv',
+        teacherFacingStatus: "archived" as unknown as "rejected",
+        rejectionComment: "needs changes",
+        lessonId: "l",
+        lessonVersionId: "lv",
       }),
     ).toThrow();
   });
 
   it('an unknown status string (e.g. "drafty") THROWS — no default cast to success', async () => {
-    const { getTeacherAuthoringStatusView } = await import(
-      '../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view'
-    );
+    const { getTeacherAuthoringStatusView } =
+      await import("../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view");
 
     expect(() =>
       getTeacherAuthoringStatusView({
-        teacherFacingStatus: 'drafty' as unknown as 'draft',
-        lessonId: 'l',
-        lessonVersionId: 'lv',
+        teacherFacingStatus: "drafty" as unknown as "draft",
+        lessonId: "l",
+        lessonVersionId: "lv",
       }),
     ).toThrow();
   });
 
-  it('a non-string teacherFacingStatus (null / undefined / number) THROWS', async () => {
-    const { getTeacherAuthoringStatusView } = await import(
-      '../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view'
-    );
+  it("a non-string teacherFacingStatus (null / undefined / number) THROWS", async () => {
+    const { getTeacherAuthoringStatusView } =
+      await import("../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view");
 
     const fixtures: unknown[] = [null, undefined, 42, {}, []];
     for (const fixture of fixtures) {
       expect(() =>
         getTeacherAuthoringStatusView({
           teacherFacingStatus: fixture as never,
-          lessonId: 'l',
-          lessonVersionId: 'lv',
+          lessonId: "l",
+          lessonVersionId: "lv",
         }),
       ).toThrow();
     }
   });
 });
 
-describe('Phase 3 adversarial: action availability matches spec', () => {
-  it('submitted/approved/published are read-only and cannot be saved or submitted', async () => {
-    const { getTeacherAuthoringStatusView } = await import(
-      '../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view'
-    );
+describe("Phase 3 adversarial: action availability matches spec", () => {
+  it("submitted/approved/published are read-only and cannot be saved or submitted", async () => {
+    const { getTeacherAuthoringStatusView } =
+      await import("../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view");
 
-    for (const s of ['submitted', 'approved', 'published'] as const) {
+    for (const s of ["submitted", "approved", "published"] as const) {
       const view = getTeacherAuthoringStatusView({
         teacherFacingStatus: s,
-        lessonId: 'l',
-        lessonVersionId: 'lv',
+        lessonId: "l",
+        lessonVersionId: "lv",
       });
       expect(view.canSave).toBe(false);
       expect(view.canSubmit).toBe(false);
@@ -228,44 +218,42 @@ describe('Phase 3 adversarial: action availability matches spec', () => {
     }
   });
 
-  it('only approved and published are publish-ready', async () => {
-    const { getTeacherAuthoringStatusView } = await import(
-      '../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view'
-    );
+  it("only approved and published are publish-ready", async () => {
+    const { getTeacherAuthoringStatusView } =
+      await import("../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view");
 
     const states: Array<{
-      s: 'draft' | 'submitted' | 'rejected' | 'approved' | 'published';
+      s: "draft" | "submitted" | "rejected" | "approved" | "published";
       expected: boolean;
     }> = [
-      { s: 'draft', expected: false },
-      { s: 'submitted', expected: false },
-      { s: 'rejected', expected: false },
-      { s: 'approved', expected: true },
-      { s: 'published', expected: true },
+      { s: "draft", expected: false },
+      { s: "submitted", expected: false },
+      { s: "rejected", expected: false },
+      { s: "approved", expected: true },
+      { s: "published", expected: true },
     ];
 
     for (const { s, expected } of states) {
       const view = getTeacherAuthoringStatusView({
         teacherFacingStatus: s,
-        lessonId: 'l',
-        lessonVersionId: 'lv',
+        lessonId: "l",
+        lessonVersionId: "lv",
       });
       expect(view.isPublishReady).toBe(expected);
     }
   });
 
-  it('draft is the only status that allows save+submit together', async () => {
-    const { getTeacherAuthoringStatusView } = await import(
-      '../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view'
-    );
+  it("draft is the only status that allows save+submit together", async () => {
+    const { getTeacherAuthoringStatusView } =
+      await import("../../../../lib/teacher/content-authoring/get-teacher-authoring-status-view");
 
-    const states = ['draft', 'submitted', 'rejected', 'approved', 'published'] as const;
+    const states = ["draft", "submitted", "rejected", "approved", "published"] as const;
     let saveAndSubmitCount = 0;
     for (const s of states) {
       const view = getTeacherAuthoringStatusView({
         teacherFacingStatus: s,
-        lessonId: 'l',
-        lessonVersionId: 'lv',
+        lessonId: "l",
+        lessonVersionId: "lv",
       });
       if (view.canSave && view.canSubmit) saveAndSubmitCount += 1;
     }

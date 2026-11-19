@@ -1,27 +1,26 @@
-import { describe, it, expect, vi } from 'vitest';
-import {
-  processReviewHandler,
-  type ProcessReviewArgs,
-} from '@/convex/srs/processReview';
-import type { Id } from '@/convex/_generated/dataModel';
+import { describe, it, expect, vi } from "vitest";
+import { processReviewHandler, type ProcessReviewArgs } from "@/convex/srs/processReview";
+import type { Id } from "@/convex/_generated/dataModel";
 
-function makeMockCtx(overrides: {
-  existingCard?: {
-    _id: Id<'srs_cards'>;
-    studentId: Id<'profiles'>;
-    stability: number;
-    difficulty: number;
-    state: 'new' | 'learning' | 'review' | 'relearning';
-    reps: number;
-    lapses: number;
-    createdAt: number;
-  } | null;
-  insertId?: Id<'srs_review_log'>;
-} = {}) {
+function makeMockCtx(
+  overrides: {
+    existingCard?: {
+      _id: Id<"srs_cards">;
+      studentId: Id<"profiles">;
+      stability: number;
+      difficulty: number;
+      state: "new" | "learning" | "review" | "relearning";
+      reps: number;
+      lapses: number;
+      createdAt: number;
+    } | null;
+    insertId?: Id<"srs_review_log">;
+  } = {},
+) {
   const { existingCard, insertId } = overrides;
 
   const mockReplace = vi.fn().mockResolvedValue(undefined);
-  const mockInsert = vi.fn().mockResolvedValue(insertId ?? ('log-123' as Id<'srs_review_log'>));
+  const mockInsert = vi.fn().mockResolvedValue(insertId ?? ("log-123" as Id<"srs_review_log">));
 
   const mockQuery = {
     withIndex: vi.fn().mockReturnValue({
@@ -44,47 +43,47 @@ function makeMockCtx(overrides: {
 function makeArgs(overrides: Partial<ProcessReviewArgs> = {}): ProcessReviewArgs {
   return {
     cardState: {
-      cardId: 'card-1',
-      studentId: 'student-1' as Id<'profiles'>,
-      objectiveId: 'obj-1',
-      variantKey: 'family-1',
+      cardId: "card-1",
+      studentId: "student-1" as Id<"profiles">,
+      objectiveId: "obj-1",
+      variantKey: "family-1",
       stability: 3.5,
       difficulty: 0,
-      state: 'review',
-      dueDate: '2026-04-17T00:00:00.000Z',
+      state: "review",
+      dueDate: "2026-04-17T00:00:00.000Z",
       elapsedDays: 1,
       scheduledDays: 1,
       reps: 4,
       lapses: 0,
-      lastReview: '2026-04-16T00:00:00.000Z',
-      createdAt: '2026-04-15T00:00:00.000Z',
-      updatedAt: '2026-04-16T12:00:00.000Z',
+      lastReview: "2026-04-16T00:00:00.000Z",
+      createdAt: "2026-04-15T00:00:00.000Z",
+      updatedAt: "2026-04-16T12:00:00.000Z",
       ...overrides.cardState,
     },
     reviewEntry: {
-      reviewId: 'rev-1',
-      cardId: 'card-1',
-      studentId: 'student-1' as Id<'profiles'>,
-      rating: 'Good',
-      submissionId: 'sub-1',
-      evidence: { baseRating: 'Good', timingAdjusted: false, reasons: ['correct'] },
-      stateBefore: { stability: 2.5, difficulty: 0, state: 'review', reps: 3, lapses: 0 },
-      stateAfter: { stability: 3.5, difficulty: 0, state: 'review', reps: 4, lapses: 0 },
-      paramsVersion: 'fsrs-defaults.ts-fsrs.v5.4.1',
-      reviewedAt: '2026-04-16T12:00:00.000Z',
+      reviewId: "rev-1",
+      cardId: "card-1",
+      studentId: "student-1" as Id<"profiles">,
+      rating: "Good",
+      submissionId: "sub-1",
+      evidence: { baseRating: "Good", timingAdjusted: false, reasons: ["correct"] },
+      stateBefore: { stability: 2.5, difficulty: 0, state: "review", reps: 3, lapses: 0 },
+      stateAfter: { stability: 3.5, difficulty: 0, state: "review", reps: 4, lapses: 0 },
+      paramsVersion: "fsrs-defaults.ts-fsrs.v5.4.1",
+      reviewedAt: "2026-04-16T12:00:00.000Z",
       ...overrides.reviewEntry,
     },
   };
 }
 
-describe('processReviewHandler', () => {
-  it('should update existing card and insert review log atomically', async () => {
+describe("processReviewHandler", () => {
+  it("should update existing card and insert review log atomically", async () => {
     const existingCard = {
-      _id: 'card-doc-1' as Id<'srs_cards'>,
-      studentId: 'student-1' as Id<'profiles'>,
+      _id: "card-doc-1" as Id<"srs_cards">,
+      studentId: "student-1" as Id<"profiles">,
       stability: 2.5,
       difficulty: 0,
-      state: 'review' as const,
+      state: "review" as const,
       reps: 3,
       lapses: 0,
       createdAt: 1713139200000,
@@ -92,55 +91,69 @@ describe('processReviewHandler', () => {
     const { db, mockReplace, mockInsert } = makeMockCtx({ existingCard });
     const args = makeArgs();
 
-    const result = await processReviewHandler({ db } as unknown as import('@/convex/_generated/server').MutationCtx, args);
+    const result = await processReviewHandler(
+      { db } as unknown as import("@/convex/_generated/server").MutationCtx,
+      args,
+    );
 
     expect(mockReplace).toHaveBeenCalledTimes(1);
-    expect(mockReplace).toHaveBeenCalledWith(existingCard._id, expect.objectContaining({
-      studentId: existingCard.studentId,
-      variantKey: args.cardState.variantKey,
-      stability: args.cardState.stability,
-      difficulty: args.cardState.difficulty,
-      state: args.cardState.state,
-      dueDate: args.cardState.dueDate,
-      elapsedDays: args.cardState.elapsedDays,
-      scheduledDays: args.cardState.scheduledDays,
-      reps: args.cardState.reps,
-      lapses: args.cardState.lapses,
-      lastReview: args.cardState.lastReview,
-      createdAt: existingCard.createdAt,
-      updatedAt: new Date(args.cardState.updatedAt).getTime(),
-    }));
+    expect(mockReplace).toHaveBeenCalledWith(
+      existingCard._id,
+      expect.objectContaining({
+        studentId: existingCard.studentId,
+        variantKey: args.cardState.variantKey,
+        stability: args.cardState.stability,
+        difficulty: args.cardState.difficulty,
+        state: args.cardState.state,
+        dueDate: args.cardState.dueDate,
+        elapsedDays: args.cardState.elapsedDays,
+        scheduledDays: args.cardState.scheduledDays,
+        reps: args.cardState.reps,
+        lapses: args.cardState.lapses,
+        lastReview: args.cardState.lastReview,
+        createdAt: existingCard.createdAt,
+        updatedAt: new Date(args.cardState.updatedAt).getTime(),
+      }),
+    );
 
     expect(mockInsert).toHaveBeenCalledTimes(1);
-    expect(mockInsert).toHaveBeenCalledWith('srs_review_log', expect.objectContaining({
-      cardId: existingCard._id,
-      studentId: args.reviewEntry.studentId,
-      rating: args.reviewEntry.rating,
-      submissionId: args.reviewEntry.submissionId,
-      evidence: args.reviewEntry.evidence,
-      stateBefore: args.reviewEntry.stateBefore,
-      stateAfter: args.reviewEntry.stateAfter,
-      paramsVersion: args.reviewEntry.paramsVersion,
-      reviewedAt: new Date(args.reviewEntry.reviewedAt).getTime(),
-    }));
+    expect(mockInsert).toHaveBeenCalledWith(
+      "srs_review_log",
+      expect.objectContaining({
+        cardId: existingCard._id,
+        studentId: args.reviewEntry.studentId,
+        rating: args.reviewEntry.rating,
+        submissionId: args.reviewEntry.submissionId,
+        evidence: args.reviewEntry.evidence,
+        stateBefore: args.reviewEntry.stateBefore,
+        stateAfter: args.reviewEntry.stateAfter,
+        paramsVersion: args.reviewEntry.paramsVersion,
+        reviewedAt: new Date(args.reviewEntry.reviewedAt).getTime(),
+      }),
+    );
 
     expect(result).toEqual({
       cardId: existingCard._id as string,
-      logEntryId: 'log-123',
+      logEntryId: "log-123",
     });
   });
 
-  it('should insert new card when no existing card is found', async () => {
-    const { db, mockReplace, mockInsert } = makeMockCtx({ insertId: 'log-456' as Id<'srs_review_log'> });
+  it("should insert new card when no existing card is found", async () => {
+    const { db, mockReplace, mockInsert } = makeMockCtx({
+      insertId: "log-456" as Id<"srs_review_log">,
+    });
     const args = makeArgs();
 
-    const result = await processReviewHandler({ db } as unknown as import('@/convex/_generated/server').MutationCtx, args);
+    const result = await processReviewHandler(
+      { db } as unknown as import("@/convex/_generated/server").MutationCtx,
+      args,
+    );
 
     expect(mockReplace).not.toHaveBeenCalled();
     expect(mockInsert).toHaveBeenCalledTimes(2);
 
     const cardInsertCall = mockInsert.mock.calls[0];
-    expect(cardInsertCall[0]).toBe('srs_cards');
+    expect(cardInsertCall[0]).toBe("srs_cards");
     expect(cardInsertCall[1]).toMatchObject({
       studentId: args.cardState.studentId,
       variantKey: args.cardState.variantKey,
@@ -150,49 +163,57 @@ describe('processReviewHandler', () => {
     });
 
     const logInsertCall = mockInsert.mock.calls[1];
-    expect(logInsertCall[0]).toBe('srs_review_log');
+    expect(logInsertCall[0]).toBe("srs_review_log");
 
-    expect(result.cardId).toBe(cardInsertCall[1]._id ?? 'log-456');
-    expect(result.logEntryId).toBe('log-456');
+    expect(result.cardId).toBe(cardInsertCall[1]._id ?? "log-456");
+    expect(result.logEntryId).toBe("log-456");
   });
 
-  it('should propagate error and not insert log if card update fails', async () => {
+  it("should propagate error and not insert log if card update fails", async () => {
     const existingCard = {
-      _id: 'card-doc-1' as Id<'srs_cards'>,
-      studentId: 'student-1' as Id<'profiles'>,
+      _id: "card-doc-1" as Id<"srs_cards">,
+      studentId: "student-1" as Id<"profiles">,
       stability: 2.5,
       difficulty: 0,
-      state: 'review' as const,
+      state: "review" as const,
       reps: 3,
       lapses: 0,
       createdAt: 1713139200000,
     };
     const { db, mockReplace, mockInsert } = makeMockCtx({ existingCard });
-    mockReplace.mockRejectedValue(new Error('Replace failed'));
+    mockReplace.mockRejectedValue(new Error("Replace failed"));
     const args = makeArgs();
 
-    await expect(processReviewHandler({ db } as unknown as import('@/convex/_generated/server').MutationCtx, args)).rejects.toThrow('Replace failed');
+    await expect(
+      processReviewHandler(
+        { db } as unknown as import("@/convex/_generated/server").MutationCtx,
+        args,
+      ),
+    ).rejects.toThrow("Replace failed");
     expect(mockInsert).not.toHaveBeenCalled();
   });
 
-  it('should handle sequential reviews by updating card state each time', async () => {
+  it("should handle sequential reviews by updating card state each time", async () => {
     const existingCard = {
-      _id: 'card-doc-1' as Id<'srs_cards'>,
-      studentId: 'student-1' as Id<'profiles'>,
+      _id: "card-doc-1" as Id<"srs_cards">,
+      studentId: "student-1" as Id<"profiles">,
       stability: 2.5,
       difficulty: 0,
-      state: 'review' as const,
+      state: "review" as const,
       reps: 3,
       lapses: 0,
       createdAt: 1713139200000,
     };
-    const ctx1 = makeMockCtx({ existingCard, insertId: 'log-1' as Id<'srs_review_log'> });
-    const ctx2 = makeMockCtx({ existingCard, insertId: 'log-2' as Id<'srs_review_log'> });
+    const ctx1 = makeMockCtx({ existingCard, insertId: "log-1" as Id<"srs_review_log"> });
+    const ctx2 = makeMockCtx({ existingCard, insertId: "log-2" as Id<"srs_review_log"> });
 
     const args1 = makeArgs({
       cardState: { ...makeArgs().cardState, reps: 4, stability: 3.5 },
     });
-    await processReviewHandler({ db: ctx1.db } as unknown as import('@/convex/_generated/server').MutationCtx, args1);
+    await processReviewHandler(
+      { db: ctx1.db } as unknown as import("@/convex/_generated/server").MutationCtx,
+      args1,
+    );
 
     const args2 = makeArgs({
       cardState: { ...makeArgs().cardState, reps: 4, stability: 4.5 },
@@ -201,7 +222,10 @@ describe('processReviewHandler', () => {
         stateAfter: { ...makeArgs().reviewEntry.stateAfter, stability: 4.5 },
       },
     });
-    await processReviewHandler({ db: ctx2.db } as unknown as import('@/convex/_generated/server').MutationCtx, args2);
+    await processReviewHandler(
+      { db: ctx2.db } as unknown as import("@/convex/_generated/server").MutationCtx,
+      args2,
+    );
 
     expect(ctx1.mockReplace).toHaveBeenCalledWith(
       existingCard._id,
@@ -213,44 +237,50 @@ describe('processReviewHandler', () => {
     );
   });
 
-  it('should throw error when cardState.studentId does not match reviewEntry.studentId', async () => {
+  it("should throw error when cardState.studentId does not match reviewEntry.studentId", async () => {
     const { db } = makeMockCtx();
     const baseArgs = makeArgs();
     const args = makeArgs({
       reviewEntry: {
         ...baseArgs.reviewEntry,
-        studentId: 'student-2' as Id<'profiles'>,
+        studentId: "student-2" as Id<"profiles">,
       },
     });
 
     await expect(
-      processReviewHandler({ db } as unknown as import('@/convex/_generated/server').MutationCtx, args),
-    ).rejects.toThrow('studentId mismatch');
+      processReviewHandler(
+        { db } as unknown as import("@/convex/_generated/server").MutationCtx,
+        args,
+      ),
+    ).rejects.toThrow("studentId mismatch");
   });
 
-  it('rejects a blank parameter-version stamp before any card write', async () => {
+  it("rejects a blank parameter-version stamp before any card write", async () => {
     const { db, mockReplace, mockInsert } = makeMockCtx();
     const args = makeArgs({
       reviewEntry: {
         ...makeArgs().reviewEntry,
-        paramsVersion: '',
+        paramsVersion: "",
       },
     });
 
     await expect(
-      processReviewHandler({ db } as unknown as import('@/convex/_generated/server').MutationCtx, args),
+      processReviewHandler(
+        { db } as unknown as import("@/convex/_generated/server").MutationCtx,
+        args,
+      ),
     ).rejects.toThrow(/paramsVersion/);
     expect(mockReplace).not.toHaveBeenCalled();
     expect(mockInsert).not.toHaveBeenCalled();
   });
 
-  it('rejects a learner review whose stateBefore is stale before any write', async () => {
+  it("rejects a learner review whose stateBefore is stale before any write", async () => {
     const existingCard = {
-      _id: 'card-doc-1' as Id<'srs_cards'>,
-      studentId: 'student-1' as Id<'profiles'>,
+      _id: "card-doc-1" as Id<"srs_cards">,
+      studentId: "student-1" as Id<"profiles">,
       stability: 9,
       difficulty: 0,
-      state: 'review' as const,
+      state: "review" as const,
       reps: 3,
       lapses: 0,
       createdAt: 1713139200000,
@@ -259,7 +289,7 @@ describe('processReviewHandler', () => {
 
     await expect(
       processReviewHandler(
-        { db } as unknown as import('@/convex/_generated/server').MutationCtx,
+        { db } as unknown as import("@/convex/_generated/server").MutationCtx,
         makeArgs(),
       ),
     ).rejects.toThrow(/stale SRS review/);
@@ -267,7 +297,7 @@ describe('processReviewHandler', () => {
     expect(mockInsert).not.toHaveBeenCalled();
   });
 
-  it('rejects a card state that does not exactly match stateAfter on a new-card path', async () => {
+  it("rejects a card state that does not exactly match stateAfter on a new-card path", async () => {
     const { db, mockReplace, mockInsert } = makeMockCtx();
     const args = makeArgs({
       cardState: { ...makeArgs().cardState, stability: 99 },
@@ -275,7 +305,7 @@ describe('processReviewHandler', () => {
 
     await expect(
       processReviewHandler(
-        { db } as unknown as import('@/convex/_generated/server').MutationCtx,
+        { db } as unknown as import("@/convex/_generated/server").MutationCtx,
         args,
       ),
     ).rejects.toThrow(/cardState.*stateAfter/);
@@ -283,13 +313,13 @@ describe('processReviewHandler', () => {
     expect(mockInsert).not.toHaveBeenCalled();
   });
 
-  it('allows an unstamped administrative reset without claiming FSRS provenance', async () => {
+  it("allows an unstamped administrative reset without claiming FSRS provenance", async () => {
     const existingCard = {
-      _id: 'card-doc-1' as Id<'srs_cards'>,
-      studentId: 'student-1' as Id<'profiles'>,
+      _id: "card-doc-1" as Id<"srs_cards">,
+      studentId: "student-1" as Id<"profiles">,
       stability: 9,
       difficulty: 7,
-      state: 'review' as const,
+      state: "review" as const,
       reps: 12,
       lapses: 3,
       createdAt: 1713139200000,
@@ -301,24 +331,24 @@ describe('processReviewHandler', () => {
         ...base.cardState,
         stability: 0,
         difficulty: 0,
-        state: 'new',
+        state: "new",
         reps: 0,
         lapses: 0,
       },
       reviewEntry: {
         ...base.reviewEntry,
-        evidence: { action: 'teacher_reset', objectiveId: 'obj-1' },
-        stateBefore: { stability: 9, difficulty: 7, state: 'review', reps: 12, lapses: 3 },
-        stateAfter: { stability: 0, difficulty: 0, state: 'new', reps: 0, lapses: 0 },
+        evidence: { action: "teacher_reset", objectiveId: "obj-1" },
+        stateBefore: { stability: 9, difficulty: 7, state: "review", reps: 12, lapses: 3 },
+        stateAfter: { stability: 0, difficulty: 0, state: "new", reps: 0, lapses: 0 },
         paramsVersion: undefined,
       },
     });
 
     await processReviewHandler(
-      { db } as unknown as import('@/convex/_generated/server').MutationCtx,
+      { db } as unknown as import("@/convex/_generated/server").MutationCtx,
       args,
     );
 
-    expect(mockInsert.mock.calls[0]?.[1]).not.toHaveProperty('paramsVersion');
+    expect(mockInsert.mock.calls[0]?.[1]).not.toHaveProperty("paramsVersion");
   });
 });

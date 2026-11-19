@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -171,10 +171,19 @@ export const seedLesson7_3 = internalMutation({
                 equation: "1/(2x - 5) + 2",
                 steps: [
                   { expression: "2x - 5 = 0", explanation: "Set the denominator equal to 0" },
-                  { expression: "x = 5/2", explanation: "Find the vertical asymptote (excluded value)" },
-                  { expression: "x-intercept: 0 = 1/(2x - 5) + 2, solve for x", explanation: "Find the x-intercept by solving g(x) = 0" },
+                  {
+                    expression: "x = 5/2",
+                    explanation: "Find the vertical asymptote (excluded value)",
+                  },
+                  {
+                    expression: "x-intercept: 0 = 1/(2x - 5) + 2, solve for x",
+                    explanation: "Find the x-intercept by solving g(x) = 0",
+                  },
                   { expression: "x = 2.25", explanation: "Calculate the x-intercept" },
-                  { expression: "y-intercept: g(0) = 1/(-5) + 2 = 1.8", explanation: "Find the y-intercept by substituting x = 0" },
+                  {
+                    expression: "y-intercept: g(0) = 1/(-5) + 2 = 1.8",
+                    explanation: "Find the y-intercept by substituting x = 0",
+                  },
                 ],
               },
             },
@@ -205,10 +214,22 @@ export const seedLesson7_3 = internalMutation({
                 equation: "110/R",
                 steps: [
                   { expression: "I = 110/R", explanation: "Set up the function from Ohm's law" },
-                  { expression: "vertical asymptote: R = 0", explanation: "Identify the excluded value" },
-                  { expression: "horizontal asymptote: I = 0", explanation: "Identify the end behavior asymptote" },
-                  { expression: "domain: {R | R != 0}", explanation: "State the domain excluding the asymptote" },
-                  { expression: "range: {I | I != 0}", explanation: "State the range excluding the asymptote" },
+                  {
+                    expression: "vertical asymptote: R = 0",
+                    explanation: "Identify the excluded value",
+                  },
+                  {
+                    expression: "horizontal asymptote: I = 0",
+                    explanation: "Identify the end behavior asymptote",
+                  },
+                  {
+                    expression: "domain: {R | R != 0}",
+                    explanation: "State the domain excluding the asymptote",
+                  },
+                  {
+                    expression: "range: {I | I != 0}",
+                    explanation: "State the range excluding the asymptote",
+                  },
                 ],
               },
             },
@@ -242,7 +263,8 @@ export const seedLesson7_3 = internalMutation({
                     correctIndex: 0,
                   },
                   {
-                    question: "What type of graph does the parent reciprocal function f(x) = 1/x produce?",
+                    question:
+                      "What type of graph does the parent reciprocal function f(x) = 1/x produce?",
                     options: ["Parabola", "Hyperbola", "Line"],
                     correctIndex: 1,
                   },
@@ -291,11 +313,26 @@ export const seedLesson7_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "-4/(x + 1) - 2",
                 steps: [
-                  { expression: "a = -4, h = -1, k = -2", explanation: "Identify transformation parameters" },
-                  { expression: "vertical asymptote: x = -1", explanation: "h determines the vertical asymptote" },
-                  { expression: "horizontal asymptote: y = -2", explanation: "k determines the horizontal asymptote" },
-                  { expression: "domain: {x | x != -1}", explanation: "Domain excludes the vertical asymptote" },
-                  { expression: "range: {g(x) | g(x) != -2}", explanation: "Range excludes the horizontal asymptote" },
+                  {
+                    expression: "a = -4, h = -1, k = -2",
+                    explanation: "Identify transformation parameters",
+                  },
+                  {
+                    expression: "vertical asymptote: x = -1",
+                    explanation: "h determines the vertical asymptote",
+                  },
+                  {
+                    expression: "horizontal asymptote: y = -2",
+                    explanation: "k determines the horizontal asymptote",
+                  },
+                  {
+                    expression: "domain: {x | x != -1}",
+                    explanation: "Domain excludes the vertical asymptote",
+                  },
+                  {
+                    expression: "range: {g(x) | g(x) != -2}",
+                    explanation: "Range excludes the horizontal asymptote",
+                  },
                 ],
               },
             },
@@ -325,8 +362,14 @@ export const seedLesson7_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "g(x) = 5/(x + 4) - 2",
                 steps: [
-                  { expression: "h = -4, k = -2 from asymptotes", explanation: "Identify h and k from the asymptotes" },
-                  { expression: "3 = a/((-3) - (-4)) - 2", explanation: "Substitute the point (-3, 3) into the general form" },
+                  {
+                    expression: "h = -4, k = -2 from asymptotes",
+                    explanation: "Identify h and k from the asymptotes",
+                  },
+                  {
+                    expression: "3 = a/((-3) - (-4)) - 2",
+                    explanation: "Substitute the point (-3, 3) into the general form",
+                  },
                   { expression: "3 = a - 2", explanation: "Simplify the equation" },
                   { expression: "a = 5", explanation: "Solve for a" },
                   { expression: "g(x) = 5/(x + 4) - 2", explanation: "Write the final function" },
@@ -361,7 +404,7 @@ export const seedLesson7_3 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

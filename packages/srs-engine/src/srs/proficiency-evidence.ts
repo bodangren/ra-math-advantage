@@ -2,13 +2,13 @@ import {
   PROFICIENCY_EVIDENCE_POLICY_VERSION,
   practiceVariantEvidenceInputSchema,
   practiceVariantEvidenceResultSchema,
-} from './proficiency-evidence-contract';
+} from "./proficiency-evidence-contract";
 
 import type {
   PracticeAttemptEvidence,
   PracticeVariantEvidenceInputV31,
   PracticeVariantEvidenceResultV31,
-} from './proficiency-evidence-contract';
+} from "./proficiency-evidence-contract";
 
 export {
   PROFICIENCY_EVIDENCE_POLICY_VERSION,
@@ -17,7 +17,7 @@ export {
   practiceAttemptEvidenceSchema,
   practiceVariantEvidenceInputSchema,
   practiceVariantEvidenceResultSchema,
-} from './proficiency-evidence-contract';
+} from "./proficiency-evidence-contract";
 
 export type {
   GuessFloorRef,
@@ -25,7 +25,7 @@ export type {
   PracticeVariantEvidenceInputV31,
   PracticeVariantEvidenceResultV31,
   EvidenceDiagnosticReason,
-} from './proficiency-evidence-contract';
+} from "./proficiency-evidence-contract";
 
 /** The v3.1 evidence policy decays attempt weight by half every ten attempts. */
 export const PROFICIENCY_EVIDENCE_HALF_LIFE = 10;
@@ -37,7 +37,7 @@ export const ONE_SIDED_WILSON_Z = 1.645;
 export interface EvidenceTimingContext {
   baselineSampleCount: number;
   timingReliable: boolean;
-  fluencyConfidence: 'none' | 'low' | 'medium' | 'high';
+  fluencyConfidence: "none" | "low" | "medium" | "high";
 }
 
 /** Recency-weighted correctness statistics before conservative correction. */
@@ -50,10 +50,7 @@ export interface RecencyWeightedCorrectness {
  * A readonly-compatible input surface for callers that construct evidence with
  * `as const`. Runtime parsing still enforces the canonical strict contract.
  */
-export type PracticeVariantEvidenceInput = Omit<
-  PracticeVariantEvidenceInputV31,
-  'attempts'
-> & {
+export type PracticeVariantEvidenceInput = Omit<PracticeVariantEvidenceInputV31, "attempts"> & {
   readonly attempts: readonly PracticeAttemptEvidence[];
 };
 
@@ -104,25 +101,26 @@ export function oneSidedWilsonLowerBound(
     return 0;
   }
   if (
-    !Number.isFinite(correctnessRate)
-    || correctnessRate < 0
-    || correctnessRate > 1
-    || !Number.isFinite(effectiveSampleSize)
-    || effectiveSampleSize < 0
-    || !Number.isFinite(z)
-    || z <= 0
+    !Number.isFinite(correctnessRate) ||
+    correctnessRate < 0 ||
+    correctnessRate > 1 ||
+    !Number.isFinite(effectiveSampleSize) ||
+    effectiveSampleSize < 0 ||
+    !Number.isFinite(z) ||
+    z <= 0
   ) {
-    throw new RangeError('Wilson inputs must be finite and within their valid ranges');
+    throw new RangeError("Wilson inputs must be finite and within their valid ranges");
   }
 
   const zSquared = z * z;
-  const numerator = correctnessRate
-    + zSquared / (2 * effectiveSampleSize)
-    - z * Math.sqrt(
-      (correctnessRate * (1 - correctnessRate)
-        + zSquared / (4 * effectiveSampleSize))
-      / effectiveSampleSize,
-    );
+  const numerator =
+    correctnessRate +
+    zSquared / (2 * effectiveSampleSize) -
+    z *
+      Math.sqrt(
+        (correctnessRate * (1 - correctnessRate) + zSquared / (4 * effectiveSampleSize)) /
+          effectiveSampleSize,
+      );
   const denominator = 1 + zSquared / effectiveSampleSize;
   return clampUnitInterval(numerator / denominator);
 }
@@ -133,14 +131,14 @@ export function rescaleAgainstGuessFloor(
   guessFloor: number,
 ): number {
   if (
-    !Number.isFinite(conservativeCorrectness)
-    || conservativeCorrectness < 0
-    || conservativeCorrectness > 1
-    || !Number.isFinite(guessFloor)
-    || guessFloor < 0
-    || guessFloor >= 1
+    !Number.isFinite(conservativeCorrectness) ||
+    conservativeCorrectness < 0 ||
+    conservativeCorrectness > 1 ||
+    !Number.isFinite(guessFloor) ||
+    guessFloor < 0 ||
+    guessFloor >= 1
   ) {
-    throw new RangeError('Correctness and guess floor must be finite valid probabilities');
+    throw new RangeError("Correctness and guess floor must be finite valid probabilities");
   }
   return clampUnitInterval((conservativeCorrectness - guessFloor) / (1 - guessFloor));
 }
@@ -148,36 +146,37 @@ export function rescaleAgainstGuessFloor(
 function resolveTimingContext(context?: EvidenceTimingContext): {
   baselineSampleCount: number;
   timingReliable: boolean;
-  fluencyConfidence: EvidenceTimingContext['fluencyConfidence'];
-  diagnosticReason?: 'missing_timing_baseline'
-    | 'insufficient_timing_baseline'
-    | 'unreliable_timing';
+  fluencyConfidence: EvidenceTimingContext["fluencyConfidence"];
+  diagnosticReason?:
+    | "missing_timing_baseline"
+    | "insufficient_timing_baseline"
+    | "unreliable_timing";
 } {
   if (context === undefined) {
     return {
       baselineSampleCount: 0,
       timingReliable: false,
-      fluencyConfidence: 'none',
-      diagnosticReason: 'missing_timing_baseline',
+      fluencyConfidence: "none",
+      diagnosticReason: "missing_timing_baseline",
     };
   }
   if (!Number.isInteger(context.baselineSampleCount) || context.baselineSampleCount < 0) {
-    throw new RangeError('baselineSampleCount must be a nonnegative integer');
+    throw new RangeError("baselineSampleCount must be a nonnegative integer");
   }
   if (context.baselineSampleCount < 10) {
     return {
       baselineSampleCount: context.baselineSampleCount,
       timingReliable: false,
-      fluencyConfidence: 'none',
-      diagnosticReason: 'insufficient_timing_baseline',
+      fluencyConfidence: "none",
+      diagnosticReason: "insufficient_timing_baseline",
     };
   }
   if (!context.timingReliable) {
     return {
       baselineSampleCount: context.baselineSampleCount,
       timingReliable: false,
-      fluencyConfidence: 'none',
-      diagnosticReason: 'unreliable_timing',
+      fluencyConfidence: "none",
+      diagnosticReason: "unreliable_timing",
     };
   }
   return {
@@ -201,32 +200,29 @@ export function computePracticeVariantEvidence(
     recency.weightedCorrectnessRate,
     recency.effectiveSampleSize,
   );
-  const retentionStrength = rescaleAgainstGuessFloor(
-    wilsonLowerBound,
-    parsed.guessFloor.value,
-  );
+  const retentionStrength = rescaleAgainstGuessFloor(wilsonLowerBound, parsed.guessFloor.value);
   const timing = resolveTimingContext(timingContext);
-  const diagnosticReasons: PracticeVariantEvidenceResultV31['diagnosticReasons'] = [];
+  const diagnosticReasons: PracticeVariantEvidenceResultV31["diagnosticReasons"] = [];
 
-  let evidenceConfidenceCap: PracticeVariantEvidenceResultV31['evidenceConfidenceCap'] = null;
+  let evidenceConfidenceCap: PracticeVariantEvidenceResultV31["evidenceConfidenceCap"] = null;
   if (parsed.attempts.length === 0) {
-    evidenceConfidenceCap = 'none';
-    diagnosticReasons.push('no_attempts');
+    evidenceConfidenceCap = "none";
+    diagnosticReasons.push("no_attempts");
   } else if (parsed.attempts.length < 3) {
-    evidenceConfidenceCap = 'low';
-    diagnosticReasons.push('small_sample_low_cap');
+    evidenceConfidenceCap = "low";
+    diagnosticReasons.push("small_sample_low_cap");
   } else if (parsed.attempts.length < 6) {
-    evidenceConfidenceCap = 'medium';
-    diagnosticReasons.push('small_sample_medium_cap');
+    evidenceConfidenceCap = "medium";
+    diagnosticReasons.push("small_sample_medium_cap");
   }
 
   if (
-    parsed.attempts.length > 0
-    && parsed.guessFloor.value > 0
-    && wilsonLowerBound > 0
-    && retentionStrength === 0
+    parsed.attempts.length > 0 &&
+    parsed.guessFloor.value > 0 &&
+    wilsonLowerBound > 0 &&
+    retentionStrength === 0
   ) {
-    diagnosticReasons.push('guess_floor_removed_signal');
+    diagnosticReasons.push("guess_floor_removed_signal");
   }
   if (timing.diagnosticReason !== undefined) {
     diagnosticReasons.push(timing.diagnosticReason);

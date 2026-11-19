@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import React from 'react'
+import React from "react";
 
 interface MultilingualSupportProps {
-  en: string
-  zh: string
-  language: 'en' | 'zh'
-  className?: string
+  en: string;
+  zh: string;
+  language: "en" | "zh";
+  className?: string;
 }
 
 /**
@@ -20,10 +20,15 @@ interface MultilingualSupportProps {
  * @param language - Current language preference
  * @param className - Optional CSS classes
  */
-export function MultilingualSupport({ en, zh, language, className = '' }: MultilingualSupportProps) {
+export function MultilingualSupport({
+  en,
+  zh,
+  language,
+  className = "",
+}: MultilingualSupportProps) {
   return (
-    <span className={className} lang={language === 'en' ? 'en' : 'zh-CN'}>
-      {language === 'en' ? en : zh}
+    <span className={className} lang={language === "en" ? "en" : "zh-CN"}>
+      {language === "en" ? en : zh}
     </span>
-  )
+  );
 }

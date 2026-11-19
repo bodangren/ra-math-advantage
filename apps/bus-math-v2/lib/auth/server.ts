@@ -1,8 +1,8 @@
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
-import { SESSION_COOKIE_NAME, getAuthJwtSecret } from '@/lib/auth/constants';
-import { verifySessionToken, type SessionClaims } from '@/lib/auth/session';
+import { SESSION_COOKIE_NAME, getAuthJwtSecret } from "@/lib/auth/constants";
+import { verifySessionToken, type SessionClaims } from "@/lib/auth/session";
 
 import {
   type ActiveCredentialVerifier,
@@ -11,12 +11,12 @@ import {
   requireRoleRequestClaims as _requireRoleRequestClaims,
   requireActiveRequestSessionClaims as _requireActiveRequestSessionClaims,
   buildRequestForbiddenResponse,
-} from '@math-platform/core-auth';
+} from "@math-platform/core-auth";
 
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
 
-const APP_LOGIN_PATH_PREFIX = '/auth/login';
-const APP_DEFAULT_TEACHER_UNAUTHORIZED_REDIRECT = '/student/dashboard';
+const APP_LOGIN_PATH_PREFIX = "/auth/login";
+const APP_DEFAULT_TEACHER_UNAUTHORIZED_REDIRECT = "/student/dashboard";
 
 const verifyToken = (token: string) => verifySessionToken(token, getAuthJwtSecret());
 
@@ -29,14 +29,16 @@ export async function getServerSessionClaims(): Promise<SessionClaims | null> {
   if (!token) return null;
 
   const claims = await verifySessionToken(token, getAuthJwtSecret());
-  return claims && await verifyActiveCredential(claims) ? claims : null;
+  return claims && (await verifyActiveCredential(claims)) ? claims : null;
 }
 
 function buildLoginRedirect(loginRedirectPath: string): string {
   return `${APP_LOGIN_PATH_PREFIX}?redirect=${loginRedirectPath}`;
 }
 
-export async function requireServerSessionClaims(loginRedirectPath: string): Promise<SessionClaims> {
+export async function requireServerSessionClaims(
+  loginRedirectPath: string,
+): Promise<SessionClaims> {
   const claims = await getServerSessionClaims();
   if (!claims) {
     redirect(buildLoginRedirect(loginRedirectPath));
@@ -47,7 +49,7 @@ export async function requireServerSessionClaims(loginRedirectPath: string): Pro
 
 export function requireServerRoles<T extends SessionClaims>(
   claims: T,
-  allowedRoles: ReadonlyArray<SessionClaims['role']>,
+  allowedRoles: ReadonlyArray<SessionClaims["role"]>,
   unauthorizedRedirectPath: string,
 ): T {
   if (!allowedRoles.includes(claims.role)) {
@@ -62,18 +64,20 @@ export async function requireTeacherSessionClaims(
   unauthorizedRedirectPath: string = APP_DEFAULT_TEACHER_UNAUTHORIZED_REDIRECT,
 ): Promise<SessionClaims> {
   const claims = await requireServerSessionClaims(loginRedirectPath);
-  return requireServerRoles(claims, ['teacher', 'admin'], unauthorizedRedirectPath);
+  return requireServerRoles(claims, ["teacher", "admin"], unauthorizedRedirectPath);
 }
 
-export async function requireStudentSessionClaims(loginRedirectPath: string): Promise<SessionClaims> {
+export async function requireStudentSessionClaims(
+  loginRedirectPath: string,
+): Promise<SessionClaims> {
   const claims = await requireServerSessionClaims(loginRedirectPath);
 
-  if (claims.role === 'student') {
+  if (claims.role === "student") {
     return claims;
   }
 
-  if (claims.role === 'teacher' || claims.role === 'admin') {
-    redirect('/teacher');
+  if (claims.role === "teacher" || claims.role === "admin") {
+    redirect("/teacher");
   }
 
   redirect(buildLoginRedirect(loginRedirectPath));
@@ -83,29 +87,33 @@ const verifyActiveCredential: ActiveCredentialVerifier = async (claims) => {
   const credential = await fetchInternalQuery(internal.auth.getCredentialByUsername, {
     username: claims.username,
   });
-  return credential !== null && credential.profileId === claims.sub
-    && credential.username === claims.username && credential.role === claims.role;
+  return (
+    credential !== null &&
+    credential.profileId === claims.sub &&
+    credential.username === claims.username &&
+    credential.role === claims.role
+  );
 };
 
 export async function requireActiveRequestSessionClaims(
   request: Request,
-  unauthorizedMessage = 'Unauthorized',
+  unauthorizedMessage = "Unauthorized",
 ): Promise<SessionClaims | Response> {
   return _requireActiveRequestSessionClaims(request, verifyToken, verifyActiveCredential, {
     cookieName: SESSION_COOKIE_NAME,
     unauthorizedMessage,
-    serviceUnavailableMessage: 'Credential verification temporarily unavailable',
+    serviceUnavailableMessage: "Credential verification temporarily unavailable",
   });
 }
 
 export async function requireActiveStudentRequestClaims(
   request: Request,
-  unauthorizedMessage = 'Unauthorized',
-  forbiddenMessage = 'Forbidden',
+  unauthorizedMessage = "Unauthorized",
+  forbiddenMessage = "Forbidden",
 ): Promise<SessionClaims | Response> {
   const result = await requireActiveRequestSessionClaims(request, unauthorizedMessage);
   if (result instanceof Response) return result;
-  if (result.role !== 'student') {
+  if (result.role !== "student") {
     return buildRequestForbiddenResponse(forbiddenMessage);
   }
   return result;
@@ -113,12 +121,12 @@ export async function requireActiveStudentRequestClaims(
 
 export async function requireActiveTeacherRequestClaims(
   request: Request,
-  unauthorizedMessage = 'Unauthorized',
-  forbiddenMessage = 'Forbidden',
+  unauthorizedMessage = "Unauthorized",
+  forbiddenMessage = "Forbidden",
 ): Promise<SessionClaims | Response> {
   const result = await requireActiveRequestSessionClaims(request, unauthorizedMessage);
   if (result instanceof Response) return result;
-  if (result.role !== 'teacher' && result.role !== 'admin') {
+  if (result.role !== "teacher" && result.role !== "admin") {
     return buildRequestForbiddenResponse(forbiddenMessage);
   }
   return result;
@@ -130,7 +138,7 @@ export async function getRequestSessionClaims(request: Request): Promise<Session
 
 export async function requireRequestSessionClaims(
   request: Request,
-  unauthorizedMessage = 'Unauthorized',
+  unauthorizedMessage = "Unauthorized",
 ): Promise<SessionClaims | Response> {
   return _requireRequestSessionClaims(request, verifyToken, {
     cookieName: SESSION_COOKIE_NAME,
@@ -140,10 +148,10 @@ export async function requireRequestSessionClaims(
 
 export async function requireStudentRequestClaims(
   request: Request,
-  unauthorizedMessage = 'Unauthorized',
-  forbiddenMessage = 'Forbidden',
+  unauthorizedMessage = "Unauthorized",
+  forbiddenMessage = "Forbidden",
 ): Promise<SessionClaims | Response> {
-  return _requireRoleRequestClaims(request, verifyToken, ['student'], {
+  return _requireRoleRequestClaims(request, verifyToken, ["student"], {
     cookieName: SESSION_COOKIE_NAME,
     unauthorizedMessage,
     forbiddenMessage,
@@ -152,10 +160,10 @@ export async function requireStudentRequestClaims(
 
 export async function requireAdminRequestClaims(
   request: Request,
-  unauthorizedMessage = 'Unauthorized',
-  forbiddenMessage = 'Forbidden',
+  unauthorizedMessage = "Unauthorized",
+  forbiddenMessage = "Forbidden",
 ): Promise<SessionClaims | Response> {
-  return _requireRoleRequestClaims(request, verifyToken, ['admin'], {
+  return _requireRoleRequestClaims(request, verifyToken, ["admin"], {
     cookieName: SESSION_COOKIE_NAME,
     unauthorizedMessage,
     forbiddenMessage,

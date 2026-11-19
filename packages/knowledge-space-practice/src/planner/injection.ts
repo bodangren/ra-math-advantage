@@ -9,7 +9,7 @@
 
 export interface PlannedActivity {
   readonly activityId: string;
-  readonly activityKind: 'worked_example' | 'task_blueprint' | 'skill';
+  readonly activityKind: "worked_example" | "task_blueprint" | "skill";
   readonly label: string;
 }
 

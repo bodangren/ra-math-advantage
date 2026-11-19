@@ -1,10 +1,6 @@
-import { z } from 'zod';
+import { z } from "zod";
 
-export const DIFFICULTY_VALUES = [
-  'introductory',
-  'standard',
-  'challenging',
-] as const;
+export const DIFFICULTY_VALUES = ["introductory", "standard", "challenging"] as const;
 
 export type Difficulty = (typeof DIFFICULTY_VALUES)[number];
 

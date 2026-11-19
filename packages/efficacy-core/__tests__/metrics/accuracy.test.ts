@@ -17,20 +17,20 @@
  * - parts with isCorrect undefined excluded from numerator AND denominator
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 
-import { computeAccuracyTrend } from '../../src/metrics/accuracy';
+import { computeAccuracyTrend } from "../../src/metrics/accuracy";
 import {
   COHORT_WINDOW_START_MS,
   COHORT_WINDOW_END_MS,
   MS_PER_DAY,
   isoAt,
   makeSubmission,
-} from '../fixtures/efficacy.fixtures';
-import { createMockPracticeEnvelope } from '@math-platform/practice-core';
+} from "../fixtures/efficacy.fixtures";
+import { createMockPracticeEnvelope } from "@math-platform/practice-core";
 
-describe('computeAccuracyTrend', () => {
-  it('returns an empty trend and n=0 for an empty submission list', () => {
+describe("computeAccuracyTrend", () => {
+  it("returns an empty trend and n=0 for an empty submission list", () => {
     const result = computeAccuracyTrend({
       submissions: [],
       windowStartMs: COHORT_WINDOW_START_MS,
@@ -41,7 +41,7 @@ describe('computeAccuracyTrend', () => {
     expect(result.n).toBe(0);
   });
 
-  it('emits firstAttemptAccuracy=null (not 0) when no first attempts exist in a populated input', () => {
+  it("emits firstAttemptAccuracy=null (not 0) when no first attempts exist in a populated input", () => {
     const baseMs = COHORT_WINDOW_START_MS;
     const submissions = [
       makeSubmission({ attemptNumber: 2, isCorrect: true, submittedAtMs: baseMs }).envelope,
@@ -58,7 +58,7 @@ describe('computeAccuracyTrend', () => {
     expect(result.value.every((p) => p.firstAttemptAccuracy === null)).toBe(true);
   });
 
-  it('counts only first attempts when computing the rate', () => {
+  it("counts only first attempts when computing the rate", () => {
     const baseMs = COHORT_WINDOW_START_MS;
     const submissions = [
       makeSubmission({ attemptNumber: 1, isCorrect: true, submittedAtMs: baseMs }).envelope,
@@ -77,7 +77,7 @@ describe('computeAccuracyTrend', () => {
     expect(result.value[0].firstAttemptAccuracy).toBeCloseTo(0.5, 6);
   });
 
-  it('buckets accuracy by UTC day across the window', () => {
+  it("buckets accuracy by UTC day across the window", () => {
     const day1 = COHORT_WINDOW_START_MS;
     const day2 = COHORT_WINDOW_START_MS + 1 * MS_PER_DAY;
     const submissions = [
@@ -102,17 +102,17 @@ describe('computeAccuracyTrend', () => {
     expect(d1?.bucketEndMs).toBe(day1 + MS_PER_DAY);
   });
 
-  it('excludes parts where isCorrect is undefined from both numerator and denominator', () => {
+  it("excludes parts where isCorrect is undefined from both numerator and denominator", () => {
     const baseMs = COHORT_WINDOW_START_MS;
     const envelope = createMockPracticeEnvelope({
-      activityId: 'act_partial',
+      activityId: "act_partial",
       attemptNumber: 1,
-      status: 'submitted',
+      status: "submitted",
       submittedAt: isoAt(baseMs),
       parts: [
-        { partId: 'p1', rawAnswer: 'a', isCorrect: true },
-        { partId: 'p2', rawAnswer: 'b' }, // isCorrect undefined -> excluded
-        { partId: 'p3', rawAnswer: 'c', isCorrect: false },
+        { partId: "p1", rawAnswer: "a", isCorrect: true },
+        { partId: "p2", rawAnswer: "b" }, // isCorrect undefined -> excluded
+        { partId: "p3", rawAnswer: "c", isCorrect: false },
       ],
     });
 
@@ -129,12 +129,13 @@ describe('computeAccuracyTrend', () => {
     expect(result.value[0].firstAttemptCount).toBe(2);
   });
 
-  it('excludes submissions submitted outside [windowStart, windowEnd)', () => {
+  it("excludes submissions submitted outside [windowStart, windowEnd)", () => {
     const justBeforeWindow = COHORT_WINDOW_START_MS - 1;
     const atWindowStart = COHORT_WINDOW_START_MS;
     const atWindowEnd = COHORT_WINDOW_END_MS;
     const submissions = [
-      makeSubmission({ attemptNumber: 1, isCorrect: true, submittedAtMs: justBeforeWindow }).envelope,
+      makeSubmission({ attemptNumber: 1, isCorrect: true, submittedAtMs: justBeforeWindow })
+        .envelope,
       makeSubmission({ attemptNumber: 1, isCorrect: true, submittedAtMs: atWindowStart }).envelope,
       makeSubmission({ attemptNumber: 1, isCorrect: true, submittedAtMs: atWindowEnd }).envelope,
     ];
@@ -148,10 +149,15 @@ describe('computeAccuracyTrend', () => {
     expect(result.n).toBe(1);
   });
 
-  it('echoes window and submissionCount in the inputs descriptor for traceability', () => {
+  it("echoes window and submissionCount in the inputs descriptor for traceability", () => {
     const submissions = [
-      makeSubmission({ attemptNumber: 1, isCorrect: true, submittedAtMs: COHORT_WINDOW_START_MS }).envelope,
-      makeSubmission({ attemptNumber: 2, isCorrect: true, submittedAtMs: COHORT_WINDOW_START_MS + 1000 }).envelope,
+      makeSubmission({ attemptNumber: 1, isCorrect: true, submittedAtMs: COHORT_WINDOW_START_MS })
+        .envelope,
+      makeSubmission({
+        attemptNumber: 2,
+        isCorrect: true,
+        submittedAtMs: COHORT_WINDOW_START_MS + 1000,
+      }).envelope,
     ];
     const result = computeAccuracyTrend({
       submissions,

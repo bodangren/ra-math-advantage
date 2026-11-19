@@ -7,7 +7,4 @@
  * updates require a deliberate commit message rationale.
  */
 
-export {
-  SCALE_STUDENT_COUNT_CLASS,
-  SCALE_STUDENT_COUNT_SCHOOL,
-} from '@/lib/scale/constants';
+export { SCALE_STUDENT_COUNT_CLASS, SCALE_STUDENT_COUNT_SCHOOL } from "@/lib/scale/constants";

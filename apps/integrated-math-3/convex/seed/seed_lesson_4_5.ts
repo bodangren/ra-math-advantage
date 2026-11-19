@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -139,9 +139,18 @@ export const seedLesson4_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "sqrt(75x^12y^7)",
                 steps: [
-                  { expression: "Factor into squares", explanation: "75 = 5^2 * 3, x^12 = (x^6)^2, y^7 = (y^3)^2 * y" },
-                  { expression: "sqrt(5^2 * 3 * (x^6)^2 * (y^3)^2 * y)", explanation: "Break down each factor" },
-                  { expression: "5 * x^6 * y^3 * sqrt(3y)", explanation: "Take square root of perfect powers" },
+                  {
+                    expression: "Factor into squares",
+                    explanation: "75 = 5^2 * 3, x^12 = (x^6)^2, y^7 = (y^3)^2 * y",
+                  },
+                  {
+                    expression: "sqrt(5^2 * 3 * (x^6)^2 * (y^3)^2 * y)",
+                    explanation: "Break down each factor",
+                  },
+                  {
+                    expression: "5 * x^6 * y^3 * sqrt(3y)",
+                    explanation: "Take square root of perfect powers",
+                  },
                   { expression: "5x^6y^3*sqrt(3y)", explanation: "Simplest form" },
                 ],
               },
@@ -172,8 +181,14 @@ export const seedLesson4_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "cuberoot((24a^6)/125)",
                 steps: [
-                  { expression: "cuberoot(24a^6) / cuberoot(125)", explanation: "Apply quotient property" },
-                  { expression: "cuberoot(2^3 * 3 * (a^2)^3) / cuberoot(5^3)", explanation: "Factor into cubes" },
+                  {
+                    expression: "cuberoot(24a^6) / cuberoot(125)",
+                    explanation: "Apply quotient property",
+                  },
+                  {
+                    expression: "cuberoot(2^3 * 3 * (a^2)^3) / cuberoot(5^3)",
+                    explanation: "Factor into cubes",
+                  },
                   { expression: "2a^2*cuberoot(3) / 5", explanation: "Simplify cube roots" },
                 ],
               },
@@ -220,9 +235,18 @@ export const seedLesson4_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "6*sqrt(45x) + sqrt(12) - 3*sqrt(20x)",
                 steps: [
-                  { expression: "Factor radicands into squares", explanation: "45x = 3^2 * 5x, 12 = 2^2 * 3, 20x = 2^2 * 5x" },
-                  { expression: "6(3sqrt(5x)) + 2sqrt(3) - 3(2sqrt(5x))", explanation: "Take square roots of perfect squares" },
-                  { expression: "18sqrt(5x) + 2sqrt(3) - 6sqrt(5x)", explanation: "Multiply coefficients" },
+                  {
+                    expression: "Factor radicands into squares",
+                    explanation: "45x = 3^2 * 5x, 12 = 2^2 * 3, 20x = 2^2 * 5x",
+                  },
+                  {
+                    expression: "6(3sqrt(5x)) + 2sqrt(3) - 3(2sqrt(5x))",
+                    explanation: "Take square roots of perfect squares",
+                  },
+                  {
+                    expression: "18sqrt(5x) + 2sqrt(3) - 6sqrt(5x)",
+                    explanation: "Multiply coefficients",
+                  },
                   { expression: "12sqrt(5x) + 2sqrt(3)", explanation: "Combine like terms" },
                 ],
               },
@@ -253,9 +277,18 @@ export const seedLesson4_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "4*fifthroot(-10x^2y^6) * 3*fifthroot(16x^4y^4)",
                 steps: [
-                  { expression: "12*fifthroot((-10x^2y^6)(16x^4y^4))", explanation: "Multiply coefficients and radicands" },
-                  { expression: "12*fifthroot(-1 * 2^5 * 5 * x^5 * x * y^10)", explanation: "Factor into powers of 5" },
-                  { expression: "12(-1)xy^2*fifthroot(5x)", explanation: "Take fifth roots of perfect fifth powers" },
+                  {
+                    expression: "12*fifthroot((-10x^2y^6)(16x^4y^4))",
+                    explanation: "Multiply coefficients and radicands",
+                  },
+                  {
+                    expression: "12*fifthroot(-1 * 2^5 * 5 * x^5 * x * y^10)",
+                    explanation: "Factor into powers of 5",
+                  },
+                  {
+                    expression: "12(-1)xy^2*fifthroot(5x)",
+                    explanation: "Take fifth roots of perfect fifth powers",
+                  },
                 ],
               },
             },
@@ -285,10 +318,22 @@ export const seedLesson4_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "1/2*(3*sqrt(8)+4)*(7*sqrt(8)+6*sqrt(3))",
                 steps: [
-                  { expression: "1/2 * [(3sqrt(8)+4)(7sqrt(8)+6sqrt(3))]", explanation: "Set up area formula" },
-                  { expression: "1/2 * [21sqrt(64) + 18sqrt(24) + 28sqrt(8) + 24sqrt(3)]", explanation: "Apply distributive property" },
-                  { expression: "1/2 * [168 + 36sqrt(6) + 56sqrt(2) + 24sqrt(3)]", explanation: "Simplify radicals: sqrt(64)=8, sqrt(24)=sqrt(4*6)=2sqrt(6)" },
-                  { expression: "84 + 18sqrt(6) + 28sqrt(2) + 12sqrt(3)", explanation: "Multiply by 1/2" },
+                  {
+                    expression: "1/2 * [(3sqrt(8)+4)(7sqrt(8)+6sqrt(3))]",
+                    explanation: "Set up area formula",
+                  },
+                  {
+                    expression: "1/2 * [21sqrt(64) + 18sqrt(24) + 28sqrt(8) + 24sqrt(3)]",
+                    explanation: "Apply distributive property",
+                  },
+                  {
+                    expression: "1/2 * [168 + 36sqrt(6) + 56sqrt(2) + 24sqrt(3)]",
+                    explanation: "Simplify radicals: sqrt(64)=8, sqrt(24)=sqrt(4*6)=2sqrt(6)",
+                  },
+                  {
+                    expression: "84 + 18sqrt(6) + 28sqrt(2) + 12sqrt(3)",
+                    explanation: "Multiply by 1/2",
+                  },
                 ],
               },
             },
@@ -334,10 +379,22 @@ export const seedLesson4_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "cuberoot(250a^6) / cuberoot(7a)",
                 steps: [
-                  { expression: "cuberoot(250a^6) / cuberoot(7a)", explanation: "Start with original expression" },
-                  { expression: "5a^2*cuberoot(2) / cuberoot(7a)", explanation: "Factor 250 = 5^3 * 2, a^6 = (a^2)^3" },
-                  { expression: "Multiply by cuberoot(7^2*a^2)/cuberoot(7^2*a^2)", explanation: "Rationalize denominator" },
-                  { expression: "5a^2*cuberoot(98a^2) / (7a)", explanation: "Simplify denominator: cuberoot(7^3*a^3) = 7a" },
+                  {
+                    expression: "cuberoot(250a^6) / cuberoot(7a)",
+                    explanation: "Start with original expression",
+                  },
+                  {
+                    expression: "5a^2*cuberoot(2) / cuberoot(7a)",
+                    explanation: "Factor 250 = 5^3 * 2, a^6 = (a^2)^3",
+                  },
+                  {
+                    expression: "Multiply by cuberoot(7^2*a^2)/cuberoot(7^2*a^2)",
+                    explanation: "Rationalize denominator",
+                  },
+                  {
+                    expression: "5a^2*cuberoot(98a^2) / (7a)",
+                    explanation: "Simplify denominator: cuberoot(7^3*a^3) = 7a",
+                  },
                   { expression: "5a*cuberoot(98a^2) / 7", explanation: "Cancel a" },
                 ],
               },
@@ -368,9 +425,18 @@ export const seedLesson4_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "4x / (2*sqrt(7) - 5)",
                 steps: [
-                  { expression: "(4x / (2sqrt(7) - 5)) * ((2sqrt(7) + 5) / (2sqrt(7) + 5))", explanation: "Multiply by conjugate" },
-                  { expression: "(8x*sqrt(7) + 20x) / ((2sqrt(7))^2 - 5^2)", explanation: "FOIL denominator: (a-b)(a+b)=a^2-b^2" },
-                  { expression: "(8x*sqrt(7) + 20x) / (28 - 25)", explanation: "Calculate squares: (2sqrt(7))^2=4*7=28, 5^2=25" },
+                  {
+                    expression: "(4x / (2sqrt(7) - 5)) * ((2sqrt(7) + 5) / (2sqrt(7) + 5))",
+                    explanation: "Multiply by conjugate",
+                  },
+                  {
+                    expression: "(8x*sqrt(7) + 20x) / ((2sqrt(7))^2 - 5^2)",
+                    explanation: "FOIL denominator: (a-b)(a+b)=a^2-b^2",
+                  },
+                  {
+                    expression: "(8x*sqrt(7) + 20x) / (28 - 25)",
+                    explanation: "Calculate squares: (2sqrt(7))^2=4*7=28, 5^2=25",
+                  },
                   { expression: "(8x*sqrt(7) + 20x) / 3", explanation: "Simplify denominator" },
                 ],
               },
@@ -410,11 +476,7 @@ export const seedLesson4_5 = internalMutation({
                   },
                   {
                     question: "To rationalize 1/(sqrt(3) - 1), by what would you multiply?",
-                    options: [
-                      "sqrt(3) + 1",
-                      "sqrt(3) - 1",
-                      "1 - sqrt(3)",
-                    ],
+                    options: ["sqrt(3) + 1", "sqrt(3) - 1", "1 - sqrt(3)"],
                     correctIndex: 0,
                   },
                 ],
@@ -448,7 +510,7 @@ export const seedLesson4_5 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

@@ -220,11 +220,17 @@ export default async function Home() {
             </Link>
           </div>
           <div className="flex items-center justify-center gap-4 pt-4 text-sm text-muted-foreground font-body">
-            <Link href="/curriculum" className="hover:text-foreground transition-colors">Curriculum</Link>
+            <Link href="/curriculum" className="hover:text-foreground transition-colors">
+              Curriculum
+            </Link>
             <span>&middot;</span>
-            <Link href="/capstone" className="hover:text-foreground transition-colors">Capstone</Link>
+            <Link href="/capstone" className="hover:text-foreground transition-colors">
+              Capstone
+            </Link>
             <span>&middot;</span>
-            <Link href="/acknowledgments" className="hover:text-foreground transition-colors">Acknowledgments</Link>
+            <Link href="/acknowledgments" className="hover:text-foreground transition-colors">
+              Acknowledgments
+            </Link>
           </div>
         </div>
       </section>

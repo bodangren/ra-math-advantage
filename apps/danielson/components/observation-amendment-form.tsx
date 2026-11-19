@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { FormEvent, useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { FormEvent, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 type AmendmentItem = {
   itemId: string;
@@ -32,49 +32,60 @@ export function ObservationAmendmentForm({
     setError(null);
     const form = new FormData(event.currentTarget);
     const changedItems = items.flatMap((item) => {
-      const outcome = String(form.get(`outcome:${item.itemId}`) ?? 'unchanged');
-      const changeNote = form.get(`change-note:${item.itemId}`) === 'on';
-      if (outcome === 'unchanged' && !changeNote) return [];
-      return [{
-        itemId: item.itemId,
-        ...(outcome === 'unchanged'
-          ? {}
-          : outcome === 'not_enough_evidence'
-            ? { outcome: { kind: 'not_enough_evidence' } }
-            : { outcome: { kind: 'rated', rating: Number(outcome) } }),
-        ...(changeNote ? { evidenceNote: String(form.get(`note:${item.itemId}`) ?? '').trim() || null } : {}),
-      }];
+      const outcome = String(form.get(`outcome:${item.itemId}`) ?? "unchanged");
+      const changeNote = form.get(`change-note:${item.itemId}`) === "on";
+      if (outcome === "unchanged" && !changeNote) return [];
+      return [
+        {
+          itemId: item.itemId,
+          ...(outcome === "unchanged"
+            ? {}
+            : outcome === "not_enough_evidence"
+              ? { outcome: { kind: "not_enough_evidence" } }
+              : { outcome: { kind: "rated", rating: Number(outcome) } }),
+          ...(changeNote
+            ? { evidenceNote: String(form.get(`note:${item.itemId}`) ?? "").trim() || null }
+            : {}),
+        },
+      ];
     });
     if (changedItems.length === 0) {
-      setError('Select at least one change.');
+      setError("Select at least one change.");
       return;
     }
     try {
-      const response = await fetch(`/api/observations/records/${encodeURIComponent(observationId)}/amend`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          expectedVersion,
-          idempotencyKey: idempotencyKey.current,
-          reason: String(form.get('reason') ?? ''),
-          changedItems,
-        }),
-      });
-      const result = await response.json() as { error?: string };
+      const response = await fetch(
+        `/api/observations/records/${encodeURIComponent(observationId)}/amend`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            expectedVersion,
+            idempotencyKey: idempotencyKey.current,
+            reason: String(form.get("reason") ?? ""),
+            changedItems,
+          }),
+        },
+      );
+      const result = (await response.json()) as { error?: string };
       if (!response.ok) {
-        setError(result.error ?? 'The amendment could not be saved.');
+        setError(result.error ?? "The amendment could not be saved.");
         return;
       }
       router.push(`/observations/records/${encodeURIComponent(observationId)}`);
       router.refresh();
     } catch {
-      setError('The amendment could not be saved.');
+      setError("The amendment could not be saved.");
     }
   }
 
   return (
     <form className="form-stack observation-form" onSubmit={submit}>
-      {error ? <div className="error-summary" role="alert" tabIndex={-1} ref={errorRef}>{error}</div> : null}
+      {error ? (
+        <div className="error-summary" role="alert" tabIndex={-1} ref={errorRef}>
+          {error}
+        </div>
+      ) : null}
       <div className="field">
         <label htmlFor="amendment-reason">Reason for amendment</label>
         <textarea id="amendment-reason" name="reason" rows={3} required />
@@ -84,7 +95,11 @@ export function ObservationAmendmentForm({
           <legend>{item.label}</legend>
           <div className="field">
             <label htmlFor={`outcome-${item.itemId}`}>Outcome change</label>
-            <select id={`outcome-${item.itemId}`} name={`outcome:${item.itemId}`} defaultValue="unchanged">
+            <select
+              id={`outcome-${item.itemId}`}
+              name={`outcome:${item.itemId}`}
+              defaultValue="unchanged"
+            >
               <option value="unchanged">No outcome change</option>
               <option value="1">Rating 1</option>
               <option value="2">Rating 2</option>
@@ -98,7 +113,12 @@ export function ObservationAmendmentForm({
           </label>
           <div className="field">
             <label htmlFor={`note-${item.itemId}`}>Replacement evidence note</label>
-            <textarea id={`note-${item.itemId}`} name={`note:${item.itemId}`} rows={3} defaultValue={item.evidenceNote ?? ''} />
+            <textarea
+              id={`note-${item.itemId}`}
+              name={`note:${item.itemId}`}
+              rows={3}
+              defaultValue={item.evidenceNote ?? ""}
+            />
           </div>
         </fieldset>
       ))}

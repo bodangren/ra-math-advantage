@@ -1,6 +1,6 @@
-import { describe, it, expect, vi } from 'vitest';
-import { generateLinearEquation } from '../linear-equation-solver';
-import * as prng from '../utils/prng';
+import { describe, it, expect, vi } from "vitest";
+import { generateLinearEquation } from "../linear-equation-solver";
+import * as prng from "../utils/prng";
 
 /**
  * linear-equation-solver.ts — Linear equation problem generator
@@ -28,8 +28,8 @@ interface ParsedLinearEquation {
  * leading "+".
  */
 function parseLinearEquation(equation: string): ParsedLinearEquation {
-  const normalized = equation.replace(/\s/g, '');
-  const [lhs, rhs] = normalized.split('=');
+  const normalized = equation.replace(/\s/g, "");
+  const [lhs, rhs] = normalized.split("=");
   if (!lhs || rhs === undefined) {
     throw new Error(`Cannot parse equation (missing =): ${equation}`);
   }
@@ -41,12 +41,12 @@ function parseLinearEquation(equation: string): ParsedLinearEquation {
   // Normalize implicit coefficients so that every x term has an explicit
   // numeric multiplier.
   let expr = lhs;
-  expr = expr.replace(/^-x/, '-1x');
-  expr = expr.replace(/^x/, '1x');
-  expr = expr.replace(/\+x/g, '+1x');
-  expr = expr.replace(/-x/g, '-1x');
+  expr = expr.replace(/^-x/, "-1x");
+  expr = expr.replace(/^x/, "1x");
+  expr = expr.replace(/\+x/g, "+1x");
+  expr = expr.replace(/-x/g, "-1x");
 
-  const parts = expr.split('x');
+  const parts = expr.split("x");
   if (parts.length === 1) {
     // Degenerate constant-only LHS (should not happen because a ≠ 0).
     return { a: 0, b: Number(expr), c };
@@ -56,9 +56,9 @@ function parseLinearEquation(equation: string): ParsedLinearEquation {
   }
 
   const aStr = parts[0];
-  const a = aStr === '' ? 1 : aStr === '-' ? -1 : Number(aStr);
+  const a = aStr === "" ? 1 : aStr === "-" ? -1 : Number(aStr);
   const bStr = parts[1];
-  const b = bStr === '' ? 0 : Number(bStr);
+  const b = bStr === "" ? 0 : Number(bStr);
 
   if (!Number.isFinite(a) || !Number.isFinite(b)) {
     throw new Error(`Cannot parse coefficients from equation: ${equation}`);
@@ -71,42 +71,42 @@ function parseLinearEquation(equation: string): ParsedLinearEquation {
 // Return shape
 // ---------------------------------------------------------------------------
 
-describe('linear-equation-solver return shape', () => {
-  it('returns all required top-level keys', () => {
+describe("linear-equation-solver return shape", () => {
+  it("returns all required top-level keys", () => {
     const r = generateLinearEquation({ seed: 1 });
-    expect(r).toHaveProperty('equation');
-    expect(r).toHaveProperty('answer');
-    expect(r).toHaveProperty('a');
-    expect(r).toHaveProperty('b');
-    expect(r).toHaveProperty('c');
-    expect(r).toHaveProperty('steps');
+    expect(r).toHaveProperty("equation");
+    expect(r).toHaveProperty("answer");
+    expect(r).toHaveProperty("a");
+    expect(r).toHaveProperty("b");
+    expect(r).toHaveProperty("c");
+    expect(r).toHaveProperty("steps");
   });
 
-  it('equation is a non-empty string', () => {
+  it("equation is a non-empty string", () => {
     const r = generateLinearEquation({ seed: 1 });
-    expect(typeof r.equation).toBe('string');
+    expect(typeof r.equation).toBe("string");
     expect(r.equation.length).toBeGreaterThan(0);
   });
 
-  it('answer is a finite number', () => {
+  it("answer is a finite number", () => {
     const r = generateLinearEquation({ seed: 1 });
-    expect(typeof r.answer).toBe('number');
+    expect(typeof r.answer).toBe("number");
     expect(Number.isFinite(r.answer)).toBe(true);
   });
 
-  it('coefficients a, b, c are finite numbers', () => {
+  it("coefficients a, b, c are finite numbers", () => {
     const r = generateLinearEquation({ seed: 1 });
     expect(Number.isFinite(r.a)).toBe(true);
     expect(Number.isFinite(r.b)).toBe(true);
     expect(Number.isFinite(r.c)).toBe(true);
   });
 
-  it('steps is a non-empty string array', () => {
+  it("steps is a non-empty string array", () => {
     const r = generateLinearEquation({ seed: 1 });
     expect(Array.isArray(r.steps)).toBe(true);
     expect(r.steps.length).toBeGreaterThan(0);
     for (const s of r.steps) {
-      expect(typeof s).toBe('string');
+      expect(typeof s).toBe("string");
       expect(s.length).toBeGreaterThan(0);
     }
   });
@@ -116,14 +116,14 @@ describe('linear-equation-solver return shape', () => {
 // Determinism
 // ---------------------------------------------------------------------------
 
-describe('linear-equation-solver determinism', () => {
-  it('same seed produces identical output', () => {
+describe("linear-equation-solver determinism", () => {
+  it("same seed produces identical output", () => {
     const a = generateLinearEquation({ seed: 1 });
     const b = generateLinearEquation({ seed: 1 });
     expect(a).toEqual(b);
   });
 
-  it('same seed produces identical output across 10 consecutive seeds', () => {
+  it("same seed produces identical output across 10 consecutive seeds", () => {
     for (let seed = 0; seed < 10; seed++) {
       const first = generateLinearEquation({ seed });
       const second = generateLinearEquation({ seed });
@@ -131,7 +131,7 @@ describe('linear-equation-solver determinism', () => {
     }
   });
 
-  it('different seeds produce different output', () => {
+  it("different seeds produce different output", () => {
     const a = generateLinearEquation({ seed: 1 });
     const b = generateLinearEquation({ seed: 99 });
     const same = a.equation === b.equation && a.answer === b.answer;
@@ -143,13 +143,13 @@ describe('linear-equation-solver determinism', () => {
 // Backward-generation correctness falsifier
 // ---------------------------------------------------------------------------
 
-describe('linear-equation-solver backward-generation correctness', () => {
-  it('answer satisfies a * answer + b === c for seed 1', () => {
+describe("linear-equation-solver backward-generation correctness", () => {
+  it("answer satisfies a * answer + b === c for seed 1", () => {
     const r = generateLinearEquation({ seed: 1 });
     expect(r.a * r.answer + r.b).toBeCloseTo(r.c, 9);
   });
 
-  it('parsed coefficients match the returned a, b, c and satisfy the equation', () => {
+  it("parsed coefficients match the returned a, b, c and satisfy the equation", () => {
     const r = generateLinearEquation({ seed: 1 });
     const parsed = parseLinearEquation(r.equation);
     expect(parsed.a).toBe(r.a);
@@ -158,7 +158,7 @@ describe('linear-equation-solver backward-generation correctness', () => {
     expect(parsed.a * r.answer + parsed.b).toBeCloseTo(parsed.c, 9);
   });
 
-  it('answer satisfies the equation across 50 seeds (independent substitution)', () => {
+  it("answer satisfies the equation across 50 seeds (independent substitution)", () => {
     for (let seed = 1; seed <= 50; seed++) {
       const r = generateLinearEquation({ seed });
       const lhs = r.a * r.answer + r.b;
@@ -166,7 +166,7 @@ describe('linear-equation-solver backward-generation correctness', () => {
     }
   });
 
-  it('parsed equation is consistent with the returned coefficients across 50 seeds', () => {
+  it("parsed equation is consistent with the returned coefficients across 50 seeds", () => {
     for (let seed = 1; seed <= 50; seed++) {
       const r = generateLinearEquation({ seed });
       const parsed = parseLinearEquation(r.equation);
@@ -181,15 +181,15 @@ describe('linear-equation-solver backward-generation correctness', () => {
 // Coefficient and formatting guards
 // ---------------------------------------------------------------------------
 
-describe('linear-equation-solver coefficient guards', () => {
-  it('a is never 0 across 200 seeds', () => {
+describe("linear-equation-solver coefficient guards", () => {
+  it("a is never 0 across 200 seeds", () => {
     for (let seed = 0; seed < 200; seed++) {
       const r = generateLinearEquation({ seed });
       expect(r.a).not.toBe(0);
     }
   });
 
-  it('equation string never contains forbidden formatting artifacts', () => {
+  it("equation string never contains forbidden formatting artifacts", () => {
     for (let seed = 0; seed < 50; seed++) {
       const { equation } = generateLinearEquation({ seed });
       expect(equation).not.toMatch(/(^|[^0-9])1x/);
@@ -199,7 +199,7 @@ describe('linear-equation-solver coefficient guards', () => {
     }
   });
 
-  it('steps array has at least 3 entries and the last step contains the answer', () => {
+  it("steps array has at least 3 entries and the last step contains the answer", () => {
     const r = generateLinearEquation({ seed: 1 });
     expect(r.steps.length).toBeGreaterThanOrEqual(3);
     const lastStep = r.steps[r.steps.length - 1];
@@ -211,8 +211,8 @@ describe('linear-equation-solver coefficient guards', () => {
 // Edge-case coverage
 // ---------------------------------------------------------------------------
 
-describe('linear-equation-solver edge-case coverage', () => {
-  it('produces negative, positive, integer, and rational answers across 200 seeds', () => {
+describe("linear-equation-solver edge-case coverage", () => {
+  it("produces negative, positive, integer, and rational answers across 200 seeds", () => {
     let negative = false;
     let positive = false;
     let integer = false;
@@ -232,7 +232,7 @@ describe('linear-equation-solver edge-case coverage', () => {
     expect(rational).toBe(true);
   });
 
-  it('handles seed 0, negative seeds, and a large seed without crashing', () => {
+  it("handles seed 0, negative seeds, and a large seed without crashing", () => {
     for (const seed of [0, -1, -42, 2 ** 31]) {
       const r = generateLinearEquation({ seed });
       expect(Number.isFinite(r.answer)).toBe(true);
@@ -245,9 +245,9 @@ describe('linear-equation-solver edge-case coverage', () => {
 // Single-pass generation (no re-roll) — FR-8
 // ---------------------------------------------------------------------------
 
-describe('linear-equation-solver single-pass generation', () => {
-  it('makes exactly one call to mulberry32 per generation', () => {
-    const spy = vi.spyOn(prng, 'mulberry32');
+describe("linear-equation-solver single-pass generation", () => {
+  it("makes exactly one call to mulberry32 per generation", () => {
+    const spy = vi.spyOn(prng, "mulberry32");
     try {
       for (let seed = 1; seed <= 20; seed++) {
         spy.mockClear();

@@ -9,7 +9,7 @@ import {
   ChartLegend,
   ChartLegendContent,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 import { cn } from "@/lib/utils";
 
@@ -17,7 +17,7 @@ import {
   buildChartConfig,
   type ChartSegment,
   DEFAULT_CHART_COLORS,
-  formatCurrency
+  formatCurrency,
 } from "./chart-types";
 
 export interface DoughnutChartProps {
@@ -33,7 +33,6 @@ export interface DoughnutChartProps {
   valueFormatter?: (value: number) => string;
   totalLabel?: string;
 }
-
 
 /**
  * Renders a doughnut chart with a centered total label and category segments.
@@ -52,7 +51,7 @@ export function DoughnutChart({
   height = 340,
   innerRadius = 70,
   valueFormatter = (value) => formatCurrency(value),
-  totalLabel = "Total"
+  totalLabel = "Total",
 }: DoughnutChartProps) {
   const chartConfig = useMemo(
     () =>
@@ -60,10 +59,10 @@ export function DoughnutChart({
         segments.map((segment, index) => ({
           key: segment.id,
           label: segment.label,
-          color: segment.color ?? DEFAULT_CHART_COLORS[index % DEFAULT_CHART_COLORS.length]
-        }))
+          color: segment.color ?? DEFAULT_CHART_COLORS[index % DEFAULT_CHART_COLORS.length],
+        })),
       ),
-    [segments]
+    [segments],
   );
 
   const total = segments.reduce((sum, segment) => sum + segment.value, 0);
@@ -71,7 +70,7 @@ export function DoughnutChart({
     name: segment.label,
     value: segment.value,
     key: segment.id,
-    fill: segment.color ?? DEFAULT_CHART_COLORS[index % DEFAULT_CHART_COLORS.length]
+    fill: segment.color ?? DEFAULT_CHART_COLORS[index % DEFAULT_CHART_COLORS.length],
   }));
 
   const containerLabel =
@@ -119,11 +118,7 @@ export function DoughnutChart({
               }
             />
             {showLegend && (
-              <ChartLegend
-                content={<ChartLegendContent />}
-                verticalAlign="bottom"
-                height={36}
-              />
+              <ChartLegend content={<ChartLegendContent />} verticalAlign="bottom" height={36} />
             )}
           </RechartsPieChart>
         </ChartContainer>
@@ -131,7 +126,9 @@ export function DoughnutChart({
           className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center"
           aria-hidden="true"
         >
-          <span className="text-xs uppercase tracking-wide text-muted-foreground">{totalLabel}</span>
+          <span className="text-xs uppercase tracking-wide text-muted-foreground">
+            {totalLabel}
+          </span>
           <span className="text-lg font-semibold text-foreground">{valueFormatter(total)}</span>
         </div>
       </div>

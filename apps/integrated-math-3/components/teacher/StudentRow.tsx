@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { MessageSquare, Eye } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { MessageSquare, Eye } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export interface StudentRowProps {
   studentId: string;
@@ -42,16 +42,14 @@ export function StudentRow({
               <div
                 data-testid="progress-bar-fill"
                 className={cn(
-                  'h-2 rounded-full transition-all duration-500',
-                  progress === 100 ? 'bg-green-600' : 'bg-orange-600'
+                  "h-2 rounded-full transition-all duration-500",
+                  progress === 100 ? "bg-green-600" : "bg-orange-600",
                 )}
                 style={{ width: `${progress}%` }}
               />
             </div>
           </div>
-          <span className="text-sm font-medium text-foreground w-12 text-right">
-            {progress}%
-          </span>
+          <span className="text-sm font-medium text-foreground w-12 text-right">{progress}%</span>
         </div>
       </td>
       <td className="py-4 px-4">

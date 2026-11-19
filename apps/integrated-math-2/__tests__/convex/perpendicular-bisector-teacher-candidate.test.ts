@@ -14,22 +14,73 @@ const stableActivityId = "math.im2.skill.1.1.perpendicular-bisector-equidistance
 
 it("hides the teacher action for a source with an invalid component contract", async () => {
   const { db, ctx } = database();
-  const teacherId = await db.insert("profiles", { role: "teacher", organizationId: "org", username: "teacher" });
-  const studentId = await db.insert("profiles", { role: "student", organizationId: "org", username: "student" });
-  await db.insert("auth_credentials", { profileId: teacherId, isActive: true, role: "teacher", organizationId: "org", username: "teacher" });
-  await db.insert("auth_credentials", { profileId: studentId, isActive: true, role: "student", organizationId: "org", username: "student" });
+  const teacherId = await db.insert("profiles", {
+    role: "teacher",
+    organizationId: "org",
+    username: "teacher",
+  });
+  const studentId = await db.insert("profiles", {
+    role: "student",
+    organizationId: "org",
+    username: "student",
+  });
+  await db.insert("auth_credentials", {
+    profileId: teacherId,
+    isActive: true,
+    role: "teacher",
+    organizationId: "org",
+    username: "teacher",
+  });
+  await db.insert("auth_credentials", {
+    profileId: studentId,
+    isActive: true,
+    role: "student",
+    organizationId: "org",
+    username: "student",
+  });
   const classId = await db.insert("classes", { teacherId, archived: false });
   await db.insert("class_enrollments", { classId, studentId, status: "active", enrolledAt: 10 });
   const lessonId = await db.insert("lessons", { slug: "module-1-lesson-1" });
   await db.insert("class_lessons", { classId, lessonId, assignedAt: 20 });
-  const activityId = await db.insert("activities", { stableActivityId, componentKey: "wrong-component", masteryNodeId: "wrong-node", learningEvidenceMode: "worked_example", approval: { status: "approved" } });
-  const submissionId = await db.insert("activity_submissions", { userId: studentId, activityId, lessonId, submissionData: { rawResponse: "4" }, score: 1, maxScore: 1, gradedAt: 30, submittedAt: 30 });
+  const activityId = await db.insert("activities", {
+    stableActivityId,
+    componentKey: "wrong-component",
+    masteryNodeId: "wrong-node",
+    learningEvidenceMode: "worked_example",
+    approval: { status: "approved" },
+  });
+  const submissionId = await db.insert("activity_submissions", {
+    userId: studentId,
+    activityId,
+    lessonId,
+    submissionData: { rawResponse: "4" },
+    score: 1,
+    maxScore: 1,
+    gradedAt: 30,
+    submittedAt: 30,
+  });
 
-  const read = () => invoke<unknown, { submissions: Array<{ id: string; answer: string; score: number; maxScore: number; canRecordExposure: boolean }> }>(getStudentEvidence, ctx, { teacherId, classId, studentId });
+  const read = () =>
+    invoke<
+      unknown,
+      {
+        submissions: Array<{
+          id: string;
+          answer: string;
+          score: number;
+          maxScore: number;
+          canRecordExposure: boolean;
+        }>;
+      }
+    >(getStudentEvidence, ctx, { teacherId, classId, studentId });
   expect((await read()).submissions[0].canRecordExposure).toBe(false);
   expect((await read()).submissions[0].answer).toBe("4");
 
-  await db.patch(activityId, { componentKey: "im2-question", masteryNodeId: "math.im2.skill.1.1.perpendicular-bisector-equidistance", learningEvidenceMode: "guided_practice" });
+  await db.patch(activityId, {
+    componentKey: "im2-question",
+    masteryNodeId: "math.im2.skill.1.1.perpendicular-bisector-equidistance",
+    learningEvidenceMode: "guided_practice",
+  });
   expect((await read()).submissions[0].canRecordExposure).toBe(true);
 
   await db.patch(submissionId, { submittedAt: 19 });
@@ -71,26 +122,40 @@ it("hides the teacher action for a source with an invalid component contract", a
     generatorDifficulty: 1,
     approval: { status: "approved" },
   });
-  const receipt = await submitBoundedPracticeHandler(ctx, {
-    userId: studentId,
-    activityId: workedActivityId,
-    idempotencyKey: "worked",
-    answers: {},
-    hintsUsed: 0,
-    revealStepsSeen: 0,
-  } as never, {
-    nodes: [{
-      id: "math.im2.skill.1.4.order-triangle-angles-from-side-lengths",
-      kind: "skill",
-      reviewStatus: "approved",
-    }],
-    blueprints: [{
-      nodeId: "math.im2.skill.1.4.order-triangle-angles-from-side-lengths",
-      reviewStatus: "approved",
-    }],
-  });
+  const receipt = await submitBoundedPracticeHandler(
+    ctx,
+    {
+      userId: studentId,
+      activityId: workedActivityId,
+      idempotencyKey: "worked",
+      answers: {},
+      hintsUsed: 0,
+      revealStepsSeen: 0,
+    } as never,
+    {
+      nodes: [
+        {
+          id: "math.im2.skill.1.4.order-triangle-angles-from-side-lengths",
+          kind: "skill",
+          reviewStatus: "approved",
+        },
+      ],
+      blueprints: [
+        {
+          nodeId: "math.im2.skill.1.4.order-triangle-angles-from-side-lengths",
+          reviewStatus: "approved",
+        },
+      ],
+    },
+  );
   const worked = (await read()).submissions.find((row) => row.id === receipt.submissionId);
-  expect(worked).toMatchObject({ id: receipt.submissionId, answer: "", score: 0, maxScore: 1, canRecordExposure: false });
+  expect(worked).toMatchObject({
+    id: receipt.submissionId,
+    answer: "",
+    score: 0,
+    maxScore: 1,
+    canRecordExposure: false,
+  });
 });
 
 it.each([
@@ -98,37 +163,98 @@ it.each([
   [triangleNodeIds.sides, 9],
 ] as const)("offers teacher confirmation only for the final %s Guided row", async (node, seed) => {
   const { db, ctx } = database();
-  const teacherId = await db.insert("profiles", { role: "teacher", organizationId: "org", username: "teacher" });
-  const studentId = await db.insert("profiles", { role: "student", organizationId: "org", username: "student" });
-  await db.insert("auth_credentials", { profileId: teacherId, isActive: true, role: "teacher", organizationId: "org", username: "teacher" });
-  await db.insert("auth_credentials", { profileId: studentId, isActive: true, role: "student", organizationId: "org", username: "student" });
+  const teacherId = await db.insert("profiles", {
+    role: "teacher",
+    organizationId: "org",
+    username: "teacher",
+  });
+  const studentId = await db.insert("profiles", {
+    role: "student",
+    organizationId: "org",
+    username: "student",
+  });
+  await db.insert("auth_credentials", {
+    profileId: teacherId,
+    isActive: true,
+    role: "teacher",
+    organizationId: "org",
+    username: "teacher",
+  });
+  await db.insert("auth_credentials", {
+    profileId: studentId,
+    isActive: true,
+    role: "student",
+    organizationId: "org",
+    username: "student",
+  });
   const classId = await db.insert("classes", { teacherId, archived: false });
   await db.insert("class_enrollments", { classId, studentId, status: "active", enrolledAt: 0 });
   const lessonId = await db.insert("lessons", { slug: "module-1-lesson-4" });
   await db.insert("class_lessons", { classId, lessonId, assignedAt: 0 });
   const activityId = await db.insert("activities", {
-    stableActivityId: `${node}.guided_practice`, masteryNodeId: node,
-    learningEvidenceMode: "guided_practice", componentKey: "im2-question",
-    generatorSeed: seed, generatorDifficulty: 1, approval: { status: "approved" },
+    stableActivityId: `${node}.guided_practice`,
+    masteryNodeId: node,
+    learningEvidenceMode: "guided_practice",
+    componentKey: "im2-question",
+    generatorSeed: seed,
+    generatorDifficulty: 1,
+    approval: { status: "approved" },
   });
   const publication = {
     nodes: [{ id: node, kind: "skill", reviewStatus: "approved" }],
     blueprints: [{ nodeId: node, reviewStatus: "approved" }],
   };
-  await submitTriangleHandler(ctx, {
-    userId: studentId, activityId, idempotencyKey: "one",
-    answers: { measure_order: "choice-1" }, hintsUsed: 0, revealStepsSeen: 0,
-  } as never, publication);
-  await submitTriangleHandler(ctx, {
-    userId: studentId, activityId, idempotencyKey: "two",
-    answers: { measure_order: "choice-1", opposite_correspondence: "choice-1" }, hintsUsed: 0, revealStepsSeen: 0,
-  } as never, publication);
-  const beforeFinal = await invoke<unknown, { submissions: Array<{ canRecordExposure: boolean }> }>(getStudentEvidence, ctx, { teacherId, classId, studentId });
+  await submitTriangleHandler(
+    ctx,
+    {
+      userId: studentId,
+      activityId,
+      idempotencyKey: "one",
+      answers: { measure_order: "choice-1" },
+      hintsUsed: 0,
+      revealStepsSeen: 0,
+    } as never,
+    publication,
+  );
+  await submitTriangleHandler(
+    ctx,
+    {
+      userId: studentId,
+      activityId,
+      idempotencyKey: "two",
+      answers: { measure_order: "choice-1", opposite_correspondence: "choice-1" },
+      hintsUsed: 0,
+      revealStepsSeen: 0,
+    } as never,
+    publication,
+  );
+  const beforeFinal = await invoke<unknown, { submissions: Array<{ canRecordExposure: boolean }> }>(
+    getStudentEvidence,
+    ctx,
+    { teacherId, classId, studentId },
+  );
   expect(beforeFinal.submissions.every((row) => !row.canRecordExposure)).toBe(true);
-  const final = await submitTriangleHandler(ctx, {
-    userId: studentId, activityId, idempotencyKey: "three",
-    answers: { measure_order: "choice-1", opposite_correspondence: "choice-1", final_order: "choice-1" }, hintsUsed: 0, revealStepsSeen: 0,
-  } as never, publication);
-  const projected = await invoke<unknown, { submissions: Array<{ id: string; canRecordExposure: boolean }> }>(getStudentEvidence, ctx, { teacherId, classId, studentId });
-  expect(projected.submissions.filter((row) => row.canRecordExposure).map((row) => row.id)).toEqual([final.submissionId]);
+  const final = await submitTriangleHandler(
+    ctx,
+    {
+      userId: studentId,
+      activityId,
+      idempotencyKey: "three",
+      answers: {
+        measure_order: "choice-1",
+        opposite_correspondence: "choice-1",
+        final_order: "choice-1",
+      },
+      hintsUsed: 0,
+      revealStepsSeen: 0,
+    } as never,
+    publication,
+  );
+  const projected = await invoke<
+    unknown,
+    { submissions: Array<{ id: string; canRecordExposure: boolean }> }
+  >(getStudentEvidence, ctx, { teacherId, classId, studentId });
+  expect(projected.submissions.filter((row) => row.canRecordExposure).map((row) => row.id)).toEqual(
+    [final.submissionId],
+  );
 });

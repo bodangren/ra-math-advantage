@@ -20,16 +20,16 @@
  * for the `vi.mock` setup that proves the interception.
  */
 
-import { getDistractorTypesForMisconception } from '@/lib/practice/misconception-mapping';
+import { getDistractorTypesForMisconception } from "@/lib/practice/misconception-mapping";
 import {
   IM3_MISCONCEPTION_TAGS,
   isCanonicalIm3MisconceptionTag,
-} from '@/lib/practice/misconception-taxonomy';
+} from "@/lib/practice/misconception-taxonomy";
 import {
   IM3_MISCONCEPTION_REMEDIATIONS,
   type RemediationActivityRef,
-} from '@/lib/practice/misconception-remediations';
-import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
+} from "@/lib/practice/misconception-remediations";
+import type { PracticeSubmissionEnvelope } from "@math-platform/practice-core/contract";
 
 /**
  * Per-student misconception lifecycle state, as it would be persisted by
@@ -79,9 +79,7 @@ export interface FakeT6LoopOutput {
   updatedState: FakeStudentMisconceptionState;
 }
 
-const ALL_TAXONOMY_SLUGS: ReadonlySet<string> = new Set(
-  Object.keys(IM3_MISCONCEPTION_TAGS),
-);
+const ALL_TAXONOMY_SLUGS: ReadonlySet<string> = new Set(Object.keys(IM3_MISCONCEPTION_TAGS));
 
 /**
  * The fake T6 mechanism.

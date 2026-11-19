@@ -1,4 +1,4 @@
-import type { CompletePhaseRequest, CompletePhaseResponse } from '@/types/api';
+import type { CompletePhaseRequest, CompletePhaseResponse } from "@/types/api";
 
 export class PhaseCompletionError extends Error {
   status?: number;
@@ -7,7 +7,7 @@ export class PhaseCompletionError extends Error {
 
   constructor(message: string, options?: { status?: number; details?: unknown }) {
     super(message);
-    this.name = 'PhaseCompletionError';
+    this.name = "PhaseCompletionError";
     this.status = options?.status;
     this.details = options?.details;
     this.transient = isTransientStatus(options?.status);
@@ -34,9 +34,9 @@ function isTransientStatus(status?: number): boolean {
  * @returns Extracted error message or fallback
  */
 function extractMessage(payload: unknown, fallback: string): string {
-  if (payload && typeof payload === 'object') {
+  if (payload && typeof payload === "object") {
     const record = payload as Record<string, unknown>;
-    if (typeof record.error === 'string' && record.error.length > 0) {
+    if (typeof record.error === "string" && record.error.length > 0) {
       return record.error;
     }
   }
@@ -53,10 +53,10 @@ function extractMessage(payload: unknown, fallback: string): string {
 export async function completePhaseRequest(
   payload: CompletePhaseRequest,
 ): Promise<CompletePhaseResponse> {
-  const response = await fetch('/api/phases/complete', {
-    method: 'POST',
+  const response = await fetch("/api/phases/complete", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(payload),
     keepalive: true,

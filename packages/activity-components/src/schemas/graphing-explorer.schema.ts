@@ -1,10 +1,24 @@
-import { z } from 'zod';
-import type { PracticeSubmissionPart } from '@math-platform/practice-core/submission-schema';
+import { z } from "zod";
+import type { PracticeSubmissionPart } from "@math-platform/practice-core/submission-schema";
 
 export const graphingExplorerSchema = z
   .object({
-    variant: z.enum(['plot_from_equation', 'compare_functions', 'find_intercepts', 'graph_system']).optional(),
-    responseVariant: z.enum(['quadratic_features', 'table_graph', 'domain_range', 'maximum_value', 'symmetry_graph', 'compare_maximums', 'one_real_solution', 'two_real_solutions', 'estimated_root_intervals']).optional(),
+    variant: z
+      .enum(["plot_from_equation", "compare_functions", "find_intercepts", "graph_system"])
+      .optional(),
+    responseVariant: z
+      .enum([
+        "quadratic_features",
+        "table_graph",
+        "domain_range",
+        "maximum_value",
+        "symmetry_graph",
+        "compare_maximums",
+        "one_real_solution",
+        "two_real_solutions",
+        "estimated_root_intervals",
+      ])
+      .optional(),
     equation: z.string().min(1),
     originalEquation: z.string().min(1).optional(),
     vertex: z.tuple([z.number(), z.number()]).optional(),
@@ -14,7 +28,7 @@ export const graphingExplorerSchema = z
     points: z.array(z.tuple([z.number(), z.number()])).optional(),
     comparisonEquation: z.string().optional(),
     comparisonQuestion: z.string().optional(),
-    comparisonAnswer: z.enum(['first', 'second']).optional(),
+    comparisonAnswer: z.enum(["first", "second"]).optional(),
     sum: z.number().optional(),
     product: z.number().optional(),
     linearEquation: z.string().optional(),
@@ -25,7 +39,7 @@ export type GraphingExplorerSchemaProps = z.infer<typeof graphingExplorerSchema>
 
 export interface GraphingSubmissionInput {
   activityId: string;
-  mode: 'teaching' | 'guided' | 'practice';
+  mode: "teaching" | "guided" | "practice";
   placedPoints: Array<{ x: number; y: number }>;
   intercepts: Array<{ type: string; data: { x: number; y: number } | null; timestamp: number }>;
   hints: Array<{ type: string; data: unknown; timestamp: number }>;
@@ -35,7 +49,7 @@ export interface GraphingSubmissionInput {
   linearEquation?: string;
   domain?: [number, number];
   range?: [number, number];
-  comparisonAnswerSelected?: 'first' | 'second' | null;
+  comparisonAnswerSelected?: "first" | "second" | null;
   intersectionPoints?: Array<{ x: number; y: number }>;
   assessPointsCorrectness: () => boolean;
   assessInterceptsCorrectness: () => boolean;
@@ -69,12 +83,12 @@ export function buildGraphingSubmission(input: GraphingSubmissionInput) {
 
   const parts: PracticeSubmissionPart[] = [
     {
-      partId: 'placed_points',
+      partId: "placed_points",
       rawAnswer: placedPoints,
       isCorrect: assessPointsCorrectness(),
     },
     {
-      partId: 'intercepts',
+      partId: "intercepts",
       rawAnswer: intercepts,
       isCorrect: assessInterceptsCorrectness(),
       hintsUsed: hints.length,
@@ -88,7 +102,7 @@ export function buildGraphingSubmission(input: GraphingSubmissionInput) {
 
   if (comparisonAnswerSelected && assessComparisonCorrectness) {
     parts.push({
-      partId: 'comparison',
+      partId: "comparison",
       rawAnswer: comparisonAnswerSelected,
       isCorrect: assessComparisonCorrectness(),
     });
@@ -97,7 +111,7 @@ export function buildGraphingSubmission(input: GraphingSubmissionInput) {
 
   if (intersectionPoints) {
     parts.push({
-      partId: 'intersections',
+      partId: "intersections",
       rawAnswer: intersectionPoints,
       isCorrect: assessPointsCorrectness(),
     });
@@ -105,10 +119,11 @@ export function buildGraphingSubmission(input: GraphingSubmissionInput) {
   }
 
   return {
-    contractVersion: 'practice.v1' as const,
+    contractVersion: "practice.v1" as const,
     activityId,
-    mode: mode === 'practice' ? 'independent_practice' : mode === 'guided' ? 'guided_practice' : mode,
-    status: 'submitted' as const,
+    mode:
+      mode === "practice" ? "independent_practice" : mode === "guided" ? "guided_practice" : mode,
+    status: "submitted" as const,
     attemptNumber: 1,
     submittedAt: new Date().toISOString(),
     answers,

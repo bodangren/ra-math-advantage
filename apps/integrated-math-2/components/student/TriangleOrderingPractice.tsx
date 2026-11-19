@@ -23,8 +23,7 @@ type Item = {
   revealStepsSeen: number;
 };
 type SavedRequest = { key: string; body: string };
-const validId = (value: unknown) =>
-  typeof value === "string" && value.length > 0;
+const validId = (value: unknown) => typeof value === "string" && value.length > 0;
 export function TriangleOrderingPractice({ items }: { items: Item[] }) {
   const [index, setIndex] = useState(0);
   const [itemState, setItemState] = useState(items[0]);
@@ -36,11 +35,7 @@ export function TriangleOrderingPractice({ items }: { items: Item[] }) {
   const retries = useRef(new Map<string, SavedRequest>());
   if (!itemState)
     return (
-      <p>
-        {items.length
-          ? "Practice complete."
-          : "Triangle ordering practice is not available."}
-      </p>
+      <p>{items.length ? "Practice complete." : "Triangle ordering practice is not available."}</p>
     );
   async function submit() {
     if (pending.current) return;
@@ -50,9 +45,7 @@ export function TriangleOrderingPractice({ items }: { items: Item[] }) {
       const saved = retries.current.get(itemState.activityId);
       const proposedAnswers = {
         ...(itemState.acceptedAnswers ?? {}),
-        ...(itemState.currentPart
-          ? { [itemState.currentPart.id]: answer }
-          : {}),
+        ...(itemState.currentPart ? { [itemState.currentPart.id]: answer } : {}),
       };
       const proposedBody = JSON.stringify({
         answers: proposedAnswers,
@@ -73,17 +66,11 @@ export function TriangleOrderingPractice({ items }: { items: Item[] }) {
           body: request.body,
         },
       );
-      if (!response.ok)
-        throw Error(
-          "Your response was not saved. Submit the same response again.",
-        );
+      if (!response.ok) throw Error("Your response was not saved. Submit the same response again.");
       const result: unknown = await response.json();
       if (itemState.mode === "worked_example") {
-        if (!isAcknowledged(result))
-          throw Error("The saved response is invalid. Submit it again.");
-      } else if (
-        !isGraded(result, itemState, JSON.parse(request.body) as TriangleBody)
-      )
+        if (!isAcknowledged(result)) throw Error("The saved response is invalid. Submit it again.");
+      } else if (!isGraded(result, itemState, JSON.parse(request.body) as TriangleBody))
         throw Error("The saved response is invalid. Submit it again.");
       retries.current.delete(itemState.activityId);
       setRetryLocked(false);
@@ -136,18 +123,14 @@ export function TriangleOrderingPractice({ items }: { items: Item[] }) {
           </ol>
           <button
             disabled={busy}
-            onClick={() =>
-              void submit().catch((error: Error) => setMessage(error.message))
-            }
+            onClick={() => void submit().catch((error: Error) => setMessage(error.message))}
           >
             Continue
           </button>
         </>
       ) : (
         <>
-          <label htmlFor={itemState.activityId}>
-            {itemState.currentPart?.prompt}
-          </label>
+          <label htmlFor={itemState.activityId}>{itemState.currentPart?.prompt}</label>
           {itemState.currentPart?.kind === "choice" ? (
             <select
               disabled={busy || retryLocked}
@@ -172,9 +155,7 @@ export function TriangleOrderingPractice({ items }: { items: Item[] }) {
           )}
           <button
             disabled={!answer || busy}
-            onClick={() =>
-              void submit().catch((error: Error) => setMessage(error.message))
-            }
+            onClick={() => void submit().catch((error: Error) => setMessage(error.message))}
           >
             Check answer
           </button>
@@ -194,16 +175,10 @@ const object = (value: unknown): value is Record<string, unknown> =>
 function exactKeys(value: Record<string, unknown>, expected: string[]) {
   const actual = Object.keys(value).sort();
   const keys = [...expected].sort();
-  return (
-    actual.length === keys.length &&
-    actual.every((key, index) => key === keys[index])
-  );
+  return actual.length === keys.length && actual.every((key, index) => key === keys[index]);
 }
 function stringMap(value: unknown): value is Record<string, string> {
-  return (
-    object(value) &&
-    Object.values(value).every((entry) => typeof entry === "string")
-  );
+  return object(value) && Object.values(value).every((entry) => typeof entry === "string");
 }
 function sameMap(left: Record<string, string>, right: Record<string, string>) {
   return (
@@ -258,10 +233,7 @@ function expectedNextId(currentId: string) {
       ? "final_order"
       : undefined;
 }
-function validNextPart(
-  value: unknown,
-  expectedId: string | undefined,
-): value is Part {
+function validNextPart(value: unknown, expectedId: string | undefined): value is Part {
   if (
     !expectedId ||
     !object(value) ||
@@ -333,12 +305,8 @@ function isGraded(value: unknown, item: Item, request: TriangleBody) {
     return false;
   const currentCorrect = value.complete || value.score === 1;
   const expectedHintsUsed =
-    request.hintsUsed +
-    (item.mode === "guided_practice" && !currentCorrect ? 1 : 0);
-  if (
-    value.hintsUsed !== expectedHintsUsed ||
-    value.revealStepsSeen !== request.revealStepsSeen
-  )
+    request.hintsUsed + (item.mode === "guided_practice" && !currentCorrect ? 1 : 0);
+  if (value.hintsUsed !== expectedHintsUsed || value.revealStepsSeen !== request.revealStepsSeen)
     return false;
   const currentId = item.currentPart.id;
   const expectedAnswers = { ...(item.acceptedAnswers ?? {}) };
@@ -355,8 +323,7 @@ function isGraded(value: unknown, item: Item, request: TriangleBody) {
       value.score !== value.maxScore ||
       !value.parts.every(validPart) ||
       value.parts.some(
-        (part) =>
-          !part.isCorrect || acceptedAnswers[part.partId] !== part.rawAnswer,
+        (part) => !part.isCorrect || acceptedAnswers[part.partId] !== part.rawAnswer,
       ) ||
       !value.parts.some((part) => part.partId === currentId)
     )
@@ -366,11 +333,7 @@ function isGraded(value: unknown, item: Item, request: TriangleBody) {
       value.parts.map((part) => part.partId),
     );
   }
-  if (
-    value.parts !== undefined ||
-    value.maxScore !== 1 ||
-    (value.score !== 0 && value.score !== 1)
-  )
+  if (value.parts !== undefined || value.maxScore !== 1 || (value.score !== 0 && value.score !== 1))
     return false;
   if (value.finalPart && value.score === 1) return false;
   const nextId = expectedNextId(currentId);

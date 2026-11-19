@@ -1,40 +1,40 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 import {
   syntheticMathFixture,
   syntheticEnglishGseFixture,
-} from '@math-platform/knowledge-space-core';
-import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from '@math-platform/knowledge-space-core';
-import type { KnowledgeBlueprint } from '../blueprints';
+} from "@math-platform/knowledge-space-core";
+import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from "@math-platform/knowledge-space-core";
+import type { KnowledgeBlueprint } from "../blueprints";
 
-import { projectActivityMap, findChildSkills, selectSkill } from '../projections/activity-map';
-import { projectSrsInputs } from '../projections/srs';
-import { projectTeacherEvidence } from '../projections/teacher-evidence';
+import { projectActivityMap, findChildSkills, selectSkill } from "../projections/activity-map";
+import { projectSrsInputs } from "../projections/srs";
+import { projectTeacherEvidence } from "../projections/teacher-evidence";
 import {
   projectStudentVisualization,
   projectParentVisualization,
   projectTeacherVisualization,
-} from '../projections/visualization';
+} from "../projections/visualization";
 
 import {
   studentVisualizationV1Schema,
   parentVisualizationV1Schema,
   teacherVisualizationV1Schema,
-} from '../projections/schemas';
+} from "../projections/schemas";
 
 import {
   syntheticBlueprint,
   syntheticEnglishBlueprintProjection,
   syntheticLearnerState,
-} from '../projections/fixtures';
+} from "../projections/fixtures";
 
-import { getRecommendedNext } from '../planner/recommended-next';
-import { defaultPriorityWeights } from './planner-fixtures';
+import { getRecommendedNext } from "../planner/recommended-next";
+import { defaultPriorityWeights } from "./planner-fixtures";
 
 // ---------------------------------------------------------------------------
 // Task 1.1: Activity map projection test
 // ---------------------------------------------------------------------------
-describe('Activity map projection', () => {
-  it('produces valid activity map rows from synthetic math fixture + blueprint', () => {
+describe("Activity map projection", () => {
+  it("produces valid activity map rows from synthetic math fixture + blueprint", () => {
     const nodes = syntheticMathFixture.nodes;
     const edges = syntheticMathFixture.edges;
     const blueprints: KnowledgeBlueprint[] = [syntheticBlueprint];
@@ -44,54 +44,47 @@ describe('Activity map projection', () => {
     expect(rows.length).toBeGreaterThan(0);
 
     for (const row of rows) {
-      expect(row).toHaveProperty('stableActivityId');
-      expect(row).toHaveProperty('nodeId');
-      expect(row).toHaveProperty('sourceNodeIds');
-      expect(row).toHaveProperty('rendererKey');
-      expect(row).toHaveProperty('mode');
-      expect(row).toHaveProperty('alignmentNodeIds');
-      expect(row).toHaveProperty('props');
-      expect(row).toHaveProperty('gradingConfig');
-      expect(row).toHaveProperty('srsEligible');
+      expect(row).toHaveProperty("stableActivityId");
+      expect(row).toHaveProperty("nodeId");
+      expect(row).toHaveProperty("sourceNodeIds");
+      expect(row).toHaveProperty("rendererKey");
+      expect(row).toHaveProperty("mode");
+      expect(row).toHaveProperty("alignmentNodeIds");
+      expect(row).toHaveProperty("props");
+      expect(row).toHaveProperty("gradingConfig");
+      expect(row).toHaveProperty("srsEligible");
 
-      expect(typeof row.stableActivityId).toBe('string');
-      expect(typeof row.nodeId).toBe('string');
+      expect(typeof row.stableActivityId).toBe("string");
+      expect(typeof row.nodeId).toBe("string");
       expect(Array.isArray(row.sourceNodeIds)).toBe(true);
-      expect(typeof row.rendererKey).toBe('string');
-      expect([
-        'worked_example',
-        'guided_practice',
-        'independent_practice',
-        'assessment',
-      ]).toContain(row.mode);
+      expect(typeof row.rendererKey).toBe("string");
+      expect(["worked_example", "guided_practice", "independent_practice", "assessment"]).toContain(
+        row.mode,
+      );
       expect(Array.isArray(row.alignmentNodeIds)).toBe(true);
     }
   });
 
-  it('includes knowledge-space provenance in activity map rows', () => {
+  it("includes knowledge-space provenance in activity map rows", () => {
     const nodes = syntheticMathFixture.nodes;
     const edges = syntheticMathFixture.edges;
     const blueprints: KnowledgeBlueprint[] = [syntheticBlueprint];
 
     const rows = projectActivityMap(nodes, edges, blueprints);
 
-    const factoringRow = rows.find((r) =>
-      r.nodeId.includes('factoring-drill'),
-    );
+    const factoringRow = rows.find((r) => r.nodeId.includes("factoring-drill"));
     expect(factoringRow).toBeDefined();
     expect(factoringRow!.alignmentNodeIds.length).toBeGreaterThan(0);
-    expect(factoringRow!.alignmentNodeIds).toContain(
-      'math.im3.standard.ccss.hsa.rei.b.4b',
-    );
+    expect(factoringRow!.alignmentNodeIds).toContain("math.im3.standard.ccss.hsa.rei.b.4b");
   });
 
-  it('marks Guided and Independent rows SRS eligible for an approved and explicitly ready node, but not Worked', () => {
+  it("marks Guided and Independent rows SRS eligible for an approved and explicitly ready node, but not Worked", () => {
     const node: KnowledgeSpaceNode = {
-      id: 'math.test.skill.ready',
-      kind: 'skill',
-      title: 'Ready skill',
-      domain: 'math.test',
-      reviewStatus: 'approved',
+      id: "math.test.skill.ready",
+      kind: "skill",
+      title: "Ready skill",
+      domain: "math.test",
+      reviewStatus: "approved",
       metadata: {},
       independentPracticeReady: true,
     };
@@ -99,29 +92,29 @@ describe('Activity map projection', () => {
       nodeId: node.id,
       sourceNodeIds: [],
       alignmentNodeIds: [],
-      rendererKey: 'graphing-explorer',
+      rendererKey: "graphing-explorer",
       rendererModeMap: {},
       workedExampleSpec: {
-        prompt: 'Worked prompt',
+        prompt: "Worked prompt",
         givens: [],
         target: {},
-        steps: [{ description: 'Show the completed graph.' }],
-        explanation: 'Worked explanation',
+        steps: [{ description: "Show the completed graph." }],
+        explanation: "Worked explanation",
       },
       guidedPracticeSpec: {
-        scaffoldedPrompt: 'Guided prompt',
+        scaffoldedPrompt: "Guided prompt",
         stepPrompts: [],
         hints: [],
         checksPerStep: [],
-        revealPolicy: 'after_attempt',
+        revealPolicy: "after_attempt",
       },
       independentPracticeSpec: {
         variantParameters: {},
         answerSchema: {},
         gradingRules: [],
-        replayPolicy: 'unique_seeds',
+        replayPolicy: "unique_seeds",
       },
-      reviewStatus: 'approved',
+      reviewStatus: "approved",
       metadata: {},
     };
 
@@ -132,23 +125,31 @@ describe('Activity map projection', () => {
       guided_practice: true,
       independent_practice: true,
     });
-    for (const status of ['draft', 'reviewed', 'rejected'] as const) {
-      const unapprovedNodeRows = projectActivityMap([{ ...node, reviewStatus: status }], [], [blueprint]);
-      const unapprovedBlueprintRows = projectActivityMap([node], [], [{ ...blueprint, reviewStatus: status }]);
+    for (const status of ["draft", "reviewed", "rejected"] as const) {
+      const unapprovedNodeRows = projectActivityMap(
+        [{ ...node, reviewStatus: status }],
+        [],
+        [blueprint],
+      );
+      const unapprovedBlueprintRows = projectActivityMap(
+        [node],
+        [],
+        [{ ...blueprint, reviewStatus: status }],
+      );
       expect(unapprovedNodeRows).toHaveLength(3);
       expect(unapprovedBlueprintRows).toHaveLength(3);
-      expect(unapprovedNodeRows.every(row => !row.srsEligible)).toBe(true);
-      expect(unapprovedBlueprintRows.every(row => !row.srsEligible)).toBe(true);
+      expect(unapprovedNodeRows.every((row) => !row.srsEligible)).toBe(true);
+      expect(unapprovedBlueprintRows.every((row) => !row.srsEligible)).toBe(true);
     }
   });
 
-  it('does not infer activity eligibility from a specification or generator key', () => {
+  it("does not infer activity eligibility from a specification or generator key", () => {
     const node: KnowledgeSpaceNode = {
-      id: 'math.test.skill.not-ready',
-      kind: 'skill',
-      title: 'Unavailable skill',
-      domain: 'math.test',
-      reviewStatus: 'draft',
+      id: "math.test.skill.not-ready",
+      kind: "skill",
+      title: "Unavailable skill",
+      domain: "math.test",
+      reviewStatus: "draft",
       metadata: {},
       independentPracticeReady: false,
     };
@@ -156,30 +157,30 @@ describe('Activity map projection', () => {
       nodeId: node.id,
       sourceNodeIds: [],
       alignmentNodeIds: [],
-      rendererKey: 'graphing-explorer',
+      rendererKey: "graphing-explorer",
       rendererModeMap: {},
       workedExampleSpec: {
-        prompt: 'Worked prompt',
+        prompt: "Worked prompt",
         givens: [],
         target: {},
-        steps: [{ description: 'Show the completed graph.' }],
-        explanation: 'Worked explanation',
+        steps: [{ description: "Show the completed graph." }],
+        explanation: "Worked explanation",
       },
       guidedPracticeSpec: {
-        scaffoldedPrompt: 'Guided prompt',
+        scaffoldedPrompt: "Guided prompt",
         stepPrompts: [],
         hints: [],
         checksPerStep: [],
-        revealPolicy: 'after_attempt',
+        revealPolicy: "after_attempt",
       },
       independentPracticeSpec: {
         variantParameters: {},
         answerSchema: {},
         gradingRules: [],
-        replayPolicy: 'unique_seeds',
+        replayPolicy: "unique_seeds",
       },
-      generatorKey: 'pilot-stub-generator',
-      reviewStatus: 'draft',
+      generatorKey: "pilot-stub-generator",
+      reviewStatus: "draft",
       metadata: {},
     };
 
@@ -196,8 +197,8 @@ describe('Activity map projection', () => {
 // ---------------------------------------------------------------------------
 // Task 1.2: Component props validation test
 // ---------------------------------------------------------------------------
-describe('Component props validation', () => {
-  it('generated activity props are well-formed', () => {
+describe("Component props validation", () => {
+  it("generated activity props are well-formed", () => {
     const nodes = syntheticMathFixture.nodes;
     const edges = syntheticMathFixture.edges;
     const blueprints: KnowledgeBlueprint[] = [syntheticBlueprint];
@@ -205,70 +206,68 @@ describe('Component props validation', () => {
     const rows = projectActivityMap(nodes, edges, blueprints);
 
     for (const row of rows) {
-      expect(typeof row.props).toBe('object');
+      expect(typeof row.props).toBe("object");
       expect(row.props).not.toBeNull();
       expect(Object.keys(row.props).length).toBeGreaterThan(0);
     }
   });
 
-  it('copies explicit modality renderer props without blueprint display fields', () => {
-    const skill = syntheticMathFixture.nodes.find((node) => node.kind === 'skill');
+  it("copies explicit modality renderer props without blueprint display fields", () => {
+    const skill = syntheticMathFixture.nodes.find((node) => node.kind === "skill");
     expect(skill).toBeDefined();
 
     const blueprint = {
       nodeId: skill!.id,
       sourceNodeIds: [],
       alignmentNodeIds: [],
-      rendererKey: 'graphing-explorer',
+      rendererKey: "graphing-explorer",
       rendererModeMap: {
-        worked: 'graphing-explorer',
-        guidedPractice: 'graphing-explorer',
-        independentPractice: 'graphing-explorer',
+        worked: "graphing-explorer",
+        guidedPractice: "graphing-explorer",
+        independentPractice: "graphing-explorer",
       },
       workedExampleSpec: {
-        prompt: 'Worked prompt',
-        givens: ['f(x) = x^2 - 4'],
+        prompt: "Worked prompt",
+        givens: ["f(x) = x^2 - 4"],
         target: {},
-        steps: [{ description: 'Graph the function.' }],
-        explanation: 'Worked explanation',
-        rendererProps: { equation: 'f(x) = x^2 - 4', variant: 'plot_from_equation' },
+        steps: [{ description: "Graph the function." }],
+        explanation: "Worked explanation",
+        rendererProps: { equation: "f(x) = x^2 - 4", variant: "plot_from_equation" },
       },
       guidedPracticeSpec: {
-        scaffoldedPrompt: 'Guided prompt',
-        stepPrompts: ['Graph the function.'],
-        hints: ['Use the vertex.'],
-        checksPerStep: [{ check: 'The graph is correct.' }],
-        revealPolicy: 'after_attempt',
-        rendererProps: { equation: 'f(x) = x^2 - 2x - 3', variant: 'plot_from_equation' },
+        scaffoldedPrompt: "Guided prompt",
+        stepPrompts: ["Graph the function."],
+        hints: ["Use the vertex."],
+        checksPerStep: [{ check: "The graph is correct." }],
+        revealPolicy: "after_attempt",
+        rendererProps: { equation: "f(x) = x^2 - 2x - 3", variant: "plot_from_equation" },
       },
       independentPracticeSpec: {
         variantParameters: {},
-        answerSchema: { answer: 'graph' },
+        answerSchema: { answer: "graph" },
         gradingRules: [],
-        replayPolicy: 'unique_seeds',
+        replayPolicy: "unique_seeds",
         rendererProps: {
-          equation: 'y = x^2 - 4',
-          variant: 'plot_from_equation',
-          responseVariant: 'quadratic_features',
+          equation: "y = x^2 - 4",
+          variant: "plot_from_equation",
+          responseVariant: "quadratic_features",
         },
       },
-      reviewStatus: 'draft',
+      reviewStatus: "draft",
       metadata: {},
     } as unknown as KnowledgeBlueprint;
 
-    const rows = projectActivityMap(
-      syntheticMathFixture.nodes,
-      syntheticMathFixture.edges,
-      [blueprint],
-    );
+    const rows = projectActivityMap(syntheticMathFixture.nodes, syntheticMathFixture.edges, [
+      blueprint,
+    ]);
 
     expect(rows.map((row) => row.props)).toEqual([
-      { equation: 'f(x) = x^2 - 4', variant: 'plot_from_equation' },
-      { equation: 'f(x) = x^2 - 2x - 3', variant: 'plot_from_equation' },
+      { equation: "f(x) = x^2 - 4", variant: "plot_from_equation" },
+      { equation: "f(x) = x^2 - 2x - 3", variant: "plot_from_equation" },
       {
-        equation: 'y = x^2 - 4',
-        variant: 'plot_from_equation',
-        responseVariant: 'quadratic_features',
+        equation: "y = x^2 - 4",
+        variant: "plot_from_equation",
+        responseVariant: "quadratic_features",
       },
     ]);
   });
@@ -277,8 +276,8 @@ describe('Component props validation', () => {
 // ---------------------------------------------------------------------------
 // Task 1.3: SRS projection test
 // ---------------------------------------------------------------------------
-describe('SRS projection', () => {
-  it('includes prerequisite IDs and standard/objective IDs', () => {
+describe("SRS projection", () => {
+  it("includes prerequisite IDs and standard/objective IDs", () => {
     const nodes = syntheticMathFixture.nodes;
     const edges = syntheticMathFixture.edges;
     const blueprints: KnowledgeBlueprint[] = [syntheticBlueprint];
@@ -288,12 +287,12 @@ describe('SRS projection', () => {
     expect(entries.length).toBeGreaterThan(0);
 
     for (const entry of entries) {
-      expect(typeof entry.nodeId).toBe('string');
-      expect(typeof entry.blueprintId).toBe('string');
+      expect(typeof entry.nodeId).toBe("string");
+      expect(typeof entry.blueprintId).toBe("string");
       expect(Array.isArray(entry.standards)).toBe(true);
       expect(Array.isArray(entry.prerequisites)).toBe(true);
-      expect(typeof entry.difficulty).toBe('number');
-      expect(typeof entry.generatorReady).toBe('boolean');
+      expect(typeof entry.difficulty).toBe("number");
+      expect(typeof entry.generatorReady).toBe("boolean");
     }
 
     // At least one entry should have prerequisite info
@@ -301,36 +300,36 @@ describe('SRS projection', () => {
     expect(entryWithPrereqs).toBeDefined();
   });
 
-  it('uses only explicit independent-practice readiness for generator readiness', () => {
+  it("uses only explicit independent-practice readiness for generator readiness", () => {
     const nodes: KnowledgeSpaceNode[] = [
       {
-        id: 'math.test.skill.algebraic-stub',
-        kind: 'skill',
-        title: 'Algebraic stub',
-        domain: 'math.test',
-        reviewStatus: 'draft',
+        id: "math.test.skill.algebraic-stub",
+        kind: "skill",
+        title: "Algebraic stub",
+        domain: "math.test",
+        reviewStatus: "draft",
         metadata: {},
-        generatorKey: 'algebraic-step-solver',
+        generatorKey: "algebraic-step-solver",
         independentPracticeReady: false,
       },
       {
-        id: 'math.test.skill.graphing-stub',
-        kind: 'skill',
-        title: 'Graphing stub',
-        domain: 'math.test',
-        reviewStatus: 'draft',
+        id: "math.test.skill.graphing-stub",
+        kind: "skill",
+        title: "Graphing stub",
+        domain: "math.test",
+        reviewStatus: "draft",
         metadata: {},
-        generatorKey: 'graphing-explorer',
+        generatorKey: "graphing-explorer",
         independentPracticeReady: false,
       },
       {
-        id: 'math.test.skill.ready',
-        kind: 'skill',
-        title: 'Ready skill',
-        domain: 'math.test',
-        reviewStatus: 'draft',
+        id: "math.test.skill.ready",
+        kind: "skill",
+        title: "Ready skill",
+        domain: "math.test",
+        reviewStatus: "draft",
         metadata: {},
-        generatorKey: 'approved-generator',
+        generatorKey: "approved-generator",
         independentPracticeReady: true,
       },
     ];
@@ -338,25 +337,27 @@ describe('SRS projection', () => {
       nodeId: node.id,
       sourceNodeIds: [],
       alignmentNodeIds: [],
-      rendererKey: 'test-renderer',
+      rendererKey: "test-renderer",
       rendererModeMap: {},
       independentPracticeSpec: {
         variantParameters: {},
         answerSchema: {},
         gradingRules: [],
-        replayPolicy: 'unique_seeds',
+        replayPolicy: "unique_seeds",
       },
-      generatorKey: node.generatorKey ?? 'test-generator',
-      reviewStatus: 'draft',
+      generatorKey: node.generatorKey ?? "test-generator",
+      reviewStatus: "draft",
       metadata: {},
     }));
 
     const entries = projectSrsInputs(nodes, [], blueprints);
 
-    expect(Object.fromEntries(entries.map((entry) => [entry.nodeId, entry.generatorReady]))).toEqual({
-      'math.test.skill.algebraic-stub': false,
-      'math.test.skill.graphing-stub': false,
-      'math.test.skill.ready': true,
+    expect(
+      Object.fromEntries(entries.map((entry) => [entry.nodeId, entry.generatorReady])),
+    ).toEqual({
+      "math.test.skill.algebraic-stub": false,
+      "math.test.skill.graphing-stub": false,
+      "math.test.skill.ready": true,
     });
   });
 });
@@ -364,15 +365,15 @@ describe('SRS projection', () => {
 // ---------------------------------------------------------------------------
 // Task 1.4: Visualization projection tests
 // ---------------------------------------------------------------------------
-describe('Visualization projections', () => {
+describe("Visualization projections", () => {
   const nodes = syntheticMathFixture.nodes;
   const edges = syntheticMathFixture.edges;
 
-  describe('Student visualization', () => {
-    it('includes mastered, ready, blocked, review-due, and recommended-next states', () => {
+  describe("Student visualization", () => {
+    it("includes mastered, ready, blocked, review-due, and recommended-next states", () => {
       const viz = projectStudentVisualization(nodes, edges, syntheticLearnerState);
 
-      expect(viz.schemaVersion).toBe('v1');
+      expect(viz.schemaVersion).toBe("v1");
       expect(Array.isArray(viz.mastered)).toBe(true);
       expect(Array.isArray(viz.ready)).toBe(true);
       expect(Array.isArray(viz.blocked)).toBe(true);
@@ -384,31 +385,29 @@ describe('Visualization projections', () => {
       expect(result.success).toBe(true);
     });
 
-    it('does not expose raw graph fields in visualization nodes', () => {
+    it("does not expose raw graph fields in visualization nodes", () => {
       const viz = projectStudentVisualization(nodes, edges, syntheticLearnerState);
 
       for (const node of viz.mastered) {
-        expect(node).toHaveProperty('nodeId');
-        expect(node).toHaveProperty('title');
-        expect(node).toHaveProperty('state');
-        expect(node).not.toHaveProperty('metadata');
-        expect(node).not.toHaveProperty('sourceRefs');
-        expect(node).not.toHaveProperty('reviewStatus');
+        expect(node).toHaveProperty("nodeId");
+        expect(node).toHaveProperty("title");
+        expect(node).toHaveProperty("state");
+        expect(node).not.toHaveProperty("metadata");
+        expect(node).not.toHaveProperty("sourceRefs");
+        expect(node).not.toHaveProperty("reviewStatus");
       }
     });
   });
 
-  describe('Parent visualization', () => {
-    it('includes plain-language can-do summary, next focus, blockers, progress trend', () => {
+  describe("Parent visualization", () => {
+    it("includes plain-language can-do summary, next focus, blockers, progress trend", () => {
       const viz = projectParentVisualization(nodes, edges, syntheticLearnerState);
 
-      expect(viz.schemaVersion).toBe('v1');
-      expect(typeof viz.canDoSummary).toBe('string');
-      expect(typeof viz.nextFocus).toBe('string');
+      expect(viz.schemaVersion).toBe("v1");
+      expect(typeof viz.canDoSummary).toBe("string");
+      expect(typeof viz.nextFocus).toBe("string");
       expect(Array.isArray(viz.blockers)).toBe(true);
-      expect(['improving', 'stable', 'declining', 'unknown']).toContain(
-        viz.progressTrend,
-      );
+      expect(["improving", "stable", "declining", "unknown"]).toContain(viz.progressTrend);
       expect(Array.isArray(viz.nodes)).toBe(true);
 
       const result = parentVisualizationV1Schema.safeParse(viz);
@@ -416,22 +415,22 @@ describe('Visualization projections', () => {
     });
   });
 
-  describe('Teacher visualization', () => {
+  describe("Teacher visualization", () => {
     const classStats = {
-      'math.im3.skill.m1.l2.solve-quadratic-by-factoring': {
+      "math.im3.skill.m1.l2.solve-quadratic-by-factoring": {
         mastered: 12,
         total: 20,
       },
-      'math.im3.skill.m1.l2.identify-roots': {
+      "math.im3.skill.m1.l2.identify-roots": {
         mastered: 15,
         total: 20,
       },
     };
 
-    it('includes heatmap cells, bottleneck nodes, prerequisite gaps, misconception clusters, intervention groups, standards coverage', () => {
+    it("includes heatmap cells, bottleneck nodes, prerequisite gaps, misconception clusters, intervention groups, standards coverage", () => {
       const viz = projectTeacherVisualization(nodes, edges, classStats);
 
-      expect(viz.schemaVersion).toBe('v1');
+      expect(viz.schemaVersion).toBe("v1");
       expect(Array.isArray(viz.heatmap)).toBe(true);
       expect(Array.isArray(viz.bottleneckNodes)).toBe(true);
       expect(Array.isArray(viz.prerequisiteGaps)).toBe(true);
@@ -441,11 +440,11 @@ describe('Visualization projections', () => {
 
       if (viz.heatmap.length > 0) {
         const cell = viz.heatmap[0];
-        expect(typeof cell.nodeId).toBe('string');
-        expect(typeof cell.title).toBe('string');
-        expect(typeof cell.masteredCount).toBe('number');
-        expect(typeof cell.totalCount).toBe('number');
-        expect(typeof cell.proficiencyRate).toBe('number');
+        expect(typeof cell.nodeId).toBe("string");
+        expect(typeof cell.title).toBe("string");
+        expect(typeof cell.masteredCount).toBe("number");
+        expect(typeof cell.totalCount).toBe("number");
+        expect(typeof cell.proficiencyRate).toBe("number");
         expect(cell.proficiencyRate).toBeGreaterThanOrEqual(0);
         expect(cell.proficiencyRate).toBeLessThanOrEqual(1);
       }
@@ -471,40 +470,40 @@ describe('Visualization projections', () => {
   // fails at HEAD with a live-behavior signal (not just an import
   // failure) once the planner module exists but the visualization still
   // uses the pre-track slice.
-  describe('Student visualization — recommendedNext is top-N by priority (Phase 3 integration)', () => {
+  describe("Student visualization — recommendedNext is top-N by priority (Phase 3 integration)", () => {
     const rankNodes = [
       {
-        id: 'rank.z',
-        kind: 'skill' as const,
-        title: 'Z skill',
-        domain: 'math.test.rank',
-        reviewStatus: 'draft' as const,
+        id: "rank.z",
+        kind: "skill" as const,
+        title: "Z skill",
+        domain: "math.test.rank",
+        reviewStatus: "draft" as const,
         metadata: {},
       },
       {
-        id: 'rank.a',
-        kind: 'skill' as const,
-        title: 'A skill',
-        domain: 'math.test.rank',
-        reviewStatus: 'draft' as const,
+        id: "rank.a",
+        kind: "skill" as const,
+        title: "A skill",
+        domain: "math.test.rank",
+        reviewStatus: "draft" as const,
         metadata: {},
       },
       {
-        id: 'rank.m',
-        kind: 'skill' as const,
-        title: 'M skill',
-        domain: 'math.test.rank',
-        reviewStatus: 'draft' as const,
+        id: "rank.m",
+        kind: "skill" as const,
+        title: "M skill",
+        domain: "math.test.rank",
+        reviewStatus: "draft" as const,
         metadata: {},
       },
     ];
     const rankEdges: [] = [];
-    const rankLearnerState: Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'> = {
-      'rank.z': 'ready',
-      'rank.a': 'ready',
+    const rankLearnerState: Record<string, "mastered" | "ready" | "blocked" | "review_due"> = {
+      "rank.z": "ready",
+      "rank.a": "ready",
     };
 
-    it('viz.recommendedNext matches getRecommendedNext(input, defaultPriorityWeights, 5)', () => {
+    it("viz.recommendedNext matches getRecommendedNext(input, defaultPriorityWeights, 5)", () => {
       const viz = projectStudentVisualization(
         rankNodes as never,
         rankEdges as never,
@@ -515,9 +514,9 @@ describe('Visualization projections', () => {
         nodes: rankNodes.map((n) => ({ id: n.id, kind: n.kind, title: n.title, domain: n.domain })),
         edges: [],
         readinessByNode: {
-          'rank.z': 0.1,
-          'rank.a': 0.5,
-          'rank.m': 0.0,
+          "rank.z": 0.1,
+          "rank.a": 0.5,
+          "rank.m": 0.0,
         },
         goalNodeIds: [],
         misconceptionLinks: [],
@@ -527,55 +526,55 @@ describe('Visualization projections', () => {
       expect(viz.recommendedNext.map((n) => n.nodeId)).toEqual(expected);
     });
 
-    it('excludes mastered, blocked, and review-due nodes from recommendedNext', () => {
+    it("excludes mastered, blocked, and review-due nodes from recommendedNext", () => {
       const mixedNodes = [
         {
-          id: 'mixed.mastered',
-          kind: 'skill' as const,
-          title: 'Mastered skill',
-          domain: 'math.test.rank',
-          reviewStatus: 'draft' as const,
+          id: "mixed.mastered",
+          kind: "skill" as const,
+          title: "Mastered skill",
+          domain: "math.test.rank",
+          reviewStatus: "draft" as const,
           metadata: {},
         },
         {
-          id: 'mixed.blocked',
-          kind: 'skill' as const,
-          title: 'Blocked skill',
-          domain: 'math.test.rank',
-          reviewStatus: 'draft' as const,
+          id: "mixed.blocked",
+          kind: "skill" as const,
+          title: "Blocked skill",
+          domain: "math.test.rank",
+          reviewStatus: "draft" as const,
           metadata: {},
         },
         {
-          id: 'mixed.ready',
-          kind: 'skill' as const,
-          title: 'Ready skill',
-          domain: 'math.test.rank',
-          reviewStatus: 'draft' as const,
+          id: "mixed.ready",
+          kind: "skill" as const,
+          title: "Ready skill",
+          domain: "math.test.rank",
+          reviewStatus: "draft" as const,
           metadata: {},
         },
         {
-          id: 'mixed.unknown',
-          kind: 'skill' as const,
-          title: 'Unknown skill',
-          domain: 'math.test.rank',
-          reviewStatus: 'draft' as const,
+          id: "mixed.unknown",
+          kind: "skill" as const,
+          title: "Unknown skill",
+          domain: "math.test.rank",
+          reviewStatus: "draft" as const,
           metadata: {},
         },
         {
-          id: 'mixed.review-due',
-          kind: 'skill' as const,
-          title: 'Review due skill',
-          domain: 'math.test.rank',
-          reviewStatus: 'draft' as const,
+          id: "mixed.review-due",
+          kind: "skill" as const,
+          title: "Review due skill",
+          domain: "math.test.rank",
+          reviewStatus: "draft" as const,
           metadata: {},
         },
       ];
       const mixedEdges: [] = [];
-      const mixedLearnerState: Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'> = {
-        'mixed.mastered': 'mastered',
-        'mixed.blocked': 'blocked',
-        'mixed.ready': 'ready',
-        'mixed.review-due': 'review_due',
+      const mixedLearnerState: Record<string, "mastered" | "ready" | "blocked" | "review_due"> = {
+        "mixed.mastered": "mastered",
+        "mixed.blocked": "blocked",
+        "mixed.ready": "ready",
+        "mixed.review-due": "review_due",
       };
 
       const viz = projectStudentVisualization(
@@ -585,11 +584,11 @@ describe('Visualization projections', () => {
       );
 
       const ids = viz.recommendedNext.map((n) => n.nodeId);
-      expect(ids).toContain('mixed.ready');
-      expect(ids).toContain('mixed.unknown');
-      expect(ids).not.toContain('mixed.mastered');
-      expect(ids).not.toContain('mixed.blocked');
-      expect(ids).not.toContain('mixed.review-due');
+      expect(ids).toContain("mixed.ready");
+      expect(ids).toContain("mixed.unknown");
+      expect(ids).not.toContain("mixed.mastered");
+      expect(ids).not.toContain("mixed.blocked");
+      expect(ids).not.toContain("mixed.review-due");
     });
   });
 });
@@ -597,40 +596,44 @@ describe('Visualization projections', () => {
 // ---------------------------------------------------------------------------
 // Task 1.5: Cross-domain smoke test
 // ---------------------------------------------------------------------------
-describe('Cross-domain smoke test (English/GSE)', () => {
-  it('projection source files contain no math-domain or app imports (boundary check)', async () => {
-    const fsModule = 'node:fs';
+describe("Cross-domain smoke test (English/GSE)", () => {
+  it("projection source files contain no math-domain or app imports (boundary check)", async () => {
+    const fsModule = "node:fs";
     const { readFileSync } = (await import(fsModule)) as {
-      readFileSync: (path: URL, encoding: 'utf-8') => string;
+      readFileSync: (path: URL, encoding: "utf-8") => string;
     };
     const projectionFiles = [
-      '../projections/activity-map.ts',
-      '../projections/srs.ts',
-      '../projections/teacher-evidence.ts',
-      '../projections/visualization.ts',
-      '../projections/fixtures.ts',
-      '../projections/schemas.ts',
-      '../projections/types.ts',
+      "../projections/activity-map.ts",
+      "../projections/srs.ts",
+      "../projections/teacher-evidence.ts",
+      "../projections/visualization.ts",
+      "../projections/fixtures.ts",
+      "../projections/schemas.ts",
+      "../projections/types.ts",
     ];
     for (const file of projectionFiles) {
       const fileUrl = new URL(file, import.meta.url);
-      const content = readFileSync(fileUrl, 'utf-8');
+      const content = readFileSync(fileUrl, "utf-8");
       expect(content, `${file} must not import from apps/`).not.toMatch(/from ['"].*apps\//);
-      expect(content, `${file} must not import from math-content`).not.toMatch(/from ['"].*math-content/);
-      expect(content, `${file} must not import from convex/_generated`).not.toMatch(/from ['"].*convex\/_generated/);
+      expect(content, `${file} must not import from math-content`).not.toMatch(
+        /from ['"].*math-content/,
+      );
+      expect(content, `${file} must not import from convex/_generated`).not.toMatch(
+        /from ['"].*convex\/_generated/,
+      );
     }
   });
 
-  it('runs full projection pipeline on non-math fixture', () => {
+  it("runs full projection pipeline on non-math fixture", () => {
     const nodes = syntheticEnglishGseFixture.nodes;
     const edges = syntheticEnglishGseFixture.edges;
     const blueprints: KnowledgeBlueprint[] = [syntheticEnglishBlueprintProjection];
-    const learnerState: Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'> = {
-      'english.gse.skill.b1.reading.infer-meaning-context': 'mastered',
-      'english.gse.skill.b1.reading.identify-main-idea.short-text': 'ready',
+    const learnerState: Record<string, "mastered" | "ready" | "blocked" | "review_due"> = {
+      "english.gse.skill.b1.reading.infer-meaning-context": "mastered",
+      "english.gse.skill.b1.reading.identify-main-idea.short-text": "ready",
     };
     const classStats = {
-      'english.gse.skill.b1.reading.identify-main-idea.short-text': {
+      "english.gse.skill.b1.reading.identify-main-idea.short-text": {
         mastered: 8,
         total: 15,
       },
@@ -646,10 +649,10 @@ describe('Cross-domain smoke test (English/GSE)', () => {
 
     // Teacher evidence
     const evidence = projectTeacherEvidence(nodes, edges);
-    expect(evidence).toHaveProperty('standards');
-    expect(evidence).toHaveProperty('skills');
-    expect(evidence).toHaveProperty('prerequisiteGaps');
-    expect(evidence).toHaveProperty('attemptArtifacts');
+    expect(evidence).toHaveProperty("standards");
+    expect(evidence).toHaveProperty("skills");
+    expect(evidence).toHaveProperty("prerequisiteGaps");
+    expect(evidence).toHaveProperty("attemptArtifacts");
 
     // Student visualization
     const studentViz = projectStudentVisualization(nodes, edges, learnerState);
@@ -674,106 +677,110 @@ describe('Cross-domain smoke test (English/GSE)', () => {
 // per child skill of a concept node (N rows for an N-skill concept),
 // not silently collapse to a single alphabetically-first skill.
 // ---------------------------------------------------------------------------
-describe('Concept Aggregator resolution', () => {
+describe("Concept Aggregator resolution", () => {
   const conceptNode: KnowledgeSpaceNode = {
-    id: 'math.precalc.concept.unit-circle-trig',
-    domain: 'math',
-    kind: 'concept',
-    title: 'Unit Circle Trigonometry',
-    description: 'Aggregator node bundling unit-circle trig skills.',
-    reviewStatus: 'approved',
+    id: "math.precalc.concept.unit-circle-trig",
+    domain: "math",
+    kind: "concept",
+    title: "Unit Circle Trigonometry",
+    description: "Aggregator node bundling unit-circle trig skills.",
+    reviewStatus: "approved",
     metadata: {},
   };
   const skillA: KnowledgeSpaceNode = {
-    id: 'math.precalc.skill.unit-circle.sin-definition',
-    domain: 'math',
-    kind: 'skill',
-    title: 'Sin from unit circle',
-    reviewStatus: 'approved',
+    id: "math.precalc.skill.unit-circle.sin-definition",
+    domain: "math",
+    kind: "skill",
+    title: "Sin from unit circle",
+    reviewStatus: "approved",
     metadata: {},
   };
   const skillB: KnowledgeSpaceNode = {
-    id: 'math.precalc.skill.unit-circle.cos-definition',
-    domain: 'math',
-    kind: 'skill',
-    title: 'Cos from unit circle',
-    reviewStatus: 'approved',
+    id: "math.precalc.skill.unit-circle.cos-definition",
+    domain: "math",
+    kind: "skill",
+    title: "Cos from unit circle",
+    reviewStatus: "approved",
     metadata: {},
   };
   const skillC: KnowledgeSpaceNode = {
-    id: 'math.precalc.skill.unit-circle.tan-definition',
-    domain: 'math',
-    kind: 'skill',
-    title: 'Tan from unit circle',
-    reviewStatus: 'approved',
+    id: "math.precalc.skill.unit-circle.tan-definition",
+    domain: "math",
+    kind: "skill",
+    title: "Tan from unit circle",
+    reviewStatus: "approved",
     metadata: {},
   };
   const otherConcept: KnowledgeSpaceNode = {
-    id: 'math.precalc.concept.other',
-    domain: 'math',
-    kind: 'concept',
-    title: 'Other concept',
-    reviewStatus: 'approved',
+    id: "math.precalc.concept.other",
+    domain: "math",
+    kind: "concept",
+    title: "Other concept",
+    reviewStatus: "approved",
     metadata: {},
   };
   const conceptEdges: KnowledgeSpaceEdge[] = [
     {
-      id: 'e1',
-      type: 'contains',
+      id: "e1",
+      type: "contains",
       sourceId: conceptNode.id,
       targetId: skillA.id,
-      confidence: 'high',
+      confidence: "high",
       weight: 1,
-      reviewStatus: 'approved',
+      reviewStatus: "approved",
     },
     {
-      id: 'e2',
-      type: 'contains',
+      id: "e2",
+      type: "contains",
       sourceId: conceptNode.id,
       targetId: skillB.id,
-      confidence: 'high',
+      confidence: "high",
       weight: 1,
-      reviewStatus: 'approved',
+      reviewStatus: "approved",
     },
     {
-      id: 'e3',
-      type: 'contains',
+      id: "e3",
+      type: "contains",
       sourceId: conceptNode.id,
       targetId: skillC.id,
-      confidence: 'high',
+      confidence: "high",
       weight: 1,
-      reviewStatus: 'approved',
+      reviewStatus: "approved",
     },
   ];
 
-  it('findChildSkills returns child skills of a concept via contains edges', () => {
-    const childSkills = findChildSkills(conceptNode, [conceptNode, skillA, skillB, skillC, otherConcept], conceptEdges);
+  it("findChildSkills returns child skills of a concept via contains edges", () => {
+    const childSkills = findChildSkills(
+      conceptNode,
+      [conceptNode, skillA, skillB, skillC, otherConcept],
+      conceptEdges,
+    );
     const ids = childSkills.map((s) => s.id).sort();
     expect(ids).toEqual([skillB.id, skillA.id, skillC.id].sort());
   });
 
-  it('findChildSkills returns empty for a non-concept node', () => {
+  it("findChildSkills returns empty for a non-concept node", () => {
     expect(findChildSkills(skillA, [skillA, skillB], conceptEdges)).toEqual([]);
   });
 
-  it('selectSkill returns null on empty child list', () => {
+  it("selectSkill returns null on empty child list", () => {
     expect(selectSkill([])).toBeNull();
   });
 
-  it('projectActivityMap emits no child rows for a 2-skill concept', () => {
+  it("projectActivityMap emits no child rows for a 2-skill concept", () => {
     const blueprint: KnowledgeBlueprint = {
       nodeId: conceptNode.id,
       sourceNodeIds: [],
       alignmentNodeIds: [],
-      rendererKey: 'concept-explorer',
+      rendererKey: "concept-explorer",
       rendererModeMap: {},
       independentPracticeSpec: {
         variantParameters: {},
         answerSchema: { answer: {} },
         gradingRules: [],
-        replayPolicy: 'any_seed',
+        replayPolicy: "any_seed",
       },
-      reviewStatus: 'draft',
+      reviewStatus: "draft",
       metadata: {},
     };
     const twoSkillEdges = conceptEdges.filter((e) => e.targetId !== skillC.id);
@@ -782,21 +789,21 @@ describe('Concept Aggregator resolution', () => {
     expect(rows).toEqual([]);
   });
 
-  it('projectActivityMap emits only the row for an exact child-owned blueprint', () => {
+  it("projectActivityMap emits only the row for an exact child-owned blueprint", () => {
     const blueprint: KnowledgeBlueprint = {
       nodeId: skillA.id,
       sourceNodeIds: [],
       alignmentNodeIds: [],
-      rendererKey: 'concept-explorer',
+      rendererKey: "concept-explorer",
       rendererModeMap: {},
       workedExampleSpec: {
-        prompt: 'Worked example for unit circle trig',
+        prompt: "Worked example for unit circle trig",
         givens: [],
         target: {},
-        steps: [{ description: 'Show the exact child skill.' }],
-        explanation: 'This activity belongs only to the selected skill.',
+        steps: [{ description: "Show the exact child skill." }],
+        explanation: "This activity belongs only to the selected skill.",
       },
-      reviewStatus: 'draft',
+      reviewStatus: "draft",
       metadata: {},
     };
     const nodes = [conceptNode, skillA, skillB, skillC];
@@ -806,7 +813,7 @@ describe('Concept Aggregator resolution', () => {
     expect(rows[0]?.stableActivityId).toBe(`${skillA.id}.worked_example`);
   });
 
-  it('projectActivityMap emits zero rows for a concept with no child skills (FR-13 edge case)', () => {
+  it("projectActivityMap emits zero rows for a concept with no child skills (FR-13 edge case)", () => {
     // Concept with no `contains` edges → no rows. The single-skill
     // emission that used to apply here would have produced 0 rows
     // (because selectSkill returns null and the projection fell through
@@ -819,15 +826,15 @@ describe('Concept Aggregator resolution', () => {
       nodeId: conceptNode.id,
       sourceNodeIds: [],
       alignmentNodeIds: [],
-      rendererKey: 'concept-explorer',
+      rendererKey: "concept-explorer",
       rendererModeMap: {},
       independentPracticeSpec: {
         variantParameters: {},
         answerSchema: { answer: {} },
         gradingRules: [],
-        replayPolicy: 'any_seed',
+        replayPolicy: "any_seed",
       },
-      reviewStatus: 'draft',
+      reviewStatus: "draft",
       metadata: {},
     };
     const nodes = [conceptNode, skillA, skillB, skillC];
@@ -835,47 +842,47 @@ describe('Concept Aggregator resolution', () => {
     expect(rows).toHaveLength(0);
   });
 
-  it('projectActivityMap emits no child row for a 1-skill concept', () => {
+  it("projectActivityMap emits no child row for a 1-skill concept", () => {
     const skillOnly: KnowledgeSpaceNode = {
-      id: 'math.precalc.skill.unit-circle.tan-definition',
-      domain: 'math',
-      kind: 'skill',
-      title: 'Tan from unit circle',
-      reviewStatus: 'approved',
+      id: "math.precalc.skill.unit-circle.tan-definition",
+      domain: "math",
+      kind: "skill",
+      title: "Tan from unit circle",
+      reviewStatus: "approved",
       metadata: {},
     };
     const singleConcept: KnowledgeSpaceNode = {
-      id: 'math.precalc.concept.tan-only',
-      domain: 'math',
-      kind: 'concept',
-      title: 'Tan-only concept',
-      reviewStatus: 'approved',
+      id: "math.precalc.concept.tan-only",
+      domain: "math",
+      kind: "concept",
+      title: "Tan-only concept",
+      reviewStatus: "approved",
       metadata: {},
     };
     const singleEdge: KnowledgeSpaceEdge[] = [
       {
-        id: 'e-solo',
-        type: 'contains',
+        id: "e-solo",
+        type: "contains",
         sourceId: singleConcept.id,
         targetId: skillOnly.id,
-        confidence: 'high',
+        confidence: "high",
         weight: 1,
-        reviewStatus: 'approved',
+        reviewStatus: "approved",
       },
     ];
     const blueprint: KnowledgeBlueprint = {
       nodeId: singleConcept.id,
       sourceNodeIds: [],
       alignmentNodeIds: [],
-      rendererKey: 'concept-explorer',
+      rendererKey: "concept-explorer",
       rendererModeMap: {},
       independentPracticeSpec: {
         variantParameters: {},
         answerSchema: { answer: {} },
         gradingRules: [],
-        replayPolicy: 'any_seed',
+        replayPolicy: "any_seed",
       },
-      reviewStatus: 'draft',
+      reviewStatus: "draft",
       metadata: {},
     };
     const nodes = [singleConcept, skillOnly];
@@ -888,55 +895,53 @@ describe('Concept Aggregator resolution', () => {
 // Phase 3 Track 2 — Weighted Readiness visualization (Red)
 // ---------------------------------------------------------------------------
 
-describe('Student visualization — nearly_ready support (FR4)', () => {
-  it('StudentVisualizationV1 includes a nearlyReady bucket', () => {
+describe("Student visualization — nearly_ready support (FR4)", () => {
+  it("StudentVisualizationV1 includes a nearlyReady bucket", () => {
     const nodes = syntheticMathFixture.nodes;
     const edges = syntheticMathFixture.edges;
 
     const learnerState: Record<string, string> = {};
     // Mark one skill node as nearly_ready
-    const skillNodes = nodes.filter(
-      (n) => n.kind === 'skill' || n.kind === 'task_blueprint',
-    );
+    const skillNodes = nodes.filter((n) => n.kind === "skill" || n.kind === "task_blueprint");
     if (skillNodes.length > 0) {
-      learnerState[skillNodes[0].id] = 'nearly_ready';
+      learnerState[skillNodes[0].id] = "nearly_ready";
     }
 
     const result = projectStudentVisualization(
       nodes,
       edges,
-      learnerState as Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'>,
+      learnerState as Record<string, "mastered" | "ready" | "blocked" | "review_due">,
     );
 
     // The result should have a nearlyReady property
-    expect(result).toHaveProperty('nearlyReady');
-    expect(Array.isArray((result as unknown as Record<string, unknown>)['nearlyReady'])).toBe(true);
+    expect(result).toHaveProperty("nearlyReady");
+    expect(Array.isArray((result as unknown as Record<string, unknown>)["nearlyReady"])).toBe(true);
   });
 
-  it('nearly_ready nodes are NOT in the ready or blocked buckets', () => {
+  it("nearly_ready nodes are NOT in the ready or blocked buckets", () => {
     const nodes = syntheticMathFixture.nodes;
     const edges = syntheticMathFixture.edges;
 
-    const skillNodes = nodes.filter(
-      (n) => n.kind === 'skill' || n.kind === 'task_blueprint',
-    );
+    const skillNodes = nodes.filter((n) => n.kind === "skill" || n.kind === "task_blueprint");
     if (skillNodes.length < 2) return;
 
     const almostReadyId = skillNodes[0].id;
     const readyId = skillNodes[1].id;
 
     const learnerState: Record<string, string> = {
-      [almostReadyId]: 'nearly_ready',
-      [readyId]: 'ready',
+      [almostReadyId]: "nearly_ready",
+      [readyId]: "ready",
     };
 
     const result = projectStudentVisualization(
       nodes,
       edges,
-      learnerState as Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'>,
+      learnerState as Record<string, "mastered" | "ready" | "blocked" | "review_due">,
     );
 
-    const nearlyReadyBucket = (result as unknown as Record<string, unknown>)['nearlyReady'] as Array<{ nodeId: string }> | undefined;
+    const nearlyReadyBucket = (result as unknown as Record<string, unknown>)["nearlyReady"] as
+      | Array<{ nodeId: string }>
+      | undefined;
     if (nearlyReadyBucket) {
       const nearlyIds = nearlyReadyBucket.map((n) => n.nodeId);
       expect(nearlyIds).toContain(almostReadyId);
@@ -952,28 +957,26 @@ describe('Student visualization — nearly_ready support (FR4)', () => {
     }
   });
 
-  it('VisualNodeV1 state accepts nearly_ready', () => {
+  it("VisualNodeV1 state accepts nearly_ready", () => {
     // The 'state' field of VisualNodeV1 should accept 'nearly_ready'
-    const node: import('../projections/types').VisualNodeV1 = {
-      nodeId: 'test.node',
-      title: 'Test Node',
-      state: 'nearly_ready',
+    const node: import("../projections/types").VisualNodeV1 = {
+      nodeId: "test.node",
+      title: "Test Node",
+      state: "nearly_ready",
     };
-    expect(node.state).toBe('nearly_ready');
+    expect(node.state).toBe("nearly_ready");
   });
 });
 
-describe('studentVisualizationV1Schema — nearly_ready support (FR4)', () => {
-  it('studentVisualizationV1Schema validates a payload with nearlyReady bucket', () => {
+describe("studentVisualizationV1Schema — nearly_ready support (FR4)", () => {
+  it("studentVisualizationV1Schema validates a payload with nearlyReady bucket", () => {
     const payload = {
-      schemaVersion: 'v1' as const,
+      schemaVersion: "v1" as const,
       mastered: [],
       ready: [],
       blocked: [],
       reviewDue: [],
-      nearlyReady: [
-        { nodeId: 'skill.a', title: 'Skill A', state: 'nearly_ready' as const },
-      ],
+      nearlyReady: [{ nodeId: "skill.a", title: "Skill A", state: "nearly_ready" as const }],
       recommendedNext: [],
       edges: [],
       activeMisconceptionCount: 0,

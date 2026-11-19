@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const UNIT4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Pythagorean Theorem

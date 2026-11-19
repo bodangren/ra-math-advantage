@@ -4,13 +4,10 @@ import type { MutationCtx, QueryCtx } from "./_generated/server";
 
 export const misconceptionLifecycleStatusValidator = v.union(
   v.literal("active"),
-  v.literal("resolved")
+  v.literal("resolved"),
 );
 
-export const misconceptionSeverityValidator = v.union(
-  v.literal("minor"),
-  v.literal("severe")
-);
+export const misconceptionSeverityValidator = v.union(v.literal("minor"), v.literal("severe"));
 
 export const studentMisconceptionStateValidator = v.object({
   studentId: v.string(),
@@ -62,7 +59,7 @@ export async function recordMisconceptionDetectionHandler(
   const existing = await ctx.db
     .query("student_misconception_state")
     .withIndex("by_student_misconception", (q) =>
-      q.eq("studentId", args.studentId).eq("misconceptionId", args.misconceptionId)
+      q.eq("studentId", args.studentId).eq("misconceptionId", args.misconceptionId),
     )
     .unique();
 
@@ -101,10 +98,7 @@ interface RecordCleanAttemptArgs {
  * record clean attempt.
  * @throws {Error} Thrown when the operation fails.
  */
-export async function recordCleanAttemptHandler(
-  ctx: MutationCtx,
-  args: RecordCleanAttemptArgs,
-) {
+export async function recordCleanAttemptHandler(ctx: MutationCtx, args: RecordCleanAttemptArgs) {
   if (!Number.isInteger(args.resolutionThreshold) || args.resolutionThreshold <= 0) {
     throw new Error(
       `recordCleanAttemptHandler: resolutionThreshold must be a positive integer, received ${args.resolutionThreshold}`,
@@ -114,7 +108,7 @@ export async function recordCleanAttemptHandler(
   const existing = await ctx.db
     .query("student_misconception_state")
     .withIndex("by_student_misconception", (q) =>
-      q.eq("studentId", args.studentId).eq("misconceptionId", args.misconceptionId)
+      q.eq("studentId", args.studentId).eq("misconceptionId", args.misconceptionId),
     )
     .unique();
 
@@ -146,13 +140,11 @@ export async function recordCleanAttemptHandler(
 
 export async function getStudentActiveMisconceptionsHandler(
   ctx: QueryCtx,
-  args: { studentId: string }
+  args: { studentId: string },
 ) {
   return ctx.db
     .query("student_misconception_state")
-    .withIndex("by_student_status", (q) =>
-      q.eq("studentId", args.studentId).eq("status", "active")
-    )
+    .withIndex("by_student_status", (q) => q.eq("studentId", args.studentId).eq("status", "active"))
     .collect();
 }
 

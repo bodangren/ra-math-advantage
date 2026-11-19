@@ -82,9 +82,7 @@ describe("Home page", () => {
     render(page);
 
     expect(screen.getByTestId("hero-stats")).toHaveTextContent("no-stats");
-    expect(
-      screen.getByRole("heading", { name: /Ready to start building/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /Ready to start building/i })).toBeInTheDocument();
     expect(consoleErrorSpy).toHaveBeenCalled();
 
     consoleErrorSpy.mockRestore();

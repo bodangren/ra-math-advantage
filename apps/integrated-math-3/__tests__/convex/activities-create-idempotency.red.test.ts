@@ -110,9 +110,7 @@ function createHarness() {
           return {
             withIndex: (
               indexName: string,
-              configure: (query: {
-                eq(field: string, value: unknown): unknown;
-              }) => unknown,
+              configure: (query: { eq(field: string, value: unknown): unknown }) => unknown,
             ) => {
               if (indexName !== "by_username") {
                 throw new Error(`Unexpected credential index: ${indexName}`);
@@ -126,8 +124,7 @@ function createHarness() {
               };
               configure(index);
               const matches = [...conditions].every(
-                ([field, value]) =>
-                  credential[field as keyof typeof credential] === value,
+                ([field, value]) => credential[field as keyof typeof credential] === value,
               );
               return { unique: async () => (matches ? credential : null) };
             },
@@ -139,9 +136,7 @@ function createHarness() {
         return {
           withIndex: (
             indexName: string,
-            configure: (query: {
-              eq(field: string, value: unknown): unknown;
-            }) => unknown,
+            configure: (query: { eq(field: string, value: unknown): unknown }) => unknown,
           ) => {
             const conditions = new Map<string, unknown>();
             const index = {
@@ -153,9 +148,7 @@ function createHarness() {
             configure(index);
             const selected = () =>
               submissions.filter((submission) =>
-                [...conditions].every(
-                  ([field, value]) => submission[field] === value,
-                ),
+                [...conditions].every(([field, value]) => submission[field] === value),
               );
             if (indexName === "by_user_activity_idempotency_key") {
               return { unique: async () => selected()[0] ?? null };
@@ -184,10 +177,7 @@ function createHarness() {
   return { ctx, submissions };
 }
 
-function createInput(
-  idempotencyKey: string,
-  submissionData = makeSubmission(),
-) {
+function createInput(idempotencyKey: string, submissionData = makeSubmission()) {
   return {
     userId: LEARNER_ID,
     activityId: ACTIVITY_ID,
@@ -201,10 +191,7 @@ describe("IM3 server-owned create idempotency authority", () => {
     const { ctx, submissions } = createHarness();
 
     await expect(
-      createServerOwnedSubmissionHandler(
-        ctx as never,
-        createInput("draft-catalog") as never,
-      ),
+      createServerOwnedSubmissionHandler(ctx as never, createInput("draft-catalog") as never),
     ).rejects.toThrow("approved server-owned create mapping");
     expect(submissions).toEqual([]);
   });
@@ -214,9 +201,7 @@ describe("IM3 server-owned create idempotency authority", () => {
     async (idempotencyKey) => {
       const { ctx, submissions } = createHarness();
 
-      await expect(
-        createHandler(ctx, createInput(idempotencyKey)),
-      ).rejects.toThrow(/idempotency/i);
+      await expect(createHandler(ctx, createInput(idempotencyKey))).rejects.toThrow(/idempotency/i);
       expect(submissions).toEqual([]);
     },
   );
@@ -225,20 +210,12 @@ describe("IM3 server-owned create idempotency authority", () => {
     const { ctx, submissions } = createHarness();
     const payload = makeSubmission();
 
-    const first = await createHandler(
-      ctx,
-      createInput("im3-create-key-one", payload),
-    );
-    const second = await createHandler(
-      ctx,
-      createInput("im3-create-key-two", payload),
-    );
+    const first = await createHandler(ctx, createInput("im3-create-key-one", payload));
+    const second = await createHandler(ctx, createInput("im3-create-key-two", payload));
 
     expect(second.submissionId).not.toBe(first.submissionId);
     expect(submissions).toHaveLength(2);
-    expect(submissions.map((submission) => submission.attemptOrdinal)).toEqual([
-      1, 2,
-    ]);
+    expect(submissions.map((submission) => submission.attemptOrdinal)).toEqual([1, 2]);
   });
 
   it("replays the original opaque ID only for the same learner, activity, key, and canonical payload", async () => {

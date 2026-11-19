@@ -1,6 +1,6 @@
-import { redirect } from 'next/navigation';
+import { redirect } from "next/navigation";
 
-import { studentDashboardPath } from '@/lib/student/navigation';
+import { studentDashboardPath } from "@/lib/student/navigation";
 
 /**
  * Redirects the student index route to the student dashboard.

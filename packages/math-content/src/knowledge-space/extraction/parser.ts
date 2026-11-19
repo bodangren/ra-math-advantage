@@ -104,32 +104,26 @@ export interface PrecalcLessonExtract {
  * @param {string} sectionHeading - Section heading substring to match
  * @returns {Record<string, string>[]} - Array of row objects keyed by header names
  */
-function findSectionTable(
-  text: string,
-  sectionHeading: string,
-): Record<string, string>[] {
-  const lines = text.split('\n');
+function findSectionTable(text: string, sectionHeading: string): Record<string, string>[] {
+  const lines = text.split("\n");
   let inTargetSection = false;
 
   for (let i = 0; i < lines.length; i++) {
     const trimmed = lines[i].trim();
 
     // Detect target section heading
-    if (
-      trimmed.startsWith('## ') &&
-      trimmed.toLowerCase().includes(sectionHeading.toLowerCase())
-    ) {
+    if (trimmed.startsWith("## ") && trimmed.toLowerCase().includes(sectionHeading.toLowerCase())) {
       inTargetSection = true;
       continue;
     }
 
     // Stop if we hit another section
-    if (inTargetSection && trimmed.startsWith('## ') && !trimmed.includes(sectionHeading)) {
+    if (inTargetSection && trimmed.startsWith("## ") && !trimmed.includes(sectionHeading)) {
       break;
     }
 
     // Find table within the target section
-    if (inTargetSection && trimmed.startsWith('|')) {
+    if (inTargetSection && trimmed.startsWith("|")) {
       const tableRows = parseTableFrom(lines, i);
       if (tableRows.length > 0) return tableRows;
     }
@@ -144,10 +138,7 @@ function findSectionTable(
  * @param {number} startIdx - Index of the first line of the table
  * @returns {Record<string, string>[]} - Array of row objects keyed by header names
  */
-function parseTableFrom(
-  lines: string[],
-  startIdx: number,
-): Record<string, string>[] {
+function parseTableFrom(lines: string[], startIdx: number): Record<string, string>[] {
   const rows: Record<string, string>[] = [];
   let headers: string[] = [];
   let foundHeader = false;
@@ -155,13 +146,13 @@ function parseTableFrom(
   for (let i = startIdx; i < lines.length; i++) {
     const trimmed = lines[i].trim();
 
-    if (!trimmed.startsWith('|') || !trimmed.endsWith('|')) {
+    if (!trimmed.startsWith("|") || !trimmed.endsWith("|")) {
       if (foundHeader) break;
       continue;
     }
 
     // Separator row
-    if (trimmed.includes('---') && headers.length > 0) {
+    if (trimmed.includes("---") && headers.length > 0) {
       foundHeader = true;
       continue;
     }
@@ -190,15 +181,15 @@ function splitTableRow(row: string): string[] {
   let hasSpacedDelimiter = false;
 
   for (let index = 0; index < content.length; index++) {
-    if (content[index] === '`' && content[index - 1] !== '\\') {
+    if (content[index] === "`" && content[index - 1] !== "\\") {
       inInlineCode = !inInlineCode;
       continue;
     }
     if (
       !inInlineCode &&
-      content[index] === '|' &&
-      /\s/.test(content[index - 1] || '') &&
-      /\s/.test(content[index + 1] || '')
+      content[index] === "|" &&
+      /\s/.test(content[index - 1] || "") &&
+      /\s/.test(content[index + 1] || "")
     ) {
       hasSpacedDelimiter = true;
       break;
@@ -210,15 +201,13 @@ function splitTableRow(row: string): string[] {
   inInlineCode = false;
   for (let index = 0; index < content.length; index++) {
     const character = content[index];
-    if (character === '`' && content[index - 1] !== '\\') {
+    if (character === "`" && content[index - 1] !== "\\") {
       inInlineCode = !inInlineCode;
       continue;
     }
-    if (character !== '|' || inInlineCode) continue;
+    if (character !== "|" || inInlineCode) continue;
 
-    const isSpaced =
-      /\s/.test(content[index - 1] || '') &&
-      /\s/.test(content[index + 1] || '');
+    const isSpaced = /\s/.test(content[index - 1] || "") && /\s/.test(content[index + 1] || "");
     if (hasSpacedDelimiter && !isSpaced) continue;
 
     cells.push(content.slice(cellStart, index).trim());
@@ -253,27 +242,28 @@ function parseRange(rangeStr: string): number[] {
  */
 function parseWorkedExamplesCell(cell: string): ExtractedWorkedExample[] {
   // "1-1, Examples 1-3 — Title One; Title Two; Title Three"
-  if (!cell || cell === '—' || cell === '-') return [];
+  if (!cell || cell === "—" || cell === "-") return [];
 
   const examples: ExtractedWorkedExample[] = [];
   // Split on " — " to separate the range from the titles
-  const dashIndex = cell.indexOf(' — ');
+  const dashIndex = cell.indexOf(" — ");
   const rangePart = dashIndex >= 0 ? cell.slice(0, dashIndex).trim() : cell.trim();
-  const titlePart = dashIndex >= 0 ? cell.slice(dashIndex + 3).trim() : '';
+  const titlePart = dashIndex >= 0 ? cell.slice(dashIndex + 3).trim() : "";
   const titles = titlePart
-    ? titlePart.split(';').map((t) => t.trim()).filter(Boolean)
+    ? titlePart
+        .split(";")
+        .map((t) => t.trim())
+        .filter(Boolean)
     : [];
 
   // Parse "1-1, Examples 1-3" → lessonRef + example numbers
-  const rangeMatch = rangePart.match(
-    /^(\d+-\d+),\s*Examples?\s+([\d,\s-]+)$/i,
-  );
+  const rangeMatch = rangePart.match(/^(\d+-\d+),\s*Examples?\s+([\d,\s-]+)$/i);
   if (!rangeMatch) return [];
 
   const lessonRef = rangeMatch[1];
   // Parse comma-separated ranges like "1-3" or "4, 5-7"
   const numParts = rangeMatch[2]
-    .split(',')
+    .split(",")
     .map((p) => p.trim())
     .filter(Boolean);
   const allNumbers: number[] = [];
@@ -297,7 +287,7 @@ function parseWorkedExamplesCell(cell: string): ExtractedWorkedExample[] {
     examples.push({
       lessonRef,
       exampleNumbers: allNumbers,
-      title: titles.join('; ') || undefined,
+      title: titles.join("; ") || undefined,
       rawText: cell,
     });
   }
@@ -314,7 +304,7 @@ function parseObjectiveCell(cell: string): ExtractedObjective | null {
   // "1a. Graph quadratic functions."
   const match = cell.match(/^([\d]+[a-z]+)\.\s*(.+)$/i);
   if (!match) return null;
-  return { code: match[1], description: match[2].replace(/\.$/, '') };
+  return { code: match[1], description: match[2].replace(/\.$/, "") };
 }
 
 /**
@@ -322,16 +312,14 @@ function parseObjectiveCell(cell: string): ExtractedObjective | null {
  * @param {string} cell - Comma-separated objective codes
  * @returns {ExtractedObjective[]} - Array of objectives with empty descriptions
  */
-function parseEmbeddedObjectivesCell(
-  cell: string,
-): ExtractedObjective[] {
+function parseEmbeddedObjectivesCell(cell: string): ExtractedObjective[] {
   // "1c, 1g" or "—" or "-"
-  if (!cell || cell === '—' || cell === '-') return [];
+  if (!cell || cell === "—" || cell === "-") return [];
   return cell
-    .split(',')
+    .split(",")
     .map((c) => c.trim())
     .filter(Boolean)
-    .map((code) => ({ code, description: '' }));
+    .map((code) => ({ code, description: "" }));
 }
 
 /**
@@ -339,9 +327,7 @@ function parseEmbeddedObjectivesCell(
  * @param {string} ref - Lesson reference string in "module-lesson" format
  * @returns {{ moduleNumber: number; lessonNumber: number }} - Parsed module and lesson numbers, or null if invalid
  */
-function parseLessonRef(
-  ref: string,
-): { moduleNumber: number; lessonNumber: number } | null {
+function parseLessonRef(ref: string): { moduleNumber: number; lessonNumber: number } | null {
   const match = ref.match(/^(\d+)-(\d+)$/);
   if (!match) return null;
   return {
@@ -360,20 +346,18 @@ function parseLessonRef(
  * @returns {ClassPeriodPlanExtract} - Extracted lessons, examples, and module number
  */
 export function parseClassPeriodPlan(markdown: string): ClassPeriodPlanExtract {
-  const rows = findSectionTable(markdown, 'Period-by-Period Plan');
+  const rows = findSectionTable(markdown, "Period-by-Period Plan");
   const lessonsMap = new Map<string, ExtractedLesson>();
   const allExamples: ExtractedWorkedExample[] = [];
   let moduleNumber = 1;
 
   for (const row of rows) {
-    const dayType = row['Day Type'] || '';
+    const dayType = row["Day Type"] || "";
     // Only process instruction rows
-    if (dayType !== 'instruction' && dayType !== '`instruction`') continue;
+    if (dayType !== "instruction" && dayType !== "`instruction`") continue;
 
-    const lessonRef = (row['Source Textbook Lesson'] || '')
-      .replace(/`/g, '')
-      .trim();
-    if (!lessonRef || lessonRef === '—') continue;
+    const lessonRef = (row["Source Textbook Lesson"] || "").replace(/`/g, "").trim();
+    if (!lessonRef || lessonRef === "—") continue;
 
     const parsed = parseLessonRef(lessonRef);
     if (!parsed) continue;
@@ -393,9 +377,7 @@ export function parseClassPeriodPlan(markdown: string): ClassPeriodPlanExtract {
     }
 
     // Primary objective
-    const primaryText = (row['Primary Objective'] || '')
-      .replace(/`/g, '')
-      .trim();
+    const primaryText = (row["Primary Objective"] || "").replace(/`/g, "").trim();
     const primary = parseObjectiveCell(primaryText);
     if (primary) {
       const existingObjective = lesson.objectives.find(
@@ -413,7 +395,7 @@ export function parseClassPeriodPlan(markdown: string): ClassPeriodPlanExtract {
     }
 
     // Embedded objectives
-    const embeddedText = (row['Embedded Objectives'] || '').replace(/`/g, '').trim();
+    const embeddedText = (row["Embedded Objectives"] || "").replace(/`/g, "").trim();
     const embedded = parseEmbeddedObjectivesCell(embeddedText);
     for (const obj of embedded) {
       if (!lesson.objectives.some((o) => o.code === obj.code)) {
@@ -422,9 +404,7 @@ export function parseClassPeriodPlan(markdown: string): ClassPeriodPlanExtract {
     }
 
     // Worked examples
-    const workedExamplesCell = (row['Worked Examples'] || '')
-      .replace(/`/g, '')
-      .trim();
+    const workedExamplesCell = (row["Worked Examples"] || "").replace(/`/g, "").trim();
     const parsedExamples = parseWorkedExamplesCell(workedExamplesCell);
     for (const ex of parsedExamples) {
       // Only add if not already present
@@ -458,13 +438,13 @@ export function parseClassPeriodPlan(markdown: string): ClassPeriodPlanExtract {
  * @returns {ModuleOverviewExtract} - Extracted module metadata, lessons, and skills
  */
 export function parseModuleOverview(markdown: string): ModuleOverviewExtract {
-  const lines = markdown.split('\n');
+  const lines = markdown.split("\n");
   let moduleNumber = 1;
-  let title = '';
-  let description = '';
+  let title = "";
+  let description = "";
   const lessons: ModuleOverviewLesson[] = [];
   const skills: string[] = [];
-  let currentSection = '';
+  let currentSection = "";
   let inSkillsSection = false;
 
   // Collect description lines under ## Overview
@@ -475,12 +455,10 @@ export function parseModuleOverview(markdown: string): ModuleOverviewExtract {
     const trimmed = line.trim();
 
     // H1: # Module X: Title or # Unit X: Title
-    const h1Match = trimmed.match(
-      /^#\s+(?:Module|Unit)\s+(\d+)(?::\s*(.+))?$/,
-    );
+    const h1Match = trimmed.match(/^#\s+(?:Module|Unit)\s+(\d+)(?::\s*(.+))?$/);
     if (h1Match) {
       moduleNumber = parseInt(h1Match[1], 10);
-      title = (h1Match[2] || '').trim();
+      title = (h1Match[2] || "").trim();
       continue;
     }
 
@@ -488,15 +466,13 @@ export function parseModuleOverview(markdown: string): ModuleOverviewExtract {
     const h2Match = trimmed.match(/^##\s+(.+)$/);
     if (h2Match) {
       currentSection = h2Match[1].toLowerCase();
-      inSkillsSection = currentSection === 'skills developed';
+      inSkillsSection = currentSection === "skills developed";
       continue;
     }
 
     // ### lesson headings under "Lessons" section
-    const h3Match = trimmed.match(
-      /^###\s+(\d+)-(\d+)\s+(.+)$/,
-    );
-    if (h3Match && currentSection === 'lessons') {
+    const h3Match = trimmed.match(/^###\s+(\d+)-(\d+)\s+(.+)$/);
+    if (h3Match && currentSection === "lessons") {
       const modNum = parseInt(h3Match[1], 10);
       const lessonNum = parseInt(h3Match[2], 10);
       const lessonTitle = h3Match[3].trim();
@@ -506,12 +482,7 @@ export function parseModuleOverview(markdown: string): ModuleOverviewExtract {
       let j = i + 1;
       while (j < lines.length) {
         const nextLine = lines[j].trim();
-        if (
-          nextLine === '' ||
-          nextLine.startsWith('###') ||
-          nextLine.startsWith('##')
-        )
-          break;
+        if (nextLine === "" || nextLine.startsWith("###") || nextLine.startsWith("##")) break;
         descLines.push(nextLine);
         j++;
       }
@@ -520,23 +491,23 @@ export function parseModuleOverview(markdown: string): ModuleOverviewExtract {
         number: modNum,
         lessonNumber: lessonNum,
         title: lessonTitle,
-        description: descLines.join(' ').trim(),
+        description: descLines.join(" ").trim(),
       });
       continue;
     }
 
     // Collect description under "Overview" heading
-    if (currentSection === 'overview' && trimmed && !trimmed.startsWith('#')) {
+    if (currentSection === "overview" && trimmed && !trimmed.startsWith("#")) {
       descriptionLines.push(trimmed);
     }
 
     // Skills section
-    if (inSkillsSection && trimmed.startsWith('- ')) {
+    if (inSkillsSection && trimmed.startsWith("- ")) {
       skills.push(trimmed.slice(2).trim());
     }
   }
 
-  description = descriptionLines.join(' ').trim();
+  description = descriptionLines.join(" ").trim();
 
   return { moduleNumber, title, description, lessons, skills };
 }
@@ -551,29 +522,28 @@ export function parseModuleOverview(markdown: string): ModuleOverviewExtract {
  * @returns {AleksRegistryExtract} - Extracted problem family entries
  */
 export function parseAleksRegistry(markdown: string): AleksRegistryExtract {
-  const rows = findSectionTable(markdown, 'Registry');
+  const rows = findSectionTable(markdown, "Registry");
   const families: ProblemFamilyEntry[] = [];
 
   for (const row of rows) {
-    const familyKey = (row['familyKey'] || '').replace(/`/g, '').trim();
+    const familyKey = (row["familyKey"] || "").replace(/`/g, "").trim();
     if (!familyKey) continue;
 
-    const moduleStr = (row['Module'] || '').trim();
+    const moduleStr = (row["Module"] || "").trim();
     const module = parseInt(moduleStr, 10) || 0;
 
-    const objectivesText = (row['Objectives'] || '')
-      .replace(/`/g, '')
-      .trim();
+    const objectivesText = (row["Objectives"] || "").replace(/`/g, "").trim();
     const objectives = objectivesText
-      ? objectivesText.split(',').map((o) => o.trim()).filter(Boolean)
+      ? objectivesText
+          .split(",")
+          .map((o) => o.trim())
+          .filter(Boolean)
       : [];
 
-    const sourceExamples = (row['Source examples'] || '').replace(/`/g, '').trim();
-    const interactionShape = (row['Interaction shape'] || '')
-      .replace(/`/g, '')
-      .trim();
-    const status = (row['Status'] || '').replace(/`/g, '').trim();
-    const notes = (row['Notes'] || '').replace(/`/g, '').trim();
+    const sourceExamples = (row["Source examples"] || "").replace(/`/g, "").trim();
+    const interactionShape = (row["Interaction shape"] || "").replace(/`/g, "").trim();
+    const status = (row["Status"] || "").replace(/`/g, "").trim();
+    const notes = (row["Notes"] || "").replace(/`/g, "").trim();
 
     families.push({
       familyKey,
@@ -598,10 +568,8 @@ export function parseAleksRegistry(markdown: string): AleksRegistryExtract {
  * @param {string} markdown - Reveal-format markdown with lesson and example headings
  * @returns {RevealLessonSourceExtract} - Extracted lessons with their examples
  */
-export function parseRevealLessonSource(
-  markdown: string,
-): RevealLessonSourceExtract {
-  const lines = markdown.split('\n');
+export function parseRevealLessonSource(markdown: string): RevealLessonSourceExtract {
+  const lines = markdown.split("\n");
   const lessons: RevealLesson[] = [];
   let currentLesson: RevealLesson | null = null;
   let currentExample: RevealExample | null = null;
@@ -609,7 +577,7 @@ export function parseRevealLessonSource(
 
   function flushExample() {
     if (currentLesson && currentExample) {
-      currentExample.bodyExcerpt = exampleBodyLines.join('\n').trim().slice(0, 500);
+      currentExample.bodyExcerpt = exampleBodyLines.join("\n").trim().slice(0, 500);
       currentLesson.examples.push(currentExample);
     }
     currentExample = null;
@@ -634,23 +602,21 @@ export function parseRevealLessonSource(
 
     // ### Example N — Title
     // or ### Example N: Title
-    const exampleMatch = trimmed.match(
-      /^###\s+Example\s+(\d+)\s*[—:-]\s*(.+)$/,
-    );
+    const exampleMatch = trimmed.match(/^###\s+Example\s+(\d+)\s*[—:-]\s*(.+)$/);
     if (exampleMatch && currentLesson) {
       flushExample();
       currentExample = {
         index: parseInt(exampleMatch[1], 10),
         title: exampleMatch[2].trim(),
         lineNumber: i + 1,
-        bodyExcerpt: '',
+        bodyExcerpt: "",
       };
       exampleBodyLines = [];
       continue;
     }
 
     // Collect body lines for current example
-    if (currentExample && trimmed && !trimmed.startsWith('#')) {
+    if (currentExample && trimmed && !trimmed.startsWith("#")) {
       exampleBodyLines.push(trimmed);
     }
   }
@@ -669,14 +635,12 @@ export function parseRevealLessonSource(
  * @param {string} markdown - Precalculus lesson markdown with worked examples
  * @returns {PrecalcLessonExtract} - Extracted lesson metadata and examples
  */
-export function parsePrecalcLesson(
-  markdown: string,
-): PrecalcLessonExtract {
-  const lines = markdown.split('\n');
-  let title = '';
+export function parsePrecalcLesson(markdown: string): PrecalcLessonExtract {
+  const lines = markdown.split("\n");
+  let title = "";
   let unit = 0;
-  let topic = '';
-  let lessonRef = '';
+  let topic = "";
+  let lessonRef = "";
   const examples: PrecalcExample[] = [];
   let inWorkedExample = false;
   let currentExampleIdx = 0;
@@ -687,7 +651,7 @@ export function parsePrecalcLesson(
     if (currentExampleIdx > 0 && currentExampleLines.length > 0) {
       examples.push({
         index: currentExampleIdx,
-        content: currentExampleLines.join('\n').trim(),
+        content: currentExampleLines.join("\n").trim(),
         lineNumber: currentExampleLine,
       });
     }
@@ -707,11 +671,9 @@ export function parsePrecalcLesson(
       firstNonEmptyFound = true;
 
       // H1: # Lesson X-Y — Title or # Lesson X-Y: Title
-      if (trimmed.startsWith('# ')) {
+      if (trimmed.startsWith("# ")) {
         const h1Text = trimmed.slice(2);
-        const h1Match = h1Text.match(
-          /^Lesson\s+(\d+-\d+)\s*[—\-–:]\s*(.+)$/,
-        );
+        const h1Match = h1Text.match(/^Lesson\s+(\d+-\d+)\s*[—\-–:]\s*(.+)$/);
         if (h1Match) {
           lessonRef = h1Match[1];
           title = h1Match[2].trim();
@@ -736,12 +698,12 @@ export function parsePrecalcLesson(
     }
 
     // Section headings
-    if (trimmed === '## Worked Example' || trimmed === '## Worked Examples') {
+    if (trimmed === "## Worked Example" || trimmed === "## Worked Examples") {
       inWorkedExample = true;
       continue;
     }
 
-    if (trimmed.startsWith('## ') && trimmed !== '## Worked Example') {
+    if (trimmed.startsWith("## ") && trimmed !== "## Worked Example") {
       inWorkedExample = false;
       flushExample();
       continue;
@@ -749,9 +711,7 @@ export function parsePrecalcLesson(
 
     // Example detection: **Example N:** or **Example N — **
     if (inWorkedExample) {
-      const exampleMatch = trimmed.match(
-        /\*\*Example\s+(\d+)\s*[:—\-]\s*\*\*\s*(.*)/,
-      );
+      const exampleMatch = trimmed.match(/\*\*Example\s+(\d+)\s*[:—\-]\s*\*\*\s*(.*)/);
       if (exampleMatch) {
         flushExample();
         currentExampleIdx = parseInt(exampleMatch[1], 10);
@@ -760,9 +720,7 @@ export function parsePrecalcLesson(
         continue;
       }
 
-      const exampleMatch2 = trimmed.match(
-        /^\*\*Example\s+(\d+)\*\*\s*[:—\-]?\s*(.*)/,
-      );
+      const exampleMatch2 = trimmed.match(/^\*\*Example\s+(\d+)\*\*\s*[:—\-]?\s*(.*)/);
       if (exampleMatch2) {
         flushExample();
         currentExampleIdx = parseInt(exampleMatch2[1], 10);
@@ -791,9 +749,7 @@ export function parsePrecalcLesson(
  * @param {{ lessonRef: string }[]} lessons - Array of objects with lessonRef strings
  * @returns {string[]} - Sorted array of duplicate lesson refs
  */
-export function collectDuplicateLessonRefs(
-  lessons: { lessonRef: string }[],
-): string[] {
+export function collectDuplicateLessonRefs(lessons: { lessonRef: string }[]): string[] {
   const seen = new Set<string>();
   const dupes = new Set<string>();
   for (const l of lessons) {
@@ -812,10 +768,7 @@ export function collectDuplicateLessonRefs(
  * @param {Set<string>} usedSlugs - Set of already-used slugs
  * @returns {string} - A unique slug, possibly with a numeric suffix
  */
-export function disambiguateSkillSlug(
-  baseSlug: string,
-  usedSlugs: Set<string>,
-): string {
+export function disambiguateSkillSlug(baseSlug: string, usedSlugs: Set<string>): string {
   if (!usedSlugs.has(baseSlug)) return baseSlug;
   let counter = 2;
   let candidate = `${baseSlug}-${counter}`;

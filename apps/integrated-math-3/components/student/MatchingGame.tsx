@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import type { GlossaryTerm } from '@/lib/study/types';
-import { shuffleArray } from '@math-platform/study-hub-core';
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import type { GlossaryTerm } from "@/lib/study/types";
+import { shuffleArray } from "@math-platform/study-hub-core";
 
-type CardType = 'term' | 'definition';
+type CardType = "term" | "definition";
 
 interface CardItem {
   id: string;
@@ -59,13 +59,13 @@ export function MatchingGame({ terms, onComplete }: MatchingGameProps) {
         id: `${term.slug}-term`,
         content: term.term,
         pairId: term.slug,
-        type: 'term',
+        type: "term",
       });
       newCards.push({
         id: `${term.slug}-def`,
         content: term.definition,
         pairId: term.slug,
-        type: 'definition',
+        type: "definition",
       });
     });
     return shuffleArray(newCards);
@@ -75,19 +75,22 @@ export function MatchingGame({ terms, onComplete }: MatchingGameProps) {
     queueMicrotask(() => setStartTime(Date.now()));
   }, [gameTerms]);
 
-  const checkCompletion = useCallback((newMatchedPairIds: Set<string>) => {
-    if (newMatchedPairIds.size === gameTerms.length && gameTerms.length > 0 && !isComplete) {
-      const now = Date.now();
-      setEndTime(now);
-      setIsComplete(true);
-      onComplete({
-        itemsSeen: gameTerms.length,
-        itemsCorrect: gameTerms.length,
-        itemsIncorrect: wrongAttempts,
-        durationSeconds: Math.floor((now - startTime) / 1000),
-      });
-    }
-  }, [gameTerms, wrongAttempts, isComplete, onComplete, startTime]);
+  const checkCompletion = useCallback(
+    (newMatchedPairIds: Set<string>) => {
+      if (newMatchedPairIds.size === gameTerms.length && gameTerms.length > 0 && !isComplete) {
+        const now = Date.now();
+        setEndTime(now);
+        setIsComplete(true);
+        onComplete({
+          itemsSeen: gameTerms.length,
+          itemsCorrect: gameTerms.length,
+          itemsIncorrect: wrongAttempts,
+          durationSeconds: Math.floor((now - startTime) / 1000),
+        });
+      }
+    },
+    [gameTerms, wrongAttempts, isComplete, onComplete, startTime],
+  );
 
   const handleCardClick = useCallback(
     (card: CardItem) => {
@@ -128,7 +131,7 @@ export function MatchingGame({ terms, onComplete }: MatchingGameProps) {
         }, 800);
       }
     },
-    [cards, selectedId, matchedPairIds, wrongIds, isComplete, checkCompletion]
+    [cards, selectedId, matchedPairIds, wrongIds, isComplete, checkCompletion],
   );
 
   if (isComplete) {
@@ -137,7 +140,7 @@ export function MatchingGame({ terms, onComplete }: MatchingGameProps) {
       <div className="max-w-2xl mx-auto py-12 px-4 text-center space-y-6">
         <h2 className="text-3xl font-display font-bold text-foreground">Completion!</h2>
         <p className="text-lg text-muted-foreground">
-          You matched all {gameTerms.length} pairs in{' '}
+          You matched all {gameTerms.length} pairs in{" "}
           <span className="font-semibold text-foreground">{durationSeconds}s</span>
         </p>
         <div className="text-5xl">🎉</div>
@@ -158,10 +161,10 @@ export function MatchingGame({ terms, onComplete }: MatchingGameProps) {
           const isMatched = matchedPairIds.has(card.pairId);
           const isSelected = selectedId === card.id;
           const isWrong = wrongIds.has(card.id);
-          let state = 'idle';
-          if (isMatched) state = 'matched';
-          else if (isWrong) state = 'wrong';
-          else if (isSelected) state = 'selected';
+          let state = "idle";
+          if (isMatched) state = "matched";
+          else if (isWrong) state = "wrong";
+          else if (isSelected) state = "selected";
 
           return (
             <button
@@ -170,16 +173,16 @@ export function MatchingGame({ terms, onComplete }: MatchingGameProps) {
               disabled={isMatched}
               data-state={state}
               className={[
-                'relative aspect-square rounded-xl border p-2 sm:p-3 text-left text-sm font-medium transition-all duration-200',
-                'flex items-center justify-center text-center',
+                "relative aspect-square rounded-xl border p-2 sm:p-3 text-left text-sm font-medium transition-all duration-200",
+                "flex items-center justify-center text-center",
                 isMatched
-                  ? 'bg-green-100 border-green-300 text-green-800 cursor-default'
+                  ? "bg-green-100 border-green-300 text-green-800 cursor-default"
                   : isWrong
-                    ? 'bg-red-100 border-red-300 text-red-800'
+                    ? "bg-red-100 border-red-300 text-red-800"
                     : isSelected
-                      ? 'bg-primary/10 border-primary text-primary ring-2 ring-primary'
-                      : 'bg-card border-border text-foreground hover:border-primary/40',
-              ].join(' ')}
+                      ? "bg-primary/10 border-primary text-primary ring-2 ring-primary"
+                      : "bg-card border-border text-foreground hover:border-primary/40",
+              ].join(" ")}
             >
               <span className="line-clamp-4">{card.content}</span>
             </button>

@@ -39,7 +39,7 @@
 // to surface the runtime failures (zod parse / accessor result) rather than
 // TS compile errors masking the real signal.
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 
 // We import the planned surface from its planned public path. Green phase
 // will create that module; until then, this import fails module resolution
@@ -51,22 +51,22 @@ import {
   getMisconceptionSeverity,
   type MisconceptionSeverity,
   type StudentMisconceptionState,
-} from '../misconception-loop';
+} from "../misconception-loop";
 
 // ---------------------------------------------------------------------------
 // 1. MisconceptionSeverity enum — zod parse accept/reject
 // ---------------------------------------------------------------------------
 
-describe('zod — MisconceptionSeverity (kst-srs.v2 §9.1, spec FR2)', () => {
-  it('accepts the closed severity set (minor, severe)', () => {
-    for (const v of ['minor', 'severe'] as const) {
+describe("zod — MisconceptionSeverity (kst-srs.v2 §9.1, spec FR2)", () => {
+  it("accepts the closed severity set (minor, severe)", () => {
+    for (const v of ["minor", "severe"] as const) {
       const result = misconceptionSeveritySchema.safeParse(v);
       expect(result.success, `expected ${v} to parse`).toBe(true);
     }
   });
 
-  it('rejects unknown / typo severity values (regression guard)', () => {
-    for (const v of ['critical', 'low', 'SEVERE', '', 0, true, null, undefined]) {
+  it("rejects unknown / typo severity values (regression guard)", () => {
+    for (const v of ["critical", "low", "SEVERE", "", 0, true, null, undefined]) {
       const result = misconceptionSeveritySchema.safeParse(v);
       expect(result.success, `expected ${JSON.stringify(v)} to reject`).toBe(false);
     }
@@ -77,16 +77,16 @@ describe('zod — MisconceptionSeverity (kst-srs.v2 §9.1, spec FR2)', () => {
 // 2. MisconceptionLifecycleStatus enum — zod parse accept/reject
 // ---------------------------------------------------------------------------
 
-describe('zod — MisconceptionLifecycleStatus (kst-srs.v2 §9.3, spec FR3)', () => {
-  it('accepts the closed status set (active, resolved)', () => {
-    for (const v of ['active', 'resolved'] as const) {
+describe("zod — MisconceptionLifecycleStatus (kst-srs.v2 §9.3, spec FR3)", () => {
+  it("accepts the closed status set (active, resolved)", () => {
+    for (const v of ["active", "resolved"] as const) {
       const result = misconceptionLifecycleStatusSchema.safeParse(v);
       expect(result.success, `expected ${v} to parse`).toBe(true);
     }
   });
 
-  it('rejects unknown / typo status values (regression guard)', () => {
-    for (const v of ['pending', 'in_progress', 'ACTIVE', '', 1, false, null]) {
+  it("rejects unknown / typo status values (regression guard)", () => {
+    for (const v of ["pending", "in_progress", "ACTIVE", "", 1, false, null]) {
       const result = misconceptionLifecycleStatusSchema.safeParse(v);
       expect(result.success, `expected ${JSON.stringify(v)} to reject`).toBe(false);
     }
@@ -99,62 +99,62 @@ describe('zod — MisconceptionLifecycleStatus (kst-srs.v2 §9.3, spec FR3)', ()
 
 function makeState(overrides: Partial<StudentMisconceptionState> = {}): StudentMisconceptionState {
   return {
-    studentId: 'student.test',
-    misconceptionId: 'math.im3.misconception.test',
-    status: 'active',
-    severity: 'minor',
+    studentId: "student.test",
+    misconceptionId: "math.im3.misconception.test",
+    status: "active",
+    severity: "minor",
     cleanStreak: 0,
     firstDetectedAt: 1_700_000_000_000,
     lastUpdatedAt: 1_700_000_000_000,
-    affectedSkills: ['math.im3.skill.1.4.solve-quadratic-equations-by-factoring'],
+    affectedSkills: ["math.im3.skill.1.4.solve-quadratic-equations-by-factoring"],
     ...overrides,
   };
 }
 
-describe('zod — StudentMisconceptionState (spec FR3)', () => {
-  it('parses a minimal valid active state', () => {
+describe("zod — StudentMisconceptionState (spec FR3)", () => {
+  it("parses a minimal valid active state", () => {
     const state = makeState();
     const result = studentMisconceptionStateSchema.safeParse(state);
-    expect(result.success, result.success ? '' : result.error.message).toBe(true);
+    expect(result.success, result.success ? "" : result.error.message).toBe(true);
   });
 
-  it('parses a resolved state with a non-zero cleanStreak', () => {
-    const state = makeState({ status: 'resolved', cleanStreak: 3 });
+  it("parses a resolved state with a non-zero cleanStreak", () => {
+    const state = makeState({ status: "resolved", cleanStreak: 3 });
     const result = studentMisconceptionStateSchema.safeParse(state);
-    expect(result.success, result.success ? '' : result.error.message).toBe(true);
+    expect(result.success, result.success ? "" : result.error.message).toBe(true);
   });
 
-  it('parses a severe misconception with affectedSkills as a multi-skill list', () => {
+  it("parses a severe misconception with affectedSkills as a multi-skill list", () => {
     const state = makeState({
-      severity: 'severe',
+      severity: "severe",
       affectedSkills: [
-        'math.im3.skill.1.1.graph-quadratic-functions',
-        'math.im3.skill.1.2.solve-quadratic-equations-by-graphing',
+        "math.im3.skill.1.1.graph-quadratic-functions",
+        "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
       ],
     });
     const result = studentMisconceptionStateSchema.safeParse(state);
-    expect(result.success, result.success ? '' : result.error.message).toBe(true);
+    expect(result.success, result.success ? "" : result.error.message).toBe(true);
   });
 
-  it('rejects an unknown status value', () => {
-    const state = { ...makeState(), status: 'pending' };
+  it("rejects an unknown status value", () => {
+    const state = { ...makeState(), status: "pending" };
     const result = studentMisconceptionStateSchema.safeParse(state);
     expect(result.success).toBe(false);
   });
 
-  it('rejects an unknown severity value', () => {
-    const state = { ...makeState(), severity: 'critical' };
+  it("rejects an unknown severity value", () => {
+    const state = { ...makeState(), severity: "critical" };
     const result = studentMisconceptionStateSchema.safeParse(state);
     expect(result.success).toBe(false);
   });
 
-  it('rejects a negative cleanStreak', () => {
+  it("rejects a negative cleanStreak", () => {
     const state = { ...makeState(), cleanStreak: -1 };
     const result = studentMisconceptionStateSchema.safeParse(state);
     expect(result.success).toBe(false);
   });
 
-  it('rejects a missing required field (studentId)', () => {
+  it("rejects a missing required field (studentId)", () => {
     const state = { ...makeState() } as Record<string, unknown>;
     delete state.studentId;
     const result = studentMisconceptionStateSchema.safeParse(state);
@@ -166,27 +166,29 @@ describe('zod — StudentMisconceptionState (spec FR3)', () => {
 // 4. getMisconceptionSeverity — canonical accessor
 // ---------------------------------------------------------------------------
 
-describe('getMisconceptionSeverity — canonical accessor (kst-srs.v2 §9.1, spec FR2, test-strategy §3)', () => {
+describe("getMisconceptionSeverity — canonical accessor (kst-srs.v2 §9.1, spec FR2, test-strategy §3)", () => {
   it('returns "severe" when metadata.severity === "severe"', () => {
-    expect(getMisconceptionSeverity({ severity: 'severe' })).toBe<MisconceptionSeverity>('severe');
+    expect(getMisconceptionSeverity({ severity: "severe" })).toBe<MisconceptionSeverity>("severe");
   });
 
   it('returns "minor" when metadata.severity === "minor"', () => {
-    expect(getMisconceptionSeverity({ severity: 'minor' })).toBe<MisconceptionSeverity>('minor');
+    expect(getMisconceptionSeverity({ severity: "minor" })).toBe<MisconceptionSeverity>("minor");
   });
 
   it('returns "minor" when metadata has no severity key (default)', () => {
-    expect(getMisconceptionSeverity({ unrelatedKey: 'unrelated' })).toBe<MisconceptionSeverity>('minor');
+    expect(getMisconceptionSeverity({ unrelatedKey: "unrelated" })).toBe<MisconceptionSeverity>(
+      "minor",
+    );
   });
 
   it('returns "minor" when metadata is the empty record', () => {
-    expect(getMisconceptionSeverity({})).toBe<MisconceptionSeverity>('minor');
+    expect(getMisconceptionSeverity({})).toBe<MisconceptionSeverity>("minor");
   });
 
   it('coerces an unknown / typo severity metadata value to "minor" (closed-set guard)', () => {
     // The accessor MUST always return a valid MisconceptionSeverity — never
     // an unvalidated metadata value. Phase 2's computeBaseRating truth table
     // depends on this invariant.
-    expect(getMisconceptionSeverity({ severity: 'critical' })).toBe<MisconceptionSeverity>('minor');
+    expect(getMisconceptionSeverity({ severity: "critical" })).toBe<MisconceptionSeverity>("minor");
   });
 });

@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback } from "react";
 import {
   createTimingAccumulator,
   DEFAULT_IDLE_THRESHOLD_MS,
   type TimingAccumulator,
   type PracticeTimingSummary,
-} from '@math-platform/practice-core/timing';
+} from "@math-platform/practice-core/timing";
 
 export interface UsePracticeTimingOptions {
   idleThresholdMs?: number;
@@ -25,9 +25,7 @@ export interface UsePracticeTimingReturn {
  * @param {UsePracticeTimingOptions} options - Timing configuration options.
  * @returns {UsePracticeTimingReturn} Timing utilities: getTiming, recordInteraction, isTracking.
  */
-export function usePracticeTiming(
-  options: UsePracticeTimingOptions = {},
-): UsePracticeTimingReturn {
+export function usePracticeTiming(options: UsePracticeTimingOptions = {}): UsePracticeTimingReturn {
   const { idleThresholdMs = DEFAULT_IDLE_THRESHOLD_MS, onSubmit } = options;
   const accumulatorRef = useRef<TimingAccumulator | null>(null);
   const startTimeRef = useRef<number | null>(null);
@@ -43,7 +41,7 @@ export function usePracticeTiming(
   const recordInteraction = useCallback(() => {
     if (accumulatorRef.current) {
       accumulatorRef.current.addEvent({
-        type: 'interaction',
+        type: "interaction",
         timestamp: performance.timeOrigin + performance.now(),
       });
     }
@@ -52,14 +50,14 @@ export function usePracticeTiming(
   const handleVisibilityChange = useCallback(() => {
     if (!accumulatorRef.current) return;
 
-    if (document.visibilityState === 'hidden') {
+    if (document.visibilityState === "hidden") {
       accumulatorRef.current.addEvent({
-        type: 'visibility_hidden',
+        type: "visibility_hidden",
         timestamp: performance.timeOrigin + performance.now(),
       });
     } else {
       accumulatorRef.current.addEvent({
-        type: 'visibility_visible',
+        type: "visibility_visible",
         timestamp: performance.timeOrigin + performance.now(),
       });
     }
@@ -70,12 +68,12 @@ export function usePracticeTiming(
 
     if (document.hasFocus()) {
       accumulatorRef.current.addEvent({
-        type: 'focus',
+        type: "focus",
         timestamp: performance.timeOrigin + performance.now(),
       });
     } else {
       accumulatorRef.current.addEvent({
-        type: 'blur',
+        type: "blur",
         timestamp: performance.timeOrigin + performance.now(),
       });
     }
@@ -85,13 +83,11 @@ export function usePracticeTiming(
     if (!accumulatorRef.current) return;
 
     accumulatorRef.current.addEvent({
-      type: 'pagehide',
+      type: "pagehide",
       timestamp: performance.timeOrigin + performance.now(),
     });
 
-    const timing = accumulatorRef.current.finalize(
-      performance.timeOrigin + performance.now(),
-    );
+    const timing = accumulatorRef.current.finalize(performance.timeOrigin + performance.now());
     if (timing && onSubmit) {
       onSubmit(timing);
     }
@@ -104,21 +100,19 @@ export function usePracticeTiming(
     accumulatorRef.current.start(performance.timeOrigin + performance.now());
     isTrackingRef.current = true;
 
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    window.addEventListener('focus', handleFocusChange);
-    window.addEventListener('blur', handleFocusChange);
-    window.addEventListener('pagehide', handlePageHide);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("focus", handleFocusChange);
+    window.addEventListener("blur", handleFocusChange);
+    window.addEventListener("pagehide", handlePageHide);
 
     return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-      window.removeEventListener('focus', handleFocusChange);
-      window.removeEventListener('blur', handleFocusChange);
-      window.removeEventListener('pagehide', handlePageHide);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("focus", handleFocusChange);
+      window.removeEventListener("blur", handleFocusChange);
+      window.removeEventListener("pagehide", handlePageHide);
 
       if (accumulatorRef.current && accumulatorRef.current.isActive()) {
-        const timing = accumulatorRef.current.finalize(
-          performance.timeOrigin + performance.now(),
-        );
+        const timing = accumulatorRef.current.finalize(performance.timeOrigin + performance.now());
         if (timing && onSubmit) {
           onSubmit(timing);
         }

@@ -7,14 +7,14 @@
 // practice submission + prior per-student state into the new state, the
 // detected / active / resolved bucket splits, and a refreshed state record.
 
-import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
-import { z } from 'zod';
+import type { PracticeSubmissionEnvelope } from "@math-platform/practice-core/contract";
+import { z } from "zod";
 
 // ---------------------------------------------------------------------------
 // 1. MisconceptionSeverity — closed-set enum
 // ---------------------------------------------------------------------------
 
-export const misconceptionSeveritySchema = z.enum(['minor', 'severe']);
+export const misconceptionSeveritySchema = z.enum(["minor", "severe"]);
 
 export type MisconceptionSeverity = z.infer<typeof misconceptionSeveritySchema>;
 
@@ -22,7 +22,7 @@ export type MisconceptionSeverity = z.infer<typeof misconceptionSeveritySchema>;
 // 2. MisconceptionLifecycleStatus — closed-set enum
 // ---------------------------------------------------------------------------
 
-export const misconceptionLifecycleStatusSchema = z.enum(['active', 'resolved']);
+export const misconceptionLifecycleStatusSchema = z.enum(["active", "resolved"]);
 
 export type MisconceptionLifecycleStatus = z.infer<typeof misconceptionLifecycleStatusSchema>;
 
@@ -56,11 +56,9 @@ export type StudentMisconceptionState = z.infer<typeof studentMisconceptionState
  * MisconceptionSeverity value — this invariant is critical for Phase 2's
  * computeBaseRating truth table.
  */
-export function getMisconceptionSeverity(
-  metadata: Record<string, unknown>,
-): MisconceptionSeverity {
+export function getMisconceptionSeverity(metadata: Record<string, unknown>): MisconceptionSeverity {
   const result = misconceptionSeveritySchema.safeParse(metadata.severity);
-  return result.success ? result.data : 'minor';
+  return result.success ? result.data : "minor";
 }
 
 // ---------------------------------------------------------------------------
@@ -112,9 +110,7 @@ export interface RunRealT6LoopOutput {
   readonly updatedState: StudentMisconceptionLoopState;
 }
 
-export function runRealT6Loop(
-  input: RunRealT6LoopInput,
-): RunRealT6LoopOutput {
+export function runRealT6Loop(input: RunRealT6LoopInput): RunRealT6LoopOutput {
   const { submission, state, resolutionThreshold } = input;
 
   if (!Number.isInteger(resolutionThreshold) || resolutionThreshold <= 0) {

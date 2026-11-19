@@ -56,13 +56,31 @@ export const mathContentSectionValidators = {
 
 const graphingExplorerPropsValidator = v.object({
   title: v.optional(v.string()),
-  variant: v.optional(v.union(
-    v.literal("plot_from_equation"), v.literal("compare_functions"),
-    v.literal("find_intercepts"), v.literal("graph_system"),
-    v.literal("explore"), v.literal("find_zeros"),
-    v.literal("compare"), v.literal("rate_of_change"),
-  )),
-  responseVariant: v.optional(v.union(v.literal("quadratic_features"), v.literal("table_graph"), v.literal("domain_range"), v.literal("maximum_value"), v.literal("symmetry_graph"), v.literal("compare_maximums"), v.literal("one_real_solution"), v.literal("two_real_solutions"), v.literal("estimated_root_intervals"))),
+  variant: v.optional(
+    v.union(
+      v.literal("plot_from_equation"),
+      v.literal("compare_functions"),
+      v.literal("find_intercepts"),
+      v.literal("graph_system"),
+      v.literal("explore"),
+      v.literal("find_zeros"),
+      v.literal("compare"),
+      v.literal("rate_of_change"),
+    ),
+  ),
+  responseVariant: v.optional(
+    v.union(
+      v.literal("quadratic_features"),
+      v.literal("table_graph"),
+      v.literal("domain_range"),
+      v.literal("maximum_value"),
+      v.literal("symmetry_graph"),
+      v.literal("compare_maximums"),
+      v.literal("one_real_solution"),
+      v.literal("two_real_solutions"),
+      v.literal("estimated_root_intervals"),
+    ),
+  ),
   equation: v.string(),
   originalEquation: v.optional(v.string()),
   vertex: v.optional(v.array(v.number())),
@@ -82,60 +100,85 @@ const graphingExplorerPropsValidator = v.object({
   variantParameters: v.optional(v.record(v.string(), v.any())),
   answerSchema: v.optional(v.record(v.string(), v.any())),
   canonicalAnswers: v.optional(v.record(v.string(), v.any())),
-  gradingRules: v.optional(v.array(v.object({
-    partId: v.string(),
-    ruleType: v.union(
-      v.literal("numeric_tolerance"),
-      v.literal("exact_match"),
-      v.literal("expression_equivalence"),
+  gradingRules: v.optional(
+    v.array(
+      v.object({
+        partId: v.string(),
+        ruleType: v.union(
+          v.literal("numeric_tolerance"),
+          v.literal("exact_match"),
+          v.literal("expression_equivalence"),
+        ),
+        tolerance: v.optional(v.number()),
+        maxScore: v.number(),
+      }),
     ),
-    tolerance: v.optional(v.number()),
-    maxScore: v.number(),
-  }))),
+  ),
   replayPolicy: v.optional(v.string()),
-  canonicalVariant: v.optional(v.object({
-    a: v.number(),
-    b: v.number(),
-    c: v.number(),
-  })),
+  canonicalVariant: v.optional(
+    v.object({
+      a: v.number(),
+      b: v.number(),
+      c: v.number(),
+    }),
+  ),
 });
 
 const stepByStepSolverPropsValidator = v.object({
   problemType: v.union(
-    v.literal("quadratic_formula"), v.literal("factoring"),
-    v.literal("completing_the_square"), v.literal("square_root_property"),
-    v.literal("graphing"), v.literal("polynomial"), v.literal("rate_of_change"),
+    v.literal("quadratic_formula"),
+    v.literal("factoring"),
+    v.literal("completing_the_square"),
+    v.literal("square_root_property"),
+    v.literal("graphing"),
+    v.literal("polynomial"),
+    v.literal("rate_of_change"),
   ),
   equation: v.string(),
-  steps: v.optional(v.array(v.object({
-    id: v.string(), description: v.string(), expression: v.string(),
-    explanation: v.optional(v.string()),
-  }))),
+  steps: v.optional(
+    v.array(
+      v.object({
+        id: v.string(),
+        description: v.string(),
+        expression: v.string(),
+        explanation: v.optional(v.string()),
+      }),
+    ),
+  ),
   hints: v.optional(v.array(v.string())),
 });
 
 const comprehensionQuizPropsValidator = v.object({
   activityId: v.optional(v.string()),
-  questions: v.array(v.object({
-    id: v.string(),
-    type: v.optional(v.union(
-      v.literal("multiple_choice"), v.literal("true_false"),
-      v.literal("short_answer"), v.literal("select_all"),
-    )),
-    prompt: v.string(),
-    options: v.optional(v.array(v.string())),
-    correctAnswer: v.union(v.string(), v.array(v.string())),
-    explanation: v.optional(v.string()),
-  })),
+  questions: v.array(
+    v.object({
+      id: v.string(),
+      type: v.optional(
+        v.union(
+          v.literal("multiple_choice"),
+          v.literal("true_false"),
+          v.literal("short_answer"),
+          v.literal("select_all"),
+        ),
+      ),
+      prompt: v.string(),
+      options: v.optional(v.array(v.string())),
+      correctAnswer: v.union(v.string(), v.array(v.string())),
+      explanation: v.optional(v.string()),
+    }),
+  ),
 });
 
 const fillInTheBlankPropsValidator = v.object({
   activityId: v.optional(v.string()),
   template: v.string(),
-  blanks: v.array(v.object({
-    id: v.string(), correctAnswer: v.string(),
-    isMath: v.optional(v.boolean()),
-  })),
+  blanks: v.array(
+    v.object({
+      id: v.string(),
+      correctAnswer: v.string(),
+      isMath: v.optional(v.boolean()),
+    }),
+  ),
   wordBank: v.optional(v.array(v.object({ id: v.string(), text: v.string() }))),
 });
 
@@ -185,11 +228,15 @@ const gradingConfigValidator = v.object({
   passingScore: v.optional(v.number()),
   partialCredit: v.boolean(),
   partIds: v.optional(v.array(v.string())),
-  rubric: v.optional(v.array(v.object({
-    criteria: v.string(),
-    points: v.number(),
-    partId: v.optional(v.string()),
-  }))),
+  rubric: v.optional(
+    v.array(
+      v.object({
+        criteria: v.string(),
+        points: v.number(),
+        partId: v.optional(v.string()),
+      }),
+    ),
+  ),
 });
 
 const submissionPartValidator = v.object({
@@ -256,7 +303,9 @@ export default defineSchema({
     username: v.string(),
     requestCount: v.number(),
     windowStart: v.number(),
-  }).index('by_username', ['username']).index('by_window', ['windowStart']),
+  })
+    .index("by_username", ["username"])
+    .index("by_window", ["windowStart"]),
   organizations: defineTable({
     name: v.string(),
     slug: v.string(),
@@ -268,7 +317,12 @@ export default defineSchema({
   profiles: defineTable({
     organizationId: v.id("organizations"),
     username: v.string(),
-    role: v.union(v.literal("student"), v.literal("teacher"), v.literal("admin"), v.literal("parent")),
+    role: v.union(
+      v.literal("student"),
+      v.literal("teacher"),
+      v.literal("admin"),
+      v.literal("parent"),
+    ),
     displayName: v.optional(v.string()),
     avatarUrl: v.optional(v.string()),
     metadata: v.optional(v.record(v.string(), v.any())),
@@ -281,7 +335,12 @@ export default defineSchema({
   auth_credentials: defineTable({
     profileId: v.id("profiles"),
     username: v.string(),
-    role: v.union(v.literal("student"), v.literal("teacher"), v.literal("admin"), v.literal("parent")),
+    role: v.union(
+      v.literal("student"),
+      v.literal("teacher"),
+      v.literal("admin"),
+      v.literal("parent"),
+    ),
     organizationId: v.id("organizations"),
     passwordHash: v.string(),
     passwordSalt: v.string(),
@@ -345,12 +404,9 @@ export default defineSchema({
     errors: v.array(
       v.object({
         rowIndex: v.number(),
-        column: v.optional(v.union(
-          v.literal("name"),
-          v.literal("email"),
-          v.literal("sisId"),
-          v.literal("section"),
-        )),
+        column: v.optional(
+          v.union(v.literal("name"), v.literal("email"), v.literal("sisId"), v.literal("section")),
+        ),
         code: v.union(
           v.literal("missing_required"),
           v.literal("invalid_email"),
@@ -392,7 +448,13 @@ export default defineSchema({
     version: v.number(),
     title: v.optional(v.string()),
     description: v.optional(v.string()),
-    status: v.union(v.literal("draft"), v.literal("review"), v.literal("approved"), v.literal("published"), v.literal("archived")),
+    status: v.union(
+      v.literal("draft"),
+      v.literal("review"),
+      v.literal("approved"),
+      v.literal("published"),
+      v.literal("archived"),
+    ),
     createdAt: v.number(),
   })
     .index("by_lesson", ["lessonId"])
@@ -469,18 +531,20 @@ export default defineSchema({
     masteryNodeId: v.optional(v.string()),
     srsEligible: v.optional(v.boolean()),
     learningEvidenceMode: v.optional(v.literal("worked_example")),
-    approval: v.optional(v.object({
-      status: v.union(
-        v.literal("unreviewed"),
-        v.literal("approved"),
-        v.literal("needs_changes"),
-        v.literal("rejected"),
-      ),
-      contentHash: v.optional(v.string()),
-      reviewedAt: v.optional(v.number()),
-      reviewedBy: v.optional(v.id("profiles")),
-      reviewId: v.optional(v.id("component_reviews")),
-    })),
+    approval: v.optional(
+      v.object({
+        status: v.union(
+          v.literal("unreviewed"),
+          v.literal("approved"),
+          v.literal("needs_changes"),
+          v.literal("rejected"),
+        ),
+        contentHash: v.optional(v.string()),
+        reviewedAt: v.optional(v.number()),
+        reviewedBy: v.optional(v.id("profiles")),
+        reviewId: v.optional(v.id("component_reviews")),
+      }),
+    ),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
@@ -524,7 +588,12 @@ export default defineSchema({
   student_progress: defineTable({
     userId: v.id("profiles"),
     phaseId: v.id("phase_versions"),
-    status: v.union(v.literal("not_started"), v.literal("in_progress"), v.literal("completed"), v.literal("skipped")),
+    status: v.union(
+      v.literal("not_started"),
+      v.literal("in_progress"),
+      v.literal("completed"),
+      v.literal("skipped"),
+    ),
     startedAt: v.optional(v.number()),
     completedAt: v.optional(v.number()),
     timeSpentSeconds: v.optional(v.number()),
@@ -578,26 +647,28 @@ export default defineSchema({
       v.literal("teaching"),
     ),
     occurredAt: v.number(),
-    gradedEvidence: v.optional(v.object({
-      isCorrect: v.optional(v.boolean()),
-      score: v.optional(v.number()),
-      maxScore: v.optional(v.number()),
-    })),
+    gradedEvidence: v.optional(
+      v.object({
+        isCorrect: v.optional(v.boolean()),
+        score: v.optional(v.number()),
+        maxScore: v.optional(v.number()),
+      }),
+    ),
     idempotencyKey: v.string(),
     createdAt: v.number(),
   })
     .index("by_learner_and_node", ["learnerId", "nodeId"])
     .index("by_learner_node_origin", ["learnerId", "nodeId", "origin"])
-    .index(
-      "by_learner_node_origin_occurred_at",
-      ["learnerId", "nodeId", "origin", "occurredAt"],
-    )
+    .index("by_learner_node_origin_occurred_at", ["learnerId", "nodeId", "origin", "occurredAt"])
     .index("by_learner_and_idempotency_key", ["learnerId", "idempotencyKey"])
     .index("by_learner_and_submission_id", ["learnerId", "submissionId"])
-    .index(
-      "by_learner_node_activity_origin_attempt",
-      ["learnerId", "nodeId", "activityId", "origin", "attemptOrdinal"],
-    ),
+    .index("by_learner_node_activity_origin_attempt", [
+      "learnerId",
+      "nodeId",
+      "activityId",
+      "origin",
+      "attemptOrdinal",
+    ]),
 
   // A receipt is the durable replay boundary for server-owned submissions.
   // Negative awaiting-exposure receipts are durable as well.
@@ -609,15 +680,8 @@ export default defineSchema({
     masteryApplied: v.boolean(),
     kstApplied: v.boolean(),
     decision: v.object({
-      idempotency: v.union(
-        v.literal("new"),
-        v.literal("replay"),
-        v.literal("conflict"),
-      ),
-      exposureState: v.union(
-        v.literal("awaiting_teacher_exposure"),
-        v.literal("introduced"),
-      ),
+      idempotency: v.union(v.literal("new"), v.literal("replay"), v.literal("conflict")),
+      exposureState: v.union(v.literal("awaiting_teacher_exposure"), v.literal("introduced")),
       eligible: v.boolean(),
       reason: v.union(
         v.literal("node_not_enabled"),
@@ -639,10 +703,12 @@ export default defineSchema({
     spreadsheetData: v.record(v.string(), v.any()),
     isCompleted: v.boolean(),
     attempts: v.number(),
-    lastValidationResult: v.optional(v.object({
-      isValid: v.boolean(),
-      errors: v.optional(v.array(v.string())),
-    })),
+    lastValidationResult: v.optional(
+      v.object({
+        isValid: v.boolean(),
+        errors: v.optional(v.array(v.string())),
+      }),
+    ),
     submittedAt: v.optional(v.number()),
     draftData: v.optional(v.record(v.string(), v.any())),
     createdAt: v.number(),
@@ -659,10 +725,12 @@ export default defineSchema({
     phaseNumber: v.number(),
     completedAt: v.number(),
     idempotencyKey: v.string(),
-    completionData: v.optional(v.object({
-      type: v.optional(v.string()),
-      phaseType: v.optional(v.string()),
-    })),
+    completionData: v.optional(
+      v.object({
+        type: v.optional(v.string()),
+        phaseType: v.optional(v.string()),
+      }),
+    ),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
@@ -681,13 +749,15 @@ export default defineSchema({
     comment: v.optional(v.string()),
     issueTags: v.optional(v.array(v.string())),
     priority: v.optional(v.union(v.literal("low"), v.literal("medium"), v.literal("high"))),
-    placement: v.optional(v.object({
-      lessonId: v.optional(v.string()),
-      lessonVersionId: v.optional(v.string()),
-      phaseId: v.optional(v.string()),
-      phaseNumber: v.optional(v.number()),
-      sectionId: v.optional(v.string()),
-    })),
+    placement: v.optional(
+      v.object({
+        lessonId: v.optional(v.string()),
+        lessonVersionId: v.optional(v.string()),
+        phaseId: v.optional(v.string()),
+        phaseNumber: v.optional(v.number()),
+        sectionId: v.optional(v.string()),
+      }),
+    ),
     createdBy: v.id("profiles"),
     createdAt: v.number(),
     resolvedAt: v.optional(v.number()),
@@ -845,7 +915,7 @@ export default defineSchema({
       v.literal("matching"),
       v.literal("speed_round"),
       v.literal("srs_review"),
-      v.literal("practice_test")
+      v.literal("practice_test"),
     ),
     curriculumScope: v.object({
       type: v.union(v.literal("all_units"), v.literal("module")),
@@ -872,12 +942,14 @@ export default defineSchema({
     lessonsTested: v.array(v.string()),
     questionCount: v.number(),
     score: v.number(),
-    perLessonBreakdown: v.array(v.object({
-      lessonId: v.string(),
-      lessonTitle: v.string(),
-      correct: v.number(),
-      total: v.number(),
-    })),
+    perLessonBreakdown: v.array(
+      v.object({
+        lessonId: v.string(),
+        lessonTitle: v.string(),
+        correct: v.number(),
+        total: v.number(),
+      }),
+    ),
     completedAt: v.number(),
     createdAt: v.number(),
   })
@@ -894,7 +966,7 @@ export default defineSchema({
       v.literal("new"),
       v.literal("learning"),
       v.literal("familiar"),
-      v.literal("mastered")
+      v.literal("mastered"),
     ),
     seenCount: v.number(),
     correctCount: v.number(),
@@ -993,21 +1065,15 @@ export default defineSchema({
     windowStart: v.number(),
     createdAt: v.number(),
     updatedAt: v.number(),
-  })
-    .index("by_user", ["userId"]),
+  }).index("by_user", ["userId"]),
 
   edge_calibration: defineTable({
     edgeId: v.string(),
     alpha: v.number(),
     beta: v.number(),
     lastUpdated: v.number(),
-    status: v.union(
-      v.literal("confirmed"),
-      v.literal("refuted"),
-      v.literal("untested"),
-    ),
-  })
-    .index("by_edge", ["edgeId"]),
+    status: v.union(v.literal("confirmed"), v.literal("refuted"), v.literal("untested")),
+  }).index("by_edge", ["edgeId"]),
 
   calibration_review_queue: defineTable({
     edgeId: v.string(),

@@ -30,16 +30,10 @@ export default function LoginPage() {
         throw new Error("Could not verify your session. Sign in again.");
       }
       const fallback =
-        session.profile?.role === "student"
-          ? "/student/dashboard"
-          : "/teacher/dashboard";
-      const requested = new URLSearchParams(window.location.search).get(
-        "redirect",
-      );
+        session.profile?.role === "student" ? "/student/dashboard" : "/teacher/dashboard";
+      const requested = new URLSearchParams(window.location.search).get("redirect");
       router.push(
-        requested?.startsWith("/") &&
-          !requested.startsWith("//") &&
-          !requested.includes("\\")
+        requested?.startsWith("/") && !requested.startsWith("//") && !requested.includes("\\")
           ? requested
           : fallback,
       );
@@ -125,10 +119,7 @@ export default function LoginPage() {
 
         <p className="text-center text-muted-text text-sm mt-6">
           Don&apos;t have an account?{" "}
-          <Link
-            href="/auth/register"
-            className="text-accent hover:underline"
-          >
+          <Link href="/auth/register" className="text-accent hover:underline">
             Register
           </Link>
         </p>

@@ -1,9 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  gradeQuestion,
-  questionSchema,
-  type Question,
-} from "../../lib/practice/question";
+import { gradeQuestion, questionSchema, type Question } from "../../lib/practice/question";
 const numeric: Question = {
   kind: "numeric",
   prompt: "Find one half.",
@@ -16,15 +12,7 @@ describe("question validation and scoring", () => {
       expect(gradeQuestion(numeric, answer).score).toBe(1);
   });
   it("rejects malformed and nonfinite answers", () => {
-    for (const answer of [
-      "",
-      "1/0",
-      "Infinity",
-      "NaN",
-      "0.5abc",
-      "1/2/3",
-      "1e999",
-    ])
+    for (const answer of ["", "1/0", "Infinity", "NaN", "0.5abc", "1/2/3", "1e999"])
       expect(gradeQuestion(numeric, answer).score).toBe(0);
   });
   it("rejects duplicate choice IDs and missing answer choices", () => {
@@ -39,9 +27,7 @@ describe("question validation and scoring", () => {
       explanation: "2 is the requested number.",
     };
     expect(questionSchema.safeParse(base).success).toBe(true);
-    expect(questionSchema.safeParse({ ...base, answer: "c" }).success).toBe(
-      false,
-    );
+    expect(questionSchema.safeParse({ ...base, answer: "c" }).success).toBe(false);
     expect(
       questionSchema.safeParse({
         ...base,

@@ -54,9 +54,7 @@ describe("TriangleOrderingPractice", () => {
       target: { value: "choice-1" },
     });
     fireEvent.click(screen.getByText("Check answer"));
-    await screen.findByText(
-      "Your response was not saved. Submit the same response again.",
-    );
+    await screen.findByText("Your response was not saved. Submit the same response again.");
     const first = fetchMock.mock.calls[0][1]!;
     expect(screen.getByLabelText("Measure")).toBeDisabled();
     fireEvent.click(screen.getByText("Check answer"));
@@ -90,9 +88,7 @@ describe("TriangleOrderingPractice", () => {
   it("requires a valid Worked acknowledgement before advancing", async () => {
     const fetchMock = vi
       .spyOn(global, "fetch")
-      .mockResolvedValueOnce(
-        new Response(JSON.stringify({ kind: "acknowledged" })),
-      )
+      .mockResolvedValueOnce(new Response(JSON.stringify({ kind: "acknowledged" })))
       .mockResolvedValueOnce(
         new Response(
           JSON.stringify({
@@ -141,10 +137,7 @@ describe("TriangleOrderingPractice", () => {
     ["inflated hint counter", { ...graded, hintsUsed: 99 }],
     ["inflated reveal counter", { ...graded, revealStepsSeen: 99 }],
     ["malformed answers", { ...graded, acceptedAnswers: { measure_order: 3 } }],
-    [
-      "arbitrary next part",
-      { ...graded, nextPart: { ...graded.nextPart, id: "future_part" } },
-    ],
+    ["arbitrary next part", { ...graded, nextPart: { ...graded.nextPart, id: "future_part" } }],
     ["private extra field", { ...graded, answerKey: "choice-1" }],
   ])("keeps the retry for a %s receipt", async (_name, receipt) => {
     const fetchMock = vi

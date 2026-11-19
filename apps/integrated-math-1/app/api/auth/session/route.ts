@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
-import { SESSION_COOKIE_NAME, verifySessionToken, getAuthJwtSecret } from "@math-platform/core-auth";
+import {
+  SESSION_COOKIE_NAME,
+  verifySessionToken,
+  getAuthJwtSecret,
+} from "@math-platform/core-auth";
 import { fetchInternalQuery, internal } from "@/lib/convex/server";
 
 export async function GET(request: Request) {

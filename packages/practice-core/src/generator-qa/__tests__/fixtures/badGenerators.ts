@@ -8,7 +8,7 @@
 //
 // Layout follows test-strategy.md §2 (badGenerators.ts).
 
-import type { GeneratorCorrectnessContract } from '../../contract';
+import type { GeneratorCorrectnessContract } from "../../contract";
 
 export interface BadGeneratorInput {
   readonly nodeId: string;
@@ -35,11 +35,9 @@ export function createNonDeterministicGenerator(): BadGenerator {
         correctAnswer: input.seed + 1,
         distractors: [input.seed + 2, input.seed + 3, input.seed + 4],
         solutionSteps: [
-          { description: 'add 1', expression: `${input.seed} + 1`, value: input.seed + 1 },
+          { description: "add 1", expression: `${input.seed} + 1`, value: input.seed + 1 },
         ],
-        invariants: [
-          { name: 'noise < 1', passed: noise < 1 },
-        ],
+        invariants: [{ name: "noise < 1", passed: noise < 1 }],
       };
     },
   };
@@ -63,11 +61,13 @@ export function createWrongAnswerGenerator(): BadGenerator {
         correctAnswer: wrongAnswer,
         distractors: [structuralCorrect, input.seed + 2, input.seed + 3],
         solutionSteps: [
-          { description: 'claimed solution', expression: `f(${input.seed}) = ${wrongAnswer}`, value: wrongAnswer },
+          {
+            description: "claimed solution",
+            expression: `f(${input.seed}) = ${wrongAnswer}`,
+            value: wrongAnswer,
+          },
         ],
-        invariants: [
-          { name: 'a > 0', passed: true },
-        ],
+        invariants: [{ name: "a > 0", passed: true }],
       };
     },
   };
@@ -87,12 +87,8 @@ export function createDuplicateDistractorGenerator(): BadGenerator {
         correctAnswer: correct,
         // First distractor collides with the correct answer.
         distractors: [correct, correct + 1, correct + 2],
-        solutionSteps: [
-          { description: 'add 1', expression: `${input.seed} + 1`, value: correct },
-        ],
-        invariants: [
-          { name: 'a > 0', passed: true },
-        ],
+        solutionSteps: [{ description: "add 1", expression: `${input.seed} + 1`, value: correct }],
+        invariants: [{ name: "a > 0", passed: true }],
       };
     },
   };
@@ -114,12 +110,10 @@ export function createDegenerateGenerator(): BadGenerator {
         problem: `Compute f(${input.seed}) where f(x) = x + 1.`,
         correctAnswer: correct,
         distractors: [correct + 1, correct + 2, correct + 3],
-        solutionSteps: [
-          { description: 'add 1', expression: `${input.seed} + 1`, value: correct },
-        ],
+        solutionSteps: [{ description: "add 1", expression: `${input.seed} + 1`, value: correct }],
         invariants: [
           // Forced failure: a degenerate "solvability" invariant.
-          { name: 'denominator != 0', passed: false },
+          { name: "denominator != 0", passed: false },
         ],
       };
     },

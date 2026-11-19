@@ -22,9 +22,10 @@ function createContext(variantRows: Row[] = [], activityRows: Row[] = []) {
     }
     operations.push(`query:${table}`);
     return {
-      withIndex(index: string, callback: (query: {
-        eq: (field: string, value: unknown) => unknown;
-      }) => unknown) {
+      withIndex(
+        index: string,
+        callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+      ) {
         operations.push(`index:${index}`);
         callback({
           eq: (field: string, value: unknown) => {
@@ -106,24 +107,30 @@ describe("IM3 one-real-solution Guided practice-item upsert", () => {
       variantLabel: "Seed 45",
       sourceTimestamp: 200,
     });
-    expect(state.operations.filter((operation) => operation.startsWith("query:")).every((operation) => (
-      operation === "query:practice_items"
-    ))).toBe(true);
+    expect(
+      state.operations
+        .filter((operation) => operation.startsWith("query:"))
+        .every((operation) => operation === "query:practice_items"),
+    ).toBe(true);
   });
 
   it("rejects a conflicting Guided practice-item mapping before writes", async () => {
     const activityId = "activities:one-real-solution-guided" as Id<"activities">;
-    const state = createContext([{
-      _id: "practice_items:conflict",
-      practiceItemId: `${IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID}:wrong-seed`,
-      activityId,
-      variantKey: IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID,
-      variantLabel: "Seed 45",
-    }]);
+    const state = createContext([
+      {
+        _id: "practice_items:conflict",
+        practiceItemId: `${IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID}:wrong-seed`,
+        activityId,
+        variantKey: IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID,
+        variantLabel: "Seed 45",
+      },
+    ]);
 
     await expect(
       upsertIm3OneRealSolutionGuidedPracticeItem(state.ctx, activityId, 100),
-    ).rejects.toThrow("Duplicate or conflicting IM3 one-real-solution Guided practice-item mapping");
+    ).rejects.toThrow(
+      "Duplicate or conflicting IM3 one-real-solution Guided practice-item mapping",
+    );
     expect(state.operations).toEqual([
       "query:practice_items",
       "index:by_variantKey",
@@ -141,17 +148,26 @@ describe("IM3 one-real-solution Guided practice-item upsert", () => {
   it("rejects duplicate Guided practice-item rows before writes", async () => {
     const activityId = "activities:one-real-solution-guided" as Id<"activities">;
     const expected = buildIm3OneRealSolutionGuidedPracticeSeedDocuments(activityId, 100).item;
-    const state = createContext([{
-      _id: "practice_items:first",
-      ...expected,
-    }], [{
-      _id: "practice_items:second",
-      ...expected,
-    }]);
+    const state = createContext(
+      [
+        {
+          _id: "practice_items:first",
+          ...expected,
+        },
+      ],
+      [
+        {
+          _id: "practice_items:second",
+          ...expected,
+        },
+      ],
+    );
 
     await expect(
       upsertIm3OneRealSolutionGuidedPracticeItem(state.ctx, activityId, 100),
-    ).rejects.toThrow("Duplicate or conflicting IM3 one-real-solution Guided practice-item mapping");
+    ).rejects.toThrow(
+      "Duplicate or conflicting IM3 one-real-solution Guided practice-item mapping",
+    );
     expect(state.operations).toEqual([
       "query:practice_items",
       "index:by_variantKey",

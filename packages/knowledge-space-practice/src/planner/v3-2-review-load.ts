@@ -1,10 +1,10 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 import {
   reviewLoadAssessmentV3_2Schema,
   reviewLoadConfigV3_2Schema,
   type ReviewLoadAssessmentV3_2,
-} from './v3-2-review-load-contract';
+} from "./v3-2-review-load-contract";
 
 const reviewLoadInputSchema = z
   .object({
@@ -13,7 +13,10 @@ const reviewLoadInputSchema = z
     cards: z.array(
       z
         .object({
-          cardId: z.string().min(1).refine((value) => value.trim() === value),
+          cardId: z
+            .string()
+            .min(1)
+            .refine((value) => value.trim() === value),
           dueDate: z.string().datetime({ offset: true }),
         })
         .strict(),
@@ -23,7 +26,11 @@ const reviewLoadInputSchema = z
   .superRefine((input, ctx) => {
     const ids = new Set(input.cards.map((card) => card.cardId));
     if (ids.size !== input.cards.length) {
-      ctx.addIssue({ code: 'custom', path: ['cards'], message: 'Review-load cards must have unique IDs' });
+      ctx.addIssue({
+        code: "custom",
+        path: ["cards"],
+        message: "Review-load cards must have unique IDs",
+      });
     }
   });
 
@@ -44,13 +51,13 @@ export function assessReviewLoadV3_2(
   const budgetPerDay = config.maxReviewsPerDay * config.loadBudgetFactor;
   const reviewLoadState =
     projectedDailyLoad > budgetPerDay
-      ? 'saturated'
+      ? "saturated"
       : projectedDailyLoad >= budgetPerDay * config.elevatedBudgetFraction
-        ? 'elevated'
-        : 'normal';
-  const saturated = reviewLoadState === 'saturated';
+        ? "elevated"
+        : "normal";
+  const saturated = reviewLoadState === "saturated";
   return reviewLoadAssessmentV3_2Schema.parse({
-    schemaVersion: 'planner.review-load.v3.2',
+    schemaVersion: "planner.review-load.v3.2",
     asOf: input.asOf,
     dueWithinHorizon,
     horizonDays: config.horizonDays,
@@ -60,7 +67,7 @@ export function assessReviewLoadV3_2(
     budgetPerDay,
     elevatedBudgetFraction: config.elevatedBudgetFraction,
     reviewLoadState,
-    newSkillAllowance: saturated ? 'zero' : 'allowed',
-    guidance: saturated ? 'review-day' : 'continue',
+    newSkillAllowance: saturated ? "zero" : "allowed",
+    guidance: saturated ? "review-day" : "continue",
   });
 }

@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { normalizeSolverAnswer } from '../../schemas/step-by-step-solver.schema';
-import InlineMath from '@matejmazur/react-katex';
-import 'katex/dist/katex.min.css';
+import React from "react";
+import { normalizeSolverAnswer } from "../../schemas/step-by-step-solver.schema";
+import InlineMath from "@matejmazur/react-katex";
+import "katex/dist/katex.min.css";
 
 interface MathInputFieldProps {
   value: string;
@@ -45,16 +45,17 @@ export function MathInputField({
     return normalizedInput === normalizedAnswer;
   };
 
-  const isValid = showValidation && correctAnswer && value.trim() !== '' 
-    ? checkEquivalence(value, correctAnswer) 
-    : null;
+  const isValid =
+    showValidation && correctAnswer && value.trim() !== ""
+      ? checkEquivalence(value, correctAnswer)
+      : null;
 
   return (
     <div className="space-y-2">
       <label htmlFor={resolvedInputId} className="block text-sm font-medium text-foreground">
         {label}
       </label>
-      
+
       <div className="space-y-2">
         <input
           id={resolvedInputId}
@@ -67,15 +68,22 @@ export function MathInputField({
           aria-required={required || undefined}
           className={`
             w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary
-            ${error ? 'border-destructive' : 'border-border'}
-            ${disabled ? 'bg-muted disabled:cursor-not-allowed' : 'bg-background'}
+            ${error ? "border-destructive" : "border-border"}
+            ${disabled ? "bg-muted disabled:cursor-not-allowed" : "bg-background"}
           `}
           aria-label={label}
           aria-describedby={describedBy}
         />
 
-        <div data-testid="katex-preview" className="min-h-[2rem] p-2 bg-muted/30 rounded-md border border-border">
-          {value ? <InlineMath math={value} /> : <span className="text-muted-foreground text-sm">Preview will appear here</span>}
+        <div
+          data-testid="katex-preview"
+          className="min-h-[2rem] p-2 bg-muted/30 rounded-md border border-border"
+        >
+          {value ? (
+            <InlineMath math={value} />
+          ) : (
+            <span className="text-muted-foreground text-sm">Preview will appear here</span>
+          )}
         </div>
 
         {error && (
@@ -85,8 +93,8 @@ export function MathInputField({
         )}
 
         {isValid !== null && (
-          <p className={`text-sm ${isValid ? 'text-green-600' : 'text-red-600'}`}>
-            {isValid ? '✓ Correct' : '✗ Incorrect'}
+          <p className={`text-sm ${isValid ? "text-green-600" : "text-red-600"}`}>
+            {isValid ? "✓ Correct" : "✗ Incorrect"}
           </p>
         )}
       </div>

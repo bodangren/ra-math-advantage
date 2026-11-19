@@ -5,12 +5,20 @@
  */
 
 const SUPERSCRIPTS: Record<string, string> = {
-  '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
-  '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
+  "0": "⁰",
+  "1": "¹",
+  "2": "²",
+  "3": "³",
+  "4": "⁴",
+  "5": "⁵",
+  "6": "⁶",
+  "7": "⁷",
+  "8": "⁸",
+  "9": "⁹",
 };
 
 export function formatPolynomial(coeffs: number[]): string {
-  if (coeffs.length === 0) return '0';
+  if (coeffs.length === 0) return "0";
 
   const parts: string[] = [];
   for (let deg = coeffs.length - 1; deg >= 0; deg--) {
@@ -18,19 +26,19 @@ export function formatPolynomial(coeffs: number[]): string {
     if (c === 0) continue;
 
     const absC = Math.abs(c);
-    const sign = c < 0 ? '−' : '+';
-    const coeffStr = absC === 1 && deg > 0 ? '' : String(absC);
+    const sign = c < 0 ? "−" : "+";
+    const coeffStr = absC === 1 && deg > 0 ? "" : String(absC);
 
     let varStr: string;
     if (deg === 0) {
-      varStr = '';
+      varStr = "";
     } else if (deg === 1) {
-      varStr = 'x';
+      varStr = "x";
     } else {
       const sup = String(deg)
-        .split('')
+        .split("")
         .map((d) => SUPERSCRIPTS[d] ?? `^${d}`)
-        .join('');
+        .join("");
       varStr = `x${sup}`;
     }
 
@@ -42,5 +50,5 @@ export function formatPolynomial(coeffs: number[]): string {
     }
   }
 
-  return parts.length > 0 ? parts.join(' ') : '0';
+  return parts.length > 0 ? parts.join(" ") : "0";
 }

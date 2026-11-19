@@ -1,5 +1,5 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
   Target,
   CheckCircle,
@@ -16,10 +16,10 @@ import {
   Flag,
   TrendingUp,
   Briefcase,
-  GraduationCap
-} from "lucide-react"
-import { type Lesson } from '@/lib/schemas/validators';
-import { formatCurriculumSegmentTitle } from '@/lib/curriculum/segment-labels';
+  GraduationCap,
+} from "lucide-react";
+import { type Lesson } from "@/lib/schemas/validators";
+import { formatCurriculumSegmentTitle } from "@/lib/curriculum/segment-labels";
 
 interface DailyLessonActivity {
   name: string;
@@ -27,7 +27,17 @@ interface DailyLessonActivity {
   description: string;
   details: string[];
   callout?: {
-    type: 'tip' | 'important' | 'definition' | 'example' | 'reflection' | 'technical' | 'checkpoint' | 'strategy' | 'professional' | 'assessment';
+    type:
+      | "tip"
+      | "important"
+      | "definition"
+      | "example"
+      | "reflection"
+      | "technical"
+      | "checkpoint"
+      | "strategy"
+      | "professional"
+      | "assessment";
     title: string;
     content: string;
     items?: string[];
@@ -39,7 +49,7 @@ interface DailyLessonActivity {
     youtubeId?: string;
   };
   interactiveActivities?: Array<{
-    type: 'multiple-choice' | 'drag-drop' | 'turn-talk' | 'think-pair-share';
+    type: "multiple-choice" | "drag-drop" | "turn-talk" | "think-pair-share";
     title: string;
     description: string;
     duration: string;
@@ -86,7 +96,6 @@ interface UnitLessonPlanProps {
   nextUnitPrep?: string[];
 }
 
-
 /**
  * Renders a comprehensive unit-level lesson plan with desired results,
  * assessment evidence, learning experiences, and differentiation strategies.
@@ -114,7 +123,7 @@ export function UnitLessonPlan({
   resources = [],
   reflectionQuestions = [],
   dataCollection = [],
-  nextUnitPrep = []
+  nextUnitPrep = [],
 }: UnitLessonPlanProps) {
   const unitContent = lesson.metadata?.unitContent;
   const drivingQuestion = unitContent?.drivingQuestion?.question;
@@ -133,11 +142,12 @@ export function UnitLessonPlan({
   const rubric = unitContent?.assessment?.rubric || [];
 
   // Extract learning sequence
-  const learningPhases = unitContent?.learningSequence?.weeks?.map(week => ({
-    title: week.title,
-    description: week.description,
-    days: `Week ${week.weekNumber}`
-  })) || [];
+  const learningPhases =
+    unitContent?.learningSequence?.weeks?.map((week) => ({
+      title: week.title,
+      description: week.description,
+      days: `Week ${week.weekNumber}`,
+    })) || [];
 
   return (
     <div className="max-w-6xl mx-auto p-8">
@@ -146,23 +156,27 @@ export function UnitLessonPlan({
         <h1 className="text-3xl font-bold mb-4">
           {formatCurriculumSegmentTitle(lesson.unitNumber, lesson.title)}
         </h1>
-        <p className="text-lg text-muted-foreground mb-4">
-          {lesson.description}
-        </p>
+        <p className="text-lg text-muted-foreground mb-4">{lesson.description}</p>
 
         {/* Unit Meta */}
         <div className="flex flex-wrap gap-4 p-4 bg-slate-50 dark:bg-slate-950/20 rounded-lg">
           <div className="flex items-center gap-2">
             <Clock className="h-4 w-4" />
-            <span><strong>Duration:</strong> {durationLabel}</span>
+            <span>
+              <strong>Duration:</strong> {durationLabel}
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <Users className="h-4 w-4" />
-            <span><strong>Grade Level:</strong> {gradeLevel}</span>
+            <span>
+              <strong>Grade Level:</strong> {gradeLevel}
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <BookOpen className="h-4 w-4" />
-            <span><strong>Course:</strong> {course}</span>
+            <span>
+              <strong>Course:</strong> {course}
+            </span>
           </div>
         </div>
       </header>
@@ -342,9 +356,7 @@ export function UnitLessonPlan({
                       Milestone {index + 1}
                       <Badge variant="secondary">Day {milestone.day}</Badge>
                     </CardTitle>
-                    <CardDescription className="font-medium">
-                      {milestone.title}
-                    </CardDescription>
+                    <CardDescription className="font-medium">{milestone.title}</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-1 text-sm">
@@ -373,16 +385,29 @@ export function UnitLessonPlan({
                 <table className="w-full border-collapse border border-gray-300 dark:border-gray-600 text-sm">
                   <thead>
                     <tr className="bg-gray-100 dark:bg-gray-800">
-                      <th className="border border-gray-300 dark:border-gray-600 p-3 text-left font-medium">Criteria</th>
-                      <th className="border border-gray-300 dark:border-gray-600 p-3 text-left font-medium">Weight</th>
-                      <th className="border border-gray-300 dark:border-gray-600 p-3 text-left font-medium">Exemplary (A)</th>
-                      <th className="border border-gray-300 dark:border-gray-600 p-3 text-left font-medium">Proficient (B-C)</th>
-                      <th className="border border-gray-300 dark:border-gray-600 p-3 text-left font-medium">Developing (D)</th>
+                      <th className="border border-gray-300 dark:border-gray-600 p-3 text-left font-medium">
+                        Criteria
+                      </th>
+                      <th className="border border-gray-300 dark:border-gray-600 p-3 text-left font-medium">
+                        Weight
+                      </th>
+                      <th className="border border-gray-300 dark:border-gray-600 p-3 text-left font-medium">
+                        Exemplary (A)
+                      </th>
+                      <th className="border border-gray-300 dark:border-gray-600 p-3 text-left font-medium">
+                        Proficient (B-C)
+                      </th>
+                      <th className="border border-gray-300 dark:border-gray-600 p-3 text-left font-medium">
+                        Developing (D)
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
                     {rubric.map((criteria, index) => (
-                      <tr key={index} className={index % 2 === 0 ? "bg-gray-50 dark:bg-gray-900/50" : ""}>
+                      <tr
+                        key={index}
+                        className={index % 2 === 0 ? "bg-gray-50 dark:bg-gray-900/50" : ""}
+                      >
                         <td className="border border-gray-300 dark:border-gray-600 p-3 font-medium">
                           {criteria.name}
                         </td>
@@ -421,12 +446,17 @@ export function UnitLessonPlan({
             <h3 className="text-xl font-semibold mb-4">Learning Sequence Overview</h3>
             <div className="grid md:grid-cols-3 gap-4">
               {learningPhases.map((phase, index) => (
-                <Card key={index} className="text-center border-green-200 bg-green-50 dark:bg-green-950/10">
+                <Card
+                  key={index}
+                  className="text-center border-green-200 bg-green-50 dark:bg-green-950/10"
+                >
                   <CardContent className="pt-6">
                     <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">
                       {phase.title}
                     </h4>
-                    <Badge variant="secondary" className="mb-3">{phase.days}</Badge>
+                    <Badge variant="secondary" className="mb-3">
+                      {phase.days}
+                    </Badge>
                     <p className="text-green-700 dark:text-green-300 text-sm">
                       {phase.description}
                     </p>
@@ -605,7 +635,7 @@ export function UnitLessonPlan({
         </section>
       )}
     </div>
-  )
+  );
 }
 
 // Separate component for daily lesson cards
@@ -626,20 +656,30 @@ function DailyLessonCard({ lesson }: { lesson: DailyLesson }) {
    */
   const getCalloutIcon = (type: string) => {
     switch (type) {
-      case 'tip': return <Lightbulb className="h-5 w-5" />
-      case 'important': return <AlertTriangle className="h-5 w-5" />
-      case 'definition': return <Info className="h-5 w-5" />
-      case 'example': return <FileText className="h-5 w-5" />
-      case 'reflection': return <MessageSquare className="h-5 w-5" />
-      case 'technical': return <Code className="h-5 w-5" />
-      case 'checkpoint': return <Flag className="h-5 w-5" />
-      case 'strategy': return <TrendingUp className="h-5 w-5" />
-      case 'professional': return <Briefcase className="h-5 w-5" />
-      case 'assessment': return <GraduationCap className="h-5 w-5" />
-      default: return <Info className="h-5 w-5" />
+      case "tip":
+        return <Lightbulb className="h-5 w-5" />;
+      case "important":
+        return <AlertTriangle className="h-5 w-5" />;
+      case "definition":
+        return <Info className="h-5 w-5" />;
+      case "example":
+        return <FileText className="h-5 w-5" />;
+      case "reflection":
+        return <MessageSquare className="h-5 w-5" />;
+      case "technical":
+        return <Code className="h-5 w-5" />;
+      case "checkpoint":
+        return <Flag className="h-5 w-5" />;
+      case "strategy":
+        return <TrendingUp className="h-5 w-5" />;
+      case "professional":
+        return <Briefcase className="h-5 w-5" />;
+      case "assessment":
+        return <GraduationCap className="h-5 w-5" />;
+      default:
+        return <Info className="h-5 w-5" />;
     }
-  }
-
+  };
 
   /**
    * Returns Tailwind border/background/text classes for the given callout type.
@@ -649,26 +689,41 @@ function DailyLessonCard({ lesson }: { lesson: DailyLesson }) {
    */
   const getCalloutColors = (type: string) => {
     switch (type) {
-      case 'tip': return 'border-blue-200 bg-blue-50 dark:bg-blue-950/10 text-blue-800 dark:text-blue-200'
-      case 'important': return 'border-red-200 bg-red-50 dark:bg-red-950/10 text-red-800 dark:text-red-200'
-      case 'definition': return 'border-green-200 bg-green-50 dark:bg-green-950/10 text-green-800 dark:text-green-200'
-      case 'example': return 'border-purple-200 bg-purple-50 dark:bg-purple-950/10 text-purple-800 dark:text-purple-200'
-      case 'reflection': return 'border-amber-200 bg-amber-50 dark:bg-amber-950/10 text-amber-800 dark:text-amber-200'
-      case 'technical': return 'border-slate-200 bg-slate-50 dark:bg-slate-950/10 text-slate-800 dark:text-slate-200'
-      case 'checkpoint': return 'border-orange-200 bg-orange-50 dark:bg-orange-950/10 text-orange-800 dark:text-orange-200'
-      case 'strategy': return 'border-teal-200 bg-teal-50 dark:bg-teal-950/10 text-teal-800 dark:text-teal-200'
-      case 'professional': return 'border-indigo-200 bg-indigo-50 dark:bg-indigo-950/10 text-indigo-800 dark:text-indigo-200'
-      case 'assessment': return 'border-cyan-200 bg-cyan-50 dark:bg-cyan-950/10 text-cyan-800 dark:text-cyan-200'
-      default: return 'border-gray-200 bg-gray-50 dark:bg-gray-950/10 text-gray-800 dark:text-gray-200'
+      case "tip":
+        return "border-blue-200 bg-blue-50 dark:bg-blue-950/10 text-blue-800 dark:text-blue-200";
+      case "important":
+        return "border-red-200 bg-red-50 dark:bg-red-950/10 text-red-800 dark:text-red-200";
+      case "definition":
+        return "border-green-200 bg-green-50 dark:bg-green-950/10 text-green-800 dark:text-green-200";
+      case "example":
+        return "border-purple-200 bg-purple-50 dark:bg-purple-950/10 text-purple-800 dark:text-purple-200";
+      case "reflection":
+        return "border-amber-200 bg-amber-50 dark:bg-amber-950/10 text-amber-800 dark:text-amber-200";
+      case "technical":
+        return "border-slate-200 bg-slate-50 dark:bg-slate-950/10 text-slate-800 dark:text-slate-200";
+      case "checkpoint":
+        return "border-orange-200 bg-orange-50 dark:bg-orange-950/10 text-orange-800 dark:text-orange-200";
+      case "strategy":
+        return "border-teal-200 bg-teal-50 dark:bg-teal-950/10 text-teal-800 dark:text-teal-200";
+      case "professional":
+        return "border-indigo-200 bg-indigo-50 dark:bg-indigo-950/10 text-indigo-800 dark:text-indigo-200";
+      case "assessment":
+        return "border-cyan-200 bg-cyan-50 dark:bg-cyan-950/10 text-cyan-800 dark:text-cyan-200";
+      default:
+        return "border-gray-200 bg-gray-50 dark:bg-gray-950/10 text-gray-800 dark:text-gray-200";
     }
-  }
+  };
 
   return (
     <Card className="border-l-4 border-l-primary">
       <CardHeader>
-        <CardTitle className="text-xl">Day {lesson.day}: {lesson.title}</CardTitle>
+        <CardTitle className="text-xl">
+          Day {lesson.day}: {lesson.title}
+        </CardTitle>
         <div className="flex items-center gap-4 text-sm text-muted-foreground">
-          <span><strong>Focus:</strong> {lesson.focus}</span>
+          <span>
+            <strong>Focus:</strong> {lesson.focus}
+          </span>
           <span className="flex items-center gap-1">
             <Clock className="h-4 w-4" />
             {lesson.duration}
@@ -693,7 +748,9 @@ function DailyLessonCard({ lesson }: { lesson: DailyLesson }) {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-purple-700 dark:text-purple-300">{activity.video.description}</p>
+                  <p className="text-purple-700 dark:text-purple-300">
+                    {activity.video.description}
+                  </p>
                   {activity.video.youtubeId && (
                     <p className="text-sm text-purple-600 dark:text-purple-400 mt-2">
                       YouTube ID: {activity.video.youtubeId}
@@ -707,7 +764,10 @@ function DailyLessonCard({ lesson }: { lesson: DailyLesson }) {
               <div className="mb-4 space-y-2">
                 <h5 className="font-medium text-primary">Interactive Activities:</h5>
                 {activity.interactiveActivities.map((interactiveActivity, intIndex) => (
-                  <Card key={intIndex} className="border-orange-200 bg-orange-50 dark:bg-orange-950/10">
+                  <Card
+                    key={intIndex}
+                    className="border-orange-200 bg-orange-50 dark:bg-orange-950/10"
+                  >
                     <CardContent className="pt-4">
                       <div className="flex items-center justify-between mb-2">
                         <span className="font-medium text-orange-800 dark:text-orange-200">
@@ -718,7 +778,8 @@ function DailyLessonCard({ lesson }: { lesson: DailyLesson }) {
                         </Badge>
                       </div>
                       <p className="text-orange-700 dark:text-orange-300 text-sm">
-                        <strong>{interactiveActivity.type}:</strong> {interactiveActivity.description}
+                        <strong>{interactiveActivity.type}:</strong>{" "}
+                        {interactiveActivity.description}
                       </p>
                     </CardContent>
                   </Card>
@@ -776,5 +837,5 @@ function DailyLessonCard({ lesson }: { lesson: DailyLesson }) {
         )}
       </CardContent>
     </Card>
-  )
+  );
 }

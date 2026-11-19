@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -140,7 +140,10 @@ export const seedLesson6_4 = internalMutation({
                 equation: "e^x = 14",
                 steps: [
                   { expression: "e^x = 14", explanation: "Start with the exponential equation" },
-                  { expression: "ln 14 = x", explanation: "Take the natural logarithm of both sides" },
+                  {
+                    expression: "ln 14 = x",
+                    explanation: "Take the natural logarithm of both sides",
+                  },
                 ],
               },
             },
@@ -170,8 +173,14 @@ export const seedLesson6_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "ln 9 = x",
                 steps: [
-                  { expression: "ln 9 = x", explanation: "Start with the natural logarithm equation" },
-                  { expression: "9 = e^x", explanation: "Rewrite in exponential form using base e" },
+                  {
+                    expression: "ln 9 = x",
+                    explanation: "Start with the natural logarithm equation",
+                  },
+                  {
+                    expression: "9 = e^x",
+                    explanation: "Rewrite in exponential form using base e",
+                  },
                 ],
               },
             },
@@ -201,11 +210,26 @@ export const seedLesson6_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "(1/3) ln 8 - ln 3 + ln 9",
                 steps: [
-                  { expression: "(1/3) ln 8 - ln 3 + ln 9", explanation: "Start with the expression" },
-                  { expression: "= ln(8^(1/3)) - ln 3 + ln 9", explanation: "Apply the Power Property: (1/3) ln 8 = ln(8^(1/3)) = ln 2" },
-                  { expression: "= ln 2 - ln 3 + ln 9", explanation: "Simplify ln(8^(1/3)) to ln 2" },
-                  { expression: "= ln(2/3) + ln 9", explanation: "Apply the Quotient Property: ln 2 - ln 3 = ln(2/3)" },
-                  { expression: "= ln 6", explanation: "Apply the Product Property: ln(2/3) + ln 9 = ln(2/3 · 9) = ln 6" },
+                  {
+                    expression: "(1/3) ln 8 - ln 3 + ln 9",
+                    explanation: "Start with the expression",
+                  },
+                  {
+                    expression: "= ln(8^(1/3)) - ln 3 + ln 9",
+                    explanation: "Apply the Power Property: (1/3) ln 8 = ln(8^(1/3)) = ln 2",
+                  },
+                  {
+                    expression: "= ln 2 - ln 3 + ln 9",
+                    explanation: "Simplify ln(8^(1/3)) to ln 2",
+                  },
+                  {
+                    expression: "= ln(2/3) + ln 9",
+                    explanation: "Apply the Quotient Property: ln 2 - ln 3 = ln(2/3)",
+                  },
+                  {
+                    expression: "= ln 6",
+                    explanation: "Apply the Product Property: ln(2/3) + ln 9 = ln(2/3 · 9) = ln 6",
+                  },
                 ],
               },
             },
@@ -254,9 +278,15 @@ export const seedLesson6_4 = internalMutation({
                   { expression: "-2e^(x+3) + 8 = -14", explanation: "Start with the equation" },
                   { expression: "-2e^(x+3) = -22", explanation: "Subtract 8 from both sides" },
                   { expression: "e^(x+3) = 11", explanation: "Divide both sides by -2" },
-                  { expression: "ln(e^(x+3)) = ln 11", explanation: "Take the natural logarithm of both sides" },
+                  {
+                    expression: "ln(e^(x+3)) = ln 11",
+                    explanation: "Take the natural logarithm of both sides",
+                  },
                   { expression: "x + 3 = ln 11", explanation: "Simplify ln(e^(x+3)) = x+3" },
-                  { expression: "x + 3 ≈ 2.3979", explanation: "Evaluate ln 11 using a calculator" },
+                  {
+                    expression: "x + 3 ≈ 2.3979",
+                    explanation: "Evaluate ln 11 using a calculator",
+                  },
                   { expression: "x ≈ -0.6021", explanation: "Subtract 3 from both sides" },
                 ],
               },
@@ -322,8 +352,14 @@ export const seedLesson6_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "T(t) = 72 + 128e^(-0.032t)",
                 steps: [
-                  { expression: "T(t) = 72 + (200-72)e^(-0.032t)", explanation: "Newton's Law of Cooling with T0=200, Ta=72" },
-                  { expression: "T(30) = 72 + 128e^(-0.032(30))", explanation: "Substitute t=30 minutes" },
+                  {
+                    expression: "T(t) = 72 + (200-72)e^(-0.032t)",
+                    explanation: "Newton's Law of Cooling with T0=200, Ta=72",
+                  },
+                  {
+                    expression: "T(30) = 72 + 128e^(-0.032(30))",
+                    explanation: "Substitute t=30 minutes",
+                  },
                   { expression: "= 72 + 128e^(-0.96)", explanation: "Multiply -0.032 by 30" },
                   { expression: "≈ 72 + 128(0.382)", explanation: "Evaluate e^(-0.96)" },
                   { expression: "≈ 72 + 48.9 ≈ 121°F", explanation: "Calculate final temperature" },
@@ -356,7 +392,10 @@ export const seedLesson6_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "y = 23.3237 + 17.7473 ln x",
                 steps: [
-                  { expression: "y = 23.3237 + 17.7473 ln(15)", explanation: "Substitute x = 15 for year 2025" },
+                  {
+                    expression: "y = 23.3237 + 17.7473 ln(15)",
+                    explanation: "Substitute x = 15 for year 2025",
+                  },
                   { expression: "= 23.3237 + 17.7473(2.708)", explanation: "Evaluate ln(15)" },
                   { expression: "≈ 23.3237 + 48.076", explanation: "Multiply" },
                   { expression: "≈ 71.4%", explanation: "Predict percentage for year 2025" },
@@ -428,7 +467,7 @@ export const seedLesson6_4 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

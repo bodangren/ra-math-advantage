@@ -1,12 +1,12 @@
-import { generateTopic11IntervalGraph } from '@math-platform/math-content/knowledge-space';
-import type { Interval } from '@math-platform/math-content/knowledge-space';
+import { generateTopic11IntervalGraph } from "@math-platform/math-content/knowledge-space";
+import type { Interval } from "@math-platform/math-content/knowledge-space";
 
 export { generateTopic11IntervalGraph };
 export type {
   Interval,
   Topic11IntervalGraphPoint as IntervalGraphPoint,
   Topic11IntervalGraphVariant,
-} from '@math-platform/math-content/knowledge-space';
+} from "@math-platform/math-content/knowledge-space";
 
 export interface Topic11IntervalAnswers {
   readonly increasingIntervals: string;
@@ -15,22 +15,22 @@ export interface Topic11IntervalAnswers {
 }
 
 const INTERVAL_FIELDS = [
-  'increasingIntervals',
-  'decreasingIntervals',
-  'constantIntervals',
+  "increasingIntervals",
+  "decreasingIntervals",
+  "constantIntervals",
 ] as const;
 
-const NUMBER_PATTERN = '[+-]?(?:\\d+(?:\\.\\d+)?|\\.\\d+)';
+const NUMBER_PATTERN = "[+-]?(?:\\d+(?:\\.\\d+)?|\\.\\d+)";
 const INTERVAL_PATTERN = new RegExp(
   `(?:\\[(${NUMBER_PATTERN}),(${NUMBER_PATTERN})\\]|\\((${NUMBER_PATTERN}),(${NUMBER_PATTERN})\\))`,
-  'y',
+  "y",
 );
 
 function parseIntervals(rawAnswer: string): Interval[] | null {
-  if (typeof rawAnswer !== 'string') return null;
-  const normalized = rawAnswer.replace(/\s+/g, '');
+  if (typeof rawAnswer !== "string") return null;
+  const normalized = rawAnswer.replace(/\s+/g, "");
   const emptyAnswer = normalized.toLowerCase();
-  if (emptyAnswer === 'none' || emptyAnswer === 'nointerval' || emptyAnswer === 'nointervals') {
+  if (emptyAnswer === "none" || emptyAnswer === "nointerval" || emptyAnswer === "nointervals") {
     return [];
   }
 
@@ -39,7 +39,7 @@ function parseIntervals(rawAnswer: string): Interval[] | null {
   while (cursor < normalized.length) {
     if (intervals.length > 0) {
       const separator = normalized[cursor];
-      if (separator !== 'U' && separator !== '∪') return null;
+      if (separator !== "U" && separator !== "∪") return null;
       cursor += 1;
     }
 
@@ -58,9 +58,8 @@ function parseIntervals(rawAnswer: string): Interval[] | null {
 
 function intervalsMatch(actual: readonly Interval[], expected: readonly Interval[]): boolean {
   if (actual.length !== expected.length) return false;
-  const sortIntervals = (intervals: readonly Interval[]) => [...intervals].sort(
-    ([startA, endA], [startB, endB]) => startA - startB || endA - endB,
-  );
+  const sortIntervals = (intervals: readonly Interval[]) =>
+    [...intervals].sort(([startA, endA], [startB, endB]) => startA - startB || endA - endB);
   return sortIntervals(actual).every(([actualStart, actualEnd], index) => {
     const expectedInterval = sortIntervals(expected)[index];
     return expectedInterval?.[0] === actualStart && expectedInterval[1] === actualEnd;
@@ -70,7 +69,17 @@ function intervalsMatch(actual: readonly Interval[], expected: readonly Interval
 export function gradeTopic11IntervalGraph(
   seed: number,
   answers: Topic11IntervalAnswers,
-): { score: number; maxScore: number; parts: { partId: string; rawAnswer: string; isCorrect: boolean; score: number; maxScore: number }[] } {
+): {
+  score: number;
+  maxScore: number;
+  parts: {
+    partId: string;
+    rawAnswer: string;
+    isCorrect: boolean;
+    score: number;
+    maxScore: number;
+  }[];
+} {
   const variant = generateTopic11IntervalGraph(seed);
   const expectedIntervals = {
     increasingIntervals: variant.increasingIntervals,

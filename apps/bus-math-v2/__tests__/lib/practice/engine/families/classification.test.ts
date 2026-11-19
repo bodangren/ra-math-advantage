@@ -1,36 +1,42 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { practiceSubmissionEnvelopeSchema } from '@/lib/practice/contract';
-import { practiceAccounts } from '@/lib/practice/engine/accounts';
+import { practiceSubmissionEnvelopeSchema } from "@/lib/practice/contract";
+import { practiceAccounts } from "@/lib/practice/engine/accounts";
 import {
   buildClassificationReviewFeedback,
   classificationFamily,
   type ClassificationDefinition,
   type ClassificationResponse,
-} from '@/lib/practice/engine/families/classification';
-import type { ProblemFamily } from '@/lib/practice/engine/types';
+} from "@/lib/practice/engine/families/classification";
+import type { ProblemFamily } from "@/lib/practice/engine/types";
 
-function resolveCategoryId(categorySet: ClassificationDefinition['categorySet'], accountId: string) {
+function resolveCategoryId(
+  categorySet: ClassificationDefinition["categorySet"],
+  accountId: string,
+) {
   const account = practiceAccounts.find((entry) => entry.id === accountId);
   if (!account) {
-    return '';
+    return "";
   }
 
-  if (categorySet === 'account-type') {
+  if (categorySet === "account-type") {
     return account.accountType;
   }
 
-  if (categorySet === 'statement-placement') {
+  if (categorySet === "statement-placement") {
     return account.statementPlacement;
   }
 
-  return account.accountType === 'revenue' || account.accountType === 'expense' || account.id === 'dividends' || account.id === 'withdrawals'
-    ? 'temporary'
-    : 'permanent';
+  return account.accountType === "revenue" ||
+    account.accountType === "expense" ||
+    account.id === "dividends" ||
+    account.id === "withdrawals"
+    ? "temporary"
+    : "permanent";
 }
 
-describe('classification family', () => {
-  it('generates deterministic, balanced account-type boards across multiple seeds', () => {
+describe("classification family", () => {
+  it("generates deterministic, balanced account-type boards across multiple seeds", () => {
     const family: ProblemFamily<
       ClassificationDefinition,
       ClassificationResponse,
@@ -39,11 +45,11 @@ describe('classification family', () => {
 
     for (let seed = 1; seed <= 10; seed += 1) {
       const config = {
-        categorySet: 'account-type' as const,
+        categorySet: "account-type" as const,
         itemCount: 10,
         confusionPairDensity: 0.75,
         evenlyDistributed: true,
-        mode: 'guided_practice' as const,
+        mode: "guided_practice" as const,
       };
 
       const definition = family.generate(seed, config);
@@ -52,7 +58,9 @@ describe('classification family', () => {
       expect(definition).toEqual(repeat);
       expect(definition.parts).toHaveLength(10);
       expect(definition.categories).toHaveLength(5);
-      expect(new Set(definition.parts.map((part) => part.targetId))).toEqual(new Set(definition.categories.map((category) => category.id)));
+      expect(new Set(definition.parts.map((part) => part.targetId))).toEqual(
+        new Set(definition.categories.map((category) => category.id)),
+      );
 
       const counts = definition.parts.reduce<Record<string, number>>((acc, part) => {
         acc[part.targetId] = (acc[part.targetId] ?? 0) + 1;
@@ -61,27 +69,31 @@ describe('classification family', () => {
 
       const values = Object.values(counts);
       expect(Math.max(...values) - Math.min(...values)).toBeLessThanOrEqual(1);
-      expect(definition.parts.every((part) => part.details.commonConfusionPairs.length >= 0)).toBe(true);
+      expect(definition.parts.every((part) => part.details.commonConfusionPairs.length >= 0)).toBe(
+        true,
+      );
     }
   });
 
-  it('supports statement-placement generation, partial credit, and envelope round-tripping', () => {
+  it("supports statement-placement generation, partial credit, and envelope round-tripping", () => {
     const definition = classificationFamily.generate(24, {
-      categorySet: 'statement-placement',
+      categorySet: "statement-placement",
       itemCount: 6,
       confusionPairDensity: 1,
       evenlyDistributed: false,
-      mode: 'assessment',
+      mode: "assessment",
     });
 
     const response = classificationFamily.solve(definition);
     const confusedPart = definition.parts.find((part) =>
-      part.details.commonConfusionPairs.some((confusionId) => resolveCategoryId(definition.categorySet, confusionId) !== part.targetId),
+      part.details.commonConfusionPairs.some(
+        (confusionId) => resolveCategoryId(definition.categorySet, confusionId) !== part.targetId,
+      ),
     );
 
     expect(confusedPart).toBeDefined();
     if (!confusedPart) {
-      throw new Error('Expected a part with a cross-category confusion pair');
+      throw new Error("Expected a part with a cross-category confusion pair");
     }
 
     const confusionId = confusedPart.details.commonConfusionPairs.find((candidateId) => {
@@ -91,7 +103,7 @@ describe('classification family', () => {
 
     expect(confusionId).toBeDefined();
     if (!confusionId) {
-      throw new Error('Expected a usable confusion partner');
+      throw new Error("Expected a usable confusion partner");
     }
 
     const studentResponse: ClassificationResponse = {
@@ -105,9 +117,11 @@ describe('classification family', () => {
 
     expect(gradeResult.score).toBeGreaterThan(0);
     expect(gradeResult.score).toBeLessThan(gradeResult.maxScore);
-    expect(gradeResult.parts.some((part) => part.partId === confusedPart.id && part.score === 0.5)).toBe(true);
+    expect(
+      gradeResult.parts.some((part) => part.partId === confusedPart.id && part.score === 0.5),
+    ).toBe(true);
     expect(reviewed[confusedPart.id]).toMatchObject({
-      status: 'partial',
+      status: "partial",
       expectedZoneLabel: expect.any(String),
       selectedZoneLabel: expect.any(String),
     });
@@ -115,23 +129,23 @@ describe('classification family', () => {
     const parsed = practiceSubmissionEnvelopeSchema.safeParse(envelope);
     expect(parsed.success).toBe(true);
     if (!parsed.success) {
-      throw new Error('Expected classification envelope to parse');
+      throw new Error("Expected classification envelope to parse");
     }
 
-    expect(parsed.data.contractVersion).toBe('practice.v1');
+    expect(parsed.data.contractVersion).toBe("practice.v1");
     expect(parsed.data.answers).toEqual(studentResponse);
     expect(parsed.data.artifact).toMatchObject({
-      kind: 'classification-board',
-      family: 'classification',
-      categorySet: 'statement-placement',
+      kind: "classification-board",
+      family: "classification",
+      categorySet: "statement-placement",
     });
   });
 
-  it('emits canonical classification-error tag when student places an account in the wrong category', () => {
+  it("emits canonical classification-error tag when student places an account in the wrong category", () => {
     const definition = classificationFamily.generate(42, {
-      categorySet: 'account-type',
+      categorySet: "account-type",
       itemCount: 6,
-      mode: 'assessment',
+      mode: "assessment",
     });
 
     const solution = classificationFamily.solve(definition);
@@ -147,6 +161,6 @@ describe('classification family', () => {
 
     expect(partResult).toBeDefined();
     expect(partResult?.isCorrect).toBe(false);
-    expect(partResult?.misconceptionTags).toContain('classification-error');
+    expect(partResult?.misconceptionTags).toContain("classification-error");
   });
 });

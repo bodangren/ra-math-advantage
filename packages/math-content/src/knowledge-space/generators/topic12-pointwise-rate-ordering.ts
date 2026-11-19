@@ -1,6 +1,6 @@
-import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
+import type { GeneratorOutput } from "@math-platform/knowledge-space-practice";
 
-import { mulberry32 } from '../../utils/prng';
+import { mulberry32 } from "../../utils/prng";
 
 export interface Topic12PointwiseRateOrderingPoint {
   readonly x: number;
@@ -28,21 +28,23 @@ export interface Topic12PointwiseRateOrderingVariant {
 }
 
 export const TOPIC12_POINTWISE_RATE_ORDERING_NODE_ID =
-  'math.precalc.skill.1.2.compare-pointwise-rates-of-change-from-graphs';
+  "math.precalc.skill.1.2.compare-pointwise-rates-of-change-from-graphs";
 
-const SOURCE_PROMPT = 'The figure shows the graph of a function f in the xy-plane with three labeled points. Order the rates of change of f at the three labeled points from least to greatest.';
-const GENERATED_PROMPT = 'This hypothetical graph shows a function f in the xy-plane with three labeled points. Order the rates of change of f at the labeled points from least to greatest.';
+const SOURCE_PROMPT =
+  "The figure shows the graph of a function f in the xy-plane with three labeled points. Order the rates of change of f at the three labeled points from least to greatest.";
+const GENERATED_PROMPT =
+  "This hypothetical graph shows a function f in the xy-plane with three labeled points. Order the rates of change of f at the labeled points from least to greatest.";
 const DOMAIN: readonly [number, number] = [-5, 5];
 const RANGE: readonly [number, number] = [-4, 4];
-const LABELS = ['A', 'B', 'C'] as const;
+const LABELS = ["A", "B", "C"] as const;
 const LABELED_POINT_INDICES = [2, 5, 8] as const;
 const LABEL_PERMUTATIONS: readonly (readonly string[])[] = [
-  ['A', 'B', 'C'],
-  ['A', 'C', 'B'],
-  ['B', 'A', 'C'],
-  ['B', 'C', 'A'],
-  ['C', 'A', 'B'],
-  ['C', 'B', 'A'],
+  ["A", "B", "C"],
+  ["A", "C", "B"],
+  ["B", "A", "C"],
+  ["B", "C", "A"],
+  ["C", "A", "B"],
+  ["C", "B", "A"],
 ];
 const SOURCE_GRAPH_POINTS: readonly Topic12PointwiseRateOrderingPoint[] = [
   { x: -4.2, y: -4 },
@@ -72,17 +74,23 @@ function buildLabeledPoints(
   points: readonly Topic12PointwiseRateOrderingPoint[],
   labelsByPosition: readonly string[],
 ): readonly Topic12PointwiseRateOrderingLabeledPoint[] {
-  return labelsByPosition.map((label, index) => {
-    const pointIndex = LABELED_POINT_INDICES[index]!;
-    const point = points[pointIndex]!;
-    return {
-      id: label,
-      label,
-      pointIndex,
-      x: point.x,
-      y: point.y,
-    };
-  }).sort((left, right) => LABELS.indexOf(left.id as typeof LABELS[number]) - LABELS.indexOf(right.id as typeof LABELS[number]));
+  return labelsByPosition
+    .map((label, index) => {
+      const pointIndex = LABELED_POINT_INDICES[index]!;
+      const point = points[pointIndex]!;
+      return {
+        id: label,
+        label,
+        pointIndex,
+        x: point.x,
+        y: point.y,
+      };
+    })
+    .sort(
+      (left, right) =>
+        LABELS.indexOf(left.id as (typeof LABELS)[number]) -
+        LABELS.indexOf(right.id as (typeof LABELS)[number]),
+    );
 }
 
 function findOrderedPointIds(
@@ -90,23 +98,22 @@ function findOrderedPointIds(
   labeledPoints: readonly Topic12PointwiseRateOrderingLabeledPoint[],
 ): readonly string[] {
   return [...labeledPoints]
-    .sort((left, right) => (
-      centeredSlope(points, left.pointIndex) - centeredSlope(points, right.pointIndex)
-    ))
+    .sort(
+      (left, right) =>
+        centeredSlope(points, left.pointIndex) - centeredSlope(points, right.pointIndex),
+    )
     .map((point) => point.id);
 }
 
 function buildSolutionSteps(orderedPointIds: readonly string[]): readonly string[] {
   return [
-    'Compare the local direction and steepness at A, B, and C.',
+    "Compare the local direction and steepness at A, B, and C.",
     `Point ${orderedPointIds[0]} has the least rate, point ${orderedPointIds[1]} is next, and point ${orderedPointIds[2]} has the greatest rate.`,
-    `Therefore, the least-to-greatest order is ${orderedPointIds.join(' < ')}.`,
+    `Therefore, the least-to-greatest order is ${orderedPointIds.join(" < ")}.`,
   ];
 }
 
-function transformSourceGraph(
-  random: () => number,
-): readonly Topic12PointwiseRateOrderingPoint[] {
+function transformSourceGraph(random: () => number): readonly Topic12PointwiseRateOrderingPoint[] {
   const xScale = 0.82 + random() * 0.08;
   const xTranslation = -0.1 + random() * 0.2;
   const yScale = 0.82 + random() * 0.08;
@@ -118,9 +125,11 @@ function transformSourceGraph(
   }));
 }
 
-export function generateTopic12PointwiseRateOrdering(seed: number): Topic12PointwiseRateOrderingVariant {
+export function generateTopic12PointwiseRateOrdering(
+  seed: number,
+): Topic12PointwiseRateOrderingVariant {
   if (!Number.isInteger(seed) || seed < 0) {
-    throw new RangeError('seed must be a non-negative integer');
+    throw new RangeError("seed must be a non-negative integer");
   }
 
   if (seed === 0) {
@@ -131,8 +140,8 @@ export function generateTopic12PointwiseRateOrdering(seed: number): Topic12Point
       prompt: SOURCE_PROMPT,
       domain: DOMAIN,
       range: RANGE,
-      xLabel: 'x',
-      yLabel: 'y',
+      xLabel: "x",
+      yLabel: "y",
       graphPoints: SOURCE_GRAPH_POINTS,
       labeledPoints,
       solutionSteps: buildSolutionSteps(orderedPointIds),
@@ -151,8 +160,8 @@ export function generateTopic12PointwiseRateOrdering(seed: number): Topic12Point
     prompt: GENERATED_PROMPT,
     domain: DOMAIN,
     range: RANGE,
-    xLabel: 'x',
-    yLabel: 'y',
+    xLabel: "x",
+    yLabel: "y",
     graphPoints,
     labeledPoints,
     solutionSteps: buildSolutionSteps(orderedPointIds),
@@ -161,7 +170,9 @@ export function generateTopic12PointwiseRateOrdering(seed: number): Topic12Point
 
 export function generateTopic12PointwiseRateOrderingOutput(seed: number): GeneratorOutput {
   const variant = generateTopic12PointwiseRateOrdering(seed);
-  const expectedAnswer = { orderedPointIds: [...findOrderedPointIds(variant.graphPoints, variant.labeledPoints)] };
+  const expectedAnswer = {
+    orderedPointIds: [...findOrderedPointIds(variant.graphPoints, variant.labeledPoints)],
+  };
 
   return {
     prompt: variant.prompt,
@@ -180,7 +191,7 @@ export function generateTopic12PointwiseRateOrderingOutput(seed: number): Genera
     gradingMetadata: {
       partAnswers: expectedAnswer,
       partMaxScores: { orderedPointIds: 1 },
-      partGradingRules: { orderedPointIds: 'exact_match' },
+      partGradingRules: { orderedPointIds: "exact_match" },
     },
   };
 }

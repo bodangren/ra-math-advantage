@@ -1,22 +1,21 @@
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { ChevronLeft } from 'lucide-react';
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { ChevronLeft } from "lucide-react";
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   buildTeacherLessonMonitoringViewModel,
   type TeacherLessonMonitoringViewModel,
-} from '@/lib/teacher/lesson-monitoring';
-import { TeacherLessonPlan } from '@/components/teacher/TeacherLessonPlan';
-import { LessonErrorSummary } from '@/components/teacher/LessonErrorSummary';
-import { formatCurriculumSegmentLabel } from '@/lib/curriculum/segment-labels';
+} from "@/lib/teacher/lesson-monitoring";
+import { TeacherLessonPlan } from "@/components/teacher/TeacherLessonPlan";
+import { LessonErrorSummary } from "@/components/teacher/LessonErrorSummary";
+import { formatCurriculumSegmentLabel } from "@/lib/curriculum/segment-labels";
 
 type TeacherLessonPlanPageContentProps = TeacherLessonMonitoringViewModel & {
   unitNumber: number;
 };
-
 
 /**
  * Renders the lesson plan page content with breadcrumb navigation, lesson plan,
@@ -38,7 +37,6 @@ export function TeacherLessonPlanPageContent({
 }: TeacherLessonPlanPageContentProps) {
   const router = useRouter();
 
-
   /**
    * Navigates to the given href if it is non-null.
    *
@@ -51,7 +49,6 @@ export function TeacherLessonPlanPageContent({
 
     router.push(href);
   }
-
 
   /**
    * Navigates to a different lesson by its number.
@@ -69,7 +66,10 @@ export function TeacherLessonPlanPageContent({
     <main className="min-h-screen bg-muted/10 py-10">
       <div className="container mx-auto max-w-6xl px-4 space-y-6">
         <header className="space-y-6">
-          <nav className="flex items-center gap-2 text-sm text-muted-foreground" aria-label="Breadcrumb">
+          <nav
+            className="flex items-center gap-2 text-sm text-muted-foreground"
+            aria-label="Breadcrumb"
+          >
             <Link href="/teacher" className="hover:text-foreground">
               Teacher Dashboard
             </Link>
@@ -78,16 +78,11 @@ export function TeacherLessonPlanPageContent({
               Course Gradebook
             </Link>
             <ChevronLeft className="size-3 rotate-180" aria-hidden="true" />
-            <Link
-              href={`/teacher/units/${unitNumber}`}
-              className="hover:text-foreground"
-            >
+            <Link href={`/teacher/units/${unitNumber}`} className="hover:text-foreground">
               {formatCurriculumSegmentLabel(unitNumber)} Gradebook
             </Link>
             <ChevronLeft className="size-3 rotate-180" aria-hidden="true" />
-            <span className="text-foreground font-medium">
-              Lesson {lessonNumber}
-            </span>
+            <span className="text-foreground font-medium">Lesson {lessonNumber}</span>
           </nav>
 
           <div>
@@ -120,7 +115,7 @@ export function TeacherLessonPlanPageContent({
           availableLessons={availableLessons}
           onLessonChange={handleLessonChange}
           onNavigate={(direction) =>
-            navigateToHref(direction === 'prev' ? previousLessonHref : nextLessonHref)
+            navigateToHref(direction === "prev" ? previousLessonHref : nextLessonHref)
           }
         />
 

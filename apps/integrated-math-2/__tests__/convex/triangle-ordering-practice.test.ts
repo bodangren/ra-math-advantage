@@ -32,11 +32,7 @@ const ready = {
     metadata: { independentPracticeReady: true },
   })),
 };
-async function setup(
-  node: string = triangleNodeIds.sides,
-  mode = "guided_practice",
-  seed = 9,
-) {
+async function setup(node: string = triangleNodeIds.sides, mode = "guided_practice", seed = 9) {
   const store = database();
   const userId = await store.db.insert("profiles", {
     role: "student",
@@ -80,11 +76,7 @@ async function setup(
         generatorDifficulty: 1,
         approval: { status: "approved" },
       });
-      if (
-        candidateNode === node &&
-        candidateMode === mode &&
-        candidateSeed === seed
-      )
+      if (candidateNode === node && candidateMode === mode && candidateSeed === seed)
         activityId = id;
     }
   }
@@ -94,190 +86,468 @@ describe("triangle staged submissions", () => {
   it.each([
     [triangleNodeIds.angles, 8, "choice-1"],
     [triangleNodeIds.sides, 9, "choice-2"],
-  ] as const)("records one teacher introduction from the final %s Guided row", async (node, seed, finalChoice) => {
-    const t = await setup(node, "guided_practice", seed);
-    const teacherId = await t.db.insert("profiles", { role: "teacher", organizationId: "org", username: "teacher" });
-    await t.db.insert("auth_credentials", { profileId: teacherId, role: "teacher", organizationId: "org", username: "teacher", isActive: true });
-    const classId = await t.db.insert("classes", { teacherId, archived: false });
-    await t.db.insert("class_enrollments", { classId, studentId: t.userId, status: "active", enrolledAt: 0 });
-    const lesson = t.tables.lessons.find((row) => row.slug === "module-1-lesson-4")!;
-    await t.db.insert("class_lessons", { classId, lessonId: lesson._id, assignedAt: 0 });
-    const firstPart = await submitTriangleHandler(t.ctx, {
-      userId: t.userId, activityId: t.activityId, idempotencyKey: "guided-first",
-      answers: { measure_order: "choice-1" }, hintsUsed: 0, revealStepsSeen: 0,
-    } as never, approved);
-    const secondPart = await submitTriangleHandler(t.ctx, {
-      userId: t.userId, activityId: t.activityId, idempotencyKey: "guided-final",
-      answers: { measure_order: "choice-1", opposite_correspondence: "choice-1" },
-      hintsUsed: firstPart.hintsUsed, revealStepsSeen: 0,
-    } as never, approved);
-    await expect(recordTeacherExposureHandler(t.ctx, {
-      teacherId, studentId: t.userId, classId, submissionId: secondPart.submissionId,
-      idempotencyKey: "intermediate",
-    } as never, approved)).rejects.toThrow("invalid_source_submission");
-    expect(t.tables.learning_evidence ?? []).toEqual([]);
-    const source = await submitTriangleHandler(t.ctx, {
-      userId: t.userId, activityId: t.activityId, idempotencyKey: "guided-complete",
-      answers: { measure_order: "choice-1", opposite_correspondence: "choice-1", final_order: finalChoice },
-      hintsUsed: secondPart.hintsUsed, revealStepsSeen: 0,
-    } as never, approved);
-    expect(source).toMatchObject({ finalPart: true });
-    const args = { teacherId, studentId: t.userId, classId, submissionId: source.submissionId, idempotencyKey: "teacher" };
-    const recorded = await recordTeacherExposureHandler(t.ctx, args as never, approved);
-    expect(await recordTeacherExposureHandler(t.ctx, args as never, approved)).toEqual({ ...recorded, replay: true });
-    expect(await recordTeacherExposureHandler(t.ctx, { ...args, idempotencyKey: "teacher-second" } as never, approved)).toEqual({ ...recorded, replay: true });
-    expect(t.tables.learning_evidence).toHaveLength(1);
-    expect(t.tables.learning_evidence[0]).toMatchObject({
-      learnerId: t.userId, nodeId: node, submissionId: source.submissionId,
-      activityId: `${node}.guided_practice`, attemptOrdinal: 3,
-      origin: "teacher_led", mode: "guided_practice", masteryBearing: false,
-    });
-    expect(t.tables.learning_evidence[0]).not.toHaveProperty("gradedEvidence");
-    expect(t.tables.srs_cards ?? []).toEqual([]);
-    expect(t.tables.srs_review_log ?? []).toEqual([]);
-    const sourceRow = t.tables.activity_submissions.find(row => row._id === source.submissionId)!;
-    const canonical = structuredClone(t.tables.learning_evidence[0]);
-    for (const corrupt of [
-      (row: Record<string, unknown>) => { row.gradedEvidence = { isCorrect: true, score: 1, maxScore: 1 }; },
-      (row: Record<string, unknown>) => { row.occurredAt = "invalid"; },
-      (row: Record<string, unknown>) => { delete row.occurredAt; },
-      (row: Record<string, unknown>) => { row.createdAt = Number.NaN; },
-      (row: Record<string, unknown>) => { row.occurredAt = "2026-09-09T00:00:00.000Z"; },
-      (row: Record<string, unknown>) => { row.createdAt = (sourceRow.submittedAt as number) - 1; row.occurredAt = new Date(row.createdAt as number).toISOString(); },
-      (row: Record<string, unknown>) => { row.idempotencyKey = " "; },
-    ]) {
-      const row = t.tables.learning_evidence[0];
-      for (const key of Object.keys(row)) delete row[key];
-      Object.assign(row, structuredClone(canonical));
-      corrupt(row);
-      const before = structuredClone(t.tables);
-      await expect(recordTeacherExposureHandler(t.ctx, args as never, approved)).rejects.toThrow("idempotency_conflict");
-      await expect(recordTeacherExposureHandler(t.ctx, { ...args, idempotencyKey: "another-key" } as never, approved)).rejects.toThrow("idempotency_conflict");
-      expect(t.tables).toEqual(before);
-    }
-  });
+  ] as const)(
+    "records one teacher introduction from the final %s Guided row",
+    async (node, seed, finalChoice) => {
+      const t = await setup(node, "guided_practice", seed);
+      const teacherId = await t.db.insert("profiles", {
+        role: "teacher",
+        organizationId: "org",
+        username: "teacher",
+      });
+      await t.db.insert("auth_credentials", {
+        profileId: teacherId,
+        role: "teacher",
+        organizationId: "org",
+        username: "teacher",
+        isActive: true,
+      });
+      const classId = await t.db.insert("classes", { teacherId, archived: false });
+      await t.db.insert("class_enrollments", {
+        classId,
+        studentId: t.userId,
+        status: "active",
+        enrolledAt: 0,
+      });
+      const lesson = t.tables.lessons.find((row) => row.slug === "module-1-lesson-4")!;
+      await t.db.insert("class_lessons", { classId, lessonId: lesson._id, assignedAt: 0 });
+      const firstPart = await submitTriangleHandler(
+        t.ctx,
+        {
+          userId: t.userId,
+          activityId: t.activityId,
+          idempotencyKey: "guided-first",
+          answers: { measure_order: "choice-1" },
+          hintsUsed: 0,
+          revealStepsSeen: 0,
+        } as never,
+        approved,
+      );
+      const secondPart = await submitTriangleHandler(
+        t.ctx,
+        {
+          userId: t.userId,
+          activityId: t.activityId,
+          idempotencyKey: "guided-final",
+          answers: { measure_order: "choice-1", opposite_correspondence: "choice-1" },
+          hintsUsed: firstPart.hintsUsed,
+          revealStepsSeen: 0,
+        } as never,
+        approved,
+      );
+      await expect(
+        recordTeacherExposureHandler(
+          t.ctx,
+          {
+            teacherId,
+            studentId: t.userId,
+            classId,
+            submissionId: secondPart.submissionId,
+            idempotencyKey: "intermediate",
+          } as never,
+          approved,
+        ),
+      ).rejects.toThrow("invalid_source_submission");
+      expect(t.tables.learning_evidence ?? []).toEqual([]);
+      const source = await submitTriangleHandler(
+        t.ctx,
+        {
+          userId: t.userId,
+          activityId: t.activityId,
+          idempotencyKey: "guided-complete",
+          answers: {
+            measure_order: "choice-1",
+            opposite_correspondence: "choice-1",
+            final_order: finalChoice,
+          },
+          hintsUsed: secondPart.hintsUsed,
+          revealStepsSeen: 0,
+        } as never,
+        approved,
+      );
+      expect(source).toMatchObject({ finalPart: true });
+      const args = {
+        teacherId,
+        studentId: t.userId,
+        classId,
+        submissionId: source.submissionId,
+        idempotencyKey: "teacher",
+      };
+      const recorded = await recordTeacherExposureHandler(t.ctx, args as never, approved);
+      expect(await recordTeacherExposureHandler(t.ctx, args as never, approved)).toEqual({
+        ...recorded,
+        replay: true,
+      });
+      expect(
+        await recordTeacherExposureHandler(
+          t.ctx,
+          { ...args, idempotencyKey: "teacher-second" } as never,
+          approved,
+        ),
+      ).toEqual({ ...recorded, replay: true });
+      expect(t.tables.learning_evidence).toHaveLength(1);
+      expect(t.tables.learning_evidence[0]).toMatchObject({
+        learnerId: t.userId,
+        nodeId: node,
+        submissionId: source.submissionId,
+        activityId: `${node}.guided_practice`,
+        attemptOrdinal: 3,
+        origin: "teacher_led",
+        mode: "guided_practice",
+        masteryBearing: false,
+      });
+      expect(t.tables.learning_evidence[0]).not.toHaveProperty("gradedEvidence");
+      expect(t.tables.srs_cards ?? []).toEqual([]);
+      expect(t.tables.srs_review_log ?? []).toEqual([]);
+      const sourceRow = t.tables.activity_submissions.find(
+        (row) => row._id === source.submissionId,
+      )!;
+      const canonical = structuredClone(t.tables.learning_evidence[0]);
+      for (const corrupt of [
+        (row: Record<string, unknown>) => {
+          row.gradedEvidence = { isCorrect: true, score: 1, maxScore: 1 };
+        },
+        (row: Record<string, unknown>) => {
+          row.occurredAt = "invalid";
+        },
+        (row: Record<string, unknown>) => {
+          delete row.occurredAt;
+        },
+        (row: Record<string, unknown>) => {
+          row.createdAt = Number.NaN;
+        },
+        (row: Record<string, unknown>) => {
+          row.occurredAt = "2026-09-09T00:00:00.000Z";
+        },
+        (row: Record<string, unknown>) => {
+          row.createdAt = (sourceRow.submittedAt as number) - 1;
+          row.occurredAt = new Date(row.createdAt as number).toISOString();
+        },
+        (row: Record<string, unknown>) => {
+          row.idempotencyKey = " ";
+        },
+      ]) {
+        const row = t.tables.learning_evidence[0];
+        for (const key of Object.keys(row)) delete row[key];
+        Object.assign(row, structuredClone(canonical));
+        corrupt(row);
+        const before = structuredClone(t.tables);
+        await expect(recordTeacherExposureHandler(t.ctx, args as never, approved)).rejects.toThrow(
+          "idempotency_conflict",
+        );
+        await expect(
+          recordTeacherExposureHandler(
+            t.ctx,
+            { ...args, idempotencyKey: "another-key" } as never,
+            approved,
+          ),
+        ).rejects.toThrow("idempotency_conflict");
+        expect(t.tables).toEqual(before);
+      }
+    },
+  );
 
   it.each([
     [triangleNodeIds.angles, 8],
     [triangleNodeIds.sides, undefined],
-  ] as const)("omits the %s Worked item after reload and reuses one physical row", async (nodeId, firstProblem) => {
-    const t = await setup();
-    expect(await getTrianglePracticeHandler(t.ctx, t.userId as never, approved)).toHaveLength(6);
-    const worked = t.tables.activities.find(
-      (row) => row.stableActivityId === `${nodeId}.worked_example`,
-    )!;
-    const args = {
-      userId: t.userId,
-      activityId: worked._id,
-      idempotencyKey: "worked-one",
-      answers: {},
-      hintsUsed: 0,
-      revealStepsSeen: 0,
-    };
-    const first = await submitBoundedPracticeHandler(t.ctx, args as never, approved);
-    expect(first).toMatchObject({ kind: "acknowledged" });
-    expect(t.tables.activity_submissions).toHaveLength(1);
-    const resumed = await getTrianglePracticeHandler(t.ctx, t.userId as never, approved);
-    expect(resumed).toHaveLength(5);
-    expect(resumed.some((item) => item.activityId === worked._id)).toBe(false);
-    if (firstProblem) expect(resumed[0]).toMatchObject({ mode: "guided_practice", problem: firstProblem });
-    const lesson = t.tables.lessons.find((row) => row.slug === "module-1-lesson-4")!;
-    expect(t.tables.activity_submissions[0].lessonId).toBe(lesson._id);
-    expect(await submitBoundedPracticeHandler(t.ctx, args as never, approved)).toEqual(first);
-    const differentKey = await submitBoundedPracticeHandler(
-      t.ctx,
-      { ...args, idempotencyKey: "worked-two" } as never,
-      approved,
-    );
-    expect(differentKey).toEqual(first);
-    expect(t.tables.activity_submissions).toHaveLength(1);
-  });
+  ] as const)(
+    "omits the %s Worked item after reload and reuses one physical row",
+    async (nodeId, firstProblem) => {
+      const t = await setup();
+      expect(await getTrianglePracticeHandler(t.ctx, t.userId as never, approved)).toHaveLength(6);
+      const worked = t.tables.activities.find(
+        (row) => row.stableActivityId === `${nodeId}.worked_example`,
+      )!;
+      const args = {
+        userId: t.userId,
+        activityId: worked._id,
+        idempotencyKey: "worked-one",
+        answers: {},
+        hintsUsed: 0,
+        revealStepsSeen: 0,
+      };
+      const first = await submitBoundedPracticeHandler(t.ctx, args as never, approved);
+      expect(first).toMatchObject({ kind: "acknowledged" });
+      expect(t.tables.activity_submissions).toHaveLength(1);
+      const resumed = await getTrianglePracticeHandler(t.ctx, t.userId as never, approved);
+      expect(resumed).toHaveLength(5);
+      expect(resumed.some((item) => item.activityId === worked._id)).toBe(false);
+      if (firstProblem)
+        expect(resumed[0]).toMatchObject({ mode: "guided_practice", problem: firstProblem });
+      const lesson = t.tables.lessons.find((row) => row.slug === "module-1-lesson-4")!;
+      expect(t.tables.activity_submissions[0].lessonId).toBe(lesson._id);
+      expect(await submitBoundedPracticeHandler(t.ctx, args as never, approved)).toEqual(first);
+      const differentKey = await submitBoundedPracticeHandler(
+        t.ctx,
+        { ...args, idempotencyKey: "worked-two" } as never,
+        approved,
+      );
+      expect(differentKey).toEqual(first);
+      expect(t.tables.activity_submissions).toHaveLength(1);
+    },
+  );
 
   it("fails closed for malformed Worked history and changed replay counters", async () => {
     const t = await setup();
     const worked = t.tables.activities.find(
       (row) => row.stableActivityId === `${triangleNodeIds.sides}.worked_example`,
     )!;
-    const args = { userId: t.userId, activityId: worked._id, idempotencyKey: "worked", answers: {}, hintsUsed: 0, revealStepsSeen: 0 };
+    const args = {
+      userId: t.userId,
+      activityId: worked._id,
+      idempotencyKey: "worked",
+      answers: {},
+      hintsUsed: 0,
+      revealStepsSeen: 0,
+    };
     await submitBoundedPracticeHandler(t.ctx, args as never, approved);
     const before = structuredClone(t.tables);
-    await expect(submitBoundedPracticeHandler(t.ctx, { ...args, hintsUsed: 1 } as never, approved)).rejects.toThrow(/conflict/);
-    await expect(submitBoundedPracticeHandler(t.ctx, { ...args, idempotencyKey: "changed", revealStepsSeen: 1 } as never, approved)).rejects.toThrow(/conflict/);
+    await expect(
+      submitBoundedPracticeHandler(t.ctx, { ...args, hintsUsed: 1 } as never, approved),
+    ).rejects.toThrow(/conflict/);
+    await expect(
+      submitBoundedPracticeHandler(
+        t.ctx,
+        { ...args, idempotencyKey: "changed", revealStepsSeen: 1 } as never,
+        approved,
+      ),
+    ).rejects.toThrow(/conflict/);
     expect(t.tables).toEqual(before);
-    (t.tables.activity_submissions[0].submissionData as Record<string, unknown>).parts = [{ partId: "private" }];
+    (t.tables.activity_submissions[0].submissionData as Record<string, unknown>).parts = [
+      { partId: "private" },
+    ];
     const malformed = structuredClone(t.tables);
     expect(await getTrianglePracticeHandler(t.ctx, t.userId as never, approved)).toEqual([]);
-    await expect(submitBoundedPracticeHandler(t.ctx, { ...args, idempotencyKey: "new" } as never, approved)).rejects.toThrow(/history/);
+    await expect(
+      submitBoundedPracticeHandler(t.ctx, { ...args, idempotencyKey: "new" } as never, approved),
+    ).rejects.toThrow(/history/);
     expect(t.tables).toEqual(malformed);
   });
 
   it.each([
-    ["missing lesson", (row: Record<string, unknown>) => { delete row.lessonId; }],
-    ["lesson identity", (row: Record<string, unknown>) => { row.lessonId = "lessons:other"; }],
-    ["empty key", (row: Record<string, unknown>) => { row.idempotencyKey = " "; }],
-    ["ordinal", (row: Record<string, unknown>) => { row.attemptOrdinal = 0; }],
-    ["row time", (row: Record<string, unknown>) => { row.updatedAt = Number.NaN; }],
-    ["grade", (row: Record<string, unknown>) => { row.score = 0; }],
-    ["contract", (row: Record<string, unknown>) => { (row.submissionData as Record<string, unknown>).contractVersion = "legacy"; }],
-    ["envelope activity", (row: Record<string, unknown>) => { (row.submissionData as Record<string, unknown>).activityId = "activities:other"; }],
-    ["mode", (row: Record<string, unknown>) => { (row.submissionData as Record<string, unknown>).mode = "guided_practice"; }],
-    ["status", (row: Record<string, unknown>) => { (row.submissionData as Record<string, unknown>).status = "pending"; }],
-    ["envelope ordinal", (row: Record<string, unknown>) => { (row.submissionData as Record<string, unknown>).attemptNumber = 2; }],
-    ["envelope time", (row: Record<string, unknown>) => { (row.submissionData as Record<string, unknown>).submittedAt = new Date(1).toISOString(); }],
-    ["answers", (row: Record<string, unknown>) => { (row.submissionData as { answers: Record<string, string> }).answers.answer = "x"; }],
-    ["parts", (row: Record<string, unknown>) => { (row.submissionData as Record<string, unknown>).parts = [{ partId: "private" }]; }],
-    ["artifact", (row: Record<string, unknown>) => { ((row.submissionData as Record<string, unknown>).artifact as Record<string, unknown>).privateAnswer = "x"; }],
-    ["request answers", (row: Record<string, unknown>) => { ((((row.submissionData as Record<string, unknown>).artifact as Record<string, unknown>).request as { answers: Record<string, string> }).answers).answer = "x"; }],
-    ["request counter", (row: Record<string, unknown>) => { ((((row.submissionData as Record<string, unknown>).artifact as Record<string, unknown>).request as Record<string, unknown>)).hintsUsed = -1; }],
+    [
+      "missing lesson",
+      (row: Record<string, unknown>) => {
+        delete row.lessonId;
+      },
+    ],
+    [
+      "lesson identity",
+      (row: Record<string, unknown>) => {
+        row.lessonId = "lessons:other";
+      },
+    ],
+    [
+      "empty key",
+      (row: Record<string, unknown>) => {
+        row.idempotencyKey = " ";
+      },
+    ],
+    [
+      "ordinal",
+      (row: Record<string, unknown>) => {
+        row.attemptOrdinal = 0;
+      },
+    ],
+    [
+      "row time",
+      (row: Record<string, unknown>) => {
+        row.updatedAt = Number.NaN;
+      },
+    ],
+    [
+      "grade",
+      (row: Record<string, unknown>) => {
+        row.score = 0;
+      },
+    ],
+    [
+      "contract",
+      (row: Record<string, unknown>) => {
+        (row.submissionData as Record<string, unknown>).contractVersion = "legacy";
+      },
+    ],
+    [
+      "envelope activity",
+      (row: Record<string, unknown>) => {
+        (row.submissionData as Record<string, unknown>).activityId = "activities:other";
+      },
+    ],
+    [
+      "mode",
+      (row: Record<string, unknown>) => {
+        (row.submissionData as Record<string, unknown>).mode = "guided_practice";
+      },
+    ],
+    [
+      "status",
+      (row: Record<string, unknown>) => {
+        (row.submissionData as Record<string, unknown>).status = "pending";
+      },
+    ],
+    [
+      "envelope ordinal",
+      (row: Record<string, unknown>) => {
+        (row.submissionData as Record<string, unknown>).attemptNumber = 2;
+      },
+    ],
+    [
+      "envelope time",
+      (row: Record<string, unknown>) => {
+        (row.submissionData as Record<string, unknown>).submittedAt = new Date(1).toISOString();
+      },
+    ],
+    [
+      "answers",
+      (row: Record<string, unknown>) => {
+        (row.submissionData as { answers: Record<string, string> }).answers.answer = "x";
+      },
+    ],
+    [
+      "parts",
+      (row: Record<string, unknown>) => {
+        (row.submissionData as Record<string, unknown>).parts = [{ partId: "private" }];
+      },
+    ],
+    [
+      "artifact",
+      (row: Record<string, unknown>) => {
+        (
+          (row.submissionData as Record<string, unknown>).artifact as Record<string, unknown>
+        ).privateAnswer = "x";
+      },
+    ],
+    [
+      "request answers",
+      (row: Record<string, unknown>) => {
+        (
+          ((row.submissionData as Record<string, unknown>).artifact as Record<string, unknown>)
+            .request as { answers: Record<string, string> }
+        ).answers.answer = "x";
+      },
+    ],
+    [
+      "request counter",
+      (row: Record<string, unknown>) => {
+        (
+          ((row.submissionData as Record<string, unknown>).artifact as Record<string, unknown>)
+            .request as Record<string, unknown>
+        ).hintsUsed = -1;
+      },
+    ],
   ])("rejects malformed Worked %s history for same and new keys", async (_name, corrupt) => {
     const t = await setup();
-    const worked = t.tables.activities.find((row) => row.stableActivityId === `${triangleNodeIds.angles}.worked_example`)!;
-    const args = { userId: t.userId, activityId: worked._id, idempotencyKey: "worked", answers: {}, hintsUsed: 0, revealStepsSeen: 0 };
+    const worked = t.tables.activities.find(
+      (row) => row.stableActivityId === `${triangleNodeIds.angles}.worked_example`,
+    )!;
+    const args = {
+      userId: t.userId,
+      activityId: worked._id,
+      idempotencyKey: "worked",
+      answers: {},
+      hintsUsed: 0,
+      revealStepsSeen: 0,
+    };
     await submitBoundedPracticeHandler(t.ctx, args as never, approved);
     corrupt(t.tables.activity_submissions[0]);
     const before = structuredClone(t.tables);
     expect(await getTrianglePracticeHandler(t.ctx, t.userId as never, approved)).toEqual([]);
-    await expect(submitBoundedPracticeHandler(t.ctx, args as never, approved)).rejects.toThrow(/history/);
-    await expect(submitBoundedPracticeHandler(t.ctx, { ...args, idempotencyKey: "new" } as never, approved)).rejects.toThrow(/history/);
+    await expect(submitBoundedPracticeHandler(t.ctx, args as never, approved)).rejects.toThrow(
+      /history/,
+    );
+    await expect(
+      submitBoundedPracticeHandler(t.ctx, { ...args, idempotencyKey: "new" } as never, approved),
+    ).rejects.toThrow(/history/);
     expect(t.tables).toEqual(before);
   });
 
-  it.each(["missing", "duplicate"])("fails closed when the canonical lesson is %s", async (state) => {
-    const t = await setup(triangleNodeIds.angles, "worked_example", 6);
-    if (state === "missing") t.tables.lessons.length = 0;
-    else await t.db.insert("lessons", { slug: "module-1-lesson-4" });
-    const before = structuredClone(t.tables);
-    expect(await getTrianglePracticeHandler(t.ctx, t.userId as never, approved)).toEqual([]);
-    await expect(submitBoundedPracticeHandler(t.ctx, {
-      userId: t.userId, activityId: t.activityId, idempotencyKey: "worked",
-      answers: {}, hintsUsed: 0, revealStepsSeen: 0,
-    } as never, approved)).rejects.toThrow("pilot_source_lesson_missing");
-    expect(t.tables).toEqual(before);
-  });
+  it.each(["missing", "duplicate"])(
+    "fails closed when the canonical lesson is %s",
+    async (state) => {
+      const t = await setup(triangleNodeIds.angles, "worked_example", 6);
+      if (state === "missing") t.tables.lessons.length = 0;
+      else await t.db.insert("lessons", { slug: "module-1-lesson-4" });
+      const before = structuredClone(t.tables);
+      expect(await getTrianglePracticeHandler(t.ctx, t.userId as never, approved)).toEqual([]);
+      await expect(
+        submitBoundedPracticeHandler(
+          t.ctx,
+          {
+            userId: t.userId,
+            activityId: t.activityId,
+            idempotencyKey: "worked",
+            answers: {},
+            hintsUsed: 0,
+            revealStepsSeen: 0,
+          } as never,
+          approved,
+        ),
+      ).rejects.toThrow("pilot_source_lesson_missing");
+      expect(t.tables).toEqual(before);
+    },
+  );
 
   it("omits both Worked items and restores partial and completed graded state", async () => {
     const t = await setup();
     for (const nodeId of Object.values(triangleNodeIds)) {
-      const worked = t.tables.activities.find((row) => row.stableActivityId === `${nodeId}.worked_example`)!;
-      await submitBoundedPracticeHandler(t.ctx, {
-        userId: t.userId, activityId: worked._id, idempotencyKey: `worked-${nodeId}`,
-        answers: {}, hintsUsed: 0, revealStepsSeen: 0,
-      } as never, approved);
+      const worked = t.tables.activities.find(
+        (row) => row.stableActivityId === `${nodeId}.worked_example`,
+      )!;
+      await submitBoundedPracticeHandler(
+        t.ctx,
+        {
+          userId: t.userId,
+          activityId: worked._id,
+          idempotencyKey: `worked-${nodeId}`,
+          answers: {},
+          hintsUsed: 0,
+          revealStepsSeen: 0,
+        } as never,
+        approved,
+      );
     }
-    const guided = t.tables.activities.find((row) => row.stableActivityId === `${triangleNodeIds.angles}.guided_practice`)!;
-    await submitTriangleHandler(t.ctx, {
-      userId: t.userId, activityId: guided._id, idempotencyKey: "guided-part",
-      answers: { measure_order: "choice-1" }, hintsUsed: 0, revealStepsSeen: 0,
-    } as never, approved);
-    const independent = t.tables.activities.find((row) => row.stableActivityId === `${triangleNodeIds.sides}.independent_practice`)!;
-    await submitTriangleHandler(t.ctx, {
-      userId: t.userId, activityId: independent._id, idempotencyKey: "independent-part",
-      answers: { missing_angle: "66" }, hintsUsed: 0, revealStepsSeen: 0,
-    } as never, approved);
-    await submitTriangleHandler(t.ctx, {
-      userId: t.userId, activityId: independent._id, idempotencyKey: "independent-final",
-      answers: { missing_angle: "66", final_order: "choice-1" }, hintsUsed: 0, revealStepsSeen: 0,
-    } as never, approved);
+    const guided = t.tables.activities.find(
+      (row) => row.stableActivityId === `${triangleNodeIds.angles}.guided_practice`,
+    )!;
+    await submitTriangleHandler(
+      t.ctx,
+      {
+        userId: t.userId,
+        activityId: guided._id,
+        idempotencyKey: "guided-part",
+        answers: { measure_order: "choice-1" },
+        hintsUsed: 0,
+        revealStepsSeen: 0,
+      } as never,
+      approved,
+    );
+    const independent = t.tables.activities.find(
+      (row) => row.stableActivityId === `${triangleNodeIds.sides}.independent_practice`,
+    )!;
+    await submitTriangleHandler(
+      t.ctx,
+      {
+        userId: t.userId,
+        activityId: independent._id,
+        idempotencyKey: "independent-part",
+        answers: { missing_angle: "66" },
+        hintsUsed: 0,
+        revealStepsSeen: 0,
+      } as never,
+      approved,
+    );
+    await submitTriangleHandler(
+      t.ctx,
+      {
+        userId: t.userId,
+        activityId: independent._id,
+        idempotencyKey: "independent-final",
+        answers: { missing_angle: "66", final_order: "choice-1" },
+        hintsUsed: 0,
+        revealStepsSeen: 0,
+      } as never,
+      approved,
+    );
 
     const resumed = await getTrianglePracticeHandler(t.ctx, t.userId as never, approved);
     expect(resumed.some((row) => row.mode === "worked_example")).toBe(false);
@@ -298,20 +568,14 @@ describe("triangle staged submissions", () => {
       hintsUsed: 0,
       revealStepsSeen: 0,
     };
-    const wrong = await submitTriangleHandler(
-      t.ctx,
-      wrongArgs as never,
-      approved,
-    );
+    const wrong = await submitTriangleHandler(t.ctx, wrongArgs as never, approved);
     expect(wrong).toMatchObject({
       score: 0,
       complete: false,
       finalPart: false,
       hintsUsed: 1,
     });
-    expect(
-      await submitTriangleHandler(t.ctx, wrongArgs as never, approved),
-    ).toEqual(wrong);
+    expect(await submitTriangleHandler(t.ctx, wrongArgs as never, approved)).toEqual(wrong);
     const right = await submitTriangleHandler(
       t.ctx,
       {
@@ -327,9 +591,9 @@ describe("triangle staged submissions", () => {
       acceptedAnswers: { measure_order: "choice-1" },
       nextPart: { id: "opposite_correspondence" },
     });
-    const projected = (
-      await getTrianglePracticeHandler(t.ctx, t.userId as never, approved)
-    ).find((row) => row.activityId === t.activityId);
+    const projected = (await getTrianglePracticeHandler(t.ctx, t.userId as never, approved)).find(
+      (row) => row.activityId === t.activityId,
+    );
     expect(projected).toMatchObject({
       acceptedAnswers: { measure_order: "choice-1" },
       hintsUsed: 1,
@@ -391,13 +655,8 @@ describe("triangle staged submissions", () => {
       maxScore: 1,
     });
     const saved = t.tables.activity_submissions.at(-1)!;
-    expect((saved.submissionData as { parts: unknown[] }).parts).toHaveLength(
-      2,
-    );
-    expect(
-      (saved.submissionData as { artifact: { request: unknown } }).artifact
-        .request,
-    ).toEqual({
+    expect((saved.submissionData as { parts: unknown[] }).parts).toHaveLength(2);
+    expect((saved.submissionData as { artifact: { request: unknown } }).artifact.request).toEqual({
       answers: { missing_angle: "66", final_order: "choice-2" },
       hintsUsed: 0,
       revealStepsSeen: 0,
@@ -407,9 +666,7 @@ describe("triangle staged submissions", () => {
 
   it("fails closed while the graph is draft and does not write", async () => {
     const t = await setup();
-    expect(await getTrianglePracticeHandler(t.ctx, t.userId as never)).toEqual(
-      [],
-    );
+    expect(await getTrianglePracticeHandler(t.ctx, t.userId as never)).toEqual([]);
     await expect(
       submitTriangleHandler(t.ctx, {
         userId: t.userId,
@@ -429,26 +686,15 @@ describe("triangle staged submissions", () => {
       ...approved,
       nodes: approved.nodes.map((node) => ({ ...node, kind: "example" })),
     };
-    expect(
-      await getTrianglePracticeHandler(t.ctx, t.userId as never, wrongKind),
-    ).toEqual([]);
+    expect(await getTrianglePracticeHandler(t.ctx, t.userId as never, wrongKind)).toEqual([]);
     const mixed = {
       ...approved,
-      blueprints: approved.blueprints.filter(
-        (row) => row.nodeId !== triangleNodeIds.sides,
-      ),
+      blueprints: approved.blueprints.filter((row) => row.nodeId !== triangleNodeIds.sides),
     };
-    const partial = await getTrianglePracticeHandler(
-      t.ctx,
-      t.userId as never,
-      mixed,
-    );
+    const partial = await getTrianglePracticeHandler(t.ctx, t.userId as never, mixed);
     expect(partial).toHaveLength(3);
     expect(
-      partial.every(
-        (item) =>
-          item.problem === 6 || item.problem === 8 || item.problem === 11,
-      ),
+      partial.every((item) => item.problem === 6 || item.problem === 8 || item.problem === 11),
     ).toBe(true);
     expect(t.tables.activity_submissions ?? []).toEqual([]);
   });
@@ -466,18 +712,12 @@ describe("triangle staged submissions", () => {
       hintsUsed: 0,
       revealStepsSeen: 0,
     };
-    const first = await submitBoundedPracticeHandler(
-      t.ctx,
-      args as never,
-      approved,
-    );
+    const first = await submitBoundedPracticeHandler(t.ctx, args as never, approved);
     expect(first).toMatchObject({
       kind: "acknowledged",
       evidencePersisted: false,
     });
-    expect(
-      await submitBoundedPracticeHandler(t.ctx, args as never, approved),
-    ).toEqual(first);
+    expect(await submitBoundedPracticeHandler(t.ctx, args as never, approved)).toEqual(first);
     expect(t.tables.activity_submissions).toHaveLength(1);
     expect(t.tables.learning_evidence ?? []).toEqual([]);
   });
@@ -523,18 +763,10 @@ describe("triangle staged submissions", () => {
     ).toEqual(receipt);
     const before = t.tables.activity_submissions.length;
     const latest = t.tables.activity_submissions.at(-1)!;
-    (
-      latest.submissionData as { answers: Record<string, string> }
-    ).answers.future = "choice-1";
-    expect(
-      await getTrianglePracticeHandler(t.ctx, t.userId as never, approved),
-    ).toEqual([]);
+    (latest.submissionData as { answers: Record<string, string> }).answers.future = "choice-1";
+    expect(await getTrianglePracticeHandler(t.ctx, t.userId as never, approved)).toEqual([]);
     await expect(
-      submitTriangleHandler(
-        t.ctx,
-        { ...args, idempotencyKey: "third" } as never,
-        approved,
-      ),
+      submitTriangleHandler(t.ctx, { ...args, idempotencyKey: "third" } as never, approved),
     ).rejects.toThrow("invalid_triangle_history");
     expect(t.tables.activity_submissions).toHaveLength(before);
   });
@@ -543,8 +775,7 @@ describe("triangle staged submissions", () => {
     [
       "mixed identity",
       (row: Record<string, unknown>) => {
-        (row.submissionData as Record<string, unknown>).mode =
-          "independent_practice";
+        (row.submissionData as Record<string, unknown>).mode = "independent_practice";
       },
     ],
     [
@@ -558,25 +789,20 @@ describe("triangle staged submissions", () => {
     [
       "changed raw answer",
       (row: Record<string, unknown>) => {
-        (
-          row.submissionData as { parts: Array<Record<string, unknown>> }
-        ).parts[0].rawAnswer = "choice-2";
+        (row.submissionData as { parts: Array<Record<string, unknown>> }).parts[0].rawAnswer =
+          "choice-2";
       },
     ],
     [
       "bad grade",
       (row: Record<string, unknown>) => {
-        (
-          row.submissionData as { parts: Array<Record<string, unknown>> }
-        ).parts[0].score = 0;
+        (row.submissionData as { parts: Array<Record<string, unknown>> }).parts[0].score = 0;
       },
     ],
     [
       "bad final shape",
       (row: Record<string, unknown>) => {
-        (
-          row.submissionData as { artifact: Record<string, unknown> }
-        ).artifact.finalPart = true;
+        (row.submissionData as { artifact: Record<string, unknown> }).artifact.finalPart = true;
       },
     ],
     [
@@ -621,47 +847,38 @@ describe("triangle staged submissions", () => {
         ).artifact.response.hint = "Leaked hint";
       },
     ],
-  ])(
-    "makes the sequence unavailable for %s history",
-    async (_name, corrupt) => {
-      const t = await setup();
-      await submitTriangleHandler(
-        t.ctx,
-        {
-          userId: t.userId,
-          activityId: t.activityId,
-          idempotencyKey: "saved",
-          answers: { measure_order: "choice-1" },
-          hintsUsed: 0,
-          revealStepsSeen: 0,
-        } as never,
-        approved,
-      );
-      corrupt(t.tables.activity_submissions[0]);
-      expect(
-        await getTrianglePracticeHandler(t.ctx, t.userId as never, approved),
-      ).toEqual([]);
-      const retry = {
+  ])("makes the sequence unavailable for %s history", async (_name, corrupt) => {
+    const t = await setup();
+    await submitTriangleHandler(
+      t.ctx,
+      {
         userId: t.userId,
         activityId: t.activityId,
         idempotencyKey: "saved",
         answers: { measure_order: "choice-1" },
         hintsUsed: 0,
         revealStepsSeen: 0,
-      };
-      await expect(
-        submitTriangleHandler(t.ctx, retry as never, approved),
-      ).rejects.toThrow("invalid_triangle_history");
-      await expect(
-        submitTriangleHandler(
-          t.ctx,
-          { ...retry, idempotencyKey: "new" } as never,
-          approved,
-        ),
-      ).rejects.toThrow("invalid_triangle_history");
-      expect(t.tables.activity_submissions).toHaveLength(1);
-    },
-  );
+      } as never,
+      approved,
+    );
+    corrupt(t.tables.activity_submissions[0]);
+    expect(await getTrianglePracticeHandler(t.ctx, t.userId as never, approved)).toEqual([]);
+    const retry = {
+      userId: t.userId,
+      activityId: t.activityId,
+      idempotencyKey: "saved",
+      answers: { measure_order: "choice-1" },
+      hintsUsed: 0,
+      revealStepsSeen: 0,
+    };
+    await expect(submitTriangleHandler(t.ctx, retry as never, approved)).rejects.toThrow(
+      "invalid_triangle_history",
+    );
+    await expect(
+      submitTriangleHandler(t.ctx, { ...retry, idempotencyKey: "new" } as never, approved),
+    ).rejects.toThrow("invalid_triangle_history");
+    expect(t.tables.activity_submissions).toHaveLength(1);
+  });
 
   it("returns only public graded parts in a complete receipt", async () => {
     const t = await setup();
@@ -735,12 +952,10 @@ describe("triangle staged submissions", () => {
         artifact: { response: Record<string, unknown> };
       }
     ).artifact.response.hint = "Different hint";
-    expect(
-      await getTrianglePracticeHandler(t.ctx, t.userId as never, approved),
-    ).toEqual([]);
-    await expect(
-      submitTriangleHandler(t.ctx, args as never, approved),
-    ).rejects.toThrow("invalid_triangle_history");
+    expect(await getTrianglePracticeHandler(t.ctx, t.userId as never, approved)).toEqual([]);
+    await expect(submitTriangleHandler(t.ctx, args as never, approved)).rejects.toThrow(
+      "invalid_triangle_history",
+    );
     expect(t.tables.activity_submissions).toHaveLength(1);
   });
 
@@ -792,8 +1007,7 @@ describe("triangle staged submissions", () => {
     });
     expect(
       t.tables.learning_evidence.some(
-        (row) =>
-          typeof row.nodeId === "string" && row.nodeId.includes("missing"),
+        (row) => typeof row.nodeId === "string" && row.nodeId.includes("missing"),
       ),
     ).toBe(false);
   });

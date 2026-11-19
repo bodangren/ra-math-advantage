@@ -32,9 +32,9 @@
 // failure today. The harness mirrors `__tests__/lib/auth/server-guards.test.ts`
 // (verified Green pattern), so the same fixtures and mock pattern are reused.
 
-import { describe, it, expect, expectTypeOf, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, expectTypeOf, vi, beforeEach, afterEach } from "vitest";
 
-import type { SessionClaims, UserRole } from '@math-platform/core-auth';
+import type { SessionClaims, UserRole } from "@math-platform/core-auth";
 
 // ---------------------------------------------------------------------------
 // Adversarial Audit (2026-06-19): real behavior tests for
@@ -54,33 +54,34 @@ import type { SessionClaims, UserRole } from '@math-platform/core-auth';
 // ---------------------------------------------------------------------------
 
 const mockVerifySessionToken = vi.fn();
-const mockGetAuthJwtSecret = vi.fn(() => 'test-secret');
+const mockGetAuthJwtSecret = vi.fn(() => "test-secret");
 const mockFetchInternalQuery = vi.fn();
 
-vi.mock('@math-platform/core-auth', async () => {
-  const actual =
-    await vi.importActual<typeof import('@math-platform/core-auth')>('@math-platform/core-auth');
+vi.mock("@math-platform/core-auth", async () => {
+  const actual = await vi.importActual<typeof import("@math-platform/core-auth")>(
+    "@math-platform/core-auth",
+  );
   return {
     ...actual,
     verifySessionToken: mockVerifySessionToken,
-    SESSION_COOKIE_NAME: 'session',
+    SESSION_COOKIE_NAME: "session",
     getAuthJwtSecret: mockGetAuthJwtSecret,
   };
 });
 
-vi.mock('@/lib/convex/server', () => ({
+vi.mock("@/lib/convex/server", () => ({
   fetchInternalQuery: mockFetchInternalQuery,
   internal: {
     parent: {
       links: {
-        listParentLinksQuery: 'parent:links:listParentLinksQuery',
+        listParentLinksQuery: "parent:links:listParentLinksQuery",
       },
     },
   },
 }));
 
 const makeRequest = (cookie?: string) =>
-  new Request('http://localhost/api/parent/dashboard', {
+  new Request("http://localhost/api/parent/dashboard", {
     headers: cookie ? { cookie } : {},
   });
 
@@ -91,19 +92,19 @@ const makeRequest = (cookie?: string) =>
 // surfacing as a Red.
 // ---------------------------------------------------------------------------
 
-describe('UserRole widening (parent)', () => {
+describe("UserRole widening (parent)", () => {
   it('UserRole is assignable from the literal "parent"', () => {
-    expectTypeOf<'parent'>().toMatchTypeOf<UserRole>();
+    expectTypeOf<"parent">().toMatchTypeOf<UserRole>();
   });
 
-  it('UserRole still includes the existing roles (no regression)', () => {
-    expectTypeOf<'student'>().toMatchTypeOf<UserRole>();
-    expectTypeOf<'teacher'>().toMatchTypeOf<UserRole>();
-    expectTypeOf<'admin'>().toMatchTypeOf<UserRole>();
+  it("UserRole still includes the existing roles (no regression)", () => {
+    expectTypeOf<"student">().toMatchTypeOf<UserRole>();
+    expectTypeOf<"teacher">().toMatchTypeOf<UserRole>();
+    expectTypeOf<"admin">().toMatchTypeOf<UserRole>();
   });
 
   it('SessionClaims["role"] is the widened UserRole', () => {
-    expectTypeOf<SessionClaims['role']>().toEqualTypeOf<UserRole>();
+    expectTypeOf<SessionClaims["role"]>().toEqualTypeOf<UserRole>();
   });
 });
 
@@ -116,15 +117,15 @@ describe('UserRole widening (parent)', () => {
 
 function makeParentClaim(): SessionClaims {
   return {
-    sub: 'parent_profile_1',
-    username: 'parent.test',
-    role: 'parent' as unknown as SessionClaims['role'],
+    sub: "parent_profile_1",
+    username: "parent.test",
+    role: "parent" as unknown as SessionClaims["role"],
     iat: 1,
     exp: 9_999_999_999,
   };
 }
 
-function makeNonParentClaim(role: 'student' | 'teacher' | 'admin'): SessionClaims {
+function makeNonParentClaim(role: "student" | "teacher" | "admin"): SessionClaims {
   return {
     sub: `${role}_profile_1`,
     username: `${role}.test`,
@@ -138,92 +139,85 @@ function makeNonParentClaim(role: 'student' | 'teacher' | 'admin'): SessionClaim
 // requireParentRequestClaims — request-scoped, returns Response | SessionClaims
 // ---------------------------------------------------------------------------
 
-describe('requireParentRequestClaims', () => {
+describe("requireParentRequestClaims", () => {
   type ParentGuardFn = (request: Request, studentId: string) => Promise<SessionClaims | Response>;
   let requireParentRequestClaims: ParentGuardFn;
 
   beforeEach(async () => {
     vi.clearAllMocks();
-    const mod = await import('@/lib/auth/parent-server-guards');
+    const mod = await import("@/lib/auth/parent-server-guards");
     requireParentRequestClaims = mod.requireParentRequestClaims;
   });
 
-  it('returns 401 when no cookie is present', async () => {
-    const res = await requireParentRequestClaims(makeRequest(), 'student_1');
+  it("returns 401 when no cookie is present", async () => {
+    const res = await requireParentRequestClaims(makeRequest(), "student_1");
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(401);
   });
 
-  it('returns 401 when token verification fails', async () => {
+  it("returns 401 when token verification fails", async () => {
     mockVerifySessionToken.mockResolvedValue(null);
-    const res = await requireParentRequestClaims(makeRequest('session=bad-token'), 'student_1');
+    const res = await requireParentRequestClaims(makeRequest("session=bad-token"), "student_1");
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(401);
   });
 
-  it('returns 403 when the authenticated session is a student (fail-closed role)', async () => {
-    mockVerifySessionToken.mockResolvedValue(makeNonParentClaim('student'));
-    const res = await requireParentRequestClaims(makeRequest('session=valid-token'), 'student_1');
+  it("returns 403 when the authenticated session is a student (fail-closed role)", async () => {
+    mockVerifySessionToken.mockResolvedValue(makeNonParentClaim("student"));
+    const res = await requireParentRequestClaims(makeRequest("session=valid-token"), "student_1");
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(403);
   });
 
-  it('returns 403 when the authenticated session is a teacher (fail-closed role)', async () => {
-    mockVerifySessionToken.mockResolvedValue(makeNonParentClaim('teacher'));
-    const res = await requireParentRequestClaims(makeRequest('session=valid-token'), 'student_1');
+  it("returns 403 when the authenticated session is a teacher (fail-closed role)", async () => {
+    mockVerifySessionToken.mockResolvedValue(makeNonParentClaim("teacher"));
+    const res = await requireParentRequestClaims(makeRequest("session=valid-token"), "student_1");
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(403);
   });
 
-  it('returns 403 when the authenticated session is an admin (fail-closed role)', async () => {
-    mockVerifySessionToken.mockResolvedValue(makeNonParentClaim('admin'));
-    const res = await requireParentRequestClaims(makeRequest('session=valid-token'), 'student_1');
+  it("returns 403 when the authenticated session is an admin (fail-closed role)", async () => {
+    mockVerifySessionToken.mockResolvedValue(makeNonParentClaim("admin"));
+    const res = await requireParentRequestClaims(makeRequest("session=valid-token"), "student_1");
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(403);
   });
 
-  it('returns 403 when a parent session has no active link to the requested student', async () => {
+  it("returns 403 when a parent session has no active link to the requested student", async () => {
     mockVerifySessionToken.mockResolvedValue(makeParentClaim());
     mockFetchInternalQuery.mockResolvedValue([]); // no active links
-    const res = await requireParentRequestClaims(makeRequest('session=valid-token'), 'student_1');
+    const res = await requireParentRequestClaims(makeRequest("session=valid-token"), "student_1");
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(403);
     expect(mockFetchInternalQuery).toHaveBeenCalledWith(
-      'parent:links:listParentLinksQuery',
-      expect.objectContaining({ parentProfileId: 'parent_profile_1' }),
+      "parent:links:listParentLinksQuery",
+      expect.objectContaining({ parentProfileId: "parent_profile_1" }),
     );
   });
 
-  it('returns 403 when only revoked links exist for the requested student', async () => {
+  it("returns 403 when only revoked links exist for the requested student", async () => {
     mockVerifySessionToken.mockResolvedValue(makeParentClaim());
-    mockFetchInternalQuery.mockResolvedValue([
-      { studentId: 'student_1', status: 'revoked' },
-    ]);
-    const res = await requireParentRequestClaims(makeRequest('session=valid-token'), 'student_1');
+    mockFetchInternalQuery.mockResolvedValue([{ studentId: "student_1", status: "revoked" }]);
+    const res = await requireParentRequestClaims(makeRequest("session=valid-token"), "student_1");
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(403);
   });
 
-  it('returns the parent claims when an active link exists for the requested student', async () => {
+  it("returns the parent claims when an active link exists for the requested student", async () => {
     const claims = makeParentClaim();
     mockVerifySessionToken.mockResolvedValue(claims);
-    mockFetchInternalQuery.mockResolvedValue([
-      { studentId: 'student_1', status: 'active' },
-    ]);
-    const res = await requireParentRequestClaims(makeRequest('session=valid-token'), 'student_1');
+    mockFetchInternalQuery.mockResolvedValue([{ studentId: "student_1", status: "active" }]);
+    const res = await requireParentRequestClaims(makeRequest("session=valid-token"), "student_1");
     expect(res).toEqual(claims);
   });
 
-  it('returns 401 (does not throw) when the session cookie value has malformed percent-encoding', async () => {
+  it("returns 401 (does not throw) when the session cookie value has malformed percent-encoding", async () => {
     // Adversarial boundary: a malicious or truncated client could send
     // `session=%ZZ` (invalid percent escape). The internal cookie parser
     // calls decodeURIComponent on the value, which throws URIError on bad
     // input. The guard must convert that into a 401, not propagate the
     // throw (which would surface as a 500 in Next.js).
-    const res = await requireParentRequestClaims(
-      makeRequest('session=%ZZ'),
-      'student_1',
-    );
+    const res = await requireParentRequestClaims(makeRequest("session=%ZZ"), "student_1");
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(401);
   });
@@ -233,7 +227,7 @@ describe('requireParentRequestClaims', () => {
 // requireParentServerSessionClaims — page-level, redirect-based
 // ---------------------------------------------------------------------------
 
-describe('requireParentServerSessionClaims', () => {
+describe("requireParentServerSessionClaims", () => {
   type ParentServerGuardFn = (loginRedirectPath: string) => Promise<SessionClaims>;
   let requireParentServerSessionClaims: ParentServerGuardFn;
 
@@ -257,53 +251,53 @@ describe('requireParentServerSessionClaims', () => {
     // bindings still point at the unmocked real modules. vi.resetModules
     // forces a fresh import of the guard with the new mocks in place.
     vi.resetModules();
-    vi.doMock('next/headers', () => ({
+    vi.doMock("next/headers", () => ({
       cookies: () => Promise.resolve({ get: mockCookieGet }),
     }));
-    vi.doMock('next/navigation', () => ({
+    vi.doMock("next/navigation", () => ({
       redirect: mockRedirect,
     }));
-    const mod = await import('@/lib/auth/parent-server-guards');
+    const mod = await import("@/lib/auth/parent-server-guards");
     requireParentServerSessionClaims = mod.requireParentServerSessionClaims;
   });
 
   afterEach(() => {
-    vi.doUnmock('next/headers');
-    vi.doUnmock('next/navigation');
+    vi.doUnmock("next/headers");
+    vi.doUnmock("next/navigation");
     vi.resetModules();
   });
 
-  it('redirects to /auth/login?redirect=<path> when no session cookie is present', async () => {
+  it("redirects to /auth/login?redirect=<path> when no session cookie is present", async () => {
     mockCookieGet.mockReturnValue(undefined);
-    await expect(requireParentServerSessionClaims('/parent/dashboard')).rejects.toMatchObject({
-      message: 'NEXT_REDIRECT:/auth/login?redirect=/parent/dashboard',
+    await expect(requireParentServerSessionClaims("/parent/dashboard")).rejects.toMatchObject({
+      message: "NEXT_REDIRECT:/auth/login?redirect=/parent/dashboard",
     });
-    expect(mockRedirect).toHaveBeenCalledWith('/auth/login?redirect=/parent/dashboard');
+    expect(mockRedirect).toHaveBeenCalledWith("/auth/login?redirect=/parent/dashboard");
   });
 
-  it('redirects to /auth/login?redirect=<path> when the token fails to verify', async () => {
-    mockCookieGet.mockReturnValue({ value: 'bad-token' });
+  it("redirects to /auth/login?redirect=<path> when the token fails to verify", async () => {
+    mockCookieGet.mockReturnValue({ value: "bad-token" });
     mockVerifySessionToken.mockResolvedValue(null);
-    await expect(requireParentServerSessionClaims('/parent/dashboard')).rejects.toMatchObject({
-      message: 'NEXT_REDIRECT:/auth/login?redirect=/parent/dashboard',
+    await expect(requireParentServerSessionClaims("/parent/dashboard")).rejects.toMatchObject({
+      message: "NEXT_REDIRECT:/auth/login?redirect=/parent/dashboard",
     });
-    expect(mockRedirect).toHaveBeenCalledWith('/auth/login?redirect=/parent/dashboard');
+    expect(mockRedirect).toHaveBeenCalledWith("/auth/login?redirect=/parent/dashboard");
   });
 
-  it('redirects to /auth/login?redirect=<path> when the role is not parent', async () => {
-    mockCookieGet.mockReturnValue({ value: 'valid-token' });
-    mockVerifySessionToken.mockResolvedValue(makeNonParentClaim('student'));
-    await expect(requireParentServerSessionClaims('/parent/dashboard')).rejects.toMatchObject({
-      message: 'NEXT_REDIRECT:/auth/login?redirect=/parent/dashboard',
+  it("redirects to /auth/login?redirect=<path> when the role is not parent", async () => {
+    mockCookieGet.mockReturnValue({ value: "valid-token" });
+    mockVerifySessionToken.mockResolvedValue(makeNonParentClaim("student"));
+    await expect(requireParentServerSessionClaims("/parent/dashboard")).rejects.toMatchObject({
+      message: "NEXT_REDIRECT:/auth/login?redirect=/parent/dashboard",
     });
-    expect(mockRedirect).toHaveBeenCalledWith('/auth/login?redirect=/parent/dashboard');
+    expect(mockRedirect).toHaveBeenCalledWith("/auth/login?redirect=/parent/dashboard");
   });
 
-  it('returns the parent claims verbatim when the role is parent', async () => {
+  it("returns the parent claims verbatim when the role is parent", async () => {
     const claims = makeParentClaim();
-    mockCookieGet.mockReturnValue({ value: 'valid-token' });
+    mockCookieGet.mockReturnValue({ value: "valid-token" });
     mockVerifySessionToken.mockResolvedValue(claims);
-    const result = await requireParentServerSessionClaims('/parent/dashboard');
+    const result = await requireParentServerSessionClaims("/parent/dashboard");
     expect(result).toEqual(claims);
     expect(mockRedirect).not.toHaveBeenCalled();
   });
@@ -327,38 +321,47 @@ describe('requireParentServerSessionClaims', () => {
 // catches drift on either side of the boundary.
 // ---------------------------------------------------------------------------
 
-describe('parent guard ↔ Convex validator argument contract', () => {
-  it('the guard calls listParentLinksQuery with the same key the Convex validator declares', async () => {
-    const { readFile } = await import('node:fs/promises');
-    const { fileURLToPath } = await import('node:url');
-    const { dirname, resolve } = await import('node:path');
+describe("parent guard ↔ Convex validator argument contract", () => {
+  it("the guard calls listParentLinksQuery with the same key the Convex validator declares", async () => {
+    const { readFile } = await import("node:fs/promises");
+    const { fileURLToPath } = await import("node:url");
+    const { dirname, resolve } = await import("node:path");
 
     const here = dirname(fileURLToPath(import.meta.url));
-    const guardPath = resolve(here, '../../../lib/auth/parent-server-guards.ts');
-    const linksPath = resolve(here, '../../../convex/parent/links.ts');
+    const guardPath = resolve(here, "../../../lib/auth/parent-server-guards.ts");
+    const linksPath = resolve(here, "../../../convex/parent/links.ts");
 
-    const guardSrc = await readFile(guardPath, 'utf8');
-    const linksSrc = await readFile(linksPath, 'utf8');
+    const guardSrc = await readFile(guardPath, "utf8");
+    const linksSrc = await readFile(linksPath, "utf8");
 
     // Convex validator side: extract the args block of listParentLinksQuery.
-    const queryMatch = linksSrc.match(/listParentLinksQuery\s*=\s*internalQuery\(\{[\s\S]*?args:\s*\{([\s\S]*?)\}/);
-    expect(queryMatch, 'listParentLinksQuery validator block must be present').not.toBeNull();
+    const queryMatch = linksSrc.match(
+      /listParentLinksQuery\s*=\s*internalQuery\(\{[\s\S]*?args:\s*\{([\s\S]*?)\}/,
+    );
+    expect(queryMatch, "listParentLinksQuery validator block must be present").not.toBeNull();
     const validatorBlock = queryMatch![1];
     const validatorKeys = Array.from(validatorBlock.matchAll(/(\w+)\s*:\s*v\./g)).map((m) => m[1]);
-    expect(validatorKeys).toContain('parentProfileId');
-    expect(validatorKeys).not.toContain('parentId');
+    expect(validatorKeys).toContain("parentProfileId");
+    expect(validatorKeys).not.toContain("parentId");
 
     // Guard caller side: extract the args object passed to fetchInternalQuery
     // for listParentLinksQuery.
-    const callMatch = guardSrc.match(/fetchInternalQuery\(\s*internal\.parent\.links\.listParentLinksQuery\s*,\s*\{([\s\S]*?)\}\s*\)/);
-    expect(callMatch, 'guard must invoke fetchInternalQuery against listParentLinksQuery').not.toBeNull();
+    const callMatch = guardSrc.match(
+      /fetchInternalQuery\(\s*internal\.parent\.links\.listParentLinksQuery\s*,\s*\{([\s\S]*?)\}\s*\)/,
+    );
+    expect(
+      callMatch,
+      "guard must invoke fetchInternalQuery against listParentLinksQuery",
+    ).not.toBeNull();
     const callBlock = callMatch![1];
     const callKeys = Array.from(callBlock.matchAll(/(\w+)\s*:/g)).map((m) => m[1]);
 
     // Every key the guard sends must be a key the validator declared, and
     // every required validator key must be present in the guard's call.
     for (const key of callKeys) {
-      expect(validatorKeys, `guard sent key "${key}" that validator does not declare`).toContain(key);
+      expect(validatorKeys, `guard sent key "${key}" that validator does not declare`).toContain(
+        key,
+      );
     }
     for (const key of validatorKeys) {
       expect(callKeys, `validator requires key "${key}" but guard does not send it`).toContain(key);
@@ -396,20 +399,20 @@ function extractHandlerArgsKeys(src: string, exportName: string): string[] {
   return Array.from(m![1].matchAll(/(\w+)\s*:/g)).map((mm) => mm[1]);
 }
 
-describe('Convex parent/links handler ↔ validator argument contract', () => {
-  it('every key the handler declares in args is also declared by its Convex validator', async () => {
-    const { readFile } = await import('node:fs/promises');
-    const { fileURLToPath } = await import('node:url');
-    const { dirname, resolve } = await import('node:path');
+describe("Convex parent/links handler ↔ validator argument contract", () => {
+  it("every key the handler declares in args is also declared by its Convex validator", async () => {
+    const { readFile } = await import("node:fs/promises");
+    const { fileURLToPath } = await import("node:url");
+    const { dirname, resolve } = await import("node:path");
     const here = dirname(fileURLToPath(import.meta.url));
-    const linksPath = resolve(here, '../../../convex/parent/links.ts');
-    const linksSrc = await readFile(linksPath, 'utf8');
+    const linksPath = resolve(here, "../../../convex/parent/links.ts");
+    const linksSrc = await readFile(linksPath, "utf8");
 
     // Pair every handler with its real Convex registration name.
     const pairs: Array<{ handler: string; registration: string }> = [
-      { handler: 'createParentLink', registration: 'createParentLinkMutation' },
-      { handler: 'revokeParentLink', registration: 'revokeParentLinkMutation' },
-      { handler: 'listParentLinks', registration: 'listParentLinksQuery' },
+      { handler: "createParentLink", registration: "createParentLinkMutation" },
+      { handler: "revokeParentLink", registration: "revokeParentLinkMutation" },
+      { handler: "listParentLinks", registration: "listParentLinksQuery" },
     ];
 
     for (const { handler, registration } of pairs) {

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 export interface CardProgressBarProps {
   currentIndex: number;
@@ -35,10 +35,7 @@ export function CardProgressBar({ currentIndex, totalCount }: CardProgressBarPro
         <span className="text-muted-foreground">
           Card {currentCard} of {totalCount}
         </span>
-        <span
-          className="text-muted-foreground font-mono-num"
-          data-testid="card-progress-counter"
-        >
+        <span className="text-muted-foreground font-mono-num" data-testid="card-progress-counter">
           {currentCard} / {totalCount}
         </span>
       </div>

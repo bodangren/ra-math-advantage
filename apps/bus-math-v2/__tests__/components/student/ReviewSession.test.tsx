@@ -121,7 +121,9 @@ describe("ReviewSession", () => {
   });
 
   it("shows a completion summary when all terms are reviewed", async () => {
-    (useStudyHooks.useDueTerms as Mock).mockReturnValue([{ termSlug: "test-term-1", scheduledFor: Date.now() - 1000 }]);
+    (useStudyHooks.useDueTerms as Mock).mockReturnValue([
+      { termSlug: "test-term-1", scheduledFor: Date.now() - 1000 },
+    ]);
     render(<ReviewSession />);
     const card = screen.getByText("Test Term");
     fireEvent.click(card);

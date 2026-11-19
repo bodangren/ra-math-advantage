@@ -39,18 +39,18 @@
  * npx tsc --noEmit && CI=true npm run test` phase-closeout
  * command.
  */
-import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 
-const SPEC_PATH = resolve(__dirname, '../../../../kst-srs.v2/SPECIFICATION.md');
+const SPEC_PATH = resolve(__dirname, "../../../../kst-srs.v2/SPECIFICATION.md");
 
 /**
  * Read the full SPECIFICATION.md file contents.
  * @returns {string} - The spec file as a UTF-8 string
  */
 function readSpec(): string {
-  return readFileSync(SPEC_PATH, 'utf-8');
+  return readFileSync(SPEC_PATH, "utf-8");
 }
 
 /**
@@ -70,91 +70,75 @@ function readSpec(): string {
 function extractSection(
   spec: string,
   headingPattern: RegExp,
-  headingLevel: '## ' | '### ',
+  headingLevel: "## " | "### ",
 ): string {
   const match = spec.match(headingPattern);
   if (!match || match.index === undefined) {
-    return '';
+    return "";
   }
   const start = match.index + match[0].length;
   const rest = spec.slice(start);
   const stopPatterns: Record<typeof headingLevel, RegExp> = {
-    '## ': /^## \d/m,
-    '### ': /^## \d|^### \d/m,
+    "## ": /^## \d/m,
+    "### ": /^## \d|^### \d/m,
   };
   const stopAt = rest.search(stopPatterns[headingLevel]);
   return stopAt === -1 ? rest : rest.slice(0, stopAt);
 }
 
-describe('Phase 4 — kst-srs.v2/SPECIFICATION.md cross-reference markers', () => {
-  it('the spec file exists and is non-empty', () => {
+describe("Phase 4 — kst-srs.v2/SPECIFICATION.md cross-reference markers", () => {
+  it("the spec file exists and is non-empty", () => {
     const spec = readSpec();
     expect(spec.length).toBeGreaterThan(0);
     expect(spec).toMatch(/KST-SRS v2 Specification/);
   });
 
-  it('§3.2 cross-references the transfers_to edge type', () => {
-    const section32 = extractSection(
-      readSpec(),
-      /^### 3\.2[^\n]*\n/m,
-      '### ',
-    );
+  it("§3.2 cross-references the transfers_to edge type", () => {
+    const section32 = extractSection(readSpec(), /^### 3\.2[^\n]*\n/m, "### ");
     expect(
       section32.length,
-      '§3.2 heading was not found in the spec — required for the cross-reference.',
+      "§3.2 heading was not found in the spec — required for the cross-reference.",
     ).toBeGreaterThan(0);
     expect(
       section32,
-      '§3.2 must cross-reference the `transfers_to` edge type so that the cross-domain prior-seeding surface is surfaced inside the Knowledge State & Mastery chapter.',
+      "§3.2 must cross-reference the `transfers_to` edge type so that the cross-domain prior-seeding surface is surfaced inside the Knowledge State & Mastery chapter.",
     ).toMatch(/transfers_to/);
     expect(
       section32,
-      '§3.2 must preserve the track boundary that transfers_to consumption is future/deferred work, not implemented behavior.',
+      "§3.2 must preserve the track boundary that transfers_to consumption is future/deferred work, not implemented behavior.",
     ).toMatch(/future|deferred/i);
   });
 
-  it('§9.4 cross-references the progressTrend parent-facing signal', () => {
-    const section94 = extractSection(
-      readSpec(),
-      /^### 9\.4[^\n]*\n/m,
-      '### ',
-    );
+  it("§9.4 cross-references the progressTrend parent-facing signal", () => {
+    const section94 = extractSection(readSpec(), /^### 9\.4[^\n]*\n/m, "### ");
     expect(
       section94.length,
-      '§9.4 heading was not found in the spec — required for the cross-reference.',
+      "§9.4 heading was not found in the spec — required for the cross-reference.",
     ).toBeGreaterThan(0);
     expect(
       section94,
-      '§9.4 must cross-reference `progressTrend` so the parent-facing signal is surfaced inside the Misconception Remediation Loop chapter where the planner injects activities.',
+      "§9.4 must cross-reference `progressTrend` so the parent-facing signal is surfaced inside the Misconception Remediation Loop chapter where the planner injects activities.",
     ).toMatch(/progressTrend/);
   });
 
-  it('§12.9 documents the FSRS per-card limitation and siblingReinforcement flag', () => {
-    const section129 = extractSection(
-      readSpec(),
-      /^### 12\.9[^\n]*\n/m,
-      '### ',
-    );
+  it("§12.9 documents the FSRS per-card limitation and siblingReinforcement flag", () => {
+    const section129 = extractSection(readSpec(), /^### 12\.9[^\n]*\n/m, "### ");
     expect(
       section129.length,
-      '§12.9 must be added under §12 (Package Boundaries) to document the FSRS per-card limitation. Heading not found in the live spec.',
+      "§12.9 must be added under §12 (Package Boundaries) to document the FSRS per-card limitation. Heading not found in the live spec.",
     ).toBeGreaterThan(0);
     expect(
       section129,
-      '§12.9 must cross-reference the FSRS per-card limitation and the siblingReinforcement flag.',
+      "§12.9 must cross-reference the FSRS per-card limitation and the siblingReinforcement flag.",
     ).toMatch(/FSRS/i);
     expect(section129).toMatch(/siblingReinforcement/);
   });
 
-  it('§16 documents Level Projection as a presentation-only projection', () => {
-    const section16 = extractSection(
-      readSpec(),
-      /^## 16\.[^\n]*\n/m,
-      '## ',
-    );
+  it("§16 documents Level Projection as a presentation-only projection", () => {
+    const section16 = extractSection(readSpec(), /^## 16\.[^\n]*\n/m, "## ");
     expect(
       section16.length,
-      '§16 must be added as a top-level section to document Level Projection. Heading not found in the live spec.',
+      "§16 must be added as a top-level section to document Level Projection. Heading not found in the live spec.",
     ).toBeGreaterThan(0);
     expect(
       section16,
@@ -163,11 +147,11 @@ describe('Phase 4 — kst-srs.v2/SPECIFICATION.md cross-reference markers', () =
     expect(section16).toMatch(/presentation[- ]only/i);
   });
 
-  it('the spec contains the `siblingReinforcement` token (regression guard)', () => {
+  it("the spec contains the `siblingReinforcement` token (regression guard)", () => {
     const spec = readSpec();
     expect(
       spec,
-      '`siblingReinforcement` flag must appear in the spec (currently at §11.4). If this assertion fails, the flag has been silently dropped from the spec.',
+      "`siblingReinforcement` flag must appear in the spec (currently at §11.4). If this assertion fails, the flag has been silently dropped from the spec.",
     ).toMatch(/siblingReinforcement/);
   });
 });

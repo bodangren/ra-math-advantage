@@ -1,45 +1,45 @@
-'use client';
-import { parseEvidenceResponse } from '@/lib/practice/submission-client';
+"use client";
+import { parseEvidenceResponse } from "@/lib/practice/submission-client";
 
-import { useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
-import { RatePatternClassificationActivity } from '@math-platform/activity-components';
-import type { RatePatternClassificationProps } from '@math-platform/math-content';
-import { generateTopic13RatePatternClassification } from '@math-platform/math-content/knowledge-space';
+import { RatePatternClassificationActivity } from "@math-platform/activity-components";
+import type { RatePatternClassificationProps } from "@math-platform/math-content";
+import { generateTopic13RatePatternClassification } from "@math-platform/math-content/knowledge-space";
 
 import {
   PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_GUIDED_ACTIVITY_ID,
   PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_INDEPENDENT_ACTIVITY_ID,
-} from '@/lib/learning-evidence/precalc-pilot';
+} from "@/lib/learning-evidence/precalc-pilot";
 
-
-
-type PracticeStatus = 'idle' | 'saving' | 'ready' | 'error';
+type PracticeStatus = "idle" | "saving" | "ready" | "error";
 
 const RATE_PATTERN_CLASSIFICATION_PRACTICE_ERROR =
-  'Unable to save the Topic 1.3 rate-pattern classification practice.';
+  "Unable to save the Topic 1.3 rate-pattern classification practice.";
 
 export type PrecalculusTopic13RatePatternClassificationPracticeMode =
-  'guided_practice' | 'independent_practice';
+  | "guided_practice"
+  | "independent_practice";
 
 export type PrecalculusTopic13RatePatternClassificationKnowledgeState = {
   nodeId: string;
   title: string;
-  status: 'not_started' | 'in_progress' | 'mastered' | 'decaying';
-  readiness: 'ready' | 'blocked' | 'awaiting_teacher_exposure';
+  status: "not_started" | "in_progress" | "mastered" | "decaying";
+  readiness: "ready" | "blocked" | "awaiting_teacher_exposure";
 };
 
 const GUIDED_STEPS = [
-  'Find each input width.',
-  'Divide each output change by its input width.',
-  'Compare the average rates and their second divided differences.',
-  'Classify each function.',
+  "Find each input width.",
+  "Divide each output change by its input width.",
+  "Compare the average rates and their second divided differences.",
+  "Classify each function.",
 ] as const;
-const FIELD_HELP = 'Compute average rates using the actual input widths. Equal first divided differences fit a line. Equal nonzero second divided differences fit a quadratic.';
+const FIELD_HELP =
+  "Compute average rates using the actual input widths. Equal first divided differences fit a line. Equal nonzero second divided differences fit a quadratic.";
 
 function createIdempotencyKey(): string {
-  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
     return crypto.randomUUID();
   }
   return `precalc-topic-1-3-rate-pattern-classification-practice-${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -47,17 +47,18 @@ function createIdempotencyKey(): string {
 
 async function readJson(response: Response): Promise<Record<string, unknown>> {
   const value: unknown = await response.json().catch(() => null);
-  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
     throw new Error(RATE_PATTERN_CLASSIFICATION_PRACTICE_ERROR);
   }
   return value as Record<string, unknown>;
 }
 
 function hasExactKeys(value: Record<string, unknown>, keys: string): boolean {
-  return Object.keys(value).sort().join('|') === keys;
+  return Object.keys(value).sort().join("|") === keys;
 }
 
-const validateEvidenceResponse = (value: unknown) => parseEvidenceResponse(value, RATE_PATTERN_CLASSIFICATION_PRACTICE_ERROR);
+const validateEvidenceResponse = (value: unknown) =>
+  parseEvidenceResponse(value, RATE_PATTERN_CLASSIFICATION_PRACTICE_ERROR);
 
 export function PrecalculusTopic13RatePatternClassificationPracticePilot({
   mode: requestedMode,
@@ -66,15 +67,16 @@ export function PrecalculusTopic13RatePatternClassificationPracticePilot({
   mode?: PrecalculusTopic13RatePatternClassificationPracticeMode;
   knowledgeState?: PrecalculusTopic13RatePatternClassificationKnowledgeState;
 }) {
-  const mode = requestedMode ?? 'guided_practice';
-  const seed = mode === 'guided_practice' ? 1 : 2;
-  const activityId = mode === 'guided_practice'
-    ? PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_GUIDED_ACTIVITY_ID
-    : PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_INDEPENDENT_ACTIVITY_ID;
+  const mode = requestedMode ?? "guided_practice";
+  const seed = mode === "guided_practice" ? 1 : 2;
+  const activityId =
+    mode === "guided_practice"
+      ? PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_GUIDED_ACTIVITY_ID
+      : PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_INDEPENDENT_ACTIVITY_ID;
   const variant = generateTopic13RatePatternClassification(seed);
   const [attemptKey, setAttemptKey] = useState(0);
   const router = useRouter();
-  const [status, setStatus] = useState<PracticeStatus>('idle');
+  const [status, setStatus] = useState<PracticeStatus>("idle");
   const [feedback, setFeedback] = useState<string | null>(null);
   const [serverFeedback, setServerFeedback] = useState<string | null>(null);
   const [serverScore, setServerScore] = useState<{ score: number; maxScore: number } | null>(null);
@@ -89,62 +91,70 @@ export function PrecalculusTopic13RatePatternClassificationPracticePilot({
     yValues: [...tableCase.yValues],
   }));
 
-  const sharedActivityProps: RatePatternClassificationProps = mode === 'guided_practice'
-    ? {
-        prompt: variant.prompt,
-        cases,
-        presentationMode: 'guided_practice',
-        guidedSteps: [...GUIDED_STEPS],
-        fieldHelp: FIELD_HELP,
-      }
-    : {
-        prompt: variant.prompt,
-        cases,
-        presentationMode: 'independent_practice',
-      };
+  const sharedActivityProps: RatePatternClassificationProps =
+    mode === "guided_practice"
+      ? {
+          prompt: variant.prompt,
+          cases,
+          presentationMode: "guided_practice",
+          guidedSteps: [...GUIDED_STEPS],
+          fieldHelp: FIELD_HELP,
+        }
+      : {
+          prompt: variant.prompt,
+          cases,
+          presentationMode: "independent_practice",
+        };
 
   async function deliverEvidence(submissionId: string) {
-    const response = await fetch('/api/learning-evidence/precalculus-pilot', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
+    const response = await fetch("/api/learning-evidence/precalculus-pilot", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
       body: JSON.stringify({ submissionId }),
     });
     const body = await readJson(response);
-    if (!response.ok) throw new Error('Evidence delivery failed.');
+    if (!response.ok) throw new Error("Evidence delivery failed.");
 
     const evidence = validateEvidenceResponse(body);
     const reason = evidence.decision.reason;
-    if (reason === 'awaiting_teacher_exposure' || evidence.decision.exposureState === 'awaiting_teacher_exposure') {
-      setFeedback('Complete this skill with your teacher before using Mastery Advantage.');
+    if (
+      reason === "awaiting_teacher_exposure" ||
+      evidence.decision.exposureState === "awaiting_teacher_exposure"
+    ) {
+      setFeedback("Complete this skill with your teacher before using Mastery Advantage.");
     } else if (evidence.masteryApplied) {
-      setFeedback('Mastery Advantage updated your practice record.');
+      setFeedback("Mastery Advantage updated your practice record.");
     } else {
-      setFeedback('Your practice was saved.');
+      setFeedback("Your practice was saved.");
     }
-    setStatus('ready');
+    setStatus("ready");
     router.refresh();
   }
 
   async function submit(submittedEnvelope?: unknown) {
-    if (status === 'saving') return;
-    setStatus('saving');
+    if (status === "saving") return;
+    setStatus("saving");
     setFeedback(null);
 
     try {
       if (!envelopeRef.current) {
-        if (!submittedEnvelope || typeof submittedEnvelope !== 'object' || Array.isArray(submittedEnvelope)) {
+        if (
+          !submittedEnvelope ||
+          typeof submittedEnvelope !== "object" ||
+          Array.isArray(submittedEnvelope)
+        ) {
           throw new Error(RATE_PATTERN_CLASSIFICATION_PRACTICE_ERROR);
         }
         const envelope = submittedEnvelope as Record<string, unknown>;
         const parts = Array.isArray(envelope.parts)
-          ? envelope.parts.map((part) => (
-              part && typeof part === 'object' && !Array.isArray(part)
+          ? envelope.parts.map((part) =>
+              part && typeof part === "object" && !Array.isArray(part)
                 ? {
                     partId: (part as Record<string, unknown>).partId,
                     rawAnswer: (part as Record<string, unknown>).rawAnswer,
                   }
-                : part
-            ))
+                : part,
+            )
           : envelope.parts;
         envelopeRef.current = { ...envelope, parts };
         createKeyRef.current ??= createIdempotencyKey();
@@ -154,29 +164,29 @@ export function PrecalculusTopic13RatePatternClassificationPracticePilot({
       if (!submissionId) {
         createKeyRef.current ??= createIdempotencyKey();
         const response = await fetch(CREATE_URL, {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'content-type': 'application/json',
-            'Idempotency-Key': createKeyRef.current,
+            "content-type": "application/json",
+            "Idempotency-Key": createKeyRef.current,
           },
           body: JSON.stringify(envelopeRef.current),
         });
         const body = await readJson(response);
         if (
-          !response.ok
-          || !hasExactKeys(body, 'attemptOrdinal|feedback|maxScore|score|submissionId')
-          || typeof body.submissionId !== 'string'
-          || body.submissionId.trim().length === 0
-          || typeof body.score !== 'number'
-          || !Number.isInteger(body.score)
-          || body.score < 0
-          || body.score > 3
-          || body.maxScore !== 3
-          || typeof body.attemptOrdinal !== 'number'
-          || !Number.isInteger(body.attemptOrdinal)
-          || body.attemptOrdinal < 1
-          || typeof body.feedback !== 'string'
-          || body.feedback.trim().length === 0
+          !response.ok ||
+          !hasExactKeys(body, "attemptOrdinal|feedback|maxScore|score|submissionId") ||
+          typeof body.submissionId !== "string" ||
+          body.submissionId.trim().length === 0 ||
+          typeof body.score !== "number" ||
+          !Number.isInteger(body.score) ||
+          body.score < 0 ||
+          body.score > 3 ||
+          body.maxScore !== 3 ||
+          typeof body.attemptOrdinal !== "number" ||
+          !Number.isInteger(body.attemptOrdinal) ||
+          body.attemptOrdinal < 1 ||
+          typeof body.feedback !== "string" ||
+          body.feedback.trim().length === 0
         ) {
           throw new Error(RATE_PATTERN_CLASSIFICATION_PRACTICE_ERROR);
         }
@@ -189,59 +199,83 @@ export function PrecalculusTopic13RatePatternClassificationPracticePilot({
 
       await deliverEvidence(submissionId);
     } catch {
-      setStatus('error');
+      setStatus("error");
       setFeedback(RATE_PATTERN_CLASSIFICATION_PRACTICE_ERROR);
     }
   }
 
   return (
-    <section id={knowledgeState ? `${knowledgeState.nodeId}-${mode}` : undefined} className="mx-auto mt-10 max-w-2xl rounded-panel border border-subtle bg-surface p-6 shadow-sm">
+    <section
+      id={knowledgeState ? `${knowledgeState.nodeId}-${mode}` : undefined}
+      className="mx-auto mt-10 max-w-2xl rounded-panel border border-subtle bg-surface p-6 shadow-sm"
+    >
       {knowledgeState && (
         <div className="mt-4 rounded border border-subtle bg-background p-3">
           <p>{knowledgeState.title}</p>
-          <p>Mastery state: {knowledgeState.status.replace('_', ' ')}</p>
-          <p>Readiness: {knowledgeState.readiness === 'blocked' ? 'Review prerequisite skills' : knowledgeState.readiness === 'awaiting_teacher_exposure' ? 'Complete the classroom introduction' : 'Ready'}</p>
+          <p>Mastery state: {knowledgeState.status.replace("_", " ")}</p>
+          <p>
+            Readiness:{" "}
+            {knowledgeState.readiness === "blocked"
+              ? "Review prerequisite skills"
+              : knowledgeState.readiness === "awaiting_teacher_exposure"
+                ? "Complete the classroom introduction"
+                : "Ready"}
+          </p>
         </div>
       )}
       <RatePatternClassificationActivity
         key={attemptKey}
         {...sharedActivityProps}
         activityId={activityId}
-        mode={mode === 'guided_practice' ? 'guided' : 'practice'}
+        mode={mode === "guided_practice" ? "guided" : "practice"}
         onSubmit={submit}
       />
       {serverScore && (
         <p className="mt-4">{`Server score: ${serverScore.score}/${serverScore.maxScore}`}</p>
       )}
-      {status !== 'error' && (serverFeedback || feedback) && (
+      {status !== "error" && (serverFeedback || feedback) && (
         <p className="mt-2" role="status">
-          {[serverFeedback, feedback].filter((message): message is string => Boolean(message)).join(' ')}
+          {[serverFeedback, feedback]
+            .filter((message): message is string => Boolean(message))
+            .join(" ")}
         </p>
       )}
-      {status === 'error' && feedback && (
+      {status === "error" && feedback && (
         <div className="mt-4 grid gap-3" role="alert">
           <p>{feedback}</p>
-          <button type="button" className="btn-secondary" onClick={() => { void submit(); }}>
-            {hasOpaqueSubmission ? 'Retry evidence delivery' : 'Retry submission'}
+          <button
+            type="button"
+            className="btn-secondary"
+            onClick={() => {
+              void submit();
+            }}
+          >
+            {hasOpaqueSubmission ? "Retry evidence delivery" : "Retry submission"}
           </button>
         </div>
       )}
 
-      {status === 'ready' && (
-        <button type="button" className="btn-secondary mt-4" onClick={() => {
-          envelopeRef.current = null;
-          createKeyRef.current = null;
-          submissionIdRef.current = null;
-          setFeedback(null);
-          setServerFeedback(null);
-          setServerScore(null);
-          setHasOpaqueSubmission(false);
-          setStatus('idle');
-          setAttemptKey(key => key + 1);
-        }}>Start new attempt</button>
+      {status === "ready" && (
+        <button
+          type="button"
+          className="btn-secondary mt-4"
+          onClick={() => {
+            envelopeRef.current = null;
+            createKeyRef.current = null;
+            submissionIdRef.current = null;
+            setFeedback(null);
+            setServerFeedback(null);
+            setServerScore(null);
+            setHasOpaqueSubmission(false);
+            setStatus("idle");
+            setAttemptKey((key) => key + 1);
+          }}
+        >
+          Start new attempt
+        </button>
       )}
     </section>
   );
 }
 
-const CREATE_URL = '/api/activities/precalculus-topic-1-3-rate-pattern-classification/submissions';
+const CREATE_URL = "/api/activities/precalculus-topic-1-3-rate-pattern-classification/submissions";

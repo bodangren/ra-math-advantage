@@ -1,15 +1,15 @@
-import { z } from 'zod';
-import { COMPETENCY_STANDARD_CODE_PATTERN } from '../curriculum/standards';
+import { z } from "zod";
+import { COMPETENCY_STANDARD_CODE_PATTERN } from "../curriculum/standards";
 
-export const contentBlockSchema = z.discriminatedUnion('type', [
+export const contentBlockSchema = z.discriminatedUnion("type", [
   z.object({
     id: z.string(),
-    type: z.literal('markdown'),
+    type: z.literal("markdown"),
     content: z.string(),
   }),
   z.object({
     id: z.string(),
-    type: z.literal('video'),
+    type: z.literal("video"),
     props: z.object({
       videoUrl: z.string().url(),
       duration: z.number().positive(),
@@ -19,7 +19,7 @@ export const contentBlockSchema = z.discriminatedUnion('type', [
   }),
   z.object({
     id: z.string(),
-    type: z.literal('activity'),
+    type: z.literal("activity"),
     activityId: z.string().min(1),
     required: z.boolean().default(false),
     /** Standard code to credit in student_competency when this activity is completed */
@@ -27,13 +27,13 @@ export const contentBlockSchema = z.discriminatedUnion('type', [
   }),
   z.object({
     id: z.string(),
-    type: z.literal('callout'),
-    variant: z.enum(['why-this-matters', 'tip', 'warning', 'example']),
+    type: z.literal("callout"),
+    variant: z.enum(["why-this-matters", "tip", "warning", "example"]),
     content: z.string(),
   }),
   z.object({
     id: z.string(),
-    type: z.literal('image'),
+    type: z.literal("image"),
     props: z.object({
       imageUrl: z.string().url(),
       alt: z.string(),
@@ -47,7 +47,9 @@ export type ContentBlock = z.infer<typeof contentBlockSchema>;
 export const phaseMetadataSchema = z.object({
   color: z.string().optional(),
   icon: z.string().optional(),
-  phaseType: z.enum(['intro', 'example', 'practice', 'challenge', 'reflection', 'assessment']).optional(),
+  phaseType: z
+    .enum(["intro", "example", "practice", "challenge", "reflection", "assessment"])
+    .optional(),
 });
 
 export type PhaseMetadata = z.infer<typeof phaseMetadataSchema>;

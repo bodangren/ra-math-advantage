@@ -10,11 +10,9 @@
 // stub oracle is what the harness will fall back to when no domain
 // oracle is supplied.
 
-import type { GeneratorCorrectnessContract } from '../../contract';
+import type { GeneratorCorrectnessContract } from "../../contract";
 
-export type NumericOracle = (
-  output: GeneratorCorrectnessContract,
-) => boolean;
+export type NumericOracle = (output: GeneratorCorrectnessContract) => boolean;
 
 /**
  * Stub oracle for the well-formed generator.
@@ -27,9 +25,7 @@ export type NumericOracle = (
  * (verifies the harness accepts an injected oracle); real domain
  * oracles live in math-content.
  */
-export function wellFormedStubOracle(
-  output: GeneratorCorrectnessContract,
-): boolean {
+export function wellFormedStubOracle(output: GeneratorCorrectnessContract): boolean {
   const match = /f\((-?\d+)\)/.exec(String(output.problem));
   if (!match) return false;
   const seed = Number(match[1]);
@@ -46,7 +42,7 @@ export function wellFormedStubOracle(
  * fail and signal a regression in error quality).
  */
 export function expectedPropertyFailureMessage(
-  checkName: 'determinism' | 'unique-answer' | 'distractor-validity' | 'invariants',
+  checkName: "determinism" | "unique-answer" | "distractor-validity" | "invariants",
   detail: string,
 ): string {
   return `${checkName}: ${detail}`;

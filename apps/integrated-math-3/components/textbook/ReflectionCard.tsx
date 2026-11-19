@@ -1,4 +1,4 @@
-import { Shield, Zap, Target } from 'lucide-react';
+import { Shield, Zap, Target } from "lucide-react";
 
 export interface ReflectionDimension {
   prompt: string;
@@ -19,27 +19,27 @@ export interface ReflectionCardProps {
 export function ReflectionCard({ courage, adaptability, persistence }: ReflectionCardProps) {
   const dimensions = [
     {
-      name: 'Courage',
+      name: "Courage",
       icon: Shield,
-      color: 'text-red-500',
-      bgColor: 'bg-red-500/10',
-      borderColor: 'border-red-500/30',
+      color: "text-red-500",
+      bgColor: "bg-red-500/10",
+      borderColor: "border-red-500/30",
       data: courage,
     },
     {
-      name: 'Adaptability',
+      name: "Adaptability",
       icon: Zap,
-      color: 'text-blue-500',
-      bgColor: 'bg-blue-500/10',
-      borderColor: 'border-blue-500/30',
+      color: "text-blue-500",
+      bgColor: "bg-blue-500/10",
+      borderColor: "border-blue-500/30",
       data: adaptability,
     },
     {
-      name: 'Persistence',
+      name: "Persistence",
       icon: Target,
-      color: 'text-green-500',
-      bgColor: 'bg-green-500/10',
-      borderColor: 'border-green-500/30',
+      color: "text-green-500",
+      bgColor: "bg-green-500/10",
+      borderColor: "border-green-500/30",
       data: persistence,
     },
   ];

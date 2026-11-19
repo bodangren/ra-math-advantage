@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 import {
   ArrowLeft,
   ArrowRight,
@@ -7,14 +7,14 @@ import {
   PlayCircle,
   Target,
   Users,
-  BookOpen
-} from 'lucide-react';
+  BookOpen,
+} from "lucide-react";
 
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import type { Lesson } from '@/lib/schemas/validators';
-import type { PhaseMetadata } from '@/types/curriculum';
-import { ResourceBasePathFixer } from '@/components/ResourceBasePathFixer';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type { Lesson } from "@/lib/schemas/validators";
+import type { PhaseMetadata } from "@/types/curriculum";
+import { ResourceBasePathFixer } from "@/components/ResourceBasePathFixer";
 
 const phaseIcons: Record<string, typeof PlayCircle> = {
   intro: PlayCircle,
@@ -22,7 +22,7 @@ const phaseIcons: Record<string, typeof PlayCircle> = {
   practice: Users,
   challenge: Target,
   assessment: CheckCircle2,
-  reflection: Lightbulb
+  reflection: Lightbulb,
 };
 
 export interface PhaseFooterNavigationOverrides {
@@ -37,7 +37,7 @@ interface PhaseLike {
   id: string;
   phaseNumber: number;
   title: string;
-  metadata?: { phaseType?: PhaseMetadata['phaseType'] } | null;
+  metadata?: { phaseType?: PhaseMetadata["phaseType"] } | null;
 }
 
 export interface PhaseFooterProps {
@@ -47,7 +47,6 @@ export interface PhaseFooterProps {
   navigationOverrides?: PhaseFooterNavigationOverrides;
 }
 
-
 /**
  * Pads a number to at least two digits with leading zeros.
  *
@@ -55,9 +54,8 @@ export interface PhaseFooterProps {
  * @returns A zero-padded string.
  */
 function formatNumber(value: number) {
-  return value.toString().padStart(2, '0');
+  return value.toString().padStart(2, "0");
 }
-
 
 /**
  * Builds the student-facing lesson href from a lesson object.
@@ -67,12 +65,11 @@ function formatNumber(value: number) {
  */
 function buildLessonHref(lesson: Lesson) {
   if (lesson.slug) {
-    return lesson.slug.startsWith('/student') ? lesson.slug : `/student/${lesson.slug}`;
+    return lesson.slug.startsWith("/student") ? lesson.slug : `/student/${lesson.slug}`;
   }
 
   return `/student/unit${formatNumber(lesson.unitNumber)}/lesson${formatNumber(lesson.orderIndex)}`;
 }
-
 
 /**
  * Renders a phase footer with previous/next navigation, lesson overview link,
@@ -89,20 +86,24 @@ export function PhaseFooter({ lesson, phase, phases, navigationOverrides }: Phas
   const sortedPhases = [...phases].sort((a, b) => a.phaseNumber - b.phaseNumber);
   const currentIndex = Math.max(
     0,
-    sortedPhases.findIndex((entry) => entry.id === phase.id || entry.phaseNumber === phase.phaseNumber)
+    sortedPhases.findIndex(
+      (entry) => entry.id === phase.id || entry.phaseNumber === phase.phaseNumber,
+    ),
   );
 
   const prevPhase = currentIndex > 0 ? sortedPhases[currentIndex - 1] : undefined;
-  const nextPhase = currentIndex < sortedPhases.length - 1 ? sortedPhases[currentIndex + 1] : undefined;
+  const nextPhase =
+    currentIndex < sortedPhases.length - 1 ? sortedPhases[currentIndex + 1] : undefined;
 
   const lessonHref = navigationOverrides?.lessonHref ?? buildLessonHref(lesson);
   const defaultPhaseHrefBuilder =
     navigationOverrides?.phaseHrefBuilder ??
     ((phaseToLink: PhaseLike) => `${lessonHref}/phase-${formatNumber(phaseToLink.phaseNumber)}`);
 
-  const lessonOverviewLabel = navigationOverrides?.lessonOverviewLabel ?? 'Lesson Overview';
-  const backToLessonLabel = navigationOverrides?.backToLessonLabel ?? `Back to ${lessonOverviewLabel}`;
-  const completeLessonLabel = navigationOverrides?.completeLessonLabel ?? 'Complete Lesson';
+  const lessonOverviewLabel = navigationOverrides?.lessonOverviewLabel ?? "Lesson Overview";
+  const backToLessonLabel =
+    navigationOverrides?.backToLessonLabel ?? `Back to ${lessonOverviewLabel}`;
+  const completeLessonLabel = navigationOverrides?.completeLessonLabel ?? "Complete Lesson";
 
   return (
     <div className="mx-auto mt-8 max-w-4xl space-y-6 px-4">
@@ -131,7 +132,10 @@ export function PhaseFooter({ lesson, phase, phases, navigationOverrides }: Phas
             <Link href={lessonHref}>{lessonOverviewLabel}</Link>
           </Button>
           {nextPhase ? (
-            <Button asChild className="gradient-financial text-primary-foreground shadow-md hover:shadow-lg">
+            <Button
+              asChild
+              className="gradient-financial text-primary-foreground shadow-md hover:shadow-lg"
+            >
               <Link href={defaultPhaseHrefBuilder(nextPhase)}>
                 Next: {nextPhase.title}
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -154,7 +158,7 @@ export function PhaseFooter({ lesson, phase, phases, navigationOverrides }: Phas
         </CardHeader>
         <CardContent className="grid grid-cols-1 gap-3 md:grid-cols-2">
           {sortedPhases.map((phaseEntry, index) => {
-            const Icon = phaseIcons[phaseEntry.metadata?.phaseType ?? 'intro'] ?? PlayCircle;
+            const Icon = phaseIcons[phaseEntry.metadata?.phaseType ?? "intro"] ?? PlayCircle;
             const isCurrent = phaseEntry.id === phase.id;
             const isCompleted = index < currentIndex;
 
@@ -164,18 +168,22 @@ export function PhaseFooter({ lesson, phase, phases, navigationOverrides }: Phas
                 href={defaultPhaseHrefBuilder(phaseEntry)}
                 className={`flex items-center gap-3 rounded-lg border px-3 py-3 text-sm transition-all ${
                   isCurrent
-                    ? 'border-primary bg-primary text-primary-foreground shadow-md'
+                    ? "border-primary bg-primary text-primary-foreground shadow-md"
                     : isCompleted
-                      ? 'border-green-200/60 bg-green-50/60 text-green-700 dark:border-green-800/30 dark:bg-green-950/20'
-                      : 'border-border/40 bg-muted/40 text-muted-foreground hover:bg-muted/60 hover:text-foreground'
+                      ? "border-green-200/60 bg-green-50/60 text-green-700 dark:border-green-800/30 dark:bg-green-950/20"
+                      : "border-border/40 bg-muted/40 text-muted-foreground hover:bg-muted/60 hover:text-foreground"
                 }`}
               >
                 <Icon className="h-4 w-4 flex-shrink-0" />
                 <div className="flex flex-1 flex-col">
                   <span className="font-medium">{phaseEntry.title}</span>
-                  <span className="text-xs text-muted-foreground">Phase {phaseEntry.phaseNumber}</span>
+                  <span className="text-xs text-muted-foreground">
+                    Phase {phaseEntry.phaseNumber}
+                  </span>
                 </div>
-                {isCompleted && <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-400" />}
+                {isCompleted && (
+                  <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-400" />
+                )}
               </Link>
             );
           })}

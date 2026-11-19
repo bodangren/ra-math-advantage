@@ -1,14 +1,20 @@
-import { NextResponse } from 'next/server';
-import { z } from 'zod';
+import { NextResponse } from "next/server";
+import { z } from "zod";
 
-import { PASSWORD_HASH_ITERATIONS, validatePasswordForRole, generatePasswordSalt, hashPassword, verifyPassword } from '@math-platform/core-auth';
-import { requireActiveRequestSessionClaims } from '@/lib/auth/server';
-import { fetchInternalMutation, fetchInternalQuery, internal } from '@/lib/convex/server';
+import {
+  PASSWORD_HASH_ITERATIONS,
+  validatePasswordForRole,
+  generatePasswordSalt,
+  hashPassword,
+  verifyPassword,
+} from "@math-platform/core-auth";
+import { requireActiveRequestSessionClaims } from "@/lib/auth/server";
+import { fetchInternalMutation, fetchInternalQuery, internal } from "@/lib/convex/server";
 
 const changePasswordBodySchema = z.object({
-  currentPassword: z.string().min(1, 'Current password is required'),
-  newPassword: z.string().min(1, 'New password is required'),
-  confirmPassword: z.string().min(1, 'Confirm password is required'),
+  currentPassword: z.string().min(1, "Current password is required"),
+  newPassword: z.string().min(1, "New password is required"),
+  confirmPassword: z.string().min(1, "Confirm password is required"),
 });
 
 /**
@@ -31,13 +37,13 @@ export async function POST(request: Request) {
   try {
     rawBody = await request.json();
   } catch {
-    return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+    return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
 
   const validation = changePasswordBodySchema.safeParse(rawBody);
   if (!validation.success) {
     return NextResponse.json(
-      { error: 'Invalid request body', details: validation.error.format() },
+      { error: "Invalid request body", details: validation.error.format() },
       { status: 400 },
     );
   }
@@ -45,7 +51,7 @@ export async function POST(request: Request) {
   const { currentPassword, newPassword, confirmPassword } = validation.data;
 
   if (newPassword !== confirmPassword) {
-    return NextResponse.json({ error: 'New passwords do not match' }, { status: 400 });
+    return NextResponse.json({ error: "New passwords do not match" }, { status: 400 });
   }
 
   const policyError = validatePasswordForRole(claims.role, newPassword);
@@ -59,7 +65,7 @@ export async function POST(request: Request) {
     });
 
     if (!credential) {
-      return NextResponse.json({ error: 'Credential not found' }, { status: 403 });
+      return NextResponse.json({ error: "Credential not found" }, { status: 403 });
     }
 
     const isValid = await verifyPassword(currentPassword, {
@@ -69,7 +75,7 @@ export async function POST(request: Request) {
     });
 
     if (!isValid) {
-      return NextResponse.json({ error: 'Current password is incorrect' }, { status: 403 });
+      return NextResponse.json({ error: "Current password is incorrect" }, { status: 403 });
     }
 
     const newSalt = generatePasswordSalt();
@@ -82,15 +88,15 @@ export async function POST(request: Request) {
       passwordHashIterations: PASSWORD_HASH_ITERATIONS,
     });
 
-    if (result && typeof result === 'object' && 'ok' in result && !result.ok) {
-      const reason = 'reason' in result ? result.reason : 'unknown';
-      console.error('changeOwnPassword mutation failed:', reason);
-      return NextResponse.json({ error: 'Password change failed' }, { status: 500 });
+    if (result && typeof result === "object" && "ok" in result && !result.ok) {
+      const reason = "reason" in result ? result.reason : "unknown";
+      console.error("changeOwnPassword mutation failed:", reason);
+      return NextResponse.json({ error: "Password change failed" }, { status: 500 });
     }
 
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error('Change password route failed', error);
-    return NextResponse.json({ error: 'Password change failed' }, { status: 500 });
+    console.error("Change password route failed", error);
+    return NextResponse.json({ error: "Password change failed" }, { status: 500 });
   }
 }

@@ -25,7 +25,7 @@ export type { ApiEndpoint };
  */
 export async function checkAndIncrementApiRateLimitHandler(
   ctx: MutationCtx,
-  args: { userId: Id<"profiles">; endpoint: ApiEndpoint }
+  args: { userId: Id<"profiles">; endpoint: ApiEndpoint },
 ) {
   const config = API_RATE_LIMIT_CONFIG[args.endpoint] as RateLimitConfig | undefined;
   if (!config) {
@@ -37,13 +37,13 @@ export async function checkAndIncrementApiRateLimitHandler(
   let existing = await ctx.db
     .query("api_rate_limits")
     .withIndex("by_user_and_endpoint", (q) =>
-      q.eq("userId", args.userId).eq("endpoint", args.endpoint)
+      q.eq("userId", args.userId).eq("endpoint", args.endpoint),
     )
     .unique();
 
   const check = checkAndIncrement(existing, config, now);
 
-  if (check.action === 'insert') {
+  if (check.action === "insert") {
     try {
       await ctx.db.insert("api_rate_limits", {
         userId: args.userId,
@@ -59,27 +59,40 @@ export async function checkAndIncrementApiRateLimitHandler(
       existing = await ctx.db
         .query("api_rate_limits")
         .withIndex("by_user_and_endpoint", (q) =>
-          q.eq("userId", args.userId).eq("endpoint", args.endpoint)
+          q.eq("userId", args.userId).eq("endpoint", args.endpoint),
         )
         .unique();
       if (!existing) throw new Error("Rate limit record disappeared after concurrent insert");
       const retry = checkAndIncrement(existing, config, now);
-      if (retry.action === 'reset') {
+      if (retry.action === "reset") {
         await ctx.db.patch(existing._id, { requestCount: 1, windowStart: now, updatedAt: now });
-      } else if (retry.action === 'increment') {
-        await ctx.db.patch(existing._id, { requestCount: existing.requestCount + 1, updatedAt: now });
-      } else if (retry.action === 'deny') {
-        await logRateLimitViolation(args.userId, args.endpoint, existing.requestCount, retry.result.windowExpiresAt);
+      } else if (retry.action === "increment") {
+        await ctx.db.patch(existing._id, {
+          requestCount: existing.requestCount + 1,
+          updatedAt: now,
+        });
+      } else if (retry.action === "deny") {
+        await logRateLimitViolation(
+          args.userId,
+          args.endpoint,
+          existing.requestCount,
+          retry.result.windowExpiresAt,
+        );
       }
       return retry.result;
     }
   }
 
-  if (check.action === 'reset') {
+  if (check.action === "reset") {
     await ctx.db.patch(existing!._id, { requestCount: 1, windowStart: now, updatedAt: now });
-  } else if (check.action === 'deny') {
-    await logRateLimitViolation(args.userId, args.endpoint, existing!.requestCount, check.result.windowExpiresAt);
-  } else if (check.action === 'increment') {
+  } else if (check.action === "deny") {
+    await logRateLimitViolation(
+      args.userId,
+      args.endpoint,
+      existing!.requestCount,
+      check.result.windowExpiresAt,
+    );
+  } else if (check.action === "increment") {
     await ctx.db.patch(existing!._id, { requestCount: existing!.requestCount + 1, updatedAt: now });
   }
 
@@ -125,7 +138,7 @@ export const getApiRateLimitStatus = internalQuery({
     const rateLimit = await ctx.db
       .query("api_rate_limits")
       .withIndex("by_user_and_endpoint", (q) =>
-        q.eq("userId", args.userId).eq("endpoint", args.endpoint)
+        q.eq("userId", args.userId).eq("endpoint", args.endpoint),
       )
       .unique();
 
@@ -146,7 +159,7 @@ export async function logRateLimitViolation(
   userId: Id<"profiles">,
   endpoint: ApiEndpoint,
   requestCount: number,
-  windowExpiresAt: number
+  windowExpiresAt: number,
 ): Promise<void> {
   const config = API_RATE_LIMIT_CONFIG[endpoint] as RateLimitConfig | undefined;
   const now = Date.now();
@@ -161,7 +174,7 @@ export async function logRateLimitViolation(
       windowMs: config?.windowMs,
       windowExpiresAt: new Date(windowExpiresAt).toISOString(),
       retryAfterSec: formatRetryAfter(windowExpiresAt),
-    })
+    }),
   );
 }
 

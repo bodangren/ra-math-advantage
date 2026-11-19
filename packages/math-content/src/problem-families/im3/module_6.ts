@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const MODULE6_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Logarithmic and Exponential Form (HSF-BF.B.5, HSF-LE.A.4)
@@ -6,7 +6,8 @@ export const MODULE6_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "step-by-step-solver:logarithmic-exponential-form",
     componentKey: "step-by-step-solver",
     displayName: "Logarithmic and Exponential Form",
-    description: "Convert between logarithmic and exponential forms and evaluate logarithmic expressions",
+    description:
+      "Convert between logarithmic and exponential forms and evaluate logarithmic expressions",
     objectiveIds: ["HSF-BF.B.5", "HSF-LE.A.4"],
     difficulty: "standard",
     metadata: { module: 6, topic: "logarithmic-functions" },
@@ -45,7 +46,8 @@ export const MODULE6_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "step-by-step-solver:properties-of-logarithms",
     componentKey: "step-by-step-solver",
     displayName: "Properties of Logarithms",
-    description: "Simplify and evaluate expressions using product, quotient, and power properties of logarithms",
+    description:
+      "Simplify and evaluate expressions using product, quotient, and power properties of logarithms",
     objectiveIds: ["HSF-LE.B.5"],
     difficulty: "standard",
     metadata: { module: 6, topic: "log-properties" },
@@ -65,7 +67,8 @@ export const MODULE6_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "step-by-step-solver:natural-logarithms",
     componentKey: "step-by-step-solver",
     displayName: "Natural Logarithms",
-    description: "Simplify expressions with natural logarithms and solve natural logarithmic equations",
+    description:
+      "Simplify expressions with natural logarithms and solve natural logarithmic equations",
     objectiveIds: ["HSF-LE.A.1", "HSF-LE.A.2"],
     difficulty: "challenging",
     metadata: { module: 6, topic: "natural-logarithms" },

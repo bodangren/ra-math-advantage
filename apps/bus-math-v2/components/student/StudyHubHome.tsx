@@ -11,13 +11,7 @@ import {
   RotateCcw,
   Download,
 } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
@@ -30,7 +24,6 @@ import {
 } from "@/hooks/useStudy";
 import { getAllGlossaryUnits, getGlossaryTermBySlug } from "@/lib/study/glossary";
 import type { GlossaryTerm } from "@/lib/study/glossary";
-
 
 /**
  * Renders a weak topic item showing the term, its definition, and mastery score.
@@ -66,7 +59,6 @@ function WeakTopicItem({
     </div>
   );
 }
-
 
 /**
  * Renders the study hub home page with study mode cards, unit filter,
@@ -104,12 +96,10 @@ export function StudyHubHome() {
                 <Badge variant="outline" className="w-fit">
                   Study Tools
                 </Badge>
-                <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">
-                  Study Hub
-                </h1>
+                <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">Study Hub</h1>
                 <CardDescription className="max-w-2xl text-base">
-                  Reinforce your learning with flashcards, games, and practice tests tailored to
-                  the curriculum.
+                  Reinforce your learning with flashcards, games, and practice tests tailored to the
+                  curriculum.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -160,9 +150,7 @@ export function StudyHubHome() {
                       <BookOpen className="h-6 w-6 text-primary" />
                       <CardTitle className="text-lg">Flashcards</CardTitle>
                     </CardHeader>
-                    <CardDescription>
-                      Review terms with spaced repetition
-                    </CardDescription>
+                    <CardDescription>Review terms with spaced repetition</CardDescription>
                   </Card>
                 </Link>
                 <Link href="/student/study/matching" className="block">
@@ -171,9 +159,7 @@ export function StudyHubHome() {
                       <Gamepad2 className="h-6 w-6 text-primary" />
                       <CardTitle className="text-lg">Matching Game</CardTitle>
                     </CardHeader>
-                    <CardDescription>
-                      Match terms to definitions
-                    </CardDescription>
+                    <CardDescription>Match terms to definitions</CardDescription>
                   </Card>
                 </Link>
                 <Link href="/student/study/speed-round" className="block">
@@ -182,9 +168,7 @@ export function StudyHubHome() {
                       <Zap className="h-6 w-6 text-primary" />
                       <CardTitle className="text-lg">Speed Round</CardTitle>
                     </CardHeader>
-                    <CardDescription>
-                      Quick-fire multiple-choice quiz
-                    </CardDescription>
+                    <CardDescription>Quick-fire multiple-choice quiz</CardDescription>
                   </Card>
                 </Link>
                 <Link href="/student/study/review" className="block">
@@ -193,9 +177,7 @@ export function StudyHubHome() {
                       <RotateCcw className="h-6 w-6 text-primary" />
                       <CardTitle className="text-lg">SRS Review</CardTitle>
                     </CardHeader>
-                    <CardDescription>
-                      Review due terms with ratings
-                    </CardDescription>
+                    <CardDescription>Review due terms with ratings</CardDescription>
                   </Card>
                 </Link>
                 <Link href="/student/study/progress" className="block">
@@ -204,9 +186,7 @@ export function StudyHubHome() {
                       <TrendingDown className="h-6 w-6 text-primary" />
                       <CardTitle className="text-lg">Progress</CardTitle>
                     </CardHeader>
-                    <CardDescription>
-                      View your mastery and stats
-                    </CardDescription>
+                    <CardDescription>View your mastery and stats</CardDescription>
                   </Card>
                 </Link>
                 <Link href="/student/study/export" className="block">
@@ -215,9 +195,7 @@ export function StudyHubHome() {
                       <Download className="h-6 w-6 text-primary" />
                       <CardTitle className="text-lg">Export</CardTitle>
                     </CardHeader>
-                    <CardDescription>
-                      Export your study data
-                    </CardDescription>
+                    <CardDescription>Export your study data</CardDescription>
                   </Card>
                 </Link>
                 <Link href="/student/study/practice-tests" className="block">
@@ -255,7 +233,10 @@ export function StudyHubHome() {
                       >
                         <div>
                           <p className="text-sm font-medium">
-                            {session.activityType.split("_").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
+                            {session.activityType
+                              .split("_")
+                              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                              .join(" ")}
                           </p>
                           <p className="text-xs text-muted-foreground">
                             {new Date(session.endedAt).toLocaleDateString()}
@@ -280,7 +261,9 @@ export function StudyHubHome() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {weakTopics.length === 0 ? (
-                    <p className="text-sm text-muted-foreground">No weak topics right now—great job!</p>
+                    <p className="text-sm text-muted-foreground">
+                      No weak topics right now—great job!
+                    </p>
                   ) : (
                     weakTopics.map(({ term, masteryScore }) => (
                       <WeakTopicItem

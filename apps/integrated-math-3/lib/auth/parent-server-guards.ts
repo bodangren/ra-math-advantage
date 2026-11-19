@@ -1,21 +1,21 @@
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
-import { NextResponse } from 'next/server';
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { NextResponse } from "next/server";
 
-import { SESSION_COOKIE_NAME, getAuthJwtSecret } from '@math-platform/core-auth';
-import type { SessionClaims } from '@math-platform/core-auth';
-import { verifySessionToken } from '@math-platform/core-auth';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
+import { SESSION_COOKIE_NAME, getAuthJwtSecret } from "@math-platform/core-auth";
+import type { SessionClaims } from "@math-platform/core-auth";
+import { verifySessionToken } from "@math-platform/core-auth";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
 
 function getCookieValueFromHeader(cookieHeader: string | null, key: string): string | null {
   if (!cookieHeader) return null;
 
-  const entries = cookieHeader.split(';');
+  const entries = cookieHeader.split(";");
   for (const entry of entries) {
     const trimmed = entry.trim();
     if (!trimmed) continue;
 
-    const separatorIndex = trimmed.indexOf('=');
+    const separatorIndex = trimmed.indexOf("=");
     if (separatorIndex <= 0) continue;
 
     const name = trimmed.slice(0, separatorIndex).trim();
@@ -39,18 +39,18 @@ export async function requireParentRequestClaims(
   request: Request,
   studentId: string,
 ): Promise<SessionClaims | Response> {
-  const token = getCookieValueFromHeader(request.headers.get('cookie'), SESSION_COOKIE_NAME);
+  const token = getCookieValueFromHeader(request.headers.get("cookie"), SESSION_COOKIE_NAME);
   if (!token) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const claims = await verifySessionToken(token, getAuthJwtSecret());
   if (!claims) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  if (claims.role !== 'parent') {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  if (claims.role !== "parent") {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
   const links = await fetchInternalQuery(internal.parent.links.listParentLinksQuery, {
@@ -61,11 +61,11 @@ export async function requireParentRequestClaims(
     Array.isArray(links) &&
     links.some(
       (link: { studentId: string; status: string }) =>
-        link.studentId === studentId && link.status === 'active',
+        link.studentId === studentId && link.status === "active",
     );
 
   if (!hasActiveLink) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
   return claims;
@@ -86,7 +86,7 @@ export async function requireParentServerSessionClaims(
     redirect(`/auth/login?redirect=${loginRedirectPath}`);
   }
 
-  if (claims.role !== 'parent') {
+  if (claims.role !== "parent") {
     redirect(`/auth/login?redirect=${loginRedirectPath}`);
   }
 

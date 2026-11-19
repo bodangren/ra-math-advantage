@@ -1,41 +1,41 @@
 // Domain-neutral knowledge-space.v2 TypeScript types
 
 /** Canonical schema version from kst-srs.v3.2 Appendix C. */
-export const KNOWLEDGE_SPACE_SCHEMA_VERSION = 'knowledge-space.v2' as const;
+export const KNOWLEDGE_SPACE_SCHEMA_VERSION = "knowledge-space.v2" as const;
 
 export type NodeKind =
-  | 'domain'
-  | 'content_group'
-  | 'instructional_unit'
-  | 'standard'
-  | 'skill'
-  | 'concept'
-  | 'worked_example'
-  | 'task_blueprint'
-  | 'generator'
-  | 'renderer'
-  | 'misconception';
+  | "domain"
+  | "content_group"
+  | "instructional_unit"
+  | "standard"
+  | "skill"
+  | "concept"
+  | "worked_example"
+  | "task_blueprint"
+  | "generator"
+  | "renderer"
+  | "misconception";
 
 export type EdgeType =
-  | 'contains'
-  | 'appears_in_context'
-  | 'aligned_to_standard'
-  | 'prerequisite_for'
-  | 'supports'
-  | 'extends'
-  | 'equivalent_to'
-  | 'transfers_to'
-  | 'common_misconception_with'
-  | 'rendered_by'
-  | 'generated_by'
-  | 'evidenced_by'
-  | 'remediated_by';
+  | "contains"
+  | "appears_in_context"
+  | "aligned_to_standard"
+  | "prerequisite_for"
+  | "supports"
+  | "extends"
+  | "equivalent_to"
+  | "transfers_to"
+  | "common_misconception_with"
+  | "rendered_by"
+  | "generated_by"
+  | "evidenced_by"
+  | "remediated_by";
 
-export type ConfidenceLevel = 'low' | 'medium' | 'high';
+export type ConfidenceLevel = "low" | "medium" | "high";
 
-export type ReviewStatus = 'draft' | 'reviewed' | 'approved' | 'rejected';
+export type ReviewStatus = "draft" | "reviewed" | "approved" | "rejected";
 
-export type ExceptionType = 'alignment' | 'generator' | 'source' | 'other';
+export type ExceptionType = "alignment" | "generator" | "source" | "other";
 
 export interface SourceRef {
   source: string;
@@ -127,7 +127,7 @@ export interface PlacementProbeInstrumentPolicy {
 
 /** Domain-owned policy declarations added by the v3.1 contract. */
 export interface DomainAdapterV31Declarations {
-  contractVersion: 'domain-adapter.v3.1';
+  contractVersion: "domain-adapter.v3.1";
   guessFloors: GuessFloorPolicy;
   ageBands: AgeBandPolicy;
   placementProbeInstruments?: PlacementProbeInstrumentPolicy;

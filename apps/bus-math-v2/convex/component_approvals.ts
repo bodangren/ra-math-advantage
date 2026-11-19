@@ -1,9 +1,4 @@
-import {
-  query,
-  mutation,
-  type QueryCtx,
-  type MutationCtx,
-} from "./_generated/server";
+import { query, mutation, type QueryCtx, type MutationCtx } from "./_generated/server";
 import { v, ConvexError } from "convex/values";
 import type { Id } from "./_generated/dataModel";
 import {
@@ -42,13 +37,13 @@ async function requireAdmin(ctx: QueryCtx | MutationCtx): Promise<void> {
  */
 export async function getComponentApprovalHandler(
   ctx: QueryCtx,
-  args: { componentType: "activity" | "example" | "practice"; componentId: string }
+  args: { componentType: "activity" | "example" | "practice"; componentId: string },
 ) {
   await requireAdmin(ctx);
   const approval = await ctx.db
     .query("componentApprovals")
     .withIndex("by_component", (q) =>
-      q.eq("componentType", args.componentType).eq("componentId", args.componentId)
+      q.eq("componentType", args.componentType).eq("componentId", args.componentId),
     )
     .first();
   return approval;
@@ -70,7 +65,7 @@ export const getComponentApproval = query({
  */
 export async function getComponentVersionHashHandler(
   _ctx: QueryCtx,
-  args: { componentType: "activity" | "example" | "practice"; componentId: string }
+  args: { componentType: "activity" | "example" | "practice"; componentId: string },
 ) {
   await requireAdmin(_ctx);
   if (args.componentType === "example") {
@@ -100,14 +95,9 @@ export async function getReviewQueueHandler(
   ctx: QueryCtx,
   args: {
     componentType?: "activity" | "example" | "practice";
-    approvalStatus?:
-      | "approved"
-      | "rejected"
-      | "unreviewed"
-      | "changes_requested"
-      | "stale";
+    approvalStatus?: "approved" | "rejected" | "unreviewed" | "changes_requested" | "stale";
     includeStale?: boolean;
-  }
+  },
 ) {
   await requireAdmin(ctx);
   let approvals;
@@ -145,11 +135,10 @@ export async function getReviewQueueHandler(
         }
         const currentHash = await computeComponentVersionHash(
           approval.componentType,
-          approval.componentId
+          approval.componentId,
         );
         const effectiveStatus =
-          approval.approvalStatus !== "unreviewed" &&
-          approval.approvalVersionHash !== currentHash
+          approval.approvalStatus !== "unreviewed" && approval.approvalVersionHash !== currentHash
             ? "stale"
             : approval.approvalStatus;
         return {
@@ -157,7 +146,7 @@ export async function getReviewQueueHandler(
           effectiveStatus,
           currentVersionHash: currentHash,
         };
-      })
+      }),
     );
   }
 
@@ -181,13 +170,13 @@ export const getReviewQueue = query({
  */
 export async function getComponentReviewsHandler(
   ctx: QueryCtx,
-  args: { componentType: "activity" | "example" | "practice"; componentId: string }
+  args: { componentType: "activity" | "example" | "practice"; componentId: string },
 ) {
   await requireAdmin(ctx);
   const reviews = await ctx.db
     .query("componentReviews")
     .withIndex("by_component_and_created", (q) =>
-      q.eq("componentType", args.componentType).eq("componentId", args.componentId)
+      q.eq("componentType", args.componentType).eq("componentId", args.componentId),
     )
     .order("desc")
     .collect();
@@ -235,13 +224,13 @@ export async function submitComponentReviewHandler(
       | "completion_behavior"
       | "evidence_quality"
     )[];
-  }
+  },
 ) {
   await requireAdmin(ctx);
 
   if (args.componentType === "example") {
     throw new ConvexError(
-      "Example components are not supported for review. Examples are embedded lesson content, not standalone React components, and do not have source files to hash for version tracking."
+      "Example components are not supported for review. Examples are embedded lesson content, not standalone React components, and do not have source files to hash for version tracking.",
     );
   }
 
@@ -250,14 +239,11 @@ export async function submitComponentReviewHandler(
     !args.improvementNotes
   ) {
     throw new ConvexError(
-      "Improvement notes are required for changes_requested or rejected status"
+      "Improvement notes are required for changes_requested or rejected status",
     );
   }
 
-  const serverHash = await computeComponentVersionHash(
-    args.componentType,
-    args.componentId
-  );
+  const serverHash = await computeComponentVersionHash(args.componentType, args.componentId);
   if (serverHash !== args.componentVersionHash) {
     throw new ConvexError("Component version hash mismatch");
   }
@@ -291,7 +277,7 @@ export async function submitComponentReviewHandler(
   const existingApproval = await ctx.db
     .query("componentApprovals")
     .withIndex("by_component", (q) =>
-      q.eq("componentType", args.componentType).eq("componentId", args.componentId)
+      q.eq("componentType", args.componentType).eq("componentId", args.componentId),
     )
     .first();
 
@@ -342,21 +328,17 @@ export const submitComponentReview = mutation({
  */
 export async function getUnresolvedReviewsHandler(
   ctx: QueryCtx,
-  args: { componentType?: "activity" | "example" | "practice" }
+  args: { componentType?: "activity" | "example" | "practice" },
 ) {
   await requireAdmin(ctx);
   /* eslint-disable @typescript-eslint/no-explicit-any */
   let query: any = ctx.db.query("componentReviews");
 
   if (args.componentType) {
-    query = query.withIndex("by_component", (q: any) =>
-      q.eq("componentType", args.componentType)
-    );
+    query = query.withIndex("by_component", (q: any) => q.eq("componentType", args.componentType));
   }
 
-  const reviews = await query
-    .filter((q: any) => q.eq(q.field("resolvedAt"), undefined))
-    .collect();
+  const reviews = await query.filter((q: any) => q.eq(q.field("resolvedAt"), undefined)).collect();
   /* eslint-enable @typescript-eslint/no-explicit-any */
   return reviews;
 }
@@ -377,16 +359,14 @@ export const getUnresolvedReviews = query({
  */
 export async function getAuditSummaryHandler(
   ctx: QueryCtx,
-  args: { componentType?: "activity" | "example" | "practice" }
+  args: { componentType?: "activity" | "example" | "practice" },
 ) {
   await requireAdmin(ctx);
   /* eslint-disable @typescript-eslint/no-explicit-any */
   let query: any = ctx.db.query("componentReviews");
 
   if (args.componentType) {
-    query = query.withIndex("by_component", (q: any) =>
-      q.eq("componentType", args.componentType)
-    );
+    query = query.withIndex("by_component", (q: any) => q.eq("componentType", args.componentType));
   }
 
   const unresolved = await query
@@ -435,7 +415,7 @@ export const getAuditSummary = query({
  */
 export async function resolveReviewHandler(
   ctx: MutationCtx,
-  args: { reviewId: Id<"componentReviews"> }
+  args: { reviewId: Id<"componentReviews"> },
 ) {
   await requireAdmin(ctx);
 

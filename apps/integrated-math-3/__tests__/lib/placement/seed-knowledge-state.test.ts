@@ -12,8 +12,8 @@
 // Per spec.md FR5: placement results enter the knowledge state as
 // low-to-medium-confidence mastery estimates, refined by subsequent practice.
 
-import { describe, it, expect, beforeEach } from 'vitest';
-import type { PlacementResult } from '@math-platform/knowledge-space-core';
+import { describe, it, expect, beforeEach } from "vitest";
+import type { PlacementResult } from "@math-platform/knowledge-space-core";
 
 // Production module — does not exist yet (Red phase).
 // The Green-phase implementer creates `apps/integrated-math-3/lib/placement/seed-knowledge-state.ts`
@@ -22,39 +22,39 @@ import {
   buildPlacementKnowledgeStateSeed,
   seedPlacementResultsIntoStore,
   PLACEMENT_SOURCE_TAG,
-} from '@/lib/placement/seed-knowledge-state';
+} from "@/lib/placement/seed-knowledge-state";
 
 import {
   createInMemoryKnowledgeStateStore,
   createMockIm3PlacementResult,
   type InMemoryKnowledgeStateStore,
   type PlacementKnowledgeStateSeed,
-} from './fixtures';
+} from "./fixtures";
 
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 
-const STUDENT_A = 'student-im3-a';
-const STUDENT_B = 'student-im3-b';
+const STUDENT_A = "student-im3-a";
+const STUDENT_B = "student-im3-b";
 const FIXED_NOW_MS = 1_780_000_000_000; // 2026-05-21-ish
 
 function makeResults(): PlacementResult[] {
   return [
     createMockIm3PlacementResult({
-      nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+      nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
       masteryEstimate: 0.85,
-      confidence: 'medium',
+      confidence: "medium",
     }),
     createMockIm3PlacementResult({
-      nodeId: 'math.im3.skill.1.4.solve-quadratic-equations-by-factoring',
+      nodeId: "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
       masteryEstimate: 0.15,
-      confidence: 'low',
+      confidence: "low",
     }),
     createMockIm3PlacementResult({
-      nodeId: 'math.im3.skill.2.3.multiply-polynomials',
+      nodeId: "math.im3.skill.2.3.multiply-polynomials",
       masteryEstimate: 0.4,
-      confidence: 'low',
+      confidence: "low",
     }),
   ];
 }
@@ -63,9 +63,9 @@ function makeResults(): PlacementResult[] {
 // Task 3.2.a — PLACEMENT_SOURCE_TAG constant
 // ---------------------------------------------------------------------------
 
-describe('PLACEMENT_SOURCE_TAG', () => {
+describe("PLACEMENT_SOURCE_TAG", () => {
   it('exposes the canonical "placement" source tag', () => {
-    expect(PLACEMENT_SOURCE_TAG).toBe('placement');
+    expect(PLACEMENT_SOURCE_TAG).toBe("placement");
   });
 });
 
@@ -73,13 +73,13 @@ describe('PLACEMENT_SOURCE_TAG', () => {
 // Task 3.2.b — buildPlacementKnowledgeStateSeed: pure conversion
 // ---------------------------------------------------------------------------
 
-describe('buildPlacementKnowledgeStateSeed — pure conversion', () => {
-  it('returns an empty array for an empty PlacementResult[]', () => {
+describe("buildPlacementKnowledgeStateSeed — pure conversion", () => {
+  it("returns an empty array for an empty PlacementResult[]", () => {
     const seeds = buildPlacementKnowledgeStateSeed([], { now: FIXED_NOW_MS });
     expect(seeds).toEqual([]);
   });
 
-  it('produces one seed per PlacementResult, preserving order', () => {
+  it("produces one seed per PlacementResult, preserving order", () => {
     const results = makeResults();
     const seeds = buildPlacementKnowledgeStateSeed(results, { now: FIXED_NOW_MS });
 
@@ -89,7 +89,7 @@ describe('buildPlacementKnowledgeStateSeed — pure conversion', () => {
     }
   });
 
-  it('preserves the masteryEstimate from each PlacementResult', () => {
+  it("preserves the masteryEstimate from each PlacementResult", () => {
     const results = makeResults();
     const seeds = buildPlacementKnowledgeStateSeed(results, { now: FIXED_NOW_MS });
 
@@ -98,13 +98,13 @@ describe('buildPlacementKnowledgeStateSeed — pure conversion', () => {
     }
   });
 
-  it('preserves the confidence from each PlacementResult (low/medium only)', () => {
+  it("preserves the confidence from each PlacementResult (low/medium only)", () => {
     const results = makeResults();
     const seeds = buildPlacementKnowledgeStateSeed(results, { now: FIXED_NOW_MS });
 
     for (let i = 0; i < results.length; i++) {
       expect(seeds[i]!.confidence).toBe(results[i]!.confidence);
-      expect(['low', 'medium']).toContain(seeds[i]!.confidence);
+      expect(["low", "medium"]).toContain(seeds[i]!.confidence);
     }
   });
 
@@ -113,7 +113,7 @@ describe('buildPlacementKnowledgeStateSeed — pure conversion', () => {
     const seeds = buildPlacementKnowledgeStateSeed(results, { now: FIXED_NOW_MS });
 
     for (const seed of seeds) {
-      expect(seed.source).toBe('placement');
+      expect(seed.source).toBe("placement");
     }
   });
 
@@ -137,7 +137,7 @@ describe('buildPlacementKnowledgeStateSeed — pure conversion', () => {
     }
   });
 
-  it('does not mutate the input PlacementResult[]', () => {
+  it("does not mutate the input PlacementResult[]", () => {
     const results = makeResults();
     const snapshot = JSON.parse(JSON.stringify(results));
 
@@ -151,9 +151,9 @@ describe('buildPlacementKnowledgeStateSeed — pure conversion', () => {
     // placementResultSchema upstream, the seed must clamp to low/medium.
     const sneaky = [
       {
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 0.9,
-        confidence: 'high' as unknown as PlacementResult['confidence'],
+        confidence: "high" as unknown as PlacementResult["confidence"],
       },
     ] as PlacementResult[];
 
@@ -162,12 +162,12 @@ describe('buildPlacementKnowledgeStateSeed — pure conversion', () => {
     );
   });
 
-  it('clamps masteryEstimate to [0, 1] (rejects out-of-range)', () => {
+  it("clamps masteryEstimate to [0, 1] (rejects out-of-range)", () => {
     const oob = [
       {
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 1.5,
-        confidence: 'low' as const,
+        confidence: "low" as const,
       },
     ];
 
@@ -181,14 +181,14 @@ describe('buildPlacementKnowledgeStateSeed — pure conversion', () => {
 // Task 3.2.c — seedPlacementResultsIntoStore: persistence
 // ---------------------------------------------------------------------------
 
-describe('seedPlacementResultsIntoStore — persistence into the knowledge-state store', () => {
+describe("seedPlacementResultsIntoStore — persistence into the knowledge-state store", () => {
   let store: InMemoryKnowledgeStateStore;
 
   beforeEach(() => {
     store = createInMemoryKnowledgeStateStore();
   });
 
-  it('upserts one seed per PlacementResult for the given student', async () => {
+  it("upserts one seed per PlacementResult for the given student", async () => {
     const results = makeResults();
     await seedPlacementResultsIntoStore(store, STUDENT_A, results, { now: FIXED_NOW_MS });
 
@@ -196,7 +196,7 @@ describe('seedPlacementResultsIntoStore — persistence into the knowledge-state
     expect(seeds).toHaveLength(results.length);
   });
 
-  it('persisted seeds carry the expected shape (PlacementKnowledgeStateSeed)', async () => {
+  it("persisted seeds carry the expected shape (PlacementKnowledgeStateSeed)", async () => {
     const results = makeResults();
     await seedPlacementResultsIntoStore(store, STUDENT_A, results, { now: FIXED_NOW_MS });
 
@@ -205,35 +205,40 @@ describe('seedPlacementResultsIntoStore — persistence into the knowledge-state
       expect(seed.nodeId).toMatch(/^math\.im3\./);
       expect(seed.masteryEstimate).toBeGreaterThanOrEqual(0);
       expect(seed.masteryEstimate).toBeLessThanOrEqual(1);
-      expect(['low', 'medium']).toContain(seed.confidence);
-      expect(seed.source).toBe('placement');
+      expect(["low", "medium"]).toContain(seed.confidence);
+      expect(seed.source).toBe("placement");
       expect(seed.seededAt).toBe(FIXED_NOW_MS);
     }
   });
 
-  it('isolates seeds by studentId', async () => {
+  it("isolates seeds by studentId", async () => {
     await seedPlacementResultsIntoStore(store, STUDENT_A, makeResults(), { now: FIXED_NOW_MS });
-    await seedPlacementResultsIntoStore(store, STUDENT_B, [
-      createMockIm3PlacementResult({
-        nodeId: 'math.im3.skill.9.1.use-the-unit-circle',
-        masteryEstimate: 0.6,
-        confidence: 'medium',
-      }),
-    ], { now: FIXED_NOW_MS });
+    await seedPlacementResultsIntoStore(
+      store,
+      STUDENT_B,
+      [
+        createMockIm3PlacementResult({
+          nodeId: "math.im3.skill.9.1.use-the-unit-circle",
+          masteryEstimate: 0.6,
+          confidence: "medium",
+        }),
+      ],
+      { now: FIXED_NOW_MS },
+    );
 
     const seedsA = await store.getPlacementSeeds(STUDENT_A);
     const seedsB = await store.getPlacementSeeds(STUDENT_B);
     expect(seedsA).toHaveLength(3);
     expect(seedsB).toHaveLength(1);
-    expect(seedsB[0]!.nodeId).toBe('math.im3.skill.9.1.use-the-unit-circle');
+    expect(seedsB[0]!.nodeId).toBe("math.im3.skill.9.1.use-the-unit-circle");
   });
 
-  it('returns an empty array for a student with no seeded placement', async () => {
-    const seeds = await store.getPlacementSeeds('student-never-placed');
+  it("returns an empty array for a student with no seeded placement", async () => {
+    const seeds = await store.getPlacementSeeds("student-never-placed");
     expect(seeds).toEqual([]);
   });
 
-  it('does not mutate the input PlacementResult[]', async () => {
+  it("does not mutate the input PlacementResult[]", async () => {
     const results = makeResults();
     const snapshot = JSON.parse(JSON.stringify(results));
 
@@ -247,14 +252,14 @@ describe('seedPlacementResultsIntoStore — persistence into the knowledge-state
 // Task 3.2.d — Idempotency
 // ---------------------------------------------------------------------------
 
-describe('seedPlacementResultsIntoStore — idempotency', () => {
+describe("seedPlacementResultsIntoStore — idempotency", () => {
   let store: InMemoryKnowledgeStateStore;
 
   beforeEach(() => {
     store = createInMemoryKnowledgeStateStore();
   });
 
-  it('re-running with the same inputs yields the same persisted seeds (no duplicates)', async () => {
+  it("re-running with the same inputs yields the same persisted seeds (no duplicates)", async () => {
     const results = makeResults();
 
     await seedPlacementResultsIntoStore(store, STUDENT_A, results, { now: FIXED_NOW_MS });
@@ -264,19 +269,19 @@ describe('seedPlacementResultsIntoStore — idempotency', () => {
     expect(seeds).toHaveLength(results.length);
   });
 
-  it('upsert semantics: the same (studentId, nodeId) tuple is replaced, not appended', async () => {
+  it("upsert semantics: the same (studentId, nodeId) tuple is replaced, not appended", async () => {
     const initial: PlacementResult[] = [
       createMockIm3PlacementResult({
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 0.3,
-        confidence: 'low',
+        confidence: "low",
       }),
     ];
     const updated: PlacementResult[] = [
       createMockIm3PlacementResult({
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 0.7,
-        confidence: 'medium',
+        confidence: "medium",
       }),
     ];
 
@@ -286,7 +291,7 @@ describe('seedPlacementResultsIntoStore — idempotency', () => {
     const seeds = await store.getPlacementSeeds(STUDENT_A);
     expect(seeds).toHaveLength(1);
     expect(seeds[0]!.masteryEstimate).toBe(0.7);
-    expect(seeds[0]!.confidence).toBe('medium');
+    expect(seeds[0]!.confidence).toBe("medium");
     expect(seeds[0]!.seededAt).toBe(FIXED_NOW_MS + 10_000);
   });
 });
@@ -310,36 +315,33 @@ describe('seedPlacementResultsIntoStore — idempotency', () => {
 // The returning-student guard itself is exercised by
 //   __tests__/lib/placement/placement-flow.test.ts > "returning-student guard".
 
-describe('seedPlacementResultsIntoStore — always-upsert contract (no guard)', () => {
+describe("seedPlacementResultsIntoStore — always-upsert contract (no guard)", () => {
   let store: InMemoryKnowledgeStateStore;
 
   beforeEach(() => {
     store = createInMemoryKnowledgeStateStore();
   });
 
-  it('always upserts when re-seeding a student who already has seeds (no skip)', async () => {
+  it("always upserts when re-seeding a student who already has seeds (no skip)", async () => {
     const initial: PlacementResult[] = [
       createMockIm3PlacementResult({
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 0.3,
-        confidence: 'low',
+        confidence: "low",
       }),
     ];
     const overwrite: PlacementResult[] = [
       createMockIm3PlacementResult({
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 0.9,
-        confidence: 'medium',
+        confidence: "medium",
       }),
     ];
 
     await seedPlacementResultsIntoStore(store, STUDENT_A, initial, { now: FIXED_NOW_MS });
-    const outcome = await seedPlacementResultsIntoStore(
-      store,
-      STUDENT_A,
-      overwrite,
-      { now: FIXED_NOW_MS + 10_000 },
-    );
+    const outcome = await seedPlacementResultsIntoStore(store, STUDENT_A, overwrite, {
+      now: FIXED_NOW_MS + 10_000,
+    });
 
     expect(outcome.skipped).toBe(false);
     expect(outcome.reason).toBeUndefined();
@@ -348,11 +350,11 @@ describe('seedPlacementResultsIntoStore — always-upsert contract (no guard)', 
     const seeds = await store.getPlacementSeeds(STUDENT_A);
     expect(seeds).toHaveLength(1);
     expect(seeds[0]!.masteryEstimate).toBe(0.9);
-    expect(seeds[0]!.confidence).toBe('medium');
+    expect(seeds[0]!.confidence).toBe("medium");
     expect(seeds[0]!.seededAt).toBe(FIXED_NOW_MS + 10_000);
   });
 
-  it('does NOT call store.getPlacementSeeds (no existence pre-check → no guard)', async () => {
+  it("does NOT call store.getPlacementSeeds (no existence pre-check → no guard)", async () => {
     // Wraps the in-memory store to count getPlacementSeeds calls. The seed
     // helper MUST NOT consult the store to decide whether to skip — the
     // returning-student guard is the caller's responsibility.
@@ -366,51 +368,43 @@ describe('seedPlacementResultsIntoStore — always-upsert contract (no guard)', 
       },
     };
 
-    await seedPlacementResultsIntoStore(
-      trackingStore,
-      STUDENT_A,
-      makeResults(),
-      { now: FIXED_NOW_MS },
-    );
+    await seedPlacementResultsIntoStore(trackingStore, STUDENT_A, makeResults(), {
+      now: FIXED_NOW_MS,
+    });
 
     expect(getCalls).toBe(0);
   });
 
-  it('force option is a no-op (force:true and force:false are equivalent)', async () => {
+  it("force option is a no-op (force:true and force:false are equivalent)", async () => {
     // Per resolved design, seedPlacementResultsIntoStore always upserts. The
     // { force: true } option is preserved on the type for caller compatibility
     // but is intentionally ignored by the implementation.
     const initial: PlacementResult[] = [
       createMockIm3PlacementResult({
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 0.5,
-        confidence: 'low',
+        confidence: "low",
       }),
     ];
     const replacement: PlacementResult[] = [
       createMockIm3PlacementResult({
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 0.7,
-        confidence: 'medium',
+        confidence: "medium",
       }),
     ];
 
     // First upsert (no force).
     await seedPlacementResultsIntoStore(store, STUDENT_A, initial, { now: FIXED_NOW_MS });
     // Second upsert without force — must also overwrite (no guard).
-    const noForce = await seedPlacementResultsIntoStore(
-      store,
-      STUDENT_A,
-      replacement,
-      { now: FIXED_NOW_MS + 5_000 },
-    );
+    const noForce = await seedPlacementResultsIntoStore(store, STUDENT_A, replacement, {
+      now: FIXED_NOW_MS + 5_000,
+    });
     // Third upsert with force — must produce the same observable outcome.
-    const withForce = await seedPlacementResultsIntoStore(
-      store,
-      STUDENT_A,
-      replacement,
-      { now: FIXED_NOW_MS + 10_000, force: true },
-    );
+    const withForce = await seedPlacementResultsIntoStore(store, STUDENT_A, replacement, {
+      now: FIXED_NOW_MS + 10_000,
+      force: true,
+    });
 
     expect(noForce.skipped).toBe(false);
     expect(withForce.skipped).toBe(false);
@@ -421,7 +415,7 @@ describe('seedPlacementResultsIntoStore — always-upsert contract (no guard)', 
     expect(seeds[0]!.masteryEstimate).toBe(0.7);
   });
 
-  it('reports seedsWritten count when the student is new', async () => {
+  it("reports seedsWritten count when the student is new", async () => {
     const results = makeResults();
     const outcome = await seedPlacementResultsIntoStore(store, STUDENT_A, results, {
       now: FIXED_NOW_MS,
@@ -440,21 +434,21 @@ describe('seedPlacementResultsIntoStore — always-upsert contract (no guard)', 
 // "No high-confidence placement estimates — placement seeds are low/medium only;
 //  never `high`."
 
-describe('seedPlacementResultsIntoStore — confidence contract', () => {
+describe("seedPlacementResultsIntoStore — confidence contract", () => {
   let store: InMemoryKnowledgeStateStore;
 
   beforeEach(() => {
     store = createInMemoryKnowledgeStateStore();
   });
 
-  it('persists only low/medium confidence values', async () => {
+  it("persists only low/medium confidence values", async () => {
     const results = makeResults();
     await seedPlacementResultsIntoStore(store, STUDENT_A, results, { now: FIXED_NOW_MS });
 
     const seeds = await store.getPlacementSeeds(STUDENT_A);
     for (const seed of seeds) {
-      expect(['low', 'medium']).toContain(seed.confidence);
-      expect(seed.confidence).not.toBe('high');
+      expect(["low", "medium"]).toContain(seed.confidence);
+      expect(seed.confidence).not.toBe("high");
     }
   });
 
@@ -464,7 +458,7 @@ describe('seedPlacementResultsIntoStore — confidence contract', () => {
 
     const seeds: PlacementKnowledgeStateSeed[] = await store.getPlacementSeeds(STUDENT_A);
     for (const seed of seeds) {
-      expect(seed.source).toBe('placement');
+      expect(seed.source).toBe("placement");
     }
   });
 });
@@ -473,8 +467,8 @@ describe('seedPlacementResultsIntoStore — confidence contract', () => {
 // Task 3.2.g — Multiple placement results round-trip
 // ---------------------------------------------------------------------------
 
-describe('seedPlacementResultsIntoStore — round-trip', () => {
-  it('what we write equals what we read (key/values preserved)', async () => {
+describe("seedPlacementResultsIntoStore — round-trip", () => {
+  it("what we write equals what we read (key/values preserved)", async () => {
     const store = createInMemoryKnowledgeStateStore();
     const results = makeResults();
 
@@ -488,7 +482,7 @@ describe('seedPlacementResultsIntoStore — round-trip', () => {
       expect(seed).toBeDefined();
       expect(seed!.masteryEstimate).toBe(r.masteryEstimate);
       expect(seed!.confidence).toBe(r.confidence);
-      expect(seed!.source).toBe('placement');
+      expect(seed!.source).toBe("placement");
     }
   });
 });
@@ -507,8 +501,8 @@ describe('seedPlacementResultsIntoStore — round-trip', () => {
 //   - calling the seed functions in a different order does not affect the
 //     persisted shape (idempotency under reordering)
 
-describe('buildPlacementKnowledgeStateSeed — pure factory semantics', () => {
-  it('returns a new array, not the same reference as the input', () => {
+describe("buildPlacementKnowledgeStateSeed — pure factory semantics", () => {
+  it("returns a new array, not the same reference as the input", () => {
     const results = makeResults();
     const seeds = buildPlacementKnowledgeStateSeed(results, { now: FIXED_NOW_MS });
 
@@ -516,7 +510,7 @@ describe('buildPlacementKnowledgeStateSeed — pure factory semantics', () => {
     expect(Array.isArray(seeds)).toBe(true);
   });
 
-  it('does not deep-mutate nested fields on the input PlacementResult[]', () => {
+  it("does not deep-mutate nested fields on the input PlacementResult[]", () => {
     const results = makeResults();
     const snapshot = JSON.parse(JSON.stringify(results));
 
@@ -528,8 +522,8 @@ describe('buildPlacementKnowledgeStateSeed — pure factory semantics', () => {
   });
 });
 
-describe('createInMemoryKnowledgeStateStore — factory semantics', () => {
-  it('two stores created independently do not share state', async () => {
+describe("createInMemoryKnowledgeStateStore — factory semantics", () => {
+  it("two stores created independently do not share state", async () => {
     const storeA = createInMemoryKnowledgeStateStore();
     const storeB = createInMemoryKnowledgeStateStore();
 
@@ -544,7 +538,7 @@ describe('createInMemoryKnowledgeStateStore — factory semantics', () => {
     expect(storeB.size).toBe(0);
   });
 
-  it('clear() on one store does not affect another', async () => {
+  it("clear() on one store does not affect another", async () => {
     const storeA = createInMemoryKnowledgeStateStore();
     const storeB = createInMemoryKnowledgeStateStore();
     await seedPlacementResultsIntoStore(storeA, STUDENT_A, makeResults(), { now: FIXED_NOW_MS });
@@ -559,14 +553,14 @@ describe('createInMemoryKnowledgeStateStore — factory semantics', () => {
   });
 });
 
-describe('seedPlacementResultsIntoStore — edge cases', () => {
+describe("seedPlacementResultsIntoStore — edge cases", () => {
   let store: InMemoryKnowledgeStateStore;
 
   beforeEach(() => {
     store = createInMemoryKnowledgeStateStore();
   });
 
-  it('empty PlacementResult[] is a no-op (writes 0 seeds)', async () => {
+  it("empty PlacementResult[] is a no-op (writes 0 seeds)", async () => {
     const outcome = await seedPlacementResultsIntoStore(store, STUDENT_A, [], {
       now: FIXED_NOW_MS,
     });
@@ -578,12 +572,12 @@ describe('seedPlacementResultsIntoStore — edge cases', () => {
     expect(seeds).toEqual([]);
   });
 
-  it('buildPlacementKnowledgeStateSeed with empty input returns an empty array', () => {
+  it("buildPlacementKnowledgeStateSeed with empty input returns an empty array", () => {
     const seeds = buildPlacementKnowledgeStateSeed([], { now: FIXED_NOW_MS });
     expect(seeds).toEqual([]);
   });
 
-  it('re-running with the same studentId+nodeId and same now is byte-identical', async () => {
+  it("re-running with the same studentId+nodeId and same now is byte-identical", async () => {
     const results = makeResults();
     await seedPlacementResultsIntoStore(store, STUDENT_A, results, { now: FIXED_NOW_MS });
     const first = await store.getPlacementSeeds(STUDENT_A);
@@ -593,7 +587,7 @@ describe('seedPlacementResultsIntoStore — edge cases', () => {
     expect(first).toEqual(second);
   });
 
-  it('re-running with the same inputs in a different order produces the same final state', async () => {
+  it("re-running with the same inputs in a different order produces the same final state", async () => {
     const results = makeResults();
     const reordered = [results[2]!, results[0]!, results[1]!];
 
@@ -641,13 +635,13 @@ describe('seedPlacementResultsIntoStore — edge cases', () => {
 // The Green-phase fix belongs to a future iteration; this Red-phase test
 // commit locks the contract.
 
-describe('buildPlacementKnowledgeStateSeed — non-finite masteryEstimate rejection (Red)', () => {
-  it('rejects NaN masteryEstimate (current code accepts — Red)', () => {
+describe("buildPlacementKnowledgeStateSeed — non-finite masteryEstimate rejection (Red)", () => {
+  it("rejects NaN masteryEstimate (current code accepts — Red)", () => {
     const nan = [
       {
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: Number.NaN,
-        confidence: 'low' as const,
+        confidence: "low" as const,
       },
     ];
 
@@ -656,12 +650,12 @@ describe('buildPlacementKnowledgeStateSeed — non-finite masteryEstimate reject
     );
   });
 
-  it('rejects +Infinity masteryEstimate (regression lock)', () => {
+  it("rejects +Infinity masteryEstimate (regression lock)", () => {
     const posInf = [
       {
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: Number.POSITIVE_INFINITY,
-        confidence: 'low' as const,
+        confidence: "low" as const,
       },
     ];
 
@@ -670,12 +664,12 @@ describe('buildPlacementKnowledgeStateSeed — non-finite masteryEstimate reject
     );
   });
 
-  it('rejects -Infinity masteryEstimate (regression lock)', () => {
+  it("rejects -Infinity masteryEstimate (regression lock)", () => {
     const negInf = [
       {
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: Number.NEGATIVE_INFINITY,
-        confidence: 'low' as const,
+        confidence: "low" as const,
       },
     ];
 
@@ -684,12 +678,12 @@ describe('buildPlacementKnowledgeStateSeed — non-finite masteryEstimate reject
     );
   });
 
-  it('rejects non-numeric masteryEstimate values (current code accepts — Red)', () => {
+  it("rejects non-numeric masteryEstimate values (current code accepts — Red)", () => {
     const stringy = [
       {
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
-        masteryEstimate: '0.5' as unknown as number,
-        confidence: 'low' as const,
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
+        masteryEstimate: "0.5" as unknown as number,
+        confidence: "low" as const,
       },
     ];
 
@@ -698,19 +692,19 @@ describe('buildPlacementKnowledgeStateSeed — non-finite masteryEstimate reject
     );
   });
 
-  it('accepts boundary masteryEstimate values 0 and 1 (regression lock)', () => {
+  it("accepts boundary masteryEstimate values 0 and 1 (regression lock)", () => {
     const lowerBound = [
       {
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 0,
-        confidence: 'low' as const,
+        confidence: "low" as const,
       },
     ];
     const upperBound = [
       {
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 1,
-        confidence: 'low' as const,
+        confidence: "low" as const,
       },
     ];
 

@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -31,7 +31,8 @@ export const seedLesson3_3 = internalMutation({
           unitNumber: 3,
           title: "Proving Polynomial Identities",
           slug: lessonSlug,
-          description: "Students prove polynomial identities and use them to describe numerical relationships.",
+          description:
+            "Students prove polynomial identities and use them to describe numerical relationships.",
           orderIndex: 3,
           createdAt: now,
           updatedAt: now,
@@ -48,7 +49,8 @@ export const seedLesson3_3 = internalMutation({
           lessonId,
           version: 1,
           title: "Proving Polynomial Identities",
-          description: "Students prove polynomial identities and use them to describe numerical relationships.",
+          description:
+            "Students prove polynomial identities and use them to describe numerical relationships.",
           status: "published",
           createdAt: now,
         });
@@ -64,7 +66,8 @@ export const seedLesson3_3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Explore: Polynomial Identities\n\nUse graphing technology to complete the explore.\n\n**Inquiry Question:**\nHow can you prove that two polynomial expressions form a polynomial identity?",
+              markdown:
+                "## Explore: Polynomial Identities\n\nUse graphing technology to complete the explore.\n\n**Inquiry Question:**\nHow can you prove that two polynomial expressions form a polynomial identity?",
             },
           },
           {
@@ -91,7 +94,8 @@ export const seedLesson3_3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Key Terms\n\n- **Identity**: An equation that is satisfied by any numbers that replace the variables\n- **Polynomial identity**: A polynomial equation that is true for any values substituted for the variables",
+              markdown:
+                "## Key Terms\n\n- **Identity**: An equation that is satisfied by any numbers that replace the variables\n- **Polynomial identity**: A polynomial equation that is true for any values substituted for the variables",
             },
           },
         ],
@@ -106,14 +110,16 @@ export const seedLesson3_3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Proving Polynomial Identities\n\nAn **identity** is an equation that is satisfied by any numbers that replace the variables.\n\nA **polynomial identity** is a polynomial equation that is true for any values substituted for the variables.\n\nUnlike solving an equation, do not begin by assuming that an identity is true and then perform the same operation to both sides. Instead, verify it algebraically.\n\n### Key Concept: Verifying Identities by Transforming One Side\n\n- Simplify one side of the equation until the two sides are the same\n- It is often easier to transform the more complicated side\n- Factor or multiply expressions as needed\n- Combine like terms",
+              markdown:
+                "## Proving Polynomial Identities\n\nAn **identity** is an equation that is satisfied by any numbers that replace the variables.\n\nA **polynomial identity** is a polynomial equation that is true for any values substituted for the variables.\n\nUnlike solving an equation, do not begin by assuming that an identity is true and then perform the same operation to both sides. Instead, verify it algebraically.\n\n### Key Concept: Verifying Identities by Transforming One Side\n\n- Simplify one side of the equation until the two sides are the same\n- It is often easier to transform the more complicated side\n- Factor or multiply expressions as needed\n- Combine like terms",
             },
           },
           {
             sequenceOrder: 2,
             sectionType: "text" as const,
             content: {
-              markdown: "## Talk About It\n\nIf you multiplied each side of the equation by a variable z, would the result still be a polynomial identity? Explain.",
+              markdown:
+                "## Talk About It\n\nIf you multiplied each side of the equation by a variable z, would the result still be a polynomial identity? Explain.",
             },
           },
         ],
@@ -128,7 +134,8 @@ export const seedLesson3_3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 1 — Transform One Side\n\nProve that:\n\n$$x^3 - y^3 = (x - y)(x^2 + xy + y^2)$$\n\nStart with the right side:\n\n$$(x - y)(x^2 + xy + y^2)$$\n\nDistribute:\n\n$$= x(x^2) + x(xy) + x(y^2) - y(x^2) - y(xy) - y(y^2)$$\n\nSimplify:\n\n$$= x^3 + x^2y + xy^2 - x^2y - xy^2 - y^3$$\n\nCombine like terms:\n\n$$= x^3 - y^3$$\n\nSo the right side simplifies to the left side, which proves the identity.",
+              markdown:
+                "## Example 1 — Transform One Side\n\nProve that:\n\n$$x^3 - y^3 = (x - y)(x^2 + xy + y^2)$$\n\nStart with the right side:\n\n$$(x - y)(x^2 + xy + y^2)$$\n\nDistribute:\n\n$$= x(x^2) + x(xy) + x(y^2) - y(x^2) - y(xy) - y(y^2)$$\n\nSimplify:\n\n$$= x^3 + x^2y + xy^2 - x^2y - xy^2 - y^3$$\n\nCombine like terms:\n\n$$= x^3 - y^3$$\n\nSo the right side simplifies to the left side, which proves the identity.",
             },
           },
           {
@@ -140,9 +147,18 @@ export const seedLesson3_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "x^3 - y^3 = (x - y)(x^2 + xy + y^2)",
                 steps: [
-                  { expression: "Start with RHS: (x - y)(x² + xy + y²)", explanation: "Begin with the more complicated side" },
-                  { expression: "x(x²) + x(xy) + x(y²) - y(x²) - y(xy) - y(y²)", explanation: "Distribute each term" },
-                  { expression: "x³ + x²y + xy² - x²y - xy² - y³", explanation: "Simplify each product" },
+                  {
+                    expression: "Start with RHS: (x - y)(x² + xy + y²)",
+                    explanation: "Begin with the more complicated side",
+                  },
+                  {
+                    expression: "x(x²) + x(xy) + x(y²) - y(x²) - y(xy) - y(y²)",
+                    explanation: "Distribute each term",
+                  },
+                  {
+                    expression: "x³ + x²y + xy² - x²y - xy² - y³",
+                    explanation: "Simplify each product",
+                  },
                   { expression: "x³ - y³", explanation: "Combine like terms to match LHS" },
                   { expression: "RHS = LHS", explanation: "Identity is proven" },
                 ],
@@ -161,7 +177,8 @@ export const seedLesson3_3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 2 — Use Polynomial Identities\n\nPedro claims that for positive integers x and y, where x > y, you can form the sides of a right triangle using:\n\n- one leg: $x^2 - y^2$\n- other leg: $2xy$\n- hypotenuse: $x^2 + y^2$\n\nTo check this, test the Pythagorean relationship:\n\n$$(x^2 - y^2)^2 + (2xy)^2 = (x^2 + y^2)^2$$\n\nExpand the left side:\n\n$$(x^2 - y^2)^2 + (2xy)^2 = x^4 - 2x^2y^2 + y^4 + 4x^2y^2 = x^4 + 2x^2y^2 + y^4$$\n\nRight side:\n\n$$(x^2 + y^2)^2 = x^4 + 2x^2y^2 + y^4$$\n\nBoth sides are equal, so the identity is true. Therefore, Pedro is correct.",
+              markdown:
+                "## Example 2 — Use Polynomial Identities\n\nPedro claims that for positive integers x and y, where x > y, you can form the sides of a right triangle using:\n\n- one leg: $x^2 - y^2$\n- other leg: $2xy$\n- hypotenuse: $x^2 + y^2$\n\nTo check this, test the Pythagorean relationship:\n\n$$(x^2 - y^2)^2 + (2xy)^2 = (x^2 + y^2)^2$$\n\nExpand the left side:\n\n$$(x^2 - y^2)^2 + (2xy)^2 = x^4 - 2x^2y^2 + y^4 + 4x^2y^2 = x^4 + 2x^2y^2 + y^4$$\n\nRight side:\n\n$$(x^2 + y^2)^2 = x^4 + 2x^2y^2 + y^4$$\n\nBoth sides are equal, so the identity is true. Therefore, Pedro is correct.",
             },
           },
           {
@@ -175,11 +192,20 @@ export const seedLesson3_3 = internalMutation({
                 steps: [
                   { expression: "Expand (x² - y²)²", explanation: "x⁴ - 2x²y² + y⁴" },
                   { expression: "Expand (2xy)²", explanation: "4x²y²" },
-                  { expression: "LHS = x⁴ - 2x²y² + y⁴ + 4x²y²", explanation: "Add the expanded terms" },
+                  {
+                    expression: "LHS = x⁴ - 2x²y² + y⁴ + 4x²y²",
+                    explanation: "Add the expanded terms",
+                  },
                   { expression: "LHS = x⁴ + 2x²y² + y⁴", explanation: "Combine like terms" },
                   { expression: "Expand RHS: (x² + y²)²", explanation: "x⁴ + 2x²y² + y⁴" },
-                  { expression: "LHS = RHS", explanation: "Both sides are equal; identity is true" },
-                  { expression: "Pedro is correct", explanation: "The expressions form a right triangle" },
+                  {
+                    expression: "LHS = RHS",
+                    explanation: "Both sides are equal; identity is true",
+                  },
+                  {
+                    expression: "Pedro is correct",
+                    explanation: "The expressions form a right triangle",
+                  },
                 ],
               },
             },
@@ -196,7 +222,8 @@ export const seedLesson3_3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Discussion Questions\n\n1. How is proving an identity different from solving an equation?\n2. Why is it often easier to transform the more complicated side of an identity?\n3. How can polynomial identities be used to describe numerical relationships?",
+              markdown:
+                "## Discussion Questions\n\n1. How is proving an identity different from solving an equation?\n2. Why is it often easier to transform the more complicated side of an identity?\n3. How can polynomial identities be used to describe numerical relationships?",
             },
           },
           {
@@ -217,11 +244,7 @@ export const seedLesson3_3 = internalMutation({
                   },
                   {
                     question: "Which of the following is a polynomial identity?",
-                    options: [
-                      "x² - y² = (x - y)(x + y)",
-                      "x + 2 = 5",
-                      "x² = 4",
-                    ],
+                    options: ["x² - y² = (x - y)(x + y)", "x + 2 = 5", "x² = 4"],
                     correctIndex: 0,
                   },
                 ],
@@ -240,7 +263,8 @@ export const seedLesson3_3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Reflection\n\nToday you learned how to prove polynomial identities and use them to describe numerical relationships. Consider the following:\n\n- How does transforming one side help prove an identity?\n- What strategies help you decide which side to transform?\n- What questions do you still have about proving polynomial identities?\n\n**Tip**: Polynomial identities are powerful tools for simplifying expressions and proving relationships in algebra and geometry.",
+              markdown:
+                "## Reflection\n\nToday you learned how to prove polynomial identities and use them to describe numerical relationships. Consider the following:\n\n- How does transforming one side help prove an identity?\n- What strategies help you decide which side to transform?\n- What questions do you still have about proving polynomial identities?\n\n**Tip**: Polynomial identities are powerful tools for simplifying expressions and proving relationships in algebra and geometry.",
             },
           },
         ],
@@ -254,7 +278,7 @@ export const seedLesson3_3 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

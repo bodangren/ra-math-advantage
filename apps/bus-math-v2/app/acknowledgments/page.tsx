@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Heart, Users } from 'lucide-react';
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Heart, Users } from "lucide-react";
 
 /**
  * Page wrapper for the acknowledgments page.
@@ -10,38 +10,38 @@ export default function AcknowledgmentsPage() {
   const sections = [
     {
       icon: Heart,
-      iconColor: 'text-red-500',
-      title: 'Special Thanks',
+      iconColor: "text-red-500",
+      title: "Special Thanks",
       content: [
         {
-          heading: 'Educational Partners',
-          text: 'We are grateful to the educators, curriculum specialists, and industry professionals who provided feedback and insights during the development of this course.'
+          heading: "Educational Partners",
+          text: "We are grateful to the educators, curriculum specialists, and industry professionals who provided feedback and insights during the development of this course.",
         },
         {
-          heading: 'Student Contributors',
-          text: 'This course has been shaped by feedback from students who piloted early versions of the curriculum. Your input helped us create more engaging and effective learning experiences.'
+          heading: "Student Contributors",
+          text: "This course has been shaped by feedback from students who piloted early versions of the curriculum. Your input helped us create more engaging and effective learning experiences.",
         },
         {
-          heading: 'Technical Reviewers',
-          text: 'Thank you to the accounting and finance professionals who reviewed the technical accuracy of the course materials and provided real-world context.'
-        }
-      ]
+          heading: "Technical Reviewers",
+          text: "Thank you to the accounting and finance professionals who reviewed the technical accuracy of the course materials and provided real-world context.",
+        },
+      ],
     },
     {
       icon: Users,
-      iconColor: 'text-primary',
-      title: 'Course Development',
+      iconColor: "text-primary",
+      title: "Course Development",
       content: [
         {
-          heading: 'Curriculum Design',
-          text: 'This course follows a project-based learning approach that emphasizes authentic business scenarios and practical Excel skills. The curriculum is designed to meet both educational standards and real-world business needs.'
+          heading: "Curriculum Design",
+          text: "This course follows a project-based learning approach that emphasizes authentic business scenarios and practical Excel skills. The curriculum is designed to meet both educational standards and real-world business needs.",
         },
         {
-          heading: 'Technology & Innovation',
-          text: 'Built with modern web technologies to provide an interactive, accessible learning experience that works across devices and supports diverse learning styles.'
-        }
-      ]
-    }
+          heading: "Technology & Innovation",
+          text: "Built with modern web technologies to provide an interactive, accessible learning experience that works across devices and supports diverse learning styles.",
+        },
+      ],
+    },
   ];
 
   return (
@@ -58,7 +58,8 @@ export default function AcknowledgmentsPage() {
             The people who made this possible
           </h1>
           <p className="text-lg text-white/70 font-body max-w-xl mx-auto">
-            This course represents the collaboration and support of many individuals and organizations.
+            This course represents the collaboration and support of many individuals and
+            organizations.
           </p>
         </div>
       </section>
@@ -142,11 +143,17 @@ export default function AcknowledgmentsPage() {
             </Link>
           </div>
           <div className="flex items-center justify-center gap-4 pt-4 text-sm text-white/60 font-body">
-            <Link href="/preface" className="hover:text-white/90 transition-colors">Preface</Link>
+            <Link href="/preface" className="hover:text-white/90 transition-colors">
+              Preface
+            </Link>
             <span>&middot;</span>
-            <Link href="/curriculum" className="hover:text-white/90 transition-colors">Curriculum</Link>
+            <Link href="/curriculum" className="hover:text-white/90 transition-colors">
+              Curriculum
+            </Link>
             <span>&middot;</span>
-            <Link href="/capstone" className="hover:text-white/90 transition-colors">Capstone</Link>
+            <Link href="/capstone" className="hover:text-white/90 transition-colors">
+              Capstone
+            </Link>
           </div>
         </div>
       </section>

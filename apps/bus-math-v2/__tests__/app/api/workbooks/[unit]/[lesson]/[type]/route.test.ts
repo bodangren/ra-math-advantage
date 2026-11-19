@@ -1,24 +1,23 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-import type { NextRequest } from 'next/server';
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import type { NextRequest } from "next/server";
 
 const mockRequireActiveRequestSessionClaims = vi.fn();
 
-vi.mock('@/lib/auth/server', () => ({
+vi.mock("@/lib/auth/server", () => ({
   requireActiveRequestSessionClaims: mockRequireActiveRequestSessionClaims,
 }));
 
 const mockExistsSync = vi.fn();
 const mockReadFileSync = vi.fn();
 
-vi.mock('@/lib/server/lesson-assets', () => ({
-  getWorkbookAsset: (name: string, type: string) => mockExistsSync() ? mockReadFileSync(name, type) : null,
+vi.mock("@/lib/server/lesson-assets", () => ({
+  getWorkbookAsset: (name: string, type: string) =>
+    mockExistsSync() ? mockReadFileSync(name, type) : null,
 }));
 
-const { GET } = await import(
-  '@/app/api/workbooks/[unit]/[lesson]/[type]/route'
-);
+const { GET } = await import("@/app/api/workbooks/[unit]/[lesson]/[type]/route");
 
-function buildContext(unit: string, lesson: string, type: 'student' | 'teacher') {
+function buildContext(unit: string, lesson: string, type: "student" | "teacher") {
   return {
     params: Promise.resolve({ unit, lesson, type }),
   };
@@ -28,102 +27,105 @@ function buildRequest(url: string) {
   return new Request(url) as NextRequest;
 }
 
-describe('GET /api/workbooks/[unit]/[lesson]/[type]', () => {
+describe("GET /api/workbooks/[unit]/[lesson]/[type]", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  it('returns 401 when unauthenticated', async () => {
+  it("returns 401 when unauthenticated", async () => {
     mockRequireActiveRequestSessionClaims.mockResolvedValue(
-      new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 })
+      new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 }),
     );
 
     const response = await GET(
-      buildRequest('http://localhost/api/workbooks/01/04/student'),
-      buildContext('01', '04', 'student')
+      buildRequest("http://localhost/api/workbooks/01/04/student"),
+      buildContext("01", "04", "student"),
     );
 
     expect(response.status).toBe(401);
   });
 
-  it('returns 403 when student tries to access teacher workbook', async () => {
+  it("returns 403 when student tries to access teacher workbook", async () => {
     mockRequireActiveRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_123',
-      username: 'student',
-      role: 'student',
+      sub: "profile_123",
+      username: "student",
+      role: "student",
       iat: 1,
       exp: 2,
     });
 
     const response = await GET(
-      buildRequest('http://localhost/api/workbooks/01/04/teacher'),
-      buildContext('01', '04', 'teacher')
+      buildRequest("http://localhost/api/workbooks/01/04/teacher"),
+      buildContext("01", "04", "teacher"),
     );
 
     expect(response.status).toBe(403);
   });
 
-  it('returns 200 with student workbook when student accesses student type', async () => {
+  it("returns 200 with student workbook when student accesses student type", async () => {
     mockRequireActiveRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_123',
-      username: 'student',
-      role: 'student',
+      sub: "profile_123",
+      username: "student",
+      role: "student",
       iat: 1,
       exp: 2,
     });
 
     mockExistsSync.mockReturnValue(true);
-    mockReadFileSync.mockReturnValue(Buffer.from('test content'));
+    mockReadFileSync.mockReturnValue(Buffer.from("test content"));
 
     const response = await GET(
-      buildRequest('http://localhost/api/workbooks/01/04/student'),
-      buildContext('01', '04', 'student')
+      buildRequest("http://localhost/api/workbooks/01/04/student"),
+      buildContext("01", "04", "student"),
     );
 
     expect(response.status).toBe(200);
-    expect(response.headers.get('Content-Type')).toBe(
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    expect(response.headers.get("Content-Type")).toBe(
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     );
   });
 
-  it('returns 200 with teacher workbook when teacher accesses teacher type', async () => {
+  it("returns 200 with teacher workbook when teacher accesses teacher type", async () => {
     mockRequireActiveRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_456',
-      username: 'teacher',
-      role: 'teacher',
+      sub: "profile_456",
+      username: "teacher",
+      role: "teacher",
       iat: 1,
       exp: 2,
     });
 
     mockExistsSync.mockReturnValue(true);
-    mockReadFileSync.mockReturnValue(Buffer.from('test content'));
+    mockReadFileSync.mockReturnValue(Buffer.from("test content"));
 
     const response = await GET(
-      buildRequest('http://localhost/api/workbooks/01/04/teacher'),
-      buildContext('01', '04', 'teacher')
+      buildRequest("http://localhost/api/workbooks/01/04/teacher"),
+      buildContext("01", "04", "teacher"),
     );
 
     expect(response.status).toBe(200);
-    expect(response.headers.get('Content-Type')).toBe(
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    expect(response.headers.get("Content-Type")).toBe(
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     );
   });
 
-  it('reads teacher content from private storage and prevents shared caching', async () => {
-    mockRequireActiveRequestSessionClaims.mockResolvedValue({ sub: 'teacher', role: 'teacher' });
+  it("reads teacher content from private storage and prevents shared caching", async () => {
+    mockRequireActiveRequestSessionClaims.mockResolvedValue({ sub: "teacher", role: "teacher" });
     mockExistsSync.mockReturnValue(true);
-    mockReadFileSync.mockReturnValue(Buffer.from('teacher content'));
-    const response = await GET(buildRequest('http://localhost/api/workbooks/01/04/teacher'), buildContext('01','04','teacher'));
-    expect(await response.text()).toBe('teacher content');
-    expect(mockReadFileSync).toHaveBeenCalledWith('unit_01_lesson_04_teacher.xlsx', 'teacher');
-    expect(response.headers.get('Cache-Control')).toBe('private, no-store');
+    mockReadFileSync.mockReturnValue(Buffer.from("teacher content"));
+    const response = await GET(
+      buildRequest("http://localhost/api/workbooks/01/04/teacher"),
+      buildContext("01", "04", "teacher"),
+    );
+    expect(await response.text()).toBe("teacher content");
+    expect(mockReadFileSync).toHaveBeenCalledWith("unit_01_lesson_04_teacher.xlsx", "teacher");
+    expect(response.headers.get("Cache-Control")).toBe("private, no-store");
   });
 
-  it('returns 404 when file not found', async () => {
+  it("returns 404 when file not found", async () => {
     mockRequireActiveRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_123',
-      username: 'student',
-      role: 'student',
+      sub: "profile_123",
+      username: "student",
+      role: "student",
       iat: 1,
       exp: 2,
     });
@@ -131,59 +133,59 @@ describe('GET /api/workbooks/[unit]/[lesson]/[type]', () => {
     mockExistsSync.mockReturnValue(false);
 
     const response = await GET(
-      buildRequest('http://localhost/api/workbooks/01/04/student'),
-      buildContext('01', '04', 'student')
+      buildRequest("http://localhost/api/workbooks/01/04/student"),
+      buildContext("01", "04", "student"),
     );
 
     expect(response.status).toBe(404);
   });
 
-  it('returns 400 for path traversal in unit parameter', async () => {
+  it("returns 400 for path traversal in unit parameter", async () => {
     mockRequireActiveRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_123',
-      username: 'student',
-      role: 'student',
+      sub: "profile_123",
+      username: "student",
+      role: "student",
       iat: 1,
       exp: 2,
     });
 
     const response = await GET(
-      buildRequest('http://localhost/api/workbooks/../../etc/04/student'),
-      buildContext('../../etc', '04', 'student')
+      buildRequest("http://localhost/api/workbooks/../../etc/04/student"),
+      buildContext("../../etc", "04", "student"),
     );
 
     expect(response.status).toBe(400);
   });
 
-  it('returns 400 for non-numeric unit parameter', async () => {
+  it("returns 400 for non-numeric unit parameter", async () => {
     mockRequireActiveRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_123',
-      username: 'student',
-      role: 'student',
+      sub: "profile_123",
+      username: "student",
+      role: "student",
       iat: 1,
       exp: 2,
     });
 
     const response = await GET(
-      buildRequest('http://localhost/api/workbooks/abc/04/student'),
-      buildContext('abc', '04', 'student')
+      buildRequest("http://localhost/api/workbooks/abc/04/student"),
+      buildContext("abc", "04", "student"),
     );
 
     expect(response.status).toBe(400);
   });
 
-  it('returns 400 for non-numeric lesson parameter', async () => {
+  it("returns 400 for non-numeric lesson parameter", async () => {
     mockRequireActiveRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_123',
-      username: 'student',
-      role: 'student',
+      sub: "profile_123",
+      username: "student",
+      role: "student",
       iat: 1,
       exp: 2,
     });
 
     const response = await GET(
-      buildRequest('http://localhost/api/workbooks/01/xyz/student'),
-      buildContext('01', 'xyz', 'student')
+      buildRequest("http://localhost/api/workbooks/01/xyz/student"),
+      buildContext("01", "xyz", "student"),
     );
 
     expect(response.status).toBe(400);

@@ -1,34 +1,35 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from "vitest";
 
 const mockVerifySessionToken = vi.fn();
-const mockGetAuthJwtSecret = vi.fn(() => 'test-secret');
+const mockGetAuthJwtSecret = vi.fn(() => "test-secret");
 const mockFetchInternalQuery = vi.fn();
 
-vi.mock('@math-platform/core-auth', async () => {
-  const actual =
-    await vi.importActual<typeof import('@math-platform/core-auth')>('@math-platform/core-auth');
+vi.mock("@math-platform/core-auth", async () => {
+  const actual = await vi.importActual<typeof import("@math-platform/core-auth")>(
+    "@math-platform/core-auth",
+  );
   return {
     ...actual,
     verifySessionToken: mockVerifySessionToken,
-    SESSION_COOKIE_NAME: 'session',
+    SESSION_COOKIE_NAME: "session",
     getAuthJwtSecret: mockGetAuthJwtSecret,
   };
 });
-vi.mock('@/lib/convex/server', () => ({
+vi.mock("@/lib/convex/server", () => ({
   fetchInternalQuery: mockFetchInternalQuery,
   internal: {
     auth: {
-      getCredentialByUsername: 'auth:getCredentialByUsername',
+      getCredentialByUsername: "auth:getCredentialByUsername",
     },
   },
 }));
 
 const makeRequest = (cookie?: string) =>
-  new Request('http://localhost/api/test', {
+  new Request("http://localhost/api/test", {
     headers: cookie ? { cookie } : {},
   });
 
-describe('requireRequestSessionClaims', () => {
+describe("requireRequestSessionClaims", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockFetchInternalQuery.mockImplementation(async () => {
@@ -37,38 +38,38 @@ describe('requireRequestSessionClaims', () => {
     });
   });
 
-  it('returns 401 when no cookie is present', async () => {
-    const { requireRequestSessionClaims } = await import('@/lib/auth/server');
+  it("returns 401 when no cookie is present", async () => {
+    const { requireRequestSessionClaims } = await import("@/lib/auth/server");
     const res = await requireRequestSessionClaims(makeRequest());
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(401);
   });
 
-  it('returns 401 when token verification fails', async () => {
+  it("returns 401 when token verification fails", async () => {
     mockVerifySessionToken.mockResolvedValue(null);
-    const { requireRequestSessionClaims } = await import('@/lib/auth/server');
-    const res = await requireRequestSessionClaims(makeRequest('session=bad-token'));
+    const { requireRequestSessionClaims } = await import("@/lib/auth/server");
+    const res = await requireRequestSessionClaims(makeRequest("session=bad-token"));
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(401);
-    expect(mockVerifySessionToken).toHaveBeenCalledWith('bad-token', 'test-secret');
+    expect(mockVerifySessionToken).toHaveBeenCalledWith("bad-token", "test-secret");
   });
 
-  it('returns claims when token is valid', async () => {
+  it("returns claims when token is valid", async () => {
     const claims = {
-      sub: 'p1',
-      username: 'alice',
-      role: 'student' as const,
+      sub: "p1",
+      username: "alice",
+      role: "student" as const,
       iat: 1,
       exp: 9999999999,
     };
     mockVerifySessionToken.mockResolvedValue(claims);
-    const { requireRequestSessionClaims } = await import('@/lib/auth/server');
-    const res = await requireRequestSessionClaims(makeRequest('session=valid-token'));
+    const { requireRequestSessionClaims } = await import("@/lib/auth/server");
+    const res = await requireRequestSessionClaims(makeRequest("session=valid-token"));
     expect(res).toEqual(claims);
   });
 });
 
-describe('requireStudentRequestClaims', () => {
+describe("requireStudentRequestClaims", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockFetchInternalQuery.mockImplementation(async () => {
@@ -77,60 +78,75 @@ describe('requireStudentRequestClaims', () => {
     });
   });
 
-  it.each([null, { isActive: false }])('rejects an inactive or missing credential', async (credential) => {
-    mockVerifySessionToken.mockResolvedValue({ sub: 'p1', username: 'alice', role: 'student', iat: 1, exp: 9999999999 });
-    mockFetchInternalQuery.mockResolvedValue(credential);
-    const { requireStudentRequestClaims } = await import('@/lib/auth/server');
-    const result = await requireStudentRequestClaims(makeRequest('session=valid-token'));
-    expect(result).toBeInstanceOf(Response);
-    expect((result as Response).status).toBe(401);
-  });
+  it.each([null, { isActive: false }])(
+    "rejects an inactive or missing credential",
+    async (credential) => {
+      mockVerifySessionToken.mockResolvedValue({
+        sub: "p1",
+        username: "alice",
+        role: "student",
+        iat: 1,
+        exp: 9999999999,
+      });
+      mockFetchInternalQuery.mockResolvedValue(credential);
+      const { requireStudentRequestClaims } = await import("@/lib/auth/server");
+      const result = await requireStudentRequestClaims(makeRequest("session=valid-token"));
+      expect(result).toBeInstanceOf(Response);
+      expect((result as Response).status).toBe(401);
+    },
+  );
 
-  it('fails closed when the credential lookup fails', async () => {
-    mockVerifySessionToken.mockResolvedValue({ sub: 'p1', username: 'alice', role: 'student', iat: 1, exp: 9999999999 });
-    mockFetchInternalQuery.mockRejectedValue(new Error('offline'));
-    const { requireStudentRequestClaims } = await import('@/lib/auth/server');
-    const result = await requireStudentRequestClaims(makeRequest('session=valid-token'));
+  it("fails closed when the credential lookup fails", async () => {
+    mockVerifySessionToken.mockResolvedValue({
+      sub: "p1",
+      username: "alice",
+      role: "student",
+      iat: 1,
+      exp: 9999999999,
+    });
+    mockFetchInternalQuery.mockRejectedValue(new Error("offline"));
+    const { requireStudentRequestClaims } = await import("@/lib/auth/server");
+    const result = await requireStudentRequestClaims(makeRequest("session=valid-token"));
     expect((result as Response).status).toBe(503);
   });
 
-  it('returns 401 when unauthenticated', async () => {
-    const { requireStudentRequestClaims } = await import('@/lib/auth/server');
+  it("returns 401 when unauthenticated", async () => {
+    const { requireStudentRequestClaims } = await import("@/lib/auth/server");
     const res = await requireStudentRequestClaims(makeRequest());
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(401);
   });
 
-  it('returns 403 when user is not a student', async () => {
+  it("returns 403 when user is not a student", async () => {
     mockVerifySessionToken.mockResolvedValue({
-      sub: 'p1',
-      username: 'alice',
-      role: 'teacher',
+      sub: "p1",
+      username: "alice",
+      role: "teacher",
       iat: 1,
       exp: 9999999999,
     });
-    const { requireStudentRequestClaims } = await import('@/lib/auth/server');
-    const res = await requireStudentRequestClaims(makeRequest('session=valid-token'));
+    const { requireStudentRequestClaims } = await import("@/lib/auth/server");
+    const res = await requireStudentRequestClaims(makeRequest("session=valid-token"));
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(403);
   });
 
-  it('returns claims when user is a student', async () => {
+  it("returns claims when user is a student", async () => {
     const claims = {
-      sub: 'p1',
-      username: 'alice',
-      role: 'student' as const,
+      sub: "p1",
+      username: "alice",
+      role: "student" as const,
       iat: 1,
       exp: 9999999999,
     };
     mockVerifySessionToken.mockResolvedValue(claims);
-    const { requireStudentRequestClaims } = await import('@/lib/auth/server');
-    const res = await requireStudentRequestClaims(makeRequest('session=valid-token'));
+    const { requireStudentRequestClaims } = await import("@/lib/auth/server");
+    const res = await requireStudentRequestClaims(makeRequest("session=valid-token"));
     expect(res).toEqual(claims);
   });
 });
 
-describe('requireTeacherRequestClaims', () => {
+describe("requireTeacherRequestClaims", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockFetchInternalQuery.mockImplementation(async () => {
@@ -139,57 +155,57 @@ describe('requireTeacherRequestClaims', () => {
     });
   });
 
-  it('returns 401 when unauthenticated', async () => {
-    const { requireTeacherRequestClaims } = await import('@/lib/auth/server');
+  it("returns 401 when unauthenticated", async () => {
+    const { requireTeacherRequestClaims } = await import("@/lib/auth/server");
     const res = await requireTeacherRequestClaims(makeRequest());
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(401);
   });
 
-  it('returns 403 when user is a student', async () => {
+  it("returns 403 when user is a student", async () => {
     mockVerifySessionToken.mockResolvedValue({
-      sub: 'p1',
-      username: 'alice',
-      role: 'student',
+      sub: "p1",
+      username: "alice",
+      role: "student",
       iat: 1,
       exp: 9999999999,
     });
-    const { requireTeacherRequestClaims } = await import('@/lib/auth/server');
-    const res = await requireTeacherRequestClaims(makeRequest('session=valid-token'));
+    const { requireTeacherRequestClaims } = await import("@/lib/auth/server");
+    const res = await requireTeacherRequestClaims(makeRequest("session=valid-token"));
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(403);
   });
 
-  it('returns claims when user is a teacher', async () => {
+  it("returns claims when user is a teacher", async () => {
     const claims = {
-      sub: 'p1',
-      username: 'alice',
-      role: 'teacher' as const,
+      sub: "p1",
+      username: "alice",
+      role: "teacher" as const,
       iat: 1,
       exp: 9999999999,
     };
     mockVerifySessionToken.mockResolvedValue(claims);
-    const { requireTeacherRequestClaims } = await import('@/lib/auth/server');
-    const res = await requireTeacherRequestClaims(makeRequest('session=valid-token'));
+    const { requireTeacherRequestClaims } = await import("@/lib/auth/server");
+    const res = await requireTeacherRequestClaims(makeRequest("session=valid-token"));
     expect(res).toEqual(claims);
   });
 
-  it('returns claims when user is an admin', async () => {
+  it("returns claims when user is an admin", async () => {
     const claims = {
-      sub: 'p1',
-      username: 'alice',
-      role: 'admin' as const,
+      sub: "p1",
+      username: "alice",
+      role: "admin" as const,
       iat: 1,
       exp: 9999999999,
     };
     mockVerifySessionToken.mockResolvedValue(claims);
-    const { requireTeacherRequestClaims } = await import('@/lib/auth/server');
-    const res = await requireTeacherRequestClaims(makeRequest('session=valid-token'));
+    const { requireTeacherRequestClaims } = await import("@/lib/auth/server");
+    const res = await requireTeacherRequestClaims(makeRequest("session=valid-token"));
     expect(res).toEqual(claims);
   });
 });
 
-describe('requireDeveloperRequestClaims', () => {
+describe("requireDeveloperRequestClaims", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockFetchInternalQuery.mockImplementation(async () => {
@@ -198,43 +214,43 @@ describe('requireDeveloperRequestClaims', () => {
     });
   });
 
-  it('returns 401 when unauthenticated', async () => {
-    const { requireDeveloperRequestClaims } = await import('@/lib/auth/server');
+  it("returns 401 when unauthenticated", async () => {
+    const { requireDeveloperRequestClaims } = await import("@/lib/auth/server");
     const res = await requireDeveloperRequestClaims(makeRequest());
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(401);
   });
 
-  it('returns 403 when user is not an admin', async () => {
+  it("returns 403 when user is not an admin", async () => {
     mockVerifySessionToken.mockResolvedValue({
-      sub: 'p1',
-      username: 'alice',
-      role: 'teacher',
+      sub: "p1",
+      username: "alice",
+      role: "teacher",
       iat: 1,
       exp: 9999999999,
     });
-    const { requireDeveloperRequestClaims } = await import('@/lib/auth/server');
-    const res = await requireDeveloperRequestClaims(makeRequest('session=valid-token'));
+    const { requireDeveloperRequestClaims } = await import("@/lib/auth/server");
+    const res = await requireDeveloperRequestClaims(makeRequest("session=valid-token"));
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(403);
   });
 
-  it('returns claims when user is an admin', async () => {
+  it("returns claims when user is an admin", async () => {
     const claims = {
-      sub: 'p1',
-      username: 'alice',
-      role: 'admin' as const,
+      sub: "p1",
+      username: "alice",
+      role: "admin" as const,
       iat: 1,
       exp: 9999999999,
     };
     mockVerifySessionToken.mockResolvedValue(claims);
-    const { requireDeveloperRequestClaims } = await import('@/lib/auth/server');
-    const res = await requireDeveloperRequestClaims(makeRequest('session=valid-token'));
+    const { requireDeveloperRequestClaims } = await import("@/lib/auth/server");
+    const res = await requireDeveloperRequestClaims(makeRequest("session=valid-token"));
     expect(res).toEqual(claims);
   });
 });
 
-describe('requireActiveRequestSessionClaims', () => {
+describe("requireActiveRequestSessionClaims", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockFetchInternalQuery.mockImplementation(async () => {
@@ -243,93 +259,95 @@ describe('requireActiveRequestSessionClaims', () => {
     });
   });
 
-  it('returns 401 when no cookie is present', async () => {
-    const { requireActiveRequestSessionClaims } = await import('@/lib/auth/server');
+  it("returns 401 when no cookie is present", async () => {
+    const { requireActiveRequestSessionClaims } = await import("@/lib/auth/server");
     const res = await requireActiveRequestSessionClaims(makeRequest());
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(401);
   });
 
-  it('returns 401 when token verification fails', async () => {
+  it("returns 401 when token verification fails", async () => {
     mockVerifySessionToken.mockResolvedValue(null);
-    const { requireActiveRequestSessionClaims } = await import('@/lib/auth/server');
-    const res = await requireActiveRequestSessionClaims(makeRequest('session=bad-token'));
+    const { requireActiveRequestSessionClaims } = await import("@/lib/auth/server");
+    const res = await requireActiveRequestSessionClaims(makeRequest("session=bad-token"));
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(401);
   });
 
-  it('returns 401 when credential is not found in Convex', async () => {
+  it("returns 401 when credential is not found in Convex", async () => {
     mockVerifySessionToken.mockResolvedValue({
-      sub: 'p1',
-      username: 'alice',
-      role: 'student',
+      sub: "p1",
+      username: "alice",
+      role: "student",
       iat: 1,
       exp: 9999999999,
     });
     mockFetchInternalQuery.mockResolvedValue(null);
-    const { requireActiveRequestSessionClaims } = await import('@/lib/auth/server');
-    const res = await requireActiveRequestSessionClaims(makeRequest('session=valid-token'));
+    const { requireActiveRequestSessionClaims } = await import("@/lib/auth/server");
+    const res = await requireActiveRequestSessionClaims(makeRequest("session=valid-token"));
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(401);
-    expect(mockFetchInternalQuery).toHaveBeenCalledWith('auth:getCredentialByUsername', { username: 'alice' });
+    expect(mockFetchInternalQuery).toHaveBeenCalledWith("auth:getCredentialByUsername", {
+      username: "alice",
+    });
   });
 
-  it('returns 401 when credential is deactivated', async () => {
+  it("returns 401 when credential is deactivated", async () => {
     mockVerifySessionToken.mockResolvedValue({
-      sub: 'p1',
-      username: 'alice',
-      role: 'student',
+      sub: "p1",
+      username: "alice",
+      role: "student",
       iat: 1,
       exp: 9999999999,
     });
     mockFetchInternalQuery.mockResolvedValue({
-      id: 'cred1',
-      profileId: 'p1',
-      username: 'alice',
-      role: 'student',
+      id: "cred1",
+      profileId: "p1",
+      username: "alice",
+      role: "student",
       isActive: false,
     });
-    const { requireActiveRequestSessionClaims } = await import('@/lib/auth/server');
-    const res = await requireActiveRequestSessionClaims(makeRequest('session=valid-token'));
+    const { requireActiveRequestSessionClaims } = await import("@/lib/auth/server");
+    const res = await requireActiveRequestSessionClaims(makeRequest("session=valid-token"));
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(401);
   });
 
-  it('returns 503 when Convex query throws (fail-closed)', async () => {
+  it("returns 503 when Convex query throws (fail-closed)", async () => {
     mockVerifySessionToken.mockResolvedValue({
-      sub: 'p1',
-      username: 'alice',
-      role: 'student',
+      sub: "p1",
+      username: "alice",
+      role: "student",
       iat: 1,
       exp: 9999999999,
     });
-    mockFetchInternalQuery.mockRejectedValue(new Error('Convex unreachable'));
-    const { requireActiveRequestSessionClaims } = await import('@/lib/auth/server');
-    const res = await requireActiveRequestSessionClaims(makeRequest('session=valid-token'));
+    mockFetchInternalQuery.mockRejectedValue(new Error("Convex unreachable"));
+    const { requireActiveRequestSessionClaims } = await import("@/lib/auth/server");
+    const res = await requireActiveRequestSessionClaims(makeRequest("session=valid-token"));
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(503);
     const body = await (res as Response).json();
-    expect(body.error).toContain('Service unavailable');
+    expect(body.error).toContain("Service unavailable");
   });
 
-  it('returns claims when credential is active', async () => {
+  it("returns claims when credential is active", async () => {
     const claims = {
-      sub: 'p1',
-      username: 'alice',
-      role: 'student' as const,
+      sub: "p1",
+      username: "alice",
+      role: "student" as const,
       iat: 1,
       exp: 9999999999,
     };
     mockVerifySessionToken.mockResolvedValue(claims);
     mockFetchInternalQuery.mockResolvedValue({
-      id: 'cred1',
-      profileId: 'p1',
-      username: 'alice',
-      role: 'student',
+      id: "cred1",
+      profileId: "p1",
+      username: "alice",
+      role: "student",
       isActive: true,
     });
-    const { requireActiveRequestSessionClaims } = await import('@/lib/auth/server');
-    const res = await requireActiveRequestSessionClaims(makeRequest('session=valid-token'));
+    const { requireActiveRequestSessionClaims } = await import("@/lib/auth/server");
+    const res = await requireActiveRequestSessionClaims(makeRequest("session=valid-token"));
     expect(res).toEqual(claims);
   });
 });

@@ -6,9 +6,7 @@ import type { PhaseType } from "./types";
  * @returns {string} String with $$...$ LaTeX delimiters
  */
 export function toLatex(input: string): string {
-  return input
-    .replace(/\[\[(.*?)\]\]/g, '$$$1$$')
-    .replace(/\[(.*?)\]/g, '$$$1$');
+  return input.replace(/\[\[(.*?)\]\]/g, "$$$1$$").replace(/\[(.*?)\]/g, "$$$1$");
 }
 
 export interface IdempotentInsertArgs<T> {
@@ -24,11 +22,9 @@ export interface IdempotentInsertArgs<T> {
  * @returns {string} The ID of the existing or newly inserted record
  */
 export function idempotentInsert<T extends Record<string, unknown>>(
-  args: IdempotentInsertArgs<T>
+  args: IdempotentInsertArgs<T>,
 ): string {
-  const existing = args.existingRecords.find(
-    (record) => record[args.keyField] === args.key
-  );
+  const existing = args.existingRecords.find((record) => record[args.keyField] === args.key);
   if (existing) {
     return (existing as unknown as { id: string }).id;
   }

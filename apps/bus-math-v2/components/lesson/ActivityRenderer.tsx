@@ -1,26 +1,26 @@
-'use client';
+"use client";
 
-import { Suspense, createElement, useCallback, useEffect, useState } from 'react';
-import { Loader2 } from 'lucide-react';
+import { Suspense, createElement, useCallback, useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
 
-import { getActivityComponent } from '@/lib/activities/registry';
-import type { Activity } from '@/lib/schemas/validators';
-import { Badge } from '@/components/ui/badge';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { usePhaseCompletion } from '@/hooks/usePhaseCompletion';
+import { getActivityComponent } from "@/lib/activities/registry";
+import type { Activity } from "@/lib/schemas/validators";
+import { Badge } from "@/components/ui/badge";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { usePhaseCompletion } from "@/hooks/usePhaseCompletion";
 import {
   isPracticeSubmissionEnvelope,
   type PracticeSubmissionCallbackPayload,
-} from '@math-platform/practice-core/contract';
-import type { CompletePhaseResponse } from '@/types/api';
+} from "@math-platform/practice-core/contract";
+import type { CompletePhaseResponse } from "@/types/api";
 
 interface ActivityRendererProps {
   activityId: string;
   lessonId: string;
   phaseNumber: number;
   required?: boolean;
-  initialStatus?: 'not_started' | 'in_progress' | 'completed' | 'current' | 'available' | 'locked';
+  initialStatus?: "not_started" | "in_progress" | "completed" | "current" | "available" | "locked";
   onStatusChange?: () => void;
   /** Standard code to credit in student_competency when this activity is completed */
   linkedStandardId?: string;
@@ -28,27 +28,32 @@ interface ActivityRendererProps {
 
 type ActivitySubmissionPayload = PracticeSubmissionCallbackPayload;
 
-const ACCOUNTING_EQUATION_EVENT_KEY = 'accounting-equation-event';
+const ACCOUNTING_EQUATION_EVENT_KEY = "accounting-equation-event";
 
 function isWorkedEventAcknowledgement(
   payload: ActivitySubmissionPayload,
   expectedActivityId: string,
 ): boolean {
-  if (!isPracticeSubmissionEnvelope(payload)
-    || payload.activityId !== expectedActivityId
-    || payload.mode !== 'worked_example'
-    || payload.status !== 'submitted'
-    || Array.isArray(payload.answers)
-    || typeof payload.answers !== 'object'
-    || payload.answers === null
-    || Object.keys(payload.answers).length !== 0
-    || !Array.isArray(payload.parts)
-    || payload.parts.length !== 0) return false;
+  if (
+    !isPracticeSubmissionEnvelope(payload) ||
+    payload.activityId !== expectedActivityId ||
+    payload.mode !== "worked_example" ||
+    payload.status !== "submitted" ||
+    Array.isArray(payload.answers) ||
+    typeof payload.answers !== "object" ||
+    payload.answers === null ||
+    Object.keys(payload.answers).length !== 0 ||
+    !Array.isArray(payload.parts) ||
+    payload.parts.length !== 0
+  )
+    return false;
   const artifact = payload.artifact;
-  return typeof artifact === 'object'
-    && artifact !== null
-    && !Array.isArray(artifact)
-    && (artifact as { kind?: unknown }).kind === 'accounting-equation-event-acknowledgement';
+  return (
+    typeof artifact === "object" &&
+    artifact !== null &&
+    !Array.isArray(artifact) &&
+    (artifact as { kind?: unknown }).kind === "accounting-equation-event-acknowledgement"
+  );
 }
 
 interface AssessmentResponse {
@@ -68,25 +73,27 @@ export function ActivityRenderer({
   lessonId,
   phaseNumber,
   required = false,
-  initialStatus = 'not_started',
+  initialStatus = "not_started",
   onStatusChange,
   linkedStandardId,
 }: ActivityRendererProps) {
-  const [pendingSubmission, setPendingSubmission] = useState<ActivitySubmissionPayload | null>(null);
+  const [pendingSubmission, setPendingSubmission] = useState<ActivitySubmissionPayload | null>(
+    null,
+  );
   const [activity, setActivity] = useState<Activity | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [submissionResult, setSubmissionResult] = useState<AssessmentResponse | null>(null);
   const [submissionError, setSubmissionError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  
+
   const [completionResult, setCompletionResult] = useState<CompletePhaseResponse | null>(() => {
-    if (initialStatus === 'completed') {
+    if (initialStatus === "completed") {
       return {
         success: true,
         nextPhaseUnlocked: true,
-        message: 'Activity already completed',
-        phaseId: '',
+        message: "Activity already completed",
+        phaseId: "",
       };
     }
     return null;
@@ -95,7 +102,7 @@ export function ActivityRenderer({
   const { completePhase, isCompleting } = usePhaseCompletion({
     lessonId,
     phaseNumber,
-    phaseType: 'do',
+    phaseType: "do",
     linkedStandardId,
     onSuccess: (response) => {
       setCompletionResult(response);
@@ -106,9 +113,7 @@ export function ActivityRenderer({
     onError: (completionError) => {
       setCompletionResult(null);
       setSubmissionError(
-        completionError instanceof Error
-          ? completionError.message
-          : 'Unable to complete activity',
+        completionError instanceof Error ? completionError.message : "Unable to complete activity",
       );
     },
   });
@@ -129,8 +134,8 @@ export function ActivityRenderer({
         const data = await response.json();
         setActivity(data);
       } catch (err) {
-        console.error('Error fetching activity:', err);
-        setError(err instanceof Error ? err.message : 'Unknown error');
+        console.error("Error fetching activity:", err);
+        setError(err instanceof Error ? err.message : "Unknown error");
       } finally {
         setLoading(false);
       }
@@ -161,16 +166,16 @@ export function ActivityRenderer({
       const canonicalSubmission = payload;
       const answers = canonicalSubmission.answers;
       const isAccountingEquationEvent = activity.componentKey === ACCOUNTING_EQUATION_EVENT_KEY;
-      const isWorkedAcknowledgement = isAccountingEquationEvent
-        && isWorkedEventAcknowledgement(canonicalSubmission, activityId);
+      const isWorkedAcknowledgement =
+        isAccountingEquationEvent && isWorkedEventAcknowledgement(canonicalSubmission, activityId);
       if (
-        !isWorkedAcknowledgement
-        && (!answers
-          || typeof answers !== 'object'
-          || Array.isArray(answers)
-          || Object.keys(answers).length === 0)
+        !isWorkedAcknowledgement &&
+        (!answers ||
+          typeof answers !== "object" ||
+          Array.isArray(answers) ||
+          Object.keys(answers).length === 0)
       ) {
-        setSubmissionError('Please complete the assessment before submitting.');
+        setSubmissionError("Please complete the assessment before submitting.");
         setSubmissionResult(null);
         return false;
       }
@@ -180,31 +185,33 @@ export function ActivityRenderer({
       setSubmissionResult(null);
 
       try {
-        const response = await fetch('/api/progress/assessment', {
-          method: 'POST',
+        const response = await fetch("/api/progress/assessment", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
-            'Idempotency-Key': canonicalSubmission.submittedAt,
+            "Content-Type": "application/json",
+            "Idempotency-Key": canonicalSubmission.submittedAt,
           },
           body: JSON.stringify(canonicalSubmission),
         });
 
         const data = await response.json();
         if (!response.ok) {
-          throw new Error(data?.error ?? 'Unable to submit assessment');
+          throw new Error(data?.error ?? "Unable to submit assessment");
         }
 
         if (isWorkedAcknowledgement) {
           if (data?.acknowledged !== true) {
-            throw new Error('The acknowledgement was not saved.');
+            throw new Error("The acknowledgement was not saved.");
           }
           setSubmissionResult(null);
         } else {
-          if (isAccountingEquationEvent
-            && (typeof data?.score !== 'number'
-              || typeof data?.maxScore !== 'number'
-              || typeof data?.percentage !== 'number')) {
-            throw new Error('The saved assessment result is invalid.');
+          if (
+            isAccountingEquationEvent &&
+            (typeof data?.score !== "number" ||
+              typeof data?.maxScore !== "number" ||
+              typeof data?.percentage !== "number")
+          ) {
+            throw new Error("The saved assessment result is invalid.");
           }
           setSubmissionResult({
             attemptOrdinal: data.attemptOrdinal,
@@ -218,9 +225,7 @@ export function ActivityRenderer({
       } catch (submitError) {
         setSubmissionResult(null);
         setSubmissionError(
-          submitError instanceof Error
-            ? submitError.message
-            : 'Unable to submit assessment',
+          submitError instanceof Error ? submitError.message : "Unable to submit assessment",
         );
         return false;
       } finally {
@@ -233,21 +238,18 @@ export function ActivityRenderer({
   /**
    * Trigger canonical phase completion flow for activity phases.
    */
-  const handleActivityComplete = useCallback(
-    async () => {
-      if (!activity || completionResult?.success) {
-        return;
-      }
+  const handleActivityComplete = useCallback(async () => {
+    if (!activity || completionResult?.success) {
+      return;
+    }
 
-      setSubmissionError(null);
-      setCompletionResult(null);
-      await completePhase();
-    },
-    [activity, completePhase, completionResult],
-  );
+    setSubmissionError(null);
+    setCompletionResult(null);
+    await completePhase();
+  }, [activity, completePhase, completionResult]);
 
   const didPayloadCompleteActivity = useCallback((payload: ActivitySubmissionPayload): boolean => {
-    return isPracticeSubmissionEnvelope(payload) && payload.status !== 'draft';
+    return isPracticeSubmissionEnvelope(payload) && payload.status !== "draft";
   }, []);
 
   const handleActivitySubmit = useCallback(
@@ -270,7 +272,7 @@ export function ActivityRenderer({
     async (payload: ActivitySubmissionPayload): Promise<void> => {
       const assessmentWasRecorded = await handleAssessmentSubmit(payload);
       if (!assessmentWasRecorded) {
-        throw new Error('The event response was not saved.');
+        throw new Error("The event response was not saved.");
       }
     },
     [handleAssessmentSubmit],
@@ -290,9 +292,7 @@ export function ActivityRenderer({
     return (
       <Card className="my-4 border-red-200 bg-red-50">
         <CardContent className="py-4">
-          <p className="text-red-700">
-            Failed to load activity: {error || 'Activity not found'}
-          </p>
+          <p className="text-red-700">Failed to load activity: {error || "Activity not found"}</p>
         </CardContent>
       </Card>
     );
@@ -305,9 +305,7 @@ export function ActivityRenderer({
     return (
       <Card className="my-4 border-yellow-200 bg-yellow-50">
         <CardContent className="py-4">
-          <p className="text-yellow-700">
-            Activity component not found: {activity.componentKey}
-          </p>
+          <p className="text-yellow-700">Activity component not found: {activity.componentKey}</p>
         </CardContent>
       </Card>
     );
@@ -318,9 +316,7 @@ export function ActivityRenderer({
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle>{activity.displayName}</CardTitle>
-          {required && (
-            <Badge variant="destructive">Required</Badge>
-          )}
+          {required && <Badge variant="destructive">Required</Badge>}
         </div>
         {activity.description && (
           <p className="text-sm text-muted-foreground">{activity.description}</p>
@@ -328,17 +324,25 @@ export function ActivityRenderer({
       </CardHeader>
       <CardContent className="space-y-4">
         <Suspense fallback={<p role="status">Loading activity...</p>}>
-        {createElement(activityComponent, isAccountingEquationEvent ? {
-          ...(activity.props as Record<string, unknown>),
-          key: activityId,
-          onSubmit: handleAccountingEquationEventSubmit,
-          onComplete: handleActivityComplete,
-        } : {
-          key: activityId,
-          activity,
-          onSubmit: activity.componentKey === 'spreadsheet-evaluator' ? undefined : handleActivitySubmit,
-          onComplete: handleActivityComplete,
-        })}
+          {createElement(
+            activityComponent,
+            isAccountingEquationEvent
+              ? {
+                  ...(activity.props as Record<string, unknown>),
+                  key: activityId,
+                  onSubmit: handleAccountingEquationEventSubmit,
+                  onComplete: handleActivityComplete,
+                }
+              : {
+                  key: activityId,
+                  activity,
+                  onSubmit:
+                    activity.componentKey === "spreadsheet-evaluator"
+                      ? undefined
+                      : handleActivitySubmit,
+                  onComplete: handleActivityComplete,
+                },
+          )}
         </Suspense>
         {submitting && (
           <Alert>
@@ -362,9 +366,12 @@ export function ActivityRenderer({
           <Alert>
             <AlertTitle>Work saved</AlertTitle>
             <AlertDescription>
-              {submissionResult.maxScore > 0 && <p>
-                Score: {submissionResult.score}/{submissionResult.maxScore} ({submissionResult.percentage}%)
-              </p>}
+              {submissionResult.maxScore > 0 && (
+                <p>
+                  Score: {submissionResult.score}/{submissionResult.maxScore} (
+                  {submissionResult.percentage}%)
+                </p>
+              )}
               {submissionResult.attemptOrdinal && <p>Attempt {submissionResult.attemptOrdinal}</p>}
               {submissionResult.feedback && <p>{submissionResult.feedback}</p>}
             </AlertDescription>
@@ -376,7 +383,9 @@ export function ActivityRenderer({
             <AlertDescription className="text-green-700">
               <p>{completionResult.message}</p>
               {completionResult.nextPhaseUnlocked && (
-                <p className="mt-2 font-medium">Next phase unlocked! Continue to the next section.</p>
+                <p className="mt-2 font-medium">
+                  Next phase unlocked! Continue to the next section.
+                </p>
               )}
             </AlertDescription>
           </Alert>
@@ -387,7 +396,11 @@ export function ActivityRenderer({
             <AlertDescription>
               <p>{submissionError}</p>
               <button
-                onClick={() => pendingSubmission ? handleActivitySubmit(pendingSubmission) : handleActivityComplete()}
+                onClick={() =>
+                  pendingSubmission
+                    ? handleActivitySubmit(pendingSubmission)
+                    : handleActivityComplete()
+                }
                 className="mt-2 text-sm underline hover:no-underline"
               >
                 Try again

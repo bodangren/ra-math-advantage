@@ -30,7 +30,7 @@ export interface StubGeneratorOutput {
     readonly partAnswers: Readonly<Record<string, unknown>>;
     readonly partMaxScores: Readonly<Record<string, number>>;
     readonly partGradingRules: Readonly<
-      Record<string, 'exact_match' | 'numeric_tolerance' | 'expression_equivalence'>
+      Record<string, "exact_match" | "numeric_tolerance" | "expression_equivalence">
     >;
     readonly partTolerances?: Readonly<Record<string, number>>;
   };
@@ -50,13 +50,11 @@ export function createStubGenerator(): StubGenerator {
       prompt: `Stub problem (seed=${input.seed})`,
       data: { seed: input.seed, difficulty: input.difficulty },
       expectedAnswer: { result: 42 },
-      solutionSteps: [
-        { description: 'Stub step', expression: '42', value: 42 },
-      ],
+      solutionSteps: [{ description: "Stub step", expression: "42", value: 42 }],
       gradingMetadata: {
         partAnswers: { result: 42 },
         partMaxScores: { result: 5 },
-        partGradingRules: { result: 'numeric_tolerance' },
+        partGradingRules: { result: "numeric_tolerance" },
         partTolerances: { result: 0.01 },
       },
     }),

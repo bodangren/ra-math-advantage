@@ -1,25 +1,25 @@
-import { defineSchema, defineTable } from 'convex/server';
-import { v } from 'convex/values';
-import { coachingFields } from './coachingModel';
+import { defineSchema, defineTable } from "convex/server";
+import { v } from "convex/values";
+import { coachingFields } from "./coachingModel";
 
 const roleValidator = v.union(
-  v.literal('teacher'),
-  v.literal('hod'),
-  v.literal('coach'),
-  v.literal('school_head'),
-  v.literal('slt'),
-  v.literal('sysadmin'),
+  v.literal("teacher"),
+  v.literal("hod"),
+  v.literal("coach"),
+  v.literal("school_head"),
+  v.literal("slt"),
+  v.literal("sysadmin"),
 );
 
-const statusValidator = v.union(v.literal('active'), v.literal('revoked'));
-const sharedSessionRoleValidator = v.union(v.literal('teacher'), v.literal('admin'));
+const statusValidator = v.union(v.literal("active"), v.literal("revoked"));
+const sharedSessionRoleValidator = v.union(v.literal("teacher"), v.literal("admin"));
 const observationSourceTypeValidator = v.union(
-  v.literal('walkthrough'),
-  v.literal('formal_q1'),
-  v.literal('formal_q4'),
+  v.literal("walkthrough"),
+  v.literal("formal_q1"),
+  v.literal("formal_q4"),
 );
 const observationBaseValidator = {
-  organizationId: v.id('organizations'),
+  organizationId: v.id("organizations"),
   teacherId: v.string(),
   teacherProfileId: v.optional(v.string()),
   sourceRecordId: v.string(),
@@ -41,7 +41,7 @@ const targetEvidenceValidator = v.object({
   rawRating: v.number(),
   points: v.number(),
   passes: v.boolean(),
-  srsRating: v.union(v.literal('Again'), v.literal('Hard'), v.literal('Good'), v.literal('Easy')),
+  srsRating: v.union(v.literal("Again"), v.literal("Hard"), v.literal("Good"), v.literal("Easy")),
   idempotencyKey: v.string(),
   sourceRecordId: v.string(),
   formalObservationId: v.optional(v.string()),
@@ -51,13 +51,13 @@ const targetEvidenceValidator = v.object({
 });
 const observationOutcomeValidator = v.union(
   v.object({
-    kind: v.literal('rated'),
+    kind: v.literal("rated"),
     ...observationBaseValidator,
     rating: v.number(),
     targetEvidence: v.array(targetEvidenceValidator),
   }),
   v.object({
-    kind: v.literal('not_enough_evidence'),
+    kind: v.literal("not_enough_evidence"),
     ...observationBaseValidator,
   }),
 );
@@ -68,7 +68,12 @@ const canonicalCardValidator = v.object({
   variantKey: v.string(),
   stability: v.number(),
   difficulty: v.number(),
-  state: v.union(v.literal('new'), v.literal('learning'), v.literal('review'), v.literal('relearning')),
+  state: v.union(
+    v.literal("new"),
+    v.literal("learning"),
+    v.literal("review"),
+    v.literal("relearning"),
+  ),
   dueDate: v.string(),
   elapsedDays: v.number(),
   scheduledDays: v.number(),
@@ -84,7 +89,7 @@ const proficiencyProjectionValidator = v.object({
   rawRating: v.number(),
   points: v.number(),
   passes: v.boolean(),
-  srsRating: v.union(v.literal('Again'), v.literal('Hard'), v.literal('Good'), v.literal('Easy')),
+  srsRating: v.union(v.literal("Again"), v.literal("Hard"), v.literal("Good"), v.literal("Easy")),
   idempotencyKey: v.string(),
   sourceRecordId: v.string(),
   formalObservationId: v.optional(v.string()),
@@ -97,7 +102,12 @@ const knowledgeStateValidator = v.object({
   mastery: v.number(),
   retention: v.number(),
   isProficient: v.boolean(),
-  state: v.union(v.literal('mastered'), v.literal('decaying'), v.literal('inProgress'), v.literal('untouched')),
+  state: v.union(
+    v.literal("mastered"),
+    v.literal("decaying"),
+    v.literal("inProgress"),
+    v.literal("untouched"),
+  ),
   lastUpdated: v.optional(v.number()),
 });
 const currentProficiencyValidator = v.object({
@@ -126,21 +136,21 @@ const teacherEvidenceResultValidator = v.object({
   priority: v.array(priorityValidator),
 });
 const observationTypeValidator = v.union(
-  v.literal('walkthrough'),
-  v.literal('formal_q1'),
-  v.literal('formal_q4'),
+  v.literal("walkthrough"),
+  v.literal("formal_q1"),
+  v.literal("formal_q4"),
 );
 const observationPriorityReasonValidator = v.union(
-  v.literal('below_proficient'),
-  v.literal('approved_plan_priority'),
-  v.literal('gbf_phase_priority'),
-  v.literal('overdue'),
-  v.literal('evidence_gap'),
-  v.literal('due'),
+  v.literal("below_proficient"),
+  v.literal("approved_plan_priority"),
+  v.literal("gbf_phase_priority"),
+  v.literal("overdue"),
+  v.literal("evidence_gap"),
+  v.literal("due"),
 );
 const observationItemOutcomeValidator = v.union(
-  v.object({ kind: v.literal('rated'), rating: v.number() }),
-  v.object({ kind: v.literal('not_enough_evidence') }),
+  v.object({ kind: v.literal("rated"), rating: v.number() }),
+  v.object({ kind: v.literal("not_enough_evidence") }),
 );
 const observationItemValidator = v.object({
   itemId: v.string(),
@@ -156,20 +166,20 @@ const observationItemChangeValidator = v.object({
   evidenceNote: v.optional(v.union(v.null(), v.string())),
 });
 const improvementPlanStateValidator = v.union(
-  v.literal('proposed'),
-  v.literal('active'),
-  v.literal('closed'),
+  v.literal("proposed"),
+  v.literal("active"),
+  v.literal("closed"),
 );
 const improvementPlanOutcomeValidator = v.union(
-  v.literal('successful'),
-  v.literal('insufficient_improvement'),
+  v.literal("successful"),
+  v.literal("insufficient_improvement"),
 );
 const improvementPlanEventKindValidator = v.union(
-  v.literal('proposed'),
-  v.literal('approved'),
-  v.literal('teacher_acknowledged'),
-  v.literal('supervisor_acknowledged'),
-  v.literal('closed'),
+  v.literal("proposed"),
+  v.literal("approved"),
+  v.literal("teacher_acknowledged"),
+  v.literal("supervisor_acknowledged"),
+  v.literal("closed"),
 );
 const improvementPlanTargetResultValidator = v.object({
   componentId: v.string(),
@@ -177,9 +187,9 @@ const improvementPlanTargetResultValidator = v.object({
   expectedRating: v.number(),
   currentRating: v.union(v.number(), v.null()),
   state: v.union(
-    v.literal('no_plan_evidence'),
-    v.literal('below_expected'),
-    v.literal('meets_expected'),
+    v.literal("no_plan_evidence"),
+    v.literal("below_expected"),
+    v.literal("meets_expected"),
   ),
   evidenceDueAt: v.number(),
   evidenceDue: v.boolean(),
@@ -190,25 +200,26 @@ const improvementPlanTargetResultValidator = v.object({
 
 export default defineSchema({
   coaching_cycles: defineTable(coachingFields)
-    .index('by_organizationId_and_teacherProfileId', ['organizationId', 'teacherProfileId'])
-    .index('by_organizationId_and_state', ['organizationId', 'state']),
+    .index("by_organizationId_and_teacherProfileId", ["organizationId", "teacherProfileId"])
+    .index("by_organizationId_and_state", ["organizationId", "state"]),
   organizations: defineTable({
     slug: v.string(),
     name: v.string(),
-    branding: v.optional(v.object({
-      displayName: v.string(),
-      logoPath: v.string(),
-      primaryColor: v.string(),
-      accentColor: v.string(),
-    })),
+    branding: v.optional(
+      v.object({
+        displayName: v.string(),
+        logoPath: v.string(),
+        primaryColor: v.string(),
+        accentColor: v.string(),
+      }),
+    ),
     isActive: v.boolean(),
     createdAt: v.number(),
     updatedAt: v.number(),
-  })
-    .index('by_slug', ['slug']),
+  }).index("by_slug", ["slug"]),
 
   accounts: defineTable({
-    organizationId: v.id('organizations'),
+    organizationId: v.id("organizations"),
     username: v.string(),
     displayName: v.string(),
     sharedSessionRole: sharedSessionRoleValidator,
@@ -216,12 +227,12 @@ export default defineSchema({
     createdAt: v.number(),
     updatedAt: v.number(),
   })
-    .index('by_username', ['username'])
-    .index('by_organizationId', ['organizationId'])
-    .index('by_organizationId_and_isActive', ['organizationId', 'isActive']),
+    .index("by_username", ["username"])
+    .index("by_organizationId", ["organizationId"])
+    .index("by_organizationId_and_isActive", ["organizationId", "isActive"]),
 
   auth_credentials: defineTable({
-    accountId: v.id('accounts'),
+    accountId: v.id("accounts"),
     username: v.string(),
     passwordHash: v.string(),
     passwordSalt: v.string(),
@@ -231,87 +242,115 @@ export default defineSchema({
     createdAt: v.number(),
     updatedAt: v.number(),
   })
-    .index('by_accountId', ['accountId'])
-    .index('by_username', ['username']),
+    .index("by_accountId", ["accountId"])
+    .index("by_username", ["username"]),
 
   teacher_profiles: defineTable({
-    organizationId: v.id('organizations'),
-    accountId: v.id('accounts'),
+    organizationId: v.id("organizations"),
+    accountId: v.id("accounts"),
     position: v.optional(v.string()),
-    currentGbfAssignmentId: v.optional(v.union(v.id('teacher_gbf_assignments'), v.null())),
+    currentGbfAssignmentId: v.optional(v.union(v.id("teacher_gbf_assignments"), v.null())),
     isActive: v.boolean(),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
-    .index('by_accountId', ['accountId'])
-    .index('by_organizationId_and_isActive', ['organizationId', 'isActive']),
+    .index("by_accountId", ["accountId"])
+    .index("by_organizationId_and_isActive", ["organizationId", "isActive"]),
 
   departments: defineTable({
-    organizationId: v.id('organizations'),
+    organizationId: v.id("organizations"),
     key: v.string(),
     name: v.string(),
     isActive: v.boolean(),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
-    .index('by_organizationId', ['organizationId'])
-    .index('by_organizationId_and_key', ['organizationId', 'key'])
-    .index('by_organizationId_and_isActive', ['organizationId', 'isActive']),
+    .index("by_organizationId", ["organizationId"])
+    .index("by_organizationId_and_key", ["organizationId", "key"])
+    .index("by_organizationId_and_isActive", ["organizationId", "isActive"]),
 
   department_memberships: defineTable({
-    organizationId: v.id('organizations'),
-    departmentId: v.id('departments'),
-    teacherProfileId: v.id('teacher_profiles'),
+    organizationId: v.id("organizations"),
+    departmentId: v.id("departments"),
+    teacherProfileId: v.id("teacher_profiles"),
     status: statusValidator,
-    createdByAccountId: v.id('accounts'),
+    createdByAccountId: v.id("accounts"),
     createdAt: v.number(),
-    revokedByAccountId: v.optional(v.id('accounts')),
+    revokedByAccountId: v.optional(v.id("accounts")),
     revokedAt: v.optional(v.number()),
   })
-    .index('by_organizationId_and_status', ['organizationId', 'status'])
-    .index('by_org_dept_teacher_status', ['organizationId', 'departmentId', 'teacherProfileId', 'status'])
-    .index('by_organizationId_and_teacherProfileId_and_status', ['organizationId', 'teacherProfileId', 'status']),
+    .index("by_organizationId_and_status", ["organizationId", "status"])
+    .index("by_org_dept_teacher_status", [
+      "organizationId",
+      "departmentId",
+      "teacherProfileId",
+      "status",
+    ])
+    .index("by_organizationId_and_teacherProfileId_and_status", [
+      "organizationId",
+      "teacherProfileId",
+      "status",
+    ]),
 
   role_assignments: defineTable({
-    organizationId: v.id('organizations'),
-    accountId: v.id('accounts'),
+    organizationId: v.id("organizations"),
+    accountId: v.id("accounts"),
     role: roleValidator,
     status: statusValidator,
-    createdByAccountId: v.id('accounts'),
+    createdByAccountId: v.id("accounts"),
     createdAt: v.number(),
-    revokedByAccountId: v.optional(v.id('accounts')),
+    revokedByAccountId: v.optional(v.id("accounts")),
     revokedAt: v.optional(v.number()),
   })
-    .index('by_organizationId_and_accountId_and_role_and_status', ['organizationId', 'accountId', 'role', 'status'])
-    .index('by_organizationId_and_accountId_and_status', ['organizationId', 'accountId', 'status'])
-    .index('by_organizationId_and_role_and_status', ['organizationId', 'role', 'status']),
+    .index("by_organizationId_and_accountId_and_role_and_status", [
+      "organizationId",
+      "accountId",
+      "role",
+      "status",
+    ])
+    .index("by_organizationId_and_accountId_and_status", ["organizationId", "accountId", "status"])
+    .index("by_organizationId_and_role_and_status", ["organizationId", "role", "status"]),
 
   hod_assignments: defineTable({
-    organizationId: v.id('organizations'),
-    accountId: v.id('accounts'),
-    departmentId: v.id('departments'),
+    organizationId: v.id("organizations"),
+    accountId: v.id("accounts"),
+    departmentId: v.id("departments"),
     status: statusValidator,
-    createdByAccountId: v.id('accounts'),
+    createdByAccountId: v.id("accounts"),
     createdAt: v.number(),
-    revokedByAccountId: v.optional(v.id('accounts')),
+    revokedByAccountId: v.optional(v.id("accounts")),
     revokedAt: v.optional(v.number()),
   })
-    .index('by_organizationId_and_accountId_and_departmentId_and_status', ['organizationId', 'accountId', 'departmentId', 'status'])
-    .index('by_organizationId_and_accountId_and_status', ['organizationId', 'accountId', 'status']),
+    .index("by_organizationId_and_accountId_and_departmentId_and_status", [
+      "organizationId",
+      "accountId",
+      "departmentId",
+      "status",
+    ])
+    .index("by_organizationId_and_accountId_and_status", ["organizationId", "accountId", "status"]),
 
   coach_assignments: defineTable({
-    organizationId: v.id('organizations'),
-    accountId: v.id('accounts'),
-    teacherProfileId: v.id('teacher_profiles'),
+    organizationId: v.id("organizations"),
+    accountId: v.id("accounts"),
+    teacherProfileId: v.id("teacher_profiles"),
     status: statusValidator,
-    createdByAccountId: v.id('accounts'),
+    createdByAccountId: v.id("accounts"),
     createdAt: v.number(),
-    revokedByAccountId: v.optional(v.id('accounts')),
+    revokedByAccountId: v.optional(v.id("accounts")),
     revokedAt: v.optional(v.number()),
   })
-    .index('by_organizationId_and_accountId_and_teacherProfileId_and_status', ['organizationId', 'accountId', 'teacherProfileId', 'status'])
-    .index('by_organizationId_and_accountId_and_status', ['organizationId', 'accountId', 'status'])
-    .index('by_organizationId_and_teacherProfileId_and_status', ['organizationId', 'teacherProfileId', 'status']),
+    .index("by_organizationId_and_accountId_and_teacherProfileId_and_status", [
+      "organizationId",
+      "accountId",
+      "teacherProfileId",
+      "status",
+    ])
+    .index("by_organizationId_and_accountId_and_status", ["organizationId", "accountId", "status"])
+    .index("by_organizationId_and_teacherProfileId_and_status", [
+      "organizationId",
+      "teacherProfileId",
+      "status",
+    ]),
 
   login_rate_limits: defineTable({
     key: v.string(),
@@ -319,10 +358,10 @@ export default defineSchema({
     failureCount: v.number(),
     blockedUntil: v.optional(v.number()),
     updatedAt: v.number(),
-  }).index('by_key', ['key']),
+  }).index("by_key", ["key"]),
 
   teacher_proficiency_idempotency: defineTable({
-    organizationId: v.id('organizations'),
+    organizationId: v.id("organizations"),
     teacherId: v.string(),
     idempotencyKey: v.string(),
     fingerprint: v.string(),
@@ -330,39 +369,43 @@ export default defineSchema({
     outcomeId: v.string(),
     createdAt: v.number(),
   })
-    .index('by_organizationId_and_idempotencyKey', ['organizationId', 'idempotencyKey'])
-    .index('by_organizationId_and_teacherId', ['organizationId', 'teacherId']),
+    .index("by_organizationId_and_idempotencyKey", ["organizationId", "idempotencyKey"])
+    .index("by_organizationId_and_teacherId", ["organizationId", "teacherId"]),
 
   teacher_observation_outcomes: defineTable({
-    organizationId: v.id('organizations'),
+    organizationId: v.id("organizations"),
     teacherId: v.string(),
     idempotencyKey: v.string(),
     outcome: observationOutcomeValidator,
     occurredAt: v.number(),
     createdAt: v.number(),
   })
-    .index('by_organizationId_and_occurredAt', ['organizationId', 'occurredAt'])
-    .index('by_organizationId_and_teacherId_and_occurredAt', ['organizationId', 'teacherId', 'occurredAt']),
+    .index("by_organizationId_and_occurredAt", ["organizationId", "occurredAt"])
+    .index("by_organizationId_and_teacherId_and_occurredAt", [
+      "organizationId",
+      "teacherId",
+      "occurredAt",
+    ]),
 
   teacher_proficiency: defineTable({
-    organizationId: v.id('organizations'),
+    organizationId: v.id("organizations"),
     teacherId: v.string(),
     skillId: v.string(),
     projection: proficiencyProjectionValidator,
     updatedAt: v.number(),
-  }).index('by_organizationId_and_teacherId', ['organizationId', 'teacherId']),
+  }).index("by_organizationId_and_teacherId", ["organizationId", "teacherId"]),
 
   teacher_srs_cards: defineTable({
-    organizationId: v.id('organizations'),
+    organizationId: v.id("organizations"),
     teacherId: v.string(),
     skillId: v.string(),
     variantKey: v.string(),
     card: canonicalCardValidator,
     updatedAt: v.number(),
-  }).index('by_organizationId_and_teacherId', ['organizationId', 'teacherId']),
+  }).index("by_organizationId_and_teacherId", ["organizationId", "teacherId"]),
 
   teacher_srs_reviews: defineTable({
-    organizationId: v.id('organizations'),
+    organizationId: v.id("organizations"),
     teacherId: v.string(),
     cardId: v.string(),
     reviewId: v.string(),
@@ -376,59 +419,82 @@ export default defineSchema({
       reviewId: v.string(),
       cardId: v.string(),
       studentId: v.string(),
-      rating: v.union(v.literal('Again'), v.literal('Hard'), v.literal('Good'), v.literal('Easy')),
+      rating: v.union(v.literal("Again"), v.literal("Hard"), v.literal("Good"), v.literal("Easy")),
       submissionId: v.string(),
       paramsVersion: v.string(),
       reviewedAt: v.string(),
       evidence: v.union(
-        v.object({ action: v.literal('teacher_reset'), objectiveId: v.string() }),
+        v.object({ action: v.literal("teacher_reset"), objectiveId: v.string() }),
         v.object({
-          baseRating: v.union(v.literal('Again'), v.literal('Hard'), v.literal('Good'), v.literal('Easy')),
+          baseRating: v.union(
+            v.literal("Again"),
+            v.literal("Hard"),
+            v.literal("Good"),
+            v.literal("Easy"),
+          ),
           timingAdjusted: v.boolean(),
           reasons: v.array(v.string()),
           misconceptionTags: v.optional(v.array(v.string())),
         }),
       ),
       stateBefore: v.object({
-        stability: v.number(), difficulty: v.number(),
-        state: v.union(v.literal('new'), v.literal('learning'), v.literal('review'), v.literal('relearning')),
-        reps: v.number(), lapses: v.number(),
+        stability: v.number(),
+        difficulty: v.number(),
+        state: v.union(
+          v.literal("new"),
+          v.literal("learning"),
+          v.literal("review"),
+          v.literal("relearning"),
+        ),
+        reps: v.number(),
+        lapses: v.number(),
       }),
       stateAfter: v.object({
-        stability: v.number(), difficulty: v.number(),
-        state: v.union(v.literal('new'), v.literal('learning'), v.literal('review'), v.literal('relearning')),
-        reps: v.number(), lapses: v.number(),
+        stability: v.number(),
+        difficulty: v.number(),
+        state: v.union(
+          v.literal("new"),
+          v.literal("learning"),
+          v.literal("review"),
+          v.literal("relearning"),
+        ),
+        reps: v.number(),
+        lapses: v.number(),
       }),
     }),
     createdAt: v.number(),
-  }).index('by_organizationId_and_teacherId_and_reviewedAt', ['organizationId', 'teacherId', 'reviewedAt']),
+  }).index("by_organizationId_and_teacherId_and_reviewedAt", [
+    "organizationId",
+    "teacherId",
+    "reviewedAt",
+  ]),
 
   teacher_knowledge_state: defineTable({
-    organizationId: v.id('organizations'),
+    organizationId: v.id("organizations"),
     teacherId: v.string(),
     nodeId: v.string(),
     state: knowledgeStateValidator,
     updatedAt: v.number(),
-  }).index('by_organizationId_and_teacherId', ['organizationId', 'teacherId']),
+  }).index("by_organizationId_and_teacherId", ["organizationId", "teacherId"]),
 
   teacher_priority: defineTable({
-    organizationId: v.id('organizations'),
+    organizationId: v.id("organizations"),
     teacherId: v.string(),
     skillId: v.string(),
     projection: priorityValidator,
     updatedAt: v.number(),
-  }).index('by_organizationId_and_teacherId', ['organizationId', 'teacherId']),
+  }).index("by_organizationId_and_teacherId", ["organizationId", "teacherId"]),
 
   observation_records: defineTable({
-    organizationId: v.id('organizations'),
-    teacherProfileId: v.id('teacher_profiles'),
-    observerAccountId: v.id('accounts'),
+    organizationId: v.id("organizations"),
+    teacherProfileId: v.id("teacher_profiles"),
+    observerAccountId: v.id("accounts"),
     observationType: observationTypeValidator,
     schoolYear: v.string(),
     sourceVersion: v.string(),
     frameworkVersion: v.string(),
     observedAt: v.string(),
-    status: v.union(v.literal('draft'), v.literal('submitted')),
+    status: v.union(v.literal("draft"), v.literal("submitted")),
     revision: v.number(),
     items: v.array(observationItemValidator),
     submissionKey: v.optional(v.string()),
@@ -438,20 +504,33 @@ export default defineSchema({
     createdAt: v.number(),
     updatedAt: v.number(),
   })
-    .index('by_org_observer_status', ['organizationId', 'observerAccountId', 'status'])
-    .index('by_org_submission_key', ['organizationId', 'submissionKey'])
-    .index('by_org_teacher_status_submitted', ['organizationId', 'teacherProfileId', 'status', 'submittedAt'])
-    .index('by_org_teacher_type_year_status', ['organizationId', 'teacherProfileId', 'observationType', 'schoolYear', 'status'])
-    .index(
-      'by_organizationId_and_status_and_observationType_and_schoolYear',
-      ['organizationId', 'status', 'observationType', 'schoolYear'],
-    ),
+    .index("by_org_observer_status", ["organizationId", "observerAccountId", "status"])
+    .index("by_org_submission_key", ["organizationId", "submissionKey"])
+    .index("by_org_teacher_status_submitted", [
+      "organizationId",
+      "teacherProfileId",
+      "status",
+      "submittedAt",
+    ])
+    .index("by_org_teacher_type_year_status", [
+      "organizationId",
+      "teacherProfileId",
+      "observationType",
+      "schoolYear",
+      "status",
+    ])
+    .index("by_organizationId_and_status_and_observationType_and_schoolYear", [
+      "organizationId",
+      "status",
+      "observationType",
+      "schoolYear",
+    ]),
 
   observation_amendments: defineTable({
-    organizationId: v.id('organizations'),
-    observationId: v.id('observation_records'),
-    teacherProfileId: v.id('teacher_profiles'),
-    authorAccountId: v.id('accounts'),
+    organizationId: v.id("organizations"),
+    observationId: v.id("observation_records"),
+    teacherProfileId: v.id("teacher_profiles"),
+    authorAccountId: v.id("accounts"),
     idempotencyKey: v.string(),
     fingerprint: v.string(),
     version: v.number(),
@@ -459,77 +538,82 @@ export default defineSchema({
     changedItems: v.array(observationItemChangeValidator),
     occurredAt: v.number(),
   })
-    .index('by_org_observation_version', ['organizationId', 'observationId', 'version'])
-    .index('by_org_idempotency_key', ['organizationId', 'idempotencyKey'])
-    .index('by_org_teacher_occurred', ['organizationId', 'teacherProfileId', 'occurredAt']),
+    .index("by_org_observation_version", ["organizationId", "observationId", "version"])
+    .index("by_org_idempotency_key", ["organizationId", "idempotencyKey"])
+    .index("by_org_teacher_occurred", ["organizationId", "teacherProfileId", "occurredAt"]),
 
   teacher_evidence_supersessions: defineTable({
-    organizationId: v.id('organizations'),
-    teacherProfileId: v.id('teacher_profiles'),
-    observationId: v.id('observation_records'),
-    amendmentId: v.id('observation_amendments'),
+    organizationId: v.id("organizations"),
+    teacherProfileId: v.id("teacher_profiles"),
+    observationId: v.id("observation_records"),
+    amendmentId: v.id("observation_amendments"),
     itemId: v.string(),
     supersededEvidenceKey: v.string(),
     replacementEvidenceKey: v.string(),
     replacementOutcome: observationItemOutcomeValidator,
     occurredAt: v.number(),
   })
-    .index('by_org_occurred', ['organizationId', 'occurredAt'])
-    .index('by_org_teacher_occurred', ['organizationId', 'teacherProfileId', 'occurredAt']),
+    .index("by_org_occurred", ["organizationId", "occurredAt"])
+    .index("by_org_teacher_occurred", ["organizationId", "teacherProfileId", "occurredAt"]),
 
   teacher_attention_summaries: defineTable({
-    organizationId: v.id('organizations'),
-    teacherProfileId: v.id('teacher_profiles'),
+    organizationId: v.id("organizations"),
+    teacherProfileId: v.id("teacher_profiles"),
     targets: v.array(priorityValidator),
     updatedAt: v.number(),
   })
-    .index('by_organizationId', ['organizationId'])
-    .index('by_organizationId_and_teacherProfileId', ['organizationId', 'teacherProfileId']),
+    .index("by_organizationId", ["organizationId"])
+    .index("by_organizationId_and_teacherProfileId", ["organizationId", "teacherProfileId"]),
 
   observation_public_comments: defineTable({
-    organizationId: v.id('organizations'),
-    observationId: v.id('observation_records'),
-    teacherProfileId: v.id('teacher_profiles'),
-    authorAccountId: v.id('accounts'),
+    organizationId: v.id("organizations"),
+    observationId: v.id("observation_records"),
+    teacherProfileId: v.id("teacher_profiles"),
+    authorAccountId: v.id("accounts"),
     content: v.string(),
     createdAt: v.number(),
-  }).index('by_org_teacher_created', ['organizationId', 'teacherProfileId', 'createdAt'])
-    .index('by_organizationId_and_observationId', ['organizationId', 'observationId']),
+  })
+    .index("by_org_teacher_created", ["organizationId", "teacherProfileId", "createdAt"])
+    .index("by_organizationId_and_observationId", ["organizationId", "observationId"]),
 
   observation_private_comments: defineTable({
-    organizationId: v.id('organizations'),
-    observationId: v.id('observation_records'),
-    teacherProfileId: v.id('teacher_profiles'),
-    authorAccountId: v.id('accounts'),
+    organizationId: v.id("organizations"),
+    observationId: v.id("observation_records"),
+    teacherProfileId: v.id("teacher_profiles"),
+    authorAccountId: v.id("accounts"),
     content: v.string(),
     createdAt: v.number(),
-  }).index('by_org_teacher_created', ['organizationId', 'teacherProfileId', 'createdAt']),
+  }).index("by_org_teacher_created", ["organizationId", "teacherProfileId", "createdAt"]),
 
   teacher_observation_responses: defineTable({
-    organizationId: v.id('organizations'),
-    observationId: v.id('observation_records'),
-    teacherProfileId: v.id('teacher_profiles'),
-    authorAccountId: v.id('accounts'),
+    organizationId: v.id("organizations"),
+    observationId: v.id("observation_records"),
+    teacherProfileId: v.id("teacher_profiles"),
+    authorAccountId: v.id("accounts"),
     content: v.string(),
     submittedAt: v.number(),
   })
-    .index('by_org_observation', ['organizationId', 'observationId'])
-    .index('by_org_teacher_submitted', ['organizationId', 'teacherProfileId', 'submittedAt']),
+    .index("by_org_observation", ["organizationId", "observationId"])
+    .index("by_org_teacher_submitted", ["organizationId", "teacherProfileId", "submittedAt"]),
 
   improvement_plans: defineTable({
-    organizationId: v.id('organizations'),
-    teacherProfileId: v.id('teacher_profiles'),
+    organizationId: v.id("organizations"),
+    teacherProfileId: v.id("teacher_profiles"),
     state: improvementPlanStateValidator,
     revision: v.number(),
     latestVersion: v.number(),
-    pendingVersionId: v.optional(v.id('improvement_plan_versions')),
-    activeVersionId: v.optional(v.id('improvement_plan_versions')),
+    pendingVersionId: v.optional(v.id("improvement_plan_versions")),
+    activeVersionId: v.optional(v.id("improvement_plan_versions")),
     activeVersion: v.optional(v.number()),
-    activeTargets: v.optional(v.array(v.object({
-      componentId: v.string(),
-      skillId: v.string(),
-      expectedRating: v.number(),
-    }))),
+    activeTargets: v.optional(
+      v.array(
+        v.object({
+          componentId: v.string(),
+          skillId: v.string(),
+          expectedRating: v.number(),
+        }),
+      ),
+    ),
     approvedAt: v.optional(v.number()),
     planEndAt: v.optional(v.number()),
     reviewMeetingAt: v.optional(v.number()),
@@ -542,20 +626,20 @@ export default defineSchema({
     createdAt: v.number(),
     updatedAt: v.number(),
   })
-    .index('by_org_teacher_state', ['organizationId', 'teacherProfileId', 'state'])
-    .index('by_org_created', ['organizationId', 'createdAt'])
-    .index('by_org_state_updated', ['organizationId', 'state', 'updatedAt']),
+    .index("by_org_teacher_state", ["organizationId", "teacherProfileId", "state"])
+    .index("by_org_created", ["organizationId", "createdAt"])
+    .index("by_org_state_updated", ["organizationId", "state", "updatedAt"]),
 
   improvement_plan_versions: defineTable({
-    organizationId: v.id('organizations'),
-    planId: v.id('improvement_plans'),
-    teacherProfileId: v.id('teacher_profiles'),
+    organizationId: v.id("organizations"),
+    planId: v.id("improvement_plans"),
+    teacherProfileId: v.id("teacher_profiles"),
     version: v.number(),
-    proposerAccountId: v.id('accounts'),
-    supervisorAccountId: v.id('accounts'),
+    proposerAccountId: v.id("accounts"),
+    supervisorAccountId: v.id("accounts"),
     teacherName: v.string(),
     position: v.string(),
-    departmentId: v.id('departments'),
+    departmentId: v.id("departments"),
     departmentName: v.string(),
     supervisorName: v.string(),
     requestedPlanEndDate: v.union(v.string(), v.null()),
@@ -573,13 +657,13 @@ export default defineSchema({
     sourceVersion: v.string(),
     fingerprint: v.string(),
     proposedAt: v.number(),
-  }).index('by_org_plan_version', ['organizationId', 'planId', 'version']),
+  }).index("by_org_plan_version", ["organizationId", "planId", "version"]),
 
   improvement_plan_targets: defineTable({
-    organizationId: v.id('organizations'),
-    planId: v.id('improvement_plans'),
-    versionId: v.id('improvement_plan_versions'),
-    teacherProfileId: v.id('teacher_profiles'),
+    organizationId: v.id("organizations"),
+    planId: v.id("improvement_plans"),
+    versionId: v.id("improvement_plan_versions"),
+    teacherProfileId: v.id("teacher_profiles"),
     ordinal: v.number(),
     componentId: v.string(),
     componentTitle: v.string(),
@@ -592,29 +676,29 @@ export default defineSchema({
     componentSourceRefs: v.array(improvementPlanSourceRefValidator),
     skillSourceRefs: v.array(improvementPlanSourceRefValidator),
     createdAt: v.number(),
-  }).index('by_org_version_ordinal', ['organizationId', 'versionId', 'ordinal']),
+  }).index("by_org_version_ordinal", ["organizationId", "versionId", "ordinal"]),
 
   improvement_plan_acknowledgments: defineTable({
-    organizationId: v.id('organizations'),
-    planId: v.id('improvement_plans'),
-    versionId: v.id('improvement_plan_versions'),
-    teacherProfileId: v.id('teacher_profiles'),
-    kind: v.union(v.literal('teacher'), v.literal('supervisor')),
-    actorAccountId: v.id('accounts'),
+    organizationId: v.id("organizations"),
+    planId: v.id("improvement_plans"),
+    versionId: v.id("improvement_plan_versions"),
+    teacherProfileId: v.id("teacher_profiles"),
+    kind: v.union(v.literal("teacher"), v.literal("supervisor")),
+    actorAccountId: v.id("accounts"),
     requestId: v.string(),
     acknowledgedAt: v.number(),
-  }).index('by_org_version_kind', ['organizationId', 'versionId', 'kind']),
+  }).index("by_org_version_kind", ["organizationId", "versionId", "kind"]),
 
   improvement_plan_events: defineTable({
-    organizationId: v.id('organizations'),
-    planId: v.id('improvement_plans'),
-    teacherProfileId: v.id('teacher_profiles'),
+    organizationId: v.id("organizations"),
+    planId: v.id("improvement_plans"),
+    teacherProfileId: v.id("teacher_profiles"),
     version: v.number(),
-    versionId: v.optional(v.id('improvement_plan_versions')),
+    versionId: v.optional(v.id("improvement_plan_versions")),
     kind: improvementPlanEventKindValidator,
     requestId: v.string(),
     fingerprint: v.string(),
-    actorAccountId: v.id('accounts'),
+    actorAccountId: v.id("accounts"),
     occurredAt: v.number(),
     revision: v.number(),
     payload: v.object({
@@ -622,21 +706,20 @@ export default defineSchema({
       note: v.optional(v.string()),
       planStartAt: v.optional(v.number()),
       planEndAt: v.optional(v.number()),
-      acknowledgmentKind: v.optional(v.union(v.literal('teacher'), v.literal('supervisor'))),
+      acknowledgmentKind: v.optional(v.union(v.literal("teacher"), v.literal("supervisor"))),
       acknowledgmentId: v.optional(v.string()),
       targetResults: v.optional(v.array(improvementPlanTargetResultValidator)),
     }),
   })
-    .index('by_org_request', ['organizationId', 'requestId'])
-    .index('by_org_plan_time', ['organizationId', 'planId', 'occurredAt']),
+    .index("by_org_request", ["organizationId", "requestId"])
+    .index("by_org_plan_time", ["organizationId", "planId", "occurredAt"]),
 
   teacher_gbf_assignments: defineTable({
-    organizationId: v.id('organizations'),
-    teacherProfileId: v.id('teacher_profiles'),
+    organizationId: v.id("organizations"),
+    teacherProfileId: v.id("teacher_profiles"),
     assignedSkillIds: v.array(v.string()),
     unsequencedGapSkillIds: v.array(v.string()),
-    actorAccountId: v.id('accounts'),
+    actorAccountId: v.id("accounts"),
     assignedAt: v.number(),
   }),
-
 });

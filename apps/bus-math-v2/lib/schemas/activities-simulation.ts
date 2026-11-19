@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 const lemonadeInventorySchema = z.object({
   lemons: z.number().int().nonnegative(),
@@ -19,7 +19,7 @@ const lemonadeDailySalesSchema = z.object({
 });
 
 const lemonadeSupplyOptionSchema = z.object({
-  id: z.enum(['lemons', 'sugar', 'cups']),
+  id: z.enum(["lemons", "sugar", "cups"]),
   label: z.string(),
   quantity: z.number().int().positive(),
   cost: z.number().positive(),
@@ -73,7 +73,7 @@ const startupDecisionOptionSchema = z.object({
 
 const startupDecisionSchema = z.object({
   id: z.string(),
-  type: z.enum(['funding', 'team', 'product', 'marketing', 'strategy']),
+  type: z.enum(["funding", "team", "product", "marketing", "strategy"]),
   title: z.string(),
   description: z.string(),
   options: z.array(startupDecisionOptionSchema).min(1),
@@ -84,7 +84,7 @@ const startupStageSchema = z.object({
   name: z.string(),
   badgeClassName: z.string(),
   progress: z.number().int().min(0).max(100),
-  icon: z.string().default('rocket'),
+  icon: z.string().default("rocket"),
 });
 
 const startupDecisionFlowSchema = z.object({
@@ -129,7 +129,7 @@ const cashFlowSchema = z.object({
   description: z.string(),
   amount: z.number(),
   daysLeft: z.number().int().nonnegative(),
-  type: z.enum(['incoming', 'outgoing']),
+  type: z.enum(["incoming", "outgoing"]),
   canModify: z.boolean(),
 });
 
@@ -155,7 +155,7 @@ const cashFlowInitialStateSchema = z.object({
     lineOfCredit: 0,
     delayExpense: 0,
   }),
-  gameStatus: z.enum(['playing', 'won', 'lost']).default('playing'),
+  gameStatus: z.enum(["playing", "won", "lost"]).default("playing"),
 });
 
 const inventoryProductSchema = z.object({
@@ -165,7 +165,7 @@ const inventoryProductSchema = z.object({
   quantity: z.number().int().nonnegative().default(0),
   cost: z.number().positive(),
   price: z.number().positive(),
-  demand: z.enum(['high', 'medium', 'low']).default('medium'),
+  demand: z.enum(["high", "medium", "low"]).default("medium"),
   demandHistory: z.array(z.number().int().nonnegative()).default([0, 0, 0, 0, 0]),
   totalSold: z.number().int().nonnegative().default(0),
   totalOrdered: z.number().int().nonnegative().default(0),
@@ -190,23 +190,25 @@ const inventoryInitialStateSchema = z.object({
     dailyStorageCost: 50,
   }),
   profitTarget: z.number().nonnegative().default(2000),
-  gameStatus: z.enum(['playing', 'won', 'lost']).default('playing'),
+  gameStatus: z.enum(["playing", "won", "lost"]).default("playing"),
 });
 
 const pitchContentSchema = z.object({
-  title: z.string().default(''),
-  content: z.string().default(''),
-  speakingNotes: z.string().default(''),
+  title: z.string().default(""),
+  content: z.string().default(""),
+  speakingNotes: z.string().default(""),
   timeAllocation: z.number().int().positive(),
   completeness: z.number().min(0).max(100).default(0),
 });
 
 const pitchBusinessModelSchema = z.object({
-  type: z.enum(['saas', 'ecommerce', 'fintech', 'healthtech', 'marketplace', 'ai-ml']).default('saas'),
-  name: z.string().default(''),
-  industry: z.string().default(''),
-  targetMarket: z.string().default(''),
-  revenueModel: z.string().default(''),
+  type: z
+    .enum(["saas", "ecommerce", "fintech", "healthtech", "marketplace", "ai-ml"])
+    .default("saas"),
+  name: z.string().default(""),
+  industry: z.string().default(""),
+  targetMarket: z.string().default(""),
+  revenueModel: z.string().default(""),
 });
 
 const pitchFinancialProjectionsSchema = z.object({
@@ -228,28 +230,76 @@ const pitchSectionDefinitionSchema = z.object({
 
 const pitchInitialStateSchema = z.object({
   businessModel: pitchBusinessModelSchema.default({
-    type: 'saas',
-    name: '',
-    industry: '',
-    targetMarket: '',
-    revenueModel: '',
+    type: "saas",
+    name: "",
+    industry: "",
+    targetMarket: "",
+    revenueModel: "",
   }),
   sections: z
     .object({
-      problem: pitchContentSchema.default({ title: '', content: '', speakingNotes: '', timeAllocation: 45, completeness: 0 }),
-      solution: pitchContentSchema.default({ title: '', content: '', speakingNotes: '', timeAllocation: 60, completeness: 0 }),
-      market: pitchContentSchema.default({ title: '', content: '', speakingNotes: '', timeAllocation: 45, completeness: 0 }),
-      'business-model': pitchContentSchema.default({ title: '', content: '', speakingNotes: '', timeAllocation: 45, completeness: 0 }),
-      financials: pitchContentSchema.default({ title: '', content: '', speakingNotes: '', timeAllocation: 60, completeness: 0 }),
-      ask: pitchContentSchema.default({ title: '', content: '', speakingNotes: '', timeAllocation: 45, completeness: 0 }),
+      problem: pitchContentSchema.default({
+        title: "",
+        content: "",
+        speakingNotes: "",
+        timeAllocation: 45,
+        completeness: 0,
+      }),
+      solution: pitchContentSchema.default({
+        title: "",
+        content: "",
+        speakingNotes: "",
+        timeAllocation: 60,
+        completeness: 0,
+      }),
+      market: pitchContentSchema.default({
+        title: "",
+        content: "",
+        speakingNotes: "",
+        timeAllocation: 45,
+        completeness: 0,
+      }),
+      "business-model": pitchContentSchema.default({
+        title: "",
+        content: "",
+        speakingNotes: "",
+        timeAllocation: 45,
+        completeness: 0,
+      }),
+      financials: pitchContentSchema.default({
+        title: "",
+        content: "",
+        speakingNotes: "",
+        timeAllocation: 60,
+        completeness: 0,
+      }),
+      ask: pitchContentSchema.default({
+        title: "",
+        content: "",
+        speakingNotes: "",
+        timeAllocation: 45,
+        completeness: 0,
+      }),
     })
     .default({
-      problem: { title: '', content: '', speakingNotes: '', timeAllocation: 45, completeness: 0 },
-      solution: { title: '', content: '', speakingNotes: '', timeAllocation: 60, completeness: 0 },
-      market: { title: '', content: '', speakingNotes: '', timeAllocation: 45, completeness: 0 },
-      'business-model': { title: '', content: '', speakingNotes: '', timeAllocation: 45, completeness: 0 },
-      financials: { title: '', content: '', speakingNotes: '', timeAllocation: 60, completeness: 0 },
-      ask: { title: '', content: '', speakingNotes: '', timeAllocation: 45, completeness: 0 },
+      problem: { title: "", content: "", speakingNotes: "", timeAllocation: 45, completeness: 0 },
+      solution: { title: "", content: "", speakingNotes: "", timeAllocation: 60, completeness: 0 },
+      market: { title: "", content: "", speakingNotes: "", timeAllocation: 45, completeness: 0 },
+      "business-model": {
+        title: "",
+        content: "",
+        speakingNotes: "",
+        timeAllocation: 45,
+        completeness: 0,
+      },
+      financials: {
+        title: "",
+        content: "",
+        speakingNotes: "",
+        timeAllocation: 60,
+        completeness: 0,
+      },
+      ask: { title: "", content: "", speakingNotes: "", timeAllocation: 45, completeness: 0 },
     }),
   financials: pitchFinancialProjectionsSchema.default({
     year1Revenue: 0,
@@ -263,19 +313,21 @@ const pitchInitialStateSchema = z.object({
 });
 
 export const simulationActivityPropsSchemas = {
-  'lemonade-stand': z.object({
-    title: z.string().default('Lemonade Stand Tycoon'),
-    description: z.string().default('Run a lemonade stand to learn pricing, inventory, and profit.'),
+  "lemonade-stand": z.object({
+    title: z.string().default("Lemonade Stand Tycoon"),
+    description: z
+      .string()
+      .default("Run a lemonade stand to learn pricing, inventory, and profit."),
     supplyOptions: z.array(lemonadeSupplyOptionSchema).default([
-      { id: 'lemons', label: 'Fresh Lemons', quantity: 10, cost: 3, unit: 'bag' },
-      { id: 'sugar', label: 'Organic Sugar', quantity: 10, cost: 2, unit: 'bag' },
-      { id: 'cups', label: 'Compostable Cups', quantity: 20, cost: 1.5, unit: 'pack' },
+      { id: "lemons", label: "Fresh Lemons", quantity: 10, cost: 3, unit: "bag" },
+      { id: "sugar", label: "Organic Sugar", quantity: 10, cost: 2, unit: "bag" },
+      { id: "cups", label: "Compostable Cups", quantity: 20, cost: 1.5, unit: "pack" },
     ]),
     weatherPatterns: z.array(lemonadeWeatherSchema).default([
-      { id: 'sunny', emoji: '☀️', description: 'Perfect lemonade weather!', multiplier: 1.5 },
-      { id: 'hot', emoji: '🔥', description: 'Everyone wants cold drinks!', multiplier: 2 },
-      { id: 'cloudy', emoji: '☁️', description: 'Moderate demand expected', multiplier: 0.8 },
-      { id: 'rainy', emoji: '🌧️', description: 'Few customers today', multiplier: 0.3 },
+      { id: "sunny", emoji: "☀️", description: "Perfect lemonade weather!", multiplier: 1.5 },
+      { id: "hot", emoji: "🔥", description: "Everyone wants cold drinks!", multiplier: 2 },
+      { id: "cloudy", emoji: "☁️", description: "Moderate demand expected", multiplier: 0.8 },
+      { id: "rainy", emoji: "🌧️", description: "Few customers today", multiplier: 0.3 },
     ]),
     ingredientCosts: z
       .object({
@@ -323,7 +375,7 @@ export const simulationActivityPropsSchemas = {
           sugar: 1,
           price: 1,
         }),
-        weather: z.string().default('sunny'),
+        weather: z.string().default("sunny"),
         customerSatisfaction: z.number().min(0).max(100).default(100),
         isSellingActive: z.boolean().default(false),
         dailySales: lemonadeDailySalesSchema.default({
@@ -331,7 +383,7 @@ export const simulationActivityPropsSchemas = {
           dailyRevenue: 0,
           dailyExpenses: 0,
         }),
-        gameStatus: z.enum(['playing', 'ended']).default('playing'),
+        gameStatus: z.enum(["playing", "ended"]).default("playing"),
       })
       .default({
         cash: 50,
@@ -340,179 +392,209 @@ export const simulationActivityPropsSchemas = {
         expenses: 0,
         inventory: { lemons: 0, sugar: 0, cups: 0 },
         recipe: { lemons: 2, sugar: 1, price: 1 },
-        weather: 'sunny',
+        weather: "sunny",
         customerSatisfaction: 100,
         isSellingActive: false,
         dailySales: { cupsSold: 0, dailyRevenue: 0, dailyExpenses: 0 },
-        gameStatus: 'playing',
+        gameStatus: "playing",
       }),
   }),
-  'startup-journey': z.object({
-    title: z.string().default('Startup Journey'),
+  "startup-journey": z.object({
+    title: z.string().default("Startup Journey"),
     description: z
       .string()
-      .default('Build a tech startup from idea to success and balance funding, growth, and strategy.'),
+      .default(
+        "Build a tech startup from idea to success and balance funding, growth, and strategy.",
+      ),
     stages: z
       .array(startupStageSchema)
       .min(1)
       .default([
-        { id: 'idea', name: 'Idea', badgeClassName: 'bg-yellow-100 text-yellow-800 border-yellow-300', progress: 20, icon: 'lightbulb' },
-        { id: 'prototype', name: 'Prototype', badgeClassName: 'bg-blue-100 text-blue-800 border-blue-300', progress: 40, icon: 'code' },
-        { id: 'launch', name: 'Launch', badgeClassName: 'bg-purple-100 text-purple-800 border-purple-300', progress: 60, icon: 'rocket' },
-        { id: 'growth', name: 'Growth', badgeClassName: 'bg-green-100 text-green-800 border-green-300', progress: 80, icon: 'chart-line' },
-        { id: 'success', name: 'Success', badgeClassName: 'bg-amber-100 text-amber-800 border-amber-300', progress: 100, icon: 'crown' },
+        {
+          id: "idea",
+          name: "Idea",
+          badgeClassName: "bg-yellow-100 text-yellow-800 border-yellow-300",
+          progress: 20,
+          icon: "lightbulb",
+        },
+        {
+          id: "prototype",
+          name: "Prototype",
+          badgeClassName: "bg-blue-100 text-blue-800 border-blue-300",
+          progress: 40,
+          icon: "code",
+        },
+        {
+          id: "launch",
+          name: "Launch",
+          badgeClassName: "bg-purple-100 text-purple-800 border-purple-300",
+          progress: 60,
+          icon: "rocket",
+        },
+        {
+          id: "growth",
+          name: "Growth",
+          badgeClassName: "bg-green-100 text-green-800 border-green-300",
+          progress: 80,
+          icon: "chart-line",
+        },
+        {
+          id: "success",
+          name: "Success",
+          badgeClassName: "bg-amber-100 text-amber-800 border-amber-300",
+          progress: 100,
+          icon: "crown",
+        },
       ]),
     decisions: z.array(startupDecisionSchema).default([
       {
-        id: 'initial-funding',
-        type: 'funding',
-        title: 'Initial Funding Strategy',
-        description: 'You have a great app idea! How will you fund development?',
+        id: "initial-funding",
+        type: "funding",
+        title: "Initial Funding Strategy",
+        description: "You have a great app idea! How will you fund development?",
         options: [
           {
-            id: 'bootstrap',
-            title: 'Bootstrap with Personal Savings',
-            description: 'Use $5,000 of your own money. Lower burn rate but limited resources.',
+            id: "bootstrap",
+            title: "Bootstrap with Personal Savings",
+            description: "Use $5,000 of your own money. Lower burn rate but limited resources.",
             effects: { funding: 5000, burn: -500 },
           },
           {
-            id: 'accelerator',
-            title: 'Apply to Startup Accelerator',
-            description: 'Get $25,000 funding plus mentorship and network access.',
+            id: "accelerator",
+            title: "Apply to Startup Accelerator",
+            description: "Get $25,000 funding plus mentorship and network access.",
             effects: { funding: 25000, users: 100, growth: 0.2 },
           },
           {
-            id: 'angel-investors',
-            title: 'Pitch to Angel Investors',
-            description: 'Raise $100,000 but higher pressure and burn rate.',
+            id: "angel-investors",
+            title: "Pitch to Angel Investors",
+            description: "Raise $100,000 but higher pressure and burn rate.",
             effects: { funding: 100000, burn: 6000 },
           },
         ],
       },
       {
-        id: 'team-building',
-        type: 'team',
-        title: 'First Hire Decision',
-        description: 'Your startup is gaining traction. Who should you hire first?',
+        id: "team-building",
+        type: "team",
+        title: "First Hire Decision",
+        description: "Your startup is gaining traction. Who should you hire first?",
         options: [
           {
-            id: 'developer',
-            title: 'Senior Developer',
-            description: 'Accelerate product development and add new features.',
+            id: "developer",
+            title: "Senior Developer",
+            description: "Accelerate product development and add new features.",
             effects: { burn: 5000, growth: 0.3 },
           },
           {
-            id: 'marketer',
-            title: 'Marketing Manager',
-            description: 'Focus on user acquisition and brand building.',
+            id: "marketer",
+            title: "Marketing Manager",
+            description: "Focus on user acquisition and brand building.",
             effects: { burn: 3000, users: 500, growth: 0.5 },
           },
           {
-            id: 'business-dev',
-            title: 'Business Development',
-            description: 'Build partnerships and explore revenue opportunities.',
+            id: "business-dev",
+            title: "Business Development",
+            description: "Build partnerships and explore revenue opportunities.",
             effects: { burn: 4000, revenue: 1000, revenuePerUser: 2 },
           },
         ],
       },
       {
-        id: 'product-focus',
-        type: 'product',
-        title: 'Product Development Priority',
-        description: 'Limited development resources. What should be your focus?',
+        id: "product-focus",
+        type: "product",
+        title: "Product Development Priority",
+        description: "Limited development resources. What should be your focus?",
         options: [
           {
-            id: 'new-features',
-            title: 'Build New Features',
-            description: 'Add functionality to attract more users.',
+            id: "new-features",
+            title: "Build New Features",
+            description: "Add functionality to attract more users.",
             effects: { users: 300, burn: 2000 },
           },
           {
-            id: 'user-feedback',
-            title: 'Focus on User Feedback',
-            description: 'Improve existing features based on user input.',
+            id: "user-feedback",
+            title: "Focus on User Feedback",
+            description: "Improve existing features based on user input.",
             effects: { growth: 0.4, revenuePerUser: 1 },
           },
           {
-            id: 'scaling',
-            title: 'Technical Scaling',
-            description: 'Prepare infrastructure for rapid growth.',
+            id: "scaling",
+            title: "Technical Scaling",
+            description: "Prepare infrastructure for rapid growth.",
             effects: { burn: 3000, growth: 0.6 },
           },
         ],
       },
       {
-        id: 'marketing-strategy',
-        type: 'marketing',
-        title: 'Growth Strategy',
-        description: 'How will you acquire your next 1000 users?',
+        id: "marketing-strategy",
+        type: "marketing",
+        title: "Growth Strategy",
+        description: "How will you acquire your next 1000 users?",
         options: [
           {
-            id: 'paid-ads',
-            title: 'Paid Advertising',
-            description: 'Invest in Facebook and Google ads for rapid acquisition.',
+            id: "paid-ads",
+            title: "Paid Advertising",
+            description: "Invest in Facebook and Google ads for rapid acquisition.",
             effects: { users: 800, burn: 5000 },
           },
           {
-            id: 'content-marketing',
-            title: 'Content Marketing',
-            description: 'Build organic growth through valuable content.',
+            id: "content-marketing",
+            title: "Content Marketing",
+            description: "Build organic growth through valuable content.",
             effects: { users: 300, growth: 0.3, burn: 1000 },
           },
           {
-            id: 'partnerships',
-            title: 'Strategic Partnerships',
-            description: 'Partner with established companies for user access.',
+            id: "partnerships",
+            title: "Strategic Partnerships",
+            description: "Partner with established companies for user access.",
             effects: { users: 600, revenue: 2000, burn: 2000 },
           },
         ],
       },
       {
-        id: 'revenue-model',
-        type: 'strategy',
-        title: 'Monetization Strategy',
+        id: "revenue-model",
+        type: "strategy",
+        title: "Monetization Strategy",
         description: "Time to start generating revenue. What's your approach?",
         options: [
           {
-            id: 'freemium',
-            title: 'Freemium Model',
-            description: 'Free basic version with premium features.',
+            id: "freemium",
+            title: "Freemium Model",
+            description: "Free basic version with premium features.",
             effects: { revenuePerUser: 3, growth: 0.2 },
           },
           {
-            id: 'subscription',
-            title: 'Monthly Subscription',
-            description: 'Recurring revenue but may slow user growth.',
+            id: "subscription",
+            title: "Monthly Subscription",
+            description: "Recurring revenue but may slow user growth.",
             effects: { revenuePerUser: 8, growth: -0.1 },
           },
           {
-            id: 'enterprise',
-            title: 'Enterprise Sales',
-            description: 'Target businesses with high-value contracts.',
+            id: "enterprise",
+            title: "Enterprise Sales",
+            description: "Target businesses with high-value contracts.",
             effects: { revenuePerUser: 15, burn: 3000, users: -100 },
           },
         ],
       },
     ]),
-    decisionFlow: z
-      .array(startupDecisionFlowSchema)
-      .default([
-        { stageId: 'idea', decisionIds: ['initial-funding'] },
-        { stageId: 'prototype', decisionIds: ['team-building', 'product-focus'] },
-        { stageId: 'launch', decisionIds: ['marketing-strategy'] },
-        { stageId: 'growth', decisionIds: ['revenue-model'] },
-        { stageId: 'success', decisionIds: [] },
-      ]),
+    decisionFlow: z.array(startupDecisionFlowSchema).default([
+      { stageId: "idea", decisionIds: ["initial-funding"] },
+      { stageId: "prototype", decisionIds: ["team-building", "product-focus"] },
+      { stageId: "launch", decisionIds: ["marketing-strategy"] },
+      { stageId: "growth", decisionIds: ["revenue-model"] },
+      { stageId: "success", decisionIds: [] },
+    ]),
     winConditions: startupWinConditionSchema.default({
       revenueTarget: 50000,
       successRevenueTarget: 50000,
       timeLimitMonths: 24,
       timeLimitRevenueTarget: 20000,
-      successStageId: 'success',
+      successStageId: "success",
     }),
     initialState: z
       .object({
-        stage: z.string().default('idea'),
+        stage: z.string().default("idea"),
         funding: z.number().nonnegative().default(10000),
         monthlyBurn: z.number().nonnegative().default(2000),
         users: z.number().nonnegative().default(100),
@@ -520,13 +602,13 @@ export const simulationActivityPropsSchemas = {
         month: z.number().int().positive().default(1),
         maxMonths: z.number().int().positive().default(24),
         decisions: z.array(z.string()).default([]),
-        currentDecisionId: z.string().nullable().default('initial-funding'),
+        currentDecisionId: z.string().nullable().default("initial-funding"),
         userGrowthRate: z.number().nonnegative().default(0.1),
         revenuePerUser: z.number().nonnegative().default(0),
-        gameStatus: z.enum(['playing', 'won', 'lost']).default('playing'),
+        gameStatus: z.enum(["playing", "won", "lost"]).default("playing"),
       })
       .default({
-        stage: 'idea',
+        stage: "idea",
         funding: 10000,
         monthlyBurn: 2000,
         users: 100,
@@ -534,25 +616,76 @@ export const simulationActivityPropsSchemas = {
         month: 1,
         maxMonths: 24,
         decisions: [],
-        currentDecisionId: 'initial-funding',
+        currentDecisionId: "initial-funding",
         userGrowthRate: 0.1,
         revenuePerUser: 0,
-        gameStatus: 'playing',
+        gameStatus: "playing",
       }),
   }),
-  'budget-balancer': z.object({
-    title: z.string().default('Budget Balancer'),
+  "budget-balancer": z.object({
+    title: z.string().default("Budget Balancer"),
     description: z
       .string()
-      .default('Manage monthly income, required bills, and discretionary spending to build savings.'),
+      .default(
+        "Manage monthly income, required bills, and discretionary spending to build savings.",
+      ),
     expenses: z.array(budgetExpenseConfigSchema).default([
-      { id: 'rent', label: 'Rent', required: true, defaultAmount: 1200, icon: 'home', color: 'bg-blue-500' },
-      { id: 'utilities', label: 'Utilities', required: true, defaultAmount: 300, icon: 'zap', color: 'bg-yellow-500' },
-      { id: 'groceries', label: 'Groceries', required: true, defaultAmount: 400, icon: 'shopping-cart', color: 'bg-green-500' },
-      { id: 'transportation', label: 'Transportation', required: true, defaultAmount: 200, icon: 'car', color: 'bg-purple-500' },
-      { id: 'entertainment', label: 'Entertainment', required: false, defaultAmount: 0, icon: 'coffee', color: 'bg-pink-500' },
-      { id: 'dining', label: 'Dining', required: false, defaultAmount: 0, icon: 'utensils', color: 'bg-orange-500' },
-      { id: 'shopping', label: 'Shopping', required: false, defaultAmount: 0, icon: 'shopping-bag', color: 'bg-indigo-500' },
+      {
+        id: "rent",
+        label: "Rent",
+        required: true,
+        defaultAmount: 1200,
+        icon: "home",
+        color: "bg-blue-500",
+      },
+      {
+        id: "utilities",
+        label: "Utilities",
+        required: true,
+        defaultAmount: 300,
+        icon: "zap",
+        color: "bg-yellow-500",
+      },
+      {
+        id: "groceries",
+        label: "Groceries",
+        required: true,
+        defaultAmount: 400,
+        icon: "shopping-cart",
+        color: "bg-green-500",
+      },
+      {
+        id: "transportation",
+        label: "Transportation",
+        required: true,
+        defaultAmount: 200,
+        icon: "car",
+        color: "bg-purple-500",
+      },
+      {
+        id: "entertainment",
+        label: "Entertainment",
+        required: false,
+        defaultAmount: 0,
+        icon: "coffee",
+        color: "bg-pink-500",
+      },
+      {
+        id: "dining",
+        label: "Dining",
+        required: false,
+        defaultAmount: 0,
+        icon: "utensils",
+        color: "bg-orange-500",
+      },
+      {
+        id: "shopping",
+        label: "Shopping",
+        required: false,
+        defaultAmount: 0,
+        icon: "shopping-bag",
+        color: "bg-indigo-500",
+      },
     ]),
     savingsConfig: budgetSavingsConfigSchema.default({
       emergencyFundContributionRate: 0.1,
@@ -568,20 +701,64 @@ export const simulationActivityPropsSchemas = {
       financialHealth: 100,
     }),
   }),
-  'cash-flow-challenge': z.object({
-    title: z.string().default('Cash Flow Challenge'),
+  "cash-flow-challenge": z.object({
+    title: z.string().default("Cash Flow Challenge"),
     description: z
       .string()
-      .default('Manage business cash flow for 30 days. Balance incoming and outgoing payments to stay solvent!'),
+      .default(
+        "Manage business cash flow for 30 days. Balance incoming and outgoing payments to stay solvent!",
+      ),
     incomingFlows: z.array(cashFlowSchema).default([
-      { id: 'incoming-0', description: 'Customer Payment A', amount: 15000, daysLeft: 5, type: 'incoming', canModify: true },
-      { id: 'incoming-1', description: 'Customer Payment B', amount: 20000, daysLeft: 12, type: 'incoming', canModify: true },
-      { id: 'incoming-2', description: 'Invoice Collection', amount: 10000, daysLeft: 25, type: 'incoming', canModify: true },
+      {
+        id: "incoming-0",
+        description: "Customer Payment A",
+        amount: 15000,
+        daysLeft: 5,
+        type: "incoming",
+        canModify: true,
+      },
+      {
+        id: "incoming-1",
+        description: "Customer Payment B",
+        amount: 20000,
+        daysLeft: 12,
+        type: "incoming",
+        canModify: true,
+      },
+      {
+        id: "incoming-2",
+        description: "Invoice Collection",
+        amount: 10000,
+        daysLeft: 25,
+        type: "incoming",
+        canModify: true,
+      },
     ]),
     outgoingFlows: z.array(cashFlowSchema).default([
-      { id: 'outgoing-0', description: 'Supplier Payment', amount: 12000, daysLeft: 3, type: 'outgoing', canModify: true },
-      { id: 'outgoing-1', description: 'Payroll', amount: 18000, daysLeft: 15, type: 'outgoing', canModify: false },
-      { id: 'outgoing-2', description: 'Rent Payment', amount: 8000, daysLeft: 30, type: 'outgoing', canModify: true },
+      {
+        id: "outgoing-0",
+        description: "Supplier Payment",
+        amount: 12000,
+        daysLeft: 3,
+        type: "outgoing",
+        canModify: true,
+      },
+      {
+        id: "outgoing-1",
+        description: "Payroll",
+        amount: 18000,
+        daysLeft: 15,
+        type: "outgoing",
+        canModify: false,
+      },
+      {
+        id: "outgoing-2",
+        description: "Rent Payment",
+        amount: 8000,
+        daysLeft: 30,
+        type: "outgoing",
+        canModify: true,
+      },
     ]),
     initialState: cashFlowInitialStateSchema.default({
       cashPosition: 25000,
@@ -593,47 +770,49 @@ export const simulationActivityPropsSchemas = {
       creditUsed: 0,
       creditInterestRate: 0.05,
       actionsUsed: { requestPayment: 0, negotiateTerms: 0, lineOfCredit: 0, delayExpense: 0 },
-      gameStatus: 'playing',
+      gameStatus: "playing",
     }),
   }),
-  'inventory-manager': z.object({
-    title: z.string().default('Inventory Manager'),
+  "inventory-manager": z.object({
+    title: z.string().default("Inventory Manager"),
     description: z
       .string()
-      .default('Manage retail inventory for 30 days. Balance stock levels, demand, and profitability!'),
+      .default(
+        "Manage retail inventory for 30 days. Balance stock levels, demand, and profitability!",
+      ),
     products: z.array(inventoryProductSchema).default([
       {
-        id: 'product-0',
-        name: 'Laptops',
-        icon: 'laptop',
+        id: "product-0",
+        name: "Laptops",
+        icon: "laptop",
         quantity: 0,
         cost: 800,
         price: 1200,
-        demand: 'medium',
+        demand: "medium",
         demandHistory: [0, 0, 0, 0, 0],
         totalSold: 0,
         totalOrdered: 0,
       },
       {
-        id: 'product-1',
-        name: 'Phones',
-        icon: 'smartphone',
+        id: "product-1",
+        name: "Phones",
+        icon: "smartphone",
         quantity: 0,
         cost: 400,
         price: 600,
-        demand: 'high',
+        demand: "high",
         demandHistory: [0, 0, 0, 0, 0],
         totalSold: 0,
         totalOrdered: 0,
       },
       {
-        id: 'product-2',
-        name: 'Tablets',
-        icon: 'tablet',
+        id: "product-2",
+        name: "Tablets",
+        icon: "tablet",
         quantity: 0,
         cost: 300,
         price: 450,
-        demand: 'low',
+        demand: "low",
         demandHistory: [0, 0, 0, 0, 0],
         totalSold: 0,
         totalOrdered: 0,
@@ -651,256 +830,427 @@ export const simulationActivityPropsSchemas = {
         dailyStorageCost: 50,
       },
       profitTarget: 2000,
-      gameStatus: 'playing',
+      gameStatus: "playing",
     }),
   }),
-  'pitch-presentation-builder': z.object({
-    title: z.string().default('Investor Pitch Builder'),
+  "pitch-presentation-builder": z.object({
+    title: z.string().default("Investor Pitch Builder"),
     description: z
       .string()
-      .default('Build a compelling 4-minute investor pitch for your startup business model'),
+      .default("Build a compelling 4-minute investor pitch for your startup business model"),
     sectionDefinitions: z.record(z.string(), pitchSectionDefinitionSchema).default({
-      problem: { name: 'Problem', icon: 'alert-circle', timeTarget: 45, description: 'Define market pain point and opportunity', keyPoints: ['Pain point identification', 'Market size opportunity', 'Current solutions shortfall', 'Urgency and timing'] },
-      solution: { name: 'Solution', icon: 'lightbulb', timeTarget: 60, description: 'Present your unique value proposition', keyPoints: ['Product overview', 'Unique differentiation', 'Competitive advantage', 'Demo or prototype'] },
-      market: { name: 'Market', icon: 'bar-chart-3', timeTarget: 45, description: 'Analyze target audience and competition', keyPoints: ['Target customer profile', 'TAM/SAM/SOM analysis', 'Competitive landscape', 'Go-to-market strategy'] },
-      'business-model': { name: 'Business Model', icon: 'pie-chart', timeTarget: 45, description: 'Explain how you make money', keyPoints: ['Revenue streams', 'Pricing strategy', 'Unit economics', 'Scalability factors'] },
-      financials: { name: 'Financials', icon: 'chart-line', timeTarget: 60, description: 'Show growth projections and metrics', keyPoints: ['3-year revenue projections', 'Key performance metrics', 'Break-even analysis', 'Market traction'] },
-      ask: { name: 'The Ask', icon: 'dollar-sign', timeTarget: 45, description: 'Investment request and terms', keyPoints: ['Funding amount needed', 'Use of funds breakdown', 'Expected returns/timeline', 'Next milestones'] },
+      problem: {
+        name: "Problem",
+        icon: "alert-circle",
+        timeTarget: 45,
+        description: "Define market pain point and opportunity",
+        keyPoints: [
+          "Pain point identification",
+          "Market size opportunity",
+          "Current solutions shortfall",
+          "Urgency and timing",
+        ],
+      },
+      solution: {
+        name: "Solution",
+        icon: "lightbulb",
+        timeTarget: 60,
+        description: "Present your unique value proposition",
+        keyPoints: [
+          "Product overview",
+          "Unique differentiation",
+          "Competitive advantage",
+          "Demo or prototype",
+        ],
+      },
+      market: {
+        name: "Market",
+        icon: "bar-chart-3",
+        timeTarget: 45,
+        description: "Analyze target audience and competition",
+        keyPoints: [
+          "Target customer profile",
+          "TAM/SAM/SOM analysis",
+          "Competitive landscape",
+          "Go-to-market strategy",
+        ],
+      },
+      "business-model": {
+        name: "Business Model",
+        icon: "pie-chart",
+        timeTarget: 45,
+        description: "Explain how you make money",
+        keyPoints: ["Revenue streams", "Pricing strategy", "Unit economics", "Scalability factors"],
+      },
+      financials: {
+        name: "Financials",
+        icon: "chart-line",
+        timeTarget: 60,
+        description: "Show growth projections and metrics",
+        keyPoints: [
+          "3-year revenue projections",
+          "Key performance metrics",
+          "Break-even analysis",
+          "Market traction",
+        ],
+      },
+      ask: {
+        name: "The Ask",
+        icon: "dollar-sign",
+        timeTarget: 45,
+        description: "Investment request and terms",
+        keyPoints: [
+          "Funding amount needed",
+          "Use of funds breakdown",
+          "Expected returns/timeline",
+          "Next milestones",
+        ],
+      },
     }),
     initialState: pitchInitialStateSchema.default({
-      businessModel: { type: 'saas', name: '', industry: '', targetMarket: '', revenueModel: '' },
+      businessModel: { type: "saas", name: "", industry: "", targetMarket: "", revenueModel: "" },
       sections: {
-        problem: { title: '', content: '', speakingNotes: '', timeAllocation: 45, completeness: 0 },
-        solution: { title: '', content: '', speakingNotes: '', timeAllocation: 60, completeness: 0 },
-        market: { title: '', content: '', speakingNotes: '', timeAllocation: 45, completeness: 0 },
-        'business-model': { title: '', content: '', speakingNotes: '', timeAllocation: 45, completeness: 0 },
-        financials: { title: '', content: '', speakingNotes: '', timeAllocation: 60, completeness: 0 },
-        ask: { title: '', content: '', speakingNotes: '', timeAllocation: 45, completeness: 0 },
+        problem: { title: "", content: "", speakingNotes: "", timeAllocation: 45, completeness: 0 },
+        solution: {
+          title: "",
+          content: "",
+          speakingNotes: "",
+          timeAllocation: 60,
+          completeness: 0,
+        },
+        market: { title: "", content: "", speakingNotes: "", timeAllocation: 45, completeness: 0 },
+        "business-model": {
+          title: "",
+          content: "",
+          speakingNotes: "",
+          timeAllocation: 45,
+          completeness: 0,
+        },
+        financials: {
+          title: "",
+          content: "",
+          speakingNotes: "",
+          timeAllocation: 60,
+          completeness: 0,
+        },
+        ask: { title: "", content: "", speakingNotes: "", timeAllocation: 45, completeness: 0 },
       },
-      financials: { year1Revenue: 0, year2Revenue: 0, year3Revenue: 0, initialInvestment: 0, useOfFunds: [], keyMetrics: {} },
+      financials: {
+        year1Revenue: 0,
+        year2Revenue: 0,
+        year3Revenue: 0,
+        initialInvestment: 0,
+        useOfFunds: [],
+        keyMetrics: {},
+      },
       sectionDefinitions: {},
     }),
   }),
   pitch: z.object({
     initialState: pitchInitialStateSchema.default({
-      businessModel: { type: 'saas', name: '', industry: '', targetMarket: '', revenueModel: '' },
+      businessModel: { type: "saas", name: "", industry: "", targetMarket: "", revenueModel: "" },
       sections: {
-        problem: { title: '', content: '', speakingNotes: '', timeAllocation: 45, completeness: 0 },
-        solution: { title: '', content: '', speakingNotes: '', timeAllocation: 60, completeness: 0 },
-        market: { title: '', content: '', speakingNotes: '', timeAllocation: 45, completeness: 0 },
-        'business-model': { title: '', content: '', speakingNotes: '', timeAllocation: 45, completeness: 0 },
-        financials: { title: '', content: '', speakingNotes: '', timeAllocation: 60, completeness: 0 },
-        ask: { title: '', content: '', speakingNotes: '', timeAllocation: 45, completeness: 0 },
+        problem: { title: "", content: "", speakingNotes: "", timeAllocation: 45, completeness: 0 },
+        solution: {
+          title: "",
+          content: "",
+          speakingNotes: "",
+          timeAllocation: 60,
+          completeness: 0,
+        },
+        market: { title: "", content: "", speakingNotes: "", timeAllocation: 45, completeness: 0 },
+        "business-model": {
+          title: "",
+          content: "",
+          speakingNotes: "",
+          timeAllocation: 45,
+          completeness: 0,
+        },
+        financials: {
+          title: "",
+          content: "",
+          speakingNotes: "",
+          timeAllocation: 60,
+          completeness: 0,
+        },
+        ask: { title: "", content: "", speakingNotes: "", timeAllocation: 45, completeness: 0 },
       },
-      financials: { year1Revenue: 0, year2Revenue: 0, year3Revenue: 0, initialInvestment: 0, useOfFunds: [], keyMetrics: {} },
+      financials: {
+        year1Revenue: 0,
+        year2Revenue: 0,
+        year3Revenue: 0,
+        initialInvestment: 0,
+        useOfFunds: [],
+        keyMetrics: {},
+      },
       sectionDefinitions: {},
     }),
   }),
-  'notebook-organizer': z.object({
-    mode: z.enum(['guided_practice', 'independent_practice']).default('guided_practice'),
-    title: z.string().default('The Notebook Organizer'),
-    description: z.string().default("Help Sarah sort her messy desk into 'What she has' vs 'What she owes'."),
-    items: z.array(z.object({
-      id: z.string(),
-      label: z.string(),
-      amount: z.number(),
-      category: z.enum(['asset', 'liability', 'equity']),
-      description: z.string(),
-      icon: z.enum(['cash', 'bill', 'equipment', 'owner', 'receivable']),
-    })).default([]),
+  "notebook-organizer": z.object({
+    mode: z.enum(["guided_practice", "independent_practice"]).default("guided_practice"),
+    title: z.string().default("The Notebook Organizer"),
+    description: z
+      .string()
+      .default("Help Sarah sort her messy desk into 'What she has' vs 'What she owes'."),
+    items: z
+      .array(
+        z.object({
+          id: z.string(),
+          label: z.string(),
+          amount: z.number(),
+          category: z.enum(["asset", "liability", "equity"]),
+          description: z.string(),
+          icon: z.enum(["cash", "bill", "equipment", "owner", "receivable"]),
+        }),
+      )
+      .default([]),
     initialMessage: z.string().optional(),
     successMessage: z.string().optional(),
   }),
-  'growth-puzzle': z.object({
-    title: z.string().default('The Growth Puzzle'),
-    description: z.string().default('Decide how to use your profits to grow Sarah’s business or handle personal needs.'),
+  "growth-puzzle": z.object({
+    title: z.string().default("The Growth Puzzle"),
+    description: z
+      .string()
+      .default("Decide how to use your profits to grow Sarah’s business or handle personal needs."),
     totalProfit: z.number().default(2000),
-    options: z.array(z.object({
-      id: z.string(),
-      label: z.string(),
-      amount: z.number(),
-      type: z.enum(['reinvestment', 'distribution']),
-      impact: z.string(),
-      icon: z.string(),
-    })).default([]),
+    options: z
+      .array(
+        z.object({
+          id: z.string(),
+          label: z.string(),
+          amount: z.number(),
+          type: z.enum(["reinvestment", "distribution"]),
+          impact: z.string(),
+          icon: z.string(),
+        }),
+      )
+      .default([]),
     initialMessage: z.string().optional(),
     successMessage: z.string().optional(),
   }),
-  'asset-time-machine': z.object({
-    title: z.string().default('The Asset Time-Machine'),
-    description: z.string().default('Watch how a high-end server loses value over 5 years and decide when to repair or upgrade.'),
-    assetName: z.string().default('High-End Server'),
+  "asset-time-machine": z.object({
+    title: z.string().default("The Asset Time-Machine"),
+    description: z
+      .string()
+      .default(
+        "Watch how a high-end server loses value over 5 years and decide when to repair or upgrade.",
+      ),
+    assetName: z.string().default("High-End Server"),
     initialCost: z.number().default(3000),
     years: z.number().int().default(5),
-    scenarios: z.array(z.object({
-      year: z.number().int(),
-      event: z.string(),
-      repairCost: z.number(),
-      upgradeCost: z.number(),
-      impact: z.string(),
-    })).default([]),
+    scenarios: z
+      .array(
+        z.object({
+          year: z.number().int(),
+          event: z.string(),
+          repairCost: z.number(),
+          upgradeCost: z.number(),
+          impact: z.string(),
+        }),
+      )
+      .default([]),
   }),
-  'cafe-supply-chaos': z.object({
-    title: z.string().default('Cafe Supply Chaos'),
-    description: z.string().default('Manage coffee bean inventory during inflation and see how FIFO vs LIFO changes your profit.'),
+  "cafe-supply-chaos": z.object({
+    title: z.string().default("Cafe Supply Chaos"),
+    description: z
+      .string()
+      .default(
+        "Manage coffee bean inventory during inflation and see how FIFO vs LIFO changes your profit.",
+      ),
     days: z.number().int().default(5),
-    shipments: z.array(z.object({
-      day: z.number().int(),
-      quantity: z.number().int(),
-      costPerUnit: z.number(),
-    })).default([]),
-    orders: z.array(z.object({
-      day: z.number().int(),
-      quantity: z.number().int(),
-      pricePerUnit: z.number(),
-    })).default([]),
+    shipments: z
+      .array(
+        z.object({
+          day: z.number().int(),
+          quantity: z.number().int(),
+          costPerUnit: z.number(),
+        }),
+      )
+      .default([]),
+    orders: z
+      .array(
+        z.object({
+          day: z.number().int(),
+          quantity: z.number().int(),
+          pricePerUnit: z.number(),
+        }),
+      )
+      .default([]),
   }),
-  'capital-negotiation': z.object({
-    title: z.string().default('The Capital Negotiation'),
-    description: z.string().default('Compare a bank loan vs. bringing in a partner to fund Sarah’s new office.'),
-    options: z.array(z.object({
-      id: z.string(),
-      name: z.string(),
-      type: z.enum(['debt', 'equity']),
-      terms: z.array(z.object({
-        label: z.string(),
-        value: z.string(),
-        isPro: z.boolean(),
-      })),
-      monthlyImpact: z.string(),
-      longTermImpact: z.string(),
-    })).default([]),
+  "capital-negotiation": z.object({
+    title: z.string().default("The Capital Negotiation"),
+    description: z
+      .string()
+      .default("Compare a bank loan vs. bringing in a partner to fund Sarah’s new office."),
+    options: z
+      .array(
+        z.object({
+          id: z.string(),
+          name: z.string(),
+          type: z.enum(["debt", "equity"]),
+          terms: z.array(
+            z.object({
+              label: z.string(),
+              value: z.string(),
+              isPro: z.boolean(),
+            }),
+          ),
+          monthlyImpact: z.string(),
+          longTermImpact: z.string(),
+        }),
+      )
+      .default([]),
   }),
-  'business-stress-test': z.object({
-    title: z.string().default('Business Stress-Test'),
-    description: z.string().default('Panic mode! Keep Sarah’s business alive as market disasters strike.'),
+  "business-stress-test": z.object({
+    title: z.string().default("Business Stress-Test"),
+    description: z
+      .string()
+      .default("Panic mode! Keep Sarah’s business alive as market disasters strike."),
     initialState: z.object({
       cash: z.number().default(5000),
       revenue: z.number().default(2000),
       expenses: z.number().default(1500),
     }),
-    disasters: z.array(z.object({
-      id: z.string(),
-      label: z.string(),
-      impact: z.object({
-        revenue: z.number().optional(),
-        expenses: z.number().optional(),
-        cash: z.number().optional(),
-      }),
-      message: z.string(),
-    })).default([]),
+    disasters: z
+      .array(
+        z.object({
+          id: z.string(),
+          label: z.string(),
+          impact: z.object({
+            revenue: z.number().optional(),
+            expenses: z.number().optional(),
+            cash: z.number().optional(),
+          }),
+          message: z.string(),
+        }),
+      )
+      .default([]),
   }),
-  'pay-structure-lab': z.object({
-    title: z.string().default('Pay Structure Decision Lab'),
-    description: z.string().default('Step through realistic hiring scenarios to choose between hourly, salary, and commission pay structures.'),
-    scenarios: z.array(z.object({
-      id: z.enum(['service', 'product', 'sales']),
-      title: z.string(),
-      role: z.string(),
-      context: z.string(),
-      goal: z.string(),
-      payType: z.enum(['hourly', 'salary', 'commission']),
-      talkTrack: z.string(),
-      strengths: z.array(z.string()),
-      risks: z.array(z.string()),
-    })).default([
-      {
-        id: "service",
-        title: "Client Support Coverage",
-        role: "Support Specialist",
-        context: "Handles live chat and quick fixes during launch weeks. Hours spike fast.",
-        goal: "Pay for time and stay compliant with weekly overtime rules.",
-        payType: "hourly",
-        talkTrack: "Hourly + overtime keeps pay fair when launches go long. We track by week so OT is legal.",
-        strengths: [
-          "Overtime after 40 hours in a week protects the employee",
-          "Easy to scale hours up/down when tickets spike",
-          "Clear match between time worked and pay received",
-        ],
-        risks: [
-          "Unplanned overtime can blow up cash needs",
-          "Requires tight scheduling and time tracking",
-        ],
-      },
-      {
-        id: "product",
-        title: "Project and Quality Ownership",
-        role: "Junior Developer",
-        context: "Ships features, fixes bugs, joins demos. Some sprints run late.",
-        goal: "Provide stable pay, budget predictably, and add bonuses for launches.",
-        payType: "salary",
-        talkTrack: "Salary keeps pay steady. When launches push late, Sarah can add a small bonus or flex day.",
-        strengths: [
-          "Predictable payroll each period",
-          "Simpler admin than tracking OT every week",
-          "Supports retention with steady checks",
-        ],
-        risks: [
-          "Must meet exemption rules to avoid misclassification",
-          "Crunch weeks can feel unpaid without comp time or bonuses",
-        ],
-      },
-      {
-        id: "sales",
-        title: "Outbound Sales Growth",
-        role: "Sales Representative",
-        context: "Books new clients and renewals. Revenue swings by month.",
-        goal: "Align pay with revenue and protect take-home with a draw/base.",
-        payType: "commission",
-        talkTrack: "Commission with a draw says: you share the upside, and you have a floor while pipeline builds.",
-        strengths: [
-          "Direct tie between revenue and pay",
-          "Draw/base smooths slow months without losing upside",
-          "Easy to adjust payouts to margin targets",
-        ],
-        risks: [
-          "Must track chargebacks and returns",
-          "Cash planning needed when big deals hit",
-        ],
-      },
-    ]),
-    initialHourly: z.object({
-      week1: z.number().default(44),
-      week2: z.number().default(41),
-      rate: z.number().default(25),
-      ytdWages: z.number().default(167500),
-      ssCap: z.number().default(168600),
-      stateRate: z.number().default(0.05),
-    }).default({
-      week1: 44,
-      week2: 41,
-      rate: 25,
-      ytdWages: 167500,
-      ssCap: 168600,
-      stateRate: 0.05,
-    }),
-    initialSalary: z.object({
-      annualSalary: z.number().default(52000),
-      ytdWages: z.number().default(167500),
-      ssCap: z.number().default(168600),
-      stateRate: z.number().default(0.05),
-    }).default({
-      annualSalary: 52000,
-      ytdWages: 167500,
-      ssCap: 168600,
-      stateRate: 0.05,
-    }),
-    initialCommission: z.object({
-      sales: z.number().default(12000),
-      commissionRate: z.number().default(0.05),
-      draw: z.number().default(300),
-      basePay: z.number().default(500),
-      ytdWages: z.number().default(167500),
-      ssCap: z.number().default(168600),
-      stateRate: z.number().default(0.05),
-    }).default({
-      sales: 12000,
-      commissionRate: 0.05,
-      draw: 300,
-      basePay: 500,
-      ytdWages: 167500,
-      ssCap: 168600,
-      stateRate: 0.05,
-    }),
+  "pay-structure-lab": z.object({
+    title: z.string().default("Pay Structure Decision Lab"),
+    description: z
+      .string()
+      .default(
+        "Step through realistic hiring scenarios to choose between hourly, salary, and commission pay structures.",
+      ),
+    scenarios: z
+      .array(
+        z.object({
+          id: z.enum(["service", "product", "sales"]),
+          title: z.string(),
+          role: z.string(),
+          context: z.string(),
+          goal: z.string(),
+          payType: z.enum(["hourly", "salary", "commission"]),
+          talkTrack: z.string(),
+          strengths: z.array(z.string()),
+          risks: z.array(z.string()),
+        }),
+      )
+      .default([
+        {
+          id: "service",
+          title: "Client Support Coverage",
+          role: "Support Specialist",
+          context: "Handles live chat and quick fixes during launch weeks. Hours spike fast.",
+          goal: "Pay for time and stay compliant with weekly overtime rules.",
+          payType: "hourly",
+          talkTrack:
+            "Hourly + overtime keeps pay fair when launches go long. We track by week so OT is legal.",
+          strengths: [
+            "Overtime after 40 hours in a week protects the employee",
+            "Easy to scale hours up/down when tickets spike",
+            "Clear match between time worked and pay received",
+          ],
+          risks: [
+            "Unplanned overtime can blow up cash needs",
+            "Requires tight scheduling and time tracking",
+          ],
+        },
+        {
+          id: "product",
+          title: "Project and Quality Ownership",
+          role: "Junior Developer",
+          context: "Ships features, fixes bugs, joins demos. Some sprints run late.",
+          goal: "Provide stable pay, budget predictably, and add bonuses for launches.",
+          payType: "salary",
+          talkTrack:
+            "Salary keeps pay steady. When launches push late, Sarah can add a small bonus or flex day.",
+          strengths: [
+            "Predictable payroll each period",
+            "Simpler admin than tracking OT every week",
+            "Supports retention with steady checks",
+          ],
+          risks: [
+            "Must meet exemption rules to avoid misclassification",
+            "Crunch weeks can feel unpaid without comp time or bonuses",
+          ],
+        },
+        {
+          id: "sales",
+          title: "Outbound Sales Growth",
+          role: "Sales Representative",
+          context: "Books new clients and renewals. Revenue swings by month.",
+          goal: "Align pay with revenue and protect take-home with a draw/base.",
+          payType: "commission",
+          talkTrack:
+            "Commission with a draw says: you share the upside, and you have a floor while pipeline builds.",
+          strengths: [
+            "Direct tie between revenue and pay",
+            "Draw/base smooths slow months without losing upside",
+            "Easy to adjust payouts to margin targets",
+          ],
+          risks: ["Must track chargebacks and returns", "Cash planning needed when big deals hit"],
+        },
+      ]),
+    initialHourly: z
+      .object({
+        week1: z.number().default(44),
+        week2: z.number().default(41),
+        rate: z.number().default(25),
+        ytdWages: z.number().default(167500),
+        ssCap: z.number().default(168600),
+        stateRate: z.number().default(0.05),
+      })
+      .default({
+        week1: 44,
+        week2: 41,
+        rate: 25,
+        ytdWages: 167500,
+        ssCap: 168600,
+        stateRate: 0.05,
+      }),
+    initialSalary: z
+      .object({
+        annualSalary: z.number().default(52000),
+        ytdWages: z.number().default(167500),
+        ssCap: z.number().default(168600),
+        stateRate: z.number().default(0.05),
+      })
+      .default({
+        annualSalary: 52000,
+        ytdWages: 167500,
+        ssCap: 168600,
+        stateRate: 0.05,
+      }),
+    initialCommission: z
+      .object({
+        sales: z.number().default(12000),
+        commissionRate: z.number().default(0.05),
+        draw: z.number().default(300),
+        basePay: z.number().default(500),
+        ytdWages: z.number().default(167500),
+        ssCap: z.number().default(168600),
+        stateRate: z.number().default(0.05),
+      })
+      .default({
+        sales: 12000,
+        commissionRate: 0.05,
+        draw: 300,
+        basePay: 500,
+        ytdWages: 167500,
+        ssCap: 168600,
+        stateRate: 0.05,
+      }),
   }),
 } as const;

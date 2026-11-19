@@ -3,7 +3,10 @@ import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
 import { buildDailyQueueResult, type QueueItem } from "@math-platform/srs-engine";
 import type { ObjectivePracticePolicy, SrsCardState } from "@math-platform/srs-engine";
-import { assessReviewLoadV3_2, type ReviewLoadAssessmentV3_2 } from "@math-platform/knowledge-space-practice";
+import {
+  assessReviewLoadV3_2,
+  type ReviewLoadAssessmentV3_2,
+} from "@math-platform/knowledge-space-practice";
 import { resolveCanonicalVariantKey } from "../../lib/srs/v3-runtime-contract";
 import { isIm3GraphPilotPublished } from "../activities";
 import { hasCurrentSelectedActivityIdentity } from "../learningEvidence";
@@ -50,7 +53,7 @@ import {
   IM3_PROFIT_MAXIMUM_NODE,
 } from "../../lib/practice/learning-evidence-pilot";
 
-const VALID_PRIORITIES = new Set<string>(['essential', 'supporting', 'extension', 'triaged']);
+const VALID_PRIORITIES = new Set<string>(["essential", "supporting", "extension", "triaged"]);
 const MAX_CARDS_PER_DAILY_QUEUE = 100;
 const MAX_OBJECTIVE_POLICIES = 100;
 
@@ -73,27 +76,25 @@ export interface ResolvedDailyPracticeQueue {
  * @param {{ _id: Id<"srs_cards">; studentId: Id<"profiles">; objectiveId: string; variantKey?: string; legacyProblemFamilyId?: string; problemFamilyId?: string; stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; dueDate: string; elapsedDays: number; scheduledDays: number; reps: number; lapses: number; lastReview?: string; createdAt: number; updatedAt: number }} card - The raw database card object
  * @returns {SrsCardState} The card in SrsCardState contract format
  */
-function mapDbCardToContract(
-  card: {
-    _id: Id<"srs_cards">;
-    studentId: Id<"profiles">;
-    objectiveId: string;
-    variantKey?: string;
-    legacyProblemFamilyId?: string;
-    problemFamilyId?: string;
-    stability: number;
-    difficulty: number;
-    state: "new" | "learning" | "review" | "relearning";
-    dueDate: string;
-    elapsedDays: number;
-    scheduledDays: number;
-    reps: number;
-    lapses: number;
-    lastReview?: string;
-    createdAt: number;
-    updatedAt: number;
-  }
-): SrsCardState {
+function mapDbCardToContract(card: {
+  _id: Id<"srs_cards">;
+  studentId: Id<"profiles">;
+  objectiveId: string;
+  variantKey?: string;
+  legacyProblemFamilyId?: string;
+  problemFamilyId?: string;
+  stability: number;
+  difficulty: number;
+  state: "new" | "learning" | "review" | "relearning";
+  dueDate: string;
+  elapsedDays: number;
+  scheduledDays: number;
+  reps: number;
+  lapses: number;
+  lastReview?: string;
+  createdAt: number;
+  updatedAt: number;
+}): SrsCardState {
   const { variantKey } = resolveCanonicalVariantKey(card);
   return {
     cardId: card._id as string,
@@ -132,37 +133,43 @@ export async function resolveQueueItems(
     uniqueVariantKeys.map(async (variantKey) => {
       const practiceItem = await ctx.db
         .query("practice_items")
-        .withIndex("by_variantKey", (q) =>
-          q.eq("variantKey", variantKey)
-        )
+        .withIndex("by_variantKey", (q) => q.eq("variantKey", variantKey))
         .first();
       return { variantKey, practiceItem };
-    })
+    }),
   );
 
   const practiceItemMap = new Map(
     practiceItemResults
-      .filter((r): r is { variantKey: string; practiceItem: NonNullable<typeof r.practiceItem> } => r.practiceItem !== null)
-      .map((r) => [r.variantKey, r.practiceItem])
+      .filter(
+        (r): r is { variantKey: string; practiceItem: NonNullable<typeof r.practiceItem> } =>
+          r.practiceItem !== null,
+      )
+      .map((r) => [r.variantKey, r.practiceItem]),
   );
 
-  const activityIds = [...new Set(
-    practiceItemResults
-      .filter((r) => r.practiceItem !== null)
-      .map((r) => r.practiceItem!.activityId)
-  )];
+  const activityIds = [
+    ...new Set(
+      practiceItemResults
+        .filter((r) => r.practiceItem !== null)
+        .map((r) => r.practiceItem!.activityId),
+    ),
+  ];
 
   const activityResults = await Promise.all(
     activityIds.map(async (activityId) => {
       const activity = await ctx.db.get(activityId);
       return { activityId, activity };
-    })
+    }),
   );
 
   const activityMap = new Map(
     activityResults
-      .filter((r): r is { activityId: Id<"activities">; activity: NonNullable<typeof r.activity> } => r.activity !== null)
-      .map((r) => [r.activityId, r.activity])
+      .filter(
+        (r): r is { activityId: Id<"activities">; activity: NonNullable<typeof r.activity> } =>
+          r.activity !== null,
+      )
+      .map((r) => [r.activityId, r.activity]),
   );
 
   const resolvedItems: ResolvedQueueItem[] = [];
@@ -181,139 +188,106 @@ export async function resolveQueueItems(
       IM3_GRAPH_GUIDED_SEED_2_ACTIVITY_ID,
       IM3_GRAPH_INDEPENDENT_SEED_2_ACTIVITY_ID,
     ];
-    const isConsistentLaterGraph = laterGraphIds.some((stableId) => (
-      item.card.variantKey === stableId
-      && practiceItem.variantKey === stableId
-      && activity.stableActivityId === stableId
-    ))
-      && item.card.objectiveId === IM3_PILOT_NODE
-      && activity.masteryNodeId === IM3_PILOT_NODE
-      && activity.componentKey === "graphing-explorer";
-    const claimsOriginalSelected = originalSelectedIds.includes(item.card.variantKey as typeof originalSelectedIds[number])
-      || originalSelectedIds.includes(practiceItem.variantKey as typeof originalSelectedIds[number])
-      || originalSelectedIds.includes(activity.stableActivityId as typeof originalSelectedIds[number])
-      || (
-        (item.card.objectiveId === IM3_PILOT_NODE || activity.masteryNodeId === IM3_PILOT_NODE)
-        && !isConsistentLaterGraph
-      );
-    const originalSelectedMode = activity.stableActivityId === IM3_GUIDED_PRACTICE_ACTIVITY_ID
-      ? "guided"
-      : "independent";
-    if (claimsOriginalSelected && (
-      !isIm3GraphPilotPublished(publication)
-      || activity.approval?.status !== "approved"
-      || activity.masteryNodeId !== IM3_PILOT_NODE
-      || activity.componentKey !== "graphing-explorer"
-      || activity.srsEligible !== true
-      || !originalSelectedIds.includes(activity.stableActivityId as typeof originalSelectedIds[number])
-      || item.card.objectiveId !== IM3_PILOT_NODE
-      || item.card.variantKey !== practiceItem.variantKey
-      || practiceItem.variantKey !== activity.stableActivityId
-      || !hasCurrentSelectedActivityIdentity(
-        { activityId: String(activity._id), activity },
-        originalSelectedMode,
-      )
-    )) continue;
+    const isConsistentLaterGraph =
+      laterGraphIds.some(
+        (stableId) =>
+          item.card.variantKey === stableId &&
+          practiceItem.variantKey === stableId &&
+          activity.stableActivityId === stableId,
+      ) &&
+      item.card.objectiveId === IM3_PILOT_NODE &&
+      activity.masteryNodeId === IM3_PILOT_NODE &&
+      activity.componentKey === "graphing-explorer";
+    const claimsOriginalSelected =
+      originalSelectedIds.includes(item.card.variantKey as (typeof originalSelectedIds)[number]) ||
+      originalSelectedIds.includes(
+        practiceItem.variantKey as (typeof originalSelectedIds)[number],
+      ) ||
+      originalSelectedIds.includes(
+        activity.stableActivityId as (typeof originalSelectedIds)[number],
+      ) ||
+      ((item.card.objectiveId === IM3_PILOT_NODE || activity.masteryNodeId === IM3_PILOT_NODE) &&
+        !isConsistentLaterGraph);
+    const originalSelectedMode =
+      activity.stableActivityId === IM3_GUIDED_PRACTICE_ACTIVITY_ID ? "guided" : "independent";
+    if (
+      claimsOriginalSelected &&
+      (!isIm3GraphPilotPublished(publication) ||
+        activity.approval?.status !== "approved" ||
+        activity.masteryNodeId !== IM3_PILOT_NODE ||
+        activity.componentKey !== "graphing-explorer" ||
+        activity.srsEligible !== true ||
+        !originalSelectedIds.includes(
+          activity.stableActivityId as (typeof originalSelectedIds)[number],
+        ) ||
+        item.card.objectiveId !== IM3_PILOT_NODE ||
+        item.card.variantKey !== practiceItem.variantKey ||
+        practiceItem.variantKey !== activity.stableActivityId ||
+        !hasCurrentSelectedActivityIdentity(
+          { activityId: String(activity._id), activity },
+          originalSelectedMode,
+        ))
+    )
+      continue;
 
     const matchedNodeId = activity.masteryNodeId;
-    const isPilotActivity = (
-      (
-        (
-          activity.stableActivityId === IM3_MASTERY_ADVANTAGE_ACTIVITY_ID
-          || activity.stableActivityId === IM3_GUIDED_PRACTICE_ACTIVITY_ID
-          || activity.stableActivityId === IM3_GRAPH_GUIDED_SEED_2_ACTIVITY_ID
-          || activity.stableActivityId === IM3_GRAPH_INDEPENDENT_SEED_2_ACTIVITY_ID
-        )
-          && activity.masteryNodeId === IM3_PILOT_NODE
-          && activity.componentKey === "graphing-explorer"
-      )
-      || (
-        (
-          activity.stableActivityId === IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID
-          || activity.stableActivityId === IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID
-        )
-          && activity.masteryNodeId === IM3_MAXIMUM_READING_NODE
-          && activity.componentKey === "graphing-explorer"
-      )
-      || (
-        (
-          activity.stableActivityId === IM3_SYMMETRY_GUIDED_ACTIVITY_ID
-          || activity.stableActivityId === IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID
-        )
-        && activity.masteryNodeId === IM3_SYMMETRY_NODE
-        && activity.componentKey === "graphing-explorer"
-      )
-      || (
-        (
-          activity.stableActivityId === IM3_COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID
-          || activity.stableActivityId === IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID
-        )
-        && activity.masteryNodeId === IM3_COMPARE_MAXIMUM_NODE
-        && activity.componentKey === "graphing-explorer"
-      )
-      || (
-        activity.stableActivityId === IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID
-        && activity.masteryNodeId === IM3_ONE_REAL_SOLUTION_NODE
-        && activity.componentKey === "graphing-explorer"
-      )
-      || (
-        activity.stableActivityId === IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID
-        && activity.masteryNodeId === IM3_ONE_REAL_SOLUTION_NODE
-        && activity.componentKey === "graphing-explorer"
-      )
-      || (
-        (
-          activity.stableActivityId === IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID
-          || activity.stableActivityId === IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID
-        )
-        && activity.masteryNodeId === IM3_TWO_REAL_SOLUTIONS_NODE
-        && activity.componentKey === "graphing-explorer"
-      )
-      || (
-        (
-          activity.stableActivityId === IM3_EQUATION_RATE_GUIDED_ACTIVITY_ID
-          || activity.stableActivityId === IM3_EQUATION_RATE_INDEPENDENT_ACTIVITY_ID
-        )
-          && activity.masteryNodeId === IM3_EQUATION_RATE_NODE
-          && activity.componentKey === "rate-of-change-calculator"
-      )
-      || (
-        (
-          activity.stableActivityId === IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID
-          || activity.stableActivityId === IM3_DOMAIN_RANGE_GUIDED_SEED_2_ACTIVITY_ID
-          || activity.stableActivityId === IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID
-          || activity.stableActivityId === IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_ACTIVITY_ID
-        )
-          && activity.masteryNodeId === IM3_DOMAIN_RANGE_NODE
-          && activity.componentKey === "graphing-explorer"
-      )
-      || (
-        (
-          activity.stableActivityId === IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID
-          || activity.stableActivityId === IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID
-        )
-        && activity.masteryNodeId === IM3_PROFIT_MODEL_NODE
-        && activity.componentKey === "fill-in-the-blank"
-      )
-      || (
-        (
-          activity.stableActivityId === IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID
-          || activity.stableActivityId === IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID
-        )
-        && activity.masteryNodeId === IM3_PROFIT_MAXIMUM_NODE
-        && activity.componentKey === "fill-in-the-blank"
-      )
-    )
-      && activity.srsEligible === true;
+    const isPilotActivity =
+      (((activity.stableActivityId === IM3_MASTERY_ADVANTAGE_ACTIVITY_ID ||
+        activity.stableActivityId === IM3_GUIDED_PRACTICE_ACTIVITY_ID ||
+        activity.stableActivityId === IM3_GRAPH_GUIDED_SEED_2_ACTIVITY_ID ||
+        activity.stableActivityId === IM3_GRAPH_INDEPENDENT_SEED_2_ACTIVITY_ID) &&
+        activity.masteryNodeId === IM3_PILOT_NODE &&
+        activity.componentKey === "graphing-explorer") ||
+        ((activity.stableActivityId === IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID ||
+          activity.stableActivityId === IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID) &&
+          activity.masteryNodeId === IM3_MAXIMUM_READING_NODE &&
+          activity.componentKey === "graphing-explorer") ||
+        ((activity.stableActivityId === IM3_SYMMETRY_GUIDED_ACTIVITY_ID ||
+          activity.stableActivityId === IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID) &&
+          activity.masteryNodeId === IM3_SYMMETRY_NODE &&
+          activity.componentKey === "graphing-explorer") ||
+        ((activity.stableActivityId === IM3_COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID ||
+          activity.stableActivityId === IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID) &&
+          activity.masteryNodeId === IM3_COMPARE_MAXIMUM_NODE &&
+          activity.componentKey === "graphing-explorer") ||
+        (activity.stableActivityId === IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID &&
+          activity.masteryNodeId === IM3_ONE_REAL_SOLUTION_NODE &&
+          activity.componentKey === "graphing-explorer") ||
+        (activity.stableActivityId === IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID &&
+          activity.masteryNodeId === IM3_ONE_REAL_SOLUTION_NODE &&
+          activity.componentKey === "graphing-explorer") ||
+        ((activity.stableActivityId === IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID ||
+          activity.stableActivityId === IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID) &&
+          activity.masteryNodeId === IM3_TWO_REAL_SOLUTIONS_NODE &&
+          activity.componentKey === "graphing-explorer") ||
+        ((activity.stableActivityId === IM3_EQUATION_RATE_GUIDED_ACTIVITY_ID ||
+          activity.stableActivityId === IM3_EQUATION_RATE_INDEPENDENT_ACTIVITY_ID) &&
+          activity.masteryNodeId === IM3_EQUATION_RATE_NODE &&
+          activity.componentKey === "rate-of-change-calculator") ||
+        ((activity.stableActivityId === IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID ||
+          activity.stableActivityId === IM3_DOMAIN_RANGE_GUIDED_SEED_2_ACTIVITY_ID ||
+          activity.stableActivityId === IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID ||
+          activity.stableActivityId === IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_ACTIVITY_ID) &&
+          activity.masteryNodeId === IM3_DOMAIN_RANGE_NODE &&
+          activity.componentKey === "graphing-explorer") ||
+        ((activity.stableActivityId === IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID ||
+          activity.stableActivityId === IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID) &&
+          activity.masteryNodeId === IM3_PROFIT_MODEL_NODE &&
+          activity.componentKey === "fill-in-the-blank") ||
+        ((activity.stableActivityId === IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID ||
+          activity.stableActivityId === IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID) &&
+          activity.masteryNodeId === IM3_PROFIT_MAXIMUM_NODE &&
+          activity.componentKey === "fill-in-the-blank")) &&
+      activity.srsEligible === true;
     if (isPilotActivity && studentId && matchedNodeId) {
       const exposure = await ctx.db
         .query("learning_evidence")
-        .withIndex("by_learner_node_origin", (q) => (
+        .withIndex("by_learner_node_origin", (q) =>
           q
             .eq("learnerId", studentId as Id<"profiles">)
             .eq("nodeId", matchedNodeId)
-            .eq("origin", "teacher_led")
-        ))
+            .eq("origin", "teacher_led"),
+        )
         .take(1);
       if (exposure.length === 0) continue;
     }
@@ -331,9 +305,10 @@ export async function resolveQueueItems(
               srsEligible: activity.srsEligible,
               ...(claimsOriginalSelected
                 ? {
-                    practiceMode: activity.stableActivityId === IM3_GUIDED_PRACTICE_ACTIVITY_ID
-                      ? "guided_practice"
-                      : "independent_practice",
+                    practiceMode:
+                      activity.stableActivityId === IM3_GUIDED_PRACTICE_ACTIVITY_ID
+                        ? "guided_practice"
+                        : "independent_practice",
                   }
                 : {}),
             }
@@ -401,9 +376,7 @@ export async function resolveDailyPracticeQueueResult(
 ): Promise<ResolvedDailyPracticeQueue> {
   const cards = await ctx.db
     .query("srs_cards")
-    .withIndex("by_student", (q) =>
-      q.eq("studentId", args.studentId as Id<"profiles">)
-    )
+    .withIndex("by_student", (q) => q.eq("studentId", args.studentId as Id<"profiles">))
     .take(MAX_CARDS_PER_DAILY_QUEUE);
 
   const policyRecords = await ctx.db
@@ -416,13 +389,20 @@ export async function resolveDailyPracticeQueueResult(
     uniqueStandardIds.map(async (standardId) => {
       const standard = await ctx.db.get(standardId);
       return { standardId, standard };
-    })
+    }),
   );
 
   const standardMap = new Map(
     standardResults
-      .filter((r): r is { standardId: Id<"competency_standards">; standard: NonNullable<typeof r.standard> } => r.standard !== null)
-      .map((r) => [r.standardId, r.standard])
+      .filter(
+        (
+          r,
+        ): r is {
+          standardId: Id<"competency_standards">;
+          standard: NonNullable<typeof r.standard>;
+        } => r.standard !== null,
+      )
+      .map((r) => [r.standardId, r.standard]),
   );
 
   const policies = new Map<string, ObjectivePracticePolicy>();
@@ -433,7 +413,7 @@ export async function resolveDailyPracticeQueueResult(
       objectiveId: standard.code,
       priority: VALID_PRIORITIES.has(record.policy)
         ? (record.policy as ObjectivePracticePolicy["priority"])
-        : 'essential',
+        : "essential",
     });
   }
 
@@ -458,299 +438,328 @@ export async function resolveDailyPracticeQueueResult(
   const queueResult = buildDailyQueueResult(cardStates, policies, config, now);
 
   let queueItems = queueResult.items;
-  const hasGraphGuidedCard = cardStates.some((card) => (
-    card.variantKey === IM3_GUIDED_VARIANT_KEY
-    && card.objectiveId === IM3_PILOT_NODE
-  ));
-  const hasGraphGuidedSeed2Card = cardStates.some((card) => (
-    card.variantKey === IM3_GRAPH_GUIDED_SEED_2_VARIANT_KEY
-    && card.objectiveId === IM3_PILOT_NODE
-  ));
-  const hasGraphIndependentSeed2Card = cardStates.some((card) => (
-    card.variantKey === IM3_GRAPH_INDEPENDENT_SEED_2_VARIANT_KEY
-    && card.objectiveId === IM3_PILOT_NODE
-  ));
-  const hasGraphIndependentCard = cardStates.some((card) => (
-    card.variantKey === IM3_PILOT_VARIANT_KEY
-    && card.objectiveId === IM3_PILOT_NODE
-  ));
-  const hasEquationGuidedCard = cardStates.some((card) => (
-    card.variantKey === IM3_EQUATION_RATE_GUIDED_ACTIVITY_ID
-    && card.objectiveId === IM3_EQUATION_RATE_NODE
-  ));
-  const hasEquationIndependentCard = cardStates.some((card) => (
-    card.variantKey === IM3_EQUATION_RATE_INDEPENDENT_ACTIVITY_ID
-    && card.objectiveId === IM3_EQUATION_RATE_NODE
-  ));
-  const hasDomainRangeGuidedCard = cardStates.some((card) => (
-    card.variantKey === IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID
-    && card.objectiveId === IM3_DOMAIN_RANGE_NODE
-  ));
-  const hasDomainRangeGuidedSeed2Card = cardStates.some((card) => (
-    card.variantKey === IM3_DOMAIN_RANGE_GUIDED_SEED_2_VARIANT_KEY
-    && card.objectiveId === IM3_DOMAIN_RANGE_NODE
-  ));
-  const hasDomainRangeIndependentCard = cardStates.some((card) => (
-    card.variantKey === IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID
-    && card.objectiveId === IM3_DOMAIN_RANGE_NODE
-  ));
-  const hasDomainRangeIndependentSeed2Card = cardStates.some((card) => (
-    card.variantKey === IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY
-    && card.objectiveId === IM3_DOMAIN_RANGE_NODE
-  ));
-  const hasProfitModelGuidedCard = cardStates.some((card) => (
-    card.variantKey === IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID
-    && card.objectiveId === IM3_PROFIT_MODEL_NODE
-  ));
-  const hasProfitModelIndependentCard = cardStates.some((card) => (
-    card.variantKey === IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID
-    && card.objectiveId === IM3_PROFIT_MODEL_NODE
-  ));
-  const hasMaximumGuidedCard = cardStates.some((card) => (
-    card.variantKey === IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID
-    && card.objectiveId === IM3_PROFIT_MAXIMUM_NODE
-  ));
-  const hasMaximumIndependentCard = cardStates.some((card) => (
-    card.variantKey === IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID
-    && card.objectiveId === IM3_PROFIT_MAXIMUM_NODE
-  ));
-  const hasMaximumReadingGuidedCard = cardStates.some((card) => (
-    card.variantKey === IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID
-    && card.objectiveId === IM3_MAXIMUM_READING_NODE
-  ));
-  const hasMaximumReadingIndependentCard = cardStates.some((card) => (
-    card.variantKey === IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID
-    && card.objectiveId === IM3_MAXIMUM_READING_NODE
-  ));
-  const hasSymmetryGuidedCard = cardStates.some((card) => (
-    card.variantKey === IM3_SYMMETRY_GUIDED_ACTIVITY_ID
-    && card.objectiveId === IM3_SYMMETRY_NODE
-  ));
-  const hasSymmetryIndependentCard = cardStates.some((card) => (
-    card.variantKey === IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID
-    && card.objectiveId === IM3_SYMMETRY_NODE
-  ));
-  const hasCompareMaximumGuidedCard = cardStates.some((card) => (
-    card.variantKey === IM3_COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID
-    && card.objectiveId === IM3_COMPARE_MAXIMUM_NODE
-  ));
-  const hasCompareMaximumIndependentCard = cardStates.some((card) => (
-    card.variantKey === IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID
-    && card.objectiveId === IM3_COMPARE_MAXIMUM_NODE
-  ));
-  const hasOneRealSolutionGuidedCard = cardStates.some((card) => (
-    card.variantKey === IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID
-    && card.objectiveId === IM3_ONE_REAL_SOLUTION_NODE
-  ));
-  const hasOneRealSolutionIndependentCard = cardStates.some((card) => (
-    card.variantKey === IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID
-    && card.objectiveId === IM3_ONE_REAL_SOLUTION_NODE
-  ));
-  const hasTwoRealSolutionsGuidedCard = cardStates.some((card) => (
-    card.variantKey === IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID
-    && card.objectiveId === IM3_TWO_REAL_SOLUTIONS_NODE
-  ));
-  const hasTwoRealSolutionsIndependentCard = cardStates.some((card) => (
-    card.variantKey === IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID
-    && card.objectiveId === IM3_TWO_REAL_SOLUTIONS_NODE
-  ));
-  const hasNewCardCapacity = queueItems.length < config.maxReviewsPerDay
-    && queueItems.filter((item) => item.card.state === "new").length < config.newCardsPerDay;
+  const hasGraphGuidedCard = cardStates.some(
+    (card) => card.variantKey === IM3_GUIDED_VARIANT_KEY && card.objectiveId === IM3_PILOT_NODE,
+  );
+  const hasGraphGuidedSeed2Card = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_GRAPH_GUIDED_SEED_2_VARIANT_KEY &&
+      card.objectiveId === IM3_PILOT_NODE,
+  );
+  const hasGraphIndependentSeed2Card = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_GRAPH_INDEPENDENT_SEED_2_VARIANT_KEY &&
+      card.objectiveId === IM3_PILOT_NODE,
+  );
+  const hasGraphIndependentCard = cardStates.some(
+    (card) => card.variantKey === IM3_PILOT_VARIANT_KEY && card.objectiveId === IM3_PILOT_NODE,
+  );
+  const hasEquationGuidedCard = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_EQUATION_RATE_GUIDED_ACTIVITY_ID &&
+      card.objectiveId === IM3_EQUATION_RATE_NODE,
+  );
+  const hasEquationIndependentCard = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_EQUATION_RATE_INDEPENDENT_ACTIVITY_ID &&
+      card.objectiveId === IM3_EQUATION_RATE_NODE,
+  );
+  const hasDomainRangeGuidedCard = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID &&
+      card.objectiveId === IM3_DOMAIN_RANGE_NODE,
+  );
+  const hasDomainRangeGuidedSeed2Card = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_DOMAIN_RANGE_GUIDED_SEED_2_VARIANT_KEY &&
+      card.objectiveId === IM3_DOMAIN_RANGE_NODE,
+  );
+  const hasDomainRangeIndependentCard = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID &&
+      card.objectiveId === IM3_DOMAIN_RANGE_NODE,
+  );
+  const hasDomainRangeIndependentSeed2Card = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY &&
+      card.objectiveId === IM3_DOMAIN_RANGE_NODE,
+  );
+  const hasProfitModelGuidedCard = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID &&
+      card.objectiveId === IM3_PROFIT_MODEL_NODE,
+  );
+  const hasProfitModelIndependentCard = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID &&
+      card.objectiveId === IM3_PROFIT_MODEL_NODE,
+  );
+  const hasMaximumGuidedCard = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID &&
+      card.objectiveId === IM3_PROFIT_MAXIMUM_NODE,
+  );
+  const hasMaximumIndependentCard = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID &&
+      card.objectiveId === IM3_PROFIT_MAXIMUM_NODE,
+  );
+  const hasMaximumReadingGuidedCard = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID &&
+      card.objectiveId === IM3_MAXIMUM_READING_NODE,
+  );
+  const hasMaximumReadingIndependentCard = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID &&
+      card.objectiveId === IM3_MAXIMUM_READING_NODE,
+  );
+  const hasSymmetryGuidedCard = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_SYMMETRY_GUIDED_ACTIVITY_ID && card.objectiveId === IM3_SYMMETRY_NODE,
+  );
+  const hasSymmetryIndependentCard = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID &&
+      card.objectiveId === IM3_SYMMETRY_NODE,
+  );
+  const hasCompareMaximumGuidedCard = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID &&
+      card.objectiveId === IM3_COMPARE_MAXIMUM_NODE,
+  );
+  const hasCompareMaximumIndependentCard = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID &&
+      card.objectiveId === IM3_COMPARE_MAXIMUM_NODE,
+  );
+  const hasOneRealSolutionGuidedCard = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID &&
+      card.objectiveId === IM3_ONE_REAL_SOLUTION_NODE,
+  );
+  const hasOneRealSolutionIndependentCard = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID &&
+      card.objectiveId === IM3_ONE_REAL_SOLUTION_NODE,
+  );
+  const hasTwoRealSolutionsGuidedCard = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID &&
+      card.objectiveId === IM3_TWO_REAL_SOLUTIONS_NODE,
+  );
+  const hasTwoRealSolutionsIndependentCard = cardStates.some(
+    (card) =>
+      card.variantKey === IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID &&
+      card.objectiveId === IM3_TWO_REAL_SOLUTIONS_NODE,
+  );
+  const hasNewCardCapacity =
+    queueItems.length < config.maxReviewsPerDay &&
+    queueItems.filter((item) => item.card.state === "new").length < config.newCardsPerDay;
   const graphPilotPublished = isIm3GraphPilotPublished(publication);
-  const nextPilot = graphPilotPublished && !hasGraphGuidedCard
-    ? {
-        activityId: IM3_GUIDED_PRACTICE_ACTIVITY_ID,
-        variantKey: IM3_GUIDED_VARIANT_KEY,
-        nodeId: IM3_PILOT_NODE,
-        componentKey: "graphing-explorer",
-      }
-    : graphPilotPublished && !hasGraphGuidedSeed2Card
+  const nextPilot =
+    graphPilotPublished && !hasGraphGuidedCard
       ? {
-          activityId: IM3_GRAPH_GUIDED_SEED_2_ACTIVITY_ID,
-          variantKey: IM3_GRAPH_GUIDED_SEED_2_VARIANT_KEY,
+          activityId: IM3_GUIDED_PRACTICE_ACTIVITY_ID,
+          variantKey: IM3_GUIDED_VARIANT_KEY,
           nodeId: IM3_PILOT_NODE,
           componentKey: "graphing-explorer",
         }
-    : graphPilotPublished && !hasGraphIndependentCard
-      ? {
-          activityId: IM3_MASTERY_ADVANTAGE_ACTIVITY_ID,
-          variantKey: IM3_PILOT_VARIANT_KEY,
-          nodeId: IM3_PILOT_NODE,
-          componentKey: "graphing-explorer",
-        }
-    : graphPilotPublished && !hasGraphIndependentSeed2Card
-      ? {
-          activityId: IM3_GRAPH_INDEPENDENT_SEED_2_ACTIVITY_ID,
-          variantKey: IM3_GRAPH_INDEPENDENT_SEED_2_VARIANT_KEY,
-          nodeId: IM3_PILOT_NODE,
-          componentKey: "graphing-explorer",
-        }
-    : !hasEquationGuidedCard
+      : graphPilotPublished && !hasGraphGuidedSeed2Card
         ? {
-            activityId: IM3_EQUATION_RATE_GUIDED_ACTIVITY_ID,
-            variantKey: IM3_EQUATION_RATE_GUIDED_ACTIVITY_ID,
-            nodeId: IM3_EQUATION_RATE_NODE,
-            componentKey: "rate-of-change-calculator",
+            activityId: IM3_GRAPH_GUIDED_SEED_2_ACTIVITY_ID,
+            variantKey: IM3_GRAPH_GUIDED_SEED_2_VARIANT_KEY,
+            nodeId: IM3_PILOT_NODE,
+            componentKey: "graphing-explorer",
           }
-        : !hasEquationIndependentCard
+        : graphPilotPublished && !hasGraphIndependentCard
           ? {
-              activityId: IM3_EQUATION_RATE_INDEPENDENT_ACTIVITY_ID,
-              variantKey: IM3_EQUATION_RATE_INDEPENDENT_ACTIVITY_ID,
-              nodeId: IM3_EQUATION_RATE_NODE,
-              componentKey: "rate-of-change-calculator",
+              activityId: IM3_MASTERY_ADVANTAGE_ACTIVITY_ID,
+              variantKey: IM3_PILOT_VARIANT_KEY,
+              nodeId: IM3_PILOT_NODE,
+              componentKey: "graphing-explorer",
             }
-          : !hasDomainRangeGuidedCard
+          : graphPilotPublished && !hasGraphIndependentSeed2Card
             ? {
-                activityId: IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID,
-                variantKey: IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID,
-                nodeId: IM3_DOMAIN_RANGE_NODE,
+                activityId: IM3_GRAPH_INDEPENDENT_SEED_2_ACTIVITY_ID,
+                variantKey: IM3_GRAPH_INDEPENDENT_SEED_2_VARIANT_KEY,
+                nodeId: IM3_PILOT_NODE,
                 componentKey: "graphing-explorer",
               }
-            : !hasDomainRangeGuidedSeed2Card
+            : !hasEquationGuidedCard
               ? {
-                  activityId: IM3_DOMAIN_RANGE_GUIDED_SEED_2_ACTIVITY_ID,
-                  variantKey: IM3_DOMAIN_RANGE_GUIDED_SEED_2_VARIANT_KEY,
-                  nodeId: IM3_DOMAIN_RANGE_NODE,
-                  componentKey: "graphing-explorer",
+                  activityId: IM3_EQUATION_RATE_GUIDED_ACTIVITY_ID,
+                  variantKey: IM3_EQUATION_RATE_GUIDED_ACTIVITY_ID,
+                  nodeId: IM3_EQUATION_RATE_NODE,
+                  componentKey: "rate-of-change-calculator",
                 }
-            : !hasDomainRangeIndependentCard
-              ? {
-                  activityId: IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID,
-                  variantKey: IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID,
-                  nodeId: IM3_DOMAIN_RANGE_NODE,
-                  componentKey: "graphing-explorer",
-                }
-            : !hasDomainRangeIndependentSeed2Card
-              ? {
-                  activityId: IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_ACTIVITY_ID,
-                  variantKey: IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY,
-                  nodeId: IM3_DOMAIN_RANGE_NODE,
-                  componentKey: "graphing-explorer",
-                }
-              : !hasProfitModelGuidedCard
+              : !hasEquationIndependentCard
                 ? {
-                    activityId: IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID,
-                    variantKey: IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID,
-                    nodeId: IM3_PROFIT_MODEL_NODE,
-                    componentKey: "fill-in-the-blank",
+                    activityId: IM3_EQUATION_RATE_INDEPENDENT_ACTIVITY_ID,
+                    variantKey: IM3_EQUATION_RATE_INDEPENDENT_ACTIVITY_ID,
+                    nodeId: IM3_EQUATION_RATE_NODE,
+                    componentKey: "rate-of-change-calculator",
                   }
-                : !hasProfitModelIndependentCard
+                : !hasDomainRangeGuidedCard
                   ? {
-                      activityId: IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID,
-                      variantKey: IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID,
-                      nodeId: IM3_PROFIT_MODEL_NODE,
-                      componentKey: "fill-in-the-blank",
+                      activityId: IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID,
+                      variantKey: IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID,
+                      nodeId: IM3_DOMAIN_RANGE_NODE,
+                      componentKey: "graphing-explorer",
                     }
-                  : !hasMaximumGuidedCard
+                  : !hasDomainRangeGuidedSeed2Card
                     ? {
-                        activityId: IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID,
-                        variantKey: IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID,
-                        nodeId: IM3_PROFIT_MAXIMUM_NODE,
-                        componentKey: "fill-in-the-blank",
+                        activityId: IM3_DOMAIN_RANGE_GUIDED_SEED_2_ACTIVITY_ID,
+                        variantKey: IM3_DOMAIN_RANGE_GUIDED_SEED_2_VARIANT_KEY,
+                        nodeId: IM3_DOMAIN_RANGE_NODE,
+                        componentKey: "graphing-explorer",
                       }
-                  : !hasMaximumIndependentCard
+                    : !hasDomainRangeIndependentCard
                       ? {
-                          activityId: IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
-                          variantKey: IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
-                          nodeId: IM3_PROFIT_MAXIMUM_NODE,
-                          componentKey: "fill-in-the-blank",
+                          activityId: IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID,
+                          variantKey: IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID,
+                          nodeId: IM3_DOMAIN_RANGE_NODE,
+                          componentKey: "graphing-explorer",
                         }
-                      : !hasMaximumReadingGuidedCard
+                      : !hasDomainRangeIndependentSeed2Card
                         ? {
-                            activityId: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
-                            variantKey: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
-                            nodeId: IM3_MAXIMUM_READING_NODE,
+                            activityId: IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_ACTIVITY_ID,
+                            variantKey: IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY,
+                            nodeId: IM3_DOMAIN_RANGE_NODE,
                             componentKey: "graphing-explorer",
                           }
-                      : !hasMaximumReadingIndependentCard
-                        ? {
-                            activityId: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
-                            variantKey: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
-                            nodeId: IM3_MAXIMUM_READING_NODE,
-                            componentKey: "graphing-explorer",
-                          }
-                      : !hasSymmetryGuidedCard
-                        ? {
-                            activityId: IM3_SYMMETRY_GUIDED_ACTIVITY_ID,
-                            variantKey: IM3_SYMMETRY_GUIDED_ACTIVITY_ID,
-                            nodeId: IM3_SYMMETRY_NODE,
-                            componentKey: "graphing-explorer",
-                          }
-                      : !hasSymmetryIndependentCard
-                        ? {
-                            activityId: IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID,
-                            variantKey: IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID,
-                            nodeId: IM3_SYMMETRY_NODE,
-                            componentKey: "graphing-explorer",
-                          }
-                      : !hasCompareMaximumGuidedCard
-                        ? {
-                            activityId: IM3_COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID,
-                            variantKey: IM3_COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID,
-                            nodeId: IM3_COMPARE_MAXIMUM_NODE,
-                            componentKey: "graphing-explorer",
-                          }
-                      : !hasCompareMaximumIndependentCard
-                        ? {
-                            activityId: IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
-                            variantKey: IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
-                            nodeId: IM3_COMPARE_MAXIMUM_NODE,
-                            componentKey: "graphing-explorer",
-                          }
-                      : !hasOneRealSolutionGuidedCard
-                        ? {
-                            activityId: IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID,
-                            variantKey: IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID,
-                            nodeId: IM3_ONE_REAL_SOLUTION_NODE,
-                            componentKey: "graphing-explorer",
-                          }
-                      : !hasOneRealSolutionIndependentCard
-                        ? {
-                            activityId: IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID,
-                            variantKey: IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID,
-                            nodeId: IM3_ONE_REAL_SOLUTION_NODE,
-                            componentKey: "graphing-explorer",
-                          }
-                      : !hasTwoRealSolutionsGuidedCard
-                        ? {
-                            activityId: IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID,
-                            variantKey: IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID,
-                            nodeId: IM3_TWO_REAL_SOLUTIONS_NODE,
-                            componentKey: "graphing-explorer",
-                          }
-                      : !hasTwoRealSolutionsIndependentCard
-                        ? {
-                            activityId: IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
-                            variantKey: IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
-                            nodeId: IM3_TWO_REAL_SOLUTIONS_NODE,
-                            componentKey: "graphing-explorer",
-                          }
-                      : null;
+                        : !hasProfitModelGuidedCard
+                          ? {
+                              activityId: IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID,
+                              variantKey: IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID,
+                              nodeId: IM3_PROFIT_MODEL_NODE,
+                              componentKey: "fill-in-the-blank",
+                            }
+                          : !hasProfitModelIndependentCard
+                            ? {
+                                activityId: IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID,
+                                variantKey: IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID,
+                                nodeId: IM3_PROFIT_MODEL_NODE,
+                                componentKey: "fill-in-the-blank",
+                              }
+                            : !hasMaximumGuidedCard
+                              ? {
+                                  activityId: IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID,
+                                  variantKey: IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID,
+                                  nodeId: IM3_PROFIT_MAXIMUM_NODE,
+                                  componentKey: "fill-in-the-blank",
+                                }
+                              : !hasMaximumIndependentCard
+                                ? {
+                                    activityId: IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
+                                    variantKey: IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
+                                    nodeId: IM3_PROFIT_MAXIMUM_NODE,
+                                    componentKey: "fill-in-the-blank",
+                                  }
+                                : !hasMaximumReadingGuidedCard
+                                  ? {
+                                      activityId: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
+                                      variantKey: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
+                                      nodeId: IM3_MAXIMUM_READING_NODE,
+                                      componentKey: "graphing-explorer",
+                                    }
+                                  : !hasMaximumReadingIndependentCard
+                                    ? {
+                                        activityId: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
+                                        variantKey: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
+                                        nodeId: IM3_MAXIMUM_READING_NODE,
+                                        componentKey: "graphing-explorer",
+                                      }
+                                    : !hasSymmetryGuidedCard
+                                      ? {
+                                          activityId: IM3_SYMMETRY_GUIDED_ACTIVITY_ID,
+                                          variantKey: IM3_SYMMETRY_GUIDED_ACTIVITY_ID,
+                                          nodeId: IM3_SYMMETRY_NODE,
+                                          componentKey: "graphing-explorer",
+                                        }
+                                      : !hasSymmetryIndependentCard
+                                        ? {
+                                            activityId: IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID,
+                                            variantKey: IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID,
+                                            nodeId: IM3_SYMMETRY_NODE,
+                                            componentKey: "graphing-explorer",
+                                          }
+                                        : !hasCompareMaximumGuidedCard
+                                          ? {
+                                              activityId: IM3_COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID,
+                                              variantKey: IM3_COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID,
+                                              nodeId: IM3_COMPARE_MAXIMUM_NODE,
+                                              componentKey: "graphing-explorer",
+                                            }
+                                          : !hasCompareMaximumIndependentCard
+                                            ? {
+                                                activityId:
+                                                  IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
+                                                variantKey:
+                                                  IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
+                                                nodeId: IM3_COMPARE_MAXIMUM_NODE,
+                                                componentKey: "graphing-explorer",
+                                              }
+                                            : !hasOneRealSolutionGuidedCard
+                                              ? {
+                                                  activityId:
+                                                    IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID,
+                                                  variantKey:
+                                                    IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID,
+                                                  nodeId: IM3_ONE_REAL_SOLUTION_NODE,
+                                                  componentKey: "graphing-explorer",
+                                                }
+                                              : !hasOneRealSolutionIndependentCard
+                                                ? {
+                                                    activityId:
+                                                      IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID,
+                                                    variantKey:
+                                                      IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID,
+                                                    nodeId: IM3_ONE_REAL_SOLUTION_NODE,
+                                                    componentKey: "graphing-explorer",
+                                                  }
+                                                : !hasTwoRealSolutionsGuidedCard
+                                                  ? {
+                                                      activityId:
+                                                        IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID,
+                                                      variantKey:
+                                                        IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID,
+                                                      nodeId: IM3_TWO_REAL_SOLUTIONS_NODE,
+                                                      componentKey: "graphing-explorer",
+                                                    }
+                                                  : !hasTwoRealSolutionsIndependentCard
+                                                    ? {
+                                                        activityId:
+                                                          IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
+                                                        variantKey:
+                                                          IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
+                                                        nodeId: IM3_TWO_REAL_SOLUTIONS_NODE,
+                                                        componentKey: "graphing-explorer",
+                                                      }
+                                                    : null;
   if (!queueResult.backlog && queueItems.length === 0 && hasNewCardCapacity && nextPilot) {
     const pilotPracticeItem = await ctx.db
       .query("practice_items")
       .withIndex("by_variantKey", (q) => q.eq("variantKey", nextPilot.variantKey))
       .first();
-    const pilotActivity = pilotPracticeItem
-      ? await ctx.db.get(pilotPracticeItem.activityId)
-      : null;
+    const pilotActivity = pilotPracticeItem ? await ctx.db.get(pilotPracticeItem.activityId) : null;
     const exposure = await ctx.db
       .query("learning_evidence")
-      .withIndex("by_learner_node_origin", (q) => (
+      .withIndex("by_learner_node_origin", (q) =>
         q
           .eq("learnerId", args.studentId as Id<"profiles">)
           .eq("nodeId", nextPilot.nodeId)
-          .eq("origin", "teacher_led")
-      ))
+          .eq("origin", "teacher_led"),
+      )
       .take(1);
     if (
-      pilotPracticeItem
-      && pilotActivity
-      && pilotActivity.stableActivityId === nextPilot.activityId
-      && pilotActivity.masteryNodeId === nextPilot.nodeId
-      && pilotActivity.componentKey === nextPilot.componentKey
-      && pilotActivity.srsEligible === true
-      && exposure.length > 0
+      pilotPracticeItem &&
+      pilotActivity &&
+      pilotActivity.stableActivityId === nextPilot.activityId &&
+      pilotActivity.masteryNodeId === nextPilot.nodeId &&
+      pilotActivity.componentKey === nextPilot.componentKey &&
+      pilotActivity.srsEligible === true &&
+      exposure.length > 0
     ) {
       queueItems = [
         ...queueItems,
@@ -783,7 +792,7 @@ export async function resolveDailyPracticeQueueResult(
  */
 export async function getDailyPracticeQueueHandler(
   ctx: QueryCtx,
-  args: { studentId: string; asOfDate?: string }
+  args: { studentId: string; asOfDate?: string },
 ): Promise<ResolvedQueueItem[]> {
   return resolveDailyPracticeQueue(ctx, args);
 }

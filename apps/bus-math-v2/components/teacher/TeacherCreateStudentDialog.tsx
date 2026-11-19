@@ -39,7 +39,6 @@ const DEFAULT_FORM_STATE: FormState = {
 const FOCUSABLE_SELECTORS =
   'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
-
 /**
  * Renders a dialog for creating a single student account with auto-generated
  * username and password credentials.
@@ -106,7 +105,6 @@ export function TeacherCreateStudentDialog() {
     };
   }, [isOpen]);
 
-
   /**
    * Closes the dialog and clears any error state.
    */
@@ -114,7 +112,6 @@ export function TeacherCreateStudentDialog() {
     setIsOpen(false);
     setError(null);
   };
-
 
   /**
    * Closes the dialog when clicking on the overlay background.
@@ -127,7 +124,6 @@ export function TeacherCreateStudentDialog() {
     }
   };
 
-
   /**
    * Returns an input change handler for the given form field.
    *
@@ -137,7 +133,6 @@ export function TeacherCreateStudentDialog() {
   const handleChange = (field: keyof FormState) => (event: ChangeEvent<HTMLInputElement>) => {
     setFormState((current) => ({ ...current, [field]: event.target.value }));
   };
-
 
   /**
    * Submits the form to create a new student account via the API.

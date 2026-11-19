@@ -1,12 +1,8 @@
-import { requireStudentSessionClaims } from '@/lib/auth/server';
-import {
-  fetchInternalQuery,
-  fetchInternalMutation,
-  internal,
-} from '@/lib/convex/server';
-import { PracticeSessionProvider } from '@/components/student/PracticeSessionProvider';
-import type { SrsSession } from '@math-platform/srs-engine/contract';
-import type { ResolvedQueueItem } from '@/convex/queue/queue';
+import { requireStudentSessionClaims } from "@/lib/auth/server";
+import { fetchInternalQuery, fetchInternalMutation, internal } from "@/lib/convex/server";
+import { PracticeSessionProvider } from "@/components/student/PracticeSessionProvider";
+import type { SrsSession } from "@math-platform/srs-engine/contract";
+import type { ResolvedQueueItem } from "@/convex/queue/queue";
 
 interface SessionData {
   session: SrsSession;
@@ -14,24 +10,23 @@ interface SessionData {
 }
 
 export default async function StudentPracticePage() {
-  const claims = await requireStudentSessionClaims('/auth/login');
+  const claims = await requireStudentSessionClaims("/auth/login");
 
   const sessionData: SessionData | null = await fetchInternalQuery(
     internal.queue.sessions.getActiveSession,
     { studentId: claims.sub },
   );
 
-  const activeSessionData: SessionData | null = sessionData ?? await fetchInternalMutation(
-    internal.queue.sessions.startDailySession,
-    { studentId: claims.sub },
-  );
+  const activeSessionData: SessionData | null =
+    sessionData ??
+    (await fetchInternalMutation(internal.queue.sessions.startDailySession, {
+      studentId: claims.sub,
+    }));
 
   if (!activeSessionData) {
     return (
       <div className="max-w-3xl mx-auto py-8 px-4 text-center">
-        <h1 className="text-2xl font-display font-bold text-foreground">
-          Daily Practice
-        </h1>
+        <h1 className="text-2xl font-display font-bold text-foreground">Daily Practice</h1>
         <p className="mt-4 text-muted-foreground">
           Unable to start a practice session. Please try again later.
         </p>
@@ -40,7 +35,10 @@ export default async function StudentPracticePage() {
   }
 
   const { session, queue } = activeSessionData;
-  const pilotActivities = await fetchInternalQuery(internal.activities.getApprovedTranslationPilot, { studentId: claims.sub });
+  const pilotActivities = await fetchInternalQuery(
+    internal.activities.getApprovedTranslationPilot,
+    { studentId: claims.sub },
+  );
 
   return (
     <PracticeSessionProvider

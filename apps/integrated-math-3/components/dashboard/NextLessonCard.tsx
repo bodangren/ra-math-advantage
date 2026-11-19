@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export interface NextLessonCardProps {
   lessonTitle: string;
@@ -15,17 +15,15 @@ export interface NextLessonCardProps {
  * @param {NextLessonCardProps} props - Next lesson card configuration.
  * @returns {JSX.Element} A styled lesson card.
  */
-export function NextLessonCard({
-  lessonTitle,
-  phaseCount,
-  lessonHref,
-}: NextLessonCardProps) {
-  const phaseLabel = phaseCount === 1 ? '1 phase' : `${phaseCount} phases`;
+export function NextLessonCard({ lessonTitle, phaseCount, lessonHref }: NextLessonCardProps) {
+  const phaseLabel = phaseCount === 1 ? "1 phase" : `${phaseCount} phases`;
 
   return (
     <article className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-950 dark:to-orange-900 border border-orange-200 dark:border-orange-800 rounded-lg p-6 shadow-sm">
-      <h3 className="text-lg font-semibold text-orange-900 dark:text-orange-100 mb-4">Next Lesson</h3>
-      
+      <h3 className="text-lg font-semibold text-orange-900 dark:text-orange-100 mb-4">
+        Next Lesson
+      </h3>
+
       <div className="mb-6">
         <h4 className="text-xl font-semibold text-foreground mb-2">{lessonTitle}</h4>
         <p className="text-muted-foreground text-sm">{phaseLabel}</p>

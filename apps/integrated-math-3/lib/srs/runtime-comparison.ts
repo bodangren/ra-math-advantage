@@ -1,14 +1,11 @@
 export type SrsComparisonSubject =
-  | 'knowledge_state'
-  | 'dashboard_recommendation'
-  | 'daily_queue'
-  | 'review_day_message'
-  | 'placement';
+  | "knowledge_state"
+  | "dashboard_recommendation"
+  | "daily_queue"
+  | "review_day_message"
+  | "placement";
 
-export type SrsDivergenceClass =
-  | 'intended_contract_change'
-  | 'data_gap'
-  | 'unexpected';
+export type SrsDivergenceClass = "intended_contract_change" | "data_gap" | "unexpected";
 
 export interface RuntimeComparisonInput {
   readonly subject: SrsComparisonSubject;
@@ -30,7 +27,7 @@ function isSensitiveObservableField(key: string): boolean {
 
 function canonicalize(value: unknown): unknown {
   if (Array.isArray(value)) return value.map(canonicalize);
-  if (value !== null && typeof value === 'object') {
+  if (value !== null && typeof value === "object") {
     return Object.fromEntries(
       Object.entries(value as Record<string, unknown>)
         .filter(([key]) => !isSensitiveObservableField(key))
@@ -46,13 +43,13 @@ function fingerprint(value: unknown): string {
 }
 
 function getReason(value: unknown): string | undefined {
-  if (value === null || typeof value !== 'object') return undefined;
+  if (value === null || typeof value !== "object") return undefined;
   const reason = (value as Record<string, unknown>).reason;
-  return typeof reason === 'string' && reason.length > 0 ? reason : undefined;
+  return typeof reason === "string" && reason.length > 0 ? reason : undefined;
 }
 
-const INTENDED_REASONS = new Set(['review-load-saturated']);
-const DATA_GAP_REASONS = new Set(['legacy-card-fallback', 'unmigrated-placement']);
+const INTENDED_REASONS = new Set(["review-load-saturated"]);
+const DATA_GAP_REASONS = new Set(["legacy-card-fallback", "unmigrated-placement"]);
 
 /**
  * Compares externally observable v2 and v3.2 outputs. The result stores only
@@ -66,16 +63,17 @@ export function classifyRuntimeComparison(
   if (v2Fingerprint === v3_2Fingerprint) return null;
 
   const reason = getReason(input.v3_2);
-  const divergenceClass = reason !== undefined && INTENDED_REASONS.has(reason)
-    ? 'intended_contract_change'
-    : reason !== undefined && DATA_GAP_REASONS.has(reason)
-      ? 'data_gap'
-      : 'unexpected';
+  const divergenceClass =
+    reason !== undefined && INTENDED_REASONS.has(reason)
+      ? "intended_contract_change"
+      : reason !== undefined && DATA_GAP_REASONS.has(reason)
+        ? "data_gap"
+        : "unexpected";
 
   return Object.freeze({
     subject: input.subject,
     divergenceClass,
-    explanationKey: reason ?? 'unclassified-output-change',
+    explanationKey: reason ?? "unclassified-output-change",
     v2Fingerprint,
     v3_2Fingerprint,
   });
@@ -89,9 +87,11 @@ export interface CutoverPrerequisites {
 
 /** Returns true only when a human-approved runtime cutover is safe to make. */
 export function shouldPermitCutover(input: CutoverPrerequisites): boolean {
-  return input.verificationComplete
-    && Number.isInteger(input.unexpectedDivergenceCount)
-    && input.unexpectedDivergenceCount === 0
-    && Number.isFinite(input.approvedAt)
-    && (input.approvedAt ?? 0) > 0;
+  return (
+    input.verificationComplete &&
+    Number.isInteger(input.unexpectedDivergenceCount) &&
+    input.unexpectedDivergenceCount === 0 &&
+    Number.isFinite(input.approvedAt) &&
+    (input.approvedAt ?? 0) > 0
+  );
 }

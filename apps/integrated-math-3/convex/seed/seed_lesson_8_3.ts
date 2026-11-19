@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -78,7 +78,8 @@ export const seedLesson8_3 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "A population has values {2, 4, 6, 8, 10}. What is the mean of this population?",
+                    question:
+                      "A population has values {2, 4, 6, 8, 10}. What is the mean of this population?",
                     options: ["5", "6", "7", "8"],
                     correctIndex: 1,
                   },
@@ -217,12 +218,22 @@ export const seedLesson8_3 = internalMutation({
                 questions: [
                   {
                     question: "Which class scored higher on average?",
-                    options: ["Mr. Jackson's class", "Ms. Hettrick's class", "They scored the same", "Not enough information"],
+                    options: [
+                      "Mr. Jackson's class",
+                      "Ms. Hettrick's class",
+                      "They scored the same",
+                      "Not enough information",
+                    ],
                     correctIndex: 0,
                   },
                   {
                     question: "Which class has scores that are more spread out?",
-                    options: ["Mr. Jackson's class", "Ms. Hettrick's class", "They have the same spread", "Not enough information"],
+                    options: [
+                      "Mr. Jackson's class",
+                      "Ms. Hettrick's class",
+                      "They have the same spread",
+                      "Not enough information",
+                    ],
                     correctIndex: 1,
                   },
                 ],
@@ -253,13 +264,19 @@ export const seedLesson8_3 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "For symmetric distributions, which measure describes the center well?",
+                    question:
+                      "For symmetric distributions, which measure describes the center well?",
                     options: ["Median only", "Mean", "Mode only", "Range"],
                     correctIndex: 1,
                   },
                   {
                     question: "What describes the spread of a symmetric distribution?",
-                    options: ["Mean and median", "Variance and standard deviation", "Mode and range", "Outliers only"],
+                    options: [
+                      "Mean and median",
+                      "Variance and standard deviation",
+                      "Mode and range",
+                      "Outliers only",
+                    ],
                     correctIndex: 1,
                   },
                 ],
@@ -293,7 +310,7 @@ export const seedLesson8_3 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

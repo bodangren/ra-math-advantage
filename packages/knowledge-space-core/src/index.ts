@@ -20,8 +20,8 @@ export type {
   DomainAdapter,
   ValidationError,
   ValidationResult,
-} from './types';
-export { KNOWLEDGE_SPACE_SCHEMA_VERSION } from './types';
+} from "./types";
+export { KNOWLEDGE_SPACE_SCHEMA_VERSION } from "./types";
 
 export {
   DOMAIN_ADAPTER_V31_CONTRACT_VERSION,
@@ -35,11 +35,11 @@ export {
   isAgeBandPolicy,
   isPlacementProbeInstrumentPolicy,
   isDomainAdapterV31Declarations,
-} from './adapters';
+} from "./adapters";
 
-export type { PrerequisiteCycle, CycleDetectionOptions } from './validation';
+export type { PrerequisiteCycle, CycleDetectionOptions } from "./validation";
 
-export { knowledgeSpaceSchema, CORE_ID_PATTERN } from './schemas';
+export { knowledgeSpaceSchema, CORE_ID_PATTERN } from "./schemas";
 
 export {
   knowledgeStateSchema,
@@ -47,13 +47,13 @@ export {
   displayLevelSchema,
   projectDisplayLevel,
   computeNodeState,
-} from './level-projection';
+} from "./level-projection";
 export type {
   KnowledgeState,
   DisplayLevel,
   DisplayLevelBand,
   LevelProjectionFn,
-} from './level-projection';
+} from "./level-projection";
 
 export {
   masterySnapshotSchema,
@@ -61,13 +61,13 @@ export {
   DEFAULT_PROGRESS_TREND_WINDOW_DAYS,
   DEFAULT_PROGRESS_TREND_THRESHOLD,
   computeProgressTrend,
-} from './progress-trend';
+} from "./progress-trend";
 export type {
   MasterySnapshot,
   ProgressTrendHistory,
   ProgressTrend,
   ProgressTrendOptions,
-} from './progress-trend';
+} from "./progress-trend";
 
 export {
   validateKnowledgeSpace,
@@ -79,12 +79,12 @@ export {
   getInvalidEdgePairings,
   validateNodeMetadataWithAdapter,
   getPrerequisiteCycles,
-} from './validation';
+} from "./validation";
 
-export { syntheticMathFixture, syntheticEnglishGseFixture } from './fixtures';
+export { syntheticMathFixture, syntheticEnglishGseFixture } from "./fixtures";
 
-export { suggestEdges } from './edge-suggestions';
-export type { EdgeSuggestionInput } from './edge-suggestions';
+export { suggestEdges } from "./edge-suggestions";
+export type { EdgeSuggestionInput } from "./edge-suggestions";
 
 export {
   placementResultSchema,
@@ -92,27 +92,23 @@ export {
   isPlacementResult,
   PROBE_RESULTS,
   probeResultSchema,
-} from './placement';
-export type {
-  PlacementResult,
-  ProbeResult,
-  ProbeAdapter,
-} from './placement';
+} from "./placement";
+export type { PlacementResult, ProbeResult, ProbeAdapter } from "./placement";
 
-export { runPlacementTraversal } from './placement-engine';
-export type { PlacementEngineResult } from './placement-engine';
+export { runPlacementTraversal } from "./placement-engine";
+export type { PlacementEngineResult } from "./placement-engine";
 
 export {
   findCrossCourseEquivalences,
   validateCrossCourseEdges,
   computeEquivalenceComponents,
-} from './cross-course-equivalence';
+} from "./cross-course-equivalence";
 export type {
   CrossCourseCourse,
   CrossCourseInput,
   CrossCourseValidationResult,
   EquivalenceComponent,
-} from './cross-course-equivalence';
+} from "./cross-course-equivalence";
 
 // ---------------------------------------------------------------------------
 // Phase 1 — Canonical KST contract (kst-srs.v2)
@@ -126,10 +122,10 @@ export {
   masteryConfigSchema,
   normalizeMasteryConfig,
   knowledgeStateEntrySchema,
-} from './mastery-state';
+} from "./mastery-state";
 
-export { objectiveStateEvidenceSchema } from './srs-adapter';
-export type { ObjectiveStateEvidence } from './srs-adapter';
+export { objectiveStateEvidenceSchema } from "./srs-adapter";
+export type { ObjectiveStateEvidence } from "./srs-adapter";
 export type {
   MasteryThresholds,
   MasteryConfig,
@@ -137,29 +133,21 @@ export type {
   KnowledgeStateEntry,
   KnowledgeStateEvidence,
   ReadinessState,
-} from './mastery-state';
+} from "./mastery-state";
 
-export { getKnowledgeState, stabilityToRetention, determineState } from './knowledge-state-engine';
+export { getKnowledgeState, stabilityToRetention, determineState } from "./knowledge-state-engine";
 export type {
   KnowledgeStateStudentRef,
   KnowledgeStateEvidence as KnowledgeStateEvidenceArg,
-} from './knowledge-state-engine';
+} from "./knowledge-state-engine";
 
-export { getOuterFringe, getOuterFringeV3 } from './outer-fringe';
-export type {
-  FringeEntry,
-  FringeEntryV3,
-  OuterFringeV3,
-  ReadinessFn,
-} from './outer-fringe';
+export { getOuterFringe, getOuterFringeV3 } from "./outer-fringe";
+export type { FringeEntry, FringeEntryV3, OuterFringeV3, ReadinessFn } from "./outer-fringe";
 
-export { computeWeightedReadiness, createDefaultWeightedReadinessFn } from './weighted-readiness';
-export type { ReadinessResult } from './weighted-readiness';
+export { computeWeightedReadiness, createDefaultWeightedReadinessFn } from "./weighted-readiness";
+export type { ReadinessResult } from "./weighted-readiness";
 
-export {
-  DefaultSrsToKstBridge,
-  buildKstState,
-} from './srs-bridge';
+export { DefaultSrsToKstBridge, buildKstState } from "./srs-bridge";
 export type {
   SrsCardState,
   ObjectiveProficiencyResult,
@@ -167,7 +155,7 @@ export type {
   LearnerStateOutput,
   SrsToKstBridge,
   ConvertArgs,
-} from './srs-bridge';
+} from "./srs-bridge";
 
 // ---------------------------------------------------------------------------
 // Phase 1 — Transfer-Credit Equivalence Resolution & Policy
@@ -183,14 +171,14 @@ export {
   batchComputeTransferCredit,
   TRANSFER_POLICY_DEFAULT,
   transferPolicySchema,
-} from './transfer-credit';
+} from "./transfer-credit";
 export type {
   TransferPolicyConfig,
   TransferPolicy,
   ComponentMasteryResult,
   TransferCreditResult,
   BatchTransferCreditResult,
-} from './transfer-credit';
+} from "./transfer-credit";
 
 // ---------------------------------------------------------------------------
 // Phase 2 — Transfer Eligibility & Next-Skill Path Annotation
@@ -203,13 +191,13 @@ export {
   annotateNextSkillPath,
   TRANSFER_ELIGIBILITY_DEFAULT,
   transferEligibilitySchema,
-} from './transfer-eligibility';
+} from "./transfer-eligibility";
 export type {
   TransferEligibilityConfig,
   TransferEligibleSkill,
   NextSkillPathItem,
   AnnotatedPathEntry,
-} from './transfer-eligibility';
+} from "./transfer-eligibility";
 
 // ---------------------------------------------------------------------------
 // Phase 3 — Transfer Skip & Confirmation Check
@@ -224,21 +212,21 @@ export {
   grantSkipAfterCheck,
   TRANSFER_SKIP_POLICY_DEFAULT,
   transferSkipPolicySchema,
-} from './transfer-skip';
+} from "./transfer-skip";
 export type {
   TransferSkipPolicy,
   TransferSkipRecord,
   TransferSkipState,
   ConfirmationCheckResult,
   ConfirmationCheck,
-} from './transfer-skip';
+} from "./transfer-skip";
 
 // ---------------------------------------------------------------------------
 // Phase 4 — Teacher Audit View (FR6, AC5)
 // See measure/tracks/transfer-credit-runtime_20260605/{plan,test-strategy}.md
 // ---------------------------------------------------------------------------
 
-export { buildTransferCreditAuditView } from './transfer-teacher-audit';
+export { buildTransferCreditAuditView } from "./transfer-teacher-audit";
 export type {
   TransferCreditAuditRow,
   TransferCreditStudentGroup,
@@ -247,4 +235,4 @@ export type {
   TransferCreditAuditInputRecord,
   TransferCreditStudentMap,
   TransferCreditCourseMap,
-} from './transfer-teacher-audit';
+} from "./transfer-teacher-audit";

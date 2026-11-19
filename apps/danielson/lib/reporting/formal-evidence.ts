@@ -2,9 +2,9 @@ import type {
   ObservationAmendment,
   ObservationType,
   SubmittedObservation,
-} from '../observations/contracts';
-import { projectEffectiveObservation } from '../observations/amendments';
-import type { ComponentEvidence } from './projections';
+} from "../observations/contracts";
+import { projectEffectiveObservation } from "../observations/amendments";
+import type { ComponentEvidence } from "./projections";
 
 type FormalObservation = {
   record: SubmittedObservation;
@@ -32,7 +32,7 @@ export function compareFormalRecords(
 
 export function latestFormalRecord(
   records: readonly SubmittedObservation[],
-  observationType: Extract<ObservationType, 'formal_q1' | 'formal_q4'>,
+  observationType: Extract<ObservationType, "formal_q1" | "formal_q4">,
 ) {
   return records
     .filter((record) => record.observationType === observationType)
@@ -43,16 +43,19 @@ export function latestFormalRecord(
 export function projectLatestFormalComponentEvidence(
   observations: readonly FormalObservation[],
 ): ComponentEvidence[] {
-  const latestByComponent = new Map<string, {
-    evidence: ComponentEvidence;
-    record: SubmittedObservation;
-    itemId: string;
-  }>();
+  const latestByComponent = new Map<
+    string,
+    {
+      evidence: ComponentEvidence;
+      record: SubmittedObservation;
+      itemId: string;
+    }
+  >();
   for (const { record, amendments } of observations) {
-    if (record.observationType !== 'formal_q1' && record.observationType !== 'formal_q4') continue;
+    if (record.observationType !== "formal_q1" && record.observationType !== "formal_q4") continue;
     const effective = projectEffectiveObservation(record, amendments);
     for (const item of effective.items) {
-      if (item.outcome?.kind !== 'rated') continue;
+      if (item.outcome?.kind !== "rated") continue;
       const candidate = {
         evidence: {
           componentId: item.componentId,
@@ -68,8 +71,7 @@ export function projectLatestFormalComponentEvidence(
       };
       const current = latestByComponent.get(item.componentId);
       const comparison = current
-        ? compareFormalRecords(record, current.record)
-          || item.itemId.localeCompare(current.itemId)
+        ? compareFormalRecords(record, current.record) || item.itemId.localeCompare(current.itemId)
         : 1;
       if (!current || comparison > 0) latestByComponent.set(item.componentId, candidate);
     }

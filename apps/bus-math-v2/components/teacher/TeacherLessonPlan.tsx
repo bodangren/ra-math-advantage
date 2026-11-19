@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Target,
   CheckCircle,
@@ -20,14 +20,14 @@ import {
   Flag,
   Info,
   ChevronDown,
-  Download
-} from "lucide-react"
+  Download,
+} from "lucide-react";
 import type {
   TeacherPublishedLesson,
   TeacherPublishedPhase,
-} from '@/lib/teacher/lesson-monitoring';
-import { formatCurriculumSegmentLabel } from '@/lib/curriculum/segment-labels';
-import { lessonHasWorkbooks } from '@/lib/curriculum/workbooks.client';
+} from "@/lib/teacher/lesson-monitoring";
+import { formatCurriculumSegmentLabel } from "@/lib/curriculum/segment-labels";
+import { lessonHasWorkbooks } from "@/lib/curriculum/workbooks.client";
 
 interface TeacherLessonPlanProps {
   lesson: TeacherPublishedLesson;
@@ -35,11 +35,10 @@ interface TeacherLessonPlanProps {
   lessonNumber: number;
   gradeLevel?: string;
   course?: string;
-  onNavigate?: (direction: 'prev' | 'next') => void;
+  onNavigate?: (direction: "prev" | "next") => void;
   onLessonChange?: (lessonNumber: number) => void;
   availableLessons?: Array<{ number: number; title: string }>;
 }
-
 
 /**
  * Renders a detailed lesson plan for teachers, including learning objectives,
@@ -60,19 +59,18 @@ export function TeacherLessonPlan({
   lessonNumber,
   onNavigate,
   onLessonChange,
-  availableLessons = []
+  availableLessons = [],
 }: TeacherLessonPlanProps) {
   const durationMinutes = lesson.metadata?.duration || 45;
   const learningObjectives = lesson.learningObjectives || [];
 
   // Default pedagogical approaches based on lesson content
   const pedagogicalApproach = [
-    'Interactive instruction',
-    'Guided practice',
-    'Collaborative learning',
-    'Formative assessment'
+    "Interactive instruction",
+    "Guided practice",
+    "Collaborative learning",
+    "Formative assessment",
   ];
-
 
   /**
    * Returns a Lucide icon component for the given phase number.
@@ -82,16 +80,22 @@ export function TeacherLessonPlan({
    */
   const getPhaseIcon = (phaseNumber: number) => {
     switch (phaseNumber) {
-      case 1: return <PlayCircle className="h-5 w-5" />
-      case 2: return <BookOpen className="h-5 w-5" />
-      case 3: return <Users className="h-5 w-5" />
-      case 4: return <PenTool className="h-5 w-5" />
-      case 5: return <UserCheck className="h-5 w-5" />
-      case 6: return <Flag className="h-5 w-5" />
-      default: return <Info className="h-5 w-5" />
+      case 1:
+        return <PlayCircle className="h-5 w-5" />;
+      case 2:
+        return <BookOpen className="h-5 w-5" />;
+      case 3:
+        return <Users className="h-5 w-5" />;
+      case 4:
+        return <PenTool className="h-5 w-5" />;
+      case 5:
+        return <UserCheck className="h-5 w-5" />;
+      case 6:
+        return <Flag className="h-5 w-5" />;
+      default:
+        return <Info className="h-5 w-5" />;
     }
-  }
-
+  };
 
   /**
    * Returns a Tailwind border/background class for the given phase number.
@@ -101,16 +105,22 @@ export function TeacherLessonPlan({
    */
   const getPhaseColor = (phaseNumber: number) => {
     switch (phaseNumber) {
-      case 1: return 'border-red-200 bg-red-50 dark:bg-red-950/10'
-      case 2: return 'border-blue-200 bg-blue-50 dark:bg-blue-950/10'
-      case 3: return 'border-green-200 bg-green-50 dark:bg-green-950/10'
-      case 4: return 'border-purple-200 bg-purple-50 dark:bg-purple-950/10'
-      case 5: return 'border-amber-200 bg-amber-50 dark:bg-amber-950/10'
-      case 6: return 'border-slate-200 bg-slate-50 dark:bg-slate-950/10'
-      default: return 'border-gray-200 bg-gray-50 dark:bg-gray-950/10'
+      case 1:
+        return "border-red-200 bg-red-50 dark:bg-red-950/10";
+      case 2:
+        return "border-blue-200 bg-blue-50 dark:bg-blue-950/10";
+      case 3:
+        return "border-green-200 bg-green-50 dark:bg-green-950/10";
+      case 4:
+        return "border-purple-200 bg-purple-50 dark:bg-purple-950/10";
+      case 5:
+        return "border-amber-200 bg-amber-50 dark:bg-amber-950/10";
+      case 6:
+        return "border-slate-200 bg-slate-50 dark:bg-slate-950/10";
+      default:
+        return "border-gray-200 bg-gray-50 dark:bg-gray-950/10";
     }
-  }
-
+  };
 
   /**
    * Returns an estimated timing string for the given phase number.
@@ -120,16 +130,22 @@ export function TeacherLessonPlan({
    */
   const getPhaseTiming = (phaseNumber: number) => {
     switch (phaseNumber) {
-      case 1: return '5-8 min'
-      case 2: return '8-12 min'
-      case 3: return '15-20 min'
-      case 4: return '10-15 min'
-      case 5: return '3-5 min'
-      case 6: return '2-3 min'
-      default: return '5-10 min'
+      case 1:
+        return "5-8 min";
+      case 2:
+        return "8-12 min";
+      case 3:
+        return "15-20 min";
+      case 4:
+        return "10-15 min";
+      case 5:
+        return "3-5 min";
+      case 6:
+        return "2-3 min";
+      default:
+        return "5-10 min";
     }
-  }
-
+  };
 
   /**
    * Returns the human-readable name for the given phase number.
@@ -139,15 +155,22 @@ export function TeacherLessonPlan({
    */
   const getPhaseName = (phaseNumber: number) => {
     switch (phaseNumber) {
-      case 1: return 'Hook'
-      case 2: return 'Introduction'
-      case 3: return 'Guided Practice'
-      case 4: return 'Independent Practice'
-      case 5: return 'Assessment'
-      case 6: return 'Closing'
-      default: return `Phase ${phaseNumber}`
+      case 1:
+        return "Hook";
+      case 2:
+        return "Introduction";
+      case 3:
+        return "Guided Practice";
+      case 4:
+        return "Independent Practice";
+      case 5:
+        return "Assessment";
+      case 6:
+        return "Closing";
+      default:
+        return `Phase ${phaseNumber}`;
     }
-  }
+  };
 
   return (
     <div className="space-y-8">
@@ -163,7 +186,10 @@ export function TeacherLessonPlan({
 
           {availableLessons.length > 0 && onLessonChange && (
             <div className="flex items-center gap-2">
-              <label htmlFor="lesson-selector" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label
+                htmlFor="lesson-selector"
+                className="text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
                 Jump to:
               </label>
               <div className="relative">
@@ -197,7 +223,7 @@ export function TeacherLessonPlan({
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => onNavigate('prev')}
+                onClick={() => onNavigate("prev")}
                 className="p-2"
                 title="Previous lesson"
               >
@@ -206,7 +232,7 @@ export function TeacherLessonPlan({
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => onNavigate('next')}
+                onClick={() => onNavigate("next")}
                 className="p-2"
                 title="Next lesson"
               >
@@ -236,7 +262,10 @@ export function TeacherLessonPlan({
                 </p>
                 <ul className="space-y-2">
                   {learningObjectives.map((objective, index) => (
-                    <li key={index} className="flex items-start gap-2 text-blue-700 dark:text-blue-300">
+                    <li
+                      key={index}
+                      className="flex items-start gap-2 text-blue-700 dark:text-blue-300"
+                    >
                       <CheckCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
                       <span className="text-sm">{objective}</span>
                     </li>
@@ -297,33 +326,43 @@ export function TeacherLessonPlan({
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h4 className="font-semibold mb-3">Student Materials</h4>
-                 <Button asChild variant="outline" className="w-full justify-start">
-                   <a href={`/api/workbooks/${String(lesson.unitNumber).padStart(2, '0')}/${String(lessonNumber).padStart(2, '0')}/student`} download>
-                     <Download className="h-4 w-4 mr-2" />
-                     Download Student Workbook (.xlsx)
-                   </a>
-                 </Button>
+                <Button asChild variant="outline" className="w-full justify-start">
+                  <a
+                    href={`/api/workbooks/${String(lesson.unitNumber).padStart(2, "0")}/${String(lessonNumber).padStart(2, "0")}/student`}
+                    download
+                  >
+                    <Download className="h-4 w-4 mr-2" />
+                    Download Student Workbook (.xlsx)
+                  </a>
+                </Button>
               </div>
               <div>
                 <h4 className="font-semibold mb-3">Teacher Materials</h4>
-                 <Button asChild variant="outline" className="w-full justify-start">
-                   <a href={`/api/workbooks/${String(lesson.unitNumber).padStart(2, '0')}/${String(lessonNumber).padStart(2, '0')}/teacher`} download>
-                     <Download className="h-4 w-4 mr-2" />
-                     Download Teacher Workbook (.xlsx)
-                   </a>
-                 </Button>
+                <Button asChild variant="outline" className="w-full justify-start">
+                  <a
+                    href={`/api/workbooks/${String(lesson.unitNumber).padStart(2, "0")}/${String(lessonNumber).padStart(2, "0")}/teacher`}
+                    download
+                  >
+                    <Download className="h-4 w-4 mr-2" />
+                    Download Teacher Workbook (.xlsx)
+                  </a>
+                </Button>
               </div>
             </div>
             <div className="bg-blue-50 dark:bg-blue-950/10 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
               <h5 className="font-medium text-blue-800 dark:text-blue-200 mb-2">How-To Guide</h5>
               <p className="text-sm text-blue-700 dark:text-blue-300">
-                Step-by-step instructions for completing this workbook are available in the lesson phases below.
+                Step-by-step instructions for completing this workbook are available in the lesson
+                phases below.
               </p>
             </div>
             <div className="bg-amber-50 dark:bg-amber-950/10 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
-              <h5 className="font-medium text-amber-800 dark:text-amber-200 mb-2">40-Point Grading Rubric</h5>
+              <h5 className="font-medium text-amber-800 dark:text-amber-200 mb-2">
+                40-Point Grading Rubric
+              </h5>
               <p className="text-sm text-amber-700 dark:text-amber-300">
-                This assignment is scored on a 40-point scale. Full rubric details are included in the lesson phases.
+                This assignment is scored on a 40-point scale. Full rubric details are included in
+                the lesson phases.
               </p>
             </div>
           </CardContent>
@@ -344,28 +383,36 @@ export function TeacherLessonPlan({
                 <CardTitle className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     {getPhaseIcon(phase.phaseNumber)}
-                    <span>Phase {phase.phaseNumber}: {phase.title || getPhaseName(phase.phaseNumber)}</span>
+                    <span>
+                      Phase {phase.phaseNumber}: {phase.title || getPhaseName(phase.phaseNumber)}
+                    </span>
                   </div>
-                  <Badge variant="secondary">{phase.estimatedMinutes ? `${phase.estimatedMinutes} min` : getPhaseTiming(phase.phaseNumber)}</Badge>
+                  <Badge variant="secondary">
+                    {phase.estimatedMinutes
+                      ? `${phase.estimatedMinutes} min`
+                      : getPhaseTiming(phase.phaseNumber)}
+                  </Badge>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 {/* Phase content blocks */}
                 {phase.contentBlocks.map((block, blockIndex) => (
                   <div key={blockIndex} className="mb-4">
-                    {block.type === 'markdown' && (
-                      <p className="text-gray-700 dark:text-gray-300">
-                        {block.content}
-                      </p>
+                    {block.type === "markdown" && (
+                      <p className="text-gray-700 dark:text-gray-300">{block.content}</p>
                     )}
-                    {block.type === 'callout' && (
+                    {block.type === "callout" && (
                       <div className="bg-amber-50 dark:bg-amber-950/10 border border-amber-200 dark:border-amber-800 p-3 rounded-lg">
                         <div className="flex items-center gap-2 mb-2">
                           <Settings className="h-4 w-4 text-amber-600" />
                           <span className="text-sm font-medium text-amber-800 dark:text-amber-200">
-                            {block.variant === 'why-this-matters' ? 'Why This Matters' :
-                             block.variant === 'tip' ? 'Teaching Tip' :
-                             block.variant === 'warning' ? 'Important' : 'Example'}
+                            {block.variant === "why-this-matters"
+                              ? "Why This Matters"
+                              : block.variant === "tip"
+                                ? "Teaching Tip"
+                                : block.variant === "warning"
+                                  ? "Important"
+                                  : "Example"}
                           </span>
                         </div>
                         <p className="text-sm text-amber-700 dark:text-amber-300">
@@ -397,9 +444,7 @@ export function TeacherLessonPlan({
         <CardContent>
           <div className="grid md:grid-cols-3 gap-6">
             <div>
-              <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">
-                ELL Support
-              </h4>
+              <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">ELL Support</h4>
               <ul className="text-sm space-y-1 text-gray-600 dark:text-gray-400">
                 <li>• Visual aids and diagrams</li>
                 <li>• Peer translation support</li>
@@ -408,9 +453,7 @@ export function TeacherLessonPlan({
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">
-                Special Needs
-              </h4>
+              <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Special Needs</h4>
               <ul className="text-sm space-y-1 text-gray-600 dark:text-gray-400">
                 <li>• Step-by-step checklists</li>
                 <li>• Audio instructions</li>
@@ -465,7 +508,7 @@ export function TeacherLessonPlan({
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
 
 // Helper component for phase-specific teacher guidance
@@ -483,56 +526,56 @@ function TeacherGuidance({ phaseNumber }: { phaseNumber: number }) {
       tips: [
         "Ensure media is ready and tested before class",
         "Have students note key observations",
-        "Use think-pair-share to discuss initial impressions"
+        "Use think-pair-share to discuss initial impressions",
       ],
       timing: "Keep engaging and focused, 5-8 minutes total",
-      materials: "Media files, notebook/digital notes"
+      materials: "Media files, notebook/digital notes",
     },
     2: {
       tips: [
         "Connect to students' prior knowledge",
         "Use real examples from local context",
-        "Preview the lesson's practical applications"
+        "Preview the lesson's practical applications",
       ],
       timing: "8-10 minutes of direct instruction with interaction",
-      materials: "Slides, examples, visual aids"
+      materials: "Slides, examples, visual aids",
     },
     3: {
       tips: [
         "Circulate and listen to student discussions",
         "Encourage students to explain their reasoning",
-        "Collect common misconceptions for whole-class discussion"
+        "Collect common misconceptions for whole-class discussion",
       ],
       timing: "15-18 minutes with structured practice",
-      materials: "Practice materials, discussion prompts"
+      materials: "Practice materials, discussion prompts",
     },
     4: {
       tips: [
         "Monitor individual progress closely",
         "Provide immediate feedback",
-        "Allow students to work at their own pace"
+        "Allow students to work at their own pace",
       ],
       timing: "10-12 minutes of focused individual work",
-      materials: "Individual practice materials"
+      materials: "Individual practice materials",
     },
     5: {
       tips: [
         "Use formative assessment to gauge understanding",
         "Look for misconceptions to address next lesson",
-        "Keep assessment low-stakes and supportive"
+        "Keep assessment low-stakes and supportive",
       ],
       timing: "3-5 minutes for quick formative check",
-      materials: "Assessment materials (digital or paper)"
+      materials: "Assessment materials (digital or paper)",
     },
     6: {
       tips: [
         "Make explicit connections to lesson objectives",
         "Preview next lesson to build anticipation",
-        "Thank students for engagement and participation"
+        "Thank students for engagement and participation",
       ],
       timing: "2-3 minutes of wrap-up and preview",
-      materials: "Summary materials, preview slides"
-    }
+      materials: "Summary materials, preview slides",
+    },
   };
 
   const phaseGuidance = guidance[phaseNumber];
@@ -569,5 +612,5 @@ function TeacherGuidance({ phaseNumber }: { phaseNumber: number }) {
         </div>
       </div>
     </div>
-  )
+  );
 }

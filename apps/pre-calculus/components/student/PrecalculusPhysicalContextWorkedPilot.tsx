@@ -1,19 +1,20 @@
-'use client';
-import { useRouter } from 'next/navigation';
+"use client";
+import { useRouter } from "next/navigation";
 
-import { useRef, useState } from 'react';
+import { useRef, useState } from "react";
 
-import { PhysicalContextGraphChoiceActivity } from '@math-platform/activity-components';
-import type { PhysicalContextGraphChoiceProps } from '@math-platform/math-content';
-import { generateTopic11PhysicalContextGraphChoice } from '@math-platform/math-content/knowledge-space';
+import { PhysicalContextGraphChoiceActivity } from "@math-platform/activity-components";
+import type { PhysicalContextGraphChoiceProps } from "@math-platform/math-content";
+import { generateTopic11PhysicalContextGraphChoice } from "@math-platform/math-content/knowledge-space";
 
-import { PRECALCULUS_PHYSICAL_CONTEXT_WORKED_ACTIVITY_ID } from '@/lib/learning-evidence/precalc-pilot';
+import { PRECALCULUS_PHYSICAL_CONTEXT_WORKED_ACTIVITY_ID } from "@/lib/learning-evidence/precalc-pilot";
 
 const sourceVariant = generateTopic11PhysicalContextGraphChoice(0);
-const finalAnswer = 'Graph D is possible because the vase is narrow, then wide, then narrow, so the height changes steeply, gently, then steeply.';
+const finalAnswer =
+  "Graph D is possible because the vase is narrow, then wide, then narrow, so the height changes steeply, gently, then steeply.";
 
 function createIdempotencyKey(): string {
-  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
     return crypto.randomUUID();
   }
   return `precalc-physical-context-worked-${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -21,64 +22,72 @@ function createIdempotencyKey(): string {
 
 async function readJson(response: Response): Promise<Record<string, unknown>> {
   const body: unknown = await response.json().catch(() => null);
-  if (typeof body !== 'object' || body === null || Array.isArray(body)) {
-    throw new Error('The server returned an invalid response.');
+  if (typeof body !== "object" || body === null || Array.isArray(body)) {
+    throw new Error("The server returned an invalid response.");
   }
   return body as Record<string, unknown>;
 }
 
 export function PrecalculusPhysicalContextWorkedPilot() {
   const router = useRouter();
-  const [status, setStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
   const [message, setMessage] = useState<string | null>(null);
   const idempotencyKeyRef = useRef<string | null>(null);
 
-  const workedProps: Extract<PhysicalContextGraphChoiceProps, { presentationMode: 'worked_example' }> = {
+  const workedProps: Extract<
+    PhysicalContextGraphChoiceProps,
+    { presentationMode: "worked_example" }
+  > = {
     prompt: sourceVariant.prompt,
     contextDescription: sourceVariant.contextDescription,
     xLabel: sourceVariant.xLabel,
     yLabel: sourceVariant.yLabel,
     containerProfile: sourceVariant.containerProfile,
     options: sourceVariant.options.map((option) => ({ ...option })),
-    presentationMode: 'worked_example',
+    presentationMode: "worked_example",
     correctOptionId: sourceVariant.correctOptionId,
     steps: [...sourceVariant.reasoning],
     finalAnswer,
   };
 
   async function submit() {
-    if (status === 'saving' || status === 'saved') return;
+    if (status === "saving" || status === "saved") return;
     idempotencyKeyRef.current ??= createIdempotencyKey();
-    setStatus('saving');
+    setStatus("saving");
     setMessage(null);
 
     try {
-      const response = await fetch('/api/activities/precalculus-physical-context-worked/submissions', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-          'Idempotency-Key': idempotencyKeyRef.current,
+      const response = await fetch(
+        "/api/activities/precalculus-physical-context-worked/submissions",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            "Idempotency-Key": idempotencyKeyRef.current,
+          },
+          body: JSON.stringify({ selectedOptionId: sourceVariant.correctOptionId }),
         },
-        body: JSON.stringify({ selectedOptionId: sourceVariant.correctOptionId }),
-      });
+      );
       const body = await readJson(response);
       if (
-        !response.ok
-        || typeof body.submissionId !== 'string'
-        || body.submissionId.trim().length === 0
+        !response.ok ||
+        typeof body.submissionId !== "string" ||
+        body.submissionId.trim().length === 0
       ) {
         throw new Error(
-          typeof body.error === 'string'
+          typeof body.error === "string"
             ? body.error
-            : 'Unable to record the Worked example review.',
+            : "Unable to record the Worked example review.",
         );
       }
-      setStatus('saved');
+      setStatus("saved");
       router.refresh();
-      setMessage('Worked example review saved.');
+      setMessage("Worked example review saved.");
     } catch (error) {
-      setStatus('error');
-      setMessage(error instanceof Error ? error.message : 'Unable to record the Worked example review.');
+      setStatus("error");
+      setMessage(
+        error instanceof Error ? error.message : "Unable to record the Worked example review.",
+      );
     }
   }
 
@@ -95,21 +104,23 @@ export function PrecalculusPhysicalContextWorkedPilot() {
       <button
         type="button"
         className="btn-primary mt-6"
-        disabled={status === 'saving' || status === 'saved'}
+        disabled={status === "saving" || status === "saved"}
         onClick={submit}
       >
-        {status === 'saving'
-          ? 'Saving…'
-          : status === 'error'
-            ? 'Retry worked example review'
-            : status === 'saved'
-              ? 'Worked example reviewed'
-              : 'Mark worked example reviewed'}
+        {status === "saving"
+          ? "Saving…"
+          : status === "error"
+            ? "Retry worked example review"
+            : status === "saved"
+              ? "Worked example reviewed"
+              : "Mark worked example reviewed"}
       </button>
-      {status === 'saved' && message && (
-        <p className="mt-4" role="status">{message}</p>
+      {status === "saved" && message && (
+        <p className="mt-4" role="status">
+          {message}
+        </p>
       )}
-      {status === 'error' && message && (
+      {status === "error" && message && (
         <div className="mt-4" role="alert">
           <p>{message}</p>
         </div>

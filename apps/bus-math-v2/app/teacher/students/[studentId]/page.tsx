@@ -1,21 +1,21 @@
-import Link from 'next/link';
-import { notFound, redirect } from 'next/navigation';
+import Link from "next/link";
+import { notFound, redirect } from "next/navigation";
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { NextLessonCard } from '@/components/dashboard/NextLessonCard';
-import { Progress } from '@/components/ui/progress';
-import { requireTeacherSessionClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { NextLessonCard } from "@/components/dashboard/NextLessonCard";
+import { Progress } from "@/components/ui/progress";
+import { requireTeacherSessionClaims } from "@/lib/auth/server";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
 import {
   clampTeacherProgressPercentage,
   formatTeacherLastActive,
   formatTeacherProgressPercentage,
-} from '@/lib/teacher/progress';
-import { buildTeacherStudentDetailViewModel } from '@/lib/teacher/student-detail';
-import { formatCurriculumSegmentLabel } from '@/lib/curriculum/segment-labels';
-import { teacherDashboardPath } from '@/lib/student/navigation';
+} from "@/lib/teacher/progress";
+import { buildTeacherStudentDetailViewModel } from "@/lib/teacher/student-detail";
+import { formatCurriculumSegmentLabel } from "@/lib/curriculum/segment-labels";
+import { teacherDashboardPath } from "@/lib/student/navigation";
 
 interface TeacherStudentDetailPageProps {
   params: Promise<{
@@ -24,7 +24,7 @@ interface TeacherStudentDetailPageProps {
 }
 
 interface TeacherStudentDetailResponse {
-  status: 'success';
+  status: "success";
   organizationName: string;
   student: {
     id: string;
@@ -61,31 +61,25 @@ interface TeacherStudentDetailResponse {
  * @param props.params - Promise resolving to the route parameters containing studentId.
  * @returns The student detail page element or a not-found/redirect response.
  */
-export default async function TeacherStudentDetailPage({
-  params,
-}: TeacherStudentDetailPageProps) {
+export default async function TeacherStudentDetailPage({ params }: TeacherStudentDetailPageProps) {
   const { studentId } = await params;
 
   const claims = await requireTeacherSessionClaims(`/teacher/students/${studentId}`);
 
-  const result = await fetchInternalQuery(
-    internal.teacher.getTeacherStudentDetail,
-    {
-      userId: claims.sub as never,
-      studentId: studentId as never,
-    },
-  );
+  const result = await fetchInternalQuery(internal.teacher.getTeacherStudentDetail, {
+    userId: claims.sub as never,
+    studentId: studentId as never,
+  });
 
-  if (!result || result.status === 'not_found') {
+  if (!result || result.status === "not_found") {
     notFound();
   }
 
-  if (result.status === 'unauthorized') {
-    redirect('/teacher');
+  if (result.status === "unauthorized") {
+    redirect("/teacher");
   }
 
-  const { organizationName, student, snapshot, units } =
-    result as TeacherStudentDetailResponse;
+  const { organizationName, student, snapshot, units } = result as TeacherStudentDetailResponse;
   const viewModel = buildTeacherStudentDetailViewModel({ student, snapshot, units });
 
   return (
@@ -143,9 +137,7 @@ export default async function TeacherStudentDetailPage({
                 </p>
               </div>
               <div className="rounded-md border p-3">
-                <p className="text-xs uppercase tracking-wide text-muted-foreground">
-                  Last Active
-                </p>
+                <p className="text-xs uppercase tracking-wide text-muted-foreground">Last Active</p>
                 <p className="text-sm font-medium text-foreground">
                   {formatTeacherLastActive(snapshot.lastActive)}
                 </p>
@@ -202,10 +194,8 @@ export default async function TeacherStudentDetailPage({
                     </div>
                     {unit.nextLesson ? (
                       <p className="mt-3 text-sm text-muted-foreground">
-                        Next lesson:{' '}
-                        <span className="font-medium text-foreground">
-                          {unit.nextLesson.title}
-                        </span>
+                        Next lesson:{" "}
+                        <span className="font-medium text-foreground">{unit.nextLesson.title}</span>
                       </p>
                     ) : null}
                   </div>

@@ -1,10 +1,10 @@
-import { describe, it, expect, vi } from 'vitest';
-import type { Id } from '@/convex/_generated/dataModel';
+import { describe, it, expect, vi } from "vitest";
+import type { Id } from "@/convex/_generated/dataModel";
 import {
   getTimingBaseline as _getTimingBaseline,
   recomputeTimingBaseline as _recomputeTimingBaseline,
   getStaleBaselines as _getStaleBaselines,
-} from '@/convex/timing_baseline';
+} from "@/convex/timing_baseline";
 
 const getTimingBaseline = _getTimingBaseline as any;
 const recomputeTimingBaseline = _recomputeTimingBaseline as any;
@@ -19,7 +19,12 @@ function createMockDb(documents: Record<string, Record<string, unknown>[]>) {
     const data = tables[table] || [];
     return {
       take: (n: number) => Promise.resolve(data.slice(0, n)),
-      withIndex: (indexName: string, builder: (q: { eq: (field: string, value: unknown) => { eq: (field: string, value: unknown) => unknown } }) => unknown) => {
+      withIndex: (
+        indexName: string,
+        builder: (q: {
+          eq: (field: string, value: unknown) => { eq: (field: string, value: unknown) => unknown };
+        }) => unknown,
+      ) => {
         let filtered = [...data];
         const eqChain = {
           eq: (field: string, value: unknown) => {
@@ -71,24 +76,24 @@ function makeSubmission(
   id: string,
   activityId: string,
   activeMs: number,
-  confidence: 'high' | 'medium' | 'low'
+  confidence: "high" | "medium" | "low",
 ) {
   return {
     _id: id,
-    userId: 'profile1' as Id<'profiles'>,
-    activityId: activityId as Id<'activities'>,
+    userId: "profile1" as Id<"profiles">,
+    activityId: activityId as Id<"activities">,
     submissionData: {
-      contractVersion: 'practice.v1',
+      contractVersion: "practice.v1",
       activityId,
-      mode: 'independent_practice',
-      status: 'submitted',
+      mode: "independent_practice",
+      status: "submitted",
       attemptNumber: 1,
-      submittedAt: '2026-01-01T00:00:00.000Z',
+      submittedAt: "2026-01-01T00:00:00.000Z",
       answers: {},
       parts: [],
       timing: {
-        startedAt: '2026-01-01T00:00:00.000Z',
-        submittedAt: '2026-01-01T00:00:00.000Z',
+        startedAt: "2026-01-01T00:00:00.000Z",
+        submittedAt: "2026-01-01T00:00:00.000Z",
         wallClockMs: activeMs,
         activeMs,
         idleMs: 0,
@@ -106,27 +111,27 @@ function makeSubmission(
   };
 }
 
-describe('getTimingBaseline', () => {
-  it('returns null when no baseline exists', async () => {
+describe("getTimingBaseline", () => {
+  it("returns null when no baseline exists", async () => {
     const mockDb = createMockDb({
       timing_baselines: [],
     });
 
     const baseline = await getTimingBaseline(
       { db: mockDb } as unknown as Parameters<typeof getTimingBaseline>[0],
-      { variantKey: 'family-a' }
+      { variantKey: "family-a" },
     );
 
     expect(baseline).toBeNull();
   });
 
-  it('returns existing baseline for problem family', async () => {
+  it("returns existing baseline for problem family", async () => {
     const existingBaseline = {
-      _id: 'baseline1',
-      variantKey: 'family-a',
+      _id: "baseline1",
+      variantKey: "family-a",
       sampleCount: 10,
       medianActiveMs: 10000,
-      lastComputedAt: '2026-01-01T00:00:00.000Z',
+      lastComputedAt: "2026-01-01T00:00:00.000Z",
       minSamplesMet: true,
     };
     const mockDb = createMockDb({
@@ -135,27 +140,27 @@ describe('getTimingBaseline', () => {
 
     const baseline = await getTimingBaseline(
       { db: mockDb } as unknown as Parameters<typeof getTimingBaseline>[0],
-      { variantKey: 'family-a' }
+      { variantKey: "family-a" },
     );
 
     expect(baseline).toEqual(existingBaseline);
   });
 });
 
-describe('recomputeTimingBaseline', () => {
-  it('creates new baseline when none exists', async () => {
-    const activityId = 'activity1' as Id<'activities'>;
+describe("recomputeTimingBaseline", () => {
+  it("creates new baseline when none exists", async () => {
+    const activityId = "activity1" as Id<"activities">;
     const submissions = [
-      makeSubmission('sub1', activityId, 10000, 'high'),
-      makeSubmission('sub2', activityId, 12000, 'high'),
-      makeSubmission('sub3', activityId, 8000, 'medium'),
+      makeSubmission("sub1", activityId, 10000, "high"),
+      makeSubmission("sub2", activityId, 12000, "high"),
+      makeSubmission("sub3", activityId, 8000, "medium"),
     ];
     const mockDb = createMockDb({
       activity_submissions: submissions,
       timing_baselines: [],
     });
     (mockDb.query as any) = vi.fn((table: string) => {
-      if (table === 'activity_submissions') {
+      if (table === "activity_submissions") {
         return {
           withIndex: () => ({
             take: () => Promise.resolve(submissions),
@@ -173,51 +178,54 @@ describe('recomputeTimingBaseline', () => {
     const baseline = await recomputeTimingBaseline(
       { db: mockDb } as unknown as Parameters<typeof recomputeTimingBaseline>[0],
       {
-        variantKey: 'family-a',
+        variantKey: "family-a",
         activityIds: [activityId],
-      }
+      },
     );
 
-    expect(baseline.variantKey).toBe('family-a');
+    expect(baseline.variantKey).toBe("family-a");
     expect(baseline.sampleCount).toBe(3);
     expect(baseline.medianActiveMs).toBe(10000);
     expect(baseline.minSamplesMet).toBe(false);
-    expect(mockDb.insert).toHaveBeenCalledWith('timing_baselines', expect.objectContaining({
-      variantKey: 'family-a',
-      sampleCount: 3,
-    }));
+    expect(mockDb.insert).toHaveBeenCalledWith(
+      "timing_baselines",
+      expect.objectContaining({
+        variantKey: "family-a",
+        sampleCount: 3,
+      }),
+    );
   });
 
-  it('patches existing baseline on recomputation', async () => {
-    const activityId = 'activity1' as Id<'activities'>;
+  it("patches existing baseline on recomputation", async () => {
+    const activityId = "activity1" as Id<"activities">;
     const existingBaseline = {
-      _id: 'baseline1',
-      variantKey: 'family-a',
+      _id: "baseline1",
+      variantKey: "family-a",
       sampleCount: 5,
       medianActiveMs: 8000,
-      lastComputedAt: '2026-01-01T00:00:00.000Z',
+      lastComputedAt: "2026-01-01T00:00:00.000Z",
       minSamplesMet: false,
     };
     const submissions = [
-      makeSubmission('sub1', activityId, 10000, 'high'),
-      makeSubmission('sub2', activityId, 12000, 'high'),
-      makeSubmission('sub3', activityId, 8000, 'high'),
-      makeSubmission('sub4', activityId, 15000, 'high'),
-      makeSubmission('sub5', activityId, 9000, 'high'),
+      makeSubmission("sub1", activityId, 10000, "high"),
+      makeSubmission("sub2", activityId, 12000, "high"),
+      makeSubmission("sub3", activityId, 8000, "high"),
+      makeSubmission("sub4", activityId, 15000, "high"),
+      makeSubmission("sub5", activityId, 9000, "high"),
     ];
     const mockDb = createMockDb({
       activity_submissions: submissions,
       timing_baselines: [existingBaseline],
     });
     (mockDb.query as any) = vi.fn((table: string) => {
-      if (table === 'activity_submissions') {
+      if (table === "activity_submissions") {
         return {
           withIndex: () => ({
             take: () => Promise.resolve(submissions),
           }),
         };
       }
-      if (table === 'timing_baselines') {
+      if (table === "timing_baselines") {
         return {
           withIndex: () => ({
             unique: () => Promise.resolve(existingBaseline),
@@ -236,32 +244,35 @@ describe('recomputeTimingBaseline', () => {
     const baseline = await recomputeTimingBaseline(
       { db: mockDb } as unknown as Parameters<typeof recomputeTimingBaseline>[0],
       {
-        variantKey: 'family-a',
+        variantKey: "family-a",
         activityIds: [activityId],
-      }
+      },
     );
 
-    expect(baseline.variantKey).toBe('family-a');
+    expect(baseline.variantKey).toBe("family-a");
     expect(baseline.sampleCount).toBe(5);
     expect(baseline.minSamplesMet).toBe(false);
-    expect(mockDb.patch).toHaveBeenCalledWith('baseline1', expect.objectContaining({
-      sampleCount: 5,
-      medianActiveMs: expect.any(Number),
-    }));
+    expect(mockDb.patch).toHaveBeenCalledWith(
+      "baseline1",
+      expect.objectContaining({
+        sampleCount: 5,
+        medianActiveMs: expect.any(Number),
+      }),
+    );
   });
 
-  it('excludes low-confidence submissions from baseline', async () => {
-    const activityId = 'activity1' as Id<'activities'>;
+  it("excludes low-confidence submissions from baseline", async () => {
+    const activityId = "activity1" as Id<"activities">;
     const submissions = [
-      makeSubmission('sub1', activityId, 10000, 'high'),
-      makeSubmission('sub2', activityId, 999999, 'low'),
+      makeSubmission("sub1", activityId, 10000, "high"),
+      makeSubmission("sub2", activityId, 999999, "low"),
     ];
     const mockDb = createMockDb({
       activity_submissions: submissions,
       timing_baselines: [],
     });
     (mockDb.query as any) = vi.fn((table: string) => {
-      if (table === 'activity_submissions') {
+      if (table === "activity_submissions") {
         return {
           withIndex: () => ({
             take: () => Promise.resolve(submissions),
@@ -279,27 +290,27 @@ describe('recomputeTimingBaseline', () => {
     const baseline = await recomputeTimingBaseline(
       { db: mockDb } as unknown as Parameters<typeof recomputeTimingBaseline>[0],
       {
-        variantKey: 'family-a',
+        variantKey: "family-a",
         activityIds: [activityId],
-      }
+      },
     );
 
     expect(baseline.sampleCount).toBe(1);
     expect(baseline.medianActiveMs).toBe(10000);
   });
 
-  it('uses custom minSamples when provided', async () => {
-    const activityId = 'activity1' as Id<'activities'>;
+  it("uses custom minSamples when provided", async () => {
+    const activityId = "activity1" as Id<"activities">;
     const submissions = [
-      makeSubmission('sub1', activityId, 10000, 'high'),
-      makeSubmission('sub2', activityId, 12000, 'high'),
+      makeSubmission("sub1", activityId, 10000, "high"),
+      makeSubmission("sub2", activityId, 12000, "high"),
     ];
     const mockDb = createMockDb({
       activity_submissions: submissions,
       timing_baselines: [],
     });
     (mockDb.query as any) = vi.fn((table: string) => {
-      if (table === 'activity_submissions') {
+      if (table === "activity_submissions") {
         return {
           withIndex: () => ({
             take: () => Promise.resolve(submissions),
@@ -317,29 +328,29 @@ describe('recomputeTimingBaseline', () => {
     const baseline = await recomputeTimingBaseline(
       { db: mockDb } as unknown as Parameters<typeof recomputeTimingBaseline>[0],
       {
-        variantKey: 'family-a',
+        variantKey: "family-a",
         activityIds: [activityId],
         minSamples: 2,
-      }
+      },
     );
 
     expect(baseline.minSamplesMet).toBe(true);
   });
 });
 
-describe('getStaleBaselines', () => {
-  it('returns baselines older than maxAgeMs', async () => {
+describe("getStaleBaselines", () => {
+  it("returns baselines older than maxAgeMs", async () => {
     const oldBaseline = {
-      _id: 'baseline1',
-      variantKey: 'family-a',
+      _id: "baseline1",
+      variantKey: "family-a",
       sampleCount: 10,
       medianActiveMs: 10000,
-      lastComputedAt: '2026-01-01T00:00:00.000Z',
+      lastComputedAt: "2026-01-01T00:00:00.000Z",
       minSamplesMet: true,
     };
     const recentBaseline = {
-      _id: 'baseline2',
-      variantKey: 'family-b',
+      _id: "baseline2",
+      variantKey: "family-b",
       sampleCount: 10,
       medianActiveMs: 10000,
       lastComputedAt: new Date().toISOString(),
@@ -351,27 +362,27 @@ describe('getStaleBaselines', () => {
 
     const stale = await getStaleBaselines(
       { db: mockDb } as unknown as Parameters<typeof getStaleBaselines>[0],
-      { maxAgeMs: 86400000 }
+      { maxAgeMs: 86400000 },
     );
 
     expect(stale).toHaveLength(1);
-    expect(stale[0]._id).toBe('baseline1');
+    expect(stale[0]._id).toBe("baseline1");
   });
 });
 
-describe('aggregation idempotency', () => {
-  it('running recompute twice produces same result', async () => {
-    const activityId = 'activity1' as Id<'activities'>;
+describe("aggregation idempotency", () => {
+  it("running recompute twice produces same result", async () => {
+    const activityId = "activity1" as Id<"activities">;
     const submissions = [
-      makeSubmission('sub1', activityId, 10000, 'high'),
-      makeSubmission('sub2', activityId, 12000, 'high'),
+      makeSubmission("sub1", activityId, 10000, "high"),
+      makeSubmission("sub2", activityId, 12000, "high"),
     ];
     const mockDb = createMockDb({
       activity_submissions: submissions,
       timing_baselines: [],
     });
     (mockDb.query as any) = vi.fn((table: string) => {
-      if (table === 'activity_submissions') {
+      if (table === "activity_submissions") {
         return {
           withIndex: () => ({
             take: () => Promise.resolve(submissions),
@@ -389,17 +400,17 @@ describe('aggregation idempotency', () => {
     const baseline1 = await recomputeTimingBaseline(
       { db: mockDb } as unknown as Parameters<typeof recomputeTimingBaseline>[0],
       {
-        variantKey: 'family-a',
+        variantKey: "family-a",
         activityIds: [activityId],
-      }
+      },
     );
 
     const baseline2 = await recomputeTimingBaseline(
       { db: mockDb } as unknown as Parameters<typeof recomputeTimingBaseline>[0],
       {
-        variantKey: 'family-a',
+        variantKey: "family-a",
         activityIds: [activityId],
-      }
+      },
     );
 
     expect(baseline1.medianActiveMs).toBe(baseline2.medianActiveMs);

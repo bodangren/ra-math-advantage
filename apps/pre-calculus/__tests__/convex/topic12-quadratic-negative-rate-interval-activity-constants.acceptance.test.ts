@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { getGenerator } from '@math-platform/math-content/knowledge-space';
+import { getGenerator } from "@math-platform/math-content/knowledge-space";
 
 import {
   PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_COMPONENT_KEY,
@@ -8,19 +8,19 @@ import {
   PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_GUIDED_GRADING_CONFIG,
   PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_INDEPENDENT_GRADING_CONFIG,
   PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_WORKED_GRADING_CONFIG,
-} from '@/convex/activities';
+} from "@/convex/activities";
 import {
   PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS,
   PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_GUIDED_ACTIVITY_ID,
   PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_INDEPENDENT_ACTIVITY_ID,
   PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_NODE_ID,
   PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_WORKED_ACTIVITY_ID,
-} from '@/lib/learning-evidence/precalc-pilot';
+} from "@/lib/learning-evidence/precalc-pilot";
 
-describe('Topic 1.2 quadratic negative-rate interval activity constants', () => {
-  it('defines exact IDs, configs, generator identity, and enabled evidence node', () => {
+describe("Topic 1.2 quadratic negative-rate interval activity constants", () => {
+  it("defines exact IDs, configs, generator identity, and enabled evidence node", () => {
     expect(PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_NODE_ID).toBe(
-      'math.precalc.skill.1.2.determine-negative-rate-intervals-for-quadratics',
+      "math.precalc.skill.1.2.determine-negative-rate-intervals-for-quadratics",
     );
     expect(PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_WORKED_ACTIVITY_ID).toBe(
       `${PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_NODE_ID}.worked_example`,
@@ -31,23 +31,27 @@ describe('Topic 1.2 quadratic negative-rate interval activity constants', () => 
     expect(PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_INDEPENDENT_ACTIVITY_ID).toBe(
       `${PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_NODE_ID}.independent_practice`,
     );
-    expect(new Set([
-      PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_WORKED_ACTIVITY_ID,
-      PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_GUIDED_ACTIVITY_ID,
-      PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_INDEPENDENT_ACTIVITY_ID,
-    ]).size).toBe(3);
-    expect(PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS.filter(
-      (nodeId) => nodeId === PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_NODE_ID,
-    )).toHaveLength(1);
+    expect(
+      new Set([
+        PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_WORKED_ACTIVITY_ID,
+        PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_GUIDED_ACTIVITY_ID,
+        PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_INDEPENDENT_ACTIVITY_ID,
+      ]).size,
+    ).toBe(3);
+    expect(
+      PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS.filter(
+        (nodeId) => nodeId === PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_NODE_ID,
+      ),
+    ).toHaveLength(1);
     expect(new Set(PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS).size).toBe(
       PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS.length,
     );
 
     expect(PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_COMPONENT_KEY).toBe(
-      'quadratic-negative-rate-interval-choice',
+      "quadratic-negative-rate-interval-choice",
     );
     expect(PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_GENERATOR_KEY).toBe(
-      'topic12-quadratic-negative-rate-interval-choice',
+      "topic12-quadratic-negative-rate-interval-choice",
     );
     expect(PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_WORKED_GRADING_CONFIG).toEqual({
       generatorKey: PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_GENERATOR_KEY,
@@ -57,13 +61,19 @@ describe('Topic 1.2 quadratic negative-rate interval activity constants', () => 
       generatorKey: PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_GENERATOR_KEY,
       variantSeed: 1,
     });
-    expect(PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_INDEPENDENT_GRADING_CONFIG).toEqual({
+    expect(
+      PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_INDEPENDENT_GRADING_CONFIG,
+    ).toEqual({
       generatorKey: PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_GENERATOR_KEY,
       variantSeed: 2,
     });
 
-    const generator = getGenerator(PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_GENERATOR_KEY);
+    const generator = getGenerator(
+      PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_GENERATOR_KEY,
+    );
     expect(generator.key).toBe(PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_GENERATOR_KEY);
-    expect(generator.nodeIds).toEqual([PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_NODE_ID]);
+    expect(generator.nodeIds).toEqual([
+      PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_NODE_ID,
+    ]);
   });
 });

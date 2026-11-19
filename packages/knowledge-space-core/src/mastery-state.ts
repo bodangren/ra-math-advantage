@@ -5,7 +5,7 @@
 // domain-neutral — no app, convex, or curriculum imports allowed (boundary
 // rule, see measure/knowledge-space.md Implementation Rule 6).
 
-import { z } from 'zod';
+import { z } from "zod";
 
 // ---------------------------------------------------------------------------
 // Thresholds
@@ -73,36 +73,36 @@ export const masteryThresholdsSchema = z.strictObject({
 });
 
 /** Strict runtime schema for the canonical v3 configuration. */
-export const masteryConfigSchema = z.strictObject({
-  masteryEnter: z.number().min(0).max(1),
-  masteryExit: z.number().min(0).max(1),
-  readyThreshold: z.number().min(0).max(1),
-  nearThreshold: z.number().min(0).max(1),
-  hardGateThreshold: z.number().min(0).max(1),
-  trendThreshold: z.number().int().nonnegative(),
-}).superRefine((config, ctx) => {
-  if (config.masteryExit >= config.masteryEnter) {
-    ctx.addIssue({
-      code: 'custom',
-      path: ['masteryExit'],
-      message: 'masteryExit must be less than masteryEnter',
-    });
-  }
-  if (config.nearThreshold >= config.readyThreshold) {
-    ctx.addIssue({
-      code: 'custom',
-      path: ['nearThreshold'],
-      message: 'nearThreshold must be less than readyThreshold',
-    });
-  }
-});
+export const masteryConfigSchema = z
+  .strictObject({
+    masteryEnter: z.number().min(0).max(1),
+    masteryExit: z.number().min(0).max(1),
+    readyThreshold: z.number().min(0).max(1),
+    nearThreshold: z.number().min(0).max(1),
+    hardGateThreshold: z.number().min(0).max(1),
+    trendThreshold: z.number().int().nonnegative(),
+  })
+  .superRefine((config, ctx) => {
+    if (config.masteryExit >= config.masteryEnter) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["masteryExit"],
+        message: "masteryExit must be less than masteryEnter",
+      });
+    }
+    if (config.nearThreshold >= config.readyThreshold) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["nearThreshold"],
+        message: "nearThreshold must be less than readyThreshold",
+      });
+    }
+  });
 
 /**
  * Normalize legacy or partial configuration into a validated v3 config.
  */
-export function normalizeMasteryConfig(
-  config: Partial<MasteryConfig> = {},
-): MasteryConfig {
+export function normalizeMasteryConfig(config: Partial<MasteryConfig> = {}): MasteryConfig {
   return masteryConfigSchema.parse({ ...MASTERY_CONFIG_DEFAULT, ...config });
 }
 
@@ -118,9 +118,9 @@ export function normalizeMasteryConfig(
  * - `inProgress` — has evidence but not proficient
  * - `untouched` — no evidence
  */
-export type MasteryState = 'mastered' | 'decaying' | 'inProgress' | 'untouched';
+export type MasteryState = "mastered" | "decaying" | "inProgress" | "untouched";
 
-const masteryStateValues = ['mastered', 'decaying', 'inProgress', 'untouched'] as const;
+const masteryStateValues = ["mastered", "decaying", "inProgress", "untouched"] as const;
 
 // ---------------------------------------------------------------------------
 // Three-way readiness state (kst-srs.v2 §5.2)
@@ -134,9 +134,9 @@ const masteryStateValues = ['mastered', 'decaying', 'inProgress', 'untouched'] a
  * - `nearly_ready` — `readiness ≥ nearThreshold` (default 0.50)
  * - `blocked`    — otherwise
  */
-export type ReadinessState = 'ready' | 'nearly_ready' | 'blocked';
+export type ReadinessState = "ready" | "nearly_ready" | "blocked";
 
-const readinessStateValues = ['ready', 'nearly_ready', 'blocked'] as const;
+const readinessStateValues = ["ready", "nearly_ready", "blocked"] as const;
 
 // ---------------------------------------------------------------------------
 // KnowledgeStateEntry (per-node entry in the v2 state map, kst-srs.v2 §3.5)
@@ -191,10 +191,14 @@ export const knowledgeStateEntrySchema = z.object({
   retention: z.number().min(0).max(1),
   isProficient: z.boolean(),
   state: z.enum(masteryStateValues),
-  evidence: z.array(z.object({
-    sourceId: z.string().min(1),
-    observedAt: z.number().optional(),
-  })).optional(),
+  evidence: z
+    .array(
+      z.object({
+        sourceId: z.string().min(1),
+        observedAt: z.number().optional(),
+      }),
+    )
+    .optional(),
   lastUpdated: z.number().optional(),
   readinessScore: z.number().min(0).max(1).optional(),
   readinessState: z.enum(readinessStateValues).optional(),

@@ -13,11 +13,7 @@ export default defineSchema({
   profiles: defineTable({
     organizationId: v.id("organizations"),
     username: v.string(),
-    role: v.union(
-      v.literal("student"),
-      v.literal("teacher"),
-      v.literal("admin"),
-    ),
+    role: v.union(v.literal("student"), v.literal("teacher"), v.literal("admin")),
     displayName: v.optional(v.string()),
     avatarUrl: v.optional(v.string()),
     metadata: v.optional(v.any()),
@@ -30,11 +26,7 @@ export default defineSchema({
   auth_credentials: defineTable({
     profileId: v.id("profiles"),
     username: v.string(),
-    role: v.union(
-      v.literal("student"),
-      v.literal("teacher"),
-      v.literal("admin"),
-    ),
+    role: v.union(v.literal("student"), v.literal("teacher"), v.literal("admin")),
     organizationId: v.id("organizations"),
     passwordHash: v.string(),
     passwordSalt: v.string(),
@@ -72,11 +64,7 @@ export default defineSchema({
     classId: v.id("classes"),
     studentId: v.id("profiles"),
     enrolledAt: v.number(),
-    status: v.union(
-      v.literal("active"),
-      v.literal("withdrawn"),
-      v.literal("completed"),
-    ),
+    status: v.union(v.literal("active"), v.literal("withdrawn"), v.literal("completed")),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
@@ -163,10 +151,7 @@ export default defineSchema({
     createdAt: v.number(),
   })
     .index("by_phase_version", ["phaseVersionId"])
-    .index("by_phase_version_and_sequence", [
-      "phaseVersionId",
-      "sequenceOrder",
-    ]),
+    .index("by_phase_version_and_sequence", ["phaseVersionId", "sequenceOrder"]),
 
   competency_standards: defineTable({
     code: v.string(),
@@ -190,7 +175,13 @@ export default defineSchema({
   activities: defineTable({
     stableActivityId: v.optional(v.string()),
     masteryNodeId: v.optional(v.string()),
-    learningEvidenceMode: v.optional(v.union(v.literal("worked_example"), v.literal("guided_practice"), v.literal("independent_practice"))),
+    learningEvidenceMode: v.optional(
+      v.union(
+        v.literal("worked_example"),
+        v.literal("guided_practice"),
+        v.literal("independent_practice"),
+      ),
+    ),
     srsEligible: v.optional(v.boolean()),
     generatorSeed: v.optional(v.number()),
     generatorDifficulty: v.optional(v.number()),
@@ -216,7 +207,9 @@ export default defineSchema({
     ),
     createdAt: v.number(),
     updatedAt: v.number(),
-  }).index("by_standard", ["standardId"]).index("by_stable_activity_id", ["stableActivityId"]),
+  })
+    .index("by_standard", ["standardId"])
+    .index("by_stable_activity_id", ["stableActivityId"]),
 
   student_competency: defineTable({
     studentId: v.id("profiles"),
@@ -303,8 +296,20 @@ export default defineSchema({
     .index("by_user_activity_attempt_ordinal", ["userId", "activityId", "attemptOrdinal"]),
 
   learning_evidence: defineTable({
-    learnerId: v.id("profiles"), nodeId: v.string(), submissionId: v.id("activity_submissions"), activityId: v.string(), attemptOrdinal: v.number(), origin: v.string(), mode: v.string(), occurredAt: v.string(), gradedEvidence: v.optional(v.any()), idempotencyKey: v.string(), masteryBearing: v.optional(v.boolean()), createdAt: v.number(),
-  }).index("by_learner_and_submission_id", ["learnerId", "submissionId"])
+    learnerId: v.id("profiles"),
+    nodeId: v.string(),
+    submissionId: v.id("activity_submissions"),
+    activityId: v.string(),
+    attemptOrdinal: v.number(),
+    origin: v.string(),
+    mode: v.string(),
+    occurredAt: v.string(),
+    gradedEvidence: v.optional(v.any()),
+    idempotencyKey: v.string(),
+    masteryBearing: v.optional(v.boolean()),
+    createdAt: v.number(),
+  })
+    .index("by_learner_and_submission_id", ["learnerId", "submissionId"])
     .index("by_learner_and_node", ["learnerId", "nodeId"])
     .index("by_learner_and_idempotency_key", ["learnerId", "idempotencyKey"]),
 
@@ -342,24 +347,14 @@ export default defineSchema({
     .index("by_student_and_activity", ["studentId", "activityId"]),
 
   component_reviews: defineTable({
-    componentKind: v.union(
-      v.literal("example"),
-      v.literal("activity"),
-      v.literal("practice"),
-    ),
+    componentKind: v.union(v.literal("example"), v.literal("activity"), v.literal("practice")),
     componentId: v.string(),
     componentKey: v.optional(v.string()),
     componentContentHash: v.string(),
-    status: v.union(
-      v.literal("approved"),
-      v.literal("needs_changes"),
-      v.literal("rejected"),
-    ),
+    status: v.union(v.literal("approved"), v.literal("needs_changes"), v.literal("rejected")),
     comment: v.optional(v.string()),
     issueTags: v.optional(v.array(v.string())),
-    priority: v.optional(
-      v.union(v.literal("low"), v.literal("medium"), v.literal("high")),
-    ),
+    priority: v.optional(v.union(v.literal("low"), v.literal("medium"), v.literal("high"))),
     placement: v.optional(
       v.object({
         lessonId: v.optional(v.string()),
@@ -381,11 +376,7 @@ export default defineSchema({
     .index("by_resolved", ["resolvedAt"]),
 
   component_approvals: defineTable({
-    componentKind: v.union(
-      v.literal("example"),
-      v.literal("activity"),
-      v.literal("practice"),
-    ),
+    componentKind: v.union(v.literal("example"), v.literal("activity"), v.literal("practice")),
     componentId: v.string(),
     componentKey: v.optional(v.string()),
     status: v.union(

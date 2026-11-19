@@ -1,5 +1,11 @@
-import { z } from 'zod';
-import { buildPracticeSubmissionEnvelope, practiceModeSchema, practiceSubmissionStatusSchema, type PracticeSubmissionEnvelope, type PracticeTimingSummary } from '@math-platform/practice-core/contract';
+import { z } from "zod";
+import {
+  buildPracticeSubmissionEnvelope,
+  practiceModeSchema,
+  practiceSubmissionStatusSchema,
+  type PracticeSubmissionEnvelope,
+  type PracticeTimingSummary,
+} from "@math-platform/practice-core/contract";
 
 export type PracticeMode = z.infer<typeof practiceModeSchema>;
 export type PracticeSubmissionStatus = z.infer<typeof practiceSubmissionStatusSchema>;
@@ -12,7 +18,7 @@ export interface SubmitActivityInput {
   status?: PracticeSubmissionStatus;
   /** Preserve the caller's valid practice.v1 timestamp on the envelope. */
   submittedAt?: string;
-  parts?: PracticeSubmissionEnvelope['parts'];
+  parts?: PracticeSubmissionEnvelope["parts"];
   artifact?: Record<string, unknown>;
   interactionHistory?: unknown[];
   analytics?: Record<string, unknown>;
@@ -71,11 +77,11 @@ export async function createServerOwnedActivitySubmission(
       teacherSummary: input.teacherSummary,
       timing: input.timing,
     });
-    const response = await fetch('/api/activities/submissions', {
-      method: 'POST',
+    const response = await fetch("/api/activities/submissions", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        ...(idempotencyKey ? { 'Idempotency-Key': idempotencyKey } : {}),
+        "Content-Type": "application/json",
+        ...(idempotencyKey ? { "Idempotency-Key": idempotencyKey } : {}),
       },
       body: JSON.stringify(envelope),
     });
@@ -83,14 +89,14 @@ export async function createServerOwnedActivitySubmission(
     if (!response.ok) {
       return {
         success: false,
-        error: data.error || 'Submission creation failed',
+        error: data.error || "Submission creation failed",
         ...(idempotencyKey ? { idempotencyKey } : {}),
       };
     }
-    if (typeof data.submissionId !== 'string' || data.submissionId.trim().length === 0) {
+    if (typeof data.submissionId !== "string" || data.submissionId.trim().length === 0) {
       return {
         success: false,
-        error: 'Submission creation did not return a server-owned submission ID',
+        error: "Submission creation did not return a server-owned submission ID",
         ...(idempotencyKey ? { idempotencyKey } : {}),
       };
     }
@@ -104,7 +110,7 @@ export async function createServerOwnedActivitySubmission(
   } catch (error) {
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Unknown error',
+      error: error instanceof Error ? error.message : "Unknown error",
       ...(idempotencyKey ? { idempotencyKey } : {}),
     };
   }
@@ -145,11 +151,11 @@ export async function submitActivity(input: SubmitActivityInput): Promise<Submit
       timing: input.timing,
     });
 
-    const response = await fetch('/api/activities/submit', {
-      method: 'POST',
+    const response = await fetch("/api/activities/submit", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        ...(idempotencyKey ? { 'Idempotency-Key': idempotencyKey } : {}),
+        "Content-Type": "application/json",
+        ...(idempotencyKey ? { "Idempotency-Key": idempotencyKey } : {}),
       },
       body: JSON.stringify(envelope),
     });
@@ -158,7 +164,7 @@ export async function submitActivity(input: SubmitActivityInput): Promise<Submit
     if (!response.ok) {
       return {
         success: false,
-        error: data.error || 'Submission failed',
+        error: data.error || "Submission failed",
         ...(idempotencyKey ? { idempotencyKey } : {}),
       };
     }
@@ -173,7 +179,7 @@ export async function submitActivity(input: SubmitActivityInput): Promise<Submit
   } catch (error) {
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Unknown error',
+      error: error instanceof Error ? error.message : "Unknown error",
       ...(idempotencyKey ? { idempotencyKey } : {}),
     };
   }
@@ -181,12 +187,14 @@ export async function submitActivity(input: SubmitActivityInput): Promise<Submit
 
 /** Creates the pilot submission and delivers only its opaque Convex ID. */
 export async function submitIm3PilotActivity(
-  input: SubmitActivityInput | {
-    submissionId: string;
-    knownScore?: number;
-    knownMaxScore?: number;
-    idempotencyKey?: string;
-  },
+  input:
+    | SubmitActivityInput
+    | {
+        submissionId: string;
+        knownScore?: number;
+        knownMaxScore?: number;
+        idempotencyKey?: string;
+      },
 ): Promise<SubmitActivityResult> {
   let ownedSubmissionId = input.submissionId;
   let score = input.knownScore;
@@ -194,7 +202,7 @@ export async function submitIm3PilotActivity(
   const idempotencyKey = input.idempotencyKey?.trim() || undefined;
 
   try {
-    if (!ownedSubmissionId && 'activityId' in input) {
+    if (!ownedSubmissionId && "activityId" in input) {
       const created = await createServerOwnedActivitySubmission(input);
       if (!created.success) return created;
       ownedSubmissionId = created.submissionId;
@@ -202,19 +210,19 @@ export async function submitIm3PilotActivity(
       maxScore = created.maxScore;
     }
 
-    if (typeof ownedSubmissionId !== 'string' || ownedSubmissionId.trim().length === 0) {
+    if (typeof ownedSubmissionId !== "string" || ownedSubmissionId.trim().length === 0) {
       return {
         success: false,
-        error: 'Submission progression did not receive a server-owned submission ID',
+        error: "Submission progression did not receive a server-owned submission ID",
         score,
         maxScore,
       };
     }
 
-    const progressionResponse = await fetch('/api/learning-evidence/im3-pilot', {
-      method: 'POST',
+    const progressionResponse = await fetch("/api/learning-evidence/im3-pilot", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ submissionId: ownedSubmissionId }),
     });
@@ -223,7 +231,7 @@ export async function submitIm3PilotActivity(
     if (!progressionResponse.ok) {
       return {
         success: false,
-        error: progression.error || 'Submission progression failed',
+        error: progression.error || "Submission progression failed",
         submissionId: ownedSubmissionId,
         score,
         maxScore,
@@ -232,19 +240,19 @@ export async function submitIm3PilotActivity(
 
     const decision = progression?.decision;
     if (
-      progression?.persisted !== true
-      || progression.masteryApplied !== true
-      || progression.kstApplied !== true
-      || (progression.delivery !== 'new' && progression.delivery !== 'replay')
-      || decision?.eligible !== true
-      || decision.reason !== 'eligible'
-      || decision.masteryBearing !== true
-      || decision.exposureState !== 'introduced'
-      || (decision.idempotency !== 'new' && decision.idempotency !== 'replay')
+      progression?.persisted !== true ||
+      progression.masteryApplied !== true ||
+      progression.kstApplied !== true ||
+      (progression.delivery !== "new" && progression.delivery !== "replay") ||
+      decision?.eligible !== true ||
+      decision.reason !== "eligible" ||
+      decision.masteryBearing !== true ||
+      decision.exposureState !== "introduced" ||
+      (decision.idempotency !== "new" && decision.idempotency !== "replay")
     ) {
       return {
         success: false,
-        error: 'Submission progression was rejected',
+        error: "Submission progression was rejected",
         submissionId: ownedSubmissionId,
         score,
         maxScore,
@@ -260,7 +268,7 @@ export async function submitIm3PilotActivity(
   } catch (error) {
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Unknown error',
+      error: error instanceof Error ? error.message : "Unknown error",
       ...(ownedSubmissionId ? { submissionId: ownedSubmissionId } : {}),
       ...(score === undefined ? {} : { score }),
       ...(maxScore === undefined ? {} : { maxScore }),

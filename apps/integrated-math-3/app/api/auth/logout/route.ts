@@ -1,7 +1,7 @@
-import { cookies } from 'next/headers';
-import { NextResponse } from 'next/server';
+import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
-import { SESSION_COOKIE_NAME } from '@math-platform/core-auth';
+import { SESSION_COOKIE_NAME } from "@math-platform/core-auth";
 
 /**
  * Handles POST requests to log the user out by clearing the session
@@ -11,11 +11,11 @@ import { SESSION_COOKIE_NAME } from '@math-platform/core-auth';
  */
 export async function POST() {
   const cookieStore = await cookies();
-  cookieStore.set(SESSION_COOKIE_NAME, '', {
+  cookieStore.set(SESSION_COOKIE_NAME, "", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    path: '/',
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
     expires: new Date(0),
   });
 

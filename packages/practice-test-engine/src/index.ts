@@ -5,7 +5,7 @@
  * Question banks and engine implementations remain app-local.
  */
 
-export const PRACTICE_TEST_ENGINE_VERSION = 'practice-test-engine.v1' as const;
+export const PRACTICE_TEST_ENGINE_VERSION = "practice-test-engine.v1" as const;
 
 export interface PracticeTestQuestion {
   id: string;
@@ -55,7 +55,7 @@ export interface PracticeTestResult {
  */
 export function filterQuestionsByLessonIds(
   questions: PracticeTestQuestion[],
-  lessonIds: string[]
+  lessonIds: string[],
 ): PracticeTestQuestion[] {
   const lessonIdSet = new Set(lessonIds);
   return questions.filter((q) => lessonIdSet.has(q.lessonId));
@@ -69,7 +69,7 @@ export function filterQuestionsByLessonIds(
  */
 export function drawRandomQuestions(
   questions: PracticeTestQuestion[],
-  count: number
+  count: number,
 ): PracticeTestQuestion[] {
   if (count <= 0) return [];
   if (questions.length === 0) return [];
@@ -114,7 +114,7 @@ export function isAnswerCorrect(shuffled: ShuffledQuestion, selectedAnswer: stri
  * @returns {number} - Number of correct answers
  */
 export function calculateScore(
-  answers: Array<{ questionId: string; selectedAnswer: string; isCorrect: boolean }>
+  answers: Array<{ questionId: string; selectedAnswer: string; isCorrect: boolean }>,
 ): number {
   return answers.filter((a) => a.isCorrect).length;
 }

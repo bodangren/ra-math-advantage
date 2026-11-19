@@ -44,11 +44,11 @@ const reviewEntryValidator = v.object({
 
 type SrsEvidence =
   | {
-      action: 'teacher_reset';
+      action: "teacher_reset";
       objectiveId: string;
     }
   | {
-      baseRating: 'Again' | 'Hard' | 'Good' | 'Easy';
+      baseRating: "Again" | "Hard" | "Good" | "Easy";
       timingAdjusted: boolean;
       reasons: string[];
       misconceptionTags?: string[];
@@ -84,7 +84,7 @@ export type ProcessReviewArgs = {
     reviewId?: string;
     cardId: string;
     studentId: Id<"profiles">;
-    rating: 'Again' | 'Hard' | 'Good' | 'Easy';
+    rating: "Again" | "Hard" | "Good" | "Easy";
     submissionId?: string;
     evidence: SrsEvidence;
     stateBefore: SrsStatePick;
@@ -102,18 +102,16 @@ function assertSrsStateMatches(
   const fields = ["stability", "difficulty", "state", "reps", "lapses"] as const;
   const mismatch = fields.find((field) => actual[field] !== expected[field]);
   if (mismatch !== undefined) {
-    throw new Error(
-      `${message}: ${mismatch} mismatch`,
-    );
+    throw new Error(`${message}: ${mismatch} mismatch`);
   }
 }
 
 // COPIED from packages/srs-engine/src/srs/transition-validator.ts — DO NOT EDIT WITHOUT SYNCING
 const VALID_STATE_TRANSITIONS: Record<string, string[]> = {
-  new: ['learning', 'review'],
-  learning: ['learning', 'review'],
-  review: ['learning', 'review'],
-  relearning: ['learning', 'review'],
+  new: ["learning", "review"],
+  learning: ["learning", "review"],
+  review: ["learning", "review"],
+  relearning: ["learning", "review"],
 };
 
 /**
@@ -123,25 +121,20 @@ const VALID_STATE_TRANSITIONS: Record<string, string[]> = {
  * @throws Error if reps does not increase by 1, lapses decreases,
  *         or state transition is invalid
  */
-function validateSrsTransition(
-  stateBefore: SrsStatePick,
-  stateAfter: SrsStatePick,
-): void {
+function validateSrsTransition(stateBefore: SrsStatePick, stateAfter: SrsStatePick): void {
   if (stateAfter.reps !== stateBefore.reps + 1) {
     throw new Error(
-      `reps must increase by exactly 1 (before: ${stateBefore.reps}, after: ${stateAfter.reps})`
+      `reps must increase by exactly 1 (before: ${stateBefore.reps}, after: ${stateAfter.reps})`,
     );
   }
   if (stateAfter.lapses < stateBefore.lapses) {
     throw new Error(
-      `lapses cannot decrease (before: ${stateBefore.lapses}, after: ${stateAfter.lapses})`
+      `lapses cannot decrease (before: ${stateBefore.lapses}, after: ${stateAfter.lapses})`,
     );
   }
   const allowedNextStates = VALID_STATE_TRANSITIONS[stateBefore.state];
   if (!allowedNextStates?.includes(stateAfter.state)) {
-    throw new Error(
-      `invalid state transition: ${stateBefore.state} → ${stateAfter.state}`
-    );
+    throw new Error(`invalid state transition: ${stateBefore.state} → ${stateAfter.state}`);
   }
 }
 
@@ -154,7 +147,7 @@ function validateSrsTransition(
  */
 export async function processReviewHandler(
   ctx: MutationCtx,
-  args: ProcessReviewArgs
+  args: ProcessReviewArgs,
 ): Promise<{ cardId: string; logEntryId: Id<"srs_review_log"> }> {
   const { cardState, reviewEntry } = args;
   const paramsVersion = resolveReviewParamsVersion(
@@ -174,7 +167,7 @@ export async function processReviewHandler(
 
   // Teacher resets bypass SRS transition validation because they are administrative
   // overrides, not learner reviews. The reset action reinitializes the card state.
-  if (!('action' in reviewEntry.evidence)) {
+  if (!("action" in reviewEntry.evidence)) {
     validateSrsTransition(reviewEntry.stateBefore, reviewEntry.stateAfter);
   }
 

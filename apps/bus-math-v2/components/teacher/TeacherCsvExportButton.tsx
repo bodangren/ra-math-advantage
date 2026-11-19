@@ -10,7 +10,6 @@ interface TeacherCsvExportButtonProps {
   students: StudentDashboardRow[];
 }
 
-
 /**
  * Renders a button that exports student dashboard data to a CSV file download.
  *
@@ -20,7 +19,6 @@ interface TeacherCsvExportButtonProps {
  */
 export function TeacherCsvExportButton({ students }: TeacherCsvExportButtonProps) {
   const [isExporting, setIsExporting] = useState(false);
-
 
   /**
    * Generates a CSV from student data and triggers a file download.

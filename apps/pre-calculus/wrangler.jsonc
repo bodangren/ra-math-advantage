@@ -6,9 +6,9 @@
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "not_found_handling": "none",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
   },
-  "vars": {}
+  "vars": {},
   // Set NEXT_PUBLIC_CONVEX_URL to the hosted Convex URL in the target environment.
   // Local development uses .env.local.
   // Required secrets via `wrangler secret put`:

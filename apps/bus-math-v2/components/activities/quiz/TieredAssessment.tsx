@@ -1,44 +1,43 @@
-'use client';
+"use client";
 
-import { useMemo, useState } from 'react';
-import { CheckCircle2, RefreshCw, XCircle } from 'lucide-react';
+import { useMemo, useState } from "react";
+import { CheckCircle2, RefreshCw, XCircle } from "lucide-react";
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { generateProblemInstance } from '@/lib/curriculum/problem-generator';
-import { type Activity } from '@/lib/schemas/validators';
-import { type TieredAssessmentActivityProps } from '@/types/activities';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { generateProblemInstance } from "@/lib/curriculum/problem-generator";
+import { type Activity } from "@/lib/schemas/validators";
+import { type TieredAssessmentActivityProps } from "@/types/activities";
 import {
   buildPracticeSubmissionEnvelope,
   buildPracticeSubmissionParts,
   normalizePracticeValue,
   type PracticeSubmissionCallbackPayload,
-} from '@math-platform/practice-core/contract';
+} from "@math-platform/practice-core/contract";
 
-export type TieredAssessmentActivity = Omit<Activity, 'componentKey' | 'props'> & {
-  componentKey: 'tiered-assessment';
+export type TieredAssessmentActivity = Omit<Activity, "componentKey" | "props"> & {
+  componentKey: "tiered-assessment";
   props: TieredAssessmentActivityProps;
 };
 
-export const TIERED_ASSESSMENT_SUPPORTED_MODES = ['assessment'] as const;
-const TIERED_ASSESSMENT_DEFAULT_MODE = 'assessment' as const;
+export const TIERED_ASSESSMENT_SUPPORTED_MODES = ["assessment"] as const;
+const TIERED_ASSESSMENT_DEFAULT_MODE = "assessment" as const;
 
 interface TieredAssessmentProps {
   activity: TieredAssessmentActivity;
   onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void;
 }
 
-type Question = TieredAssessmentActivityProps['questions'][number];
+type Question = TieredAssessmentActivityProps["questions"][number];
 type ShuffledQuestion = Question & { options: string[] };
-type ApplicationProblem = NonNullable<TieredAssessmentActivityProps['applicationProblems']>[number];
+type ApplicationProblem = NonNullable<TieredAssessmentActivityProps["applicationProblems"]>[number];
 type PreparedApplicationProblem = ApplicationProblem & {
   questionText: string;
   correctAnswer: number;
   tolerance: number;
 };
-
 
 /**
  * Compute a stable unsigned 32-bit hash of a string value.
@@ -53,7 +52,6 @@ function stableHash(value: string) {
   }
   return hash;
 }
-
 
 /**
  * Sort multiple-choice options in a deterministic order based on a question
@@ -79,7 +77,6 @@ function sortOptionsDeterministically(questionId: string, options: string[]) {
     .map((entry) => entry.option);
 }
 
-
 /**
  * Check whether a provided numeric response matches the expected value within
  * a tolerance.
@@ -90,15 +87,15 @@ function sortOptionsDeterministically(questionId: string, options: string[]) {
  * @returns `true` if the response is within tolerance.
  */
 function isCorrectNumericResponse(expected: number, provided: unknown, tolerance: number): boolean {
-  if (typeof provided === 'number' && Number.isFinite(provided)) {
+  if (typeof provided === "number" && Number.isFinite(provided)) {
     return Math.abs(provided - expected) <= tolerance;
   }
 
-  if (typeof provided !== 'string') {
+  if (typeof provided !== "string") {
     return false;
   }
 
-  const normalized = provided.replaceAll(',', '').trim();
+  const normalized = provided.replaceAll(",", "").trim();
   if (!normalized) {
     return false;
   }
@@ -111,7 +108,6 @@ function isCorrectNumericResponse(expected: number, provided: unknown, tolerance
   return Math.abs(parsed - expected) <= tolerance;
 }
 
-
 /**
  * Tiered assessment activity with shuffled options and application problems
  * that generate from templates.
@@ -123,13 +119,15 @@ function isCorrectNumericResponse(expected: number, provided: unknown, tolerance
 export function TieredAssessment({ activity, onSubmit }: TieredAssessmentProps) {
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
-  const hasAnswerKeys = activity.props.questions.every((question) => question.correctAnswer !== undefined);
+  const hasAnswerKeys = activity.props.questions.every(
+    (question) => question.correctAnswer !== undefined,
+  );
 
   const preparedQuestions = useMemo<ShuffledQuestion[]>(() => {
     return activity.props.questions.map((question) => {
       let baseOptions = question.options;
-      if (!baseOptions && question.type === 'true-false') {
-        baseOptions = ['True', 'False'];
+      if (!baseOptions && question.type === "true-false") {
+        baseOptions = ["True", "False"];
       }
 
       if (!baseOptions) {
@@ -161,11 +159,13 @@ export function TieredAssessment({ activity, onSubmit }: TieredAssessmentProps) 
   }, [activity.id, activity.props.applicationProblems]);
 
   const questionEvaluations = preparedQuestions.map((question) => {
-    const answer = selectedAnswers[question.id] ?? '';
+    const answer = selectedAnswers[question.id] ?? "";
     return {
       question,
       answer,
-      isCorrect: Boolean(answer) && normalizePracticeValue(answer) === normalizePracticeValue(question.correctAnswer),
+      isCorrect:
+        Boolean(answer) &&
+        normalizePracticeValue(answer) === normalizePracticeValue(question.correctAnswer),
     };
   });
   const questionScore = questionEvaluations.reduce(
@@ -175,7 +175,9 @@ export function TieredAssessment({ activity, onSubmit }: TieredAssessmentProps) 
 
   const applicationScore = preparedApplicationProblems.reduce((count, problem) => {
     const response = selectedAnswers[problem.id];
-    return count + (isCorrectNumericResponse(problem.correctAnswer, response, problem.tolerance) ? 1 : 0);
+    return (
+      count + (isCorrectNumericResponse(problem.correctAnswer, response, problem.tolerance) ? 1 : 0)
+    );
   }, 0);
 
   const score = questionScore + applicationScore;
@@ -189,12 +191,11 @@ export function TieredAssessment({ activity, onSubmit }: TieredAssessmentProps) 
 
   const answeredCount = requiredIds.reduce((count, itemId) => {
     const value = selectedAnswers[itemId];
-    if (typeof value !== 'string' || value.trim() === '') {
+    if (typeof value !== "string" || value.trim() === "") {
       return count;
     }
     return count + 1;
   }, 0);
-
 
   /**
    * Record a student's response to a question or application problem.
@@ -206,7 +207,6 @@ export function TieredAssessment({ activity, onSubmit }: TieredAssessmentProps) 
     if (submitted) return;
     setSelectedAnswers((prev) => ({ ...prev, [questionId]: answer }));
   };
-
 
   /**
    * Submit the assessment, building the practice submission envelope with
@@ -224,8 +224,12 @@ export function TieredAssessment({ activity, onSubmit }: TieredAssessmentProps) 
     });
 
     const applicationParts = preparedApplicationProblems.map((problem) => {
-      const rawAnswer = selectedAnswers[problem.id] ?? '';
-      const isCorrect = isCorrectNumericResponse(problem.correctAnswer, rawAnswer, problem.tolerance);
+      const rawAnswer = selectedAnswers[problem.id] ?? "";
+      const isCorrect = isCorrectNumericResponse(
+        problem.correctAnswer,
+        rawAnswer,
+        problem.tolerance,
+      );
       return {
         partId: problem.id,
         rawAnswer,
@@ -242,7 +246,7 @@ export function TieredAssessment({ activity, onSubmit }: TieredAssessmentProps) 
         buildPracticeSubmissionEnvelope({
           activityId: activity.id,
           mode: TIERED_ASSESSMENT_DEFAULT_MODE,
-          status: 'submitted',
+          status: "submitted",
           attemptNumber: 1,
           submittedAt: new Date(),
           answers: selectedAnswers,
@@ -256,11 +260,10 @@ export function TieredAssessment({ activity, onSubmit }: TieredAssessmentProps) 
         }),
       );
     } catch (err) {
-      console.error('TieredAssessment submission failed:', err);
+      console.error("TieredAssessment submission failed:", err);
       setSubmitted(false);
     }
   };
-
 
   /**
    * Reset the assessment to allow a retry attempt.
@@ -276,13 +279,13 @@ export function TieredAssessment({ activity, onSubmit }: TieredAssessmentProps) 
         <CardTitle className="flex items-center gap-3 text-2xl">
           {activity.props.title}
           <Badge variant="outline" className="uppercase">
-            {TIERED_ASSESSMENT_DEFAULT_MODE.replace('_', ' ')}
+            {TIERED_ASSESSMENT_DEFAULT_MODE.replace("_", " ")}
           </Badge>
           <Badge variant="secondary" className="uppercase">
             {activity.props.tier}
           </Badge>
           {submitted && hasAnswerKeys && (
-            <Badge variant={percentage >= 70 ? 'default' : 'destructive'}>
+            <Badge variant={percentage >= 70 ? "default" : "destructive"}>
               {score}/{totalQuestions} correct ({percentage}%)
             </Badge>
           )}
@@ -315,26 +318,31 @@ export function TieredAssessment({ activity, onSubmit }: TieredAssessmentProps) 
                     const isSelected = selected === option;
                     const showFeedback = submitted && hasAnswerKeys && option === selected;
                     const optionIsCorrect =
-                      normalizePracticeValue(option) === normalizePracticeValue(question.correctAnswer);
+                      normalizePracticeValue(option) ===
+                      normalizePracticeValue(question.correctAnswer);
 
                     return (
                       <Button
                         key={`${question.id}-${option}-${optionIndex}`}
-                        variant={isSelected ? 'secondary' : 'outline'}
+                        variant={isSelected ? "secondary" : "outline"}
                         className="justify-start text-left h-auto p-4"
                         onClick={() => recordResponse(question.id, option)}
                         disabled={submitted}
                       >
                         <span className="flex-1">{option}</span>
-                        {showFeedback && optionIsCorrect && <CheckCircle2 className="h-4 w-4 text-green-600" />}
-                        {showFeedback && !optionIsCorrect && <XCircle className="h-4 w-4 text-destructive" />}
+                        {showFeedback && optionIsCorrect && (
+                          <CheckCircle2 className="h-4 w-4 text-green-600" />
+                        )}
+                        {showFeedback && !optionIsCorrect && (
+                          <XCircle className="h-4 w-4 text-destructive" />
+                        )}
                       </Button>
                     );
                   })}
                 </div>
               ) : (
                 <Input
-                  value={selected ?? ''}
+                  value={selected ?? ""}
                   onChange={(event) => recordResponse(question.id, event.target.value)}
                   placeholder="Type your answer"
                   disabled={submitted}
@@ -354,8 +362,12 @@ export function TieredAssessment({ activity, onSubmit }: TieredAssessmentProps) 
           <section className="space-y-4 border-t pt-6">
             <h3 className="text-lg font-semibold">Application Problems</h3>
             {preparedApplicationProblems.map((problem, problemIndex) => {
-              const selected = selectedAnswers[problem.id] ?? '';
-              const isCorrect = isCorrectNumericResponse(problem.correctAnswer, selected, problem.tolerance);
+              const selected = selectedAnswers[problem.id] ?? "";
+              const isCorrect = isCorrectNumericResponse(
+                problem.correctAnswer,
+                selected,
+                problem.tolerance,
+              );
 
               return (
                 <div key={problem.id} className="space-y-2">
@@ -371,12 +383,12 @@ export function TieredAssessment({ activity, onSubmit }: TieredAssessmentProps) 
                     disabled={submitted}
                   />
                   {submitted && hasAnswerKeys && (
-                    <p className={`text-sm ${isCorrect ? 'text-green-700' : 'text-destructive'}`}>
+                    <p className={`text-sm ${isCorrect ? "text-green-700" : "text-destructive"}`}>
                       {isCorrect
-                        ? 'Correct'
+                        ? "Correct"
                         : activity.props.showExplanations
                           ? `Expected answer: ${problem.correctAnswer}`
-                          : 'Incorrect'}
+                          : "Incorrect"}
                     </p>
                   )}
                 </div>

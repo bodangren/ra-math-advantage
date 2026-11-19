@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { CheckCircle2 } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import Link from "next/link";
+import { CheckCircle2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export interface ProgressCardProps {
   title: string;
@@ -42,8 +42,8 @@ export function ProgressCard({
         <div
           data-testid="progress-bar-fill"
           className={cn(
-            'h-3 rounded-full transition-all duration-500',
-            progress === 100 ? 'bg-green-600' : 'bg-orange-600'
+            "h-3 rounded-full transition-all duration-500",
+            progress === 100 ? "bg-green-600" : "bg-orange-600",
           )}
           style={{ width: `${progress}%` }}
         />
@@ -59,7 +59,7 @@ export function ProgressCard({
           <p className="text-sm text-muted-foreground mb-2">Next Lesson</p>
           <p className="text-foreground font-medium mb-3">{nextLessonTitle}</p>
           <Link
-            href={nextLessonHref || '#'}
+            href={nextLessonHref || "#"}
             className="inline-flex items-center justify-center px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 transition-colors font-medium"
           >
             Start Lesson

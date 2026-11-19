@@ -1,7 +1,10 @@
-import { NextResponse } from 'next/server';
-import { requireStudentRequestClaims } from '@/lib/auth/server';
-import { fetchInternalMutation, internal } from '@/lib/convex/server';
-import { practiceSubmissionEnvelopeSchema, PRACTICE_CONTRACT_VERSION } from '@math-platform/practice-core/contract';
+import { NextResponse } from "next/server";
+import { requireStudentRequestClaims } from "@/lib/auth/server";
+import { fetchInternalMutation, internal } from "@/lib/convex/server";
+import {
+  practiceSubmissionEnvelopeSchema,
+  PRACTICE_CONTRACT_VERSION,
+} from "@math-platform/practice-core/contract";
 
 /**
  * Handles POST requests to submit a practice activity result.
@@ -18,12 +21,9 @@ export async function POST(request: Request) {
     return authResult;
   }
 
-  const idempotencyKey = request.headers.get('Idempotency-Key')?.trim();
+  const idempotencyKey = request.headers.get("Idempotency-Key")?.trim();
   if (!idempotencyKey) {
-    return NextResponse.json(
-      { error: 'A non-empty Idempotency-Key is required' },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: "A non-empty Idempotency-Key is required" }, { status: 400 });
   }
 
   try {
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
 
     if (!validation.success) {
       return NextResponse.json(
-        { error: 'Invalid submission envelope', details: validation.error.format() },
+        { error: "Invalid submission envelope", details: validation.error.format() },
         { status: 400 },
       );
     }
@@ -41,7 +41,9 @@ export async function POST(request: Request) {
 
     if (envelope.contractVersion !== PRACTICE_CONTRACT_VERSION) {
       return NextResponse.json(
-        { error: `Invalid contract version: ${envelope.contractVersion}. Expected: ${PRACTICE_CONTRACT_VERSION}` },
+        {
+          error: `Invalid contract version: ${envelope.contractVersion}. Expected: ${PRACTICE_CONTRACT_VERSION}`,
+        },
         { status: 400 },
       );
     }
@@ -60,16 +62,13 @@ export async function POST(request: Request) {
       maxScore: result.maxScore,
     });
   } catch (error) {
-    if (error instanceof Error && error.message === 'idempotency_conflict') {
+    if (error instanceof Error && error.message === "idempotency_conflict") {
       return NextResponse.json(
-        { error: 'Idempotency key was already used for a different submission' },
+        { error: "Idempotency key was already used for a different submission" },
         { status: 409 },
       );
     }
-    console.error('Error submitting activity:', error);
-    return NextResponse.json(
-      { error: 'Failed to submit activity' },
-      { status: 500 },
-    );
+    console.error("Error submitting activity:", error);
+    return NextResponse.json({ error: "Failed to submit activity" }, { status: 500 });
   }
 }

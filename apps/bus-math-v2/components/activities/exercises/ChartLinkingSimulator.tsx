@@ -1,17 +1,20 @@
-'use client'
+"use client";
 
-import { useState, useCallback, useRef } from 'react'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { CheckCircle2, Lightbulb, TrendingUp, DollarSign, PieChart, BarChart3 } from 'lucide-react'
-import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract'
-import { buildSimulationSubmissionEnvelope, createSimulationPart } from '@/lib/practice/simulation-submission'
+import { useState, useCallback, useRef } from "react";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { CheckCircle2, Lightbulb, TrendingUp, DollarSign, PieChart, BarChart3 } from "lucide-react";
+import type { PracticeSubmissionEnvelope } from "@/lib/practice/contract";
+import {
+  buildSimulationSubmissionEnvelope,
+  createSimulationPart,
+} from "@/lib/practice/simulation-submission";
 
 interface FinancialState {
-  revenue: number
-  costOfGoodsSold: number
-  operatingExpenses: number
-  dividends: number
+  revenue: number;
+  costOfGoodsSold: number;
+  operatingExpenses: number;
+  dividends: number;
 }
 
 const initialState: FinancialState = {
@@ -19,8 +22,7 @@ const initialState: FinancialState = {
   costOfGoodsSold: 200000,
   operatingExpenses: 150000,
   dividends: 50000,
-}
-
+};
 
 /**
  * Computes simplified income statement and balance sheet figures
@@ -30,10 +32,10 @@ const initialState: FinancialState = {
  * @returns Object containing income statement and balance sheet line items
  */
 function calculateStatements(state: FinancialState) {
-  const grossProfit = state.revenue - state.costOfGoodsSold
-  const operatingIncome = grossProfit - state.operatingExpenses
-  const netIncome = operatingIncome
-  const retainedEarnings = netIncome - state.dividends
+  const grossProfit = state.revenue - state.costOfGoodsSold;
+  const operatingIncome = grossProfit - state.operatingExpenses;
+  const netIncome = operatingIncome;
+  const retainedEarnings = netIncome - state.dividends;
 
   return {
     incomeStatement: {
@@ -50,20 +52,19 @@ function calculateStatements(state: FinancialState) {
       totalLiabilities: state.costOfGoodsSold + state.operatingExpenses,
       totalEquity: retainedEarnings,
     },
-  }
+  };
 }
 
 export interface ChartLinkingSimulatorProps {
   activity: {
-    id?: string
+    id?: string;
     props?: {
-      masteryThreshold?: number
-    }
-  }
-  onSubmit?: (submission: PracticeSubmissionEnvelope) => void
-  onComplete?: () => void
+      masteryThreshold?: number;
+    };
+  };
+  onSubmit?: (submission: PracticeSubmissionEnvelope) => void;
+  onComplete?: () => void;
 }
-
 
 /**
  * Renders a financial statement linking simulator where users adjust
@@ -73,15 +74,18 @@ export interface ChartLinkingSimulatorProps {
  * @param onSubmit - Callback fired when the user completes the analysis
  * @param onComplete - Callback fired when the analysis is finalized
  */
-export function ChartLinkingSimulator({ activity, onSubmit, onComplete }: ChartLinkingSimulatorProps) {
-  const [financialState, setFinancialState] = useState<FinancialState>(initialState)
-  const [insights, setInsights] = useState<string[]>([])
-  const [currentInsight, setCurrentInsight] = useState('')
-  const [completed, setCompleted] = useState(false)
-  const submittedRef = useRef(false)
+export function ChartLinkingSimulator({
+  activity,
+  onSubmit,
+  onComplete,
+}: ChartLinkingSimulatorProps) {
+  const [financialState, setFinancialState] = useState<FinancialState>(initialState);
+  const [insights, setInsights] = useState<string[]>([]);
+  const [currentInsight, setCurrentInsight] = useState("");
+  const [completed, setCompleted] = useState(false);
+  const submittedRef = useRef(false);
 
-  const statements = calculateStatements(financialState)
-
+  const statements = calculateStatements(financialState);
 
   /**
    * Updates a specific financial input field, clamping the value to a minimum of zero.
@@ -90,41 +94,42 @@ export function ChartLinkingSimulator({ activity, onSubmit, onComplete }: ChartL
    * @param value - The new numeric value for the field
    */
   const handleUpdate = useCallback((field: keyof FinancialState, value: number) => {
-    setFinancialState(prev => ({ ...prev, [field]: Math.max(0, value) }))
-  }, [])
-
+    setFinancialState((prev) => ({ ...prev, [field]: Math.max(0, value) }));
+  }, []);
 
   /**
    * Adds the current insight text to the insights list and clears the input.
    */
   const handleAddInsight = useCallback(() => {
-    if (!currentInsight.trim()) return
-    setInsights(prev => [...prev, currentInsight])
-    setCurrentInsight('')
-  }, [currentInsight])
-
+    if (!currentInsight.trim()) return;
+    setInsights((prev) => [...prev, currentInsight]);
+    setCurrentInsight("");
+  }, [currentInsight]);
 
   /**
    * Finalizes the analysis, marks the activity as completed, and submits
    * the result envelope with financial state and insights.
    */
   const handleComplete = useCallback(() => {
-    if (submittedRef.current) return
-    submittedRef.current = true
-    setCompleted(true)
+    if (submittedRef.current) return;
+    submittedRef.current = true;
+    setCompleted(true);
     try {
       onSubmit?.(
         buildSimulationSubmissionEnvelope({
-          activityId: activity.id ?? 'chart-linking-simulator',
-          mode: 'independent_practice',
+          activityId: activity.id ?? "chart-linking-simulator",
+          mode: "independent_practice",
           answers: {
             initialState,
             finalState: financialState,
             insights,
           },
           parts: [
-            createSimulationPart('initial-statements', JSON.stringify(calculateStatements(initialState))),
-            createSimulationPart('final-statements', JSON.stringify(statements)),
+            createSimulationPart(
+              "initial-statements",
+              JSON.stringify(calculateStatements(initialState)),
+            ),
+            createSimulationPart("final-statements", JSON.stringify(statements)),
             ...insights.map((insight, i) => createSimulationPart(`insight-${i}`, insight)),
           ],
           artifact: {
@@ -133,14 +138,14 @@ export function ChartLinkingSimulator({ activity, onSubmit, onComplete }: ChartL
             insightCount: insights.length,
           },
         }),
-      )
-      onComplete?.()
+      );
+      onComplete?.();
     } catch (err) {
-      console.error('ChartLinkingSimulator submission failed:', err)
-      submittedRef.current = false
-      setCompleted(false)
+      console.error("ChartLinkingSimulator submission failed:", err);
+      submittedRef.current = false;
+      setCompleted(false);
     }
-  }, [financialState, insights, onSubmit, onComplete, activity.id, statements])
+  }, [financialState, insights, onSubmit, onComplete, activity.id, statements]);
 
   return (
     <div className="space-y-6">
@@ -151,7 +156,8 @@ export function ChartLinkingSimulator({ activity, onSubmit, onComplete }: ChartL
             Financial Statement Linking Simulator
           </CardTitle>
           <CardDescription className="text-blue-600">
-            Explore how changes in one financial statement affect another. Adjust inputs and document your insights.
+            Explore how changes in one financial statement affect another. Adjust inputs and
+            document your insights.
           </CardDescription>
         </CardHeader>
       </Card>
@@ -170,7 +176,7 @@ export function ChartLinkingSimulator({ activity, onSubmit, onComplete }: ChartL
               <input
                 type="number"
                 value={financialState.revenue}
-                onChange={(e) => handleUpdate('revenue', Number(e.target.value))}
+                onChange={(e) => handleUpdate("revenue", Number(e.target.value))}
                 disabled={completed}
                 className="w-full p-2 border rounded"
               />
@@ -180,7 +186,7 @@ export function ChartLinkingSimulator({ activity, onSubmit, onComplete }: ChartL
               <input
                 type="number"
                 value={financialState.costOfGoodsSold}
-                onChange={(e) => handleUpdate('costOfGoodsSold', Number(e.target.value))}
+                onChange={(e) => handleUpdate("costOfGoodsSold", Number(e.target.value))}
                 disabled={completed}
                 className="w-full p-2 border rounded"
               />
@@ -190,7 +196,7 @@ export function ChartLinkingSimulator({ activity, onSubmit, onComplete }: ChartL
               <input
                 type="number"
                 value={financialState.operatingExpenses}
-                onChange={(e) => handleUpdate('operatingExpenses', Number(e.target.value))}
+                onChange={(e) => handleUpdate("operatingExpenses", Number(e.target.value))}
                 disabled={completed}
                 className="w-full p-2 border rounded"
               />
@@ -200,7 +206,7 @@ export function ChartLinkingSimulator({ activity, onSubmit, onComplete }: ChartL
               <input
                 type="number"
                 value={financialState.dividends}
-                onChange={(e) => handleUpdate('dividends', Number(e.target.value))}
+                onChange={(e) => handleUpdate("dividends", Number(e.target.value))}
                 disabled={completed}
                 className="w-full p-2 border rounded"
               />
@@ -220,7 +226,9 @@ export function ChartLinkingSimulator({ activity, onSubmit, onComplete }: ChartL
           <CardContent className="space-y-3 text-sm">
             <div className="flex justify-between border-b pb-1">
               <span>Revenue</span>
-              <span className="font-medium">${statements.incomeStatement.revenue.toLocaleString()}</span>
+              <span className="font-medium">
+                ${statements.incomeStatement.revenue.toLocaleString()}
+              </span>
             </div>
             <div className="flex justify-between border-b pb-1 text-red-600">
               <span>Cost of Goods Sold</span>
@@ -255,7 +263,9 @@ export function ChartLinkingSimulator({ activity, onSubmit, onComplete }: ChartL
           <CardContent className="space-y-3 text-sm">
             <div className="flex justify-between border-b pb-1">
               <span>Total Assets</span>
-              <span className="font-medium">${statements.balanceSheet.totalAssets.toLocaleString()}</span>
+              <span className="font-medium">
+                ${statements.balanceSheet.totalAssets.toLocaleString()}
+              </span>
             </div>
             <div className="flex justify-between border-b pb-1">
               <span>Total Liabilities</span>
@@ -290,10 +300,18 @@ export function ChartLinkingSimulator({ activity, onSubmit, onComplete }: ChartL
             disabled={completed}
           />
           <div className="flex gap-2">
-            <Button onClick={handleAddInsight} disabled={!currentInsight.trim() || completed} variant="outline">
+            <Button
+              onClick={handleAddInsight}
+              disabled={!currentInsight.trim() || completed}
+              variant="outline"
+            >
               Add Insight
             </Button>
-            <Button onClick={handleComplete} disabled={insights.length === 0 || completed} className="bg-green-700">
+            <Button
+              onClick={handleComplete}
+              disabled={insights.length === 0 || completed}
+              className="bg-green-700"
+            >
               <CheckCircle2 className="h-4 w-4 mr-2" />
               Complete Analysis
             </Button>
@@ -311,12 +329,13 @@ export function ChartLinkingSimulator({ activity, onSubmit, onComplete }: ChartL
             <div className="bg-green-50 p-3 rounded border border-green-200 flex items-center gap-2">
               <CheckCircle2 className="h-5 w-5 text-green-600" />
               <p className="text-sm text-green-800 font-medium">
-                Analysis complete! {insights.length} insight{insights.length !== 1 ? 's' : ''} documented.
+                Analysis complete! {insights.length} insight{insights.length !== 1 ? "s" : ""}{" "}
+                documented.
               </p>
             </div>
           )}
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

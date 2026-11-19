@@ -1,10 +1,10 @@
-import type { PhaseType } from '../curriculum/phase-types';
+import type { PhaseType } from "../curriculum/phase-types";
 
 export type { PhaseType };
 
-export type UserRole = 'student' | 'teacher' | 'admin';
+export type UserRole = "student" | "teacher" | "admin";
 
-export type ActivityMode = 'teaching' | 'guided' | 'practice';
+export type ActivityMode = "teaching" | "guided" | "practice";
 
 export interface ResolveModeParams {
   role: UserRole;
@@ -28,8 +28,8 @@ export function resolveActivityMode(params: ResolveModeParams): ActivityMode {
   const { role, phaseType, activityModeOverride } = params;
 
   // Teacher and admin always get teaching mode (role takes precedence)
-  if (role === 'teacher' || role === 'admin') {
-    return 'teaching';
+  if (role === "teacher" || role === "admin") {
+    return "teaching";
   }
 
   // Student role: check override first, then resolve based on phase type
@@ -47,19 +47,19 @@ export function resolveActivityMode(params: ResolveModeParams): ActivityMode {
  */
 function resolveStudentMode(phaseType: PhaseType): ActivityMode {
   switch (phaseType) {
-    case 'independent_practice':
-    case 'assessment':
-      return 'practice';
-    case 'worked_example':
-    case 'guided_practice':
-    case 'explore':
-    case 'vocabulary':
-    case 'learn':
-    case 'key_concept':
-    case 'discourse':
-    case 'reflection':
+    case "independent_practice":
+    case "assessment":
+      return "practice";
+    case "worked_example":
+    case "guided_practice":
+    case "explore":
+    case "vocabulary":
+    case "learn":
+    case "key_concept":
+    case "discourse":
+    case "reflection":
     default:
-      return 'guided';
+      return "guided";
   }
 }
 
@@ -69,5 +69,5 @@ function resolveStudentMode(phaseType: PhaseType): ActivityMode {
  * @returns {value is ActivityMode} - True if value is a valid ActivityMode
  */
 function isValidActivityMode(value: unknown): value is ActivityMode {
-  return typeof value === 'string' && ['teaching', 'guided', 'practice'].includes(value);
+  return typeof value === "string" && ["teaching", "guided", "practice"].includes(value);
 }

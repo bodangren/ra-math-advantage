@@ -4,12 +4,8 @@ export const triangleNodeIds = {
   angles: "math.im2.skill.1.4.order-triangle-angles-from-side-lengths",
   sides: "math.im2.skill.1.4.order-triangle-sides-from-angle-measures",
 } as const;
-export type TriangleNodeId =
-  (typeof triangleNodeIds)[keyof typeof triangleNodeIds];
-export type TriangleMode =
-  | "worked_example"
-  | "guided_practice"
-  | "independent_practice";
+export type TriangleNodeId = (typeof triangleNodeIds)[keyof typeof triangleNodeIds];
+export type TriangleMode = "worked_example" | "guided_practice" | "independent_practice";
 export type TrianglePart = { id: string; question: Question };
 export type TriangleItem = {
   problem: number;
@@ -21,12 +17,7 @@ export type TriangleItem = {
   steps?: string[];
   parts?: TrianglePart[];
 };
-const choice = (
-  prompt: string,
-  answer: string,
-  texts: string[],
-  hint?: string,
-): Question => ({
+const choice = (prompt: string, answer: string, texts: string[], hint?: string): Question => ({
   kind: "choice",
   prompt,
   choices: texts.map((text, index) => ({ id: `choice-${index + 1}`, text })),
@@ -72,11 +63,7 @@ const items: Record<string, TriangleItem> = {
         question: choice(
           "Match each side to its opposite angle.",
           "choice-1",
-          [
-            "AB → ∠C, AC → ∠B, BC → ∠A",
-            "AB → ∠A, AC → ∠C, BC → ∠B",
-            "AB → ∠B, AC → ∠A, BC → ∠C",
-          ],
+          ["AB → ∠C, AC → ∠B, BC → ∠A", "AB → ∠A, AC → ∠C, BC → ∠B", "AB → ∠B, AC → ∠A, BC → ∠C"],
           "Look across the triangle from each side.",
         ),
       },
@@ -144,11 +131,7 @@ const items: Record<string, TriangleItem> = {
         question: choice(
           "Match each angle to its opposite side.",
           "choice-1",
-          [
-            "∠E → CD, ∠C → DE, ∠D → CE",
-            "∠E → CE, ∠C → CD, ∠D → DE",
-            "∠E → DE, ∠C → CE, ∠D → CD",
-          ],
+          ["∠E → CD, ∠C → DE, ∠D → CE", "∠E → CE, ∠C → CD, ∠D → DE", "∠E → DE, ∠C → CE, ∠D → CD"],
           "Look across the triangle from each angle.",
         ),
       },
@@ -196,8 +179,7 @@ export function triangleItem(
   difficulty: number,
 ): TriangleItem {
   const item = items[`${nodeId}:${mode}`];
-  if (!item || item.problem !== seed || difficulty !== 1)
-    throw Error("invalid_triangle_item");
+  if (!item || item.problem !== seed || difficulty !== 1) throw Error("invalid_triangle_item");
   return item;
 }
 export function gradeTrianglePart(
@@ -219,8 +201,7 @@ function publicPart(part: TrianglePart) {
     id: part.id,
     prompt: part.question.prompt,
     kind: part.question.kind,
-    choices:
-      part.question.kind === "choice" ? part.question.choices : undefined,
+    choices: part.question.kind === "choice" ? part.question.choices : undefined,
   };
 }
 export function projectTriangleItem(
@@ -251,9 +232,7 @@ export function projectTriangleItem(
     };
   return { ...base, currentPart: publicPart(item.parts![0]) };
 }
-export function triangleModes(
-  nodeId: string,
-): ReadonlyArray<{ mode: TriangleMode; seed: number }> {
+export function triangleModes(nodeId: string): ReadonlyArray<{ mode: TriangleMode; seed: number }> {
   return nodeId === triangleNodeIds.angles
     ? [
         { mode: "worked_example", seed: 6 },

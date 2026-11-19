@@ -1,5 +1,9 @@
-import { createCard as pkgCreateCard, reviewCard as pkgReviewCard, getDueCards as pkgGetDueCards } from '@math-platform/srs-engine';
-import type { SrsCardState, SrsRating } from '@math-platform/srs-engine';
+import {
+  createCard as pkgCreateCard,
+  reviewCard as pkgReviewCard,
+  getDueCards as pkgGetDueCards,
+} from "@math-platform/srs-engine";
+import type { SrsCardState, SrsRating } from "@math-platform/srs-engine";
 
 export type { SrsCardState, SrsRating };
 
@@ -44,7 +48,10 @@ export function getDueCards(cards: SrsCardState[], now?: string): SrsCardState[]
  * @param studentId - The student identifier
  * @returns Legacy-formatted card object with due date and review data
  */
-export function createNewCard(problemFamilyId: string, studentId: string): {
+export function createNewCard(
+  problemFamilyId: string,
+  studentId: string,
+): {
   problemFamilyId: string;
   studentId: string;
   card: Record<string, unknown>;
@@ -72,7 +79,14 @@ export function createNewCard(problemFamilyId: string, studentId: string): {
       reps: newCard.reps,
       lapses: newCard.lapses,
       learning_steps: 0,
-      state: newCard.state === 'new' ? 0 : newCard.state === 'learning' ? 1 : newCard.state === 'review' ? 2 : 3,
+      state:
+        newCard.state === "new"
+          ? 0
+          : newCard.state === "learning"
+            ? 1
+            : newCard.state === "review"
+              ? 2
+              : 3,
       last_review: newCard.lastReview,
     },
     due: new Date(newCard.dueDate).getTime(),
@@ -88,15 +102,18 @@ export function createNewCard(problemFamilyId: string, studentId: string): {
  * @param rating - The review rating (Again, Hard, Good, Easy)
  * @returns Updated legacy card format after review
  */
-export function reviewCardLegacy(card: {
-  problemFamilyId: string;
-  studentId: string;
-  card: Record<string, unknown>;
-  due: number;
-  lastReview: number;
-  reviewCount: number;
-  createdAt: number;
-}, rating: 'Again' | 'Hard' | 'Good' | 'Easy'): {
+export function reviewCardLegacy(
+  card: {
+    problemFamilyId: string;
+    studentId: string;
+    card: Record<string, unknown>;
+    due: number;
+    lastReview: number;
+    reviewCount: number;
+    createdAt: number;
+  },
+  rating: "Again" | "Hard" | "Good" | "Easy",
+): {
   problemFamilyId: string;
   studentId: string;
   card: Record<string, unknown>;
@@ -105,29 +122,32 @@ export function reviewCardLegacy(card: {
   reviewCount: number;
   createdAt: number;
 } {
-  const stateMap: Record<number, 'new' | 'learning' | 'review' | 'relearning'> = {
-    0: 'new',
-    1: 'learning',
-    2: 'review',
-    3: 'relearning',
+  const stateMap: Record<number, "new" | "learning" | "review" | "relearning"> = {
+    0: "new",
+    1: "learning",
+    2: "review",
+    3: "relearning",
   };
-  const newCard = pkgReviewCard({
-    cardId: `legacy_${Date.now()}`,
-    studentId: card.studentId,
-    objectiveId: card.problemFamilyId,
-    variantKey: card.problemFamilyId,
-    stability: card.card.stability as number ?? 0,
-    difficulty: card.card.difficulty as number ?? 0,
-    state: stateMap[card.card.state as number] ?? 'new',
-    dueDate: new Date(card.due).toISOString(),
-    elapsedDays: card.card.elapsed_days as number ?? 0,
-    scheduledDays: card.card.scheduled_days as number ?? 0,
-    reps: card.reviewCount,
-    lapses: card.card.lapses as number ?? 0,
-    lastReview: card.lastReview ? new Date(card.lastReview).toISOString() : null,
-    createdAt: new Date(card.createdAt).toISOString(),
-    updatedAt: new Date().toISOString(),
-  }, rating);
+  const newCard = pkgReviewCard(
+    {
+      cardId: `legacy_${Date.now()}`,
+      studentId: card.studentId,
+      objectiveId: card.problemFamilyId,
+      variantKey: card.problemFamilyId,
+      stability: (card.card.stability as number) ?? 0,
+      difficulty: (card.card.difficulty as number) ?? 0,
+      state: stateMap[card.card.state as number] ?? "new",
+      dueDate: new Date(card.due).toISOString(),
+      elapsedDays: (card.card.elapsed_days as number) ?? 0,
+      scheduledDays: (card.card.scheduled_days as number) ?? 0,
+      reps: card.reviewCount,
+      lapses: (card.card.lapses as number) ?? 0,
+      lastReview: card.lastReview ? new Date(card.lastReview).toISOString() : null,
+      createdAt: new Date(card.createdAt).toISOString(),
+      updatedAt: new Date().toISOString(),
+    },
+    rating,
+  );
 
   return {
     problemFamilyId: newCard.variantKey,
@@ -141,7 +161,14 @@ export function reviewCardLegacy(card: {
       reps: newCard.reps,
       lapses: newCard.lapses,
       learning_steps: 0,
-      state: newCard.state === 'new' ? 0 : newCard.state === 'learning' ? 1 : newCard.state === 'review' ? 2 : 3,
+      state:
+        newCard.state === "new"
+          ? 0
+          : newCard.state === "learning"
+            ? 1
+            : newCard.state === "review"
+              ? 2
+              : 3,
       last_review: newCard.lastReview,
     },
     due: new Date(newCard.dueDate).getTime(),
@@ -157,15 +184,18 @@ export function reviewCardLegacy(card: {
  * @param now - Optional cutoff timestamp in milliseconds
  * @returns Array of due cards sorted by due date
  */
-export function getCardsDue(cards: {
-  problemFamilyId: string;
-  studentId: string;
-  card: Record<string, unknown>;
-  due: number;
-  lastReview: number;
-  reviewCount: number;
-  createdAt: number;
-}[], now?: number): {
+export function getCardsDue(
+  cards: {
+    problemFamilyId: string;
+    studentId: string;
+    card: Record<string, unknown>;
+    due: number;
+    lastReview: number;
+    reviewCount: number;
+    createdAt: number;
+  }[],
+  now?: number,
+): {
   problemFamilyId: string;
   studentId: string;
   card: Record<string, unknown>;
@@ -175,7 +205,5 @@ export function getCardsDue(cards: {
   createdAt: number;
 }[] {
   const cutoff = now ?? Date.now();
-  return cards
-    .filter((c) => c.due <= cutoff)
-    .sort((a, b) => a.due - b.due);
+  return cards.filter((c) => c.due <= cutoff).sort((a, b) => a.due - b.due);
 }

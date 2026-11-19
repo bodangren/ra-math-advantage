@@ -1,7 +1,10 @@
-import { notFound } from 'next/navigation';
+import { notFound } from "next/navigation";
 
-import { isDevApprovalEnabledForRequest, requireDeveloperSessionClaims } from '@/lib/auth/developer';
-import { ReviewQueueView } from '@/components/dev/review-queue';
+import {
+  isDevApprovalEnabledForRequest,
+  requireDeveloperSessionClaims,
+} from "@/lib/auth/developer";
+import { ReviewQueueView } from "@/components/dev/review-queue";
 
 /**
  * Renders the developer-only component approval page for reviewing queued components.
@@ -13,7 +16,7 @@ export default async function ComponentApprovalPage() {
     return notFound();
   }
 
-  await requireDeveloperSessionClaims('/auth/login', '/');
+  await requireDeveloperSessionClaims("/auth/login", "/");
 
   return (
     <div className="max-w-5xl mx-auto space-y-8 py-8">

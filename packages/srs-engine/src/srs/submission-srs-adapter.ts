@@ -9,18 +9,11 @@ import {
   mapPracticeToSrsRatingV31,
   type SrsRatingInputV31,
   type SrsRatingResult,
-} from '@math-platform/practice-core/srs-rating';
-import type { SrsRatingResultV31 } from '@math-platform/practice-core/v3-1-contracts';
-import { deriveTimingFeatures } from '@math-platform/practice-core/timing-baseline';
-import {
-  createCard,
-  scheduleReview,
-  type ReviewSchedulerContext,
-} from './scheduler';
-import type {
-  CardStore,
-  ReviewLogStore,
-} from './adapters';
+} from "@math-platform/practice-core/srs-rating";
+import type { SrsRatingResultV31 } from "@math-platform/practice-core/v3-1-contracts";
+import { deriveTimingFeatures } from "@math-platform/practice-core/timing-baseline";
+import { createCard, scheduleReview, type ReviewSchedulerContext } from "./scheduler";
+import type { CardStore, ReviewLogStore } from "./adapters";
 import type {
   PracticeSubmissionEnvelope,
   PracticeTimingBaseline,
@@ -28,7 +21,7 @@ import type {
   SrsRating,
   SrsReviewLogEntry,
   SrsReviewLogEntryV31,
-} from './contract';
+} from "./contract";
 
 // ============================================
 // Input / Output Types
@@ -58,10 +51,7 @@ export type SubmissionSrsResultSuccess = {
   reviewLog: PracticeSrsReviewLogEntryV31;
 };
 
-export type PracticeSrsReviewLogEntryV31 = Omit<
-  SrsReviewLogEntryV31,
-  'evidence'
-> & {
+export type PracticeSrsReviewLogEntryV31 = Omit<SrsReviewLogEntryV31, "evidence"> & {
   evidence: {
     baseRating: SrsRating;
     timingAdjusted: boolean;
@@ -73,7 +63,7 @@ export type PracticeSrsReviewLogEntryV31 = Omit<
 export type SubmissionSrsResultSkipped = {
   ok: false;
   skipped: true;
-  reason: 'no_blueprint' | 'no_timing_baseline';
+  reason: "no_blueprint" | "no_timing_baseline";
 };
 
 export type SubmissionSrsResultError = {
@@ -144,13 +134,13 @@ export class SubmissionSrsAdapter {
   }
 
   protected async processSubmissionInternal(
-    input: SubmissionSrsInput
+    input: SubmissionSrsInput,
   ): Promise<SubmissionSrsResult> {
     const { submission, studentId, activityId } = input;
 
     const familyInfo = await this.resolver.resolve(activityId);
     if (!familyInfo) {
-      return { ok: false, skipped: true, reason: 'no_blueprint' };
+      return { ok: false, skipped: true, reason: "no_blueprint" };
     }
 
     const { variantKey, objectiveId, schedulerContext } = familyInfo;
@@ -179,8 +169,8 @@ export class SubmissionSrsAdapter {
         ? deriveTimingFeatures(submission.timing, baseline)
         : {
             hasReliableTiming: false as const,
-            confidence: 'low' as const,
-            reasons: ['timing_missing'],
+            confidence: "low" as const,
+            reasons: ["timing_missing"],
           };
 
       const parts = submission.parts.map((part) => ({
@@ -198,11 +188,11 @@ export class SubmissionSrsAdapter {
 
       evidenceReasons = submission.timing
         ? ratingResult.reasons
-        : ['timing_missing', ...ratingResult.reasons];
+        : ["timing_missing", ...ratingResult.reasons];
     }
 
     const misconceptionTags = Array.from(
-      new Set(submission.parts.flatMap((p) => p.misconceptionTags ?? []))
+      new Set(submission.parts.flatMap((p) => p.misconceptionTags ?? [])),
     );
 
     const scheduled = scheduleReview({
@@ -234,8 +224,7 @@ export class SubmissionSrsAdapter {
       cardId: card.cardId,
       studentId,
       rating: ratingResult.rating,
-      submissionId: input.submissionId
-        ?? `${submission.activityId}-${submission.attemptNumber}`,
+      submissionId: input.submissionId ?? `${submission.activityId}-${submission.attemptNumber}`,
       evidence: {
         baseRating: ratingResult.baseRating,
         timingAdjusted: ratingResult.timingAdjusted,
@@ -248,23 +237,15 @@ export class SubmissionSrsAdapter {
       reviewedAt: now,
     };
 
-    if (
-      this.requireAtomicPersistence
-      && this.cardStore.saveCardAndReview === undefined
-    ) {
-      throw new Error(
-        'Atomic persistence is required but saveCardAndReview is unavailable',
-      );
+    if (this.requireAtomicPersistence && this.cardStore.saveCardAndReview === undefined) {
+      throw new Error("Atomic persistence is required but saveCardAndReview is unavailable");
     }
 
     // Use atomic save if the cardStore supports it (e.g., Convex direct handler)
     let returnedCard = updatedCard;
     let returnedReviewLog = reviewLog;
     if (this.cardStore.saveCardAndReview !== undefined) {
-      const persistedIds = await this.cardStore.saveCardAndReview(
-        updatedCard,
-        reviewLog,
-      );
+      const persistedIds = await this.cardStore.saveCardAndReview(updatedCard, reviewLog);
       if (persistedIds !== undefined) {
         returnedCard = {
           ...updatedCard,
@@ -298,8 +279,8 @@ function generateReviewId(): string {
   const bytes = new Uint8Array(16);
   crypto.getRandomValues(bytes);
   const hex = Array.from(bytes)
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
   return `rev_${hex}`;
 }
 
@@ -345,7 +326,8 @@ export class InMemorySubmissionSrsAdapter extends SubmissionSrsAdapter {
   }
 
   getBaselineResolver(): InMemoryTimingBaselineResolver {
-    return (this as unknown as { baselineResolver: InMemoryTimingBaselineResolver }).baselineResolver;
+    return (this as unknown as { baselineResolver: InMemoryTimingBaselineResolver })
+      .baselineResolver;
   }
 
   getCardStore(): InMemoryTestCardStore {
@@ -365,21 +347,22 @@ class InMemoryTestCardStore implements CardStore {
   }
 
   async getCardsByStudent(studentId: string): Promise<SrsCardState[]> {
-    return Array.from(this.cards.values()).filter(
-      (card) => card.studentId === studentId
-    );
+    return Array.from(this.cards.values()).filter((card) => card.studentId === studentId);
   }
 
-  async getCardByStudentAndVariant(studentId: string, variantKey: string): Promise<SrsCardState | null> {
-    return Array.from(this.cards.values()).find(
-      (card) => card.studentId === studentId && card.variantKey === variantKey
-    ) ?? null;
+  async getCardByStudentAndVariant(
+    studentId: string,
+    variantKey: string,
+  ): Promise<SrsCardState | null> {
+    return (
+      Array.from(this.cards.values()).find(
+        (card) => card.studentId === studentId && card.variantKey === variantKey,
+      ) ?? null
+    );
   }
 
   async getCardsByObjective(objectiveId: string): Promise<SrsCardState[]> {
-    return Array.from(this.cards.values()).filter(
-      (card) => card.objectiveId === objectiveId
-    );
+    return Array.from(this.cards.values()).filter((card) => card.objectiveId === objectiveId);
   }
 
   async getDueCards(studentId: string, now: string): Promise<SrsCardState[]> {
@@ -412,16 +395,10 @@ class InMemoryTestReviewLogStore implements ReviewLogStore {
   async getReviewsByCard(cardId: string): Promise<SrsReviewLogEntry[]> {
     return this.reviews
       .filter((review) => review.cardId === cardId)
-      .sort(
-        (a, b) =>
-          new Date(a.reviewedAt).getTime() - new Date(b.reviewedAt).getTime()
-      );
+      .sort((a, b) => new Date(a.reviewedAt).getTime() - new Date(b.reviewedAt).getTime());
   }
 
-  async getReviewsByStudent(
-    studentId: string,
-    since?: string
-  ): Promise<SrsReviewLogEntry[]> {
+  async getReviewsByStudent(studentId: string, since?: string): Promise<SrsReviewLogEntry[]> {
     const sinceMs = since ? new Date(since).getTime() : undefined;
     return this.reviews
       .filter((review) => {
@@ -429,9 +406,6 @@ class InMemoryTestReviewLogStore implements ReviewLogStore {
         if (sinceMs === undefined) return true;
         return new Date(review.reviewedAt).getTime() >= sinceMs;
       })
-      .sort(
-        (a, b) =>
-          new Date(a.reviewedAt).getTime() - new Date(b.reviewedAt).getTime()
-      );
+      .sort((a, b) => new Date(a.reviewedAt).getTime() - new Date(b.reviewedAt).getTime());
   }
 }

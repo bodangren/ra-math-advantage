@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useCallback } from 'react';
-import type { StudyTerm, StudySessionRating, StudySessionResult, StudySessionState } from './types';
-import { RATING_DELTAS } from './types';
+import { useState, useCallback } from "react";
+import type { StudyTerm, StudySessionRating, StudySessionResult, StudySessionState } from "./types";
+import { RATING_DELTAS } from "./types";
 
 interface BaseReviewSessionProps<T extends StudyTerm> {
   terms: T[];
@@ -24,14 +24,14 @@ export function BaseReviewSession<T extends StudyTerm>({
   onComplete,
 }: BaseReviewSessionProps<T>) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [state, setState] = useState<StudySessionState>('prompt');
+  const [state, setState] = useState<StudySessionState>("prompt");
   const [itemsSeen, setItemsSeen] = useState(0);
   const [itemsCorrect, setItemsCorrect] = useState(0);
   const [itemsIncorrect, setItemsIncorrect] = useState(0);
   const [startTime] = useState(() => Date.now());
 
   const handleFlip = useCallback(() => {
-    setState('flip');
+    setState("flip");
   }, []);
 
   const handleRate = useCallback(
@@ -55,29 +55,27 @@ export function BaseReviewSession<T extends StudyTerm>({
           itemsIncorrect: newIncorrect,
           durationSeconds,
         });
-        setState('complete');
+        setState("complete");
       } else {
         setCurrentIndex((prev) => prev + 1);
-        setState('prompt');
+        setState("prompt");
       }
     },
-    [currentIndex, terms.length, itemsSeen, itemsCorrect, itemsIncorrect, startTime, onComplete]
+    [currentIndex, terms.length, itemsSeen, itemsCorrect, itemsIncorrect, startTime, onComplete],
   );
 
   if (terms.length === 0) {
     return (
       <div className="max-w-2xl mx-auto py-12 px-4 text-center">
         <div className="rounded-xl border border-border bg-card p-8">
-          <h1 className="text-2xl font-display font-bold text-foreground mb-4">
-            {noTermsTitle}
-          </h1>
+          <h1 className="text-2xl font-display font-bold text-foreground mb-4">{noTermsTitle}</h1>
           <p className="text-muted-foreground">{noTermsMessage}</p>
         </div>
       </div>
     );
   }
 
-  if (state === 'complete') {
+  if (state === "complete") {
     return (
       <div className="max-w-2xl mx-auto py-12 px-4 text-center">
         <div className="rounded-xl border border-border bg-card p-8">
@@ -97,11 +95,9 @@ export function BaseReviewSession<T extends StudyTerm>({
               />
             </svg>
           </div>
-          <h1 className="text-2xl font-display font-bold text-foreground mb-4">
-            Review Complete
-          </h1>
+          <h1 className="text-2xl font-display font-bold text-foreground mb-4">Review Complete</h1>
           <p className="text-muted-foreground mb-2">
-            You reviewed {itemsSeen} term{itemsSeen !== 1 ? 's' : ''}.
+            You reviewed {itemsSeen} term{itemsSeen !== 1 ? "s" : ""}.
           </p>
           <p className="text-sm text-muted-foreground">
             {itemsCorrect} correct, {itemsIncorrect} needs more practice
@@ -118,25 +114,21 @@ export function BaseReviewSession<T extends StudyTerm>({
       {renderHeader(currentIndex + 1, terms.length)}
 
       <div className="mt-8">
-        {state === 'prompt' ? (
+        {state === "prompt" ? (
           <button
             onClick={handleFlip}
             className="w-full min-h-[200px] rounded-xl border-2 border-border bg-card p-8 text-center hover:border-primary/40 transition-colors cursor-pointer"
             data-testid="term-prompt"
           >
             <p className="text-lg font-semibold text-foreground">{currentTerm.term}</p>
-            <p className="text-xs text-muted-foreground mt-2 font-mono">
-              {currentTerm.slug}
-            </p>
+            <p className="text-xs text-muted-foreground mt-2 font-mono">{currentTerm.slug}</p>
             <p className="text-sm text-muted-foreground mt-6">Click to reveal definition</p>
           </button>
         ) : (
           <div className="space-y-6">
             <div className="rounded-xl border-2 border-primary/40 bg-card p-8 text-center">
               <p className="text-lg font-semibold text-foreground mb-2">{currentTerm.term}</p>
-              <p className="text-sm text-muted-foreground font-mono mb-2">
-                {currentTerm.slug}
-              </p>
+              <p className="text-sm text-muted-foreground font-mono mb-2">{currentTerm.slug}</p>
               <p className="text-foreground mt-4">{currentTerm.definition}</p>
             </div>
 
@@ -160,9 +152,7 @@ export function BaseReviewSession<T extends StudyTerm>({
         {terms.map((_, i) => (
           <div
             key={i}
-            className={`h-2 w-2 rounded-full ${
-              i === currentIndex ? 'bg-primary' : 'bg-muted'
-            }`}
+            className={`h-2 w-2 rounded-full ${i === currentIndex ? "bg-primary" : "bg-muted"}`}
           />
         ))}
       </div>

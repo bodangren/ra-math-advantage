@@ -1,12 +1,16 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const checkOnly = process.argv.includes('--check');
-const curriculumRoot = path.join(appRoot, 'curriculum');
-const topicIndex = JSON.parse(fs.readFileSync(path.join(curriculumRoot, 'source/college-board/ced-topic-index.json'), 'utf8'));
-const exceptions = JSON.parse(fs.readFileSync(path.join(curriculumRoot, 'implementation/exceptions.json'), 'utf8'));
+const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const checkOnly = process.argv.includes("--check");
+const curriculumRoot = path.join(appRoot, "curriculum");
+const topicIndex = JSON.parse(
+  fs.readFileSync(path.join(curriculumRoot, "source/college-board/ced-topic-index.json"), "utf8"),
+);
+const exceptions = JSON.parse(
+  fs.readFileSync(path.join(curriculumRoot, "implementation/exceptions.json"), "utf8"),
+);
 
 function ensureDir(directory) {
   fs.mkdirSync(directory, { recursive: true });
@@ -23,18 +27,24 @@ function writeJson(relativePath, value) {
   write(relativePath, JSON.stringify(value, null, 2));
 }
 
-const sourceBackedUnits = topicIndex.units.filter(unit => unit.unit <= 3);
-const authoredPath = path.join(curriculumRoot, 'implementation/practice-v1/activity-map.json');
-const authored = JSON.parse(fs.readFileSync(authoredPath, 'utf8'));
+const sourceBackedUnits = topicIndex.units.filter((unit) => unit.unit <= 3);
+const authoredPath = path.join(curriculumRoot, "implementation/practice-v1/activity-map.json");
+const authored = JSON.parse(fs.readFileSync(authoredPath, "utf8"));
 const activities = authored.activities;
-const unitPackages = topicIndex.units.map(unit => JSON.parse(fs.readFileSync(
-  path.join(curriculumRoot, `implementation/class-period-packages/unit-${unit.unit}.json`), 'utf8')));
+const unitPackages = topicIndex.units.map((unit) =>
+  JSON.parse(
+    fs.readFileSync(
+      path.join(curriculumRoot, `implementation/class-period-packages/unit-${unit.unit}.json`),
+      "utf8",
+    ),
+  ),
+);
 for (const unitPackage of unitPackages) {
   writeJson(`implementation/class-period-packages/unit-${unitPackage.unit}.json`, unitPackage);
 }
 
 write(
-  'implementation/README.md',
+  "implementation/README.md",
   `
 # AP Precalculus Implementation Bridge
 
@@ -51,10 +61,10 @@ Unit 4 uses locally authored lesson content. It has no local Passwater PDF and i
 `,
 );
 
-writeJson('implementation/practice-v1/activity-map.json', authored);
+writeJson("implementation/practice-v1/activity-map.json", authored);
 
 write(
-  'practice/README.md',
+  "practice/README.md",
   `
 # AP Precalculus Practice Planning
 
@@ -65,42 +75,92 @@ The practice layer maps CED topic identities and Passwater independent-practice 
 );
 
 write(
-  'practice/problem-family-registry.md',
+  "practice/problem-family-registry.md",
   `
 # AP Precalculus Problem-Family Registry
 
 | familyKey | Unit | CED Topic | Title | Status | Notes |
 |-----------|------|-----------|-------|--------|-------|
-${activities.map((activity) => `| \`${activity.familyKey}\` | ${activity.unit} | \`${activity.cedTopicId}\` | ${activity.title.replace(' independent practice', '')} | planned | Source-backed by CED and Passwater Unit ${activity.unit}. |`).join('\n')}
+${activities.map((activity) => `| \`${activity.familyKey}\` | ${activity.unit} | \`${activity.cedTopicId}\` | ${activity.title.replace(" independent practice", "")} | planned | Source-backed by CED and Passwater Unit ${activity.unit}. |`).join("\n")}
 `,
 );
 
 write(
-  'practice/course-plan-map.md',
+  "practice/course-plan-map.md",
   `
 # AP Precalculus Course Plan Map
 
 | Period | Day Type | CED Topic | familyKey | Source |
 |--------|----------|-----------|-----------|--------|
-${unitPackages.flatMap(pkg => pkg.periods.filter(period => period.cedTopic).map(period => `| \`${period.periodId}\` | \`${period.dayType}\` | \`${period.cedTopic.id}\` | \`${period.problemFamily ?? 'teacher-review'}\` | \`${period.passwaterSource ?? pkg.sourcePriority.at(-1)}\` |`)).join('\n')}
+${unitPackages.flatMap((pkg) => pkg.periods.filter((period) => period.cedTopic).map((period) => `| \`${period.periodId}\` | \`${period.dayType}\` | \`${period.cedTopic.id}\` | \`${period.problemFamily ?? "teacher-review"}\` | \`${period.passwaterSource ?? pkg.sourcePriority.at(-1)}\` |`)).join("\n")}
 `,
 );
 
 const exceptionsConsumed = exceptions.exceptions.map((exception) => exception.id);
 
-const topicIds = topicIndex.units.flatMap(unit => unit.topics.map(topic => topic.id));
-const expectedTopicIds = [[1,14],[2,15],[3,15],[4,14]].flatMap(([unit,count]) => Array.from({length:count}, (_,i) => `${unit}.${i+1}`));
-const uniqueFamilies = new Set(activities.map(activity => activity.familyKey));
+const topicIds = topicIndex.units.flatMap((unit) => unit.topics.map((topic) => topic.id));
+const expectedTopicIds = [
+  [1, 14],
+  [2, 15],
+  [3, 15],
+  [4, 14],
+].flatMap(([unit, count]) => Array.from({ length: count }, (_, i) => `${unit}.${i + 1}`));
+const uniqueFamilies = new Set(activities.map((activity) => activity.familyKey));
 const checks = [
-  { id: 'ced-topic-count', valid: topicIds.length === 58 && new Set(topicIds).size === 58 && expectedTopicIds.every(id => topicIds.includes(id)) },
-  { id: 'source-backed-package-count', valid: sourceBackedUnits.length === 3 && sourceBackedUnits.every(unit => fs.existsSync(path.join(curriculumRoot, `source/passwater/unit-${unit.unit}.md`)) && unitPackages.find(entry => entry.unit === unit.unit)?.periods.length > unit.topics.length && unit.topics.every(topic => unitPackages.find(entry => entry.unit === unit.unit).periods.some(period => period.cedTopic?.id === topic.id))) },
-  { id: 'unit-4-local-content', valid: topicIndex.units.find(unit => unit.unit === 4)?.examStatus === 'not-assessed-on-ap-exam' && unitPackages.some(pkg => pkg.unit === 4 && pkg.periods.length >= 14 && pkg.sourcePriority.every(source => !source.includes('passwater'))) },
-  { id: 'practice-map-coverage', valid: activities.length === 44 && uniqueFamilies.size === 44 && activities.every(activity => topicIds.includes(activity.cedTopicId) && activity.componentKey && activity.gradingConfig) },
-  { id: 'exceptions-consumed', valid: exceptionsConsumed.length > 0 && new Set(exceptionsConsumed).size === exceptionsConsumed.length },
-].map(({id,valid}) => ({id,status:valid ? 'pass' : 'fail'}));
-writeJson('implementation/audit/latest.json', {
-  schemaVersion: 'precalculus-curriculum-audit.v1',
-  generatedBy: 'scripts/generate-curriculum-implementation.mjs',
+  {
+    id: "ced-topic-count",
+    valid:
+      topicIds.length === 58 &&
+      new Set(topicIds).size === 58 &&
+      expectedTopicIds.every((id) => topicIds.includes(id)),
+  },
+  {
+    id: "source-backed-package-count",
+    valid:
+      sourceBackedUnits.length === 3 &&
+      sourceBackedUnits.every(
+        (unit) =>
+          fs.existsSync(path.join(curriculumRoot, `source/passwater/unit-${unit.unit}.md`)) &&
+          unitPackages.find((entry) => entry.unit === unit.unit)?.periods.length >
+            unit.topics.length &&
+          unit.topics.every((topic) =>
+            unitPackages
+              .find((entry) => entry.unit === unit.unit)
+              .periods.some((period) => period.cedTopic?.id === topic.id),
+          ),
+      ),
+  },
+  {
+    id: "unit-4-local-content",
+    valid:
+      topicIndex.units.find((unit) => unit.unit === 4)?.examStatus === "not-assessed-on-ap-exam" &&
+      unitPackages.some(
+        (pkg) =>
+          pkg.unit === 4 &&
+          pkg.periods.length >= 14 &&
+          pkg.sourcePriority.every((source) => !source.includes("passwater")),
+      ),
+  },
+  {
+    id: "practice-map-coverage",
+    valid:
+      activities.length === 44 &&
+      uniqueFamilies.size === 44 &&
+      activities.every(
+        (activity) =>
+          topicIds.includes(activity.cedTopicId) && activity.componentKey && activity.gradingConfig,
+      ),
+  },
+  {
+    id: "exceptions-consumed",
+    valid:
+      exceptionsConsumed.length > 0 &&
+      new Set(exceptionsConsumed).size === exceptionsConsumed.length,
+  },
+].map(({ id, valid }) => ({ id, status: valid ? "pass" : "fail" }));
+writeJson("implementation/audit/latest.json", {
+  schemaVersion: "precalculus-curriculum-audit.v1",
+  generatedBy: "scripts/generate-curriculum-implementation.mjs",
   sourceCoverage: {
     units: topicIndex.units.length,
     topics: topicIndex.units.flatMap((unit) => unit.topics).length,
@@ -121,6 +181,9 @@ writeJson('implementation/audit/latest.json', {
   checks,
 });
 
-const failed = checks.filter(check => check.status === 'fail');
-if (failed.length) throw new Error(`Curriculum checks failed: ${failed.map(check => check.id).join(', ')}`);
-console.log(`Validated ${checks.length} curriculum checks. Authored activity definitions are preserved.`);
+const failed = checks.filter((check) => check.status === "fail");
+if (failed.length)
+  throw new Error(`Curriculum checks failed: ${failed.map((check) => check.id).join(", ")}`);
+console.log(
+  `Validated ${checks.length} curriculum checks. Authored activity definitions are preserved.`,
+);

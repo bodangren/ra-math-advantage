@@ -7,11 +7,7 @@
  * testable.
  */
 
-import type {
-  SrsCardState,
-  SrsReviewLogEntry,
-  SrsReviewLogEntryV31,
-} from './contract';
+import type { SrsCardState, SrsReviewLogEntry, SrsReviewLogEntryV31 } from "./contract";
 
 /** Canonical identifiers assigned by a transactional persistence backend. */
 export type AtomicReviewSaveIdentifiers = {
@@ -105,21 +101,22 @@ export class InMemoryCardStore implements CardStore {
   }
 
   async getCardsByStudent(studentId: string): Promise<SrsCardState[]> {
-    return Array.from(this.cards.values()).filter(
-      (card) => card.studentId === studentId
-    );
+    return Array.from(this.cards.values()).filter((card) => card.studentId === studentId);
   }
 
-  async getCardByStudentAndVariant(studentId: string, variantKey: string): Promise<SrsCardState | null> {
-    return Array.from(this.cards.values()).find(
-      (card) => card.studentId === studentId && card.variantKey === variantKey
-    ) ?? null;
+  async getCardByStudentAndVariant(
+    studentId: string,
+    variantKey: string,
+  ): Promise<SrsCardState | null> {
+    return (
+      Array.from(this.cards.values()).find(
+        (card) => card.studentId === studentId && card.variantKey === variantKey,
+      ) ?? null
+    );
   }
 
   async getCardsByObjective(objectiveId: string): Promise<SrsCardState[]> {
-    return Array.from(this.cards.values()).filter(
-      (card) => card.objectiveId === objectiveId
-    );
+    return Array.from(this.cards.values()).filter((card) => card.objectiveId === objectiveId);
   }
 
   async getDueCards(studentId: string, now: string): Promise<SrsCardState[]> {
@@ -158,10 +155,7 @@ export class InMemoryReviewLogStore implements ReviewLogStore {
       .sort((a, b) => new Date(a.reviewedAt).getTime() - new Date(b.reviewedAt).getTime());
   }
 
-  async getReviewsByStudent(
-    studentId: string,
-    since?: string
-  ): Promise<SrsReviewLogEntry[]> {
+  async getReviewsByStudent(studentId: string, since?: string): Promise<SrsReviewLogEntry[]> {
     const sinceMs = since ? new Date(since).getTime() : undefined;
     return this.reviews
       .filter((review) => {

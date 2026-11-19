@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 const finiteNumber = z.number().finite();
 
@@ -7,14 +7,16 @@ const baseShape = {
   prompt: z.string().min(1),
   domain: z.tuple([finiteNumber, finiteNumber]),
   changePoints: z.tuple([finiteNumber, finiteNumber]),
-  points: z.array(
-    z
-      .object({
-        x: finiteNumber,
-        y: finiteNumber,
-      })
-      .strict(),
-  ).length(4),
+  points: z
+    .array(
+      z
+        .object({
+          x: finiteNumber,
+          y: finiteNumber,
+        })
+        .strict(),
+    )
+    .length(4),
 };
 
 const workedStepSchema = z
@@ -29,7 +31,7 @@ const workedStepSchema = z
 const workedExampleSchema = z
   .object({
     ...baseShape,
-    presentationMode: z.literal('worked_example'),
+    presentationMode: z.literal("worked_example"),
     steps: z.array(workedStepSchema).min(1),
     finalAnswer: z.string().min(1),
   })
@@ -38,7 +40,7 @@ const workedExampleSchema = z
 const guidedPracticeSchema = z
   .object({
     ...baseShape,
-    presentationMode: z.literal('guided_practice'),
+    presentationMode: z.literal("guided_practice"),
     guidedSteps: z.array(z.string().min(1)).min(1),
     fieldHelp: z
       .object({
@@ -53,12 +55,12 @@ const guidedPracticeSchema = z
 const independentPracticeSchema = z
   .object({
     ...baseShape,
-    presentationMode: z.literal('independent_practice'),
+    presentationMode: z.literal("independent_practice"),
   })
   .strict();
 
 export const intervalClassificationSchema = z
-  .discriminatedUnion('presentationMode', [
+  .discriminatedUnion("presentationMode", [
     workedExampleSchema,
     guidedPracticeSchema,
     independentPracticeSchema,
@@ -68,24 +70,36 @@ export const intervalClassificationSchema = z
     const [firstChange, secondChange] = value.changePoints;
 
     if (!(domainStart < domainEnd)) {
-      context.addIssue({ code: 'custom', path: ['domain'], message: 'Domain must increase.' });
+      context.addIssue({ code: "custom", path: ["domain"], message: "Domain must increase." });
     }
     if (!(domainStart < firstChange && firstChange < secondChange && secondChange < domainEnd)) {
-      context.addIssue({ code: 'custom', path: ['changePoints'], message: 'Change points must be ordered inside the domain.' });
+      context.addIssue({
+        code: "custom",
+        path: ["changePoints"],
+        message: "Change points must be ordered inside the domain.",
+      });
     }
 
     const expectedX = [domainStart, firstChange, secondChange, domainEnd];
     if (!value.points.every((point, index) => point.x === expectedX[index])) {
-      context.addIssue({ code: 'custom', path: ['points'], message: 'Point x values must match the domain and change points.' });
+      context.addIssue({
+        code: "custom",
+        path: ["points"],
+        message: "Point x values must match the domain and change points.",
+      });
     }
 
     if (value.points.length !== 4) return;
 
-    const hasChange = value.points.some((point, index) => (
-      index > 0 && point.y !== value.points[index - 1]!.y
-    ));
+    const hasChange = value.points.some(
+      (point, index) => index > 0 && point.y !== value.points[index - 1]!.y,
+    );
     if (!hasChange) {
-      context.addIssue({ code: 'custom', path: ['points'], message: 'The graph must contain at least one nonconstant segment.' });
+      context.addIssue({
+        code: "custom",
+        path: ["points"],
+        message: "The graph must contain at least one nonconstant segment.",
+      });
     }
   });
 

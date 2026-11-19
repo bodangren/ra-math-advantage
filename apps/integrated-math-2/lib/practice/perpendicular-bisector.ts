@@ -1,6 +1,9 @@
 import { gradeQuestion, type Question } from "./question";
 export const nodeId = "math.im2.skill.1.1.perpendicular-bisector-equidistance";
-export type PerpendicularBisectorMode = "worked_example" | "guided_practice" | "independent_practice";
+export type PerpendicularBisectorMode =
+  | "worked_example"
+  | "guided_practice"
+  | "independent_practice";
 /** A finite family of valid equations. Reusing a seed replays the same question. */
 export function generatePerpendicularBisector(input: {
   nodeId: string;
@@ -29,13 +32,11 @@ export function generatePerpendicularBisector(input: {
   const prompt = `D lies on the perpendicular bisector of AB. DA = (${left}) cm and DB = (${right}) cm. Find x.`;
   const steps = [
     {
-      description:
-        "A point on the perpendicular bisector has equal distances to the endpoints.",
+      description: "A point on the perpendicular bisector has equal distances to the endpoints.",
       expression: `${left} = ${right}`,
     },
     {
-      description:
-        "Collect the variable terms on the right and constants on the left.",
+      description: "Collect the variable terms on the right and constants on the left.",
       expression: `${c - d} = ${b - a}x`,
     },
     {
@@ -71,14 +72,40 @@ export function generatePerpendicularBisector(input: {
   };
 }
 
-export function projectPerpendicularBisector(input: { nodeId: string; seed: number; difficulty: number }, mode: PerpendicularBisectorMode, activityId: string) {
+export function projectPerpendicularBisector(
+  input: { nodeId: string; seed: number; difficulty: number },
+  mode: PerpendicularBisectorMode,
+  activityId: string,
+) {
   const generated = generatePerpendicularBisector(input);
   const publicQuestion = { activityId, mode, prompt: generated.prompt };
   if (mode === "independent_practice") return publicQuestion;
-  if (mode === "guided_practice") return { ...publicQuestion, hint: generated.data.question.hint, stepPrompts: ["Which distances are equal?", "What equation follows after collecting terms?", "What is x?"], hints: ["A point on the perpendicular bisector has equal distances to the endpoints.", "Collect the variable terms on one side and constants on the other.", "Divide both sides by the coefficient of x."], revealPolicy: "after_attempt" as const };
-  return { ...publicQuestion, answer: generated.expectedAnswer.response, solutionSteps: generated.solutionSteps };
+  if (mode === "guided_practice")
+    return {
+      ...publicQuestion,
+      hint: generated.data.question.hint,
+      stepPrompts: [
+        "Which distances are equal?",
+        "What equation follows after collecting terms?",
+        "What is x?",
+      ],
+      hints: [
+        "A point on the perpendicular bisector has equal distances to the endpoints.",
+        "Collect the variable terms on one side and constants on the other.",
+        "Divide both sides by the coefficient of x.",
+      ],
+      revealPolicy: "after_attempt" as const,
+    };
+  return {
+    ...publicQuestion,
+    answer: generated.expectedAnswer.response,
+    solutionSteps: generated.solutionSteps,
+  };
 }
 
-export function gradePerpendicularBisector(input: { nodeId: string; seed: number; difficulty: number }, rawResponse: string) {
+export function gradePerpendicularBisector(
+  input: { nodeId: string; seed: number; difficulty: number },
+  rawResponse: string,
+) {
   return gradeQuestion(generatePerpendicularBisector(input).data.question, rawResponse);
 }

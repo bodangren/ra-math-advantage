@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const MODULE1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Graphing Quadratic Functions (HSA-SSE.B.3, HSA-REI.B.4)
@@ -15,7 +15,8 @@ export const MODULE1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "graphing-explorer:quadratic-vertex-form",
     componentKey: "graphing-explorer",
     displayName: "Explore Quadratic Vertex Form",
-    description: "Explore transformations of quadratic functions in vertex form using interactive graphing",
+    description:
+      "Explore transformations of quadratic functions in vertex form using interactive graphing",
     objectiveIds: ["HSA-SSE.B.3", "HSA-REI.B.4"],
     difficulty: "introductory",
     metadata: { module: 1, topic: "quadratic-functions" },
@@ -52,7 +53,8 @@ export const MODULE1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "step-by-step-solver:average-rate-of-change",
     componentKey: "step-by-step-solver",
     displayName: "Average Rate of Change",
-    description: "Calculate average rate of change for quadratic functions from equations or tables",
+    description:
+      "Calculate average rate of change for quadratic functions from equations or tables",
     objectiveIds: ["HSF-IF.A.2"],
     difficulty: "standard",
     metadata: { module: 1, topic: "rate-of-change" },

@@ -1,6 +1,6 @@
 /**
  * Simulation Submission Utilities
- * 
+ *
  * Helpers for simulations to build practice.v1 compliant submission envelopes.
  * Wraps the core practice.v1 contract with simulation-specific conveniences.
  */
@@ -10,15 +10,15 @@ import {
   normalizePracticeValue,
   type PracticeSubmissionEnvelope,
   type PracticeSubmissionPart,
-} from '@/lib/practice/contract';
+} from "@/lib/practice/contract";
 
 /**
  * Base simulation submission input
  */
 export interface SimulationSubmissionInput {
   activityId: string;
-  mode?: 'guided_practice' | 'independent_practice' | 'assessment';
-  status?: 'draft' | 'submitted' | 'graded';
+  mode?: "guided_practice" | "independent_practice" | "assessment";
+  status?: "draft" | "submitted" | "graded";
   attemptNumber?: number;
   submittedAt?: string | Date;
 }
@@ -35,12 +35,12 @@ export function buildSimulationSubmissionEnvelope(
     analytics?: Record<string, unknown>;
     studentFeedback?: string;
     teacherSummary?: string;
-  }
+  },
 ): PracticeSubmissionEnvelope {
   return buildPracticeSubmissionEnvelope({
     activityId: input.activityId,
-    mode: input.mode ?? 'independent_practice',
-    status: input.status ?? 'submitted',
+    mode: input.mode ?? "independent_practice",
+    status: input.status ?? "submitted",
     attemptNumber: input.attemptNumber ?? 1,
     submittedAt: input.submittedAt,
     answers: input.answers,
@@ -64,7 +64,7 @@ export function createSimulationPart(
     score?: number;
     maxScore?: number;
     misconceptionTags?: string[];
-  }
+  },
 ): PracticeSubmissionPart {
   return {
     partId,
@@ -83,7 +83,7 @@ export function createSimulationPart(
 export interface SimulationArtifactBase {
   type: string;
   summary: {
-    successStatus: 'won' | 'lost' | 'in_progress';
+    successStatus: "won" | "lost" | "in_progress";
     [key: string]: unknown;
   };
 }
@@ -93,11 +93,11 @@ export interface SimulationArtifactBase {
  */
 export function isSimulationArtifact(value: unknown): value is SimulationArtifactBase {
   return (
-    typeof value === 'object' &&
+    typeof value === "object" &&
     value !== null &&
-    'type' in value &&
-    typeof (value as SimulationArtifactBase).type === 'string' &&
-    'summary' in value &&
-    typeof (value as SimulationArtifactBase).summary === 'object'
+    "type" in value &&
+    typeof (value as SimulationArtifactBase).type === "string" &&
+    "summary" in value &&
+    typeof (value as SimulationArtifactBase).summary === "object"
   );
 }

@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const UNIT13_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Fundamental Trig Identities
@@ -36,7 +36,8 @@ export const UNIT13_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "step-by-step-solver:double-half-angle-identities",
     componentKey: "step-by-step-solver",
     displayName: "Double and Half-Angle Identities",
-    description: "Apply double-angle and half-angle identities to evaluate and simplify expressions",
+    description:
+      "Apply double-angle and half-angle identities to evaluate and simplify expressions",
     objectiveIds: ["G-SRT.C.6", "G-SRT.C.8"],
     difficulty: "challenging",
     metadata: { unit: 13, topic: "double-half-angle" },

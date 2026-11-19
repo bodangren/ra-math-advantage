@@ -1,5 +1,14 @@
-import { buildPracticeSubmissionEnvelope, normalizePracticeValue, type PracticeSubmissionEnvelope } from '@/lib/practice/contract';
-import type { GradeResult, ProblemDefinition, ProblemFamily, ProblemPartDefinition } from '@/lib/practice/engine/types';
+import {
+  buildPracticeSubmissionEnvelope,
+  normalizePracticeValue,
+  type PracticeSubmissionEnvelope,
+} from "@/lib/practice/contract";
+import type {
+  GradeResult,
+  ProblemDefinition,
+  ProblemFamily,
+  ProblemPartDefinition,
+} from "@/lib/practice/engine/types";
 import {
   formatTrialBalanceBalanceAnswer,
   formatTrialBalanceDifference,
@@ -9,7 +18,7 @@ import {
   type TrialBalanceErrorGenerationConfig,
   type TrialBalanceErrorScenario,
   type TrialBalanceLargerColumn,
-} from '../errors';
+} from "../errors";
 
 export interface TrialBalanceErrorRow {
   id: string;
@@ -19,23 +28,23 @@ export interface TrialBalanceErrorRow {
 }
 
 export interface TrialBalanceErrorColumn {
-  id: 'balanced' | 'difference' | 'larger-column';
+  id: "balanced" | "difference" | "larger-column";
   label: string;
   description?: string;
 }
 
 export interface TrialBalanceErrorPart extends ProblemPartDefinition {
   id: string;
-  kind: 'selection' | 'numeric';
+  kind: "selection" | "numeric";
   label: string;
   description: string;
   targetId: string | number;
   details: {
     scenarioId: string;
     rowId: string;
-    answerKind: 'balanced' | 'difference' | 'larger-column';
+    answerKind: "balanced" | "difference" | "larger-column";
     explanation: string;
-    errorType: TrialBalanceErrorScenario['archetypeId'];
+    errorType: TrialBalanceErrorScenario["archetypeId"];
     expectedBalanced: TrialBalanceBalanceAnswer;
     expectedDifference: number;
     expectedLargerColumn: TrialBalanceLargerColumn;
@@ -55,11 +64,11 @@ export interface TrialBalanceErrorDefinition extends ProblemDefinition {
 export type TrialBalanceErrorResponse = Record<string, string | number>;
 
 export interface TrialBalanceErrorConfig extends TrialBalanceErrorGenerationConfig {
-  mode?: ProblemDefinition['mode'];
+  mode?: ProblemDefinition["mode"];
 }
 
 export interface TrialBalanceErrorReviewFeedback {
-  status: 'correct' | 'incorrect' | 'partial';
+  status: "correct" | "incorrect" | "partial";
   scoreLabel?: string;
   selectedLabel?: string;
   expectedLabel?: string;
@@ -68,7 +77,7 @@ export interface TrialBalanceErrorReviewFeedback {
 }
 
 export interface TrialBalanceErrorScenarioReviewFeedback {
-  status: 'correct' | 'incorrect' | 'partial';
+  status: "correct" | "incorrect" | "partial";
   scoreLabel?: string;
   selectedLabel?: string;
   expectedLabel?: string;
@@ -80,14 +89,14 @@ export interface TrialBalanceErrorScenarioReviewFeedback {
  * Formats part label
  * @param answerKind - answer kind
  */
-function formatPartLabel(answerKind: TrialBalanceErrorPart['details']['answerKind']) {
+function formatPartLabel(answerKind: TrialBalanceErrorPart["details"]["answerKind"]) {
   switch (answerKind) {
-    case 'balanced':
-      return 'Balanced?';
-    case 'difference':
-      return 'Difference';
+    case "balanced":
+      return "Balanced?";
+    case "difference":
+      return "Difference";
     default:
-      return 'Larger column';
+      return "Larger column";
   }
 }
 
@@ -96,30 +105,30 @@ function formatPartLabel(answerKind: TrialBalanceErrorPart['details']['answerKin
  * @param value - Input value
  */
 function formatSelectionValue(value: string | number | undefined) {
-  if (typeof value === 'number') {
+  if (typeof value === "number") {
     return formatTrialBalanceDifference(value);
   }
 
-  if (typeof value !== 'string') {
-    return 'Not selected';
+  if (typeof value !== "string") {
+    return "Not selected";
   }
 
-  if (value === 'still-balances') {
-    return 'Still balances';
+  if (value === "still-balances") {
+    return "Still balances";
   }
 
-  if (value === 'out-of-balance') {
-    return 'Out of balance';
+  if (value === "out-of-balance") {
+    return "Out of balance";
   }
 
-  if (value === 'neither') {
-    return 'Neither';
+  if (value === "neither") {
+    return "Neither";
   }
 
   return value
-    .split('-')
+    .split("-")
     .map((word) => word.slice(0, 1).toUpperCase() + word.slice(1))
-    .join(' ');
+    .join(" ");
 }
 
 /**
@@ -127,7 +136,7 @@ function formatSelectionValue(value: string | number | undefined) {
  * @param scenario - scenario
  */
 function explainScenario(scenario: TrialBalanceErrorScenario) {
-  if (scenario.archetypeId === 'transposition') {
+  if (scenario.archetypeId === "transposition") {
     return `${scenario.narrative} The digit swap follows 10a + b vs 10b + a, so the difference is 9|a - b|.`;
   }
 
@@ -143,21 +152,21 @@ function buildScenarioParts(scenario: TrialBalanceErrorScenario): TrialBalanceEr
   return [
     {
       id: `${scenario.rowId}:balanced`,
-      kind: 'selection',
+      kind: "selection",
       label: `${scenario.rowLabel} balanced?`,
       description: scenario.whatHappened,
       prompt: `Will ${scenario.rowLabel} still balance?`,
-      expectedAnswerShape: 'selection',
+      expectedAnswerShape: "selection",
       canonicalAnswer: scenario.expectedBalanced,
       explanation: scenario.whatToDecideFirst,
       misconceptionTags: scenario.misconceptionTags,
-      standardCode: 'ACC-M7-TB-G',
-      artifactTarget: 'balanced',
+      standardCode: "ACC-M7-TB-G",
+      artifactTarget: "balanced",
       targetId: scenario.expectedBalanced,
       details: {
         scenarioId: scenario.id,
         rowId: scenario.rowId,
-        answerKind: 'balanced',
+        answerKind: "balanced",
         explanation: scenario.narrative,
         errorType: scenario.archetypeId,
         expectedBalanced: scenario.expectedBalanced,
@@ -168,21 +177,21 @@ function buildScenarioParts(scenario: TrialBalanceErrorScenario): TrialBalanceEr
     },
     {
       id: `${scenario.rowId}:difference`,
-      kind: 'numeric',
+      kind: "numeric",
       label: `${scenario.rowLabel} difference`,
       description: scenario.whatHappened,
       prompt: `What is the difference for ${scenario.rowLabel}?`,
-      expectedAnswerShape: 'numeric',
+      expectedAnswerShape: "numeric",
       canonicalAnswer: scenario.expectedDifference,
       explanation: scenario.narrative,
       misconceptionTags: scenario.misconceptionTags,
-      standardCode: 'ACC-M7-TB-G',
-      artifactTarget: 'difference',
+      standardCode: "ACC-M7-TB-G",
+      artifactTarget: "difference",
       targetId: scenario.expectedDifference,
       details: {
         scenarioId: scenario.id,
         rowId: scenario.rowId,
-        answerKind: 'difference',
+        answerKind: "difference",
         explanation: scenario.narrative,
         errorType: scenario.archetypeId,
         expectedBalanced: scenario.expectedBalanced,
@@ -193,21 +202,21 @@ function buildScenarioParts(scenario: TrialBalanceErrorScenario): TrialBalanceEr
     },
     {
       id: `${scenario.rowId}:larger-column`,
-      kind: 'selection',
+      kind: "selection",
       label: `${scenario.rowLabel} larger column`,
       description: scenario.whatHappened,
       prompt: `Which column is larger for ${scenario.rowLabel}?`,
-      expectedAnswerShape: 'selection',
+      expectedAnswerShape: "selection",
       canonicalAnswer: scenario.expectedLargerColumn,
       explanation: scenario.narrative,
       misconceptionTags: scenario.misconceptionTags,
-      standardCode: 'ACC-M7-TB-G',
-      artifactTarget: 'larger-column',
+      standardCode: "ACC-M7-TB-G",
+      artifactTarget: "larger-column",
       targetId: scenario.expectedLargerColumn,
       details: {
         scenarioId: scenario.id,
         rowId: scenario.rowId,
-        answerKind: 'larger-column',
+        answerKind: "larger-column",
         explanation: scenario.narrative,
         errorType: scenario.archetypeId,
         expectedBalanced: scenario.expectedBalanced,
@@ -239,19 +248,22 @@ function buildResponse(definition: TrialBalanceErrorDefinition): TrialBalanceErr
  * @param scenario - scenario
  * @param answerKind - answer kind
  */
-function getScenarioMisconceptionTags(scenario: TrialBalanceErrorScenario, answerKind: TrialBalanceErrorPart['details']['answerKind']) {
+function getScenarioMisconceptionTags(
+  scenario: TrialBalanceErrorScenario,
+  answerKind: TrialBalanceErrorPart["details"]["answerKind"],
+) {
   const baseTags = new Set(scenario.misconceptionTags);
 
-  if (answerKind === 'balanced' && scenario.archetypeId === 'both-sides-wrong') {
-    baseTags.add('both-sides-wrong-balances');
+  if (answerKind === "balanced" && scenario.archetypeId === "both-sides-wrong") {
+    baseTags.add("both-sides-wrong-balances");
   }
 
-  if (answerKind === 'difference' && scenario.archetypeId === 'transposition') {
-    baseTags.add('transposition-vs-slide');
+  if (answerKind === "difference" && scenario.archetypeId === "transposition") {
+    baseTags.add("transposition-vs-slide");
   }
 
-  if (answerKind === 'larger-column' && scenario.archetypeId === 'omission') {
-    baseTags.add('omission-always-debit-heavy');
+  if (answerKind === "larger-column" && scenario.archetypeId === "omission") {
+    baseTags.add("omission-always-debit-heavy");
   }
 
   return Array.from(baseTags);
@@ -269,38 +281,40 @@ function buildPartFeedback(
   part: TrialBalanceErrorPart,
   scenario: TrialBalanceErrorScenario,
   studentResponse: TrialBalanceErrorResponse,
-  gradeResultPart: GradeResult['parts'][number],
+  gradeResultPart: GradeResult["parts"][number],
 ): TrialBalanceErrorReviewFeedback {
   const selectedValue = studentResponse[part.id];
   const selectedLabel = formatSelectionValue(selectedValue);
   const expectedLabel =
-    part.details.answerKind === 'balanced'
+    part.details.answerKind === "balanced"
       ? formatTrialBalanceBalanceAnswer(part.targetId as TrialBalanceBalanceAnswer)
-      : part.details.answerKind === 'difference'
+      : part.details.answerKind === "difference"
         ? formatTrialBalanceDifference(Number(part.targetId))
         : formatTrialBalanceLargerColumn(part.targetId as TrialBalanceLargerColumn);
 
   const answerKind = part.details.answerKind;
   const message = gradeResultPart.isCorrect
-    ? answerKind === 'balanced'
+    ? answerKind === "balanced"
       ? scenario.balance.balanced
         ? `${scenario.rowLabel} still balances.`
         : `${scenario.rowLabel} is out of balance by ${formatTrialBalanceDifference(scenario.expectedDifference)}.`
-      : answerKind === 'difference'
+      : answerKind === "difference"
         ? `The difference is ${formatTrialBalanceDifference(scenario.expectedDifference)}.`
         : `${formatTrialBalanceLargerColumn(scenario.expectedLargerColumn)} is larger.`
-    : answerKind === 'balanced'
-      ? `This scenario ${scenario.balance.balanced ? 'still balances' : 'is out of balance'} because ${explainScenario(scenario).toLowerCase()}.`
-      : answerKind === 'difference'
+    : answerKind === "balanced"
+      ? `This scenario ${scenario.balance.balanced ? "still balances" : "is out of balance"} because ${explainScenario(scenario).toLowerCase()}.`
+      : answerKind === "difference"
         ? `The difference is ${formatTrialBalanceDifference(scenario.expectedDifference)} because ${explainScenario(scenario).toLowerCase()}.`
         : `${formatTrialBalanceLargerColumn(scenario.expectedLargerColumn)} is larger because ${explainScenario(scenario).toLowerCase()}.`;
 
   return {
-    status: gradeResultPart.isCorrect ? 'correct' : 'incorrect',
+    status: gradeResultPart.isCorrect ? "correct" : "incorrect",
     scoreLabel: `${gradeResultPart.score}/${gradeResultPart.maxScore}`,
     selectedLabel,
     expectedLabel,
-    misconceptionTags: gradeResultPart.isCorrect ? [] : getScenarioMisconceptionTags(scenario, answerKind),
+    misconceptionTags: gradeResultPart.isCorrect
+      ? []
+      : getScenarioMisconceptionTags(scenario, answerKind),
     message,
   };
 }
@@ -320,24 +334,27 @@ export function buildTrialBalanceErrorReviewFeedback(
   return Object.fromEntries(
     gradeResult.parts.map((gradeResultPart) => {
       const part = definition.parts.find((entry) => entry.id === gradeResultPart.partId);
-      const rowId = gradeResultPart.partId.split(':')[0];
+      const rowId = gradeResultPart.partId.split(":")[0];
       const scenario = definition.scenarios.find((entry) => entry.rowId === rowId);
 
       if (!part || !scenario) {
         return [
           gradeResultPart.partId,
           {
-            status: gradeResultPart.isCorrect ? 'correct' : 'incorrect',
+            status: gradeResultPart.isCorrect ? "correct" : "incorrect",
             scoreLabel: `${gradeResultPart.score}/${gradeResultPart.maxScore}`,
-            selectedLabel: 'Not selected',
-            expectedLabel: 'Unknown',
+            selectedLabel: "Not selected",
+            expectedLabel: "Unknown",
             misconceptionTags: gradeResultPart.misconceptionTags,
-            message: 'Review data unavailable.',
+            message: "Review data unavailable.",
           },
         ] as const;
       }
 
-      return [part.id, buildPartFeedback(part, scenario, studentResponse, gradeResultPart)] as const;
+      return [
+        part.id,
+        buildPartFeedback(part, scenario, studentResponse, gradeResultPart),
+      ] as const;
     }),
   );
 }
@@ -356,7 +373,11 @@ export function buildTrialBalanceErrorScenarioReviewFeedback(
 ): Record<string, TrialBalanceErrorScenarioReviewFeedback> {
   return Object.fromEntries(
     definition.scenarios.map((scenario) => {
-      const partIds = [`${scenario.rowId}:balanced`, `${scenario.rowId}:difference`, `${scenario.rowId}:larger-column`];
+      const partIds = [
+        `${scenario.rowId}:balanced`,
+        `${scenario.rowId}:difference`,
+        `${scenario.rowId}:larger-column`,
+      ];
       const parts = partIds
         .map((partId) => gradeResult.parts.find((part) => part.partId === partId))
         .filter((part): part is NonNullable<typeof part> => !!part);
@@ -371,7 +392,7 @@ export function buildTrialBalanceErrorScenarioReviewFeedback(
           return `${formatPartLabel(part.details.answerKind)}: ${formatSelectionValue(selected)}`;
         })
         .filter((entry): entry is string => !!entry)
-        .join(' · ');
+        .join(" · ");
       const expectedSummary = partIds
         .map((partId) => {
           const part = definition.parts.find((entry) => entry.id === partId);
@@ -380,30 +401,33 @@ export function buildTrialBalanceErrorScenarioReviewFeedback(
           }
 
           const expected =
-            part.details.answerKind === 'balanced'
+            part.details.answerKind === "balanced"
               ? formatTrialBalanceBalanceAnswer(part.targetId as TrialBalanceBalanceAnswer)
-              : part.details.answerKind === 'difference'
+              : part.details.answerKind === "difference"
                 ? formatTrialBalanceDifference(Number(part.targetId))
                 : formatTrialBalanceLargerColumn(part.targetId as TrialBalanceLargerColumn);
           return `${formatPartLabel(part.details.answerKind)}: ${expected}`;
         })
         .filter((entry): entry is string => !!entry)
-        .join(' · ');
+        .join(" · ");
       const score = parts.reduce((sum, part) => sum + part.score, 0);
       const maxScore = parts.reduce((sum, part) => sum + part.maxScore, 0);
-      const misconceptionTags = Array.from(new Set(parts.flatMap((part) => part.misconceptionTags)));
+      const misconceptionTags = Array.from(
+        new Set(parts.flatMap((part) => part.misconceptionTags)),
+      );
       const firstIncorrectPart = partIds
         .map((partId) => gradeResult.parts.find((part) => part.partId === partId))
         .find((part) => part && !part.isCorrect);
       const firstIncorrectDefinition = firstIncorrectPart
         ? definition.parts.find((part) => part.id === firstIncorrectPart.partId)
         : undefined;
-      const selectedScenario = definition.scenarios.find((entry) => entry.rowId === scenario.rowId) ?? scenario;
+      const selectedScenario =
+        definition.scenarios.find((entry) => entry.rowId === scenario.rowId) ?? scenario;
 
       return [
         scenario.rowId,
         {
-          status: score === maxScore ? 'correct' : score === 0 ? 'incorrect' : 'partial',
+          status: score === maxScore ? "correct" : score === 0 ? "incorrect" : "partial",
           scoreLabel: `${score}/${maxScore}`,
           selectedLabel: selectedSummary,
           expectedLabel: expectedSummary,
@@ -436,36 +460,35 @@ export const trialBalanceErrorFamily: ProblemFamily<
       hint: scenario.whatToDecideFirst,
     }));
     const columns: TrialBalanceErrorColumn[] = [
-      { id: 'balanced', label: 'Balanced?', description: 'Will the trial balance still balance?' },
-      { id: 'difference', label: 'Difference', description: 'Difference amount in dollars' },
-      { id: 'larger-column', label: 'Larger column', description: 'Which column is larger?' },
+      { id: "balanced", label: "Balanced?", description: "Will the trial balance still balance?" },
+      { id: "difference", label: "Difference", description: "Difference amount in dollars" },
+      { id: "larger-column", label: "Larger column", description: "Which column is larger?" },
     ];
     const parts = scenarios.flatMap((scenario) => buildScenarioParts(scenario));
 
     return {
-      contractVersion: 'practice.v1',
-      familyKey: 'trial-balance-errors',
-      mode: config.mode ?? 'guided_practice',
+      contractVersion: "practice.v1",
+      familyKey: "trial-balance-errors",
+      mode: config.mode ?? "guided_practice",
       activityId: `trial-balance-errors-${seed}`,
       prompt: {
-        title: 'Trial Balance Error Analysis',
-        stem: 'For each scenario, decide whether the trial balance still balances, the amount of the difference, and which column is larger.',
+        title: "Trial Balance Error Analysis",
+        stem: "For each scenario, decide whether the trial balance still balances, the amount of the difference, and which column is larger.",
       },
       scenarios,
       rows,
       columns,
       parts,
-      workedExample:
-        scenarios[0]
-          ? {
-              scenarioId: scenarios[0].id,
-              rowId: scenarios[0].rowId,
-              narrative: scenarios[0].narrative,
-              balanced: scenarios[0].expectedBalanced,
-              difference: scenarios[0].expectedDifference,
-              largerColumn: scenarios[0].expectedLargerColumn,
-            }
-          : undefined,
+      workedExample: scenarios[0]
+        ? {
+            scenarioId: scenarios[0].id,
+            rowId: scenarios[0].rowId,
+            narrative: scenarios[0].narrative,
+            balanced: scenarios[0].expectedBalanced,
+            difference: scenarios[0].expectedDifference,
+            largerColumn: scenarios[0].expectedLargerColumn,
+          }
+        : undefined,
       scaffolding: {
         showScenarioBrief: true,
         showDecisionSequence: true,
@@ -473,7 +496,7 @@ export const trialBalanceErrorFamily: ProblemFamily<
         scenarioCount: scenarios.length,
       },
       grading: {
-        strategy: 'rubric',
+        strategy: "rubric",
         partialCredit: true,
         rubric: {
           balanced: 1,
@@ -482,7 +505,7 @@ export const trialBalanceErrorFamily: ProblemFamily<
         },
       },
       analyticsConfig: {
-        generator: 'trial-balance-error-family',
+        generator: "trial-balance-error-family",
         seed,
         scenarioCount: scenarios.length,
       },
@@ -499,9 +522,12 @@ export const trialBalanceErrorFamily: ProblemFamily<
       let normalizedAnswer: string;
       let isCorrect = false;
 
-      if (part.kind === 'numeric') {
-        const numericAnswer = typeof rawAnswer === 'number' ? rawAnswer : Number(String(rawAnswer).replace(/[^0-9.-]/g, ''));
-        normalizedAnswer = Number.isFinite(numericAnswer) ? String(numericAnswer) : '';
+      if (part.kind === "numeric") {
+        const numericAnswer =
+          typeof rawAnswer === "number"
+            ? rawAnswer
+            : Number(String(rawAnswer).replace(/[^0-9.-]/g, ""));
+        normalizedAnswer = Number.isFinite(numericAnswer) ? String(numericAnswer) : "";
         isCorrect = Number.isFinite(numericAnswer) && numericAnswer === Number(part.targetId);
       } else {
         normalizedAnswer = normalizePracticeValue(rawAnswer);
@@ -515,10 +541,13 @@ export const trialBalanceErrorFamily: ProblemFamily<
         isCorrect,
         score: isCorrect ? 1 : 0,
         maxScore: 1,
-        misconceptionTags: isCorrect ? [] : getScenarioMisconceptionTags(
-          definition.scenarios.find((scenario) => scenario.rowId === part.details.rowId) ?? definition.scenarios[0],
-          part.details.answerKind,
-        ),
+        misconceptionTags: isCorrect
+          ? []
+          : getScenarioMisconceptionTags(
+              definition.scenarios.find((scenario) => scenario.rowId === part.details.rowId) ??
+                definition.scenarios[0],
+              part.details.answerKind,
+            ),
       };
     });
 
@@ -534,10 +563,12 @@ export const trialBalanceErrorFamily: ProblemFamily<
 
   toEnvelope(definition, studentResponse, gradeResult): PracticeSubmissionEnvelope {
     const artifact = {
-      kind: 'trial-balance-error-analysis',
+      kind: "trial-balance-error-analysis",
       family: definition.familyKey,
       scenarios: definition.scenarios.map((scenario) => {
-        const scenarioParts = gradeResult.parts.filter((part) => part.partId.startsWith(`${scenario.rowId}:`));
+        const scenarioParts = gradeResult.parts.filter((part) =>
+          part.partId.startsWith(`${scenario.rowId}:`),
+        );
         return {
           id: scenario.id,
           rowId: scenario.rowId,
@@ -559,7 +590,9 @@ export const trialBalanceErrorFamily: ProblemFamily<
             largerColumn: studentResponse[`${scenario.rowId}:larger-column`],
           },
           isCorrect: scenarioParts.every((part) => part.isCorrect),
-          misconceptionTags: Array.from(new Set(scenarioParts.flatMap((part) => part.misconceptionTags))),
+          misconceptionTags: Array.from(
+            new Set(scenarioParts.flatMap((part) => part.misconceptionTags)),
+          ),
         };
       }),
       summary: {
@@ -572,7 +605,7 @@ export const trialBalanceErrorFamily: ProblemFamily<
     return buildPracticeSubmissionEnvelope({
       activityId: definition.activityId,
       mode: definition.mode,
-      status: 'submitted',
+      status: "submitted",
       attemptNumber: 1,
       answers: studentResponse,
       parts: gradeResult.parts.map((part) => ({

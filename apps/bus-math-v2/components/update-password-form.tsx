@@ -2,13 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getPasswordRequirementText, validatePasswordForRole } from "@/lib/auth/password-policy";
@@ -21,7 +15,6 @@ interface UpdatePasswordFormProps extends React.ComponentPropsWithoutRef<"div"> 
   role: UserRole;
   organizationName?: string;
 }
-
 
 /**
  * Renders a password update form with current/new/confirm fields and policy validation.
@@ -76,9 +69,10 @@ export function UpdatePasswordForm({
         }),
       });
 
-      const payload = (await response.json().catch(() => null)) as
-        | { error?: string; message?: string }
-        | null;
+      const payload = (await response.json().catch(() => null)) as {
+        error?: string;
+        message?: string;
+      } | null;
 
       if (!response.ok) {
         setError(payload?.error ?? "Unable to update password right now.");
@@ -154,7 +148,10 @@ export function UpdatePasswordForm({
             </div>
 
             {error ? (
-              <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700" role="alert">
+              <div
+                className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700"
+                role="alert"
+              >
                 {error}
               </div>
             ) : null}

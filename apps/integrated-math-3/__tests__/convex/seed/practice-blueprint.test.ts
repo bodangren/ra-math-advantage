@@ -4,14 +4,16 @@ import { problemFamilySchema } from "@math-platform/practice-core";
 import { practiceItemSchema } from "@math-platform/practice-core";
 
 const ALL_PROBLEM_FAMILIES = IM3_PROBLEM_FAMILIES.filter(
-  (f) => (f.metadata as { module?: number }).module !== undefined
+  (f) => (f.metadata as { module?: number }).module !== undefined,
 );
 
 describe("Problem Family Seed Data Validation", () => {
   it("all problem family records pass problemFamilySchema", () => {
     for (const family of ALL_PROBLEM_FAMILIES) {
       const result = problemFamilySchema.safeParse(family);
-      expect(result.success, `Failed for ${family.variantKey}: ${result.error?.message}`).toBe(true);
+      expect(result.success, `Failed for ${family.variantKey}: ${result.error?.message}`).toBe(
+        true,
+      );
     }
   });
 
@@ -23,9 +25,14 @@ describe("Problem Family Seed Data Validation", () => {
 
   it("all objectiveIds are non-empty strings", () => {
     for (const family of ALL_PROBLEM_FAMILIES) {
-      expect(family.objectiveIds.length, `${family.variantKey} has no objectiveIds`).toBeGreaterThan(0);
+      expect(
+        family.objectiveIds.length,
+        `${family.variantKey} has no objectiveIds`,
+      ).toBeGreaterThan(0);
       for (const objId of family.objectiveIds) {
-        expect(objId.trim().length, `${family.variantKey} has empty objectiveId`).toBeGreaterThan(0);
+        expect(objId.trim().length, `${family.variantKey} has empty objectiveId`).toBeGreaterThan(
+          0,
+        );
       }
     }
   });
@@ -33,14 +40,23 @@ describe("Problem Family Seed Data Validation", () => {
   it("difficulty is one of introductory, standard, challenging", () => {
     const validDifficulties = ["introductory", "standard", "challenging"];
     for (const family of ALL_PROBLEM_FAMILIES) {
-      expect(validDifficulties.includes(family.difficulty), `Invalid difficulty for ${family.variantKey}: ${family.difficulty}`).toBe(true);
+      expect(
+        validDifficulties.includes(family.difficulty),
+        `Invalid difficulty for ${family.variantKey}: ${family.difficulty}`,
+      ).toBe(true);
     }
   });
 
   it("displayName and description are non-empty", () => {
     for (const family of ALL_PROBLEM_FAMILIES) {
-      expect(family.displayName.trim().length, `${family.variantKey} has empty displayName`).toBeGreaterThan(0);
-      expect(family.description.trim().length, `${family.variantKey} has empty description`).toBeGreaterThan(0);
+      expect(
+        family.displayName.trim().length,
+        `${family.variantKey} has empty displayName`,
+      ).toBeGreaterThan(0);
+      expect(
+        family.description.trim().length,
+        `${family.variantKey} has empty description`,
+      ).toBeGreaterThan(0);
     }
   });
 
@@ -56,13 +72,19 @@ describe("Problem Family Seed Data Validation", () => {
       "multiple-choice",
     ];
     for (const family of ALL_PROBLEM_FAMILIES) {
-      expect(knownComponentKeys.includes(family.componentKey), `Unknown componentKey for ${family.variantKey}: ${family.componentKey}`).toBe(true);
+      expect(
+        knownComponentKeys.includes(family.componentKey),
+        `Unknown componentKey for ${family.variantKey}: ${family.componentKey}`,
+      ).toBe(true);
     }
   });
 
   it("metadata contains module number", () => {
     for (const family of ALL_PROBLEM_FAMILIES) {
-      expect(family.metadata.module, `${family.variantKey} missing module in metadata`).toBeDefined();
+      expect(
+        family.metadata.module,
+        `${family.variantKey} missing module in metadata`,
+      ).toBeDefined();
       expect(typeof family.metadata.module).toBe("number");
     }
   });

@@ -1,18 +1,24 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { contentBlockSchema, type ContentBlock } from '@/types/curriculum';
-import { VideoPlayer } from './VideoPlayer';
-import { Callout } from './Callout';
-import { MarkdownRenderer } from './MarkdownRenderer';
-import { ActivityRenderer } from './ActivityRenderer';
-import { ContentBlockErrorBoundary } from './ContentBlockErrorBoundary';
+import Image from "next/image";
+import { contentBlockSchema, type ContentBlock } from "@/types/curriculum";
+import { VideoPlayer } from "./VideoPlayer";
+import { Callout } from "./Callout";
+import { MarkdownRenderer } from "./MarkdownRenderer";
+import { ActivityRenderer } from "./ActivityRenderer";
+import { ContentBlockErrorBoundary } from "./ContentBlockErrorBoundary";
 
 interface PhaseRendererProps {
   contentBlocks: ContentBlock[];
   lessonId: string;
   phaseNumber: number;
-  activityInitialStatus?: 'not_started' | 'in_progress' | 'completed' | 'current' | 'available' | 'locked';
+  activityInitialStatus?:
+    | "not_started"
+    | "in_progress"
+    | "completed"
+    | "current"
+    | "available"
+    | "locked";
   onActivityStatusChange?: () => void;
 }
 
@@ -28,14 +34,16 @@ export function PhaseRenderer({
   onActivityStatusChange,
 }: PhaseRendererProps) {
   // Validate content blocks with Zod
-  const validatedBlocks = contentBlocks.map((block, index) => {
-    try {
-      return contentBlockSchema.parse(block);
-    } catch (error) {
-      console.error(`Invalid content block at index ${index}:`, error);
-      return null;
-    }
-  }).filter((block): block is ContentBlock => block !== null);
+  const validatedBlocks = contentBlocks
+    .map((block, index) => {
+      try {
+        return contentBlockSchema.parse(block);
+      } catch (error) {
+        console.error(`Invalid content block at index ${index}:`, error);
+        return null;
+      }
+    })
+    .filter((block): block is ContentBlock => block !== null);
 
   if (validatedBlocks.length === 0) {
     return (
@@ -75,14 +83,20 @@ function ContentBlockRenderer({
   block: ContentBlock;
   lessonId: string;
   phaseNumber: number;
-  activityInitialStatus?: 'not_started' | 'in_progress' | 'completed' | 'current' | 'available' | 'locked';
+  activityInitialStatus?:
+    | "not_started"
+    | "in_progress"
+    | "completed"
+    | "current"
+    | "available"
+    | "locked";
   onActivityStatusChange?: () => void;
 }) {
   switch (block.type) {
-    case 'markdown':
+    case "markdown":
       return <MarkdownRenderer content={block.content} />;
 
-    case 'video':
+    case "video":
       return (
         <VideoPlayer
           videoUrl={block.props.videoUrl}
@@ -92,7 +106,7 @@ function ContentBlockRenderer({
         />
       );
 
-    case 'image':
+    case "image":
       return (
         <figure className="my-4">
           <div className="relative w-full h-auto">
@@ -102,7 +116,7 @@ function ContentBlockRenderer({
               width={800}
               height={600}
               className="rounded-lg"
-              style={{ width: '100%', height: 'auto' }}
+              style={{ width: "100%", height: "auto" }}
             />
           </div>
           {block.props.caption && (
@@ -113,10 +127,10 @@ function ContentBlockRenderer({
         </figure>
       );
 
-    case 'callout':
+    case "callout":
       return <Callout variant={block.variant} content={block.content} />;
 
-    case 'activity':
+    case "activity":
       return (
         <ActivityRenderer
           activityId={block.activityId}
@@ -132,7 +146,7 @@ function ContentBlockRenderer({
     default:
       // TypeScript exhaustiveness check
       const _exhaustive: never = block;
-      console.error('Unknown content block type:', _exhaustive);
+      console.error("Unknown content block type:", _exhaustive);
       return (
         <div className="p-4 border border-red-200 bg-red-50 rounded-lg text-red-700">
           Unknown content block type

@@ -1,9 +1,9 @@
-import { test as base, type Page } from '@playwright/test';
+import { test as base, type Page } from "@playwright/test";
 
-const STUDENT_USERNAME = 'student1@demo';
-const STUDENT_PASSWORD = 'Demo1234!';
-const TEACHER_USERNAME = 'teacher@demo';
-const TEACHER_PASSWORD = 'Demo1234!';
+const STUDENT_USERNAME = "student1@demo";
+const STUDENT_PASSWORD = "Demo1234!";
+const TEACHER_USERNAME = "teacher@demo";
+const TEACHER_PASSWORD = "Demo1234!";
 
 /**
  * Navigates to the login page, fills in credentials, submits the form,
@@ -14,12 +14,12 @@ const TEACHER_PASSWORD = 'Demo1234!';
  * @param password - The password to fill in the login form.
  */
 async function loginAs(page: Page, username: string, password: string): Promise<void> {
-  await page.goto('/auth/login');
-  await page.waitForLoadState('networkidle');
+  await page.goto("/auth/login");
+  await page.waitForLoadState("networkidle");
 
-  await page.getByLabel('Username').fill(username);
-  await page.getByLabel('Password').fill(password);
-  await page.getByRole('button', { name: 'Sign In' }).click();
+  await page.getByLabel("Username").fill(username);
+  await page.getByLabel("Password").fill(password);
+  await page.getByRole("button", { name: "Sign In" }).click();
 
   await page.waitForURL(/\/(student|teacher|admin)\//, { timeout: 15_000 });
 }
@@ -47,4 +47,4 @@ export const test = base.extend<{
   },
 });
 
-export { expect } from '@playwright/test';
+export { expect } from "@playwright/test";

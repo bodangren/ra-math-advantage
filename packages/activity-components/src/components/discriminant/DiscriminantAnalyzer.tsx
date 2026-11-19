@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { DiscriminantAnalyzerProps } from '../../schemas/discriminant-analyzer.schema';
+import React, { useState } from "react";
+import { DiscriminantAnalyzerProps } from "../../schemas/discriminant-analyzer.schema";
 
-type DAMode = 'teaching' | 'guided' | 'practice';
+type DAMode = "teaching" | "guided" | "practice";
 
 interface DAState {
   currentStep: number;
@@ -35,11 +35,11 @@ function computeDiscriminant(a: number, b: number, c: number): number {
  */
 function classifyDiscriminant(discriminant: number): string {
   if (discriminant > 0) {
-    return 'Two distinct real roots';
+    return "Two distinct real roots";
   } else if (discriminant === 0) {
-    return 'One repeated real root';
+    return "One repeated real root";
   } else {
-    return 'Two complex roots';
+    return "Two complex roots";
   }
 }
 
@@ -51,13 +51,13 @@ function classifyDiscriminant(discriminant: number): string {
  */
 function extractCoefficients(
   equation: string,
-  providedCoefficients?: { a: number; b: number; c: number }
+  providedCoefficients?: { a: number; b: number; c: number },
 ): { a: number; b: number; c: number } | null {
   if (providedCoefficients) {
     return providedCoefficients;
   }
 
-  const normalized = equation.replace(/\s/g, '').replace(/x²/gi, 'x^2');
+  const normalized = equation.replace(/\s/g, "").replace(/x²/gi, "x^2");
 
   const aMatch = normalized.match(/(?:^|[-+])(\d*(?:\.\d+)?)\*?x\^2/i);
   const bMatch = normalized.match(/(?:^|[-+])(\d*(?:\.\d+)?)\*?x(?!\^)/i);
@@ -65,9 +65,9 @@ function extractCoefficients(
 
   if (!aMatch) return null;
 
-  const a = parseFloat(aMatch[1] || '1') * (aMatch[0].startsWith('-') ? -1 : 1);
-  const b = bMatch ? parseFloat(bMatch[1] || '1') * (bMatch[0].startsWith('-') ? -1 : 1) : 0;
-  const c = cMatch ? parseFloat(cMatch[1]) * (cMatch[0].startsWith('-') ? -1 : 1) : 0;
+  const a = parseFloat(aMatch[1] || "1") * (aMatch[0].startsWith("-") ? -1 : 1);
+  const b = bMatch ? parseFloat(bMatch[1] || "1") * (bMatch[0].startsWith("-") ? -1 : 1) : 0;
+  const c = cMatch ? parseFloat(cMatch[1]) * (cMatch[0].startsWith("-") ? -1 : 1) : 0;
 
   return { a, b, c };
 }
@@ -83,7 +83,11 @@ export function DiscriminantAnalyzer({
   coefficients,
   onSubmit,
   onComplete,
-}: DiscriminantAnalyzerProps & { mode: DAMode; onSubmit?: (payload: unknown) => void; onComplete?: () => void }) {
+}: DiscriminantAnalyzerProps & {
+  mode: DAMode;
+  onSubmit?: (payload: unknown) => void;
+  onComplete?: () => void;
+}) {
   const extractedCoeffs = extractCoefficients(equation, coefficients);
   const a = extractedCoeffs?.a ?? 1;
   const b = extractedCoeffs?.b ?? 0;
@@ -93,25 +97,27 @@ export function DiscriminantAnalyzer({
 
   const [state, setState] = useState<DAState>({
     currentStep: 0,
-    identifiedCoefficients: { a: '', b: '', c: '' },
-    computedDiscriminant: '',
-    classification: '',
+    identifiedCoefficients: { a: "", b: "", c: "" },
+    computedDiscriminant: "",
+    classification: "",
     submitted: false,
   });
 
-  const totalSteps = mode === 'guided' ? 3 : 1;
+  const totalSteps = mode === "guided" ? 3 : 1;
 
   if (!extractedCoeffs && !coefficients) {
     return (
       <div className="p-4 bg-red-50 rounded-lg">
-        <p className="text-red-800 font-medium">Unable to parse coefficients from equation: <code>{equation}</code></p>
+        <p className="text-red-800 font-medium">
+          Unable to parse coefficients from equation: <code>{equation}</code>
+        </p>
         <p className="text-red-600 text-sm mt-1">Please provide coefficients explicitly.</p>
       </div>
     );
   }
 
-  const handleGuidedStep = (field: keyof DAState['identifiedCoefficients'], value: string) => {
-    setState(prev => ({
+  const handleGuidedStep = (field: keyof DAState["identifiedCoefficients"], value: string) => {
+    setState((prev) => ({
       ...prev,
       identifiedCoefficients: { ...prev.identifiedCoefficients, [field]: value },
     }));
@@ -119,7 +125,7 @@ export function DiscriminantAnalyzer({
 
   const handleNextStep = () => {
     if (state.currentStep < totalSteps - 1) {
-      setState(prev => ({ ...prev, currentStep: prev.currentStep + 1 }));
+      setState((prev) => ({ ...prev, currentStep: prev.currentStep + 1 }));
     }
   };
 
@@ -128,8 +134,9 @@ export function DiscriminantAnalyzer({
     const isCorrect = !isNaN(userDiscriminant) && Math.abs(userDiscriminant - discriminant) < 0.001;
 
     const envelope = {
-      mode: mode === 'practice' ? 'independent_practice' : mode === 'guided' ? 'guided_practice' : mode,
-      status: 'submitted',
+      mode:
+        mode === "practice" ? "independent_practice" : mode === "guided" ? "guided_practice" : mode,
+      status: "submitted",
       attemptNumber: 1,
       identifiedCoefficients: state.identifiedCoefficients,
       computedDiscriminant: state.computedDiscriminant,
@@ -144,10 +151,10 @@ export function DiscriminantAnalyzer({
 
     onSubmit?.(envelope);
     onComplete?.();
-    setState(prev => ({ ...prev, submitted: true }));
+    setState((prev) => ({ ...prev, submitted: true }));
   };
 
-  if (mode === 'teaching') {
+  if (mode === "teaching") {
     return (
       <div className="space-y-8 p-4">
         <h2 className="text-xl font-bold">Discriminant Analyzer</h2>
@@ -189,9 +196,9 @@ export function DiscriminantAnalyzer({
             <p className="text-sm font-medium text-red-800 mb-1">Classification</p>
             <p className="text-xl font-bold">{classification}</p>
             <p className="text-sm text-red-600 mt-1">
-              {discriminant > 0 && 'The parabola crosses the x-axis at two points.'}
-              {discriminant === 0 && 'The parabola touches the x-axis at one point (vertex).'}
-              {discriminant < 0 && 'The parabola does not cross the x-axis.'}
+              {discriminant > 0 && "The parabola crosses the x-axis at two points."}
+              {discriminant === 0 && "The parabola touches the x-axis at one point (vertex)."}
+              {discriminant < 0 && "The parabola does not cross the x-axis."}
             </p>
           </div>
         </div>
@@ -199,7 +206,7 @@ export function DiscriminantAnalyzer({
     );
   }
 
-  if (mode === 'guided') {
+  if (mode === "guided") {
     return (
       <div className="space-y-6 p-4">
         <div className="flex justify-between items-center">
@@ -219,7 +226,7 @@ export function DiscriminantAnalyzer({
                   <input
                     type="text"
                     value={state.identifiedCoefficients.a}
-                    onChange={(e) => handleGuidedStep('a', e.target.value)}
+                    onChange={(e) => handleGuidedStep("a", e.target.value)}
                     className="w-full border rounded-md px-3 py-2"
                     placeholder="Enter a"
                   />
@@ -229,7 +236,7 @@ export function DiscriminantAnalyzer({
                   <input
                     type="text"
                     value={state.identifiedCoefficients.b}
-                    onChange={(e) => handleGuidedStep('b', e.target.value)}
+                    onChange={(e) => handleGuidedStep("b", e.target.value)}
                     className="w-full border rounded-md px-3 py-2"
                     placeholder="Enter b"
                   />
@@ -239,7 +246,7 @@ export function DiscriminantAnalyzer({
                   <input
                     type="text"
                     value={state.identifiedCoefficients.c}
-                    onChange={(e) => handleGuidedStep('c', e.target.value)}
+                    onChange={(e) => handleGuidedStep("c", e.target.value)}
                     className="w-full border rounded-md px-3 py-2"
                     placeholder="Enter c"
                   />
@@ -253,7 +260,8 @@ export function DiscriminantAnalyzer({
               <p className="text-lg">Apply the discriminant formula</p>
               <div className="bg-blue-50 p-4 rounded-lg">
                 <p className="font-mono text-lg">
-                  b² - 4ac = ({state.identifiedCoefficients.b || '?'})² - 4({state.identifiedCoefficients.a || '?'})({state.identifiedCoefficients.c || '?'})
+                  b² - 4ac = ({state.identifiedCoefficients.b || "?"})² - 4(
+                  {state.identifiedCoefficients.a || "?"})({state.identifiedCoefficients.c || "?"})
                 </p>
               </div>
             </div>
@@ -267,7 +275,9 @@ export function DiscriminantAnalyzer({
                 <input
                   type="text"
                   value={state.computedDiscriminant}
-                  onChange={(e) => setState(prev => ({ ...prev, computedDiscriminant: e.target.value }))}
+                  onChange={(e) =>
+                    setState((prev) => ({ ...prev, computedDiscriminant: e.target.value }))
+                  }
                   className="w-full border rounded-md px-3 py-2"
                   placeholder="Enter discriminant value"
                 />
@@ -276,7 +286,9 @@ export function DiscriminantAnalyzer({
                 <label className="block text-sm font-medium mb-1">Classification:</label>
                 <select
                   value={state.classification}
-                  onChange={(e) => setState(prev => ({ ...prev, classification: e.target.value }))}
+                  onChange={(e) =>
+                    setState((prev) => ({ ...prev, classification: e.target.value }))
+                  }
                   className="w-full border rounded-md px-3 py-2"
                 >
                   <option value="">Select classification</option>
@@ -316,7 +328,7 @@ export function DiscriminantAnalyzer({
     );
   }
 
-  if (mode === 'practice') {
+  if (mode === "practice") {
     return (
       <div className="space-y-8 p-4">
         <h2 className="text-xl font-bold">Discriminant Analyzer</h2>
@@ -335,7 +347,9 @@ export function DiscriminantAnalyzer({
             <input
               type="text"
               value={state.computedDiscriminant}
-              onChange={(e) => setState(prev => ({ ...prev, computedDiscriminant: e.target.value }))}
+              onChange={(e) =>
+                setState((prev) => ({ ...prev, computedDiscriminant: e.target.value }))
+              }
               className="w-full border rounded-md px-3 py-2"
               placeholder="Enter the discriminant value"
             />

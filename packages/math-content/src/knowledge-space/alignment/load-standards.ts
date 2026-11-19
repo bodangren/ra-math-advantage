@@ -35,8 +35,11 @@ export interface CEDTopicMapping {
  * @param {string} authority - Standards authority, defaults to "ccss"
  * @returns {string} - Node ID string
  */
-export function standardCodeToNodeId(code: string, authority: string = 'ccss'): string {
-  const normalizedCode = code.toLowerCase().replace(/\./g, '-').replace(/[^a-z0-9-]/g, '');
+export function standardCodeToNodeId(code: string, authority: string = "ccss"): string {
+  const normalizedCode = code
+    .toLowerCase()
+    .replace(/\./g, "-")
+    .replace(/[^a-z0-9-]/g, "");
   return `math.standard.${authority}.${normalizedCode}`;
 }
 
@@ -45,9 +48,16 @@ export function standardCodeToNodeId(code: string, authority: string = 'ccss'): 
  * @param {string} code - Standard code to parse
  * @returns {{ id: string; authority: string; normalizedCode: string }} - Object with id, authority, and normalizedCode
  */
-export function parseStandardCodeToNodeId(code: string): { id: string; authority: string; normalizedCode: string } {
-  const authority = 'ccss';
-  const normalizedCode = code.toLowerCase().replace(/\./g, '-').replace(/[^a-z0-9-]/g, '');
+export function parseStandardCodeToNodeId(code: string): {
+  id: string;
+  authority: string;
+  normalizedCode: string;
+} {
+  const authority = "ccss";
+  const normalizedCode = code
+    .toLowerCase()
+    .replace(/\./g, "-")
+    .replace(/[^a-z0-9-]/g, "");
   return {
     id: `math.standard.${authority}.${normalizedCode}`,
     authority,
@@ -63,7 +73,7 @@ export function parseStandardCodeToNodeId(code: string): { id: string; authority
  * @returns {string} - Lesson slug string
  */
 export function buildLessonSlug(course: string, module: string, lesson: string): string {
-  if (course === 'precalc') {
+  if (course === "precalc") {
     return `${module}-${lesson}`;
   }
   return `module-${module}-lesson-${lesson}`;
@@ -75,8 +85,11 @@ export function buildLessonSlug(course: string, module: string, lesson: string):
  * @param {Record<string, unknown>} metadata - Node metadata containing module and lesson fields
  * @returns {string} - Lesson slug string
  */
-export function parseLessonSlugFromMetadata(course: string, metadata: Record<string, unknown>): string {
-  const module = String(metadata.module ?? '');
-  const lesson = String(metadata.lesson ?? '');
+export function parseLessonSlugFromMetadata(
+  course: string,
+  metadata: Record<string, unknown>,
+): string {
+  const module = String(metadata.module ?? "");
+  const lesson = String(metadata.lesson ?? "");
   return buildLessonSlug(course, module, lesson);
 }

@@ -1,7 +1,11 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { cellBgClass, type CourseOverviewRow, type UnitColumn } from '@math-platform/teacher-reporting-core';
+import Link from "next/link";
+import {
+  cellBgClass,
+  type CourseOverviewRow,
+  type UnitColumn,
+} from "@math-platform/teacher-reporting-core";
 
 interface CourseOverviewGridProps {
   rows: CourseOverviewRow[];
@@ -90,7 +94,7 @@ export function CourseOverviewGrid({ rows, units, onStudentClick }: CourseOvervi
                   key={cell.unitNumber}
                   className={`text-center px-2 py-2 ${cellBgClass(cell.color)}`}
                 >
-                  {cell.avgMastery !== null ? `${cell.avgMastery}%` : '—'}
+                  {cell.avgMastery !== null ? `${cell.avgMastery}%` : "—"}
                 </td>
               ))}
             </tr>

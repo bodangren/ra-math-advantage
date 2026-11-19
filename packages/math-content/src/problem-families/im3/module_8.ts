@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const MODULE8_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Sampling and Study Design (HSS-IC.A.1, HSS-IC.B.3)
@@ -26,7 +26,8 @@ export const MODULE8_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "comprehension-quiz:data-distributions",
     componentKey: "comprehension-quiz",
     displayName: "Data Distributions",
-    description: "Describe distributions by finding mean and standard deviation and comparing data sets",
+    description:
+      "Describe distributions by finding mean and standard deviation and comparing data sets",
     objectiveIds: ["HSS-ID.A.2", "HSS-ID.A.3"],
     difficulty: "standard",
     metadata: { module: 8, topic: "distributions" },
@@ -56,7 +57,8 @@ export const MODULE8_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "comprehension-quiz:confidence-intervals",
     componentKey: "comprehension-quiz",
     displayName: "Confidence Intervals",
-    description: "Use sample data to infer population means and proportions with confidence intervals",
+    description:
+      "Use sample data to infer population means and proportions with confidence intervals",
     objectiveIds: ["HSS-IC.B.4", "HSS-IC.B.5", "HSS-IC.B.6"],
     difficulty: "challenging",
     metadata: { module: 8, topic: "inference" },

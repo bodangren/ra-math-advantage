@@ -33,30 +33,30 @@
  * module's contract through the fake.
  */
 
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
+import type { PracticeSubmissionEnvelope } from "@math-platform/practice-core/contract";
 
 import {
   makeAlgebraicSubmission,
   MISCONCEPTION_LOOP_RESOLUTION_THRESHOLD,
-} from './misconception-content.fixtures';
+} from "./misconception-content.fixtures";
 import {
   fakeT6Loop,
   emptyFakeStudentMisconceptionState,
   type FakeStudentMisconceptionState,
   type FakeT6LoopInput,
   type FakeT6LoopOutput,
-} from './misconception-loop.fake';
+} from "./misconception-loop.fake";
 
 import {
   createIm3MisconceptionLoop,
   type Im3MisconceptionLoopInput,
   type Im3MisconceptionLoopOutput,
-} from '@/lib/practice/misconception-loop-wiring';
+} from "@/lib/practice/misconception-loop-wiring";
 
-const KNOWN_SLUG = 'sign-error-in-factored-form';
-const KNOWN_SLUG_2 = 'quadratic-formula-sign-flip';
+const KNOWN_SLUG = "sign-error-in-factored-form";
+const KNOWN_SLUG_2 = "quadratic-formula-sign-flip";
 
 function buildInput(
   submission: PracticeSubmissionEnvelope,
@@ -64,7 +64,7 @@ function buildInput(
 ): Im3MisconceptionLoopInput {
   return {
     submission,
-    studentId: 'student-im3-test',
+    studentId: "student-im3-test",
     resolutionThreshold: MISCONCEPTION_LOOP_RESOLUTION_THRESHOLD,
     ...overrides,
   };
@@ -72,34 +72,28 @@ function buildInput(
 
 type T6LoopFn = (input: FakeT6LoopInput) => FakeT6LoopOutput;
 
-describe('createIm3MisconceptionLoop — factory wiring', () => {
-  it('exposes a callable factory that returns a runIm3MisconceptionLoop function', () => {
-    expect(typeof createIm3MisconceptionLoop).toBe('function');
+describe("createIm3MisconceptionLoop — factory wiring", () => {
+  it("exposes a callable factory that returns a runIm3MisconceptionLoop function", () => {
+    expect(typeof createIm3MisconceptionLoop).toBe("function");
     const run = createIm3MisconceptionLoop(fakeT6Loop);
-    expect(typeof run).toBe('function');
+    expect(typeof run).toBe("function");
   });
 
-  it('the returned runner has the expected input/output shape', () => {
+  it("the returned runner has the expected input/output shape", () => {
     const run = createIm3MisconceptionLoop(fakeT6Loop);
     const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
+      { partId: "p1", isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
     ]);
     const result: Im3MisconceptionLoopOutput = run(
       buildInput(submission),
       emptyFakeStudentMisconceptionState(),
     );
-    for (const key of [
-      'detected',
-      'active',
-      'resolved',
-      'injected',
-      'updatedState',
-    ] as const) {
+    for (const key of ["detected", "active", "resolved", "injected", "updatedState"] as const) {
       expect(result, `output key '${key}' missing`).toHaveProperty(key);
     }
   });
 
-  it('routes every call through the supplied T6 loop function (interception is provable)', () => {
+  it("routes every call through the supplied T6 loop function (interception is provable)", () => {
     let calls = 0;
     const spy: T6LoopFn = (input) => {
       calls += 1;
@@ -107,91 +101,71 @@ describe('createIm3MisconceptionLoop — factory wiring', () => {
     };
     const run = createIm3MisconceptionLoop(spy);
     const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
+      { partId: "p1", isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
     ]);
     run(buildInput(submission), emptyFakeStudentMisconceptionState());
     expect(calls).toBe(1);
   });
 });
 
-describe('createIm3MisconceptionLoop — (a) detection fires on seeded wrong-answer patterns', () => {
+describe("createIm3MisconceptionLoop — (a) detection fires on seeded wrong-answer patterns", () => {
   const run = createIm3MisconceptionLoop(fakeT6Loop);
 
-  it('surfaces the seeded misconception slug in `detected`', () => {
+  it("surfaces the seeded misconception slug in `detected`", () => {
     const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
+      { partId: "p1", isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
     ]);
-    const result = run(
-      buildInput(submission),
-      emptyFakeStudentMisconceptionState(),
-    );
+    const result = run(buildInput(submission), emptyFakeStudentMisconceptionState());
     expect(result.detected).toContain(KNOWN_SLUG);
   });
 
-  it('surfaces multiple seeded slugs across multiple parts', () => {
+  it("surfaces multiple seeded slugs across multiple parts", () => {
     const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
-      { partId: 'p2', isCorrect: false, misconceptionTags: [KNOWN_SLUG_2] },
+      { partId: "p1", isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
+      { partId: "p2", isCorrect: false, misconceptionTags: [KNOWN_SLUG_2] },
     ]);
-    const result = run(
-      buildInput(submission),
-      emptyFakeStudentMisconceptionState(),
-    );
-    expect(new Set(result.detected)).toEqual(
-      new Set([KNOWN_SLUG, KNOWN_SLUG_2]),
-    );
+    const result = run(buildInput(submission), emptyFakeStudentMisconceptionState());
+    expect(new Set(result.detected)).toEqual(new Set([KNOWN_SLUG, KNOWN_SLUG_2]));
   });
 
-  it('moves a newly detected slug from inactive to active in the updated state', () => {
+  it("moves a newly detected slug from inactive to active in the updated state", () => {
     const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
+      { partId: "p1", isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
     ]);
-    const result = run(
-      buildInput(submission),
-      emptyFakeStudentMisconceptionState(),
-    );
+    const result = run(buildInput(submission), emptyFakeStudentMisconceptionState());
     expect(result.active).toContain(KNOWN_SLUG);
     expect(result.updatedState.active).toContain(KNOWN_SLUG);
   });
 
-  it('returns an empty detected list for a clean submission', () => {
-    const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: true },
-    ]);
-    const result = run(
-      buildInput(submission),
-      emptyFakeStudentMisconceptionState(),
-    );
+  it("returns an empty detected list for a clean submission", () => {
+    const submission = makeAlgebraicSubmission([{ partId: "p1", isCorrect: true }]);
+    const result = run(buildInput(submission), emptyFakeStudentMisconceptionState());
     expect(result.detected).toEqual([]);
   });
 });
 
-describe('createIm3MisconceptionLoop — (b) active→resolved transition after N clean attempts', () => {
+describe("createIm3MisconceptionLoop — (b) active→resolved transition after N clean attempts", () => {
   const run = createIm3MisconceptionLoop(fakeT6Loop);
 
-  it('does NOT resolve a slug on the first clean attempt after a wrong-answer', () => {
+  it("does NOT resolve a slug on the first clean attempt after a wrong-answer", () => {
     const prior: FakeStudentMisconceptionState = {
       active: [KNOWN_SLUG],
       cleanStreaks: { [KNOWN_SLUG]: 0 },
     };
-    const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: true },
-    ]);
+    const submission = makeAlgebraicSubmission([{ partId: "p1", isCorrect: true }]);
     const result = run(buildInput(submission), prior);
     expect(result.resolved).toEqual([]);
     expect(result.active).toContain(KNOWN_SLUG);
   });
 
-  it('resolves a slug after N consecutive clean attempts (the IM3 threshold)', () => {
+  it("resolves a slug after N consecutive clean attempts (the IM3 threshold)", () => {
     const prior: FakeStudentMisconceptionState = {
       active: [KNOWN_SLUG],
       cleanStreaks: {
         [KNOWN_SLUG]: MISCONCEPTION_LOOP_RESOLUTION_THRESHOLD - 1,
       },
     };
-    const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: true },
-    ]);
+    const submission = makeAlgebraicSubmission([{ partId: "p1", isCorrect: true }]);
     const result = run(buildInput(submission), prior);
     expect(result.resolved).toContain(KNOWN_SLUG);
     expect(result.active).not.toContain(KNOWN_SLUG);
@@ -199,14 +173,12 @@ describe('createIm3MisconceptionLoop — (b) active→resolved transition after 
     expect(result.updatedState.cleanStreaks[KNOWN_SLUG]).toBe(0);
   });
 
-  it('persists clean streak increments in updatedState across sequential calls', () => {
+  it("persists clean streak increments in updatedState across sequential calls", () => {
     let state: FakeStudentMisconceptionState = {
       active: [KNOWN_SLUG],
       cleanStreaks: { [KNOWN_SLUG]: 0 },
     };
-    const cleanSubmission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: true },
-    ]);
+    const cleanSubmission = makeAlgebraicSubmission([{ partId: "p1", isCorrect: true }]);
 
     const firstClean = run(buildInput(cleanSubmission), state);
     expect(firstClean.resolved).toEqual([]);
@@ -224,7 +196,7 @@ describe('createIm3MisconceptionLoop — (b) active→resolved transition after 
     expect(thirdClean.updatedState.cleanStreaks[KNOWN_SLUG]).toBe(0);
   });
 
-  it('resolves each active slug independently based on its own clean streak', () => {
+  it("resolves each active slug independently based on its own clean streak", () => {
     const prior: FakeStudentMisconceptionState = {
       active: [KNOWN_SLUG, KNOWN_SLUG_2],
       cleanStreaks: {
@@ -232,21 +204,19 @@ describe('createIm3MisconceptionLoop — (b) active→resolved transition after 
         [KNOWN_SLUG_2]: 0,
       },
     };
-    const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: true },
-    ]);
+    const submission = makeAlgebraicSubmission([{ partId: "p1", isCorrect: true }]);
     const result = run(buildInput(submission), prior);
     expect(result.resolved).toEqual([KNOWN_SLUG]);
     expect(result.active).toEqual([KNOWN_SLUG_2]);
   });
 
-  it('a re-detected wrong-answer refreshes the active flag and resets the clean streak', () => {
+  it("a re-detected wrong-answer refreshes the active flag and resets the clean streak", () => {
     const prior: FakeStudentMisconceptionState = {
       active: [KNOWN_SLUG],
       cleanStreaks: { [KNOWN_SLUG]: 2 },
     };
     const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
+      { partId: "p1", isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
     ]);
     const result = run(buildInput(submission), prior);
     expect(result.resolved).toEqual([]);
@@ -254,62 +224,47 @@ describe('createIm3MisconceptionLoop — (b) active→resolved transition after 
   });
 });
 
-describe('createIm3MisconceptionLoop — (c) remediation activity is injected for active misconceptions', () => {
+describe("createIm3MisconceptionLoop — (c) remediation activity is injected for active misconceptions", () => {
   const run = createIm3MisconceptionLoop(fakeT6Loop);
 
-  it('injects at least one remediated_by activity for a freshly detected active slug', () => {
+  it("injects at least one remediated_by activity for a freshly detected active slug", () => {
     const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
+      { partId: "p1", isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
     ]);
-    const result = run(
-      buildInput(submission),
-      emptyFakeStudentMisconceptionState(),
-    );
+    const result = run(buildInput(submission), emptyFakeStudentMisconceptionState());
     expect(result.injected.length).toBeGreaterThan(0);
   });
 
-  it('every injected activity has the expected activity-kind shape', () => {
+  it("every injected activity has the expected activity-kind shape", () => {
     const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
-      { partId: 'p2', isCorrect: false, misconceptionTags: [KNOWN_SLUG_2] },
+      { partId: "p1", isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
+      { partId: "p2", isCorrect: false, misconceptionTags: [KNOWN_SLUG_2] },
     ]);
-    const result = run(
-      buildInput(submission),
-      emptyFakeStudentMisconceptionState(),
-    );
+    const result = run(buildInput(submission), emptyFakeStudentMisconceptionState());
     for (const activity of result.injected) {
-      expect(typeof activity.activityId).toBe('string');
+      expect(typeof activity.activityId).toBe("string");
       expect(activity.activityId.length).toBeGreaterThan(0);
-      expect(['worked_example', 'task_blueprint', 'skill']).toContain(
-        activity.activityKind,
-      );
-      expect(typeof activity.label).toBe('string');
+      expect(["worked_example", "task_blueprint", "skill"]).toContain(activity.activityKind);
+      expect(typeof activity.label).toBe("string");
     }
   });
 
-  it('returns an empty injection list when no misconception is active', () => {
-    const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: true },
-    ]);
-    const result = run(
-      buildInput(submission),
-      emptyFakeStudentMisconceptionState(),
-    );
+  it("returns an empty injection list when no misconception is active", () => {
+    const submission = makeAlgebraicSubmission([{ partId: "p1", isCorrect: true }]);
+    const result = run(buildInput(submission), emptyFakeStudentMisconceptionState());
     expect(result.injected).toEqual([]);
   });
 });
 
-describe('createIm3MisconceptionLoop — error semantics', () => {
-  it('propagates errors from the underlying T6 (does not swallow)', () => {
+describe("createIm3MisconceptionLoop — error semantics", () => {
+  it("propagates errors from the underlying T6 (does not swallow)", () => {
     const exploding: T6LoopFn = () => {
-      throw new Error('T6 exploded');
+      throw new Error("T6 exploded");
     };
     const run = createIm3MisconceptionLoop(exploding);
-    const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: true },
-    ]);
-    expect(() =>
-      run(buildInput(submission), emptyFakeStudentMisconceptionState()),
-    ).toThrow(/T6 exploded/);
+    const submission = makeAlgebraicSubmission([{ partId: "p1", isCorrect: true }]);
+    expect(() => run(buildInput(submission), emptyFakeStudentMisconceptionState())).toThrow(
+      /T6 exploded/,
+    );
   });
 });

@@ -1,18 +1,17 @@
-'use client';
+"use client";
 
-import { useState, useRef } from 'react';
-import { MessageCircle, X, Send, Loader2, RefreshCw } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
+import { useState, useRef } from "react";
+import { MessageCircle, X, Send, Loader2, RefreshCw } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 
 interface LessonChatbotProps {
   lessonId: string;
   phaseNumber: number;
 }
 
-type ChatState = 'closed' | 'open' | 'loading' | 'response' | 'error';
-
+type ChatState = "closed" | "open" | "loading" | "response" | "error";
 
 /**
  * Renders a floating chatbot widget for asking questions about the current lesson.
@@ -23,44 +22,40 @@ type ChatState = 'closed' | 'open' | 'loading' | 'response' | 'error';
  * @returns A floating chat button that expands into a chat card.
  */
 export function LessonChatbot({ lessonId, phaseNumber }: LessonChatbotProps) {
-  const [chatState, setChatState] = useState<ChatState>('closed');
-  const [question, setQuestion] = useState('');
-  const [response, setResponse] = useState('');
-  const [error, setError] = useState('');
+  const [chatState, setChatState] = useState<ChatState>("closed");
+  const [question, setQuestion] = useState("");
+  const [response, setResponse] = useState("");
+  const [error, setError] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
-
 
   /**
    * Opens the chatbot and focuses the input field.
    */
   const handleOpen = () => {
-    setChatState('open');
+    setChatState("open");
     setTimeout(() => inputRef.current?.focus(), 0);
   };
-
 
   /**
    * Closes the chatbot and clears all state.
    */
   const handleClose = () => {
-    setChatState('closed');
-    setQuestion('');
-    setResponse('');
-    setError('');
+    setChatState("closed");
+    setQuestion("");
+    setResponse("");
+    setError("");
   };
-
 
   /**
    * Resets the chat state to allow asking a new question.
    */
   const handleReset = () => {
-    setChatState('open');
-    setQuestion('');
-    setResponse('');
-    setError('');
+    setChatState("open");
+    setQuestion("");
+    setResponse("");
+    setError("");
     setTimeout(() => inputRef.current?.focus(), 0);
   };
-
 
   /**
    * Submits the question to the lesson chatbot API and displays the response.
@@ -71,33 +66,33 @@ export function LessonChatbot({ lessonId, phaseNumber }: LessonChatbotProps) {
     e.preventDefault();
     if (!question.trim()) return;
 
-    setChatState('loading');
-    setError('');
+    setChatState("loading");
+    setError("");
 
     try {
-      const res = await fetch('/api/student/lesson-chatbot', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/student/lesson-chatbot", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ lessonId, phaseNumber, question: question.trim() }),
       });
 
       if (!res.ok) {
-        const data = await res.json().catch(() => ({ error: 'Something went wrong' }));
-        throw new Error(data.error || 'Something went wrong');
+        const data = await res.json().catch(() => ({ error: "Something went wrong" }));
+        throw new Error(data.error || "Something went wrong");
       }
 
       const data = await res.json();
       setResponse(data.response);
-      setChatState('response');
+      setChatState("response");
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Something went wrong');
-      setChatState('error');
+      setError(err instanceof Error ? err.message : "Something went wrong");
+      setChatState("error");
     }
   };
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      {chatState === 'closed' ? (
+      {chatState === "closed" ? (
         <Button
           onClick={handleOpen}
           size="icon"
@@ -121,7 +116,7 @@ export function LessonChatbot({ lessonId, phaseNumber }: LessonChatbotProps) {
           </div>
 
           <div className="p-4 space-y-4">
-            {chatState === 'open' && (
+            {chatState === "open" && (
               <form onSubmit={handleSubmit} className="space-y-2">
                 <Input
                   ref={inputRef}
@@ -129,27 +124,23 @@ export function LessonChatbot({ lessonId, phaseNumber }: LessonChatbotProps) {
                   value={question}
                   onChange={(e) => setQuestion(e.target.value)}
                   maxLength={1000}
-                  disabled={chatState !== 'open'}
+                  disabled={chatState !== "open"}
                 />
-                <Button
-                  type="submit"
-                  className="w-full"
-                  disabled={!question.trim()}
-                >
+                <Button type="submit" className="w-full" disabled={!question.trim()}>
                   <Send className="h-4 w-4 mr-2" />
                   Send
                 </Button>
               </form>
             )}
 
-            {chatState === 'loading' && (
+            {chatState === "loading" && (
               <div className="flex items-center justify-center py-8">
                 <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
                 <span className="ml-2 text-muted-foreground">Loading...</span>
               </div>
             )}
 
-            {chatState === 'response' && (
+            {chatState === "response" && (
               <div className="space-y-4">
                 <div className="p-3 bg-muted rounded-lg">
                   <p className="text-sm">{response}</p>
@@ -161,12 +152,10 @@ export function LessonChatbot({ lessonId, phaseNumber }: LessonChatbotProps) {
               </div>
             )}
 
-            {chatState === 'error' && (
+            {chatState === "error" && (
               <div className="space-y-4">
                 <div className="p-3 bg-red-50 dark:bg-red-950/10 border border-red-200 dark:border-red-800 rounded-lg">
-                  <p className="text-sm text-red-700 dark:text-red-300">
-                    {error}
-                  </p>
+                  <p className="text-sm text-red-700 dark:text-red-300">{error}</p>
                 </div>
                 <Button onClick={handleReset} className="w-full" variant="outline">
                   Try Again

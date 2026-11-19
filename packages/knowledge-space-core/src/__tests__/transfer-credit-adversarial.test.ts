@@ -27,28 +27,25 @@
 // files for transfer-eligibility, transfer-skip, transfer-teacher-audit,
 // and the app-local student/teachers surfaces.
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 import {
   aggregateComponentMastery,
   computeTransferCredit,
   TRANSFER_POLICY_DEFAULT,
   transferPolicySchema,
-} from '../transfer-credit';
-import type { EquivalenceComponent } from '../cross-course-equivalence';
-import type { KnowledgeStateEntry } from '../mastery-state';
+} from "../transfer-credit";
+import type { EquivalenceComponent } from "../cross-course-equivalence";
+import type { KnowledgeStateEntry } from "../mastery-state";
 
 // ---------------------------------------------------------------------------
 // Fixtures
 // ---------------------------------------------------------------------------
 
 function courseFromId(nodeId: string): string {
-  return nodeId.split('.').slice(0, 2).join('.');
+  return nodeId.split(".").slice(0, 2).join(".");
 }
 
-function makeComponent(
-  componentId: string,
-  nodeIds: string[],
-): EquivalenceComponent {
+function makeComponent(componentId: string, nodeIds: string[]): EquivalenceComponent {
   const courses = [...new Set(nodeIds.map(courseFromId))].sort();
   return {
     componentId,
@@ -66,7 +63,7 @@ function makeUntouchedEntry(nodeId: string): KnowledgeStateEntry {
     mastery: 0,
     retention: 0,
     isProficient: false,
-    state: 'untouched',
+    state: "untouched",
   };
 }
 
@@ -80,7 +77,7 @@ function makeEvidencedEntry(
     mastery,
     retention,
     isProficient: mastery >= 0.9,
-    state: mastery >= 0.9 ? 'mastered' : 'inProgress',
+    state: mastery >= 0.9 ? "mastered" : "inProgress",
   };
 }
 
@@ -89,24 +86,31 @@ function makeEvidencedEntry(
 // ---------------------------------------------------------------------------
 
 describe('AD3 — state === "untouched" is treated as 0-evidence (no zeroing, no crash)', () => {
-  it('aggregateComponentMastery excludes untouched entries from contributingNodeIds', () => {
-    const comp = makeComponent('eq-ad3', [
-      'math.im2.skill.solve-quadratic',
-      'math.im3.skill.solve-quadratic',
-      'math.precalc.skill.solve-quadratic',
+  it("aggregateComponentMastery excludes untouched entries from contributingNodeIds", () => {
+    const comp = makeComponent("eq-ad3", [
+      "math.im2.skill.solve-quadratic",
+      "math.im3.skill.solve-quadratic",
+      "math.precalc.skill.solve-quadratic",
     ]);
     const state = new Map<string, KnowledgeStateEntry>([
-      ['math.im2.skill.solve-quadratic', makeEvidencedEntry('math.im2.skill.solve-quadratic', 0.9, 0.9)],
-      ['math.im3.skill.solve-quadratic', makeEvidencedEntry('math.im3.skill.solve-quadratic', 0.7, 0.7)],
-      ['math.precalc.skill.solve-quadratic', makeUntouchedEntry('math.precalc.skill.solve-quadratic')],
+      [
+        "math.im2.skill.solve-quadratic",
+        makeEvidencedEntry("math.im2.skill.solve-quadratic", 0.9, 0.9),
+      ],
+      [
+        "math.im3.skill.solve-quadratic",
+        makeEvidencedEntry("math.im3.skill.solve-quadratic", 0.7, 0.7),
+      ],
+      [
+        "math.precalc.skill.solve-quadratic",
+        makeUntouchedEntry("math.precalc.skill.solve-quadratic"),
+      ],
     ]);
 
     const result = aggregateComponentMastery(comp, state);
 
     // The untouched node is excluded from contributingNodeIds (defense AD3).
-    expect(result.contributingNodeIds).not.toContain(
-      'math.precalc.skill.solve-quadratic',
-    );
+    expect(result.contributingNodeIds).not.toContain("math.precalc.skill.solve-quadratic");
     expect(result.contributingNodeIds).toHaveLength(2);
     // Mean is over the two evidenced nodes only — the untouched node does
     // NOT drag the aggregate to zero.
@@ -114,14 +118,14 @@ describe('AD3 — state === "untouched" is treated as 0-evidence (no zeroing, no
     expect(result.retention).toBeCloseTo(0.8, 5);
   });
 
-  it('aggregateComponentMastery returns meanMastery=0 when ALL nodes are untouched', () => {
-    const comp = makeComponent('eq-ad3-all-untouched', [
-      'math.im2.skill.solve-quadratic',
-      'math.im3.skill.solve-quadratic',
+  it("aggregateComponentMastery returns meanMastery=0 when ALL nodes are untouched", () => {
+    const comp = makeComponent("eq-ad3-all-untouched", [
+      "math.im2.skill.solve-quadratic",
+      "math.im3.skill.solve-quadratic",
     ]);
     const state = new Map<string, KnowledgeStateEntry>([
-      ['math.im2.skill.solve-quadratic', makeUntouchedEntry('math.im2.skill.solve-quadratic')],
-      ['math.im3.skill.solve-quadratic', makeUntouchedEntry('math.im3.skill.solve-quadratic')],
+      ["math.im2.skill.solve-quadratic", makeUntouchedEntry("math.im2.skill.solve-quadratic")],
+      ["math.im3.skill.solve-quadratic", makeUntouchedEntry("math.im3.skill.solve-quadratic")],
     ]);
 
     const result = aggregateComponentMastery(comp, state);
@@ -129,24 +133,20 @@ describe('AD3 — state === "untouched" is treated as 0-evidence (no zeroing, no
     expect(result.mastery).toBe(0);
     expect(result.retention).toBe(0);
     expect(result.contributingNodeIds).toEqual([]);
-    expect(result.componentId).toBe('eq-ad3-all-untouched');
+    expect(result.componentId).toBe("eq-ad3-all-untouched");
   });
 
-  it('computeTransferCredit rejects credit when ALL contributing nodes are untouched', () => {
-    const comp = makeComponent('eq-ad3-all-untouched', [
-      'math.im2.skill.solve-quadratic',
-      'math.im3.skill.solve-quadratic',
+  it("computeTransferCredit rejects credit when ALL contributing nodes are untouched", () => {
+    const comp = makeComponent("eq-ad3-all-untouched", [
+      "math.im2.skill.solve-quadratic",
+      "math.im3.skill.solve-quadratic",
     ]);
     const state = new Map<string, KnowledgeStateEntry>([
-      ['math.im2.skill.solve-quadratic', makeUntouchedEntry('math.im2.skill.solve-quadratic')],
-      ['math.im3.skill.solve-quadratic', makeUntouchedEntry('math.im3.skill.solve-quadratic')],
+      ["math.im2.skill.solve-quadratic", makeUntouchedEntry("math.im2.skill.solve-quadratic")],
+      ["math.im3.skill.solve-quadratic", makeUntouchedEntry("math.im3.skill.solve-quadratic")],
     ]);
 
-    const result = computeTransferCredit(
-      'math.im3.skill.solve-quadratic',
-      [comp],
-      state,
-    );
+    const result = computeTransferCredit("math.im3.skill.solve-quadratic", [comp], state);
 
     // Mean is 0 → no credit can be applied (the cap is min(0 * 0.8, 0.8) = 0,
     // but the more important check is that `applied === false` for fresh learners).
@@ -154,22 +154,18 @@ describe('AD3 — state === "untouched" is treated as 0-evidence (no zeroing, no
     expect(result.seededMastery).toBe(0);
   });
 
-  it('computeTransferCredit preserves credit when only the SOURCE is untouched (target is fresh)', () => {
-    const comp = makeComponent('eq-ad3-source-untouched', [
-      'math.im2.skill.solve-quadratic',
-      'math.im3.skill.solve-quadratic',
+  it("computeTransferCredit preserves credit when only the SOURCE is untouched (target is fresh)", () => {
+    const comp = makeComponent("eq-ad3-source-untouched", [
+      "math.im2.skill.solve-quadratic",
+      "math.im3.skill.solve-quadratic",
     ]);
     const state = new Map<string, KnowledgeStateEntry>([
       // Source course untouched → no source evidence → no credit.
-      ['math.im2.skill.solve-quadratic', makeUntouchedEntry('math.im2.skill.solve-quadratic')],
+      ["math.im2.skill.solve-quadratic", makeUntouchedEntry("math.im2.skill.solve-quadratic")],
       // Target is empty (not in the map at all) — that's "no evidence", excluded.
     ]);
 
-    const result = computeTransferCredit(
-      'math.im3.skill.solve-quadratic',
-      [comp],
-      state,
-    );
+    const result = computeTransferCredit("math.im3.skill.solve-quadratic", [comp], state);
 
     expect(result.applied).toBe(false);
     expect(result.seededMastery).toBe(0);
@@ -180,8 +176,8 @@ describe('AD3 — state === "untouched" is treated as 0-evidence (no zeroing, no
 // AD5 — Single-node false positive at the schema layer
 // ---------------------------------------------------------------------------
 
-describe('AD5 — transfer-policy schema rejects minNodesForTransfer < 2', () => {
-  it('rejects minNodesForTransfer: 1 at parse time', () => {
+describe("AD5 — transfer-policy schema rejects minNodesForTransfer < 2", () => {
+  it("rejects minNodesForTransfer: 1 at parse time", () => {
     // The schema guards against a single-node component slipping through
     // when the policy is misconfigured. A false positive here would let
     // a single-node (no cross-course evidence) component seed credit.
@@ -194,7 +190,7 @@ describe('AD5 — transfer-policy schema rejects minNodesForTransfer < 2', () =>
     ).toThrow();
   });
 
-  it('rejects minNodesForTransfer: 0 at parse time', () => {
+  it("rejects minNodesForTransfer: 0 at parse time", () => {
     expect(() =>
       transferPolicySchema.parse({
         confidenceDiscount: 0.8,
@@ -204,7 +200,7 @@ describe('AD5 — transfer-policy schema rejects minNodesForTransfer < 2', () =>
     ).toThrow();
   });
 
-  it('rejects non-integer minNodesForTransfer', () => {
+  it("rejects non-integer minNodesForTransfer", () => {
     expect(() =>
       transferPolicySchema.parse({
         confidenceDiscount: 0.8,
@@ -214,7 +210,7 @@ describe('AD5 — transfer-policy schema rejects minNodesForTransfer < 2', () =>
     ).toThrow();
   });
 
-  it('accepts minNodesForTransfer: 2 (the production minimum)', () => {
+  it("accepts minNodesForTransfer: 2 (the production minimum)", () => {
     // Sanity check: the boundary value is accepted — this is the minimum
     // the schema permits.
     const parsed = transferPolicySchema.parse({
@@ -230,8 +226,8 @@ describe('AD5 — transfer-policy schema rejects minNodesForTransfer < 2', () =>
 // AD6 — maxSeededMastery cap is binding even with extreme inputs
 // ---------------------------------------------------------------------------
 
-describe('AD6 — maxSeededMastery cap is binding for the full input range', () => {
-  it('caps seededMastery for componentMastery=1.0 and discount=1.0 when cap < 1.0', () => {
+describe("AD6 — maxSeededMastery cap is binding for the full input range", () => {
+  it("caps seededMastery for componentMastery=1.0 and discount=1.0 when cap < 1.0", () => {
     const policy = {
       ...TRANSFER_POLICY_DEFAULT,
       confidenceDiscount: 1.0,
@@ -241,20 +237,21 @@ describe('AD6 — maxSeededMastery cap is binding for the full input range', () 
     // With the cap: result MUST be exactly 0.5 (cap is binding, not advisory).
     // We compute via the production pipeline so the assertion is on the
     // full transfer-credit computation, not just seedTransferMastery.
-    const comp = makeComponent('eq-ad6-cap-bound', [
-      'math.im2.skill.solve-quadratic',
-      'math.im3.skill.solve-quadratic',
+    const comp = makeComponent("eq-ad6-cap-bound", [
+      "math.im2.skill.solve-quadratic",
+      "math.im3.skill.solve-quadratic",
     ]);
     const state = new Map<string, KnowledgeStateEntry>([
-      ['math.im2.skill.solve-quadratic', makeEvidencedEntry('math.im2.skill.solve-quadratic', 1.0, 1.0)],
-      ['math.im3.skill.solve-quadratic', makeEvidencedEntry('math.im3.skill.solve-quadratic', 1.0, 1.0)],
+      [
+        "math.im2.skill.solve-quadratic",
+        makeEvidencedEntry("math.im2.skill.solve-quadratic", 1.0, 1.0),
+      ],
+      [
+        "math.im3.skill.solve-quadratic",
+        makeEvidencedEntry("math.im3.skill.solve-quadratic", 1.0, 1.0),
+      ],
     ]);
-    const result = computeTransferCredit(
-      'math.im3.skill.solve-quadratic',
-      [comp],
-      state,
-      policy,
-    );
+    const result = computeTransferCredit("math.im3.skill.solve-quadratic", [comp], state, policy);
     expect(result.applied).toBe(true);
     expect(result.seededMastery).toBe(0.5);
     expect(result.seededMastery).toBeLessThan(1.0);

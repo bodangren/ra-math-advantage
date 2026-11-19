@@ -1,6 +1,6 @@
-import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
+import type { GeneratorOutput } from "@math-platform/knowledge-space-practice";
 
-import { mulberry32 } from '../../utils/prng';
+import { mulberry32 } from "../../utils/prng";
 
 export interface Topic12PointwiseLeastRateChoicePoint {
   readonly x: number;
@@ -36,13 +36,15 @@ export interface Topic12PointwiseLeastRateChoiceVariant {
 }
 
 export const TOPIC12_POINTWISE_LEAST_RATE_CHOICE_NODE_ID =
-  'math.precalc.skill.1.2.identify-least-pointwise-rate-of-change-from-graphs';
+  "math.precalc.skill.1.2.identify-least-pointwise-rate-of-change-from-graphs";
 
-const SOURCE_PROMPT = 'The figure shows the graph of a function g in the xy-plane with four labeled points. Of the following points, at which is the rate of change of g the least?';
-const GENERATED_PROMPT = 'This hypothetical graph shows a function g in the xy-plane with four labeled points. At which labeled point is the rate of change least?';
+const SOURCE_PROMPT =
+  "The figure shows the graph of a function g in the xy-plane with four labeled points. Of the following points, at which is the rate of change of g the least?";
+const GENERATED_PROMPT =
+  "This hypothetical graph shows a function g in the xy-plane with four labeled points. At which labeled point is the rate of change least?";
 const DOMAIN: readonly [number, number] = [-5, 5];
 const RANGE: readonly [number, number] = [-4, 4];
-const LABELS = ['A', 'B', 'C', 'D'] as const;
+const LABELS = ["A", "B", "C", "D"] as const;
 const LABELED_POINT_INDICES = [2, 4, 8, 11] as const;
 const SOURCE_GRAPH_POINTS: readonly Topic12PointwiseLeastRateChoicePoint[] = [
   { x: -5, y: -1 },
@@ -101,15 +103,16 @@ function findLeastOptionId(
   options: readonly Topic12PointwiseLeastRateChoiceOption[],
 ): string {
   const slopes = options.map((option) => centeredSlope(points, option.pointIndex));
-  const leastIndex = slopes.reduce((bestIndex, slope, index) => (
-    slope < slopes[bestIndex]! ? index : bestIndex
-  ), 0);
+  const leastIndex = slopes.reduce(
+    (bestIndex, slope, index) => (slope < slopes[bestIndex]! ? index : bestIndex),
+    0,
+  );
   return options[leastIndex]!.id;
 }
 
 function buildSolutionSteps(correctOptionId: string): readonly string[] {
   return [
-    'Compare the local direction and steepness at points A, B, C, and D.',
+    "Compare the local direction and steepness at points A, B, C, and D.",
     `Point ${correctOptionId} has the steepest downward local behavior, so its rate of change is least.`,
     `Therefore, option ${correctOptionId} is correct.`,
   ];
@@ -133,14 +136,19 @@ function permutePointIndices(random: () => number): readonly number[] {
   const pointIndices = [...LABELED_POINT_INDICES];
   for (let index = pointIndices.length - 1; index > 0; index -= 1) {
     const swapIndex = Math.floor(random() * (index + 1));
-    [pointIndices[index], pointIndices[swapIndex]] = [pointIndices[swapIndex]!, pointIndices[index]!];
+    [pointIndices[index], pointIndices[swapIndex]] = [
+      pointIndices[swapIndex]!,
+      pointIndices[index]!,
+    ];
   }
   return pointIndices;
 }
 
-export function generateTopic12PointwiseLeastRateChoice(seed: number): Topic12PointwiseLeastRateChoiceVariant {
+export function generateTopic12PointwiseLeastRateChoice(
+  seed: number,
+): Topic12PointwiseLeastRateChoiceVariant {
   if (!Number.isInteger(seed) || seed < 0) {
-    throw new RangeError('seed must be a non-negative integer');
+    throw new RangeError("seed must be a non-negative integer");
   }
 
   if (seed === 0) {
@@ -151,8 +159,8 @@ export function generateTopic12PointwiseLeastRateChoice(seed: number): Topic12Po
       prompt: SOURCE_PROMPT,
       domain: DOMAIN,
       range: RANGE,
-      xLabel: 'x',
-      yLabel: 'y',
+      xLabel: "x",
+      yLabel: "y",
       graphPoints: SOURCE_GRAPH_POINTS,
       labeledPoints: buildLabeledPoints(SOURCE_GRAPH_POINTS, LABELED_POINT_INDICES),
       options,
@@ -172,8 +180,8 @@ export function generateTopic12PointwiseLeastRateChoice(seed: number): Topic12Po
     prompt: GENERATED_PROMPT,
     domain: DOMAIN,
     range: RANGE,
-    xLabel: 'x',
-    yLabel: 'y',
+    xLabel: "x",
+    yLabel: "y",
     graphPoints,
     labeledPoints: buildLabeledPoints(graphPoints, pointIndices),
     options,
@@ -204,7 +212,7 @@ export function generateTopic12PointwiseLeastRateChoiceOutput(seed: number): Gen
     gradingMetadata: {
       partAnswers: expectedAnswer,
       partMaxScores: { selectedOptionId: 1 },
-      partGradingRules: { selectedOptionId: 'exact_match' },
+      partGradingRules: { selectedOptionId: "exact_match" },
     },
   };
 }

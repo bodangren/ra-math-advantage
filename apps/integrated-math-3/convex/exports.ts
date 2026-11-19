@@ -44,7 +44,9 @@ export interface SubmissionExportRow {
  * @param {"createdAt" | "updatedAt" | "submittedAt"} dateField - Which date field to filter on
  * @returns {T[]} The filtered array
  */
-function filterByDateRange<T extends { createdAt?: number; updatedAt?: number; submittedAt?: number }>(
+function filterByDateRange<
+  T extends { createdAt?: number; updatedAt?: number; submittedAt?: number },
+>(
   rows: T[],
   startDate?: number,
   endDate?: number,
@@ -93,8 +95,18 @@ export async function getStudentExportHandler(
       ctx.db.query("phase_versions").collect(),
     ]);
 
-  const filteredProgress = filterByDateRange(progressRows, args.startDate, args.endDate, "updatedAt");
-  const filteredSubmissions = filterByDateRange(submissions, args.startDate, args.endDate, "submittedAt");
+  const filteredProgress = filterByDateRange(
+    progressRows,
+    args.startDate,
+    args.endDate,
+    "updatedAt",
+  );
+  const filteredSubmissions = filterByDateRange(
+    submissions,
+    args.startDate,
+    args.endDate,
+    "submittedAt",
+  );
 
   const srsSummary = { new: 0, learning: 0, review: 0, relearned: 0 };
   for (const card of srsCards) {
@@ -328,7 +340,12 @@ export async function getClassExportHandler(
       }
     }
 
-    const submissions = filterByDateRange(submissionArrays[i], args.startDate, args.endDate, "submittedAt");
+    const submissions = filterByDateRange(
+      submissionArrays[i],
+      args.startDate,
+      args.endDate,
+      "submittedAt",
+    );
     let totalScore = 0;
     let scoreCount = 0;
     for (const sub of submissions) {

@@ -9,10 +9,9 @@ describe("public curriculum", () => {
     expect(screen.getByText(/96 lessons/)).toBeInTheDocument();
     for (const lesson of lessons)
       expect(
-        screen.getByText(
-          `${lesson.unitNumber}.${lesson.orderIndex} ${lesson.title}`,
-          { exact: true },
-        ),
+        screen.getByText(`${lesson.unitNumber}.${lesson.orderIndex} ${lesson.title}`, {
+          exact: true,
+        }),
       ).toBeInTheDocument();
   });
 });

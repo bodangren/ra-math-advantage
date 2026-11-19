@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useExportData } from "@/hooks/useStudy";
 
-
 /**
  * Triggers a file download by creating a temporary anchor element.
  *
@@ -27,7 +26,6 @@ function downloadFile(data: string, filename: string, mimeType: string) {
   URL.revokeObjectURL(url);
 }
 
-
 /**
  * Converts headers and rows into a CSV string with proper escaping.
  *
@@ -44,9 +42,11 @@ function toCSV(headers: string[], rows: (string | number | null | undefined)[][]
     }
     return str;
   };
-  return [headers.map(escapeCell).join(","), ...rows.map(row => row.map(escapeCell).join(","))].join("\n");
+  return [
+    headers.map(escapeCell).join(","),
+    ...rows.map((row) => row.map(escapeCell).join(",")),
+  ].join("\n");
 }
-
 
 /**
  * Renders a study data export page with JSON and CSV download options.
@@ -56,7 +56,6 @@ function toCSV(headers: string[], rows: (string | number | null | undefined)[][]
 export function ExportPage() {
   const exportData = useExportData();
   const [isDownloading, setIsDownloading] = useState<string | null>(null);
-
 
   /**
    * Downloads the export data as a formatted JSON file.
@@ -72,7 +71,6 @@ export function ExportPage() {
     }
   };
 
-
   /**
    * Downloads the export data as a CSV file with term mastery and session sheets.
    */
@@ -81,8 +79,16 @@ export function ExportPage() {
     setIsDownloading("csv");
     try {
       const termMasteryCSV = toCSV(
-        ["termSlug", "masteryScore", "proficiencyBand", "seenCount", "correctCount", "incorrectCount", "lastReviewedAt"],
-        exportData.termMastery.map(t => [
+        [
+          "termSlug",
+          "masteryScore",
+          "proficiencyBand",
+          "seenCount",
+          "correctCount",
+          "incorrectCount",
+          "lastReviewedAt",
+        ],
+        exportData.termMastery.map((t) => [
           t.termSlug,
           t.masteryScore,
           t.proficiencyBand,
@@ -90,11 +96,19 @@ export function ExportPage() {
           t.correctCount,
           t.incorrectCount,
           t.lastReviewedAt,
-        ])
+        ]),
       );
       const studySessionsCSV = toCSV(
-        ["activityType", "startedAt", "endedAt", "itemsSeen", "itemsCorrect", "itemsIncorrect", "durationSeconds"],
-        exportData.studySessions.map(s => [
+        [
+          "activityType",
+          "startedAt",
+          "endedAt",
+          "itemsSeen",
+          "itemsCorrect",
+          "itemsIncorrect",
+          "durationSeconds",
+        ],
+        exportData.studySessions.map((s) => [
           s.activityType,
           s.startedAt,
           s.endedAt,
@@ -102,7 +116,7 @@ export function ExportPage() {
           s.results?.itemsCorrect,
           s.results?.itemsIncorrect,
           s.results?.durationSeconds,
-        ])
+        ]),
       );
       const combinedCSV = `=== Term Mastery ===\n${termMasteryCSV}\n\n=== Study Sessions ===\n${studySessionsCSV}`;
       const filename = `bus-math-study-data-${new Date().toISOString().split("T")[0]}.csv`;
@@ -143,8 +157,8 @@ export function ExportPage() {
                   Full export including preferences, term mastery, due reviews, and study sessions.
                 </CardDescription>
                 <CardContent>
-                  <Button 
-                    onClick={handleDownloadJSON} 
+                  <Button
+                    onClick={handleDownloadJSON}
                     disabled={!exportData || isDownloading === "json"}
                     className="w-full"
                   >
@@ -163,8 +177,8 @@ export function ExportPage() {
                   Tabular export of term mastery and study sessions for spreadsheet analysis.
                 </CardDescription>
                 <CardContent>
-                  <Button 
-                    onClick={handleDownloadCSV} 
+                  <Button
+                    onClick={handleDownloadCSV}
                     disabled={!exportData || isDownloading === "csv"}
                     className="w-full"
                   >

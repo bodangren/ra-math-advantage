@@ -1,29 +1,31 @@
-'use client'
+"use client";
 
-import { useState, useCallback, useRef } from 'react'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { CheckCircle2, PieChart, DollarSign, AlertCircle } from 'lucide-react'
-import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract'
-import { buildSimulationSubmissionEnvelope, createSimulationPart } from '@/lib/practice/simulation-submission'
+import { useState, useCallback, useRef } from "react";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { CheckCircle2, PieChart, DollarSign, AlertCircle } from "lucide-react";
+import type { PracticeSubmissionEnvelope } from "@/lib/practice/contract";
+import {
+  buildSimulationSubmissionEnvelope,
+  createSimulationPart,
+} from "@/lib/practice/simulation-submission";
 
-const defaultCategories = ['Marketing', 'Salaries', 'Rent', 'Supplies', 'Utilities', 'Other']
+const defaultCategories = ["Marketing", "Salaries", "Rent", "Supplies", "Utilities", "Other"];
 
 export interface BudgetWorksheetProps {
   activity: {
-    id?: string
+    id?: string;
     props?: {
-      categories?: string[]
-      totalBudget?: number
-      constraints?: Record<string, number>
-    }
-  }
-  onSubmit?: (submission: PracticeSubmissionEnvelope) => void
-  onComplete?: () => void
+      categories?: string[];
+      totalBudget?: number;
+      constraints?: Record<string, number>;
+    };
+  };
+  onSubmit?: (submission: PracticeSubmissionEnvelope) => void;
+  onComplete?: () => void;
 }
-
 
 /**
  * Renders a budget worksheet where users allocate a total budget across
@@ -34,25 +36,21 @@ export interface BudgetWorksheetProps {
  * @param onComplete - Callback fired when the budget is finalized
  */
 export function BudgetWorksheet({ activity, onSubmit, onComplete }: BudgetWorksheetProps) {
-  const {
-    categories = defaultCategories,
-    totalBudget = 100000,
-  } = activity.props || {}
+  const { categories = defaultCategories, totalBudget = 100000 } = activity.props || {};
 
   const [categoryBudgets, setCategoryBudgets] = useState<Record<string, string>>(
-    Object.fromEntries(categories.map(cat => [cat, '0']))
-  )
-  const [completed, setCompleted] = useState(false)
-  const submittedRef = useRef(false)
+    Object.fromEntries(categories.map((cat) => [cat, "0"])),
+  );
+  const [completed, setCompleted] = useState(false);
+  const submittedRef = useRef(false);
 
   const numCategoryBudgets = Object.fromEntries(
-    Object.entries(categoryBudgets).map(([cat, val]) => [cat, parseFloat(val) || 0])
-  )
-  const totalAllocated = Object.values(numCategoryBudgets).reduce((sum, val) => sum + val, 0)
-  const remaining = totalBudget - totalAllocated
-  const isOverBudget = remaining < 0
-  const isUnderBudget = remaining > 0
-
+    Object.entries(categoryBudgets).map(([cat, val]) => [cat, parseFloat(val) || 0]),
+  );
+  const totalAllocated = Object.values(numCategoryBudgets).reduce((sum, val) => sum + val, 0);
+  const remaining = totalBudget - totalAllocated;
+  const isOverBudget = remaining < 0;
+  const isUnderBudget = remaining > 0;
 
   /**
    * Updates the budget allocation for a specific category.
@@ -61,23 +59,22 @@ export function BudgetWorksheet({ activity, onSubmit, onComplete }: BudgetWorksh
    * @param value - The new value as a string from the input field
    */
   const handleCategoryChange = useCallback((category: string, value: string) => {
-    setCategoryBudgets(prev => ({ ...prev, [category]: value }))
-  }, [])
-
+    setCategoryBudgets((prev) => ({ ...prev, [category]: value }));
+  }, []);
 
   /**
    * Finalizes the budget, marks the activity as completed, and submits
    * the result envelope.
    */
   const handleComplete = useCallback(() => {
-    if (submittedRef.current) return
-    submittedRef.current = true
-    setCompleted(true)
+    if (submittedRef.current) return;
+    submittedRef.current = true;
+    setCompleted(true);
     try {
       onSubmit?.(
         buildSimulationSubmissionEnvelope({
-          activityId: activity.id ?? 'budget-worksheet',
-          mode: 'independent_practice',
+          activityId: activity.id ?? "budget-worksheet",
+          mode: "independent_practice",
           answers: {
             totalBudget,
             categoryBudgets: numCategoryBudgets,
@@ -86,25 +83,35 @@ export function BudgetWorksheet({ activity, onSubmit, onComplete }: BudgetWorksh
             isOverBudget,
           },
           parts: [
-            createSimulationPart('total-budget', totalBudget),
-            createSimulationPart('total-allocated', totalAllocated),
-            createSimulationPart('remaining', remaining),
+            createSimulationPart("total-budget", totalBudget),
+            createSimulationPart("total-allocated", totalAllocated),
+            createSimulationPart("remaining", remaining),
             ...Object.entries(numCategoryBudgets).map(([cat, val]) =>
-              createSimulationPart(`budget-${cat.toLowerCase().replace(/\s+/g, '-')}`, val)
+              createSimulationPart(`budget-${cat.toLowerCase().replace(/\s+/g, "-")}`, val),
             ),
           ],
           artifact: {
             categories,
           },
         }),
-      )
-      onComplete?.()
+      );
+      onComplete?.();
     } catch (err) {
-      console.error('BudgetWorksheet submission failed:', err)
-      submittedRef.current = false
-      setCompleted(false)
+      console.error("BudgetWorksheet submission failed:", err);
+      submittedRef.current = false;
+      setCompleted(false);
     }
-  }, [totalBudget, numCategoryBudgets, totalAllocated, remaining, isOverBudget, categories, onSubmit, onComplete, activity.id])
+  }, [
+    totalBudget,
+    numCategoryBudgets,
+    totalAllocated,
+    remaining,
+    isOverBudget,
+    categories,
+    onSubmit,
+    onComplete,
+    activity.id,
+  ]);
 
   return (
     <div className="space-y-6">
@@ -127,10 +134,20 @@ export function BudgetWorksheet({ activity, onSubmit, onComplete }: BudgetWorksh
               </div>
               <div className="text-right">
                 <p className="text-sm text-gray-500">Remaining</p>
-                <p className={`text-2xl font-bold flex items-center gap-2 justify-end ${
-                  isOverBudget ? 'text-red-700' : isUnderBudget ? 'text-emerald-700' : 'text-gray-700'
-                }`}>
-                  {isOverBudget ? <AlertCircle className="h-5 w-5" /> : <DollarSign className="h-5 w-5" />}
+                <p
+                  className={`text-2xl font-bold flex items-center gap-2 justify-end ${
+                    isOverBudget
+                      ? "text-red-700"
+                      : isUnderBudget
+                        ? "text-emerald-700"
+                        : "text-gray-700"
+                  }`}
+                >
+                  {isOverBudget ? (
+                    <AlertCircle className="h-5 w-5" />
+                  ) : (
+                    <DollarSign className="h-5 w-5" />
+                  )}
                   ${remaining.toLocaleString(undefined, { maximumFractionDigits: 2 })}
                 </p>
               </div>
@@ -165,9 +182,7 @@ export function BudgetWorksheet({ activity, onSubmit, onComplete }: BudgetWorksh
           {completed && (
             <div className="mt-4 bg-green-50 p-3 rounded border border-green-200 flex items-center gap-2">
               <CheckCircle2 className="h-5 w-5 text-green-600" />
-              <p className="text-sm text-green-800 font-medium">
-                Budget complete!
-              </p>
+              <p className="text-sm text-green-800 font-medium">Budget complete!</p>
             </div>
           )}
         </CardContent>
@@ -185,13 +200,13 @@ export function BudgetWorksheet({ activity, onSubmit, onComplete }: BudgetWorksh
           <h4 className="font-semibold text-slate-800 mb-2">Status</h4>
           <p className="text-sm text-slate-700">
             {isOverBudget
-              ? 'You are over budget! Consider reducing allocations in some categories.'
+              ? "You are over budget! Consider reducing allocations in some categories."
               : isUnderBudget
-              ? 'You have money left to allocate. Consider adding to underfunded categories or building a reserve.'
-              : 'Your budget is perfectly balanced!'}
+                ? "You have money left to allocate. Consider adding to underfunded categories or building a reserve."
+                : "Your budget is perfectly balanced!"}
           </p>
         </div>
       </div>
     </div>
-  )
+  );
 }

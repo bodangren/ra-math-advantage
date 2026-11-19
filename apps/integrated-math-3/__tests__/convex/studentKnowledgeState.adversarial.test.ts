@@ -12,35 +12,33 @@
  *   - Cards from other students (data isolation)
  */
 
-import { describe, it, expect, vi } from 'vitest';
-import type { Id } from '@/convex/_generated/dataModel';
+import { describe, it, expect, vi } from "vitest";
+import type { Id } from "@/convex/_generated/dataModel";
 
-import { getStudentKnowledgeStateHandler } from '@/convex/student/knowledge_state';
-import { loadFullCurriculumGraph } from '@/lib/curriculum/skill-graph-loader';
+import { getStudentKnowledgeStateHandler } from "@/convex/student/knowledge_state";
+import { loadFullCurriculumGraph } from "@/lib/curriculum/skill-graph-loader";
 
-import {
-  studentVisualizationV1Schema,
-} from '@math-platform/knowledge-space-practice';
+import { studentVisualizationV1Schema } from "@math-platform/knowledge-space-practice";
 
 import {
   DefaultSrsToKstBridge,
   buildKstState,
   type SrsCardState,
-} from '@math-platform/knowledge-space-core';
+} from "@math-platform/knowledge-space-core";
 
 // ---------------------------------------------------------------------------
 // Mock ctx with query-call counting for N+1 detection
 // ---------------------------------------------------------------------------
 
 interface SrsCardRow {
-  _id: Id<'srs_cards'>;
+  _id: Id<"srs_cards">;
   _creationTime: number;
-  studentId: Id<'profiles'>;
+  studentId: Id<"profiles">;
   objectiveId: string;
   variantKey: string;
   stability: number;
   difficulty: number;
-  state: 'new' | 'learning' | 'review' | 'relearning';
+  state: "new" | "learning" | "review" | "relearning";
   dueDate: string;
   elapsedDays: number;
   scheduledDays: number;
@@ -80,10 +78,10 @@ function makeCountingMockCtx(cards: SrsCardRow[] = []) {
 // Tests
 // ---------------------------------------------------------------------------
 
-const STUDENT_ID = 'profiles_test_adv' as Id<'profiles'>;
+const STUDENT_ID = "profiles_test_adv" as Id<"profiles">;
 
-describe('Phase 4 — adversarial: N+1 detection', () => {
-  it('makes exactly 6 db.query calls (one per table, batched)', async () => {
+describe("Phase 4 — adversarial: N+1 detection", () => {
+  it("makes exactly 6 db.query calls (one per table, batched)", async () => {
     const ctx = makeCountingMockCtx();
     await getStudentKnowledgeStateHandler(
       ctx as unknown as Parameters<typeof getStudentKnowledgeStateHandler>[0],
@@ -94,19 +92,19 @@ describe('Phase 4 — adversarial: N+1 detection', () => {
     expect(ctx.getQueryCallCount()).toBe(6);
   });
 
-  it('db.query call count does not grow with number of cards (no per-card query)', async () => {
+  it("db.query call count does not grow with number of cards (no per-card query)", async () => {
     const cards: SrsCardRow[] = [];
     for (let i = 0; i < 10; i++) {
       cards.push({
-        _id: `srs_cards_obj_${i}` as Id<'srs_cards'>,
+        _id: `srs_cards_obj_${i}` as Id<"srs_cards">,
         _creationTime: 1_780_000_000_000,
         studentId: STUDENT_ID,
         objectiveId: `math.im3.skill.test.${i}`,
-        variantKey: 'test',
+        variantKey: "test",
         stability: 10,
         difficulty: 0.3,
-        state: 'review',
-        dueDate: '2026-07-05T00:00:00.000Z',
+        state: "review",
+        dueDate: "2026-07-05T00:00:00.000Z",
         elapsedDays: 0,
         scheduledDays: 1,
         reps: 5,
@@ -127,22 +125,22 @@ describe('Phase 4 — adversarial: N+1 detection', () => {
   });
 });
 
-describe('Phase 4 — adversarial: empty/malformed graph', () => {
-  it('buildKstState with empty graph returns empty state and fringe', () => {
+describe("Phase 4 — adversarial: empty/malformed graph", () => {
+  it("buildKstState with empty graph returns empty state and fringe", () => {
     const result = buildKstState([], [], { nodes: [], edges: [] }, Date.now());
     expect(result.state.size).toBe(0);
     expect(result.fringe.length).toBe(0);
   });
 
-  it('buildKstState with graph having only nodes (no edges) works', () => {
+  it("buildKstState with graph having only nodes (no edges) works", () => {
     const graph = {
       nodes: [
         {
-          id: 'test.skill.a',
-          kind: 'skill' as const,
-          title: 'Skill A',
-          domain: 'test',
-          reviewStatus: 'draft' as const,
+          id: "test.skill.a",
+          kind: "skill" as const,
+          title: "Skill A",
+          domain: "test",
+          reviewStatus: "draft" as const,
           metadata: {},
         },
       ],
@@ -151,10 +149,10 @@ describe('Phase 4 — adversarial: empty/malformed graph', () => {
 
     const cards: SrsCardState[] = [
       {
-        cardId: 'card-1',
-        objectiveId: 'test.skill.a',
+        cardId: "card-1",
+        objectiveId: "test.skill.a",
         stability: 10,
-        state: 'review',
+        state: "review",
         lastReviewedAt: Date.now() - 1000,
       },
     ];
@@ -165,24 +163,26 @@ describe('Phase 4 — adversarial: empty/malformed graph', () => {
     expect(result.fringe.length).toBeGreaterThanOrEqual(0);
   });
 
-  it('handler works with cards referencing non-existent node IDs', async () => {
-    const cards: SrsCardRow[] = [{
-      _id: 'srs_cards_phantom' as Id<'srs_cards'>,
-      _creationTime: 1_780_000_000_000,
-      studentId: STUDENT_ID,
-      objectiveId: 'math.im3.skill.does.not.exist',
-      variantKey: 'phantom',
-      stability: 10,
-      difficulty: 0.3,
-      state: 'review',
-      dueDate: '2026-07-05T00:00:00.000Z',
-      elapsedDays: 0,
-      scheduledDays: 1,
-      reps: 5,
-      lapses: 0,
-      createdAt: 1_780_000_000_000,
-      updatedAt: 1_780_000_000_000,
-    }];
+  it("handler works with cards referencing non-existent node IDs", async () => {
+    const cards: SrsCardRow[] = [
+      {
+        _id: "srs_cards_phantom" as Id<"srs_cards">,
+        _creationTime: 1_780_000_000_000,
+        studentId: STUDENT_ID,
+        objectiveId: "math.im3.skill.does.not.exist",
+        variantKey: "phantom",
+        stability: 10,
+        difficulty: 0.3,
+        state: "review",
+        dueDate: "2026-07-05T00:00:00.000Z",
+        elapsedDays: 0,
+        scheduledDays: 1,
+        reps: 5,
+        lapses: 0,
+        createdAt: 1_780_000_000_000,
+        updatedAt: 1_780_000_000_000,
+      },
+    ];
 
     const ctx = makeCountingMockCtx(cards);
     const result = await getStudentKnowledgeStateHandler(
@@ -195,25 +195,27 @@ describe('Phase 4 — adversarial: empty/malformed graph', () => {
   });
 });
 
-describe('Phase 4 — adversarial: data integrity', () => {
-  it('cards with missing objectiveId are handled gracefully', async () => {
-    const cards: SrsCardRow[] = [{
-      _id: 'srs_cards_no_obj' as Id<'srs_cards'>,
-      _creationTime: 1_780_000_000_000,
-      studentId: STUDENT_ID,
-      objectiveId: '',  // empty objective ID
-      variantKey: 'test',
-      stability: 10,
-      difficulty: 0.3,
-      state: 'review',
-      dueDate: '2026-07-05T00:00:00.000Z',
-      elapsedDays: 0,
-      scheduledDays: 1,
-      reps: 5,
-      lapses: 0,
-      createdAt: 1_780_000_000_000,
-      updatedAt: 1_780_000_000_000,
-    }];
+describe("Phase 4 — adversarial: data integrity", () => {
+  it("cards with missing objectiveId are handled gracefully", async () => {
+    const cards: SrsCardRow[] = [
+      {
+        _id: "srs_cards_no_obj" as Id<"srs_cards">,
+        _creationTime: 1_780_000_000_000,
+        studentId: STUDENT_ID,
+        objectiveId: "", // empty objective ID
+        variantKey: "test",
+        stability: 10,
+        difficulty: 0.3,
+        state: "review",
+        dueDate: "2026-07-05T00:00:00.000Z",
+        elapsedDays: 0,
+        scheduledDays: 1,
+        reps: 5,
+        lapses: 0,
+        createdAt: 1_780_000_000_000,
+        updatedAt: 1_780_000_000_000,
+      },
+    ];
 
     const ctx = makeCountingMockCtx(cards);
     const result = await getStudentKnowledgeStateHandler(
@@ -225,13 +227,13 @@ describe('Phase 4 — adversarial: data integrity', () => {
     expect(parseResult.success).toBe(true);
   });
 
-  it('very low stability does not cause NaN or negative values', () => {
+  it("very low stability does not cause NaN or negative values", () => {
     const cards: SrsCardState[] = [
       {
-        cardId: 'card-low',
-        objectiveId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        cardId: "card-low",
+        objectiveId: "math.im3.skill.1.1.graph-quadratic-functions",
         stability: 0.001,
-        state: 'learning',
+        state: "learning",
         lastReviewedAt: Date.now() - 30 * 24 * 60 * 60 * 1000,
       },
     ];
@@ -245,7 +247,7 @@ describe('Phase 4 — adversarial: data integrity', () => {
       now: Date.now(),
     });
 
-    const entry = state.get('math.im3.skill.1.1.graph-quadratic-functions');
+    const entry = state.get("math.im3.skill.1.1.graph-quadratic-functions");
     expect(entry).toBeDefined();
     if (entry) {
       expect(Number.isFinite(entry.mastery)).toBe(true);
@@ -255,13 +257,13 @@ describe('Phase 4 — adversarial: data integrity', () => {
     }
   });
 
-  it('negative stability is clamped to zero by stabilityToRetention', () => {
+  it("negative stability is clamped to zero by stabilityToRetention", () => {
     const cards: SrsCardState[] = [
       {
-        cardId: 'card-neg',
-        objectiveId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        cardId: "card-neg",
+        objectiveId: "math.im3.skill.1.1.graph-quadratic-functions",
         stability: -5,
-        state: 'review',
+        state: "review",
         lastReviewedAt: Date.now() - 1000,
       },
     ];
@@ -275,7 +277,7 @@ describe('Phase 4 — adversarial: data integrity', () => {
       now: Date.now(),
     });
 
-    const entry = state.get('math.im3.skill.1.1.graph-quadratic-functions');
+    const entry = state.get("math.im3.skill.1.1.graph-quadratic-functions");
     expect(entry).toBeDefined();
     if (entry) {
       expect(entry.retention).toBe(0); // stability ≤ 0 → retention = 0
@@ -283,20 +285,20 @@ describe('Phase 4 — adversarial: data integrity', () => {
   });
 });
 
-describe('Phase 4 — adversarial: performance sanity', () => {
-  it('buildKstState on full 574-node graph completes in reasonable time (< 5s)', () => {
+describe("Phase 4 — adversarial: performance sanity", () => {
+  it("buildKstState on full 574-node graph completes in reasonable time (< 5s)", () => {
     const start = performance.now();
     const graph = loadFullCurriculumGraph();
 
     const cards: SrsCardState[] = [];
     for (let i = 0; i < 50; i++) {
-      const skillNode = graph.nodes.find((n) => n.kind === 'skill' && n.id.includes(`.${i}.`));
+      const skillNode = graph.nodes.find((n) => n.kind === "skill" && n.id.includes(`.${i}.`));
       if (skillNode) {
         cards.push({
           cardId: `card-${i}`,
           objectiveId: skillNode.id,
           stability: 10,
-          state: i % 2 === 0 ? 'review' : 'learning',
+          state: i % 2 === 0 ? "review" : "learning",
           lastReviewedAt: Date.now() - i * 24 * 60 * 60 * 1000,
         });
       }
@@ -310,8 +312,8 @@ describe('Phase 4 — adversarial: performance sanity', () => {
   });
 });
 
-describe('Phase 5 — adversarial: graph-loader determinism', () => {
-  it('loading the graph twice produces identical output', () => {
+describe("Phase 5 — adversarial: graph-loader determinism", () => {
+  it("loading the graph twice produces identical output", () => {
     const graph1 = loadFullCurriculumGraph();
     const graph2 = loadFullCurriculumGraph();
 
@@ -335,19 +337,19 @@ describe('Phase 5 — adversarial: graph-loader determinism', () => {
   });
 });
 
-describe('Phase 4 — adversarial: data isolation', () => {
-  it('cards from different students in same org do not affect state', async () => {
+describe("Phase 4 — adversarial: data isolation", () => {
+  it("cards from different students in same org do not affect state", async () => {
     const otherStudentCards: SrsCardRow[] = [
       {
-        _id: 'srs_cards_other' as Id<'srs_cards'>,
+        _id: "srs_cards_other" as Id<"srs_cards">,
         _creationTime: 1_780_000_000_000,
-        studentId: 'profiles_other' as Id<'profiles'>,
-        objectiveId: 'math.im3.skill.1.1.graph-quadratic-functions',
-        variantKey: 'graphing',
+        studentId: "profiles_other" as Id<"profiles">,
+        objectiveId: "math.im3.skill.1.1.graph-quadratic-functions",
+        variantKey: "graphing",
         stability: 15,
         difficulty: 0.3,
-        state: 'review',
-        dueDate: '2026-07-05T00:00:00.000Z',
+        state: "review",
+        dueDate: "2026-07-05T00:00:00.000Z",
         elapsedDays: 0,
         scheduledDays: 1,
         reps: 10,

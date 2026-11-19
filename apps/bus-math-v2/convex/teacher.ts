@@ -4,7 +4,10 @@ import { v } from "convex/values";
 import { buildDeterministicSummary } from "../lib/practice/error-analysis";
 import { assembleCourseOverviewRows } from "../lib/teacher/course-overview";
 import { assembleGradebookRows } from "../lib/teacher/gradebook";
-import { assembleCompetencyHeatmapRows, assembleStudentCompetencyDetail } from "../lib/teacher/competency-heatmap";
+import {
+  assembleCompetencyHeatmapRows,
+  assembleStudentCompetencyDetail,
+} from "../lib/teacher/competency-heatmap";
 import {
   buildLatestPublishedLessonVersionMap,
   buildPublishedPhaseIdSet,
@@ -14,11 +17,20 @@ import {
 } from "../lib/progress/published-curriculum";
 
 /** Read the activity links from the published phase, including incomplete work. */
-async function listPhaseActivityIds(ctx: QueryCtx, phaseId: Id<'phase_versions'>): Promise<Id<'activities'>[]> {
-  const sections = await ctx.db.query('phase_sections')
-    .withIndex('by_phase_version', q => q.eq('phaseVersionId', phaseId)).collect();
-  return sections.filter(section => section.sectionType === 'activity' && typeof section.content.activityId === 'string')
-    .map(section => section.content.activityId as Id<'activities'>);
+async function listPhaseActivityIds(
+  ctx: QueryCtx,
+  phaseId: Id<"phase_versions">,
+): Promise<Id<"activities">[]> {
+  const sections = await ctx.db
+    .query("phase_sections")
+    .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phaseId))
+    .collect();
+  return sections
+    .filter(
+      (section) =>
+        section.sectionType === "activity" && typeof section.content.activityId === "string",
+    )
+    .map((section) => section.content.activityId as Id<"activities">);
 }
 
 interface TeacherProgressSnapshot {
@@ -43,8 +55,6 @@ interface TeacherStudentDetailUnitRow {
   }>;
 }
 
-
-
 interface PracticeSubmissionEvidence {
   contractVersion?: string;
   activityId?: string;
@@ -62,7 +72,7 @@ interface PracticeSubmissionEvidence {
 }
 
 interface SubmissionEvidence {
-  kind: 'spreadsheet' | 'practice';
+  kind: "spreadsheet" | "practice";
   submissionId?: string;
   stableActivityId?: string;
   teacherVerified?: boolean;
@@ -79,12 +89,12 @@ interface SubmissionEvidence {
 }
 
 const DEFAULT_PHASE_NAMES: Record<number, string> = {
-  1: 'Hook',
-  2: 'Introduction',
-  3: 'Guided Practice',
-  4: 'Independent Practice',
-  5: 'Assessment',
-  6: 'Closing',
+  1: "Hook",
+  2: "Introduction",
+  3: "Guided Practice",
+  4: "Independent Practice",
+  5: "Assessment",
+  6: "Closing",
 };
 
 /**
@@ -126,18 +136,13 @@ async function getAuthorizedTeacher(
  * @param organizationId - The organization to query.
  * @returns A sorted array of student profile documents.
  */
-async function listOrganizationStudents(
-  ctx: QueryCtx,
-  organizationId: Id<"organizations">,
-) {
+async function listOrganizationStudents(ctx: QueryCtx, organizationId: Id<"organizations">) {
   const allProfiles = await ctx.db
     .query("profiles")
     .withIndex("by_organization", (q) => q.eq("organizationId", organizationId))
     .collect();
 
-  return sortStudentsByName(
-    allProfiles.filter((profile) => profile.role === "student"),
-  );
+  return sortStudentsByName(allProfiles.filter((profile) => profile.role === "student"));
 }
 
 /**
@@ -146,10 +151,7 @@ async function listOrganizationStudents(
  * @param organizationId - The organization to look up.
  * @returns The organization name or "Your organization".
  */
-async function getOrganizationName(
-  ctx: QueryCtx,
-  organizationId: Id<"organizations">,
-) {
+async function getOrganizationName(ctx: QueryCtx, organizationId: Id<"organizations">) {
   const organization = await ctx.db.get(organizationId);
   return organization?.name ?? "Your organization";
 }
@@ -160,14 +162,9 @@ async function getOrganizationName(
  * @param lessonIds - Optional list of lesson IDs to filter.
  * @returns An array of the latest published lesson version documents.
  */
-async function listLatestPublishedLessonVersions(
-  ctx: QueryCtx,
-  lessonIds?: string[],
-) {
+async function listLatestPublishedLessonVersions(ctx: QueryCtx, lessonIds?: string[]) {
   const lessonVersions = await ctx.db.query("lesson_versions").collect();
-  return [
-    ...buildLatestPublishedLessonVersionMap(lessonVersions, lessonIds).values(),
-  ];
+  return [...buildLatestPublishedLessonVersionMap(lessonVersions, lessonIds).values()];
 }
 
 /**
@@ -175,9 +172,7 @@ async function listLatestPublishedLessonVersions(
  * @param ctx - The Convex query context.
  * @returns A set of active phase version IDs.
  */
-async function listActivePhaseIds(
-  ctx: QueryCtx,
-): Promise<Set<Id<"phase_versions">>> {
+async function listActivePhaseIds(ctx: QueryCtx): Promise<Set<Id<"phase_versions">>> {
   const lessonIds = (await ctx.db.query("lessons").collect()).map((lesson) => lesson._id);
   const lessonVersions = await ctx.db.query("lesson_versions").collect();
   const phaseVersions = await ctx.db.query("phase_versions").collect();
@@ -305,10 +300,12 @@ export const getTeacherCourseOverviewData = internalQuery({
       return { rows: [], units: [] };
     }
 
-    const rawLessonVersions = (await listLatestPublishedLessonVersions(
-      ctx,
-      rawLessons.map((lesson) => lesson.id),
-    )).map((version) => ({
+    const rawLessonVersions = (
+      await listLatestPublishedLessonVersions(
+        ctx,
+        rawLessons.map((lesson) => lesson.id),
+      )
+    ).map((version) => ({
       id: version._id,
       lessonId: version.lessonId,
       status: version.status,
@@ -326,10 +323,7 @@ export const getTeacherCourseOverviewData = internalQuery({
 
     const lessonVersionIds = new Set(rawLessonVersions.map((version) => version.id));
     const rawPrimaryStandards = (await ctx.db.query("lesson_standards").collect())
-      .filter(
-        (standard) =>
-          standard.isPrimary && lessonVersionIds.has(standard.lessonVersionId),
-      )
+      .filter((standard) => standard.isPrimary && lessonVersionIds.has(standard.lessonVersionId))
       .map((standard) => ({
         lessonVersionId: standard.lessonVersionId,
         standardId: standard.standardId,
@@ -378,23 +372,20 @@ export const getTeacherCompetencyHeatmapData = internalQuery({
     }
 
     const students = await listOrganizationStudents(ctx, teacher.organizationId);
-    const rawStandards = (await ctx.db.query("competency_standards").collect())
-      .map((standard) => ({
-        id: standard._id,
-        code: standard.code,
-        description: standard.description,
-        studentFriendlyDescription: standard.studentFriendlyDescription ?? null,
-        category: standard.category ?? null,
-        isActive: standard.isActive,
-      }));
+    const rawStandards = (await ctx.db.query("competency_standards").collect()).map((standard) => ({
+      id: standard._id,
+      code: standard.code,
+      description: standard.description,
+      studentFriendlyDescription: standard.studentFriendlyDescription ?? null,
+      category: standard.category ?? null,
+      isActive: standard.isActive,
+    }));
 
     if (rawStandards.length === 0 || students.length === 0) {
       return { rows: [], standards: [] };
     }
 
-    const activeStandardIds = new Set(
-      rawStandards.filter((s) => s.isActive).map((s) => s.id)
-    );
+    const activeStandardIds = new Set(rawStandards.filter((s) => s.isActive).map((s) => s.id));
 
     const rawStudents = students.map((student) => ({
       id: student._id,
@@ -447,37 +438,34 @@ export const getTeacherStudentCompetencyDetail = internalQuery({
       return null;
     }
 
-    const rawStandards = (await ctx.db.query("competency_standards").collect())
-      .map((standard) => ({
-        id: standard._id,
-        code: standard.code,
-        description: standard.description,
-        studentFriendlyDescription: standard.studentFriendlyDescription ?? null,
-        category: standard.category ?? null,
-        isActive: standard.isActive,
-      }));
+    const rawStandards = (await ctx.db.query("competency_standards").collect()).map((standard) => ({
+      id: standard._id,
+      code: standard.code,
+      description: standard.description,
+      studentFriendlyDescription: standard.studentFriendlyDescription ?? null,
+      category: standard.category ?? null,
+      isActive: standard.isActive,
+    }));
 
     const competencyRows = (
       await ctx.db
         .query("student_competency")
         .withIndex("by_student", (q) => q.eq("studentId", args.studentId))
         .collect()
-    )
-      .map((row) => ({
-        studentId: row.studentId,
-        standardId: row.standardId,
-        masteryLevel: row.masteryLevel,
-        evidenceActivityId: row.evidenceActivityId ?? null,
-        lastUpdated: row.lastUpdated,
-        updatedBy: row.updatedBy ?? null,
-      }));
+    ).map((row) => ({
+      studentId: row.studentId,
+      standardId: row.standardId,
+      masteryLevel: row.masteryLevel,
+      evidenceActivityId: row.evidenceActivityId ?? null,
+      lastUpdated: row.lastUpdated,
+      updatedBy: row.updatedBy ?? null,
+    }));
 
-    const lessonStandards = (await ctx.db.query("lesson_standards").collect())
-      .map((ls) => ({
-        standardId: ls.standardId,
-        lessonVersionId: ls.lessonVersionId,
-        isPrimary: ls.isPrimary,
-      }));
+    const lessonStandards = (await ctx.db.query("lesson_standards").collect()).map((ls) => ({
+      standardId: ls.standardId,
+      lessonVersionId: ls.lessonVersionId,
+      isPrimary: ls.isPrimary,
+    }));
 
     const lessonVersions = (await ctx.db.query("lesson_versions").collect())
       .filter((lv) => lv.status === "published")
@@ -486,12 +474,11 @@ export const getTeacherStudentCompetencyDetail = internalQuery({
         lessonId: lv.lessonId,
       }));
 
-    const lessons = (await ctx.db.query("lessons").collect())
-      .map((lesson) => ({
-        id: lesson._id,
-        unitNumber: lesson.unitNumber,
-        title: lesson.title,
-      }));
+    const lessons = (await ctx.db.query("lessons").collect()).map((lesson) => ({
+      id: lesson._id,
+      unitNumber: lesson.unitNumber,
+      title: lesson.title,
+    }));
 
     const rawStudent = {
       id: student._id,
@@ -535,10 +522,12 @@ export const getTeacherGradebookData = internalQuery({
       return { rows: [], lessons: [] };
     }
 
-    const rawLessonVersions = (await listLatestPublishedLessonVersions(
-      ctx,
-      rawLessons.map((lesson) => lesson.id),
-    )).map((version) => ({
+    const rawLessonVersions = (
+      await listLatestPublishedLessonVersions(
+        ctx,
+        rawLessons.map((lesson) => lesson.id),
+      )
+    ).map((version) => ({
       id: version._id,
       lessonId: version.lessonId,
       status: version.status,
@@ -558,10 +547,7 @@ export const getTeacherGradebookData = internalQuery({
       }));
 
     const rawPrimaryStandards = (await ctx.db.query("lesson_standards").collect())
-      .filter(
-        (standard) =>
-          standard.isPrimary && lessonVersionIds.has(standard.lessonVersionId),
-      )
+      .filter((standard) => standard.isPrimary && lessonVersionIds.has(standard.lessonVersionId))
       .map((standard) => ({
         lessonVersionId: standard.lessonVersionId,
         standardId: standard.standardId,
@@ -576,7 +562,17 @@ export const getTeacherGradebookData = internalQuery({
     }));
 
     if (students.length === 0) {
-      return assembleGradebookRows([], rawLessons, rawLessonVersions, rawPhaseVersions, rawPrimaryStandards, [], [], [], []);
+      return assembleGradebookRows(
+        [],
+        rawLessons,
+        rawLessonVersions,
+        rawPhaseVersions,
+        rawPrimaryStandards,
+        [],
+        [],
+        [],
+        [],
+      );
     }
 
     const phaseIds = new Set(rawPhaseVersions.map((phase) => phase.id));
@@ -618,10 +614,19 @@ export const getTeacherGradebookData = internalQuery({
         masteryLevel: row.masteryLevel,
       }));
 
-    const lessonByVersion = new Map(rawLessonVersions.map(version => [version.id, version.lessonId]));
-    const rawActivities = (await Promise.all(rawPhaseVersions.map(async phase =>
-      (await listPhaseActivityIds(ctx, phase.id)).map(id => ({ id, lessonId: lessonByVersion.get(phase.lessonVersionId)! })),
-    ))).flat();
+    const lessonByVersion = new Map(
+      rawLessonVersions.map((version) => [version.id, version.lessonId]),
+    );
+    const rawActivities = (
+      await Promise.all(
+        rawPhaseVersions.map(async (phase) =>
+          (await listPhaseActivityIds(ctx, phase.id)).map((id) => ({
+            id,
+            lessonId: lessonByVersion.get(phase.lessonVersionId)!,
+          })),
+        ),
+      )
+    ).flat();
 
     const activityIds = new Set(rawActivities.map((activity) => activity.id));
 
@@ -737,9 +742,7 @@ export const getTeacherLessonMonitoringData = internalQuery({
         ? []
         : await ctx.db
             .query("phase_versions")
-            .withIndex("by_lesson_version", (q) =>
-              q.eq("lessonVersionId", selectedVersion._id),
-            )
+            .withIndex("by_lesson_version", (q) => q.eq("lessonVersionId", selectedVersion._id))
             .collect();
 
     phases.sort((a, b) => a.phaseNumber - b.phaseNumber);
@@ -832,9 +835,10 @@ export const getSubmissionDetail = internalQuery({
     const evidenceByPhaseNumber = new Map<number, SubmissionEvidence[]>();
     const phaseByActivityId = new Map<string, number>();
     for (const phase of rawPhases) {
-      for (const id of await listPhaseActivityIds(ctx, phase._id)) phaseByActivityId.set(id, phase.phaseNumber);
+      for (const id of await listPhaseActivityIds(ctx, phase._id))
+        phaseByActivityId.set(id, phase.phaseNumber);
     }
-    const activityIds = [...phaseByActivityId.keys()] as Id<'activities'>[];
+    const activityIds = [...phaseByActivityId.keys()] as Id<"activities">[];
     if (activityIds.length > 0) {
       const [, spreadsheetAttempts, practiceRows, activityRows] = await Promise.all([
         ctx.db
@@ -857,7 +861,9 @@ export const getSubmissionDetail = internalQuery({
           .collect(),
 
         Promise.all(
-          activityIds.map(async (activityId) => [activityId, await ctx.db.get(activityId)] as const),
+          activityIds.map(
+            async (activityId) => [activityId, await ctx.db.get(activityId)] as const,
+          ),
         ),
       ]);
 
@@ -893,7 +899,7 @@ export const getSubmissionDetail = internalQuery({
         if (phaseNum === undefined) continue;
 
         const activity = activityById.get(activityId);
-        
+
         // Set the latest attempt as the phase's spreadsheet data
         const latestAttempt = attempts[attempts.length - 1];
         if (latestAttempt?.spreadsheetData) {
@@ -908,10 +914,10 @@ export const getSubmissionDetail = internalQuery({
             teacherScoreOverride?: number | null;
             teacherFeedbackOverride?: string | null;
           } = {
-            kind: 'spreadsheet',
+            kind: "spreadsheet",
             activityId,
-            activityTitle: activity?.displayName ?? 'Spreadsheet activity',
-            componentKey: activity?.componentKey ?? 'spreadsheet',
+            activityTitle: activity?.displayName ?? "Spreadsheet activity",
+            componentKey: activity?.componentKey ?? "spreadsheet",
             submittedAt: new Date(attempt.submittedAt).toISOString(),
             spreadsheetData: attempt.spreadsheetData,
             attemptNumber: attempt.attemptNumber,
@@ -949,18 +955,20 @@ export const getSubmissionDetail = internalQuery({
         }
 
         const activity = activityById.get(activityId);
-        const submissionData = row.submissionData as PracticeSubmissionEvidence | Record<string, unknown>;
+        const submissionData = row.submissionData as
+          | PracticeSubmissionEvidence
+          | Record<string, unknown>;
         const evidence: SubmissionEvidence = {
-          kind: 'practice',
+          kind: "practice",
           submissionId: String(row._id),
           stableActivityId: activity?.stableActivityId,
           teacherVerified: row.gradedBy !== undefined,
           activityId,
-          activityTitle: activity?.displayName ?? 'Practice submission',
-          componentKey: activity?.componentKey ?? 'practice',
+          activityTitle: activity?.displayName ?? "Practice submission",
+          componentKey: activity?.componentKey ?? "practice",
           submittedAt: new Date(row.submittedAt).toISOString(),
           attemptNumber:
-            typeof submissionData.attemptNumber === 'number' ? submissionData.attemptNumber : 1,
+            typeof submissionData.attemptNumber === "number" ? submissionData.attemptNumber : 1,
           score: row.score ?? null,
           maxScore: row.maxScore ?? null,
           feedback: row.feedback ?? null,
@@ -1002,9 +1010,9 @@ export const getSubmissionDetail = internalQuery({
     const practiceEnvelopes = [];
     for (const evidenceList of evidenceByPhaseNumber.values()) {
       for (const evidence of evidenceList) {
-        if (evidence.kind === 'practice' && evidence.submissionData) {
+        if (evidence.kind === "practice" && evidence.submissionData) {
           const data = evidence.submissionData as Record<string, unknown>;
-          if (data.contractVersion === 'practice.v1') {
+          if (data.contractVersion === "practice.v1") {
             practiceEnvelopes.push(data);
           }
         }
@@ -1013,13 +1021,9 @@ export const getSubmissionDetail = internalQuery({
 
     let studentErrorSummary = null;
     if (practiceEnvelopes.length > 0) {
-
       const studentIdMap = new Map<string, string>();
       for (const env of practiceEnvelopes) {
-        studentIdMap.set(
-          env.activityId as string,
-          args.studentId,
-        );
+        studentIdMap.set(env.activityId as string, args.studentId);
       }
 
       studentErrorSummary = buildDeterministicSummary(
@@ -1067,29 +1071,38 @@ export const getLessonErrorSummary = internalQuery({
 
     const versions = await listLatestPublishedLessonVersions(ctx, [args.lessonId]);
     if (versions.length === 0) return null;
-    const phases = await ctx.db.query('phase_versions')
-      .withIndex('by_lesson_version', q => q.eq('lessonVersionId', versions[0]._id)).collect();
-    const activityIds = new Set((await Promise.all(phases.map(phase => listPhaseActivityIds(ctx, phase._id)))).flat());
+    const phases = await ctx.db
+      .query("phase_versions")
+      .withIndex("by_lesson_version", (q) => q.eq("lessonVersionId", versions[0]._id))
+      .collect();
+    const activityIds = new Set(
+      (await Promise.all(phases.map((phase) => listPhaseActivityIds(ctx, phase._id)))).flat(),
+    );
     if (activityIds.size === 0) return null;
     const students = await listOrganizationStudents(ctx, args.teacherOrgId);
-    const studentSubmissions = (await Promise.all(students.map(student => ctx.db.query('activity_submissions')
-      .withIndex('by_user', q => q.eq('userId', student._id)).collect()))).flat()
-      .filter(row => activityIds.has(row.activityId));
+    const studentSubmissions = (
+      await Promise.all(
+        students.map((student) =>
+          ctx.db
+            .query("activity_submissions")
+            .withIndex("by_user", (q) => q.eq("userId", student._id))
+            .collect(),
+        ),
+      )
+    )
+      .flat()
+      .filter((row) => activityIds.has(row.activityId));
 
     if (studentSubmissions.length === 0) return null;
 
-    const latestByStudentAndActivity = new Map<
-      string,
-      (typeof studentSubmissions)[number]
-    >();
+    const latestByStudentAndActivity = new Map<string, (typeof studentSubmissions)[number]>();
     for (const row of studentSubmissions) {
       const key = `${row.userId}:${row.activityId}`;
       const current = latestByStudentAndActivity.get(key);
       if (
         !current ||
         row.submittedAt > current.submittedAt ||
-        (row.submittedAt === current.submittedAt &&
-          row.updatedAt >= current.updatedAt)
+        (row.submittedAt === current.submittedAt && row.updatedAt >= current.updatedAt)
       ) {
         latestByStudentAndActivity.set(key, row);
       }
@@ -1108,11 +1121,6 @@ export const getLessonErrorSummary = internalQuery({
 
     if (envelopes.length === 0) return null;
 
-
-    return buildDeterministicSummary(
-      args.lessonId,
-      envelopes as never,
-      studentIdMap,
-    );
+    return buildDeterministicSummary(args.lessonId, envelopes as never, studentIdMap);
   },
 });

@@ -1,12 +1,12 @@
-import { describe, it, expect } from 'vitest';
-import schema from '@/convex/schema';
+import { describe, it, expect } from "vitest";
+import schema from "@/convex/schema";
 
-describe('practice_variants table schema', () => {
-  it('exists in the schema', () => {
-    expect(schema.tables).toHaveProperty('practice_variants');
+describe("practice_variants table schema", () => {
+  it("exists in the schema", () => {
+    expect(schema.tables).toHaveProperty("practice_variants");
   });
 
-  it('has required fields defined', () => {
+  it("has required fields defined", () => {
     const table = schema.tables.practice_variants;
     expect(() => (table as unknown as { variantKey: unknown }).variantKey).not.toThrow();
     expect(() => (table as unknown as { componentKey: unknown }).componentKey).not.toThrow();
@@ -18,12 +18,12 @@ describe('practice_variants table schema', () => {
   });
 });
 
-describe('practice_items table schema', () => {
-  it('exists in the schema', () => {
-    expect(schema.tables).toHaveProperty('practice_items');
+describe("practice_items table schema", () => {
+  it("exists in the schema", () => {
+    expect(schema.tables).toHaveProperty("practice_items");
   });
 
-  it('has required fields defined', () => {
+  it("has required fields defined", () => {
     const table = schema.tables.practice_items;
     expect(() => (table as unknown as { practiceItemId: unknown }).practiceItemId).not.toThrow();
     expect(() => (table as unknown as { activityId: unknown }).activityId).not.toThrow();
@@ -32,12 +32,12 @@ describe('practice_items table schema', () => {
   });
 });
 
-describe('objective_policies table schema', () => {
-  it('exists in the schema', () => {
-    expect(schema.tables).toHaveProperty('objective_policies');
+describe("objective_policies table schema", () => {
+  it("exists in the schema", () => {
+    expect(schema.tables).toHaveProperty("objective_policies");
   });
 
-  it('has required fields defined', () => {
+  it("has required fields defined", () => {
     const table = schema.tables.objective_policies;
     expect(() => (table as unknown as { standardId: unknown }).standardId).not.toThrow();
     expect(() => (table as unknown as { policy: unknown }).policy).not.toThrow();

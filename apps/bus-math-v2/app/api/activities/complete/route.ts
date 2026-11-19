@@ -1,35 +1,34 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { z } from 'zod';
-import { POST as completePhasePOST } from '@/app/api/phases/complete/route';
-import { COMPETENCY_STANDARD_CODE_PATTERN } from '@/lib/curriculum/standards';
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
+import { POST as completePhasePOST } from "@/app/api/phases/complete/route";
+import { COMPETENCY_STANDARD_CODE_PATTERN } from "@/lib/curriculum/standards";
 import type {
   CompleteActivityRequest,
   CompleteActivityResponse,
   CompletePhaseRequest,
   CompletePhaseResponse,
-} from '@/types/api';
+} from "@/types/api";
 
 /**
  * Request schema for activity completion
  */
 const CompleteActivitySchema = z.object({
-  activityId: z.string().uuid('Invalid activity ID format'),
-  lessonId: z.string().uuid('Invalid lesson ID format'),
-  phaseNumber: z.number().int().positive('Phase number must be a positive integer'),
+  activityId: z.string().uuid("Invalid activity ID format"),
+  lessonId: z.string().uuid("Invalid lesson ID format"),
+  phaseNumber: z.number().int().positive("Phase number must be a positive integer"),
   linkedStandardId: z
     .string()
     .trim()
-    .regex(COMPETENCY_STANDARD_CODE_PATTERN, 'Invalid standard code format')
+    .regex(COMPETENCY_STANDARD_CODE_PATTERN, "Invalid standard code format")
     .optional()
     .nullable(),
   completionData: z.record(z.string(), z.unknown()).optional().nullable(),
-  idempotencyKey: z.string().uuid('Invalid idempotency key format'),
+  idempotencyKey: z.string().uuid("Invalid idempotency key format"),
 });
 
-type CompleteActivityPayload = z.infer<typeof CompleteActivitySchema> &
-  CompleteActivityRequest;
+type CompleteActivityPayload = z.infer<typeof CompleteActivitySchema> & CompleteActivityRequest;
 
-const REPLACEMENT_ENDPOINT = '/api/phases/complete';
+const REPLACEMENT_ENDPOINT = "/api/phases/complete";
 
 /**
  * Type guard that checks whether a value is a plain object.
@@ -38,7 +37,7 @@ const REPLACEMENT_ENDPOINT = '/api/phases/complete';
  * @returns True if the value is a non-null object.
  */
 function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null;
+  return typeof value === "object" && value !== null;
 }
 
 /**
@@ -48,9 +47,9 @@ function isRecord(value: unknown): value is Record<string, unknown> {
  */
 function deprecationHeaders(): HeadersInit {
   return {
-    Deprecation: 'true',
+    Deprecation: "true",
     Link: `<${REPLACEMENT_ENDPOINT}>; rel="successor-version"`,
-    'X-Replacement-Endpoint': REPLACEMENT_ENDPOINT,
+    "X-Replacement-Endpoint": REPLACEMENT_ENDPOINT,
   };
 }
 
@@ -61,15 +60,13 @@ function deprecationHeaders(): HeadersInit {
  *   timeSpent or timeSpentSeconds fields.
  * @returns The clamped time spent in seconds (0–86400).
  */
-function deriveTimeSpent(
-  completionData: CompleteActivityPayload['completionData'],
-): number {
+function deriveTimeSpent(completionData: CompleteActivityPayload["completionData"]): number {
   if (!isRecord(completionData)) {
     return 0;
   }
 
   const rawTimeSpent = completionData.timeSpent ?? completionData.timeSpentSeconds;
-  if (typeof rawTimeSpent !== 'number' || !Number.isFinite(rawTimeSpent) || rawTimeSpent < 0) {
+  if (typeof rawTimeSpent !== "number" || !Number.isFinite(rawTimeSpent) || rawTimeSpent < 0) {
     return 0;
   }
 
@@ -90,8 +87,8 @@ export async function POST(request: NextRequest) {
     } catch {
       return NextResponse.json(
         {
-          error: 'Invalid request data',
-          details: 'Malformed JSON body',
+          error: "Invalid request data",
+          details: "Malformed JSON body",
           replacement: REPLACEMENT_ENDPOINT,
           deprecated: true,
         },
@@ -104,11 +101,11 @@ export async function POST(request: NextRequest) {
     if (!validationResult.success) {
       return NextResponse.json(
         {
-          error: 'Invalid request data',
+          error: "Invalid request data",
           replacement: REPLACEMENT_ENDPOINT,
           deprecated: true,
         },
-        { status: 400, headers: deprecationHeaders() }
+        { status: 400, headers: deprecationHeaders() },
       );
     }
 
@@ -128,11 +125,11 @@ export async function POST(request: NextRequest) {
       idempotencyKey,
     };
 
-    const cookie = request.headers.get('cookie');
+    const cookie = request.headers.get("cookie");
     const phaseRequest = new Request(new URL(REPLACEMENT_ENDPOINT, request.url), {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         ...(cookie ? { Cookie: cookie } : {}),
       },
       body: JSON.stringify(phasePayload),
@@ -150,16 +147,16 @@ export async function POST(request: NextRequest) {
     if (!phaseResponse.ok) {
       const errorPayload = isRecord(phaseResult) ? phaseResult : {};
       const errorMessage =
-        typeof errorPayload.message === 'string'
+        typeof errorPayload.message === "string"
           ? errorPayload.message
           : `Use POST ${REPLACEMENT_ENDPOINT}.`;
 
       return NextResponse.json(
         {
           error:
-            typeof errorPayload.error === 'string'
+            typeof errorPayload.error === "string"
               ? errorPayload.error
-              : 'Activity completion failed',
+              : "Activity completion failed",
           message: errorMessage,
           replacement: REPLACEMENT_ENDPOINT,
           deprecated: true,
@@ -179,17 +176,13 @@ export async function POST(request: NextRequest) {
       success: Boolean(successPayload?.success),
       nextPhaseUnlocked: Boolean(successPayload?.nextPhaseUnlocked),
       message:
-        typeof successPayload?.message === 'string'
+        typeof successPayload?.message === "string"
           ? successPayload.message
-          : 'Phase completion recorded.',
+          : "Phase completion recorded.",
       completionId:
-        typeof successPayload?.phaseId === 'string'
-          ? successPayload.phaseId
-          : undefined,
+        typeof successPayload?.phaseId === "string" ? successPayload.phaseId : undefined,
       completedAt:
-        typeof successPayload?.completedAt === 'string'
-          ? successPayload.completedAt
-          : undefined,
+        typeof successPayload?.completedAt === "string" ? successPayload.completedAt : undefined,
       replacement: REPLACEMENT_ENDPOINT,
       deprecated: true,
     };
@@ -199,15 +192,15 @@ export async function POST(request: NextRequest) {
       headers: deprecationHeaders(),
     });
   } catch (error) {
-    console.error('Unexpected error in /api/activities/complete:', error);
+    console.error("Unexpected error in /api/activities/complete:", error);
     return NextResponse.json(
       {
-        error: 'Internal server error',
-        message: 'Internal server error',
+        error: "Internal server error",
+        message: "Internal server error",
         replacement: REPLACEMENT_ENDPOINT,
         deprecated: true,
       },
-      { status: 500, headers: deprecationHeaders() }
+      { status: 500, headers: deprecationHeaders() },
     );
   }
 }

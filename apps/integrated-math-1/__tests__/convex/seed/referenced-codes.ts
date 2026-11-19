@@ -11,21 +11,18 @@ const DEFINED_CODE_RE = /\bcode:\s*"([A-Za-z0-9][A-Za-z0-9.\-]*)"/g;
 export const APP_NAME = "IM1" as const;
 export const INTEGRITY_RED_TRACK_ID = "im1-im2-standards-backfill_20260605" as const;
 
-export const CODE_REGEX =
-  /^(\d+\.[A-Z]+|[A-Z]+(-[A-Z]+)?)\.[A-Z]\.[0-9]+[a-z]?$/;
+export const CODE_REGEX = /^(\d+\.[A-Z]+|[A-Z]+(-[A-Z]+)?)\.[A-Z]\.[0-9]+[a-z]?$/;
 
 export interface CollectOptions {
   definedStandardsPath?: string;
 }
 
 export function collectReferencedCodes(): string[] {
-  const files = fs
-    .readdirSync(SEED_DIR)
-    .filter((name) => MODULE_FILE_RE.test(name));
+  const files = fs.readdirSync(SEED_DIR).filter((name) => MODULE_FILE_RE.test(name));
 
   if (files.length === 0) {
     throw new Error(
-      `[${APP_NAME}] No seed_${APP_PREFIX}_module_*_standards.ts files found in ${SEED_DIR}`
+      `[${APP_NAME}] No seed_${APP_PREFIX}_module_*_standards.ts files found in ${SEED_DIR}`,
     );
   }
 
@@ -42,7 +39,7 @@ export function collectReferencedCodes(): string[] {
 }
 
 export function collectDefinedCodes(
-  definedStandardsPath: string = path.join(SEED_DIR, "seed_standards.ts")
+  definedStandardsPath: string = path.join(SEED_DIR, "seed_standards.ts"),
 ): string[] {
   if (!fs.existsSync(definedStandardsPath)) {
     return [];
@@ -59,7 +56,7 @@ export function collectDefinedCodes(
 
 export function findMissingCodes(
   referenced: Iterable<string>,
-  defined: Iterable<string>
+  defined: Iterable<string>,
 ): string[] {
   const definedSet = new Set(defined);
   return [...referenced].filter((code) => !definedSet.has(code)).sort();

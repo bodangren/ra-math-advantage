@@ -1,6 +1,6 @@
-import { ObservationDraftClient } from '@/components/observation-draft-client';
-import { SiteHeader } from '@/components/site-header';
-import { getObservationDraftPage } from '@/lib/observations/observation-page';
+import { ObservationDraftClient } from "@/components/observation-draft-client";
+import { SiteHeader } from "@/components/site-header";
+import { getObservationDraftPage } from "@/lib/observations/observation-page";
 
 export default async function ObservationDraftPage({
   params,

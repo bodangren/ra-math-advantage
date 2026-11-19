@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { BarChart3, Brain, Loader2, Users } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Progress } from '@/components/ui/progress';
-import { getMisconceptionTag } from '@/lib/practice/misconception-taxonomy';
+import { useEffect, useState } from "react";
+import { BarChart3, Brain, Loader2, Users } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { getMisconceptionTag } from "@/lib/practice/misconception-taxonomy";
 
 // ---------------------------------------------------------------------------
 // Types (mirrors DeterministicErrorSummary from error-analysis)
@@ -27,7 +27,7 @@ interface PartOutcomeSummary {
 }
 
 interface DeterministicErrorSummary {
-  type: 'deterministic';
+  type: "deterministic";
   lessonId: string;
   generatedAt: number;
   partSummaries: PartOutcomeSummary[];
@@ -44,7 +44,6 @@ interface LessonErrorSummaryProps {
 // Helpers
 // ---------------------------------------------------------------------------
 
-
 /**
  * Formats an accuracy rate as a percentage string with no decimal places.
  *
@@ -55,7 +54,6 @@ function formatAccuracy(rate: number): string {
   return `${(rate * 100).toFixed(0)}%`;
 }
 
-
 /**
  * Returns a Tailwind text color class based on an accuracy rate threshold.
  *
@@ -63,11 +61,10 @@ function formatAccuracy(rate: number): string {
  * @returns A Tailwind text color class string.
  */
 function accuracyColor(rate: number): string {
-  if (rate >= 0.8) return 'text-green-700';
-  if (rate >= 0.6) return 'text-amber-600';
-  return 'text-red-600';
+  if (rate >= 0.8) return "text-green-700";
+  if (rate >= 0.6) return "text-amber-600";
+  return "text-red-600";
 }
-
 
 /**
  * Returns a Tailwind progress bar color class based on an accuracy rate threshold.
@@ -76,15 +73,14 @@ function accuracyColor(rate: number): string {
  * @returns A Tailwind class for the progress bar fill color.
  */
 function progressColor(rate: number): string {
-  if (rate >= 0.8) return '[&>div]:bg-green-500';
-  if (rate >= 0.6) return '[&>div]:bg-amber-500';
-  return '[&>div]:bg-red-500';
+  if (rate >= 0.8) return "[&>div]:bg-green-500";
+  if (rate >= 0.6) return "[&>div]:bg-amber-500";
+  return "[&>div]:bg-red-500";
 }
 
 // ---------------------------------------------------------------------------
 // Sub-components
 // ---------------------------------------------------------------------------
-
 
 /**
  * Renders a single misconception row with tag label, category badge, and count.
@@ -93,14 +89,10 @@ function progressColor(rate: number): string {
  * @param props.misconception - The misconception summary to display.
  * @returns A styled misconception row element.
  */
-function MisconceptionRow({
-  misconception,
-}: {
-  misconception: MisconceptionSummary;
-}) {
+function MisconceptionRow({ misconception }: { misconception: MisconceptionSummary }) {
   const tagDef = getMisconceptionTag(misconception.tag);
   const label = tagDef?.label ?? misconception.tag;
-  const category = tagDef?.category ?? 'mechanics';
+  const category = tagDef?.category ?? "mechanics";
 
   return (
     <div className="flex items-start justify-between gap-3 rounded-lg border border-border bg-background px-3 py-2.5">
@@ -118,13 +110,13 @@ function MisconceptionRow({
       <div className="shrink-0 text-right">
         <div className="text-sm font-semibold text-foreground">{misconception.count}</div>
         <div className="text-[10px] text-muted-foreground">
-          {misconception.affectedStudents.length} student{misconception.affectedStudents.length === 1 ? '' : 's'}
+          {misconception.affectedStudents.length} student
+          {misconception.affectedStudents.length === 1 ? "" : "s"}
         </div>
       </div>
     </div>
   );
 }
-
 
 /**
  * Renders a single part accuracy row with a progress bar and correct/total counts.
@@ -258,9 +250,7 @@ export function LessonErrorSummary({ lessonId }: LessonErrorSummaryProps) {
             </div>
             <div className="mt-1 flex items-center gap-2">
               <Users className="size-4 text-muted-foreground" />
-              <span className="text-lg font-semibold text-foreground">
-                {summary.studentCount}
-              </span>
+              <span className="text-lg font-semibold text-foreground">{summary.studentCount}</span>
             </div>
           </CardContent>
         </Card>
@@ -283,8 +273,9 @@ export function LessonErrorSummary({ lessonId }: LessonErrorSummaryProps) {
             </div>
             <div className="mt-1 text-sm font-medium text-foreground">
               {hasMisconceptions
-                ? (getMisconceptionTag(summary.topMisconceptions[0].tag)?.label ?? summary.topMisconceptions[0].tag)
-                : 'None detected'}
+                ? (getMisconceptionTag(summary.topMisconceptions[0].tag)?.label ??
+                  summary.topMisconceptions[0].tag)
+                : "None detected"}
             </div>
           </CardContent>
         </Card>

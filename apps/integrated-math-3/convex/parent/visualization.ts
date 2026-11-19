@@ -34,22 +34,22 @@
  *   The Convex wrapper (`internalQuery`) just delegates to the handler.
  */
 
-import { internalQuery } from '../_generated/server';
-import { v } from 'convex/values';
-import type { QueryCtx } from '../_generated/server';
-import type { Id } from '../_generated/dataModel';
+import { internalQuery } from "../_generated/server";
+import { v } from "convex/values";
+import type { QueryCtx } from "../_generated/server";
+import type { Id } from "../_generated/dataModel";
 import {
   projectParentVisualization,
   parentVisualizationV1Schema,
   type ParentVisualizationV1,
-} from '@math-platform/knowledge-space-practice';
-import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from '@math-platform/knowledge-space-core';
-import { getStudentKnowledgeStateHandler } from '../student/knowledge_state';
+} from "@math-platform/knowledge-space-practice";
+import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from "@math-platform/knowledge-space-core";
+import { getStudentKnowledgeStateHandler } from "../student/knowledge_state";
 import {
   loadFullCurriculumGraph,
   includeHistoricalEvidenceNodes,
   projectApprovedReadinessGraph,
-} from '../../lib/curriculum/skill-graph-loader';
+} from "../../lib/curriculum/skill-graph-loader";
 
 /**
  * Pure projection step — given a learner state and the canonical full
@@ -60,7 +60,7 @@ import {
  * without setting up a Convex context.
  */
 export function buildParentProjectionPayload(
-  learnerState: Record<string, 'mastered' | 'ready' | 'nearly_ready' | 'blocked' | 'review_due'>,
+  learnerState: Record<string, "mastered" | "ready" | "nearly_ready" | "blocked" | "review_due">,
   nodes: KnowledgeSpaceNode[],
   edges: KnowledgeSpaceEdge[],
 ): ParentVisualizationV1 {
@@ -86,40 +86,39 @@ export function buildParentProjectionPayload(
  */
 export async function projectParentVisualizationHandler(
   ctx: QueryCtx,
-  args: { studentId: Id<'profiles'>; parentProfileId: Id<'profiles'> },
+  args: { studentId: Id<"profiles">; parentProfileId: Id<"profiles"> },
 ): Promise<ParentVisualizationV1> {
   const link = await ctx.db
-    .query('parent_links')
-    .withIndex('by_parent_and_student', (q) =>
-      q.eq('parentId', args.parentProfileId).eq('studentId', args.studentId),
+    .query("parent_links")
+    .withIndex("by_parent_and_student", (q) =>
+      q.eq("parentId", args.parentProfileId).eq("studentId", args.studentId),
     )
     .first();
 
-  if (!link || link.status !== 'active') {
-    throw new Error(
-      'parent.visualization: no active parent link for (parentProfileId, studentId)',
-    );
+  if (!link || link.status !== "active") {
+    throw new Error("parent.visualization: no active parent link for (parentProfileId, studentId)");
   }
 
   const student = await ctx.db.get(args.studentId);
   if (!student) {
-    throw new Error('parent.visualization: student profile not found');
+    throw new Error("parent.visualization: student profile not found");
   }
-  if (student.role !== 'student') {
+  if (student.role !== "student") {
     throw new Error(
-      'parent.visualization: target profile is not a student (role=' +
-        String(student.role) +
-        ')',
+      "parent.visualization: target profile is not a student (role=" + String(student.role) + ")",
     );
   }
 
   const progress = await getStudentKnowledgeStateHandler(ctx, { studentId: args.studentId });
-  const learnerState: Record<string, 'mastered' | 'ready' | 'nearly_ready' | 'blocked' | 'review_due'> = {};
-  for (const node of progress.mastered) learnerState[node.nodeId] = 'mastered';
-  for (const node of progress.ready) learnerState[node.nodeId] = 'ready';
-  for (const node of progress.nearlyReady) learnerState[node.nodeId] = 'nearly_ready';
-  for (const node of progress.blocked) learnerState[node.nodeId] = 'blocked';
-  for (const node of progress.reviewDue) learnerState[node.nodeId] = 'review_due';
+  const learnerState: Record<
+    string,
+    "mastered" | "ready" | "nearly_ready" | "blocked" | "review_due"
+  > = {};
+  for (const node of progress.mastered) learnerState[node.nodeId] = "mastered";
+  for (const node of progress.ready) learnerState[node.nodeId] = "ready";
+  for (const node of progress.nearlyReady) learnerState[node.nodeId] = "nearly_ready";
+  for (const node of progress.blocked) learnerState[node.nodeId] = "blocked";
+  for (const node of progress.reviewDue) learnerState[node.nodeId] = "review_due";
 
   const fullGraph = loadFullCurriculumGraph();
   const { nodes, edges } = includeHistoricalEvidenceNodes(
@@ -149,8 +148,8 @@ export async function projectParentVisualizationHandler(
  */
 export const projectParentVisualizationQuery = internalQuery({
   args: {
-    studentId: v.id('profiles'),
-    parentProfileId: v.id('profiles'),
+    studentId: v.id("profiles"),
+    parentProfileId: v.id("profiles"),
   },
   handler: projectParentVisualizationHandler,
 });

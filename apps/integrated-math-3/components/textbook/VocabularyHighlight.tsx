@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState, useRef, useId } from 'react';
-import { Info } from 'lucide-react';
+import { useState, useRef, useId } from "react";
+import { Info } from "lucide-react";
 
 export interface VocabularyHighlightProps {
   term: string;
@@ -22,11 +22,11 @@ export function VocabularyHighlight({ term, definition, children }: VocabularyHi
   const tooltipId = `tooltip-${id}`;
 
   const toggleTooltip = () => {
-    setIsOpen(prev => !prev);
+    setIsOpen((prev) => !prev);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       toggleTooltip();
     }

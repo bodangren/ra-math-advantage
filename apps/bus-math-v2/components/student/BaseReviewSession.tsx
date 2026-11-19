@@ -20,7 +20,6 @@ interface BaseReviewSessionProps {
   noTermsMessage: string;
 }
 
-
 /**
  * Renders a base review session with flashcard-style term display,
  * flip-to-reveal, SRS rating buttons, and session tracking.
@@ -51,7 +50,9 @@ export function BaseReviewSession({
 
   const currentTermSlug = dueTerms?.[currentIndex]?.termSlug;
   const currentTerm = currentTermSlug ? getGlossaryTermBySlug(currentTermSlug) : undefined;
-  const display = currentTerm ? getGlossaryTermDisplay(currentTerm, languageMode) : { prompt: "", answer: "" };
+  const display = currentTerm
+    ? getGlossaryTermDisplay(currentTerm, languageMode)
+    : { prompt: "", answer: "" };
 
   if (dueTerms === undefined) {
     return (
@@ -68,7 +69,6 @@ export function BaseReviewSession({
       </main>
     );
   }
-
 
   /**
    * Processes a user's SRS rating for the current term and advances to the
@@ -104,7 +104,6 @@ export function BaseReviewSession({
       isSubmittingRef.current = false;
     }
   };
-
 
   /**
    * Resets the session to start reviewing from the beginning.
@@ -152,9 +151,7 @@ export function BaseReviewSession({
                 <CardTitle className="text-2xl">{noTermsTitle}</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                 <p className="text-muted-foreground">
-                   {noTermsMessage}
-                 </p>
+                <p className="text-muted-foreground">{noTermsMessage}</p>
               </CardContent>
             </Card>
           </div>
@@ -178,9 +175,7 @@ export function BaseReviewSession({
                 {isFlipped ? display.answer : display.prompt}
               </p>
               {!isFlipped && (
-                <p className="text-sm text-muted-foreground">
-                  Click to reveal the answer
-                </p>
+                <p className="text-sm text-muted-foreground">Click to reveal the answer</p>
               )}
             </CardContent>
           </Card>
@@ -201,9 +196,7 @@ export function BaseReviewSession({
                   Easy
                 </Button>
               </div>
-              {reviewError && (
-                <p className="text-center text-sm text-destructive">{reviewError}</p>
-              )}
+              {reviewError && <p className="text-center text-sm text-destructive">{reviewError}</p>}
             </div>
           )}
         </div>

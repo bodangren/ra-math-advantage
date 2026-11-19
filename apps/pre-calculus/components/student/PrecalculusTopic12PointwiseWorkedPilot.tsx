@@ -1,20 +1,20 @@
-'use client';
-import { useRouter } from 'next/navigation';
+"use client";
+import { useRouter } from "next/navigation";
 
-import { useRef, useState } from 'react';
+import { useRef, useState } from "react";
 
-import { PointwiseLeastRateChoiceActivity } from '@math-platform/activity-components';
-import type { PointwiseLeastRateChoiceProps } from '@math-platform/math-content';
-import { generateTopic12PointwiseLeastRateChoice } from '@math-platform/math-content/knowledge-space';
+import { PointwiseLeastRateChoiceActivity } from "@math-platform/activity-components";
+import type { PointwiseLeastRateChoiceProps } from "@math-platform/math-content";
+import { generateTopic12PointwiseLeastRateChoice } from "@math-platform/math-content/knowledge-space";
 
-import { PRECALCULUS_TOPIC_12_POINTWISE_LEAST_RATE_WORKED_ACTIVITY_ID } from '@/lib/learning-evidence/precalc-pilot';
+import { PRECALCULUS_TOPIC_12_POINTWISE_LEAST_RATE_WORKED_ACTIVITY_ID } from "@/lib/learning-evidence/precalc-pilot";
 
 const sourceVariant = generateTopic12PointwiseLeastRateChoice(0);
-const finalAnswer = 'Point D has the least rate of change (option D).';
-type WorkedProps = Extract<PointwiseLeastRateChoiceProps, { presentationMode: 'worked_example' }>;
+const finalAnswer = "Point D has the least rate of change (option D).";
+type WorkedProps = Extract<PointwiseLeastRateChoiceProps, { presentationMode: "worked_example" }>;
 
 function createIdempotencyKey(): string {
-  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
     return crypto.randomUUID();
   }
   return `precalc-topic-1-2-pointwise-worked-${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -22,15 +22,15 @@ function createIdempotencyKey(): string {
 
 async function readJson(response: Response): Promise<Record<string, unknown>> {
   const body: unknown = await response.json().catch(() => null);
-  if (typeof body !== 'object' || body === null || Array.isArray(body)) {
-    throw new Error('Unable to record the pointwise Worked example review.');
+  if (typeof body !== "object" || body === null || Array.isArray(body)) {
+    throw new Error("Unable to record the pointwise Worked example review.");
   }
   return body as Record<string, unknown>;
 }
 
 export function PrecalculusTopic12PointwiseWorkedPilot() {
   const router = useRouter();
-  const [status, setStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
   const [message, setMessage] = useState<string | null>(null);
   const idempotencyKeyRef = useRef<string | null>(null);
 
@@ -43,49 +43,52 @@ export function PrecalculusTopic12PointwiseWorkedPilot() {
     graphPoints: sourceVariant.graphPoints.map((point) => ({ ...point })),
     labeledPoints: sourceVariant.labeledPoints.map((point) => ({
       ...point,
-      id: point.id as WorkedProps['labeledPoints'][number]['id'],
-      label: point.label as WorkedProps['labeledPoints'][number]['label'],
+      id: point.id as WorkedProps["labeledPoints"][number]["id"],
+      label: point.label as WorkedProps["labeledPoints"][number]["label"],
     })),
     options: sourceVariant.options.map((option) => ({
       ...option,
-      id: option.id as WorkedProps['options'][number]['id'],
-      label: option.label as WorkedProps['options'][number]['label'],
+      id: option.id as WorkedProps["options"][number]["id"],
+      label: option.label as WorkedProps["options"][number]["label"],
     })),
-    presentationMode: 'worked_example',
-    correctOptionId: sourceVariant.correctOptionId as WorkedProps['correctOptionId'],
+    presentationMode: "worked_example",
+    correctOptionId: sourceVariant.correctOptionId as WorkedProps["correctOptionId"],
     steps: [...sourceVariant.solutionSteps],
     finalAnswer,
   };
 
   async function submit() {
-    if (status === 'saving' || status === 'saved') return;
+    if (status === "saving" || status === "saved") return;
     idempotencyKeyRef.current ??= createIdempotencyKey();
-    setStatus('saving');
+    setStatus("saving");
     setMessage(null);
 
     try {
-      const response = await fetch('/api/activities/precalculus-topic-1-2-pointwise-worked/submissions', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-          'Idempotency-Key': idempotencyKeyRef.current,
+      const response = await fetch(
+        "/api/activities/precalculus-topic-1-2-pointwise-worked/submissions",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            "Idempotency-Key": idempotencyKeyRef.current,
+          },
+          body: JSON.stringify({ selectedOptionId: sourceVariant.correctOptionId }),
         },
-        body: JSON.stringify({ selectedOptionId: sourceVariant.correctOptionId }),
-      });
+      );
       const body = await readJson(response);
       if (
-        !response.ok
-        || typeof body.submissionId !== 'string'
-        || body.submissionId.trim().length === 0
+        !response.ok ||
+        typeof body.submissionId !== "string" ||
+        body.submissionId.trim().length === 0
       ) {
-        throw new Error('Unable to record the pointwise Worked example review.');
+        throw new Error("Unable to record the pointwise Worked example review.");
       }
-      setStatus('saved');
+      setStatus("saved");
       router.refresh();
-      setMessage('Pointwise Worked example review saved.');
+      setMessage("Pointwise Worked example review saved.");
     } catch {
-      setStatus('error');
-      setMessage('Unable to record the pointwise Worked example review.');
+      setStatus("error");
+      setMessage("Unable to record the pointwise Worked example review.");
     }
   }
 
@@ -102,21 +105,23 @@ export function PrecalculusTopic12PointwiseWorkedPilot() {
       <button
         type="button"
         className="btn-primary mt-6"
-        disabled={status === 'saving' || status === 'saved'}
+        disabled={status === "saving" || status === "saved"}
         onClick={submit}
       >
-        {status === 'saving'
-          ? 'Saving…'
-          : status === 'error'
-            ? 'Retry pointwise Worked example review'
-            : status === 'saved'
-              ? 'Pointwise Worked example reviewed'
-              : 'Mark worked example reviewed'}
+        {status === "saving"
+          ? "Saving…"
+          : status === "error"
+            ? "Retry pointwise Worked example review"
+            : status === "saved"
+              ? "Pointwise Worked example reviewed"
+              : "Mark worked example reviewed"}
       </button>
-      {status === 'saved' && message && (
-        <p className="mt-4" role="status">{message}</p>
+      {status === "saved" && message && (
+        <p className="mt-4" role="status">
+          {message}
+        </p>
       )}
-      {status === 'error' && message && (
+      {status === "error" && message && (
         <div className="mt-4" role="alert">
           <p>{message}</p>
         </div>

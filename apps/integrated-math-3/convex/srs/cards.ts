@@ -1,4 +1,9 @@
-import { internalMutation, internalQuery, type MutationCtx, type QueryCtx } from "../_generated/server";
+import {
+  internalMutation,
+  internalQuery,
+  type MutationCtx,
+  type QueryCtx,
+} from "../_generated/server";
 import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
 import { srsCardStateLiteralValidator } from "./validators";
@@ -16,27 +21,25 @@ const MAX_DUE_CARDS_READ = 100;
  * @param {{ _id: Id<"srs_cards">; studentId: Id<"profiles">; objectiveId: string; variantKey?: string; legacyProblemFamilyId?: string; problemFamilyId?: string; stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; dueDate: string; elapsedDays: number; scheduledDays: number; reps: number; lapses: number; lastReview?: string; createdAt: number; updatedAt: number }} card - The raw database card object
  * @returns {ReturnType<typeof mapDbCardToContract>} The card in contract format with ISO date strings
  */
-function mapDbCardToContract(
-  card: {
-    _id: Id<"srs_cards">;
-    studentId: Id<"profiles">;
-    objectiveId: string;
-    variantKey?: string;
-    legacyProblemFamilyId?: string;
-    problemFamilyId?: string;
-    stability: number;
-    difficulty: number;
-    state: "new" | "learning" | "review" | "relearning";
-    dueDate: string;
-    elapsedDays: number;
-    scheduledDays: number;
-    reps: number;
-    lapses: number;
-    lastReview?: string;
-    createdAt: number;
-    updatedAt: number;
-  }
-){
+function mapDbCardToContract(card: {
+  _id: Id<"srs_cards">;
+  studentId: Id<"profiles">;
+  objectiveId: string;
+  variantKey?: string;
+  legacyProblemFamilyId?: string;
+  problemFamilyId?: string;
+  stability: number;
+  difficulty: number;
+  state: "new" | "learning" | "review" | "relearning";
+  dueDate: string;
+  elapsedDays: number;
+  scheduledDays: number;
+  reps: number;
+  lapses: number;
+  lastReview?: string;
+  createdAt: number;
+  updatedAt: number;
+}) {
   return toSrsCardContract(card);
 }
 
@@ -87,24 +90,20 @@ export async function findCardByStudentAndVariant(
   const current = await ctx.db
     .query("srs_cards")
     .withIndex("by_student_and_variant", (q) =>
-      q.eq("studentId", studentId).eq("variantKey", variantKey)
+      q.eq("studentId", studentId).eq("variantKey", variantKey),
     )
     .first();
   if (current) return current;
 
   const widenedLegacy = await ctx.db
     .query("srs_cards")
-    .withIndex("by_legacy_problem_family", (q) =>
-      q.eq("legacyProblemFamilyId", variantKey)
-    )
+    .withIndex("by_legacy_problem_family", (q) => q.eq("legacyProblemFamilyId", variantKey))
     .first();
   if (widenedLegacy?.studentId === studentId) return widenedLegacy;
 
   const historic = await ctx.db
     .query("srs_cards")
-    .withIndex("by_historic_problem_family", (q) =>
-      q.eq("problemFamilyId", variantKey)
-    )
+    .withIndex("by_historic_problem_family", (q) => q.eq("problemFamilyId", variantKey))
     .first();
   return historic?.studentId === studentId ? historic : null;
 }
@@ -147,7 +146,7 @@ export type SaveCardArgs = {
  */
 export async function saveCardHandler(
   ctx: MutationCtx,
-  args: SaveCardArgs
+  args: SaveCardArgs,
 ): Promise<Id<"srs_cards">> {
   const { variantKey } = resolveCanonicalVariantKey(args);
   const existing = await findCardByStudentAndVariant(ctx, args.studentId, variantKey);
@@ -228,32 +227,36 @@ export const saveCard = internalMutation({
  */
 export async function saveCardsHandler(
   ctx: MutationCtx,
-  args: { cards: Array<{
-    cardId: string;
-    studentId: Id<"profiles">;
-    objectiveId: string;
-    variantKey?: string;
-    legacyProblemFamilyId?: string;
-    problemFamilyId?: string;
-    stability: number;
-    difficulty: number;
-    state: "new" | "learning" | "review" | "relearning";
-    dueDate: string;
-    elapsedDays: number;
-    scheduledDays: number;
-    reps: number;
-    lapses: number;
-    lastReview?: string | null;
-    createdAt: string;
-    updatedAt: string;
-  }> }
+  args: {
+    cards: Array<{
+      cardId: string;
+      studentId: Id<"profiles">;
+      objectiveId: string;
+      variantKey?: string;
+      legacyProblemFamilyId?: string;
+      problemFamilyId?: string;
+      stability: number;
+      difficulty: number;
+      state: "new" | "learning" | "review" | "relearning";
+      dueDate: string;
+      elapsedDays: number;
+      scheduledDays: number;
+      reps: number;
+      lapses: number;
+      lastReview?: string | null;
+      createdAt: string;
+      updatedAt: string;
+    }>;
+  },
 ): Promise<void> {
   const normalizedCards = args.cards.map((card) => ({
     ...card,
     variantKey: resolveCanonicalVariantKey(card).variantKey,
   }));
   const lookups = await Promise.all(
-    normalizedCards.map((card) => findCardByStudentAndVariant(ctx, card.studentId, card.variantKey))
+    normalizedCards.map((card) =>
+      findCardByStudentAndVariant(ctx, card.studentId, card.variantKey),
+    ),
   );
 
   await Promise.all(
@@ -294,7 +297,7 @@ export async function saveCardsHandler(
           updatedAt: new Date(card.updatedAt).getTime(),
         });
       }
-    })
+    }),
   );
 }
 
@@ -325,7 +328,7 @@ export const saveCards = internalMutation({
         lastReview: v.optional(v.union(v.string(), v.null())),
         createdAt: v.string(),
         updatedAt: v.string(),
-      })
+      }),
     ),
   },
   handler: saveCardsHandler,
@@ -337,10 +340,7 @@ export const saveCards = internalMutation({
  * @param {{ id: string }} args - The card ID
  * @returns {Promise<ReturnType<typeof mapDbCardToContract> | null>} The card in contract format, or null if not found
  */
-export async function getCardHandler(
-  ctx: QueryCtx,
-  args: { id: string }
-) {
+export async function getCardHandler(ctx: QueryCtx, args: { id: string }) {
   const card = await ctx.db.get(args.id as Id<"srs_cards">);
   if (!card) return null;
   return mapDbCardToContract(card);
@@ -362,15 +362,10 @@ export const getCard = internalQuery({
  * @param {{ studentId: Id<"profiles"> }} args - The student ID
  * @returns {Promise<ReturnType<typeof mapDbCardToContract>[]>} Array of cards in contract format
  */
-export async function getCardsByStudentHandler(
-  ctx: QueryCtx,
-  args: { studentId: Id<"profiles"> }
-) {
+export async function getCardsByStudentHandler(ctx: QueryCtx, args: { studentId: Id<"profiles"> }) {
   const cards = await ctx.db
     .query("srs_cards")
-    .withIndex("by_student", (q) =>
-      q.eq("studentId", args.studentId)
-    )
+    .withIndex("by_student", (q) => q.eq("studentId", args.studentId))
     .take(MAX_CARDS_PER_STUDENT_READ);
   return cards.map(mapDbCardToContract);
 }
@@ -393,7 +388,7 @@ export const getCardsByStudent = internalQuery({
  */
 export async function getCardByStudentAndVariantHandler(
   ctx: QueryCtx,
-  args: { studentId: Id<"profiles">; variantKey: string }
+  args: { studentId: Id<"profiles">; variantKey: string },
 ) {
   const card = await findCardByStudentAndVariant(ctx, args.studentId, args.variantKey);
   return card ? mapDbCardToContract(card) : null;
@@ -458,7 +453,7 @@ export const getDueCards = internalQuery({
     const cards = await ctx.db
       .query("srs_cards")
       .withIndex("by_student_and_due", (q) =>
-        q.eq("studentId", args.studentId).lte("dueDate", args.asOfDate)
+        q.eq("studentId", args.studentId).lte("dueDate", args.asOfDate),
       )
       .take(MAX_DUE_CARDS_READ);
     return cards.map(mapDbCardToContract);

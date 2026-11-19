@@ -14,15 +14,17 @@ describe("IM3 one-real-solution Independent variant upsert", () => {
   it("upserts the exact Independent variant by stable identity", async () => {
     const operations: string[] = [];
     let stored: Record<string, unknown> | undefined;
-    const storedVariantId = "practice_variants:one-real-solution-independent" as Id<"practice_variants">;
+    const storedVariantId =
+      "practice_variants:one-real-solution-independent" as Id<"practice_variants">;
     const ctx = {
       db: {
         query(table: string) {
           operations.push(`query:${table}`);
           return {
-            withIndex(index: string, callback: (query: {
-              eq: (field: string, value: unknown) => unknown;
-            }) => unknown) {
+            withIndex(
+              index: string,
+              callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+            ) {
               operations.push(`index:${index}`);
               callback({
                 eq: (field: string, value: unknown) => {
@@ -80,8 +82,10 @@ describe("IM3 one-real-solution Independent variant upsert", () => {
       objectiveIds: [IM3_ONE_REAL_SOLUTION_NODE],
       metadata: { stableActivityId: IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID },
     });
-    expect(operations.filter((operation) => (
-      operation.includes("activities") || operation.includes("practice_items")
-    ))).toEqual([]);
+    expect(
+      operations.filter(
+        (operation) => operation.includes("activities") || operation.includes("practice_items"),
+      ),
+    ).toEqual([]);
   });
 });

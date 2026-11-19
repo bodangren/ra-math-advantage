@@ -1,6 +1,6 @@
-import { z } from 'zod';
+import { z } from "zod";
 
-import type { PlacementEstimate } from './contract';
+import type { PlacementEstimate } from "./contract";
 import {
   DEFAULT_PLACEMENT_PROBE_BUDGET,
   DEFAULT_PLACEMENT_STAGNATION_LIMIT,
@@ -11,17 +11,17 @@ import {
   placementProbeInstrumentSnapshotSchema,
   placementProbeOutcomeSchema,
   resolvePlacementStoppingReason,
-} from './placement-contract';
+} from "./placement-contract";
 import type {
   PlacementProbeDecisionV31,
   PlacementProbeInstrumentSnapshot,
   PlacementProbeOutcome,
   PlacementFrontierStateV31,
   PlacementStoppingReason,
-} from './placement-contract';
-import { guessFloorRefSchema } from './proficiency-evidence-contract';
-import type { GuessFloorRef } from './proficiency-evidence-contract';
-import { expandPlacementEvidence } from './placement';
+} from "./placement-contract";
+import { guessFloorRefSchema } from "./proficiency-evidence-contract";
+import type { GuessFloorRef } from "./proficiency-evidence-contract";
+import { expandPlacementEvidence } from "./placement";
 
 const MAX_REPRESENTATIVES_PER_CONTENT_GROUP = 3;
 
@@ -91,7 +91,7 @@ export interface AdaptivePlacementResult {
   frontierState: PlacementFrontierStateV31;
 }
 
-type ValidatedConfig = Omit<AdaptivePlacementConfig, 'nodes' | 'prerequisiteEdges'> & {
+type ValidatedConfig = Omit<AdaptivePlacementConfig, "nodes" | "prerequisiteEdges"> & {
   nodes: AdaptivePlacementNode[];
   prerequisiteEdges: AdaptivePlacementEdge[];
   probeBudget: number;
@@ -148,32 +148,30 @@ function assertDag(
   }
 
   if (visited !== nodeIds.size) {
-    throw new Error('Adaptive placement prerequisite graph must be a DAG');
+    throw new Error("Adaptive placement prerequisite graph must be a DAG");
   }
 }
 
 function validateConfig(config: AdaptivePlacementConfig): ValidatedConfig {
-  if (!config || typeof config !== 'object') {
-    throw new Error('Adaptive placement config is required');
+  if (!config || typeof config !== "object") {
+    throw new Error("Adaptive placement config is required");
   }
-  if (typeof config.entryPointNodeId !== 'string' || !config.entryPointNodeId.trim()) {
-    throw new Error('entryPointNodeId is required');
+  if (typeof config.entryPointNodeId !== "string" || !config.entryPointNodeId.trim()) {
+    throw new Error("entryPointNodeId is required");
   }
-  if (typeof config.probe !== 'function') {
-    throw new Error('probe must be a function');
+  if (typeof config.probe !== "function") {
+    throw new Error("probe must be a function");
   }
   if (
-    !Number.isFinite(config.hardGateThreshold)
-    || config.hardGateThreshold < 0
-    || config.hardGateThreshold > 1
+    !Number.isFinite(config.hardGateThreshold) ||
+    config.hardGateThreshold < 0 ||
+    config.hardGateThreshold > 1
   ) {
-    throw new Error('hardGateThreshold must be a finite number in [0, 1]');
+    throw new Error("hardGateThreshold must be a finite number in [0, 1]");
   }
 
   const nodes = z.array(adaptivePlacementNodeSchema).parse(config.nodes);
-  const prerequisiteEdges = z.array(adaptivePlacementEdgeSchema).parse(
-    config.prerequisiteEdges,
-  );
+  const prerequisiteEdges = z.array(adaptivePlacementEdgeSchema).parse(config.prerequisiteEdges);
   const nodeById = new Map<string, AdaptivePlacementNode>();
   for (const node of nodes) {
     if (nodeById.has(node.nodeId)) {
@@ -182,20 +180,22 @@ function validateConfig(config: AdaptivePlacementConfig): ValidatedConfig {
     nodeById.set(node.nodeId, node);
   }
   if (!nodeById.has(config.entryPointNodeId)) {
-    throw new Error('entryPointNodeId must reference a declared node');
+    throw new Error("entryPointNodeId must reference a declared node");
   }
 
   const edgeKeys = new Set<string>();
   for (const edge of prerequisiteEdges) {
     if (!nodeById.has(edge.sourceId) || !nodeById.has(edge.targetId)) {
-      throw new Error('Adaptive placement edge must reference declared nodes');
+      throw new Error("Adaptive placement edge must reference declared nodes");
     }
     if (edge.sourceId === edge.targetId) {
-      throw new Error('Adaptive placement graph cannot contain self edges');
+      throw new Error("Adaptive placement graph cannot contain self edges");
     }
     const key = `${edge.sourceId}\u0000${edge.targetId}`;
     if (edgeKeys.has(key)) {
-      throw new Error(`Adaptive placement edge must be unique: ${edge.sourceId} -> ${edge.targetId}`);
+      throw new Error(
+        `Adaptive placement edge must be unique: ${edge.sourceId} -> ${edge.targetId}`,
+      );
     }
     edgeKeys.add(key);
   }
@@ -203,13 +203,13 @@ function validateConfig(config: AdaptivePlacementConfig): ValidatedConfig {
   const guessFloor = guessFloorRefSchema.parse(config.guessFloor);
   const instrument = placementProbeInstrumentSnapshotSchema.parse(config.instrument);
   if (instrument.guessFloorPolicyVersion !== guessFloor.policyVersion) {
-    throw new Error('instrument guess-floor provenance must match guessFloor policyVersion');
+    throw new Error("instrument guess-floor provenance must match guessFloor policyVersion");
   }
 
   const probeBudget = config.probeBudget ?? DEFAULT_PLACEMENT_PROBE_BUDGET;
   const stagnationLimit = config.stagnationLimit ?? DEFAULT_PLACEMENT_STAGNATION_LIMIT;
-  assertPositiveInteger(probeBudget, 'probeBudget');
-  assertPositiveInteger(stagnationLimit, 'stagnationLimit');
+  assertPositiveInteger(probeBudget, "probeBudget");
+  assertPositiveInteger(stagnationLimit, "stagnationLimit");
 
   // The domain contract declares the full prerequisite graph as a DAG. Soft
   // edges do not drive placement, but a soft cycle is still invalid topology.
@@ -219,11 +219,12 @@ function validateConfig(config: AdaptivePlacementConfig): ValidatedConfig {
     ...config,
     entryPointNodeId: config.entryPointNodeId,
     nodes: [...nodeById.values()].sort((left, right) => compareNodeIds(left.nodeId, right.nodeId)),
-    prerequisiteEdges: [...prerequisiteEdges].sort((left, right) => (
-      compareNodeIds(left.sourceId, right.sourceId)
-      || compareNodeIds(left.targetId, right.targetId)
-      || left.weight - right.weight
-    )),
+    prerequisiteEdges: [...prerequisiteEdges].sort(
+      (left, right) =>
+        compareNodeIds(left.sourceId, right.sourceId) ||
+        compareNodeIds(left.targetId, right.targetId) ||
+        left.weight - right.weight,
+    ),
     guessFloor,
     instrument,
     probeBudget,
@@ -245,30 +246,28 @@ export function nextPlacementStagnationCount(
   currentCount: number,
 ): number {
   if (!Number.isInteger(currentCount) || currentCount < 0) {
-    throw new Error('currentCount must be a non-negative integer');
+    throw new Error("currentCount must be a non-negative integer");
   }
   if (
-    previousFrontierNodeIds.some((nodeId) => typeof nodeId !== 'string' || !nodeId)
-    || nextFrontierNodeIds.some((nodeId) => typeof nodeId !== 'string' || !nodeId)
+    previousFrontierNodeIds.some((nodeId) => typeof nodeId !== "string" || !nodeId) ||
+    nextFrontierNodeIds.some((nodeId) => typeof nodeId !== "string" || !nodeId)
   ) {
-    throw new Error('frontier node IDs must be non-empty strings');
+    throw new Error("frontier node IDs must be non-empty strings");
   }
-  return sameStringSet(previousFrontierNodeIds, nextFrontierNodeIds)
-    ? currentCount + 1
-    : 0;
+  return sameStringSet(previousFrontierNodeIds, nextFrontierNodeIds) ? currentCount + 1 : 0;
 }
 
 function outcomeWeight(outcome: PlacementProbeOutcome): number {
-  if (outcome === 'pass') return 1;
-  if (outcome === 'partial') return 0.5;
+  if (outcome === "pass") return 1;
+  if (outcome === "partial") return 0.5;
   return 0;
 }
 
-function resolveDecision(outcomes: readonly PlacementProbeOutcome[]): 'advance' | 'retreat' {
-  return outcomes.reduce((total, outcome) => total + outcomeWeight(outcome), 0)
-    > outcomes.length / 2
-    ? 'advance'
-    : 'retreat';
+function resolveDecision(outcomes: readonly PlacementProbeOutcome[]): "advance" | "retreat" {
+  return outcomes.reduce((total, outcome) => total + outcomeWeight(outcome), 0) >
+    outcomes.length / 2
+    ? "advance"
+    : "retreat";
 }
 
 /**
@@ -316,10 +315,12 @@ export async function runAdaptivePlacement(
     const left = nodeById.get(leftId);
     const right = nodeById.get(rightId);
     if (!left || !right) return compareNodeIds(leftId, rightId);
-    return Math.abs(leftDepth) - Math.abs(rightDepth)
-      || leftDepth - rightDepth
-      || left.contentGroup.localeCompare(right.contentGroup)
-      || compareRepresentativeNodes(left, right);
+    return (
+      Math.abs(leftDepth) - Math.abs(rightDepth) ||
+      leftDepth - rightDepth ||
+      left.contentGroup.localeCompare(right.contentGroup) ||
+      compareRepresentativeNodes(left, right)
+    );
   }
 
   function addCandidates(
@@ -328,13 +329,12 @@ export async function runAdaptivePlacement(
     candidateDepth: number,
   ): void {
     const eligible = candidateIds.filter((nodeId) => {
-      if (
-        resolved.has(nodeId)
-        || scheduled.has(nodeId)
-        || excludedRepresentatives.has(nodeId)
-      ) return false;
-      return !requireResolvedParents
-        || (parents.get(nodeId) ?? []).every((parentId) => resolved.has(parentId));
+      if (resolved.has(nodeId) || scheduled.has(nodeId) || excludedRepresentatives.has(nodeId))
+        return false;
+      return (
+        !requireResolvedParents ||
+        (parents.get(nodeId) ?? []).every((parentId) => resolved.has(parentId))
+      );
     });
 
     const candidatesByBucket = new Map<string, string[]>();
@@ -346,7 +346,9 @@ export async function runAdaptivePlacement(
       candidatesByBucket.set(bucket, [...(candidatesByBucket.get(bucket) ?? []), nodeId]);
     }
 
-    for (const [bucket, newNodeIds] of [...candidatesByBucket].sort(([a], [b]) => a.localeCompare(b))) {
+    for (const [bucket, newNodeIds] of [...candidatesByBucket].sort(([a], [b]) =>
+      a.localeCompare(b),
+    )) {
       const selected = representativesByBucket.get(bucket) ?? new Set<string>();
       const locked = [...selected].filter((nodeId) => resolved.has(nodeId));
       const pending = [...selected].filter((nodeId) => !resolved.has(nodeId));
@@ -382,7 +384,7 @@ export async function runAdaptivePlacement(
 
   while (frontier.length > 0 && !forcedStoppingReason) {
     if (probesUsed >= config.probeBudget) {
-      forcedStoppingReason = 'probe_budget_exhausted';
+      forcedStoppingReason = "probe_budget_exhausted";
       break;
     }
 
@@ -393,15 +395,17 @@ export async function runAdaptivePlacement(
 
     for (let index = 1; index <= 3; index += 1) {
       if (probesUsed >= config.probeBudget) {
-        forcedStoppingReason = 'probe_budget_exhausted';
+        forcedStoppingReason = "probe_budget_exhausted";
         break;
       }
 
       const previousFrontier = [...frontier];
-      const raw = rawProbeResultSchema.parse(await config.probe({
-        nodeId,
-        probeIndex: index as 1 | 2 | 3,
-      }));
+      const raw = rawProbeResultSchema.parse(
+        await config.probe({
+          nodeId,
+          probeIndex: index as 1 | 2 | 3,
+        }),
+      );
       const guessCorrectedPerformance = Math.max(
         0,
         (raw.rawPerformance - config.guessFloor.value) / (1 - config.guessFloor.value),
@@ -422,8 +426,9 @@ export async function runAdaptivePlacement(
       probeCountByNode.set(nodeId, probeEvidence.length);
 
       if (index === 2) {
-        openingPairUnanimous = probeEvidence[0]?.outcome === probeEvidence[1]?.outcome
-          && (probeEvidence[0]?.outcome === 'pass' || probeEvidence[0]?.outcome === 'fail');
+        openingPairUnanimous =
+          probeEvidence[0]?.outcome === probeEvidence[1]?.outcome &&
+          (probeEvidence[0]?.outcome === "pass" || probeEvidence[0]?.outcome === "fail");
       }
       const decisionComplete = index === 3 || (index === 2 && openingPairUnanimous);
       if (decisionComplete) {
@@ -432,38 +437,29 @@ export async function runAdaptivePlacement(
           nodeId,
           probes: probeEvidence,
           decision: resolveDecision(probeEvidence.map((probe) => probe.outcome)),
-          confidenceCap: config.instrument.highFidelity ? 'high' : 'medium',
+          confidenceCap: config.instrument.highFidelity ? "high" : "medium",
         });
         decisions.push(decision);
 
-        const confidence = config.instrument.highFidelity ? 'high' : 'medium';
+        const confidence = config.instrument.highFidelity ? "high" : "medium";
         directEstimates.push({
           nodeId,
-          masteryEstimate: probeEvidence.reduce(
-            (total, probe) => total + probe.guessCorrectedPerformance,
-            0,
-          ) / probeEvidence.length,
+          masteryEstimate:
+            probeEvidence.reduce((total, probe) => total + probe.guessCorrectedPerformance, 0) /
+            probeEvidence.length,
           confidence,
-          evidenceType: 'direct',
+          evidenceType: "direct",
           inferenceDepth: 0,
         });
         resolved.add(nodeId);
         frontier = frontier.filter((candidateId) => candidateId !== nodeId);
 
-        if (decision.decision === 'advance') {
-          addCandidates(
-            children.get(nodeId) ?? [],
-            true,
-            (depthByNode.get(nodeId) ?? 0) + 1,
-          );
+        if (decision.decision === "advance") {
+          addCandidates(children.get(nodeId) ?? [], true, (depthByNode.get(nodeId) ?? 0) + 1);
         } else {
           // A retreat deliberately walks toward unresolved prerequisites; it
           // cannot require those parents' own ancestors to already be resolved.
-          addCandidates(
-            parents.get(nodeId) ?? [],
-            false,
-            (depthByNode.get(nodeId) ?? 0) - 1,
-          );
+          addCandidates(parents.get(nodeId) ?? [], false, (depthByNode.get(nodeId) ?? 0) - 1);
         }
       }
 
@@ -473,11 +469,11 @@ export async function runAdaptivePlacement(
         unchangedProbeCount,
       );
       if (probesUsed >= config.probeBudget) {
-        forcedStoppingReason = 'probe_budget_exhausted';
+        forcedStoppingReason = "probe_budget_exhausted";
         break;
       }
       if (unchangedProbeCount >= config.stagnationLimit) {
-        forcedStoppingReason = 'frontier_stagnated';
+        forcedStoppingReason = "frontier_stagnated";
         break;
       }
       if (decisionComplete) break;
@@ -487,16 +483,19 @@ export async function runAdaptivePlacement(
   const frontierNodes = frontier.map((nodeId) => ({
     nodeId,
     contentGroup: nodeById.get(nodeId)?.contentGroup ?? null,
-    status: resolved.has(nodeId) ? 'mastered' as const : 'eligible' as const,
+    status: resolved.has(nodeId) ? ("mastered" as const) : ("eligible" as const),
     probeCount: probeCountByNode.get(nodeId) ?? 0,
   }));
-  const stoppingReason = forcedStoppingReason ?? resolvePlacementStoppingReason({
-    frontier: frontierNodes,
-    probesUsed,
-    probeBudget: config.probeBudget,
-    unchangedProbeCount,
-    stagnationLimit: config.stagnationLimit,
-  }) ?? 'frontier_resolved';
+  const stoppingReason =
+    forcedStoppingReason ??
+    resolvePlacementStoppingReason({
+      frontier: frontierNodes,
+      probesUsed,
+      probeBudget: config.probeBudget,
+      unchangedProbeCount,
+      stagnationLimit: config.stagnationLimit,
+    }) ??
+    "frontier_resolved";
   const frontierState = placementFrontierStateSchema.parse({
     policyVersion: PLACEMENT_POLICY_VERSION,
     entryPointNodeId: config.entryPointNodeId,
@@ -508,19 +507,17 @@ export async function runAdaptivePlacement(
     stoppingReason,
   });
 
-  const decisionByNode = new Map(
-    decisions.map((decision) => [decision.nodeId, decision.decision]),
-  );
-  const closureInputs = directEstimates.map((estimate) => (
-    decisionByNode.get(estimate.nodeId) === 'advance'
+  const decisionByNode = new Map(decisions.map((decision) => [decision.nodeId, decision.decision]));
+  const closureInputs = directEstimates.map((estimate) =>
+    decisionByNode.get(estimate.nodeId) === "advance"
       ? estimate
-      : { ...estimate, masteryEstimate: 0 }
-  ));
+      : { ...estimate, masteryEstimate: 0 },
+  );
   const inferredEstimates = expandPlacementEvidence(
     closureInputs,
     { prerequisiteEdges: hardEdges },
     config.hardGateThreshold,
-  ).filter((estimate) => estimate.evidenceType === 'inferred');
+  ).filter((estimate) => estimate.evidenceType === "inferred");
 
   return {
     policyVersion: PLACEMENT_POLICY_VERSION,

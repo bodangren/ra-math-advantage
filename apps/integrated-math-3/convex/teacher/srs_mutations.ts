@@ -27,7 +27,7 @@ const PRIORITY_NUMERIC: Record<ObjectivePriority, number> = {
  */
 async function getAuthorizedTeacher(
   ctx: MutationCtx,
-  userId: Id<"profiles">
+  userId: Id<"profiles">,
 ): Promise<Doc<"profiles"> | null> {
   const teacher = await ctx.db.get("profiles", userId);
   if (!teacher || (teacher.role !== "teacher" && teacher.role !== "admin")) {
@@ -46,7 +46,7 @@ async function getAuthorizedTeacher(
 async function validateTeacherOwnsClass(
   ctx: MutationCtx,
   userId: Id<"profiles">,
-  classId: Id<"classes">
+  classId: Id<"classes">,
 ): Promise<boolean> {
   const teacher = await getAuthorizedTeacher(ctx, userId);
   if (!teacher) return false;
@@ -67,13 +67,11 @@ async function validateTeacherOwnsClass(
 async function validateStudentInClass(
   ctx: MutationCtx,
   classId: Id<"classes">,
-  studentId: Id<"profiles">
+  studentId: Id<"profiles">,
 ): Promise<boolean> {
   const enrollment = await ctx.db
     .query("class_enrollments")
-    .withIndex("by_class_and_student", (q) =>
-      q.eq("classId", classId).eq("studentId", studentId)
-    )
+    .withIndex("by_class_and_student", (q) => q.eq("classId", classId).eq("studentId", studentId))
     .first();
   return enrollment?.status === "active";
 }
@@ -95,7 +93,7 @@ export type UpdateObjectivePriorityArgs = {
  */
 export async function updateObjectivePriorityHandler(
   ctx: MutationCtx,
-  args: UpdateObjectivePriorityArgs
+  args: UpdateObjectivePriorityArgs,
 ): Promise<{ success: boolean; error?: string }> {
   const ownsClass = await validateTeacherOwnsClass(ctx, args.userId, args.classId);
   if (!ownsClass) {
@@ -148,7 +146,7 @@ export const updateObjectivePriority = internalMutation({
       v.literal("essential"),
       v.literal("supporting"),
       v.literal("extension"),
-      v.literal("triaged")
+      v.literal("triaged"),
     ),
     courseKey: v.string(),
   },
@@ -174,7 +172,7 @@ export type ResetStudentCardsResult =
  */
 export async function resetStudentCardsHandler(
   ctx: MutationCtx,
-  args: ResetStudentCardsArgs
+  args: ResetStudentCardsArgs,
 ): Promise<ResetStudentCardsResult> {
   const ownsClass = await validateTeacherOwnsClass(ctx, args.userId, args.classId);
   if (!ownsClass) {
@@ -189,7 +187,7 @@ export async function resetStudentCardsHandler(
   const cards = await ctx.db
     .query("srs_cards")
     .withIndex("by_student_and_objective", (q) =>
-      q.eq("studentId", args.studentId).eq("objectiveId", args.objectiveId)
+      q.eq("studentId", args.studentId).eq("objectiveId", args.objectiveId),
     )
     .take(100);
 
@@ -277,7 +275,7 @@ export type AddExtraCardsArgs = {
  */
 export async function addExtraCardsHandler(
   ctx: MutationCtx,
-  args: AddExtraCardsArgs
+  args: AddExtraCardsArgs,
 ): Promise<{ success: boolean; cardId?: Id<"srs_cards">; error?: string }> {
   const ownsClass = await validateTeacherOwnsClass(ctx, args.userId, args.classId);
   if (!ownsClass) {
@@ -292,7 +290,7 @@ export async function addExtraCardsHandler(
   const existingCard = await ctx.db
     .query("srs_cards")
     .withIndex("by_student_and_objective", (q) =>
-      q.eq("studentId", args.studentId).eq("objectiveId", args.objectiveId)
+      q.eq("studentId", args.studentId).eq("objectiveId", args.objectiveId),
     )
     .first();
 
@@ -302,10 +300,10 @@ export async function addExtraCardsHandler(
 
   const practiceVariant = await ctx.db
     .query("practice_variants")
-      .withIndex("by_objectiveId", (q) =>
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Convex multi-entry array index expects element, not array
-        (q as any).eq("objectiveIds", args.objectiveId)
-      )
+    .withIndex("by_objectiveId", (q) =>
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Convex multi-entry array index expects element, not array
+      (q as any).eq("objectiveIds", args.objectiveId),
+    )
     .first();
 
   if (!practiceVariant) {

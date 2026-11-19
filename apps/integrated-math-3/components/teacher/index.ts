@@ -1,3 +1,3 @@
-export * from './TeacherNavigation';
-export * from './StudentRow';
-export * from './ClassOverviewCard';
+export * from "./TeacherNavigation";
+export * from "./StudentRow";
+export * from "./ClassOverviewCard";

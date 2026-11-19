@@ -1,19 +1,19 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { getGenerator } from '../knowledge-space/generators/registry';
+import { getGenerator } from "../knowledge-space/generators/registry";
 
-const GENERATOR_KEY = 'estimate-roots-by-graphing';
-const ATOMIC_NODE_ID = 'math.im3.skill.1.2.estimate-roots-by-graphing';
+const GENERATOR_KEY = "estimate-roots-by-graphing";
+const ATOMIC_NODE_ID = "math.im3.skill.1.2.estimate-roots-by-graphing";
 
-describe('estimate-roots-by-graphing generator', () => {
-  it('resolves the exact registry identity', () => {
+describe("estimate-roots-by-graphing generator", () => {
+  it("resolves the exact registry identity", () => {
     const generator = getGenerator(GENERATOR_KEY);
 
     expect(generator.key).toBe(GENERATOR_KEY);
     expect(generator.nodeIds).toEqual([ATOMIC_NODE_ID]);
   });
 
-  it('emits the exact deterministic seed 0 source specimen', () => {
+  it("emits the exact deterministic seed 0 source specimen", () => {
     const generator = getGenerator(GENERATOR_KEY);
     const output = generator.generate({ nodeId: ATOMIC_NODE_ID, seed: 0, difficulty: 0.5 });
     const data = output.data as Record<string, unknown>;
@@ -29,7 +29,7 @@ describe('estimate-roots-by-graphing generator', () => {
     ];
 
     expect(output.prompt).toBe(
-      'Solve -x^2 + 3x + 7 = 0 by graphing. If the exact roots cannot be found, state the consecutive integers between which the roots are located.',
+      "Solve -x^2 + 3x + 7 = 0 by graphing. If the exact roots cannot be found, state the consecutive integers between which the roots are located.",
     );
     expect(data).toEqual({
       axisFloor: 1,
@@ -41,18 +41,21 @@ describe('estimate-roots-by-graphing generator', () => {
       difficulty: 0.5,
       tableValues,
       points: tableValues.map(({ x, y }) => [x, y]),
-      rootIntervals: [[-2, -1], [4, 5]],
+      rootIntervals: [
+        [-2, -1],
+        [4, 5],
+      ],
       rendererProps: {
-        equation: 'f(x) = -x^2 + 3x + 7',
-        variant: 'plot_from_equation',
-        responseVariant: 'estimated_root_intervals',
-        originalEquation: '-x^2 + 3x + 7 = 0',
+        equation: "f(x) = -x^2 + 3x + 7",
+        variant: "plot_from_equation",
+        responseVariant: "estimated_root_intervals",
+        originalEquation: "-x^2 + 3x + 7 = 0",
         points: tableValues.map(({ x, y }) => [x, y]),
       },
     });
   });
 
-  it('uses the exact interval answer and grading contract', () => {
+  it("uses the exact interval answer and grading contract", () => {
     const generator = getGenerator(GENERATOR_KEY);
     const output = generator.generate({ nodeId: ATOMIC_NODE_ID, seed: 0, difficulty: 0.5 });
     const tableValues = [
@@ -69,12 +72,15 @@ describe('estimate-roots-by-graphing generator', () => {
     expect(output.expectedAnswer).toEqual({
       table_values: tableValues,
       placed_points: tableValues,
-      root_intervals: [[-2, -1], [4, 5]],
+      root_intervals: [
+        [-2, -1],
+        [4, 5],
+      ],
     });
     expect(Object.keys(output.expectedAnswer)).toEqual([
-      'table_values',
-      'placed_points',
-      'root_intervals',
+      "table_values",
+      "placed_points",
+      "root_intervals",
     ]);
     expect(output.gradingMetadata).toEqual({
       partAnswers: output.expectedAnswer,
@@ -84,25 +90,25 @@ describe('estimate-roots-by-graphing generator', () => {
         root_intervals: 1,
       },
       partGradingRules: {
-        table_values: 'custom',
-        placed_points: 'custom',
-        root_intervals: 'custom',
+        table_values: "custom",
+        placed_points: "custom",
+        root_intervals: "custom",
       },
     });
     expect(output.solutionSteps).toHaveLength(5);
-    expect(output.solutionSteps.map(step => step.description)).toEqual([
-      'Rewrite the equation as the related function',
-      'Find the axis of symmetry',
-      'Complete the table of values',
-      'Plot the points and connect the curve',
-      'State the consecutive-integer root intervals',
+    expect(output.solutionSteps.map((step) => step.description)).toEqual([
+      "Rewrite the equation as the related function",
+      "Find the axis of symmetry",
+      "Complete the table of values",
+      "Plot the points and connect the curve",
+      "State the consecutive-integer root intervals",
     ]);
-    expect(output.expectedAnswer).not.toHaveProperty('roots');
-    expect(output.expectedAnswer).not.toHaveProperty('root');
-    expect(output.expectedAnswer).not.toHaveProperty('solution');
+    expect(output.expectedAnswer).not.toHaveProperty("roots");
+    expect(output.expectedAnswer).not.toHaveProperty("root");
+    expect(output.expectedAnswer).not.toHaveProperty("solution");
   });
 
-  it('is deterministic and preserves interval invariants across seeds', () => {
+  it("is deterministic and preserves interval invariants across seeds", () => {
     const generator = getGenerator(GENERATOR_KEY);
 
     for (let seed = 0; seed < 1000; seed += 1) {
@@ -129,8 +135,8 @@ describe('estimate-roots-by-graphing generator', () => {
       const firstInterval = data.rootIntervals[0]!;
       const secondInterval = data.rootIntervals[1]!;
       const roots = [
-        (-(data.b) - Math.sqrt(data.b ** 2 - 4 * data.a * data.c)) / (2 * data.a),
-        (-(data.b) + Math.sqrt(data.b ** 2 - 4 * data.a * data.c)) / (2 * data.a),
+        (-data.b - Math.sqrt(data.b ** 2 - 4 * data.a * data.c)) / (2 * data.a),
+        (-data.b + Math.sqrt(data.b ** 2 - 4 * data.a * data.c)) / (2 * data.a),
       ].sort((first, second) => first - second);
 
       expect(repeat).toEqual(output);
@@ -166,12 +172,12 @@ describe('estimate-roots-by-graphing generator', () => {
           root_intervals: 1,
         },
         partGradingRules: {
-          table_values: 'custom',
-          placed_points: 'custom',
-          root_intervals: 'custom',
+          table_values: "custom",
+          placed_points: "custom",
+          root_intervals: "custom",
         },
       });
-      expect(data.rendererProps.responseVariant).toBe('estimated_root_intervals');
+      expect(data.rendererProps.responseVariant).toBe("estimated_root_intervals");
       expect(data.rendererProps.points).toEqual(data.points);
       expect(data.rendererProps.equation.length).toBeGreaterThan(0);
       expect(data.rendererProps.originalEquation.length).toBeGreaterThan(0);
@@ -186,12 +192,14 @@ describe('estimate-roots-by-graphing generator', () => {
       expect(firstInterval[1] - firstInterval[0]).toBe(1);
       expect(secondInterval[1] - secondInterval[0]).toBe(1);
       expect(firstInterval[1]).toBeLessThan(secondInterval[0]);
-      expect(data.tableValues.every(({ x, y }) => y === data.a * x ** 2 + data.b * x + data.c)).toBe(true);
+      expect(
+        data.tableValues.every(({ x, y }) => y === data.a * x ** 2 + data.b * x + data.c),
+      ).toBe(true);
       expect(data.tableValues[0]!.y * data.tableValues[1]!.y).toBeLessThan(0);
       expect(data.tableValues[6]!.y * data.tableValues[7]!.y).toBeLessThan(0);
       expect(roots.every(Number.isFinite)).toBe(true);
       expect(roots[0]).toBeLessThan(roots[1]!);
-      expect(roots.every(root => !Number.isInteger(root))).toBe(true);
+      expect(roots.every((root) => !Number.isInteger(root))).toBe(true);
       expect(roots[0]).toBeGreaterThan(firstInterval[0]);
       expect(roots[0]).toBeLessThan(firstInterval[1]);
       expect(roots[1]).toBeGreaterThan(secondInterval[0]);

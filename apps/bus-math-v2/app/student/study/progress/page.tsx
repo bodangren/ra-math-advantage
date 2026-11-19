@@ -1,7 +1,7 @@
 import { requireStudentSessionClaims } from "@/lib/auth/server";
 import { ProgressDashboard } from "@/components/student/ProgressDashboard";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 /**
  * Page wrapper for the study progress dashboard.

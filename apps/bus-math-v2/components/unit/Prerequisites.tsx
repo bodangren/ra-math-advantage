@@ -1,17 +1,16 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   type UnitDifferentiation,
   type UnitPrerequisites,
-  type UnitResource
-} from '@/types/curriculum';
-import { CheckSquare, Download, ExternalLink, Monitor } from 'lucide-react';
+  type UnitResource,
+} from "@/types/curriculum";
+import { CheckSquare, Download, ExternalLink, Monitor } from "lucide-react";
 
 interface PrerequisitesProps {
   prerequisites: UnitPrerequisites;
   differentiation?: UnitDifferentiation;
 }
-
 
 /**
  * Returns an icon element for a given resource type.
@@ -19,15 +18,14 @@ interface PrerequisitesProps {
  * @param type - The resource type (download or external link)
  * @returns A Lucide icon element
  */
-function getResourceIcon(type: UnitResource['type']) {
+function getResourceIcon(type: UnitResource["type"]) {
   switch (type) {
-    case 'download':
+    case "download":
       return <Download className="h-4 w-4" />;
     default:
       return <ExternalLink className="h-4 w-4" />;
   }
 }
-
 
 /**
  * Renders prerequisites, technology requirements, resources, and differentiation support.
@@ -107,7 +105,10 @@ export function Prerequisites({ prerequisites, differentiation }: PrerequisitesP
           </CardHeader>
           <CardContent className="space-y-3">
             {prerequisites.resources.map((resource, index) => (
-              <div key={`resource-${index}`} className="flex items-center justify-between gap-4 rounded border p-2">
+              <div
+                key={`resource-${index}`}
+                className="flex items-center justify-between gap-4 rounded border p-2"
+              >
                 <span className="text-sm font-medium">{resource.title}</span>
                 {resource.url ? (
                   <Button
@@ -139,9 +140,21 @@ export function Prerequisites({ prerequisites, differentiation }: PrerequisitesP
           </CardHeader>
           <CardContent>
             <div className="grid gap-6 md:grid-cols-3">
-              {renderSupportList('For Struggling Students', differentiation.struggling, 'text-yellow-700')}
-              {renderSupportList('For Advanced Students', differentiation.advanced, 'text-green-700')}
-              {renderSupportList('For English Language Learners', differentiation.ell, 'text-blue-700')}
+              {renderSupportList(
+                "For Struggling Students",
+                differentiation.struggling,
+                "text-yellow-700",
+              )}
+              {renderSupportList(
+                "For Advanced Students",
+                differentiation.advanced,
+                "text-green-700",
+              )}
+              {renderSupportList(
+                "For English Language Learners",
+                differentiation.ell,
+                "text-blue-700",
+              )}
             </div>
           </CardContent>
         </Card>

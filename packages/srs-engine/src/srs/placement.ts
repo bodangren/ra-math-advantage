@@ -1,13 +1,6 @@
-import {
-  isPlacementEstimate,
-  isPlacementSeededCard,
-} from './contract';
-import type {
-  PlacementConfidence,
-  PlacementEstimate,
-  PlacementSeededCard,
-} from './contract';
-import { createCard, reviewCard } from './scheduler';
+import { isPlacementEstimate, isPlacementSeededCard } from "./contract";
+import type { PlacementConfidence, PlacementEstimate, PlacementSeededCard } from "./contract";
+import { createCard, reviewCard } from "./scheduler";
 
 export {
   PLACEMENT_POLICY_VERSION,
@@ -33,7 +26,7 @@ export {
   isPlacementProbeEvidenceV31,
   isPlacementProbeDecisionV31,
   isPlacementFrontierStateV31,
-} from './placement-contract';
+} from "./placement-contract";
 export type {
   PlacementProbeOutcome,
   PlacementDecisionDirection,
@@ -45,12 +38,9 @@ export type {
   PlacementProbeDecisionV31,
   PlacementFrontierNodeState,
   PlacementFrontierStateV31,
-} from './placement-contract';
+} from "./placement-contract";
 
-export {
-  isPlacementEstimate,
-  isPlacementSeededCard,
-};
+export { isPlacementEstimate, isPlacementSeededCard };
 
 export type {
   PlacementConfidence,
@@ -58,7 +48,7 @@ export type {
   PlacementEstimate,
   PlacementCardProvenance,
   PlacementSeededCard,
-} from './contract';
+} from "./contract";
 
 /** Confidence horizons in days from kst-srs.v3.2 §11.4. */
 export const PLACEMENT_STABILITY_HORIZONS = Object.freeze({
@@ -88,20 +78,17 @@ export interface PlacementSeedConfig {
 }
 
 function downgradeConfidence(confidence: PlacementConfidence): PlacementConfidence {
-  if (confidence === 'high') return 'medium';
-  return 'low';
+  if (confidence === "high") return "medium";
+  return "low";
 }
 
-function validateGraph(
-  graph: PlacementGraphAdapter,
-  hardGateThreshold: number,
-): void {
+function validateGraph(graph: PlacementGraphAdapter, hardGateThreshold: number): void {
   if (!Number.isFinite(hardGateThreshold) || hardGateThreshold < 0) {
-    throw new Error('hardGateThreshold must be a finite non-negative number');
+    throw new Error("hardGateThreshold must be a finite non-negative number");
   }
   for (const edge of graph.prerequisiteEdges) {
     if (!edge.sourceId || !edge.targetId || !Number.isFinite(edge.weight) || edge.weight < 0) {
-      throw new Error('Placement graph contains an invalid prerequisite edge');
+      throw new Error("Placement graph contains an invalid prerequisite edge");
     }
   }
 }
@@ -120,10 +107,10 @@ export function expandPlacementEvidence(
   const directByNode = new Map<string, PlacementEstimate>();
   for (const estimate of estimates) {
     if (!isPlacementEstimate(estimate)) {
-      throw new Error('Invalid placement estimate');
+      throw new Error("Invalid placement estimate");
     }
-    if (estimate.evidenceType !== 'direct') {
-      throw new Error('Placement closure input must contain direct evidence only');
+    if (estimate.evidenceType !== "direct") {
+      throw new Error("Placement closure input must contain direct evidence only");
     }
     directByNode.set(estimate.nodeId, estimate);
   }
@@ -131,11 +118,10 @@ export function expandPlacementEvidence(
   const directNodeIds = [...directByNode.keys()].sort((left, right) => left.localeCompare(right));
   const nodeOrder: string[] = [...directNodeIds];
   const resolved = new Map(directByNode);
-  const queue = directNodeIds
-    .flatMap((nodeId) => {
-      const estimate = directByNode.get(nodeId);
-      return estimate && estimate.masteryEstimate > 0 ? [estimate] : [];
-    });
+  const queue = directNodeIds.flatMap((nodeId) => {
+    const estimate = directByNode.get(nodeId);
+    return estimate && estimate.masteryEstimate > 0 ? [estimate] : [];
+  });
   const hardParents = new Map<string, PlacementGraphEdge[]>();
   for (const edge of graph.prerequisiteEdges) {
     if (edge.weight < hardGateThreshold) continue;
@@ -144,11 +130,12 @@ export function expandPlacementEvidence(
     hardParents.set(edge.targetId, parents);
   }
   for (const parents of hardParents.values()) {
-    parents.sort((left, right) => (
-      left.sourceId.localeCompare(right.sourceId)
-      || left.targetId.localeCompare(right.targetId)
-      || left.weight - right.weight
-    ));
+    parents.sort(
+      (left, right) =>
+        left.sourceId.localeCompare(right.sourceId) ||
+        left.targetId.localeCompare(right.targetId) ||
+        left.weight - right.weight,
+    );
   }
 
   for (let cursor = 0; cursor < queue.length; cursor += 1) {
@@ -160,20 +147,17 @@ export function expandPlacementEvidence(
         nodeId: edge.sourceId,
         masteryEstimate: child.masteryEstimate,
         confidence: downgradeConfidence(child.confidence),
-        evidenceType: 'inferred',
+        evidenceType: "inferred",
         inferenceDepth: child.inferenceDepth + 1,
       };
       const existing = resolved.get(candidate.nodeId);
       if (
-        existing
-        && (
-          existing.inferenceDepth < candidate.inferenceDepth
-          || (
-            existing.inferenceDepth === candidate.inferenceDepth
-            && existing.masteryEstimate >= candidate.masteryEstimate
-          )
-        )
-      ) continue;
+        existing &&
+        (existing.inferenceDepth < candidate.inferenceDepth ||
+          (existing.inferenceDepth === candidate.inferenceDepth &&
+            existing.masteryEstimate >= candidate.masteryEstimate))
+      )
+        continue;
       if (!existing) nodeOrder.push(candidate.nodeId);
       resolved.set(candidate.nodeId, candidate);
       queue.push(candidate);
@@ -187,9 +171,9 @@ export function expandPlacementEvidence(
 }
 
 function validateSeedConfig(config: PlacementSeedConfig): void {
-  if (!config.studentId.trim()) throw new Error('studentId is required');
+  if (!config.studentId.trim()) throw new Error("studentId is required");
   if (!Number.isFinite(Date.parse(config.placedAt))) {
-    throw new Error('placedAt must be a valid ISO timestamp');
+    throw new Error("placedAt must be a valid ISO timestamp");
   }
   for (const [confidence, horizon] of Object.entries(config.confidenceHorizons ?? {})) {
     if (!Number.isFinite(horizon) || (horizon ?? 0) <= 0) {
@@ -207,11 +191,15 @@ export function synthesizePlacementCards(
   validateSeedConfig(config);
   const horizons = { ...PLACEMENT_STABILITY_HORIZONS, ...config.confidenceHorizons };
   const expanded = expandPlacementEvidence(estimates, graph, config.hardGateThreshold);
-  const firstGood = reviewCard(createCard({
-    studentId: config.studentId,
-    objectiveId: '__placement-difficulty__',
-    now: config.placedAt,
-  }), 'Good', config.placedAt);
+  const firstGood = reviewCard(
+    createCard({
+      studentId: config.studentId,
+      objectiveId: "__placement-difficulty__",
+      now: config.placedAt,
+    }),
+    "Good",
+    config.placedAt,
+  );
   const placedAtMs = Date.parse(config.placedAt);
 
   return expanded
@@ -226,7 +214,7 @@ export function synthesizePlacementCards(
         variantKey: estimate.nodeId,
         stability,
         difficulty: firstGood.difficulty,
-        state: 'review',
+        state: "review",
         dueDate,
         elapsedDays: 0,
         scheduledDays: stability,
@@ -236,7 +224,7 @@ export function synthesizePlacementCards(
         createdAt: config.placedAt,
         updatedAt: config.placedAt,
         placement: {
-          source: 'placement',
+          source: "placement",
           evidenceType: estimate.evidenceType,
           confidence: estimate.confidence,
           inferenceDepth: estimate.inferenceDepth,

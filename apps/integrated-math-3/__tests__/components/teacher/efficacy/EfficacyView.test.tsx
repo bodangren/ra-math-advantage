@@ -25,38 +25,38 @@
  * (does not exist at HEAD).
  */
 
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import type { SessionClaims } from '@math-platform/core-auth';
+import { describe, it, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
+import type { SessionClaims } from "@math-platform/core-auth";
 import {
   EfficacyView,
   type EfficacyCohortView,
   type EfficacyExperimentView,
-} from '@/components/teacher/efficacy/EfficacyView';
+} from "@/components/teacher/efficacy/EfficacyView";
 
 const teacherClaims: SessionClaims = {
-  sub: 'user_teacher_001',
-  username: 'alice.teacher',
-  role: 'teacher',
-  organizationId: 'org_001',
+  sub: "user_teacher_001",
+  username: "alice.teacher",
+  role: "teacher",
+  organizationId: "org_001",
   iat: 1_700_000_000,
   exp: 1_700_003_600,
 };
 
 const adminClaims: SessionClaims = {
-  sub: 'user_admin_001',
-  username: 'admin.user',
-  role: 'admin',
-  organizationId: 'org_001',
+  sub: "user_admin_001",
+  username: "admin.user",
+  role: "admin",
+  organizationId: "org_001",
   iat: 1_700_000_000,
   exp: 1_700_003_600,
 };
 
 const studentClaims: SessionClaims = {
-  sub: 'user_student_001',
-  username: 'student.user',
-  role: 'student',
-  organizationId: 'org_001',
+  sub: "user_student_001",
+  username: "student.user",
+  role: "student",
+  organizationId: "org_001",
   iat: 1_700_000_000,
   exp: 1_700_003_600,
 };
@@ -65,8 +65,8 @@ const MS_PER_DAY = 24 * 60 * 60 * 1000;
 const WINDOW_START_MS = Date.UTC(2026, 3, 1, 0, 0, 0);
 
 const okCohort: EfficacyCohortView = {
-  status: 'ok',
-  classId: 'class_red_001',
+  status: "ok",
+  classId: "class_red_001",
   n: 24,
   windowStartMs: WINDOW_START_MS,
   windowEndMs: WINDOW_START_MS + 30 * MS_PER_DAY,
@@ -85,8 +85,18 @@ const okCohort: EfficacyCohortView = {
     },
   ],
   timeToMastery: [
-    { objectiveId: 'obj_polynomial_roots', daysToMastery: 4.5, reviewsToMastery: 6, reachedMastery: true },
-    { objectiveId: 'obj_quadratic_formula', daysToMastery: 6.2, reviewsToMastery: 8, reachedMastery: true },
+    {
+      objectiveId: "obj_polynomial_roots",
+      daysToMastery: 4.5,
+      reviewsToMastery: 6,
+      reachedMastery: true,
+    },
+    {
+      objectiveId: "obj_quadratic_formula",
+      daysToMastery: 6.2,
+      reviewsToMastery: 8,
+      reachedMastery: true,
+    },
   ],
   accuracy: [
     {
@@ -105,8 +115,8 @@ const okCohort: EfficacyCohortView = {
 };
 
 const suppressedCohort: EfficacyCohortView = {
-  status: 'suppressed',
-  classId: 'class_red_002',
+  status: "suppressed",
+  classId: "class_red_002",
   n: 4,
   threshold: 10,
   windowStartMs: WINDOW_START_MS,
@@ -114,48 +124,54 @@ const suppressedCohort: EfficacyCohortView = {
 };
 
 const twoVariantExperiment: EfficacyExperimentView = {
-  experimentId: 'exp_srs_interval_v1',
-  status: 'active',
+  experimentId: "exp_srs_interval_v1",
+  status: "active",
   variants: {
     control: { n: 100, mean: 0.62 },
     treatment: { n: 100, mean: 0.74 },
   },
-  significance: 'strong',
+  significance: "strong",
 };
 
 const noEffectExperiment: EfficacyExperimentView = {
-  experimentId: 'exp_hint_density_v1',
-  status: 'active',
+  experimentId: "exp_hint_density_v1",
+  status: "active",
   variants: {
     sparse: { n: 50, mean: 0.65 },
     dense: { n: 50, mean: 0.66 },
   },
-  significance: 'none',
+  significance: "none",
 };
 
-describe('EfficacyView', () => {
-  describe('layout', () => {
-    it('renders the page title', () => {
+describe("EfficacyView", () => {
+  describe("layout", () => {
+    it("renders the page title", () => {
       render(<EfficacyView claims={teacherClaims} cohort={okCohort} experiments={[]} />);
 
-      expect(screen.getByRole('heading', { level: 1, name: /Efficacy Dashboard/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", { level: 1, name: /Efficacy Dashboard/i }),
+      ).toBeInTheDocument();
     });
 
-    it('renders the cohort metrics section heading', () => {
+    it("renders the cohort metrics section heading", () => {
       render(<EfficacyView claims={teacherClaims} cohort={okCohort} experiments={[]} />);
 
-      expect(screen.getByRole('heading', { level: 2, name: /Cohort Metrics/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", { level: 2, name: /Cohort Metrics/i }),
+      ).toBeInTheDocument();
     });
 
-    it('renders the active experiments section heading', () => {
+    it("renders the active experiments section heading", () => {
       render(<EfficacyView claims={teacherClaims} cohort={okCohort} experiments={[]} />);
 
-      expect(screen.getByRole('heading', { level: 2, name: /Active Experiments/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", { level: 2, name: /Active Experiments/i }),
+      ).toBeInTheDocument();
     });
   });
 
   describe('cohort metrics tiles (status === "ok")', () => {
-    it('renders all four metric tiles', () => {
+    it("renders all four metric tiles", () => {
       render(<EfficacyView claims={teacherClaims} cohort={okCohort} experiments={[]} />);
 
       expect(screen.getByText(/Retention/i)).toBeInTheDocument();
@@ -164,25 +180,25 @@ describe('EfficacyView', () => {
       expect(screen.getByText(/Review Success Rate/i)).toBeInTheDocument();
     });
 
-    it('displays the cohort sample size', () => {
+    it("displays the cohort sample size", () => {
       render(<EfficacyView claims={teacherClaims} cohort={okCohort} experiments={[]} />);
 
       expect(screen.getByText(/24/)).toBeInTheDocument();
     });
 
-    it('displays the review-success rate percentage', () => {
+    it("displays the review-success rate percentage", () => {
       render(<EfficacyView claims={teacherClaims} cohort={okCohort} experiments={[]} />);
 
       expect(screen.getByText(/88%/)).toBeInTheDocument();
     });
 
-    it('displays the first-attempt accuracy percentage', () => {
+    it("displays the first-attempt accuracy percentage", () => {
       render(<EfficacyView claims={teacherClaims} cohort={okCohort} experiments={[]} />);
 
       expect(screen.getByText(/72%/)).toBeInTheDocument();
     });
 
-    it('displays the average retention percentage', () => {
+    it("displays the average retention percentage", () => {
       render(<EfficacyView claims={teacherClaims} cohort={okCohort} experiments={[]} />);
 
       expect(screen.getByText(/82%/)).toBeInTheDocument();
@@ -190,7 +206,7 @@ describe('EfficacyView', () => {
   });
 
   describe('cohort metrics tiles (status === "suppressed")', () => {
-    it('renders a suppression banner with n + threshold (no metric values)', () => {
+    it("renders a suppression banner with n + threshold (no metric values)", () => {
       render(<EfficacyView claims={teacherClaims} cohort={suppressedCohort} experiments={[]} />);
 
       expect(screen.getByText(/too small to display/i)).toBeInTheDocument();
@@ -198,7 +214,7 @@ describe('EfficacyView', () => {
       expect(screen.getByText(/10/)).toBeInTheDocument();
     });
 
-    it('does NOT render any retention or accuracy values when suppressed (privacy)', () => {
+    it("does NOT render any retention or accuracy values when suppressed (privacy)", () => {
       render(<EfficacyView claims={teacherClaims} cohort={suppressedCohort} experiments={[]} />);
 
       expect(screen.queryByText(/82%/)).not.toBeInTheDocument();
@@ -207,8 +223,8 @@ describe('EfficacyView', () => {
     });
   });
 
-  describe('active experiments list', () => {
-    it('renders one row per experiment', () => {
+  describe("active experiments list", () => {
+    it("renders one row per experiment", () => {
       render(
         <EfficacyView
           claims={teacherClaims}
@@ -221,7 +237,7 @@ describe('EfficacyView', () => {
       expect(screen.getByText(/exp_hint_density_v1/)).toBeInTheDocument();
     });
 
-    it('renders per-variant sample sizes', () => {
+    it("renders per-variant sample sizes", () => {
       render(
         <EfficacyView
           claims={teacherClaims}
@@ -259,30 +275,34 @@ describe('EfficacyView', () => {
     });
   });
 
-  describe('empty state', () => {
-    it('shows an empty state when cohort is null and experiments is empty', () => {
+  describe("empty state", () => {
+    it("shows an empty state when cohort is null and experiments is empty", () => {
       render(<EfficacyView claims={teacherClaims} cohort={null} experiments={[]} />);
 
       expect(screen.getByText(/No efficacy data available/i)).toBeInTheDocument();
     });
 
-    it('does NOT show the empty state when cohort is present', () => {
+    it("does NOT show the empty state when cohort is present", () => {
       render(<EfficacyView claims={teacherClaims} cohort={okCohort} experiments={[]} />);
 
       expect(screen.queryByText(/No efficacy data available/i)).not.toBeInTheDocument();
     });
   });
 
-  describe('role gate (defense-in-depth)', () => {
+  describe("role gate (defense-in-depth)", () => {
     it('renders nothing when claims.role is "student"', () => {
       const { container } = render(
-        <EfficacyView claims={studentClaims} cohort={okCohort} experiments={[twoVariantExperiment]} />,
+        <EfficacyView
+          claims={studentClaims}
+          cohort={okCohort}
+          experiments={[twoVariantExperiment]}
+        />,
       );
 
       expect(container).toBeEmptyDOMElement();
     });
 
-    it('renders nothing when claims is null', () => {
+    it("renders nothing when claims is null", () => {
       const { container } = render(
         <EfficacyView claims={null} cohort={okCohort} experiments={[]} />,
       );
@@ -290,15 +310,17 @@ describe('EfficacyView', () => {
       expect(container).toBeEmptyDOMElement();
     });
 
-    it('renders the dashboard for an admin session (admin is teacher-compatible)', () => {
+    it("renders the dashboard for an admin session (admin is teacher-compatible)", () => {
       render(<EfficacyView claims={adminClaims} cohort={okCohort} experiments={[]} />);
 
-      expect(screen.getByRole('heading', { level: 1, name: /Efficacy Dashboard/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", { level: 1, name: /Efficacy Dashboard/i }),
+      ).toBeInTheDocument();
     });
   });
 
-  describe('PII safety', () => {
-    it('does not render any stu_* student ids', () => {
+  describe("PII safety", () => {
+    it("does not render any stu_* student ids", () => {
       render(
         <EfficacyView
           claims={teacherClaims}
@@ -310,7 +332,7 @@ describe('EfficacyView', () => {
       expect(screen.queryByText(/stu_/)).not.toBeInTheDocument();
     });
 
-    it('does not render any displayName, username, email, or password keys', () => {
+    it("does not render any displayName, username, email, or password keys", () => {
       render(
         <EfficacyView
           claims={teacherClaims}

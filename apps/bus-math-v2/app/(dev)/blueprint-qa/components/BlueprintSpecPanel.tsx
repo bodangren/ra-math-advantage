@@ -1,4 +1,4 @@
-import type { PracticeMode, ReviewBlueprint } from '../types';
+import type { PracticeMode, ReviewBlueprint } from "../types";
 
 interface BlueprintSpecPanelProps {
   blueprint: ReviewBlueprint | null;
@@ -17,11 +17,12 @@ function Missing() {
 export function BlueprintSpecPanel({ blueprint, mode }: BlueprintSpecPanelProps) {
   if (!blueprint) return <Missing />;
 
-  const spec = mode === 'worked_example'
-    ? blueprint.workedExampleSpec
-    : mode === 'guided_practice'
-      ? blueprint.guidedPracticeSpec
-      : blueprint.independentPracticeSpec;
+  const spec =
+    mode === "worked_example"
+      ? blueprint.workedExampleSpec
+      : mode === "guided_practice"
+        ? blueprint.guidedPracticeSpec
+        : blueprint.independentPracticeSpec;
 
   if (!spec) return <Missing />;
 

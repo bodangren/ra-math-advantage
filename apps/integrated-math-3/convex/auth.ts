@@ -1,9 +1,19 @@
-import { internalMutation, internalQuery, type MutationCtx, type QueryCtx } from './_generated/server';
-import { v } from 'convex/values';
-import { type Doc, type Id } from './_generated/dataModel';
+import {
+  internalMutation,
+  internalQuery,
+  type MutationCtx,
+  type QueryCtx,
+} from "./_generated/server";
+import { v } from "convex/values";
+import { type Doc, type Id } from "./_generated/dataModel";
 
-const roleValidator = v.union(v.literal('student'), v.literal('teacher'), v.literal('admin'), v.literal('parent'));
-const PASSWORD_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789';
+const roleValidator = v.union(
+  v.literal("student"),
+  v.literal("teacher"),
+  v.literal("admin"),
+  v.literal("parent"),
+);
+const PASSWORD_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
 
 /**
  * Internal query that looks up an active auth credential by username.
@@ -16,8 +26,8 @@ export const getCredentialByUsername = internalQuery({
   },
   handler: async (ctx, args) => {
     const credential = await ctx.db
-      .query('auth_credentials')
-      .withIndex('by_username', (q) => q.eq('username', args.username))
+      .query("auth_credentials")
+      .withIndex("by_username", (q) => q.eq("username", args.username))
       .unique();
 
     if (!credential || !credential.isActive) {
@@ -50,8 +60,8 @@ export const getCredentialByUsernameIncludingInactive = internalQuery({
   },
   handler: async (ctx, args) => {
     const credential = await ctx.db
-      .query('auth_credentials')
-      .withIndex('by_username', (q) => q.eq('username', args.username))
+      .query("auth_credentials")
+      .withIndex("by_username", (q) => q.eq("username", args.username))
       .unique();
 
     if (!credential) {
@@ -119,19 +129,19 @@ export const upsertCredentialByUsername = internalMutation({
   },
   handler: async (ctx, args) => {
     const profile = await ctx.db
-      .query('profiles')
-      .withIndex('by_username', (q) => q.eq('username', args.username))
+      .query("profiles")
+      .withIndex("by_username", (q) => q.eq("username", args.username))
       .unique();
 
     if (!profile) {
-      return { ok: false as const, reason: 'profile_not_found' as const };
+      return { ok: false as const, reason: "profile_not_found" as const };
     }
 
     const now = Date.now();
 
     const existing = await ctx.db
-      .query('auth_credentials')
-      .withIndex('by_username', (q) => q.eq('username', args.username))
+      .query("auth_credentials")
+      .withIndex("by_username", (q) => q.eq("username", args.username))
       .unique();
 
     if (existing) {
@@ -147,7 +157,7 @@ export const upsertCredentialByUsername = internalMutation({
       return { ok: true as const, updated: true as const };
     }
 
-    await ctx.db.insert('auth_credentials', {
+    await ctx.db.insert("auth_credentials", {
       profileId: profile._id,
       username: args.username,
       role: args.role,
@@ -179,8 +189,8 @@ export const ensureProfileByUsername = internalMutation({
   },
   handler: async (ctx, args) => {
     const existingProfile = await ctx.db
-      .query('profiles')
-      .withIndex('by_username', (q) => q.eq('username', args.username))
+      .query("profiles")
+      .withIndex("by_username", (q) => q.eq("username", args.username))
       .unique();
 
     if (existingProfile) {
@@ -193,16 +203,16 @@ export const ensureProfileByUsername = internalMutation({
     }
 
     const now = Date.now();
-    const demoOrgSlug = 'demo-org';
-    const demoOrgName = 'Demo Organization';
+    const demoOrgSlug = "demo-org";
+    const demoOrgName = "Demo Organization";
 
     let organization = await ctx.db
-      .query('organizations')
-      .withIndex('by_slug', (q) => q.eq('slug', demoOrgSlug))
+      .query("organizations")
+      .withIndex("by_slug", (q) => q.eq("slug", demoOrgSlug))
       .unique();
 
     if (!organization) {
-      const organizationId = await ctx.db.insert('organizations', {
+      const organizationId = await ctx.db.insert("organizations", {
         name: demoOrgName,
         slug: demoOrgSlug,
         settings: {},
@@ -213,10 +223,10 @@ export const ensureProfileByUsername = internalMutation({
     }
 
     if (!organization) {
-      return { ok: false as const, reason: 'organization_not_found' as const };
+      return { ok: false as const, reason: "organization_not_found" as const };
     }
 
-    const profileId = await ctx.db.insert('profiles', {
+    const profileId = await ctx.db.insert("profiles", {
       organizationId: organization._id,
       username: args.username,
       role: args.role,
@@ -235,7 +245,7 @@ export const ensureProfileByUsername = internalMutation({
   },
 });
 
-type TeacherProfile = Doc<'profiles'>;
+type TeacherProfile = Doc<"profiles">;
 
 /**
  * Normalizes a string input by trimming and limiting to 50 characters.
@@ -243,7 +253,7 @@ type TeacherProfile = Doc<'profiles'>;
  * @returns {string | undefined} The normalized string, or undefined if empty/invalid
  */
 function normalizeInput(value?: string): string | undefined {
-  if (!value || typeof value !== 'string') {
+  if (!value || typeof value !== "string") {
     return undefined;
   }
 
@@ -257,14 +267,14 @@ function normalizeInput(value?: string): string | undefined {
  * @returns {string} The slugified string (max 24 chars, lowercase, underscores)
  */
 function slugify(value?: string): string {
-  if (!value) return '';
+  if (!value) return "";
   return value
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '_')
-    .replace(/^_+|_+$/g, '')
-    .replace(/_+/g, '_')
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .replace(/_+/g, "_")
     .slice(0, 24);
 }
 
@@ -275,9 +285,15 @@ function slugify(value?: string): string {
  * @param {string} fallback - The fallback name if both are empty
  * @returns {string} The display name string
  */
-function buildDisplayName(firstName: string | undefined, lastName: string | undefined, fallback: string): string {
-  const capitalize = (v: string) => (v ? v.charAt(0).toUpperCase() + v.slice(1) : '');
-  const combined = [capitalize(firstName ?? ''), capitalize(lastName ?? '')].filter(Boolean).join(' ');
+function buildDisplayName(
+  firstName: string | undefined,
+  lastName: string | undefined,
+  fallback: string,
+): string {
+  const capitalize = (v: string) => (v ? v.charAt(0).toUpperCase() + v.slice(1) : "");
+  const combined = [capitalize(firstName ?? ""), capitalize(lastName ?? "")]
+    .filter(Boolean)
+    .join(" ");
   return combined || fallback;
 }
 
@@ -287,7 +303,7 @@ function buildDisplayName(firstName: string | undefined, lastName: string | unde
  * @returns {Record<string, unknown>} The value cast as a metadata record, or empty object if invalid
  */
 function asMetadataRecord(value: unknown): Record<string, unknown> {
-  if (typeof value !== 'object' || value === null || Array.isArray(value)) {
+  if (typeof value !== "object" || value === null || Array.isArray(value)) {
     return {};
   }
   return value as Record<string, unknown>;
@@ -299,16 +315,13 @@ function asMetadataRecord(value: unknown): Record<string, unknown> {
  * @param {Id<'profiles'>} userId - The profile ID to check
  * @returns {Promise<Doc<"profiles"> | null>} The teacher/admin profile, or null if not authorized
  */
-export async function getAuthorizedTeacher(
-  ctx: QueryCtx,
-  userId: Id<'profiles'>,
-) {
+export async function getAuthorizedTeacher(ctx: QueryCtx, userId: Id<"profiles">) {
   const teacher = await ctx.db.get(userId);
   if (!teacher) {
     return null;
   }
 
-  if (teacher.role !== 'teacher' && teacher.role !== 'admin') {
+  if (teacher.role !== "teacher" && teacher.role !== "admin") {
     return null;
   }
 
@@ -324,11 +337,11 @@ export async function getAuthorizedTeacher(
  */
 export async function getStudentInTeacherOrg(
   ctx: MutationCtx,
-  studentProfileId: Id<'profiles'>,
+  studentProfileId: Id<"profiles">,
   teacher: TeacherProfile,
 ) {
   const student = await ctx.db.get(studentProfileId);
-  if (!student || student.role !== 'student' || student.organizationId !== teacher.organizationId) {
+  if (!student || student.role !== "student" || student.organizationId !== teacher.organizationId) {
     return null;
   }
 
@@ -341,14 +354,14 @@ export async function getStudentInTeacherOrg(
  * @param {Id<'profiles'>} teacherProfileId - The profile ID to check
  * @returns {Promise<{ ok: true; teacher: Doc<"profiles"> } | { ok: false; reason: string }>} Object with ok=true and teacher, or ok=false with reason
  */
-async function getTeacherProfile(ctx: MutationCtx, teacherProfileId: Id<'profiles'>) {
+async function getTeacherProfile(ctx: MutationCtx, teacherProfileId: Id<"profiles">) {
   const teacher = await ctx.db.get(teacherProfileId);
   if (!teacher) {
-    return { ok: false as const, reason: 'teacher_not_found' as const };
+    return { ok: false as const, reason: "teacher_not_found" as const };
   }
 
-  if (teacher.role !== 'teacher' && teacher.role !== 'admin') {
-    return { ok: false as const, reason: 'forbidden' as const };
+  if (teacher.role !== "teacher" && teacher.role !== "admin") {
+    return { ok: false as const, reason: "forbidden" as const };
   }
 
   return { ok: true as const, teacher };
@@ -363,12 +376,12 @@ async function getTeacherProfile(ctx: MutationCtx, teacherProfileId: Id<'profile
  */
 async function getStudentInTeacherOrgInternal(
   ctx: MutationCtx,
-  studentProfileId: Id<'profiles'>,
+  studentProfileId: Id<"profiles">,
   teacher: TeacherProfile,
 ) {
   const student = await ctx.db.get(studentProfileId);
-  if (!student || student.role !== 'student' || student.organizationId !== teacher.organizationId) {
-    return { ok: false as const, reason: 'student_not_found' as const };
+  if (!student || student.role !== "student" || student.organizationId !== teacher.organizationId) {
+    return { ok: false as const, reason: "student_not_found" as const };
   }
 
   return { ok: true as const, student };
@@ -393,16 +406,16 @@ async function generateUniqueUsername(
 ) {
   const base =
     slugify(opts.preferredUsername) ||
-    slugify(`${opts.firstName ?? ''}_${opts.lastName ?? ''}`) ||
+    slugify(`${opts.firstName ?? ""}_${opts.lastName ?? ""}`) ||
     `student_${randomToken(4)}`;
 
   for (let attempt = 0; attempt < 50; attempt += 1) {
-    const candidate = attempt === 0 ? base : `${base}_${(attempt + 1).toString().padStart(2, '0')}`;
+    const candidate = attempt === 0 ? base : `${base}_${(attempt + 1).toString().padStart(2, "0")}`;
     if (reserved.has(candidate)) continue;
 
     const existing = await ctx.db
-      .query('profiles')
-      .withIndex('by_username', (q) => q.eq('username', candidate))
+      .query("profiles")
+      .withIndex("by_username", (q) => q.eq("username", candidate))
       .unique();
 
     if (!existing) {
@@ -423,7 +436,7 @@ async function generateUniqueUsername(
  */
 function randomToken(length = 8): string {
   const bytes = crypto.getRandomValues(new Uint8Array(length));
-  return Array.from(bytes, (byte) => PASSWORD_ALPHABET[byte % PASSWORD_ALPHABET.length]).join('');
+  return Array.from(bytes, (byte) => PASSWORD_ALPHABET[byte % PASSWORD_ALPHABET.length]).join("");
 }
 
 const createStudentArgsValidator = v.object({
@@ -445,7 +458,7 @@ const createStudentArgsValidator = v.object({
  */
 export const createStudentAccount = internalMutation({
   args: {
-    teacherProfileId: v.id('profiles'),
+    teacherProfileId: v.id("profiles"),
     student: createStudentArgsValidator,
   },
   handler: async (ctx, args) => {
@@ -467,26 +480,26 @@ export const createStudentAccount = internalMutation({
     );
     const displayName = requestedDisplayName ?? buildDisplayName(firstName, lastName, username);
 
-    const profileId = await ctx.db.insert('profiles', {
+    const profileId = await ctx.db.insert("profiles", {
       organizationId: teacher.organizationId,
       username,
-      role: 'student',
+      role: "student",
       displayName,
       metadata: {
         firstName: firstName ?? null,
         lastName: lastName ?? null,
         createdBy: teacher._id,
         isDeactivated: false,
-        accountStatus: 'active',
+        accountStatus: "active",
       },
       createdAt: now,
       updatedAt: now,
     });
 
-    await ctx.db.insert('auth_credentials', {
+    await ctx.db.insert("auth_credentials", {
       profileId,
       username,
-      role: 'student',
+      role: "student",
       organizationId: teacher.organizationId,
       passwordHash: args.student.passwordHash,
       passwordSalt: args.student.passwordSalt,
@@ -516,7 +529,7 @@ export const createStudentAccount = internalMutation({
  */
 export const bulkCreateStudentAccounts = internalMutation({
   args: {
-    teacherProfileId: v.id('profiles'),
+    teacherProfileId: v.id("profiles"),
     students: v.array(createStudentArgsValidator),
   },
   handler: async (ctx, args) => {
@@ -526,7 +539,7 @@ export const bulkCreateStudentAccounts = internalMutation({
     }
 
     if (args.students.length === 0 || args.students.length > 100) {
-      return { ok: false as const, reason: 'invalid_batch' as const };
+      return { ok: false as const, reason: "invalid_batch" as const };
     }
 
     const teacher = teacherResult.teacher;
@@ -552,26 +565,26 @@ export const bulkCreateStudentAccounts = internalMutation({
       );
       const displayName = requestedDisplayName ?? buildDisplayName(firstName, lastName, username);
 
-      const profileId = await ctx.db.insert('profiles', {
+      const profileId = await ctx.db.insert("profiles", {
         organizationId: teacher.organizationId,
         username,
-        role: 'student',
+        role: "student",
         displayName,
         metadata: {
           firstName: firstName ?? null,
           lastName: lastName ?? null,
           createdBy: teacher._id,
           isDeactivated: false,
-          accountStatus: 'active',
+          accountStatus: "active",
         },
         createdAt: now,
         updatedAt: now,
       });
 
-      await ctx.db.insert('auth_credentials', {
+      await ctx.db.insert("auth_credentials", {
         profileId,
         username,
-        role: 'student',
+        role: "student",
         organizationId: teacher.organizationId,
         passwordHash: student.passwordHash,
         passwordSalt: student.passwordSalt,
@@ -608,14 +621,14 @@ export const bulkCreateStudentAccounts = internalMutation({
  */
 export const updateStudentAccount = internalMutation({
   args: {
-    teacherProfileId: v.id('profiles'),
-    studentProfileId: v.id('profiles'),
+    teacherProfileId: v.id("profiles"),
+    studentProfileId: v.id("profiles"),
     displayName: v.optional(v.string()),
     deactivate: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
     if (args.displayName === undefined && args.deactivate === undefined) {
-      return { ok: false as const, reason: 'invalid_input' as const };
+      return { ok: false as const, reason: "invalid_input" as const };
     }
 
     const teacherResult = await getTeacherProfile(ctx, args.teacherProfileId);
@@ -632,13 +645,13 @@ export const updateStudentAccount = internalMutation({
 
     const now = Date.now();
     const credential = await ctx.db
-      .query('auth_credentials')
-      .withIndex('by_profile', (q) => q.eq('profileId', student._id))
+      .query("auth_credentials")
+      .withIndex("by_profile", (q) => q.eq("profileId", student._id))
       .unique();
 
     if (args.deactivate !== undefined) {
       if (!credential) {
-        return { ok: false as const, reason: 'credential_not_found' as const };
+        return { ok: false as const, reason: "credential_not_found" as const };
       }
 
       await ctx.db.patch(credential._id, {
@@ -651,12 +664,13 @@ export const updateStudentAccount = internalMutation({
     const nextDisplayName = requestedDisplayName ?? student.displayName ?? student.username;
     const existingMetadata = asMetadataRecord(student.metadata);
     const nextDeactivated =
-      args.deactivate ?? (credential ? !credential.isActive : Boolean(existingMetadata.isDeactivated));
+      args.deactivate ??
+      (credential ? !credential.isActive : Boolean(existingMetadata.isDeactivated));
 
     const nextMetadata: Record<string, unknown> = {
       ...existingMetadata,
       isDeactivated: nextDeactivated,
-      accountStatus: nextDeactivated ? 'deactivated' : 'active',
+      accountStatus: nextDeactivated ? "deactivated" : "active",
       lastStudentProfileUpdateAt: new Date(now).toISOString(),
       lastStudentProfileUpdateBy: teacher._id,
     };
@@ -696,8 +710,8 @@ export const updateStudentAccount = internalMutation({
  */
 export const resetStudentPassword = internalMutation({
   args: {
-    teacherProfileId: v.id('profiles'),
-    studentProfileId: v.id('profiles'),
+    teacherProfileId: v.id("profiles"),
+    studentProfileId: v.id("profiles"),
     passwordHash: v.string(),
     passwordSalt: v.string(),
     passwordHashIterations: v.number(),
@@ -717,8 +731,8 @@ export const resetStudentPassword = internalMutation({
     const now = Date.now();
 
     const existingCredential = await ctx.db
-      .query('auth_credentials')
-      .withIndex('by_profile', (q) => q.eq('profileId', student._id))
+      .query("auth_credentials")
+      .withIndex("by_profile", (q) => q.eq("profileId", student._id))
       .unique();
 
     if (existingCredential) {
@@ -726,15 +740,15 @@ export const resetStudentPassword = internalMutation({
         passwordHash: args.passwordHash,
         passwordSalt: args.passwordSalt,
         passwordHashIterations: args.passwordHashIterations,
-        role: 'student',
+        role: "student",
         organizationId: teacher.organizationId,
         updatedAt: now,
       });
     } else {
-      await ctx.db.insert('auth_credentials', {
+      await ctx.db.insert("auth_credentials", {
         profileId: student._id,
         username: student.username,
-        role: 'student',
+        role: "student",
         organizationId: teacher.organizationId,
         passwordHash: args.passwordHash,
         passwordSalt: args.passwordSalt,

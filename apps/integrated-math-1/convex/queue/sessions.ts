@@ -1,4 +1,9 @@
-import { internalMutation, internalQuery, type MutationCtx, type QueryCtx } from "../_generated/server";
+import {
+  internalMutation,
+  internalQuery,
+  type MutationCtx,
+  type QueryCtx,
+} from "../_generated/server";
 import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
 import { resolveDailyPracticeQueue, type ResolvedQueueItem } from "./queue";
@@ -17,9 +22,7 @@ function mapDbSessionToContract(session: {
     sessionId: session._id,
     studentId: session.studentId,
     startedAt: new Date(session.startedAt).toISOString(),
-    completedAt: session.completedAt
-      ? new Date(session.completedAt).toISOString()
-      : null,
+    completedAt: session.completedAt ? new Date(session.completedAt).toISOString() : null,
     plannedCards: session.plannedCards,
     completedCards: session.completedCards,
     config: session.config,
@@ -38,13 +41,11 @@ function isSameDay(a: number, b: number): boolean {
 
 export async function startDailySessionHandler(
   ctx: MutationCtx,
-  args: { studentId: string; asOfDate?: string }
+  args: { studentId: string; asOfDate?: string },
 ): Promise<{ session: SrsSession; queue: ResolvedQueueItem[] }> {
   const active = await ctx.db
     .query("srs_sessions")
-    .withIndex("by_student_and_status", (q) =>
-      q.eq("studentId", args.studentId as Id<"profiles">)
-    )
+    .withIndex("by_student_and_status", (q) => q.eq("studentId", args.studentId as Id<"profiles">))
     .filter((q) => q.eq(q.field("completedAt"), undefined))
     .first();
 
@@ -98,13 +99,11 @@ export const startDailySession = internalMutation({
 
 export async function getActiveSessionHandler(
   ctx: QueryCtx,
-  args: { studentId: string; asOfDate?: string }
+  args: { studentId: string; asOfDate?: string },
 ): Promise<{ session: SrsSession; queue: ResolvedQueueItem[] } | null> {
   const active = await ctx.db
     .query("srs_sessions")
-    .withIndex("by_student_and_status", (q) =>
-      q.eq("studentId", args.studentId as Id<"profiles">)
-    )
+    .withIndex("by_student_and_status", (q) => q.eq("studentId", args.studentId as Id<"profiles">))
     .filter((q) => q.eq(q.field("completedAt"), undefined))
     .first();
 
@@ -134,7 +133,7 @@ export const getActiveSession = internalQuery({
 
 export async function completeDailySessionHandler(
   ctx: MutationCtx,
-  args: { studentId: string; sessionId: string }
+  args: { studentId: string; sessionId: string },
 ): Promise<string> {
   const active = await ctx.db.get(args.sessionId as Id<"srs_sessions">);
 
@@ -144,9 +143,7 @@ export async function completeDailySessionHandler(
 
   const reviews = await ctx.db
     .query("srs_review_log")
-    .withIndex("by_student", (q) =>
-      q.eq("studentId", args.studentId as Id<"profiles">)
-    )
+    .withIndex("by_student", (q) => q.eq("studentId", args.studentId as Id<"profiles">))
     .collect();
 
   const completedCards = reviews.filter((r) => r.reviewedAt >= active.startedAt).length;

@@ -11,7 +11,7 @@ import {
   type VerifyGeneratorReport,
   type VerifyGeneratorOptions,
   type GeneratorLike,
-} from './verify-generator';
+} from "./verify-generator";
 
 // ── Types ────────────────────────────────────────────────────────────
 
@@ -21,7 +21,7 @@ export interface GateGeneratorEntry {
   /** The generator to verify. */
   readonly gen: GeneratorLike;
   /** Optional domain oracle forwarded to `verifyGenerator`. */
-  readonly oracle?: VerifyGeneratorOptions['oracle'];
+  readonly oracle?: VerifyGeneratorOptions["oracle"];
 }
 
 export interface GateOptions {
@@ -33,7 +33,7 @@ export interface GatePerGeneratorReport {
   /** The entry key. */
   readonly key: string;
   /** Per-generator verdict. */
-  readonly verdict: 'pass' | 'fail';
+  readonly verdict: "pass" | "fail";
   /** The underlying verification report. */
   readonly report: VerifyGeneratorReport;
 }
@@ -48,7 +48,7 @@ export interface GateReport {
   /** 0 when every generator passes, 1 otherwise (CI convention). */
   readonly exitCode: number;
   /** Aggregate verdict. */
-  readonly verdict: 'pass' | 'fail';
+  readonly verdict: "pass" | "fail";
   /** Per-generator results in input order. */
   readonly perGeneratorReports: readonly GatePerGeneratorReport[];
   /** Aggregate counts. */
@@ -81,14 +81,12 @@ export function runGeneratorGate(
     };
   });
 
-  const passedGenerators = perGeneratorReports.filter(
-    (r) => r.verdict === 'pass',
-  ).length;
+  const passedGenerators = perGeneratorReports.filter((r) => r.verdict === "pass").length;
   const failedGenerators = perGeneratorReports.length - passedGenerators;
-  const verdict: 'pass' | 'fail' = failedGenerators === 0 ? 'pass' : 'fail';
+  const verdict: "pass" | "fail" = failedGenerators === 0 ? "pass" : "fail";
 
   return {
-    exitCode: verdict === 'pass' ? 0 : 1,
+    exitCode: verdict === "pass" ? 0 : 1,
     verdict,
     perGeneratorReports,
     summary: {

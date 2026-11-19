@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { Component, ReactNode } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { AlertTriangle } from 'lucide-react';
+import { Component, ReactNode } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { AlertTriangle } from "lucide-react";
 
 interface Props {
   children: ReactNode;
@@ -29,7 +29,7 @@ export class ContentBlockErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: unknown) {
-    console.error('Content block error:', error, errorInfo);
+    console.error("Content block error:", error, errorInfo);
   }
 
   render() {
@@ -44,13 +44,11 @@ export class ContentBlockErrorBoundary extends Component<Props, State> {
             <div className="flex items-start gap-3">
               <AlertTriangle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-semibold text-red-800 mb-1">
-                  Content Block Error
-                </h4>
+                <h4 className="font-semibold text-red-800 mb-1">Content Block Error</h4>
                 <p className="text-sm text-red-700">
                   This content block could not be displayed. Please try refreshing the page.
                 </p>
-                {process.env.NODE_ENV === 'development' && this.state.error && (
+                {process.env.NODE_ENV === "development" && this.state.error && (
                   <details className="mt-2">
                     <summary className="text-xs cursor-pointer">Error details</summary>
                     <pre className="text-xs mt-1 p-2 bg-red-100 rounded overflow-auto">

@@ -19,9 +19,7 @@ vi.mock("@math-platform/core-auth", () => ({
 import { requireRequestSessionClaims } from "../../lib/auth/server";
 it("returns a controlled unavailable response if account verification fails", async () => {
   mocks.query.mockRejectedValueOnce(Error("backend unavailable"));
-  const result = await requireRequestSessionClaims(
-    new Request("http://localhost/api/learning"),
-  );
+  const result = await requireRequestSessionClaims(new Request("http://localhost/api/learning"));
   expect(result).toBeInstanceOf(Response);
   expect((result as Response).status).toBe(503);
 });
@@ -31,8 +29,6 @@ it("rejects a session after a role change", async () => {
     username: "learner",
     organizationId: "org",
   });
-  const result = await requireRequestSessionClaims(
-    new Request("http://localhost/api/learning"),
-  );
+  const result = await requireRequestSessionClaims(new Request("http://localhost/api/learning"));
   expect((result as Response).status).toBe(401);
 });

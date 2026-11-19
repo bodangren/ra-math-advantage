@@ -1,4 +1,9 @@
-import { internalMutation, internalQuery, type MutationCtx, type QueryCtx } from "./_generated/server";
+import {
+  internalMutation,
+  internalQuery,
+  type MutationCtx,
+  type QueryCtx,
+} from "./_generated/server";
 import { v } from "convex/values";
 import { computeTimingBaseline, type PracticeTimingBaseline } from "@math-platform/practice-core";
 import type { Doc, Id } from "./_generated/dataModel";
@@ -21,9 +26,7 @@ export const getTimingBaseline = internalQuery({
   handler: async (ctx, args) => {
     const baseline = await ctx.db
       .query("timing_baselines")
-      .withIndex("by_variant", (q) =>
-        q.eq("variantKey", args.variantKey)
-      )
+      .withIndex("by_variant", (q) => q.eq("variantKey", args.variantKey))
       .unique();
     return baseline;
   },
@@ -53,9 +56,7 @@ export const recomputeTimingBaseline = internalMutation({
 
     const existing = await ctx.db
       .query("timing_baselines")
-      .withIndex("by_variant", (q) =>
-        q.eq("variantKey", args.variantKey)
-      )
+      .withIndex("by_variant", (q) => q.eq("variantKey", args.variantKey))
       .unique();
 
     if (existing) {
@@ -79,7 +80,7 @@ export const batchRecomputeTimingBaselines = internalMutation({
         variantKey: v.string(),
         activityIds: v.array(v.id("activities")),
         minSamples: v.optional(v.number()),
-      })
+      }),
     ),
   },
   handler: async (ctx, args) => {
@@ -101,9 +102,7 @@ export const batchRecomputeTimingBaselines = internalMutation({
 
           const existing = await ctx.db
             .query("timing_baselines")
-            .withIndex("by_variant", (q) =>
-              q.eq("variantKey", recomp.variantKey)
-            )
+            .withIndex("by_variant", (q) => q.eq("variantKey", recomp.variantKey))
             .unique();
 
           if (existing) {
@@ -113,7 +112,7 @@ export const batchRecomputeTimingBaselines = internalMutation({
           }
 
           return baseline;
-        })
+        }),
       );
       results.push(...batchResults);
     }
@@ -134,9 +133,7 @@ export const getStaleBaselines = internalQuery({
     const cutoff = new Date(Date.now() - args.maxAgeMs).toISOString();
     const stale: Doc<"timing_baselines">[] = [];
 
-    const allBaselines = await ctx.db
-      .query("timing_baselines")
-      .take(1000);
+    const allBaselines = await ctx.db.query("timing_baselines").take(1000);
 
     for (const baseline of allBaselines) {
       if (baseline.lastComputedAt < cutoff) {
@@ -156,16 +153,14 @@ export const getStaleBaselines = internalQuery({
  */
 async function collectEligibleTimings(
   ctx: MutationCtx | QueryCtx,
-  activityIds: Id<"activities">[]
+  activityIds: Id<"activities">[],
 ): Promise<TimingSummary[]> {
   const eligibleTimings: TimingSummary[] = [];
 
   for (const activityId of activityIds) {
     const submissions = await ctx.db
       .query("activity_submissions")
-      .withIndex("by_activity", (q) =>
-        q.eq("activityId", activityId)
-      )
+      .withIndex("by_activity", (q) => q.eq("activityId", activityId))
       .take(MAX_SUBMISSIONS_PER_BATCH);
 
     for (const submission of submissions) {

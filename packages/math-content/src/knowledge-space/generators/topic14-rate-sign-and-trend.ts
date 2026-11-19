@@ -1,9 +1,9 @@
-import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
+import type { GeneratorOutput } from "@math-platform/knowledge-space-practice";
 
-import { mulberry32 } from '../../utils/prng';
+import { mulberry32 } from "../../utils/prng";
 
-export type Topic14RateSign = 'positive' | 'negative';
-export type Topic14RateTrend = 'increasing' | 'decreasing';
+export type Topic14RateSign = "positive" | "negative";
+export type Topic14RateTrend = "increasing" | "decreasing";
 
 export interface Topic14RateSignAndTrendPoint {
   readonly x: number;
@@ -15,16 +15,16 @@ export type Topic14RateSignAndTrendInterval = readonly [number, number];
 export interface Topic14RateSignAndTrendVariant {
   readonly seed: number;
   readonly prompt: string;
-  readonly functionName: 'h';
+  readonly functionName: "h";
   readonly interval: Topic14RateSignAndTrendInterval;
   readonly points: readonly Topic14RateSignAndTrendPoint[];
 }
 
 export const TOPIC14_RATE_SIGN_AND_TREND_NODE_ID =
-  'math.precalc.skill.1.4.describe-rate-of-change-behavior-on-intervals';
+  "math.precalc.skill.1.4.describe-rate-of-change-behavior-on-intervals";
 
-const SOURCE_PROMPT = 'Determine the rate sign and rate trend of h on the interval (3, 4).';
-const GENERATED_PROMPT = 'Determine the rate sign and rate trend of h on the displayed interval.';
+const SOURCE_PROMPT = "Determine the rate sign and rate trend of h on the interval (3, 4).";
+const GENERATED_PROMPT = "Determine the rate sign and rate trend of h on the displayed interval.";
 const SAMPLE_STEP = 0.25;
 
 type RateAnswer = {
@@ -51,8 +51,7 @@ function evaluateQuadratic(
   curvature: number,
   distanceFromStart: number,
 ): number {
-  return startingY + initialSlope * distanceFromStart
-    + 0.5 * curvature * distanceFromStart ** 2;
+  return startingY + initialSlope * distanceFromStart + 0.5 * curvature * distanceFromStart ** 2;
 }
 
 function samplePoints(
@@ -65,19 +64,23 @@ function samplePoints(
     const x = interval[0] + index * SAMPLE_STEP;
     return {
       x,
-      y: roundForDisplay(evaluateQuadratic(startingY, initialSlope, curvature, index * SAMPLE_STEP)),
+      y: roundForDisplay(
+        evaluateQuadratic(startingY, initialSlope, curvature, index * SAMPLE_STEP),
+      ),
     };
   });
 }
 
 function classifyPoints(points: readonly Topic14RateSignAndTrendPoint[]): RateAnswer {
-  const slopes = points.slice(1).map((point, index) => (
-    (point.y - points[index]!.y) / (point.x - points[index]!.x)
-  ));
-  const rateSign: Topic14RateSign = slopes[0]! > 0 ? 'positive' : 'negative';
+  const slopes = points
+    .slice(1)
+    .map((point, index) => (point.y - points[index]!.y) / (point.x - points[index]!.x));
+  const rateSign: Topic14RateSign = slopes[0]! > 0 ? "positive" : "negative";
   const rateTrend: Topic14RateTrend = slopes.every(
     (slope, index) => index === 0 || slope > slopes[index - 1]!,
-  ) ? 'increasing' : 'decreasing';
+  )
+    ? "increasing"
+    : "decreasing";
   return { rateSign, rateTrend };
 }
 
@@ -88,11 +91,11 @@ function sourceVariant(): BuiltVariant {
     variant: {
       seed: 0,
       prompt: SOURCE_PROMPT,
-      functionName: 'h',
+      functionName: "h",
       interval,
       points,
     },
-    answer: { rateSign: 'positive', rateTrend: 'decreasing' },
+    answer: { rateSign: "positive", rateTrend: "decreasing" },
   };
 }
 
@@ -112,7 +115,7 @@ function generatedVariant(seed: number): BuiltVariant {
     variant: {
       seed,
       prompt: `${GENERATED_PROMPT} (${interval[0]}, ${interval[1]}).`,
-      functionName: 'h',
+      functionName: "h",
       interval,
       points,
     },
@@ -126,9 +129,12 @@ function buildForSeed(seed: number): BuiltVariant {
 
 function sourceSolutionSteps(): Array<{ description: string }> {
   return [
-    { description: 'On (3, 4), h rises, so the rate of change is positive.' },
-    { description: 'The graph flattens as x increases, so the positive rate of change is decreasing.' },
-    { description: 'Therefore, the rate sign is positive and the rate trend is decreasing.' },
+    { description: "On (3, 4), h rises, so the rate of change is positive." },
+    {
+      description:
+        "The graph flattens as x increases, so the positive rate of change is decreasing.",
+    },
+    { description: "Therefore, the rate sign is positive and the rate trend is decreasing." },
   ];
 }
 
@@ -136,25 +142,27 @@ function generatedSolutionSteps(
   variant: Topic14RateSignAndTrendVariant,
   answer: RateAnswer,
 ): Array<{ description: string }> {
-  const slopes = variant.points.slice(1).map((point, index) => (
-    roundForDisplay((point.y - variant.points[index]!.y) / (point.x - variant.points[index]!.x))
-  ));
+  const slopes = variant.points
+    .slice(1)
+    .map((point, index) =>
+      roundForDisplay((point.y - variant.points[index]!.y) / (point.x - variant.points[index]!.x)),
+    );
   return [
     {
-      description: `The sampled rates on (${variant.interval[0]}, ${variant.interval[1]}) are ${slopes.join(', ')}.`,
+      description: `The sampled rates on (${variant.interval[0]}, ${variant.interval[1]}) are ${slopes.join(", ")}.`,
     },
     {
-      description: `The rates are ${answer.rateSign}, because the graph ${answer.rateSign === 'positive' ? 'rises' : 'falls'} across the interval.`,
+      description: `The rates are ${answer.rateSign}, because the graph ${answer.rateSign === "positive" ? "rises" : "falls"} across the interval.`,
     },
     {
-      description: `The rates are ${answer.rateTrend}, because they ${answer.rateTrend === 'increasing' ? 'increase' : 'decrease'} from left to right.`,
+      description: `The rates are ${answer.rateTrend}, because they ${answer.rateTrend === "increasing" ? "increase" : "decrease"} from left to right.`,
     },
   ];
 }
 
 function validateSeed(seed: number): void {
   if (!Number.isSafeInteger(seed) || seed < 0) {
-    throw new RangeError('seed must be a non-negative safe integer');
+    throw new RangeError("seed must be a non-negative safe integer");
   }
 }
 
@@ -166,9 +174,8 @@ export function generateTopic14RateSignAndTrend(seed: number): Topic14RateSignAn
 export function generateTopic14RateSignAndTrendOutput(seed: number): GeneratorOutput {
   validateSeed(seed);
   const { variant, answer } = buildForSeed(seed);
-  const solutionSteps = seed === 0
-    ? sourceSolutionSteps()
-    : generatedSolutionSteps(variant, answer);
+  const solutionSteps =
+    seed === 0 ? sourceSolutionSteps() : generatedSolutionSteps(variant, answer);
 
   return {
     prompt: variant.prompt,
@@ -179,7 +186,7 @@ export function generateTopic14RateSignAndTrendOutput(seed: number): GeneratorOu
         functionName: variant.functionName,
         interval: variant.interval,
         points: variant.points,
-        presentationMode: 'independent_practice',
+        presentationMode: "independent_practice",
       },
     },
     expectedAnswer: answer,
@@ -187,7 +194,7 @@ export function generateTopic14RateSignAndTrendOutput(seed: number): GeneratorOu
     gradingMetadata: {
       partAnswers: answer,
       partMaxScores: { rateSign: 1, rateTrend: 1 },
-      partGradingRules: { rateSign: 'exact_match', rateTrend: 'exact_match' },
+      partGradingRules: { rateSign: "exact_match", rateTrend: "exact_match" },
     },
   };
 }

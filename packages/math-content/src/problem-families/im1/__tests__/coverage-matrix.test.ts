@@ -41,11 +41,11 @@
 // re-export shims") which reads
 // `apps/integrated-math-3/convex/seed/problem_families/*.ts`.
 
-import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { VERTICAL_SLICE_MODULE } from '../vertical-slice';
+import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import { VERTICAL_SLICE_MODULE } from "../vertical-slice";
 
 import {
   buildCoverageMatrix,
@@ -54,13 +54,13 @@ import {
   type CoverageMatrixCounts,
   type CoverageMatrixByModule,
   type CoverageStatus,
-} from '../coverage-matrix'; // Intentional: non-existent module → Red.
-import { IM1_GENERATORS } from '../generators';
+} from "../coverage-matrix"; // Intentional: non-existent module → Red.
+import { IM1_GENERATORS } from "../generators";
 import {
   guidedPracticeSpecSchema,
   independentPracticeSpecSchema,
   workedExampleSpecSchema,
-} from '@math-platform/knowledge-space-practice';
+} from "@math-platform/knowledge-space-practice";
 
 // ---------------------------------------------------------------------------
 // Resolve the IM1 rollout-artifact directory and the matrix-file path.
@@ -70,19 +70,13 @@ import {
 // ---------------------------------------------------------------------------
 
 const HERE = fileURLToPath(import.meta.url);
-const PKG_ROOT = resolve(HERE, '../../../../../../..');
-const IM1_ROLLOUT_DIR = resolve(
-  PKG_ROOT,
-  'apps/integrated-math-1/curriculum/skill-graph',
-);
-const NODES_JSON = resolve(IM1_ROLLOUT_DIR, 'nodes.json');
-const GENERATOR_GAP_QUEUE_JSON = resolve(
-  IM1_ROLLOUT_DIR,
-  'generator-gap-queue.json',
-);
-const BLUEPRINTS_JSON = resolve(IM1_ROLLOUT_DIR, 'blueprints.json');
-const MATRIX_JSON = resolve(IM1_ROLLOUT_DIR, 'im1-coverage-matrix.json');
-const AUDIT_MD = resolve(PKG_ROOT, 'measure/skill-graph-im1-rollout-audit.md');
+const PKG_ROOT = resolve(HERE, "../../../../../../..");
+const IM1_ROLLOUT_DIR = resolve(PKG_ROOT, "apps/integrated-math-1/curriculum/skill-graph");
+const NODES_JSON = resolve(IM1_ROLLOUT_DIR, "nodes.json");
+const GENERATOR_GAP_QUEUE_JSON = resolve(IM1_ROLLOUT_DIR, "generator-gap-queue.json");
+const BLUEPRINTS_JSON = resolve(IM1_ROLLOUT_DIR, "blueprints.json");
+const MATRIX_JSON = resolve(IM1_ROLLOUT_DIR, "im1-coverage-matrix.json");
+const AUDIT_MD = resolve(PKG_ROOT, "measure/skill-graph-im1-rollout-audit.md");
 
 // ---------------------------------------------------------------------------
 // Live-behavior proof (test-strategy §7 "Artifact or markdown assertions
@@ -96,12 +90,12 @@ const AUDIT_MD = resolve(PKG_ROOT, 'measure/skill-graph-im1-rollout-audit.md');
 // not against a hand-written constant.
 // ---------------------------------------------------------------------------
 
-describe('Coverage matrix — shape contract (Phase 1, Task 2)', () => {
-  it('buildCoverageMatrix returns a CoverageMatrix with the required top-level fields', () => {
+describe("Coverage matrix — shape contract (Phase 1, Task 2)", () => {
+  it("buildCoverageMatrix returns a CoverageMatrix with the required top-level fields", () => {
     const matrix: CoverageMatrix = buildCoverageMatrix();
     expect(matrix).toMatchObject({
       version: expect.any(Number),
-      course: 'im1',
+      course: "im1",
       totalSkills: expect.any(Number),
       counts: expect.objectContaining({
         served: expect.any(Number),
@@ -113,19 +107,19 @@ describe('Coverage matrix — shape contract (Phase 1, Task 2)', () => {
     });
   });
 
-  it('matrix version is a positive integer (snapshot stability)', () => {
+  it("matrix version is a positive integer (snapshot stability)", () => {
     const matrix = buildCoverageMatrix();
     expect(Number.isInteger(matrix.version)).toBe(true);
     expect(matrix.version).toBeGreaterThan(0);
   });
 
-  it('counts object sums to the current totalSkills', () => {
+  it("counts object sums to the current totalSkills", () => {
     const matrix = buildCoverageMatrix();
     const c: CoverageMatrixCounts = matrix.counts;
     expect(c.served + c.gap + c.newComponent).toBe(matrix.totalSkills);
   });
 
-  it('byModule entries each carry module id, totals, and counts', () => {
+  it("byModule entries each carry module id, totals, and counts", () => {
     const matrix = buildCoverageMatrix();
     for (const mod of matrix.byModule as CoverageMatrixByModule[]) {
       expect(mod).toMatchObject({
@@ -135,13 +129,11 @@ describe('Coverage matrix — shape contract (Phase 1, Task 2)', () => {
         gap: expect.any(Number),
         newComponent: expect.any(Number),
       });
-      expect(
-        mod.served + mod.gap + mod.newComponent,
-      ).toBe(mod.totalSkills);
+      expect(mod.served + mod.gap + mod.newComponent).toBe(mod.totalSkills);
     }
   });
 
-  it('every per-module count contributes to the global counts (integration)', () => {
+  it("every per-module count contributes to the global counts (integration)", () => {
     const matrix = buildCoverageMatrix();
     const sums = (matrix.byModule as CoverageMatrixByModule[]).reduce(
       (acc, m) => ({
@@ -165,21 +157,32 @@ describe('Coverage matrix — shape contract (Phase 1, Task 2)', () => {
 // `apps/integrated-math-1/curriculum/skill-graph/nodes.json` (kind === 'skill').
 // ---------------------------------------------------------------------------
 
-describe('Coverage matrix — skill enumeration (Phase 1, Task 1)', () => {
-  it('enumerates the exact current IM1 skill set from the rollout nodes artifact', () => {
+describe("Coverage matrix — skill enumeration (Phase 1, Task 1)", () => {
+  it("enumerates the exact current IM1 skill set from the rollout nodes artifact", () => {
     const matrix = buildCoverageMatrix();
-    const nodes = JSON.parse(readFileSync(NODES_JSON, 'utf-8')) as { nodes: Array<{ id: string; kind: string; reviewStatus?: string }> };
-    const expected = nodes.nodes.filter((node) => node.kind === 'skill' && node.reviewStatus !== 'rejected').map((node) => node.id).sort();
+    const nodes = JSON.parse(readFileSync(NODES_JSON, "utf-8")) as {
+      nodes: Array<{ id: string; kind: string; reviewStatus?: string }>;
+    };
+    const expected = nodes.nodes
+      .filter((node) => node.kind === "skill" && node.reviewStatus !== "rejected")
+      .map((node) => node.id)
+      .sort();
     expect(matrix.totalSkills).toBe(expected.length);
     expect(matrix.skills.map((skill) => skill.skillId).sort()).toEqual(expected);
   });
 
-  it('excludes rejected historical skill identities from current authoring coverage', () => {
+  it("excludes rejected historical skill identities from current authoring coverage", () => {
     const matrix = buildCoverageMatrix();
-    expect(matrix.skills.some((skill) => skill.skillId === 'math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables')).toBe(false);
+    expect(
+      matrix.skills.some(
+        (skill) =>
+          skill.skillId ===
+          "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables",
+      ),
+    ).toBe(false);
   });
 
-  it('every skill entry carries the required fields (skillId, module, status, tier)', () => {
+  it("every skill entry carries the required fields (skillId, module, status, tier)", () => {
     const matrix = buildCoverageMatrix();
     for (const s of matrix.skills as CoverageMatrixSkillEntry[]) {
       expect(s).toMatchObject({
@@ -193,19 +196,15 @@ describe('Coverage matrix — skill enumeration (Phase 1, Task 1)', () => {
     }
   });
 
-  it('skillIds are unique across the matrix (no duplicates from a bad join)', () => {
+  it("skillIds are unique across the matrix (no duplicates from a bad join)", () => {
     const matrix = buildCoverageMatrix();
-    const ids = (matrix.skills as CoverageMatrixSkillEntry[]).map(
-      (s) => s.skillId,
-    );
+    const ids = (matrix.skills as CoverageMatrixSkillEntry[]).map((s) => s.skillId);
     expect(new Set(ids).size).toBe(ids.length);
   });
 
-  it('module ids in matrix.skills are a stable subset of {1..14}', () => {
+  it("module ids in matrix.skills are a stable subset of {1..14}", () => {
     const matrix = buildCoverageMatrix();
-    const allowed = new Set(
-      Array.from({ length: 14 }, (_v, i) => String(i + 1)),
-    );
+    const allowed = new Set(Array.from({ length: 14 }, (_v, i) => String(i + 1)));
     for (const s of matrix.skills as CoverageMatrixSkillEntry[]) {
       expect(allowed.has(s.module)).toBe(true);
     }
@@ -216,9 +215,9 @@ describe('Coverage matrix — skill enumeration (Phase 1, Task 1)', () => {
 // Integration: current graph counts and the frozen audit baseline.
 // ---------------------------------------------------------------------------
 
-describe('Coverage matrix — integration with rollout-audit (Phase 1, Task 1↔audit)', () => {
-  it('audit.md preserves the explicit frozen 138-skill baseline', () => {
-    const audit = readFileSync(AUDIT_MD, 'utf-8');
+describe("Coverage matrix — integration with rollout-audit (Phase 1, Task 1↔audit)", () => {
+  it("audit.md preserves the explicit frozen 138-skill baseline", () => {
+    const audit = readFileSync(AUDIT_MD, "utf-8");
     // The audit's "Total" row in the Module-by-Module Coverage table
     // is the canonical claim. We assert both the "| 138" token and
     // a readiness ratio over 138 skills (Phase 5 refreshes the
@@ -229,21 +228,23 @@ describe('Coverage matrix — integration with rollout-audit (Phase 1, Task 1↔
 
   it('matrix totalSkills agrees with the rollout nodes.json (kind === "skill")', () => {
     const matrix = buildCoverageMatrix();
-    const nodes = JSON.parse(readFileSync(NODES_JSON, 'utf-8')) as {
+    const nodes = JSON.parse(readFileSync(NODES_JSON, "utf-8")) as {
       nodes: Array<{ id: string; kind: string; reviewStatus?: string }>;
     };
-    const skillCount = nodes.nodes.filter((n) => n.kind === 'skill' && n.reviewStatus !== 'rejected').length;
+    const skillCount = nodes.nodes.filter(
+      (n) => n.kind === "skill" && n.reviewStatus !== "rejected",
+    ).length;
     expect(matrix.totalSkills).toBe(skillCount);
   });
 
-  it('gap skills join exhaustively with generator-gap-queue (no orphan or served skills)', () => {
+  it("gap skills join exhaustively with generator-gap-queue (no orphan or served skills)", () => {
     const matrix = buildCoverageMatrix();
-    const gap = JSON.parse(readFileSync(GENERATOR_GAP_QUEUE_JSON, 'utf-8')) as {
+    const gap = JSON.parse(readFileSync(GENERATOR_GAP_QUEUE_JSON, "utf-8")) as {
       queue: Array<{ nodeId: string }>;
     };
     const gapSkillIds = new Set(
       (matrix.skills as CoverageMatrixSkillEntry[])
-        .filter((s) => s.status === 'gap')
+        .filter((s) => s.status === "gap")
         .map((s) => s.skillId),
     );
     expect(gap.queue).toHaveLength(gapSkillIds.size);
@@ -252,9 +253,9 @@ describe('Coverage matrix — integration with rollout-audit (Phase 1, Task 1↔
     }
   });
 
-  it('reports exact missing blueprint IDs and mode-spec schema results', () => {
+  it("reports exact missing blueprint IDs and mode-spec schema results", () => {
     const matrix = buildCoverageMatrix();
-    const bp = JSON.parse(readFileSync(BLUEPRINTS_JSON, 'utf-8')) as {
+    const bp = JSON.parse(readFileSync(BLUEPRINTS_JSON, "utf-8")) as {
       blueprints: Array<{
         nodeId: string;
         workedExampleSpec?: unknown;
@@ -262,84 +263,93 @@ describe('Coverage matrix — integration with rollout-audit (Phase 1, Task 1↔
         independentPracticeSpec?: unknown;
       }>;
     };
-    const matrixIds = new Set(
-      (matrix.skills as CoverageMatrixSkillEntry[]).map((s) => s.skillId),
-    );
+    const matrixIds = new Set((matrix.skills as CoverageMatrixSkillEntry[]).map((s) => s.skillId));
     const blueprintIds = new Set(bp.blueprints.map((row) => row.nodeId));
-    const missingBlueprintIds = [...matrixIds]
-      .filter((nodeId) => !blueprintIds.has(nodeId))
-      .sort();
-    const schemaValid = bp.blueprints.filter((row) =>
-      workedExampleSpecSchema.safeParse(row.workedExampleSpec).success
-      && guidedPracticeSpecSchema.safeParse(row.guidedPracticeSpec).success
-      && independentPracticeSpecSchema.safeParse(row.independentPracticeSpec).success
+    const missingBlueprintIds = [...matrixIds].filter((nodeId) => !blueprintIds.has(nodeId)).sort();
+    const schemaValid = bp.blueprints.filter(
+      (row) =>
+        workedExampleSpecSchema.safeParse(row.workedExampleSpec).success &&
+        guidedPracticeSpecSchema.safeParse(row.guidedPracticeSpec).success &&
+        independentPracticeSpecSchema.safeParse(row.independentPracticeSpec).success,
     );
-    const empty = bp.blueprints.filter((row) =>
-      JSON.stringify(row.workedExampleSpec) === '{}'
-      && JSON.stringify(row.guidedPracticeSpec) === '{}'
-      && JSON.stringify(row.independentPracticeSpec) === '{}'
+    const empty = bp.blueprints.filter(
+      (row) =>
+        JSON.stringify(row.workedExampleSpec) === "{}" &&
+        JSON.stringify(row.guidedPracticeSpec) === "{}" &&
+        JSON.stringify(row.independentPracticeSpec) === "{}",
     );
-    const sourceOnly = bp.blueprints.filter((row) =>
-      row.workedExampleSpec === undefined
-      && row.guidedPracticeSpec === undefined
-      && row.independentPracticeSpec === undefined
+    const sourceOnly = bp.blueprints.filter(
+      (row) =>
+        row.workedExampleSpec === undefined &&
+        row.guidedPracticeSpec === undefined &&
+        row.independentPracticeSpec === undefined,
     );
 
     expect(missingBlueprintIds).toEqual([
-      'math.im1.skill.1.1.evaluate-numerical-expressions-accurately-using-the-order-of',
-      'math.im1.skill.1.2.evaluate-algebraic-expressions-by-substituting-given-values',
-      'math.im1.skill.1.3.use-the-commutative-associative-identity-and-inverse-propert',
-      'math.im1.skill.1.6.determine-a-reasonable-level-of-accuracy-when-performing-mul',
+      "math.im1.skill.1.1.evaluate-numerical-expressions-accurately-using-the-order-of",
+      "math.im1.skill.1.2.evaluate-algebraic-expressions-by-substituting-given-values",
+      "math.im1.skill.1.3.use-the-commutative-associative-identity-and-inverse-propert",
+      "math.im1.skill.1.6.determine-a-reasonable-level-of-accuracy-when-performing-mul",
     ]);
     expect(schemaValid.map((row) => row.nodeId).sort()).toEqual(
       IM1_GENERATORS.flatMap((entry) => entry.nodeIds).sort(),
     );
     expect(empty.length + sourceOnly.length + schemaValid.length).toBe(bp.blueprints.length);
-    expect(sourceOnly.filter((row) => row.nodeId.startsWith('math.im1.skill.3.')).map((row) => row.nodeId).sort()).toEqual(
-      bp.blueprints.filter((row) => row.nodeId.startsWith('math.im1.skill.3.')).map((row) => row.nodeId).sort(),
+    expect(
+      sourceOnly
+        .filter((row) => row.nodeId.startsWith("math.im1.skill.3."))
+        .map((row) => row.nodeId)
+        .sort(),
+    ).toEqual(
+      bp.blueprints
+        .filter((row) => row.nodeId.startsWith("math.im1.skill.3."))
+        .map((row) => row.nodeId)
+        .sort(),
     );
 
-    const audit = readFileSync(AUDIT_MD, 'utf-8');
+    const audit = readFileSync(AUDIT_MD, "utf-8");
     expect(audit).toMatch(/Blueprint rows with three schema-valid mode specifications: 6\./);
-    expect(audit).toContain(`Blueprint rows with three empty mode specifications: ${empty.length}.`);
-    expect(audit).toContain(`Source-only blueprint rows without mode specifications: ${sourceOnly.length}.`);
+    expect(audit).toContain(
+      `Blueprint rows with three empty mode specifications: ${empty.length}.`,
+    );
+    expect(audit).toContain(
+      `Source-only blueprint rows without mode specifications: ${sourceOnly.length}.`,
+    );
     expect(audit).toMatch(/Skills without a blueprint row: 4\./);
   });
 
-  it('reports generator bindings separately from all current gaps', () => {
+  it("reports generator bindings separately from all current gaps", () => {
     const matrix = buildCoverageMatrix();
     expect(matrix.counts.served).toBe(6);
     expect(matrix.counts.gap).toBe(matrix.totalSkills - matrix.counts.served);
     expect(matrix.counts.newComponent).toBe(0);
   });
 
-  it('served skills are exactly Module 1 vertical-slice skills with generator tier assigned', () => {
+  it("served skills are exactly Module 1 vertical-slice skills with generator tier assigned", () => {
     const matrix = buildCoverageMatrix();
     const served = (matrix.skills as CoverageMatrixSkillEntry[]).filter(
-      (s) => s.status === 'served',
+      (s) => s.status === "served",
     );
     expect(served).toHaveLength(6);
     for (const s of served) {
-      expect(s.module).toBe('1');
-      expect(s.tier).not.toBe('none');
+      expect(s.module).toBe("1");
+      expect(s.tier).not.toBe("none");
     }
     const registered = IM1_GENERATORS.flatMap((entry) => entry.nodeIds).sort();
     expect(served.map((entry) => entry.skillId).sort()).toEqual(registered);
   });
 
-  it('stored matrix equals the current derived report', () => {
-    const stored = JSON.parse(readFileSync(MATRIX_JSON, 'utf-8'));
+  it("stored matrix equals the current derived report", () => {
+    const stored = JSON.parse(readFileSync(MATRIX_JSON, "utf-8"));
     expect(stored).toEqual(buildCoverageMatrix());
   });
 
   it('gap skills remain explicitly tracked with tier="none"', () => {
     const matrix = buildCoverageMatrix();
-    const gaps = (matrix.skills as CoverageMatrixSkillEntry[]).filter(
-      (s) => s.status === 'gap',
-    );
+    const gaps = (matrix.skills as CoverageMatrixSkillEntry[]).filter((s) => s.status === "gap");
     expect(gaps).toHaveLength(matrix.totalSkills - matrix.counts.served);
     for (const s of gaps) {
-      expect(s.tier).toBe('none');
+      expect(s.tier).toBe("none");
     }
   });
 });
@@ -349,19 +359,17 @@ describe('Coverage matrix — integration with rollout-audit (Phase 1, Task 1↔
 // before Phase 4 fixtures are authored (test-strategy §3).
 // ---------------------------------------------------------------------------
 
-describe('Coverage matrix — vertical-slice module lock (Phase 1, Task 3)', () => {
-  it('VERTICAL_SLICE_MODULE is a single module id', () => {
+describe("Coverage matrix — vertical-slice module lock (Phase 1, Task 3)", () => {
+  it("VERTICAL_SLICE_MODULE is a single module id", () => {
     const vsm = VERTICAL_SLICE_MODULE;
-    expect(typeof vsm).toBe('string');
+    expect(typeof vsm).toBe("string");
     expect(vsm).toMatch(/^[1-9]|1[0-4]$/);
   });
 
-  it('vertical-slice module is one of the 14 IM1 modules in the matrix', () => {
+  it("vertical-slice module is one of the 14 IM1 modules in the matrix", () => {
     const vsm = VERTICAL_SLICE_MODULE;
     const matrix = buildCoverageMatrix();
-    const moduleIds = new Set(
-      (matrix.byModule as CoverageMatrixByModule[]).map((m) => m.module),
-    );
+    const moduleIds = new Set((matrix.byModule as CoverageMatrixByModule[]).map((m) => m.module));
     expect(moduleIds.has(vsm)).toBe(true);
   });
 });
@@ -374,11 +382,9 @@ describe('Coverage matrix — vertical-slice module lock (Phase 1, Task 3)', () 
 // snapshot, Phase 5 audit-diff, and doctor").
 // ---------------------------------------------------------------------------
 
-describe('Coverage matrix — file location contract (boundary)', () => {
-  it('matrix file lives under the IM1 rollout directory, not under math-content', () => {
-    expect(MATRIX_JSON).toContain(
-      'apps/integrated-math-1/curriculum/skill-graph/',
-    );
-    expect(MATRIX_JSON.endsWith('im1-coverage-matrix.json')).toBe(true);
+describe("Coverage matrix — file location contract (boundary)", () => {
+  it("matrix file lives under the IM1 rollout directory, not under math-content", () => {
+    expect(MATRIX_JSON).toContain("apps/integrated-math-1/curriculum/skill-graph/");
+    expect(MATRIX_JSON.endsWith("im1-coverage-matrix.json")).toBe(true);
   });
 });

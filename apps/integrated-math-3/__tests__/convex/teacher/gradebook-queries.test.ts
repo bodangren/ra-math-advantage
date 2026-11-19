@@ -1,6 +1,6 @@
-import { describe, it, expect, vi } from 'vitest';
-import type { Id } from '@/convex/_generated/dataModel';
-import type { QueryCtx } from '@/convex/_generated/server';
+import { describe, it, expect, vi } from "vitest";
+import type { Id } from "@/convex/_generated/dataModel";
+import type { QueryCtx } from "@/convex/_generated/server";
 import {
   getTeacherCourseOverviewDataHandler,
   getTeacherGradebookDataHandler,
@@ -8,11 +8,11 @@ import {
   getTeacherCompetencyHeatmapDataHandler,
   getTeacherStudentCompetencyDetailHandler,
   getLessonErrorSummary,
-} from '@/convex/teacher';
+} from "@/convex/teacher";
 
 const callGetLessonErrorSummary = getLessonErrorSummary as unknown as (
   ctx: QueryCtx,
-  args: { userId: Id<'profiles'>; lessonId: Id<'lessons'> },
+  args: { userId: Id<"profiles">; lessonId: Id<"lessons"> },
 ) => Promise<{ averageAccuracy: number; studentCount: number } | null>;
 
 // ---------------------------------------------------------------------------
@@ -20,9 +20,7 @@ const callGetLessonErrorSummary = getLessonErrorSummary as unknown as (
 // ---------------------------------------------------------------------------
 
 function createMockDb(documents: Record<string, Record<string, unknown>[]>) {
-  const tables: Record<string, Record<string, unknown>[]> = JSON.parse(
-    JSON.stringify(documents),
-  );
+  const tables: Record<string, Record<string, unknown>[]> = JSON.parse(JSON.stringify(documents));
 
   function makeQuery(table: string) {
     let data = tables[table] || [];
@@ -32,7 +30,9 @@ function createMockDb(documents: Record<string, Record<string, unknown>[]>) {
       take: (n: number) => Promise.resolve(data.slice(0, n)),
       withIndex: (
         _index: string,
-        builder: (q: { eq: (field: string, value: unknown) => { eq: (field: string, value: unknown) => unknown } }) => unknown,
+        builder: (q: {
+          eq: (field: string, value: unknown) => { eq: (field: string, value: unknown) => unknown };
+        }) => unknown,
       ) => {
         let filtered = [...data];
         const eqChain = {
@@ -46,19 +46,23 @@ function createMockDb(documents: Record<string, Record<string, unknown>[]>) {
         return {
           collect: () => Promise.resolve([...data]),
           take: (n: number) => Promise.resolve(data.slice(0, n)),
-          filter: (filterBuilder: (q: {
-            eq: (accessor: unknown, value: unknown) => (doc: Record<string, unknown>) => boolean;
-            field: (name: string) => (doc: Record<string, unknown>) => unknown;
-            or: (...exprs: Array<(doc: Record<string, unknown>) => boolean>) => (doc: Record<string, unknown>) => boolean;
-          }) => unknown) => {
+          filter: (
+            filterBuilder: (q: {
+              eq: (accessor: unknown, value: unknown) => (doc: Record<string, unknown>) => boolean;
+              field: (name: string) => (doc: Record<string, unknown>) => unknown;
+              or: (
+                ...exprs: Array<(doc: Record<string, unknown>) => boolean>
+              ) => (doc: Record<string, unknown>) => boolean;
+            }) => unknown,
+          ) => {
             let filterData = [...data];
 
             const eq = (accessor: unknown, value: unknown) => {
               if (
-                typeof accessor === 'function' &&
-                ((accessor as unknown) as { _fieldName?: string })._fieldName
+                typeof accessor === "function" &&
+                (accessor as unknown as { _fieldName?: string })._fieldName
               ) {
-                const fieldName = ((accessor as unknown) as { _fieldName: string })._fieldName;
+                const fieldName = (accessor as unknown as { _fieldName: string })._fieldName;
                 return (doc: Record<string, unknown>) => doc[fieldName] === value;
               }
               return () => true;
@@ -75,7 +79,7 @@ function createMockDb(documents: Record<string, Record<string, unknown>[]>) {
             };
 
             const result = filterBuilder({ eq, field, or });
-            if (typeof result === 'function') {
+            if (typeof result === "function") {
               filterData = filterData.filter(result as (doc: Record<string, unknown>) => boolean);
             }
 
@@ -87,19 +91,23 @@ function createMockDb(documents: Record<string, Record<string, unknown>[]>) {
           },
         };
       },
-      filter: (filterBuilder: (q: {
-        eq: (accessor: unknown, value: unknown) => (doc: Record<string, unknown>) => boolean;
-        field: (name: string) => (doc: Record<string, unknown>) => unknown;
-        or: (...exprs: Array<(doc: Record<string, unknown>) => boolean>) => (doc: Record<string, unknown>) => boolean;
-      }) => unknown) => {
+      filter: (
+        filterBuilder: (q: {
+          eq: (accessor: unknown, value: unknown) => (doc: Record<string, unknown>) => boolean;
+          field: (name: string) => (doc: Record<string, unknown>) => unknown;
+          or: (
+            ...exprs: Array<(doc: Record<string, unknown>) => boolean>
+          ) => (doc: Record<string, unknown>) => boolean;
+        }) => unknown,
+      ) => {
         let filterData = [...data];
 
         const eq = (accessor: unknown, value: unknown) => {
           if (
-            typeof accessor === 'function' &&
-            ((accessor as unknown) as { _fieldName?: string })._fieldName
+            typeof accessor === "function" &&
+            (accessor as unknown as { _fieldName?: string })._fieldName
           ) {
-            const fieldName = ((accessor as unknown) as { _fieldName: string })._fieldName;
+            const fieldName = (accessor as unknown as { _fieldName: string })._fieldName;
             return (doc: Record<string, unknown>) => doc[fieldName] === value;
           }
           return () => true;
@@ -116,7 +124,7 @@ function createMockDb(documents: Record<string, Record<string, unknown>[]>) {
         };
 
         const result = filterBuilder({ eq, field, or });
-        if (typeof result === 'function') {
+        if (typeof result === "function") {
           filterData = filterData.filter(result as (doc: Record<string, unknown>) => boolean);
         }
 
@@ -145,23 +153,23 @@ function createMockDb(documents: Record<string, Record<string, unknown>[]>) {
 // Fixtures
 // ---------------------------------------------------------------------------
 
-const mockOrgId = 'org1' as Id<'organizations'>;
-const mockTeacherId = 'teacher1' as Id<'profiles'>;
-const mockStudentId = 'student1' as Id<'profiles'>;
-const mockOtherStudentId = 'student2' as Id<'profiles'>;
-const mockLessonId = 'lesson1' as Id<'lessons'>;
-const mockLessonVersionId = 'lv1' as Id<'lesson_versions'>;
-const mockPhaseVersionId = 'pv1' as Id<'phase_versions'>;
-const mockStandardId = 'std1' as Id<'competency_standards'>;
-const mockActivityId = 'act1' as Id<'activities'>;
+const mockOrgId = "org1" as Id<"organizations">;
+const mockTeacherId = "teacher1" as Id<"profiles">;
+const mockStudentId = "student1" as Id<"profiles">;
+const mockOtherStudentId = "student2" as Id<"profiles">;
+const mockLessonId = "lesson1" as Id<"lessons">;
+const mockLessonVersionId = "lv1" as Id<"lesson_versions">;
+const mockPhaseVersionId = "pv1" as Id<"phase_versions">;
+const mockStandardId = "std1" as Id<"competency_standards">;
+const mockActivityId = "act1" as Id<"activities">;
 
 const teacherProfile = {
   _id: mockTeacherId,
   _creationTime: 1000,
   organizationId: mockOrgId,
-  username: 'teacher1',
-  role: 'teacher',
-  displayName: 'Teacher One',
+  username: "teacher1",
+  role: "teacher",
+  displayName: "Teacher One",
   createdAt: 1000,
   updatedAt: 1000,
 };
@@ -170,9 +178,9 @@ const studentProfile = {
   _id: mockStudentId,
   _creationTime: 1000,
   organizationId: mockOrgId,
-  username: 'student1',
-  role: 'student',
-  displayName: 'Student One',
+  username: "student1",
+  role: "student",
+  displayName: "Student One",
   createdAt: 1000,
   updatedAt: 1000,
 };
@@ -181,9 +189,9 @@ const otherStudentProfile = {
   _id: mockOtherStudentId,
   _creationTime: 1000,
   organizationId: mockOrgId,
-  username: 'student2',
-  role: 'student',
-  displayName: 'Student Two',
+  username: "student2",
+  role: "student",
+  displayName: "Student Two",
   createdAt: 1000,
   updatedAt: 1000,
 };
@@ -192,18 +200,25 @@ const otherStudentProfile = {
 // getTeacherCourseOverviewDataHandler
 // ---------------------------------------------------------------------------
 
-describe('getTeacherCourseOverviewDataHandler', () => {
-  it('returns null for unauthorized user', async () => {
+describe("getTeacherCourseOverviewDataHandler", () => {
+  it("returns null for unauthorized user", async () => {
     const mockDb = createMockDb({
-      profiles: [{ _id: 'bad', role: 'student', organizationId: mockOrgId } as unknown as Record<string, unknown>],
+      profiles: [
+        { _id: "bad", role: "student", organizationId: mockOrgId } as unknown as Record<
+          string,
+          unknown
+        >,
+      ],
     });
     const ctx = { db: mockDb } as unknown as QueryCtx;
 
-    const result = await getTeacherCourseOverviewDataHandler(ctx, { userId: 'bad' as Id<'profiles'> });
+    const result = await getTeacherCourseOverviewDataHandler(ctx, {
+      userId: "bad" as Id<"profiles">,
+    });
     expect(result).toBeNull();
   });
 
-  it('returns empty rows and units when no lessons exist', async () => {
+  it("returns empty rows and units when no lessons exist", async () => {
     const mockDb = createMockDb({
       profiles: [teacherProfile, studentProfile],
     });
@@ -213,24 +228,64 @@ describe('getTeacherCourseOverviewDataHandler', () => {
     expect(result).toEqual({ rows: [], units: [] });
   });
 
-  it('returns course overview with student list and module mastery', async () => {
+  it("returns course overview with student list and module mastery", async () => {
     const mockDb = createMockDb({
       profiles: [teacherProfile, studentProfile, otherStudentProfile],
       lessons: [
-        { _id: mockLessonId, unitNumber: 1, orderIndex: 1, title: 'Lesson 1', slug: 'l1', createdAt: 1, updatedAt: 1 },
+        {
+          _id: mockLessonId,
+          unitNumber: 1,
+          orderIndex: 1,
+          title: "Lesson 1",
+          slug: "l1",
+          createdAt: 1,
+          updatedAt: 1,
+        },
       ],
       lesson_versions: [
-        { _id: mockLessonVersionId, lessonId: mockLessonId, version: 1, status: 'published', createdAt: 1 },
+        {
+          _id: mockLessonVersionId,
+          lessonId: mockLessonId,
+          version: 1,
+          status: "published",
+          createdAt: 1,
+        },
       ],
       lesson_standards: [
-        { _id: 'ls1', lessonVersionId: mockLessonVersionId, standardId: mockStandardId, isPrimary: true, createdAt: 1 },
+        {
+          _id: "ls1",
+          lessonVersionId: mockLessonVersionId,
+          standardId: mockStandardId,
+          isPrimary: true,
+          createdAt: 1,
+        },
       ],
       competency_standards: [
-        { _id: mockStandardId, code: 'A.SSE.1', description: 'Description', isActive: true, createdAt: 1 },
+        {
+          _id: mockStandardId,
+          code: "A.SSE.1",
+          description: "Description",
+          isActive: true,
+          createdAt: 1,
+        },
       ],
       student_competency: [
-        { _id: 'sc1', studentId: mockStudentId, standardId: mockStandardId, masteryLevel: 85, lastUpdated: 1, createdAt: 1 },
-        { _id: 'sc2', studentId: mockOtherStudentId, standardId: mockStandardId, masteryLevel: 65, lastUpdated: 1, createdAt: 1 },
+        {
+          _id: "sc1",
+          studentId: mockStudentId,
+          standardId: mockStandardId,
+          masteryLevel: 85,
+          lastUpdated: 1,
+          createdAt: 1,
+        },
+        {
+          _id: "sc2",
+          studentId: mockOtherStudentId,
+          standardId: mockStandardId,
+          masteryLevel: 65,
+          lastUpdated: 1,
+          createdAt: 1,
+        },
       ],
     });
     const ctx = { db: mockDb } as unknown as QueryCtx;
@@ -243,27 +298,53 @@ describe('getTeacherCourseOverviewDataHandler', () => {
 
     const studentOneRow = result?.rows.find((r) => r.studentId === mockStudentId);
     expect(studentOneRow?.cells[0].avgMastery).toBe(85);
-    expect(studentOneRow?.cells[0].color).toBe('green');
+    expect(studentOneRow?.cells[0].color).toBe("green");
 
     const studentTwoRow = result?.rows.find((r) => r.studentId === mockOtherStudentId);
     expect(studentTwoRow?.cells[0].avgMastery).toBe(65);
-    expect(studentTwoRow?.cells[0].color).toBe('yellow');
+    expect(studentTwoRow?.cells[0].color).toBe("yellow");
   });
 
-  it('returns gray cells when no competency data exists', async () => {
+  it("returns gray cells when no competency data exists", async () => {
     const mockDb = createMockDb({
       profiles: [teacherProfile, studentProfile],
       lessons: [
-        { _id: mockLessonId, unitNumber: 1, orderIndex: 1, title: 'Lesson 1', slug: 'l1', createdAt: 1, updatedAt: 1 },
+        {
+          _id: mockLessonId,
+          unitNumber: 1,
+          orderIndex: 1,
+          title: "Lesson 1",
+          slug: "l1",
+          createdAt: 1,
+          updatedAt: 1,
+        },
       ],
       lesson_versions: [
-        { _id: mockLessonVersionId, lessonId: mockLessonId, version: 1, status: 'published', createdAt: 1 },
+        {
+          _id: mockLessonVersionId,
+          lessonId: mockLessonId,
+          version: 1,
+          status: "published",
+          createdAt: 1,
+        },
       ],
       lesson_standards: [
-        { _id: 'ls1', lessonVersionId: mockLessonVersionId, standardId: mockStandardId, isPrimary: true, createdAt: 1 },
+        {
+          _id: "ls1",
+          lessonVersionId: mockLessonVersionId,
+          standardId: mockStandardId,
+          isPrimary: true,
+          createdAt: 1,
+        },
       ],
       competency_standards: [
-        { _id: mockStandardId, code: 'A.SSE.1', description: 'Description', isActive: true, createdAt: 1 },
+        {
+          _id: mockStandardId,
+          code: "A.SSE.1",
+          description: "Description",
+          isActive: true,
+          createdAt: 1,
+        },
       ],
       student_competency: [],
     });
@@ -272,7 +353,7 @@ describe('getTeacherCourseOverviewDataHandler', () => {
     const result = await getTeacherCourseOverviewDataHandler(ctx, { userId: mockTeacherId });
 
     expect(result?.rows[0].cells[0].avgMastery).toBeNull();
-    expect(result?.rows[0].cells[0].color).toBe('gray');
+    expect(result?.rows[0].cells[0].color).toBe("gray");
   });
 });
 
@@ -280,78 +361,158 @@ describe('getTeacherCourseOverviewDataHandler', () => {
 // getTeacherGradebookDataHandler
 // ---------------------------------------------------------------------------
 
-describe('getTeacherGradebookDataHandler', () => {
-  it('returns null for unauthorized user', async () => {
+describe("getTeacherGradebookDataHandler", () => {
+  it("returns null for unauthorized user", async () => {
     const mockDb = createMockDb({
-      profiles: [{ _id: 'bad', role: 'student', organizationId: mockOrgId } as unknown as Record<string, unknown>],
+      profiles: [
+        { _id: "bad", role: "student", organizationId: mockOrgId } as unknown as Record<
+          string,
+          unknown
+        >,
+      ],
     });
     const ctx = { db: mockDb } as unknown as QueryCtx;
 
-    const result = await getTeacherGradebookDataHandler(ctx, { userId: 'bad' as Id<'profiles'>, unitNumber: 1 });
+    const result = await getTeacherGradebookDataHandler(ctx, {
+      userId: "bad" as Id<"profiles">,
+      unitNumber: 1,
+    });
     expect(result).toBeNull();
   });
 
-  it('returns empty rows and lessons when unit has no lessons', async () => {
+  it("returns empty rows and lessons when unit has no lessons", async () => {
     const mockDb = createMockDb({
       profiles: [teacherProfile, studentProfile],
       lessons: [],
     });
     const ctx = { db: mockDb } as unknown as QueryCtx;
 
-    const result = await getTeacherGradebookDataHandler(ctx, { userId: mockTeacherId, unitNumber: 99 });
+    const result = await getTeacherGradebookDataHandler(ctx, {
+      userId: mockTeacherId,
+      unitNumber: 99,
+    });
     expect(result).toEqual({ rows: [], lessons: [] });
   });
 
-  it('returns gradebook with per-lesson status and mastery badges', async () => {
+  it("returns gradebook with per-lesson status and mastery badges", async () => {
     const mockDb = createMockDb({
       profiles: [teacherProfile, studentProfile],
       lessons: [
-        { _id: mockLessonId, unitNumber: 1, orderIndex: 1, title: 'Lesson 1', slug: 'l1', createdAt: 1, updatedAt: 1 },
+        {
+          _id: mockLessonId,
+          unitNumber: 1,
+          orderIndex: 1,
+          title: "Lesson 1",
+          slug: "l1",
+          createdAt: 1,
+          updatedAt: 1,
+        },
       ],
       lesson_versions: [
-        { _id: mockLessonVersionId, lessonId: mockLessonId, version: 1, status: 'published', createdAt: 1 },
+        {
+          _id: mockLessonVersionId,
+          lessonId: mockLessonId,
+          version: 1,
+          status: "published",
+          createdAt: 1,
+        },
       ],
       phase_versions: [
-        { _id: mockPhaseVersionId, lessonVersionId: mockLessonVersionId, phaseNumber: 1, phaseType: 'learn', createdAt: 1 },
+        {
+          _id: mockPhaseVersionId,
+          lessonVersionId: mockLessonVersionId,
+          phaseNumber: 1,
+          phaseType: "learn",
+          createdAt: 1,
+        },
       ],
       lesson_standards: [
-        { _id: 'ls1', lessonVersionId: mockLessonVersionId, standardId: mockStandardId, isPrimary: true, createdAt: 1 },
+        {
+          _id: "ls1",
+          lessonVersionId: mockLessonVersionId,
+          standardId: mockStandardId,
+          isPrimary: true,
+          createdAt: 1,
+        },
       ],
       competency_standards: [
-        { _id: mockStandardId, code: 'A.SSE.1', description: 'Description', isActive: true, createdAt: 1 },
+        {
+          _id: mockStandardId,
+          code: "A.SSE.1",
+          description: "Description",
+          isActive: true,
+          createdAt: 1,
+        },
       ],
       student_progress: [
-        { _id: 'sp1', userId: mockStudentId, phaseId: mockPhaseVersionId, status: 'completed', createdAt: 1, updatedAt: 1 },
+        {
+          _id: "sp1",
+          userId: mockStudentId,
+          phaseId: mockPhaseVersionId,
+          status: "completed",
+          createdAt: 1,
+          updatedAt: 1,
+        },
       ],
       student_competency: [
-        { _id: 'sc1', studentId: mockStudentId, standardId: mockStandardId, masteryLevel: 92, lastUpdated: 1, createdAt: 1 },
+        {
+          _id: "sc1",
+          studentId: mockStudentId,
+          standardId: mockStandardId,
+          masteryLevel: 92,
+          lastUpdated: 1,
+          createdAt: 1,
+        },
       ],
     });
     const ctx = { db: mockDb } as unknown as QueryCtx;
 
-    const result = await getTeacherGradebookDataHandler(ctx, { userId: mockTeacherId, unitNumber: 1 });
+    const result = await getTeacherGradebookDataHandler(ctx, {
+      userId: mockTeacherId,
+      unitNumber: 1,
+    });
 
     expect(result).not.toBeNull();
     expect(result?.lessons).toHaveLength(1);
     expect(result?.rows).toHaveLength(1);
 
     const cell = result?.rows[0].cells[0];
-    expect(cell?.completionStatus).toBe('completed');
+    expect(cell?.completionStatus).toBe("completed");
     expect(cell?.masteryLevel).toBe(92);
-    expect(cell?.color).toBe('green');
+    expect(cell?.color).toBe("green");
   });
 
-  it('returns not_started when no progress exists', async () => {
+  it("returns not_started when no progress exists", async () => {
     const mockDb = createMockDb({
       profiles: [teacherProfile, studentProfile],
       lessons: [
-        { _id: mockLessonId, unitNumber: 1, orderIndex: 1, title: 'Lesson 1', slug: 'l1', createdAt: 1, updatedAt: 1 },
+        {
+          _id: mockLessonId,
+          unitNumber: 1,
+          orderIndex: 1,
+          title: "Lesson 1",
+          slug: "l1",
+          createdAt: 1,
+          updatedAt: 1,
+        },
       ],
       lesson_versions: [
-        { _id: mockLessonVersionId, lessonId: mockLessonId, version: 1, status: 'published', createdAt: 1 },
+        {
+          _id: mockLessonVersionId,
+          lessonId: mockLessonId,
+          version: 1,
+          status: "published",
+          createdAt: 1,
+        },
       ],
       phase_versions: [
-        { _id: mockPhaseVersionId, lessonVersionId: mockLessonVersionId, phaseNumber: 1, phaseType: 'learn', createdAt: 1 },
+        {
+          _id: mockPhaseVersionId,
+          lessonVersionId: mockLessonVersionId,
+          phaseNumber: 1,
+          phaseType: "learn",
+          createdAt: 1,
+        },
       ],
       lesson_standards: [],
       student_progress: [],
@@ -359,10 +520,13 @@ describe('getTeacherGradebookDataHandler', () => {
     });
     const ctx = { db: mockDb } as unknown as QueryCtx;
 
-    const result = await getTeacherGradebookDataHandler(ctx, { userId: mockTeacherId, unitNumber: 1 });
+    const result = await getTeacherGradebookDataHandler(ctx, {
+      userId: mockTeacherId,
+      unitNumber: 1,
+    });
 
-    expect(result?.rows[0].cells[0].completionStatus).toBe('not_started');
-    expect(result?.rows[0].cells[0].color).toBe('gray');
+    expect(result?.rows[0].cells[0].completionStatus).toBe("not_started");
+    expect(result?.rows[0].cells[0].color).toBe("gray");
   });
 });
 
@@ -370,28 +534,30 @@ describe('getTeacherGradebookDataHandler', () => {
 // getSubmissionDetailHandler
 // ---------------------------------------------------------------------------
 
-describe('getSubmissionDetailHandler', () => {
-  it('returns null for unauthorized user', async () => {
+describe("getSubmissionDetailHandler", () => {
+  it("returns null for unauthorized user", async () => {
     const mockDb = createMockDb({
-      profiles: [{ _id: 'bad', role: 'student', organizationId: mockOrgId } as unknown as Record<string, unknown>],
+      profiles: [
+        { _id: "bad", role: "student", organizationId: mockOrgId } as unknown as Record<
+          string,
+          unknown
+        >,
+      ],
     });
     const ctx = { db: mockDb } as unknown as QueryCtx;
 
     const result = await getSubmissionDetailHandler(ctx, {
-      userId: 'bad' as Id<'profiles'>,
+      userId: "bad" as Id<"profiles">,
       studentId: mockStudentId,
       lessonId: mockLessonId,
-      studentName: 'Student One',
+      studentName: "Student One",
     });
     expect(result).toBeNull();
   });
 
-  it('returns null when student is not in teacher org', async () => {
+  it("returns null when student is not in teacher org", async () => {
     const mockDb = createMockDb({
-      profiles: [
-        teacherProfile,
-        { ...studentProfile, organizationId: 'other-org' },
-      ],
+      profiles: [teacherProfile, { ...studentProfile, organizationId: "other-org" }],
     });
     const ctx = { db: mockDb } as unknown as QueryCtx;
 
@@ -399,15 +565,25 @@ describe('getSubmissionDetailHandler', () => {
       userId: mockTeacherId,
       studentId: mockStudentId,
       lessonId: mockLessonId,
-      studentName: 'Student One',
+      studentName: "Student One",
     });
     expect(result).toBeNull();
   });
 
-  it('returns null when no published lesson versions exist', async () => {
+  it("returns null when no published lesson versions exist", async () => {
     const mockDb = createMockDb({
       profiles: [teacherProfile, studentProfile],
-      lessons: [{ _id: mockLessonId, unitNumber: 1, orderIndex: 1, title: 'Lesson 1', slug: 'l1', createdAt: 1, updatedAt: 1 }],
+      lessons: [
+        {
+          _id: mockLessonId,
+          unitNumber: 1,
+          orderIndex: 1,
+          title: "Lesson 1",
+          slug: "l1",
+          createdAt: 1,
+          updatedAt: 1,
+        },
+      ],
       lesson_versions: [],
     });
     const ctx = { db: mockDb } as unknown as QueryCtx;
@@ -416,36 +592,83 @@ describe('getSubmissionDetailHandler', () => {
       userId: mockTeacherId,
       studentId: mockStudentId,
       lessonId: mockLessonId,
-      studentName: 'Student One',
+      studentName: "Student One",
     });
     expect(result).toBeNull();
   });
 
-  it('returns phase evidence and practice submissions', async () => {
+  it("returns phase evidence and practice submissions", async () => {
     const mockDb = createMockDb({
       profiles: [teacherProfile, studentProfile],
-      lessons: [{ _id: mockLessonId, unitNumber: 1, orderIndex: 1, title: 'Lesson 1', slug: 'l1', createdAt: 1, updatedAt: 1 }],
+      lessons: [
+        {
+          _id: mockLessonId,
+          unitNumber: 1,
+          orderIndex: 1,
+          title: "Lesson 1",
+          slug: "l1",
+          createdAt: 1,
+          updatedAt: 1,
+        },
+      ],
       lesson_versions: [
-        { _id: mockLessonVersionId, lessonId: mockLessonId, version: 1, status: 'published', createdAt: 1 },
+        {
+          _id: mockLessonVersionId,
+          lessonId: mockLessonId,
+          version: 1,
+          status: "published",
+          createdAt: 1,
+        },
       ],
       phase_versions: [
-        { _id: mockPhaseVersionId, lessonVersionId: mockLessonVersionId, phaseNumber: 1, phaseType: 'guided_practice', title: 'Practice', createdAt: 1 },
+        {
+          _id: mockPhaseVersionId,
+          lessonVersionId: mockLessonVersionId,
+          phaseNumber: 1,
+          phaseType: "guided_practice",
+          title: "Practice",
+          createdAt: 1,
+        },
       ],
       student_progress: [
-        { _id: 'sp1', userId: mockStudentId, phaseId: mockPhaseVersionId, status: 'completed', completedAt: 1000, createdAt: 1, updatedAt: 1 },
+        {
+          _id: "sp1",
+          userId: mockStudentId,
+          phaseId: mockPhaseVersionId,
+          status: "completed",
+          completedAt: 1000,
+          createdAt: 1,
+          updatedAt: 1,
+        },
       ],
       activity_completions: [
-        { _id: 'ac1', studentId: mockStudentId, lessonId: mockLessonId, phaseNumber: 1, activityId: mockActivityId, completedAt: 1000, idempotencyKey: 'key1', createdAt: 1, updatedAt: 1 },
+        {
+          _id: "ac1",
+          studentId: mockStudentId,
+          lessonId: mockLessonId,
+          phaseNumber: 1,
+          activityId: mockActivityId,
+          completedAt: 1000,
+          idempotencyKey: "key1",
+          createdAt: 1,
+          updatedAt: 1,
+        },
       ],
       activities: [
-        { _id: mockActivityId, displayName: 'Graphing Activity', componentKey: 'graphing-explorer', createdAt: 1, updatedAt: 1 },
+        {
+          _id: mockActivityId,
+          displayName: "Graphing Activity",
+          componentKey: "graphing-explorer",
+          createdAt: 1,
+          updatedAt: 1,
+        },
       ],
       activity_submissions: [
         {
-          _id: 'as1',
+          _id: "as1",
           userId: mockStudentId,
           activityId: mockActivityId,
-          submissionData: { contractVersion: 'practice.v1', attemptNumber: 1, parts: [] },
+          submissionData: { contractVersion: "practice.v1", attemptNumber: 1, parts: [] },
           score: 8,
           maxScore: 10,
           submittedAt: 1000,
@@ -461,47 +684,85 @@ describe('getSubmissionDetailHandler', () => {
       userId: mockTeacherId,
       studentId: mockStudentId,
       lessonId: mockLessonId,
-      studentName: 'Student One',
+      studentName: "Student One",
     });
 
     expect(result).not.toBeNull();
-    expect(result?.studentName).toBe('Student One');
-    expect(result?.lessonTitle).toBe('Lesson 1');
+    expect(result?.studentName).toBe("Student One");
+    expect(result?.lessonTitle).toBe("Lesson 1");
     expect(result?.phases).toHaveLength(1);
 
     const phase = result?.phases[0];
-    expect(phase?.status).toBe('completed');
+    expect(phase?.status).toBe("completed");
     expect(phase?.completedAt).toBe(1000);
     expect(phase?.evidence).toHaveLength(1);
-    expect(phase?.evidence[0].kind).toBe('practice');
+    expect(phase?.evidence[0].kind).toBe("practice");
     expect(phase?.evidence[0].score).toBe(8);
-    expect(phase?.evidence[0].activityTitle).toBe('Graphing Activity');
+    expect(phase?.evidence[0].activityTitle).toBe("Graphing Activity");
   });
 
-  it('returns spreadsheet evidence when present', async () => {
+  it("returns spreadsheet evidence when present", async () => {
     const mockDb = createMockDb({
       profiles: [teacherProfile, studentProfile],
-      lessons: [{ _id: mockLessonId, unitNumber: 1, orderIndex: 1, title: 'Lesson 1', slug: 'l1', createdAt: 1, updatedAt: 1 }],
+      lessons: [
+        {
+          _id: mockLessonId,
+          unitNumber: 1,
+          orderIndex: 1,
+          title: "Lesson 1",
+          slug: "l1",
+          createdAt: 1,
+          updatedAt: 1,
+        },
+      ],
       lesson_versions: [
-        { _id: mockLessonVersionId, lessonId: mockLessonId, version: 1, status: 'published', createdAt: 1 },
+        {
+          _id: mockLessonVersionId,
+          lessonId: mockLessonId,
+          version: 1,
+          status: "published",
+          createdAt: 1,
+        },
       ],
       phase_versions: [
-        { _id: mockPhaseVersionId, lessonVersionId: mockLessonVersionId, phaseNumber: 1, phaseType: 'independent_practice', createdAt: 1 },
+        {
+          _id: mockPhaseVersionId,
+          lessonVersionId: mockLessonVersionId,
+          phaseNumber: 1,
+          phaseType: "independent_practice",
+          createdAt: 1,
+        },
       ],
       student_progress: [],
       activity_completions: [
-        { _id: 'ac1', studentId: mockStudentId, lessonId: mockLessonId, phaseNumber: 1, activityId: mockActivityId, completedAt: 1000, idempotencyKey: 'key1', createdAt: 1, updatedAt: 1 },
+        {
+          _id: "ac1",
+          studentId: mockStudentId,
+          lessonId: mockLessonId,
+          phaseNumber: 1,
+          activityId: mockActivityId,
+          completedAt: 1000,
+          idempotencyKey: "key1",
+          createdAt: 1,
+          updatedAt: 1,
+        },
       ],
       activities: [
-        { _id: mockActivityId, displayName: 'Spreadsheet Activity', componentKey: 'spreadsheet', createdAt: 1, updatedAt: 1 },
+        {
+          _id: mockActivityId,
+          displayName: "Spreadsheet Activity",
+          componentKey: "spreadsheet",
+          createdAt: 1,
+          updatedAt: 1,
+        },
       ],
       activity_submissions: [],
       student_spreadsheet_responses: [
         {
-          _id: 'ss1',
+          _id: "ss1",
           studentId: mockStudentId,
           activityId: mockActivityId,
-          spreadsheetData: { cells: [['1', '2']] },
+          spreadsheetData: { cells: [["1", "2"]] },
           isCompleted: true,
           attempts: 1,
           createdAt: 1,
@@ -515,35 +776,73 @@ describe('getSubmissionDetailHandler', () => {
       userId: mockTeacherId,
       studentId: mockStudentId,
       lessonId: mockLessonId,
-      studentName: 'Student One',
+      studentName: "Student One",
     });
 
     expect(result?.phases[0].evidence).toHaveLength(1);
-    expect(result?.phases[0].evidence[0].kind).toBe('spreadsheet');
-    expect(result?.phases[0].evidence[0].spreadsheetData).toEqual({ cells: [['1', '2']] });
-    expect(result?.phases[0].spreadsheetData).toEqual({ cells: [['1', '2']] });
+    expect(result?.phases[0].evidence[0].kind).toBe("spreadsheet");
+    expect(result?.phases[0].evidence[0].spreadsheetData).toEqual({ cells: [["1", "2"]] });
+    expect(result?.phases[0].spreadsheetData).toEqual({ cells: [["1", "2"]] });
   });
 
-  it('picks the latest practice submission by submittedAt', async () => {
+  it("picks the latest practice submission by submittedAt", async () => {
     const mockDb = createMockDb({
       profiles: [teacherProfile, studentProfile],
-      lessons: [{ _id: mockLessonId, unitNumber: 1, orderIndex: 1, title: 'Lesson 1', slug: 'l1', createdAt: 1, updatedAt: 1 }],
+      lessons: [
+        {
+          _id: mockLessonId,
+          unitNumber: 1,
+          orderIndex: 1,
+          title: "Lesson 1",
+          slug: "l1",
+          createdAt: 1,
+          updatedAt: 1,
+        },
+      ],
       lesson_versions: [
-        { _id: mockLessonVersionId, lessonId: mockLessonId, version: 1, status: 'published', createdAt: 1 },
+        {
+          _id: mockLessonVersionId,
+          lessonId: mockLessonId,
+          version: 1,
+          status: "published",
+          createdAt: 1,
+        },
       ],
       phase_versions: [
-        { _id: mockPhaseVersionId, lessonVersionId: mockLessonVersionId, phaseNumber: 1, phaseType: 'assessment', createdAt: 1 },
+        {
+          _id: mockPhaseVersionId,
+          lessonVersionId: mockLessonVersionId,
+          phaseNumber: 1,
+          phaseType: "assessment",
+          createdAt: 1,
+        },
       ],
       student_progress: [],
       activity_completions: [
-        { _id: 'ac1', studentId: mockStudentId, lessonId: mockLessonId, phaseNumber: 1, activityId: mockActivityId, completedAt: 1000, idempotencyKey: 'key1', createdAt: 1, updatedAt: 1 },
+        {
+          _id: "ac1",
+          studentId: mockStudentId,
+          lessonId: mockLessonId,
+          phaseNumber: 1,
+          activityId: mockActivityId,
+          completedAt: 1000,
+          idempotencyKey: "key1",
+          createdAt: 1,
+          updatedAt: 1,
+        },
       ],
       activities: [
-        { _id: mockActivityId, displayName: 'Quiz', componentKey: 'comprehension-quiz', createdAt: 1, updatedAt: 1 },
+        {
+          _id: mockActivityId,
+          displayName: "Quiz",
+          componentKey: "comprehension-quiz",
+          createdAt: 1,
+          updatedAt: 1,
+        },
       ],
       activity_submissions: [
         {
-          _id: 'as1',
+          _id: "as1",
           userId: mockStudentId,
           activityId: mockActivityId,
           submissionData: { attemptNumber: 1 },
@@ -553,7 +852,7 @@ describe('getSubmissionDetailHandler', () => {
           updatedAt: 500,
         },
         {
-          _id: 'as2',
+          _id: "as2",
           userId: mockStudentId,
           activityId: mockActivityId,
           submissionData: { attemptNumber: 2 },
@@ -571,7 +870,7 @@ describe('getSubmissionDetailHandler', () => {
       userId: mockTeacherId,
       studentId: mockStudentId,
       lessonId: mockLessonId,
-      studentName: 'Student One',
+      studentName: "Student One",
     });
 
     expect(result?.phases[0].evidence).toHaveLength(1);
@@ -579,63 +878,162 @@ describe('getSubmissionDetailHandler', () => {
     expect(result?.phases[0].evidence[0].attemptNumber).toBe(2);
   });
 
-  it('keeps finalized evidence when a newer QF allocation is pending', async () => {
-    const finalData = { contractVersion: 'practice.v1', activityId: mockActivityId,
-      mode: 'guided_practice', status: 'graded', attemptNumber: 1, submittedAt: '2026-01-01T00:00:00.000Z',
-      answers: { discriminant: '16', x1: '2', x2: '-2' }, parts: [
-        { partId: 'discriminant', rawAnswer: '16', isCorrect: true, score: 1, maxScore: 1 },
-        { partId: 'x1', rawAnswer: '2', isCorrect: true, score: 1, maxScore: 1 },
-        { partId: 'x2', rawAnswer: '-2', isCorrect: true, score: 1, maxScore: 1 },
-      ] };
-    const ctx = { db: createMockDb({
-      profiles: [teacherProfile, studentProfile],
-      lessons: [{ _id: mockLessonId, title: 'Lesson 1' }],
-      lesson_versions: [{ _id: mockLessonVersionId, lessonId: mockLessonId, version: 1, status: 'published' }],
-      phase_versions: [{ _id: mockPhaseVersionId, lessonVersionId: mockLessonVersionId, phaseNumber: 1, phaseType: 'guided_practice' }],
-      student_progress: [],
-      activity_completions: [{ _id: 'complete', studentId: mockStudentId, lessonId: mockLessonId, phaseNumber: 1, activityId: mockActivityId }],
-      activities: [{ _id: mockActivityId, displayName: 'Quadratic Formula', componentKey: 'quadratic-formula' }],
-      activity_submissions: [
-        { _id: 'final', userId: mockStudentId, activityId: mockActivityId, submissionData: finalData,
-          score: 3, maxScore: 3, submittedAt: 100, updatedAt: 100 },
-        { _id: 'pending', userId: mockStudentId, activityId: mockActivityId,
-          submissionData: { ...finalData, status: 'draft', attemptNumber: 2, answers: {}, parts: [] },
-          allocatedVariantKey: 'PRIVATE_VARIANT', submittedAt: 200, updatedAt: 200 },
-      ], student_spreadsheet_responses: [],
-    }) } as unknown as QueryCtx;
-    const result = await getSubmissionDetailHandler(ctx, { userId: mockTeacherId, studentId: mockStudentId,
-      lessonId: mockLessonId, studentName: 'Student One' });
-    expect(result?.phases[0].evidence[0]).toMatchObject({ score: 3, maxScore: 3, submissionData: finalData });
-    expect(JSON.stringify(result)).not.toContain('PRIVATE_VARIANT');
+  it("keeps finalized evidence when a newer QF allocation is pending", async () => {
+    const finalData = {
+      contractVersion: "practice.v1",
+      activityId: mockActivityId,
+      mode: "guided_practice",
+      status: "graded",
+      attemptNumber: 1,
+      submittedAt: "2026-01-01T00:00:00.000Z",
+      answers: { discriminant: "16", x1: "2", x2: "-2" },
+      parts: [
+        { partId: "discriminant", rawAnswer: "16", isCorrect: true, score: 1, maxScore: 1 },
+        { partId: "x1", rawAnswer: "2", isCorrect: true, score: 1, maxScore: 1 },
+        { partId: "x2", rawAnswer: "-2", isCorrect: true, score: 1, maxScore: 1 },
+      ],
+    };
+    const ctx = {
+      db: createMockDb({
+        profiles: [teacherProfile, studentProfile],
+        lessons: [{ _id: mockLessonId, title: "Lesson 1" }],
+        lesson_versions: [
+          { _id: mockLessonVersionId, lessonId: mockLessonId, version: 1, status: "published" },
+        ],
+        phase_versions: [
+          {
+            _id: mockPhaseVersionId,
+            lessonVersionId: mockLessonVersionId,
+            phaseNumber: 1,
+            phaseType: "guided_practice",
+          },
+        ],
+        student_progress: [],
+        activity_completions: [
+          {
+            _id: "complete",
+            studentId: mockStudentId,
+            lessonId: mockLessonId,
+            phaseNumber: 1,
+            activityId: mockActivityId,
+          },
+        ],
+        activities: [
+          {
+            _id: mockActivityId,
+            displayName: "Quadratic Formula",
+            componentKey: "quadratic-formula",
+          },
+        ],
+        activity_submissions: [
+          {
+            _id: "final",
+            userId: mockStudentId,
+            activityId: mockActivityId,
+            submissionData: finalData,
+            score: 3,
+            maxScore: 3,
+            submittedAt: 100,
+            updatedAt: 100,
+          },
+          {
+            _id: "pending",
+            userId: mockStudentId,
+            activityId: mockActivityId,
+            submissionData: {
+              ...finalData,
+              status: "draft",
+              attemptNumber: 2,
+              answers: {},
+              parts: [],
+            },
+            allocatedVariantKey: "PRIVATE_VARIANT",
+            submittedAt: 200,
+            updatedAt: 200,
+          },
+        ],
+        student_spreadsheet_responses: [],
+      }),
+    } as unknown as QueryCtx;
+    const result = await getSubmissionDetailHandler(ctx, {
+      userId: mockTeacherId,
+      studentId: mockStudentId,
+      lessonId: mockLessonId,
+      studentName: "Student One",
+    });
+    expect(result?.phases[0].evidence[0]).toMatchObject({
+      score: 3,
+      maxScore: 3,
+      submissionData: finalData,
+    });
+    expect(JSON.stringify(result)).not.toContain("PRIVATE_VARIANT");
   });
 });
 
-describe('getLessonErrorSummary', () => {
-  it('uses finalized QF evidence when a newer allocation is pending', async () => {
-    const finalData = { contractVersion: 'practice.v1', activityId: mockActivityId,
-      mode: 'guided_practice', status: 'graded', attemptNumber: 1,
-      submittedAt: '2026-01-01T00:00:00.000Z', answers: { discriminant: '16', x1: '2', x2: '-2' },
+describe("getLessonErrorSummary", () => {
+  it("uses finalized QF evidence when a newer allocation is pending", async () => {
+    const finalData = {
+      contractVersion: "practice.v1",
+      activityId: mockActivityId,
+      mode: "guided_practice",
+      status: "graded",
+      attemptNumber: 1,
+      submittedAt: "2026-01-01T00:00:00.000Z",
+      answers: { discriminant: "16", x1: "2", x2: "-2" },
       parts: [
-        { partId: 'discriminant', rawAnswer: '16', isCorrect: true, score: 1, maxScore: 1 },
-        { partId: 'x1', rawAnswer: '2', isCorrect: true, score: 1, maxScore: 1 },
-        { partId: 'x2', rawAnswer: '-2', isCorrect: true, score: 1, maxScore: 1 },
-      ] };
-    const ctx = { db: createMockDb({
-      profiles: [teacherProfile, studentProfile],
-      lessons: [{ _id: mockLessonId, title: 'Lesson 1' }],
-      activity_completions: [{ _id: 'complete', studentId: mockStudentId, lessonId: mockLessonId,
-        phaseNumber: 1, activityId: mockActivityId }],
-      activity_submissions: [
-        { _id: 'final', userId: mockStudentId, activityId: mockActivityId,
-          submissionData: finalData, score: 1, maxScore: 1, submittedAt: 100, updatedAt: 100 },
-        { _id: 'pending', userId: mockStudentId, activityId: mockActivityId,
-          submissionData: { ...finalData, status: 'draft', attemptNumber: 2, answers: {}, parts: [] },
-          allocatedVariantKey: 'PRIVATE_VARIANT', submittedAt: 200, updatedAt: 200 },
+        { partId: "discriminant", rawAnswer: "16", isCorrect: true, score: 1, maxScore: 1 },
+        { partId: "x1", rawAnswer: "2", isCorrect: true, score: 1, maxScore: 1 },
+        { partId: "x2", rawAnswer: "-2", isCorrect: true, score: 1, maxScore: 1 },
       ],
-    }) } as unknown as QueryCtx;
-    const result = await callGetLessonErrorSummary(ctx, { userId: mockTeacherId, lessonId: mockLessonId });
+    };
+    const ctx = {
+      db: createMockDb({
+        profiles: [teacherProfile, studentProfile],
+        lessons: [{ _id: mockLessonId, title: "Lesson 1" }],
+        activity_completions: [
+          {
+            _id: "complete",
+            studentId: mockStudentId,
+            lessonId: mockLessonId,
+            phaseNumber: 1,
+            activityId: mockActivityId,
+          },
+        ],
+        activity_submissions: [
+          {
+            _id: "final",
+            userId: mockStudentId,
+            activityId: mockActivityId,
+            submissionData: finalData,
+            score: 1,
+            maxScore: 1,
+            submittedAt: 100,
+            updatedAt: 100,
+          },
+          {
+            _id: "pending",
+            userId: mockStudentId,
+            activityId: mockActivityId,
+            submissionData: {
+              ...finalData,
+              status: "draft",
+              attemptNumber: 2,
+              answers: {},
+              parts: [],
+            },
+            allocatedVariantKey: "PRIVATE_VARIANT",
+            submittedAt: 200,
+            updatedAt: 200,
+          },
+        ],
+      }),
+    } as unknown as QueryCtx;
+    const result = await callGetLessonErrorSummary(ctx, {
+      userId: mockTeacherId,
+      lessonId: mockLessonId,
+    });
     expect(result).toMatchObject({ averageAccuracy: 1, studentCount: 1 });
-    expect(JSON.stringify(result)).not.toContain('PRIVATE_VARIANT');
+    expect(JSON.stringify(result)).not.toContain("PRIVATE_VARIANT");
   });
 });
 
@@ -643,22 +1041,35 @@ describe('getLessonErrorSummary', () => {
 // getTeacherCompetencyHeatmapDataHandler
 // ---------------------------------------------------------------------------
 
-describe('getTeacherCompetencyHeatmapDataHandler', () => {
-  it('returns null for unauthorized user', async () => {
+describe("getTeacherCompetencyHeatmapDataHandler", () => {
+  it("returns null for unauthorized user", async () => {
     const mockDb = createMockDb({
-      profiles: [{ _id: 'bad', role: 'student', organizationId: mockOrgId } as unknown as Record<string, unknown>],
+      profiles: [
+        { _id: "bad", role: "student", organizationId: mockOrgId } as unknown as Record<
+          string,
+          unknown
+        >,
+      ],
     });
     const ctx = { db: mockDb } as unknown as QueryCtx;
 
-    const result = await getTeacherCompetencyHeatmapDataHandler(ctx, { userId: 'bad' as Id<'profiles'> });
+    const result = await getTeacherCompetencyHeatmapDataHandler(ctx, {
+      userId: "bad" as Id<"profiles">,
+    });
     expect(result).toBeNull();
   });
 
-  it('returns empty heatmap when no students exist', async () => {
+  it("returns empty heatmap when no students exist", async () => {
     const mockDb = createMockDb({
       profiles: [teacherProfile],
       competency_standards: [
-        { _id: mockStandardId, code: 'A.SSE.1', description: 'Description', isActive: true, createdAt: 1 },
+        {
+          _id: mockStandardId,
+          code: "A.SSE.1",
+          description: "Description",
+          isActive: true,
+          createdAt: 1,
+        },
       ],
     });
     const ctx = { db: mockDb } as unknown as QueryCtx;
@@ -669,15 +1080,35 @@ describe('getTeacherCompetencyHeatmapDataHandler', () => {
     expect(result?.standards).toHaveLength(1);
   });
 
-  it('returns heatmap with student mastery by standard', async () => {
+  it("returns heatmap with student mastery by standard", async () => {
     const mockDb = createMockDb({
       profiles: [teacherProfile, studentProfile, otherStudentProfile],
       competency_standards: [
-        { _id: mockStandardId, code: 'A.SSE.1', description: 'Description', isActive: true, createdAt: 1 },
+        {
+          _id: mockStandardId,
+          code: "A.SSE.1",
+          description: "Description",
+          isActive: true,
+          createdAt: 1,
+        },
       ],
       student_competency: [
-        { _id: 'sc1', studentId: mockStudentId, standardId: mockStandardId, masteryLevel: 85, lastUpdated: 1, createdAt: 1 },
-        { _id: 'sc2', studentId: mockOtherStudentId, standardId: mockStandardId, masteryLevel: 45, lastUpdated: 1, createdAt: 1 },
+        {
+          _id: "sc1",
+          studentId: mockStudentId,
+          standardId: mockStandardId,
+          masteryLevel: 85,
+          lastUpdated: 1,
+          createdAt: 1,
+        },
+        {
+          _id: "sc2",
+          studentId: mockOtherStudentId,
+          standardId: mockStandardId,
+          masteryLevel: 45,
+          lastUpdated: 1,
+          createdAt: 1,
+        },
       ],
     });
     const ctx = { db: mockDb } as unknown as QueryCtx;
@@ -689,22 +1120,35 @@ describe('getTeacherCompetencyHeatmapDataHandler', () => {
 
     const studentOneRow = result?.rows.find((r) => r.studentId === mockStudentId);
     expect(studentOneRow?.cells[0].masteryLevel).toBe(85);
-    expect(studentOneRow?.cells[0].color).toBe('green');
+    expect(studentOneRow?.cells[0].color).toBe("green");
 
     const studentTwoRow = result?.rows.find((r) => r.studentId === mockOtherStudentId);
     expect(studentTwoRow?.cells[0].masteryLevel).toBe(45);
-    expect(studentTwoRow?.cells[0].color).toBe('red');
+    expect(studentTwoRow?.cells[0].color).toBe("red");
   });
 
-  it('filters inactive standards', async () => {
+  it("filters inactive standards", async () => {
     const mockDb = createMockDb({
       profiles: [teacherProfile, studentProfile],
       competency_standards: [
-        { _id: mockStandardId, code: 'A.SSE.1', description: 'Description', isActive: true, createdAt: 1 },
-        { _id: 'std2', code: 'F.IF.1', description: 'Inactive', isActive: false, createdAt: 1 },
+        {
+          _id: mockStandardId,
+          code: "A.SSE.1",
+          description: "Description",
+          isActive: true,
+          createdAt: 1,
+        },
+        { _id: "std2", code: "F.IF.1", description: "Inactive", isActive: false, createdAt: 1 },
       ],
       student_competency: [
-        { _id: 'sc1', studentId: mockStudentId, standardId: mockStandardId, masteryLevel: 85, lastUpdated: 1, createdAt: 1 },
+        {
+          _id: "sc1",
+          studentId: mockStudentId,
+          standardId: mockStandardId,
+          masteryLevel: 85,
+          lastUpdated: 1,
+          createdAt: 1,
+        },
       ],
     });
     const ctx = { db: mockDb } as unknown as QueryCtx;
@@ -712,7 +1156,7 @@ describe('getTeacherCompetencyHeatmapDataHandler', () => {
     const result = await getTeacherCompetencyHeatmapDataHandler(ctx, { userId: mockTeacherId });
 
     expect(result?.standards).toHaveLength(1);
-    expect(result?.standards[0].code).toBe('A.SSE.1');
+    expect(result?.standards[0].code).toBe("A.SSE.1");
     expect(result?.rows[0].cells).toHaveLength(1);
   });
 });
@@ -721,26 +1165,28 @@ describe('getTeacherCompetencyHeatmapDataHandler', () => {
 // getTeacherStudentCompetencyDetailHandler
 // ---------------------------------------------------------------------------
 
-describe('getTeacherStudentCompetencyDetailHandler', () => {
-  it('returns null for unauthorized user', async () => {
+describe("getTeacherStudentCompetencyDetailHandler", () => {
+  it("returns null for unauthorized user", async () => {
     const mockDb = createMockDb({
-      profiles: [{ _id: 'bad', role: 'student', organizationId: mockOrgId } as unknown as Record<string, unknown>],
+      profiles: [
+        { _id: "bad", role: "student", organizationId: mockOrgId } as unknown as Record<
+          string,
+          unknown
+        >,
+      ],
     });
     const ctx = { db: mockDb } as unknown as QueryCtx;
 
     const result = await getTeacherStudentCompetencyDetailHandler(ctx, {
-      userId: 'bad' as Id<'profiles'>,
+      userId: "bad" as Id<"profiles">,
       studentId: mockStudentId,
     });
     expect(result).toBeNull();
   });
 
-  it('returns null when student is not in teacher org', async () => {
+  it("returns null when student is not in teacher org", async () => {
     const mockDb = createMockDb({
-      profiles: [
-        teacherProfile,
-        { ...studentProfile, organizationId: 'other-org' },
-      ],
+      profiles: [teacherProfile, { ...studentProfile, organizationId: "other-org" }],
     });
     const ctx = { db: mockDb } as unknown as QueryCtx;
 
@@ -751,23 +1197,56 @@ describe('getTeacherStudentCompetencyDetailHandler', () => {
     expect(result).toBeNull();
   });
 
-  it('returns detail with mastery and lesson context', async () => {
+  it("returns detail with mastery and lesson context", async () => {
     const mockDb = createMockDb({
       profiles: [teacherProfile, studentProfile],
       competency_standards: [
-        { _id: mockStandardId, code: 'A.SSE.1', description: 'Description', isActive: true, createdAt: 1 },
+        {
+          _id: mockStandardId,
+          code: "A.SSE.1",
+          description: "Description",
+          isActive: true,
+          createdAt: 1,
+        },
       ],
       student_competency: [
-        { _id: 'sc1', studentId: mockStudentId, standardId: mockStandardId, masteryLevel: 75, lastUpdated: 1, createdAt: 1 },
+        {
+          _id: "sc1",
+          studentId: mockStudentId,
+          standardId: mockStandardId,
+          masteryLevel: 75,
+          lastUpdated: 1,
+          createdAt: 1,
+        },
       ],
       lessons: [
-        { _id: mockLessonId, unitNumber: 1, orderIndex: 1, title: 'Lesson 1', slug: 'l1', createdAt: 1, updatedAt: 1 },
+        {
+          _id: mockLessonId,
+          unitNumber: 1,
+          orderIndex: 1,
+          title: "Lesson 1",
+          slug: "l1",
+          createdAt: 1,
+          updatedAt: 1,
+        },
       ],
       lesson_versions: [
-        { _id: mockLessonVersionId, lessonId: mockLessonId, version: 1, status: 'published', createdAt: 1 },
+        {
+          _id: mockLessonVersionId,
+          lessonId: mockLessonId,
+          version: 1,
+          status: "published",
+          createdAt: 1,
+        },
       ],
       lesson_standards: [
-        { _id: 'ls1', lessonVersionId: mockLessonVersionId, standardId: mockStandardId, isPrimary: true, createdAt: 1 },
+        {
+          _id: "ls1",
+          lessonVersionId: mockLessonVersionId,
+          standardId: mockStandardId,
+          isPrimary: true,
+          createdAt: 1,
+        },
       ],
     });
     const ctx = { db: mockDb } as unknown as QueryCtx;
@@ -779,18 +1258,24 @@ describe('getTeacherStudentCompetencyDetailHandler', () => {
 
     expect(result).not.toBeNull();
     expect(result?.studentId).toBe(mockStudentId);
-    expect(result?.displayName).toBe('Student One');
+    expect(result?.displayName).toBe("Student One");
     expect(result?.competencies).toHaveLength(1);
     expect(result?.competencies[0].masteryLevel).toBe(75);
     expect(result?.competencies[0].unitNumber).toBe(1);
-    expect(result?.competencies[0].lessonTitle).toBe('Lesson 1');
+    expect(result?.competencies[0].lessonTitle).toBe("Lesson 1");
   });
 
-  it('returns null for missing competency data', async () => {
+  it("returns null for missing competency data", async () => {
     const mockDb = createMockDb({
       profiles: [teacherProfile, studentProfile],
       competency_standards: [
-        { _id: mockStandardId, code: 'A.SSE.1', description: 'Description', isActive: true, createdAt: 1 },
+        {
+          _id: mockStandardId,
+          code: "A.SSE.1",
+          description: "Description",
+          isActive: true,
+          createdAt: 1,
+        },
       ],
       student_competency: [],
       lessons: [],

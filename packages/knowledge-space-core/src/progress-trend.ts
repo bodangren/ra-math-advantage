@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 export const masterySnapshotSchema = z.object({
   timestamp: z.number().int().nonnegative(),
@@ -14,8 +14,9 @@ export const masterySnapshotSchema = z.object({
  * monotonic window delta, and each snapshot's `masteredNodeIds` must be
  * pairwise unique so per-snapshot mastery counts are well-defined.
  */
-export const progressTrendHistorySchema = z.array(masterySnapshotSchema)
-  .min(1, 'A progress-trend history must contain at least one snapshot')
+export const progressTrendHistorySchema = z
+  .array(masterySnapshotSchema)
+  .min(1, "A progress-trend history must contain at least one snapshot")
   .superRefine((history, ctx) => {
     for (let i = 0; i < history.length; i++) {
       const snapshot = history[i]!;
@@ -27,7 +28,7 @@ export const progressTrendHistorySchema = z.array(masterySnapshotSchema)
           ctx.addIssue({
             code: z.ZodIssueCode.custom,
             message: `Snapshot at index ${i} has duplicate masteredNodeId "${id}" — ids must be unique within a snapshot`,
-            path: [i, 'masteredNodeIds', j],
+            path: [i, "masteredNodeIds", j],
           });
           return;
         }
@@ -40,7 +41,7 @@ export const progressTrendHistorySchema = z.array(masterySnapshotSchema)
           ctx.addIssue({
             code: z.ZodIssueCode.custom,
             message: `Snapshot at index ${i} has timestamp ${snapshot.timestamp} which precedes the previous snapshot at index ${i - 1} with timestamp ${prev.timestamp} — history must be chronologically ordered (non-decreasing)`,
-            path: [i, 'timestamp'],
+            path: [i, "timestamp"],
           });
           return;
         }
@@ -51,7 +52,7 @@ export const progressTrendHistorySchema = z.array(masterySnapshotSchema)
 export type MasterySnapshot = z.infer<typeof masterySnapshotSchema>;
 export type ProgressTrendHistory = z.infer<typeof progressTrendHistorySchema>;
 
-export type ProgressTrend = 'improving' | 'stable' | 'declining' | 'unknown';
+export type ProgressTrend = "improving" | "stable" | "declining" | "unknown";
 
 export type ProgressTrendOptions = {
   /** Evaluation timestamp. Defaults to the latest snapshot for deterministic replay. */
@@ -93,15 +94,15 @@ export function computeProgressTrend(
 ): ProgressTrend {
   const windowDays = options.windowDays ?? DEFAULT_PROGRESS_TREND_WINDOW_DAYS;
   const trendThreshold = options.trendThreshold ?? DEFAULT_PROGRESS_TREND_THRESHOLD;
-  requirePositiveFinite(windowDays, 'windowDays');
-  requirePositiveFinite(trendThreshold, 'trendThreshold');
+  requirePositiveFinite(windowDays, "windowDays");
+  requirePositiveFinite(trendThreshold, "trendThreshold");
 
-  if (history.length < 2) return 'unknown';
+  if (history.length < 2) return "unknown";
 
   const latestTimestamp = Math.max(...history.map((snapshot) => snapshot.timestamp));
   const now = options.now ?? latestTimestamp;
   if (!Number.isFinite(now) || now < 0) {
-    throw new RangeError('now must be a non-negative finite timestamp');
+    throw new RangeError("now must be a non-negative finite timestamp");
   }
 
   const windowStart = now - windowDays * DAY_MS;
@@ -109,7 +110,7 @@ export function computeProgressTrend(
     .filter((snapshot) => snapshot.timestamp >= windowStart && snapshot.timestamp <= now)
     .toSorted((left, right) => left.timestamp - right.timestamp);
 
-  if (inWindow.length < 2) return 'unknown';
+  if (inWindow.length < 2) return "unknown";
 
   const countMastered = (snapshot: MasterySnapshot): number => {
     const uniqueIds = new Set(snapshot.masteredNodeIds);
@@ -122,7 +123,7 @@ export function computeProgressTrend(
   };
 
   const delta = countMastered(inWindow[inWindow.length - 1]!) - countMastered(inWindow[0]!);
-  if (delta >= trendThreshold) return 'improving';
-  if (delta <= -trendThreshold) return 'declining';
-  return 'stable';
+  if (delta >= trendThreshold) return "improving";
+  if (delta <= -trendThreshold) return "declining";
+  return "stable";
 }

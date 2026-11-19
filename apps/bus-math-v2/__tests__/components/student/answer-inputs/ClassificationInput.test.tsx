@@ -1,18 +1,21 @@
-import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { ClassificationInput } from '@/components/student/answer-inputs/ClassificationInput';
-import { classificationFamily } from '@/lib/practice/engine/families/classification';
+import { describe, expect, it, vi, beforeEach } from "vitest";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { ClassificationInput } from "@/components/student/answer-inputs/ClassificationInput";
+import { classificationFamily } from "@/lib/practice/engine/families/classification";
 
-describe('ClassificationInput', () => {
+describe("ClassificationInput", () => {
   const mockOnSubmit = vi.fn();
-  const definition = classificationFamily.generate(1, { categorySet: 'account-type', itemCount: 4 });
+  const definition = classificationFamily.generate(1, {
+    categorySet: "account-type",
+    itemCount: 4,
+  });
 
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  it('renders the problem prompt and item labels', () => {
+  it("renders the problem prompt and item labels", () => {
     render(
       <ClassificationInput
         family={classificationFamily}
@@ -22,13 +25,15 @@ describe('ClassificationInput', () => {
     );
 
     expect(screen.getByText(/problem/i)).toBeInTheDocument();
-    expect(screen.getByText(/place each account into the correct account-type category/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/place each account into the correct account-type category/i),
+    ).toBeInTheDocument();
     definition.parts.forEach((part) => {
       expect(screen.getByText(part.label)).toBeInTheDocument();
     });
   });
 
-  it('renders category dropdowns for each item', () => {
+  it("renders category dropdowns for each item", () => {
     render(
       <ClassificationInput
         family={classificationFamily}
@@ -43,7 +48,7 @@ describe('ClassificationInput', () => {
     });
   });
 
-  it('submits correct answers and calls onSubmit with a practice envelope', async () => {
+  it("submits correct answers and calls onSubmit with a practice envelope", async () => {
     render(
       <ClassificationInput
         family={classificationFamily}
@@ -57,18 +62,18 @@ describe('ClassificationInput', () => {
       await userEvent.selectOptions(select, part.targetId);
     }
 
-    const submitButton = screen.getByRole('button', { name: /submit answer/i });
+    const submitButton = screen.getByRole("button", { name: /submit answer/i });
     await userEvent.click(submitButton);
 
     expect(mockOnSubmit).toHaveBeenCalledTimes(1);
     const envelope = mockOnSubmit.mock.calls[0][0];
-    expect(envelope.contractVersion).toBe('practice.v1');
+    expect(envelope.contractVersion).toBe("practice.v1");
     expect(envelope.activityId).toBe(definition.activityId);
-    expect(envelope.mode).toBe('guided_practice');
+    expect(envelope.mode).toBe("guided_practice");
     expect(envelope.parts.every((p: { isCorrect: boolean }) => p.isCorrect)).toBe(true);
   });
 
-  it('submits incorrect answers and shows per-item results', async () => {
+  it("submits incorrect answers and shows per-item results", async () => {
     render(
       <ClassificationInput
         family={classificationFamily}
@@ -85,7 +90,7 @@ describe('ClassificationInput', () => {
       }
     }
 
-    const submitButton = screen.getByRole('button', { name: /submit answer/i });
+    const submitButton = screen.getByRole("button", { name: /submit answer/i });
     await userEvent.click(submitButton);
 
     expect(mockOnSubmit).toHaveBeenCalledTimes(1);
@@ -94,7 +99,7 @@ describe('ClassificationInput', () => {
     expect(screen.getByText(/^incorrect/i)).toBeInTheDocument();
   });
 
-  it('disables submit until all items have a category selection', async () => {
+  it("disables submit until all items have a category selection", async () => {
     render(
       <ClassificationInput
         family={classificationFamily}
@@ -103,7 +108,7 @@ describe('ClassificationInput', () => {
       />,
     );
 
-    const submitButton = screen.getByRole('button', { name: /submit answer/i });
+    const submitButton = screen.getByRole("button", { name: /submit answer/i });
     expect(submitButton).toBeDisabled();
 
     const firstPart = definition.parts[0];
@@ -119,7 +124,7 @@ describe('ClassificationInput', () => {
     expect(submitButton).toBeEnabled();
   });
 
-  it('hides submit button after grading and shows result', async () => {
+  it("hides submit button after grading and shows result", async () => {
     render(
       <ClassificationInput
         family={classificationFamily}
@@ -133,14 +138,14 @@ describe('ClassificationInput', () => {
       await userEvent.selectOptions(select, part.targetId);
     }
 
-    const submitButton = screen.getByRole('button', { name: /submit answer/i });
+    const submitButton = screen.getByRole("button", { name: /submit answer/i });
     await userEvent.click(submitButton);
 
-    expect(screen.queryByRole('button', { name: /submit answer/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /submit answer/i })).not.toBeInTheDocument();
     expect(screen.getByText(/correct!/i)).toBeInTheDocument();
   });
 
-  it('shows category labels in the results', async () => {
+  it("shows category labels in the results", async () => {
     render(
       <ClassificationInput
         family={classificationFamily}
@@ -154,7 +159,7 @@ describe('ClassificationInput', () => {
       await userEvent.selectOptions(select, part.targetId);
     }
 
-    const submitButton = screen.getByRole('button', { name: /submit answer/i });
+    const submitButton = screen.getByRole("button", { name: /submit answer/i });
     await userEvent.click(submitButton);
 
     definition.categories.forEach((category) => {

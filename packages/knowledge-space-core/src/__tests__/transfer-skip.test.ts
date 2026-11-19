@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 import {
   applyTransferSkip,
   revertTransferSkip,
@@ -7,12 +7,12 @@ import {
   grantSkipAfterCheck,
   TRANSFER_SKIP_POLICY_DEFAULT,
   transferSkipPolicySchema,
-} from '../transfer-skip';
+} from "../transfer-skip";
 import type {
   TransferSkipPolicy,
   TransferSkipRecord,
   ConfirmationCheckResult,
-} from '../transfer-skip';
+} from "../transfer-skip";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -29,18 +29,19 @@ function makePolicy(overrides?: Partial<TransferSkipPolicy>): TransferSkipPolicy
 // Default policy
 // ---------------------------------------------------------------------------
 
-describe('TRANSFER_SKIP_POLICY_DEFAULT', () => {
-  it('is frozen', () => {
+describe("TRANSFER_SKIP_POLICY_DEFAULT", () => {
+  it("is frozen", () => {
     expect(Object.isFrozen(TRANSFER_SKIP_POLICY_DEFAULT)).toBe(true);
   });
 
-  it('throws on mutation attempt', () => {
+  it("throws on mutation attempt", () => {
     expect(() => {
-      (TRANSFER_SKIP_POLICY_DEFAULT as unknown as Record<string, unknown>).confirmationThreshold = 0.99;
+      (TRANSFER_SKIP_POLICY_DEFAULT as unknown as Record<string, unknown>).confirmationThreshold =
+        0.99;
     }).toThrow();
   });
 
-  it('has expected keys with values in valid ranges', () => {
+  it("has expected keys with values in valid ranges", () => {
     expect(TRANSFER_SKIP_POLICY_DEFAULT.confirmationThreshold).toBeGreaterThan(0);
     expect(TRANSFER_SKIP_POLICY_DEFAULT.confirmationThreshold).toBeLessThanOrEqual(1);
     expect(TRANSFER_SKIP_POLICY_DEFAULT.minCheckProblems).toBeGreaterThanOrEqual(1);
@@ -54,8 +55,8 @@ describe('TRANSFER_SKIP_POLICY_DEFAULT', () => {
 // Policy schema
 // ---------------------------------------------------------------------------
 
-describe('transferSkipPolicySchema', () => {
-  it('accepts a valid full policy', () => {
+describe("transferSkipPolicySchema", () => {
+  it("accepts a valid full policy", () => {
     const parsed = transferSkipPolicySchema.parse({
       confirmationThreshold: 0.85,
       minCheckProblems: 2,
@@ -64,7 +65,7 @@ describe('transferSkipPolicySchema', () => {
     expect(parsed.confirmationThreshold).toBe(0.85);
   });
 
-  it('rejects extra keys', () => {
+  it("rejects extra keys", () => {
     expect(() =>
       transferSkipPolicySchema.parse({
         confirmationThreshold: 0.85,
@@ -75,7 +76,7 @@ describe('transferSkipPolicySchema', () => {
     ).toThrow();
   });
 
-  it('rejects minCheckProblems greater than maxCheckProblems', () => {
+  it("rejects minCheckProblems greater than maxCheckProblems", () => {
     expect(() =>
       transferSkipPolicySchema.parse({
         confirmationThreshold: 0.85,
@@ -90,30 +91,21 @@ describe('transferSkipPolicySchema', () => {
 // applyTransferSkip
 // ---------------------------------------------------------------------------
 
-describe('applyTransferSkip', () => {
-  it('returns a reversible skip record with required fields', () => {
+describe("applyTransferSkip", () => {
+  it("returns a reversible skip record with required fields", () => {
     const now = Date.now();
-    const record = applyTransferSkip(
-      'math.im3.skill.solve-quadratic',
-      'math.im2',
-      0.72,
-      now,
-    );
-    expect(record.skillId).toBe('math.im3.skill.solve-quadratic');
-    expect(record.sourceCourse).toBe('math.im2');
+    const record = applyTransferSkip("math.im3.skill.solve-quadratic", "math.im2", 0.72, now);
+    expect(record.skillId).toBe("math.im3.skill.solve-quadratic");
+    expect(record.sourceCourse).toBe("math.im2");
     expect(record.seededMastery).toBe(0.72);
     expect(record.skippedAt).toBe(now);
     expect(record.reversible).toBe(true);
-    expect(record.state).toBe('skipped');
+    expect(record.state).toBe("skipped");
   });
 
-  it('defaults skippedAt to Date.now() when omitted', () => {
+  it("defaults skippedAt to Date.now() when omitted", () => {
     const before = Date.now();
-    const record = applyTransferSkip(
-      'math.im3.skill.solve-quadratic',
-      'math.im2',
-      0.72,
-    );
+    const record = applyTransferSkip("math.im3.skill.solve-quadratic", "math.im2", 0.72);
     const after = Date.now();
     expect(record.skippedAt).toBeGreaterThanOrEqual(before);
     expect(record.skippedAt).toBeLessThanOrEqual(after);
@@ -124,11 +116,11 @@ describe('applyTransferSkip', () => {
 // revertTransferSkip
 // ---------------------------------------------------------------------------
 
-describe('revertTransferSkip', () => {
-  it('returns a reverted record preserving identifying fields', () => {
+describe("revertTransferSkip", () => {
+  it("returns a reverted record preserving identifying fields", () => {
     const skipped = applyTransferSkip(
-      'math.im3.skill.solve-quadratic',
-      'math.im2',
+      "math.im3.skill.solve-quadratic",
+      "math.im2",
       0.72,
       1_000_000,
     );
@@ -137,14 +129,14 @@ describe('revertTransferSkip', () => {
     expect(reverted.sourceCourse).toBe(skipped.sourceCourse);
     expect(reverted.seededMastery).toBe(skipped.seededMastery);
     expect(reverted.reversible).toBe(true);
-    expect(reverted.state).toBe('reverted');
+    expect(reverted.state).toBe("reverted");
     expect(reverted.revertedAt).toBe(2_000_000);
   });
 
-  it('is idempotent: revert(revert(record)) equals revert(record)', () => {
+  it("is idempotent: revert(revert(record)) equals revert(record)", () => {
     const skipped = applyTransferSkip(
-      'math.im3.skill.solve-quadratic',
-      'math.im2',
+      "math.im3.skill.solve-quadratic",
+      "math.im2",
       0.72,
       1_000_000,
     );
@@ -158,22 +150,22 @@ describe('revertTransferSkip', () => {
 // Skip state machine
 // ---------------------------------------------------------------------------
 
-describe('skip state machine', () => {
-  it('transitions not-skipped -> skipped -> reverted', () => {
-    const skillId = 'math.im3.skill.solve-quadratic';
-    const sourceCourse = 'math.im2';
+describe("skip state machine", () => {
+  it("transitions not-skipped -> skipped -> reverted", () => {
+    const skillId = "math.im3.skill.solve-quadratic";
+    const sourceCourse = "math.im2";
     const seededMastery = 0.72;
 
     const skipped = applyTransferSkip(skillId, sourceCourse, seededMastery, 1_000_000);
-    expect(skipped.state).toBe('skipped');
+    expect(skipped.state).toBe("skipped");
 
     const reverted = revertTransferSkip(skipped, 2_000_000);
-    expect(reverted.state).toBe('reverted');
+    expect(reverted.state).toBe("reverted");
   });
 
-  it('re-applying skip after revert returns a fresh skipped record', () => {
-    const skillId = 'math.im3.skill.solve-quadratic';
-    const sourceCourse = 'math.im2';
+  it("re-applying skip after revert returns a fresh skipped record", () => {
+    const skillId = "math.im3.skill.solve-quadratic";
+    const sourceCourse = "math.im2";
     const seededMastery = 0.72;
 
     const skipped = applyTransferSkip(skillId, sourceCourse, seededMastery, 1_000_000);
@@ -184,14 +176,14 @@ describe('skip state machine', () => {
       reverted.seededMastery,
       3_000_000,
     );
-    expect(reSkipped.state).toBe('skipped');
+    expect(reSkipped.state).toBe("skipped");
     expect(reSkipped.skippedAt).toBe(3_000_000);
   });
 
-  it('does not mutate the input record', () => {
+  it("does not mutate the input record", () => {
     const skipped = applyTransferSkip(
-      'math.im3.skill.solve-quadratic',
-      'math.im2',
+      "math.im3.skill.solve-quadratic",
+      "math.im2",
       0.72,
       1_000_000,
     );
@@ -205,18 +197,18 @@ describe('skip state machine', () => {
 // buildConfirmationCheck
 // ---------------------------------------------------------------------------
 
-describe('buildConfirmationCheck', () => {
-  const skillId = 'math.im3.skill.solve-quadratic';
-  const problems = ['p1', 'p2', 'p3', 'p4', 'p5'];
+describe("buildConfirmationCheck", () => {
+  const skillId = "math.im3.skill.solve-quadratic";
+  const problems = ["p1", "p2", "p3", "p4", "p5"];
 
-  it('returns a deterministic sample for the same inputs', () => {
+  it("returns a deterministic sample for the same inputs", () => {
     const policy = makePolicy({ minCheckProblems: 2, maxCheckProblems: 3 });
     const a = buildConfirmationCheck(skillId, problems, policy);
     const b = buildConfirmationCheck(skillId, problems, policy);
     expect(a.problems).toEqual(b.problems);
   });
 
-  it('returns only problems from the available pool', () => {
+  it("returns only problems from the available pool", () => {
     const policy = makePolicy({ minCheckProblems: 2, maxCheckProblems: 3 });
     const check = buildConfirmationCheck(skillId, problems, policy);
     for (const problem of check.problems) {
@@ -224,26 +216,26 @@ describe('buildConfirmationCheck', () => {
     }
   });
 
-  it('respects the maxCheckProblems bound', () => {
+  it("respects the maxCheckProblems bound", () => {
     const policy = makePolicy({ minCheckProblems: 2, maxCheckProblems: 3 });
     const check = buildConfirmationCheck(skillId, problems, policy);
     expect(check.problems.length).toBeLessThanOrEqual(policy.maxCheckProblems);
     expect(check.problems.length).toBeGreaterThanOrEqual(policy.minCheckProblems);
   });
 
-  it('returns all problems when the pool is smaller than the minimum', () => {
+  it("returns all problems when the pool is smaller than the minimum", () => {
     const policy = makePolicy({ minCheckProblems: 3, maxCheckProblems: 5 });
-    const check = buildConfirmationCheck(skillId, ['p1', 'p2'], policy);
-    expect(check.problems).toEqual(['p1', 'p2']);
+    const check = buildConfirmationCheck(skillId, ["p1", "p2"], policy);
+    expect(check.problems).toEqual(["p1", "p2"]);
   });
 
-  it('returns an empty problem list when the pool is empty', () => {
+  it("returns an empty problem list when the pool is empty", () => {
     const policy = makePolicy({ minCheckProblems: 2, maxCheckProblems: 3 });
     const check = buildConfirmationCheck(skillId, [], policy);
     expect(check.problems).toEqual([]);
   });
 
-  it('does not mutate the input problems array', () => {
+  it("does not mutate the input problems array", () => {
     const policy = makePolicy({ minCheckProblems: 2, maxCheckProblems: 3 });
     const snapshot = JSON.stringify(problems);
     buildConfirmationCheck(skillId, problems, policy);
@@ -255,18 +247,18 @@ describe('buildConfirmationCheck', () => {
 // shouldRequireConfirmationCheck
 // ---------------------------------------------------------------------------
 
-describe('shouldRequireConfirmationCheck', () => {
-  it('returns true when componentMastery is below the confirmation threshold', () => {
+describe("shouldRequireConfirmationCheck", () => {
+  it("returns true when componentMastery is below the confirmation threshold", () => {
     const policy = makePolicy({ confirmationThreshold: 0.85 });
     expect(shouldRequireConfirmationCheck(policy, 0.84)).toBe(true);
   });
 
-  it('returns false when componentMastery is at the confirmation threshold', () => {
+  it("returns false when componentMastery is at the confirmation threshold", () => {
     const policy = makePolicy({ confirmationThreshold: 0.85 });
     expect(shouldRequireConfirmationCheck(policy, 0.85)).toBe(false);
   });
 
-  it('returns false when componentMastery is above the confirmation threshold', () => {
+  it("returns false when componentMastery is above the confirmation threshold", () => {
     const policy = makePolicy({ confirmationThreshold: 0.85 });
     expect(shouldRequireConfirmationCheck(policy, 0.95)).toBe(false);
   });
@@ -276,21 +268,21 @@ describe('shouldRequireConfirmationCheck', () => {
 // grantSkipAfterCheck
 // ---------------------------------------------------------------------------
 
-describe('grantSkipAfterCheck', () => {
-  it('grants skip when the check passed', () => {
+describe("grantSkipAfterCheck", () => {
+  it("grants skip when the check passed", () => {
     const result: ConfirmationCheckResult = {
-      skillId: 'math.im3.skill.solve-quadratic',
+      skillId: "math.im3.skill.solve-quadratic",
       passed: true,
-      confidence: 'medium',
+      confidence: "medium",
     };
     expect(grantSkipAfterCheck(result)).toEqual({ granted: true });
   });
 
-  it('does not grant skip when the check failed', () => {
+  it("does not grant skip when the check failed", () => {
     const result: ConfirmationCheckResult = {
-      skillId: 'math.im3.skill.solve-quadratic',
+      skillId: "math.im3.skill.solve-quadratic",
       passed: false,
-      confidence: 'low',
+      confidence: "low",
     };
     const outcome = grantSkipAfterCheck(result);
     expect(outcome.granted).toBe(false);
@@ -299,11 +291,11 @@ describe('grantSkipAfterCheck', () => {
     }
   });
 
-  it('grants skip on a low-confidence pass (the check itself is the gate)', () => {
+  it("grants skip on a low-confidence pass (the check itself is the gate)", () => {
     const result: ConfirmationCheckResult = {
-      skillId: 'math.im3.skill.solve-quadratic',
+      skillId: "math.im3.skill.solve-quadratic",
       passed: true,
-      confidence: 'low',
+      confidence: "low",
     };
     expect(grantSkipAfterCheck(result)).toEqual({ granted: true });
   });

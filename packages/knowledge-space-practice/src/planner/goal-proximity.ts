@@ -13,19 +13,17 @@
  * Pure functions, no I/O, no app imports, domain-neutral.
  */
 
-import type { PlannerInput } from './types';
+import type { PlannerInput } from "./types";
 
 /**
  * Build a reverse adjacency map: `targetId → sourceId[]` for
  * each `prerequisite_for` edge. This lets us BFS outward from
  * the goal node(s) to discover upstream prerequisites.
  */
-function buildReverseMap(
-  edges: PlannerInput['edges'],
-): Map<string, string[]> {
+function buildReverseMap(edges: PlannerInput["edges"]): Map<string, string[]> {
   const map = new Map<string, string[]>();
   for (const edge of edges) {
-    if (edge.type !== 'prerequisite_for') continue;
+    if (edge.type !== "prerequisite_for") continue;
     let sources = map.get(edge.targetId);
     if (!sources) {
       sources = [];
@@ -83,10 +81,7 @@ function computeDistancesToGoals(
  * Per-node oracle: inverse distance from `nodeId` to the nearest
  * goal, or 0 if unreachable / no goal set.
  */
-export function getGoalProximity(
-  nodeId: string,
-  graph: PlannerInput,
-): number {
+export function getGoalProximity(nodeId: string, graph: PlannerInput): number {
   const reverseMap = buildReverseMap(graph.edges);
   const distances = computeDistancesToGoals(graph, reverseMap);
   const d = distances.get(nodeId);
@@ -98,9 +93,7 @@ export function getGoalProximity(
  * Bulk precompute goal proximities for every node in the graph.
  * Returns a map keyed by every node id in `graph.nodes`.
  */
-export function computeGoalProximities(
-  graph: PlannerInput,
-): ReadonlyMap<string, number> {
+export function computeGoalProximities(graph: PlannerInput): ReadonlyMap<string, number> {
   const map = new Map<string, number>();
 
   if (graph.nodes.length === 0) return map;

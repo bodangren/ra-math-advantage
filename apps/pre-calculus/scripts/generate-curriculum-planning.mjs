@@ -1,11 +1,11 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const curriculumRoot = path.join(appRoot, 'curriculum');
-const topicIndexPath = path.join(curriculumRoot, 'source/college-board/ced-topic-index.json');
-const topicIndex = JSON.parse(fs.readFileSync(topicIndexPath, 'utf8'));
+const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const curriculumRoot = path.join(appRoot, "curriculum");
+const topicIndexPath = path.join(curriculumRoot, "source/college-board/ced-topic-index.json");
+const topicIndex = JSON.parse(fs.readFileSync(topicIndexPath, "utf8"));
 
 function ensureDir(directory) {
   fs.mkdirSync(directory, { recursive: true });
@@ -50,7 +50,7 @@ function unitSummary(unit) {
 - Topic count: ${unit.topics.length}
 - CED topic source: \`source/college-board/ced-topic-index.json\`
 - CED errata source: \`source/college-board/clarification-guidance.md\`
-- ${localSource ? `Passwater source: \`${localSource}\`` : 'Local Passwater source: not available'}
+- ${localSource ? `Passwater source: \`${localSource}\`` : "Local Passwater source: not available"}
 
 ## Planning Role
 
@@ -60,13 +60,15 @@ The CED topic identity is the canonical competency key. The Passwater source, wh
 
 | Topic | Title | Topic source |
 |-------|-------|--------------|
-${unit.topics.map((topic) => `| ${topic.id} | ${topic.title} | \`${topicFileName(unit.unit, topic.id)}\` |`).join('\n')}
+${unit.topics.map((topic) => `| ${topic.id} | ${topic.title} | \`${topicFileName(unit.unit, topic.id)}\` |`).join("\n")}
 
 ## Source Notes
 
-${localSource
-  ? '- This unit has local Passwater evidence and can receive source-backed class-period planning.'
-  : '- This unit is CED-defined, locally unsourced, and not AP-exam-assessed. Do not create Passwater-derived class-period packages until a local source exists.'}
+${
+  localSource
+    ? "- This unit has local Passwater evidence and can receive source-backed class-period planning."
+    : "- This unit is CED-defined, locally unsourced, and not AP-exam-assessed. Do not create Passwater-derived class-period packages until a local source exists."
+}
 `;
 }
 
@@ -89,13 +91,15 @@ function topicSource(unit, topic) {
 
 - CED topic index: \`source/college-board/ced-topic-index.json\`
 - CED errata: \`source/college-board/clarification-guidance.md\`
-- ${localSource ? `Passwater instructional source: \`${localSource}\`` : 'Passwater instructional source: not available'}
+- ${localSource ? `Passwater instructional source: \`${localSource}\`` : "Passwater instructional source: not available"}
 
 ## Instructional Planning Notes
 
-${localSource
-  ? 'Use the Passwater source for topic introduction, scaffolding, guided practice, independent AP-style practice, and local assessment shape. Tag all evidence back to this CED topic ID.'
-  : 'Unit 4 topic. Preserve CED identity and competency metadata, but mark instructional implementation as locally unsourced until a Unit 4 local source is provided.'}
+${
+  localSource
+    ? "Use the Passwater source for topic introduction, scaffolding, guided practice, independent AP-style practice, and local assessment shape. Tag all evidence back to this CED topic ID."
+    : "Unit 4 topic. Preserve CED identity and competency metadata, but mark instructional implementation as locally unsourced until a Unit 4 local source is provided."
+}
 
 ## Detail Status
 
@@ -107,13 +111,13 @@ function instructionRow(period, topic, unit) {
   const localSource = passwaterSource(unit);
   return [
     period,
-    '`instruction`',
+    "`instruction`",
     `\`${topic.id}\` ${topic.title}`,
-    localSource ? `\`${localSource}\`` : '-',
+    localSource ? `\`${localSource}\`` : "-",
     `\`${learningObjectiveFamily(topic.id)}\` / \`${essentialKnowledgeFamily(topic.id)}\``,
-    'Passwater notes and scaffolded examples',
-    'Passwater worksheet or AP-style independent practice aligned to CED topic',
-    'Source-backed topic instruction',
+    "Passwater notes and scaffolded examples",
+    "Passwater worksheet or AP-style independent practice aligned to CED topic",
+    "Source-backed topic instruction",
   ];
 }
 
@@ -121,17 +125,17 @@ function nonInstructionRow(period, dayType, unit, note) {
   return [
     period,
     `\`${dayType}\``,
-    '-',
+    "-",
     `\`source/passwater/unit-${unit.unit}.md\``,
     `Unit ${unit.unit} competency evidence`,
     note,
-    'Mixed AP topic practice and written reasoning',
+    "Mixed AP topic practice and written reasoning",
     `${dayType} day generated from source-backed unit planning`,
   ];
 }
 
 function row(cells) {
-  return `| ${cells.join(' | ')} |`;
+  return `| ${cells.join(" | ")} |`;
 }
 
 function classPeriodPlan(unit) {
@@ -143,11 +147,32 @@ function classPeriodPlan(unit) {
     period += 1;
   }
 
-  rows.push(nonInstructionRow(period, 'ap_task_model', unit, 'FRQ model transfer day using CED task models and Passwater independent-practice shapes.'));
+  rows.push(
+    nonInstructionRow(
+      period,
+      "ap_task_model",
+      unit,
+      "FRQ model transfer day using CED task models and Passwater independent-practice shapes.",
+    ),
+  );
   period += 1;
-  rows.push(nonInstructionRow(period, 'review', unit, 'Unit review across CED topics and Passwater review materials.'));
+  rows.push(
+    nonInstructionRow(
+      period,
+      "review",
+      unit,
+      "Unit review across CED topics and Passwater review materials.",
+    ),
+  );
   period += 1;
-  rows.push(nonInstructionRow(period, 'test', unit, 'Local unit assessment aligned to CED competencies and Passwater test/review evidence.'));
+  rows.push(
+    nonInstructionRow(
+      period,
+      "test",
+      unit,
+      "Local unit assessment aligned to CED competencies and Passwater test/review evidence.",
+    ),
+  );
 
   return `
 # Unit ${unit.unit} Class-Period Plan
@@ -174,7 +199,7 @@ This is the conservative source-backed class-period plan for AP Precalculus Unit
 
 | Period | Day Type | CED Topic | Passwater Source | Competency Target | Instructional Evidence | Independent Practice Shape | Notes |
 |--------|----------|-----------|------------------|-------------------|------------------------|----------------------------|-------|
-${rows.map(row).join('\n')}
+${rows.map(row).join("\n")}
 `;
 }
 

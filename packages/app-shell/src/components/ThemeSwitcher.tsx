@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useTheme } from 'next-themes';
-import { Laptop, Moon, Sun } from 'lucide-react';
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
+import { Laptop, Moon, Sun } from "lucide-react";
 
 const ICON_SIZE = 16;
 
@@ -35,9 +35,9 @@ export function ThemeSwitcher() {
         <option value="system">System</option>
       </select>
       <span className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2">
-        {theme === 'light' ? (
+        {theme === "light" ? (
           <Sun size={ICON_SIZE} className="text-muted-foreground" />
-        ) : theme === 'dark' ? (
+        ) : theme === "dark" ? (
           <Moon size={ICON_SIZE} className="text-muted-foreground" />
         ) : (
           <Laptop size={ICON_SIZE} className="text-muted-foreground" />

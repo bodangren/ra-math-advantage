@@ -35,20 +35,17 @@
  *      check that the fixture exists and is reachable.
  */
 
-import { describe, it, expect, vi } from 'vitest';
-import type { Id } from '@/convex/_generated/dataModel';
-import { readFileSync, existsSync } from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { describe, it, expect, vi } from "vitest";
+import type { Id } from "@/convex/_generated/dataModel";
+import { readFileSync, existsSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-import { getStudentVisualizationHandler } from '@/convex/student';
-import { projectParentVisualizationHandler } from '@/convex/parent/visualization';
-import { parentVisualizationV1Schema } from '@math-platform/knowledge-space-practice';
+import { getStudentVisualizationHandler } from "@/convex/student";
+import { projectParentVisualizationHandler } from "@/convex/parent/visualization";
+import { parentVisualizationV1Schema } from "@math-platform/knowledge-space-practice";
 
-import {
-  multiModulePlacementRows,
-  STUDENT_ID,
-} from './_fixtures/multi-module-placements';
+import { multiModulePlacementRows, STUDENT_ID } from "./_fixtures/multi-module-placements";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -57,34 +54,34 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // ---------------------------------------------------------------------------
 
 interface PlacementResultRow {
-  _id: Id<'placement_results'>;
+  _id: Id<"placement_results">;
   _creationTime: number;
-  studentId: Id<'profiles'>;
+  studentId: Id<"profiles">;
   nodeId: string;
   masteryEstimate: number;
-  confidence: 'low' | 'medium';
+  confidence: "low" | "medium";
   source: string;
   createdAt: number;
 }
 
 interface ParentLinkRow {
-  _id: Id<'parent_links'>;
+  _id: Id<"parent_links">;
   _creationTime: number;
-  parentId: Id<'profiles'>;
-  studentId: Id<'profiles'>;
-  status: 'active' | 'revoked' | 'pending';
+  parentId: Id<"profiles">;
+  studentId: Id<"profiles">;
+  status: "active" | "revoked" | "pending";
   createdAt: number;
 }
 
 interface ProfileRow {
-  _id: Id<'profiles'>;
+  _id: Id<"profiles">;
   _creationTime: number;
-  role: 'student' | 'teacher' | 'admin' | 'parent';
+  role: "student" | "teacher" | "admin" | "parent";
   createdAt: number;
   updatedAt: number;
 }
 
-const PARENT_ID = 'profiles_test_adversarial_parent' as Id<'profiles'>;
+const PARENT_ID = "profiles_test_adversarial_parent" as Id<"profiles">;
 
 function makeStudentMockCtx(placements: PlacementResultRow[] = []) {
   const rowsByTable: Record<string, unknown[]> = {
@@ -95,28 +92,28 @@ function makeStudentMockCtx(placements: PlacementResultRow[] = []) {
   const queryMock = vi.fn().mockImplementation((tableName: string) => {
     const rows = rowsByTable[tableName] ?? [];
     return {
-      withIndex: vi.fn().mockImplementation(
-        (
-          _indexName: string,
-          builder?: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
-        ) => {
-          let filtered = [...rows];
-          const eqChain = {
-            eq: (field: string, value: unknown) => {
-              filtered = filtered.filter(
-                (r) => (r as Record<string, unknown>)[field] === value,
-              );
-              return eqChain;
-            },
-          };
-          if (builder) builder(eqChain);
-          return {
-            collect: () => Promise.resolve(filtered),
-            first: () => Promise.resolve(filtered[0] ?? null),
-            unique: () => Promise.resolve(filtered[0] ?? null),
-          };
-        },
-      ),
+      withIndex: vi
+        .fn()
+        .mockImplementation(
+          (
+            _indexName: string,
+            builder?: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) => {
+            let filtered = [...rows];
+            const eqChain = {
+              eq: (field: string, value: unknown) => {
+                filtered = filtered.filter((r) => (r as Record<string, unknown>)[field] === value);
+                return eqChain;
+              },
+            };
+            if (builder) builder(eqChain);
+            return {
+              collect: () => Promise.resolve(filtered),
+              first: () => Promise.resolve(filtered[0] ?? null),
+              unique: () => Promise.resolve(filtered[0] ?? null),
+            };
+          },
+        ),
       collect: () => Promise.resolve(rows),
       first: () => Promise.resolve(rows[0] ?? null),
       unique: () => Promise.resolve(rows[0] ?? null),
@@ -129,11 +126,11 @@ function makeStudentMockCtx(placements: PlacementResultRow[] = []) {
 function makeParentMockCtx(placements: PlacementResultRow[] = []) {
   const parentLinks: ParentLinkRow[] = [
     {
-      _id: 'parent_links_adversarial' as Id<'parent_links'>,
+      _id: "parent_links_adversarial" as Id<"parent_links">,
       _creationTime: 1_780_000_000_000,
       parentId: PARENT_ID,
       studentId: STUDENT_ID,
-      status: 'active',
+      status: "active",
       createdAt: 1_780_000_000_000,
     },
   ];
@@ -142,7 +139,7 @@ function makeParentMockCtx(placements: PlacementResultRow[] = []) {
     {
       _id: STUDENT_ID,
       _creationTime: 1_780_000_000_000,
-      role: 'student',
+      role: "student",
       createdAt: 1_780_000_000_000,
       updatedAt: 1_780_000_000_000,
     },
@@ -156,28 +153,28 @@ function makeParentMockCtx(placements: PlacementResultRow[] = []) {
   const queryMock = vi.fn().mockImplementation((tableName: string) => {
     const rows = rowsByTable[tableName] ?? [];
     return {
-      withIndex: vi.fn().mockImplementation(
-        (
-          _indexName: string,
-          builder?: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
-        ) => {
-          let filtered = [...rows];
-          const eqChain = {
-            eq: (field: string, value: unknown) => {
-              filtered = filtered.filter(
-                (r) => (r as Record<string, unknown>)[field] === value,
-              );
-              return eqChain;
-            },
-          };
-          if (builder) builder(eqChain);
-          return {
-            collect: () => Promise.resolve(filtered),
-            first: () => Promise.resolve(filtered[0] ?? null),
-            unique: () => Promise.resolve(filtered[0] ?? null),
-          };
-        },
-      ),
+      withIndex: vi
+        .fn()
+        .mockImplementation(
+          (
+            _indexName: string,
+            builder?: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) => {
+            let filtered = [...rows];
+            const eqChain = {
+              eq: (field: string, value: unknown) => {
+                filtered = filtered.filter((r) => (r as Record<string, unknown>)[field] === value);
+                return eqChain;
+              },
+            };
+            if (builder) builder(eqChain);
+            return {
+              collect: () => Promise.resolve(filtered),
+              first: () => Promise.resolve(filtered[0] ?? null),
+              unique: () => Promise.resolve(filtered[0] ?? null),
+            };
+          },
+        ),
       collect: () => Promise.resolve(rows),
       first: () => Promise.resolve(rows[0] ?? null),
       unique: () => Promise.resolve(rows[0] ?? null),
@@ -223,29 +220,29 @@ function flattenStudentViz(result: {
 // loaded graph — see `packages/knowledge-space-practice/src/projections/
 // visualization.ts:projectStudentVisualization`).
 
-describe('PROBE 1 — unknown nodeId handling (FR-4 boundary)', () => {
-  it('silently drops placements with nodeIds absent from the graph; known nodeIds still surface', async () => {
+describe("PROBE 1 — unknown nodeId handling (FR-4 boundary)", () => {
+  it("silently drops placements with nodeIds absent from the graph; known nodeIds still surface", async () => {
     const placements: PlacementResultRow[] = [
       {
-        _id: 'placement_unknown' as Id<'placement_results'>,
+        _id: "placement_unknown" as Id<"placement_results">,
         _creationTime: 1_780_000_000_000,
         studentId: STUDENT_ID,
         // Intentionally NOT in the full curriculum graph.
-        nodeId: 'math.im3.skill.nonexistent',
+        nodeId: "math.im3.skill.nonexistent",
         masteryEstimate: 0.5,
-        confidence: 'medium',
-        source: 'placement',
+        confidence: "medium",
+        source: "placement",
         createdAt: 1_780_000_000_000,
       },
       {
-        _id: 'placement_known' as Id<'placement_results'>,
+        _id: "placement_known" as Id<"placement_results">,
         _creationTime: 1_780_000_000_001,
         studentId: STUDENT_ID,
         // Verified to exist in the root skill-graph.
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 0.5,
-        confidence: 'medium',
-        source: 'placement',
+        confidence: "medium",
+        source: "placement",
         createdAt: 1_780_000_000_001,
       },
     ];
@@ -264,8 +261,8 @@ describe('PROBE 1 — unknown nodeId handling (FR-4 boundary)', () => {
     // Expected (spec) behaviour: the unknown id is filtered at the
     // projection layer (computeNodeState iterates skillAndTaskNodes from
     // the graph, not learnerState keys). The known id is present.
-    expect(nodeIds).not.toContain('math.im3.skill.nonexistent');
-    expect(nodeIds).not.toContain('math.im3.skill.1.1.graph-quadratic-functions');
+    expect(nodeIds).not.toContain("math.im3.skill.nonexistent");
+    expect(nodeIds).not.toContain("math.im3.skill.1.1.graph-quadratic-functions");
   });
 });
 
@@ -278,18 +275,18 @@ describe('PROBE 1 — unknown nodeId handling (FR-4 boundary)', () => {
 // modules — degenerate single-module is a legitimate use case (new
 // students, students who just enrolled).
 
-describe('PROBE 2 — single-module parent payload (FR-4 degenerate case)', () => {
-  it('produces a valid ParentVisualizationV1 when placements span only module 1', async () => {
+describe("PROBE 2 — single-module parent payload (FR-4 degenerate case)", () => {
+  it("produces a valid ParentVisualizationV1 when placements span only module 1", async () => {
     // ONLY module 1; deliberately no module 2 placement.
     const module1Only: PlacementResultRow[] = [
       {
-        _id: 'placement_m1_only' as Id<'placement_results'>,
+        _id: "placement_m1_only" as Id<"placement_results">,
         _creationTime: 1_780_000_000_000,
         studentId: STUDENT_ID,
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 0.6,
-        confidence: 'medium',
-        source: 'placement',
+        confidence: "medium",
+        source: "placement",
         createdAt: 1_780_000_000_000,
       },
     ];
@@ -309,15 +306,15 @@ describe('PROBE 2 — single-module parent payload (FR-4 degenerate case)', () =
     // The placement's nodeId is in the output (the projection still
     // emits visual nodes for the placement's known node).
     const nodeIds = result.nodes.map((n) => n.nodeId);
-    expect(nodeIds).not.toContain('math.im3.skill.1.1.graph-quadratic-functions');
+    expect(nodeIds).not.toContain("math.im3.skill.1.1.graph-quadratic-functions");
 
     // String fields are populated (the parent-safe summary is non-empty).
-    expect(typeof result.canDoSummary).toBe('string');
-    expect(typeof result.nextFocus).toBe('string');
+    expect(typeof result.canDoSummary).toBe("string");
+    expect(typeof result.nextFocus).toBe("string");
     expect(Array.isArray(result.blockers)).toBe(true);
   });
 
-  it('still passes schema when zero placements exist (no graph entries referenced from learner state)', async () => {
+  it("still passes schema when zero placements exist (no graph entries referenced from learner state)", async () => {
     const ctx = makeParentMockCtx([]);
 
     const result = await projectParentVisualizationHandler(
@@ -329,7 +326,7 @@ describe('PROBE 2 — single-module parent payload (FR-4 degenerate case)', () =
     expect(parseResult.success).toBe(true);
 
     // Empty learner state: canDoSummary is the no-mastery fallback.
-    expect(result.canDoSummary).toBe('No skills mastered yet');
+    expect(result.canDoSummary).toBe("No skills mastered yet");
   });
 });
 
@@ -350,27 +347,27 @@ describe('PROBE 2 — single-module parent payload (FR-4 degenerate case)', () =
 // If a future contributor introduces a regex-evading form, the runner
 // reports it as a finding.
 
-describe('PROBE 3 — arch-lint regex robustness (FR-4 regression guard)', () => {
+describe("PROBE 3 — arch-lint regex robustness (FR-4 regression guard)", () => {
   // The exact regex used by `studentVisualizationMultiModule.test.ts:280,290`.
   const ARCH_LINT_REGEX = /skill-graph\/module-1\//;
 
   // Hard contract: the regex must catch the specific form the phase
   // handoff calls out.
-  it('detects await import() with the full skill-graph/module-1 path', () => {
+  it("detects await import() with the full skill-graph/module-1 path", () => {
     const src = `const m = await import('apps/integrated-math-3/curriculum/skill-graph/module-1/nodes.json');`;
     expect(ARCH_LINT_REGEX.test(src)).toBe(true);
   });
 
   // Reference: a static import must still be caught (the form the lint
   // was written for). This is the regression baseline.
-  it('detects a static ES module import with the full path', () => {
+  it("detects a static ES module import with the full path", () => {
     const src = `import m from '../../curriculum/skill-graph/module-1/nodes.json';`;
     expect(ARCH_LINT_REGEX.test(src)).toBe(true);
   });
 
   // Reference: a `require` call with the full path is also caught
   // (the substring `skill-graph/module-1/` is present).
-  it('detects require() with the full skill-graph/module-1 path', () => {
+  it("detects require() with the full skill-graph/module-1 path", () => {
     const src = `const m = require('apps/integrated-math-3/curriculum/skill-graph/module-1/nodes.json');`;
     expect(ARCH_LINT_REGEX.test(src)).toBe(true);
   });
@@ -378,7 +375,7 @@ describe('PROBE 3 — arch-lint regex robustness (FR-4 regression guard)', () =>
   // Hardening check: a multi-line import (string broken across two
   // string literals) is NOT caught because the regex is a one-line
   // pattern. This is a documented limitation; the runner records it.
-  it('does NOT detect a multi-line concatenation that breaks skill-graph/module-1/ across lines', () => {
+  it("does NOT detect a multi-line concatenation that breaks skill-graph/module-1/ across lines", () => {
     const src = `const m = require('apps/integrated-math-3/curriculum/'
   + 'skill-graph/module-1/nodes.json');`;
     // The substring IS present, so the regex DOES match.
@@ -388,7 +385,7 @@ describe('PROBE 3 — arch-lint regex robustness (FR-4 regression guard)', () =>
   // Documented bypass form: a require() using a SHORT relative path
   // (no `skill-graph/` prefix) is NOT caught. The runner records this
   // as a finding.
-  it('does NOT detect a require() using a short relative path (no skill-graph/ prefix)', () => {
+  it("does NOT detect a require() using a short relative path (no skill-graph/ prefix)", () => {
     const src = `const m = require('./module-1/nodes.json');`;
     expect(ARCH_LINT_REGEX.test(src)).toBe(false);
   });
@@ -404,22 +401,19 @@ describe('PROBE 3 — arch-lint regex robustness (FR-4 regression guard)', () =>
 // produces zero errors. This vitest test is a smoke check that the
 // fixture file is present; the actual tsc check is in the runner.
 
-describe('PROBE 4 — tsc assignability fixture exists (FR-6 narrowing sanity)', () => {
-  it('the tsc-narrow-check fixture file is present on disk', () => {
-    const fixturePath = path.resolve(
-      __dirname,
-      './_fixtures/adversarial-tsc-narrow-check.ts',
-    );
+describe("PROBE 4 — tsc assignability fixture exists (FR-6 narrowing sanity)", () => {
+  it("the tsc-narrow-check fixture file is present on disk", () => {
+    const fixturePath = path.resolve(__dirname, "./_fixtures/adversarial-tsc-narrow-check.ts");
     expect(existsSync(fixturePath)).toBe(true);
 
     // Smoke: the file imports from the projection and the loader, and
     // constructs a narrow-union learnerState. If the structure ever
     // changes, the runner's tsc step will fail before this assertion
     // would — the assertion just makes the file's presence explicit.
-    const src = readFileSync(fixturePath, 'utf-8');
-    expect(src).toContain('projectStudentVisualization');
+    const src = readFileSync(fixturePath, "utf-8");
+    expect(src).toContain("projectStudentVisualization");
     expect(src).toContain("'mastered' | 'ready' | 'blocked'");
-    expect(src).toContain('loadFullCurriculumGraph');
+    expect(src).toContain("loadFullCurriculumGraph");
   });
 });
 

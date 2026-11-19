@@ -3,7 +3,7 @@
  * @returns Dashboard path for students
  */
 export function studentDashboardPath() {
-  return '/student/dashboard';
+  return "/student/dashboard";
 }
 
 /**
@@ -11,7 +11,7 @@ export function studentDashboardPath() {
  * @returns Dashboard path for teachers
  */
 export function teacherDashboardPath() {
-  return '/teacher/dashboard';
+  return "/teacher/dashboard";
 }
 
 /**
@@ -19,8 +19,8 @@ export function teacherDashboardPath() {
  * @param role - User role (student, teacher, admin, or undefined)
  * @returns Dashboard path for the given role
  */
-export function getRoleAwareDashboardPath(role: 'student' | 'teacher' | 'admin' | undefined) {
-  if (role === 'student') {
+export function getRoleAwareDashboardPath(role: "student" | "teacher" | "admin" | undefined) {
+  if (role === "student") {
     return studentDashboardPath();
   }
   // Teachers and admins both go to teacher dashboard

@@ -1,6 +1,6 @@
-import { stabilityToRetention } from '@math-platform/srs-engine';
-import type { SrsCardState } from '@math-platform/srs-engine';
-import type { MetricResult, RetentionPoint } from '../contracts';
+import { stabilityToRetention } from "@math-platform/srs-engine";
+import type { SrsCardState } from "@math-platform/srs-engine";
+import type { MetricResult, RetentionPoint } from "../contracts";
 
 export interface ComputeRetentionCurveInput {
   cards: SrsCardState[];

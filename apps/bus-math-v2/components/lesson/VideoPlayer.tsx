@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Play, FileText, ChevronDown, ChevronUp } from 'lucide-react';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Play, FileText, ChevronDown, ChevronUp } from "lucide-react";
 
 interface VideoPlayerProps {
   videoUrl: string;
@@ -11,7 +11,6 @@ interface VideoPlayerProps {
   transcript?: string;
   thumbnailUrl?: string;
 }
-
 
 /**
  * Renders an embedded YouTube video with an optional collapsible transcript.
@@ -32,9 +31,7 @@ export function VideoPlayer({ videoUrl, duration, transcript }: VideoPlayerProps
    * @returns The video ID string or null if not found
    */
   const getYouTubeId = (url: string): string | null => {
-    const patterns = [
-      /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
-    ];
+    const patterns = [/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/];
 
     for (const pattern of patterns) {
       const match = url.match(pattern);

@@ -2,7 +2,7 @@ import { requireStudentSessionClaims } from "@/lib/auth/server";
 import { PracticeTestPage } from "@/components/student/PracticeTestPage";
 import { notFound } from "next/navigation";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 /**
  * Page wrapper for a unit-specific practice test.

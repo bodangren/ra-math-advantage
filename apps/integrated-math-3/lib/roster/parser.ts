@@ -6,7 +6,7 @@ import {
   type RosterRow,
   type RosterImportError,
   type RosterParseResult,
-} from './csv-contract';
+} from "./csv-contract";
 
 function stripBom(text: string): string {
   if (text.charCodeAt(0) === 0xfeff) {
@@ -16,7 +16,7 @@ function stripBom(text: string): string {
 }
 
 function normalizeLineEndings(text: string): string {
-  return text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+  return text.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
 }
 
 function parseCsvLine(line: string): string[] {
@@ -25,7 +25,7 @@ function parseCsvLine(line: string): string[] {
   while (i < line.length) {
     if (line[i] === '"') {
       i++;
-      let cell = '';
+      let cell = "";
       while (i < line.length) {
         if (line[i] === '"') {
           if (i + 1 < line.length && line[i + 1] === '"') {
@@ -41,15 +41,15 @@ function parseCsvLine(line: string): string[] {
         }
       }
       cells.push(cell);
-      if (i < line.length && line[i] === ',') i++;
+      if (i < line.length && line[i] === ",") i++;
     } else {
-      let cell = '';
-      while (i < line.length && line[i] !== ',') {
+      let cell = "";
+      while (i < line.length && line[i] !== ",") {
         cell += line[i];
         i++;
       }
       cells.push(cell);
-      if (i < line.length && line[i] === ',') i++;
+      if (i < line.length && line[i] === ",") i++;
     }
   }
   return cells;
@@ -63,10 +63,10 @@ function validateEmail(email: string): boolean {
 
 function resolveIdentifier(row: { email?: string; sisId?: string }): string | null {
   for (const field of IDENTIFIER_PRECEDENCE) {
-    if (field === 'email' && row.email && row.email.trim() !== '') {
+    if (field === "email" && row.email && row.email.trim() !== "") {
       return row.email.trim().toLowerCase();
     }
-    if (field === 'sisId' && row.sisId && row.sisId.trim() !== '') {
+    if (field === "sisId" && row.sisId && row.sisId.trim() !== "") {
       return row.sisId.trim();
     }
   }
@@ -79,10 +79,10 @@ export function parseRoster(csv: string): RosterParseResult {
 
   const text = normalizeLineEndings(stripBom(csv));
 
-  const lines = text.split('\n');
+  const lines = text.split("\n");
 
   // Trim trailing empty line if present (common in CSV files)
-  if (lines.length > 0 && lines[lines.length - 1] === '') {
+  if (lines.length > 0 && lines[lines.length - 1] === "") {
     lines.pop();
   }
 
@@ -109,7 +109,7 @@ export function parseRoster(csv: string): RosterParseResult {
       errors.push({
         rowIndex: 0,
         column: required,
-        code: 'missing_required',
+        code: "missing_required",
         message: `Missing required column: ${required}`,
       });
     }
@@ -121,7 +121,7 @@ export function parseRoster(csv: string): RosterParseResult {
 
   for (let i = 1; i < lines.length; i++) {
     const line = lines[i]!;
-    if (line.trim() === '') continue;
+    if (line.trim() === "") continue;
     const rowIndex = i;
 
     const cells = parseCsvLine(line);
@@ -132,10 +132,10 @@ export function parseRoster(csv: string): RosterParseResult {
       return cells[idx];
     }
 
-    const nameVal = getCell('name')?.trim() ?? '';
-    const emailVal = getCell('email')?.trim() ?? '';
-    const sisIdVal = getCell('sisId')?.trim() ?? '';
-    const sectionVal = getCell('section')?.trim() ?? '';
+    const nameVal = getCell("name")?.trim() ?? "";
+    const emailVal = getCell("email")?.trim() ?? "";
+    const sisIdVal = getCell("sisId")?.trim() ?? "";
+    const sectionVal = getCell("section")?.trim() ?? "";
 
     const rowData: RosterRow = {
       rowIndex,
@@ -149,9 +149,9 @@ export function parseRoster(csv: string): RosterParseResult {
     if (!nameVal) {
       errors.push({
         rowIndex,
-        column: 'name',
-        code: 'missing_required',
-        message: 'Missing required column',
+        column: "name",
+        code: "missing_required",
+        message: "Missing required column",
       });
     } else {
       rowData.name = nameVal;
@@ -163,9 +163,9 @@ export function parseRoster(csv: string): RosterParseResult {
       if (!validateEmail(emailVal)) {
         errors.push({
           rowIndex,
-          column: 'email',
-          code: 'invalid_email',
-          message: 'Malformed email',
+          column: "email",
+          code: "invalid_email",
+          message: "Malformed email",
         });
       }
     }
@@ -180,9 +180,9 @@ export function parseRoster(csv: string): RosterParseResult {
     if (!rowData.email && !rowData.sisId) {
       errors.push({
         rowIndex,
-        column: 'email',
-        code: 'missing_required',
-        message: 'Missing required column',
+        column: "email",
+        code: "missing_required",
+        message: "Missing required column",
       });
     }
 
@@ -215,8 +215,8 @@ export function parseRoster(csv: string): RosterParseResult {
       }
       errors.push({
         rowIndex: row.rowIndex,
-        code: 'duplicate_identifier',
-        message: 'Duplicate identifier within file',
+        code: "duplicate_identifier",
+        message: "Duplicate identifier within file",
       });
     } else {
       firstIdxByKey.set(id, row.rowIndex);

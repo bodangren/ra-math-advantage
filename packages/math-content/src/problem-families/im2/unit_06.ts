@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const UNIT6_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Area of Polygons
@@ -6,7 +6,8 @@ export const UNIT6_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "step-by-step-solver:area-of-polygons",
     componentKey: "step-by-step-solver",
     displayName: "Area of Polygons",
-    description: "Calculate the area of triangles, parallelograms, trapezoids, and regular polygons",
+    description:
+      "Calculate the area of triangles, parallelograms, trapezoids, and regular polygons",
     objectiveIds: ["G-GPE.B.7", "G-MG.A.1"],
     difficulty: "standard",
     metadata: { unit: 6, topic: "area" },

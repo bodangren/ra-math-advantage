@@ -1,15 +1,15 @@
-import { internalMutation, internalQuery } from './_generated/server';
-import { v } from 'convex/values';
+import { internalMutation, internalQuery } from "./_generated/server";
+import { v } from "convex/values";
 
-const sharedSessionRoleValidator = v.union(v.literal('teacher'), v.literal('admin'));
+const sharedSessionRoleValidator = v.union(v.literal("teacher"), v.literal("admin"));
 const credentialResult = v.union(
   v.null(),
   v.object({
-    accountId: v.id('accounts'),
+    accountId: v.id("accounts"),
     username: v.string(),
     displayName: v.string(),
     sharedSessionRole: sharedSessionRoleValidator,
-    organizationId: v.id('organizations'),
+    organizationId: v.id("organizations"),
     passwordHash: v.string(),
     passwordSalt: v.string(),
     passwordHashIterations: v.number(),
@@ -23,8 +23,8 @@ export const getCredentialByUsername = internalQuery({
   returns: credentialResult,
   handler: async (ctx, args) => {
     const credential = await ctx.db
-      .query('auth_credentials')
-      .withIndex('by_username', (query) => query.eq('username', args.username))
+      .query("auth_credentials")
+      .withIndex("by_username", (query) => query.eq("username", args.username))
       .unique();
     if (!credential) return null;
 
@@ -49,12 +49,12 @@ export const getCredentialByUsername = internalQuery({
 });
 
 export const getCredentialByAccountId = internalQuery({
-  args: { accountId: v.id('accounts') },
+  args: { accountId: v.id("accounts") },
   returns: credentialResult,
   handler: async (ctx, args) => {
     const credential = await ctx.db
-      .query('auth_credentials')
-      .withIndex('by_accountId', (query) => query.eq('accountId', args.accountId))
+      .query("auth_credentials")
+      .withIndex("by_accountId", (query) => query.eq("accountId", args.accountId))
       .unique();
     if (!credential?.isActive) return null;
 
@@ -79,15 +79,15 @@ export const getCredentialByAccountId = internalQuery({
 });
 
 export const getAccountById = internalQuery({
-  args: { accountId: v.id('accounts') },
+  args: { accountId: v.id("accounts") },
   returns: v.union(
     v.null(),
     v.object({
-      accountId: v.id('accounts'),
+      accountId: v.id("accounts"),
       username: v.string(),
       displayName: v.string(),
       sharedSessionRole: sharedSessionRoleValidator,
-      organizationId: v.id('organizations'),
+      organizationId: v.id("organizations"),
       organizationName: v.union(v.string(), v.null()),
       organizationBranding: v.union(
         v.null(),
@@ -110,8 +110,8 @@ export const getAccountById = internalQuery({
     if (!account) return null;
     const organization = await ctx.db.get(account.organizationId);
     const credential = await ctx.db
-      .query('auth_credentials')
-      .withIndex('by_accountId', (query) => query.eq('accountId', account._id))
+      .query("auth_credentials")
+      .withIndex("by_accountId", (query) => query.eq("accountId", account._id))
       .unique();
     return {
       accountId: account._id,
@@ -132,7 +132,7 @@ export const getAccountById = internalQuery({
 
 export const changeOwnPassword = internalMutation({
   args: {
-    accountId: v.id('accounts'),
+    accountId: v.id("accounts"),
     expectedPasswordSalt: v.string(),
     passwordHash: v.string(),
     passwordSalt: v.string(),
@@ -140,22 +140,31 @@ export const changeOwnPassword = internalMutation({
   },
   returns: v.union(
     v.object({ ok: v.literal(true), username: v.string() }),
-    v.object({ ok: v.literal(false), reason: v.union(v.literal('account_inactive'), v.literal('credential_not_found'), v.literal('credential_changed')) }),
+    v.object({
+      ok: v.literal(false),
+      reason: v.union(
+        v.literal("account_inactive"),
+        v.literal("credential_not_found"),
+        v.literal("credential_changed"),
+      ),
+    }),
   ),
   handler: async (ctx, args) => {
     const account = await ctx.db.get(args.accountId);
-    if (!account || !account.isActive) return { ok: false as const, reason: 'account_inactive' as const };
+    if (!account || !account.isActive)
+      return { ok: false as const, reason: "account_inactive" as const };
     const credential = await ctx.db
-      .query('auth_credentials')
-      .withIndex('by_accountId', (query) => query.eq('accountId', account._id))
+      .query("auth_credentials")
+      .withIndex("by_accountId", (query) => query.eq("accountId", account._id))
       .unique();
-    if (!credential?.isActive) return { ok: false as const, reason: 'credential_not_found' as const };
+    if (!credential?.isActive)
+      return { ok: false as const, reason: "credential_not_found" as const };
 
     if (credential.passwordSalt !== args.expectedPasswordSalt) {
-      return { ok: false as const, reason: 'credential_changed' as const };
+      return { ok: false as const, reason: "credential_changed" as const };
     }
     const organization = await ctx.db.get(account.organizationId);
-    if (!organization?.isActive) return { ok: false as const, reason: 'account_inactive' as const };
+    if (!organization?.isActive) return { ok: false as const, reason: "account_inactive" as const };
 
     await ctx.db.patch(credential._id, {
       passwordHash: args.passwordHash,
@@ -180,8 +189,8 @@ export const checkAndIncrementLoginRateLimit = internalMutation({
   handler: async (ctx, args) => {
     const now = Date.now();
     const existing = await ctx.db
-      .query('login_rate_limits')
-      .withIndex('by_key', (query) => query.eq('key', args.key))
+      .query("login_rate_limits")
+      .withIndex("by_key", (query) => query.eq("key", args.key))
       .unique();
 
     if (existing?.blockedUntil && existing.blockedUntil > now) {
@@ -191,12 +200,18 @@ export const checkAndIncrementLoginRateLimit = internalMutation({
     const inWindow = existing && now - existing.windowStartedAt < LOGIN_WINDOW_MS;
     const failureCount = inWindow ? existing.failureCount + 1 : 1;
     const windowStartedAt = inWindow ? existing.windowStartedAt : now;
-    const blockedUntil = failureCount > MAX_LOGIN_ATTEMPTS ? windowStartedAt + LOGIN_WINDOW_MS : undefined;
+    const blockedUntil =
+      failureCount > MAX_LOGIN_ATTEMPTS ? windowStartedAt + LOGIN_WINDOW_MS : undefined;
 
     if (existing) {
-      await ctx.db.patch(existing._id, { windowStartedAt, failureCount, blockedUntil, updatedAt: now });
+      await ctx.db.patch(existing._id, {
+        windowStartedAt,
+        failureCount,
+        blockedUntil,
+        updatedAt: now,
+      });
     } else {
-      await ctx.db.insert('login_rate_limits', {
+      await ctx.db.insert("login_rate_limits", {
         key: args.key,
         windowStartedAt,
         failureCount,
@@ -216,8 +231,8 @@ export const clearLoginRateLimit = internalMutation({
   returns: v.object({ ok: v.literal(true) }),
   handler: async (ctx, args) => {
     const existing = await ctx.db
-      .query('login_rate_limits')
-      .withIndex('by_key', (query) => query.eq('key', args.key))
+      .query("login_rate_limits")
+      .withIndex("by_key", (query) => query.eq("key", args.key))
       .unique();
     if (existing) await ctx.db.delete(existing._id);
     return { ok: true as const };

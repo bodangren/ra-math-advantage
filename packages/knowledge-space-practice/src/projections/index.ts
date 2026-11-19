@@ -19,7 +19,7 @@ export type {
   InterventionGroup,
   TeacherVisualizationV1,
   TeacherVisualizationOptions,
-} from './types';
+} from "./types";
 
 export {
   visualNodeV1Schema,
@@ -27,16 +27,16 @@ export {
   studentVisualizationV1Schema,
   parentVisualizationV1Schema,
   teacherVisualizationV1Schema,
-} from './schemas';
+} from "./schemas";
 
-export { projectActivityMap } from './activity-map';
-export { projectSrsInputs } from './srs';
-export { projectTeacherEvidence } from './teacher-evidence';
+export { projectActivityMap } from "./activity-map";
+export { projectSrsInputs } from "./srs";
+export { projectTeacherEvidence } from "./teacher-evidence";
 export {
   projectStudentVisualization,
   projectParentVisualization,
   projectTeacherVisualization,
-} from './visualization';
+} from "./visualization";
 
 export {
   syntheticMathKnowledgeSpace,
@@ -44,4 +44,4 @@ export {
   syntheticBlueprint,
   syntheticEnglishBlueprintProjection,
   syntheticLearnerState,
-} from './fixtures';
+} from "./fixtures";

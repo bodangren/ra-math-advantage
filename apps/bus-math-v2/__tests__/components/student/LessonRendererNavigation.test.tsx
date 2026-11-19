@@ -1,11 +1,11 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { LessonRenderer, type Phase } from '@/components/student/LessonRenderer';
+import { describe, it, expect, vi } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { LessonRenderer, type Phase } from "@/components/student/LessonRenderer";
 
 const mockRefetch = vi.fn();
 let mockPhaseProgressData: { phases: Array<{ phaseId: string; status: string }> } = { phases: [] };
 
-vi.mock('@/hooks/usePhaseProgress', () => ({
+vi.mock("@/hooks/usePhaseProgress", () => ({
   usePhaseProgress: () => ({
     data: mockPhaseProgressData,
     isLoading: false,
@@ -13,123 +13,123 @@ vi.mock('@/hooks/usePhaseProgress', () => ({
   }),
 }));
 
-vi.mock('@/hooks/usePhaseCompletion', () => ({
+vi.mock("@/hooks/usePhaseCompletion", () => ({
   usePhaseCompletion: () => ({
     completePhase: vi.fn(),
     isCompleting: false,
   }),
 }));
 
-vi.mock('@/components/auth/AuthProvider', () => ({
+vi.mock("@/components/auth/AuthProvider", () => ({
   useAuth: () => ({
-    user: { id: 'user-1' },
-    profile: { role: 'student' },
+    user: { id: "user-1" },
+    profile: { role: "student" },
     loading: false,
   }),
 }));
 
 const mockLesson = {
-  id: 'lesson-1',
+  id: "lesson-1",
   unitNumber: 1,
-  title: 'Introduction to Accounting',
-  slug: 'intro-to-accounting',
-  description: 'Learn the basics of accounting',
-  learningObjectives: ['Understand double-entry bookkeeping', 'Learn the accounting equation'],
+  title: "Introduction to Accounting",
+  slug: "intro-to-accounting",
+  description: "Learn the basics of accounting",
+  learningObjectives: ["Understand double-entry bookkeeping", "Learn the accounting equation"],
   orderIndex: 1,
   metadata: null,
 };
 
 const mockPhases: Phase[] = [
   {
-    id: 'phase-1',
+    id: "phase-1",
     phaseNumber: 1,
-    title: 'Phase 1: Getting Started',
+    title: "Phase 1: Getting Started",
     contentBlocks: [
       {
-        type: 'markdown',
-        id: 'block-1',
-        content: 'Welcome to the lesson',
+        type: "markdown",
+        id: "block-1",
+        content: "Welcome to the lesson",
       },
     ],
     estimatedMinutes: 10,
-    metadata: { phaseType: 'intro' },
+    metadata: { phaseType: "intro" },
   },
   {
-    id: 'phase-2',
+    id: "phase-2",
     phaseNumber: 2,
-    title: 'Phase 2: Practice',
+    title: "Phase 2: Practice",
     contentBlocks: [
       {
-        type: 'activity',
-        id: 'block-2',
-        activityId: 'test-activity',
+        type: "activity",
+        id: "block-2",
+        activityId: "test-activity",
         required: true,
       },
     ],
     estimatedMinutes: 20,
-    metadata: { phaseType: 'practice' },
+    metadata: { phaseType: "practice" },
   },
 ];
 
-describe('LessonRenderer', () => {
-  describe('breadcrumb navigation', () => {
-    it('shows breadcrumb with Dashboard link and lesson title', () => {
+describe("LessonRenderer", () => {
+  describe("breadcrumb navigation", () => {
+    it("shows breadcrumb with Dashboard link and lesson title", () => {
       render(
         <LessonRenderer
           lesson={mockLesson}
           phases={mockPhases}
           currentPhaseNumber={1}
           lessonSlug={mockLesson.slug}
-        />
+        />,
       );
 
-      expect(screen.getByText('Dashboard')).toBeInTheDocument();
+      expect(screen.getByText("Dashboard")).toBeInTheDocument();
       const titleElements = screen.getAllByText(mockLesson.title);
       expect(titleElements.length).toBeGreaterThan(0);
     });
 
-    it('Dashboard breadcrumb links to student dashboard', () => {
+    it("Dashboard breadcrumb links to student dashboard", () => {
       render(
         <LessonRenderer
           lesson={mockLesson}
           phases={mockPhases}
           currentPhaseNumber={1}
           lessonSlug={mockLesson.slug}
-        />
+        />,
       );
 
-      const dashboardLink = screen.getByText('Dashboard').closest('a');
-      expect(dashboardLink).toHaveAttribute('href', '/student/dashboard');
+      const dashboardLink = screen.getByText("Dashboard").closest("a");
+      expect(dashboardLink).toHaveAttribute("href", "/student/dashboard");
     });
   });
 
-  describe('phase skip behavior', () => {
-    it('enables Next Phase button for skippable explore phase when not completed', () => {
+  describe("phase skip behavior", () => {
+    it("enables Next Phase button for skippable explore phase when not completed", () => {
       mockPhaseProgressData = {
         phases: [
-          { phaseId: 'phase-explore', status: 'available' },
-          { phaseId: 'phase-2', status: 'locked' },
+          { phaseId: "phase-explore", status: "available" },
+          { phaseId: "phase-2", status: "locked" },
         ],
       };
 
       const explorePhases = [
         {
-          id: 'phase-explore',
+          id: "phase-explore",
           phaseNumber: 1,
-          title: 'Explore Phase',
-          contentBlocks: [{ type: 'markdown', id: 'block-1', content: 'Explore this concept' }],
+          title: "Explore Phase",
+          contentBlocks: [{ type: "markdown", id: "block-1", content: "Explore this concept" }],
           estimatedMinutes: 10,
-          metadata: { phaseType: 'explore' },
+          metadata: { phaseType: "explore" },
         },
         {
-          id: 'phase-2',
+          id: "phase-2",
           phaseNumber: 2,
-          title: 'Phase 2: Practice',
+          title: "Phase 2: Practice",
           contentBlocks: [
-            { type: 'activity', id: 'block-2', activityId: 'test-activity', required: true },
+            { type: "activity", id: "block-2", activityId: "test-activity", required: true },
           ],
           estimatedMinutes: 20,
-          metadata: { phaseType: 'practice' },
+          metadata: { phaseType: "practice" },
         },
       ];
 
@@ -139,42 +139,42 @@ describe('LessonRenderer', () => {
           phases={explorePhases as unknown as Phase[]}
           currentPhaseNumber={1}
           lessonSlug={mockLesson.slug}
-        />
+        />,
       );
 
-      const nextButton = screen.getByRole('button', { name: /skip phase/i });
+      const nextButton = screen.getByRole("button", { name: /skip phase/i });
       expect(nextButton).toBeInTheDocument();
       expect(nextButton).not.toBeDisabled();
     });
 
-    it('keeps Next Phase button disabled for non-skippable incomplete phase', () => {
+    it("keeps Next Phase button disabled for non-skippable incomplete phase", () => {
       mockPhaseProgressData = {
         phases: [
-          { phaseId: 'phase-1', status: 'available' },
-          { phaseId: 'phase-2', status: 'locked' },
+          { phaseId: "phase-1", status: "available" },
+          { phaseId: "phase-2", status: "locked" },
         ],
       };
 
       const nonSkippablePhases = [
         {
-          id: 'phase-1',
+          id: "phase-1",
           phaseNumber: 1,
-          title: 'Phase 1: Activity',
+          title: "Phase 1: Activity",
           contentBlocks: [
-            { type: 'activity', id: 'block-1', activityId: 'test-activity', required: true },
+            { type: "activity", id: "block-1", activityId: "test-activity", required: true },
           ],
           estimatedMinutes: 10,
-          metadata: { phaseType: 'intro' },
+          metadata: { phaseType: "intro" },
         },
         {
-          id: 'phase-2',
+          id: "phase-2",
           phaseNumber: 2,
-          title: 'Phase 2: Practice',
+          title: "Phase 2: Practice",
           contentBlocks: [
-            { type: 'activity', id: 'block-2', activityId: 'test-activity', required: true },
+            { type: "activity", id: "block-2", activityId: "test-activity", required: true },
           ],
           estimatedMinutes: 20,
-          metadata: { phaseType: 'practice' },
+          metadata: { phaseType: "practice" },
         },
       ];
 
@@ -184,40 +184,40 @@ describe('LessonRenderer', () => {
           phases={nonSkippablePhases as unknown as Phase[]}
           currentPhaseNumber={1}
           lessonSlug={mockLesson.slug}
-        />
+        />,
       );
 
-      const nextButton = screen.getByRole('button', { name: /next phase/i });
+      const nextButton = screen.getByRole("button", { name: /next phase/i });
       expect(nextButton).toBeInTheDocument();
       expect(nextButton).toBeDisabled();
     });
 
-    it('shows Skip Phase button text for skippable incomplete discourse phase', () => {
+    it("shows Skip Phase button text for skippable incomplete discourse phase", () => {
       mockPhaseProgressData = {
         phases: [
-          { phaseId: 'phase-discourse', status: 'available' },
-          { phaseId: 'phase-2', status: 'locked' },
+          { phaseId: "phase-discourse", status: "available" },
+          { phaseId: "phase-2", status: "locked" },
         ],
       };
 
       const discoursePhases = [
         {
-          id: 'phase-discourse',
+          id: "phase-discourse",
           phaseNumber: 1,
-          title: 'Discourse Phase',
-          contentBlocks: [{ type: 'markdown', id: 'block-1', content: 'Discuss this concept' }],
+          title: "Discourse Phase",
+          contentBlocks: [{ type: "markdown", id: "block-1", content: "Discuss this concept" }],
           estimatedMinutes: 10,
-          metadata: { phaseType: 'discourse' },
+          metadata: { phaseType: "discourse" },
         },
         {
-          id: 'phase-2',
+          id: "phase-2",
           phaseNumber: 2,
-          title: 'Phase 2: Practice',
+          title: "Phase 2: Practice",
           contentBlocks: [
-            { type: 'activity', id: 'block-2', activityId: 'test-activity', required: true },
+            { type: "activity", id: "block-2", activityId: "test-activity", required: true },
           ],
           estimatedMinutes: 20,
-          metadata: { phaseType: 'practice' },
+          metadata: { phaseType: "practice" },
         },
       ];
 
@@ -227,15 +227,15 @@ describe('LessonRenderer', () => {
           phases={discoursePhases as unknown as Phase[]}
           currentPhaseNumber={1}
           lessonSlug={mockLesson.slug}
-        />
+        />,
       );
 
-      expect(screen.getByRole('button', { name: /skip phase/i })).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: /skip phase/i })).toBeInTheDocument();
     });
   });
 
-  describe('lesson completion state', () => {
-    it('shows Back to Dashboard link when lesson is complete', () => {
+  describe("lesson completion state", () => {
+    it("shows Back to Dashboard link when lesson is complete", () => {
       render(
         <LessonRenderer
           lesson={mockLesson}
@@ -243,19 +243,19 @@ describe('LessonRenderer', () => {
           currentPhaseNumber={2}
           lessonSlug={mockLesson.slug}
           isLessonComplete={true}
-        />
+        />,
       );
 
-      const backToDashboardLink = screen.getByText('Back to Dashboard').closest('a');
-      expect(backToDashboardLink).toHaveAttribute('href', '/student/dashboard');
+      const backToDashboardLink = screen.getByText("Back to Dashboard").closest("a");
+      expect(backToDashboardLink).toHaveAttribute("href", "/student/dashboard");
     });
 
-    it('shows recommended lesson link when available', () => {
+    it("shows recommended lesson link when available", () => {
       const recommendedLesson = {
-        slug: 'next-lesson',
-        actionLabel: 'Start Lesson' as const,
+        slug: "next-lesson",
+        actionLabel: "Start Lesson" as const,
         unitNumber: 1,
-        title: 'Next Lesson',
+        title: "Next Lesson",
       };
 
       render(
@@ -266,13 +266,12 @@ describe('LessonRenderer', () => {
           lessonSlug={mockLesson.slug}
           isLessonComplete={true}
           recommendedLesson={recommendedLesson}
-        />
+        />,
       );
 
-      expect(screen.getByText('Start Lesson')).toBeInTheDocument();
-      const nextLessonLink = screen.getByText('Start Lesson').closest('a');
-      expect(nextLessonLink).toHaveAttribute('href', '/student/lesson/next-lesson');
+      expect(screen.getByText("Start Lesson")).toBeInTheDocument();
+      const nextLessonLink = screen.getByText("Start Lesson").closest("a");
+      expect(nextLessonLink).toHaveAttribute("href", "/student/lesson/next-lesson");
     });
   });
 });
-

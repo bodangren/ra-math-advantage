@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -64,7 +64,8 @@ export const seedLesson8 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Explore: Linear-Quadratic Systems\n\nUse graphing technology to explore how many solutions a linear-quadratic system can have.\n\nConsider these systems:\n1. $y = x^2$ and $y = x + 2$\n2. $y = x^2$ and $y = x$\n3. $y = x^2$ and $y = -x + 1$\n\n**Inquiry Question**: How many solutions can a linear-quadratic system of equations have?\n\nA linear-quadratic system can have **0, 1, or 2 solutions** depending on how many times the line intersects the parabola.",
+              markdown:
+                "## Explore: Linear-Quadratic Systems\n\nUse graphing technology to explore how many solutions a linear-quadratic system can have.\n\nConsider these systems:\n1. $y = x^2$ and $y = x + 2$\n2. $y = x^2$ and $y = x$\n3. $y = x^2$ and $y = -x + 1$\n\n**Inquiry Question**: How many solutions can a linear-quadratic system of equations have?\n\nA linear-quadratic system can have **0, 1, or 2 solutions** depending on how many times the line intersects the parabola.",
             },
           },
           {
@@ -89,7 +90,8 @@ export const seedLesson8 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Key Terms\n\n- **Linear-quadratic system**: A system containing one linear equation and one quadratic equation\n- **Quadratic relation**: A relation that can be written in the form $y = ax^2 + bx + c$\n- **Substitution**: Solve for one variable in terms of the other, then substitute\n- **Elimination**: Add or subtract equations to eliminate a variable\n\n**Remember**: A line can intersect a parabola at 0, 1, or 2 points!",
+              markdown:
+                "## Key Terms\n\n- **Linear-quadratic system**: A system containing one linear equation and one quadratic equation\n- **Quadratic relation**: A relation that can be written in the form $y = ax^2 + bx + c$\n- **Substitution**: Solve for one variable in terms of the other, then substitute\n- **Elimination**: Add or subtract equations to eliminate a variable\n\n**Remember**: A line can intersect a parabola at 0, 1, or 2 points!",
             },
           },
         ],
@@ -104,7 +106,8 @@ export const seedLesson8 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Solving Linear-Quadratic Systems\n\nLike systems of linear equations, linear-quadratic systems can be solved by **graphical** or **algebraic** methods.\n\n### Method 1: Substitution\n1. Solve the linear equation for one variable\n2. Substitute into the quadratic equation\n3. Solve the resulting quadratic equation\n4. Substitute back to find the other variable\n\n### Method 2: Graphical\n1. Graph both equations\n2. Find the intersection points\n\n### Method 3: Using a System to Solve a Quadratic Equation\n1. Write the equation as a system with $y$ on both sides\n2. Solve by substitution or graphing",
+              markdown:
+                "## Solving Linear-Quadratic Systems\n\nLike systems of linear equations, linear-quadratic systems can be solved by **graphical** or **algebraic** methods.\n\n### Method 1: Substitution\n1. Solve the linear equation for one variable\n2. Substitute into the quadratic equation\n3. Solve the resulting quadratic equation\n4. Substitute back to find the other variable\n\n### Method 2: Graphical\n1. Graph both equations\n2. Find the intersection points\n\n### Method 3: Using a System to Solve a Quadratic Equation\n1. Write the equation as a system with $y$ on both sides\n2. Solve by substitution or graphing",
             },
           },
         ],
@@ -119,7 +122,8 @@ export const seedLesson8 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 1: Solve by Substitution\n\nSolve the system:\n$$x = 2y^2 + 3y + 1$$\n$$-x + y = -1$$\n\n**Step 1**: Solve the linear equation for $x$:\n$$x = y + 1$$\n\n**Step 2**: Substitute into the quadratic:\n$$y + 1 = 2y^2 + 3y + 1$$\n\n**Step 3**: Simplify:\n$$0 = 2y^2 + 2y$$ $$0 = 2y(y + 1)$$\n\n**Step 4**: Solve: $y = 0$ or $y = -1$\n\n**Step 5**: Back-substitute:\n- If $y = 0$: $x = 1$\n- If $y = -1$: $x = 0$\n\n**Solutions**: $(1, 0)$ and $(0, -1)$",
+              markdown:
+                "## Example 1: Solve by Substitution\n\nSolve the system:\n$$x = 2y^2 + 3y + 1$$\n$$-x + y = -1$$\n\n**Step 1**: Solve the linear equation for $x$:\n$$x = y + 1$$\n\n**Step 2**: Substitute into the quadratic:\n$$y + 1 = 2y^2 + 3y + 1$$\n\n**Step 3**: Simplify:\n$$0 = 2y^2 + 2y$$ $$0 = 2y(y + 1)$$\n\n**Step 4**: Solve: $y = 0$ or $y = -1$\n\n**Step 5**: Back-substitute:\n- If $y = 0$: $x = 1$\n- If $y = -1$: $x = 0$\n\n**Solutions**: $(1, 0)$ and $(0, -1)$",
             },
           },
           {
@@ -152,7 +156,8 @@ export const seedLesson8 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 2: Solve by Elimination\n\nSolve the system:\n$$x^2 = y + 5$$\n$$-x + y = 7$$\n\n**Step 1**: Rearrange the linear equation:\n$$y = x + 7$$\n\n**Step 2**: Substitute into the quadratic:\n$$x^2 = (x + 7) + 5$$\n\n**Step 3**: Simplify and solve:\n$$x^2 = x + 12$$ $$x^2 - x - 12 = 0$$ $$(x - 4)(x + 3) = 0$$\n\n**Step 4**: $x = 4$ or $x = -3$\n\n**Step 5**: Back-substitute:\n- If $x = 4$: $y = 11$\n- If $x = -3$: $y = 4$\n\n**Solutions**: $(4, 11)$ and $(-3, 4)$",
+              markdown:
+                "## Example 2: Solve by Elimination\n\nSolve the system:\n$$x^2 = y + 5$$\n$$-x + y = 7$$\n\n**Step 1**: Rearrange the linear equation:\n$$y = x + 7$$\n\n**Step 2**: Substitute into the quadratic:\n$$x^2 = (x + 7) + 5$$\n\n**Step 3**: Simplify and solve:\n$$x^2 = x + 12$$ $$x^2 - x - 12 = 0$$ $$(x - 4)(x + 3) = 0$$\n\n**Step 4**: $x = 4$ or $x = -3$\n\n**Step 5**: Back-substitute:\n- If $x = 4$: $y = 11$\n- If $x = -3$: $y = 4$\n\n**Solutions**: $(4, 11)$ and $(-3, 4)$",
             },
           },
           {
@@ -185,7 +190,8 @@ export const seedLesson8 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 3: Use a System to Solve an Equation\n\nSolve $x^2 - 2x + 6 = 4x + 1$\n\n**Step 1**: Create a system:\n$$y = x^2 - 2x + 6$$ $$y = 4x + 1$$\n\n**Step 2**: Find intersections by substituting:\n$$x^2 - 2x + 6 = 4x + 1$$ $$x^2 - 6x + 5 = 0$$ $$(x - 1)(x - 5) = 0$$\n\n**Step 3**: $x = 1$ or $x = 5$\n\n**Step 4**: Find $y$ values:\n- If $x = 1$: $y = 5$\n- If $x = 5$: $y = 21$\n\n**Solutions**: $x = 1$ or $x = 5$",
+              markdown:
+                "## Example 3: Use a System to Solve an Equation\n\nSolve $x^2 - 2x + 6 = 4x + 1$\n\n**Step 1**: Create a system:\n$$y = x^2 - 2x + 6$$ $$y = 4x + 1$$\n\n**Step 2**: Find intersections by substituting:\n$$x^2 - 2x + 6 = 4x + 1$$ $$x^2 - 6x + 5 = 0$$ $$(x - 1)(x - 5) = 0$$\n\n**Step 3**: $x = 1$ or $x = 5$\n\n**Step 4**: Find $y$ values:\n- If $x = 1$: $y = 5$\n- If $x = 5$: $y = 21$\n\n**Solutions**: $x = 1$ or $x = 5$",
             },
           },
           {
@@ -217,7 +223,8 @@ export const seedLesson8 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 4: Real-World — Revenue Model\n\nA company's revenue is modeled by:\n$$R = -0.1x^2 + 4x$$\n\nTo determine the price for which the company earns $4.2 million, solve the system:\n$$R = -0.1x^2 + 4x$$ $$R = 42$$ (in millions)\n\n**Step 1**: Set equal:\n$$-0.1x^2 + 4x = 42$$\n\n**Step 2**: Rearrange:\n$$-0.1x^2 + 4x - 42 = 0$$\n\n**Step 3**: Multiply by -10:\n$$x^2 - 40x + 420 = 0$$\n\n**Step 4**: Calculate discriminant:\n$$D = (-40)^2 - 4(1)(420) = 1600 - 1680 = -80$$\n\n**Since $D < 0$**, there are **no real solutions**.\n\nThe graphs do not intersect, so the company cannot earn exactly $4.2 million at any price point.",
+              markdown:
+                "## Example 4: Real-World — Revenue Model\n\nA company's revenue is modeled by:\n$$R = -0.1x^2 + 4x$$\n\nTo determine the price for which the company earns $4.2 million, solve the system:\n$$R = -0.1x^2 + 4x$$ $$R = 42$$ (in millions)\n\n**Step 1**: Set equal:\n$$-0.1x^2 + 4x = 42$$\n\n**Step 2**: Rearrange:\n$$-0.1x^2 + 4x - 42 = 0$$\n\n**Step 3**: Multiply by -10:\n$$x^2 - 40x + 420 = 0$$\n\n**Step 4**: Calculate discriminant:\n$$D = (-40)^2 - 4(1)(420) = 1600 - 1680 = -80$$\n\n**Since $D < 0$**, there are **no real solutions**.\n\nThe graphs do not intersect, so the company cannot earn exactly $4.2 million at any price point.",
             },
           },
           {
@@ -249,7 +256,8 @@ export const seedLesson8 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Solving Quadratic-Quadratic Systems\n\nA quadratic-quadratic system contains two quadratic equations. To solve algebraically, set the two expressions equal to each other, move all terms to one side, and solve the resulting quadratic equation.\n\nThe solutions are the points where the parabolas intersect. A system may have two, one, or no real solutions.",
+              markdown:
+                "## Solving Quadratic-Quadratic Systems\n\nA quadratic-quadratic system contains two quadratic equations. To solve algebraically, set the two expressions equal to each other, move all terms to one side, and solve the resulting quadratic equation.\n\nThe solutions are the points where the parabolas intersect. A system may have two, one, or no real solutions.",
             },
           },
         ],
@@ -264,7 +272,8 @@ export const seedLesson8 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 5: Solve a Quadratic-Quadratic System\n\nSolve the system:\n$$y = x^2 + 2x$$\n$$y = -x^2 + 4x + 6$$\n\n**Step 1**: Set the equations equal.\n$$x^2 + 2x = -x^2 + 4x + 6$$\n\n**Step 2**: Move all terms to one side.\n$$2x^2 - 2x - 6 = 0$$\n$$x^2 - x - 3 = 0$$\n\n**Step 3**: Solve using the quadratic formula.\n$$x = \\frac{1 \\pm \\sqrt{13}}{2}$$\n\nSubstitute each $x$-value into either equation to find the corresponding $y$-values.",
+              markdown:
+                "## Example 5: Solve a Quadratic-Quadratic System\n\nSolve the system:\n$$y = x^2 + 2x$$\n$$y = -x^2 + 4x + 6$$\n\n**Step 1**: Set the equations equal.\n$$x^2 + 2x = -x^2 + 4x + 6$$\n\n**Step 2**: Move all terms to one side.\n$$2x^2 - 2x - 6 = 0$$\n$$x^2 - x - 3 = 0$$\n\n**Step 3**: Solve using the quadratic formula.\n$$x = \\frac{1 \\pm \\sqrt{13}}{2}$$\n\nSubstitute each $x$-value into either equation to find the corresponding $y$-values.",
             },
           },
           {
@@ -295,7 +304,8 @@ export const seedLesson8 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 6: One Intersection\n\nSolve the system:\n$$y = x^2 - 4x + 7$$\n$$y = x^2 - 2x + 3$$\n\n**Step 1**: Set the expressions equal.\n$$x^2 - 4x + 7 = x^2 - 2x + 3$$\n\n**Step 2**: Subtract $x^2$ from both sides and solve.\n$$-4x + 7 = -2x + 3$$\n$$4 = 2x$$\n$$x = 2$$\n\n**Step 3**: Substitute $x = 2$.\n$$y = 2^2 - 4(2) + 7 = 3$$\n\nThe parabolas intersect at $(2, 3)$.",
+              markdown:
+                "## Example 6: One Intersection\n\nSolve the system:\n$$y = x^2 - 4x + 7$$\n$$y = x^2 - 2x + 3$$\n\n**Step 1**: Set the expressions equal.\n$$x^2 - 4x + 7 = x^2 - 2x + 3$$\n\n**Step 2**: Subtract $x^2$ from both sides and solve.\n$$-4x + 7 = -2x + 3$$\n$$4 = 2x$$\n$$x = 2$$\n\n**Step 3**: Substitute $x = 2$.\n$$y = 2^2 - 4(2) + 7 = 3$$\n\nThe parabolas intersect at $(2, 3)$.",
             },
           },
           {
@@ -321,7 +331,8 @@ export const seedLesson8 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 7: No Real Intersections\n\nSolve the system:\n$$y = x^2 + 1$$\n$$y = x^2 - 5$$\n\n**Step 1**: Set the expressions equal.\n$$x^2 + 1 = x^2 - 5$$\n\n**Step 2**: Subtract $x^2$ from both sides.\n$$1 = -5$$\n\nThis statement is never true, so the system has **no solution**. The parabolas have the same shape but different vertical positions.",
+              markdown:
+                "## Example 7: No Real Intersections\n\nSolve the system:\n$$y = x^2 + 1$$\n$$y = x^2 - 5$$\n\n**Step 1**: Set the expressions equal.\n$$x^2 + 1 = x^2 - 5$$\n\n**Step 2**: Subtract $x^2$ from both sides.\n$$1 = -5$$\n\nThis statement is never true, so the system has **no solution**. The parabolas have the same shape but different vertical positions.",
             },
           },
           {
@@ -347,7 +358,8 @@ export const seedLesson8 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Discussion Questions\n\n1. Can a linear-quadratic system have infinitely many solutions? Why or why not?\n2. Why is graphing still useful even when solving a system algebraically?\n3. How does the discriminant help predict the number of solutions?\n4. When might you prefer the graphical method over algebraic methods?",
+              markdown:
+                "## Discussion Questions\n\n1. Can a linear-quadratic system have infinitely many solutions? Why or why not?\n2. Why is graphing still useful even when solving a system algebraically?\n3. How does the discriminant help predict the number of solutions?\n4. When might you prefer the graphical method over algebraic methods?",
             },
           },
           {
@@ -358,7 +370,8 @@ export const seedLesson8 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "What is the maximum number of solutions for a linear-quadratic system?",
+                    question:
+                      "What is the maximum number of solutions for a linear-quadratic system?",
                     options: ["1", "2", "3", "Infinitely many"],
                     correctIndex: 1,
                   },
@@ -383,7 +396,8 @@ export const seedLesson8 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Reflection\n\nToday you learned to solve linear-quadratic systems.\n\n- How is solving linear-quadratic systems similar to and different from solving linear systems?\n- When might a linear-quadratic system have no solution?\n- How does the discriminant help predict solution types?\n\n**Congratulations!** You've completed Module 1 on Quadratic Functions and Equations!",
+              markdown:
+                "## Reflection\n\nToday you learned to solve linear-quadratic systems.\n\n- How is solving linear-quadratic systems similar to and different from solving linear systems?\n- When might a linear-quadratic system have no solution?\n- How does the discriminant help predict solution types?\n\n**Congratulations!** You've completed Module 1 on Quadratic Functions and Equations!",
             },
           },
         ],
@@ -397,7 +411,7 @@ export const seedLesson8 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

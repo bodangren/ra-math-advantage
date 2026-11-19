@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const UNIT1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Change in Tandem (HSF-IF.B.4)
@@ -16,7 +16,8 @@ export const UNIT1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "rate-of-change-calculator:polynomial-rate-of-change",
     componentKey: "rate-of-change-calculator",
     displayName: "Polynomial Rate of Change",
-    description: "Calculate and interpret average and instantaneous rates of change for polynomial functions",
+    description:
+      "Calculate and interpret average and instantaneous rates of change for polynomial functions",
     objectiveIds: ["HSF-IF.B.4", "HSA-APR.A.1"],
     difficulty: "standard",
     metadata: { unit: 1, topic: "rates-of-change" },
@@ -45,7 +46,8 @@ export const UNIT1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "graphing-explorer:polynomial-end-behavior",
     componentKey: "graphing-explorer",
     displayName: "Polynomial End Behavior",
-    description: "Explore how the degree and leading coefficient affect the end behavior of polynomial graphs",
+    description:
+      "Explore how the degree and leading coefficient affect the end behavior of polynomial graphs",
     objectiveIds: ["HSF-IF.C.7c"],
     difficulty: "standard",
     metadata: { unit: 1, topic: "polynomial-graphs" },
@@ -55,7 +57,8 @@ export const UNIT1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "graphing-explorer:rational-functions-asymptotes",
     componentKey: "graphing-explorer",
     displayName: "Rational Functions and Asymptotes",
-    description: "Graph rational functions by identifying vertical, horizontal, and oblique asymptotes",
+    description:
+      "Graph rational functions by identifying vertical, horizontal, and oblique asymptotes",
     objectiveIds: ["HSF-IF.C.7d", "HSA-APR.D.6"],
     difficulty: "standard",
     metadata: { unit: 1, topic: "rational-functions" },
@@ -74,7 +77,8 @@ export const UNIT1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "step-by-step-solver:equivalent-representations",
     componentKey: "step-by-step-solver",
     displayName: "Equivalent Representations",
-    description: "Convert between factored, standard, and other equivalent forms of polynomial and rational expressions",
+    description:
+      "Convert between factored, standard, and other equivalent forms of polynomial and rational expressions",
     objectiveIds: ["HSF-BF.A.1", "HSA-APR.A.1"],
     difficulty: "standard",
     metadata: { unit: 1, topic: "equivalent-representations" },
@@ -84,7 +88,8 @@ export const UNIT1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "graphing-explorer:polynomial-transformations",
     componentKey: "graphing-explorer",
     displayName: "Polynomial Transformations",
-    description: "Explore how shifting, stretching, and reflecting affects polynomial function graphs",
+    description:
+      "Explore how shifting, stretching, and reflecting affects polynomial function graphs",
     objectiveIds: ["HSF-BF.B.3"],
     difficulty: "standard",
     metadata: { unit: 1, topic: "transformations" },
@@ -94,7 +99,8 @@ export const UNIT1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "comprehension-quiz:function-model-selection",
     componentKey: "comprehension-quiz",
     displayName: "Function Model Selection",
-    description: "Select and justify appropriate function types to model real-world data and relationships",
+    description:
+      "Select and justify appropriate function types to model real-world data and relationships",
     objectiveIds: ["HSF-IF.B.4", "HSF-BF.A.1"],
     difficulty: "standard",
     metadata: { unit: 1, topic: "model-selection" },

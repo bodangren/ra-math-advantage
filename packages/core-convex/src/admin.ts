@@ -7,7 +7,7 @@ export interface ResolveConvexAdminAuthOptions {
 }
 
 export interface ConvexAdminAuth {
-  source: 'deploy-key' | 'local-admin-key';
+  source: "deploy-key" | "local-admin-key";
   token: string;
 }
 
@@ -17,7 +17,7 @@ export interface ConvexAdminAuth {
  * @returns {boolean} - True if NODE_ENV or VERCEL_ENV is 'production'
  */
 function isProductionRuntime(env: EnvLike): boolean {
-  return env.NODE_ENV === 'production' || env.VERCEL_ENV === 'production';
+  return env.NODE_ENV === "production" || env.VERCEL_ENV === "production";
 }
 
 /**
@@ -26,8 +26,8 @@ function isProductionRuntime(env: EnvLike): boolean {
  * @returns {Promise<string | null>} - Admin key string or null if not found
  */
 async function findAdminKeyInConfigRoot(configRoot: string): Promise<string | null> {
-  const fs = await import('node:fs/promises');
-  const path = await import('node:path');
+  const fs = await import("node:fs/promises");
+  const path = await import("node:path");
   let directoryEntries;
 
   try {
@@ -38,14 +38,14 @@ async function findAdminKeyInConfigRoot(configRoot: string): Promise<string | nu
 
   const configPaths = directoryEntries
     .filter((entry) => entry.isDirectory())
-    .map((entry) => path.join(configRoot, entry.name, 'config.json'))
+    .map((entry) => path.join(configRoot, entry.name, "config.json"))
     .sort((left, right) => left.localeCompare(right));
 
   for (const configPath of configPaths) {
     try {
-      const rawConfig = await fs.readFile(configPath, 'utf8');
+      const rawConfig = await fs.readFile(configPath, "utf8");
       const parsedConfig = JSON.parse(rawConfig) as { adminKey?: unknown };
-      if (typeof parsedConfig.adminKey === 'string' && parsedConfig.adminKey.trim().length > 0) {
+      if (typeof parsedConfig.adminKey === "string" && parsedConfig.adminKey.trim().length > 0) {
         return parsedConfig.adminKey.trim();
       }
     } catch {
@@ -62,16 +62,13 @@ async function findAdminKeyInConfigRoot(configRoot: string): Promise<string | nu
  * @param {string} homeDir - Optional home directory path
  * @returns {Promise<string | null>} - Admin key string or null if not found
  */
-async function readLocalConvexAdminKey(
-  cwd: string,
-  homeDir?: string,
-): Promise<string | null> {
-  const path = await import('node:path');
-  const os = await import('node:os');
+async function readLocalConvexAdminKey(cwd: string, homeDir?: string): Promise<string | null> {
+  const path = await import("node:path");
+  const os = await import("node:os");
 
   const configRoots = [
-    path.join(cwd, '.convex', 'local'),
-    path.join(homeDir ?? os.homedir(), '.convex'),
+    path.join(cwd, ".convex", "local"),
+    path.join(homeDir ?? os.homedir(), ".convex"),
   ];
 
   for (const configRoot of configRoots) {
@@ -98,14 +95,14 @@ export async function resolveConvexAdminAuth(
 
   if (deployKey) {
     return {
-      source: 'deploy-key',
+      source: "deploy-key",
       token: deployKey,
     };
   }
 
   if (isProductionRuntime(env)) {
     throw new Error(
-      'Missing Convex admin auth. Set CONVEX_DEPLOY_KEY for production server-side internal function calls.',
+      "Missing Convex admin auth. Set CONVEX_DEPLOY_KEY for production server-side internal function calls.",
     );
   }
 
@@ -115,12 +112,12 @@ export async function resolveConvexAdminAuth(
   );
   if (localAdminKey) {
     return {
-      source: 'local-admin-key',
+      source: "local-admin-key",
       token: localAdminKey,
     };
   }
 
   throw new Error(
-    'Missing Convex admin auth. Start `npm run dev:stack` or `npx convex dev --local` locally, or set CONVEX_DEPLOY_KEY for server-side internal function calls.',
+    "Missing Convex admin auth. Start `npm run dev:stack` or `npx convex dev --local` locally, or set CONVEX_DEPLOY_KEY for server-side internal function calls.",
   );
 }

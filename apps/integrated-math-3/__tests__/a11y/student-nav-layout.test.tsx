@@ -1,26 +1,31 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { StudentNavigation } from '@/components/student/StudentNavigation';
-import { LessonPageLayout } from '@/components/textbook/LessonPageLayout';
-import { runAxeOnRendered } from '@/lib/a11y/harness';
+import { describe, it, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { StudentNavigation } from "@/components/student/StudentNavigation";
+import { LessonPageLayout } from "@/components/textbook/LessonPageLayout";
+import { runAxeOnRendered } from "@/lib/a11y/harness";
 
-describe('StudentNavigation a11y (Task 9 Group A/B)', () => {
-  it('renders a skip-to-content link as the first focusable element', () => {
+describe("StudentNavigation a11y (Task 9 Group A/B)", () => {
+  it("renders a skip-to-content link as the first focusable element", () => {
     const { container } = render(
       <div>
         <StudentNavigation activeRoute="/student/dashboard" />
-        <main id="main-content" tabIndex={-1}>content</main>
+        <main id="main-content" tabIndex={-1}>
+          content
+        </main>
       </div>,
     );
 
     const skipLink = container.querySelector('a[href="#main-content"]');
-    expect(skipLink, 'skip-to-content link exists pointing to #main-content').not.toBeNull();
+    expect(skipLink, "skip-to-content link exists pointing to #main-content").not.toBeNull();
     const focusables = container.querySelectorAll(
       'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
     );
     const firstFocusable = focusables[0];
-    expect(firstFocusable?.getAttribute('href')).toBe('#main-content');
-    expect(firstFocusable?.classList.contains('sr-only'), 'skip link is visually hidden by default (sr-only)').toBe(true);
+    expect(firstFocusable?.getAttribute("href")).toBe("#main-content");
+    expect(
+      firstFocusable?.classList.contains("sr-only"),
+      "skip link is visually hidden by default (sr-only)",
+    ).toBe(true);
   });
 
   it('marks the active nav item with aria-current="page" and only one such item exists', () => {
@@ -31,35 +36,42 @@ describe('StudentNavigation a11y (Task 9 Group A/B)', () => {
       </div>,
     );
 
-    const current = screen.getAllByRole('link', { current: 'page' });
+    const current = screen.getAllByRole("link", { current: "page" });
     expect(current.length, 'exactly one link has aria-current="page"').toBe(1);
-    expect(current[0].textContent?.trim()).toBe('Dashboard');
-    const lessons = screen.getByRole('link', { name: 'Lessons' });
-    expect(lessons.getAttribute('aria-current')).toBeNull();
+    expect(current[0].textContent?.trim()).toBe("Dashboard");
+    const lessons = screen.getByRole("link", { name: "Lessons" });
+    expect(lessons.getAttribute("aria-current")).toBeNull();
   });
 
-  it('wraps navigation in <nav aria-label> and exposes one main landmark', () => {
+  it("wraps navigation in <nav aria-label> and exposes one main landmark", () => {
     render(
       <div>
         <StudentNavigation activeRoute="/student/dashboard" />
-        <main id="main-content" tabIndex={-1}>content</main>
+        <main id="main-content" tabIndex={-1}>
+          content
+        </main>
       </div>,
     );
 
-    const nav = screen.getByRole('navigation', { name: /student navigation/i });
+    const nav = screen.getByRole("navigation", { name: /student navigation/i });
     expect(nav).toBeTruthy();
-    expect(screen.getByRole('main')).toBeTruthy();
+    expect(screen.getByRole("main")).toBeTruthy();
   });
 });
 
-describe('LessonPageLayout a11y (Task 9 Group C/D/E)', () => {
+describe("LessonPageLayout a11y (Task 9 Group C/D/E)", () => {
   const samplePhases = [
-    { phaseType: 'learn' as const, label: 'Learn', completed: false, isCurrent: true },
-    { phaseType: 'explore' as const, label: 'Explore', completed: false, isCurrent: false },
-    { phaseType: 'worked_example' as const, label: 'Worked Example', completed: false, isCurrent: false },
+    { phaseType: "learn" as const, label: "Learn", completed: false, isCurrent: true },
+    { phaseType: "explore" as const, label: "Explore", completed: false, isCurrent: false },
+    {
+      phaseType: "worked_example" as const,
+      label: "Worked Example",
+      completed: false,
+      isCurrent: false,
+    },
   ];
 
-  it('renders exactly one h1 and phase headings do not create h1->h3 jumps', async () => {
+  it("renders exactly one h1 and phase headings do not create h1->h3 jumps", async () => {
     const results = await runAxeOnRendered(
       <LessonPageLayout
         lessonTitle="Quadratics"
@@ -74,8 +86,8 @@ describe('LessonPageLayout a11y (Task 9 Group C/D/E)', () => {
       </LessonPageLayout>,
     );
 
-    expect(results.violations.filter((v) => v.id === 'heading-order')).toHaveLength(0);
-    const h1s = screen.getAllByRole('heading', { level: 1 });
+    expect(results.violations.filter((v) => v.id === "heading-order")).toHaveLength(0);
+    const h1s = screen.getAllByRole("heading", { level: 1 });
     expect(h1s.length).toBe(1);
   });
 
@@ -91,8 +103,8 @@ describe('LessonPageLayout a11y (Task 9 Group C/D/E)', () => {
       </LessonPageLayout>,
     );
 
-    const main = screen.getByRole('main');
-    expect(main.id).toBe('main');
+    const main = screen.getByRole("main");
+    expect(main.id).toBe("main");
   });
 
   it('applies aria-current="step" to the current phase button in the stepper', () => {
@@ -107,17 +119,19 @@ describe('LessonPageLayout a11y (Task 9 Group C/D/E)', () => {
       </LessonPageLayout>,
     );
 
-    const currentSteps = screen.getAllByRole('button', { current: 'step' });
+    const currentSteps = screen.getAllByRole("button", { current: "step" });
     expect(currentSteps.length).toBe(1);
   });
 });
 
-describe('Adversarial: skip-link and aria-current edge cases', () => {
-  it('skip-to-content is the first focusable even when other focusables precede it in DOM order via positive tabindex', () => {
+describe("Adversarial: skip-link and aria-current edge cases", () => {
+  it("skip-to-content is the first focusable even when other focusables precede it in DOM order via positive tabindex", () => {
     const { container } = render(
       <div>
         <StudentNavigation activeRoute="/student/dashboard" />
-        <main id="main-content" tabIndex={-1}>content</main>
+        <main id="main-content" tabIndex={-1}>
+          content
+        </main>
       </div>,
     );
     const focusables = Array.from(
@@ -126,9 +140,9 @@ describe('Adversarial: skip-link and aria-current edge cases', () => {
       ),
     );
     const firstTabindex0 = focusables.findIndex(
-      el => (el.tabIndex ?? -1) >= 0 && el.getAttribute('tabindex') !== '-1',
+      (el) => (el.tabIndex ?? -1) >= 0 && el.getAttribute("tabindex") !== "-1",
     );
-    const skipIndex = focusables.findIndex(el => el.getAttribute('href') === '#main-content');
+    const skipIndex = focusables.findIndex((el) => el.getAttribute("href") === "#main-content");
     expect(skipIndex).toBeGreaterThanOrEqual(0);
     expect(firstTabindex0).toBe(skipIndex);
   });
@@ -137,7 +151,9 @@ describe('Adversarial: skip-link and aria-current edge cases', () => {
     const { container } = render(
       <div>
         <StudentNavigation activeRoute="/student/dashboard" />
-        <main id="main-content" tabIndex={-1}>content</main>
+        <main id="main-content" tabIndex={-1}>
+          content
+        </main>
       </div>,
     );
     const pageCurrent = container.querySelectorAll('[aria-current="page"]');

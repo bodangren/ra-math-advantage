@@ -39,7 +39,7 @@ export type ImprovementPlanVersionView = {
 export type ImprovementPlanView = {
   planId: string;
   teacherProfileId: string;
-  state: 'proposed' | 'active' | 'closed';
+  state: "proposed" | "active" | "closed";
   revision: number;
   activeVersion: ImprovementPlanVersionView | null;
   pendingVersion: ImprovementPlanVersionView | null;
@@ -47,24 +47,24 @@ export type ImprovementPlanView = {
   planEndAt: number | null;
   reviewMeetingAt: number | null;
   closedAt: number | null;
-  closureOutcome: 'successful' | 'insufficient_improvement' | null;
+  closureOutcome: "successful" | "insufficient_improvement" | null;
   closureNote: string | null;
   approvalEventId: string | null;
   closureEventId: string | null;
   history: {
     events: Array<{
       eventId: string;
-      kind: 'proposed' | 'approved' | 'teacher_acknowledged' | 'supervisor_acknowledged' | 'closed';
+      kind: "proposed" | "approved" | "teacher_acknowledged" | "supervisor_acknowledged" | "closed";
       version: number;
       versionId: string | null;
       occurredAt: number;
-      payload: { outcome?: 'successful' | 'insufficient_improvement'; note?: string };
+      payload: { outcome?: "successful" | "insufficient_improvement"; note?: string };
     }>;
     priorApprovedVersions: Array<{ version: number; versionId: string; purpose: string }>;
   };
   acknowledgments: Array<{
     acknowledgmentId: string;
-    kind: 'teacher' | 'supervisor';
+    kind: "teacher" | "supervisor";
     actorAccountId: string;
     acknowledgedAt: number;
   }>;
@@ -73,30 +73,30 @@ export type ImprovementPlanView = {
 export type ImprovementPlanListView = {
   planId: string;
   teacherProfileId: string;
-  state: 'proposed' | 'active' | 'closed';
+  state: "proposed" | "active" | "closed";
   revision: number;
   activeVersion: { versionId: string; version: number; teacherName: string } | null;
   pendingVersion: { versionId: string; version: number; teacherName: string } | null;
 };
 
 export type ImprovementPlanProgress =
-  | { contractVersion: 'danielson.ip-progress.v1'; state: 'not_configured'; planId?: never }
-  | { contractVersion: 'danielson.ip-progress.v1'; state: 'pending_approval'; planId?: string }
+  | { contractVersion: "danielson.ip-progress.v1"; state: "not_configured"; planId?: never }
+  | { contractVersion: "danielson.ip-progress.v1"; state: "pending_approval"; planId?: string }
   | {
-      contractVersion: 'danielson.ip-progress.v1';
-      state: 'active' | 'closed';
+      contractVersion: "danielson.ip-progress.v1";
+      state: "active" | "closed";
       planId: string;
       version: number;
       daysRemaining: number;
-      trackState?: 'on_track' | 'off_track';
-      outcome?: 'successful' | 'insufficient_improvement';
+      trackState?: "on_track" | "off_track";
+      outcome?: "successful" | "insufficient_improvement";
       closedAt?: number;
       targets: Array<{
         componentId: string;
         skillId: string;
         expectedRating: number;
         currentRating: number | null;
-        state: 'no_plan_evidence' | 'below_expected' | 'meets_expected';
+        state: "no_plan_evidence" | "below_expected" | "meets_expected";
         evidenceDueAt: number;
         evidenceDue: boolean;
         evidenceOverdue: boolean;

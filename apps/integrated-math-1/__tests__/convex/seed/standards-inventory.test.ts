@@ -3,10 +3,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { APP_NAME, collectReferencedCodes } from "./referenced-codes";
 
-const INVENTORY_PATH = path.resolve(
-  __dirname,
-  "../../../convex/seed/standards_inventory.json"
-);
+const INVENTORY_PATH = path.resolve(__dirname, "../../../convex/seed/standards_inventory.json");
 
 interface InventoryEntry {
   code: string;
@@ -34,9 +31,7 @@ describe("standards-inventory (IM1)", () => {
     const raw = fs.readFileSync(INVENTORY_PATH, "utf8");
     const parsed = JSON.parse(raw) as InventoryEntry[];
     const inventoriedCodes = new Set(parsed.map((entry) => entry.code));
-    const missingFromInventory = referencedCodes.filter(
-      (code) => !inventoriedCodes.has(code)
-    );
+    const missingFromInventory = referencedCodes.filter((code) => !inventoriedCodes.has(code));
     expect(missingFromInventory).toEqual([]);
   });
 

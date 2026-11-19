@@ -1,7 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { CartesianGrid, Line, LineChart as RechartsLineChart, ReferenceLine, XAxis, YAxis } from "recharts";
+import {
+  CartesianGrid,
+  Line,
+  LineChart as RechartsLineChart,
+  ReferenceLine,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,7 +19,7 @@ import {
   ChartLegend,
   ChartLegendContent,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 import { cn } from "@/lib/utils";
 
@@ -36,7 +43,6 @@ interface BreakEvenDataPoint {
   profit: number;
 }
 
-
 /**
  * Renders an interactive break-even analysis chart showing revenue,
  * total costs, and profit lines with optional input controls.
@@ -52,7 +58,7 @@ export function BreakEvenChart({
   showCard = true,
   className,
   height = 360,
-  currency = "USD"
+  currency = "USD",
 }: BreakEvenChartProps) {
   const [fixedCosts, setFixedCosts] = useState(defaultFixedCosts);
   const [variableCostRate, setVariableCostRate] = useState(defaultVariableRate);
@@ -61,7 +67,7 @@ export function BreakEvenChart({
   const [prevDefaults, setPrevDefaults] = useState({
     fixedCosts: defaultFixedCosts,
     variableCostRate: defaultVariableRate,
-    sellingPrice: defaultSellingPrice
+    sellingPrice: defaultSellingPrice,
   });
 
   if (
@@ -75,7 +81,7 @@ export function BreakEvenChart({
     setPrevDefaults({
       fixedCosts: defaultFixedCosts,
       variableCostRate: defaultVariableRate,
-      sellingPrice: defaultSellingPrice
+      sellingPrice: defaultSellingPrice,
     });
   }
 
@@ -90,7 +96,7 @@ export function BreakEvenChart({
       contributionMargin,
       contributionMarginRatio: sellingPrice ? contributionMargin / sellingPrice : 0,
       breakEvenUnits,
-      breakEvenRevenue
+      breakEvenRevenue,
     };
   }, [fixedCosts, clampedVariableRate, sellingPrice]);
 
@@ -106,7 +112,7 @@ export function BreakEvenChart({
         units,
         revenue,
         totalCosts,
-        profit: revenue - totalCosts
+        profit: revenue - totalCosts,
       });
     }
 
@@ -118,9 +124,9 @@ export function BreakEvenChart({
       buildChartConfig([
         { key: "revenue", label: "Revenue", color: "hsl(142, 70%, 45%)" },
         { key: "totalCosts", label: "Total Costs", color: "hsl(6, 78%, 57%)" },
-        { key: "profit", label: "Profit / Loss", color: "hsl(210, 84%, 53%)" }
+        { key: "profit", label: "Profit / Loss", color: "hsl(210, 84%, 53%)" },
       ]),
-    []
+    [],
   );
 
   const resetValues = () => {
@@ -195,7 +201,7 @@ export function BreakEvenChart({
             top: 16,
             right: 24,
             left: 24,
-            bottom: 16
+            bottom: 16,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
@@ -206,7 +212,7 @@ export function BreakEvenChart({
               <ChartTooltipContent
                 formatter={(value, name) => [
                   formatCurrency(Number(value), currency),
-                  chartConfig[name as keyof typeof chartConfig]?.label ?? name
+                  chartConfig[name as keyof typeof chartConfig]?.label ?? name,
                 ]}
               />
             }

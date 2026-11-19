@@ -24,8 +24,8 @@
     "build": "npm run typecheck"
   },
   "dependencies": {
-    "@math-platform/srs-engine": "*",
     "@math-platform/practice-core": "*",
+    "@math-platform/srs-engine": "*",
     "zod": "^4.6.7"
   },
   "devDependencies": {

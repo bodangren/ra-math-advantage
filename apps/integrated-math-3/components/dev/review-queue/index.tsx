@@ -1,10 +1,14 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useCallback, useRef } from 'react';
-import { ExampleReviewHarness, PracticeReviewHarness, ActivityReviewHarness } from '@/components/dev/review-harness';
+import { useState, useEffect, useCallback, useRef } from "react";
+import {
+  ExampleReviewHarness,
+  PracticeReviewHarness,
+  ActivityReviewHarness,
+} from "@/components/dev/review-harness";
 
 interface ReviewQueueItem {
-  componentKind: 'activity' | 'example' | 'practice';
+  componentKind: "activity" | "example" | "practice";
   componentId: string;
   componentKey?: string;
   displayName?: string;
@@ -37,8 +41,8 @@ export function useReviewQueueClient() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [filters, setFilters] = useState<Filters>({
-    componentKind: '',
-    status: '',
+    componentKind: "",
+    status: "",
     onlyStale: false,
   });
 
@@ -50,16 +54,16 @@ export function useReviewQueueClient() {
       setError(null);
       try {
         const params = new URLSearchParams();
-        if (filters.componentKind) params.set('componentKind', filters.componentKind);
-        if (filters.status) params.set('status', filters.status);
-        if (filters.onlyStale) params.set('onlyStale', 'true');
+        if (filters.componentKind) params.set("componentKind", filters.componentKind);
+        if (filters.status) params.set("status", filters.status);
+        if (filters.onlyStale) params.set("onlyStale", "true");
 
         const res = await fetch(`/api/dev/review-queue?${params}`);
-        if (!res.ok) throw new Error('Failed to fetch review queue');
+        if (!res.ok) throw new Error("Failed to fetch review queue");
         const data = await res.json();
         setItems(data);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Unknown error');
+        setError(err instanceof Error ? err.message : "Unknown error");
       } finally {
         setLoading(false);
       }
@@ -70,34 +74,37 @@ export function useReviewQueueClient() {
     fetchQueueRef.current();
   }, []);
 
-  const handleReviewSubmit = useCallback(async (
-    componentKind: string,
-    componentId: string,
-    status: string,
-    comment?: string,
-    issueTags?: string[],
-    priority?: string
-  ) => {
-    const res = await fetch('/api/dev/review-queue', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        componentKind,
-        componentId,
-        status,
-        comment,
-        issueTags,
-        priority,
-      }),
-    });
+  const handleReviewSubmit = useCallback(
+    async (
+      componentKind: string,
+      componentId: string,
+      status: string,
+      comment?: string,
+      issueTags?: string[],
+      priority?: string,
+    ) => {
+      const res = await fetch("/api/dev/review-queue", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          componentKind,
+          componentId,
+          status,
+          comment,
+          issueTags,
+          priority,
+        }),
+      });
 
-    if (!res.ok) {
-      const data = await res.json();
-      throw new Error(data.error || 'Failed to submit review');
-    }
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Failed to submit review");
+      }
 
-    fetchQueueRef.current();
-  }, []);
+      fetchQueueRef.current();
+    },
+    [],
+  );
 
   return { items, loading, error, filters, setFilters, handleReviewSubmit };
 }
@@ -180,21 +187,27 @@ export function ReviewQueueList({
           >
             <div className="flex items-center justify-between">
               <div>
-                <span className="font-medium">{item.displayName || item.componentKey || item.componentId}</span>
-                <span className="ml-2 text-xs px-2 py-0.5 bg-muted rounded">{item.componentKind}</span>
+                <span className="font-medium">
+                  {item.displayName || item.componentKey || item.componentId}
+                </span>
+                <span className="ml-2 text-xs px-2 py-0.5 bg-muted rounded">
+                  {item.componentKind}
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 {item.isStale && (
-                  <span className="text-xs px-2 py-0.5 bg-yellow-100 text-yellow-800 rounded">Stale</span>
+                  <span className="text-xs px-2 py-0.5 bg-yellow-100 text-yellow-800 rounded">
+                    Stale
+                  </span>
                 )}
                 {item.approval?.status && (
                   <span
                     className={`text-xs px-2 py-0.5 rounded ${
-                      item.approval.status === 'approved'
-                        ? 'bg-green-100 text-green-800'
-                        : item.approval.status === 'needs_changes'
-                        ? 'bg-yellow-100 text-yellow-800'
-                        : 'bg-red-100 text-red-800'
+                      item.approval.status === "approved"
+                        ? "bg-green-100 text-green-800"
+                        : item.approval.status === "needs_changes"
+                          ? "bg-yellow-100 text-yellow-800"
+                          : "bg-red-100 text-red-800"
                     }`}
                   >
                     {item.approval.status}
@@ -203,7 +216,7 @@ export function ReviewQueueList({
               </div>
             </div>
             <div className="text-xs text-muted-foreground mt-1 font-mono">
-              {item.currentHash?.slice(0, 8) || 'No hash'}
+              {item.currentHash?.slice(0, 8) || "No hash"}
             </div>
           </button>
         ))}
@@ -225,26 +238,31 @@ export function ReviewDecisionPanel({
   harnessCanApprove = false,
 }: {
   item: ReviewQueueItem;
-  onSubmit: (status: string, comment?: string, issueTags?: string[], priority?: string) => Promise<void>;
+  onSubmit: (
+    status: string,
+    comment?: string,
+    issueTags?: string[],
+    priority?: string,
+  ) => Promise<void>;
   onCancel: () => void;
   harnessCanApprove?: boolean;
 }) {
-  const [status, setStatus] = useState<string>('');
-  const [comment, setComment] = useState('');
-  const [priority, setPriority] = useState<string>('');
+  const [status, setStatus] = useState<string>("");
+  const [comment, setComment] = useState("");
+  const [priority, setPriority] = useState<string>("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const issueTagOptions = [
-    'math_correctness',
-    'curriculum_alignment',
-    'pedagogy',
-    'wording',
-    'ui_behavior',
-    'answer_validation',
-    'feedback_quality',
-    'algorithmic_variation',
-    'accessibility',
+    "math_correctness",
+    "curriculum_alignment",
+    "pedagogy",
+    "wording",
+    "ui_behavior",
+    "answer_validation",
+    "feedback_quality",
+    "algorithmic_variation",
+    "accessibility",
   ];
 
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -252,20 +270,25 @@ export function ReviewDecisionPanel({
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!status) {
-      setError('Please select a decision');
+      setError("Please select a decision");
       return;
     }
-    if ((status === 'needs_changes' || status === 'rejected') && !comment) {
-      setError('Comment is required for needs_changes or rejected');
+    if ((status === "needs_changes" || status === "rejected") && !comment) {
+      setError("Comment is required for needs_changes or rejected");
       return;
     }
 
     setSubmitting(true);
     setError(null);
     try {
-      await onSubmit(status, comment || undefined, selectedTags.length > 0 ? selectedTags : undefined, priority || undefined);
+      await onSubmit(
+        status,
+        comment || undefined,
+        selectedTags.length > 0 ? selectedTags : undefined,
+        priority || undefined,
+      );
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Submission failed');
+      setError(err instanceof Error ? err.message : "Submission failed");
     } finally {
       setSubmitting(false);
     }
@@ -285,29 +308,29 @@ export function ReviewDecisionPanel({
         <div className="flex gap-2">
           <button
             type="button"
-            onClick={() => setStatus('approved')}
+            onClick={() => setStatus("approved")}
             className={`px-4 py-2 rounded ${
-              status === 'approved' ? 'bg-green-600 text-white' : 'bg-muted hover:bg-muted/80'
+              status === "approved" ? "bg-green-600 text-white" : "bg-muted hover:bg-muted/80"
             }`}
             disabled={!harnessCanApprove}
-            title={!harnessCanApprove ? 'Complete harness review before approving' : undefined}
+            title={!harnessCanApprove ? "Complete harness review before approving" : undefined}
           >
-            Approve {!harnessCanApprove && '(complete harness review first)'}
+            Approve {!harnessCanApprove && "(complete harness review first)"}
           </button>
           <button
             type="button"
-            onClick={() => setStatus('needs_changes')}
+            onClick={() => setStatus("needs_changes")}
             className={`px-4 py-2 rounded ${
-              status === 'needs_changes' ? 'bg-yellow-600 text-white' : 'bg-muted hover:bg-muted/80'
+              status === "needs_changes" ? "bg-yellow-600 text-white" : "bg-muted hover:bg-muted/80"
             }`}
           >
             Needs Changes
           </button>
           <button
             type="button"
-            onClick={() => setStatus('rejected')}
+            onClick={() => setStatus("rejected")}
             className={`px-4 py-2 rounded ${
-              status === 'rejected' ? 'bg-red-600 text-white' : 'bg-muted hover:bg-muted/80'
+              status === "rejected" ? "bg-red-600 text-white" : "bg-muted hover:bg-muted/80"
             }`}
           >
             Reject
@@ -318,13 +341,13 @@ export function ReviewDecisionPanel({
       <div className="space-y-2">
         <label className="block text-sm font-medium">Priority</label>
         <div className="flex gap-2">
-          {['low', 'medium', 'high'].map((p) => (
+          {["low", "medium", "high"].map((p) => (
             <button
               key={p}
               type="button"
               onClick={() => setPriority(p)}
               className={`px-3 py-1 rounded text-sm ${
-                priority === p ? 'bg-primary text-primary-foreground' : 'bg-muted hover:bg-muted/80'
+                priority === p ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/80"
               }`}
             >
               {p}
@@ -360,7 +383,7 @@ export function ReviewDecisionPanel({
         <textarea
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          placeholder={status === 'approved' ? 'Optional comment' : 'Required comment...'}
+          placeholder={status === "approved" ? "Optional comment" : "Required comment..."}
           className="w-full border rounded p-2 min-h-[100px]"
         />
       </div>
@@ -379,16 +402,16 @@ export function ReviewDecisionPanel({
         <button
           type="submit"
           className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90"
-          disabled={submitting || !status || (status === 'approved' && !harnessCanApprove)}
+          disabled={submitting || !status || (status === "approved" && !harnessCanApprove)}
         >
-          {submitting ? 'Submitting...' : 'Submit Review'}
+          {submitting ? "Submitting..." : "Submit Review"}
         </button>
       </div>
     </form>
   );
 }
 
-type ReviewView = 'decision' | 'harness';
+type ReviewView = "decision" | "harness";
 
 /**
  * Renders the full review queue page with list and decision panels.
@@ -397,14 +420,14 @@ type ReviewView = 'decision' | 'harness';
  */
 export function ReviewQueueView() {
   const [selectedItem, setSelectedItem] = useState<ReviewQueueItem | null>(null);
-  const [reviewView, setReviewView] = useState<ReviewView>('decision');
+  const [reviewView, setReviewView] = useState<ReviewView>("decision");
   const [harnessCanApprove, setHarnessCanApprove] = useState(false);
 
   const { items, loading, error, filters, setFilters, handleReviewSubmit } = useReviewQueueClient();
 
   const handleItemSelect = useCallback((item: ReviewQueueItem) => {
     setSelectedItem(item);
-    setReviewView('decision');
+    setReviewView("decision");
     setHarnessCanApprove(false);
   }, []);
 
@@ -431,34 +454,34 @@ export function ReviewQueueView() {
           <>
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold">
-                {reviewView === 'decision' ? 'Review Decision' : 'Component Harness'}
+                {reviewView === "decision" ? "Review Decision" : "Component Harness"}
               </h2>
               <div className="flex gap-2">
                 <button
                   type="button"
-                  onClick={() => setReviewView('decision')}
+                  onClick={() => setReviewView("decision")}
                   className={`px-3 py-1 text-sm rounded transition-colors ${
-                    reviewView === 'decision'
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted hover:bg-muted/80'
+                    reviewView === "decision"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted hover:bg-muted/80"
                   }`}
                 >
                   Decision
                 </button>
                 <button
                   type="button"
-                  onClick={() => setReviewView('harness')}
+                  onClick={() => setReviewView("harness")}
                   className={`px-3 py-1 text-sm rounded transition-colors ${
-                    reviewView === 'harness'
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted hover:bg-muted/80'
+                    reviewView === "harness"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted hover:bg-muted/80"
                   }`}
                 >
                   Harness
                 </button>
               </div>
             </div>
-            {reviewView === 'decision' ? (
+            {reviewView === "decision" ? (
               <ReviewDecisionPanel
                 item={selectedItem}
                 harnessCanApprove={harnessCanApprove}
@@ -469,14 +492,17 @@ export function ReviewQueueView() {
                     status,
                     comment,
                     issueTags,
-                    priority
+                    priority,
                   );
                   setSelectedItem(null);
                 }}
                 onCancel={() => setSelectedItem(null)}
               />
             ) : (
-              <ComponentHarnessPanel item={selectedItem} onCanApproveChange={handleHarnessCanApproveChange} />
+              <ComponentHarnessPanel
+                item={selectedItem}
+                onCanApproveChange={handleHarnessCanApproveChange}
+              />
             )}
           </>
         ) : (
@@ -493,33 +519,43 @@ export function ReviewQueueView() {
  * @param {{ item: ReviewQueueItem; onCanApproveChange: (canApprove: boolean) }} props - Component harness panel configuration.
  * @returns {JSX.Element} A review harness for the selected item.
  */
-function ComponentHarnessPanel({ item, onCanApproveChange }: { item: ReviewQueueItem; onCanApproveChange: (canApprove: boolean) => void }) {
+function ComponentHarnessPanel({
+  item,
+  onCanApproveChange,
+}: {
+  item: ReviewQueueItem;
+  onCanApproveChange: (canApprove: boolean) => void;
+}) {
   const defaultActivityProps = {
     activityId: item.componentId,
-    mode: 'teaching' as const,
+    mode: "teaching" as const,
   };
 
-  const effectiveSteps = item.steps && item.steps.length > 0 ? item.steps : [
-    {
-      expression: 'x^2 + 5x + 6 = 0',
-      explanation: 'Start with the quadratic equation in standard form.',
-    },
-    {
-      expression: '(x + 2)(x + 3) = 0',
-      explanation: 'Factor the trinomial into two binomials.',
-    },
-    {
-      expression: 'x = -2 or x = -3',
-      explanation: 'Apply the Zero Product Property.',
-    },
-  ];
+  const effectiveSteps =
+    item.steps && item.steps.length > 0
+      ? item.steps
+      : [
+          {
+            expression: "x^2 + 5x + 6 = 0",
+            explanation: "Start with the quadratic equation in standard form.",
+          },
+          {
+            expression: "(x + 2)(x + 3) = 0",
+            explanation: "Factor the trinomial into two binomials.",
+          },
+          {
+            expression: "x = -2 or x = -3",
+            explanation: "Apply the Zero Product Property.",
+          },
+        ];
 
-  const effectiveProps = item.storedProps && Object.keys(item.storedProps).length > 0
-    ? { ...defaultActivityProps, ...item.storedProps }
-    : defaultActivityProps;
+  const effectiveProps =
+    item.storedProps && Object.keys(item.storedProps).length > 0
+      ? { ...defaultActivityProps, ...item.storedProps }
+      : defaultActivityProps;
 
   switch (item.componentKind) {
-    case 'example':
+    case "example":
       return (
         <ExampleReviewHarness
           componentKey={item.componentKey || item.componentId}
@@ -527,7 +563,7 @@ function ComponentHarnessPanel({ item, onCanApproveChange }: { item: ReviewQueue
           onCanApproveChange={onCanApproveChange}
         />
       );
-    case 'practice':
+    case "practice":
       return (
         <PracticeReviewHarness
           componentKey={item.componentKey || item.componentId}
@@ -535,7 +571,7 @@ function ComponentHarnessPanel({ item, onCanApproveChange }: { item: ReviewQueue
           onCanApproveChange={onCanApproveChange}
         />
       );
-    case 'activity':
+    case "activity":
     default:
       return (
         <ActivityReviewHarness

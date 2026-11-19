@@ -16,13 +16,13 @@
 // `it` — Phase-2 Green decides whether structural checks are
 // sufficient or an oracle is required.
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 
-import { verifyGenerator } from '../verify-generator';
-import { createWellFormedGenerator } from './fixtures/wellFormedGenerator';
-import { createWrongAnswerGenerator } from './fixtures/badGenerators';
-import { wellFormedStubOracle } from './fixtures/numericOracle';
-import { DEFAULT_NUM_SEEDS, forEachSeed } from './fixtures/seedCorpus';
+import { verifyGenerator } from "../verify-generator";
+import { createWellFormedGenerator } from "./fixtures/wellFormedGenerator";
+import { createWrongAnswerGenerator } from "./fixtures/badGenerators";
+import { wellFormedStubOracle } from "./fixtures/numericOracle";
+import { DEFAULT_NUM_SEEDS, forEachSeed } from "./fixtures/seedCorpus";
 
 /**
  * Filter checks in a report by name.
@@ -30,64 +30,61 @@ import { DEFAULT_NUM_SEEDS, forEachSeed } from './fixtures/seedCorpus';
  * @param {string} name - Check name to filter by
  * @returns {import("../verify-generator").VerifyGeneratorCheck[]} Array of matching checks
  */
-function checksNamed(
-  report: ReturnType<typeof verifyGenerator>,
-  name: string,
-) {
+function checksNamed(report: ReturnType<typeof verifyGenerator>, name: string) {
   return report.checks.filter((c) => c.name === name);
 }
 
-describe('Unique correct answer (FR3)', () => {
-  it('positive — well-formed generator passes unique-answer for every seed in the corpus (with injected oracle)', () => {
+describe("Unique correct answer (FR3)", () => {
+  it("positive — well-formed generator passes unique-answer for every seed in the corpus (with injected oracle)", () => {
     const stub = createWellFormedGenerator();
     const report = verifyGenerator(stub, {
       numSeeds: DEFAULT_NUM_SEEDS,
       oracle: wellFormedStubOracle,
     });
 
-    const uaChecks = checksNamed(report, 'unique-answer');
+    const uaChecks = checksNamed(report, "unique-answer");
     expect(uaChecks.length).toBeGreaterThan(0);
     for (const check of uaChecks) {
       expect(check.passed).toBe(true);
     }
     expect(report.errors).toHaveLength(0);
-    expect(report.verdict).toBe('pass');
+    expect(report.verdict).toBe("pass");
   });
 
-  it('negative — wrong-answer generator is caught with a readable message', () => {
+  it("negative — wrong-answer generator is caught with a readable message", () => {
     const bad = createWrongAnswerGenerator();
     const report = verifyGenerator(bad, {
       numSeeds: DEFAULT_NUM_SEEDS,
       oracle: wellFormedStubOracle,
     });
 
-    const uaChecks = checksNamed(report, 'unique-answer');
+    const uaChecks = checksNamed(report, "unique-answer");
     expect(uaChecks.length).toBeGreaterThan(0);
     const failed = uaChecks.filter((c) => !c.passed);
     expect(failed.length).toBeGreaterThan(0);
     // The failure message must reference the seed so the author can
     // reproduce the failing instance.
-    expect(failed[0]?.message ?? '').toMatch(/seed/i);
-    expect(report.verdict).toBe('fail');
+    expect(failed[0]?.message ?? "").toMatch(/seed/i);
+    expect(report.verdict).toBe("fail");
   });
 
-  it('structural fallback — without an oracle, the well-formed generator still produces a passing unique-answer check', () => {
+  it("structural fallback — without an oracle, the well-formed generator still produces a passing unique-answer check", () => {
     const stub = createWellFormedGenerator();
     const report = verifyGenerator(stub, { numSeeds: DEFAULT_NUM_SEEDS });
-    const uaChecks = checksNamed(report, 'unique-answer');
+    const uaChecks = checksNamed(report, "unique-answer");
     expect(uaChecks.length).toBeGreaterThan(0);
     for (const check of uaChecks) {
       expect(check.passed).toBe(true);
     }
   });
 
-  it('direct property — for every corpus seed the well-formed generator returns the structurally-correct answer', () => {
+  it("direct property — for every corpus seed the well-formed generator returns the structurally-correct answer", () => {
     // This is the underlying invariant: re-derive the answer from the
     // problem and assert equality. The harness-level check above is the
     // contract; this is the local sanity check.
     const stub = createWellFormedGenerator();
     forEachSeed(({ seed }) => {
-      const input = { nodeId: 'ua-prop', seed, difficulty: 1 };
+      const input = { nodeId: "ua-prop", seed, difficulty: 1 };
       const output = stub.generate(input);
       expect(wellFormedStubOracle(output)).toBe(true);
     });

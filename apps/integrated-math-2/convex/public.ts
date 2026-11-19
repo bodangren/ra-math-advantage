@@ -22,9 +22,7 @@ async function publishedCurriculum(ctx: QueryCtx) {
     .withIndex("by_status", (q) => q.eq("status", "published"))
     .take(1000);
   const ids = [...new Set(versions.map((version) => version.lessonId))];
-  const rows = (await Promise.all(ids.map((id) => ctx.db.get(id)))).filter(
-    (row) => row !== null,
-  );
+  const rows = (await Promise.all(ids.map((id) => ctx.db.get(id)))).filter((row) => row !== null);
   return units
     .map((unit) => ({
       unitNumber: unit.number,
@@ -36,9 +34,8 @@ async function publishedCurriculum(ctx: QueryCtx) {
         .map((row) => ({
           id: row._id,
           title:
-            versions
-              .filter((v) => v.lessonId === row._id)
-              .sort((a, b) => b.version - a.version)[0].title ?? row.title,
+            versions.filter((v) => v.lessonId === row._id).sort((a, b) => b.version - a.version)[0]
+              .title ?? row.title,
           slug: row.slug,
           orderIndex: row.orderIndex,
         })),
@@ -62,10 +59,7 @@ export const getCurriculumStats = query({
     const curriculum = await publishedCurriculum(ctx);
     return {
       unitCount: curriculum.length,
-      lessonCount: curriculum.reduce(
-        (sum, unit) => sum + unit.lessons.length,
-        0,
-      ),
+      lessonCount: curriculum.reduce((sum, unit) => sum + unit.lessons.length, 0),
     };
   },
 });

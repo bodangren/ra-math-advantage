@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { GraphingCanvas } from '../../components/graphing/GraphingCanvas';
-import type { Point, FunctionPlot } from '../../components/graphing/GraphingCanvas';
-import type { MathPrimitiveProps } from '../types';
+import React from "react";
+import { GraphingCanvas } from "../../components/graphing/GraphingCanvas";
+import type { Point, FunctionPlot } from "../../components/graphing/GraphingCanvas";
+import type { MathPrimitiveProps } from "../types";
 
 export interface CoordinatePlaneValue {
   points: Point[];
@@ -18,8 +18,7 @@ export interface CoordinatePlaneConfig {
   height?: number;
 }
 
-export type CoordinatePlaneProps =
-  MathPrimitiveProps<CoordinatePlaneValue> & CoordinatePlaneConfig;
+export type CoordinatePlaneProps = MathPrimitiveProps<CoordinatePlaneValue> & CoordinatePlaneConfig;
 
 function pointLabel(p: Point): string {
   return p.label ?? `${p.x.toFixed(1)}, ${p.y.toFixed(1)}`;
@@ -28,7 +27,7 @@ function pointLabel(p: Point): string {
 export function CoordinatePlane({
   value,
   onChange,
-  mode = 'interactive',
+  mode = "interactive",
   disabled = false,
   domain = [-10, 10],
   range = [-10, 10],
@@ -37,7 +36,7 @@ export function CoordinatePlane({
   width = 600,
   height = 600,
 }: CoordinatePlaneProps) {
-  const interactive = mode === 'interactive' && !disabled;
+  const interactive = mode === "interactive" && !disabled;
   const readonly = !interactive;
 
   const labeledPoints = value.points.map((p) => ({
@@ -67,9 +66,7 @@ export function CoordinatePlane({
         interactive && onChange
           ? (label) =>
               onChange({
-                points: value.points.filter(
-                  (pt) => pointLabel(pt) !== label,
-                ),
+                points: value.points.filter((pt) => pointLabel(pt) !== label),
               })
           : undefined
       }

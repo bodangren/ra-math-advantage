@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { useState, type ReactNode } from 'react';
-import { Loader2, MoreHorizontal, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { useState, type ReactNode } from "react";
+import { Loader2, MoreHorizontal, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from "@/components/ui/dropdown-menu";
 
 export interface StudentAccountUpdate {
   studentId: string;
@@ -38,7 +38,6 @@ interface UpdateStudentResponse {
   displayName: string;
   deactivated: boolean;
 }
-
 
 /**
  * Renders a reusable modal dialog shell with a title bar and close button.
@@ -83,7 +82,6 @@ function DialogShell({
   );
 }
 
-
 /**
  * Renders a dropdown menu with student management actions (reset password,
  * edit details) and their associated dialog workflows.
@@ -119,9 +117,9 @@ export function TeacherStudentActions({
     setCredentials(null);
 
     try {
-      const response = await fetch('/api/users/reset-student-password', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/users/reset-student-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ studentId }),
       });
 
@@ -132,7 +130,7 @@ export function TeacherStudentActions({
 
       setCredentials(payload);
     } catch (error) {
-      setResetError(error instanceof Error ? error.message : 'Failed to reset password');
+      setResetError(error instanceof Error ? error.message : "Failed to reset password");
     } finally {
       setResetLoading(false);
     }
@@ -143,9 +141,9 @@ export function TeacherStudentActions({
     setEditError(null);
 
     try {
-      const response = await fetch('/api/users/update-student', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/users/update-student", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           studentId,
           ...update,
@@ -164,7 +162,7 @@ export function TeacherStudentActions({
       });
       setIsEditDialogOpen(false);
     } catch (error) {
-      setEditError(error instanceof Error ? error.message : 'Failed to update student');
+      setEditError(error instanceof Error ? error.message : "Failed to update student");
     } finally {
       setEditLoading(false);
     }
@@ -237,7 +235,10 @@ export function TeacherStudentActions({
       )}
 
       {isEditDialogOpen && (
-        <DialogShell title={`Edit Student: ${displayName}`} onClose={() => setIsEditDialogOpen(false)}>
+        <DialogShell
+          title={`Edit Student: ${displayName}`}
+          onClose={() => setIsEditDialogOpen(false)}
+        >
           <div className="space-y-2">
             <Label htmlFor={`display-name-${studentId}`}>Display Name</Label>
             <Input
@@ -260,7 +261,7 @@ export function TeacherStudentActions({
               onClick={() => performUpdateStudent({ displayName: editDisplayName.trim() })}
               disabled={editLoading}
             >
-              {editLoading ? 'Saving...' : 'Save Changes'}
+              {editLoading ? "Saving..." : "Save Changes"}
             </Button>
             <Button
               type="button"

@@ -17,7 +17,12 @@
  *   audit context.
  */
 
-import { internalQuery, internalMutation, type QueryCtx, type MutationCtx } from "./_generated/server";
+import {
+  internalQuery,
+  internalMutation,
+  type QueryCtx,
+  type MutationCtx,
+} from "./_generated/server";
 import { v } from "convex/values";
 import { Doc, Id } from "./_generated/dataModel";
 import { computeComponentContentHash } from "../lib/activities/content-hash";
@@ -133,8 +138,17 @@ export async function listReviewQueueHandler(
  */
 export const listReviewQueue = internalQuery({
   args: {
-    componentKind: v.optional(v.union(v.literal("example"), v.literal("activity"), v.literal("practice"))),
-    status: v.optional(v.union(v.literal("unreviewed"), v.literal("approved"), v.literal("needs_changes"), v.literal("rejected"))),
+    componentKind: v.optional(
+      v.union(v.literal("example"), v.literal("activity"), v.literal("practice")),
+    ),
+    status: v.optional(
+      v.union(
+        v.literal("unreviewed"),
+        v.literal("approved"),
+        v.literal("needs_changes"),
+        v.literal("rejected"),
+      ),
+    ),
     onlyStale: v.optional(v.boolean()),
   },
   handler: listReviewQueueHandler,
@@ -219,11 +233,15 @@ export async function submitReviewHandler(ctx: MutationCtx, args: SubmitReviewAr
   } else {
     const existingApproval = await ctx.db
       .query("component_approvals")
-      .withIndex("by_component", (q) => q.eq("componentKind", derivedComponentKind).eq("componentId", args.componentId))
+      .withIndex("by_component", (q) =>
+        q.eq("componentKind", derivedComponentKind).eq("componentId", args.componentId),
+      )
       .unique();
     if (existingApproval) {
       if (existingApproval.contentHash && existingApproval.contentHash !== componentContentHash) {
-        throw new Error("Content hash mismatch: the component has changed since the last review. Please refresh and review the current version.");
+        throw new Error(
+          "Content hash mismatch: the component has changed since the last review. Please refresh and review the current version.",
+        );
       }
       await ctx.db.patch(existingApproval._id, {
         ...approvalSummary,
@@ -260,13 +278,15 @@ export const submitReview = internalMutation({
     comment: v.optional(v.string()),
     issueTags: v.optional(v.array(v.string())),
     priority: v.optional(v.union(v.literal("low"), v.literal("medium"), v.literal("high"))),
-    placement: v.optional(v.object({
-      lessonId: v.optional(v.string()),
-      lessonVersionId: v.optional(v.string()),
-      phaseId: v.optional(v.string()),
-      phaseNumber: v.optional(v.number()),
-      sectionId: v.optional(v.string()),
-    })),
+    placement: v.optional(
+      v.object({
+        lessonId: v.optional(v.string()),
+        lessonVersionId: v.optional(v.string()),
+        phaseId: v.optional(v.string()),
+        phaseNumber: v.optional(v.number()),
+        sectionId: v.optional(v.string()),
+      }),
+    ),
     createdBy: v.id("profiles"),
   },
   handler: submitReviewHandler,

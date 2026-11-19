@@ -1,17 +1,17 @@
-import { v } from 'convex/values';
+import { v } from "convex/values";
 
 export const practiceModeValidator = v.union(
-  v.literal('worked_example'),
-  v.literal('guided_practice'),
-  v.literal('independent_practice'),
-  v.literal('assessment'),
+  v.literal("worked_example"),
+  v.literal("guided_practice"),
+  v.literal("independent_practice"),
+  v.literal("assessment"),
 );
 
 export const practiceSubmissionStatusValidator = v.union(
-  v.literal('draft'),
-  v.literal('submitted'),
-  v.literal('graded'),
-  v.literal('returned'),
+  v.literal("draft"),
+  v.literal("submitted"),
+  v.literal("graded"),
+  v.literal("returned"),
 );
 
 // NOTE: rawAnswer uses v.any() because practice families emit heterogeneous answer shapes
@@ -35,7 +35,7 @@ export const practiceSubmissionPartValidator = v.object({
 });
 
 export const practiceSubmissionEnvelopeValidator = v.object({
-  contractVersion: v.literal('practice.v1'),
+  contractVersion: v.literal("practice.v1"),
   activityId: v.string(),
   mode: practiceModeValidator,
   status: practiceSubmissionStatusValidator,

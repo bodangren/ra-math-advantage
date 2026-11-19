@@ -1,8 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  resolveExportScope,
-  type ExportScope,
-} from "../../../lib/teacher/data-export";
+import { resolveExportScope, type ExportScope } from "../../../lib/teacher/data-export";
 
 const STUDENT_ID = "profile_student_001" as const;
 const CLASS_ID = "class_001" as const;
@@ -117,15 +114,11 @@ describe("resolveExportScope", () => {
   });
 
   it("throws when the student dataset is missing studentId", () => {
-    expect(() =>
-      resolveExportScope({ dataset: "student" } as ExportScope),
-    ).toThrow();
+    expect(() => resolveExportScope({ dataset: "student" } as ExportScope)).toThrow();
   });
 
   it("throws when the class dataset is missing classId", () => {
-    expect(() =>
-      resolveExportScope({ dataset: "class" } as ExportScope),
-    ).toThrow();
+    expect(() => resolveExportScope({ dataset: "class" } as ExportScope)).toThrow();
   });
 
   it("throws when the submissions dataset is missing classId", () => {
@@ -155,11 +148,7 @@ describe("resolveExportScope", () => {
       endDate: 999,
     });
 
-    const queries = new Set([
-      student.query,
-      classResolved.query,
-      submissions.query,
-    ]);
+    const queries = new Set([student.query, classResolved.query, submissions.query]);
     expect(queries.size).toBe(3);
   });
 

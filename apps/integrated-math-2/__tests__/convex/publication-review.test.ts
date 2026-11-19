@@ -1,11 +1,7 @@
 // @vitest-environment node
 import { it, expect } from "vitest";
 import { database, invoke } from "../helpers/database";
-import {
-  listDrafts,
-  previewDraft,
-  publishLesson,
-} from "../../convex/publication";
+import { listDrafts, previewDraft, publishLesson } from "../../convex/publication";
 async function setup(role = "admin") {
   const t = database();
   const adminId = await t.db.insert("profiles", {
@@ -28,15 +24,13 @@ it("restricts draft review and app publication to active administrators", async 
     lessonId: "lesson",
     status: "draft",
   });
-  await expect(
-    invoke(listDrafts, t.ctx, { adminId: t.adminId }),
-  ).rejects.toThrow("not_allowed");
-  await expect(
-    invoke(previewDraft, t.ctx, { adminId: t.adminId, versionId }),
-  ).rejects.toThrow("not_allowed");
-  await expect(
-    invoke(publishLesson, t.ctx, { adminId: t.adminId, versionId }),
-  ).rejects.toThrow("not_allowed");
+  await expect(invoke(listDrafts, t.ctx, { adminId: t.adminId })).rejects.toThrow("not_allowed");
+  await expect(invoke(previewDraft, t.ctx, { adminId: t.adminId, versionId })).rejects.toThrow(
+    "not_allowed",
+  );
+  await expect(invoke(publishLesson, t.ctx, { adminId: t.adminId, versionId })).rejects.toThrow(
+    "not_allowed",
+  );
 });
 it("paginates drafts and exposes the exact stored answer for administrator review", async () => {
   const t = await setup();
@@ -101,7 +95,7 @@ it("paginates drafts and exposes the exact stored answer for administrator revie
   await invoke(publishLesson, t.ctx, { adminId: t.adminId, versionId });
   expect(await t.db.get(versionId)).toMatchObject({ status: "published" });
   t.tables.auth_credentials[0].isActive = false;
-  await expect(
-    invoke(previewDraft, t.ctx, { adminId: t.adminId, versionId }),
-  ).rejects.toThrow("not_allowed");
+  await expect(invoke(previewDraft, t.ctx, { adminId: t.adminId, versionId })).rejects.toThrow(
+    "not_allowed",
+  );
 });

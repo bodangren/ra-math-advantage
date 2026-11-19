@@ -39,24 +39,24 @@
  * Phase 2 Red Phase Result for the explicit handoff note.
  */
 
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import nodesJson from '@/curriculum/skill-graph/module-1/nodes.json';
+import nodesJson from "@/curriculum/skill-graph/module-1/nodes.json";
 
 import {
   IM3_M1_SKILL_SET,
   REMEDIATION_ACTIVITY_KINDS,
   makeMisconceptionNode,
   makeRemediationActivity,
-} from './misconception-content.fixtures';
+} from "./misconception-content.fixtures";
 
 import {
   IM3_MISCONCEPTION_TAGS,
   allIm3MisconceptionTagSlugs,
   isCanonicalIm3MisconceptionTag,
-} from '@/lib/practice/misconception-taxonomy';
+} from "@/lib/practice/misconception-taxonomy";
 
-import { getDistractorTypesForMisconception } from '@/lib/practice/misconception-mapping';
+import { getDistractorTypesForMisconception } from "@/lib/practice/misconception-mapping";
 
 import {
   IM3_MISCONCEPTION_REMEDIATIONS,
@@ -66,41 +66,37 @@ import {
   type RemediationActivityRef,
   type IntegrityResult,
   type IntegrityError,
-} from '@/lib/practice/misconception-remediations';
+} from "@/lib/practice/misconception-remediations";
 
 const VALID_KINDS: ReadonlySet<RemediationActivityKind> = new Set(
   REMEDIATION_ACTIVITY_KINDS as readonly RemediationActivityKind[],
 );
 
-const MODULE_1_NODE_IDS: ReadonlySet<string> = new Set(
-  nodesJson.nodes.map((node) => node.id),
-);
+const MODULE_1_NODE_IDS: ReadonlySet<string> = new Set(nodesJson.nodes.map((node) => node.id));
 
-function errorCodes(result: IntegrityResult): readonly IntegrityError['code'][] {
+function errorCodes(result: IntegrityResult): readonly IntegrityError["code"][] {
   return result.errors.map((e) => e.code);
 }
 
-describe('IM3_MISCONCEPTION_REMEDIATIONS — authored registry shape', () => {
-  it('exports a non-empty remediation registry', () => {
+describe("IM3_MISCONCEPTION_REMEDIATIONS — authored registry shape", () => {
+  it("exports a non-empty remediation registry", () => {
     expect(IM3_MISCONCEPTION_REMEDIATIONS).toBeDefined();
-    expect(Object.keys(IM3_MISCONCEPTION_REMEDIATIONS).length).toBeGreaterThan(
-      0,
-    );
+    expect(Object.keys(IM3_MISCONCEPTION_REMEDIATIONS).length).toBeGreaterThan(0);
   });
 
-  it('every taxonomy slug is a key in the remediation registry (FR3 / AC3)', () => {
+  it("every taxonomy slug is a key in the remediation registry (FR3 / AC3)", () => {
     for (const slug of allIm3MisconceptionTagSlugs()) {
       expect(IM3_MISCONCEPTION_REMEDIATIONS[slug]).toBeDefined();
     }
   });
 
-  it('every remediation-registry key is a canonical taxonomy slug (no orphans, edge case c)', () => {
+  it("every remediation-registry key is a canonical taxonomy slug (no orphans, edge case c)", () => {
     for (const slug of Object.keys(IM3_MISCONCEPTION_REMEDIATIONS)) {
       expect(isCanonicalIm3MisconceptionTag(slug)).toBe(true);
     }
   });
 
-  it('every taxonomy tag has at least one `remediated_by` activity (FR3 / AC3)', () => {
+  it("every taxonomy tag has at least one `remediated_by` activity (FR3 / AC3)", () => {
     for (const slug of allIm3MisconceptionTagSlugs()) {
       const remediations = IM3_MISCONCEPTION_REMEDIATIONS[slug];
       expect(Array.isArray(remediations)).toBe(true);
@@ -108,29 +104,25 @@ describe('IM3_MISCONCEPTION_REMEDIATIONS — authored registry shape', () => {
     }
   });
 
-  it('every remediation activity has a populated `activityId`, `activityKind`, `label`, and `sourceRef`', () => {
-    for (const [slug, remediations] of Object.entries(
-      IM3_MISCONCEPTION_REMEDIATIONS,
-    )) {
+  it("every remediation activity has a populated `activityId`, `activityKind`, `label`, and `sourceRef`", () => {
+    for (const [slug, remediations] of Object.entries(IM3_MISCONCEPTION_REMEDIATIONS)) {
       for (const rem of remediations as readonly RemediationActivityRef[]) {
-        expect(typeof rem.activityId, `activityId on ${slug}`).toBe('string');
+        expect(typeof rem.activityId, `activityId on ${slug}`).toBe("string");
         expect(rem.activityId.length).toBeGreaterThan(0);
 
         expect(VALID_KINDS.has(rem.activityKind)).toBe(true);
 
-        expect(typeof rem.label, `label on ${slug}`).toBe('string');
+        expect(typeof rem.label, `label on ${slug}`).toBe("string");
         expect(rem.label.length).toBeGreaterThan(0);
 
-        expect(typeof rem.sourceRef, `sourceRef on ${slug}`).toBe('string');
+        expect(typeof rem.sourceRef, `sourceRef on ${slug}`).toBe("string");
         expect(rem.sourceRef.length).toBeGreaterThan(0);
       }
     }
   });
 
-  it('every live remediation target resolves to a real Module 1 curriculum node', () => {
-    for (const [slug, remediations] of Object.entries(
-      IM3_MISCONCEPTION_REMEDIATIONS,
-    )) {
+  it("every live remediation target resolves to a real Module 1 curriculum node", () => {
+    for (const [slug, remediations] of Object.entries(IM3_MISCONCEPTION_REMEDIATIONS)) {
       for (const rem of remediations as readonly RemediationActivityRef[]) {
         expect(
           MODULE_1_NODE_IDS.has(rem.activityId),
@@ -140,10 +132,8 @@ describe('IM3_MISCONCEPTION_REMEDIATIONS — authored registry shape', () => {
     }
   });
 
-  it('no remediation activity self-loops on its parent misconception slug (edge case 3)', () => {
-    for (const [slug, remediations] of Object.entries(
-      IM3_MISCONCEPTION_REMEDIATIONS,
-    )) {
+  it("no remediation activity self-loops on its parent misconception slug (edge case 3)", () => {
+    for (const [slug, remediations] of Object.entries(IM3_MISCONCEPTION_REMEDIATIONS)) {
       for (const rem of remediations as readonly RemediationActivityRef[]) {
         expect(
           rem.activityId,
@@ -154,39 +144,36 @@ describe('IM3_MISCONCEPTION_REMEDIATIONS — authored registry shape', () => {
   });
 });
 
-describe('getRemediationsForMisconception — live behavior', () => {
-  it('returns the registry entry for every taxonomy slug', () => {
+describe("getRemediationsForMisconception — live behavior", () => {
+  it("returns the registry entry for every taxonomy slug", () => {
     for (const slug of allIm3MisconceptionTagSlugs()) {
       const remediations = getRemediationsForMisconception(slug);
       expect(remediations).toEqual(IM3_MISCONCEPTION_REMEDIATIONS[slug]);
     }
   });
 
-  it('returns an empty array for an unknown slug (safe lookup)', () => {
-    expect(getRemediationsForMisconception('not-an-im3-tag')).toEqual([]);
+  it("returns an empty array for an unknown slug (safe lookup)", () => {
+    expect(getRemediationsForMisconception("not-an-im3-tag")).toEqual([]);
   });
 });
 
-describe('checkMisconceptionContentIntegrity — live behavior on authored content', () => {
-  it('returns ok=true with no errors against the live IM3 taxonomy + remediation registry (AC3)', () => {
+describe("checkMisconceptionContentIntegrity — live behavior on authored content", () => {
+  it("returns ok=true with no errors against the live IM3 taxonomy + remediation registry (AC3)", () => {
     const result = checkMisconceptionContentIntegrity();
     expect(result.ok, `integrity errors: ${JSON.stringify(result.errors)}`).toBe(true);
     expect(result.errors).toEqual([]);
   });
 
-  it('confirms (a): every prioritized-skill-set tag has a non-empty detection mapping', () => {
+  it("confirms (a): every prioritized-skill-set tag has a non-empty detection mapping", () => {
     // Re-asserts Phase 1's mapping coverage from inside the integrity check
     // so a Phase 2 regression that breaks the mapping surface is caught
     // here, not just in the Phase 1 mapping unit tests.
     const taxonomyEntries = Object.values(IM3_MISCONCEPTION_TAGS);
     for (const skillId of IM3_M1_SKILL_SET) {
-      const covering = taxonomyEntries.filter((e) =>
-        e.affectedSkills.includes(skillId),
+      const covering = taxonomyEntries.filter((e) => e.affectedSkills.includes(skillId));
+      expect(covering.length, `prioritized skill ${skillId} has no taxonomy entry`).toBeGreaterThan(
+        0,
       );
-      expect(
-        covering.length,
-        `prioritized skill ${skillId} has no taxonomy entry`,
-      ).toBeGreaterThan(0);
       for (const entry of covering) {
         expect(
           getDistractorTypesForMisconception(entry.slug).length,
@@ -196,7 +183,7 @@ describe('checkMisconceptionContentIntegrity — live behavior on authored conte
     }
   });
 
-  it('confirms (b): every taxonomy slug has at least one remediation activity', () => {
+  it("confirms (b): every taxonomy slug has at least one remediation activity", () => {
     for (const slug of allIm3MisconceptionTagSlugs()) {
       expect(
         getRemediationsForMisconception(slug).length,
@@ -205,113 +192,102 @@ describe('checkMisconceptionContentIntegrity — live behavior on authored conte
     }
   });
 
-  it('confirms (d): every affectedSkills entry resolves to a known IM3 M1 skill ID', () => {
+  it("confirms (d): every affectedSkills entry resolves to a known IM3 M1 skill ID", () => {
     const result = checkMisconceptionContentIntegrity();
-    const skillErrors = result.errors.filter(
-      (e) => e.code === 'unknown-skill-reference',
-    );
+    const skillErrors = result.errors.filter((e) => e.code === "unknown-skill-reference");
     expect(skillErrors).toEqual([]);
   });
 
-  it('flags `missing-remediation` when a taxonomy tag has zero remediations (synthetic registry)', () => {
+  it("flags `missing-remediation` when a taxonomy tag has zero remediations (synthetic registry)", () => {
     const taxonomy = {
-      'sample-tag': makeMisconceptionNode({ slug: 'sample-tag' }),
+      "sample-tag": makeMisconceptionNode({ slug: "sample-tag" }),
     };
-    const remediations = { 'sample-tag': [] };
+    const remediations = { "sample-tag": [] };
     const result = checkMisconceptionContentIntegrity({
       taxonomy,
       remediations,
     });
     expect(result.ok).toBe(false);
-    expect(errorCodes(result)).toContain('missing-remediation');
+    expect(errorCodes(result)).toContain("missing-remediation");
   });
 
-  it('flags `orphan-remediation` when the registry has a slug not in the taxonomy (edge case c, synthetic registry)', () => {
+  it("flags `orphan-remediation` when the registry has a slug not in the taxonomy (edge case c, synthetic registry)", () => {
     const taxonomy = {
-      'sample-tag': makeMisconceptionNode({ slug: 'sample-tag' }),
+      "sample-tag": makeMisconceptionNode({ slug: "sample-tag" }),
     };
     const remediations = {
-      'sample-tag': [
-        makeRemediationActivity('math.im3.example.1.1.001'),
-      ],
-      'orphan-tag': [
-        makeRemediationActivity('math.im3.example.1.1.002'),
-      ],
+      "sample-tag": [makeRemediationActivity("math.im3.example.1.1.001")],
+      "orphan-tag": [makeRemediationActivity("math.im3.example.1.1.002")],
     };
     const result = checkMisconceptionContentIntegrity({
       taxonomy,
       remediations,
-      knownWorkedExampleIds: new Set([
-        'math.im3.example.1.1.001',
-        'math.im3.example.1.1.002',
-      ]),
+      knownWorkedExampleIds: new Set(["math.im3.example.1.1.001", "math.im3.example.1.1.002"]),
       knownSkillIds: new Set(IM3_M1_SKILL_SET),
     });
     expect(result.ok).toBe(false);
-    expect(errorCodes(result)).toContain('orphan-remediation');
+    expect(errorCodes(result)).toContain("orphan-remediation");
   });
 
-  it('flags `unknown-skill-reference` when affectedSkills contains an unknown skill ID (edge case d, synthetic registry)', () => {
+  it("flags `unknown-skill-reference` when affectedSkills contains an unknown skill ID (edge case d, synthetic registry)", () => {
     const taxonomy = {
-      'sample-tag': makeMisconceptionNode({
-        slug: 'sample-tag',
-        affectedSkills: ['math.im3.skill.NONEXISTENT'],
+      "sample-tag": makeMisconceptionNode({
+        slug: "sample-tag",
+        affectedSkills: ["math.im3.skill.NONEXISTENT"],
       }),
     };
     const remediations = {
-      'sample-tag': [makeRemediationActivity('math.im3.example.1.1.001')],
+      "sample-tag": [makeRemediationActivity("math.im3.example.1.1.001")],
     };
     const result = checkMisconceptionContentIntegrity({
       taxonomy,
       remediations,
-      knownWorkedExampleIds: new Set(['math.im3.example.1.1.001']),
+      knownWorkedExampleIds: new Set(["math.im3.example.1.1.001"]),
       knownSkillIds: new Set(IM3_M1_SKILL_SET),
     });
     expect(result.ok).toBe(false);
-    expect(errorCodes(result)).toContain('unknown-skill-reference');
+    expect(errorCodes(result)).toContain("unknown-skill-reference");
   });
 
-  it('flags `unknown-activity-id` when a remediation points at an ID not in the known curriculum (synthetic registry)', () => {
+  it("flags `unknown-activity-id` when a remediation points at an ID not in the known curriculum (synthetic registry)", () => {
     const taxonomy = {
-      'sample-tag': makeMisconceptionNode({ slug: 'sample-tag' }),
+      "sample-tag": makeMisconceptionNode({ slug: "sample-tag" }),
     };
     const remediations = {
-      'sample-tag': [
-        makeRemediationActivity('math.im3.example.UNKNOWN', {
-          activityKind: 'worked_example',
+      "sample-tag": [
+        makeRemediationActivity("math.im3.example.UNKNOWN", {
+          activityKind: "worked_example",
         }),
       ],
     };
     const result = checkMisconceptionContentIntegrity({
       taxonomy,
       remediations,
-      knownWorkedExampleIds: new Set(['math.im3.example.1.1.001']),
+      knownWorkedExampleIds: new Set(["math.im3.example.1.1.001"]),
       knownSkillIds: new Set(IM3_M1_SKILL_SET),
     });
     expect(result.ok).toBe(false);
-    expect(errorCodes(result)).toContain('unknown-activity-id');
+    expect(errorCodes(result)).toContain("unknown-activity-id");
   });
 
-  it('flags `circular-remediated-by` when a remediation activity ID equals its parent misconception slug (edge case 3, synthetic registry)', () => {
+  it("flags `circular-remediated-by` when a remediation activity ID equals its parent misconception slug (edge case 3, synthetic registry)", () => {
     const taxonomy = {
-      'sample-tag': makeMisconceptionNode({ slug: 'sample-tag' }),
+      "sample-tag": makeMisconceptionNode({ slug: "sample-tag" }),
     };
     const remediations = {
-      'sample-tag': [
-        makeRemediationActivity('sample-tag', { activityKind: 'skill' }),
-      ],
+      "sample-tag": [makeRemediationActivity("sample-tag", { activityKind: "skill" })],
     };
     const result = checkMisconceptionContentIntegrity({
       taxonomy,
       remediations,
       knownWorkedExampleIds: new Set<string>(),
-      knownSkillIds: new Set<string>(['sample-tag']),
+      knownSkillIds: new Set<string>(["sample-tag"]),
     });
     expect(result.ok).toBe(false);
-    expect(errorCodes(result)).toContain('circular-remediated-by');
+    expect(errorCodes(result)).toContain("circular-remediated-by");
   });
 
-  it('handles an empty taxonomy + remediation registry gracefully (vacuously ok, edge case 1)', () => {
+  it("handles an empty taxonomy + remediation registry gracefully (vacuously ok, edge case 1)", () => {
     const result = checkMisconceptionContentIntegrity({
       taxonomy: {},
       remediations: {},
@@ -323,17 +299,14 @@ describe('checkMisconceptionContentIntegrity — live behavior on authored conte
   });
 });
 
-describe('taxonomy ↔ remediation ↔ skill-set coherence', () => {
-  it('every prioritized IM3 M1 skill is reachable through a tag with at least one remediation', () => {
+describe("taxonomy ↔ remediation ↔ skill-set coherence", () => {
+  it("every prioritized IM3 M1 skill is reachable through a tag with at least one remediation", () => {
     const taxonomyEntries = Object.values(IM3_MISCONCEPTION_TAGS);
     for (const skillId of IM3_M1_SKILL_SET) {
-      const covering = taxonomyEntries.filter((e) =>
-        e.affectedSkills.includes(skillId),
+      const covering = taxonomyEntries.filter((e) => e.affectedSkills.includes(skillId));
+      expect(covering.length, `prioritized skill ${skillId} has no taxonomy entry`).toBeGreaterThan(
+        0,
       );
-      expect(
-        covering.length,
-        `prioritized skill ${skillId} has no taxonomy entry`,
-      ).toBeGreaterThan(0);
       for (const entry of covering) {
         expect(
           getRemediationsForMisconception(entry.slug).length,

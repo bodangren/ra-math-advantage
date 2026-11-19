@@ -1,44 +1,47 @@
-import Image from 'next/image';
-import type { PhaseType } from '@math-platform/activity-runtime/phase-types';
-import { PhaseContainer } from '@/components/textbook/PhaseContainer';
-import { CalloutBox } from '@/components/textbook/CalloutBox';
-import dynamic from 'next/dynamic';
-import { VideoPlayer } from './VideoPlayer';
-import { ActivityRenderer } from './ActivityRenderer';
-import { ContentBlockErrorBoundary } from './ContentBlockErrorBoundary';
+import Image from "next/image";
+import type { PhaseType } from "@math-platform/activity-runtime/phase-types";
+import { PhaseContainer } from "@/components/textbook/PhaseContainer";
+import { CalloutBox } from "@/components/textbook/CalloutBox";
+import dynamic from "next/dynamic";
+import { VideoPlayer } from "./VideoPlayer";
+import { ActivityRenderer } from "./ActivityRenderer";
+import { ContentBlockErrorBoundary } from "./ContentBlockErrorBoundary";
 
-const LessonMarkdownRenderer = dynamic(() => import('./MarkdownRenderer').then(m => ({ default: m.LessonMarkdownRenderer })), {
-  ssr: true,
-  loading: () => <div className="animate-pulse bg-muted/50 h-24 rounded-md" />,
-});
+const LessonMarkdownRenderer = dynamic(
+  () => import("./MarkdownRenderer").then((m) => ({ default: m.LessonMarkdownRenderer })),
+  {
+    ssr: true,
+    loading: () => <div className="animate-pulse bg-muted/50 h-24 rounded-md" />,
+  },
+);
 
 // ── Section type definitions ─────────────────────────────────────────────────
 
 export interface TextSection {
   id: string;
   sequenceOrder: number;
-  sectionType: 'text';
+  sectionType: "text";
   content: { markdown: string };
 }
 
 export interface CalloutSection {
   id: string;
   sequenceOrder: number;
-  sectionType: 'callout';
-  content: { variant: 'important' | 'tip' | 'remember' | 'caution'; text: string };
+  sectionType: "callout";
+  content: { variant: "important" | "tip" | "remember" | "caution"; text: string };
 }
 
 export interface VideoSection {
   id: string;
   sequenceOrder: number;
-  sectionType: 'video';
+  sectionType: "video";
   content: { videoUrl: string; duration: number; transcript?: string; thumbnailUrl?: string };
 }
 
 export interface ActivitySection {
   id: string;
   sequenceOrder: number;
-  sectionType: 'activity';
+  sectionType: "activity";
   content: {
     componentKey: string;
     activityId: string;
@@ -50,7 +53,7 @@ export interface ActivitySection {
 export interface ImageSection {
   id: string;
   sequenceOrder: number;
-  sectionType: 'image';
+  sectionType: "image";
   content: { imageUrl: string; alt: string; caption?: string };
 }
 
@@ -68,7 +71,7 @@ export interface PhaseRendererProps {
   sections: PhaseSection[];
   lessonId?: string;
   phaseNumber?: number;
-  mode?: 'teaching' | 'guided' | 'practice';
+  mode?: "teaching" | "guided" | "practice";
   onActivitySubmit?: (activityId: string, payload: unknown) => void | Promise<void>;
   onActivityComplete?: (activityId: string) => void;
 }
@@ -86,14 +89,16 @@ export function PhaseRenderer({
   sections,
   lessonId,
   phaseNumber,
-  mode = 'practice',
+  mode = "practice",
   onActivitySubmit,
   onActivityComplete,
 }: PhaseRendererProps) {
   if (sections.length === 0) {
     return (
       <PhaseContainer phaseType={phaseType}>
-        <p className="text-muted-foreground text-sm py-4 text-center">No content available for this phase.</p>
+        <p className="text-muted-foreground text-sm py-4 text-center">
+          No content available for this phase.
+        </p>
       </PhaseContainer>
     );
   }
@@ -101,7 +106,7 @@ export function PhaseRenderer({
   return (
     <PhaseContainer phaseType={phaseType}>
       <div className="space-y-4">
-        {sections.map(section => (
+        {sections.map((section) => (
           <ContentBlockErrorBoundary key={section.id}>
             <SectionBlock
               section={section}
@@ -140,22 +145,18 @@ function SectionBlock({
   phaseType: PhaseType;
   lessonId?: string;
   phaseNumber?: number;
-  mode: 'teaching' | 'guided' | 'practice';
+  mode: "teaching" | "guided" | "practice";
   onActivitySubmit?: (activityId: string, payload: unknown) => void | Promise<void>;
   onActivityComplete?: (activityId: string) => void;
 }) {
   switch (section.sectionType) {
-    case 'text':
+    case "text":
       return <LessonMarkdownRenderer content={section.content.markdown} />;
 
-    case 'callout':
-      return (
-        <CalloutBox variant={section.content.variant}>
-          {section.content.text}
-        </CalloutBox>
-      );
+    case "callout":
+      return <CalloutBox variant={section.content.variant}>{section.content.text}</CalloutBox>;
 
-    case 'video':
+    case "video":
       return (
         <VideoPlayer
           videoUrl={section.content.videoUrl}
@@ -165,7 +166,7 @@ function SectionBlock({
         />
       );
 
-    case 'activity': {
+    case "activity": {
       const activityId = section.content.activityId as string;
       const handleSubmit = (payload: unknown) => {
         return onActivitySubmit?.(activityId, payload);
@@ -180,14 +181,22 @@ function SectionBlock({
           activityProps={section.content.activityProps}
           lessonId={lessonId}
           phaseNumber={phaseNumber}
-          mode={phaseType === 'worked_example' ? 'teaching' : phaseType === 'guided_practice' ? 'guided' : phaseType === 'explore' && section.content.componentKey === 'graphing-explorer' ? 'explore' : mode}
+          mode={
+            phaseType === "worked_example"
+              ? "teaching"
+              : phaseType === "guided_practice"
+                ? "guided"
+                : phaseType === "explore" && section.content.componentKey === "graphing-explorer"
+                  ? "explore"
+                  : mode
+          }
           onSubmit={handleSubmit}
           onComplete={handleComplete}
         />
       );
     }
 
-    case 'image':
+    case "image":
       return (
         <figure className="my-4">
           <div className="relative w-full">
@@ -209,7 +218,7 @@ function SectionBlock({
 
     default: {
       const _exhaustive: never = section;
-      console.error('Unknown section type:', _exhaustive);
+      console.error("Unknown section type:", _exhaustive);
       return null;
     }
   }

@@ -21,13 +21,9 @@ export async function GET(request: Request) {
       return NextResponse.json({ authenticated: false });
     }
 
-    const accountContext = await fetchInternalQuery(
-      internal.auth.getAccountSettingsContext,
-      {
-        profileId:
-          claims.sub as import("@/convex/_generated/dataModel").Id<"profiles">,
-      },
-    );
+    const accountContext = await fetchInternalQuery(internal.auth.getAccountSettingsContext, {
+      profileId: claims.sub as import("@/convex/_generated/dataModel").Id<"profiles">,
+    });
 
     if (
       !accountContext ||

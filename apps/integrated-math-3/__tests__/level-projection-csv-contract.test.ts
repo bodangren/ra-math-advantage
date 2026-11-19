@@ -27,36 +27,36 @@
 //   npx vitest run -t "IM3 level projection CSV" --root apps/integrated-math-3
 //   (or, equivalently, run the file directly).
 
-import { describe, it, expect } from 'vitest';
-import * as fs from 'node:fs';
-import * as path from 'node:path';
+import { describe, it, expect } from "vitest";
+import * as fs from "node:fs";
+import * as path from "node:path";
 
 // Resolved relative to the test file's location, not cwd, so the path is
 // stable regardless of the vitest root configuration. The Green phase must
 // create this CSV file with a header row + at least 3 level rows.
 const CSV_PATH = path.resolve(
   __dirname,
-  '..',
-  'lib',
-  'level-projection',
-  'gse-to-im3-advantage.csv',
+  "..",
+  "lib",
+  "level-projection",
+  "gse-to-im3-advantage.csv",
 );
 
-describe('IM3 level projection — CSV artifact contract (kst-srs.v2 §11.2, FR2 AC2)', () => {
-  it('CSV mapping file exists at apps/integrated-math-3/lib/level-projection/gse-to-im3-advantage.csv', () => {
+describe("IM3 level projection — CSV artifact contract (kst-srs.v2 §11.2, FR2 AC2)", () => {
+  it("CSV mapping file exists at apps/integrated-math-3/lib/level-projection/gse-to-im3-advantage.csv", () => {
     // The Green phase must add the CSV at this exact path (matches
     // test-strategy §2 + the import resolution path used by
     // `apps/integrated-math-3/__tests__/level-projection.test.ts`).
     expect(fs.existsSync(CSV_PATH)).toBe(true);
   });
 
-  it('CSV has a header row and at least 3 level rows (well-formed anchor table)', () => {
+  it("CSV has a header row and at least 3 level rows (well-formed anchor table)", () => {
     // Guard against an empty placeholder CSV. The IM3 projection needs at
     // least 3 levels (e.g., "below grade", "at grade", "above grade") to
     // exercise boundary behavior, plus a header row. The Green phase must
     // produce a CSV with at least 4 non-empty lines.
     expect(fs.existsSync(CSV_PATH)).toBe(true);
-    const raw = fs.readFileSync(CSV_PATH, 'utf8');
+    const raw = fs.readFileSync(CSV_PATH, "utf8");
     const lines = raw.split(/\r?\n/).filter((line) => line.length > 0);
     expect(lines.length).toBeGreaterThanOrEqual(4);
   });

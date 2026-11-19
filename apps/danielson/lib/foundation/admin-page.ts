@@ -1,6 +1,6 @@
-import { redirect } from 'next/navigation';
-import { requireDanielsonSession } from '@/lib/auth/server';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
+import { redirect } from "next/navigation";
+import { requireDanielsonSession } from "@/lib/auth/server";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
 
 export type AdministrationDirectory = {
   actorAccountId?: string;
@@ -35,30 +35,30 @@ export type AdministrationDirectoryCursors = {
 };
 
 export type CoachAssignmentDirectory = {
-  coachPage: AdministrationDirectory['accountPage'];
-  teacherPage: AdministrationDirectory['accountPage'];
+  coachPage: AdministrationDirectory["accountPage"];
+  teacherPage: AdministrationDirectory["accountPage"];
 };
 
 export async function requireSysadminPage(path: string) {
   const session = await requireDanielsonSession(path);
-  if (!session.account.danielsonRoles.includes('sysadmin')) redirect('/unauthorized');
+  if (!session.account.danielsonRoles.includes("sysadmin")) redirect("/unauthorized");
   return session;
 }
 
 export function getDirectoryPageHref(path: string, cursors: AdministrationDirectoryCursors) {
   const parameters = new URLSearchParams();
-  if (cursors.search) parameters.set('search', cursors.search);
-  if (cursors.accountCursor) parameters.set('accountCursor', cursors.accountCursor);
-  if (cursors.departmentCursor) parameters.set('departmentCursor', cursors.departmentCursor);
-  if (cursors.coachCursor) parameters.set('coachCursor', cursors.coachCursor);
-  if (cursors.teacherCursor) parameters.set('teacherCursor', cursors.teacherCursor);
+  if (cursors.search) parameters.set("search", cursors.search);
+  if (cursors.accountCursor) parameters.set("accountCursor", cursors.accountCursor);
+  if (cursors.departmentCursor) parameters.set("departmentCursor", cursors.departmentCursor);
+  if (cursors.coachCursor) parameters.set("coachCursor", cursors.coachCursor);
+  if (cursors.teacherCursor) parameters.set("teacherCursor", cursors.teacherCursor);
   const query = parameters.toString();
   return query ? `${path}?${query}` : path;
 }
 
 export async function getCoachAssignmentDirectory(
   path: string,
-  cursors: Pick<AdministrationDirectoryCursors, 'coachCursor' | 'teacherCursor'> = {},
+  cursors: Pick<AdministrationDirectoryCursors, "coachCursor" | "teacherCursor"> = {},
 ): Promise<CoachAssignmentDirectory> {
   const session = await requireSysadminPage(path);
   const [coachResult, teacherResult] = await Promise.all([
@@ -71,8 +71,8 @@ export async function getCoachAssignmentDirectory(
       paginationOpts: { cursor: cursors.teacherCursor ?? null, numItems: 100 },
     }),
   ]);
-  if (coachResult.kind !== 'allowed' || teacherResult.kind !== 'allowed') {
-    redirect('/unauthorized');
+  if (coachResult.kind !== "allowed" || teacherResult.kind !== "allowed") {
+    redirect("/unauthorized");
   }
   return {
     coachPage: coachResult.accountPage,
@@ -96,10 +96,11 @@ export async function getAdministrationDirectory(
       paginationOpts: { cursor: cursors.departmentCursor ?? null, numItems: 100 },
     }),
   ]);
-  if (accountResult.kind === 'capacity_exceeded') throw new Error('The account directory exceeded its safe search capacity.');
-  if (accountResult.kind === 'invalid_cursor') redirect(path);
-  if (accountResult.kind !== 'allowed' || departmentResult.kind !== 'allowed') {
-    redirect('/unauthorized');
+  if (accountResult.kind === "capacity_exceeded")
+    throw new Error("The account directory exceeded its safe search capacity.");
+  if (accountResult.kind === "invalid_cursor") redirect(path);
+  if (accountResult.kind !== "allowed" || departmentResult.kind !== "allowed") {
+    redirect("/unauthorized");
   }
   return {
     actorAccountId: session.claims.sub,

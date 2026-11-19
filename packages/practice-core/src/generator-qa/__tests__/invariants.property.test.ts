@@ -17,12 +17,12 @@
 //   - The check fails for a generator whose emitted invariant is
 //     false (createDegenerateGenerator), with a readable message.
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 
-import { verifyGenerator } from '../verify-generator';
-import { createWellFormedGenerator } from './fixtures/wellFormedGenerator';
-import { createDegenerateGenerator } from './fixtures/badGenerators';
-import { DEFAULT_NUM_SEEDS, forEachSeed } from './fixtures/seedCorpus';
+import { verifyGenerator } from "../verify-generator";
+import { createWellFormedGenerator } from "./fixtures/wellFormedGenerator";
+import { createDegenerateGenerator } from "./fixtures/badGenerators";
+import { DEFAULT_NUM_SEEDS, forEachSeed } from "./fixtures/seedCorpus";
 
 /**
  * Filter checks in a report by name.
@@ -30,44 +30,41 @@ import { DEFAULT_NUM_SEEDS, forEachSeed } from './fixtures/seedCorpus';
  * @param {string} name - Check name to filter by
  * @returns {import("../verify-generator").VerifyGeneratorCheck[]} Array of matching checks
  */
-function checksNamed(
-  report: ReturnType<typeof verifyGenerator>,
-  name: string,
-) {
+function checksNamed(report: ReturnType<typeof verifyGenerator>, name: string) {
   return report.checks.filter((c) => c.name === name);
 }
 
-describe('Solvability / range invariants (FR5)', () => {
-  it('positive — well-formed generator passes invariants for every seed in the corpus', () => {
+describe("Solvability / range invariants (FR5)", () => {
+  it("positive — well-formed generator passes invariants for every seed in the corpus", () => {
     const stub = createWellFormedGenerator();
     const report = verifyGenerator(stub, { numSeeds: DEFAULT_NUM_SEEDS });
 
-    const invChecks = checksNamed(report, 'invariants');
+    const invChecks = checksNamed(report, "invariants");
     expect(invChecks.length).toBeGreaterThan(0);
     for (const check of invChecks) {
       expect(check.passed).toBe(true);
     }
     expect(report.errors).toHaveLength(0);
-    expect(report.verdict).toBe('pass');
+    expect(report.verdict).toBe("pass");
   });
 
-  it('negative — degenerate generator (emits a failing invariant) is caught with a readable message', () => {
+  it("negative — degenerate generator (emits a failing invariant) is caught with a readable message", () => {
     const bad = createDegenerateGenerator();
     const report = verifyGenerator(bad, { numSeeds: DEFAULT_NUM_SEEDS });
 
-    const invChecks = checksNamed(report, 'invariants');
+    const invChecks = checksNamed(report, "invariants");
     expect(invChecks.length).toBeGreaterThan(0);
     const failed = invChecks.filter((c) => !c.passed);
     expect(failed.length).toBeGreaterThan(0);
     // The message should mention the failing invariant name.
-    expect(failed[0]?.message ?? '').toMatch(/seed|invariant|denominator|solvab/i);
-    expect(report.verdict).toBe('fail');
+    expect(failed[0]?.message ?? "").toMatch(/seed|invariant|denominator|solvab/i);
+    expect(report.verdict).toBe("fail");
   });
 
-  it('direct property — every emitted invariant on the well-formed generator is true (per seed)', () => {
+  it("direct property — every emitted invariant on the well-formed generator is true (per seed)", () => {
     const stub = createWellFormedGenerator();
     forEachSeed(({ seed }) => {
-      const input = { nodeId: 'inv-prop', seed, difficulty: 1 };
+      const input = { nodeId: "inv-prop", seed, difficulty: 1 };
       const output = stub.generate(input);
       // No invariants array → vacuously true; the harness will not
       // synthesise invariants. The contract intentionally types each

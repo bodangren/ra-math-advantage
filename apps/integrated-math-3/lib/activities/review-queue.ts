@@ -17,12 +17,17 @@ export const resolveComponentKind = _resolveComponentKind;
  */
 export function buildActivityPlacementMap(
   sections: Array<Pick<Doc<"phase_sections">, "_id" | "phaseVersionId" | "content">>,
-  phases: Array<Pick<Doc<"phase_versions">, "_id" | "phaseType">>
+  phases: Array<Pick<Doc<"phase_versions">, "_id" | "phaseType">>,
 ): Map<string, ActivityPlacement> {
   // Package uses generic Pick types that are structurally compatible
   return _buildActivityPlacementMap(
-    sections as Array<Pick<{ _id: string; phaseVersionId: string; content: { activityId?: string } | null }, "_id" | "phaseVersionId" | "content">>,
-    phases as Array<Pick<{ _id: string; phaseType: string }, "_id" | "phaseType">>
+    sections as Array<
+      Pick<
+        { _id: string; phaseVersionId: string; content: { activityId?: string } | null },
+        "_id" | "phaseVersionId" | "content"
+      >
+    >,
+    phases as Array<Pick<{ _id: string; phaseType: string }, "_id" | "phaseType">>,
   );
 }
 

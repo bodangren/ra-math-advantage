@@ -7,8 +7,8 @@
 //   - DeterministicProbeAdapter — preset map with probe-call tracking
 //   - createMockPlacementResult — factory for { nodeId, masteryEstimate, confidence }
 
-import type { KnowledgeSpace, KnowledgeSpaceNode, KnowledgeSpaceEdge } from './types';
-import type { ProbeResult, ProbeAdapter, PlacementResult } from './placement';
+import type { KnowledgeSpace, KnowledgeSpaceNode, KnowledgeSpaceEdge } from "./types";
+import type { ProbeResult, ProbeAdapter, PlacementResult } from "./placement";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -23,11 +23,11 @@ import type { ProbeResult, ProbeAdapter, PlacementResult } from './placement';
 function makeSkill(id: string, metadata: Record<string, unknown> = {}): KnowledgeSpaceNode {
   return {
     id,
-    kind: 'skill',
+    kind: "skill",
     title: id,
-    domain: 'math.test.placement',
-    sourceRefs: ['synthetic'],
-    reviewStatus: 'draft',
+    domain: "math.test.placement",
+    sourceRefs: ["synthetic"],
+    reviewStatus: "draft",
     metadata,
   };
 }
@@ -41,11 +41,11 @@ function makeSkill(id: string, metadata: Record<string, unknown> = {}): Knowledg
 function makeContentGroup(id: string, metadata: Record<string, unknown> = {}): KnowledgeSpaceNode {
   return {
     id,
-    kind: 'content_group',
+    kind: "content_group",
     title: id,
-    domain: 'math.test.placement',
-    sourceRefs: ['synthetic'],
-    reviewStatus: 'draft',
+    domain: "math.test.placement",
+    sourceRefs: ["synthetic"],
+    reviewStatus: "draft",
     metadata,
   };
 }
@@ -59,11 +59,11 @@ function makeContentGroup(id: string, metadata: Record<string, unknown> = {}): K
 function makeLesson(id: string, metadata: Record<string, unknown> = {}): KnowledgeSpaceNode {
   return {
     id,
-    kind: 'instructional_unit',
+    kind: "instructional_unit",
     title: id,
-    domain: 'math.test.placement',
-    sourceRefs: ['synthetic'],
-    reviewStatus: 'draft',
+    domain: "math.test.placement",
+    sourceRefs: ["synthetic"],
+    reviewStatus: "draft",
     metadata,
   };
 }
@@ -76,12 +76,12 @@ function makeLesson(id: string, metadata: Record<string, unknown> = {}): Knowled
 function makeDomain(id: string): KnowledgeSpaceNode {
   return {
     id,
-    kind: 'domain',
+    kind: "domain",
     title: id,
-    domain: 'math.test.placement',
-    sourceRefs: ['synthetic'],
-    reviewStatus: 'draft',
-    metadata: { version: 'v1' },
+    domain: "math.test.placement",
+    sourceRefs: ["synthetic"],
+    reviewStatus: "draft",
+    metadata: { version: "v1" },
   };
 }
 
@@ -92,20 +92,16 @@ function makeDomain(id: string): KnowledgeSpaceNode {
  * @param {number} weight - Edge weight, defaults to 0.8
  * @returns {KnowledgeSpaceEdge} - A prerequisite_for KnowledgeSpaceEdge
  */
-function prereqEdge(
-  sourceId: string,
-  targetId: string,
-  weight = 0.8,
-): KnowledgeSpaceEdge {
+function prereqEdge(sourceId: string, targetId: string, weight = 0.8): KnowledgeSpaceEdge {
   return {
     id: `${sourceId}->${targetId}`,
-    type: 'prerequisite_for',
+    type: "prerequisite_for",
     sourceId,
     targetId,
     weight,
-    confidence: 'high',
-    sourceRefs: ['synthetic'],
-    reviewStatus: 'draft',
+    confidence: "high",
+    sourceRefs: ["synthetic"],
+    reviewStatus: "draft",
   };
 }
 
@@ -139,64 +135,40 @@ function prereqEdge(
 // branch — but an adaptive walk that splits the frontier on partial
 // results should converge in O(log n) probes.
 
-const PLACEMENT_DOMAIN = 'math.test.placement.domain';
-const PLACEMENT_M1 = 'math.test.placement.module.1';
-const PLACEMENT_M2 = 'math.test.placement.module.2';
+const PLACEMENT_DOMAIN = "math.test.placement.domain";
+const PLACEMENT_M1 = "math.test.placement.module.1";
+const PLACEMENT_M2 = "math.test.placement.module.2";
 
 const PLACEMENT_NODES: KnowledgeSpaceNode[] = [
   makeDomain(PLACEMENT_DOMAIN),
-  makeContentGroup(PLACEMENT_M1, { module: '1' }),
-  makeContentGroup(PLACEMENT_M2, { module: '2' }),
-  makeLesson('math.test.placement.lesson.1.1', { module: '1', lesson: '1' }),
-  makeLesson('math.test.placement.lesson.1.2', { module: '1', lesson: '2' }),
-  makeLesson('math.test.placement.lesson.1.3', { module: '1', lesson: '3' }),
-  makeLesson('math.test.placement.lesson.2.1', { module: '2', lesson: '1' }),
-  makeLesson('math.test.placement.lesson.2.2', { module: '2', lesson: '2' }),
-  makeSkill('math.test.placement.skill.1.1.a'),
-  makeSkill('math.test.placement.skill.1.1.b'),
-  makeSkill('math.test.placement.skill.1.2.a'),
-  makeSkill('math.test.placement.skill.1.2.b'),
-  makeSkill('math.test.placement.skill.1.3.a'),
-  makeSkill('math.test.placement.skill.2.1.a'),
-  makeSkill('math.test.placement.skill.2.1.b'),
-  makeSkill('math.test.placement.skill.2.2.a'),
-  makeSkill('math.test.placement.skill.2.2.a.advanced'),
-  makeSkill('math.test.placement.skill.2.2.b'),
+  makeContentGroup(PLACEMENT_M1, { module: "1" }),
+  makeContentGroup(PLACEMENT_M2, { module: "2" }),
+  makeLesson("math.test.placement.lesson.1.1", { module: "1", lesson: "1" }),
+  makeLesson("math.test.placement.lesson.1.2", { module: "1", lesson: "2" }),
+  makeLesson("math.test.placement.lesson.1.3", { module: "1", lesson: "3" }),
+  makeLesson("math.test.placement.lesson.2.1", { module: "2", lesson: "1" }),
+  makeLesson("math.test.placement.lesson.2.2", { module: "2", lesson: "2" }),
+  makeSkill("math.test.placement.skill.1.1.a"),
+  makeSkill("math.test.placement.skill.1.1.b"),
+  makeSkill("math.test.placement.skill.1.2.a"),
+  makeSkill("math.test.placement.skill.1.2.b"),
+  makeSkill("math.test.placement.skill.1.3.a"),
+  makeSkill("math.test.placement.skill.2.1.a"),
+  makeSkill("math.test.placement.skill.2.1.b"),
+  makeSkill("math.test.placement.skill.2.2.a"),
+  makeSkill("math.test.placement.skill.2.2.a.advanced"),
+  makeSkill("math.test.placement.skill.2.2.b"),
 ];
 
 const PLACEMENT_EDGES: KnowledgeSpaceEdge[] = [
-  prereqEdge(
-    'math.test.placement.skill.1.1.a',
-    'math.test.placement.skill.1.1.b',
-  ),
-  prereqEdge(
-    'math.test.placement.skill.1.1.a',
-    'math.test.placement.skill.1.2.a',
-  ),
-  prereqEdge(
-    'math.test.placement.skill.1.2.a',
-    'math.test.placement.skill.1.2.b',
-  ),
-  prereqEdge(
-    'math.test.placement.skill.1.2.a',
-    'math.test.placement.skill.1.3.a',
-  ),
-  prereqEdge(
-    'math.test.placement.skill.2.1.a',
-    'math.test.placement.skill.2.1.b',
-  ),
-  prereqEdge(
-    'math.test.placement.skill.2.1.a',
-    'math.test.placement.skill.2.2.a',
-  ),
-  prereqEdge(
-    'math.test.placement.skill.2.2.a',
-    'math.test.placement.skill.2.2.a.advanced',
-  ),
-  prereqEdge(
-    'math.test.placement.skill.2.2.a',
-    'math.test.placement.skill.2.2.b',
-  ),
+  prereqEdge("math.test.placement.skill.1.1.a", "math.test.placement.skill.1.1.b"),
+  prereqEdge("math.test.placement.skill.1.1.a", "math.test.placement.skill.1.2.a"),
+  prereqEdge("math.test.placement.skill.1.2.a", "math.test.placement.skill.1.2.b"),
+  prereqEdge("math.test.placement.skill.1.2.a", "math.test.placement.skill.1.3.a"),
+  prereqEdge("math.test.placement.skill.2.1.a", "math.test.placement.skill.2.1.b"),
+  prereqEdge("math.test.placement.skill.2.1.a", "math.test.placement.skill.2.2.a"),
+  prereqEdge("math.test.placement.skill.2.2.a", "math.test.placement.skill.2.2.a.advanced"),
+  prereqEdge("math.test.placement.skill.2.2.a", "math.test.placement.skill.2.2.b"),
 ];
 
 export const syntheticPlacementGraph: KnowledgeSpace = Object.freeze({
@@ -216,14 +188,14 @@ export const syntheticPlacementGraph: KnowledgeSpace = Object.freeze({
 
 export const syntheticCyclicPlacementGraph: KnowledgeSpace = Object.freeze({
   nodes: Object.freeze([
-    makeSkill('math.test.cycle.a'),
-    makeSkill('math.test.cycle.b'),
-    makeSkill('math.test.cycle.c'),
+    makeSkill("math.test.cycle.a"),
+    makeSkill("math.test.cycle.b"),
+    makeSkill("math.test.cycle.c"),
   ]) as KnowledgeSpaceNode[],
   edges: Object.freeze([
-    prereqEdge('math.test.cycle.a', 'math.test.cycle.b'),
-    prereqEdge('math.test.cycle.b', 'math.test.cycle.c'),
-    prereqEdge('math.test.cycle.c', 'math.test.cycle.a'),
+    prereqEdge("math.test.cycle.a", "math.test.cycle.b"),
+    prereqEdge("math.test.cycle.b", "math.test.cycle.c"),
+    prereqEdge("math.test.cycle.c", "math.test.cycle.a"),
   ]) as KnowledgeSpaceEdge[],
 });
 
@@ -244,18 +216,14 @@ export const syntheticCyclicPlacementGraph: KnowledgeSpace = Object.freeze({
  */
 export function buildLinearPlacementChain(length: number): KnowledgeSpace {
   if (length < 1) {
-    throw new Error('buildLinearPlacementChain requires length >= 1');
+    throw new Error("buildLinearPlacementChain requires length >= 1");
   }
   const nodes: KnowledgeSpaceNode[] = [];
   const edges: KnowledgeSpaceEdge[] = [];
   for (let i = 1; i <= length; i++) {
-    nodes.push(
-      makeSkill(`math.test.chain.n${i}`, { chainIndex: i }),
-    );
+    nodes.push(makeSkill(`math.test.chain.n${i}`, { chainIndex: i }));
     if (i > 1) {
-      edges.push(
-        prereqEdge(`math.test.chain.n${i - 1}`, `math.test.chain.n${i}`),
-      );
+      edges.push(prereqEdge(`math.test.chain.n${i - 1}`, `math.test.chain.n${i}`));
     }
   }
   return { nodes, edges };
@@ -291,8 +259,8 @@ export function createDeterministicProbeAdapter(
   preset: Record<string, ProbeResult>,
   options: DeterministicProbeAdapterOptions = {},
 ): DeterministicProbeAdapter {
-  const defaultResult: ProbeResult = options.defaultResult ?? 'partial';
-  const domain = options.domain ?? 'math.test.placement';
+  const defaultResult: ProbeResult = options.defaultResult ?? "partial";
+  const domain = options.domain ?? "math.test.placement";
   const calls: string[] = [];
 
   const adapter: DeterministicProbeAdapter = {
@@ -317,13 +285,13 @@ export function createDeterministicProbeAdapter(
 // createMockPlacementResult — factory for { nodeId, masteryEstimate, confidence }
 // ---------------------------------------------------------------------------
 
-const DEFAULT_MOCK_NODE_ID = 'math.test.placement.skill.1.1.a';
+const DEFAULT_MOCK_NODE_ID = "math.test.placement.skill.1.1.a";
 const DEFAULT_MOCK_ESTIMATE = 0.5;
 
 export interface MockPlacementResultOverrides {
   nodeId?: string;
   masteryEstimate?: number;
-  confidence?: PlacementResult['confidence'];
+  confidence?: PlacementResult["confidence"];
   metadata?: Record<string, unknown>;
 }
 
@@ -338,7 +306,7 @@ export function createMockPlacementResult(
   return {
     nodeId: overrides.nodeId ?? DEFAULT_MOCK_NODE_ID,
     masteryEstimate: overrides.masteryEstimate ?? DEFAULT_MOCK_ESTIMATE,
-    confidence: overrides.confidence ?? 'low',
+    confidence: overrides.confidence ?? "low",
     ...(overrides.metadata !== undefined ? { metadata: overrides.metadata } : {}),
   };
 }

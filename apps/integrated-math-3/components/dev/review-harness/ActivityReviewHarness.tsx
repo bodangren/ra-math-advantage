@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from "react";
 
 interface ActivityCallback {
-  type: 'submit' | 'complete' | 'error';
+  type: "submit" | "complete" | "error";
   payload?: unknown;
   timestamp: number;
 }
@@ -12,7 +12,7 @@ interface ActivityReviewHarnessProps {
   componentKey: string;
   activityId: string;
   storedProps?: Record<string, unknown>;
-  supportedModes?: Array<'teaching' | 'guided' | 'practice'>;
+  supportedModes?: Array<"teaching" | "guided" | "practice">;
   onRenderError?: (error: Error) => void;
   onCanApproveChange?: (canApprove: boolean) => void;
 }
@@ -27,65 +27,79 @@ export function ActivityReviewHarness({
   componentKey,
   activityId,
   storedProps = {},
-  supportedModes = ['teaching', 'guided', 'practice'],
+  supportedModes = ["teaching", "guided", "practice"],
   onRenderError,
   onCanApproveChange,
 }: ActivityReviewHarnessProps) {
-  const [activeMode, setActiveMode] = useState<'teaching' | 'guided' | 'practice'>('teaching');
+  const [activeMode, setActiveMode] = useState<"teaching" | "guided" | "practice">("teaching");
   const [callbacks, setCallbacks] = useState<ActivityCallback[]>([]);
   const [renderError, setRenderError] = useState<string | null>(null);
   const [isRendered, setIsRendered] = useState(false);
   const [renderKey, setRenderKey] = useState(0);
 
   const handleSubmit = useCallback((payload: unknown) => {
-    setCallbacks(prev => [...prev, {
-      type: 'submit',
-      payload,
-      timestamp: Date.now(),
-    }]);
+    setCallbacks((prev) => [
+      ...prev,
+      {
+        type: "submit",
+        payload,
+        timestamp: Date.now(),
+      },
+    ]);
   }, []);
 
   const handleComplete = useCallback(() => {
-    setCallbacks(prev => [...prev, {
-      type: 'complete',
-      timestamp: Date.now(),
-    }]);
+    setCallbacks((prev) => [
+      ...prev,
+      {
+        type: "complete",
+        timestamp: Date.now(),
+      },
+    ]);
   }, []);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars -- used in exported hook, not component
-  const handleError = useCallback((error: Error) => {
-    setCallbacks(prev => [...prev, {
-      type: 'error',
-      payload: error.message,
-      timestamp: Date.now(),
-    }]);
-    setRenderError(error.message);
-    onRenderError?.(error);
-  }, [onRenderError]);
+  const handleError = useCallback(
+    (error: Error) => {
+      setCallbacks((prev) => [
+        ...prev,
+        {
+          type: "error",
+          payload: error.message,
+          timestamp: Date.now(),
+        },
+      ]);
+      setRenderError(error.message);
+      onRenderError?.(error);
+    },
+    [onRenderError],
+  );
 
   const handleRender = useCallback(() => {
     setIsRendered(true);
     setRenderError(null);
   }, []);
 
-  const handleModeChange = useCallback((mode: 'teaching' | 'guided' | 'practice') => {
+  const handleModeChange = useCallback((mode: "teaching" | "guided" | "practice") => {
     setActiveMode(mode);
-    setRenderKey(prev => prev + 1);
+    setRenderKey((prev) => prev + 1);
     setCallbacks([]);
     setIsRendered(false);
   }, []);
 
   const simulateInteraction = useCallback(() => {
-    handleSubmit({ interaction: 'test', mode: activeMode });
+    handleSubmit({ interaction: "test", mode: activeMode });
   }, [activeMode, handleSubmit]);
 
   const simulateComplete = useCallback(() => {
     handleComplete();
   }, [handleComplete]);
 
-  const canApprove = isRendered && !renderError && 
-                     callbacks.some(c => c.type === 'submit') && 
-                     callbacks.some(c => c.type === 'complete');
+  const canApprove =
+    isRendered &&
+    !renderError &&
+    callbacks.some((c) => c.type === "submit") &&
+    callbacks.some((c) => c.type === "complete");
 
   useEffect(() => {
     onCanApproveChange?.(canApprove);
@@ -102,15 +116,15 @@ export function ActivityReviewHarness({
       <div className="space-y-2">
         <label className="block text-sm font-medium">Mode / Context</label>
         <div className="flex gap-2">
-          {supportedModes.map(mode => (
+          {supportedModes.map((mode) => (
             <button
               key={mode}
               type="button"
               onClick={() => handleModeChange(mode)}
               className={`px-4 py-2 rounded capitalize transition-colors ${
                 activeMode === mode
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-muted hover:bg-muted/80'
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-muted hover:bg-muted/80"
               }`}
               disabled={!supportedModes.includes(mode)}
             >
@@ -121,9 +135,7 @@ export function ActivityReviewHarness({
       </div>
 
       <div className="p-4 border rounded bg-card">
-        <div className="text-sm font-medium mb-2">
-          Activity Preview (Mode: {activeMode})
-        </div>
+        <div className="text-sm font-medium mb-2">Activity Preview (Mode: {activeMode})</div>
         <div
           key={renderKey}
           className="min-h-[200px] p-4 bg-muted/30 rounded"
@@ -201,13 +213,19 @@ export function ActivityReviewHarness({
       <div className="p-3 rounded border">
         <div className="text-sm font-medium mb-2">Review Checklist</div>
         <div className="space-y-1">
-          <CheckItem checked={isRendered && !renderError} label="Component renders without errors" />
-          <CheckItem checked={callbacks.some(c => c.type === 'submit')} label="Submit callback triggered" />
-          <CheckItem checked={callbacks.some(c => c.type === 'complete')} label="Complete callback triggered" />
           <CheckItem
-            checked={supportedModes.length > 1}
-            label="Mode selector functional"
+            checked={isRendered && !renderError}
+            label="Component renders without errors"
           />
+          <CheckItem
+            checked={callbacks.some((c) => c.type === "submit")}
+            label="Submit callback triggered"
+          />
+          <CheckItem
+            checked={callbacks.some((c) => c.type === "complete")}
+            label="Complete callback triggered"
+          />
+          <CheckItem checked={supportedModes.length > 1} label="Mode selector functional" />
         </div>
       </div>
     </div>
@@ -223,8 +241,8 @@ export function ActivityReviewHarness({
 function CheckItem({ checked, label }: { checked: boolean; label: string }) {
   return (
     <label className="flex items-center gap-2">
-      <span className={`text-xs ${checked ? 'text-green-600' : 'text-muted-foreground'}`}>
-        {checked ? '✓' : '○'}
+      <span className={`text-xs ${checked ? "text-green-600" : "text-muted-foreground"}`}>
+        {checked ? "✓" : "○"}
       </span>
       <span className="text-sm">{label}</span>
     </label>
@@ -246,7 +264,7 @@ function ActivityPreview({
 }: {
   componentKey: string;
   activityId: string;
-  mode: 'teaching' | 'guided' | 'practice';
+  mode: "teaching" | "guided" | "practice";
   props: Record<string, unknown>;
   onRender: () => void;
 }) {
@@ -273,9 +291,9 @@ function ActivityPreview({
         Mode: <span className="capitalize">{mode}</span>
       </div>
       <div className="text-xs text-muted-foreground">
-        {Object.keys(props).length > 0 
-          ? `Props: ${JSON.stringify(props).slice(0, 100)}...` 
-          : 'Using default props'}
+        {Object.keys(props).length > 0
+          ? `Props: ${JSON.stringify(props).slice(0, 100)}...`
+          : "Using default props"}
       </div>
     </div>
   );
@@ -288,20 +306,23 @@ function ActivityPreview({
  */
 export function useActivityReviewHarnessState() {
   const [callbacks, setCallbacks] = useState<ActivityCallback[]>([]);
-  const [activeMode, setActiveMode] = useState<'teaching' | 'guided' | 'practice'>('teaching');
+  const [activeMode, setActiveMode] = useState<"teaching" | "guided" | "practice">("teaching");
   const [isRendered, setIsRendered] = useState(false);
   const [renderError, setRenderError] = useState<string | null>(null);
 
   const handleSubmit = useCallback((payload: unknown) => {
-    setCallbacks(prev => [...prev, { type: 'submit', payload, timestamp: Date.now() }]);
+    setCallbacks((prev) => [...prev, { type: "submit", payload, timestamp: Date.now() }]);
   }, []);
 
   const handleComplete = useCallback(() => {
-    setCallbacks(prev => [...prev, { type: 'complete', timestamp: Date.now() }]);
+    setCallbacks((prev) => [...prev, { type: "complete", timestamp: Date.now() }]);
   }, []);
 
   const handleError = useCallback((error: Error) => {
-    setCallbacks(prev => [...prev, { type: 'error', payload: error.message, timestamp: Date.now() }]);
+    setCallbacks((prev) => [
+      ...prev,
+      { type: "error", payload: error.message, timestamp: Date.now() },
+    ]);
     setRenderError(error.message);
   }, []);
 
@@ -310,15 +331,17 @@ export function useActivityReviewHarnessState() {
     setRenderError(null);
   }, []);
 
-  const changeMode = useCallback((mode: 'teaching' | 'guided' | 'practice') => {
+  const changeMode = useCallback((mode: "teaching" | "guided" | "practice") => {
     setActiveMode(mode);
     setCallbacks([]);
     setIsRendered(false);
   }, []);
 
-  const canApprove = isRendered && !renderError && 
-                     callbacks.some(c => c.type === 'submit') && 
-                     callbacks.some(c => c.type === 'complete');
+  const canApprove =
+    isRendered &&
+    !renderError &&
+    callbacks.some((c) => c.type === "submit") &&
+    callbacks.some((c) => c.type === "complete");
 
   return {
     callbacks,

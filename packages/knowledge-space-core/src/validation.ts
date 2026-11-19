@@ -8,9 +8,9 @@ import type {
   ValidationResult,
   ValidationError,
   ConfidenceLevel,
-} from './types';
+} from "./types";
 
-import { EDGE_ENDPOINT_RULES } from './edge-endpoint-rules';
+import { EDGE_ENDPOINT_RULES } from "./edge-endpoint-rules";
 
 // ---------------------------------------------------------------------------
 // Edge endpoint pairing rules (single source: edge-endpoint-rules.ts)
@@ -25,9 +25,7 @@ export function getInvalidEdgePairings(
   graph: KnowledgeSpace,
 ): Array<{ edgeId: string; message: string }> {
   const nodeMap = new Map(graph.nodes.map((n) => [n.id, n]));
-  const rulesByType = new Map(
-    EDGE_ENDPOINT_RULES.map((r) => [r.edgeType, r] as const),
-  );
+  const rulesByType = new Map(EDGE_ENDPOINT_RULES.map((r) => [r.edgeType, r] as const));
   const violations: Array<{ edgeId: string; message: string }> = [];
 
   for (const edge of graph.edges) {
@@ -39,14 +37,19 @@ export function getInvalidEdgePairings(
     if (rule.targetKinds.length > 0 && target && !rule.targetKinds.includes(target.kind)) {
       violations.push({
         edgeId: edge.id,
-        message: `Edge "${edge.id}" of type "${edge.type}" must target a node of kind ${rule.targetKinds.join(' | ')}, but targets "${target.kind}"`,
+        message: `Edge "${edge.id}" of type "${edge.type}" must target a node of kind ${rule.targetKinds.join(" | ")}, but targets "${target.kind}"`,
       });
     }
 
-    if (rule.sourceKinds && rule.sourceKinds.length > 0 && source && !rule.sourceKinds.includes(source.kind)) {
+    if (
+      rule.sourceKinds &&
+      rule.sourceKinds.length > 0 &&
+      source &&
+      !rule.sourceKinds.includes(source.kind)
+    ) {
       violations.push({
         edgeId: edge.id,
-        message: `Edge "${edge.id}" of type "${edge.type}" must originate from a node of kind ${rule.sourceKinds.join(' | ')}, but originates from "${source.kind}"`,
+        message: `Edge "${edge.id}" of type "${edge.type}" must originate from a node of kind ${rule.sourceKinds.join(" | ")}, but originates from "${source.kind}"`,
       });
     }
 
@@ -62,9 +65,9 @@ export function getInvalidEdgePairings(
 
 // Nodes that must have standard alignment (skill, worked_example, task_blueprint)
 const NODES_REQUIRING_ALIGNMENT: Set<string> = new Set([
-  'skill',
-  'worked_example',
-  'task_blueprint',
+  "skill",
+  "worked_example",
+  "task_blueprint",
 ]);
 
 /**
@@ -78,14 +81,14 @@ export function validateKnowledgeSpace(space: KnowledgeSpace): ValidationResult 
   // Duplicate node IDs
   const dupNodeIds = getDuplicateNodeIds(space);
   for (const id of dupNodeIds) {
-    errors.push({ code: 'DUPLICATE_NODE_ID', message: `Duplicate node ID "${id}"`, nodeId: id });
+    errors.push({ code: "DUPLICATE_NODE_ID", message: `Duplicate node ID "${id}"`, nodeId: id });
   }
 
   // Dangling edges
   const dangling = getDanglingEdges(space);
   for (const edge of dangling) {
     errors.push({
-      code: 'DANGLING_EDGE',
+      code: "DANGLING_EDGE",
       message: `Edge "${edge.id}" references a node that does not exist`,
       edgeId: edge.id,
     });
@@ -95,7 +98,7 @@ export function validateKnowledgeSpace(space: KnowledgeSpace): ValidationResult 
   const dupEdges = getDuplicateEdges(space);
   for (const dup of dupEdges) {
     errors.push({
-      code: 'DUPLICATE_EDGE',
+      code: "DUPLICATE_EDGE",
       message: `Duplicate edge (${dup.sourceId} → ${dup.targetId} [${dup.type}])`,
     });
   }
@@ -104,7 +107,7 @@ export function validateKnowledgeSpace(space: KnowledgeSpace): ValidationResult 
   const missingAlignments = getNodesMissingRequiredAlignments(space);
   for (const item of missingAlignments) {
     errors.push({
-      code: 'MISSING_REQUIRED_ALIGNMENT',
+      code: "MISSING_REQUIRED_ALIGNMENT",
       message: `Node "${item.nodeId}" requires a standard alignment edge or documented exception`,
       nodeId: item.nodeId,
     });
@@ -114,7 +117,7 @@ export function validateKnowledgeSpace(space: KnowledgeSpace): ValidationResult 
   const missingGenerators = getIndependentPracticeNodesMissingGenerators(space);
   for (const item of missingGenerators) {
     errors.push({
-      code: 'MISSING_GENERATOR',
+      code: "MISSING_GENERATOR",
       message: `Node "${item.nodeId}" is marked independentPracticeReady but lacks a generated_by edge or exception`,
       nodeId: item.nodeId,
     });
@@ -124,7 +127,7 @@ export function validateKnowledgeSpace(space: KnowledgeSpace): ValidationResult 
   const pairingViolations = getInvalidEdgePairings(space);
   for (const v of pairingViolations) {
     errors.push({
-      code: 'INVALID_EDGE_PAIRING',
+      code: "INVALID_EDGE_PAIRING",
       message: v.message,
       edgeId: v.edgeId,
     });
@@ -134,9 +137,9 @@ export function validateKnowledgeSpace(space: KnowledgeSpace): ValidationResult 
   const cycles = getPrerequisiteCycles(space);
   for (const cycle of cycles) {
     errors.push({
-      code: 'PREREQUISITE_CYCLE',
-      message: `High-confidence prerequisite cycle detected: ${cycle.cycle.join(' → ')}`,
-      edgeId: cycle.edgeIds.join(', '),
+      code: "PREREQUISITE_CYCLE",
+      message: `High-confidence prerequisite cycle detected: ${cycle.cycle.join(" → ")}`,
+      edgeId: cycle.edgeIds.join(", "),
     });
   }
 
@@ -168,8 +171,8 @@ export function getPrerequisiteCycles(
 ): PrerequisiteCycle[] {
   const includeLow = options?.includeLowConfidence ?? false;
   const minConfidence: Set<ConfidenceLevel> = includeLow
-    ? new Set(['high', 'medium', 'low'])
-    : new Set(['high', 'medium']);
+    ? new Set(["high", "medium", "low"])
+    : new Set(["high", "medium"]);
 
   // Build adjacency list from prerequisite_for edges meeting confidence threshold
   const adj = new Map<string, Array<{ target: string; edgeId: string }>>();
@@ -179,7 +182,7 @@ export function getPrerequisiteCycles(
   }
 
   for (const edge of graph.edges) {
-    if (edge.type !== 'prerequisite_for') continue;
+    if (edge.type !== "prerequisite_for") continue;
     if (!minConfidence.has(edge.confidence)) continue;
     const neighbors = adj.get(edge.sourceId);
     if (neighbors) {
@@ -229,9 +232,7 @@ export function getPrerequisiteCycles(
  */
 export function getDanglingEdges(graph: KnowledgeSpace): KnowledgeSpaceEdge[] {
   const nodeIds = new Set(graph.nodes.map((n) => n.id));
-  return graph.edges.filter(
-    (e) => !nodeIds.has(e.sourceId) || !nodeIds.has(e.targetId),
-  );
+  return graph.edges.filter((e) => !nodeIds.has(e.sourceId) || !nodeIds.has(e.targetId));
 }
 
 /**
@@ -278,10 +279,7 @@ export function getDuplicateEdges(graph: KnowledgeSpace): Array<{
  * @param {string} exceptionType - The exception type string to match
  * @returns {boolean} - True if the node has a matching exception
  */
-function hasExceptionOfType(
-  node: KnowledgeSpaceNode,
-  exceptionType: string,
-): boolean {
+function hasExceptionOfType(node: KnowledgeSpaceNode, exceptionType: string): boolean {
   return (node.exceptions ?? []).some((e) => e.type === exceptionType);
 }
 
@@ -295,7 +293,7 @@ export function getNodesMissingRequiredAlignments(
 ): Array<{ nodeId: string }> {
   const nodesWithAlignmentEdge = new Set<string>();
   for (const edge of graph.edges) {
-    if (edge.type === 'aligned_to_standard') {
+    if (edge.type === "aligned_to_standard") {
       nodesWithAlignmentEdge.add(edge.sourceId);
     }
   }
@@ -305,7 +303,7 @@ export function getNodesMissingRequiredAlignments(
       (n) =>
         NODES_REQUIRING_ALIGNMENT.has(n.kind) &&
         !nodesWithAlignmentEdge.has(n.id) &&
-        !hasExceptionOfType(n, 'alignment'),
+        !hasExceptionOfType(n, "alignment"),
     )
     .map((n) => ({ nodeId: n.id }));
 }
@@ -320,7 +318,7 @@ export function getIndependentPracticeNodesMissingGenerators(
 ): Array<{ nodeId: string }> {
   const nodesWithGeneratorEdge = new Set<string>();
   for (const edge of graph.edges) {
-    if (edge.type === 'generated_by') {
+    if (edge.type === "generated_by") {
       nodesWithGeneratorEdge.add(edge.sourceId);
     }
   }
@@ -330,7 +328,7 @@ export function getIndependentPracticeNodesMissingGenerators(
       (n) =>
         n.independentPracticeReady === true &&
         !nodesWithGeneratorEdge.has(n.id) &&
-        !hasExceptionOfType(n, 'generator'),
+        !hasExceptionOfType(n, "generator"),
     )
     .map((n) => ({ nodeId: n.id }));
 }

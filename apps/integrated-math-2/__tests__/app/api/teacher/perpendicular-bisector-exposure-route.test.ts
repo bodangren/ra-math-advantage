@@ -62,7 +62,9 @@ describe("IM2 teacher exposure route", () => {
     mocks.mutate.mockRejectedValue(Error("idempotency_conflict: private detail"));
     const response = await POST(request(validBody));
     expect(response.status).toBe(409);
-    expect(await response.json()).toEqual({ error: "This teacher action conflicts with the saved action." });
+    expect(await response.json()).toEqual({
+      error: "This teacher action conflicts with the saved action.",
+    });
   });
 
   it("returns a controlled response for an authorization failure", async () => {

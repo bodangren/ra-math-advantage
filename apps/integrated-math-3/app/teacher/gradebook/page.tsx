@@ -1,8 +1,12 @@
-import Link from 'next/link';
-import { requireTeacherSessionClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
-import { cellBgClass, type GradebookRow, type GradebookLesson } from '@math-platform/teacher-reporting-core';
-import { GradebookExportButton } from '@/components/teacher/GradebookExportButton';
+import Link from "next/link";
+import { requireTeacherSessionClaims } from "@/lib/auth/server";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
+import {
+  cellBgClass,
+  type GradebookRow,
+  type GradebookLesson,
+} from "@math-platform/teacher-reporting-core";
+import { GradebookExportButton } from "@/components/teacher/GradebookExportButton";
 
 const UNIT_COUNT = 9;
 
@@ -17,9 +21,9 @@ interface PageProps {
  * @returns {JSX.Element} The rendered GradebookPage JSX.
  */
 export default async function GradebookPage({ searchParams }: PageProps) {
-  const claims = await requireTeacherSessionClaims('/auth/login');
+  const claims = await requireTeacherSessionClaims("/auth/login");
   const { unit } = await searchParams;
-  const unitNumber = Math.max(1, Math.min(UNIT_COUNT, parseInt(unit ?? '1', 10) || 1));
+  const unitNumber = Math.max(1, Math.min(UNIT_COUNT, parseInt(unit ?? "1", 10) || 1));
 
   const data: { rows: GradebookRow[]; lessons: GradebookLesson[] } | null =
     await fetchInternalQuery(internal.teacher.getTeacherGradebookData, {
@@ -46,11 +50,11 @@ export default async function GradebookPage({ searchParams }: PageProps) {
             key={u}
             href={`/teacher/gradebook?unit=${u}`}
             className={[
-              'px-3 py-1.5 rounded-md text-sm font-mono-num font-medium border transition-colors',
+              "px-3 py-1.5 rounded-md text-sm font-mono-num font-medium border transition-colors",
               u === unitNumber
-                ? 'bg-primary text-primary-foreground border-transparent'
-                : 'border-border text-muted-foreground hover:bg-muted/40',
-            ].join(' ')}
+                ? "bg-primary text-primary-foreground border-transparent"
+                : "border-border text-muted-foreground hover:bg-muted/40",
+            ].join(" ")}
           >
             U{u}
           </Link>
@@ -79,7 +83,10 @@ export default async function GradebookPage({ searchParams }: PageProps) {
           <tbody className="divide-y divide-border">
             {rows.length === 0 ? (
               <tr>
-                <td colSpan={lessons.length + 1} className="px-4 py-8 text-center text-muted-foreground">
+                <td
+                  colSpan={lessons.length + 1}
+                  className="px-4 py-8 text-center text-muted-foreground"
+                >
                   No data for this unit.
                 </td>
               </tr>
@@ -105,7 +112,7 @@ export default async function GradebookPage({ searchParams }: PageProps) {
                         title={`${cell.lesson.lessonTitle} - ${cell.completionStatus}`}
                         data-testid="teacher-gradebook-cell"
                       >
-                        {cell.masteryLevel !== null ? `${cell.masteryLevel}%` : '—'}
+                        {cell.masteryLevel !== null ? `${cell.masteryLevel}%` : "—"}
                       </Link>
                     </td>
                   ))}
@@ -117,10 +124,22 @@ export default async function GradebookPage({ searchParams }: PageProps) {
       </div>
 
       <div className="flex items-center gap-4 text-xs text-muted-foreground pt-2">
-        <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-green-100 inline-block" />Completed</span>
-        <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-yellow-100 inline-block" />In Progress</span>
-        <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-red-100 inline-block" />Needs Attention</span>
-        <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-muted/30 inline-block" />Not Started</span>
+        <span className="flex items-center gap-1.5">
+          <span className="w-3 h-3 rounded bg-green-100 inline-block" />
+          Completed
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="w-3 h-3 rounded bg-yellow-100 inline-block" />
+          In Progress
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="w-3 h-3 rounded bg-red-100 inline-block" />
+          Needs Attention
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="w-3 h-3 rounded bg-muted/30 inline-block" />
+          Not Started
+        </span>
       </div>
     </div>
   );

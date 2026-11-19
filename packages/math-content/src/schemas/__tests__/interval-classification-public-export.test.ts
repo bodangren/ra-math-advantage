@@ -1,12 +1,9 @@
-import { expect, it } from 'vitest';
-import {
-  intervalClassificationSchema,
-  type IntervalClassificationProps,
-} from '../index';
+import { expect, it } from "vitest";
+import { intervalClassificationSchema, type IntervalClassificationProps } from "../index";
 
-it('exports the interval classification schema and props type from the public schema barrel', () => {
+it("exports the interval classification schema and props type from the public schema barrel", () => {
   const props: IntervalClassificationProps = {
-    prompt: 'Classify each interval.',
+    prompt: "Classify each interval.",
     domain: [0, 3],
     changePoints: [1, 2],
     points: [
@@ -15,7 +12,7 @@ it('exports the interval classification schema and props type from the public sc
       { x: 2, y: 1 },
       { x: 3, y: 0 },
     ],
-    presentationMode: 'independent_practice',
+    presentationMode: "independent_practice",
   };
   expect(intervalClassificationSchema.parse(props)).toEqual(props);
 });

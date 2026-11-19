@@ -1,10 +1,10 @@
-import { evaluateRealExpression } from './expression';
+import { evaluateRealExpression } from "./expression";
 
 export interface Point {
   x: number;
   y: number;
   label?: string;
-  type?: 'vertex' | 'intercept' | 'intersection' | 'custom';
+  type?: "vertex" | "intercept" | "intersection" | "custom";
 }
 
 export interface FunctionPlot {
@@ -101,10 +101,7 @@ export function transformCanvasToData(
  * @param {number} step - Grid step size (default 1)
  * @returns {number} - Value snapped to nearest step
  */
-export function snapToGridValue(
-  value: number,
-  step: number = 1,
-): number {
+export function snapToGridValue(value: number, step: number = 1): number {
   return Math.round(value / step) * step;
 }
 
@@ -116,12 +113,7 @@ export function snapToGridValue(
  * @param {number} c - Constant term
  * @returns {number} - The quadratic result a*x^2 + b*x + c
  */
-export function evaluateQuadratic(
-  x: number,
-  a: number,
-  b: number,
-  c: number,
-): number {
+export function evaluateQuadratic(x: number, a: number, b: number, c: number): number {
   return a * x * x + b * x + c;
 }
 
@@ -132,11 +124,7 @@ export function evaluateQuadratic(
  * @param {number} b - Y intercept
  * @returns {number} - The linear result m*x + b
  */
-export function evaluateLinear(
-  x: number,
-  m: number,
-  b: number,
-): number {
+export function evaluateLinear(x: number, m: number, b: number): number {
   return m * x + b;
 }
 
@@ -146,10 +134,7 @@ export function evaluateLinear(
  * @param {number} x - Input value
  * @returns {number} - Evaluated result, or NaN for unsupported or non-real inputs
  */
-export function evaluateFunction(
-  expression: string,
-  x: number,
-): number {
+export function evaluateFunction(expression: string, x: number): number {
   return evaluateRealExpression(expression, x);
 }
 
@@ -170,23 +155,30 @@ export function generateFunctionPath(
   height: number,
 ): string {
   const [xMin, xMax] = domain;
-  if (!Number.isFinite(width) || width <= 0 || width > 10000 || xMax <= xMin || range[1] <= range[0]) return '';
+  if (
+    !Number.isFinite(width) ||
+    width <= 0 ||
+    width > 10000 ||
+    xMax <= xMin ||
+    range[1] <= range[0]
+  )
+    return "";
   const points: string[] = [];
   let connected = false;
   let previousY = 0;
   const samples = Math.ceil(width);
   for (let index = 0; index <= samples; index++) {
-    const x = xMin + (xMax - xMin) * index / samples;
+    const x = xMin + ((xMax - xMin) * index) / samples;
     const y = evaluateFunction(expression, x);
     if (!Number.isFinite(y) || y < range[0] || y > range[1]) {
       connected = false;
       continue;
     }
     const { canvasX, canvasY } = transformDataToCanvas(x, y, domain, range, width, height);
-    const command = connected && Math.abs(canvasY - previousY) < height ? 'L' : 'M';
+    const command = connected && Math.abs(canvasY - previousY) < height ? "L" : "M";
     points.push(`${command} ${canvasX},${canvasY}`);
     previousY = canvasY;
     connected = true;
   }
-  return points.join(' ');
+  return points.join(" ");
 }

@@ -26,24 +26,20 @@ it("shows an accessible sign-in error", async () => {
     target: { value: "wrong" },
   });
   fireEvent.click(screen.getByRole("button", { name: "Sign In" }));
-  expect(await screen.findByRole("alert")).toHaveTextContent(
-    "Invalid credentials",
-  );
+  expect(await screen.findByRole("alert")).toHaveTextContent("Invalid credentials");
   expect(mocks.push).not.toHaveBeenCalled();
 });
 it("routes a teacher to the dashboard and rejects an external redirect", async () => {
   mocks.signIn.mockResolvedValueOnce(undefined);
   vi.stubGlobal(
     "fetch",
-    vi
-      .fn()
-      .mockResolvedValue({
-        ok: true,
-        json: async () => ({
-          authenticated: true,
-          profile: { role: "teacher" },
-        }),
+    vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        authenticated: true,
+        profile: { role: "teacher" },
       }),
+    }),
   );
   window.history.replaceState({}, "", "/auth/login?redirect=//example.com");
   render(<Login />);
@@ -54,9 +50,7 @@ it("routes a teacher to the dashboard and rejects an external redirect", async (
     target: { value: "password" },
   });
   fireEvent.click(screen.getByRole("button", { name: "Sign In" }));
-  await waitFor(() =>
-    expect(mocks.push).toHaveBeenCalledWith("/teacher/dashboard"),
-  );
+  await waitFor(() => expect(mocks.push).toHaveBeenCalledWith("/teacher/dashboard"));
   vi.unstubAllGlobals();
 });
 
@@ -71,7 +65,9 @@ it.each([
   fireEvent.change(screen.getByLabelText("Username"), { target: { value: "learner" } });
   fireEvent.change(screen.getByLabelText("Password"), { target: { value: "password" } });
   fireEvent.click(screen.getByRole("button", { name: "Sign In" }));
-  expect(await screen.findByRole("alert")).toHaveTextContent("Could not verify your session. Sign in again.");
+  expect(await screen.findByRole("alert")).toHaveTextContent(
+    "Could not verify your session. Sign in again.",
+  );
   expect(mocks.push).not.toHaveBeenCalled();
   vi.unstubAllGlobals();
 });

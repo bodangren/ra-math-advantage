@@ -1,23 +1,23 @@
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
-import { IM1_GENERATORS } from './generators';
+import { IM1_GENERATORS } from "./generators";
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
 /** `served` means that the skill has a registered generator binding only. */
-export type CoverageStatus = 'served' | 'gap' | 'newComponent';
+export type CoverageStatus = "served" | "gap" | "newComponent";
 
 export type CoverageMatrixSkillEntry = {
   skillId: string;
   module: string;
   status: CoverageStatus;
-  tier: 't17' | 't18' | 't19' | 'none';
+  tier: "t17" | "t18" | "t19" | "none";
   rendererKey: string;
-  priority: 'high' | 'medium' | 'standard';
+  priority: "high" | "medium" | "standard";
 };
 
 export type CoverageMatrixCounts = {
@@ -36,7 +36,7 @@ export type CoverageMatrixByModule = {
 
 export type CoverageMatrix = {
   version: number;
-  course: 'im1';
+  course: "im1";
   totalSkills: number;
   counts: CoverageMatrixCounts;
   byModule: CoverageMatrixByModule[];
@@ -62,7 +62,7 @@ type GapQueueEntry = {
   nodeId: string;
   module: string;
   rendererKey: string;
-  priority: 'high' | 'medium' | 'standard';
+  priority: "high" | "medium" | "standard";
 };
 
 type GapQueueFile = {
@@ -84,14 +84,11 @@ type BlueprintsFile = {
 // ---------------------------------------------------------------------------
 
 const HERE = fileURLToPath(import.meta.url);
-const PKG_ROOT = resolve(HERE, '../../../../../..');
-const IM1_ROLLOUT_DIR = resolve(
-  PKG_ROOT,
-  'apps/integrated-math-1/curriculum/skill-graph',
-);
-const NODES_JSON = resolve(IM1_ROLLOUT_DIR, 'nodes.json');
-const GAP_QUEUE_JSON = resolve(IM1_ROLLOUT_DIR, 'generator-gap-queue.json');
-const BLUEPRINTS_JSON = resolve(IM1_ROLLOUT_DIR, 'blueprints.json');
+const PKG_ROOT = resolve(HERE, "../../../../../..");
+const IM1_ROLLOUT_DIR = resolve(PKG_ROOT, "apps/integrated-math-1/curriculum/skill-graph");
+const NODES_JSON = resolve(IM1_ROLLOUT_DIR, "nodes.json");
+const GAP_QUEUE_JSON = resolve(IM1_ROLLOUT_DIR, "generator-gap-queue.json");
+const BLUEPRINTS_JSON = resolve(IM1_ROLLOUT_DIR, "blueprints.json");
 // ---------------------------------------------------------------------------
 // buildCoverageMatrix
 // ---------------------------------------------------------------------------
@@ -101,44 +98,33 @@ const BLUEPRINTS_JSON = resolve(IM1_ROLLOUT_DIR, 'blueprints.json');
  * @returns {CoverageMatrix} - Coverage matrix with per-skill status, counts, and module breakdowns
  */
 export function buildCoverageMatrix(): CoverageMatrix {
-  const nodes = JSON.parse(
-    readFileSync(NODES_JSON, 'utf-8'),
-  ) as RolloutNodesFile;
-  const gapQueue = JSON.parse(
-    readFileSync(GAP_QUEUE_JSON, 'utf-8'),
-  ) as GapQueueFile;
-  const blueprints = JSON.parse(
-    readFileSync(BLUEPRINTS_JSON, 'utf-8'),
-  ) as BlueprintsFile;
+  const nodes = JSON.parse(readFileSync(NODES_JSON, "utf-8")) as RolloutNodesFile;
+  const gapQueue = JSON.parse(readFileSync(GAP_QUEUE_JSON, "utf-8")) as GapQueueFile;
+  const blueprints = JSON.parse(readFileSync(BLUEPRINTS_JSON, "utf-8")) as BlueprintsFile;
 
   const skills = nodes.nodes.filter(
-    (node) => node.kind === 'skill' && node.reviewStatus !== 'rejected',
+    (node) => node.kind === "skill" && node.reviewStatus !== "rejected",
   );
 
   // Build lookup maps from gap-queue and blueprints for rendererKey / priority.
-  const gapByNodeId = new Map<string, GapQueueEntry>(
-    gapQueue.queue.map((e) => [e.nodeId, e]),
-  );
+  const gapByNodeId = new Map<string, GapQueueEntry>(gapQueue.queue.map((e) => [e.nodeId, e]));
   const bpByNodeId = new Map<string, BlueprintEntry>(
     blueprints.blueprints.map((b) => [b.nodeId, b]),
   );
   // This legacy field reports generator registration. It does not prove that
   // Worked, Guided, and Independent practice is complete or production-ready.
-  const servedNodeIds = new Set(
-    IM1_GENERATORS.flatMap((entry) => entry.nodeIds),
-  );
+  const servedNodeIds = new Set(IM1_GENERATORS.flatMap((entry) => entry.nodeIds));
 
   const matrixSkills: CoverageMatrixSkillEntry[] = skills.map((skill) => {
     const gap = gapByNodeId.get(skill.id);
     const bp = bpByNodeId.get(skill.id);
-    const module = skill.metadata?.module ?? '0';
+    const module = skill.metadata?.module ?? "0";
     const isServed = servedNodeIds.has(skill.id);
-    const status: CoverageStatus = isServed ? 'served' : 'gap';
-    const tier: CoverageMatrixSkillEntry['tier'] = isServed ? 't17' : 'none';
+    const status: CoverageStatus = isServed ? "served" : "gap";
+    const tier: CoverageMatrixSkillEntry["tier"] = isServed ? "t17" : "none";
 
-    const rendererKey =
-      gap?.rendererKey ?? bp?.rendererKey ?? 'unknown';
-    const priority = gap?.priority ?? 'standard';
+    const rendererKey = gap?.rendererKey ?? bp?.rendererKey ?? "unknown";
+    const priority = gap?.priority ?? "standard";
 
     return {
       skillId: skill.id,
@@ -194,7 +180,7 @@ export function buildCoverageMatrix(): CoverageMatrix {
 
   return {
     version: 1,
-    course: 'im1',
+    course: "im1",
     totalSkills: matrixSkills.length,
     counts,
     byModule,

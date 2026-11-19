@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 
 /**
  * Phase 4 adversarial — `toTeacherDraftPayload` deep-clone integrity.
@@ -34,23 +34,23 @@ import { describe, it, expect } from 'vitest';
 
 function buildNestedPropsDraft() {
   return {
-    title: 'Nested Props Lesson',
+    title: "Nested Props Lesson",
     phases: [
       {
-        title: 'Explore',
-        phaseType: 'explore',
+        title: "Explore",
+        phaseType: "explore",
         sections: [
           {
-            title: 'Explore Section',
+            title: "Explore Section",
             activities: [
               {
-                componentKey: 'comprehension-quiz',
+                componentKey: "comprehension-quiz",
                 props: {
                   questions: [
                     {
-                      id: 'q1',
-                      prompt: 'What is the vertex form?',
-                      correctAnswer: 'y = a(x - h)^2 + k',
+                      id: "q1",
+                      prompt: "What is the vertex form?",
+                      correctAnswer: "y = a(x - h)^2 + k",
                     },
                   ],
                 },
@@ -60,22 +60,22 @@ function buildNestedPropsDraft() {
         ],
       },
       {
-        title: 'Worked Example',
-        phaseType: 'worked_example',
+        title: "Worked Example",
+        phaseType: "worked_example",
         sections: [
           {
-            title: 'Worked Section',
+            title: "Worked Section",
             activities: [
               {
-                componentKey: 'step-by-step-solver',
+                componentKey: "step-by-step-solver",
                 props: {
-                  problemType: 'factoring',
-                  equation: 'x^2 + 3x - 4 = 0',
+                  problemType: "factoring",
+                  equation: "x^2 + 3x - 4 = 0",
                   steps: [
                     {
-                      id: 's1',
-                      description: 'Factor the quadratic.',
-                      expression: 'x^2 + 3x - 4 = 0',
+                      id: "s1",
+                      description: "Factor the quadratic.",
+                      expression: "x^2 + 3x - 4 = 0",
                     },
                   ],
                 },
@@ -85,17 +85,17 @@ function buildNestedPropsDraft() {
         ],
       },
       {
-        title: 'Guided Practice',
-        phaseType: 'guided_practice',
+        title: "Guided Practice",
+        phaseType: "guided_practice",
         sections: [
           {
-            title: 'Practice Section',
+            title: "Practice Section",
             activities: [
               {
-                componentKey: 'fill-in-the-blank',
+                componentKey: "fill-in-the-blank",
                 props: {
-                  template: 'A quadratic has degree {{blank:degree}}.',
-                  blanks: [{ id: 'degree', correctAnswer: '2' }],
+                  template: "A quadratic has degree {{blank:degree}}.",
+                  blanks: [{ id: "degree", correctAnswer: "2" }],
                 },
               },
             ],
@@ -115,42 +115,38 @@ function nestedProps(props: Record<string, unknown>): NestedActivityProps {
   return props as unknown as NestedActivityProps;
 }
 
-describe('Phase 4 adversarial: toTeacherDraftPayload deep-clone integrity', () => {
-  it('mutating a NESTED field on the composer state after projection does NOT affect the returned payload', async () => {
-    const { createComposerState } = await import(
-      '../../../../lib/teacher/content-authoring/composer-state'
-    );
-    const { toTeacherDraftPayload } = await import(
-      '../../../../lib/teacher/content-authoring/authoring-lifecycle'
-    );
+describe("Phase 4 adversarial: toTeacherDraftPayload deep-clone integrity", () => {
+  it("mutating a NESTED field on the composer state after projection does NOT affect the returned payload", async () => {
+    const { createComposerState } =
+      await import("../../../../lib/teacher/content-authoring/composer-state");
+    const { toTeacherDraftPayload } =
+      await import("../../../../lib/teacher/content-authoring/authoring-lifecycle");
 
     const state = createComposerState(buildNestedPropsDraft());
     const payload = toTeacherDraftPayload(state);
 
     // Snapshot the nested field BEFORE the composer mutation.
-    const nestedBefore =
-      nestedProps(payload.phases[0].sections[0].activities[0].props).questions[0].prompt;
-    expect(nestedBefore).toBe('What is the vertex form?');
+    const nestedBefore = nestedProps(payload.phases[0].sections[0].activities[0].props).questions[0]
+      .prompt;
+    expect(nestedBefore).toBe("What is the vertex form?");
 
     // Mutate the NESTED field on the composer's source state. If the
     // adapter shallow-copied (`{...props}` or returned the reference),
     // the payload's nested field would also change because arrays and
     // objects inside `props` would be aliased.
     nestedProps(state.lesson.phases[0].sections[0].activities[0].props).questions[0].prompt =
-      'INJECTED-AFTER-PROJECTION';
+      "INJECTED-AFTER-PROJECTION";
 
-    const nestedAfter =
-      nestedProps(payload.phases[0].sections[0].activities[0].props).questions[0].prompt;
-    expect(nestedAfter).toBe('What is the vertex form?');
+    const nestedAfter = nestedProps(payload.phases[0].sections[0].activities[0].props).questions[0]
+      .prompt;
+    expect(nestedAfter).toBe("What is the vertex form?");
   });
 
-  it('mutating a NESTED array on the composer state after projection does NOT affect the returned payload', async () => {
-    const { createComposerState } = await import(
-      '../../../../lib/teacher/content-authoring/composer-state'
-    );
-    const { toTeacherDraftPayload } = await import(
-      '../../../../lib/teacher/content-authoring/authoring-lifecycle'
-    );
+  it("mutating a NESTED array on the composer state after projection does NOT affect the returned payload", async () => {
+    const { createComposerState } =
+      await import("../../../../lib/teacher/content-authoring/composer-state");
+    const { toTeacherDraftPayload } =
+      await import("../../../../lib/teacher/content-authoring/authoring-lifecycle");
 
     const state = createComposerState(buildNestedPropsDraft());
     const payload = toTeacherDraftPayload(state);
@@ -162,49 +158,45 @@ describe('Phase 4 adversarial: toTeacherDraftPayload deep-clone integrity', () =
     // Replace the entire nested array on the source.
     nestedProps(state.lesson.phases[1].sections[0].activities[0].props).steps = [
       {
-        id: 's2-injected',
-        description: 'INJECTED step after projection',
-        expression: 'different',
+        id: "s2-injected",
+        description: "INJECTED step after projection",
+        expression: "different",
       },
     ];
 
     const stepsAfter = nestedProps(payload.phases[1].sections[0].activities[0].props).steps;
     expect((stepsAfter as unknown[]).length).toBe(1);
-    expect((stepsAfter as Array<{ id: string }>)[0].id).toBe('s1');
+    expect((stepsAfter as Array<{ id: string }>)[0].id).toBe("s1");
   });
 
-  it('mutating a NESTED field on the returned payload does NOT affect the composer state', async () => {
-    const { createComposerState } = await import(
-      '../../../../lib/teacher/content-authoring/composer-state'
-    );
-    const { toTeacherDraftPayload } = await import(
-      '../../../../lib/teacher/content-authoring/authoring-lifecycle'
-    );
+  it("mutating a NESTED field on the returned payload does NOT affect the composer state", async () => {
+    const { createComposerState } =
+      await import("../../../../lib/teacher/content-authoring/composer-state");
+    const { toTeacherDraftPayload } =
+      await import("../../../../lib/teacher/content-authoring/authoring-lifecycle");
 
     const state = createComposerState(buildNestedPropsDraft());
     const payload = toTeacherDraftPayload(state);
 
-    const composerPromptBefore =
-      nestedProps(state.lesson.phases[0].sections[0].activities[0].props).questions[0].prompt;
-    expect(composerPromptBefore).toBe('What is the vertex form?');
+    const composerPromptBefore = nestedProps(state.lesson.phases[0].sections[0].activities[0].props)
+      .questions[0].prompt;
+    expect(composerPromptBefore).toBe("What is the vertex form?");
 
     // Simulate a future preview re-render or handler sanitization
     // rewriting a nested prop on the returned payload.
     nestedProps(payload.phases[0].sections[0].activities[0].props).questions[0].prompt =
-      'MUTATED-BY-PREVIEW';
+      "MUTATED-BY-PREVIEW";
 
-    const composerPromptAfter =
-      nestedProps(state.lesson.phases[0].sections[0].activities[0].props).questions[0].prompt;
-    expect(composerPromptAfter).toBe('What is the vertex form?');
+    const composerPromptAfter = nestedProps(state.lesson.phases[0].sections[0].activities[0].props)
+      .questions[0].prompt;
+    expect(composerPromptAfter).toBe("What is the vertex form?");
   });
 
-  it('mutating a NESTED array on the returned payload does NOT affect the composer state', async () => {
-    const { createComposerState } = await import(
-      '../../../../lib/teacher/content-authoring/composer-state'
-    );
-    const { toTeacherDraftPayload } = await import(
-      '../../../../lib/teacher/content-authoring/authoring-lifecycle'
-    );
+  it("mutating a NESTED array on the returned payload does NOT affect the composer state", async () => {
+    const { createComposerState } =
+      await import("../../../../lib/teacher/content-authoring/composer-state");
+    const { toTeacherDraftPayload } =
+      await import("../../../../lib/teacher/content-authoring/authoring-lifecycle");
 
     const state = createComposerState(buildNestedPropsDraft());
     const payload = toTeacherDraftPayload(state);
@@ -212,44 +204,40 @@ describe('Phase 4 adversarial: toTeacherDraftPayload deep-clone integrity', () =
     // Push a new step onto the payload's nested array — if the adapter
     // shallow-copied, this would leak into the composer's source state.
     (nestedProps(payload.phases[1].sections[0].activities[0].props).steps as Array<unknown>).push({
-      id: 'injected-step',
-      description: 'injected via payload',
-      expression: '0',
+      id: "injected-step",
+      description: "injected via payload",
+      expression: "0",
     });
 
     const composerSteps = nestedProps(state.lesson.phases[1].sections[0].activities[0].props).steps;
     expect(Array.isArray(composerSteps)).toBe(true);
     expect((composerSteps as unknown[]).length).toBe(1);
-    expect((composerSteps as Array<{ id: string }>)[0].id).toBe('s1');
+    expect((composerSteps as Array<{ id: string }>)[0].id).toBe("s1");
   });
 
-  it('repeated projections are independent — payload A mutating its nested props does not bleed into payload B', async () => {
-    const { createComposerState } = await import(
-      '../../../../lib/teacher/content-authoring/composer-state'
-    );
-    const { toTeacherDraftPayload } = await import(
-      '../../../../lib/teacher/content-authoring/authoring-lifecycle'
-    );
+  it("repeated projections are independent — payload A mutating its nested props does not bleed into payload B", async () => {
+    const { createComposerState } =
+      await import("../../../../lib/teacher/content-authoring/composer-state");
+    const { toTeacherDraftPayload } =
+      await import("../../../../lib/teacher/content-authoring/authoring-lifecycle");
 
     const state = createComposerState(buildNestedPropsDraft());
     const payloadA = toTeacherDraftPayload(state);
     const payloadB = toTeacherDraftPayload(state);
 
     nestedProps(payloadA.phases[0].sections[0].activities[0].props).questions[0].prompt =
-      'MUTATED-IN-A';
+      "MUTATED-IN-A";
 
-    expect(nestedProps(payloadB.phases[0].sections[0].activities[0].props).questions[0].prompt).toBe(
-      'What is the vertex form?',
-    );
+    expect(
+      nestedProps(payloadB.phases[0].sections[0].activities[0].props).questions[0].prompt,
+    ).toBe("What is the vertex form?");
   });
 
-  it('every nested props object across all activities is independent of the composer state', async () => {
-    const { createComposerState } = await import(
-      '../../../../lib/teacher/content-authoring/composer-state'
-    );
-    const { toTeacherDraftPayload } = await import(
-      '../../../../lib/teacher/content-authoring/authoring-lifecycle'
-    );
+  it("every nested props object across all activities is independent of the composer state", async () => {
+    const { createComposerState } =
+      await import("../../../../lib/teacher/content-authoring/composer-state");
+    const { toTeacherDraftPayload } =
+      await import("../../../../lib/teacher/content-authoring/authoring-lifecycle");
 
     const state = createComposerState(buildNestedPropsDraft());
     const payload = toTeacherDraftPayload(state);
@@ -262,13 +250,12 @@ describe('Phase 4 adversarial: toTeacherDraftPayload deep-clone integrity', () =
     // Payload must still carry the original nested arrays — every one
     // of them must have been deep-cloned, not aliased.
     expect(
-      (nestedProps(payload.phases[0].sections[0].activities[0].props).questions as unknown[]).length,
+      (nestedProps(payload.phases[0].sections[0].activities[0].props).questions as unknown[])
+        .length,
     ).toBe(1);
     expect(
       (nestedProps(payload.phases[1].sections[0].activities[0].props).steps as unknown[]).length,
     ).toBe(1);
-    expect(
-      (payload.phases[2].sections[0].activities[0].props.blanks as unknown[]).length,
-    ).toBe(1);
+    expect((payload.phases[2].sections[0].activities[0].props.blanks as unknown[]).length).toBe(1);
   });
 });

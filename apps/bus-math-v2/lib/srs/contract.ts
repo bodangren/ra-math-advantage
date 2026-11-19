@@ -1,14 +1,14 @@
-export { SRS_CONTRACT_VERSION } from '@math-platform/srs-engine';
+export { SRS_CONTRACT_VERSION } from "@math-platform/srs-engine";
 
 export type {
   SrsCardId,
   SrsCardState,
   SrsReviewLogEntry,
   SrsRating,
-} from '@math-platform/srs-engine';
+} from "@math-platform/srs-engine";
 
-import { z } from 'zod';
-export const srsRatingSchema = z.enum(['Again', 'Hard', 'Good', 'Easy']);
+import { z } from "zod";
+export const srsRatingSchema = z.enum(["Again", "Hard", "Good", "Easy"]);
 export type LocalSrsRating = z.infer<typeof srsRatingSchema>;
 
 export const srsReviewLogSchema = z.object({
@@ -40,23 +40,25 @@ export const srsSessionSchema = z.object({
 export type SrsSession = z.infer<typeof srsSessionSchema>;
 
 export const dailyQueueSchema = z.object({
-  cards: z.array(z.object({
-    cardId: z.string(),
-    studentId: z.string(),
-    objectiveId: z.string(),
-    problemFamilyId: z.string(),
-    stability: z.number(),
-    difficulty: z.number(),
-    state: z.enum(['new', 'learning', 'review', 'relearning']),
-    dueDate: z.string(),
-    elapsedDays: z.number(),
-    scheduledDays: z.number(),
-    reps: z.number(),
-    lapses: z.number(),
-    lastReview: z.string().nullable(),
-    createdAt: z.string(),
-    updatedAt: z.string(),
-  })),
+  cards: z.array(
+    z.object({
+      cardId: z.string(),
+      studentId: z.string(),
+      objectiveId: z.string(),
+      problemFamilyId: z.string(),
+      stability: z.number(),
+      difficulty: z.number(),
+      state: z.enum(["new", "learning", "review", "relearning"]),
+      dueDate: z.string(),
+      elapsedDays: z.number(),
+      scheduledDays: z.number(),
+      reps: z.number(),
+      lapses: z.number(),
+      lastReview: z.string().nullable(),
+      createdAt: z.string(),
+      updatedAt: z.string(),
+    }),
+  ),
   sessionSize: z.number().int().positive(),
   generatedAt: z.number(),
 });

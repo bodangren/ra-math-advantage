@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -139,10 +139,22 @@ export const seedLesson6_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "y = 15.98e^{0.0159t}",
                 steps: [
-                  { expression: "y = 15.98e^(0.0159t)", explanation: "Florida population model with a=15.98, k≈0.0159" },
-                  { expression: "25 = 15.98e^(0.0159t)", explanation: "Set y=25 to find when population reaches 25 million" },
-                  { expression: "25/15.98 = e^(0.0159t)", explanation: "Divide both sides by 15.98" },
-                  { expression: "ln(25/15.98) = 0.0159t", explanation: "Take natural logarithm of both sides" },
+                  {
+                    expression: "y = 15.98e^(0.0159t)",
+                    explanation: "Florida population model with a=15.98, k≈0.0159",
+                  },
+                  {
+                    expression: "25 = 15.98e^(0.0159t)",
+                    explanation: "Set y=25 to find when population reaches 25 million",
+                  },
+                  {
+                    expression: "25/15.98 = e^(0.0159t)",
+                    explanation: "Divide both sides by 15.98",
+                  },
+                  {
+                    expression: "ln(25/15.98) = 0.0159t",
+                    explanation: "Take natural logarithm of both sides",
+                  },
                   { expression: "t = ln(25/15.98)/0.0159", explanation: "Solve for t" },
                   { expression: "t ≈ 28.1 years after 2000", explanation: "In year 2028" },
                 ],
@@ -190,11 +202,20 @@ export const seedLesson6_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "y = 2e^{-0.0000092t}",
                 steps: [
-                  { expression: "0.5 = e^(-75,381k)", explanation: "After one half-life, y = 0.5a" },
-                  { expression: "ln 0.5 = -75,381k", explanation: "Take natural logarithm of both sides" },
+                  {
+                    expression: "0.5 = e^(-75,381k)",
+                    explanation: "After one half-life, y = 0.5a",
+                  },
+                  {
+                    expression: "ln 0.5 = -75,381k",
+                    explanation: "Take natural logarithm of both sides",
+                  },
                   { expression: "k = ln 0.5 / (-75,381)", explanation: "Solve for k" },
                   { expression: "k ≈ 0.0000092", explanation: "Decay constant" },
-                  { expression: "y = 2e^(-0.0000092(1500))", explanation: "Substitute a=2, t=1500" },
+                  {
+                    expression: "y = 2e^(-0.0000092(1500))",
+                    explanation: "Substitute a=2, t=1500",
+                  },
                   { expression: "≈ 1.97 grams", explanation: "Calculate remaining amount" },
                 ],
               },
@@ -225,10 +246,19 @@ export const seedLesson6_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "y = e^{-0.00012t}",
                 steps: [
-                  { expression: "0.186 = e^(-0.00012t)", explanation: "18.6% of original Carbon-14 remains" },
-                  { expression: "ln 0.186 = -0.00012t", explanation: "Take natural logarithm of both sides" },
+                  {
+                    expression: "0.186 = e^(-0.00012t)",
+                    explanation: "18.6% of original Carbon-14 remains",
+                  },
+                  {
+                    expression: "ln 0.186 = -0.00012t",
+                    explanation: "Take natural logarithm of both sides",
+                  },
                   { expression: "t = ln 0.186 / (-0.00012)", explanation: "Solve for t" },
-                  { expression: "t ≈ 14,017 years", explanation: "Calculate age of charcoal flakes" },
+                  {
+                    expression: "t ≈ 14,017 years",
+                    explanation: "Calculate age of charcoal flakes",
+                  },
                 ],
               },
             },
@@ -260,7 +290,7 @@ export const seedLesson6_5 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

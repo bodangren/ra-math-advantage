@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 export const resourceMetadataSchema = z.object({
   fileSize: z.number().optional(),

@@ -33,11 +33,41 @@
   "per_app_quality_gates": {
     "purpose": "Per-app lint/test/typecheck/build status captured after W3 refresh. Each app's CI scripts are run; results are recorded so a wave that flips a previously-green app to red is attributable to that wave.",
     "apps": [
-      { "workspace": "apps/bus-math-v2",        "lint": { "expected_exit_status": 0, "command": "npm run ws:bm2:lint" }, "test": { "expected_exit_status": 0, "command": "npm run ws:bm2:test" }, "typecheck": { "expected_exit_status": 0, "command": "npm run ws:bm2:typecheck" }, "build": { "expected_exit_status": 0, "command": "npm run ws:bm2:build" } },
-      { "workspace": "apps/integrated-math-1",  "lint": { "expected_exit_status": 0, "command": "npm run ws:im1:lint" }, "test": { "expected_exit_status": 0, "command": "npm run ws:im1:test" }, "typecheck": { "expected_exit_status": 0, "command": "npm run ws:im1:typecheck" }, "build": { "expected_exit_status": 0, "command": "npm run ws:im1:build" } },
-      { "workspace": "apps/integrated-math-2",  "lint": { "expected_exit_status": 0, "command": "npm run ws:im2:lint" }, "test": { "expected_exit_status": 0, "command": "npm run ws:im2:test" }, "typecheck": { "expected_exit_status": 0, "command": "npm run ws:im2:typecheck" }, "build": { "expected_exit_status": 0, "command": "npm run ws:im2:build" } },
-      { "workspace": "apps/integrated-math-3",  "lint": { "expected_exit_status": 0, "command": "npm run ws:im3:lint" }, "test": { "expected_exit_status": 0, "command": "npm run ws:im3:test" }, "typecheck": { "expected_exit_status": 0, "command": "npm run ws:im3:typecheck" }, "build": { "expected_exit_status": 0, "command": "npm run ws:im3:build" } },
-      { "workspace": "apps/pre-calculus",       "lint": { "expected_exit_status": 0, "command": "npm run ws:pc:lint" },  "test": { "expected_exit_status": 0, "command": "npm run ws:pc:test" },  "typecheck": { "expected_exit_status": 0, "command": "npm run ws:pc:typecheck" },  "build": { "expected_exit_status": 0, "command": "npm run ws:pc:build" } }
+      {
+        "workspace": "apps/bus-math-v2",
+        "lint": { "expected_exit_status": 0, "command": "npm run ws:bm2:lint" },
+        "test": { "expected_exit_status": 0, "command": "npm run ws:bm2:test" },
+        "typecheck": { "expected_exit_status": 0, "command": "npm run ws:bm2:typecheck" },
+        "build": { "expected_exit_status": 0, "command": "npm run ws:bm2:build" }
+      },
+      {
+        "workspace": "apps/integrated-math-1",
+        "lint": { "expected_exit_status": 0, "command": "npm run ws:im1:lint" },
+        "test": { "expected_exit_status": 0, "command": "npm run ws:im1:test" },
+        "typecheck": { "expected_exit_status": 0, "command": "npm run ws:im1:typecheck" },
+        "build": { "expected_exit_status": 0, "command": "npm run ws:im1:build" }
+      },
+      {
+        "workspace": "apps/integrated-math-2",
+        "lint": { "expected_exit_status": 0, "command": "npm run ws:im2:lint" },
+        "test": { "expected_exit_status": 0, "command": "npm run ws:im2:test" },
+        "typecheck": { "expected_exit_status": 0, "command": "npm run ws:im2:typecheck" },
+        "build": { "expected_exit_status": 0, "command": "npm run ws:im2:build" }
+      },
+      {
+        "workspace": "apps/integrated-math-3",
+        "lint": { "expected_exit_status": 0, "command": "npm run ws:im3:lint" },
+        "test": { "expected_exit_status": 0, "command": "npm run ws:im3:test" },
+        "typecheck": { "expected_exit_status": 0, "command": "npm run ws:im3:typecheck" },
+        "build": { "expected_exit_status": 0, "command": "npm run ws:im3:build" }
+      },
+      {
+        "workspace": "apps/pre-calculus",
+        "lint": { "expected_exit_status": 0, "command": "npm run ws:pc:lint" },
+        "test": { "expected_exit_status": 0, "command": "npm run ws:pc:test" },
+        "typecheck": { "expected_exit_status": 0, "command": "npm run ws:pc:typecheck" },
+        "build": { "expected_exit_status": 0, "command": "npm run ws:pc:build" }
+      }
     ]
   },
 

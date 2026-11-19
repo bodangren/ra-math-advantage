@@ -15,8 +15,8 @@ export {
   type A11yRoute,
   type A11yRiskCategory,
   type A11ySurface,
-} from '@/lib/a11y/routes';
-import { A11Y_ROUTES } from '@/lib/a11y/routes';
+} from "@/lib/a11y/routes";
+import { A11Y_ROUTES } from "@/lib/a11y/routes";
 
 /**
  * Flat list of paths used by the gate harness.

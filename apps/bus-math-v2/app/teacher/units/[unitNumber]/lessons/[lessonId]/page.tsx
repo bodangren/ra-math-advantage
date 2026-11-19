@@ -1,12 +1,12 @@
-import { notFound, redirect } from 'next/navigation';
+import { notFound, redirect } from "next/navigation";
 
-import { TeacherLessonPlanPageContent } from '@/components/teacher/TeacherLessonPlanPageContent';
-import { requireTeacherSessionClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
+import { TeacherLessonPlanPageContent } from "@/components/teacher/TeacherLessonPlanPageContent";
+import { requireTeacherSessionClaims } from "@/lib/auth/server";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
 import {
   buildTeacherLessonMonitoringViewModel,
   type TeacherLessonMonitoringQueryData,
-} from '@/lib/teacher/lesson-monitoring';
+} from "@/lib/teacher/lesson-monitoring";
 
 interface TeacherLessonPageProps {
   params: Promise<{
@@ -16,9 +16,9 @@ interface TeacherLessonPageProps {
 }
 
 type TeacherLessonQueryResult =
-  | { status: 'unauthorized' }
-  | { status: 'not_found' }
-  | ({ status: 'success' } & TeacherLessonMonitoringQueryData);
+  | { status: "unauthorized" }
+  | { status: "not_found" }
+  | ({ status: "success" } & TeacherLessonMonitoringQueryData);
 
 /**
  * Page wrapper for the teacher lesson monitoring view.
@@ -27,9 +27,7 @@ type TeacherLessonQueryResult =
  * @param props.params - Promise resolving to the route parameters containing unitNumber and lessonId.
  * @returns The lesson plan page content or a not-found/redirect response.
  */
-export default async function TeacherLessonPage({
-  params,
-}: TeacherLessonPageProps) {
+export default async function TeacherLessonPage({ params }: TeacherLessonPageProps) {
   const { unitNumber: unitNumberParam, lessonId } = await params;
   const unitNumber = Number.parseInt(unitNumberParam, 10);
 
@@ -41,20 +39,17 @@ export default async function TeacherLessonPage({
     `/teacher/units/${unitNumber}/lessons/${lessonId}`,
   );
 
-  const result = (await fetchInternalQuery(
-    internal.teacher.getTeacherLessonMonitoringData,
-    {
-      userId: claims.sub as never,
-      unitNumber,
-      lessonId: lessonId as never,
-    },
-  )) as TeacherLessonQueryResult | null;
+  const result = (await fetchInternalQuery(internal.teacher.getTeacherLessonMonitoringData, {
+    userId: claims.sub as never,
+    unitNumber,
+    lessonId: lessonId as never,
+  })) as TeacherLessonQueryResult | null;
 
-  if (!result || result.status === 'unauthorized') {
-    redirect('/teacher');
+  if (!result || result.status === "unauthorized") {
+    redirect("/teacher");
   }
 
-  if (result.status === 'not_found') {
+  if (result.status === "not_found") {
     notFound();
   }
 

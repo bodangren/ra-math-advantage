@@ -1020,7 +1020,9 @@ export const seedModule4Lessons = internalMutation({
         const existingPhase = await ctx.db
           .query("phase_versions")
           .withIndex("by_lesson_version_and_phase", (q) =>
-            q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", lesson.phases.indexOf(phase) + 1)
+            q
+              .eq("lessonVersionId", lessonVersionId)
+              .eq("phaseNumber", lesson.phases.indexOf(phase) + 1),
           )
           .first();
 

@@ -11,32 +11,19 @@
  * review scheduling.
  */
 
-import {
-  fsrs,
-  generatorParameters,
-  Rating,
-  type Card,
-  type Grade,
-} from 'ts-fsrs';
-import type {
-  ObjectivePriority,
-  SrsCardId,
-  SrsCardState,
-  SrsRating,
-} from './contract';
+import { fsrs, generatorParameters, Rating, type Card, type Grade } from "ts-fsrs";
+import type { ObjectivePriority, SrsCardId, SrsCardState, SrsRating } from "./contract";
 import {
   BUILTIN_FSRS_PARAMS_VERSION,
   normalizeSchedulerConfig,
   objectivePrioritySchema,
   paramsVersionSchema,
   resolveRequestedRetention,
-} from './scheduler-policy-contract';
-import {
-  scheduleIntervalWithLoadBalancingV3_2,
-} from './session-composition';
-import type { IntervalLoadBalancingDecisionV3_2 } from './session-composition-contract';
+} from "./scheduler-policy-contract";
+import { scheduleIntervalWithLoadBalancingV3_2 } from "./session-composition";
+import type { IntervalLoadBalancingDecisionV3_2 } from "./session-composition-contract";
 
-export { BUILTIN_FSRS_PARAMS_VERSION } from './scheduler-policy-contract';
+export { BUILTIN_FSRS_PARAMS_VERSION } from "./scheduler-policy-contract";
 
 /**
  * Scheduler configuration parameters.
@@ -110,13 +97,13 @@ export type ScheduleReviewInput = ReviewSchedulerContext & {
  */
 export function mapSrsRatingToGrade(rating: SrsRating): Grade {
   switch (rating) {
-    case 'Again':
+    case "Again":
       return Rating.Again;
-    case 'Hard':
+    case "Hard":
       return Rating.Hard;
-    case 'Good':
+    case "Good":
       return Rating.Good;
-    case 'Easy':
+    case "Easy":
       return Rating.Easy;
   }
 }
@@ -127,15 +114,15 @@ export function mapSrsRatingToGrade(rating: SrsRating): Grade {
 export function mapGradeToSrsRating(grade: Grade): SrsRating {
   switch (grade) {
     case Rating.Again:
-      return 'Again';
+      return "Again";
     case Rating.Hard:
-      return 'Hard';
+      return "Hard";
     case Rating.Good:
-      return 'Good';
+      return "Good";
     case Rating.Easy:
-      return 'Easy';
+      return "Easy";
     default:
-      return 'Again';
+      return "Again";
   }
 }
 
@@ -166,9 +153,7 @@ function mapFsrsCardToSrsCardState(
     // from actual review timestamps). This keeps the ts-fsrs 5 semantics of the
     // review delta, the same derivation apps/bus-math-v2 uses in review-processor.ts.
     elapsedDays: previousLastReview
-      ? Math.floor(
-          (new Date(now).getTime() - new Date(previousLastReview).getTime()) / 86400000
-        )
+      ? Math.floor((new Date(now).getTime() - new Date(previousLastReview).getTime()) / 86400000)
       : 0,
     scheduledDays: fsrsCard.scheduled_days,
     reps: fsrsCard.reps,
@@ -182,18 +167,18 @@ function mapFsrsCardToSrsCardState(
 /**
  * Map ts-fsrs state number to our card state string.
  */
-function mapCardState(state: number): SrsCardState['state'] {
+function mapCardState(state: number): SrsCardState["state"] {
   switch (state) {
     case 0:
-      return 'new';
+      return "new";
     case 1:
-      return 'learning';
+      return "learning";
     case 2:
-      return 'review';
+      return "review";
     case 3:
-      return 'relearning';
+      return "relearning";
     default:
-      return 'new';
+      return "new";
   }
 }
 
@@ -218,7 +203,7 @@ export function createCard(params: {
     variantKey,
     stability: 0,
     difficulty: 0,
-    state: 'new',
+    state: "new",
     dueDate: now,
     elapsedDays: 0,
     scheduledDays: 0,
@@ -275,25 +260,18 @@ export function reviewCard(
  * stamp that can drift from the actual scheduler inputs.
  */
 export function scheduleReview(input: ScheduleReviewInput): ScheduledReview {
-  const {
-    card,
-    rating,
-    now,
-    config,
-    objectivePriority,
-    loadBalancing,
-  } = input;
+  const { card, rating, now, config, objectivePriority, loadBalancing } = input;
   const currentTime = now ?? new Date().toISOString();
   const fullConfig = normalizeSchedulerConfig({
     ...DEFAULT_SCHEDULER_CONFIG,
     ...config,
   });
-  const parsedPriority = objectivePriority === undefined
-    ? undefined
-    : objectivePrioritySchema.parse(objectivePriority);
-  const requestedRetention = parsedPriority === undefined
-    ? fullConfig.requestRetention
-    : resolveRequestedRetention(fullConfig, parsedPriority);
+  const parsedPriority =
+    objectivePriority === undefined ? undefined : objectivePrioritySchema.parse(objectivePriority);
+  const requestedRetention =
+    parsedPriority === undefined
+      ? fullConfig.requestRetention
+      : resolveRequestedRetention(fullConfig, parsedPriority);
   // Fitted releases currently have provenance references but no executable
   // weights bundle. Until that binding exists, claiming any fitted version
   // here would be false attribution, so scheduling is intentionally pinned to
@@ -322,15 +300,16 @@ export function scheduleReview(input: ScheduleReviewInput): ScheduledReview {
     currentTime,
     card.lastReview,
   );
-  const updatedCard = scheduledCard.scheduledDays <= fullConfig.maximumInterval
-    ? scheduledCard
-    : {
-        ...scheduledCard,
-        scheduledDays: fullConfig.maximumInterval,
-        dueDate: new Date(
-          Date.parse(currentTime) + fullConfig.maximumInterval * 86_400_000,
-        ).toISOString(),
-      };
+  const updatedCard =
+    scheduledCard.scheduledDays <= fullConfig.maximumInterval
+      ? scheduledCard
+      : {
+          ...scheduledCard,
+          scheduledDays: fullConfig.maximumInterval,
+          dueDate: new Date(
+            Date.parse(currentTime) + fullConfig.maximumInterval * 86_400_000,
+          ).toISOString(),
+        };
 
   let finalCard = updatedCard;
   let loadBalancingDecision: IntervalLoadBalancingDecisionV3_2 | undefined;
@@ -341,8 +320,7 @@ export function scheduleReview(input: ScheduleReviewInput): ScheduledReview {
       Math.min(fullConfig.maximumInterval, Math.floor(updatedCard.scheduledDays * 1.05)),
     );
     const projectedDayLoads = loadBalancing.projectedDayLoads.filter(
-      (entry) =>
-        entry.dayOffset >= minimumDayOffset && entry.dayOffset <= maximumDayOffset,
+      (entry) => entry.dayOffset >= minimumDayOffset && entry.dayOffset <= maximumDayOffset,
     );
     loadBalancingDecision = scheduleIntervalWithLoadBalancingV3_2({
       cardId: updatedCard.cardId,
@@ -404,15 +382,15 @@ export function previewInterval(
  * State enum with a frozen constant object and a numeric union type (v6 migration
  * guide), so the return type is the union, not plain `number`.
  */
-function mapSrsStateToNumber(state: SrsCardState['state']): Card['state'] {
+function mapSrsStateToNumber(state: SrsCardState["state"]): Card["state"] {
   switch (state) {
-    case 'new':
+    case "new":
       return 0;
-    case 'learning':
+    case "learning":
       return 1;
-    case 'review':
+    case "review":
       return 2;
-    case 'relearning':
+    case "relearning":
       return 3;
   }
 }
@@ -424,7 +402,7 @@ function generateCardId(): SrsCardId {
   const bytes = new Uint8Array(16);
   crypto.getRandomValues(bytes);
   const hex = Array.from(bytes)
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
   return `card_${hex}`;
 }

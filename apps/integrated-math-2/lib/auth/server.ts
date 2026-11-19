@@ -20,15 +20,12 @@ export async function getServerSessionClaims(): Promise<SessionClaims | null> {
   return verifyActiveSession(token);
 }
 
-async function verifyActiveSession(
-  token: string,
-): Promise<SessionClaims | null> {
+async function verifyActiveSession(token: string): Promise<SessionClaims | null> {
   const claims = await verifySessionToken(token, getAuthJwtSecret());
   if (!claims) return null;
-  const account = await fetchInternalQuery(
-    internal.auth.getAccountSettingsContext,
-    { profileId: claims.sub as Id<"profiles"> },
-  );
+  const account = await fetchInternalQuery(internal.auth.getAccountSettingsContext, {
+    profileId: claims.sub as Id<"profiles">,
+  });
   if (
     !account ||
     account.role !== claims.role ||
@@ -39,13 +36,8 @@ async function verifyActiveSession(
   return claims;
 }
 
-export async function getRequestSessionClaims(
-  request: Request,
-): Promise<SessionClaims | null> {
-  const token = getCookieValueFromHeader(
-    request.headers.get("cookie"),
-    SESSION_COOKIE_NAME,
-  );
+export async function getRequestSessionClaims(request: Request): Promise<SessionClaims | null> {
+  const token = getCookieValueFromHeader(request.headers.get("cookie"), SESSION_COOKIE_NAME);
   if (!token) return null;
 
   return verifyActiveSession(token);
@@ -84,18 +76,12 @@ export async function requireTeacherRequestClaims(
   unauthorizedMessage = "Unauthorized",
   forbiddenMessage = "Forbidden",
 ): Promise<SessionClaims | Response> {
-  const claimsOrResponse = await requireRequestSessionClaims(
-    request,
-    unauthorizedMessage,
-  );
+  const claimsOrResponse = await requireRequestSessionClaims(request, unauthorizedMessage);
   if (claimsOrResponse instanceof Response) {
     return claimsOrResponse;
   }
 
-  if (
-    claimsOrResponse.role !== "teacher" &&
-    claimsOrResponse.role !== "admin"
-  ) {
+  if (claimsOrResponse.role !== "teacher" && claimsOrResponse.role !== "admin") {
     return buildRequestForbiddenResponse(forbiddenMessage);
   }
 
@@ -138,13 +124,9 @@ export async function requireStudentSessionClaims(
   redirect("/teacher/dashboard");
 }
 
-export async function requireAdminSessionClaims(
-  loginRedirectPath: string,
-): Promise<SessionClaims> {
+export async function requireAdminSessionClaims(loginRedirectPath: string): Promise<SessionClaims> {
   const claims = await requireServerSessionClaims(loginRedirectPath);
   if (claims.role !== "admin")
-    redirect(
-      claims.role === "student" ? "/student/dashboard" : "/teacher/dashboard",
-    );
+    redirect(claims.role === "student" ? "/student/dashboard" : "/teacher/dashboard");
   return claims;
 }

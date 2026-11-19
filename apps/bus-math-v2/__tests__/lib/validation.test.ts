@@ -1,20 +1,20 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { validateActivityProps } from '@/lib/validation';
+import { validateActivityProps } from "@/lib/validation";
 
-describe('validateActivityProps', () => {
-  it('accepts canonical activity keys', () => {
-    const result = validateActivityProps('spreadsheet', {
-      template: 'balance-sheet',
+describe("validateActivityProps", () => {
+  it("accepts canonical activity keys", () => {
+    const result = validateActivityProps("spreadsheet", {
+      template: "balance-sheet",
     });
 
     expect(result.valid).toBe(true);
     expect(result.errors).toEqual([]);
   });
 
-  it('rejects removed compatibility aliases', () => {
-    const result = validateActivityProps('spreadsheet-activity', {
-      template: 'balance-sheet',
+  it("rejects removed compatibility aliases", () => {
+    const result = validateActivityProps("spreadsheet-activity", {
+      template: "balance-sheet",
     });
 
     expect(result.valid).toBe(false);

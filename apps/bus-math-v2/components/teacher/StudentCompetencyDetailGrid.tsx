@@ -1,13 +1,12 @@
-'use client';
+"use client";
 
-import { computeCompetencyColor } from '@/lib/teacher/competency-heatmap';
-import type { StudentCompetencyDetail } from '@math-platform/teacher-reporting-core';
-import { cellBgClass } from '@/lib/teacher/gradebook';
+import { computeCompetencyColor } from "@/lib/teacher/competency-heatmap";
+import type { StudentCompetencyDetail } from "@math-platform/teacher-reporting-core";
+import { cellBgClass } from "@/lib/teacher/gradebook";
 
 interface StudentCompetencyDetailGridProps {
   detail: StudentCompetencyDetail;
 }
-
 
 /**
  * Renders a detailed competency grid for a single student, showing each
@@ -35,7 +34,7 @@ export function StudentCompetencyDetailGrid({ detail }: StudentCompetencyDetailG
           {displayName} (@{username})
         </h2>
         <p className="text-sm text-muted-foreground">
-          {competencies.length} standard{competencies.length !== 1 ? 's' : ''}
+          {competencies.length} standard{competencies.length !== 1 ? "s" : ""}
         </p>
       </section>
 
@@ -65,7 +64,7 @@ export function StudentCompetencyDetailGrid({ detail }: StudentCompetencyDetailG
           </thead>
 
           <tbody className="divide-y divide-border">
-            {competencies.map(comp => (
+            {competencies.map((comp) => (
               <tr key={comp.standardId} className="bg-background hover:bg-muted/10">
                 <td className="px-3 py-2 font-medium">
                   <div>{comp.standardCode}</div>
@@ -73,20 +72,16 @@ export function StudentCompetencyDetailGrid({ detail }: StudentCompetencyDetailG
                     <div className="text-xs text-muted-foreground font-normal">{comp.category}</div>
                   )}
                 </td>
-                <td className="px-3 py-2 text-muted-foreground">
-                  {comp.standardDescription}
-                </td>
-                <td className={`p-0 text-center font-medium tabular-nums ${cellBgClass(computeCompetencyColor(comp.masteryLevel))}`}>
+                <td className="px-3 py-2 text-muted-foreground">{comp.standardDescription}</td>
+                <td
+                  className={`p-0 text-center font-medium tabular-nums ${cellBgClass(computeCompetencyColor(comp.masteryLevel))}`}
+                >
                   <span className="block px-3 py-2">
-                    {comp.masteryLevel !== null ? `${comp.masteryLevel}%` : '—'}
+                    {comp.masteryLevel !== null ? `${comp.masteryLevel}%` : "—"}
                   </span>
                 </td>
-                <td className="px-3 py-2">
-                  {comp.unitNumber ? `Unit ${comp.unitNumber}` : '—'}
-                </td>
-                <td className="px-3 py-2">
-                  {comp.lessonTitle || '—'}
-                </td>
+                <td className="px-3 py-2">{comp.unitNumber ? `Unit ${comp.unitNumber}` : "—"}</td>
+                <td className="px-3 py-2">{comp.lessonTitle || "—"}</td>
               </tr>
             ))}
           </tbody>

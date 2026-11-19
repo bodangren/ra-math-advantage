@@ -1,11 +1,10 @@
-import { Card, CardContent } from '@/components/ui/card';
-import { type UnitDrivingQuestion } from '@/types/curriculum';
-import { HelpCircle } from 'lucide-react';
+import { Card, CardContent } from "@/components/ui/card";
+import { type UnitDrivingQuestion } from "@/types/curriculum";
+import { HelpCircle } from "lucide-react";
 
 interface DrivingQuestionProps {
   drivingQuestion?: UnitDrivingQuestion;
 }
-
 
 /**
  * Renders the unit's driving question with context and optional scenario.

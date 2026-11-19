@@ -2,8 +2,7 @@
 import { describe, it, expect } from "vitest";
 import { EventEmitter } from "node:events";
 import path from "node:path";
-const script = () =>
-  import(path.resolve(import.meta.dirname, "../../scripts/dev-stack.mjs"));
+const script = () => import(path.resolve(import.meta.dirname, "../../scripts/dev-stack.mjs"));
 function child() {
   return Object.assign(new EventEmitter(), {
     stdout: new EventEmitter(),
@@ -23,16 +22,8 @@ describe("development startup", () => {
       "--local-site-port",
       "3223",
     ]);
-    expect(processes[1].args).toEqual([
-      "--no-install",
-      "vinext",
-      "dev",
-      "--port",
-      "3002",
-    ]);
-    expect(
-      processes.every((p: { cwd: string }) => p.cwd === process.cwd()),
-    ).toBe(true);
+    expect(processes[1].args).toEqual(["--no-install", "vinext", "dev", "--port", "3002"]);
+    expect(processes.every((p: { cwd: string }) => p.cwd === process.cwd())).toBe(true);
   });
   it("recognizes readiness split across output chunks", async () => {
     const { waitForOutput } = await script();

@@ -1,14 +1,17 @@
-import { NextResponse } from 'next/server';
-import { z } from 'zod';
-import { requireActiveRequestSessionClaims, requireActiveStudentRequestClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, fetchInternalMutation, internal } from '@/lib/convex/server';
+import { NextResponse } from "next/server";
+import { z } from "zod";
+import {
+  requireActiveRequestSessionClaims,
+  requireActiveStudentRequestClaims,
+} from "@/lib/auth/server";
+import { fetchInternalQuery, fetchInternalMutation, internal } from "@/lib/convex/server";
 import {
   validateSpreadsheetData,
   validateSubmission,
   type TargetCell,
-} from '@/lib/activities/spreadsheet-validation';
-import { buildSpreadsheetEvaluatorSubmission } from '@/lib/activities/spreadsheet-practice';
-import { generateAiFeedback } from '@/lib/ai/spreadsheet-feedback';
+} from "@/lib/activities/spreadsheet-validation";
+import { buildSpreadsheetEvaluatorSubmission } from "@/lib/activities/spreadsheet-practice";
+import { generateAiFeedback } from "@/lib/ai/spreadsheet-feedback";
 
 const targetCellSchema = z.object({
   cell: z.string().regex(/^[A-Z]+[0-9]+$/),
@@ -40,23 +43,17 @@ type RequestPayload = z.infer<typeof requestSchema>;
  */
 export async function GET(
   request: Request,
-  { params }: { params: Promise<{ activityId: string }> }
+  { params }: { params: Promise<{ activityId: string }> },
 ) {
   try {
     const { activityId } = await params;
     if (!activityId?.trim()) {
-      return NextResponse.json(
-        { error: 'Invalid activity ID format' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Invalid activity ID format" }, { status: 400 });
     }
 
-    const requestedStudentId = new URL(request.url).searchParams.get('studentId');
+    const requestedStudentId = new URL(request.url).searchParams.get("studentId");
     if (requestedStudentId !== null && requestedStudentId.trim().length === 0) {
-      return NextResponse.json(
-        { error: 'Invalid student ID format' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Invalid student ID format" }, { status: 400 });
     }
 
     const claims = await requireActiveRequestSessionClaims(request);
@@ -71,19 +68,13 @@ export async function GET(
     });
 
     if (!requesterProfile?.role) {
-      return NextResponse.json(
-        { error: 'Forbidden' },
-        { status: 403 }
-      );
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
     let targetStudentId = requesterId;
     if (requestedStudentId && requestedStudentId !== requesterId) {
-      if (requesterProfile.role !== 'teacher' && requesterProfile.role !== 'admin') {
-        return NextResponse.json(
-          { error: 'Forbidden' },
-          { status: 403 }
-        );
+      if (requesterProfile.role !== "teacher" && requesterProfile.role !== "admin") {
+        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
       }
 
       const targetProfile = await fetchInternalQuery(internal.activities.getProfileById, {
@@ -92,13 +83,10 @@ export async function GET(
 
       if (
         !targetProfile ||
-        targetProfile.role !== 'student' ||
+        targetProfile.role !== "student" ||
         targetProfile.organizationId !== requesterProfile.organizationId
       ) {
-        return NextResponse.json(
-          { error: 'Forbidden' },
-          { status: 403 }
-        );
+        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
       }
 
       targetStudentId = requestedStudentId;
@@ -110,16 +98,14 @@ export async function GET(
     });
 
     if (!response) {
-      return NextResponse.json(
-        { error: 'Spreadsheet response not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Spreadsheet response not found" }, { status: 404 });
     }
 
-    const attempts = await fetchInternalQuery(internal.activities.getSpreadsheetAttempts, {
-      studentId: targetStudentId as never,
-      activityId: activityId as never,
-    }) || [];
+    const attempts =
+      (await fetchInternalQuery(internal.activities.getSpreadsheetAttempts, {
+        studentId: targetStudentId as never,
+        activityId: activityId as never,
+      })) || [];
 
     return NextResponse.json({
       readOnly: true,
@@ -136,11 +122,8 @@ export async function GET(
       updatedAt: response.updatedAt,
     });
   } catch (error) {
-    console.error('Spreadsheet replay retrieval error:', error);
-    return NextResponse.json(
-      { error: 'Failed to load spreadsheet replay' },
-      { status: 500 }
-    );
+    console.error("Spreadsheet replay retrieval error:", error);
+    return NextResponse.json({ error: "Failed to load spreadsheet replay" }, { status: 500 });
   }
 }
 
@@ -156,16 +139,13 @@ export async function GET(
  */
 export async function POST(
   request: Request,
-  { params }: { params: Promise<{ activityId: string }> }
+  { params }: { params: Promise<{ activityId: string }> },
 ) {
   try {
     const { activityId } = await params;
 
     if (!activityId?.trim()) {
-      return NextResponse.json(
-        { error: 'Invalid activity ID format' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Invalid activity ID format" }, { status: 400 });
     }
 
     const claimsOrResponse = await requireActiveStudentRequestClaims(request);
@@ -182,26 +162,20 @@ export async function POST(
       if (!parsed.success) {
         return NextResponse.json(
           {
-            error: 'Invalid payload',
+            error: "Invalid payload",
             details: parsed.error.flatten().fieldErrors,
           },
-          { status: 400 }
+          { status: 400 },
         );
       }
       payload = parsed.data;
     } catch {
-      return NextResponse.json(
-        { error: 'Unable to parse request body' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Unable to parse request body" }, { status: 400 });
     }
 
     const sanitizationResult = validateSpreadsheetData(payload.spreadsheetData);
     if (!sanitizationResult.isValid) {
-      return NextResponse.json(
-        { error: sanitizationResult.error },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: sanitizationResult.error }, { status: 400 });
     }
 
     const activity = await fetchInternalQuery(internal.activities.getActivityForValidation, {
@@ -209,16 +183,13 @@ export async function POST(
     });
 
     if (!activity) {
-      return NextResponse.json(
-        { error: 'Activity not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Activity not found" }, { status: 404 });
     }
 
-    if (activity.componentKey !== 'spreadsheet-evaluator') {
+    if (activity.componentKey !== "spreadsheet-evaluator") {
       return NextResponse.json(
-        { error: 'Activity configuration is not a spreadsheet evaluator' },
-        { status: 422 }
+        { error: "Activity configuration is not a spreadsheet evaluator" },
+        { status: 422 },
       );
     }
 
@@ -226,28 +197,42 @@ export async function POST(
     if (!parsedEvaluatorProps.success) {
       return NextResponse.json(
         {
-          error: 'Activity configuration is invalid',
+          error: "Activity configuration is invalid",
           details: parsedEvaluatorProps.error.flatten().fieldErrors,
         },
-        { status: 422 }
+        { status: 422 },
       );
     }
 
     const validationResult = validateSubmission(
       payload.spreadsheetData,
-      parsedEvaluatorProps.data.targetCells as TargetCell[]
+      parsedEvaluatorProps.data.targetCells as TargetCell[],
     );
 
-    const idempotencyKey = request.headers.get('Idempotency-Key')?.trim();
-    if (!idempotencyKey) return NextResponse.json({ error: 'A submission request key is required.' }, { status: 400 });
-    const submissionData = buildSpreadsheetEvaluatorSubmission({ activityId,
-      templateId: parsedEvaluatorProps.data.templateId, instructions: parsedEvaluatorProps.data.instructions,
-      targetCells: parsedEvaluatorProps.data.targetCells, spreadsheetData: payload.spreadsheetData,
-      validationResult, mode: 'assessment' });
-    const { attemptId, attemptNumber } = await fetchInternalMutation(internal.activities.submitSpreadsheet, {
-      userId: userId as never, activityId: activityId as never, spreadsheetData: payload.spreadsheetData,
-      isCompleted: validationResult.isComplete, validationResult, idempotencyKey, submissionData: { ...submissionData, mode: 'assessment' },
+    const idempotencyKey = request.headers.get("Idempotency-Key")?.trim();
+    if (!idempotencyKey)
+      return NextResponse.json({ error: "A submission request key is required." }, { status: 400 });
+    const submissionData = buildSpreadsheetEvaluatorSubmission({
+      activityId,
+      templateId: parsedEvaluatorProps.data.templateId,
+      instructions: parsedEvaluatorProps.data.instructions,
+      targetCells: parsedEvaluatorProps.data.targetCells,
+      spreadsheetData: payload.spreadsheetData,
+      validationResult,
+      mode: "assessment",
     });
+    const { attemptId, attemptNumber } = await fetchInternalMutation(
+      internal.activities.submitSpreadsheet,
+      {
+        userId: userId as never,
+        activityId: activityId as never,
+        spreadsheetData: payload.spreadsheetData,
+        isCompleted: validationResult.isComplete,
+        validationResult,
+        idempotencyKey,
+        submissionData: { ...submissionData, mode: "assessment" },
+      },
+    );
 
     let aiFeedback;
     try {
@@ -255,15 +240,24 @@ export async function POST(
         spreadsheetData: payload.spreadsheetData,
         validationResult,
         targetCells: parsedEvaluatorProps.data.targetCells as TargetCell[],
-        activityName: (activity as Record<string, unknown>)?.displayName as string || 'Business Math Spreadsheet Activity',
+        activityName:
+          ((activity as Record<string, unknown>)?.displayName as string) ||
+          "Business Math Spreadsheet Activity",
       });
     } catch {
       aiFeedback = null;
     }
 
     if (aiFeedback) {
-      try { await fetchInternalMutation(internal.activities.updateAttemptWithAiFeedback, { attemptId: attemptId as never, aiFeedback }); }
-      catch (error) { console.error('Optional feedback save failed', error); aiFeedback = null; }
+      try {
+        await fetchInternalMutation(internal.activities.updateAttemptWithAiFeedback, {
+          attemptId: attemptId as never,
+          aiFeedback,
+        });
+      } catch (error) {
+        console.error("Optional feedback save failed", error);
+        aiFeedback = null;
+      }
     }
 
     return NextResponse.json({
@@ -273,19 +267,21 @@ export async function POST(
       attemptNumber,
       attemptId,
       aiFeedback,
-
     });
   } catch (error) {
-    if (error instanceof Error && error.message.includes('idempotency_conflict')) {
-      return NextResponse.json({ error: 'This request key was used for different work.' }, { status: 409 });
+    if (error instanceof Error && error.message.includes("idempotency_conflict")) {
+      return NextResponse.json(
+        { error: "This request key was used for different work." },
+        { status: 409 },
+      );
     }
-    if (error instanceof Error && error.message.includes('Maximum attempts')) {
-      return NextResponse.json({ error: 'You have used all submission attempts for this activity.' }, { status: 409 });
+    if (error instanceof Error && error.message.includes("Maximum attempts")) {
+      return NextResponse.json(
+        { error: "You have used all submission attempts for this activity." },
+        { status: 409 },
+      );
     }
-    console.error('Spreadsheet submission error:', error);
-    return NextResponse.json(
-      { error: 'Unexpected error during submission' },
-      { status: 500 }
-    );
+    console.error("Spreadsheet submission error:", error);
+    return NextResponse.json({ error: "Unexpected error during submission" }, { status: 500 });
   }
 }

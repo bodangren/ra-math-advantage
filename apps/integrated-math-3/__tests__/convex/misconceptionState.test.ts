@@ -46,8 +46,8 @@
 // `misconceptionStateSchema.test.ts` artifact test is a sibling; this
 // file is the live-behavior round-trip.
 
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import type { Id } from '@/convex/_generated/dataModel';
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import type { Id } from "@/convex/_generated/dataModel";
 
 // ---------------------------------------------------------------------------
 // Production module — does not exist yet (Red phase).
@@ -68,18 +68,18 @@ import {
   recordMisconceptionDetectionHandler,
   recordCleanAttemptHandler,
   getStudentActiveMisconceptionsHandler,
-} from '@/convex/misconceptionState';
+} from "@/convex/misconceptionState";
 
 // ---------------------------------------------------------------------------
 // Types — mirror the IM3 schema for `student_misconception_state` (the
 // table is defined at apps/integrated-math-3/convex/schema.ts:772-783).
 // ---------------------------------------------------------------------------
 
-type MisconceptionLifecycleStatus = 'active' | 'resolved';
-type MisconceptionSeverity = 'minor' | 'severe';
+type MisconceptionLifecycleStatus = "active" | "resolved";
+type MisconceptionSeverity = "minor" | "severe";
 
 interface StudentMisconceptionStateRow {
-  _id: Id<'student_misconception_state'>;
+  _id: Id<"student_misconception_state">;
   _creationTime: number;
   studentId: string;
   misconceptionId: string;
@@ -117,42 +117,41 @@ function makeMockCtx(options: MakeMockCtxOptions = {}): MockCtx {
   const rows: StudentMisconceptionStateRow[] = [...initial];
   let insertIdCounter = 1;
 
-  const insertSpy = vi.fn().mockImplementation(
-    (table: string, doc: Record<string, unknown>) => {
-      if (table === 'student_misconception_state') {
-        const id = `student_misconception_state_${insertIdCounter++}` as Id<'student_misconception_state'>;
-        const row: StudentMisconceptionStateRow = {
-          _id: id,
-          _creationTime: (doc.lastUpdatedAt as number) ?? Date.now(),
-          studentId: doc.studentId as string,
-          misconceptionId: doc.misconceptionId as string,
-          status: doc.status as MisconceptionLifecycleStatus,
-          severity: doc.severity as MisconceptionSeverity,
-          cleanStreak: (doc.cleanStreak as number) ?? 0,
-          firstDetectedAt: (doc.firstDetectedAt as number) ?? Date.now(),
-          lastUpdatedAt: (doc.lastUpdatedAt as number) ?? Date.now(),
-          affectedSkills: (doc.affectedSkills as readonly string[]) ?? [],
-        };
-        rows.push(row);
-        return Promise.resolve(id);
-      }
-      return Promise.resolve(`unknown_${insertIdCounter++}` as Id<'student_misconception_state'>);
-    },
-  );
+  const insertSpy = vi.fn().mockImplementation((table: string, doc: Record<string, unknown>) => {
+    if (table === "student_misconception_state") {
+      const id =
+        `student_misconception_state_${insertIdCounter++}` as Id<"student_misconception_state">;
+      const row: StudentMisconceptionStateRow = {
+        _id: id,
+        _creationTime: (doc.lastUpdatedAt as number) ?? Date.now(),
+        studentId: doc.studentId as string,
+        misconceptionId: doc.misconceptionId as string,
+        status: doc.status as MisconceptionLifecycleStatus,
+        severity: doc.severity as MisconceptionSeverity,
+        cleanStreak: (doc.cleanStreak as number) ?? 0,
+        firstDetectedAt: (doc.firstDetectedAt as number) ?? Date.now(),
+        lastUpdatedAt: (doc.lastUpdatedAt as number) ?? Date.now(),
+        affectedSkills: (doc.affectedSkills as readonly string[]) ?? [],
+      };
+      rows.push(row);
+      return Promise.resolve(id);
+    }
+    return Promise.resolve(`unknown_${insertIdCounter++}` as Id<"student_misconception_state">);
+  });
 
-  const patchSpy = vi.fn().mockImplementation(
-    (id: Id<'student_misconception_state'>, patch: Record<string, unknown>) => {
+  const patchSpy = vi
+    .fn()
+    .mockImplementation((id: Id<"student_misconception_state">, patch: Record<string, unknown>) => {
       const row = rows.find((r) => r._id === id);
       if (!row) {
         return Promise.resolve(null);
       }
       Object.assign(row, patch);
       return Promise.resolve(null);
-    },
-  );
+    });
 
   const queryMock = vi.fn().mockImplementation((tableName: string) => {
-    if (tableName !== 'student_misconception_state') {
+    if (tableName !== "student_misconception_state") {
       return {
         withIndex: vi.fn().mockReturnThis(),
         collect: vi.fn().mockResolvedValue([]),
@@ -161,30 +160,30 @@ function makeMockCtx(options: MakeMockCtxOptions = {}): MockCtx {
       };
     }
     return {
-      withIndex: vi.fn().mockImplementation(
-        (
-          _indexName: string,
-          builder?: (q: {
-            eq: (field: string, value: unknown) => unknown;
-          }) => unknown,
-        ) => {
-          let filtered: StudentMisconceptionStateRow[] = [...rows];
-          const eqChain = {
-            eq: (field: string, value: unknown) => {
-              filtered = filtered.filter(
-                (r) => (r as unknown as Record<string, unknown>)[field] === value,
-              );
-              return eqChain;
-            },
-          };
-          if (builder) builder(eqChain);
-          return {
-            collect: () => Promise.resolve(filtered),
-            first: () => Promise.resolve(filtered[0] ?? null),
-            unique: () => Promise.resolve(filtered[0] ?? null),
-          };
-        },
-      ),
+      withIndex: vi
+        .fn()
+        .mockImplementation(
+          (
+            _indexName: string,
+            builder?: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) => {
+            let filtered: StudentMisconceptionStateRow[] = [...rows];
+            const eqChain = {
+              eq: (field: string, value: unknown) => {
+                filtered = filtered.filter(
+                  (r) => (r as unknown as Record<string, unknown>)[field] === value,
+                );
+                return eqChain;
+              },
+            };
+            if (builder) builder(eqChain);
+            return {
+              collect: () => Promise.resolve(filtered),
+              first: () => Promise.resolve(filtered[0] ?? null),
+              unique: () => Promise.resolve(filtered[0] ?? null),
+            };
+          },
+        ),
     };
   });
 
@@ -192,7 +191,7 @@ function makeMockCtx(options: MakeMockCtxOptions = {}): MockCtx {
     db: {
       query: queryMock,
       insert: insertSpy,
-      get: vi.fn().mockImplementation((id: Id<'student_misconception_state'>) => {
+      get: vi.fn().mockImplementation((id: Id<"student_misconception_state">) => {
         const row = rows.find((r) => r._id === id);
         return Promise.resolve(row ?? null);
       }),
@@ -210,12 +209,12 @@ function makeMockCtx(options: MakeMockCtxOptions = {}): MockCtx {
 // Test fixtures
 // ---------------------------------------------------------------------------
 
-const STUDENT_A = 'student-im3-test-a';
-const STUDENT_B = 'student-im3-test-b';
-const MISCONCEPTION_SIGN_ERROR = 'math.im3.misconception.sign-error';
-const MISCONCEPTION_LINEAR_MISUSE = 'math.im3.misconception.linear-misuse';
-const SKILL_FACTORING = 'math.im3.skill.1.4.solve-quadratic-equations-by-factoring';
-const SKILL_GRAPHING = 'math.im3.skill.1.1.graph-quadratic-functions';
+const STUDENT_A = "student-im3-test-a";
+const STUDENT_B = "student-im3-test-b";
+const MISCONCEPTION_SIGN_ERROR = "math.im3.misconception.sign-error";
+const MISCONCEPTION_LINEAR_MISUSE = "math.im3.misconception.linear-misuse";
+const SKILL_FACTORING = "math.im3.skill.1.4.solve-quadratic-equations-by-factoring";
+const SKILL_GRAPHING = "math.im3.skill.1.1.graph-quadratic-functions";
 const FIXED_NOW_MS = 1_780_000_000_000;
 const RESOLUTION_THRESHOLD = 3;
 
@@ -223,7 +222,7 @@ function makeDetectionArgs(overrides: Record<string, unknown> = {}) {
   return {
     studentId: STUDENT_A,
     misconceptionId: MISCONCEPTION_SIGN_ERROR,
-    severity: 'minor' as MisconceptionSeverity,
+    severity: "minor" as MisconceptionSeverity,
     affectedSkills: [SKILL_FACTORING],
     now: FIXED_NOW_MS,
     ...overrides,
@@ -244,14 +243,14 @@ function makeCleanAttemptArgs(overrides: Record<string, unknown> = {}) {
 // 1. recordMisconceptionDetectionHandler — upsert the active row.
 // ---------------------------------------------------------------------------
 
-describe('recordMisconceptionDetectionHandler — upsert (spec FR3, test-strategy §5 P3)', () => {
+describe("recordMisconceptionDetectionHandler — upsert (spec FR3, test-strategy §5 P3)", () => {
   let ctx: MockCtx;
 
   beforeEach(() => {
     ctx = makeMockCtx();
   });
 
-  it('inserts a new active row when no (studentId, misconceptionId) row exists', async () => {
+  it("inserts a new active row when no (studentId, misconceptionId) row exists", async () => {
     const args = makeDetectionArgs();
     await recordMisconceptionDetectionHandler(
       ctx as unknown as Parameters<typeof recordMisconceptionDetectionHandler>[0],
@@ -260,12 +259,12 @@ describe('recordMisconceptionDetectionHandler — upsert (spec FR3, test-strateg
 
     expect(ctx.insertSpy).toHaveBeenCalledTimes(1);
     expect(ctx.insertSpy).toHaveBeenCalledWith(
-      'student_misconception_state',
+      "student_misconception_state",
       expect.objectContaining({
         studentId: STUDENT_A,
         misconceptionId: MISCONCEPTION_SIGN_ERROR,
-        status: 'active',
-        severity: 'minor',
+        status: "active",
+        severity: "minor",
         cleanStreak: 0,
         affectedSkills: [SKILL_FACTORING],
       }),
@@ -275,17 +274,17 @@ describe('recordMisconceptionDetectionHandler — upsert (spec FR3, test-strateg
     expect(inserted.lastUpdatedAt).toBe(FIXED_NOW_MS);
   });
 
-  it('supports a `severe` severity passthrough (spec FR2 → FR3 handoff)', async () => {
-    const args = makeDetectionArgs({ severity: 'severe' });
+  it("supports a `severe` severity passthrough (spec FR2 → FR3 handoff)", async () => {
+    const args = makeDetectionArgs({ severity: "severe" });
     await recordMisconceptionDetectionHandler(
       ctx as unknown as Parameters<typeof recordMisconceptionDetectionHandler>[0],
       args,
     );
     const inserted = ctx.insertSpy.mock.calls[0]?.[1] as Record<string, unknown>;
-    expect(inserted.severity).toBe('severe');
+    expect(inserted.severity).toBe("severe");
   });
 
-  it('preserves a multi-skill affectedSkills list as-is on insert', async () => {
+  it("preserves a multi-skill affectedSkills list as-is on insert", async () => {
     const args = makeDetectionArgs({
       affectedSkills: [SKILL_FACTORING, SKILL_GRAPHING],
     });
@@ -297,14 +296,14 @@ describe('recordMisconceptionDetectionHandler — upsert (spec FR3, test-strateg
     expect(inserted.affectedSkills).toEqual([SKILL_FACTORING, SKILL_GRAPHING]);
   });
 
-  it('patches (not appends) when a (studentId, misconceptionId) row already exists', async () => {
+  it("patches (not appends) when a (studentId, misconceptionId) row already exists", async () => {
     const seeded: StudentMisconceptionStateRow = {
-      _id: 'student_misconception_state_1' as Id<'student_misconception_state'>,
+      _id: "student_misconception_state_1" as Id<"student_misconception_state">,
       _creationTime: FIXED_NOW_MS - 5_000,
       studentId: STUDENT_A,
       misconceptionId: MISCONCEPTION_SIGN_ERROR,
-      status: 'active',
-      severity: 'minor',
+      status: "active",
+      severity: "minor",
       cleanStreak: 2,
       firstDetectedAt: FIXED_NOW_MS - 5_000,
       lastUpdatedAt: FIXED_NOW_MS - 5_000,
@@ -312,7 +311,7 @@ describe('recordMisconceptionDetectionHandler — upsert (spec FR3, test-strateg
     };
     ctx.rows.push(seeded);
 
-    const args = makeDetectionArgs({ now: FIXED_NOW_MS, severity: 'severe' });
+    const args = makeDetectionArgs({ now: FIXED_NOW_MS, severity: "severe" });
     await recordMisconceptionDetectionHandler(
       ctx as unknown as Parameters<typeof recordMisconceptionDetectionHandler>[0],
       args,
@@ -322,13 +321,13 @@ describe('recordMisconceptionDetectionHandler — upsert (spec FR3, test-strateg
     expect(ctx.insertSpy).not.toHaveBeenCalled();
     expect(ctx.patchSpy).toHaveBeenCalledTimes(1);
     const patchCall = ctx.patchSpy.mock.calls[0] as [
-      Id<'student_misconception_state'>,
+      Id<"student_misconception_state">,
       Record<string, unknown>,
     ];
     expect(patchCall[0]).toBe(seeded._id);
     expect(patchCall[1]).toMatchObject({
-      status: 'active',
-      severity: 'severe',
+      status: "active",
+      severity: "severe",
       cleanStreak: 0,
       lastUpdatedAt: FIXED_NOW_MS,
     });
@@ -336,14 +335,14 @@ describe('recordMisconceptionDetectionHandler — upsert (spec FR3, test-strateg
     expect(patchCall[1].firstDetectedAt).toBeUndefined();
   });
 
-  it('isolates rows by (studentId, misconceptionId) — a different student inserts a new row', async () => {
+  it("isolates rows by (studentId, misconceptionId) — a different student inserts a new row", async () => {
     const seeded: StudentMisconceptionStateRow = {
-      _id: 'student_misconception_state_1' as Id<'student_misconception_state'>,
+      _id: "student_misconception_state_1" as Id<"student_misconception_state">,
       _creationTime: FIXED_NOW_MS,
       studentId: STUDENT_A,
       misconceptionId: MISCONCEPTION_SIGN_ERROR,
-      status: 'active',
-      severity: 'minor',
+      status: "active",
+      severity: "minor",
       cleanStreak: 0,
       firstDetectedAt: FIXED_NOW_MS,
       lastUpdatedAt: FIXED_NOW_MS,
@@ -366,21 +365,21 @@ describe('recordMisconceptionDetectionHandler — upsert (spec FR3, test-strateg
 // 2. recordCleanAttemptHandler — increment streak, resolve at threshold.
 // ---------------------------------------------------------------------------
 
-describe('recordCleanAttemptHandler — increment + resolve (spec FR3, kst-srs.v2 §9.3)', () => {
+describe("recordCleanAttemptHandler — increment + resolve (spec FR3, kst-srs.v2 §9.3)", () => {
   let ctx: MockCtx;
 
   beforeEach(() => {
     ctx = makeMockCtx();
   });
 
-  it('increments cleanStreak by 1 on an active row', async () => {
+  it("increments cleanStreak by 1 on an active row", async () => {
     const seeded: StudentMisconceptionStateRow = {
-      _id: 'student_misconception_state_1' as Id<'student_misconception_state'>,
+      _id: "student_misconception_state_1" as Id<"student_misconception_state">,
       _creationTime: FIXED_NOW_MS,
       studentId: STUDENT_A,
       misconceptionId: MISCONCEPTION_SIGN_ERROR,
-      status: 'active',
-      severity: 'minor',
+      status: "active",
+      severity: "minor",
       cleanStreak: 1,
       firstDetectedAt: FIXED_NOW_MS,
       lastUpdatedAt: FIXED_NOW_MS,
@@ -402,14 +401,14 @@ describe('recordCleanAttemptHandler — increment + resolve (spec FR3, kst-srs.v
     );
   });
 
-  it('does NOT resolve when cleanStreak is one short of the threshold (N-1)', async () => {
+  it("does NOT resolve when cleanStreak is one short of the threshold (N-1)", async () => {
     const seeded: StudentMisconceptionStateRow = {
-      _id: 'student_misconception_state_1' as Id<'student_misconception_state'>,
+      _id: "student_misconception_state_1" as Id<"student_misconception_state">,
       _creationTime: FIXED_NOW_MS,
       studentId: STUDENT_A,
       misconceptionId: MISCONCEPTION_SIGN_ERROR,
-      status: 'active',
-      severity: 'minor',
+      status: "active",
+      severity: "minor",
       cleanStreak: RESOLUTION_THRESHOLD - 1,
       firstDetectedAt: FIXED_NOW_MS,
       lastUpdatedAt: FIXED_NOW_MS,
@@ -431,14 +430,14 @@ describe('recordCleanAttemptHandler — increment + resolve (spec FR3, kst-srs.v
     expect(patched.status).toBeUndefined();
   });
 
-  it('transitions to resolved when the increment meets the threshold, and resets cleanStreak to 0', async () => {
+  it("transitions to resolved when the increment meets the threshold, and resets cleanStreak to 0", async () => {
     const seeded: StudentMisconceptionStateRow = {
-      _id: 'student_misconception_state_1' as Id<'student_misconception_state'>,
+      _id: "student_misconception_state_1" as Id<"student_misconception_state">,
       _creationTime: FIXED_NOW_MS,
       studentId: STUDENT_A,
       misconceptionId: MISCONCEPTION_SIGN_ERROR,
-      status: 'active',
-      severity: 'minor',
+      status: "active",
+      severity: "minor",
       cleanStreak: RESOLUTION_THRESHOLD - 1,
       firstDetectedAt: FIXED_NOW_MS,
       lastUpdatedAt: FIXED_NOW_MS,
@@ -454,23 +453,23 @@ describe('recordCleanAttemptHandler — increment + resolve (spec FR3, kst-srs.v
     expect(ctx.patchSpy).toHaveBeenCalledWith(
       seeded._id,
       expect.objectContaining({
-        status: 'resolved',
+        status: "resolved",
         cleanStreak: 0,
         lastUpdatedAt: FIXED_NOW_MS,
       }),
     );
     // The persisted row must reflect the new status.
-    expect(ctx.rows[0]?.status).toBe('resolved');
+    expect(ctx.rows[0]?.status).toBe("resolved");
   });
 
-  it('is a no-op on an already-resolved row (idempotent — re-resolving is not a regression)', async () => {
+  it("is a no-op on an already-resolved row (idempotent — re-resolving is not a regression)", async () => {
     const seeded: StudentMisconceptionStateRow = {
-      _id: 'student_misconception_state_1' as Id<'student_misconception_state'>,
+      _id: "student_misconception_state_1" as Id<"student_misconception_state">,
       _creationTime: FIXED_NOW_MS - 10_000,
       studentId: STUDENT_A,
       misconceptionId: MISCONCEPTION_SIGN_ERROR,
-      status: 'resolved',
-      severity: 'minor',
+      status: "resolved",
+      severity: "minor",
       cleanStreak: 0,
       firstDetectedAt: FIXED_NOW_MS - 10_000,
       lastUpdatedAt: FIXED_NOW_MS - 10_000,
@@ -487,14 +486,14 @@ describe('recordCleanAttemptHandler — increment + resolve (spec FR3, kst-srs.v
     expect(ctx.patchSpy).not.toHaveBeenCalled();
   });
 
-  it('rejects a non-positive resolution threshold before mutating state', async () => {
+  it("rejects a non-positive resolution threshold before mutating state", async () => {
     const seeded: StudentMisconceptionStateRow = {
-      _id: 'student_misconception_state_1' as Id<'student_misconception_state'>,
+      _id: "student_misconception_state_1" as Id<"student_misconception_state">,
       _creationTime: FIXED_NOW_MS,
       studentId: STUDENT_A,
       misconceptionId: MISCONCEPTION_SIGN_ERROR,
-      status: 'active',
-      severity: 'minor',
+      status: "active",
+      severity: "minor",
       cleanStreak: 1,
       firstDetectedAt: FIXED_NOW_MS,
       lastUpdatedAt: FIXED_NOW_MS,
@@ -510,10 +509,10 @@ describe('recordCleanAttemptHandler — increment + resolve (spec FR3, kst-srs.v
     ).rejects.toThrow(/resolutionThreshold/);
     expect(ctx.patchSpy).not.toHaveBeenCalled();
     expect(ctx.rows[0]?.cleanStreak).toBe(1);
-    expect(ctx.rows[0]?.status).toBe('active');
+    expect(ctx.rows[0]?.status).toBe("active");
   });
 
-  it('handles a missing row gracefully (returns null without throwing) — caller is responsible for detection-first', async () => {
+  it("handles a missing row gracefully (returns null without throwing) — caller is responsible for detection-first", async () => {
     await expect(
       recordCleanAttemptHandler(
         ctx as unknown as Parameters<typeof recordCleanAttemptHandler>[0],
@@ -528,8 +527,8 @@ describe('recordCleanAttemptHandler — increment + resolve (spec FR3, kst-srs.v
 // 3. getStudentActiveMisconceptionsHandler — read active set.
 // ---------------------------------------------------------------------------
 
-describe('getStudentActiveMisconceptionsHandler — read active set (test-strategy §3 stale-state default)', () => {
-  it('returns an empty array for a student with no rows (stale state default)', async () => {
+describe("getStudentActiveMisconceptionsHandler — read active set (test-strategy §3 stale-state default)", () => {
+  it("returns an empty array for a student with no rows (stale state default)", async () => {
     const ctx = makeMockCtx();
     const result = await getStudentActiveMisconceptionsHandler(
       ctx as unknown as Parameters<typeof getStudentActiveMisconceptionsHandler>[0],
@@ -538,51 +537,51 @@ describe('getStudentActiveMisconceptionsHandler — read active set (test-strate
     expect(result).toEqual([]);
   });
 
-  it('returns only the active rows for the given studentId', async () => {
+  it("returns only the active rows for the given studentId", async () => {
     const rows: StudentMisconceptionStateRow[] = [
       {
-        _id: 'student_misconception_state_1' as Id<'student_misconception_state'>,
+        _id: "student_misconception_state_1" as Id<"student_misconception_state">,
         _creationTime: FIXED_NOW_MS - 3_000,
         studentId: STUDENT_A,
         misconceptionId: MISCONCEPTION_SIGN_ERROR,
-        status: 'active',
-        severity: 'minor',
+        status: "active",
+        severity: "minor",
         cleanStreak: 2,
         firstDetectedAt: FIXED_NOW_MS - 3_000,
         lastUpdatedAt: FIXED_NOW_MS - 3_000,
         affectedSkills: [SKILL_FACTORING],
       },
       {
-        _id: 'student_misconception_state_2' as Id<'student_misconception_state'>,
+        _id: "student_misconception_state_2" as Id<"student_misconception_state">,
         _creationTime: FIXED_NOW_MS - 2_000,
         studentId: STUDENT_A,
         misconceptionId: MISCONCEPTION_LINEAR_MISUSE,
-        status: 'active',
-        severity: 'severe',
+        status: "active",
+        severity: "severe",
         cleanStreak: 0,
         firstDetectedAt: FIXED_NOW_MS - 2_000,
         lastUpdatedAt: FIXED_NOW_MS - 2_000,
         affectedSkills: [SKILL_GRAPHING],
       },
       {
-        _id: 'student_misconception_state_3' as Id<'student_misconception_state'>,
+        _id: "student_misconception_state_3" as Id<"student_misconception_state">,
         _creationTime: FIXED_NOW_MS - 1_000,
         studentId: STUDENT_A,
-        misconceptionId: 'math.im3.misconception.already-resolved',
-        status: 'resolved',
-        severity: 'minor',
+        misconceptionId: "math.im3.misconception.already-resolved",
+        status: "resolved",
+        severity: "minor",
         cleanStreak: 0,
         firstDetectedAt: FIXED_NOW_MS - 1_000,
         lastUpdatedAt: FIXED_NOW_MS - 1_000,
         affectedSkills: [SKILL_FACTORING],
       },
       {
-        _id: 'student_misconception_state_4' as Id<'student_misconception_state'>,
+        _id: "student_misconception_state_4" as Id<"student_misconception_state">,
         _creationTime: FIXED_NOW_MS,
         studentId: STUDENT_B,
         misconceptionId: MISCONCEPTION_SIGN_ERROR,
-        status: 'active',
-        severity: 'minor',
+        status: "active",
+        severity: "minor",
         cleanStreak: 0,
         firstDetectedAt: FIXED_NOW_MS,
         lastUpdatedAt: FIXED_NOW_MS,
@@ -605,15 +604,15 @@ describe('getStudentActiveMisconceptionsHandler — read active set (test-strate
     );
   });
 
-  it('returns an empty array for a student whose rows are all resolved', async () => {
+  it("returns an empty array for a student whose rows are all resolved", async () => {
     const rows: StudentMisconceptionStateRow[] = [
       {
-        _id: 'student_misconception_state_1' as Id<'student_misconception_state'>,
+        _id: "student_misconception_state_1" as Id<"student_misconception_state">,
         _creationTime: FIXED_NOW_MS,
         studentId: STUDENT_A,
         misconceptionId: MISCONCEPTION_SIGN_ERROR,
-        status: 'resolved',
-        severity: 'minor',
+        status: "resolved",
+        severity: "minor",
         cleanStreak: 0,
         firstDetectedAt: FIXED_NOW_MS,
         lastUpdatedAt: FIXED_NOW_MS,

@@ -5,11 +5,7 @@ import { seedPracticeItems } from "@/convex/seed/seed_practice_items";
 type Row = Record<string, unknown> & { _id: string };
 type Table = "practice_variants" | "competency_standards" | "activities" | "practice_items";
 
-function fixture(input: {
-  activities: Row[];
-  standards?: Row[];
-  items?: Row[];
-}) {
+function fixture(input: { activities: Row[]; standards?: Row[]; items?: Row[] }) {
   const rows: Record<Table, Row[]> = {
     practice_variants: IM3_PROBLEM_FAMILIES.map((family, index) => ({
       _id: `practice_variants:${index}`,
@@ -37,7 +33,12 @@ function fixture(input: {
         };
       };
       return {
-        withIndex(_name: string, callback: (q: { eq(field: string, value: unknown): { field: string; value: unknown } }) => { field: string; value: unknown }) {
+        withIndex(
+          _name: string,
+          callback: (q: {
+            eq(field: string, value: unknown): { field: string; value: unknown };
+          }) => { field: string; value: unknown },
+        ) {
           return select(callback({ eq: (field, value) => ({ field, value }) }));
         },
         take: async (count: number) => {
@@ -59,9 +60,17 @@ function fixture(input: {
     },
   };
   const handler = seedPracticeItems as unknown as {
-    _handler(ctx: { db: typeof db }): Promise<Array<{ practiceItemId: string; activityId: string; variantKey: string; success: boolean }>>;
+    _handler(ctx: {
+      db: typeof db;
+    }): Promise<
+      Array<{ practiceItemId: string; activityId: string; variantKey: string; success: boolean }>
+    >;
   };
-  return { rows, run: () => handler._handler({ db }), fallbackActivityReads: () => fallbackActivityReads };
+  return {
+    rows,
+    run: () => handler._handler({ db }),
+    fallbackActivityReads: () => fallbackActivityReads,
+  };
 }
 
 function firstFamilyForComponent(componentKey: string) {
@@ -89,8 +98,12 @@ describe("seedPracticeItems", () => {
       legacyProblemFamilyId: family.variantKey,
       variantLabel: "Set A",
     });
-    expect(f.rows.practice_variants.filter((row) => row.variantKey === item.variantKey)).toHaveLength(1);
-    expect(result.find((row) => row.practiceItemId === item.practiceItemId)?.variantKey).toBe(family.variantKey);
+    expect(
+      f.rows.practice_variants.filter((row) => row.variantKey === item.variantKey),
+    ).toHaveLength(1);
+    expect(result.find((row) => row.practiceItemId === item.practiceItemId)?.variantKey).toBe(
+      family.variantKey,
+    );
 
     const snapshot = structuredClone(f.rows.practice_items);
     await f.run();
@@ -103,21 +116,33 @@ describe("seedPracticeItems", () => {
     const legacyItemId = "practice_items:legacy";
     const f = fixture({
       activities: [{ _id: activityId, componentKey: family.componentKey }],
-      items: [{
-        _id: legacyItemId,
-        activityId,
-        practiceItemId: `${family.variantKey}:${activityId}`,
-        variantKey: `${family.variantKey}:${activityId}`,
-        legacyProblemFamilyId: family.variantKey,
-        variantLabel: "Set A",
-      }],
+      items: [
+        {
+          _id: legacyItemId,
+          activityId,
+          practiceItemId: `${family.variantKey}:${activityId}`,
+          variantKey: `${family.variantKey}:${activityId}`,
+          legacyProblemFamilyId: family.variantKey,
+          variantLabel: "Set A",
+        },
+      ],
     });
 
     const result = await f.run();
     expect(f.rows.practice_items).toHaveLength(1);
-    expect(f.rows.practice_items[0]).toMatchObject({ _id: legacyItemId, variantKey: family.variantKey });
-    expect(result.find((row) => row.practiceItemId === f.rows.practice_items[0].practiceItemId)?.variantKey).toBe(family.variantKey);
-    expect(f.rows.practice_variants.filter((row) => row.variantKey === f.rows.practice_items[0].variantKey)).toHaveLength(1);
+    expect(f.rows.practice_items[0]).toMatchObject({
+      _id: legacyItemId,
+      variantKey: family.variantKey,
+    });
+    expect(
+      result.find((row) => row.practiceItemId === f.rows.practice_items[0].practiceItemId)
+        ?.variantKey,
+    ).toBe(family.variantKey);
+    expect(
+      f.rows.practice_variants.filter(
+        (row) => row.variantKey === f.rows.practice_items[0].variantKey,
+      ),
+    ).toHaveLength(1);
     expect(f.fallbackActivityReads()).toBe(1);
   });
 
@@ -138,20 +163,29 @@ describe("seedPracticeItems", () => {
 
     expect(f.fallbackActivityReads()).toBe(1);
     const quizFamily = firstFamilyForComponent("comprehension-quiz");
-    const quizItems = f.rows.practice_items.filter((item) => item.legacyProblemFamilyId === quizFamily.variantKey);
-    expect(quizItems.map((item) => item.activityId)).toEqual(["activities:quiz-a", "activities:quiz-b"]);
+    const quizItems = f.rows.practice_items.filter(
+      (item) => item.legacyProblemFamilyId === quizFamily.variantKey,
+    );
+    expect(quizItems.map((item) => item.activityId)).toEqual([
+      "activities:quiz-a",
+      "activities:quiz-b",
+    ]);
     expect(quizItems.map((item) => item.variantLabel)).toEqual(["Set A", "Set A"]);
     expect(quizItems.map((item) => item.practiceItemId)).toEqual([
       `${quizFamily.variantKey}:activities:quiz-a`,
       `${quizFamily.variantKey}:activities:quiz-b`,
     ]);
     const solverFamily = firstFamilyForComponent("step-by-step-solver");
-    expect(f.rows.practice_items).toContainEqual(expect.objectContaining({
-      activityId: "activities:solver-a",
-      variantKey: solverFamily.variantKey,
-      practiceItemId: `${solverFamily.variantKey}:activities:solver-a`,
-    }));
-    expect(f.rows.practice_items.some((item) => item.activityId === "activities:outside-first-200")).toBe(false);
+    expect(f.rows.practice_items).toContainEqual(
+      expect.objectContaining({
+        activityId: "activities:solver-a",
+        variantKey: solverFamily.variantKey,
+        practiceItemId: `${solverFamily.variantKey}:activities:solver-a`,
+      }),
+    );
+    expect(
+      f.rows.practice_items.some((item) => item.activityId === "activities:outside-first-200"),
+    ).toBe(false);
 
     const secondResult = await f.run();
     expect(secondResult).toEqual(firstResult);
@@ -169,19 +203,24 @@ describe("seedPracticeItems", () => {
     const activityId = "activities:owned";
     const f = fixture({
       activities: [{ _id: activityId, componentKey: family.componentKey }],
-      items: [{
-        _id: "practice_items:owned",
-        activityId,
-        practiceItemId: "another-family:item",
-        variantKey: "another-family",
-        legacyProblemFamilyId: "another-family",
-        variantLabel: "Set A",
-      }],
+      items: [
+        {
+          _id: "practice_items:owned",
+          activityId,
+          practiceItemId: "another-family:item",
+          variantKey: "another-family",
+          legacyProblemFamilyId: "another-family",
+          variantLabel: "Set A",
+        },
+      ],
     });
 
     await f.run();
     expect(f.rows.practice_items).toEqual([
-      expect.objectContaining({ variantKey: "another-family", legacyProblemFamilyId: "another-family" }),
+      expect.objectContaining({
+        variantKey: "another-family",
+        legacyProblemFamilyId: "another-family",
+      }),
     ]);
   });
 });

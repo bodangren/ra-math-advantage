@@ -6,8 +6,8 @@
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "not_found_handling": "none",
-    "binding": "ASSETS"
-  }
+    "binding": "ASSETS",
+  },
   // Set NEXT_PUBLIC_CONVEX_URL to the target HTTPS deployment URL before build and deploy.
   // Required secrets via `wrangler secret put`:
   // - CONVEX_DEPLOY_KEY

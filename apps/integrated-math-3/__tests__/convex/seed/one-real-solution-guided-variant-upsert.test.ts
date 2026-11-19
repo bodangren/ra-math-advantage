@@ -20,9 +20,10 @@ describe("IM3 one-real-solution Guided variant upsert", () => {
         query(table: string) {
           operations.push(`query:${table}`);
           return {
-            withIndex(index: string, callback: (query: {
-              eq: (field: string, value: unknown) => unknown;
-            }) => unknown) {
+            withIndex(
+              index: string,
+              callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+            ) {
               operations.push(`index:${index}`);
               callback({
                 eq: (field: string, value: unknown) => {
@@ -80,8 +81,10 @@ describe("IM3 one-real-solution Guided variant upsert", () => {
       objectiveIds: [IM3_ONE_REAL_SOLUTION_NODE],
       metadata: { stableActivityId: IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID },
     });
-    expect(operations.filter((operation) => (
-      operation.includes("activities") || operation.includes("practice_items")
-    ))).toEqual([]);
+    expect(
+      operations.filter(
+        (operation) => operation.includes("activities") || operation.includes("practice_items"),
+      ),
+    ).toEqual([]);
   });
 });

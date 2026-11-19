@@ -1,43 +1,47 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mocks = vi.hoisted(() => ({
   fetchInternalMutation: vi.fn(),
   requireStudentRequestClaims: vi.fn(),
 }));
 
-vi.mock('@/lib/auth/server', () => ({
+vi.mock("@/lib/auth/server", () => ({
   requireStudentRequestClaims: mocks.requireStudentRequestClaims,
 }));
 
-vi.mock('@/lib/convex/server', () => ({
+vi.mock("@/lib/convex/server", () => ({
   fetchInternalMutation: mocks.fetchInternalMutation,
   internal: {
     activities: {
       createTopic14PolynomialEndBehaviorWorkedSubmission:
-        'internal.activities.createTopic14PolynomialEndBehaviorWorkedSubmission',
+        "internal.activities.createTopic14PolynomialEndBehaviorWorkedSubmission",
     },
     learningEvidence: {
       submitTopic14PolynomialEndBehaviorWorkedSubmission:
-        'internal.learningEvidence.submitTopic14PolynomialEndBehaviorWorkedSubmission',
+        "internal.learningEvidence.submitTopic14PolynomialEndBehaviorWorkedSubmission",
     },
   },
 }));
 
-import { POST } from '@/app/api/activities/precalculus-topic-1-4-polynomial-end-behavior-worked/submissions/route';
-import { generateTopic14PolynomialEndBehaviorOutput } from '@math-platform/math-content/knowledge-space';
-import { PRECALCULUS_TOPIC_14_POLYNOMIAL_END_BEHAVIOR_WORKED_ACTIVITY_ID } from '@/lib/learning-evidence/precalc-pilot';
+import { POST } from "@/app/api/activities/precalculus-topic-1-4-polynomial-end-behavior-worked/submissions/route";
+import { generateTopic14PolynomialEndBehaviorOutput } from "@math-platform/math-content/knowledge-space";
+import { PRECALCULUS_TOPIC_14_POLYNOMIAL_END_BEHAVIOR_WORKED_ACTIVITY_ID } from "@/lib/learning-evidence/precalc-pilot";
 
-const LEARNER_ID = 'profiles:precalc-end-behavior-worked-route-student';
+const LEARNER_ID = "profiles:precalc-end-behavior-worked-route-student";
 const WORKED_ACTIVITY_ID = PRECALCULUS_TOPIC_14_POLYNOMIAL_END_BEHAVIOR_WORKED_ACTIVITY_ID;
-const SUBMISSION_ID = 'activity_submissions:end-behavior-worked-route';
-const SUBMITTED_AT = '2026-08-29T10:30:00.000Z';
-const IDEMPOTENCY_KEY = 'precalc-end-behavior-worked-route-key';
-const CREATE_REFERENCE = 'internal.activities.createTopic14PolynomialEndBehaviorWorkedSubmission';
-const EVIDENCE_REFERENCE = 'internal.learningEvidence.submitTopic14PolynomialEndBehaviorWorkedSubmission';
-const ANSWER_IDS = ['leftEnd', 'rightEnd'] as const;
+const SUBMISSION_ID = "activity_submissions:end-behavior-worked-route";
+const SUBMITTED_AT = "2026-08-29T10:30:00.000Z";
+const IDEMPOTENCY_KEY = "precalc-end-behavior-worked-route-key";
+const CREATE_REFERENCE = "internal.activities.createTopic14PolynomialEndBehaviorWorkedSubmission";
+const EVIDENCE_REFERENCE =
+  "internal.learningEvidence.submitTopic14PolynomialEndBehaviorWorkedSubmission";
+const ANSWER_IDS = ["leftEnd", "rightEnd"] as const;
 
 function sourceAnswers(): Record<(typeof ANSWER_IDS)[number], string> {
-  const expected = generateTopic14PolynomialEndBehaviorOutput(0).expectedAnswer as Record<string, string>;
+  const expected = generateTopic14PolynomialEndBehaviorOutput(0).expectedAnswer as Record<
+    string,
+    string
+  >;
   return {
     leftEnd: String(expected.leftEnd),
     rightEnd: String(expected.rightEnd),
@@ -54,12 +58,12 @@ const EVIDENCE_NEW = {
   persisted: true,
   masteryApplied: false,
   kstApplied: false,
-  delivery: 'new',
+  delivery: "new",
   decision: {
-    idempotency: 'new',
-    exposureState: 'introduced',
+    idempotency: "new",
+    exposureState: "introduced",
     eligible: false,
-    reason: 'teacher_led',
+    reason: "teacher_led",
     masteryBearing: false,
   },
 };
@@ -67,15 +71,29 @@ const EVIDENCE_NEW = {
 const EVIDENCE_REPLAY = {
   ...EVIDENCE_NEW,
   persisted: false,
-  delivery: 'replay',
-  decision: { ...EVIDENCE_NEW.decision, idempotency: 'replay' },
+  delivery: "replay",
+  decision: { ...EVIDENCE_NEW.decision, idempotency: "replay" },
 };
 
 const FORBIDDEN_OUTER_FIELDS = [
-  'answer', 'answerKey', 'correctAnswer', 'correctAnswers', 'expectedAnswer',
-  'grading', 'gradingMetadata', 'normalizedAnswer', 'solution', 'solutions',
-  'solutionSteps', 'steps', 'finalAnswer', 'authority', 'isCorrect', 'correctness',
-  'score', 'maxScore',
+  "answer",
+  "answerKey",
+  "correctAnswer",
+  "correctAnswers",
+  "expectedAnswer",
+  "grading",
+  "gradingMetadata",
+  "normalizedAnswer",
+  "solution",
+  "solutions",
+  "solutionSteps",
+  "steps",
+  "finalAnswer",
+  "authority",
+  "isCorrect",
+  "correctness",
+  "score",
+  "maxScore",
 ] as const;
 
 function makeEnvelope(
@@ -83,12 +101,12 @@ function makeEnvelope(
   overrides: Record<string, unknown> = {},
 ): Record<string, unknown> {
   return {
-    contractVersion: 'practice.v1',
+    contractVersion: "practice.v1",
     activityId: WORKED_ACTIVITY_ID,
-    mode: 'worked_example',
-    status: 'submitted',
+    mode: "worked_example",
+    status: "submitted",
     attemptNumber: 1,
-    submittedAt: '2026-08-29T10:00:00.000Z',
+    submittedAt: "2026-08-29T10:00:00.000Z",
     answers,
     parts: ANSWER_IDS.map((partId) => ({ partId, rawAnswer: answers[partId] })),
     ...overrides,
@@ -98,24 +116,24 @@ function makeEnvelope(
 function makeRequest(
   body: unknown,
   key: string | null = IDEMPOTENCY_KEY,
-  contentType: string | null = 'application/json',
+  contentType: string | null = "application/json",
 ): Request {
   const headers = new Headers();
-  if (key !== null) headers.set('Idempotency-Key', key);
-  if (contentType !== null) headers.set('content-type', contentType);
+  if (key !== null) headers.set("Idempotency-Key", key);
+  if (contentType !== null) headers.set("content-type", contentType);
   return new Request(
-    'http://localhost/api/activities/precalculus-topic-1-4-polynomial-end-behavior-worked/submissions',
+    "http://localhost/api/activities/precalculus-topic-1-4-polynomial-end-behavior-worked/submissions",
     {
-      method: 'POST',
+      method: "POST",
       headers,
-      body: typeof body === 'string' ? body : JSON.stringify(body),
+      body: typeof body === "string" ? body : JSON.stringify(body),
     },
   );
 }
 
 function collectKeys(value: unknown, keys: string[] = []): string[] {
   if (Array.isArray(value)) value.forEach((item) => collectKeys(item, keys));
-  else if (value && typeof value === 'object') {
+  else if (value && typeof value === "object") {
     Object.entries(value).forEach(([key, nestedValue]) => {
       keys.push(key);
       collectKeys(nestedValue, keys);
@@ -126,27 +144,40 @@ function collectKeys(value: unknown, keys: string[] = []): string[] {
 
 function expectNoAuthority(value: unknown): void {
   const forbidden = new Set([
-    'score', 'maxScore', 'correctness', 'isCorrect',
-    'correctAnswer', 'correctAnswers', 'expectedAnswer', 'answerKey',
-    'solution', 'solutions', 'solutionSteps', 'steps', 'finalAnswer',
-    'grading', 'gradingMetadata', 'normalizedAnswer', 'authority',
+    "score",
+    "maxScore",
+    "correctness",
+    "isCorrect",
+    "correctAnswer",
+    "correctAnswers",
+    "expectedAnswer",
+    "answerKey",
+    "solution",
+    "solutions",
+    "solutionSteps",
+    "steps",
+    "finalAnswer",
+    "grading",
+    "gradingMetadata",
+    "normalizedAnswer",
+    "authority",
   ]);
   expect(collectKeys(value).filter((key) => forbidden.has(key))).toEqual([]);
 }
 
-describe('POST /api/activities/precalculus-topic-1-4-polynomial-end-behavior-worked/submissions', () => {
+describe("POST /api/activities/precalculus-topic-1-4-polynomial-end-behavior-worked/submissions", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mocks.requireStudentRequestClaims.mockResolvedValue({ sub: LEARNER_ID, role: 'student' });
+    mocks.requireStudentRequestClaims.mockResolvedValue({ sub: LEARNER_ID, role: "student" });
     mocks.fetchInternalMutation
       .mockResolvedValueOnce(CREATE_RESULT)
       .mockResolvedValueOnce(EVIDENCE_NEW);
   });
 
-  it('forwards live seed-0 identities and only the opaque consumer input', async () => {
+  it("forwards live seed-0 identities and only the opaque consumer input", async () => {
     const envelope = makeEnvelope({
-      leftEnd: ' negative_infinity ',
-      rightEnd: 'not-a-canonical-choice',
+      leftEnd: " negative_infinity ",
+      rightEnd: "not-a-canonical-choice",
     });
     const response = await POST(makeRequest(envelope, ` ${IDEMPOTENCY_KEY} `));
 
@@ -164,87 +195,113 @@ describe('POST /api/activities/precalculus-topic-1-4-polynomial-end-behavior-wor
     });
     expectNoAuthority(mocks.fetchInternalMutation.mock.calls[0]);
     expectNoAuthority(mocks.fetchInternalMutation.mock.calls[1]);
-    expect(sourceAnswers()).toStrictEqual({ leftEnd: 'negative_infinity', rightEnd: 'negative_infinity' });
+    expect(sourceAnswers()).toStrictEqual({
+      leftEnd: "negative_infinity",
+      rightEnd: "negative_infinity",
+    });
   });
 
   it.each([
-    ['missing sub', { role: 'student' }, 401],
-    ['blank sub', { sub: '  ', role: 'student' }, 401],
-    ['teacher role', { sub: LEARNER_ID, role: 'teacher' }, 403],
-    ['missing role', { sub: LEARNER_ID }, 403],
-  ] as const)('rejects %s before either mutation', async (_label, claims, status) => {
+    ["missing sub", { role: "student" }, 401],
+    ["blank sub", { sub: "  ", role: "student" }, 401],
+    ["teacher role", { sub: LEARNER_ID, role: "teacher" }, 403],
+    ["missing role", { sub: LEARNER_ID }, 403],
+  ] as const)("rejects %s before either mutation", async (_label, claims, status) => {
     mocks.requireStudentRequestClaims.mockResolvedValueOnce(claims);
     const response = await POST(makeRequest(makeEnvelope()));
     expect(response.status).toBe(status);
     expect(mocks.fetchInternalMutation).not.toHaveBeenCalled();
   });
 
-  it('passes through an auth Response and protects authentication errors', async () => {
-    const authResponse = new Response('Unauthorized', { status: 401 });
+  it("passes through an auth Response and protects authentication errors", async () => {
+    const authResponse = new Response("Unauthorized", { status: 401 });
     mocks.requireStudentRequestClaims.mockResolvedValueOnce(authResponse);
     await expect(POST(makeRequest(makeEnvelope()))).resolves.toBe(authResponse);
 
-    mocks.requireStudentRequestClaims.mockRejectedValueOnce(new Error('private auth detail'));
+    mocks.requireStudentRequestClaims.mockRejectedValueOnce(new Error("private auth detail"));
     const response = await POST(makeRequest(makeEnvelope()));
     expect(response.status).toBe(500);
-    await expect(response.text()).resolves.not.toContain('private auth detail');
+    await expect(response.text()).resolves.not.toContain("private auth detail");
     expect(mocks.fetchInternalMutation).not.toHaveBeenCalled();
   });
 
   it.each([
-    ['missing key', null],
-    ['blank key', '   '],
-  ] as const)('rejects %s before either mutation', async (_label, key) => {
+    ["missing key", null],
+    ["blank key", "   "],
+  ] as const)("rejects %s before either mutation", async (_label, key) => {
     const response = await POST(makeRequest(makeEnvelope(), key));
     expect(response.status).toBe(400);
     expect(mocks.fetchInternalMutation).not.toHaveBeenCalled();
   });
 
   it.each([
-    ['no Content-Type', null],
-    ['non-JSON Content-Type', 'text/plain'],
-  ] as const)('accepts valid JSON with %s', async (_label, contentType) => {
+    ["no Content-Type", null],
+    ["non-JSON Content-Type", "text/plain"],
+  ] as const)("accepts valid JSON with %s", async (_label, contentType) => {
     const response = await POST(makeRequest(makeEnvelope(), IDEMPOTENCY_KEY, contentType));
     expect(response.status).toBe(200);
     expect(mocks.fetchInternalMutation).toHaveBeenCalledTimes(2);
   });
 
-  it('rejects malformed JSON before either mutation', async () => {
-    const response = await POST(makeRequest('{'));
+  it("rejects malformed JSON before either mutation", async () => {
+    const response = await POST(makeRequest("{"));
     expect(response.status).toBe(400);
     expect(mocks.fetchInternalMutation).not.toHaveBeenCalled();
   });
 
   it.each([
-    ['extra outer field', { ...makeEnvelope(), score: 2 }],
-    ['missing outer field', makeEnvelope(sourceAnswers(), { status: undefined })],
-    ['wrong contract', makeEnvelope(sourceAnswers(), { contractVersion: 'practice.v2' })],
-    ['wrong activity', makeEnvelope(sourceAnswers(), { activityId: 'wrong.activity' })],
-    ['wrong mode', makeEnvelope(sourceAnswers(), { mode: 'guided_practice' })],
-    ['wrong status', makeEnvelope(sourceAnswers(), { status: 'graded' })],
-    ['zero attempt', makeEnvelope(sourceAnswers(), { attemptNumber: 0 })],
-    ['fractional attempt', makeEnvelope(sourceAnswers(), { attemptNumber: 1.5 })],
-    ['non-number attempt', makeEnvelope(sourceAnswers(), { attemptNumber: '1' })],
-    ['invalid time', makeEnvelope(sourceAnswers(), { submittedAt: 'not-a-date' })],
-    ['non-string time', makeEnvelope(sourceAnswers(), { submittedAt: 1 })],
-  ] as const)('rejects %s before either mutation', async (_label, body) => {
+    ["extra outer field", { ...makeEnvelope(), score: 2 }],
+    ["missing outer field", makeEnvelope(sourceAnswers(), { status: undefined })],
+    ["wrong contract", makeEnvelope(sourceAnswers(), { contractVersion: "practice.v2" })],
+    ["wrong activity", makeEnvelope(sourceAnswers(), { activityId: "wrong.activity" })],
+    ["wrong mode", makeEnvelope(sourceAnswers(), { mode: "guided_practice" })],
+    ["wrong status", makeEnvelope(sourceAnswers(), { status: "graded" })],
+    ["zero attempt", makeEnvelope(sourceAnswers(), { attemptNumber: 0 })],
+    ["fractional attempt", makeEnvelope(sourceAnswers(), { attemptNumber: 1.5 })],
+    ["non-number attempt", makeEnvelope(sourceAnswers(), { attemptNumber: "1" })],
+    ["invalid time", makeEnvelope(sourceAnswers(), { submittedAt: "not-a-date" })],
+    ["non-string time", makeEnvelope(sourceAnswers(), { submittedAt: 1 })],
+  ] as const)("rejects %s before either mutation", async (_label, body) => {
     const response = await POST(makeRequest(body));
     expect(response.status).toBe(400);
     expect(mocks.fetchInternalMutation).not.toHaveBeenCalled();
   });
 
-  it.each(FORBIDDEN_OUTER_FIELDS)('rejects top-level authority field %s before either mutation', async (field) => {
-    const response = await POST(makeRequest({ ...makeEnvelope(), [field]: true }));
-    expect(response.status).toBe(400);
-    expect(mocks.fetchInternalMutation).not.toHaveBeenCalled();
-  });
+  it.each(FORBIDDEN_OUTER_FIELDS)(
+    "rejects top-level authority field %s before either mutation",
+    async (field) => {
+      const response = await POST(makeRequest({ ...makeEnvelope(), [field]: true }));
+      expect(response.status).toBe(400);
+      expect(mocks.fetchInternalMutation).not.toHaveBeenCalled();
+    },
+  );
 
   it.each([
-    ['missing answer', (answers: Record<string, unknown>) => { delete answers.leftEnd; }],
-    ['extra answer', (answers: Record<string, unknown>) => { answers.score = '2'; }],
-    ['non-string answer', (answers: Record<string, unknown>) => { answers.leftEnd = 1; }],
-    ['answer authority', (answers: Record<string, unknown>) => { answers.expectedAnswer = 'negative_infinity'; }],
-  ] as const)('rejects %s before either mutation', async (_label, mutate) => {
+    [
+      "missing answer",
+      (answers: Record<string, unknown>) => {
+        delete answers.leftEnd;
+      },
+    ],
+    [
+      "extra answer",
+      (answers: Record<string, unknown>) => {
+        answers.score = "2";
+      },
+    ],
+    [
+      "non-string answer",
+      (answers: Record<string, unknown>) => {
+        answers.leftEnd = 1;
+      },
+    ],
+    [
+      "answer authority",
+      (answers: Record<string, unknown>) => {
+        answers.expectedAnswer = "negative_infinity";
+      },
+    ],
+  ] as const)("rejects %s before either mutation", async (_label, mutate) => {
     const answers: Record<string, unknown> = { ...sourceAnswers() };
     mutate(answers);
     const response = await POST(makeRequest(makeEnvelope(answers)));
@@ -253,13 +310,33 @@ describe('POST /api/activities/precalculus-topic-1-4-polynomial-end-behavior-wor
   });
 
   it.each([
-    ['missing part', (parts: unknown[]) => parts.shift()],
-    ['extra part field', (parts: unknown[]) => { (parts[0] as Record<string, unknown>).score = 1; }],
-    ['reordered parts', (parts: unknown[]) => parts.reverse()],
-    ['duplicate part', (parts: unknown[]) => { parts[1] = parts[0]; }],
-    ['changed part id', (parts: unknown[]) => { (parts[0] as Record<string, unknown>).partId = 'wrong'; }],
-    ['mismatched raw part', (parts: unknown[]) => { (parts[0] as Record<string, unknown>).rawAnswer = 'positive_infinity'; }],
-  ] as const)('rejects %s before either mutation', async (_label, mutate) => {
+    ["missing part", (parts: unknown[]) => parts.shift()],
+    [
+      "extra part field",
+      (parts: unknown[]) => {
+        (parts[0] as Record<string, unknown>).score = 1;
+      },
+    ],
+    ["reordered parts", (parts: unknown[]) => parts.reverse()],
+    [
+      "duplicate part",
+      (parts: unknown[]) => {
+        parts[1] = parts[0];
+      },
+    ],
+    [
+      "changed part id",
+      (parts: unknown[]) => {
+        (parts[0] as Record<string, unknown>).partId = "wrong";
+      },
+    ],
+    [
+      "mismatched raw part",
+      (parts: unknown[]) => {
+        (parts[0] as Record<string, unknown>).rawAnswer = "positive_infinity";
+      },
+    ],
+  ] as const)("rejects %s before either mutation", async (_label, mutate) => {
     const parts = ANSWER_IDS.map((partId) => ({ partId, rawAnswer: sourceAnswers()[partId] }));
     mutate(parts);
     const response = await POST(makeRequest(makeEnvelope(sourceAnswers(), { parts })));
@@ -267,66 +344,85 @@ describe('POST /api/activities/precalculus-topic-1-4-polynomial-end-behavior-wor
     expect(mocks.fetchInternalMutation).not.toHaveBeenCalled();
   });
 
-  it('rejects non-array parts before either mutation', async () => {
+  it("rejects non-array parts before either mutation", async () => {
     const response = await POST(makeRequest(makeEnvelope(sourceAnswers(), { parts: null })));
     expect(response.status).toBe(400);
     expect(mocks.fetchInternalMutation).not.toHaveBeenCalled();
   });
 
-  it('maps only the exact producer conflict to 409', async () => {
-    mocks.fetchInternalMutation.mockReset().mockRejectedValueOnce(new Error('idempotency_conflict'));
+  it("maps only the exact producer conflict to 409", async () => {
+    mocks.fetchInternalMutation
+      .mockReset()
+      .mockRejectedValueOnce(new Error("idempotency_conflict"));
     const response = await POST(makeRequest(makeEnvelope()));
     expect(response.status).toBe(409);
-    await expect(response.text()).resolves.not.toContain('idempotency_conflict');
+    await expect(response.text()).resolves.not.toContain("idempotency_conflict");
     expect(mocks.fetchInternalMutation).toHaveBeenCalledTimes(1);
   });
 
-  it('returns a safe 500 for non-conflict producer errors', async () => {
-    mocks.fetchInternalMutation.mockReset().mockRejectedValueOnce(new Error('private producer detail'));
+  it("returns a safe 500 for non-conflict producer errors", async () => {
+    mocks.fetchInternalMutation
+      .mockReset()
+      .mockRejectedValueOnce(new Error("private producer detail"));
     const response = await POST(makeRequest(makeEnvelope()));
     expect(response.status).toBe(500);
-    await expect(response.text()).resolves.not.toContain('private producer detail');
+    await expect(response.text()).resolves.not.toContain("private producer detail");
     expect(mocks.fetchInternalMutation).toHaveBeenCalledTimes(1);
   });
 
   it.each([
-    ['missing field', { submissionId: SUBMISSION_ID, attemptOrdinal: 2 }],
-    ['extra field', { ...CREATE_RESULT, score: 1 }],
-    ['blank ID', { ...CREATE_RESULT, submissionId: ' ' }],
-    ['non-string ID', { ...CREATE_RESULT, submissionId: 1 }],
-    ['zero ordinal', { ...CREATE_RESULT, attemptOrdinal: 0 }],
-    ['fractional ordinal', { ...CREATE_RESULT, attemptOrdinal: 1.5 }],
-    ['invalid timestamp', { ...CREATE_RESULT, submittedAt: 'not-a-date' }],
-    ['noncanonical timestamp', { ...CREATE_RESULT, submittedAt: '2026-08-29' }],
-    ['non-string timestamp', { ...CREATE_RESULT, submittedAt: 1 }],
-  ] as const)('rejects malformed producer result %s without calling evidence', async (_label, result) => {
-    mocks.fetchInternalMutation.mockReset().mockResolvedValueOnce(result);
-    const response = await POST(makeRequest(makeEnvelope()));
-    expect(response.status).toBe(500);
-    expect(mocks.fetchInternalMutation).toHaveBeenCalledTimes(1);
-  });
+    ["missing field", { submissionId: SUBMISSION_ID, attemptOrdinal: 2 }],
+    ["extra field", { ...CREATE_RESULT, score: 1 }],
+    ["blank ID", { ...CREATE_RESULT, submissionId: " " }],
+    ["non-string ID", { ...CREATE_RESULT, submissionId: 1 }],
+    ["zero ordinal", { ...CREATE_RESULT, attemptOrdinal: 0 }],
+    ["fractional ordinal", { ...CREATE_RESULT, attemptOrdinal: 1.5 }],
+    ["invalid timestamp", { ...CREATE_RESULT, submittedAt: "not-a-date" }],
+    ["noncanonical timestamp", { ...CREATE_RESULT, submittedAt: "2026-08-29" }],
+    ["non-string timestamp", { ...CREATE_RESULT, submittedAt: 1 }],
+  ] as const)(
+    "rejects malformed producer result %s without calling evidence",
+    async (_label, result) => {
+      mocks.fetchInternalMutation.mockReset().mockResolvedValueOnce(result);
+      const response = await POST(makeRequest(makeEnvelope()));
+      expect(response.status).toBe(500);
+      expect(mocks.fetchInternalMutation).toHaveBeenCalledTimes(1);
+    },
+  );
 
   it.each([
-    ['rejected evidence', { accepted: false, reason: 'submission_not_found' }],
-    ['extra evidence field', { ...EVIDENCE_NEW, extra: true }],
-    ['eligible evidence', { ...EVIDENCE_NEW, decision: { ...EVIDENCE_NEW.decision, eligible: true } }],
-    ['mastery evidence', { ...EVIDENCE_NEW, decision: { ...EVIDENCE_NEW.decision, masteryBearing: true } }],
-    ['wrong delivery', { ...EVIDENCE_NEW, delivery: 'replay' }],
-    ['wrong persistence', { ...EVIDENCE_NEW, persisted: false }],
-    ['wrong exposure', { ...EVIDENCE_NEW, decision: { ...EVIDENCE_NEW.decision, exposureState: 'awaiting_teacher_exposure' } }],
-    ['malformed evidence', { persisted: true }],
-  ])('returns a safe 500 for %s', async (_label, evidenceResult) => {
+    ["rejected evidence", { accepted: false, reason: "submission_not_found" }],
+    ["extra evidence field", { ...EVIDENCE_NEW, extra: true }],
+    [
+      "eligible evidence",
+      { ...EVIDENCE_NEW, decision: { ...EVIDENCE_NEW.decision, eligible: true } },
+    ],
+    [
+      "mastery evidence",
+      { ...EVIDENCE_NEW, decision: { ...EVIDENCE_NEW.decision, masteryBearing: true } },
+    ],
+    ["wrong delivery", { ...EVIDENCE_NEW, delivery: "replay" }],
+    ["wrong persistence", { ...EVIDENCE_NEW, persisted: false }],
+    [
+      "wrong exposure",
+      {
+        ...EVIDENCE_NEW,
+        decision: { ...EVIDENCE_NEW.decision, exposureState: "awaiting_teacher_exposure" },
+      },
+    ],
+    ["malformed evidence", { persisted: true }],
+  ])("returns a safe 500 for %s", async (_label, evidenceResult) => {
     mocks.fetchInternalMutation
       .mockReset()
       .mockResolvedValueOnce(CREATE_RESULT)
       .mockResolvedValueOnce(evidenceResult);
     const response = await POST(makeRequest(makeEnvelope()));
     expect(response.status).toBe(500);
-    await expect(response.text()).resolves.not.toContain('submission_not_found');
+    await expect(response.text()).resolves.not.toContain("submission_not_found");
     expect(mocks.fetchInternalMutation).toHaveBeenCalledTimes(2);
   });
 
-  it('accepts exact consumer replay and returns only the producer result', async () => {
+  it("accepts exact consumer replay and returns only the producer result", async () => {
     mocks.fetchInternalMutation
       .mockReset()
       .mockResolvedValueOnce(CREATE_RESULT)
@@ -340,12 +436,12 @@ describe('POST /api/activities/precalculus-topic-1-4-polynomial-end-behavior-wor
     });
   });
 
-  it('retries the same raw envelope and key after a consumer failure', async () => {
-    const envelope = makeEnvelope({ leftEnd: ' negative_infinity ', rightEnd: 'malformed' });
+  it("retries the same raw envelope and key after a consumer failure", async () => {
+    const envelope = makeEnvelope({ leftEnd: " negative_infinity ", rightEnd: "malformed" });
     mocks.fetchInternalMutation
       .mockReset()
       .mockResolvedValueOnce(CREATE_RESULT)
-      .mockRejectedValueOnce(new Error('temporary consumer failure'))
+      .mockRejectedValueOnce(new Error("temporary consumer failure"))
       .mockResolvedValueOnce(CREATE_RESULT)
       .mockResolvedValueOnce(EVIDENCE_REPLAY);
 

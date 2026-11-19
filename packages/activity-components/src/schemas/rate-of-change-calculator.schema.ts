@@ -1,6 +1,6 @@
-import { z } from 'zod';
+import { z } from "zod";
 
-const SOURCE_TYPES = ['table', 'function', 'graph'] as const;
+const SOURCE_TYPES = ["table", "function", "graph"] as const;
 
 const tableDataSchema = z.object({
   x: z.array(z.number()).min(2),
@@ -28,24 +28,24 @@ export const rateOfChangeCalculatorSchema = z
   })
   .strict()
   .refine(
-    data => {
+    (data) => {
       return data.interval.start < data.interval.end;
     },
     {
-      message: 'Interval start must be less than end',
-      path: ['interval'],
+      message: "Interval start must be less than end",
+      path: ["interval"],
     },
   )
   .refine(
-    data => {
-      if (data.sourceType === 'table' && 'x' in data.data && 'y' in data.data) {
+    (data) => {
+      if (data.sourceType === "table" && "x" in data.data && "y" in data.data) {
         return data.data.x.length === data.data.y.length;
       }
       return true;
     },
     {
-      message: 'Table data x and y arrays must have the same length',
-      path: ['data'],
+      message: "Table data x and y arrays must have the same length",
+      path: ["data"],
     },
   );
 

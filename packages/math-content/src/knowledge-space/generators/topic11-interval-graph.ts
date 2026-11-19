@@ -1,4 +1,4 @@
-import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
+import type { GeneratorOutput } from "@math-platform/knowledge-space-practice";
 
 export type Interval = readonly [number, number];
 
@@ -64,7 +64,7 @@ function buildVariant(
 
 export function generateTopic11IntervalGraph(seed: number): Topic11IntervalGraphVariant {
   if (!Number.isInteger(seed) || seed < 0) {
-    throw new RangeError('seed must be a non-negative integer');
+    throw new RangeError("seed must be a non-negative integer");
   }
 
   if (seed === 0) {
@@ -79,9 +79,8 @@ export function generateTopic11IntervalGraph(seed: number): Topic11IntervalGraph
   const startHeight = 1 + Math.floor(random() * 5);
   const peakHeight = startHeight + 2 + Math.floor(random() * 5);
   const valleyHeight = seed % 3 === 2 ? peakHeight : peakHeight - 2 - Math.floor(random() * 5);
-  const finalHeight = seed % 3 === 2
-    ? valleyHeight - 2
-    : valleyHeight + 2 + Math.floor(random() * 5);
+  const finalHeight =
+    seed % 3 === 2 ? valleyHeight - 2 : valleyHeight + 2 + Math.floor(random() * 5);
 
   return buildVariant(
     seed,
@@ -96,7 +95,7 @@ export function generateTopic11IntervalGraph(seed: number): Topic11IntervalGraph
   );
 }
 
-const NODE_ID = 'math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs';
+const NODE_ID = "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs";
 
 export function generateTopic11IntervalGraphOutput(seed: number): GeneratorOutput {
   const variant = generateTopic11IntervalGraph(seed);
@@ -106,7 +105,7 @@ export function generateTopic11IntervalGraphOutput(seed: number): GeneratorOutpu
     domain: variant.domain,
     changePoints: variant.changePoints,
     points: variant.points,
-    presentationMode: 'independent_practice',
+    presentationMode: "independent_practice",
   };
   const expectedAnswer = {
     increasingIntervals: variant.increasingIntervals,
@@ -114,13 +113,14 @@ export function generateTopic11IntervalGraphOutput(seed: number): GeneratorOutpu
     constantIntervals: variant.constantIntervals,
   };
 
-  const formatIntervals = (intervals: readonly Interval[]) => intervals.length === 0
-    ? 'none'
-    : intervals.map(([start, end]) => `[${start},${end}]`).join(' ∪ ');
-  const segmentNames = ['first', 'middle', 'final'];
+  const formatIntervals = (intervals: readonly Interval[]) =>
+    intervals.length === 0
+      ? "none"
+      : intervals.map(([start, end]) => `[${start},${end}]`).join(" ∪ ");
+  const segmentNames = ["first", "middle", "final"];
   const segmentSteps = variant.points.slice(0, -1).map((point, index) => {
     const next = variant.points[index + 1]!;
-    const behavior = point.y < next.y ? 'rises' : point.y > next.y ? 'falls' : 'stays constant';
+    const behavior = point.y < next.y ? "rises" : point.y > next.y ? "falls" : "stays constant";
     return {
       description: `Classify the ${segmentNames[index]} segment.`,
       expression: `The graph ${behavior} from x=${point.x} to x=${next.x}.`,
@@ -138,12 +138,12 @@ export function generateTopic11IntervalGraphOutput(seed: number): GeneratorOutpu
     expectedAnswer,
     solutionSteps: [
       {
-        description: 'Read the graph from left to right.',
+        description: "Read the graph from left to right.",
         expression: `The domain is [${variant.domain[0]}, ${variant.domain[1]}].`,
       },
       ...segmentSteps,
       {
-        description: 'State the interval answers.',
+        description: "State the interval answers.",
         expression: `Increasing: ${formatIntervals(variant.increasingIntervals)}; decreasing: ${formatIntervals(variant.decreasingIntervals)}; constant: ${formatIntervals(variant.constantIntervals)}.`,
       },
     ],
@@ -155,9 +155,9 @@ export function generateTopic11IntervalGraphOutput(seed: number): GeneratorOutpu
         constantIntervals: 1,
       },
       partGradingRules: {
-        increasingIntervals: 'custom',
-        decreasingIntervals: 'custom',
-        constantIntervals: 'custom',
+        increasingIntervals: "custom",
+        decreasingIntervals: "custom",
+        constantIntervals: "custom",
       },
     },
   };

@@ -24,17 +24,17 @@ export class Fraction {
       num = n.numerator;
       den = n.denominator;
     } else {
-      if (typeof n !== 'number' || !Number.isFinite(n)) {
-        throw new Error('Fraction: numerator must be a finite number');
+      if (typeof n !== "number" || !Number.isFinite(n)) {
+        throw new Error("Fraction: numerator must be a finite number");
       }
       num = n;
       den = d ?? 1;
     }
-    if (typeof den !== 'number' || !Number.isFinite(den)) {
-      throw new Error('Fraction: denominator must be a finite number');
+    if (typeof den !== "number" || !Number.isFinite(den)) {
+      throw new Error("Fraction: denominator must be a finite number");
     }
     if (den === 0) {
-      throw new Error('Fraction: denominator cannot be zero');
+      throw new Error("Fraction: denominator cannot be zero");
     }
     // Normalize sign to the numerator: if den < 0, flip both signs.
     if (den < 0) {
@@ -91,10 +91,7 @@ export class Fraction {
   }
 
   multiply(other: Fraction): Fraction {
-    return new Fraction(
-      this.numerator * other.numerator,
-      this.denominator * other.denominator,
-    );
+    return new Fraction(this.numerator * other.numerator, this.denominator * other.denominator);
   }
 
   /** Alias for `multiply` to match the spec's `mul(other)` naming. */
@@ -104,12 +101,9 @@ export class Fraction {
 
   divide(other: Fraction): Fraction {
     if (other.numerator === 0) {
-      throw new Error('Fraction: divide by zero');
+      throw new Error("Fraction: divide by zero");
     }
-    return new Fraction(
-      this.numerator * other.denominator,
-      this.denominator * other.numerator,
-    );
+    return new Fraction(this.numerator * other.denominator, this.denominator * other.numerator);
   }
 
   /** Alias for `divide` to match the spec's `div(other)` naming. */
@@ -118,9 +112,7 @@ export class Fraction {
   }
 
   equals(other: Fraction): boolean {
-    return (
-      this.numerator === other.numerator && this.denominator === other.denominator
-    );
+    return this.numerator === other.numerator && this.denominator === other.denominator;
   }
 
   /** Implicit numeric conversion (enables `Number(f)` and `+f`). */
@@ -147,8 +139,8 @@ export class Fraction {
    * `(n, d)` constructor.
    */
   static fromDecimal(x: number, maxDenom: number = 1000): Fraction {
-    if (typeof x !== 'number' || !Number.isFinite(x)) {
-      throw new Error('Fraction.fromDecimal: x must be a finite number');
+    if (typeof x !== "number" || !Number.isFinite(x)) {
+      throw new Error("Fraction.fromDecimal: x must be a finite number");
     }
     const sign = x < 0 ? -1 : 1;
     const value = Math.abs(x);

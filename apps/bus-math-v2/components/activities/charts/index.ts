@@ -4,9 +4,5 @@ export { DoughnutChart } from "./DoughnutChart";
 export { FinancialDashboard } from "./FinancialDashboard";
 export { LineChart } from "./LineChart";
 export { PieChart } from "./PieChart";
-export {
-  buildChartConfig,
-  DEFAULT_CHART_COLORS,
-  formatCurrency
-} from "./chart-types";
+export { buildChartConfig, DEFAULT_CHART_COLORS, formatCurrency } from "./chart-types";
 export type { ChartDataPoint, ChartSegment, ChartSeries } from "./chart-types";

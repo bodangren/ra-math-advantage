@@ -1,10 +1,10 @@
-export type GbfTrajectory = 'management' | 'rigor';
-export type GbfPhaseId = 'phase_1' | 'phase_2' | 'phase_3' | 'phase_4' | 'stretch_it';
+export type GbfTrajectory = "management" | "rigor";
+export type GbfPhaseId = "phase_1" | "phase_2" | "phase_3" | "phase_4" | "stretch_it";
 
 export type GbfSource = {
   filename: string;
   pageCount: number;
-  purpose: 'sequence' | 'implementation_example' | 'skill_inventory';
+  purpose: "sequence" | "implementation_example" | "skill_inventory";
   note: string;
   siblingCommit?: string;
   recordCount?: number;
@@ -24,7 +24,7 @@ export type GbfActionStep = {
   sourceNumber: number | null;
   name: string;
   sourcePage: number;
-  status: 'required' | 'preview';
+  status: "required" | "preview";
   /** Preview steps have their own source order. */
   previewOrder?: number;
 };
@@ -32,8 +32,8 @@ export type GbfActionStep = {
 export type GbfMapping = {
   actionStepId: string;
   skillId: string;
-  role: 'primary' | 'support';
-  classification: 'direct' | 'inferred';
+  role: "primary" | "support";
+  classification: "direct" | "inferred";
   rationale: string;
 };
 
@@ -59,7 +59,7 @@ export type GbfPriorityInput = {
 };
 
 export type GbfTrajectoryProgress = {
-  currentPhaseId: GbfPhaseId | 'complete';
+  currentPhaseId: GbfPhaseId | "complete";
   requiredActionStepIds: string[];
   completedActionStepIds: string[];
   assignedPrimarySkillIds: string[];
@@ -68,8 +68,8 @@ export type GbfTrajectoryProgress = {
 };
 
 export type GbfConfiguredProgress = {
-  contractVersion: 'danielson.gbf-progress.v1';
-  state: 'in_progress' | 'proficient';
+  contractVersion: "danielson.gbf-progress.v1";
+  state: "in_progress" | "proficient";
   assignmentId: string;
   trajectories: Record<GbfTrajectory, GbfTrajectoryProgress>;
   assignedSkillIds: string[];
@@ -79,5 +79,5 @@ export type GbfConfiguredProgress = {
 };
 
 export type GbfProgress =
-  | { contractVersion: 'danielson.gbf-progress.v1'; state: 'not_configured' }
+  | { contractVersion: "danielson.gbf-progress.v1"; state: "not_configured" }
   | GbfConfiguredProgress;

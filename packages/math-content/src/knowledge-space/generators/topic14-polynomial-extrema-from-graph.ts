@@ -1,6 +1,6 @@
-import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
+import type { GeneratorOutput } from "@math-platform/knowledge-space-practice";
 
-import { mulberry32 } from '../../utils/prng';
+import { mulberry32 } from "../../utils/prng";
 
 export interface Topic14PolynomialExtremaPoint {
   readonly x: number;
@@ -20,16 +20,16 @@ export type Topic14PolynomialExtremaDomain = readonly [number, number];
 export interface Topic14PolynomialExtremaFromGraphVariant {
   readonly seed: number;
   readonly prompt: string;
-  readonly functionName: 'g';
+  readonly functionName: "g";
   readonly coefficients: Topic14PolynomialExtremaCoefficients;
   readonly domain: Topic14PolynomialExtremaDomain;
   readonly points: readonly Topic14PolynomialExtremaPoint[];
 }
 
 export const TOPIC14_POLYNOMIAL_EXTREMA_FROM_GRAPH_NODE_ID =
-  'math.precalc.skill.1.4.identify-relative-and-absolute-extrema-from-graphs';
+  "math.precalc.skill.1.4.identify-relative-and-absolute-extrema-from-graphs";
 
-const PROMPT = 'Use the graph of polynomial g to identify its extrema.';
+const PROMPT = "Use the graph of polynomial g to identify its extrema.";
 const SAMPLE_STEP = 0.25;
 
 type ExtremaAnswer = {
@@ -47,13 +47,8 @@ function randomInteger(random: () => number, minimum: number, maximum: number): 
   return minimum + Math.floor(random() * (maximum - minimum + 1));
 }
 
-function evaluatePolynomial(
-  coefficients: Topic14PolynomialExtremaCoefficients,
-  x: number,
-): number {
-  return coefficients.reduce((sum, coefficient, index) => (
-    sum + coefficient * x ** (4 - index)
-  ), 0);
+function evaluatePolynomial(coefficients: Topic14PolynomialExtremaCoefficients, x: number): number {
+  return coefficients.reduce((sum, coefficient, index) => sum + coefficient * x ** (4 - index), 0);
 }
 
 function samplePoints(
@@ -74,13 +69,13 @@ function buildVariant(
   c: number,
   verticalShift: number,
 ): BuiltVariant {
-  const coefficients = [
-    3,
-    -4 * (a + b + c),
-    6 * (a * b + a * c + b * c),
-    -12 * a * b * c,
-    0,
-  ] as [number, number, number, number, number];
+  const coefficients = [3, -4 * (a + b + c), 6 * (a * b + a * c + b * c), -12 * a * b * c, 0] as [
+    number,
+    number,
+    number,
+    number,
+    number,
+  ];
   const baseAtA = evaluatePolynomial(coefficients, a);
   coefficients[4] = verticalShift - baseAtA;
   const domain: Topic14PolynomialExtremaDomain = [a - 2, b + 1];
@@ -89,7 +84,7 @@ function buildVariant(
     variant: {
       seed,
       prompt: PROMPT,
-      functionName: 'g',
+      functionName: "g",
       coefficients,
       domain,
       points: samplePoints(coefficients, domain),
@@ -133,20 +128,22 @@ function generatedSolutionSteps(answer: ExtremaAnswer): Array<{ description: str
 function sourceSolutionSteps(): Array<{ description: string }> {
   return [
     {
-      description: 'The graph changes from decreasing to increasing at x = 1, so x = 1 is a relative minimum.',
+      description:
+        "The graph changes from decreasing to increasing at x = 1, so x = 1 is a relative minimum.",
     },
     {
-      description: 'The graph changes from increasing to decreasing at x = 4, so x = 4 is a relative maximum.',
+      description:
+        "The graph changes from increasing to decreasing at x = 4, so x = 4 is a relative maximum.",
     },
     {
-      description: 'The lowest value overall occurs at x = 1, so g(1) is the absolute minimum.',
+      description: "The lowest value overall occurs at x = 1, so g(1) is the absolute minimum.",
     },
   ];
 }
 
 function validateSeed(seed: number): void {
   if (!Number.isSafeInteger(seed) || seed < 0) {
-    throw new RangeError('seed must be a non-negative safe integer');
+    throw new RangeError("seed must be a non-negative safe integer");
   }
 }
 
@@ -157,9 +154,7 @@ export function generateTopic14PolynomialExtremaFromGraph(
   return buildForSeed(seed).variant;
 }
 
-export function generateTopic14PolynomialExtremaFromGraphOutput(
-  seed: number,
-): GeneratorOutput {
+export function generateTopic14PolynomialExtremaFromGraphOutput(seed: number): GeneratorOutput {
   validateSeed(seed);
   const built = buildForSeed(seed);
   const { variant, answer } = built;
@@ -175,7 +170,7 @@ export function generateTopic14PolynomialExtremaFromGraphOutput(
         coefficients: variant.coefficients,
         domain: variant.domain,
         points: variant.points,
-        presentationMode: 'independent_practice',
+        presentationMode: "independent_practice",
       },
     },
     expectedAnswer: answer,
@@ -188,9 +183,9 @@ export function generateTopic14PolynomialExtremaFromGraphOutput(
         absolute_minimum_x: 1,
       },
       partGradingRules: {
-        relative_minimum_x: 'exact_match',
-        relative_maximum_x: 'exact_match',
-        absolute_minimum_x: 'exact_match',
+        relative_minimum_x: "exact_match",
+        relative_maximum_x: "exact_match",
+        absolute_minimum_x: "exact_match",
       },
     },
   };

@@ -33,12 +33,11 @@ describe("Topic 1.1 interval graph grader", () => {
 
   it("rejects scalar, missing, overlapping, and wrong constant answers", () => {
     expect(
-      gradeTopic11IntervalGraph(0, { ...correct, increasingIntervals: "3" })
-        .parts[0]?.isCorrect,
+      gradeTopic11IntervalGraph(0, { ...correct, increasingIntervals: "3" }).parts[0]?.isCorrect,
     ).toBe(false);
     expect(
-      gradeTopic11IntervalGraph(0, { ...correct, increasingIntervals: "[0,3]" })
-        .parts[0]?.isCorrect,
+      gradeTopic11IntervalGraph(0, { ...correct, increasingIntervals: "[0,3]" }).parts[0]
+        ?.isCorrect,
     ).toBe(false);
     expect(
       gradeTopic11IntervalGraph(0, {
@@ -55,23 +54,17 @@ describe("Topic 1.1 interval graph grader", () => {
     ).toMatchObject({ score: 2, maxScore: 3 });
   });
 
-  it.each([0, 2])(
-    "formats the seed-%i final answer so the real grader accepts it",
-    (seed) => {
-      const output = generateTopic11IntervalGraphOutput(seed);
-      const expression = output.solutionSteps.at(-1)?.expression ?? "";
-      const match =
-        /^Increasing: (.*); decreasing: (.*); constant: (.*)\.$/.exec(
-          expression,
-        );
-      expect(match).not.toBeNull();
-      expect(
-        gradeTopic11IntervalGraph(seed, {
-          increasingIntervals: match![1]!,
-          decreasingIntervals: match![2]!,
-          constantIntervals: match![3]!,
-        }),
-      ).toMatchObject({ score: 3, maxScore: 3 });
-    },
-  );
+  it.each([0, 2])("formats the seed-%i final answer so the real grader accepts it", (seed) => {
+    const output = generateTopic11IntervalGraphOutput(seed);
+    const expression = output.solutionSteps.at(-1)?.expression ?? "";
+    const match = /^Increasing: (.*); decreasing: (.*); constant: (.*)\.$/.exec(expression);
+    expect(match).not.toBeNull();
+    expect(
+      gradeTopic11IntervalGraph(seed, {
+        increasingIntervals: match![1]!,
+        decreasingIntervals: match![2]!,
+        constantIntervals: match![3]!,
+      }),
+    ).toMatchObject({ score: 3, maxScore: 3 });
+  });
 });

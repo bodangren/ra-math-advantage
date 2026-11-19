@@ -38,22 +38,23 @@
 // `__tests__/fixtures/roster/*.csv` are reserved for parser/dry-run
 // integration assertions in the Green phase and for Phase 2/3 reuse.
 
-import { describe, it, expect } from 'vitest';
-import { parseRoster } from '@/lib/roster/parser';
-import type {
-  RosterRow,
-  RosterImportError,
-  RosterParseResult,
-} from '@/lib/roster/csv-contract';
-import { rowsToCsv } from '../../fixtures/roster/builders';
+import { describe, it, expect } from "vitest";
+import { parseRoster } from "@/lib/roster/parser";
+import type { RosterRow, RosterImportError, RosterParseResult } from "@/lib/roster/csv-contract";
+import { rowsToCsv } from "../../fixtures/roster/builders";
 
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 
 const VALID_ROWS = [
-  { name: 'Alice Anderson', email: 'alice.anderson@school.edu', sisId: 'SIS-001', section: 'Period 1' },
-  { name: 'Bob Brown', email: 'bob.brown@school.edu', sisId: 'SIS-002', section: 'Period 1' },
+  {
+    name: "Alice Anderson",
+    email: "alice.anderson@school.edu",
+    sisId: "SIS-001",
+    section: "Period 1",
+  },
+  { name: "Bob Brown", email: "bob.brown@school.edu", sisId: "SIS-002", section: "Period 1" },
 ];
 
 const SAMPLE_CSV = rowsToCsv(VALID_ROWS);
@@ -62,23 +63,23 @@ const SAMPLE_CSV = rowsToCsv(VALID_ROWS);
 // 1. Good rows
 // ---------------------------------------------------------------------------
 
-describe('parseRoster — good rows (FR2)', () => {
-  it('parses a valid CSV with 2 rows, 0 errors', () => {
+describe("parseRoster — good rows (FR2)", () => {
+  it("parses a valid CSV with 2 rows, 0 errors", () => {
     const result: RosterParseResult = parseRoster(SAMPLE_CSV);
     expect(result.rows.length).toBe(2);
     expect(result.errors.length).toBe(0);
   });
 
-  it('preserves column values exactly (name, email, sisId, section)', () => {
+  it("preserves column values exactly (name, email, sisId, section)", () => {
     const result = parseRoster(SAMPLE_CSV);
     const first = result.rows[0]!;
-    expect(first.name).toBe('Alice Anderson');
-    expect(first.email).toBe('alice.anderson@school.edu');
-    expect(first.sisId).toBe('SIS-001');
-    expect(first.section).toBe('Period 1');
+    expect(first.name).toBe("Alice Anderson");
+    expect(first.email).toBe("alice.anderson@school.edu");
+    expect(first.sisId).toBe("SIS-001");
+    expect(first.section).toBe("Period 1");
   });
 
-  it('assigns 1-based rowIndex to the first data row, incrementing thereafter', () => {
+  it("assigns 1-based rowIndex to the first data row, incrementing thereafter", () => {
     // rowIndex is the user-facing "row number in the file" with the
     // header NOT counted. The first data row is row 1, so the wizard
     // can show "Row 3: invalid email" without off-by-one gymnastics.
@@ -92,15 +93,15 @@ describe('parseRoster — good rows (FR2)', () => {
 // 2. Empty / header-only input
 // ---------------------------------------------------------------------------
 
-describe('parseRoster — empty / header-only input', () => {
-  it('returns 0 rows and 0 errors for an empty string', () => {
-    const result = parseRoster('');
+describe("parseRoster — empty / header-only input", () => {
+  it("returns 0 rows and 0 errors for an empty string", () => {
+    const result = parseRoster("");
     expect(result.rows).toEqual([]);
     expect(result.errors).toEqual([]);
   });
 
-  it('returns 0 rows and 0 errors for a header-only CSV', () => {
-    const result = parseRoster('name,email,sisId,section\n');
+  it("returns 0 rows and 0 errors for a header-only CSV", () => {
+    const result = parseRoster("name,email,sisId,section\n");
     expect(result.rows).toEqual([]);
     expect(result.errors).toEqual([]);
   });
@@ -110,19 +111,17 @@ describe('parseRoster — empty / header-only input', () => {
 // 3. Required-column enforcement
 // ---------------------------------------------------------------------------
 
-describe('parseRoster — missing required column (FR2 / test-strategy §4)', () => {
-  it('reports a single missing_required error when the email column is absent', () => {
+describe("parseRoster — missing required column (FR2 / test-strategy §4)", () => {
+  it("reports a single missing_required error when the email column is absent", () => {
     // The required-column check fires once per file, NOT once per row,
     // because the contract is "the file is missing email" not "every
     // row is missing email" — Phase 3 UI will render this as a banner.
     // We assert the code and rowIndex 0 (file-level, not a data row).
-    const csv = 'name,sisId,section\nAlice,SIS-001,P1\nBob,SIS-002,P1\n';
+    const csv = "name,sisId,section\nAlice,SIS-001,P1\nBob,SIS-002,P1\n";
     const result = parseRoster(csv);
-    const missing = result.errors.filter(
-      (e: RosterImportError) => e.code === 'missing_required',
-    );
+    const missing = result.errors.filter((e: RosterImportError) => e.code === "missing_required");
     expect(missing.length).toBeGreaterThanOrEqual(1);
-    expect(missing[0]!.column).toBe('email');
+    expect(missing[0]!.column).toBe("email");
     // The implementation MAY still parse the data rows (with email
     // undefined) OR skip them; both are acceptable, but at minimum
     // the error must be surfaced.
@@ -133,25 +132,21 @@ describe('parseRoster — missing required column (FR2 / test-strategy §4)', ()
 // 4. Per-row validation
 // ---------------------------------------------------------------------------
 
-describe('parseRoster — per-row validation (FR2)', () => {
-  it('reports invalid_email for a row whose email is malformed', () => {
-    const csv = rowsToCsv([
-      { name: 'Charlie Cho', email: 'not-an-email', sisId: 'SIS-003' },
-    ]);
+describe("parseRoster — per-row validation (FR2)", () => {
+  it("reports invalid_email for a row whose email is malformed", () => {
+    const csv = rowsToCsv([{ name: "Charlie Cho", email: "not-an-email", sisId: "SIS-003" }]);
     const result = parseRoster(csv);
-    const invalid = result.errors.filter(
-      (e: RosterImportError) => e.code === 'invalid_email',
-    );
+    const invalid = result.errors.filter((e: RosterImportError) => e.code === "invalid_email");
     expect(invalid.length).toBe(1);
     expect(invalid[0]!.rowIndex).toBe(1);
-    expect(invalid[0]!.column).toBe('email');
+    expect(invalid[0]!.column).toBe("email");
   });
 
-  it('reports missing_required when the name cell is empty (name is required)', () => {
-    const csv = rowsToCsv([{ name: '', email: 'no-name@school.edu', sisId: 'SIS-X' }]);
+  it("reports missing_required when the name cell is empty (name is required)", () => {
+    const csv = rowsToCsv([{ name: "", email: "no-name@school.edu", sisId: "SIS-X" }]);
     const result = parseRoster(csv);
     const missing = result.errors.filter(
-      (e: RosterImportError) => e.code === 'missing_required' && e.column === 'name',
+      (e: RosterImportError) => e.code === "missing_required" && e.column === "name",
     );
     expect(missing.length).toBe(1);
     expect(missing[0]!.rowIndex).toBe(1);
@@ -162,16 +157,14 @@ describe('parseRoster — per-row validation (FR2)', () => {
 // 5. Duplicate identifier detection (test-strategy §4 #1)
 // ---------------------------------------------------------------------------
 
-describe('parseRoster — duplicate identifier within file (test-strategy §4)', () => {
-  it('reports duplicate_identifier when two rows share the same email', () => {
+describe("parseRoster — duplicate identifier within file (test-strategy §4)", () => {
+  it("reports duplicate_identifier when two rows share the same email", () => {
     const csv = rowsToCsv([
-      { name: 'Alice', email: 'shared@school.edu', sisId: 'SIS-A' },
-      { name: 'Bob', email: 'shared@school.edu', sisId: 'SIS-B' },
+      { name: "Alice", email: "shared@school.edu", sisId: "SIS-A" },
+      { name: "Bob", email: "shared@school.edu", sisId: "SIS-B" },
     ]);
     const result = parseRoster(csv);
-    const dupes = result.errors.filter(
-      (e: RosterImportError) => e.code === 'duplicate_identifier',
-    );
+    const dupes = result.errors.filter((e: RosterImportError) => e.code === "duplicate_identifier");
     expect(dupes.length).toBeGreaterThanOrEqual(1);
     // Every duplicate_identifier error must point at a real data row.
     expect(dupes.every((e) => e.rowIndex >= 1)).toBe(true);
@@ -182,35 +175,34 @@ describe('parseRoster — duplicate identifier within file (test-strategy §4)',
 // 6. Encoding tolerance — BOM, CRLF, quoted commas
 // ---------------------------------------------------------------------------
 
-describe('parseRoster — encoding tolerance (FR2)', () => {
-  it('strips a UTF-8 BOM at the start of the file so the header is parsed', () => {
+describe("parseRoster — encoding tolerance (FR2)", () => {
+  it("strips a UTF-8 BOM at the start of the file so the header is parsed", () => {
     // Excel on Windows emits a UTF-8 BOM (0xEF 0xBB 0xBF) at the start
     // of CSV files; without stripping, the first header cell becomes
     // "\uFEFFname" and the column lookup fails.
-    const bom = '\uFEFF';
+    const bom = "\uFEFF";
     const csv = bom + SAMPLE_CSV;
     const result = parseRoster(csv);
     expect(result.rows.length).toBe(2);
     expect(result.errors.length).toBe(0);
   });
 
-  it('tolerates CRLF line endings (Windows exports)', () => {
-    const csv = SAMPLE_CSV.replace(/\n/g, '\r\n');
+  it("tolerates CRLF line endings (Windows exports)", () => {
+    const csv = SAMPLE_CSV.replace(/\n/g, "\r\n");
     const result = parseRoster(csv);
     expect(result.rows.length).toBe(2);
     expect(result.errors.length).toBe(0);
   });
 
-  it('parses a quoted field containing a comma as a single value', () => {
+  it("parses a quoted field containing a comma as a single value", () => {
     // RFC 4180: "Smith, Jr." is one cell. Without quoted-field support
     // the parser would split on the embedded comma.
-    const csv = [
-      'name,email,sisId,section',
-      '"Smith, Jr.",smithjr@school.edu,SIS-007,P1',
-    ].join('\n');
+    const csv = ["name,email,sisId,section", '"Smith, Jr.",smithjr@school.edu,SIS-007,P1'].join(
+      "\n",
+    );
     const result = parseRoster(csv);
     expect(result.rows.length).toBe(1);
-    expect(result.rows[0]!.name).toBe('Smith, Jr.');
+    expect(result.rows[0]!.name).toBe("Smith, Jr.");
   });
 });
 
@@ -219,20 +211,20 @@ describe('parseRoster — encoding tolerance (FR2)', () => {
 //    (test-strategy §4 #2)
 // ---------------------------------------------------------------------------
 
-describe('parseRoster — PII safety in error payloads (NFR / test-strategy §4)', () => {
-  it('does not include the raw email or full name in any error payload', () => {
+describe("parseRoster — PII safety in error payloads (NFR / test-strategy §4)", () => {
+  it("does not include the raw email or full name in any error payload", () => {
     // The error payload is rendered in the teacher UI, logged to the
     // console, and persisted to Convex. None of those surfaces should
     // see the raw PII. We seed a roster with 3 rows that each have
     // unique, recognizable strings; if any of those strings appear in
     // any error, the contract is breached.
-    const SECRET_NAME = 'PII-NAME-MARKER-XYZ';
-    const SECRET_EMAIL = 'pii-email-marker-xyz@school.test';
-    const SECRET_SISID = 'PII-SISID-MARKER-XYZ';
+    const SECRET_NAME = "PII-NAME-MARKER-XYZ";
+    const SECRET_EMAIL = "pii-email-marker-xyz@school.test";
+    const SECRET_SISID = "PII-SISID-MARKER-XYZ";
     const csv = rowsToCsv([
-      { name: 'Alice', email: 'alice@school.edu', sisId: 'SIS-1' },
+      { name: "Alice", email: "alice@school.edu", sisId: "SIS-1" },
       { name: SECRET_NAME, email: SECRET_EMAIL, sisId: SECRET_SISID },
-      { name: 'Carol', email: 'not-an-email', sisId: 'SIS-3' },
+      { name: "Carol", email: "not-an-email", sisId: "SIS-3" },
     ]);
     const result = parseRoster(csv);
     const allErrorText = JSON.stringify(result.errors);

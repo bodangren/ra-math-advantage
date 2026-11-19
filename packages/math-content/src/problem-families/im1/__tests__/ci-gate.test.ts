@@ -55,33 +55,30 @@
 // independently sufficient signals. The gate cannot pass without
 // real generators backing every entry.
 
-import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { VERTICAL_SLICE_MODULE } from '../vertical-slice';
+import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import { VERTICAL_SLICE_MODULE } from "../vertical-slice";
 
 import {
   verifyGenerator,
   type GeneratorLike,
   type VerifyGeneratorReport,
-} from '@math-platform/practice-core/generator-qa';
+} from "@math-platform/practice-core/generator-qa";
 
 // Intentional: non-existent module → Red.
-import { IM1_GENERATORS, type IM1GeneratorEntry } from '../generators';
+import { IM1_GENERATORS, type IM1GeneratorEntry } from "../generators";
 
-import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
+import type { GeneratorOutput } from "@math-platform/knowledge-space-practice";
 
 // ---------------------------------------------------------------------------
 // Constants & helpers
 // ---------------------------------------------------------------------------
 
 const HERE = fileURLToPath(import.meta.url);
-const PKG_ROOT = resolve(HERE, '../../../../../../..');
-const NODES_JSON = resolve(
-  PKG_ROOT,
-  'apps/integrated-math-1/curriculum/skill-graph/nodes.json',
-);
+const PKG_ROOT = resolve(HERE, "../../../../../../..");
+const NODES_JSON = resolve(PKG_ROOT, "apps/integrated-math-1/curriculum/skill-graph/nodes.json");
 const REQUIRED_SEEDS = 50;
 
 /**
@@ -96,9 +93,7 @@ function adapt(entry: IM1GeneratorEntry): GeneratorLike {
         nodeId: input.nodeId,
         seed: input.seed,
         difficulty: input.difficulty,
-        learnerContext: input.learnerContext as
-          | Record<string, unknown>
-          | undefined,
+        learnerContext: input.learnerContext as Record<string, unknown> | undefined,
       }) as GeneratorOutput;
       return {
         problem: out.prompt,
@@ -128,11 +123,11 @@ function collectRegisteredEntries(): IM1GeneratorEntry[] {
  */
 function loadVerticalSliceSkillIds(): string[] {
   const vsm = VERTICAL_SLICE_MODULE;
-  const nodes = JSON.parse(readFileSync(NODES_JSON, 'utf-8')) as {
+  const nodes = JSON.parse(readFileSync(NODES_JSON, "utf-8")) as {
     nodes: Array<{ id: string; kind: string; metadata?: { module?: string } }>;
   };
   return nodes.nodes
-    .filter((n) => n.kind === 'skill' && n.metadata?.module === vsm)
+    .filter((n) => n.kind === "skill" && n.metadata?.module === vsm)
     .map((n) => n.id);
 }
 
@@ -140,8 +135,8 @@ function loadVerticalSliceSkillIds(): string[] {
 // 1. Registration coverage (AC1 + AC2 + test-strategy §3 vertical-slice lock).
 // ---------------------------------------------------------------------------
 
-describe('IM1 CI gate — registration coverage (Phase 2 Task 3, AC1)', () => {
-  it('every registered vertical-slice generator targets a current graph skill', () => {
+describe("IM1 CI gate — registration coverage (Phase 2 Task 3, AC1)", () => {
+  it("every registered vertical-slice generator targets a current graph skill", () => {
     const expectedSkillIds = loadVerticalSliceSkillIds();
     const expected = new Set(expectedSkillIds);
 
@@ -154,7 +149,7 @@ describe('IM1 CI gate — registration coverage (Phase 2 Task 3, AC1)', () => {
     for (const skillId of registeredNodeIds) expect(expected.has(skillId)).toBe(true);
   });
 
-  it('every registered IM1 generator nodeId is a math.im1.skill.* identifier (no cross-app leakage)', () => {
+  it("every registered IM1 generator nodeId is a math.im1.skill.* identifier (no cross-app leakage)", () => {
     for (const entry of collectRegisteredEntries()) {
       for (const nodeId of entry.nodeIds) {
         expect(nodeId).toMatch(/^math\.im1\.skill\./);
@@ -162,7 +157,7 @@ describe('IM1 CI gate — registration coverage (Phase 2 Task 3, AC1)', () => {
     }
   });
 
-  it('skillIdKey values are unique across IM1 registrations (no double-registration)', () => {
+  it("skillIdKey values are unique across IM1 registrations (no double-registration)", () => {
     const seen = new Set<string>();
     for (const entry of collectRegisteredEntries()) {
       expect(seen.has(entry.skillIdKey)).toBe(false);
@@ -176,8 +171,8 @@ describe('IM1 CI gate — registration coverage (Phase 2 Task 3, AC1)', () => {
 // 2. Per-entry harness verdict (the live-behavior gate).
 // ---------------------------------------------------------------------------
 
-describe('IM1 CI gate — per-entry verifyGenerator verdict (Phase 2 Task 3, AC1)', () => {
-  it('every IM1 generator entry passes verifyGenerator at numSeeds = 50', () => {
+describe("IM1 CI gate — per-entry verifyGenerator verdict (Phase 2 Task 3, AC1)", () => {
+  it("every IM1 generator entry passes verifyGenerator at numSeeds = 50", () => {
     const entries = collectRegisteredEntries();
     expect(entries.length).toBeGreaterThan(0);
 
@@ -186,16 +181,16 @@ describe('IM1 CI gate — per-entry verifyGenerator verdict (Phase 2 Task 3, AC1
       const report = verifyGenerator(adapt(entry), {
         numSeeds: REQUIRED_SEEDS,
       });
-      if (report.verdict !== 'pass') failures.push({ key: entry.skillIdKey, report });
+      if (report.verdict !== "pass") failures.push({ key: entry.skillIdKey, report });
     }
 
     if (failures.length > 0) {
       const messages = failures.map((f) => {
         const errorMessages = f.report.errors.map((e) => `${e.checkName}: ${e.message}`);
-        return `  ${f.key} → ${errorMessages.join('; ')}`;
+        return `  ${f.key} → ${errorMessages.join("; ")}`;
       });
       throw new Error(
-        `IM1 CI gate failed for ${failures.length} generator(s):\n${messages.join('\n')}`,
+        `IM1 CI gate failed for ${failures.length} generator(s):\n${messages.join("\n")}`,
       );
     }
     expect(failures).toEqual([]);
@@ -223,8 +218,8 @@ describe('IM1 CI gate — per-entry verifyGenerator verdict (Phase 2 Task 3, AC1
 //    registration").
 // ---------------------------------------------------------------------------
 
-describe('IM1 CI gate — anti-stub guard (test-strategy §6 handoff)', () => {
-  it('no IM1 generator entry uses the practice-core stub-generator pattern', () => {
+describe("IM1 CI gate — anti-stub guard (test-strategy §6 handoff)", () => {
+  it("no IM1 generator entry uses the practice-core stub-generator pattern", () => {
     // The practice-core `createStubGenerator` returns a constant
     // structural object regardless of seed. A real generator must
     // produce seed-dependent output (different seeds → different
@@ -232,12 +227,12 @@ describe('IM1 CI gate — anti-stub guard (test-strategy §6 handoff)', () => {
     // proves no entry was wired via the stub fixture by mistake.
     for (const entry of collectRegisteredEntries()) {
       const a = entry.generate({
-        nodeId: entry.nodeIds[0] ?? 'unknown',
+        nodeId: entry.nodeIds[0] ?? "unknown",
         seed: 0,
         difficulty: 0.5,
       }) as GeneratorOutput;
       const b = entry.generate({
-        nodeId: entry.nodeIds[0] ?? 'unknown',
+        nodeId: entry.nodeIds[0] ?? "unknown",
         seed: 1,
         difficulty: 0.5,
       }) as GeneratorOutput;

@@ -1,14 +1,11 @@
-import type {
-  KnowledgeStateEntry,
-  MasteryConfig,
-} from '@math-platform/knowledge-space-core';
+import type { KnowledgeStateEntry, MasteryConfig } from "@math-platform/knowledge-space-core";
 
 export interface ProjectedActivity {
   stableActivityId: string;
   nodeId: string;
   sourceNodeIds: string[];
   rendererKey: string;
-  mode: 'worked_example' | 'guided_practice' | 'independent_practice' | 'assessment';
+  mode: "worked_example" | "guided_practice" | "independent_practice" | "assessment";
   alignmentNodeIds: string[];
   props: Record<string, unknown>;
   gradingConfig: Record<string, unknown>;
@@ -75,7 +72,7 @@ export interface PrerequisiteGap {
   nodeId: string;
   title: string;
   missingPrerequisites: string[];
-  blockingLevel: 'full' | 'partial';
+  blockingLevel: "full" | "partial";
 }
 
 export interface AttemptArtifact {
@@ -92,7 +89,7 @@ export interface VisualNodeV1 {
   nodeId: string;
   title: string;
   description?: string;
-  state: 'mastered' | 'ready' | 'nearly_ready' | 'blocked' | 'review_due' | 'unknown';
+  state: "mastered" | "ready" | "nearly_ready" | "blocked" | "review_due" | "unknown";
   difficulty?: number;
   domain?: string;
 }
@@ -100,12 +97,12 @@ export interface VisualNodeV1 {
 export interface VisualEdgeV1 {
   sourceId: string;
   targetId: string;
-  type: 'prerequisite' | 'supports' | 'extends';
+  type: "prerequisite" | "supports" | "extends";
   weight: number;
 }
 
 export interface StudentVisualizationV1 {
-  schemaVersion: 'v1';
+  schemaVersion: "v1";
   mastered: VisualNodeV1[];
   ready: VisualNodeV1[];
   nearlyReady: VisualNodeV1[];
@@ -114,7 +111,7 @@ export interface StudentVisualizationV1 {
   recommendedNext: VisualNodeV1[];
   edges: VisualEdgeV1[];
   activeMisconceptionCount: number;
-  reviewLoadState?: 'normal' | 'elevated' | 'saturated';
+  reviewLoadState?: "normal" | "elevated" | "saturated";
 }
 
 /** Canonical learner-state inputs for the student visualization projection. */
@@ -125,15 +122,15 @@ export interface StudentVisualizationOptions {
   /** Shared kst-srs.v3 engine configuration used by gated readiness. */
   readonly masteryConfig?: Partial<MasteryConfig>;
   /** Planner-computed review-load state; React consumers must not infer it. */
-  readonly reviewLoadState?: 'normal' | 'elevated' | 'saturated';
+  readonly reviewLoadState?: "normal" | "elevated" | "saturated";
 }
 
 export interface ParentVisualizationV1 {
-  schemaVersion: 'v1';
+  schemaVersion: "v1";
   canDoSummary: string;
   nextFocus: string;
   blockers: string[];
-  progressTrend: 'improving' | 'stable' | 'declining' | 'unknown';
+  progressTrend: "improving" | "stable" | "declining" | "unknown";
   nodes: VisualNodeV1[];
 }
 
@@ -153,7 +150,7 @@ export interface InterventionGroup {
 }
 
 export interface TeacherVisualizationV1 {
-  schemaVersion: 'v1';
+  schemaVersion: "v1";
   heatmap: TeacherHeatmapCell[];
   bottleneckNodes: VisualNodeV1[];
   prerequisiteGaps: PrerequisiteGap[];
@@ -161,14 +158,14 @@ export interface TeacherVisualizationV1 {
   interventionGroups: InterventionGroup[];
   standardsCoverage: Array<{ standardId: string; title: string; proficiencyRate: number }>;
   activeMisconceptionStudentCount: number;
-  reviewLoadStates?: Record<string, 'normal' | 'elevated' | 'saturated'>;
+  reviewLoadStates?: Record<string, "normal" | "elevated" | "saturated">;
 }
 
 export interface TeacherVisualizationOptions {
   readonly perStudentActiveMisconceptions?: Record<string, readonly string[]>;
   /** Planner-computed states keyed by student ID. */
-  readonly reviewLoadStates?: Record<string, 'normal' | 'elevated' | 'saturated'>;
+  readonly reviewLoadStates?: Record<string, "normal" | "elevated" | "saturated">;
 }
 
 // Re-export blueprint types used by projection callers
-export type { KnowledgeBlueprint } from '../blueprints';
+export type { KnowledgeBlueprint } from "../blueprints";

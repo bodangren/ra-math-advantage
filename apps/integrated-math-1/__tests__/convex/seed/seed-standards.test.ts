@@ -61,7 +61,7 @@ describe("seed-standards (IM1) — Phase 2 shape contract", () => {
     for (const entry of entries) {
       expect(
         entry.description.trim().length,
-        `empty description for ${entry.code}`
+        `empty description for ${entry.code}`,
       ).toBeGreaterThan(0);
     }
   });
@@ -70,7 +70,7 @@ describe("seed-standards (IM1) — Phase 2 shape contract", () => {
     for (const entry of entries) {
       expect(
         entry.studentFriendlyDescription?.trim().length ?? 0,
-        `missing student-friendly description for ${entry.code}`
+        `missing student-friendly description for ${entry.code}`,
       ).toBeGreaterThan(0);
     }
   });
@@ -79,7 +79,7 @@ describe("seed-standards (IM1) — Phase 2 shape contract", () => {
     for (const entry of entries) {
       expect(
         entry.category?.trim().length ?? 0,
-        `missing category for ${entry.code}`
+        `missing category for ${entry.code}`,
       ).toBeGreaterThan(0);
     }
   });
@@ -92,9 +92,7 @@ describe("seed-standards (IM1) — Phase 2 shape contract", () => {
 
   it("all standard codes are unique (no duplicate definitions in seed_standards.ts)", () => {
     const codes = entries.map((entry) => entry.code);
-    const dupes = codes.filter(
-      (code, index) => codes.indexOf(code) !== index
-    );
+    const dupes = codes.filter((code, index) => codes.indexOf(code) !== index);
     expect(dupes, "duplicate code definitions detected").toEqual([]);
   });
 
@@ -107,13 +105,9 @@ describe("seed-standards (IM1) — Phase 2 shape contract", () => {
 
   it("inventory entry count matches seed_standards unique code count", () => {
     expect(fs.existsSync(INVENTORY_PATH)).toBe(true);
-    const inventory = JSON.parse(
-      fs.readFileSync(INVENTORY_PATH, "utf8")
-    ) as InventoryEntry[];
+    const inventory = JSON.parse(fs.readFileSync(INVENTORY_PATH, "utf8")) as InventoryEntry[];
     const uniqueDefinedCodes = new Set(entries.map((entry) => entry.code));
-    expect(new Set(inventory.map((e) => e.code)).size).toBe(
-      uniqueDefinedCodes.size
-    );
+    expect(new Set(inventory.map((e) => e.code)).size).toBe(uniqueDefinedCodes.size);
   });
 });
 
@@ -123,35 +117,32 @@ describe("seed-standards (IM1) — Phase 2 seedAll orchestration wiring", () => 
   it("seed.ts references the seedStandards internalMutation by name", () => {
     expect(
       orchestratorSource,
-      `${SEED_ORCHESTRATOR_PATH} does not mention 'seedStandards'`
+      `${SEED_ORCHESTRATOR_PATH} does not mention 'seedStandards'`,
     ).toMatch(/seedStandards/);
   });
 
   it("seed.ts:seedAll invokes seedInternal.seedStandards", () => {
     expect(
       orchestratorSource,
-      "seedAll must runMutation(seedInternal.seedStandards, ...) to populate competency_standards"
+      "seedAll must runMutation(seedInternal.seedStandards, ...) to populate competency_standards",
     ).toMatch(/seedInternal\.seedStandards/);
   });
 
   it("seedStandards invocation appears before the lesson_standards loop", () => {
-    const standardsIndex = orchestratorSource.indexOf(
-      "seedInternal.seedStandards"
-    );
+    const standardsIndex = orchestratorSource.indexOf("seedInternal.seedStandards");
     const lessonStandardsIndex = orchestratorSource.search(
-      /seedInternal\[\s*fn\s*\][\s\S]*?lessonStandards|LessonStandards/
+      /seedInternal\[\s*fn\s*\][\s\S]*?lessonStandards|LessonStandards/,
     );
-    expect(
-      standardsIndex,
-      "seedStandards invocation not found in seed.ts"
-    ).toBeGreaterThanOrEqual(0);
+    expect(standardsIndex, "seedStandards invocation not found in seed.ts").toBeGreaterThanOrEqual(
+      0,
+    );
     expect(
       lessonStandardsIndex,
-      "lesson_standards loop not found in seed.ts"
+      "lesson_standards loop not found in seed.ts",
     ).toBeGreaterThanOrEqual(0);
     expect(
       standardsIndex < lessonStandardsIndex,
-      "seedStandards must run BEFORE the lesson_standards loop so link inserts can find existing standards"
+      "seedStandards must run BEFORE the lesson_standards loop so link inserts can find existing standards",
     ).toBe(true);
   });
 });
@@ -168,7 +159,7 @@ describe("seed-standards (IM1) — Phase 2 seedAll strict wiring contract", () =
     const strictCall = /runMutation\(\s*seedInternal\.seedStandards\s*,\s*\{\s*\}\s*\)/;
     expect(
       orchestratorSource,
-      "seedAll must runMutation(seedInternal.seedStandards, {}) (IM2 pattern) so the Convex runtime actually executes the seedStandards mutation"
+      "seedAll must runMutation(seedInternal.seedStandards, {}) (IM2 pattern) so the Convex runtime actually executes the seedStandards mutation",
     ).toMatch(strictCall);
   });
 
@@ -178,23 +169,19 @@ describe("seed-standards (IM1) — Phase 2 seedAll strict wiring contract", () =
     // This test pins the upstream boundary: seedUnits must run first so the
     // demo-org / profiles rows exist before any other seeding that might
     // depend on them.
-    const seedUnitsIndex = orchestratorSource.indexOf(
-      "runMutation(seedInternal.seedUnits"
-    );
-    const seedStandardsIndex = orchestratorSource.indexOf(
-      "seedInternal.seedStandards"
-    );
+    const seedUnitsIndex = orchestratorSource.indexOf("runMutation(seedInternal.seedUnits");
+    const seedStandardsIndex = orchestratorSource.indexOf("seedInternal.seedStandards");
     expect(
       seedUnitsIndex,
-      "seedAll must runMutation(seedInternal.seedUnits, {}) first"
+      "seedAll must runMutation(seedInternal.seedUnits, {}) first",
     ).toBeGreaterThanOrEqual(0);
     expect(
       seedStandardsIndex,
-      "seedStandards invocation not found in seed.ts"
+      "seedStandards invocation not found in seed.ts",
     ).toBeGreaterThanOrEqual(0);
     expect(
       seedUnitsIndex < seedStandardsIndex,
-      "seedUnits must run BEFORE seedStandards so demo-org/profiles are seeded first (IM2 order)"
+      "seedUnits must run BEFORE seedStandards so demo-org/profiles are seeded first (IM2 order)",
     ).toBe(true);
   });
 
@@ -207,16 +194,15 @@ describe("seed-standards (IM1) — Phase 2 seedAll strict wiring contract", () =
     const tryIndex = orchestratorSource.indexOf("try {");
     const callIndex = orchestratorSource.indexOf("seedInternal.seedStandards");
     const catchIndex = orchestratorSource.indexOf("catch (");
-    const allPresent =
-      tryIndex >= 0 && callIndex >= 0 && catchIndex >= 0;
+    const allPresent = tryIndex >= 0 && callIndex >= 0 && catchIndex >= 0;
     expect(
       allPresent,
-      "seedAll must contain try { ... seedInternal.seedStandards ... } catch (...) so a seedStandards failure is surfaced via results.standards (IM2 pattern)"
+      "seedAll must contain try { ... seedInternal.seedStandards ... } catch (...) so a seedStandards failure is surfaced via results.standards (IM2 pattern)",
     ).toBe(true);
     if (allPresent) {
       expect(
         tryIndex < callIndex && callIndex < catchIndex,
-        "try-block must contain the seedInternal.seedStandards call, and the catch clause must follow (IM2 pattern)"
+        "try-block must contain the seedInternal.seedStandards call, and the catch clause must follow (IM2 pattern)",
       ).toBe(true);
     }
   });

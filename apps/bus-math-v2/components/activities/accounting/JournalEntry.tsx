@@ -1,18 +1,14 @@
-'use client';
+"use client";
 
-import { useMemo, useState } from 'react';
-import { AlertTriangle, Calculator, Check, Info } from 'lucide-react';
+import { useMemo, useState } from "react";
+import { AlertTriangle, Calculator, Check, Info } from "lucide-react";
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { cn } from '@/lib/utils';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
-import {
-  formatCurrency,
-  getAccountTypeColor,
-  type JournalEntryLine
-} from './accounting-types';
+import { formatCurrency, getAccountTypeColor, type JournalEntryLine } from "./accounting-types";
 
 export interface JournalEntryProps {
   entryNumber: string;
@@ -28,14 +24,13 @@ export interface JournalEntryProps {
   title?: string;
 }
 
-const ACCOUNT_TYPE_SYMBOLS: Record<JournalEntryLine['accountType'], string> = {
-  asset: 'A',
-  liability: 'L',
-  equity: 'E',
-  revenue: 'R',
-  expense: 'X'
+const ACCOUNT_TYPE_SYMBOLS: Record<JournalEntryLine["accountType"], string> = {
+  asset: "A",
+  liability: "L",
+  equity: "E",
+  revenue: "R",
+  expense: "X",
 };
-
 
 /**
  * Renders a journal entry card with debits, credits, and balance validation.
@@ -54,7 +49,7 @@ export function JournalEntry({
   showAccountTypes = true,
   interactive = true,
   className,
-  title
+  title,
 }: JournalEntryProps) {
   const [showDetails, setShowDetails] = useState(showExplanation);
 
@@ -64,12 +59,12 @@ export function JournalEntry({
     return {
       totalDebits: debits,
       totalCredits: credits,
-      isBalanced: Math.abs(debits - credits) < 0.01
+      isBalanced: Math.abs(debits - credits) < 0.01,
     };
   }, [lines]);
 
   return (
-    <Card className={cn('w-full max-w-4xl', className)}>
+    <Card className={cn("w-full max-w-4xl", className)}>
       {title && (
         <CardHeader className="pb-4">
           <div className="flex items-center justify-between">
@@ -77,7 +72,7 @@ export function JournalEntry({
             {interactive && (
               <Button variant="outline" size="sm" onClick={() => setShowDetails((value) => !value)}>
                 <Info className="h-4 w-4" />
-                {showDetails ? 'Hide' : 'Show'} Details
+                {showDetails ? "Hide" : "Show"} Details
               </Button>
             )}
           </div>
@@ -99,13 +94,17 @@ export function JournalEntry({
               {showValidation && (
                 <div
                   className={cn(
-                    'flex items-center gap-1 text-sm font-medium',
-                    isBalanced ? 'text-green-600' : 'text-red-600'
+                    "flex items-center gap-1 text-sm font-medium",
+                    isBalanced ? "text-green-600" : "text-red-600",
                   )}
                   data-testid="journal-validation"
                 >
-                  {isBalanced ? <Check className="h-4 w-4" /> : <AlertTriangle className="h-4 w-4" />}
-                  {isBalanced ? 'Balanced' : 'Unbalanced'}
+                  {isBalanced ? (
+                    <Check className="h-4 w-4" />
+                  ) : (
+                    <AlertTriangle className="h-4 w-4" />
+                  )}
+                  {isBalanced ? "Balanced" : "Unbalanced"}
                 </div>
               )}
               {reference && (
@@ -138,8 +137,8 @@ export function JournalEntry({
                   {showAccountTypes && (
                     <Badge
                       className={cn(
-                        'flex h-6 w-6 items-center justify-center rounded-full p-0 text-xs',
-                        getAccountTypeColor(line.accountType)
+                        "flex h-6 w-6 items-center justify-center rounded-full p-0 text-xs",
+                        getAccountTypeColor(line.accountType),
                       )}
                     >
                       {ACCOUNT_TYPE_SYMBOLS[line.accountType]}
@@ -180,8 +179,8 @@ export function JournalEntry({
               <div className="col-span-2 text-right">
                 <div
                   className={cn(
-                    'text-lg font-bold font-mono',
-                    isBalanced ? 'text-gray-800' : 'text-red-600'
+                    "text-lg font-bold font-mono",
+                    isBalanced ? "text-gray-800" : "text-red-600",
                   )}
                 >
                   {formatCurrency(totalDebits)}
@@ -190,8 +189,8 @@ export function JournalEntry({
               <div className="col-span-2 text-right">
                 <div
                   className={cn(
-                    'text-lg font-bold font-mono',
-                    isBalanced ? 'text-gray-800' : 'text-red-600'
+                    "text-lg font-bold font-mono",
+                    isBalanced ? "text-gray-800" : "text-red-600",
                   )}
                 >
                   {formatCurrency(totalCredits)}
@@ -202,8 +201,8 @@ export function JournalEntry({
           {showValidation && (
             <div
               className={cn(
-                'border-t border-gray-300 p-3 text-center',
-                isBalanced ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'
+                "border-t border-gray-300 p-3 text-center",
+                isBalanced ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800",
               )}
             >
               <div className="flex items-center justify-center gap-2">
@@ -216,7 +215,7 @@ export function JournalEntry({
                   <>
                     <AlertTriangle className="h-5 w-5" />
                     <span className="font-semibold">
-                      Entry is unbalanced - difference:{' '}
+                      Entry is unbalanced - difference:{" "}
                       {formatCurrency(Math.abs(totalDebits - totalCredits))}
                     </span>
                   </>
@@ -234,11 +233,11 @@ export function JournalEntry({
                 <h4 className="font-semibold text-blue-800">Accounting Equation Impact</h4>
               </div>
               <div className="grid gap-4 text-sm text-blue-800 md:grid-cols-3">
-                {['asset', 'liability', 'equity'].map((type) => {
+                {["asset", "liability", "equity"].map((type) => {
                   const relatedLines = lines.filter((line) => line.accountType === type);
-                  if (type === 'equity') {
+                  if (type === "equity") {
                     const expanded = lines.filter((line) =>
-                      ['equity', 'revenue', 'expense'].includes(line.accountType)
+                      ["equity", "revenue", "expense"].includes(line.accountType),
                     );
                     return (
                       <div key={type} className="rounded border bg-white p-3">
@@ -246,8 +245,8 @@ export function JournalEntry({
                         <div className="mt-1 space-y-1 text-xs text-purple-600">
                           {expanded.map((line) => (
                             <div key={line.id}>
-                              {line.account}:{' '}
-                              {line.accountType === 'expense'
+                              {line.account}:{" "}
+                              {line.accountType === "expense"
                                 ? line.debit
                                   ? `-${formatCurrency(line.debit)}`
                                   : `+${formatCurrency(line.credit ?? 0)}`
@@ -266,17 +265,17 @@ export function JournalEntry({
                     <div key={type} className="rounded border bg-white p-3">
                       <div
                         className={cn(
-                          'font-medium',
-                          type === 'asset' ? 'text-blue-800' : 'text-red-800'
+                          "font-medium",
+                          type === "asset" ? "text-blue-800" : "text-red-800",
                         )}
                       >
-                        {type === 'asset' ? 'Assets' : 'Liabilities'}
+                        {type === "asset" ? "Assets" : "Liabilities"}
                       </div>
                       <div className="mt-1 space-y-1 text-xs text-gray-600">
                         {relatedLines.length > 0 ? (
                           relatedLines.map((line) => (
                             <div key={line.id}>
-                              {line.account}:{' '}
+                              {line.account}:{" "}
                               {line.debit
                                 ? `+${formatCurrency(line.debit)}`
                                 : `-${formatCurrency(line.credit ?? 0)}`}
@@ -297,8 +296,8 @@ export function JournalEntry({
               <div>• Accounts affected: {lines.length}</div>
               <div>• Total value: {formatCurrency(Math.max(totalDebits, totalCredits))}</div>
               <div>
-                • Account types:{' '}
-                {[...new Set(lines.map((line) => line.accountType))].join(', ') || 'None'}
+                • Account types:{" "}
+                {[...new Set(lines.map((line) => line.accountType))].join(", ") || "None"}
               </div>
               {isBalanced && (
                 <div className="mt-2 font-medium text-green-800">

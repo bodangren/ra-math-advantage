@@ -14,35 +14,44 @@ export const seedStandards = internalMutation({
     const standards: SeedCompetencyStandard[] = [
       {
         code: "7.G.A.2",
-        description: "Construct figures from stated measurements. For triangles, determine whether the conditions give one triangle, multiple triangles, or none.",
-        studentFriendlyDescription: "I can use side and angle conditions to decide whether a triangle can exist.",
+        description:
+          "Construct figures from stated measurements. For triangles, determine whether the conditions give one triangle, multiple triangles, or none.",
+        studentFriendlyDescription:
+          "I can use side and angle conditions to decide whether a triangle can exist.",
         category: "Geometry",
         isActive: true,
       },
       {
         code: "7.G.B.4",
-        description: "Use circle area and circumference formulas to solve problems. Explain informally how circumference and area are related.",
-        studentFriendlyDescription: "I can calculate circle area and circumference and explain their relationship.",
+        description:
+          "Use circle area and circumference formulas to solve problems. Explain informally how circumference and area are related.",
+        studentFriendlyDescription:
+          "I can calculate circle area and circumference and explain their relationship.",
         category: "Geometry",
         isActive: true,
       },
       {
         code: "7.G.B.6",
-        description: "Solve area, surface-area, and volume problems for objects built from triangles, quadrilaterals, polygons, cubes, and right prisms.",
-        studentFriendlyDescription: "I can calculate area, surface area, and volume for polygonal objects.",
+        description:
+          "Solve area, surface-area, and volume problems for objects built from triangles, quadrilaterals, polygons, cubes, and right prisms.",
+        studentFriendlyDescription:
+          "I can calculate area, surface area, and volume for polygonal objects.",
         category: "Geometry",
         isActive: true,
       },
       {
         code: "8.G.B.8",
-        description: "Use the Pythagorean theorem to calculate the distance between two coordinate points.",
-        studentFriendlyDescription: "I can use coordinates to calculate the distance between two points.",
+        description:
+          "Use the Pythagorean theorem to calculate the distance between two coordinate points.",
+        studentFriendlyDescription:
+          "I can use coordinates to calculate the distance between two points.",
         category: "Geometry",
         isActive: true,
       },
       {
         code: "G-SRT.D.11",
-        description: "Apply the laws of sines and cosines to find measurements in right and non-right triangles.",
+        description:
+          "Apply the laws of sines and cosines to find measurements in right and non-right triangles.",
         studentFriendlyDescription: "I can use the laws of sines and cosines to solve triangles.",
         category: "Geometry",
         isActive: true,
@@ -56,8 +65,10 @@ export const seedStandards = internalMutation({
       },
       {
         code: "A-REI.D.11",
-        description: "Explain why intersections of y = f(x) and y = g(x) solve f(x) = g(x). Approximate these solutions for polynomial, rational, absolute value, exponential, and logarithmic functions.",
-        studentFriendlyDescription: "I can use graph intersections to approximate equation solutions.",
+        description:
+          "Explain why intersections of y = f(x) and y = g(x) solve f(x) = g(x). Approximate these solutions for polynomial, rational, absolute value, exponential, and logarithmic functions.",
+        studentFriendlyDescription:
+          "I can use graph intersections to approximate equation solutions.",
         category: "Algebra",
         isActive: true,
       },
@@ -156,8 +167,7 @@ export const seedStandards = internalMutation({
         code: "G-SRT.A.1",
         description:
           "Verify experimentally the properties of dilations given by a center and a scale factor",
-        studentFriendlyDescription:
-          "I can explore and verify how dilations transform figures.",
+        studentFriendlyDescription: "I can explore and verify how dilations transform figures.",
         category: "Geometry",
         isActive: true,
       },
@@ -174,8 +184,7 @@ export const seedStandards = internalMutation({
         code: "G-SRT.A.3",
         description:
           "Use the properties of similarity transformations to establish the AA criterion for two triangles to be similar",
-        studentFriendlyDescription:
-          "I can explain why AA proves two triangles are similar.",
+        studentFriendlyDescription: "I can explain why AA proves two triangles are similar.",
         category: "Geometry",
         isActive: true,
       },
@@ -218,8 +227,7 @@ export const seedStandards = internalMutation({
       {
         code: "G-C.A.1",
         description: "Prove that all circles are similar",
-        studentFriendlyDescription:
-          "I can prove that all circles are similar to each other.",
+        studentFriendlyDescription: "I can prove that all circles are similar to each other.",
         category: "Geometry",
         isActive: true,
       },
@@ -281,8 +289,7 @@ export const seedStandards = internalMutation({
         code: "G-GPE.B.6",
         description:
           "Find the point on a directed line segment between two given points that partitions the segment in a given ratio",
-        studentFriendlyDescription:
-          "I can find points that divide line segments in given ratios.",
+        studentFriendlyDescription: "I can find points that divide line segments in given ratios.",
         category: "Geometry",
         isActive: true,
       },
@@ -333,8 +340,7 @@ export const seedStandards = internalMutation({
       },
       {
         code: "G-MG.A.2",
-        description:
-          "Apply concepts of density based on area and volume in modeling situations",
+        description: "Apply concepts of density based on area and volume in modeling situations",
         studentFriendlyDescription:
           "I can use geometric density concepts to model real-world situations.",
         category: "Geometry",
@@ -370,8 +376,7 @@ export const seedStandards = internalMutation({
         code: "S-CP.A.3",
         description:
           "Understand the conditional probability of A given B as P(A and B)/P(B), and interpret independence",
-        studentFriendlyDescription:
-          "I can calculate and interpret conditional probability.",
+        studentFriendlyDescription: "I can calculate and interpret conditional probability.",
         category: "Statistics",
         isActive: true,
       },
@@ -466,8 +471,7 @@ export const seedStandards = internalMutation({
       },
       {
         code: "F-BF.A.1",
-        description:
-          "Write a function that describes a relationship between two quantities",
+        description: "Write a function that describes a relationship between two quantities",
         studentFriendlyDescription:
           "I can write functions that model relationships between quantities.",
         category: "Functions",
@@ -494,8 +498,7 @@ export const seedStandards = internalMutation({
         code: "7.SP.C.5",
         description:
           "Understand that the probability of a chance event is a number between 0 and 1 that expresses the likelihood of the event occurring",
-        studentFriendlyDescription:
-          "I understand that probability is a number between 0 and 1.",
+        studentFriendlyDescription: "I understand that probability is a number between 0 and 1.",
         category: "Statistics and Probability",
         isActive: true,
       },
@@ -503,8 +506,7 @@ export const seedStandards = internalMutation({
         code: "8.EE.A.1",
         description:
           "Know and apply the properties of integer exponents to generate equivalent numerical expressions",
-        studentFriendlyDescription:
-          "I can use exponent rules to simplify expressions.",
+        studentFriendlyDescription: "I can use exponent rules to simplify expressions.",
         category: "Expressions and Equations",
         isActive: true,
       },
@@ -512,17 +514,14 @@ export const seedStandards = internalMutation({
         code: "8.EE.A.2",
         description:
           "Use square root and cube root symbols to represent solutions to equations of the form x^2 = p and x^3 = p",
-        studentFriendlyDescription:
-          "I can use square roots and cube roots to solve equations.",
+        studentFriendlyDescription: "I can use square roots and cube roots to solve equations.",
         category: "Expressions and Equations",
         isActive: true,
       },
       {
         code: "8.G.B.6",
-        description:
-          "Explain a proof of the Pythagorean Theorem and its converse",
-        studentFriendlyDescription:
-          "I can prove the Pythagorean Theorem and its converse.",
+        description: "Explain a proof of the Pythagorean Theorem and its converse",
+        studentFriendlyDescription: "I can prove the Pythagorean Theorem and its converse.",
         category: "Geometry",
         isActive: true,
       },
@@ -530,8 +529,7 @@ export const seedStandards = internalMutation({
         code: "8.G.B.7",
         description:
           "Apply the Pythagorean Theorem to determine unknown side lengths in right triangles in real-world and mathematical problems",
-        studentFriendlyDescription:
-          "I can use the Pythagorean Theorem to find missing sides.",
+        studentFriendlyDescription: "I can use the Pythagorean Theorem to find missing sides.",
         category: "Geometry",
         isActive: true,
       },
@@ -539,8 +537,7 @@ export const seedStandards = internalMutation({
         code: "A-APR.B.3",
         description:
           "Identify zeros of polynomials when suitable factorizations are available, and use the zeros to construct a rough graph of the function",
-        studentFriendlyDescription:
-          "I can find zeros of polynomials and sketch their graphs.",
+        studentFriendlyDescription: "I can find zeros of polynomials and sketch their graphs.",
         category: "Algebra",
         isActive: true,
       },
@@ -548,8 +545,7 @@ export const seedStandards = internalMutation({
         code: "A-CED.A.1",
         description:
           "Create equations and inequalities in one variable and use them to solve problems",
-        studentFriendlyDescription:
-          "I can write equations to model and solve problems.",
+        studentFriendlyDescription: "I can write equations to model and solve problems.",
         category: "Algebra",
         isActive: true,
       },
@@ -557,8 +553,7 @@ export const seedStandards = internalMutation({
         code: "A-CED.A.2",
         description:
           "Create equations in two or more variables to represent relationships between quantities",
-        studentFriendlyDescription:
-          "I can write equations with multiple variables.",
+        studentFriendlyDescription: "I can write equations with multiple variables.",
         category: "Algebra",
         isActive: true,
       },
@@ -575,8 +570,7 @@ export const seedStandards = internalMutation({
         code: "A-REI.A.1",
         description:
           "Explain each step in solving a simple equation as following from the equality of numbers asserted at the previous step",
-        studentFriendlyDescription:
-          "I can explain each step when solving an equation.",
+        studentFriendlyDescription: "I can explain each step when solving an equation.",
         category: "Algebra",
         isActive: true,
       },
@@ -584,8 +578,7 @@ export const seedStandards = internalMutation({
         code: "A-REI.B.3",
         description:
           "Solve linear equations and inequalities in one variable, including equations with coefficients represented by letters",
-        studentFriendlyDescription:
-          "I can solve linear equations and inequalities.",
+        studentFriendlyDescription: "I can solve linear equations and inequalities.",
         category: "Algebra",
         isActive: true,
       },
@@ -593,17 +586,14 @@ export const seedStandards = internalMutation({
         code: "A-REI.B.4",
         description:
           "Use the method of completing the square to transform any quadratic equation in x into an equation of the form (x - p)^2 = q",
-        studentFriendlyDescription:
-          "I can complete the square to solve quadratic equations.",
+        studentFriendlyDescription: "I can complete the square to solve quadratic equations.",
         category: "Algebra",
         isActive: true,
       },
       {
         code: "A-REI.C.6",
-        description:
-          "Solve systems of linear equations exactly and approximately",
-        studentFriendlyDescription:
-          "I can solve systems of equations using different methods.",
+        description: "Solve systems of linear equations exactly and approximately",
+        studentFriendlyDescription: "I can solve systems of equations using different methods.",
         category: "Algebra",
         isActive: true,
       },
@@ -620,8 +610,7 @@ export const seedStandards = internalMutation({
         code: "A-REI.C.9",
         description:
           "Find the inverse of a matrix if it exists and use it to solve systems of linear equations",
-        studentFriendlyDescription:
-          "I can use matrices to solve systems of equations.",
+        studentFriendlyDescription: "I can use matrices to solve systems of equations.",
         category: "Algebra",
         isActive: true,
       },
@@ -629,8 +618,7 @@ export const seedStandards = internalMutation({
         code: "A-REI.D.10",
         description:
           "Understand that the graph of an equation in two variables is the set of all its solutions plotted in the coordinate plane",
-        studentFriendlyDescription:
-          "I know that a graph shows all the solutions to an equation.",
+        studentFriendlyDescription: "I know that a graph shows all the solutions to an equation.",
         category: "Algebra",
         isActive: true,
       },
@@ -638,26 +626,21 @@ export const seedStandards = internalMutation({
         code: "A-REI.D.12",
         description:
           "Graph the solutions to a linear inequality in two variables as a half-plane, and graph the solution set to a system of linear inequalities",
-        studentFriendlyDescription:
-          "I can graph inequalities and systems of inequalities.",
+        studentFriendlyDescription: "I can graph inequalities and systems of inequalities.",
         category: "Algebra",
         isActive: true,
       },
       {
         code: "A-SSE.A.1",
-        description:
-          "Interpret expressions that represent a quantity in terms of its context",
-        studentFriendlyDescription:
-          "I can explain what each part of an expression means.",
+        description: "Interpret expressions that represent a quantity in terms of its context",
+        studentFriendlyDescription: "I can explain what each part of an expression means.",
         category: "Algebra",
         isActive: true,
       },
       {
         code: "A-SSE.A.2",
-        description:
-          "Use the structure of an expression to identify ways to rewrite it",
-        studentFriendlyDescription:
-          "I can use the structure of expressions to rewrite them.",
+        description: "Use the structure of an expression to identify ways to rewrite it",
+        studentFriendlyDescription: "I can use the structure of expressions to rewrite them.",
         category: "Algebra",
         isActive: true,
       },
@@ -665,8 +648,7 @@ export const seedStandards = internalMutation({
         code: "A-SSE.B.3",
         description:
           "Choose and produce an equivalent form of an expression to reveal and explain properties of the quantity represented",
-        studentFriendlyDescription:
-          "I can rewrite expressions to reveal their properties.",
+        studentFriendlyDescription: "I can rewrite expressions to reveal their properties.",
         category: "Algebra",
         isActive: true,
       },
@@ -700,8 +682,7 @@ export const seedStandards = internalMutation({
         code: "F-TF.A.2",
         description:
           "Explain how the unit circle in the coordinate plane enables the extension of trigonometric functions to all real numbers",
-        studentFriendlyDescription:
-          "I can use the unit circle to find trig values for any angle.",
+        studentFriendlyDescription: "I can use the unit circle to find trig values for any angle.",
         category: "Functions",
         isActive: true,
       },
@@ -709,8 +690,7 @@ export const seedStandards = internalMutation({
         code: "F-TF.B.6",
         description:
           "Understand that restricting a trigonometric function to a domain on which it is always increasing or always decreasing allows its inverse to be constructed",
-        studentFriendlyDescription:
-          "I can explain how inverse trig functions are defined.",
+        studentFriendlyDescription: "I can explain how inverse trig functions are defined.",
         category: "Functions",
         isActive: true,
       },
@@ -718,8 +698,7 @@ export const seedStandards = internalMutation({
         code: "F-TF.B.7",
         description:
           "Use inverse functions to solve trigonometric equations that arise in modeling contexts",
-        studentFriendlyDescription:
-          "I can use inverse trig functions to solve equations.",
+        studentFriendlyDescription: "I can use inverse trig functions to solve equations.",
         category: "Functions",
         isActive: true,
       },
@@ -727,8 +706,7 @@ export const seedStandards = internalMutation({
         code: "F-TF.C.8",
         description:
           "Prove the Pythagorean identity sin^2(θ) + cos^2(θ) = 1 and use it to find sin(θ), cos(θ), or tan(θ) given one of them and the quadrant",
-        studentFriendlyDescription:
-          "I can use the Pythagorean identity to find trig values.",
+        studentFriendlyDescription: "I can use the Pythagorean identity to find trig values.",
         category: "Functions",
         isActive: true,
       },
@@ -743,8 +721,7 @@ export const seedStandards = internalMutation({
       },
       {
         code: "G-C.A.4",
-        description:
-          "Construct a tangent line from a point outside a given circle to the circle",
+        description: "Construct a tangent line from a point outside a given circle to the circle",
         studentFriendlyDescription:
           "I can construct a tangent line to a circle from an outside point.",
         category: "Geometry",
@@ -754,8 +731,7 @@ export const seedStandards = internalMutation({
         code: "G-CO.A.3",
         description:
           "Given a rectangle, parallelogram, trapezoid, or regular polygon, describe the rotations and reflections that carry it onto itself",
-        studentFriendlyDescription:
-          "I can find the symmetries of geometric shapes.",
+        studentFriendlyDescription: "I can find the symmetries of geometric shapes.",
         category: "Geometry",
         isActive: true,
       },
@@ -763,8 +739,7 @@ export const seedStandards = internalMutation({
         code: "G-CO.C.9",
         description:
           "Prove theorems about lines and angles, including that vertical angles are congruent and that when a transversal crosses parallel lines, alternate interior angles are congruent",
-        studentFriendlyDescription:
-          "I can prove theorems about lines and angles.",
+        studentFriendlyDescription: "I can prove theorems about lines and angles.",
         category: "Geometry",
         isActive: true,
       },
@@ -772,8 +747,7 @@ export const seedStandards = internalMutation({
         code: "G-GMD.A.2",
         description:
           "Give an informal argument using Cavalieri's principle for the formulas for the volume of a sphere and other solid figures",
-        studentFriendlyDescription:
-          "I can explain volume formulas using Cavalieri's principle.",
+        studentFriendlyDescription: "I can explain volume formulas using Cavalieri's principle.",
         category: "Geometry",
         isActive: true,
       },
@@ -790,8 +764,7 @@ export const seedStandards = internalMutation({
         code: "A-APR.A.1",
         description:
           "Understand that polynomials form a system analogous to the integers, namely, they are closed under the operations of addition, subtraction, and multiplication",
-        studentFriendlyDescription:
-          "I can add, subtract, and multiply polynomials.",
+        studentFriendlyDescription: "I can add, subtract, and multiply polynomials.",
         category: "Algebra",
         isActive: true,
       },
@@ -799,15 +772,13 @@ export const seedStandards = internalMutation({
         code: "A-APR.B.2",
         description:
           "Know and apply the Remainder Theorem: for a polynomial p(x) and a number a, the remainder on division by x - a is p(a)",
-        studentFriendlyDescription:
-          "I can use the Remainder Theorem to evaluate polynomials.",
+        studentFriendlyDescription: "I can use the Remainder Theorem to evaluate polynomials.",
         category: "Algebra",
         isActive: true,
       },
       {
         code: "A-APR.C.4",
-        description:
-          "Prove polynomial identities and use them to describe numerical relationships",
+        description: "Prove polynomial identities and use them to describe numerical relationships",
         studentFriendlyDescription: "I can prove polynomial identities.",
         category: "Algebra",
         isActive: true,
@@ -824,8 +795,7 @@ export const seedStandards = internalMutation({
         code: "F-IF.C.7b",
         description:
           "Graph square root, cube root, and piecewise-defined functions, including step functions and absolute value functions",
-        studentFriendlyDescription:
-          "I can graph square root, cube root, and piecewise functions.",
+        studentFriendlyDescription: "I can graph square root, cube root, and piecewise functions.",
         category: "Functions",
         isActive: true,
       },
@@ -833,8 +803,7 @@ export const seedStandards = internalMutation({
         code: "N-CN.A.2",
         description:
           "Use the relation i^2 = -1 and the commutative, associative, and distributive properties to add, subtract, and multiply complex numbers",
-        studentFriendlyDescription:
-          "I can add, subtract, and multiply complex numbers.",
+        studentFriendlyDescription: "I can add, subtract, and multiply complex numbers.",
         category: "Number and Quantity",
         isActive: true,
       },
@@ -842,8 +811,7 @@ export const seedStandards = internalMutation({
         code: "N-RN.A.1",
         description:
           "Explain how the definition of the meaning of rational exponents follows from extending the properties of integer exponents to those values",
-        studentFriendlyDescription:
-          "I can explain what rational exponents mean.",
+        studentFriendlyDescription: "I can explain what rational exponents mean.",
         category: "Number and Quantity",
         isActive: true,
       },
@@ -851,8 +819,7 @@ export const seedStandards = internalMutation({
         code: "N-RN.A.2",
         description:
           "Rewrite expressions involving radicals and rational exponents using the properties of exponents",
-        studentFriendlyDescription:
-          "I can convert between radical and exponential forms.",
+        studentFriendlyDescription: "I can convert between radical and exponential forms.",
         category: "Number and Quantity",
         isActive: true,
       },
@@ -860,8 +827,7 @@ export const seedStandards = internalMutation({
         code: "S-CP.B.7",
         description:
           "Apply the Addition Rule, P(A or B) = P(A) + P(B) - P(A and B), and interpret the answer in terms of the model",
-        studentFriendlyDescription:
-          "I can use the Addition Rule to find probabilities.",
+        studentFriendlyDescription: "I can use the Addition Rule to find probabilities.",
         category: "Statistics",
         isActive: true,
       },
@@ -869,8 +835,7 @@ export const seedStandards = internalMutation({
         code: "S-CP.B.8",
         description:
           "Apply the general Multiplication Rule in a uniform probability model, P(A and B) = P(A)P(B|A) = P(B)P(A|B)",
-        studentFriendlyDescription:
-          "I can use the Multiplication Rule to find probabilities.",
+        studentFriendlyDescription: "I can use the Multiplication Rule to find probabilities.",
         category: "Statistics",
         isActive: true,
       },

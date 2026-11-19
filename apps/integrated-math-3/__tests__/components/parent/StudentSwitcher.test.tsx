@@ -33,19 +33,16 @@
 // meaningful — any Convex call from the switcher (now or after Green)
 // would be intercepted and the assertion would fail.
 
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, within, fireEvent } from '@testing-library/react';
-import type { ReactElement } from 'react';
+import { describe, it, expect, beforeEach, vi } from "vitest";
+import { render, screen, within, fireEvent } from "@testing-library/react";
+import type { ReactElement } from "react";
 
 import {
   parentProjectionsByStudentId,
   TEACHER_ONLY_KEYS,
   type ParentVisualizationV1,
-} from '@/__tests__/_fixtures/parent-portal/parentProjection';
-import {
-  STUDENT_ALPHA_ID,
-  STUDENT_BETA_ID,
-} from '@/__tests__/_fixtures/parent-portal/parentLinks';
+} from "@/__tests__/_fixtures/parent-portal/parentProjection";
+import { STUDENT_ALPHA_ID, STUDENT_BETA_ID } from "@/__tests__/_fixtures/parent-portal/parentLinks";
 
 // ---------------------------------------------------------------------------
 // Convex mock — wired at module top via `vi.hoisted` so the `vi.mock`
@@ -59,16 +56,15 @@ const { mockFetchInternalQuery } = vi.hoisted(() => ({
   mockFetchInternalQuery: vi.fn(async () => null),
 }));
 
-vi.mock('@/lib/convex/server', () => ({
+vi.mock("@/lib/convex/server", () => ({
   fetchInternalQuery: mockFetchInternalQuery,
   internal: {
     parent: {
       links: {
-        listParentLinksQuery: 'parent:links:listParentLinksQuery',
+        listParentLinksQuery: "parent:links:listParentLinksQuery",
       },
       visualization: {
-        projectParentVisualizationQuery:
-          'parent:visualization:projectParentVisualizationQuery',
+        projectParentVisualizationQuery: "parent:visualization:projectParentVisualizationQuery",
       },
     },
   },
@@ -100,36 +96,36 @@ type ParentDashboardProps = {
 type ParentDashboardComponent = (props: ParentDashboardProps) => ReactElement;
 
 async function loadStudentSwitcher(): Promise<StudentSwitcherComponent> {
-  const mod = await import('@/components/parent/StudentSwitcher');
+  const mod = await import("@/components/parent/StudentSwitcher");
   return mod.StudentSwitcher as StudentSwitcherComponent;
 }
 
 async function loadParentDashboard(): Promise<ParentDashboardComponent> {
-  const mod = await import('@/components/parent/ParentDashboard');
+  const mod = await import("@/components/parent/ParentDashboard");
   return mod.ParentDashboard as ParentDashboardComponent;
 }
 
-const ALPHA_OPTION: StudentOption = { studentId: STUDENT_ALPHA_ID, displayName: 'Alpha Student' };
-const BETA_OPTION: StudentOption = { studentId: STUDENT_BETA_ID, displayName: 'Beta Student' };
+const ALPHA_OPTION: StudentOption = { studentId: STUDENT_ALPHA_ID, displayName: "Alpha Student" };
+const BETA_OPTION: StudentOption = { studentId: STUDENT_BETA_ID, displayName: "Beta Student" };
 
 // ---------------------------------------------------------------------------
 // Tests
 // ---------------------------------------------------------------------------
 
-describe('StudentSwitcher (Phase 2.2 — multi-student switching)', () => {
+describe("StudentSwitcher (Phase 2.2 — multi-student switching)", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  describe('existence and module surface', () => {
-    it('exports a StudentSwitcher component', async () => {
+  describe("existence and module surface", () => {
+    it("exports a StudentSwitcher component", async () => {
       const StudentSwitcher = await loadStudentSwitcher();
-      expect(typeof StudentSwitcher).toBe('function');
+      expect(typeof StudentSwitcher).toBe("function");
     });
   });
 
-  describe('rendering', () => {
-    it('renders one button per linked student', async () => {
+  describe("rendering", () => {
+    it("renders one button per linked student", async () => {
       const StudentSwitcher = await loadStudentSwitcher();
       render(
         <StudentSwitcher
@@ -139,8 +135,8 @@ describe('StudentSwitcher (Phase 2.2 — multi-student switching)', () => {
         />,
       );
 
-      const switcher = screen.getByTestId('parent-student-switcher');
-      const buttons = within(switcher).getAllByRole('button');
+      const switcher = screen.getByTestId("parent-student-switcher");
+      const buttons = within(switcher).getAllByRole("button");
       expect(buttons).toHaveLength(2);
       expect(buttons[0]).toHaveTextContent(/Alpha Student/i);
       expect(buttons[1]).toHaveTextContent(/Beta Student/i);
@@ -156,18 +152,18 @@ describe('StudentSwitcher (Phase 2.2 — multi-student switching)', () => {
         />,
       );
 
-      const switcher = screen.getByTestId('parent-student-switcher');
-      const buttons = within(switcher).getAllByRole('button');
-      const alphaButton = buttons.find((b) => /Alpha/i.test(b.textContent ?? ''))!;
-      const betaButton = buttons.find((b) => /Beta/i.test(b.textContent ?? ''))!;
+      const switcher = screen.getByTestId("parent-student-switcher");
+      const buttons = within(switcher).getAllByRole("button");
+      const alphaButton = buttons.find((b) => /Alpha/i.test(b.textContent ?? ""))!;
+      const betaButton = buttons.find((b) => /Beta/i.test(b.textContent ?? ""))!;
 
-      expect(betaButton.getAttribute('aria-current')).toMatch(/page|true/);
-      expect(alphaButton.getAttribute('aria-current')).toBeNull();
+      expect(betaButton.getAttribute("aria-current")).toMatch(/page|true/);
+      expect(alphaButton.getAttribute("aria-current")).toBeNull();
     });
   });
 
-  describe('single-student branch (one linked child)', () => {
-    it('renders a non-interactive label, not an empty switcher', async () => {
+  describe("single-student branch (one linked child)", () => {
+    it("renders a non-interactive label, not an empty switcher", async () => {
       // When the parent has exactly one linked student, the switcher
       // collapses to a label that names the student. This avoids an
       // empty `<div>` that would screen-reader-announce nothing.
@@ -180,16 +176,16 @@ describe('StudentSwitcher (Phase 2.2 — multi-student switching)', () => {
         />,
       );
 
-      const singleStudent = screen.getByTestId('parent-student-switcher-single');
+      const singleStudent = screen.getByTestId("parent-student-switcher-single");
       expect(singleStudent).toHaveTextContent(/Alpha Student/i);
 
-      const buttons = within(singleStudent).queryAllByRole('button');
+      const buttons = within(singleStudent).queryAllByRole("button");
       expect(buttons).toHaveLength(0);
     });
   });
 
-  describe('selection behavior', () => {
-    it('calls onSelectStudent with the clicked student id', async () => {
+  describe("selection behavior", () => {
+    it("calls onSelectStudent with the clicked student id", async () => {
       const StudentSwitcher = await loadStudentSwitcher();
       const onSelectStudent = vi.fn();
 
@@ -201,10 +197,10 @@ describe('StudentSwitcher (Phase 2.2 — multi-student switching)', () => {
         />,
       );
 
-      const switcher = screen.getByTestId('parent-student-switcher');
+      const switcher = screen.getByTestId("parent-student-switcher");
       const betaButton = within(switcher)
-        .getAllByRole('button')
-        .find((b) => /Beta/i.test(b.textContent ?? ''))!;
+        .getAllByRole("button")
+        .find((b) => /Beta/i.test(b.textContent ?? ""))!;
 
       fireEvent.click(betaButton);
 
@@ -212,7 +208,7 @@ describe('StudentSwitcher (Phase 2.2 — multi-student switching)', () => {
       expect(onSelectStudent).toHaveBeenCalledWith(STUDENT_BETA_ID);
     });
 
-    it('does not call onSelectStudent when the active student is clicked again', async () => {
+    it("does not call onSelectStudent when the active student is clicked again", async () => {
       const StudentSwitcher = await loadStudentSwitcher();
       const onSelectStudent = vi.fn();
 
@@ -224,10 +220,10 @@ describe('StudentSwitcher (Phase 2.2 — multi-student switching)', () => {
         />,
       );
 
-      const switcher = screen.getByTestId('parent-student-switcher');
+      const switcher = screen.getByTestId("parent-student-switcher");
       const alphaButton = within(switcher)
-        .getAllByRole('button')
-        .find((b) => /Alpha/i.test(b.textContent ?? ''))!;
+        .getAllByRole("button")
+        .find((b) => /Alpha/i.test(b.textContent ?? ""))!;
 
       fireEvent.click(alphaButton);
 
@@ -235,8 +231,8 @@ describe('StudentSwitcher (Phase 2.2 — multi-student switching)', () => {
     });
   });
 
-  describe('teacher-data privacy boundary', () => {
-    it('does not call any teacher-only Convex ref when rendering', async () => {
+  describe("teacher-data privacy boundary", () => {
+    it("does not call any teacher-only Convex ref when rendering", async () => {
       // Mount the switcher; the file-level Convex mock intercepts every
       // query attempt and records the call. The switcher itself must
       // not issue a Convex request — switching is a local state event
@@ -257,18 +253,18 @@ describe('StudentSwitcher (Phase 2.2 — multi-student switching)', () => {
 
       // And after clicking a different student, the convex bridge still
       // must not be called from the switcher itself.
-      const switcher = screen.getByTestId('parent-student-switcher');
+      const switcher = screen.getByTestId("parent-student-switcher");
       const betaButton = within(switcher)
-        .getAllByRole('button')
-        .find((b) => /Beta/i.test(b.textContent ?? ''))!;
+        .getAllByRole("button")
+        .find((b) => /Beta/i.test(b.textContent ?? ""))!;
       fireEvent.click(betaButton);
 
       expect(mockFetchInternalQuery).not.toHaveBeenCalled();
     });
   });
 
-  describe('switcher ↔ dashboard integration (state sync)', () => {
-    it('switching updates the dashboard to render the new student payload', async () => {
+  describe("switcher ↔ dashboard integration (state sync)", () => {
+    it("switching updates the dashboard to render the new student payload", async () => {
       const StudentSwitcher = await loadStudentSwitcher();
       const ParentDashboard = await loadParentDashboard();
 
@@ -294,7 +290,7 @@ describe('StudentSwitcher (Phase 2.2 — multi-student switching)', () => {
           <ParentDashboard
             payload={parentProjectionsByStudentId[harnessState.id]}
             studentId={harnessState.id}
-            studentName={harnessState.id === STUDENT_BETA_ID ? 'Beta Student' : 'Alpha Student'}
+            studentName={harnessState.id === STUDENT_BETA_ID ? "Beta Student" : "Alpha Student"}
           />
         </>
       );
@@ -302,13 +298,13 @@ describe('StudentSwitcher (Phase 2.2 — multi-student switching)', () => {
       const { rerender } = render(tree);
 
       // Initial render: alpha payload, alpha can-do summary visible.
-      expect(screen.getByTestId('parent-dashboard-can-do')).toHaveTextContent(/Quadratic basics/i);
+      expect(screen.getByTestId("parent-dashboard-can-do")).toHaveTextContent(/Quadratic basics/i);
 
       // Simulate the switcher click.
-      const switcher = screen.getByTestId('parent-student-switcher');
+      const switcher = screen.getByTestId("parent-student-switcher");
       const betaButton = within(switcher)
-        .getAllByRole('button')
-        .find((b) => /Beta/i.test(b.textContent ?? ''))!;
+        .getAllByRole("button")
+        .find((b) => /Beta/i.test(b.textContent ?? ""))!;
       fireEvent.click(betaButton);
 
       // Re-render the tree with the new selected id (controlled prop).
@@ -322,14 +318,16 @@ describe('StudentSwitcher (Phase 2.2 — multi-student switching)', () => {
           <ParentDashboard
             payload={parentProjectionsByStudentId[harnessState.id]}
             studentId={harnessState.id}
-            studentName={harnessState.id === STUDENT_BETA_ID ? 'Beta Student' : 'Alpha Student'}
+            studentName={harnessState.id === STUDENT_BETA_ID ? "Beta Student" : "Alpha Student"}
           />
         </>,
       );
 
       // After the switch: beta payload, beta can-do summary visible,
       // alpha's specific content is no longer present.
-      expect(screen.getByTestId('parent-dashboard-can-do')).toHaveTextContent(/Calculus foundations/i);
+      expect(screen.getByTestId("parent-dashboard-can-do")).toHaveTextContent(
+        /Calculus foundations/i,
+      );
       expect(screen.queryByText(/Quadratic basics/i)).not.toBeInTheDocument();
     });
   });
@@ -341,8 +339,8 @@ describe('StudentSwitcher (Phase 2.2 — multi-student switching)', () => {
 // behavior, which is unreliable across vitest versions).
 // ---------------------------------------------------------------------------
 
-describe('StudentSwitcher — fixture sanity', () => {
-  it('TEACHER_ONLY_KEYS is non-empty so the privacy scan has forbidden keys to check', () => {
+describe("StudentSwitcher — fixture sanity", () => {
+  it("TEACHER_ONLY_KEYS is non-empty so the privacy scan has forbidden keys to check", () => {
     expect(TEACHER_ONLY_KEYS.length).toBeGreaterThan(0);
   });
 });

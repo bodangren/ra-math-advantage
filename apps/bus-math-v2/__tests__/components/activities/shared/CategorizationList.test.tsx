@@ -1,38 +1,53 @@
-import { triggerDrag } from '@/lib/test-utils/mock-dnd';
-import { act } from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
-import type { DropResult } from '@hello-pangea/dnd';
+import { triggerDrag } from "@/lib/test-utils/mock-dnd";
+import { act } from "react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { describe, expect, it, vi } from "vitest";
+import type { DropResult } from "@hello-pangea/dnd";
 
-import { AVAILABLE_ITEMS_DROPPABLE, getZoneDroppableId } from '@/components/activities/drag-drop/useCategorizationExercise';
-import { CategorizationList } from '@/components/activities/shared';
+import {
+  AVAILABLE_ITEMS_DROPPABLE,
+  getZoneDroppableId,
+} from "@/components/activities/drag-drop/useCategorizationExercise";
+import { CategorizationList } from "@/components/activities/shared";
 
 const dragToZone = (itemId: string, zoneId: string) =>
   act(() => {
     triggerDrag({
       draggableId: itemId,
-      type: 'DEFAULT',
+      type: "DEFAULT",
       source: { droppableId: AVAILABLE_ITEMS_DROPPABLE, index: 0 },
       destination: { droppableId: getZoneDroppableId(zoneId), index: 0 },
-      reason: 'DROP',
-      mode: 'FLUID',
+      reason: "DROP",
+      mode: "FLUID",
       combine: null,
     } as DropResult);
   });
 
-describe('CategorizationList', () => {
-  it('shows hints based on mode without rendering a toggle', () => {
+describe("CategorizationList", () => {
+  it("shows hints based on mode without rendering a toggle", () => {
     render(
       <CategorizationList
         title="Guided categorization"
         mode="guided_practice"
         readOnly
         items={[
-          { id: 'cash', label: 'Cash', description: 'Asset', targetId: 'assets', details: { tip: 'cash is a resource' } },
+          {
+            id: "cash",
+            label: "Cash",
+            description: "Asset",
+            targetId: "assets",
+            details: { tip: "cash is a resource" },
+          },
         ]}
         zones={[
-          { id: 'assets', label: 'Assets', description: 'Resources', emoji: '💼', whyItMatters: 'Resources belong on the left.' },
+          {
+            id: "assets",
+            label: "Assets",
+            description: "Resources",
+            emoji: "💼",
+            whyItMatters: "Resources belong on the left.",
+          },
         ]}
       />,
     );
@@ -42,21 +57,26 @@ describe('CategorizationList', () => {
     expect(screen.getByText(/why it matters:/i)).toBeInTheDocument();
   });
 
-  it('renders the account-type layout as an accounting board with assets separated from liabilities and equity', () => {
+  it("renders the account-type layout as an accounting board with assets separated from liabilities and equity", () => {
     const { container } = render(
       <CategorizationList
         title="Account type categorization"
         items={[
-          { id: 'cash', label: 'Cash', description: 'Asset', targetId: 'assets' },
-          { id: 'notes-payable', label: 'Notes Payable', description: 'Liability', targetId: 'liabilities' },
-          { id: 'common-stock', label: 'Common Stock', description: 'Equity', targetId: 'equity' },
+          { id: "cash", label: "Cash", description: "Asset", targetId: "assets" },
+          {
+            id: "notes-payable",
+            label: "Notes Payable",
+            description: "Liability",
+            targetId: "liabilities",
+          },
+          { id: "common-stock", label: "Common Stock", description: "Equity", targetId: "equity" },
         ]}
         zones={[
-          { id: 'assets', label: 'Assets', description: 'Resources', emoji: '💼' },
-          { id: 'liabilities', label: 'Liabilities', description: 'Obligations', emoji: '🧾' },
-          { id: 'equity', label: 'Equity', description: 'Owner claim', emoji: '🧭' },
-          { id: 'revenue', label: 'Revenue', description: 'Inflows', emoji: '📈' },
-          { id: 'expenses', label: 'Expenses', description: 'Outflows', emoji: '📉' },
+          { id: "assets", label: "Assets", description: "Resources", emoji: "💼" },
+          { id: "liabilities", label: "Liabilities", description: "Obligations", emoji: "🧾" },
+          { id: "equity", label: "Equity", description: "Owner claim", emoji: "🧭" },
+          { id: "revenue", label: "Revenue", description: "Inflows", emoji: "📈" },
+          { id: "expenses", label: "Expenses", description: "Outflows", emoji: "📉" },
         ]}
         readOnly
         mode="teaching"
@@ -64,14 +84,14 @@ describe('CategorizationList', () => {
     );
 
     expect(container.querySelector('[data-layout="account-type"]')).toBeInTheDocument();
-    expect(screen.getByText('Assets')).toBeInTheDocument();
-    expect(screen.getByText('Liabilities')).toBeInTheDocument();
-    expect(screen.getAllByText('Equity').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Revenue').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Expenses').length).toBeGreaterThan(0);
+    expect(screen.getByText("Assets")).toBeInTheDocument();
+    expect(screen.getByText("Liabilities")).toBeInTheDocument();
+    expect(screen.getAllByText("Equity").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Revenue").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Expenses").length).toBeGreaterThan(0);
   });
 
-  it('completes a generic drag-and-drop review', async () => {
+  it("completes a generic drag-and-drop review", async () => {
     const onComplete = vi.fn();
 
     render(
@@ -79,19 +99,19 @@ describe('CategorizationList', () => {
         title="Generic categorization"
         shuffleItems={false}
         items={[
-          { id: 'cash', label: 'Cash', description: 'Asset', targetId: 'assets' },
-          { id: 'rent', label: 'Rent Expense', description: 'Expense', targetId: 'expenses' },
+          { id: "cash", label: "Cash", description: "Asset", targetId: "assets" },
+          { id: "rent", label: "Rent Expense", description: "Expense", targetId: "expenses" },
         ]}
         zones={[
-          { id: 'assets', label: 'Assets', description: 'Resources', emoji: '💼' },
-          { id: 'expenses', label: 'Expenses', description: 'Costs', emoji: '💸' },
+          { id: "assets", label: "Assets", description: "Resources", emoji: "💼" },
+          { id: "expenses", label: "Expenses", description: "Costs", emoji: "💸" },
         ]}
         onComplete={onComplete}
       />,
     );
 
-    dragToZone('cash', 'assets');
-    dragToZone('rent', 'expenses');
+    dragToZone("cash", "assets");
+    dragToZone("rent", "expenses");
 
     expect(await screen.findByText(/score: 100%/i)).toBeInTheDocument();
     await waitFor(() => {
@@ -104,17 +124,29 @@ describe('CategorizationList', () => {
     });
   });
 
-  it('hides hints for independent practice mode', () => {
+  it("hides hints for independent practice mode", () => {
     render(
       <CategorizationList
         title="Independent categorization"
         mode="independent_practice"
         readOnly
         items={[
-          { id: 'cash', label: 'Cash', description: 'Asset', targetId: 'assets', details: { tip: 'cash is a resource' } },
+          {
+            id: "cash",
+            label: "Cash",
+            description: "Asset",
+            targetId: "assets",
+            details: { tip: "cash is a resource" },
+          },
         ]}
         zones={[
-          { id: 'assets', label: 'Assets', description: 'Resources', emoji: '💼', whyItMatters: 'Resources belong on the left.' },
+          {
+            id: "assets",
+            label: "Assets",
+            description: "Resources",
+            emoji: "💼",
+            whyItMatters: "Resources belong on the left.",
+          },
         ]}
       />,
     );
@@ -123,7 +155,7 @@ describe('CategorizationList', () => {
     expect(screen.queryByText(/resources belong on the left/i)).not.toBeInTheDocument();
   });
 
-  it('supports keyboard-friendly move controls', async () => {
+  it("supports keyboard-friendly move controls", async () => {
     const user = userEvent.setup();
     const onComplete = vi.fn();
 
@@ -131,17 +163,13 @@ describe('CategorizationList', () => {
       <CategorizationList
         title="Categorization with move controls"
         shuffleItems={false}
-        items={[
-          { id: 'cash', label: 'Cash', description: 'Asset', targetId: 'assets' },
-        ]}
-        zones={[
-          { id: 'assets', label: 'Assets', description: 'Resources', emoji: '💼' },
-        ]}
+        items={[{ id: "cash", label: "Cash", description: "Asset", targetId: "assets" }]}
+        zones={[{ id: "assets", label: "Assets", description: "Resources", emoji: "💼" }]}
         onComplete={onComplete}
       />,
     );
 
-    await user.selectOptions(screen.getByLabelText(/move cash to another category/i), 'assets');
+    await user.selectOptions(screen.getByLabelText(/move cash to another category/i), "assets");
 
     expect(await screen.findByText(/score: 100%/i)).toBeInTheDocument();
     await waitFor(() => {
@@ -154,46 +182,48 @@ describe('CategorizationList', () => {
     });
   });
 
-  it('renders teacher review annotations and summary state', () => {
+  it("renders teacher review annotations and summary state", () => {
     render(
       <CategorizationList
         title="Review state"
         readOnly
         teacherView
         items={[
-          { id: 'cash', label: 'Cash', description: 'Asset', targetId: 'assets' },
-          { id: 'rent', label: 'Rent Expense', description: 'Expense', targetId: 'expenses' },
+          { id: "cash", label: "Cash", description: "Asset", targetId: "assets" },
+          { id: "rent", label: "Rent Expense", description: "Expense", targetId: "expenses" },
         ]}
         zones={[
-          { id: 'assets', label: 'Assets', description: 'Resources', emoji: '💼' },
-          { id: 'expenses', label: 'Expenses', description: 'Costs', emoji: '💸' },
+          { id: "assets", label: "Assets", description: "Resources", emoji: "💼" },
+          { id: "expenses", label: "Expenses", description: "Costs", emoji: "💸" },
         ]}
         reviewPlacements={{
-          assets: [{ id: 'cash', label: 'Cash', description: 'Asset', targetId: 'assets' }],
-          expenses: [{ id: 'rent', label: 'Rent Expense', description: 'Expense', targetId: 'expenses' }],
+          assets: [{ id: "cash", label: "Cash", description: "Asset", targetId: "assets" }],
+          expenses: [
+            { id: "rent", label: "Rent Expense", description: "Expense", targetId: "expenses" },
+          ],
         }}
         reviewFeedback={{
           cash: {
-            status: 'correct',
-            scoreLabel: '1/1',
-            selectedZoneLabel: 'Assets',
-            expectedZoneLabel: 'Assets',
+            status: "correct",
+            scoreLabel: "1/1",
+            selectedZoneLabel: "Assets",
+            expectedZoneLabel: "Assets",
             misconceptionTags: [],
-            message: 'Cash is a resource.',
+            message: "Cash is a resource.",
           },
           rent: {
-            status: 'incorrect',
-            scoreLabel: '0/1',
-            selectedZoneLabel: 'Assets',
-            expectedZoneLabel: 'Expenses',
-            misconceptionTags: ['expense-vs-asset'],
-            message: 'Rent expense belongs in expenses.',
+            status: "incorrect",
+            scoreLabel: "0/1",
+            selectedZoneLabel: "Assets",
+            expectedZoneLabel: "Expenses",
+            misconceptionTags: ["expense-vs-asset"],
+            message: "Rent expense belongs in expenses.",
           },
         }}
         submissionSummary={{
-          scoreLabel: '1/2 correct',
+          scoreLabel: "1/2 correct",
           attempts: 2,
-          submittedAt: '2026-03-20 09:15',
+          submittedAt: "2026-03-20 09:15",
           misconceptionCount: 1,
         }}
       />,

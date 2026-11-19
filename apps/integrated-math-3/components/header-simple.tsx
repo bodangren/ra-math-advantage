@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { HeaderSimple as SharedHeaderSimple } from '@math-platform/app-shell/layout';
-import { UserMenu } from '@/components/user-menu';
+import { HeaderSimple as SharedHeaderSimple } from "@math-platform/app-shell/layout";
+import { UserMenu } from "@/components/user-menu";
 
 const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '/preface', label: 'Preface' },
-  { href: '/curriculum', label: 'Curriculum' },
+  { href: "/", label: "Home" },
+  { href: "/preface", label: "Preface" },
+  { href: "/curriculum", label: "Curriculum" },
 ];
 
 /**

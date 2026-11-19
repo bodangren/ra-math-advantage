@@ -67,7 +67,7 @@ describe("seed-standards (IM2) — Phase 3 shape contract", () => {
     for (const entry of entries) {
       expect(
         entry.description.trim().length,
-        `empty description for ${entry.code}`
+        `empty description for ${entry.code}`,
       ).toBeGreaterThan(0);
     }
   });
@@ -76,7 +76,7 @@ describe("seed-standards (IM2) — Phase 3 shape contract", () => {
     for (const entry of entries) {
       expect(
         entry.studentFriendlyDescription?.trim().length ?? 0,
-        `missing student-friendly description for ${entry.code}`
+        `missing student-friendly description for ${entry.code}`,
       ).toBeGreaterThan(0);
     }
   });
@@ -85,7 +85,7 @@ describe("seed-standards (IM2) — Phase 3 shape contract", () => {
     for (const entry of entries) {
       expect(
         entry.category?.trim().length ?? 0,
-        `missing category for ${entry.code}`
+        `missing category for ${entry.code}`,
       ).toBeGreaterThan(0);
     }
   });
@@ -98,9 +98,7 @@ describe("seed-standards (IM2) — Phase 3 shape contract", () => {
 
   it("all standard codes are unique (no duplicate definitions in seed_standards.ts)", () => {
     const codes = entries.map((entry) => entry.code);
-    const dupes = codes.filter(
-      (code, index) => codes.indexOf(code) !== index
-    );
+    const dupes = codes.filter((code, index) => codes.indexOf(code) !== index);
     expect(dupes, "duplicate code definitions detected").toEqual([]);
   });
 
@@ -108,10 +106,9 @@ describe("seed-standards (IM2) — Phase 3 shape contract", () => {
     const definedCodes = new Set(entries.map((entry) => entry.code));
     const referenced = collectReferencedCodes();
     const missing = referenced.filter((code) => !definedCodes.has(code));
-    expect(
-      missing,
-      "referenced codes without a corresponding seed_standards definition"
-    ).toEqual([]);
+    expect(missing, "referenced codes without a corresponding seed_standards definition").toEqual(
+      [],
+    );
   });
 
   it("every standards_inventory entry has a corresponding seed_standards definition (source-grounded contract)", () => {
@@ -123,13 +120,10 @@ describe("seed-standards (IM2) — Phase 3 shape contract", () => {
     // 11 extra codes beyond the 91 currently referenced in modules 1-13).
     const definedCodes = new Set(entries.map((entry) => entry.code));
     const inventory = loadInventory();
-    const orphaned = inventory
-      .map((entry) => entry.code)
-      .filter((code) => !definedCodes.has(code));
-    expect(
-      orphaned,
-      "inventory entries without a corresponding seed_standards definition"
-    ).toEqual([]);
+    const orphaned = inventory.map((entry) => entry.code).filter((code) => !definedCodes.has(code));
+    expect(orphaned, "inventory entries without a corresponding seed_standards definition").toEqual(
+      [],
+    );
   });
 
   it("inventory framework is CCSS-M (Common Core State Standards — Mathematics)", () => {

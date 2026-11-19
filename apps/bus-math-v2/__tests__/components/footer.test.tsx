@@ -1,24 +1,26 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 
-import { Footer } from '../../components/footer';
+import { Footer } from "../../components/footer";
 
-vi.mock('next/link', () => ({
+vi.mock("next/link", () => ({
   __esModule: true,
   default: ({ children, href, ...rest }: { children: ReactNode; href: string }) => (
     <a href={href} {...rest}>
       {children}
     </a>
-  )
+  ),
 }));
 
-describe('Footer', () => {
-  it('renders footer text and quick links', () => {
+describe("Footer", () => {
+  it("renders footer text and quick links", () => {
     render(<Footer />);
 
-    expect(screen.getByRole('heading', { name: /Math for Business Operations/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /Getting Started/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /Math for Business Operations/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Getting Started/i })).toBeInTheDocument();
   });
 });

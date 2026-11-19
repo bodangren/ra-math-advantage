@@ -1,24 +1,24 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { getGenerator } from '@math-platform/math-content/knowledge-space';
+import { getGenerator } from "@math-platform/math-content/knowledge-space";
 import {
   PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_COMPONENT_KEY,
   PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_GENERATOR_KEY,
   PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_GUIDED_GRADING_CONFIG,
   PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_INDEPENDENT_GRADING_CONFIG,
   PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_WORKED_GRADING_CONFIG,
-} from '@/convex/activities';
+} from "@/convex/activities";
 import {
   PRECALCULUS_TOPIC_12_POINTWISE_COMPARISON_NODE_ID,
   PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_GUIDED_ACTIVITY_ID,
   PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_INDEPENDENT_ACTIVITY_ID,
   PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_WORKED_ACTIVITY_ID,
-} from '@/lib/learning-evidence/precalc-pilot';
+} from "@/lib/learning-evidence/precalc-pilot";
 
-describe('Topic 1.2 pointwise rate-ordering activity constants', () => {
-  it('defines stable mode IDs, exact configs, and the shared generator identity', () => {
+describe("Topic 1.2 pointwise rate-ordering activity constants", () => {
+  it("defines stable mode IDs, exact configs, and the shared generator identity", () => {
     expect(PRECALCULUS_TOPIC_12_POINTWISE_COMPARISON_NODE_ID).toBe(
-      'math.precalc.skill.1.2.compare-pointwise-rates-of-change-from-graphs',
+      "math.precalc.skill.1.2.compare-pointwise-rates-of-change-from-graphs",
     );
     expect(PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_WORKED_ACTIVITY_ID).toBe(
       `${PRECALCULUS_TOPIC_12_POINTWISE_COMPARISON_NODE_ID}.worked_example`,
@@ -29,13 +29,19 @@ describe('Topic 1.2 pointwise rate-ordering activity constants', () => {
     expect(PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_INDEPENDENT_ACTIVITY_ID).toBe(
       `${PRECALCULUS_TOPIC_12_POINTWISE_COMPARISON_NODE_ID}.independent_practice`,
     );
-    expect(new Set([
-      PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_WORKED_ACTIVITY_ID,
-      PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_GUIDED_ACTIVITY_ID,
-      PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_INDEPENDENT_ACTIVITY_ID,
-    ]).size).toBe(3);
-    expect(PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_COMPONENT_KEY).toBe('pointwise-rate-ordering');
-    expect(PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_GENERATOR_KEY).toBe('topic12-pointwise-rate-ordering');
+    expect(
+      new Set([
+        PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_WORKED_ACTIVITY_ID,
+        PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_GUIDED_ACTIVITY_ID,
+        PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_INDEPENDENT_ACTIVITY_ID,
+      ]).size,
+    ).toBe(3);
+    expect(PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_COMPONENT_KEY).toBe(
+      "pointwise-rate-ordering",
+    );
+    expect(PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_GENERATOR_KEY).toBe(
+      "topic12-pointwise-rate-ordering",
+    );
     expect(PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_WORKED_GRADING_CONFIG).toEqual({
       generatorKey: PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_GENERATOR_KEY,
       variantSeed: 0,
@@ -51,8 +57,6 @@ describe('Topic 1.2 pointwise rate-ordering activity constants', () => {
 
     const generator = getGenerator(PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_GENERATOR_KEY);
     expect(generator.key).toBe(PRECALCULUS_TOPIC_12_POINTWISE_RATE_ORDERING_GENERATOR_KEY);
-    expect(generator.nodeIds).toEqual([
-      PRECALCULUS_TOPIC_12_POINTWISE_COMPARISON_NODE_ID,
-    ]);
+    expect(generator.nodeIds).toEqual([PRECALCULUS_TOPIC_12_POINTWISE_COMPARISON_NODE_ID]);
   });
 });

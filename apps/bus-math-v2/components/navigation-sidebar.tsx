@@ -1,6 +1,6 @@
-import type { ComponentType, SVGProps } from 'react'
+import type { ComponentType, SVGProps } from "react";
 
-import Link from 'next/link'
+import Link from "next/link";
 import {
   BarChart3,
   BookMarked,
@@ -13,39 +13,47 @@ import {
   PieChart,
   Search,
   Target,
-  TrendingUp
-} from 'lucide-react'
+  TrendingUp,
+} from "lucide-react";
 
-import { cn } from '@/lib/utils'
-import type { Lesson } from '@/lib/schemas/validators'
+import { cn } from "@/lib/utils";
+import type { Lesson } from "@/lib/schemas/validators";
 
 export interface NavigationSidebarLink {
-  title: string
-  url: string
-  icon?: ComponentType<SVGProps<SVGSVGElement>>
+  title: string;
+  url: string;
+  icon?: ComponentType<SVGProps<SVGSVGElement>>;
 }
 
 export interface NavigationSidebarProps {
-  lessons: Lesson[]
-  mainLinks?: NavigationSidebarLink[]
-  additionalLinks?: NavigationSidebarLink[]
-  getLessonUrl?: (lesson: Lesson) => string
-  className?: string
+  lessons: Lesson[];
+  mainLinks?: NavigationSidebarLink[];
+  additionalLinks?: NavigationSidebarLink[];
+  getLessonUrl?: (lesson: Lesson) => string;
+  className?: string;
 }
 
 const defaultMainLinks: NavigationSidebarLink[] = [
-  { title: 'Home', url: '/', icon: Home },
-  { title: 'Preface', url: '/frontmatter/preface', icon: BookOpen }
-]
+  { title: "Home", url: "/", icon: Home },
+  { title: "Preface", url: "/frontmatter/preface", icon: BookOpen },
+];
 
 const defaultAdditionalLinks: NavigationSidebarLink[] = [
-  { title: 'Capstone', url: '/capstone', icon: GraduationCap },
-  { title: 'Glossary', url: '/backmatter/glossary', icon: BookMarked },
-  { title: 'Search', url: '/search', icon: Search }
-]
+  { title: "Capstone", url: "/capstone", icon: GraduationCap },
+  { title: "Glossary", url: "/backmatter/glossary", icon: BookMarked },
+  { title: "Search", url: "/search", icon: Search },
+];
 
-const unitIcons = [Calculator, TrendingUp, BarChart3, PieChart, DollarSign, Target, Briefcase, BookOpen]
-
+const unitIcons = [
+  Calculator,
+  TrendingUp,
+  BarChart3,
+  PieChart,
+  DollarSign,
+  Target,
+  Briefcase,
+  BookOpen,
+];
 
 /**
  * Formats a lesson's duration metadata as a display string.
@@ -54,11 +62,10 @@ const unitIcons = [Calculator, TrendingUp, BarChart3, PieChart, DollarSign, Targ
  * @returns A human-readable duration string
  */
 function formatDuration(lesson: Lesson) {
-  const duration = lesson.metadata?.duration
-  if (!duration) return 'Flexible duration'
-  return `${duration} min`
+  const duration = lesson.metadata?.duration;
+  if (!duration) return "Flexible duration";
+  return `${duration} min`;
 }
-
 
 /**
  * Formats a lesson's difficulty metadata as a capitalized display string.
@@ -67,10 +74,9 @@ function formatDuration(lesson: Lesson) {
  * @returns A capitalized difficulty label
  */
 function formatDifficulty(lesson: Lesson) {
-  const difficulty = lesson.metadata?.difficulty
-  return difficulty ? `${difficulty.charAt(0).toUpperCase()}${difficulty.slice(1)}` : 'Mixed level'
+  const difficulty = lesson.metadata?.difficulty;
+  return difficulty ? `${difficulty.charAt(0).toUpperCase()}${difficulty.slice(1)}` : "Mixed level";
 }
-
 
 /**
  * Returns an icon component based on the lesson's unit number.
@@ -82,7 +88,6 @@ function getLessonIcon(lesson: Lesson) {
   return unitIcons[(lesson.unitNumber - 1) % unitIcons.length] ?? Calculator;
 }
 
-
 /**
  * Returns the default URL path for a lesson based on its slug.
  *
@@ -92,7 +97,6 @@ function getLessonIcon(lesson: Lesson) {
 function defaultLessonUrl(lesson: Lesson) {
   return `/units/${lesson.slug}`;
 }
-
 
 /**
  * Renders a course navigation sidebar with lesson list, quick links, and resources.
@@ -105,10 +109,9 @@ export function NavigationSidebar({
   mainLinks = defaultMainLinks,
   additionalLinks = defaultAdditionalLinks,
   getLessonUrl = defaultLessonUrl,
-  className
+  className,
 }: NavigationSidebarProps) {
-  const sortedLessons = [...lessons].sort((a, b) => a.unitNumber - b.unitNumber)
-
+  const sortedLessons = [...lessons].sort((a, b) => a.unitNumber - b.unitNumber);
 
   /**
    * Renders a list of navigation links with icons.
@@ -119,7 +122,7 @@ export function NavigationSidebar({
   const renderLinks = (links: NavigationSidebarLink[]) => (
     <ul className="space-y-1">
       {links.map((link) => {
-        const Icon = link.icon ?? BookOpen
+        const Icon = link.icon ?? BookOpen;
         return (
           <li key={link.title}>
             <Link
@@ -130,17 +133,17 @@ export function NavigationSidebar({
               {link.title}
             </Link>
           </li>
-        )
+        );
       })}
     </ul>
-  )
+  );
 
   return (
     <nav
       aria-label="Course navigation"
       className={cn(
-        'w-full max-w-xs space-y-6 rounded-xl border border-border/40 bg-card p-4 shadow-sm',
-        className
+        "w-full max-w-xs space-y-6 rounded-xl border border-border/40 bg-card p-4 shadow-sm",
+        className,
       )}
     >
       <section>
@@ -155,26 +158,33 @@ export function NavigationSidebar({
         </div>
         <ul className="space-y-2">
           {sortedLessons.map((lesson) => {
-            const Icon = getLessonIcon(lesson)
+            const Icon = getLessonIcon(lesson);
             return (
               <li key={lesson.id} className="rounded-lg border border-border/30 p-3">
-                <Link href={getLessonUrl(lesson)} className="flex items-start gap-3 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-lg">
+                <Link
+                  href={getLessonUrl(lesson)}
+                  className="flex items-start gap-3 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-lg"
+                >
                   <Icon className="mt-1 h-4 w-4 text-primary" />
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-medium text-foreground">
                         {`Unit ${lesson.unitNumber}: ${lesson.title}`}
                       </span>
-                      <span className="text-xs text-muted-foreground">{formatDuration(lesson)}</span>
+                      <span className="text-xs text-muted-foreground">
+                        {formatDuration(lesson)}
+                      </span>
                     </div>
                     {lesson.description ? (
                       <p className="text-xs text-muted-foreground mt-1">{lesson.description}</p>
                     ) : null}
-                    <span className="text-xs font-medium text-primary/80">{formatDifficulty(lesson)}</span>
+                    <span className="text-xs font-medium text-primary/80">
+                      {formatDifficulty(lesson)}
+                    </span>
                   </div>
                 </Link>
               </li>
-            )
+            );
           })}
         </ul>
       </section>
@@ -184,5 +194,5 @@ export function NavigationSidebar({
         {renderLinks(additionalLinks)}
       </section>
     </nav>
-  )
+  );
 }

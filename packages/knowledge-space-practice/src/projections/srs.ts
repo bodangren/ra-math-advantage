@@ -1,6 +1,6 @@
-import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from '@math-platform/knowledge-space-core';
-import type { SrsProjectionEntry } from './types';
-import type { KnowledgeBlueprint } from '../blueprints';
+import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from "@math-platform/knowledge-space-core";
+import type { SrsProjectionEntry } from "./types";
+import type { KnowledgeBlueprint } from "../blueprints";
 
 /**
  * Generate SRS projection entries from knowledge-space nodes, edges, and
@@ -20,27 +20,31 @@ export function projectSrsInputs(
   edges: KnowledgeSpaceEdge[],
   blueprints: KnowledgeBlueprint[],
 ): SrsProjectionEntry[] {
-  edges = edges.filter(edge => edge.reviewStatus !== 'rejected');
+  edges = edges.filter((edge) => edge.reviewStatus !== "rejected");
   const blueprintByNodeId = new Map(blueprints.map((b) => [b.nodeId, b]));
-  const acceptedSkillIds = new Set(nodes
-    .filter((node) => node.kind === 'skill' && node.reviewStatus === 'approved')
-    .map((node) => node.id));
-  const equivalences = edges.filter((edge) =>
-    edge.type === 'equivalent_to' && edge.reviewStatus === 'approved'
-    && acceptedSkillIds.has(edge.sourceId) && acceptedSkillIds.has(edge.targetId));
+  const acceptedSkillIds = new Set(
+    nodes
+      .filter((node) => node.kind === "skill" && node.reviewStatus === "approved")
+      .map((node) => node.id),
+  );
+  const equivalences = edges.filter(
+    (edge) =>
+      edge.type === "equivalent_to" &&
+      edge.reviewStatus === "approved" &&
+      acceptedSkillIds.has(edge.sourceId) &&
+      acceptedSkillIds.has(edge.targetId),
+  );
 
   const entries: SrsProjectionEntry[] = [];
 
   for (const node of nodes) {
-    if (node.kind !== 'skill' && node.kind !== 'task_blueprint') continue;
+    if (node.kind !== "skill" && node.kind !== "task_blueprint") continue;
 
     const blueprint = blueprintByNodeId.get(node.id);
 
     // Standards from aligned_to_standard edges
     const standards = edges
-      .filter(
-        (e) => e.type === 'aligned_to_standard' && e.sourceId === node.id,
-      )
+      .filter((e) => e.type === "aligned_to_standard" && e.sourceId === node.id)
       .map((e) => e.targetId);
 
     // Also include blueprint alignmentNodeIds as standards
@@ -52,22 +56,16 @@ export function projectSrsInputs(
 
     // Prerequisites from prerequisite_for edges targeting this node
     const prerequisites = edges
-      .filter(
-        (e) => e.type === 'prerequisite_for' && e.targetId === node.id,
-      )
+      .filter((e) => e.type === "prerequisite_for" && e.targetId === node.id)
       .map((e) => e.sourceId);
 
     const difficulty =
-      node.difficulty ??
-      (blueprint?.metadata?.difficulty as number | undefined) ??
-      0.5;
+      node.difficulty ?? (blueprint?.metadata?.difficulty as number | undefined) ?? 0.5;
 
     const generatorKey = node.generatorKey ?? blueprint?.generatorKey;
     const generatorReady = node.independentPracticeReady === true;
 
-    const blueprintId = blueprint
-      ? `${node.id}.blueprint`
-      : `srs.${node.id}`;
+    const blueprintId = blueprint ? `${node.id}.blueprint` : `srs.${node.id}`;
 
     entries.push({
       nodeId: node.id,
@@ -79,9 +77,7 @@ export function projectSrsInputs(
       generatorReady,
       equivalentNodeIds: equivalences
         .filter(
-          (e) =>
-            e.type === 'equivalent_to' &&
-            (e.sourceId === node.id || e.targetId === node.id),
+          (e) => e.type === "equivalent_to" && (e.sourceId === node.id || e.targetId === node.id),
         )
         .map((e) => (e.sourceId === node.id ? e.targetId : e.sourceId)),
     });

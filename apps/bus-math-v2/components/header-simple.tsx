@@ -1,17 +1,16 @@
-'use client';
+"use client";
 
-import { HeaderSimple as SharedHeaderSimple } from '@math-platform/app-shell/layout';
-import { UserMenu } from '@/components/user-menu';
+import { HeaderSimple as SharedHeaderSimple } from "@math-platform/app-shell/layout";
+import { UserMenu } from "@/components/user-menu";
 
 const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '/preface', label: 'Preface' },
-  { href: '/curriculum', label: 'Curriculum' },
-  { href: '/capstone', label: 'Capstone' },
-  { href: '/backmatter/glossary', label: 'Glossary' },
-  { href: '/search', label: 'Search' },
+  { href: "/", label: "Home" },
+  { href: "/preface", label: "Preface" },
+  { href: "/curriculum", label: "Curriculum" },
+  { href: "/capstone", label: "Capstone" },
+  { href: "/backmatter/glossary", label: "Glossary" },
+  { href: "/search", label: "Search" },
 ];
-
 
 /**
  * Renders a simplified site header with navigation links and user menu.

@@ -138,8 +138,8 @@ export function assembleCompetencyHeatmapRows(
   standards: RawCHStandard[],
   competencyRows: RawCHCompetency[],
 ): CompetencyHeatmapResponse {
-  const activeStandards = standards.filter(s => s.isActive);
-  
+  const activeStandards = standards.filter((s) => s.isActive);
+
   // standardId → standard
   const standardIndex = new Map<string, RawCHStandard>();
   for (const standard of activeStandards) {
@@ -152,8 +152,8 @@ export function assembleCompetencyHeatmapRows(
     competencyIndex.set(`${row.studentId}|${row.standardId}`, row.masteryLevel);
   }
 
-  const rows: CompetencyHeatmapRow[] = students.map(student => {
-    const cells: CompetencyHeatmapCell[] = activeStandards.map(standard => {
+  const rows: CompetencyHeatmapRow[] = students.map((student) => {
+    const cells: CompetencyHeatmapCell[] = activeStandards.map((standard) => {
       const masteryLevel = competencyIndex.get(`${student.id}|${standard.id}`) ?? null;
       return {
         standardId: standard.id,
@@ -173,7 +173,7 @@ export function assembleCompetencyHeatmapRows(
     };
   });
 
-  const responseStandards: CompetencyStandard[] = activeStandards.map(standard => ({
+  const responseStandards: CompetencyStandard[] = activeStandards.map((standard) => ({
     id: standard.id,
     code: standard.code,
     description: standard.description,
@@ -206,8 +206,8 @@ export function assembleStudentCompetencyDetail(
   lessonVersions: RawCHLessonVersion[],
   lessons: RawCHLesson[],
 ): StudentCompetencyDetail {
-  const activeStandards = standards.filter(s => s.isActive);
-  
+  const activeStandards = standards.filter((s) => s.isActive);
+
   // standardId → standard
   const standardIndex = new Map<string, RawCHStandard>();
   for (const standard of activeStandards) {
@@ -238,23 +238,23 @@ export function assembleStudentCompetencyDetail(
   const standardContext = new Map<string, { unitNumber: number; lessonTitle: string }>();
   for (const ls of lessonStandards) {
     if (!ls.isPrimary) continue;
-    
+
     const lessonId = lessonByVersion.get(ls.lessonVersionId);
     if (!lessonId) continue;
-    
+
     const lesson = lessonById.get(lessonId);
     if (!lesson) continue;
-    
+
     standardContext.set(ls.standardId, {
       unitNumber: lesson.unitNumber,
       lessonTitle: lesson.title,
     });
   }
 
-  const competencies: StudentCompetency[] = activeStandards.map(standard => {
+  const competencies: StudentCompetency[] = activeStandards.map((standard) => {
     const competency = competencyByStandard.get(standard.id);
     const context = standardContext.get(standard.id);
-    
+
     return {
       standardId: standard.id,
       standardCode: standard.code,

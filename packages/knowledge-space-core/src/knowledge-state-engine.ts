@@ -6,14 +6,10 @@
 //
 // Domain-neutral boundary: no app, convex, curriculum, or srs-engine imports.
 
-import type { KnowledgeSpace } from './types';
-import type {
-  KnowledgeStateEntry,
-  MasteryThresholds,
-  MasteryState,
-} from './mastery-state';
-import { MASTERY_THRESHOLDS_DEFAULT } from './mastery-state';
-import { stabilityToRetention as canonicalStabilityToRetention } from '@math-platform/srs-engine';
+import type { KnowledgeSpace } from "./types";
+import type { KnowledgeStateEntry, MasteryThresholds, MasteryState } from "./mastery-state";
+import { MASTERY_THRESHOLDS_DEFAULT } from "./mastery-state";
+import { stabilityToRetention as canonicalStabilityToRetention } from "@math-platform/srs-engine";
 
 /**
  * Minimal student shape consumed by the engine. The structural `{ id: string }`
@@ -63,10 +59,7 @@ export type KnowledgeStateEvidence = {
  * @deprecated Import from `@math-platform/srs-engine` and pass aggregated
  * objective retention across the SRS→KST adapter boundary.
  */
-export function stabilityToRetention(
-  stability: number,
-  deltaDays: number,
-): number {
+export function stabilityToRetention(stability: number, deltaDays: number): number {
   return canonicalStabilityToRetention(stability, deltaDays);
 }
 
@@ -97,34 +90,34 @@ export function determineState(
 ): MasteryState {
   // Re-enter / enter mastered on proficiency + high retention
   if (isProficient && retention >= thresholds.masteryEnter) {
-    return 'mastered';
+    return "mastered";
   }
 
   // Not proficient → inProgress if there's any evidence
   if (!isProficient) {
-    return 'inProgress';
+    return "inProgress";
   }
 
   // Proficient but retention is below masteryEnter
-  if (prevState === 'mastered') {
+  if (prevState === "mastered") {
     if (retention < thresholds.masteryExit) {
-      return 'decaying';
+      return "decaying";
     }
     // Between exit and enter: hysteresis keeps us in mastered
-    return 'mastered';
+    return "mastered";
   }
 
-  if (prevState === 'decaying') {
+  if (prevState === "decaying") {
     if (retention < thresholds.masteryExit * 0.5) {
       // Deep decay: fall to inProgress
-      return 'inProgress';
+      return "inProgress";
     }
     // Still decaying
-    return 'decaying';
+    return "decaying";
   }
 
   // No meaningful previous state or previous was inProgress/untouched
-  return 'inProgress';
+  return "inProgress";
 }
 
 // ---------------------------------------------------------------------------
@@ -178,7 +171,7 @@ export function getKnowledgeState(
         mastery: 0,
         retention: 0,
         isProficient: false,
-        state: 'untouched',
+        state: "untouched",
       });
       continue;
     }

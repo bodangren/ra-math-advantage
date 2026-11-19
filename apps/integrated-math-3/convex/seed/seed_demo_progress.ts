@@ -16,7 +16,7 @@ export const seedDemoProgress = internalMutation({
   handler: async (ctx): Promise<SeedDemoProgressResult[]> => {
     const now = Date.now();
     const lessonSlug = "module-1-lesson-1";
-    
+
     const lesson = await ctx.db
       .query("lessons")
       .withIndex("by_slug", (q) => q.eq("slug", lessonSlug))
@@ -67,7 +67,7 @@ export const seedDemoProgress = internalMutation({
         const phaseVersion = await ctx.db
           .query("phase_versions")
           .withIndex("by_lesson_version_and_phase", (q) =>
-            q.eq("lessonVersionId", lessonVersion._id).eq("phaseNumber", phase)
+            q.eq("lessonVersionId", lessonVersion._id).eq("phaseNumber", phase),
           )
           .first();
 
@@ -76,15 +76,16 @@ export const seedDemoProgress = internalMutation({
         const existingProgress = await ctx.db
           .query("student_progress")
           .withIndex("by_user_and_phase", (q) =>
-            q.eq("userId", student._id).eq("phaseId", phaseVersion._id)
+            q.eq("userId", student._id).eq("phaseId", phaseVersion._id),
           )
           .unique();
 
         if (existingProgress) continue;
 
-        const phaseStatus = progress.status === "in_progress" && phase === progress.phaseNumber
-          ? "in_progress" as const
-          : "completed" as const;
+        const phaseStatus =
+          progress.status === "in_progress" && phase === progress.phaseNumber
+            ? ("in_progress" as const)
+            : ("completed" as const);
 
         await ctx.db.insert("student_progress", {
           userId: student._id,
@@ -103,12 +104,12 @@ export const seedDemoProgress = internalMutation({
         const phaseSections = await ctx.db
           .query("phase_sections")
           .withIndex("by_phase_version_and_sequence", (q) =>
-            q.eq("phaseVersionId", phaseVersion._id)
+            q.eq("phaseVersionId", phaseVersion._id),
           )
           .collect();
 
         const activitySections = phaseSections.filter(
-          (section) => section.sectionType === "activity"
+          (section) => section.sectionType === "activity",
         );
 
         for (const section of activitySections) {
@@ -119,7 +120,7 @@ export const seedDemoProgress = internalMutation({
           if (!activityId || !(await ctx.db.get(activityId))) continue;
 
           const idempotencyKey = `${progress.studentUsername}:${lessonSlug}:${phase}:${content.activityId}`;
-          
+
           const existing = await ctx.db
             .query("activity_completions")
             .withIndex("by_idempotency_key", (q) => q.eq("idempotencyKey", idempotencyKey))
@@ -138,10 +139,9 @@ export const seedDemoProgress = internalMutation({
             createdAt: now,
             updatedAt: now,
           });
-          
+
           completionsCreated++;
         }
-
       }
 
       results.push({

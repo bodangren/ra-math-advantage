@@ -14,10 +14,7 @@ describe("IM3 one-real-solution practice mapping documents", () => {
   it("builds the exact Guided variant and item documents", () => {
     const activityId = "activities:one-real-solution-guided";
     const now = 246810;
-    const documents = buildIm3OneRealSolutionGuidedPracticeSeedDocuments(
-      activityId as never,
-      now,
-    );
+    const documents = buildIm3OneRealSolutionGuidedPracticeSeedDocuments(activityId as never, now);
 
     expect(documents).toEqual({
       variant: {
@@ -26,8 +23,10 @@ describe("IM3 one-real-solution practice mapping documents", () => {
         migrationVersion: "kst-srs.v3.2",
         sourceTimestamp: now,
         componentKey: "graphing-explorer",
-        displayName: "Guided practice: Solve a quadratic equation with one real solution by graphing",
-        description: "Guided practice for solving a quadratic equation with one real solution by graphing.",
+        displayName:
+          "Guided practice: Solve a quadratic equation with one real solution by graphing",
+        description:
+          "Guided practice for solving a quadratic equation with one real solution by graphing.",
         objectiveIds: [IM3_ONE_REAL_SOLUTION_NODE],
         difficulty: "standard",
         metadata: { stableActivityId: IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID },
@@ -62,8 +61,10 @@ describe("IM3 one-real-solution practice mapping documents", () => {
         migrationVersion: "kst-srs.v3.2",
         sourceTimestamp: now,
         componentKey: "graphing-explorer",
-        displayName: "Independent practice: Solve a quadratic equation with one real solution by graphing",
-        description: "Independent practice for solving a quadratic equation with one real solution by graphing.",
+        displayName:
+          "Independent practice: Solve a quadratic equation with one real solution by graphing",
+        description:
+          "Independent practice for solving a quadratic equation with one real solution by graphing.",
         objectiveIds: [IM3_ONE_REAL_SOLUTION_NODE],
         difficulty: "standard",
         metadata: { stableActivityId: IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID },

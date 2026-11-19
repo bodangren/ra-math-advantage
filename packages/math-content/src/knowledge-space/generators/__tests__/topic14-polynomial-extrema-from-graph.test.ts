@@ -1,12 +1,12 @@
-import { generatorOutputSchema } from '@math-platform/knowledge-space-practice';
-import { describe, expect, it } from 'vitest';
+import { generatorOutputSchema } from "@math-platform/knowledge-space-practice";
+import { describe, expect, it } from "vitest";
 
 import {
   generateTopic14PolynomialExtremaFromGraph,
   generateTopic14PolynomialExtremaFromGraphOutput,
   TOPIC14_POLYNOMIAL_EXTREMA_FROM_GRAPH_NODE_ID,
-} from '../topic14-polynomial-extrema-from-graph';
-import { getGenerator } from '../registry';
+} from "../topic14-polynomial-extrema-from-graph";
+import { getGenerator } from "../registry";
 
 const SOURCE_POINTS = [
   { x: -1, y: 664 },
@@ -37,35 +37,33 @@ const SOURCE_POINTS = [
 ] as const;
 
 const SOURCE_PROPS = {
-  prompt: 'Use the graph of polynomial g to identify its extrema.',
-  functionName: 'g',
+  prompt: "Use the graph of polynomial g to identify its extrema.",
+  functionName: "g",
   coefficients: [3, -44, 204, -288, 125],
   domain: [-1, 5],
   points: SOURCE_POINTS,
-  presentationMode: 'independent_practice',
+  presentationMode: "independent_practice",
 } as const;
 
 function evaluatePolynomial(coefficients: readonly number[], x: number): number {
-  return coefficients.reduce((sum, coefficient, index) => (
-    sum + coefficient * x ** (4 - index)
-  ), 0);
+  return coefficients.reduce((sum, coefficient, index) => sum + coefficient * x ** (4 - index), 0);
 }
 
 function serializedKeys(value: unknown): string[] {
   if (Array.isArray(value)) return value.flatMap(serializedKeys);
-  if (!value || typeof value !== 'object') return [];
+  if (!value || typeof value !== "object") return [];
   return Object.entries(value).flatMap(([key, child]) => [key, ...serializedKeys(child)]);
 }
 
-describe('Topic 1.4 polynomial extrema from graph generator', () => {
-  it('reproduces the authored Example 2 at seed 0', () => {
+describe("Topic 1.4 polynomial extrema from graph generator", () => {
+  it("reproduces the authored Example 2 at seed 0", () => {
     const variant = generateTopic14PolynomialExtremaFromGraph(0);
     const output = generateTopic14PolynomialExtremaFromGraphOutput(0);
 
     expect(variant).toEqual({
       seed: 0,
       prompt: SOURCE_PROPS.prompt,
-      functionName: 'g',
+      functionName: "g",
       coefficients: [3, -44, 204, -288, 125],
       domain: [-1, 5],
       points: SOURCE_POINTS,
@@ -76,9 +74,9 @@ describe('Topic 1.4 polynomial extrema from graph generator', () => {
       absolute_minimum_x: 1,
     });
     expect(output.solutionSteps.map((step) => step.description)).toEqual([
-      'The graph changes from decreasing to increasing at x = 1, so x = 1 is a relative minimum.',
-      'The graph changes from increasing to decreasing at x = 4, so x = 4 is a relative maximum.',
-      'The lowest value overall occurs at x = 1, so g(1) is the absolute minimum.',
+      "The graph changes from decreasing to increasing at x = 1, so x = 1 is a relative minimum.",
+      "The graph changes from increasing to decreasing at x = 4, so x = 4 is a relative maximum.",
+      "The lowest value overall occurs at x = 1, so g(1) is the absolute minimum.",
     ]);
     expect(output.data).toEqual({
       seed: 0,
@@ -87,17 +85,17 @@ describe('Topic 1.4 polynomial extrema from graph generator', () => {
     expect(generatorOutputSchema.safeParse(output).success).toBe(true);
   });
 
-  it('registers the exact key and node through the public registry', () => {
-    const generator = getGenerator('topic14-polynomial-extrema-from-graph');
+  it("registers the exact key and node through the public registry", () => {
+    const generator = getGenerator("topic14-polynomial-extrema-from-graph");
 
-    expect(generator.key).toBe('topic14-polynomial-extrema-from-graph');
+    expect(generator.key).toBe("topic14-polynomial-extrema-from-graph");
     expect(generator.nodeIds).toEqual([TOPIC14_POLYNOMIAL_EXTREMA_FROM_GRAPH_NODE_ID]);
     expect(TOPIC14_POLYNOMIAL_EXTREMA_FROM_GRAPH_NODE_ID).toBe(
-      'math.precalc.skill.1.4.identify-relative-and-absolute-extrema-from-graphs',
+      "math.precalc.skill.1.4.identify-relative-and-absolute-extrema-from-graphs",
     );
   });
 
-  it('is deterministic and changes nearby positive seeds', () => {
+  it("is deterministic and changes nearby positive seeds", () => {
     expect(generateTopic14PolynomialExtremaFromGraph(17)).toEqual(
       generateTopic14PolynomialExtremaFromGraph(17),
     );
@@ -106,7 +104,7 @@ describe('Topic 1.4 polynomial extrema from graph generator', () => {
     );
   });
 
-  it('generates safe graph samples and independent extrema across 10,000 seeds', () => {
+  it("generates safe graph samples and independent extrema across 10,000 seeds", () => {
     const signatures = new Set<string>();
 
     for (let seed = 1; seed <= 10000; seed += 1) {
@@ -126,13 +124,15 @@ describe('Topic 1.4 polynomial extrema from graph generator', () => {
         expect(Math.abs(point.x)).toBeLessThanOrEqual(Number.MAX_SAFE_INTEGER);
         expect(Math.abs(point.y)).toBeLessThanOrEqual(Number.MAX_SAFE_INTEGER);
       });
-      expect(coefficients.every((coefficient) => (
-        Number.isSafeInteger(coefficient)
-      ))).toBe(true);
+      expect(coefficients.every((coefficient) => Number.isSafeInteger(coefficient))).toBe(true);
 
       const minimumIndex = points.findIndex((point) => point.x === answer.absolute_minimum_x);
-      const relativeMinimumIndex = points.findIndex((point) => point.x === answer.relative_minimum_x);
-      const relativeMaximumIndex = points.findIndex((point) => point.x === answer.relative_maximum_x);
+      const relativeMinimumIndex = points.findIndex(
+        (point) => point.x === answer.relative_minimum_x,
+      );
+      const relativeMaximumIndex = points.findIndex(
+        (point) => point.x === answer.relative_maximum_x,
+      );
       expect(minimumIndex).toBeGreaterThanOrEqual(0);
       expect(relativeMinimumIndex).toBeGreaterThan(0);
       expect(relativeMinimumIndex).toBeLessThan(points.length - 1);
@@ -145,31 +145,31 @@ describe('Topic 1.4 polynomial extrema from graph generator', () => {
       expect(points[relativeMaximumIndex + 1]!.y).toBeLessThan(points[relativeMaximumIndex]!.y);
       expect(answer.absolute_minimum_x).toBe(answer.relative_minimum_x);
       expect(answer.relative_minimum_x).not.toBe(answer.relative_maximum_x);
-      expect(Object.keys(output.data).sort()).toEqual(['rendererProps', 'seed']);
+      expect(Object.keys(output.data).sort()).toEqual(["rendererProps", "seed"]);
       const rendererProps = output.data.rendererProps as Record<string, unknown>;
       expect(Object.keys(rendererProps).sort()).toEqual([
-        'coefficients',
-        'domain',
-        'functionName',
-        'points',
-        'presentationMode',
-        'prompt',
+        "coefficients",
+        "domain",
+        "functionName",
+        "points",
+        "presentationMode",
+        "prompt",
       ]);
-      expect(rendererProps.presentationMode).toBe('independent_practice');
+      expect(rendererProps.presentationMode).toBe("independent_practice");
       for (const key of [
-        'answer',
-        'absoluteMinimum',
-        'correctAnswer',
-        'degree',
-        'extrema',
-        'grading',
-        'gradingMetadata',
-        'leadingCoefficient',
-        'relativeMaximum',
-        'relativeMinimum',
-        'score',
-        'solution',
-        'solutionSteps',
+        "answer",
+        "absoluteMinimum",
+        "correctAnswer",
+        "degree",
+        "extrema",
+        "grading",
+        "gradingMetadata",
+        "leadingCoefficient",
+        "relativeMaximum",
+        "relativeMinimum",
+        "score",
+        "solution",
+        "solutionSteps",
       ]) {
         expect(serializedKeys(rendererProps)).not.toContain(key);
       }
@@ -180,7 +180,7 @@ describe('Topic 1.4 polynomial extrema from graph generator', () => {
     expect(signatures.size).toBeGreaterThan(1000);
   });
 
-  it('rejects invalid seeds', () => {
+  it("rejects invalid seeds", () => {
     for (const seed of [
       -1,
       1.5,

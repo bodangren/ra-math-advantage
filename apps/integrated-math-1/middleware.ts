@@ -1,18 +1,22 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-import { SESSION_COOKIE_NAME, getAuthJwtSecret, verifySessionToken } from '@math-platform/core-auth';
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import {
+  SESSION_COOKIE_NAME,
+  getAuthJwtSecret,
+  verifySessionToken,
+} from "@math-platform/core-auth";
 
 const DEV_COMPONENT_APPROVAL_PATTERN = /^\/dev\/component-approval/;
 
 function getCookieValueFromHeader(cookieHeader: string | null, key: string): string | null {
   if (!cookieHeader) return null;
 
-  const entries = cookieHeader.split(';');
+  const entries = cookieHeader.split(";");
   for (const entry of entries) {
     const trimmed = entry.trim();
     if (!trimmed) continue;
 
-    const separatorIndex = trimmed.indexOf('=');
+    const separatorIndex = trimmed.indexOf("=");
     if (separatorIndex <= 0) continue;
 
     const name = trimmed.slice(0, separatorIndex).trim();
@@ -31,35 +35,29 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const token = getCookieValueFromHeader(
-    request.headers.get('cookie'),
-    SESSION_COOKIE_NAME,
-  );
+  const token = getCookieValueFromHeader(request.headers.get("cookie"), SESSION_COOKIE_NAME);
 
   if (!token) {
-    const loginUrl = new URL('/auth/login', request.url);
-    loginUrl.searchParams.set('redirect', pathname);
+    const loginUrl = new URL("/auth/login", request.url);
+    loginUrl.searchParams.set("redirect", pathname);
     return NextResponse.redirect(loginUrl);
   }
 
   const claims = await verifySessionToken(token, getAuthJwtSecret());
 
   if (!claims) {
-    const loginUrl = new URL('/auth/login', request.url);
-    loginUrl.searchParams.set('redirect', pathname);
+    const loginUrl = new URL("/auth/login", request.url);
+    loginUrl.searchParams.set("redirect", pathname);
     return NextResponse.redirect(loginUrl);
   }
 
-  if (claims.role !== 'admin') {
-    return NextResponse.json(
-      { error: 'Forbidden: Admin access required' },
-      { status: 403 },
-    );
+  if (claims.role !== "admin") {
+    return NextResponse.json({ error: "Forbidden: Admin access required" }, { status: 403 });
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/dev/component-approval/:path*'],
+  matcher: ["/dev/component-approval/:path*"],
 };

@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const MODULE5_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Graphing Exponential Functions (HSF-IF.C.7e, HSF-LE.A.4)

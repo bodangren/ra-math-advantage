@@ -18,10 +18,7 @@ const publication = {
 };
 
 function memoryContext() {
-  const guided = buildIm3GuidedPilotSeedDocuments(
-    "guided" as never,
-    1,
-  ).activity;
+  const guided = buildIm3GuidedPilotSeedDocuments("guided" as never, 1).activity;
   const tables: Record<string, Array<Record<string, any>>> = {
     profiles: [
       { _id: "teacher", role: "teacher", organizationId: "org" },
@@ -42,9 +39,7 @@ function memoryContext() {
         isActive: true,
       },
     ],
-    classes: [
-      { _id: "class", teacherId: "teacher", name: "IM3", archived: false },
-    ],
+    classes: [{ _id: "class", teacherId: "teacher", name: "IM3", archived: false }],
     class_enrollments: [
       {
         _id: "enrollment",
@@ -69,9 +64,7 @@ function memoryContext() {
         assignedAt: 1,
       },
     ],
-    lesson_versions: [
-      { _id: "version", lessonId: "lesson", version: 1, status: "published" },
-    ],
+    lesson_versions: [{ _id: "version", lessonId: "lesson", version: 1, status: "published" }],
     phase_versions: [
       {
         _id: "phase",
@@ -128,8 +121,7 @@ function memoryContext() {
     let direction = "asc";
     const result = {
       unique: async () => rows[0] ?? null,
-      first: async () =>
-        direction === "desc" ? (rows.at(-1) ?? null) : (rows[0] ?? null),
+      first: async () => (direction === "desc" ? (rows.at(-1) ?? null) : (rows[0] ?? null)),
       collect: async () => rows,
       take: async (limit: number) => rows.slice(0, limit),
       order(next: string) {
@@ -138,10 +130,7 @@ function memoryContext() {
       },
     };
     return {
-      withIndex: (
-        _name: string,
-        configure: (value: typeof index) => unknown,
-      ) => {
+      withIndex: (_name: string, configure: (value: typeof index) => unknown) => {
         configure(index);
         return result;
       },
@@ -174,14 +163,10 @@ function memoryContext() {
     if (!target || index < 0) throw new Error(`Missing row ${String(id)}`);
     target[index] = { _id: id, ...(args.at(-1) as Record<string, unknown>) };
   };
-  const runQuery = async (
-    _reference: unknown,
-    args: { studentId: string; variantKey: string },
-  ) => {
+  const runQuery = async (_reference: unknown, args: { studentId: string; variantKey: string }) => {
     const row = tables.srs_cards.find(
       (candidate) =>
-        candidate.studentId === args.studentId &&
-        candidate.variantKey === args.variantKey,
+        candidate.studentId === args.studentId && candidate.variantKey === args.variantKey,
     );
     if (!row) return null;
     return {
@@ -236,21 +221,25 @@ async function runGuidedEvidence(options: {
   vi.spyOn(Date, "now").mockReturnValue(10);
   const { ctx, tables } = memoryContext();
   options.inspectTables?.(tables);
-  const worked = await createServerOwnedSubmissionHandler(ctx, {
-    userId: "student",
-    activityId: "worked",
-    idempotencyKey: "worked-key",
-    submissionData: {
-      contractVersion: "practice.v1",
+  const worked = await createServerOwnedSubmissionHandler(
+    ctx,
+    {
+      userId: "student",
       activityId: "worked",
-      mode: "worked_example",
-      status: "submitted",
-      attemptNumber: 1,
-      submittedAt: new Date(10).toISOString(),
-      answers: {},
-      parts: [],
-    },
-  } as never, publication);
+      idempotencyKey: "worked-key",
+      submissionData: {
+        contractVersion: "practice.v1",
+        activityId: "worked",
+        mode: "worked_example",
+        status: "submitted",
+        attemptNumber: 1,
+        submittedAt: new Date(10).toISOString(),
+        answers: {},
+        parts: [],
+      },
+    } as never,
+    publication,
+  );
   await recordIm3GraphTeacherExposureHandler(
     ctx,
     {
@@ -272,9 +261,7 @@ async function runGuidedEvidence(options: {
   ];
   const assistance = {
     hintsUsed: options.hintsUsed,
-    ...(options.revealStepsSeen === undefined
-      ? {}
-      : { revealStepsSeen: options.revealStepsSeen }),
+    ...(options.revealStepsSeen === undefined ? {} : { revealStepsSeen: options.revealStepsSeen }),
   };
   const guided = await createServerOwnedSubmissionHandler(
     ctx,
@@ -299,9 +286,7 @@ async function runGuidedEvidence(options: {
     } as never,
     publication,
   );
-  const stored = tables.activity_submissions.find(
-    (row) => row._id === guided.submissionId,
-  );
+  const stored = tables.activity_submissions.find((row) => row._id === guided.submissionId);
   expect(stored?.submissionData.parts).toEqual([
     expect.objectContaining({
       partId: "table_values",
@@ -323,16 +308,8 @@ async function runGuidedEvidence(options: {
     learnerId: options.evidenceLearnerId ?? "student",
     submissionId: guided.submissionId,
   } as never;
-  const result = await submitIm3PublishedEvidenceHandler(
-    ctx,
-    args,
-    publication,
-  );
-  const replay = await submitIm3PublishedEvidenceHandler(
-    ctx,
-    args,
-    publication,
-  );
+  const result = await submitIm3PublishedEvidenceHandler(ctx, args, publication);
+  const replay = await submitIm3PublishedEvidenceHandler(ctx, args, publication);
   expect(replay).toEqual({ ...result, delivery: "replay" });
   if (!tables.srs_review_log[0]) throw new Error("No SRS review was written");
   expect(tables.srs_cards).toHaveLength(1);
@@ -349,28 +326,28 @@ describe("IM3 assisted Guided evidence", () => {
       rating: "Hard",
       reason: "hints_3_plus",
     },
-  ])(
-    "retains $label and applies its normative cap",
-    async ({ hintsUsed, rating, reason }) => {
-      const { result, review } = await runGuidedEvidence({ hintsUsed });
-      expect(result).toMatchObject({ masteryApplied: true, kstApplied: true });
-      expect(review).toMatchObject({
-        rating,
-        evidence: expect.objectContaining({
-          reasons: expect.arrayContaining([reason]),
-        }),
-      });
-    },
-  );
+  ])("retains $label and applies its normative cap", async ({ hintsUsed, rating, reason }) => {
+    const { result, review } = await runGuidedEvidence({ hintsUsed });
+    expect(result).toMatchObject({ masteryApplied: true, kstApplied: true });
+    expect(review).toMatchObject({
+      rating,
+      evidence: expect.objectContaining({
+        reasons: expect.arrayContaining([reason]),
+      }),
+    });
+  });
 
   it("rejects unsupported selected graph reveal telemetry before persistence", async () => {
     let tables: Record<string, Array<Record<string, any>>> | undefined;
-    await expect(runGuidedEvidence({
-      hintsUsed: 0,
-      revealStepsSeen: 1,
-      inspectTables: (value) => { tables = value; },
-    }))
-      .rejects.toThrow("Selected graph activities do not support reveal telemetry");
+    await expect(
+      runGuidedEvidence({
+        hintsUsed: 0,
+        revealStepsSeen: 1,
+        inspectTables: (value) => {
+          tables = value;
+        },
+      }),
+    ).rejects.toThrow("Selected graph activities do not support reveal telemetry");
     expect(tables?.activity_submissions).toHaveLength(1);
   });
 
@@ -420,7 +397,9 @@ describe("IM3 assisted Guided evidence", () => {
     const attempt = runGuidedEvidence({
       hintsUsed: 0,
       ...options,
-      inspectTables: (value) => { tables = value; },
+      inspectTables: (value) => {
+        tables = value;
+      },
     });
     await expect(attempt).rejects.toThrow();
     expect(tables?.srs_cards).toEqual([]);

@@ -18,7 +18,7 @@ export type {
   SchemaAdapter,
   ValidationResult,
   ValidationError,
-} from './types';
+} from "./types";
 
 export {
   variantParameterSchema,
@@ -40,19 +40,14 @@ export {
   validateRendererCompatibility,
   validateModeSupport,
   validateGradingCompatibility,
-} from './schemas';
+} from "./schemas";
 
-export {
-  genericEvidenceToSubmissionParts,
-} from './evidence';
-export type {
-  EvidenceAdapter,
-  PracticeSubmissionPart,
-} from './evidence';
+export { genericEvidenceToSubmissionParts } from "./evidence";
+export type { EvidenceAdapter, PracticeSubmissionPart } from "./evidence";
 
 export {
   syntheticAlgebraicBlueprint,
   syntheticGraphingBlueprint,
   syntheticEnglishBlueprint,
   syntheticGeneratorOutput,
-} from './fixtures';
+} from "./fixtures";

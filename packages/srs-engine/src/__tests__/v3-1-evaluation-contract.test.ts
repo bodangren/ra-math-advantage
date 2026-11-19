@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
 import {
   EVALUATION_CONTRACT_VERSION,
@@ -11,13 +11,13 @@ import {
   replayEvaluationResultSchema,
   syntheticCohortSchema,
   syntheticLearnerSchema,
-} from '../srs/evaluation-contract';
+} from "../srs/evaluation-contract";
 
-const hashA = 'a'.repeat(64);
-const hashB = 'b'.repeat(64);
+const hashA = "a".repeat(64);
+const hashB = "b".repeat(64);
 
 const learner = {
-  learnerId: 'synthetic-learner-1',
+  learnerId: "synthetic-learner-1",
   ability: 0.65,
   forgetRateMultiplier: 1.2,
   guessProb: 0.25,
@@ -46,16 +46,16 @@ const calibrationBins = Array.from({ length: 10 }, (_, binIndex) => {
 
 const completedReplay = {
   contractVersion: EVALUATION_CONTRACT_VERSION,
-  evaluationId: 'evaluation-1',
-  candidateEngineVersion: 'srs-engine.2026-07-10',
-  candidateParamsVersion: 'fsrs.math.im3.2026-07',
-  incumbentParamsVersion: 'fsrs.math.im3.2026-06',
-  replayCorpusId: 'synthetic-review-log-replay.v1',
+  evaluationId: "evaluation-1",
+  candidateEngineVersion: "srs-engine.2026-07-10",
+  candidateParamsVersion: "fsrs.math.im3.2026-07",
+  incumbentParamsVersion: "fsrs.math.im3.2026-06",
+  replayCorpusId: "synthetic-review-log-replay.v1",
   seed: 424242,
   configHash: hashA,
   replayInputHash: hashB,
   progress: {
-    status: 'completed',
+    status: "completed",
     processedReviewCount: 1,
     totalReviewCount: 1,
     batchSize: 100,
@@ -64,12 +64,12 @@ const completedReplay = {
   },
   sourceReviews: [
     {
-      reviewId: 'review-1',
-      cardId: 'card-1',
-      paramsVersion: 'fsrs.math.im3.2026-05',
+      reviewId: "review-1",
+      cardId: "card-1",
+      paramsVersion: "fsrs.math.im3.2026-05",
       predictedRetention: 0.8,
       observedRecall: true,
-      reviewedAt: '2026-07-10T00:00:00.000Z',
+      reviewedAt: "2026-07-10T00:00:00.000Z",
     },
   ],
   invariantMetrics,
@@ -92,45 +92,47 @@ const completedReplay = {
       candidateValue: 0.05,
       incumbentValue: 0.05,
       maximumAllowed: 0.07,
-      thresholdRule: 'incumbent_plus_0.02',
+      thresholdRule: "incumbent_plus_0.02",
       passed: true,
     },
     calibrationMaxAbsoluteError: {
       candidateValue: 0,
       incumbentValue: null,
       maximumAllowed: 0.1,
-      thresholdRule: 'fixed_0.10',
+      thresholdRule: "fixed_0.10",
       passed: true,
     },
     fringeStability: {
       candidateValue: 0.2,
       incumbentValue: 0.2,
       maximumAllowed: 0.22,
-      thresholdRule: 'incumbent_times_1.10',
+      thresholdRule: "incumbent_times_1.10",
       passed: true,
     },
     allGatesPassed: true,
-    releaseRecommendation: 'eligible_for_human_approval',
+    releaseRecommendation: "eligible_for_human_approval",
     humanApprovalRequired: true,
   },
-  generatedAt: '2026-07-10T01:00:00.000Z',
+  generatedAt: "2026-07-10T01:00:00.000Z",
 } as const;
 
-describe('v3.1 synthetic evaluation contracts', () => {
-  it('bounds each learner parameter and the chance/error probability mass', () => {
+describe("v3.1 synthetic evaluation contracts", () => {
+  it("bounds each learner parameter and the chance/error probability mass", () => {
     expect(isSyntheticLearnerV31(learner)).toBe(true);
     expect(syntheticLearnerSchema.safeParse({ ...learner, ability: 1.01 }).success).toBe(false);
-    expect(syntheticLearnerSchema.safeParse({
-      ...learner,
-      guessProb: 0.7,
-      slipProb: 0.4,
-    }).success).toBe(false);
+    expect(
+      syntheticLearnerSchema.safeParse({
+        ...learner,
+        guessProb: 0.7,
+        slipProb: 0.4,
+      }).success,
+    ).toBe(false);
   });
 
-  it('defines a deterministic, bounded cohort with unique learner IDs', () => {
+  it("defines a deterministic, bounded cohort with unique learner IDs", () => {
     const cohort = {
       contractVersion: EVALUATION_CONTRACT_VERSION,
-      cohortId: 'cohort-1',
+      cohortId: "cohort-1",
       seed: 42,
       configHash: hashA,
       simulationDays: 180,
@@ -140,154 +142,191 @@ describe('v3.1 synthetic evaluation contracts', () => {
     expect(isSyntheticCohortV31(cohort)).toBe(true);
     expect(MAX_SYNTHETIC_COHORT_SIZE).toBe(10_000);
     expect(MAX_REPLAY_BATCH_SIZE).toBe(10_000);
-    expect(syntheticCohortSchema.safeParse({
-      ...cohort,
-      learners: [learner, learner],
-    }).success).toBe(false);
-    expect(syntheticCohortSchema.safeParse({ ...cohort, configHash: 'not-a-hash' }).success).toBe(false);
+    expect(
+      syntheticCohortSchema.safeParse({
+        ...cohort,
+        learners: [learner, learner],
+      }).success,
+    ).toBe(false);
+    expect(syntheticCohortSchema.safeParse({ ...cohort, configHash: "not-a-hash" }).success).toBe(
+      false,
+    );
   });
 });
 
-describe('v3.1 replay evaluation result contract', () => {
-  it('captures deterministic provenance, source-review parameter attribution, and every metric family', () => {
+describe("v3.1 replay evaluation result contract", () => {
+  it("captures deterministic provenance, source-review parameter attribution, and every metric family", () => {
     const parsed = replayEvaluationResultSchema.parse(completedReplay);
-    expect(parsed.sourceReviews[0].paramsVersion).toBe('fsrs.math.im3.2026-05');
+    expect(parsed.sourceReviews[0].paramsVersion).toBe("fsrs.math.im3.2026-05");
     expect(parsed.invariantMetrics).toHaveLength(5);
     expect(parsed.calibrationMetrics.bins).toHaveLength(10);
     expect(parsed.releaseMetrics.humanApprovalRequired).toBe(true);
     expect(isReplayEvaluationResultV31(parsed)).toBe(true);
   });
 
-  it('rejects duplicate or unattributed source reviews', () => {
-    expect(replayEvaluationResultSchema.safeParse({
-      ...completedReplay,
-      sourceReviews: [
-        completedReplay.sourceReviews[0],
-        completedReplay.sourceReviews[0],
-      ],
-    }).success).toBe(false);
-    expect(replayEvaluationResultSchema.safeParse({
-      ...completedReplay,
-      sourceReviews: [{ ...completedReplay.sourceReviews[0], paramsVersion: '' }],
-    }).success).toBe(false);
-    expect(replayEvaluationResultSchema.safeParse({
-      ...completedReplay,
-      sourceReviews: [{ ...completedReplay.sourceReviews[0], paramsVersion: ' padded ' }],
-    }).success).toBe(false);
-    expect(replayEvaluationResultSchema.safeParse({
-      ...completedReplay,
-      sourceReviews: [{ ...completedReplay.sourceReviews[0], reviewId: ' review-1' }],
-    }).success).toBe(false);
-    expect(replayEvaluationResultSchema.safeParse({
-      ...completedReplay,
-      sourceReviews: [{ ...completedReplay.sourceReviews[0], cardId: 'card-1 ' }],
-    }).success).toBe(false);
+  it("rejects duplicate or unattributed source reviews", () => {
+    expect(
+      replayEvaluationResultSchema.safeParse({
+        ...completedReplay,
+        sourceReviews: [completedReplay.sourceReviews[0], completedReplay.sourceReviews[0]],
+      }).success,
+    ).toBe(false);
+    expect(
+      replayEvaluationResultSchema.safeParse({
+        ...completedReplay,
+        sourceReviews: [{ ...completedReplay.sourceReviews[0], paramsVersion: "" }],
+      }).success,
+    ).toBe(false);
+    expect(
+      replayEvaluationResultSchema.safeParse({
+        ...completedReplay,
+        sourceReviews: [{ ...completedReplay.sourceReviews[0], paramsVersion: " padded " }],
+      }).success,
+    ).toBe(false);
+    expect(
+      replayEvaluationResultSchema.safeParse({
+        ...completedReplay,
+        sourceReviews: [{ ...completedReplay.sourceReviews[0], reviewId: " review-1" }],
+      }).success,
+    ).toBe(false);
+    expect(
+      replayEvaluationResultSchema.safeParse({
+        ...completedReplay,
+        sourceReviews: [{ ...completedReplay.sourceReviews[0], cardId: "card-1 " }],
+      }).success,
+    ).toBe(false);
   });
 
-  it('requires explicit review, fringe, and invariant evidence for eligibility', () => {
-    expect(replayEvaluationResultSchema.safeParse({
-      ...completedReplay,
-      recommendationMetrics: {
-        ...completedReplay.recommendationMetrics,
-        fringeStudentWeekCount: 0,
-      },
-    }).success).toBe(false);
-    expect(replayEvaluationResultSchema.safeParse({
-      ...completedReplay,
-      invariantMetrics: invariantMetrics.map((metric, index) => (
-        index === 0 ? { ...metric, checkedCount: 0 } : metric
-      )),
-    }).success).toBe(false);
-  });
-
-  it('binds cumulative calibration samples to processed-review accounting', () => {
-    expect(replayEvaluationResultSchema.safeParse({
-      ...completedReplay,
-      progress: {
-        ...completedReplay.progress,
-        processedReviewCount: 2,
-        totalReviewCount: 2,
-      },
-    }).success).toBe(false);
-    expect(replayEvaluationResultSchema.safeParse({
-      ...completedReplay,
-      sourceReviews: [],
-    }).success).toBe(false);
-  });
-
-  it('requires an auditable resume cursor until the bounded replay is complete', () => {
-    expect(replayEvaluationResultSchema.safeParse({
-      ...completedReplay,
-      progress: {
-        ...completedReplay.progress,
-        status: 'in_progress',
-        processedReviewCount: 1,
-        totalReviewCount: 2,
-        nextCursor: 'opaque-cursor-2',
-      },
-      releaseMetrics: {
-        ...completedReplay.releaseMetrics,
-        allGatesPassed: false,
-        releaseRecommendation: 'pending',
-      },
-    }).success).toBe(true);
-    expect(replayEvaluationResultSchema.safeParse({
-      ...completedReplay,
-      progress: { ...completedReplay.progress, nextCursor: 'unexpected' },
-    }).success).toBe(false);
-  });
-
-  it('rejects inconsistent invariant, calibration, and release summaries', () => {
-    expect(replayEvaluationResultSchema.safeParse({
-      ...completedReplay,
-      invariantMetrics: invariantMetrics.map((metric, index) => (
-        index === 0 ? { ...metric, passed: true, violationCount: 1 } : metric
-      )),
-    }).success).toBe(false);
-    expect(replayEvaluationResultSchema.safeParse({
-      ...completedReplay,
-      calibrationMetrics: { ...completedReplay.calibrationMetrics, maxAbsoluteError: 0.2 },
-    }).success).toBe(false);
-    expect(replayEvaluationResultSchema.safeParse({
-      ...completedReplay,
-      releaseMetrics: {
-        ...completedReplay.releaseMetrics,
-        retentionPredictionMae: {
-          candidateValue: 0.08,
-          incumbentValue: 0.05,
-          maximumAllowed: 0.07,
-          thresholdRule: 'incumbent_plus_0.02',
-          passed: true,
+  it("requires explicit review, fringe, and invariant evidence for eligibility", () => {
+    expect(
+      replayEvaluationResultSchema.safeParse({
+        ...completedReplay,
+        recommendationMetrics: {
+          ...completedReplay.recommendationMetrics,
+          fringeStudentWeekCount: 0,
         },
-      },
-    }).success).toBe(false);
-    expect(replayEvaluationResultSchema.safeParse({
-      ...completedReplay,
-      releaseMetrics: {
-        ...completedReplay.releaseMetrics,
-        fringeStability: {
-          ...completedReplay.releaseMetrics.fringeStability,
-          maximumAllowed: 0.3,
-        },
-      },
-    }).success).toBe(false);
+      }).success,
+    ).toBe(false);
+    expect(
+      replayEvaluationResultSchema.safeParse({
+        ...completedReplay,
+        invariantMetrics: invariantMetrics.map((metric, index) =>
+          index === 0 ? { ...metric, checkedCount: 0 } : metric,
+        ),
+      }).success,
+    ).toBe(false);
   });
 
-  it('rejects auto-release claims and undeclared schema fields', () => {
-    expect(replayEvaluationResultSchema.safeParse({
-      ...completedReplay,
-      releaseMetrics: {
-        ...completedReplay.releaseMetrics,
-        humanApprovalRequired: false,
-      },
-    }).success).toBe(false);
-    expect(replayEvaluationResultSchema.safeParse({
-      ...completedReplay,
-      productionReleaseApplied: true,
-    }).success).toBe(false);
-    expect(replayEvaluationResultSchema.safeParse({
-      ...completedReplay,
-      candidateParamsVersion: completedReplay.incumbentParamsVersion,
-    }).success).toBe(false);
+  it("binds cumulative calibration samples to processed-review accounting", () => {
+    expect(
+      replayEvaluationResultSchema.safeParse({
+        ...completedReplay,
+        progress: {
+          ...completedReplay.progress,
+          processedReviewCount: 2,
+          totalReviewCount: 2,
+        },
+      }).success,
+    ).toBe(false);
+    expect(
+      replayEvaluationResultSchema.safeParse({
+        ...completedReplay,
+        sourceReviews: [],
+      }).success,
+    ).toBe(false);
+  });
+
+  it("requires an auditable resume cursor until the bounded replay is complete", () => {
+    expect(
+      replayEvaluationResultSchema.safeParse({
+        ...completedReplay,
+        progress: {
+          ...completedReplay.progress,
+          status: "in_progress",
+          processedReviewCount: 1,
+          totalReviewCount: 2,
+          nextCursor: "opaque-cursor-2",
+        },
+        releaseMetrics: {
+          ...completedReplay.releaseMetrics,
+          allGatesPassed: false,
+          releaseRecommendation: "pending",
+        },
+      }).success,
+    ).toBe(true);
+    expect(
+      replayEvaluationResultSchema.safeParse({
+        ...completedReplay,
+        progress: { ...completedReplay.progress, nextCursor: "unexpected" },
+      }).success,
+    ).toBe(false);
+  });
+
+  it("rejects inconsistent invariant, calibration, and release summaries", () => {
+    expect(
+      replayEvaluationResultSchema.safeParse({
+        ...completedReplay,
+        invariantMetrics: invariantMetrics.map((metric, index) =>
+          index === 0 ? { ...metric, passed: true, violationCount: 1 } : metric,
+        ),
+      }).success,
+    ).toBe(false);
+    expect(
+      replayEvaluationResultSchema.safeParse({
+        ...completedReplay,
+        calibrationMetrics: { ...completedReplay.calibrationMetrics, maxAbsoluteError: 0.2 },
+      }).success,
+    ).toBe(false);
+    expect(
+      replayEvaluationResultSchema.safeParse({
+        ...completedReplay,
+        releaseMetrics: {
+          ...completedReplay.releaseMetrics,
+          retentionPredictionMae: {
+            candidateValue: 0.08,
+            incumbentValue: 0.05,
+            maximumAllowed: 0.07,
+            thresholdRule: "incumbent_plus_0.02",
+            passed: true,
+          },
+        },
+      }).success,
+    ).toBe(false);
+    expect(
+      replayEvaluationResultSchema.safeParse({
+        ...completedReplay,
+        releaseMetrics: {
+          ...completedReplay.releaseMetrics,
+          fringeStability: {
+            ...completedReplay.releaseMetrics.fringeStability,
+            maximumAllowed: 0.3,
+          },
+        },
+      }).success,
+    ).toBe(false);
+  });
+
+  it("rejects auto-release claims and undeclared schema fields", () => {
+    expect(
+      replayEvaluationResultSchema.safeParse({
+        ...completedReplay,
+        releaseMetrics: {
+          ...completedReplay.releaseMetrics,
+          humanApprovalRequired: false,
+        },
+      }).success,
+    ).toBe(false);
+    expect(
+      replayEvaluationResultSchema.safeParse({
+        ...completedReplay,
+        productionReleaseApplied: true,
+      }).success,
+    ).toBe(false);
+    expect(
+      replayEvaluationResultSchema.safeParse({
+        ...completedReplay,
+        candidateParamsVersion: completedReplay.incumbentParamsVersion,
+      }).success,
+    ).toBe(false);
   });
 });

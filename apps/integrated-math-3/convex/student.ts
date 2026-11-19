@@ -1,9 +1,5 @@
-import { normalizeSeedProps } from '../lib/activities/seed-props';
-import {
-  internalMutation,
-  internalQuery,
-  type QueryCtx,
-} from "./_generated/server";
+import { normalizeSeedProps } from "../lib/activities/seed-props";
+import { internalMutation, internalQuery, type QueryCtx } from "./_generated/server";
 import { v, ConvexError } from "convex/values";
 import { Id } from "./_generated/dataModel";
 import { coerceNullableString } from "./dashboardHelpers";
@@ -74,9 +70,9 @@ export const getDashboardData = internalQuery({
  * @returns {Promise<unknown>} The wrapper result.
  */
 export const getLessonProgress = internalQuery({
-  args: { 
+  args: {
     userId: v.id("profiles"),
-    lessonIdentifier: v.string() // slug or id
+    lessonIdentifier: v.string(), // slug or id
   },
   handler: async (ctx, args) => {
     // 1. Find lesson by slug or id
@@ -104,7 +100,13 @@ export const getLessonProgress = internalQuery({
       .collect();
 
     const latestVersion = resolveLatestPublishedLessonVersion(versions);
-    if (!latestVersion) return { lessonTitle: lesson.title, unitNumber: lesson.unitNumber, lessonNumber: lesson.orderIndex, phases: [] };
+    if (!latestVersion)
+      return {
+        lessonTitle: lesson.title,
+        unitNumber: lesson.unitNumber,
+        lessonNumber: lesson.orderIndex,
+        phases: [],
+      };
 
     // 3. Get phases for this version
     const phases = await ctx.db
@@ -119,96 +121,105 @@ export const getLessonProgress = internalQuery({
       .collect();
 
     // 5. Fetch sections for each phase (batched via Promise.all)
-    const phaseIds = phases.map(p => p._id);
+    const phaseIds = phases.map((p) => p._id);
     const allSections = await Promise.all(
-      phaseIds.map(phaseId =>
+      phaseIds.map((phaseId) =>
         ctx.db
           .query("phase_sections")
           .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phaseId))
-          .collect()
-      )
+          .collect(),
+      ),
     );
-    const sectionsByPhaseId = new Map<string, { id: string; sequenceOrder: number; sectionType: string; content: unknown }[]>();
+    const sectionsByPhaseId = new Map<
+      string,
+      { id: string; sequenceOrder: number; sectionType: string; content: unknown }[]
+    >();
     for (let i = 0; i < phaseIds.length; i++) {
       const phaseId = phaseIds[i];
       const phase = phases[i];
       const orderedSections = allSections[i].sort((a, b) => a.sequenceOrder - b.sequenceOrder);
-      const sections = await Promise.all(orderedSections.map(async (section) => {
-        const originalSection = {
-          id: section._id,
-          sequenceOrder: section.sequenceOrder,
-          sectionType: section.sectionType,
-          content: section.content,
-        };
-        const isSelectedSourceSection = lesson.slug === IM3_SELECTED_LESSON_SLUG
-          && phase.phaseNumber === IM3_SELECTED_PHASE_NUMBER
-          && section.sectionType === "activity"
-          && section.sequenceOrder === IM3_SELECTED_SECTION_SEQUENCE;
-        const sectionContent = typeof section.content === "object"
-          && section.content !== null
-          && !Array.isArray(section.content)
-          ? section.content as Record<string, unknown>
-          : null;
-        const hasSelectedClaim = isSelectedSourceSection
-          || sectionContent?.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
-          || sectionContent?.masteryNodeId === IM3_PILOT_NODE;
-        const unavailableSelectedSection = () => ({
-          ...originalSection,
-          content: {
-            activityId: typeof (section.content as { activityId?: unknown })?.activityId === "string"
-              ? (section.content as { activityId: string }).activityId
-              : "",
-            componentKey: "unavailable",
-          },
-        });
-        if (
-          section.sectionType !== "activity"
-          || typeof section.content !== "object"
-          || section.content === null
-          || Array.isArray(section.content)
-        ) {
-          return originalSection;
-        }
+      const sections = await Promise.all(
+        orderedSections.map(async (section) => {
+          const originalSection = {
+            id: section._id,
+            sequenceOrder: section.sequenceOrder,
+            sectionType: section.sectionType,
+            content: section.content,
+          };
+          const isSelectedSourceSection =
+            lesson.slug === IM3_SELECTED_LESSON_SLUG &&
+            phase.phaseNumber === IM3_SELECTED_PHASE_NUMBER &&
+            section.sectionType === "activity" &&
+            section.sequenceOrder === IM3_SELECTED_SECTION_SEQUENCE;
+          const sectionContent =
+            typeof section.content === "object" &&
+            section.content !== null &&
+            !Array.isArray(section.content)
+              ? (section.content as Record<string, unknown>)
+              : null;
+          const hasSelectedClaim =
+            isSelectedSourceSection ||
+            sectionContent?.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID ||
+            sectionContent?.masteryNodeId === IM3_PILOT_NODE;
+          const unavailableSelectedSection = () => ({
+            ...originalSection,
+            content: {
+              activityId:
+                typeof (section.content as { activityId?: unknown })?.activityId === "string"
+                  ? (section.content as { activityId: string }).activityId
+                  : "",
+              componentKey: "unavailable",
+            },
+          });
+          if (
+            section.sectionType !== "activity" ||
+            typeof section.content !== "object" ||
+            section.content === null ||
+            Array.isArray(section.content)
+          ) {
+            return originalSection;
+          }
 
-        const activityId = (section.content as { activityId?: unknown }).activityId;
-        if (typeof activityId !== "string") {
-          return hasSelectedClaim ? unavailableSelectedSection() : originalSection;
-        }
-        const normalizedActivityId = ctx.db.normalizeId("activities", activityId);
-        if (!normalizedActivityId) {
-          return hasSelectedClaim ? unavailableSelectedSection() : originalSection;
-        }
-        const activity = await ctx.db.get(normalizedActivityId);
-        if (!activity) {
-          return hasSelectedClaim ? unavailableSelectedSection() : originalSection;
-        }
-        const isSelectedPhysicalActivity = activity.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID;
-        if ((hasSelectedClaim || isSelectedPhysicalActivity) && (
-          !isIm3GraphPilotPublished()
-          || !isSelectedWorkedActivity(activity)
-        )) return unavailableSelectedSection();
+          const activityId = (section.content as { activityId?: unknown }).activityId;
+          if (typeof activityId !== "string") {
+            return hasSelectedClaim ? unavailableSelectedSection() : originalSection;
+          }
+          const normalizedActivityId = ctx.db.normalizeId("activities", activityId);
+          if (!normalizedActivityId) {
+            return hasSelectedClaim ? unavailableSelectedSection() : originalSection;
+          }
+          const activity = await ctx.db.get(normalizedActivityId);
+          if (!activity) {
+            return hasSelectedClaim ? unavailableSelectedSection() : originalSection;
+          }
+          const isSelectedPhysicalActivity =
+            activity.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID;
+          if (
+            (hasSelectedClaim || isSelectedPhysicalActivity) &&
+            (!isIm3GraphPilotPublished() || !isSelectedWorkedActivity(activity))
+          )
+            return unavailableSelectedSection();
 
-        return {
-          ...originalSection,
-          content: {
-            ...(section.content as Record<string, unknown>),
-            ...(isSelectedSourceSection ? { componentKey: activity.componentKey } : {}),
-            activityProps: normalizeSeedProps(activity.componentKey, activity.props),
-            ...(activity.stableActivityId === undefined
-              ? {}
-              : { stableActivityId: activity.stableActivityId }),
-            ...(activity.masteryNodeId === undefined
-              ? {}
-              : { masteryNodeId: activity.masteryNodeId }),
-            ...(activity.learningEvidenceMode === undefined
-              ? {}
-              : { learningEvidenceMode: activity.learningEvidenceMode }),
-            ...(activity.srsEligible === undefined
-              ? {}
-              : { srsEligible: activity.srsEligible }),
-          },
-        };
-      }));
+          return {
+            ...originalSection,
+            content: {
+              ...(section.content as Record<string, unknown>),
+              ...(isSelectedSourceSection ? { componentKey: activity.componentKey } : {}),
+              activityProps: normalizeSeedProps(activity.componentKey, activity.props),
+              ...(activity.stableActivityId === undefined
+                ? {}
+                : { stableActivityId: activity.stableActivityId }),
+              ...(activity.masteryNodeId === undefined
+                ? {}
+                : { masteryNodeId: activity.masteryNodeId }),
+              ...(activity.learningEvidenceMode === undefined
+                ? {}
+                : { learningEvidenceMode: activity.learningEvidenceMode }),
+              ...(activity.srsEligible === undefined ? {} : { srsEligible: activity.srsEligible }),
+            },
+          };
+        }),
+      );
       sectionsByPhaseId.set(phaseId, sections);
     }
 
@@ -218,12 +229,12 @@ export const getLessonProgress = internalQuery({
       lessonTitle: lesson.title,
       unitNumber: lesson.unitNumber,
       lessonNumber: lesson.orderIndex,
-      phases: progressRows.map(p => ({
+      phases: progressRows.map((p) => ({
         ...p,
         sections: sectionsByPhaseId.get(p.phaseId) ?? [],
       })),
     };
-  }
+  },
 });
 
 /**
@@ -267,23 +278,23 @@ export const completePhase = internalMutation({
     const phase = await ctx.db
       .query("phase_versions")
       .withIndex("by_lesson_version_and_phase", (q) =>
-        q.eq("lessonVersionId", latestVersion._id).eq("phaseNumber", args.phaseNumber)
+        q.eq("lessonVersionId", latestVersion._id).eq("phaseNumber", args.phaseNumber),
       )
       .unique();
     if (!phase) throw new ConvexError("Phase not found");
 
     const existingByKey = await ctx.db
       .query("student_progress")
-      .withIndex("by_user_and_idempotency_key", (q) => (
-        q.eq("userId", args.userId).eq("idempotencyKey", args.idempotencyKey)
-      ))
+      .withIndex("by_user_and_idempotency_key", (q) =>
+        q.eq("userId", args.userId).eq("idempotencyKey", args.idempotencyKey),
+      )
       .unique();
 
     if (existingByKey) {
       if (
-        existingByKey.status === "completed"
-        && existingByKey.phaseId === phase._id
-        && existingByKey.timeSpentSeconds === args.timeSpent
+        existingByKey.status === "completed" &&
+        existingByKey.phaseId === phase._id &&
+        existingByKey.timeSpentSeconds === args.timeSpent
       ) {
         return { success: true, alreadyCompleted: true };
       }
@@ -293,9 +304,7 @@ export const completePhase = internalMutation({
     // Preserve the ordinary completion behavior for every phase.
     const existing = await ctx.db
       .query("student_progress")
-      .withIndex("by_user_and_phase", (q) => (
-        q.eq("userId", args.userId).eq("phaseId", phase._id)
-      ))
+      .withIndex("by_user_and_phase", (q) => q.eq("userId", args.userId).eq("phaseId", phase._id))
       .unique();
 
     if (existing?.status === "completed") {
@@ -305,28 +314,31 @@ export const completePhase = internalMutation({
       return { success: true, alreadyCompleted: true };
     }
 
-    const isSelectedWorkedPhase = lesson.slug === IM3_SELECTED_LESSON_SLUG
-      && phase.phaseNumber === IM3_SELECTED_PHASE_NUMBER;
+    const isSelectedWorkedPhase =
+      lesson.slug === IM3_SELECTED_LESSON_SLUG && phase.phaseNumber === IM3_SELECTED_PHASE_NUMBER;
     if (isSelectedWorkedPhase) {
-      const sections = await ctx.db.query("phase_sections")
+      const sections = await ctx.db
+        .query("phase_sections")
         .withIndex("by_phase_version", (query) => query.eq("phaseVersionId", phase._id))
         .collect();
-      const activities = await Promise.all(sections
-        .filter((section) => section.sectionType === "activity")
-        .map(async (section) => {
-          const activityId = typeof section.content === "object"
-            && section.content !== null
-            && !Array.isArray(section.content)
-            ? (section.content as { activityId?: unknown }).activityId
-            : null;
-          const normalizedActivityId = typeof activityId === "string"
-            ? ctx.db.normalizeId("activities", activityId)
-            : null;
-          return normalizedActivityId ? ctx.db.get(normalizedActivityId) : null;
-        }));
-      const selectedActivities = activities.filter((activity) => (
-        activity && isSelectedWorkedActivity(activity)
-      ));
+      const activities = await Promise.all(
+        sections
+          .filter((section) => section.sectionType === "activity")
+          .map(async (section) => {
+            const activityId =
+              typeof section.content === "object" &&
+              section.content !== null &&
+              !Array.isArray(section.content)
+                ? (section.content as { activityId?: unknown }).activityId
+                : null;
+            const normalizedActivityId =
+              typeof activityId === "string" ? ctx.db.normalizeId("activities", activityId) : null;
+            return normalizedActivityId ? ctx.db.get(normalizedActivityId) : null;
+          }),
+      );
+      const selectedActivities = activities.filter(
+        (activity) => activity && isSelectedWorkedActivity(activity),
+      );
       const selectedActivity = selectedActivities[0];
       if (!selectedActivity || selectedActivities.length !== 1) {
         throw new ConvexError("Selected Worked activity is not available");
@@ -355,7 +367,7 @@ export const completePhase = internalMutation({
         userId: args.userId,
         phaseId: phase._id,
         status: "completed",
-        startedAt: now - (args.timeSpent * 1000),
+        startedAt: now - args.timeSpent * 1000,
         completedAt: now,
         timeSpentSeconds: args.timeSpent,
         idempotencyKey: args.idempotencyKey,
@@ -375,7 +387,7 @@ export const completePhase = internalMutation({
         const existingComp = await ctx.db
           .query("student_competency")
           .withIndex("by_student_and_standard", (q) =>
-            q.eq("studentId", args.userId).eq("standardId", standard._id)
+            q.eq("studentId", args.userId).eq("standardId", standard._id),
           )
           .unique();
 
@@ -398,9 +410,9 @@ export const completePhase = internalMutation({
 
     return {
       success: true,
-      nextPhaseUnlocked: true // Simplified for now
+      nextPhaseUnlocked: true, // Simplified for now
     };
-  }
+  },
 });
 
 /**
@@ -442,7 +454,7 @@ export const skipPhase = internalMutation({
     const phase = await ctx.db
       .query("phase_versions")
       .withIndex("by_lesson_version_and_phase", (q) =>
-        q.eq("lessonVersionId", latestVersion._id).eq("phaseNumber", args.phaseNumber)
+        q.eq("lessonVersionId", latestVersion._id).eq("phaseNumber", args.phaseNumber),
       )
       .unique();
     if (!phase) throw new ConvexError("Phase not found");
@@ -450,9 +462,7 @@ export const skipPhase = internalMutation({
     // 4. Check idempotency
     const existing = await ctx.db
       .query("student_progress")
-      .withIndex("by_user_and_phase", (q) => 
-        q.eq("userId", args.userId).eq("phaseId", phase._id)
-      )
+      .withIndex("by_user_and_phase", (q) => q.eq("userId", args.userId).eq("phaseId", phase._id))
       .unique();
 
     if (existing?.status === "skipped") {
@@ -482,9 +492,9 @@ export const skipPhase = internalMutation({
 
     return {
       success: true,
-      nextPhaseUnlocked: true
+      nextPhaseUnlocked: true,
     };
-  }
+  },
 });
 
 interface ChatbotPhase {
@@ -542,14 +552,14 @@ export const getLessonForChatbot = internalQuery({
     phases.sort((a, b) => a.phaseNumber - b.phaseNumber);
 
     const phasesWithSections: ChatbotPhase[] = [];
-    const phaseIds = phases.map(p => p._id);
+    const phaseIds = phases.map((p) => p._id);
     const allSections = await Promise.all(
-      phaseIds.map(phaseId =>
+      phaseIds.map((phaseId) =>
         ctx.db
           .query("phase_sections")
           .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phaseId))
-          .collect()
-      )
+          .collect(),
+      ),
     );
     phases.forEach((phase, i) => {
       const sections = allSections[i];
@@ -557,8 +567,8 @@ export const getLessonForChatbot = internalQuery({
 
       phasesWithSections.push({
         phaseNumber: phase.phaseNumber,
-        title: coerceNullableString(phase.title) ?? '',
-        sections: sections.map(s => ({
+        title: coerceNullableString(phase.title) ?? "",
+        sections: sections.map((s) => ({
           sectionType: s.sectionType,
           content: s.content as { markdown?: string },
         })),
@@ -570,7 +580,7 @@ export const getLessonForChatbot = internalQuery({
     return {
       lessonTitle: lesson.title,
       unitTitle,
-      learningObjectives: (lesson.learningObjectives ?? []).map(s => s.trim()).filter(Boolean),
+      learningObjectives: (lesson.learningObjectives ?? []).map((s) => s.trim()).filter(Boolean),
       phases: phasesWithSections,
     };
   },
@@ -620,8 +630,8 @@ export const isStudentEnrolledInClassForLesson = internalQuery({
       .withIndex("by_lesson", (q) => q.eq("lessonId", args.lessonId))
       .collect();
 
-    const enrolledClassHasLesson = classLessonsForLesson.some(
-      (cl) => activeClassIds.has(cl.classId),
+    const enrolledClassHasLesson = classLessonsForLesson.some((cl) =>
+      activeClassIds.has(cl.classId),
     );
     if (enrolledClassHasLesson) {
       return true;
@@ -699,9 +709,7 @@ export async function getStudentVisualizationHandler(
 
   const misconceptions = await ctx.db
     .query("student_misconception_state")
-    .withIndex("by_student_status", (q) =>
-      q.eq("studentId", args.userId).eq("status", "active"),
-    )
+    .withIndex("by_student_status", (q) => q.eq("studentId", args.userId).eq("status", "active"))
     .collect();
 
   const activeMisconceptionSlugs = misconceptions.map((m) => m.misconceptionId);

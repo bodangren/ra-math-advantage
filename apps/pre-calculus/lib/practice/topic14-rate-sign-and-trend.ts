@@ -1,20 +1,20 @@
-import { generateTopic14RateSignAndTrendOutput } from '@math-platform/math-content/knowledge-space';
+import { generateTopic14RateSignAndTrendOutput } from "@math-platform/math-content/knowledge-space";
 
 export interface Topic14RateSignAndTrendAnswers {
   readonly rateSign: string;
   readonly rateTrend: string;
 }
 
-const PART_IDS = ['rateSign', 'rateTrend'] as const;
+const PART_IDS = ["rateSign", "rateTrend"] as const;
 
 function isCanonicalAnswer(
   partId: (typeof PART_IDS)[number],
   rawAnswer: unknown,
 ): rawAnswer is string {
-  if (typeof rawAnswer !== 'string') return false;
-  return partId === 'rateSign'
-    ? rawAnswer === 'positive' || rawAnswer === 'negative'
-    : rawAnswer === 'increasing' || rawAnswer === 'decreasing';
+  if (typeof rawAnswer !== "string") return false;
+  return partId === "rateSign"
+    ? rawAnswer === "positive" || rawAnswer === "negative"
+    : rawAnswer === "increasing" || rawAnswer === "decreasing";
 }
 
 export function gradeTopic14RateSignAndTrend(
@@ -27,8 +27,7 @@ export function gradeTopic14RateSignAndTrend(
   >;
   const parts = PART_IDS.map((partId) => {
     const rawAnswer = answers[partId];
-    const isCorrect = isCanonicalAnswer(partId, rawAnswer)
-      && rawAnswer === expected[partId];
+    const isCorrect = isCanonicalAnswer(partId, rawAnswer) && rawAnswer === expected[partId];
     return {
       partId,
       rawAnswer,

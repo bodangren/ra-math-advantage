@@ -1,11 +1,11 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 import {
   generateLinearEquation,
   generateSystemOfEquations,
   generateQuadraticFactoring,
   generateQuadraticFormula,
-} from '../index';
-import { multiplyPoly } from '../utils/polynomial';
+} from "../index";
+import { multiplyPoly } from "../utils/polynomial";
 
 /**
  * T17 QA harness — runs every new algebra generator across 50 seeds and
@@ -14,7 +14,7 @@ import { multiplyPoly } from '../utils/polynomial';
  */
 
 function parseFactoredForm(form: string): { leading: number; factorPolys: number[][] } {
-  const trimmed = form.replace(/\s/g, '');
+  const trimmed = form.replace(/\s/g, "");
   let leading = 1;
   let rest = trimmed;
   const leadingMatch = rest.match(/^([+-]?\d+)(?=\()/);
@@ -23,13 +23,13 @@ function parseFactoredForm(form: string): { leading: number; factorPolys: number
     rest = rest.slice(leadingMatch[1].length);
   }
   function parseBinomial(inner: string): { m: number; n: number } {
-    if (!inner.includes('x')) return { m: 0, n: Number(inner) };
-    const [coeffPart, tail] = inner.split('x');
+    if (!inner.includes("x")) return { m: 0, n: Number(inner) };
+    const [coeffPart, tail] = inner.split("x");
     let m: number;
-    if (coeffPart === '' || coeffPart === '+') m = 1;
-    else if (coeffPart === '-') m = -1;
+    if (coeffPart === "" || coeffPart === "+") m = 1;
+    else if (coeffPart === "-") m = -1;
     else m = Number(coeffPart);
-    const n = tail === '' ? 0 : Number(tail);
+    const n = tail === "" ? 0 : Number(tail);
     return { m, n };
   }
   const factorRegex = /\(([+-]?\d*x?[+-]?\d*)\)/g;
@@ -60,8 +60,8 @@ function expandFactored(form: string): number[] {
   return normalizePoly(poly);
 }
 
-describe('T17 QA harness — 50-seed sweep of every new algebra generator', () => {
-  it('linear-equation-solver: answer satisfies ax+b=c across 50 seeds', () => {
+describe("T17 QA harness — 50-seed sweep of every new algebra generator", () => {
+  it("linear-equation-solver: answer satisfies ax+b=c across 50 seeds", () => {
     for (let seed = 1; seed <= 50; seed++) {
       const r = generateLinearEquation({ seed });
       expect(Number.isFinite(r.a)).toBe(true);
@@ -73,7 +73,7 @@ describe('T17 QA harness — 50-seed sweep of every new algebra generator', () =
     }
   });
 
-  it('system-of-equations-solver: answer satisfies both equations across 50 seeds', () => {
+  it("system-of-equations-solver: answer satisfies both equations across 50 seeds", () => {
     for (let seed = 1; seed <= 50; seed++) {
       const r = generateSystemOfEquations({ seed });
       const { x, y } = r.answer;
@@ -85,7 +85,7 @@ describe('T17 QA harness — 50-seed sweep of every new algebra generator', () =
     }
   });
 
-  it('quadratic-factoring: factoredForm expands to ax^2+bx+c across 50 seeds', () => {
+  it("quadratic-factoring: factoredForm expands to ax^2+bx+c across 50 seeds", () => {
     for (let seed = 1; seed <= 50; seed++) {
       const r = generateQuadraticFactoring({ seed });
       const expanded = expandFactored(r.factoredForm);
@@ -98,13 +98,13 @@ describe('T17 QA harness — 50-seed sweep of every new algebra generator', () =
     }
   });
 
-  it('quadratic-formula: discriminant matches b^2-4ac and real roots satisfy ax^2+bx+c across 50 seeds', () => {
+  it("quadratic-formula: discriminant matches b^2-4ac and real roots satisfy ax^2+bx+c across 50 seeds", () => {
     for (let seed = 1; seed <= 50; seed++) {
       const r = generateQuadraticFormula({ seed });
       expect(r.discriminant).toBe(r.b * r.b - 4 * r.a * r.c);
       expect(r.a).not.toBe(0);
       for (const root of r.roots) {
-        if (root.type === 'real' && typeof root.value === 'number') {
+        if (root.type === "real" && typeof root.value === "number") {
           expect(r.a * root.value * root.value + r.b * root.value + r.c).toBeCloseTo(0, 9);
         }
       }

@@ -55,21 +55,18 @@
 // §6 handoff). Until then, the file runs in the aggregate and stays
 // red until its Green sibling lands.
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 
-import {
-  verifyGenerator,
-  type GeneratorLike,
-} from '@math-platform/practice-core/generator-qa';
+import { verifyGenerator, type GeneratorLike } from "@math-platform/practice-core/generator-qa";
 
 // Intentional: non-existent module → Red.
-import { IM1_GENERATORS, type IM1GeneratorEntry } from '../generators';
+import { IM1_GENERATORS, type IM1GeneratorEntry } from "../generators";
 
-import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
+import type { GeneratorOutput } from "@math-platform/knowledge-space-practice";
 
 const SKILL_ID =
-  'math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express' as const;
-const RENDERER_KEY = 'step-by-step-solver' as const;
+  "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express" as const;
+const RENDERER_KEY = "step-by-step-solver" as const;
 
 // Adapter aligned with packages/math-content/src/knowledge-space/generators/
 // registry-sweep.ts:adaptToGeneratorLike — same direction (math-content
@@ -88,9 +85,7 @@ function adapt(entry: IM1GeneratorEntry): GeneratorLike {
         nodeId: input.nodeId,
         seed: input.seed,
         difficulty: input.difficulty,
-        learnerContext: input.learnerContext as
-          | Record<string, unknown>
-          | undefined,
+        learnerContext: input.learnerContext as Record<string, unknown> | undefined,
       }) as GeneratorOutput;
       return {
         problem: out.prompt,
@@ -115,53 +110,49 @@ function findEntryForSkill(): IM1GeneratorEntry {
 }
 
 describe(`IM1 generator — ${SKILL_ID} (Phase 2 Task 2)`, () => {
-  it('is registered in IM1_GENERATORS with the correct nodeId', () => {
+  it("is registered in IM1_GENERATORS with the correct nodeId", () => {
     const entry = findEntryForSkill();
     expect(entry.nodeIds).toContain(SKILL_ID);
   });
 
-  it('skillIdKey matches the file-level ownership convention', () => {
+  it("skillIdKey matches the file-level ownership convention", () => {
     const entry = findEntryForSkill();
     expect(entry.skillIdKey).toMatch(/^1[._-]1[._-]/);
   });
 
-  it('passes verifyGenerator with numSeeds = 50 (FR2 determinism + FR3/4/5)', () => {
+  it("passes verifyGenerator with numSeeds = 50 (FR2 determinism + FR3/4/5)", () => {
     const entry = findEntryForSkill();
     const report = verifyGenerator(adapt(entry), { numSeeds: 50 });
-    expect(report.verdict).toBe('pass');
+    expect(report.verdict).toBe("pass");
     expect(report.errors).toEqual([]);
     expect(report.summary.failedChecks).toBe(0);
   });
 
-  it('produces deterministic output for (nodeId, seed, difficulty) byte-identity', () => {
+  it("produces deterministic output for (nodeId, seed, difficulty) byte-identity", () => {
     // Direct re-execution of the production generator without the
     // adapter — guards against the adapter accidentally hiding non-
     // determinism in the wrapped output fields.
     const entry = findEntryForSkill();
     for (let seed = 0; seed < 25; seed += 1) {
-      const a = JSON.stringify(
-        entry.generate({ nodeId: SKILL_ID, seed, difficulty: 0.5 }),
-      );
-      const b = JSON.stringify(
-        entry.generate({ nodeId: SKILL_ID, seed, difficulty: 0.5 }),
-      );
+      const a = JSON.stringify(entry.generate({ nodeId: SKILL_ID, seed, difficulty: 0.5 }));
+      const b = JSON.stringify(entry.generate({ nodeId: SKILL_ID, seed, difficulty: 0.5 }));
       expect(a).toBe(b);
     }
   });
 
-  it('every seed yields the documented renderer key componentry shape', () => {
+  it("every seed yields the documented renderer key componentry shape", () => {
     // The gap queue assigns this skill to `${RENDERER_KEY}`. Per the
     // practice contract, the generator's output must shape correctly
     // for that renderer (prompt + expectedAnswer + solutionSteps).
     const entry = findEntryForSkill();
-    expect(RENDERER_KEY).toBe('step-by-step-solver');
+    expect(RENDERER_KEY).toBe("step-by-step-solver");
     for (let seed = 0; seed < 10; seed += 1) {
       const out = entry.generate({
         nodeId: SKILL_ID,
         seed,
         difficulty: 0.5,
       }) as GeneratorOutput;
-      expect(typeof out.prompt).toBe('string');
+      expect(typeof out.prompt).toBe("string");
       expect(out.prompt.length).toBeGreaterThan(0);
       expect(out.expectedAnswer).toBeDefined();
       expect(Array.isArray(out.solutionSteps)).toBe(true);
@@ -169,18 +160,18 @@ describe(`IM1 generator — ${SKILL_ID} (Phase 2 Task 2)`, () => {
     }
   });
 
-  it('grades only the translated expression and preserves the value for objective 1b', () => {
+  it("grades only the translated expression and preserves the value for objective 1b", () => {
     const entry = findEntryForSkill();
     for (let seed = 0; seed < 50; seed += 1) {
       const out = entry.generate({ nodeId: SKILL_ID, seed, difficulty: 0.5 });
       const expression = out.data.expression as string;
       const acceptedExpressions = out.data.acceptedExpressions as string[];
 
-      expect(Object.keys(out.expectedAnswer)).toEqual(['expression']);
+      expect(Object.keys(out.expectedAnswer)).toEqual(["expression"]);
       expect(out.expectedAnswer.expression).toBe(expression);
-      expect(Object.keys(out.gradingMetadata.partAnswers)).toEqual(['expression']);
-      expect(out.gradingMetadata.partGradingRules).toEqual({ expression: 'custom' });
-      expect(typeof out.data.value).toBe('number');
+      expect(Object.keys(out.gradingMetadata.partAnswers)).toEqual(["expression"]);
+      expect(out.gradingMetadata.partGradingRules).toEqual({ expression: "custom" });
+      expect(typeof out.data.value).toBe("number");
       expect(acceptedExpressions).toContain(expression);
       expect(acceptedExpressions).not.toContain(String(out.data.value));
     }

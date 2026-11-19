@@ -1,9 +1,9 @@
-import { requireDanielsonSession } from '@/lib/auth/server';
-import { SiteHeader } from '@/components/site-header';
-import { ChangePasswordForm } from '@/components/change-password-form';
+import { requireDanielsonSession } from "@/lib/auth/server";
+import { SiteHeader } from "@/components/site-header";
+import { ChangePasswordForm } from "@/components/change-password-form";
 
 export default async function ChangePasswordPage() {
-  await requireDanielsonSession('/auth/change-password');
+  await requireDanielsonSession("/auth/change-password");
   return (
     <>
       <SiteHeader isAuthenticated />

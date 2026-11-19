@@ -12,21 +12,18 @@
 // full contract block — all module-1 per-skill files share it
 // verbatim (one task ↔ one file, test-strategy §8).
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 
-import {
-  verifyGenerator,
-  type GeneratorLike,
-} from '@math-platform/practice-core/generator-qa';
+import { verifyGenerator, type GeneratorLike } from "@math-platform/practice-core/generator-qa";
 
 // Intentional: non-existent module → Red.
-import { IM1_GENERATORS, type IM1GeneratorEntry } from '../generators';
+import { IM1_GENERATORS, type IM1GeneratorEntry } from "../generators";
 
-import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
+import type { GeneratorOutput } from "@math-platform/knowledge-space-practice";
 
 const SKILL_ID =
-  'math.im1.skill.1.5.write-absolute-value-expressions-that-model-real-world-dista' as const;
-const RENDERER_KEY = 'comprehension-quiz' as const;
+  "math.im1.skill.1.5.write-absolute-value-expressions-that-model-real-world-dista" as const;
+const RENDERER_KEY = "comprehension-quiz" as const;
 
 /**
  * Adapt an IM1 generator entry to the GeneratorLike interface for the QA harness.
@@ -40,9 +37,7 @@ function adapt(entry: IM1GeneratorEntry): GeneratorLike {
         nodeId: input.nodeId,
         seed: input.seed,
         difficulty: input.difficulty,
-        learnerContext: input.learnerContext as
-          | Record<string, unknown>
-          | undefined,
+        learnerContext: input.learnerContext as Record<string, unknown> | undefined,
       }) as GeneratorOutput;
       return {
         problem: out.prompt,
@@ -67,47 +62,43 @@ function findEntryForSkill(): IM1GeneratorEntry {
 }
 
 describe(`IM1 generator — ${SKILL_ID} (Phase 2 Task 2)`, () => {
-  it('is registered in IM1_GENERATORS with the correct nodeId', () => {
+  it("is registered in IM1_GENERATORS with the correct nodeId", () => {
     const entry = findEntryForSkill();
     expect(entry.nodeIds).toContain(SKILL_ID);
   });
 
-  it('skillIdKey matches the file-level ownership convention', () => {
+  it("skillIdKey matches the file-level ownership convention", () => {
     const entry = findEntryForSkill();
     expect(entry.skillIdKey).toMatch(/^1[._-]5[._-]/);
   });
 
-  it('passes verifyGenerator with numSeeds = 50 (FR2 determinism + FR3/4/5)', () => {
+  it("passes verifyGenerator with numSeeds = 50 (FR2 determinism + FR3/4/5)", () => {
     const entry = findEntryForSkill();
     const report = verifyGenerator(adapt(entry), { numSeeds: 50 });
-    expect(report.verdict).toBe('pass');
+    expect(report.verdict).toBe("pass");
     expect(report.errors).toEqual([]);
     expect(report.summary.failedChecks).toBe(0);
   });
 
-  it('produces deterministic output for (nodeId, seed, difficulty) byte-identity', () => {
+  it("produces deterministic output for (nodeId, seed, difficulty) byte-identity", () => {
     const entry = findEntryForSkill();
     for (let seed = 0; seed < 25; seed += 1) {
-      const a = JSON.stringify(
-        entry.generate({ nodeId: SKILL_ID, seed, difficulty: 0.5 }),
-      );
-      const b = JSON.stringify(
-        entry.generate({ nodeId: SKILL_ID, seed, difficulty: 0.5 }),
-      );
+      const a = JSON.stringify(entry.generate({ nodeId: SKILL_ID, seed, difficulty: 0.5 }));
+      const b = JSON.stringify(entry.generate({ nodeId: SKILL_ID, seed, difficulty: 0.5 }));
       expect(a).toBe(b);
     }
   });
 
-  it('every seed yields the documented renderer key componentry shape', () => {
+  it("every seed yields the documented renderer key componentry shape", () => {
     const entry = findEntryForSkill();
-    expect(RENDERER_KEY).toBe('comprehension-quiz');
+    expect(RENDERER_KEY).toBe("comprehension-quiz");
     for (let seed = 0; seed < 10; seed += 1) {
       const out = entry.generate({
         nodeId: SKILL_ID,
         seed,
         difficulty: 0.5,
       }) as GeneratorOutput;
-      expect(typeof out.prompt).toBe('string');
+      expect(typeof out.prompt).toBe("string");
       expect(out.prompt.length).toBeGreaterThan(0);
       expect(out.expectedAnswer).toBeDefined();
       expect(Array.isArray(out.solutionSteps)).toBe(true);

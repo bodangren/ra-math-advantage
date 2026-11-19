@@ -591,7 +591,7 @@ export const seedModule7Lessons = internalMutation({
                 sectionType: "text" as const,
                 content: {
                   markdown:
-                    "## Mixed Exercises\n\nThe mixed exercises extend practice across a variety of problem types and contexts.\n\n- **Translation problems:** Convert verbal descriptions into systems of equations and solve. For example, \"Two times a number plus three times another number equals 13. The sum of the two numbers is 7.\"\n- **Real-world applications:** Solve contextual problems involving car washing and vacuuming rates to raise money.\n- **Structure and reasoning:** Consider a given system and describe two different ways to solve it by elimination. Explain why a particular multiplication strategy (such as multiplying the first equation by 6 and the second by 5) is not useful for solving the system, then solve correctly.\n- **Mixture problems:** Use a table to write a system of equations for mixing two juice drinks to obtain a desired amount and concentration. Solve the system and explain what the solution represents.\n- **Modeling with currency:** Write a system to find the number of five-dollar and ten-dollar bills given the total number of bills and total value. Define variables, solve, and interpret.\n- **Error analysis:** Examine worked solutions from two students solving a system and determine whether either is correct. Explain the reasoning.\n- **True/false analysis:** Determine whether a statement about systems having infinitely many solutions is true or false, and justify the argument.\n- **Creation tasks:** Write a system of equations that can be solved by multiplying one equation by [ -3 ] and then adding.\n- **Persevere in problem solving:** Given that [ (3, a) ] is the solution to a system with an unknown constant [ b ], find the values of [ a ] and [ b ] and discuss the steps used.\n- **Method comparison:** Explain why substitution is sometimes more helpful than elimination, and vice versa.",
+                    '## Mixed Exercises\n\nThe mixed exercises extend practice across a variety of problem types and contexts.\n\n- **Translation problems:** Convert verbal descriptions into systems of equations and solve. For example, "Two times a number plus three times another number equals 13. The sum of the two numbers is 7."\n- **Real-world applications:** Solve contextual problems involving car washing and vacuuming rates to raise money.\n- **Structure and reasoning:** Consider a given system and describe two different ways to solve it by elimination. Explain why a particular multiplication strategy (such as multiplying the first equation by 6 and the second by 5) is not useful for solving the system, then solve correctly.\n- **Mixture problems:** Use a table to write a system of equations for mixing two juice drinks to obtain a desired amount and concentration. Solve the system and explain what the solution represents.\n- **Modeling with currency:** Write a system to find the number of five-dollar and ten-dollar bills given the total number of bills and total value. Define variables, solve, and interpret.\n- **Error analysis:** Examine worked solutions from two students solving a system and determine whether either is correct. Explain the reasoning.\n- **True/false analysis:** Determine whether a statement about systems having infinitely many solutions is true or false, and justify the argument.\n- **Creation tasks:** Write a system of equations that can be solved by multiplying one equation by [ -3 ] and then adding.\n- **Persevere in problem solving:** Given that [ (3, a) ] is the solution to a system with an unknown constant [ b ], find the values of [ a ] and [ b ] and discuss the steps used.\n- **Method comparison:** Explain why substitution is sometimes more helpful than elimination, and vice versa.',
                 },
               },
             ],
@@ -744,7 +744,7 @@ export const seedModule7Lessons = internalMutation({
                 sectionType: "text" as const,
                 content: {
                   markdown:
-                    "## Review Notes\n\n- Problems 15–18 require images of graphed systems that could not be described in the extracted source. A human reviewer should inspect the original worksheet images and translate each graph into a system of inequalities.\n- Problem 18 references a graph \"shown at the right\" that was not available in extracted form.",
+                    '## Review Notes\n\n- Problems 15–18 require images of graphed systems that could not be described in the extracted source. A human reviewer should inspect the original worksheet images and translate each graph into a system of inequalities.\n- Problem 18 references a graph "shown at the right" that was not available in extracted form.',
                 },
               },
             ],
@@ -796,7 +796,7 @@ export const seedModule7Lessons = internalMutation({
         const existingPhase = await ctx.db
           .query("phase_versions")
           .withIndex("by_lesson_version_and_phase", (q) =>
-            q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+            q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
           )
           .first();
 

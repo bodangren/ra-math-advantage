@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -131,7 +131,7 @@ export const seedLesson8_4 = internalMutation({
                       "Number of cars in a parking lot",
                       "Height of students in a class",
                       "Number of books on a shelf",
-                      "Number of emails received"
+                      "Number of emails received",
                     ],
                     correctIndex: 1,
                   },
@@ -141,7 +141,7 @@ export const seedLesson8_4 = internalMutation({
                       "Weight of a laptop",
                       "Time to complete a race",
                       "Temperature",
-                      "Number of siblings"
+                      "Number of siblings",
                     ],
                     correctIndex: 3,
                   },
@@ -173,7 +173,8 @@ export const seedLesson8_4 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "What is the probability of winning $10 if there are 1000 $10 winners out of 4000 total?",
+                    question:
+                      "What is the probability of winning $10 if there are 1000 $10 winners out of 4000 total?",
                     options: ["0.10", "0.25", "0.50", "0.75"],
                     correctIndex: 1,
                   },
@@ -183,7 +184,7 @@ export const seedLesson8_4 = internalMutation({
                       "The company prefers that style",
                       "Because the outcomes are discrete values",
                       "To make the graph look longer",
-                      "Because the probabilities are small"
+                      "Because the probabilities are small",
                     ],
                     correctIndex: 1,
                   },
@@ -220,7 +221,7 @@ export const seedLesson8_4 = internalMutation({
                       "It uses too many colors",
                       "Uneven x-axis bins and exaggerated y-axis scale",
                       "It shows all employees earn $40,000",
-                      "The probabilities add to more than 1"
+                      "The probabilities add to more than 1",
                     ],
                     correctIndex: 1,
                   },
@@ -230,7 +231,7 @@ export const seedLesson8_4 = internalMutation({
                       "Whether it has a title",
                       "Whether axes are evenly scaled and bins are consistent",
                       "How many colors are used",
-                      "The company's logo"
+                      "The company's logo",
                     ],
                     correctIndex: 1,
                   },
@@ -278,12 +279,13 @@ export const seedLesson8_4 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "Why can't the soccer player data be approximated by a normal distribution?",
+                    question:
+                      "Why can't the soccer player data be approximated by a normal distribution?",
                     options: [
                       "There are too many players",
                       "The data is skewed (not symmetric)",
                       "The mean is too high",
-                      "There are not enough goals"
+                      "There are not enough goals",
                     ],
                     correctIndex: 1,
                   },
@@ -293,7 +295,7 @@ export const seedLesson8_4 = internalMutation({
                       "Bell-shaped and symmetric",
                       "Skewed to the right",
                       "Skewed to the left",
-                      "Uniform"
+                      "Uniform",
                     ],
                     correctIndex: 0,
                   },
@@ -325,7 +327,8 @@ export const seedLesson8_4 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "For a normal distribution with mean 42 and standard deviation 6, what is the range for the middle 95%?",
+                    question:
+                      "For a normal distribution with mean 42 and standard deviation 6, what is the range for the middle 95%?",
                     options: ["24 to 60", "30 to 54", "36 to 48", "18 to 66"],
                     correctIndex: 1,
                   },
@@ -388,7 +391,7 @@ export const seedLesson8_4 = internalMutation({
                       "1.316 below the mean",
                       "1.316 above the mean",
                       "Equal to the mean",
-                      "Too far from the mean to calculate"
+                      "Too far from the mean to calculate",
                     ],
                     correctIndex: 1,
                   },
@@ -425,12 +428,13 @@ export const seedLesson8_4 = internalMutation({
                       "The area to the right of z = -1.18",
                       "The area to the left of z = -1.18",
                       "The area between z = -1.18 and z = 1.18",
-                      "The z-value at the 1.18th percentile"
+                      "The z-value at the 1.18th percentile",
                     ],
                     correctIndex: 1,
                   },
                   {
-                    question: "If P(z < -1.18) = 0.1190, what percent of data falls below z = -1.18?",
+                    question:
+                      "If P(z < -1.18) = 0.1190, what percent of data falls below z = -1.18?",
                     options: ["1.19%", "11.90%", "50%", "88.10%"],
                     correctIndex: 1,
                   },
@@ -472,7 +476,7 @@ export const seedLesson8_4 = internalMutation({
                       "44% of days have exactly 100,000 hits",
                       "44% of days have more than 100,000 hits",
                       "The average hits is 44,000",
-                      "44 days have more than 100,000 hits"
+                      "44 days have more than 100,000 hits",
                     ],
                     correctIndex: 1,
                   },
@@ -509,7 +513,7 @@ export const seedLesson8_4 = internalMutation({
                       "The value is below the mean",
                       "The value is above the mean",
                       "The value is impossible",
-                      "The standard deviation is negative"
+                      "The standard deviation is negative",
                     ],
                     correctIndex: 0,
                   },
@@ -519,7 +523,7 @@ export const seedLesson8_4 = internalMutation({
                       "Z-scores are always positive",
                       "Z-scores standardize different scales to a common scale",
                       "Z-scores are easier to calculate",
-                      "Raw values cannot be compared"
+                      "Raw values cannot be compared",
                     ],
                     correctIndex: 1,
                   },
@@ -554,7 +558,7 @@ export const seedLesson8_4 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

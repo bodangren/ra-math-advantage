@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 // TransferCreditAuditPanel — teacher-facing auditable list of transfer
 // credits granted to students (Phase 4 / FR6, AC5).
@@ -13,8 +13,8 @@
 //   - populated → table with header + one row per record; each non-reverted
 //                 record exposes an "Undo skip" button.
 
-import { useCallback } from 'react';
-import { Button } from '@/components/ui/button';
+import { useCallback } from "react";
+import { Button } from "@/components/ui/button";
 
 // ---------------------------------------------------------------------------
 // Props
@@ -34,9 +34,9 @@ export interface TransferCreditAuditRecord {
   /** Epoch-ms when the skip was granted. */
   grantedAt: number;
   /** Current state of the record. */
-  state: 'skipped' | 'reverted';
+  state: "skipped" | "reverted";
   /** Direct-skip vs confirmation-check label. */
-  skipKind: 'direct' | 'confirmed';
+  skipKind: "direct" | "confirmed";
 }
 
 export interface TransferCreditAuditPanelProps {
@@ -63,10 +63,7 @@ export interface TransferCreditAuditPanelProps {
  *
  * The component never mutates props. The caller owns persistence.
  */
-export function TransferCreditAuditPanel({
-  records,
-  onRevert,
-}: TransferCreditAuditPanelProps) {
+export function TransferCreditAuditPanel({ records, onRevert }: TransferCreditAuditPanelProps) {
   if (records.length === 0) {
     return (
       <section
@@ -75,12 +72,8 @@ export function TransferCreditAuditPanel({
         data-testid="transfer-credit-audit-panel"
         className="rounded-xl border border-border bg-muted/30 p-6"
       >
-        <h2 className="font-display text-base font-semibold text-foreground">
-          Transfer credits
-        </h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          No transfer credits
-        </p>
+        <h2 className="font-display text-base font-semibold text-foreground">Transfer credits</h2>
+        <p className="mt-2 text-sm text-muted-foreground">No transfer credits</p>
       </section>
     );
   }
@@ -102,12 +95,24 @@ export function TransferCreditAuditPanel({
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border text-left text-xs uppercase tracking-wide text-muted-foreground">
-              <th scope="col" className="py-2 pr-4 font-medium">Student</th>
-              <th scope="col" className="py-2 pr-4 font-medium">Source course</th>
-              <th scope="col" className="py-2 pr-4 font-medium">Target skill</th>
-              <th scope="col" className="py-2 pr-4 font-medium">Mastery</th>
-              <th scope="col" className="py-2 pr-4 font-medium">Kind</th>
-              <th scope="col" className="py-2 pr-4 font-medium text-right">Action</th>
+              <th scope="col" className="py-2 pr-4 font-medium">
+                Student
+              </th>
+              <th scope="col" className="py-2 pr-4 font-medium">
+                Source course
+              </th>
+              <th scope="col" className="py-2 pr-4 font-medium">
+                Target skill
+              </th>
+              <th scope="col" className="py-2 pr-4 font-medium">
+                Mastery
+              </th>
+              <th scope="col" className="py-2 pr-4 font-medium">
+                Kind
+              </th>
+              <th scope="col" className="py-2 pr-4 font-medium text-right">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -142,7 +147,7 @@ function AuditRow({ record, onRevert }: AuditRowProps) {
   }, [record, onRevert]);
 
   const masteryPct = `${Math.round(record.seededMastery * 100)}%`;
-  const kindLabel = record.skipKind === 'confirmed' ? 'Confirmed' : 'Direct';
+  const kindLabel = record.skipKind === "confirmed" ? "Confirmed" : "Direct";
 
   return (
     <tr className="border-b border-border last:border-b-0 align-top">
@@ -158,7 +163,7 @@ function AuditRow({ record, onRevert }: AuditRowProps) {
       <td className="py-3 pr-4 font-mono-num text-sm">{masteryPct}</td>
       <td className="py-3 pr-4 text-xs">{kindLabel}</td>
       <td className="py-3 pr-4 text-right">
-        {record.state === 'skipped' ? (
+        {record.state === "skipped" ? (
           <Button
             type="button"
             variant="outline"

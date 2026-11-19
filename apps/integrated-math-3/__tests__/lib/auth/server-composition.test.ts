@@ -1,17 +1,11 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { dirname, resolve } from 'node:path';
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, resolve } from "node:path";
 
 const here = dirname(fileURLToPath(import.meta.url));
-const serverSrc = readFileSync(
-  resolve(here, '../../../lib/auth/server.ts'),
-  'utf8',
-);
-const techDebtSrc = readFileSync(
-  resolve(here, '../../../../../measure/tech-debt.md'),
-  'utf8',
-);
+const serverSrc = readFileSync(resolve(here, "../../../lib/auth/server.ts"), "utf8");
+const techDebtSrc = readFileSync(resolve(here, "../../../../../measure/tech-debt.md"), "utf8");
 
 // ---------------------------------------------------------------------------
 // Task 5.1 — FR-14 arch-lint: IM3 server.ts composes core-auth
@@ -26,62 +20,60 @@ const techDebtSrc = readFileSync(
 // complement is in Task 5.2 below.
 // ---------------------------------------------------------------------------
 
-describe('IM3 auth server composition (FR-14) — arch-lint', () => {
-  it('imports requireRequestSessionClaims from @math-platform/core-auth', () => {
+describe("IM3 auth server composition (FR-14) — arch-lint", () => {
+  it("imports requireRequestSessionClaims from @math-platform/core-auth", () => {
     expect(serverSrc).toMatch(
       /import\s*\{[^}]*\brequireRequestSessionClaims\b[^}]*\}\s*from\s*['"]@math-platform\/core-auth['"]/,
     );
   });
 
-  it('uses the active credential guard for protected roles', () => {
-    expect(serverSrc).toMatch(
-      /requireActiveRoleRequestClaims/,
-    );
+  it("uses the active credential guard for protected roles", () => {
+    expect(serverSrc).toMatch(/requireActiveRoleRequestClaims/);
   });
 
-  it('imports requireActiveRequestSessionClaims from @math-platform/core-auth', () => {
+  it("imports requireActiveRequestSessionClaims from @math-platform/core-auth", () => {
     expect(serverSrc).toMatch(
       /import\s*\{[^}]*\brequireActiveRequestSessionClaims\b[^}]*\}\s*from\s*['"]@math-platform\/core-auth['"]/,
     );
   });
 
-  it('imports getRequestSessionClaims from @math-platform/core-auth', () => {
+  it("imports getRequestSessionClaims from @math-platform/core-auth", () => {
     expect(serverSrc).toMatch(
       /import\s*\{[^}]*\bgetRequestSessionClaims\b[^}]*\}\s*from\s*['"]@math-platform\/core-auth['"]/,
     );
   });
 
-  it('imports buildRequestUnauthorizedResponse from @math-platform/core-auth', () => {
+  it("imports buildRequestUnauthorizedResponse from @math-platform/core-auth", () => {
     expect(serverSrc).toMatch(
       /import\s*\{[^}]*\bbuildRequestUnauthorizedResponse\b[^}]*\}\s*from\s*['"]@math-platform\/core-auth['"]/,
     );
   });
 
-  it('imports buildRequestForbiddenResponse from @math-platform/core-auth', () => {
+  it("imports buildRequestForbiddenResponse from @math-platform/core-auth", () => {
     expect(serverSrc).toMatch(
       /import\s*\{[^}]*\bbuildRequestForbiddenResponse\b[^}]*\}\s*from\s*['"]@math-platform\/core-auth['"]/,
     );
   });
 
-  it('imports buildRequestServiceUnavailableResponse from @math-platform/core-auth', () => {
+  it("imports buildRequestServiceUnavailableResponse from @math-platform/core-auth", () => {
     expect(serverSrc).toMatch(
       /import\s*\{[^}]*\bbuildRequestServiceUnavailableResponse\b[^}]*\}\s*from\s*['"]@math-platform\/core-auth['"]/,
     );
   });
 
-  it('does not redeclare the inline getCookieValueFromHeader helper', () => {
+  it("does not redeclare the inline getCookieValueFromHeader helper", () => {
     expect(serverSrc).not.toMatch(/function\s+getCookieValueFromHeader\s*\(/);
   });
 
-  it('does not redeclare the inline buildRequestUnauthorizedResponse helper', () => {
+  it("does not redeclare the inline buildRequestUnauthorizedResponse helper", () => {
     expect(serverSrc).not.toMatch(/function\s+buildRequestUnauthorizedResponse\s*\(/);
   });
 
-  it('does not redeclare the inline buildRequestForbiddenResponse helper', () => {
+  it("does not redeclare the inline buildRequestForbiddenResponse helper", () => {
     expect(serverSrc).not.toMatch(/function\s+buildRequestForbiddenResponse\s*\(/);
   });
 
-  it('does not redeclare the inline buildRequestServiceUnavailableResponse helper', () => {
+  it("does not redeclare the inline buildRequestServiceUnavailableResponse helper", () => {
     expect(serverSrc).not.toMatch(/function\s+buildRequestServiceUnavailableResponse\s*\(/);
   });
 });
@@ -103,35 +95,35 @@ const mockRequireRoleRequestClaims = vi.fn();
 const mockRequireActiveRoleRequestClaims = vi.fn();
 const mockRequireActiveRequestSessionClaims = vi.fn();
 const mockBuildRequestUnauthorizedResponse = vi.fn(
-  (msg = 'Unauthorized') =>
+  (msg = "Unauthorized") =>
     new Response(JSON.stringify({ error: msg }), {
       status: 401,
-      headers: { 'content-type': 'application/json' },
+      headers: { "content-type": "application/json" },
     }),
 );
 const mockBuildRequestForbiddenResponse = vi.fn(
-  (msg = 'Forbidden') =>
+  (msg = "Forbidden") =>
     new Response(JSON.stringify({ error: msg }), {
       status: 403,
-      headers: { 'content-type': 'application/json' },
+      headers: { "content-type": "application/json" },
     }),
 );
 const mockBuildRequestServiceUnavailableResponse = vi.fn(
-  (msg = 'Service unavailable') =>
+  (msg = "Service unavailable") =>
     new Response(JSON.stringify({ error: msg }), {
       status: 503,
-      headers: { 'content-type': 'application/json' },
+      headers: { "content-type": "application/json" },
     }),
 );
 
-vi.mock('@math-platform/core-auth', async () => {
-  const actual = await vi.importActual<typeof import('@math-platform/core-auth')>(
-    '@math-platform/core-auth',
+vi.mock("@math-platform/core-auth", async () => {
+  const actual = await vi.importActual<typeof import("@math-platform/core-auth")>(
+    "@math-platform/core-auth",
   );
   return {
     ...actual,
-    SESSION_COOKIE_NAME: 'session',
-    getAuthJwtSecret: () => 'test-secret',
+    SESSION_COOKIE_NAME: "session",
+    getAuthJwtSecret: () => "test-secret",
     getRequestSessionClaims: mockGetRequestSessionClaims,
     requireRequestSessionClaims: mockRequireRequestSessionClaims,
     requireRoleRequestClaims: mockRequireRoleRequestClaims,
@@ -143,84 +135,82 @@ vi.mock('@math-platform/core-auth', async () => {
   };
 });
 
-vi.mock('@/lib/convex/server', () => ({
+vi.mock("@/lib/convex/server", () => ({
   fetchInternalQuery: vi.fn(),
   internal: {
     auth: {
-      getCredentialByUsername: 'auth:getCredentialByUsername',
+      getCredentialByUsername: "auth:getCredentialByUsername",
     },
   },
 }));
 
 const makeRequest = (cookie?: string) =>
-  new Request('http://localhost/api/test', {
+  new Request("http://localhost/api/test", {
     headers: cookie ? { cookie } : {},
   });
 
-describe('IM3 auth server composition (FR-14) — delegation to core-auth', () => {
+describe("IM3 auth server composition (FR-14) — delegation to core-auth", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  it('requireActiveRequestSessionClaims delegates to core-auth and propagates a 503 Response', async () => {
-    const serviceUnavailable = mockBuildRequestServiceUnavailableResponse(
-      'Service unavailable',
-    );
+  it("requireActiveRequestSessionClaims delegates to core-auth and propagates a 503 Response", async () => {
+    const serviceUnavailable = mockBuildRequestServiceUnavailableResponse("Service unavailable");
     mockRequireActiveRequestSessionClaims.mockResolvedValue(serviceUnavailable);
 
-    const { requireActiveRequestSessionClaims } = await import('@/lib/auth/server');
-    const result = await requireActiveRequestSessionClaims(makeRequest('session=tok'));
+    const { requireActiveRequestSessionClaims } = await import("@/lib/auth/server");
+    const result = await requireActiveRequestSessionClaims(makeRequest("session=tok"));
 
     expect(mockRequireActiveRequestSessionClaims).toHaveBeenCalledTimes(1);
     expect(result).toBe(serviceUnavailable);
   });
 
-  it('requireStudentRequestClaims delegates to requireActiveRoleRequestClaims for [student]', async () => {
+  it("requireStudentRequestClaims delegates to requireActiveRoleRequestClaims for [student]", async () => {
     const claims = {
-      sub: 'p1',
-      username: 'alice',
-      role: 'student' as const,
+      sub: "p1",
+      username: "alice",
+      role: "student" as const,
       iat: 1,
       exp: 9999999999,
     };
     mockRequireActiveRoleRequestClaims.mockResolvedValue(claims);
 
-    const { requireStudentRequestClaims } = await import('@/lib/auth/server');
-    const result = await requireStudentRequestClaims(makeRequest('session=tok'));
+    const { requireStudentRequestClaims } = await import("@/lib/auth/server");
+    const result = await requireStudentRequestClaims(makeRequest("session=tok"));
 
     expect(mockRequireActiveRoleRequestClaims).toHaveBeenCalledTimes(1);
     expect(result).toEqual(claims);
   });
 
-  it('requireTeacherRequestClaims delegates to requireActiveRoleRequestClaims for [teacher, admin]', async () => {
+  it("requireTeacherRequestClaims delegates to requireActiveRoleRequestClaims for [teacher, admin]", async () => {
     const claims = {
-      sub: 'p1',
-      username: 'alice',
-      role: 'teacher' as const,
+      sub: "p1",
+      username: "alice",
+      role: "teacher" as const,
       iat: 1,
       exp: 9999999999,
     };
     mockRequireActiveRoleRequestClaims.mockResolvedValue(claims);
 
-    const { requireTeacherRequestClaims } = await import('@/lib/auth/server');
-    const result = await requireTeacherRequestClaims(makeRequest('session=tok'));
+    const { requireTeacherRequestClaims } = await import("@/lib/auth/server");
+    const result = await requireTeacherRequestClaims(makeRequest("session=tok"));
 
     expect(mockRequireActiveRoleRequestClaims).toHaveBeenCalledTimes(1);
     expect(result).toEqual(claims);
   });
 
-  it('requireRequestSessionClaims delegates to core-auth', async () => {
+  it("requireRequestSessionClaims delegates to core-auth", async () => {
     const claims = {
-      sub: 'p1',
-      username: 'alice',
-      role: 'student' as const,
+      sub: "p1",
+      username: "alice",
+      role: "student" as const,
       iat: 1,
       exp: 9999999999,
     };
     mockRequireRequestSessionClaims.mockResolvedValue(claims);
 
-    const { requireRequestSessionClaims } = await import('@/lib/auth/server');
-    const result = await requireRequestSessionClaims(makeRequest('session=tok'));
+    const { requireRequestSessionClaims } = await import("@/lib/auth/server");
+    const result = await requireRequestSessionClaims(makeRequest("session=tok"));
 
     expect(mockRequireRequestSessionClaims).toHaveBeenCalledTimes(1);
     expect(result).toEqual(claims);
@@ -236,12 +226,12 @@ describe('IM3 auth server composition (FR-14) — delegation to core-auth', () =
 // Open; after Green it is Resolved.
 // ---------------------------------------------------------------------------
 
-describe('IM3 auth server composition (FR-14) — tech-debt registry', () => {
-  it('IM3 auth wrapper inline duplication entry is Resolved', () => {
+describe("IM3 auth server composition (FR-14) — tech-debt registry", () => {
+  it("IM3 auth wrapper inline duplication entry is Resolved", () => {
     const rowMatch = techDebtSrc.match(
       /IM3 auth wrapper inline duplication\s*\|\s*Medium\s*\|\s*(Open|Resolved)\s*\|/,
     );
-    expect(rowMatch, 'FR-14 tech-debt row must be present').not.toBeNull();
-    expect(rowMatch![1]).toBe('Resolved');
+    expect(rowMatch, "FR-14 tech-debt row must be present").not.toBeNull();
+    expect(rowMatch![1]).toBe("Resolved");
   });
 });

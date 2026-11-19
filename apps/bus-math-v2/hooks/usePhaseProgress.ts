@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback } from "react";
 import type {
   LessonProgressResponse as ProgressData,
   PhaseProgressResponse as PhaseProgress,
   PhaseStatus,
-} from '@/types/api';
+} from "@/types/api";
 
 export type { PhaseStatus, PhaseProgress, ProgressData };
 
@@ -29,7 +29,7 @@ const cache = new Map<string, { data: ProgressData; timestamp: number }>();
  * @returns The decoded lesson slug, or null if not on a lesson page.
  */
 function getLessonSlugFromPathname(): string | null {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === "undefined") return null;
 
   const match = window.location.pathname.match(/^\/student\/lesson\/([^/]+)\/?$/);
   if (!match?.[1]) return null;
@@ -79,70 +79,73 @@ export function usePhaseProgress(lessonId: string | undefined): UsePhaseProgress
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  const fetchProgress = useCallback(async (bypassCache = false) => {
-    if (!lessonId) {
-      setIsLoading(false);
-      return;
-    }
-
-    try {
-      setIsLoading(true);
-      setIsError(false);
-      setError(null);
-
-      // Check cache first
-      const cached = cache.get(lessonId);
-      if (!bypassCache && cached && Date.now() - cached.timestamp < STALE_TIME) {
-        setData(cached.data);
+  const fetchProgress = useCallback(
+    async (bypassCache = false) => {
+      if (!lessonId) {
         setIsLoading(false);
         return;
       }
 
-      let fetchResult = await fetchProgressByIdentifier(lessonId);
+      try {
+        setIsLoading(true);
+        setIsError(false);
+        setError(null);
 
-      const errorPayload =
-        (fetchResult.payload && typeof fetchResult.payload === 'object'
-          ? (fetchResult.payload as Record<string, unknown>)
-          : {}) ?? {};
-
-      // Backward-compatible retry: recover when a non-canonical lesson identifier is passed.
-      if (
-        !fetchResult.ok &&
-        fetchResult.status === 404 &&
-        errorPayload.error === 'Lesson not found'
-      ) {
-        const lessonSlug = getLessonSlugFromPathname();
-        if (lessonSlug && lessonSlug !== lessonId) {
-          fetchResult = await fetchProgressByIdentifier(lessonSlug);
+        // Check cache first
+        const cached = cache.get(lessonId);
+        if (!bypassCache && cached && Date.now() - cached.timestamp < STALE_TIME) {
+          setData(cached.data);
+          setIsLoading(false);
+          return;
         }
-      }
 
-      if (!fetchResult.ok) {
-        const failedPayload =
-          (fetchResult.payload && typeof fetchResult.payload === 'object'
+        let fetchResult = await fetchProgressByIdentifier(lessonId);
+
+        const errorPayload =
+          (fetchResult.payload && typeof fetchResult.payload === "object"
             ? (fetchResult.payload as Record<string, unknown>)
             : {}) ?? {};
-        throw new Error(
-          (typeof failedPayload.error === 'string' && failedPayload.error) ||
-            `HTTP error! status: ${fetchResult.status}`,
-        );
+
+        // Backward-compatible retry: recover when a non-canonical lesson identifier is passed.
+        if (
+          !fetchResult.ok &&
+          fetchResult.status === 404 &&
+          errorPayload.error === "Lesson not found"
+        ) {
+          const lessonSlug = getLessonSlugFromPathname();
+          if (lessonSlug && lessonSlug !== lessonId) {
+            fetchResult = await fetchProgressByIdentifier(lessonSlug);
+          }
+        }
+
+        if (!fetchResult.ok) {
+          const failedPayload =
+            (fetchResult.payload && typeof fetchResult.payload === "object"
+              ? (fetchResult.payload as Record<string, unknown>)
+              : {}) ?? {};
+          throw new Error(
+            (typeof failedPayload.error === "string" && failedPayload.error) ||
+              `HTTP error! status: ${fetchResult.status}`,
+          );
+        }
+
+        const progressData: ProgressData = fetchResult.payload as ProgressData;
+
+        // Update cache
+        cache.set(lessonId, { data: progressData, timestamp: Date.now() });
+
+        setData(progressData);
+      } catch (err) {
+        const errorObj = err instanceof Error ? err : new Error("Failed to fetch progress");
+        setError(errorObj);
+        setIsError(true);
+        console.error("Error fetching phase progress:", errorObj);
+      } finally {
+        setIsLoading(false);
       }
-
-      const progressData: ProgressData = fetchResult.payload as ProgressData;
-
-      // Update cache
-      cache.set(lessonId, { data: progressData, timestamp: Date.now() });
-
-      setData(progressData);
-    } catch (err) {
-      const errorObj = err instanceof Error ? err : new Error('Failed to fetch progress');
-      setError(errorObj);
-      setIsError(true);
-      console.error('Error fetching phase progress:', errorObj);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [lessonId]);
+    },
+    [lessonId],
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -160,12 +163,12 @@ export function usePhaseProgress(lessonId: string | undefined): UsePhaseProgress
       fetchProgress(true); // Always bypass cache on focus
     };
 
-    window.addEventListener('focus', handleFocus);
+    window.addEventListener("focus", handleFocus);
 
     return () => {
       cancelled = true;
       clearTimeout(timeoutId);
-      window.removeEventListener('focus', handleFocus);
+      window.removeEventListener("focus", handleFocus);
     };
   }, [fetchProgress]);
 

@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const UNIT11_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Polynomial Vocabulary
@@ -6,7 +6,8 @@ export const UNIT11_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "fill-in-the-blank:polynomial-vocabulary",
     componentKey: "fill-in-the-blank",
     displayName: "Polynomial Vocabulary",
-    description: "Identify polynomial terms, degree, leading coefficient, and classify by number of terms",
+    description:
+      "Identify polynomial terms, degree, leading coefficient, and classify by number of terms",
     objectiveIds: ["HSF-IF.B.4"],
     difficulty: "introductory",
     metadata: { unit: 11, topic: "vocabulary" },
@@ -36,7 +37,8 @@ export const UNIT11_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "step-by-step-solver:special-products",
     componentKey: "step-by-step-solver",
     displayName: "Special Products",
-    description: "Recognize and apply patterns for perfect square trinomials and difference of squares",
+    description:
+      "Recognize and apply patterns for perfect square trinomials and difference of squares",
     objectiveIds: ["HSF-BF.A.1"],
     difficulty: "standard",
     metadata: { unit: 11, topic: "special-products" },

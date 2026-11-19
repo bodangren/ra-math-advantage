@@ -62,7 +62,7 @@ function parseSeedFile(filePath) {
 
 function getSeedLessons() {
   const files = readdirSync(SEED_DIR).filter(
-    (f) => f.startsWith("seed_lesson_") && f.endsWith(".ts") && !f.includes("standards")
+    (f) => f.startsWith("seed_lesson_") && f.endsWith(".ts") && !f.includes("standards"),
   );
 
   return files.map((f) => parseSeedFile(join(SEED_DIR, f)));

@@ -22,9 +22,7 @@ export function PracticeTestSelection() {
             <h1 className="text-3xl font-semibold tracking-tight md:text-4xl mb-2">
               Practice Tests
             </h1>
-            <p className="text-muted-foreground">
-              Select a module to test your knowledge.
-            </p>
+            <p className="text-muted-foreground">Select a module to test your knowledge.</p>
           </header>
 
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">

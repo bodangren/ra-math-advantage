@@ -1,28 +1,12 @@
 "use client";
 
 import { useMemo } from "react";
-import {
-  ChevronRight,
-  Calendar,
-  TrendingUp,
-  BookOpen,
-  Award,
-} from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { ChevronRight, Calendar, TrendingUp, BookOpen, Award } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import {
-  useTermMastery,
-  useRecentSessions,
-} from "@/hooks/useStudy";
+import { useTermMastery, useRecentSessions } from "@/hooks/useStudy";
 import { getAllGlossaryUnits, getGlossaryTermsByUnit } from "@/lib/study/glossary";
-
 
 /**
  * Renders a per-unit progress card showing term mastery stats and a progress bar.
@@ -62,16 +46,17 @@ function UnitProgressCard({ unitNumber }: { unitNumber: number }) {
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg">Unit {unitNumber}</CardTitle>
-          <Badge variant="outline">
-            {Math.round(stats.averageMastery * 100)}%
-          </Badge>
+          <Badge variant="outline">{Math.round(stats.averageMastery * 100)}%</Badge>
         </div>
         <CardDescription>
           {stats.studied}/{stats.total} terms studied
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-3">
-        <Progress value={stats.total > 0 ? (stats.studied / stats.total) * 100 : 0} className="h-2" />
+        <Progress
+          value={stats.total > 0 ? (stats.studied / stats.total) * 100 : 0}
+          className="h-2"
+        />
         <div className="flex gap-2">
           <Badge variant="default" className="bg-green-600">
             {stats.mastered} Mastered
@@ -87,7 +72,6 @@ function UnitProgressCard({ unitNumber }: { unitNumber: number }) {
     </Card>
   );
 }
-
 
 /**
  * Renders a progress dashboard with overall stats, per-unit mastery cards,
@@ -215,10 +199,15 @@ export function ProgressDashboard() {
                     >
                       <div>
                         <p className="text-sm font-medium">
-                          {session.activityType.split("_").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
+                          {session.activityType
+                            .split("_")
+                            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                            .join(" ")}
                         </p>
                         <p className="text-xs text-muted-foreground">
-                          {new Date(session.endedAt).toLocaleDateString()} • {session.results?.itemsSeen ?? 0} terms • {session.results?.itemsCorrect ?? 0} correct
+                          {new Date(session.endedAt).toLocaleDateString()} •{" "}
+                          {session.results?.itemsSeen ?? 0} terms •{" "}
+                          {session.results?.itemsCorrect ?? 0} correct
                         </p>
                       </div>
                       <ChevronRight className="h-4 w-4 text-muted-foreground" />

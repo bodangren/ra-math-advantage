@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -139,10 +139,19 @@ export const seedLesson7_2 = internalMutation({
                 problemType: "polynomial",
                 equation: "(7a / 4b) + (4c^2 / 10)",
                 steps: [
-                  { expression: "(7a / 4b) + (4c^2 / 10)", explanation: "Start with the sum of rational expressions" },
+                  {
+                    expression: "(7a / 4b) + (4c^2 / 10)",
+                    explanation: "Start with the sum of rational expressions",
+                  },
                   { expression: "LCD = 20b", explanation: "Find the least common denominator" },
-                  { expression: "35a / 20b + 8bc^2 / 20b", explanation: "Rewrite each fraction with the LCD" },
-                  { expression: "(35a + 8bc^2) / 20b", explanation: "Combine the numerators over the common denominator" },
+                  {
+                    expression: "35a / 20b + 8bc^2 / 20b",
+                    explanation: "Rewrite each fraction with the LCD",
+                  },
+                  {
+                    expression: "(35a + 8bc^2) / 20b",
+                    explanation: "Combine the numerators over the common denominator",
+                  },
                 ],
               },
             },
@@ -172,12 +181,30 @@ export const seedLesson7_2 = internalMutation({
                 problemType: "polynomial",
                 equation: "(2x + 1) / (x^2 + 2x - 15) - 7 / (5x - 15)",
                 steps: [
-                  { expression: "(2x + 1) / (x^2 + 2x - 15) - 7 / (5x - 15)", explanation: "Start with the difference of rational expressions" },
-                  { expression: "x^2 + 2x - 15 = (x - 3)(x + 5)", explanation: "Factor the first denominator" },
-                  { expression: "5x - 15 = 5(x - 3)", explanation: "Factor the second denominator" },
-                  { expression: "LCD = 5(x - 3)(x + 5)", explanation: "Find the least common denominator" },
-                  { expression: "(5(2x + 1) - 7(x + 5)) / (5(x - 3)(x + 5))", explanation: "Rewrite each fraction with the LCD and combine numerators" },
-                  { expression: "(3x - 30) / (5(x - 3)(x + 5))", explanation: "Simplify the numerator" },
+                  {
+                    expression: "(2x + 1) / (x^2 + 2x - 15) - 7 / (5x - 15)",
+                    explanation: "Start with the difference of rational expressions",
+                  },
+                  {
+                    expression: "x^2 + 2x - 15 = (x - 3)(x + 5)",
+                    explanation: "Factor the first denominator",
+                  },
+                  {
+                    expression: "5x - 15 = 5(x - 3)",
+                    explanation: "Factor the second denominator",
+                  },
+                  {
+                    expression: "LCD = 5(x - 3)(x + 5)",
+                    explanation: "Find the least common denominator",
+                  },
+                  {
+                    expression: "(5(2x + 1) - 7(x + 5)) / (5(x - 3)(x + 5))",
+                    explanation: "Rewrite each fraction with the LCD and combine numerators",
+                  },
+                  {
+                    expression: "(3x - 30) / (5(x - 3)(x + 5))",
+                    explanation: "Simplify the numerator",
+                  },
                 ],
               },
             },
@@ -207,11 +234,26 @@ export const seedLesson7_2 = internalMutation({
                 problemType: "polynomial",
                 equation: "20/x + 200x/(3x^2 + 20)",
                 steps: [
-                  { expression: "20/x + 200x/(3x^2 + 20)", explanation: "Start with the sum of rates" },
-                  { expression: "LCD = x(3x^2 + 20)", explanation: "Find the least common denominator" },
-                  { expression: "20(3x^2 + 20) / (x(3x^2 + 20)) + 200x^2 / (x(3x^2 + 20))", explanation: "Rewrite each fraction with the LCD" },
-                  { expression: "(60x^2 + 400 + 200x^2) / (3x^3 + 20x)", explanation: "Combine the numerators" },
-                  { expression: "(260x^2 + 400) / (3x^3 + 20x)", explanation: "Simplify the numerator" },
+                  {
+                    expression: "20/x + 200x/(3x^2 + 20)",
+                    explanation: "Start with the sum of rates",
+                  },
+                  {
+                    expression: "LCD = x(3x^2 + 20)",
+                    explanation: "Find the least common denominator",
+                  },
+                  {
+                    expression: "20(3x^2 + 20) / (x(3x^2 + 20)) + 200x^2 / (x(3x^2 + 20))",
+                    explanation: "Rewrite each fraction with the LCD",
+                  },
+                  {
+                    expression: "(60x^2 + 400 + 200x^2) / (3x^3 + 20x)",
+                    explanation: "Combine the numerators",
+                  },
+                  {
+                    expression: "(260x^2 + 400) / (3x^3 + 20x)",
+                    explanation: "Simplify the numerator",
+                  },
                 ],
               },
             },
@@ -257,10 +299,22 @@ export const seedLesson7_2 = internalMutation({
                 problemType: "polynomial",
                 equation: "((x/y) + 1) / ((y/x) - (1/y))",
                 steps: [
-                  { expression: "((x/y) + 1) / ((y/x) - (1/y))", explanation: "Start with the complex fraction" },
-                  { expression: "LCD of numerator = y, LCD of denominator = xy", explanation: "Determine the LCDs for numerator and denominator" },
-                  { expression: "((x + y)/y) / ((y^2 - x)/(xy))", explanation: "Simplify numerator and denominator separately" },
-                  { expression: "((x + y)/y) * (xy/(y^2 - x))", explanation: "Rewrite as multiplication by the reciprocal" },
+                  {
+                    expression: "((x/y) + 1) / ((y/x) - (1/y))",
+                    explanation: "Start with the complex fraction",
+                  },
+                  {
+                    expression: "LCD of numerator = y, LCD of denominator = xy",
+                    explanation: "Determine the LCDs for numerator and denominator",
+                  },
+                  {
+                    expression: "((x + y)/y) / ((y^2 - x)/(xy))",
+                    explanation: "Simplify numerator and denominator separately",
+                  },
+                  {
+                    expression: "((x + y)/y) * (xy/(y^2 - x))",
+                    explanation: "Rewrite as multiplication by the reciprocal",
+                  },
                   { expression: "x(x + y) / (y^2 - x)", explanation: "Multiply and simplify" },
                 ],
               },
@@ -291,10 +345,19 @@ export const seedLesson7_2 = internalMutation({
                 problemType: "polynomial",
                 equation: "((x/y) + (2/x)) / ((x/2) - (y/x))",
                 steps: [
-                  { expression: "((x/y) + (2/x)) / ((x/2) - (y/x))", explanation: "Start with the complex fraction" },
+                  {
+                    expression: "((x/y) + (2/x)) / ((x/2) - (y/x))",
+                    explanation: "Start with the complex fraction",
+                  },
                   { expression: "LCD = 2xy", explanation: "Find the LCD of all denominators" },
-                  { expression: "Multiply numerator and denominator by 2xy", explanation: "Clear the smaller denominators" },
-                  { expression: "(2x^2 + 4y) / (x^2y - 2y^2)", explanation: "Simplify the resulting expression" },
+                  {
+                    expression: "Multiply numerator and denominator by 2xy",
+                    explanation: "Clear the smaller denominators",
+                  },
+                  {
+                    expression: "(2x^2 + 4y) / (x^2y - 2y^2)",
+                    explanation: "Simplify the resulting expression",
+                  },
                 ],
               },
             },
@@ -323,13 +386,23 @@ export const seedLesson7_2 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "What is the first step when adding rational expressions with unlike denominators?",
-                    options: ["Add the numerators directly", "Find the least common denominator", "Simplify the result"],
+                    question:
+                      "What is the first step when adding rational expressions with unlike denominators?",
+                    options: [
+                      "Add the numerators directly",
+                      "Find the least common denominator",
+                      "Simplify the result",
+                    ],
                     correctIndex: 1,
                   },
                   {
-                    question: "To simplify a complex fraction, you can multiply the numerator and denominator by:",
-                    options: ["The greatest common factor", "The least common denominator", "The sum of the denominators"],
+                    question:
+                      "To simplify a complex fraction, you can multiply the numerator and denominator by:",
+                    options: [
+                      "The greatest common factor",
+                      "The least common denominator",
+                      "The sum of the denominators",
+                    ],
                     correctIndex: 1,
                   },
                 ],
@@ -363,7 +436,7 @@ export const seedLesson7_2 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

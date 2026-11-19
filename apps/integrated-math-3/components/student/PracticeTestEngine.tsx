@@ -1,14 +1,18 @@
-'use client';
+"use client";
 
-import { useState, useRef } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Badge } from '@/components/ui/badge';
-import type { PracticeTestModuleConfig } from '@/lib/practice-tests/types';
-import { filterQuestionsByLessonIds, drawRandomQuestions, shuffleAnswers } from '@/lib/practice-tests/question-banks';
+import { useState, useRef } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
+import type { PracticeTestModuleConfig } from "@/lib/practice-tests/types";
+import {
+  filterQuestionsByLessonIds,
+  drawRandomQuestions,
+  shuffleAnswers,
+} from "@/lib/practice-tests/question-banks";
 
 interface PracticeTestEngineProps {
   moduleConfig: PracticeTestModuleConfig;
@@ -29,7 +33,7 @@ interface PracticeTestEngineProps {
   }) => void;
 }
 
-type Phase = 'introduction' | 'assessment' | 'closing';
+type Phase = "introduction" | "assessment" | "closing";
 
 /**
  * Implements a three-phase practice test engine with lesson selection and scoring.
@@ -38,15 +42,18 @@ type Phase = 'introduction' | 'assessment' | 'closing';
  * @returns {JSX.Element} A practice test with introduction, assessment, and closing phases.
  */
 export default function PracticeTestEngine({ moduleConfig, onComplete }: PracticeTestEngineProps) {
-  const [currentPhase, setCurrentPhase] = useState<Phase>('introduction');
+  const [currentPhase, setCurrentPhase] = useState<Phase>("introduction");
   const [selectedLessonIds, setSelectedLessonIds] = useState<string[]>(
-    moduleConfig.lessons.map((l) => l.lessonId)
+    moduleConfig.lessons.map((l) => l.lessonId),
   );
   const [questionCount, setQuestionCount] = useState<number>(
-    Math.min(10, moduleConfig.questions.length)
+    Math.min(10, moduleConfig.questions.length),
   );
   const [testQuestions, setTestQuestions] = useState<
-    { question: ReturnType<typeof shuffleAnswers>; original: PracticeTestModuleConfig['questions'][number] }[]
+    {
+      question: ReturnType<typeof shuffleAnswers>;
+      original: PracticeTestModuleConfig["questions"][number];
+    }[]
   >([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
@@ -57,12 +64,14 @@ export default function PracticeTestEngine({ moduleConfig, onComplete }: Practic
   const [lastAnswerCorrect, setLastAnswerCorrect] = useState(false);
 
   const scoreRef = useRef(0);
-  const breakdownRef = useRef<Record<string, { lessonTitle: string; correct: number; total: number }>>({});
+  const breakdownRef = useRef<
+    Record<string, { lessonTitle: string; correct: number; total: number }>
+  >({});
   const hasCalledOnCompleteRef = useRef(false);
 
   const handleToggleLesson = (lessonId: string) => {
     setSelectedLessonIds((prev) =>
-      prev.includes(lessonId) ? prev.filter((id) => id !== lessonId) : [...prev, lessonId]
+      prev.includes(lessonId) ? prev.filter((id) => id !== lessonId) : [...prev, lessonId],
     );
   };
 
@@ -74,7 +83,7 @@ export default function PracticeTestEngine({ moduleConfig, onComplete }: Practic
     setSelectedLessonIds([]);
   };
 
-  const attemptId = useRef('');
+  const attemptId = useRef("");
   const answers = useRef<Array<{ questionId: string; answer: string }>>([]);
   const startedAt = useRef(0);
   const handleStartTest = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -106,7 +115,7 @@ export default function PracticeTestEngine({ moduleConfig, onComplete }: Practic
     });
     breakdownRef.current = breakdown;
     setPerLessonBreakdown(breakdown);
-    setCurrentPhase('assessment');
+    setCurrentPhase("assessment");
   };
 
   const handleAnswerQuestion = (selectedAnswer: string) => {
@@ -144,7 +153,7 @@ export default function PracticeTestEngine({ moduleConfig, onComplete }: Practic
       setHasSeenFeedback(false);
       setLastAnswerCorrect(false);
     } else {
-      setCurrentPhase('closing');
+      setCurrentPhase("closing");
 
       if (onComplete && !hasCalledOnCompleteRef.current) {
         hasCalledOnCompleteRef.current = true;
@@ -154,7 +163,7 @@ export default function PracticeTestEngine({ moduleConfig, onComplete }: Practic
             lessonTitle: data.lessonTitle,
             correct: data.correct,
             total: data.total,
-          })
+          }),
         );
         onComplete({
           attemptId: attemptId.current,
@@ -178,23 +187,26 @@ export default function PracticeTestEngine({ moduleConfig, onComplete }: Practic
     setCurrentQuestionIndex(0);
     setScore(0);
     setPerLessonBreakdown({});
-    setCurrentPhase('introduction');
+    setCurrentPhase("introduction");
   };
 
-  const availableQuestions = filterQuestionsByLessonIds(moduleConfig.questions, selectedLessonIds).length;
+  const availableQuestions = filterQuestionsByLessonIds(
+    moduleConfig.questions,
+    selectedLessonIds,
+  ).length;
 
   return (
     <div className="max-w-4xl mx-auto p-6">
       <Card>
         <CardHeader>
           <CardTitle>
-            {currentPhase === 'introduction'
+            {currentPhase === "introduction"
               ? moduleConfig.phaseContent.introduction.heading
               : `Module ${moduleConfig.moduleNumber} Practice Test`}
           </CardTitle>
         </CardHeader>
         <CardContent>
-          {currentPhase === 'introduction' && (
+          {currentPhase === "introduction" && (
             <div>
               <p className="text-lg mb-6">{moduleConfig.phaseContent.introduction.body}</p>
 
@@ -234,10 +246,7 @@ export default function PracticeTestEngine({ moduleConfig, onComplete }: Practic
                   value={questionCount}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setQuestionCount(
-                      Math.max(
-                        1,
-                        Math.min(parseInt(e.target.value) || 1, availableQuestions)
-                      )
+                      Math.max(1, Math.min(parseInt(e.target.value) || 1, availableQuestions)),
                     )
                   }
                 />
@@ -254,13 +263,13 @@ export default function PracticeTestEngine({ moduleConfig, onComplete }: Practic
             </div>
           )}
 
-          {currentPhase === 'assessment' && testQuestions.length > 0 && (
+          {currentPhase === "assessment" && testQuestions.length > 0 && (
             <div>
               <div className="mb-6">
                 <Badge variant="secondary">
                   {moduleConfig.phaseContent.assessment.questionNumberLabel
-                    .replace('{current}', String(currentQuestionIndex + 1))
-                    .replace('{total}', String(testQuestions.length))}
+                    .replace("{current}", String(currentQuestionIndex + 1))
+                    .replace("{total}", String(testQuestions.length))}
                 </Badge>
               </div>
               <h3 className="text-lg font-semibold mb-4">
@@ -268,14 +277,20 @@ export default function PracticeTestEngine({ moduleConfig, onComplete }: Practic
               </h3>
               <div className="space-y-3 mb-6">
                 {testQuestions[currentQuestionIndex].question.choices.map((option, index) => {
-                  const isCorrectAnswer = option === testQuestions[currentQuestionIndex].question.choices[testQuestions[currentQuestionIndex].question.correctIndex];
+                  const isCorrectAnswer =
+                    option ===
+                    testQuestions[currentQuestionIndex].question.choices[
+                      testQuestions[currentQuestionIndex].question.correctIndex
+                    ];
                   return (
                     <Button
                       key={index}
                       variant="secondary"
                       className={`w-full justify-start text-left ${
-                        hasSeenFeedback && isCorrectAnswer ? 'bg-green-100 border-green-500 border-2' : ''
-                      } ${hasSeenFeedback && !isCorrectAnswer ? 'opacity-50' : ''}`}
+                        hasSeenFeedback && isCorrectAnswer
+                          ? "bg-green-100 border-green-500 border-2"
+                          : ""
+                      } ${hasSeenFeedback && !isCorrectAnswer ? "opacity-50" : ""}`}
                       onClick={() => handleAnswerQuestion(option)}
                       disabled={hasSeenFeedback}
                     >
@@ -288,7 +303,7 @@ export default function PracticeTestEngine({ moduleConfig, onComplete }: Practic
                 <div className="mb-4">
                   <div
                     className={`text-lg font-semibold mb-2 ${
-                      lastAnswerCorrect ? 'text-green-600' : 'text-red-600'
+                      lastAnswerCorrect ? "text-green-600" : "text-red-600"
                     }`}
                   >
                     {lastAnswerCorrect
@@ -306,7 +321,7 @@ export default function PracticeTestEngine({ moduleConfig, onComplete }: Practic
             </div>
           )}
 
-          {currentPhase === 'closing' && (
+          {currentPhase === "closing" && (
             <div>
               <p className="text-lg mb-6">{moduleConfig.phaseContent.closing.heading}</p>
               <div className="mb-6">
@@ -317,10 +332,7 @@ export default function PracticeTestEngine({ moduleConfig, onComplete }: Practic
                   {score}/{testQuestions.length}
                 </div>
                 <div className="text-lg text-gray-600">
-                  {testQuestions.length > 0
-                    ? Math.round((score / testQuestions.length) * 100)
-                    : 0}
-                  %
+                  {testQuestions.length > 0 ? Math.round((score / testQuestions.length) * 100) : 0}%
                 </div>
               </div>
               <div className="mb-6">

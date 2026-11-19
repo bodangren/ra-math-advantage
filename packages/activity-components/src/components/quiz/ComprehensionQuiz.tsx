@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { MathInputField } from '../algebraic/MathInputField';
-import { buildPracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
+import React, { useState } from "react";
+import { MathInputField } from "../algebraic/MathInputField";
+import { buildPracticeSubmissionEnvelope } from "@math-platform/practice-core/contract";
 
-export type QuestionType = 'multiple_choice' | 'true_false' | 'short_answer' | 'select_all';
+export type QuestionType = "multiple_choice" | "true_false" | "short_answer" | "select_all";
 
 export interface Question {
   id: string;
@@ -17,7 +17,7 @@ export interface Question {
 
 export interface ComprehensionQuizProps {
   activityId: string;
-  mode: 'teaching' | 'guided' | 'practice';
+  mode: "teaching" | "guided" | "practice";
   questions: Question[];
   onSubmit?: (payload: unknown) => void;
   onComplete?: () => void;
@@ -50,7 +50,7 @@ export function ComprehensionQuiz({
     feedbackShown: {},
     submitted: false,
   });
-  const [submitFeedback, setSubmitFeedback] = useState('');
+  const [submitFeedback, setSubmitFeedback] = useState("");
 
   const MAX_RETRIES = 1;
 
@@ -58,24 +58,26 @@ export function ComprehensionQuiz({
   const isCurrentAnswerCorrect = (question: Question, answer: string | string[]): boolean => {
     if (Array.isArray(question.correctAnswer)) {
       if (!Array.isArray(answer)) return false;
-      return question.correctAnswer.length === answer.length
-        && question.correctAnswer.every((expected) => answer.includes(expected));
+      return (
+        question.correctAnswer.length === answer.length &&
+        question.correctAnswer.every((expected) => answer.includes(expected))
+      );
     }
     if (Array.isArray(answer)) return false;
     return answer.toLowerCase().trim() === String(question.correctAnswer).toLowerCase().trim();
   };
 
   const handleAnswer = (questionId: string, answer: string | string[]) => {
-    const question = questions.find(q => q.id === questionId);
+    const question = questions.find((q) => q.id === questionId);
 
-    if (mode === 'guided' && question) {
-      setState(prev => ({
+    if (mode === "guided" && question) {
+      setState((prev) => ({
         ...prev,
         answers: { ...prev.answers, [questionId]: answer },
         feedbackShown: { ...prev.feedbackShown, [questionId]: true },
       }));
     } else {
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
         answers: { ...prev.answers, [questionId]: answer },
       }));
@@ -84,7 +86,7 @@ export function ComprehensionQuiz({
 
   const handleNext = () => {
     if (state.currentQuestionIndex < questions.length - 1) {
-      setState(prev => ({
+      setState((prev) => ({
         ...prev,
         currentQuestionIndex: prev.currentQuestionIndex + 1,
       }));
@@ -93,9 +95,9 @@ export function ComprehensionQuiz({
 
   const handlePracticeSubmit = () => {
     const answers: Record<string, unknown> = {};
-    const parts = questions.map(q => {
+    const parts = questions.map((q) => {
       const answer = state.answers[q.id];
-      const correct = isCurrentAnswerCorrect(q, answer || '');
+      const correct = isCurrentAnswerCorrect(q, answer || "");
       answers[q.id] = { answer, isCorrect: correct };
       return {
         partId: q.id,
@@ -106,18 +108,19 @@ export function ComprehensionQuiz({
       };
     });
 
-    const correctCount = parts.filter(p => p.isCorrect).length;
+    const correctCount = parts.filter((p) => p.isCorrect).length;
     const score = questions.length > 0 ? Math.round((correctCount / questions.length) * 100) : 0;
     setSubmitFeedback(
       correctCount === questions.length
         ? `Correct! All ${questions.length} answers are right (${score}%).`
-        : `Incorrect — ${correctCount} of ${questions.length} correct (${score}%).`
+        : `Incorrect — ${correctCount} of ${questions.length} correct (${score}%).`,
     );
 
     const envelope = buildPracticeSubmissionEnvelope({
       activityId,
-      mode: mode === 'practice' ? 'independent_practice' : mode === 'guided' ? 'guided_practice' : mode,
-      status: 'submitted',
+      mode:
+        mode === "practice" ? "independent_practice" : mode === "guided" ? "guided_practice" : mode,
+      status: "submitted",
       attemptNumber: 1,
       answers,
       parts,
@@ -130,54 +133,54 @@ export function ComprehensionQuiz({
 
   const renderQuestion = (question: Question) => {
     switch (question.type) {
-      case 'multiple_choice':
+      case "multiple_choice":
         return (
           <MultipleChoiceQuestion
             key={question.id}
             question={question}
             selectedAnswer={state.answers[question.id] as string | undefined}
             onAnswer={(answer) => handleAnswer(question.id, answer)}
-            disabled={mode === 'teaching'}
-            showCorrect={mode === 'teaching'}
+            disabled={mode === "teaching"}
+            showCorrect={mode === "teaching"}
             feedbackShown={state.feedbackShown[question.id]}
           />
         );
 
-      case 'true_false':
+      case "true_false":
         return (
           <TrueFalseQuestion
             key={question.id}
             question={question}
             selectedAnswer={state.answers[question.id] as string | undefined}
             onAnswer={(answer) => handleAnswer(question.id, answer)}
-            disabled={mode === 'teaching'}
-            showCorrect={mode === 'teaching'}
+            disabled={mode === "teaching"}
+            showCorrect={mode === "teaching"}
             feedbackShown={state.feedbackShown[question.id]}
           />
         );
 
-      case 'short_answer':
+      case "short_answer":
         return (
           <ShortAnswerQuestion
             key={question.id}
             question={question}
-            value={(state.answers[question.id] as string) || ''}
+            value={(state.answers[question.id] as string) || ""}
             onChange={(value) => handleAnswer(question.id, value)}
-            disabled={mode === 'teaching'}
-            showCorrect={mode === 'teaching'}
+            disabled={mode === "teaching"}
+            showCorrect={mode === "teaching"}
             feedbackShown={state.feedbackShown[question.id]}
           />
         );
 
-      case 'select_all':
+      case "select_all":
         return (
           <SelectAllQuestion
             key={question.id}
             question={question}
             selectedAnswers={(state.answers[question.id] as string[]) || []}
             onAnswer={(answers) => handleAnswer(question.id, answers)}
-            disabled={mode === 'teaching'}
-            showCorrect={mode === 'teaching'}
+            disabled={mode === "teaching"}
+            showCorrect={mode === "teaching"}
             feedbackShown={state.feedbackShown[question.id]}
           />
         );
@@ -187,22 +190,22 @@ export function ComprehensionQuiz({
     }
   };
 
-  if (mode === 'teaching') {
+  if (mode === "teaching") {
     return (
       <div className="space-y-8 p-4">
         <h2 className="text-xl font-bold">Comprehension Quiz</h2>
-        <div className="space-y-6">
-          {questions.map(q => renderQuestion(q))}
-        </div>
+        <div className="space-y-6">{questions.map((q) => renderQuestion(q))}</div>
       </div>
     );
   }
 
-  if (mode === 'guided') {
+  if (mode === "guided") {
     const currentAnswer = state.answers[currentQuestion?.id];
     const retryCount = state.retryCounts[currentQuestion?.id] || 0;
     const feedbackShown = state.feedbackShown[currentQuestion?.id];
-    const correct = currentQuestion ? isCurrentAnswerCorrect(currentQuestion, currentAnswer || '') : false;
+    const correct = currentQuestion
+      ? isCurrentAnswerCorrect(currentQuestion, currentAnswer || "")
+      : false;
 
     return (
       <div className="space-y-6 p-4">
@@ -212,9 +215,7 @@ export function ComprehensionQuiz({
           </span>
         </div>
 
-        <div className="space-y-4">
-          {renderQuestion(currentQuestion)}
-        </div>
+        <div className="space-y-4">{renderQuestion(currentQuestion)}</div>
 
         <div className="flex gap-4">
           {feedbackShown && correct && (
@@ -241,8 +242,9 @@ export function ComprehensionQuiz({
           {feedbackShown && !correct && retryCount >= MAX_RETRIES && (
             <div className="space-y-2">
               <span className="text-red-600 font-medium">
-                Correct answer: {Array.isArray(currentQuestion.correctAnswer) 
-                  ? currentQuestion.correctAnswer.join(', ') 
+                Correct answer:{" "}
+                {Array.isArray(currentQuestion.correctAnswer)
+                  ? currentQuestion.correctAnswer.join(", ")
                   : currentQuestion.correctAnswer}
               </span>
               {state.currentQuestionIndex < questions.length - 1 ? (
@@ -268,8 +270,8 @@ export function ComprehensionQuiz({
               <span className="text-red-600">Incorrect. Try again!</span>
               <button
                 onClick={() => {
-                  const resetValue = Array.isArray(currentQuestion.correctAnswer) ? [] : '';
-                  setState(prev => ({
+                  const resetValue = Array.isArray(currentQuestion.correctAnswer) ? [] : "";
+                  setState((prev) => ({
                     ...prev,
                     answers: { ...prev.answers, [currentQuestion.id]: resetValue },
                     feedbackShown: { ...prev.feedbackShown, [currentQuestion.id]: false },
@@ -287,8 +289,8 @@ export function ComprehensionQuiz({
     );
   }
 
-  if (mode === 'practice') {
-    const allAnswered = questions.every(q => state.answers[q.id] !== undefined);
+  if (mode === "practice") {
+    const allAnswered = questions.every((q) => state.answers[q.id] !== undefined);
 
     return (
       <div className="space-y-8 p-4">
@@ -346,17 +348,23 @@ function MultipleChoiceQuestion({
   const promptId = `mcq-prompt-${question.id}`;
   return (
     <div className="space-y-3" role="radiogroup" aria-labelledby={promptId}>
-      <p id={promptId} className="font-medium">{question.prompt}</p>
+      <p id={promptId} className="font-medium">
+        {question.prompt}
+      </p>
       <div className="space-y-2">
         {question.options?.map((option, i) => {
           const isCorrect = option === question.correctAnswer;
           const isSelected = selectedAnswer === option;
-          let className = 'w-full p-3 text-left rounded-md border transition-colors ';
+          let className = "w-full p-3 text-left rounded-md border transition-colors ";
 
           if (disabled) {
-            className += isCorrect ? 'bg-green-100 border-green-500 ' : 'bg-gray-50 border-gray-200 ';
+            className += isCorrect
+              ? "bg-green-100 border-green-500 "
+              : "bg-gray-50 border-gray-200 ";
           } else {
-            className += isSelected ? 'bg-blue-100 border-blue-500 ' : 'bg-white border-border hover:bg-gray-50 ';
+            className += isSelected
+              ? "bg-blue-100 border-blue-500 "
+              : "bg-white border-border hover:bg-gray-50 ";
           }
 
           const labelText = showCorrect && isCorrect ? `${option} (Correct)` : option;
@@ -372,7 +380,7 @@ function MultipleChoiceQuestion({
               onClick={() => !disabled && onAnswer(option)}
               onKeyDown={(e) => {
                 if (disabled) return;
-                if (e.key === ' ' || e.key === 'Enter') {
+                if (e.key === " " || e.key === "Enter") {
                   e.preventDefault();
                   onAnswer(option);
                 }
@@ -380,7 +388,9 @@ function MultipleChoiceQuestion({
               className={className}
             >
               <span className="mr-2">{option}</span>
-              {showCorrect && isCorrect && <span className="text-green-600 text-sm">(Correct)</span>}
+              {showCorrect && isCorrect && (
+                <span className="text-green-600 text-sm">(Correct)</span>
+              )}
             </div>
           );
         })}
@@ -404,17 +414,23 @@ function TrueFalseQuestion({
   const promptId = `tf-prompt-${question.id}`;
   return (
     <div className="space-y-3" role="radiogroup" aria-labelledby={promptId}>
-      <p id={promptId} className="font-medium">{question.prompt}</p>
+      <p id={promptId} className="font-medium">
+        {question.prompt}
+      </p>
       <div className="flex gap-4">
         {question.options?.map((option, i) => {
           const isCorrect = option === question.correctAnswer;
           const isSelected = selectedAnswer === option;
-          let className = 'px-6 py-3 rounded-md border transition-colors ';
+          let className = "px-6 py-3 rounded-md border transition-colors ";
 
           if (disabled) {
-            className += isCorrect ? 'bg-green-100 border-green-500 ' : 'bg-gray-50 border-gray-200 ';
+            className += isCorrect
+              ? "bg-green-100 border-green-500 "
+              : "bg-gray-50 border-gray-200 ";
           } else {
-            className += isSelected ? 'bg-blue-100 border-blue-500 ' : 'bg-white border-border hover:bg-gray-50 ';
+            className += isSelected
+              ? "bg-blue-100 border-blue-500 "
+              : "bg-white border-border hover:bg-gray-50 ";
           }
 
           const labelText = showCorrect && isCorrect ? `${option} (Correct)` : option;
@@ -430,7 +446,7 @@ function TrueFalseQuestion({
               onClick={() => !disabled && onAnswer(option)}
               onKeyDown={(e) => {
                 if (disabled) return;
-                if (e.key === ' ' || e.key === 'Enter') {
+                if (e.key === " " || e.key === "Enter") {
                   e.preventDefault();
                   onAnswer(option);
                 }
@@ -438,7 +454,9 @@ function TrueFalseQuestion({
               className={className}
             >
               {option}
-              {showCorrect && isCorrect && <span className="text-green-600 text-sm ml-2">(Correct)</span>}
+              {showCorrect && isCorrect && (
+                <span className="text-green-600 text-sm ml-2">(Correct)</span>
+              )}
             </div>
           );
         })}
@@ -458,7 +476,7 @@ function ShortAnswerQuestion({
   onChange,
   disabled,
   showCorrect,
-}: Omit<QuestionProps, 'onAnswer'> & { value: string; onChange: (value: string) => void }) {
+}: Omit<QuestionProps, "onAnswer"> & { value: string; onChange: (value: string) => void }) {
   return (
     <div className="space-y-3">
       <p className="font-medium">{question.prompt}</p>
@@ -471,9 +489,7 @@ function ShortAnswerQuestion({
         showValidation={showCorrect}
       />
       {showCorrect && (
-        <p className="text-sm text-green-600">
-          Correct answer: {question.correctAnswer}
-        </p>
+        <p className="text-sm text-green-600">Correct answer: {question.correctAnswer}</p>
       )}
     </div>
   );
@@ -493,7 +509,7 @@ function SelectAllQuestion({
 }: QuestionProps & { selectedAnswers: string[] }) {
   const toggleAnswer = (option: string) => {
     if (selectedAnswers.includes(option)) {
-      onAnswer(selectedAnswers.filter(a => a !== option));
+      onAnswer(selectedAnswers.filter((a) => a !== option));
     } else {
       onAnswer([...selectedAnswers, option]);
     }
@@ -506,14 +522,19 @@ function SelectAllQuestion({
       <div className="space-y-2">
         {question.options?.map((option, i) => {
           const isSelected = selectedAnswers.includes(option);
-          const isCorrect = Array.isArray(question.correctAnswer) && question.correctAnswer.includes(option);
-          
-          let className = 'w-full p-3 text-left rounded-md border transition-colors ';
-          
+          const isCorrect =
+            Array.isArray(question.correctAnswer) && question.correctAnswer.includes(option);
+
+          let className = "w-full p-3 text-left rounded-md border transition-colors ";
+
           if (disabled) {
-            className += isCorrect ? 'bg-green-100 border-green-500 ' : 'bg-gray-50 border-gray-200 ';
+            className += isCorrect
+              ? "bg-green-100 border-green-500 "
+              : "bg-gray-50 border-gray-200 ";
           } else {
-            className += isSelected ? 'bg-blue-100 border-blue-500 ' : 'bg-white border-border hover:bg-gray-50 ';
+            className += isSelected
+              ? "bg-blue-100 border-blue-500 "
+              : "bg-white border-border hover:bg-gray-50 ";
           }
 
           return (
@@ -523,9 +544,11 @@ function SelectAllQuestion({
               disabled={disabled}
               className={className}
             >
-              <span className="mr-2">{isSelected ? '☑' : '☐'}</span>
+              <span className="mr-2">{isSelected ? "☑" : "☐"}</span>
               {option}
-              {showCorrect && isCorrect && <span className="text-green-600 text-sm ml-2">(Correct)</span>}
+              {showCorrect && isCorrect && (
+                <span className="text-green-600 text-sm ml-2">(Correct)</span>
+              )}
             </button>
           );
         })}

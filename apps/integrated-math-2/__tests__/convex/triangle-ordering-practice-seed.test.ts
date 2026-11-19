@@ -7,13 +7,9 @@ describe("triangle ordering seed", () => {
     const t = database();
     const ids = await seedTriangleOrderingPracticeHandler(t.ctx);
     expect(ids).toHaveLength(6);
-    expect(t.tables.activities.map((row) => row.stableActivityId)).toHaveLength(
-      6,
-    );
+    expect(t.tables.activities.map((row) => row.stableActivityId)).toHaveLength(6);
     expect(
-      t.tables.activities.every(
-        (row) => row.srsEligible === false && row.approval === undefined,
-      ),
+      t.tables.activities.every((row) => row.srsEligible === false && row.approval === undefined),
     ).toBe(true);
     const first = t.tables.activities[0];
     await t.db.patch(first._id, {

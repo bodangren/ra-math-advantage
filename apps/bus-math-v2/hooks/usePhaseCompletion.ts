@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useCallback, useState } from 'react';
-import { useAuth } from '@/components/auth/AuthProvider';
-import type { CompletePhaseResponse } from '@/types/api';
-import { completePhaseRequest, PhaseCompletionError } from '@/lib/phase-completion/client';
+import { useEffect, useRef, useCallback, useState } from "react";
+import { useAuth } from "@/components/auth/AuthProvider";
+import type { CompletePhaseResponse } from "@/types/api";
+import { completePhaseRequest, PhaseCompletionError } from "@/lib/phase-completion/client";
 
 interface QueuedCompletion {
   userId: string;
@@ -18,7 +18,7 @@ interface QueuedCompletion {
 interface UsePhaseCompletionOptions {
   lessonId: string;
   phaseNumber: number;
-  phaseType: 'read' | 'do';
+  phaseType: "read" | "do";
   onSuccess?: (response: CompletePhaseResponse) => void;
   onError?: (error: Error) => void;
   linkedStandardId?: string;
@@ -30,8 +30,8 @@ interface UsePhaseCompletionResult {
   error: Error | null;
 }
 
-const COMPLETION_QUEUE_KEY = 'completion-queue';
-const CURRENT_USER_KEY = 'completion-queue-user';
+const COMPLETION_QUEUE_KEY = "completion-queue";
+const CURRENT_USER_KEY = "completion-queue-user";
 const MAX_RETRY_COUNT = 3;
 
 /** Generates a random UUID for idempotent completion requests. */
@@ -41,7 +41,7 @@ function generateIdempotencyKey(): string {
 
 /** Extracts the lesson slug from the current URL pathname if it matches the student lesson route. */
 function getLessonSlugFromPathname(): string | null {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === "undefined") return null;
 
   const match = window.location.pathname.match(/^\/student\/lesson\/([^/]+)\/?$/);
   if (!match?.[1]) return null;
@@ -58,7 +58,7 @@ function getCurrentUserId(): string | null {
   try {
     return localStorage.getItem(CURRENT_USER_KEY);
   } catch (error) {
-    console.error('Failed to read current user ID:', error);
+    console.error("Failed to read current user ID:", error);
     return null;
   }
 }
@@ -68,7 +68,7 @@ function setCurrentUserId(userId: string): void {
   try {
     localStorage.setItem(CURRENT_USER_KEY, userId);
   } catch (error) {
-    console.error('Failed to save current user ID:', error);
+    console.error("Failed to save current user ID:", error);
   }
 }
 
@@ -77,7 +77,7 @@ function clearCompletionQueue(): void {
   try {
     localStorage.removeItem(COMPLETION_QUEUE_KEY);
   } catch (error) {
-    console.error('Failed to clear completion queue:', error);
+    console.error("Failed to clear completion queue:", error);
   }
 }
 
@@ -92,22 +92,22 @@ function getCompletionQueue(userId?: string): QueuedCompletion[] {
     const stored = localStorage.getItem(COMPLETION_QUEUE_KEY);
     const allQueue: QueuedCompletion[] = stored ? JSON.parse(stored) : [];
 
-    const hasLegacyItems = allQueue.some(item => !item.userId);
+    const hasLegacyItems = allQueue.some((item) => !item.userId);
     if (hasLegacyItems) {
       console.warn(
-        'Detected legacy completion queue items without userId. Clearing queue for safety.'
+        "Detected legacy completion queue items without userId. Clearing queue for safety.",
       );
       clearCompletionQueue();
       return [];
     }
 
     if (userId) {
-      return allQueue.filter(item => item.userId === userId);
+      return allQueue.filter((item) => item.userId === userId);
     }
 
     return allQueue;
   } catch (error) {
-    console.error('Failed to read completion queue:', error);
+    console.error("Failed to read completion queue:", error);
     return [];
   }
 }
@@ -117,7 +117,7 @@ function saveCompletionQueue(queue: QueuedCompletion[]): void {
   try {
     localStorage.setItem(COMPLETION_QUEUE_KEY, JSON.stringify(queue));
   } catch (error) {
-    console.error('Failed to save completion queue:', error);
+    console.error("Failed to save completion queue:", error);
   }
 }
 
@@ -152,7 +152,7 @@ export function usePhaseCompletion({
 }: UsePhaseCompletionOptions): UsePhaseCompletionResult {
   const [isCompleting, setIsCompleting] = useState(false);
   const [error, setError] = useState<Error | null>(null);
-  
+
   const { user } = useAuth();
   const userId = user?.id ?? null;
 
@@ -165,7 +165,7 @@ export function usePhaseCompletion({
 
     const processQueuedCompletions = async () => {
       processedQueueRef.current = true;
-      
+
       const lastUserId = getCurrentUserId();
       if (lastUserId && lastUserId !== userId) {
         clearCompletionQueue();
@@ -195,7 +195,7 @@ export function usePhaseCompletion({
             timeSpent: completion.timeSpent,
             idempotencyKey: completion.idempotencyKey,
           });
-          
+
           dequeueCompletion(completion.idempotencyKey);
         } catch (err) {
           if (err instanceof PhaseCompletionError && !err.transient) {
@@ -203,11 +203,11 @@ export function usePhaseCompletion({
             continue;
           }
           console.error(`Failed to process queued completion ${completion.idempotencyKey}:`, err);
-          
+
           const updatedQueue = getCompletionQueue().map((c) =>
             c.idempotencyKey === completion.idempotencyKey
               ? { ...c, retryCount: c.retryCount + 1 }
-              : c
+              : c,
           );
           saveCompletionQueue(updatedQueue);
         }
@@ -219,12 +219,12 @@ export function usePhaseCompletion({
 
   const completePhase = useCallback(async () => {
     if (isCompleting) {
-      console.warn('Completion already in progress');
+      console.warn("Completion already in progress");
       return;
     }
 
     if (!userId) {
-      const errorObj = new Error('User not authenticated');
+      const errorObj = new Error("User not authenticated");
       setError(errorObj);
       onError?.(errorObj);
       return;
@@ -264,10 +264,10 @@ export function usePhaseCompletion({
 
         onSuccess?.(response);
       } catch (mutationError: unknown) {
-        console.error('Failed to complete phase:', mutationError);
+        console.error("Failed to complete phase:", mutationError);
 
-        const errorMessage = mutationError instanceof Error ? mutationError.message : '';
-        const isLessonNotFound = errorMessage.includes('Lesson not found');
+        const errorMessage = mutationError instanceof Error ? mutationError.message : "";
+        const isLessonNotFound = errorMessage.includes("Lesson not found");
 
         if (isLessonNotFound) {
           const fallbackSlug = getLessonSlugFromPathname();
@@ -292,12 +292,13 @@ export function usePhaseCompletion({
               onSuccess?.(response);
               return;
             } catch (retryError) {
-              console.error('Retry with slug also failed:', retryError);
+              console.error("Retry with slug also failed:", retryError);
             }
           }
         }
 
-        if (mutationError instanceof PhaseCompletionError && !mutationError.transient) throw mutationError;
+        if (mutationError instanceof PhaseCompletionError && !mutationError.transient)
+          throw mutationError;
 
         const queuedCompletion: QueuedCompletion = {
           userId,
@@ -313,7 +314,7 @@ export function usePhaseCompletion({
         throw mutationError;
       }
     } catch (err) {
-      const errorObj = err instanceof Error ? err : new Error('Failed to complete phase');
+      const errorObj = err instanceof Error ? err : new Error("Failed to complete phase");
       setError(errorObj);
       onError?.(errorObj);
     } finally {

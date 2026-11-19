@@ -17,4 +17,4 @@ export {
   buildDeterministicSummary,
   generateAISummary,
   buildTeacherErrorView,
-} from '@math-platform/practice-core';
+} from "@math-platform/practice-core";

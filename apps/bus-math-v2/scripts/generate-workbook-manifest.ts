@@ -1,9 +1,9 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
-const PUBLIC_WORKBOOKS_DIR = path.join(process.cwd(), 'public', 'workbooks');
-const PRIVATE_WORKBOOKS_DIR = path.join(process.cwd(), 'resources', 'workbooks');
-const OUTPUT_PATH = path.join(process.cwd(), 'lib', 'workbooks-manifest.json');
+const PUBLIC_WORKBOOKS_DIR = path.join(process.cwd(), "public", "workbooks");
+const PRIVATE_WORKBOOKS_DIR = path.join(process.cwd(), "resources", "workbooks");
+const OUTPUT_PATH = path.join(process.cwd(), "lib", "workbooks-manifest.json");
 
 interface WorkbookManifest {
   version: number;
@@ -25,13 +25,14 @@ function scanWorkbooks(): WorkbookManifest {
   if (!fs.existsSync(PUBLIC_WORKBOOKS_DIR)) {
     throw new Error(`Workbook directory not found: ${PUBLIC_WORKBOOKS_DIR}`);
   }
-  const files = [...fs.readdirSync(PUBLIC_WORKBOOKS_DIR),
-    ...(fs.existsSync(PRIVATE_WORKBOOKS_DIR) ? fs.readdirSync(PRIVATE_WORKBOOKS_DIR) : [])]
-    .filter((f) => f.endsWith('.xlsx'));
-  
+  const files = [
+    ...fs.readdirSync(PUBLIC_WORKBOOKS_DIR),
+    ...(fs.existsSync(PRIVATE_WORKBOOKS_DIR) ? fs.readdirSync(PRIVATE_WORKBOOKS_DIR) : []),
+  ].filter((f) => f.endsWith(".xlsx"));
+
   const byUnitAndLesson: Record<string, { student: boolean; teacher: boolean }> = {};
   const byCapstone = { student: false, teacher: false };
-  
+
   for (const file of files) {
     const unitLessonMatch = file.match(/^unit_(\d+)_lesson_(\d+)_(student|teacher)\.xlsx$/);
     if (unitLessonMatch) {
@@ -40,20 +41,20 @@ function scanWorkbooks(): WorkbookManifest {
       if (!byUnitAndLesson[key]) {
         byUnitAndLesson[key] = { student: false, teacher: false };
       }
-      byUnitAndLesson[key][type as 'student' | 'teacher'] = true;
+      byUnitAndLesson[key][type as "student" | "teacher"] = true;
       continue;
     }
-    
+
     const capstoneMatch = file.match(/^capstone_.+\.xlsx$/);
     if (capstoneMatch) {
-      if (file.endsWith('_teacher.xlsx')) {
+      if (file.endsWith("_teacher.xlsx")) {
         byCapstone.teacher = true;
       } else {
         byCapstone.student = true;
       }
     }
   }
-  
+
   return {
     version: 1,
     generatedAt: new Date().toISOString(),

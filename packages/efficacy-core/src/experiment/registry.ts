@@ -1,6 +1,6 @@
-import type { AssignVariant } from './assign';
+import type { AssignVariant } from "./assign";
 
-export type ExperimentStatus = 'draft' | 'active' | 'archived';
+export type ExperimentStatus = "draft" | "active" | "archived";
 
 export interface ExperimentEntry {
   id: string;
@@ -14,15 +14,16 @@ const MAX_VARIANTS = 8;
 const MAX_WEIGHT = 1_000_000;
 
 function validateEntry(entry: ExperimentEntry): void {
-  if (!entry.id || !entry.name) throw new Error('Experiment id and name are required');
+  if (!entry.id || !entry.name) throw new Error("Experiment id and name are required");
   if (entry.variants.length === 0 || entry.variants.length > MAX_VARIANTS) {
     throw new Error(`Experiment variants exceed the limit of ${MAX_VARIANTS}`);
   }
   const variantIds = new Set<string>();
   for (const variant of entry.variants) {
-    if (!variant.id || variantIds.has(variant.id)) throw new Error('Variant ids must be unique and non-empty');
+    if (!variant.id || variantIds.has(variant.id))
+      throw new Error("Variant ids must be unique and non-empty");
     if (!Number.isFinite(variant.weight) || variant.weight <= 0) {
-      throw new Error('Variant weight must be a positive non-zero number');
+      throw new Error("Variant weight must be a positive non-zero number");
     }
     if (variant.weight > MAX_WEIGHT) throw new Error(`Variant weight exceeds cap ${MAX_WEIGHT}`);
     variantIds.add(variant.id);
@@ -46,13 +47,13 @@ export function createExperimentRegistry() {
     },
     listActive(): readonly ExperimentEntry[] {
       return [...entries.values()]
-        .filter(({ status }) => status === 'active')
+        .filter(({ status }) => status === "active")
         .map((entry) => structuredClone(entry));
     },
     archive(id: string): void {
       const entry = entries.get(id);
       if (entry === undefined) throw new Error(`Unknown experiment ${id} not found`);
-      entries.set(id, { ...entry, status: 'archived' });
+      entries.set(id, { ...entry, status: "archived" });
     },
   };
 }

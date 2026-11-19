@@ -47,12 +47,13 @@ export default function RegisterPage() {
     <div className="min-h-[80vh] flex items-center justify-center px-6">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-primary-text mb-2 font-display" style={{ fontSize: '32px', fontWeight: 700 }}>
+          <h1
+            className="text-primary-text mb-2 font-display"
+            style={{ fontSize: "32px", fontWeight: 700 }}
+          >
             Register
           </h1>
-          <p className="text-secondary-text">
-            Create your Integrated Math 1 account
-          </p>
+          <p className="text-secondary-text">Create your Integrated Math 1 account</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -63,7 +64,11 @@ export default function RegisterPage() {
           )}
 
           <div>
-            <label htmlFor="username" className="block text-sm text-secondary-text mb-1" style={{ fontWeight: 500 }}>
+            <label
+              htmlFor="username"
+              className="block text-sm text-secondary-text mb-1"
+              style={{ fontWeight: 500 }}
+            >
               Username
             </label>
             <input
@@ -78,7 +83,11 @@ export default function RegisterPage() {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm text-secondary-text mb-1" style={{ fontWeight: 500 }}>
+            <label
+              htmlFor="password"
+              className="block text-sm text-secondary-text mb-1"
+              style={{ fontWeight: 500 }}
+            >
               Password
             </label>
             <input
@@ -93,7 +102,11 @@ export default function RegisterPage() {
           </div>
 
           <div>
-            <label htmlFor="confirm-password" className="block text-sm text-secondary-text mb-1" style={{ fontWeight: 500 }}>
+            <label
+              htmlFor="confirm-password"
+              className="block text-sm text-secondary-text mb-1"
+              style={{ fontWeight: 500 }}
+            >
               Confirm Password
             </label>
             <input
@@ -118,7 +131,10 @@ export default function RegisterPage() {
 
         <p className="text-center text-muted-text text-sm mt-6">
           Already have an account?{" "}
-          <Link href="/auth/login" className="text-accent hover:text-accent-light transition-colors">
+          <Link
+            href="/auth/login"
+            className="text-accent hover:text-accent-light transition-colors"
+          >
             Sign in
           </Link>
         </p>

@@ -17,12 +17,12 @@ export interface StudentDashboardUnit {
   lessons: StudentDashboardLesson[];
 }
 
-export type LessonStatus = 'not_started' | 'in_progress' | 'completed';
+export type LessonStatus = "not_started" | "in_progress" | "completed";
 type UnitStatus = LessonStatus;
 
 export interface DashboardLessonAction extends StudentDashboardLesson {
   status: LessonStatus;
-  actionLabel: 'Start Lesson' | 'Resume Lesson';
+  actionLabel: "Start Lesson" | "Resume Lesson";
 }
 
 export interface StudentDashboardSummary {
@@ -57,28 +57,28 @@ function clampPercentage(value: number) {
 /** Derives the lesson status from its phase completion counts. */
 function getLessonStatus(lesson: StudentDashboardLesson): LessonStatus {
   if (lesson.totalPhases > 0 && lesson.completedPhases >= lesson.totalPhases) {
-    return 'completed';
+    return "completed";
   }
 
   if (lesson.completedPhases > 0 || lesson.progressPercentage > 0) {
-    return 'in_progress';
+    return "in_progress";
   }
 
-  return 'not_started';
+  return "not_started";
 }
 
 /** Converts a lesson to a dashboard action link, or null if completed. */
 function toLessonAction(lesson: StudentDashboardLesson): DashboardLessonAction | null {
   const status = getLessonStatus(lesson);
 
-  if (status === 'completed') {
+  if (status === "completed") {
     return null;
   }
 
   return {
     ...lesson,
     status,
-    actionLabel: status === 'in_progress' ? 'Resume Lesson' : 'Start Lesson',
+    actionLabel: status === "in_progress" ? "Resume Lesson" : "Start Lesson",
   };
 }
 
@@ -89,18 +89,18 @@ function getUnitStatus(
   nextLesson: DashboardLessonAction | null,
 ): UnitStatus {
   if (lessons.length > 0 && completedLessons === lessons.length) {
-    return 'completed';
+    return "completed";
   }
 
-  if (nextLesson && nextLesson.status === 'in_progress') {
-    return 'in_progress';
+  if (nextLesson && nextLesson.status === "in_progress") {
+    return "in_progress";
   }
 
   if (completedLessons > 0) {
-    return 'in_progress';
+    return "in_progress";
   }
 
-  return 'not_started';
+  return "not_started";
 }
 
 /** Builds the full student dashboard view model with summary stats, unit views, and continue URL. */
@@ -122,12 +122,14 @@ export function buildStudentDashboardViewModel(
   const isLessonUnlocked = (lessonIndex: number): boolean => {
     if (lessonIndex === 0) return true;
     const previousLesson = allLessonsFlat[lessonIndex - 1];
-    return previousLesson.totalPhases > 0 && previousLesson.completedPhases >= previousLesson.totalPhases;
+    return (
+      previousLesson.totalPhases > 0 && previousLesson.completedPhases >= previousLesson.totalPhases
+    );
   };
 
   const unitViews = units.map<StudentDashboardUnitView>((unit) => {
     const lessonsWithLock: StudentDashboardLesson[] = unit.lessons.map((lesson) => {
-      const globalIndex = allLessonsFlat.findIndex(l => l.id === lesson.id);
+      const globalIndex = allLessonsFlat.findIndex((l) => l.id === lesson.id);
       return {
         ...lesson,
         isLocked: !isLessonUnlocked(globalIndex),
@@ -139,28 +141,29 @@ export function buildStudentDashboardViewModel(
       totalPhases += lesson.totalPhases;
 
       const status = getLessonStatus(lesson);
-      if (status === 'completed') completedLessons += 1;
-      if (status === 'in_progress') inProgressLessons += 1;
+      if (status === "completed") completedLessons += 1;
+      if (status === "in_progress") inProgressLessons += 1;
     }
 
     const nextLesson =
-      lessonsWithLock.map(toLessonAction).find((lesson): lesson is DashboardLessonAction => lesson?.status === 'in_progress') ??
-      lessonsWithLock.map(toLessonAction).find((lesson): lesson is DashboardLessonAction => lesson?.status === 'not_started') ??
+      lessonsWithLock
+        .map(toLessonAction)
+        .find((lesson): lesson is DashboardLessonAction => lesson?.status === "in_progress") ??
+      lessonsWithLock
+        .map(toLessonAction)
+        .find((lesson): lesson is DashboardLessonAction => lesson?.status === "not_started") ??
       null;
 
-    const unitCompletedLessons = lessonsWithLock.filter((lesson) => getLessonStatus(lesson) === 'completed').length;
+    const unitCompletedLessons = lessonsWithLock.filter(
+      (lesson) => getLessonStatus(lesson) === "completed",
+    ).length;
     const unitCompletedPhases = lessonsWithLock.reduce(
       (sum, lesson) => sum + lesson.completedPhases,
       0,
     );
-    const unitTotalPhases = lessonsWithLock.reduce(
-      (sum, lesson) => sum + lesson.totalPhases,
-      0,
-    );
+    const unitTotalPhases = lessonsWithLock.reduce((sum, lesson) => sum + lesson.totalPhases, 0);
     const unitProgress =
-      unitTotalPhases === 0
-        ? 0
-        : clampPercentage((unitCompletedPhases / unitTotalPhases) * 100);
+      unitTotalPhases === 0 ? 0 : clampPercentage((unitCompletedPhases / unitTotalPhases) * 100);
 
     return {
       ...unit,
@@ -175,24 +178,26 @@ export function buildStudentDashboardViewModel(
   const nextLesson =
     unitViews
       .map((unit) => unit.nextLesson)
-      .find((lesson): lesson is DashboardLessonAction => lesson?.status === 'in_progress') ??
+      .find((lesson): lesson is DashboardLessonAction => lesson?.status === "in_progress") ??
     unitViews
       .map((unit) => unit.nextLesson)
-      .find((lesson): lesson is DashboardLessonAction => lesson?.status === 'not_started') ??
+      .find((lesson): lesson is DashboardLessonAction => lesson?.status === "not_started") ??
     null;
 
-  const allComplete = allLessonsFlat.length > 0 && allLessonsFlat.every(
-    lesson => lesson.totalPhases > 0 && lesson.completedPhases >= lesson.totalPhases
-  );
+  const allComplete =
+    allLessonsFlat.length > 0 &&
+    allLessonsFlat.every(
+      (lesson) => lesson.totalPhases > 0 && lesson.completedPhases >= lesson.totalPhases,
+    );
 
   let continueUrl: string | null = null;
   if (allLessonsFlat.length === 0) {
     continueUrl = null;
   } else if (allComplete) {
-    continueUrl = '/student/dashboard?complete=module-1';
+    continueUrl = "/student/dashboard?complete=module-1";
   } else {
     const firstIncomplete = allLessonsFlat.find(
-      lesson => lesson.totalPhases === 0 || lesson.completedPhases < lesson.totalPhases
+      (lesson) => lesson.totalPhases === 0 || lesson.completedPhases < lesson.totalPhases,
     );
     if (firstIncomplete) {
       const nextPhase = (firstIncomplete.completedPhases || 0) + 1;
@@ -203,7 +208,7 @@ export function buildStudentDashboardViewModel(
   return {
     summary: {
       totalUnits: unitViews.length,
-      completedUnits: unitViews.filter((unit) => unit.status === 'completed').length,
+      completedUnits: unitViews.filter((unit) => unit.status === "completed").length,
       totalLessons: unitViews.reduce((sum, unit) => sum + unit.lessons.length, 0),
       completedLessons,
       inProgressLessons,

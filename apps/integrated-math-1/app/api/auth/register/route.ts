@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
-import { hashPassword, generatePasswordSalt, PASSWORD_HASH_ITERATIONS } from "@math-platform/core-auth";
+import {
+  hashPassword,
+  generatePasswordSalt,
+  PASSWORD_HASH_ITERATIONS,
+} from "@math-platform/core-auth";
 import { fetchInternalMutation, internal } from "@/lib/convex/server";
 
 export async function POST(request: Request) {
@@ -12,7 +16,10 @@ export async function POST(request: Request) {
     }
 
     if (!password || typeof password !== "string" || password.length < 6) {
-      return NextResponse.json({ error: "Password must be at least 6 characters" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Password must be at least 6 characters" },
+        { status: 400 },
+      );
     }
 
     const salt = generatePasswordSalt();

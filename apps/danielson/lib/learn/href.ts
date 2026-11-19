@@ -1,4 +1,4 @@
-const CANONICAL_SKILL_PREFIX = 'danielson.tlac.skill.';
+const CANONICAL_SKILL_PREFIX = "danielson.tlac.skill.";
 
 export function learnSkillSlug(skillId: string) {
   return skillId.startsWith(CANONICAL_SKILL_PREFIX)

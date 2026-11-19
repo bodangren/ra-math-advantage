@@ -1,11 +1,13 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import type { DailyPracticeAnswerInputProps } from '@/lib/srs/answer-inputs/registry';
-import type { AccountingEquationDefinition, AccountingEquationResponse } from '@/lib/practice/engine/families/accounting-equation';
-
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import type { DailyPracticeAnswerInputProps } from "@/lib/srs/answer-inputs/registry";
+import type {
+  AccountingEquationDefinition,
+  AccountingEquationResponse,
+} from "@/lib/practice/engine/families/accounting-equation";
 
 /**
  * Renders an answer input for accounting equation problems, showing visible
@@ -17,10 +19,14 @@ import type { AccountingEquationDefinition, AccountingEquationResponse } from '@
  * @param props.onSubmit - Callback to submit the graded practice envelope.
  * @returns A problem display with numeric input and submit/grade result.
  */
-export function AccountingEquationInput({ family, definition, onSubmit }: DailyPracticeAnswerInputProps) {
+export function AccountingEquationInput({
+  family,
+  definition,
+  onSubmit,
+}: DailyPracticeAnswerInputProps) {
   const def = definition as AccountingEquationDefinition;
   const [submitted, setSubmitted] = useState(false);
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const [gradeResult, setGradeResult] = useState<{
     isCorrect: boolean;
     expectedValue: number;
@@ -30,7 +36,6 @@ export function AccountingEquationInput({ family, definition, onSubmit }: DailyP
   const hiddenTermId = def.equation.hiddenTermId;
   const visibleFacts = def.facts;
   const hiddenTermLabel = def.terms[hiddenTermId]?.label ?? hiddenTermId;
-
 
   /**
    * Grades the submitted value and submits the practice envelope.
@@ -70,14 +75,14 @@ export function AccountingEquationInput({ family, definition, onSubmit }: DailyP
           {visibleFacts.map((fact) => (
             <div key={fact.id} className="flex gap-2">
               <span className="font-medium">{fact.label}:</span>
-              <span className="font-mono">{fact.value.toLocaleString('en-US')}</span>
+              <span className="font-mono">{fact.value.toLocaleString("en-US")}</span>
             </div>
           ))}
         </div>
       </div>
 
       <div className="space-y-2">
-        {def.mode === 'guided_practice' ? (
+        {def.mode === "guided_practice" ? (
           <p className="text-sm text-muted-foreground">{def.scaffolding.helperText}</p>
         ) : null}
         <label htmlFor="accounting-equation-input" className="text-sm font-medium">
@@ -97,14 +102,14 @@ export function AccountingEquationInput({ family, definition, onSubmit }: DailyP
         <div className="bg-muted/50 p-4 rounded-lg space-y-2">
           <div
             className={`text-sm font-medium ${
-              gradeResult.isCorrect ? 'text-green-600' : 'text-red-600'
+              gradeResult.isCorrect ? "text-green-600" : "text-red-600"
             }`}
           >
-            {gradeResult.isCorrect ? 'Correct!' : 'Incorrect'}
+            {gradeResult.isCorrect ? "Correct!" : "Incorrect"}
           </div>
           {!gradeResult.isCorrect && (
             <div className="text-sm">
-              Expected: {gradeResult.expectedValue.toLocaleString('en-US')}
+              Expected: {gradeResult.expectedValue.toLocaleString("en-US")}
             </div>
           )}
         </div>

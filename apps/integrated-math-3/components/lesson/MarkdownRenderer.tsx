@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { cn } from '@/lib/utils';
-import { MarkdownRenderer as TextbookMarkdownRenderer } from '@/components/textbook/MarkdownRenderer';
+import { cn } from "@/lib/utils";
+import { MarkdownRenderer as TextbookMarkdownRenderer } from "@/components/textbook/MarkdownRenderer";
 
 interface LessonMarkdownRendererProps {
   content: string;
@@ -14,7 +14,7 @@ interface LessonMarkdownRendererProps {
  */
 export function LessonMarkdownRenderer({ content, className }: LessonMarkdownRendererProps) {
   return (
-    <div className={cn('textbook-content', className)}>
+    <div className={cn("textbook-content", className)}>
       <TextbookMarkdownRenderer content={content} />
     </div>
   );

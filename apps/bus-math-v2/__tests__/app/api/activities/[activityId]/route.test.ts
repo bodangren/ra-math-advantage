@@ -1,26 +1,26 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-import type { NextRequest } from 'next/server';
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import type { NextRequest } from "next/server";
 
 const mockRequireActiveRequestSessionClaims = vi.fn();
 const mockFetchInternalQuery = vi.fn();
 
-vi.mock('@/lib/auth/server', () => ({
+vi.mock("@/lib/auth/server", () => ({
   requireActiveRequestSessionClaims: mockRequireActiveRequestSessionClaims,
 }));
 
-vi.mock('@/lib/convex/server', () => ({
+vi.mock("@/lib/convex/server", () => ({
   fetchInternalQuery: mockFetchInternalQuery,
   internal: {
     api: {
-      getProfile: 'internal.api.getProfile',
+      getProfile: "internal.api.getProfile",
     },
     activities: {
-      getActivityById: 'internal.activities.getActivityById',
+      getActivityById: "internal.activities.getActivityById",
     },
   },
 }));
 
-const { GET } = await import('../../../../../app/api/activities/[activityId]/route');
+const { GET } = await import("../../../../../app/api/activities/[activityId]/route");
 
 function buildContext(activityId: string) {
   return {
@@ -33,14 +33,14 @@ function buildRequest(url: string) {
 }
 
 const fullActivity = {
-  id: '7a0bfc56-4b5a-4c41-a90e-0e5cc2e7319b',
-  componentKey: 'comprehension-quiz',
+  id: "7a0bfc56-4b5a-4c41-a90e-0e5cc2e7319b",
+  componentKey: "comprehension-quiz",
   props: {
     questions: [
       {
-        id: 'q1',
-        text: 'Choose one',
-        correctAnswer: 'A',
+        id: "q1",
+        text: "Choose one",
+        correctAnswer: "A",
       },
     ],
   },
@@ -50,50 +50,56 @@ const fullActivity = {
   },
 };
 
-describe('GET /api/activities/[activityId]', () => {
+describe("GET /api/activities/[activityId]", () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
     mockRequireActiveRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_123',
-      username: 'student',
-      role: 'student',
+      sub: "profile_123",
+      username: "student",
+      role: "student",
       iat: 1,
       exp: 2,
     });
 
     mockFetchInternalQuery
-      .mockResolvedValueOnce({ role: 'student' })
+      .mockResolvedValueOnce({ role: "student" })
       .mockResolvedValueOnce(fullActivity);
   });
 
-  it('returns 401 when unauthenticated or deactivated', async () => {
+  it("returns 401 when unauthenticated or deactivated", async () => {
     mockRequireActiveRequestSessionClaims.mockResolvedValue(
-      new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 }),
+      new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 }),
     );
 
     const response = await GET(
-      buildRequest('http://localhost/api/activities/7a0bfc56-4b5a-4c41-a90e-0e5cc2e7319b'),
-      buildContext('7a0bfc56-4b5a-4c41-a90e-0e5cc2e7319b'),
+      buildRequest("http://localhost/api/activities/7a0bfc56-4b5a-4c41-a90e-0e5cc2e7319b"),
+      buildContext("7a0bfc56-4b5a-4c41-a90e-0e5cc2e7319b"),
     );
 
     expect(response.status).toBe(401);
   });
 
-  it('redacts answer keys and grading internals for students', async () => {
+  it("redacts answer keys and grading internals for students", async () => {
     const response = await GET(
-      buildRequest('http://localhost/api/activities/7a0bfc56-4b5a-4c41-a90e-0e5cc2e7319b'),
-      buildContext('7a0bfc56-4b5a-4c41-a90e-0e5cc2e7319b'),
+      buildRequest("http://localhost/api/activities/7a0bfc56-4b5a-4c41-a90e-0e5cc2e7319b"),
+      buildContext("7a0bfc56-4b5a-4c41-a90e-0e5cc2e7319b"),
     );
 
     expect(response.status).toBe(200);
     const payload = await response.json();
 
     expect(payload.gradingConfig).toBeNull();
-    expect(payload.props.questions[0]).not.toHaveProperty('correctAnswer');
-    expect(mockFetchInternalQuery).toHaveBeenNthCalledWith(1, 'internal.api.getProfile', { userId: 'profile_123' });
-    expect(mockFetchInternalQuery).toHaveBeenNthCalledWith(2, 'internal.activities.getActivityById', {
-      activityId: '7a0bfc56-4b5a-4c41-a90e-0e5cc2e7319b',
+    expect(payload.props.questions[0]).not.toHaveProperty("correctAnswer");
+    expect(mockFetchInternalQuery).toHaveBeenNthCalledWith(1, "internal.api.getProfile", {
+      userId: "profile_123",
     });
+    expect(mockFetchInternalQuery).toHaveBeenNthCalledWith(
+      2,
+      "internal.activities.getActivityById",
+      {
+        activityId: "7a0bfc56-4b5a-4c41-a90e-0e5cc2e7319b",
+      },
+    );
   });
 });

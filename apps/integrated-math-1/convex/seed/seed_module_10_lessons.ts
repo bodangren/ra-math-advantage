@@ -852,7 +852,7 @@ const lessonsData = [
             sectionType: "text" as const,
             content: {
               markdown:
-                "## Explore: What Does \"Halfway\" Mean on a Number Line?\n\nStudents explore how to locate the point that is exactly halfway between two given points on a number line. They consider whether adding the coordinates and dividing by two always produces the correct halfway point.\n\nInquiry Question:\nWhy does averaging the two endpoint coordinates give the midpoint on a number line?",
+                '## Explore: What Does "Halfway" Mean on a Number Line?\n\nStudents explore how to locate the point that is exactly halfway between two given points on a number line. They consider whether adding the coordinates and dividing by two always produces the correct halfway point.\n\nInquiry Question:\nWhy does averaging the two endpoint coordinates give the midpoint on a number line?',
             },
           },
         ],
@@ -1019,7 +1019,7 @@ export const seedModule10Lessons = internalMutation({
         const existingPhase = await ctx.db
           .query("phase_versions")
           .withIndex("by_lesson_version_and_phase", (q) =>
-            q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+            q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
           )
           .first();
 

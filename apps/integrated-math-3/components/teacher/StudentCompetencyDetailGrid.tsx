@@ -1,6 +1,10 @@
-'use client';
+"use client";
 
-import { computeCompetencyColor, type StudentCompetencyDetail, cellBgClass } from '@math-platform/teacher-reporting-core';
+import {
+  computeCompetencyColor,
+  type StudentCompetencyDetail,
+  cellBgClass,
+} from "@math-platform/teacher-reporting-core";
 
 interface StudentCompetencyDetailGridProps {
   detail: StudentCompetencyDetail;
@@ -30,15 +34,12 @@ export function StudentCompetencyDetailGrid({ detail }: StudentCompetencyDetailG
           {displayName} (@{username})
         </h2>
         <p className="text-sm text-muted-foreground">
-          {competencies.length} standard{competencies.length !== 1 ? 's' : ''}
+          {competencies.length} standard{competencies.length !== 1 ? "s" : ""}
         </p>
       </section>
 
       <div className="rounded-xl border border-border overflow-x-auto">
-        <table
-          className="w-full text-xs"
-          aria-label="Student competency detail"
-        >
+        <table className="w-full text-xs" aria-label="Student competency detail">
           <thead className="bg-muted/50 border-b border-border">
             <tr>
               <th scope="col" className="text-left px-4 py-3 font-medium text-muted-foreground">
@@ -68,18 +69,14 @@ export function StudentCompetencyDetailGrid({ detail }: StudentCompetencyDetailG
                     <div className="text-xs text-muted-foreground font-normal">{comp.category}</div>
                   )}
                 </td>
-                <td className="px-4 py-2 text-muted-foreground">
-                  {comp.standardDescription}
+                <td className="px-4 py-2 text-muted-foreground">{comp.standardDescription}</td>
+                <td
+                  className={`text-center px-4 py-2 font-medium tabular-nums ${cellBgClass(computeCompetencyColor(comp.masteryLevel))}`}
+                >
+                  {comp.masteryLevel !== null ? `${comp.masteryLevel}%` : "—"}
                 </td>
-                <td className={`text-center px-4 py-2 font-medium tabular-nums ${cellBgClass(computeCompetencyColor(comp.masteryLevel))}`}>
-                  {comp.masteryLevel !== null ? `${comp.masteryLevel}%` : '—'}
-                </td>
-                <td className="px-4 py-2">
-                  {comp.unitNumber ? `Module ${comp.unitNumber}` : '—'}
-                </td>
-                <td className="px-4 py-2">
-                  {comp.lessonTitle || '—'}
-                </td>
+                <td className="px-4 py-2">{comp.unitNumber ? `Module ${comp.unitNumber}` : "—"}</td>
+                <td className="px-4 py-2">{comp.lessonTitle || "—"}</td>
               </tr>
             ))}
           </tbody>

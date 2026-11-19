@@ -2,7 +2,7 @@
 function escapeCsvField(value: unknown): string {
   if (value == null) return "";
   const str = String(value);
-  if (typeof value === 'string' && /^\s*[=+\-@]/.test(str)) {
+  if (typeof value === "string" && /^\s*[=+\-@]/.test(str)) {
     return `"'${str.replace(/"/g, '""')}"`;
   }
   if (str.includes(",") || str.includes('"') || str.includes("\n") || str.includes("\r")) {
@@ -17,9 +17,7 @@ export function toCsv(data: Record<string, unknown>[]): string {
 
   const headers = Object.keys(data[0]);
   const headerRow = headers.map(escapeCsvField).join(",");
-  const rows = data.map((row) =>
-    headers.map((h) => escapeCsvField(row[h])).join(","),
-  );
+  const rows = data.map((row) => headers.map((h) => escapeCsvField(row[h])).join(","));
 
   return [headerRow, ...rows].join("\n");
 }
@@ -79,7 +77,8 @@ export function formatClassExport(rows: ClassExportStudentRow[]): Record<string,
     studentName: row.studentName,
     lessonsCompleted: row.lessonsCompleted,
     totalLessons: row.totalLessons,
-    overallProgress: row.overallProgress != null ? Math.round(row.overallProgress * 10000) / 10000 : 0,
+    overallProgress:
+      row.overallProgress != null ? Math.round(row.overallProgress * 10000) / 10000 : 0,
     averageScore: row.averageScore != null ? Math.round(row.averageScore * 10000) / 10000 : "",
   }));
 }
@@ -110,11 +109,7 @@ export interface ResolvedExportScope {
 
 /** Sanitizes a class name by trimming whitespace, replacing slashes with dashes, and collapsing spaces. */
 function sanitizeClassName(raw: string): string {
-  return raw
-    .trim()
-    .replace(/\//g, "-")
-    .replace(/\s+/g, " ")
-    .trim();
+  return raw.trim().replace(/\//g, "-").replace(/\s+/g, " ").trim();
 }
 
 /** Formats a date or timestamp as a UTC `YYYY-MM-DD` string. */
@@ -144,9 +139,7 @@ export function resolveExportScope(scope: ExportScope): ResolvedExportScope {
   switch (dataset) {
     case "student": {
       if (typeof scope.studentId !== "string" || scope.studentId.length === 0) {
-        throw new Error(
-          "resolveExportScope: 'student' dataset requires 'studentId'",
-        );
+        throw new Error("resolveExportScope: 'student' dataset requires 'studentId'");
       }
       const args: Record<string, unknown> = { studentId: scope.studentId };
       if (typeof scope.startDate === "number") args.startDate = scope.startDate;
@@ -155,9 +148,7 @@ export function resolveExportScope(scope: ExportScope): ResolvedExportScope {
     }
     case "class": {
       if (typeof scope.classId !== "string" || scope.classId.length === 0) {
-        throw new Error(
-          "resolveExportScope: 'class' dataset requires 'classId'",
-        );
+        throw new Error("resolveExportScope: 'class' dataset requires 'classId'");
       }
       const args: Record<string, unknown> = { classId: scope.classId };
       if (typeof scope.startDate === "number") args.startDate = scope.startDate;
@@ -166,14 +157,10 @@ export function resolveExportScope(scope: ExportScope): ResolvedExportScope {
     }
     case "submissions": {
       if (typeof scope.classId !== "string" || scope.classId.length === 0) {
-        throw new Error(
-          "resolveExportScope: 'submissions' dataset requires 'classId'",
-        );
+        throw new Error("resolveExportScope: 'submissions' dataset requires 'classId'");
       }
       if (typeof scope.endDate !== "number") {
-        throw new Error(
-          "resolveExportScope: 'submissions' dataset requires 'endDate'",
-        );
+        throw new Error("resolveExportScope: 'submissions' dataset requires 'endDate'");
       }
       const args: Record<string, unknown> = {
         classId: scope.classId,

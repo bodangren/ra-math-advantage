@@ -1,21 +1,23 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { describe, expect, it } from 'vitest';
+import fs from "node:fs";
+import path from "node:path";
+import { describe, expect, it } from "vitest";
 
-const REPO_ROOT = path.resolve(__dirname, '../../../..');
+const REPO_ROOT = path.resolve(__dirname, "../../../..");
 
-describe('Measure track hygiene', () => {
-  it('does not keep the same track id in both active and archived directories', () => {
-    const tracksDir = path.resolve(REPO_ROOT, 'measure/tracks');
-    const archiveDir = path.resolve(REPO_ROOT, 'measure/archive');
+describe("Measure track hygiene", () => {
+  it("does not keep the same track id in both active and archived directories", () => {
+    const tracksDir = path.resolve(REPO_ROOT, "measure/tracks");
+    const archiveDir = path.resolve(REPO_ROOT, "measure/archive");
 
     const activeTrackIds = new Set(
-      fs.readdirSync(tracksDir, { withFileTypes: true })
+      fs
+        .readdirSync(tracksDir, { withFileTypes: true })
         .filter((entry) => entry.isDirectory())
         .map((entry) => entry.name),
     );
 
-    const duplicateArchivedTrackIds = fs.readdirSync(archiveDir, { withFileTypes: true })
+    const duplicateArchivedTrackIds = fs
+      .readdirSync(archiveDir, { withFileTypes: true })
       .filter((entry) => entry.isDirectory())
       .map((entry) => entry.name)
       .filter((trackId) => activeTrackIds.has(trackId));
@@ -23,19 +25,17 @@ describe('Measure track hygiene', () => {
     expect(duplicateArchivedTrackIds).toEqual([]);
   });
 
-  it('does not list completed tracks inside the active execution queue', () => {
-    const tracksRegistry = fs.readFileSync(
-      path.resolve(REPO_ROOT, 'measure/tracks.md'),
-      'utf8',
-    );
+  it("does not list completed tracks inside the active execution queue", () => {
+    const tracksRegistry = fs.readFileSync(path.resolve(REPO_ROOT, "measure/tracks.md"), "utf8");
 
-    const activeSection = tracksRegistry
-      .split('## Active Execution Queue (progressive order)')[1]
-      ?.split('## Upcoming / Unplanned')[0] ?? '';
+    const activeSection =
+      tracksRegistry
+        .split("## Active Execution Queue (progressive order)")[1]
+        ?.split("## Upcoming / Unplanned")[0] ?? "";
 
     const completedActiveEntries = activeSection
-      .split('\n')
-      .filter((line) => line.trimStart().startsWith('- [x]'));
+      .split("\n")
+      .filter((line) => line.trimStart().startsWith("- [x]"));
 
     expect(completedActiveEntries).toEqual([]);
   });

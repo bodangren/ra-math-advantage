@@ -20,9 +20,7 @@ function createHarness() {
     query: (table: string) => ({
       withIndex: (
         _name: string,
-        configure: (query: {
-          eq: (field: string, value: unknown) => unknown;
-        }) => unknown,
+        configure: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
       ) => {
         const filters = new Map<string, unknown>();
         const query = {
@@ -77,9 +75,7 @@ function ordinaryMarkdown(harness: ReturnType<typeof createHarness>) {
     .sort((left, right) => Number(left.phaseNumber) - Number(right.phaseNumber))
     .map((phase) => {
       const section = harness.rows.phase_sections.find(
-        (candidate) =>
-          candidate.phaseVersionId === phase._id &&
-          candidate.sequenceOrder === 1,
+        (candidate) => candidate.phaseVersionId === phase._id && candidate.sequenceOrder === 1,
       );
       return (section?.content as { markdown?: string } | undefined)?.markdown;
     });
@@ -92,10 +88,7 @@ describe("Topic 1.1 ordinary seed source parity", () => {
 
     const bodies = ordinaryMarkdown(harness);
     expect(
-      harness.rows.phase_versions.map((phase) => [
-        phase.phaseNumber,
-        phase.phaseType,
-      ]),
+      harness.rows.phase_versions.map((phase) => [phase.phaseNumber, phase.phaseType]),
     ).toEqual([
       [1, "explore"],
       [2, "vocabulary"],
@@ -107,9 +100,7 @@ describe("Topic 1.1 ordinary seed source parity", () => {
     ]);
     expect(bodies).toHaveLength(7);
     expect(bodies.every((body) => typeof body === "string")).toBe(true);
-    expect(bodies[0]).toContain(
-      "vertex occurs at $t=1.25$ seconds, where $h(t)=43.5$ feet",
-    );
+    expect(bodies[0]).toContain("vertex occurs at $t=1.25$ seconds, where $h(t)=43.5$ feet");
     expect(bodies[0]).toContain("do not show a constant interval");
     expect(bodies[0]).toContain("$0 \\le t \\le (5+\\sqrt{29})/4$");
     expect(bodies[1]).toContain("**Domain**: The domain is the set of input values.");
@@ -128,9 +119,7 @@ describe("Topic 1.1 ordinary seed source parity", () => {
     const lesson = fs.readFileSync(
       path.resolve(
         path.dirname(
-          import.meta.url.startsWith("file:")
-            ? fileURLToPath(import.meta.url)
-            : import.meta.url,
+          import.meta.url.startsWith("file:") ? fileURLToPath(import.meta.url) : import.meta.url,
         ),
         "../../../curriculum/modules/unit-01-polynomial-rational/lesson-1-1/lesson.md",
       ),
@@ -143,9 +132,7 @@ describe("Topic 1.1 ordinary seed source parity", () => {
     );
     expect(sourceActivity).toBeDefined();
     const sourceLinksBefore = harness.rows.phase_sections.filter(
-      (row) =>
-        (row.content as { activityId?: unknown })?.activityId ===
-        sourceActivity?._id,
+      (row) => (row.content as { activityId?: unknown })?.activityId === sourceActivity?._id,
     );
     expect(sourceLinksBefore).toHaveLength(1);
     expect(sourceLinksBefore[0]).toMatchObject({
@@ -169,15 +156,11 @@ describe("Topic 1.1 ordinary seed source parity", () => {
     );
     await runSeed(harness);
     expect(harness.rows.phase_sections).toEqual(snapshot);
+    expect(harness.rows.phase_sections.find((section) => section._id === unrelated._id)).toEqual(
+      unrelated,
+    );
     expect(
-      harness.rows.phase_sections.find(
-        (section) => section._id === unrelated._id,
-      ),
-    ).toEqual(unrelated);
-    expect(
-      harness.rows.activities.map(
-        ({ updatedAt: _updatedAt, ...activity }) => activity,
-      ),
+      harness.rows.activities.map(({ updatedAt: _updatedAt, ...activity }) => activity),
     ).toEqual(selectedActivitySnapshot);
   });
 });

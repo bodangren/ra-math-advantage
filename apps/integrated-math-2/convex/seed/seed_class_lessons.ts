@@ -38,7 +38,7 @@ export const seedClassLessons = internalMutation({
       const existingClassLesson = await ctx.db
         .query("class_lessons")
         .withIndex("by_class_and_lesson", (q) =>
-          q.eq("classId", classId).eq("lessonId", lesson._id)
+          q.eq("classId", classId).eq("lessonId", lesson._id),
         )
         .unique();
 

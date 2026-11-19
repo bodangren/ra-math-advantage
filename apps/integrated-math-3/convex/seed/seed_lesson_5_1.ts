@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -137,10 +137,19 @@ export const seedLesson5_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "f(x) = 2^x",
                 steps: [
-                  { expression: "f(0) = 2^0 = 1", explanation: "Find the y-intercept by evaluating at x = 0" },
-                  { expression: "domain: all real numbers", explanation: "An exponential function is defined for all real x" },
+                  {
+                    expression: "f(0) = 2^0 = 1",
+                    explanation: "Find the y-intercept by evaluating at x = 0",
+                  },
+                  {
+                    expression: "domain: all real numbers",
+                    explanation: "An exponential function is defined for all real x",
+                  },
                   { expression: "range: (0, \\infty)", explanation: "2^x is always positive" },
-                  { expression: "asymptote: y = 0", explanation: "As x approaches negative infinity, f(x) approaches 0" },
+                  {
+                    expression: "asymptote: y = 0",
+                    explanation: "As x approaches negative infinity, f(x) approaches 0",
+                  },
                 ],
               },
             },
@@ -171,10 +180,22 @@ export const seedLesson5_1 = internalMutation({
                 equation: "g(x) = -(1/2) * 3^(x+4) + 1",
                 steps: [
                   { expression: "Parent: f(x) = 3^x", explanation: "Identify the parent function" },
-                  { expression: "a = -1/2: reflect and compress", explanation: "Negative a reflects across x-axis; |a| < 1 compresses vertically" },
-                  { expression: "h = -4: shift 4 units left", explanation: "x + 4 indicates a horizontal shift left by 4" },
-                  { expression: "k = 1: shift 1 unit up", explanation: "+1 at the end shifts the graph up by 1" },
-                  { expression: "Asymptote: y = 1", explanation: "The horizontal asymptote shifts up with k" },
+                  {
+                    expression: "a = -1/2: reflect and compress",
+                    explanation: "Negative a reflects across x-axis; |a| < 1 compresses vertically",
+                  },
+                  {
+                    expression: "h = -4: shift 4 units left",
+                    explanation: "x + 4 indicates a horizontal shift left by 4",
+                  },
+                  {
+                    expression: "k = 1: shift 1 unit up",
+                    explanation: "+1 at the end shifts the graph up by 1",
+                  },
+                  {
+                    expression: "Asymptote: y = 1",
+                    explanation: "The horizontal asymptote shifts up with k",
+                  },
                 ],
               },
             },
@@ -204,9 +225,18 @@ export const seedLesson5_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "j(x) = f(x) + k, f(x) = 3.5^x",
                 steps: [
-                  { expression: "j(x) = f(x) + k", explanation: "Start with the transformation form" },
-                  { expression: "Translation is 2 units down", explanation: "A downward shift means k is negative" },
-                  { expression: "k = -2", explanation: "Substitute the direction and magnitude of the shift" },
+                  {
+                    expression: "j(x) = f(x) + k",
+                    explanation: "Start with the transformation form",
+                  },
+                  {
+                    expression: "Translation is 2 units down",
+                    explanation: "A downward shift means k is negative",
+                  },
+                  {
+                    expression: "k = -2",
+                    explanation: "Substitute the direction and magnitude of the shift",
+                  },
                   { expression: "j(x) = 3.5^x - 2", explanation: "Write the final function" },
                 ],
               },
@@ -237,10 +267,19 @@ export const seedLesson5_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "A(t) = 50(1.05)^t",
                 steps: [
-                  { expression: "A(t) = 50(1.05)^t", explanation: "Substitute a = 50 and r = 0.05 into the growth formula" },
+                  {
+                    expression: "A(t) = 50(1.05)^t",
+                    explanation: "Substitute a = 50 and r = 0.05 into the growth formula",
+                  },
                   { expression: "A(20) = 50(1.05)^{20}", explanation: "Evaluate after 20 years" },
-                  { expression: "A(20) \\approx 132.66488526", explanation: "Calculate using technology" },
-                  { expression: "\\$132,664,885.26", explanation: "Convert from millions to dollars" },
+                  {
+                    expression: "A(20) \\approx 132.66488526",
+                    explanation: "Calculate using technology",
+                  },
+                  {
+                    expression: "\\$132,664,885.26",
+                    explanation: "Convert from millions to dollars",
+                  },
                 ],
               },
             },
@@ -287,10 +326,16 @@ export const seedLesson5_1 = internalMutation({
                 equation: "Classify f(x)=5^x, g(x)=(2/7)^x, h(x)=(4/3)^x, j(x)=1.05^x, k(x)=0.85^x",
                 steps: [
                   { expression: "f(x) = 5^x \\to growth", explanation: "Base 5 > 1" },
-                  { expression: "g(x) = (2/7)^x \\to decay", explanation: "Base 2/7 is between 0 and 1" },
+                  {
+                    expression: "g(x) = (2/7)^x \\to decay",
+                    explanation: "Base 2/7 is between 0 and 1",
+                  },
                   { expression: "h(x) = (4/3)^x \\to growth", explanation: "Base 4/3 > 1" },
                   { expression: "j(x) = 1.05^x \\to growth", explanation: "Base 1.05 > 1" },
-                  { expression: "k(x) = 0.85^x \\to decay", explanation: "Base 0.85 is between 0 and 1" },
+                  {
+                    expression: "k(x) = 0.85^x \\to decay",
+                    explanation: "Base 0.85 is between 0 and 1",
+                  },
                 ],
               },
             },
@@ -323,8 +368,14 @@ export const seedLesson5_1 = internalMutation({
                   { expression: "f(0) = (1/2)^0 = 1", explanation: "Find the y-intercept" },
                   { expression: "domain: all real numbers", explanation: "Defined for all real x" },
                   { expression: "range: (0, \\infty)", explanation: "(1/2)^x is always positive" },
-                  { expression: "asymptote: y = 0", explanation: "As x approaches infinity, f(x) approaches 0" },
-                  { expression: "as x \\to -\\infty, f(x) \\to \\infty", explanation: "For negative x, (1/2)^x = 2^{-x} grows without bound" },
+                  {
+                    expression: "asymptote: y = 0",
+                    explanation: "As x approaches infinity, f(x) approaches 0",
+                  },
+                  {
+                    expression: "as x \\to -\\infty, f(x) \\to \\infty",
+                    explanation: "For negative x, (1/2)^x = 2^{-x} grows without bound",
+                  },
                 ],
               },
             },
@@ -354,11 +405,26 @@ export const seedLesson5_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "g(x) = -2(1/4)^(x-4) + 3",
                 steps: [
-                  { expression: "Parent: f(x) = (1/4)^x", explanation: "Identify the parent function" },
-                  { expression: "a = -2: reflect and stretch", explanation: "Negative a reflects across x-axis; |a| > 1 stretches vertically" },
-                  { expression: "h = 4: shift 4 units right", explanation: "x - 4 indicates a horizontal shift right by 4" },
-                  { expression: "k = 3: shift 3 units up", explanation: "+3 shifts the graph up by 3" },
-                  { expression: "Asymptote: y = 3", explanation: "The horizontal asymptote shifts up with k" },
+                  {
+                    expression: "Parent: f(x) = (1/4)^x",
+                    explanation: "Identify the parent function",
+                  },
+                  {
+                    expression: "a = -2: reflect and stretch",
+                    explanation: "Negative a reflects across x-axis; |a| > 1 stretches vertically",
+                  },
+                  {
+                    expression: "h = 4: shift 4 units right",
+                    explanation: "x - 4 indicates a horizontal shift right by 4",
+                  },
+                  {
+                    expression: "k = 3: shift 3 units up",
+                    explanation: "+3 shifts the graph up by 3",
+                  },
+                  {
+                    expression: "Asymptote: y = 3",
+                    explanation: "The horizontal asymptote shifts up with k",
+                  },
                 ],
               },
             },
@@ -388,11 +454,27 @@ export const seedLesson5_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "f(x) = piecewise: (1/2)^x for x < -1; 2x + 4 for x >= -1",
                 steps: [
-                  { expression: "For x < -1: f(x) = (1/2)^x", explanation: "Exponential decay part" },
-                  { expression: "For x >= -1: f(x) = 2x + 4", explanation: "Linear part with slope 2" },
-                  { expression: "f(-1) = 2(-1) + 4 = 2", explanation: "Evaluate boundary point using linear piece" },
-                  { expression: "f(0) = 2(0) + 4 = 4", explanation: "y-intercept of the linear piece" },
-                  { expression: "Relative minimum at (-1, 2)", explanation: "The exponential part approaches infinity as x -> -infinity, and the linear part increases from x = -1" },
+                  {
+                    expression: "For x < -1: f(x) = (1/2)^x",
+                    explanation: "Exponential decay part",
+                  },
+                  {
+                    expression: "For x >= -1: f(x) = 2x + 4",
+                    explanation: "Linear part with slope 2",
+                  },
+                  {
+                    expression: "f(-1) = 2(-1) + 4 = 2",
+                    explanation: "Evaluate boundary point using linear piece",
+                  },
+                  {
+                    expression: "f(0) = 2(0) + 4 = 4",
+                    explanation: "y-intercept of the linear piece",
+                  },
+                  {
+                    expression: "Relative minimum at (-1, 2)",
+                    explanation:
+                      "The exponential part approaches infinity as x -> -infinity, and the linear part increases from x = -1",
+                  },
                 ],
               },
             },
@@ -461,7 +543,7 @@ export const seedLesson5_1 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

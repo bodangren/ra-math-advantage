@@ -2,11 +2,7 @@ import { internalMutation, internalQuery } from "../_generated/server";
 import { v } from "convex/values";
 import type { MutationCtx, QueryCtx } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
-import {
-  srsCardStatePickValidator,
-  srsEvidenceValidator,
-  srsRatingValidator,
-} from "./validators";
+import { srsCardStatePickValidator, srsEvidenceValidator, srsRatingValidator } from "./validators";
 import { resolveReviewParamsVersion } from "./paramsVersion";
 import { KST_SRS_V3_2_MIGRATION_VERSION } from "../../lib/srs/v3-runtime-contract";
 
@@ -23,10 +19,10 @@ type SrsStatePick = {
 
 // COPIED from packages/srs-engine/src/srs/transition-validator.ts — DO NOT EDIT WITHOUT SYNCING
 const VALID_STATE_TRANSITIONS: Record<string, string[]> = {
-  new: ['learning', 'review'],
-  learning: ['learning', 'review'],
-  review: ['learning', 'review'],
-  relearning: ['learning', 'review'],
+  new: ["learning", "review"],
+  learning: ["learning", "review"],
+  review: ["learning", "review"],
+  relearning: ["learning", "review"],
 };
 
 /**
@@ -36,25 +32,20 @@ const VALID_STATE_TRANSITIONS: Record<string, string[]> = {
  * @throws Error if reps does not increase by 1, lapses decreases,
  *         or state transition is invalid
  */
-function validateSrsTransition(
-  stateBefore: SrsStatePick,
-  stateAfter: SrsStatePick,
-): void {
+function validateSrsTransition(stateBefore: SrsStatePick, stateAfter: SrsStatePick): void {
   if (stateAfter.reps !== stateBefore.reps + 1) {
     throw new Error(
-      `reps must increase by exactly 1 (before: ${stateBefore.reps}, after: ${stateAfter.reps})`
+      `reps must increase by exactly 1 (before: ${stateBefore.reps}, after: ${stateAfter.reps})`,
     );
   }
   if (stateAfter.lapses < stateBefore.lapses) {
     throw new Error(
-      `lapses cannot decrease (before: ${stateBefore.lapses}, after: ${stateAfter.lapses})`
+      `lapses cannot decrease (before: ${stateBefore.lapses}, after: ${stateAfter.lapses})`,
     );
   }
   const allowedNextStates = VALID_STATE_TRANSITIONS[stateBefore.state];
   if (!allowedNextStates?.includes(stateAfter.state)) {
-    throw new Error(
-      `invalid state transition: ${stateBefore.state} → ${stateAfter.state}`
-    );
+    throw new Error(`invalid state transition: ${stateBefore.state} → ${stateAfter.state}`);
   }
 }
 
@@ -73,20 +64,36 @@ export async function saveReviewHandler(
     studentId: Id<"profiles">;
     rating: "Again" | "Hard" | "Good" | "Easy";
     submissionId?: string;
-    evidence: { action: "teacher_reset"; objectiveId: string } | { baseRating: "Again" | "Hard" | "Good" | "Easy"; timingAdjusted: boolean; reasons: string[]; misconceptionTags?: string[] };
-    stateBefore: { stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; reps: number; lapses: number };
-    stateAfter: { stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; reps: number; lapses: number };
+    evidence:
+      | { action: "teacher_reset"; objectiveId: string }
+      | {
+          baseRating: "Again" | "Hard" | "Good" | "Easy";
+          timingAdjusted: boolean;
+          reasons: string[];
+          misconceptionTags?: string[];
+        };
+    stateBefore: {
+      stability: number;
+      difficulty: number;
+      state: "new" | "learning" | "review" | "relearning";
+      reps: number;
+      lapses: number;
+    };
+    stateAfter: {
+      stability: number;
+      difficulty: number;
+      state: "new" | "learning" | "review" | "relearning";
+      reps: number;
+      lapses: number;
+    };
     paramsVersion?: string;
     reviewedAt: string;
-  }
+  },
 ) {
-  const paramsVersion = resolveReviewParamsVersion(
-    "action" in args.evidence,
-    args.paramsVersion,
-  );
+  const paramsVersion = resolveReviewParamsVersion("action" in args.evidence, args.paramsVersion);
   // Teacher resets bypass SRS transition validation because they are administrative
   // overrides, not learner reviews. The reset action reinitializes the card state.
-  if (!('action' in args.evidence)) {
+  if (!("action" in args.evidence)) {
     validateSrsTransition(args.stateBefore, args.stateAfter);
   }
 
@@ -141,15 +148,10 @@ export const saveReview = internalMutation({
  * @param {{ cardId: Id<"srs_cards"> }} args - The card ID to query reviews for
  * @returns {Promise<Doc<"srs_review_log">[]>} Array of review entries sorted by reviewedAt timestamp
  */
-export async function getReviewsByCardHandler(
-  ctx: QueryCtx,
-  args: { cardId: Id<"srs_cards"> }
-) {
+export async function getReviewsByCardHandler(ctx: QueryCtx, args: { cardId: Id<"srs_cards"> }) {
   const reviews = await ctx.db
     .query("srs_review_log")
-    .withIndex("by_card", (q) =>
-      q.eq("cardId", args.cardId)
-    )
+    .withIndex("by_card", (q) => q.eq("cardId", args.cardId))
     .take(MAX_REVIEWS_PER_CARD_READ);
   return reviews
     .sort((a, b) => a.reviewedAt - b.reviewedAt)
@@ -186,7 +188,7 @@ export const getReviewsByCard = internalQuery({
  */
 export async function getReviewsByStudentHandler(
   ctx: QueryCtx,
-  args: { studentId: Id<"profiles">; since?: string }
+  args: { studentId: Id<"profiles">; since?: string },
 ) {
   let sinceMs: number | undefined;
   if (args.since) {
@@ -197,14 +199,10 @@ export async function getReviewsByStudentHandler(
   }
   const reviews = await ctx.db
     .query("srs_review_log")
-    .withIndex("by_student", (q) =>
-      q.eq("studentId", args.studentId)
-    )
+    .withIndex("by_student", (q) => q.eq("studentId", args.studentId))
     .take(MAX_REVIEWS_PER_STUDENT_READ);
   return reviews
-    .filter((review) =>
-      sinceMs === undefined ? true : review.reviewedAt >= sinceMs
-    )
+    .filter((review) => (sinceMs === undefined ? true : review.reviewedAt >= sinceMs))
     .sort((a, b) => a.reviewedAt - b.reviewedAt)
     .map((review) => ({
       reviewId: review.reviewId ?? review._id,

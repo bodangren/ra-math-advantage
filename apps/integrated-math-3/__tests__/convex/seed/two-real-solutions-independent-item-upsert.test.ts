@@ -1,18 +1,15 @@
 import { describe, expect, it } from "vitest";
 
 import type { Id } from "@/convex/_generated/dataModel";
-import {
-  buildIm3TwoRealSolutionsIndependentPracticeSeedDocuments,
-} from "@/convex/seed/seed_lesson_1_2";
+import { buildIm3TwoRealSolutionsIndependentPracticeSeedDocuments } from "@/convex/seed/seed_lesson_1_2";
 import * as seedLesson12 from "@/convex/seed/seed_lesson_1_2";
-import {
-  IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
-} from "@/lib/practice/learning-evidence-pilot";
+import { IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID } from "@/lib/practice/learning-evidence-pilot";
 
 type Row = Record<string, unknown> & { _id: string };
 
 type OptionalIndependentPracticeItemUpsert =
-  ((ctx: never, activityId: Id<"activities">, now: number) => Promise<Id<"practice_items">>) | undefined;
+  | ((ctx: never, activityId: Id<"activities">, now: number) => Promise<Id<"practice_items">>)
+  | undefined;
 
 function createContext(variantRows: Row[] = [], activityRows: Row[] = []) {
   const operations: string[] = [];
@@ -27,9 +24,10 @@ function createContext(variantRows: Row[] = [], activityRows: Row[] = []) {
     }
     operations.push(`query:${table}`);
     return {
-      withIndex(index: string, callback: (query: {
-        eq: (field: string, value: unknown) => unknown;
-      }) => unknown) {
+      withIndex(
+        index: string,
+        callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+      ) {
         operations.push(`index:${index}`);
         callback({
           eq: (field: string, value: unknown) => {
@@ -121,9 +119,11 @@ describe("IM3 two-real-solutions Independent practice-item upsert", () => {
       sourceTimestamp: 200,
       variantLabel: "Seed 2",
     });
-    expect(state.operations.filter((operation) => operation.startsWith("query:")).every((operation) => (
-      operation === "query:practice_items"
-    ))).toBe(true);
+    expect(
+      state.operations
+        .filter((operation) => operation.startsWith("query:"))
+        .every((operation) => operation === "query:practice_items"),
+    ).toBe(true);
   });
 
   it("rejects a conflicting two-real-solutions Independent practice-item mapping before writes", async () => {
@@ -136,17 +136,19 @@ describe("IM3 two-real-solutions Independent practice-item upsert", () => {
     if (typeof upsertIndependentItem !== "function") return;
 
     const activityId = "activities:two-real-solutions-independent" as Id<"activities">;
-    const state = createContext([{
-      _id: "practice_items:conflict",
-      practiceItemId: `${IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID}:wrong-seed`,
-      activityId,
-      variantKey: IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
-      variantLabel: "Seed 2",
-    }]);
+    const state = createContext([
+      {
+        _id: "practice_items:conflict",
+        practiceItemId: `${IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID}:wrong-seed`,
+        activityId,
+        variantKey: IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
+        variantLabel: "Seed 2",
+      },
+    ]);
 
-    await expect(
-      upsertIndependentItem(state.ctx, activityId, 100),
-    ).rejects.toThrow("Duplicate or conflicting IM3 two-real-solutions Independent practice-item mapping");
+    await expect(upsertIndependentItem(state.ctx, activityId, 100)).rejects.toThrow(
+      "Duplicate or conflicting IM3 two-real-solutions Independent practice-item mapping",
+    );
     expect(state.operations).toEqual([
       "query:practice_items",
       "index:by_variantKey",
@@ -172,17 +174,24 @@ describe("IM3 two-real-solutions Independent practice-item upsert", () => {
 
     const activityId = "activities:two-real-solutions-independent" as Id<"activities">;
     const expected = buildIm3TwoRealSolutionsIndependentPracticeSeedDocuments(activityId, 100).item;
-    const state = createContext([{
-      _id: "practice_items:first",
-      ...expected,
-    }], [{
-      _id: "practice_items:second",
-      ...expected,
-    }]);
+    const state = createContext(
+      [
+        {
+          _id: "practice_items:first",
+          ...expected,
+        },
+      ],
+      [
+        {
+          _id: "practice_items:second",
+          ...expected,
+        },
+      ],
+    );
 
-    await expect(
-      upsertIndependentItem(state.ctx, activityId, 100),
-    ).rejects.toThrow("Duplicate or conflicting IM3 two-real-solutions Independent practice-item mapping");
+    await expect(upsertIndependentItem(state.ctx, activityId, 100)).rejects.toThrow(
+      "Duplicate or conflicting IM3 two-real-solutions Independent practice-item mapping",
+    );
     expect(state.operations).toEqual([
       "query:practice_items",
       "index:by_variantKey",

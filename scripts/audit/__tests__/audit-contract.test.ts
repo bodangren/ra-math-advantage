@@ -25,10 +25,10 @@
  *   - Red on drizzle-kit slip   — drizzle-kit range drops below 0.31.10 in any wave.
  */
 
-import { describe, it, expect, beforeAll } from 'vitest';
-import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync, existsSync } from 'node:fs';
-import { tmpdir } from 'node:os';
-import { resolve } from 'node:path';
+import { describe, it, expect, beforeAll } from "vitest";
+import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync, existsSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { resolve } from "node:path";
 
 import {
   getAuditReport,
@@ -54,13 +54,13 @@ import {
   type RangeCompatibility,
   type RangeCompatibilityClass,
   type MatrixRow,
-} from '../audit-contract';
+} from "../audit-contract";
 
 const REPO_ROOT = process.cwd();
-const FIXTURES_DIR = resolve(REPO_ROOT, 'scripts/audit/__tests__/fixtures');
+const FIXTURES_DIR = resolve(REPO_ROOT, "scripts/audit/__tests__/fixtures");
 
 const BASELINE = JSON.parse(
-  readFileSync(resolve(FIXTURES_DIR, 'audit-baseline.json'), 'utf-8')
+  readFileSync(resolve(FIXTURES_DIR, "audit-baseline.json"), "utf-8"),
 ) as {
   first_class_apps: Array<{ workspace: string; external_dep_count: number }>;
   shared_packages: Array<{ workspace: string; external_dep_count: number }>;
@@ -73,7 +73,12 @@ const BASELINE = JSON.parse(
   };
   security_totals: { critical: number; high: number; moderate: number; total: number };
   open_range_violations: Array<{ package: string; workspace: string; range: string }>;
-  drizzle_kit_floor: { package: string; workspace: string; current_range: string; downgrade_blocked_below: string };
+  drizzle_kit_floor: {
+    package: string;
+    workspace: string;
+    current_range: string;
+    downgrade_blocked_below: string;
+  };
   declaration_drift_examples: Array<{
     package: string;
     expected_versions: Array<{ workspace: string; range: string; drift?: string }>;
@@ -81,13 +86,13 @@ const BASELINE = JSON.parse(
 };
 
 const MATRIX = JSON.parse(
-  readFileSync(resolve(FIXTURES_DIR, 'package-wave-matrix.json'), 'utf-8')
+  readFileSync(resolve(FIXTURES_DIR, "package-wave-matrix.json"), "utf-8"),
 ) as {
   rows: MatrixRow[];
 };
 
 const LOCKFILE_INVENTORY = JSON.parse(
-  readFileSync(resolve(FIXTURES_DIR, 'lockfile-inventory.json'), 'utf-8')
+  readFileSync(resolve(FIXTURES_DIR, "lockfile-inventory.json"), "utf-8"),
 ) as {
   single_root_lockfile: { expected_count: number; expected_paths: string[] };
   npmrc_invariant: { expected_files: string[]; forbidden_keys: string[] };
@@ -95,7 +100,7 @@ const LOCKFILE_INVENTORY = JSON.parse(
 };
 
 const REGISTRY_STUB = JSON.parse(
-  readFileSync(resolve(FIXTURES_DIR, 'registry-stub.json'), 'utf-8')
+  readFileSync(resolve(FIXTURES_DIR, "registry-stub.json"), "utf-8"),
 ) as {
   registry_latest: Record<string, string>;
   range_classification_expectations: {
@@ -107,63 +112,69 @@ const REGISTRY_STUB = JSON.parse(
 };
 
 const BASELINE_QUALITY_GATES = JSON.parse(
-  readFileSync(resolve(FIXTURES_DIR, 'baseline-quality-gates.json'), 'utf-8')
+  readFileSync(resolve(FIXTURES_DIR, "baseline-quality-gates.json"), "utf-8"),
 ) as {
   npm_ls: { exit_status: number; expected_clean: boolean };
-  npm_audit: { exit_status: number; expected_critical: number; expected_high: number; expected_moderate: number; expected_total: number; force_fix_used: boolean };
+  npm_audit: {
+    exit_status: number;
+    expected_critical: number;
+    expected_high: number;
+    expected_moderate: number;
+    expected_total: number;
+    force_fix_used: boolean;
+  };
   boundary_check: { exit_status: number; expected_clean: boolean };
   per_app_quality_gates: { apps: Array<{ workspace: string }> };
   pre_existing_failures: { failures: unknown[] };
-  single_root_lockfile_invariant: { expected_root_lockfile_count: number; expected_nested_lockfile_count: number };
+  single_root_lockfile_invariant: {
+    expected_root_lockfile_count: number;
+    expected_nested_lockfile_count: number;
+  };
 };
 
-describe('audit-contract module surface', () => {
-  it('exports the contract functions the upgrade plan depends on', () => {
-    expect(typeof getAuditReport).toBe('function');
-    expect(typeof getAppManifests).toBe('function');
-    expect(typeof getDeclarationDrift).toBe('function');
-    expect(typeof getOpenRangeViolations).toBe('function');
-    expect(typeof getFirstClassAppCoverage).toBe('function');
-    expect(typeof getSecurityTotals).toBe('function');
-    expect(typeof assertNoNestedLockfiles).toBe('function');
-    expect(typeof assertNoDrizzleKitDowngrade).toBe('function');
-    expect(typeof getUpgradeCandidatesFromMatrix).toBe('function');
+describe("audit-contract module surface", () => {
+  it("exports the contract functions the upgrade plan depends on", () => {
+    expect(typeof getAuditReport).toBe("function");
+    expect(typeof getAppManifests).toBe("function");
+    expect(typeof getDeclarationDrift).toBe("function");
+    expect(typeof getOpenRangeViolations).toBe("function");
+    expect(typeof getFirstClassAppCoverage).toBe("function");
+    expect(typeof getSecurityTotals).toBe("function");
+    expect(typeof assertNoNestedLockfiles).toBe("function");
+    expect(typeof assertNoDrizzleKitDowngrade).toBe("function");
+    expect(typeof getUpgradeCandidatesFromMatrix).toBe("function");
   });
 });
 
-describe('audit-contract — first-class app coverage (Red on missing app, Red on under-count)', () => {
+describe("audit-contract — first-class app coverage (Red on missing app, Red on under-count)", () => {
   let manifests: AppManifest[];
 
   beforeAll(() => {
     manifests = getAppManifests(REPO_ROOT);
   });
 
-  it('reports exactly the 5 first-class apps in apps/', () => {
+  it("reports exactly the 5 first-class apps in apps/", () => {
     const firstClassWorkspaces = manifests
-      .filter((m) => m.workspace === 'app')
+      .filter((m) => m.workspace === "app")
       .map((m) => m.workspace_path)
       .sort();
-    expect(firstClassWorkspaces).toEqual(
-      BASELINE.first_class_apps.map((a) => a.workspace).sort()
-    );
+    expect(firstClassWorkspaces).toEqual(BASELINE.first_class_apps.map((a) => a.workspace).sort());
   });
 
-  it('reports all 21 shared packages (excludes _template from active list)', () => {
+  it("reports all 21 shared packages (excludes _template from active list)", () => {
     const sharedWorkspaces = manifests
-      .filter((m) => m.workspace === 'package')
+      .filter((m) => m.workspace === "package")
       .map((m) => m.workspace_path)
       .sort();
-    expect(sharedWorkspaces).toEqual(
-      BASELINE.shared_packages.map((a) => a.workspace).sort()
-    );
+    expect(sharedWorkspaces).toEqual(BASELINE.shared_packages.map((a) => a.workspace).sort());
   });
 
-  it('counts external (non-workspace, non-`*`) deps per first-class app — Red on under-count', () => {
+  it("counts external (non-workspace, non-`*`) deps per first-class app — Red on under-count", () => {
     const coverage = getFirstClassAppCoverage(manifests, BASELINE.first_class_apps);
     const offenders = coverage.filter((c) => !c.ok);
     expect(
       offenders,
-      `first-class app dep count drift: ${JSON.stringify(offenders, null, 2)}`
+      `first-class app dep count drift: ${JSON.stringify(offenders, null, 2)}`,
     ).toEqual([]);
     for (const c of coverage) {
       expect(c.actual).toBe(c.expected);
@@ -171,7 +182,7 @@ describe('audit-contract — first-class app coverage (Red on missing app, Red o
   });
 });
 
-describe('audit-contract — declaration drift (Red on drift)', () => {
+describe("audit-contract — declaration drift (Red on drift)", () => {
   let manifests: AppManifest[];
   let drift: DriftEntry[];
 
@@ -180,25 +191,28 @@ describe('audit-contract — declaration drift (Red on drift)', () => {
     drift = getDeclarationDrift(manifests);
   });
 
-  it('vitest drift resolved after W2 — all workspaces on 4.x (PTE upgraded from ^2.0.0 to ^4.1.8)', () => {
-    const vitest = drift.find((d) => d.package === 'vitest');
+  it("vitest drift resolved after W2 — all workspaces on 4.x (PTE upgraded from ^2.0.0 to ^4.1.8)", () => {
+    const vitest = drift.find((d) => d.package === "vitest");
     if (vitest) {
       const uniqueMajors = new Set(
-        vitest.versions.map((v) => parseInt(v.range.replace(/^[\^~>=<]*/, ''), 10))
+        vitest.versions.map((v) => parseInt(v.range.replace(/^[\^~>=<]*/, ""), 10)),
       );
       expect(uniqueMajors.size).toBe(1);
       expect(uniqueMajors.has(4)).toBe(true);
     }
   });
 
-  it('katex drift reconciled after W3 — all workspaces on ^0.16.45', () => {
-    const katex = drift.find((d) => d.package === 'katex');
-    expect(katex, 'katex drift entry should be absent after W3 reconciliation').toBeUndefined();
+  it("katex drift reconciled after W3 — all workspaces on ^0.16.45", () => {
+    const katex = drift.find((d) => d.package === "katex");
+    expect(katex, "katex drift entry should be absent after W3 reconciliation").toBeUndefined();
   });
 
-  it('lucide-react drift reconciled after W3 — all workspaces on ^0.511.0', () => {
-    const lucide = drift.find((d) => d.package === 'lucide-react');
-    expect(lucide, 'lucide-react drift entry should be absent after W3 reconciliation').toBeUndefined();
+  it("lucide-react drift reconciled after W3 — all workspaces on ^0.511.0", () => {
+    const lucide = drift.find((d) => d.package === "lucide-react");
+    expect(
+      lucide,
+      "lucide-react drift entry should be absent after W3 reconciliation",
+    ).toBeUndefined();
   });
 });
 
@@ -211,83 +225,88 @@ describe('audit-contract — open-range violations (post-W2: "next" pinned to ^1
   });
 
   it('zero "next" open-range violations after W2 pinning (was 5 with "latest")', () => {
-    const nextViolations = violations.filter((v) => v.package === 'next');
+    const nextViolations = violations.filter((v) => v.package === "next");
     expect(nextViolations.length).toBe(0);
   });
 });
 
-describe('audit-contract — security totals (matches frozen baseline)', () => {
-  it('reports 1 critical, 3 high, 14 moderate, 18 total (test-strategy.md §2)', () => {
+describe("audit-contract — security totals (matches frozen baseline)", () => {
+  it("reports 1 critical, 3 high, 14 moderate, 18 total (test-strategy.md §2)", () => {
     const totals = getSecurityTotals(BASELINE);
     expect(totals).toEqual(BASELINE.security_totals);
     expect(totals.total).toBe(totals.critical + totals.high + totals.moderate);
   });
 });
 
-describe('audit-contract — single-root-lockfile invariant (AC7, FR10)', () => {
-  it('finds exactly one package-lock.json at repo root and zero nested', () => {
+describe("audit-contract — single-root-lockfile invariant (AC7, FR10)", () => {
+  it("finds exactly one package-lock.json at repo root and zero nested", () => {
     const result = assertNoNestedLockfiles(REPO_ROOT, LOCKFILE_INVENTORY.single_root_lockfile);
-    expect(result.ok, `nested lockfile violations: ${JSON.stringify(result.violations)}`).toBe(true);
+    expect(result.ok, `nested lockfile violations: ${JSON.stringify(result.violations)}`).toBe(
+      true,
+    );
     expect(result.violations).toEqual([]);
   });
 
-  it('detects any non-root package-lock.json recursively (negative test)', () => {
-    const tempRoot = mkdtempSync(resolve(tmpdir(), 'audit-contract-lockfile-'));
+  it("detects any non-root package-lock.json recursively (negative test)", () => {
+    const tempRoot = mkdtempSync(resolve(tmpdir(), "audit-contract-lockfile-"));
     try {
-      writeFileSync(resolve(tempRoot, 'package-lock.json'), '{}');
-      mkdirSync(resolve(tempRoot, 'apps/example/nested'), { recursive: true });
-      writeFileSync(resolve(tempRoot, 'apps/example/nested/package-lock.json'), '{}');
+      writeFileSync(resolve(tempRoot, "package-lock.json"), "{}");
+      mkdirSync(resolve(tempRoot, "apps/example/nested"), { recursive: true });
+      writeFileSync(resolve(tempRoot, "apps/example/nested/package-lock.json"), "{}");
 
       const result = assertNoNestedLockfiles(tempRoot, LOCKFILE_INVENTORY.single_root_lockfile);
       expect(result.ok).toBe(false);
-      expect(result.violations).toContain('apps/example/nested/package-lock.json');
+      expect(result.violations).toContain("apps/example/nested/package-lock.json");
     } finally {
       rmSync(tempRoot, { recursive: true, force: true });
     }
   });
 
-  it('does not allow a .npmrc file (would indicate a peer-deps workaround)', () => {
+  it("does not allow a .npmrc file (would indicate a peer-deps workaround)", () => {
     for (const forbidden of LOCKFILE_INVENTORY.npmrc_invariant.expected_files.length === 0
-      ? ['.npmrc']
+      ? [".npmrc"]
       : []) {
       expect(existsSync(resolve(REPO_ROOT, forbidden)), `${forbidden} must not exist`).toBe(false);
     }
   });
 });
 
-describe('audit-contract — drizzle-kit downgrade guard (FR9)', () => {
-  it('never downgrades drizzle-kit below 0.31.10', () => {
+describe("audit-contract — drizzle-kit downgrade guard (FR9)", () => {
+  it("never downgrades drizzle-kit below 0.31.10", () => {
     const manifests = getAppManifests(REPO_ROOT);
-    const result = assertNoDrizzleKitDowngrade(manifests, BASELINE.drizzle_kit_floor.downgrade_blocked_below);
+    const result = assertNoDrizzleKitDowngrade(
+      manifests,
+      BASELINE.drizzle_kit_floor.downgrade_blocked_below,
+    );
     expect(result.ok, `drizzle-kit violations: ${JSON.stringify(result.violations)}`).toBe(true);
   });
 
-  it('detects a drizzle-kit downgrade below the floor (negative test)', () => {
+  it("detects a drizzle-kit downgrade below the floor (negative test)", () => {
     const mockManifests: AppManifest[] = [
       {
-        workspace: 'package',
-        workspace_path: 'packages/test-pkg',
-        package_json_path: 'packages/test-pkg/package.json',
-        dependencies: { 'drizzle-kit': '^0.31.9' },
+        workspace: "package",
+        workspace_path: "packages/test-pkg",
+        package_json_path: "packages/test-pkg/package.json",
+        dependencies: { "drizzle-kit": "^0.31.9" },
         devDependencies: {},
       },
     ];
-    const result = assertNoDrizzleKitDowngrade(mockManifests, '0.31.10');
+    const result = assertNoDrizzleKitDowngrade(mockManifests, "0.31.10");
     expect(result.ok).toBe(false);
     expect(result.violations.length).toBe(1);
-    expect(result.violations[0].workspace).toBe('packages/test-pkg');
-    expect(result.violations[0].floor).toBe('0.31.10');
+    expect(result.violations[0].workspace).toBe("packages/test-pkg");
+    expect(result.violations[0].floor).toBe("0.31.10");
   });
 });
 
-describe('audit-contract — 36 upgrade-candidate matrix coverage (AC1, AC5)', () => {
-  it('the matrix fixture itself contains exactly 36 unique families', () => {
+describe("audit-contract — 36 upgrade-candidate matrix coverage (AC1, AC5)", () => {
+  it("the matrix fixture itself contains exactly 36 unique families", () => {
     const names = MATRIX.rows.map((r) => r.package);
     expect(new Set(names).size).toBe(36);
     expect(MATRIX.rows.length).toBe(36);
   });
 
-  it('getUpgradeCandidatesFromMatrix returns the 36 rows with wave assignment', () => {
+  it("getUpgradeCandidatesFromMatrix returns the 36 rows with wave assignment", () => {
     const candidates = getUpgradeCandidatesFromMatrix(MATRIX);
     expect(candidates.length).toBe(36);
     const byPackage = new Map(candidates.map((c) => [c.package, c]));
@@ -297,11 +316,14 @@ describe('audit-contract — 36 upgrade-candidate matrix coverage (AC1, AC5)', (
     }
   });
 
-  it('waves are drawn from the closed set {W2-security, W3-in-range, W4-framework, W5-remaining}', () => {
+  it("waves are drawn from the closed set {W2-security, W3-in-range, W4-framework, W5-remaining}", () => {
     const candidates = getUpgradeCandidatesFromMatrix(MATRIX);
-    const allowed = new Set(['W2-security', 'W3-in-range', 'W4-framework', 'W5-remaining']);
+    const allowed = new Set(["W2-security", "W3-in-range", "W4-framework", "W5-remaining"]);
     for (const c of candidates) {
-      expect(allowed.has(c.primary_wave), `${c.package} has invalid primary_wave ${c.primary_wave}`).toBe(true);
+      expect(
+        allowed.has(c.primary_wave),
+        `${c.package} has invalid primary_wave ${c.primary_wave}`,
+      ).toBe(true);
       for (const w of c.waves) {
         expect(allowed.has(w), `${c.package} has invalid wave ${w}`).toBe(true);
       }
@@ -309,29 +331,29 @@ describe('audit-contract — 36 upgrade-candidate matrix coverage (AC1, AC5)', (
   });
 });
 
-describe('audit-contract — full report integration', () => {
-  it('getAuditReport() returns a coherent AuditReport matching the baseline', () => {
+describe("audit-contract — full report integration", () => {
+  it("getAuditReport() returns a coherent AuditReport matching the baseline", () => {
     const report: AuditReport = getAuditReport(REPO_ROOT, BASELINE, MATRIX, LOCKFILE_INVENTORY);
 
     expect(report.firstClassApps.length).toBe(BASELINE.totals.first_class_app_count);
     expect(report.sharedPackages.length).toBe(BASELINE.totals.shared_package_count);
     expect(report.securityTotals).toEqual(BASELINE.security_totals);
-    expect(report.openRangeViolations.filter((v) => v.package === 'next').length).toBe(0);
+    expect(report.openRangeViolations.filter((v) => v.package === "next").length).toBe(0);
     expect(report.upgradeCandidates.length).toBe(BASELINE.totals.upgrade_candidate_families);
-    expect(report.drizzleKitFloor.downgradeBlockedBelow).toBe('0.31.10');
+    expect(report.drizzleKitFloor.downgradeBlockedBelow).toBe("0.31.10");
     expect(report.lockfileInventory.rootLockfileCount).toBe(1);
   });
 });
 
-describe('audit-contract — registry latest versions (Task 1.1, hermetic — uses registry-stub fixture)', () => {
-  it('getRegistryLatestVersions returns an entry for every direct upgrade candidate', () => {
+describe("audit-contract — registry latest versions (Task 1.1, hermetic — uses registry-stub fixture)", () => {
+  it("getRegistryLatestVersions returns an entry for every direct upgrade candidate", () => {
     const latest: RegistryLatestEntry[] = getRegistryLatestVersions(REGISTRY_STUB);
     const matrixPackages = new Set(MATRIX.rows.map((r) => r.package));
     const stubPackages = new Set(Object.keys(REGISTRY_STUB.registry_latest));
     const missing = [...matrixPackages].filter((p) => !stubPackages.has(p));
     expect(
       missing,
-      `registry-stub fixture is missing latest-version entries for: ${missing.join(', ')}`
+      `registry-stub fixture is missing latest-version entries for: ${missing.join(", ")}`,
     ).toEqual([]);
   });
 
@@ -343,25 +365,24 @@ describe('audit-contract — registry latest versions (Task 1.1, hermetic — us
     }
   });
 
-  it('the contract reads the stubbed registry, not the live npm registry (test-strategy.md §2)', () => {
+  it("the contract reads the stubbed registry, not the live npm registry (test-strategy.md §2)", () => {
     const latest: RegistryLatestEntry[] = getRegistryLatestVersions(REGISTRY_STUB);
     const names = latest.map((e) => e.package);
-    expect(names).toContain('next');
-    expect(names).toContain('vitest');
-    expect(names).toContain('react');
+    expect(names).toContain("next");
+    expect(names).toContain("vitest");
+    expect(names).toContain("react");
     expect(names.length).toBe(Object.keys(REGISTRY_STUB.registry_latest).length);
   });
 });
 
-describe('audit-contract — range compatibility classification (Task 1.1)', () => {
-  it('getRangeCompatibility returns exactly 22 in-range and 14 requires-manifest-change', () => {
-    const compat: RangeCompatibility = getRangeCompatibility(
-      MATRIX,
-      REGISTRY_STUB
+describe("audit-contract — range compatibility classification (Task 1.1)", () => {
+  it("getRangeCompatibility returns exactly 22 in-range and 14 requires-manifest-change", () => {
+    const compat: RangeCompatibility = getRangeCompatibility(MATRIX, REGISTRY_STUB);
+    expect(compat.inRange.length).toBe(
+      REGISTRY_STUB.range_classification_expectations.in_range_count,
     );
-    expect(compat.inRange.length).toBe(REGISTRY_STUB.range_classification_expectations.in_range_count);
     expect(compat.requiresManifestChange.length).toBe(
-      REGISTRY_STUB.range_classification_expectations.requires_manifest_change_count
+      REGISTRY_STUB.range_classification_expectations.requires_manifest_change_count,
     );
     expect(compat.inRange.length + compat.requiresManifestChange.length).toBe(MATRIX.rows.length);
   });
@@ -370,46 +391,47 @@ describe('audit-contract — range compatibility classification (Task 1.1)', () 
     const compat: RangeCompatibility = getRangeCompatibility(MATRIX, REGISTRY_STUB);
     const inRangePackages = new Set(compat.inRange.map((c) => c.package));
     for (const pkg of REGISTRY_STUB.range_classification_expectations.in_range_packages) {
-      expect(
-        inRangePackages.has(pkg),
-        `${pkg} expected to be classified as in-range`
-      ).toBe(true);
+      expect(inRangePackages.has(pkg), `${pkg} expected to be classified as in-range`).toBe(true);
     }
   });
 
   it('requires-manifest-change classification matches the spec §"Confirmed Upgrade Inventory" Requires table', () => {
     const compat: RangeCompatibility = getRangeCompatibility(MATRIX, REGISTRY_STUB);
     const majorPackages = new Set(compat.requiresManifestChange.map((c) => c.package));
-    for (const pkg of REGISTRY_STUB.range_classification_expectations.requires_manifest_change_packages) {
+    for (const pkg of REGISTRY_STUB.range_classification_expectations
+      .requires_manifest_change_packages) {
       expect(
         majorPackages.has(pkg),
-        `${pkg} expected to be classified as requires-manifest-change`
+        `${pkg} expected to be classified as requires-manifest-change`,
       ).toBe(true);
     }
   });
 
-  it('every classification row carries a class from the closed set {in-range, requires-manifest-change}', () => {
+  it("every classification row carries a class from the closed set {in-range, requires-manifest-change}", () => {
     const compat: RangeCompatibility = getRangeCompatibility(MATRIX, REGISTRY_STUB);
-    const allowed: ReadonlyArray<RangeCompatibilityClass> = ['in-range', 'requires-manifest-change'];
+    const allowed: ReadonlyArray<RangeCompatibilityClass> = [
+      "in-range",
+      "requires-manifest-change",
+    ];
     for (const c of [...compat.inRange, ...compat.requiresManifestChange]) {
       expect(allowed).toContain(c.class);
     }
   });
 });
 
-describe('audit-contract — matrix field completeness (Task 2.2)', () => {
-  it('parseMatrixRows returns 36 rows with the 7 required fields populated', () => {
+describe("audit-contract — matrix field completeness (Task 2.2)", () => {
+  it("parseMatrixRows returns 36 rows with the 7 required fields populated", () => {
     const rows: MatrixRow[] = parseMatrixRows(MATRIX);
     expect(rows.length).toBe(36);
     const required: Array<keyof MatrixRow> = [
-      'package',
-      'current_declarations',
-      'target_after_all_waves',
-      'primary_wave',
-      'waves',
-      'manifest_owners',
-      'compatibility_notes',
-      'baseline_verification_state',
+      "package",
+      "current_declarations",
+      "target_after_all_waves",
+      "primary_wave",
+      "waves",
+      "manifest_owners",
+      "compatibility_notes",
+      "baseline_verification_state",
     ];
     for (const row of rows) {
       for (const field of required) {
@@ -417,26 +439,25 @@ describe('audit-contract — matrix field completeness (Task 2.2)', () => {
         if (Array.isArray(value)) {
           expect(value.length, `${row.package}.${String(field)} is empty`).toBeGreaterThan(0);
         } else {
-          expect(
-            value,
-            `${row.package}.${String(field)} is empty or missing`
-          ).toBeTruthy();
+          expect(value, `${row.package}.${String(field)} is empty or missing`).toBeTruthy();
         }
       }
     }
   });
 
-  it('assertMatrixFieldCompleteness returns ok=true for the frozen matrix fixture', () => {
+  it("assertMatrixFieldCompleteness returns ok=true for the frozen matrix fixture", () => {
     const result = assertMatrixFieldCompleteness(MATRIX);
-    expect(result.ok, `matrix completeness violations: ${JSON.stringify(result.violations)}`).toBe(true);
+    expect(result.ok, `matrix completeness violations: ${JSON.stringify(result.violations)}`).toBe(
+      true,
+    );
     expect(result.violations).toEqual([]);
   });
 
-  it('every manifest_owner path actually exists on disk — boundary check', () => {
+  it("every manifest_owner path actually exists on disk — boundary check", () => {
     const result = assertManifestOwnersAreReal(MATRIX, REPO_ROOT);
     expect(
       result.ok,
-      `manifest_owners reference non-existent paths: ${JSON.stringify(result.missing, null, 2)}`
+      `manifest_owners reference non-existent paths: ${JSON.stringify(result.missing, null, 2)}`,
     ).toBe(true);
     expect(result.missing).toEqual([]);
   });
@@ -444,54 +465,60 @@ describe('audit-contract — matrix field completeness (Task 2.2)', () => {
   it('major-migration rows (W4/W5) carry a non-trivial compatibility_notes (not just "in-range")', () => {
     const rows: MatrixRow[] = parseMatrixRows(MATRIX);
     const majorRows = rows.filter(
-      (r) => r.primary_wave === 'W4-framework' || r.primary_wave === 'W5-remaining'
+      (r) => r.primary_wave === "W4-framework" || r.primary_wave === "W5-remaining",
     );
     expect(majorRows.length).toBeGreaterThan(0);
     for (const r of majorRows) {
-      expect(r.compatibility_notes.length, `${r.package} compatibility_notes is empty`).toBeGreaterThan(0);
+      expect(
+        r.compatibility_notes.length,
+        `${r.package} compatibility_notes is empty`,
+      ).toBeGreaterThan(0);
       expect(
         r.compatibility_notes,
-        `${r.package} compatibility_notes should describe migration risk`
+        `${r.package} compatibility_notes should describe migration risk`,
       ).not.toMatch(/^In-range of/);
     }
   });
 
-  it('every matrix row has a baseline_verification_state in the closed set {verified, unverified, deferred}', () => {
+  it("every matrix row has a baseline_verification_state in the closed set {verified, unverified, deferred}", () => {
     const rows: MatrixRow[] = parseMatrixRows(MATRIX);
-    const allowed = new Set(['verified', 'unverified', 'deferred']);
+    const allowed = new Set(["verified", "unverified", "deferred"]);
     for (const r of rows) {
       expect(
         allowed.has(r.baseline_verification_state),
-        `${r.package} has unknown baseline_verification_state: ${r.baseline_verification_state}`
+        `${r.package} has unknown baseline_verification_state: ${r.baseline_verification_state}`,
       ).toBe(true);
     }
   });
 });
 
-describe('audit-contract — baseline quality gates captured (Task 3)', () => {
-  it('assertBaselineQualityGatesCaptured returns ok=true for the frozen baseline fixture', () => {
+describe("audit-contract — baseline quality gates captured (Task 3)", () => {
+  it("assertBaselineQualityGatesCaptured returns ok=true for the frozen baseline fixture", () => {
     const result = assertBaselineQualityGatesCaptured(BASELINE_QUALITY_GATES);
     expect(
       result.ok,
-      `baseline-quality-gates fixture is incomplete: ${JSON.stringify(result.missingCategories, null, 2)}`
+      `baseline-quality-gates fixture is incomplete: ${JSON.stringify(result.missingCategories, null, 2)}`,
     ).toBe(true);
     expect(result.missingCategories).toEqual([]);
   });
 
-  it('the baseline fixture carries the four required gate categories plus the single-lockfile invariant', () => {
+  it("the baseline fixture carries the four required gate categories plus the single-lockfile invariant", () => {
     const categories = [
-      'npm_ls',
-      'npm_audit',
-      'boundary_check',
-      'per_app_quality_gates',
-      'single_root_lockfile_invariant',
+      "npm_ls",
+      "npm_audit",
+      "boundary_check",
+      "per_app_quality_gates",
+      "single_root_lockfile_invariant",
     ] as const;
     for (const cat of categories) {
-      expect(BASELINE_QUALITY_GATES, `baseline-quality-gates fixture missing category: ${cat}`).toHaveProperty(cat);
+      expect(
+        BASELINE_QUALITY_GATES,
+        `baseline-quality-gates fixture missing category: ${cat}`,
+      ).toHaveProperty(cat);
     }
   });
 
-  it('npm_audit baseline captures the 1C/3H/14M severity breakdown and force_fix_used=false', () => {
+  it("npm_audit baseline captures the 1C/3H/14M severity breakdown and force_fix_used=false", () => {
     expect(BASELINE_QUALITY_GATES.npm_audit.force_fix_used).toBe(false);
     expect(BASELINE_QUALITY_GATES.npm_audit.expected_critical).toBe(1);
     expect(BASELINE_QUALITY_GATES.npm_audit.expected_high).toBe(3);
@@ -499,19 +526,17 @@ describe('audit-contract — baseline quality gates captured (Task 3)', () => {
     expect(BASELINE_QUALITY_GATES.npm_audit.expected_total).toBe(18);
   });
 
-  it('boundary_check baseline expects a clean exit (no monorepo boundary violations)', () => {
+  it("boundary_check baseline expects a clean exit (no monorepo boundary violations)", () => {
     expect(BASELINE_QUALITY_GATES.boundary_check.exit_status).toBe(0);
     expect(BASELINE_QUALITY_GATES.boundary_check.expected_clean).toBe(true);
   });
 
-  it('per_app_quality_gates baseline covers all 5 first-class apps', () => {
+  it("per_app_quality_gates baseline covers all 5 first-class apps", () => {
     const apps = BASELINE_QUALITY_GATES.per_app_quality_gates.apps.map((a) => a.workspace).sort();
-    expect(apps).toEqual(
-      BASELINE.first_class_apps.map((a) => a.workspace).sort()
-    );
+    expect(apps).toEqual(BASELINE.first_class_apps.map((a) => a.workspace).sort());
   });
 
-  it('pre_existing_failures is a labeled list (never a free-form blob)', () => {
+  it("pre_existing_failures is a labeled list (never a free-form blob)", () => {
     expect(Array.isArray(BASELINE_QUALITY_GATES.pre_existing_failures.failures)).toBe(true);
   });
 });

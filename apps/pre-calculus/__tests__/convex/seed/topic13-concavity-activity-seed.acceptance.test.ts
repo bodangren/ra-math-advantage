@@ -1,22 +1,22 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { concavityFromRateChangeSchema } from '@math-platform/math-content';
+import { concavityFromRateChangeSchema } from "@math-platform/math-content";
 import {
   generateTopic13ConcavityFromRateChange,
   generateTopic13ConcavityFromRateChangeOutput,
-} from '@math-platform/math-content/knowledge-space';
+} from "@math-platform/math-content/knowledge-space";
 import {
   PRECALCULUS_TOPIC_13_CONCAVITY_COMPONENT_KEY,
   PRECALCULUS_TOPIC_13_CONCAVITY_GUIDED_GRADING_CONFIG,
   PRECALCULUS_TOPIC_13_CONCAVITY_INDEPENDENT_GRADING_CONFIG,
   PRECALCULUS_TOPIC_13_CONCAVITY_WORKED_GRADING_CONFIG,
-} from '@/convex/activities';
-import { seedLesson1_3 } from '@/convex/seed/seed_lesson_1_3';
+} from "@/convex/activities";
+import { seedLesson1_3 } from "@/convex/seed/seed_lesson_1_3";
 import {
   PRECALCULUS_TOPIC_13_CONCAVITY_GUIDED_ACTIVITY_ID,
   PRECALCULUS_TOPIC_13_CONCAVITY_INDEPENDENT_ACTIVITY_ID,
   PRECALCULUS_TOPIC_13_CONCAVITY_WORKED_ACTIVITY_ID,
-} from '@/lib/learning-evidence/precalc-pilot';
+} from "@/lib/learning-evidence/precalc-pilot";
 
 type Row = Record<string, unknown> & { _id: string };
 
@@ -26,28 +26,28 @@ const TARGET_ACTIVITY_IDS = [
   PRECALCULUS_TOPIC_13_CONCAVITY_INDEPENDENT_ACTIVITY_ID,
 ] as const;
 const BANNED_AUTHORITY_KEYS = new Set([
-  'correctAnswer',
-  'answerKey',
-  'hidden',
-  'authority',
-  'correctClassification',
-  'expectedAnswer',
-  'isCorrect',
-  'score',
-  'maxScore',
-  'gradingMetadata',
-  'solutionSteps',
-  'finalAnswer',
-  'relationship',
-  'correctness',
-  'solution',
-  'steps',
+  "correctAnswer",
+  "answerKey",
+  "hidden",
+  "authority",
+  "correctClassification",
+  "expectedAnswer",
+  "isCorrect",
+  "score",
+  "maxScore",
+  "gradingMetadata",
+  "solutionSteps",
+  "finalAnswer",
+  "relationship",
+  "correctness",
+  "solution",
+  "steps",
 ]);
 
 function collectObjectKeys(value: unknown, keys: string[] = []): string[] {
   if (Array.isArray(value)) {
     value.forEach((item) => collectObjectKeys(item, keys));
-  } else if (value && typeof value === 'object') {
+  } else if (value && typeof value === "object") {
     Object.entries(value).forEach(([key, nestedValue]) => {
       keys.push(key);
       collectObjectKeys(nestedValue, keys);
@@ -61,9 +61,12 @@ function expectNoAuthority(value: unknown): void {
 }
 
 function getHandler() {
-  const handler = Reflect.get(seedLesson1_3, '_handler');
-  if (typeof handler !== 'function') throw new Error('seedLesson1_3 must expose its handler.');
-  return handler as (context: { db: Record<string, unknown> }, args: Record<string, never>) => Promise<unknown>;
+  const handler = Reflect.get(seedLesson1_3, "_handler");
+  if (typeof handler !== "function") throw new Error("seedLesson1_3 must expose its handler.");
+  return handler as (
+    context: { db: Record<string, unknown> },
+    args: Record<string, never>,
+  ) => Promise<unknown>;
 }
 
 function createHarness() {
@@ -91,9 +94,10 @@ function createHarness() {
           },
         };
         configure(index);
-        const select = () => (rows[table] ?? []).filter((row) => (
-          [...conditions].every(([field, value]) => row[field] === value)
-        ));
+        const select = () =>
+          (rows[table] ?? []).filter((row) =>
+            [...conditions].every(([field, value]) => row[field] === value),
+          );
         return {
           first: async () => select()[0] ?? null,
           unique: async () => {
@@ -112,7 +116,9 @@ function createHarness() {
       return row._id;
     },
     patch: async (id: string, document: Record<string, unknown>) => {
-      const row = Object.values(rows).flat().find((candidate) => candidate._id === id);
+      const row = Object.values(rows)
+        .flat()
+        .find((candidate) => candidate._id === id);
       if (!row) throw new Error(`Unknown patch target ${id}`);
       Object.assign(row, document);
       patches.push({ id, document });
@@ -123,13 +129,13 @@ function createHarness() {
 }
 
 function targetRows(rows: Row[]): Row[] {
-  return rows.filter((row) => TARGET_ACTIVITY_IDS.includes(
-    row.stableActivityId as typeof TARGET_ACTIVITY_IDS[number],
-  ));
+  return rows.filter((row) =>
+    TARGET_ACTIVITY_IDS.includes(row.stableActivityId as (typeof TARGET_ACTIVITY_IDS)[number]),
+  );
 }
 
-describe('Precalculus Topic 1.3 concavity activity seed', () => {
-  it('upserts the three generated modes without phase attachment', async () => {
+describe("Precalculus Topic 1.3 concavity activity seed", () => {
+  it("upserts the three generated modes without phase attachment", async () => {
     const harness = createHarness();
     const handler = getHandler();
 
@@ -138,29 +144,44 @@ describe('Precalculus Topic 1.3 concavity activity seed', () => {
     const firstTargetDocumentIds = firstTargetRows.map((row) => row._id);
     expect(firstTargetRows).toHaveLength(3);
     expect(firstTargetRows.map((row) => row.stableActivityId)).toEqual(TARGET_ACTIVITY_IDS);
-    expect(harness.inserts.filter(({ table, document }) => (
-      table === 'activities' && TARGET_ACTIVITY_IDS.includes(
-        document.stableActivityId as typeof TARGET_ACTIVITY_IDS[number],
-      )
-    ))).toHaveLength(3);
-    expect((firstResult as { activitiesCreated: number }).activitiesCreated).toBeGreaterThanOrEqual(3);
+    expect(
+      harness.inserts.filter(
+        ({ table, document }) =>
+          table === "activities" &&
+          TARGET_ACTIVITY_IDS.includes(
+            document.stableActivityId as (typeof TARGET_ACTIVITY_IDS)[number],
+          ),
+      ),
+    ).toHaveLength(3);
+    expect((firstResult as { activitiesCreated: number }).activitiesCreated).toBeGreaterThanOrEqual(
+      3,
+    );
 
     const secondResult = await handler(harness.context, {});
     const secondTargetRows = targetRows(harness.rows.activities);
     expect(secondTargetRows).toHaveLength(3);
     expect(secondTargetRows.map((row) => row._id)).toEqual(firstTargetDocumentIds);
     expect((secondResult as { activitiesCreated: number }).activitiesCreated).toBe(0);
-    expect(harness.inserts.filter(({ table, document }) => (
-      table === 'activities' && TARGET_ACTIVITY_IDS.includes(
-        document.stableActivityId as typeof TARGET_ACTIVITY_IDS[number],
-      )
-    ))).toHaveLength(3);
+    expect(
+      harness.inserts.filter(
+        ({ table, document }) =>
+          table === "activities" &&
+          TARGET_ACTIVITY_IDS.includes(
+            document.stableActivityId as (typeof TARGET_ACTIVITY_IDS)[number],
+          ),
+      ),
+    ).toHaveLength(3);
     expect(harness.patches.filter(({ id }) => firstTargetDocumentIds.includes(id))).toHaveLength(3);
 
     const expectedModes = [
-      ['worked', 0, 'worked_example', PRECALCULUS_TOPIC_13_CONCAVITY_WORKED_GRADING_CONFIG],
-      ['guided', 1, 'guided_practice', PRECALCULUS_TOPIC_13_CONCAVITY_GUIDED_GRADING_CONFIG],
-      ['independent', 2, 'independent_practice', PRECALCULUS_TOPIC_13_CONCAVITY_INDEPENDENT_GRADING_CONFIG],
+      ["worked", 0, "worked_example", PRECALCULUS_TOPIC_13_CONCAVITY_WORKED_GRADING_CONFIG],
+      ["guided", 1, "guided_practice", PRECALCULUS_TOPIC_13_CONCAVITY_GUIDED_GRADING_CONFIG],
+      [
+        "independent",
+        2,
+        "independent_practice",
+        PRECALCULUS_TOPIC_13_CONCAVITY_INDEPENDENT_GRADING_CONFIG,
+      ],
     ] as const;
     for (const [mode, seed, presentationMode, gradingConfig] of expectedModes) {
       const row = firstTargetRows[seed] as Row;
@@ -172,54 +193,58 @@ describe('Precalculus Topic 1.3 concavity activity seed', () => {
       const props = row.props as Record<string, unknown>;
       expect(concavityFromRateChangeSchema.safeParse(props).success).toBe(true);
       expect(props.presentationMode).toBe(presentationMode);
-      if (mode === 'worked') {
+      if (mode === "worked") {
         const variant = generateTopic13ConcavityFromRateChange(0);
         const output = generateTopic13ConcavityFromRateChangeOutput(0);
-        expect(row.displayName).toBe('Worked Example: Determine Concavity');
-        expect(row.description).toBe('Determine concavity from a table of values.');
+        expect(row.displayName).toBe("Worked Example: Determine Concavity");
+        expect(row.description).toBe("Determine concavity from a table of values.");
         expect(props).toEqual({
           prompt: variant.prompt,
           functionName: variant.functionName,
           xValues: variant.xValues,
           yValues: variant.yValues,
-          presentationMode: 'worked_example',
+          presentationMode: "worked_example",
           correctClassification: output.expectedAnswer.classification,
           steps: output.solutionSteps.map((step) => step.description),
-          finalAnswer: 'concave up.',
+          finalAnswer: "concave up.",
         });
-      } else if (mode === 'guided') {
+      } else if (mode === "guided") {
         const variant = generateTopic13ConcavityFromRateChange(1);
-        expect(row.displayName).toBe('Guided Practice: Determine Concavity');
-        expect(row.description).toBe('Determine concavity from a table of values.');
+        expect(row.displayName).toBe("Guided Practice: Determine Concavity");
+        expect(row.description).toBe("Determine concavity from a table of values.");
         expect(props).toEqual({
           prompt: variant.prompt,
           functionName: variant.functionName,
           xValues: variant.xValues,
           yValues: variant.yValues,
-          presentationMode: 'guided_practice',
+          presentationMode: "guided_practice",
           guidedSteps: [
-            'Check whether the input widths are equal.',
-            'Find the first differences.',
-            'Decide whether the first differences increase, decrease, or reverse direction.',
+            "Check whether the input widths are equal.",
+            "Find the first differences.",
+            "Decide whether the first differences increase, decrease, or reverse direction.",
             "Classify the function's concavity.",
           ],
-          fieldHelp: 'Increasing first differences indicate concave up. Decreasing first differences indicate concave down.',
+          fieldHelp:
+            "Increasing first differences indicate concave up. Decreasing first differences indicate concave down.",
         });
         expectNoAuthority(props);
       } else {
         const output = generateTopic13ConcavityFromRateChangeOutput(2);
-        expect(row.displayName).toBe('Independent Practice: Determine Concavity');
-        expect(row.description).toBe('Determine concavity from a table of values.');
-        expect(props).toEqual((output.data as { rendererProps: Record<string, unknown> }).rendererProps);
+        expect(row.displayName).toBe("Independent Practice: Determine Concavity");
+        expect(row.description).toBe("Determine concavity from a table of values.");
+        expect(props).toEqual(
+          (output.data as { rendererProps: Record<string, unknown> }).rendererProps,
+        );
         expectNoAuthority(props);
       }
     }
 
-    const phaseReferences = harness.rows.phase_sections.filter((row) => (
+    const phaseReferences = harness.rows.phase_sections.filter((row) =>
       TARGET_ACTIVITY_IDS.includes(
-        (row.content as Record<string, unknown> | undefined)?.activityId as typeof TARGET_ACTIVITY_IDS[number],
-      )
-    ));
+        (row.content as Record<string, unknown> | undefined)
+          ?.activityId as (typeof TARGET_ACTIVITY_IDS)[number],
+      ),
+    );
     expect(phaseReferences).toHaveLength(0);
   });
 });

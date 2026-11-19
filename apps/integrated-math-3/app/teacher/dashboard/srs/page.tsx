@@ -1,12 +1,12 @@
-import Link from 'next/link';
-import { requireTeacherSessionClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
+import Link from "next/link";
+import { requireTeacherSessionClaims } from "@/lib/auth/server";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
 import {
   MisconceptionPanel,
   SrsDashboardPanel,
   WeakObjectivesPanel,
   StrugglingStudentsPanel,
-} from '@/components/teacher/srs';
+} from "@/components/teacher/srs";
 
 interface ClassOption {
   id: string;
@@ -34,7 +34,7 @@ interface SrsDashboardData {
     proficientPercent: number;
     avgRetention: number;
     strugglingStudentCount: number;
-    priority: 'essential' | 'supporting' | 'extension' | 'triaged';
+    priority: "essential" | "supporting" | "extension" | "triaged";
   }>;
   strugglingStudents: Array<{
     studentId: string;
@@ -62,7 +62,7 @@ interface PageProps {
  * @returns {JSX.Element} The rendered SrsDashboardPage JSX.
  */
 export default async function SrsDashboardPage({ searchParams }: PageProps) {
-  const claims = await requireTeacherSessionClaims('/auth/login');
+  const claims = await requireTeacherSessionClaims("/auth/login");
   const { classId: selectedClassId } = await searchParams;
 
   const data: SrsDashboardData | null = await fetchInternalQuery(
@@ -83,7 +83,7 @@ export default async function SrsDashboardPage({ searchParams }: PageProps) {
           <span>SRS Dashboard</span>
         </div>
         <h1 className="text-3xl font-display font-bold text-foreground">
-          {currentClass?.name ?? 'SRS Dashboard'}
+          {currentClass?.name ?? "SRS Dashboard"}
         </h1>
         <p className="text-muted-foreground text-sm">
           Spaced Repetition System monitoring and interventions
@@ -97,13 +97,13 @@ export default async function SrsDashboardPage({ searchParams }: PageProps) {
           </label>
           <select
             id="class-select"
-            defaultValue={data.currentClassId ?? ''}
+            defaultValue={data.currentClassId ?? ""}
             onChange={(e) => {
               const url = new URL(window.location.href);
               if (e.target.value) {
-                url.searchParams.set('classId', e.target.value);
+                url.searchParams.set("classId", e.target.value);
               } else {
-                url.searchParams.delete('classId');
+                url.searchParams.delete("classId");
               }
               window.location.href = url.toString();
             }}
@@ -127,18 +127,12 @@ export default async function SrsDashboardPage({ searchParams }: PageProps) {
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <WeakObjectivesPanel
-              objectives={data.weakObjectives}
-            />
+            <WeakObjectivesPanel objectives={data.weakObjectives} />
 
-            <StrugglingStudentsPanel
-              students={data.strugglingStudents}
-            />
+            <StrugglingStudentsPanel students={data.strugglingStudents} />
           </div>
 
-          <MisconceptionPanel
-            misconceptions={data.misconceptions}
-          />
+          <MisconceptionPanel misconceptions={data.misconceptions} />
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center py-16 text-center">

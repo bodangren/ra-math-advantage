@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const UNIT3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Similar Figures and Scale Factors

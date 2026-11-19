@@ -20,8 +20,8 @@
  * deterministic offset; it does not draw additional PRNG values.
  */
 
-import { mulberry32 } from './utils/prng';
-import { formatLinearTerm } from './utils/expression-builder';
+import { mulberry32 } from "./utils/prng";
+import { formatLinearTerm } from "./utils/expression-builder";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -48,7 +48,7 @@ export interface SystemOfEquationsProblem {
    * Family identifier for the step-by-step-solver fallback UI. Per
    * test-strategy §4, this is `'step-by-step-solver:system-of-equations'`.
    */
-  familyId: 'step-by-step-solver:system-of-equations';
+  familyId: "step-by-step-solver:system-of-equations";
   /** Step-by-step solution breakdown. */
   steps: string[];
 }
@@ -70,7 +70,7 @@ function randNonZero(rand: () => number, hi: number): number {
     n = randInt(rand, -hi, hi);
   } while (n === 0 && safety++ < 100);
   if (n === 0) {
-    throw new Error('randNonZero: unable to select a non-zero value after 100 attempts');
+    throw new Error("randNonZero: unable to select a non-zero value after 100 attempts");
   }
   return n;
 }
@@ -81,35 +81,16 @@ function randNonZero(rand: () => number, hi: number): number {
  * leading `+`. If both coefficients are 0 the output is `"0"` (a degenerate
  * case the generator never produces because coefficients are non-zero).
  */
-function formatLinearXY(
-  aX: number,
-  bY: number,
-  varX: string = 'x',
-  varY: string = 'y',
-): string {
-  const xTerm =
-    aX === 0
-      ? null
-      : aX === 1
-        ? varX
-        : aX === -1
-          ? `-${varX}`
-          : `${aX}${varX}`;
-  const yTerm =
-    bY === 0
-      ? null
-      : bY === 1
-        ? varY
-        : bY === -1
-          ? `-${varY}`
-          : `${bY}${varY}`;
+function formatLinearXY(aX: number, bY: number, varX: string = "x", varY: string = "y"): string {
+  const xTerm = aX === 0 ? null : aX === 1 ? varX : aX === -1 ? `-${varX}` : `${aX}${varX}`;
+  const yTerm = bY === 0 ? null : bY === 1 ? varY : bY === -1 ? `-${varY}` : `${bY}${varY}`;
 
-  if (xTerm === null && yTerm === null) return '0';
+  if (xTerm === null && yTerm === null) return "0";
   if (xTerm === null) return yTerm as string;
   if (yTerm === null) return xTerm;
   // Both present: combine with ` + ` or ` - ` separator so the y-term's
   // leading sign is never written as `+ -`.
-  if (yTerm.startsWith('-')) {
+  if (yTerm.startsWith("-")) {
     return `${xTerm} - ${yTerm.slice(1)}`;
   }
   return `${xTerm} + ${yTerm}`;
@@ -154,9 +135,7 @@ function nextB2WithNonSingularDeterminant(
  * @param options.seed — integer PRNG seed.
  * @returns A `SystemOfEquationsProblem`.
  */
-export function generateSystemOfEquations(options: {
-  seed: number;
-}): SystemOfEquationsProblem {
+export function generateSystemOfEquations(options: { seed: number }): SystemOfEquationsProblem {
   const { seed } = options;
   // Single call to mulberry32; subsequent draws come from the closure.
   const rand = mulberry32(seed);
@@ -215,7 +194,7 @@ export function generateSystemOfEquations(options: {
     b2,
     c2,
     steps,
-    familyId: 'step-by-step-solver:system-of-equations',
+    familyId: "step-by-step-solver:system-of-equations",
   };
 }
 

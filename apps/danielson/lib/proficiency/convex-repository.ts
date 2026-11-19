@@ -1,6 +1,6 @@
-import type { QueryCtx, MutationCtx } from '../../convex/_generated/server';
-import type { Doc, Id } from '../../convex/_generated/dataModel';
-import type { SrsCardState, SrsReviewLogEntryV31 } from '@math-platform/srs-engine';
+import type { QueryCtx, MutationCtx } from "../../convex/_generated/server";
+import type { Doc, Id } from "../../convex/_generated/dataModel";
+import type { SrsCardState, SrsReviewLogEntryV31 } from "@math-platform/srs-engine";
 
 import {
   applyTeacherEvidenceCommitToState,
@@ -8,21 +8,21 @@ import {
   type TeacherEvidenceSnapshot,
   type TeacherProficiencyPort,
   type TeacherState,
-} from './processor';
+} from "./processor";
 
 const MAX_TEACHER_ROWS = 200;
 const MAX_REBUILD_OUTCOMES = 2_000;
 
-type ReaderDb = QueryCtx['db'];
-type WriterDb = MutationCtx['db'];
+type ReaderDb = QueryCtx["db"];
+type WriterDb = MutationCtx["db"];
 type StateRows = {
-  idempotency: Doc<'teacher_proficiency_idempotency'>[];
-  outcomes: Doc<'teacher_observation_outcomes'>[];
-  cards: Doc<'teacher_srs_cards'>[];
-  proficiency: Doc<'teacher_proficiency'>[];
-  knowledgeState: Doc<'teacher_knowledge_state'>[];
-  priority: Doc<'teacher_priority'>[];
-  supersessions: Doc<'teacher_evidence_supersessions'>[];
+  idempotency: Doc<"teacher_proficiency_idempotency">[];
+  outcomes: Doc<"teacher_observation_outcomes">[];
+  cards: Doc<"teacher_srs_cards">[];
+  proficiency: Doc<"teacher_proficiency">[];
+  knowledgeState: Doc<"teacher_knowledge_state">[];
+  priority: Doc<"teacher_priority">[];
+  supersessions: Doc<"teacher_evidence_supersessions">[];
 };
 
 function stateDefaults(teacherId: string): TeacherState {
@@ -41,53 +41,63 @@ function stateDefaults(teacherId: string): TeacherState {
 /** Load only the bounded mutable scoring state used by processing. */
 async function readStateRows(
   db: ReaderDb,
-  organizationId: Id<'organizations'>,
+  organizationId: Id<"organizations">,
   teacherId: string,
 ): Promise<StateRows> {
-  const [idempotency, outcomes, cards, proficiency, knowledgeState, priority, supersessions] = await Promise.all([
-    db.query('teacher_proficiency_idempotency')
-      .withIndex('by_organizationId_and_teacherId', (query) => query
-        .eq('organizationId', organizationId)
-        .eq('teacherId', teacherId))
-      .order('asc')
-      .take(MAX_TEACHER_ROWS),
-    db.query('teacher_observation_outcomes')
-      .withIndex('by_organizationId_and_teacherId_and_occurredAt', (query) => query
-        .eq('organizationId', organizationId)
-        .eq('teacherId', teacherId))
-      .order('desc')
-      .take(MAX_REBUILD_OUTCOMES + 1),
-    db.query('teacher_srs_cards')
-      .withIndex('by_organizationId_and_teacherId', (query) => query
-        .eq('organizationId', organizationId)
-        .eq('teacherId', teacherId))
-      .order('asc')
-      .take(MAX_TEACHER_ROWS),
-    db.query('teacher_proficiency')
-      .withIndex('by_organizationId_and_teacherId', (query) => query
-        .eq('organizationId', organizationId)
-        .eq('teacherId', teacherId))
-      .order('asc')
-      .take(MAX_TEACHER_ROWS),
-    db.query('teacher_knowledge_state')
-      .withIndex('by_organizationId_and_teacherId', (query) => query
-        .eq('organizationId', organizationId)
-        .eq('teacherId', teacherId))
-      .order('asc')
-      .take(MAX_TEACHER_ROWS),
-    db.query('teacher_priority')
-      .withIndex('by_organizationId_and_teacherId', (query) => query
-        .eq('organizationId', organizationId)
-        .eq('teacherId', teacherId))
-      .order('asc')
-      .take(MAX_TEACHER_ROWS),
-    db.query('teacher_evidence_supersessions')
-      .withIndex('by_org_teacher_occurred', (query) => query
-        .eq('organizationId', organizationId)
-        .eq('teacherProfileId', teacherId as Id<'teacher_profiles'>))
-      .order('asc')
-      .take(MAX_REBUILD_OUTCOMES + 1),
-  ]);
+  const [idempotency, outcomes, cards, proficiency, knowledgeState, priority, supersessions] =
+    await Promise.all([
+      db
+        .query("teacher_proficiency_idempotency")
+        .withIndex("by_organizationId_and_teacherId", (query) =>
+          query.eq("organizationId", organizationId).eq("teacherId", teacherId),
+        )
+        .order("asc")
+        .take(MAX_TEACHER_ROWS),
+      db
+        .query("teacher_observation_outcomes")
+        .withIndex("by_organizationId_and_teacherId_and_occurredAt", (query) =>
+          query.eq("organizationId", organizationId).eq("teacherId", teacherId),
+        )
+        .order("desc")
+        .take(MAX_REBUILD_OUTCOMES + 1),
+      db
+        .query("teacher_srs_cards")
+        .withIndex("by_organizationId_and_teacherId", (query) =>
+          query.eq("organizationId", organizationId).eq("teacherId", teacherId),
+        )
+        .order("asc")
+        .take(MAX_TEACHER_ROWS),
+      db
+        .query("teacher_proficiency")
+        .withIndex("by_organizationId_and_teacherId", (query) =>
+          query.eq("organizationId", organizationId).eq("teacherId", teacherId),
+        )
+        .order("asc")
+        .take(MAX_TEACHER_ROWS),
+      db
+        .query("teacher_knowledge_state")
+        .withIndex("by_organizationId_and_teacherId", (query) =>
+          query.eq("organizationId", organizationId).eq("teacherId", teacherId),
+        )
+        .order("asc")
+        .take(MAX_TEACHER_ROWS),
+      db
+        .query("teacher_priority")
+        .withIndex("by_organizationId_and_teacherId", (query) =>
+          query.eq("organizationId", organizationId).eq("teacherId", teacherId),
+        )
+        .order("asc")
+        .take(MAX_TEACHER_ROWS),
+      db
+        .query("teacher_evidence_supersessions")
+        .withIndex("by_org_teacher_occurred", (query) =>
+          query
+            .eq("organizationId", organizationId)
+            .eq("teacherProfileId", teacherId as Id<"teacher_profiles">),
+        )
+        .order("asc")
+        .take(MAX_REBUILD_OUTCOMES + 1),
+    ]);
   return { idempotency, outcomes, cards, proficiency, knowledgeState, priority, supersessions };
 }
 
@@ -128,15 +138,15 @@ function projectionState(value: Record<string, unknown>) {
     mastery: Number(value.mastery ?? 0),
     retention: Number(value.retention ?? 0),
     isProficient: value.isProficient === true,
-    state: value.state as 'mastered' | 'decaying' | 'inProgress' | 'untouched',
-    ...(typeof value.lastUpdated === 'number' ? { lastUpdated: value.lastUpdated } : {}),
+    state: value.state as "mastered" | "decaying" | "inProgress" | "untouched",
+    ...(typeof value.lastUpdated === "number" ? { lastUpdated: value.lastUpdated } : {}),
   };
 }
 
 /** Create a transaction-backed teacher proficiency port for one organization. */
 export function createDanielsonTeacherProficiencyPort(
-  ctx: Pick<MutationCtx, 'db'>,
-  organizationId: Id<'organizations'>,
+  ctx: Pick<MutationCtx, "db">,
+  organizationId: Id<"organizations">,
 ): TeacherProficiencyPort {
   const db = ctx.db as WriterDb;
   let cachedTeacherId: string | null = null;
@@ -155,30 +165,31 @@ export function createDanielsonTeacherProficiencyPort(
 
     async commitTeacherEvidence(commit: TeacherEvidenceCommit) {
       const occurredAtValue = commit.outcome.occurredAt;
-      const normalizedEventTime = typeof occurredAtValue === 'string'
-        ? Date.parse(occurredAtValue)
-        : Number.NaN;
-      if (!Number.isFinite(normalizedEventTime)) throw new Error('invalid_event_time');
-      if (!Number.isFinite(commit.committedAt)) throw new Error('invalid_commit_time');
+      const normalizedEventTime =
+        typeof occurredAtValue === "string" ? Date.parse(occurredAtValue) : Number.NaN;
+      if (!Number.isFinite(normalizedEventTime)) throw new Error("invalid_event_time");
+      if (!Number.isFinite(commit.committedAt)) throw new Error("invalid_commit_time");
       const occurredAt = normalizedEventTime;
       const now = commit.committedAt;
       const outcomeId = `teacher_observation_outcomes:${commit.teacherId}:${commit.idempotency.key}`;
 
-      const existingKey = await db.query('teacher_proficiency_idempotency')
-        .withIndex('by_organizationId_and_idempotencyKey', (query) => query
-          .eq('organizationId', organizationId)
-          .eq('idempotencyKey', commit.idempotency.key))
+      const existingKey = await db
+        .query("teacher_proficiency_idempotency")
+        .withIndex("by_organizationId_and_idempotencyKey", (query) =>
+          query.eq("organizationId", organizationId).eq("idempotencyKey", commit.idempotency.key),
+        )
         .unique();
       if (existingKey) {
         if (existingKey.fingerprint !== commit.idempotency.fingerprint) {
-          throw new Error('idempotency_conflict');
+          throw new Error("idempotency_conflict");
         }
         return;
       }
 
-      const rows = cachedTeacherId === commit.teacherId && cachedRows
-        ? cachedRows
-        : await readStateRows(db, organizationId, commit.teacherId);
+      const rows =
+        cachedTeacherId === commit.teacherId && cachedRows
+          ? cachedRows
+          : await readStateRows(db, organizationId, commit.teacherId);
       cachedTeacherId = commit.teacherId;
       cachedRows = rows;
       const cardBySkill = new Map(rows.cards.map((row) => [row.skillId, row]));
@@ -186,7 +197,7 @@ export function createDanielsonTeacherProficiencyPort(
       const stateByNode = new Map(rows.knowledgeState.map((row) => [row.nodeId, row]));
       const priorityBySkill = new Map(rows.priority.map((row) => [row.skillId, row]));
 
-      await db.insert('teacher_proficiency_idempotency', {
+      await db.insert("teacher_proficiency_idempotency", {
         organizationId,
         teacherId: commit.teacherId,
         idempotencyKey: commit.idempotency.key,
@@ -195,7 +206,7 @@ export function createDanielsonTeacherProficiencyPort(
         outcomeId,
         createdAt: now,
       });
-      await db.insert('teacher_observation_outcomes', {
+      await db.insert("teacher_observation_outcomes", {
         organizationId,
         teacherId: commit.teacherId,
         idempotencyKey: commit.idempotency.key,
@@ -217,20 +228,21 @@ export function createDanielsonTeacherProficiencyPort(
         };
         if (existing) await db.patch(existing._id, row);
         else {
-          const id = await db.insert('teacher_srs_cards', row);
+          const id = await db.insert("teacher_srs_cards", row);
           cardBySkill.set(card.objectiveId, {
             ...row,
             _id: id,
             _creationTime: now,
-          } as Doc<'teacher_srs_cards'>);
+          } as Doc<"teacher_srs_cards">);
         }
       }
 
       for (const rawReview of commit.reviews ?? []) {
         const review = asReview(rawReview);
-        const logicalReviewId = typeof rawReview.logicalReviewId === 'string'
-          ? rawReview.logicalReviewId
-          : review.reviewId;
+        const logicalReviewId =
+          typeof rawReview.logicalReviewId === "string"
+            ? rawReview.logicalReviewId
+            : review.reviewId;
         const isCorrection = rawReview.isCorrection === true;
         const row = {
           organizationId,
@@ -239,10 +251,10 @@ export function createDanielsonTeacherProficiencyPort(
           reviewId: review.reviewId,
           logicalReviewId,
           isCorrection,
-          ...(typeof rawReview.correctionIdempotencyKey === 'string'
+          ...(typeof rawReview.correctionIdempotencyKey === "string"
             ? { correctionIdempotencyKey: rawReview.correctionIdempotencyKey }
             : {}),
-          ...(typeof rawReview.correctionSourceRecordId === 'string'
+          ...(typeof rawReview.correctionSourceRecordId === "string"
             ? { correctionSourceRecordId: rawReview.correctionSourceRecordId }
             : {}),
           sourceRecordId: review.submissionId,
@@ -261,7 +273,7 @@ export function createDanielsonTeacherProficiencyPort(
           },
           createdAt: now,
         };
-        await db.insert('teacher_srs_reviews', row);
+        await db.insert("teacher_srs_reviews", row);
       }
 
       for (const projection of commit.proficiency ?? []) {
@@ -276,19 +288,33 @@ export function createDanielsonTeacherProficiencyPort(
         };
         if (existing) await db.patch(existing._id, row);
         else {
-          const id = await db.insert('teacher_proficiency', row);
-          proficiencyBySkill.set(skillId, { ...row, _id: id, _creationTime: now } as Doc<'teacher_proficiency'>);
+          const id = await db.insert("teacher_proficiency", row);
+          proficiencyBySkill.set(skillId, {
+            ...row,
+            _id: id,
+            _creationTime: now,
+          } as Doc<"teacher_proficiency">);
         }
       }
 
       for (const rawState of commit.knowledgeState ?? []) {
         const state = projectionState(rawState);
         const existing = stateByNode.get(state.nodeId);
-        const row = { organizationId, teacherId: commit.teacherId, nodeId: state.nodeId, state, updatedAt: now };
+        const row = {
+          organizationId,
+          teacherId: commit.teacherId,
+          nodeId: state.nodeId,
+          state,
+          updatedAt: now,
+        };
         if (existing) await db.patch(existing._id, row);
         else {
-          const id = await db.insert('teacher_knowledge_state', row);
-          stateByNode.set(state.nodeId, { ...row, _id: id, _creationTime: now } as Doc<'teacher_knowledge_state'>);
+          const id = await db.insert("teacher_knowledge_state", row);
+          stateByNode.set(state.nodeId, {
+            ...row,
+            _id: id,
+            _creationTime: now,
+          } as Doc<"teacher_knowledge_state">);
         }
       }
 
@@ -304,8 +330,12 @@ export function createDanielsonTeacherProficiencyPort(
         };
         if (existing) await db.patch(existing._id, row);
         else {
-          const id = await db.insert('teacher_priority', row);
-          priorityBySkill.set(skillId, { ...row, _id: id, _creationTime: now } as Doc<'teacher_priority'>);
+          const id = await db.insert("teacher_priority", row);
+          priorityBySkill.set(skillId, {
+            ...row,
+            _id: id,
+            _creationTime: now,
+          } as Doc<"teacher_priority">);
         }
       }
       if (cachedTeacherId === commit.teacherId && cachedState) {

@@ -4,8 +4,8 @@
 // Renderers themselves live in packages/activity-components or app-local components;
 // this registry only references their key + props schema.
 
-import { z } from 'zod';
-import { quadraticFormulaActivitySchema } from '../../schemas/quadratic-formula-activity.schema';
+import { z } from "zod";
+import { quadraticFormulaActivitySchema } from "../../schemas/quadratic-formula-activity.schema";
 
 export interface MathRendererDescriptor {
   key: string;
@@ -23,48 +23,63 @@ const stepByStepSolverPropsSchema = z.object({
 
 const graphingExplorerPropsSchema = z.object({
   problem: z.string(),
-  initialView: z.object({
-    xmin: z.number(),
-    xmax: z.number(),
-    ymin: z.number(),
-    ymax: z.number(),
-  }).optional(),
+  initialView: z
+    .object({
+      xmin: z.number(),
+      xmax: z.number(),
+      ymin: z.number(),
+      ymax: z.number(),
+    })
+    .optional(),
 });
 
 const comprehensionQuizPropsSchema = z.object({
-  questions: z.array(z.object({
-    id: z.string(),
-    text: z.string(),
-    options: z.array(z.string()),
-  })),
+  questions: z.array(
+    z.object({
+      id: z.string(),
+      text: z.string(),
+      options: z.array(z.string()),
+    }),
+  ),
 });
 
 const fillInTheBlankPropsSchema = z.object({
   activityId: z.string().min(1),
-  mode: z.enum(['teaching', 'guided', 'practice']),
+  mode: z.enum(["teaching", "guided", "practice"]),
   template: z.string().min(1),
-  blanks: z.array(z.object({
-    id: z.string(),
-    correctAnswer: z.string().min(1).optional(),
-    acceptedAnswers: z.array(z.string().min(1)).min(1).optional(),
-    isMath: z.boolean().optional(),
-  })),
-  reasoningSteps: z.array(z.object({
-    description: z.string().min(1),
-    expression: z.string().min(1).optional(),
-  })).min(1).optional(),
-  guidedSupport: z.object({
-    feedback: z.literal('on_check'),
-    hints: z.array(z.string().min(1)).min(1),
-    revealAfterAttempts: z.number().int().positive(),
-  }).optional(),
+  blanks: z.array(
+    z.object({
+      id: z.string(),
+      correctAnswer: z.string().min(1).optional(),
+      acceptedAnswers: z.array(z.string().min(1)).min(1).optional(),
+      isMath: z.boolean().optional(),
+    }),
+  ),
+  reasoningSteps: z
+    .array(
+      z.object({
+        description: z.string().min(1),
+        expression: z.string().min(1).optional(),
+      }),
+    )
+    .min(1)
+    .optional(),
+  guidedSupport: z
+    .object({
+      feedback: z.literal("on_check"),
+      hints: z.array(z.string().min(1)).min(1),
+      revealAfterAttempts: z.number().int().positive(),
+    })
+    .optional(),
 });
 
 const rateOfChangeCalculatorPropsSchema = z.object({
-  points: z.array(z.object({
-    x: z.number(),
-    y: z.number(),
-  })),
+  points: z.array(
+    z.object({
+      x: z.number(),
+      y: z.number(),
+    }),
+  ),
 });
 
 const discriminantAnalyzerPropsSchema = z.object({
@@ -80,32 +95,32 @@ const discriminantAnalyzerPropsSchema = z.object({
 // ---------------------------------------------------------------------------
 
 const RENDERER_REGISTRY: Record<string, MathRendererDescriptor> = {
-  'step-by-step-solver': {
-    key: 'step-by-step-solver',
+  "step-by-step-solver": {
+    key: "step-by-step-solver",
     propsSchema: stepByStepSolverPropsSchema,
   },
-  'graphing-explorer': {
-    key: 'graphing-explorer',
+  "graphing-explorer": {
+    key: "graphing-explorer",
     propsSchema: graphingExplorerPropsSchema,
   },
-  'comprehension-quiz': {
-    key: 'comprehension-quiz',
+  "comprehension-quiz": {
+    key: "comprehension-quiz",
     propsSchema: comprehensionQuizPropsSchema,
   },
-  'fill-in-the-blank': {
-    key: 'fill-in-the-blank',
+  "fill-in-the-blank": {
+    key: "fill-in-the-blank",
     propsSchema: fillInTheBlankPropsSchema,
   },
-  'rate-of-change-calculator': {
-    key: 'rate-of-change-calculator',
+  "rate-of-change-calculator": {
+    key: "rate-of-change-calculator",
     propsSchema: rateOfChangeCalculatorPropsSchema,
   },
-  'discriminant-analyzer': {
-    key: 'discriminant-analyzer',
+  "discriminant-analyzer": {
+    key: "discriminant-analyzer",
     propsSchema: discriminantAnalyzerPropsSchema,
   },
-  'quadratic-formula': {
-    key: 'quadratic-formula',
+  "quadratic-formula": {
+    key: "quadratic-formula",
     propsSchema: quadraticFormulaActivitySchema,
   },
 };

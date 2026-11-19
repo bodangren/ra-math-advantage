@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 import {
   plannerGraphReleaseOutputV3_2Schema,
@@ -7,18 +7,21 @@ import {
   type PlannerGraphReleaseOutputV3_2,
   type PlannerRecommendationSetV3_2,
   type PlannerWeightsV3_2,
-} from './v3-2-contract';
+} from "./v3-2-contract";
 import {
   utilityResolutionV3_2Schema,
   type UtilityResolutionV3_2,
-} from './v3-2-domain-utility-contract';
+} from "./v3-2-domain-utility-contract";
 import {
   reviewLoadAssessmentV3_2Schema,
   type ReviewLoadAssessmentV3_2,
-} from './v3-2-review-load-contract';
-import { rankPlannerPriorityScoresV3_2, scorePlannerCandidateV3_2 } from './v3-2-planner';
+} from "./v3-2-review-load-contract";
+import { rankPlannerPriorityScoresV3_2, scorePlannerCandidateV3_2 } from "./v3-2-planner";
 
-const idSchema = z.string().min(1).refine((value) => value.trim() === value);
+const idSchema = z
+  .string()
+  .min(1)
+  .refine((value) => value.trim() === value);
 
 export interface PlannerCandidateV3_2 {
   readonly nodeId: string;
@@ -41,7 +44,7 @@ export type PlanRecommendationsResultV3_2 = PlannerRecommendationSetV3_2 & {
     readonly graphReleaseId: string;
     readonly graphContentHash: string;
     readonly precomputeInputHash: string;
-    readonly rankingMode: 'normalized-prerequisite' | 'utility-led';
+    readonly rankingMode: "normalized-prerequisite" | "utility-led";
   };
   readonly utilityResolutions: Readonly<Record<string, UtilityResolutionV3_2>>;
   readonly reviewLoad?: ReviewLoadAssessmentV3_2;
@@ -53,8 +56,8 @@ export function planRecommendationsV3_2(
   const readyThreshold = z.number().finite().min(0).max(1).parse(input.readyThreshold);
   const requestedCount = z.number().int().min(0).parse(input.requestedCount);
   const graphRelease = plannerGraphReleaseOutputV3_2Schema.parse(input.graphRelease);
-  if (graphRelease.rankingMode === 'utility-led' && input.weights !== undefined) {
-    throw new Error('Utility-led releases use fixed 0.7/0.3 weights');
+  if (graphRelease.rankingMode === "utility-led" && input.weights !== undefined) {
+    throw new Error("Utility-led releases use fixed 0.7/0.3 weights");
   }
   const releaseEntryByNode = new Map(
     graphRelease.reachByNode.map((entry) => [entry.nodeId, entry]),
@@ -69,7 +72,9 @@ export function planRecommendationsV3_2(
     ids.add(nodeId);
     const releaseEntry = releaseEntryByNode.get(nodeId);
     if (!releaseEntry) {
-      throw new Error(`Planner candidate ${nodeId} is not in graph release ${graphRelease.graphReleaseId}`);
+      throw new Error(
+        `Planner candidate ${nodeId} is not in graph release ${graphRelease.graphReleaseId}`,
+      );
     }
     const utilityResolution = utilityResolutionV3_2Schema.parse(candidate.utilityResolution);
     const expectedUtilityIdentity = {
@@ -78,7 +83,9 @@ export function planRecommendationsV3_2(
       graphContentHash: graphRelease.graphContentHash,
       precomputeInputHash: graphRelease.precomputeInputHash,
     };
-    if (JSON.stringify(utilityResolution.releaseIdentity) !== JSON.stringify(expectedUtilityIdentity)) {
+    if (
+      JSON.stringify(utilityResolution.releaseIdentity) !== JSON.stringify(expectedUtilityIdentity)
+    ) {
       throw new Error(`Utility resolution does not match graph release for ${nodeId}`);
     }
     const terms = plannerTermsV3_2Schema.parse({
@@ -103,9 +110,9 @@ export function planRecommendationsV3_2(
     rankingMode: graphRelease.rankingMode,
   });
 
-  if (reviewLoad?.newSkillAllowance === 'zero' || requestedCount === 0) {
+  if (reviewLoad?.newSkillAllowance === "zero" || requestedCount === 0) {
     return {
-      schemaVersion: 'planner.recommendations.v3.2',
+      schemaVersion: "planner.recommendations.v3.2",
       requestedCount,
       diversityCap: 2,
       recommendations: [],
@@ -115,7 +122,9 @@ export function planRecommendationsV3_2(
     };
   }
 
-  const groupByNode = new Map(candidates.map((candidate) => [candidate.nodeId, candidate.diversityGroup]));
+  const groupByNode = new Map(
+    candidates.map((candidate) => [candidate.nodeId, candidate.diversityGroup]),
+  );
   const ranked = rankPlannerPriorityScoresV3_2(
     candidates
       .filter((candidate) => candidate.terms.readiness >= readyThreshold)
@@ -138,7 +147,7 @@ export function planRecommendationsV3_2(
     if (count >= 2) continue;
     groupCounts.set(diversityGroup.groupId, count + 1);
     selected.push({
-      schemaVersion: 'planner.recommendation.v3.2' as const,
+      schemaVersion: "planner.recommendation.v3.2" as const,
       rank: selected.length + 1,
       score,
       diversityGroup,
@@ -146,7 +155,7 @@ export function planRecommendationsV3_2(
   }
 
   const result = plannerRecommendationSetV3_2Schema.parse({
-    schemaVersion: 'planner.recommendations.v3.2',
+    schemaVersion: "planner.recommendations.v3.2",
     requestedCount,
     diversityCap: 2,
     recommendations: selected,

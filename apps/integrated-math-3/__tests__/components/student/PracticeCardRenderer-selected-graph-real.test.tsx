@@ -16,10 +16,7 @@ vi.mock("@/components/practice-timing", () => ({
 }));
 
 function selectedQueueContext() {
-  const generated = buildIm3GuidedPilotSeedDocuments(
-    "physical-guided" as never,
-    1,
-  );
+  const generated = buildIm3GuidedPilotSeedDocuments("physical-guided" as never, 1);
   const activity = {
     _id: "physical-guided",
     ...generated.activity,
@@ -74,9 +71,7 @@ function selectedQueueContext() {
       withIndex: vi.fn(
         (
           _name: string,
-          apply?: (query: {
-            eq: (field: string, value: string) => unknown;
-          }) => void,
+          apply?: (query: { eq: (field: string, value: string) => unknown }) => void,
         ) => {
           const filters: Array<[string, string]> = [];
           const query = {
@@ -88,10 +83,8 @@ function selectedQueueContext() {
           apply?.({
             eq: query.eq,
           });
-          const selected = rows[table].filter(
-            (row) => filters.every(
-              ([field, value]) => (row as Record<string, unknown>)[field] === value,
-            ),
+          const selected = rows[table].filter((row) =>
+            filters.every(([field, value]) => (row as Record<string, unknown>)[field] === value),
           );
           return {
             collect: async () => selected,
@@ -112,9 +105,7 @@ describe("selected graph queue and real activity", () => {
       { db } as never,
       { studentId: "student", asOfDate: "2026-09-07T00:00:00.000Z" },
       {
-        nodes: [
-          { id: IM3_PILOT_NODE, kind: "skill", reviewStatus: "approved" },
-        ],
+        nodes: [{ id: IM3_PILOT_NODE, kind: "skill", reviewStatus: "approved" }],
         blueprints: [{ nodeId: IM3_PILOT_NODE, reviewStatus: "approved" }],
       },
     );
@@ -146,13 +137,11 @@ describe("selected graph queue and real activity", () => {
       { x: 1, y: -2 },
       { x: 2, y: 0 },
     ];
-    screen
-      .getAllByRole("spinbutton")
-      .forEach((input, index) =>
-        fireEvent.change(input, {
-          target: { value: String(points[index]!.y) },
-        }),
-      );
+    screen.getAllByRole("spinbutton").forEach((input, index) =>
+      fireEvent.change(input, {
+        target: { value: String(points[index]!.y) },
+      }),
+    );
     const canvas = screen.getByRole("img", { name: /coordinate plane/i });
     vi.spyOn(canvas, "getBoundingClientRect").mockReturnValue({
       x: 0,
@@ -188,19 +177,18 @@ describe("selected graph queue and real activity", () => {
       mode: "guided_practice",
     });
     expect(
-      envelope.parts.map(
-        ({ partId, hintsUsed }: { partId: string; hintsUsed?: number }) => ({
-          partId,
-          hintsUsed,
-        }),
-      ),
+      envelope.parts.map(({ partId, hintsUsed }: { partId: string; hintsUsed?: number }) => ({
+        partId,
+        hintsUsed,
+      })),
     ).toEqual([
       { partId: "table_values", hintsUsed: 0 },
       { partId: "placed_points", hintsUsed: 2 },
     ]);
     expect(envelope.parts[1].rawAnswer).toEqual(points);
-    expect(
-      gradeServerOwnedSubmission({ id: activity._id, ...activity }, envelope),
-    ).toMatchObject({ score: 2, maxScore: 2 });
+    expect(gradeServerOwnedSubmission({ id: activity._id, ...activity }, envelope)).toMatchObject({
+      score: 2,
+      maxScore: 2,
+    });
   });
 });

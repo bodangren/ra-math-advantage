@@ -28,18 +28,18 @@
  * this test is a passing regression guard that keeps §6 aligned with the shipped
  * calibration model.
  */
-import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 
-const SPEC_PATH = resolve(__dirname, '../../../../kst-srs.v2/SPECIFICATION.md');
+const SPEC_PATH = resolve(__dirname, "../../../../kst-srs.v2/SPECIFICATION.md");
 
 /**
  * Read the full SPECIFICATION.md file contents.
  * @returns {string} - The spec file as a UTF-8 string
  */
 function readSpec(): string {
-  return readFileSync(SPEC_PATH, 'utf-8');
+  return readFileSync(SPEC_PATH, "utf-8");
 }
 
 /**
@@ -53,7 +53,7 @@ function extractSection6(spec: string): string {
   const heading = /^## 6\. Edge Calibration Loop[^\n]*\n/m;
   const match = spec.match(heading);
   if (!match || match.index === undefined) {
-    return '';
+    return "";
   }
   const start = match.index + match[0].length;
   const rest = spec.slice(start);
@@ -61,14 +61,14 @@ function extractSection6(spec: string): string {
   return nextHeading === -1 ? rest : rest.slice(0, nextHeading);
 }
 
-describe('Phase 4 — kst-srs.v2 SPECIFICATION.md §6 documents the implemented model', () => {
-  it('§6 (Edge Calibration Loop) exists in the spec', () => {
+describe("Phase 4 — kst-srs.v2 SPECIFICATION.md §6 documents the implemented model", () => {
+  it("§6 (Edge Calibration Loop) exists in the spec", () => {
     const spec = readSpec();
     const section6 = extractSection6(spec);
     expect(section6.length).toBeGreaterThan(0);
   });
 
-  it('§6 names the three CalibrationStatus literal values from FR5', () => {
+  it("§6 names the three CalibrationStatus literal values from FR5", () => {
     const section6 = extractSection6(readSpec());
     // The implemented status enum is `confirmed | refuted | untested`.
     // The spec must surface all three literals as the canonical status set.
@@ -77,7 +77,7 @@ describe('Phase 4 — kst-srs.v2 SPECIFICATION.md §6 documents the implemented 
     expect(section6).toMatch(/untested/);
   });
 
-  it('§6 names the 2x2 contingency-table fields matching the Convex schema', () => {
+  it("§6 names the 2x2 contingency-table fields matching the Convex schema", () => {
     const section6 = extractSection6(readSpec());
     // The Convex schema at `apps/integrated-math-3/convex/schema.ts:752`
     // uses camelCase field names. §6 must list the same field names so
@@ -88,7 +88,7 @@ describe('Phase 4 — kst-srs.v2 SPECIFICATION.md §6 documents the implemented 
     expect(section6).toMatch(/notProficientANotProficientB/);
   });
 
-  it('§6 names the Beta(α, β) posterior parameters and the persistence shape', () => {
+  it("§6 names the Beta(α, β) posterior parameters and the persistence shape", () => {
     const section6 = extractSection6(readSpec());
     // The implemented record is `EdgeCalibration { edgeId, alpha, beta,
     // status, lastUpdated }` (see `edge-calibration.ts:82`). §6 must
@@ -99,7 +99,7 @@ describe('Phase 4 — kst-srs.v2 SPECIFICATION.md §6 documents the implemented 
     expect(section6).toMatch(/lastUpdated|last[ -_]updated/i);
   });
 
-  it('§6 names the persistence tables (edge_calibration, calibration_review_queue)', () => {
+  it("§6 names the persistence tables (edge_calibration, calibration_review_queue)", () => {
     const section6 = extractSection6(readSpec());
     // FR7 — Persistence. The two Convex tables introduced by Phase 1
     // are `edge_calibration` and `calibration_review_queue`. §6 must
@@ -108,7 +108,7 @@ describe('Phase 4 — kst-srs.v2 SPECIFICATION.md §6 documents the implemented 
     expect(section6).toMatch(/calibration_review_queue/);
   });
 
-  it('§6 documents the divergence thresholds that flag edges for the review queue', () => {
+  it("§6 documents the divergence thresholds that flag edges for the review queue", () => {
     const section6 = extractSection6(readSpec());
     // FR6 — Review queue. The implemented thresholds (see
     // `apps/integrated-math-3/convex/edgeCalibration.ts:132-133`) are
@@ -117,7 +117,7 @@ describe('Phase 4 — kst-srs.v2 SPECIFICATION.md §6 documents the implemented 
     expect(section6).toMatch(/threshold/i);
   });
 
-  it('§6 documents the N+1 guard: batched reads and writes with Promise.all', () => {
+  it("§6 documents the N+1 guard: batched reads and writes with Promise.all", () => {
     const section6 = extractSection6(readSpec());
     // test-strategy §3: "Phase 3 persistence test must assert exactly
     // one `Promise.all` per batch." §6 must document that the adapter
@@ -125,7 +125,7 @@ describe('Phase 4 — kst-srs.v2 SPECIFICATION.md §6 documents the implemented 
     expect(section6).toMatch(/Promise\.all|batched|batch/i);
   });
 
-  it('§6 documents the NFR: the graph is never auto-edited', () => {
+  it("§6 documents the NFR: the graph is never auto-edited", () => {
     const section6 = extractSection6(readSpec());
     // The non-functional requirement: "The graph is never auto-edited."
     // §6 must surface this NFR verbatim or with a clear synonym, so the
@@ -133,7 +133,7 @@ describe('Phase 4 — kst-srs.v2 SPECIFICATION.md §6 documents the implemented 
     expect(section6).toMatch(/never\s+auto[- ]?edited|read[- ]?only|not\s+auto/i);
   });
 
-  it('§6 is distinct from `CalibrationStatus` lifecycle (no draft/reviewed/approved)', () => {
+  it("§6 is distinct from `CalibrationStatus` lifecycle (no draft/reviewed/approved)", () => {
     const section6 = extractSection6(readSpec());
     // The `ReviewStatus` enum (`draft | reviewed | approved | rejected`)
     // is a separate lifecycle. §6 must not overload it with calibration

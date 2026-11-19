@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { BaseReviewSession } from '@math-platform/study-hub-core';
-import type { GlossaryTerm } from '@/lib/study/types';
+import { BaseReviewSession } from "@math-platform/study-hub-core";
+import type { GlossaryTerm } from "@/lib/study/types";
 
 interface FlashcardPlayerProps {
   terms: GlossaryTerm[];
@@ -21,13 +21,8 @@ interface FlashcardPlayerProps {
  */
 export function FlashcardPlayer({ terms, onComplete }: FlashcardPlayerProps) {
   const renderHeader = (currentIndex: number, total: number) => (
-    <div
-      className="flex items-center justify-between"
-      data-testid="flashcard-header"
-    >
-      <h1 className="text-2xl font-display font-bold text-foreground">
-        Flashcards
-      </h1>
+    <div className="flex items-center justify-between" data-testid="flashcard-header">
+      <h1 className="text-2xl font-display font-bold text-foreground">Flashcards</h1>
       <span className="text-sm text-muted-foreground font-mono-num">
         Term {currentIndex} of {total}
       </span>

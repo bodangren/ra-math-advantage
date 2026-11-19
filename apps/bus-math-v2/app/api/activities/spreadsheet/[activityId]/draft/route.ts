@@ -1,7 +1,7 @@
-import { NextResponse } from 'next/server';
-import { z } from 'zod';
-import { requireActiveStudentRequestClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, fetchInternalMutation, internal } from '@/lib/convex/server';
+import { NextResponse } from "next/server";
+import { z } from "zod";
+import { requireActiveStudentRequestClaims } from "@/lib/auth/server";
+import { fetchInternalQuery, fetchInternalMutation, internal } from "@/lib/convex/server";
 
 const draftSchema = z.object({
   draftData: z.array(z.array(z.any())),
@@ -17,16 +17,13 @@ const draftSchema = z.object({
  */
 export async function GET(
   request: Request,
-  { params }: { params: Promise<{ activityId: string }> }
+  { params }: { params: Promise<{ activityId: string }> },
 ) {
   try {
     const { activityId } = await params;
 
     if (!activityId?.trim()) {
-      return NextResponse.json(
-        { error: 'Invalid activity ID format' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Invalid activity ID format" }, { status: 400 });
     }
 
     const claimsOrResponse = await requireActiveStudentRequestClaims(request);
@@ -50,11 +47,8 @@ export async function GET(
       updatedAt: response.updatedAt,
     });
   } catch (error) {
-    console.error('Draft retrieval error:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    console.error("Draft retrieval error:", error);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
 
@@ -69,16 +63,13 @@ export async function GET(
  */
 export async function POST(
   request: Request,
-  { params }: { params: Promise<{ activityId: string }> }
+  { params }: { params: Promise<{ activityId: string }> },
 ) {
   try {
     const { activityId } = await params;
 
     if (!activityId?.trim()) {
-      return NextResponse.json(
-        { error: 'Invalid activity ID format' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Invalid activity ID format" }, { status: 400 });
     }
 
     const claimsOrResponse = await requireActiveStudentRequestClaims(request);
@@ -95,19 +86,19 @@ export async function POST(
       if (!parsed.success) {
         return NextResponse.json(
           {
-            error: 'Invalid payload',
+            error: "Invalid payload",
             details: parsed.error.flatten().fieldErrors,
           },
-          { status: 400 }
+          { status: 400 },
         );
       }
       payload = parsed.data;
     } catch {
       return NextResponse.json(
         {
-          error: 'Unable to parse request body',
+          error: "Unable to parse request body",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -122,10 +113,7 @@ export async function POST(
       updatedAt: result.updatedAt,
     });
   } catch (error) {
-    console.error('Draft save error:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    console.error("Draft save error:", error);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

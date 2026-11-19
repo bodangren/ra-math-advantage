@@ -1,5 +1,5 @@
-const DEFAULT_LOCAL_CONVEX_HOST = '127.0.0.1';
-const DEFAULT_LOCAL_CONVEX_PORT = '3210';
+const DEFAULT_LOCAL_CONVEX_HOST = "127.0.0.1";
+const DEFAULT_LOCAL_CONVEX_PORT = "3210";
 
 export const DEFAULT_LOCAL_CONVEX_URL = `http://${DEFAULT_LOCAL_CONVEX_HOST}:${DEFAULT_LOCAL_CONVEX_PORT}`;
 type EnvLike = Record<string, string | undefined>;
@@ -10,7 +10,7 @@ type EnvLike = Record<string, string | undefined>;
  * @returns {string} - Normalized URL string
  */
 function normalizeUrl(url: string): string {
-  return url.trim().replace(/\/+$/, '');
+  return url.trim().replace(/\/+$/, "");
 }
 
 /**

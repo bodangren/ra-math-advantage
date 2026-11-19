@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, cleanup } from '@testing-library/react';
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { render, screen, cleanup } from "@testing-library/react";
 
 /**
  * Phase 3 — Route auth adversarial tests.
@@ -17,42 +17,42 @@ import { render, screen, cleanup } from '@testing-library/react';
  */
 
 const ADMIN_CLAIMS = {
-  sub: 'p_admin_1',
-  username: 'admin1',
-  role: 'admin' as const,
-  organizationId: 'org_admin',
+  sub: "p_admin_1",
+  username: "admin1",
+  role: "admin" as const,
+  organizationId: "org_admin",
   iat: 0,
   exp: 9999999999,
 };
 
 const TEACHER_CLAIMS = {
-  sub: 'p_teacher_1',
-  username: 'teacher1',
-  role: 'teacher' as const,
-  organizationId: 'org1',
+  sub: "p_teacher_1",
+  username: "teacher1",
+  role: "teacher" as const,
+  organizationId: "org1",
   iat: 0,
   exp: 9999999999,
 };
 
 const STUDENT_CLAIMS = {
-  sub: 'p_student_1',
-  username: 'student1',
-  role: 'student' as const,
-  organizationId: 'org1',
+  sub: "p_student_1",
+  username: "student1",
+  role: "student" as const,
+  organizationId: "org1",
   iat: 0,
   exp: 9999999999,
 };
 
 const PARENT_CLAIMS = {
-  sub: 'p_parent_1',
-  username: 'parent1',
-  role: 'parent' as const,
-  organizationId: 'org1',
+  sub: "p_parent_1",
+  username: "parent1",
+  role: "parent" as const,
+  organizationId: "org1",
   iat: 0,
   exp: 9999999999,
 };
 
-vi.mock('@/lib/auth/server', () => ({
+vi.mock("@/lib/auth/server", () => ({
   // Faithfully model what `requireTeacherSessionClaims` does in
   // production: teacher or admin → return claims; everyone else →
   // throw a NEXT_REDIRECT error. The page test mocks the guard at
@@ -65,12 +65,12 @@ vi.mock('@/lib/auth/server', () => ({
       // via the test fixture map.
       const fixture = currentClaimsFixture;
       if (!fixture) {
-        throw new Error('NEXT_REDIRECT');
+        throw new Error("NEXT_REDIRECT");
       }
-      if (fixture.role === 'teacher' || fixture.role === 'admin') {
+      if (fixture.role === "teacher" || fixture.role === "admin") {
         return fixture;
       }
-      throw new Error('NEXT_REDIRECT');
+      throw new Error("NEXT_REDIRECT");
     },
   ),
 }));
@@ -88,111 +88,111 @@ function setClaimsFixture(fixture: typeof currentClaimsFixture) {
   currentClaimsFixture = fixture;
 }
 
-describe('Phase 3 adversarial: route auth — role-based redirect matrix', () => {
+describe("Phase 3 adversarial: route auth — role-based redirect matrix", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     cleanup();
     setClaimsFixture(null);
   });
 
-  it('renders the composer for an admin role (admins are teacher-compatible per spec)', async () => {
+  it("renders the composer for an admin role (admins are teacher-compatible per spec)", async () => {
     setClaimsFixture(ADMIN_CLAIMS);
-    const { requireTeacherSessionClaims } = await import('@/lib/auth/server');
+    const { requireTeacherSessionClaims } = await import("@/lib/auth/server");
     vi.mocked(requireTeacherSessionClaims).mockResolvedValue(ADMIN_CLAIMS);
 
-    const { default: Page } = await import('@/app/teacher/content-authoring/page');
+    const { default: Page } = await import("@/app/teacher/content-authoring/page");
     const jsx = await Page({ searchParams: Promise.resolve({}) });
 
     expect(jsx).toBeDefined();
     render(jsx);
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
       /teacher content authoring/i,
     );
   });
 
-  it('throws NEXT_REDIRECT when the caller is a student', async () => {
+  it("throws NEXT_REDIRECT when the caller is a student", async () => {
     setClaimsFixture(STUDENT_CLAIMS);
-    const { requireTeacherSessionClaims } = await import('@/lib/auth/server');
+    const { requireTeacherSessionClaims } = await import("@/lib/auth/server");
     vi.mocked(requireTeacherSessionClaims).mockImplementation(async () => {
       // Faithful reproduction: the production guard throws NEXT_REDIRECT
       // for non-teacher / non-admin roles. The page must propagate that
       // error so Next.js can convert it into a redirect response.
-      throw new Error('NEXT_REDIRECT');
+      throw new Error("NEXT_REDIRECT");
     });
 
-    const { default: Page } = await import('@/app/teacher/content-authoring/page');
-    await expect(Page({ searchParams: Promise.resolve({}) })).rejects.toThrow('NEXT_REDIRECT');
+    const { default: Page } = await import("@/app/teacher/content-authoring/page");
+    await expect(Page({ searchParams: Promise.resolve({}) })).rejects.toThrow("NEXT_REDIRECT");
   });
 
-  it('throws NEXT_REDIRECT when the caller is a parent', async () => {
+  it("throws NEXT_REDIRECT when the caller is a parent", async () => {
     setClaimsFixture(PARENT_CLAIMS);
-    const { requireTeacherSessionClaims } = await import('@/lib/auth/server');
+    const { requireTeacherSessionClaims } = await import("@/lib/auth/server");
     vi.mocked(requireTeacherSessionClaims).mockImplementation(async () => {
-      throw new Error('NEXT_REDIRECT');
+      throw new Error("NEXT_REDIRECT");
     });
 
-    const { default: Page } = await import('@/app/teacher/content-authoring/page');
-    await expect(Page({ searchParams: Promise.resolve({}) })).rejects.toThrow('NEXT_REDIRECT');
+    const { default: Page } = await import("@/app/teacher/content-authoring/page");
+    await expect(Page({ searchParams: Promise.resolve({}) })).rejects.toThrow("NEXT_REDIRECT");
   });
 
-  it('throws NEXT_REDIRECT when the caller is unauthenticated (no session claims)', async () => {
+  it("throws NEXT_REDIRECT when the caller is unauthenticated (no session claims)", async () => {
     setClaimsFixture(null);
-    const { requireTeacherSessionClaims } = await import('@/lib/auth/server');
+    const { requireTeacherSessionClaims } = await import("@/lib/auth/server");
     vi.mocked(requireTeacherSessionClaims).mockImplementation(async () => {
-      throw new Error('NEXT_REDIRECT');
+      throw new Error("NEXT_REDIRECT");
     });
 
-    const { default: Page } = await import('@/app/teacher/content-authoring/page');
-    await expect(Page({ searchParams: Promise.resolve({}) })).rejects.toThrow('NEXT_REDIRECT');
+    const { default: Page } = await import("@/app/teacher/content-authoring/page");
+    await expect(Page({ searchParams: Promise.resolve({}) })).rejects.toThrow("NEXT_REDIRECT");
   });
 
-  it('passes the documented login redirect path through to the guard', async () => {
+  it("passes the documented login redirect path through to the guard", async () => {
     setClaimsFixture(TEACHER_CLAIMS);
-    const { requireTeacherSessionClaims } = await import('@/lib/auth/server');
+    const { requireTeacherSessionClaims } = await import("@/lib/auth/server");
     vi.mocked(requireTeacherSessionClaims).mockResolvedValue(TEACHER_CLAIMS);
 
-    const { default: Page } = await import('@/app/teacher/content-authoring/page');
+    const { default: Page } = await import("@/app/teacher/content-authoring/page");
     await Page({ searchParams: Promise.resolve({}) });
 
-    expect(requireTeacherSessionClaims).toHaveBeenCalledWith('/auth/login');
+    expect(requireTeacherSessionClaims).toHaveBeenCalledWith("/auth/login");
   });
 });
 
-describe('Phase 3 adversarial: preview route shares the same teacher gate', () => {
+describe("Phase 3 adversarial: preview route shares the same teacher gate", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     cleanup();
     setClaimsFixture(null);
   });
 
-  it('preview route (?preview=1) is also gated by requireTeacherSessionClaims', async () => {
+  it("preview route (?preview=1) is also gated by requireTeacherSessionClaims", async () => {
     setClaimsFixture(TEACHER_CLAIMS);
-    const { requireTeacherSessionClaims } = await import('@/lib/auth/server');
+    const { requireTeacherSessionClaims } = await import("@/lib/auth/server");
     vi.mocked(requireTeacherSessionClaims).mockResolvedValue(TEACHER_CLAIMS);
 
-    const { default: Page } = await import('@/app/teacher/content-authoring/page');
-    const jsx = await Page({ searchParams: Promise.resolve({ preview: '1' }) });
+    const { default: Page } = await import("@/app/teacher/content-authoring/page");
+    const jsx = await Page({ searchParams: Promise.resolve({ preview: "1" }) });
 
     expect(jsx).toBeDefined();
     // The guard must be called even in preview mode — a regression
     // where preview bypasses the teacher check would let any signed-in
     // student or parent reach the preview surface.
     expect(requireTeacherSessionClaims).toHaveBeenCalledTimes(1);
-    expect(requireTeacherSessionClaims).toHaveBeenCalledWith('/auth/login');
+    expect(requireTeacherSessionClaims).toHaveBeenCalledWith("/auth/login");
     render(jsx);
-    expect(screen.getByTestId('authored-lesson-preview')).toBeInTheDocument();
+    expect(screen.getByTestId("authored-lesson-preview")).toBeInTheDocument();
   });
 
-  it('preview route (?preview=1) rejects a student caller with NEXT_REDIRECT', async () => {
+  it("preview route (?preview=1) rejects a student caller with NEXT_REDIRECT", async () => {
     setClaimsFixture(STUDENT_CLAIMS);
-    const { requireTeacherSessionClaims } = await import('@/lib/auth/server');
+    const { requireTeacherSessionClaims } = await import("@/lib/auth/server");
     vi.mocked(requireTeacherSessionClaims).mockImplementation(async () => {
-      throw new Error('NEXT_REDIRECT');
+      throw new Error("NEXT_REDIRECT");
     });
 
-    const { default: Page } = await import('@/app/teacher/content-authoring/page');
-    await expect(
-      Page({ searchParams: Promise.resolve({ preview: '1' }) }),
-    ).rejects.toThrow('NEXT_REDIRECT');
+    const { default: Page } = await import("@/app/teacher/content-authoring/page");
+    await expect(Page({ searchParams: Promise.resolve({ preview: "1" }) })).rejects.toThrow(
+      "NEXT_REDIRECT",
+    );
   });
 });

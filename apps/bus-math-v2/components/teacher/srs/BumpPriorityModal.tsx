@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  useEffect,
-  useId,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ArrowUp, X, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -27,7 +22,6 @@ interface BumpPriorityModalProps {
 
 const FOCUSABLE_SELECTORS =
   'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
-
 
 /**
  * Renders a modal dialog for bumping a problem family's priority, making
@@ -104,7 +98,6 @@ export function BumpPriorityModal({
     }
   }, [isOpen]);
 
-
   /**
    * Validates selection and calls onBump with the selected family ID.
    *
@@ -163,9 +156,8 @@ export function BumpPriorityModal({
         </div>
 
         <p id={descriptionId} className="text-sm text-muted-foreground mb-4">
-          Make all cards for a problem family due immediately for all students in
-          your class. This is useful when you want to revisit a topic that was
-          previously taught.
+          Make all cards for a problem family due immediately for all students in your class. This
+          is useful when you want to revisit a topic that was previously taught.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -180,7 +172,7 @@ export function BumpPriorityModal({
               onChange={(e) => setSelectedFamily(e.target.value)}
               className={cn(
                 "w-full rounded-md border border-input bg-background px-3 py-2 text-sm",
-                "focus:outline-none focus:ring-2 focus:ring-ring"
+                "focus:outline-none focus:ring-2 focus:ring-ring",
               )}
               disabled={isSubmitting}
             >
@@ -210,24 +202,16 @@ export function BumpPriorityModal({
           )}
 
           <div className="flex justify-end gap-2">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={onClose}
-              disabled={isSubmitting}
-            >
+            <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
               Cancel
             </Button>
-            <Button
-              type="submit"
-              disabled={!selectedFamily || isSubmitting}
-            >
+            <Button type="submit" disabled={!selectedFamily || isSubmitting}>
               {isSubmitting ? "Bumping..." : "Bump Priority"}
             </Button>
           </div>
         </form>
       </div>
     </div>,
-    document.body
+    document.body,
   );
 }

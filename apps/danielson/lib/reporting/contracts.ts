@@ -1,8 +1,8 @@
-import type { PortfolioRow, ReportingState } from './projections';
-import type { ImprovementPlanProgress } from '../improvement-plans/view';
-import type { GbfProgress } from '../gbf/contracts';
+import type { PortfolioRow, ReportingState } from "./projections";
+import type { ImprovementPlanProgress } from "../improvement-plans/view";
+import type { GbfProgress } from "../gbf/contracts";
 
-export type { AttentionReason, PortfolioRow, ReportingState } from './projections';
+export type { AttentionReason, PortfolioRow, ReportingState } from "./projections";
 
 export type ReportingComment = {
   commentId: string;
@@ -30,7 +30,7 @@ export type ReportingPortfolioPage = {
 
 export type OfficialEvaluation = {
   observationId: string;
-  observationType: 'formal_q1' | 'formal_q4';
+  observationType: "formal_q1" | "formal_q4";
   schoolYear: string;
   observedAt: string;
   observerDisplayName: string;
@@ -53,7 +53,13 @@ export type CurrentProficiency = {
   priorityTargets: Array<{
     rank: 1 | 2 | 3;
     skillId: string;
-    reason: 'below_proficient' | 'approved_plan_priority' | 'gbf_phase_priority' | 'overdue' | 'evidence_gap' | 'due';
+    reason:
+      | "below_proficient"
+      | "approved_plan_priority"
+      | "gbf_phase_priority"
+      | "overdue"
+      | "evidence_gap"
+      | "due";
   }>;
   domains: Array<{
     domainId: string;
@@ -83,20 +89,24 @@ export type CurrentProficiency = {
 
 export type EvidenceHistoryItem = {
   observationId: string;
-  observationType: 'walkthrough' | 'formal_q1' | 'formal_q4';
+  observationType: "walkthrough" | "formal_q1" | "formal_q4";
   schoolYear: string;
   observedAt: string;
   observerDisplayName: string;
   amendmentCount: number;
-  teacherResponseState: 'submitted' | 'not_submitted';
+  teacherResponseState: "submitted" | "not_submitted";
   items: Array<{
     itemId: string;
     componentId: string;
     skillId?: string;
-    priorityReason?: 'below_proficient' | 'approved_plan_priority' | 'gbf_phase_priority' | 'overdue' | 'evidence_gap' | 'due';
-    outcome: { kind: 'rated'; rating: 1 | 2 | 3 | 4 }
-      | { kind: 'not_enough_evidence' }
-      | null;
+    priorityReason?:
+      | "below_proficient"
+      | "approved_plan_priority"
+      | "gbf_phase_priority"
+      | "overdue"
+      | "evidence_gap"
+      | "due";
+    outcome: { kind: "rated"; rating: 1 | 2 | 3 | 4 } | { kind: "not_enough_evidence" } | null;
     evidenceNote: string | null;
   }>;
 };

@@ -4,4 +4,4 @@ export {
   PASSWORD_HASH_ITERATIONS,
   PASSWORD_ALPHABET,
   getAuthJwtSecret,
-} from '@math-platform/core-auth';
+} from "@math-platform/core-auth";

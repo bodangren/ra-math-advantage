@@ -8,9 +8,9 @@ export function assertMigrationOperator(
   configuredToken: string | undefined,
 ): void {
   if (!configuredToken) {
-    throw new Error('Migration operator is not configured for this deployment.');
+    throw new Error("Migration operator is not configured for this deployment.");
   }
   if (suppliedToken !== configuredToken) {
-    throw new Error('Migration operator is not authorized.');
+    throw new Error("Migration operator is not authorized.");
   }
 }

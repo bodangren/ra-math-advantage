@@ -89,9 +89,7 @@ export const getCurriculum = query({
           "Explore algebra, functions, statistics, and trigonometry.";
 
         const objectives =
-          lesson.metadata?.unitContent?.objectives?.content ??
-          lesson.learningObjectives ??
-          [];
+          lesson.metadata?.unitContent?.objectives?.content ?? lesson.learningObjectives ?? [];
 
         return {
           unitNumber: lesson.unitNumber,

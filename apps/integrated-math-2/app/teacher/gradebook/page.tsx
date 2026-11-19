@@ -10,10 +10,9 @@ export default async function Gradebook({
   const query = await searchParams;
   const claims = await requireTeacherSessionClaims("/teacher/gradebook");
   const teacherId = claims.sub as Id<"profiles">;
-  const { classes } = await fetchInternalQuery(
-    internal.teacher.getTeacherDashboardData,
-    { teacherId },
-  );
+  const { classes } = await fetchInternalQuery(internal.teacher.getTeacherDashboardData, {
+    teacherId,
+  });
   const classId = query.classId ?? classes[0]?.id;
   const unit = Number(query.unit ?? 1);
   const book = classId
@@ -34,11 +33,7 @@ export default async function Gradebook({
           <form className="flex flex-wrap gap-4 mb-8">
             <label>
               Class{" "}
-              <select
-                name="classId"
-                defaultValue={classId}
-                className="input-field"
-              >
+              <select name="classId" defaultValue={classId} className="input-field">
                 {classes.map((c) => (
                   <option key={c.id} value={c.id}>
                     {c.name}
@@ -57,8 +52,8 @@ export default async function Gradebook({
             <button className="btn-primary">Show progress</button>
           </form>
           <p className="mb-4">
-            Cells show completed phases and total phases. Open a student name to
-            review saved answers.
+            Cells show completed phases and total phases. Open a student name to review saved
+            answers.
           </p>
           <div className="overflow-x-auto">
             <table className="w-full text-left">
@@ -79,11 +74,7 @@ export default async function Gradebook({
                 {book.students.map((s) => (
                   <tr key={s.id}>
                     <th scope="row">
-                      <Link
-                        href={`/teacher/students/${s.id}?classId=${classId}`}
-                      >
-                        {s.name}
-                      </Link>
+                      <Link href={`/teacher/students/${s.id}?classId=${classId}`}>{s.name}</Link>
                     </th>
                     {s.completed.map((count, i) => (
                       <td key={book.lessons[i].id}>

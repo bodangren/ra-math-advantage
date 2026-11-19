@@ -1,18 +1,15 @@
-import Link from 'next/link';
-import { requireStudentSessionClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
-import {
-  buildStudentDashboardViewModel,
-  type StudentDashboardUnit,
-} from '@/lib/student/dashboard';
-import { DailyPracticeCard } from '@/components/student/DailyPracticeCard';
+import Link from "next/link";
+import { requireStudentSessionClaims } from "@/lib/auth/server";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
+import { buildStudentDashboardViewModel, type StudentDashboardUnit } from "@/lib/student/dashboard";
+import { DailyPracticeCard } from "@/components/student/DailyPracticeCard";
 import {
   RecommendedNextPanel,
   type RecommendedNextItem,
-} from '@/components/student/RecommendedNextPanel';
+} from "@/components/student/RecommendedNextPanel";
 
 interface StudentVisualizationV1 {
-  schemaVersion: 'v1';
+  schemaVersion: "v1";
   mastered: RecommendedNextItem[];
   ready: RecommendedNextItem[];
   blocked: RecommendedNextItem[];
@@ -24,7 +21,7 @@ interface StudentVisualizationV1 {
 
 function emptyStudentVisualization(): StudentVisualizationV1 {
   return {
-    schemaVersion: 'v1',
+    schemaVersion: "v1",
     mastered: [],
     ready: [],
     blocked: [],
@@ -37,7 +34,7 @@ function emptyStudentVisualization(): StudentVisualizationV1 {
 
 /** Renders course progress and daily practice. */
 export default async function StudentDashboardPage() {
-  const claims = await requireStudentSessionClaims('/auth/login');
+  const claims = await requireStudentSessionClaims("/auth/login");
 
   const rawUnits: StudentDashboardUnit[] = await fetchInternalQuery(
     internal.student.getDashboardData,
@@ -46,15 +43,14 @@ export default async function StudentDashboardPage() {
 
   const vm = buildStudentDashboardViewModel(rawUnits ?? []);
 
-  const practiceStats = await fetchInternalQuery(
-    internal.srs.dashboard.getPracticeStats,
-    { studentId: claims.sub },
-  );
+  const practiceStats = await fetchInternalQuery(internal.srs.dashboard.getPracticeStats, {
+    studentId: claims.sub,
+  });
 
   let studentVisualization: StudentVisualizationV1 | null = null;
   try {
     studentVisualization = (await fetchInternalQuery(
-      'student/knowledge_state:getStudentKnowledgeState',
+      "student/knowledge_state:getStudentKnowledgeState",
       { studentId: claims.sub },
     )) as StudentVisualizationV1 | null;
   } catch (error) {
@@ -65,23 +61,27 @@ export default async function StudentDashboardPage() {
 
   const visualization = studentVisualization ?? emptyStudentVisualization();
 
-
   return (
     <div className="max-w-4xl mx-auto space-y-10 py-8">
       <div className="space-y-1">
         <p className="text-sm text-muted-foreground font-mono-num">
           Welcome back, {claims.username}
         </p>
-        <h1 className="text-3xl font-display font-bold text-foreground" data-testid="student-dashboard-heading">Dashboard</h1>
+        <h1
+          className="text-3xl font-display font-bold text-foreground"
+          data-testid="student-dashboard-heading"
+        >
+          Dashboard
+        </h1>
       </div>
 
       {/* Summary strip */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { label: 'Modules', value: vm.summary.totalUnits },
-          { label: 'Lessons', value: vm.summary.totalLessons },
-          { label: 'Completed', value: vm.summary.completedLessons },
-          { label: 'Progress', value: `${vm.summary.progressPercentage}%` },
+          { label: "Modules", value: vm.summary.totalUnits },
+          { label: "Lessons", value: vm.summary.totalLessons },
+          { label: "Completed", value: vm.summary.completedLessons },
+          { label: "Progress", value: `${vm.summary.progressPercentage}%` },
         ].map((stat) => (
           <div key={stat.label} className="card-workbook p-4 space-y-1 text-center">
             <p className="font-mono-num text-2xl font-bold text-primary">{stat.value}</p>
@@ -95,7 +95,7 @@ export default async function StudentDashboardPage() {
         dueCount={practiceStats?.dueCount ?? 0}
         streak={practiceStats?.streak ?? 0}
         lastPracticedAt={practiceStats?.lastPracticedAt ?? null}
-        reviewLoadState={practiceStats?.reviewLoadState ?? 'normal'}
+        reviewLoadState={practiceStats?.reviewLoadState ?? "normal"}
       />
 
       {/* Recommended next skills — next-skill planner output */}
@@ -132,7 +132,7 @@ export default async function StudentDashboardPage() {
         <div className="rounded-xl border border-primary/30 bg-primary/5 p-6 space-y-3">
           <span className="section-label">Continue</span>
           <h2 className="font-display text-xl font-semibold text-foreground">
-            {vm.nextLesson?.title ?? 'Module 1'}
+            {vm.nextLesson?.title ?? "Module 1"}
           </h2>
           {vm.nextLesson?.description && (
             <p className="text-sm text-muted-foreground">{vm.nextLesson.description}</p>
@@ -141,7 +141,7 @@ export default async function StudentDashboardPage() {
             href={vm.continueUrl}
             className="inline-flex items-center gap-2 rounded-md px-5 py-2 text-sm font-medium text-primary-foreground bg-primary hover:opacity-90 transition-opacity"
           >
-            {vm.nextLesson?.actionLabel ?? 'Start'} →
+            {vm.nextLesson?.actionLabel ?? "Start"} →
           </Link>
         </div>
       )}
@@ -152,9 +152,7 @@ export default async function StudentDashboardPage() {
           <div key={unit.unitNumber} className="space-y-3">
             <div className="flex items-center justify-between">
               <h2 className="font-display text-lg font-semibold text-foreground">
-                <span className="font-mono-num text-primary mr-2">
-                  Unit {unit.unitNumber}
-                </span>
+                <span className="font-mono-num text-primary mr-2">Unit {unit.unitNumber}</span>
                 {unit.unitTitle}
               </h2>
               <span className="font-mono-num text-sm text-muted-foreground">
@@ -176,20 +174,32 @@ export default async function StudentDashboardPage() {
                 return (
                   <Link
                     key={lesson.id}
-                    href={isLocked ? '#' : `/student/lesson/${lesson.slug}`}
+                    href={isLocked ? "#" : `/student/lesson/${lesson.slug}`}
                     data-testid="student-dashboard-lesson-link"
                     className={`flex items-center justify-between p-3 rounded-lg border transition-colors ${
                       isLocked
-                        ? 'border-border bg-muted/20 cursor-not-allowed opacity-60'
-                        : 'border-border hover:border-primary/40 hover:bg-muted/40'
+                        ? "border-border bg-muted/20 cursor-not-allowed opacity-60"
+                        : "border-border hover:border-primary/40 hover:bg-muted/40"
                     }`}
                     aria-disabled={isLocked}
                     onClick={isLocked ? (e) => e.preventDefault() : undefined}
                   >
-                    <span className={`flex items-center gap-2 text-sm ${isLocked ? 'text-muted-foreground' : 'text-foreground group-hover:text-primary'} transition-colors`}>
+                    <span
+                      className={`flex items-center gap-2 text-sm ${isLocked ? "text-muted-foreground" : "text-foreground group-hover:text-primary"} transition-colors`}
+                    >
                       {isLocked && (
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        <svg
+                          className="w-3.5 h-3.5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                          />
                         </svg>
                       )}
                       {lesson.title}
@@ -198,7 +208,9 @@ export default async function StudentDashboardPage() {
                       {lesson.estimatedMinutes != null && (
                         <span>{lesson.estimatedMinutes} min</span>
                       )}
-                      <span>{lesson.completedPhases}/{lesson.totalPhases}</span>
+                      <span>
+                        {lesson.completedPhases}/{lesson.totalPhases}
+                      </span>
                     </span>
                   </Link>
                 );

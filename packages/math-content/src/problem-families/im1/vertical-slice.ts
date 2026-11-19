@@ -12,4 +12,4 @@
  * Value `"1"` = IM1 Module 1 (six skills), the locked depth-first slice for
  * the IM1 practice-readiness rollout.
  */
-export const VERTICAL_SLICE_MODULE = '1';
+export const VERTICAL_SLICE_MODULE = "1";

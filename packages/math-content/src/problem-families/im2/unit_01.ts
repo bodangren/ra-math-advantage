@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const UNIT1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Classify Triangles
@@ -26,7 +26,8 @@ export const UNIT1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "step-by-step-solver:triangle-inequality",
     componentKey: "step-by-step-solver",
     displayName: "Triangle Inequality Theorem",
-    description: "Determine if three side lengths can form a triangle using the triangle inequality theorem",
+    description:
+      "Determine if three side lengths can form a triangle using the triangle inequality theorem",
     objectiveIds: ["G-CO.C.10"],
     difficulty: "standard",
     metadata: { unit: 1, topic: "triangle-inequality" },

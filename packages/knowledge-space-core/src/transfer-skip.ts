@@ -18,7 +18,7 @@
 // types indirectly through the caller's seededMastery value. No app, convex,
 // curriculum, or srs-engine imports — boundary lint enforces it.
 
-import { z } from 'zod';
+import { z } from "zod";
 
 // ---------------------------------------------------------------------------
 // Public types
@@ -49,7 +49,7 @@ export interface TransferSkipPolicy {
  *   - `skipped`   — skip applied; the student is bypassing the target skill.
  *   - `reverted`  — skip was undone; the student is eligible again.
  */
-export type TransferSkipState = 'skipped' | 'reverted';
+export type TransferSkipState = "skipped" | "reverted";
 
 /**
  * Reversible skip record. Identifies the target skill, the source course the
@@ -87,7 +87,7 @@ export interface ConfirmationCheckResult {
   /** Whether the student passed the confirmation check. */
   passed: boolean;
   /** Diagnostic confidence of the check result. */
-  confidence: 'low' | 'medium' | 'high';
+  confidence: "low" | "medium" | "high";
 }
 
 /**
@@ -122,20 +122,21 @@ export const TRANSFER_SKIP_POLICY_DEFAULT: TransferSkipPolicy = Object.freeze({
  * keys (AD11), bounds `confirmationThreshold` to `(0, 1]`, and enforces
  * `minCheckProblems <= maxCheckProblems` via a superRefine check.
  */
-export const transferSkipPolicySchema = z.strictObject({
-  confirmationThreshold: z.number().gt(0).max(1),
-  minCheckProblems: z.number().int().min(1),
-  maxCheckProblems: z.number().int().min(1),
-}).superRefine((value, ctx) => {
-  if (value.minCheckProblems > value.maxCheckProblems) {
-    ctx.addIssue({
-      code: z.ZodIssueCode.custom,
-      message:
-        'minCheckProblems must be less than or equal to maxCheckProblems',
-      path: ['minCheckProblems'],
-    });
-  }
-});
+export const transferSkipPolicySchema = z
+  .strictObject({
+    confirmationThreshold: z.number().gt(0).max(1),
+    minCheckProblems: z.number().int().min(1),
+    maxCheckProblems: z.number().int().min(1),
+  })
+  .superRefine((value, ctx) => {
+    if (value.minCheckProblems > value.maxCheckProblems) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "minCheckProblems must be less than or equal to maxCheckProblems",
+        path: ["minCheckProblems"],
+      });
+    }
+  });
 
 // ---------------------------------------------------------------------------
 // Skip / revert state machine
@@ -162,7 +163,7 @@ export function applyTransferSkip(
     seededMastery,
     skippedAt: skippedAt ?? Date.now(),
     reversible: true,
-    state: 'skipped',
+    state: "skipped",
   };
 }
 
@@ -184,15 +185,14 @@ export function revertTransferSkip(
   record: TransferSkipRecord,
   revertedAt?: number,
 ): TransferSkipRecord {
-  const resolvedRevertedAt =
-    revertedAt ?? record.revertedAt ?? Date.now();
+  const resolvedRevertedAt = revertedAt ?? record.revertedAt ?? Date.now();
   return {
     skillId: record.skillId,
     sourceCourse: record.sourceCourse,
     seededMastery: record.seededMastery,
     skippedAt: record.skippedAt,
     reversible: true,
-    state: 'reverted',
+    state: "reverted",
     revertedAt: resolvedRevertedAt,
   };
 }
@@ -260,7 +260,7 @@ function hashKey(a: string, b: string): string {
     h = Math.imul(h, 0x01000193);
   }
   // Unsigned 32-bit hex, padded.
-  return (h >>> 0).toString(16).padStart(8, '0');
+  return (h >>> 0).toString(16).padStart(8, "0");
 }
 
 // ---------------------------------------------------------------------------
@@ -303,6 +303,6 @@ export function grantSkipAfterCheck(
   }
   return {
     granted: false,
-    reason: 'confirmation-check-failed',
+    reason: "confirmation-check-failed",
   };
 }

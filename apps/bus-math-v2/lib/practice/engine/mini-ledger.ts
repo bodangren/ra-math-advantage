@@ -3,10 +3,10 @@ import {
   practiceAccounts,
   type AccountType,
   type PracticeAccount,
-} from './accounts';
+} from "./accounts";
 
-export type MiniLedgerCompanyType = 'service' | 'retail';
-export type MiniLedgerCapitalMode = 'beginning' | 'ending';
+export type MiniLedgerCompanyType = "service" | "retail";
+export type MiniLedgerCapitalMode = "beginning" | "ending";
 
 export interface MiniLedgerConfig {
   accountCount?: number;
@@ -43,34 +43,34 @@ export interface MiniLedger {
 }
 
 const SERVICE_BASE_IDS = [
-  'cash',
-  'accounts-receivable',
-  'supplies',
-  'equipment',
-  'accounts-payable',
-  'common-stock',
-  'retained-earnings',
-  'service-revenue',
-  'rent-expense',
+  "cash",
+  "accounts-receivable",
+  "supplies",
+  "equipment",
+  "accounts-payable",
+  "common-stock",
+  "retained-earnings",
+  "service-revenue",
+  "rent-expense",
 ];
 
 const RETAIL_BASE_IDS = [
-  'cash',
-  'accounts-receivable',
-  'merchandise-inventory',
-  'accounts-payable',
-  'common-stock',
-  'retained-earnings',
-  'sales-revenue',
-  'cost-of-goods-sold',
+  "cash",
+  "accounts-receivable",
+  "merchandise-inventory",
+  "accounts-payable",
+  "common-stock",
+  "retained-earnings",
+  "sales-revenue",
+  "cost-of-goods-sold",
 ];
 
 const CONTRA_IDS = [
-  'accumulated-depreciation-equipment',
-  'allowance-for-doubtful-accounts',
-  'sales-discounts',
-  'sales-returns-and-allowances',
-  'dividends',
+  "accumulated-depreciation-equipment",
+  "allowance-for-doubtful-accounts",
+  "sales-discounts",
+  "sales-returns-and-allowances",
+  "dividends",
 ];
 
 /**
@@ -159,7 +159,7 @@ function pickUnique(ids: string[], count: number, rng: () => number, exclude = n
  * @param account - Account identifier
  */
 function accountSign(account: PracticeAccount) {
-  if (account.accountType === 'expense') {
+  if (account.accountType === "expense") {
     return -1;
   }
 
@@ -167,11 +167,11 @@ function accountSign(account: PracticeAccount) {
     return -1;
   }
 
-  if (account.accountType === 'equity' && account.normalBalance === 'debit') {
+  if (account.accountType === "equity" && account.normalBalance === "debit") {
     return -1;
   }
 
-  if (account.accountType === 'revenue' && account.normalBalance === 'debit') {
+  if (account.accountType === "revenue" && account.normalBalance === "debit") {
     return -1;
   }
 
@@ -191,18 +191,18 @@ function buildSelectedIds(
   includeContraAccounts: boolean,
   rng: () => number,
 ) {
-  const baseIds = companyType === 'service' ? SERVICE_BASE_IDS : RETAIL_BASE_IDS;
+  const baseIds = companyType === "service" ? SERVICE_BASE_IDS : RETAIL_BASE_IDS;
   const excluded = new Set<string>();
   const selected = [...baseIds];
 
   if (includeContraAccounts) {
-    const contraId = companyType === 'service' ? CONTRA_IDS[0] : CONTRA_IDS[2];
+    const contraId = companyType === "service" ? CONTRA_IDS[0] : CONTRA_IDS[2];
     selected.splice(3, 0, contraId);
     excluded.add(contraId);
   }
 
   const allEligibleIds = practiceAccounts
-    .filter((account) => companyType === 'service' || account.retailApplicable)
+    .filter((account) => companyType === "service" || account.retailApplicable)
     .map((account) => account.id)
     .filter((id) => !selected.includes(id));
 
@@ -225,30 +225,38 @@ function buildSelectedIds(
  * @param totals - totals
  * @param rng - rng
  */
-function assignBalances(
-  accounts: PracticeAccount[],
-  totals: MiniLedgerTotals,
-  rng: () => number,
-) {
+function assignBalances(accounts: PracticeAccount[], totals: MiniLedgerTotals, rng: () => number) {
   const selectedByType = {
-    asset: accounts.filter((account) => account.accountType === 'asset'),
-    liability: accounts.filter((account) => account.accountType === 'liability'),
-    equity: accounts.filter((account) => account.accountType === 'equity'),
-    revenue: accounts.filter((account) => account.accountType === 'revenue'),
-    expense: accounts.filter((account) => account.accountType === 'expense'),
+    asset: accounts.filter((account) => account.accountType === "asset"),
+    liability: accounts.filter((account) => account.accountType === "liability"),
+    equity: accounts.filter((account) => account.accountType === "equity"),
+    revenue: accounts.filter((account) => account.accountType === "revenue"),
+    expense: accounts.filter((account) => account.accountType === "expense"),
   } satisfies Record<AccountType, PracticeAccount[]>;
 
   const contraAssets = selectedByType.asset.filter((account) => account.contraOf);
   const regularAssets = selectedByType.asset.filter((account) => !account.contraOf);
-  const positiveEquity = selectedByType.equity.filter((account) => account.normalBalance === 'credit');
-  const negativeEquity = selectedByType.equity.filter((account) => account.normalBalance === 'debit');
-  const positiveRevenue = selectedByType.revenue.filter((account) => account.normalBalance === 'credit');
-  const negativeRevenue = selectedByType.revenue.filter((account) => account.normalBalance === 'debit');
+  const positiveEquity = selectedByType.equity.filter(
+    (account) => account.normalBalance === "credit",
+  );
+  const negativeEquity = selectedByType.equity.filter(
+    (account) => account.normalBalance === "debit",
+  );
+  const positiveRevenue = selectedByType.revenue.filter(
+    (account) => account.normalBalance === "credit",
+  );
+  const negativeRevenue = selectedByType.revenue.filter(
+    (account) => account.normalBalance === "debit",
+  );
 
   const regularAssetBalances = splitTotal(totals.grossAssets, regularAssets.length, rng);
   const contraAssetBalances = splitTotal(totals.contraAssets, contraAssets.length, rng);
   const liabilityBalances = splitTotal(totals.liabilities, selectedByType.liability.length, rng);
-  const equityPositiveBalances = splitTotal(totals.beginningCapital + totals.netIncome, positiveEquity.length, rng);
+  const equityPositiveBalances = splitTotal(
+    totals.beginningCapital + totals.netIncome,
+    positiveEquity.length,
+    rng,
+  );
   const equityNegativeBalances = splitTotal(totals.dividends, negativeEquity.length, rng);
   const revenueBalances = splitTotal(totals.revenue, positiveRevenue.length, rng);
   const revenueContraBalances = splitTotal(0, negativeRevenue.length, rng);
@@ -323,25 +331,33 @@ function assignBalances(
  */
 export function generateMiniLedger(seed: number, config: MiniLedgerConfig = {}): MiniLedger {
   const rng = mulberry32(seed);
-  const companyType = config.companyType ?? (seed % 2 === 0 ? 'service' : 'retail');
-  const capitalMode = config.capitalMode ?? 'ending';
-  const minimumCount = companyType === 'service' ? SERVICE_BASE_IDS.length : RETAIL_BASE_IDS.length;
+  const companyType = config.companyType ?? (seed % 2 === 0 ? "service" : "retail");
+  const capitalMode = config.capitalMode ?? "ending";
+  const minimumCount = companyType === "service" ? SERVICE_BASE_IDS.length : RETAIL_BASE_IDS.length;
   const requestedCount = config.accountCount ?? minimumCount;
   const accountCount = Math.max(minimumCount, Math.min(requestedCount, practiceAccounts.length));
   const includeContraAccounts = config.includeContraAccounts ?? true;
 
   const selectedIds = buildSelectedIds(companyType, accountCount, includeContraAccounts, rng);
-  const selectedAccounts = selectedIds.map((id) => getAccountById(id)).filter(Boolean) as PracticeAccount[];
+  const selectedAccounts = selectedIds
+    .map((id) => getAccountById(id))
+    .filter(Boolean) as PracticeAccount[];
 
   const liabilities = randomInt(rng, 500, 2800);
   const beginningCapital = randomInt(rng, 800, 4200);
   const netIncome = randomInt(rng, 250, 1800);
-  const dividends = randomInt(rng, 100, Math.max(120, Math.floor((beginningCapital + netIncome) * 0.2)));
+  const dividends = randomInt(
+    rng,
+    100,
+    Math.max(120, Math.floor((beginningCapital + netIncome) * 0.2)),
+  );
   const endingCapital = Math.max(1, beginningCapital + netIncome - dividends);
   const netAssets = liabilities + endingCapital;
-  const contraAssets = includeContraAccounts && selectedAccounts.some((account) => account.accountType === 'asset' && account.contraOf)
-    ? randomInt(rng, 1, Math.max(1, Math.floor(netAssets * 0.12)))
-    : 0;
+  const contraAssets =
+    includeContraAccounts &&
+    selectedAccounts.some((account) => account.accountType === "asset" && account.contraOf)
+      ? randomInt(rng, 1, Math.max(1, Math.floor(netAssets * 0.12)))
+      : 0;
   const grossAssets = netAssets + contraAssets;
   const expenses = randomInt(rng, 300, 1800);
   const revenue = expenses + netIncome;
@@ -394,15 +410,15 @@ export function summarizeMiniLedger(ledger: MiniLedger) {
     (acc, account) => {
       const sign = accountSign(account);
 
-      if (account.accountType === 'asset') {
+      if (account.accountType === "asset") {
         acc.assets += account.statementBalance;
-      } else if (account.accountType === 'liability') {
+      } else if (account.accountType === "liability") {
         acc.liabilities += account.statementBalance;
-      } else if (account.accountType === 'equity') {
+      } else if (account.accountType === "equity") {
         acc.equity += account.statementBalance;
-      } else if (account.accountType === 'revenue') {
+      } else if (account.accountType === "revenue") {
         acc.revenue += account.statementBalance;
-      } else if (account.accountType === 'expense') {
+      } else if (account.accountType === "expense") {
         acc.expenses += Math.abs(account.statementBalance) * sign;
       }
 

@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { notFound } from 'next/navigation';
-import Link from 'next/link';
-import { useState, type ReactNode } from 'react';
-import { X } from 'lucide-react';
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Checkbox } from '@/components/ui/checkbox';
-import { getAllReviewableComponentIds } from '@/lib/component-approval/component-ids';
-import { computeComponentVersionHash } from '@/lib/component-approval/version-hashes';
-import { useQuery, useMutation } from 'convex/react';
-import { api } from '@/convex/_generated/api';
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { useState, type ReactNode } from "react";
+import { X } from "lucide-react";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { getAllReviewableComponentIds } from "@/lib/component-approval/component-ids";
+import { computeComponentVersionHash } from "@/lib/component-approval/version-hashes";
+import { useQuery, useMutation } from "convex/react";
+import { api } from "@/convex/_generated/api";
 
 /**
  * Shell component that renders a modal dialog overlay with a title bar,
@@ -57,17 +57,17 @@ function DialogShell({
 }
 
 const ISSUE_CATEGORIES = [
-  'math_correctness',
-  'pedagogy',
-  'wording',
-  'ui_bug',
-  'accessibility',
-  'algorithmic_variation',
-  'missing_feedback',
-  'too_easy',
-  'too_hard',
-  'completion_behavior',
-  'evidence_quality',
+  "math_correctness",
+  "pedagogy",
+  "wording",
+  "ui_bug",
+  "accessibility",
+  "algorithmic_variation",
+  "missing_feedback",
+  "too_easy",
+  "too_hard",
+  "completion_behavior",
+  "evidence_quality",
 ] as const;
 
 /**
@@ -76,38 +76,42 @@ const ISSUE_CATEGORIES = [
  * for submitting reviews with issue categorization.
  */
 export default function ComponentReviewQueuePage() {
-  if (process.env.NODE_ENV !== 'development') {
+  if (process.env.NODE_ENV !== "development") {
     notFound();
   }
 
-  const [filterType, setFilterType] = useState<'all' | 'example' | 'activity' | 'practice'>('all');
-  const [filterStatus, setFilterStatus] = useState<'all' | 'unreviewed' | 'approved' | 'changes_requested' | 'rejected' | 'stale'>('all');
+  const [filterType, setFilterType] = useState<"all" | "example" | "activity" | "practice">("all");
+  const [filterStatus, setFilterStatus] = useState<
+    "all" | "unreviewed" | "approved" | "changes_requested" | "rejected" | "stale"
+  >("all");
   const [includeStale, setIncludeStale] = useState(true);
 
   const [reviewingComponent, setReviewingComponent] = useState<{
-    componentType: 'example' | 'activity' | 'practice';
+    componentType: "example" | "activity" | "practice";
     componentId: string;
   } | null>(null);
-  const [reviewStatus, setReviewStatus] = useState<'approved' | 'changes_requested' | 'rejected'>('approved');
-  const [reviewSummary, setReviewSummary] = useState('');
-  const [improvementNotes, setImprovementNotes] = useState('');
+  const [reviewStatus, setReviewStatus] = useState<"approved" | "changes_requested" | "rejected">(
+    "approved",
+  );
+  const [reviewSummary, setReviewSummary] = useState("");
+  const [improvementNotes, setImprovementNotes] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set());
 
   const allComponents = getAllReviewableComponentIds();
   const approvals = useQuery(api.component_approvals.getReviewQueue, {
     includeStale,
-    componentType: filterType === 'all' ? undefined : filterType,
+    componentType: filterType === "all" ? undefined : filterType,
   });
   const submitReview = useMutation(api.component_approvals.submitComponentReview);
 
   const handleSubmitReview = async () => {
     if (!reviewingComponent) return;
-    if (reviewingComponent.componentType === 'example') {
-      throw new Error('Example components are not supported for review');
+    if (reviewingComponent.componentType === "example") {
+      throw new Error("Example components are not supported for review");
     }
     const componentVersionHash = await computeComponentVersionHash(
       reviewingComponent.componentType,
-      reviewingComponent.componentId
+      reviewingComponent.componentId,
     );
     await submitReview({
       componentType: reviewingComponent.componentType,
@@ -119,9 +123,9 @@ export default function ComponentReviewQueuePage() {
       issueCategories: Array.from(selectedCategories) as (typeof ISSUE_CATEGORIES)[number][],
     });
     setReviewingComponent(null);
-    setReviewStatus('approved');
-    setReviewSummary('');
-    setImprovementNotes('');
+    setReviewStatus("approved");
+    setReviewSummary("");
+    setImprovementNotes("");
     setSelectedCategories(new Set());
   };
 
@@ -135,7 +139,10 @@ export default function ComponentReviewQueuePage() {
   };
 
   const approvalMap = new Map<string, ApprovalItem>(
-    (approvals as ApprovalItem[] | undefined)?.map((a: ApprovalItem) => [`${a.componentType}:${a.componentId}`, a]) || []
+    (approvals as ApprovalItem[] | undefined)?.map((a: ApprovalItem) => [
+      `${a.componentType}:${a.componentId}`,
+      a,
+    ]) || [],
   );
 
   const enrichedComponents = allComponents.map((component) => {
@@ -143,16 +150,19 @@ export default function ComponentReviewQueuePage() {
     const approval = approvalMap.get(key);
     const effectiveStatus = approval
       ? approval.effectiveStatus || approval.approvalStatus
-      : 'unreviewed';
+      : "unreviewed";
     let currentHash: string;
     if (approval) {
-      currentHash = approval.currentVersionHash || '';
-    } else if (includeStale && component.componentType !== 'example') {
+      currentHash = approval.currentVersionHash || "";
+    } else if (includeStale && component.componentType !== "example") {
       // NOTE: computeComponentVersionHash is async; this path renders a Promise as string at runtime.
       // This page is dev-only and this branch is a best-effort stale check. BM2 reference-only.
-      currentHash = computeComponentVersionHash(component.componentType, component.componentId) as unknown as string;
+      currentHash = computeComponentVersionHash(
+        component.componentType,
+        component.componentId,
+      ) as unknown as string;
     } else {
-      currentHash = '';
+      currentHash = "";
     }
     return {
       ...component,
@@ -163,23 +173,23 @@ export default function ComponentReviewQueuePage() {
   });
 
   const filteredComponents = enrichedComponents.filter((c) => {
-    if (filterType !== 'all' && c.componentType !== filterType) return false;
-    if (filterStatus !== 'all' && c.effectiveStatus !== filterStatus) return false;
+    if (filterType !== "all" && c.componentType !== filterType) return false;
+    if (filterStatus !== "all" && c.effectiveStatus !== filterStatus) return false;
     return true;
   });
 
   const statusBadgeClass = (status: string) => {
     switch (status) {
-      case 'approved':
-        return 'bg-emerald-100 text-emerald-800 border-emerald-200';
-      case 'changes_requested':
-        return 'bg-amber-100 text-amber-800 border-amber-200';
-      case 'rejected':
-        return 'bg-red-100 text-red-800 border-red-200';
-      case 'stale':
-        return 'bg-purple-100 text-purple-800 border-purple-200';
+      case "approved":
+        return "bg-emerald-100 text-emerald-800 border-emerald-200";
+      case "changes_requested":
+        return "bg-amber-100 text-amber-800 border-amber-200";
+      case "rejected":
+        return "bg-red-100 text-red-800 border-red-200";
+      case "stale":
+        return "bg-purple-100 text-purple-800 border-purple-200";
       default:
-        return 'bg-slate-100 text-slate-800 border-slate-200';
+        return "bg-slate-100 text-slate-800 border-slate-200";
     }
   };
 
@@ -187,7 +197,9 @@ export default function ComponentReviewQueuePage() {
     <main className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-100 px-4 py-8 text-slate-900">
       <div className="mx-auto flex max-w-7xl flex-col gap-6">
         <header className="space-y-2 rounded-2xl border bg-white/90 p-6 shadow-sm">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Developer only</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+            Developer only
+          </p>
           <h1 className="text-3xl font-semibold tracking-tight">Component Review Queue</h1>
           <p className="max-w-3xl text-sm text-slate-600">
             Review examples, activities, and practice families for quality and correctness.
@@ -198,38 +210,45 @@ export default function ComponentReviewQueuePage() {
           <div className="flex flex-wrap gap-3">
             <div className="flex items-center gap-2">
               <span className="text-sm font-medium text-slate-700">Type:</span>
-              {(['all', 'example', 'activity', 'practice'] as const).map((type) => (
+              {(["all", "example", "activity", "practice"] as const).map((type) => (
                 <Button
                   key={type}
-                  variant={filterType === type ? 'default' : 'outline'}
+                  variant={filterType === type ? "default" : "outline"}
                   size="sm"
                   onClick={() => setFilterType(type)}
                 >
-                  {type === 'all' ? 'All' : type.charAt(0).toUpperCase() + type.slice(1)}
+                  {type === "all" ? "All" : type.charAt(0).toUpperCase() + type.slice(1)}
                 </Button>
               ))}
             </div>
             <div className="flex items-center gap-2">
               <span className="text-sm font-medium text-slate-700">Status:</span>
-              {(['all', 'unreviewed', 'approved', 'changes_requested', 'rejected', 'stale'] as const).map((status) => (
+              {(
+                ["all", "unreviewed", "approved", "changes_requested", "rejected", "stale"] as const
+              ).map((status) => (
                 <Button
                   key={status}
-                  variant={filterStatus === status ? 'default' : 'outline'}
+                  variant={filterStatus === status ? "default" : "outline"}
                   size="sm"
                   onClick={() => setFilterStatus(status)}
                 >
-                  {status === 'all' ? 'All' : status.split('_').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
+                  {status === "all"
+                    ? "All"
+                    : status
+                        .split("_")
+                        .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
+                        .join(" ")}
                 </Button>
               ))}
             </div>
             <div className="flex items-center gap-2">
               <span className="text-sm font-medium text-slate-700">Include stale:</span>
               <Button
-                variant={includeStale ? 'default' : 'outline'}
+                variant={includeStale ? "default" : "outline"}
                 size="sm"
                 onClick={() => setIncludeStale(!includeStale)}
               >
-                {includeStale ? 'On' : 'Off'}
+                {includeStale ? "On" : "Off"}
               </Button>
             </div>
           </div>
@@ -242,8 +261,11 @@ export default function ComponentReviewQueuePage() {
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <Badge variant="outline">{component.componentType}</Badge>
-                    <Badge className={statusBadgeClass(component.effectiveStatus ?? 'unreviewed')}>
-                      {(component.effectiveStatus ?? 'unreviewed').split('_').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
+                    <Badge className={statusBadgeClass(component.effectiveStatus ?? "unreviewed")}>
+                      {(component.effectiveStatus ?? "unreviewed")
+                        .split("_")
+                        .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
+                        .join(" ")}
                     </Badge>
                   </div>
                   <CardTitle className="text-xl">{component.componentId}</CardTitle>
@@ -251,14 +273,17 @@ export default function ComponentReviewQueuePage() {
                     Current hash: {component.currentHash.slice(0, 8)}...
                     {component.approval?.approvalVersionHash && (
                       <>
-                        {' • '}Approved hash: {component.approval.approvalVersionHash.slice(0, 8)}...
+                        {" • "}Approved hash: {component.approval.approvalVersionHash.slice(0, 8)}
+                        ...
                       </>
                     )}
                   </CardDescription>
                 </div>
                 <div className="flex gap-2">
                   <Button variant="outline" size="sm" asChild>
-                    <Link href={`/dev/component-review/harness/${component.componentType}/${component.componentId}`}>
+                    <Link
+                      href={`/dev/component-review/harness/${component.componentType}/${component.componentId}`}
+                    >
                       View Harness
                     </Link>
                   </Button>
@@ -269,9 +294,9 @@ export default function ComponentReviewQueuePage() {
                         componentType: component.componentType,
                         componentId: component.componentId,
                       });
-                      setReviewStatus('approved');
-                      setReviewSummary('');
-                      setImprovementNotes('');
+                      setReviewStatus("approved");
+                      setReviewSummary("");
+                      setImprovementNotes("");
                       setSelectedCategories(new Set());
                     }}
                   >
@@ -292,14 +317,17 @@ export default function ComponentReviewQueuePage() {
               <div className="space-y-2">
                 <Label>Status</Label>
                 <div className="flex flex-wrap gap-2">
-                  {(['approved', 'changes_requested', 'rejected'] as const).map((status) => (
+                  {(["approved", "changes_requested", "rejected"] as const).map((status) => (
                     <Button
                       key={status}
-                      variant={reviewStatus === status ? 'default' : 'outline'}
+                      variant={reviewStatus === status ? "default" : "outline"}
                       size="sm"
                       onClick={() => setReviewStatus(status)}
                     >
-                      {status.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
+                      {status
+                        .split("_")
+                        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+                        .join(" ")}
                     </Button>
                   ))}
                 </div>
@@ -316,7 +344,7 @@ export default function ComponentReviewQueuePage() {
                 />
               </div>
 
-              {(reviewStatus === 'changes_requested' || reviewStatus === 'rejected') && (
+              {(reviewStatus === "changes_requested" || reviewStatus === "rejected") && (
                 <div className="space-y-2">
                   <Label htmlFor="improvement-notes">Improvement Notes (required)</Label>
                   <textarea
@@ -348,7 +376,10 @@ export default function ComponentReviewQueuePage() {
                         }}
                       />
                       <Label htmlFor={`category-${category}`} className="text-sm">
-                        {category.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
+                        {category
+                          .split("_")
+                          .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+                          .join(" ")}
                       </Label>
                     </div>
                   ))}
@@ -359,7 +390,7 @@ export default function ComponentReviewQueuePage() {
                 <Button
                   onClick={handleSubmitReview}
                   disabled={
-                    (reviewStatus === 'changes_requested' || reviewStatus === 'rejected') &&
+                    (reviewStatus === "changes_requested" || reviewStatus === "rejected") &&
                     !improvementNotes.trim()
                   }
                 >

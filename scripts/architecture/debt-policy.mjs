@@ -1,11 +1,13 @@
-import { parseArchitectureManifest } from './manifest-contract.mjs';
+import { parseArchitectureManifest } from "./manifest-contract.mjs";
 
 function sameViolation(recorded, actual) {
-  return recorded.ruleId === actual.ruleId
-    && recorded.sourceWorkspace === actual.sourceWorkspace
-    && recorded.targetWorkspace === actual.targetWorkspace
-    && recorded.sourceFile === actual.sourceFile
-    && recorded.exactSpecifier === actual.exactSpecifier;
+  return (
+    recorded.ruleId === actual.ruleId &&
+    recorded.sourceWorkspace === actual.sourceWorkspace &&
+    recorded.targetWorkspace === actual.targetWorkspace &&
+    recorded.sourceFile === actual.sourceFile &&
+    recorded.exactSpecifier === actual.exactSpecifier
+  );
 }
 
 export function matchTemporaryDebt(rawManifest, violation, { asOf }) {

@@ -3,7 +3,7 @@ import {
   buildPracticeSubmissionParts,
   normalizePracticeValue,
   type PracticeSubmissionEnvelope,
-} from '@/lib/practice/contract';
+} from "@/lib/practice/contract";
 
 type CategorizationItem = {
   id: string;
@@ -22,12 +22,19 @@ type ZoneMetadata = {
   description?: string;
 };
 
-type PracticeMode = 'worked_example' | 'guided_practice' | 'independent_practice' | 'assessment' | 'teaching';
+type PracticeMode =
+  | "worked_example"
+  | "guided_practice"
+  | "independent_practice"
+  | "assessment"
+  | "teaching";
 
-export type CategorizationSupportedModes = readonly ['guided_practice', 'independent_practice'];
-export const CATEGORIZATION_SUPPORTED_MODES = ['guided_practice', 'independent_practice'] as const satisfies CategorizationSupportedModes;
-export const SEQUENCE_SUPPORTED_MODES = ['independent_practice'] as const;
-
+export type CategorizationSupportedModes = readonly ["guided_practice", "independent_practice"];
+export const CATEGORIZATION_SUPPORTED_MODES = [
+  "guided_practice",
+  "independent_practice",
+] as const satisfies CategorizationSupportedModes;
+export const SEQUENCE_SUPPORTED_MODES = ["independent_practice"] as const;
 
 /**
  * Build item metadata with id, targetId, label, description, and details.
@@ -49,7 +56,6 @@ function buildItemDetails<T extends { id: string; targetId?: string }>(
     details: metadata.details,
   };
 }
-
 
 /**
  * Build a practice submission envelope for a categorization (drag-and-drop) exercise.
@@ -97,7 +103,7 @@ export function buildCategorizationPracticeSubmission<T extends CategorizationIt
   return buildPracticeSubmissionEnvelope({
     activityId: args.activityId,
     mode: args.mode,
-    status: 'submitted',
+    status: "submitted",
     attemptNumber: args.attemptNumber,
     submittedAt: args.completedAt,
     answers,
@@ -108,7 +114,9 @@ export function buildCategorizationPracticeSubmission<T extends CategorizationIt
       zones: args.zones.map((zone) => ({
         ...zone,
         itemIds: (args.placements[zone.id] ?? []).map((item) => item.id),
-        items: (args.placements[zone.id] ?? []).map((item) => buildItemDetails(item, args.describeItem)),
+        items: (args.placements[zone.id] ?? []).map((item) =>
+          buildItemDetails(item, args.describeItem),
+        ),
       })),
       items: args.items.map((item) => buildItemDetails(item, args.describeItem)),
     },
@@ -120,7 +128,6 @@ export function buildCategorizationPracticeSubmission<T extends CategorizationIt
     },
   });
 }
-
 
 /**
  * Build a practice submission envelope for a sequential ordering exercise.
@@ -165,7 +172,7 @@ export function buildSequentialPracticeSubmission<T extends { id: string }>(args
   return buildPracticeSubmissionEnvelope({
     activityId: args.activityId,
     mode: args.mode,
-    status: 'submitted',
+    status: "submitted",
     attemptNumber: args.attemptNumber,
     submittedAt: args.completedAt,
     answers,

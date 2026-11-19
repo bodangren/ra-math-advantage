@@ -1,7 +1,7 @@
-import type { SpreadsheetData } from '@/components/activities/spreadsheet';
-import type { ValidationResult, TargetCell } from '@/lib/activities/spreadsheet-validation';
-import { resolveOpenRouterProviderFromEnv } from '@math-platform/ai-tutoring';
-import { z } from 'zod';
+import type { SpreadsheetData } from "@/components/activities/spreadsheet";
+import type { ValidationResult, TargetCell } from "@/lib/activities/spreadsheet-validation";
+import { resolveOpenRouterProviderFromEnv } from "@math-platform/ai-tutoring";
+import { z } from "zod";
 
 const AiFeedbackResponseSchema = z.object({
   preliminaryScore: z.number(),
@@ -31,13 +31,15 @@ export interface GenerateAiFeedbackOptions {
  * @returns Formatted string describing target cells and expected values
  */
 function formatTargetCells(targetCells: TargetCell[]): string {
-  return targetCells.map(cell => {
-    let line = `- ${cell.cell}: Expected ${cell.expectedValue}`;
-    if (cell.expectedFormula) {
-      line += ` (Formula: ${cell.expectedFormula})`;
-    }
-    return line;
-  }).join('\n');
+  return targetCells
+    .map((cell) => {
+      let line = `- ${cell.cell}: Expected ${cell.expectedValue}`;
+      if (cell.expectedFormula) {
+        line += ` (Formula: ${cell.expectedFormula})`;
+      }
+      return line;
+    })
+    .join("\n");
 }
 
 /**
@@ -46,14 +48,16 @@ function formatTargetCells(targetCells: TargetCell[]): string {
  * @returns Formatted string with correct count and cell details
  */
 function formatValidationResult(validationResult: ValidationResult): string {
-  const correctCells = validationResult.feedback.filter(f => f.isCorrect).length;
+  const correctCells = validationResult.feedback.filter((f) => f.isCorrect).length;
   const totalCells = validationResult.totalCells;
-  const cellDetails = validationResult.feedback.map(f => {
-    if (f.isCorrect) {
-      return `- ${f.cell}: Correct`;
-    }
-    return `- ${f.cell}: Incorrect (Expected "${f.expectedValue}", Got "${f.actualValue}")`;
-  }).join('\n');
+  const cellDetails = validationResult.feedback
+    .map((f) => {
+      if (f.isCorrect) {
+        return `- ${f.cell}: Correct`;
+      }
+      return `- ${f.cell}: Incorrect (Expected "${f.expectedValue}", Got "${f.actualValue}")`;
+    })
+    .join("\n");
 
   return `Correct: ${correctCells}/${totalCells}\n\nCell Details:\n${cellDetails}`;
 }
@@ -69,7 +73,7 @@ function buildFeedbackPrompt(options: GenerateAiFeedbackOptions): string {
   return `You are a helpful business math teaching assistant. You will analyze a student's spreadsheet submission and provide targeted, constructive feedback.
 
 ## Activity
-${activityName || 'Business Math Spreadsheet Activity'}
+${activityName || "Business Math Spreadsheet Activity"}
 
 ## Target Cells (Expected Values)
 ${formatTargetCells(targetCells)}
@@ -107,15 +111,16 @@ export async function generateAiFeedback(options: GenerateAiFeedbackOptions): Pr
   const provider = resolveOpenRouterProviderFromEnv();
 
   if (!provider) {
-    const correctRatio = options.validationResult.correctCells / Math.max(1, options.validationResult.totalCells);
+    const correctRatio =
+      options.validationResult.correctCells / Math.max(1, options.validationResult.totalCells);
     const preliminaryScore = Math.round(correctRatio * 40);
 
     return {
       preliminaryScore,
-      strengths: ['Completed the spreadsheet submission'],
-      improvements: ['Review your work for possible errors'],
-      nextSteps: ['Ask your teacher for feedback'],
-      rawAiResponse: 'AI provider not configured; using deterministic feedback only',
+      strengths: ["Completed the spreadsheet submission"],
+      improvements: ["Review your work for possible errors"],
+      nextSteps: ["Ask your teacher for feedback"],
+      rawAiResponse: "AI provider not configured; using deterministic feedback only",
     };
   }
 
@@ -127,14 +132,15 @@ export async function generateAiFeedback(options: GenerateAiFeedbackOptions): Pr
     const validated = AiFeedbackResponseSchema.safeParse(parsed);
 
     if (!validated.success) {
-      const correctRatio = options.validationResult.correctCells / Math.max(1, options.validationResult.totalCells);
+      const correctRatio =
+        options.validationResult.correctCells / Math.max(1, options.validationResult.totalCells);
       const preliminaryScore = Math.round(correctRatio * 40);
 
       return {
         preliminaryScore,
-        strengths: ['Completed the spreadsheet submission'],
-        improvements: ['Review your work for possible errors'],
-        nextSteps: ['Ask your teacher for feedback'],
+        strengths: ["Completed the spreadsheet submission"],
+        improvements: ["Review your work for possible errors"],
+        nextSteps: ["Ask your teacher for feedback"],
         rawAiResponse: rawResponse,
       };
     }
@@ -149,14 +155,15 @@ export async function generateAiFeedback(options: GenerateAiFeedbackOptions): Pr
       rawAiResponse: rawResponse,
     };
   } catch {
-    const correctRatio = options.validationResult.correctCells / Math.max(1, options.validationResult.totalCells);
+    const correctRatio =
+      options.validationResult.correctCells / Math.max(1, options.validationResult.totalCells);
     const preliminaryScore = Math.round(correctRatio * 40);
 
     return {
       preliminaryScore,
-      strengths: ['Completed the spreadsheet submission'],
-      improvements: ['Review your work for possible errors'],
-      nextSteps: ['Ask your teacher for feedback'],
+      strengths: ["Completed the spreadsheet submission"],
+      improvements: ["Review your work for possible errors"],
+      nextSteps: ["Ask your teacher for feedback"],
       rawAiResponse: rawResponse,
     };
   }

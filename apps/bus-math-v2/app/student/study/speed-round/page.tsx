@@ -1,7 +1,7 @@
 import { requireStudentSessionClaims } from "@/lib/auth/server";
 import { SpeedRoundGame } from "@/components/student/SpeedRoundGame";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 /**
  * Page wrapper for the speed round exercise game.

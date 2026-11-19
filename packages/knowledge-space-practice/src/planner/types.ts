@@ -11,7 +11,7 @@
 // Domain-neutral: no IM3 / BM2 imports, no Convex, no I/O. Mirrors
 // `injection.ts` and `misconception-loop.ts` in this package.
 
-import * as z from 'zod';
+import * as z from "zod";
 
 // ---------------------------------------------------------------------------
 // 1. priorityWeights — runtime Zod schema for the a/b/c/d engine weights
@@ -58,18 +58,18 @@ export interface PriorityScoreTerms {
 
 export type PriorityScore =
   | {
-      readonly kind: 'ranked';
+      readonly kind: "ranked";
       readonly nodeId: string;
       readonly composite: number;
       readonly terms: PriorityScoreTerms;
     }
   | {
-      readonly kind: 'unranked';
+      readonly kind: "unranked";
       readonly nodeId: string;
       readonly reason: string;
     }
   | {
-      readonly kind: 'mastered';
+      readonly kind: "mastered";
       readonly nodeId: string;
     };
 
@@ -107,7 +107,7 @@ export interface PlannerEdgeView {
 export interface PlannerMisconceptionLink {
   readonly skillId: string;
   readonly misconceptionId: string;
-  readonly severity: 'minor' | 'severe';
+  readonly severity: "minor" | "severe";
 }
 
 // ---------------------------------------------------------------------------

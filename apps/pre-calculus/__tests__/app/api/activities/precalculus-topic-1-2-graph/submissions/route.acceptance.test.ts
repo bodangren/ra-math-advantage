@@ -1,141 +1,191 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { generateTopic12GraphAverageRateChoice } from '@math-platform/math-content/knowledge-space';
+import { generateTopic12GraphAverageRateChoice } from "@math-platform/math-content/knowledge-space";
 import {
   PRECALCULUS_TOPIC_12_GRAPH_AVERAGE_RATE_GUIDED_ACTIVITY_ID,
   PRECALCULUS_TOPIC_12_GRAPH_AVERAGE_RATE_INDEPENDENT_ACTIVITY_ID,
-} from '@/lib/learning-evidence/precalc-pilot';
-import { internal } from '@/lib/convex/server';
+} from "@/lib/learning-evidence/precalc-pilot";
+import { internal } from "@/lib/convex/server";
 
 const mocks = vi.hoisted(() => ({
   fetchInternalMutation: vi.fn(),
   requireStudentRequestClaims: vi.fn(),
 }));
 
-vi.mock('@/lib/auth/server', () => ({
+vi.mock("@/lib/auth/server", () => ({
   requireStudentRequestClaims: mocks.requireStudentRequestClaims,
 }));
 
-vi.mock('@/lib/convex/server', () => ({
+vi.mock("@/lib/convex/server", () => ({
   fetchInternalMutation: mocks.fetchInternalMutation,
   internal: {
     activities: {
       createTopic12GraphAverageRateSubmission:
-        'internal.activities.createTopic12GraphAverageRateSubmission',
+        "internal.activities.createTopic12GraphAverageRateSubmission",
     },
   },
 }));
 
 const GUIDED_ACTIVITY_ID = PRECALCULUS_TOPIC_12_GRAPH_AVERAGE_RATE_GUIDED_ACTIVITY_ID;
 const INDEPENDENT_ACTIVITY_ID = PRECALCULUS_TOPIC_12_GRAPH_AVERAGE_RATE_INDEPENDENT_ACTIVITY_ID;
-const LEARNER_ID = 'profiles:precalc-topic-1-2-graph-practice-student';
-const IDEMPOTENCY_KEY = 'precalc-topic-1-2-graph-practice-key';
+const LEARNER_ID = "profiles:precalc-topic-1-2-graph-practice-student";
+const IDEMPOTENCY_KEY = "precalc-topic-1-2-graph-practice-key";
 const SERVER_RESULT = {
-  submissionId: 'activity_submissions:topic-1-2-graph-practice',
+  submissionId: "activity_submissions:topic-1-2-graph-practice",
   score: 1,
   maxScore: 1,
   attemptOrdinal: 1,
-  feedback: '1/1 graph selections matched the server rubric.',
+  feedback: "1/1 graph selections matched the server rubric.",
 } as const;
 
 function makeEnvelope(
   activityId: string,
-  mode: 'guided_practice' | 'independent_practice',
+  mode: "guided_practice" | "independent_practice",
   selectedOptionId: string,
 ) {
   return {
-    contractVersion: 'practice.v1' as const,
+    contractVersion: "practice.v1" as const,
     activityId,
     mode,
-    status: 'submitted' as const,
+    status: "submitted" as const,
     attemptNumber: 4,
-    submittedAt: '2026-08-28T10:15:00.000Z',
+    submittedAt: "2026-08-28T10:15:00.000Z",
     answers: { selectedOptionId },
-    parts: [{ partId: 'selectedOptionId' as const, rawAnswer: selectedOptionId }],
+    parts: [{ partId: "selectedOptionId" as const, rawAnswer: selectedOptionId }],
   };
 }
 
 function makeRequest(body: unknown, idempotencyKey: string | null = IDEMPOTENCY_KEY): Request {
-  return new Request('http://localhost/api/activities/precalculus-topic-1-2-graph/submissions', {
-    method: 'POST',
+  return new Request("http://localhost/api/activities/precalculus-topic-1-2-graph/submissions", {
+    method: "POST",
     headers: {
-      'content-type': 'application/json',
-      ...(idempotencyKey === null ? {} : { 'Idempotency-Key': idempotencyKey }),
+      "content-type": "application/json",
+      ...(idempotencyKey === null ? {} : { "Idempotency-Key": idempotencyKey }),
     },
     body: JSON.stringify(body),
   });
 }
 
-describe('POST /api/activities/precalculus-topic-1-2-graph/submissions', () => {
+describe("POST /api/activities/precalculus-topic-1-2-graph/submissions", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mocks.requireStudentRequestClaims.mockResolvedValue({ sub: LEARNER_ID, role: 'student' });
+    mocks.requireStudentRequestClaims.mockResolvedValue({ sub: LEARNER_ID, role: "student" });
     mocks.fetchInternalMutation.mockResolvedValue(SERVER_RESULT);
   });
 
   it.each([
-    ['Guided', GUIDED_ACTIVITY_ID, 'guided_practice', 1],
-    ['Independent', INDEPENDENT_ACTIVITY_ID, 'independent_practice', 2],
-  ] as const)('accepts the exact %s raw envelope and calls only the graph mutation', async (
-    _label,
-    activityId,
-    mode,
-    seed,
-  ) => {
-    const selectedOptionId = generateTopic12GraphAverageRateChoice(seed).correctOptionId;
-    const submissionData = makeEnvelope(activityId, mode, selectedOptionId);
-    const { POST } = await import('@/app/api/activities/precalculus-topic-1-2-graph/submissions/route');
+    ["Guided", GUIDED_ACTIVITY_ID, "guided_practice", 1],
+    ["Independent", INDEPENDENT_ACTIVITY_ID, "independent_practice", 2],
+  ] as const)(
+    "accepts the exact %s raw envelope and calls only the graph mutation",
+    async (_label, activityId, mode, seed) => {
+      const selectedOptionId = generateTopic12GraphAverageRateChoice(seed).correctOptionId;
+      const submissionData = makeEnvelope(activityId, mode, selectedOptionId);
+      const { POST } =
+        await import("@/app/api/activities/precalculus-topic-1-2-graph/submissions/route");
 
-    const response = await POST(makeRequest(submissionData));
+      const response = await POST(makeRequest(submissionData));
 
-    expect(response.status).toBe(200);
-    await expect(response.json()).resolves.toStrictEqual(SERVER_RESULT);
-    expect(mocks.fetchInternalMutation).toHaveBeenCalledTimes(1);
-    expect(mocks.fetchInternalMutation).toHaveBeenCalledWith(
-      'internal.activities.createTopic12GraphAverageRateSubmission',
-      {
-        userId: LEARNER_ID,
-        activityId,
-        submissionData,
-        idempotencyKey: IDEMPOTENCY_KEY,
-      },
-    );
-    expect(internal).not.toHaveProperty('learningEvidence');
-  });
+      expect(response.status).toBe(200);
+      await expect(response.json()).resolves.toStrictEqual(SERVER_RESULT);
+      expect(mocks.fetchInternalMutation).toHaveBeenCalledTimes(1);
+      expect(mocks.fetchInternalMutation).toHaveBeenCalledWith(
+        "internal.activities.createTopic12GraphAverageRateSubmission",
+        {
+          userId: LEARNER_ID,
+          activityId,
+          submissionData,
+          idempotencyKey: IDEMPOTENCY_KEY,
+        },
+      );
+      expect(internal).not.toHaveProperty("learningEvidence");
+    },
+  );
 
-  it('returns the authentication response and rejects non-student claims before mutation', async () => {
-    const { POST } = await import('@/app/api/activities/precalculus-topic-1-2-graph/submissions/route');
+  it("returns the authentication response and rejects non-student claims before mutation", async () => {
+    const { POST } =
+      await import("@/app/api/activities/precalculus-topic-1-2-graph/submissions/route");
     const submissionData = makeEnvelope(
       GUIDED_ACTIVITY_ID,
-      'guided_practice',
+      "guided_practice",
       generateTopic12GraphAverageRateChoice(1).correctOptionId,
     );
 
-    const authResponse = new Response('Forbidden', { status: 403 });
+    const authResponse = new Response("Forbidden", { status: 403 });
     mocks.requireStudentRequestClaims.mockResolvedValueOnce(authResponse);
     await expect(POST(makeRequest(submissionData))).resolves.toBe(authResponse);
-    mocks.requireStudentRequestClaims.mockResolvedValueOnce({ sub: LEARNER_ID, role: 'teacher' });
-    await expect(POST(makeRequest(submissionData))).resolves.toHaveProperty('status', 403);
-    mocks.requireStudentRequestClaims.mockResolvedValueOnce({ role: 'student' });
-    await expect(POST(makeRequest(submissionData))).resolves.toHaveProperty('status', 401);
+    mocks.requireStudentRequestClaims.mockResolvedValueOnce({ sub: LEARNER_ID, role: "teacher" });
+    await expect(POST(makeRequest(submissionData))).resolves.toHaveProperty("status", 403);
+    mocks.requireStudentRequestClaims.mockResolvedValueOnce({ role: "student" });
+    await expect(POST(makeRequest(submissionData))).resolves.toHaveProperty("status", 401);
     expect(mocks.fetchInternalMutation).not.toHaveBeenCalled();
   });
 
   it.each([
-    ['missing key', makeEnvelope(GUIDED_ACTIVITY_ID, 'guided_practice', 'C'), null],
-    ['blank key', makeEnvelope(GUIDED_ACTIVITY_ID, 'guided_practice', 'C'), '  '],
-    ['mismatched mode', makeEnvelope(GUIDED_ACTIVITY_ID, 'independent_practice', 'C'), IDEMPOTENCY_KEY],
-    ['unknown activity', makeEnvelope('math.precalc.skill.1.2.other.guided_practice', 'guided_practice', 'C'), IDEMPOTENCY_KEY],
-    ['extra outer learner field', { ...makeEnvelope(GUIDED_ACTIVITY_ID, 'guided_practice', 'C'), userId: LEARNER_ID }, IDEMPOTENCY_KEY],
-    ['extra outer grade field', { ...makeEnvelope(GUIDED_ACTIVITY_ID, 'guided_practice', 'C'), score: 1 }, IDEMPOTENCY_KEY],
-    ['extra outer correctness field', { ...makeEnvelope(GUIDED_ACTIVITY_ID, 'guided_practice', 'C'), isCorrect: true }, IDEMPOTENCY_KEY],
-    ['extra answer field', { ...makeEnvelope(GUIDED_ACTIVITY_ID, 'guided_practice', 'C'), answers: { selectedOptionId: 'C', score: 1 } }, IDEMPOTENCY_KEY],
-    ['extra part field', { ...makeEnvelope(GUIDED_ACTIVITY_ID, 'guided_practice', 'C'), parts: [{ partId: 'selectedOptionId', rawAnswer: 'C', isCorrect: true }] }, IDEMPOTENCY_KEY],
-    ['mismatched raw part', { ...makeEnvelope(GUIDED_ACTIVITY_ID, 'guided_practice', 'C'), parts: [{ partId: 'selectedOptionId', rawAnswer: 'D' }] }, IDEMPOTENCY_KEY],
-    ['invalid attempt number', { ...makeEnvelope(GUIDED_ACTIVITY_ID, 'guided_practice', 'C'), attemptNumber: 0 }, IDEMPOTENCY_KEY],
-    ['invalid submittedAt', { ...makeEnvelope(GUIDED_ACTIVITY_ID, 'guided_practice', 'C'), submittedAt: 'not-a-date' }, IDEMPOTENCY_KEY],
-  ] as const)('rejects %s before the graph mutation', async (_label, body, key) => {
-    const { POST } = await import('@/app/api/activities/precalculus-topic-1-2-graph/submissions/route');
+    ["missing key", makeEnvelope(GUIDED_ACTIVITY_ID, "guided_practice", "C"), null],
+    ["blank key", makeEnvelope(GUIDED_ACTIVITY_ID, "guided_practice", "C"), "  "],
+    [
+      "mismatched mode",
+      makeEnvelope(GUIDED_ACTIVITY_ID, "independent_practice", "C"),
+      IDEMPOTENCY_KEY,
+    ],
+    [
+      "unknown activity",
+      makeEnvelope("math.precalc.skill.1.2.other.guided_practice", "guided_practice", "C"),
+      IDEMPOTENCY_KEY,
+    ],
+    [
+      "extra outer learner field",
+      { ...makeEnvelope(GUIDED_ACTIVITY_ID, "guided_practice", "C"), userId: LEARNER_ID },
+      IDEMPOTENCY_KEY,
+    ],
+    [
+      "extra outer grade field",
+      { ...makeEnvelope(GUIDED_ACTIVITY_ID, "guided_practice", "C"), score: 1 },
+      IDEMPOTENCY_KEY,
+    ],
+    [
+      "extra outer correctness field",
+      { ...makeEnvelope(GUIDED_ACTIVITY_ID, "guided_practice", "C"), isCorrect: true },
+      IDEMPOTENCY_KEY,
+    ],
+    [
+      "extra answer field",
+      {
+        ...makeEnvelope(GUIDED_ACTIVITY_ID, "guided_practice", "C"),
+        answers: { selectedOptionId: "C", score: 1 },
+      },
+      IDEMPOTENCY_KEY,
+    ],
+    [
+      "extra part field",
+      {
+        ...makeEnvelope(GUIDED_ACTIVITY_ID, "guided_practice", "C"),
+        parts: [{ partId: "selectedOptionId", rawAnswer: "C", isCorrect: true }],
+      },
+      IDEMPOTENCY_KEY,
+    ],
+    [
+      "mismatched raw part",
+      {
+        ...makeEnvelope(GUIDED_ACTIVITY_ID, "guided_practice", "C"),
+        parts: [{ partId: "selectedOptionId", rawAnswer: "D" }],
+      },
+      IDEMPOTENCY_KEY,
+    ],
+    [
+      "invalid attempt number",
+      { ...makeEnvelope(GUIDED_ACTIVITY_ID, "guided_practice", "C"), attemptNumber: 0 },
+      IDEMPOTENCY_KEY,
+    ],
+    [
+      "invalid submittedAt",
+      { ...makeEnvelope(GUIDED_ACTIVITY_ID, "guided_practice", "C"), submittedAt: "not-a-date" },
+      IDEMPOTENCY_KEY,
+    ],
+  ] as const)("rejects %s before the graph mutation", async (_label, body, key) => {
+    const { POST } =
+      await import("@/app/api/activities/precalculus-topic-1-2-graph/submissions/route");
 
     const response = await POST(makeRequest(body, key));
 
@@ -143,16 +193,20 @@ describe('POST /api/activities/precalculus-topic-1-2-graph/submissions', () => {
     expect(mocks.fetchInternalMutation).not.toHaveBeenCalled();
   });
 
-  it('rejects malformed JSON before the graph mutation', async () => {
-    const { POST } = await import('@/app/api/activities/precalculus-topic-1-2-graph/submissions/route');
-    const request = new Request('http://localhost/api/activities/precalculus-topic-1-2-graph/submissions', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        'Idempotency-Key': IDEMPOTENCY_KEY,
+  it("rejects malformed JSON before the graph mutation", async () => {
+    const { POST } =
+      await import("@/app/api/activities/precalculus-topic-1-2-graph/submissions/route");
+    const request = new Request(
+      "http://localhost/api/activities/precalculus-topic-1-2-graph/submissions",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "Idempotency-Key": IDEMPOTENCY_KEY,
+        },
+        body: "{",
       },
-      body: '{',
-    });
+    );
 
     const response = await POST(request);
 
@@ -160,35 +214,37 @@ describe('POST /api/activities/precalculus-topic-1-2-graph/submissions', () => {
     expect(mocks.fetchInternalMutation).not.toHaveBeenCalled();
   });
 
-  it('returns 409 only for the exact idempotency conflict sentinel', async () => {
-    const { POST } = await import('@/app/api/activities/precalculus-topic-1-2-graph/submissions/route');
+  it("returns 409 only for the exact idempotency conflict sentinel", async () => {
+    const { POST } =
+      await import("@/app/api/activities/precalculus-topic-1-2-graph/submissions/route");
     const submissionData = makeEnvelope(
       INDEPENDENT_ACTIVITY_ID,
-      'independent_practice',
+      "independent_practice",
       generateTopic12GraphAverageRateChoice(2).correctOptionId,
     );
-    mocks.fetchInternalMutation.mockRejectedValueOnce(new Error('idempotency_conflict'));
+    mocks.fetchInternalMutation.mockRejectedValueOnce(new Error("idempotency_conflict"));
 
     const response = await POST(makeRequest(submissionData));
 
     expect(response.status).toBe(409);
     await expect(response.json()).resolves.toStrictEqual({
-      error: 'Idempotency key was already used for a different submission',
+      error: "Idempotency key was already used for a different submission",
     });
   });
 
   it.each([
-    ['extra server result field', { ...SERVER_RESULT, internal: 'hidden' }],
-    ['blank submission ID', { ...SERVER_RESULT, submissionId: ' ' }],
-    ['invalid score', { ...SERVER_RESULT, score: 2 }],
-    ['invalid maximum', { ...SERVER_RESULT, maxScore: 2 }],
-    ['invalid ordinal', { ...SERVER_RESULT, attemptOrdinal: 0 }],
-    ['invalid feedback', { ...SERVER_RESULT, feedback: 1 }],
-  ] as const)('returns a safe 500 for %s', async (_label, serverResult) => {
-    const { POST } = await import('@/app/api/activities/precalculus-topic-1-2-graph/submissions/route');
+    ["extra server result field", { ...SERVER_RESULT, internal: "hidden" }],
+    ["blank submission ID", { ...SERVER_RESULT, submissionId: " " }],
+    ["invalid score", { ...SERVER_RESULT, score: 2 }],
+    ["invalid maximum", { ...SERVER_RESULT, maxScore: 2 }],
+    ["invalid ordinal", { ...SERVER_RESULT, attemptOrdinal: 0 }],
+    ["invalid feedback", { ...SERVER_RESULT, feedback: 1 }],
+  ] as const)("returns a safe 500 for %s", async (_label, serverResult) => {
+    const { POST } =
+      await import("@/app/api/activities/precalculus-topic-1-2-graph/submissions/route");
     const submissionData = makeEnvelope(
       GUIDED_ACTIVITY_ID,
-      'guided_practice',
+      "guided_practice",
       generateTopic12GraphAverageRateChoice(1).correctOptionId,
     );
     mocks.fetchInternalMutation.mockResolvedValueOnce(serverResult);
@@ -197,19 +253,20 @@ describe('POST /api/activities/precalculus-topic-1-2-graph/submissions', () => {
 
     expect(response.status).toBe(500);
     await expect(response.json()).resolves.toStrictEqual({
-      error: 'Unable to create Topic 1.2 graph practice submission',
+      error: "Unable to create Topic 1.2 graph practice submission",
     });
   });
 
-  it('returns a safe 500 for authentication and non-conflict mutation errors', async () => {
-    const { POST } = await import('@/app/api/activities/precalculus-topic-1-2-graph/submissions/route');
-    const submissionData = makeEnvelope(GUIDED_ACTIVITY_ID, 'guided_practice', 'C');
+  it("returns a safe 500 for authentication and non-conflict mutation errors", async () => {
+    const { POST } =
+      await import("@/app/api/activities/precalculus-topic-1-2-graph/submissions/route");
+    const submissionData = makeEnvelope(GUIDED_ACTIVITY_ID, "guided_practice", "C");
 
-    mocks.requireStudentRequestClaims.mockRejectedValueOnce(new Error('secret auth detail'));
+    mocks.requireStudentRequestClaims.mockRejectedValueOnce(new Error("secret auth detail"));
     await expect(POST(makeRequest(submissionData))).resolves.toMatchObject({ status: 500 });
-    mocks.fetchInternalMutation.mockRejectedValueOnce(new Error('secret backend detail'));
+    mocks.fetchInternalMutation.mockRejectedValueOnce(new Error("secret backend detail"));
     const response = await POST(makeRequest(submissionData));
     expect(response.status).toBe(500);
-    await expect(response.text()).resolves.not.toContain('secret backend detail');
+    await expect(response.text()).resolves.not.toContain("secret backend detail");
   });
 });

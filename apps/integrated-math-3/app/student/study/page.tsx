@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { requireStudentSessionClaims } from '@/lib/auth/server';
+import Link from "next/link";
+import { requireStudentSessionClaims } from "@/lib/auth/server";
 
 /**
  * Renders the study hub landing page with navigation cards for flashcards,
@@ -8,14 +8,12 @@ import { requireStudentSessionClaims } from '@/lib/auth/server';
  * @returns {JSX.Element} The rendered StudyHubPage JSX.
  */
 export default async function StudyHubPage() {
-  const claims = await requireStudentSessionClaims('/auth/login');
+  const claims = await requireStudentSessionClaims("/auth/login");
 
   return (
     <div className="max-w-4xl mx-auto space-y-10 py-8">
       <div className="space-y-1">
-        <p className="text-sm text-muted-foreground font-mono-num">
-          Welcome, {claims.username}
-        </p>
+        <p className="text-sm text-muted-foreground font-mono-num">Welcome, {claims.username}</p>
         <h1 className="text-3xl font-display font-bold text-foreground">Study Hub</h1>
       </div>
 
@@ -30,7 +28,8 @@ export default async function StudyHubPage() {
                 Flashcards
               </h2>
               <p className="text-sm text-muted-foreground">
-                Review key vocabulary and definitions from any module. Flip cards to reveal definitions and rate your knowledge.
+                Review key vocabulary and definitions from any module. Flip cards to reveal
+                definitions and rate your knowledge.
               </p>
             </div>
             <div className="text-3xl">📇</div>
@@ -52,7 +51,8 @@ export default async function StudyHubPage() {
                 Matching Game
               </h2>
               <p className="text-sm text-muted-foreground">
-                Test your knowledge by matching terms with their definitions in a fun click-based memory game.
+                Test your knowledge by matching terms with their definitions in a fun click-based
+                memory game.
               </p>
             </div>
             <div className="text-3xl">🧩</div>
@@ -74,7 +74,8 @@ export default async function StudyHubPage() {
                 SRS Review
               </h2>
               <p className="text-sm text-muted-foreground">
-                Review terms scheduled by the spaced repetition system. Terms appear when you&apos;re ready to see them again.
+                Review terms scheduled by the spaced repetition system. Terms appear when
+                you&apos;re ready to see them again.
               </p>
             </div>
             <div className="text-3xl">🔄</div>
@@ -96,7 +97,8 @@ export default async function StudyHubPage() {
                 Speed Round
               </h2>
               <p className="text-sm text-muted-foreground">
-                Race against the clock to match terms with definitions. Build streaks and test your knowledge across all modules.
+                Race against the clock to match terms with definitions. Build streaks and test your
+                knowledge across all modules.
               </p>
             </div>
             <div className="text-3xl">⚡</div>

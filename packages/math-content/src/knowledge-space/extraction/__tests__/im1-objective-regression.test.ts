@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest';
-import { assembleDraftInventory } from '../assembler';
-import { parseClassPeriodPlan, parseModuleOverview } from '../parser';
+import { describe, expect, it } from "vitest";
+import { assembleDraftInventory } from "../assembler";
+import { parseClassPeriodPlan, parseModuleOverview } from "../parser";
 
 const moduleOnePlan = String.raw`
 # Module 1 Class-Period Plan
@@ -36,60 +36,60 @@ Equation methods and applications.
 Solve and graph absolute value equations.
 `);
 
-describe('IM1 class-period objective regression', () => {
-  it('parses compact tables without splitting pipes inside inline code', () => {
+describe("IM1 class-period objective regression", () => {
+  it("parses compact tables without splitting pipes inside inline code", () => {
     const compactPlan = [
-      '# Module 2 Class-Period Plan',
-      '',
-      '## Period-by-Period Plan',
-      '',
-      '|Period|Day Type|Source Textbook Lesson|Primary Objective|Worked Examples|Embedded Objectives|Notes|',
-      '|---|---|---|---|---|---|---|',
-      '|12|instruction|2-5|`2i. Solve equations of the form |expression| = constant, and recognize when no solution exists.`|2-5, Example 1 — Solve an equation|2j|Keep the complete objective.|',
-    ].join('\n');
+      "# Module 2 Class-Period Plan",
+      "",
+      "## Period-by-Period Plan",
+      "",
+      "|Period|Day Type|Source Textbook Lesson|Primary Objective|Worked Examples|Embedded Objectives|Notes|",
+      "|---|---|---|---|---|---|---|",
+      "|12|instruction|2-5|`2i. Solve equations of the form |expression| = constant, and recognize when no solution exists.`|2-5, Example 1 — Solve an equation|2j|Keep the complete objective.|",
+    ].join("\n");
 
     expect(parseClassPeriodPlan(compactPlan).lessons[0]?.objectives[0]).toEqual({
-      code: '2i',
+      code: "2i",
       description:
-        'Solve equations of the form |expression| = constant, and recognize when no solution exists',
+        "Solve equations of the form |expression| = constant, and recognize when no solution exists",
     });
   });
 
-  it('preserves both described objectives from repeated lesson rows', () => {
+  it("preserves both described objectives from repeated lesson rows", () => {
     const lesson = parseClassPeriodPlan(moduleOnePlan).lessons[0];
 
     expect(lesson?.objectives).toEqual([
       {
-        code: '1a',
+        code: "1a",
         description:
-          'Translate verbal descriptions into correct numerical expressions using operation symbols and grouping',
+          "Translate verbal descriptions into correct numerical expressions using operation symbols and grouping",
       },
       {
-        code: '1b',
-        description:
-          'Evaluate numerical expressions accurately using the order of operations',
+        code: "1b",
+        description: "Evaluate numerical expressions accurately using the order of operations",
       },
     ]);
   });
 
-  it('preserves absolute-value bars and the complete objective in graph nodes', () => {
+  it("preserves absolute-value bars and the complete objective in graph nodes", () => {
     const classPeriodPlan = parseClassPeriodPlan(moduleTwoPlan);
     const lesson = classPeriodPlan.lessons[0];
 
     expect(lesson?.objectives).toContainEqual({
-      code: '2i',
+      code: "2i",
       description:
-        'Solve absolute value equations of the form |expression| = constant and recognize when no solution exists',
+        "Solve absolute value equations of the form |expression| = constant and recognize when no solution exists",
     });
 
     const nodes = assembleDraftInventory({
-      course: 'im1',
+      course: "im1",
       moduleOverview,
       classPeriodPlan,
-      sourceFile: 'module-2-class-period-plan.md',
+      sourceFile: "module-2-class-period-plan.md",
     });
 
-    expect(nodes.find((node) => node.kind === 'skill' && node.title.startsWith('2i:'))?.title)
-      .toBe('2i: Solve absolute value equations of the form |expression| = constant and recognize when no solution exists');
+    expect(nodes.find((node) => node.kind === "skill" && node.title.startsWith("2i:"))?.title).toBe(
+      "2i: Solve absolute value equations of the form |expression| = constant and recognize when no solution exists",
+    );
   });
 });

@@ -1,4 +1,4 @@
-import { generateTopic13RatePatternClassificationOutput } from '@math-platform/math-content/knowledge-space';
+import { generateTopic13RatePatternClassificationOutput } from "@math-platform/math-content/knowledge-space";
 
 export interface Topic13RatePatternClassificationAnswers {
   readonly a: string;
@@ -6,13 +6,26 @@ export interface Topic13RatePatternClassificationAnswers {
   readonly c: string;
 }
 
-const CASE_IDS = ['a', 'b', 'c'] as const;
+const CASE_IDS = ["a", "b", "c"] as const;
 
 export function gradeTopic13RatePatternClassification(
   seed: number,
   answers: Topic13RatePatternClassificationAnswers,
-): { score: number; maxScore: number; parts: { partId: string; rawAnswer: string; isCorrect: boolean; score: number; maxScore: number }[] } {
-  const expected = generateTopic13RatePatternClassificationOutput(seed).expectedAnswer as Record<typeof CASE_IDS[number], string>;
+): {
+  score: number;
+  maxScore: number;
+  parts: {
+    partId: string;
+    rawAnswer: string;
+    isCorrect: boolean;
+    score: number;
+    maxScore: number;
+  }[];
+} {
+  const expected = generateTopic13RatePatternClassificationOutput(seed).expectedAnswer as Record<
+    (typeof CASE_IDS)[number],
+    string
+  >;
   const parts = CASE_IDS.map((partId) => {
     const rawAnswer = answers[partId];
     const isCorrect = rawAnswer === expected[partId];

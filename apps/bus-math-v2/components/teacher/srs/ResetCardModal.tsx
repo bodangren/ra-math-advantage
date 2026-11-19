@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  useEffect,
-  useId,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { RefreshCw, X, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -28,7 +23,6 @@ interface ResetCardModalProps {
 
 const FOCUSABLE_SELECTORS =
   'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
-
 
 /**
  * Renders a modal dialog for resetting a student's SRS card progress
@@ -106,7 +100,6 @@ export function ResetCardModal({
     }
   }, [isOpen]);
 
-
   /**
    * Validates selection and calls onReset with the selected family ID.
    *
@@ -165,9 +158,8 @@ export function ResetCardModal({
         </div>
 
         <p id={descriptionId} className="text-sm text-muted-foreground mb-4">
-          Reset the SRS card for <strong>{studentName}</strong>. This will clear their
-          progress for the selected problem family, making all cards in that family
-          due again as new.
+          Reset the SRS card for <strong>{studentName}</strong>. This will clear their progress for
+          the selected problem family, making all cards in that family due again as new.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -182,7 +174,7 @@ export function ResetCardModal({
               onChange={(e) => setSelectedFamily(e.target.value)}
               className={cn(
                 "w-full rounded-md border border-input bg-background px-3 py-2 text-sm",
-                "focus:outline-none focus:ring-2 focus:ring-ring"
+                "focus:outline-none focus:ring-2 focus:ring-ring",
               )}
               disabled={isSubmitting}
             >
@@ -203,24 +195,16 @@ export function ResetCardModal({
           )}
 
           <div className="flex justify-end gap-2">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={onClose}
-              disabled={isSubmitting}
-            >
+            <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
               Cancel
             </Button>
-            <Button
-              type="submit"
-              disabled={!selectedFamily || isSubmitting}
-            >
+            <Button type="submit" disabled={!selectedFamily || isSubmitting}>
               {isSubmitting ? "Resetting..." : "Reset Card"}
             </Button>
           </div>
         </form>
       </div>
     </div>,
-    document.body
+    document.body,
   );
 }

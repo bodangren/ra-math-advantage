@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const MODULE4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Operations on Functions (HSF-BF.A.1)

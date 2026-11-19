@@ -5,10 +5,10 @@
  * on a seeded fixture and verifies the response shape.
  */
 
-import { describe, it, expect, vi } from 'vitest';
-import type { Id } from '@/convex/_generated/dataModel';
+import { describe, it, expect, vi } from "vitest";
+import type { Id } from "@/convex/_generated/dataModel";
 
-import { getStudentKnowledgeStateHandler } from '@/convex/student/knowledge_state';
+import { getStudentKnowledgeStateHandler } from "@/convex/student/knowledge_state";
 
 import {
   DefaultSrsToKstBridge,
@@ -16,9 +16,9 @@ import {
   getOuterFringe,
   type SrsCardState,
   type ObjectiveProficiencyResult,
-} from '@math-platform/knowledge-space-core';
+} from "@math-platform/knowledge-space-core";
 
-import { loadFullCurriculumGraph } from '@/lib/curriculum/skill-graph-loader';
+import { loadFullCurriculumGraph } from "@/lib/curriculum/skill-graph-loader";
 
 // ---------------------------------------------------------------------------
 // Seeded fixture data
@@ -30,17 +30,17 @@ function makeSeededCards(): SrsCardState[] {
   // Use real node IDs from the skill graph
   return [
     {
-      cardId: 'card-1',
-      objectiveId: 'math.im3.skill.1.1.graph-quadratic-functions',
+      cardId: "card-1",
+      objectiveId: "math.im3.skill.1.1.graph-quadratic-functions",
       stability: 15,
-      state: 'review',
+      state: "review",
       lastReviewedAt: NOW - 1 * 24 * 60 * 60 * 1000, // 1 day ago
     },
     {
-      cardId: 'card-2',
-      objectiveId: 'math.im3.skill.1.2.solve-quadratic-equations-by-graphing',
+      cardId: "card-2",
+      objectiveId: "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
       stability: 5,
-      state: 'learning',
+      state: "learning",
       lastReviewedAt: NOW - 10 * 24 * 60 * 60 * 1000, // 10 days ago
     },
   ];
@@ -49,13 +49,13 @@ function makeSeededCards(): SrsCardState[] {
 function makeSeededProficiencies(): ObjectiveProficiencyResult[] {
   return [
     {
-      objectiveId: 'math.im3.skill.1.1.graph-quadratic-functions',
+      objectiveId: "math.im3.skill.1.1.graph-quadratic-functions",
       retentionStrength: 0.95,
       practiceCoverage: 0.9,
       isProficient: true,
     },
     {
-      objectiveId: 'math.im3.skill.1.2.solve-quadratic-equations-by-graphing',
+      objectiveId: "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
       retentionStrength: 0.4,
       practiceCoverage: 0.3,
       isProficient: false,
@@ -67,8 +67,8 @@ function makeSeededProficiencies(): ObjectiveProficiencyResult[] {
 // Tests
 // ---------------------------------------------------------------------------
 
-describe('Phase 4 — KST pipeline end-to-end (bridge → getKnowledgeState → getOuterFringe)', () => {
-  it('buildKstState on the full IM3 graph produces state and fringe', () => {
+describe("Phase 4 — KST pipeline end-to-end (bridge → getKnowledgeState → getOuterFringe)", () => {
+  it("buildKstState on the full IM3 graph produces state and fringe", () => {
     const cards = makeSeededCards();
     const proficiencies = makeSeededProficiencies();
     const graph = loadFullCurriculumGraph();
@@ -81,7 +81,7 @@ describe('Phase 4 — KST pipeline end-to-end (bridge → getKnowledgeState → 
     expect(Array.isArray(result.fringe)).toBe(true);
   });
 
-  it('bridge convert() produces a state map with one entry per graph node', () => {
+  it("bridge convert() produces a state map with one entry per graph node", () => {
     const cards = makeSeededCards();
     const proficiencies = makeSeededProficiencies();
     const graph = loadFullCurriculumGraph();
@@ -93,16 +93,16 @@ describe('Phase 4 — KST pipeline end-to-end (bridge → getKnowledgeState → 
     expect(state.size).toBe(graph.nodes.length);
 
     // Verify SRS-owned aggregate evidence enters mastery.
-    const masteredEntry = state.get('math.im3.skill.1.1.graph-quadratic-functions');
+    const masteredEntry = state.get("math.im3.skill.1.1.graph-quadratic-functions");
     expect(masteredEntry).toBeDefined();
     if (masteredEntry) {
       expect(masteredEntry.isProficient).toBe(true);
       // Aggregated high retention plus proficiency → mastered.
-      expect(masteredEntry.state).toBe('mastered');
+      expect(masteredEntry.state).toBe("mastered");
     }
   });
 
-  it('getOuterFringe returns entries for non-mastered nodes with all prereqs met', () => {
+  it("getOuterFringe returns entries for non-mastered nodes with all prereqs met", () => {
     const cards = makeSeededCards();
     const proficiencies = makeSeededProficiencies();
     const graph = loadFullCurriculumGraph();
@@ -118,14 +118,14 @@ describe('Phase 4 — KST pipeline end-to-end (bridge → getKnowledgeState → 
     for (const entry of fringe) {
       const nodeState = state.get(entry.nodeId);
       if (nodeState) {
-        expect(nodeState.state).not.toBe('mastered');
+        expect(nodeState.state).not.toBe("mastered");
       }
     }
   });
 
-  it('handler returns serializable JSON for the full pipeline', async () => {
+  it("handler returns serializable JSON for the full pipeline", async () => {
     // Use a minimal mock ctx to test the handler
-    const STUDENT_ID = 'profiles_test_pipeline' as Id<'profiles'>;
+    const STUDENT_ID = "profiles_test_pipeline" as Id<"profiles">;
 
     // Simulate an empty student (no cards) to verify the response shape
     const mockCtx = {
@@ -149,7 +149,7 @@ describe('Phase 4 — KST pipeline end-to-end (bridge → getKnowledgeState → 
     const json = JSON.stringify(result);
     const parsed = JSON.parse(json);
 
-    expect(parsed.schemaVersion).toBe('v1');
+    expect(parsed.schemaVersion).toBe("v1");
     expect(Array.isArray(parsed.mastered)).toBe(true);
     expect(Array.isArray(parsed.ready)).toBe(true);
     expect(Array.isArray(parsed.blocked)).toBe(true);
@@ -158,7 +158,7 @@ describe('Phase 4 — KST pipeline end-to-end (bridge → getKnowledgeState → 
     expect(Array.isArray(parsed.edges)).toBe(true);
   });
 
-  it('pipeline is deterministic — same inputs produce same outputs', () => {
+  it("pipeline is deterministic — same inputs produce same outputs", () => {
     const cards = makeSeededCards();
     const proficiencies = makeSeededProficiencies();
     const graph = loadFullCurriculumGraph();

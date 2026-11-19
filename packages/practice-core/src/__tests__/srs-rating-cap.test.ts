@@ -38,10 +38,10 @@
 // becomes a no-op cast and is then removed by the Implementer in the same
 // commit that lands the new signature).
 
-import { describe, it, expect } from 'vitest';
-import { computeBaseRating, type SrsRating } from '../practice/srs-rating';
+import { describe, it, expect } from "vitest";
+import { computeBaseRating, type SrsRating } from "../practice/srs-rating";
 
-type Severity = 'minor' | 'severe';
+type Severity = "minor" | "severe";
 type SeverityByTag = Readonly<Record<string, Severity>>;
 type ComputeBaseRatingOptions = { severityByTag?: SeverityByTag };
 
@@ -65,16 +65,16 @@ function rateWith(
 // IM3-shaped (per `apps/integrated-math-3/__tests__/lib/practice/
 // misconception-content.fixtures.ts` taxonomy) so a future cross-package
 // parity assertion can be added without re-tagging.
-const TAG_SIGN_ERROR = 'math.im3.misconception.sign-error';
-const TAG_LINEAR = 'math.im3.misconception.linear-misuse';
-const UNKNOWN_TAG = 'math.im3.misconception.unknown';
+const TAG_SIGN_ERROR = "math.im3.misconception.sign-error";
+const TAG_LINEAR = "math.im3.misconception.linear-misuse";
+const UNKNOWN_TAG = "math.im3.misconception.unknown";
 
-describe('computeBaseRating — rating cap (Phase 2, kst-srs.v2 §8.4, spec FR2)', () => {
+describe("computeBaseRating — rating cap (Phase 2, kst-srs.v2 §8.4, spec FR2)", () => {
   // -------------------------------------------------------------------------
   // 1. Cap-at-Hard (minor misconception) — the new default.
   // -------------------------------------------------------------------------
 
-  it('rating cap — caps at Hard when a minor misconception is tagged and the part is correct', () => {
+  it("rating cap — caps at Hard when a minor misconception is tagged and the part is correct", () => {
     const rating = rateWith(
       [
         {
@@ -84,12 +84,12 @@ describe('computeBaseRating — rating cap (Phase 2, kst-srs.v2 §8.4, spec FR2)
           misconceptionTags: [TAG_SIGN_ERROR],
         },
       ],
-      { severityByTag: { [TAG_SIGN_ERROR]: 'minor' } },
+      { severityByTag: { [TAG_SIGN_ERROR]: "minor" } },
     );
-    expect(rating).toBe('Hard');
+    expect(rating).toBe("Hard");
   });
 
-  it('rating cap — caps at Hard for a minor misconception even when hints were also used (cap is the floor)', () => {
+  it("rating cap — caps at Hard for a minor misconception even when hints were also used (cap is the floor)", () => {
     const rating = rateWith(
       [
         {
@@ -99,9 +99,9 @@ describe('computeBaseRating — rating cap (Phase 2, kst-srs.v2 §8.4, spec FR2)
           misconceptionTags: [TAG_LINEAR],
         },
       ],
-      { severityByTag: { [TAG_LINEAR]: 'minor' } },
+      { severityByTag: { [TAG_LINEAR]: "minor" } },
     );
-    expect(rating).toBe('Hard');
+    expect(rating).toBe("Hard");
   });
 
   it('rating cap — defaults a tag with no severityByTag entry to "minor" and caps at Hard', () => {
@@ -119,10 +119,10 @@ describe('computeBaseRating — rating cap (Phase 2, kst-srs.v2 §8.4, spec FR2)
       ],
       { severityByTag: {} },
     );
-    expect(rating).toBe('Hard');
+    expect(rating).toBe("Hard");
   });
 
-  it('rating cap — caps at Hard when the second part of a multi-part question has a minor tag', () => {
+  it("rating cap — caps at Hard when the second part of a multi-part question has a minor tag", () => {
     const rating = rateWith(
       [
         { isCorrect: true, hintsUsed: 0, revealStepsSeen: 0, misconceptionTags: [] },
@@ -133,16 +133,16 @@ describe('computeBaseRating — rating cap (Phase 2, kst-srs.v2 §8.4, spec FR2)
           misconceptionTags: [TAG_SIGN_ERROR],
         },
       ],
-      { severityByTag: { [TAG_SIGN_ERROR]: 'minor' } },
+      { severityByTag: { [TAG_SIGN_ERROR]: "minor" } },
     );
-    expect(rating).toBe('Hard');
+    expect(rating).toBe("Hard");
   });
 
   // -------------------------------------------------------------------------
   // 2. Again for severe misconception — preserve the v1 force-Again path.
   // -------------------------------------------------------------------------
 
-  it('rating cap — forces Again when a severe misconception is tagged and the part is correct', () => {
+  it("rating cap — forces Again when a severe misconception is tagged and the part is correct", () => {
     const rating = rateWith(
       [
         {
@@ -152,12 +152,12 @@ describe('computeBaseRating — rating cap (Phase 2, kst-srs.v2 §8.4, spec FR2)
           misconceptionTags: [TAG_SIGN_ERROR],
         },
       ],
-      { severityByTag: { [TAG_SIGN_ERROR]: 'severe' } },
+      { severityByTag: { [TAG_SIGN_ERROR]: "severe" } },
     );
-    expect(rating).toBe('Again');
+    expect(rating).toBe("Again");
   });
 
-  it('rating cap — severe wins over hints (Again, not Hard)', () => {
+  it("rating cap — severe wins over hints (Again, not Hard)", () => {
     const rating = rateWith(
       [
         {
@@ -167,12 +167,12 @@ describe('computeBaseRating — rating cap (Phase 2, kst-srs.v2 §8.4, spec FR2)
           misconceptionTags: [TAG_LINEAR],
         },
       ],
-      { severityByTag: { [TAG_LINEAR]: 'severe' } },
+      { severityByTag: { [TAG_LINEAR]: "severe" } },
     );
-    expect(rating).toBe('Again');
+    expect(rating).toBe("Again");
   });
 
-  it('rating cap — any severe tag forces Again, even when other tags in the same part are minor', () => {
+  it("rating cap — any severe tag forces Again, even when other tags in the same part are minor", () => {
     // A part may carry multiple tags. The "any severe" rule means one
     // severe tag in the tag list dominates the whole part.
     const rating = rateWith(
@@ -184,16 +184,16 @@ describe('computeBaseRating — rating cap (Phase 2, kst-srs.v2 §8.4, spec FR2)
           misconceptionTags: [TAG_SIGN_ERROR, TAG_LINEAR],
         },
       ],
-      { severityByTag: { [TAG_SIGN_ERROR]: 'minor', [TAG_LINEAR]: 'severe' } },
+      { severityByTag: { [TAG_SIGN_ERROR]: "minor", [TAG_LINEAR]: "severe" } },
     );
-    expect(rating).toBe('Again');
+    expect(rating).toBe("Again");
   });
 
   // -------------------------------------------------------------------------
   // 3. Precedence: incorrect > severe > minor > hints.
   // -------------------------------------------------------------------------
 
-  it('rating cap — incorrect part wins over severe misconception (Again)', () => {
+  it("rating cap — incorrect part wins over severe misconception (Again)", () => {
     const rating = rateWith(
       [
         {
@@ -203,12 +203,12 @@ describe('computeBaseRating — rating cap (Phase 2, kst-srs.v2 §8.4, spec FR2)
           misconceptionTags: [TAG_SIGN_ERROR],
         },
       ],
-      { severityByTag: { [TAG_SIGN_ERROR]: 'severe' } },
+      { severityByTag: { [TAG_SIGN_ERROR]: "severe" } },
     );
-    expect(rating).toBe('Again');
+    expect(rating).toBe("Again");
   });
 
-  it('rating cap — incorrect part wins over minor misconception (Again)', () => {
+  it("rating cap — incorrect part wins over minor misconception (Again)", () => {
     const rating = rateWith(
       [
         {
@@ -218,47 +218,43 @@ describe('computeBaseRating — rating cap (Phase 2, kst-srs.v2 §8.4, spec FR2)
           misconceptionTags: [TAG_SIGN_ERROR],
         },
       ],
-      { severityByTag: { [TAG_SIGN_ERROR]: 'minor' } },
+      { severityByTag: { [TAG_SIGN_ERROR]: "minor" } },
     );
-    expect(rating).toBe('Again');
+    expect(rating).toBe("Again");
   });
 
   // -------------------------------------------------------------------------
   // 4. No-misconception baseline regressions.
   // -------------------------------------------------------------------------
 
-  it('rating cap — Good when correct, no aids, and no misconceptions', () => {
+  it("rating cap — Good when correct, no aids, and no misconceptions", () => {
     const rating = rateWith(
-      [
-        { isCorrect: true, hintsUsed: 0, revealStepsSeen: 0, misconceptionTags: [] },
-      ],
+      [{ isCorrect: true, hintsUsed: 0, revealStepsSeen: 0, misconceptionTags: [] }],
       { severityByTag: {} },
     );
-    expect(rating).toBe('Good');
+    expect(rating).toBe("Good");
   });
 
-  it('rating cap — Hard when correct and hints used (no misconceptions)', () => {
+  it("rating cap — Hard when correct and hints used (no misconceptions)", () => {
     const rating = rateWith(
-      [
-        { isCorrect: true, hintsUsed: 1, revealStepsSeen: 0, misconceptionTags: [] },
-      ],
+      [{ isCorrect: true, hintsUsed: 1, revealStepsSeen: 0, misconceptionTags: [] }],
       { severityByTag: {} },
     );
-    expect(rating).toBe('Hard');
+    expect(rating).toBe("Hard");
   });
 
-  it('rating cap — Again when parts array is empty (conservative default unchanged)', () => {
+  it("rating cap — Again when parts array is empty (conservative default unchanged)", () => {
     // The empty-parts contract predates Phase 2 and must not regress.
-    expect(rateWith([], { severityByTag: {} })).toBe('Again');
+    expect(rateWith([], { severityByTag: {} })).toBe("Again");
   });
 
-  it('rating cap — Again when no correctness data and no misconceptions (conservative default unchanged)', () => {
+  it("rating cap — Again when no correctness data and no misconceptions (conservative default unchanged)", () => {
     expect(
       rateWith(
         [{ isCorrect: undefined, hintsUsed: 0, revealStepsSeen: 0, misconceptionTags: [] }],
         { severityByTag: {} },
       ),
-    ).toBe('Again');
+    ).toBe("Again");
   });
 
   // -------------------------------------------------------------------------
@@ -275,15 +271,78 @@ describe('computeBaseRating — rating cap (Phase 2, kst-srs.v2 §8.4, spec FR2)
     severity: Severity | null;
     expected: SrsRating;
   }> = [
-    { name: 'correct, no aids, no misconception', isCorrect: true, hintsUsed: 0, misconceptionTag: null, severity: null, expected: 'Good' },
-    { name: 'correct, hints, no misconception', isCorrect: true, hintsUsed: 1, misconceptionTag: null, severity: null, expected: 'Hard' },
-    { name: 'correct, no aids, minor misconception (cap)', isCorrect: true, hintsUsed: 0, misconceptionTag: TAG_SIGN_ERROR, severity: 'minor', expected: 'Hard' },
-    { name: 'correct, hints, minor misconception (cap = floor)', isCorrect: true, hintsUsed: 1, misconceptionTag: TAG_SIGN_ERROR, severity: 'minor', expected: 'Hard' },
-    { name: 'correct, no aids, severe misconception (Again)', isCorrect: true, hintsUsed: 0, misconceptionTag: TAG_SIGN_ERROR, severity: 'severe', expected: 'Again' },
-    { name: 'correct, hints, severe misconception (severe > hints)', isCorrect: true, hintsUsed: 2, misconceptionTag: TAG_LINEAR, severity: 'severe', expected: 'Again' },
-    { name: 'incorrect, no misconception', isCorrect: false, hintsUsed: 0, misconceptionTag: null, severity: null, expected: 'Again' },
-    { name: 'incorrect, minor misconception (incorrect > cap)', isCorrect: false, hintsUsed: 0, misconceptionTag: TAG_SIGN_ERROR, severity: 'minor', expected: 'Again' },
-    { name: 'incorrect, severe misconception (incorrect > Again)', isCorrect: false, hintsUsed: 0, misconceptionTag: TAG_SIGN_ERROR, severity: 'severe', expected: 'Again' },
+    {
+      name: "correct, no aids, no misconception",
+      isCorrect: true,
+      hintsUsed: 0,
+      misconceptionTag: null,
+      severity: null,
+      expected: "Good",
+    },
+    {
+      name: "correct, hints, no misconception",
+      isCorrect: true,
+      hintsUsed: 1,
+      misconceptionTag: null,
+      severity: null,
+      expected: "Hard",
+    },
+    {
+      name: "correct, no aids, minor misconception (cap)",
+      isCorrect: true,
+      hintsUsed: 0,
+      misconceptionTag: TAG_SIGN_ERROR,
+      severity: "minor",
+      expected: "Hard",
+    },
+    {
+      name: "correct, hints, minor misconception (cap = floor)",
+      isCorrect: true,
+      hintsUsed: 1,
+      misconceptionTag: TAG_SIGN_ERROR,
+      severity: "minor",
+      expected: "Hard",
+    },
+    {
+      name: "correct, no aids, severe misconception (Again)",
+      isCorrect: true,
+      hintsUsed: 0,
+      misconceptionTag: TAG_SIGN_ERROR,
+      severity: "severe",
+      expected: "Again",
+    },
+    {
+      name: "correct, hints, severe misconception (severe > hints)",
+      isCorrect: true,
+      hintsUsed: 2,
+      misconceptionTag: TAG_LINEAR,
+      severity: "severe",
+      expected: "Again",
+    },
+    {
+      name: "incorrect, no misconception",
+      isCorrect: false,
+      hintsUsed: 0,
+      misconceptionTag: null,
+      severity: null,
+      expected: "Again",
+    },
+    {
+      name: "incorrect, minor misconception (incorrect > cap)",
+      isCorrect: false,
+      hintsUsed: 0,
+      misconceptionTag: TAG_SIGN_ERROR,
+      severity: "minor",
+      expected: "Again",
+    },
+    {
+      name: "incorrect, severe misconception (incorrect > Again)",
+      isCorrect: false,
+      hintsUsed: 0,
+      misconceptionTag: TAG_SIGN_ERROR,
+      severity: "severe",
+      expected: "Again",
+    },
   ];
 
   for (const row of TRUTH_TABLE) {
@@ -297,9 +356,7 @@ describe('computeBaseRating — rating cap (Phase 2, kst-srs.v2 §8.4, spec FR2)
           : { misconceptionTags: [] as string[] }),
       };
       const severityByTag: SeverityByTag | undefined =
-        row.misconceptionTag && row.severity
-          ? { [row.misconceptionTag]: row.severity }
-          : {};
+        row.misconceptionTag && row.severity ? { [row.misconceptionTag]: row.severity } : {};
 
       const rating = rateWith([part], { severityByTag });
       expect(rating).toBe(row.expected);
@@ -310,7 +367,7 @@ describe('computeBaseRating — rating cap (Phase 2, kst-srs.v2 §8.4, spec FR2)
   // 6. Purity guard — the function must remain pure (no Convex/I/O leakage).
   // -------------------------------------------------------------------------
 
-  it('rating cap — computeBaseRating is referentially transparent (same input → same output)', () => {
+  it("rating cap — computeBaseRating is referentially transparent (same input → same output)", () => {
     const parts = [
       {
         isCorrect: true,
@@ -319,14 +376,14 @@ describe('computeBaseRating — rating cap (Phase 2, kst-srs.v2 §8.4, spec FR2)
         misconceptionTags: [TAG_SIGN_ERROR],
       },
     ];
-    const options: ComputeBaseRatingOptions = { severityByTag: { [TAG_SIGN_ERROR]: 'minor' } };
+    const options: ComputeBaseRatingOptions = { severityByTag: { [TAG_SIGN_ERROR]: "minor" } };
 
     const first = rateWith(parts, options);
     const second = rateWith(parts, options);
     expect(first).toBe(second);
   });
 
-  it('rating cap — computeBaseRating does not mutate the parts array', () => {
+  it("rating cap — computeBaseRating does not mutate the parts array", () => {
     const parts = [
       {
         isCorrect: true,
@@ -336,7 +393,7 @@ describe('computeBaseRating — rating cap (Phase 2, kst-srs.v2 §8.4, spec FR2)
       },
     ];
     const snapshot = JSON.parse(JSON.stringify(parts));
-    rateWith(parts, { severityByTag: { [TAG_SIGN_ERROR]: 'minor' } });
+    rateWith(parts, { severityByTag: { [TAG_SIGN_ERROR]: "minor" } });
     expect(parts).toEqual(snapshot);
   });
 });

@@ -1,17 +1,14 @@
-'use client';
+"use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { CheckCircle2, Circle, Loader2, Table2, X } from "lucide-react";
 import {
-  CheckCircle2,
-  Circle,
-  Loader2,
-  Table2,
-  X,
-} from 'lucide-react';
-import { SpreadsheetWrapper, type SpreadsheetData } from '@/components/activities/spreadsheet/SpreadsheetWrapper';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+  SpreadsheetWrapper,
+  type SpreadsheetData,
+} from "@/components/activities/spreadsheet/SpreadsheetWrapper";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   PhaseDetail,
   PhaseStatus,
@@ -19,13 +16,13 @@ import {
   SpreadsheetEvidence,
   SubmissionDetail,
   SubmissionEvidence,
-} from '@/lib/teacher/submission-detail';
+} from "@/lib/teacher/submission-detail";
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
-type ModeFilter = 'all' | 'guided_practice' | 'independent_practice' | 'assessment';
+type ModeFilter = "all" | "guided_practice" | "independent_practice" | "assessment";
 
 export interface SelectedCell {
   studentId: string;
@@ -70,7 +67,6 @@ interface SubmissionSnapshot {
 // Helpers
 // ---------------------------------------------------------------------------
 
-
 /**
  * Renders an icon representing a phase's completion status.
  *
@@ -79,15 +75,21 @@ interface SubmissionSnapshot {
  * @returns A check, bullet, or circle icon depending on status.
  */
 function PhaseStatusIcon({ status }: { status: PhaseStatus }) {
-  if (status === 'completed') {
+  if (status === "completed") {
     return <CheckCircle2 className="size-4 shrink-0 text-green-600" aria-hidden="true" />;
   }
-  if (status === 'in_progress') {
-    return <span className="inline-flex size-4 shrink-0 items-center justify-center rounded-full border border-amber-500/40 text-amber-600" aria-hidden="true">•</span>;
+  if (status === "in_progress") {
+    return (
+      <span
+        className="inline-flex size-4 shrink-0 items-center justify-center rounded-full border border-amber-500/40 text-amber-600"
+        aria-hidden="true"
+      >
+        •
+      </span>
+    );
   }
   return <Circle className="size-4 shrink-0 text-muted-foreground/50" aria-hidden="true" />;
 }
-
 
 /**
  * Formats an ISO timestamp string into a human-readable locale string.
@@ -96,12 +98,11 @@ function PhaseStatusIcon({ status }: { status: PhaseStatus }) {
  * @returns A formatted date string, or a fallback message when absent.
  */
 function formatTimestamp(value: string | null) {
-  if (!value) return 'No submission time';
+  if (!value) return "No submission time";
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return value;
   return date.toLocaleString();
 }
-
 
 /**
  * Converts an unknown value into a display-friendly string.
@@ -110,12 +111,11 @@ function formatTimestamp(value: string | null) {
  * @returns A human-readable string representation, or an em-dash for empty values.
  */
 function formatValue(value: unknown): string {
-  if (value === null || value === undefined || value === '') return '—';
-  if (typeof value === 'string') return value;
-  if (typeof value === 'number' || typeof value === 'boolean') return String(value);
+  if (value === null || value === undefined || value === "") return "—";
+  if (typeof value === "string") return value;
+  if (typeof value === "number" || typeof value === "boolean") return String(value);
   return JSON.stringify(value);
 }
-
 
 /**
  * Determines a human-readable label for the artifact type of submission evidence.
@@ -124,35 +124,34 @@ function formatValue(value: unknown): string {
  * @returns A display label such as "Spreadsheet", "Journal Entry", etc.
  */
 function getArtifactLabel(evidence: SubmissionEvidence) {
-  if (evidence.kind === 'spreadsheet') return 'Spreadsheet';
+  if (evidence.kind === "spreadsheet") return "Spreadsheet";
 
   const artifactKind = (evidence.submissionData as Record<string, unknown>).artifact as
     | Record<string, unknown>
     | undefined;
-  const kindValue = typeof artifactKind?.kind === 'string' ? artifactKind.kind : undefined;
+  const kindValue = typeof artifactKind?.kind === "string" ? artifactKind.kind : undefined;
 
   switch (kindValue) {
-    case 'journal_entry':
-      return 'Journal Entry';
-    case 'statement_layout':
-      return 'Statement Layout';
-    case 'categorization':
-      return 'Categorization';
-    case 'written_explanation':
-      return 'Written Explanation';
-    case 'spreadsheet':
-    case 'spreadsheet_evaluator':
-    case 'spreadsheet_snapshot':
-      return 'Spreadsheet';
-    case 'data_cleaning':
-      return 'Data Cleaning';
-    case 'notebook_organizer':
-      return 'Notebook Organizer';
+    case "journal_entry":
+      return "Journal Entry";
+    case "statement_layout":
+      return "Statement Layout";
+    case "categorization":
+      return "Categorization";
+    case "written_explanation":
+      return "Written Explanation";
+    case "spreadsheet":
+    case "spreadsheet_evaluator":
+    case "spreadsheet_snapshot":
+      return "Spreadsheet";
+    case "data_cleaning":
+      return "Data Cleaning";
+    case "notebook_organizer":
+      return "Notebook Organizer";
     default:
-      return 'Practice Artifact';
+      return "Practice Artifact";
   }
 }
-
 
 /**
  * Extracts submission evidence from a phase, synthesizing a spreadsheet entry
@@ -172,16 +171,15 @@ function normalizeEvidence(phase: PhaseDetail): SubmissionEvidence[] {
 
   return [
     {
-      kind: 'spreadsheet',
+      kind: "spreadsheet",
       activityId: phase.phaseId,
       activityTitle: `${phase.title} spreadsheet`,
-      componentKey: 'spreadsheet',
+      componentKey: "spreadsheet",
       submittedAt: null,
       spreadsheetData: phase.spreadsheetData,
     } satisfies SpreadsheetEvidence,
   ];
 }
-
 
 /**
  * Aggregates a submission detail into a summary snapshot, computing overall
@@ -192,9 +190,9 @@ function normalizeEvidence(phase: PhaseDetail): SubmissionEvidence[] {
  */
 function buildSnapshot(detail: SubmissionDetail): SubmissionSnapshot {
   const evidence = detail.phases.flatMap((phase) => normalizeEvidence(phase));
-  const completedPhases = detail.phases.filter((phase) => phase.status === 'completed').length;
+  const completedPhases = detail.phases.filter((phase) => phase.status === "completed").length;
   const practiceEvidence = evidence.filter(
-    (item): item is PracticeEvidence => item.kind === 'practice',
+    (item): item is PracticeEvidence => item.kind === "practice",
   );
 
   let overallScore = 0;
@@ -210,7 +208,7 @@ function buildSnapshot(detail: SubmissionDetail): SubmissionSnapshot {
   let editsMade = 0;
 
   for (const entry of practiceEvidence) {
-    if (typeof entry.score === 'number' && typeof entry.maxScore === 'number') {
+    if (typeof entry.score === "number" && typeof entry.maxScore === "number") {
       overallScore += entry.score;
       overallMaxScore += entry.maxScore;
       scoreCount += 1;
@@ -218,22 +216,24 @@ function buildSnapshot(detail: SubmissionDetail): SubmissionSnapshot {
 
     attemptNumber = Math.max(attemptNumber, entry.attemptNumber ?? 0);
     latestSubmittedAt =
-      !latestSubmittedAt || new Date(entry.submittedAt).getTime() > new Date(latestSubmittedAt).getTime()
+      !latestSubmittedAt ||
+      new Date(entry.submittedAt).getTime() > new Date(latestSubmittedAt).getTime()
         ? entry.submittedAt
         : latestSubmittedAt;
     const submissionData = entry.submissionData as Record<string, unknown>;
-    const entryMode = typeof submissionData.mode === 'string' ? submissionData.mode : null;
+    const entryMode = typeof submissionData.mode === "string" ? submissionData.mode : null;
     modeLabel = modeLabel ?? entryMode;
     artifactKinds.add(getArtifactLabel(entry));
     const parts = Array.isArray(submissionData.parts) ? submissionData.parts : [];
     for (const part of parts) {
       const partRecord = part as Record<string, unknown>;
-      if (typeof partRecord.hintsUsed === 'number') hintsUsed += partRecord.hintsUsed;
-      if (typeof partRecord.revealStepsSeen === 'number') revealStepsSeen += partRecord.revealStepsSeen;
-      if (typeof partRecord.changedCount === 'number') editsMade += partRecord.changedCount;
+      if (typeof partRecord.hintsUsed === "number") hintsUsed += partRecord.hintsUsed;
+      if (typeof partRecord.revealStepsSeen === "number")
+        revealStepsSeen += partRecord.revealStepsSeen;
+      if (typeof partRecord.changedCount === "number") editsMade += partRecord.changedCount;
       const tags = Array.isArray(partRecord.misconceptionTags) ? partRecord.misconceptionTags : [];
       for (const tag of tags) {
-        if (typeof tag === 'string' && tag.trim()) {
+        if (typeof tag === "string" && tag.trim()) {
           misconceptionTags.add(tag.trim());
         }
       }
@@ -249,14 +249,18 @@ function buildSnapshot(detail: SubmissionDetail): SubmissionSnapshot {
     attemptNumber: attemptNumber > 0 ? attemptNumber : null,
     submittedAt: latestSubmittedAt,
     modeLabel,
-    artifactLabel: artifactKinds.size === 1 ? [...artifactKinds][0] : artifactKinds.size > 1 ? 'Mixed artifacts' : null,
+    artifactLabel:
+      artifactKinds.size === 1
+        ? [...artifactKinds][0]
+        : artifactKinds.size > 1
+          ? "Mixed artifacts"
+          : null,
     hintsUsed,
     revealStepsSeen,
     editsMade,
     misconceptionTags: [...misconceptionTags],
   };
 }
-
 
 /**
  * Displays a small labeled value chip used in the submission summary grid.
@@ -266,13 +270,7 @@ function buildSnapshot(detail: SubmissionDetail): SubmissionSnapshot {
  * @param props.value - The display value to render beneath the label.
  * @returns A styled chip element.
  */
-function SummaryChip({
-  label,
-  value,
-}: {
-  label: string;
-  value: string;
-}) {
+function SummaryChip({ label, value }: { label: string; value: string }) {
   return (
     <div className="min-w-0 rounded-lg border border-border bg-muted/30 px-3 py-2">
       <div className="text-[11px] uppercase tracking-wide text-muted-foreground">{label}</div>
@@ -280,7 +278,6 @@ function SummaryChip({
     </div>
   );
 }
-
 
 /**
  * Renders an evidence value as badges (for arrays), a definition list (for objects),
@@ -307,7 +304,7 @@ function EvidenceValue({ value }: { value: unknown }) {
     );
   }
 
-  if (value && typeof value === 'object') {
+  if (value && typeof value === "object") {
     const entries = Object.entries(value as Record<string, unknown>);
     return (
       <dl className="grid gap-1 text-sm">
@@ -323,7 +320,6 @@ function EvidenceValue({ value }: { value: unknown }) {
 
   return <span className="break-words text-sm text-foreground">{formatValue(value)}</span>;
 }
-
 
 /**
  * Renders a single answer part row showing correctness, score, hints, edits,
@@ -344,34 +340,37 @@ function PartRow({
   index: number;
   showAll: boolean;
 }) {
-  const partLabel = typeof part.partId === 'string' && part.partId.trim()
-    ? part.partId.trim()
-    : `Part ${index + 1}`;
-  const normalized = typeof part.normalizedAnswer === 'string' ? part.normalizedAnswer : null;
-  const score = typeof part.score === 'number' ? part.score : null;
-  const maxScore = typeof part.maxScore === 'number' ? part.maxScore : null;
+  const partLabel =
+    typeof part.partId === "string" && part.partId.trim()
+      ? part.partId.trim()
+      : `Part ${index + 1}`;
+  const normalized = typeof part.normalizedAnswer === "string" ? part.normalizedAnswer : null;
+  const score = typeof part.score === "number" ? part.score : null;
+  const maxScore = typeof part.maxScore === "number" ? part.maxScore : null;
   const tags = Array.isArray(part.misconceptionTags)
-    ? part.misconceptionTags.filter((tag): tag is string => typeof tag === 'string')
+    ? part.misconceptionTags.filter((tag): tag is string => typeof tag === "string")
     : [];
-  const hintsUsed = typeof part.hintsUsed === 'number' ? part.hintsUsed : null;
-  const revealStepsSeen = typeof part.revealStepsSeen === 'number' ? part.revealStepsSeen : null;
-  const changedCount = typeof part.changedCount === 'number' ? part.changedCount : null;
+  const hintsUsed = typeof part.hintsUsed === "number" ? part.hintsUsed : null;
+  const revealStepsSeen = typeof part.revealStepsSeen === "number" ? part.revealStepsSeen : null;
+  const changedCount = typeof part.changedCount === "number" ? part.changedCount : null;
 
-  const correctnessLabel = part.isCorrect === true
-    ? 'Correct'
-    : part.isCorrect === false
-      ? 'Incorrect'
-      : score !== null && maxScore !== null && score < maxScore
-        ? 'Partial'
-        : 'Not auto-scored';
+  const correctnessLabel =
+    part.isCorrect === true
+      ? "Correct"
+      : part.isCorrect === false
+        ? "Incorrect"
+        : score !== null && maxScore !== null && score < maxScore
+          ? "Partial"
+          : "Not auto-scored";
 
-  const correctnessClass = correctnessLabel === 'Correct'
-    ? 'bg-green-100 text-green-800'
-    : correctnessLabel === 'Partial'
-      ? 'bg-amber-100 text-amber-800'
-    : correctnessLabel === 'Incorrect'
-      ? 'bg-red-100 text-red-800'
-      : 'bg-muted text-muted-foreground';
+  const correctnessClass =
+    correctnessLabel === "Correct"
+      ? "bg-green-100 text-green-800"
+      : correctnessLabel === "Partial"
+        ? "bg-amber-100 text-amber-800"
+        : correctnessLabel === "Incorrect"
+          ? "bg-red-100 text-red-800"
+          : "bg-muted text-muted-foreground";
 
   if (!showAll && index >= 4) {
     return null;
@@ -415,7 +414,7 @@ function PartRow({
         </div>
       ) : null}
 
-      {part.rawAnswer && typeof part.rawAnswer === 'object' ? (
+      {part.rawAnswer && typeof part.rawAnswer === "object" ? (
         <div className="mt-3 rounded-md bg-muted/20 p-2">
           <EvidenceValue value={part.rawAnswer} />
         </div>
@@ -423,7 +422,6 @@ function PartRow({
     </div>
   );
 }
-
 
 /**
  * Renders a card displaying a single piece of submission evidence, including
@@ -444,58 +442,69 @@ function PracticeEvidenceCard({
   const [showRaw, setShowRaw] = useState(false);
   const [verifying, setVerifying] = useState(false);
   const [verificationError, setVerificationError] = useState<string | null>(null);
-  const [verified, setVerified] = useState(evidence.kind === 'practice' && evidence.teacherVerified === true);
-  const isPractice = evidence.kind === 'practice';
-  const isSpreadsheet = evidence.kind === 'spreadsheet';
+  const [verified, setVerified] = useState(
+    evidence.kind === "practice" && evidence.teacherVerified === true,
+  );
+  const isPractice = evidence.kind === "practice";
+  const isSpreadsheet = evidence.kind === "spreadsheet";
   const submissionData = isPractice ? (evidence.submissionData as Record<string, unknown>) : null;
-  const parts = isPractice && Array.isArray(submissionData?.parts)
-    ? (submissionData.parts as Record<string, unknown>[])
-    : [];
-  const answers = isPractice && submissionData?.answers && typeof submissionData.answers === 'object'
-    ? (submissionData.answers as Record<string, unknown>)
-    : {};
+  const parts =
+    isPractice && Array.isArray(submissionData?.parts)
+      ? (submissionData.parts as Record<string, unknown>[])
+      : [];
+  const answers =
+    isPractice && submissionData?.answers && typeof submissionData.answers === "object"
+      ? (submissionData.answers as Record<string, unknown>)
+      : {};
   const spreadsheetData = isSpreadsheet ? evidence.spreadsheetData : null;
   const artifactLabel = getArtifactLabel(evidence);
-  const canVerifyBm2 = isPractice
-    && evidence.stableActivityId === 'd6b57545-65f6-4c39-80d5-000100001002'
-    && evidence.submissionId
-    && submissionData?.mode === 'guided_practice';
+  const canVerifyBm2 =
+    isPractice &&
+    evidence.stableActivityId === "d6b57545-65f6-4c39-80d5-000100001002" &&
+    evidence.submissionId &&
+    submissionData?.mode === "guided_practice";
 
   const verifyBm2Exposure = async () => {
     if (!isPractice || !evidence.submissionId) return;
     setVerifying(true);
     setVerificationError(null);
     try {
-      const response = await fetch('/api/teacher/learning-evidence/bm2-pilot', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
+      const response = await fetch("/api/teacher/learning-evidence/bm2-pilot", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
         body: JSON.stringify({ learnerId, submissionId: evidence.submissionId }),
       });
       const result = await response.json();
-      if (!response.ok) throw new Error(result.error ?? 'Unable to verify teacher exposure');
+      if (!response.ok) throw new Error(result.error ?? "Unable to verify teacher exposure");
       setVerified(true);
     } catch (error) {
-      setVerificationError(error instanceof Error ? error.message : 'Unable to verify teacher exposure');
+      setVerificationError(
+        error instanceof Error ? error.message : "Unable to verify teacher exposure",
+      );
     } finally {
       setVerifying(false);
     }
   };
 
   const misconceptionTags = new Set<string>();
-  let score = isPractice && typeof evidence.score === 'number' ? evidence.score : null;
-  let maxScore = isPractice && typeof evidence.maxScore === 'number' ? evidence.maxScore : null;
+  let score = isPractice && typeof evidence.score === "number" ? evidence.score : null;
+  let maxScore = isPractice && typeof evidence.maxScore === "number" ? evidence.maxScore : null;
 
   for (const part of parts) {
     const tags = Array.isArray((part as Record<string, unknown>).misconceptionTags)
       ? ((part as Record<string, unknown>).misconceptionTags as unknown[])
       : [];
     for (const tag of tags) {
-      if (typeof tag === 'string' && tag.trim()) {
+      if (typeof tag === "string" && tag.trim()) {
         misconceptionTags.add(tag.trim());
       }
     }
 
-    if ((score === null || maxScore === null) && typeof (part as Record<string, unknown>).score === 'number' && typeof (part as Record<string, unknown>).maxScore === 'number') {
+    if (
+      (score === null || maxScore === null) &&
+      typeof (part as Record<string, unknown>).score === "number" &&
+      typeof (part as Record<string, unknown>).maxScore === "number"
+    ) {
       score = (part as Record<string, unknown>).score as number;
       maxScore = (part as Record<string, unknown>).maxScore as number;
     }
@@ -534,15 +543,19 @@ function PracticeEvidenceCard({
             <p className="text-sm font-medium">Accounting equation lesson review</p>
             <p className="text-xs text-muted-foreground">
               {verified
-                ? 'Teacher exposure verified.'
-                : 'Verify that you reviewed this Guided lesson submission. This records lesson exposure. It does not record mastery.'}
+                ? "Teacher exposure verified."
+                : "Verify that you reviewed this Guided lesson submission. This records lesson exposure. It does not record mastery."}
             </p>
             {!verified ? (
               <Button className="mt-2" onClick={verifyBm2Exposure} disabled={verifying}>
-                {verifying ? 'Verifying…' : 'Verify teacher exposure'}
+                {verifying ? "Verifying…" : "Verify teacher exposure"}
               </Button>
             ) : null}
-            {verificationError ? <p className="mt-2 text-sm text-destructive" role="alert">{verificationError}</p> : null}
+            {verificationError ? (
+              <p className="mt-2 text-sm text-destructive" role="alert">
+                {verificationError}
+              </p>
+            ) : null}
           </div>
         ) : null}
         {isSpreadsheet ? (
@@ -582,7 +595,8 @@ function PracticeEvidenceCard({
                       </ul>
                     </div>
                   ) : null}
-                  {evidence.aiFeedback.improvements && evidence.aiFeedback.improvements.length > 0 ? (
+                  {evidence.aiFeedback.improvements &&
+                  evidence.aiFeedback.improvements.length > 0 ? (
                     <div>
                       <h4 className="text-xs font-semibold text-amber-800 mb-1">Improvements</h4>
                       <ul className="list-disc list-inside text-xs text-amber-900">
@@ -640,7 +654,7 @@ function PracticeEvidenceCard({
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="text-sm font-medium text-foreground">Part-by-Part Answers</div>
                   <div className="flex flex-wrap gap-2">
-                    {typeof evidence.attemptNumber === 'number' ? (
+                    {typeof evidence.attemptNumber === "number" ? (
                       <Badge variant="outline" className="text-xs">
                         Attempt {evidence.attemptNumber}
                       </Badge>
@@ -674,7 +688,7 @@ function PracticeEvidenceCard({
                       onClick={() => setShowAllParts(!showAllParts)}
                       className="mt-2"
                     >
-                      {showAllParts ? 'Show fewer parts' : 'Show all parts'}
+                      {showAllParts ? "Show fewer parts" : "Show all parts"}
                     </Button>
                   )}
                 </div>
@@ -686,7 +700,7 @@ function PracticeEvidenceCard({
                     onClick={() => setShowRaw(!showRaw)}
                     disabled={!answers || Object.keys(answers).length === 0}
                   >
-                    {showRaw ? 'Hide' : 'Show'} raw answers
+                    {showRaw ? "Hide" : "Show"} raw answers
                   </Button>
                 </div>
 
@@ -695,9 +709,14 @@ function PracticeEvidenceCard({
                     <div className="text-xs font-medium text-foreground mb-2">Raw answers</div>
                     <dl className="grid gap-2 text-sm">
                       {Object.entries(answers).map(([key, answer]) => (
-                        <div key={key} className="grid grid-cols-[minmax(10rem,20%)_minmax(8rem,1fr)] gap-2">
+                        <div
+                          key={key}
+                          className="grid grid-cols-[minmax(10rem,20%)_minmax(8rem,1fr)] gap-2"
+                        >
                           <dt className="text-muted-foreground">{key}</dt>
-                          <dd className="min-w-0 break-words text-foreground">{formatValue(answer)}</dd>
+                          <dd className="min-w-0 break-words text-foreground">
+                            {formatValue(answer)}
+                          </dd>
                         </div>
                       ))}
                     </dl>
@@ -716,7 +735,6 @@ function PracticeEvidenceCard({
 // SubmissionDetailModal
 // ---------------------------------------------------------------------------
 
-
 /**
  * Modal dialog showing detailed submission evidence for a single student/lesson
  * cell, with filtering by practice mode and summary metrics.
@@ -727,11 +745,8 @@ function PracticeEvidenceCard({
  * @returns A full-screen modal with submission detail content.
  * @throws Logs errors to console if the submission data fetch fails.
  */
-export function SubmissionDetailModal({
-  selected,
-  onClose,
-}: SubmissionDetailModalProps) {
-  const [activeTab, setActiveTab] = useState<ModeFilter>('all');
+export function SubmissionDetailModal({ selected, onClose }: SubmissionDetailModalProps) {
+  const [activeTab, setActiveTab] = useState<ModeFilter>("all");
   const [detail, setDetail] = useState<SubmissionDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -742,17 +757,22 @@ export function SubmissionDetailModal({
     setError(null);
 
     try {
-      const params = new URLSearchParams({ studentId: selected.studentId, lessonId: selected.lessonId });
-      const response = await fetch(`/api/teacher/submission-detail?${params}`, { cache: 'no-store' });
+      const params = new URLSearchParams({
+        studentId: selected.studentId,
+        lessonId: selected.lessonId,
+      });
+      const response = await fetch(`/api/teacher/submission-detail?${params}`, {
+        cache: "no-store",
+      });
       const result = await response.json();
-      if (!response.ok) throw new Error(result.error ?? 'Failed to load submission data');
+      if (!response.ok) throw new Error(result.error ?? "Failed to load submission data");
       if (result) {
         setDetail(result as SubmissionDetail);
       } else {
-        setError('No submission data found for this student');
+        setError("No submission data found for this student");
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load submission data');
+      setError(err instanceof Error ? err.message : "Failed to load submission data");
       console.error(err);
     } finally {
       setLoading(false);
@@ -770,13 +790,13 @@ export function SubmissionDetailModal({
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         onClose();
       }
     };
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [onClose]);
 
@@ -791,9 +811,9 @@ export function SubmissionDetailModal({
     const allPhases = detail.phases.flatMap((phase) => {
       const evidence = phase.evidence || [];
       const evidenceWithMode = evidence.filter((e) => {
-        if (e.kind === 'spreadsheet') return false;
+        if (e.kind === "spreadsheet") return false;
         const submissionData = e.submissionData as Record<string, unknown>;
-        const mode = typeof submissionData?.mode === 'string' ? submissionData.mode : null;
+        const mode = typeof submissionData?.mode === "string" ? submissionData.mode : null;
         return mode === activeTab;
       });
 
@@ -813,7 +833,7 @@ export function SubmissionDetailModal({
   }, [detail, activeTab]);
 
   const filteredDetail = useMemo(() => {
-    if (!detail || activeTab === 'all') return detail;
+    if (!detail || activeTab === "all") return detail;
     return {
       ...detail,
       phases: filteredPhases,
@@ -821,13 +841,17 @@ export function SubmissionDetailModal({
   }, [detail, filteredPhases, activeTab]);
 
   const filteredSnapshot = useMemo(() => {
-    if (!filteredDetail || activeTab === 'all') return snapshot;
+    if (!filteredDetail || activeTab === "all") return snapshot;
     return buildSnapshot(filteredDetail as SubmissionDetail);
   }, [filteredDetail, activeTab, snapshot]);
 
   if (loading) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm" role="dialog" aria-modal="true">
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm"
+        role="dialog"
+        aria-modal="true"
+      >
         <Loader2 className="size-8 animate-spin text-muted-foreground" />
       </div>
     );
@@ -835,7 +859,11 @@ export function SubmissionDetailModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-6xl max-h-[90vh] overflow-y-auto rounded-lg border border-border bg-background shadow-lg" role="dialog" aria-modal="true">
+      <div
+        className="w-full max-w-6xl max-h-[90vh] overflow-y-auto rounded-lg border border-border bg-background shadow-lg"
+        role="dialog"
+        aria-modal="true"
+      >
         <div className="flex flex-col h-full">
           <div className="flex items-start justify-between border-b border-border p-4">
             <div>
@@ -866,30 +894,30 @@ export function SubmissionDetailModal({
               <>
                 <div className="flex gap-2 mb-4">
                   <Button
-                    variant={activeTab === 'all' ? 'default' : 'outline'}
+                    variant={activeTab === "all" ? "default" : "outline"}
                     size="sm"
-                    onClick={() => setActiveTab('all')}
+                    onClick={() => setActiveTab("all")}
                   >
                     All
                   </Button>
                   <Button
-                    variant={activeTab === 'guided_practice' ? 'default' : 'outline'}
+                    variant={activeTab === "guided_practice" ? "default" : "outline"}
                     size="sm"
-                    onClick={() => setActiveTab('guided_practice')}
+                    onClick={() => setActiveTab("guided_practice")}
                   >
                     Guided Practice
                   </Button>
                   <Button
-                    variant={activeTab === 'independent_practice' ? 'default' : 'outline'}
+                    variant={activeTab === "independent_practice" ? "default" : "outline"}
                     size="sm"
-                    onClick={() => setActiveTab('independent_practice')}
+                    onClick={() => setActiveTab("independent_practice")}
                   >
                     Independent Practice
                   </Button>
                   <Button
-                    variant={activeTab === 'assessment' ? 'default' : 'outline'}
+                    variant={activeTab === "assessment" ? "default" : "outline"}
                     size="sm"
-                    onClick={() => setActiveTab('assessment')}
+                    onClick={() => setActiveTab("assessment")}
                   >
                     Assessment
                   </Button>
@@ -903,9 +931,10 @@ export function SubmissionDetailModal({
                   <SummaryChip
                     label="Score"
                     value={
-                      (filteredSnapshot?.overallScore ?? null) !== null && (filteredSnapshot?.overallMaxScore ?? null) !== null
+                      (filteredSnapshot?.overallScore ?? null) !== null &&
+                      (filteredSnapshot?.overallMaxScore ?? null) !== null
                         ? `${filteredSnapshot!.overallScore} / ${filteredSnapshot!.overallMaxScore}`
-                        : 'No scored practice submission'
+                        : "No scored practice submission"
                     }
                   />
                   <SummaryChip
@@ -914,15 +943,23 @@ export function SubmissionDetailModal({
                   />
                   <SummaryChip
                     label="Attempt"
-                    value={(filteredSnapshot?.attemptNumber ?? null) !== null ? `Attempt ${filteredSnapshot!.attemptNumber}` : 'No attempt'}
+                    value={
+                      (filteredSnapshot?.attemptNumber ?? null) !== null
+                        ? `Attempt ${filteredSnapshot!.attemptNumber}`
+                        : "No attempt"
+                    }
                   />
                   <SummaryChip
                     label="Mode"
-                    value={filteredSnapshot?.modeLabel ? filteredSnapshot.modeLabel.replace(/_/g, ' ') : 'Mixed / unspecified'}
+                    value={
+                      filteredSnapshot?.modeLabel
+                        ? filteredSnapshot.modeLabel.replace(/_/g, " ")
+                        : "Mixed / unspecified"
+                    }
                   />
                   <SummaryChip
                     label="Artifact"
-                    value={filteredSnapshot?.artifactLabel ?? 'No stored artifact'}
+                    value={filteredSnapshot?.artifactLabel ?? "No stored artifact"}
                   />
                 </div>
 
@@ -937,29 +974,45 @@ export function SubmissionDetailModal({
                     <div className="grid gap-4 xl:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
                       <div className="grid gap-3 sm:grid-cols-2">
                         <div className="rounded-lg border border-border bg-background p-3">
-                          <div className="text-xs uppercase tracking-wide text-muted-foreground">Completion</div>
+                          <div className="text-xs uppercase tracking-wide text-muted-foreground">
+                            Completion
+                          </div>
                           <div className="mt-2 flex items-center gap-2">
-                            <PhaseStatusIcon status={filteredSnapshot?.completedPhases === filteredSnapshot?.totalPhases ? 'completed' : 'in_progress'} />
+                            <PhaseStatusIcon
+                              status={
+                                filteredSnapshot?.completedPhases === filteredSnapshot?.totalPhases
+                                  ? "completed"
+                                  : "in_progress"
+                              }
+                            />
                             <span className="text-sm font-medium text-foreground">
-                              {filteredSnapshot?.completedPhases ?? 0} of {filteredSnapshot?.totalPhases ?? 0} phases complete
+                              {filteredSnapshot?.completedPhases ?? 0} of{" "}
+                              {filteredSnapshot?.totalPhases ?? 0} phases complete
                             </span>
                           </div>
                         </div>
                         <div className="rounded-lg border border-border bg-background p-3">
-                          <div className="text-xs uppercase tracking-wide text-muted-foreground">Score</div>
+                          <div className="text-xs uppercase tracking-wide text-muted-foreground">
+                            Score
+                          </div>
                           <div className="mt-2 text-lg font-semibold text-foreground">
-                            {(filteredSnapshot?.overallScore ?? null) !== null && (filteredSnapshot?.overallMaxScore ?? null) !== null
+                            {(filteredSnapshot?.overallScore ?? null) !== null &&
+                            (filteredSnapshot?.overallMaxScore ?? null) !== null
                               ? `${filteredSnapshot!.overallScore} / ${filteredSnapshot!.overallMaxScore} correct`
-                              : 'No scored practice submission'}
+                              : "No scored practice submission"}
                           </div>
                           <div className="text-xs text-muted-foreground">
-                            {filteredSnapshot?.submittedAt ? formatTimestamp(filteredSnapshot.submittedAt) : 'No submission time'}
+                            {filteredSnapshot?.submittedAt
+                              ? formatTimestamp(filteredSnapshot.submittedAt)
+                              : "No submission time"}
                           </div>
                         </div>
                       </div>
                       <div className="grid gap-3 sm:grid-cols-2">
                         <div className="rounded-lg border border-border bg-background p-3">
-                          <div className="text-xs uppercase tracking-wide text-muted-foreground">Scaffold usage</div>
+                          <div className="text-xs uppercase tracking-wide text-muted-foreground">
+                            Scaffold usage
+                          </div>
                           <div className="mt-2 flex flex-wrap gap-2 text-xs text-foreground">
                             <Badge variant="secondary" className="text-xs">
                               {filteredSnapshot?.hintsUsed ?? 0} hints
@@ -973,7 +1026,9 @@ export function SubmissionDetailModal({
                           </div>
                         </div>
                         <div className="rounded-lg border border-border bg-background p-3">
-                          <div className="text-xs uppercase tracking-wide text-muted-foreground">Misconceptions</div>
+                          <div className="text-xs uppercase tracking-wide text-muted-foreground">
+                            Misconceptions
+                          </div>
                           <div className="mt-2 flex flex-wrap gap-1">
                             {filteredSnapshot?.misconceptionTags.map((tag) => (
                               <Badge key={tag} variant="outline" className="text-xs">
@@ -989,21 +1044,23 @@ export function SubmissionDetailModal({
 
                 <div className="space-y-4" data-testid="phase-list">
                   <p className="text-sm font-semibold text-foreground">
-                    {activeTab === 'all'
-                      ? 'All Submissions'
-                      : activeTab === 'guided_practice'
-                        ? 'Guided Practice'
-                        : activeTab === 'independent_practice'
-                          ? 'Independent Practice'
-                          : 'Assessments'}
+                    {activeTab === "all"
+                      ? "All Submissions"
+                      : activeTab === "guided_practice"
+                        ? "Guided Practice"
+                        : activeTab === "independent_practice"
+                          ? "Independent Practice"
+                          : "Assessments"}
                   </p>
                   {filteredDetail?.phases.flatMap((phase) =>
                     (phase.evidence || []).map((evidence) => (
-                      <PracticeEvidenceCard key={`${phase.phaseId}-${evidence.activityId}`} evidence={evidence} learnerId={selected.studentId} />
+                      <PracticeEvidenceCard
+                        key={`${phase.phaseId}-${evidence.activityId}`}
+                        evidence={evidence}
+                        learnerId={selected.studentId}
+                      />
                     )),
-                  ) || (
-                    <div className="text-sm text-muted-foreground">No submissions found</div>
-                  )}
+                  ) || <div className="text-sm text-muted-foreground">No submissions found</div>}
                 </div>
               </>
             )}

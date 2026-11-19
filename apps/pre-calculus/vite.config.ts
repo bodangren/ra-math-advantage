@@ -6,9 +6,11 @@ async function loadPlugins(command: string) {
   const plugins = [vinext()];
   if (command === "build") {
     const { cloudflare } = await import("@cloudflare/vite-plugin");
-    plugins.push(cloudflare({
-      viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
-    }));
+    plugins.push(
+      cloudflare({
+        viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
+      }),
+    );
   }
   return plugins;
 }
@@ -19,9 +21,9 @@ export default defineConfig(async ({ command }) => ({
     rollupOptions: {
       output: {
         manualChunks(id: string) {
-          if (id.includes('node_modules')) {
-            if (id.includes('convex')) {
-              return 'vendor-convex';
+          if (id.includes("node_modules")) {
+            if (id.includes("convex")) {
+              return "vendor-convex";
             }
           }
         },

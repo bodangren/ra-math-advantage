@@ -4,10 +4,7 @@ import { spawn } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
-export const APP_ROOT = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
-  "..",
-);
+export const APP_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 export const CONVEX_READY_PATTERN = /functions ready/i;
 export function createProcesses(appRoot = APP_ROOT) {
   return [
@@ -33,11 +30,7 @@ export function createProcesses(appRoot = APP_ROOT) {
     },
   ];
 }
-export function waitForOutput(
-  proc,
-  pattern = CONVEX_READY_PATTERN,
-  timeout = 120000,
-) {
+export function waitForOutput(proc, pattern = CONVEX_READY_PATTERN, timeout = 120000) {
   return new Promise((resolve, reject) => {
     let output = "";
     const cleanup = () => {
@@ -86,9 +79,7 @@ function stopChild(child, signal) {
 export async function runDevStack(processes = createProcesses()) {
   const localEnv = parse(readFileSync(path.join(APP_ROOT, ".env.local")));
   if (!/^(anonymous|local):/.test(localEnv.CONVEX_DEPLOYMENT ?? ""))
-    throw new Error(
-      "Select an IM2 local Convex deployment before starting this stack.",
-    );
+    throw new Error("Select an IM2 local Convex deployment before starting this stack.");
   const childEnv = {
     ...process.env,
     ...localEnv,
@@ -140,12 +131,8 @@ export async function runDevStack(processes = createProcesses()) {
         ? CONVEX_READY_PATTERN
         : /Local:\s+http:\/\/(?:localhost|127\.0\.0\.1):3002/,
     );
-    child.stdout.on("data", (data) =>
-      process.stdout.write(`[${config.name}] ${data}`),
-    );
-    child.stderr.on("data", (data) =>
-      process.stderr.write(`[${config.name}] ${data}`),
-    );
+    child.stdout.on("data", (data) => process.stdout.write(`[${config.name}] ${data}`));
+    child.stderr.on("data", (data) => process.stderr.write(`[${config.name}] ${data}`));
     child.on("exit", (code) => {
       if (!shuttingDown) void shutdown(code || 1);
     });
@@ -159,10 +146,7 @@ export async function runDevStack(processes = createProcesses()) {
   }
   console.log("IM2 is ready at http://localhost:3002. Convex uses port 3222.");
 }
-if (
-  process.argv[1] &&
-  import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href
-) {
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
   runDevStack().catch((error) => {
     console.error(error.message);
     process.exitCode = 1;

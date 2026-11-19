@@ -47,16 +47,19 @@ function isCapstoneLesson(lesson: { metadata?: { tags?: string[] | null } | null
   return Boolean(lesson.metadata?.tags?.includes("capstone"));
 }
 
-
 async function publishedLessons(ctx: QueryCtx) {
-  const lessons = await ctx.db.query('lessons').collect();
-  const results = await Promise.all(lessons.map(async lesson => {
-    const versions = await ctx.db.query('lesson_versions')
-      .withIndex('by_lesson', q => q.eq('lessonId', lesson._id)).collect();
-    const version = resolveLatestPublishedLessonVersion(versions);
-    return version ? { lesson, version } : null;
-  }));
-  return results.filter(result => result !== null);
+  const lessons = await ctx.db.query("lessons").collect();
+  const results = await Promise.all(
+    lessons.map(async (lesson) => {
+      const versions = await ctx.db
+        .query("lesson_versions")
+        .withIndex("by_lesson", (q) => q.eq("lessonId", lesson._id))
+        .collect();
+      const version = resolveLatestPublishedLessonVersion(versions);
+      return version ? { lesson, version } : null;
+    }),
+  );
+  return results.filter((result) => result !== null);
 }
 
 export const getCurriculumStats = query({
@@ -66,13 +69,20 @@ export const getCurriculumStats = query({
     const lessons = published.map(({ lesson }) => lesson);
     const activityIds = new Set<string>();
     for (const { version } of published) {
-      const phases = await ctx.db.query('phase_versions')
-        .withIndex('by_lesson_version', q => q.eq('lessonVersionId', version._id)).collect();
+      const phases = await ctx.db
+        .query("phase_versions")
+        .withIndex("by_lesson_version", (q) => q.eq("lessonVersionId", version._id))
+        .collect();
       for (const phase of phases) {
-        const sections = await ctx.db.query('phase_sections')
-          .withIndex('by_phase_version', q => q.eq('phaseVersionId', phase._id)).collect();
+        const sections = await ctx.db
+          .query("phase_sections")
+          .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phase._id))
+          .collect();
         for (const section of sections) {
-          if (section.sectionType === 'activity' && typeof section.content.activityId === 'string') {
+          if (
+            section.sectionType === "activity" &&
+            typeof section.content.activityId === "string"
+          ) {
             activityIds.add(section.content.activityId);
           }
         }
@@ -94,7 +104,8 @@ export const getUnits = query({
   args: {},
   handler: async (ctx) => {
     const lessons = (await publishedLessons(ctx))
-      .map(({ lesson }) => lesson).filter(lesson => lesson.orderIndex === 1);
+      .map(({ lesson }) => lesson)
+      .filter((lesson) => lesson.orderIndex === 1);
 
     const instructionalLessons = lessons.filter((lesson) => !isCapstoneLesson(lesson));
 
@@ -145,7 +156,7 @@ export const getUnitSummaries = query({
           lesson.metadata?.unitContent?.introduction?.projectOverview?.scenario ??
           latestVersion?.description ??
           lesson.description ??
-          'Explore authentic business scenarios with spreadsheet-first problem solving.';
+          "Explore authentic business scenarios with spreadsheet-first problem solving.";
 
         units.set(lesson.unitNumber, {
           unitNumber: lesson.unitNumber,
@@ -163,7 +174,7 @@ export const getCurriculum = query({
   args: {},
   handler: async (ctx) => {
     const lessonRows = (await publishedLessons(ctx)).map(({ lesson }) => lesson);
-    
+
     lessonRows.sort((a, b) => {
       if (a.unitNumber !== b.unitNumber) return a.unitNumber - b.unitNumber;
       return a.orderIndex - b.orderIndex;
@@ -197,10 +208,8 @@ export const getCurriculum = query({
           effectiveDescription ??
           "Explore core accounting and Excel skills through real classroom projects.";
 
-        const objectives = 
-          lesson.metadata?.unitContent?.objectives?.content ?? 
-          lesson.learningObjectives ?? 
-          [];
+        const objectives =
+          lesson.metadata?.unitContent?.objectives?.content ?? lesson.learningObjectives ?? [];
 
         return {
           unitNumber: lesson.unitNumber,
@@ -251,9 +260,7 @@ export const getCapstonePageData = query({
 
       const isCapstone = isCapstoneLesson(lesson);
 
-      const title =
-        intro?.unitTitle ??
-        (isCapstone ? lesson.title : `Unit ${lesson.unitNumber}`);
+      const title = intro?.unitTitle ?? (isCapstone ? lesson.title : `Unit ${lesson.unitNumber}`);
 
       units.set(lesson.unitNumber, {
         unitNumber: lesson.unitNumber,
@@ -267,9 +274,7 @@ export const getCapstonePageData = query({
       });
     }
 
-    const sorted = Array.from(units.values()).sort(
-      (a, b) => a.unitNumber - b.unitNumber,
-    );
+    const sorted = Array.from(units.values()).sort((a, b) => a.unitNumber - b.unitNumber);
 
     return {
       instructionalUnits: sorted.filter((u) => u.unitNumber <= 8),
@@ -277,4 +282,3 @@ export const getCapstonePageData = query({
     };
   },
 });
-

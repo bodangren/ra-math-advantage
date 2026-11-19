@@ -1,11 +1,20 @@
-import { buildPracticeSubmissionEnvelope, normalizePracticeValue, type PracticeSubmissionEnvelope } from '@/lib/practice/contract';
-import { getAccountById } from '@/lib/practice/engine/accounts';
-import { generateMiniLedger, type MiniLedger } from '@/lib/practice/engine/mini-ledger';
-import type { GradeResult, ProblemDefinition, ProblemFamily, ProblemPartDefinition } from '@/lib/practice/engine/types';
-import type { JournalEntryAccountOption, JournalEntryLine } from './journal-entry';
+import {
+  buildPracticeSubmissionEnvelope,
+  normalizePracticeValue,
+  type PracticeSubmissionEnvelope,
+} from "@/lib/practice/contract";
+import { getAccountById } from "@/lib/practice/engine/accounts";
+import { generateMiniLedger, type MiniLedger } from "@/lib/practice/engine/mini-ledger";
+import type {
+  GradeResult,
+  ProblemDefinition,
+  ProblemFamily,
+  ProblemPartDefinition,
+} from "@/lib/practice/engine/types";
+import type { JournalEntryAccountOption, JournalEntryLine } from "./journal-entry";
 
-export type CycleDecisionScenarioKind = 'reversing-selection' | 'closing-entry';
-export type CycleDecisionSelectionChoice = 'reverse' | 'do-not-reverse';
+export type CycleDecisionScenarioKind = "reversing-selection" | "closing-entry";
+export type CycleDecisionSelectionChoice = "reverse" | "do-not-reverse";
 
 export interface CycleDecisionSelectionRow {
   id: string;
@@ -13,7 +22,7 @@ export interface CycleDecisionSelectionRow {
   description: string;
   hint?: string;
   reversingRecommended: boolean;
-  selectionMode?: 'single';
+  selectionMode?: "single";
 }
 
 export interface CycleDecisionSelectionColumn {
@@ -24,12 +33,12 @@ export interface CycleDecisionSelectionColumn {
 
 export interface CycleDecisionPart extends ProblemPartDefinition {
   id: string;
-  kind: 'selection' | 'journal-entry';
+  kind: "selection" | "journal-entry";
   label: string;
   description?: string;
   targetId: string;
   details: {
-    kind: 'selection' | 'journal-entry';
+    kind: "selection" | "journal-entry";
     explanation: string;
     reversingRecommended?: boolean;
     expectedChoice?: CycleDecisionSelectionChoice;
@@ -74,12 +83,12 @@ export interface CycleDecisionResponse extends Record<string, unknown> {
 }
 
 export interface CycleDecisionConfig {
-  mode?: ProblemDefinition['mode'];
+  mode?: ProblemDefinition["mode"];
   scenarioKey?: CycleDecisionScenarioKind;
 }
 
 export interface CycleDecisionReviewFeedback {
-  status: 'correct' | 'incorrect' | 'partial';
+  status: "correct" | "incorrect" | "partial";
   scoreLabel?: string;
   selectedLabel?: string;
   expectedLabel?: string;
@@ -123,7 +132,7 @@ function pick<T>(items: readonly T[], rng: () => number) {
  * @returns The formatted amount string
  */
 function formatAmount(amount: number) {
-  return amount.toLocaleString('en-US');
+  return amount.toLocaleString("en-US");
 }
 
 /**
@@ -145,7 +154,14 @@ function cloneLine(line: JournalEntryLine): JournalEntryLine {
  * @param memo - A description for the line
  * @returns A new JournalEntryLine object
  */
-function buildLine(id: string, date: string, accountId: string, debit: number, credit: number, memo: string): JournalEntryLine {
+function buildLine(
+  id: string,
+  date: string,
+  accountId: string,
+  debit: number,
+  credit: number,
+  memo: string,
+): JournalEntryLine {
   return { id, date, accountId, debit, credit, memo };
 }
 
@@ -172,7 +188,7 @@ function lineSignature(line: JournalEntryLine) {
     line.accountId.trim().toLowerCase(),
     Number(line.debit ?? 0).toFixed(2),
     Number(line.credit ?? 0).toFixed(2),
-  ].join('|');
+  ].join("|");
 }
 
 /**
@@ -218,7 +234,7 @@ function buildSelectionRow(
     description,
     reversingRecommended,
     hint,
-    selectionMode: 'single',
+    selectionMode: "single",
   };
 }
 
@@ -231,47 +247,55 @@ function buildReversingSelectionScenario(seed: number): CycleDecisionScenario {
   const rng = mulberry32(seed ^ 0x9e3779b9);
   const rows = [
     buildSelectionRow(
-      'accrued-wages',
-      'Accrued wages payable',
-      'A year-end wage accrual that should be reversed on the first day of the new period.',
+      "accrued-wages",
+      "Accrued wages payable",
+      "A year-end wage accrual that should be reversed on the first day of the new period.",
       true,
-      'Reverse the accrual so the next-period payment is not doubled.',
+      "Reverse the accrual so the next-period payment is not doubled.",
     ),
     buildSelectionRow(
-      'depreciation-entry',
-      'Depreciation entry',
-      'An end-of-period depreciation adjustment that stays in the books.',
+      "depreciation-entry",
+      "Depreciation entry",
+      "An end-of-period depreciation adjustment that stays in the books.",
       false,
-      'Depreciation is not usually reversed because the expense is recognized only once.',
+      "Depreciation is not usually reversed because the expense is recognized only once.",
     ),
     buildSelectionRow(
-      'closing-entry',
-      'Closing entry',
-      'A period-close transfer that should remain final.',
+      "closing-entry",
+      "Closing entry",
+      "A period-close transfer that should remain final.",
       false,
-      'Closing entries reset temporary accounts and are not reversed.',
+      "Closing entries reset temporary accounts and are not reversed.",
     ),
   ];
 
   const narrative = `The period-end file includes one reversal candidate and two entries that should stay put.`;
 
   return {
-    kind: 'reversing-selection',
-    title: 'Choose which entries should be reversed',
+    kind: "reversing-selection",
+    title: "Choose which entries should be reversed",
     stem: narrative,
     narrative,
-    dates: ['01/01'],
+    dates: ["01/01"],
     selectionRows: rows,
     selectionColumns: [
-      { id: 'reverse', label: 'Reverse', description: 'This entry should be reversed next period.' },
-      { id: 'do-not-reverse', label: 'Do not reverse', description: 'This entry should remain as posted.' },
+      {
+        id: "reverse",
+        label: "Reverse",
+        description: "This entry should be reversed next period.",
+      },
+      {
+        id: "do-not-reverse",
+        label: "Do not reverse",
+        description: "This entry should remain as posted.",
+      },
     ],
     journalLines: [],
     availableAccounts: [],
     tags: [
-      'reversing-selection',
-      pick(['accrual', 'deferral', 'closing'], rng),
-      'reversing-recommended',
+      "reversing-selection",
+      pick(["accrual", "deferral", "closing"], rng),
+      "reversing-recommended",
     ],
   };
 }
@@ -283,13 +307,13 @@ function buildReversingSelectionScenario(seed: number): CycleDecisionScenario {
  */
 function buildClosingScenario(seed: number): CycleDecisionScenario {
   const ledger = generateMiniLedger(seed, {
-    companyType: 'service',
+    companyType: "service",
     includeContraAccounts: false,
-    capitalMode: 'ending',
+    capitalMode: "ending",
   });
 
-  const revenueAccounts = ledger.accounts.filter((a) => a.accountType === 'revenue');
-  const expenseAccounts = ledger.accounts.filter((a) => a.accountType === 'expense');
+  const revenueAccounts = ledger.accounts.filter((a) => a.accountType === "revenue");
+  const expenseAccounts = ledger.accounts.filter((a) => a.accountType === "expense");
   const dividends = ledger.totals.dividends;
 
   const lines: JournalEntryLine[] = [];
@@ -298,48 +322,102 @@ function buildClosingScenario(seed: number): CycleDecisionScenario {
   // Close each revenue account: debit revenue, credit retained earnings
   for (const acct of revenueAccounts) {
     const amount = Math.abs(acct.statementBalance);
-    lines.push(buildLine(`line-${lineIndex++}`, '12/31', acct.id, amount, 0, `Close ${acct.label} to retained earnings`));
-    lines.push(buildLine(`line-${lineIndex++}`, '12/31', 'retained-earnings', 0, amount, `Close ${acct.label} to retained earnings`));
+    lines.push(
+      buildLine(
+        `line-${lineIndex++}`,
+        "12/31",
+        acct.id,
+        amount,
+        0,
+        `Close ${acct.label} to retained earnings`,
+      ),
+    );
+    lines.push(
+      buildLine(
+        `line-${lineIndex++}`,
+        "12/31",
+        "retained-earnings",
+        0,
+        amount,
+        `Close ${acct.label} to retained earnings`,
+      ),
+    );
   }
 
   // Close each expense account: debit retained earnings, credit expense
   for (const acct of expenseAccounts) {
     const amount = Math.abs(acct.statementBalance);
-    lines.push(buildLine(`line-${lineIndex++}`, '12/31', 'retained-earnings', amount, 0, `Close ${acct.label} to retained earnings`));
-    lines.push(buildLine(`line-${lineIndex++}`, '12/31', acct.id, 0, amount, `Close ${acct.label} to retained earnings`));
+    lines.push(
+      buildLine(
+        `line-${lineIndex++}`,
+        "12/31",
+        "retained-earnings",
+        amount,
+        0,
+        `Close ${acct.label} to retained earnings`,
+      ),
+    );
+    lines.push(
+      buildLine(
+        `line-${lineIndex++}`,
+        "12/31",
+        acct.id,
+        0,
+        amount,
+        `Close ${acct.label} to retained earnings`,
+      ),
+    );
   }
 
   // Close dividends: debit retained earnings, credit dividends
-  lines.push(buildLine(`line-${lineIndex++}`, '12/31', 'retained-earnings', dividends, 0, 'Close dividends to retained earnings'));
-  lines.push(buildLine(`line-${lineIndex++}`, '12/31', 'dividends', 0, dividends, 'Close dividends to retained earnings'));
+  lines.push(
+    buildLine(
+      `line-${lineIndex++}`,
+      "12/31",
+      "retained-earnings",
+      dividends,
+      0,
+      "Close dividends to retained earnings",
+    ),
+  );
+  lines.push(
+    buildLine(
+      `line-${lineIndex++}`,
+      "12/31",
+      "dividends",
+      0,
+      dividends,
+      "Close dividends to retained earnings",
+    ),
+  );
 
   const accountIds = [
     ...revenueAccounts.map((a) => a.id),
     ...expenseAccounts.map((a) => a.id),
-    'retained-earnings',
-    'dividends',
+    "retained-earnings",
+    "dividends",
   ];
 
   const narrative = `Close all temporary accounts from the adjusted trial balance before the next period opens. The ledger has ${revenueAccounts.length} revenue and ${expenseAccounts.length} expense accounts to close.`;
 
   return {
-    kind: 'closing-entry',
-    title: 'Prepare the closing entries',
+    kind: "closing-entry",
+    title: "Prepare the closing entries",
     stem: narrative,
     narrative,
-    dates: ['12/31'],
+    dates: ["12/31"],
     selectionRows: [],
     selectionColumns: [],
     journalLines: lines,
     availableAccounts: buildAccountOptions(accountIds),
     miniLedger: ledger,
-    tags: ['closing-entry', 'adjusted-trial-balance', 'temporary-accounts'],
+    tags: ["closing-entry", "adjusted-trial-balance", "temporary-accounts"],
   };
 }
 
 export const cycleDecisionScenarioCatalog = [
-  { kind: 'reversing-selection', build: buildReversingSelectionScenario },
-  { kind: 'closing-entry', build: buildClosingScenario },
+  { kind: "reversing-selection", build: buildReversingSelectionScenario },
+  { kind: "closing-entry", build: buildClosingScenario },
 ] as const satisfies readonly CycleDecisionScenarioBuilder[];
 
 /**
@@ -360,7 +438,9 @@ function pickScenarioKind(seed: number) {
  */
 function buildScenario(seed: number, config: CycleDecisionConfig): CycleDecisionScenario {
   const scenarioKey = config.scenarioKey ?? pickScenarioKind(seed);
-  const builder = cycleDecisionScenarioCatalog.find((entry) => entry.kind === scenarioKey) ?? cycleDecisionScenarioCatalog[0];
+  const builder =
+    cycleDecisionScenarioCatalog.find((entry) => entry.kind === scenarioKey) ??
+    cycleDecisionScenarioCatalog[0];
   return builder.build(seed);
 }
 
@@ -372,21 +452,21 @@ function buildScenario(seed: number, config: CycleDecisionConfig): CycleDecision
 function buildParts(scenario: CycleDecisionScenario): CycleDecisionPart[] {
   const selectionParts: CycleDecisionPart[] = scenario.selectionRows.map((row) => ({
     id: row.id,
-    kind: 'selection' as const,
+    kind: "selection" as const,
     label: row.label,
     description: row.description,
     prompt: `Choose whether ${row.label.toLowerCase()} should be reversed.`,
-    expectedAnswerShape: 'choice-id',
-    canonicalAnswer: row.reversingRecommended ? 'reverse' : 'do-not-reverse',
+    expectedAnswerShape: "choice-id",
+    canonicalAnswer: row.reversingRecommended ? "reverse" : "do-not-reverse",
     explanation: row.hint,
     misconceptionTags: [`cycle-decisions:${scenario.kind}:${row.id}`],
-    standardCode: `ACC-M7-CD-${scenario.kind.toUpperCase().replace(/-/g, '_')}`,
-    artifactTarget: row.reversingRecommended ? 'reverse' : 'do-not-reverse',
-    targetId: row.reversingRecommended ? 'reverse' : 'do-not-reverse',
+    standardCode: `ACC-M7-CD-${scenario.kind.toUpperCase().replace(/-/g, "_")}`,
+    artifactTarget: row.reversingRecommended ? "reverse" : "do-not-reverse",
+    targetId: row.reversingRecommended ? "reverse" : "do-not-reverse",
     details: {
-      kind: 'selection' as const,
+      kind: "selection" as const,
       reversingRecommended: row.reversingRecommended,
-      expectedChoice: row.reversingRecommended ? 'reverse' : 'do-not-reverse',
+      expectedChoice: row.reversingRecommended ? "reverse" : "do-not-reverse",
       explanation: row.hint ?? row.description,
     },
   }));
@@ -395,26 +475,26 @@ function buildParts(scenario: CycleDecisionScenario): CycleDecisionPart[] {
     const accountLabel = getAccountById(line.accountId)?.label ?? line.accountId;
     return {
       id: line.id || `line-${index + 1}`,
-      kind: 'journal-entry' as const,
+      kind: "journal-entry" as const,
       label: `Line ${index + 1}`,
       description: `${line.date} ${accountLabel}`,
       prompt: `Enter the journal line for ${accountLabel}.`,
-      expectedAnswerShape: 'journal-line',
+      expectedAnswerShape: "journal-line",
       canonicalAnswer: line,
-      explanation: `${accountLabel} is recorded with ${line.debit > 0 ? 'a debit' : 'a credit'} of $${formatAmount(line.debit > 0 ? line.debit : line.credit)}.`,
+      explanation: `${accountLabel} is recorded with ${line.debit > 0 ? "a debit" : "a credit"} of $${formatAmount(line.debit > 0 ? line.debit : line.credit)}.`,
       misconceptionTags: [`cycle-decisions:${scenario.kind}:${line.accountId}`],
-      standardCode: `ACC-M7-CD-${scenario.kind.toUpperCase().replace(/-/g, '_')}`,
+      standardCode: `ACC-M7-CD-${scenario.kind.toUpperCase().replace(/-/g, "_")}`,
       artifactTarget: lineSignature(line),
       targetId: `line-${index + 1}`,
       details: {
-        kind: 'journal-entry' as const,
+        kind: "journal-entry" as const,
         date: line.date,
         accountId: line.accountId,
         accountLabel,
         debit: line.debit,
         credit: line.credit,
         memo: line.memo,
-        explanation: `${accountLabel} is recorded with ${line.debit > 0 ? 'a debit' : 'a credit'} of $${formatAmount(line.debit > 0 ? line.debit : line.credit)}.`,
+        explanation: `${accountLabel} is recorded with ${line.debit > 0 ? "a debit" : "a credit"} of $${formatAmount(line.debit > 0 ? line.debit : line.credit)}.`,
       },
     };
   });
@@ -431,7 +511,7 @@ function buildResponse(definition: CycleDecisionDefinition): CycleDecisionRespon
   const selections: Record<string, string> = {};
 
   for (const row of definition.selectionRows) {
-    selections[row.id] = row.reversingRecommended ? 'reverse' : 'do-not-reverse';
+    selections[row.id] = row.reversingRecommended ? "reverse" : "do-not-reverse";
   }
 
   return {
@@ -453,35 +533,50 @@ function buildResponse(definition: CycleDecisionDefinition): CycleDecisionRespon
 function buildPartFeedback(
   part: CycleDecisionPart,
   studentResponse: CycleDecisionResponse,
-  gradeResultPart: GradeResult['parts'][number],
+  gradeResultPart: GradeResult["parts"][number],
   expectedLine?: JournalEntryLine,
   studentLine?: JournalEntryLine,
   journalLines?: JournalEntryLine[],
 ): CycleDecisionReviewFeedback {
   const selectedValue = studentResponse.selections[part.id];
   const selectedLabel =
-    part.kind === 'journal-entry'
+    part.kind === "journal-entry"
       ? studentLine
         ? `${studentLine.date} • ${studentLine.accountId}`
-        : 'Not entered'
-      : typeof selectedValue === 'string'
-        ? selectedValue.replace(/-/g, ' ')
-        : 'Not selected';
+        : "Not entered"
+      : typeof selectedValue === "string"
+        ? selectedValue.replace(/-/g, " ")
+        : "Not selected";
   const expectedLabel =
-    part.kind === 'journal-entry'
+    part.kind === "journal-entry"
       ? `${part.details.date} • ${part.details.accountLabel} ${part.details.debit ? `debit $${formatAmount(part.details.debit)}` : `credit $${formatAmount(part.details.credit ?? 0)}`}`
-      : part.details.expectedChoice?.replace(/-/g, ' ') ?? 'Unknown';
-  const exactMatch = part.kind === 'journal-entry' && expectedLine && studentLine ? lineMatches(expectedLine, studentLine) : false;
-  const equivalent = part.kind === 'journal-entry' && !exactMatch && studentLine && expectedLine && journalLines ? linePresentAnywhere(expectedLine, journalLines) : false;
+      : (part.details.expectedChoice?.replace(/-/g, " ") ?? "Unknown");
+  const exactMatch =
+    part.kind === "journal-entry" && expectedLine && studentLine
+      ? lineMatches(expectedLine, studentLine)
+      : false;
+  const equivalent =
+    part.kind === "journal-entry" && !exactMatch && studentLine && expectedLine && journalLines
+      ? linePresentAnywhere(expectedLine, journalLines)
+      : false;
 
   return {
-    status: part.kind === 'journal-entry' ? (exactMatch ? 'correct' : equivalent ? 'partial' : 'incorrect') : gradeResultPart.isCorrect ? 'correct' : 'incorrect',
+    status:
+      part.kind === "journal-entry"
+        ? exactMatch
+          ? "correct"
+          : equivalent
+            ? "partial"
+            : "incorrect"
+        : gradeResultPart.isCorrect
+          ? "correct"
+          : "incorrect",
     scoreLabel: `${gradeResultPart.score}/${gradeResultPart.maxScore}`,
     selectedLabel,
     expectedLabel,
     misconceptionTags: gradeResultPart.misconceptionTags,
     message:
-      part.kind === 'journal-entry'
+      part.kind === "journal-entry"
         ? exactMatch
           ? `${part.label} is correct.`
           : equivalent
@@ -511,33 +606,49 @@ export function buildCycleDecisionReviewFeedback(
         return [
           gradeResultPart.partId,
           {
-            status: gradeResultPart.isCorrect ? 'correct' : 'incorrect',
+            status: gradeResultPart.isCorrect ? "correct" : "incorrect",
             scoreLabel: `${gradeResultPart.score}/${gradeResultPart.maxScore}`,
-            selectedLabel: 'Not entered',
-            expectedLabel: 'Unknown',
+            selectedLabel: "Not entered",
+            expectedLabel: "Unknown",
             misconceptionTags: gradeResultPart.misconceptionTags,
-            message: 'Review data unavailable.',
+            message: "Review data unavailable.",
           },
         ] as const;
       }
 
-      const expectedIndex = Number.parseInt(part.id.replace('line-', ''), 10) - 1;
-      const expectedLine = part.kind === 'journal-entry' ? definition.journalLines[expectedIndex] : undefined;
-      const studentLine = part.kind === 'journal-entry' ? studentResponse.lines[expectedIndex] : undefined;
-      return [part.id, buildPartFeedback(part, studentResponse, gradeResultPart, expectedLine, studentLine, studentResponse.lines)] as const;
+      const expectedIndex = Number.parseInt(part.id.replace("line-", ""), 10) - 1;
+      const expectedLine =
+        part.kind === "journal-entry" ? definition.journalLines[expectedIndex] : undefined;
+      const studentLine =
+        part.kind === "journal-entry" ? studentResponse.lines[expectedIndex] : undefined;
+      return [
+        part.id,
+        buildPartFeedback(
+          part,
+          studentResponse,
+          gradeResultPart,
+          expectedLine,
+          studentLine,
+          studentResponse.lines,
+        ),
+      ] as const;
     }),
   );
 }
 
-export const cycleDecisionsFamily: ProblemFamily<CycleDecisionDefinition, CycleDecisionResponse, CycleDecisionConfig> = {
+export const cycleDecisionsFamily: ProblemFamily<
+  CycleDecisionDefinition,
+  CycleDecisionResponse,
+  CycleDecisionConfig
+> = {
   generate(seed, config = {}) {
     const scenario = buildScenario(seed, config);
     const parts = buildParts(scenario);
 
     return {
-      contractVersion: 'practice.v1',
-      familyKey: 'cycle-decisions',
-      mode: config.mode ?? 'guided_practice',
+      contractVersion: "practice.v1",
+      familyKey: "cycle-decisions",
+      mode: config.mode ?? "guided_practice",
       activityId: `cycle-decisions-${scenario.kind}-${seed}`,
       prompt: {
         title: scenario.title,
@@ -561,14 +672,14 @@ export const cycleDecisionsFamily: ProblemFamily<CycleDecisionDefinition, CycleD
         dateCount: scenario.dates.length,
       },
       grading: {
-        strategy: 'exact',
+        strategy: "exact",
         partialCredit: true,
         rubric: {
           scenarioKind: scenario.kind,
         },
       },
       analyticsConfig: {
-        generator: 'cycle-decisions-family',
+        generator: "cycle-decisions-family",
         seed,
         scenarioKind: scenario.kind,
       },
@@ -582,9 +693,10 @@ export const cycleDecisionsFamily: ProblemFamily<CycleDecisionDefinition, CycleD
   grade(definition, studentResponse) {
     let journalIndex = 0;
     const parts = definition.parts.map((part) => {
-      if (part.kind === 'selection') {
+      if (part.kind === "selection") {
         const rawAnswer = studentResponse.selections[part.id];
-        const normalizedAnswer = typeof rawAnswer === 'string' ? normalizePracticeValue(rawAnswer) : '';
+        const normalizedAnswer =
+          typeof rawAnswer === "string" ? normalizePracticeValue(rawAnswer) : "";
         const isCorrect = rawAnswer === part.targetId;
         return {
           partId: part.id,
@@ -593,15 +705,19 @@ export const cycleDecisionsFamily: ProblemFamily<CycleDecisionDefinition, CycleD
           isCorrect,
           score: isCorrect ? 1 : 0,
           maxScore: 1,
-          misconceptionTags: isCorrect ? [] : [`cycle-decisions:${definition.scenario.kind}:${part.id}`],
+          misconceptionTags: isCorrect
+            ? []
+            : [`cycle-decisions:${definition.scenario.kind}:${part.id}`],
         };
       }
 
       const expectedLine = definition.journalLines[journalIndex++];
       const rawLine = studentResponse.lines[journalIndex - 1];
-      const normalizedAnswer = rawLine ? lineSignature(rawLine) : '';
+      const normalizedAnswer = rawLine ? lineSignature(rawLine) : "";
       const exactMatch = lineMatches(expectedLine, rawLine);
-      const presentAnywhere = rawLine ? linePresentAnywhere(expectedLine, studentResponse.lines) : false;
+      const presentAnywhere = rawLine
+        ? linePresentAnywhere(expectedLine, studentResponse.lines)
+        : false;
       const isCorrect = exactMatch || presentAnywhere;
 
       return {
@@ -611,7 +727,9 @@ export const cycleDecisionsFamily: ProblemFamily<CycleDecisionDefinition, CycleD
         isCorrect,
         score: isCorrect ? 1 : 0,
         maxScore: 1,
-        misconceptionTags: isCorrect ? [] : [`cycle-decisions:${definition.scenario.kind}:${part.id}`],
+        misconceptionTags: isCorrect
+          ? []
+          : [`cycle-decisions:${definition.scenario.kind}:${part.id}`],
       };
     });
 
@@ -627,14 +745,16 @@ export const cycleDecisionsFamily: ProblemFamily<CycleDecisionDefinition, CycleD
 
   toEnvelope(definition, studentResponse, gradeResult): PracticeSubmissionEnvelope {
     const artifact = {
-      kind: 'cycle-decisions',
+      kind: "cycle-decisions",
       family: definition.familyKey,
       scenario: {
         kind: definition.scenario.kind,
         title: definition.scenario.title,
         narrative: definition.scenario.narrative,
         dates: definition.scenario.dates,
-        reversingRecommendedCount: definition.selectionRows.filter((row) => row.reversingRecommended).length,
+        reversingRecommendedCount: definition.selectionRows.filter(
+          (row) => row.reversingRecommended,
+        ).length,
         journalLineCount: definition.journalLines.length,
       },
       selectionRows: definition.selectionRows,
@@ -652,15 +772,15 @@ export const cycleDecisionsFamily: ProblemFamily<CycleDecisionDefinition, CycleD
     return buildPracticeSubmissionEnvelope({
       activityId: definition.activityId,
       mode: definition.mode,
-      status: 'submitted',
+      status: "submitted",
       attemptNumber: 1,
       answers: studentResponse,
       parts: gradeResult.parts.map((part) => ({
         partId: part.partId,
         rawAnswer:
           part.rawAnswer ??
-          (part.partId.startsWith('line-')
-            ? studentResponse.lines[Number.parseInt(part.partId.replace('line-', ''), 10) - 1]
+          (part.partId.startsWith("line-")
+            ? studentResponse.lines[Number.parseInt(part.partId.replace("line-", ""), 10) - 1]
             : studentResponse.selections[part.partId]),
         normalizedAnswer: part.normalizedAnswer,
         isCorrect: part.isCorrect,

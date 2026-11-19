@@ -8,7 +8,7 @@
 // structurally without depending on the real `GeneratorOutput` schema
 // from `@math-platform/knowledge-space-practice`.
 
-import type { GeneratorCorrectnessContract } from '../../contract';
+import type { GeneratorCorrectnessContract } from "../../contract";
 
 export interface WellFormedGeneratorInput {
   readonly nodeId: string;
@@ -48,11 +48,13 @@ export function createWellFormedGenerator(): WellFormedGenerator {
         correctAnswer: correct,
         distractors: [distractorA, distractorB, distractorC],
         solutionSteps: [
-          { description: 'Apply f(x) = x + 1', expression: `f(${input.seed}) = ${input.seed} + 1`, value: correct },
+          {
+            description: "Apply f(x) = x + 1",
+            expression: `f(${input.seed}) = ${input.seed} + 1`,
+            value: correct,
+          },
         ],
-        invariants: [
-          { name: 'a > 0', passed: true },
-        ],
+        invariants: [{ name: "a > 0", passed: true }],
       };
     },
   };

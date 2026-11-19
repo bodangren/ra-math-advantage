@@ -9,7 +9,7 @@ import {
   ChartLegend,
   ChartLegendContent,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 import { cn } from "@/lib/utils";
 
@@ -17,7 +17,7 @@ import {
   buildChartConfig,
   type ChartSegment,
   DEFAULT_CHART_COLORS,
-  formatCurrency
+  formatCurrency,
 } from "./chart-types";
 
 export interface PieChartProps {
@@ -32,7 +32,6 @@ export interface PieChartProps {
   valueFormatter?: (value: number) => string;
   showPercentages?: boolean;
 }
-
 
 /**
  * Renders a pie chart with optional percentage labels and legend.
@@ -50,7 +49,7 @@ export function PieChart({
   ariaLabel,
   height = 340,
   valueFormatter = (value) => formatCurrency(value),
-  showPercentages = true
+  showPercentages = true,
 }: PieChartProps) {
   const chartConfig = useMemo(
     () =>
@@ -58,10 +57,10 @@ export function PieChart({
         segments.map((segment, index) => ({
           key: segment.id,
           label: segment.label,
-          color: segment.color ?? DEFAULT_CHART_COLORS[index % DEFAULT_CHART_COLORS.length]
-        }))
+          color: segment.color ?? DEFAULT_CHART_COLORS[index % DEFAULT_CHART_COLORS.length],
+        })),
       ),
-    [segments]
+    [segments],
   );
 
   const total = segments.reduce((sum, segment) => sum + segment.value, 0);
@@ -70,7 +69,7 @@ export function PieChart({
     value: segment.value,
     key: segment.id,
     fill: segment.color ?? DEFAULT_CHART_COLORS[index % DEFAULT_CHART_COLORS.length],
-    percentage: total > 0 ? (segment.value / total) * 100 : 0
+    percentage: total > 0 ? (segment.value / total) * 100 : 0,
   }));
 
   const containerLabel =
@@ -115,7 +114,7 @@ export function PieChart({
                     showPercentages
                       ? `${valueFormatter(Number(value))} (${percentage.toFixed(1)}%)`
                       : valueFormatter(Number(value)),
-                    name
+                    name,
                   ];
                 }}
                 labelFormatter={() => ""}
@@ -124,11 +123,7 @@ export function PieChart({
             }
           />
           {showLegend && (
-            <ChartLegend
-              content={<ChartLegendContent />}
-              verticalAlign="bottom"
-              height={36}
-            />
+            <ChartLegend content={<ChartLegendContent />} verticalAlign="bottom" height={36} />
           )}
         </RechartsPieChart>
       </ChartContainer>

@@ -8,12 +8,12 @@
 export const MIN_COHORT_N = 10;
 
 export type CohortSuppressionResult =
-  | { status: 'ok' }
-  | { status: 'suppressed'; n: number; threshold: number };
+  | { status: "ok" }
+  | { status: "suppressed"; n: number; threshold: number };
 
 export function suppressIfSmallN(n: number): CohortSuppressionResult {
   if (n < MIN_COHORT_N) {
-    return { status: 'suppressed', n, threshold: MIN_COHORT_N };
+    return { status: "suppressed", n, threshold: MIN_COHORT_N };
   }
-  return { status: 'ok' };
+  return { status: "ok" };
 }

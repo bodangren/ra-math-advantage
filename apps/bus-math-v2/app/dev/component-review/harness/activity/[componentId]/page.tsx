@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { notFound } from 'next/navigation';
-import { use, useState, useCallback, useMemo } from 'react';
-import Link from 'next/link';
-import { ArrowLeft, Box, CheckCircle, RotateCcw, Play } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { getActivityComponent } from '@/lib/activities/registry';
-import { useQuery } from 'convex/react';
-import { api } from '@/convex/_generated/api';
-import type { ComponentType } from 'react';
+import { notFound } from "next/navigation";
+import { use, useState, useCallback, useMemo } from "react";
+import Link from "next/link";
+import { ArrowLeft, Box, CheckCircle, RotateCcw, Play } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { getActivityComponent } from "@/lib/activities/registry";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import type { ComponentType } from "react";
 
 interface Props {
   params: Promise<{ componentId: string }>;
@@ -45,16 +45,16 @@ function ActivityWithSubmit({
 export default function ActivityHarnessPage({ params }: Props) {
   const { componentId } = use(params);
 
-  if (process.env.NODE_ENV !== 'development') {
+  if (process.env.NODE_ENV !== "development") {
     notFound();
   }
 
   const ActivityComponent = useMemo(() => getActivityComponent(componentId), [componentId]);
   const versionHashData = useQuery(api.component_approvals.getComponentVersionHash, {
-    componentType: 'activity',
+    componentType: "activity",
     componentId,
   });
-  const versionHash = versionHashData ?? 'loading...';
+  const versionHash = versionHashData ?? "loading...";
 
   const [renderKey, setRenderKey] = useState(0);
   const [activityProps, setActivityProps] = useState<Record<string, unknown>>({});
@@ -80,52 +80,54 @@ export default function ActivityHarnessPage({ params }: Props) {
   }, []);
 
   const defaultActivityProps: Record<string, Record<string, unknown>> = {
-    'comprehension-quiz': {
+    "comprehension-quiz": {
       questions: [
         {
-          id: 'q1',
-          type: 'multiple-choice',
-          prompt: 'What is the primary purpose of a balance sheet?',
+          id: "q1",
+          type: "multiple-choice",
+          prompt: "What is the primary purpose of a balance sheet?",
           options: [
-            'To show a company\'s profitability',
-            'To show a company\'s financial position at a point in time',
-            'To track cash flows',
-            'To calculate net income',
+            "To show a company's profitability",
+            "To show a company's financial position at a point in time",
+            "To track cash flows",
+            "To calculate net income",
           ],
           correctAnswer: 1,
         },
         {
-          id: 'q2',
-          type: 'true-false',
-          prompt: 'Assets always equal liabilities plus equity.',
+          id: "q2",
+          type: "true-false",
+          prompt: "Assets always equal liabilities plus equity.",
           correctAnswer: true,
         },
       ],
     },
-    'journal-entry-building': {
-      description: 'Record the following transaction in journal entry format.',
+    "journal-entry-building": {
+      description: "Record the following transaction in journal entry format.",
       transaction: {
-        date: '2026-03-20',
-        narrative: 'Paid rent for the month, $5,000.',
+        date: "2026-03-20",
+        narrative: "Paid rent for the month, $5,000.",
         accounts: [
-          { name: 'Rent Expense', debit: 5000, credit: 0 },
-          { name: 'Cash', debit: 0, credit: 5000 },
+          { name: "Rent Expense", debit: 5000, credit: 0 },
+          { name: "Cash", debit: 0, credit: 5000 },
         ],
       },
     },
-    'tiered-assessment': {
+    "tiered-assessment": {
       questions: [
         {
-          id: 't1',
-          prompt: 'Calculate the current ratio given current assets of $100,000 and current liabilities of $50,000.',
+          id: "t1",
+          prompt:
+            "Calculate the current ratio given current assets of $100,000 and current liabilities of $50,000.",
           correctAnswer: 2,
-          hint: 'Current Ratio = Current Assets / Current Liabilities',
+          hint: "Current Ratio = Current Assets / Current Liabilities",
         },
       ],
     },
   };
 
-  const props = Object.keys(activityProps).length > 0 ? activityProps : defaultActivityProps[componentId] || {};
+  const props =
+    Object.keys(activityProps).length > 0 ? activityProps : defaultActivityProps[componentId] || {};
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-100 px-4 py-8 text-slate-900">
@@ -141,12 +143,19 @@ export default function ActivityHarnessPage({ params }: Props) {
           </div>
           <div className="flex items-center gap-2">
             <Box className="size-5 text-slate-400" />
-            <span className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Activity Harness</span>
+            <span className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+              Activity Harness
+            </span>
             <Badge variant="outline">{componentId}</Badge>
           </div>
-          <h1 className="text-2xl font-semibold tracking-tight">Activity Component: {componentId}</h1>
+          <h1 className="text-2xl font-semibold tracking-tight">
+            Activity Component: {componentId}
+          </h1>
           <p className="text-sm text-slate-600">
-            Version hash: <code className="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-xs">{versionHash.slice(0, 12)}...</code>
+            Version hash:{" "}
+            <code className="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-xs">
+              {versionHash.slice(0, 12)}...
+            </code>
           </p>
         </header>
 
@@ -178,10 +187,15 @@ export default function ActivityHarnessPage({ params }: Props) {
 
         {!ActivityComponent ? (
           <section className="space-y-4 rounded-2xl border bg-red-50/80 p-6 shadow-sm">
-            <h2 className="text-lg font-semibold tracking-tight text-red-900">Component Not Found</h2>
+            <h2 className="text-lg font-semibold tracking-tight text-red-900">
+              Component Not Found
+            </h2>
             <p className="text-sm text-red-800">
-              No activity component registered for <code className="rounded bg-red-100 px-1.5 py-0.5 font-mono text-xs">{componentId}</code>.
-              Check the activity registry.
+              No activity component registered for{" "}
+              <code className="rounded bg-red-100 px-1.5 py-0.5 font-mono text-xs">
+                {componentId}
+              </code>
+              . Check the activity registry.
             </p>
           </section>
         ) : (
@@ -210,7 +224,8 @@ export default function ActivityHarnessPage({ params }: Props) {
         <section className="space-y-4 rounded-2xl border bg-white/90 p-6 shadow-sm">
           <h2 className="text-lg font-semibold tracking-tight">Props Override</h2>
           <p className="text-sm text-slate-600">
-            Current props being passed to the activity component. Edit to test different configurations.
+            Current props being passed to the activity component. Edit to test different
+            configurations.
           </p>
           <pre className="max-h-48 overflow-auto rounded-lg bg-slate-900 p-4 text-xs text-slate-100">
             {JSON.stringify(props, null, 2)}

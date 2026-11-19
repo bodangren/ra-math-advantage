@@ -43,19 +43,22 @@ export const getCurriculum = query({
       return a.orderIndex - b.orderIndex;
     });
 
-    const units = new Map<number, {
-      unitNumber: number;
-      title: string;
-      description: string;
-      lessons: Array<{ id: string; title: string; slug: string; orderIndex: number }>;
-    }>();
+    const units = new Map<
+      number,
+      {
+        unitNumber: number;
+        title: string;
+        description: string;
+        lessons: Array<{ id: string; title: string; slug: string; orderIndex: number }>;
+      }
+    >();
 
     for (const lesson of lessonRows) {
       if (!units.has(lesson.unitNumber)) {
         units.set(lesson.unitNumber, {
           unitNumber: lesson.unitNumber,
           title: lesson.title,
-          description: lesson.description ?? '',
+          description: lesson.description ?? "",
           lessons: [],
         });
       }

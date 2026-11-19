@@ -1,9 +1,9 @@
-import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
+import type { GeneratorOutput } from "@math-platform/knowledge-space-practice";
 
-import { mulberry32 } from '../../utils/prng';
+import { mulberry32 } from "../../utils/prng";
 
-export type Topic15PolynomialInequalityOperator = '<' | '<=' | '>' | '>=';
-export type Topic15PolynomialInequalitySign = '+' | '-';
+export type Topic15PolynomialInequalityOperator = "<" | "<=" | ">" | ">=";
+export type Topic15PolynomialInequalitySign = "+" | "-";
 
 export interface Topic15PolynomialInequalityVariant {
   readonly seed: number;
@@ -20,7 +20,7 @@ export interface Topic15PolynomialInequalityAnswers {
 }
 
 export const TOPIC15_POLYNOMIAL_INEQUALITY_SIGN_CHART_NODE_ID =
-  'math.precalc.skill.1.5.solve-polynomial-inequalities-using-sign-charts';
+  "math.precalc.skill.1.5.solve-polynomial-inequalities-using-sign-charts";
 
 type Factor = {
   readonly root: number;
@@ -31,7 +31,7 @@ type InternalVariant = Topic15PolynomialInequalityVariant & {
   readonly factors: readonly Factor[];
 };
 
-type Bound = number | '-∞' | '∞';
+type Bound = number | "-∞" | "∞";
 
 type Interval = {
   left: Bound;
@@ -41,22 +41,23 @@ type Interval = {
 };
 
 function validateSeed(seed: number): void {
-  if (typeof seed !== 'number' || !Number.isSafeInteger(seed) || seed < 0) {
-    throw new RangeError('seed must be a non-negative safe integer');
+  if (typeof seed !== "number" || !Number.isSafeInteger(seed) || seed < 0) {
+    throw new RangeError("seed must be a non-negative safe integer");
   }
 }
 
 function formatFactor(factor: Factor, compact: boolean): string {
-  const rootText = factor.root === 0
-    ? 'x'
-    : compact
-      ? `(x${factor.root < 0 ? '+' : '-'}${Math.abs(factor.root)})`
-      : `(x ${factor.root < 0 ? '+' : '-'} ${Math.abs(factor.root)})`;
+  const rootText =
+    factor.root === 0
+      ? "x"
+      : compact
+        ? `(x${factor.root < 0 ? "+" : "-"}${Math.abs(factor.root)})`
+        : `(x ${factor.root < 0 ? "+" : "-"} ${Math.abs(factor.root)})`;
   return factor.multiplicity === 1 ? rootText : `${rootText}^${factor.multiplicity}`;
 }
 
 function formatExpression(factors: readonly Factor[], compact: boolean): string {
-  return factors.map((factor) => formatFactor(factor, compact)).join('');
+  return factors.map((factor) => formatFactor(factor, compact)).join("");
 }
 
 function sourceVariant(seed: 0 | 1 | 2): InternalVariant {
@@ -68,9 +69,9 @@ function sourceVariant(seed: 0 | 1 | 2): InternalVariant {
     ] as const;
     return {
       seed,
-      prompt: 'Solve (x - 3)(x + 1)(x + 4) > 0.',
-      expression: '(x - 3)(x + 1)(x + 4)',
-      operator: '>',
+      prompt: "Solve (x - 3)(x + 1)(x + 4) > 0.",
+      expression: "(x - 3)(x + 1)(x + 4)",
+      operator: ">",
       distinctRootCount: 3,
       factors,
     };
@@ -83,9 +84,9 @@ function sourceVariant(seed: 0 | 1 | 2): InternalVariant {
     ] as const;
     return {
       seed,
-      prompt: 'Solve (x+2)^2(x-5) <= 0.',
-      expression: '(x+2)^2(x-5)',
-      operator: '<=',
+      prompt: "Solve (x+2)^2(x-5) <= 0.",
+      expression: "(x+2)^2(x-5)",
+      operator: "<=",
       distinctRootCount: 2,
       factors,
     };
@@ -98,9 +99,9 @@ function sourceVariant(seed: 0 | 1 | 2): InternalVariant {
   ] as const;
   return {
     seed,
-    prompt: 'Solve (x+3)(x-1)(x-2) < 0.',
-    expression: '(x+3)(x-1)(x-2)',
-    operator: '<',
+    prompt: "Solve (x+3)(x-1)(x-2) < 0.",
+    expression: "(x+3)(x-1)(x-2)",
+    operator: "<",
     distinctRootCount: 3,
     factors,
   };
@@ -122,18 +123,16 @@ function generatedVariant(seed: number): InternalVariant {
   const roots = chooseRoots(random, rootCount);
   const factors: Factor[] = useTwoRootFamily
     ? roots.map((root, index) => ({
-      root,
-      multiplicity: (index === 0 ? (random() < 0.5 ? 2 : 1) : 1) as 1 | 2,
-    }))
+        root,
+        multiplicity: (index === 0 ? (random() < 0.5 ? 2 : 1) : 1) as 1 | 2,
+      }))
     : roots.map((root) => ({ root, multiplicity: 1 as const }));
 
   if (useTwoRootFamily && factors.every((factor) => factor.multiplicity === 1)) {
     factors[0] = { root: factors[0]?.root ?? roots[0] ?? 0, multiplicity: 2 };
   }
 
-  const operator = useTwoRootFamily
-    ? (seed % 4 < 2 ? '<=' : '>=')
-    : (seed % 4 < 2 ? '<' : '>');
+  const operator = useTwoRootFamily ? (seed % 4 < 2 ? "<=" : ">=") : seed % 4 < 2 ? "<" : ">";
   const expression = formatExpression(factors, true);
   return {
     seed,
@@ -149,12 +148,15 @@ function buildVariant(seed: number): InternalVariant {
   return seed <= 2 ? sourceVariant(seed as 0 | 1 | 2) : generatedVariant(seed);
 }
 
-function evaluateSign(factors: readonly Factor[], testPoint: number): Topic15PolynomialInequalitySign {
+function evaluateSign(
+  factors: readonly Factor[],
+  testPoint: number,
+): Topic15PolynomialInequalitySign {
   let value = 1;
   for (const factor of factors) {
     value *= (testPoint - factor.root) ** factor.multiplicity;
   }
-  return value > 0 ? '+' : '-';
+  return value > 0 ? "+" : "-";
 }
 
 function buildTestPoints(roots: readonly number[], seed: number): number[] {
@@ -176,12 +178,12 @@ function buildTestPoints(roots: readonly number[], seed: number): number[] {
 }
 
 function formatBound(bound: Bound): string {
-  return typeof bound === 'number' ? String(bound) : bound;
+  return typeof bound === "number" ? String(bound) : bound;
 }
 
 function boundValue(bound: Bound): number {
-  if (bound === '-∞') return Number.NEGATIVE_INFINITY;
-  if (bound === '∞') return Number.POSITIVE_INFINITY;
+  if (bound === "-∞") return Number.NEGATIVE_INFINITY;
+  if (bound === "∞") return Number.POSITIVE_INFINITY;
   return bound;
 }
 
@@ -190,34 +192,43 @@ function buildSolution(
   signs: readonly Topic15PolynomialInequalitySign[],
   operator: Topic15PolynomialInequalityOperator,
 ): string {
-  const keepsPositive = operator === '>' || operator === '>=';
-  const inclusive = operator === '<=' || operator === '>=';
+  const keepsPositive = operator === ">" || operator === ">=";
+  const inclusive = operator === "<=" || operator === ">=";
   const intervals: Interval[] = roots.map((root, index) => ({
-    left: index === 0 ? '-∞' : roots[index - 1] ?? '-∞',
+    left: index === 0 ? "-∞" : (roots[index - 1] ?? "-∞"),
     right: root,
     leftClosed: index > 0 && inclusive,
     rightClosed: inclusive,
   }));
   intervals.push({
-    left: roots[roots.length - 1] ?? '-∞',
-    right: '∞',
+    left: roots[roots.length - 1] ?? "-∞",
+    right: "∞",
     leftClosed: inclusive,
     rightClosed: false,
   });
 
   const selected = intervals.filter((_, index) =>
-    keepsPositive ? signs[index] === '+' : signs[index] === '-');
+    keepsPositive ? signs[index] === "+" : signs[index] === "-",
+  );
   if (inclusive) {
     for (const root of roots) {
       selected.push({ left: root, right: root, leftClosed: true, rightClosed: true });
     }
   }
-  selected.sort((left, right) =>
-    boundValue(left.left) - boundValue(right.left) || boundValue(left.right) - boundValue(right.right));
+  selected.sort(
+    (left, right) =>
+      boundValue(left.left) - boundValue(right.left) ||
+      boundValue(left.right) - boundValue(right.right),
+  );
   const merged: Interval[] = [];
   for (const interval of selected) {
     const previous = merged.at(-1);
-    if (previous && previous.right === interval.left && previous.rightClosed && interval.leftClosed) {
+    if (
+      previous &&
+      previous.right === interval.left &&
+      previous.rightClosed &&
+      interval.leftClosed
+    ) {
       previous.right = interval.right;
       previous.rightClosed = interval.rightClosed;
     } else {
@@ -225,19 +236,21 @@ function buildSolution(
     }
   }
 
-  return merged.map((interval) => {
-    const leftMark = interval.leftClosed ? '[' : '(';
-    const rightMark = interval.rightClosed ? ']' : ')';
-    return `${leftMark}${formatBound(interval.left)}, ${formatBound(interval.right)}${rightMark}`;
-  }).join(' ∪ ');
+  return merged
+    .map((interval) => {
+      const leftMark = interval.leftClosed ? "[" : "(";
+      const rightMark = interval.rightClosed ? "]" : ")";
+      return `${leftMark}${formatBound(interval.left)}, ${formatBound(interval.right)}${rightMark}`;
+    })
+    .join(" ∪ ");
 }
 
 function formatPoints(points: readonly number[]): string {
-  return points.join(', ');
+  return points.join(", ");
 }
 
 function formatSigns(signs: readonly Topic15PolynomialInequalitySign[]): string {
-  return signs.join(', ');
+  return signs.join(", ");
 }
 
 function buildSolutionSteps(
@@ -247,24 +260,31 @@ function buildSolutionSteps(
   signs: readonly Topic15PolynomialInequalitySign[],
   solution: string,
 ): Array<{ description: string }> {
-  const rootDescription = roots.map((root) => {
-    const factor = variant.factors.find((entry) => entry.root === root);
-    const multiplicity = factor?.multiplicity ?? 1;
-    const parity = multiplicity % 2 === 0 ? 'even' : 'odd';
-    return `x = ${root} (${parity} multiplicity ${multiplicity})`;
-  }).join(', ');
-  const endpointRule = variant.operator === '<' || variant.operator === '>'
-    ? 'The inequality is strict, so the roots are not included.'
-    : `The inequality is inclusive (${variant.operator}), so the roots are included where the polynomial equals zero.`;
+  const rootDescription = roots
+    .map((root) => {
+      const factor = variant.factors.find((entry) => entry.root === root);
+      const multiplicity = factor?.multiplicity ?? 1;
+      const parity = multiplicity % 2 === 0 ? "even" : "odd";
+      return `x = ${root} (${parity} multiplicity ${multiplicity})`;
+    })
+    .join(", ");
+  const endpointRule =
+    variant.operator === "<" || variant.operator === ">"
+      ? "The inequality is strict, so the roots are not included."
+      : `The inequality is inclusive (${variant.operator}), so the roots are included where the polynomial equals zero.`;
   return [
     { description: `The critical points are ${rootDescription}.` },
-    { description: `Test points ${formatPoints(points)} give signs ${formatSigns(signs)} from left to right.` },
+    {
+      description: `Test points ${formatPoints(points)} give signs ${formatSigns(signs)} from left to right.`,
+    },
     { description: endpointRule },
     { description: `Therefore, the solution is ${solution}.` },
   ];
 }
 
-export function generateTopic15PolynomialInequality(seed: number): Topic15PolynomialInequalityVariant {
+export function generateTopic15PolynomialInequality(
+  seed: number,
+): Topic15PolynomialInequalityVariant {
   validateSeed(seed);
   const variant = buildVariant(seed);
   return {
@@ -298,7 +318,7 @@ export function generateTopic15PolynomialInequalityOutput(seed: number): Generat
         expression: variant.expression,
         operator: variant.operator,
         distinctRootCount: variant.distinctRootCount,
-        presentationMode: 'independent_practice',
+        presentationMode: "independent_practice",
       },
     },
     expectedAnswer,
@@ -306,7 +326,7 @@ export function generateTopic15PolynomialInequalityOutput(seed: number): Generat
     gradingMetadata: {
       partAnswers: expectedAnswer,
       partMaxScores: { roots: 1, intervalSigns: 1, solution: 1 },
-      partGradingRules: { roots: 'custom', intervalSigns: 'exact_match', solution: 'custom' },
+      partGradingRules: { roots: "custom", intervalSigns: "exact_match", solution: "custom" },
     },
   };
 }

@@ -1,1 +1,1 @@
-export { getTeacherData as getTeacherDashboardData } from './course';
+export { getTeacherData as getTeacherDashboardData } from "./course";

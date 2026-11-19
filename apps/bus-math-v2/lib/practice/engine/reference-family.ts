@@ -4,4 +4,4 @@ export {
   type AccountingEquationConfig,
   type AccountingEquationDefinition,
   type AccountingEquationResponse,
-} from './families/accounting-equation';
+} from "./families/accounting-equation";

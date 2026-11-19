@@ -133,9 +133,7 @@
         "apps/integrated-math-3",
         "apps/pre-calculus"
       ],
-      "families_touched": [
-        "vinext"
-      ],
+      "families_touched": ["vinext"],
       "results": {
         "lint": {
           "exit_status": 0
@@ -159,10 +157,7 @@
         "apps/integrated-math-3",
         "apps/pre-calculus"
       ],
-      "families_touched": [
-        "vite",
-        "@vitejs/plugin-react"
-      ],
+      "families_touched": ["vite", "@vitejs/plugin-react"],
       "results": {
         "lint": {
           "exit_status": 0
@@ -186,10 +181,7 @@
         "apps/integrated-math-3",
         "apps/pre-calculus"
       ],
-      "families_touched": [
-        "next",
-        "eslint-config-next"
-      ],
+      "families_touched": ["next", "eslint-config-next"],
       "results": {
         "lint": {
           "exit_status": 1,
@@ -214,11 +206,7 @@
         "apps/integrated-math-3",
         "apps/pre-calculus"
       ],
-      "families_touched": [
-        "typescript",
-        "eslint",
-        "@eslint/js"
-      ],
+      "families_touched": ["typescript", "eslint", "@eslint/js"],
       "tsc_and_vitest_required": true,
       "results": {
         "lint": {

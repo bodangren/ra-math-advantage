@@ -1,5 +1,5 @@
-import type { SrsCardState, SrsReviewLogEntry, SrsRating } from './contract';
-import { validateSrsTransition } from './transition-validator';
+import type { SrsCardState, SrsReviewLogEntry, SrsRating } from "./contract";
+import { validateSrsTransition } from "./transition-validator";
 
 /**
  * Generate a unique card ID using crypto-safe random bytes.
@@ -8,8 +8,8 @@ function generateCardId(): string {
   const bytes = new Uint8Array(16);
   crypto.getRandomValues(bytes);
   const hex = Array.from(bytes)
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
   return `card_${hex}`;
 }
 
@@ -20,8 +20,8 @@ function generateReviewId(): string {
   const bytes = new Uint8Array(16);
   crypto.getRandomValues(bytes);
   const hex = Array.from(bytes)
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
   return `review_${hex}`;
 }
 
@@ -40,19 +40,17 @@ function generateReviewId(): string {
  * });
  * ```
  */
-export function createMockSrsCard(
-  overrides: Partial<SrsCardState> = {},
-): SrsCardState {
+export function createMockSrsCard(overrides: Partial<SrsCardState> = {}): SrsCardState {
   const now = new Date().toISOString();
 
   return {
     cardId: generateCardId(),
-    studentId: 'mock-student',
-    objectiveId: 'mock-objective',
-    variantKey: 'mock-family',
+    studentId: "mock-student",
+    objectiveId: "mock-objective",
+    variantKey: "mock-family",
     stability: 0,
     difficulty: 0,
-    state: 'new',
+    state: "new",
     dueDate: now,
     elapsedDays: 0,
     scheduledDays: 0,
@@ -83,30 +81,30 @@ export function createMockSrsReviewLog(
 ): SrsReviewLogEntry {
   const now = new Date().toISOString();
 
-  const defaultEvidence: SrsReviewLogEntry['evidence'] = {
-    baseRating: 'Good' as SrsRating,
+  const defaultEvidence: SrsReviewLogEntry["evidence"] = {
+    baseRating: "Good" as SrsRating,
     timingAdjusted: false,
-    reasons: ['correct'],
+    reasons: ["correct"],
   };
 
   const entry: SrsReviewLogEntry = {
     reviewId: generateReviewId(),
-    cardId: 'mock-card',
-    studentId: 'mock-student',
-    rating: 'Good',
-    submissionId: 'mock-submission',
+    cardId: "mock-card",
+    studentId: "mock-student",
+    rating: "Good",
+    submissionId: "mock-submission",
     evidence: defaultEvidence,
     stateBefore: {
       stability: 0,
       difficulty: 0,
-      state: 'new',
+      state: "new",
       reps: 0,
       lapses: 0,
     },
     stateAfter: {
       stability: 1,
       difficulty: 0,
-      state: 'learning',
+      state: "learning",
       reps: 1,
       lapses: 0,
     },
@@ -115,7 +113,7 @@ export function createMockSrsReviewLog(
   };
 
   // Validate transition invariants unless this is a teacher reset (administrative override).
-  if (!('action' in entry.evidence)) {
+  if (!("action" in entry.evidence)) {
     validateSrsTransition(entry.stateBefore, entry.stateAfter);
   }
 

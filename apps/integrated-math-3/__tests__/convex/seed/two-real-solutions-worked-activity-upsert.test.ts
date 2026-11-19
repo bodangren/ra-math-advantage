@@ -1,36 +1,35 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import type { Id } from '@/convex/_generated/dataModel';
-import {
-  buildIm3TwoRealSolutionsWorkedSeedDocument,
-} from '@/convex/seed/seed_lesson_1_2';
-import * as seedLesson12 from '@/convex/seed/seed_lesson_1_2';
+import type { Id } from "@/convex/_generated/dataModel";
+import { buildIm3TwoRealSolutionsWorkedSeedDocument } from "@/convex/seed/seed_lesson_1_2";
+import * as seedLesson12 from "@/convex/seed/seed_lesson_1_2";
 import {
   IM3_TWO_REAL_SOLUTIONS_NODE,
   IM3_TWO_REAL_SOLUTIONS_WORKED_ACTIVITY_ID,
-} from '@/lib/practice/learning-evidence-pilot';
+} from "@/lib/practice/learning-evidence-pilot";
 
-type OptionalWorkedUpsert = ((ctx: never, now: number) => Promise<Id<'activities'>>) | undefined;
+type OptionalWorkedUpsert = ((ctx: never, now: number) => Promise<Id<"activities">>) | undefined;
 
-describe('IM3 two-real-solutions Worked activity upsert', () => {
-  it('upserts the two-real-solutions Worked activity by stable identity and preserves createdAt', async () => {
+describe("IM3 two-real-solutions Worked activity upsert", () => {
+  it("upserts the two-real-solutions Worked activity by stable identity and preserves createdAt", async () => {
     const upsertWorkedActivity = (
       seedLesson12 as { upsertIm3TwoRealSolutionsWorkedActivity?: OptionalWorkedUpsert }
     ).upsertIm3TwoRealSolutionsWorkedActivity;
-    expect(typeof upsertWorkedActivity).toBe('function');
-    if (typeof upsertWorkedActivity !== 'function') return;
+    expect(typeof upsertWorkedActivity).toBe("function");
+    if (typeof upsertWorkedActivity !== "function") return;
 
     const operations: string[] = [];
     let stored: Record<string, unknown> | undefined;
-    const storedActivityId = 'activities:two-real-solutions-worked' as Id<'activities'>;
+    const storedActivityId = "activities:two-real-solutions-worked" as Id<"activities">;
     const ctx = {
       db: {
         query(table: string) {
           operations.push(`query:${table}`);
           return {
-            withIndex(index: string, callback: (query: {
-              eq: (field: string, value: unknown) => unknown;
-            }) => unknown) {
+            withIndex(
+              index: string,
+              callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+            ) {
               operations.push(`index:${index}`);
               callback({
                 eq: (field: string, value: unknown) => {
@@ -40,7 +39,7 @@ describe('IM3 two-real-solutions Worked activity upsert', () => {
               });
               return {
                 unique: async () => {
-                  operations.push('unique');
+                  operations.push("unique");
                   return stored ? { ...stored, _id: storedActivityId } : null;
                 },
               };
@@ -52,7 +51,7 @@ describe('IM3 two-real-solutions Worked activity upsert', () => {
           stored = { ...document, _id: storedActivityId };
           return storedActivityId;
         },
-        patch: async (id: Id<'activities'>, document: Record<string, unknown>) => {
+        patch: async (id: Id<"activities">, document: Record<string, unknown>) => {
           operations.push(`patch:${id}`);
           stored = { ...stored, ...document, _id: id };
         },
@@ -65,15 +64,15 @@ describe('IM3 two-real-solutions Worked activity upsert', () => {
     expect(firstId).toBe(storedActivityId);
     expect(secondId).toBe(storedActivityId);
     expect(operations).toEqual([
-      'query:activities',
-      'index:by_stable_activity_id',
+      "query:activities",
+      "index:by_stable_activity_id",
       `eq:stableActivityId:${IM3_TWO_REAL_SOLUTIONS_WORKED_ACTIVITY_ID}`,
-      'unique',
-      'insert:activities',
-      'query:activities',
-      'index:by_stable_activity_id',
+      "unique",
+      "insert:activities",
+      "query:activities",
+      "index:by_stable_activity_id",
       `eq:stableActivityId:${IM3_TWO_REAL_SOLUTIONS_WORKED_ACTIVITY_ID}`,
-      'unique',
+      "unique",
       `patch:${storedActivityId}`,
     ]);
     expect(stored).toEqual({
@@ -84,11 +83,14 @@ describe('IM3 two-real-solutions Worked activity upsert', () => {
     expect(stored).toMatchObject({
       stableActivityId: IM3_TWO_REAL_SOLUTIONS_WORKED_ACTIVITY_ID,
       masteryNodeId: IM3_TWO_REAL_SOLUTIONS_NODE,
-      learningEvidenceMode: 'worked_example',
+      learningEvidenceMode: "worked_example",
       srsEligible: false,
     });
-    expect(operations.filter((operation) => (
-      operation.includes('practice_variants') || operation.includes('practice_items')
-    ))).toEqual([]);
+    expect(
+      operations.filter(
+        (operation) =>
+          operation.includes("practice_variants") || operation.includes("practice_items"),
+      ),
+    ).toEqual([]);
   });
 });

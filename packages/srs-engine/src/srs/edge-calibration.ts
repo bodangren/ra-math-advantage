@@ -23,16 +23,16 @@
  * - `refuted`   — evidence contradicts the authored edge
  * - `untested`  — no student has attempted B without a verdict on A (confounding guardrail)
  */
-export type CalibrationStatus = 'confirmed' | 'refuted' | 'untested';
+export type CalibrationStatus = "confirmed" | "refuted" | "untested";
 
 /**
  * Readonly tuple of all valid `CalibrationStatus` values.
  * Used for exhaustive iteration and runtime validation.
  */
 export const CALIBRATION_STATUS_VALUES: readonly CalibrationStatus[] = [
-  'confirmed',
-  'refuted',
-  'untested',
+  "confirmed",
+  "refuted",
+  "untested",
 ] as const;
 
 // ============================================
@@ -94,7 +94,7 @@ export type EdgeCalibration = {
  * contingency tables before they are used: v2 counted the curriculum-heavy
  * proficient-A row and therefore produced systematically inflated values.
  */
-export const EDGE_CALIBRATION_POSTERIOR_VERSION = 'edge-calibration.v3' as const;
+export const EDGE_CALIBRATION_POSTERIOR_VERSION = "edge-calibration.v3" as const;
 
 /**
  * Identify stored calibration values that cannot be trusted under v3.
@@ -110,7 +110,7 @@ export function requiresPosteriorRecompute(posteriorVersion?: string): boolean {
 // ============================================
 
 /** Fixed overall-proficiency bands used to audit self-selection bias. */
-export type AbilityTercile = 'low' | 'mid' | 'high';
+export type AbilityTercile = "low" | "mid" | "high";
 
 /** A paired edge observation with ability measured at observation time. */
 export type AbilityCalibrationObservation = CalibrationObservation & {
@@ -126,9 +126,7 @@ export type AbilityBandCalibrationSummary = {
 };
 
 /** Why ability adjustment could not preserve the pooled edge verdict. */
-export type AbilityStratificationReason =
-  | 'insufficient_ability_bands'
-  | 'confounded_by_ability';
+export type AbilityStratificationReason = "insufficient_ability_bands" | "confounded_by_ability";
 
 /** Result of checking a pooled calibration verdict across ability bands. */
 export type AbilityStratifiedCalibrationResult = {
@@ -138,7 +136,7 @@ export type AbilityStratifiedCalibrationResult = {
   bands: AbilityBandCalibrationSummary[];
 };
 
-const ABILITY_TERCILES: readonly AbilityTercile[] = ['low', 'mid', 'high'];
+const ABILITY_TERCILES: readonly AbilityTercile[] = ["low", "mid", "high"];
 const MID_ABILITY_BOUNDARY = 1 / 3;
 const HIGH_ABILITY_BOUNDARY = 2 / 3;
 const MIN_NOT_PROFICIENT_A_PER_BAND = 5;
@@ -154,28 +152,28 @@ const MAX_ABILITY_BAND_POSTERIOR_SPREAD = 0.2;
  * @throws {RangeError} - When the rate is non-finite or outside [0, 1]
  */
 export function assignAbilityTercile(overallProficiencyRate: number): AbilityTercile {
-  if (!Number.isFinite(overallProficiencyRate)
-    || overallProficiencyRate < 0
-    || overallProficiencyRate > 1) {
-    throw new RangeError('overallProficiencyRate must be finite and within [0, 1]');
+  if (
+    !Number.isFinite(overallProficiencyRate) ||
+    overallProficiencyRate < 0 ||
+    overallProficiencyRate > 1
+  ) {
+    throw new RangeError("overallProficiencyRate must be finite and within [0, 1]");
   }
 
-  if (overallProficiencyRate < MID_ABILITY_BOUNDARY) return 'low';
-  if (overallProficiencyRate < HIGH_ABILITY_BOUNDARY) return 'mid';
-  return 'high';
+  if (overallProficiencyRate < MID_ABILITY_BOUNDARY) return "low";
+  if (overallProficiencyRate < HIGH_ABILITY_BOUNDARY) return "mid";
+  return "high";
 }
 
-function assertAbilityCalibrationObservation(
-  observation: AbilityCalibrationObservation,
-): void {
-  if (observation === null || typeof observation !== 'object') {
-    throw new TypeError('ability calibration observations must be objects');
+function assertAbilityCalibrationObservation(observation: AbilityCalibrationObservation): void {
+  if (observation === null || typeof observation !== "object") {
+    throw new TypeError("ability calibration observations must be objects");
   }
-  if (typeof observation.studentId !== 'string' || observation.studentId.trim() === '') {
-    throw new TypeError('ability calibration observations require a studentId');
+  if (typeof observation.studentId !== "string" || observation.studentId.trim() === "") {
+    throw new TypeError("ability calibration observations require a studentId");
   }
-  if (typeof observation.a !== 'boolean' || typeof observation.b !== 'boolean') {
-    throw new TypeError('ability calibration observations require boolean a and b verdicts');
+  if (typeof observation.a !== "boolean" || typeof observation.b !== "boolean") {
+    throw new TypeError("ability calibration observations require boolean a and b verdicts");
   }
   assignAbilityTercile(observation.overallProficiencyRate);
 }
@@ -195,10 +193,10 @@ export function stratifyCalibrationByAbility(
   pooledStatus: CalibrationStatus,
 ): AbilityStratifiedCalibrationResult {
   if (!Array.isArray(observations)) {
-    throw new TypeError('observations must be an array');
+    throw new TypeError("observations must be an array");
   }
   if (!CALIBRATION_STATUS_VALUES.includes(pooledStatus)) {
-    throw new TypeError('pooledStatus must be a valid calibration status');
+    throw new TypeError("pooledStatus must be a valid calibration status");
   }
 
   const counts = new Map<AbilityTercile, { alpha: number; beta: number; count: number }>(
@@ -234,8 +232,8 @@ export function stratifyCalibrationByAbility(
 
   if (eligibleBands.length < 2) {
     return {
-      status: 'untested',
-      reason: 'insufficient_ability_bands',
+      status: "untested",
+      reason: "insufficient_ability_bands",
       eligibleBandCount: eligibleBands.length,
       bands,
     };
@@ -246,8 +244,8 @@ export function stratifyCalibrationByAbility(
   const boundaryTolerance = Number.EPSILON * 4;
   if (spread > MAX_ABILITY_BAND_POSTERIOR_SPREAD + boundaryTolerance) {
     return {
-      status: 'untested',
-      reason: 'confounded_by_ability',
+      status: "untested",
+      reason: "confounded_by_ability",
       eligibleBandCount: eligibleBands.length,
       bands,
     };
@@ -448,11 +446,7 @@ export function updatePosterior(
  * @param {number} now - Timestamp to set on the returned state
  * @returns {EdgeCalibration} - New calibration state with decayed alpha and beta
  */
-export function applyDecay(
-  state: EdgeCalibration,
-  lambda: number,
-  now: number,
-): EdgeCalibration {
+export function applyDecay(state: EdgeCalibration, lambda: number, now: number): EdgeCalibration {
   return {
     ...state,
     alpha: state.alpha * lambda,
@@ -472,15 +466,11 @@ export function applyDecay(
  * @param {number} beta - Optional beta parameter to detect zero-evidence case
  * @returns {string} - Bucket label: 'none', 'low', 'medium', or 'high'
  */
-export function bucketVariance(
-  variance: number,
-  alpha?: number,
-  beta?: number,
-): string {
-  if (alpha !== undefined && beta !== undefined && alpha + beta === 0) return 'none';
-  if (variance >= 0.2) return 'low';
-  if (variance >= 0.05) return 'medium';
-  return 'high';
+export function bucketVariance(variance: number, alpha?: number, beta?: number): string {
+  if (alpha !== undefined && beta !== undefined && alpha + beta === 0) return "none";
+  if (variance >= 0.2) return "low";
+  if (variance >= 0.05) return "medium";
+  return "high";
 }
 
 // ============================================
@@ -513,32 +503,27 @@ export type ReviewQueueBuildOptions = {
  * @param {EdgeCalibration} state - Current calibration state
  * @returns {EdgeCalibration} - Updated calibration with classified status
  */
-export function classifyStatus(
-  verdicts: VerdictMap,
-  state: EdgeCalibration,
-): EdgeCalibration {
+export function classifyStatus(verdicts: VerdictMap, state: EdgeCalibration): EdgeCalibration {
   const hasConfoundingBreaker = [...verdicts.values()].some(
     (v) => v.b !== undefined && v.a === undefined,
   );
 
-  const hasPairedObs = [...verdicts.values()].some(
-    (v) => v.a !== undefined && v.b !== undefined,
-  );
+  const hasPairedObs = [...verdicts.values()].some((v) => v.a !== undefined && v.b !== undefined);
 
   if (!hasConfoundingBreaker || !hasPairedObs) {
-    return { ...state, status: 'untested' };
+    return { ...state, status: "untested" };
   }
 
   const mean = posteriorMean(state.alpha, state.beta);
   const totalEvidence = state.alpha + state.beta;
 
   if (mean > 0.5 && totalEvidence > 2) {
-    return { ...state, status: 'confirmed' };
+    return { ...state, status: "confirmed" };
   }
   if (mean < 0.5 && totalEvidence > 2) {
-    return { ...state, status: 'refuted' };
+    return { ...state, status: "refuted" };
   }
-  return { ...state, status: 'untested' };
+  return { ...state, status: "untested" };
 }
 
 // ============================================
@@ -571,9 +556,9 @@ function confidenceOrdinal(conf: string): number {
  * @returns {string} - Confidence label: 'low', 'medium', or 'high'
  */
 function meanToConfidence(mean: number): string {
-  if (mean < 0.33) return 'low';
-  if (mean < 0.67) return 'medium';
-  return 'high';
+  if (mean < 0.33) return "low";
+  if (mean < 0.67) return "medium";
+  return "high";
 }
 
 /**
@@ -586,7 +571,7 @@ export function buildReviewQueueItem(
   input: ReviewQueueBuildInput,
   opts?: ReviewQueueBuildOptions,
 ): CalibrationReviewQueueItem | null {
-  if (input.calibration.status === 'untested') return null;
+  if (input.calibration.status === "untested") return null;
   if (input.derived && !opts?.includeDerived) return null;
 
   const weightThreshold = opts?.weightThreshold ?? DEFAULT_WEIGHT_THRESHOLD;

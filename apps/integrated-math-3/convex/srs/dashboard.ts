@@ -2,10 +2,7 @@ import { internalQuery, type QueryCtx } from "../_generated/server";
 import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
 import { resolveDailyPracticeQueueResult } from "../queue/queue";
-import {
-  getRuntimeModeHandler,
-  selectReviewLoadStateForRuntime,
-} from "./runtime";
+import { getRuntimeModeHandler, selectReviewLoadStateForRuntime } from "./runtime";
 
 const MAX_STREAK_SESSIONS = 400;
 
@@ -25,14 +22,11 @@ export function getDayStart(timestamp: number): number {
  * @param {number} now - The current timestamp in milliseconds
  * @returns {number} The number of consecutive days practiced
  */
-export function calculateStreak(
-  completedSessionTimestamps: number[],
-  now: number
-): number {
+export function calculateStreak(completedSessionTimestamps: number[], now: number): number {
   if (completedSessionTimestamps.length === 0) return 0;
 
   const uniqueDays = Array.from(
-    new Set(completedSessionTimestamps.map((ts) => getDayStart(ts)))
+    new Set(completedSessionTimestamps.map((ts) => getDayStart(ts))),
   ).sort((a, b) => b - a);
 
   const mostRecent = uniqueDays[0];
@@ -63,7 +57,7 @@ export function calculateStreak(
  */
 export async function getPracticeStatsHandler(
   ctx: QueryCtx,
-  args: { studentId: string; asOfDate?: string }
+  args: { studentId: string; asOfDate?: string },
 ) {
   const now = args.asOfDate ? new Date(args.asOfDate).getTime() : Date.now();
 
@@ -76,23 +70,17 @@ export async function getPracticeStatsHandler(
 
   const sessions = await ctx.db
     .query("srs_sessions")
-    .withIndex("by_student", (q) =>
-      q.eq("studentId", args.studentId as Id<"profiles">)
-    )
+    .withIndex("by_student", (q) => q.eq("studentId", args.studentId as Id<"profiles">))
     .order("desc")
     .take(MAX_STREAK_SESSIONS);
 
-  const completedSessions = sessions.filter(
-    (s) => s.completedAt !== undefined
-  );
+  const completedSessions = sessions.filter((s) => s.completedAt !== undefined);
 
   let lastPracticedAt: string | null = null;
   let streak = 0;
 
   if (completedSessions.length > 0) {
-    lastPracticedAt = new Date(
-      completedSessions[0].completedAt!
-    ).toISOString();
+    lastPracticedAt = new Date(completedSessions[0].completedAt!).toISOString();
 
     const completedTimestamps = completedSessions.map((s) => s.completedAt!);
     streak = calculateStreak(completedTimestamps, now);

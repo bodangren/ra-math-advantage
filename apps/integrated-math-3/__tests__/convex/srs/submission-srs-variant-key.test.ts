@@ -31,63 +31,62 @@
  * with a live-behavior proof or an explicit plan note saying which later role
  * owns the live gate").
  */
-import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 
 function readSubmissionSrsSource(): string {
   // apps/integrated-math-3/__tests__/convex/srs/submission-srs-variant-key.test.ts
   //   ^__tests__/convex/srs                 ^package root
-  const path = resolve(__dirname, '../../../convex/srs/submissionSrs.ts');
-  return readFileSync(path, 'utf-8');
+  const path = resolve(__dirname, "../../../convex/srs/submissionSrs.ts");
+  return readFileSync(path, "utf-8");
 }
 
-describe('convex/srs/submissionSrs.ts (artifact rename, FR1/FR5)', () => {
-  it('does not reference the legacy `problemFamilyId` identifier', () => {
+describe("convex/srs/submissionSrs.ts (artifact rename, FR1/FR5)", () => {
+  it("does not reference the legacy `problemFamilyId` identifier", () => {
     const content = readSubmissionSrsSource();
     expect(
       content,
-      'submissionSrs.ts must not reference the legacy problemFamilyId identifier',
+      "submissionSrs.ts must not reference the legacy problemFamilyId identifier",
     ).not.toMatch(/problemFamilyId/);
   });
 
-  it('does not reference the legacy PascalCase `ProblemFamily` identifier', () => {
+  it("does not reference the legacy PascalCase `ProblemFamily` identifier", () => {
     const content = readSubmissionSrsSource();
     expect(
       content,
-      'submissionSrs.ts must not reference the legacy ProblemFamily identifier',
+      "submissionSrs.ts must not reference the legacy ProblemFamily identifier",
     ).not.toMatch(/\bProblemFamily\b/);
   });
 
-  it('references the renamed `variantKey` identifier (positive contract, FR1)', () => {
+  it("references the renamed `variantKey` identifier (positive contract, FR1)", () => {
     const content = readSubmissionSrsSource();
-    expect(
-      content,
-      'submissionSrs.ts must reference the renamed variantKey identifier',
-    ).toMatch(/variantKey/);
+    expect(content, "submissionSrs.ts must reference the renamed variantKey identifier").toMatch(
+      /variantKey/,
+    );
   });
 
-  it('does not query the legacy `problem_families` Convex table', () => {
+  it("does not query the legacy `problem_families` Convex table", () => {
     const content = readSubmissionSrsSource();
     expect(
       content,
-      'submissionSrs.ts must not query the legacy problem_families table',
+      "submissionSrs.ts must not query the legacy problem_families table",
     ).not.toMatch(/problem_families/);
   });
 
-  it('does not reference the legacy `by_problemFamilyId` Convex index name', () => {
+  it("does not reference the legacy `by_problemFamilyId` Convex index name", () => {
     const content = readSubmissionSrsSource();
     expect(
       content,
-      'submissionSrs.ts must not reference the legacy by_problemFamilyId index name',
+      "submissionSrs.ts must not reference the legacy by_problemFamilyId index name",
     ).not.toMatch(/by_problemFamilyId/);
   });
 
-  it('does not reference the legacy `by_problem_family` Convex index name', () => {
+  it("does not reference the legacy `by_problem_family` Convex index name", () => {
     const content = readSubmissionSrsSource();
     expect(
       content,
-      'submissionSrs.ts must not reference the legacy by_problem_family index name',
+      "submissionSrs.ts must not reference the legacy by_problem_family index name",
     ).not.toMatch(/by_problem_family/);
   });
 });

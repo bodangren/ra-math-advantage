@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
 import {
   GraphingExplorerActivity as SharedGraphingExplorerActivity,
   type GraphingExplorerActivityProps as SharedGraphingExplorerActivityProps,
-} from '@math-platform/activity-components/graphing';
-import { IM3_MASTERY_ADVANTAGE_ACTIVITY_ID } from '../../../lib/practice/learning-evidence-pilot';
+} from "@math-platform/activity-components/graphing";
+import { IM3_MASTERY_ADVANTAGE_ACTIVITY_ID } from "../../../lib/practice/learning-evidence-pilot";
 
 export interface ActivityComponentProps extends SharedGraphingExplorerActivityProps {
   /** Stable activity identity supplied by the server-owned queue. */
@@ -55,11 +55,10 @@ export function GraphingExplorerActivity({
       comparisonQuestion={comparisonQuestion}
       comparisonAnswer={comparisonAnswer}
       linearEquation={linearEquation}
-      responseVariant={responseVariant ?? (
-        stableActivityId === IM3_MASTERY_ADVANTAGE_ACTIVITY_ID
-          ? 'table_graph'
-          : undefined
-      )}
+      responseVariant={
+        responseVariant ??
+        (stableActivityId === IM3_MASTERY_ADVANTAGE_ACTIVITY_ID ? "table_graph" : undefined)
+      }
       vertex={vertex}
       yIntercept={yIntercept}
       sum={sum}

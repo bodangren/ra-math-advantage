@@ -23,18 +23,18 @@
  *     shared state) so N+1 protection at the persistence layer is
  *     enforceable.
  */
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 import type {
   CalibrationObservation,
   CalibrationReviewQueueItem,
   EdgeCalibration,
-} from '../srs/edge-calibration';
+} from "../srs/edge-calibration";
 import {
   buildReviewQueueItem,
   buildReviewQueue,
   type ReviewQueueBuildInput,
   type ReviewQueueBuildOptions,
-} from '../srs/edge-calibration';
+} from "../srs/edge-calibration";
 
 // ---------------------------------------------------------------------------
 // Factories
@@ -47,10 +47,10 @@ import {
  */
 function makeCalibration(overrides: Partial<EdgeCalibration> = {}): EdgeCalibration {
   return {
-    edgeId: 'edge.prereq.a-to-b',
+    edgeId: "edge.prereq.a-to-b",
     alpha: 1,
     beta: 1,
-    status: 'untested',
+    status: "untested",
     lastUpdated: 1700000000000,
     ...overrides,
   };
@@ -63,7 +63,7 @@ function makeCalibration(overrides: Partial<EdgeCalibration> = {}): EdgeCalibrat
  * @returns {CalibrationObservation} - CalibrationObservation with a fixed student ID
  */
 function makeObs(a: boolean, b: boolean): CalibrationObservation {
-  return { studentId: 's', a, b };
+  return { studentId: "s", a, b };
 }
 
 /**
@@ -73,10 +73,10 @@ function makeObs(a: boolean, b: boolean): CalibrationObservation {
  */
 function makeInput(overrides: Partial<ReviewQueueBuildInput> = {}): ReviewQueueBuildInput {
   return {
-    edgeId: 'edge.prereq.a-to-b',
+    edgeId: "edge.prereq.a-to-b",
     authoredWeight: 0.9,
-    authoredConfidence: 'high',
-    calibration: makeCalibration({ alpha: 8, beta: 2, status: 'confirmed' }),
+    authoredConfidence: "high",
+    calibration: makeCalibration({ alpha: 8, beta: 2, status: "confirmed" }),
     observations: [
       makeObs(true, true),
       makeObs(true, true),
@@ -91,40 +91,40 @@ function makeInput(overrides: Partial<ReviewQueueBuildInput> = {}): ReviewQueueB
 // Task 3.1 — buildReviewQueueItem: divergence flagging
 // ---------------------------------------------------------------------------
 
-describe('buildReviewQueueItem (FR6, AC6)', () => {
-  it('returns a CalibrationReviewQueueItem when the calibrated weight diverges from the authored weight beyond the default threshold', () => {
+describe("buildReviewQueueItem (FR6, AC6)", () => {
+  it("returns a CalibrationReviewQueueItem when the calibrated weight diverges from the authored weight beyond the default threshold", () => {
     const input = makeInput({
-      edgeId: 'edge.weight-diverges',
+      edgeId: "edge.weight-diverges",
       authoredWeight: 0.9,
-      authoredConfidence: 'high',
+      authoredConfidence: "high",
       calibration: makeCalibration({
-        edgeId: 'edge.weight-diverges',
+        edgeId: "edge.weight-diverges",
         alpha: 2,
         beta: 8,
-        status: 'refuted',
+        status: "refuted",
       }),
     });
 
     const item = buildReviewQueueItem(input);
     expect(item).not.toBeNull();
-    expect(item!.edgeId).toBe('edge.weight-diverges');
+    expect(item!.edgeId).toBe("edge.weight-diverges");
     expect(item!.authoredWeight).toBe(0.9);
-    expect(item!.authoredConfidence).toBe('high');
+    expect(item!.authoredConfidence).toBe("high");
     expect(item!.calibratedWeight).toBeCloseTo(0.2, 5);
-    expect(item!.calibratedConfidence).toBe('low');
+    expect(item!.calibratedConfidence).toBe("low");
     expect(item!.divergence).toBeGreaterThan(0);
   });
 
-  it('returns null when the calibrated posterior matches the authored weight within the default threshold', () => {
+  it("returns null when the calibrated posterior matches the authored weight within the default threshold", () => {
     const input = makeInput({
-      edgeId: 'edge.matches',
+      edgeId: "edge.matches",
       authoredWeight: 0.8,
-      authoredConfidence: 'high',
+      authoredConfidence: "high",
       calibration: makeCalibration({
-        edgeId: 'edge.matches',
+        edgeId: "edge.matches",
         alpha: 8,
         beta: 2,
-        status: 'confirmed',
+        status: "confirmed",
       }),
     });
 
@@ -132,16 +132,16 @@ describe('buildReviewQueueItem (FR6, AC6)', () => {
     expect(item).toBeNull();
   });
 
-  it('returns null for an `untested` edge (FR5 confounding guardrail — no posterior to diverge from)', () => {
+  it("returns null for an `untested` edge (FR5 confounding guardrail — no posterior to diverge from)", () => {
     const input = makeInput({
-      edgeId: 'edge.untested',
+      edgeId: "edge.untested",
       authoredWeight: 0.9,
-      authoredConfidence: 'high',
+      authoredConfidence: "high",
       calibration: makeCalibration({
-        edgeId: 'edge.untested',
+        edgeId: "edge.untested",
         alpha: 0,
         beta: 0,
-        status: 'untested',
+        status: "untested",
       }),
     });
 
@@ -149,9 +149,9 @@ describe('buildReviewQueueItem (FR6, AC6)', () => {
     expect(item).toBeNull();
   });
 
-  it('attaches the full contingency table derived from the provided observations', () => {
+  it("attaches the full contingency table derived from the provided observations", () => {
     const input = makeInput({
-      edgeId: 'edge.observed',
+      edgeId: "edge.observed",
       observations: [
         makeObs(true, true),
         makeObs(true, true),
@@ -161,12 +161,12 @@ describe('buildReviewQueueItem (FR6, AC6)', () => {
         makeObs(false, false),
       ],
       authoredWeight: 0.9,
-      authoredConfidence: 'high',
+      authoredConfidence: "high",
       calibration: makeCalibration({
-        edgeId: 'edge.observed',
+        edgeId: "edge.observed",
         alpha: 2,
         beta: 8,
-        status: 'refuted',
+        status: "refuted",
       }),
     });
 
@@ -180,9 +180,9 @@ describe('buildReviewQueueItem (FR6, AC6)', () => {
     });
   });
 
-  it('exposes necessity and informativeness computed from the contingency table (FR2)', () => {
+  it("exposes necessity and informativeness computed from the contingency table (FR2)", () => {
     const input = makeInput({
-      edgeId: 'edge.fr2',
+      edgeId: "edge.fr2",
       observations: [
         makeObs(true, true),
         makeObs(true, true),
@@ -195,12 +195,12 @@ describe('buildReviewQueueItem (FR6, AC6)', () => {
         makeObs(false, false),
       ],
       authoredWeight: 0.9,
-      authoredConfidence: 'high',
+      authoredConfidence: "high",
       calibration: makeCalibration({
-        edgeId: 'edge.fr2',
+        edgeId: "edge.fr2",
         alpha: 2,
         beta: 8,
-        status: 'refuted',
+        status: "refuted",
       }),
     });
 
@@ -212,7 +212,7 @@ describe('buildReviewQueueItem (FR6, AC6)', () => {
     expect(item!.informativeness).toBeCloseTo(1 / 2, 5);
   });
 
-  it('records the flaggedAt timestamp from the `now` option (default falls back to Date.now())', () => {
+  it("records the flaggedAt timestamp from the `now` option (default falls back to Date.now())", () => {
     const input = makeInput();
     const item = buildReviewQueueItem(input, { now: 1_700_000_000_000 });
     expect(item).not.toBeNull();
@@ -231,19 +231,19 @@ describe('buildReviewQueueItem (FR6, AC6)', () => {
 // Task 3.2 — Divergence threshold (FR6): boundary tests on both axes
 // ---------------------------------------------------------------------------
 
-describe('divergence threshold (FR6) — boundary tests', () => {
-  it('flags when weight divergence strictly exceeds the weight threshold (off-by-one guard)', () => {
+describe("divergence threshold (FR6) — boundary tests", () => {
+  it("flags when weight divergence strictly exceeds the weight threshold (off-by-one guard)", () => {
     // authored 0.5 vs calibrated 0.75 → |0.25| > 0.2 → flag
     const over = buildReviewQueueItem(
       makeInput({
-        edgeId: 'edge.weight-over',
+        edgeId: "edge.weight-over",
         authoredWeight: 0.5,
-        authoredConfidence: 'medium',
+        authoredConfidence: "medium",
         calibration: makeCalibration({
-          edgeId: 'edge.weight-over',
+          edgeId: "edge.weight-over",
           alpha: 3,
           beta: 1,
-          status: 'confirmed',
+          status: "confirmed",
         }),
       }),
       { weightThreshold: 0.2, confidenceThreshold: 1.1 },
@@ -251,18 +251,18 @@ describe('divergence threshold (FR6) — boundary tests', () => {
     expect(over).not.toBeNull();
   });
 
-  it('does not flag when weight divergence is exactly at the threshold (inclusive lower bound)', () => {
+  it("does not flag when weight divergence is exactly at the threshold (inclusive lower bound)", () => {
     // authored 0.5 vs calibrated 0.7 → |0.2| === 0.2 → not flagged
     const exact = buildReviewQueueItem(
       makeInput({
-        edgeId: 'edge.weight-exact',
+        edgeId: "edge.weight-exact",
         authoredWeight: 0.5,
-        authoredConfidence: 'medium',
+        authoredConfidence: "medium",
         calibration: makeCalibration({
-          edgeId: 'edge.weight-exact',
+          edgeId: "edge.weight-exact",
           alpha: 7,
           beta: 3,
-          status: 'confirmed',
+          status: "confirmed",
         }),
       }),
       { weightThreshold: 0.2, confidenceThreshold: 1.1 },
@@ -270,17 +270,17 @@ describe('divergence threshold (FR6) — boundary tests', () => {
     expect(exact).toBeNull();
   });
 
-  it('does not flag when weight divergence is below the threshold', () => {
+  it("does not flag when weight divergence is below the threshold", () => {
     const below = buildReviewQueueItem(
       makeInput({
-        edgeId: 'edge.weight-below',
+        edgeId: "edge.weight-below",
         authoredWeight: 0.5,
-        authoredConfidence: 'medium',
+        authoredConfidence: "medium",
         calibration: makeCalibration({
-          edgeId: 'edge.weight-below',
+          edgeId: "edge.weight-below",
           alpha: 6,
           beta: 4,
-          status: 'confirmed',
+          status: "confirmed",
         }),
       }),
       { weightThreshold: 0.2, confidenceThreshold: 1.1 },
@@ -288,18 +288,18 @@ describe('divergence threshold (FR6) — boundary tests', () => {
     expect(below).toBeNull();
   });
 
-  it('flags when confidence ordinal distance exceeds the confidence threshold (independent axis)', () => {
+  it("flags when confidence ordinal distance exceeds the confidence threshold (independent axis)", () => {
     // weight matches but confidence diverges: 'low' vs 'high' → distance 2/2 = 1
     const conf = buildReviewQueueItem(
       makeInput({
-        edgeId: 'edge.conf-diverges',
+        edgeId: "edge.conf-diverges",
         authoredWeight: 0.6,
-        authoredConfidence: 'high',
+        authoredConfidence: "high",
         calibration: makeCalibration({
-          edgeId: 'edge.conf-diverges',
+          edgeId: "edge.conf-diverges",
           alpha: 6,
           beta: 4,
-          status: 'confirmed',
+          status: "confirmed",
         }),
       }),
       { weightThreshold: 0.5, confidenceThreshold: 0.5 },
@@ -307,17 +307,17 @@ describe('divergence threshold (FR6) — boundary tests', () => {
     expect(conf).not.toBeNull();
   });
 
-  it('does not flag when both weight and confidence divergences are within thresholds', () => {
+  it("does not flag when both weight and confidence divergences are within thresholds", () => {
     const ok = buildReviewQueueItem(
       makeInput({
-        edgeId: 'edge.in-bounds',
+        edgeId: "edge.in-bounds",
         authoredWeight: 0.6,
-        authoredConfidence: 'medium',
+        authoredConfidence: "medium",
         calibration: makeCalibration({
-          edgeId: 'edge.in-bounds',
+          edgeId: "edge.in-bounds",
           alpha: 6,
           beta: 4,
-          status: 'confirmed',
+          status: "confirmed",
         }),
       }),
       { weightThreshold: 0.2, confidenceThreshold: 0.5 },
@@ -325,17 +325,17 @@ describe('divergence threshold (FR6) — boundary tests', () => {
     expect(ok).toBeNull();
   });
 
-  it('reports the actual numeric divergence on the returned queue item', () => {
+  it("reports the actual numeric divergence on the returned queue item", () => {
     const item = buildReviewQueueItem(
       makeInput({
-        edgeId: 'edge.divergence-magnitude',
+        edgeId: "edge.divergence-magnitude",
         authoredWeight: 0.9,
-        authoredConfidence: 'high',
+        authoredConfidence: "high",
         calibration: makeCalibration({
-          edgeId: 'edge.divergence-magnitude',
+          edgeId: "edge.divergence-magnitude",
           alpha: 1,
           beta: 9,
-          status: 'refuted',
+          status: "refuted",
         }),
       }),
       { weightThreshold: 0.2, confidenceThreshold: 0.5 },
@@ -350,18 +350,18 @@ describe('divergence threshold (FR6) — boundary tests', () => {
 // Task 3.3 — derived edges: exclude or flag separately
 // ---------------------------------------------------------------------------
 
-describe('derived edges (KnowledgeSpaceEdge.derived)', () => {
-  it('skips a derived edge by default (human-authored edges are what the review queue surfaces)', () => {
+describe("derived edges (KnowledgeSpaceEdge.derived)", () => {
+  it("skips a derived edge by default (human-authored edges are what the review queue surfaces)", () => {
     const input = makeInput({
-      edgeId: 'edge.derived',
+      edgeId: "edge.derived",
       derived: true,
       authoredWeight: 0.9,
-      authoredConfidence: 'high',
+      authoredConfidence: "high",
       calibration: makeCalibration({
-        edgeId: 'edge.derived',
+        edgeId: "edge.derived",
         alpha: 1,
         beta: 9,
-        status: 'refuted',
+        status: "refuted",
       }),
     });
 
@@ -369,23 +369,23 @@ describe('derived edges (KnowledgeSpaceEdge.derived)', () => {
     expect(item).toBeNull();
   });
 
-  it('includes a derived edge when `includeDerived` is true (opt-in flagging)', () => {
+  it("includes a derived edge when `includeDerived` is true (opt-in flagging)", () => {
     const input = makeInput({
-      edgeId: 'edge.derived-included',
+      edgeId: "edge.derived-included",
       derived: true,
       authoredWeight: 0.9,
-      authoredConfidence: 'high',
+      authoredConfidence: "high",
       calibration: makeCalibration({
-        edgeId: 'edge.derived-included',
+        edgeId: "edge.derived-included",
         alpha: 1,
         beta: 9,
-        status: 'refuted',
+        status: "refuted",
       }),
     });
 
     const item = buildReviewQueueItem(input, { includeDerived: true });
     expect(item).not.toBeNull();
-    expect(item!.edgeId).toBe('edge.derived-included');
+    expect(item!.edgeId).toBe("edge.derived-included");
   });
 });
 
@@ -393,45 +393,45 @@ describe('derived edges (KnowledgeSpaceEdge.derived)', () => {
 // Task 3.4 — buildReviewQueue: batch builder
 // ---------------------------------------------------------------------------
 
-describe('buildReviewQueue (batch)', () => {
-  it('returns an empty array when given no inputs', () => {
+describe("buildReviewQueue (batch)", () => {
+  it("returns an empty array when given no inputs", () => {
     const queue = buildReviewQueue([]);
     expect(queue).toEqual([]);
   });
 
-  it('returns a queue item for each input whose posterior diverges from its authored values', () => {
+  it("returns a queue item for each input whose posterior diverges from its authored values", () => {
     const inputs: ReviewQueueBuildInput[] = [
       makeInput({
-        edgeId: 'edge.flag-1',
+        edgeId: "edge.flag-1",
         authoredWeight: 0.9,
-        authoredConfidence: 'high',
+        authoredConfidence: "high",
         calibration: makeCalibration({
-          edgeId: 'edge.flag-1',
+          edgeId: "edge.flag-1",
           alpha: 1,
           beta: 9,
-          status: 'refuted',
+          status: "refuted",
         }),
       }),
       makeInput({
-        edgeId: 'edge.ok',
+        edgeId: "edge.ok",
         authoredWeight: 0.6,
-        authoredConfidence: 'medium',
+        authoredConfidence: "medium",
         calibration: makeCalibration({
-          edgeId: 'edge.ok',
+          edgeId: "edge.ok",
           alpha: 6,
           beta: 4,
-          status: 'confirmed',
+          status: "confirmed",
         }),
       }),
       makeInput({
-        edgeId: 'edge.flag-2',
+        edgeId: "edge.flag-2",
         authoredWeight: 0.3,
-        authoredConfidence: 'low',
+        authoredConfidence: "low",
         calibration: makeCalibration({
-          edgeId: 'edge.flag-2',
+          edgeId: "edge.flag-2",
           alpha: 9,
           beta: 1,
-          status: 'confirmed',
+          status: "confirmed",
         }),
       }),
     ];
@@ -439,71 +439,71 @@ describe('buildReviewQueue (batch)', () => {
     const queue = buildReviewQueue(inputs);
     expect(queue).toHaveLength(2);
     const ids = queue.map((q) => q.edgeId).sort();
-    expect(ids).toEqual(['edge.flag-1', 'edge.flag-2']);
+    expect(ids).toEqual(["edge.flag-1", "edge.flag-2"]);
   });
 
-  it('is a pure mapping: does not mutate any input', () => {
+  it("is a pure mapping: does not mutate any input", () => {
     const inputs: ReviewQueueBuildInput[] = [
-      makeInput({ edgeId: 'edge.a' }),
-      makeInput({ edgeId: 'edge.b' }),
+      makeInput({ edgeId: "edge.a" }),
+      makeInput({ edgeId: "edge.b" }),
     ];
     const snapshot = JSON.stringify(inputs);
     buildReviewQueue(inputs);
     expect(JSON.stringify(inputs)).toBe(snapshot);
   });
 
-  it('produces queue items in the order their inputs were provided (stable for audit replay)', () => {
+  it("produces queue items in the order their inputs were provided (stable for audit replay)", () => {
     const inputs: ReviewQueueBuildInput[] = [
       makeInput({
-        edgeId: 'edge.first',
+        edgeId: "edge.first",
         authoredWeight: 0.9,
-        authoredConfidence: 'high',
+        authoredConfidence: "high",
         calibration: makeCalibration({
-          edgeId: 'edge.first',
+          edgeId: "edge.first",
           alpha: 1,
           beta: 9,
-          status: 'refuted',
+          status: "refuted",
         }),
       }),
       makeInput({
-        edgeId: 'edge.second',
+        edgeId: "edge.second",
         authoredWeight: 0.2,
-        authoredConfidence: 'low',
+        authoredConfidence: "low",
         calibration: makeCalibration({
-          edgeId: 'edge.second',
+          edgeId: "edge.second",
           alpha: 9,
           beta: 1,
-          status: 'confirmed',
+          status: "confirmed",
         }),
       }),
     ];
 
     const queue = buildReviewQueue(inputs);
-    expect(queue.map((q) => q.edgeId)).toEqual(['edge.first', 'edge.second']);
+    expect(queue.map((q) => q.edgeId)).toEqual(["edge.first", "edge.second"]);
   });
 
-  it('propagates a shared options object to every input (single threshold applies to the batch)', () => {
+  it("propagates a shared options object to every input (single threshold applies to the batch)", () => {
     const inputs: ReviewQueueBuildInput[] = [
       makeInput({
-        edgeId: 'edge.tight',
+        edgeId: "edge.tight",
         authoredWeight: 0.6,
-        authoredConfidence: 'medium',
+        authoredConfidence: "medium",
         calibration: makeCalibration({
-          edgeId: 'edge.tight',
+          edgeId: "edge.tight",
           alpha: 7,
           beta: 3,
-          status: 'confirmed',
+          status: "confirmed",
         }),
       }),
       makeInput({
-        edgeId: 'edge.tight-2',
+        edgeId: "edge.tight-2",
         authoredWeight: 0.6,
-        authoredConfidence: 'medium',
+        authoredConfidence: "medium",
         calibration: makeCalibration({
-          edgeId: 'edge.tight-2',
+          edgeId: "edge.tight-2",
           alpha: 7,
           beta: 3,
-          status: 'confirmed',
+          status: "confirmed",
         }),
       }),
     ];
@@ -519,18 +519,18 @@ describe('buildReviewQueue (batch)', () => {
 // Task 3.5 — Type contract: the builder returns the canonical queue shape
 // ---------------------------------------------------------------------------
 
-describe('buildReviewQueueItem — type contract', () => {
-  it('returns a value assignable to CalibrationReviewQueueItem', () => {
+describe("buildReviewQueueItem — type contract", () => {
+  it("returns a value assignable to CalibrationReviewQueueItem", () => {
     const item = buildReviewQueueItem(
       makeInput({
-        edgeId: 'edge.shape',
+        edgeId: "edge.shape",
         authoredWeight: 0.9,
-        authoredConfidence: 'high',
+        authoredConfidence: "high",
         calibration: makeCalibration({
-          edgeId: 'edge.shape',
+          edgeId: "edge.shape",
           alpha: 1,
           beta: 9,
-          status: 'refuted',
+          status: "refuted",
         }),
       }),
     );

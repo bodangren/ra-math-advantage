@@ -12,8 +12,7 @@ vi.mock("convex/react", () => ({
 it("renders children with the configured backend connection", async () => {
   vi.resetModules();
   vi.stubEnv("NEXT_PUBLIC_CONVEX_URL", "https://im2-test.convex.cloud");
-  const { ConvexClientProvider } =
-    await import("../../components/ConvexClientProvider");
+  const { ConvexClientProvider } = await import("../../components/ConvexClientProvider");
   render(
     <ConvexClientProvider>
       <p>Course content</p>

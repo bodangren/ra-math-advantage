@@ -32,12 +32,13 @@ export default function LoginPage() {
     <div className="min-h-[80vh] flex items-center justify-center px-6">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-primary-text mb-2 font-display" style={{ fontSize: '32px', fontWeight: 700 }}>
+          <h1
+            className="text-primary-text mb-2 font-display"
+            style={{ fontSize: "32px", fontWeight: 700 }}
+          >
             Sign In
           </h1>
-          <p className="text-secondary-text">
-            Sign in to Integrated Math 1
-          </p>
+          <p className="text-secondary-text">Sign in to Integrated Math 1</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -48,7 +49,11 @@ export default function LoginPage() {
           )}
 
           <div>
-            <label htmlFor="username" className="block text-sm text-secondary-text mb-1" style={{ fontWeight: 500 }}>
+            <label
+              htmlFor="username"
+              className="block text-sm text-secondary-text mb-1"
+              style={{ fontWeight: 500 }}
+            >
               Username
             </label>
             <input
@@ -63,7 +68,11 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm text-secondary-text mb-1" style={{ fontWeight: 500 }}>
+            <label
+              htmlFor="password"
+              className="block text-sm text-secondary-text mb-1"
+              style={{ fontWeight: 500 }}
+            >
               Password
             </label>
             <input
@@ -88,7 +97,10 @@ export default function LoginPage() {
 
         <p className="text-center text-muted-text text-sm mt-6">
           Don&apos;t have an account?{" "}
-          <Link href="/auth/register" className="text-accent hover:text-accent-light transition-colors">
+          <Link
+            href="/auth/register"
+            className="text-accent hover:text-accent-light transition-colors"
+          >
             Register
           </Link>
         </p>

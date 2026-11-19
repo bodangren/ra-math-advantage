@@ -27,17 +27,13 @@
       "package": "tailwind-merge",
       "post_w3_floor": "^3.3.0",
       "reconciliation_strategy": "Tighten packages/lesson-renderer from ^3.0.2 to ^3.3.0 to match the five first-class apps. tailwind-merge is a stable 3.x line; the lesson-renderer floor was lagging by three minor versions.",
-      "previously_drifted_workspaces": [
-        "packages/lesson-renderer/package.json"
-      ]
+      "previously_drifted_workspaces": ["packages/lesson-renderer/package.json"]
     },
     {
       "package": "ts-fsrs",
       "post_w3_floor": "^5.3.2",
       "reconciliation_strategy": "Tighten packages/srs-engine from ^5.0.0 to ^5.3.2 to match the apps. The srs-engine floor was lagging because srs-engine tracks the FSRS algorithm stable major; the apps were ahead on a patch.",
-      "previously_drifted_workspaces": [
-        "packages/srs-engine/package.json"
-      ]
+      "previously_drifted_workspaces": ["packages/srs-engine/package.json"]
     },
     {
       "package": "vitest",

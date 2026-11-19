@@ -1,11 +1,6 @@
 import Link from "next/link";
 import { requireTeacherSessionClaims } from "@/lib/auth/server";
-import {
-  fetchInternalQuery,
-  fetchQuery,
-  internal,
-  api,
-} from "@/lib/convex/server";
+import { fetchInternalQuery, fetchQuery, internal, api } from "@/lib/convex/server";
 import type { Id } from "@/convex/_generated/dataModel";
 import { assignLesson } from "../../actions";
 export default async function ClassPage({
@@ -70,17 +65,13 @@ export default async function ClassPage({
         <ul>
           {classroom.students.map((student) => (
             <li key={student.id}>
-              <Link href={`/teacher/students/${student.id}?classId=${id}`}>
-                {student.name}
-              </Link>
+              <Link href={`/teacher/students/${student.id}?classId=${id}`}>{student.name}</Link>
             </li>
           ))}
         </ul>
       )}
       {classroom.nextCursor && (
-        <Link
-          href={`/teacher/classes/${id}?cursor=${encodeURIComponent(classroom.nextCursor)}`}
-        >
+        <Link href={`/teacher/classes/${id}?cursor=${encodeURIComponent(classroom.nextCursor)}`}>
           More students
         </Link>
       )}

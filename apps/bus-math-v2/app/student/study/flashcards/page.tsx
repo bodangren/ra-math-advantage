@@ -1,7 +1,7 @@
 import { requireStudentSessionClaims } from "@/lib/auth/server";
 import { FlashcardPlayer } from "@/components/student/FlashcardPlayer";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 /**
  * Page wrapper for the flashcard player.

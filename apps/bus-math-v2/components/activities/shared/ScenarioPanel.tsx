@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 export interface ScenarioPanelRow {
   label: string;
@@ -12,7 +12,6 @@ export interface ScenarioPanelProps {
   className?: string;
 }
 
-
 /**
  * Display a labeled panel of scenario facts or context for an activity.
  *
@@ -21,7 +20,7 @@ export interface ScenarioPanelProps {
  */
 export function ScenarioPanel({ rows, guidance, labelWidth = 132, className }: ScenarioPanelProps) {
   return (
-    <div className={className ?? 'rounded-2xl border bg-muted/15 px-4 py-4'}>
+    <div className={className ?? "rounded-2xl border bg-muted/15 px-4 py-4"}>
       <div className="grid gap-2" style={{ gridTemplateColumns: `${labelWidth}px minmax(0, 1fr)` }}>
         {rows.map((row) => (
           <ScenarioPanelEntry key={row.label} {...row} />
@@ -31,7 +30,6 @@ export function ScenarioPanel({ rows, guidance, labelWidth = 132, className }: S
     </div>
   );
 }
-
 
 /**
  * Single label/value entry within a ScenarioPanel.

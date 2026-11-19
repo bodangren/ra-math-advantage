@@ -1,3 +1,3 @@
-'use client';
+"use client";
 
-export { ConvexClientProvider } from '@math-platform/app-shell/providers';
+export { ConvexClientProvider } from "@math-platform/app-shell/providers";

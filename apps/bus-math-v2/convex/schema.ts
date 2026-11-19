@@ -1,10 +1,7 @@
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 import { practiceSubmissionEnvelopeValidator } from "./practice_submission";
-import {
-  spreadsheetDataValidator,
-  validationResultValidator,
-} from "./spreadsheet_validators";
+import { spreadsheetDataValidator, validationResultValidator } from "./spreadsheet_validators";
 import {
   componentTypeValidator,
   approvalStatusValidator,
@@ -105,7 +102,12 @@ export default defineSchema({
     version: v.number(),
     title: v.optional(v.string()),
     description: v.optional(v.string()),
-    status: v.union(v.literal("draft"), v.literal("review"), v.literal("published"), v.literal("archived")),
+    status: v.union(
+      v.literal("draft"),
+      v.literal("review"),
+      v.literal("published"),
+      v.literal("archived"),
+    ),
     createdAt: v.number(),
   })
     .index("by_lesson", ["lessonId"])
@@ -130,7 +132,7 @@ export default defineSchema({
       v.literal("callout"),
       v.literal("activity"),
       v.literal("video"),
-      v.literal("image")
+      v.literal("image"),
     ),
     // TODO: Replace with discriminated union once BM2 component prop validators exist.
     // Deferral track: measure/tracks/bm2-activity-prop-validators (to be created).
@@ -198,7 +200,7 @@ export default defineSchema({
       v.literal("pdf"),
       v.literal("excel"),
       v.literal("link"),
-      v.literal("video")
+      v.literal("video"),
     ),
     filePath: v.optional(v.string()),
     externalUrl: v.optional(v.string()),
@@ -269,20 +271,25 @@ export default defineSchema({
       v.literal("teaching"),
     ),
     occurredAt: v.number(),
-    gradedEvidence: v.optional(v.object({
-      isCorrect: v.optional(v.boolean()),
-      score: v.optional(v.number()),
-      maxScore: v.optional(v.number()),
-    })),
+    gradedEvidence: v.optional(
+      v.object({
+        isCorrect: v.optional(v.boolean()),
+        score: v.optional(v.number()),
+        maxScore: v.optional(v.number()),
+      }),
+    ),
     idempotencyKey: v.string(),
     createdAt: v.number(),
   })
     .index("by_student_and_node", ["studentId", "nodeId"])
-    .index(
-      "by_student_node_origin_occurred_at",
-      ["studentId", "nodeId", "origin", "occurredAt"],
-    )
-    .index("by_student_node_activity_origin_attempt", ["studentId", "nodeId", "activityId", "origin", "attemptOrdinal"])
+    .index("by_student_node_origin_occurred_at", ["studentId", "nodeId", "origin", "occurredAt"])
+    .index("by_student_node_activity_origin_attempt", [
+      "studentId",
+      "nodeId",
+      "activityId",
+      "origin",
+      "attemptOrdinal",
+    ])
     .index("by_student_and_submission_id", ["studentId", "submissionId"]),
 
   learning_evidence_receipts: defineTable({
@@ -380,13 +387,15 @@ export default defineSchema({
     attemptNumber: v.number(),
     spreadsheetData: spreadsheetDataValidator, // JSONB
     validationResult: validationResultValidator, // JSONB
-    aiFeedback: v.optional(v.object({
-      preliminaryScore: v.number(),
-      strengths: v.array(v.string()),
-      improvements: v.array(v.string()),
-      nextSteps: v.array(v.string()),
-      rawAiResponse: v.string(),
-    })),
+    aiFeedback: v.optional(
+      v.object({
+        preliminaryScore: v.number(),
+        strengths: v.array(v.string()),
+        improvements: v.array(v.string()),
+        nextSteps: v.array(v.string()),
+        rawAiResponse: v.string(),
+      }),
+    ),
     teacherScoreOverride: v.optional(v.number()),
     teacherFeedbackOverride: v.optional(v.string()),
     gradedBy: v.optional(v.id("profiles")),
@@ -422,12 +431,11 @@ export default defineSchema({
       v.literal("en_to_en"),
       v.literal("en_to_zh"),
       v.literal("zh_to_en"),
-      v.literal("zh_to_zh")
+      v.literal("zh_to_zh"),
     ),
     createdAt: v.number(),
     updatedAt: v.number(),
-  })
-    .index("by_user", ["userId"]),
+  }).index("by_user", ["userId"]),
 
   term_mastery: defineTable({
     userId: v.id("profiles"),
@@ -437,7 +445,7 @@ export default defineSchema({
       v.literal("new"),
       v.literal("learning"),
       v.literal("familiar"),
-      v.literal("mastered")
+      v.literal("mastered"),
     ),
     seenCount: v.number(),
     correctCount: v.number(),
@@ -469,7 +477,7 @@ export default defineSchema({
       v.literal("matching"),
       v.literal("speed_round"),
       v.literal("srs_review"),
-      v.literal("practice_test")
+      v.literal("practice_test"),
     ),
     curriculumScope: v.object({
       type: v.union(v.literal("all_units"), v.literal("unit")),
@@ -495,11 +503,13 @@ export default defineSchema({
     lessonsTested: v.array(v.string()),
     questionCount: v.number(),
     score: v.number(),
-    perLessonBreakdown: v.array(v.object({
-      lessonId: v.string(),
-      correct: v.number(),
-      total: v.number(),
-    })),
+    perLessonBreakdown: v.array(
+      v.object({
+        lessonId: v.string(),
+        correct: v.number(),
+        total: v.number(),
+      }),
+    ),
     completedAt: v.number(),
     createdAt: v.number(),
   })
@@ -546,8 +556,7 @@ export default defineSchema({
     windowStart: v.number(),
     createdAt: v.number(),
     updatedAt: v.number(),
-  })
-    .index("by_user", ["userId"]),
+  }).index("by_user", ["userId"]),
 
   login_rate_limits: defineTable({
     ipHash: v.string(),
@@ -555,8 +564,7 @@ export default defineSchema({
     windowStart: v.number(),
     createdAt: v.number(),
     updatedAt: v.number(),
-  })
-    .index("by_ip", ["ipHash"]),
+  }).index("by_ip", ["ipHash"]),
 
   api_rate_limits: defineTable({
     userId: v.id("profiles"),
@@ -565,8 +573,7 @@ export default defineSchema({
     windowStart: v.number(),
     createdAt: v.number(),
     updatedAt: v.number(),
-  })
-    .index("by_user_and_endpoint", ["userId", "endpoint"]),
+  }).index("by_user_and_endpoint", ["userId", "endpoint"]),
 
   srs_cards: defineTable({
     lastSubmissionKey: v.optional(v.string()),
@@ -580,7 +587,7 @@ export default defineSchema({
       v.literal("new"),
       v.literal("learning"),
       v.literal("review"),
-      v.literal("relearning")
+      v.literal("relearning"),
     ),
     dueDate: v.string(),
     elapsedDays: v.number(),
@@ -594,7 +601,11 @@ export default defineSchema({
     .index("by_student", ["studentId"])
     .index("by_student_due", ["studentId", "dueDate"])
     .index("by_student_family", ["studentId", "problemFamilyId"])
-    .index("by_student_objective_and_problem_family", ["studentId", "objectiveId", "problemFamilyId"]),
+    .index("by_student_objective_and_problem_family", [
+      "studentId",
+      "objectiveId",
+      "problemFamilyId",
+    ]),
 
   srs_review_log: defineTable({
     studentId: v.id("profiles"),

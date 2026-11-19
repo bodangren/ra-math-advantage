@@ -21,11 +21,7 @@ async function accessibleLesson(
     const classroom = await ctx.db.get(enrollment.classId);
     if (!classroom || classroom.archived) continue;
     const teacher = await activeAccount(ctx, classroom.teacherId);
-    if (
-      !teacher ||
-      teacher.role === "student" ||
-      teacher.organizationId !== user.organizationId
-    )
+    if (!teacher || teacher.role === "student" || teacher.organizationId !== user.organizationId)
       continue;
     const assignment = await ctx.db
       .query("class_lessons")
@@ -44,24 +40,18 @@ async function phaseContext(
 ) {
   const phase = await ctx.db.get(phaseId);
   const version = phase ? await ctx.db.get(phase.lessonVersionId) : null;
-  if (!phase || !version || version.status !== "published")
-    throw new ConvexError("not_available");
+  if (!phase || !version || version.status !== "published") throw new ConvexError("not_available");
   await accessibleLesson(ctx, userId, version.lessonId);
   const phases = await ctx.db
     .query("phase_versions")
     .withIndex("by_lesson_version", (q) => q.eq("lessonVersionId", version._id))
     .take(100);
-  for (const earlier of phases.filter(
-    (p) => p.phaseNumber < phase.phaseNumber,
-  )) {
+  for (const earlier of phases.filter((p) => p.phaseNumber < phase.phaseNumber)) {
     const progress = await ctx.db
       .query("student_progress")
-      .withIndex("by_user_and_phase", (q) =>
-        q.eq("userId", userId).eq("phaseId", earlier._id),
-      )
+      .withIndex("by_user_and_phase", (q) => q.eq("userId", userId).eq("phaseId", earlier._id))
       .unique();
-    if (progress?.status !== "completed")
-      throw new ConvexError("complete_previous_phase");
+    if (progress?.status !== "completed") throw new ConvexError("complete_previous_phase");
   }
   const sections = await ctx.db
     .query("phase_sections")
@@ -84,22 +74,13 @@ export const submitAnswer = internalMutation({
   },
   returns: resultValidator,
   handler: async (ctx, args) => {
-    if (
-      args.answer.length > 128 ||
-      !args.submissionKey ||
-      args.submissionKey.length > 80
-    )
+    if (args.answer.length > 128 || !args.submissionKey || args.submissionKey.length > 80)
       throw new ConvexError("invalid_answer");
-    const { sections, version, phase } = await phaseContext(
-      ctx,
-      args.userId,
-      args.phaseId,
-    );
+    const { sections, version, phase } = await phaseContext(ctx, args.userId, args.phaseId);
     if (
       !sections.some(
         (section) =>
-          section.sectionType === "activity" &&
-          section.content?.activityId === args.activityId,
+          section.sectionType === "activity" && section.content?.activityId === args.activityId,
       )
     )
       throw new ConvexError("not_allowed");
@@ -141,9 +122,7 @@ export const submitAnswer = internalMutation({
     const submissionData = {
       contractVersion: "practice.v1",
       activityId: args.activityId,
-      mode: ["worked_example", "guided_practice", "assessment"].includes(
-        phase.phaseType,
-      )
+      mode: ["worked_example", "guided_practice", "assessment"].includes(phase.phaseType)
         ? phase.phaseType
         : "independent_practice",
       status: "submitted",
@@ -181,29 +160,23 @@ export const completePhase = internalMutation({
   args: { userId: v.id("profiles"), phaseId: v.id("phase_versions") },
   returns: v.null(),
   handler: async (ctx, args) => {
-    const { version, sections } = await phaseContext(
-      ctx,
-      args.userId,
-      args.phaseId,
-    );
+    const { version, sections } = await phaseContext(ctx, args.userId, args.phaseId);
     for (const section of sections) {
       if (section.sectionType !== "activity") continue;
-      const activityId = section.content?.activityId as
-        | Id<"activities">
-        | undefined;
+      const activityId = section.content?.activityId as Id<"activities"> | undefined;
       if (!activityId) throw new ConvexError("not_available");
       const correct = await ctx.db
         .query("activity_submissions")
         .withIndex("by_user_activity_phase_score", (q) =>
-          q.eq("userId", args.userId)
+          q
+            .eq("userId", args.userId)
             .eq("activityId", activityId)
             .eq("phaseId", args.phaseId)
             .eq("score", 1)
             .eq("maxScore", 1),
         )
         .first();
-      if (!correct)
-        throw new ConvexError("complete_practice");
+      if (!correct) throw new ConvexError("complete_practice");
     }
     const now = Date.now();
     const existing = await ctx.db
@@ -280,46 +253,34 @@ export const getLesson = internalQuery({
     if (!version) return null;
     const phases = await ctx.db
       .query("phase_versions")
-      .withIndex("by_lesson_version_and_phase", (q) =>
-        q.eq("lessonVersionId", version._id),
-      )
+      .withIndex("by_lesson_version_and_phase", (q) => q.eq("lessonVersionId", version._id))
       .take(100);
     let unlocked = true;
     const result = [];
     for (const phase of phases) {
       const progress = await ctx.db
         .query("student_progress")
-        .withIndex("by_user_and_phase", (q) =>
-          q.eq("userId", args.userId).eq("phaseId", phase._id),
-        )
+        .withIndex("by_user_and_phase", (q) => q.eq("userId", args.userId).eq("phaseId", phase._id))
         .unique();
       const completed = progress?.status === "completed";
       const sections = unlocked
         ? await ctx.db
             .query("phase_sections")
-            .withIndex("by_phase_version_and_sequence", (q) =>
-              q.eq("phaseVersionId", phase._id),
-            )
+            .withIndex("by_phase_version_and_sequence", (q) => q.eq("phaseVersionId", phase._id))
             .take(100)
         : [];
       const content = [];
       for (const section of sections) {
-        if (
-          section.sectionType === "text" &&
-          typeof section.content?.markdown === "string"
-        )
+        if (section.sectionType === "text" && typeof section.content?.markdown === "string")
           content.push({
             kind: "text" as const,
             markdown: section.content.markdown,
           });
         else if (section.sectionType === "activity") {
-          const activityId = section.content?.activityId as
-            | Id<"activities">
-            | undefined;
+          const activityId = section.content?.activityId as Id<"activities"> | undefined;
           const activity = activityId ? await ctx.db.get(activityId) : null;
           const parsed = questionSchema.safeParse(activity?.props);
-          if (!activity || !parsed.success)
-            throw new ConvexError("not_available");
+          if (!activity || !parsed.success) throw new ConvexError("not_available");
           if (activity && parsed.success)
             content.push({
               kind: "question" as const,

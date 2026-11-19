@@ -1,4 +1,9 @@
-import { internalMutation, internalQuery, type MutationCtx, type QueryCtx } from "../_generated/server";
+import {
+  internalMutation,
+  internalQuery,
+  type MutationCtx,
+  type QueryCtx,
+} from "../_generated/server";
 import { v } from "convex/values";
 import { Id, type Doc } from "../_generated/dataModel";
 
@@ -110,13 +115,8 @@ export interface LessonInfo {
  * @param {QueryCtx} ctx - The query context
  * @returns {Promise<LessonInfo[]>} Array of lesson metadata
  */
-export async function getAvailableLessonsHandler(
-  ctx: QueryCtx,
-): Promise<LessonInfo[]> {
-  const lessons = await ctx.db
-    .query("lessons")
-    .withIndex("by_unit_and_order")
-    .collect();
+export async function getAvailableLessonsHandler(ctx: QueryCtx): Promise<LessonInfo[]> {
+  const lessons = await ctx.db.query("lessons").withIndex("by_unit_and_order").collect();
 
   const result: LessonInfo[] = lessons.map((lesson) => ({
     lessonId: lesson._id,
@@ -167,7 +167,7 @@ export async function assignLessonToClassHandler(
   const existing = await ctx.db
     .query("class_lessons")
     .withIndex("by_class_and_lesson", (q) =>
-      q.eq("classId", args.classId).eq("lessonId", args.lessonId)
+      q.eq("classId", args.classId).eq("lessonId", args.lessonId),
     )
     .first();
 
@@ -230,7 +230,7 @@ export async function unassignLessonFromClassHandler(
   const entry = await ctx.db
     .query("class_lessons")
     .withIndex("by_class_and_lesson", (q) =>
-      q.eq("classId", args.classId).eq("lessonId", args.lessonId)
+      q.eq("classId", args.classId).eq("lessonId", args.lessonId),
     )
     .first();
 

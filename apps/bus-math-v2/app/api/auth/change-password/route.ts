@@ -77,18 +77,11 @@ export async function POST(request: Request) {
     });
 
     if (!isCurrentPasswordValid) {
-      return Response.json(
-        { error: "Current password is incorrect." },
-        { status: 403 },
-      );
+      return Response.json({ error: "Current password is incorrect." }, { status: 403 });
     }
 
     const passwordSalt = generatePasswordSalt();
-    const passwordHash = await hashPassword(
-      newPassword,
-      passwordSalt,
-      PASSWORD_HASH_ITERATIONS,
-    );
+    const passwordHash = await hashPassword(newPassword, passwordSalt, PASSWORD_HASH_ITERATIONS);
 
     const result = await fetchInternalMutation(internal.auth.changeOwnPassword, {
       profileId: claims.sub as Id<"profiles">,

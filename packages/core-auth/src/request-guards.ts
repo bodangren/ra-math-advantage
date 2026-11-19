@@ -1,5 +1,5 @@
-import { SESSION_COOKIE_NAME } from './constants';
-import { SessionClaims } from './session';
+import { SESSION_COOKIE_NAME } from "./constants";
+import { SessionClaims } from "./session";
 
 export type RequestGuardResult = SessionClaims | Response;
 
@@ -14,12 +14,12 @@ export type SessionTokenVerifier = (token: string) => Promise<SessionClaims | nu
 export function getCookieValueFromHeader(cookieHeader: string | null, key: string): string | null {
   if (!cookieHeader) return null;
 
-  const entries = cookieHeader.split(';');
+  const entries = cookieHeader.split(";");
   for (const entry of entries) {
     const trimmed = entry.trim();
     if (!trimmed) continue;
 
-    const separatorIndex = trimmed.indexOf('=');
+    const separatorIndex = trimmed.indexOf("=");
     if (separatorIndex <= 0) continue;
 
     const name = trimmed.slice(0, separatorIndex).trim();
@@ -36,28 +36,28 @@ export function getCookieValueFromHeader(cookieHeader: string | null, key: strin
 }
 
 /** Creates a 401 Unauthorized JSON response with the given message. */
-export function buildRequestUnauthorizedResponse(message = 'Unauthorized'): Response {
+export function buildRequestUnauthorizedResponse(message = "Unauthorized"): Response {
   return new Response(JSON.stringify({ error: message }), {
     status: 401,
-    headers: { 'content-type': 'application/json' },
+    headers: { "content-type": "application/json" },
   });
 }
 
 /** Creates a 403 Forbidden JSON response with the given message. */
-export function buildRequestForbiddenResponse(message = 'Forbidden'): Response {
+export function buildRequestForbiddenResponse(message = "Forbidden"): Response {
   return new Response(JSON.stringify({ error: message }), {
     status: 403,
-    headers: { 'content-type': 'application/json' },
+    headers: { "content-type": "application/json" },
   });
 }
 
 /** Creates a 503 Service Unavailable JSON response with the given message. */
 export function buildRequestServiceUnavailableResponse(
-  message = 'Service temporarily unavailable',
+  message = "Service temporarily unavailable",
 ): Response {
   return new Response(JSON.stringify({ error: message }), {
     status: 503,
-    headers: { 'content-type': 'application/json' },
+    headers: { "content-type": "application/json" },
   });
 }
 
@@ -70,7 +70,7 @@ export async function getRequestSessionClaims(
   verifyToken: SessionTokenVerifier,
   cookieName: string = SESSION_COOKIE_NAME,
 ): Promise<SessionClaims | null> {
-  const token = getCookieValueFromHeader(request.headers.get('cookie'), cookieName);
+  const token = getCookieValueFromHeader(request.headers.get("cookie"), cookieName);
   if (!token) return null;
 
   return verifyToken(token);
@@ -103,7 +103,7 @@ export async function requireRequestSessionClaims(
 export async function requireRoleRequestClaims(
   request: Request,
   verifyToken: SessionTokenVerifier,
-  allowedRoles: ReadonlyArray<SessionClaims['role']>,
+  allowedRoles: ReadonlyArray<SessionClaims["role"]>,
   options: {
     cookieName?: string;
     unauthorizedMessage?: string;
@@ -159,7 +159,7 @@ export async function requireActiveRequestSessionClaims(
 export async function requireActiveRoleRequestClaims(
   request: Request,
   verifyToken: SessionTokenVerifier,
-  allowedRoles: ReadonlyArray<SessionClaims['role']>,
+  allowedRoles: ReadonlyArray<SessionClaims["role"]>,
   verifyActive: ActiveCredentialVerifier,
   options: {
     cookieName?: string;

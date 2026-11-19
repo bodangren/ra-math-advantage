@@ -9,26 +9,51 @@
  * must be validated on the server using these utilities.
  */
 
-import FormulaParser from 'fast-formula-parser';
-import { COURSE_FORMULA_FUNCTIONS } from './spreadsheet-functions';
-import type { SpreadsheetData } from '@/components/activities/spreadsheet';
+import FormulaParser from "fast-formula-parser";
+import { COURSE_FORMULA_FUNCTIONS } from "./spreadsheet-functions";
+import type { SpreadsheetData } from "@/components/activities/spreadsheet";
 
 /**
  * Whitelist of allowed spreadsheet formula functions.
  * Only these functions can be used in student submissions.
  */
 export const ALLOWED_FORMULA_FUNCTIONS = [
-  'SUM',
-  'AVERAGE',
-  'COUNT',
-  'IF',
-  'MIN',
-  'MAX',
-  'ROUND',
-  'ABS',
-  'SQRT',
-  'POWER', 'SUMIF', 'SUMIFS', 'COUNTIF', 'COUNTIFS', 'IFERROR', 'AND', 'OR',
-  'INDEX', 'MATCH', 'IPMT', 'PPMT', 'CHOOSE', 'SWITCH', 'SLN', 'DDB', 'PMT', 'PV', 'FV', 'NPV', 'IRR', 'VLOOKUP', 'XLOOKUP', 'ROUNDUP', 'ROUNDDOWN', 'LOG', 'EXP',
+  "SUM",
+  "AVERAGE",
+  "COUNT",
+  "IF",
+  "MIN",
+  "MAX",
+  "ROUND",
+  "ABS",
+  "SQRT",
+  "POWER",
+  "SUMIF",
+  "SUMIFS",
+  "COUNTIF",
+  "COUNTIFS",
+  "IFERROR",
+  "AND",
+  "OR",
+  "INDEX",
+  "MATCH",
+  "IPMT",
+  "PPMT",
+  "CHOOSE",
+  "SWITCH",
+  "SLN",
+  "DDB",
+  "PMT",
+  "PV",
+  "FV",
+  "NPV",
+  "IRR",
+  "VLOOKUP",
+  "XLOOKUP",
+  "ROUNDUP",
+  "ROUNDDOWN",
+  "LOG",
+  "EXP",
 ] as const;
 
 /**
@@ -116,7 +141,7 @@ export function sanitizeFormula(formula: string): SanitizationResult {
     if (pattern.test(formula)) {
       return {
         isValid: false,
-        error: 'Formula contains potentially dangerous content',
+        error: "Formula contains potentially dangerous content",
       };
     }
   }
@@ -128,7 +153,11 @@ export function sanitizeFormula(formula: string): SanitizationResult {
   if (matches) {
     for (const match of matches) {
       const functionName = match.slice(0, -1).trim().toUpperCase();
-      if (!ALLOWED_FORMULA_FUNCTIONS.includes(functionName as typeof ALLOWED_FORMULA_FUNCTIONS[number])) {
+      if (
+        !ALLOWED_FORMULA_FUNCTIONS.includes(
+          functionName as (typeof ALLOWED_FORMULA_FUNCTIONS)[number],
+        )
+      ) {
         return {
           isValid: false,
           error: `Formula function "${functionName}" is not allowed`,
@@ -156,7 +185,7 @@ export function validateSpreadsheetData(data: SpreadsheetData): SanitizationResu
       if (!cell) continue;
 
       // Check cell value (formulas start with '=')
-      if (typeof cell.value === 'string') {
+      if (typeof cell.value === "string") {
         const sanitized = sanitizeFormula(cell.value);
         if (!sanitized.isValid) {
           return {
@@ -216,9 +245,9 @@ export function getCellValue(data: SpreadsheetData, cellRef: string): string | n
   try {
     const { row, col } = a1ToCoordinates(cellRef);
     const cell = data[row]?.[col];
-    return cell?.value ?? '';
+    return cell?.value ?? "";
   } catch {
-    return '';
+    return "";
   }
 }
 
@@ -239,7 +268,7 @@ export function getCellValue(data: SpreadsheetData, cellRef: string): string | n
  * ```
  */
 export function normalizeValue(value: string | number): string {
-  if (typeof value === 'number') {
+  if (typeof value === "number") {
     return value.toString().toLowerCase().trim();
   }
   return value.toString().toLowerCase().trim();
@@ -249,48 +278,54 @@ export function normalizeValue(value: string | number): string {
 function evaluateSheet(data: SpreadsheetData): SpreadsheetData {
   const values = new Map<string, string | number>();
   const visiting = new Set<string>();
-  const columns = Math.max(0, ...data.map(row => row.length));
+  const columns = Math.max(0, ...data.map((row) => row.length));
   const read = (row: number, col: number): string | number => {
     const key = `${row}:${col}`;
     if (values.has(key)) return values.get(key)!;
-    if (visiting.has(key)) throw new Error('circular_reference');
-    const raw = data[row - 1]?.[col - 1]?.value ?? '';
-    if (typeof raw !== 'string' || !raw.trim().startsWith('=')) {
-      return raw !== '' && Number.isFinite(Number(raw)) ? Number(raw) : raw;
+    if (visiting.has(key)) throw new Error("circular_reference");
+    const raw = data[row - 1]?.[col - 1]?.value ?? "";
+    if (typeof raw !== "string" || !raw.trim().startsWith("=")) {
+      return raw !== "" && Number.isFinite(Number(raw)) ? Number(raw) : raw;
     }
     visiting.add(key);
     try {
       // Each parser owns its parse state. Dependencies can contain other formulas.
       const parser = new FormulaParser({
         functions: COURSE_FORMULA_FUNCTIONS,
-        onCell: ref => {
-          if (ref.sheet) throw new Error('external_sheet_reference');
+        onCell: (ref) => {
+          if (ref.sheet) throw new Error("external_sheet_reference");
           return read(ref.row, ref.col);
         },
-        onRange: ref => {
-          if (ref.sheet) throw new Error('external_sheet_reference');
+        onRange: (ref) => {
+          if (ref.sheet) throw new Error("external_sheet_reference");
           const result: unknown[][] = [];
           for (let r = ref.from.row; r <= Math.min(ref.to.row, data.length); r++) {
             const cells: unknown[] = [];
-            for (let c = ref.from.col; c <= Math.min(ref.to.col, columns); c++) cells.push(read(r, c));
+            for (let c = ref.from.col; c <= Math.min(ref.to.col, columns); c++)
+              cells.push(read(r, c));
             result.push(cells);
           }
           return result;
         },
       });
       const output = parser.parse(raw.trim().slice(1), { row, col });
-      const value = typeof output === 'number' || typeof output === 'string' ? output : '#VALUE!';
+      const value = typeof output === "number" || typeof output === "string" ? output : "#VALUE!";
       values.set(key, value);
       return value;
     } finally {
       visiting.delete(key);
     }
   };
-  return data.map((row, r) => row.map((cell, c) => {
-    if (!cell) return cell;
-    try { return { ...cell, value: read(r + 1, c + 1) }; }
-    catch { return { ...cell, value: '#VALUE!' }; }
-  }));
+  return data.map((row, r) =>
+    row.map((cell, c) => {
+      if (!cell) return cell;
+      try {
+        return { ...cell, value: read(r + 1, c + 1) };
+      } catch {
+        return { ...cell, value: "#VALUE!" };
+      }
+    }),
+  );
 }
 
 /**
@@ -305,7 +340,7 @@ function evaluateSheet(data: SpreadsheetData): SpreadsheetData {
  */
 export function validateSubmission(
   data: SpreadsheetData,
-  targetCells: TargetCell[]
+  targetCells: TargetCell[],
 ): ValidationResult {
   const feedback: CellFeedback[] = [];
   const sanitized = validateSpreadsheetData(data);
@@ -318,17 +353,20 @@ export function validateSubmission(
     const normalizedExpected = normalizeValue(target.expectedValue);
 
     const formulaRequired = target.expectedFormula !== undefined;
-    const hasFormula = typeof rawValue === 'string' && rawValue.trim().startsWith('=');
-    const isCorrect = sanitized.isValid && (!formulaRequired || hasFormula) && (typeof target.expectedValue === 'number'
-      ? normalizedActual !== '' && Number.isFinite(Number(normalizedActual)) && Math.abs(Number(normalizedActual) - target.expectedValue) <= 0.000001
-      : normalizedActual === normalizedExpected);
+    const hasFormula = typeof rawValue === "string" && rawValue.trim().startsWith("=");
+    const isCorrect =
+      sanitized.isValid &&
+      (!formulaRequired || hasFormula) &&
+      (typeof target.expectedValue === "number"
+        ? normalizedActual !== "" &&
+          Number.isFinite(Number(normalizedActual)) &&
+          Math.abs(Number(normalizedActual) - target.expectedValue) <= 0.000001
+        : normalizedActual === normalizedExpected);
 
     feedback.push({
       cell: target.cell,
       isCorrect,
-      message: isCorrect
-        ? undefined
-        : `Expected "${target.expectedValue}", got "${actualValue}"`,
+      message: isCorrect ? undefined : `Expected "${target.expectedValue}", got "${actualValue}"`,
       expectedValue: target.expectedValue,
       actualValue,
     });

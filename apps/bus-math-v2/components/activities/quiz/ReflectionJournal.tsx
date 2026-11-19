@@ -1,64 +1,68 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
+import { useState } from "react";
 
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
-import { type ReflectionJournalActivityProps } from '@/types/activities'
-import { type Activity } from '@/lib/schemas/validators'
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { type ReflectionJournalActivityProps } from "@/types/activities";
+import { type Activity } from "@/lib/schemas/validators";
 import {
   buildPracticeSubmissionEnvelope,
   buildPracticeSubmissionParts,
   type PracticeSubmissionCallbackPayload,
-} from '@math-platform/practice-core/contract'
+} from "@math-platform/practice-core/contract";
 
 interface ReflectionPrompt {
-  id: string
-  category: 'courage' | 'adaptability' | 'persistence'
-  prompt: string
-  placeholder: string
+  id: string;
+  category: "courage" | "adaptability" | "persistence";
+  prompt: string;
+  placeholder: string;
 }
 
-type ReflectionJournalActivity = Omit<Activity, 'componentKey' | 'props'> & {
-  componentKey: 'reflection-journal'
-  props: ReflectionJournalActivityProps
-}
+type ReflectionJournalActivity = Omit<Activity, "componentKey" | "props"> & {
+  componentKey: "reflection-journal";
+  props: ReflectionJournalActivityProps;
+};
 
 export const REFLECTION_JOURNAL_SUPPORTED_MODES = [
-  'guided_practice',
-  'independent_practice',
-] as const
-const REFLECTION_JOURNAL_DEFAULT_MODE = 'independent_practice' as const
+  "guided_practice",
+  "independent_practice",
+] as const;
+const REFLECTION_JOURNAL_DEFAULT_MODE = "independent_practice" as const;
 
 interface ReflectionJournalProps {
-  activity: ReflectionJournalActivity
-  className?: string
-  onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void | boolean | Promise<void | boolean>
+  activity: ReflectionJournalActivity;
+  className?: string;
+  onSubmit?: (
+    payload: PracticeSubmissionCallbackPayload,
+  ) => void | boolean | Promise<void | boolean>;
 }
 
 const defaultPrompts: ReflectionPrompt[] = [
   {
-    id: 'courage-1',
-    category: 'courage',
-    prompt: 'What was the most challenging part of this unit that required you to step outside your comfort zone?',
-    placeholder: 'Describe a specific moment when you had to take a risk or try something new...',
+    id: "courage-1",
+    category: "courage",
+    prompt:
+      "What was the most challenging part of this unit that required you to step outside your comfort zone?",
+    placeholder: "Describe a specific moment when you had to take a risk or try something new...",
   },
   {
-    id: 'adaptability-1',
-    category: 'adaptability',
-    prompt: 'How did you adjust your approach when you encountered unexpected problems or feedback?',
-    placeholder: 'Think about times when you had to change your strategy or method...',
+    id: "adaptability-1",
+    category: "adaptability",
+    prompt:
+      "How did you adjust your approach when you encountered unexpected problems or feedback?",
+    placeholder: "Think about times when you had to change your strategy or method...",
   },
   {
-    id: 'persistence-1',
-    category: 'persistence',
-    prompt: 'Describe a time when you wanted to give up but kept working. What motivated you to continue?',
-    placeholder: 'Reflect on your perseverance and what helped you push through...',
+    id: "persistence-1",
+    category: "persistence",
+    prompt:
+      "Describe a time when you wanted to give up but kept working. What motivated you to continue?",
+    placeholder: "Reflect on your perseverance and what helped you push through...",
   },
-]
-
+];
 
 /**
  * Reflection journal activity with categorized prompts for courage,
@@ -68,15 +72,14 @@ const defaultPrompts: ReflectionPrompt[] = [
  *   callback.
  * @returns A Card with reflection prompt text areas and a save button.
  */
-export function ReflectionJournal({ activity, className = '', onSubmit }: ReflectionJournalProps) {
-  const prompts = activity.props.prompts.length ? activity.props.prompts : defaultPrompts
-  const unitTitle = activity.props.unitTitle ?? activity.displayName ?? 'Learning Reflection'
-  const [responses, setResponses] = useState<Record<string, string>>({})
-  const [isSaved, setIsSaved] = useState(false)
+export function ReflectionJournal({ activity, className = "", onSubmit }: ReflectionJournalProps) {
+  const prompts = activity.props.prompts.length ? activity.props.prompts : defaultPrompts;
+  const unitTitle = activity.props.unitTitle ?? activity.displayName ?? "Learning Reflection";
+  const [responses, setResponses] = useState<Record<string, string>>({});
+  const [isSaved, setIsSaved] = useState(false);
 
-  const completedCount = Object.values(responses).filter((value) => value.trim()).length
-  const totalCount = prompts.length
-
+  const completedCount = Object.values(responses).filter((value) => value.trim()).length;
+  const totalCount = prompts.length;
 
   /**
    * Handle a change to a reflection prompt response.
@@ -88,36 +91,35 @@ export function ReflectionJournal({ activity, className = '', onSubmit }: Reflec
     setResponses((prev) => ({
       ...prev,
       [promptId]: value,
-    }))
-    if (isSaved) setIsSaved(false)
-  }
-
+    }));
+    if (isSaved) setIsSaved(false);
+  };
 
   /**
    * Save the reflection journal, building the practice submission envelope
    * with all prompt responses and artifact data.
    */
   const handleSave = async () => {
-    const parts = buildPracticeSubmissionParts(responses)
+    const parts = buildPracticeSubmissionParts(responses);
 
     try {
       const saved = await onSubmit?.(
         buildPracticeSubmissionEnvelope({
           activityId: activity.id,
           mode: REFLECTION_JOURNAL_DEFAULT_MODE,
-          status: completedCount === totalCount ? 'submitted' : 'draft',
+          status: completedCount === totalCount ? "submitted" : "draft",
           attemptNumber: 1,
           submittedAt: new Date(),
           answers: responses,
           parts,
           artifact: {
-            kind: 'reflection_journal',
+            kind: "reflection_journal",
             unitTitle,
             prompts: prompts.map((prompt) => ({
               id: prompt.id,
               category: prompt.category,
               prompt: prompt.prompt,
-              response: responses[prompt.id] ?? '',
+              response: responses[prompt.id] ?? "",
             })),
           },
           analytics: {
@@ -125,13 +127,12 @@ export function ReflectionJournal({ activity, className = '', onSubmit }: Reflec
             totalCount,
           },
         }),
-      )
-      setIsSaved(saved !== false)
+      );
+      setIsSaved(saved !== false);
     } catch (err) {
-      console.error('ReflectionJournal submission failed:', err)
+      console.error("ReflectionJournal submission failed:", err);
     }
-  }
-
+  };
 
   /**
    * Get the color classes for a reflection category badge.
@@ -139,16 +140,16 @@ export function ReflectionJournal({ activity, className = '', onSubmit }: Reflec
    * @param category - The reflection category.
    * @returns Tailwind color classes for the badge.
    */
-  const getCategoryColor = (category: ReflectionPrompt['category']) => {
+  const getCategoryColor = (category: ReflectionPrompt["category"]) => {
     switch (category) {
-      case 'courage':
-        return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300'
-      case 'adaptability':
-        return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
-      case 'persistence':
-        return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300'
+      case "courage":
+        return "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300";
+      case "adaptability":
+        return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300";
+      case "persistence":
+        return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300";
     }
-  }
+  };
 
   return (
     <div className={`mx-auto max-w-4xl space-y-6 p-4 ${className}`}>
@@ -159,7 +160,7 @@ export function ReflectionJournal({ activity, className = '', onSubmit }: Reflec
               <CardTitle className="flex flex-wrap items-center gap-3 text-2xl font-bold">
                 {unitTitle}
                 <Badge variant="outline" className="uppercase">
-                  {REFLECTION_JOURNAL_DEFAULT_MODE.replace('_', ' ')}
+                  {REFLECTION_JOURNAL_DEFAULT_MODE.replace("_", " ")}
                 </Badge>
                 <Badge variant="outline">
                   {completedCount}/{totalCount} complete
@@ -167,7 +168,8 @@ export function ReflectionJournal({ activity, className = '', onSubmit }: Reflec
                 {isSaved && <Badge className="bg-green-100 text-green-800">Saved</Badge>}
               </CardTitle>
               <CardDescription>
-                {activity.props.description ?? 'Reflect on your learning and growth from this lesson.'}
+                {activity.props.description ??
+                  "Reflect on your learning and growth from this lesson."}
               </CardDescription>
             </div>
           </div>
@@ -189,7 +191,7 @@ export function ReflectionJournal({ activity, className = '', onSubmit }: Reflec
 
         <CardContent className="space-y-6">
           {prompts.map((prompt) => {
-            const response = responses[prompt.id] ?? ''
+            const response = responses[prompt.id] ?? "";
 
             return (
               <Card key={prompt.id} className="border-l-4 border-l-muted-foreground/20">
@@ -221,7 +223,7 @@ export function ReflectionJournal({ activity, className = '', onSubmit }: Reflec
                   </div>
                 </CardContent>
               </Card>
-            )
+            );
           })}
 
           <div className="flex items-center justify-between gap-3 border-t pt-4">
@@ -229,11 +231,11 @@ export function ReflectionJournal({ activity, className = '', onSubmit }: Reflec
               Progress: {completedCount}/{totalCount} reflections completed
             </div>
             <Button onClick={handleSave} disabled={completedCount === 0} className="min-w-[120px]">
-              {isSaved ? 'Saved' : 'Save Reflection'}
+              {isSaved ? "Saved" : "Save Reflection"}
             </Button>
           </div>
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

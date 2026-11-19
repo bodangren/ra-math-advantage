@@ -1,13 +1,13 @@
-import { describe, expect, it, vi } from 'vitest';
-import type { LearningEvidenceV1 } from '@math-platform/practice-core';
+import { describe, expect, it, vi } from "vitest";
+import type { LearningEvidenceV1 } from "@math-platform/practice-core";
 
 import {
   createIm3LearningEvidenceHandler,
   type Im3LearningEvidenceStore,
-} from '@/convex/learningEvidence';
+} from "@/convex/learningEvidence";
 
-const LEARNER_ID = 'student-im3-handler';
-const PILOT_NODE_ID = 'math.im3.skill.1.1.graph-quadratic-functions';
+const LEARNER_ID = "student-im3-handler";
+const PILOT_NODE_ID = "math.im3.skill.1.1.graph-quadratic-functions";
 const PILOT_ACTIVITY_ID = `${PILOT_NODE_ID}.independent_practice`;
 
 class InMemoryEvidenceStore implements Im3LearningEvidenceStore {
@@ -17,10 +17,12 @@ class InMemoryEvidenceStore implements Im3LearningEvidenceStore {
     learnerId: string,
     idempotencyKey: string,
   ): Promise<LearningEvidenceV1 | null> {
-    return this.events.find((entry) => (
-      entry.learnerId === learnerId
-      && entry.evidence.idempotencyKey === idempotencyKey
-    ))?.evidence ?? null;
+    return (
+      this.events.find(
+        (entry) =>
+          entry.learnerId === learnerId && entry.evidence.idempotencyKey === idempotencyKey,
+      )?.evidence ?? null
+    );
   }
 
   async listByLearnerAndNode(
@@ -37,18 +39,16 @@ class InMemoryEvidenceStore implements Im3LearningEvidenceStore {
   }
 }
 
-function makeEvidence(
-  overrides: Partial<LearningEvidenceV1> = {},
-): LearningEvidenceV1 {
+function makeEvidence(overrides: Partial<LearningEvidenceV1> = {}): LearningEvidenceV1 {
   return {
-    contractVersion: 'learning-evidence.v1',
+    contractVersion: "learning-evidence.v1",
     nodeId: PILOT_NODE_ID,
     activityId: PILOT_ACTIVITY_ID,
     attemptOrdinal: 1,
-    origin: 'teacher_led',
-    mode: 'teaching',
-    occurredAt: '2026-08-19T08:30:00.000Z',
-    idempotencyKey: 'im3-handler-evidence-1',
+    origin: "teacher_led",
+    mode: "teaching",
+    occurredAt: "2026-08-19T08:30:00.000Z",
+    idempotencyKey: "im3-handler-evidence-1",
     ...overrides,
   };
 }
@@ -61,8 +61,8 @@ function createHarness() {
   return { handler, masteryBridge, store };
 }
 
-describe('IM3 learning-evidence Convex handler seam', () => {
-  it('persists teacher-led evidence without calling the mastery bridge', async () => {
+describe("IM3 learning-evidence Convex handler seam", () => {
+  it("persists teacher-led evidence without calling the mastery bridge", async () => {
     const { handler, masteryBridge, store } = createHarness();
 
     const result = await handler.process({
@@ -76,10 +76,10 @@ describe('IM3 learning-evidence Convex handler seam', () => {
       persisted: true,
       masteryApplied: false,
       decision: {
-        idempotency: 'new',
-        exposureState: 'introduced',
+        idempotency: "new",
+        exposureState: "introduced",
         eligible: false,
-        reason: 'teacher_led',
+        reason: "teacher_led",
         masteryBearing: false,
       },
     });
@@ -87,16 +87,16 @@ describe('IM3 learning-evidence Convex handler seam', () => {
     expect(masteryBridge).not.toHaveBeenCalled();
   });
 
-  it('denies pre-exposure Mastery Advantage evidence without any write', async () => {
+  it("denies pre-exposure Mastery Advantage evidence without any write", async () => {
     const { handler, masteryBridge, store } = createHarness();
 
     const result = await handler.process({
       learnerId: LEARNER_ID,
       evidence: makeEvidence({
-        origin: 'mastery_advantage',
-        mode: 'independent_practice',
+        origin: "mastery_advantage",
+        mode: "independent_practice",
         gradedEvidence: { isCorrect: true, score: 6, maxScore: 6 },
-        idempotencyKey: 'im3-handler-before-exposure',
+        idempotencyKey: "im3-handler-before-exposure",
       }),
     });
 
@@ -104,10 +104,10 @@ describe('IM3 learning-evidence Convex handler seam', () => {
       persisted: false,
       masteryApplied: false,
       decision: {
-        idempotency: 'new',
-        exposureState: 'awaiting_teacher_exposure',
+        idempotency: "new",
+        exposureState: "awaiting_teacher_exposure",
         eligible: false,
-        reason: 'awaiting_teacher_exposure',
+        reason: "awaiting_teacher_exposure",
         masteryBearing: false,
       },
     });
@@ -115,19 +115,19 @@ describe('IM3 learning-evidence Convex handler seam', () => {
     expect(masteryBridge).not.toHaveBeenCalled();
   });
 
-  it('calls the mastery bridge once for graded evidence after exposure', async () => {
+  it("calls the mastery bridge once for graded evidence after exposure", async () => {
     const { handler, masteryBridge, store } = createHarness();
 
     await handler.process({
       learnerId: LEARNER_ID,
-      evidence: makeEvidence({ idempotencyKey: 'im3-handler-exposure' }),
+      evidence: makeEvidence({ idempotencyKey: "im3-handler-exposure" }),
     });
     const masteryEvidence = makeEvidence({
-      origin: 'mastery_advantage',
-      mode: 'independent_practice',
-      occurredAt: '2026-08-19T09:00:00.000Z',
+      origin: "mastery_advantage",
+      mode: "independent_practice",
+      occurredAt: "2026-08-19T09:00:00.000Z",
       gradedEvidence: { isCorrect: true, score: 6, maxScore: 6 },
-      idempotencyKey: 'im3-handler-mastery-1',
+      idempotencyKey: "im3-handler-mastery-1",
     });
 
     const result = await handler.process({
@@ -139,10 +139,10 @@ describe('IM3 learning-evidence Convex handler seam', () => {
       persisted: true,
       masteryApplied: true,
       decision: {
-        idempotency: 'new',
-        exposureState: 'introduced',
+        idempotency: "new",
+        exposureState: "introduced",
         eligible: true,
-        reason: 'eligible',
+        reason: "eligible",
         masteryBearing: true,
       },
     });
@@ -154,15 +154,15 @@ describe('IM3 learning-evidence Convex handler seam', () => {
     expect(store.events).toHaveLength(2);
   });
 
-  it('returns replay for the same normalized payload without a second bridge call', async () => {
+  it("returns replay for the same normalized payload without a second bridge call", async () => {
     const { handler, masteryBridge } = createHarness();
-    const exposure = makeEvidence({ idempotencyKey: 'im3-handler-replay-exposure' });
+    const exposure = makeEvidence({ idempotencyKey: "im3-handler-replay-exposure" });
     const masteryEvidence = makeEvidence({
-      origin: 'mastery_advantage',
-      mode: 'independent_practice',
-      occurredAt: '2026-08-19T09:00:00.000Z',
+      origin: "mastery_advantage",
+      mode: "independent_practice",
+      occurredAt: "2026-08-19T09:00:00.000Z",
       gradedEvidence: { isCorrect: true, score: 6, maxScore: 6 },
-      idempotencyKey: 'im3-handler-replay-mastery',
+      idempotencyKey: "im3-handler-replay-mastery",
     });
 
     await handler.process({ learnerId: LEARNER_ID, evidence: exposure });
@@ -173,27 +173,27 @@ describe('IM3 learning-evidence Convex handler seam', () => {
       persisted: false,
       masteryApplied: false,
       decision: {
-        idempotency: 'replay',
-        exposureState: 'introduced',
+        idempotency: "replay",
+        exposureState: "introduced",
         eligible: true,
-        reason: 'eligible',
+        reason: "eligible",
         masteryBearing: true,
       },
     });
     expect(masteryBridge).toHaveBeenCalledTimes(1);
   });
 
-  it('rejects a conflicting same-key payload without a second write', async () => {
+  it("rejects a conflicting same-key payload without a second write", async () => {
     const { handler, masteryBridge, store } = createHarness();
-    const original = makeEvidence({ idempotencyKey: 'im3-handler-conflict' });
+    const original = makeEvidence({ idempotencyKey: "im3-handler-conflict" });
 
     await handler.process({ learnerId: LEARNER_ID, evidence: original });
     const conflict = await handler.process({
       learnerId: LEARNER_ID,
       evidence: makeEvidence({
-        origin: 'mastery_advantage',
-        mode: 'independent_practice',
-        occurredAt: '2026-08-19T09:00:00.000Z',
+        origin: "mastery_advantage",
+        mode: "independent_practice",
+        occurredAt: "2026-08-19T09:00:00.000Z",
         gradedEvidence: { isCorrect: true, score: 5, maxScore: 6 },
         idempotencyKey: original.idempotencyKey,
       }),
@@ -203,10 +203,10 @@ describe('IM3 learning-evidence Convex handler seam', () => {
       persisted: false,
       masteryApplied: false,
       decision: {
-        idempotency: 'conflict',
-        exposureState: 'introduced',
+        idempotency: "conflict",
+        exposureState: "introduced",
         eligible: false,
-        reason: 'idempotency_conflict',
+        reason: "idempotency_conflict",
         masteryBearing: false,
       },
     });

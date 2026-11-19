@@ -2,10 +2,7 @@ import { internalMutation } from "../_generated/server";
 import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
 import { SubmissionSrsAdapter } from "@math-platform/srs-engine";
-import type {
-  ObjectivePriority,
-  PracticeVariantInfo,
-} from "@math-platform/srs-engine";
+import type { ObjectivePriority, PracticeVariantInfo } from "@math-platform/srs-engine";
 import { ConvexCardStore } from "../../lib/srs/convexCardStore";
 import { ConvexReviewLogStore } from "../../lib/srs/convexReviewLogStore";
 import type { PracticeTimingBaseline } from "@math-platform/practice-core";
@@ -39,24 +36,22 @@ async function resolveObjectivePriority(
   const policy = await ctx.db
     .query("objective_policies")
     .withIndex("by_standardId_and_courseKey", (q) =>
-      q.eq("standardId", standard._id).eq("courseKey", IM3_COURSE_KEY)
+      q.eq("standardId", standard._id).eq("courseKey", IM3_COURSE_KEY),
     )
     .first();
 
   return policy && OBJECTIVE_PRIORITIES.has(policy.policy as ObjectivePriority)
-    ? policy.policy as ObjectivePriority
+    ? (policy.policy as ObjectivePriority)
     : "essential";
 }
 
 export async function lookupVariantForScheduling(
   ctx: MutationCtx,
-  activityId: string
+  activityId: string,
 ): Promise<PracticeVariantInfo | null> {
   const item = await ctx.db
     .query("practice_items")
-    .withIndex("by_activityId", (q) =>
-      q.eq("activityId", activityId as Id<"activities">)
-    )
+    .withIndex("by_activityId", (q) => q.eq("activityId", activityId as Id<"activities">))
     .first();
 
   if (!item) return null;
@@ -64,9 +59,7 @@ export async function lookupVariantForScheduling(
   const canonicalVariantKey = item.legacyProblemFamilyId ?? item.variantKey;
   const family = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) =>
-      q.eq("variantKey", canonicalVariantKey)
-    )
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", canonicalVariantKey))
     .first();
 
   if (!family) return null;
@@ -94,13 +87,11 @@ export async function lookupVariantForScheduling(
  */
 async function lookupBaseline(
   ctx: MutationCtx,
-  variantKey: string
+  variantKey: string,
 ): Promise<PracticeTimingBaseline | null> {
   const baseline = await ctx.db
     .query("timing_baselines")
-    .withIndex("by_variant", (q) =>
-      q.eq("variantKey", variantKey)
-    )
+    .withIndex("by_variant", (q) => q.eq("variantKey", variantKey))
     .first();
 
   if (!baseline) return null;
@@ -129,7 +120,7 @@ export async function processSubmissionSrsHandler(
     studentId: string;
     activityId: string;
     submission: unknown;
-  }
+  },
 ): Promise<
   | { ok: true; skipped: false; cardId: string; reviewId: string }
   | { ok: false; skipped: true; reason: string }
@@ -148,8 +139,7 @@ export async function processSubmissionSrsHandler(
         resolve: async () => familyInfo,
       },
       baselineResolver: {
-        getBaseline: async (variantKey: string) =>
-          lookupBaseline(ctx, variantKey),
+        getBaseline: async (variantKey: string) => lookupBaseline(ctx, variantKey),
       },
       requireAtomicPersistence: true,
     });

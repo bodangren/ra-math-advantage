@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import React, { useCallback, Suspense, useMemo } from 'react';
-import { getActivityComponent } from '@/lib/activities/registry';
-import { usePracticeTiming } from '@/components/practice-timing';
+import React, { useCallback, Suspense, useMemo } from "react";
+import { getActivityComponent } from "@/lib/activities/registry";
+import { usePracticeTiming } from "@/components/practice-timing";
 import {
   practiceSubmissionEnvelopeSchema,
   type PracticeSubmissionEnvelope,
-} from '@math-platform/practice-core/contract';
+} from "@math-platform/practice-core/contract";
 
 export interface ActivityRendererProps {
   componentKey: string;
   activityId: string;
   lessonId?: string;
   phaseNumber?: number;
-  mode?: 'teaching' | 'guided' | 'practice' | 'explore';
+  mode?: "teaching" | "guided" | "practice" | "explore";
   onSubmit?: (payload: unknown) => void | Promise<void>;
   onComplete?: () => void;
   /** Optional activity-specific configuration props (e.g. equation, questions,
@@ -31,12 +31,12 @@ export interface ActivityRendererProps {
 export function ActivityRenderer({
   componentKey,
   activityId,
-  mode = 'practice',
+  mode = "practice",
   onSubmit,
   onComplete,
   activityProps,
 }: ActivityRendererProps) {
-  const isStudentContext = mode !== 'teaching';
+  const isStudentContext = mode !== "teaching";
   const { getTiming } = usePracticeTiming();
 
   const handleSubmit = useCallback(
@@ -69,7 +69,9 @@ export function ActivityRenderer({
 
   return (
     <div className="my-4">
-      <Suspense fallback={<div className="p-4 text-sm text-muted-foreground">Loading activity…</div>}>
+      <Suspense
+        fallback={<div className="p-4 text-sm text-muted-foreground">Loading activity…</div>}
+      >
         {React.createElement(ActivityComponent, {
           ...(activityProps ?? {}),
           activityId,

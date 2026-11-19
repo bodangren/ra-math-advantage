@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useRef, useState } from 'react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import PracticeTestEngine from '@/components/student/PracticeTestEngine';
-import type { PracticeTestModuleConfig } from '@/lib/practice-tests/types';
+import { useRef, useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import PracticeTestEngine from "@/components/student/PracticeTestEngine";
+import type { PracticeTestModuleConfig } from "@/lib/practice-tests/types";
 
 interface PracticeTestPageClientProps {
   moduleConfig: PracticeTestModuleConfig;
@@ -39,18 +39,22 @@ export function PracticeTestPageClient({ moduleConfig }: PracticeTestPageClientP
     setSaveError(false);
 
     try {
-      const response = await fetch('/api/practice-tests/complete', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ attemptId: result.attemptId, moduleNumber: result.moduleNumber,
-          answers: result.answers, durationSeconds: result.durationSeconds }),
+      const response = await fetch("/api/practice-tests/complete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          attemptId: result.attemptId,
+          moduleNumber: result.moduleNumber,
+          answers: result.answers,
+          durationSeconds: result.durationSeconds,
+        }),
       });
 
       if (!response.ok) {
-        throw new Error('The test result was not saved.');
+        throw new Error("The test result was not saved.");
       }
     } catch (error) {
-      console.error('Failed to save practice test result:', error);
+      console.error("Failed to save practice test result:", error);
       setSaveError(true);
     }
   };
@@ -62,7 +66,12 @@ export function PracticeTestPageClient({ moduleConfig }: PracticeTestPageClientP
           <Link href="/student/study/practice-tests">Back to Practice Tests</Link>
         </Button>
       </div>
-      {saveError && <div role="alert">The test result was not saved. <Button onClick={() => void retrySave.current?.()}>Retry save</Button></div>}
+      {saveError && (
+        <div role="alert">
+          The test result was not saved.{" "}
+          <Button onClick={() => void retrySave.current?.()}>Retry save</Button>
+        </div>
+      )}
       <PracticeTestEngine moduleConfig={moduleConfig} onComplete={handleTestComplete} />
     </div>
   );

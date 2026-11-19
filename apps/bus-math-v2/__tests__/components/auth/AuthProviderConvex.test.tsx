@@ -1,6 +1,6 @@
-import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
-import { AuthProvider, useAuth } from '../../../components/auth/AuthProvider';
+import { describe, expect, it, vi, beforeEach } from "vitest";
+import { render, screen, waitFor } from "@testing-library/react";
+import { AuthProvider, useAuth } from "../../../components/auth/AuthProvider";
 
 const mockFetch = vi.fn();
 
@@ -14,47 +14,47 @@ function TestComponent() {
 
   return (
     <div>
-      <div data-testid="user-status">{user ? 'Authenticated' : 'Not authenticated'}</div>
-      <div data-testid="profile-username">{profile?.username || 'No profile'}</div>
+      <div data-testid="user-status">{user ? "Authenticated" : "Not authenticated"}</div>
+      <div data-testid="profile-username">{profile?.username || "No profile"}</div>
     </div>
   );
 }
 
-describe('components/auth/AuthProvider (Convex Migration)', () => {
+describe("components/auth/AuthProvider (Convex Migration)", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    vi.stubGlobal('fetch', mockFetch);
+    vi.stubGlobal("fetch", mockFetch);
     mockFetch.mockResolvedValue(
       new Response(JSON.stringify({ authenticated: false }), { status: 200 }),
     );
   });
 
-  it('loads unauthenticated state from session endpoint', async () => {
+  it("loads unauthenticated state from session endpoint", async () => {
     render(
       <AuthProvider>
         <TestComponent />
-      </AuthProvider>
+      </AuthProvider>,
     );
 
     // After loading, should show not authenticated
     await waitFor(() => {
-      expect(screen.getByTestId('user-status')).toHaveTextContent('Not authenticated');
-      expect(screen.getByTestId('profile-username')).toHaveTextContent('No profile');
+      expect(screen.getByTestId("user-status")).toHaveTextContent("Not authenticated");
+      expect(screen.getByTestId("profile-username")).toHaveTextContent("No profile");
     });
   });
 
-  it('loads authenticated user from session endpoint', async () => {
+  it("loads authenticated user from session endpoint", async () => {
     mockFetch.mockResolvedValue(
       new Response(
         JSON.stringify({
           authenticated: true,
-          user: { id: 'user-123', username: 'demo_student' },
+          user: { id: "user-123", username: "demo_student" },
           profile: {
-            id: 'user-123',
-            organization_id: 'org-123',
-            username: 'demo_student',
-            role: 'student',
-            display_name: 'Demo Student',
+            id: "user-123",
+            organization_id: "org-123",
+            username: "demo_student",
+            role: "student",
+            display_name: "Demo Student",
             avatar_url: null,
             metadata: null,
             created_at: new Date().toISOString(),
@@ -68,12 +68,12 @@ describe('components/auth/AuthProvider (Convex Migration)', () => {
     render(
       <AuthProvider>
         <TestComponent />
-      </AuthProvider>
+      </AuthProvider>,
     );
 
     await waitFor(() => {
-      expect(screen.getByTestId('user-status')).toHaveTextContent('Authenticated');
-      expect(screen.getByTestId('profile-username')).toHaveTextContent('demo_student');
+      expect(screen.getByTestId("user-status")).toHaveTextContent("Authenticated");
+      expect(screen.getByTestId("profile-username")).toHaveTextContent("demo_student");
     });
   });
 });

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 export interface StudentOption {
   studentId: string;
@@ -21,14 +21,18 @@ export function StudentSwitcher({
     return (
       <div data-testid="parent-student-switcher-single" className="py-2">
         <span className="text-sm font-medium text-foreground">
-          {student?.displayName ?? 'Student'}
+          {student?.displayName ?? "Student"}
         </span>
       </div>
     );
   }
 
   return (
-    <nav data-testid="parent-student-switcher" className="flex gap-2 py-2" aria-label="Select student">
+    <nav
+      data-testid="parent-student-switcher"
+      className="flex gap-2 py-2"
+      aria-label="Select student"
+    >
       {students.map((student) => {
         const isActive = student.studentId === selectedStudentId;
         return (
@@ -40,10 +44,11 @@ export function StudentSwitcher({
                 onSelectStudent(student.studentId);
               }
             }}
-            aria-current={isActive ? 'page' : undefined}
-            className={isActive
-              ? 'px-3 py-1.5 rounded-md text-sm font-medium bg-primary text-primary-foreground'
-              : 'px-3 py-1.5 rounded-md text-sm font-medium text-foreground bg-muted/50 hover:bg-muted transition-colors'
+            aria-current={isActive ? "page" : undefined}
+            className={
+              isActive
+                ? "px-3 py-1.5 rounded-md text-sm font-medium bg-primary text-primary-foreground"
+                : "px-3 py-1.5 rounded-md text-sm font-medium text-foreground bg-muted/50 hover:bg-muted transition-colors"
             }
           >
             {student.displayName}

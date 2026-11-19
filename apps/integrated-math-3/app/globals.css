@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Fira+Code:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Fira+Code:wght@400;500&display=swap");
 
 @import "tailwindcss";
 @config "../tailwind.config.ts";
@@ -14,36 +14,36 @@
   :root {
     --radius: 0.5rem;
     /* Font families */
-    --font-display: 'Lora', Georgia, 'Times New Roman', serif;
-    --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
-    --font-mono-num: 'Fira Code', 'Courier New', monospace;
+    --font-display: "Lora", Georgia, "Times New Roman", serif;
+    --font-body: "DM Sans", system-ui, -apple-system, sans-serif;
+    --font-mono-num: "Fira Code", "Courier New", monospace;
 
     /* Integrated Math 3 Theme — warm academic orange */
-    --background: 0.985 0.003 75;       /* barely warm white */
-    --foreground: 0.13 0.016 45;        /* warm near-black */
+    --background: 0.985 0.003 75; /* barely warm white */
+    --foreground: 0.13 0.016 45; /* warm near-black */
     --card: 1 0 0;
     --card-foreground: 0.13 0.016 45;
     --popover: 1 0 0;
     --popover-foreground: 0.13 0.016 45;
-    --primary: 0.55 0.19 40;            /* brand orange */
+    --primary: 0.55 0.19 40; /* brand orange */
     --primary-foreground: 0.98 0.003 40;
-    --secondary: 0.94 0.012 70;         /* warm sand */
+    --secondary: 0.94 0.012 70; /* warm sand */
     --secondary-foreground: 0.26 0.04 45;
     --muted: 0.955 0.008 70;
-    --muted-foreground: 0.50 0.012 60;
-    --accent: 0.60 0.14 195;            /* muted teal — complementary to orange */
+    --muted-foreground: 0.5 0.012 60;
+    --accent: 0.6 0.14 195; /* muted teal — complementary to orange */
     --accent-foreground: 0.98 0.003 200;
     --destructive: 0.55 0.22 15;
     --destructive-foreground: 0.98 0.003 250;
-    --border: 0.87 0.010 70;
+    --border: 0.87 0.01 70;
     --input: 0.92 0.008 70;
     --ring: 0.55 0.19 40;
     /* Chart colors */
-    --chart-1: 0.55 0.19 40;            /* orange */
-    --chart-2: 0.60 0.14 195;           /* teal */
-    --chart-3: 0.55 0.22 15;            /* red */
-    --chart-4: 0.72 0.17 80;            /* golden yellow */
-    --chart-5: 0.55 0.18 155;           /* green */
+    --chart-1: 0.55 0.19 40; /* orange */
+    --chart-2: 0.6 0.14 195; /* teal */
+    --chart-3: 0.55 0.22 15; /* red */
+    --chart-4: 0.72 0.17 80; /* golden yellow */
+    --chart-5: 0.55 0.18 155; /* green */
   }
 
   .dark {
@@ -53,24 +53,24 @@
     --card-foreground: 0.93 0.008 70;
     --popover: 0.17 0.018 40;
     --popover-foreground: 0.93 0.008 70;
-    --primary: 0.70 0.21 40;
-    --primary-foreground: 0.10 0.010 40;
+    --primary: 0.7 0.21 40;
+    --primary-foreground: 0.1 0.01 40;
     --secondary: 0.19 0.022 40;
     --secondary-foreground: 0.93 0.008 70;
     --muted: 0.17 0.018 40;
-    --muted-foreground: 0.58 0.020 60;
+    --muted-foreground: 0.58 0.02 60;
     --accent: 0.65 0.16 195;
-    --accent-foreground: 0.10 0.010 195;
+    --accent-foreground: 0.1 0.01 195;
     --destructive: 0.65 0.25 15;
     --destructive-foreground: 0.93 0.008 230;
     --border: 0.24 0.024 40;
     --input: 0.21 0.022 40;
-    --ring: 0.70 0.21 40;
-    --chart-1: 0.70 0.21 40;
+    --ring: 0.7 0.21 40;
+    --chart-1: 0.7 0.21 40;
     --chart-2: 0.65 0.16 195;
     --chart-3: 0.65 0.25 15;
     --chart-4: 0.78 0.18 80;
-    --chart-5: 0.62 0.20 155;
+    --chart-5: 0.62 0.2 155;
   }
 }
 
@@ -83,7 +83,12 @@
     font-family: var(--font-body);
     line-height: 1.6;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
     line-height: 1.25;
   }
@@ -91,13 +96,23 @@
 
 @layer utilities {
   /* ── Font helpers ── */
-  .font-display  { font-family: var(--font-display); }
-  .font-body     { font-family: var(--font-body); }
-  .font-mono-num { font-family: var(--font-mono-num); }
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-body {
+    font-family: var(--font-body);
+  }
+  .font-mono-num {
+    font-family: var(--font-mono-num);
+  }
 
   /* ── Dark chrome surfaces (header / footer / hero) ── */
-  .bg-slate-dark { background-color: oklch(0.14 0.028 40); }
-  .bg-slate-mid  { background-color: oklch(0.19 0.035 40); }
+  .bg-slate-dark {
+    background-color: oklch(0.14 0.028 40);
+  }
+  .bg-slate-mid {
+    background-color: oklch(0.19 0.035 40);
+  }
 
   /* ── Hero gradient ── */
   .hero-gradient {
@@ -105,7 +120,7 @@
       135deg,
       oklch(0.14 0.028 40) 0%,
       oklch(0.18 0.038 38) 55%,
-      oklch(0.16 0.030 42) 100%
+      oklch(0.16 0.03 42) 100%
     );
   }
 
@@ -116,11 +131,16 @@
     border-left: 3px solid transparent;
     border-radius: var(--radius);
     box-shadow: 0 1px 4px oklch(0 0 0 / 0.06);
-    transition: box-shadow 0.2s ease, border-left-color 0.2s ease, transform 0.2s ease;
+    transition:
+      box-shadow 0.2s ease,
+      border-left-color 0.2s ease,
+      transform 0.2s ease;
   }
   .card-workbook:hover {
     border-left-color: oklch(var(--primary));
-    box-shadow: 0 6px 20px oklch(var(--primary) / 0.12), 0 1px 4px oklch(0 0 0 / 0.08);
+    box-shadow:
+      0 6px 20px oklch(var(--primary) / 0.12),
+      0 1px 4px oklch(0 0 0 / 0.08);
     transform: translateY(-2px);
   }
 
@@ -134,44 +154,66 @@
     text-transform: uppercase;
     padding: 0.2rem 0.65rem;
     border-radius: 3px;
-    background-color: oklch(var(--primary) / 0.10);
+    background-color: oklch(var(--primary) / 0.1);
     color: oklch(var(--primary));
     border: 1px solid oklch(var(--primary) / 0.25);
   }
   .section-label-light {
-    background-color: oklch(1 0 0 / 0.10);
-    color: oklch(0.85 0.10 70);
+    background-color: oklch(1 0 0 / 0.1);
+    color: oklch(0.85 0.1 70);
     border-color: oklch(1 0 0 / 0.18);
   }
 
   /* ── Staggered fade-up entrance animations ── */
-  .animate-fade-up   { animation: fadeUp 0.5s ease both; }
-  .animate-fade-up-1 { animation: fadeUp 0.5s 0.07s ease both; }
-  .animate-fade-up-2 { animation: fadeUp 0.5s 0.14s ease both; }
-  .animate-fade-up-3 { animation: fadeUp 0.5s 0.21s ease both; }
-  .animate-fade-up-4 { animation: fadeUp 0.5s 0.28s ease both; }
-  .animate-fade-up-5 { animation: fadeUp 0.5s 0.35s ease both; }
-  .animate-fade-up-6 { animation: fadeUp 0.5s 0.42s ease both; }
-  .animate-fade-up-7 { animation: fadeUp 0.5s 0.49s ease both; }
+  .animate-fade-up {
+    animation: fadeUp 0.5s ease both;
+  }
+  .animate-fade-up-1 {
+    animation: fadeUp 0.5s 0.07s ease both;
+  }
+  .animate-fade-up-2 {
+    animation: fadeUp 0.5s 0.14s ease both;
+  }
+  .animate-fade-up-3 {
+    animation: fadeUp 0.5s 0.21s ease both;
+  }
+  .animate-fade-up-4 {
+    animation: fadeUp 0.5s 0.28s ease both;
+  }
+  .animate-fade-up-5 {
+    animation: fadeUp 0.5s 0.35s ease both;
+  }
+  .animate-fade-up-6 {
+    animation: fadeUp 0.5s 0.42s ease both;
+  }
+  .animate-fade-up-7 {
+    animation: fadeUp 0.5s 0.49s ease both;
+  }
 
   /* ── Gradients ── */
   .gradient-primary {
     background: linear-gradient(135deg, oklch(0.55 0.19 40) 0%, oklch(0.62 0.18 45) 100%);
   }
   .gradient-cta {
-    background: linear-gradient(135deg, oklch(0.60 0.14 195) 0%, oklch(0.68 0.16 200) 100%);
+    background: linear-gradient(135deg, oklch(0.6 0.14 195) 0%, oklch(0.68 0.16 200) 100%);
   }
   .gradient-success {
     background: linear-gradient(135deg, oklch(0.42 0.145 157) 0%, oklch(0.52 0.15 155) 100%);
   }
   .gradient-danger {
-    background: linear-gradient(135deg, oklch(0.55 0.22 15) 0%, oklch(0.60 0.18 20) 100%);
+    background: linear-gradient(135deg, oklch(0.55 0.22 15) 0%, oklch(0.6 0.18 20) 100%);
   }
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ── Textbook content scope ── */
@@ -259,10 +301,18 @@
     color: #000;
   }
 
-  .textbook-content h1 { font-size: 18pt; }
-  .textbook-content h2 { font-size: 15pt; }
-  .textbook-content h3 { font-size: 13pt; }
-  .textbook-content h4 { font-size: 11pt; }
+  .textbook-content h1 {
+    font-size: 18pt;
+  }
+  .textbook-content h2 {
+    font-size: 15pt;
+  }
+  .textbook-content h3 {
+    font-size: 13pt;
+  }
+  .textbook-content h4 {
+    font-size: 11pt;
+  }
 
   /* Avoid page breaks inside content boxes */
   .textbook-content section {

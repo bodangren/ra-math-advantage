@@ -1,16 +1,11 @@
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
-import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-} from '@/components/ui/card';
-import type { DashboardLessonActionLink } from '@/lib/student/dashboard-presentation';
-import { formatCurriculumSegmentLabel } from '@/lib/curriculum/segment-labels';
-import { studentLessonPath } from '@/lib/student/navigation';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
+import type { DashboardLessonActionLink } from "@/lib/student/dashboard-presentation";
+import { formatCurriculumSegmentLabel } from "@/lib/curriculum/segment-labels";
+import { studentLessonPath } from "@/lib/student/navigation";
 
 interface NextLessonCardProps {
   heading: string;
@@ -18,7 +13,6 @@ interface NextLessonCardProps {
   lesson: DashboardLessonActionLink | null;
   emptyMessage: string;
 }
-
 
 /**
  * Displays a card with the next recommended lesson and a link to start it.

@@ -1,4 +1,4 @@
-import { getServerConvexUrl } from './deployment';
+import { getServerConvexUrl } from "./deployment";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { api, internal } from "@/convex/_generated/api";
 import {
@@ -17,11 +17,17 @@ export async function fetchMutation(ref: any, args: Record<string, unknown>): Pr
 }
 
 export async function fetchInternalQuery(ref: any, args: Record<string, unknown>): Promise<any> {
-  return fetchInternalQueryBase(ref, args, { env: process.env, convexUrl: getServerConvexUrl(process.env) });
+  return fetchInternalQueryBase(ref, args, {
+    env: process.env,
+    convexUrl: getServerConvexUrl(process.env),
+  });
 }
 
 export async function fetchInternalMutation(ref: any, args: Record<string, unknown>): Promise<any> {
-  return fetchInternalMutationBase(ref, args, { env: process.env, convexUrl: getServerConvexUrl(process.env) });
+  return fetchInternalMutationBase(ref, args, {
+    env: process.env,
+    convexUrl: getServerConvexUrl(process.env),
+  });
 }
 
 export { api, internal };

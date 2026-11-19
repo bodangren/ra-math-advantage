@@ -1,87 +1,83 @@
-'use client'
+"use client";
 
-import { useMemo, useState } from 'react'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
-import { AlertCircle, FileText, Send, Star, User } from 'lucide-react'
+import { useMemo, useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { AlertCircle, FileText, Send, Star, User } from "lucide-react";
 
-import { type PeerCritiqueActivityProps } from '@/types/activities'
-import { type Activity } from '@/lib/schemas/validators'
+import { type PeerCritiqueActivityProps } from "@/types/activities";
+import { type Activity } from "@/lib/schemas/validators";
 import {
   buildPracticeSubmissionEnvelope,
   normalizePracticeValue,
   type PracticeSubmissionCallbackPayload,
-} from '@math-platform/practice-core/contract'
+} from "@math-platform/practice-core/contract";
 
-const DEFAULT_CATEGORIES: PeerCritiqueActivityProps['categories'] = [
+const DEFAULT_CATEGORIES: PeerCritiqueActivityProps["categories"] = [
   {
-    id: 'strengths',
-    title: 'Strengths & Highlights',
-    description: 'What went especially well?',
-    prompt: 'Celebrate the most impressive parts of their work.',
-    placeholder: 'Call out specific examples that stood out...'
+    id: "strengths",
+    title: "Strengths & Highlights",
+    description: "What went especially well?",
+    prompt: "Celebrate the most impressive parts of their work.",
+    placeholder: "Call out specific examples that stood out...",
   },
   {
-    id: 'improvements',
-    title: 'Areas for Growth',
-    description: 'Where could they improve?',
-    prompt: 'Offer actionable, kind suggestions.',
-    placeholder: 'Share concrete ideas that would level up the work...'
+    id: "improvements",
+    title: "Areas for Growth",
+    description: "Where could they improve?",
+    prompt: "Offer actionable, kind suggestions.",
+    placeholder: "Share concrete ideas that would level up the work...",
   },
   {
-    id: 'excelSkills',
-    title: 'Excel & Technical Skills',
-    description: 'Accuracy, formulas, and data storytelling.',
-    prompt: 'How effectively did they use Excel?',
-    placeholder: 'Comment on formulas, charts, formatting, or automation...'
+    id: "excelSkills",
+    title: "Excel & Technical Skills",
+    description: "Accuracy, formulas, and data storytelling.",
+    prompt: "How effectively did they use Excel?",
+    placeholder: "Comment on formulas, charts, formatting, or automation...",
   },
   {
-    id: 'businessInsight',
-    title: 'Business Insight',
-    description: 'Strategic thinking and real-world relevance.',
-    prompt: 'Did the analysis drive clear decisions?',
-    placeholder: 'Explain how their recommendations land with executives...'
+    id: "businessInsight",
+    title: "Business Insight",
+    description: "Strategic thinking and real-world relevance.",
+    prompt: "Did the analysis drive clear decisions?",
+    placeholder: "Explain how their recommendations land with executives...",
   },
   {
-    id: 'presentation',
-    title: 'Presentation & Delivery',
-    description: 'Clarity, confidence, and story arc.',
-    prompt: 'How well did they communicate their ideas?',
-    placeholder: 'Describe how they engaged the audience...'
-  }
-]
+    id: "presentation",
+    title: "Presentation & Delivery",
+    description: "Clarity, confidence, and story arc.",
+    prompt: "How well did they communicate their ideas?",
+    placeholder: "Describe how they engaged the audience...",
+  },
+];
 
 const categoryColors: Record<string, string> = {
-  strengths: 'bg-green-50 border-green-200',
-  improvements: 'bg-blue-50 border-blue-200',
-  excelSkills: 'bg-purple-50 border-purple-200',
-  businessInsight: 'bg-orange-50 border-orange-200',
-  presentation: 'bg-pink-50 border-pink-200'
-}
+  strengths: "bg-green-50 border-green-200",
+  improvements: "bg-blue-50 border-blue-200",
+  excelSkills: "bg-purple-50 border-purple-200",
+  businessInsight: "bg-orange-50 border-orange-200",
+  presentation: "bg-pink-50 border-pink-200",
+};
 
 const textareaClasses =
-  'mt-2 w-full min-h-[120px] rounded-md border border-input bg-background p-3 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+  "mt-2 w-full min-h-[120px] rounded-md border border-input bg-background p-3 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
 
-export type PeerCritiqueActivity = Omit<Activity, 'componentKey' | 'props'> & {
-  componentKey: 'peer-critique-form'
-  props: PeerCritiqueActivityProps
-}
+export type PeerCritiqueActivity = Omit<Activity, "componentKey" | "props"> & {
+  componentKey: "peer-critique-form";
+  props: PeerCritiqueActivityProps;
+};
 
-export const PEER_CRITIQUE_SUPPORTED_MODES = [
-  'guided_practice',
-  'independent_practice',
-] as const
-const PEER_CRITIQUE_DEFAULT_MODE = 'independent_practice' as const
+export const PEER_CRITIQUE_SUPPORTED_MODES = ["guided_practice", "independent_practice"] as const;
+const PEER_CRITIQUE_DEFAULT_MODE = "independent_practice" as const;
 
 interface PeerCritiqueFormProps {
-  activity: PeerCritiqueActivity
-  className?: string
-  onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void
+  activity: PeerCritiqueActivity;
+  className?: string;
+  onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void;
 }
-
 
 /**
  * Structured peer critique form for rubric-aligned feedback with ratings and
@@ -91,68 +87,69 @@ interface PeerCritiqueFormProps {
  *   callback.
  * @returns A Card with category sections, star ratings, and comment fields.
  */
-export function PeerCritiqueForm({ activity, className = '', onSubmit }: PeerCritiqueFormProps) {
-  const projectTitle = activity.props.projectTitle ?? activity.displayName ?? 'Project Review'
-  const peerName = activity.props.peerName ?? 'Peer'
-  const unitNumber = activity.props.unitNumber
-  const configuredCategories = activity.props.categories.length ? activity.props.categories : DEFAULT_CATEGORIES
+export function PeerCritiqueForm({ activity, className = "", onSubmit }: PeerCritiqueFormProps) {
+  const projectTitle = activity.props.projectTitle ?? activity.displayName ?? "Project Review";
+  const peerName = activity.props.peerName ?? "Peer";
+  const unitNumber = activity.props.unitNumber;
+  const configuredCategories = activity.props.categories.length
+    ? activity.props.categories
+    : DEFAULT_CATEGORIES;
 
   const categories = useMemo(
     () =>
       configuredCategories.map((category) => ({
         ...category,
-        color: categoryColors[category.id] ?? 'bg-slate-50 border-slate-200'
+        color: categoryColors[category.id] ?? "bg-slate-50 border-slate-200",
       })),
-    [configuredCategories]
-  )
+    [configuredCategories],
+  );
 
   const [ratings, setRatings] = useState<Record<string, number>>(() =>
     categories.reduce<Record<string, number>>((acc, category) => {
-      acc[category.id] = 0
-      return acc
-    }, {})
-  )
+      acc[category.id] = 0;
+      return acc;
+    }, {}),
+  );
   const [comments, setComments] = useState<Record<string, string>>(() =>
     categories.reduce<Record<string, string>>((acc, category) => {
-      acc[category.id] = ''
-      return acc
-    }, {})
-  )
-  const [overallComments, setOverallComments] = useState('')
-  const [reviewerName, setReviewerName] = useState('')
-  const [submitted, setSubmitted] = useState(false)
+      acc[category.id] = "";
+      return acc;
+    }, {}),
+  );
+  const [overallComments, setOverallComments] = useState("");
+  const [reviewerName, setReviewerName] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
-  const overallTextareaId = `${activity.id}-overall`
-  const reviewerInputId = `${activity.id}-reviewer`
-  const [prevCategories, setPrevCategories] = useState(categories)
+  const overallTextareaId = `${activity.id}-overall`;
+  const reviewerInputId = `${activity.id}-reviewer`;
+  const [prevCategories, setPrevCategories] = useState(categories);
   if (categories !== prevCategories) {
-    setPrevCategories(categories)
+    setPrevCategories(categories);
     setRatings(
       categories.reduce<Record<string, number>>((acc, category) => {
-        acc[category.id] = 0
-        return acc
-      }, {})
-    )
+        acc[category.id] = 0;
+        return acc;
+      }, {}),
+    );
     setComments(
       categories.reduce<Record<string, string>>((acc, category) => {
-        acc[category.id] = ''
-        return acc
-      }, {})
-    )
-    setSubmitted(false)
+        acc[category.id] = "";
+        return acc;
+      }, {}),
+    );
+    setSubmitted(false);
   }
 
   const allComplete =
     Object.values(ratings).every((rating) => rating > 0) &&
-    Object.values(comments).every((text) => text.trim().length > 0)
-
+    Object.values(comments).every((text) => text.trim().length > 0);
 
   /**
    * Submit the peer critique feedback, building the practice submission
    * envelope with per-category parts and artifact data.
    */
   const handleSubmit = () => {
-    if (!allComplete) return
+    if (!allComplete) return;
 
     const answers = {
       projectTitle,
@@ -162,14 +159,14 @@ export function PeerCritiqueForm({ activity, className = '', onSubmit }: PeerCri
       ratings,
       comments,
       overallComments,
-    }
+    };
 
     try {
       onSubmit?.(
         buildPracticeSubmissionEnvelope({
           activityId: activity.id,
           mode: PEER_CRITIQUE_DEFAULT_MODE,
-          status: 'submitted',
+          status: "submitted",
           attemptNumber: 1,
           submittedAt: new Date(),
           answers,
@@ -178,27 +175,27 @@ export function PeerCritiqueForm({ activity, className = '', onSubmit }: PeerCri
               const rawAnswer = {
                 rating: ratings[category.id],
                 comment: comments[category.id],
-              }
+              };
 
               return {
                 partId: category.id,
                 rawAnswer,
                 normalizedAnswer: normalizePracticeValue(rawAnswer),
-              }
+              };
             }),
             {
-              partId: 'overallComments',
+              partId: "overallComments",
               rawAnswer: overallComments,
               normalizedAnswer: normalizePracticeValue(overallComments),
             },
             {
-              partId: 'reviewerName',
+              partId: "reviewerName",
               rawAnswer: reviewerName.trim(),
               normalizedAnswer: normalizePracticeValue(reviewerName.trim()),
             },
           ],
           artifact: {
-            kind: 'peer_critique',
+            kind: "peer_critique",
             projectTitle,
             peerName,
             unitNumber,
@@ -211,12 +208,12 @@ export function PeerCritiqueForm({ activity, className = '', onSubmit }: PeerCri
             categoryCount: categories.length,
           },
         }),
-      )
-      setSubmitted(true)
+      );
+      setSubmitted(true);
     } catch (err) {
-      console.error('PeerCritiqueForm submission failed:', err)
+      console.error("PeerCritiqueForm submission failed:", err);
     }
-  }
+  };
 
   return (
     <Card className={`w-full ${className}`}>
@@ -225,7 +222,7 @@ export function PeerCritiqueForm({ activity, className = '', onSubmit }: PeerCri
           <FileText className="h-6 w-6 text-muted-foreground" />
           {projectTitle}
           <Badge variant="outline" className="uppercase">
-            {PEER_CRITIQUE_DEFAULT_MODE.replace('_', ' ')}
+            {PEER_CRITIQUE_DEFAULT_MODE.replace("_", " ")}
           </Badge>
           <Badge variant="secondary" className="ml-auto flex items-center gap-1">
             <User className="h-3.5 w-3.5" /> {peerName}
@@ -276,13 +273,13 @@ export function PeerCritiqueForm({ activity, className = '', onSubmit }: PeerCri
                     key={value}
                     type="button"
                     size="sm"
-                    variant={ratings[category.id] === value ? 'default' : 'outline'}
+                    variant={ratings[category.id] === value ? "default" : "outline"}
                     className="gap-1"
                     aria-label={`${category.title} rating ${value}`}
                     onClick={() =>
                       setRatings((prev) => ({
                         ...prev,
-                        [category.id]: value
+                        [category.id]: value,
                       }))
                     }
                   >
@@ -303,7 +300,7 @@ export function PeerCritiqueForm({ activity, className = '', onSubmit }: PeerCri
                 onChange={(event) =>
                   setComments((prev) => ({
                     ...prev,
-                    [category.id]: event.target.value
+                    [category.id]: event.target.value,
                   }))
                 }
                 placeholder={category.placeholder}
@@ -315,11 +312,8 @@ export function PeerCritiqueForm({ activity, className = '', onSubmit }: PeerCri
         </div>
 
         <section className="space-y-3">
-          <Label
-            className="text-sm font-medium text-muted-foreground"
-            htmlFor={overallTextareaId}
-          >
-            {activity.props.overallPrompt ?? 'Overall comments for your peer'}
+          <Label className="text-sm font-medium text-muted-foreground" htmlFor={overallTextareaId}>
+            {activity.props.overallPrompt ?? "Overall comments for your peer"}
           </Label>
           <textarea
             id={overallTextareaId}
@@ -332,11 +326,8 @@ export function PeerCritiqueForm({ activity, className = '', onSubmit }: PeerCri
         </section>
 
         <section className="grid gap-3">
-          <Label
-            className="text-sm font-medium text-muted-foreground"
-            htmlFor={reviewerInputId}
-          >
-            {activity.props.reviewerNameLabel ?? 'Your name (optional)'}
+          <Label className="text-sm font-medium text-muted-foreground" htmlFor={reviewerInputId}>
+            {activity.props.reviewerNameLabel ?? "Your name (optional)"}
           </Label>
           <Input
             id={reviewerInputId}
@@ -354,19 +345,15 @@ export function PeerCritiqueForm({ activity, className = '', onSubmit }: PeerCri
 
         <div className="flex items-center justify-between pt-4 text-sm text-muted-foreground">
           <span>
-            {Object.values(comments).filter((text) => text.trim().length > 0).length}/{categories.length} comments filled
+            {Object.values(comments).filter((text) => text.trim().length > 0).length}/
+            {categories.length} comments filled
           </span>
-          <Button
-            type="button"
-            className="gap-2"
-            disabled={!allComplete}
-            onClick={handleSubmit}
-          >
+          <Button type="button" className="gap-2" disabled={!allComplete} onClick={handleSubmit}>
             <Send className="h-4 w-4" />
-            {submitted ? 'Feedback sent' : 'Submit feedback'}
+            {submitted ? "Feedback sent" : "Submit feedback"}
           </Button>
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

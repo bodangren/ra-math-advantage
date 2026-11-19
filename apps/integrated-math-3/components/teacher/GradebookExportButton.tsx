@@ -1,7 +1,11 @@
-'use client';
+"use client";
 
-import { useCallback } from 'react';
-import { buildGradebookCsv, type GradebookRow, type GradebookLesson } from '@math-platform/teacher-reporting-core';
+import { useCallback } from "react";
+import {
+  buildGradebookCsv,
+  type GradebookRow,
+  type GradebookLesson,
+} from "@math-platform/teacher-reporting-core";
 
 interface GradebookExportButtonProps {
   rows: GradebookRow[];
@@ -17,12 +21,12 @@ interface GradebookExportButtonProps {
 export function GradebookExportButton({ rows, lessons }: GradebookExportButtonProps) {
   const handleExport = useCallback(() => {
     const csv = buildGradebookCsv(rows, lessons);
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.setAttribute('href', url);
-    link.setAttribute('download', 'gradebook.csv');
-    link.style.visibility = 'hidden';
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", "gradebook.csv");
+    link.style.visibility = "hidden";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

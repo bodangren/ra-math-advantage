@@ -27,13 +27,8 @@ function canonical(value: unknown): unknown {
     );
   return value;
 }
-function sameReviewedContent(
-  existing: Record<string, unknown>,
-  expected: Record<string, unknown>,
-) {
-  const stored = Object.fromEntries(
-    reviewedFields.map((key) => [key, existing[key]]),
-  );
+function sameReviewedContent(existing: Record<string, unknown>, expected: Record<string, unknown>) {
+  const stored = Object.fromEntries(reviewedFields.map((key) => [key, existing[key]]));
   return (
     JSON.stringify(canonical(convexToJson(stored as Value))) ===
     JSON.stringify(canonical(convexToJson(expected as Value)))

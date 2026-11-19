@@ -1,6 +1,6 @@
-import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
+import type { GeneratorOutput } from "@math-platform/knowledge-space-practice";
 
-import { mulberry32 } from '../../utils/prng';
+import { mulberry32 } from "../../utils/prng";
 
 export interface Topic12TableAverageRateRow {
   readonly input: number;
@@ -26,16 +26,18 @@ export interface Topic12TableAverageRateChoiceVariant {
 }
 
 export const TOPIC12_TABLE_AVERAGE_RATE_CHOICE_NODE_ID =
-  'math.precalc.skill.1.2.compare-rates-of-change-across-intervals';
+  "math.precalc.skill.1.2.compare-rates-of-change-across-intervals";
 
-const PROMPT = 'The table gives the life expectancy of US females born in a given year. Over which interval is the average rate of change in life expectancy greatest?';
-const GENERATED_PROMPT = 'This hypothetical table gives life-expectancy values for a population by year. Over which interval is the average rate of change in life expectancy greatest?';
-const INPUT_LABEL = 'Birth year';
-const OUTPUT_LABEL = 'Life expectancy (years)';
+const PROMPT =
+  "The table gives the life expectancy of US females born in a given year. Over which interval is the average rate of change in life expectancy greatest?";
+const GENERATED_PROMPT =
+  "This hypothetical table gives life-expectancy values for a population by year. Over which interval is the average rate of change in life expectancy greatest?";
+const INPUT_LABEL = "Birth year";
+const OUTPUT_LABEL = "Life expectancy (years)";
 
 const SOURCE_ROWS: readonly Topic12TableAverageRateRow[] = [
   { input: 1800, output: 41.24 },
-  { input: 1850, output: 46.10 },
+  { input: 1850, output: 46.1 },
   { input: 1900, output: 53.63 },
   { input: 1950, output: 70.65 },
   { input: 2000, output: 81.83 },
@@ -49,7 +51,9 @@ function formatNumber(value: number, decimals: number): string {
   return value.toFixed(decimals);
 }
 
-function buildOptions(rows: readonly Topic12TableAverageRateRow[]): readonly Topic12TableAverageRateChoiceOption[] {
+function buildOptions(
+  rows: readonly Topic12TableAverageRateRow[],
+): readonly Topic12TableAverageRateChoiceOption[] {
   return rows.slice(0, -1).map((row, index) => ({
     id: String.fromCharCode(65 + index),
     label: String.fromCharCode(65 + index),
@@ -81,13 +85,18 @@ function findGreatestOptionId(
     const end = rows.find((row) => row.input === option.endInput)!;
     return (end.output - start.output) / (end.input - start.input);
   });
-  const greatestIndex = rates.reduce((bestIndex, rate, index) => rate > rates[bestIndex]! ? index : bestIndex, 0);
+  const greatestIndex = rates.reduce(
+    (bestIndex, rate, index) => (rate > rates[bestIndex]! ? index : bestIndex),
+    0,
+  );
   return options[greatestIndex]!.id;
 }
 
-export function generateTopic12TableAverageRateChoice(seed: number): Topic12TableAverageRateChoiceVariant {
+export function generateTopic12TableAverageRateChoice(
+  seed: number,
+): Topic12TableAverageRateChoiceVariant {
   if (!Number.isInteger(seed) || seed < 0) {
-    throw new RangeError('seed must be a non-negative integer');
+    throw new RangeError("seed must be a non-negative integer");
   }
 
   if (seed === 0) {
@@ -109,15 +118,18 @@ export function generateTopic12TableAverageRateChoice(seed: number): Topic12Tabl
   const spacing = random() < 0.5 ? 25 : 50;
   const startingLifeExpectancy = roundToHundredth(40 + random() * 12);
   const greatestIndex = Math.floor(random() * 4);
-  const changes = Array.from({ length: 4 }, (_, index) => roundToHundredth(
-    index === greatestIndex ? 2.6 + random() * 0.8 : 0.6 + random() * 1.1,
-  ));
-  const rows = changes.reduce<Topic12TableAverageRateRow[]>((result, change, index) => {
-    const previous = result[index]!;
-    const input = startYear + (index + 1) * spacing;
-    result.push({ input, output: roundToHundredth(previous.output + change) });
-    return result;
-  }, [{ input: startYear, output: startingLifeExpectancy }]);
+  const changes = Array.from({ length: 4 }, (_, index) =>
+    roundToHundredth(index === greatestIndex ? 2.6 + random() * 0.8 : 0.6 + random() * 1.1),
+  );
+  const rows = changes.reduce<Topic12TableAverageRateRow[]>(
+    (result, change, index) => {
+      const previous = result[index]!;
+      const input = startYear + (index + 1) * spacing;
+      result.push({ input, output: roundToHundredth(previous.output + change) });
+      return result;
+    },
+    [{ input: startYear, output: startingLifeExpectancy }],
+  );
   const options = buildOptions(rows);
 
   return {
@@ -140,7 +152,7 @@ export function generateTopic12TableAverageRateChoiceOutput(seed: number): Gener
     outputLabel: variant.outputLabel,
     rows: variant.rows,
     options: variant.options,
-    presentationMode: 'independent_practice' as const,
+    presentationMode: "independent_practice" as const,
   };
   const expectedAnswer = { selectedOptionId: variant.correctOptionId };
 
@@ -152,7 +164,7 @@ export function generateTopic12TableAverageRateChoiceOutput(seed: number): Gener
     gradingMetadata: {
       partAnswers: expectedAnswer,
       partMaxScores: { selectedOptionId: 1 },
-      partGradingRules: { selectedOptionId: 'exact_match' },
+      partGradingRules: { selectedOptionId: "exact_match" },
     },
   };
 }

@@ -1,14 +1,11 @@
-import { NextResponse } from 'next/server';
-import { z } from 'zod';
-import { requireActiveStudentRequestClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
-import type {
-  LessonProgressResponse,
-  PhaseProgressResponse,
-} from '@/types/api';
+import { NextResponse } from "next/server";
+import { z } from "zod";
+import { requireActiveStudentRequestClaims } from "@/lib/auth/server";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
+import type { LessonProgressResponse, PhaseProgressResponse } from "@/types/api";
 
 const paramsSchema = z.object({
-  lessonId: z.string().trim().min(1, 'Lesson identifier is required'),
+  lessonId: z.string().trim().min(1, "Lesson identifier is required"),
 });
 
 /**
@@ -19,10 +16,7 @@ const paramsSchema = z.object({
  * @returns A JSON response with the lesson's phase progress data.
  * @throws Returns 400 for invalid params, 404 if lesson not found, 500 on errors.
  */
-export async function GET(
-  request: Request,
-  { params }: { params: Promise<{ lessonId: string }> }
-) {
+export async function GET(request: Request, { params }: { params: Promise<{ lessonId: string }> }) {
   try {
     const claims = await requireActiveStudentRequestClaims(request);
     if (claims instanceof Response) {
@@ -37,7 +31,7 @@ export async function GET(
     if (!parsed.success) {
       return NextResponse.json(
         {
-          error: 'Invalid parameters',
+          error: "Invalid parameters",
           details: parsed.error.flatten().fieldErrors,
         },
         { status: 400 },
@@ -51,10 +45,7 @@ export async function GET(
     });
 
     if (!progress) {
-      return NextResponse.json(
-        { error: 'Lesson not found' },
-        { status: 404 },
-      );
+      return NextResponse.json({ error: "Lesson not found" }, { status: 404 });
     }
 
     const response: LessonProgressResponse = {
@@ -63,10 +54,7 @@ export async function GET(
 
     return NextResponse.json(response);
   } catch (error) {
-    console.error('Unexpected error:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 },
-    );
+    console.error("Unexpected error:", error);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

@@ -1,16 +1,8 @@
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, expect, it, vi } from "vitest";
 let submit: ((value: unknown) => Promise<void>) | undefined;
 vi.mock("@math-platform/activity-components", () => ({
-  IntervalClassificationActivity: (props: {
-    onSubmit: (value: unknown) => Promise<void>;
-  }) => {
+  IntervalClassificationActivity: (props: { onSubmit: (value: unknown) => Promise<void> }) => {
     submit = props.onSubmit;
     return (
       <button
@@ -82,9 +74,7 @@ it.each([
     vi.stubGlobal("fetch", fetchMock);
     render(<PrecalculusMasteryAdvantagePilot />);
     fireEvent.click(screen.getByText("Submit fixture"));
-    expect(await screen.findByRole("alert")).toHaveTextContent(
-      /unable to save/i,
-    );
+    expect(await screen.findByRole("alert")).toHaveTextContent(/unable to save/i);
     expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(screen.queryByText("Start new attempt")).not.toBeInTheDocument();
   },
@@ -120,40 +110,30 @@ it.each([
       decision: { ...evidence.decision, reason: "eligible", eligible: false },
     },
   ],
-])(
-  "keeps the opaque submission for retry after malformed evidence",
-  async (malformed) => {
-    const fetchMock = vi
-      .fn()
-      .mockResolvedValueOnce(response(create))
-      .mockResolvedValueOnce(response(malformed))
-      .mockResolvedValueOnce(response(evidence));
-    vi.stubGlobal("fetch", fetchMock);
-    render(<PrecalculusMasteryAdvantagePilot />);
-    fireEvent.click(screen.getByText("Submit fixture"));
-    fireEvent.click(
-      await screen.findByRole("button", { name: "Retry evidence delivery" }),
-    );
-    await waitFor(() =>
-      expect(screen.getByText("Start new attempt")).toBeInTheDocument(),
-    );
-    expect(fetchMock.mock.calls.map((call) => call[0])).toEqual([
-      "/api/activities/precalculus-pilot/submissions",
-      "/api/learning-evidence/precalculus-pilot",
-      "/api/learning-evidence/precalculus-pilot",
-    ]);
-  },
-);
+])("keeps the opaque submission for retry after malformed evidence", async (malformed) => {
+  const fetchMock = vi
+    .fn()
+    .mockResolvedValueOnce(response(create))
+    .mockResolvedValueOnce(response(malformed))
+    .mockResolvedValueOnce(response(evidence));
+  vi.stubGlobal("fetch", fetchMock);
+  render(<PrecalculusMasteryAdvantagePilot />);
+  fireEvent.click(screen.getByText("Submit fixture"));
+  fireEvent.click(await screen.findByRole("button", { name: "Retry evidence delivery" }));
+  await waitFor(() => expect(screen.getByText("Start new attempt")).toBeInTheDocument());
+  expect(fetchMock.mock.calls.map((call) => call[0])).toEqual([
+    "/api/activities/precalculus-pilot/submissions",
+    "/api/learning-evidence/precalculus-pilot",
+    "/api/learning-evidence/precalculus-pilot",
+  ]);
+});
 
 it("locks two synchronous selected submissions before React renders", async () => {
   let resolveCreate!: (value: Response) => void;
   const pending = new Promise<Response>((resolve) => {
     resolveCreate = resolve;
   });
-  const fetchMock = vi
-    .fn()
-    .mockReturnValueOnce(pending)
-    .mockResolvedValueOnce(response(evidence));
+  const fetchMock = vi.fn().mockReturnValueOnce(pending).mockResolvedValueOnce(response(evidence));
   vi.stubGlobal("fetch", fetchMock);
   render(<PrecalculusMasteryAdvantagePilot />);
   await act(async () => {

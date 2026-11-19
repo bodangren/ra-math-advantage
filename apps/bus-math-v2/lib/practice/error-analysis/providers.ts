@@ -5,9 +5,9 @@
  * compatible with the injectable aiProvider parameter in generateAISummary.
  */
 
-import { withRetry } from '@math-platform/ai-tutoring';
+import { withRetry } from "@math-platform/ai-tutoring";
 
-const OPENAI_API_BASE = 'https://api.openai.com/v1';
+const OPENAI_API_BASE = "https://api.openai.com/v1";
 
 export interface OpenAIProviderOptions {
   apiKey: string;
@@ -22,7 +22,7 @@ export interface OpenAIProviderOptions {
  * @returns Provider function that takes a prompt and returns AI response
  */
 export function createOpenAIProvider(options: OpenAIProviderOptions) {
-  const { apiKey, model = 'gpt-4o-mini', baseUrl = OPENAI_API_BASE, timeoutMs = 15000 } = options;
+  const { apiKey, model = "gpt-4o-mini", baseUrl = OPENAI_API_BASE, timeoutMs = 15000 } = options;
 
   return async function openAIProvider(prompt: string): Promise<string> {
     return withRetry(async () => {
@@ -31,25 +31,25 @@ export function createOpenAIProvider(options: OpenAIProviderOptions) {
 
       try {
         const response = await fetch(`${baseUrl}/chat/completions`, {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
             Authorization: `Bearer ${apiKey}`,
           },
           body: JSON.stringify({
             model,
             messages: [
               {
-                role: 'system',
+                role: "system",
                 content:
-                  'You are an expert accounting teacher analyzing student practice submissions. ' +
-                  'Respond with exactly three lines: ' +
-                  '1) the likely misunderstanding (1-2 sentences), ' +
-                  '2) evidence observed (reference specific answers), ' +
-                  '3) suggested reteach or intervention direction (1-2 sentences). ' +
-                  'No numbering, no extra text.',
+                  "You are an expert accounting teacher analyzing student practice submissions. " +
+                  "Respond with exactly three lines: " +
+                  "1) the likely misunderstanding (1-2 sentences), " +
+                  "2) evidence observed (reference specific answers), " +
+                  "3) suggested reteach or intervention direction (1-2 sentences). " +
+                  "No numbering, no extra text.",
               },
-              { role: 'user', content: prompt },
+              { role: "user", content: prompt },
             ],
             temperature: 0.3,
             max_tokens: 300,
@@ -62,10 +62,10 @@ export function createOpenAIProvider(options: OpenAIProviderOptions) {
         }
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const data = await response.json() as any;
+        const data = (await response.json()) as any;
         const content = data.choices?.[0]?.message?.content;
-        if (typeof content !== 'string' || content.trim().length === 0) {
-          throw new Error('Empty response from AI provider');
+        if (typeof content !== "string" || content.trim().length === 0) {
+          throw new Error("Empty response from AI provider");
         }
         return content.trim();
       } finally {
@@ -87,7 +87,7 @@ export function resolveAIProviderFromEnv(): ((prompt: string) => Promise<string>
 
   return createOpenAIProvider({
     apiKey,
-    model: process.env.OPENAI_MODEL || 'gpt-4o-mini',
+    model: process.env.OPENAI_MODEL || "gpt-4o-mini",
     baseUrl: process.env.OPENAI_API_BASE || OPENAI_API_BASE,
   });
 }

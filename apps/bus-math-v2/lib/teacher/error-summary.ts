@@ -6,7 +6,11 @@
  * student work faster without losing direct access to the underlying data.
  */
 
-import type { PracticeEvidence, SubmissionEvidence, SubmissionDetail } from '@/lib/teacher/submission-detail';
+import type {
+  PracticeEvidence,
+  SubmissionEvidence,
+  SubmissionDetail,
+} from "@/lib/teacher/submission-detail";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -58,7 +62,7 @@ export interface LessonErrorSummary {
  * @returns Array of results
  */
 function extractPartsFromEvidence(evidence: SubmissionEvidence): Record<string, unknown>[] {
-  if (evidence.kind !== 'practice') return [];
+  if (evidence.kind !== "practice") return [];
   const submissionData = evidence.submissionData as Record<string, unknown>;
   return Array.isArray(submissionData.parts)
     ? (submissionData.parts as Record<string, unknown>[])
@@ -71,9 +75,9 @@ function extractPartsFromEvidence(evidence: SubmissionEvidence): Record<string, 
  * @returns The requested value
  */
 function getActivityMode(evidence: SubmissionEvidence): string | null {
-  if (evidence.kind !== 'practice') return null;
+  if (evidence.kind !== "practice") return null;
   const submissionData = evidence.submissionData as Record<string, unknown>;
-  return typeof submissionData.mode === 'string' ? submissionData.mode : null;
+  return typeof submissionData.mode === "string" ? submissionData.mode : null;
 }
 
 /**
@@ -81,13 +85,15 @@ function getActivityMode(evidence: SubmissionEvidence): string | null {
  * @param parts - parts
  * @returns Computed result
  */
-function computeMisconceptionFrequencies(parts: Record<string, unknown>[]): MisconceptionFrequency[] {
+function computeMisconceptionFrequencies(
+  parts: Record<string, unknown>[],
+): MisconceptionFrequency[] {
   const tagMap = new Map<string, { count: number; partIds: string[] }>();
 
   for (const part of parts) {
-    const partId = typeof part.partId === 'string' ? part.partId : 'unknown';
+    const partId = typeof part.partId === "string" ? part.partId : "unknown";
     const tags = Array.isArray(part.misconceptionTags)
-      ? (part.misconceptionTags as unknown[]).filter((t): t is string => typeof t === 'string')
+      ? (part.misconceptionTags as unknown[]).filter((t): t is string => typeof t === "string")
       : [];
 
     for (const tag of tags) {
@@ -122,9 +128,9 @@ function computeScaffoldMetrics(parts: Record<string, unknown>[]): {
   let editsMade = 0;
 
   for (const part of parts) {
-    if (typeof part.hintsUsed === 'number') hintsUsed += part.hintsUsed;
-    if (typeof part.revealStepsSeen === 'number') revealStepsSeen += part.revealStepsSeen;
-    if (typeof part.changedCount === 'number') editsMade += part.changedCount;
+    if (typeof part.hintsUsed === "number") hintsUsed += part.hintsUsed;
+    if (typeof part.revealStepsSeen === "number") revealStepsSeen += part.revealStepsSeen;
+    if (typeof part.changedCount === "number") editsMade += part.changedCount;
   }
 
   return { hintsUsed, revealStepsSeen, editsMade };
@@ -181,7 +187,7 @@ export function buildLessonErrorSummary(detail: SubmissionDetail): LessonErrorSu
 
   for (const phase of detail.phases) {
     for (const evidence of phase.evidence ?? []) {
-      if (evidence.kind !== 'practice') continue;
+      if (evidence.kind !== "practice") continue;
 
       const summary = buildActivityErrorSummary(evidence);
       activities.push(summary);
@@ -195,7 +201,10 @@ export function buildLessonErrorSummary(detail: SubmissionDetail): LessonErrorSu
 
       attemptNumber = Math.max(attemptNumber ?? 0, evidence.attemptNumber ?? 0);
 
-      if (!latestSubmittedAt || new Date(evidence.submittedAt).getTime() > new Date(latestSubmittedAt).getTime()) {
+      if (
+        !latestSubmittedAt ||
+        new Date(evidence.submittedAt).getTime() > new Date(latestSubmittedAt).getTime()
+      ) {
         latestSubmittedAt = evidence.submittedAt;
       }
 
@@ -250,43 +259,47 @@ export function generateDeterministicSummary(summary: LessonErrorSummary): strin
   const lines: string[] = [];
 
   // Overall performance
-  const pct = summary.overallCorrectnessRate !== null
-    ? Math.round(summary.overallCorrectnessRate * 100)
-    : null;
+  const pct =
+    summary.overallCorrectnessRate !== null
+      ? Math.round(summary.overallCorrectnessRate * 100)
+      : null;
   lines.push(
     `${summary.studentName} completed ${summary.totalParts} parts across ${summary.activities.length} activity(ies)` +
-    (pct !== null ? `, scoring ${pct}% correct` : '') +
-    (summary.attemptNumber !== null ? ` on attempt ${summary.attemptNumber}` : '') +
-    '.'
+      (pct !== null ? `, scoring ${pct}% correct` : "") +
+      (summary.attemptNumber !== null ? ` on attempt ${summary.attemptNumber}` : "") +
+      ".",
   );
 
   // Top misconceptions
   if (summary.topMisconceptions.length > 0) {
     const topTags = summary.topMisconceptions.slice(0, 3);
-    const tagList = topTags.map((f) => `"${f.tag}" (${f.count} occurrence${f.count > 1 ? 's' : ''})`).join(', ');
+    const tagList = topTags
+      .map((f) => `"${f.tag}" (${f.count} occurrence${f.count > 1 ? "s" : ""})`)
+      .join(", ");
     lines.push(`Most frequent misconceptions: ${tagList}.`);
   } else {
-    lines.push('No misconception tags were recorded.');
+    lines.push("No misconception tags were recorded.");
   }
 
   // Scaffold usage
   if (summary.totalHintsUsed > 0 || summary.totalRevealsSeen > 0 || summary.totalEditsMade > 0) {
     lines.push(
-      `Scaffold usage: ${summary.totalHintsUsed} hint(s), ${summary.totalRevealsSeen} reveal(s), ${summary.totalEditsMade} edit(s).`
+      `Scaffold usage: ${summary.totalHintsUsed} hint(s), ${summary.totalRevealsSeen} reveal(s), ${summary.totalEditsMade} edit(s).`,
     );
   }
 
   // Per-activity breakdown (only if multiple activities)
   if (summary.activities.length > 1) {
-    lines.push('Activity breakdown:');
+    lines.push("Activity breakdown:");
     for (const activity of summary.activities) {
-      const activityPct = activity.correctnessRate !== null
-        ? Math.round(activity.correctnessRate * 100)
-        : null;
-      const scoreStr = activityPct !== null ? `${activityPct}%` : 'unscored';
-      lines.push(`  - ${activity.activityTitle}: ${activity.correctParts}/${activity.totalParts} correct (${scoreStr})`);
+      const activityPct =
+        activity.correctnessRate !== null ? Math.round(activity.correctnessRate * 100) : null;
+      const scoreStr = activityPct !== null ? `${activityPct}%` : "unscored";
+      lines.push(
+        `  - ${activity.activityTitle}: ${activity.correctParts}/${activity.totalParts} correct (${scoreStr})`,
+      );
     }
   }
 
-  return lines.join('\n');
+  return lines.join("\n");
 }

@@ -21,16 +21,16 @@ function avalanche(value: number): number {
 }
 
 export function assign({ studentId, experimentId, variants, hash }: AssignInput): string {
-  if (variants.length === 0) throw new Error('Experiment must declare at least one variant');
+  if (variants.length === 0) throw new Error("Experiment must declare at least one variant");
   const totalWeight = variants.reduce((total, variant) => {
     if (!variant.id || !Number.isFinite(variant.weight) || variant.weight <= 0) {
-      throw new Error('Variant ids must be non-empty and weights must be positive finite numbers');
+      throw new Error("Variant ids must be non-empty and weights must be positive finite numbers");
     }
     return total + variant.weight;
   }, 0);
   const value = hash(`${studentId}|${experimentId}`);
   if (!Number.isFinite(value) || value < 0 || value >= 1) {
-    throw new Error('Assignment hash must return a finite number in [0, 1)');
+    throw new Error("Assignment hash must return a finite number in [0, 1)");
   }
   const threshold = avalanche(value) * totalWeight;
   let cumulative = 0;

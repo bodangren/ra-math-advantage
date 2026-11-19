@@ -1,16 +1,23 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { ArrowRight, CheckCircle, Lightbulb, RotateCcw } from 'lucide-react';
+import { useState } from "react";
+import { ArrowRight, CheckCircle, Lightbulb, RotateCcw } from "lucide-react";
 
-import { buildPracticeSubmissionEnvelope, buildPracticeSubmissionParts, type PracticeSubmissionCallbackPayload } from '@/lib/practice/contract';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { SpreadsheetWrapper, type SpreadsheetData } from '@/components/activities/spreadsheet/SpreadsheetWrapper';
+import {
+  buildPracticeSubmissionEnvelope,
+  buildPracticeSubmissionParts,
+  type PracticeSubmissionCallbackPayload,
+} from "@/lib/practice/contract";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  SpreadsheetWrapper,
+  type SpreadsheetData,
+} from "@/components/activities/spreadsheet/SpreadsheetWrapper";
 
-export const DATA_CLEANING_SUPPORTED_MODES = ['guided_practice', 'independent_practice'] as const;
-const DATA_CLEANING_DEFAULT_MODE = 'guided_practice' as const;
+export const DATA_CLEANING_SUPPORTED_MODES = ["guided_practice", "independent_practice"] as const;
+const DATA_CLEANING_DEFAULT_MODE = "guided_practice" as const;
 
 interface DataCleaningActivityProps {
   activityId?: string;
@@ -22,7 +29,6 @@ interface DataCleaningActivityProps {
   onComplete?: () => void;
   onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void;
 }
-
 
 /**
  * Renders a data cleaning activity where students work through cleaning
@@ -49,12 +55,14 @@ export function DataCleaningActivity({
 }: DataCleaningActivityProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [showClean, setShowClean] = useState(false);
-  const [userProgress, setUserProgress] = useState<boolean[]>(new Array(cleaningSteps.length).fill(false));
+  const [userProgress, setUserProgress] = useState<boolean[]>(
+    new Array(cleaningSteps.length).fill(false),
+  );
   const [submitted, setSubmitted] = useState(false);
 
   const completedSteps = userProgress.filter(Boolean).length;
-  const progressPercentage = cleaningSteps.length === 0 ? 0 : (completedSteps / cleaningSteps.length) * 100;
-
+  const progressPercentage =
+    cleaningSteps.length === 0 ? 0 : (completedSteps / cleaningSteps.length) * 100;
 
   /**
    * Marks a cleaning step as complete and submits results if it is the final step.
@@ -93,15 +101,15 @@ export function DataCleaningActivity({
     }));
 
     const payload = buildPracticeSubmissionEnvelope({
-      activityId: activityId ?? `${title}-${description}`.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+      activityId: activityId ?? `${title}-${description}`.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
       mode: DATA_CLEANING_DEFAULT_MODE,
-      status: 'submitted',
+      status: "submitted",
       attemptNumber: 1,
       submittedAt: new Date(),
       answers: nextAnswers,
       parts,
       artifact: {
-        kind: 'data_cleaning',
+        kind: "data_cleaning",
         title,
         description,
         messyData,
@@ -152,7 +160,7 @@ export function DataCleaningActivity({
             </div>
             <div className="flex items-center gap-2">
               <Badge variant="outline" className="uppercase">
-                {DATA_CLEANING_DEFAULT_MODE.replace('_', ' ')}
+                {DATA_CLEANING_DEFAULT_MODE.replace("_", " ")}
               </Badge>
               <Badge variant="secondary">
                 Step {currentStep + 1} of {cleaningSteps.length}
@@ -204,9 +212,7 @@ export function DataCleaningActivity({
               <Lightbulb className="h-5 w-5" />
               Current Step
             </CardTitle>
-            <p className="text-sm text-blue-700">
-              {cleaningSteps[currentStep]}
-            </p>
+            <p className="text-sm text-blue-700">{cleaningSteps[currentStep]}</p>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="rounded-lg border border-blue-200 bg-white p-4 text-sm text-blue-900">
@@ -216,17 +222,26 @@ export function DataCleaningActivity({
               <Button variant="outline" size="sm" onClick={prevStep} disabled={currentStep === 0}>
                 Previous
               </Button>
-              <Button onClick={() => handleStepComplete(currentStep)} disabled={userProgress[currentStep]} size="sm">
+              <Button
+                onClick={() => handleStepComplete(currentStep)}
+                disabled={userProgress[currentStep]}
+                size="sm"
+              >
                 {userProgress[currentStep] ? (
                   <>
                     <CheckCircle className="mr-1 h-4 w-4" />
                     Complete
                   </>
                 ) : (
-                  'Mark Complete'
+                  "Mark Complete"
                 )}
               </Button>
-              <Button variant="outline" size="sm" onClick={nextStep} disabled={currentStep === cleaningSteps.length - 1}>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={nextStep}
+                disabled={currentStep === cleaningSteps.length - 1}
+              >
                 Next
               </Button>
             </div>
@@ -239,20 +254,30 @@ export function DataCleaningActivity({
                     key={step}
                     className={`flex items-center gap-2 rounded-md border p-2 text-sm ${
                       userProgress[index]
-                        ? 'border-green-200 bg-green-50'
+                        ? "border-green-200 bg-green-50"
                         : index === currentStep
-                          ? 'border-blue-200 bg-blue-50'
-                          : 'border-slate-200 bg-white'
+                          ? "border-blue-200 bg-blue-50"
+                          : "border-slate-200 bg-white"
                     }`}
                   >
-                    <div className={`h-4 w-4 rounded-full border-2 ${
-                      userProgress[index]
-                        ? 'border-green-600 bg-green-600'
-                        : index === currentStep
-                          ? 'border-blue-600'
-                          : 'border-slate-300'
-                    }`} />
-                    <span className={userProgress[index] ? 'text-green-800' : index === currentStep ? 'text-blue-800' : 'text-slate-600'}>
+                    <div
+                      className={`h-4 w-4 rounded-full border-2 ${
+                        userProgress[index]
+                          ? "border-green-600 bg-green-600"
+                          : index === currentStep
+                            ? "border-blue-600"
+                            : "border-slate-300"
+                      }`}
+                    />
+                    <span
+                      className={
+                        userProgress[index]
+                          ? "text-green-800"
+                          : index === currentStep
+                            ? "text-blue-800"
+                            : "text-slate-600"
+                      }
+                    >
                       {step}
                     </span>
                   </div>
@@ -271,13 +296,13 @@ export function DataCleaningActivity({
                   <ArrowRight className="ml-2 inline-block h-4 w-4" />
                 </>
               ) : (
-                'Target Snapshot'
+                "Target Snapshot"
               )}
             </CardTitle>
             <p className="text-sm text-green-600">
               {showClean
-                ? 'This is the cleaned output after all steps are complete.'
-                : 'Complete all steps to reveal the cleaned output.'}
+                ? "This is the cleaned output after all steps are complete."
+                : "Complete all steps to reveal the cleaned output."}
             </p>
           </CardHeader>
           <CardContent>
@@ -303,7 +328,7 @@ export function DataCleaningActivity({
       <div className="flex items-center justify-between gap-3 border-t pt-4">
         <div className="text-sm text-muted-foreground">
           {submitted
-            ? 'Submission recorded as canonical practice evidence.'
+            ? "Submission recorded as canonical practice evidence."
             : `Progress: ${completedSteps}/${cleaningSteps.length} cleaning steps completed`}
         </div>
         <Button variant="outline" onClick={resetExercise}>

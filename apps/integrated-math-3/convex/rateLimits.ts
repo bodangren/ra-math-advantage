@@ -42,7 +42,7 @@ export const checkAndIncrementRateLimit = internalMutation({
 
     const check = checkAndIncrement(existing, CHATBOT_RATE_LIMIT, now);
 
-    if (check.action === 'insert') {
+    if (check.action === "insert") {
       try {
         await ctx.db.insert("chatbot_rate_limits", {
           userId: args.userId,
@@ -61,19 +61,25 @@ export const checkAndIncrementRateLimit = internalMutation({
         if (!existing) throw new Error("Rate limit record disappeared after concurrent insert");
         // Fall through to increment
         const retry = checkAndIncrement(existing, CHATBOT_RATE_LIMIT, now);
-        if (retry.action === 'reset') {
+        if (retry.action === "reset") {
           await ctx.db.patch(existing._id, { requestCount: 1, windowStart: now, updatedAt: now });
-        } else if (retry.action === 'increment') {
-          await ctx.db.patch(existing._id, { requestCount: existing.requestCount + 1, updatedAt: now });
+        } else if (retry.action === "increment") {
+          await ctx.db.patch(existing._id, {
+            requestCount: existing.requestCount + 1,
+            updatedAt: now,
+          });
         }
         return retry.result;
       }
     }
 
-    if (check.action === 'reset') {
+    if (check.action === "reset") {
       await ctx.db.patch(existing!._id, { requestCount: 1, windowStart: now, updatedAt: now });
-    } else if (check.action === 'increment') {
-      await ctx.db.patch(existing!._id, { requestCount: existing!.requestCount + 1, updatedAt: now });
+    } else if (check.action === "increment") {
+      await ctx.db.patch(existing!._id, {
+        requestCount: existing!.requestCount + 1,
+        updatedAt: now,
+      });
     }
 
     return check.result;
@@ -146,16 +152,18 @@ export const cleanupStaleRateLimitsCron = internalMutation({
 export const checkLoginAttempt = internalMutation({
   args: { username: v.string() },
   handler: async (ctx, { username }) => {
-    if (!username || username.length > 255) throw new Error('Invalid username');
-    const existing = await ctx.db.query('login_attempts')
-      .withIndex('by_username', (q) => q.eq('username', username)).unique();
+    if (!username || username.length > 255) throw new Error("Invalid username");
+    const existing = await ctx.db
+      .query("login_attempts")
+      .withIndex("by_username", (q) => q.eq("username", username))
+      .unique();
     const now = Date.now();
     const check = checkAndIncrement(existing, LOGIN_RATE_LIMIT, now);
-    if (check.action === 'insert') {
-      await ctx.db.insert('login_attempts', { username, requestCount: 1, windowStart: now });
-    } else if (check.action === 'reset' && existing) {
+    if (check.action === "insert") {
+      await ctx.db.insert("login_attempts", { username, requestCount: 1, windowStart: now });
+    } else if (check.action === "reset" && existing) {
       await ctx.db.patch(existing._id, { requestCount: 1, windowStart: now });
-    } else if (check.action === 'increment' && existing) {
+    } else if (check.action === "increment" && existing) {
       await ctx.db.patch(existing._id, { requestCount: existing.requestCount + 1 });
     }
     return check.result;
@@ -166,8 +174,10 @@ export const checkLoginAttempt = internalMutation({
 export const cleanupLoginAttempts = internalMutation({
   args: {},
   handler: async (ctx) => {
-    const expired = await ctx.db.query('login_attempts')
-      .withIndex('by_window', (q) => q.lt('windowStart', Date.now() - LOGIN_RATE_LIMIT.windowMs)).take(100);
+    const expired = await ctx.db
+      .query("login_attempts")
+      .withIndex("by_window", (q) => q.lt("windowStart", Date.now() - LOGIN_RATE_LIMIT.windowMs))
+      .take(100);
     await Promise.all(expired.map((row) => ctx.db.delete(row._id)));
   },
 });

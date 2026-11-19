@@ -76,11 +76,7 @@ describe("teacher intervention utilities", () => {
   it("prioritizes at-risk and inactive students ahead of on-track and completed", () => {
     const ordered = prioritizeInterventionRows(students).map((student) => student.username);
 
-    expect(ordered.slice(0, 3)).toEqual([
-      "never_student",
-      "risk_student",
-      "inactive_student",
-    ]);
+    expect(ordered.slice(0, 3)).toEqual(["never_student", "risk_student", "inactive_student"]);
     expect(ordered.at(-1)).toBe("complete_student");
   });
 

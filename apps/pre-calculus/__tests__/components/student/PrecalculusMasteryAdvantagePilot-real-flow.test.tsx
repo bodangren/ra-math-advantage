@@ -13,8 +13,7 @@ const catalogs = vi.hoisted(() => ({
   blueprints: {
     blueprints: [
       {
-        nodeId:
-          "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
+        nodeId: "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
         reviewStatus: "approved",
         rendererKey: "interval-classification",
         rendererModeMap: {
@@ -37,8 +36,7 @@ const catalogs = vi.hoisted(() => ({
           ],
           checksPerStep: [
             {
-              check:
-                "The domain endpoints and both change points are identified.",
+              check: "The domain endpoints and both change points are identified.",
             },
             {
               check: "Each segment is classified as rising, falling, or flat.",
@@ -76,8 +74,7 @@ const catalogs = vi.hoisted(() => ({
             seed: {
               type: "integer",
               min: 0,
-              description:
-                "Deterministic Topic 1.1 interval graph variant seed",
+              description: "Deterministic Topic 1.1 interval graph variant seed",
             },
           },
           answerSchema: {
@@ -108,11 +105,7 @@ const catalogs = vi.hoisted(() => ({
         },
         generatorKey: "topic11-interval-graph",
         gradingSpec: {
-          partIds: [
-            "increasingIntervals",
-            "decreasingIntervals",
-            "constantIntervals",
-          ],
+          partIds: ["increasingIntervals", "decreasingIntervals", "constantIntervals"],
           passingScore: 3,
           partialCredit: true,
           rubric: [
@@ -144,18 +137,13 @@ vi.mock("@/curriculum/skill-graph/blueprints.json", () => ({
   default: catalogs.blueprints,
 }));
 
-const NODE =
-  "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs";
+const NODE = "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs";
 const GUIDED = `${NODE}.guided_practice`;
 const INDEPENDENT = `${NODE}.independent_practice`;
 type Row = Record<string, any> & { _id: string };
 
-function harness(
-  stableActivityId = GUIDED,
-  overrides: Record<string, unknown> = {},
-) {
-  const mode =
-    stableActivityId === GUIDED ? "guided_practice" : "independent_practice";
+function harness(stableActivityId = GUIDED, overrides: Record<string, unknown> = {}) {
+  const mode = stableActivityId === GUIDED ? "guided_practice" : "independent_practice";
   const rows: Record<string, Row[]> = {
     profiles: [
       {
@@ -226,8 +214,7 @@ function harness(
             (row) =>
               [...conditions].every(([key, value]) => row[key] === value) &&
               [...upperBounds].every(
-                ([key, value]) =>
-                  typeof row[key] === "number" && row[key] <= value,
+                ([key, value]) => typeof row[key] === "number" && row[key] <= value,
               ),
           );
         return {
@@ -238,9 +225,8 @@ function harness(
           },
           order: () => ({
             first: async () =>
-              selected().sort(
-                (a, b) => (b.attemptOrdinal ?? 0) - (a.attemptOrdinal ?? 0),
-              )[0] ?? null,
+              selected().sort((a, b) => (b.attemptOrdinal ?? 0) - (a.attemptOrdinal ?? 0))[0] ??
+              null,
           }),
         };
       },
@@ -294,8 +280,7 @@ function addEvidenceTables(h: ReturnType<typeof harness>) {
           (row: Row) =>
             [...conditions].every(([key, value]) => row[key] === value) &&
             [...upperBounds].every(
-              ([key, value]) =>
-                typeof row[key] === "number" && row[key] <= value,
+              ([key, value]) => typeof row[key] === "number" && row[key] <= value,
             ),
         );
       };
@@ -303,10 +288,7 @@ function addEvidenceTables(h: ReturnType<typeof harness>) {
     };
     return query;
   };
-  (h.ctx.db as any).patch = async (
-    id: string,
-    value: Record<string, unknown>,
-  ) => {
+  (h.ctx.db as any).patch = async (id: string, value: Record<string, unknown>) => {
     const row = Object.values(h.rows)
       .flat()
       .find((item) => item._id === id);
@@ -343,10 +325,9 @@ afterEach(() => vi.unstubAllGlobals());
 
 function fill(values: Record<string, string>) {
   for (const [name, value] of Object.entries(values))
-    fireEvent.change(
-      screen.getByRole("textbox", { name: new RegExp(name, "i") }),
-      { target: { value } },
-    );
+    fireEvent.change(screen.getByRole("textbox", { name: new RegExp(name, "i") }), {
+      target: { value },
+    });
   fireEvent.click(screen.getByRole("button", { name: /submit answer/i }));
 }
 
@@ -368,12 +349,9 @@ it.each([GUIDED, INDEPENDENT])(
     });
     vi.stubGlobal("fetch", (url: string, init: RequestInit) => {
       const request = new Request(`http://local.test${url}`, init);
-      return url.includes("/activities/")
-        ? create.POST(request)
-        : consume.POST(request);
+      return url.includes("/activities/") ? create.POST(request) : consume.POST(request);
     });
-    const mode =
-      stableActivityId === GUIDED ? "guided_practice" : "independent_practice";
+    const mode = stableActivityId === GUIDED ? "guided_practice" : "independent_practice";
     render(
       <PrecalculusMasteryAdvantagePilot
         mode={mode}
@@ -391,14 +369,10 @@ it.each([GUIDED, INDEPENDENT])(
       decreasing: answer(generated.decreasingIntervals),
       constant: answer(generated.constantIntervals),
     });
-    await waitFor(() =>
-      expect(screen.getByText("Start new attempt")).toBeInTheDocument(),
-    );
+    await waitFor(() => expect(screen.getByText("Start new attempt")).toBeInTheDocument());
     expect(h.rows.activity_submissions).toHaveLength(1);
     expect(h.rows.learning_evidence_receipts).toHaveLength(1);
-    expect(h.rows.srs_review_log).toHaveLength(
-      mode === "guided_practice" ? 0 : 1,
-    );
+    expect(h.rows.srs_review_log).toHaveLength(mode === "guided_practice" ? 0 : 1);
     expect(h.rows.srs_cards).toHaveLength(mode === "guided_practice" ? 0 : 1);
   },
 );

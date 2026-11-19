@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const UNIT4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Parametric Functions and Motion (HSN-VM.A.1, HSN-VM.A.3)
@@ -82,7 +82,8 @@ export const UNIT4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "comprehension-quiz:matrix-properties",
     componentKey: "comprehension-quiz",
     displayName: "Matrix Properties",
-    description: "Understand properties of matrix multiplication including non-commutativity, identity, and zero matrices",
+    description:
+      "Understand properties of matrix multiplication including non-commutativity, identity, and zero matrices",
     objectiveIds: ["HSN-VM.C.9", "HSN-VM.C.10"],
     difficulty: "standard",
     metadata: { unit: 4, topic: "matrices" },
@@ -92,7 +93,8 @@ export const UNIT4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "step-by-step-solver:matrix-systems",
     componentKey: "step-by-step-solver",
     displayName: "Solve Systems with Matrices",
-    description: "Represent and solve systems of linear equations using matrix equations and inverses",
+    description:
+      "Represent and solve systems of linear equations using matrix equations and inverses",
     objectiveIds: ["HSA-REI.C.8", "HSA-REI.C.9", "HSN-VM.C.10"],
     difficulty: "challenging",
     metadata: { unit: 4, topic: "matrix-systems" },

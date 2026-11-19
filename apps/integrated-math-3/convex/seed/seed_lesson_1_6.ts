@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -31,7 +31,8 @@ export const seedLesson6 = internalMutation({
           unitNumber: 1,
           title: "Using the Quadratic Formula and the Discriminant",
           slug: lessonSlug,
-          description: "Use the Quadratic Formula to solve equations and the discriminant to determine the number and type of solutions.",
+          description:
+            "Use the Quadratic Formula to solve equations and the discriminant to determine the number and type of solutions.",
           orderIndex: 6,
           createdAt: now,
           updatedAt: now,
@@ -48,7 +49,8 @@ export const seedLesson6 = internalMutation({
           lessonId,
           version: 1,
           title: "Using the Quadratic Formula and the Discriminant",
-          description: "Use the Quadratic Formula to solve equations and the discriminant to determine the number and type of solutions.",
+          description:
+            "Use the Quadratic Formula to solve equations and the discriminant to determine the number and type of solutions.",
           status: "published",
           createdAt: now,
         });
@@ -64,7 +66,8 @@ export const seedLesson6 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Explore: The Discriminant\n\n**Inquiry Question**: How can you predict the number and type of solutions of a quadratic equation without solving it?\n\nConsider these three equations:\n- $x^2 + 5x + 6 = 0$\n- $x^2 - 4x - 1 = 0$\n- $x^2 + 2x + 5 = 0$\n\nCan you determine how many solutions each has just by looking?",
+              markdown:
+                "## Explore: The Discriminant\n\n**Inquiry Question**: How can you predict the number and type of solutions of a quadratic equation without solving it?\n\nConsider these three equations:\n- $x^2 + 5x + 6 = 0$\n- $x^2 - 4x - 1 = 0$\n- $x^2 + 2x + 5 = 0$\n\nCan you determine how many solutions each has just by looking?",
             },
           },
         ],
@@ -79,7 +82,8 @@ export const seedLesson6 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Key Terms\n\n- **Quadratic Formula**: The solutions to $ax^2 + bx + c = 0$ are given by:\n$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$\n- **Discriminant**: The expression $b^2 - 4ac$ under the square root\n- **Standard form**: $ax^2 + bx + c = 0$ where $a \\neq 0$\n\n**Remember**: The discriminant tells you how many real roots you'll get before you solve!",
+              markdown:
+                "## Key Terms\n\n- **Quadratic Formula**: The solutions to $ax^2 + bx + c = 0$ are given by:\n$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$\n- **Discriminant**: The expression $b^2 - 4ac$ under the square root\n- **Standard form**: $ax^2 + bx + c = 0$ where $a \\neq 0$\n\n**Remember**: The discriminant tells you how many real roots you'll get before you solve!",
             },
           },
         ],
@@ -94,7 +98,8 @@ export const seedLesson6 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## The Quadratic Formula\n\nFor a quadratic equation in standard form:\n\n$$ax^2 + bx + c = 0, \\quad a \\neq 0$$\n\nThe solutions are given by:\n\n$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$\n\n### When to Use the Quadratic Formula\n\n- When factoring is difficult or impossible\n- When the coefficients are large\n- When you need exact (not approximate) solutions",
+              markdown:
+                "## The Quadratic Formula\n\nFor a quadratic equation in standard form:\n\n$$ax^2 + bx + c = 0, \\quad a \\neq 0$$\n\nThe solutions are given by:\n\n$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$\n\n### When to Use the Quadratic Formula\n\n- When factoring is difficult or impossible\n- When the coefficients are large\n- When you need exact (not approximate) solutions",
             },
           },
         ],
@@ -109,7 +114,8 @@ export const seedLesson6 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 1: Use the Quadratic Formula\n\nSolve $x^2 + 5x + 6 = 0$\n\n**Step 1**: Identify coefficients: $a = 1$, $b = 5$, $c = 6$\n\n**Step 2**: Substitute into the formula:\n$$x = \\frac{-5 \\pm \\sqrt{5^2 - 4(1)(6)}}{2(1)}$$\n\n**Step 3**: Simplify:\n$$x = \\frac{-5 \\pm \\sqrt{25 - 24}}{2} = \\frac{-5 \\pm 1}{2}$$\n\n**Solutions**: $x = -2$ or $x = -3$",
+              markdown:
+                "## Example 1: Use the Quadratic Formula\n\nSolve $x^2 + 5x + 6 = 0$\n\n**Step 1**: Identify coefficients: $a = 1$, $b = 5$, $c = 6$\n\n**Step 2**: Substitute into the formula:\n$$x = \\frac{-5 \\pm \\sqrt{5^2 - 4(1)(6)}}{2(1)}$$\n\n**Step 3**: Simplify:\n$$x = \\frac{-5 \\pm \\sqrt{25 - 24}}{2} = \\frac{-5 \\pm 1}{2}$$\n\n**Solutions**: $x = -2$ or $x = -3$",
             },
           },
           {
@@ -141,7 +147,8 @@ export const seedLesson6 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 2: Non-Factorable Equation\n\nSolve $x^2 - 4x - 1 = 0$\n\n**Step 1**: Identify coefficients: $a = 1$, $b = -4$, $c = -1$\n\n**Step 2**: Substitute:\n$$x = \\frac{4 \\pm \\sqrt{(-4)^2 - 4(1)(-1)}}{2}$$\n\n**Step 3**: Simplify:\n$$x = \\frac{4 \\pm \\sqrt{16 + 4}}{2} = \\frac{4 \\pm \\sqrt{20}}{2}$$\n\n**Step 4**: Simplify radical:\n$$x = \\frac{4 \\pm 2\\sqrt{5}}{2} = 2 \\pm \\sqrt{5}$$",
+              markdown:
+                "## Example 2: Non-Factorable Equation\n\nSolve $x^2 - 4x - 1 = 0$\n\n**Step 1**: Identify coefficients: $a = 1$, $b = -4$, $c = -1$\n\n**Step 2**: Substitute:\n$$x = \\frac{4 \\pm \\sqrt{(-4)^2 - 4(1)(-1)}}{2}$$\n\n**Step 3**: Simplify:\n$$x = \\frac{4 \\pm \\sqrt{16 + 4}}{2} = \\frac{4 \\pm \\sqrt{20}}{2}$$\n\n**Step 4**: Simplify radical:\n$$x = \\frac{4 \\pm 2\\sqrt{5}}{2} = 2 \\pm \\sqrt{5}$$",
             },
           },
           {
@@ -173,7 +180,8 @@ export const seedLesson6 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 3: Imaginary Solutions\n\nSolve $x^2 + 2x + 5 = 0$\n\n**Step 1**: Identify coefficients: $a = 1$, $b = 2$, $c = 5$\n\n**Step 2**: Substitute:\n$$x = \\frac{-2 \\pm \\sqrt{2^2 - 4(1)(5)}}{2}$$\n\n**Step 3**: Simplify:\n$$x = \\frac{-2 \\pm \\sqrt{4 - 20}}{2} = \\frac{-2 \\pm \\sqrt{-16}}{2}$$\n\n**Step 4**: Simplify imaginary:\n$$x = \\frac{-2 \\pm 4i}{2} = -1 \\pm 2i$$",
+              markdown:
+                "## Example 3: Imaginary Solutions\n\nSolve $x^2 + 2x + 5 = 0$\n\n**Step 1**: Identify coefficients: $a = 1$, $b = 2$, $c = 5$\n\n**Step 2**: Substitute:\n$$x = \\frac{-2 \\pm \\sqrt{2^2 - 4(1)(5)}}{2}$$\n\n**Step 3**: Simplify:\n$$x = \\frac{-2 \\pm \\sqrt{4 - 20}}{2} = \\frac{-2 \\pm \\sqrt{-16}}{2}$$\n\n**Step 4**: Simplify imaginary:\n$$x = \\frac{-2 \\pm 4i}{2} = -1 \\pm 2i$$",
             },
           },
           {
@@ -205,7 +213,8 @@ export const seedLesson6 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## The Discriminant\n\nThe expression under the square root is called the **discriminant**:\n\n$$D = b^2 - 4ac$$\n\n### Key Concept: Interpreting the Discriminant\n\n| Value of D | Number and Type of Solutions |\n|------------|------------------------------|\n| $D > 0$ | Two distinct real solutions |\n| $D = 0$ | One repeated real solution |\n| $D < 0$ | Two complex solutions |\n\n**Tip**: Use the discriminant to check your work — if you expect real roots but get $D < 0$, check your arithmetic!",
+              markdown:
+                "## The Discriminant\n\nThe expression under the square root is called the **discriminant**:\n\n$$D = b^2 - 4ac$$\n\n### Key Concept: Interpreting the Discriminant\n\n| Value of D | Number and Type of Solutions |\n|------------|------------------------------|\n| $D > 0$ | Two distinct real solutions |\n| $D = 0$ | One repeated real solution |\n| $D < 0$ | Two complex solutions |\n\n**Tip**: Use the discriminant to check your work — if you expect real roots but get $D < 0$, check your arithmetic!",
             },
           },
         ],
@@ -220,7 +229,8 @@ export const seedLesson6 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 4: Use the Discriminant\n\nDetermine the number and type of solutions for $2x^2 - 3x + 5 = 0$\n\n**Calculate the discriminant**:\n$$D = (-3)^2 - 4(2)(5) = 9 - 40 = -31$$\n\n**Since $D < 0$**, there are **two complex solutions** (no real roots).",
+              markdown:
+                "## Example 4: Use the Discriminant\n\nDetermine the number and type of solutions for $2x^2 - 3x + 5 = 0$\n\n**Calculate the discriminant**:\n$$D = (-3)^2 - 4(2)(5) = 9 - 40 = -31$$\n\n**Since $D < 0$**, there are **two complex solutions** (no real roots).",
             },
           },
           {
@@ -245,7 +255,8 @@ export const seedLesson6 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 5: Perfect Square Trinomial\n\nDetermine the number and type of solutions for $x^2 - 6x + 9 = 0$\n\n**Calculate the discriminant**:\n$$D = (-6)^2 - 4(1)(9) = 36 - 36 = 0$$\n\n**Since $D = 0$**, there is **exactly one real solution** (a repeated root).\n\nNote: This trinomial is $(x - 3)^2$, so the solution is $x = 3$.",
+              markdown:
+                "## Example 5: Perfect Square Trinomial\n\nDetermine the number and type of solutions for $x^2 - 6x + 9 = 0$\n\n**Calculate the discriminant**:\n$$D = (-6)^2 - 4(1)(9) = 36 - 36 = 0$$\n\n**Since $D = 0$**, there is **exactly one real solution** (a repeated root).\n\nNote: This trinomial is $(x - 3)^2$, so the solution is $x = 3$.",
             },
           },
           {
@@ -270,7 +281,8 @@ export const seedLesson6 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Discussion Questions\n\n1. Why is the discriminant useful before solving?\n2. When is the quadratic formula more efficient than factoring?\n3. How does the discriminant connect to completing the square?\n4. Can you have exactly one imaginary solution? Why or why not?",
+              markdown:
+                "## Discussion Questions\n\n1. Why is the discriminant useful before solving?\n2. When is the quadratic formula more efficient than factoring?\n3. How does the discriminant connect to completing the square?\n4. Can you have exactly one imaginary solution? Why or why not?",
             },
           },
           {
@@ -282,7 +294,12 @@ export const seedLesson6 = internalMutation({
                 questions: [
                   {
                     question: "What does the discriminant tell you?",
-                    options: ["The sum of the roots", "The number and type of solutions", "The product of the roots", "The axis of symmetry"],
+                    options: [
+                      "The sum of the roots",
+                      "The number and type of solutions",
+                      "The product of the roots",
+                      "The axis of symmetry",
+                    ],
                     correctIndex: 1,
                   },
                   {
@@ -306,7 +323,8 @@ export const seedLesson6 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Reflection\n\nToday you learned the Quadratic Formula and how to use the discriminant.\n\n- When would you use the quadratic formula instead of factoring?\n- How does the discriminant help you predict solution types?\n- What patterns in the discriminant correspond to special cases?\n\n**Preview**: Next, you'll learn to solve quadratic inequalities — equations with $>$, $<$, $\\geq$, or $\\leq$ signs!",
+              markdown:
+                "## Reflection\n\nToday you learned the Quadratic Formula and how to use the discriminant.\n\n- When would you use the quadratic formula instead of factoring?\n- How does the discriminant help you predict solution types?\n- What patterns in the discriminant correspond to special cases?\n\n**Preview**: Next, you'll learn to solve quadratic inequalities — equations with $>$, $<$, $\\geq$, or $\\leq$ signs!",
             },
           },
         ],
@@ -320,7 +338,7 @@ export const seedLesson6 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

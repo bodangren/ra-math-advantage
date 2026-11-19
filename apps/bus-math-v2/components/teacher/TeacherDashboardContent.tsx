@@ -5,12 +5,7 @@ import Link from "next/link";
 import { CheckCircle2, LineChart, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   applyInterventionFilter,
   buildInterventionSummary,
@@ -48,7 +43,6 @@ const FILTER_OPTIONS: Array<{ value: InterventionFilter; label: string }> = [
   { value: "completed", label: "Completed" },
 ];
 
-
 /**
  * Formats a last-active timestamp into a human-readable relative time string.
  *
@@ -58,7 +52,6 @@ const FILTER_OPTIONS: Array<{ value: InterventionFilter; label: string }> = [
 export function formatLastActive(value: string | null) {
   return formatTeacherLastActive(value);
 }
-
 
 /**
  * Computes dashboard-level metrics from the student roster.
@@ -82,8 +75,7 @@ function getDashboardMetrics(students: StudentDashboardRow[]) {
   }
 
   const totalProgress = students.reduce(
-    (sum, student) =>
-      sum + clampTeacherProgressPercentage(student.progressPercentage),
+    (sum, student) => sum + clampTeacherProgressPercentage(student.progressPercentage),
     0,
   );
 
@@ -97,7 +89,6 @@ function getDashboardMetrics(students: StudentDashboardRow[]) {
     inactive: summary.inactive,
   };
 }
-
 
 /**
  * Returns a Tailwind badge class string based on a student's intervention status.
@@ -120,7 +111,6 @@ function statusBadgeClassName(student: DerivedStudentIntervention) {
 
   return "border-sky-200 bg-sky-50 text-sky-700";
 }
-
 
 /**
  * Renders the main teacher dashboard with summary metrics, intervention queue,
@@ -160,19 +150,13 @@ export function TeacherDashboardContent({
           </div>
           <div className="flex flex-col gap-2 sm:flex-row">
             <Button asChild variant="default">
-              <Link href="/teacher/gradebook">
-                View Course Gradebook
-              </Link>
+              <Link href="/teacher/gradebook">View Course Gradebook</Link>
             </Button>
             <Button asChild variant="outline">
-              <Link href="/teacher/competency">
-                View Competency Heatmap
-              </Link>
+              <Link href="/teacher/competency">View Competency Heatmap</Link>
             </Button>
             <Button asChild variant="outline">
-              <Link href="/teacher/srs">
-                SRS Practice Analytics
-              </Link>
+              <Link href="/teacher/srs">SRS Practice Analytics</Link>
             </Button>
             <TeacherBulkImportDialog />
             <TeacherCreateStudentDialog />

@@ -6,7 +6,7 @@
 // rules can never drift between the Zod refinement and the runtime
 // `getInvalidEdgePairings` helper.
 
-import type { EdgeType, NodeKind } from './types';
+import type { EdgeType, NodeKind } from "./types";
 
 export interface EdgeSourceTargetConstraint {
   readonly edgeType: EdgeType;
@@ -16,11 +16,43 @@ export interface EdgeSourceTargetConstraint {
 }
 
 export const EDGE_ENDPOINT_RULES: ReadonlyArray<EdgeSourceTargetConstraint> = [
-  { edgeType: 'rendered_by', sourceKinds: ['skill', 'worked_example', 'task_blueprint', 'concept'], targetKinds: ['renderer'] },
-  { edgeType: 'generated_by', sourceKinds: ['skill', 'task_blueprint', 'concept'], targetKinds: ['generator'] },
-  { edgeType: 'aligned_to_standard', sourceKinds: ['skill', 'worked_example', 'task_blueprint', 'concept'], targetKinds: ['standard'] },
-  { edgeType: 'transfers_to', sourceKinds: ['skill', 'concept'], targetKinds: ['skill', 'concept'], crossDomainOnly: true },
-  { edgeType: 'common_misconception_with', targetKinds: ['misconception'] },
-  { edgeType: 'contains', sourceKinds: ['domain', 'content_group', 'instructional_unit'], targetKinds: ['content_group', 'instructional_unit', 'worked_example', 'skill', 'concept', 'task_blueprint'] },
-  { edgeType: 'remediated_by', sourceKinds: ['misconception'], targetKinds: ['worked_example', 'task_blueprint', 'skill'] },
+  {
+    edgeType: "rendered_by",
+    sourceKinds: ["skill", "worked_example", "task_blueprint", "concept"],
+    targetKinds: ["renderer"],
+  },
+  {
+    edgeType: "generated_by",
+    sourceKinds: ["skill", "task_blueprint", "concept"],
+    targetKinds: ["generator"],
+  },
+  {
+    edgeType: "aligned_to_standard",
+    sourceKinds: ["skill", "worked_example", "task_blueprint", "concept"],
+    targetKinds: ["standard"],
+  },
+  {
+    edgeType: "transfers_to",
+    sourceKinds: ["skill", "concept"],
+    targetKinds: ["skill", "concept"],
+    crossDomainOnly: true,
+  },
+  { edgeType: "common_misconception_with", targetKinds: ["misconception"] },
+  {
+    edgeType: "contains",
+    sourceKinds: ["domain", "content_group", "instructional_unit"],
+    targetKinds: [
+      "content_group",
+      "instructional_unit",
+      "worked_example",
+      "skill",
+      "concept",
+      "task_blueprint",
+    ],
+  },
+  {
+    edgeType: "remediated_by",
+    sourceKinds: ["misconception"],
+    targetKinds: ["worked_example", "task_blueprint", "skill"],
+  },
 ];

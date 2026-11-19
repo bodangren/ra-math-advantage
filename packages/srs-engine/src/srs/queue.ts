@@ -20,9 +20,9 @@ import type {
   ObjectivePriority,
   SrsCardState,
   SrsSessionConfig,
-} from './contract';
-import { stabilityToRetention } from './srs-proficiency';
-import { composeSessionV3_2 } from './session-composition';
+} from "./contract";
+import { stabilityToRetention } from "./srs-proficiency";
+import { composeSessionV3_2 } from "./session-composition";
 
 /**
  * A single item in the daily practice queue.
@@ -71,16 +71,14 @@ function currentElapsedDays(card: SrsCardState, nowMs: number): number {
       return Math.max(0, (nowMs - lastReviewMs) / DAY_MS);
     }
   }
-  return Number.isFinite(card.elapsedDays) && card.elapsedDays >= 0
-    ? card.elapsedDays
-    : 0;
+  return Number.isFinite(card.elapsedDays) && card.elapsedDays >= 0 ? card.elapsedDays : 0;
 }
 
 /**
  * Determine if a card is overdue (past its due date and in review/relearning state).
  */
 export function isOverdue(card: SrsCardState, now: string): boolean {
-  if (card.state === 'new' || card.state === 'learning') {
+  if (card.state === "new" || card.state === "learning") {
     return false;
   }
   const dueMs = new Date(card.dueDate).getTime();
@@ -115,7 +113,7 @@ export function buildDailyQueueResult(
   cards: SrsCardState[],
   policies: Map<string, ObjectivePracticePolicy>,
   config: SrsSessionConfig,
-  now: string
+  now: string,
 ): DailyQueueResult<QueueItem> {
   const nowMs = Date.parse(now);
   if (cards.length === 0 || !Number.isFinite(nowMs)) {
@@ -126,11 +124,11 @@ export function buildDailyQueueResult(
   const maxReviewsPerDay = normalizeCap(config.maxReviewsPerDay);
   const eligibleCards = cards.filter((card) => {
     const policy = policies.get(card.objectiveId);
-    return policy !== undefined && policy.priority !== 'triaged';
+    return policy !== undefined && policy.priority !== "triaged";
   });
 
   const dueReviewCards = eligibleCards.filter((card) => {
-    if (card.state === 'new') return false;
+    if (card.state === "new") return false;
     const dueMs = Date.parse(card.dueDate);
     return Number.isFinite(dueMs) && dueMs <= nowMs;
   });
@@ -159,10 +157,11 @@ export function buildDailyQueueResult(
   const remainingCapacity = Math.max(0, maxReviewsPerDay - sortedReviews.length);
   const newAllowance = backlog ? 0 : Math.min(newCardsPerDay, remainingCapacity);
   const sortedNew = eligibleCards
-    .filter((card) => card.state === 'new')
+    .filter((card) => card.state === "new")
     .sort((a, b) => {
-      const priorityOrder = PRIORITY_ORDER[policies.get(a.objectiveId)!.priority]
-        - PRIORITY_ORDER[policies.get(b.objectiveId)!.priority];
+      const priorityOrder =
+        PRIORITY_ORDER[policies.get(a.objectiveId)!.priority] -
+        PRIORITY_ORDER[policies.get(b.objectiveId)!.priority];
       if (priorityOrder !== 0) return priorityOrder;
       const objectiveOrder = compareStrings(a.objectiveId, b.objectiveId);
       if (objectiveOrder !== 0) return objectiveOrder;
@@ -180,14 +179,14 @@ export function buildDailyQueueResult(
   const itemByCardId = new Map(selectedItems.map((item) => [item.card.cardId, item]));
   const composition = composeSessionV3_2(
     selectedItems.map((item, index) => {
-      if (item.objectivePriority === 'triaged') {
-        throw new Error('Triaged objectives cannot enter session composition');
+      if (item.objectivePriority === "triaged") {
+        throw new Error("Triaged objectives cannot enter session composition");
       }
       return {
         cardId: item.card.cardId,
         objectiveId: item.card.objectiveId,
         objectivePriority: item.objectivePriority,
-        queueKind: item.card.state === 'new' ? 'new' : 'review',
+        queueKind: item.card.state === "new" ? "new" : "review",
         selectionRank: index + 1,
       };
     }),
@@ -216,7 +215,7 @@ export function buildDailyQueue(
   cards: SrsCardState[],
   policies: Map<string, ObjectivePracticePolicy>,
   config: SrsSessionConfig,
-  now: string
+  now: string,
 ): QueueItem[] {
   return buildDailyQueueResult(cards, policies, config, now).items;
 }

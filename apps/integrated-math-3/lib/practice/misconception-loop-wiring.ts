@@ -14,9 +14,9 @@
  * module cannot accidentally call a not-yet-shipped real T6 in tests.
  */
 
-import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
+import type { PracticeSubmissionEnvelope } from "@math-platform/practice-core/contract";
 
-import type { RemediationActivityRef } from './misconception-remediations';
+import type { RemediationActivityRef } from "./misconception-remediations";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -93,9 +93,7 @@ export function createIm3MisconceptionLoop(
 ) => Im3MisconceptionLoopOutput {
   return (input, priorState) => {
     const threshold =
-      input.resolutionThreshold > 0
-        ? input.resolutionThreshold
-        : IM3_DEFAULT_RESOLUTION_THRESHOLD;
+      input.resolutionThreshold > 0 ? input.resolutionThreshold : IM3_DEFAULT_RESOLUTION_THRESHOLD;
 
     const t6Output = t6({
       submission: input.submission,

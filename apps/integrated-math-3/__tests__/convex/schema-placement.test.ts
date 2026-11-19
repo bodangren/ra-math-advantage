@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import schema from '@/convex/schema';
+import { describe, it, expect } from "vitest";
+import schema from "@/convex/schema";
 
 // ---------------------------------------------------------------------------
 // Task 1.1.b — Convex schema for persisted initial knowledge state
@@ -15,12 +15,12 @@ import schema from '@/convex/schema';
 // registered, the required fields are present, and the indexes that Phase 4
 // production wiring will rely on are declared.
 
-describe('placement_results table schema', () => {
-  it('exists in the schema', () => {
-    expect(schema.tables).toHaveProperty('placement_results');
+describe("placement_results table schema", () => {
+  it("exists in the schema", () => {
+    expect(schema.tables).toHaveProperty("placement_results");
   });
 
-  it('has required fields defined', () => {
+  it("has required fields defined", () => {
     const table = schema.tables.placement_results;
     expect(() => (table as unknown as { studentId: unknown }).studentId).not.toThrow();
     expect(() => (table as unknown as { nodeId: unknown }).nodeId).not.toThrow();
@@ -30,35 +30,37 @@ describe('placement_results table schema', () => {
     expect(() => (table as unknown as { createdAt: unknown }).createdAt).not.toThrow();
   });
 
-  it('has a by_student index for fetching a student\'s placement results', () => {
+  it("has a by_student index for fetching a student's placement results", () => {
     const table = schema.tables.placement_results as unknown as {
       indexes?: Array<{ indexDescriptor: string; fields: string[] }>;
     };
     expect(table.indexes).toBeDefined();
-    const byStudent = table.indexes!.find((i) => i.indexDescriptor === 'by_student');
+    const byStudent = table.indexes!.find((i) => i.indexDescriptor === "by_student");
     expect(byStudent).toBeDefined();
-    expect(byStudent!.fields).toContain('studentId');
+    expect(byStudent!.fields).toContain("studentId");
   });
 
-  it('has a by_student_and_node composite index for idempotent upsert', () => {
+  it("has a by_student_and_node composite index for idempotent upsert", () => {
     const table = schema.tables.placement_results as unknown as {
       indexes?: Array<{ indexDescriptor: string; fields: string[] }>;
     };
-    const byStudentAndNode = table.indexes!.find((i) => i.indexDescriptor === 'by_student_and_node');
-    expect(byStudentAndNode).toBeDefined();
-    expect(byStudentAndNode!.fields).toEqual(
-      expect.arrayContaining(['studentId', 'nodeId']),
+    const byStudentAndNode = table.indexes!.find(
+      (i) => i.indexDescriptor === "by_student_and_node",
     );
+    expect(byStudentAndNode).toBeDefined();
+    expect(byStudentAndNode!.fields).toEqual(expect.arrayContaining(["studentId", "nodeId"]));
   });
 
-  it('has a by_student_and_createdAt index for the latest-placement lookup', () => {
+  it("has a by_student_and_createdAt index for the latest-placement lookup", () => {
     const table = schema.tables.placement_results as unknown as {
       indexes?: Array<{ indexDescriptor: string; fields: string[] }>;
     };
-    const byStudentAndCreatedAt = table.indexes!.find((i) => i.indexDescriptor === 'by_student_and_createdAt');
+    const byStudentAndCreatedAt = table.indexes!.find(
+      (i) => i.indexDescriptor === "by_student_and_createdAt",
+    );
     expect(byStudentAndCreatedAt).toBeDefined();
     expect(byStudentAndCreatedAt!.fields).toEqual(
-      expect.arrayContaining(['studentId', 'createdAt']),
+      expect.arrayContaining(["studentId", "createdAt"]),
     );
   });
 });

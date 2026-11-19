@@ -32,8 +32,7 @@ const unitGroups = [
     .filter((unit) => group.numbers.includes(unit.number))
     .map((unit) => ({
       ...unit,
-      lessons: lessons.filter((lesson) => lesson.unitNumber === unit.number)
-        .length,
+      lessons: lessons.filter((lesson) => lesson.unitNumber === unit.number).length,
     })),
 }));
 
@@ -75,8 +74,8 @@ export default function HomePage() {
               </div>
 
               <p className="text-lg md:text-xl text-[#B5B0A8] leading-relaxed max-w-lg animate-fade-up-1">
-                Master geometry, algebra, trigonometry, and probability through
-                interactive lessons and real-world activities.
+                Master geometry, algebra, trigonometry, and probability through interactive lessons
+                and real-world activities.
               </p>
 
               <div className="flex flex-wrap gap-4 animate-fade-up-2">
@@ -152,10 +151,7 @@ export default function HomePage() {
       <div className="bg-canvas max-w-content mx-auto px-6 py-20">
         <div className="grid md:grid-cols-3 gap-8">
           {stats.map((stat, index) => (
-            <div
-              key={stat.label}
-              className={`group p-8 card-surface animate-fade-up-${index + 3}`}
-            >
+            <div key={stat.label} className={`group p-8 card-surface animate-fade-up-${index + 3}`}>
               <div className="flex items-start justify-between mb-6">
                 <span
                   className="font-mono-num text-7xl font-semibold group-hover:opacity-80 transition-opacity"
@@ -182,9 +178,7 @@ export default function HomePage() {
 
       <div className="bg-canvas max-w-content mx-auto px-6 pb-20">
         <div className="mb-12">
-          <span className="section-label mb-4 inline-block">
-            Course Overview
-          </span>
+          <span className="section-label mb-4 inline-block">Course Overview</span>
           <h2
             className="text-primary-text text-3xl md:text-4xl mb-4 font-display"
             style={{ fontWeight: 700 }}
@@ -192,25 +186,19 @@ export default function HomePage() {
             13 Units Across 4 Subject Areas
           </h2>
           <p className="text-secondary-text text-lg max-w-2xl">
-            From geometric reasoning through algebraic modeling to advanced
-            functions and trigonometry.
+            From geometric reasoning through algebraic modeling to advanced functions and
+            trigonometry.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
           {unitGroups.map((group, groupIndex) => (
-            <div
-              key={group.title}
-              className={`space-y-3 animate-fade-up-${groupIndex + 3}`}
-            >
+            <div key={group.title} className={`space-y-3 animate-fade-up-${groupIndex + 3}`}>
               <h3 className="text-sm font-mono-num tracking-widest uppercase text-muted-text mb-3">
                 {group.title}
               </h3>
               {group.units.map((unit) => (
-                <div
-                  key={unit.number}
-                  className="card-surface p-4 flex items-center gap-4"
-                >
+                <div key={unit.number} className="card-surface p-4 flex items-center gap-4">
                   <span
                     className="flex items-center justify-center w-8 h-8 rounded-md text-sm font-bold text-white shrink-0"
                     style={{ backgroundColor: "#B14C00" }}
@@ -218,9 +206,7 @@ export default function HomePage() {
                     {unit.number}
                   </span>
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-primary-text text-sm font-medium truncate">
-                      {unit.title}
-                    </h4>
+                    <h4 className="text-primary-text text-sm font-medium truncate">{unit.title}</h4>
                   </div>
                   <span className="text-muted-text text-xs font-mono-num shrink-0">
                     {unit.lessons} lessons
@@ -258,10 +244,9 @@ export default function HomePage() {
               Course Topics
             </h2>
             <p className="text-lg text-secondary-text leading-relaxed mb-6">
-              Covers relationships in triangles, quadrilaterals, similarity,
-              right triangles, circles, measurement, probability, relations and
-              functions, linear systems, exponents, polynomials, quadratic
-              functions, and trigonometric identities.
+              Covers relationships in triangles, quadrilaterals, similarity, right triangles,
+              circles, measurement, probability, relations and functions, linear systems, exponents,
+              polynomials, quadratic functions, and trigonometric identities.
             </p>
             <Link
               href="/curriculum"
@@ -269,12 +254,7 @@ export default function HomePage() {
               style={{ fontWeight: 500 }}
             >
               Explore the full curriculum
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"

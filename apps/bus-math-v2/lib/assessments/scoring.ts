@@ -1,8 +1,8 @@
-import { z } from 'zod';
+import { z } from "zod";
 
-import { generateProblemInstance } from '@/lib/curriculum/problem-generator';
-import { activityPropsSchemas } from '@/lib/schemas/activity-props';
-import type { Activity } from '@/lib/schemas/validators';
+import { generateProblemInstance } from "@/lib/curriculum/problem-generator";
+import { activityPropsSchemas } from "@/lib/schemas/activity-props";
+import type { Activity } from "@/lib/schemas/validators";
 
 const DEFAULT_PASSING_SCORE = 70;
 
@@ -25,9 +25,11 @@ const sentenceSchema = z.object({
 
 const applicationProblemSchema = z.object({
   id: z.string(),
-  problemTemplate: z.object({
-    tolerance: z.number().nonnegative().optional(),
-  }).passthrough(),
+  problemTemplate: z
+    .object({
+      tolerance: z.number().nonnegative().optional(),
+    })
+    .passthrough(),
 });
 
 type Question = z.infer<typeof questionSchema>;
@@ -51,19 +53,19 @@ function normalizeAnswer(value: unknown): string {
     return value
       .map((entry) => normalizeAnswer(entry))
       .sort()
-      .join('|');
+      .join("|");
   }
 
-  if (typeof value === 'string') {
+  if (typeof value === "string") {
     return value.trim().toLowerCase();
   }
 
-  if (typeof value === 'number' || typeof value === 'boolean') {
+  if (typeof value === "number" || typeof value === "boolean") {
     return String(value).trim().toLowerCase();
   }
 
   if (value == null) {
-    return '';
+    return "";
   }
 
   return JSON.stringify(value);
@@ -85,7 +87,7 @@ function buildFeedback(percentage: number, passingScore: number): string {
   }
 
   if (percentage === 0) {
-    return 'Keep going! Review the lesson and try again.';
+    return "Keep going! Review the lesson and try again.";
   }
 
   return `You scored ${percentage}%. Review the hints and give it another shot.`;
@@ -101,26 +103,34 @@ function stableHash(value: string): number {
 }
 
 /** Type guard to check if props has a questions array */
-function hasQuestionBank(props: Activity['props']): props is Activity['props'] & {
+function hasQuestionBank(props: Activity["props"]): props is Activity["props"] & {
   questions: Question[];
 } {
-  return Boolean(props && typeof props === 'object' && Array.isArray((props as { questions?: unknown }).questions));
+  return Boolean(
+    props &&
+    typeof props === "object" &&
+    Array.isArray((props as { questions?: unknown }).questions),
+  );
 }
 
 /** Type guard to check if props has a sentences array */
-function hasSentences(props: Activity['props']): props is Activity['props'] & {
+function hasSentences(props: Activity["props"]): props is Activity["props"] & {
   sentences: Sentence[];
 } {
-  return Boolean(props && typeof props === 'object' && Array.isArray((props as { sentences?: unknown }).sentences));
+  return Boolean(
+    props &&
+    typeof props === "object" &&
+    Array.isArray((props as { sentences?: unknown }).sentences),
+  );
 }
 
 /** Type guard to check if props has an applicationProblems array */
-function hasApplicationProblems(props: Activity['props']): props is Activity['props'] & {
+function hasApplicationProblems(props: Activity["props"]): props is Activity["props"] & {
   applicationProblems: ApplicationProblem[];
 } {
   return Boolean(
     props &&
-    typeof props === 'object' &&
+    typeof props === "object" &&
     Array.isArray((props as { applicationProblems?: unknown }).applicationProblems),
   );
 }
@@ -142,11 +152,16 @@ function scoreQuestions(questions: Question[], answers: Record<string, unknown>)
       return;
     }
 
-    if (typeof question.correctAnswer === 'number') {
-      const text = typeof response === 'string' ? response.trim() : '';
-      const number = typeof response === 'number' ? response
-        : /^[+-]?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/.test(text) ? Number(text.replaceAll(',', '')) : Number.NaN;
-      if (Number.isFinite(number) && Math.abs(number - question.correctAnswer) <= 0.000001) correct += 1;
+    if (typeof question.correctAnswer === "number") {
+      const text = typeof response === "string" ? response.trim() : "";
+      const number =
+        typeof response === "number"
+          ? response
+          : /^[+-]?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/.test(text)
+            ? Number(text.replaceAll(",", ""))
+            : Number.NaN;
+      if (Number.isFinite(number) && Math.abs(number - question.correctAnswer) <= 0.000001)
+        correct += 1;
       return;
     }
     if (normalizeAnswer(question.correctAnswer) === normalizeAnswer(response)) {
@@ -191,7 +206,7 @@ function scoreApplicationProblems(
   let correct = 0;
   parsed.forEach((problem) => {
     const response = answers[problem.id];
-    if (response == null || response === '') {
+    if (response == null || response === "") {
       return;
     }
 
@@ -200,13 +215,16 @@ function scoreApplicationProblems(
     const tolerance = problem.problemTemplate.tolerance ?? 1;
 
     const numericResponse =
-      typeof response === 'number'
+      typeof response === "number"
         ? response
-        : typeof response === 'string'
-          ? Number(response.replaceAll(',', '').trim())
+        : typeof response === "string"
+          ? Number(response.replaceAll(",", "").trim())
           : Number.NaN;
 
-    if (Number.isFinite(numericResponse) && Math.abs(numericResponse - generated.correctAnswer) <= tolerance) {
+    if (
+      Number.isFinite(numericResponse) &&
+      Math.abs(numericResponse - generated.correctAnswer) <= tolerance
+    ) {
       correct += 1;
       return;
     }
@@ -220,11 +238,8 @@ function scoreApplicationProblems(
 }
 
 /** Scores notebook placements against the authored item's categories. */
-function scoreNotebookOrganizer(
-  props: Activity['props'],
-  answers: Record<string, unknown>,
-) {
-  const parsed = activityPropsSchemas['notebook-organizer'].parse(props);
+function scoreNotebookOrganizer(props: Activity["props"], answers: Record<string, unknown>) {
+  const parsed = activityPropsSchemas["notebook-organizer"].parse(props);
   let correct = 0;
 
   parsed.items.forEach((item) => {
@@ -243,12 +258,9 @@ function scoreNotebookOrganizer(
  * @returns Score result with score, maxScore, percentage, and feedback
  * @throws Error if activity is not configured for auto-grading or type unsupported
  */
-export function calculateScore(
-  activity: Activity,
-  answers: Record<string, unknown>,
-): ScoreResult {
+export function calculateScore(activity: Activity, answers: Record<string, unknown>): ScoreResult {
   if (!activity.gradingConfig?.autoGrade) {
-    throw new Error('Activity is not configured for auto-grading.');
+    throw new Error("Activity is not configured for auto-grading.");
   }
 
   const passingScore = activity.gradingConfig.passingScore ?? DEFAULT_PASSING_SCORE;
@@ -282,7 +294,7 @@ export function calculateScore(
     foundSupportedScoring = true;
   }
 
-  if (activity.componentKey === 'notebook-organizer') {
+  if (activity.componentKey === "notebook-organizer") {
     const result = scoreNotebookOrganizer(activity.props, answers);
     correct += result.correct;
     total += result.total;
@@ -290,7 +302,7 @@ export function calculateScore(
   }
 
   if (!foundSupportedScoring) {
-    throw new Error('Activity type is not yet supported for auto-grading.');
+    throw new Error("Activity type is not yet supported for auto-grading.");
   }
 
   const percentage = calculatePercentage(correct, total);

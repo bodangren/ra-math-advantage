@@ -15,9 +15,9 @@
 // No global `vi.mock` in `vitest.setup.ts` — these helpers are kept per-suite
 // (per test-strategy §2) so unrelated tests do not see parent-portal mocks.
 
-import { vi } from 'vitest';
-import type { ParentLinkFixture } from './parentLinks';
-import type { ParentVisualizationV1 } from './parentProjection';
+import { vi } from "vitest";
+import type { ParentLinkFixture } from "./parentLinks";
+import type { ParentVisualizationV1 } from "./parentProjection";
 
 export interface ConvexMocksOptions {
   links?: ParentLinkFixture[];
@@ -39,12 +39,12 @@ export function buildConvexMocks(options: ConvexMocksOptions = {}) {
     // string from the parent-role-guard test pattern.
     const refName = String(ref);
 
-    if (refName.includes('listParentLinksQuery')) {
+    if (refName.includes("listParentLinksQuery")) {
       return options.links ?? [];
     }
 
-    if (refName.includes('projectParentVisualization') || refName.includes('parentVisualization')) {
-      const studentId = typeof args.studentId === 'string' ? args.studentId : undefined;
+    if (refName.includes("projectParentVisualization") || refName.includes("parentVisualization")) {
+      const studentId = typeof args.studentId === "string" ? args.studentId : undefined;
       if (studentId && options.projectionsByStudentId) {
         return options.projectionsByStudentId[studentId] ?? null;
       }
@@ -59,10 +59,10 @@ export function buildConvexMocks(options: ConvexMocksOptions = {}) {
     internal: {
       parent: {
         links: {
-          listParentLinksQuery: 'parent:links:listParentLinksQuery',
+          listParentLinksQuery: "parent:links:listParentLinksQuery",
         },
         visualization: {
-          projectParentVisualizationQuery: 'parent:visualization:projectParentVisualizationQuery',
+          projectParentVisualizationQuery: "parent:visualization:projectParentVisualizationQuery",
         },
       },
     },

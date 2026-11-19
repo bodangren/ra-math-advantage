@@ -103,71 +103,44 @@
 // boundary rule which forbids `apps/*` and `convex/_generated/*`
 // only). No app imports. No npm install required.
 
-import { describe, it, expect } from 'vitest';
-import { readFileSync, existsSync } from 'node:fs';
-import { resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { VERTICAL_SLICE_MODULE } from '../vertical-slice';
+import { describe, it, expect } from "vitest";
+import { readFileSync, existsSync } from "node:fs";
+import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import { VERTICAL_SLICE_MODULE } from "../vertical-slice";
 
-import {
-  IM1_GENERATORS,
-  type IM1GeneratorEntry,
-} from '../generators';
+import { IM1_GENERATORS, type IM1GeneratorEntry } from "../generators";
 
 import {
   verifyGenerator,
   type GeneratorLike,
   type VerifyGeneratorReport,
-} from '@math-platform/practice-core/generator-qa';
+} from "@math-platform/practice-core/generator-qa";
 
-import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
+import type { GeneratorOutput } from "@math-platform/knowledge-space-practice";
 
 // ---------------------------------------------------------------------------
 // Path resolution
 // ---------------------------------------------------------------------------
 
 const HERE = fileURLToPath(import.meta.url);
-const PKG_ROOT = resolve(HERE, '../../../../../../..');
-const AUDIT_MD = resolve(
-  PKG_ROOT,
-  'measure/skill-graph-im1-rollout-audit.md',
-);
-const PKG_JSON = resolve(PKG_ROOT, 'package.json');
-const APPS_IM1_PKG_JSON = resolve(
-  PKG_ROOT,
-  'apps/integrated-math-1/package.json',
-);
-const GENERATED_ARCH_JSON = resolve(
-  PKG_ROOT,
-  'measure/generated/architecture.json',
-);
-const GENERATED_ROUTES_MD = resolve(
-  PKG_ROOT,
-  'measure/generated/routes.md',
-);
-const BOUNDARY_LINTER = resolve(
-  PKG_ROOT,
-  'scripts/check-monorepo-boundaries.mjs',
-);
-const BOUNDARY_RULES = resolve(
-  PKG_ROOT,
-  'scripts/monorepo-boundary-rules.json',
-);
-const IM1_ROLLOUT_DIR = resolve(
-  PKG_ROOT,
-  'apps/integrated-math-1/curriculum/skill-graph',
-);
-const BLUEPRINTS_JSON = resolve(IM1_ROLLOUT_DIR, 'blueprints.json');
-const GENERATOR_GAP_QUEUE_JSON = resolve(
-  IM1_ROLLOUT_DIR,
-  'generator-gap-queue.json',
-);
+const PKG_ROOT = resolve(HERE, "../../../../../../..");
+const AUDIT_MD = resolve(PKG_ROOT, "measure/skill-graph-im1-rollout-audit.md");
+const PKG_JSON = resolve(PKG_ROOT, "package.json");
+const APPS_IM1_PKG_JSON = resolve(PKG_ROOT, "apps/integrated-math-1/package.json");
+const GENERATED_ARCH_JSON = resolve(PKG_ROOT, "measure/generated/architecture.json");
+const GENERATED_ROUTES_MD = resolve(PKG_ROOT, "measure/generated/routes.md");
+const BOUNDARY_LINTER = resolve(PKG_ROOT, "scripts/check-monorepo-boundaries.mjs");
+const BOUNDARY_RULES = resolve(PKG_ROOT, "scripts/monorepo-boundary-rules.json");
+const IM1_ROLLOUT_DIR = resolve(PKG_ROOT, "apps/integrated-math-1/curriculum/skill-graph");
+const BLUEPRINTS_JSON = resolve(IM1_ROLLOUT_DIR, "blueprints.json");
+const GENERATOR_GAP_QUEUE_JSON = resolve(IM1_ROLLOUT_DIR, "generator-gap-queue.json");
 
 // ---------------------------------------------------------------------------
 // Live state — what the audit doc SHOULD claim after Green.
 // ---------------------------------------------------------------------------
 
-const STALE_GENERATED_DATE = '2026-05-10';
+const STALE_GENERATED_DATE = "2026-05-10";
 const MIN_VERTICAL_SLICE_GENERATORS = 6;
 
 type ScriptNames = ReadonlyArray<string>;
@@ -178,7 +151,7 @@ type ScriptNames = ReadonlyArray<string>;
  * @returns {ScriptNames} - Array of script names
  */
 function readPkgScripts(pkgJsonPath: string): ScriptNames {
-  const pkg = JSON.parse(readFileSync(pkgJsonPath, 'utf-8')) as {
+  const pkg = JSON.parse(readFileSync(pkgJsonPath, "utf-8")) as {
     scripts?: Record<string, string>;
   };
   return Object.keys(pkg.scripts ?? {});
@@ -189,7 +162,7 @@ function readPkgScripts(pkgJsonPath: string): ScriptNames {
  * @returns {string} - Audit document text
  */
 function loadAuditText(): string {
-  return readFileSync(AUDIT_MD, 'utf-8');
+  return readFileSync(AUDIT_MD, "utf-8");
 }
 
 /**
@@ -218,19 +191,19 @@ function collectRegisteredGeneratorCount(): number {
  */
 function countVerticalSliceRealBlueprints(): number {
   const vsm = loadVerticalSliceModule();
-  const file = JSON.parse(readFileSync(BLUEPRINTS_JSON, 'utf-8')) as {
+  const file = JSON.parse(readFileSync(BLUEPRINTS_JSON, "utf-8")) as {
     blueprints: Array<{
       metadata?: { module?: string | number };
       exceptions?: Array<{ type?: string; reason?: string }>;
     }>;
   };
   return file.blueprints.filter((b) => {
-    if (String(b.metadata?.module ?? '') !== vsm) return false;
+    if (String(b.metadata?.module ?? "") !== vsm) return false;
     const hasStub = (b.exceptions ?? []).some(
       (e) =>
-        e?.type === 'generator' &&
-        typeof e?.reason === 'string' &&
-        e.reason.includes('not yet implemented'),
+        e?.type === "generator" &&
+        typeof e?.reason === "string" &&
+        e.reason.includes("not yet implemented"),
     );
     return !hasStub;
   }).length;
@@ -248,9 +221,7 @@ function adapt(entry: IM1GeneratorEntry): GeneratorLike {
         nodeId: input.nodeId,
         seed: input.seed,
         difficulty: input.difficulty,
-        learnerContext: input.learnerContext as
-          | Record<string, unknown>
-          | undefined,
+        learnerContext: input.learnerContext as Record<string, unknown> | undefined,
       }) as GeneratorOutput;
       return {
         problem: out.prompt,
@@ -267,8 +238,8 @@ function adapt(entry: IM1GeneratorEntry): GeneratorLike {
 //    The audit doc must be re-stamped after the Phase 2–4 work.
 // ---------------------------------------------------------------------------
 
-describe('IM1 audit refresh — Generated/Updated date (Phase 5 Task 1)', () => {
-  it('the audit doc has been re-stamped past the original 2026-05-10 date', () => {
+describe("IM1 audit refresh — Generated/Updated date (Phase 5 Task 1)", () => {
+  it("the audit doc has been re-stamped past the original 2026-05-10 date", () => {
     const audit = loadAuditText();
     // The original Phase 9 doc opens with `**Generated**: 2026-05-10`.
     // Phase 5 Green replaces that with a fresh stamp and/or adds an
@@ -283,16 +254,14 @@ describe('IM1 audit refresh — Generated/Updated date (Phase 5 Task 1)', () => 
       found.push(m[1]);
     }
     expect(found.length).toBeGreaterThan(0);
-    const hasFresh = found.some(
-      (d) => d > STALE_GENERATED_DATE,
-    );
+    const hasFresh = found.some((d) => d > STALE_GENERATED_DATE);
     expect(
       hasFresh,
-      `audit doc has no date later than ${STALE_GENERATED_DATE}; found: ${found.join(', ')}`,
+      `audit doc has no date later than ${STALE_GENERATED_DATE}; found: ${found.join(", ")}`,
     ).toBe(true);
   });
 
-  it('the audit doc no longer advertises the original Generated stamp as its sole timestamp', () => {
+  it("the audit doc no longer advertises the original Generated stamp as its sole timestamp", () => {
     const audit = loadAuditText();
     // If the doc only carries the stale 2026-05-10 stamp, the
     // refresh task is not done. We assert the doc has either
@@ -320,8 +289,8 @@ describe('IM1 audit refresh — Generated/Updated date (Phase 5 Task 1)', () => 
 // 2. Historical generator-binding baseline and current binding inventory.
 // ---------------------------------------------------------------------------
 
-describe('IM1 audit refresh — historical baseline and current bindings', () => {
-  it('historical table records six generator bindings instead of the old zero claim', () => {
+describe("IM1 audit refresh — historical baseline and current bindings", () => {
+  it("historical table records six generator bindings instead of the old zero claim", () => {
     const audit = loadAuditText();
     // The original line: "**0 of 138 skills (0%)**" plus a
     // Total row of "0/138 (0%)". Phase 5 Green rewrites those
@@ -332,16 +301,17 @@ describe('IM1 audit refresh — historical baseline and current bindings', () =>
     expect(live).toBeGreaterThanOrEqual(MIN_VERTICAL_SLICE_GENERATORS);
 
     const staleClaim = /\*\*0 of 138 skills \(0%\)\*\*/.test(audit);
-    const staleTotalRow = /\|\s*Total\s*\|\s*93\s*\|\s*138\s*\|\s*401\s*\|\s*77\s*\|\s*0\/138\s*\(0%\)\s*\|/.test(
-      audit,
-    );
+    const staleTotalRow =
+      /\|\s*Total\s*\|\s*93\s*\|\s*138\s*\|\s*401\s*\|\s*77\s*\|\s*0\/138\s*\(0%\)\s*\|/.test(
+        audit,
+      );
     expect(
       staleClaim || staleTotalRow,
       `historical table must not still claim 0/138 generator bindings (live state is ${live}/138)`,
     ).toBe(false);
   });
 
-  it('audit doc reports the live generator binding count without calling it readiness', () => {
+  it("audit doc reports the live generator binding count without calling it readiness", () => {
     const audit = loadAuditText();
     const live = collectRegisteredGeneratorCount();
     expect(live).toBeGreaterThanOrEqual(MIN_VERTICAL_SLICE_GENERATORS);
@@ -353,7 +323,7 @@ describe('IM1 audit refresh — historical baseline and current bindings', () =>
     const sectionMatch = audit.match(/##\s*Current Source Inventory[\s\S]*?(?=\n##\s|\Z)/);
     expect(
       sectionMatch,
-      'audit doc is missing the current source inventory section',
+      "audit doc is missing the current source inventory section",
     ).not.toBeNull();
     const section = sectionMatch![0];
     // Pattern A: "X of 138 skills (Y%)" with X ≥ 1
@@ -367,7 +337,7 @@ describe('IM1 audit refresh — historical baseline and current bindings', () =>
     ).toBeGreaterThanOrEqual(live);
   });
 
-  it('historical Module-by-Module Coverage table records six Module 1 bindings', () => {
+  it("historical Module-by-Module Coverage table records six Module 1 bindings", () => {
     const audit = loadAuditText();
     // The per-module table row for Module 1 was
     //   "| 1: Expressions | 6 | 6 | 34 | 6 | 0/6 (0%) |"
@@ -377,7 +347,7 @@ describe('IM1 audit refresh — historical baseline and current bindings', () =>
     );
     expect(
       module1Row,
-      'audit doc is missing the Module-1 row in Module-by-Module Coverage',
+      "audit doc is missing the Module-1 row in Module-by-Module Coverage",
     ).not.toBeNull();
     const cell = module1Row![1];
     const m = cell.match(/^(\d+)\/(\d+)/);
@@ -399,7 +369,7 @@ describe('IM1 audit refresh — historical baseline and current bindings', () =>
 //    reviewers see what is intentionally red.
 // ---------------------------------------------------------------------------
 
-describe('IM1 audit refresh — long-tail tracking section (Phase 5 Task 1)', () => {
+describe("IM1 audit refresh — long-tail tracking section (Phase 5 Task 1)", () => {
   it('audit doc contains an explicit "Long tail" or "Tracked long tail" section', () => {
     const audit = loadAuditText();
     // test-strategy §8 mandates that the long tail is "listed in
@@ -412,9 +382,10 @@ describe('IM1 audit refresh — long-tail tracking section (Phase 5 Task 1)', ()
     ).toBe(true);
   });
 
-  it('long-tail section separates the frozen baseline from current candidates', () => {
+  it("long-tail section separates the frozen baseline from current candidates", () => {
     const audit = loadAuditText();
-    const longTailRe = /^#{2,3}\s+(Long\s*tail|Tracked\s*long\s*tail)\b([\s\S]*?)(?=\n#{2,3}\s|\Z)/im;
+    const longTailRe =
+      /^#{2,3}\s+(Long\s*tail|Tracked\s*long\s*tail)\b([\s\S]*?)(?=\n#{2,3}\s|\Z)/im;
     const m = audit.match(longTailRe);
     expect(m).not.toBeNull();
     const body = m![2];
@@ -431,19 +402,21 @@ describe('IM1 audit refresh — long-tail tracking section (Phase 5 Task 1)', ()
 //    test-strategy §1 row Phase 5.
 // ---------------------------------------------------------------------------
 
-describe('IM1 audit refresh — live bindings vs. audit doc (Phase 5 Task 1)', () => {
-  it('live generator-gap-queue count agrees with the audit doc long-tail claim', () => {
+describe("IM1 audit refresh — live bindings vs. audit doc (Phase 5 Task 1)", () => {
+  it("live generator-gap-queue count agrees with the audit doc long-tail claim", () => {
     const audit = loadAuditText();
-    const gapQueue = JSON.parse(readFileSync(GENERATOR_GAP_QUEUE_JSON, 'utf-8')) as {
+    const gapQueue = JSON.parse(readFileSync(GENERATOR_GAP_QUEUE_JSON, "utf-8")) as {
       queue: Array<{ nodeId: string }>;
     };
-    const longTail = audit.match(/\b(\d+)\s+skill candidates outside the registered generator set/i);
+    const longTail = audit.match(
+      /\b(\d+)\s+skill candidates outside the registered generator set/i,
+    );
     expect(longTail).not.toBeNull();
     expect(Number(longTail![1])).toBe(gapQueue.queue.length);
     expect(gapQueue.queue.length).toBeGreaterThan(132);
   });
 
-  it('live IM1_GENERATORS registry count agrees with Current Source Inventory', () => {
+  it("live IM1_GENERATORS registry count agrees with Current Source Inventory", () => {
     const audit = loadAuditText();
     const live = collectRegisteredGeneratorCount();
     expect(live).toBeGreaterThanOrEqual(MIN_VERTICAL_SLICE_GENERATORS);
@@ -453,7 +426,7 @@ describe('IM1 audit refresh — live bindings vs. audit doc (Phase 5 Task 1)', (
     expect(Number(inventory![1])).toBe(live);
   });
 
-  it('schema-valid vertical-slice blueprint count agrees with the historical Module-1 row', () => {
+  it("schema-valid vertical-slice blueprint count agrees with the historical Module-1 row", () => {
     const audit = loadAuditText();
     const real = countVerticalSliceRealBlueprints();
     expect(real).toBeGreaterThanOrEqual(MIN_VERTICAL_SLICE_GENERATORS);
@@ -477,20 +450,17 @@ describe('IM1 audit refresh — live bindings vs. audit doc (Phase 5 Task 1)', (
 //    This group asserts the pre-conditions for that gate.
 // ---------------------------------------------------------------------------
 
-describe('IM1 audit refresh — closeout gate pre-conditions (Phase 5 Task 2)', () => {
-  it('root package.json defines lint, test, typecheck, and doctor scripts', () => {
+describe("IM1 audit refresh — closeout gate pre-conditions (Phase 5 Task 2)", () => {
+  it("root package.json defines lint, test, typecheck, and doctor scripts", () => {
     const scripts = readPkgScripts(PKG_JSON);
-    for (const name of ['lint', 'test', 'doctor']) {
-      expect(
-        scripts,
-        `root package.json is missing the "${name}" script`,
-      ).toContain(name);
+    for (const name of ["lint", "test", "doctor"]) {
+      expect(scripts, `root package.json is missing the "${name}" script`).toContain(name);
     }
   });
 
-  it('apps/integrated-math-1/package.json defines lint, test, and typecheck scripts', () => {
+  it("apps/integrated-math-1/package.json defines lint, test, and typecheck scripts", () => {
     const scripts = readPkgScripts(APPS_IM1_PKG_JSON);
-    for (const name of ['lint', 'test', 'typecheck']) {
+    for (const name of ["lint", "test", "typecheck"]) {
       expect(
         scripts,
         `apps/integrated-math-1/package.json is missing the "${name}" script`,
@@ -498,7 +468,7 @@ describe('IM1 audit refresh — closeout gate pre-conditions (Phase 5 Task 2)', 
     }
   });
 
-  it('measure/generated/architecture.json and routes.md exist (doctor requires them)', () => {
+  it("measure/generated/architecture.json and routes.md exist (doctor requires them)", () => {
     expect(
       existsSync(GENERATED_ARCH_JSON),
       `${GENERATED_ARCH_JSON} is missing — run \`bash measure/scripts/generate.sh\` first`,
@@ -509,7 +479,7 @@ describe('IM1 audit refresh — closeout gate pre-conditions (Phase 5 Task 2)', 
     ).toBe(true);
   });
 
-  it('monorepo-boundary linter and rules are present (doctor runs them)', () => {
+  it("monorepo-boundary linter and rules are present (doctor runs them)", () => {
     expect(
       existsSync(BOUNDARY_LINTER),
       `${BOUNDARY_LINTER} is missing — doctor cannot run the boundary linter`,
@@ -530,27 +500,25 @@ describe('IM1 audit refresh — closeout gate pre-conditions (Phase 5 Task 2)', 
 //    Phase 5.
 // ---------------------------------------------------------------------------
 
-describe('IM1 audit refresh — QA harness live proof (Phase 5 Task 2)', () => {
-  it('IM1_GENERATORS aggregate gate: every entry passes verifyGenerator at numSeeds = 50', () => {
+describe("IM1 audit refresh — QA harness live proof (Phase 5 Task 2)", () => {
+  it("IM1_GENERATORS aggregate gate: every entry passes verifyGenerator at numSeeds = 50", () => {
     const entries = [...(IM1_GENERATORS as Iterable<IM1GeneratorEntry>)];
     expect(entries.length).toBeGreaterThanOrEqual(MIN_VERTICAL_SLICE_GENERATORS);
 
     const failures: Array<{ key: string; report: VerifyGeneratorReport }> = [];
     for (const entry of entries) {
       const report = verifyGenerator(adapt(entry), { numSeeds: 50 });
-      if (report.verdict !== 'pass') {
+      if (report.verdict !== "pass") {
         failures.push({ key: entry.skillIdKey, report });
       }
     }
     if (failures.length > 0) {
       const detail = failures
         .map((f) => {
-          const msgs = f.report.errors.map(
-            (e) => `${e.checkName}: ${e.message}`,
-          );
-          return `  ${f.key} → ${msgs.join('; ')}`;
+          const msgs = f.report.errors.map((e) => `${e.checkName}: ${e.message}`);
+          return `  ${f.key} → ${msgs.join("; ")}`;
         })
-        .join('\n');
+        .join("\n");
       throw new Error(
         `IM1 audit-refresh QA harness proof failed for ${failures.length} generator(s):\n${detail}`,
       );
@@ -558,7 +526,7 @@ describe('IM1 audit refresh — QA harness live proof (Phase 5 Task 2)', () => {
     expect(failures).toEqual([]);
   });
 
-  it('IM1_GENERATORS aggregate: zero failed checks across all entries', () => {
+  it("IM1_GENERATORS aggregate: zero failed checks across all entries", () => {
     const entries = [...(IM1_GENERATORS as Iterable<IM1GeneratorEntry>)];
     let totalChecks = 0;
     let failedChecks = 0;

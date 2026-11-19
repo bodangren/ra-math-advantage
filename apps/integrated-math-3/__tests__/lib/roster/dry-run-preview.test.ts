@@ -30,26 +30,26 @@
 //   npx vitest run apps/integrated-math-3/__tests__/lib/roster/dry-run-preview.test.ts \
 //     --root apps/integrated-math-3
 
-import { describe, it, expect } from 'vitest';
-import { dryRunPreview } from '@/lib/roster/dry-run';
+import { describe, it, expect } from "vitest";
+import { dryRunPreview } from "@/lib/roster/dry-run";
 import type {
   RosterImportError,
   RosterParseResult,
   RosterImportResult,
-} from '@/lib/roster/csv-contract';
-import { makeImportError } from '../../fixtures/roster/builders';
+} from "@/lib/roster/csv-contract";
+import { makeImportError } from "../../fixtures/roster/builders";
 
 // ---------------------------------------------------------------------------
 // 1. All-valid roster
 // ---------------------------------------------------------------------------
 
-describe('dryRunPreview — all-valid roster (FR2 / FR6)', () => {
-  it('returns created == row count, updated == 0, skipped == 0, errors == []', () => {
+describe("dryRunPreview — all-valid roster (FR2 / FR6)", () => {
+  it("returns created == row count, updated == 0, skipped == 0, errors == []", () => {
     const parsed: RosterParseResult = {
       rows: [
-        { rowIndex: 1, name: 'Alice', email: 'alice@school.edu', sisId: 'S-1' },
-        { rowIndex: 2, name: 'Bob', email: 'bob@school.edu', sisId: 'S-2' },
-        { rowIndex: 3, name: 'Carol', email: 'carol@school.edu', sisId: 'S-3' },
+        { rowIndex: 1, name: "Alice", email: "alice@school.edu", sisId: "S-1" },
+        { rowIndex: 2, name: "Bob", email: "bob@school.edu", sisId: "S-2" },
+        { rowIndex: 3, name: "Carol", email: "carol@school.edu", sisId: "S-3" },
       ],
       errors: [],
     };
@@ -65,8 +65,8 @@ describe('dryRunPreview — all-valid roster (FR2 / FR6)', () => {
 // 2. Mixed errors
 // ---------------------------------------------------------------------------
 
-describe('dryRunPreview — mixed-errors roster (FR6)', () => {
-  it('passes errors through unchanged and counts errored rows as skipped', () => {
+describe("dryRunPreview — mixed-errors roster (FR6)", () => {
+  it("passes errors through unchanged and counts errored rows as skipped", () => {
     // parsed.rows contains 2 valid + 1 invalid row. The invalid row
     // is represented by the parser as EITHER (a) absent from rows
     // with an entry in errors, OR (b) present in rows with a
@@ -75,13 +75,11 @@ describe('dryRunPreview — mixed-errors roster (FR6)', () => {
     // consistent.
     const error: RosterImportError = makeImportError({
       rowIndex: 2,
-      column: 'email',
-      code: 'invalid_email',
+      column: "email",
+      code: "invalid_email",
     });
     const parsed: RosterParseResult = {
-      rows: [
-        { rowIndex: 1, name: 'Alice', email: 'alice@school.edu', sisId: 'S-1' },
-      ],
+      rows: [{ rowIndex: 1, name: "Alice", email: "alice@school.edu", sisId: "S-1" }],
       errors: [error],
     };
     const result = dryRunPreview(parsed);
@@ -100,20 +98,20 @@ describe('dryRunPreview — mixed-errors roster (FR6)', () => {
 // 3. Duplicate identifiers
 // ---------------------------------------------------------------------------
 
-describe('dryRunPreview — duplicate identifiers within file (test-strategy §4)', () => {
-  it('counts the first occurrence as created and subsequent duplicates as skipped', () => {
+describe("dryRunPreview — duplicate identifiers within file (test-strategy §4)", () => {
+  it("counts the first occurrence as created and subsequent duplicates as skipped", () => {
     // 3 rows share the same email. The dry-run must count row 1 as
     // created and rows 2–3 as skipped (per FR6 — duplicates are
     // reported as errors AND excluded from created).
     const parsed: RosterParseResult = {
       rows: [
-        { rowIndex: 1, name: 'Alice', email: 'shared@school.edu', sisId: 'S-1' },
-        { rowIndex: 2, name: 'Bob', email: 'shared@school.edu', sisId: 'S-2' },
-        { rowIndex: 3, name: 'Carol', email: 'shared@school.edu', sisId: 'S-3' },
+        { rowIndex: 1, name: "Alice", email: "shared@school.edu", sisId: "S-1" },
+        { rowIndex: 2, name: "Bob", email: "shared@school.edu", sisId: "S-2" },
+        { rowIndex: 3, name: "Carol", email: "shared@school.edu", sisId: "S-3" },
       ],
       errors: [
-        makeImportError({ rowIndex: 2, code: 'duplicate_identifier' }),
-        makeImportError({ rowIndex: 3, code: 'duplicate_identifier' }),
+        makeImportError({ rowIndex: 2, code: "duplicate_identifier" }),
+        makeImportError({ rowIndex: 3, code: "duplicate_identifier" }),
       ],
     };
     const result = dryRunPreview(parsed);
@@ -128,8 +126,8 @@ describe('dryRunPreview — duplicate identifiers within file (test-strategy §4
 // 4. Empty parsed input
 // ---------------------------------------------------------------------------
 
-describe('dryRunPreview — empty input', () => {
-  it('returns zeros and an empty errors array for an empty parse result', () => {
+describe("dryRunPreview — empty input", () => {
+  it("returns zeros and an empty errors array for an empty parse result", () => {
     const parsed: RosterParseResult = { rows: [], errors: [] };
     const result: RosterImportResult = dryRunPreview(parsed);
     expect(result).toEqual({ created: 0, updated: 0, skipped: 0, errors: [] });

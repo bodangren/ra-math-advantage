@@ -1,11 +1,8 @@
-import type { PlacementFlowOutcome } from '@/lib/placement/placement-flow';
+import type { PlacementFlowOutcome } from "@/lib/placement/placement-flow";
 
-export type StudentFlowDestination = 'placement' | 'assigned-work';
+export type StudentFlowDestination = "placement" | "assigned-work";
 
-export type StudentFlowReason =
-  | 'new-student'
-  | 'returning-student'
-  | 'forced-rerun';
+export type StudentFlowReason = "new-student" | "returning-student" | "forced-rerun";
 
 export interface StudentFlowContext {
   studentId: string;
@@ -19,10 +16,7 @@ export interface StudentFlowDecision {
 }
 
 export interface StudentFlowRouterDeps {
-  runPlacement(
-    studentId: string,
-    options?: { force?: boolean },
-  ): Promise<PlacementFlowOutcome>;
+  runPlacement(studentId: string, options?: { force?: boolean }): Promise<PlacementFlowOutcome>;
 }
 
 export interface StudentFlowOptions {
@@ -38,8 +32,8 @@ export async function routeStudent(
 
   if (context.hasExistingPlacement && !force) {
     return {
-      destination: 'assigned-work',
-      reason: 'returning-student',
+      destination: "assigned-work",
+      reason: "returning-student",
     };
   }
 
@@ -48,10 +42,10 @@ export async function routeStudent(
     force ? { force } : undefined,
   );
 
-  const reason = context.hasExistingPlacement ? 'forced-rerun' : 'new-student';
+  const reason = context.hasExistingPlacement ? "forced-rerun" : "new-student";
 
   return {
-    destination: 'placement',
+    destination: "placement",
     reason,
     placementOutcome,
   };

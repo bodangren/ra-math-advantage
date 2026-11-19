@@ -11,8 +11,8 @@
  * Pure functions, no I/O, no app imports, domain-neutral.
  */
 
-import type { PlannerInput } from './types';
-import { getPriority } from './priority';
+import type { PlannerInput } from "./types";
+import { getPriority } from "./priority";
 
 export function getRecommendedNext(
   input: PlannerInput,

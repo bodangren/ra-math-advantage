@@ -34,38 +34,38 @@
     "apps": [
       {
         "workspace": "apps/bus-math-v2",
-        "lint":      { "exit_status": 0, "command": "npm run ws:bm2:lint" },
-        "test":      { "exit_status": 0, "command": "npm run ws:bm2:test" },
+        "lint": { "exit_status": 0, "command": "npm run ws:bm2:lint" },
+        "test": { "exit_status": 0, "command": "npm run ws:bm2:test" },
         "typecheck": { "exit_status": 0, "command": "npm run ws:bm2:typecheck" },
-        "build":     { "exit_status": 0, "command": "npm run ws:bm2:build" }
+        "build": { "exit_status": 0, "command": "npm run ws:bm2:build" }
       },
       {
         "workspace": "apps/integrated-math-1",
-        "lint":      { "exit_status": 0, "command": "npm run ws:im1:lint" },
-        "test":      { "exit_status": 0, "command": "npm run ws:im1:test" },
+        "lint": { "exit_status": 0, "command": "npm run ws:im1:lint" },
+        "test": { "exit_status": 0, "command": "npm run ws:im1:test" },
         "typecheck": { "exit_status": 0, "command": "npm run ws:im1:typecheck" },
-        "build":     { "exit_status": 0, "command": "npm run ws:im1:build" }
+        "build": { "exit_status": 0, "command": "npm run ws:im1:build" }
       },
       {
         "workspace": "apps/integrated-math-2",
-        "lint":      { "exit_status": 0, "command": "npm run ws:im2:lint" },
-        "test":      { "exit_status": 0, "command": "npm run ws:im2:test" },
+        "lint": { "exit_status": 0, "command": "npm run ws:im2:lint" },
+        "test": { "exit_status": 0, "command": "npm run ws:im2:test" },
         "typecheck": { "exit_status": 0, "command": "npm run ws:im2:typecheck" },
-        "build":     { "exit_status": 0, "command": "npm run ws:im2:build" }
+        "build": { "exit_status": 0, "command": "npm run ws:im2:build" }
       },
       {
         "workspace": "apps/integrated-math-3",
-        "lint":      { "exit_status": 0, "command": "npm run ws:im3:lint" },
-        "test":      { "exit_status": 0, "command": "npm run ws:im3:test" },
+        "lint": { "exit_status": 0, "command": "npm run ws:im3:lint" },
+        "test": { "exit_status": 0, "command": "npm run ws:im3:test" },
         "typecheck": { "exit_status": 0, "command": "npm run ws:im3:typecheck" },
-        "build":     { "exit_status": 0, "command": "npm run ws:im3:build" }
+        "build": { "exit_status": 0, "command": "npm run ws:im3:build" }
       },
       {
         "workspace": "apps/pre-calculus",
-        "lint":      { "exit_status": 0, "command": "npm run ws:pc:lint" },
-        "test":      { "exit_status": 0, "command": "npm run ws:pc:test" },
+        "lint": { "exit_status": 0, "command": "npm run ws:pc:lint" },
+        "test": { "exit_status": 0, "command": "npm run ws:pc:test" },
         "typecheck": { "exit_status": 0, "command": "npm run ws:pc:typecheck" },
-        "build":     { "exit_status": 0, "command": "npm run ws:pc:build" }
+        "build": { "exit_status": 0, "command": "npm run ws:pc:build" }
       }
     ]
   },

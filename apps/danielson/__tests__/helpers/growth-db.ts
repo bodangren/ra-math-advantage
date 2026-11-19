@@ -24,13 +24,15 @@ export class MemoryDb {
   }
 
   snapshot() {
-    return structuredClone(Object.fromEntries(
-      [...this.tables.entries()].map(([name, rows]) => [name, [...rows.values()]]),
-    ));
+    return structuredClone(
+      Object.fromEntries(
+        [...this.tables.entries()].map(([name, rows]) => [name, [...rows.values()]]),
+      ),
+    );
   }
 
   async get(id: unknown) {
-    if (typeof id !== 'string') return null;
+    if (typeof id !== "string") return null;
     for (const table of this.tables.values()) {
       const document = table.get(id);
       if (document) return document;
@@ -85,13 +87,13 @@ export class MemoryDb {
           },
         };
         configure(builder);
-        matches = matches.filter((document) => (
-          equalities.every(([field, value]) => document[field] === value)
-        ));
+        matches = matches.filter((document) =>
+          equalities.every(([field, value]) => document[field] === value),
+        );
         return query;
       },
-      order: (direction: 'asc' | 'desc') => {
-        descending = direction === 'desc';
+      order: (direction: "asc" | "desc") => {
+        descending = direction === "desc";
         return query;
       },
       unique: async () => {
@@ -118,7 +120,7 @@ export class MemoryDb {
         return {
           page,
           isDone: next >= ordered.length,
-          continueCursor: next >= ordered.length ? '' : String(next),
+          continueCursor: next >= ordered.length ? "" : String(next),
         };
       },
     };
@@ -139,17 +141,17 @@ export class MemoryDb {
   }
 }
 
-export const ORG = 'organizations:one';
-export const OTHER_ORG = 'organizations:other';
-export const LEADER = 'accounts:leader';
-export const SYSADMIN = 'accounts:sysadmin';
-export const TEACHER_ACCOUNT = 'accounts:teacher';
-export const TEACHER = 'teacher_profiles:teacher';
-export const NOW = Date.parse('2026-11-01T00:00:00.000Z');
+export const ORG = "organizations:one";
+export const OTHER_ORG = "organizations:other";
+export const LEADER = "accounts:leader";
+export const SYSADMIN = "accounts:sysadmin";
+export const TEACHER_ACCOUNT = "accounts:teacher";
+export const TEACHER = "teacher_profiles:teacher";
+export const NOW = Date.parse("2026-11-01T00:00:00.000Z");
 export const NOW_ISO = new Date(NOW).toISOString();
 
 export function seedOrganization(db: MemoryDb, organizationId = ORG) {
-  db.seed('organizations', organizationId, {
+  db.seed("organizations", organizationId, {
     slug: organizationId,
     name: organizationId,
     isActive: true,
@@ -164,11 +166,11 @@ export function seedAccount(
   displayName: string,
   organizationId = ORG,
 ) {
-  db.seed('accounts', accountId, {
+  db.seed("accounts", accountId, {
     organizationId,
     username: accountId,
     displayName,
-    sharedSessionRole: 'admin',
+    sharedSessionRole: "admin",
     isActive: true,
     createdAt: NOW,
     updatedAt: NOW,
@@ -183,7 +185,7 @@ export function seedTeacher(
   organizationId = ORG,
 ) {
   seedAccount(db, accountId, displayName, organizationId);
-  db.seed('teacher_profiles', teacherProfileId, {
+  db.seed("teacher_profiles", teacherProfileId, {
     organizationId,
     accountId,
     currentGbfAssignmentId: null,
@@ -194,11 +196,11 @@ export function seedTeacher(
 }
 
 export function seedRole(db: MemoryDb, accountId: string, role: string, organizationId = ORG) {
-  db.seed('role_assignments', `role_assignments:${accountId}:${role}`, {
+  db.seed("role_assignments", `role_assignments:${accountId}:${role}`, {
     organizationId,
     accountId,
     role,
-    status: 'active',
+    status: "active",
     createdByAccountId: accountId,
     createdAt: NOW,
   });
@@ -207,11 +209,10 @@ export function seedRole(db: MemoryDb, accountId: string, role: string, organiza
 export function seedBase(db: MemoryDb) {
   seedOrganization(db);
   seedOrganization(db, OTHER_ORG);
-  seedAccount(db, LEADER, 'Leader One');
-  seedAccount(db, SYSADMIN, 'System Administrator');
-  seedTeacher(db, TEACHER, TEACHER_ACCOUNT, 'Teacher One');
-  seedRole(db, LEADER, 'school_head');
-  seedRole(db, SYSADMIN, 'sysadmin');
-  seedRole(db, TEACHER_ACCOUNT, 'teacher');
+  seedAccount(db, LEADER, "Leader One");
+  seedAccount(db, SYSADMIN, "System Administrator");
+  seedTeacher(db, TEACHER, TEACHER_ACCOUNT, "Teacher One");
+  seedRole(db, LEADER, "school_head");
+  seedRole(db, SYSADMIN, "sysadmin");
+  seedRole(db, TEACHER_ACCOUNT, "teacher");
 }
-

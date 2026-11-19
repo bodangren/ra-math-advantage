@@ -1,14 +1,14 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { practiceSubmissionEnvelopeSchema } from '@/lib/practice/contract';
-import { practiceAccounts } from '@/lib/practice/engine/accounts';
+import { practiceSubmissionEnvelopeSchema } from "@/lib/practice/contract";
+import { practiceAccounts } from "@/lib/practice/engine/accounts";
 import {
   buildNormalBalanceReviewFeedback,
   normalBalanceFamily,
   type NormalBalanceDefinition,
   type NormalBalanceResponse,
-} from '@/lib/practice/engine/families/normal-balance';
-import type { ProblemFamily } from '@/lib/practice/engine/types';
+} from "@/lib/practice/engine/families/normal-balance";
+import type { ProblemFamily } from "@/lib/practice/engine/types";
 
 function getParentNormalBalance(definition: NormalBalanceDefinition, accountId: string) {
   const part = definition.parts.find((entry) => entry.id === accountId);
@@ -20,8 +20,8 @@ function getParentNormalBalance(definition: NormalBalanceDefinition, accountId: 
   return parent?.normalBalance ?? null;
 }
 
-describe('normal balance family', () => {
-  it('deterministically generates mixed normal-balance boards across seeds', () => {
+describe("normal balance family", () => {
+  it("deterministically generates mixed normal-balance boards across seeds", () => {
     const family: ProblemFamily<
       NormalBalanceDefinition,
       NormalBalanceResponse,
@@ -32,8 +32,8 @@ describe('normal balance family', () => {
       const config = {
         accountCount: 10,
         includeContraAccounts: true,
-        companyScope: 'service' as const,
-        mode: 'guided_practice' as const,
+        companyScope: "service" as const,
+        mode: "guided_practice" as const,
       };
 
       const definition = family.generate(seed, config);
@@ -41,18 +41,20 @@ describe('normal balance family', () => {
 
       expect(definition).toEqual(repeat);
       expect(definition.parts).toHaveLength(10);
-      expect(new Set(definition.parts.map((part) => part.targetId))).toEqual(new Set(['debit', 'credit']));
+      expect(new Set(definition.parts.map((part) => part.targetId))).toEqual(
+        new Set(["debit", "credit"]),
+      );
       expect(definition.parts.some((part) => part.details.isContraAccount)).toBe(true);
-      expect(definition.parts.every((part) => part.details.companyScope === 'service')).toBe(true);
+      expect(definition.parts.every((part) => part.details.companyScope === "service")).toBe(true);
     }
   });
 
-  it('honors retail scope, excludes contra accounts when requested, and solves to canonical sides', () => {
+  it("honors retail scope, excludes contra accounts when requested, and solves to canonical sides", () => {
     const definition = normalBalanceFamily.generate(27, {
       accountCount: 8,
       includeContraAccounts: false,
-      companyScope: 'retail',
-      mode: 'assessment',
+      companyScope: "retail",
+      mode: "assessment",
     });
 
     const solution = normalBalanceFamily.solve(definition);
@@ -64,12 +66,12 @@ describe('normal balance family', () => {
     );
   });
 
-  it('tags contra-account balance confusion and round-trips through the practice envelope', () => {
+  it("tags contra-account balance confusion and round-trips through the practice envelope", () => {
     const definition = normalBalanceFamily.generate(41, {
       accountCount: 9,
       includeContraAccounts: true,
-      companyScope: 'service',
-      mode: 'guided_practice',
+      companyScope: "service",
+      mode: "guided_practice",
     });
 
     const solution = normalBalanceFamily.solve(definition);
@@ -77,13 +79,13 @@ describe('normal balance family', () => {
 
     expect(contraPart).toBeDefined();
     if (!contraPart) {
-      throw new Error('Expected at least one contra account in the generated board');
+      throw new Error("Expected at least one contra account in the generated board");
     }
 
     const parentBalance = getParentNormalBalance(definition, contraPart.id);
     expect(parentBalance).toBeDefined();
     if (!parentBalance) {
-      throw new Error('Expected a parent balance for the contra account');
+      throw new Error("Expected a parent balance for the contra account");
     }
 
     const studentResponse: NormalBalanceResponse = {
@@ -96,42 +98,44 @@ describe('normal balance family', () => {
     const envelope = normalBalanceFamily.toEnvelope(definition, studentResponse, gradeResult);
 
     expect(gradeResult.score).toBeLessThan(gradeResult.maxScore);
-    expect(gradeResult.parts.some((part) => part.partId === contraPart.id && part.score === 0)).toBe(true);
-    expect(gradeResult.parts.find((part) => part.partId === contraPart.id)?.misconceptionTags).toEqual(
-      expect.arrayContaining(['contra-account-same-as-parent']),
-    );
+    expect(
+      gradeResult.parts.some((part) => part.partId === contraPart.id && part.score === 0),
+    ).toBe(true);
+    expect(
+      gradeResult.parts.find((part) => part.partId === contraPart.id)?.misconceptionTags,
+    ).toEqual(expect.arrayContaining(["contra-account-same-as-parent"]));
     expect(reviewed[contraPart.id]).toMatchObject({
-      status: 'incorrect',
+      status: "incorrect",
       expectedBalanceLabel: contraPart.targetId.toUpperCase(),
       selectedBalanceLabel: parentBalance.toUpperCase(),
     });
-    expect(reviewed[contraPart.id].message).toContain('contra');
+    expect(reviewed[contraPart.id].message).toContain("contra");
 
     const parsed = practiceSubmissionEnvelopeSchema.safeParse(envelope);
     expect(parsed.success).toBe(true);
     if (!parsed.success) {
-      throw new Error('Expected normal-balance envelope to parse');
+      throw new Error("Expected normal-balance envelope to parse");
     }
 
-    expect(parsed.data.contractVersion).toBe('practice.v1');
+    expect(parsed.data.contractVersion).toBe("practice.v1");
     expect(parsed.data.answers).toEqual(studentResponse);
     expect(parsed.data.artifact).toMatchObject({
-      kind: 'normal-balance-grid',
-      family: 'normal-balance',
-      companyScope: 'service',
+      kind: "normal-balance-grid",
+      family: "normal-balance",
+      companyScope: "service",
     });
   });
 
-  it('explains the normal-balance rule for non-contra accounts', () => {
+  it("explains the normal-balance rule for non-contra accounts", () => {
     const definition = normalBalanceFamily.generate(22, {
       accountCount: 8,
       includeContraAccounts: false,
-      companyScope: 'service',
-      mode: 'assessment',
+      companyScope: "service",
+      mode: "assessment",
     });
     const solution = normalBalanceFamily.solve(definition);
     const part = definition.parts[0];
-    const wrongBalance = part.targetId === 'debit' ? 'credit' : 'debit';
+    const wrongBalance = part.targetId === "debit" ? "credit" : "debit";
     const response: NormalBalanceResponse = { ...solution, [part.id]: wrongBalance };
     const gradeResult = normalBalanceFamily.grade(definition, response);
     const reviewed = buildNormalBalanceReviewFeedback(definition, response, gradeResult);

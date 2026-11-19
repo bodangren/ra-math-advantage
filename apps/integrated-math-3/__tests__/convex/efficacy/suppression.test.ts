@@ -25,22 +25,22 @@
  *   calling without any `ctx`).
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 
 import {
   MIN_COHORT_N,
   suppressIfSmallN,
   type CohortSuppressionResult,
-} from '@/convex/efficacy/suppression';
+} from "@/convex/efficacy/suppression";
 
-describe('MIN_COHORT_N contract (Phase 2 Red — Task 2)', () => {
-  it('is exported as a finite, positive integer', () => {
+describe("MIN_COHORT_N contract (Phase 2 Red — Task 2)", () => {
+  it("is exported as a finite, positive integer", () => {
     expect(Number.isFinite(MIN_COHORT_N)).toBe(true);
     expect(Number.isInteger(MIN_COHORT_N)).toBe(true);
     expect(MIN_COHORT_N).toBeGreaterThanOrEqual(2);
   });
 
-  it('is in a reasonable k-anonymity range (5–30) for class-level learning metrics', () => {
+  it("is in a reasonable k-anonymity range (5–30) for class-level learning metrics", () => {
     // 5 is the conventional k-anonymity threshold for class-level
     // learning metrics; values above ~30 are operationally useless for
     // most cohorts. Pinning the bounds leaves the exact value to the
@@ -50,21 +50,21 @@ describe('MIN_COHORT_N contract (Phase 2 Red — Task 2)', () => {
   });
 });
 
-describe('suppressIfSmallN (Phase 2 Red — Task 2)', () => {
+describe("suppressIfSmallN (Phase 2 Red — Task 2)", () => {
   it('returns status: "ok" when n is strictly above the threshold', () => {
     const result = suppressIfSmallN(MIN_COHORT_N + 1);
-    expect(result.status).toBe('ok');
+    expect(result.status).toBe("ok");
   });
 
   it('returns status: "ok" at the exact threshold (inclusive lower bound)', () => {
     const result = suppressIfSmallN(MIN_COHORT_N);
-    expect(result.status).toBe('ok');
+    expect(result.status).toBe("ok");
   });
 
   it('returns status: "suppressed" one below the threshold (boundary safety)', () => {
     const result = suppressIfSmallN(MIN_COHORT_N - 1);
-    expect(result.status).toBe('suppressed');
-    if (result.status === 'suppressed') {
+    expect(result.status).toBe("suppressed");
+    if (result.status === "suppressed") {
       expect(result.n).toBe(MIN_COHORT_N - 1);
       expect(result.threshold).toBe(MIN_COHORT_N);
     }
@@ -72,8 +72,8 @@ describe('suppressIfSmallN (Phase 2 Red — Task 2)', () => {
 
   it('returns status: "suppressed" for empty cohorts (n=0)', () => {
     const result = suppressIfSmallN(0);
-    expect(result.status).toBe('suppressed');
-    if (result.status === 'suppressed') {
+    expect(result.status).toBe("suppressed");
+    if (result.status === "suppressed") {
       expect(result.n).toBe(0);
       expect(result.threshold).toBe(MIN_COHORT_N);
     }
@@ -81,24 +81,24 @@ describe('suppressIfSmallN (Phase 2 Red — Task 2)', () => {
 
   it('returns status: "suppressed" for single-student cohorts (n=1, PII risk)', () => {
     const result = suppressIfSmallN(1);
-    expect(result.status).toBe('suppressed');
+    expect(result.status).toBe("suppressed");
   });
 
-  it('returns a suppressed payload that contains ONLY n, status, and threshold (privacy guarantee)', () => {
+  it("returns a suppressed payload that contains ONLY n, status, and threshold (privacy guarantee)", () => {
     const result = suppressIfSmallN(2);
-    expect(result.status).toBe('suppressed');
+    expect(result.status).toBe("suppressed");
     const keys = Object.keys(result).sort();
-    expect(keys).toEqual(['n', 'status', 'threshold']);
+    expect(keys).toEqual(["n", "status", "threshold"]);
   });
 
-  it('returns an ok payload that contains ONLY status (no spurious fields)', () => {
+  it("returns an ok payload that contains ONLY status (no spurious fields)", () => {
     const result = suppressIfSmallN(MIN_COHORT_N);
-    expect(result.status).toBe('ok');
+    expect(result.status).toBe("ok");
     const keys = Object.keys(result).sort();
-    expect(keys).toEqual(['status']);
+    expect(keys).toEqual(["status"]);
   });
 
-  it('is a pure function (no ctx dependency, no I/O, deterministic)', () => {
+  it("is a pure function (no ctx dependency, no I/O, deterministic)", () => {
     // Same input → same output, no mutation, no thrown errors.
     const a = suppressIfSmallN(3);
     const b = suppressIfSmallN(3);
@@ -107,15 +107,15 @@ describe('suppressIfSmallN (Phase 2 Red — Task 2)', () => {
     expect(c.status).toBe(b.status); // also deterministic; same status
   });
 
-  it('exposes a typed discriminated union (CohortSuppressionResult) for caller narrowing', () => {
+  it("exposes a typed discriminated union (CohortSuppressionResult) for caller narrowing", () => {
     // Compile-time check via runtime assertions on shape compatibility.
-    const ok: CohortSuppressionResult = { status: 'ok' };
+    const ok: CohortSuppressionResult = { status: "ok" };
     const suppressed: CohortSuppressionResult = {
-      status: 'suppressed',
+      status: "suppressed",
       n: 3,
       threshold: MIN_COHORT_N,
     };
-    expect(ok.status).toBe('ok');
-    expect(suppressed.status).toBe('suppressed');
+    expect(ok.status).toBe("ok");
+    expect(suppressed.status).toBe("suppressed");
   });
 });

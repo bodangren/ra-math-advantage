@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { ChevronDown, ChevronUp, Clock, BookOpen, Target, Layers } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import type { PhaseType } from '@math-platform/activity-runtime/phase-types';
-import { getPhaseDisplayInfo } from '@math-platform/activity-runtime/phase-types';
+import { useState } from "react";
+import { ChevronDown, ChevronUp, Clock, BookOpen, Target, Layers } from "lucide-react";
+import { cn } from "@/lib/utils";
+import type { PhaseType } from "@math-platform/activity-runtime/phase-types";
+import { getPhaseDisplayInfo } from "@math-platform/activity-runtime/phase-types";
 
 export interface LessonMetadata {
   id: string;
@@ -48,16 +48,15 @@ export function LessonMetadataPanel({
 }: LessonMetadataPanelProps) {
   const [expanded, setExpanded] = useState(defaultExpanded);
 
-  const totalMinutes = metadata.estimatedMinutes ?? metadata.phaseSequence.reduce(
-    (sum, p) => sum + (p.estimatedMinutes ?? 0),
-    0
-  );
+  const totalMinutes =
+    metadata.estimatedMinutes ??
+    metadata.phaseSequence.reduce((sum, p) => sum + (p.estimatedMinutes ?? 0), 0);
 
   return (
-    <div className={cn('border rounded-lg', className)}>
+    <div className={cn("border rounded-lg", className)}>
       <button
         type="button"
-        onClick={() => setExpanded(e => !e)}
+        onClick={() => setExpanded((e) => !e)}
         className="w-full flex items-center justify-between p-4 text-left hover:bg-muted/50 transition-colors"
       >
         <div className="flex items-center gap-3">
@@ -79,7 +78,7 @@ export function LessonMetadataPanel({
               </span>
               <span className="flex items-center gap-1">
                 <Target className="w-3 h-3" />
-                {metadata.standards.filter(s => s.isPrimary).length} primary standards
+                {metadata.standards.filter((s) => s.isPrimary).length} primary standards
               </span>
             </div>
           </div>
@@ -138,9 +137,9 @@ export function LessonMetadataPanel({
                   <span
                     key={phase.phaseNumber}
                     className={cn(
-                      'px-2 py-1 rounded text-xs font-medium',
+                      "px-2 py-1 rounded text-xs font-medium",
                       displayInfo.bgColor,
-                      displayInfo.color
+                      displayInfo.color,
                     )}
                     title={phase.title}
                   >
@@ -160,8 +159,10 @@ export function LessonMetadataPanel({
                   <div
                     key={idx}
                     className={cn(
-                      'p-2 rounded text-xs',
-                      standard.isPrimary ? 'bg-green-50 border border-green-200' : 'bg-yellow-50 border border-yellow-200'
+                      "p-2 rounded text-xs",
+                      standard.isPrimary
+                        ? "bg-green-50 border border-green-200"
+                        : "bg-yellow-50 border border-yellow-200",
                     )}
                   >
                     <span className="font-mono font-semibold">{standard.standardCode}</span>

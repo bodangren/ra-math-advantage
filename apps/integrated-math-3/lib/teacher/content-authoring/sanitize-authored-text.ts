@@ -25,12 +25,12 @@
  *     never reach the DOM as live markup.
  */
 
-import React from 'react';
+import React from "react";
 
 /** Text-container tags that would reinterpret sanitized children as executable
  *  code (script) or page-wide styles (style). SanitizedText must never use them
  *  as its wrapper, even if a caller requests it. */
-type DangerousTextTag = 'script' | 'style';
+type DangerousTextTag = "script" | "style";
 
 /** Any intrinsic element except the dangerous ones above. */
 type SafeTextTag = Exclude<keyof React.JSX.IntrinsicElements, DangerousTextTag>;
@@ -48,36 +48,36 @@ const JAVASCRIPT_URL_REGEX = /javascript\s*:[^"'<>\s]*/gi;
  * preserved.
  */
 export function sanitizeAuthoringText(input: string): string {
-  if (typeof input !== 'string' || input.length === 0) {
-    return '';
+  if (typeof input !== "string" || input.length === 0) {
+    return "";
   }
 
   let out = input;
 
   // 1. Strip <script>...</script> and its content.
-  out = out.replace(SCRIPT_BLOCK_REGEX, '');
+  out = out.replace(SCRIPT_BLOCK_REGEX, "");
 
   // 2. Strip <style>...</style> and its content.
-  out = out.replace(STYLE_BLOCK_REGEX, '');
+  out = out.replace(STYLE_BLOCK_REGEX, "");
 
   // 3. Strip event-handler attributes (on*="..." / on*='...' / on*=...).
-  out = out.replace(EVENT_HANDLER_DOUBLE_QUOTED_REGEX, '');
-  out = out.replace(EVENT_HANDLER_SINGLE_QUOTED_REGEX, '');
-  out = out.replace(EVENT_HANDLER_UNQUOTED_REGEX, '');
+  out = out.replace(EVENT_HANDLER_DOUBLE_QUOTED_REGEX, "");
+  out = out.replace(EVENT_HANDLER_SINGLE_QUOTED_REGEX, "");
+  out = out.replace(EVENT_HANDLER_UNQUOTED_REGEX, "");
 
   // 4. Strip `javascript:` URL prefixes (and the payload that follows
   //    until the next quote, space, or tag boundary).
-  out = out.replace(JAVASCRIPT_URL_REGEX, '');
+  out = out.replace(JAVASCRIPT_URL_REGEX, "");
 
   return out;
 }
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
-  return value != null && typeof value === 'object' && !Array.isArray(value);
+  return value != null && typeof value === "object" && !Array.isArray(value);
 }
 
 function sanitizeRecursive(value: unknown): unknown {
-  if (typeof value === 'string') {
+  if (typeof value === "string") {
     return sanitizeAuthoringText(value);
   }
   if (Array.isArray(value)) {
@@ -119,14 +119,14 @@ export function sanitizeLessonDraft(draft: unknown): unknown {
  */
 export function SanitizedText({
   html,
-  as: Tag = 'span',
+  as: Tag = "span",
 }: {
   html: string;
   as?: SafeTextTag;
 }): React.ReactElement {
-  const safe = sanitizeAuthoringText(typeof html === 'string' ? html : '');
+  const safe = sanitizeAuthoringText(typeof html === "string" ? html : "");
   // Runtime defense in depth for JS callers or type assertions.
   const tag: SafeTextTag =
-    (Tag as string) === 'script' || (Tag as string) === 'style' ? 'span' : Tag;
+    (Tag as string) === "script" || (Tag as string) === "style" ? "span" : Tag;
   return React.createElement(tag, {}, safe);
 }

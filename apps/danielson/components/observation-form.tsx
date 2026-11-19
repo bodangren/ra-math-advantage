@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
 import {
   FFT_2022_RATING_LEVELS,
   FFT_2022_RUBRIC_DESCRIPTORS,
-} from '@/lib/proficiency/fft-rubric-descriptors';
-import type { DanielsonComponentId } from '@/lib/proficiency/graph';
-import { FormEvent, useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
+} from "@/lib/proficiency/fft-rubric-descriptors";
+import type { DanielsonComponentId } from "@/lib/proficiency/graph";
+import { FormEvent, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
-import { learnHref } from '@/lib/learn/href';
+import { learnHref } from "@/lib/learn/href";
 
 type FormOutcome =
-  | { kind: 'rated'; rating: 1 | 2 | 3 | 4 }
-  | { kind: 'not_enough_evidence' }
+  | { kind: "rated"; rating: 1 | 2 | 3 | 4 }
+  | { kind: "not_enough_evidence" }
   | null;
 
 type ObservationFormItem = {
@@ -29,7 +29,7 @@ type ObservationFormItem = {
 type ObservationFormDraft = {
   draftId: string;
   revision: number;
-  observationType?: 'walkthrough' | 'formal_q1' | 'formal_q4';
+  observationType?: "walkthrough" | "formal_q1" | "formal_q4";
   teacherDisplayName: string;
   items: ObservationFormItem[];
 };
@@ -44,7 +44,7 @@ type ObservationSaveCommand = {
   }>;
 };
 
-type ObservationSubmitCommand = Omit<ObservationSaveCommand, 'items'> & {
+type ObservationSubmitCommand = Omit<ObservationSaveCommand, "items"> & {
   items: Array<{
     itemId: string;
     outcome: Exclude<FormOutcome, null>;
@@ -54,7 +54,7 @@ type ObservationSubmitCommand = Omit<ObservationSaveCommand, 'items'> & {
 
 function reasonLabel(reason: string | undefined): string | null {
   if (!reason) return null;
-  return reason.replaceAll('_', ' ').replace(/^./, (value) => value.toUpperCase());
+  return reason.replaceAll("_", " ").replace(/^./, (value) => value.toUpperCase());
 }
 
 export function ObservationForm({
@@ -66,9 +66,17 @@ export function ObservationForm({
   submissionBusy = false,
 }: {
   draft: ObservationFormDraft;
-  onSave: (command: ObservationSaveCommand) => void | { revision?: number } | Promise<void | { revision?: number }>;
-  onSubmit: (command: ObservationSubmitCommand) => void | { revision?: number } | Promise<void | { revision?: number }>;
-  onDiscard?: (command: { draftId: string; expectedRevision: number; confirmed: true }) => void | Promise<void>;
+  onSave: (
+    command: ObservationSaveCommand,
+  ) => void | { revision?: number } | Promise<void | { revision?: number }>;
+  onSubmit: (
+    command: ObservationSubmitCommand,
+  ) => void | { revision?: number } | Promise<void | { revision?: number }>;
+  onDiscard?: (command: {
+    draftId: string;
+    expectedRevision: number;
+    confirmed: true;
+  }) => void | Promise<void>;
   submissionPending?: boolean;
   submissionBusy?: boolean;
 }) {
@@ -87,36 +95,43 @@ export function ObservationForm({
     if (!hasUnsavedChanges) return;
     function beforeUnload(event: BeforeUnloadEvent) {
       event.preventDefault();
-      event.returnValue = '';
+      event.returnValue = "";
     }
     function beforeNavigation(event: MouseEvent) {
-      const link = event.target instanceof Element ? event.target.closest('a') : null;
-      if (!link || link.target === '_blank' || event.ctrlKey || event.metaKey || event.shiftKey
-        || link.getAttribute('href')?.startsWith('#')) return;
-      if (!window.confirm('Leave this observation? Unsaved changes will be lost.')) {
+      const link = event.target instanceof Element ? event.target.closest("a") : null;
+      if (
+        !link ||
+        link.target === "_blank" ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.shiftKey ||
+        link.getAttribute("href")?.startsWith("#")
+      )
+        return;
+      if (!window.confirm("Leave this observation? Unsaved changes will be lost.")) {
         event.preventDefault();
         event.stopPropagation();
       }
     }
-    window.addEventListener('beforeunload', beforeUnload);
-    document.addEventListener('click', beforeNavigation, true);
+    window.addEventListener("beforeunload", beforeUnload);
+    document.addEventListener("click", beforeNavigation, true);
     return () => {
-      window.removeEventListener('beforeunload', beforeUnload);
-      document.removeEventListener('click', beforeNavigation, true);
+      window.removeEventListener("beforeunload", beforeUnload);
+      document.removeEventListener("click", beforeNavigation, true);
     };
   }, [hasUnsavedChanges]);
 
   function setOutcome(itemId: string, outcome: Exclude<FormOutcome, null>) {
-    setItems((current) => current.map((item) => (
-      item.itemId === itemId ? { ...item, outcome } : item
-    )));
+    setItems((current) =>
+      current.map((item) => (item.itemId === itemId ? { ...item, outcome } : item)),
+    );
     setMissingItemIds((current) => current.filter((id) => id !== itemId));
   }
 
   function setEvidenceNote(itemId: string, evidenceNote: string) {
-    setItems((current) => current.map((item) => (
-      item.itemId === itemId ? { ...item, evidenceNote } : item
-    )));
+    setItems((current) =>
+      current.map((item) => (item.itemId === itemId ? { ...item, evidenceNote } : item)),
+    );
   }
 
   function submissionCommand(): ObservationSubmitCommand | null {
@@ -149,7 +164,7 @@ export function ObservationForm({
   }
 
   function discard() {
-    if (!onDiscard || !window.confirm('Discard this draft? This action cannot be undone.')) return;
+    if (!onDiscard || !window.confirm("Discard this draft? This action cannot be undone.")) return;
     void onDiscard({ draftId: draft.draftId, expectedRevision: revision, confirmed: true });
   }
 
@@ -170,13 +185,18 @@ export function ObservationForm({
   return (
     <form className="observation-form form-stack" onSubmit={submit} noValidate>
       <header className="observation-form-heading">
-        <p className="eyebrow">{draft.observationType === 'formal_q1'
-          ? 'Quarter 1 formal observation'
-          : draft.observationType === 'formal_q4'
-            ? 'Quarter 4 formal observation'
-            : '5–10 minute walkthrough'}</p>
+        <p className="eyebrow">
+          {draft.observationType === "formal_q1"
+            ? "Quarter 1 formal observation"
+            : draft.observationType === "formal_q4"
+              ? "Quarter 4 formal observation"
+              : "5–10 minute walkthrough"}
+        </p>
         <h1>Observe {draft.teacherDisplayName}</h1>
-        <p className="lede">Rate the listed targets that you can see. Select “Not enough evidence” when the visit does not show a target.</p>
+        <p className="lede">
+          Rate the listed targets that you can see. Select “Not enough evidence” when the visit does
+          not show a target.
+        </p>
       </header>
 
       {missingItemIds.length > 0 ? (
@@ -187,7 +207,10 @@ export function ObservationForm({
 
       <details className="card">
         <summary>Rating guide</summary>
-        <p>Use the Danielson Framework for Teaching (FFT) 2022 descriptor for the component. Record the observed action and student response.</p>
+        <p>
+          Use the Danielson Framework for Teaching (FFT) 2022 descriptor for the component. Record
+          the observed action and student response.
+        </p>
         <ul>
           <li>1 — Unsatisfactory</li>
           <li>2 — Basic</li>
@@ -195,15 +218,26 @@ export function ObservationForm({
           <li>4 — Distinguished</li>
         </ul>
         <p>Select “Not enough evidence” when this visit does not support a rating.</p>
-        <p><a href="https://danielsongroup.org/the-framework-for-teaching/" target="_blank" rel="noopener noreferrer">Framework for Teaching reference</a></p>
+        <p>
+          <a
+            href="https://danielsongroup.org/the-framework-for-teaching/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Framework for Teaching reference
+          </a>
+        </p>
       </details>
       {items.map((item, index) => {
-        const componentRubric = FFT_2022_RUBRIC_DESCRIPTORS[item.componentId.replace('danielson.framework.component.', '') as DanielsonComponentId];
+        const componentRubric =
+          FFT_2022_RUBRIC_DESCRIPTORS[
+            item.componentId.replace("danielson.framework.component.", "") as DanielsonComponentId
+          ];
         const title = item.skillTitle ?? item.skillId ?? item.componentTitle;
         const groupId = `observation-item-${item.itemId}`;
         const errorId = `${groupId}-error`;
         const hasError = missingItemIds.includes(item.itemId);
-        const selectedRating = item.outcome?.kind === 'rated' ? item.outcome.rating : null;
+        const selectedRating = item.outcome?.kind === "rated" ? item.outcome.rating : null;
         return (
           <fieldset
             className="observation-target card"
@@ -217,20 +251,42 @@ export function ObservationForm({
               <span className="target-component">{item.componentTitle}</span>
             </legend>
             {reasonLabel(item.priorityReason) ? (
-              <p><span className="status attention">{reasonLabel(item.priorityReason)}</span></p>
+              <p>
+                <span className="status attention">{reasonLabel(item.priorityReason)}</span>
+              </p>
             ) : null}
-            {item.skillId ? <p><Link href={learnHref(item.skillId)} target="_blank" rel="noopener noreferrer">Learn {title}</Link></p> : null}
-            {componentRubric ? <details>
-              <summary>FFT 2022 rating descriptors</summary>
-              <p>Compare the observed evidence with each descriptor before you select a rating.</p>
-              <dl className="rubric-descriptors">
-                {FFT_2022_RATING_LEVELS.map((level) => <div key={level.id}>
-                  <dt>{level.score} — {level.label}</dt>
-                  <dd>{componentRubric.descriptors[level.id]}</dd>
-                </div>)}
-              </dl>
-              <a href="https://danielsongroup.org/the-framework-for-teaching/" target="_blank" rel="noopener noreferrer">Open the official FFT reference</a>
-            </details> : null}
+            {item.skillId ? (
+              <p>
+                <Link href={learnHref(item.skillId)} target="_blank" rel="noopener noreferrer">
+                  Learn {title}
+                </Link>
+              </p>
+            ) : null}
+            {componentRubric ? (
+              <details>
+                <summary>FFT 2022 rating descriptors</summary>
+                <p>
+                  Compare the observed evidence with each descriptor before you select a rating.
+                </p>
+                <dl className="rubric-descriptors">
+                  {FFT_2022_RATING_LEVELS.map((level) => (
+                    <div key={level.id}>
+                      <dt>
+                        {level.score} — {level.label}
+                      </dt>
+                      <dd>{componentRubric.descriptors[level.id]}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <a
+                  href="https://danielsongroup.org/the-framework-for-teaching/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open the official FFT reference
+                </a>
+              </details>
+            ) : null}
             <div className="rating-options" aria-label={`Outcome for ${title}`}>
               {([1, 2, 3, 4] as const).map((rating) => (
                 <label className="rating-option" key={rating}>
@@ -239,9 +295,10 @@ export function ObservationForm({
                     name={`${groupId}-outcome`}
                     value={rating}
                     checked={selectedRating === rating}
-                    onChange={() => setOutcome(item.itemId, { kind: 'rated', rating })}
+                    onChange={() => setOutcome(item.itemId, { kind: "rated", rating })}
                   />
-                  Rating {rating} — {['Unsatisfactory', 'Basic', 'Proficient', 'Distinguished'][rating - 1]}
+                  Rating {rating} —{" "}
+                  {["Unsatisfactory", "Basic", "Proficient", "Distinguished"][rating - 1]}
                 </label>
               ))}
               <label className="rating-option wide">
@@ -249,21 +306,28 @@ export function ObservationForm({
                   type="radio"
                   name={`${groupId}-outcome`}
                   value="not_enough_evidence"
-                  checked={item.outcome?.kind === 'not_enough_evidence'}
-                  onChange={() => setOutcome(item.itemId, { kind: 'not_enough_evidence' })}
+                  checked={item.outcome?.kind === "not_enough_evidence"}
+                  onChange={() => setOutcome(item.itemId, { kind: "not_enough_evidence" })}
                 />
                 Not enough evidence
               </label>
             </div>
-            {hasError ? <p className="field-error" id={errorId}>Select an outcome.</p> : null}
+            {hasError ? (
+              <p className="field-error" id={errorId}>
+                Select an outcome.
+              </p>
+            ) : null}
             <div className="field">
               <label htmlFor={`${groupId}-note`}>Evidence note for {title}</label>
-              <p id={`${groupId}-prompt`}>What did the teacher do? What did students do? What happened next? Record facts before interpretation.</p>
+              <p id={`${groupId}-prompt`}>
+                What did the teacher do? What did students do? What happened next? Record facts
+                before interpretation.
+              </p>
               <textarea
                 aria-describedby={`${groupId}-prompt`}
                 id={`${groupId}-note`}
                 rows={3}
-                value={item.evidenceNote ?? ''}
+                value={item.evidenceNote ?? ""}
                 onChange={(event) => setEvidenceNote(item.itemId, event.currentTarget.value)}
               />
             </div>
@@ -272,10 +336,30 @@ export function ObservationForm({
       })}
 
       <div className="observation-actions">
-        {onDiscard ? <button className="button danger" type="button" onClick={discard} disabled={submissionPending || submissionBusy}>Discard draft</button> : null}
-        <button className="button secondary" type="button" onClick={save} disabled={submissionPending || submissionBusy}>Save draft</button>
+        {onDiscard ? (
+          <button
+            className="button danger"
+            type="button"
+            onClick={discard}
+            disabled={submissionPending || submissionBusy}
+          >
+            Discard draft
+          </button>
+        ) : null}
+        <button
+          className="button secondary"
+          type="button"
+          onClick={save}
+          disabled={submissionPending || submissionBusy}
+        >
+          Save draft
+        </button>
         <button type="submit" disabled={submissionBusy}>
-          {submissionBusy ? 'Submitting…' : submissionPending ? 'Retry submission' : 'Submit observation'}
+          {submissionBusy
+            ? "Submitting…"
+            : submissionPending
+              ? "Retry submission"
+              : "Submit observation"}
         </button>
       </div>
     </form>

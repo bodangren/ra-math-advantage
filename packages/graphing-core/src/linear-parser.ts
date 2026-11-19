@@ -9,7 +9,7 @@ export interface LinearCoefficients {
  * @returns {LinearCoefficients | null} - LinearCoefficients or null if not parseable
  */
 export function parseLinear(expression: string): LinearCoefficients | null {
-  if (expression.includes('x^2')) {
+  if (expression.includes("x^2")) {
     return null;
   }
   const match = expression.match(/(-?\d*\.?\d*)?x(?:\s*([+-]\s*\d*\.?\d*)?)?/);
@@ -18,13 +18,13 @@ export function parseLinear(expression: string): LinearCoefficients | null {
     if (match[1]) {
       const mStr = match[1];
       const mVal = parseFloat(mStr);
-      m = isNaN(mVal) ? (mStr.startsWith('-') ? -1 : 1) : mVal;
+      m = isNaN(mVal) ? (mStr.startsWith("-") ? -1 : 1) : mVal;
     }
     let b = 0;
     if (match[2]) {
-      const bStr = match[2].replace(/\s/g, '');
+      const bStr = match[2].replace(/\s/g, "");
       const bVal = parseFloat(bStr);
-      b = isNaN(bVal) ? (bStr.startsWith('-') ? -1 : 1) : bVal;
+      b = isNaN(bVal) ? (bStr.startsWith("-") ? -1 : 1) : bVal;
     }
     return { m, b };
   }

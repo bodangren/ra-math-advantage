@@ -599,7 +599,7 @@ export const seedModule3Lessons = internalMutation({
                 sectionType: "text" as const,
                 content: {
                   markdown:
-                    "## Key Terms\n\n- **Line symmetry** — A graph has line symmetry if it can be reflected across a vertical line (often the [y]-axis) and map onto itself.\n- **Increasing** — A function is increasing on an interval if, as [x] increases, [f(x)] also increases (the graph rises from left to right).\n- **Decreasing** — A function is decreasing on an interval if, as [x] increases, [f(x)] decreases (the graph falls from left to right).\n- **Relative maximum** — A point on the graph where the function changes from increasing to decreasing, forming a \"peak.\"\n- **Relative minimum** — A point on the graph where the function changes from decreasing to increasing, forming a \"valley.\"\n- **End behavior** — The direction the graph tends as [x] approaches [+\\infty] or [-\\infty].",
+                    '## Key Terms\n\n- **Line symmetry** — A graph has line symmetry if it can be reflected across a vertical line (often the [y]-axis) and map onto itself.\n- **Increasing** — A function is increasing on an interval if, as [x] increases, [f(x)] also increases (the graph rises from left to right).\n- **Decreasing** — A function is decreasing on an interval if, as [x] increases, [f(x)] decreases (the graph falls from left to right).\n- **Relative maximum** — A point on the graph where the function changes from increasing to decreasing, forming a "peak."\n- **Relative minimum** — A point on the graph where the function changes from decreasing to increasing, forming a "valley."\n- **End behavior** — The direction the graph tends as [x] approaches [+\\infty] or [-\\infty].',
                 },
               },
             ],
@@ -711,7 +711,7 @@ export const seedModule3Lessons = internalMutation({
                 sectionType: "text" as const,
                 content: {
                   markdown:
-                    "## Example 4 — Determine Extrema\n\nFor each graphed function, locate all relative maxima and relative minima. State the coordinates of each point.\n\n### Step 1: Locate Turning Points\n\nFind the \"peaks\" (relative maxima) and \"valleys\" (relative minima) on the graph.\n\n### Step 2: Identify and Label Each Point\n\nState the coordinates and classify each. For example:\n[\\text{Relative maximum at } (-1, 4)]\n[\\text{Relative minimum at } (2, -3)]",
+                    '## Example 4 — Determine Extrema\n\nFor each graphed function, locate all relative maxima and relative minima. State the coordinates of each point.\n\n### Step 1: Locate Turning Points\n\nFind the "peaks" (relative maxima) and "valleys" (relative minima) on the graph.\n\n### Step 2: Identify and Label Each Point\n\nState the coordinates and classify each. For example:\n[\\text{Relative maximum at } (-1, 4)]\n[\\text{Relative minimum at } (2, -3)]',
                 },
               },
             ],
@@ -775,7 +775,7 @@ export const seedModule3Lessons = internalMutation({
                 sectionType: "text" as const,
                 content: {
                   markdown:
-                    "## Mixed Exercises\n\nThese exercises combine all skills from the lesson: line symmetry, increasing/decreasing intervals, extrema (relative maxima and minima), and end behavior.\n\nFor problems 21–22, analyze a single graph and provide a complete description: state whether it has line symmetry, identify all intervals of increase and decrease, locate and classify all extrema, and describe the end behavior.\n\nProblems 23–24 present real-world contexts (a rock thrown into the air; computers affected by a virus) and ask students to apply the appropriate graphical analysis skill.\n\nProblem 25 is a \"Which One Doesn't Belong?\" activity: students evaluate four statements about a single graph and determine which statement is false, then justify their conclusion using evidence from the graph.",
+                    '## Mixed Exercises\n\nThese exercises combine all skills from the lesson: line symmetry, increasing/decreasing intervals, extrema (relative maxima and minima), and end behavior.\n\nFor problems 21–22, analyze a single graph and provide a complete description: state whether it has line symmetry, identify all intervals of increase and decrease, locate and classify all extrema, and describe the end behavior.\n\nProblems 23–24 present real-world contexts (a rock thrown into the air; computers affected by a virus) and ask students to apply the appropriate graphical analysis skill.\n\nProblem 25 is a "Which One Doesn\'t Belong?" activity: students evaluate four statements about a single graph and determine which statement is false, then justify their conclusion using evidence from the graph.',
                 },
               },
             ],
@@ -961,7 +961,7 @@ export const seedModule3Lessons = internalMutation({
         const existingPhase = await ctx.db
           .query("phase_versions")
           .withIndex("by_lesson_version_and_phase", (q) =>
-            q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+            q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
           )
           .first();
 

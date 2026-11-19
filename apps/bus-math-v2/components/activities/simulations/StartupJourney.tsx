@@ -1,13 +1,13 @@
 /**
  * StartupJourney Component
- * 
+ *
  * DEVELOPER USAGE:
  * ================
  * Import and use this component in any React page or component:
- * 
+ *
  * ```tsx
  * import { StartupJourney } from '@/components/activities/simulations/StartupJourney'
- * 
+ *
  * export default function MyPage() {
  *   return (
  *     <div>
@@ -16,49 +16,49 @@
  *   )
  * }
  * ```
- * 
+ *
  * The component is fully self-contained with its own state management.
  * No props are required - it initializes with default values.
- * 
+ *
  * STUDENT INTERACTION & LEARNING OBJECTIVES:
  * ==========================================
- * 
+ *
  * OBJECTIVE: Students experience the startup journey from idea to growth,
  * learning about funding decisions, burn rates, user acquisition, and strategic choices.
- * 
+ *
  * HOW STUDENTS INTERACT:
  * 1. **Monitor Startup Dashboard**: Students see current funding ($10,000 starting),
  *    monthly burn rate ($2,000), user count (100), revenue ($0), and current stage.
- * 
+ *
  * 2. **Make Strategic Decisions**: At each stage, students face critical choices:
  *    - FUNDING: Bootstrap vs Accelerator vs Angel investors
  *    - TEAM: Hire developers vs marketers vs business development
  *    - PRODUCT: Focus on features vs user feedback vs scaling
  *    - GROWTH: Marketing spend vs organic growth vs partnerships
- * 
- * 3. **Progress Through Stages**: 
+ *
+ * 3. **Progress Through Stages**:
  *    - IDEA: Initial concept and first funding decisions
  *    - PROTOTYPE: Build MVP and validate market fit
  *    - LAUNCH: Go to market and acquire first customers
  *    - GROWTH: Scale operations and user base
  *    - SUCCESS: Achieve profitability or exit opportunity
- * 
- * 4. **Manage Resources**: 
+ *
+ * 4. **Manage Resources**:
  *    - Track funding runway (months remaining at current burn)
  *    - Balance user growth with revenue generation
  *    - Make decisions that affect burn rate and growth
- * 
+ *
  * 5. **Experience Consequences**: Each decision impacts:
  *    - Monthly burn rate (operational costs)
  *    - User growth rate and retention
  *    - Revenue potential and monetization
  *    - Available funding and runway
- * 
- * 6. **Learn from Outcomes**: 
+ *
+ * 6. **Learn from Outcomes**:
  *    - Successful decisions advance to next stage
  *    - Poor choices may require course correction
  *    - Random market events create additional challenges
- * 
+ *
  * KEY LEARNING OUTCOMES:
  * - Understanding startup funding lifecycle and sources
  * - Strategic decision-making under resource constraints
@@ -68,17 +68,17 @@
  * - Performance metrics: CAC, LTV, burn rate, runway
  */
 
-'use client'
+"use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Progress } from '@/components/ui/progress'
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
 import {
   type LucideIcon,
-  DollarSign, 
-  Calendar, 
+  DollarSign,
+  Calendar,
   TrendingUp,
   Users,
   Rocket,
@@ -95,53 +95,56 @@ import {
   Code,
   Megaphone,
   Crown,
-  Zap
-} from 'lucide-react'
+  Zap,
+} from "lucide-react";
 
-import type { Activity } from '@/lib/schemas/validators'
-import type { StartupJourneyActivityProps } from '@/types/activities'
+import type { Activity } from "@/lib/schemas/validators";
+import type { StartupJourneyActivityProps } from "@/types/activities";
 
-import { buildPracticeSubmissionEnvelope, buildPracticeSubmissionParts, type PracticeSubmissionCallbackPayload } from '@/lib/practice/contract'
+import {
+  buildPracticeSubmissionEnvelope,
+  buildPracticeSubmissionParts,
+  type PracticeSubmissionCallbackPayload,
+} from "@/lib/practice/contract";
 
-export type StartupJourneyActivity = Omit<Activity, 'componentKey' | 'props'> & {
-  componentKey: 'startup-journey'
-  props: StartupJourneyActivityProps
-}
+export type StartupJourneyActivity = Omit<Activity, "componentKey" | "props"> & {
+  componentKey: "startup-journey";
+  props: StartupJourneyActivityProps;
+};
 
 export interface StartupJourneyState {
-  stage: string
-  funding: number
-  monthlyBurn: number
-  users: number
-  revenue: number
-  month: number
-  maxMonths: number
-  decisions: string[]
-  currentDecisionId: string | null
-  userGrowthRate: number
-  revenuePerUser: number
-  gameStatus: 'playing' | 'won' | 'lost'
+  stage: string;
+  funding: number;
+  monthlyBurn: number;
+  users: number;
+  revenue: number;
+  month: number;
+  maxMonths: number;
+  decisions: string[];
+  currentDecisionId: string | null;
+  userGrowthRate: number;
+  revenuePerUser: number;
+  gameStatus: "playing" | "won" | "lost";
 }
 
 interface StartupJourneyProps {
-  activity: StartupJourneyActivity
-  initialState?: Partial<StartupJourneyState>
-  onStateChange?: (state: StartupJourneyState) => void
-  onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void
+  activity: StartupJourneyActivity;
+  initialState?: Partial<StartupJourneyState>;
+  onStateChange?: (state: StartupJourneyState) => void;
+  onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void;
 }
 
 const STAGE_ICONS: Record<string, LucideIcon> = {
   lightbulb: Lightbulb,
   code: Code,
   rocket: Rocket,
-  'chart-line': ChartLine,
+  "chart-line": ChartLine,
   crown: Crown,
   megaphone: Megaphone,
   building: Building,
   target: Target,
-  zap: Zap
-}
-
+  zap: Zap,
+};
 
 /**
  * Clones the initial startup state from the activity configuration.
@@ -149,14 +152,15 @@ const STAGE_ICONS: Record<string, LucideIcon> = {
  * @param state - The initial state from the activity config
  * @returns A fresh StartupJourneyState instance
  */
-function cloneStateFromConfig(state: StartupJourneyActivityProps['initialState']) : StartupJourneyState {
-  return ({
+function cloneStateFromConfig(
+  state: StartupJourneyActivityProps["initialState"],
+): StartupJourneyState {
+  return {
     ...state,
     decisions: [...state.decisions],
-    currentDecisionId: state.currentDecisionId ?? null
-  });
+    currentDecisionId: state.currentDecisionId ?? null,
+  };
 }
-
 
 /**
  * Merges a base startup state with optional partial overrides.
@@ -165,12 +169,15 @@ function cloneStateFromConfig(state: StartupJourneyActivityProps['initialState']
  * @param override - Optional partial state to merge on top
  * @returns A new merged StartupJourneyState
  */
-function mergeStartupState(base: StartupJourneyState, override?: Partial<StartupJourneyState>) : StartupJourneyState {
+function mergeStartupState(
+  base: StartupJourneyState,
+  override?: Partial<StartupJourneyState>,
+): StartupJourneyState {
   if (!override) {
     return {
       ...base,
-      decisions: [...base.decisions]
-    }
+      decisions: [...base.decisions],
+    };
   }
 
   return {
@@ -185,10 +192,9 @@ function mergeStartupState(base: StartupJourneyState, override?: Partial<Startup
     currentDecisionId: override.currentDecisionId ?? base.currentDecisionId,
     userGrowthRate: override.userGrowthRate ?? base.userGrowthRate,
     revenuePerUser: override.revenuePerUser ?? base.revenuePerUser,
-    gameStatus: override.gameStatus ?? base.gameStatus
-  }
+    gameStatus: override.gameStatus ?? base.gameStatus,
+  };
 }
-
 
 /**
  * Renders an interactive startup journey simulation where students make
@@ -199,38 +205,59 @@ function mergeStartupState(base: StartupJourneyState, override?: Partial<Startup
  * @param onStateChange - Callback fired when game state changes
  * @param onSubmit - Callback to submit practice results
  */
-export function StartupJourney({ activity, initialState, onStateChange, onSubmit }: StartupJourneyProps) {
-  const baseState = useMemo(() => cloneStateFromConfig(activity.props.initialState), [activity.props.initialState])
-  const [gameState, setGameState] = useState<StartupJourneyState>(() => mergeStartupState(baseState, initialState))
-  const [notifications, setNotifications] = useState<Array<{
-    id: string
-    message: string
-    type: 'success' | 'warning' | 'error' | 'info'
-  }>>([])
-  const [showInstructions, setShowInstructions] = useState(false)
-  const stageOrder = useMemo(() => activity.props.stages.map((stage) => stage.id), [activity.props.stages])
-  const stageMap = useMemo(() => new Map(activity.props.stages.map((stage) => [stage.id, stage])), [activity.props.stages])
-  const decisionMap = useMemo(() => new Map(activity.props.decisions.map((decision) => [decision.id, decision])), [activity.props.decisions])
+export function StartupJourney({
+  activity,
+  initialState,
+  onStateChange,
+  onSubmit,
+}: StartupJourneyProps) {
+  const baseState = useMemo(
+    () => cloneStateFromConfig(activity.props.initialState),
+    [activity.props.initialState],
+  );
+  const [gameState, setGameState] = useState<StartupJourneyState>(() =>
+    mergeStartupState(baseState, initialState),
+  );
+  const [notifications, setNotifications] = useState<
+    Array<{
+      id: string;
+      message: string;
+      type: "success" | "warning" | "error" | "info";
+    }>
+  >([]);
+  const [showInstructions, setShowInstructions] = useState(false);
+  const stageOrder = useMemo(
+    () => activity.props.stages.map((stage) => stage.id),
+    [activity.props.stages],
+  );
+  const stageMap = useMemo(
+    () => new Map(activity.props.stages.map((stage) => [stage.id, stage])),
+    [activity.props.stages],
+  );
+  const decisionMap = useMemo(
+    () => new Map(activity.props.decisions.map((decision) => [decision.id, decision])),
+    [activity.props.decisions],
+  );
   const decisionFlowMap = useMemo(
     () => new Map(activity.props.decisionFlow.map((flow) => [flow.stageId, flow.decisionIds])),
-    [activity.props.decisionFlow]
-  )
-  const heroDescription = activity.description ?? activity.props.description
-  const winConditions = activity.props.winConditions
+    [activity.props.decisionFlow],
+  );
+  const heroDescription = activity.description ?? activity.props.description;
+  const winConditions = activity.props.winConditions;
 
   useEffect(() => {
-    onStateChange?.(gameState)
-  }, [gameState, onStateChange])
+    onStateChange?.(gameState);
+  }, [gameState, onStateChange]);
 
-  const submittedRef = useRef(false)
-  const notificationTimeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([])
+  const submittedRef = useRef(false);
+  const notificationTimeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   useEffect(() => {
     if (
       onSubmit &&
       !submittedRef.current &&
-      (gameState.gameStatus === 'won' || gameState.gameStatus === 'lost')
+      (gameState.gameStatus === "won" || gameState.gameStatus === "lost")
     ) {
-      submittedRef.current = true
+      submittedRef.current = true;
 
       const answers: Record<string, unknown> = {
         finalFunding: gameState.funding,
@@ -238,25 +265,25 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
         finalRevenue: gameState.revenue,
         monthsPlayed: gameState.month,
         gameStatus: gameState.gameStatus,
-      }
+      };
       const parts = buildPracticeSubmissionParts(answers).map((part) => ({
         ...part,
         isCorrect: true,
         score: 1,
         maxScore: 1,
-      }))
+      }));
 
       const envelope = buildPracticeSubmissionEnvelope({
-        activityId: activity.id ?? activity.componentKey ?? 'startup-journey',
-        mode: 'guided_practice',
-        status: 'submitted',
+        activityId: activity.id ?? activity.componentKey ?? "startup-journey",
+        mode: "guided_practice",
+        status: "submitted",
         attemptNumber: 1,
         submittedAt: new Date(),
         answers,
         parts,
         artifact: {
-          kind: 'startup_journey',
-          title: activity.props.title ?? 'Startup Journey',
+          kind: "startup_journey",
+          title: activity.props.title ?? "Startup Journey",
           finalFunding: gameState.funding,
           finalUsers: gameState.users,
           finalRevenue: gameState.revenue,
@@ -270,17 +297,28 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
           finalRevenue: gameState.revenue,
           finalFunding: gameState.funding,
         },
-      })
+      });
 
-      onSubmit(envelope)
+      onSubmit(envelope);
     }
-  }, [gameState.gameStatus, gameState.funding, gameState.users, gameState.revenue, gameState.month, gameState.stage, gameState.decisions, activity, onSubmit])
+  }, [
+    gameState.gameStatus,
+    gameState.funding,
+    gameState.users,
+    gameState.revenue,
+    gameState.month,
+    gameState.stage,
+    gameState.decisions,
+    activity,
+    onSubmit,
+  ]);
 
   useEffect(() => {
-    const timeouts = notificationTimeoutsRef.current
-    return () => { timeouts.forEach(clearTimeout) }
-  }, [])
-
+    const timeouts = notificationTimeoutsRef.current;
+    return () => {
+      timeouts.forEach(clearTimeout);
+    };
+  }, []);
 
   /**
    * Returns a Tailwind badge class for a given stage ID.
@@ -289,10 +327,10 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
    * @returns Tailwind classes for badge styling
    */
   const getStageBadgeClass = useCallback(
-    (stageId: string) => stageMap.get(stageId)?.badgeClassName ?? 'bg-slate-100 text-slate-800 border-slate-300',
-    [stageMap]
-  )
-
+    (stageId: string) =>
+      stageMap.get(stageId)?.badgeClassName ?? "bg-slate-100 text-slate-800 border-slate-300",
+    [stageMap],
+  );
 
   /**
    * Returns the next stage ID after the current stage in the stage order.
@@ -302,15 +340,14 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
    */
   const advanceStage = useCallback(
     (currentStage: string) => {
-      const index = stageOrder.indexOf(currentStage)
+      const index = stageOrder.indexOf(currentStage);
       if (index >= 0 && index < stageOrder.length - 1) {
-        return stageOrder[index + 1]
+        return stageOrder[index + 1];
       }
-      return currentStage
+      return currentStage;
     },
-    [stageOrder]
-  )
-
+    [stageOrder],
+  );
 
   /**
    * Returns the next uncompleted decision ID for a given stage.
@@ -321,12 +358,11 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
    */
   const getNextDecisionId = useCallback(
     (stageId: string, completed: string[]) => {
-      const flow = decisionFlowMap.get(stageId) ?? []
-      return flow.find((decisionId) => !completed.includes(decisionId)) ?? null
+      const flow = decisionFlowMap.get(stageId) ?? [];
+      return flow.find((decisionId) => !completed.includes(decisionId)) ?? null;
     },
-    [decisionFlowMap]
-  )
-
+    [decisionFlowMap],
+  );
 
   /**
    * Calculates the number of months of runway remaining at the current burn rate.
@@ -334,16 +370,18 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
    * @returns Months of runway (or 999 if burn is zero)
    */
   const calculateRunway = useCallback(() => {
-    return gameState.monthlyBurn > 0 ? Math.floor(gameState.funding / gameState.monthlyBurn) : 999
-  }, [gameState.funding, gameState.monthlyBurn])
+    return gameState.monthlyBurn > 0 ? Math.floor(gameState.funding / gameState.monthlyBurn) : 999;
+  }, [gameState.funding, gameState.monthlyBurn]);
 
-  const currentDecision = gameState.currentDecisionId ? decisionMap.get(gameState.currentDecisionId) ?? null : null
-  const stageInfo = stageMap.get(gameState.stage)
-  const StageIconComponent = stageInfo ? STAGE_ICONS[stageInfo.icon] ?? Rocket : Rocket
-  const stageBadgeClass = getStageBadgeClass(gameState.stage)
-  const stageProgress = stageInfo?.progress ?? 0
-  const successStageName = stageMap.get(winConditions.successStageId)?.name ?? winConditions.successStageId
-
+  const currentDecision = gameState.currentDecisionId
+    ? (decisionMap.get(gameState.currentDecisionId) ?? null)
+    : null;
+  const stageInfo = stageMap.get(gameState.stage);
+  const StageIconComponent = stageInfo ? (STAGE_ICONS[stageInfo.icon] ?? Rocket) : Rocket;
+  const stageBadgeClass = getStageBadgeClass(gameState.stage);
+  const stageProgress = stageInfo?.progress ?? 0;
+  const successStageName =
+    stageMap.get(winConditions.successStageId)?.name ?? winConditions.successStageId;
 
   /**
    * Adds a temporary notification toast that auto-dismisses after 5 seconds.
@@ -351,15 +389,17 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
    * @param message - The notification message text
    * @param type - The notification severity type
    */
-  const addNotification = useCallback((message: string, type: 'success' | 'warning' | 'error' | 'info') => {
-    const id = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
-    setNotifications(prev => [...prev, { id, message, type }])
-    const timeoutId = setTimeout(() => {
-      setNotifications(prev => prev.filter(n => n.id !== id))
-    }, 5000)
-    notificationTimeoutsRef.current.push(timeoutId)
-  }, [])
-
+  const addNotification = useCallback(
+    (message: string, type: "success" | "warning" | "error" | "info") => {
+      const id = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+      setNotifications((prev) => [...prev, { id, message, type }]);
+      const timeoutId = setTimeout(() => {
+        setNotifications((prev) => prev.filter((n) => n.id !== id));
+      }, 5000);
+      notificationTimeoutsRef.current.push(timeoutId);
+    },
+    [],
+  );
 
   /**
    * Applies a strategic decision option, updating funding, burn, users,
@@ -370,33 +410,39 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
    */
   const makeDecision = useCallback(
     (decisionId: string, optionId: string) => {
-      const decision = decisionMap.get(decisionId)
+      const decision = decisionMap.get(decisionId);
       if (!decision) {
-        return
+        return;
       }
 
-      const option = decision.options.find((opt) => opt.id === optionId)
+      const option = decision.options.find((opt) => opt.id === optionId);
       if (!option) {
-        return
+        return;
       }
 
       setGameState((prev) => {
-        const newFunding = Math.max(0, prev.funding + (option.effects.funding ?? 0))
-        const newBurn = Math.max(1000, prev.monthlyBurn + (option.effects.burn ?? 0))
-        const newUsers = Math.max(0, prev.users + (option.effects.users ?? 0))
-        const newRevenue = Math.max(0, prev.revenue + (option.effects.revenue ?? 0))
-        const newGrowthRate = Math.max(0, prev.userGrowthRate + (option.effects.growth ?? 0))
-        const newRevenuePerUser = Math.max(0, prev.revenuePerUser + (option.effects.revenuePerUser ?? 0))
-        const updatedDecisions = prev.decisions.includes(decisionId) ? prev.decisions : [...prev.decisions, decisionId]
+        const newFunding = Math.max(0, prev.funding + (option.effects.funding ?? 0));
+        const newBurn = Math.max(1000, prev.monthlyBurn + (option.effects.burn ?? 0));
+        const newUsers = Math.max(0, prev.users + (option.effects.users ?? 0));
+        const newRevenue = Math.max(0, prev.revenue + (option.effects.revenue ?? 0));
+        const newGrowthRate = Math.max(0, prev.userGrowthRate + (option.effects.growth ?? 0));
+        const newRevenuePerUser = Math.max(
+          0,
+          prev.revenuePerUser + (option.effects.revenuePerUser ?? 0),
+        );
+        const updatedDecisions = prev.decisions.includes(decisionId)
+          ? prev.decisions
+          : [...prev.decisions, decisionId];
 
-        let nextStage = prev.stage
-        const stageFlow = decisionFlowMap.get(prev.stage) ?? []
-        const completedStage = stageFlow.length === 0 || stageFlow.every((id) => updatedDecisions.includes(id))
+        let nextStage = prev.stage;
+        const stageFlow = decisionFlowMap.get(prev.stage) ?? [];
+        const completedStage =
+          stageFlow.length === 0 || stageFlow.every((id) => updatedDecisions.includes(id));
         if (completedStage) {
-          nextStage = advanceStage(prev.stage)
+          nextStage = advanceStage(prev.stage);
         }
 
-        const nextDecisionId = getNextDecisionId(nextStage, updatedDecisions)
+        const nextDecisionId = getNextDecisionId(nextStage, updatedDecisions);
 
         return {
           ...prev,
@@ -408,73 +454,99 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
           revenuePerUser: newRevenuePerUser,
           stage: nextStage,
           decisions: updatedDecisions,
-          currentDecisionId: nextDecisionId
-        }
-      })
+          currentDecisionId: nextDecisionId,
+        };
+      });
 
-      addNotification(`Decision made: ${option.title}`, 'success')
+      addNotification(`Decision made: ${option.title}`, "success");
 
       if (option.effects.funding) {
         addNotification(
-          `Funding ${option.effects.funding > 0 ? 'increased' : 'decreased'} by $${Math.abs(option.effects.funding).toLocaleString()}`,
-          option.effects.funding > 0 ? 'success' : 'warning'
-        )
+          `Funding ${option.effects.funding > 0 ? "increased" : "decreased"} by $${Math.abs(option.effects.funding).toLocaleString()}`,
+          option.effects.funding > 0 ? "success" : "warning",
+        );
       }
       if (option.effects.users) {
         addNotification(
-          `User base ${option.effects.users > 0 ? 'grew' : 'declined'} by ${Math.abs(option.effects.users)}`,
-          option.effects.users > 0 ? 'success' : 'warning'
-        )
+          `User base ${option.effects.users > 0 ? "grew" : "declined"} by ${Math.abs(option.effects.users)}`,
+          option.effects.users > 0 ? "success" : "warning",
+        );
       }
     },
-    [advanceStage, addNotification, decisionFlowMap, decisionMap, getNextDecisionId]
-  )
-
+    [advanceStage, addNotification, decisionFlowMap, decisionMap, getNextDecisionId],
+  );
 
   /**
    * Advances the simulation by one month, growing users, generating
    * revenue, deducting burn, and checking win/loss conditions.
    */
   const advanceMonth = useCallback(() => {
-    if (gameState.gameStatus !== 'playing') return
+    if (gameState.gameStatus !== "playing") return;
 
-    const pendingNotifications: Array<{ message: string; type: 'success' | 'warning' | 'error' | 'info' }> = []
+    const pendingNotifications: Array<{
+      message: string;
+      type: "success" | "warning" | "error" | "info";
+    }> = [];
 
     setGameState((prev) => {
-      const newMonth = prev.month + 1
-      const userGrowth = Math.floor(prev.users * prev.userGrowthRate)
-      const newUsers = prev.users + userGrowth
-      const monthlyRevenue = Math.floor(newUsers * prev.revenuePerUser)
-      const newRevenue = prev.revenue + monthlyRevenue
-      const newFunding = Math.max(0, prev.funding - prev.monthlyBurn + monthlyRevenue)
+      const newMonth = prev.month + 1;
+      const userGrowth = Math.floor(prev.users * prev.userGrowthRate);
+      const newUsers = prev.users + userGrowth;
+      const monthlyRevenue = Math.floor(newUsers * prev.revenuePerUser);
+      const newRevenue = prev.revenue + monthlyRevenue;
+      const newFunding = Math.max(0, prev.funding - prev.monthlyBurn + monthlyRevenue);
 
-      let newGameStatus = prev.gameStatus
+      let newGameStatus = prev.gameStatus;
       if (newFunding <= 0) {
-        newGameStatus = 'lost'
-        pendingNotifications.push({ message: 'Out of funding! Your startup has failed.', type: 'error' })
-      } else if (prev.stage === winConditions.successStageId || newRevenue >= winConditions.successRevenueTarget) {
-        newGameStatus = 'won'
-        pendingNotifications.push({ message: 'Congratulations! Your startup is successful!', type: 'success' })
+        newGameStatus = "lost";
+        pendingNotifications.push({
+          message: "Out of funding! Your startup has failed.",
+          type: "error",
+        });
+      } else if (
+        prev.stage === winConditions.successStageId ||
+        newRevenue >= winConditions.successRevenueTarget
+      ) {
+        newGameStatus = "won";
+        pendingNotifications.push({
+          message: "Congratulations! Your startup is successful!",
+          type: "success",
+        });
       } else {
-        const timeLimit = Math.min(prev.maxMonths, winConditions.timeLimitMonths)
+        const timeLimit = Math.min(prev.maxMonths, winConditions.timeLimitMonths);
         if (newMonth >= timeLimit) {
           if (newRevenue >= winConditions.timeLimitRevenueTarget) {
-            newGameStatus = 'won'
-            pendingNotifications.push({ message: "Time's up! Your startup achieved sustainable revenue!", type: 'success' })
+            newGameStatus = "won";
+            pendingNotifications.push({
+              message: "Time's up! Your startup achieved sustainable revenue!",
+              type: "success",
+            });
           } else {
-            newGameStatus = 'lost'
-            pendingNotifications.push({ message: "Time's up! Your startup didn't achieve sufficient traction.", type: 'error' })
+            newGameStatus = "lost";
+            pendingNotifications.push({
+              message: "Time's up! Your startup didn't achieve sufficient traction.",
+              type: "error",
+            });
           }
         }
       }
 
       if (userGrowth > 0) {
-        pendingNotifications.push({ message: `User base grew by ${userGrowth} users`, type: 'success' })
+        pendingNotifications.push({
+          message: `User base grew by ${userGrowth} users`,
+          type: "success",
+        });
       }
       if (monthlyRevenue > 0) {
-        pendingNotifications.push({ message: `Generated $${monthlyRevenue.toLocaleString()} in revenue`, type: 'success' })
+        pendingNotifications.push({
+          message: `Generated $${monthlyRevenue.toLocaleString()} in revenue`,
+          type: "success",
+        });
       }
-      pendingNotifications.push({ message: `Monthly burn: $${prev.monthlyBurn.toLocaleString()}`, type: 'info' })
+      pendingNotifications.push({
+        message: `Monthly burn: $${prev.monthlyBurn.toLocaleString()}`,
+        type: "info",
+      });
 
       return {
         ...prev,
@@ -482,24 +554,24 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
         users: newUsers,
         revenue: newRevenue,
         funding: newFunding,
-        gameStatus: newGameStatus
-      }
-    })
+        gameStatus: newGameStatus,
+      };
+    });
 
     // Fire notifications outside the state updater
     for (const n of pendingNotifications) {
-      addNotification(n.message, n.type)
+      addNotification(n.message, n.type);
     }
-  }, [gameState.gameStatus, addNotification, winConditions])
+  }, [gameState.gameStatus, addNotification, winConditions]);
 
   const resetGame = useCallback(() => {
-    submittedRef.current = false
-    setGameState(cloneStateFromConfig(activity.props.initialState))
-    setNotifications([])
-    addNotification('Game reset successfully', 'info')
-  }, [activity.props.initialState, addNotification])
+    submittedRef.current = false;
+    setGameState(cloneStateFromConfig(activity.props.initialState));
+    setNotifications([]);
+    addNotification("Game reset successfully", "info");
+  }, [activity.props.initialState, addNotification]);
 
-  const runway = calculateRunway()
+  const runway = calculateRunway();
 
   return (
     <div className="max-w-6xl mx-auto space-y-6">
@@ -510,9 +582,7 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
             <Rocket className="w-8 h-8 text-purple-600" />
             {activity.props.title}
           </CardTitle>
-          <CardDescription className="text-lg">
-            {heroDescription}
-          </CardDescription>
+          <CardDescription className="text-lg">{heroDescription}</CardDescription>
           <div className="mt-4">
             <Button
               variant="outline"
@@ -522,7 +592,11 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
             >
               <HelpCircle className="w-4 h-4" />
               How to Play
-              {showInstructions ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              {showInstructions ? (
+                <ChevronUp className="w-4 h-4" />
+              ) : (
+                <ChevronDown className="w-4 h-4" />
+              )}
             </Button>
           </div>
         </CardHeader>
@@ -542,9 +616,10 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
             <div>
               <h4 className="font-semibold text-purple-800 mb-2">🎯 Objective</h4>
               <p className="text-purple-700">
-                Build a successful tech startup over {winConditions.timeLimitMonths} months. Start with $
-                {activity.props.initialState.funding.toLocaleString()} in funding, make strategic decisions to grow your user base,
-                generate revenue, and manage your runway while progressing through each milestone.
+                Build a successful tech startup over {winConditions.timeLimitMonths} months. Start
+                with ${activity.props.initialState.funding.toLocaleString()} in funding, make
+                strategic decisions to grow your user base, generate revenue, and manage your runway
+                while progressing through each milestone.
               </p>
             </div>
 
@@ -553,7 +628,7 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
               <h4 className="font-semibold text-purple-800 mb-3">🚀 Startup Stages</h4>
               <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
                 {activity.props.stages.map((stage) => {
-                  const Icon = STAGE_ICONS[stage.icon] ?? Rocket
+                  const Icon = STAGE_ICONS[stage.icon] ?? Rocket;
                   return (
                     <div key={stage.id} className="p-3 bg-white rounded-lg border text-center">
                       <div className="flex items-center justify-center mb-2">
@@ -561,7 +636,7 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
                       </div>
                       <h5 className="font-medium text-sm">{stage.name}</h5>
                     </div>
-                  )
+                  );
                 })}
               </div>
             </div>
@@ -632,8 +707,14 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
                   <h5 className="font-medium text-green-800 mb-1">Victory Conditions</h5>
                   <ul className="text-xs text-green-700 space-y-1">
                     <li>• Reach &quot;{successStageName}&quot; stage</li>
-                    <li>• Generate ${winConditions.successRevenueTarget.toLocaleString()}+ in total revenue</li>
-                    <li>• Achieve ${winConditions.timeLimitRevenueTarget.toLocaleString()}+ revenue by month {winConditions.timeLimitMonths}</li>
+                    <li>
+                      • Generate ${winConditions.successRevenueTarget.toLocaleString()}+ in total
+                      revenue
+                    </li>
+                    <li>
+                      • Achieve ${winConditions.timeLimitRevenueTarget.toLocaleString()}+ revenue by
+                      month {winConditions.timeLimitMonths}
+                    </li>
                     <li>• Maintain positive cash flow</li>
                   </ul>
                 </div>
@@ -641,7 +722,10 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
                   <h5 className="font-medium text-red-800 mb-1">Failure Conditions</h5>
                   <ul className="text-xs text-red-700 space-y-1">
                     <li>• Run out of funding (burn &gt; available cash)</li>
-                    <li>• Fail to reach ${winConditions.timeLimitRevenueTarget.toLocaleString()} by month {winConditions.timeLimitMonths}</li>
+                    <li>
+                      • Fail to reach ${winConditions.timeLimitRevenueTarget.toLocaleString()} by
+                      month {winConditions.timeLimitMonths}
+                    </li>
                     <li>• Poor strategic decisions compound</li>
                   </ul>
                 </div>
@@ -652,24 +736,29 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
       )}
 
       {/* Game Status */}
-      {gameState.gameStatus !== 'playing' && (
-        <Card className={`border-2 ${gameState.gameStatus === 'won' ? 'border-green-500 bg-green-50' : 'border-red-500 bg-red-50'}`}>
+      {gameState.gameStatus !== "playing" && (
+        <Card
+          className={`border-2 ${gameState.gameStatus === "won" ? "border-green-500 bg-green-50" : "border-red-500 bg-red-50"}`}
+        >
           <CardContent className="p-6 text-center">
             <div className="flex items-center justify-center gap-2 mb-2">
-              {gameState.gameStatus === 'won' ? (
+              {gameState.gameStatus === "won" ? (
                 <CheckCircle className="w-8 h-8 text-green-600" />
               ) : (
                 <XCircle className="w-8 h-8 text-red-600" />
               )}
-              <h3 className={`text-2xl font-bold ${gameState.gameStatus === 'won' ? 'text-green-800' : 'text-red-800'}`}>
-                {gameState.gameStatus === 'won' ? 'Startup Success!' : 'Startup Failed'}
+              <h3
+                className={`text-2xl font-bold ${gameState.gameStatus === "won" ? "text-green-800" : "text-red-800"}`}
+              >
+                {gameState.gameStatus === "won" ? "Startup Success!" : "Startup Failed"}
               </h3>
             </div>
-            <p className={`text-lg ${gameState.gameStatus === 'won' ? 'text-green-700' : 'text-red-700'}`}>
-              {gameState.gameStatus === 'won' 
+            <p
+              className={`text-lg ${gameState.gameStatus === "won" ? "text-green-700" : "text-red-700"}`}
+            >
+              {gameState.gameStatus === "won"
                 ? `Congratulations! Your startup reached ${gameState.stage} stage with $${gameState.revenue.toLocaleString()} in revenue!`
-                : `Your startup journey ended at ${gameState.stage} stage. Better luck next time!`
-              }
+                : `Your startup journey ended at ${gameState.stage} stage. Better luck next time!`}
             </p>
           </CardContent>
         </Card>
@@ -683,12 +772,12 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
               <DollarSign className="w-6 h-6 text-green-600" />
             </div>
             <p className="text-sm text-green-700 font-medium">Funding</p>
-            <p className={`text-2xl font-bold ${gameState.funding >= 0 ? 'text-green-800' : 'text-red-800'}`}>
+            <p
+              className={`text-2xl font-bold ${gameState.funding >= 0 ? "text-green-800" : "text-red-800"}`}
+            >
               ${gameState.funding.toLocaleString()}
             </p>
-            <p className="text-xs text-green-600">
-              {runway} months runway
-            </p>
+            <p className="text-xs text-green-600">{runway} months runway</p>
           </CardContent>
         </Card>
 
@@ -710,9 +799,7 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
               <Users className="w-6 h-6 text-blue-600" />
             </div>
             <p className="text-sm text-blue-700 font-medium">Users</p>
-            <p className="text-2xl font-bold text-blue-800">
-              {gameState.users.toLocaleString()}
-            </p>
+            <p className="text-2xl font-bold text-blue-800">{gameState.users.toLocaleString()}</p>
             <p className="text-xs text-blue-600">
               +{(gameState.userGrowthRate * 100).toFixed(0)}% monthly
             </p>
@@ -746,11 +833,9 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
               <h3 className="text-2xl font-bold text-slate-800">
                 Current Stage: {stageInfo?.name ?? gameState.stage}
               </h3>
-              <Badge className={stageBadgeClass}>
-                Month {gameState.month}
-              </Badge>
+              <Badge className={stageBadgeClass}>Month {gameState.month}</Badge>
             </div>
-            
+
             <div className="max-w-md mx-auto">
               <div className="flex justify-between items-center mb-2">
                 <span className="text-sm font-medium text-slate-600">Progress</span>
@@ -763,10 +848,14 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
       </Card>
 
       {/* Current Decision */}
-      {currentDecision && gameState.gameStatus === 'playing' && (
+      {currentDecision && gameState.gameStatus === "playing" && (
         <Card className="border-2 border-blue-200 bg-blue-50">
           <CardHeader>
-            <CardTitle role="heading" aria-level={3} className="text-xl text-blue-800 flex items-center gap-2">
+            <CardTitle
+              role="heading"
+              aria-level={3}
+              className="text-xl text-blue-800 flex items-center gap-2"
+            >
               <Zap className="w-5 h-5" />
               Strategic Decision
             </CardTitle>
@@ -782,30 +871,41 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
                   <CardContent className="p-4">
                     <h5 className="font-medium text-slate-800 mb-2">{option.title}</h5>
                     <p className="text-sm text-slate-600 mb-4">{option.description}</p>
-                    
+
                     {/* Effects Preview */}
                     <div className="space-y-1 mb-4">
                       {option.effects.funding && (
                         <div className="flex items-center gap-2 text-xs">
                           <DollarSign className="w-3 h-3" />
-                          <span className={option.effects.funding > 0 ? 'text-green-600' : 'text-red-600'}>
-                            {option.effects.funding > 0 ? '+' : ''}${option.effects.funding.toLocaleString()} funding
+                          <span
+                            className={
+                              option.effects.funding > 0 ? "text-green-600" : "text-red-600"
+                            }
+                          >
+                            {option.effects.funding > 0 ? "+" : ""}$
+                            {option.effects.funding.toLocaleString()} funding
                           </span>
                         </div>
                       )}
                       {option.effects.burn && (
                         <div className="flex items-center gap-2 text-xs">
                           <TrendingUp className="w-3 h-3" />
-                          <span className={option.effects.burn > 0 ? 'text-red-600' : 'text-green-600'}>
-                            {option.effects.burn > 0 ? '+' : ''}${option.effects.burn.toLocaleString()} monthly burn
+                          <span
+                            className={option.effects.burn > 0 ? "text-red-600" : "text-green-600"}
+                          >
+                            {option.effects.burn > 0 ? "+" : ""}$
+                            {option.effects.burn.toLocaleString()} monthly burn
                           </span>
                         </div>
                       )}
                       {option.effects.users && (
                         <div className="flex items-center gap-2 text-xs">
                           <Users className="w-3 h-3" />
-                          <span className={option.effects.users > 0 ? 'text-blue-600' : 'text-red-600'}>
-                            {option.effects.users > 0 ? '+' : ''}{option.effects.users} users
+                          <span
+                            className={option.effects.users > 0 ? "text-blue-600" : "text-red-600"}
+                          >
+                            {option.effects.users > 0 ? "+" : ""}
+                            {option.effects.users} users
                           </span>
                         </div>
                       )}
@@ -813,14 +913,15 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
                         <div className="flex items-center gap-2 text-xs">
                           <ChartLine className="w-3 h-3" />
                           <span className="text-purple-600">
-                            {option.effects.growth > 0 ? '+' : ''}{(option.effects.growth * 100).toFixed(0)}% growth rate
+                            {option.effects.growth > 0 ? "+" : ""}
+                            {(option.effects.growth * 100).toFixed(0)}% growth rate
                           </span>
                         </div>
                       )}
                     </div>
 
-                    <Button 
-                      className="w-full" 
+                    <Button
+                      className="w-full"
                       onClick={() => makeDecision(currentDecision.id, option.id)}
                       variant="outline"
                     >
@@ -836,20 +937,16 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
 
       {/* Game Controls */}
       <div className="flex justify-center gap-4">
-        <Button 
-          onClick={advanceMonth} 
+        <Button
+          onClick={advanceMonth}
           size="lg"
           className="bg-blue-600 hover:bg-blue-700"
-          disabled={gameState.gameStatus !== 'playing'}
+          disabled={gameState.gameStatus !== "playing"}
         >
           <Calendar className="w-4 h-4 mr-2" />
           Advance Month
         </Button>
-        <Button 
-          onClick={resetGame} 
-          variant="outline" 
-          size="lg"
-        >
+        <Button onClick={resetGame} variant="outline" size="lg">
           <RefreshCw className="w-4 h-4 mr-2" />
           Reset Game
         </Button>
@@ -859,21 +956,32 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
       {notifications.length > 0 && (
         <div className="fixed bottom-4 right-4 space-y-2 z-50">
           {notifications.map((notification) => (
-            <Card key={notification.id} className={`
+            <Card
+              key={notification.id}
+              className={`
               max-w-sm border-l-4 ${
-                notification.type === 'success' ? 'border-l-green-500 bg-green-50' :
-                notification.type === 'warning' ? 'border-l-yellow-500 bg-yellow-50' :
-                notification.type === 'error' ? 'border-l-red-500 bg-red-50' :
-                'border-l-blue-500 bg-blue-50'
+                notification.type === "success"
+                  ? "border-l-green-500 bg-green-50"
+                  : notification.type === "warning"
+                    ? "border-l-yellow-500 bg-yellow-50"
+                    : notification.type === "error"
+                      ? "border-l-red-500 bg-red-50"
+                      : "border-l-blue-500 bg-blue-50"
               }
-            `}>
+            `}
+            >
               <CardContent className="p-3">
-                <p className={`text-sm font-medium ${
-                  notification.type === 'success' ? 'text-green-800' :
-                  notification.type === 'warning' ? 'text-yellow-800' :
-                  notification.type === 'error' ? 'text-red-800' :
-                  'text-blue-800'
-                }`}>
+                <p
+                  className={`text-sm font-medium ${
+                    notification.type === "success"
+                      ? "text-green-800"
+                      : notification.type === "warning"
+                        ? "text-yellow-800"
+                        : notification.type === "error"
+                          ? "text-red-800"
+                          : "text-blue-800"
+                  }`}
+                >
                   {notification.message}
                 </p>
               </CardContent>
@@ -882,6 +990,6 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
         </div>
       )}
     </div>
-  )
+  );
 }
-export default StartupJourney
+export default StartupJourney;

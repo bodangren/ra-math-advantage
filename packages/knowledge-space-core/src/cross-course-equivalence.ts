@@ -4,11 +4,7 @@
 // familyKey matching, standard alignment overlap, and title similarity.
 // All outputs are deterministic: same input → same output order.
 
-import type {
-  KnowledgeSpaceNode,
-  KnowledgeSpaceEdge,
-  ConfidenceLevel,
-} from './types';
+import type { KnowledgeSpaceNode, KnowledgeSpaceEdge, ConfidenceLevel } from "./types";
 
 export interface CrossCourseCourse {
   courseId: string;
@@ -45,7 +41,7 @@ export interface EquivalenceComponent {
  */
 function metaStr(node: KnowledgeSpaceNode, field: string): string | undefined {
   const v = node.metadata?.[field];
-  return typeof v === 'string' ? v : undefined;
+  return typeof v === "string" ? v : undefined;
 }
 
 /**
@@ -55,8 +51,8 @@ function metaStr(node: KnowledgeSpaceNode, field: string): string | undefined {
  */
 function courseFromId(nodeId: string): string {
   // Extract course-level prefix: math.im1, math.im2, math.im3, math.precalc
-  const parts = nodeId.split('.');
-  return parts.slice(0, 2).join('.');
+  const parts = nodeId.split(".");
+  return parts.slice(0, 2).join(".");
 }
 
 /**
@@ -67,10 +63,10 @@ function courseFromId(nodeId: string): string {
 function normalizeTitle(title: string): string {
   return title
     .toLowerCase()
-    .replace(/[_\s-]+/g, '_')
-    .replace(/[^a-z0-9_]/g, '')
-    .replace(/_+/g, '_')
-    .replace(/^_|_$/g, '');
+    .replace(/[_\s-]+/g, "_")
+    .replace(/[^a-z0-9_]/g, "")
+    .replace(/_+/g, "_")
+    .replace(/^_|_$/g, "");
 }
 
 // ---------------------------------------------------------------------------
@@ -120,13 +116,11 @@ export function validateCrossCourseEdges(
 /**
  * Build a global lookup of standard IDs per node across all courses.
  */
-function buildStandardLookup(
-  courses: CrossCourseCourse[],
-): Map<string, Set<string>> {
+function buildStandardLookup(courses: CrossCourseCourse[]): Map<string, Set<string>> {
   const lookup = new Map<string, Set<string>>();
   for (const course of courses) {
     for (const edge of course.edges) {
-      if (edge.type !== 'aligned_to_standard') continue;
+      if (edge.type !== "aligned_to_standard") continue;
       const current = lookup.get(edge.sourceId) ?? new Set();
       current.add(edge.targetId);
       lookup.set(edge.sourceId, current);
@@ -138,10 +132,7 @@ function buildStandardLookup(
 /**
  * Get node by ID from any course.
  */
-function getNodeById(
-  courses: CrossCourseCourse[],
-  nodeId: string,
-): KnowledgeSpaceNode | undefined {
+function getNodeById(courses: CrossCourseCourse[], nodeId: string): KnowledgeSpaceNode | undefined {
   for (const course of courses) {
     for (const node of course.nodes) {
       if (node.id === nodeId) return node;
@@ -161,14 +152,14 @@ function makeCandidate(
   derivationMethod: string,
   rationale: string,
   metadata: Record<string, unknown>,
-): Omit<KnowledgeSpaceEdge, 'id'> {
+): Omit<KnowledgeSpaceEdge, "id"> {
   return {
-    type: 'equivalent_to',
+    type: "equivalent_to",
     sourceId,
     targetId,
     weight,
     confidence,
-    reviewStatus: 'draft',
+    reviewStatus: "draft",
     derived: true,
     derivationMethod,
     rationale,
@@ -189,15 +180,16 @@ function makeCandidate(
 function matchByFamilyKey(
   courses: CrossCourseCourse[],
   standardLookup: Map<string, Set<string>>,
-): Omit<KnowledgeSpaceEdge, 'id'>[] {
-  const candidates: Omit<KnowledgeSpaceEdge, 'id'>[] = [];
+): Omit<KnowledgeSpaceEdge, "id">[] {
+  const candidates: Omit<KnowledgeSpaceEdge, "id">[] = [];
 
   // Build a title-normalized index for all relevant nodes (used to bridge
   // familyKey-carrying nodes to nodes whose title matches the familyKey).
   const titleIndex = new Map<string, Array<{ courseId: string; nodeId: string }>>();
   for (const course of courses) {
     for (const node of course.nodes) {
-      if (node.kind !== 'skill' && node.kind !== 'concept' && node.kind !== 'worked_example') continue;
+      if (node.kind !== "skill" && node.kind !== "concept" && node.kind !== "worked_example")
+        continue;
       const norm = normalizeTitle(node.title);
       if (!norm) continue;
       const entries = titleIndex.get(norm) ?? [];
@@ -210,9 +202,9 @@ function matchByFamilyKey(
   const byFamilyKey = new Map<string, Array<{ courseId: string; nodeId: string }>>();
   for (const course of courses) {
     for (const node of course.nodes) {
-      const fk = metaStr(node, 'familyKey');
+      const fk = metaStr(node, "familyKey");
       if (!fk) continue;
-      if (node.kind !== 'skill' && node.kind !== 'concept') continue;
+      if (node.kind !== "skill" && node.kind !== "concept") continue;
       const entry = { courseId: course.courseId, nodeId: node.id };
       const existing = byFamilyKey.get(fk);
       if (existing) {
@@ -257,31 +249,34 @@ function matchByFamilyKey(
             const standardsA = standardLookup.get(source) ?? new Set();
             const standardsB = standardLookup.get(target) ?? new Set();
             const sharedStandards = [...standardsA].filter((s) => standardsB.has(s));
-            const confidence: ConfidenceLevel =
-              sharedStandards.length > 0 ? 'high' : 'medium';
+            const confidence: ConfidenceLevel = sharedStandards.length > 0 ? "high" : "medium";
 
-            const method = sharedStandards.length > 0
-              ? 'cross-course-familykey-standard-v1'
-              : 'cross-course-familykey-v1';
+            const method =
+              sharedStandards.length > 0
+                ? "cross-course-familykey-standard-v1"
+                : "cross-course-familykey-v1";
 
-            const rationale = sharedStandards.length > 0
-              ? `Shared familyKey "${fk}" and ${sharedStandards.length} shared standard(s) between ${courseA} and ${courseB}`
-              : `Shared familyKey "${fk}" between ${courseA} and ${courseB} (no shared standards)`;
+            const rationale =
+              sharedStandards.length > 0
+                ? `Shared familyKey "${fk}" and ${sharedStandards.length} shared standard(s) between ${courseA} and ${courseB}`
+                : `Shared familyKey "${fk}" between ${courseA} and ${courseB} (no shared standards)`;
 
-            candidates.push(makeCandidate(
-              source,
-              target,
-              confidence === 'high' ? 1.0 : 0.75,
-              confidence,
-              method,
-              rationale,
-              {
-                familyKey: fk,
-                matchType: 'familyKey',
-                courses: [courseA, courseB],
-                sharedStandards,
-              },
-            ));
+            candidates.push(
+              makeCandidate(
+                source,
+                target,
+                confidence === "high" ? 1.0 : 0.75,
+                confidence,
+                method,
+                rationale,
+                {
+                  familyKey: fk,
+                  matchType: "familyKey",
+                  courses: [courseA, courseB],
+                  sharedStandards,
+                },
+              ),
+            );
           }
         }
       }
@@ -307,20 +302,22 @@ function matchByFamilyKey(
       for (const fe of fkEntries) {
         const [source, target] = [fe.nodeId, tm.nodeId].sort();
 
-        candidates.push(makeCandidate(
-          source,
-          target,
-          0.75,
-          'medium',
-          'cross-course-familykey-title-v1',
-          `familyKey "${fk}" in ${courseFromId(fe.nodeId)} matches title "${tm.nodeId}" in ${tm.courseId}`,
-          {
-            familyKey: fk,
-            matchType: 'familyKey+title',
-            courses: [fe.courseId, tm.courseId],
-            sharedStandards: [],
-          },
-        ));
+        candidates.push(
+          makeCandidate(
+            source,
+            target,
+            0.75,
+            "medium",
+            "cross-course-familykey-title-v1",
+            `familyKey "${fk}" in ${courseFromId(fe.nodeId)} matches title "${tm.nodeId}" in ${tm.courseId}`,
+            {
+              familyKey: fk,
+              matchType: "familyKey+title",
+              courses: [fe.courseId, tm.courseId],
+              sharedStandards: [],
+            },
+          ),
+        );
       }
     }
   }
@@ -341,18 +338,21 @@ function matchByFamilyKey(
 function matchByStandardOverlap(
   courses: CrossCourseCourse[],
   standardLookup: Map<string, Set<string>>,
-): Omit<KnowledgeSpaceEdge, 'id'>[] {
-  const candidates: Omit<KnowledgeSpaceEdge, 'id'>[] = [];
-  const METHOD = 'cross-course-standard-overlap-v1';
+): Omit<KnowledgeSpaceEdge, "id">[] {
+  const candidates: Omit<KnowledgeSpaceEdge, "id">[] = [];
+  const METHOD = "cross-course-standard-overlap-v1";
 
   // Build reverse index: standard → [{ courseId, nodeId, kind }]
-  const standardToNodes = new Map<string, Array<{ courseId: string; nodeId: string; kind: string }>>();
+  const standardToNodes = new Map<
+    string,
+    Array<{ courseId: string; nodeId: string; kind: string }>
+  >();
   for (const [nodeId, standards] of standardLookup) {
     const node = getNodeById(courses, nodeId);
     if (!node) continue;
     // Include skill and worked_example nodes (worked_examples provide
     // standard evidence in PreCalc where skill nodes lack alignment edges).
-    if (node.kind !== 'skill' && node.kind !== 'worked_example') continue;
+    if (node.kind !== "skill" && node.kind !== "worked_example") continue;
     const courseId = courseFromId(nodeId);
     for (const std of standards) {
       const entries = standardToNodes.get(std) ?? [];
@@ -388,34 +388,36 @@ function matchByStandardOverlap(
         for (const entryA of nodesA) {
           for (const entryB of nodesB) {
             // Skip worked_example ↔ worked_example pairs — too noisy
-            if (entryA.kind === 'worked_example' && entryB.kind === 'worked_example') continue;
+            if (entryA.kind === "worked_example" && entryB.kind === "worked_example") continue;
 
-            const pairKey = [entryA.nodeId, entryB.nodeId].sort().join('||');
+            const pairKey = [entryA.nodeId, entryB.nodeId].sort().join("||");
             if (alreadyMatched.has(pairKey)) continue;
             alreadyMatched.add(pairKey);
 
             const [source, target] = [entryA.nodeId, entryB.nodeId].sort();
 
-            const sharedStandards = [
-              ...(standardLookup.get(source) ?? new Set()),
-            ].filter((s) => (standardLookup.get(target) ?? new Set()).has(s));
+            const sharedStandards = [...(standardLookup.get(source) ?? new Set())].filter((s) =>
+              (standardLookup.get(target) ?? new Set()).has(s),
+            );
 
             // Confidence: skill↔skill is medium, mixed skill↔worked_example is medium
-            const confidence: ConfidenceLevel = 'medium';
+            const confidence: ConfidenceLevel = "medium";
 
-            candidates.push(makeCandidate(
-              source,
-              target,
-              0.75,
-              confidence,
-              METHOD,
-              `Shared standard alignment between ${courseA} and ${courseB}`,
-              {
-                matchType: 'standard',
-                courses: [courseA, courseB],
-                sharedStandards,
-              },
-            ));
+            candidates.push(
+              makeCandidate(
+                source,
+                target,
+                0.75,
+                confidence,
+                METHOD,
+                `Shared standard alignment between ${courseA} and ${courseB}`,
+                {
+                  matchType: "standard",
+                  courses: [courseA, courseB],
+                  sharedStandards,
+                },
+              ),
+            );
           }
         }
       }
@@ -434,11 +436,9 @@ function matchByStandardOverlap(
  * @param {CrossCourseCourse[]} courses - All courses with their nodes and edges
  * @returns {Omit<KnowledgeSpaceEdge, 'id'>[]} - Array of low-confidence equivalence edge candidates from title matching
  */
-function matchByTitle(
-  courses: CrossCourseCourse[],
-): Omit<KnowledgeSpaceEdge, 'id'>[] {
-  const candidates: Omit<KnowledgeSpaceEdge, 'id'>[] = [];
-  const METHOD = 'cross-course-title-match-v1';
+function matchByTitle(courses: CrossCourseCourse[]): Omit<KnowledgeSpaceEdge, "id">[] {
+  const candidates: Omit<KnowledgeSpaceEdge, "id">[] = [];
+  const METHOD = "cross-course-title-match-v1";
 
   // Build a title-normalized index by course
   type TitleEntry = { nodeId: string; title: string; normalized: string; courseId: string };
@@ -447,12 +447,13 @@ function matchByTitle(
 
   for (const course of courses) {
     for (const node of course.nodes) {
-      if (node.kind !== 'skill' && node.kind !== 'concept' && node.kind !== 'worked_example') continue;
+      if (node.kind !== "skill" && node.kind !== "concept" && node.kind !== "worked_example")
+        continue;
       const normalized = normalizeTitle(node.title);
       if (!normalized) continue;
 
       // Also try normalizing the familyKey from metadata
-      const fk = metaStr(node, 'familyKey');
+      const fk = metaStr(node, "familyKey");
       const fkNormalized = fk ? normalizeTitle(fk) : undefined;
 
       const entry: TitleEntry = {
@@ -498,24 +499,26 @@ function matchByTitle(
 
         for (const nodeA of nodesA) {
           for (const nodeB of nodesB) {
-            const pairKey = [nodeA, nodeB].sort().join('||');
+            const pairKey = [nodeA, nodeB].sort().join("||");
             if (seenPairs.has(pairKey)) continue;
             seenPairs.add(pairKey);
 
             const [source, target] = [nodeA, nodeB].sort();
 
-            candidates.push(makeCandidate(
-              source,
-              target,
-              0.5,
-              'low',
-              METHOD,
-              `Title-based match between ${courseA} and ${courseB} — needs review`,
-              {
-                matchType: 'title',
-                courses: [courseA, courseB],
-              },
-            ));
+            candidates.push(
+              makeCandidate(
+                source,
+                target,
+                0.5,
+                "low",
+                METHOD,
+                `Title-based match between ${courseA} and ${courseB} — needs review`,
+                {
+                  matchType: "title",
+                  courses: [courseA, courseB],
+                },
+              ),
+            );
           }
         }
       }
@@ -534,10 +537,8 @@ function matchByTitle(
  * @param {KnowledgeSpaceEdge[]} edges - All knowledge space edges
  * @returns {EquivalenceComponent[]} - Array of equivalence component groups
  */
-export function computeEquivalenceComponents(
-  edges: KnowledgeSpaceEdge[],
-): EquivalenceComponent[] {
-  const equivEdges = edges.filter((e) => e.type === 'equivalent_to');
+export function computeEquivalenceComponents(edges: KnowledgeSpaceEdge[]): EquivalenceComponent[] {
+  const equivEdges = edges.filter((e) => e.type === "equivalent_to");
   if (equivEdges.length === 0) return [];
 
   // Build adjacency list
@@ -589,7 +590,7 @@ export function computeEquivalenceComponents(
       const sortedIds = [...comp.nodeIds].sort();
       const courses = [...new Set(sortedIds.map(courseFromId))].sort();
       return {
-        componentId: `equivalence-component-${String(idx + 1).padStart(3, '0')}`,
+        componentId: `equivalence-component-${String(idx + 1).padStart(3, "0")}`,
         nodeIds: sortedIds,
         courses,
         edges: [...comp.edges].sort(
@@ -609,18 +610,16 @@ export function computeEquivalenceComponents(
  * @param {CrossCourseInput} input - Cross-course input with courses and optional ID prefix
  * @returns {KnowledgeSpaceEdge[]} - Array of equivalent_to edges linking nodes across courses
  */
-export function findCrossCourseEquivalences(
-  input: CrossCourseInput,
-): KnowledgeSpaceEdge[] {
+export function findCrossCourseEquivalences(input: CrossCourseInput): KnowledgeSpaceEdge[] {
   const { courses } = input;
-  const idPrefix = input.idPrefix ?? 'cross-course';
+  const idPrefix = input.idPrefix ?? "cross-course";
 
   if (courses.length < 2) return [];
 
   const standardLookup = buildStandardLookup(courses);
 
   // Collect all candidate edges from each strategy
-  const candidates: Omit<KnowledgeSpaceEdge, 'id'>[] = [];
+  const candidates: Omit<KnowledgeSpaceEdge, "id">[] = [];
 
   // Strategy 1: familyKey matching (highest confidence)
   candidates.push(...matchByFamilyKey(courses, standardLookup));
@@ -633,7 +632,7 @@ export function findCrossCourseEquivalences(
 
   // Deduplicate by (sourceId, targetId, type)
   const seen = new Set<string>();
-  const unique: Omit<KnowledgeSpaceEdge, 'id'>[] = [];
+  const unique: Omit<KnowledgeSpaceEdge, "id">[] = [];
   for (const c of candidates) {
     const key = `${c.type}::${c.sourceId}::${c.targetId}`;
     if (!seen.has(key)) {
@@ -643,16 +642,15 @@ export function findCrossCourseEquivalences(
   }
 
   // Sort deterministically: type → sourceId → targetId
-  unique.sort(
-    (a, b) =>
-      `${a.type}::${a.sourceId}::${a.targetId}`.localeCompare(
-        `${b.type}::${b.sourceId}::${b.targetId}`,
-      ),
+  unique.sort((a, b) =>
+    `${a.type}::${a.sourceId}::${a.targetId}`.localeCompare(
+      `${b.type}::${b.sourceId}::${b.targetId}`,
+    ),
   );
 
   // Assign sequential IDs
   return unique.map((candidate, idx) => ({
-    id: `${idPrefix}.edge.${String(idx + 1).padStart(4, '0')}`,
+    id: `${idPrefix}.edge.${String(idx + 1).padStart(4, "0")}`,
     ...candidate,
   }));
 }

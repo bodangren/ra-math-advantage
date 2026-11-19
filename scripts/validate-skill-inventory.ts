@@ -9,17 +9,17 @@
  * Exits non-zero if any node fails validation.
  */
 
-import * as fs from 'node:fs';
-import * as path from 'node:path';
-import { knowledgeSpaceNodeSchema } from '../packages/knowledge-space-core/src/schemas';
+import * as fs from "node:fs";
+import * as path from "node:path";
+import { knowledgeSpaceNodeSchema } from "../packages/knowledge-space-core/src/schemas";
 
-const REPO_ROOT = path.resolve(__dirname, '..');
+const REPO_ROOT = path.resolve(__dirname, "..");
 
 const COURSE_PATHS: Record<string, string> = {
-  im1: 'apps/integrated-math-1/curriculum/skill-graph/draft-nodes.json',
-  im2: 'apps/integrated-math-2/curriculum/skill-graph/draft-nodes.json',
-  im3: 'apps/integrated-math-3/curriculum/skill-graph/draft-nodes.json',
-  precalc: 'apps/pre-calculus/curriculum/skill-graph/draft-nodes.json',
+  im1: "apps/integrated-math-1/curriculum/skill-graph/draft-nodes.json",
+  im2: "apps/integrated-math-2/curriculum/skill-graph/draft-nodes.json",
+  im3: "apps/integrated-math-3/curriculum/skill-graph/draft-nodes.json",
+  precalc: "apps/pre-calculus/curriculum/skill-graph/draft-nodes.json",
 };
 
 function validateCourse(course: string, filePath: string): number {
@@ -28,19 +28,19 @@ function validateCourse(course: string, filePath: string): number {
     return 1;
   }
 
-  const raw = JSON.parse(fs.readFileSync(filePath, 'utf-8')) as unknown;
+  const raw = JSON.parse(fs.readFileSync(filePath, "utf-8")) as unknown;
   const nodes: unknown[] = Array.isArray(raw)
     ? raw
-    : (raw as Record<string, unknown[]>).nodes ?? [];
+    : ((raw as Record<string, unknown[]>).nodes ?? []);
 
   let failures = 0;
   for (const node of nodes) {
     const result = knowledgeSpaceNodeSchema.safeParse(node);
     if (!result.success) {
-      const id = (node as Record<string, unknown>).id ?? '(no id)';
+      const id = (node as Record<string, unknown>).id ?? "(no id)";
       console.error(`  FAIL [${course}] ${id}`);
       for (const issue of result.error.issues) {
-        console.error(`    ${issue.path.join('.')}: ${issue.message}`);
+        console.error(`    ${issue.path.join(".")}: ${issue.message}`);
       }
       failures++;
     }
@@ -56,7 +56,7 @@ function validateCourse(course: string, filePath: string): number {
 }
 
 async function main() {
-  const args = process.argv.slice(2).filter((a) => !a.startsWith('--'));
+  const args = process.argv.slice(2).filter((a) => !a.startsWith("--"));
   const courses = args.length > 0 ? args : Object.keys(COURSE_PATHS);
 
   let totalFailures = 0;

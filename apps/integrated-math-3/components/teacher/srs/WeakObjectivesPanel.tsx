@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { Target, AlertTriangle } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import type { ObjectivePriority } from '@math-platform/srs-engine';
+import { Target, AlertTriangle } from "lucide-react";
+import { cn } from "@/lib/utils";
+import type { ObjectivePriority } from "@math-platform/srs-engine";
 
 export interface WeakObjectiveView {
   objectiveId: string;
@@ -21,17 +21,17 @@ export interface WeakObjectivesPanelProps {
 }
 
 const PRIORITY_LABELS: Record<ObjectivePriority, string> = {
-  essential: 'Essential',
-  supporting: 'Supporting',
-  extension: 'Extension',
-  triaged: 'Triaged',
+  essential: "Essential",
+  supporting: "Supporting",
+  extension: "Extension",
+  triaged: "Triaged",
 };
 
 const PRIORITY_COLORS: Record<ObjectivePriority, string> = {
-  essential: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
-  supporting: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
-  extension: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
-  triaged: 'bg-muted text-muted-foreground',
+  essential: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
+  supporting: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200",
+  extension: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
+  triaged: "bg-muted text-muted-foreground",
 };
 
 /**
@@ -42,16 +42,16 @@ const PRIORITY_COLORS: Record<ObjectivePriority, string> = {
  */
 function ProficiencyBar({ percent }: { percent: number }) {
   const getColor = (p: number) => {
-    if (p >= 40) return 'bg-yellow-500';
-    if (p >= 20) return 'bg-orange-500';
-    return 'bg-red-500';
+    if (p >= 40) return "bg-yellow-500";
+    if (p >= 20) return "bg-orange-500";
+    return "bg-red-500";
   };
 
   return (
     <div className="flex items-center gap-2">
       <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
         <div
-          className={cn('h-full rounded-full transition-all', getColor(percent))}
+          className={cn("h-full rounded-full transition-all", getColor(percent))}
           style={{ width: `${Math.max(percent, 2)}%` }}
         />
       </div>
@@ -116,10 +116,16 @@ export function WeakObjectivesPanel({
             <tr className="border-b border-border">
               <th className="text-left py-2 px-3 font-medium text-muted-foreground">Priority</th>
               <th className="text-left py-2 px-3 font-medium text-muted-foreground">Standard</th>
-              <th className="text-left py-2 px-3 font-medium text-muted-foreground hidden md:table-cell">Description</th>
+              <th className="text-left py-2 px-3 font-medium text-muted-foreground hidden md:table-cell">
+                Description
+              </th>
               <th className="text-left py-2 px-3 font-medium text-muted-foreground">Proficiency</th>
-              <th className="text-left py-2 px-3 font-medium text-muted-foreground hidden lg:table-cell">Retention</th>
-              <th className="text-left py-2 px-3 font-medium text-muted-foreground hidden lg:table-cell">Struggling</th>
+              <th className="text-left py-2 px-3 font-medium text-muted-foreground hidden lg:table-cell">
+                Retention
+              </th>
+              <th className="text-left py-2 px-3 font-medium text-muted-foreground hidden lg:table-cell">
+                Struggling
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
@@ -132,8 +138,8 @@ export function WeakObjectivesPanel({
                 <td className="py-3 px-3">
                   <span
                     className={cn(
-                      'inline-block px-2 py-0.5 rounded-full text-xs font-medium',
-                      PRIORITY_COLORS[obj.priority]
+                      "inline-block px-2 py-0.5 rounded-full text-xs font-medium",
+                      PRIORITY_COLORS[obj.priority],
                     )}
                   >
                     {PRIORITY_LABELS[obj.priority]}
@@ -152,7 +158,7 @@ export function WeakObjectivesPanel({
                 </td>
                 <td className="py-3 px-3 hidden lg:table-cell">
                   <span className="font-mono-num text-xs">
-                    {obj.avgRetention > 0 ? `${(obj.avgRetention * 100).toFixed(0)}%` : '—'}
+                    {obj.avgRetention > 0 ? `${(obj.avgRetention * 100).toFixed(0)}%` : "—"}
                   </span>
                 </td>
                 <td className="py-3 px-3 hidden lg:table-cell">

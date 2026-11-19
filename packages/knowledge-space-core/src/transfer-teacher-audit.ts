@@ -18,7 +18,7 @@
 // dereference them — they are reserved for the persistence follow-up
 // (deferred: the function is intentionally inert against missing maps).
 
-import type { TransferSkipRecord } from './transfer-skip';
+import type { TransferSkipRecord } from "./transfer-skip";
 
 // ---------------------------------------------------------------------------
 // Public types
@@ -29,7 +29,7 @@ import type { TransferSkipRecord } from './transfer-skip';
  * (FR4 + FR5). The audit row carries this label so a teacher can scan
  * the table and tell at a glance which path the student took.
  */
-export type TransferSkipKind = 'direct' | 'confirmed';
+export type TransferSkipKind = "direct" | "confirmed";
 
 /**
  * A single auditable row in the teacher view. The fields mirror the
@@ -54,7 +54,7 @@ export interface TransferCreditAuditRow {
   /** Epoch-ms when the skip was granted. */
   skippedAt: number;
   /** Current state of the record. */
-  state: TransferSkipRecord['state'];
+  state: TransferSkipRecord["state"];
   /** Direct-skip vs confirmation-check label. */
   skipKind: TransferSkipKind;
 }
@@ -187,13 +187,13 @@ export function buildTransferCreditAuditView(
         seededMastery: record.seededMastery,
         skippedAt: record.skippedAt,
         state: record.state,
-        skipKind: record.confirmed ? 'confirmed' : 'direct',
+        skipKind: record.confirmed ? "confirmed" : "direct",
       }));
 
     let groupSkipped = 0;
     let groupReverted = 0;
     for (const record of groupRecords) {
-      if (record.state === 'reverted') {
+      if (record.state === "reverted") {
         groupReverted += 1;
       } else {
         groupSkipped += 1;

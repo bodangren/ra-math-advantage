@@ -4,7 +4,7 @@ export interface StudyTerm {
   slug: string;
 }
 
-export type StudySessionRating = 'again' | 'hard' | 'good' | 'easy';
+export type StudySessionRating = "again" | "hard" | "good" | "easy";
 
 export interface StudySessionResult {
   itemsSeen: number;
@@ -13,7 +13,7 @@ export interface StudySessionResult {
   durationSeconds: number;
 }
 
-export type StudySessionState = 'prompt' | 'flip' | 'complete';
+export type StudySessionState = "prompt" | "flip" | "complete";
 
 export const RATING_DELTAS: Record<StudySessionRating, { delta: number; isCorrect: boolean }> = {
   again: { delta: -0.2, isCorrect: false },

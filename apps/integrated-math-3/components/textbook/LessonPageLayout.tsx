@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Menu, X, CheckCircle2, Circle } from 'lucide-react';
-import type { PhaseType } from '@math-platform/activity-runtime/phase-types';
+import { useState } from "react";
+import { Menu, X, CheckCircle2, Circle } from "lucide-react";
+import type { PhaseType } from "@math-platform/activity-runtime/phase-types";
 
 export interface PhaseNavItem {
   phaseNumber?: number;
@@ -42,10 +42,8 @@ export function LessonPageLayout({
 }: LessonPageLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const completedCount = phases.filter(p => p.completed).length;
-  const progressPct = phases.length > 0
-    ? Math.round((completedCount / phases.length) * 100)
-    : 0;
+  const completedCount = phases.filter((p) => p.completed).length;
+  const progressPct = phases.length > 0 ? Math.round((completedCount / phases.length) * 100) : 0;
 
   return (
     <div className="min-h-screen bg-background flex flex-col" data-testid="lesson-renderer">
@@ -81,7 +79,10 @@ export function LessonPageLayout({
               <span>·</span>
               <span>Lesson {lessonNumber}</span>
             </div>
-            <h1 className="font-display text-xl font-semibold text-foreground truncate" data-testid="lesson-title">
+            <h1
+              className="font-display text-xl font-semibold text-foreground truncate"
+              data-testid="lesson-title"
+            >
               {lessonTitle}
             </h1>
             {showTeacherPreviewBadge && (
@@ -89,16 +90,14 @@ export function LessonPageLayout({
                 Teacher Preview
               </span>
             )}
-            {goals && (
-              <p className="mt-0.5 text-sm text-muted-foreground">{goals}</p>
-            )}
+            {goals && <p className="mt-0.5 text-sm text-muted-foreground">{goals}</p>}
           </div>
 
           {/* Mobile sidebar toggle */}
           <button
             type="button"
             aria-label="Toggle phases navigation"
-            onClick={() => setSidebarOpen(o => !o)}
+            onClick={() => setSidebarOpen((o) => !o)}
             className="flex-shrink-0 p-2 rounded-md hover:bg-secondary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 lg:hidden"
           >
             {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -114,36 +113,40 @@ export function LessonPageLayout({
           data-sidebar
           data-sidebar-open={sidebarOpen}
           className={[
-            'flex-shrink-0 w-56 space-y-1',
+            "flex-shrink-0 w-56 space-y-1",
             // Mobile: absolute overlay toggled by sidebarOpen
             sidebarOpen
-              ? 'fixed inset-y-0 left-0 z-40 bg-card border-r p-4 pt-20 w-64'
-              : 'hidden lg:block',
-          ].join(' ')}
+              ? "fixed inset-y-0 left-0 z-40 bg-card border-r p-4 pt-20 w-64"
+              : "hidden lg:block",
+          ].join(" ")}
         >
           {phases.map((phase, idx) => (
             <button
               key={`${phase.phaseType}-${idx}`}
               type="button"
               disabled={phase.disabled}
-              onClick={() => { onPhaseSelect?.(phase.phaseNumber ?? idx + 1); setSidebarOpen(false); }}
-              data-current={phase.isCurrent ? 'true' : undefined}
-              data-completed={phase.completed ? 'true' : undefined}
-              aria-current={phase.isCurrent ? 'step' : undefined}
-              aria-label={`Phase ${idx + 1}: ${phase.label}${phase.isCurrent ? ' (current)' : ''}${phase.completed ? ' (completed)' : ''}`}
+              onClick={() => {
+                onPhaseSelect?.(phase.phaseNumber ?? idx + 1);
+                setSidebarOpen(false);
+              }}
+              data-current={phase.isCurrent ? "true" : undefined}
+              data-completed={phase.completed ? "true" : undefined}
+              aria-current={phase.isCurrent ? "step" : undefined}
+              aria-label={`Phase ${idx + 1}: ${phase.label}${phase.isCurrent ? " (current)" : ""}${phase.completed ? " (completed)" : ""}`}
               className={[
-                'flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50',
+                "flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50",
                 phase.isCurrent
-                  ? 'bg-primary/10 text-primary font-medium'
+                  ? "bg-primary/10 text-primary font-medium"
                   : phase.completed
-                    ? 'text-muted-foreground'
-                    : 'text-foreground/70',
-              ].join(' ')}
+                    ? "text-muted-foreground"
+                    : "text-foreground/70",
+              ].join(" ")}
             >
-              {phase.completed
-                ? <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-primary" aria-hidden />
-                : <Circle className="w-4 h-4 flex-shrink-0" aria-hidden />
-              }
+              {phase.completed ? (
+                <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-primary" aria-hidden />
+              ) : (
+                <Circle className="w-4 h-4 flex-shrink-0" aria-hidden />
+              )}
               <span>{phase.label}</span>
             </button>
           ))}

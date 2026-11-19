@@ -33,8 +33,11 @@
 // in `_fixtures/`. It is, however, included in the apps/integrated-
 // math-3 tsconfig's ts/tsx glob, so tsc picks it up.
 
-import { projectStudentVisualization, projectParentVisualization } from '@math-platform/knowledge-space-practice';
-import { loadFullCurriculumGraph } from '@/lib/curriculum/skill-graph-loader';
+import {
+  projectStudentVisualization,
+  projectParentVisualization,
+} from "@math-platform/knowledge-space-practice";
+import { loadFullCurriculumGraph } from "@/lib/curriculum/skill-graph-loader";
 
 // Pull the canonical graph once.
 const { nodes, edges } = loadFullCurriculumGraph();
@@ -43,9 +46,9 @@ const { nodes, edges } = loadFullCurriculumGraph();
 //    after FR-6. Note: this is the BROADEST observable subset; any
 //    further narrowing is also fine, but this matches the actual
 //    production annotations at HEAD (aee13927).
-const narrowLearnerState: Record<string, 'mastered' | 'ready' | 'blocked'> = {
-  'math.im3.skill.1.1.graph-quadratic-functions': 'mastered',
-  'math.im3.skill.2.1.graph-and-analyze-polynomial-functions': 'ready',
+const narrowLearnerState: Record<string, "mastered" | "ready" | "blocked"> = {
+  "math.im3.skill.1.1.graph-quadratic-functions": "mastered",
+  "math.im3.skill.2.1.graph-and-analyze-polynomial-functions": "ready",
 };
 
 // 2. projectStudentVisualization must accept the narrow union. The
@@ -65,12 +68,12 @@ const parentViz = projectParentVisualization(nodes, edges, narrowLearnerState);
 // Reference the variables so tsc's noUnusedLocals-style checks (if
 // enabled) do not flag them. Also force a concrete access of the
 // payload shape so tsc exercises the structural types.
-const _schemaVersion: 'v1' = studentViz.schemaVersion;
+const _schemaVersion: "v1" = studentViz.schemaVersion;
 const _canDo: string = parentViz.canDoSummary;
 
 // Suppress "all imports unused" if a stricter config enables it.
 export const _adversarialAssignabilityProbed = {
   studentVizSchema: _schemaVersion,
   parentCanDoSummary: _canDo,
-  narrowUnionType: typeof narrowLearnerState['math.im3.skill.1.1.graph-quadratic-functions'],
+  narrowUnionType: typeof narrowLearnerState["math.im3.skill.1.1.graph-quadratic-functions"],
 } as const;

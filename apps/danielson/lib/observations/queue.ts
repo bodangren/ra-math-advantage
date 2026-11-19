@@ -1,10 +1,6 @@
-import type { DanielsonRole } from '../foundation/authorization';
-import type { PriorityProjection } from '../proficiency/processor';
-import {
-  cloneValue,
-  compareText,
-  type ObservationPriorityReason,
-} from './contracts';
+import type { DanielsonRole } from "../foundation/authorization";
+import type { PriorityProjection } from "../proficiency/processor";
+import { cloneValue, compareText, type ObservationPriorityReason } from "./contracts";
 
 const REASON_ORDER: Record<ObservationPriorityReason, number> = {
   approved_plan_priority: 0,
@@ -48,17 +44,17 @@ export type RankedTeacherQueueItem = TeacherQueueCandidate & {
 };
 
 function reasonFor(priority: PriorityProjection): ObservationPriorityReason | null {
-  if (priority.approvedPriorityInputs.includes('approved_plan_priority')) {
-    return 'approved_plan_priority';
+  if (priority.approvedPriorityInputs.includes("approved_plan_priority")) {
+    return "approved_plan_priority";
   }
   const rating = priority.currentProficiency.rawRating;
-  if (typeof rating === 'number' && rating < 3) return 'below_proficient';
-  if (priority.approvedPriorityInputs.includes('gbf_phase_priority')) {
-    return 'gbf_phase_priority';
+  if (typeof rating === "number" && rating < 3) return "below_proficient";
+  if (priority.approvedPriorityInputs.includes("gbf_phase_priority")) {
+    return "gbf_phase_priority";
   }
-  if (priority.due && priority.overdueDays > 0) return 'overdue';
-  if (priority.evidenceGaps.length > 0) return 'evidence_gap';
-  if (priority.due) return 'due';
+  if (priority.due && priority.overdueDays > 0) return "overdue";
+  if (priority.evidenceGaps.length > 0) return "evidence_gap";
+  if (priority.due) return "due";
   return null;
 }
 
@@ -82,7 +78,7 @@ export function compareRankedTargets(
   if (rating !== 0) return rating;
   const overdue = right.overdueDays - left.overdueDays;
   if (overdue !== 0) return overdue;
-  const component = compareText(left.componentId ?? '', right.componentId ?? '');
+  const component = compareText(left.componentId ?? "", right.componentId ?? "");
   if (component !== 0) return component;
   return compareText(left.skillId, right.skillId);
 }
@@ -109,28 +105,27 @@ export function scopeTeacherCandidates<T extends TeacherScopeCandidate>(
   candidates: readonly T[],
   scope: ObserverQueueScope,
 ): T[] {
-  const organizationWide = scope.roles.includes('school_head') || scope.roles.includes('slt');
-  const canUseHodScope = scope.roles.includes('hod');
-  const canUseCoachScope = scope.roles.includes('coach');
+  const organizationWide = scope.roles.includes("school_head") || scope.roles.includes("slt");
+  const canUseHodScope = scope.roles.includes("hod");
+  const canUseCoachScope = scope.roles.includes("coach");
   const hodDepartments = new Set(scope.hodDepartmentIds);
   const coachedTeachers = new Set(scope.coachTeacherProfileIds);
 
   return candidates
-    .filter((candidate) => (
-      candidate.isActive
-      && candidate.organizationId === scope.organizationId
-      && candidate.teacherProfileId !== scope.actorTeacherProfileId
-      && (
-        organizationWide
-        || (canUseHodScope && candidate.departmentIds.some((id) => hodDepartments.has(id)))
-        || (canUseCoachScope && coachedTeachers.has(candidate.teacherProfileId))
-      )
-    ))
+    .filter(
+      (candidate) =>
+        candidate.isActive &&
+        candidate.organizationId === scope.organizationId &&
+        candidate.teacherProfileId !== scope.actorTeacherProfileId &&
+        (organizationWide ||
+          (canUseHodScope && candidate.departmentIds.some((id) => hodDepartments.has(id))) ||
+          (canUseCoachScope && coachedTeachers.has(candidate.teacherProfileId))),
+    )
     .map(cloneValue);
 }
 
 function normalizeDisplayName(value: string): string {
-  return value.trim().replace(/\s+/g, ' ').toLocaleLowerCase('en');
+  return value.trim().replace(/\s+/g, " ").toLocaleLowerCase("en");
 }
 
 /** Rank teachers by their best eligible target and the frozen tie-breaks. */
@@ -171,9 +166,7 @@ export function selectWalkthroughTargets(priorities: readonly PriorityProjection
     requested: 3 as const,
     returned: targets.length,
     shortfall,
-    shortfallReason: shortfall > 0
-      ? 'fewer_than_three_eligible_skills' as const
-      : null,
+    shortfallReason: shortfall > 0 ? ("fewer_than_three_eligible_skills" as const) : null,
     targets,
   };
 }

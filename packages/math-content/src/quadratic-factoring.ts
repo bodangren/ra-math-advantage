@@ -14,8 +14,8 @@
  * Math.random) per spec.
  */
 
-import { mulberry32 } from './utils/prng';
-import { formatQuadratic } from './utils/expression-builder';
+import { mulberry32 } from "./utils/prng";
+import { formatQuadratic } from "./utils/expression-builder";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -46,13 +46,13 @@ function randNonZero(rand: () => number, hi: number): number {
     n = randInt(rand, -hi, hi);
   } while (n === 0 && safety++ < 100);
   if (n === 0) {
-    throw new Error('randNonZero: unable to select a non-zero value after 100 attempts');
+    throw new Error("randNonZero: unable to select a non-zero value after 100 attempts");
   }
   return n;
 }
 
 function formatBinomial(root: number): string {
-  if (root === 0) return '(x)';
+  if (root === 0) return "(x)";
   if (root > 0) return `(x - ${root})`;
   return `(x + ${-root})`;
 }
@@ -74,29 +74,45 @@ function buildSteps(
   p: number,
   q: number,
   factoredForm: string,
-  kind: 'standard' | 'perfect-square' | 'diff-squares' | 'zero-root',
+  kind: "standard" | "perfect-square" | "diff-squares" | "zero-root",
 ): string[] {
   const ac = a * c;
   const steps: string[] = [];
-  steps.push(`Start with the quadratic in standard form: a = ${a}, b = ${b}, c = ${c}. The quadratic is ${formatQuadratic(a, b, c)}.`);
+  steps.push(
+    `Start with the quadratic in standard form: a = ${a}, b = ${b}, c = ${c}. The quadratic is ${formatQuadratic(a, b, c)}.`,
+  );
 
-  if (kind === 'perfect-square') {
-    steps.push(`Notice this is a perfect square trinomial. Compute a*c = ${ac}. The factor pair of ${ac} that sums to b = ${b} is (${p}, ${q}) (both equal).`);
-    steps.push(`Rewrite the middle term ${b}x as (${p} + ${q})x = ${p}x + ${q}x and split into two terms.`);
-    steps.push(`Group the four terms into two pairs and factor each group to reveal the common binomial.`);
+  if (kind === "perfect-square") {
+    steps.push(
+      `Notice this is a perfect square trinomial. Compute a*c = ${ac}. The factor pair of ${ac} that sums to b = ${b} is (${p}, ${q}) (both equal).`,
+    );
+    steps.push(
+      `Rewrite the middle term ${b}x as (${p} + ${q})x = ${p}x + ${q}x and split into two terms.`,
+    );
+    steps.push(
+      `Group the four terms into two pairs and factor each group to reveal the common binomial.`,
+    );
     steps.push(`Combine to obtain the factored form: ${factoredForm}.`);
-  } else if (kind === 'diff-squares') {
-    steps.push(`Notice the middle coefficient is zero (b = 0) — this is a difference of squares. Compute a*c = ${ac}. The factor pair of ${ac} that sums to b = 0 is (${p}, ${q}).`);
+  } else if (kind === "diff-squares") {
+    steps.push(
+      `Notice the middle coefficient is zero (b = 0) — this is a difference of squares. Compute a*c = ${ac}. The factor pair of ${ac} that sums to b = 0 is (${p}, ${q}).`,
+    );
     steps.push(`Rewrite the middle term 0x as (${p} + ${q})x = ${p}x + ${q}x.`);
-    steps.push(`Group the four terms into two pairs: (a x^2 + ${p}x) and (${q}x + ${c}), then factor each group.`);
+    steps.push(
+      `Group the four terms into two pairs: (a x^2 + ${p}x) and (${q}x + ${c}), then factor each group.`,
+    );
     steps.push(`Combine to obtain the factored form: ${factoredForm}.`);
-  } else if (kind === 'zero-root') {
-    steps.push(`Since c = 0, the quadratic has a root at x = 0. Compute a*c = ${ac}. The factor pair of ${ac} that sums to b = ${b} is (${p}, ${q}).`);
+  } else if (kind === "zero-root") {
+    steps.push(
+      `Since c = 0, the quadratic has a root at x = 0. Compute a*c = ${ac}. The factor pair of ${ac} that sums to b = ${b} is (${p}, ${q}).`,
+    );
     steps.push(`Rewrite the middle term ${b}x as (${p} + ${q})x and split into two terms.`);
     steps.push(`Group the four terms into two pairs and factor x out of each group.`);
     steps.push(`Combine to obtain the factored form: ${factoredForm}.`);
   } else {
-    steps.push(`Compute a*c = ${ac}. Find a factor pair of ${ac} that sums to b = ${b}: the pair is (${p}, ${q}).`);
+    steps.push(
+      `Compute a*c = ${ac}. Find a factor pair of ${ac} that sums to b = ${b}: the pair is (${p}, ${q}).`,
+    );
     steps.push(`Rewrite the middle term ${b}x as (${p} + ${q})x and split into two terms.`);
     steps.push(`Group the four terms into two pairs and factor each group.`);
     steps.push(`Combine to obtain the factored form: ${factoredForm}.`);
@@ -112,7 +128,7 @@ interface Case {
   a: number;
   r1: number;
   r2: number;
-  kind: 'standard' | 'perfect-square' | 'diff-squares' | 'zero-root';
+  kind: "standard" | "perfect-square" | "diff-squares" | "zero-root";
 }
 
 function caseMonicPositive(rand: () => number): Case {
@@ -124,13 +140,13 @@ function caseMonicPositive(rand: () => number): Case {
     // Deterministic fallback: advance cyclically within [1, 6].
     r2 = r1 === 6 ? 1 : r1 + 1;
   }
-  return { a: 1, r1, r2, kind: 'standard' };
+  return { a: 1, r1, r2, kind: "standard" };
 }
 
 function caseMonicMixed(rand: () => number): Case {
   const r1 = randInt(rand, 1, 6);
   const r2 = -randInt(rand, 1, 6);
-  return { a: 1, r1, r2, kind: 'standard' };
+  return { a: 1, r1, r2, kind: "standard" };
 }
 
 function caseMonicBothNegative(rand: () => number): Case {
@@ -142,17 +158,17 @@ function caseMonicBothNegative(rand: () => number): Case {
     // Deterministic fallback: advance cyclically within [-6, -1].
     r2 = r1 === -6 ? -1 : r1 - 1;
   }
-  return { a: 1, r1, r2, kind: 'standard' };
+  return { a: 1, r1, r2, kind: "standard" };
 }
 
 function casePerfectSquare(rand: () => number): Case {
   const r = randNonZero(rand, 6);
-  return { a: 1, r1: r, r2: r, kind: 'perfect-square' };
+  return { a: 1, r1: r, r2: r, kind: "perfect-square" };
 }
 
 function caseDiffSquares(rand: () => number): Case {
   const r = randInt(rand, 1, 6);
-  return { a: 1, r1: r, r2: -r, kind: 'diff-squares' };
+  return { a: 1, r1: r, r2: -r, kind: "diff-squares" };
 }
 
 function caseAGt1(rand: () => number): Case {
@@ -161,7 +177,7 @@ function caseAGt1(rand: () => number): Case {
   if (subMode < 0.35) {
     // a>1 perfect square
     const r = randNonZero(rand, 4);
-    return { a, r1: r, r2: r, kind: 'perfect-square' };
+    return { a, r1: r, r2: r, kind: "perfect-square" };
   }
   // a>1 distinct roots
   const r1 = randNonZero(rand, 4);
@@ -170,9 +186,9 @@ function caseAGt1(rand: () => number): Case {
   let safety = 0;
   while (r2 === r1 && safety++ < 20) r2 = randNonZero(rand, 4);
   if (r1 === 0 || r2 === 0) {
-    return { a, r1, r2, kind: 'zero-root' };
+    return { a, r1, r2, kind: "zero-root" };
   }
-  return { a, r1, r2, kind: 'standard' };
+  return { a, r1, r2, kind: "standard" };
 }
 
 // ---------------------------------------------------------------------------
@@ -191,13 +207,25 @@ export function generateQuadraticFactoring(options: { seed: number }): Quadratic
   const mode = Math.floor(rand() * 6);
   let cs: Case;
   switch (mode) {
-    case 0: cs = caseMonicPositive(rand); break;
-    case 1: cs = caseMonicMixed(rand); break;
-    case 2: cs = caseMonicBothNegative(rand); break;
-    case 3: cs = casePerfectSquare(rand); break;
-    case 4: cs = caseDiffSquares(rand); break;
+    case 0:
+      cs = caseMonicPositive(rand);
+      break;
+    case 1:
+      cs = caseMonicMixed(rand);
+      break;
+    case 2:
+      cs = caseMonicBothNegative(rand);
+      break;
+    case 3:
+      cs = casePerfectSquare(rand);
+      break;
+    case 4:
+      cs = caseDiffSquares(rand);
+      break;
     case 5:
-    default: cs = caseAGt1(rand); break;
+    default:
+      cs = caseAGt1(rand);
+      break;
   }
 
   const { a, r1, r2, kind } = cs;

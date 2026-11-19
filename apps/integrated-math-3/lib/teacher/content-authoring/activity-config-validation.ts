@@ -18,7 +18,7 @@
  * activity config.
  */
 
-import { getPropsSchema, SCHEMA_REGISTRY } from '../../activities/schemas';
+import { getPropsSchema, SCHEMA_REGISTRY } from "../../activities/schemas";
 
 /** A single validation issue for an authored activity config. */
 export interface ActivityConfigError {
@@ -39,11 +39,11 @@ export type ActivityConfigValidationResult =
 function pathToStrings(path: ReadonlyArray<PropertyKey>): string[] {
   const out: string[] = [];
   for (const segment of path) {
-    if (typeof segment === 'number') {
+    if (typeof segment === "number") {
       out.push(String(segment));
-    } else if (typeof segment === 'string') {
+    } else if (typeof segment === "string") {
       out.push(segment);
-    } else if (typeof segment === 'symbol') {
+    } else if (typeof segment === "symbol") {
       out.push(segment.toString());
     } else {
       out.push(String(segment));
@@ -70,14 +70,14 @@ export function validateActivityConfig(
   componentKey: string,
   props: Record<string, unknown>,
 ): ActivityConfigValidationResult {
-  if (typeof componentKey !== 'string' || componentKey.length === 0) {
+  if (typeof componentKey !== "string" || componentKey.length === 0) {
     return {
       success: false,
       errors: [
         {
-          componentKey: typeof componentKey === 'string' ? componentKey : '',
+          componentKey: typeof componentKey === "string" ? componentKey : "",
           path: [],
-          message: 'Activity component key must be a non-empty string',
+          message: "Activity component key must be a non-empty string",
         },
       ],
     };

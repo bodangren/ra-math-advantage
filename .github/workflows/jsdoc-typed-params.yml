@@ -24,22 +24,22 @@ on:
       - master
       - main
     paths:
-      - 'apps/integrated-math-3/convex/**'
-      - 'apps/integrated-math-3/components/**'
-      - 'apps/integrated-math-3/lib/**'
-      - 'apps/integrated-math-3/app/**'
-      - 'packages/**'
-      - 'measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh'
-      - '.github/workflows/jsdoc-typed-params.yml'
+      - "apps/integrated-math-3/convex/**"
+      - "apps/integrated-math-3/components/**"
+      - "apps/integrated-math-3/lib/**"
+      - "apps/integrated-math-3/app/**"
+      - "packages/**"
+      - "measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh"
+      - ".github/workflows/jsdoc-typed-params.yml"
   pull_request:
     paths:
-      - 'apps/integrated-math-3/convex/**'
-      - 'apps/integrated-math-3/components/**'
-      - 'apps/integrated-math-3/lib/**'
-      - 'apps/integrated-math-3/app/**'
-      - 'packages/**'
-      - 'measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh'
-      - '.github/workflows/jsdoc-typed-params.yml'
+      - "apps/integrated-math-3/convex/**"
+      - "apps/integrated-math-3/components/**"
+      - "apps/integrated-math-3/lib/**"
+      - "apps/integrated-math-3/app/**"
+      - "packages/**"
+      - "measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh"
+      - ".github/workflows/jsdoc-typed-params.yml"
   workflow_dispatch:
 
 concurrency:

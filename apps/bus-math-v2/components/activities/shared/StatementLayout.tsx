@@ -1,21 +1,21 @@
-'use client';
+"use client";
 
-import { useMemo, useState, type ReactNode } from 'react';
+import { useMemo, useState, type ReactNode } from "react";
 
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import type { PracticeMode } from '@/lib/practice/engine/types';
-import { cn } from '@/lib/utils';
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import type { PracticeMode } from "@/lib/practice/engine/types";
+import { cn } from "@/lib/utils";
 
-import { formatAccountingAmount, toNumber } from './utils';
-import { TeachingModePanel } from './TeachingModePanel';
+import { formatAccountingAmount, toNumber } from "./utils";
+import { TeachingModePanel } from "./TeachingModePanel";
 
 export interface StatementLayoutRow {
   id: string;
   label: string;
-  kind: 'editable' | 'prefilled' | 'computed' | 'subtotal';
-  editableField?: 'amount' | 'label';
+  kind: "editable" | "prefilled" | "computed" | "subtotal";
+  editableField?: "amount" | "label";
   value?: number | string;
   placeholder?: string;
   sumOf?: string[];
@@ -30,7 +30,7 @@ export interface StatementLayoutSection {
 }
 
 export interface StatementLayoutFeedback {
-  status: 'correct' | 'incorrect' | 'partial';
+  status: "correct" | "incorrect" | "partial";
   message?: string;
   misconceptionTags?: string[];
 }
@@ -62,22 +62,21 @@ export interface StatementLayoutProps {
  * @param status - The feedback status of the row
  * @returns CSS class string for the row's visual state
  */
-function getRowStatusClasses(status?: StatementLayoutFeedback['status']) {
-  if (status === 'correct') {
-    return 'border-emerald-500/40 bg-emerald-50/70';
+function getRowStatusClasses(status?: StatementLayoutFeedback["status"]) {
+  if (status === "correct") {
+    return "border-emerald-500/40 bg-emerald-50/70";
   }
 
-  if (status === 'incorrect') {
-    return 'border-destructive/30 bg-destructive/10';
+  if (status === "incorrect") {
+    return "border-destructive/30 bg-destructive/10";
   }
 
-  if (status === 'partial') {
-    return 'border-amber-500/40 bg-amber-50/80';
+  if (status === "partial") {
+    return "border-amber-500/40 bg-amber-50/80";
   }
 
-  return 'border-border bg-background';
+  return "border-border bg-background";
 }
-
 
 /**
  * Renders a small chip displaying a label-value pair used in the
@@ -95,7 +94,6 @@ function SummaryChip({ label, value }: StatementLayoutSummaryItem) {
   );
 }
 
-
 /**
  * Checks whether a row's label text is user-editable.
  *
@@ -103,9 +101,8 @@ function SummaryChip({ label, value }: StatementLayoutSummaryItem) {
  * @returns `true` if the row is editable and targets the label field.
  */
 function isLabelEditableRow(row: StatementLayoutRow) {
-  return row.kind === 'editable' && row.editableField === 'label';
+  return row.kind === "editable" && row.editableField === "label";
 }
-
 
 /**
  * Checks whether a row's amount value is user-editable.
@@ -114,9 +111,8 @@ function isLabelEditableRow(row: StatementLayoutRow) {
  * @returns `true` if the row is editable and targets the amount field.
  */
 function isAmountEditableRow(row: StatementLayoutRow) {
-  return row.kind === 'editable' && row.editableField !== 'label';
+  return row.kind === "editable" && row.editableField !== "label";
 }
-
 
 /**
  * Format a statement amount for display, wrapping negative values in
@@ -125,19 +121,18 @@ function isAmountEditableRow(row: StatementLayoutRow) {
  * @param value - The amount to format.
  * @returns A formatted string or a dash for empty values.
  */
-function formatStatementAmount(value: number | string | '' | null | undefined) {
-  if (value === '' || value === null || value === undefined) {
-    return '—';
+function formatStatementAmount(value: number | string | "" | null | undefined) {
+  if (value === "" || value === null || value === undefined) {
+    return "—";
   }
 
-  const numericValue = typeof value === 'number' ? value : Number(value);
+  const numericValue = typeof value === "number" ? value : Number(value);
   if (Number.isFinite(numericValue) && numericValue < 0) {
     return `(${formatAccountingAmount(Math.abs(numericValue))})`;
   }
 
   return formatAccountingAmount(value);
 }
-
 
 /**
  * Determine the border rule for a subtotal row.
@@ -148,13 +143,12 @@ function formatStatementAmount(value: number | string | '' | null | undefined) {
  * @returns `'single'`, `'double'`, or `'none'`.
  */
 function getRowRule(row: StatementLayoutRow, index: number, rows: StatementLayoutRow[]) {
-  if (row.kind !== 'subtotal') {
-    return 'none';
+  if (row.kind !== "subtotal") {
+    return "none";
   }
 
-  return index === rows.length - 1 ? 'double' : 'single';
+  return index === rows.length - 1 ? "double" : "single";
 }
-
 
 /**
  * Financial statement layout with editable line items, subtotal computation,
@@ -177,12 +171,11 @@ export function StatementLayout({
   scenarioPanel,
   scaffoldText,
   reviewSummary,
-  mode = 'guided_practice',
+  mode = "guided_practice",
 }: StatementLayoutProps) {
   const [internalValues, setInternalValues] = useState<Record<string, string>>(defaultValues ?? {});
   const currentValues = values ?? internalValues;
-  const [announcement, setAnnouncement] = useState('');
-
+  const [announcement, setAnnouncement] = useState("");
 
   /**
    * Update the current values and propagate to controlled state.
@@ -196,15 +189,20 @@ export function StatementLayout({
     onValueChange?.(nextValues);
   };
 
-  const rowCount = useMemo(() => sections.reduce((sum, section) => sum + section.rows.length, 0), [sections]);
+  const rowCount = useMemo(
+    () => sections.reduce((sum, section) => sum + section.rows.length, 0),
+    [sections],
+  );
   const rowLookup = useMemo(() => {
-    return new Map(sections.flatMap((section) => section.rows.map((row) => [row.id, row] as const)));
+    return new Map(
+      sections.flatMap((section) => section.rows.map((row) => [row.id, row] as const)),
+    );
   }, [sections]);
   const teachingSteps = useMemo(
     () => [
-      'Read the section heading, then trace the line items from top to bottom.',
-      'Fill each line item before you move to the subtotal line.',
-      'Use the inner amount for row work and the outer total column for the final total.',
+      "Read the section heading, then trace the line items from top to bottom.",
+      "Fill each line item before you move to the subtotal line.",
+      "Use the inner amount for row work and the outer total column for the final total.",
     ],
     [],
   );
@@ -219,18 +217,19 @@ export function StatementLayout({
     }
 
     const editableRowCount = sections.reduce(
-      (sum, section) => sum + section.rows.filter((row) => row.kind === 'editable').length,
+      (sum, section) => sum + section.rows.filter((row) => row.kind === "editable").length,
       0,
     );
-    const reviewCount = Object.values(rowFeedback).filter((feedback) => feedback.status !== 'correct').length;
+    const reviewCount = Object.values(rowFeedback).filter(
+      (feedback) => feedback.status !== "correct",
+    ).length;
 
     return [
-      { label: 'Rows', value: String(rowCount) },
-      { label: 'Editable', value: String(editableRowCount) },
-      { label: 'Needs review', value: String(reviewCount) },
+      { label: "Rows", value: String(rowCount) },
+      { label: "Editable", value: String(editableRowCount) },
+      { label: "Needs review", value: String(reviewCount) },
     ];
   }, [reviewSummary, teacherView, sections, rowCount, rowFeedback]);
-
 
   /**
    * Compute a subtotal row's value by summing its referenced rows.
@@ -240,12 +239,14 @@ export function StatementLayout({
    */
   const computeSubtotal = (row: StatementLayoutRow) => {
     if (!row.sumOf?.length) {
-      return row.value ?? '';
+      return row.value ?? "";
     }
 
-    return row.sumOf.reduce((sum, rowId) => sum + toNumber(currentValues[rowId] ?? rowLookup.get(rowId)?.value ?? 0), 0);
+    return row.sumOf.reduce(
+      (sum, rowId) => sum + toNumber(currentValues[rowId] ?? rowLookup.get(rowId)?.value ?? 0),
+      0,
+    );
   };
-
 
   /**
    * Resolve the raw value to display for a statement row.
@@ -254,22 +255,21 @@ export function StatementLayout({
    * @returns The value to display or edit.
    */
   const renderAmountValue = (row: StatementLayoutRow) => {
-    if (row.kind === 'subtotal') {
+    if (row.kind === "subtotal") {
       const subtotal = computeSubtotal(row);
-      return subtotal === '' ? '' : subtotal;
+      return subtotal === "" ? "" : subtotal;
     }
 
     if (isLabelEditableRow(row)) {
-      return row.value ?? '';
+      return row.value ?? "";
     }
 
     if (isAmountEditableRow(row)) {
-      return currentValues[row.id] ?? '';
+      return currentValues[row.id] ?? "";
     }
 
-    return row.value ?? '';
+    return row.value ?? "";
   };
-
 
   /**
    * Format a row value for display.
@@ -278,14 +278,13 @@ export function StatementLayout({
    * @param value - The raw value to format.
    * @returns A formatted display string.
    */
-  const renderDisplayValue = (row: StatementLayoutRow, value: number | string | '') => {
+  const renderDisplayValue = (row: StatementLayoutRow, value: number | string | "") => {
     if (isLabelEditableRow(row) || isAmountEditableRow(row)) {
       return formatStatementAmount(value);
     }
 
     return formatStatementAmount(value);
   };
-
 
   /**
    * Render a single statement row in desktop or mobile variant.
@@ -302,18 +301,21 @@ export function StatementLayout({
     rowIndex: number,
     rows: StatementLayoutRow[],
     rowFeedbackForRow?: StatementLayoutFeedback,
-    variant: 'desktop' | 'mobile' = 'desktop',
+    variant: "desktop" | "mobile" = "desktop",
   ) => {
     const value = renderAmountValue(row);
     const formattedValue = renderDisplayValue(row, value);
     const statusClass = getRowStatusClasses(rowFeedbackForRow?.status);
-    const noteId = row.note ? `${row.id}-note${variant === 'mobile' ? '-mobile' : ''}` : undefined;
-    const feedbackId = teacherView && rowFeedbackForRow?.message ? `${row.id}-feedback${variant === 'mobile' ? '-mobile' : ''}` : undefined;
-    const describedBy = [noteId, feedbackId].filter(Boolean).join(' ') || undefined;
+    const noteId = row.note ? `${row.id}-note${variant === "mobile" ? "-mobile" : ""}` : undefined;
+    const feedbackId =
+      teacherView && rowFeedbackForRow?.message
+        ? `${row.id}-feedback${variant === "mobile" ? "-mobile" : ""}`
+        : undefined;
+    const describedBy = [noteId, feedbackId].filter(Boolean).join(" ") || undefined;
     const rowRule = getRowRule(row, rowIndex, rows);
-    const isSubtotal = row.kind === 'subtotal';
+    const isSubtotal = row.kind === "subtotal";
 
-    if (variant === 'desktop') {
+    if (variant === "desktop") {
       return (
         <div
           key={row.id}
@@ -321,20 +323,22 @@ export function StatementLayout({
           data-row-kind={row.kind}
           data-row-rule={rowRule}
           className={cn(
-            'grid items-start gap-3 px-4 transition-colors duration-150',
+            "grid items-start gap-3 px-4 transition-colors duration-150",
             teacherView
-              ? 'grid-cols-[minmax(0,1.6fr)_minmax(0,0.82fr)_minmax(0,0.82fr)_minmax(0,1.15fr)]'
-              : 'grid-cols-[minmax(0,1.6fr)_minmax(0,0.82fr)_minmax(0,0.82fr)]',
-            isSubtotal && 'border-t-2 border-border bg-muted/35 font-semibold',
-            row.kind === 'prefilled' && 'bg-muted/10',
-            row.kind === 'editable' && 'bg-background',
+              ? "grid-cols-[minmax(0,1.6fr)_minmax(0,0.82fr)_minmax(0,0.82fr)_minmax(0,1.15fr)]"
+              : "grid-cols-[minmax(0,1.6fr)_minmax(0,0.82fr)_minmax(0,0.82fr)]",
+            isSubtotal && "border-t-2 border-border bg-muted/35 font-semibold",
+            row.kind === "prefilled" && "bg-muted/10",
+            row.kind === "editable" && "bg-background",
             statusClass,
-            !teacherView && row.kind === 'editable' && 'hover:bg-accent/10 focus-within:bg-accent/10',
-            teacherView && rowFeedbackForRow && 'focus-within:bg-accent/10',
-            row.kind === 'editable' ? 'py-4' : 'py-3',
+            !teacherView &&
+              row.kind === "editable" &&
+              "hover:bg-accent/10 focus-within:bg-accent/10",
+            teacherView && rowFeedbackForRow && "focus-within:bg-accent/10",
+            row.kind === "editable" ? "py-4" : "py-3",
           )}
         >
-          <div className={cn('space-y-1 py-0.5', isSubtotal ? 'pl-2' : 'pl-6')}>
+          <div className={cn("space-y-1 py-0.5", isSubtotal ? "pl-2" : "pl-6")}>
             {isLabelEditableRow(row) && !readOnly ? (
               <div className="rounded-xl border border-border/80 bg-background px-2 py-1 shadow-inner focus-within:ring-1 focus-within:ring-ring">
                 <Input
@@ -344,7 +348,7 @@ export function StatementLayout({
                   aria-label={row.label}
                   aria-describedby={describedBy}
                   placeholder={row.placeholder ?? row.label}
-                  value={currentValues[row.id] ?? ''}
+                  value={currentValues[row.id] ?? ""}
                   onChange={(event) => {
                     const nextValue = event.target.value;
                     updateValues({
@@ -356,8 +360,15 @@ export function StatementLayout({
                 />
               </div>
             ) : (
-              <div className={cn('text-sm font-medium md:text-[15px]', row.kind === 'prefilled' && 'text-muted-foreground')}>
-                {isLabelEditableRow(row) ? currentValues[row.id] ?? row.placeholder ?? '—' : row.label}
+              <div
+                className={cn(
+                  "text-sm font-medium md:text-[15px]",
+                  row.kind === "prefilled" && "text-muted-foreground",
+                )}
+              >
+                {isLabelEditableRow(row)
+                  ? (currentValues[row.id] ?? row.placeholder ?? "—")
+                  : row.label}
               </div>
             )}
             {row.note && (
@@ -368,7 +379,10 @@ export function StatementLayout({
           </div>
           <div className="flex justify-end py-0.5">
             {isSubtotal ? (
-              <span aria-hidden className="inline-flex min-h-11 min-w-32 items-center justify-end rounded-md px-2 py-1 text-right tabular-nums md:min-w-36">
+              <span
+                aria-hidden
+                className="inline-flex min-h-11 min-w-32 items-center justify-end rounded-md px-2 py-1 text-right tabular-nums md:min-w-36"
+              >
                 &nbsp;
               </span>
             ) : isAmountEditableRow(row) && !readOnly ? (
@@ -379,8 +393,8 @@ export function StatementLayout({
                   className="h-11 border-0 bg-transparent px-0 text-right tabular-nums shadow-none focus-visible:ring-0"
                   aria-label={row.label}
                   aria-describedby={describedBy}
-                  placeholder={row.placeholder ?? '0'}
-                  value={currentValues[row.id] ?? ''}
+                  placeholder={row.placeholder ?? "0"}
+                  value={currentValues[row.id] ?? ""}
                   onChange={(event) => {
                     const nextValue = event.target.value;
                     updateValues({
@@ -394,11 +408,11 @@ export function StatementLayout({
             ) : (
               <span
                 className={cn(
-                  'inline-flex min-h-11 min-w-32 items-center justify-end rounded-md px-2 py-1 text-right tabular-nums text-foreground md:min-w-36',
-                  row.kind === 'prefilled' && 'text-muted-foreground',
+                  "inline-flex min-h-11 min-w-32 items-center justify-end rounded-md px-2 py-1 text-right tabular-nums text-foreground md:min-w-36",
+                  row.kind === "prefilled" && "text-muted-foreground",
                 )}
               >
-                {formattedValue === '' ? '—' : formattedValue}
+                {formattedValue === "" ? "—" : formattedValue}
               </span>
             )}
           </div>
@@ -406,15 +420,18 @@ export function StatementLayout({
             {isSubtotal ? (
               <span
                 className={cn(
-                  'inline-flex min-h-11 min-w-32 items-center justify-end rounded-md px-2 py-1 text-right tabular-nums text-foreground md:min-w-36',
-                  rowRule === 'single' && 'border-t border-border',
-                  rowRule === 'double' && 'border-t-2 border-border font-semibold',
+                  "inline-flex min-h-11 min-w-32 items-center justify-end rounded-md px-2 py-1 text-right tabular-nums text-foreground md:min-w-36",
+                  rowRule === "single" && "border-t border-border",
+                  rowRule === "double" && "border-t-2 border-border font-semibold",
                 )}
               >
-                {formattedValue === '' ? '—' : formattedValue}
+                {formattedValue === "" ? "—" : formattedValue}
               </span>
             ) : (
-              <span aria-hidden className="inline-flex min-h-11 min-w-32 items-center justify-end rounded-md px-2 py-1 text-right tabular-nums md:min-w-36">
+              <span
+                aria-hidden
+                className="inline-flex min-h-11 min-w-32 items-center justify-end rounded-md px-2 py-1 text-right tabular-nums md:min-w-36"
+              >
                 &nbsp;
               </span>
             )}
@@ -426,10 +443,10 @@ export function StatementLayout({
                   <div
                     id={feedbackId}
                     className={cn(
-                      'text-xs font-medium',
-                      rowFeedbackForRow.status === 'correct' && 'text-emerald-700',
-                      rowFeedbackForRow.status === 'incorrect' && 'text-destructive',
-                      rowFeedbackForRow.status === 'partial' && 'text-amber-700',
+                      "text-xs font-medium",
+                      rowFeedbackForRow.status === "correct" && "text-emerald-700",
+                      rowFeedbackForRow.status === "incorrect" && "text-destructive",
+                      rowFeedbackForRow.status === "partial" && "text-amber-700",
                     )}
                   >
                     {rowFeedbackForRow.message ?? rowFeedbackForRow.status}
@@ -460,12 +477,12 @@ export function StatementLayout({
         data-row-kind={row.kind}
         data-row-rule={rowRule}
         className={cn(
-          'space-y-3 rounded-2xl border px-4 py-4 transition-colors duration-150',
-          isSubtotal && 'border-t-2 border-border bg-muted/35 font-semibold',
-          row.kind === 'prefilled' && 'bg-muted/10',
-          row.kind === 'editable' && 'bg-background',
+          "space-y-3 rounded-2xl border px-4 py-4 transition-colors duration-150",
+          isSubtotal && "border-t-2 border-border bg-muted/35 font-semibold",
+          row.kind === "prefilled" && "bg-muted/10",
+          row.kind === "editable" && "bg-background",
           statusClass,
-          row.kind === 'editable' && 'hover:bg-accent/10 focus-within:bg-accent/10',
+          row.kind === "editable" && "hover:bg-accent/10 focus-within:bg-accent/10",
         )}
       >
         <div className="space-y-1">
@@ -478,7 +495,7 @@ export function StatementLayout({
                 aria-label={row.label}
                 aria-describedby={describedBy}
                 placeholder={row.placeholder ?? row.label}
-                value={currentValues[row.id] ?? ''}
+                value={currentValues[row.id] ?? ""}
                 onChange={(event) => {
                   const nextValue = event.target.value;
                   updateValues({
@@ -490,8 +507,15 @@ export function StatementLayout({
               />
             </div>
           ) : (
-            <div className={cn('text-sm font-medium', row.kind === 'prefilled' && 'text-muted-foreground')}>
-              {isLabelEditableRow(row) ? currentValues[row.id] ?? row.placeholder ?? '—' : row.label}
+            <div
+              className={cn(
+                "text-sm font-medium",
+                row.kind === "prefilled" && "text-muted-foreground",
+              )}
+            >
+              {isLabelEditableRow(row)
+                ? (currentValues[row.id] ?? row.placeholder ?? "—")
+                : row.label}
             </div>
           )}
           {row.note && (
@@ -509,8 +533,8 @@ export function StatementLayout({
                 className="h-11 border-0 bg-transparent px-0 text-right tabular-nums shadow-none focus-visible:ring-0"
                 aria-label={row.label}
                 aria-describedby={describedBy}
-                placeholder={row.placeholder ?? '0'}
-                value={currentValues[row.id] ?? ''}
+                placeholder={row.placeholder ?? "0"}
+                value={currentValues[row.id] ?? ""}
                 onChange={(event) => {
                   const nextValue = event.target.value;
                   updateValues({
@@ -524,12 +548,12 @@ export function StatementLayout({
           ) : (
             <div
               className={cn(
-                'flex min-h-11 items-center justify-end rounded-md px-2 py-1 text-right tabular-nums',
-                row.kind === 'prefilled' && 'text-muted-foreground',
-                row.kind === 'subtotal' && 'font-semibold text-foreground',
+                "flex min-h-11 items-center justify-end rounded-md px-2 py-1 text-right tabular-nums",
+                row.kind === "prefilled" && "text-muted-foreground",
+                row.kind === "subtotal" && "font-semibold text-foreground",
               )}
             >
-              {formattedValue === '' ? '—' : formattedValue}
+              {formattedValue === "" ? "—" : formattedValue}
             </div>
           )}
         </div>
@@ -540,10 +564,10 @@ export function StatementLayout({
                 <div
                   id={feedbackId}
                   className={cn(
-                    'text-xs font-medium',
-                    rowFeedbackForRow.status === 'correct' && 'text-emerald-700',
-                    rowFeedbackForRow.status === 'incorrect' && 'text-destructive',
-                    rowFeedbackForRow.status === 'partial' && 'text-amber-700',
+                    "text-xs font-medium",
+                    rowFeedbackForRow.status === "correct" && "text-emerald-700",
+                    rowFeedbackForRow.status === "incorrect" && "text-destructive",
+                    rowFeedbackForRow.status === "partial" && "text-amber-700",
                   )}
                 >
                   {rowFeedbackForRow.message ?? rowFeedbackForRow.status}
@@ -568,19 +592,32 @@ export function StatementLayout({
   };
 
   return (
-    <Card data-layout="statement-sheet" className="w-full overflow-hidden border-border/70 bg-gradient-to-b from-background to-muted/15 shadow-sm">
+    <Card
+      data-layout="statement-sheet"
+      className="w-full overflow-hidden border-border/70 bg-gradient-to-b from-background to-muted/15 shadow-sm"
+    >
       <CardHeader className="space-y-4 border-b bg-muted/20 px-6 py-6 text-center">
         <div className="space-y-1">
-          <CardTitle className="text-pretty text-3xl font-semibold uppercase tracking-[0.28em]">{title}</CardTitle>
-          {description && <CardDescription className="text-sm uppercase tracking-[0.18em]">{description}</CardDescription>}
+          <CardTitle className="text-pretty text-3xl font-semibold uppercase tracking-[0.28em]">
+            {title}
+          </CardTitle>
+          {description && (
+            <CardDescription className="text-sm uppercase tracking-[0.18em]">
+              {description}
+            </CardDescription>
+          )}
         </div>
-        {scenarioPanel && <div className="mx-auto w-full max-w-4xl rounded-2xl border border-border/70 bg-card p-4 text-left shadow-sm">{scenarioPanel}</div>}
+        {scenarioPanel && (
+          <div className="mx-auto w-full max-w-4xl rounded-2xl border border-border/70 bg-card p-4 text-left shadow-sm">
+            {scenarioPanel}
+          </div>
+        )}
         {scaffoldText && (
           <div className="mx-auto w-full max-w-4xl rounded-2xl border border-dashed border-border/70 bg-background/90 px-4 py-3 text-left text-sm text-muted-foreground shadow-sm">
             {scaffoldText}
           </div>
         )}
-        {mode === 'teaching' && (
+        {mode === "teaching" && (
           <TeachingModePanel
             title="Statement walkthrough"
             summary="Walk the class through the statement from the heading down to the total line."
@@ -600,17 +637,21 @@ export function StatementLayout({
         {sections.map((section) => (
           <section key={section.id} className="space-y-4">
             <div className="space-y-1 text-center">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.28em] text-muted-foreground">{section.label}</h3>
-              {section.description && <p className="text-sm text-muted-foreground">{section.description}</p>}
+              <h3 className="text-xs font-semibold uppercase tracking-[0.28em] text-muted-foreground">
+                {section.label}
+              </h3>
+              {section.description && (
+                <p className="text-sm text-muted-foreground">{section.description}</p>
+              )}
             </div>
             <div className="hidden md:block">
               <div className="overflow-hidden rounded-3xl border border-border/70 bg-background/95 shadow-sm">
                 <div
                   className={cn(
-                    'grid border-b bg-muted/35 px-4 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground',
+                    "grid border-b bg-muted/35 px-4 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground",
                     teacherView
-                      ? 'grid-cols-[minmax(0,1.6fr)_minmax(0,0.82fr)_minmax(0,0.82fr)_minmax(0,1.15fr)]'
-                      : 'grid-cols-[minmax(0,1.6fr)_minmax(0,0.82fr)_minmax(0,0.82fr)]',
+                      ? "grid-cols-[minmax(0,1.6fr)_minmax(0,0.82fr)_minmax(0,0.82fr)_minmax(0,1.15fr)]"
+                      : "grid-cols-[minmax(0,1.6fr)_minmax(0,0.82fr)_minmax(0,0.82fr)]",
                   )}
                 >
                   <div>Line item</div>
@@ -619,13 +660,17 @@ export function StatementLayout({
                   {teacherView && <div>Review</div>}
                 </div>
                 <div className="divide-y divide-border">
-                  {section.rows.map((row, index) => renderRow(row, index, section.rows, rowFeedback[row.id], 'desktop'))}
+                  {section.rows.map((row, index) =>
+                    renderRow(row, index, section.rows, rowFeedback[row.id], "desktop"),
+                  )}
                 </div>
               </div>
             </div>
 
             <div className="space-y-3 md:hidden">
-              {section.rows.map((row, index) => renderRow(row, index, section.rows, rowFeedback[row.id], 'mobile'))}
+              {section.rows.map((row, index) =>
+                renderRow(row, index, section.rows, rowFeedback[row.id], "mobile"),
+              )}
             </div>
           </section>
         ))}

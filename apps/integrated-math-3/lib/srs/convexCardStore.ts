@@ -13,7 +13,7 @@ import { resolveReviewParamsVersion } from "../../convex/srs/paramsVersion";
 export function toProfileId(studentId: string): Id<"profiles"> {
   const trimmed = studentId.trim();
   if (!trimmed) {
-    throw new Error('studentId must be a non-empty string');
+    throw new Error("studentId must be a non-empty string");
   }
   return trimmed as Id<"profiles">;
 }
@@ -37,7 +37,10 @@ export class ConvexCardStore implements CardStore {
     return result;
   }
 
-  async getCardByStudentAndVariant(studentId: string, variantKey: string): Promise<SrsCardState | null> {
+  async getCardByStudentAndVariant(
+    studentId: string,
+    variantKey: string,
+  ): Promise<SrsCardState | null> {
     const result = await this.ctx.runQuery(internal.srs.cards.getCardByStudentAndVariant, {
       studentId: toProfileId(studentId),
       variantKey,
@@ -138,8 +141,6 @@ export class ConvexCardStore implements CardStore {
 }
 
 /** Creates a Convex-backed card store instance for the given mutation context. */
-export function createConvexCardStore(
-  ctx: MutationCtx
-): ConvexCardStore {
+export function createConvexCardStore(ctx: MutationCtx): ConvexCardStore {
   return new ConvexCardStore(ctx);
 }

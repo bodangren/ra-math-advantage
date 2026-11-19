@@ -1,21 +1,21 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { PhaseCompleteButton } from '@/components/lesson/PhaseCompleteButton';
-import type { CompletePhaseResponse, SkipPhaseResponse } from '@/types/api';
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { PhaseCompleteButton } from "@/components/lesson/PhaseCompleteButton";
+import type { CompletePhaseResponse, SkipPhaseResponse } from "@/types/api";
 
 // Mock the phase completion client
-vi.mock('@/lib/phase-completion/client', () => ({
+vi.mock("@/lib/phase-completion/client", () => ({
   completePhaseRequest: vi.fn(),
   skipPhaseRequest: vi.fn(),
   PhaseCompletionError: class PhaseCompletionError extends Error {},
   PhaseSkipError: class PhaseSkipError extends Error {},
 }));
 
-import { completePhaseRequest, skipPhaseRequest } from '@/lib/phase-completion/client';
+import { completePhaseRequest, skipPhaseRequest } from "@/lib/phase-completion/client";
 const mockCompletePhase = vi.mocked(completePhaseRequest);
 const mockSkipPhase = vi.mocked(skipPhaseRequest);
 
-describe('PhaseCompleteButton', () => {
+describe("PhaseCompleteButton", () => {
   beforeEach(() => {
     mockCompletePhase.mockReset();
   });
@@ -24,122 +24,105 @@ describe('PhaseCompleteButton', () => {
     vi.restoreAllMocks();
   });
 
-  describe('rendering', () => {
-    it('renders a Mark Complete button by default', () => {
-      render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} />
-      );
-      expect(screen.getByRole('button', { name: /mark complete/i })).toBeInTheDocument();
+  describe("rendering", () => {
+    it("renders a Mark Complete button by default", () => {
+      render(<PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} />);
+      expect(screen.getByRole("button", { name: /mark complete/i })).toBeInTheDocument();
     });
 
-    it('renders as enabled when not disabled', () => {
-      render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} />
-      );
-      expect(screen.getByRole('button', { name: /mark complete/i })).not.toBeDisabled();
+    it("renders as enabled when not disabled", () => {
+      render(<PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} />);
+      expect(screen.getByRole("button", { name: /mark complete/i })).not.toBeDisabled();
     });
 
-    it('renders as disabled when disabled prop is true', () => {
-      render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} disabled />
-      );
-      expect(screen.getByRole('button', { name: /mark complete/i })).toBeDisabled();
+    it("renders as disabled when disabled prop is true", () => {
+      render(<PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} disabled />);
+      expect(screen.getByRole("button", { name: /mark complete/i })).toBeDisabled();
     });
 
-    it('renders already-completed state when initialStatus is completed', () => {
-      render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} initialStatus="completed" />
-      );
-      expect(screen.getByRole('button')).toBeDisabled();
+    it("renders already-completed state when initialStatus is completed", () => {
+      render(<PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} initialStatus="completed" />);
+      expect(screen.getByRole("button")).toBeDisabled();
       expect(screen.getByText(/completed/i)).toBeInTheDocument();
     });
   });
 
-  describe('completion flow', () => {
-    it('calls completePhaseRequest on click', async () => {
+  describe("completion flow", () => {
+    it("calls completePhaseRequest on click", async () => {
       mockCompletePhase.mockResolvedValueOnce({ success: true });
 
-      render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={2} />
-      );
-      fireEvent.click(screen.getByRole('button', { name: /mark complete/i }));
+      render(<PhaseCompleteButton lessonId="lesson-1" phaseNumber={2} />);
+      fireEvent.click(screen.getByRole("button", { name: /mark complete/i }));
 
       await waitFor(() => {
         expect(mockCompletePhase).toHaveBeenCalledOnce();
       });
 
       const call = mockCompletePhase.mock.calls[0][0];
-      expect(call.lessonId).toBe('lesson-1');
+      expect(call.lessonId).toBe("lesson-1");
       expect(call.phaseNumber).toBe(2);
     });
 
-    it('shows completed state after successful completion', async () => {
+    it("shows completed state after successful completion", async () => {
       mockCompletePhase.mockResolvedValueOnce({ success: true });
 
-      render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} />
-      );
-      fireEvent.click(screen.getByRole('button', { name: /mark complete/i }));
+      render(<PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} />);
+      fireEvent.click(screen.getByRole("button", { name: /mark complete/i }));
 
       await waitFor(() => {
         expect(screen.getByText(/completed/i)).toBeInTheDocument();
       });
     });
 
-    it('disables button after successful completion', async () => {
+    it("disables button after successful completion", async () => {
       mockCompletePhase.mockResolvedValueOnce({ success: true });
 
-      render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} />
-      );
-      fireEvent.click(screen.getByRole('button'));
+      render(<PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} />);
+      fireEvent.click(screen.getByRole("button"));
 
       await waitFor(() => {
-        expect(screen.getByRole('button')).toBeDisabled();
+        expect(screen.getByRole("button")).toBeDisabled();
       });
     });
 
-    it('shows error message on failure', async () => {
-      mockCompletePhase.mockRejectedValueOnce(new Error('Network error'));
+    it("shows error message on failure", async () => {
+      mockCompletePhase.mockRejectedValueOnce(new Error("Network error"));
 
-      render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} />
-      );
-      fireEvent.click(screen.getByRole('button', { name: /mark complete/i }));
+      render(<PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} />);
+      fireEvent.click(screen.getByRole("button", { name: /mark complete/i }));
 
       await waitFor(() => {
-        expect(screen.getByRole('alert')).toBeInTheDocument();
+        expect(screen.getByRole("alert")).toBeInTheDocument();
       });
     });
 
-    it('relabels the existing primary action as the only retry and reuses the exact cached completion request', async () => {
-      vi.spyOn(Date, 'now')
+    it("relabels the existing primary action as the only retry and reuses the exact cached completion request", async () => {
+      vi.spyOn(Date, "now")
         .mockReturnValueOnce(1_000)
         .mockReturnValueOnce(62_000)
         .mockReturnValueOnce(62_001)
         .mockReturnValue(900_000);
       mockCompletePhase
-        .mockRejectedValueOnce(new Error('Temporary completion failure'))
+        .mockRejectedValueOnce(new Error("Temporary completion failure"))
         .mockResolvedValueOnce({ success: true, nextPhaseUnlocked: true });
 
-      render(
-        <PhaseCompleteButton lessonId="module-1-lesson-1" phaseNumber={4} />,
-      );
-      const completionAction = screen.getByRole('button', { name: /mark complete/i });
+      render(<PhaseCompleteButton lessonId="module-1-lesson-1" phaseNumber={4} />);
+      const completionAction = screen.getByRole("button", { name: /mark complete/i });
       fireEvent.click(completionAction);
 
-      const alert = await screen.findByRole('alert');
+      const alert = await screen.findByRole("alert");
       expect(alert).toHaveTextContent(/temporary completion failure/i);
-      const retry = screen.getByRole('button', { name: /^retry completion$/i });
+      const retry = screen.getByRole("button", { name: /^retry completion$/i });
       expect(retry).toBe(completionAction);
       expect(retry).toBeEnabled();
-      expect(screen.getAllByRole('button', { name: /mark complete|retry completion/i }))
-        .toStrictEqual([completionAction]);
-      expect(alert.querySelector('button')).toBeNull();
+      expect(
+        screen.getAllByRole("button", { name: /mark complete|retry completion/i }),
+      ).toStrictEqual([completionAction]);
+      expect(alert.querySelector("button")).toBeNull();
 
       const firstPayload = mockCompletePhase.mock.calls[0]?.[0];
       expect(firstPayload).toMatchObject({
-        lessonId: 'module-1-lesson-1',
+        lessonId: "module-1-lesson-1",
         phaseNumber: 4,
         timeSpent: 61,
         idempotencyKey: expect.any(String),
@@ -152,30 +135,32 @@ describe('PhaseCompleteButton', () => {
       expect(mockCompletePhase.mock.calls[1]?.[0]).toStrictEqual(firstPayload);
     });
 
-    it('calls onStatusChange when completion succeeds', async () => {
+    it("calls onStatusChange when completion succeeds", async () => {
       mockCompletePhase.mockResolvedValueOnce({ success: true });
       const onStatusChange = vi.fn();
 
       render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} onStatusChange={onStatusChange} />
+        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} onStatusChange={onStatusChange} />,
       );
-      fireEvent.click(screen.getByRole('button', { name: /mark complete/i }));
+      fireEvent.click(screen.getByRole("button", { name: /mark complete/i }));
 
       await waitFor(() => {
-        expect(onStatusChange).toHaveBeenCalledWith('completed');
+        expect(onStatusChange).toHaveBeenCalledWith("completed");
       });
     });
   });
 
-  describe('loading state', () => {
-    it('disables button while request is in flight', async () => {
+  describe("loading state", () => {
+    it("disables button while request is in flight", async () => {
       let resolve: (v: CompletePhaseResponse) => void;
-      mockCompletePhase.mockReturnValueOnce(new Promise(r => { resolve = r; }));
-
-      render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} />
+      mockCompletePhase.mockReturnValueOnce(
+        new Promise((r) => {
+          resolve = r;
+        }),
       );
-      const btn = screen.getByRole('button', { name: /mark complete/i });
+
+      render(<PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} />);
+      const btn = screen.getByRole("button", { name: /mark complete/i });
       fireEvent.click(btn);
 
       await waitFor(() => {
@@ -187,24 +172,22 @@ describe('PhaseCompleteButton', () => {
       });
     });
 
-    it('disables every completion control while the completion request is pending', async () => {
+    it("disables every completion control while the completion request is pending", async () => {
       let resolve: (value: CompletePhaseResponse) => void = () => undefined;
-      mockCompletePhase.mockReturnValueOnce(new Promise((finish) => {
-        resolve = finish;
-      }));
+      mockCompletePhase.mockReturnValueOnce(
+        new Promise((finish) => {
+          resolve = finish;
+        }),
+      );
 
       render(
-        <PhaseCompleteButton
-          lessonId="module-1-lesson-1"
-          phaseNumber={4}
-          phaseType="explore"
-        />,
+        <PhaseCompleteButton lessonId="module-1-lesson-1" phaseNumber={4} phaseType="explore" />,
       );
-      fireEvent.click(screen.getByRole('button', { name: /mark complete/i }));
+      fireEvent.click(screen.getByRole("button", { name: /mark complete/i }));
 
       await waitFor(() => {
-        expect(screen.getByRole('button', { name: /mark complete/i })).toBeDisabled();
-        expect(screen.getByRole('button', { name: /skip/i })).toBeDisabled();
+        expect(screen.getByRole("button", { name: /mark complete/i })).toBeDisabled();
+        expect(screen.getByRole("button", { name: /skip/i })).toBeDisabled();
       });
 
       await act(async () => {
@@ -213,118 +196,107 @@ describe('PhaseCompleteButton', () => {
     });
   });
 
-  describe('skip functionality', () => {
+  describe("skip functionality", () => {
     beforeEach(() => {
       mockSkipPhase.mockReset();
     });
 
-    it('does not render skip button when phaseType is not provided', () => {
-      render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} />
-      );
-      expect(screen.queryByRole('button', { name: /skip/i })).not.toBeInTheDocument();
+    it("does not render skip button when phaseType is not provided", () => {
+      render(<PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} />);
+      expect(screen.queryByRole("button", { name: /skip/i })).not.toBeInTheDocument();
     });
 
-    it('does not render skip button for non-skippable phaseTypes', () => {
-      render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} phaseType="learn" />
-      );
-      expect(screen.queryByRole('button', { name: /skip/i })).not.toBeInTheDocument();
+    it("does not render skip button for non-skippable phaseTypes", () => {
+      render(<PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} phaseType="learn" />);
+      expect(screen.queryByRole("button", { name: /skip/i })).not.toBeInTheDocument();
     });
 
-    it('renders skip button for skippable phaseType explore', () => {
-      render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} phaseType="explore" />
-      );
-      expect(screen.getByRole('button', { name: /skip/i })).toBeInTheDocument();
+    it("renders skip button for skippable phaseType explore", () => {
+      render(<PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} phaseType="explore" />);
+      expect(screen.getByRole("button", { name: /skip/i })).toBeInTheDocument();
     });
 
-    it('renders skip button for skippable phaseType discourse', () => {
-      render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} phaseType="discourse" />
-      );
-      expect(screen.getByRole('button', { name: /skip/i })).toBeInTheDocument();
+    it("renders skip button for skippable phaseType discourse", () => {
+      render(<PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} phaseType="discourse" />);
+      expect(screen.getByRole("button", { name: /skip/i })).toBeInTheDocument();
     });
 
-    it('calls skipPhaseRequest on skip button click', async () => {
+    it("calls skipPhaseRequest on skip button click", async () => {
       mockSkipPhase.mockResolvedValueOnce({ success: true } as SkipPhaseResponse);
 
-      render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={2} phaseType="explore" />
-      );
-      fireEvent.click(screen.getByRole('button', { name: /skip/i }));
+      render(<PhaseCompleteButton lessonId="lesson-1" phaseNumber={2} phaseType="explore" />);
+      fireEvent.click(screen.getByRole("button", { name: /skip/i }));
 
       await waitFor(() => {
         expect(mockSkipPhase).toHaveBeenCalledOnce();
       });
 
       const call = mockSkipPhase.mock.calls[0][0];
-      expect(call.lessonId).toBe('lesson-1');
+      expect(call.lessonId).toBe("lesson-1");
       expect(call.phaseNumber).toBe(2);
     });
 
-    it('shows skipped state after successful skip', async () => {
+    it("shows skipped state after successful skip", async () => {
       mockSkipPhase.mockResolvedValueOnce({ success: true } as SkipPhaseResponse);
 
-      render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} phaseType="explore" />
-      );
-      fireEvent.click(screen.getByRole('button', { name: /skip/i }));
+      render(<PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} phaseType="explore" />);
+      fireEvent.click(screen.getByRole("button", { name: /skip/i }));
 
       await waitFor(() => {
         expect(screen.getByText(/skipped/i)).toBeInTheDocument();
       });
     });
 
-    it('disables skip button after successful skip', async () => {
+    it("disables skip button after successful skip", async () => {
       mockSkipPhase.mockResolvedValueOnce({ success: true } as SkipPhaseResponse);
 
-      render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} phaseType="explore" />
-      );
-      fireEvent.click(screen.getByRole('button', { name: /skip/i }));
+      render(<PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} phaseType="explore" />);
+      fireEvent.click(screen.getByRole("button", { name: /skip/i }));
 
       await waitFor(() => {
         expect(screen.getByText(/skipped/i)).toBeInTheDocument();
       });
-      expect(screen.queryByRole('button', { name: /skip/i })).not.toBeInTheDocument();
+      expect(screen.queryByRole("button", { name: /skip/i })).not.toBeInTheDocument();
     });
 
-    it('calls onStatusChange with skipped when skip succeeds', async () => {
+    it("calls onStatusChange with skipped when skip succeeds", async () => {
       mockSkipPhase.mockResolvedValueOnce({ success: true } as SkipPhaseResponse);
       const onStatusChange = vi.fn();
 
       render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} phaseType="explore" onStatusChange={onStatusChange} />
+        <PhaseCompleteButton
+          lessonId="lesson-1"
+          phaseNumber={1}
+          phaseType="explore"
+          onStatusChange={onStatusChange}
+        />,
       );
-      fireEvent.click(screen.getByRole('button', { name: /skip/i }));
+      fireEvent.click(screen.getByRole("button", { name: /skip/i }));
 
       await waitFor(() => {
-        expect(onStatusChange).toHaveBeenCalledWith('skipped');
+        expect(onStatusChange).toHaveBeenCalledWith("skipped");
       });
     });
 
-    it('shows error message when skip fails', async () => {
-      mockSkipPhase.mockRejectedValueOnce(new Error('Unable to skip'));
+    it("shows error message when skip fails", async () => {
+      mockSkipPhase.mockRejectedValueOnce(new Error("Unable to skip"));
 
-      render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} phaseType="explore" />
-      );
-      fireEvent.click(screen.getByRole('button', { name: /skip/i }));
+      render(<PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} phaseType="explore" />);
+      fireEvent.click(screen.getByRole("button", { name: /skip/i }));
 
       await waitFor(() => {
-        expect(screen.getByRole('alert')).toBeInTheDocument();
-        expect(screen.getByRole('button', { name: /^mark complete$/i })).toBeInTheDocument();
-        expect(screen.queryByRole('button', { name: /^retry completion$/i })).not.toBeInTheDocument();
+        expect(screen.getByRole("alert")).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: /^mark complete$/i })).toBeInTheDocument();
+        expect(
+          screen.queryByRole("button", { name: /^retry completion$/i }),
+        ).not.toBeInTheDocument();
       });
     });
 
-    it('renders both Mark Complete and Skip buttons for skippable phases', () => {
-      render(
-        <PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} phaseType="explore" />
-      );
-      expect(screen.getByRole('button', { name: /mark complete/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /skip/i })).toBeInTheDocument();
+    it("renders both Mark Complete and Skip buttons for skippable phases", () => {
+      render(<PhaseCompleteButton lessonId="lesson-1" phaseNumber={1} phaseType="explore" />);
+      expect(screen.getByRole("button", { name: /mark complete/i })).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: /skip/i })).toBeInTheDocument();
     });
   });
 });

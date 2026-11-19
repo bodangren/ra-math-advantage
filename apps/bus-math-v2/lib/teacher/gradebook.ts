@@ -9,9 +9,9 @@
 // Types
 // ---------------------------------------------------------------------------
 
-export type PhaseProgressStatus = 'not_started' | 'in_progress' | 'completed';
-export type LessonCompletionStatus = 'not_started' | 'in_progress' | 'completed';
-export type CellColor = 'green' | 'yellow' | 'red' | 'gray';
+export type PhaseProgressStatus = "not_started" | "in_progress" | "completed";
+export type LessonCompletionStatus = "not_started" | "in_progress" | "completed";
+export type CellColor = "green" | "yellow" | "red" | "gray";
 
 export interface GradebookLesson {
   lessonId: string;
@@ -64,10 +64,10 @@ export interface GradebookRow {
  *   - All phases not_started    → not_started
  */
 export function computeLessonStatus(phaseStatuses: PhaseProgressStatus[]): LessonCompletionStatus {
-  if (phaseStatuses.length === 0) return 'not_started';
-  if (phaseStatuses.every(s => s === 'completed')) return 'completed';
-  if (phaseStatuses.some(s => s === 'completed' || s === 'in_progress')) return 'in_progress';
-  return 'not_started';
+  if (phaseStatuses.length === 0) return "not_started";
+  if (phaseStatuses.every((s) => s === "completed")) return "completed";
+  if (phaseStatuses.some((s) => s === "completed" || s === "in_progress")) return "in_progress";
+  return "not_started";
 }
 
 // ---------------------------------------------------------------------------
@@ -91,20 +91,20 @@ export function computeCellColor(
   masteryLevel: number | null,
 ): CellColor {
   // No engagement at all
-  if (completionStatus === 'not_started' && masteryLevel === null) return 'gray';
+  if (completionStatus === "not_started" && masteryLevel === null) return "gray";
 
   // Green: fully done OR high mastery
-  if (completionStatus === 'completed' || (masteryLevel !== null && masteryLevel >= 80)) {
-    return 'green';
+  if (completionStatus === "completed" || (masteryLevel !== null && masteryLevel >= 80)) {
+    return "green";
   }
 
   // Yellow: partially done OR mid-range mastery
-  if (completionStatus === 'in_progress' || (masteryLevel !== null && masteryLevel >= 50)) {
-    return 'yellow';
+  if (completionStatus === "in_progress" || (masteryLevel !== null && masteryLevel >= 50)) {
+    return "yellow";
   }
 
   // Red: started (or has some mastery) but below thresholds
-  return 'red';
+  return "red";
 }
 
 // ---------------------------------------------------------------------------
@@ -156,22 +156,30 @@ export function sortRowsByName(rows: GradebookRow[]): GradebookRow[] {
 /** Maps a CellColor to the Tailwind background class for a gradebook cell. */
 export function cellBgClass(color: CellColor): string {
   switch (color) {
-    case 'green':  return 'bg-green-100 text-green-800';
-    case 'yellow': return 'bg-yellow-100 text-yellow-800';
-    case 'red':    return 'bg-red-100 text-red-800';
-    case 'gray':
-    default:       return 'bg-muted/30 text-muted-foreground';
+    case "green":
+      return "bg-green-100 text-green-800";
+    case "yellow":
+      return "bg-yellow-100 text-yellow-800";
+    case "red":
+      return "bg-red-100 text-red-800";
+    case "gray":
+    default:
+      return "bg-muted/30 text-muted-foreground";
   }
 }
 
 /** Maps a CellColor to an accessible aria label suffix. */
 export function cellColorLabel(color: CellColor): string {
   switch (color) {
-    case 'green':  return 'completed';
-    case 'yellow': return 'in progress';
-    case 'red':    return 'needs attention';
-    case 'gray':
-    default:       return 'not started';
+    case "green":
+      return "completed";
+    case "yellow":
+      return "in progress";
+    case "red":
+      return "needs attention";
+    case "gray":
+    default:
+      return "not started";
   }
 }
 
@@ -193,9 +201,9 @@ export function applyStudentRowUpdate<T extends { studentId: string; displayName
   update: { studentId: string; displayName: string; deactivated: boolean },
 ): T[] {
   if (update.deactivated) {
-    return rows.filter(r => r.studentId !== update.studentId);
+    return rows.filter((r) => r.studentId !== update.studentId);
   }
-  return rows.map(r =>
+  return rows.map((r) =>
     r.studentId === update.studentId ? { ...r, displayName: update.displayName } : r,
   );
 }
@@ -214,7 +222,7 @@ export interface RawLesson {
 export interface RawLessonVersion {
   id: string;
   lessonId: string;
-  status?: 'draft' | 'review' | 'published' | 'archived';
+  status?: "draft" | "review" | "published" | "archived";
 }
 
 export interface RawPhaseVersion {
@@ -250,8 +258,8 @@ export interface RawActivitySubmission {
   id: string;
   userId: string;
   activityId: string;
-  mode: 'worked_example' | 'guided_practice' | 'independent_practice' | 'assessment';
-  status: 'draft' | 'submitted' | 'graded' | 'returned';
+  mode: "worked_example" | "guided_practice" | "independent_practice" | "assessment";
+  status: "draft" | "submitted" | "graded" | "returned";
   score: number | null;
   maxScore: number | null;
   gradedAt: number | null;
@@ -295,8 +303,10 @@ export function assembleGradebookRows(
     if (!existing) {
       versionByLessonId.set(lv.lessonId, lv.id);
     } else if (lv.status) {
-      const existingVersion = rawLessonVersions.find(v => v.id === existing);
-      const existingPriority = existingVersion?.status ? (statusPriority[existingVersion.status] ?? 4) : 4;
+      const existingVersion = rawLessonVersions.find((v) => v.id === existing);
+      const existingPriority = existingVersion?.status
+        ? (statusPriority[existingVersion.status] ?? 4)
+        : 4;
       const newPriority = statusPriority[lv.status] ?? 4;
       if (newPriority < existingPriority) {
         versionByLessonId.set(lv.lessonId, lv.id);
@@ -347,15 +357,15 @@ export function assembleGradebookRows(
     submissionByUserAndActivity.set(`${submission.userId}|${submission.activityId}`, submission);
   }
 
-  const gradebookLessons: GradebookLesson[] = sortedLessons.map(lesson => ({
+  const gradebookLessons: GradebookLesson[] = sortedLessons.map((lesson) => ({
     lessonId: lesson.id,
     lessonTitle: lesson.title,
     orderIndex: lesson.orderIndex,
     isUnitTest: lesson.orderIndex === 11,
   }));
 
-  const rows: GradebookRow[] = students.map(student => {
-    const cells = gradebookLessons.map(gl => {
+  const rows: GradebookRow[] = students.map((student) => {
+    const cells = gradebookLessons.map((gl) => {
       const lessonVersionId = versionByLessonId.get(gl.lessonId);
       const phaseIds = lessonVersionId ? (phasesByVersion.get(lessonVersionId) ?? []) : [];
       const standardId = lessonVersionId
@@ -363,13 +373,11 @@ export function assembleGradebookRows(
         : undefined;
 
       const phaseStatuses: PhaseProgressStatus[] = phaseIds.map(
-        phaseId => progressIndex.get(`${student.id}|${phaseId}`) ?? 'not_started',
+        (phaseId) => progressIndex.get(`${student.id}|${phaseId}`) ?? "not_started",
       );
 
       const masteryLevel =
-        standardId != null
-          ? (competencyIndex.get(`${student.id}|${standardId}`) ?? null)
-          : null;
+        standardId != null ? (competencyIndex.get(`${student.id}|${standardId}`) ?? null) : null;
 
       const lessonActivityIds = activityIdsByLessonId.get(gl.lessonId) ?? new Set<string>();
       let independentPractice: PracticeAndAssessmentData | null = null;
@@ -379,15 +387,15 @@ export function assembleGradebookRows(
         const submission = submissionByUserAndActivity.get(`${student.id}|${activityId}`);
         if (!submission) continue;
 
-        if (submission.mode === 'independent_practice') {
+        if (submission.mode === "independent_practice") {
           independentPractice = {
-            completed: submission.status === 'submitted' || submission.status === 'graded',
+            completed: submission.status === "submitted" || submission.status === "graded",
             score: submission.score,
             maxScore: submission.maxScore,
           };
-        } else if (submission.mode === 'assessment') {
+        } else if (submission.mode === "assessment") {
           assessment = {
-            completed: submission.status === 'submitted' || submission.status === 'graded',
+            completed: submission.status === "submitted" || submission.status === "graded",
             score: submission.score,
             maxScore: submission.maxScore,
           };

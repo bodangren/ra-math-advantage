@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { DiscriminantAnalyzer } from '@math-platform/activity-components/discriminant';
-import type { DiscriminantAnalyzerProps } from '@/lib/activities/schemas/discriminant-analyzer.schema';
+import React from "react";
+import { DiscriminantAnalyzer } from "@math-platform/activity-components/discriminant";
+import type { DiscriminantAnalyzerProps } from "@/lib/activities/schemas/discriminant-analyzer.schema";
 
 export interface DiscriminantAnalyzerActivityProps extends DiscriminantAnalyzerProps {
   activityId: string;
-  mode: 'teaching' | 'guided' | 'practice';
+  mode: "teaching" | "guided" | "practice";
   onSubmit?: (payload: unknown) => void;
   onComplete?: () => void;
 }

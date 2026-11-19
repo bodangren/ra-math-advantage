@@ -12,22 +12,22 @@
 // is caught at the spec level. It is expected to PASS once Phase 1 Green
 // exports the types from `packages/activity-components/src/index.ts`.
 
-import { describe, it, expect } from 'vitest';
-import type { PrimitiveMode, MathPrimitiveProps } from '../../index';
+import { describe, it, expect } from "vitest";
+import type { PrimitiveMode, MathPrimitiveProps } from "../../index";
 
-describe('Phase 1 contract: FR-2 primitive type exports from @math-platform/activity-components', () => {
+describe("Phase 1 contract: FR-2 primitive type exports from @math-platform/activity-components", () => {
   it('PrimitiveMode is the string-literal union "static" | "interactive" | "readonly"', () => {
-    const validModes: PrimitiveMode[] = ['static', 'interactive', 'readonly'];
-    expect(validModes).toEqual(['static', 'interactive', 'readonly']);
+    const validModes: PrimitiveMode[] = ["static", "interactive", "readonly"];
+    expect(validModes).toEqual(["static", "interactive", "readonly"]);
   });
 
-  it('MathPrimitiveProps<TValue> requires `value: TValue`', () => {
+  it("MathPrimitiveProps<TValue> requires `value: TValue`", () => {
     type TestProps = MathPrimitiveProps<{ x: number; y: number }>;
     const props: TestProps = { value: { x: 1, y: 2 } };
     expect(props.value).toEqual({ x: 1, y: 2 });
   });
 
-  it('MathPrimitiveProps<TValue> declares onChange as optional (no-op in non-interactive modes)', () => {
+  it("MathPrimitiveProps<TValue> declares onChange as optional (no-op in non-interactive modes)", () => {
     type TestProps = MathPrimitiveProps<{ x: number }>;
     const propsWithoutOnChange: TestProps = { value: { x: 1 } };
     expect(propsWithoutOnChange.onChange).toBeUndefined();
@@ -39,7 +39,7 @@ describe('Phase 1 contract: FR-2 primitive type exports from @math-platform/acti
     expect(propsWithoutMode.mode).toBeUndefined();
   });
 
-  it('MathPrimitiveProps<TValue> declares disabled as optional boolean', () => {
+  it("MathPrimitiveProps<TValue> declares disabled as optional boolean", () => {
     type TestProps = MathPrimitiveProps<{ x: number }>;
     const propsWithoutDisabled: TestProps = { value: { x: 1 } };
     expect(propsWithoutDisabled.disabled).toBeUndefined();

@@ -25,31 +25,37 @@ function makeContext(
   const query = vi.fn((tableName: string) => {
     if (tableName === "phase_versions") {
       return {
-        withIndex: vi.fn((_index: string, callback: (query: {
-          eq: (field: string, value: unknown) => unknown;
-        }) => unknown) => {
-          const queryBuilder = {
-            eq: vi.fn(function (this: typeof queryBuilder) {
-              return this;
-            }),
-          };
-          callback(queryBuilder);
-          return {
-            first: vi.fn(async () => phase),
-          };
-        }),
+        withIndex: vi.fn(
+          (
+            _index: string,
+            callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) => {
+            const queryBuilder = {
+              eq: vi.fn(function (this: typeof queryBuilder) {
+                return this;
+              }),
+            };
+            callback(queryBuilder);
+            return {
+              first: vi.fn(async () => phase),
+            };
+          },
+        ),
       };
     }
     if (tableName === "phase_sections") {
       return {
-        withIndex: vi.fn((_index: string, callback: (query: {
-          eq: (field: string, value: unknown) => unknown;
-        }) => unknown) => {
-          callback({ eq: vi.fn(() => undefined) });
-          return {
-            collect: vi.fn(async () => sections),
-          };
-        }),
+        withIndex: vi.fn(
+          (
+            _index: string,
+            callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) => {
+            callback({ eq: vi.fn(() => undefined) });
+            return {
+              collect: vi.fn(async () => sections),
+            };
+          },
+        ),
       };
     }
     throw new Error(`Unexpected table ${tableName}`);
@@ -137,34 +143,40 @@ describe("IM3 one-real-solution Worked Phase 4 link", () => {
       {
         name: "text section",
         phase: { _id: "phase_versions:4" },
-        sections: [{
-          _id: "phase_sections:worked",
-          sequenceOrder: 2,
-          sectionType: "activity",
-          content: {},
-        }],
+        sections: [
+          {
+            _id: "phase_sections:worked",
+            sequenceOrder: 2,
+            sectionType: "activity",
+            content: {},
+          },
+        ],
         message: "Lesson 1.2 Phase 4 text section is missing",
       },
       {
         name: "activity section",
         phase: { _id: "phase_versions:4" },
-        sections: [{
-          _id: "phase_sections:text",
-          sequenceOrder: 1,
-          sectionType: "text",
-          content: {},
-        }],
+        sections: [
+          {
+            _id: "phase_sections:text",
+            sequenceOrder: 1,
+            sectionType: "text",
+            content: {},
+          },
+        ],
         message: "Lesson 1.2 Phase 4 activity section is missing",
       },
     ];
 
     for (const testCase of cases) {
       const ctx = makeContext(testCase.sections, testCase.phase);
-      await expect(linkIm3OneRealSolutionWorkedPhase(
-        ctx as never,
-        "lesson_versions:2" as never,
-        "activities:one-real-solution-worked" as never,
-      )).rejects.toThrow(testCase.message);
+      await expect(
+        linkIm3OneRealSolutionWorkedPhase(
+          ctx as never,
+          "lesson_versions:2" as never,
+          "activities:one-real-solution-worked" as never,
+        ),
+      ).rejects.toThrow(testCase.message);
       expect(ctx.patch).not.toHaveBeenCalled();
       expect(ctx.insert).not.toHaveBeenCalled();
       expect(ctx.delete).not.toHaveBeenCalled();

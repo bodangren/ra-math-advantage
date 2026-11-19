@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useAuth } from '../auth/AuthProvider';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { useAuth } from "../auth/AuthProvider";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface UserMenuProps {
   /** Path to redirect after logout */
@@ -19,8 +19,8 @@ interface UserMenuProps {
  * @returns {import("react").JSX.Element} User menu element
  */
 export function UserMenu({
-  logoutRedirectTo = '/',
-  settingsHref = '/settings',
+  logoutRedirectTo = "/",
+  settingsHref = "/settings",
   dashboardHref: dashboardHrefProp,
 }: UserMenuProps) {
   const { user, profile, signOut, loading } = useAuth();
@@ -48,14 +48,15 @@ export function UserMenu({
     );
   }
 
-  const dashboardHref = dashboardHrefProp
-    ?? (profile?.role === 'student' ? '/student/dashboard' : '/teacher/dashboard');
+  const dashboardHref =
+    dashboardHrefProp ??
+    (profile?.role === "student" ? "/student/dashboard" : "/teacher/dashboard");
 
-  const displayName = profile?.display_name || user.email || 'User';
+  const displayName = profile?.display_name || user.email || "User";
   const email = user.email;
 
   const getInitials = (name: string) => {
-    const parts = name.split(' ');
+    const parts = name.split(" ");
     if (parts.length >= 2) {
       return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
     }

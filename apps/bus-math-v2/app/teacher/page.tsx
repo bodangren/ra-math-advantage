@@ -20,12 +20,9 @@ export default async function TeacherDashboardPage() {
     redirect("/auth/login");
   }
 
-  const courseOverview = await fetchInternalQuery(
-    internal.teacher.getTeacherCourseOverviewData,
-    {
-      userId: claims.sub as never,
-    },
-  );
+  const courseOverview = await fetchInternalQuery(internal.teacher.getTeacherCourseOverviewData, {
+    userId: claims.sub as never,
+  });
 
   if (!courseOverview) {
     redirect("/auth/login");

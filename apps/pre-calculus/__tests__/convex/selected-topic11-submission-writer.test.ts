@@ -13,8 +13,7 @@ const catalogs = vi.hoisted(() => ({
   blueprints: {
     blueprints: [
       {
-        nodeId:
-          "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
+        nodeId: "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
         reviewStatus: "approved",
         rendererKey: "interval-classification",
         rendererModeMap: {
@@ -37,8 +36,7 @@ const catalogs = vi.hoisted(() => ({
           ],
           checksPerStep: [
             {
-              check:
-                "The domain endpoints and both change points are identified.",
+              check: "The domain endpoints and both change points are identified.",
             },
             {
               check: "Each segment is classified as rising, falling, or flat.",
@@ -76,8 +74,7 @@ const catalogs = vi.hoisted(() => ({
             seed: {
               type: "integer",
               min: 0,
-              description:
-                "Deterministic Topic 1.1 interval graph variant seed",
+              description: "Deterministic Topic 1.1 interval graph variant seed",
             },
           },
           answerSchema: {
@@ -108,11 +105,7 @@ const catalogs = vi.hoisted(() => ({
         },
         generatorKey: "topic11-interval-graph",
         gradingSpec: {
-          partIds: [
-            "increasingIntervals",
-            "decreasingIntervals",
-            "constantIntervals",
-          ],
+          partIds: ["increasingIntervals", "decreasingIntervals", "constantIntervals"],
           passingScore: 3,
           partialCredit: true,
           rubric: [
@@ -144,18 +137,13 @@ vi.mock("@/curriculum/skill-graph/blueprints.json", () => ({
   default: catalogs.blueprints,
 }));
 
-const NODE =
-  "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs";
+const NODE = "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs";
 const GUIDED = `${NODE}.guided_practice`;
 const INDEPENDENT = `${NODE}.independent_practice`;
 type Row = Record<string, any> & { _id: string };
 
-function harness(
-  stableActivityId = GUIDED,
-  overrides: Record<string, unknown> = {},
-) {
-  const mode =
-    stableActivityId === GUIDED ? "guided_practice" : "independent_practice";
+function harness(stableActivityId = GUIDED, overrides: Record<string, unknown> = {}) {
+  const mode = stableActivityId === GUIDED ? "guided_practice" : "independent_practice";
   const rows: Record<string, Row[]> = {
     profiles: [
       {
@@ -217,9 +205,7 @@ function harness(
         };
         configure(q);
         const selected = () =>
-          rows[table].filter((row) =>
-            [...conditions].every(([key, value]) => row[key] === value),
-          );
+          rows[table].filter((row) => [...conditions].every(([key, value]) => row[key] === value));
         return {
           unique: async () => {
             const found = selected();
@@ -228,9 +214,8 @@ function harness(
           },
           order: () => ({
             first: async () =>
-              selected().sort(
-                (a, b) => (b.attemptOrdinal ?? 0) - (a.attemptOrdinal ?? 0),
-              )[0] ?? null,
+              selected().sort((a, b) => (b.attemptOrdinal ?? 0) - (a.attemptOrdinal ?? 0))[0] ??
+              null,
           }),
         };
       },
@@ -271,10 +256,7 @@ async function handler() {
 describe("selected Topic 1.1 physical submission writer", () => {
   it("rejects an approved source-only blueprint", async () => {
     const h = harness();
-    const blueprint = catalogs.blueprints.blueprints[0] as Record<
-      string,
-      unknown
-    >;
+    const blueprint = catalogs.blueprints.blueprints[0] as Record<string, unknown>;
     const complete = { ...blueprint };
     delete blueprint.guidedPracticeSpec;
     await expect(
@@ -312,12 +294,12 @@ describe("selected Topic 1.1 physical submission writer", () => {
     ];
     expect(isPrecalculusPilotPublished(arbitraryRules)).toBe(false);
     const wrongAnswerType = publication();
-    wrongAnswerType.blueprints[0].independentPracticeSpec.answerSchema.constantIntervals =
-      "number";
+    wrongAnswerType.blueprints[0].independentPracticeSpec.answerSchema.constantIntervals = "number";
     expect(isPrecalculusPilotPublished(wrongAnswerType)).toBe(false);
     const wrongGuidedSteps = publication();
-    wrongGuidedSteps.blueprints[0].guidedPracticeSpec.rendererProps.guidedSteps =
-      ["An unrelated step."];
+    wrongGuidedSteps.blueprints[0].guidedPracticeSpec.rendererProps.guidedSteps = [
+      "An unrelated step.",
+    ];
     expect(isPrecalculusPilotPublished(wrongGuidedSteps)).toBe(false);
     const wrongFieldHelp = publication();
     wrongFieldHelp.blueprints[0].guidedPracticeSpec.rendererProps.fieldHelp.constantIntervals =
@@ -350,9 +332,12 @@ describe("selected Topic 1.1 physical submission writer", () => {
       score: 3,
       maxScore: 3,
     });
-    expect(
-      h.rows.activity_submissions[0].submissionData.parts[0],
-    ).toMatchObject({ isCorrect: true, score: 1, maxScore: 1, hintsUsed: 1 });
+    expect(h.rows.activity_submissions[0].submissionData.parts[0]).toMatchObject({
+      isCorrect: true,
+      score: 1,
+      maxScore: 1,
+      hintsUsed: 1,
+    });
   });
 
   it("supports the exact Independent activity and seed", async () => {
@@ -389,10 +374,7 @@ describe("selected Topic 1.1 physical submission writer", () => {
         props: { nodeId: "math.precalc.skill.wrong", mode: "guided_practice" },
       },
     ],
-    [
-      "mutated props",
-      { props: { nodeId: NODE, mode: "guided_practice", answer: "private" } },
-    ],
+    ["mutated props", { props: { nodeId: NODE, mode: "guided_practice", answer: "private" } }],
     ["unapproved activity", { approval: { status: "unreviewed" } }],
   ])("rejects %s", async (_label, overrides) => {
     const h = harness(GUIDED, overrides);
@@ -477,14 +459,14 @@ describe("selected Topic 1.1 physical submission writer", () => {
     const changed = envelope();
     changed.answers.constantIntervals = "[1,2]";
     changed.parts[2].rawAnswer = "[1,2]";
-    await expect(
-      write(h.ctx, { ...input, submissionData: changed }),
-    ).rejects.toThrow(/idempotency_conflict/);
+    await expect(write(h.ctx, { ...input, submissionData: changed })).rejects.toThrow(
+      /idempotency_conflict/,
+    );
     const changedAssistance = envelope();
     changedAssistance.parts[0].hintsUsed = 2;
-    await expect(
-      write(h.ctx, { ...input, submissionData: changedAssistance }),
-    ).rejects.toThrow(/idempotency_conflict/);
+    await expect(write(h.ctx, { ...input, submissionData: changedAssistance })).rejects.toThrow(
+      /idempotency_conflict/,
+    );
     h.rows.activity_submissions[0].score = 0;
     await expect(write(h.ctx, input)).rejects.toThrow(/idempotency_conflict/);
   });
@@ -550,8 +532,7 @@ describe("selected Topic 1.1 physical submission writer", () => {
       idempotencyKey: "corrupt-server-time",
     };
     await write(h.ctx, input);
-    h.rows.activity_submissions[0].submissionData.submittedAt =
-      "2020-01-01T00:00:00.000Z";
+    h.rows.activity_submissions[0].submissionData.submittedAt = "2020-01-01T00:00:00.000Z";
     await expect(write(h.ctx, input)).rejects.toThrow(/idempotency_conflict/);
   });
 
@@ -633,21 +614,18 @@ describe("selected Topic 1.1 physical submission writer", () => {
     await expect(write(h.ctx, input)).rejects.toThrow(/idempotency_conflict/);
   });
 
-  it.each([0, 1.5])(
-    "rejects invalid attempt number %s",
-    async (attemptNumber) => {
-      const h = harness();
-      const body = { ...envelope(), attemptNumber };
-      await expect(
-        (await handler())(h.ctx, {
-          userId: "profiles:student",
-          activityId: GUIDED,
-          submissionData: body,
-          idempotencyKey: `attempt-${attemptNumber}`,
-        }),
-      ).rejects.toThrow(/envelope/i);
-    },
-  );
+  it.each([0, 1.5])("rejects invalid attempt number %s", async (attemptNumber) => {
+    const h = harness();
+    const body = { ...envelope(), attemptNumber };
+    await expect(
+      (await handler())(h.ctx, {
+        userId: "profiles:student",
+        activityId: GUIDED,
+        submissionData: body,
+        idempotencyKey: `attempt-${attemptNumber}`,
+      }),
+    ).rejects.toThrow(/envelope/i);
+  });
 
   it("rejects an invalid submitted timestamp", async () => {
     const h = harness();
@@ -727,31 +705,28 @@ describe("selected Topic 1.1 physical submission writer", () => {
     ["timing", { wallClockMs: -1 }],
     ["analytics", "not-a-record"],
     ["studentFeedback", { private: "wrong-shape" }],
-  ])(
-    "rejects malformed optional %s through the route and real writer",
-    async (field, value) => {
-      const h = harness();
-      const write = await handler();
-      const { createPrecalculusPilotSubmissionRoute } =
-        await import("@/app/api/activities/precalculus-pilot/submissions/route");
-      const route = createPrecalculusPilotSubmissionRoute({
-        requireStudentSession: async () => ({ sub: "profiles:student" }),
-        createSubmission: (input) => write(h.ctx, input),
-      });
-      const response = await route.POST(
-        new Request("http://local/submissions", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-            "Idempotency-Key": `invalid-${field}`,
-          },
-          body: JSON.stringify({ ...envelope(), [field]: value }),
-        }),
-      );
-      expect(response.status).toBe(500);
-      expect(h.rows.activity_submissions).toHaveLength(0);
-    },
-  );
+  ])("rejects malformed optional %s through the route and real writer", async (field, value) => {
+    const h = harness();
+    const write = await handler();
+    const { createPrecalculusPilotSubmissionRoute } =
+      await import("@/app/api/activities/precalculus-pilot/submissions/route");
+    const route = createPrecalculusPilotSubmissionRoute({
+      requireStudentSession: async () => ({ sub: "profiles:student" }),
+      createSubmission: (input) => write(h.ctx, input),
+    });
+    const response = await route.POST(
+      new Request("http://local/submissions", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "Idempotency-Key": `invalid-${field}`,
+        },
+        body: JSON.stringify({ ...envelope(), [field]: value }),
+      }),
+    );
+    expect(response.status).toBe(500);
+    expect(h.rows.activity_submissions).toHaveLength(0);
+  });
   it.each([
     [
       "extra answer key",
@@ -784,8 +759,7 @@ describe("selected Topic 1.1 physical submission writer", () => {
     [
       "wrong grading rule",
       (blueprint: any) => {
-        blueprint.independentPracticeSpec.gradingRules[0].ruleType =
-          "exact_match";
+        blueprint.independentPracticeSpec.gradingRules[0].ruleType = "exact_match";
       },
     ],
     [
@@ -797,8 +771,7 @@ describe("selected Topic 1.1 physical submission writer", () => {
     [
       "duplicate rubric parts",
       (blueprint: any) => {
-        blueprint.gradingSpec.rubric[1].partId =
-          blueprint.gradingSpec.rubric[0].partId;
+        blueprint.gradingSpec.rubric[1].partId = blueprint.gradingSpec.rubric[0].partId;
       },
     ],
   ])("parent rejects publication with %s", async (_name, corrupt) => {
@@ -849,9 +822,7 @@ describe("selected Topic 1.1 physical submission writer", () => {
   it("parent v3 rejects empty variant parameters", async () => {
     const original = structuredClone(catalogs.blueprints.blueprints[0]);
     try {
-      (
-        catalogs.blueprints.blueprints[0].independentPracticeSpec as any
-      ).variantParameters = {};
+      (catalogs.blueprints.blueprints[0].independentPracticeSpec as any).variantParameters = {};
       const h = harness();
       const write = await handler();
       await expect(
@@ -887,41 +858,49 @@ describe("selected Topic 1.1 physical submission writer", () => {
         },
       },
     ],
-    [
-      "unrelated variant",
-      { difficulty: { type: "integer", min: 0, description: "Unrelated" } },
-    ],
-  ])(
-    "rejects %s in the selected variant contract",
-    async (_name, variantParameters) => {
-      const original = structuredClone(catalogs.blueprints.blueprints[0]);
-      try {
-        (
-          catalogs.blueprints.blueprints[0].independentPracticeSpec as {
-            variantParameters: unknown;
-          }
-        ).variantParameters = variantParameters;
-        const h = harness();
-        await expect(
-          (await handler())(h.ctx, {
-            userId: "profiles:student",
-            activityId: GUIDED,
-            submissionData: envelope(),
-            idempotencyKey: `variant-${_name}`,
-          }),
-        ).rejects.toThrow(/curriculum is not approved/);
-      } finally {
-        catalogs.blueprints.blueprints[0] = original;
-      }
-    },
-  );
+    ["unrelated variant", { difficulty: { type: "integer", min: 0, description: "Unrelated" } }],
+  ])("rejects %s in the selected variant contract", async (_name, variantParameters) => {
+    const original = structuredClone(catalogs.blueprints.blueprints[0]);
+    try {
+      (
+        catalogs.blueprints.blueprints[0].independentPracticeSpec as {
+          variantParameters: unknown;
+        }
+      ).variantParameters = variantParameters;
+      const h = harness();
+      await expect(
+        (await handler())(h.ctx, {
+          userId: "profiles:student",
+          activityId: GUIDED,
+          submissionData: envelope(),
+          idempotencyKey: `variant-${_name}`,
+        }),
+      ).rejects.toThrow(/curriculum is not approved/);
+    } finally {
+      catalogs.blueprints.blueprints[0] = original;
+    }
+  });
 });
 
-it.each(["correctAnswer", "answers", "finalAnswer"])("parent v5 rejects Independent renderer extra %s", async (key) => {
- const original = structuredClone(catalogs.blueprints.blueprints[0]);
- try {
-  (catalogs.blueprints.blueprints[0].independentPracticeSpec.rendererProps as any)[key] = "[0,2]";
-  const h = harness(); const write = await handler();
-  await expect(write(h.ctx, { userId: "profiles:student", activityId: GUIDED, submissionData: envelope(), idempotencyKey: "parent-v5-props" })).rejects.toThrow(/curriculum is not approved/);
- } finally { catalogs.blueprints.blueprints[0] = original; }
-});
+it.each(["correctAnswer", "answers", "finalAnswer"])(
+  "parent v5 rejects Independent renderer extra %s",
+  async (key) => {
+    const original = structuredClone(catalogs.blueprints.blueprints[0]);
+    try {
+      (catalogs.blueprints.blueprints[0].independentPracticeSpec.rendererProps as any)[key] =
+        "[0,2]";
+      const h = harness();
+      const write = await handler();
+      await expect(
+        write(h.ctx, {
+          userId: "profiles:student",
+          activityId: GUIDED,
+          submissionData: envelope(),
+          idempotencyKey: "parent-v5-props",
+        }),
+      ).rejects.toThrow(/curriculum is not approved/);
+    } finally {
+      catalogs.blueprints.blueprints[0] = original;
+    }
+  },
+);

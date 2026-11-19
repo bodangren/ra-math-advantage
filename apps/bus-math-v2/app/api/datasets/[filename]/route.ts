@@ -1,6 +1,6 @@
-import { requireActiveRequestSessionClaims } from '@/lib/auth/server';
-import { NextRequest, NextResponse } from 'next/server';
-import { getDatasetAsset } from '@/lib/server/lesson-assets';
+import { requireActiveRequestSessionClaims } from "@/lib/auth/server";
+import { NextRequest, NextResponse } from "next/server";
+import { getDatasetAsset } from "@/lib/server/lesson-assets";
 
 /**
  * Serves a dataset CSV file by filename for authenticated users.
@@ -12,7 +12,7 @@ import { getDatasetAsset } from '@/lib/server/lesson-assets';
  */
 export async function GET(
   request: NextRequest,
-  context: { params: Promise<{ filename: string }> }
+  context: { params: Promise<{ filename: string }> },
 ) {
   const session = await requireActiveRequestSessionClaims(request);
   if (session instanceof Response) {
@@ -22,19 +22,21 @@ export async function GET(
   const params = await context.params;
   const { filename } = params;
 
-  if (!/^unit_0[1-8]_(class_snapshot_dataset|class_dataset|group_dataset_0[1-6])\.csv$/.test(filename)) {
-    return NextResponse.json({ error: 'Invalid filename' }, { status: 400 });
+  if (
+    !/^unit_0[1-8]_(class_snapshot_dataset|class_dataset|group_dataset_0[1-6])\.csv$/.test(filename)
+  ) {
+    return NextResponse.json({ error: "Invalid filename" }, { status: 400 });
   }
 
   const fileBuffer = getDatasetAsset(filename);
   if (fileBuffer === null) {
-    return NextResponse.json({ error: 'File not found' }, { status: 404 });
+    return NextResponse.json({ error: "File not found" }, { status: 404 });
   }
 
   return new NextResponse(fileBuffer, {
     headers: {
-      'Content-Type': 'text/csv',
-      'Content-Disposition': `attachment; filename="${filename}"`,
+      "Content-Type": "text/csv",
+      "Content-Disposition": `attachment; filename="${filename}"`,
     },
   });
 }

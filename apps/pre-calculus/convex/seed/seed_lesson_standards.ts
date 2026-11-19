@@ -13,26 +13,66 @@ const unit1LessonStandards: LessonStandardLink[] = [
   // 1-2 Rates of Change
   { lessonSlug: "1-2-rates-of-change", standardCode: "HSF-IF.B.4", isPrimary: true },
   // 1-3 Rates of Change: Linear & Quadratic
-  { lessonSlug: "1-3-rates-of-change-linear-quadratic", standardCode: "HSF-IF.B.4", isPrimary: true },
-  { lessonSlug: "1-3-rates-of-change-linear-quadratic", standardCode: "HSA-APR.A.1", isPrimary: false },
+  {
+    lessonSlug: "1-3-rates-of-change-linear-quadratic",
+    standardCode: "HSF-IF.B.4",
+    isPrimary: true,
+  },
+  {
+    lessonSlug: "1-3-rates-of-change-linear-quadratic",
+    standardCode: "HSA-APR.A.1",
+    isPrimary: false,
+  },
   // 1-4 Polynomial Functions and Rates of Change
   { lessonSlug: "1-4-polynomial-functions-rates", standardCode: "HSA-APR.A.1", isPrimary: true },
   { lessonSlug: "1-4-polynomial-functions-rates", standardCode: "HSF-IF.C.7c", isPrimary: true },
   // 1-5 Polynomial Functions: Complex Zeros
-  { lessonSlug: "1-5-polynomial-functions-complex-zeros", standardCode: "HSA-APR.B.2", isPrimary: true },
-  { lessonSlug: "1-5-polynomial-functions-complex-zeros", standardCode: "HSA-APR.B.3", isPrimary: true },
+  {
+    lessonSlug: "1-5-polynomial-functions-complex-zeros",
+    standardCode: "HSA-APR.B.2",
+    isPrimary: true,
+  },
+  {
+    lessonSlug: "1-5-polynomial-functions-complex-zeros",
+    standardCode: "HSA-APR.B.3",
+    isPrimary: true,
+  },
   // 1-6 Polynomial Functions: End Behavior
-  { lessonSlug: "1-6-polynomial-functions-end-behavior", standardCode: "HSF-IF.C.7c", isPrimary: true },
-  { lessonSlug: "1-6-polynomial-functions-end-behavior", standardCode: "HSF-IF.B.4", isPrimary: false },
+  {
+    lessonSlug: "1-6-polynomial-functions-end-behavior",
+    standardCode: "HSF-IF.C.7c",
+    isPrimary: true,
+  },
+  {
+    lessonSlug: "1-6-polynomial-functions-end-behavior",
+    standardCode: "HSF-IF.B.4",
+    isPrimary: false,
+  },
   // 1-7 Rational Functions: End Behavior
-  { lessonSlug: "1-7-rational-functions-end-behavior", standardCode: "HSF-IF.C.7d", isPrimary: true },
-  { lessonSlug: "1-7-rational-functions-end-behavior", standardCode: "HSA-APR.D.6", isPrimary: true },
+  {
+    lessonSlug: "1-7-rational-functions-end-behavior",
+    standardCode: "HSF-IF.C.7d",
+    isPrimary: true,
+  },
+  {
+    lessonSlug: "1-7-rational-functions-end-behavior",
+    standardCode: "HSA-APR.D.6",
+    isPrimary: true,
+  },
   // 1-8 Rational Functions: Zeros
   { lessonSlug: "1-8-rational-functions-zeros", standardCode: "HSF-IF.C.7d", isPrimary: true },
   { lessonSlug: "1-8-rational-functions-zeros", standardCode: "HSA-APR.D.6", isPrimary: false },
   // 1-9 Rational Functions: Vertical Asymptotes
-  { lessonSlug: "1-9-rational-functions-vertical-asymptotes", standardCode: "HSF-IF.C.7d", isPrimary: true },
-  { lessonSlug: "1-9-rational-functions-vertical-asymptotes", standardCode: "HSA-REI.A.2", isPrimary: false },
+  {
+    lessonSlug: "1-9-rational-functions-vertical-asymptotes",
+    standardCode: "HSF-IF.C.7d",
+    isPrimary: true,
+  },
+  {
+    lessonSlug: "1-9-rational-functions-vertical-asymptotes",
+    standardCode: "HSA-REI.A.2",
+    isPrimary: false,
+  },
   // 1-10 Rational Functions: Holes
   { lessonSlug: "1-10-rational-functions-holes", standardCode: "HSF-IF.C.7d", isPrimary: true },
   // 1-11 Equivalent Representations
@@ -51,7 +91,11 @@ const unit1LessonStandards: LessonStandardLink[] = [
 const unit2LessonStandards: LessonStandardLink[] = [
   // 2-1 Arithmetic & Geometric Sequences
   { lessonSlug: "2-1-arithmetic-geometric-sequences", standardCode: "HSF-LE.A.2", isPrimary: true },
-  { lessonSlug: "2-1-arithmetic-geometric-sequences", standardCode: "HSF-LE.A.1", isPrimary: false },
+  {
+    lessonSlug: "2-1-arithmetic-geometric-sequences",
+    standardCode: "HSF-LE.A.1",
+    isPrimary: false,
+  },
   // 2-2 Linear & Exponential Change
   { lessonSlug: "2-2-linear-exponential-change", standardCode: "HSF-LE.A.1", isPrimary: true },
   { lessonSlug: "2-2-linear-exponential-change", standardCode: "HSF-LE.B.5", isPrimary: false },
@@ -85,8 +129,16 @@ const unit2LessonStandards: LessonStandardLink[] = [
   { lessonSlug: "2-12-logarithmic-equations", standardCode: "HSF-LE.A.4", isPrimary: true },
   { lessonSlug: "2-12-logarithmic-equations", standardCode: "HSF-BF.B.5", isPrimary: false },
   // 2-13 Exp/Log Equations & Inequalities
-  { lessonSlug: "2-13-exp-log-equations-inequalities", standardCode: "HSF-LE.A.4", isPrimary: true },
-  { lessonSlug: "2-13-exp-log-equations-inequalities", standardCode: "HSA-REI.A.2", isPrimary: false },
+  {
+    lessonSlug: "2-13-exp-log-equations-inequalities",
+    standardCode: "HSF-LE.A.4",
+    isPrimary: true,
+  },
+  {
+    lessonSlug: "2-13-exp-log-equations-inequalities",
+    standardCode: "HSA-REI.A.2",
+    isPrimary: false,
+  },
   // 2-14 Logarithmic Modeling
   { lessonSlug: "2-14-logarithmic-modeling", standardCode: "HSF-BF.A.1", isPrimary: true },
   { lessonSlug: "2-14-logarithmic-modeling", standardCode: "HSF-LE.B.5", isPrimary: false },
@@ -130,8 +182,16 @@ const unit3LessonStandards: LessonStandardLink[] = [
   { lessonSlug: "3-11-other-trig-functions", standardCode: "HSF-TF.A.1", isPrimary: true },
   { lessonSlug: "3-11-other-trig-functions", standardCode: "HSF-TF.A.2", isPrimary: false },
   // 3-12 Equivalent Trig Representations
-  { lessonSlug: "3-12-equivalent-trig-representations", standardCode: "HSF-TF.A.4", isPrimary: true },
-  { lessonSlug: "3-12-equivalent-trig-representations", standardCode: "HSF-TF.A.2", isPrimary: false },
+  {
+    lessonSlug: "3-12-equivalent-trig-representations",
+    standardCode: "HSF-TF.A.4",
+    isPrimary: true,
+  },
+  {
+    lessonSlug: "3-12-equivalent-trig-representations",
+    standardCode: "HSF-TF.A.2",
+    isPrimary: false,
+  },
   // 3-13 Polar Coordinates
   { lessonSlug: "3-13-polar-coordinates", standardCode: "HSF-TF.A.1", isPrimary: true },
   // 3-14 Polar Functions
@@ -250,7 +310,7 @@ export const seedLessonStandards = internalMutation({
         const existing = await ctx.db
           .query("lesson_standards")
           .withIndex("by_lesson_version_and_standard", (q) =>
-            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id)
+            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id),
           )
           .unique();
 

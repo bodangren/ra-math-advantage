@@ -1,105 +1,101 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mockRequireActiveTeacherRequestClaims = vi.fn();
 const mockFetchInternalQuery = vi.fn();
 const mockFetchInternalMutation = vi.fn();
 
-vi.mock('@/lib/auth/server', () => ({
+vi.mock("@/lib/auth/server", () => ({
   requireActiveTeacherRequestClaims: mockRequireActiveTeacherRequestClaims,
 }));
 
-vi.mock('@/lib/convex/server', () => ({
+vi.mock("@/lib/convex/server", () => ({
   fetchInternalQuery: mockFetchInternalQuery,
   fetchInternalMutation: mockFetchInternalMutation,
   internal: {
     apiRateLimits: {
-      checkAndIncrementApiRateLimit: 'internal.apiRateLimits.checkAndIncrementApiRateLimit',
+      checkAndIncrementApiRateLimit: "internal.apiRateLimits.checkAndIncrementApiRateLimit",
     },
     teacher: {
-      getProfileWithOrg: 'internal.teacher.getProfileWithOrg',
-      getLessonErrorSummary: 'internal.teacher.getLessonErrorSummary',
+      getProfileWithOrg: "internal.teacher.getProfileWithOrg",
+      getLessonErrorSummary: "internal.teacher.getLessonErrorSummary",
     },
     activities: {
-      getProfileById: 'internal.activities.getProfileById',
+      getProfileById: "internal.activities.getProfileById",
     },
   },
 }));
 
-const { GET } = await import('@/app/api/teacher/error-summary/route');
+const { GET } = await import("@/app/api/teacher/error-summary/route");
 
 function buildRequest(params: Record<string, string>) {
-  const url = new URL('http://localhost/api/teacher/error-summary');
+  const url = new URL("http://localhost/api/teacher/error-summary");
   for (const [key, value] of Object.entries(params)) {
     url.searchParams.set(key, value);
   }
   return new Request(url.toString());
 }
 
-describe('GET /api/teacher/error-summary', () => {
+describe("GET /api/teacher/error-summary", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockRequireActiveTeacherRequestClaims.mockResolvedValue({
-      sub: 'teacher_profile_1',
-      username: 'teacher',
-      role: 'teacher',
+      sub: "teacher_profile_1",
+      username: "teacher",
+      role: "teacher",
       iat: 1,
       exp: 2,
     });
     mockFetchInternalMutation.mockImplementation(async (name: string) => {
-      if (name === 'internal.apiRateLimits.checkAndIncrementApiRateLimit') {
+      if (name === "internal.apiRateLimits.checkAndIncrementApiRateLimit") {
         return { allowed: true, remaining: 119, windowExpiresAt: Date.now() + 60000 };
       }
       return null;
     });
   });
 
-  it('returns 401 when the requester is unauthenticated or deactivated', async () => {
+  it("returns 401 when the requester is unauthenticated or deactivated", async () => {
     mockRequireActiveTeacherRequestClaims.mockResolvedValue(
-      new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 }),
+      new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 }),
     );
 
-    const response = await GET(
-      buildRequest({ lessonId: 'lesson_1' }),
-    );
+    const response = await GET(buildRequest({ lessonId: "lesson_1" }));
 
     expect(response.status).toBe(401);
   });
 
-  it('returns 403 when caller is not teacher/admin', async () => {
+  it("returns 403 when caller is not teacher/admin", async () => {
     mockRequireActiveTeacherRequestClaims.mockResolvedValue(
-      new Response(JSON.stringify({ error: 'Forbidden' }), { status: 403 }),
+      new Response(JSON.stringify({ error: "Forbidden" }), { status: 403 }),
     );
 
-    const response = await GET(
-      buildRequest({ lessonId: 'lesson_1' }),
-    );
+    const response = await GET(buildRequest({ lessonId: "lesson_1" }));
 
     expect(response.status).toBe(403);
     expect(mockFetchInternalQuery).not.toHaveBeenCalled();
   });
 
-  it('returns 400 when lessonId is missing', async () => {
+  it("returns 400 when lessonId is missing", async () => {
     const response = await GET(buildRequest({}));
 
     expect(response.status).toBe(400);
     const payload = await response.json();
-    expect(payload.error).toBe('Invalid parameters');
+    expect(payload.error).toBe("Invalid parameters");
   });
 
-  it('returns deterministic error summary for a lesson', async () => {
+  it("returns deterministic error summary for a lesson", async () => {
     mockFetchInternalQuery
       .mockResolvedValueOnce({
-        id: 'teacher_profile_1',
-        role: 'teacher',
-        organizationId: 'org_1',
+        id: "teacher_profile_1",
+        role: "teacher",
+        organizationId: "org_1",
       })
       .mockResolvedValueOnce({
-        type: 'deterministic',
-        lessonId: 'lesson_1',
+        type: "deterministic",
+        lessonId: "lesson_1",
         generatedAt: 1700000000000,
         partSummaries: [
           {
-            partId: 'q1',
+            partId: "q1",
             totalAttempts: 3,
             correctCount: 2,
             incorrectCount: 1,
@@ -109,44 +105,40 @@ describe('GET /api/teacher/error-summary', () => {
         ],
         topMisconceptions: [
           {
-            tag: 'debit-credit-confusion',
+            tag: "debit-credit-confusion",
             count: 2,
-            affectedParts: ['q1', 'q2'],
-            affectedStudents: ['student_1', 'student_2'],
+            affectedParts: ["q1", "q2"],
+            affectedStudents: ["student_1", "student_2"],
           },
         ],
         studentCount: 3,
         averageAccuracy: 0.67,
       });
 
-    const response = await GET(
-      buildRequest({ lessonId: 'lesson_1' }),
-    );
+    const response = await GET(buildRequest({ lessonId: "lesson_1" }));
 
     expect(response.status).toBe(200);
     const payload = await response.json();
-    expect(payload.type).toBe('deterministic');
-    expect(payload.lessonId).toBe('lesson_1');
+    expect(payload.type).toBe("deterministic");
+    expect(payload.lessonId).toBe("lesson_1");
     expect(payload.studentCount).toBe(3);
     expect(payload.topMisconceptions).toHaveLength(1);
-    expect(payload.topMisconceptions[0].tag).toBe('debit-credit-confusion');
+    expect(payload.topMisconceptions[0].tag).toBe("debit-credit-confusion");
   });
 
-  it('returns null when lesson has no practice submissions', async () => {
+  it("returns null when lesson has no practice submissions", async () => {
     mockFetchInternalQuery
       .mockResolvedValueOnce({
-        id: 'teacher_profile_1',
-        role: 'teacher',
-        organizationId: 'org_1',
+        id: "teacher_profile_1",
+        role: "teacher",
+        organizationId: "org_1",
       })
       .mockResolvedValueOnce(null);
 
-    const response = await GET(
-      buildRequest({ lessonId: 'lesson_1' }),
-    );
+    const response = await GET(buildRequest({ lessonId: "lesson_1" }));
 
     expect(response.status).toBe(404);
     const payload = await response.json();
-    expect(payload.error).toBe('No practice submissions found for this lesson');
+    expect(payload.error).toBe("No practice submissions found for this lesson");
   });
 });

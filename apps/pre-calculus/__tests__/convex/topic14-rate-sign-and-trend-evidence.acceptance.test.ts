@@ -1,7 +1,7 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from "vitest";
 
-import type { LearningEvidenceV1 } from '@math-platform/practice-core';
-import { generateTopic14RateSignAndTrendOutput } from '@math-platform/math-content/knowledge-space';
+import type { LearningEvidenceV1 } from "@math-platform/practice-core";
+import { generateTopic14RateSignAndTrendOutput } from "@math-platform/math-content/knowledge-space";
 
 import {
   createPrecalculusSubmissionLearningEvidenceHandler,
@@ -9,8 +9,8 @@ import {
   type PrecalculusSubmissionEffect,
   type PrecalculusSubmissionReceipt,
   type PrecalculusSubmissionReceiptStore,
-} from '@/convex/learningEvidence';
-import { gradeTopic14RateSignAndTrend } from '@/lib/practice/topic14-rate-sign-and-trend';
+} from "@/convex/learningEvidence";
+import { gradeTopic14RateSignAndTrend } from "@/lib/practice/topic14-rate-sign-and-trend";
 import {
   PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS,
   PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_ACTIVITY_ID,
@@ -19,24 +19,24 @@ import {
   PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_WORKED_ACTIVITY_ID,
   type PrecalculusLearningEvidenceHistoryOptions,
   type PrecalculusLearningEvidenceStore,
-} from '@/lib/learning-evidence/precalc-pilot';
+} from "@/lib/learning-evidence/precalc-pilot";
 
-const LEARNER_ID = 'precalc-rate-sign-evidence-learner';
-const SUBMITTED_AT = Date.parse('2026-08-19T10:00:00.000Z');
-const PART_IDS = ['rateSign', 'rateTrend'] as const;
+const LEARNER_ID = "precalc-rate-sign-evidence-learner";
+const SUBMITTED_AT = Date.parse("2026-08-19T10:00:00.000Z");
+const PART_IDS = ["rateSign", "rateTrend"] as const;
 type RateSignPartId = (typeof PART_IDS)[number];
 type RateSignAnswers = Record<RateSignPartId, string>;
 
 function makeTeacherExposure(): LearningEvidenceV1 {
   return {
-    contractVersion: 'learning-evidence.v1',
+    contractVersion: "learning-evidence.v1",
     nodeId: PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_NODE_ID,
     activityId: PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_WORKED_ACTIVITY_ID,
     attemptOrdinal: 1,
-    origin: 'teacher_led',
-    mode: 'teaching',
-    occurredAt: '2026-08-19T09:00:00.000Z',
-    idempotencyKey: 'precalc-rate-sign-teacher-exposure',
+    origin: "teacher_led",
+    mode: "teaching",
+    occurredAt: "2026-08-19T09:00:00.000Z",
+    idempotencyKey: "precalc-rate-sign-teacher-exposure",
   };
 }
 
@@ -50,16 +50,17 @@ function makeAnswers(seed: number, overrides: Partial<RateSignAnswers> = {}): Ra
 }
 
 function makeSubmission(
-  mode: 'guided_practice' | 'independent_practice' = 'guided_practice',
+  mode: "guided_practice" | "independent_practice" = "guided_practice",
   options: {
     answers?: Partial<RateSignAnswers>;
     overrides?: Partial<PrecalculusActivitySubmission>;
   } = {},
 ): PrecalculusActivitySubmission {
-  const seed = mode === 'guided_practice' ? 1 : 2;
-  const stableActivityId = mode === 'guided_practice'
-    ? PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_ACTIVITY_ID
-    : PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_INDEPENDENT_ACTIVITY_ID;
+  const seed = mode === "guided_practice" ? 1 : 2;
+  const stableActivityId =
+    mode === "guided_practice"
+      ? PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_ACTIVITY_ID
+      : PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_INDEPENDENT_ACTIVITY_ID;
   const answers = makeAnswers(seed, options.answers);
   const graded = gradeTopic14RateSignAndTrend(seed, answers);
   return {
@@ -67,16 +68,16 @@ function makeSubmission(
     userId: LEARNER_ID,
     activityId: `precalc-rate-sign-${mode}-activity-document`,
     stableActivityId,
-    masteryContractVersion: 'learning-evidence.v1',
+    masteryContractVersion: "learning-evidence.v1",
     attemptOrdinal: 7,
     submittedAt: SUBMITTED_AT,
     submissionData: {
-      contractVersion: 'practice.v1',
+      contractVersion: "practice.v1",
       activityId: stableActivityId,
       attemptNumber: 7,
       mode,
-      status: 'graded',
-      submittedAt: '2026-08-19T10:00:00.000Z',
+      status: "graded",
+      submittedAt: "2026-08-19T10:00:00.000Z",
       answers,
       parts: graded.parts.map((part) => ({
         partId: part.partId,
@@ -97,10 +98,12 @@ class InMemoryEvidenceStore implements PrecalculusLearningEvidenceStore {
   readonly events: Array<{ learnerId: string; evidence: LearningEvidenceV1 }> = [];
 
   async findByIdempotencyKey(learnerId: string, idempotencyKey: string) {
-    return this.events.find((entry) => (
-      entry.learnerId === learnerId
-      && entry.evidence.idempotencyKey === idempotencyKey
-    ))?.evidence ?? null;
+    return (
+      this.events.find(
+        (entry) =>
+          entry.learnerId === learnerId && entry.evidence.idempotencyKey === idempotencyKey,
+      )?.evidence ?? null
+    );
   }
 
   async listByLearnerAndNode(
@@ -130,80 +133,82 @@ class InMemoryReceiptStore implements PrecalculusSubmissionReceiptStore {
   }
 }
 
-function createHarness(
-  submission: PrecalculusActivitySubmission,
-  withTeacherExposure = true,
-) {
+function createHarness(submission: PrecalculusActivitySubmission, withTeacherExposure = true) {
   const evidenceStore = new InMemoryEvidenceStore();
-  if (withTeacherExposure) evidenceStore.events.push({
-    learnerId: LEARNER_ID,
-    evidence: makeTeacherExposure(),
-  });
+  if (withTeacherExposure)
+    evidenceStore.events.push({
+      learnerId: LEARNER_ID,
+      evidence: makeTeacherExposure(),
+    });
   const receiptStore = new InMemoryReceiptStore();
   const effectOrder: string[] = [];
   const masteryBridge = vi.fn(async (_effect: PrecalculusSubmissionEffect) => {
-    effectOrder.push('mastery');
+    effectOrder.push("mastery");
   });
   const handler = createPrecalculusSubmissionLearningEvidenceHandler({
     evidenceStore,
-    loadActivitySubmission: async (submissionId) => (
-      submissionId === submission.submissionId ? submission : null
-    ),
+    loadActivitySubmission: async (submissionId) =>
+      submissionId === submission.submissionId ? submission : null,
     masteryBridge,
     receiptStore: {
       findBySubmissionId: receiptStore.findBySubmissionId.bind(receiptStore),
       append: async (learnerId, submissionId, receipt) => {
         await receiptStore.append(learnerId, submissionId, receipt);
-        effectOrder.push('receipt');
+        effectOrder.push("receipt");
       },
     },
   });
   const originalAppend = evidenceStore.append.bind(evidenceStore);
   evidenceStore.append = async (learnerId, evidence, submissionId) => {
     await originalAppend(learnerId, evidence, submissionId);
-    effectOrder.push('evidence');
+    effectOrder.push("evidence");
   };
   return { effectOrder, evidenceStore, handler, masteryBridge, receiptStore };
 }
 
-describe('Topic 1.4 rate-sign-and-trend evidence mapping', () => {
-  it('enables the exact rate-sign node once without duplicate allow-list entries', () => {
-    expect(PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS.filter(
-      (nodeId) => nodeId === PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_NODE_ID,
-    )).toHaveLength(1);
+describe("Topic 1.4 rate-sign-and-trend evidence mapping", () => {
+  it("enables the exact rate-sign node once without duplicate allow-list entries", () => {
+    expect(
+      PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS.filter(
+        (nodeId) => nodeId === PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_NODE_ID,
+      ),
+    ).toHaveLength(1);
     expect(new Set(PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS).size).toBe(
       PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS.length,
     );
   });
 
   it.each([
-    ['Guided', 'guided_practice' as const],
-    ['Independent', 'independent_practice' as const],
-  ])('maps trusted %s evidence with the exact stored score and mode', async (_label, mode) => {
+    ["Guided", "guided_practice" as const],
+    ["Independent", "independent_practice" as const],
+  ])("maps trusted %s evidence with the exact stored score and mode", async (_label, mode) => {
     const submission = makeSubmission(mode);
-    const { effectOrder, evidenceStore, handler, masteryBridge, receiptStore } = createHarness(submission);
+    const { effectOrder, evidenceStore, handler, masteryBridge, receiptStore } =
+      createHarness(submission);
     const expectedEvidence = {
-      contractVersion: 'learning-evidence.v1',
+      contractVersion: "learning-evidence.v1",
       nodeId: PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_NODE_ID,
       activityId: submission.stableActivityId,
       mode,
       attemptOrdinal: 7,
-      origin: 'mastery_advantage',
-      occurredAt: '2026-08-19T10:00:00.000Z',
+      origin: "mastery_advantage",
+      occurredAt: "2026-08-19T10:00:00.000Z",
       gradedEvidence: { isCorrect: true, score: 2, maxScore: 2 },
       idempotencyKey: `precalc:mastery-advantage:submission:${submission.submissionId}`,
     };
 
-    await expect(handler.process({ learnerId: LEARNER_ID, submissionId: submission.submissionId })).resolves.toEqual({
+    await expect(
+      handler.process({ learnerId: LEARNER_ID, submissionId: submission.submissionId }),
+    ).resolves.toEqual({
       persisted: true,
       masteryApplied: true,
       kstApplied: false,
-      delivery: 'new',
+      delivery: "new",
       decision: {
-        idempotency: 'new',
-        exposureState: 'introduced',
+        idempotency: "new",
+        exposureState: "introduced",
         eligible: true,
-        reason: 'eligible',
+        reason: "eligible",
         masteryBearing: true,
       },
     });
@@ -214,64 +219,75 @@ describe('Topic 1.4 rate-sign-and-trend evidence mapping', () => {
     });
     expect(evidenceStore.events[1]?.evidence).toEqual(expectedEvidence);
     expect(receiptStore.receipts.size).toBe(1);
-    expect(effectOrder).toEqual(['mastery', 'evidence', 'receipt']);
+    expect(effectOrder).toEqual(["mastery", "evidence", "receipt"]);
 
-    await expect(handler.process({ learnerId: LEARNER_ID, submissionId: submission.submissionId })).resolves.toEqual({
+    await expect(
+      handler.process({ learnerId: LEARNER_ID, submissionId: submission.submissionId }),
+    ).resolves.toEqual({
       persisted: true,
       masteryApplied: true,
       kstApplied: false,
-      delivery: 'replay',
+      delivery: "replay",
       decision: {
-        idempotency: 'new',
-        exposureState: 'introduced',
+        idempotency: "new",
+        exposureState: "introduced",
         eligible: true,
-        reason: 'eligible',
+        reason: "eligible",
         masteryBearing: true,
       },
     });
     expect(masteryBridge).toHaveBeenCalledOnce();
     expect(evidenceStore.events).toHaveLength(2);
     expect(receiptStore.receipts.size).toBe(1);
-    expect(effectOrder).toEqual(['mastery', 'evidence', 'receipt']);
+    expect(effectOrder).toEqual(["mastery", "evidence", "receipt"]);
   });
 
   it.each([
-    ['partial Guided', makeAnswers(1, { rateTrend: 'increasing' })],
-    ['zero Guided', makeAnswers(1, { rateSign: 'negative', rateTrend: 'increasing' })],
-  ])('preserves the trusted %s score and correctness', async (_label, answers) => {
-    const submission = makeSubmission('guided_practice', { answers });
+    ["partial Guided", makeAnswers(1, { rateTrend: "increasing" })],
+    ["zero Guided", makeAnswers(1, { rateSign: "negative", rateTrend: "increasing" })],
+  ])("preserves the trusted %s score and correctness", async (_label, answers) => {
+    const submission = makeSubmission("guided_practice", { answers });
     const { evidenceStore, handler, masteryBridge, receiptStore } = createHarness(submission);
     const graded = gradeTopic14RateSignAndTrend(1, answers);
 
-    await expect(handler.process({ learnerId: LEARNER_ID, submissionId: submission.submissionId })).resolves.toMatchObject({
+    await expect(
+      handler.process({ learnerId: LEARNER_ID, submissionId: submission.submissionId }),
+    ).resolves.toMatchObject({
       persisted: true,
       masteryApplied: true,
-      decision: { eligible: true, reason: 'eligible', masteryBearing: true },
+      decision: { eligible: true, reason: "eligible", masteryBearing: true },
     });
     expect(masteryBridge).toHaveBeenCalledOnce();
-    expect(evidenceStore.events[1]?.evidence).toEqual(expect.objectContaining({
-      nodeId: PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_NODE_ID,
-      activityId: PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_ACTIVITY_ID,
-      mode: 'guided_practice',
-      gradedEvidence: { isCorrect: graded.score === 2, score: graded.score, maxScore: 2 },
-    }));
+    expect(evidenceStore.events[1]?.evidence).toEqual(
+      expect.objectContaining({
+        nodeId: PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_NODE_ID,
+        activityId: PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_ACTIVITY_ID,
+        mode: "guided_practice",
+        gradedEvidence: { isCorrect: graded.score === 2, score: graded.score, maxScore: 2 },
+      }),
+    );
     expect(receiptStore.receipts.size).toBe(1);
   });
 
-  it('requires exact teacher exposure and produces no effects without it', async () => {
-    const submission = makeSubmission('guided_practice');
-    const { effectOrder, evidenceStore, handler, masteryBridge, receiptStore } = createHarness(submission, false);
+  it("requires exact teacher exposure and produces no effects without it", async () => {
+    const submission = makeSubmission("guided_practice");
+    const { effectOrder, evidenceStore, handler, masteryBridge, receiptStore } = createHarness(
+      submission,
+      false,
+    );
 
-    await expect(handler.process({ learnerId: LEARNER_ID, submissionId: submission.submissionId })).resolves.toEqual({
+    await expect(
+      handler.process({ learnerId: LEARNER_ID, submissionId: submission.submissionId }),
+    ).resolves.toEqual({
       persisted: false,
       masteryApplied: false,
       kstApplied: false,
-      delivery: 'new',
+      delivery: "new",
       decision: {
-        idempotency: 'new',
-        exposureState: 'awaiting_teacher_exposure',
+        idempotency: "new",
+        exposureState: "awaiting_teacher_exposure",
         eligible: false,
-        reason: 'awaiting_teacher_exposure',
+        reason: "awaiting_teacher_exposure",
         masteryBearing: false,
       },
     });
@@ -282,117 +298,221 @@ describe('Topic 1.4 rate-sign-and-trend evidence mapping', () => {
   });
 
   it.each([
-    ['cross-paired Guided stable and Independent envelope', () => {
-      const submission = makeSubmission('guided_practice');
-      return {
-        ...submission,
-        submissionData: {
-          ...submission.submissionData,
-          activityId: PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_INDEPENDENT_ACTIVITY_ID,
-          mode: 'independent_practice',
-        },
-      };
-    }],
-    ['cross-paired Independent stable and Guided envelope', () => {
-      const submission = makeSubmission('independent_practice');
-      return {
-        ...submission,
-        submissionData: {
-          ...submission.submissionData,
-          activityId: PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_ACTIVITY_ID,
-          mode: 'guided_practice',
-        },
-      };
-    }],
-    ['Guided identity with Independent mode', () => {
-      const submission = makeSubmission('guided_practice');
-      return { ...submission, submissionData: { ...submission.submissionData, mode: 'independent_practice' } };
-    }],
-    ['Independent identity with Guided mode', () => {
-      const submission = makeSubmission('independent_practice');
-      return { ...submission, submissionData: { ...submission.submissionData, mode: 'guided_practice' } };
-    }],
-    ['Worked identity', () => {
-      const submission = makeSubmission('guided_practice');
-      return {
-        ...submission,
-        stableActivityId: PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_WORKED_ACTIVITY_ID,
-        submissionData: {
-          ...submission.submissionData,
-          activityId: PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_WORKED_ACTIVITY_ID,
-          mode: 'worked_example',
-        },
-      };
-    }],
-  ] as const)('rejects %s without effects', async (_label, makeRejectedSubmission) => {
+    [
+      "cross-paired Guided stable and Independent envelope",
+      () => {
+        const submission = makeSubmission("guided_practice");
+        return {
+          ...submission,
+          submissionData: {
+            ...submission.submissionData,
+            activityId: PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_INDEPENDENT_ACTIVITY_ID,
+            mode: "independent_practice",
+          },
+        };
+      },
+    ],
+    [
+      "cross-paired Independent stable and Guided envelope",
+      () => {
+        const submission = makeSubmission("independent_practice");
+        return {
+          ...submission,
+          submissionData: {
+            ...submission.submissionData,
+            activityId: PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_ACTIVITY_ID,
+            mode: "guided_practice",
+          },
+        };
+      },
+    ],
+    [
+      "Guided identity with Independent mode",
+      () => {
+        const submission = makeSubmission("guided_practice");
+        return {
+          ...submission,
+          submissionData: { ...submission.submissionData, mode: "independent_practice" },
+        };
+      },
+    ],
+    [
+      "Independent identity with Guided mode",
+      () => {
+        const submission = makeSubmission("independent_practice");
+        return {
+          ...submission,
+          submissionData: { ...submission.submissionData, mode: "guided_practice" },
+        };
+      },
+    ],
+    [
+      "Worked identity",
+      () => {
+        const submission = makeSubmission("guided_practice");
+        return {
+          ...submission,
+          stableActivityId: PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_WORKED_ACTIVITY_ID,
+          submissionData: {
+            ...submission.submissionData,
+            activityId: PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_WORKED_ACTIVITY_ID,
+            mode: "worked_example",
+          },
+        };
+      },
+    ],
+  ] as const)("rejects %s without effects", async (_label, makeRejectedSubmission) => {
     const submission = makeRejectedSubmission();
-    const { effectOrder, evidenceStore, handler, masteryBridge, receiptStore } = createHarness(submission);
+    const { effectOrder, evidenceStore, handler, masteryBridge, receiptStore } =
+      createHarness(submission);
 
-    await expect(handler.process({ learnerId: LEARNER_ID, submissionId: submission.submissionId })).resolves.toEqual({
+    await expect(
+      handler.process({ learnerId: LEARNER_ID, submissionId: submission.submissionId }),
+    ).resolves.toEqual({
       accepted: false,
-      reason: 'submission_not_found',
+      reason: "submission_not_found",
     });
     expect(masteryBridge).not.toHaveBeenCalled();
-    expect(evidenceStore.events).toEqual([{ learnerId: LEARNER_ID, evidence: makeTeacherExposure() }]);
+    expect(evidenceStore.events).toEqual([
+      { learnerId: LEARNER_ID, evidence: makeTeacherExposure() },
+    ]);
     expect(receiptStore.receipts.size).toBe(0);
     expect(effectOrder).toEqual([]);
   });
 
   it.each([
-    ['foreign learner', () => makeSubmission('guided_practice', { overrides: { userId: 'other-learner' } })],
-    ['wrong mastery contract', () => makeSubmission('guided_practice', {
-      overrides: { masteryContractVersion: 'legacy.learning-evidence.v1' },
-    })],
-    ['zero stored attempt ordinal', () => makeSubmission('guided_practice', { overrides: { attemptOrdinal: 0 } })],
-    ['fractional stored attempt ordinal', () => makeSubmission('guided_practice', { overrides: { attemptOrdinal: 1.5 } })],
-    ['missing envelope attempt number', () => {
-      const submission = makeSubmission();
-      return { ...submission, submissionData: { ...submission.submissionData, attemptNumber: undefined } };
-    }],
-    ['zero envelope attempt number', () => {
-      const submission = makeSubmission();
-      return { ...submission, submissionData: { ...submission.submissionData, attemptNumber: 0 } };
-    }],
-    ['fractional envelope attempt number', () => {
-      const submission = makeSubmission();
-      return { ...submission, submissionData: { ...submission.submissionData, attemptNumber: 1.5 } };
-    }],
-    ['mismatched envelope attempt number', () => {
-      const submission = makeSubmission();
-      return { ...submission, submissionData: { ...submission.submissionData, attemptNumber: 6 } };
-    }],
-    ['invalid envelope submittedAt', () => {
-      const submission = makeSubmission();
-      return { ...submission, submissionData: { ...submission.submissionData, submittedAt: 'not-a-time' } };
-    }],
-    ['mismatched envelope submittedAt', () => {
-      const submission = makeSubmission();
-      return { ...submission, submissionData: { ...submission.submissionData, submittedAt: '2026-08-19T10:01:00.000Z' } };
-    }],
-    ['invalid stored submittedAt', () => makeSubmission('guided_practice', { overrides: { submittedAt: Number.NaN } })],
-    ['invalid stored gradedAt', () => makeSubmission('guided_practice', { overrides: { gradedAt: Number.NaN } })],
-    ['gradedAt differs from submittedAt', () => makeSubmission('guided_practice', { overrides: { gradedAt: SUBMITTED_AT + 60_000 } })],
-    ['ungraded status', () => {
-      const submission = makeSubmission();
-      return { ...submission, submissionData: { ...submission.submissionData, status: 'submitted' } };
-    }],
-    ['negative score', () => makeSubmission('guided_practice', { overrides: { score: -1 } })],
-    ['fractional score', () => makeSubmission('guided_practice', { overrides: { score: 1.5 } })],
-    ['above-maximum score', () => makeSubmission('guided_practice', { overrides: { score: 3 } })],
-    ['zero maxScore', () => makeSubmission('guided_practice', { overrides: { maxScore: 0 } })],
-    ['positive wrong maxScore', () => makeSubmission('guided_practice', { overrides: { maxScore: 1 } })],
-    ['fractional maxScore', () => makeSubmission('guided_practice', { overrides: { maxScore: 1.5 } })],
-  ] as const)('rejects summary mismatch: %s without effects', async (_label, makeRejectedSubmission) => {
-    const submission = makeRejectedSubmission();
-    const { effectOrder, evidenceStore, handler, masteryBridge, receiptStore } = createHarness(submission);
+    [
+      "foreign learner",
+      () => makeSubmission("guided_practice", { overrides: { userId: "other-learner" } }),
+    ],
+    [
+      "wrong mastery contract",
+      () =>
+        makeSubmission("guided_practice", {
+          overrides: { masteryContractVersion: "legacy.learning-evidence.v1" },
+        }),
+    ],
+    [
+      "zero stored attempt ordinal",
+      () => makeSubmission("guided_practice", { overrides: { attemptOrdinal: 0 } }),
+    ],
+    [
+      "fractional stored attempt ordinal",
+      () => makeSubmission("guided_practice", { overrides: { attemptOrdinal: 1.5 } }),
+    ],
+    [
+      "missing envelope attempt number",
+      () => {
+        const submission = makeSubmission();
+        return {
+          ...submission,
+          submissionData: { ...submission.submissionData, attemptNumber: undefined },
+        };
+      },
+    ],
+    [
+      "zero envelope attempt number",
+      () => {
+        const submission = makeSubmission();
+        return {
+          ...submission,
+          submissionData: { ...submission.submissionData, attemptNumber: 0 },
+        };
+      },
+    ],
+    [
+      "fractional envelope attempt number",
+      () => {
+        const submission = makeSubmission();
+        return {
+          ...submission,
+          submissionData: { ...submission.submissionData, attemptNumber: 1.5 },
+        };
+      },
+    ],
+    [
+      "mismatched envelope attempt number",
+      () => {
+        const submission = makeSubmission();
+        return {
+          ...submission,
+          submissionData: { ...submission.submissionData, attemptNumber: 6 },
+        };
+      },
+    ],
+    [
+      "invalid envelope submittedAt",
+      () => {
+        const submission = makeSubmission();
+        return {
+          ...submission,
+          submissionData: { ...submission.submissionData, submittedAt: "not-a-time" },
+        };
+      },
+    ],
+    [
+      "mismatched envelope submittedAt",
+      () => {
+        const submission = makeSubmission();
+        return {
+          ...submission,
+          submissionData: { ...submission.submissionData, submittedAt: "2026-08-19T10:01:00.000Z" },
+        };
+      },
+    ],
+    [
+      "invalid stored submittedAt",
+      () => makeSubmission("guided_practice", { overrides: { submittedAt: Number.NaN } }),
+    ],
+    [
+      "invalid stored gradedAt",
+      () => makeSubmission("guided_practice", { overrides: { gradedAt: Number.NaN } }),
+    ],
+    [
+      "gradedAt differs from submittedAt",
+      () => makeSubmission("guided_practice", { overrides: { gradedAt: SUBMITTED_AT + 60_000 } }),
+    ],
+    [
+      "ungraded status",
+      () => {
+        const submission = makeSubmission();
+        return {
+          ...submission,
+          submissionData: { ...submission.submissionData, status: "submitted" },
+        };
+      },
+    ],
+    ["negative score", () => makeSubmission("guided_practice", { overrides: { score: -1 } })],
+    ["fractional score", () => makeSubmission("guided_practice", { overrides: { score: 1.5 } })],
+    ["above-maximum score", () => makeSubmission("guided_practice", { overrides: { score: 3 } })],
+    ["zero maxScore", () => makeSubmission("guided_practice", { overrides: { maxScore: 0 } })],
+    [
+      "positive wrong maxScore",
+      () => makeSubmission("guided_practice", { overrides: { maxScore: 1 } }),
+    ],
+    [
+      "fractional maxScore",
+      () => makeSubmission("guided_practice", { overrides: { maxScore: 1.5 } }),
+    ],
+  ] as const)(
+    "rejects summary mismatch: %s without effects",
+    async (_label, makeRejectedSubmission) => {
+      const submission = makeRejectedSubmission();
+      const { effectOrder, evidenceStore, handler, masteryBridge, receiptStore } =
+        createHarness(submission);
 
-    await expect(handler.process({ learnerId: LEARNER_ID, submissionId: submission.submissionId })).resolves.toEqual({
-      accepted: false,
-      reason: 'submission_not_found',
-    });
-    expect(masteryBridge).not.toHaveBeenCalled();
-    expect(evidenceStore.events).toEqual([{ learnerId: LEARNER_ID, evidence: makeTeacherExposure() }]);
-    expect(receiptStore.receipts.size).toBe(0);
-    expect(effectOrder).toEqual([]);
-  });
+      await expect(
+        handler.process({ learnerId: LEARNER_ID, submissionId: submission.submissionId }),
+      ).resolves.toEqual({
+        accepted: false,
+        reason: "submission_not_found",
+      });
+      expect(masteryBridge).not.toHaveBeenCalled();
+      expect(evidenceStore.events).toEqual([
+        { learnerId: LEARNER_ID, evidence: makeTeacherExposure() },
+      ]);
+      expect(receiptStore.receipts.size).toBe(0);
+      expect(effectOrder).toEqual([]);
+    },
+  );
 });

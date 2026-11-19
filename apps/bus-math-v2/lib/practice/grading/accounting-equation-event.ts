@@ -1,8 +1,8 @@
-import { normalizePracticeValue } from '@/lib/practice/contract';
+import { normalizePracticeValue } from "@/lib/practice/contract";
 
-type Mode = 'guided_practice' | 'independent_practice';
-type Direction = 'increase' | 'decrease' | 'no-effect';
-type Category = 'Asset' | 'Liability' | 'Equity';
+type Mode = "guided_practice" | "independent_practice";
+type Direction = "increase" | "decrease" | "no-effect";
+type Category = "Asset" | "Liability" | "Equity";
 
 interface CaseAnswer {
   accountCategories: Record<string, Category>;
@@ -45,18 +45,18 @@ export interface AccountingEquationEventGradeResult {
   parts: AccountingEquationEventGradePart[];
   hintsUsed: number;
   manualReview: {
-    partId: 'explanation';
+    partId: "explanation";
     rawAnswer: string;
     rubric: string;
-    status: 'manual_review_required';
+    status: "manual_review_required";
   };
 }
 
 const SERVER_CASES: Record<Mode, Record<string, CaseAnswer>> = {
   guided_practice: {
     cash_purchase: {
-      accountCategories: { cash: 'Asset', equipment: 'Asset' },
-      accountEffects: { cash: 'decrease', equipment: 'increase' },
+      accountCategories: { cash: "Asset", equipment: "Asset" },
+      accountEffects: { cash: "decrease", equipment: "increase" },
       accountAmounts: { cash: 2000, equipment: 2000 },
       endingAssets: 7000,
       endingLiabilities: 2000,
@@ -64,8 +64,8 @@ const SERVER_CASES: Record<Mode, Record<string, CaseAnswer>> = {
       equationDifference: 0,
     },
     credit_purchase: {
-      accountCategories: { equipment: 'Asset', payable: 'Liability' },
-      accountEffects: { equipment: 'increase', payable: 'increase' },
+      accountCategories: { equipment: "Asset", payable: "Liability" },
+      accountEffects: { equipment: "increase", payable: "increase" },
       accountAmounts: { equipment: 2000, payable: 2000 },
       endingAssets: 7000,
       endingLiabilities: 2000,
@@ -76,10 +76,16 @@ const SERVER_CASES: Record<Mode, Record<string, CaseAnswer>> = {
   independent_practice: {
     owner_investment: {
       accountCategories: {
-        cash: 'Asset', owner_equity: 'Equity', bank_loan: 'Liability', equipment: 'Asset',
+        cash: "Asset",
+        owner_equity: "Equity",
+        bank_loan: "Liability",
+        equipment: "Asset",
       },
       accountEffects: {
-        cash: 'increase', owner_equity: 'increase', bank_loan: 'no-effect', equipment: 'no-effect',
+        cash: "increase",
+        owner_equity: "increase",
+        bank_loan: "no-effect",
+        equipment: "no-effect",
       },
       accountAmounts: { cash: 1000, owner_equity: 1000, bank_loan: 0, equipment: 0 },
       endingAssets: 6000,
@@ -90,11 +96,16 @@ const SERVER_CASES: Record<Mode, Record<string, CaseAnswer>> = {
   },
 };
 
-const MANUAL_RUBRIC = 'Verify that the learner explains how equal account changes keep Assets equal to Liabilities plus Equity.';
+const MANUAL_RUBRIC =
+  "Verify that the learner explains how equal account changes keep Assets equal to Liabilities plus Equity.";
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value)
-    && Object.getPrototypeOf(value) === Object.prototype;
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    !Array.isArray(value) &&
+    Object.getPrototypeOf(value) === Object.prototype
+  );
 }
 
 function assertExactKeys(value: Record<string, unknown>, expectedKeys: string[], label: string) {
@@ -105,8 +116,12 @@ function assertExactKeys(value: Record<string, unknown>, expectedKeys: string[],
   }
 }
 
-function requireFiniteNumber(value: unknown, label: string, options: { nonnegative?: boolean } = {}) {
-  if (typeof value !== 'number' || !Number.isFinite(value)) {
+function requireFiniteNumber(
+  value: unknown,
+  label: string,
+  options: { nonnegative?: boolean } = {},
+) {
+  if (typeof value !== "number" || !Number.isFinite(value)) {
     throw new TypeError(`${label} must be a finite number`);
   }
   if (options.nonnegative && value < 0) {
@@ -119,9 +134,14 @@ function samePracticeValue(first: unknown, second: unknown) {
   if (isPlainObject(first) && isPlainObject(second)) {
     const firstKeys = Object.keys(first).sort();
     const secondKeys = Object.keys(second).sort();
-    return firstKeys.length === secondKeys.length
-      && firstKeys.every((key, index) => key === secondKeys[index]
-        && normalizePracticeValue(first[key]) === normalizePracticeValue(second[key]));
+    return (
+      firstKeys.length === secondKeys.length &&
+      firstKeys.every(
+        (key, index) =>
+          key === secondKeys[index] &&
+          normalizePracticeValue(first[key]) === normalizePracticeValue(second[key]),
+      )
+    );
   }
   return normalizePracticeValue(first) === normalizePracticeValue(second);
 }
@@ -130,19 +150,19 @@ function scoreRecord(
   partId: string,
   rawAnswer: unknown,
   expected: Record<string, string | number>,
-  valueType: 'category' | 'direction' | 'amount',
+  valueType: "category" | "direction" | "amount",
 ): AccountingEquationEventGradePart {
   if (!isPlainObject(rawAnswer)) throw new TypeError(`${partId} must be an object`);
   assertExactKeys(rawAnswer, Object.keys(expected), partId);
   let score = 0;
   for (const [key, expectedValue] of Object.entries(expected)) {
     const value = rawAnswer[key];
-    if (valueType === 'category') {
-      if (value !== 'Asset' && value !== 'Liability' && value !== 'Equity') {
+    if (valueType === "category") {
+      if (value !== "Asset" && value !== "Liability" && value !== "Equity") {
         throw new TypeError(`${partId}.${key} has an invalid category`);
       }
-    } else if (valueType === 'direction') {
-      if (value !== 'increase' && value !== 'decrease' && value !== 'no-effect') {
+    } else if (valueType === "direction") {
+      if (value !== "increase" && value !== "decrease" && value !== "no-effect") {
         throw new TypeError(`${partId}.${key} has an invalid direction`);
       }
     } else {
@@ -151,19 +171,26 @@ function scoreRecord(
     if (value === expectedValue) score += 1;
   }
   return {
-    partId, rawAnswer, isCorrect: score === Object.keys(expected).length,
-    score, maxScore: Object.keys(expected).length,
+    partId,
+    rawAnswer,
+    isCorrect: score === Object.keys(expected).length,
+    score,
+    maxScore: Object.keys(expected).length,
   };
 }
 
 function expectedPartIds(mode: Mode) {
   return [
     ...Object.keys(SERVER_CASES[mode]).flatMap((caseId) => [
-      `${caseId}.account_categories`, `${caseId}.account_effects`, `${caseId}.account_amounts`,
-      `${caseId}.ending_assets`, `${caseId}.ending_liabilities`,
-      `${caseId}.ending_equity`, `${caseId}.equation_difference`,
+      `${caseId}.account_categories`,
+      `${caseId}.account_effects`,
+      `${caseId}.account_amounts`,
+      `${caseId}.ending_assets`,
+      `${caseId}.ending_liabilities`,
+      `${caseId}.ending_equity`,
+      `${caseId}.equation_difference`,
     ]),
-    'explanation',
+    "explanation",
   ];
 }
 
@@ -171,42 +198,47 @@ function expectedPartIds(mode: Mode) {
 export function gradeAccountingEquationEventSubmission(
   submission: EventSubmission,
 ): AccountingEquationEventGradeResult {
-  if (submission.contractVersion !== 'practice.v1' || submission.status !== 'submitted') {
-    throw new TypeError('The event submission contract is invalid');
+  if (submission.contractVersion !== "practice.v1" || submission.status !== "submitted") {
+    throw new TypeError("The event submission contract is invalid");
   }
-  if (submission.mode !== 'guided_practice' && submission.mode !== 'independent_practice') {
-    throw new TypeError('The event submission mode is invalid');
+  if (submission.mode !== "guided_practice" && submission.mode !== "independent_practice") {
+    throw new TypeError("The event submission mode is invalid");
   }
   const mode = submission.mode;
   if (!isPlainObject(submission.answers) || !Array.isArray(submission.parts)) {
-    throw new TypeError('The event submission response is invalid');
+    throw new TypeError("The event submission response is invalid");
   }
   const ids = expectedPartIds(mode);
-  assertExactKeys(submission.answers, ids, 'answers');
+  assertExactKeys(submission.answers, ids, "answers");
   const parts = submission.parts as SubmissionPart[];
-  if (parts.some((part) => !isPlainObject(part))) throw new TypeError('A response part is invalid');
+  if (parts.some((part) => !isPlainObject(part))) throw new TypeError("A response part is invalid");
   const partIds = parts.map((part) => part.partId);
-  if (new Set(partIds).size !== partIds.length) throw new TypeError('Response part identifiers must be unique');
+  if (new Set(partIds).size !== partIds.length)
+    throw new TypeError("Response part identifiers must be unique");
   if (partIds.length !== ids.length || ids.some((id) => !partIds.includes(id))) {
-    throw new TypeError('Response parts are missing or unknown');
+    throw new TypeError("Response parts are missing or unknown");
   }
 
   const hintsByCase = new Map(Object.keys(SERVER_CASES[mode]).map((caseId) => [caseId, 0]));
   for (const part of parts) {
-    if (Object.hasOwn(part, 'isCorrect') || Object.hasOwn(part, 'score') || Object.hasOwn(part, 'maxScore')) {
-      throw new TypeError('Client grade fields are not allowed');
+    if (
+      Object.hasOwn(part, "isCorrect") ||
+      Object.hasOwn(part, "score") ||
+      Object.hasOwn(part, "maxScore")
+    ) {
+      throw new TypeError("Client grade fields are not allowed");
     }
     if (!samePracticeValue(part.rawAnswer, submission.answers[part.partId])) {
       throw new TypeError(`Part ${part.partId} conflicts with answers`);
     }
     if (part.hintsUsed !== undefined) {
       if (!Number.isInteger(part.hintsUsed) || part.hintsUsed < 0) {
-        throw new TypeError('hintsUsed must be a nonnegative integer');
+        throw new TypeError("hintsUsed must be a nonnegative integer");
       }
-      if (mode === 'independent_practice' && part.hintsUsed > 0) {
-        throw new TypeError('Independent assistance is not allowed');
+      if (mode === "independent_practice" && part.hintsUsed > 0) {
+        throw new TypeError("Independent assistance is not allowed");
       }
-      const caseId = part.partId.split('.')[0];
+      const caseId = part.partId.split(".")[0];
       if (hintsByCase.has(caseId)) {
         hintsByCase.set(caseId, Math.max(hintsByCase.get(caseId) ?? 0, part.hintsUsed));
       }
@@ -216,9 +248,24 @@ export function gradeAccountingEquationEventSubmission(
   const gradedParts: AccountingEquationEventGradePart[] = [];
   for (const [caseId, expected] of Object.entries(SERVER_CASES[mode])) {
     const values = [
-      scoreRecord(`${caseId}.account_categories`, submission.answers[`${caseId}.account_categories`], expected.accountCategories, 'category'),
-      scoreRecord(`${caseId}.account_effects`, submission.answers[`${caseId}.account_effects`], expected.accountEffects, 'direction'),
-      scoreRecord(`${caseId}.account_amounts`, submission.answers[`${caseId}.account_amounts`], expected.accountAmounts, 'amount'),
+      scoreRecord(
+        `${caseId}.account_categories`,
+        submission.answers[`${caseId}.account_categories`],
+        expected.accountCategories,
+        "category",
+      ),
+      scoreRecord(
+        `${caseId}.account_effects`,
+        submission.answers[`${caseId}.account_effects`],
+        expected.accountEffects,
+        "direction",
+      ),
+      scoreRecord(
+        `${caseId}.account_amounts`,
+        submission.answers[`${caseId}.account_amounts`],
+        expected.accountAmounts,
+        "amount",
+      ),
     ];
     const numericExpected = {
       [`${caseId}.ending_assets`]: expected.endingAssets,
@@ -231,15 +278,18 @@ export function gradeAccountingEquationEventSubmission(
         nonnegative: false,
       });
       values.push({
-        partId, rawAnswer, isCorrect: rawAnswer === expectedValue,
-        score: rawAnswer === expectedValue ? 1 : 0, maxScore: 1,
+        partId,
+        rawAnswer,
+        isCorrect: rawAnswer === expectedValue,
+        score: rawAnswer === expectedValue ? 1 : 0,
+        maxScore: 1,
       });
     }
     gradedParts.push(...values);
   }
   const explanation = submission.answers.explanation;
-  if (typeof explanation !== 'string' || explanation.trim().length === 0) {
-    throw new TypeError('The explanation is required for manual review');
+  if (typeof explanation !== "string" || explanation.trim().length === 0) {
+    throw new TypeError("The explanation is required for manual review");
   }
   return {
     automaticScore: gradedParts.reduce((sum, part) => sum + part.score, 0),
@@ -247,8 +297,10 @@ export function gradeAccountingEquationEventSubmission(
     parts: gradedParts,
     hintsUsed: [...hintsByCase.values()].reduce((sum, count) => sum + count, 0),
     manualReview: {
-      partId: 'explanation', rawAnswer: explanation,
-      rubric: MANUAL_RUBRIC, status: 'manual_review_required',
+      partId: "explanation",
+      rawAnswer: explanation,
+      rubric: MANUAL_RUBRIC,
+      status: "manual_review_required",
     },
   };
 }

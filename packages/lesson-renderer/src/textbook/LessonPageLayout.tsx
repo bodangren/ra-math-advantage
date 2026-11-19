@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Menu, X, CheckCircle2, Circle } from 'lucide-react';
-import type { PhaseType } from '@math-platform/activity-runtime/phase-types';
+import { useState } from "react";
+import { Menu, X, CheckCircle2, Circle } from "lucide-react";
+import type { PhaseType } from "@math-platform/activity-runtime/phase-types";
 
 export interface PhaseNavItem {
   phaseType: PhaseType;
@@ -36,10 +36,8 @@ export function LessonPageLayout({
 }: LessonPageLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const completedCount = phases.filter(p => p.completed).length;
-  const progressPct = phases.length > 0
-    ? Math.round((completedCount / phases.length) * 100)
-    : 0;
+  const completedCount = phases.filter((p) => p.completed).length;
+  const progressPct = phases.length > 0 ? Math.round((completedCount / phases.length) * 100) : 0;
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -75,16 +73,14 @@ export function LessonPageLayout({
                 Teacher Preview
               </span>
             )}
-            {goals && (
-              <p className="mt-0.5 text-sm text-muted-foreground">{goals}</p>
-            )}
+            {goals && <p className="mt-0.5 text-sm text-muted-foreground">{goals}</p>}
           </div>
 
           {/* Mobile sidebar toggle */}
           <button
             type="button"
             aria-label="Toggle phases navigation"
-            onClick={() => setSidebarOpen(o => !o)}
+            onClick={() => setSidebarOpen((o) => !o)}
             className="flex-shrink-0 p-2 rounded-md hover:bg-secondary transition-colors lg:hidden"
           >
             {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -100,31 +96,32 @@ export function LessonPageLayout({
           data-sidebar
           data-sidebar-open={sidebarOpen}
           className={[
-            'flex-shrink-0 w-56 space-y-1',
+            "flex-shrink-0 w-56 space-y-1",
             // Mobile: absolute overlay toggled by sidebarOpen
             sidebarOpen
-              ? 'fixed inset-y-0 left-0 z-40 bg-card border-r p-4 pt-20 w-64'
-              : 'hidden lg:block',
-          ].join(' ')}
+              ? "fixed inset-y-0 left-0 z-40 bg-card border-r p-4 pt-20 w-64"
+              : "hidden lg:block",
+          ].join(" ")}
         >
           {phases.map((phase, idx) => (
             <div
               key={`${phase.phaseType}-${idx}`}
-              data-current={phase.isCurrent ? 'true' : undefined}
-              data-completed={phase.completed ? 'true' : undefined}
+              data-current={phase.isCurrent ? "true" : undefined}
+              data-completed={phase.completed ? "true" : undefined}
               className={[
-                'flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors',
+                "flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors",
                 phase.isCurrent
-                  ? 'bg-primary/10 text-primary font-medium'
+                  ? "bg-primary/10 text-primary font-medium"
                   : phase.completed
-                    ? 'text-muted-foreground'
-                    : 'text-foreground/70',
-              ].join(' ')}
+                    ? "text-muted-foreground"
+                    : "text-foreground/70",
+              ].join(" ")}
             >
-              {phase.completed
-                ? <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-primary" />
-                : <Circle className="w-4 h-4 flex-shrink-0" />
-              }
+              {phase.completed ? (
+                <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-primary" />
+              ) : (
+                <Circle className="w-4 h-4 flex-shrink-0" />
+              )}
               <span>{phase.label}</span>
             </div>
           ))}
@@ -140,9 +137,7 @@ export function LessonPageLayout({
         )}
 
         {/* Main content */}
-        <main className="flex-1 min-w-0 max-w-3xl">
-          {children}
-        </main>
+        <main className="flex-1 min-w-0 max-w-3xl">{children}</main>
       </div>
     </div>
   );

@@ -21,16 +21,10 @@ export async function POST(request: Request) {
   const claims = await requireRequestSessionClaims(request);
   if (claims instanceof Response) return claims;
   if (claims.role !== "student")
-    return NextResponse.json(
-      { error: "Student access is required." },
-      { status: 403 },
-    );
+    return NextResponse.json({ error: "Student access is required." }, { status: 403 });
   const parsed = input.safeParse(await request.json().catch(() => null));
   if (!parsed.success)
-    return NextResponse.json(
-      { error: "Check the submitted answer." },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: "Check the submitted answer." }, { status: 400 });
   const args = {
     userId: claims.sub as Id<"profiles">,
     phaseId: parsed.data.phaseId as Id<"phase_versions">,

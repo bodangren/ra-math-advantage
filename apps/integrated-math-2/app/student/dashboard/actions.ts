@@ -13,12 +13,16 @@ export async function joinClass(form: FormData) {
   let result = "joined";
   try {
     await fetchInternalMutation(internal.classes.joinClass, {
-      studentId: claims.sub as Id<"profiles">, classCode: code.trim(),
+      studentId: claims.sub as Id<"profiles">,
+      classCode: code.trim(),
     });
   } catch (cause) {
-    result = cause instanceof ConvexError
-      ? cause.data === "enrollment_closed" ? "enrollment_closed" : "invalid_class"
-      : "unavailable";
+    result =
+      cause instanceof ConvexError
+        ? cause.data === "enrollment_closed"
+          ? "enrollment_closed"
+          : "invalid_class"
+        : "unavailable";
   }
   if (result === "joined") revalidatePath("/student/dashboard");
   redirect(`/student/dashboard?join=${result}`);

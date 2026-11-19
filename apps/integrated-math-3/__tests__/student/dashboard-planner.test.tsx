@@ -1,42 +1,42 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { studentVisualizationV1Schema } from '@math-platform/knowledge-space-practice';
+import { describe, it, expect, vi } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { studentVisualizationV1Schema } from "@math-platform/knowledge-space-practice";
 
 const mockClaims = {
-  sub: 'p1',
-  username: 'student1',
-  role: 'student' as const,
-  organizationId: 'org1',
+  sub: "p1",
+  username: "student1",
+  role: "student" as const,
+  organizationId: "org1",
   iat: 0,
   exp: 9999999999,
 };
 
-vi.mock('@/lib/auth/server', () => ({
+vi.mock("@/lib/auth/server", () => ({
   requireStudentSessionClaims: vi.fn().mockResolvedValue(mockClaims),
 }));
 
-const mockStudentVizRef = 'student/knowledge_state:getStudentKnowledgeState';
+const mockStudentVizRef = "student/knowledge_state:getStudentKnowledgeState";
 
-vi.mock('@/lib/convex/server', () => ({
+vi.mock("@/lib/convex/server", () => ({
   fetchInternalQuery: vi.fn().mockImplementation((ref: unknown) => {
-    if (ref === 'mock-practice-stats') {
+    if (ref === "mock-practice-stats") {
       return Promise.resolve({ dueCount: 0, streak: 0, lastPracticedAt: null });
     }
     if (ref === mockStudentVizRef) {
       return Promise.resolve({
-        schemaVersion: 'v1',
+        schemaVersion: "v1",
         mastered: [],
         ready: [],
         blocked: [],
         reviewDue: [],
         recommendedNext: [
           {
-            nodeId: 'im3-m1-linear-functions',
-            title: 'Linear Functions',
-            description: 'Graph and interpret linear function representations.',
-            state: 'ready',
+            nodeId: "im3-m1-linear-functions",
+            title: "Linear Functions",
+            description: "Graph and interpret linear function representations.",
+            state: "ready",
             difficulty: 0.45,
-            domain: 'algebra',
+            domain: "algebra",
           },
         ],
         edges: [],
@@ -46,13 +46,13 @@ vi.mock('@/lib/convex/server', () => ({
     return Promise.resolve([
       {
         unitNumber: 1,
-        unitTitle: 'Quadratic Functions',
+        unitTitle: "Quadratic Functions",
         lessons: [
           {
-            id: 'l1',
+            id: "l1",
             unitNumber: 1,
-            title: 'Intro',
-            slug: 'intro',
+            title: "Intro",
+            slug: "intro",
             description: null,
             completedPhases: 0,
             totalPhases: 6,
@@ -64,10 +64,10 @@ vi.mock('@/lib/convex/server', () => ({
   }),
   internal: {
     student: {
-      getDashboardData: 'mock',
+      getDashboardData: "mock",
       getStudentVisualization: mockStudentVizRef,
     },
-    srs: { dashboard: { getPracticeStats: 'mock-practice-stats' } },
+    srs: { dashboard: { getPracticeStats: "mock-practice-stats" } },
   },
 }));
 
@@ -83,32 +83,32 @@ vi.mock('@/lib/convex/server', () => ({
  * does not yet call `internal.student.getStudentVisualization` or render the
  * `recommended-next-panel` / `recommended-next-item` elements.
  */
-describe('StudentDashboardPage — planner recommendations (P3)', () => {
-  it('renders recommended next skills from a stubbed StudentVisualizationV1', async () => {
-    const { default: DashboardPage } = await import('@/app/student/dashboard/page');
+describe("StudentDashboardPage — planner recommendations (P3)", () => {
+  it("renders recommended next skills from a stubbed StudentVisualizationV1", async () => {
+    const { default: DashboardPage } = await import("@/app/student/dashboard/page");
     const jsx = await DashboardPage();
     render(jsx);
 
-    const panel = screen.getByTestId('recommended-next-panel');
+    const panel = screen.getByTestId("recommended-next-panel");
     expect(panel).toBeInTheDocument();
 
-    expect(screen.getByText('Recommended next skills')).toBeInTheDocument();
-    expect(screen.getByText('Linear Functions')).toBeInTheDocument();
+    expect(screen.getByText("Recommended next skills")).toBeInTheDocument();
+    expect(screen.getByText("Linear Functions")).toBeInTheDocument();
     expect(
-      screen.getByText('Graph and interpret linear function representations.'),
+      screen.getByText("Graph and interpret linear function representations."),
     ).toBeInTheDocument();
 
-    const items = screen.getAllByTestId('recommended-next-item');
+    const items = screen.getAllByTestId("recommended-next-item");
     expect(items).toHaveLength(1);
-    expect(screen.getByText('45% difficulty')).toBeInTheDocument();
-    expect(screen.getByTestId('active-misconception-count')).toHaveTextContent(
-      '2 active misconceptions',
+    expect(screen.getByText("45% difficulty")).toBeInTheDocument();
+    expect(screen.getByTestId("active-misconception-count")).toHaveTextContent(
+      "2 active misconceptions",
     );
   });
 
-  it('stubbed visualization payload parses as StudentVisualizationV1', () => {
+  it("stubbed visualization payload parses as StudentVisualizationV1", () => {
     const payload = {
-      schemaVersion: 'v1',
+      schemaVersion: "v1",
       mastered: [],
       ready: [],
       nearlyReady: [],
@@ -116,12 +116,12 @@ describe('StudentDashboardPage — planner recommendations (P3)', () => {
       reviewDue: [],
       recommendedNext: [
         {
-          nodeId: 'im3-m1-linear-functions',
-          title: 'Linear Functions',
-          description: 'Graph and interpret linear function representations.',
-          state: 'ready',
+          nodeId: "im3-m1-linear-functions",
+          title: "Linear Functions",
+          description: "Graph and interpret linear function representations.",
+          state: "ready",
           difficulty: 0.45,
-          domain: 'algebra',
+          domain: "algebra",
         },
       ],
       edges: [],
@@ -131,26 +131,26 @@ describe('StudentDashboardPage — planner recommendations (P3)', () => {
     expect(result.success).toBe(true);
   });
 
-  it('renders an empty-state when the visualization query throws', async () => {
-    const { fetchInternalQuery } = await import('@/lib/convex/server');
+  it("renders an empty-state when the visualization query throws", async () => {
+    const { fetchInternalQuery } = await import("@/lib/convex/server");
     const mockedFetchInternalQuery = fetchInternalQuery as unknown as ReturnType<typeof vi.fn>;
     mockedFetchInternalQuery.mockImplementation((ref: unknown) => {
-      if (ref === 'mock-practice-stats') {
+      if (ref === "mock-practice-stats") {
         return Promise.resolve({ dueCount: 0, streak: 0, lastPracticedAt: null });
       }
       if (ref === mockStudentVizRef) {
-        return Promise.reject(new Error('visualization query failed'));
+        return Promise.reject(new Error("visualization query failed"));
       }
       return Promise.resolve([
         {
           unitNumber: 1,
-          unitTitle: 'Quadratic Functions',
+          unitTitle: "Quadratic Functions",
           lessons: [
             {
-              id: 'l1',
+              id: "l1",
               unitNumber: 1,
-              title: 'Intro',
-              slug: 'intro',
+              title: "Intro",
+              slug: "intro",
               description: null,
               completedPhases: 0,
               totalPhases: 6,
@@ -161,26 +161,26 @@ describe('StudentDashboardPage — planner recommendations (P3)', () => {
       ]);
     });
 
-    const { default: DashboardPage } = await import('@/app/student/dashboard/page');
+    const { default: DashboardPage } = await import("@/app/student/dashboard/page");
     const jsx = await DashboardPage();
     render(jsx);
 
-    expect(screen.getByTestId('recommended-next-panel')).toBeInTheDocument();
-    expect(screen.getByText('No recommendations yet')).toBeInTheDocument();
-    expect(screen.queryByTestId('recommended-next-item')).not.toBeInTheDocument();
-    expect(screen.queryByTestId('active-misconception-count')).not.toBeInTheDocument();
+    expect(screen.getByTestId("recommended-next-panel")).toBeInTheDocument();
+    expect(screen.getByText("No recommendations yet")).toBeInTheDocument();
+    expect(screen.queryByTestId("recommended-next-item")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("active-misconception-count")).not.toBeInTheDocument();
   });
 
-  it('renders an empty-state when recommendedNext is empty', async () => {
-    const { fetchInternalQuery } = await import('@/lib/convex/server');
+  it("renders an empty-state when recommendedNext is empty", async () => {
+    const { fetchInternalQuery } = await import("@/lib/convex/server");
     const mockedFetchInternalQuery = fetchInternalQuery as unknown as ReturnType<typeof vi.fn>;
     mockedFetchInternalQuery.mockImplementation((ref: unknown) => {
-      if (ref === 'mock-practice-stats') {
+      if (ref === "mock-practice-stats") {
         return Promise.resolve({ dueCount: 0, streak: 0, lastPracticedAt: null });
       }
       if (ref === mockStudentVizRef) {
         return Promise.resolve({
-          schemaVersion: 'v1',
+          schemaVersion: "v1",
           mastered: [],
           ready: [],
           blocked: [],
@@ -193,13 +193,13 @@ describe('StudentDashboardPage — planner recommendations (P3)', () => {
       return Promise.resolve([
         {
           unitNumber: 1,
-          unitTitle: 'Quadratic Functions',
+          unitTitle: "Quadratic Functions",
           lessons: [
             {
-              id: 'l1',
+              id: "l1",
               unitNumber: 1,
-              title: 'Intro',
-              slug: 'intro',
+              title: "Intro",
+              slug: "intro",
               description: null,
               completedPhases: 0,
               totalPhases: 6,
@@ -210,13 +210,13 @@ describe('StudentDashboardPage — planner recommendations (P3)', () => {
       ]);
     });
 
-    const { default: DashboardPage } = await import('@/app/student/dashboard/page');
+    const { default: DashboardPage } = await import("@/app/student/dashboard/page");
     const jsx = await DashboardPage();
     render(jsx);
 
-    expect(screen.getByTestId('recommended-next-panel')).toBeInTheDocument();
-    expect(screen.getByText('No recommendations yet')).toBeInTheDocument();
-    expect(screen.queryByTestId('recommended-next-item')).not.toBeInTheDocument();
-    expect(screen.queryByTestId('active-misconception-count')).not.toBeInTheDocument();
+    expect(screen.getByTestId("recommended-next-panel")).toBeInTheDocument();
+    expect(screen.getByText("No recommendations yet")).toBeInTheDocument();
+    expect(screen.queryByTestId("recommended-next-item")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("active-misconception-count")).not.toBeInTheDocument();
   });
 });

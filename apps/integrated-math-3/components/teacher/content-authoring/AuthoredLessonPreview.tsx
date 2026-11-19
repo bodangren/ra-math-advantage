@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 /**
  * Phase 3 — Composer UI & Preview
@@ -25,24 +25,24 @@
  *    can never execute authored content.
  */
 
-import { useCallback, useMemo } from 'react';
-import { ActivityRenderer } from '@/components/lesson/ActivityRenderer';
-import { CalloutBox } from '@/components/textbook/CalloutBox';
-import { SanitizedText } from '@/lib/teacher/content-authoring/sanitize-authored-text';
-import { validateActivityConfig } from '@/lib/teacher/content-authoring/activity-config-validation';
-import { SCHEMA_REGISTRY } from '@/lib/activities/schemas';
+import { useCallback, useMemo } from "react";
+import { ActivityRenderer } from "@/components/lesson/ActivityRenderer";
+import { CalloutBox } from "@/components/textbook/CalloutBox";
+import { SanitizedText } from "@/lib/teacher/content-authoring/sanitize-authored-text";
+import { validateActivityConfig } from "@/lib/teacher/content-authoring/activity-config-validation";
+import { SCHEMA_REGISTRY } from "@/lib/activities/schemas";
 
 export type AuthoredPhaseType =
-  | 'explore'
-  | 'vocabulary'
-  | 'learn'
-  | 'key_concept'
-  | 'worked_example'
-  | 'guided_practice'
-  | 'independent_practice'
-  | 'assessment'
-  | 'discourse'
-  | 'reflection';
+  | "explore"
+  | "vocabulary"
+  | "learn"
+  | "key_concept"
+  | "worked_example"
+  | "guided_practice"
+  | "independent_practice"
+  | "assessment"
+  | "discourse"
+  | "reflection";
 
 export interface AuthoredActivity {
   componentKey: string;
@@ -78,23 +78,23 @@ export interface AuthoredLessonPreviewProps {
  * 'teaching' so students see example/teaching context; practice phases
  * map to 'practice'/'guided'.
  */
-function modeForPhase(phaseType: string | undefined): 'teaching' | 'guided' | 'practice' {
+function modeForPhase(phaseType: string | undefined): "teaching" | "guided" | "practice" {
   switch (phaseType) {
-    case 'worked_example':
-    case 'vocabulary':
-    case 'learn':
-    case 'key_concept':
-    case 'discourse':
-    case 'reflection':
-      return 'teaching';
-    case 'guided_practice':
-      return 'guided';
-    case 'independent_practice':
-    case 'assessment':
-      return 'practice';
-    case 'explore':
+    case "worked_example":
+    case "vocabulary":
+    case "learn":
+    case "key_concept":
+    case "discourse":
+    case "reflection":
+      return "teaching";
+    case "guided_practice":
+      return "guided";
+    case "independent_practice":
+    case "assessment":
+      return "practice";
+    case "explore":
     default:
-      return 'teaching';
+      return "teaching";
   }
 }
 
@@ -151,24 +151,24 @@ function collectUnknownKeys(phase: AuthoredPhase): string[] {
 }
 
 function isAuthoredDraft(value: unknown): value is AuthoredDraft {
-  if (!value || typeof value !== 'object') return false;
+  if (!value || typeof value !== "object") return false;
   const draft = value as Record<string, unknown>;
-  if (typeof draft.title !== 'string') return false;
+  if (typeof draft.title !== "string") return false;
   if (!Array.isArray(draft.phases)) return false;
   for (const phase of draft.phases) {
-    if (!phase || typeof phase !== 'object') return false;
+    if (!phase || typeof phase !== "object") return false;
     const phaseObj = phase as Record<string, unknown>;
-    if (typeof phaseObj.title !== 'string') return false;
+    if (typeof phaseObj.title !== "string") return false;
     if (!Array.isArray(phaseObj.sections)) return false;
     for (const section of phaseObj.sections) {
-      if (!section || typeof section !== 'object') return false;
+      if (!section || typeof section !== "object") return false;
       const sectionObj = section as Record<string, unknown>;
-      if (typeof sectionObj.title !== 'string') return false;
+      if (typeof sectionObj.title !== "string") return false;
       if (!Array.isArray(sectionObj.activities)) return false;
       for (const activity of sectionObj.activities) {
-        if (!activity || typeof activity !== 'object') return false;
+        if (!activity || typeof activity !== "object") return false;
         const activityObj = activity as Record<string, unknown>;
-        if (typeof activityObj.componentKey !== 'string') return false;
+        if (typeof activityObj.componentKey !== "string") return false;
       }
     }
   }
@@ -177,7 +177,7 @@ function isAuthoredDraft(value: unknown): value is AuthoredDraft {
 
 export function AuthoredLessonPreview({ draft, lessonId }: AuthoredLessonPreviewProps) {
   if (!isAuthoredDraft(draft)) {
-    throw new Error('AuthoredLessonPreview: draft is not a valid authored lesson');
+    throw new Error("AuthoredLessonPreview: draft is not a valid authored lesson");
   }
 
   const phaseStatuses = useMemo<PhaseStatus[]>(
@@ -194,7 +194,7 @@ export function AuthoredLessonPreview({ draft, lessonId }: AuthoredLessonPreview
   for (const status of phaseStatuses) {
     if (status.unknownKeyErrors.length > 0) {
       throw new Error(
-        `AuthoredLessonPreview: unknown activity keys are not allowed in preview (${status.unknownKeyErrors.join(', ')}). Use a canonical key from SCHEMA_REGISTRY.`,
+        `AuthoredLessonPreview: unknown activity keys are not allowed in preview (${status.unknownKeyErrors.join(", ")}). Use a canonical key from SCHEMA_REGISTRY.`,
       );
     }
   }
@@ -229,14 +229,14 @@ export function AuthoredLessonPreview({ draft, lessonId }: AuthoredLessonPreview
             key={`preview-phase-${phaseIndex}`}
             className="card-workbook p-5 space-y-4"
             data-testid={`preview-phase-${phaseIndex + 1}`}
-            data-phase-type={phase.phaseType ?? 'explore'}
+            data-phase-type={phase.phaseType ?? "explore"}
             data-mode={mode}
             aria-label={`Phase ${phaseIndex + 1}: ${phase.title}`}
           >
             <header>
               <h3 className="font-display text-xl font-semibold">{phase.title}</h3>
               <p className="text-xs text-muted-foreground">
-                {phase.phaseType ? `Placement: ${phase.phaseType}` : 'No placement declared'}
+                {phase.phaseType ? `Placement: ${phase.phaseType}` : "No placement declared"}
               </p>
             </header>
 
@@ -251,8 +251,8 @@ export function AuthoredLessonPreview({ draft, lessonId }: AuthoredLessonPreview
                   {status.activityErrors.map((err, idx) => (
                     <li key={idx} className="text-xs">
                       <span className="font-mono">
-                        [{err.componentKey}.{err.path.join('.')}]
-                      </span>{' '}
+                        [{err.componentKey}.{err.path.join(".")}]
+                      </span>{" "}
                       {err.message}
                     </li>
                   ))}
@@ -262,10 +262,10 @@ export function AuthoredLessonPreview({ draft, lessonId }: AuthoredLessonPreview
               <ul className="space-y-3 list-none p-0">
                 {phase.sections.map((section, sectionIndex) => (
                   <li key={`preview-section-${phaseIndex}-${sectionIndex}`} className="space-y-2">
-                    {typeof section.markdown === 'string' && section.markdown.length > 0 && (
+                    {typeof section.markdown === "string" && section.markdown.length > 0 && (
                       <SanitizedText html={section.markdown} as="p" />
                     )}
-                    {typeof section.callout === 'string' && section.callout.length > 0 && (
+                    {typeof section.callout === "string" && section.callout.length > 0 && (
                       <CalloutBox variant="remember">
                         <SanitizedText html={section.callout} />
                       </CalloutBox>
@@ -274,7 +274,12 @@ export function AuthoredLessonPreview({ draft, lessonId }: AuthoredLessonPreview
                       <ActivityRenderer
                         key={`preview-act-${phaseIndex}-${sectionIndex}-${activityIndex}`}
                         componentKey={activity.componentKey}
-                        activityId={stableActivityId(lessonId, phaseIndex, sectionIndex, activityIndex)}
+                        activityId={stableActivityId(
+                          lessonId,
+                          phaseIndex,
+                          sectionIndex,
+                          activityIndex,
+                        )}
                         mode={mode}
                         onSubmit={handleActivitySubmit}
                         onComplete={handleActivityComplete}

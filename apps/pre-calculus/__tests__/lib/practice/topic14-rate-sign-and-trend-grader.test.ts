@@ -1,24 +1,33 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { generateTopic14RateSignAndTrendOutput } from '@math-platform/math-content/knowledge-space';
+import { generateTopic14RateSignAndTrendOutput } from "@math-platform/math-content/knowledge-space";
 
 import {
   gradeTopic14RateSignAndTrend,
   type Topic14RateSignAndTrendAnswers,
-} from '../../../lib/practice/topic14-rate-sign-and-trend';
+} from "../../../lib/practice/topic14-rate-sign-and-trend";
 
-const PART_IDS = ['rateSign', 'rateTrend'] as const;
+const PART_IDS = ["rateSign", "rateTrend"] as const;
 type PartId = (typeof PART_IDS)[number];
 
 const SOURCE_ANSWERS = {
-  rateSign: 'positive',
-  rateTrend: 'decreasing',
+  rateSign: "positive",
+  rateTrend: "decreasing",
 } as const;
 
 const AUTHORITY_KEYS = [
-  'answer', 'answerKey', 'correctAnswer', 'correctAnswers', 'expectedAnswer',
-  'grading', 'gradingMetadata', 'normalizedAnswer', 'solution', 'solutionSteps',
-  'authority', 'correctness',
+  "answer",
+  "answerKey",
+  "correctAnswer",
+  "correctAnswers",
+  "expectedAnswer",
+  "grading",
+  "gradingMetadata",
+  "normalizedAnswer",
+  "solution",
+  "solutionSteps",
+  "authority",
+  "correctness",
 ] as const;
 
 function makeAnswers(values: Partial<Record<PartId, unknown>>): Topic14RateSignAndTrendAnswers {
@@ -32,10 +41,11 @@ function independentAnswers(seed: number): Topic14RateSignAndTrendAnswers {
 
 function collectObjectKeys(value: unknown, keys: string[] = []): string[] {
   if (Array.isArray(value)) value.forEach((item) => collectObjectKeys(item, keys));
-  else if (value && typeof value === 'object') Object.entries(value).forEach(([key, nested]) => {
-    keys.push(key);
-    collectObjectKeys(nested, keys);
-  });
+  else if (value && typeof value === "object")
+    Object.entries(value).forEach(([key, nested]) => {
+      keys.push(key);
+      collectObjectKeys(nested, keys);
+    });
   return keys;
 }
 
@@ -45,19 +55,23 @@ function expectNoAuthority(value: unknown): void {
 }
 
 function expectExactResultShape(result: ReturnType<typeof gradeTopic14RateSignAndTrend>): void {
-  expect(Object.keys(result).sort()).toEqual(['maxScore', 'parts', 'score']);
+  expect(Object.keys(result).sort()).toEqual(["maxScore", "parts", "score"]);
   expect(result.parts).toHaveLength(2);
   expect(result.parts.map((part) => part.partId)).toEqual(PART_IDS);
   for (const part of result.parts) {
     expect(Object.keys(part).sort()).toEqual([
-      'isCorrect', 'maxScore', 'partId', 'rawAnswer', 'score',
+      "isCorrect",
+      "maxScore",
+      "partId",
+      "rawAnswer",
+      "score",
     ]);
   }
   expectNoAuthority(result);
 }
 
-describe('topic14 rate sign and trend grader', () => {
-  it('grades the source answers with exact two-part result shape', () => {
+describe("topic14 rate sign and trend grader", () => {
+  it("grades the source answers with exact two-part result shape", () => {
     const result = gradeTopic14RateSignAndTrend(0, SOURCE_ANSWERS);
 
     expect(result).toEqual({
@@ -74,7 +88,7 @@ describe('topic14 rate sign and trend grader', () => {
     expectExactResultShape(result);
   });
 
-  it('uses live generator authority across all four answer combinations', () => {
+  it("uses live generator authority across all four answer combinations", () => {
     const combinations = new Set<string>();
 
     for (let seed = 0; seed <= 100; seed += 1) {
@@ -86,50 +100,71 @@ describe('topic14 rate sign and trend grader', () => {
       expectExactResultShape(result);
     }
 
-    expect(combinations).toEqual(new Set([
-      'positive/increasing',
-      'positive/decreasing',
-      'negative/increasing',
-      'negative/decreasing',
-    ]));
+    expect(combinations).toEqual(
+      new Set([
+        "positive/increasing",
+        "positive/decreasing",
+        "negative/increasing",
+        "negative/decreasing",
+      ]),
+    );
   });
 
-  it('awards independent partial credit and preserves raw values', () => {
+  it("awards independent partial credit and preserves raw values", () => {
     for (const partId of PART_IDS) {
-      const answers = { ...SOURCE_ANSWERS, [partId]: 'wrong' };
+      const answers = { ...SOURCE_ANSWERS, [partId]: "wrong" };
       const result = gradeTopic14RateSignAndTrend(0, makeAnswers(answers));
       expect(result.score).toBe(1);
       expect(result.parts.find((part) => part.partId === partId)).toEqual({
         partId,
-        rawAnswer: 'wrong',
+        rawAnswer: "wrong",
         isCorrect: false,
         score: 0,
         maxScore: 1,
       });
-      expect(result.parts.filter((part) => part.partId !== partId).every((part) => part.isCorrect)).toBe(true);
+      expect(
+        result.parts.filter((part) => part.partId !== partId).every((part) => part.isCorrect),
+      ).toBe(true);
     }
 
-    const zero = gradeTopic14RateSignAndTrend(0, makeAnswers({
-      rateSign: 'negative',
-      rateTrend: 'increasing',
-    }));
+    const zero = gradeTopic14RateSignAndTrend(
+      0,
+      makeAnswers({
+        rateSign: "negative",
+        rateTrend: "increasing",
+      }),
+    );
     expect(zero.score).toBe(0);
-    expect(zero.parts.map((part) => part.rawAnswer)).toEqual(['negative', 'increasing']);
+    expect(zero.parts.map((part) => part.rawAnswer)).toEqual(["negative", "increasing"]);
     expectExactResultShape(zero);
   });
 
-  it('rejects malformed and non-string values without erasing other credit', () => {
+  it("rejects malformed and non-string values without erasing other credit", () => {
     const malformed: unknown[] = [
-      '', ' Positive', 'positive ', 'Positive', 'positive-ish', '1', null, undefined,
-      true, false, 1, [], {},
+      "",
+      " Positive",
+      "positive ",
+      "Positive",
+      "positive-ish",
+      "1",
+      null,
+      undefined,
+      true,
+      false,
+      1,
+      [],
+      {},
     ];
 
     for (const partId of PART_IDS) {
       for (const rawAnswer of malformed) {
-        const result = gradeTopic14RateSignAndTrend(0, makeAnswers({
-          ...SOURCE_ANSWERS,
-          [partId]: rawAnswer,
-        }));
+        const result = gradeTopic14RateSignAndTrend(
+          0,
+          makeAnswers({
+            ...SOURCE_ANSWERS,
+            [partId]: rawAnswer,
+          }),
+        );
         expect(result.score).toBe(1);
         expect(result.parts.find((part) => part.partId === partId)).toEqual({
           partId,
@@ -138,24 +173,29 @@ describe('topic14 rate sign and trend grader', () => {
           score: 0,
           maxScore: 1,
         });
-        expect(result.parts.filter((part) => part.partId !== partId).every((part) => part.isCorrect)).toBe(true);
+        expect(
+          result.parts.filter((part) => part.partId !== partId).every((part) => part.isCorrect),
+        ).toBe(true);
         expectExactResultShape(result);
       }
     }
 
-    const missing = gradeTopic14RateSignAndTrend(0, makeAnswers({ rateSign: SOURCE_ANSWERS.rateSign }));
+    const missing = gradeTopic14RateSignAndTrend(
+      0,
+      makeAnswers({ rateSign: SOURCE_ANSWERS.rateSign }),
+    );
     expect(missing.score).toBe(1);
     expect(missing.parts[1]?.rawAnswer).toBeUndefined();
 
     const extra = gradeTopic14RateSignAndTrend(0, {
       ...SOURCE_ANSWERS,
-      extra: 'ignored',
+      extra: "ignored",
     } as Topic14RateSignAndTrendAnswers & { extra: string });
     expect(extra.score).toBe(2);
     expectExactResultShape(extra);
   });
 
-  it('is deterministic and passes invalid seeds through unchanged', () => {
+  it("is deterministic and passes invalid seeds through unchanged", () => {
     expect(gradeTopic14RateSignAndTrend(17, independentAnswers(17))).toEqual(
       gradeTopic14RateSignAndTrend(17, independentAnswers(17)),
     );

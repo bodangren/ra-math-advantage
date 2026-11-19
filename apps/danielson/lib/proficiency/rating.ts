@@ -1,4 +1,4 @@
-import type { SrsRating } from '@math-platform/srs-engine';
+import type { SrsRating } from "@math-platform/srs-engine";
 
 export type DanielsonRating = 1 | 2 | 3 | 4;
 
@@ -10,10 +10,10 @@ export type DanielsonRatingProjection = {
 };
 
 const RATING_PROJECTIONS: Record<DanielsonRating, DanielsonRatingProjection> = {
-  1: { rawRating: 1, points: 70, srsRating: 'Again', passes: false },
-  2: { rawRating: 2, points: 80, srsRating: 'Hard', passes: false },
-  3: { rawRating: 3, points: 90, srsRating: 'Good', passes: true },
-  4: { rawRating: 4, points: 100, srsRating: 'Easy', passes: true },
+  1: { rawRating: 1, points: 70, srsRating: "Again", passes: false },
+  2: { rawRating: 2, points: 80, srsRating: "Hard", passes: false },
+  3: { rawRating: 3, points: 90, srsRating: "Good", passes: true },
+  4: { rawRating: 4, points: 100, srsRating: "Easy", passes: true },
 };
 
 export function isDanielsonRating(value: unknown): value is DanielsonRating {
@@ -22,7 +22,7 @@ export function isDanielsonRating(value: unknown): value is DanielsonRating {
 /** Convert the authoritative raw Danielson rating into report/SRS values. */
 export function adaptDanielsonRating(value: unknown): DanielsonRatingProjection {
   if (!isDanielsonRating(value)) {
-    throw new Error('Danielson rating must be an integer from 1 through 4');
+    throw new Error("Danielson rating must be an integer from 1 through 4");
   }
   return { ...RATING_PROJECTIONS[value] };
 }

@@ -92,7 +92,8 @@ describe("IM3 domain-range Worked Phase 4 link", () => {
     expect(ctx.insert).not.toHaveBeenCalled();
     expect(ctx.patch).toHaveBeenCalledTimes(4);
     expect(sections[0]?.content).toEqual({
-      markdown: "## Example 1: Graph a Quadratic Function by Using a Table\n\nGraph $f(x) = x^2 + 2x - 3$. State the domain and range.",
+      markdown:
+        "## Example 1: Graph a Quadratic Function by Using a Table\n\nGraph $f(x) = x^2 + 2x - 3$. State the domain and range.",
     });
     expect(sections[1]?.content).toEqual({
       componentKey: "graphing-explorer",
@@ -120,34 +121,40 @@ describe("IM3 domain-range Worked Phase 4 link", () => {
       {
         name: "text section",
         phase: { _id: "phase_versions:4" },
-        sections: [{
-          _id: "phase_sections:worked",
-          sequenceOrder: 2,
-          sectionType: "activity",
-          content: {},
-        }],
+        sections: [
+          {
+            _id: "phase_sections:worked",
+            sequenceOrder: 2,
+            sectionType: "activity",
+            content: {},
+          },
+        ],
         message: "Lesson 1.1 Phase 4 text section is missing",
       },
       {
         name: "activity section",
         phase: { _id: "phase_versions:4" },
-        sections: [{
-          _id: "phase_sections:text",
-          sequenceOrder: 1,
-          sectionType: "text",
-          content: {},
-        }],
+        sections: [
+          {
+            _id: "phase_sections:text",
+            sequenceOrder: 1,
+            sectionType: "text",
+            content: {},
+          },
+        ],
         message: "Lesson 1.1 Phase 4 activity section is missing",
       },
     ];
 
     for (const testCase of cases) {
       const ctx = makeContext(testCase.sections, testCase.phase);
-      await expect(linkIm3DomainRangeWorkedPhase(
-        ctx as never,
-        "lesson_versions:1" as never,
-        "activities:domain-range-worked" as never,
-      )).rejects.toThrow(testCase.message);
+      await expect(
+        linkIm3DomainRangeWorkedPhase(
+          ctx as never,
+          "lesson_versions:1" as never,
+          "activities:domain-range-worked" as never,
+        ),
+      ).rejects.toThrow(testCase.message);
       expect(ctx.patch).not.toHaveBeenCalled();
       expect(ctx.insert).not.toHaveBeenCalled();
     }

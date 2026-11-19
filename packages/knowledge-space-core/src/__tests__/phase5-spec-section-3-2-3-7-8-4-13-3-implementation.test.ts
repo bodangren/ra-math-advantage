@@ -63,26 +63,23 @@
  * runtime gate is owned by the same Phase 5 Green closeout.
  */
 
-import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 
-const SPEC_PATH = resolve(__dirname, '../../../../kst-srs.v2/SPECIFICATION.md');
+const SPEC_PATH = resolve(__dirname, "../../../../kst-srs.v2/SPECIFICATION.md");
 
 function readSpec(): string {
-  return readFileSync(SPEC_PATH, 'utf-8');
+  return readFileSync(SPEC_PATH, "utf-8");
 }
 
 function extractSubsection(spec: string, topLevel: number, subLevel: number): string {
   // The spec is markdown; capture from `### <topLevel>.<subLevel> ...`
   // up to the next `###` heading.
-  const heading = new RegExp(
-    `^### ${topLevel}\\.${subLevel}[^\\n]*\\n`,
-    'm',
-  );
+  const heading = new RegExp(`^### ${topLevel}\\.${subLevel}[^\\n]*\\n`, "m");
   const match = spec.match(heading);
   if (!match || match.index === undefined) {
-    return '';
+    return "";
   }
   const start = match.index + match[0].length;
   const rest = spec.slice(start);
@@ -90,65 +87,63 @@ function extractSubsection(spec: string, topLevel: number, subLevel: number): st
   return nextHeading === -1 ? rest : rest.slice(0, nextHeading);
 }
 
-describe('Phase 5 — kst-srs.v2 SPECIFICATION.md §3.2 documents remediated_by cross-reference', () => {
+describe("Phase 5 — kst-srs.v2 SPECIFICATION.md §3.2 documents remediated_by cross-reference", () => {
   const section3_2 = extractSubsection(readSpec(), 3, 2);
 
-  it('§3.2 (Four-Way State) exists in the spec', () => {
-    expect(section3_2.length, '§3.2 must be present in the spec').toBeGreaterThan(0);
+  it("§3.2 (Four-Way State) exists in the spec", () => {
+    expect(section3_2.length, "§3.2 must be present in the spec").toBeGreaterThan(0);
   });
 
-  it('§3.2 surfaces the remediated_by edge type (Phase 1 deliverable)', () => {
+  it("§3.2 surfaces the remediated_by edge type (Phase 1 deliverable)", () => {
     // The spec must mention the `remediated_by` edge type in §3.2 so a
     // reader navigating the state model can find the misconception-loop
     // seam. This is the FR1 cross-reference the plan task asks for.
-    expect(section3_2, '§3.2 must mention remediated_by').toMatch(/remediated_by/);
+    expect(section3_2, "§3.2 must mention remediated_by").toMatch(/remediated_by/);
   });
 
-  it('§3.2 cross-references §9 (Misconception Remediation Loop) or its subsections', () => {
+  it("§3.2 cross-references §9 (Misconception Remediation Loop) or its subsections", () => {
     // The plan task asks for a cross-reference to the misconception-loop
     // section. §3.2 must point at §9 (or a specific §9.X) so the spec
     // is a navigable document, not a collection of disjoint sections.
-    expect(section3_2, '§3.2 must cross-reference §9 or a §9.X subsection').toMatch(/§9(\.\d)?/);
+    expect(section3_2, "§3.2 must cross-reference §9 or a §9.X subsection").toMatch(/§9(\.\d)?/);
   });
 });
 
-describe('Phase 5 — kst-srs.v2 SPECIFICATION.md §3.7 (new) documents misconception-state interaction', () => {
+describe("Phase 5 — kst-srs.v2 SPECIFICATION.md §3.7 (new) documents misconception-state interaction", () => {
   const section3_7 = extractSubsection(readSpec(), 3, 7);
 
-  it('§3.7 exists in the spec', () => {
+  it("§3.7 exists in the spec", () => {
     // The plan task asks for a new §3.7 subsection that documents the
     // misconception lifecycle's interaction with the state model. At
     // HEAD, the spec has §3.1–§3.5 only; §3.7 is missing.
     expect(
       section3_7.length,
-      '§3.7 must exist in the spec (currently missing — see Phase 5 plan Task 1)',
+      "§3.7 must exist in the spec (currently missing — see Phase 5 plan Task 1)",
     ).toBeGreaterThan(0);
   });
 
-  it('§3.7 references the misconception lifecycle (active/resolved or misconception-loop seam)', () => {
+  it("§3.7 references the misconception lifecycle (active/resolved or misconception-loop seam)", () => {
     // The new section must connect the state model to the misconception
     // lifecycle so a reader navigating §3 finds the §9 cross-reference.
     // Either direct mention of the lifecycle states or a cross-reference
     // to §9.3 (Per-Student Lifecycle) is acceptable.
-    const hasLifecycle =
-      /\bactive\b/i.test(section3_7) &&
-      /\bresolved\b/i.test(section3_7);
+    const hasLifecycle = /\bactive\b/i.test(section3_7) && /\bresolved\b/i.test(section3_7);
     const hasCrossRef = /§9\.3/.test(section3_7);
     expect(
       hasLifecycle || hasCrossRef,
-      '§3.7 must mention the active/resolved lifecycle or cross-reference §9.3',
+      "§3.7 must mention the active/resolved lifecycle or cross-reference §9.3",
     ).toBe(true);
   });
 });
 
-describe('Phase 5 — kst-srs.v2 SPECIFICATION.md §8.4 documents rating-cap cross-reference', () => {
+describe("Phase 5 — kst-srs.v2 SPECIFICATION.md §8.4 documents rating-cap cross-reference", () => {
   const section8_4 = extractSubsection(readSpec(), 8, 4);
 
-  it('§8.4 (IM3 Problem Bank) exists in the spec', () => {
-    expect(section8_4.length, '§8.4 must be present in the spec').toBeGreaterThan(0);
+  it("§8.4 (IM3 Problem Bank) exists in the spec", () => {
+    expect(section8_4.length, "§8.4 must be present in the spec").toBeGreaterThan(0);
   });
 
-  it('§8.4 surfaces the rating-cap rule (Phase 2 deliverable)', () => {
+  it("§8.4 surfaces the rating-cap rule (Phase 2 deliverable)", () => {
     // The rating-cap rule (cap at Hard by default, Again only for
     // severe misconceptions) lives in §9.2. The §8.4 placement section
     // describes probes that feed misconception detection, so the spec
@@ -162,20 +157,20 @@ describe('Phase 5 — kst-srs.v2 SPECIFICATION.md §8.4 documents rating-cap cro
   });
 });
 
-describe('Phase 5 — kst-srs.v2 SPECIFICATION.md §13.3 (new) documents misconception-lifecycle NFR', () => {
+describe("Phase 5 — kst-srs.v2 SPECIFICATION.md §13.3 (new) documents misconception-lifecycle NFR", () => {
   const section13_3 = extractSubsection(readSpec(), 13, 3);
 
-  it('§13.3 exists in the spec', () => {
+  it("§13.3 exists in the spec", () => {
     // The plan task asks for a new §13.3 NFR about the misconception
     // lifecycle's purity contract. At HEAD, §13 has bullet points but
     // no numbered subsections.
     expect(
       section13_3.length,
-      '§13.3 must exist in the spec (currently missing — see Phase 5 plan Task 1)',
+      "§13.3 must exist in the spec (currently missing — see Phase 5 plan Task 1)",
     ).toBeGreaterThan(0);
   });
 
-  it('§13.3 documents the misconception-lifecycle purity / persistence contract', () => {
+  it("§13.3 documents the misconception-lifecycle purity / persistence contract", () => {
     // The NFR must surface one of: (a) `runRealT6Loop` is pure, (b) the
     // Convex handlers are the only persistence seam, or (c) stale
     // student state defaults to empty. These are the test-strategy §3
@@ -186,7 +181,7 @@ describe('Phase 5 — kst-srs.v2 SPECIFICATION.md §13.3 (new) documents misconc
     const hasMisconceptionScope = /misconception|remediation|lifecycle/i.test(section13_3);
     expect(
       hasMisconceptionScope && (hasPurityClaim || hasPersistenceClaim || hasStaleStateClaim),
-      '§13.3 must scope the misconception-lifecycle purity / persistence / stale-state contract',
+      "§13.3 must scope the misconception-lifecycle purity / persistence / stale-state contract",
     ).toBe(true);
   });
 });

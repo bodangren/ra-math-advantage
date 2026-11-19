@@ -1,6 +1,6 @@
-import { describe, it, expect, vi } from 'vitest';
-import type { Id } from '../../../convex/_generated/dataModel';
-import type { MutationCtx, QueryCtx } from '../../../convex/_generated/server';
+import { describe, it, expect, vi } from "vitest";
+import type { Id } from "../../../convex/_generated/dataModel";
+import type { MutationCtx, QueryCtx } from "../../../convex/_generated/server";
 
 /**
  * Phase 4 adversarial — Convex-handler regressions and authorization edges.
@@ -41,17 +41,17 @@ import type { MutationCtx, QueryCtx } from '../../../convex/_generated/server';
  */
 
 type StoreName =
-  | 'profiles'
-  | 'classes'
-  | 'lessons'
-  | 'lesson_versions'
-  | 'phase_versions'
-  | 'phase_sections'
-  | 'activities'
-  | 'component_reviews'
-  | 'component_approvals'
-  | 'class_lessons'
-  | 'class_enrollments';
+  | "profiles"
+  | "classes"
+  | "lessons"
+  | "lesson_versions"
+  | "phase_versions"
+  | "phase_sections"
+  | "activities"
+  | "component_reviews"
+  | "component_approvals"
+  | "class_lessons"
+  | "class_enrollments";
 
 interface MockRecord {
   _id: string;
@@ -93,9 +93,7 @@ function makeMockDb(stores: Record<StoreName, MockRecord[]>) {
   const idToTable = new Map<string, StoreName>();
 
   const applyFilters = (rows: MockRecord[], filters: Record<string, unknown>) =>
-    rows.filter((row) =>
-      Object.entries(filters).every(([field, value]) => row[field] === value),
-    );
+    rows.filter((row) => Object.entries(filters).every(([field, value]) => row[field] === value));
 
   const db = {
     get: vi.fn(async (table: StoreName, id: string) => {
@@ -163,81 +161,81 @@ function makeQueryMockCtx(stores: Record<StoreName, MockRecord[]>) {
 }
 
 const VALID_ACTIVITY_PROPS: Record<string, Record<string, unknown>> = {
-  'graphing-explorer': { equation: 'x^2 + 3x - 4' },
-  'step-by-step-solver': {
-    problemType: 'factoring',
-    equation: 'x^2 + 3x - 4 = 0',
+  "graphing-explorer": { equation: "x^2 + 3x - 4" },
+  "step-by-step-solver": {
+    problemType: "factoring",
+    equation: "x^2 + 3x - 4 = 0",
     steps: [
       {
-        id: 's1',
-        description: 'Factor the quadratic.',
-        expression: 'x^2 + 3x - 4 = 0',
+        id: "s1",
+        description: "Factor the quadratic.",
+        expression: "x^2 + 3x - 4 = 0",
       },
     ],
   },
-  'comprehension-quiz': {
+  "comprehension-quiz": {
     questions: [
       {
-        id: 'q1',
-        prompt: 'What is the vertex form?',
-        correctAnswer: 'y = a(x - h)^2 + k',
+        id: "q1",
+        prompt: "What is the vertex form?",
+        correctAnswer: "y = a(x - h)^2 + k",
       },
     ],
   },
-  'fill-in-the-blank': {
-    template: 'A quadratic has degree {{blank:degree}}.',
-    blanks: [{ id: 'degree', correctAnswer: '2' }],
+  "fill-in-the-blank": {
+    template: "A quadratic has degree {{blank:degree}}.",
+    blanks: [{ id: "degree", correctAnswer: "2" }],
   },
 };
 
 function buildAuthoredDraft(overrides: Record<string, unknown> = {}) {
   return {
-    title: 'Authored Quadratic Lesson',
+    title: "Authored Quadratic Lesson",
     phases: [
       {
-        title: 'Explore',
-        phaseType: 'explore',
+        title: "Explore",
+        phaseType: "explore",
         sections: [
           {
-            title: 'Graphing a parabola',
+            title: "Graphing a parabola",
             activities: [
               {
-                componentKey: 'graphing-explorer',
-                props: VALID_ACTIVITY_PROPS['graphing-explorer'],
+                componentKey: "graphing-explorer",
+                props: VALID_ACTIVITY_PROPS["graphing-explorer"],
               },
             ],
           },
         ],
       },
       {
-        title: 'Worked Example',
-        phaseType: 'worked_example',
+        title: "Worked Example",
+        phaseType: "worked_example",
         sections: [
           {
-            title: 'Solving by factoring',
+            title: "Solving by factoring",
             activities: [
               {
-                componentKey: 'step-by-step-solver',
-                props: VALID_ACTIVITY_PROPS['step-by-step-solver'],
+                componentKey: "step-by-step-solver",
+                props: VALID_ACTIVITY_PROPS["step-by-step-solver"],
               },
             ],
           },
         ],
       },
       {
-        title: 'Guided Practice',
-        phaseType: 'guided_practice',
+        title: "Guided Practice",
+        phaseType: "guided_practice",
         sections: [
           {
-            title: 'Check for understanding',
+            title: "Check for understanding",
             activities: [
               {
-                componentKey: 'comprehension-quiz',
-                props: VALID_ACTIVITY_PROPS['comprehension-quiz'],
+                componentKey: "comprehension-quiz",
+                props: VALID_ACTIVITY_PROPS["comprehension-quiz"],
               },
               {
-                componentKey: 'fill-in-the-blank',
-                props: VALID_ACTIVITY_PROPS['fill-in-the-blank'],
+                componentKey: "fill-in-the-blank",
+                props: VALID_ACTIVITY_PROPS["fill-in-the-blank"],
               },
             ],
           },
@@ -248,7 +246,7 @@ function buildAuthoredDraft(overrides: Record<string, unknown> = {}) {
   };
 }
 
-function makeTeacher(id: string, organizationId: string, role: 'teacher' | 'admin' = 'teacher') {
+function makeTeacher(id: string, organizationId: string, role: "teacher" | "admin" = "teacher") {
   return {
     _id: id,
     username: id,
@@ -264,7 +262,7 @@ function makeStudent(id: string, organizationId: string) {
   return {
     _id: id,
     username: id,
-    role: 'student',
+    role: "student",
     organizationId,
     displayName: id,
     createdAt: 1000,
@@ -272,33 +270,30 @@ function makeStudent(id: string, organizationId: string) {
   };
 }
 
-describe('Phase 4 adversarial: approval-storage split (exact, not just >= 2)', () => {
-  it('the explore (activity-kind) placement records inline approval; the worked_example/guided_practice primary placements record component_approvals rows — exact split', async () => {
-    const {
-      saveTeacherDraftHandler,
-      submitDraftForReviewHandler,
-      reviewAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+describe("Phase 4 adversarial: approval-storage split (exact, not just >= 2)", () => {
+  it("the explore (activity-kind) placement records inline approval; the worked_example/guided_practice primary placements record component_approvals rows — exact split", async () => {
+    const { saveTeacherDraftHandler, submitDraftForReviewHandler, reviewAuthoredLessonHandler } =
+      await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'split-key',
+      idempotencyKey: "split-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
 
     // Exact split pinning:
@@ -317,16 +312,14 @@ describe('Phase 4 adversarial: approval-storage split (exact, not just >= 2)', (
     // would fail with a clear "expected length 2 but got 4" message.
     expect(stores.activities).toHaveLength(4);
 
-    const exploreActivity = stores.activities.find(
-      (a) => a.componentKey === 'graphing-explorer',
-    );
+    const exploreActivity = stores.activities.find((a) => a.componentKey === "graphing-explorer");
     expect(exploreActivity).toBeDefined();
 
     // Inline approval on the explore activity must be present and
     // approved with a non-empty contentHash.
     expect(exploreActivity!.approval).toBeDefined();
-    expect(exploreActivity!.approval.status).toBe('approved');
-    expect(typeof exploreActivity!.approval.contentHash).toBe('string');
+    expect(exploreActivity!.approval.status).toBe("approved");
+    expect(typeof exploreActivity!.approval.contentHash).toBe("string");
     expect((exploreActivity!.approval.contentHash as string).length).toBeGreaterThan(0);
 
     // EXACTLY 2 component_approvals rows for the 2 non-activity
@@ -334,65 +327,52 @@ describe('Phase 4 adversarial: approval-storage split (exact, not just >= 2)', (
     // table would produce 3 rows (or 4) and fail this assertion.
     expect(stores.component_approvals).toHaveLength(2);
 
-    const approvalKinds = stores.component_approvals
-      .map((a) => a.componentKind)
-      .sort();
-    expect(approvalKinds).toEqual(['example', 'practice']);
+    const approvalKinds = stores.component_approvals.map((a) => a.componentKind).sort();
+    expect(approvalKinds).toEqual(["example", "practice"]);
 
-    const approvalKeys = stores.component_approvals
-      .map((a) => a.componentKey)
-      .sort();
-    expect(approvalKeys).toEqual(['comprehension-quiz', 'step-by-step-solver']);
+    const approvalKeys = stores.component_approvals.map((a) => a.componentKey).sort();
+    expect(approvalKeys).toEqual(["comprehension-quiz", "step-by-step-solver"]);
 
     // Every non-activity placement has its approval recorded as a row,
     // NOT inline on activities. Exactly ONE activity must carry an
     // inline approval (the explore one); the other three must NOT.
-    const activitiesWithInlineApproval = stores.activities.filter(
-      (a) => a.approval !== undefined,
-    );
+    const activitiesWithInlineApproval = stores.activities.filter((a) => a.approval !== undefined);
     expect(activitiesWithInlineApproval).toHaveLength(1);
-    expect(activitiesWithInlineApproval[0].componentKey).toBe('graphing-explorer');
+    expect(activitiesWithInlineApproval[0].componentKey).toBe("graphing-explorer");
   });
 
-  it('the inline approval on the explore activity carries a hash matching computeComponentContentHash for the activity kind', async () => {
-    const {
-      saveTeacherDraftHandler,
-      submitDraftForReviewHandler,
-      reviewAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
-    const { computeComponentContentHash } = await import(
-      '../../../lib/activities/content-hash'
-    );
-    const { resolveComponentKind } = await import('../../../lib/activities/review-queue');
+  it("the inline approval on the explore activity carries a hash matching computeComponentContentHash for the activity kind", async () => {
+    const { saveTeacherDraftHandler, submitDraftForReviewHandler, reviewAuthoredLessonHandler } =
+      await import("../../../convex/teacher/content_authoring");
+    const { computeComponentContentHash } = await import("../../../lib/activities/content-hash");
+    const { resolveComponentKind } = await import("../../../lib/activities/review-queue");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'inline-hash-key',
+      idempotencyKey: "inline-hash-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
 
-    const exploreActivity = stores.activities.find(
-      (a) => a.componentKey === 'graphing-explorer',
-    );
+    const exploreActivity = stores.activities.find((a) => a.componentKey === "graphing-explorer");
     expect(exploreActivity).toBeDefined();
 
     const expectedHash = await computeComponentContentHash({
-      componentKind: resolveComponentKind('explore'),
+      componentKind: resolveComponentKind("explore"),
       componentKey: exploreActivity!.componentKey,
       props: exploreActivity!.props as Record<string, unknown>,
     });
@@ -400,51 +380,49 @@ describe('Phase 4 adversarial: approval-storage split (exact, not just >= 2)', (
   });
 });
 
-describe('Phase 4 adversarial: displayName fallback', () => {
-  it('every persisted activities row carries a non-empty displayName even when the adapter is bypassed (handler fallback path)', async () => {
+describe("Phase 4 adversarial: displayName fallback", () => {
+  it("every persisted activities row carries a non-empty displayName even when the adapter is bypassed (handler fallback path)", async () => {
     // Simulate a regression where the Phase 4 adapter
     // (`toTeacherDraftPayload`) is no longer wired in front of the
     // handler — the handler then receives a draft whose activity
     // entries carry only `componentKey` + `props` (no `displayName`).
     // The handler's `displayName || componentKey` fallback (commit
     // 705e0cc3) must still populate the column.
-    const { saveTeacherDraftHandler } = await import(
-      '../../../convex/teacher/content_authoring'
-    );
+    const { saveTeacherDraftHandler } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
     // The draft below deliberately OMITS `displayName` per activity to
     // simulate the regression where the adapter is bypassed.
     const draftWithoutDisplayName = {
-      title: 'No displayName draft',
+      title: "No displayName draft",
       phases: [
         {
-          title: 'Explore',
-          phaseType: 'explore',
+          title: "Explore",
+          phaseType: "explore",
           sections: [
             {
-              title: 'Graphing',
+              title: "Graphing",
               activities: [
                 {
-                  componentKey: 'graphing-explorer',
-                  props: VALID_ACTIVITY_PROPS['graphing-explorer'],
+                  componentKey: "graphing-explorer",
+                  props: VALID_ACTIVITY_PROPS["graphing-explorer"],
                 },
               ],
             },
           ],
         },
         {
-          title: 'Worked Example',
-          phaseType: 'worked_example',
+          title: "Worked Example",
+          phaseType: "worked_example",
           sections: [
             {
-              title: 'Solving',
+              title: "Solving",
               activities: [
                 {
-                  componentKey: 'step-by-step-solver',
-                  props: VALID_ACTIVITY_PROPS['step-by-step-solver'],
+                  componentKey: "step-by-step-solver",
+                  props: VALID_ACTIVITY_PROPS["step-by-step-solver"],
                 },
               ],
             },
@@ -454,9 +432,9 @@ describe('Phase 4 adversarial: displayName fallback', () => {
     };
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: draftWithoutDisplayName,
-      idempotencyKey: 'no-display-name-key',
+      idempotencyKey: "no-display-name-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
@@ -467,43 +445,41 @@ describe('Phase 4 adversarial: displayName fallback', () => {
     // undefined displayName would fail in production.
     expect(stores.activities.length).toBeGreaterThan(0);
     for (const activity of stores.activities) {
-      expect(typeof activity.displayName).toBe('string');
+      expect(typeof activity.displayName).toBe("string");
       expect((activity.displayName as string).length).toBeGreaterThan(0);
       // The fallback must equal the componentKey.
       expect(activity.displayName).toBe(activity.componentKey);
     }
   });
 
-  it('every persisted activities row carries a non-empty displayName via the normal adapter-supplied path', async () => {
+  it("every persisted activities row carries a non-empty displayName via the normal adapter-supplied path", async () => {
     // This is the "happy path" — the Phase 4 adapter supplies
     // `displayName: componentKey` per activity, the handler persists
     // it, and the column is populated.
-    const { saveTeacherDraftHandler } = await import(
-      '../../../convex/teacher/content_authoring'
-    );
+    const { saveTeacherDraftHandler } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'happy-display-name-key',
+      idempotencyKey: "happy-display-name-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     expect(stores.activities.length).toBe(4);
     for (const activity of stores.activities) {
-      expect(typeof activity.displayName).toBe('string');
+      expect(typeof activity.displayName).toBe("string");
       expect((activity.displayName as string).length).toBeGreaterThan(0);
       expect(activity.displayName).toBe(activity.componentKey);
     }
   });
 });
 
-describe('Phase 4 adversarial: stale-hash defense on inline (activity-kind) approval', () => {
-  it('publish is blocked when the inline approval hash on the explore (activity-kind) activity is forged to a stale value', async () => {
+describe("Phase 4 adversarial: stale-hash defense on inline (activity-kind) approval", () => {
+  it("publish is blocked when the inline approval hash on the explore (activity-kind) activity is forged to a stale value", async () => {
     // The Phase 4 E2E and the existing Phase 2 adversarial suite
     // already cover:
     //   - publish blocked when only some approvals are stale (mixed set);
@@ -522,67 +498,63 @@ describe('Phase 4 adversarial: stale-hash defense on inline (activity-kind) appr
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'inline-stale-key',
+      idempotencyKey: "inline-stale-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
 
-    const exploreActivity = stores.activities.find(
-      (a) => a.componentKey === 'graphing-explorer',
-    );
+    const exploreActivity = stores.activities.find((a) => a.componentKey === "graphing-explorer");
     expect(exploreActivity).toBeDefined();
     expect(exploreActivity!.approval).toBeDefined();
     const originalHash = exploreActivity!.approval.contentHash as string;
-    expect(typeof originalHash).toBe('string');
+    expect(typeof originalHash).toBe("string");
 
     // Forge the inline approval hash so it differs from the current
     // hash. This simulates either:
     //   (a) tampering on the stored row, OR
     //   (b) the activity's props were edited in a way that did NOT
     //       trigger the handler's stale-defense refresh path.
-    await ctx.db.patch(exploreActivity!._id as Id<'activities'>, {
+    await ctx.db.patch(exploreActivity!._id as Id<"activities">, {
       approval: {
-        status: 'approved',
+        status: "approved",
         contentHash: `${originalHash}-forged`,
         reviewedAt: 2000,
-        reviewedBy: teacher._id as Id<'profiles'>,
+        reviewedBy: teacher._id as Id<"profiles">,
       },
       updatedAt: 2000,
     });
 
     await expect(
       publishAuthoredLessonHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         lessonId: saved.lessonId,
       }),
     ).rejects.toThrow(/stale/i);
 
     // lesson_version.status must remain 'approved' (publish rejected, no flip).
-    const lessonVersion = stores.lesson_versions.find(
-      (v) => v._id === saved.lessonVersionId,
-    );
-    expect(lessonVersion?.status).toBe('approved');
+    const lessonVersion = stores.lesson_versions.find((v) => v._id === saved.lessonVersionId);
+    expect(lessonVersion?.status).toBe("approved");
   });
 
-  it('publish is blocked when the inline approval is missing entirely (no approval object)', async () => {
+  it("publish is blocked when the inline approval is missing entirely (no approval object)", async () => {
     // Defense in depth: if the inline `approval` field is removed
     // (e.g. by a regression that drops the activity patch), publish
     // must throw the explicit "is not approved" message, NOT silently
@@ -592,52 +564,50 @@ describe('Phase 4 adversarial: stale-hash defense on inline (activity-kind) appr
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'inline-missing-key',
+      idempotencyKey: "inline-missing-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
 
-    const exploreActivity = stores.activities.find(
-      (a) => a.componentKey === 'graphing-explorer',
-    );
+    const exploreActivity = stores.activities.find((a) => a.componentKey === "graphing-explorer");
     expect(exploreActivity).toBeDefined();
 
     // Strip the inline approval entirely. The handler must refuse to
     // publish because there is no approval on record.
-    await ctx.db.patch(exploreActivity!._id as Id<'activities'>, {
+    await ctx.db.patch(exploreActivity!._id as Id<"activities">, {
       approval: undefined,
       updatedAt: 3000,
     });
 
     await expect(
       publishAuthoredLessonHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         lessonId: saved.lessonId,
       }),
     ).rejects.toThrow(/not approved/i);
   });
 });
 
-describe('Phase 4 adversarial: cross-org student visibility (enrolled + class-assigned)', () => {
-  it('a student enrolled in the assigned class BUT in a different org from the teacher gets null', async () => {
+describe("Phase 4 adversarial: cross-org student visibility (enrolled + class-assigned)", () => {
+  it("a student enrolled in the assigned class BUT in a different org from the teacher gets null", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
@@ -645,16 +615,16 @@ describe('Phase 4 adversarial: cross-org student visibility (enrolled + class-as
       publishAuthoredLessonHandler,
       assignAuthoredLessonHandler,
       getAuthoredLessonForStudentHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
-    const sameOrgActiveStudent = makeStudent('student_active', 'org_1');
-    const otherOrgEnrolledStudent = makeStudent('student_other_org_enrolled', 'org_2');
+    const teacher = makeTeacher("teacher_1", "org_1");
+    const sameOrgActiveStudent = makeStudent("student_active", "org_1");
+    const otherOrgEnrolledStudent = makeStudent("student_other_org_enrolled", "org_2");
 
     const cls = {
-      _id: 'class_1',
+      _id: "class_1",
       teacherId: teacher._id,
-      name: 'Period 1',
+      name: "Period 1",
       archived: false,
       createdAt: 1000,
       updatedAt: 1000,
@@ -666,30 +636,30 @@ describe('Phase 4 adversarial: cross-org student visibility (enrolled + class-as
     });
 
     const saved = await saveTeacherDraftHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'cross-org-enrolled-key',
+      idempotencyKey: "cross-org-enrolled-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
     await publishAuthoredLessonHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await assignAuthoredLessonHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      classId: cls._id as Id<'classes'>,
+      classId: cls._id as Id<"classes">,
     });
 
     // Both students are ACTIVELY enrolled in the assigned class. The
@@ -697,19 +667,19 @@ describe('Phase 4 adversarial: cross-org student visibility (enrolled + class-as
     // see the lesson; the cross-org student must see null.
     stores.class_enrollments.push(
       {
-        _id: 'enrollment_active_same_org',
+        _id: "enrollment_active_same_org",
         classId: cls._id,
         studentId: sameOrgActiveStudent._id,
-        status: 'active',
+        status: "active",
         enrolledAt: 1000,
         createdAt: 1000,
         updatedAt: 1000,
       },
       {
-        _id: 'enrollment_active_other_org',
+        _id: "enrollment_active_other_org",
         classId: cls._id,
         studentId: otherOrgEnrolledStudent._id,
-        status: 'active',
+        status: "active",
         enrolledAt: 1000,
         createdAt: 1000,
         updatedAt: 1000,
@@ -719,7 +689,7 @@ describe('Phase 4 adversarial: cross-org student visibility (enrolled + class-as
     const { ctx: qCtx } = makeQueryMockCtx(stores);
 
     const sameOrgResult = await getAuthoredLessonForStudentHandler(qCtx, {
-      userId: sameOrgActiveStudent._id as Id<'profiles'>,
+      userId: sameOrgActiveStudent._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     expect(sameOrgResult).not.toBeNull();
@@ -728,7 +698,7 @@ describe('Phase 4 adversarial: cross-org student visibility (enrolled + class-as
     // The adversarial case: actively enrolled, in the assigned class,
     // but in a different organization from the teacher. Must be null.
     const otherOrgResult = await getAuthoredLessonForStudentHandler(qCtx, {
-      userId: otherOrgEnrolledStudent._id as Id<'profiles'>,
+      userId: otherOrgEnrolledStudent._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     expect(otherOrgResult).toBeNull();

@@ -1,12 +1,7 @@
 "use client";
 
 import { RefreshCw, AlertCircle } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -26,7 +21,6 @@ interface StrugglingStudentsPanelProps {
   onResetCard?: (studentId: string, studentName: string) => void;
   isLoading?: boolean;
 }
-
 
 /**
  * Formats a Unix timestamp into a human-readable relative time string.
@@ -48,7 +42,6 @@ function formatLastActive(timestamp: number | null): string {
   return date.toLocaleDateString();
 }
 
-
 /**
  * Determines the struggle severity level based on overdue card count and again rate.
  *
@@ -56,7 +49,10 @@ function formatLastActive(timestamp: number | null): string {
  * @param againRate - The "again" response rate as a decimal.
  * @returns An object with label and className for the struggle badge.
  */
-function getStruggleLevel(overdueCards: number, againRate: number): { label: string; className: string } {
+function getStruggleLevel(
+  overdueCards: number,
+  againRate: number,
+): { label: string; className: string } {
   if (overdueCards >= 10 || againRate >= 0.4) {
     return { label: "Critical", className: "text-red-600 bg-red-50 border-red-200" };
   }
@@ -68,7 +64,6 @@ function getStruggleLevel(overdueCards: number, againRate: number): { label: str
   }
   return { label: "On Track", className: "text-emerald-600 bg-emerald-50 border-emerald-200" };
 }
-
 
 /**
  * Renders a panel listing students with struggling SRS cards, sorted by
@@ -149,7 +144,7 @@ export function StrugglingStudentsPanel({
                   <div
                     className={cn(
                       "rounded-full px-2 py-1 text-xs font-medium border",
-                      struggle.className
+                      struggle.className,
                     )}
                   >
                     {struggle.label}

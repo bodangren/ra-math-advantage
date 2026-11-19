@@ -1,14 +1,15 @@
-import { describe, expect, it } from 'vitest';
-import { generatorOutputSchema } from '@math-platform/knowledge-space-practice';
-import { parseQuadratic } from '@math-platform/graphing-core';
+import { describe, expect, it } from "vitest";
+import { generatorOutputSchema } from "@math-platform/knowledge-space-practice";
+import { parseQuadratic } from "@math-platform/graphing-core";
 
-import { graphingExplorerSchema } from '../schemas/graphing-explorer.schema';
-import { GENERATOR_KEYS, getGenerator } from '../knowledge-space/generators/registry';
+import { graphingExplorerSchema } from "../schemas/graphing-explorer.schema";
+import { GENERATOR_KEYS, getGenerator } from "../knowledge-space/generators/registry";
 
-const GENERATOR_KEY = 'one-real-solution-graphing';
-const ATOMIC_NODE_ID = 'math.im3.skill.1.2.solve-a-quadratic-equation-with-one-real-solution-by-graphing';
-const ORIGINAL_EQUATION = '7 - x^2 = 2x + 8';
-const EQUATION = 'f(x) = x^2 + 2x + 1';
+const GENERATOR_KEY = "one-real-solution-graphing";
+const ATOMIC_NODE_ID =
+  "math.im3.skill.1.2.solve-a-quadratic-equation-with-one-real-solution-by-graphing";
+const ORIGINAL_EQUATION = "7 - x^2 = 2x + 8";
+const EQUATION = "f(x) = x^2 + 2x + 1";
 const TABLE_VALUES = [
   { x: -3, y: 4 },
   { x: -2, y: 1 },
@@ -17,8 +18,8 @@ const TABLE_VALUES = [
   { x: 1, y: 4 },
 ];
 
-describe('one-real-solution-graphing generator', () => {
-  it('resolves the exact registry identity', () => {
+describe("one-real-solution-graphing generator", () => {
+  it("resolves the exact registry identity", () => {
     const generator = getGenerator(GENERATOR_KEY);
 
     expect(generator.key).toBe(GENERATOR_KEY);
@@ -26,7 +27,7 @@ describe('one-real-solution-graphing generator', () => {
     expect(GENERATOR_KEYS).toContain(GENERATOR_KEY);
   });
 
-  it('emits the exact deterministic seed 0 Independent specimen', () => {
+  it("emits the exact deterministic seed 0 Independent specimen", () => {
     const generator = getGenerator(GENERATOR_KEY);
     const input = { nodeId: ATOMIC_NODE_ID, seed: 0, difficulty: 0.5 };
     const output = generator.generate(input);
@@ -45,7 +46,7 @@ describe('one-real-solution-graphing generator', () => {
 
     expect(repeat).toEqual(output);
     expect(output.prompt).toContain(ORIGINAL_EQUATION);
-    expect(output.prompt).not.toContain('x = -1');
+    expect(output.prompt).not.toContain("x = -1");
     expect(output.prompt).not.toMatch(/solution\s+is\s+-1/i);
     expect(data).toMatchObject({
       root: -1,
@@ -58,8 +59,8 @@ describe('one-real-solution-graphing generator', () => {
     expect(data.tableValues).toEqual(TABLE_VALUES);
     expect(data.rendererProps).toEqual({
       equation: EQUATION,
-      variant: 'plot_from_equation',
-      responseVariant: 'one_real_solution',
+      variant: "plot_from_equation",
+      responseVariant: "one_real_solution",
       originalEquation: ORIGINAL_EQUATION,
       domain: [-4, 2],
       range: [-1, 10],
@@ -70,9 +71,9 @@ describe('one-real-solution-graphing generator', () => {
       solution: -1,
     });
     expect(Object.keys(output.expectedAnswer)).toEqual([
-      'table_values',
-      'placed_points',
-      'solution',
+      "table_values",
+      "placed_points",
+      "solution",
     ]);
     expect(output.gradingMetadata).toEqual({
       partAnswers: {
@@ -86,29 +87,29 @@ describe('one-real-solution-graphing generator', () => {
         solution: 1,
       },
       partGradingRules: {
-        table_values: 'custom',
-        placed_points: 'custom',
-        solution: 'numeric_tolerance',
+        table_values: "custom",
+        placed_points: "custom",
+        solution: "numeric_tolerance",
       },
       partTolerances: { solution: 0.01 },
     });
     expect(Object.keys(output.gradingMetadata.partAnswers)).toEqual([
-      'table_values',
-      'placed_points',
-      'solution',
+      "table_values",
+      "placed_points",
+      "solution",
     ]);
     expect(Object.keys(output.gradingMetadata.partMaxScores)).toEqual([
-      'table_values',
-      'placed_points',
-      'solution',
+      "table_values",
+      "placed_points",
+      "solution",
     ]);
     expect(Object.keys(output.gradingMetadata.partGradingRules)).toEqual([
-      'table_values',
-      'placed_points',
-      'solution',
+      "table_values",
+      "placed_points",
+      "solution",
     ]);
     expect(output.solutionSteps).toHaveLength(4);
-    expect(output.solutionSteps[0]?.expression).toBe('0 = x^2 + 2x + 1');
+    expect(output.solutionSteps[0]?.expression).toBe("0 = x^2 + 2x + 1");
     expect(output.solutionSteps[0]?.description).toMatch(/rewrite/i);
     expect(output.solutionSteps[1]?.description).toMatch(/axis|repeated root/i);
     expect(output.solutionSteps[2]?.description).toMatch(/table|graph/i);
@@ -117,7 +118,7 @@ describe('one-real-solution-graphing generator', () => {
     expect(generatorOutputSchema.safeParse(output).success).toBe(true);
   });
 
-  it('keeps every generated one-real-solution specimen coherent across 1000 seeds', () => {
+  it("keeps every generated one-real-solution specimen coherent across 1000 seeds", () => {
     const generator = getGenerator(GENERATOR_KEY);
     const roots = new Set<number>();
     const scales = new Set<number>();
@@ -152,16 +153,12 @@ describe('one-real-solution-graphing generator', () => {
         { x: data.root + 1, y: data.scale },
         { x: data.root + 2, y: data.scale * 4 },
       ];
-      const linearTerm = data.b === 0
-        ? ''
-        : data.b === 1
-          ? 'x'
-          : data.b === -1
-            ? '-x'
-            : `${data.b}x`;
-      const originalEquation = data.b === 0
-        ? `7 - ${data.scale === 1 ? '' : `${data.scale}`}x^2 = ${7 + data.c}`
-        : `7 - ${data.scale === 1 ? '' : `${data.scale}`}x^2 = ${linearTerm} + ${7 + data.c}`;
+      const linearTerm =
+        data.b === 0 ? "" : data.b === 1 ? "x" : data.b === -1 ? "-x" : `${data.b}x`;
+      const originalEquation =
+        data.b === 0
+          ? `7 - ${data.scale === 1 ? "" : `${data.scale}`}x^2 = ${7 + data.c}`
+          : `7 - ${data.scale === 1 ? "" : `${data.scale}`}x^2 = ${linearTerm} + ${7 + data.c}`;
 
       expect(repeat).toEqual(output);
       expect(Number.isInteger(data.root)).toBe(true);
@@ -176,8 +173,8 @@ describe('one-real-solution-graphing generator', () => {
       expect(parsed).toEqual({ a: data.a, b: data.b, c: data.c });
       expect(parsed).not.toBeNull();
       expect(data.b ** 2 - 4 * data.a * data.c).toBe(0);
-      expect(props.variant).toBe('plot_from_equation');
-      expect(props.responseVariant).toBe('one_real_solution');
+      expect(props.variant).toBe("plot_from_equation");
+      expect(props.responseVariant).toBe("one_real_solution");
       expect(props.domain).toEqual([data.root - 3, data.root + 3]);
       expect(props.range[0]).toBe(-1);
       expect(Number.isFinite(props.range[1])).toBe(true);
@@ -190,9 +187,9 @@ describe('one-real-solution-graphing generator', () => {
         solution: data.root,
       });
       expect(Object.keys(output.expectedAnswer)).toEqual([
-        'table_values',
-        'placed_points',
-        'solution',
+        "table_values",
+        "placed_points",
+        "solution",
       ]);
       expect(output.gradingMetadata).toEqual({
         partAnswers: {
@@ -206,26 +203,26 @@ describe('one-real-solution-graphing generator', () => {
           solution: 1,
         },
         partGradingRules: {
-          table_values: 'custom',
-          placed_points: 'custom',
-          solution: 'numeric_tolerance',
+          table_values: "custom",
+          placed_points: "custom",
+          solution: "numeric_tolerance",
         },
         partTolerances: { solution: 0.01 },
       });
       expect(Object.keys(output.gradingMetadata.partAnswers)).toEqual([
-        'table_values',
-        'placed_points',
-        'solution',
+        "table_values",
+        "placed_points",
+        "solution",
       ]);
       expect(Object.keys(output.gradingMetadata.partMaxScores)).toEqual([
-        'table_values',
-        'placed_points',
-        'solution',
+        "table_values",
+        "placed_points",
+        "solution",
       ]);
       expect(Object.keys(output.gradingMetadata.partGradingRules)).toEqual([
-        'table_values',
-        'placed_points',
-        'solution',
+        "table_values",
+        "placed_points",
+        "solution",
       ]);
       expect(output.prompt).toContain(originalEquation);
       expect(output.prompt).not.toContain(`x = ${data.root}`);

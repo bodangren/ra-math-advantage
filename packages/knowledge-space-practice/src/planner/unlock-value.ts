@@ -8,19 +8,17 @@
  * Pure functions, no I/O, no app imports, domain-neutral.
  */
 
-import type { PlannerInput } from './types';
+import type { PlannerInput } from "./types";
 
 /**
  * Build a downstream adjacency map from prerequisite_for edges only.
  * Each entry maps `sourceId → targetId[]`, following the natural
  * edge direction (prerequisite → dependent).
  */
-function buildDownstreamMap(
-  edges: PlannerInput['edges'],
-): Map<string, string[]> {
+function buildDownstreamMap(edges: PlannerInput["edges"]): Map<string, string[]> {
   const map = new Map<string, string[]>();
   for (const edge of edges) {
-    if (edge.type !== 'prerequisite_for') continue;
+    if (edge.type !== "prerequisite_for") continue;
     let targets = map.get(edge.sourceId);
     if (!targets) {
       targets = [];
@@ -36,10 +34,7 @@ function buildDownstreamMap(
  * `prerequisite_for` edges. Uses iterative DFS with a visited set
  * to handle cycles safely.
  */
-export function getUnlockValue(
-  nodeId: string,
-  graph: PlannerInput,
-): number {
+export function getUnlockValue(nodeId: string, graph: PlannerInput): number {
   const downstream = buildDownstreamMap(graph.edges);
 
   const visited = new Set<string>();
@@ -76,9 +71,7 @@ export function getUnlockValue(
  * Bulk precompute unlock values for every node in the graph.
  * Returns a map keyed by every node id in `graph.nodes`.
  */
-export function computeUnlockValues(
-  graph: PlannerInput,
-): ReadonlyMap<string, number> {
+export function computeUnlockValues(graph: PlannerInput): ReadonlyMap<string, number> {
   const map = new Map<string, number>();
 
   if (graph.nodes.length === 0) return map;

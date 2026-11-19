@@ -1,6 +1,6 @@
-import { z } from 'zod';
+import { z } from "zod";
 
-export const EFFICACY_CONTRACT_VERSION = 'efficacy.contract.v1' as const;
+export const EFFICACY_CONTRACT_VERSION = "efficacy.contract.v1" as const;
 
 // ── RetentionPoint ──────────────────────────────────────────────────
 
@@ -56,8 +56,8 @@ export const ReviewSuccessRateSchema = z
     }),
   })
   .refine((data) => data.successCount <= data.totalCount, {
-    message: 'successCount cannot exceed totalCount',
-    path: ['successCount'],
+    message: "successCount cannot exceed totalCount",
+    path: ["successCount"],
   });
 
 export type ReviewSuccessRate = z.infer<typeof ReviewSuccessRateSchema>;

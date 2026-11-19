@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -139,11 +139,17 @@ export const seedLesson7_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "f(x) = x^3 / (x + 2/3)",
                 steps: [
-                  { expression: "x^3 = 0", explanation: "Set the numerator equal to 0 to find zeros" },
+                  {
+                    expression: "x^3 = 0",
+                    explanation: "Set the numerator equal to 0 to find zeros",
+                  },
                   { expression: "x = 0", explanation: "Solve for the zero of the function" },
                   { expression: "x + 2/3 = 0", explanation: "Set the denominator equal to 0" },
                   { expression: "x = -2/3", explanation: "Find the vertical asymptote" },
-                  { expression: "no horizontal asymptote", explanation: "Degree of numerator > degree of denominator" },
+                  {
+                    expression: "no horizontal asymptote",
+                    explanation: "Degree of numerator > degree of denominator",
+                  },
                 ],
               },
             },
@@ -173,10 +179,22 @@ export const seedLesson7_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "y = 200x/(x + 12)",
                 steps: [
-                  { expression: "vertical asymptote: x = -12", explanation: "Set denominator x + 12 = 0" },
-                  { expression: "horizontal asymptote: y = 200", explanation: "Ratio of leading coefficients (equal degrees)" },
-                  { expression: "x-intercept: 0, y-intercept: 0", explanation: "Find where the graph crosses the axes" },
-                  { expression: "y = 200(12)/(12 + 12) = 100", explanation: "Calculate dosage for a 12-year-old" },
+                  {
+                    expression: "vertical asymptote: x = -12",
+                    explanation: "Set denominator x + 12 = 0",
+                  },
+                  {
+                    expression: "horizontal asymptote: y = 200",
+                    explanation: "Ratio of leading coefficients (equal degrees)",
+                  },
+                  {
+                    expression: "x-intercept: 0, y-intercept: 0",
+                    explanation: "Find where the graph crosses the axes",
+                  },
+                  {
+                    expression: "y = 200(12)/(12 + 12) = 100",
+                    explanation: "Calculate dosage for a 12-year-old",
+                  },
                 ],
               },
             },
@@ -206,10 +224,19 @@ export const seedLesson7_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "g(x) = (x - 2)/(2x + 2)",
                 steps: [
-                  { expression: "x - 2 = 0, x = 2", explanation: "Find the zero by setting the numerator equal to 0" },
+                  {
+                    expression: "x - 2 = 0, x = 2",
+                    explanation: "Find the zero by setting the numerator equal to 0",
+                  },
                   { expression: "2x + 2 = 0, x = -1", explanation: "Find the vertical asymptote" },
-                  { expression: "y = 1/2", explanation: "Horizontal asymptote is the ratio of leading coefficients" },
-                  { expression: "g(x) y-intercept = -1", explanation: "Substitute x = 0 to find the y-intercept" },
+                  {
+                    expression: "y = 1/2",
+                    explanation: "Horizontal asymptote is the ratio of leading coefficients",
+                  },
+                  {
+                    expression: "g(x) y-intercept = -1",
+                    explanation: "Substitute x = 0 to find the y-intercept",
+                  },
                 ],
               },
             },
@@ -255,9 +282,15 @@ export const seedLesson7_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "f(x) = (x^2 + 2x + 1)/(x + 4)",
                 steps: [
-                  { expression: "(x + 1)^2 = 0, x = -1", explanation: "Find the zero by factoring the numerator" },
+                  {
+                    expression: "(x + 1)^2 = 0, x = -1",
+                    explanation: "Find the zero by factoring the numerator",
+                  },
                   { expression: "x + 4 = 0, x = -4", explanation: "Find the vertical asymptote" },
-                  { expression: "oblique asymptote: y = x - 2", explanation: "Quotient from polynomial division" },
+                  {
+                    expression: "oblique asymptote: y = x - 2",
+                    explanation: "Quotient from polynomial division",
+                  },
                 ],
               },
             },
@@ -287,10 +320,19 @@ export const seedLesson7_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "f(x) = (x^2 - 4)/(x + 2)",
                 steps: [
-                  { expression: "(x^2 - 4)/(x + 2) = ((x + 2)(x - 2))/(x + 2)", explanation: "Factor the numerator" },
+                  {
+                    expression: "(x^2 - 4)/(x + 2) = ((x + 2)(x - 2))/(x + 2)",
+                    explanation: "Factor the numerator",
+                  },
                   { expression: "= x - 2", explanation: "Cancel the common factor" },
-                  { expression: "x + 2 = 0, x = -2", explanation: "Original denominator is 0 at x = -2" },
-                  { expression: "hole at (-2, -4)", explanation: "The line y = x - 2 has a point discontinuity at x = -2" },
+                  {
+                    expression: "x + 2 = 0, x = -2",
+                    explanation: "Original denominator is 0 at x = -2",
+                  },
+                  {
+                    expression: "hole at (-2, -4)",
+                    explanation: "The line y = x - 2 has a point discontinuity at x = -2",
+                  },
                 ],
               },
             },
@@ -320,11 +362,16 @@ export const seedLesson7_4 = internalMutation({
                 questions: [
                   {
                     question: "Where do vertical asymptotes of a rational function occur?",
-                    options: ["Where the numerator equals zero", "Where the denominator equals zero (with no common factors)", "Where the function crosses the x-axis"],
+                    options: [
+                      "Where the numerator equals zero",
+                      "Where the denominator equals zero (with no common factors)",
+                      "Where the function crosses the x-axis",
+                    ],
                     correctIndex: 1,
                   },
                   {
-                    question: "A rational function has an oblique asymptote when the degree of the numerator is how much greater than the denominator?",
+                    question:
+                      "A rational function has an oblique asymptote when the degree of the numerator is how much greater than the denominator?",
                     options: ["0", "1", "2"],
                     correctIndex: 1,
                   },
@@ -359,7 +406,7 @@ export const seedLesson7_4 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

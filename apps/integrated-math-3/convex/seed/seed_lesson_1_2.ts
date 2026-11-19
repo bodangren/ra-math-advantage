@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation, type MutationCtx } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { practiceItemSchema } from "@math-platform/practice-core";
@@ -86,7 +86,8 @@ export function buildIm3TwoRealSolutionsWorkedSeedDocument(now: number) {
   return {
     componentKey: "graphing-explorer" as const,
     displayName: "Find two numbers with a given sum and product by graphing",
-    description: "Worked Example 2: Find two real numbers with a sum of 24 and a product of 143 by graphing.",
+    description:
+      "Worked Example 2: Find two real numbers with a sum of 24 and a product of 143 by graphing.",
     props,
     gradingConfig: IM3_TWO_REAL_SOLUTIONS_GRADING_CONFIG,
     stableActivityId: IM3_TWO_REAL_SOLUTIONS_WORKED_ACTIVITY_ID,
@@ -111,7 +112,8 @@ export function buildIm3TwoRealSolutionsGuidedSeedDocument(now: number) {
   return {
     componentKey: "graphing-explorer" as const,
     displayName: "Guided practice: Find two numbers with a given sum and product by graphing",
-    description: "Guided practice for finding two real numbers with a given sum and product by graphing.",
+    description:
+      "Guided practice for finding two real numbers with a given sum and product by graphing.",
     props,
     gradingConfig: IM3_TWO_REAL_SOLUTIONS_GRADING_CONFIG,
     stableActivityId: IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID,
@@ -135,7 +137,8 @@ export function buildIm3TwoRealSolutionsIndependentSeedDocument(now: number) {
   return {
     componentKey: "graphing-explorer" as const,
     displayName: "Independent practice: Find two numbers with a given sum and product by graphing",
-    description: "Independent practice for finding two real numbers with a sum and product by graphing.",
+    description:
+      "Independent practice for finding two real numbers with a sum and product by graphing.",
     props,
     gradingConfig: IM3_TWO_REAL_SOLUTIONS_GRADING_CONFIG,
     stableActivityId: IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
@@ -159,7 +162,8 @@ export function buildIm3OneRealSolutionGuidedSeedDocument(now: number) {
   return {
     componentKey: "graphing-explorer" as const,
     displayName: "Guided practice: Solve a quadratic equation with one real solution by graphing",
-    description: "Guided practice for solving a quadratic equation with one real solution by graphing.",
+    description:
+      "Guided practice for solving a quadratic equation with one real solution by graphing.",
     props,
     gradingConfig: IM3_ONE_REAL_SOLUTION_GRADING_CONFIG,
     stableActivityId: IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID,
@@ -182,7 +186,8 @@ export function buildIm3OneRealSolutionGuidedPracticeSeedDocuments(
       sourceTimestamp: now,
       componentKey: "graphing-explorer",
       displayName: "Guided practice: Solve a quadratic equation with one real solution by graphing",
-      description: "Guided practice for solving a quadratic equation with one real solution by graphing.",
+      description:
+        "Guided practice for solving a quadratic equation with one real solution by graphing.",
       objectiveIds: [IM3_ONE_REAL_SOLUTION_NODE],
       difficulty: "standard",
       metadata: { stableActivityId: IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID },
@@ -211,7 +216,8 @@ export function buildIm3TwoRealSolutionsGuidedPracticeSeedDocuments(
       sourceTimestamp: now,
       componentKey: "graphing-explorer",
       displayName: "Guided practice: Find two numbers with a given sum and product by graphing",
-      description: "Guided practice for finding two real numbers with a sum and product by graphing.",
+      description:
+        "Guided practice for finding two real numbers with a sum and product by graphing.",
       objectiveIds: [IM3_TWO_REAL_SOLUTIONS_NODE],
       difficulty: "standard",
       metadata: { stableActivityId: IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID },
@@ -239,8 +245,10 @@ export function buildIm3OneRealSolutionIndependentPracticeSeedDocuments(
       migrationVersion: "kst-srs.v3.2" as const,
       sourceTimestamp: now,
       componentKey: "graphing-explorer",
-      displayName: "Independent practice: Solve a quadratic equation with one real solution by graphing",
-      description: "Independent practice for solving a quadratic equation with one real solution by graphing.",
+      displayName:
+        "Independent practice: Solve a quadratic equation with one real solution by graphing",
+      description:
+        "Independent practice for solving a quadratic equation with one real solution by graphing.",
       objectiveIds: [IM3_ONE_REAL_SOLUTION_NODE],
       difficulty: "standard",
       metadata: { stableActivityId: IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID },
@@ -268,8 +276,10 @@ export function buildIm3TwoRealSolutionsIndependentPracticeSeedDocuments(
       migrationVersion: "kst-srs.v3.2" as const,
       sourceTimestamp: now,
       componentKey: "graphing-explorer",
-      displayName: "Independent practice: Find two numbers with a given sum and product by graphing",
-      description: "Independent practice for finding two real numbers with a sum and product by graphing.",
+      displayName:
+        "Independent practice: Find two numbers with a given sum and product by graphing",
+      description:
+        "Independent practice for finding two real numbers with a sum and product by graphing.",
       objectiveIds: [IM3_TWO_REAL_SOLUTIONS_NODE],
       difficulty: "standard",
       metadata: { stableActivityId: IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID },
@@ -298,8 +308,10 @@ export function buildIm3OneRealSolutionIndependentSeedDocument(now: number) {
 
   return {
     componentKey: "graphing-explorer" as const,
-    displayName: "Independent practice: Solve a quadratic equation with one real solution by graphing",
-    description: "Independent practice for solving a quadratic equation with one real solution by graphing.",
+    displayName:
+      "Independent practice: Solve a quadratic equation with one real solution by graphing",
+    description:
+      "Independent practice for solving a quadratic equation with one real solution by graphing.",
     props,
     gradingConfig: IM3_ONE_REAL_SOLUTION_GRADING_CONFIG,
     stableActivityId: IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID,
@@ -316,9 +328,9 @@ export async function upsertIm3OneRealSolutionWorkedActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_ONE_REAL_SOLUTION_WORKED_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_ONE_REAL_SOLUTION_WORKED_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3OneRealSolutionWorkedSeedDocument(now);
 
@@ -339,9 +351,9 @@ export async function upsertIm3TwoRealSolutionsWorkedActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_TWO_REAL_SOLUTIONS_WORKED_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_TWO_REAL_SOLUTIONS_WORKED_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3TwoRealSolutionsWorkedSeedDocument(now);
 
@@ -362,9 +374,9 @@ export async function upsertIm3OneRealSolutionGuidedActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3OneRealSolutionGuidedSeedDocument(now);
 
@@ -385,9 +397,9 @@ export async function upsertIm3TwoRealSolutionsGuidedActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3TwoRealSolutionsGuidedSeedDocument(now);
 
@@ -408,9 +420,9 @@ export async function upsertIm3OneRealSolutionIndependentActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3OneRealSolutionIndependentSeedDocument(now);
 
@@ -431,9 +443,9 @@ export async function upsertIm3TwoRealSolutionsIndependentActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3TwoRealSolutionsIndependentSeedDocument(now);
 
@@ -454,9 +466,7 @@ export async function upsertIm3OneRealSolutionGuidedVariant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID))
     .unique();
   const variant = buildIm3OneRealSolutionGuidedPracticeSeedDocuments(
     "activities:pending" as Id<"activities">,
@@ -477,9 +487,9 @@ export async function upsertIm3TwoRealSolutionsGuidedVariant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) =>
+      q.eq("variantKey", IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID),
+    )
     .unique();
   const variant = buildIm3TwoRealSolutionsGuidedPracticeSeedDocuments(
     "activities:pending" as Id<"activities">,
@@ -500,9 +510,9 @@ export async function upsertIm3OneRealSolutionIndependentVariant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) =>
+      q.eq("variantKey", IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID),
+    )
     .unique();
   const variant = buildIm3OneRealSolutionIndependentPracticeSeedDocuments(
     "activities:pending" as Id<"activities">,
@@ -523,9 +533,9 @@ export async function upsertIm3TwoRealSolutionsIndependentVariant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) =>
+      q.eq("variantKey", IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID),
+    )
     .unique();
   const variant = buildIm3TwoRealSolutionsIndependentPracticeSeedDocuments(
     "activities:pending" as Id<"activities">,
@@ -548,23 +558,25 @@ export async function upsertIm3OneRealSolutionGuidedPracticeItem(
   const documents = buildIm3OneRealSolutionGuidedPracticeSeedDocuments(activityId, now);
   const variantRows = await ctx.db
     .query("practice_items")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID))
     .take(2);
   const activityRows = await ctx.db
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...variantRows, ...activityRows].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...variantRows, ...activityRows].map((row) => [String(row._id), row])).values(),
+  ];
 
-  if (mappedRows.length > 1 || mappedRows.some((row) => (
-    row.variantKey !== IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID
-    || String(row.activityId) !== String(activityId)
-    || row.practiceItemId !== documents.item.practiceItemId
-  ))) {
+  if (
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
+  ) {
     throw new Error("Duplicate or conflicting IM3 one-real-solution Guided practice-item mapping");
   }
 
@@ -575,7 +587,9 @@ export async function upsertIm3OneRealSolutionGuidedPracticeItem(
     variantLabel: documents.item.variantLabel,
   });
   if (!parsedItem.success) {
-    throw new Error(`IM3 one-real-solution Guided practice item is invalid: ${parsedItem.error.message}`);
+    throw new Error(
+      `IM3 one-real-solution Guided practice item is invalid: ${parsedItem.error.message}`,
+    );
   }
 
   const existingItem = mappedRows[0];
@@ -595,23 +609,27 @@ export async function upsertIm3TwoRealSolutionsGuidedPracticeItem(
   const documents = buildIm3TwoRealSolutionsGuidedPracticeSeedDocuments(activityId, now);
   const variantRows = await ctx.db
     .query("practice_items")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) =>
+      q.eq("variantKey", IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID),
+    )
     .take(2);
   const activityRows = await ctx.db
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...variantRows, ...activityRows].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...variantRows, ...activityRows].map((row) => [String(row._id), row])).values(),
+  ];
 
-  if (mappedRows.length > 1 || mappedRows.some((row) => (
-    row.variantKey !== IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID
-    || String(row.activityId) !== String(activityId)
-    || row.practiceItemId !== documents.item.practiceItemId
-  ))) {
+  if (
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
+  ) {
     throw new Error("Duplicate or conflicting IM3 two-real-solutions Guided practice-item mapping");
   }
 
@@ -622,7 +640,9 @@ export async function upsertIm3TwoRealSolutionsGuidedPracticeItem(
     variantLabel: documents.item.variantLabel,
   });
   if (!parsedItem.success) {
-    throw new Error(`IM3 two-real-solutions Guided practice item is invalid: ${parsedItem.error.message}`);
+    throw new Error(
+      `IM3 two-real-solutions Guided practice item is invalid: ${parsedItem.error.message}`,
+    );
   }
 
   const existingItem = mappedRows[0];
@@ -642,24 +662,30 @@ export async function upsertIm3OneRealSolutionIndependentPracticeItem(
   const documents = buildIm3OneRealSolutionIndependentPracticeSeedDocuments(activityId, now);
   const variantRows = await ctx.db
     .query("practice_items")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) =>
+      q.eq("variantKey", IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID),
+    )
     .take(2);
   const activityRows = await ctx.db
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...variantRows, ...activityRows].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...variantRows, ...activityRows].map((row) => [String(row._id), row])).values(),
+  ];
 
-  if (mappedRows.length > 1 || mappedRows.some((row) => (
-    row.variantKey !== IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID
-    || String(row.activityId) !== String(activityId)
-    || row.practiceItemId !== documents.item.practiceItemId
-  ))) {
-    throw new Error("Duplicate or conflicting IM3 one-real-solution Independent practice-item mapping");
+  if (
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
+  ) {
+    throw new Error(
+      "Duplicate or conflicting IM3 one-real-solution Independent practice-item mapping",
+    );
   }
 
   const parsedItem = practiceItemSchema.safeParse({
@@ -669,7 +695,9 @@ export async function upsertIm3OneRealSolutionIndependentPracticeItem(
     variantLabel: documents.item.variantLabel,
   });
   if (!parsedItem.success) {
-    throw new Error(`IM3 one-real-solution Independent practice item is invalid: ${parsedItem.error.message}`);
+    throw new Error(
+      `IM3 one-real-solution Independent practice item is invalid: ${parsedItem.error.message}`,
+    );
   }
 
   const existingItem = mappedRows[0];
@@ -689,24 +717,30 @@ export async function upsertIm3TwoRealSolutionsIndependentPracticeItem(
   const documents = buildIm3TwoRealSolutionsIndependentPracticeSeedDocuments(activityId, now);
   const variantRows = await ctx.db
     .query("practice_items")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) =>
+      q.eq("variantKey", IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID),
+    )
     .take(2);
   const activityRows = await ctx.db
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...variantRows, ...activityRows].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...variantRows, ...activityRows].map((row) => [String(row._id), row])).values(),
+  ];
 
-  if (mappedRows.length > 1 || mappedRows.some((row) => (
-    row.variantKey !== IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID
-    || String(row.activityId) !== String(activityId)
-    || row.practiceItemId !== documents.item.practiceItemId
-  ))) {
-    throw new Error("Duplicate or conflicting IM3 two-real-solutions Independent practice-item mapping");
+  if (
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
+  ) {
+    throw new Error(
+      "Duplicate or conflicting IM3 two-real-solutions Independent practice-item mapping",
+    );
   }
 
   const parsedItem = practiceItemSchema.safeParse({
@@ -716,7 +750,9 @@ export async function upsertIm3TwoRealSolutionsIndependentPracticeItem(
     variantLabel: documents.item.variantLabel,
   });
   if (!parsedItem.success) {
-    throw new Error(`IM3 two-real-solutions Independent practice item is invalid: ${parsedItem.error.message}`);
+    throw new Error(
+      `IM3 two-real-solutions Independent practice item is invalid: ${parsedItem.error.message}`,
+    );
   }
 
   const existingItem = mappedRows[0];
@@ -735,9 +771,9 @@ export async function linkIm3OneRealSolutionWorkedPhase(
 ): Promise<void> {
   const phase = await ctx.db
     .query("phase_versions")
-    .withIndex("by_lesson_version_and_phase", (q) => (
-      q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", 4)
-    ))
+    .withIndex("by_lesson_version_and_phase", (q) =>
+      q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", 4),
+    )
     .first();
   if (!phase) {
     throw new Error("Lesson 1.2 Phase 4 is missing");
@@ -747,15 +783,15 @@ export async function linkIm3OneRealSolutionWorkedPhase(
     .query("phase_sections")
     .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phase._id))
     .collect();
-  const textSection = sections.find((section) => (
-    section.sequenceOrder === 1 && section.sectionType === "text"
-  ));
+  const textSection = sections.find(
+    (section) => section.sequenceOrder === 1 && section.sectionType === "text",
+  );
   if (!textSection) {
     throw new Error("Lesson 1.2 Phase 4 text section is missing");
   }
-  const activitySection = sections.find((section) => (
-    section.sequenceOrder === 2 && section.sectionType === "activity"
-  ));
+  const activitySection = sections.find(
+    (section) => section.sequenceOrder === 2 && section.sectionType === "activity",
+  );
   if (!activitySection) {
     throw new Error("Lesson 1.2 Phase 4 activity section is missing");
   }
@@ -780,9 +816,9 @@ export async function linkIm3TwoRealSolutionsWorkedPhase(
 ): Promise<void> {
   const phase = await ctx.db
     .query("phase_versions")
-    .withIndex("by_lesson_version_and_phase", (q) => (
-      q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", 5)
-    ))
+    .withIndex("by_lesson_version_and_phase", (q) =>
+      q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", 5),
+    )
     .first();
   if (!phase) {
     throw new Error("Lesson 1.2 Phase 5 is missing");
@@ -792,22 +828,23 @@ export async function linkIm3TwoRealSolutionsWorkedPhase(
     .query("phase_sections")
     .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phase._id))
     .collect();
-  const textSection = sections.find((section) => (
-    section.sequenceOrder === 1 && section.sectionType === "text"
-  ));
+  const textSection = sections.find(
+    (section) => section.sequenceOrder === 1 && section.sectionType === "text",
+  );
   if (!textSection) {
     throw new Error("Lesson 1.2 Phase 5 text section is missing");
   }
-  const activitySection = sections.find((section) => (
-    section.sequenceOrder === 2 && section.sectionType === "activity"
-  ));
+  const activitySection = sections.find(
+    (section) => section.sequenceOrder === 2 && section.sectionType === "activity",
+  );
   if (!activitySection) {
     throw new Error("Lesson 1.2 Phase 5 activity section is missing");
   }
 
   await ctx.db.patch(textSection._id, {
     content: {
-      markdown: "## Example 2: Two Real Solutions\n\nUse a quadratic equation to find two real numbers with a sum of 24 and a product of 143.",
+      markdown:
+        "## Example 2: Two Real Solutions\n\nUse a quadratic equation to find two real numbers with a sum of 24 and a product of 143.",
     },
   });
   await ctx.db.patch(activitySection._id, {
@@ -872,7 +909,8 @@ export const seedLesson2 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Explore: Finding Zeros Graphically\n\nIn this lesson, you'll learn how to find the solutions to quadratic equations by looking at their graphs. The **x-intercepts** of the graph are the solutions!\n\n**Key Idea**: When $f(x) = 0$, the point $(x, 0)$ lies on the x-axis. These are the x-intercepts.",
+              markdown:
+                "## Explore: Finding Zeros Graphically\n\nIn this lesson, you'll learn how to find the solutions to quadratic equations by looking at their graphs. The **x-intercepts** of the graph are the solutions!\n\n**Key Idea**: When $f(x) = 0$, the point $(x, 0)$ lies on the x-axis. These are the x-intercepts.",
             },
           },
           {
@@ -899,7 +937,8 @@ export const seedLesson2 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Key Terms\n\n- **Zero (or root)**: A value of $x$ where $f(x) = 0$\n- **X-intercept**: The point $(x, 0)$ where the graph crosses the x-axis\n- **Solution**: A value that makes the equation true\n- **Parabola**: The U-shaped graph of a quadratic function\n\n**Remember**: The zeros of a function are the x-intercepts of its graph!",
+              markdown:
+                "## Key Terms\n\n- **Zero (or root)**: A value of $x$ where $f(x) = 0$\n- **X-intercept**: The point $(x, 0)$ where the graph crosses the x-axis\n- **Solution**: A value that makes the equation true\n- **Parabola**: The U-shaped graph of a quadratic function\n\n**Remember**: The zeros of a function are the x-intercepts of its graph!",
             },
           },
         ],
@@ -914,7 +953,8 @@ export const seedLesson2 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Solving $f(x) = 0$ by Graphing\n\nTo find the solutions of a quadratic equation graphically:\n\n1. **Rewrite** the equation in the form $f(x) = 0$\n2. **Graph** the related function $y = f(x)$\n3. **Identify** the x-intercepts (where the graph crosses the x-axis)\n4. **Read** the solutions from the x-intercepts\n\n### Types of Solutions\n\n- **Two real solutions**: The parabola crosses the x-axis at two points\n- **One real solution**: The parabola touches the x-axis at its vertex (tangent)\n- **No real solutions**: The parabola lies entirely above or below the x-axis",
+              markdown:
+                "## Solving $f(x) = 0$ by Graphing\n\nTo find the solutions of a quadratic equation graphically:\n\n1. **Rewrite** the equation in the form $f(x) = 0$\n2. **Graph** the related function $y = f(x)$\n3. **Identify** the x-intercepts (where the graph crosses the x-axis)\n4. **Read** the solutions from the x-intercepts\n\n### Types of Solutions\n\n- **Two real solutions**: The parabola crosses the x-axis at two points\n- **One real solution**: The parabola touches the x-axis at its vertex (tangent)\n- **No real solutions**: The parabola lies entirely above or below the x-axis",
             },
           },
         ],
@@ -929,7 +969,8 @@ export const seedLesson2 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 1: One Real Solution\n\nSolve $x^2 = 0$ by graphing.\n\n**Step 1**: Rewrite as $f(x) = x^2$\n**Step 2**: Graph $y = x^2$\n**Step 3**: Find where $y = 0$ (the x-intercept)\n\nThe graph touches the x-axis at the origin. The only solution is $x = 0$.",
+              markdown:
+                "## Example 1: One Real Solution\n\nSolve $x^2 = 0$ by graphing.\n\n**Step 1**: Rewrite as $f(x) = x^2$\n**Step 2**: Graph $y = x^2$\n**Step 3**: Find where $y = 0$ (the x-intercept)\n\nThe graph touches the x-axis at the origin. The only solution is $x = 0$.",
             },
           },
           {
@@ -943,7 +984,10 @@ export const seedLesson2 = internalMutation({
                 steps: [
                   { expression: "x^2 = 0", explanation: "Write in standard form" },
                   { expression: "y = x^2", explanation: "Related function" },
-                  { expression: "Vertex at (0, 0)", explanation: "The parabola touches x-axis at origin" },
+                  {
+                    expression: "Vertex at (0, 0)",
+                    explanation: "The parabola touches x-axis at origin",
+                  },
                   { expression: "Solution: x = 0", explanation: "One repeated root" },
                 ],
               },
@@ -961,7 +1005,8 @@ export const seedLesson2 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 2: Two Real Solutions\n\nSolve $x^2 - 4 = 0$ by graphing.\n\n**Step 1**: $f(x) = x^2 - 4$\n**Step 2**: Graph $y = x^2 - 4$\n**Step 3**: The parabola crosses the x-axis at $x = -2$ and $x = 2$",
+              markdown:
+                "## Example 2: Two Real Solutions\n\nSolve $x^2 - 4 = 0$ by graphing.\n\n**Step 1**: $f(x) = x^2 - 4$\n**Step 2**: Graph $y = x^2 - 4$\n**Step 3**: The parabola crosses the x-axis at $x = -2$ and $x = 2$",
             },
           },
           {
@@ -994,7 +1039,8 @@ export const seedLesson2 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 3: Estimate Roots from a Graph\n\nWhen the intercepts aren't integers, we estimate from the graph.\n\nFor $x^2 - 2x - 3 = 0$, the graph shows intercepts at approximately $x = -1$ and $x = 3$.",
+              markdown:
+                "## Example 3: Estimate Roots from a Graph\n\nWhen the intercepts aren't integers, we estimate from the graph.\n\nFor $x^2 - 2x - 3 = 0$, the graph shows intercepts at approximately $x = -1$ and $x = 3$.",
             },
           },
           {
@@ -1021,7 +1067,8 @@ export const seedLesson2 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 4: Using a Table to Confirm\n\nUse the TABLE feature on your calculator to confirm the zeros.\n\nFor $y = x^2 - 2x - 3$, check values near your estimated zeros.",
+              markdown:
+                "## Example 4: Using a Table to Confirm\n\nUse the TABLE feature on your calculator to confirm the zeros.\n\nFor $y = x^2 - 2x - 3$, check values near your estimated zeros.",
             },
           },
           {
@@ -1052,7 +1099,8 @@ export const seedLesson2 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 5: Solve by Using a Calculator\n\nUse a graphing calculator to solve a quadratic equation when exact intercepts are difficult to read.\n\n**Step 1**: Enter the related function.\n\n**Step 2**: Graph the function and locate where it crosses the x-axis.\n\n**Step 3**: Use the calculator's zero feature to approximate each solution.",
+              markdown:
+                "## Example 5: Solve by Using a Calculator\n\nUse a graphing calculator to solve a quadratic equation when exact intercepts are difficult to read.\n\n**Step 1**: Enter the related function.\n\n**Step 2**: Graph the function and locate where it crosses the x-axis.\n\n**Step 3**: Use the calculator's zero feature to approximate each solution.",
             },
           },
           {
@@ -1079,7 +1127,8 @@ export const seedLesson2 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Discussion Questions\n\n1. Why is it called \"solving by graphing\"?\n2. When might graphing be preferable to factoring?\n3. What does it mean when a quadratic has \"no real solutions\"?\n4. How can you check your graphical solution?",
+              markdown:
+                '## Discussion Questions\n\n1. Why is it called "solving by graphing"?\n2. When might graphing be preferable to factoring?\n3. What does it mean when a quadratic has "no real solutions"?\n4. How can you check your graphical solution?',
             },
           },
           {
@@ -1096,7 +1145,12 @@ export const seedLesson2 = internalMutation({
                   },
                   {
                     question: "A parabola that doesn't cross the x-axis has:",
-                    options: ["two real solutions", "one real solution", "no real solutions", "infinitely many solutions"],
+                    options: [
+                      "two real solutions",
+                      "one real solution",
+                      "no real solutions",
+                      "infinitely many solutions",
+                    ],
                     correctIndex: 2,
                   },
                 ],
@@ -1115,7 +1169,8 @@ export const seedLesson2 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Reflection\n\nToday you learned to solve quadratic equations by finding x-intercepts on a graph.\n\n- What did you find challenging about reading solutions from a graph?\n- How does the discriminant (from the quadratic formula) relate to the number of x-intercepts?\n- When might you prefer algebraic methods over graphing?",
+              markdown:
+                "## Reflection\n\nToday you learned to solve quadratic equations by finding x-intercepts on a graph.\n\n- What did you find challenging about reading solutions from a graph?\n- How does the discriminant (from the quadratic formula) relate to the number of x-intercepts?\n- When might you prefer algebraic methods over graphing?",
             },
           },
         ],
@@ -1129,7 +1184,7 @@ export const seedLesson2 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 
@@ -1189,17 +1244,39 @@ export const seedLesson2 = internalMutation({
     const oneRealSolutionGuidedActivityId = await upsertIm3OneRealSolutionGuidedActivity(ctx, now);
     await upsertIm3OneRealSolutionGuidedVariant(ctx, now);
     await upsertIm3OneRealSolutionGuidedPracticeItem(ctx, oneRealSolutionGuidedActivityId, now);
-    const oneRealSolutionIndependentActivityId = await upsertIm3OneRealSolutionIndependentActivity(ctx, now);
+    const oneRealSolutionIndependentActivityId = await upsertIm3OneRealSolutionIndependentActivity(
+      ctx,
+      now,
+    );
     await upsertIm3OneRealSolutionIndependentVariant(ctx, now);
-    await upsertIm3OneRealSolutionIndependentPracticeItem(ctx, oneRealSolutionIndependentActivityId, now);
-    const twoRealSolutionsWorkedActivityId = await upsertIm3TwoRealSolutionsWorkedActivity(ctx, now);
-    await linkIm3TwoRealSolutionsWorkedPhase(ctx, lessonVersionId, twoRealSolutionsWorkedActivityId);
-    const twoRealSolutionsGuidedActivityId = await upsertIm3TwoRealSolutionsGuidedActivity(ctx, now);
+    await upsertIm3OneRealSolutionIndependentPracticeItem(
+      ctx,
+      oneRealSolutionIndependentActivityId,
+      now,
+    );
+    const twoRealSolutionsWorkedActivityId = await upsertIm3TwoRealSolutionsWorkedActivity(
+      ctx,
+      now,
+    );
+    await linkIm3TwoRealSolutionsWorkedPhase(
+      ctx,
+      lessonVersionId,
+      twoRealSolutionsWorkedActivityId,
+    );
+    const twoRealSolutionsGuidedActivityId = await upsertIm3TwoRealSolutionsGuidedActivity(
+      ctx,
+      now,
+    );
     await upsertIm3TwoRealSolutionsGuidedVariant(ctx, now);
     await upsertIm3TwoRealSolutionsGuidedPracticeItem(ctx, twoRealSolutionsGuidedActivityId, now);
-    const twoRealSolutionsIndependentActivityId = await upsertIm3TwoRealSolutionsIndependentActivity(ctx, now);
+    const twoRealSolutionsIndependentActivityId =
+      await upsertIm3TwoRealSolutionsIndependentActivity(ctx, now);
     await upsertIm3TwoRealSolutionsIndependentVariant(ctx, now);
-    await upsertIm3TwoRealSolutionsIndependentPracticeItem(ctx, twoRealSolutionsIndependentActivityId, now);
+    await upsertIm3TwoRealSolutionsIndependentPracticeItem(
+      ctx,
+      twoRealSolutionsIndependentActivityId,
+      now,
+    );
 
     return {
       lessonId,

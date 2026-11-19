@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -139,11 +139,26 @@ export const seedLesson7_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "(x^2 - 2x - 24) / (2x^3 + 6x^2 - 8x)",
                 steps: [
-                  { expression: "(x^2 - 2x - 24) / (2x^3 + 6x^2 - 8x)", explanation: "Start with the rational expression" },
-                  { expression: "x^2 - 2x - 24 = (x + 4)(x - 6)", explanation: "Factor the numerator" },
-                  { expression: "2x^3 + 6x^2 - 8x = 2x(x + 4)(x - 1)", explanation: "Factor the denominator" },
-                  { expression: "((x + 4)(x - 6)) / (2x(x + 4)(x - 1))", explanation: "Write with factored forms" },
-                  { expression: "(x - 6) / (2x(x - 1))", explanation: "Divide out common factor (x + 4)" },
+                  {
+                    expression: "(x^2 - 2x - 24) / (2x^3 + 6x^2 - 8x)",
+                    explanation: "Start with the rational expression",
+                  },
+                  {
+                    expression: "x^2 - 2x - 24 = (x + 4)(x - 6)",
+                    explanation: "Factor the numerator",
+                  },
+                  {
+                    expression: "2x^3 + 6x^2 - 8x = 2x(x + 4)(x - 1)",
+                    explanation: "Factor the denominator",
+                  },
+                  {
+                    expression: "((x + 4)(x - 6)) / (2x(x + 4)(x - 1))",
+                    explanation: "Write with factored forms",
+                  },
+                  {
+                    expression: "(x - 6) / (2x(x - 1))",
+                    explanation: "Divide out common factor (x + 4)",
+                  },
                 ],
               },
             },
@@ -173,11 +188,23 @@ export const seedLesson7_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "((6x^2 - 5xy)(x + 2y)) / ((x + y)(5y - 6x))",
                 steps: [
-                  { expression: "((6x^2 - 5xy)(x + 2y)) / ((x + y)(5y - 6x))", explanation: "Start with the rational expression" },
+                  {
+                    expression: "((6x^2 - 5xy)(x + 2y)) / ((x + y)(5y - 6x))",
+                    explanation: "Start with the rational expression",
+                  },
                   { expression: "6x^2 - 5xy = x(6x - 5y)", explanation: "Factor numerator" },
-                  { expression: "6x - 5y = -(5y - 6x)", explanation: "Rewrite to match denominator factor" },
-                  { expression: "(x(6x - 5y)(x + 2y)) / ((x + y)(5y - 6x))", explanation: "Substitute factored forms" },
-                  { expression: "(-x)(x + 2y) / (x + y)", explanation: "Divide out common factor and simplify" },
+                  {
+                    expression: "6x - 5y = -(5y - 6x)",
+                    explanation: "Rewrite to match denominator factor",
+                  },
+                  {
+                    expression: "(x(6x - 5y)(x + 2y)) / ((x + y)(5y - 6x))",
+                    explanation: "Substitute factored forms",
+                  },
+                  {
+                    expression: "(-x)(x + 2y) / (x + y)",
+                    explanation: "Divide out common factor and simplify",
+                  },
                 ],
               },
             },
@@ -223,10 +250,20 @@ export const seedLesson7_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "(3x / 8y) * (12x^2y / 9xy^3)",
                 steps: [
-                  { expression: "(3x / 8y) * (12x^2y / 9xy^3)", explanation: "Start with the product of rational expressions" },
-                  { expression: "(3x * 12x^2y) / (8y * 9xy^3)", explanation: "Multiply numerators and denominators" },
+                  {
+                    expression: "(3x / 8y) * (12x^2y / 9xy^3)",
+                    explanation: "Start with the product of rational expressions",
+                  },
+                  {
+                    expression: "(3x * 12x^2y) / (8y * 9xy^3)",
+                    explanation: "Multiply numerators and denominators",
+                  },
                   { expression: "36x^3y / (72x y^3)", explanation: "Simplify the product" },
-                  { expression: "x^2 / (2y^3)", explanation: "Divide out common factors (36/72 = 1/2, x^3/x = x^2, y/y^3 = 1/y^2)" },
+                  {
+                    expression: "x^2 / (2y^3)",
+                    explanation:
+                      "Divide out common factors (36/72 = 1/2, x^3/x = x^2, y/y^3 = 1/y^2)",
+                  },
                 ],
               },
             },
@@ -256,10 +293,22 @@ export const seedLesson7_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "((x^2 + 15x + 50)/(x + 2)) / ((x^2 + 30x + 200)/(x + 2))",
                 steps: [
-                  { expression: "((x^2 + 15x + 50)/(x + 2)) / ((x^2 + 30x + 200)/(x + 2))", explanation: "Set up the ratio of areas" },
-                  { expression: "(x^2 + 15x + 50)/(x^2 + 30x + 200)", explanation: "Divide by multiplying by reciprocal" },
-                  { expression: "(x + 5)(x + 10) / ((x + 10)(x + 20))", explanation: "Factor numerator and denominator" },
-                  { expression: "(x + 5) / (x + 20)", explanation: "Divide out common factor (x + 10)" },
+                  {
+                    expression: "((x^2 + 15x + 50)/(x + 2)) / ((x^2 + 30x + 200)/(x + 2))",
+                    explanation: "Set up the ratio of areas",
+                  },
+                  {
+                    expression: "(x^2 + 15x + 50)/(x^2 + 30x + 200)",
+                    explanation: "Divide by multiplying by reciprocal",
+                  },
+                  {
+                    expression: "(x + 5)(x + 10) / ((x + 10)(x + 20))",
+                    explanation: "Factor numerator and denominator",
+                  },
+                  {
+                    expression: "(x + 5) / (x + 20)",
+                    explanation: "Divide out common factor (x + 10)",
+                  },
                 ],
               },
             },
@@ -289,11 +338,26 @@ export const seedLesson7_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "(3x / (x - y)) / (6xy / (4x^2 - 4y^2))",
                 steps: [
-                  { expression: "(3x / (x - y)) / (6xy / (4x^2 - 4y^2))", explanation: "Start with the complex fraction" },
-                  { expression: "(3x / (x - y)) * ((4x^2 - 4y^2) / 6xy)", explanation: "Multiply by the reciprocal of the divisor" },
-                  { expression: "12x(x^2 - y^2) / (6xy(x - y))", explanation: "Multiply numerators and denominators" },
-                  { expression: "12x(x + y)(x - y) / (6xy(x - y))", explanation: "Factor x^2 - y^2" },
-                  { expression: "2(x + y) / y", explanation: "Simplify by dividing out common factors" },
+                  {
+                    expression: "(3x / (x - y)) / (6xy / (4x^2 - 4y^2))",
+                    explanation: "Start with the complex fraction",
+                  },
+                  {
+                    expression: "(3x / (x - y)) * ((4x^2 - 4y^2) / 6xy)",
+                    explanation: "Multiply by the reciprocal of the divisor",
+                  },
+                  {
+                    expression: "12x(x^2 - y^2) / (6xy(x - y))",
+                    explanation: "Multiply numerators and denominators",
+                  },
+                  {
+                    expression: "12x(x + y)(x - y) / (6xy(x - y))",
+                    explanation: "Factor x^2 - y^2",
+                  },
+                  {
+                    expression: "2(x + y) / y",
+                    explanation: "Simplify by dividing out common factors",
+                  },
                 ],
               },
             },
@@ -322,13 +386,18 @@ export const seedLesson7_1 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "What is an excluded value for the expression `(x^2 - 4) / (x^2 - x - 6)`?",
+                    question:
+                      "What is an excluded value for the expression `(x^2 - 4) / (x^2 - x - 6)`?",
                     options: ["x = 2", "x = -2 and x = 3", "x = 3"],
                     correctIndex: 2,
                   },
                   {
                     question: "To divide rational expressions, you should:",
-                    options: ["Add the reciprocals", "Multiply by the reciprocal of the divisor", "Subtract the divisor"],
+                    options: [
+                      "Add the reciprocals",
+                      "Multiply by the reciprocal of the divisor",
+                      "Subtract the divisor",
+                    ],
                     correctIndex: 1,
                   },
                 ],
@@ -362,7 +431,7 @@ export const seedLesson7_1 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

@@ -16,21 +16,16 @@ export default async function StudentEvidence({
   if (!query.classId) notFound();
   const classId = query.classId;
   const claims = await requireTeacherSessionClaims("/teacher/dashboard");
-  const evidence = await fetchInternalQuery(
-    internal.teacher.getStudentEvidence,
-    {
-      teacherId: claims.sub as Id<"profiles">,
-      classId: query.classId as Id<"classes">,
-      studentId: id as Id<"profiles">,
-      cursor: query.cursor,
-    },
-  );
+  const evidence = await fetchInternalQuery(internal.teacher.getStudentEvidence, {
+    teacherId: claims.sub as Id<"profiles">,
+    classId: query.classId as Id<"classes">,
+    studentId: id as Id<"profiles">,
+    cursor: query.cursor,
+  });
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
       <Link href={`/teacher/classes/${query.classId}`}>Class</Link>
-      <h1 className="text-3xl font-display my-6">
-        {evidence.name}: saved answers
-      </h1>
+      <h1 className="text-3xl font-display my-6">{evidence.name}: saved answers</h1>
       {evidence.submissions.length === 0 ? (
         <p>No saved answers on this page.</p>
       ) : (
@@ -46,7 +41,13 @@ export default async function StudentEvidence({
               <time dateTime={new Date(s.submittedAt).toISOString()}>
                 {new Date(s.submittedAt).toISOString()}
               </time>
-              {s.canRecordExposure && <PerpendicularBisectorExposureForm classId={classId} studentId={id} submissionId={s.id} />}
+              {s.canRecordExposure && (
+                <PerpendicularBisectorExposureForm
+                  classId={classId}
+                  studentId={id}
+                  submissionId={s.id}
+                />
+              )}
             </li>
           ))}
         </ul>

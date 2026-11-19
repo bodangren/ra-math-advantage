@@ -19,18 +19,18 @@
  * production `npx convex run` gate for live data — that gate lives in
  * Phase 3 (test-strategy.md §7 row "P3 exec").
  */
-import { describe, it, expect, vi } from 'vitest';
-import type { Id } from '../../_generated/dataModel';
+import { describe, it, expect, vi } from "vitest";
+import type { Id } from "../../_generated/dataModel";
 
 type SrsCardRow = {
-  _id: Id<'srs_cards'>;
-  studentId: Id<'profiles'>;
+  _id: Id<"srs_cards">;
+  studentId: Id<"profiles">;
   objectiveId: string;
   problemFamilyId: string;
   variantKey?: string;
   stability: number;
   difficulty: number;
-  state: 'new' | 'learning' | 'review' | 'relearning';
+  state: "new" | "learning" | "review" | "relearning";
   dueDate: string;
   elapsedDays: number;
   scheduledDays: number;
@@ -53,14 +53,14 @@ function makeMemoryDb(initial: SrsCardRow[]) {
 
   return {
     query: vi.fn((table: string) => {
-      if (table !== 'srs_cards') {
+      if (table !== "srs_cards") {
         throw new Error(`MemoryDb: unexpected table ${table}`);
       }
       return {
         collect: vi.fn(async () => [...rows]),
       };
     }),
-    patch: vi.fn(async (id: Id<'srs_cards'>, updates: Partial<SrsCardRow>) => {
+    patch: vi.fn(async (id: Id<"srs_cards">, updates: Partial<SrsCardRow>) => {
       const idx = rows.findIndex((r) => r._id === id);
       if (idx === -1) {
         throw new Error(`MemoryDb: row ${id} not found`);
@@ -75,31 +75,31 @@ function makeMemoryDb(initial: SrsCardRow[]) {
 
 const SAMPLE_CARDS: SrsCardRow[] = [
   {
-    _id: 'srs_cards_1' as Id<'srs_cards'>,
-    studentId: 'profiles_1' as Id<'profiles'>,
-    objectiveId: 'obj-ccss-hsa-rei-b4',
-    problemFamilyId: 'family:graphing-explorer:quadratic-transformations',
+    _id: "srs_cards_1" as Id<"srs_cards">,
+    studentId: "profiles_1" as Id<"profiles">,
+    objectiveId: "obj-ccss-hsa-rei-b4",
+    problemFamilyId: "family:graphing-explorer:quadratic-transformations",
     stability: 1.2,
     difficulty: 5.0,
-    state: 'review',
-    dueDate: '2026-06-21T00:00:00.000Z',
+    state: "review",
+    dueDate: "2026-06-21T00:00:00.000Z",
     elapsedDays: 3,
     scheduledDays: 5,
     reps: 4,
     lapses: 1,
-    lastReview: '2026-06-18T00:00:00.000Z',
+    lastReview: "2026-06-18T00:00:00.000Z",
     createdAt: 1_700_000_000_000,
     updatedAt: 1_700_000_000_000,
   },
   {
-    _id: 'srs_cards_2' as Id<'srs_cards'>,
-    studentId: 'profiles_1' as Id<'profiles'>,
-    objectiveId: 'obj-ccss-hsa-sse-a1',
-    problemFamilyId: 'family:step-by-step-solver:linear-equations',
+    _id: "srs_cards_2" as Id<"srs_cards">,
+    studentId: "profiles_1" as Id<"profiles">,
+    objectiveId: "obj-ccss-hsa-sse-a1",
+    problemFamilyId: "family:step-by-step-solver:linear-equations",
     stability: 2.0,
     difficulty: 4.0,
-    state: 'learning',
-    dueDate: '2026-06-20T00:00:00.000Z',
+    state: "learning",
+    dueDate: "2026-06-20T00:00:00.000Z",
     elapsedDays: 1,
     scheduledDays: 1,
     reps: 2,
@@ -109,11 +109,9 @@ const SAMPLE_CARDS: SrsCardRow[] = [
   },
 ];
 
-describe('renameProblemFamilyToVariantKey (migrate)', () => {
-  it('renames problemFamilyId to variantKey on every srs_cards row', async () => {
-    const { renameProblemFamilyToVariantKey } = await import(
-      '../rename_problem_family'
-    );
+describe("renameProblemFamilyToVariantKey (migrate)", () => {
+  it("renames problemFamilyId to variantKey on every srs_cards row", async () => {
+    const { renameProblemFamilyToVariantKey } = await import("../rename_problem_family");
     const db = makeMemoryDb(SAMPLE_CARDS);
 
     await renameProblemFamilyToVariantKey(db as unknown as never);
@@ -128,10 +126,8 @@ describe('renameProblemFamilyToVariantKey (migrate)', () => {
     }
   });
 
-  it('preserves the original problemFamilyId field during the migration', async () => {
-    const { renameProblemFamilyToVariantKey } = await import(
-      '../rename_problem_family'
-    );
+  it("preserves the original problemFamilyId field during the migration", async () => {
+    const { renameProblemFamilyToVariantKey } = await import("../rename_problem_family");
     const db = makeMemoryDb(SAMPLE_CARDS);
     const before = SAMPLE_CARDS.map((c) => c.problemFamilyId);
 
@@ -141,24 +137,20 @@ describe('renameProblemFamilyToVariantKey (migrate)', () => {
     expect(after).toEqual(before);
   });
 
-  it('queries only the srs_cards table (no other tables touched)', async () => {
-    const { renameProblemFamilyToVariantKey } = await import(
-      '../rename_problem_family'
-    );
+  it("queries only the srs_cards table (no other tables touched)", async () => {
+    const { renameProblemFamilyToVariantKey } = await import("../rename_problem_family");
     const db = makeMemoryDb(SAMPLE_CARDS);
 
     await renameProblemFamilyToVariantKey(db as unknown as never);
 
-    expect(db.query).toHaveBeenCalledWith('srs_cards');
+    expect(db.query).toHaveBeenCalledWith("srs_cards");
     expect(db.query).toHaveBeenCalledTimes(1);
   });
 });
 
-describe('renameProblemFamilyToVariantKey (rollback)', () => {
-  it('restores problemFamilyId from variantKey on every row', async () => {
-    const { renameProblemFamilyToVariantKey } = await import(
-      '../rename_problem_family'
-    );
+describe("renameProblemFamilyToVariantKey (rollback)", () => {
+  it("restores problemFamilyId from variantKey on every row", async () => {
+    const { renameProblemFamilyToVariantKey } = await import("../rename_problem_family");
     const migrated = SAMPLE_CARDS.map((row) => ({
       ...row,
       variantKey: row.problemFamilyId,

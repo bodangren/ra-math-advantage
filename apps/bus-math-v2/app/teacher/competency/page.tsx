@@ -1,8 +1,8 @@
-import { redirect } from 'next/navigation';
-import { requireTeacherSessionClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
-import type { CompetencyHeatmapResponse } from '@math-platform/teacher-reporting-core';
-import CompetencyHeatmapClient from './CompetencyHeatmapClient';
+import { redirect } from "next/navigation";
+import { requireTeacherSessionClaims } from "@/lib/auth/server";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
+import type { CompetencyHeatmapResponse } from "@math-platform/teacher-reporting-core";
+import CompetencyHeatmapClient from "./CompetencyHeatmapClient";
 
 /**
  * Page wrapper for the teacher competency heatmap view.
@@ -10,7 +10,7 @@ import CompetencyHeatmapClient from './CompetencyHeatmapClient';
  * @returns The competency heatmap client component.
  */
 export default async function TeacherCompetencyPage() {
-  const claims = await requireTeacherSessionClaims('/teacher/competency');
+  const claims = await requireTeacherSessionClaims("/teacher/competency");
 
   const competencyHeatmap = await fetchInternalQuery(
     internal.teacher.getTeacherCompetencyHeatmapData,
@@ -19,7 +19,7 @@ export default async function TeacherCompetencyPage() {
     },
   );
 
-  if (!competencyHeatmap) redirect('/teacher');
+  if (!competencyHeatmap) redirect("/teacher");
 
   const heatmapData = competencyHeatmap as CompetencyHeatmapResponse;
 

@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback } from "react";
 import {
   createTimingAccumulator,
   DEFAULT_IDLE_THRESHOLD_MS,
   type TimingAccumulator,
   type PracticeTimingSummary,
-} from '@math-platform/practice-core/timing';
+} from "@math-platform/practice-core/timing";
 
 export interface UsePracticeTimingOptions {
   idleThresholdMs?: number;
@@ -19,21 +19,17 @@ export interface UsePracticeTimingReturn {
   isTracking: () => boolean;
 }
 
-
 /**
  * Hook that tracks active practice time, idle periods, and visibility events.
  *
  * @param options - Idle threshold and optional submit callback
  * @returns Timing getter, interaction recorder, and tracking state checker
  */
-export function usePracticeTiming(
-  options: UsePracticeTimingOptions = {},
-): UsePracticeTimingReturn {
+export function usePracticeTiming(options: UsePracticeTimingOptions = {}): UsePracticeTimingReturn {
   const { idleThresholdMs = DEFAULT_IDLE_THRESHOLD_MS, onSubmit } = options;
   const accumulatorRef = useRef<TimingAccumulator | null>(null);
   const startTimeRef = useRef<number | null>(null);
   const isTrackingRef = useRef(false);
-
 
   /**
    * Returns the current timing summary by finalizing the accumulator.
@@ -47,19 +43,17 @@ export function usePracticeTiming(
     return accumulatorRef.current.finalize(performance.now());
   }, []);
 
-
   /**
    * Records a user interaction event in the timing accumulator.
    */
   const recordInteraction = useCallback(() => {
     if (accumulatorRef.current) {
       accumulatorRef.current.addEvent({
-        type: 'interaction',
+        type: "interaction",
         timestamp: performance.now(),
       });
     }
   }, []);
-
 
   /**
    * Tracks document visibility changes as timing events.
@@ -67,19 +61,18 @@ export function usePracticeTiming(
   const handleVisibilityChange = useCallback(() => {
     if (!accumulatorRef.current) return;
 
-    if (document.visibilityState === 'hidden') {
+    if (document.visibilityState === "hidden") {
       accumulatorRef.current.addEvent({
-        type: 'visibility_hidden',
+        type: "visibility_hidden",
         timestamp: performance.now(),
       });
     } else {
       accumulatorRef.current.addEvent({
-        type: 'visibility_visible',
+        type: "visibility_visible",
         timestamp: performance.now(),
       });
     }
   }, []);
-
 
   /**
    * Tracks window focus and blur events as timing events.
@@ -89,17 +82,16 @@ export function usePracticeTiming(
 
     if (document.hasFocus()) {
       accumulatorRef.current.addEvent({
-        type: 'focus',
+        type: "focus",
         timestamp: performance.now(),
       });
     } else {
       accumulatorRef.current.addEvent({
-        type: 'blur',
+        type: "blur",
         timestamp: performance.now(),
       });
     }
   }, []);
-
 
   /**
    * Finalizes timing and submits on page hide events.
@@ -108,7 +100,7 @@ export function usePracticeTiming(
     if (!accumulatorRef.current) return;
 
     accumulatorRef.current.addEvent({
-      type: 'pagehide',
+      type: "pagehide",
       timestamp: performance.now(),
     });
 
@@ -125,16 +117,16 @@ export function usePracticeTiming(
     accumulatorRef.current.start(performance.now());
     isTrackingRef.current = true;
 
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    window.addEventListener('focus', handleFocusChange);
-    window.addEventListener('blur', handleFocusChange);
-    window.addEventListener('pagehide', handlePageHide);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("focus", handleFocusChange);
+    window.addEventListener("blur", handleFocusChange);
+    window.addEventListener("pagehide", handlePageHide);
 
     return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-      window.removeEventListener('focus', handleFocusChange);
-      window.removeEventListener('blur', handleFocusChange);
-      window.removeEventListener('pagehide', handlePageHide);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("focus", handleFocusChange);
+      window.removeEventListener("blur", handleFocusChange);
+      window.removeEventListener("pagehide", handlePageHide);
 
       if (accumulatorRef.current && accumulatorRef.current.isActive()) {
         const timing = accumulatorRef.current.finalize(performance.now());

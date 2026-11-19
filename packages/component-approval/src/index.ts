@@ -2,7 +2,7 @@ export {
   computeComponentContentHash,
   type ComponentKind,
   type HashableComponent,
-} from './content-hash';
+} from "./content-hash";
 
 export {
   resolveComponentKind,
@@ -14,4 +14,4 @@ export {
   type PhaseVersion,
   type ActivityDoc,
   type ApprovalRecord,
-} from './review-queue';
+} from "./review-queue";

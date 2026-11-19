@@ -12,16 +12,13 @@ export class ConvexSessionStore {
   async createSession(
     studentId: string,
     config: SrsSessionConfig,
-    plannedCards: number
+    plannedCards: number,
   ): Promise<string> {
-    const result = await this.ctx.runMutation(
-      internal.srs.sessions.createSession,
-      {
-        studentId,
-        plannedCards,
-        config,
-      }
-    );
+    const result = await this.ctx.runMutation(internal.srs.sessions.createSession, {
+      studentId,
+      plannedCards,
+      config,
+    });
     return result;
   }
 
@@ -33,33 +30,25 @@ export class ConvexSessionStore {
   }
 
   async getActiveSession(studentId: string): Promise<SrsSession | null> {
-    const result = await this.ctx.runQuery(
-      internal.srs.sessions.getActiveSession,
-      { studentId }
-    );
+    const result = await this.ctx.runQuery(internal.srs.sessions.getActiveSession, { studentId });
     return result;
   }
 
   async getSessionHistory(
     studentId: string,
     limit?: number,
-    cursor?: string
+    cursor?: string,
   ): Promise<{ sessions: SrsSession[]; nextCursor: string | null }> {
-    const result = await this.ctx.runQuery(
-      internal.srs.sessions.getSessionHistory,
-      {
-        studentId,
-        limit,
-        cursor,
-      }
-    );
+    const result = await this.ctx.runQuery(internal.srs.sessions.getSessionHistory, {
+      studentId,
+      limit,
+      cursor,
+    });
     return result;
   }
 }
 
 /** Creates a Convex-backed session store instance for the given mutation context. */
-export function createConvexSessionStore(
-  ctx: MutationCtx
-): ConvexSessionStore {
+export function createConvexSessionStore(ctx: MutationCtx): ConvexSessionStore {
   return new ConvexSessionStore(ctx);
 }

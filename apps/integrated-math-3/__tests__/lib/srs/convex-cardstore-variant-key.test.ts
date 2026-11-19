@@ -33,86 +33,85 @@
  * deliverable is that artifact, and they must be paired with a live-behavior
  * proof or an explicit plan note saying which later role owns the live gate").
  */
-import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 
 function readConvexCardStoreSource(): string {
   // apps/integrated-math-3/__tests__/lib/srs/convex-cardstore-variant-key.test.ts
   //   ^__tests__                            ^projections
   //   ^lib                                  ^package root
-  const path = resolve(__dirname, '../../../lib/srs/convexCardStore.ts');
-  return readFileSync(path, 'utf-8');
+  const path = resolve(__dirname, "../../../lib/srs/convexCardStore.ts");
+  return readFileSync(path, "utf-8");
 }
 
 function readConvexReviewLogStoreSource(): string {
-  const path = resolve(__dirname, '../../../lib/srs/convexReviewLogStore.ts');
-  return readFileSync(path, 'utf-8');
+  const path = resolve(__dirname, "../../../lib/srs/convexReviewLogStore.ts");
+  return readFileSync(path, "utf-8");
 }
 
 function readConvexSessionStoreSource(): string {
-  const path = resolve(__dirname, '../../../lib/srs/convexSessionStore.ts');
-  return readFileSync(path, 'utf-8');
+  const path = resolve(__dirname, "../../../lib/srs/convexSessionStore.ts");
+  return readFileSync(path, "utf-8");
 }
 
-describe('lib/srs/convexCardStore.ts (artifact rename, FR1/FR5)', () => {
-  it('does not reference the legacy `problemFamilyId` identifier', () => {
+describe("lib/srs/convexCardStore.ts (artifact rename, FR1/FR5)", () => {
+  it("does not reference the legacy `problemFamilyId` identifier", () => {
     const content = readConvexCardStoreSource();
     expect(
       content,
-      'convexCardStore.ts must not reference the legacy problemFamilyId identifier',
+      "convexCardStore.ts must not reference the legacy problemFamilyId identifier",
     ).not.toMatch(/problemFamilyId/);
   });
 
-  it('does not reference the legacy PascalCase `ProblemFamily` identifier', () => {
+  it("does not reference the legacy PascalCase `ProblemFamily` identifier", () => {
     const content = readConvexCardStoreSource();
     expect(
       content,
-      'convexCardStore.ts must not reference the legacy ProblemFamily identifier',
+      "convexCardStore.ts must not reference the legacy ProblemFamily identifier",
     ).not.toMatch(/ProblemFamily/);
   });
 
-  it('references the renamed `variantKey` identifier (positive contract, FR1/FR2)', () => {
+  it("references the renamed `variantKey` identifier (positive contract, FR1/FR2)", () => {
     const content = readConvexCardStoreSource();
-    expect(
-      content,
-      'convexCardStore.ts must reference the renamed variantKey identifier',
-    ).toMatch(/variantKey/);
+    expect(content, "convexCardStore.ts must reference the renamed variantKey identifier").toMatch(
+      /variantKey/,
+    );
   });
 });
 
-describe('lib/srs/convexReviewLogStore.ts (artifact rename, FR1/FR5)', () => {
-  it('does not reference the legacy `problemFamilyId` identifier', () => {
+describe("lib/srs/convexReviewLogStore.ts (artifact rename, FR1/FR5)", () => {
+  it("does not reference the legacy `problemFamilyId` identifier", () => {
     const content = readConvexReviewLogStoreSource();
     expect(
       content,
-      'convexReviewLogStore.ts must not reference the legacy problemFamilyId identifier',
+      "convexReviewLogStore.ts must not reference the legacy problemFamilyId identifier",
     ).not.toMatch(/problemFamilyId/);
   });
 
-  it('does not reference the legacy PascalCase `ProblemFamily` identifier', () => {
+  it("does not reference the legacy PascalCase `ProblemFamily` identifier", () => {
     const content = readConvexReviewLogStoreSource();
     expect(
       content,
-      'convexReviewLogStore.ts must not reference the legacy ProblemFamily identifier',
+      "convexReviewLogStore.ts must not reference the legacy ProblemFamily identifier",
     ).not.toMatch(/ProblemFamily/);
   });
 });
 
-describe('lib/srs/convexSessionStore.ts (artifact rename, FR1/FR5)', () => {
-  it('does not reference the legacy `problemFamilyId` identifier', () => {
+describe("lib/srs/convexSessionStore.ts (artifact rename, FR1/FR5)", () => {
+  it("does not reference the legacy `problemFamilyId` identifier", () => {
     const content = readConvexSessionStoreSource();
     expect(
       content,
-      'convexSessionStore.ts must not reference the legacy problemFamilyId identifier',
+      "convexSessionStore.ts must not reference the legacy problemFamilyId identifier",
     ).not.toMatch(/problemFamilyId/);
   });
 
-  it('does not reference the legacy PascalCase `ProblemFamily` identifier', () => {
+  it("does not reference the legacy PascalCase `ProblemFamily` identifier", () => {
     const content = readConvexSessionStoreSource();
     expect(
       content,
-      'convexSessionStore.ts must not reference the legacy ProblemFamily identifier',
+      "convexSessionStore.ts must not reference the legacy ProblemFamily identifier",
     ).not.toMatch(/ProblemFamily/);
   });
 });

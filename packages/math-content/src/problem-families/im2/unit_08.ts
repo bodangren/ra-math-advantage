@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const UNIT8_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Relations vs Functions
@@ -46,7 +46,8 @@ export const UNIT8_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "graphing-explorer:function-transformations",
     componentKey: "graphing-explorer",
     displayName: "Transformations of Functions",
-    description: "Explore vertical and horizontal shifts, stretches, and reflections of function graphs",
+    description:
+      "Explore vertical and horizontal shifts, stretches, and reflections of function graphs",
     objectiveIds: ["HSF-BF.B.3"],
     difficulty: "standard",
     metadata: { unit: 8, topic: "transformations" },
@@ -56,7 +57,8 @@ export const UNIT8_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "comprehension-quiz:comparing-functions",
     componentKey: "comprehension-quiz",
     displayName: "Comparing Functions",
-    description: "Compare properties of functions represented in different ways: algebraically, graphically, and in tables",
+    description:
+      "Compare properties of functions represented in different ways: algebraically, graphically, and in tables",
     objectiveIds: ["HSF-IF.C.9"],
     difficulty: "standard",
     metadata: { unit: 8, topic: "comparing-functions" },

@@ -4,9 +4,7 @@ import { useRouter } from "next/navigation";
 import { MarkdownRenderer } from "@math-platform/lesson-renderer";
 import type { FunctionReturnType } from "convex/server";
 import type { internal } from "@/convex/_generated/api";
-type Lesson = NonNullable<
-  FunctionReturnType<typeof internal.learning.getLesson>
->;
+type Lesson = NonNullable<FunctionReturnType<typeof internal.learning.getLesson>>;
 type Section = Lesson["phases"][number]["sections"][number];
 async function save(body: unknown) {
   const response = await fetch("/api/learning", {
@@ -44,9 +42,7 @@ function Question({
       setMessage(result.feedback);
       setKey(crypto.randomUUID());
     } catch (error) {
-      setMessage(
-        error instanceof Error ? error.message : "Could not save your answer.",
-      );
+      setMessage(error instanceof Error ? error.message : "Could not save your answer.");
     } finally {
       setPending(false);
     }
@@ -84,17 +80,11 @@ function Question({
         />
       )}
       <p id={`${question.id}-format`} className="text-sm">
-        {question.answerType === "numeric"
-          ? "Enter a decimal or a fraction."
-          : ""}
+        {question.answerType === "numeric" ? "Enter a decimal or a fraction." : ""}
       </p>
       {question.hint && (
         <>
-          <button
-            type="button"
-            className="btn-secondary"
-            onClick={() => setShowHint(!showHint)}
-          >
+          <button type="button" className="btn-secondary" onClick={() => setShowHint(!showHint)}>
             Show hint
           </button>
           {showHint && <p>{question.hint}</p>}
@@ -111,9 +101,7 @@ export function LearningSession({ lesson }: { lesson: Lesson }) {
   const router = useRouter();
   const [message, setMessage] = useState("");
   const [pending, setPending] = useState(false);
-  const current = lesson.phases.find(
-    (phase) => phase.unlocked && !phase.completed,
-  );
+  const current = lesson.phases.find((phase) => phase.unlocked && !phase.completed);
   async function complete() {
     if (!current) return;
     setPending(true);
@@ -122,9 +110,7 @@ export function LearningSession({ lesson }: { lesson: Lesson }) {
       await save({ operation: "complete", phaseId: current.id });
       router.refresh();
     } catch (error) {
-      setMessage(
-        error instanceof Error ? error.message : "Could not save progress.",
-      );
+      setMessage(error instanceof Error ? error.message : "Could not save progress.");
     } finally {
       setPending(false);
     }
@@ -132,8 +118,7 @@ export function LearningSession({ lesson }: { lesson: Lesson }) {
   return (
     <div className="space-y-8">
       <p>
-        {lesson.phases.filter((p) => p.completed).length} of{" "}
-        {lesson.phases.length} phases complete
+        {lesson.phases.filter((p) => p.completed).length} of {lesson.phases.length} phases complete
       </p>
       {lesson.phases.map((phase) => (
         <section key={phase.id} aria-label={phase.title}>
@@ -159,11 +144,7 @@ export function LearningSession({ lesson }: { lesson: Lesson }) {
                 section.kind === "text" ? (
                   <MarkdownRenderer key={i} content={section.markdown} />
                 ) : (
-                  <Question
-                    key={section.id}
-                    question={section}
-                    phaseId={phase.id}
-                  />
+                  <Question key={section.id} question={section} phaseId={phase.id} />
                 ),
               )}
             </>

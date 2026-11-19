@@ -7,4 +7,4 @@ export {
   type ComputeBaselineInput,
   computeTimingBaseline,
   deriveTimingFeatures,
-} from '@math-platform/practice-core';
+} from "@math-platform/practice-core";

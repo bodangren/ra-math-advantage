@@ -1,4 +1,4 @@
-import type { ActivitySeed, PhaseSeed, SectionSeed } from './types';
+import type { ActivitySeed, PhaseSeed, SectionSeed } from "./types";
 
 /**
  * Create an activity seed from component key and props.
@@ -7,7 +7,7 @@ export function createActivitySeed(
   componentKey: string,
   displayName: string,
   props: Record<string, unknown>,
-  description?: string
+  description?: string,
 ): ActivitySeed {
   return { componentKey, displayName, props, description };
 }
@@ -18,7 +18,7 @@ export function createActivitySeed(
 export function createSectionSeed(
   sectionType: string,
   content?: string,
-  activity?: ActivitySeed
+  activity?: ActivitySeed,
 ): SectionSeed {
   return { sectionType, content, activity };
 }
@@ -29,7 +29,7 @@ export function createSectionSeed(
 export function createPhaseSeed(
   phaseNumber: number,
   phaseType: string,
-  sections: SectionSeed[]
+  sections: SectionSeed[],
 ): PhaseSeed {
   return { phaseNumber, phaseType, sections };
 }
@@ -37,12 +37,9 @@ export function createPhaseSeed(
 /**
  * Build a text + activity section pair (common pattern in lesson seeds).
  */
-export function textActivityPair(
-  textContent: string,
-  activity: ActivitySeed
-): SectionSeed[] {
+export function textActivityPair(textContent: string, activity: ActivitySeed): SectionSeed[] {
   return [
-    createSectionSeed('text', textContent),
-    createSectionSeed('activity', undefined, activity),
+    createSectionSeed("text", textContent),
+    createSectionSeed("activity", undefined, activity),
   ];
 }

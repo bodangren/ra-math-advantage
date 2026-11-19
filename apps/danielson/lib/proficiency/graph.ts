@@ -4,100 +4,125 @@ import {
   type KnowledgeSpace,
   type KnowledgeSpaceEdge,
   type KnowledgeSpaceNode,
-} from '@math-platform/knowledge-space-core';
+} from "@math-platform/knowledge-space-core";
 
-import { APPROVED_TLAC_SOURCE_INVENTORY } from './source-inventory';
+import { APPROVED_TLAC_SOURCE_INVENTORY } from "./source-inventory";
 
 type DanielsonSourceRef = { source: string; location?: string };
-export type DanielsonNode = Omit<KnowledgeSpaceNode, 'kind' | 'sourceRefs' | 'reviewStatus' | 'metadata'> & {
-  kind: 'domain' | 'content_group' | 'instructional_unit' | 'skill';
+export type DanielsonNode = Omit<
+  KnowledgeSpaceNode,
+  "kind" | "sourceRefs" | "reviewStatus" | "metadata"
+> & {
+  kind: "domain" | "content_group" | "instructional_unit" | "skill";
   sourceRefs: DanielsonSourceRef[];
-  reviewStatus: 'approved';
+  reviewStatus: "approved";
   metadata: Record<string, unknown>;
 };
-export type DanielsonEdge = Omit<KnowledgeSpaceEdge, 'type' | 'confidence' | 'sourceRefs' | 'reviewStatus' | 'metadata'> & {
-  type: 'contains' | 'prerequisite_for';
-  confidence: 'high';
+export type DanielsonEdge = Omit<
+  KnowledgeSpaceEdge,
+  "type" | "confidence" | "sourceRefs" | "reviewStatus" | "metadata"
+> & {
+  type: "contains" | "prerequisite_for";
+  confidence: "high";
   sourceRefs: DanielsonSourceRef[];
-  reviewStatus: 'approved' | 'reviewed';
+  reviewStatus: "approved" | "reviewed";
   metadata: Record<string, unknown>;
 };
 export type DanielsonGraph = { nodes: DanielsonNode[]; edges: DanielsonEdge[] };
 
 export const DANIELSON_COMPONENT_IDS = [
-  '1a', '1b', '1c', '1d', '1e', '1f',
-  '2a', '2b', '2c', '2d', '2e',
-  '3a', '3b', '3c', '3d', '3e',
-  '4a', '4b', '4c', '4d', '4e', '4f',
+  "1a",
+  "1b",
+  "1c",
+  "1d",
+  "1e",
+  "1f",
+  "2a",
+  "2b",
+  "2c",
+  "2d",
+  "2e",
+  "3a",
+  "3b",
+  "3c",
+  "3d",
+  "3e",
+  "4a",
+  "4b",
+  "4c",
+  "4d",
+  "4e",
+  "4f",
 ] as const;
 
 export type DanielsonComponentId = (typeof DANIELSON_COMPONENT_IDS)[number];
 
 const FRAMEWORK_SOURCE = {
-  source: 'Danielson Framework for Teaching 2022',
-  location: 'lib/proficiency/fft-rubric-descriptors.ts',
+  source: "Danielson Framework for Teaching 2022",
+  location: "lib/proficiency/fft-rubric-descriptors.ts",
 };
 const TLAC_SOURCE = {
-  source: 'Teach Like a Champion 3.0',
+  source: "Teach Like a Champion 3.0",
 };
 
 const DOMAIN_TITLES: Record<string, string> = {
-  '1': 'Planning and Readiness',
-  '2': 'Classroom Environment',
-  '3': 'Instruction and Learning',
-  '4': 'Professional Responsibility',
+  "1": "Planning and Readiness",
+  "2": "Classroom Environment",
+  "3": "Instruction and Learning",
+  "4": "Professional Responsibility",
 };
 
 export const COMPONENT_TITLES: Record<DanielsonComponentId, string> = {
-  '1a': 'Command of Content and Teaching Methods',
-  '1b': 'Understanding and Valuing Students',
-  '1c': 'Defining Learning Goals',
-  '1d': 'Effective Selection and Use of Resources',
-  '1e': 'Designing Coherent Lesson Sequences',
-  '1f': 'Assessment Design and Analysis',
-  '2a': 'Building Respectful and Affirming Classrooms',
-  '2b': 'Building a Strong Learning Culture',
-  '2c': 'Purposeful Routines and Procedures',
-  '2d': 'Promoting Positive Student Behavior',
-  '2e': 'Organizing Physical Learning Spaces',
-  '3a': 'Clear Communication of Purpose and Content',
-  '3b': 'Skillful Questioning and Discussion Methods',
-  '3c': 'Active Engagement in Learning',
-  '3d': 'Using Assessment to Guide Learning',
-  '3e': 'Adapting Instruction to Student Needs',
-  '4a': 'Reflecting on and Improving Practice',
-  '4b': 'Recording and Tracking Student Progress',
-  '4c': 'Partnering with Families and Communities',
-  '4d': 'Contributing to the School Community',
-  '4e': 'Professional Growth and Development',
-  '4f': "Acting in Students' Best Interests",
+  "1a": "Command of Content and Teaching Methods",
+  "1b": "Understanding and Valuing Students",
+  "1c": "Defining Learning Goals",
+  "1d": "Effective Selection and Use of Resources",
+  "1e": "Designing Coherent Lesson Sequences",
+  "1f": "Assessment Design and Analysis",
+  "2a": "Building Respectful and Affirming Classrooms",
+  "2b": "Building a Strong Learning Culture",
+  "2c": "Purposeful Routines and Procedures",
+  "2d": "Promoting Positive Student Behavior",
+  "2e": "Organizing Physical Learning Spaces",
+  "3a": "Clear Communication of Purpose and Content",
+  "3b": "Skillful Questioning and Discussion Methods",
+  "3c": "Active Engagement in Learning",
+  "3d": "Using Assessment to Guide Learning",
+  "3e": "Adapting Instruction to Student Needs",
+  "4a": "Reflecting on and Improving Practice",
+  "4b": "Recording and Tracking Student Progress",
+  "4c": "Partnering with Families and Communities",
+  "4d": "Contributing to the School Community",
+  "4e": "Professional Growth and Development",
+  "4f": "Acting in Students' Best Interests",
 };
 
 const alignmentException = {
-  type: 'alignment' as const,
-  reason: 'Danielson skills align directly to app-owned components; no standard nodes are imported in Track 2.',
+  type: "alignment" as const,
+  reason:
+    "Danielson skills align directly to app-owned components; no standard nodes are imported in Track 2.",
 };
 
 function rootNode(): DanielsonNode {
   return {
-    id: 'danielson.framework.2022',
-    kind: 'domain',
-    title: 'Framework for Teaching 2022',
-    domain: 'danielson',
+    id: "danielson.framework.2022",
+    kind: "domain",
+    title: "Framework for Teaching 2022",
+    domain: "danielson",
     sourceRefs: [FRAMEWORK_SOURCE],
-    reviewStatus: 'approved',
-    metadata: { frameworkVersion: '2022' },
+    reviewStatus: "approved",
+    metadata: { frameworkVersion: "2022" },
   };
 }
 
 function domainNode(number: string): DanielsonNode {
   return {
     id: `danielson.framework.domain.${number}`,
-    kind: 'content_group',
+    kind: "content_group",
     title: `Domain ${number}: ${DOMAIN_TITLES[number]}`,
-    domain: 'danielson',
+    domain: "danielson",
     sourceRefs: [FRAMEWORK_SOURCE],
-    reviewStatus: 'approved',
+    reviewStatus: "approved",
     metadata: { domainNumber: Number(number) },
   };
 }
@@ -105,11 +130,11 @@ function domainNode(number: string): DanielsonNode {
 function componentNode(componentId: DanielsonComponentId): DanielsonNode {
   return {
     id: `danielson.framework.component.${componentId}`,
-    kind: 'instructional_unit',
+    kind: "instructional_unit",
     title: `${componentId}: ${COMPONENT_TITLES[componentId]}`,
-    domain: 'danielson',
+    domain: "danielson",
     sourceRefs: [FRAMEWORK_SOURCE],
-    reviewStatus: 'approved',
+    reviewStatus: "approved",
     metadata: { componentId },
   };
 }
@@ -117,15 +142,15 @@ function componentNode(componentId: DanielsonComponentId): DanielsonNode {
 function skillNode(skill: (typeof APPROVED_TLAC_SOURCE_INVENTORY)[number]): DanielsonNode {
   return {
     id: `danielson.tlac.skill.${skill.id}`,
-    kind: 'skill',
+    kind: "skill",
     title: skill.title,
-    domain: 'danielson',
+    domain: "danielson",
     sourceRefs: [{ ...TLAC_SOURCE, location: skill.sourceLocation }],
-    reviewStatus: 'approved',
+    reviewStatus: "approved",
     metadata: {
       techniqueId: skill.id,
       componentId: skill.componentId,
-      sourceId: 'sibling.tlac3.modules',
+      sourceId: "sibling.tlac3.modules",
     },
     exceptions: [alignmentException],
   };
@@ -137,14 +162,14 @@ function containsEdge(
   sourceRefs: DanielsonSourceRef[] = [FRAMEWORK_SOURCE],
 ): DanielsonEdge {
   return {
-    id: `danielson.edge.contains.${parentId.replaceAll('.', '-')}.${childId.replaceAll('.', '-')}`,
-    type: 'contains',
+    id: `danielson.edge.contains.${parentId.replaceAll(".", "-")}.${childId.replaceAll(".", "-")}`,
+    type: "contains",
     sourceId: parentId,
     targetId: childId,
     weight: 1,
-    confidence: 'high',
+    confidence: "high",
     sourceRefs,
-    reviewStatus: 'approved',
+    reviewStatus: "approved",
     metadata: {},
   };
 }
@@ -159,7 +184,7 @@ export type DanielsonGraphBuild = {
 
 function buildGraph(): DanielsonGraph {
   const root = rootNode();
-  const domains = ['1', '2', '3', '4'].map(domainNode);
+  const domains = ["1", "2", "3", "4"].map(domainNode);
   const components = DANIELSON_COMPONENT_IDS.map(componentNode);
   const skills = APPROVED_TLAC_SOURCE_INVENTORY.map(skillNode);
   const edges: DanielsonEdge[] = [];
@@ -169,17 +194,16 @@ function buildGraph(): DanielsonGraph {
   }
   for (const component of components) {
     const componentId = String(component.metadata.componentId);
-    edges.push(containsEdge(
-      `danielson.framework.domain.${componentId[0]}`,
-      component.id,
-    ));
+    edges.push(containsEdge(`danielson.framework.domain.${componentId[0]}`, component.id));
   }
   for (const skill of APPROVED_TLAC_SOURCE_INVENTORY) {
-    edges.push(containsEdge(
-      `danielson.framework.component.${skill.componentId}`,
-      `danielson.tlac.skill.${skill.id}`,
-      [{ ...TLAC_SOURCE, location: skill.sourceLocation }],
-    ));
+    edges.push(
+      containsEdge(
+        `danielson.framework.component.${skill.componentId}`,
+        `danielson.tlac.skill.${skill.id}`,
+        [{ ...TLAC_SOURCE, location: skill.sourceLocation }],
+      ),
+    );
   }
 
   return { nodes: [root, ...domains, ...components, ...skills], edges };
@@ -190,14 +214,11 @@ export function buildDanielsonGraph(): DanielsonGraphBuild {
   return { graph: clone(buildGraph()) };
 }
 
-export function getComponentSkillIds(
-  graph: KnowledgeSpace,
-  componentId: string,
-): string[] {
+export function getComponentSkillIds(graph: KnowledgeSpace, componentId: string): string[] {
   const nodeById = new Map(graph.nodes.map((node) => [node.id, node]));
   return graph.edges
-    .filter((edge) => edge.type === 'contains' && edge.sourceId === componentId)
-    .filter((edge) => nodeById.get(edge.targetId)?.kind === 'skill')
+    .filter((edge) => edge.type === "contains" && edge.sourceId === componentId)
+    .filter((edge) => nodeById.get(edge.targetId)?.kind === "skill")
     .map((edge) => edge.targetId)
     .sort();
 }
@@ -222,7 +243,7 @@ export function validateDanielsonGraph(graph: KnowledgeSpace): DanielsonGraphVal
     return {
       valid: false,
       issues: canonicalSchema.error.issues.map((issue) => ({
-        code: 'CANONICAL_SCHEMA',
+        code: "CANONICAL_SCHEMA",
         message: issue.message,
       })),
     };
@@ -234,7 +255,7 @@ export function validateDanielsonGraph(graph: KnowledgeSpace): DanielsonGraphVal
   for (const edge of graph.edges) {
     if (edgeIds.has(edge.id)) {
       issues.push({
-        code: 'DUPLICATE_EDGE_ID',
+        code: "DUPLICATE_EDGE_ID",
         message: `Duplicate edge ID "${edge.id}"`,
         edgeId: edge.id,
       });
@@ -242,88 +263,109 @@ export function validateDanielsonGraph(graph: KnowledgeSpace): DanielsonGraphVal
     edgeIds.add(edge.id);
   }
 
-  const rootId = 'danielson.framework.2022';
-  const rootNodes = graph.nodes.filter((node) => node.kind === 'domain');
+  const rootId = "danielson.framework.2022";
+  const rootNodes = graph.nodes.filter((node) => node.kind === "domain");
   if (rootNodes.length !== 1 || rootNodes[0]?.id !== rootId) {
     issues.push({
-      code: 'INVALID_FRAMEWORK_ROOT',
+      code: "INVALID_FRAMEWORK_ROOT",
       message: `Danielson graph must contain exactly one framework root (${rootId})`,
       nodeId: rootNodes[0]?.id,
     });
   }
 
-  const expectedDomainIds = new Set(['1', '2', '3', '4'].map(
-    (number) => `danielson.framework.domain.${number}`,
-  ));
-  const domainNodes = graph.nodes.filter((node) => node.kind === 'content_group');
+  const expectedDomainIds = new Set(
+    ["1", "2", "3", "4"].map((number) => `danielson.framework.domain.${number}`),
+  );
+  const domainNodes = graph.nodes.filter((node) => node.kind === "content_group");
   if (domainNodes.length !== expectedDomainIds.size) {
     issues.push({
-      code: 'INVALID_DOMAIN_COUNT',
-      message: 'Danielson graph must contain exactly four domain nodes',
+      code: "INVALID_DOMAIN_COUNT",
+      message: "Danielson graph must contain exactly four domain nodes",
     });
   }
   for (const id of expectedDomainIds) {
-    if (nodeById.get(id)?.kind !== 'content_group') {
-      issues.push({ code: 'MISSING_DOMAIN_NODE', message: `Missing Danielson domain node "${id}"`, nodeId: id });
+    if (nodeById.get(id)?.kind !== "content_group") {
+      issues.push({
+        code: "MISSING_DOMAIN_NODE",
+        message: `Missing Danielson domain node "${id}"`,
+        nodeId: id,
+      });
     }
   }
 
   const expectedComponentIds = new Set(
     DANIELSON_COMPONENT_IDS.map((componentId) => `danielson.framework.component.${componentId}`),
   );
-  const componentNodes = graph.nodes.filter((node) => node.kind === 'instructional_unit');
+  const componentNodes = graph.nodes.filter((node) => node.kind === "instructional_unit");
   if (componentNodes.length !== expectedComponentIds.size) {
     issues.push({
-      code: 'INVALID_COMPONENT_COUNT',
-      message: 'Danielson graph must contain exactly 22 component nodes',
+      code: "INVALID_COMPONENT_COUNT",
+      message: "Danielson graph must contain exactly 22 component nodes",
     });
   }
   for (const id of expectedComponentIds) {
-    if (nodeById.get(id)?.kind !== 'instructional_unit') {
-      issues.push({ code: 'MISSING_COMPONENT_NODE', message: `Missing Danielson component node "${id}"`, nodeId: id });
+    if (nodeById.get(id)?.kind !== "instructional_unit") {
+      issues.push({
+        code: "MISSING_COMPONENT_NODE",
+        message: `Missing Danielson component node "${id}"`,
+        nodeId: id,
+      });
     }
   }
 
   const containmentParents = new Map<string, string[]>();
   for (const edge of graph.edges) {
-    if (edge.type === 'contains') {
+    if (edge.type === "contains") {
       const parents = containmentParents.get(edge.targetId) ?? [];
       parents.push(edge.sourceId);
       containmentParents.set(edge.targetId, parents);
     }
-    if (edge.type === 'prerequisite_for') {
-      issues.push({ code: 'PROHIBITED_PREREQUISITE', message: 'Track 2 cannot activate GBF prerequisite edges', edgeId: edge.id });
+    if (edge.type === "prerequisite_for") {
+      issues.push({
+        code: "PROHIBITED_PREREQUISITE",
+        message: "Track 2 cannot activate GBF prerequisite edges",
+        edgeId: edge.id,
+      });
     }
   }
   for (const node of graph.nodes) {
     const parents = containmentParents.get(node.id) ?? [];
     if (node.id === rootId) {
       if (parents.length > 0) {
-        issues.push({ code: 'ROOT_HAS_PARENT', message: `Framework root "${rootId}" cannot have a containment parent`, nodeId: rootId });
+        issues.push({
+          code: "ROOT_HAS_PARENT",
+          message: `Framework root "${rootId}" cannot have a containment parent`,
+          nodeId: rootId,
+        });
       }
     } else if (parents.length !== 1) {
-      issues.push({ code: 'INVALID_CONTAINMENT_PARENT_COUNT', message: `Node "${node.id}" must have exactly one containment parent`, nodeId: node.id });
+      issues.push({
+        code: "INVALID_CONTAINMENT_PARENT_COUNT",
+        message: `Node "${node.id}" must have exactly one containment parent`,
+        nodeId: node.id,
+      });
     }
-    if (node.kind === 'instructional_unit') {
-      const componentId = typeof node.metadata.componentId === 'string'
-        ? node.metadata.componentId
-        : node.id.split('.').at(-1);
+    if (node.kind === "instructional_unit") {
+      const componentId =
+        typeof node.metadata.componentId === "string"
+          ? node.metadata.componentId
+          : node.id.split(".").at(-1);
       const expectedParent = componentId
         ? `danielson.framework.domain.${componentId.charAt(0)}`
         : undefined;
       if (expectedParent && parents.length === 1 && parents[0] !== expectedParent) {
         issues.push({
-          code: 'INVALID_COMPONENT_DOMAIN_PARENT',
+          code: "INVALID_COMPONENT_DOMAIN_PARENT",
           message: `Component "${node.id}" must be contained by "${expectedParent}"`,
           nodeId: node.id,
         });
       }
     }
-    if (node.kind === 'skill' && typeof node.metadata.componentId === 'string') {
+    if (node.kind === "skill" && typeof node.metadata.componentId === "string") {
       const expectedParent = `danielson.framework.component.${node.metadata.componentId}`;
       if (parents.length === 1 && parents[0] !== expectedParent) {
         issues.push({
-          code: 'MAPPING_COMPONENT_MISMATCH',
+          code: "MAPPING_COMPONENT_MISMATCH",
           message: `Skill "${node.id}" must be contained by its mapped component "${expectedParent}"`,
           nodeId: node.id,
         });

@@ -3,11 +3,7 @@ import { v } from "convex/values";
 import type { QueryCtx } from "./_generated/server";
 import type { Id } from "./_generated/dataModel";
 
-const roleValidator = v.union(
-  v.literal("student"),
-  v.literal("teacher"),
-  v.literal("admin"),
-);
+const roleValidator = v.union(v.literal("student"), v.literal("teacher"), v.literal("admin"));
 
 export const getCredentialByUsername = internalQuery({
   args: { username: v.string() },
@@ -226,10 +222,7 @@ export const upsertCredentialByUsername = internalMutation({
 });
 
 /** Return an active account with consistent identity fields. */
-export async function activeAccount(
-  ctx: Pick<QueryCtx, "db">,
-  profileId: Id<"profiles">,
-) {
+export async function activeAccount(ctx: Pick<QueryCtx, "db">, profileId: Id<"profiles">) {
   const [profile, credential] = await Promise.all([
     ctx.db.get(profileId),
     ctx.db
@@ -274,16 +267,13 @@ export const registerStudent = internalMutation({
         .withIndex("by_username", (q) => q.eq("username", args.username))
         .unique(),
     ]);
-    if (profile || credential)
-      return { ok: false, reason: "username_taken" } as const;
+    if (profile || credential) return { ok: false, reason: "username_taken" } as const;
     const classroom = await ctx.db
       .query("classes")
       .withIndex("by_join_code", (q) => q.eq("joinCode", args.classCode))
       .unique();
     const teacher =
-      classroom && !classroom.archived
-        ? await activeAccount(ctx, classroom.teacherId)
-        : null;
+      classroom && !classroom.archived ? await activeAccount(ctx, classroom.teacherId) : null;
     if (!classroom || !teacher || teacher.role === "student")
       return { ok: false, reason: "invalid_class" } as const;
     const now = Date.now();
@@ -332,10 +322,7 @@ export const consumeAuthAttempt = internalMutation({
       .withIndex("by_window_start", (q) => q.lt("windowStart", now - 60000))
       .take(10);
     for (const row of expired) await ctx.db.delete(row._id);
-    const keys = [
-      `${args.operation}:global`,
-      `${args.operation}:user:${args.username}`,
-    ];
+    const keys = [`${args.operation}:global`, `${args.operation}:user:${args.username}`];
     const limits = [200, 10];
     const rows = await Promise.all(
       keys.map((key) =>
@@ -345,19 +332,13 @@ export const consumeAuthAttempt = internalMutation({
           .unique(),
       ),
     );
-    if (
-      rows.some(
-        (row, i) =>
-          row && now - row.windowStart < 60_000 && row.count >= limits[i],
-      )
-    )
+    if (rows.some((row, i) => row && now - row.windowStart < 60_000 && row.count >= limits[i]))
       return { allowed: false };
     for (let i = 0; i < keys.length; i++) {
       const row = rows[i];
       const data = {
         key: keys[i],
-        windowStart:
-          row && now - row.windowStart < 60_000 ? row.windowStart : now,
+        windowStart: row && now - row.windowStart < 60_000 ? row.windowStart : now,
         count: row && now - row.windowStart < 60_000 ? row.count + 1 : 1,
       };
       if (row) await ctx.db.patch(row._id, data);

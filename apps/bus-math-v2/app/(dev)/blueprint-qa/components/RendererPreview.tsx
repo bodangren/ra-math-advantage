@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { Suspense, createElement } from 'react';
-import { AlertTriangle, Loader2, Monitor, Send } from 'lucide-react';
-import { getActivityComponent } from '@math-platform/activity-components/registry';
-import { getPropsSchema } from '@math-platform/activity-components/schemas';
-import type { ProjectedActivity } from '@math-platform/knowledge-space-practice';
-import { ensureActivitiesRegistered } from './register-activities';
-import type { HarnessState, SkillNode, SubmissionEntry } from '../types';
+import { Suspense, createElement } from "react";
+import { AlertTriangle, Loader2, Monitor, Send } from "lucide-react";
+import { getActivityComponent } from "@math-platform/activity-components/registry";
+import { getPropsSchema } from "@math-platform/activity-components/schemas";
+import type { ProjectedActivity } from "@math-platform/knowledge-space-practice";
+import { ensureActivitiesRegistered } from "./register-activities";
+import type { HarnessState, SkillNode, SubmissionEntry } from "../types";
 
 interface RendererPreviewProps {
   state: HarnessState;
@@ -21,7 +21,7 @@ export interface StudentPreviewProblem {
 }
 
 function formatIssuePath(path: PropertyKey[]): string {
-  return path.length === 0 ? 'props' : path.map(String).join('.');
+  return path.length === 0 ? "props" : path.map(String).join(".");
 }
 
 export function getStudentPreviewProblem(
@@ -29,7 +29,7 @@ export function getStudentPreviewProblem(
 ): StudentPreviewProblem | null {
   if (!activity) {
     return {
-      summary: 'The activity projection is missing for this modality.',
+      summary: "The activity projection is missing for this modality.",
       details: [],
     };
   }
@@ -63,10 +63,10 @@ export function getStudentPreviewProblem(
   return null;
 }
 
-function runtimeMode(mode: ProjectedActivity['mode']): 'teaching' | 'guided' | 'practice' {
-  if (mode === 'worked_example') return 'teaching';
-  if (mode === 'guided_practice') return 'guided';
-  return 'practice';
+function runtimeMode(mode: ProjectedActivity["mode"]): "teaching" | "guided" | "practice" {
+  if (mode === "worked_example") return "teaching";
+  if (mode === "guided_practice") return "guided";
+  return "practice";
 }
 
 export function RendererPreview({
@@ -76,12 +76,11 @@ export function RendererPreview({
   onIntercept,
 }: RendererPreviewProps) {
   const problem = selectedNode ? getStudentPreviewProblem(activity) : null;
-  const activityComponent = problem || !activity
-    ? null
-    : getActivityComponent(activity.rendererKey);
+  const activityComponent =
+    problem || !activity ? null : getActivityComponent(activity.rendererKey);
 
   const handleSubmit = (payload: unknown) => {
-    onIntercept({ partId: 'submission', rawAnswer: payload, isCorrect: false });
+    onIntercept({ partId: "submission", rawAnswer: payload, isCorrect: false });
   };
 
   const handleComplete = () => {
@@ -98,14 +97,19 @@ export function RendererPreview({
       {!selectedNode ? (
         <p className="text-sm text-[#365451]">Select a skill to preview its student component.</p>
       ) : problem ? (
-        <div role="alert" className="flex items-start gap-2 border border-amber-500 bg-amber-50 p-3 text-amber-950">
+        <div
+          role="alert"
+          className="flex items-start gap-2 border border-amber-500 bg-amber-50 p-3 text-amber-950"
+        >
           <AlertTriangle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
           <div className="text-sm">
             <p className="font-semibold">Student view unavailable</p>
             <p className="mt-1">{problem.summary}</p>
             {problem.details.length > 0 && (
               <ul className="mt-2 list-disc space-y-1 pl-5 font-mono text-xs">
-                {problem.details.map((detail) => <li key={detail}>{detail}</li>)}
+                {problem.details.map((detail) => (
+                  <li key={detail}>{detail}</li>
+                ))}
               </ul>
             )}
           </div>
@@ -115,13 +119,18 @@ export function RendererPreview({
           <p className="mb-2 text-xs text-[#365451]">
             Component: <code className="font-mono font-semibold">{activity.rendererKey}</code>
           </p>
-          <div data-testid="student-view" className="rounded-lg border border-border bg-background p-4 text-foreground">
-            <Suspense fallback={(
-              <div className="flex items-center gap-2 py-4 text-sm text-muted-foreground">
-                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-                Loading student component…
-              </div>
-            )}>
+          <div
+            data-testid="student-view"
+            className="rounded-lg border border-border bg-background p-4 text-foreground"
+          >
+            <Suspense
+              fallback={
+                <div className="flex items-center gap-2 py-4 text-sm text-muted-foreground">
+                  <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+                  Loading student component…
+                </div>
+              }
+            >
               {createElement(activityComponent, {
                 key: activity.stableActivityId,
                 ...activity.props,
@@ -153,10 +162,14 @@ export function RendererPreview({
               </span>
             </div>
             <pre className="max-h-32 overflow-auto bg-[#EEEADF] p-2 text-xs text-[#0A1C1A]">
-              {JSON.stringify({
-                rawAnswer: state.lastSubmission.rawAnswer,
-                partId: state.lastSubmission.partId,
-              }, null, 2)}
+              {JSON.stringify(
+                {
+                  rawAnswer: state.lastSubmission.rawAnswer,
+                  partId: state.lastSubmission.partId,
+                },
+                null,
+                2,
+              )}
             </pre>
           </div>
         </div>

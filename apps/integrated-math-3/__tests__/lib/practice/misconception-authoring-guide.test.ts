@@ -19,22 +19,22 @@
  * gates that it is well-formed before this track's closeout.
  */
 
-import { describe, expect, it } from 'vitest';
-import { existsSync, readFileSync, statSync } from 'node:fs';
-import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { describe, expect, it } from "vitest";
+import { existsSync, readFileSync, statSync } from "node:fs";
+import { dirname, isAbsolute, relative, resolve, sep } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const __filename = fileURLToPath(import.meta.url);
 const TEST_FILE_DIR = dirname(__filename);
-const IM3_APP_DIR = resolve(TEST_FILE_DIR, '..', '..', '..');
-const AUTHORING_GUIDE_REL = 'docs/misconception-authoring-guide.md';
+const IM3_APP_DIR = resolve(TEST_FILE_DIR, "..", "..", "..");
+const AUTHORING_GUIDE_REL = "docs/misconception-authoring-guide.md";
 const AUTHORING_GUIDE_ABS = resolve(IM3_APP_DIR, AUTHORING_GUIDE_REL);
 
 const REQUIRED_SECTIONS = [
-  'Taxonomy Schema',
-  'Detection Mapping',
-  'Remediation Activity Authoring',
-  'Expansion Process',
+  "Taxonomy Schema",
+  "Detection Mapping",
+  "Remediation Activity Authoring",
+  "Expansion Process",
 ] as const;
 
 const PATH_LINE_REGEX =
@@ -50,28 +50,25 @@ function extractReferencedPaths(markdown: string): readonly string[] {
   return Array.from(matches);
 }
 
-describe('IM3 misconception authoring guide — document contract', () => {
-  it('exists at apps/integrated-math-3/docs/misconception-authoring-guide.md', () => {
+describe("IM3 misconception authoring guide — document contract", () => {
+  it("exists at apps/integrated-math-3/docs/misconception-authoring-guide.md", () => {
     expect(
       existsSync(AUTHORING_GUIDE_ABS),
       `authoring guide missing at ${AUTHORING_GUIDE_ABS}`,
     ).toBe(true);
   });
 
-  it('is a non-empty regular file', () => {
+  it("is a non-empty regular file", () => {
     expect(existsSync(AUTHORING_GUIDE_ABS)).toBe(true);
     const stats = statSync(AUTHORING_GUIDE_ABS);
     expect(stats.isFile()).toBe(true);
     expect(stats.size).toBeGreaterThan(0);
   });
 
-  it('contains all four required section headings', () => {
-    const markdown = readFileSync(AUTHORING_GUIDE_ABS, 'utf8');
+  it("contains all four required section headings", () => {
+    const markdown = readFileSync(AUTHORING_GUIDE_ABS, "utf8");
     for (const section of REQUIRED_SECTIONS) {
-      const headingRegex = new RegExp(
-        `^#{1,6}\\s+${section.replace(/\s+/g, '\\s+')}`,
-        'im',
-      );
+      const headingRegex = new RegExp(`^#{1,6}\\s+${section.replace(/\s+/g, "\\s+")}`, "im");
       expect(
         headingRegex.test(markdown),
         `authoring guide missing required section: ${section}`,
@@ -79,20 +76,17 @@ describe('IM3 misconception authoring guide — document contract', () => {
     }
   });
 
-  it('every referenced relative file path resolves to a real file on disk', () => {
-    const markdown = readFileSync(AUTHORING_GUIDE_ABS, 'utf8');
+  it("every referenced relative file path resolves to a real file on disk", () => {
+    const markdown = readFileSync(AUTHORING_GUIDE_ABS, "utf8");
     const referenced = extractReferencedPaths(markdown);
     expect(
       referenced.length,
-      'authoring guide contains no path-like references — likely missing examples',
+      "authoring guide contains no path-like references — likely missing examples",
     ).toBeGreaterThan(0);
     for (const rel of referenced) {
       if (isAbsolute(rel)) continue;
-      const candidate = resolve(IM3_APP_DIR, '..', '..', rel);
-      const relToRepo = relative(
-        resolve(IM3_APP_DIR, '..', '..'),
-        candidate,
-      );
+      const candidate = resolve(IM3_APP_DIR, "..", "..", rel);
+      const relToRepo = relative(resolve(IM3_APP_DIR, "..", ".."), candidate);
       expect(
         existsSync(candidate),
         `authoring guide references missing path: ${rel} (resolved: ${candidate}${sep}./${relToRepo})`,
@@ -100,19 +94,15 @@ describe('IM3 misconception authoring guide — document contract', () => {
     }
   });
 
-  it('does not reference any path outside the monorepo root (no absolute or escape paths)', () => {
-    const markdown = readFileSync(AUTHORING_GUIDE_ABS, 'utf8');
+  it("does not reference any path outside the monorepo root (no absolute or escape paths)", () => {
+    const markdown = readFileSync(AUTHORING_GUIDE_ABS, "utf8");
     const referenced = extractReferencedPaths(markdown);
     for (const rel of referenced) {
       if (isAbsolute(rel)) {
-        throw new Error(
-          `authoring guide uses absolute path: ${rel} — must be repo-relative`,
-        );
+        throw new Error(`authoring guide uses absolute path: ${rel} — must be repo-relative`);
       }
-      if (rel.startsWith('..')) {
-        throw new Error(
-          `authoring guide references a path outside the monorepo: ${rel}`,
-        );
+      if (rel.startsWith("..")) {
+        throw new Error(`authoring guide references a path outside the monorepo: ${rel}`);
       }
     }
   });

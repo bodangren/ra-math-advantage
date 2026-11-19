@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -64,7 +64,8 @@ export const seedLesson7 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Explore: Where Is the Parabola Above or Below the x-axis?\n\nUse graphing technology to explore how the sign of a quadratic expression changes.\n\nConsider: $y = x^2 - 5x + 6$\n\n**Inquiry Question**: How can you determine where a parabola is above or below the x-axis without graphing?",
+              markdown:
+                "## Explore: Where Is the Parabola Above or Below the x-axis?\n\nUse graphing technology to explore how the sign of a quadratic expression changes.\n\nConsider: $y = x^2 - 5x + 6$\n\n**Inquiry Question**: How can you determine where a parabola is above or below the x-axis without graphing?",
             },
           },
           {
@@ -89,7 +90,8 @@ export const seedLesson7 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Key Terms\n\n- **Quadratic inequality**: An inequality involving a quadratic expression (e.g., $x^2 - 5x + 6 > 0$)\n- **Sign chart**: A number line showing where an expression is positive or negative\n- **Boundary values**: The x-values where the expression equals zero\n- **Test point**: A value chosen in each interval to determine the sign of the expression\n\n**Remember**: Boundary values come from solving the related equation (= 0)!",
+              markdown:
+                "## Key Terms\n\n- **Quadratic inequality**: An inequality involving a quadratic expression (e.g., $x^2 - 5x + 6 > 0$)\n- **Sign chart**: A number line showing where an expression is positive or negative\n- **Boundary values**: The x-values where the expression equals zero\n- **Test point**: A value chosen in each interval to determine the sign of the expression\n\n**Remember**: Boundary values come from solving the related equation (= 0)!",
             },
           },
         ],
@@ -104,7 +106,8 @@ export const seedLesson7 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Solving Quadratic Inequalities\n\n### Key Concept: Sign Chart Method\n\nTo solve inequalities like $x^2 - 5x + 6 > 0$:\n\n**Step 1**: Find the boundary values by setting the quadratic expression equal to zero.\n\n**Step 2**: Plot the boundary values on a number line. These divide the number line into intervals.\n\n**Step 3**: Choose a test point in each interval and determine the sign of the expression.\n\n**Step 4**: Determine which intervals satisfy the inequality.\n\n### Important Notes\n\n- If the inequality is $>$ or $<$, boundary values are **NOT** included\n- If the inequality is $\\geq$ or $\\leq$, boundary values **ARE** included",
+              markdown:
+                "## Solving Quadratic Inequalities\n\n### Key Concept: Sign Chart Method\n\nTo solve inequalities like $x^2 - 5x + 6 > 0$:\n\n**Step 1**: Find the boundary values by setting the quadratic expression equal to zero.\n\n**Step 2**: Plot the boundary values on a number line. These divide the number line into intervals.\n\n**Step 3**: Choose a test point in each interval and determine the sign of the expression.\n\n**Step 4**: Determine which intervals satisfy the inequality.\n\n### Important Notes\n\n- If the inequality is $>$ or $<$, boundary values are **NOT** included\n- If the inequality is $\\geq$ or $\\leq$, boundary values **ARE** included",
             },
           },
         ],
@@ -119,7 +122,8 @@ export const seedLesson7 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 1: Solve $x^2 - 5x + 6 > 0$ Graphically\n\n**Step 1**: Find zeros\n$$x^2 - 5x + 6 = 0$$ $$(x - 2)(x - 3) = 0$$ $$x = 2 \\text{ or } x = 3$$\n\n**Step 2**: Sketch the parabola\nSince $a = 1 > 0$, the parabola opens upward. The x-intercepts are at $x = 2$ and $x = 3$.\n\n**Step 3**: Identify regions\n- The parabola is **above** the x-axis when $x < 2$ or $x > 3$\n- The parabola is **below** the x-axis when $2 < x < 3$\n\n**Solution**: $x < 2$ or $x > 3$\n\nIn interval notation: $(-\\infty, 2) \\cup (3, \\infty)$",
+              markdown:
+                "## Example 1: Solve $x^2 - 5x + 6 > 0$ Graphically\n\n**Step 1**: Find zeros\n$$x^2 - 5x + 6 = 0$$ $$(x - 2)(x - 3) = 0$$ $$x = 2 \\text{ or } x = 3$$\n\n**Step 2**: Sketch the parabola\nSince $a = 1 > 0$, the parabola opens upward. The x-intercepts are at $x = 2$ and $x = 3$.\n\n**Step 3**: Identify regions\n- The parabola is **above** the x-axis when $x < 2$ or $x > 3$\n- The parabola is **below** the x-axis when $2 < x < 3$\n\n**Solution**: $x < 2$ or $x > 3$\n\nIn interval notation: $(-\\infty, 2) \\cup (3, \\infty)$",
             },
           },
           {
@@ -151,7 +155,8 @@ export const seedLesson7 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 2: Solve $x^2 - 5x + 6 > 0$ Using a Sign Chart\n\n**Step 1**: Find boundary values: $x = 2$ and $x = 3$\n\n**Step 2**: Draw sign chart\nThree intervals: $x < 2$, $2 < x < 3$, $x > 3$\n\n**Step 3**: Test each interval\n- $x < 2$: Test $x = 0$: $0^2 - 5(0) + 6 = 6 > 0$ ✓\n- $2 < x < 3$: Test $x = 2.5$: $2.5^2 - 5(2.5) + 6 = -0.25 < 0$ ✗\n- $x > 3$: Test $x = 4$: $4^2 - 5(4) + 6 = 2 > 0$ ✓\n\n**Step 4**: Solution (positive intervals)\n$$x < 2 \\text{ or } x > 3$$",
+              markdown:
+                "## Example 2: Solve $x^2 - 5x + 6 > 0$ Using a Sign Chart\n\n**Step 1**: Find boundary values: $x = 2$ and $x = 3$\n\n**Step 2**: Draw sign chart\nThree intervals: $x < 2$, $2 < x < 3$, $x > 3$\n\n**Step 3**: Test each interval\n- $x < 2$: Test $x = 0$: $0^2 - 5(0) + 6 = 6 > 0$ ✓\n- $2 < x < 3$: Test $x = 2.5$: $2.5^2 - 5(2.5) + 6 = -0.25 < 0$ ✗\n- $x > 3$: Test $x = 4$: $4^2 - 5(4) + 6 = 2 > 0$ ✓\n\n**Step 4**: Solution (positive intervals)\n$$x < 2 \\text{ or } x > 3$$",
             },
           },
           {
@@ -184,7 +189,8 @@ export const seedLesson7 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 3: Solve $2x^2 + x - 3 \\leq 0$\n\n**Step 1**: Find boundary values\n$$2x^2 + x - 3 = 0$$ $$(2x + 3)(x - 1) = 0$$ $$x = -\\frac{3}{2} \\text{ or } x = 1$$\n\n**Step 2**: Three intervals: $x < -1.5$, $-1.5 < x < 1$, $x > 1$\n\n**Step 3**: Test each interval\n- $x < -1.5$: Test $x = -2$: $2(4) + (-2) - 3 = 3 > 0$ ✗\n- $-1.5 < x < 1$: Test $x = 0$: $0 + 0 - 3 = -3 < 0$ ✓\n- $x > 1$: Test $x = 2$: $8 + 2 - 3 = 7 > 0$ ✗\n\n**Step 4**: Since $\\leq 0$, include the negative interval AND boundaries:\n$$-\\frac{3}{2} \\leq x \\leq 1$$",
+              markdown:
+                "## Example 3: Solve $2x^2 + x - 3 \\leq 0$\n\n**Step 1**: Find boundary values\n$$2x^2 + x - 3 = 0$$ $$(2x + 3)(x - 1) = 0$$ $$x = -\\frac{3}{2} \\text{ or } x = 1$$\n\n**Step 2**: Three intervals: $x < -1.5$, $-1.5 < x < 1$, $x > 1$\n\n**Step 3**: Test each interval\n- $x < -1.5$: Test $x = -2$: $2(4) + (-2) - 3 = 3 > 0$ ✗\n- $-1.5 < x < 1$: Test $x = 0$: $0 + 0 - 3 = -3 < 0$ ✓\n- $x > 1$: Test $x = 2$: $8 + 2 - 3 = 7 > 0$ ✗\n\n**Step 4**: Since $\\leq 0$, include the negative interval AND boundaries:\n$$-\\frac{3}{2} \\leq x \\leq 1$$",
             },
           },
           {
@@ -216,7 +222,8 @@ export const seedLesson7 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 4: Real-World — Height Above a Threshold\n\nA football is kicked into the air. Its height $h$ (in feet) after $t$ seconds is:\n\n$$h(t) = -16t^2 + 64t$$\n\nThe height of the goal post crossbar is 10 feet. During which time intervals is the ball **above** the crossbar?\n\n**Step 1**: Set up the inequality\n$$-16t^2 + 64t > 10$$\n\n**Step 2**: Solve the related equation\n$$-16t^2 + 64t - 10 = 0$$\n\nUsing the quadratic formula:\n$$t \\approx 0.17 \\text{ or } t \\approx 3.83$$\n\n**Step 3**: Since the parabola opens downward ($a = -16 < 0$), the ball is above 10 feet between the two roots.\n\n**Solution**: $0.17 < t < 3.83$ seconds",
+              markdown:
+                "## Example 4: Real-World — Height Above a Threshold\n\nA football is kicked into the air. Its height $h$ (in feet) after $t$ seconds is:\n\n$$h(t) = -16t^2 + 64t$$\n\nThe height of the goal post crossbar is 10 feet. During which time intervals is the ball **above** the crossbar?\n\n**Step 1**: Set up the inequality\n$$-16t^2 + 64t > 10$$\n\n**Step 2**: Solve the related equation\n$$-16t^2 + 64t - 10 = 0$$\n\nUsing the quadratic formula:\n$$t \\approx 0.17 \\text{ or } t \\approx 3.83$$\n\n**Step 3**: Since the parabola opens downward ($a = -16 < 0$), the ball is above 10 feet between the two roots.\n\n**Solution**: $0.17 < t < 3.83$ seconds",
             },
           },
           {
@@ -247,7 +254,8 @@ export const seedLesson7 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Discussion Questions\n\n1. Why does the sign of the leading coefficient affect which intervals satisfy the inequality?\n2. When solving $x^2 + x - 6 > 0$, why can't we simply square both sides?\n3. How does the sign chart method generalize to higher-degree polynomials?\n4. What's the difference between open and closed circles on a sign chart?",
+              markdown:
+                "## Discussion Questions\n\n1. Why does the sign of the leading coefficient affect which intervals satisfy the inequality?\n2. When solving $x^2 + x - 6 > 0$, why can't we simply square both sides?\n3. How does the sign chart method generalize to higher-degree polynomials?\n4. What's the difference between open and closed circles on a sign chart?",
             },
           },
           {
@@ -263,8 +271,14 @@ export const seedLesson7 = internalMutation({
                     correctIndex: 1,
                   },
                   {
-                    question: "What divides the number line into intervals for a quadratic inequality?",
-                    options: ["The y-intercept", "The boundary values", "The vertex", "The axis of symmetry"],
+                    question:
+                      "What divides the number line into intervals for a quadratic inequality?",
+                    options: [
+                      "The y-intercept",
+                      "The boundary values",
+                      "The vertex",
+                      "The axis of symmetry",
+                    ],
                     correctIndex: 1,
                   },
                 ],
@@ -283,7 +297,8 @@ export const seedLesson7 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Reflection\n\nToday you learned to solve quadratic inequalities using graphs and sign charts.\n\n- How does the sign chart method help you visualize solutions?\n- What's the key difference between $>$ and $\\geq$ inequalities?\n- How do real-world contexts change how you interpret inequality solutions?\n\n**Preview**: Next, you'll learn about linear-quadratic systems — how a line and parabola can intersect!",
+              markdown:
+                "## Reflection\n\nToday you learned to solve quadratic inequalities using graphs and sign charts.\n\n- How does the sign chart method help you visualize solutions?\n- What's the key difference between $>$ and $\\geq$ inequalities?\n- How do real-world contexts change how you interpret inequality solutions?\n\n**Preview**: Next, you'll learn about linear-quadratic systems — how a line and parabola can intersect!",
             },
           },
         ],
@@ -297,7 +312,7 @@ export const seedLesson7 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

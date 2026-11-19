@@ -1,13 +1,13 @@
-import type { ObservationOutcome, SubmittedObservation } from './contracts';
+import type { ObservationOutcome, SubmittedObservation } from "./contracts";
 
 export type ObservationEvidenceCommand = {
-  kind: ObservationOutcome['kind'];
+  kind: ObservationOutcome["kind"];
   idempotencyKey: string;
   organizationId: string;
   teacherProfileId: string;
   sourceRecordId: string;
   formalObservationId?: string;
-  sourceType: SubmittedObservation['observationType'];
+  sourceType: SubmittedObservation["observationType"];
   componentId: string;
   targetSkillIds: string[];
   observerAccountId: string;
@@ -22,7 +22,7 @@ export type ObservationEvidenceCommand = {
 export function buildObservationEvidenceCommands(
   record: SubmittedObservation,
 ): ObservationEvidenceCommand[] {
-  const formal = record.observationType !== 'walkthrough';
+  const formal = record.observationType !== "walkthrough";
   const provenanceGroupId = `${record.observationId}:provenance`;
   return record.items.map((item) => {
     if (!item.outcome) throw new Error(`Submitted item ${item.itemId} has no outcome`);
@@ -45,7 +45,7 @@ export function buildObservationEvidenceCommands(
       sourceVersion: record.sourceVersion,
       provenanceGroupId,
       outcome: { ...item.outcome },
-      scoringEffect: item.outcome.kind === 'rated',
+      scoringEffect: item.outcome.kind === "rated",
     };
   });
 }

@@ -1,29 +1,28 @@
-import { Footer as SharedFooter } from '@math-platform/app-shell/layout';
+import { Footer as SharedFooter } from "@math-platform/app-shell/layout";
 
 const sections = [
   {
-    title: 'Quick Links',
+    title: "Quick Links",
     links: [
-      { href: '/preface', label: 'Getting Started' },
-      { href: '/backmatter/glossary', label: 'Glossary' },
-      { href: '/search', label: 'Search' },
-      { href: '/capstone', label: 'Capstone' },
+      { href: "/preface", label: "Getting Started" },
+      { href: "/backmatter/glossary", label: "Glossary" },
+      { href: "/search", label: "Search" },
+      { href: "/capstone", label: "Capstone" },
     ],
   },
   {
-    title: 'Teacher Resources',
+    title: "Teacher Resources",
     links: [
-      { href: '/teacher/course-overview/pbl-methodology', label: 'PBL Methodology' },
-      { href: '/teacher/course-overview/backward-design', label: 'Backward Design' },
-      { href: '/teacher', label: 'Teacher Dashboard' },
+      { href: "/teacher/course-overview/pbl-methodology", label: "PBL Methodology" },
+      { href: "/teacher/course-overview/backward-design", label: "Backward Design" },
+      { href: "/teacher", label: "Teacher Dashboard" },
     ],
   },
   {
-    title: 'Support',
+    title: "Support",
     links: [],
   },
 ];
-
 
 /**
  * Renders the site footer with quick links, teacher resources, and branding.

@@ -1,13 +1,17 @@
-'use client'
+"use client";
 
-import { useMemo, useRef, useState } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Progress } from '@/components/ui/progress'
-import type { Activity } from '@/lib/schemas/validators'
-import type { GrowthPuzzleActivityProps } from '@/types/activities'
-import { buildPracticeSubmissionEnvelope, buildPracticeSubmissionParts, type PracticeSubmissionCallbackPayload } from '@/lib/practice/contract'
+import { useMemo, useRef, useState } from "react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import type { Activity } from "@/lib/schemas/validators";
+import type { GrowthPuzzleActivityProps } from "@/types/activities";
+import {
+  buildPracticeSubmissionEnvelope,
+  buildPracticeSubmissionParts,
+  type PracticeSubmissionCallbackPayload,
+} from "@/lib/practice/contract";
 import {
   type LucideIcon,
   TrendingUp,
@@ -24,28 +28,31 @@ import {
   Megaphone,
   Wrench,
   Coffee,
-  Heart
-} from 'lucide-react'
+  Heart,
+} from "lucide-react";
 
-export type GrowthPuzzleActivity = Omit<Activity, 'componentKey' | 'props'> & {
-  componentKey: 'growth-puzzle'
-  props: GrowthPuzzleActivityProps
-}
+export type GrowthPuzzleActivity = Omit<Activity, "componentKey" | "props"> & {
+  componentKey: "growth-puzzle";
+  props: GrowthPuzzleActivityProps;
+};
 
 // Types for the Growth Puzzle
 export interface GrowthOption {
-  id: string
-  label: string
-  amount: number
-  type: 'reinvestment' | 'distribution'
-  impact: string
-  icon: string
+  id: string;
+  label: string;
+  amount: number;
+  type: "reinvestment" | "distribution";
+  impact: string;
+  icon: string;
 }
 
 export interface GrowthPuzzleProps {
-  activity: GrowthPuzzleActivity
-  onComplete?: (results: { selections: string[]; stats: { reinvestment: number; distribution: number } }) => void
-  onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void
+  activity: GrowthPuzzleActivity;
+  onComplete?: (results: {
+    selections: string[];
+    stats: { reinvestment: number; distribution: number };
+  }) => void;
+  onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void;
 }
 
 const ICON_MAP: Record<string, LucideIcon> = {
@@ -56,9 +63,8 @@ const ICON_MAP: Record<string, LucideIcon> = {
   coffee: Coffee,
   heart: Heart,
   trending: TrendingUp,
-  user: User
-}
-
+  user: User,
+};
 
 /**
  * Renders a growth puzzle where students allocate business profit between
@@ -69,31 +75,30 @@ const ICON_MAP: Record<string, LucideIcon> = {
  * @param onSubmit - Callback to submit practice results
  */
 export function GrowthPuzzle({ activity, onComplete, onSubmit }: GrowthPuzzleProps) {
-  const { totalProfit, options, successMessage } = activity.props
-  const [selections, setSelections] = useState<string[]>([])
-  const [showInstructions, setShowInstructions] = useState(false)
-  const [isComplete, setIsComplete] = useState(false)
-  const submittedRef = useRef(false)
+  const { totalProfit, options, successMessage } = activity.props;
+  const [selections, setSelections] = useState<string[]>([]);
+  const [showInstructions, setShowInstructions] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
+  const submittedRef = useRef(false);
 
   const remainingProfit = useMemo(() => {
     const spent = selections.reduce((sum, id) => {
-      const option = options.find(o => o.id === id)
-      return sum + (option?.amount || 0)
-    }, 0)
-    return totalProfit - spent
-  }, [selections, options, totalProfit])
+      const option = options.find((o) => o.id === id);
+      return sum + (option?.amount || 0);
+    }, 0);
+    return totalProfit - spent;
+  }, [selections, options, totalProfit]);
 
   const stats = useMemo(() => {
-    let reinvestment = 0
-    let distribution = 0
-    selections.forEach(id => {
-      const option = options.find(o => o.id === id)
-      if (option?.type === 'reinvestment') reinvestment += option.amount
-      else if (option?.type === 'distribution') distribution += option.amount
-    })
-    return { reinvestment, distribution }
-  }, [selections, options])
-
+    let reinvestment = 0;
+    let distribution = 0;
+    selections.forEach((id) => {
+      const option = options.find((o) => o.id === id);
+      if (option?.type === "reinvestment") reinvestment += option.amount;
+      else if (option?.type === "distribution") distribution += option.amount;
+    });
+    return { reinvestment, distribution };
+  }, [selections, options]);
 
   /**
    * Toggles an allocation option on or off, checking affordability
@@ -103,46 +108,46 @@ export function GrowthPuzzle({ activity, onComplete, onSubmit }: GrowthPuzzlePro
    */
   const handleToggleOption = (id: string) => {
     if (selections.includes(id)) {
-      setSelections(prev => prev.filter(item => item !== id))
+      setSelections((prev) => prev.filter((item) => item !== id));
     } else {
-      const option = options.find(o => o.id === id)
+      const option = options.find((o) => o.id === id);
       if (option && option.amount <= remainingProfit) {
-        setSelections(prev => [...prev, id])
+        setSelections((prev) => [...prev, id]);
       }
     }
-  }
+  };
 
   const handleFinalize = () => {
-    if (submittedRef.current) return
-    submittedRef.current = true
-    setIsComplete(true)
-    onComplete?.({ selections, stats })
+    if (submittedRef.current) return;
+    submittedRef.current = true;
+    setIsComplete(true);
+    onComplete?.({ selections, stats });
 
     if (onSubmit) {
       const answers: Record<string, unknown> = {
         totalProfit,
         reinvestment: stats.reinvestment,
         distribution: stats.distribution,
-        selections: selections.join(', '),
+        selections: selections.join(", "),
         selectionCount: selections.length,
-      }
+      };
       const parts = buildPracticeSubmissionParts(answers).map((part) => ({
         ...part,
         isCorrect: true,
         score: 1,
         maxScore: 1,
-      }))
+      }));
       const envelope = buildPracticeSubmissionEnvelope({
-        activityId: activity?.id ?? 'growth-puzzle',
-        mode: 'guided_practice',
-        status: 'submitted',
+        activityId: activity?.id ?? "growth-puzzle",
+        mode: "guided_practice",
+        status: "submitted",
         attemptNumber: 1,
         submittedAt: new Date(),
         answers,
         parts,
         artifact: {
-          kind: 'growth_puzzle',
-          title: activity.props.title ?? 'The Growth Puzzle',
+          kind: "growth_puzzle",
+          title: activity.props.title ?? "The Growth Puzzle",
           selections,
           stats,
           totalProfit,
@@ -153,16 +158,16 @@ export function GrowthPuzzle({ activity, onComplete, onSubmit }: GrowthPuzzlePro
           distributionRate: totalProfit > 0 ? stats.distribution / totalProfit : 0,
           selectionCount: selections.length,
         },
-      })
-      onSubmit(envelope)
+      });
+      onSubmit(envelope);
     }
-  }
+  };
 
   const resetGame = () => {
-    setSelections([])
-    setIsComplete(false)
-    submittedRef.current = false
-  }
+    setSelections([]);
+    setIsComplete(false);
+    submittedRef.current = false;
+  };
 
   return (
     <div className="max-w-5xl mx-auto space-y-6 p-4">
@@ -171,10 +176,11 @@ export function GrowthPuzzle({ activity, onComplete, onSubmit }: GrowthPuzzlePro
         <CardHeader className="text-center">
           <CardTitle className="text-3xl flex items-center justify-center gap-2">
             <TrendingUp className="w-8 h-8 text-emerald-600" />
-            {activity.props.title || 'The Growth Puzzle'}
+            {activity.props.title || "The Growth Puzzle"}
           </CardTitle>
           <CardDescription className="text-lg">
-            Sarah made <strong>${totalProfit.toLocaleString()}</strong> in profit this month. How should she use it?
+            Sarah made <strong>${totalProfit.toLocaleString()}</strong> in profit this month. How
+            should she use it?
           </CardDescription>
           <div className="mt-4">
             <Button
@@ -185,7 +191,11 @@ export function GrowthPuzzle({ activity, onComplete, onSubmit }: GrowthPuzzlePro
             >
               <HelpCircle className="w-4 h-4" />
               Why this choice matters
-              {showInstructions ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              {showInstructions ? (
+                <ChevronUp className="w-4 h-4" />
+              ) : (
+                <ChevronDown className="w-4 h-4" />
+              )}
             </Button>
           </div>
         </CardHeader>
@@ -205,7 +215,8 @@ export function GrowthPuzzle({ activity, onComplete, onSubmit }: GrowthPuzzlePro
                   Option A: Reinvest
                 </h4>
                 <p className="text-sm text-slate-600">
-                  Put money back into the business (better tools, more ads). This increases the **Business Value** (Equity).
+                  Put money back into the business (better tools, more ads). This increases the
+                  **Business Value** (Equity).
                 </p>
               </div>
               <div className="bg-white p-4 rounded-xl border border-blue-200 shadow-sm">
@@ -214,7 +225,8 @@ export function GrowthPuzzle({ activity, onComplete, onSubmit }: GrowthPuzzlePro
                   Option B: Distribute
                 </h4>
                 <p className="text-sm text-slate-600">
-                  Sarah takes the money for personal needs (car repair, rent, a break). This is her reward for the risk she took.
+                  Sarah takes the money for personal needs (car repair, rent, a break). This is her
+                  reward for the risk she took.
                 </p>
               </div>
             </div>
@@ -229,21 +241,33 @@ export function GrowthPuzzle({ activity, onComplete, onSubmit }: GrowthPuzzlePro
             <div className="absolute top-0 right-0 p-4 opacity-20">
               <TrendingUp className="w-24 h-24" />
             </div>
-            <p className="text-sm font-bold uppercase tracking-widest opacity-80">Remaining Profit</p>
+            <p className="text-sm font-bold uppercase tracking-widest opacity-80">
+              Remaining Profit
+            </p>
             <h3 className="text-5xl font-black mt-2">${remainingProfit.toLocaleString()}</h3>
             <div className="mt-6 flex flex-col gap-2">
               <div className="flex justify-between text-xs font-bold">
                 <span>ALLOCATED</span>
-                <span>{totalProfit > 0 ? Math.round(((totalProfit - remainingProfit) / totalProfit) * 100) : 0}%</span>
+                <span>
+                  {totalProfit > 0
+                    ? Math.round(((totalProfit - remainingProfit) / totalProfit) * 100)
+                    : 0}
+                  %
+                </span>
               </div>
-              <Progress value={totalProfit > 0 ? ((totalProfit - remainingProfit) / totalProfit) * 100 : 0} className="h-3 bg-emerald-800" />
+              <Progress
+                value={totalProfit > 0 ? ((totalProfit - remainingProfit) / totalProfit) * 100 : 0}
+                className="h-3 bg-emerald-800"
+              />
             </div>
           </CardContent>
         </Card>
 
         <Card className="md:col-span-2 border-2 bg-slate-50 border-slate-200">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-bold text-slate-500 uppercase">Impact Visualization</CardTitle>
+            <CardTitle className="text-sm font-bold text-slate-500 uppercase">
+              Impact Visualization
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-2">
@@ -252,9 +276,14 @@ export function GrowthPuzzle({ activity, onComplete, onSubmit }: GrowthPuzzlePro
                   <Rocket className="w-5 h-5" />
                   Business Value Growth
                 </div>
-                <div className="text-xl font-black text-emerald-600">+${stats.reinvestment.toLocaleString()}</div>
+                <div className="text-xl font-black text-emerald-600">
+                  +${stats.reinvestment.toLocaleString()}
+                </div>
               </div>
-              <Progress value={totalProfit > 0 ? (stats.reinvestment / totalProfit) * 100 : 0} className="h-4 bg-slate-200" />
+              <Progress
+                value={totalProfit > 0 ? (stats.reinvestment / totalProfit) * 100 : 0}
+                className="h-4 bg-slate-200"
+              />
             </div>
 
             <div className="space-y-2">
@@ -263,9 +292,14 @@ export function GrowthPuzzle({ activity, onComplete, onSubmit }: GrowthPuzzlePro
                   <User className="w-5 h-5" />
                   Sarah&apos;s Personal Reward
                 </div>
-                <div className="text-xl font-black text-blue-600">+${stats.distribution.toLocaleString()}</div>
+                <div className="text-xl font-black text-blue-600">
+                  +${stats.distribution.toLocaleString()}
+                </div>
               </div>
-              <Progress value={totalProfit > 0 ? (stats.distribution / totalProfit) * 100 : 0} className="h-4 bg-slate-200" />
+              <Progress
+                value={totalProfit > 0 ? (stats.distribution / totalProfit) * 100 : 0}
+                className="h-4 bg-slate-200"
+              />
             </div>
           </CardContent>
         </Card>
@@ -274,45 +308,55 @@ export function GrowthPuzzle({ activity, onComplete, onSubmit }: GrowthPuzzlePro
       {/* Options Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {options.map((option) => {
-          const Icon = ICON_MAP[option.icon] || HelpCircle
-          const isSelected = selections.includes(option.id)
-          const canAfford = isSelected || option.amount <= remainingProfit
+          const Icon = ICON_MAP[option.icon] || HelpCircle;
+          const isSelected = selections.includes(option.id);
+          const canAfford = isSelected || option.amount <= remainingProfit;
 
           return (
-            <Card 
+            <Card
               key={option.id}
               className={`cursor-pointer transition-all duration-300 border-2 ${
-                isSelected ? 'border-emerald-500 bg-emerald-50 scale-105 shadow-md' : 
-                !canAfford ? 'opacity-50 cursor-not-allowed' : 'hover:border-slate-300'
+                isSelected
+                  ? "border-emerald-500 bg-emerald-50 scale-105 shadow-md"
+                  : !canAfford
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:border-slate-300"
               }`}
               onClick={() => canAfford && handleToggleOption(option.id)}
             >
               <CardContent className="p-4">
                 <div className="flex justify-between items-start mb-3">
-                  <div className={`p-2 rounded-lg ${option.type === 'reinvestment' ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'}`}>
+                  <div
+                    className={`p-2 rounded-lg ${option.type === "reinvestment" ? "bg-emerald-100 text-emerald-700" : "bg-blue-100 text-blue-700"}`}
+                  >
                     <Icon className="w-6 h-6" />
                   </div>
-                  <Badge variant={option.type === 'reinvestment' ? 'default' : 'secondary'} className={option.type === 'reinvestment' ? 'bg-emerald-600' : 'bg-blue-600'}>
+                  <Badge
+                    variant={option.type === "reinvestment" ? "default" : "secondary"}
+                    className={option.type === "reinvestment" ? "bg-emerald-600" : "bg-blue-600"}
+                  >
                     ${option.amount.toLocaleString()}
                   </Badge>
                 </div>
                 <h4 className="font-black text-slate-900 text-lg mb-1">{option.label}</h4>
                 <p className="text-xs text-slate-500 font-medium mb-4">{option.impact}</p>
                 <div className="flex justify-end">
-                  <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${isSelected ? 'bg-emerald-500 border-emerald-500 text-white' : 'border-slate-300'}`}>
+                  <div
+                    className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${isSelected ? "bg-emerald-500 border-emerald-500 text-white" : "border-slate-300"}`}
+                  >
                     {isSelected && <Plus className="w-4 h-4 rotate-45" />}
                   </div>
                 </div>
               </CardContent>
             </Card>
-          )
+          );
         })}
       </div>
 
       {/* Action Footer */}
       <div className="flex flex-col items-center gap-4 py-8 border-t">
-        <Button 
-          size="lg" 
+        <Button
+          size="lg"
           className="bg-emerald-600 hover:bg-emerald-700 px-12 h-16 text-xl font-black shadow-xl animate-bounce"
           disabled={selections.length === 0 || isComplete}
           onClick={handleFinalize}
@@ -320,7 +364,11 @@ export function GrowthPuzzle({ activity, onComplete, onSubmit }: GrowthPuzzlePro
           Finalize Allocation
           <ArrowRight className="w-6 h-6 ml-2" />
         </Button>
-        <Button variant="ghost" onClick={resetGame} className="text-slate-400 underline uppercase tracking-widest text-[10px] font-bold">
+        <Button
+          variant="ghost"
+          onClick={resetGame}
+          className="text-slate-400 underline uppercase tracking-widest text-[10px] font-bold"
+        >
           <RefreshCw className="w-3 h-3 mr-2" />
           Reset Profit
         </Button>
@@ -335,24 +383,33 @@ export function GrowthPuzzle({ activity, onComplete, onSubmit }: GrowthPuzzlePro
             </div>
             <h2 className="text-4xl font-black text-slate-900">ALLOCATION COMPLETE!</h2>
             <p className="text-xl text-slate-600 leading-relaxed">
-              {successMessage || "You've successfully allocated Sarah's profit. By choosing how to reinvest or distribute, you're directly impacting the company's Equity and Sarah's personal success. This is what 'Closing the Books' is all about!"}
+              {successMessage ||
+                "You've successfully allocated Sarah's profit. By choosing how to reinvest or distribute, you're directly impacting the company's Equity and Sarah's personal success. This is what 'Closing the Books' is all about!"}
             </p>
             <div className="grid grid-cols-2 gap-4">
               <div className="p-4 bg-emerald-50 rounded-xl border border-emerald-100">
                 <p className="text-xs font-bold text-emerald-600 uppercase">Equity Gained</p>
-                <p className="text-3xl font-black text-emerald-700">${stats.reinvestment.toLocaleString()}</p>
+                <p className="text-3xl font-black text-emerald-700">
+                  ${stats.reinvestment.toLocaleString()}
+                </p>
               </div>
               <div className="p-4 bg-blue-50 rounded-xl border border-blue-100">
                 <p className="text-xs font-bold text-blue-600 uppercase">Sarah&apos;s Reward</p>
-                <p className="text-3xl font-black text-blue-700">${stats.distribution.toLocaleString()}</p>
+                <p className="text-3xl font-black text-blue-700">
+                  ${stats.distribution.toLocaleString()}
+                </p>
               </div>
             </div>
-            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 w-full h-14 text-xl" onClick={resetGame}>
+            <Button
+              size="lg"
+              className="bg-emerald-600 hover:bg-emerald-700 w-full h-14 text-xl"
+              onClick={resetGame}
+            >
               Back to Lesson
             </Button>
           </CardContent>
         </Card>
       )}
     </div>
-  )
+  );
 }

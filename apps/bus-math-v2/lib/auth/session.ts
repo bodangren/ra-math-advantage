@@ -1,4 +1,9 @@
-export type { UserRole, SessionClaims, SessionTokenInput, PasswordCredential } from '@math-platform/core-auth';
+export type {
+  UserRole,
+  SessionClaims,
+  SessionTokenInput,
+  PasswordCredential,
+} from "@math-platform/core-auth";
 export {
   signSessionToken,
   verifySessionToken,
@@ -6,4 +11,4 @@ export {
   verifyPassword,
   generateRandomPassword,
   generatePasswordSalt,
-} from '@math-platform/core-auth';
+} from "@math-platform/core-auth";

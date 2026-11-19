@@ -42,9 +42,9 @@
 // mistake) would fail here even if the dashboard "looks right" to a
 // human reviewer.
 
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render } from '@testing-library/react';
-import type { ReactElement } from 'react';
+import { describe, it, expect, beforeEach, vi } from "vitest";
+import { render } from "@testing-library/react";
+import type { ReactElement } from "react";
 
 import {
   richParentProjection,
@@ -52,8 +52,8 @@ import {
   PARENT_FIXTURE_OTHER_STUDENT_NODE,
   TEACHER_ONLY_KEYS,
   type ParentVisualizationV1,
-} from '@/__tests__/_fixtures/parent-portal/parentProjection';
-import { STUDENT_ALPHA_ID, STUDENT_BETA_ID } from '@/__tests__/_fixtures/parent-portal/parentLinks';
+} from "@/__tests__/_fixtures/parent-portal/parentProjection";
+import { STUDENT_ALPHA_ID, STUDENT_BETA_ID } from "@/__tests__/_fixtures/parent-portal/parentLinks";
 
 // ---------------------------------------------------------------------------
 // Module-shape helpers
@@ -68,7 +68,7 @@ type ParentDashboardProps = {
 type ParentDashboardComponent = (props: ParentDashboardProps) => ReactElement;
 
 async function loadParentDashboard(): Promise<ParentDashboardComponent> {
-  const mod = await import('@/components/parent/ParentDashboard');
+  const mod = await import("@/components/parent/ParentDashboard");
   return mod.ParentDashboard as ParentDashboardComponent;
 }
 
@@ -90,33 +90,33 @@ async function loadParentDashboard(): Promise<ParentDashboardComponent> {
 
 function serializeRenderedOutput(): string {
   const chunks: string[] = [];
-  chunks.push(document.body.textContent ?? '');
-  chunks.push(document.body.innerHTML ?? '');
+  chunks.push(document.body.textContent ?? "");
+  chunks.push(document.body.innerHTML ?? "");
 
   // Walk every element and collect any attribute the component might
   // have used to embed data (data-*, aria-*, title, alt, href, value).
-  const all = document.body.querySelectorAll('*');
+  const all = document.body.querySelectorAll("*");
   for (const el of Array.from(all)) {
     for (const attr of Array.from(el.attributes)) {
       chunks.push(`${attr.name}=${attr.value}`);
     }
-    chunks.push(el.textContent ?? '');
+    chunks.push(el.textContent ?? "");
   }
 
-  return chunks.join('\n');
+  return chunks.join("\n");
 }
 
 // ---------------------------------------------------------------------------
 // Tests
 // ---------------------------------------------------------------------------
 
-describe('Parent dashboard — privacy invariants (Phase 2.3)', () => {
+describe("Parent dashboard — privacy invariants (Phase 2.3)", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  describe('teacher-only field exclusion', () => {
-    it('rendered output contains no teacherVisualizationV1Schema key (rich payload)', async () => {
+  describe("teacher-only field exclusion", () => {
+    it("rendered output contains no teacherVisualizationV1Schema key (rich payload)", async () => {
       const ParentDashboard = await loadParentDashboard();
 
       const { unmount } = render(
@@ -135,16 +135,15 @@ describe('Parent dashboard — privacy invariants (Phase 2.3)', () => {
       const lower = serialized.toLowerCase();
 
       for (const key of TEACHER_ONLY_KEYS) {
-        expect(
-          lower,
-          `parent dashboard must not expose teacher-only key "${key}"`,
-        ).not.toContain(key.toLowerCase());
+        expect(lower, `parent dashboard must not expose teacher-only key "${key}"`).not.toContain(
+          key.toLowerCase(),
+        );
       }
 
       unmount();
     });
 
-    it('rendered output contains no teacherVisualizationV1Schema key (other-student payload)', async () => {
+    it("rendered output contains no teacherVisualizationV1Schema key (other-student payload)", async () => {
       const ParentDashboard = await loadParentDashboard();
 
       const { unmount } = render(
@@ -159,10 +158,9 @@ describe('Parent dashboard — privacy invariants (Phase 2.3)', () => {
       const lower = serialized.toLowerCase();
 
       for (const key of TEACHER_ONLY_KEYS) {
-        expect(
-          lower,
-          `parent dashboard must not expose teacher-only key "${key}"`,
-        ).not.toContain(key.toLowerCase());
+        expect(lower, `parent dashboard must not expose teacher-only key "${key}"`).not.toContain(
+          key.toLowerCase(),
+        );
       }
 
       unmount();
@@ -194,8 +192,8 @@ describe('Parent dashboard — privacy invariants (Phase 2.3)', () => {
     });
   });
 
-  describe('cross-student isolation', () => {
-    it('rendering student A never shows student B node ids', async () => {
+  describe("cross-student isolation", () => {
+    it("rendering student A never shows student B node ids", async () => {
       const ParentDashboard = await loadParentDashboard();
 
       const { unmount } = render(
@@ -207,10 +205,9 @@ describe('Parent dashboard — privacy invariants (Phase 2.3)', () => {
       );
 
       const serialized = serializeRenderedOutput();
-      expect(
-        serialized,
-        'student A render must not contain student B node ids',
-      ).not.toContain(PARENT_FIXTURE_OTHER_STUDENT_NODE);
+      expect(serialized, "student A render must not contain student B node ids").not.toContain(
+        PARENT_FIXTURE_OTHER_STUDENT_NODE,
+      );
       // Belt-and-suspenders: every node id in the B payload must be absent.
       for (const node of otherStudentParentProjection.nodes) {
         expect(
@@ -230,7 +227,7 @@ describe('Parent dashboard — privacy invariants (Phase 2.3)', () => {
       unmount();
     });
 
-    it('rendering student B never shows student A node ids', async () => {
+    it("rendering student B never shows student A node ids", async () => {
       const ParentDashboard = await loadParentDashboard();
 
       const { unmount } = render(
@@ -257,8 +254,8 @@ describe('Parent dashboard — privacy invariants (Phase 2.3)', () => {
     });
   });
 
-  describe('raw-graph field exclusion', () => {
-    it('rendered output contains no KnowledgeSpaceNode raw-graph fields', async () => {
+  describe("raw-graph field exclusion", () => {
+    it("rendered output contains no KnowledgeSpaceNode raw-graph fields", async () => {
       // The parent payload's `nodes` are `visualNodeV1Schema` shape
       // (nodeId, title, description, state, difficulty, domain). The
       // component must not surface raw graph fields such as `metadata`,
@@ -277,9 +274,9 @@ describe('Parent dashboard — privacy invariants (Phase 2.3)', () => {
 
       const serialized = serializeRenderedOutput().toLowerCase();
       const forbiddenRawGraphKeys = [
-        'metadata',
-        'sourcerefs',
-        'reviewstatus',
+        "metadata",
+        "sourcerefs",
+        "reviewstatus",
         // The word "prerequisites" can appear legitimately in plain
         // English (e.g. "no prerequisites needed"), so the check is
         // only on the lowercased key in serialized JSON. Since the
@@ -301,8 +298,8 @@ describe('Parent dashboard — privacy invariants (Phase 2.3)', () => {
     });
   });
 
-  describe('payload-acceptance: schema-validated payloads only', () => {
-    it('the component accepts a payload that passes parentVisualizationV1Schema.parse()', async () => {
+  describe("payload-acceptance: schema-validated payloads only", () => {
+    it("the component accepts a payload that passes parentVisualizationV1Schema.parse()", async () => {
       // Defense-in-depth: the parent projection fixture is constructed
       // via `parentVisualizationV1Schema.parse(...)` at module load, so
       // any drift in the v1 schema breaks the fixtures before this test

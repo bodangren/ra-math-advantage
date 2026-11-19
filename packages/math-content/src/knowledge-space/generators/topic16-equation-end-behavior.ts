@@ -1,11 +1,12 @@
-import type { GeneratorOutput, GradingMetadata } from '@math-platform/knowledge-space-practice';
+import type { GeneratorOutput, GradingMetadata } from "@math-platform/knowledge-space-practice";
 
-import { mulberry32 } from '../../utils/prng';
+import { mulberry32 } from "../../utils/prng";
 
-export type Topic16EquationEndBehaviorItemId = 'a' | 'b' | 'c' | 'd' | 'e' | 'f';
-export type Topic16EquationEndBehaviorFunctionName = 'f' | 'g' | 'y' | 'h' | 'k' | 'm';
-export type Topic16EquationEndBehaviorEnd = 'up' | 'down';
-export type Topic16EquationEndBehaviorPartId = `${Topic16EquationEndBehaviorItemId}_${'leftEnd' | 'rightEnd'}`;
+export type Topic16EquationEndBehaviorItemId = "a" | "b" | "c" | "d" | "e" | "f";
+export type Topic16EquationEndBehaviorFunctionName = "f" | "g" | "y" | "h" | "k" | "m";
+export type Topic16EquationEndBehaviorEnd = "up" | "down";
+export type Topic16EquationEndBehaviorPartId =
+  `${Topic16EquationEndBehaviorItemId}_${"leftEnd" | "rightEnd"}`;
 
 export interface Topic16EquationEndBehaviorItem {
   readonly id: Topic16EquationEndBehaviorItemId;
@@ -25,18 +26,18 @@ export interface Topic16EquationEndBehaviorVariant {
 }
 
 export const TOPIC16_EQUATION_END_BEHAVIOR_NODE_ID =
-  'math.precalc.skill.1.6.determine-polynomial-end-behavior-from-equations';
+  "math.precalc.skill.1.6.determine-polynomial-end-behavior-from-equations";
 
 const SOURCE_PROMPT =
-  'Determine the end behavior for the following polynomials. Limit notation is not necessary.';
+  "Determine the end behavior for the following polynomials. Limit notation is not necessary.";
 
 const SOURCE_ITEMS: readonly Topic16EquationEndBehaviorItem[] = [
-  { id: 'a', functionName: 'f', expression: '4x^5' },
-  { id: 'b', functionName: 'g', expression: '(1/2)x^4' },
-  { id: 'c', functionName: 'y', expression: '-2(x + 3)^6' },
-  { id: 'd', functionName: 'h', expression: '3 - x^5' },
-  { id: 'e', functionName: 'k', expression: '8x^2 + 4 - x^5' },
-  { id: 'f', functionName: 'm', expression: '2x(x - 1)(6 - x)' },
+  { id: "a", functionName: "f", expression: "4x^5" },
+  { id: "b", functionName: "g", expression: "(1/2)x^4" },
+  { id: "c", functionName: "y", expression: "-2(x + 3)^6" },
+  { id: "d", functionName: "h", expression: "3 - x^5" },
+  { id: "e", functionName: "k", expression: "8x^2 + 4 - x^5" },
+  { id: "f", functionName: "m", expression: "2x(x - 1)(6 - x)" },
 ];
 
 const SOURCE_LEADING_TERMS = [
@@ -49,27 +50,27 @@ const SOURCE_LEADING_TERMS = [
 ] as const;
 
 const SOURCE_ANSWERS: Topic16EquationEndBehaviorAnswers = {
-  a_leftEnd: 'down',
-  a_rightEnd: 'up',
-  b_leftEnd: 'up',
-  b_rightEnd: 'up',
-  c_leftEnd: 'down',
-  c_rightEnd: 'down',
-  d_leftEnd: 'up',
-  d_rightEnd: 'down',
-  e_leftEnd: 'up',
-  e_rightEnd: 'down',
-  f_leftEnd: 'up',
-  f_rightEnd: 'down',
+  a_leftEnd: "down",
+  a_rightEnd: "up",
+  b_leftEnd: "up",
+  b_rightEnd: "up",
+  c_leftEnd: "down",
+  c_rightEnd: "down",
+  d_leftEnd: "up",
+  d_rightEnd: "down",
+  e_leftEnd: "up",
+  e_rightEnd: "down",
+  f_leftEnd: "up",
+  f_rightEnd: "down",
 };
 
 const SOURCE_SOLUTION_STEPS = [
-  'a) The leading term is 4x^5. The degree is odd and the leading coefficient is positive, so the left end is down and the right end is up.',
-  'b) The leading term is (1/2)x^4. The degree is even and the leading coefficient is positive, so both ends are up.',
-  'c) The leading term is -2x^6. The degree is even and the leading coefficient is negative, so both ends are down.',
-  'd) The leading term is -x^5. The degree is odd and the leading coefficient is negative, so the left end is up and the right end is down.',
-  'e) The leading term is -x^5. The degree is odd and the leading coefficient is negative, so the left end is up and the right end is down.',
-  'f) The leading term is -2x^3. The degree is odd and the leading coefficient is negative, so the left end is up and the right end is down.',
+  "a) The leading term is 4x^5. The degree is odd and the leading coefficient is positive, so the left end is down and the right end is up.",
+  "b) The leading term is (1/2)x^4. The degree is even and the leading coefficient is positive, so both ends are up.",
+  "c) The leading term is -2x^6. The degree is even and the leading coefficient is negative, so both ends are down.",
+  "d) The leading term is -x^5. The degree is odd and the leading coefficient is negative, so the left end is up and the right end is down.",
+  "e) The leading term is -x^5. The degree is odd and the leading coefficient is negative, so the left end is up and the right end is down.",
+  "f) The leading term is -2x^3. The degree is odd and the leading coefficient is negative, so the left end is up and the right end is down.",
 ] as const;
 
 type LeadingTerm = {
@@ -88,8 +89,8 @@ type BuiltVariant = {
 };
 
 function validateSeed(seed: number): void {
-  if (typeof seed !== 'number' || !Number.isSafeInteger(seed) || seed < 0) {
-    throw new RangeError('seed must be a non-negative safe integer');
+  if (typeof seed !== "number" || !Number.isSafeInteger(seed) || seed < 0) {
+    throw new RangeError("seed must be a non-negative safe integer");
   }
 }
 
@@ -98,24 +99,23 @@ function randomInteger(random: () => number, minimum: number, maximum: number): 
 }
 
 function formatCoefficient(coefficient: number): string {
-  return coefficient === 1 ? '' : coefficient === -1 ? '-' : String(coefficient);
+  return coefficient === 1 ? "" : coefficient === -1 ? "-" : String(coefficient);
 }
 
-function classifyEnds(leadingTerm: LeadingTerm): { leftEnd: Topic16EquationEndBehaviorEnd; rightEnd: Topic16EquationEndBehaviorEnd } {
-  const rightEnd: Topic16EquationEndBehaviorEnd = leadingTerm.coefficient > 0 ? 'up' : 'down';
-  const leftEnd = leadingTerm.exponent % 2 === 0
-    ? rightEnd
-    : rightEnd === 'up' ? 'down' : 'up';
+function classifyEnds(leadingTerm: LeadingTerm): {
+  leftEnd: Topic16EquationEndBehaviorEnd;
+  rightEnd: Topic16EquationEndBehaviorEnd;
+} {
+  const rightEnd: Topic16EquationEndBehaviorEnd = leadingTerm.coefficient > 0 ? "up" : "down";
+  const leftEnd = leadingTerm.exponent % 2 === 0 ? rightEnd : rightEnd === "up" ? "down" : "up";
   return { leftEnd, rightEnd };
 }
 
-function buildAnswers(
-  leadingTerms: readonly LeadingTerm[],
-): Topic16EquationEndBehaviorAnswers {
+function buildAnswers(leadingTerms: readonly LeadingTerm[]): Topic16EquationEndBehaviorAnswers {
   const answers = {} as Topic16EquationEndBehaviorAnswers;
   for (const [index, leadingTerm] of leadingTerms.entries()) {
     const itemId = SOURCE_ITEMS[index]?.id;
-    if (!itemId) throw new Error('Missing Topic 1.6 item identity');
+    if (!itemId) throw new Error("Missing Topic 1.6 item identity");
     const ends = classifyEnds(leadingTerm);
     answers[`${itemId}_leftEnd`] = ends.leftEnd;
     answers[`${itemId}_rightEnd`] = ends.rightEnd;
@@ -163,9 +163,12 @@ function generatedItem(
 
   if (category === 2) {
     const rawCoefficient = randomInteger(random, -8, 8);
-    const coefficient = rawCoefficient === 0 || rawCoefficient === 1
-      ? 2
-      : rawCoefficient === -1 ? -2 : rawCoefficient;
+    const coefficient =
+      rawCoefficient === 0 || rawCoefficient === 1
+        ? 2
+        : rawCoefficient === -1
+          ? -2
+          : rawCoefficient;
     const shift = randomInteger(random, 1, 6);
     const exponent = randomInteger(random, 2, 6);
     return {
@@ -183,7 +186,11 @@ function generatedItem(
     const coefficient = randomInteger(random, 1, 8);
     const exponent = randomInteger(random, 2, 7);
     return {
-      item: { id, functionName, expression: `${constant} - ${formatCoefficient(coefficient)}x^${exponent}` },
+      item: {
+        id,
+        functionName,
+        expression: `${constant} - ${formatCoefficient(coefficient)}x^${exponent}`,
+      },
       leadingTerm: { coefficient: -coefficient, exponent },
     };
   }
@@ -219,9 +226,18 @@ function generatedItem(
 
 function generatedVariant(seed: number): BuiltVariant {
   const random = mulberry32(seed);
-  const ids: readonly Topic16EquationEndBehaviorItemId[] = ['a', 'b', 'c', 'd', 'e', 'f'];
-  const functionNames: readonly Topic16EquationEndBehaviorFunctionName[] = ['f', 'g', 'y', 'h', 'k', 'm'];
-  const builtItems = ids.map((id, index) => generatedItem(random, seed, id, functionNames[index]!, index));
+  const ids: readonly Topic16EquationEndBehaviorItemId[] = ["a", "b", "c", "d", "e", "f"];
+  const functionNames: readonly Topic16EquationEndBehaviorFunctionName[] = [
+    "f",
+    "g",
+    "y",
+    "h",
+    "k",
+    "m",
+  ];
+  const builtItems = ids.map((id, index) =>
+    generatedItem(random, seed, id, functionNames[index]!, index),
+  );
   return {
     variant: {
       seed,
@@ -243,11 +259,12 @@ function solutionSteps(
 ): Array<{ description: string }> {
   return items.map((item, index) => {
     const leadingTerm = leadingTerms[index]!;
-    const leadingTermText = item.id === 'b'
-      ? item.expression
-      : `${formatCoefficient(leadingTerm.coefficient)}x^${leadingTerm.exponent}`;
-    const sign = leadingTerm.coefficient > 0 ? 'positive' : 'negative';
-    const parity = leadingTerm.exponent % 2 === 0 ? 'even' : 'odd';
+    const leadingTermText =
+      item.id === "b"
+        ? item.expression
+        : `${formatCoefficient(leadingTerm.coefficient)}x^${leadingTerm.exponent}`;
+    const sign = leadingTerm.coefficient > 0 ? "positive" : "negative";
+    const parity = leadingTerm.exponent % 2 === 0 ? "even" : "odd";
     const left = answers[`${item.id}_leftEnd`];
     const right = answers[`${item.id}_rightEnd`];
     return {
@@ -261,11 +278,13 @@ function gradingMetadata(answers: Topic16EquationEndBehaviorAnswers): GradingMet
   return {
     partAnswers: answers,
     partMaxScores: Object.fromEntries(partIds.map((partId) => [partId, 1])),
-    partGradingRules: Object.fromEntries(partIds.map((partId) => [partId, 'exact_match'])),
+    partGradingRules: Object.fromEntries(partIds.map((partId) => [partId, "exact_match"])),
   };
 }
 
-export function generateTopic16EquationEndBehavior(seed: number): Topic16EquationEndBehaviorVariant {
+export function generateTopic16EquationEndBehavior(
+  seed: number,
+): Topic16EquationEndBehaviorVariant {
   validateSeed(seed);
   return buildVariant(seed).variant;
 }
@@ -281,13 +300,14 @@ export function generateTopic16EquationEndBehaviorOutput(seed: number): Generato
       rendererProps: {
         prompt: built.variant.prompt,
         items: built.variant.items,
-        presentationMode: 'independent_practice',
+        presentationMode: "independent_practice",
       },
     },
     expectedAnswer: answers,
-    solutionSteps: seed === 0
-      ? SOURCE_SOLUTION_STEPS.map((description) => ({ description }))
-      : solutionSteps(built.variant.items, built.leadingTerms, answers),
+    solutionSteps:
+      seed === 0
+        ? SOURCE_SOLUTION_STEPS.map((description) => ({ description }))
+        : solutionSteps(built.variant.items, built.leadingTerms, answers),
     gradingMetadata: gradingMetadata(answers),
   };
 }

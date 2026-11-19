@@ -1,81 +1,81 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { StepByStepper } from '@math-platform/activity-components/algebraic';
-import 'katex/dist/katex.min.css';
+import { describe, it, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { StepByStepper } from "@math-platform/activity-components/algebraic";
+import "katex/dist/katex.min.css";
 
-describe('StepByStepper', () => {
+describe("StepByStepper", () => {
   const defaultProps = {
-    mode: 'teaching' as const,
+    mode: "teaching" as const,
     steps: [
       {
-        expression: 'x^2 + 5x + 6',
-        explanation: 'Write the quadratic in standard form',
+        expression: "x^2 + 5x + 6",
+        explanation: "Write the quadratic in standard form",
       },
       {
-        expression: '(x + 2)(x + 3)',
-        explanation: 'Factor the trinomial',
+        expression: "(x + 2)(x + 3)",
+        explanation: "Factor the trinomial",
         isKeyStep: true,
       },
       {
-        expression: 'x = -2, x = -3',
-        explanation: 'Set each factor equal to zero and solve',
+        expression: "x = -2, x = -3",
+        explanation: "Set each factor equal to zero and solve",
       },
     ],
   };
 
-  describe('teaching mode rendering', () => {
-    it('renders all steps with expression and explanation', () => {
+  describe("teaching mode rendering", () => {
+    it("renders all steps with expression and explanation", () => {
       render(<StepByStepper {...defaultProps} />);
 
-      expect(screen.getByText('Write the quadratic in standard form')).toBeInTheDocument();
-      expect(screen.getByText('Factor the trinomial')).toBeInTheDocument();
-      expect(screen.getByText('Set each factor equal to zero and solve')).toBeInTheDocument();
+      expect(screen.getByText("Write the quadratic in standard form")).toBeInTheDocument();
+      expect(screen.getByText("Factor the trinomial")).toBeInTheDocument();
+      expect(screen.getByText("Set each factor equal to zero and solve")).toBeInTheDocument();
     });
 
-    it('renders expressions using KaTeX', () => {
+    it("renders expressions using KaTeX", () => {
       const { container } = render(<StepByStepper {...defaultProps} />);
 
-      const mathElements = container.querySelectorAll('.katex');
+      const mathElements = container.querySelectorAll(".katex");
       expect(mathElements.length).toBeGreaterThan(0);
     });
 
-    it('uses StepRevealContainer in full-reveal state', () => {
+    it("uses StepRevealContainer in full-reveal state", () => {
       const { container } = render(<StepByStepper {...defaultProps} />);
 
       const stepContainers = container.querySelectorAll('[class*="space-y-4"]');
       expect(stepContainers.length).toBeGreaterThan(0);
     });
 
-    it('renders step numbers', () => {
+    it("renders step numbers", () => {
       const { container } = render(<StepByStepper {...defaultProps} />);
 
       const stepNumbers = container.querySelectorAll('[class*="rounded-full"]');
       expect(stepNumbers.length).toBe(3);
-      expect(stepNumbers[0]).toHaveTextContent('1');
-      expect(stepNumbers[1]).toHaveTextContent('2');
-      expect(stepNumbers[2]).toHaveTextContent('3');
+      expect(stepNumbers[0]).toHaveTextContent("1");
+      expect(stepNumbers[1]).toHaveTextContent("2");
+      expect(stepNumbers[2]).toHaveTextContent("3");
     });
 
-    it('isKeyStep flag applies visual emphasis', () => {
+    it("isKeyStep flag applies visual emphasis", () => {
       const { container } = render(<StepByStepper {...defaultProps} />);
 
       const stepNumbers = container.querySelectorAll('[class*="rounded-full"]');
-      
+
       // Step 2 is a key step (isKeyStep: true)
-      expect(stepNumbers[1]).toHaveClass('bg-primary');
+      expect(stepNumbers[1]).toHaveClass("bg-primary");
     });
 
-    it('renders without key steps when isKeyStep is not specified', () => {
+    it("renders without key steps when isKeyStep is not specified", () => {
       const props = {
-        mode: 'teaching' as const,
+        mode: "teaching" as const,
         steps: [
           {
-            expression: 'x^2 + 5x + 6',
-            explanation: 'Write the quadratic in standard form',
+            expression: "x^2 + 5x + 6",
+            explanation: "Write the quadratic in standard form",
           },
           {
-            expression: '(x + 2)(x + 3)',
-            explanation: 'Factor the trinomial',
+            expression: "(x + 2)(x + 3)",
+            explanation: "Factor the trinomial",
           },
         ],
       };
@@ -83,66 +83,64 @@ describe('StepByStepper', () => {
       const { container } = render(<StepByStepper {...props} />);
 
       const stepNumbers = container.querySelectorAll('[class*="rounded-full"]');
-      stepNumbers.forEach(stepNumber => {
-        expect(stepNumber).toHaveClass('bg-primary');
+      stepNumbers.forEach((stepNumber) => {
+        expect(stepNumber).toHaveClass("bg-primary");
       });
     });
   });
 
-  describe('edge cases', () => {
-    it('handles empty steps array', () => {
-      const { container } = render(
-        <StepByStepper mode="teaching" steps={[]} />
-      );
+  describe("edge cases", () => {
+    it("handles empty steps array", () => {
+      const { container } = render(<StepByStepper mode="teaching" steps={[]} />);
 
       expect(container.firstChild).toBeDefined();
     });
 
-    it('handles single step', () => {
+    it("handles single step", () => {
       const props = {
-        mode: 'teaching' as const,
+        mode: "teaching" as const,
         steps: [
           {
-            expression: 'x^2 + 2x + 1',
-            explanation: 'Write in standard form',
+            expression: "x^2 + 2x + 1",
+            explanation: "Write in standard form",
           },
         ],
       };
 
       render(<StepByStepper {...props} />);
 
-      expect(screen.getByText('Write in standard form')).toBeInTheDocument();
+      expect(screen.getByText("Write in standard form")).toBeInTheDocument();
     });
 
-    it('handles steps with hints (hint not shown in teaching mode)', () => {
+    it("handles steps with hints (hint not shown in teaching mode)", () => {
       const props = {
-        mode: 'teaching' as const,
+        mode: "teaching" as const,
         steps: [
           {
-            expression: 'x^2 + 5x + 6',
-            explanation: 'Write the quadratic in standard form',
-            hint: 'Remember: ax^2 + bx + c',
+            expression: "x^2 + 5x + 6",
+            explanation: "Write the quadratic in standard form",
+            hint: "Remember: ax^2 + bx + c",
           },
         ],
       };
 
       render(<StepByStepper {...props} />);
 
-      expect(screen.getByText('Write the quadratic in standard form')).toBeInTheDocument();
+      expect(screen.getByText("Write the quadratic in standard form")).toBeInTheDocument();
       // Hint should not be visible in teaching mode
-      expect(screen.queryByText('Remember: ax^2 + bx + c')).not.toBeInTheDocument();
+      expect(screen.queryByText("Remember: ax^2 + bx + c")).not.toBeInTheDocument();
     });
   });
 
-  describe('accessibility', () => {
-    it('has proper ARIA labels for steps', () => {
+  describe("accessibility", () => {
+    it("has proper ARIA labels for steps", () => {
       const { container } = render(<StepByStepper {...defaultProps} />);
 
       const stepContainers = container.querySelectorAll('[class*="prose"]');
       expect(stepContainers.length).toBe(3);
     });
 
-    it('is keyboard navigable', () => {
+    it("is keyboard navigable", () => {
       const { container } = render(<StepByStepper {...defaultProps} />);
 
       const steps = container.querySelectorAll('[class*="space-y-4"] > div');
@@ -151,16 +149,22 @@ describe('StepByStepper', () => {
   });
 });
 
-describe('StepByStepper initial problem display', () => {
-  const steps = [{ expression: 'x=1', explanation: 'Solve.' }];
+describe("StepByStepper initial problem display", () => {
+  const steps = [{ expression: "x=1", explanation: "Solve." }];
 
-  it.each(['guided', 'practice'] as const)('shows the initial problem by default in %s mode', (mode) => {
-    render(<StepByStepper mode={mode} steps={steps} />);
-    expect(screen.getByText('Problem:')).toBeInTheDocument();
-  });
+  it.each(["guided", "practice"] as const)(
+    "shows the initial problem by default in %s mode",
+    (mode) => {
+      render(<StepByStepper mode={mode} steps={steps} />);
+      expect(screen.getByText("Problem:")).toBeInTheDocument();
+    },
+  );
 
-  it.each(['guided', 'practice'] as const)('can suppress the initial problem in %s mode', (mode) => {
-    render(<StepByStepper mode={mode} steps={steps} showInitialProblem={false} />);
-    expect(screen.queryByText('Problem:')).not.toBeInTheDocument();
-  });
+  it.each(["guided", "practice"] as const)(
+    "can suppress the initial problem in %s mode",
+    (mode) => {
+      render(<StepByStepper mode={mode} steps={steps} showInitialProblem={false} />);
+      expect(screen.queryByText("Problem:")).not.toBeInTheDocument();
+    },
+  );
 });

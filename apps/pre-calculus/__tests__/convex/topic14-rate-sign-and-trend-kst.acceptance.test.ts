@@ -1,22 +1,22 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import type { Id } from '@/convex/_generated/dataModel';
-import type { QueryCtx } from '@/convex/_generated/server';
+import type { Id } from "@/convex/_generated/dataModel";
+import type { QueryCtx } from "@/convex/_generated/server";
 import {
   getPrecalculusTopic14RateSignAndTrendKnowledgeState,
   getPrecalculusTopic14RateSignAndTrendKnowledgeStateHandler,
-} from '@/convex/learningEvidence';
+} from "@/convex/learningEvidence";
 import {
   PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_ACTIVITY_ID,
   PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_INDEPENDENT_ACTIVITY_ID,
   PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_NODE_ID,
   PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_WORKED_ACTIVITY_ID,
-} from '@/lib/learning-evidence/precalc-pilot';
+} from "@/lib/learning-evidence/precalc-pilot";
 
-const LEARNER_ID = 'profiles:topic14-rate-sign-kst-learner' as Id<'profiles'>;
-const FOREIGN_LEARNER_ID = 'profiles:topic14-rate-sign-kst-foreign' as Id<'profiles'>;
-const NOW = Date.parse('2026-08-21T12:00:00.000Z');
-const TITLE = 'Describe rate-of-change behavior on intervals using precise language';
+const LEARNER_ID = "profiles:topic14-rate-sign-kst-learner" as Id<"profiles">;
+const FOREIGN_LEARNER_ID = "profiles:topic14-rate-sign-kst-foreign" as Id<"profiles">;
+const NOW = Date.parse("2026-08-21T12:00:00.000Z");
+const TITLE = "Describe rate-of-change behavior on intervals using precise language";
 const DAY = 24 * 60 * 60 * 1000;
 
 type Row = Record<string, unknown> & { _id: string };
@@ -33,8 +33,8 @@ function createQueryHarness(cards: readonly Row[] = []) {
       configure: (query: { eq(field: string, value: unknown): unknown }) => unknown,
     ) => {
       queryEvents.push(`${tableName}:${indexName}`);
-      if (tableName !== 'srs_cards' || indexName !== 'by_student_and_objective') {
-        throw new Error('The Topic 1.4 KST query must use the exact student/objective SRS index.');
+      if (tableName !== "srs_cards" || indexName !== "by_student_and_objective") {
+        throw new Error("The Topic 1.4 KST query must use the exact student/objective SRS index.");
       }
 
       const conditions = new Map<string, unknown>();
@@ -50,9 +50,9 @@ function createQueryHarness(cards: readonly Row[] = []) {
       return {
         collect: async () => {
           collectCalls += 1;
-          return cards.filter((card) => (
-            [...conditions].every(([field, value]) => card[field] === value)
-          ));
+          return cards.filter((card) =>
+            [...conditions].every(([field, value]) => card[field] === value),
+          );
         },
       };
     },
@@ -67,9 +67,9 @@ function createQueryHarness(cards: readonly Row[] = []) {
     ctx: {
       db: {
         query,
-        insert: failWrite('insert'),
-        patch: failWrite('patch'),
-        delete: failWrite('delete'),
+        insert: failWrite("insert"),
+        patch: failWrite("patch"),
+        delete: failWrite("delete"),
       },
     } as unknown as QueryCtx,
     queryEvents,
@@ -81,36 +81,30 @@ function createQueryHarness(cards: readonly Row[] = []) {
   };
 }
 
-function makeCard(
-  problemFamilyId: string,
-  overrides: Partial<Row> = {},
-): Row {
+function makeCard(problemFamilyId: string, overrides: Partial<Row> = {}): Row {
   return {
-    _id: `srs_cards:topic14-rate-sign-${problemFamilyId.split('.').at(-1) ?? 'variant'}`,
+    _id: `srs_cards:topic14-rate-sign-${problemFamilyId.split(".").at(-1) ?? "variant"}`,
     studentId: LEARNER_ID,
     objectiveId: PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_NODE_ID,
     problemFamilyId,
     stability: 1,
     difficulty: 5,
-    state: 'review',
-    dueDate: '2026-08-22T12:00:00.000Z',
+    state: "review",
+    dueDate: "2026-08-22T12:00:00.000Z",
     elapsedDays: 0,
     scheduledDays: 1,
     reps: 1,
     lapses: 0,
-    lastReview: '2026-08-21T11:00:00.000Z',
+    lastReview: "2026-08-21T11:00:00.000Z",
     createdAt: NOW - 60_000,
     updatedAt: NOW - 60_000,
     ...overrides,
   };
 }
 
-function expectReadOnlyQuery(
-  harness: ReturnType<typeof createQueryHarness>,
-  expectedCalls = 1,
-) {
+function expectReadOnlyQuery(harness: ReturnType<typeof createQueryHarness>, expectedCalls = 1) {
   expect(harness.queryEvents).toEqual(
-    Array.from({ length: expectedCalls }, () => 'srs_cards:by_student_and_objective'),
+    Array.from({ length: expectedCalls }, () => "srs_cards:by_student_and_objective"),
   );
   expect(harness.queryConditions).toEqual(
     Array.from({ length: expectedCalls }, () => ({
@@ -122,17 +116,17 @@ function expectReadOnlyQuery(
   expect(harness.writes).toEqual([]);
 }
 
-function expectState(status: 'not_started' | 'in_progress' | 'mastered' | 'decaying') {
+function expectState(status: "not_started" | "in_progress" | "mastered" | "decaying") {
   return {
     nodeId: PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_NODE_ID,
     title: TITLE,
     status,
-    readiness: 'ready' as const,
+    readiness: "ready" as const,
   };
 }
 
-describe('getPrecalculusTopic14RateSignAndTrendKnowledgeState', () => {
-  it('exports the internal query and returns the exact bounded no-card state', async () => {
+describe("getPrecalculusTopic14RateSignAndTrendKnowledgeState", () => {
+  it("exports the internal query and returns the exact bounded no-card state", async () => {
     expect(getPrecalculusTopic14RateSignAndTrendKnowledgeState).toBeDefined();
 
     const harness = createQueryHarness();
@@ -141,57 +135,71 @@ describe('getPrecalculusTopic14RateSignAndTrendKnowledgeState', () => {
       now: NOW,
     });
 
-    expect(result).toStrictEqual(expectState('not_started'));
-    expect(Object.keys(result).sort()).toEqual(['nodeId', 'readiness', 'status', 'title']);
+    expect(result).toStrictEqual(expectState("not_started"));
+    expect(Object.keys(result).sort()).toEqual(["nodeId", "readiness", "status", "title"]);
     expectReadOnlyQuery(harness);
   });
 
   it.each([
-    ['no card', []],
-    ['Worked-only card', [makeCard(PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_WORKED_ACTIVITY_ID)]],
-    ['unknown family', [makeCard(`${PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_NODE_ID}.unknown`)]],
-    ['other node', [makeCard(PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_ACTIVITY_ID, {
-      objectiveId: 'math.precalc.skill.1.4.identify-relative-and-absolute-extrema-from-graphs',
-    })]],
-    ['foreign learner', [makeCard(PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_ACTIVITY_ID, {
-      studentId: FOREIGN_LEARNER_ID,
-    })]],
-  ] as const)('ignores %s and returns not started', async (_label, cards) => {
+    ["no card", []],
+    ["Worked-only card", [makeCard(PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_WORKED_ACTIVITY_ID)]],
+    ["unknown family", [makeCard(`${PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_NODE_ID}.unknown`)]],
+    [
+      "other node",
+      [
+        makeCard(PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_ACTIVITY_ID, {
+          objectiveId: "math.precalc.skill.1.4.identify-relative-and-absolute-extrema-from-graphs",
+        }),
+      ],
+    ],
+    [
+      "foreign learner",
+      [
+        makeCard(PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_ACTIVITY_ID, {
+          studentId: FOREIGN_LEARNER_ID,
+        }),
+      ],
+    ],
+  ] as const)("ignores %s and returns not started", async (_label, cards) => {
     const harness = createQueryHarness(cards);
 
-    await expect(getPrecalculusTopic14RateSignAndTrendKnowledgeStateHandler(harness.ctx, {
-      learnerId: LEARNER_ID,
-      now: NOW,
-    })).resolves.toStrictEqual(expectState('not_started'));
+    await expect(
+      getPrecalculusTopic14RateSignAndTrendKnowledgeStateHandler(harness.ctx, {
+        learnerId: LEARNER_ID,
+        now: NOW,
+      }),
+    ).resolves.toStrictEqual(expectState("not_started"));
 
     expectReadOnlyQuery(harness);
   });
 
   it.each([
-    ['Guided', PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_ACTIVITY_ID],
-    ['Independent', PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_INDEPENDENT_ACTIVITY_ID],
-  ] as const)('returns in progress for one exact %s family', async (_label, problemFamilyId) => {
+    ["Guided", PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_ACTIVITY_ID],
+    ["Independent", PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_INDEPENDENT_ACTIVITY_ID],
+  ] as const)("returns in progress for one exact %s family", async (_label, problemFamilyId) => {
     const harness = createQueryHarness([makeCard(problemFamilyId)]);
 
-    await expect(getPrecalculusTopic14RateSignAndTrendKnowledgeStateHandler(harness.ctx, {
-      learnerId: LEARNER_ID,
-      now: NOW,
-    })).resolves.toStrictEqual(expectState('in_progress'));
+    await expect(
+      getPrecalculusTopic14RateSignAndTrendKnowledgeStateHandler(harness.ctx, {
+        learnerId: LEARNER_ID,
+        now: NOW,
+      }),
+    ).resolves.toStrictEqual(expectState("in_progress"));
 
     expectReadOnlyQuery(harness);
   });
 
-  it('returns mastered for both exact fresh families, ignores Worked and unknown cards, and is replay-stable', async () => {
+  it("returns mastered for both exact fresh families, ignores Worked and unknown cards, and is replay-stable", async () => {
     const harness = createQueryHarness([
       makeCard(PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_ACTIVITY_ID),
       makeCard(PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_INDEPENDENT_ACTIVITY_ID, {
-        _id: 'srs_cards:topic14-rate-sign-independent',
+        _id: "srs_cards:topic14-rate-sign-independent",
       }),
       makeCard(PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_WORKED_ACTIVITY_ID, {
-        _id: 'srs_cards:topic14-rate-sign-worked',
+        _id: "srs_cards:topic14-rate-sign-worked",
       }),
       makeCard(`${PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_NODE_ID}.unknown`, {
-        _id: 'srs_cards:topic14-rate-sign-unknown',
+        _id: "srs_cards:topic14-rate-sign-unknown",
       }),
     ]);
 
@@ -204,12 +212,12 @@ describe('getPrecalculusTopic14RateSignAndTrendKnowledgeState', () => {
       now: NOW,
     });
 
-    expect(first).toStrictEqual(expectState('mastered'));
+    expect(first).toStrictEqual(expectState("mastered"));
     expect(replay).toStrictEqual(first);
     expectReadOnlyQuery(harness, 2);
   });
 
-  it('uses numeric and ISO lastReview values with the query time for aged cards', async () => {
+  it("uses numeric and ISO lastReview values with the query time for aged cards", async () => {
     const oldReview = NOW - 365 * DAY;
     const harness = createQueryHarness([
       makeCard(PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_ACTIVITY_ID, {
@@ -218,38 +226,42 @@ describe('getPrecalculusTopic14RateSignAndTrendKnowledgeState', () => {
         lastReview: oldReview,
       }),
       makeCard(PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_INDEPENDENT_ACTIVITY_ID, {
-        _id: 'srs_cards:topic14-rate-sign-aged-independent',
+        _id: "srs_cards:topic14-rate-sign-aged-independent",
         stability: 1,
         elapsedDays: 0,
         lastReview: new Date(oldReview).toISOString(),
       }),
     ]);
 
-    await expect(getPrecalculusTopic14RateSignAndTrendKnowledgeStateHandler(harness.ctx, {
-      learnerId: LEARNER_ID,
-      now: NOW,
-    })).resolves.toStrictEqual(expectState('in_progress'));
+    await expect(
+      getPrecalculusTopic14RateSignAndTrendKnowledgeStateHandler(harness.ctx, {
+        learnerId: LEARNER_ID,
+        now: NOW,
+      }),
+    ).resolves.toStrictEqual(expectState("in_progress"));
 
     expectReadOnlyQuery(harness);
   });
 
-  it('uses stored elapsed days when lastReview is invalid', async () => {
+  it("uses stored elapsed days when lastReview is invalid", async () => {
     const harness = createQueryHarness([
       makeCard(PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_GUIDED_ACTIVITY_ID, {
         elapsedDays: 0,
-        lastReview: 'not-a-valid-review-time',
+        lastReview: "not-a-valid-review-time",
       }),
       makeCard(PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_INDEPENDENT_ACTIVITY_ID, {
-        _id: 'srs_cards:topic14-rate-sign-invalid-independent',
+        _id: "srs_cards:topic14-rate-sign-invalid-independent",
         elapsedDays: 0,
-        lastReview: 'not-a-valid-review-time',
+        lastReview: "not-a-valid-review-time",
       }),
     ]);
 
-    await expect(getPrecalculusTopic14RateSignAndTrendKnowledgeStateHandler(harness.ctx, {
-      learnerId: LEARNER_ID,
-      now: NOW,
-    })).resolves.toStrictEqual(expectState('mastered'));
+    await expect(
+      getPrecalculusTopic14RateSignAndTrendKnowledgeStateHandler(harness.ctx, {
+        learnerId: LEARNER_ID,
+        now: NOW,
+      }),
+    ).resolves.toStrictEqual(expectState("mastered"));
 
     expectReadOnlyQuery(harness);
   });

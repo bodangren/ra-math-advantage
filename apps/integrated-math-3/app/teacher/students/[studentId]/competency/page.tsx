@@ -1,10 +1,10 @@
-import { redirect } from 'next/navigation';
-import Link from 'next/link';
-import { ChevronLeft } from 'lucide-react';
-import { requireTeacherSessionClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
-import { StudentCompetencyDetailGrid } from '@/components/teacher/StudentCompetencyDetailGrid';
-import type { StudentCompetencyDetail } from '@math-platform/teacher-reporting-core';
+import { redirect } from "next/navigation";
+import Link from "next/link";
+import { ChevronLeft } from "lucide-react";
+import { requireTeacherSessionClaims } from "@/lib/auth/server";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
+import { StudentCompetencyDetailGrid } from "@/components/teacher/StudentCompetencyDetailGrid";
+import type { StudentCompetencyDetail } from "@math-platform/teacher-reporting-core";
 
 interface PageProps {
   params: Promise<{ studentId: string }>;
@@ -18,7 +18,7 @@ interface PageProps {
  */
 export default async function TeacherStudentCompetencyPage({ params }: PageProps) {
   const { studentId } = await params;
-  const claims = await requireTeacherSessionClaims('/auth/login');
+  const claims = await requireTeacherSessionClaims("/auth/login");
 
   const studentCompetencyDetail = await fetchInternalQuery(
     internal.teacher.getTeacherStudentCompetencyDetail,
@@ -28,7 +28,7 @@ export default async function TeacherStudentCompetencyPage({ params }: PageProps
     },
   );
 
-  if (!studentCompetencyDetail) redirect('/teacher/competency');
+  if (!studentCompetencyDetail) redirect("/teacher/competency");
 
   const detail = studentCompetencyDetail as StudentCompetencyDetail;
 

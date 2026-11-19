@@ -1,8 +1,7 @@
 /**
  * Canonical version identifier for the generator-correctness contract.
  */
-export const GENERATOR_CORRECTNESS_CONTRACT_VERSION =
-  'generator-correctness.v1' as const;
+export const GENERATOR_CORRECTNESS_CONTRACT_VERSION = "generator-correctness.v1" as const;
 
 /**
  * Correctness contract for a math problem generator.

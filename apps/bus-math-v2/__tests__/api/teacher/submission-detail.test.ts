@@ -1,144 +1,147 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mockRequireActiveTeacherRequestClaims = vi.fn();
 const mockFetchInternalQuery = vi.fn();
 
-vi.mock('@/lib/auth/server', () => ({
+vi.mock("@/lib/auth/server", () => ({
   requireActiveTeacherRequestClaims: mockRequireActiveTeacherRequestClaims,
 }));
 
-vi.mock('@/lib/convex/server', () => ({
+vi.mock("@/lib/convex/server", () => ({
   fetchInternalQuery: mockFetchInternalQuery,
   internal: {
     teacher: {
-      getProfileWithOrg: 'internal.teacher.getProfileWithOrg',
-      getSubmissionDetail: 'internal.teacher.getSubmissionDetail',
+      getProfileWithOrg: "internal.teacher.getProfileWithOrg",
+      getSubmissionDetail: "internal.teacher.getSubmissionDetail",
     },
     activities: {
-      getProfileById: 'internal.activities.getProfileById',
+      getProfileById: "internal.activities.getProfileById",
     },
   },
 }));
 
-const { GET } = await import('@/app/api/teacher/submission-detail/route');
+const { GET } = await import("@/app/api/teacher/submission-detail/route");
 
 function buildRequest(params: Record<string, string>) {
-  const url = new URL('http://localhost/api/teacher/submission-detail');
+  const url = new URL("http://localhost/api/teacher/submission-detail");
   for (const [key, value] of Object.entries(params)) {
     url.searchParams.set(key, value);
   }
   return new Request(url.toString());
 }
 
-describe('GET /api/teacher/submission-detail', () => {
+describe("GET /api/teacher/submission-detail", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockRequireActiveTeacherRequestClaims.mockResolvedValue({
-      sub: 'teacher_profile_1',
-      username: 'teacher',
-      role: 'teacher',
+      sub: "teacher_profile_1",
+      username: "teacher",
+      role: "teacher",
       iat: 1,
       exp: 2,
     });
   });
 
-  it('returns 401 when the requester is unauthenticated or deactivated', async () => {
+  it("returns 401 when the requester is unauthenticated or deactivated", async () => {
     mockRequireActiveTeacherRequestClaims.mockResolvedValue(
-      new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 }),
+      new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 }),
     );
 
     const response = await GET(
       buildRequest({
-        studentId: 'student_profile_1',
-        lessonId: 'lesson_1',
+        studentId: "student_profile_1",
+        lessonId: "lesson_1",
       }),
     );
 
     expect(response.status).toBe(401);
   });
 
-  it('returns 400 when required query params are missing', async () => {
-    const response = await GET(buildRequest({ studentId: 'student_profile_1' }));
+  it("returns 400 when required query params are missing", async () => {
+    const response = await GET(buildRequest({ studentId: "student_profile_1" }));
 
     expect(response.status).toBe(400);
     const payload = await response.json();
-    expect(payload.error).toBe('Invalid parameters');
+    expect(payload.error).toBe("Invalid parameters");
   });
 
-  it('returns 403 when caller is not teacher/admin', async () => {
+  it("returns 403 when caller is not teacher/admin", async () => {
     mockFetchInternalQuery.mockResolvedValueOnce({
-      id: 'teacher_profile_1',
-      role: 'student',
-      organizationId: 'org_1',
+      id: "teacher_profile_1",
+      role: "student",
+      organizationId: "org_1",
     });
 
     const response = await GET(
       buildRequest({
-        studentId: 'student_profile_1',
-        lessonId: 'lesson_1',
+        studentId: "student_profile_1",
+        lessonId: "lesson_1",
       }),
     );
 
     expect(response.status).toBe(403);
   });
 
-  it('returns 404 when student is not in teacher organization', async () => {
+  it("returns 404 when student is not in teacher organization", async () => {
     mockFetchInternalQuery
       .mockResolvedValueOnce({
-        id: 'teacher_profile_1',
-        role: 'teacher',
-        organizationId: 'org_1',
+        id: "teacher_profile_1",
+        role: "teacher",
+        organizationId: "org_1",
       })
       .mockResolvedValueOnce({
-        id: 'student_profile_1',
-        role: 'student',
-        organizationId: 'org_2',
+        id: "student_profile_1",
+        role: "student",
+        organizationId: "org_2",
       });
 
     const response = await GET(
       buildRequest({
-        studentId: 'student_profile_1',
-        lessonId: 'lesson_1',
+        studentId: "student_profile_1",
+        lessonId: "lesson_1",
       }),
     );
 
     expect(response.status).toBe(404);
   });
 
-  it('returns submission detail for same-org student', async () => {
+  it("returns submission detail for same-org student", async () => {
     mockFetchInternalQuery
       .mockResolvedValueOnce({
-        id: 'teacher_profile_1',
-        role: 'teacher',
-        organizationId: 'org_1',
+        id: "teacher_profile_1",
+        role: "teacher",
+        organizationId: "org_1",
       })
       .mockResolvedValueOnce({
-        id: 'student_profile_1',
-        role: 'student',
-        organizationId: 'org_1',
-        displayName: 'Alice',
-        username: 'alice',
+        id: "student_profile_1",
+        role: "student",
+        organizationId: "org_1",
+        displayName: "Alice",
+        username: "alice",
       })
       .mockResolvedValueOnce({
-        studentName: 'Alice',
-        lessonTitle: 'Lesson 1',
+        studentName: "Alice",
+        lessonTitle: "Lesson 1",
         phases: [],
       });
 
     const response = await GET(
       buildRequest({
-        studentId: 'student_profile_1',
-        lessonId: 'lesson_1',
+        studentId: "student_profile_1",
+        lessonId: "lesson_1",
       }),
     );
 
     expect(response.status).toBe(200);
     const payload = await response.json();
-    expect(payload.lessonTitle).toBe('Lesson 1');
-    expect(mockFetchInternalQuery).toHaveBeenLastCalledWith('internal.teacher.getSubmissionDetail', {
-      studentId: 'student_profile_1',
-      lessonId: 'lesson_1',
-      studentName: 'Alice',
-    });
+    expect(payload.lessonTitle).toBe("Lesson 1");
+    expect(mockFetchInternalQuery).toHaveBeenLastCalledWith(
+      "internal.teacher.getSubmissionDetail",
+      {
+        studentId: "student_profile_1",
+        lessonId: "lesson_1",
+        studentName: "Alice",
+      },
+    );
   });
 });

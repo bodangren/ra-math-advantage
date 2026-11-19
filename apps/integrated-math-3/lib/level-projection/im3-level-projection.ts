@@ -1,21 +1,24 @@
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import {
   projectDisplayLevel,
   displayLevelSchema,
-} from '@math-platform/knowledge-space-core/level-projection';
+} from "@math-platform/knowledge-space-core/level-projection";
 import type {
   KnowledgeState,
   DisplayLevelBand,
-} from '@math-platform/knowledge-space-core/level-projection';
+} from "@math-platform/knowledge-space-core/level-projection";
 
-const CSV_PATH = resolve(__dirname, 'gse-to-im3-advantage.csv');
+const CSV_PATH = resolve(__dirname, "gse-to-im3-advantage.csv");
 
 function loadLevels(): DisplayLevelBand {
-  const raw = readFileSync(CSV_PATH, 'utf8');
-  const rows = raw.split(/\r?\n/).filter((line) => line.length > 0).slice(1);
+  const raw = readFileSync(CSV_PATH, "utf8");
+  const rows = raw
+    .split(/\r?\n/)
+    .filter((line) => line.length > 0)
+    .slice(1);
   const levels = rows.map((row) => {
-    const [id, title, minMasteryStr] = row.split(',');
+    const [id, title, minMasteryStr] = row.split(",");
     if (!id || !title || minMasteryStr === undefined) {
       throw new Error(`Malformed CSV row in ${CSV_PATH}: "${row}"`);
     }

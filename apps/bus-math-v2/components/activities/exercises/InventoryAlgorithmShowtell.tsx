@@ -1,123 +1,132 @@
-'use client'
+"use client";
 
-import { useState, useCallback, useRef } from 'react'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { CheckCircle2, Lightbulb, TrendingUp, Package, DollarSign } from 'lucide-react'
-import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract'
-import { buildSimulationSubmissionEnvelope, createSimulationPart } from '@/lib/practice/simulation-submission'
+import { useState, useCallback, useRef } from "react";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { CheckCircle2, Lightbulb, TrendingUp, Package, DollarSign } from "lucide-react";
+import type { PracticeSubmissionEnvelope } from "@/lib/practice/contract";
+import {
+  buildSimulationSubmissionEnvelope,
+  createSimulationPart,
+} from "@/lib/practice/simulation-submission";
 
 interface InventoryLot {
-  id: string
-  purchaseDate: string
-  quantity: number
-  unitCost: number
+  id: string;
+  purchaseDate: string;
+  quantity: number;
+  unitCost: number;
 }
 
 interface InventoryMethod {
-  id: string
-  name: string
-  description: string
-  calculateCostOfGoodsSold: (lots: InventoryLot[], salesQuantity: number) => { cogs: number; endingInventory: number; explanation: string }
+  id: string;
+  name: string;
+  description: string;
+  calculateCostOfGoodsSold: (
+    lots: InventoryLot[],
+    salesQuantity: number,
+  ) => { cogs: number; endingInventory: number; explanation: string };
 }
 
 const sampleLots: InventoryLot[] = [
-  { id: 'lot-1', purchaseDate: 'Jan 1', quantity: 100, unitCost: 10.00 },
-  { id: 'lot-2', purchaseDate: 'Jan 15', quantity: 150, unitCost: 12.00 },
-  { id: 'lot-3', purchaseDate: 'Feb 1', quantity: 120, unitCost: 14.00 },
-]
+  { id: "lot-1", purchaseDate: "Jan 1", quantity: 100, unitCost: 10.0 },
+  { id: "lot-2", purchaseDate: "Jan 15", quantity: 150, unitCost: 12.0 },
+  { id: "lot-3", purchaseDate: "Feb 1", quantity: 120, unitCost: 14.0 },
+];
 
-const salesQuantity = 200
+const salesQuantity = 200;
 
 const fifoMethod: InventoryMethod = {
-  id: 'fifo',
-  name: 'FIFO (First-In, First-Out)',
-  description: 'Assumes the oldest items are sold first.',
+  id: "fifo",
+  name: "FIFO (First-In, First-Out)",
+  description: "Assumes the oldest items are sold first.",
   calculateCostOfGoodsSold: (lots, salesQty) => {
-    let remaining = salesQty
-    let cogs = 0
-    const steps: string[] = []
+    let remaining = salesQty;
+    let cogs = 0;
+    const steps: string[] = [];
 
     for (const lot of lots) {
-      if (remaining <= 0) break
-      const used = Math.min(lot.quantity, remaining)
-      cogs += used * lot.unitCost
-      steps.push(`Sold ${used} units from ${lot.purchaseDate} lot at $${lot.unitCost.toFixed(2)} each`)
-      remaining -= used
+      if (remaining <= 0) break;
+      const used = Math.min(lot.quantity, remaining);
+      cogs += used * lot.unitCost;
+      steps.push(
+        `Sold ${used} units from ${lot.purchaseDate} lot at $${lot.unitCost.toFixed(2)} each`,
+      );
+      remaining -= used;
     }
 
-    const totalCost = lots.reduce((sum, lot) => sum + lot.quantity * lot.unitCost, 0)
-    const endingInventory = totalCost - cogs
+    const totalCost = lots.reduce((sum, lot) => sum + lot.quantity * lot.unitCost, 0);
+    const endingInventory = totalCost - cogs;
 
     return {
       cogs,
       endingInventory,
-      explanation: steps.join('; '),
-    }
+      explanation: steps.join("; "),
+    };
   },
-}
+};
 
 const lifoMethod: InventoryMethod = {
-  id: 'lifo',
-  name: 'LIFO (Last-In, First-Out)',
-  description: 'Assumes the newest items are sold first.',
+  id: "lifo",
+  name: "LIFO (Last-In, First-Out)",
+  description: "Assumes the newest items are sold first.",
   calculateCostOfGoodsSold: (lots, salesQty) => {
-    let remaining = salesQty
-    let cogs = 0
-    const steps: string[] = []
+    let remaining = salesQty;
+    let cogs = 0;
+    const steps: string[] = [];
 
     for (let i = lots.length - 1; i >= 0; i--) {
-      const lot = lots[i]
-      if (remaining <= 0) break
-      const used = Math.min(lot.quantity, remaining)
-      cogs += used * lot.unitCost
-      steps.push(`Sold ${used} units from ${lot.purchaseDate} lot at $${lot.unitCost.toFixed(2)} each`)
-      remaining -= used
+      const lot = lots[i];
+      if (remaining <= 0) break;
+      const used = Math.min(lot.quantity, remaining);
+      cogs += used * lot.unitCost;
+      steps.push(
+        `Sold ${used} units from ${lot.purchaseDate} lot at $${lot.unitCost.toFixed(2)} each`,
+      );
+      remaining -= used;
     }
 
-    const totalCost = lots.reduce((sum, lot) => sum + lot.quantity * lot.unitCost, 0)
-    const endingInventory = totalCost - cogs
+    const totalCost = lots.reduce((sum, lot) => sum + lot.quantity * lot.unitCost, 0);
+    const endingInventory = totalCost - cogs;
 
     return {
       cogs,
       endingInventory,
-      explanation: steps.join('; '),
-    }
+      explanation: steps.join("; "),
+    };
   },
-}
+};
 
 const weightedAverageMethod: InventoryMethod = {
-  id: 'weighted-average',
-  name: 'Weighted Average',
-  description: 'Uses the average cost of all items available for sale.',
+  id: "weighted-average",
+  name: "Weighted Average",
+  description: "Uses the average cost of all items available for sale.",
   calculateCostOfGoodsSold: (lots, salesQty) => {
-    const totalUnits = lots.reduce((sum, lot) => sum + lot.quantity, 0)
-    const totalCost = lots.reduce((sum, lot) => sum + lot.quantity * lot.unitCost, 0)
-    const averageCost = totalUnits > 0 ? totalCost / totalUnits : 0
-    const cogs = salesQty * averageCost
-    const endingInventory = totalCost - cogs
+    const totalUnits = lots.reduce((sum, lot) => sum + lot.quantity, 0);
+    const totalCost = lots.reduce((sum, lot) => sum + lot.quantity * lot.unitCost, 0);
+    const averageCost = totalUnits > 0 ? totalCost / totalUnits : 0;
+    const cogs = salesQty * averageCost;
+    const endingInventory = totalCost - cogs;
 
     return {
       cogs,
       endingInventory,
       explanation: `Average cost: $${averageCost.toFixed(2)} per unit (total $${totalCost.toFixed(2)} for ${totalUnits} units)`,
-    }
+    };
   },
-}
+};
 
-const methods = [fifoMethod, lifoMethod, weightedAverageMethod]
+const methods = [fifoMethod, lifoMethod, weightedAverageMethod];
 
 export interface InventoryAlgorithmShowtellProps {
   activity: {
-    id?: string
+    id?: string;
     props?: {
-      masteryThreshold?: number
-    }
-  }
-  onSubmit?: (submission: PracticeSubmissionEnvelope) => void
-  onComplete?: () => void
+      masteryThreshold?: number;
+    };
+  };
+  onSubmit?: (submission: PracticeSubmissionEnvelope) => void;
+  onComplete?: () => void;
 }
-
 
 /**
  * Renders an inventory cost flow show-and-tell activity where users explore
@@ -127,48 +136,61 @@ export interface InventoryAlgorithmShowtellProps {
  * @param onSubmit - Callback fired when the user completes the analysis
  * @param onComplete - Callback fired when the analysis is finalized
  */
-export function InventoryAlgorithmShowtell({ activity, onSubmit, onComplete }: InventoryAlgorithmShowtellProps) {
-  const [activeMethodId, setActiveMethodId] = useState<string>(methods[0].id)
-  const [insights, setInsights] = useState<string[]>([])
-  const [currentInsight, setCurrentInsight] = useState('')
-  const [completed, setCompleted] = useState(false)
-  const submittedRef = useRef(false)
+export function InventoryAlgorithmShowtell({
+  activity,
+  onSubmit,
+  onComplete,
+}: InventoryAlgorithmShowtellProps) {
+  const [activeMethodId, setActiveMethodId] = useState<string>(methods[0].id);
+  const [insights, setInsights] = useState<string[]>([]);
+  const [currentInsight, setCurrentInsight] = useState("");
+  const [completed, setCompleted] = useState(false);
+  const submittedRef = useRef(false);
 
-  const activeMethod = methods.find(m => m.id === activeMethodId) || methods[0]
-  const result = activeMethod.calculateCostOfGoodsSold(sampleLots, salesQuantity)
-
+  const activeMethod = methods.find((m) => m.id === activeMethodId) || methods[0];
+  const result = activeMethod.calculateCostOfGoodsSold(sampleLots, salesQuantity);
 
   /**
    * Adds the current insight text to the insights list and clears the input.
    */
   const handleAddInsight = useCallback(() => {
-    if (!currentInsight.trim()) return
-    setInsights(prev => [...prev, currentInsight])
-    setCurrentInsight('')
-  }, [currentInsight])
-
+    if (!currentInsight.trim()) return;
+    setInsights((prev) => [...prev, currentInsight]);
+    setCurrentInsight("");
+  }, [currentInsight]);
 
   /**
    * Finalizes the analysis, marks the activity as completed, and submits
    * the result envelope with method results and insights.
    */
   const handleComplete = useCallback(() => {
-    if (submittedRef.current) return
-    submittedRef.current = true
-    setCompleted(true)
+    if (submittedRef.current) return;
+    submittedRef.current = true;
+    setCompleted(true);
     try {
       onSubmit?.(
         buildSimulationSubmissionEnvelope({
-          activityId: activity.id ?? 'inventory-algorithm-showtell',
-          mode: 'independent_practice',
+          activityId: activity.id ?? "inventory-algorithm-showtell",
+          mode: "independent_practice",
           answers: {
-            viewedMethods: methods.map(m => m.id),
+            viewedMethods: methods.map((m) => m.id),
             insights,
           },
           parts: [
-            createSimulationPart('fifo-result', JSON.stringify(fifoMethod.calculateCostOfGoodsSold(sampleLots, salesQuantity))),
-            createSimulationPart('lifo-result', JSON.stringify(lifoMethod.calculateCostOfGoodsSold(sampleLots, salesQuantity))),
-            createSimulationPart('weighted-average-result', JSON.stringify(weightedAverageMethod.calculateCostOfGoodsSold(sampleLots, salesQuantity))),
+            createSimulationPart(
+              "fifo-result",
+              JSON.stringify(fifoMethod.calculateCostOfGoodsSold(sampleLots, salesQuantity)),
+            ),
+            createSimulationPart(
+              "lifo-result",
+              JSON.stringify(lifoMethod.calculateCostOfGoodsSold(sampleLots, salesQuantity)),
+            ),
+            createSimulationPart(
+              "weighted-average-result",
+              JSON.stringify(
+                weightedAverageMethod.calculateCostOfGoodsSold(sampleLots, salesQuantity),
+              ),
+            ),
             ...insights.map((insight, i) => createSimulationPart(`insight-${i}`, insight)),
           ],
           artifact: {
@@ -177,14 +199,14 @@ export function InventoryAlgorithmShowtell({ activity, onSubmit, onComplete }: I
             insightCount: insights.length,
           },
         }),
-      )
-      onComplete?.()
+      );
+      onComplete?.();
     } catch (err) {
-      console.error('InventoryAlgorithmShowtell submission failed:', err)
-      submittedRef.current = false
-      setCompleted(false)
+      console.error("InventoryAlgorithmShowtell submission failed:", err);
+      submittedRef.current = false;
+      setCompleted(false);
     }
-  }, [insights, onSubmit, onComplete, activity.id])
+  }, [insights, onSubmit, onComplete, activity.id]);
 
   return (
     <div className="space-y-6">
@@ -195,7 +217,8 @@ export function InventoryAlgorithmShowtell({ activity, onSubmit, onComplete }: I
             Inventory Cost Flow Show & Tell
           </CardTitle>
           <CardDescription className="text-emerald-600">
-            Explore FIFO, LIFO, and Weighted Average inventory costing methods. Compare results and document your insights.
+            Explore FIFO, LIFO, and Weighted Average inventory costing methods. Compare results and
+            document your insights.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -203,9 +226,9 @@ export function InventoryAlgorithmShowtell({ activity, onSubmit, onComplete }: I
             {methods.map((method) => (
               <Button
                 key={method.id}
-                variant={method.id === activeMethodId ? 'default' : 'outline'}
+                variant={method.id === activeMethodId ? "default" : "outline"}
                 onClick={() => setActiveMethodId(method.id)}
-                className={method.id === activeMethodId ? 'bg-emerald-700' : ''}
+                className={method.id === activeMethodId ? "bg-emerald-700" : ""}
               >
                 {method.name}
               </Button>
@@ -243,9 +266,16 @@ export function InventoryAlgorithmShowtell({ activity, onSubmit, onComplete }: I
                 ))}
                 <tr className="font-semibold">
                   <td className="p-2">Total Available</td>
-                  <td className="text-right p-2">{sampleLots.reduce((sum, lot) => sum + lot.quantity, 0)}</td>
+                  <td className="text-right p-2">
+                    {sampleLots.reduce((sum, lot) => sum + lot.quantity, 0)}
+                  </td>
                   <td className="text-right p-2">-</td>
-                  <td className="text-right p-2">${sampleLots.reduce((sum, lot) => sum + lot.quantity * lot.unitCost, 0).toFixed(2)}</td>
+                  <td className="text-right p-2">
+                    $
+                    {sampleLots
+                      .reduce((sum, lot) => sum + lot.quantity * lot.unitCost, 0)
+                      .toFixed(2)}
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -277,7 +307,9 @@ export function InventoryAlgorithmShowtell({ activity, onSubmit, onComplete }: I
                 <Package className="h-4 w-4" />
                 Ending Inventory
               </p>
-              <p className="text-2xl font-bold text-slate-900">${result.endingInventory.toFixed(2)}</p>
+              <p className="text-2xl font-bold text-slate-900">
+                ${result.endingInventory.toFixed(2)}
+              </p>
             </div>
           </div>
           <div className="bg-slate-50 p-3 rounded border border-slate-200">
@@ -304,10 +336,18 @@ export function InventoryAlgorithmShowtell({ activity, onSubmit, onComplete }: I
             disabled={completed}
           />
           <div className="flex gap-2">
-            <Button onClick={handleAddInsight} disabled={!currentInsight.trim() || completed} variant="outline">
+            <Button
+              onClick={handleAddInsight}
+              disabled={!currentInsight.trim() || completed}
+              variant="outline"
+            >
               Add Insight
             </Button>
-            <Button onClick={handleComplete} disabled={insights.length === 0 || completed} className="bg-green-700">
+            <Button
+              onClick={handleComplete}
+              disabled={insights.length === 0 || completed}
+              className="bg-green-700"
+            >
               <CheckCircle2 className="h-4 w-4 mr-2" />
               Complete Analysis
             </Button>
@@ -325,12 +365,13 @@ export function InventoryAlgorithmShowtell({ activity, onSubmit, onComplete }: I
             <div className="bg-green-50 p-3 rounded border border-green-200 flex items-center gap-2">
               <CheckCircle2 className="h-5 w-5 text-green-600" />
               <p className="text-sm text-green-800 font-medium">
-                Analysis complete! {insights.length} insight{insights.length !== 1 ? 's' : ''} documented.
+                Analysis complete! {insights.length} insight{insights.length !== 1 ? "s" : ""}{" "}
+                documented.
               </p>
             </div>
           )}
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

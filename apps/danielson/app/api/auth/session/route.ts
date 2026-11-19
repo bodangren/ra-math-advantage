@@ -1,9 +1,9 @@
-import { cookies } from 'next/headers';
-import { NextResponse } from 'next/server';
-import { getAuthJwtSecret, SESSION_COOKIE_NAME, verifySessionToken } from '@/lib/auth/session';
-import type { SessionClaims } from '@/lib/auth/session';
-import { clearDanielsonSessionCookieOptions } from '@/lib/auth/login-policy';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
+import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
+import { getAuthJwtSecret, SESSION_COOKIE_NAME, verifySessionToken } from "@/lib/auth/session";
+import type { SessionClaims } from "@/lib/auth/session";
+import { clearDanielsonSessionCookieOptions } from "@/lib/auth/login-policy";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
 
 export async function GET() {
   const cookieStore = await cookies();
@@ -13,13 +13,19 @@ export async function GET() {
   try {
     const claims = await verifySessionToken(token, getAuthJwtSecret());
     if (!claims) {
-      cookieStore.set(SESSION_COOKIE_NAME, '', clearDanielsonSessionCookieOptions());
+      cookieStore.set(SESSION_COOKIE_NAME, "", clearDanielsonSessionCookieOptions());
       return NextResponse.json({ authenticated: false });
     }
-    const account = await fetchInternalQuery(internal.auth.getAccountById, { accountId: claims.sub });
-    if (!account?.accountIsActive || !account.organizationIsActive || !account.credentialIsActive
-      || account.credentialUpdatedAt !== (claims as SessionClaims).credentialUpdatedAt) {
-      cookieStore.set(SESSION_COOKIE_NAME, '', clearDanielsonSessionCookieOptions());
+    const account = await fetchInternalQuery(internal.auth.getAccountById, {
+      accountId: claims.sub,
+    });
+    if (
+      !account?.accountIsActive ||
+      !account.organizationIsActive ||
+      !account.credentialIsActive ||
+      account.credentialUpdatedAt !== (claims as SessionClaims).credentialUpdatedAt
+    ) {
+      cookieStore.set(SESSION_COOKIE_NAME, "", clearDanielsonSessionCookieOptions());
       return NextResponse.json({ authenticated: false });
     }
     const context = await fetchInternalQuery(internal.foundation.resolveAccessContext, {
@@ -36,7 +42,9 @@ export async function GET() {
         display_name: account.displayName,
         avatar_url: null,
         metadata: {
-          danielsonRoles: context.roleAssignments.map((assignment: { role: string }) => assignment.role),
+          danielsonRoles: context.roleAssignments.map(
+            (assignment: { role: string }) => assignment.role,
+          ),
           organizationName: account.organizationName,
           organizationBranding: account.organizationBranding,
         },

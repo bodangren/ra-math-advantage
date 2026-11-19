@@ -1,17 +1,17 @@
-import { v } from 'convex/values';
+import { v } from "convex/values";
 
 export const srsCardStateValidator = v.object({
   cardId: v.string(),
-  studentId: v.id('profiles'),
+  studentId: v.id("profiles"),
   objectiveId: v.string(),
   problemFamilyId: v.string(),
   stability: v.number(),
   difficulty: v.number(),
   state: v.union(
-    v.literal('new'),
-    v.literal('learning'),
-    v.literal('review'),
-    v.literal('relearning')
+    v.literal("new"),
+    v.literal("learning"),
+    v.literal("review"),
+    v.literal("relearning"),
   ),
   dueDate: v.string(),
   elapsedDays: v.number(),
@@ -24,20 +24,20 @@ export const srsCardStateValidator = v.object({
 });
 
 export const srsRatingValidator = v.union(
-  v.literal('Again'),
-  v.literal('Hard'),
-  v.literal('Good'),
-  v.literal('Easy')
+  v.literal("Again"),
+  v.literal("Hard"),
+  v.literal("Good"),
+  v.literal("Easy"),
 );
 
 export const srsCardStatePickValidator = v.object({
   stability: v.number(),
   difficulty: v.number(),
   state: v.union(
-    v.literal('new'),
-    v.literal('learning'),
-    v.literal('review'),
-    v.literal('relearning')
+    v.literal("new"),
+    v.literal("learning"),
+    v.literal("review"),
+    v.literal("relearning"),
   ),
   reps: v.number(),
   lapses: v.number(),

@@ -54,9 +54,7 @@ export default function RegisterPage() {
           >
             Register
           </h1>
-          <p className="text-secondary-text">
-            Create your Integrated Math 2 account
-          </p>
+          <p className="text-secondary-text">Create your Integrated Math 2 account</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -153,10 +151,7 @@ export default function RegisterPage() {
 
         <p className="text-center text-muted-text text-sm mt-6">
           Already have an account?{" "}
-          <Link
-            href="/auth/login"
-            className="text-accent hover:underline"
-          >
+          <Link href="/auth/login" className="text-accent hover:underline">
             Sign in
           </Link>
         </p>

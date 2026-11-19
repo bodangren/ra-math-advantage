@@ -17,13 +17,10 @@ export function generateCoefficients(
 ): number[] {
   const poly: number[] = [];
   for (let i = 0; i < degree; i++) {
-    const c =
-      Math.floor(rand() * (otherRange[1] - otherRange[0] + 1)) + otherRange[0];
+    const c = Math.floor(rand() * (otherRange[1] - otherRange[0] + 1)) + otherRange[0];
     poly.push(c);
   }
-  const leadingMag =
-    Math.floor(rand() * (leadingRange[1] - leadingRange[0] + 1)) +
-    leadingRange[0];
+  const leadingMag = Math.floor(rand() * (leadingRange[1] - leadingRange[0] + 1)) + leadingRange[0];
   poly.push(rand() < 0.5 ? -leadingMag : leadingMag);
   return poly;
 }

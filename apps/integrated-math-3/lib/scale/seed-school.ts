@@ -16,9 +16,9 @@ import {
   SCALE_STUDENT_COUNT_CLASS,
   SCALE_SUBMISSIONS_PER_STUDENT,
   SCALE_TEACHERS_PER_SCHOOL,
-} from '@/lib/scale/constants';
+} from "@/lib/scale/constants";
 
-export const SCALE_RNG_SEED = 'load-2026' as const;
+export const SCALE_RNG_SEED = "load-2026" as const;
 
 export interface SchoolSeedInput {
   organizationSlug: string;
@@ -54,10 +54,7 @@ function hashString(str: string): number {
 }
 
 export function generateSchoolSeed(input: SchoolSeedInput): SchoolSeedResult {
-  const scopeNum = hashString([
-    input.rngSeed ?? SCALE_RNG_SEED,
-    input.organizationSlug,
-  ].join('|'));
+  const scopeNum = hashString([input.rngSeed ?? SCALE_RNG_SEED, input.organizationSlug].join("|"));
   const salt = (scopeNum >>> 0).toString(36);
   let seq = 0;
   const id = (prefix: string) => `${prefix}${salt}${(seq++).toString(36)}`;
@@ -65,65 +62,65 @@ export function generateSchoolSeed(input: SchoolSeedInput): SchoolSeedResult {
   const org = { slug: input.organizationSlug };
 
   const teachers = Array.from({ length: SCALE_TEACHERS_PER_SCHOOL }, (_, i) => ({
-    id: id('t'),
+    id: id("t"),
     username: `teacher${i}@${input.organizationSlug}`,
   }));
 
   const classes = Array.from({ length: SCALE_CLASSES_PER_SCHOOL }, (_, i) => ({
-    id: id('c'),
+    id: id("c"),
     name: `Class ${i + 1}`,
     teacherId: teachers[i].id,
   }));
 
   // 34 classes × 30 students = 1,020 — every class is a full section.
-  const students: SchoolSeedResult['students'] = [];
-  const enrollments: SchoolSeedResult['enrollments'] = [];
+  const students: SchoolSeedResult["students"] = [];
+  const enrollments: SchoolSeedResult["enrollments"] = [];
 
   let studentIdx = 0;
   for (let ci = 0; ci < classes.length; ci++) {
     const classRoom = classes[ci];
     for (let si = 0; si < SCALE_STUDENT_COUNT_CLASS; si++) {
-      const sid = id('s');
+      const sid = id("s");
       students.push({
         id: sid,
         username: `student${studentIdx}@${input.organizationSlug}`,
         organizationSlug: input.organizationSlug,
       });
       enrollments.push({
-        id: id('e'),
+        id: id("e"),
         studentId: sid,
         classId: classRoom.id,
-        status: 'active',
+        status: "active",
       });
       studentIdx++;
     }
   }
 
-  const srsCards: SchoolSeedResult['srsCards'] = [];
+  const srsCards: SchoolSeedResult["srsCards"] = [];
   for (let i = 0; i < students.length; i++) {
     const sid = students[i].id;
     for (let j = 0; j < SCALE_CARDS_PER_STUDENT; j++) {
-      srsCards.push({ id: id('k'), studentId: sid });
+      srsCards.push({ id: id("k"), studentId: sid });
     }
   }
 
-  const reviewLog: SchoolSeedResult['reviewLog'] = [];
+  const reviewLog: SchoolSeedResult["reviewLog"] = [];
   for (let i = 0; i < srsCards.length; i++) {
     const card = srsCards[i];
     for (let k = 0; k < SCALE_REVIEWS_PER_CARD; k++) {
       reviewLog.push({
-        id: id('r'),
+        id: id("r"),
         studentId: card.studentId,
         cardId: card.id,
       });
     }
   }
 
-  const submissions: SchoolSeedResult['submissions'] = [];
+  const submissions: SchoolSeedResult["submissions"] = [];
   for (let i = 0; i < students.length; i++) {
     const sid = students[i].id;
     for (let m = 0; m < SCALE_SUBMISSIONS_PER_STUDENT; m++) {
-      submissions.push({ id: id('b'), studentId: sid });
+      submissions.push({ id: id("b"), studentId: sid });
     }
   }
 

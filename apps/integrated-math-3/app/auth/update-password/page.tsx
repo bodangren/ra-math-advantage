@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, type FormEvent } from 'react';
-import Link from 'next/link';
-import { useAuth } from '@/components/auth/AuthProvider';
+import { useState, type FormEvent } from "react";
+import Link from "next/link";
+import { useAuth } from "@/components/auth/AuthProvider";
 
 /**
  * Renders the update-password page allowing authenticated users to change their password.
@@ -11,8 +11,8 @@ import { useAuth } from '@/components/auth/AuthProvider';
  */
 export default function UpdatePasswordPage() {
   useAuth();
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -22,23 +22,23 @@ export default function UpdatePasswordPage() {
     setError(null);
 
     if (newPassword !== confirmPassword) {
-      setError('Passwords do not match');
+      setError("Passwords do not match");
       return;
     }
 
     if (!newPassword) {
-      setError('Password is required');
+      setError("Password is required");
       return;
     }
 
     setSubmitting(true);
 
     try {
-      const res = await fetch('/api/auth/change-password', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/auth/change-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          currentPassword: '',
+          currentPassword: "",
           newPassword,
           confirmPassword,
         }),
@@ -46,12 +46,12 @@ export default function UpdatePasswordPage() {
 
       if (!res.ok) {
         const data = await res.json().catch(() => null);
-        throw new Error(data?.error ?? 'Password update failed');
+        throw new Error(data?.error ?? "Password update failed");
       }
 
       setSuccess(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Password update failed');
+      setError(err instanceof Error ? err.message : "Password update failed");
     } finally {
       setSubmitting(false);
     }
@@ -61,7 +61,9 @@ export default function UpdatePasswordPage() {
     return (
       <div className="space-y-4 text-center">
         <h1 className="text-2xl font-display font-semibold text-foreground">Password Updated</h1>
-        <p className="text-sm text-muted-foreground">Your password has been changed successfully.</p>
+        <p className="text-sm text-muted-foreground">
+          Your password has been changed successfully.
+        </p>
         <Link
           href="/student/dashboard"
           className="inline-block text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -76,9 +78,7 @@ export default function UpdatePasswordPage() {
     <div className="space-y-6">
       <div className="space-y-2 text-center">
         <h1 className="text-2xl font-display font-semibold text-foreground">Update Password</h1>
-        <p className="text-sm text-muted-foreground">
-          Enter your new password below
-        </p>
+        <p className="text-sm text-muted-foreground">Enter your new password below</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -124,9 +124,9 @@ export default function UpdatePasswordPage() {
           type="submit"
           disabled={submitting}
           className="w-full rounded-md px-4 py-2 text-sm font-medium text-primary-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring disabled:opacity-50"
-          style={{ backgroundColor: 'oklch(0.46 0.18 264)' }}
+          style={{ backgroundColor: "oklch(0.46 0.18 264)" }}
         >
-          {submitting ? 'Updating...' : 'Update Password'}
+          {submitting ? "Updating..." : "Update Password"}
         </button>
       </form>
     </div>

@@ -1,19 +1,26 @@
-import { readdir, readFile } from 'node:fs/promises';
-import { dirname, relative, resolve, sep } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { readdir, readFile } from "node:fs/promises";
+import { dirname, relative, resolve, sep } from "node:path";
+import { fileURLToPath } from "node:url";
 
-import { matchTemporaryDebt } from './debt-policy.mjs';
-import { classifyImportPolicy } from './policy-contract.mjs';
+import { matchTemporaryDebt } from "./debt-policy.mjs";
+import { classifyImportPolicy } from "./policy-contract.mjs";
 import {
   buildWorkspaceGraph,
   loadArchitectureManifest,
   validateManifestAgainstRepository,
-} from './repository-graph.mjs';
+} from "./repository-graph.mjs";
 
-const MANIFEST_URL = new URL('./architecture.manifest.json', import.meta.url);
+const MANIFEST_URL = new URL("./architecture.manifest.json", import.meta.url);
 const CODE_EXTENSION = /\.(?:cjs|cts|js|jsx|mjs|mts|ts|tsx)$/;
 const IGNORED_DIRECTORIES = new Set([
-  '.next', '.vinext', '__fixtures__', '__tests__', '_generated', 'coverage', 'dist', 'node_modules',
+  ".next",
+  ".vinext",
+  "__fixtures__",
+  "__tests__",
+  "_generated",
+  "coverage",
+  "dist",
+  "node_modules",
 ]);
 
 export function extractImportSpecifiers(source) {
@@ -30,7 +37,7 @@ export function extractImportSpecifiers(source) {
 }
 
 function violationMessage(ruleId, record) {
-  const target = record.targetWorkspace === null ? '' : ` -> ${record.targetWorkspace}`;
+  const target = record.targetWorkspace === null ? "" : ` -> ${record.targetWorkspace}`;
   return `${record.sourceFile}: [${ruleId}] ${record.sourceWorkspace}${target} imports "${record.specifier}".`;
 }
 
@@ -56,7 +63,11 @@ export function checkResolvedImports(manifest, records, { asOf }) {
       message: violationMessage(ruleId, record),
     });
   }
-  return violations.sort((a, b) => `${a.sourceFile}\0${a.ruleId}\0${a.specifier}`.localeCompare(`${b.sourceFile}\0${b.ruleId}\0${b.specifier}`));
+  return violations.sort((a, b) =>
+    `${a.sourceFile}\0${a.ruleId}\0${a.specifier}`.localeCompare(
+      `${b.sourceFile}\0${b.ruleId}\0${b.specifier}`,
+    ),
+  );
 }
 
 async function sourceFiles(directory) {
@@ -64,8 +75,12 @@ async function sourceFiles(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
     const path = resolve(directory, entry.name);
     if (entry.isDirectory()) {
-      if (!IGNORED_DIRECTORIES.has(entry.name)) files.push(...await sourceFiles(path));
-    } else if (CODE_EXTENSION.test(entry.name) && !entry.name.includes('.test.') && !entry.name.includes('.spec.')) {
+      if (!IGNORED_DIRECTORIES.has(entry.name)) files.push(...(await sourceFiles(path)));
+    } else if (
+      CODE_EXTENSION.test(entry.name) &&
+      !entry.name.includes(".test.") &&
+      !entry.name.includes(".spec.")
+    ) {
       files.push(path);
     }
   }
@@ -73,33 +88,38 @@ async function sourceFiles(directory) {
 }
 
 function normalizePath(path) {
-  return path.split(sep).join('/');
+  return path.split(sep).join("/");
 }
 
 function containingWorkspace(manifest, repositoryPath) {
-  return manifest.workspaces
-    .filter(({ path }) => repositoryPath === path || repositoryPath.startsWith(`${path}/`))
-    .sort((a, b) => b.path.length - a.path.length)[0] ?? null;
+  return (
+    manifest.workspaces
+      .filter(({ path }) => repositoryPath === path || repositoryPath.startsWith(`${path}/`))
+      .sort((a, b) => b.path.length - a.path.length)[0] ?? null
+  );
 }
 
 function packageTarget(manifest, specifier) {
-  return manifest.workspaces
-    .filter(({ packageName }) => packageName !== null)
-    .filter(({ packageName }) => specifier === packageName || specifier.startsWith(`${packageName}/`))
-    .sort((a, b) => b.packageName.length - a.packageName.length)[0] ?? null;
+  return (
+    manifest.workspaces
+      .filter(({ packageName }) => packageName !== null)
+      .filter(
+        ({ packageName }) => specifier === packageName || specifier.startsWith(`${packageName}/`),
+      )
+      .sort((a, b) => b.packageName.length - a.packageName.length)[0] ?? null
+  );
 }
 
 function publicEntryPoint(target, specifier) {
   if (target.packageName === null) return false;
-  const entryPoint = specifier === target.packageName
-    ? '.'
-    : `.${specifier.slice(target.packageName.length)}`;
+  const entryPoint =
+    specifier === target.packageName ? "." : `.${specifier.slice(target.packageName.length)}`;
   return target.publicEntryPoints.includes(entryPoint);
 }
 
 function resolveRecord(root, manifest, sourceWorkspace, sourceFile, specifier) {
   let target = packageTarget(manifest, specifier);
-  if (target === null && specifier.startsWith('.')) {
+  if (target === null && specifier.startsWith(".")) {
     const resolvedPath = normalizePath(relative(root, resolve(dirname(sourceFile), specifier)));
     target = containingWorkspace(manifest, resolvedPath);
   } else if (target === null && /^(?:apps|packages)\//.test(specifier)) {
@@ -107,12 +127,17 @@ function resolveRecord(root, manifest, sourceWorkspace, sourceFile, specifier) {
   }
 
   const generatedConvex = /(^|\/)convex\/_generated(?:\/|$)/.test(specifier);
-  if (generatedConvex && sourceWorkspace.kind === 'app' && specifier.startsWith('@/convex/_generated/')) {
+  if (
+    generatedConvex &&
+    sourceWorkspace.kind === "app" &&
+    specifier.startsWith("@/convex/_generated/")
+  ) {
     return null;
   }
-  if (target?.id === sourceWorkspace.id && (!generatedConvex || sourceWorkspace.kind === 'app')) return null;
+  if (target?.id === sourceWorkspace.id && (!generatedConvex || sourceWorkspace.kind === "app"))
+    return null;
   if (target === null && !generatedConvex) return null;
-  const targetKind = target?.kind ?? 'package';
+  const targetKind = target?.kind ?? "package";
   return {
     sourceKind: sourceWorkspace.kind,
     targetKind,
@@ -121,7 +146,7 @@ function resolveRecord(root, manifest, sourceWorkspace, sourceFile, specifier) {
     sourceDomainClassification: sourceWorkspace.domainClassification,
     targetDomainClassification: target?.domainClassification,
     declared: target === null ? true : sourceWorkspace.allowedDependencies.includes(target.id),
-    publicEntryPoint: target?.kind === 'package' ? publicEntryPoint(target, specifier) : true,
+    publicEntryPoint: target?.kind === "package" ? publicEntryPoint(target, specifier) : true,
     sourceWorkspace: sourceWorkspace.id,
     targetWorkspace: target?.id ?? null,
     sourceFile: normalizePath(relative(root, sourceFile)),
@@ -138,7 +163,7 @@ export async function checkRepositoryArchitecture(rootUrl, { asOf }) {
   const records = [];
   for (const workspace of manifest.workspaces) {
     for (const sourceFile of await sourceFiles(resolve(root, workspace.path))) {
-      const source = await readFile(sourceFile, 'utf8');
+      const source = await readFile(sourceFile, "utf8");
       for (const specifier of extractImportSpecifiers(source)) {
         const record = resolveRecord(root, manifest, workspace, sourceFile, specifier);
         if (record !== null) records.push(record);
@@ -152,23 +177,27 @@ export async function checkRepositoryArchitecture(rootUrl, { asOf }) {
       sourceFile: drift.workspace,
       sourceWorkspace: null,
       targetWorkspace: null,
-      specifier: '',
+      specifier: "",
       message: `${drift.workspace}: [${drift.code}] ${drift.message}`,
     });
   }
   for (const cycle of graph.cycles) {
     violations.push({
-      ruleId: 'package-cycle',
-      sourceFile: 'scripts/architecture/architecture.manifest.json',
+      ruleId: "package-cycle",
+      sourceFile: "scripts/architecture/architecture.manifest.json",
       sourceWorkspace: cycle[0],
       targetWorkspace: cycle[1],
-      specifier: cycle.join(' -> '),
-      message: `scripts/architecture/architecture.manifest.json: [package-cycle] ${cycle.join(' -> ')}.`,
+      specifier: cycle.join(" -> "),
+      message: `scripts/architecture/architecture.manifest.json: [package-cycle] ${cycle.join(" -> ")}.`,
     });
   }
-  violations.sort((a, b) => `${a.sourceFile}\0${a.ruleId}\0${a.specifier}`.localeCompare(`${b.sourceFile}\0${b.ruleId}\0${b.specifier}`));
+  violations.sort((a, b) =>
+    `${a.sourceFile}\0${a.ruleId}\0${a.specifier}`.localeCompare(
+      `${b.sourceFile}\0${b.ruleId}\0${b.specifier}`,
+    ),
+  );
   return {
-    schemaVersion: 'lms-architecture-check.v1',
+    schemaVersion: "lms-architecture-check.v1",
     workspaceCount: manifest.workspaces.length,
     scannedImportCount: records.length,
     graph,

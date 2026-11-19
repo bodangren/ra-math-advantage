@@ -11,28 +11,17 @@ import { readCredentials } from "@/lib/auth/input";
 export async function POST(request: Request) {
   const input = await readCredentials(request);
   if (!input)
-    return NextResponse.json(
-      { error: "Enter a username and password." },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: "Enter a username and password." }, { status: 400 });
   const { username, password, body } = input;
   const passwordError = validatePasswordForRole("student", password);
-  if (passwordError)
-    return NextResponse.json({ error: passwordError }, { status: 400 });
-  if (
-    typeof body.classCode !== "string" ||
-    !body.classCode.trim() ||
-    body.classCode.length > 80
-  )
-    return NextResponse.json(
-      { error: "Enter the class code from your teacher." },
-      { status: 400 },
-    );
+  if (passwordError) return NextResponse.json({ error: passwordError }, { status: 400 });
+  if (typeof body.classCode !== "string" || !body.classCode.trim() || body.classCode.length > 80)
+    return NextResponse.json({ error: "Enter the class code from your teacher." }, { status: 400 });
   try {
-    const attempt = await fetchInternalMutation(
-      internal.auth.consumeAuthAttempt,
-      { username, operation: "register" },
-    );
+    const attempt = await fetchInternalMutation(internal.auth.consumeAuthAttempt, {
+      username,
+      operation: "register",
+    });
     if (!attempt.allowed)
       return NextResponse.json(
         { error: "Too many attempts. Wait one minute." },
@@ -42,11 +31,7 @@ export async function POST(request: Request) {
     const result = await fetchInternalMutation(internal.auth.registerStudent, {
       username,
       classCode: body.classCode.trim(),
-      passwordHash: await hashPassword(
-        password,
-        salt,
-        PASSWORD_HASH_ITERATIONS,
-      ),
+      passwordHash: await hashPassword(password, salt, PASSWORD_HASH_ITERATIONS),
       passwordSalt: salt,
       passwordHashIterations: PASSWORD_HASH_ITERATIONS,
     });

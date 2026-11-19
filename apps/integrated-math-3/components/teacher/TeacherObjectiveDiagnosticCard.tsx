@@ -1,24 +1,24 @@
-'use client';
+"use client";
 
-import { cn } from '@/lib/utils';
-import type { TeacherProficiencyView } from '@math-platform/srs-engine';
+import { cn } from "@/lib/utils";
+import type { TeacherProficiencyView } from "@math-platform/srs-engine";
 
 export interface TeacherObjectiveDiagnosticCardProps {
   view: TeacherProficiencyView;
 }
 
-const LABEL_CLASSES: Record<TeacherProficiencyView['proficiencyLabel'], string> = {
-  not_started: 'bg-muted text-muted-foreground',
-  in_progress: 'bg-yellow-100 text-yellow-800',
-  proficient: 'bg-green-100 text-green-800',
-  mastered: 'bg-blue-100 text-blue-800',
+const LABEL_CLASSES: Record<TeacherProficiencyView["proficiencyLabel"], string> = {
+  not_started: "bg-muted text-muted-foreground",
+  in_progress: "bg-yellow-100 text-yellow-800",
+  proficient: "bg-green-100 text-green-800",
+  mastered: "bg-blue-100 text-blue-800",
 };
 
 const FLUENCY_CLASSES: Record<string, string> = {
-  none: 'bg-gray-100 text-gray-600',
-  low: 'bg-orange-100 text-orange-700',
-  medium: 'bg-blue-100 text-blue-700',
-  high: 'bg-green-100 text-green-700',
+  none: "bg-gray-100 text-gray-600",
+  low: "bg-orange-100 text-orange-700",
+  medium: "bg-blue-100 text-blue-700",
+  high: "bg-green-100 text-green-700",
 };
 
 /**
@@ -29,13 +29,13 @@ const FLUENCY_CLASSES: Record<string, string> = {
  */
 export function TeacherObjectiveDiagnosticCard({ view }: TeacherObjectiveDiagnosticCardProps) {
   const labelText = view.proficiencyLabel
-    .split('_')
+    .split("_")
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(' ');
+    .join(" ");
 
   const fluencyText =
-    view.fluencyConfidence === 'none'
-      ? 'Not enough data'
+    view.fluencyConfidence === "none"
+      ? "Not enough data"
       : view.fluencyConfidence.charAt(0).toUpperCase() + view.fluencyConfidence.slice(1);
 
   const hasBaselineGap = view.missingBaselines.length > 0;
@@ -53,14 +53,16 @@ export function TeacherObjectiveDiagnosticCard({ view }: TeacherObjectiveDiagnos
             <span className="text-xs font-mono text-muted-foreground">{view.standardCode}</span>
             <span
               className={cn(
-                'inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium',
+                "inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium",
                 LABEL_CLASSES[view.proficiencyLabel],
               )}
             >
               {labelText}
             </span>
           </div>
-          <h3 className="text-sm font-medium text-foreground truncate">{view.standardDescription}</h3>
+          <h3 className="text-sm font-medium text-foreground truncate">
+            {view.standardDescription}
+          </h3>
         </div>
       </div>
 
@@ -81,7 +83,7 @@ export function TeacherObjectiveDiagnosticCard({ view }: TeacherObjectiveDiagnos
         <div className="rounded-md bg-muted/50 p-3 text-center">
           <span
             className={cn(
-              'inline-flex items-center px-2 py-0.5 rounded text-xs font-medium',
+              "inline-flex items-center px-2 py-0.5 rounded text-xs font-medium",
               FLUENCY_CLASSES[view.fluencyConfidence] ?? FLUENCY_CLASSES.none,
             )}
           >
@@ -96,7 +98,7 @@ export function TeacherObjectiveDiagnosticCard({ view }: TeacherObjectiveDiagnos
         <div className="rounded-md border border-orange-200 bg-orange-50 p-3 text-sm text-orange-800">
           <p className="font-medium">Baseline gap</p>
           <p className="text-orange-700">
-            Missing baseline data for: {view.missingBaselines.join(', ')}
+            Missing baseline data for: {view.missingBaselines.join(", ")}
           </p>
         </div>
       )}
@@ -125,9 +127,7 @@ export function TeacherObjectiveDiagnosticCard({ view }: TeacherObjectiveDiagnos
                 title={`Sample count: ${family.baselineSampleCount}`}
               >
                 <span className="font-mono">{family.variantKey}</span>
-                {family.baselineSampleCount === 0 && (
-                  <span className="text-orange-600">*</span>
-                )}
+                {family.baselineSampleCount === 0 && <span className="text-orange-600">*</span>}
               </span>
             ))}
           </div>

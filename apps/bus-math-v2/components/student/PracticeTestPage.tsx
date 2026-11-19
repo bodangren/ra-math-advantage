@@ -12,7 +12,6 @@ interface PracticeTestPageProps {
   unitNumber: number;
 }
 
-
 /**
  * Renders a practice test page for a specific unit, wiring the test engine
  * to result-saving and session-recording hooks.
@@ -30,7 +29,6 @@ export function PracticeTestPage({ unitNumber }: PracticeTestPageProps) {
   if (!unitConfig) {
     notFound();
   }
-
 
   /**
    * Saves the test result and records the study session when a test completes.

@@ -4,13 +4,13 @@
  */
 
 export type DistractorType =
-  | 'factoring'
-  | 'linear'
-  | 'quadratic_formula'
-  | 'complex'
-  | 'completing_square'
-  | 'discriminant'
-  | 'system';
+  | "factoring"
+  | "linear"
+  | "quadratic_formula"
+  | "complex"
+  | "completing_square"
+  | "discriminant"
+  | "system";
 
 export interface DistractorGenerator {
   (correctAnswer: string): string[];
@@ -36,7 +36,7 @@ const distractorGenerators: Record<DistractorType, DistractorGenerator> = {
 export function generateDistractors(
   correctAnswer: string,
   type: DistractorType,
-  providedDistractors?: string[]
+  providedDistractors?: string[],
 ): string[] {
   // Use provided distractors if available
   if (providedDistractors && providedDistractors.length >= 2) {
@@ -70,13 +70,13 @@ function generateFactoringDistractors(correctAnswer: string): string[] {
     const n1 = parseInt(num1, 10);
     const n2 = parseInt(num2, 10);
 
-    const flippedSign1 = sign1 === '+' ? '-' : '+';
+    const flippedSign1 = sign1 === "+" ? "-" : "+";
     distractors.push(`(x ${flippedSign1} ${n1})(x ${sign2} ${n2})`);
 
     if (n1 !== n2) {
       distractors.push(`(x ${sign1} ${n2})(x ${sign2} ${n1})`);
     } else {
-      const flippedSign2 = sign2 === '+' ? '-' : '+';
+      const flippedSign2 = sign2 === "+" ? "-" : "+";
       distractors.push(`(x ${sign1} ${n1})(x ${flippedSign2} ${n2})`);
     }
   } else {
@@ -121,7 +121,9 @@ function generateLinearDistractors(correctAnswer: string): string[] {
 function generateQuadraticFormulaDistractors(correctAnswer: string): string[] {
   const distractors: string[] = [];
 
-  const solutionsMatch = correctAnswer.match(/x\s*=\s*(-?\d+(?:\.\d+)?).*x\s*=\s*(-?\d+(?:\.\d+)?)/);
+  const solutionsMatch = correctAnswer.match(
+    /x\s*=\s*(-?\d+(?:\.\d+)?).*x\s*=\s*(-?\d+(?:\.\d+)?)/,
+  );
 
   if (solutionsMatch) {
     const [, sol1, sol2] = solutionsMatch;
@@ -150,17 +152,19 @@ function generateQuadraticFormulaDistractors(correctAnswer: string): string[] {
 function generateComplexDistractors(correctAnswer: string): string[] {
   const distractors: string[] = [];
 
-  const complexMatch = correctAnswer.match(/x\s*=\s*(-?\d+(?:\.\d+)?)\s*([+-])\s*(\d+(?:\.\d+)?)i.*x\s*=\s*(-?\d+(?:\.\d+)?)\s*([+-])\s*(\d+(?:\.\d+)?)i/);
+  const complexMatch = correctAnswer.match(
+    /x\s*=\s*(-?\d+(?:\.\d+)?)\s*([+-])\s*(\d+(?:\.\d+)?)i.*x\s*=\s*(-?\d+(?:\.\d+)?)\s*([+-])\s*(\d+(?:\.\d+)?)i/,
+  );
 
   if (complexMatch) {
     const [, real1, sign1, imag1] = complexMatch;
     const r1 = parseFloat(real1);
     const i1 = parseFloat(imag1);
 
-    const sameSign = sign1 === '+' ? '+' : '-';
+    const sameSign = sign1 === "+" ? "+" : "-";
     distractors.push(`x = ${r1} ${sameSign} ${i1}i, x = ${r1} ${sameSign} ${i1}i`);
 
-    const flippedSign = sign1 === '+' ? '-' : '+';
+    const flippedSign = sign1 === "+" ? "-" : "+";
     distractors.push(`x = ${r1} ${flippedSign} ${i1}i, x = ${r1} ${flippedSign} ${i1}i`);
   } else {
     return generateGenericDistractors(correctAnswer);
@@ -177,14 +181,16 @@ function generateComplexDistractors(correctAnswer: string): string[] {
 function generateCompletingSquareDistractors(correctAnswer: string): string[] {
   const distractors: string[] = [];
 
-  const vertexMatch = correctAnswer.match(/\(x\s*([+-])\s*(\d+(?:\.\d+)?)\)\^2\s*=\s*(-?\d+(?:\.\d+)?)/);
+  const vertexMatch = correctAnswer.match(
+    /\(x\s*([+-])\s*(\d+(?:\.\d+)?)\)\^2\s*=\s*(-?\d+(?:\.\d+)?)/,
+  );
 
   if (vertexMatch) {
     const [, sign, h, k] = vertexMatch;
     const hVal = parseFloat(h);
     const kVal = parseFloat(k);
 
-    const flippedSign = sign === '+' ? '-' : '+';
+    const flippedSign = sign === "+" ? "-" : "+";
     distractors.push(`(x ${flippedSign} ${hVal})^2 = ${kVal}`);
 
     distractors.push(`(x ${sign} ${hVal})^2 = ${kVal + 1}`);
@@ -203,18 +209,18 @@ function generateCompletingSquareDistractors(correctAnswer: string): string[] {
 function generateDiscriminantDistractors(correctAnswer: string): string[] {
   const distractors: string[] = [];
 
-  if (correctAnswer.toLowerCase().includes('real')) {
-    if (correctAnswer.includes('2')) {
-      distractors.push('1 real solution');
-    } else if (correctAnswer.includes('1')) {
-      distractors.push('2 real solutions');
+  if (correctAnswer.toLowerCase().includes("real")) {
+    if (correctAnswer.includes("2")) {
+      distractors.push("1 real solution");
+    } else if (correctAnswer.includes("1")) {
+      distractors.push("2 real solutions");
     }
 
-    distractors.push('2 complex solutions');
-  } else if (correctAnswer.toLowerCase().includes('complex')) {
-    distractors.push('2 real solutions');
+    distractors.push("2 complex solutions");
+  } else if (correctAnswer.toLowerCase().includes("complex")) {
+    distractors.push("2 real solutions");
 
-    distractors.push('1 real solution');
+    distractors.push("1 real solution");
   } else {
     return generateGenericDistractors(correctAnswer);
   }
@@ -237,7 +243,7 @@ function generateSystemDistractors(correctAnswer: string): string[] {
 
     distractors.push(`(x, y) = (${ySol}, ${xSol})`);
 
-    if (ySol.startsWith('-')) {
+    if (ySol.startsWith("-")) {
       distractors.push(`(x, y) = (${xSol}, ${ySol.slice(1)})`);
     } else {
       distractors.push(`(x, y) = (${xSol}, -${ySol})`);
@@ -257,19 +263,19 @@ function generateSystemDistractors(correctAnswer: string): string[] {
 function generateGenericDistractors(correctAnswer: string): string[] {
   const distractors: string[] = [];
 
-  if (correctAnswer.includes('=')) {
-    const parts = correctAnswer.split('=');
+  if (correctAnswer.includes("=")) {
+    const parts = correctAnswer.split("=");
     if (parts.length > 1) {
-      distractors.push(`${parts[0]} = ${parseFloat(parts[1] || '0') + 1}`);
+      distractors.push(`${parts[0]} = ${parseFloat(parts[1] || "0") + 1}`);
     }
   } else {
     distractors.push(`${correctAnswer} + 1`);
   }
 
-  if (correctAnswer.includes('-')) {
-    distractors.push(correctAnswer.replace(/-/g, '+'));
-  } else if (correctAnswer.includes('+')) {
-    distractors.push(correctAnswer.replace(/\+/g, '-'));
+  if (correctAnswer.includes("-")) {
+    distractors.push(correctAnswer.replace(/-/g, "+"));
+  } else if (correctAnswer.includes("+")) {
+    distractors.push(correctAnswer.replace(/\+/g, "-"));
   } else {
     distractors.push(`-${correctAnswer}`);
   }

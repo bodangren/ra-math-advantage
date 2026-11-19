@@ -2,8 +2,8 @@ import {
   buildDailyQueueResult as buildCanonicalDailyQueue,
   type ObjectivePracticePolicy,
   type SrsCardState,
-} from '@math-platform/srs-engine';
-import type { DailyQueue } from './contract';
+} from "@math-platform/srs-engine";
+import type { DailyQueue } from "./contract";
 
 export interface QueueOptions {
   sessionSize?: number;
@@ -21,9 +21,7 @@ export function buildDailyQueue(
   options: QueueOptions = {},
 ): DailyQueue {
   const { sessionSize = 10, now = new Date().toISOString() } = options;
-  const cap = Number.isFinite(sessionSize) && sessionSize > 0
-    ? Math.floor(sessionSize)
-    : 0;
+  const cap = Number.isFinite(sessionSize) && sessionSize > 0 ? Math.floor(sessionSize) : 0;
   const canonicalCards = cards.map((card) => {
     const variantKey = card.variantKey ?? card.problemFamilyId;
     if (!variantKey) throw new Error(`SRS card ${card.cardId} has no variant identity`);
@@ -33,20 +31,25 @@ export function buildDailyQueue(
   for (const card of canonicalCards) {
     policies.set(card.objectiveId, {
       objectiveId: card.objectiveId,
-      priority: 'essential',
+      priority: "essential",
     });
   }
-  const result = buildCanonicalDailyQueue(canonicalCards, policies, {
-    maxReviewsPerDay: cap,
-    newCardsPerDay: cap,
-    prioritizeOverdue: true,
-  }, now);
+  const result = buildCanonicalDailyQueue(
+    canonicalCards,
+    policies,
+    {
+      maxReviewsPerDay: cap,
+      newCardsPerDay: cap,
+      prioritizeOverdue: true,
+    },
+    now,
+  );
 
   return {
     cards: result.items.map(({ card }) => ({
       ...card,
-      problemFamilyId: (card as SrsCardState & { problemFamilyId?: string }).problemFamilyId
-        ?? card.variantKey,
+      problemFamilyId:
+        (card as SrsCardState & { problemFamilyId?: string }).problemFamilyId ?? card.variantKey,
     })),
     sessionSize: cap,
     generatedAt: Date.parse(now),
@@ -59,7 +62,10 @@ export function buildDailyQueue(
  * @param now - Optional current time ISO string
  * @returns Queue summary with total due, total cards, and average overdue time
  */
-export function getQueueSummary(cards: Array<SrsCardState & { problemFamilyId?: string }>, now?: string): {
+export function getQueueSummary(
+  cards: Array<SrsCardState & { problemFamilyId?: string }>,
+  now?: string,
+): {
   totalDue: number;
   totalCards: number;
   averageOverdue: number;

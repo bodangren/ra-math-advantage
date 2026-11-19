@@ -1,25 +1,29 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { ArrowRight, ChevronLeft, ChevronRight, CheckCircle2, FileText } from 'lucide-react';
-import { LessonStepper, type StepperPhase } from '@/components/lesson/LessonStepper';
-import { PhaseRenderer } from '@/components/lesson/PhaseRenderer';
-import { PhaseGuidanceCard } from '@/components/student/PhaseGuidanceCard';
-import { usePhaseProgress } from '@/hooks/usePhaseProgress';
-import { usePhaseCompletion } from '@/hooks/usePhaseCompletion';
-import { Button } from '@/components/ui/button';
-import type { DashboardLessonActionLink } from '@/lib/student/dashboard-presentation';
-import { formatCurriculumSegmentLabel } from '@/lib/curriculum/segment-labels';
-import { getLessonPhaseGuidance, isSkippablePhaseType, type PhaseGuidance } from '@/lib/curriculum/phase-guidance';
-import { studentDashboardPath, studentLessonPath } from '@/lib/student/navigation';
-import { cn } from '@/lib/utils';
-import { lessonHasWorkbooks } from '@/lib/curriculum/workbooks.client';
-import { Download } from 'lucide-react';
-import { LessonChatbot } from '@/components/student/LessonChatbot';
-import { useAuth } from '@/components/auth/AuthProvider';
-import type { ContentBlock, LessonMetadata, PhaseMetadata } from '@/types/curriculum';
+import Link from "next/link";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { ArrowRight, ChevronLeft, ChevronRight, CheckCircle2, FileText } from "lucide-react";
+import { LessonStepper, type StepperPhase } from "@/components/lesson/LessonStepper";
+import { PhaseRenderer } from "@/components/lesson/PhaseRenderer";
+import { PhaseGuidanceCard } from "@/components/student/PhaseGuidanceCard";
+import { usePhaseProgress } from "@/hooks/usePhaseProgress";
+import { usePhaseCompletion } from "@/hooks/usePhaseCompletion";
+import { Button } from "@/components/ui/button";
+import type { DashboardLessonActionLink } from "@/lib/student/dashboard-presentation";
+import { formatCurriculumSegmentLabel } from "@/lib/curriculum/segment-labels";
+import {
+  getLessonPhaseGuidance,
+  isSkippablePhaseType,
+  type PhaseGuidance,
+} from "@/lib/curriculum/phase-guidance";
+import { studentDashboardPath, studentLessonPath } from "@/lib/student/navigation";
+import { cn } from "@/lib/utils";
+import { lessonHasWorkbooks } from "@/lib/curriculum/workbooks.client";
+import { Download } from "lucide-react";
+import { LessonChatbot } from "@/components/student/LessonChatbot";
+import { useAuth } from "@/components/auth/AuthProvider";
+import type { ContentBlock, LessonMetadata, PhaseMetadata } from "@/types/curriculum";
 
 export interface Phase {
   id: string;
@@ -50,7 +54,6 @@ interface LessonRendererProps {
   recommendedLesson?: DashboardLessonActionLink | null;
 }
 
-
 /**
  * Builds a fallback phase guidance object when no curriculum-defined guidance exists.
  *
@@ -60,13 +63,13 @@ interface LessonRendererProps {
  */
 function buildFallbackPhaseGuidance(phase: Phase, lesson: Lesson): PhaseGuidance {
   return {
-    lessonType: 'accounting',
+    lessonType: "accounting",
     phaseNumber: phase.phaseNumber,
     phaseLabel: phase.title,
     goal: `Work through ${phase.title.toLowerCase()} in a way that advances the lesson objective.`,
     successCriteria: lesson.learningObjectives?.length
       ? [`Connect your work in this phase to at least one lesson objective.`]
-      : ['Complete the current phase and be ready to explain your thinking.'],
+      : ["Complete the current phase and be ready to explain your thinking."],
   };
 }
 
@@ -87,30 +90,29 @@ export function LessonRenderer({
   const { profile, loading: authLoading } = useAuth();
 
   // Find the current phase
-  const currentPhase = phases.find(p => p.phaseNumber === currentPhaseNumber);
+  const currentPhase = phases.find((p) => p.phaseNumber === currentPhaseNumber);
 
   // Determine if it's a "Read" phase (no required activity).
   // Computed before hooks so values are stable regardless of early-return path.
   const hasRequiredActivity = currentPhase?.contentBlocks?.some(
-    block => block.type === 'activity' && block.required
+    (block) => block.type === "activity" && block.required,
   );
   const isReadPhase = !hasRequiredActivity;
   const isSkippable = isSkippablePhaseType(currentPhase?.metadata?.phaseType);
 
   // Get current phase completion status (safe with optional chaining when phase is absent)
-  const currentPhaseProgress = progressData?.phases.find(p => p.phaseId === currentPhase?.id);
-  const isCurrentPhaseCompleted = currentPhaseProgress?.status === 'completed';
-  const phaseGuidance =
-    currentPhase
-      ? getLessonPhaseGuidance(lesson.orderIndex, currentPhase.phaseNumber) ??
-        buildFallbackPhaseGuidance(currentPhase, lesson)
-      : null;
+  const currentPhaseProgress = progressData?.phases.find((p) => p.phaseId === currentPhase?.id);
+  const isCurrentPhaseCompleted = currentPhaseProgress?.status === "completed";
+  const phaseGuidance = currentPhase
+    ? (getLessonPhaseGuidance(lesson.orderIndex, currentPhase.phaseNumber) ??
+      buildFallbackPhaseGuidance(currentPhase, lesson))
+    : null;
 
   // Hooks must be called unconditionally — placed before any early return.
   const { completePhase: autoMarkComplete, isCompleting: isAutoCompleting } = usePhaseCompletion({
     lessonId: lesson.slug,
     phaseNumber: currentPhaseNumber,
-    phaseType: isReadPhase ? 'read' : 'do',
+    phaseType: isReadPhase ? "read" : "do",
     onSuccess: () => {
       // Refetch progress to update stepper and navigation
       refetch();
@@ -119,10 +121,23 @@ export function LessonRenderer({
 
   // Auto-capture for Read phases on navigation
   useEffect(() => {
-    if (currentPhase && isReadPhase && !isCurrentPhaseCompleted && !isLoading && !isAutoCompleting) {
+    if (
+      currentPhase &&
+      isReadPhase &&
+      !isCurrentPhaseCompleted &&
+      !isLoading &&
+      !isAutoCompleting
+    ) {
       autoMarkComplete();
     }
-  }, [currentPhase, isReadPhase, isCurrentPhaseCompleted, isLoading, autoMarkComplete, isAutoCompleting]);
+  }, [
+    currentPhase,
+    isReadPhase,
+    isCurrentPhaseCompleted,
+    isLoading,
+    autoMarkComplete,
+    isAutoCompleting,
+  ]);
 
   // Early return after all hooks have been called
   if (!currentPhase) {
@@ -138,13 +153,13 @@ export function LessonRenderer({
   }
 
   // Transform phases data for LessonStepper and navigation logic
-  const stepperPhases: StepperPhase[] = phases.map(phase => {
-    const phaseProgress = progressData?.phases.find(p => p.phaseId === phase.id);
+  const stepperPhases: StepperPhase[] = phases.map((phase) => {
+    const phaseProgress = progressData?.phases.find((p) => p.phaseId === phase.id);
     return {
       phaseNumber: phase.phaseNumber,
       phaseId: phase.id,
       title: phase.title,
-      status: phaseProgress?.status || 'locked',
+      status: phaseProgress?.status || "locked",
     };
   });
 
@@ -164,15 +179,16 @@ export function LessonRenderer({
   const showLessonCompletePanel = isLessonComplete && currentPhaseNumber === phases.length;
 
   // Check if next phase is unlocked (either already unlocked OR current phase is completed/read-only)
-  const nextPhaseStatus = stepperPhases.find(p => p.phaseNumber === currentPhaseNumber + 1)?.status;
+  const nextPhaseStatus = stepperPhases.find(
+    (p) => p.phaseNumber === currentPhaseNumber + 1,
+  )?.status;
   const isNextPhaseUnlocked =
     isCurrentPhaseCompleted ||
     isReadPhase ||
     isSkippable ||
-    nextPhaseStatus === 'available' ||
-    nextPhaseStatus === 'current' ||
-    nextPhaseStatus === 'completed';
-
+    nextPhaseStatus === "available" ||
+    nextPhaseStatus === "current" ||
+    nextPhaseStatus === "completed";
 
   /**
    * Navigates to the previous phase if available.
@@ -182,7 +198,6 @@ export function LessonRenderer({
       router.push(`/student/lesson/${lessonSlug}?phase=${currentPhaseNumber - 1}`);
     }
   };
-
 
   /**
    * Navigates to the next phase if unlocked.
@@ -197,7 +212,10 @@ export function LessonRenderer({
     <div className="container mx-auto p-8">
       <div className="max-w-4xl mx-auto">
         {/* Breadcrumb Navigation */}
-        <nav className="flex items-center space-x-2 text-sm text-muted-foreground mb-6" aria-label="Breadcrumb">
+        <nav
+          className="flex items-center space-x-2 text-sm text-muted-foreground mb-6"
+          aria-label="Breadcrumb"
+        >
           <Link href={studentDashboardPath()} className="hover:text-foreground">
             Dashboard
           </Link>
@@ -212,9 +230,7 @@ export function LessonRenderer({
           </div>
           <h1 className="text-4xl font-bold mb-4">{lesson.title}</h1>
           {lesson.description && (
-            <p className="text-lg text-muted-foreground mb-4">
-              {lesson.description}
-            </p>
+            <p className="text-lg text-muted-foreground mb-4">{lesson.description}</p>
           )}
           {lesson.learningObjectives && lesson.learningObjectives.length > 0 && (
             <div className="border rounded-lg p-4 bg-muted/50">
@@ -236,16 +252,20 @@ export function LessonRenderer({
                 Workbook Materials
               </h2>
               <div className="space-y-3">
-                 <Button asChild variant="outline" className="w-full justify-start">
-                   <a href={`/api/workbooks/${String(lesson.unitNumber).padStart(2, '0')}/${String(lesson.orderIndex).padStart(2, '0')}/student`} download>
-                     <Download className="h-4 w-4 mr-2" />
-                     Download Student Workbook (.xlsx)
-                   </a>
-                 </Button>
+                <Button asChild variant="outline" className="w-full justify-start">
+                  <a
+                    href={`/api/workbooks/${String(lesson.unitNumber).padStart(2, "0")}/${String(lesson.orderIndex).padStart(2, "0")}/student`}
+                    download
+                  >
+                    <Download className="h-4 w-4 mr-2" />
+                    Download Student Workbook (.xlsx)
+                  </a>
+                </Button>
                 <div className="text-sm text-blue-700 dark:text-blue-300">
                   <p className="font-medium">40-Point Grading Rubric</p>
                   <p className="text-xs mt-1">
-                    This assignment will be scored using a 40-point scale. Follow the instructions in the lesson phases carefully.
+                    This assignment will be scored using a 40-point scale. Follow the instructions
+                    in the lesson phases carefully.
                   </p>
                 </div>
               </div>
@@ -347,7 +367,7 @@ export function LessonRenderer({
             variant="outline"
             onClick={handlePrevious}
             disabled={!canGoPrevious}
-            className={cn(!canGoPrevious && 'opacity-50 cursor-not-allowed')}
+            className={cn(!canGoPrevious && "opacity-50 cursor-not-allowed")}
           >
             <ChevronLeft className="h-4 w-4 mr-2" />
             Previous Phase
@@ -356,18 +376,16 @@ export function LessonRenderer({
           <Button
             onClick={handleNext}
             disabled={!canGoNext || !isNextPhaseUnlocked}
-            title={!isNextPhaseUnlocked ? 'Complete current phase to unlock' : ''}
-            className={cn(
-              (!canGoNext || !isNextPhaseUnlocked) && 'opacity-50 cursor-not-allowed'
-            )}
+            title={!isNextPhaseUnlocked ? "Complete current phase to unlock" : ""}
+            className={cn((!canGoNext || !isNextPhaseUnlocked) && "opacity-50 cursor-not-allowed")}
           >
-            {isSkippable && !isCurrentPhaseCompleted ? 'Skip Phase' : 'Next Phase'}
+            {isSkippable && !isCurrentPhaseCompleted ? "Skip Phase" : "Next Phase"}
             <ChevronRight className="h-4 w-4 ml-2" />
           </Button>
         </div>
       </div>
 
-      {!authLoading && profile?.role === 'student' && (
+      {!authLoading && profile?.role === "student" && (
         <LessonChatbot lessonId={lesson.slug} phaseNumber={currentPhaseNumber} />
       )}
     </div>

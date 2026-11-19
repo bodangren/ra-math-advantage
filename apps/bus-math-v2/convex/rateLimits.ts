@@ -1,4 +1,9 @@
-import { internalMutation, internalQuery, type MutationCtx, type QueryCtx } from "./_generated/server";
+import {
+  internalMutation,
+  internalQuery,
+  type MutationCtx,
+  type QueryCtx,
+} from "./_generated/server";
 import { v, ConvexError } from "convex/values";
 import type { Id } from "./_generated/dataModel";
 import {
@@ -55,7 +60,7 @@ export async function checkAndIncrementRateLimitHandler(
 
   const check = checkAndIncrement(existing, CHATBOT_RATE_LIMIT, now);
 
-  if (check.action === 'insert') {
+  if (check.action === "insert") {
     try {
       await ctx.db.insert("chatbot_rate_limits", {
         userId: args.userId,
@@ -73,18 +78,21 @@ export async function checkAndIncrementRateLimitHandler(
         .unique();
       if (!existing) throw new Error("Rate limit record disappeared after concurrent insert");
       const retry = checkAndIncrement(existing, CHATBOT_RATE_LIMIT, now);
-      if (retry.action === 'reset') {
+      if (retry.action === "reset") {
         await ctx.db.patch(existing._id, { requestCount: 1, windowStart: now, updatedAt: now });
-      } else if (retry.action === 'increment') {
-        await ctx.db.patch(existing._id, { requestCount: existing.requestCount + 1, updatedAt: now });
+      } else if (retry.action === "increment") {
+        await ctx.db.patch(existing._id, {
+          requestCount: existing.requestCount + 1,
+          updatedAt: now,
+        });
       }
       return retry.result;
     }
   }
 
-  if (check.action === 'reset') {
+  if (check.action === "reset") {
     await ctx.db.patch(existing!._id, { requestCount: 1, windowStart: now, updatedAt: now });
-  } else if (check.action === 'increment') {
+  } else if (check.action === "increment") {
     await ctx.db.patch(existing!._id, { requestCount: existing!.requestCount + 1, updatedAt: now });
   }
 

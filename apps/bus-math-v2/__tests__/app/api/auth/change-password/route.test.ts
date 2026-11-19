@@ -1,21 +1,21 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const { mockGetRequestSessionClaims, mockRequireActiveRequestSessionClaims, mockFetchInternalMutation } = vi.hoisted(() => ({
+const {
+  mockGetRequestSessionClaims,
+  mockRequireActiveRequestSessionClaims,
+  mockFetchInternalMutation,
+} = vi.hoisted(() => ({
   mockGetRequestSessionClaims: vi.fn(),
   mockRequireActiveRequestSessionClaims: vi.fn(),
   mockFetchInternalMutation: vi.fn(),
 }));
-const {
-  mockFetchInternalQuery,
-  mockGeneratePasswordSalt,
-  mockHashPassword,
-  mockVerifyPassword,
-} = vi.hoisted(() => ({
-  mockFetchInternalQuery: vi.fn(),
-  mockGeneratePasswordSalt: vi.fn(),
-  mockHashPassword: vi.fn(),
-  mockVerifyPassword: vi.fn(),
-}));
+const { mockFetchInternalQuery, mockGeneratePasswordSalt, mockHashPassword, mockVerifyPassword } =
+  vi.hoisted(() => ({
+    mockFetchInternalQuery: vi.fn(),
+    mockGeneratePasswordSalt: vi.fn(),
+    mockHashPassword: vi.fn(),
+    mockVerifyPassword: vi.fn(),
+  }));
 
 vi.mock("@/lib/auth/server", () => ({
   getRequestSessionClaims: mockGetRequestSessionClaims,
@@ -191,10 +191,9 @@ describe("POST /api/auth/change-password", () => {
     expect(response.status).toBe(200);
     expect(json.ok).toBe(true);
     expect(json.username).toBe("demo_student");
-    expect(mockFetchInternalQuery).toHaveBeenCalledWith(
-      "internal.auth.getCredentialByUsername",
-      { username: "demo_student" },
-    );
+    expect(mockFetchInternalQuery).toHaveBeenCalledWith("internal.auth.getCredentialByUsername", {
+      username: "demo_student",
+    });
     expect(mockFetchInternalMutation).toHaveBeenCalledWith(
       "internal.auth.changeOwnPassword",
       expect.objectContaining({

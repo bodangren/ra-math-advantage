@@ -7,12 +7,14 @@ const MAX_PARAMS_VERSION_LENGTH = 200;
  */
 export function requireParamsVersion(value: unknown): string {
   if (
-    typeof value !== "string"
-    || value.length === 0
-    || value.length > MAX_PARAMS_VERSION_LENGTH
-    || value.trim() !== value
+    typeof value !== "string" ||
+    value.length === 0 ||
+    value.length > MAX_PARAMS_VERSION_LENGTH ||
+    value.trim() !== value
   ) {
-    throw new Error("paramsVersion must be a non-blank canonical version without surrounding whitespace");
+    throw new Error(
+      "paramsVersion must be a non-blank canonical version without surrounding whitespace",
+    );
   }
   return value;
 }

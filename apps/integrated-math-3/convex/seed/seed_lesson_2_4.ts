@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -84,7 +84,8 @@ export const seedLesson2_4 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Key Terms\n\n- **Synthetic Division**: A shortcut method for dividing a polynomial by a binomial of the form $x - a$\n\n### Key Concept: Division Algorithm\n\nIf $f(x)$ and $g(x)$ are polynomials with $g(x) \\neq 0$ and degree of $g(x)$ less than degree of $f(x)$, then there exist unique polynomials $q(x)$ and $r(x)$ such that:\n\n$$f(x) = q(x)g(x) + r(x)$$\n\nwhere the remainder is either $0$ or has degree less than the degree of $g(x)$.",
+              markdown:
+                "## Key Terms\n\n- **Synthetic Division**: A shortcut method for dividing a polynomial by a binomial of the form $x - a$\n\n### Key Concept: Division Algorithm\n\nIf $f(x)$ and $g(x)$ are polynomials with $g(x) \\neq 0$ and degree of $g(x)$ less than degree of $f(x)$, then there exist unique polynomials $q(x)$ and $r(x)$ such that:\n\n$$f(x) = q(x)g(x) + r(x)$$\n\nwhere the remainder is either $0$ or has degree less than the degree of $g(x)$.",
             },
           },
         ],
@@ -99,7 +100,8 @@ export const seedLesson2_4 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Dividing Polynomials\n\nTo divide a polynomial by a monomial, find the quotient of each term and the monomial.\n\n### Key Concept: Division Algorithm\n\nThe Division Algorithm states that when dividing polynomials, you can express the dividend as the product of the divisor and quotient plus the remainder.\n\nFor polynomials $f(x)$ and $g(x)$:\n\n$$f(x) = q(x) \\cdot g(x) + r(x)$$\n\nwhere $r(x)$ has degree less than $g(x)$.",
+              markdown:
+                "## Dividing Polynomials\n\nTo divide a polynomial by a monomial, find the quotient of each term and the monomial.\n\n### Key Concept: Division Algorithm\n\nThe Division Algorithm states that when dividing polynomials, you can express the dividend as the product of the divisor and quotient plus the remainder.\n\nFor polynomials $f(x)$ and $g(x)$:\n\n$$f(x) = q(x) \\cdot g(x) + r(x)$$\n\nwhere $r(x)$ has degree less than $g(x)$.",
             },
           },
         ],
@@ -114,7 +116,8 @@ export const seedLesson2_4 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 1: Divide a Polynomial by a Monomial\n\nFind: $(24a^4b^3 + 18a^2b^2 - 30ab^3) / (6ab)$\n\nRewrite as a fraction and split the quotient:\n\n$= \\frac{24a^4b^3}{6ab} + \\frac{18a^2b^2}{6ab} - \\frac{30ab^3}{6ab}$\n\nSimplify each term:\n\n$= 4a^3b^2 + 3ab - 5b^2$",
+              markdown:
+                "## Example 1: Divide a Polynomial by a Monomial\n\nFind: $(24a^4b^3 + 18a^2b^2 - 30ab^3) / (6ab)$\n\nRewrite as a fraction and split the quotient:\n\n$= \\frac{24a^4b^3}{6ab} + \\frac{18a^2b^2}{6ab} - \\frac{30ab^3}{6ab}$\n\nSimplify each term:\n\n$= 4a^3b^2 + 3ab - 5b^2$",
             },
           },
           {
@@ -126,7 +129,10 @@ export const seedLesson2_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "(24a^4b^3 + 18a^2b^2 - 30ab^3) / (6ab)",
                 steps: [
-                  { expression: "(24a^4b^3 + 18a^2b^2 - 30ab^3) / (6ab)", explanation: "Write as fraction" },
+                  {
+                    expression: "(24a^4b^3 + 18a^2b^2 - 30ab^3) / (6ab)",
+                    explanation: "Write as fraction",
+                  },
                   { expression: "24a^4b^3 / 6ab = 4a^3b^2", explanation: "Divide first term" },
                   { expression: "18a^2b^2 / 6ab = 3ab", explanation: "Divide second term" },
                   { expression: "-30ab^3 / 6ab = -5b^2", explanation: "Divide third term" },
@@ -147,7 +153,8 @@ export const seedLesson2_4 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 2: Divide a Polynomial by a Binomial\n\nFind: $(x^2 - 5x - 36) / (x + 4)$\n\nUsing long division:\n\n- Divide $x^2$ by $x$ to get $x$\n- Multiply $x(x + 4) = x^2 + 4x$\n- Subtract: $(x^2 - 5x) - (x^2 + 4x) = -9x$\n- Bring down $-36$\n- Divide $-9x$ by $x$ to get $-9$\n- Multiply $-9(x + 4) = -9x - 36$\n- Subtract: $(-9x - 36) - (-9x - 36) = 0$\n\nQuotient: $x - 9$, Remainder: $0$",
+              markdown:
+                "## Example 2: Divide a Polynomial by a Binomial\n\nFind: $(x^2 - 5x - 36) / (x + 4)$\n\nUsing long division:\n\n- Divide $x^2$ by $x$ to get $x$\n- Multiply $x(x + 4) = x^2 + 4x$\n- Subtract: $(x^2 - 5x) - (x^2 + 4x) = -9x$\n- Bring down $-36$\n- Divide $-9x$ by $x$ to get $-9$\n- Multiply $-9(x + 4) = -9x - 36$\n- Subtract: $(-9x - 36) - (-9x - 36) = 0$\n\nQuotient: $x - 9$, Remainder: $0$",
             },
           },
           {
@@ -164,7 +171,10 @@ export const seedLesson2_4 = internalMutation({
                   { expression: "(x^2 - 5x) - (x^2 + 4x) = -9x", explanation: "Subtract" },
                   { expression: "-9x / x = -9", explanation: "Next term of quotient" },
                   { expression: "-9(x + 4) = -9x - 36", explanation: "Multiply back" },
-                  { expression: "(-9x - 36) - (-9x - 36) = 0", explanation: "Subtract, remainder is 0" },
+                  {
+                    expression: "(-9x - 36) - (-9x - 36) = 0",
+                    explanation: "Subtract, remainder is 0",
+                  },
                   { expression: "x - 9", explanation: "Quotient" },
                 ],
               },
@@ -182,7 +192,8 @@ export const seedLesson2_4 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 3: Find a Quotient with a Remainder\n\nFind: $(3z^3 - 14z^2 - 7z + 3) / (z - 5)$\n\nUsing long division:\n\n- $3z^3 / z = 3z^2$\n- $3z^2(z - 5) = 3z^3 - 15z^2$\n- Subtract: $(-14z^2) - (-15z^2) = z^2$\n- Bring down $-7z$\n- $z^2 / z = z$\n- $z(z - 5) = z^2 - 5z$\n- Subtract: $(-7z) - (-5z) = -2z$\n- Bring down $+3$\n- $-2z / z = -2$\n- $-2(z - 5) = -2z + 10$\n- Subtract: $3 - 10 = -7$\n\nQuotient: $3z^2 + z - 2$, Remainder: $-7$\n\nSo: $(3z^3 - 14z^2 - 7z + 3) / (z - 5) = 3z^2 + z - 2 - \\frac{7}{z - 5}$",
+              markdown:
+                "## Example 3: Find a Quotient with a Remainder\n\nFind: $(3z^3 - 14z^2 - 7z + 3) / (z - 5)$\n\nUsing long division:\n\n- $3z^3 / z = 3z^2$\n- $3z^2(z - 5) = 3z^3 - 15z^2$\n- Subtract: $(-14z^2) - (-15z^2) = z^2$\n- Bring down $-7z$\n- $z^2 / z = z$\n- $z(z - 5) = z^2 - 5z$\n- Subtract: $(-7z) - (-5z) = -2z$\n- Bring down $+3$\n- $-2z / z = -2$\n- $-2(z - 5) = -2z + 10$\n- Subtract: $3 - 10 = -7$\n\nQuotient: $3z^2 + z - 2$, Remainder: $-7$\n\nSo: $(3z^3 - 14z^2 - 7z + 3) / (z - 5) = 3z^2 + z - 2 - \\frac{7}{z - 5}$",
             },
           },
           {
@@ -203,7 +214,10 @@ export const seedLesson2_4 = internalMutation({
                   { expression: "-2z / z = -2", explanation: "Next term" },
                   { expression: "-2(z - 5) = -2z + 10", explanation: "Multiply back" },
                   { expression: "3 - 10 = -7", explanation: "Remainder" },
-                  { expression: "3z^2 + z - 2 - 7/(z-5)", explanation: "Final answer with remainder" },
+                  {
+                    expression: "3z^2 + z - 2 - 7/(z-5)",
+                    explanation: "Final answer with remainder",
+                  },
                 ],
               },
             },
@@ -220,7 +234,8 @@ export const seedLesson2_4 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Dividing Polynomials by Using Synthetic Division\n\nSynthetic division is a shortcut for dividing a polynomial by a binomial of the form $x - a$.\n\n### Key Steps\n\n1. Write the coefficients of the dividend in descending degree order.\n2. Include $0$ placeholders for missing terms.\n3. Use the zero of the divisor, $a$, in the synthetic division setup.\n4. The last entry is the remainder; the other entries give the quotient coefficients.",
+              markdown:
+                "## Dividing Polynomials by Using Synthetic Division\n\nSynthetic division is a shortcut for dividing a polynomial by a binomial of the form $x - a$.\n\n### Key Steps\n\n1. Write the coefficients of the dividend in descending degree order.\n2. Include $0$ placeholders for missing terms.\n3. Use the zero of the divisor, $a$, in the synthetic division setup.\n4. The last entry is the remainder; the other entries give the quotient coefficients.",
             },
           },
         ],
@@ -235,7 +250,8 @@ export const seedLesson2_4 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 4: Use Synthetic Division\n\nFind: $(3x^3 - 2x^2 - 53x - 60) / (x + 3)$\n\nSince $x + 3 = x - (-3)$, use $a = -3$.\n\nCoefficients: $3, -2, -53, -60$\n\nSynthetic division:\n\n```\n-3 |  3   -2   -53   -60\n   |     -9    33    60\n----------------------\n     3  -11   -20     0\n```\n\nQuotient: $3x^2 - 11x - 20$, Remainder: $0$",
+              markdown:
+                "## Example 4: Use Synthetic Division\n\nFind: $(3x^3 - 2x^2 - 53x - 60) / (x + 3)$\n\nSince $x + 3 = x - (-3)$, use $a = -3$.\n\nCoefficients: $3, -2, -53, -60$\n\nSynthetic division:\n\n```\n-3 |  3   -2   -53   -60\n   |     -9    33    60\n----------------------\n     3  -11   -20     0\n```\n\nQuotient: $3x^2 - 11x - 20$, Remainder: $0$",
             },
           },
           {
@@ -247,8 +263,14 @@ export const seedLesson2_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "(3x^3 - 2x^2 - 53x - 60) / (x + 3)",
                 steps: [
-                  { expression: "x + 3 = x - (-3), so a = -3", explanation: "Identify synthetic divisor" },
-                  { expression: "Coefficients: 3, -2, -53, -60", explanation: "Write coefficients" },
+                  {
+                    expression: "x + 3 = x - (-3), so a = -3",
+                    explanation: "Identify synthetic divisor",
+                  },
+                  {
+                    expression: "Coefficients: 3, -2, -53, -60",
+                    explanation: "Write coefficients",
+                  },
                   { expression: "Bring down 3", explanation: "Start synthetic division" },
                   { expression: "3 × (-3) = -9", explanation: "Multiply" },
                   { expression: "-2 + (-9) = -11", explanation: "Add" },
@@ -273,7 +295,8 @@ export const seedLesson2_4 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 5: Divisor with a Coefficient Other Than 1\n\nFind: $(4x^4 - 37x^2 + 4x + 9) / (2x - 1)$\n\nTo use synthetic division, the leading coefficient of the divisor must be $1$.\n\nDivide numerator and denominator by $2$:\n\n$\\frac{(4x^4 - 37x^2 + 4x + 9) / 2}{(2x - 1) / 2} = \\frac{2x^4 - \\frac{37}{2}x^2 + 2x + \\frac{9}{2}}{x - \\frac{1}{2}}$\n\nNow use synthetic division with $a = \\frac{1}{2}$.\n\nThe final answer is:\n\n$2x^3 + x^2 - 18x - 7 + \\frac{2}{2x - 1}$",
+              markdown:
+                "## Example 5: Divisor with a Coefficient Other Than 1\n\nFind: $(4x^4 - 37x^2 + 4x + 9) / (2x - 1)$\n\nTo use synthetic division, the leading coefficient of the divisor must be $1$.\n\nDivide numerator and denominator by $2$:\n\n$\\frac{(4x^4 - 37x^2 + 4x + 9) / 2}{(2x - 1) / 2} = \\frac{2x^4 - \\frac{37}{2}x^2 + 2x + \\frac{9}{2}}{x - \\frac{1}{2}}$\n\nNow use synthetic division with $a = \\frac{1}{2}$.\n\nThe final answer is:\n\n$2x^3 + x^2 - 18x - 7 + \\frac{2}{2x - 1}$",
             },
           },
           {
@@ -287,11 +310,26 @@ export const seedLesson2_4 = internalMutation({
                 steps: [
                   { expression: "(2x - 1) / 2 = x - 1/2", explanation: "Normalize the divisor" },
                   { expression: "a = 1/2", explanation: "Identify the synthetic division value" },
-                  { expression: "2x^4 + 0x^3 - (37/2)x^2 + 2x + 9/2", explanation: "Include the missing cubic placeholder" },
-                  { expression: "2x^3 + x^2 - 18x - 7", explanation: "Use synthetic division to find the quotient" },
-                  { expression: "remainder = 1", explanation: "Find the remainder for the normalized divisor" },
-                  { expression: "1 / (x - 1/2) = 2 / (2x - 1)", explanation: "Rewrite the remainder with the original divisor" },
-                  { expression: "2x^3 + x^2 - 18x - 7 + 2/(2x - 1)", explanation: "Write the final answer" },
+                  {
+                    expression: "2x^4 + 0x^3 - (37/2)x^2 + 2x + 9/2",
+                    explanation: "Include the missing cubic placeholder",
+                  },
+                  {
+                    expression: "2x^3 + x^2 - 18x - 7",
+                    explanation: "Use synthetic division to find the quotient",
+                  },
+                  {
+                    expression: "remainder = 1",
+                    explanation: "Find the remainder for the normalized divisor",
+                  },
+                  {
+                    expression: "1 / (x - 1/2) = 2 / (2x - 1)",
+                    explanation: "Rewrite the remainder with the original divisor",
+                  },
+                  {
+                    expression: "2x^3 + x^2 - 18x - 7 + 2/(2x - 1)",
+                    explanation: "Write the final answer",
+                  },
                 ],
               },
             },
@@ -308,7 +346,8 @@ export const seedLesson2_4 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Discussion Questions\n\n1. Why is synthetic division only used with binomial divisors of the form $x - a$?\n2. How can you check your answer when dividing polynomials?\n3. What happens to the remainder in synthetic division?",
+              markdown:
+                "## Discussion Questions\n\n1. Why is synthetic division only used with binomial divisors of the form $x - a$?\n2. How can you check your answer when dividing polynomials?\n3. What happens to the remainder in synthetic division?",
             },
           },
           {
@@ -319,7 +358,8 @@ export const seedLesson2_4 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "If the remainder is 0 when dividing by $(x - a)$, what can you conclude?",
+                    question:
+                      "If the remainder is 0 when dividing by $(x - a)$, what can you conclude?",
                     options: [
                       "$x - a$ is a factor",
                       "$x - a$ is not a factor",
@@ -343,7 +383,8 @@ export const seedLesson2_4 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Reflection\n\nToday you learned about dividing polynomials using long division and synthetic division.\n\n- When would you prefer to use synthetic division over long division?\n- How does the Remainder Theorem relate to synthetic division?\n\n**Tip**: Always check your answer by multiplying the quotient by the divisor and adding the remainder.",
+              markdown:
+                "## Reflection\n\nToday you learned about dividing polynomials using long division and synthetic division.\n\n- When would you prefer to use synthetic division over long division?\n- How does the Remainder Theorem relate to synthetic division?\n\n**Tip**: Always check your answer by multiplying the quotient by the divisor and adding the remainder.",
             },
           },
         ],
@@ -357,7 +398,7 @@ export const seedLesson2_4 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

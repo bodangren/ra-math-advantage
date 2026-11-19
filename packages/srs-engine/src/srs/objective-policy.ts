@@ -1,5 +1,5 @@
-import { z } from 'zod';
-import type { ObjectivePriority } from './contract';
+import { z } from "zod";
+import type { ObjectivePriority } from "./contract";
 
 /**
  * An objective policy assigns a practice priority to a competency standard
@@ -26,10 +26,10 @@ export type ObjectivePolicy = {
 };
 
 export const OBJECTIVE_PRIORITY_VALUES = [
-  'essential',
-  'supporting',
-  'extension',
-  'triaged',
+  "essential",
+  "supporting",
+  "extension",
+  "triaged",
 ] as const;
 
 export const objectivePrioritySchema = z.enum(OBJECTIVE_PRIORITY_VALUES);

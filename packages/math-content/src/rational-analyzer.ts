@@ -21,9 +21,9 @@
  *   (x − r) in ascending order is [−r, 1].
  */
 
-import { multiplyPoly } from './utils/polynomial';
-import { seededRandom } from './utils/prng';
-import { formatPolynomial } from './utils/polynomial-format';
+import { multiplyPoly } from "./utils/polynomial";
+import { seededRandom } from "./utils/prng";
+import { formatPolynomial } from "./utils/polynomial-format";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -55,7 +55,7 @@ export interface RationalProblem {
   /** Real roots of the numerator that are NOT holes. */
   xIntercepts: number[];
   /** Family identifier for the step-by-step-solver fallback UI. */
-  familyId: 'step-by-step-solver:rational';
+  familyId: "step-by-step-solver:rational";
   /** Display equation string, e.g. "(x² + 7x) / (x² + 6x)". */
   equation: string;
 }
@@ -81,9 +81,7 @@ function randInt(rand: () => number, lo: number, hi: number): number {
  * @param {number;} options.seed - — PRNG seed (integer).
  * @returns {RationalProblem} - A RationalProblem with structural features pre-computed.
  */
-export function generateRationalProblem(options: {
-  seed: number;
-}): RationalProblem {
+export function generateRationalProblem(options: { seed: number }): RationalProblem {
   const { seed } = options;
   const rand = seededRandom(seed);
 
@@ -120,10 +118,10 @@ export function generateRationalProblem(options: {
   // Step 4: Expand with non-monic leading coefficients.
   //   P(x) = aNum · (x−h)(x−z)
   //   Q(x) = aDen · (x−h)(x−v)
-  const baseNum = multiplyPoly(factorH, factorZ);   // (x−h)(x−z)
-  const baseDen = multiplyPoly(factorH, factorV);   // (x−h)(x−v)
-  const numerator = baseNum.map(c => c * aNum);
-  const denominator = baseDen.map(c => c * aDen);
+  const baseNum = multiplyPoly(factorH, factorZ); // (x−h)(x−z)
+  const baseDen = multiplyPoly(factorH, factorV); // (x−h)(x−v)
+  const numerator = baseNum.map((c) => c * aNum);
+  const denominator = baseDen.map((c) => c * aDen);
 
   // Step 5: Horizontal asymptote.
   // Both numerator and denominator are degree 2 (product of two linear
@@ -153,7 +151,7 @@ export function generateRationalProblem(options: {
     verticalAsymptotes: [v],
     horizontalAsymptote,
     xIntercepts: [z],
-    familyId: 'step-by-step-solver:rational',
+    familyId: "step-by-step-solver:rational",
     equation,
   };
 }

@@ -1,23 +1,23 @@
-import { describe, expect, expectTypeOf, it } from 'vitest';
-import { ACTIVITY_SUBMISSION_REQUIRED_FIELDS } from '@/types/activities';
+import { describe, expect, expectTypeOf, it } from "vitest";
+import { ACTIVITY_SUBMISSION_REQUIRED_FIELDS } from "@/types/activities";
 import type {
   ActivityComponentKey,
   ActivityProps,
   ActivitySubmissionData,
   GradingConfig,
-} from '@/types/activities';
+} from "@/types/activities";
 
-describe('types/activities exports', () => {
-  it('exports canonical activity config and submission contracts', () => {
+describe("types/activities exports", () => {
+  it("exports canonical activity config and submission contracts", () => {
     expect(ACTIVITY_SUBMISSION_REQUIRED_FIELDS).toEqual([
-      'contractVersion',
-      'activityId',
-      'mode',
-      'status',
-      'attemptNumber',
-      'submittedAt',
-      'answers',
-      'parts',
+      "contractVersion",
+      "activityId",
+      "mode",
+      "status",
+      "attemptNumber",
+      "submittedAt",
+      "answers",
+      "parts",
     ]);
 
     expectTypeOf<ActivityComponentKey>().toMatchTypeOf<string>();
@@ -25,9 +25,14 @@ describe('types/activities exports', () => {
     expectTypeOf<ActivityProps>().toMatchTypeOf<Record<string, unknown>>();
 
     expectTypeOf<ActivitySubmissionData>().toMatchTypeOf<{
-      contractVersion: 'practice.v1';
+      contractVersion: "practice.v1";
       activityId: string;
-      mode: 'worked_example' | 'guided_practice' | 'independent_practice' | 'assessment' | 'teaching';
+      mode:
+        | "worked_example"
+        | "guided_practice"
+        | "independent_practice"
+        | "assessment"
+        | "teaching";
       status: string;
       attemptNumber: number;
       submittedAt: string;

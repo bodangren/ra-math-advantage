@@ -24,13 +24,11 @@
  *   suppression.test.ts).
  */
 
-import { describe, it, expect, vi } from 'vitest';
-import type { Id } from '@/convex/_generated/dataModel';
-import {
-  computeRetentionCurve,
-} from '@math-platform/efficacy-core';
+import { describe, it, expect, vi } from "vitest";
+import type { Id } from "@/convex/_generated/dataModel";
+import { computeRetentionCurve } from "@math-platform/efficacy-core";
 
-import { aggregateCohortMetricsHandler } from '@/convex/efficacy/cohort';
+import { aggregateCohortMetricsHandler } from "@/convex/efficacy/cohort";
 
 // ============================================
 // Deterministic time anchors
@@ -40,19 +38,19 @@ const COHORT_START_MS = Date.UTC(2026, 3, 1, 0, 0, 0); // 2026-04-01
 const COHORT_END_MS = Date.UTC(2026, 4, 1, 0, 0, 0); // 2026-05-01
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
-const CLASS_ID = 'class_red_001' as Id<'classes'>;
+const CLASS_ID = "class_red_001" as Id<"classes">;
 
 function makeEnrollment(args: {
   studentId: string;
-  status?: 'active' | 'withdrawn' | 'completed';
+  status?: "active" | "withdrawn" | "completed";
   enrolledAtMs?: number;
 }) {
-  const { studentId, status = 'active', enrolledAtMs = COHORT_START_MS - MS_PER_DAY } = args;
+  const { studentId, status = "active", enrolledAtMs = COHORT_START_MS - MS_PER_DAY } = args;
   return {
-    _id: `enroll_${studentId}` as Id<'class_enrollments'>,
+    _id: `enroll_${studentId}` as Id<"class_enrollments">,
     _creationTime: enrolledAtMs,
     classId: CLASS_ID,
-    studentId: studentId as Id<'profiles'>,
+    studentId: studentId as Id<"profiles">,
     enrolledAt: enrolledAtMs,
     status,
     createdAt: enrolledAtMs,
@@ -67,17 +65,23 @@ function makeSrsCard(args: {
   reps: number;
   lastReviewMs?: number;
 }) {
-  const { studentId, cardId, stability, reps, lastReviewMs = COHORT_START_MS + 1 * MS_PER_DAY } = args;
+  const {
+    studentId,
+    cardId,
+    stability,
+    reps,
+    lastReviewMs = COHORT_START_MS + 1 * MS_PER_DAY,
+  } = args;
   return {
-    _id: `card_${cardId}` as Id<'srs_cards'>,
+    _id: `card_${cardId}` as Id<"srs_cards">,
     _creationTime: COHORT_START_MS,
     cardId,
-    studentId: studentId as Id<'profiles'>,
+    studentId: studentId as Id<"profiles">,
     objectiveId: `obj_${cardId}`,
     variantKey: `pf_${cardId}`,
     stability,
     difficulty: 3,
-    state: 'review' as const,
+    state: "review" as const,
     dueDate: new Date(COHORT_START_MS + 30 * MS_PER_DAY).toISOString(),
     elapsedDays: 1,
     scheduledDays: 30,
@@ -92,21 +96,21 @@ function makeSrsCard(args: {
 function makeReviewLog(args: {
   studentId: string;
   cardId: string;
-  rating: 'Again' | 'Hard' | 'Good' | 'Easy';
+  rating: "Again" | "Hard" | "Good" | "Easy";
   reviewedAtMs: number;
 }) {
   const { studentId, cardId, rating, reviewedAtMs } = args;
   return {
-    _id: `rev_${cardId}_${reviewedAtMs}` as Id<'srs_review_log'>,
+    _id: `rev_${cardId}_${reviewedAtMs}` as Id<"srs_review_log">,
     _creationTime: reviewedAtMs,
-    cardId: `card_${cardId}` as Id<'srs_cards'>,
-    studentId: studentId as Id<'profiles'>,
+    cardId: `card_${cardId}` as Id<"srs_cards">,
+    studentId: studentId as Id<"profiles">,
     rating,
     reviewId: `r_${cardId}_${reviewedAtMs}`,
     submissionId: `s_${cardId}_${reviewedAtMs}`,
     evidence: {},
-    stateBefore: { stability: 0, difficulty: 0, state: 'review', reps: 0, lapses: 0 },
-    stateAfter: { stability: 1, difficulty: 0, state: 'review', reps: 1, lapses: 0 },
+    stateBefore: { stability: 0, difficulty: 0, state: "review", reps: 0, lapses: 0 },
+    stateAfter: { stability: 1, difficulty: 0, state: "review", reps: 1, lapses: 0 },
     reviewedAt: reviewedAtMs,
   };
 }
@@ -133,30 +137,30 @@ function makeFakeCtx(opts: FakeCtxOptions = {}) {
         _fn?: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
       ) => {
         queryCallLog.push({ table: tableName, index: _indexName });
-        if (tableName === 'class_enrollments') {
+        if (tableName === "class_enrollments") {
           return {
             collect: async () => enrollments,
-              take: async (limit: number) => enrollments.slice(0, limit),
+            take: async (limit: number) => enrollments.slice(0, limit),
             filter: () => ({
               collect: async () => enrollments,
               take: async (limit: number) => enrollments.slice(0, limit),
             }),
           };
         }
-        if (tableName === 'srs_cards') {
+        if (tableName === "srs_cards") {
           return {
             collect: async () => cards,
-              take: async (limit: number) => cards.slice(0, limit),
+            take: async (limit: number) => cards.slice(0, limit),
             filter: () => ({
               collect: async () => cards,
               take: async (limit: number) => cards.slice(0, limit),
             }),
           };
         }
-        if (tableName === 'srs_review_log') {
+        if (tableName === "srs_review_log") {
           return {
             collect: async () => reviews,
-              take: async (limit: number) => reviews.slice(0, limit),
+            take: async (limit: number) => reviews.slice(0, limit),
             filter: () => ({
               collect: async () => reviews,
               take: async (limit: number) => reviews.slice(0, limit),
@@ -188,18 +192,18 @@ function countQueryCalls(log: Array<{ table: string; index?: string }>): number 
 // Tests
 // ============================================
 
-describe('aggregateCohortMetricsHandler (Phase 2 Red — Task 1)', () => {
+describe("aggregateCohortMetricsHandler (Phase 2 Red — Task 1)", () => {
   it('returns status: "ok" with n equal to active enrollment count for a non-empty cohort', async () => {
     const { ctx, queryCallLog } = makeFakeCtx({
       enrollments: [
-        makeEnrollment({ studentId: 'stu_a' }),
-        makeEnrollment({ studentId: 'stu_b' }),
-        makeEnrollment({ studentId: 'stu_c' }),
+        makeEnrollment({ studentId: "stu_a" }),
+        makeEnrollment({ studentId: "stu_b" }),
+        makeEnrollment({ studentId: "stu_c" }),
       ],
     });
 
     const result = await aggregateCohortMetricsHandler(
-      ctx as unknown as import('@/convex/_generated/server').QueryCtx,
+      ctx as unknown as import("@/convex/_generated/server").QueryCtx,
       {
         classId: CLASS_ID,
         windowStartMs: COHORT_START_MS,
@@ -207,7 +211,7 @@ describe('aggregateCohortMetricsHandler (Phase 2 Red — Task 1)', () => {
       },
     );
 
-    expect(result.status).toBe('ok');
+    expect(result.status).toBe("ok");
     expect(result.n).toBe(3);
     // Sanity: the handler actually called ctx.db (not a no-op).
     expect(countQueryCalls(queryCallLog)).toBeGreaterThan(0);
@@ -217,7 +221,7 @@ describe('aggregateCohortMetricsHandler (Phase 2 Red — Task 1)', () => {
     const { ctx } = makeFakeCtx({ enrollments: [] });
 
     const result = await aggregateCohortMetricsHandler(
-      ctx as unknown as import('@/convex/_generated/server').QueryCtx,
+      ctx as unknown as import("@/convex/_generated/server").QueryCtx,
       {
         classId: CLASS_ID,
         windowStartMs: COHORT_START_MS,
@@ -225,23 +229,23 @@ describe('aggregateCohortMetricsHandler (Phase 2 Red — Task 1)', () => {
       },
     );
 
-    expect(result.status).toBe('ok');
+    expect(result.status).toBe("ok");
     expect(result.n).toBe(0);
     expect(result.metrics).toBeDefined();
   });
 
-  it('excludes non-active (withdrawn/completed) enrollments from the cohort n', async () => {
+  it("excludes non-active (withdrawn/completed) enrollments from the cohort n", async () => {
     const { ctx } = makeFakeCtx({
       enrollments: [
-        makeEnrollment({ studentId: 'stu_a', status: 'active' }),
-        makeEnrollment({ studentId: 'stu_b', status: 'withdrawn' }),
-        makeEnrollment({ studentId: 'stu_c', status: 'completed' }),
-        makeEnrollment({ studentId: 'stu_d', status: 'active' }),
+        makeEnrollment({ studentId: "stu_a", status: "active" }),
+        makeEnrollment({ studentId: "stu_b", status: "withdrawn" }),
+        makeEnrollment({ studentId: "stu_c", status: "completed" }),
+        makeEnrollment({ studentId: "stu_d", status: "active" }),
       ],
     });
 
     const result = await aggregateCohortMetricsHandler(
-      ctx as unknown as import('@/convex/_generated/server').QueryCtx,
+      ctx as unknown as import("@/convex/_generated/server").QueryCtx,
       {
         classId: CLASS_ID,
         windowStartMs: COHORT_START_MS,
@@ -252,24 +256,31 @@ describe('aggregateCohortMetricsHandler (Phase 2 Red — Task 1)', () => {
     expect(result.n).toBe(2);
   });
 
-  it('exposes retention + review-success metrics that conform to efficacy-core contracts', async () => {
+  it("exposes retention + review-success metrics that conform to efficacy-core contracts", async () => {
     const { ctx } = makeFakeCtx({
-      enrollments: [
-        makeEnrollment({ studentId: 'stu_a' }),
-        makeEnrollment({ studentId: 'stu_b' }),
-      ],
+      enrollments: [makeEnrollment({ studentId: "stu_a" }), makeEnrollment({ studentId: "stu_b" })],
       cards: [
-        makeSrsCard({ studentId: 'stu_a', cardId: 'c1', stability: 30, reps: 3 }),
-        makeSrsCard({ studentId: 'stu_b', cardId: 'c2', stability: 90, reps: 5 }),
+        makeSrsCard({ studentId: "stu_a", cardId: "c1", stability: 30, reps: 3 }),
+        makeSrsCard({ studentId: "stu_b", cardId: "c2", stability: 90, reps: 5 }),
       ],
       reviews: [
-        makeReviewLog({ studentId: 'stu_a', cardId: 'c1', rating: 'Good', reviewedAtMs: COHORT_START_MS + 1 * MS_PER_DAY }),
-        makeReviewLog({ studentId: 'stu_b', cardId: 'c2', rating: 'Easy', reviewedAtMs: COHORT_START_MS + 2 * MS_PER_DAY }),
+        makeReviewLog({
+          studentId: "stu_a",
+          cardId: "c1",
+          rating: "Good",
+          reviewedAtMs: COHORT_START_MS + 1 * MS_PER_DAY,
+        }),
+        makeReviewLog({
+          studentId: "stu_b",
+          cardId: "c2",
+          rating: "Easy",
+          reviewedAtMs: COHORT_START_MS + 2 * MS_PER_DAY,
+        }),
       ],
     });
 
     const result = await aggregateCohortMetricsHandler(
-      ctx as unknown as import('@/convex/_generated/server').QueryCtx,
+      ctx as unknown as import("@/convex/_generated/server").QueryCtx,
       {
         classId: CLASS_ID,
         windowStartMs: COHORT_START_MS,
@@ -277,7 +288,7 @@ describe('aggregateCohortMetricsHandler (Phase 2 Red — Task 1)', () => {
       },
     );
 
-    expect(result.status).toBe('ok');
+    expect(result.status).toBe("ok");
     expect(result.metrics.retention).toBeDefined();
     expect(result.metrics.reviewSuccess).toBeDefined();
     // The retention curve must be the same shape produced by the canonical
@@ -285,8 +296,18 @@ describe('aggregateCohortMetricsHandler (Phase 2 Red — Task 1)', () => {
     // reuse, no re-implementation.
     const expectedRetention = computeRetentionCurve({
       cards: [
-        makeSrsCard({ studentId: 'stu_a', cardId: 'c1', stability: 30, reps: 3 }) as unknown as import('@math-platform/srs-engine').SrsCardState,
-        makeSrsCard({ studentId: 'stu_b', cardId: 'c2', stability: 90, reps: 5 }) as unknown as import('@math-platform/srs-engine').SrsCardState,
+        makeSrsCard({
+          studentId: "stu_a",
+          cardId: "c1",
+          stability: 30,
+          reps: 3,
+        }) as unknown as import("@math-platform/srs-engine").SrsCardState,
+        makeSrsCard({
+          studentId: "stu_b",
+          cardId: "c2",
+          stability: 90,
+          reps: 5,
+        }) as unknown as import("@math-platform/srs-engine").SrsCardState,
       ],
       windowStartMs: COHORT_START_MS,
       windowEndMs: COHORT_END_MS,
@@ -295,22 +316,43 @@ describe('aggregateCohortMetricsHandler (Phase 2 Red — Task 1)', () => {
     expect(result.metrics.retention).toEqual(expectedRetention);
   });
 
-  it('uses the cohort time window to filter reviews (inclusive start, exclusive end)', async () => {
+  it("uses the cohort time window to filter reviews (inclusive start, exclusive end)", async () => {
     // Reviews before/at-start/inside/at-end; only inside should be counted.
     const { ctx } = makeFakeCtx({
-      enrollments: [makeEnrollment({ studentId: 'stu_a' })],
+      enrollments: [makeEnrollment({ studentId: "stu_a" })],
       cards: [
-        makeSrsCard({ studentId: 'stu_a', cardId: 'c1', stability: 30, reps: 3, lastReviewMs: COHORT_START_MS + 1 * MS_PER_DAY }),
+        makeSrsCard({
+          studentId: "stu_a",
+          cardId: "c1",
+          stability: 30,
+          reps: 3,
+          lastReviewMs: COHORT_START_MS + 1 * MS_PER_DAY,
+        }),
       ],
       reviews: [
-        makeReviewLog({ studentId: 'stu_a', cardId: 'c1', rating: 'Good', reviewedAtMs: COHORT_START_MS - 1 }),
-        makeReviewLog({ studentId: 'stu_a', cardId: 'c1', rating: 'Good', reviewedAtMs: COHORT_START_MS + 1 * MS_PER_DAY }),
-        makeReviewLog({ studentId: 'stu_a', cardId: 'c1', rating: 'Good', reviewedAtMs: COHORT_END_MS }),
+        makeReviewLog({
+          studentId: "stu_a",
+          cardId: "c1",
+          rating: "Good",
+          reviewedAtMs: COHORT_START_MS - 1,
+        }),
+        makeReviewLog({
+          studentId: "stu_a",
+          cardId: "c1",
+          rating: "Good",
+          reviewedAtMs: COHORT_START_MS + 1 * MS_PER_DAY,
+        }),
+        makeReviewLog({
+          studentId: "stu_a",
+          cardId: "c1",
+          rating: "Good",
+          reviewedAtMs: COHORT_END_MS,
+        }),
       ],
     });
 
     const result = await aggregateCohortMetricsHandler(
-      ctx as unknown as import('@/convex/_generated/server').QueryCtx,
+      ctx as unknown as import("@/convex/_generated/server").QueryCtx,
       {
         classId: CLASS_ID,
         windowStartMs: COHORT_START_MS,
@@ -325,15 +367,15 @@ describe('aggregateCohortMetricsHandler (Phase 2 Red — Task 1)', () => {
     expect(reviewSuccess?.successCount).toBe(1);
   });
 
-  it('does NOT trigger N+1: total db.query call count is bounded by a small constant independent of class size', async () => {
+  it("does NOT trigger N+1: total db.query call count is bounded by a small constant independent of class size", async () => {
     // 25 active students — would explode under a per-student loop.
     const bigEnrollment = Array.from({ length: 25 }, (_, i) =>
-      makeEnrollment({ studentId: `stu_${i.toString().padStart(2, '0')}` }),
+      makeEnrollment({ studentId: `stu_${i.toString().padStart(2, "0")}` }),
     );
     const { ctx, queryCallLog } = makeFakeCtx({ enrollments: bigEnrollment });
 
     await aggregateCohortMetricsHandler(
-      ctx as unknown as import('@/convex/_generated/server').QueryCtx,
+      ctx as unknown as import("@/convex/_generated/server").QueryCtx,
       {
         classId: CLASS_ID,
         windowStartMs: COHORT_START_MS,
@@ -349,13 +391,13 @@ describe('aggregateCohortMetricsHandler (Phase 2 Red — Task 1)', () => {
     expect(totalCalls).toBeGreaterThanOrEqual(1);
   });
 
-  it('returns a result shape that includes the classId, window, n, and metrics (no PII)', async () => {
+  it("returns a result shape that includes the classId, window, n, and metrics (no PII)", async () => {
     const { ctx } = makeFakeCtx({
-      enrollments: [makeEnrollment({ studentId: 'stu_a' })],
+      enrollments: [makeEnrollment({ studentId: "stu_a" })],
     });
 
     const result = await aggregateCohortMetricsHandler(
-      ctx as unknown as import('@/convex/_generated/server').QueryCtx,
+      ctx as unknown as import("@/convex/_generated/server").QueryCtx,
       {
         classId: CLASS_ID,
         windowStartMs: COHORT_START_MS,

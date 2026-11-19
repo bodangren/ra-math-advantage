@@ -14,18 +14,18 @@
 // `UserRole` in `packages/core-auth/src/session.ts`, so the cast is only a
 // safety net for older typecheck contexts.
 
-import type { SessionClaims } from '@math-platform/core-auth';
+import type { SessionClaims } from "@math-platform/core-auth";
 
-export type ParentSessionClaims = SessionClaims & { role: 'parent' };
+export type ParentSessionClaims = SessionClaims & { role: "parent" };
 
-export const PARENT_PROFILE_ID = 'parent_profile_id_alpha';
-export const PARENT_USERNAME = 'parent.alpha';
+export const PARENT_PROFILE_ID = "parent_profile_id_alpha";
+export const PARENT_USERNAME = "parent.alpha";
 
 export function makeParentClaims(overrides: Partial<SessionClaims> = {}): SessionClaims {
   return {
     sub: PARENT_PROFILE_ID,
     username: PARENT_USERNAME,
-    role: 'parent' as unknown as SessionClaims['role'],
+    role: "parent" as unknown as SessionClaims["role"],
     iat: 1,
     exp: 9_999_999_999,
     ...overrides,
@@ -33,7 +33,7 @@ export function makeParentClaims(overrides: Partial<SessionClaims> = {}): Sessio
 }
 
 export function makeNonParentClaims(
-  role: 'student' | 'teacher' | 'admin',
+  role: "student" | "teacher" | "admin",
   overrides: Partial<SessionClaims> = {},
 ): SessionClaims {
   return {

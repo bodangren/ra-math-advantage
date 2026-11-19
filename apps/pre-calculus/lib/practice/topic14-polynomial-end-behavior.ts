@@ -1,18 +1,18 @@
-import { generateTopic14PolynomialEndBehaviorOutput } from '@math-platform/math-content/knowledge-space';
+import { generateTopic14PolynomialEndBehaviorOutput } from "@math-platform/math-content/knowledge-space";
 
 export interface Topic14PolynomialEndBehaviorAnswers {
   readonly leftEnd: string;
   readonly rightEnd: string;
 }
 
-const PART_IDS = ['leftEnd', 'rightEnd'] as const;
+const PART_IDS = ["leftEnd", "rightEnd"] as const;
 
 function isCanonicalAnswer(
   partId: (typeof PART_IDS)[number],
   rawAnswer: unknown,
 ): rawAnswer is string {
-  if (typeof rawAnswer !== 'string') return false;
-  return rawAnswer === 'positive_infinity' || rawAnswer === 'negative_infinity';
+  if (typeof rawAnswer !== "string") return false;
+  return rawAnswer === "positive_infinity" || rawAnswer === "negative_infinity";
 }
 
 export function gradeTopic14PolynomialEndBehavior(
@@ -25,8 +25,7 @@ export function gradeTopic14PolynomialEndBehavior(
   >;
   const parts = PART_IDS.map((partId) => {
     const rawAnswer = answers[partId];
-    const isCorrect = isCanonicalAnswer(partId, rawAnswer)
-      && rawAnswer === expected[partId];
+    const isCorrect = isCanonicalAnswer(partId, rawAnswer) && rawAnswer === expected[partId];
     return {
       partId,
       rawAnswer,

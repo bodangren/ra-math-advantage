@@ -23,14 +23,14 @@
 //   npx tsx scripts/remediate-concept-blueprints.ts --dry-run   # show changes
 //   npx tsx scripts/remediate-concept-blueprints.ts             # rewrite in place
 
-import * as fs from 'node:fs';
-import * as path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import * as fs from "node:fs";
+import * as path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export const REPO_ROOT = path.resolve(__dirname, '..');
+export const REPO_ROOT = path.resolve(__dirname, "..");
 export const CONCEPT_NODE_ID_PATTERN = /\.concept\./;
 
 export interface Blueprint {
@@ -55,7 +55,7 @@ export interface ScanOptions {
 }
 
 const args = process.argv.slice(2);
-const dryRun = args.includes('--dry-run');
+const dryRun = args.includes("--dry-run");
 
 /**
  * Default include globs relative to each scan root. The activity-map
@@ -64,9 +64,9 @@ const dryRun = args.includes('--dry-run');
  * back-compat with the IM3 module-N shards.
  */
 export const DEFAULT_INCLUDE_GLOBS = [
-  '**/curriculum/implementation/practice-v1/activity-map.json',
-  '**/curriculum/skill-graph/blueprints.json',
-  '**/curriculum/skill-graph/**/blueprints.json',
+  "**/curriculum/implementation/practice-v1/activity-map.json",
+  "**/curriculum/skill-graph/blueprints.json",
+  "**/curriculum/skill-graph/**/blueprints.json",
 ];
 
 /**
@@ -98,8 +98,8 @@ function walk(dir: string, out: string[]): void {
 }
 
 function isBlueprintArtifact(name: string): boolean {
-  if (name === 'blueprints.json') return true;
-  if (name === 'activity-map.json') return true;
+  if (name === "blueprints.json") return true;
+  if (name === "activity-map.json") return true;
   return false;
 }
 
@@ -136,9 +136,7 @@ export function removeConceptBlueprints(parsed: BlueprintFile): {
 
   if (Array.isArray(parsed.blueprints)) {
     const before = parsed.blueprints.length;
-    const kept = parsed.blueprints.filter(
-      (bp) => !CONCEPT_NODE_ID_PATTERN.test(bp.nodeId),
-    );
+    const kept = parsed.blueprints.filter((bp) => !CONCEPT_NODE_ID_PATTERN.test(bp.nodeId));
     removed += before - kept.length;
     keptBlueprints = kept.length;
     parsed.blueprints = kept;
@@ -146,9 +144,7 @@ export function removeConceptBlueprints(parsed: BlueprintFile): {
 
   if (Array.isArray(parsed.activities)) {
     const before = parsed.activities.length;
-    const kept = parsed.activities.filter(
-      (act) => !CONCEPT_NODE_ID_PATTERN.test(act.activityId),
-    );
+    const kept = parsed.activities.filter((act) => !CONCEPT_NODE_ID_PATTERN.test(act.activityId));
     removed += before - kept.length;
     keptActivities = kept.length;
     parsed.activities = kept;
@@ -185,7 +181,7 @@ export function remediate(opts: {
     artifacts: [],
   };
   for (const file of files) {
-    const raw = fs.readFileSync(file, 'utf-8');
+    const raw = fs.readFileSync(file, "utf-8");
     const parsed = JSON.parse(raw) as BlueprintFile;
     const { removed } = removeConceptBlueprints(parsed);
     if (removed > 0) {
@@ -193,7 +189,7 @@ export function remediate(opts: {
       summary.totalRemoved += removed;
       summary.artifacts.push({ path: file, removed });
       if (!opts.dryRun) {
-        fs.writeFileSync(file, `${JSON.stringify(parsed, null, 2)}\n`, 'utf-8');
+        fs.writeFileSync(file, `${JSON.stringify(parsed, null, 2)}\n`, "utf-8");
       }
     }
   }
@@ -203,17 +199,17 @@ export function remediate(opts: {
 export function main(): void {
   const summary = remediate({
     repoRoot: REPO_ROOT,
-    scanRoots: ['apps'],
+    scanRoots: ["apps"],
     dryRun,
   });
   for (const art of summary.artifacts) {
     const rel = path.relative(REPO_ROOT, art.path);
     console.log(
-      `${dryRun ? '[dry-run] would remove' : 'removed'} ${art.removed} concept blueprint(s) from ${rel}`,
+      `${dryRun ? "[dry-run] would remove" : "removed"} ${art.removed} concept blueprint(s) from ${rel}`,
     );
   }
   console.log(
-    `${dryRun ? '[dry-run] ' : ''}scanned ${summary.filesScanned} file(s); done — ${summary.totalRemoved} concept blueprint(s) across ${summary.filesWithConceptBlueprints} file(s)`,
+    `${dryRun ? "[dry-run] " : ""}scanned ${summary.filesScanned} file(s); done — ${summary.totalRemoved} concept blueprint(s) across ${summary.filesWithConceptBlueprints} file(s)`,
   );
 }
 
@@ -222,8 +218,8 @@ export function main(): void {
 // from an import-driven test run.
 const isCliInvocation =
   process.argv[1] != null &&
-  (process.argv[1].endsWith('remediate-concept-blueprints.ts') ||
-    process.argv[1].endsWith('remediate-concept-blueprints.js'));
+  (process.argv[1].endsWith("remediate-concept-blueprints.ts") ||
+    process.argv[1].endsWith("remediate-concept-blueprints.js"));
 if (isCliInvocation) {
   main();
 }

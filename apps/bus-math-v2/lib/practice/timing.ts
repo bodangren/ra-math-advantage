@@ -6,4 +6,4 @@ export {
   type TimingAccumulatorOptions,
   TimingAccumulator,
   createTimingAccumulator,
-} from '@math-platform/practice-core';
+} from "@math-platform/practice-core";

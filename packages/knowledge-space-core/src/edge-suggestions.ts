@@ -4,11 +4,7 @@
 // ID patterns and metadata. All outputs are sorted deterministically so the
 // same input always produces the same edges in the same order.
 
-import type {
-  KnowledgeSpaceNode,
-  KnowledgeSpaceEdge,
-  ConfidenceLevel,
-} from './types';
+import type { KnowledgeSpaceNode, KnowledgeSpaceEdge, ConfidenceLevel } from "./types";
 
 export interface EdgeSuggestionInput {
   nodes: KnowledgeSpaceNode[];
@@ -20,7 +16,7 @@ export interface EdgeSuggestionInput {
 // Internal helpers
 // ---------------------------------------------------------------------------
 
-type EdgeCandidate = Omit<KnowledgeSpaceEdge, 'id'>;
+type EdgeCandidate = Omit<KnowledgeSpaceEdge, "id">;
 
 /**
  * Build a deterministic sort key from an edge candidate's type, source, and target.
@@ -45,7 +41,7 @@ function sortKey(e: EdgeCandidate): string {
  * @returns {EdgeCandidate} - A fully populated edge candidate
  */
 function makeCandidate(
-  type: KnowledgeSpaceEdge['type'],
+  type: KnowledgeSpaceEdge["type"],
   sourceId: string,
   targetId: string,
   weight: number,
@@ -61,7 +57,7 @@ function makeCandidate(
     targetId,
     weight,
     confidence,
-    reviewStatus: 'draft',
+    reviewStatus: "draft",
     derived,
     derivationMethod,
   };
@@ -85,11 +81,11 @@ type NodesByModule = Map<string, KnowledgeSpaceNode[]>;
  */
 function groupByMeta(
   nodes: KnowledgeSpaceNode[],
-  kinds: KnowledgeSpaceNode['kind'][],
+  kinds: KnowledgeSpaceNode["kind"][],
   keyFn: (n: KnowledgeSpaceNode) => string | undefined,
 ): Map<string, KnowledgeSpaceNode[]> {
   const map = new Map<string, KnowledgeSpaceNode[]>();
-  const kindSet = new Set<KnowledgeSpaceNode['kind']>(kinds);
+  const kindSet = new Set<KnowledgeSpaceNode["kind"]>(kinds);
   for (const node of nodes) {
     if (!kindSet.has(node.kind)) continue;
     const key = keyFn(node);
@@ -108,7 +104,7 @@ function groupByMeta(
  */
 function metaStr(node: KnowledgeSpaceNode, field: string): string | undefined {
   const v = node.metadata?.[field];
-  return typeof v === 'string' ? v : undefined;
+  return typeof v === "string" ? v : undefined;
 }
 
 // ---------------------------------------------------------------------------
@@ -120,97 +116,135 @@ function metaStr(node: KnowledgeSpaceNode, field: string): string | undefined {
  * @param {KnowledgeSpaceNode[]} nodes - All nodes in the knowledge space
  * @returns {EdgeCandidate[]} - Array of containment edge candidates
  */
-function suggestContainmentEdges(
-  nodes: KnowledgeSpaceNode[],
-): EdgeCandidate[] {
+function suggestContainmentEdges(nodes: KnowledgeSpaceNode[]): EdgeCandidate[] {
   const candidates: EdgeCandidate[] = [];
-  const domain = nodes.find((n) => n.kind === 'domain');
-  const modules = nodes.filter((n) => n.kind === 'content_group');
-  const lessons = nodes.filter((n) => n.kind === 'instructional_unit');
-  const skills = nodes.filter((n) => n.kind === 'skill');
-  const concepts = nodes.filter((n) => n.kind === 'concept');
-  const examples = nodes.filter((n) => n.kind === 'worked_example');
+  const domain = nodes.find((n) => n.kind === "domain");
+  const modules = nodes.filter((n) => n.kind === "content_group");
+  const lessons = nodes.filter((n) => n.kind === "instructional_unit");
+  const skills = nodes.filter((n) => n.kind === "skill");
+  const concepts = nodes.filter((n) => n.kind === "concept");
+  const examples = nodes.filter((n) => n.kind === "worked_example");
 
-  const METHOD = 'lesson-sequence-containment-v1';
+  const METHOD = "lesson-sequence-containment-v1";
 
   // domain → module
   if (domain) {
     for (const mod of modules) {
-      candidates.push(makeCandidate(
-        'contains', domain.id, mod.id, 1.0, 'high', true, METHOD,
-        `Domain contains ${mod.title}`,
-        { course: metaStr(mod, 'course'), module: metaStr(mod, 'module') },
-      ));
+      candidates.push(
+        makeCandidate(
+          "contains",
+          domain.id,
+          mod.id,
+          1.0,
+          "high",
+          true,
+          METHOD,
+          `Domain contains ${mod.title}`,
+          { course: metaStr(mod, "course"), module: metaStr(mod, "module") },
+        ),
+      );
     }
   }
 
   // Build module id → node map for lookup
   const modulesByKey = new Map<string, KnowledgeSpaceNode>();
   for (const mod of modules) {
-    const modNum = metaStr(mod, 'module');
+    const modNum = metaStr(mod, "module");
     if (modNum) modulesByKey.set(modNum, mod);
   }
 
   // Build lesson (module+lesson) → node map
   const lessonsByKey = new Map<string, KnowledgeSpaceNode>();
   for (const lesson of lessons) {
-    const modNum = metaStr(lesson, 'module');
-    const lesNum = metaStr(lesson, 'lesson');
+    const modNum = metaStr(lesson, "module");
+    const lesNum = metaStr(lesson, "lesson");
     if (modNum && lesNum) lessonsByKey.set(`${modNum}.${lesNum}`, lesson);
   }
 
   // module → lesson
   for (const lesson of lessons) {
-    const modNum = metaStr(lesson, 'module');
+    const modNum = metaStr(lesson, "module");
     if (!modNum) continue;
     const mod = modulesByKey.get(modNum);
     if (!mod) continue;
-    candidates.push(makeCandidate(
-      'contains', mod.id, lesson.id, 1.0, 'high', true, METHOD,
-      `Module ${modNum} contains lesson`,
-      { module: modNum },
-    ));
+    candidates.push(
+      makeCandidate(
+        "contains",
+        mod.id,
+        lesson.id,
+        1.0,
+        "high",
+        true,
+        METHOD,
+        `Module ${modNum} contains lesson`,
+        { module: modNum },
+      ),
+    );
   }
 
   // lesson → skill
   for (const skill of skills) {
-    const modNum = metaStr(skill, 'module');
-    const lesNum = metaStr(skill, 'lesson');
+    const modNum = metaStr(skill, "module");
+    const lesNum = metaStr(skill, "lesson");
     if (!modNum || !lesNum) continue;
     const lesson = lessonsByKey.get(`${modNum}.${lesNum}`);
     if (!lesson) continue;
-    candidates.push(makeCandidate(
-      'contains', lesson.id, skill.id, 1.0, 'high', true, METHOD,
-      `Lesson contains skill`,
-      { module: modNum, lesson: lesNum },
-    ));
+    candidates.push(
+      makeCandidate(
+        "contains",
+        lesson.id,
+        skill.id,
+        1.0,
+        "high",
+        true,
+        METHOD,
+        `Lesson contains skill`,
+        { module: modNum, lesson: lesNum },
+      ),
+    );
   }
 
   // module → concept (ALEKS concepts belong to a module, not a specific lesson)
   for (const concept of concepts) {
-    const modNum = metaStr(concept, 'module');
+    const modNum = metaStr(concept, "module");
     if (!modNum) continue;
     const mod = modulesByKey.get(modNum);
     if (!mod) continue;
-    candidates.push(makeCandidate(
-      'contains', mod.id, concept.id, 1.0, 'high', true, METHOD,
-      `Module ${modNum} contains concept`,
-      { module: modNum },
-    ));
+    candidates.push(
+      makeCandidate(
+        "contains",
+        mod.id,
+        concept.id,
+        1.0,
+        "high",
+        true,
+        METHOD,
+        `Module ${modNum} contains concept`,
+        { module: modNum },
+      ),
+    );
   }
 
   // lesson → worked_example
   for (const example of examples) {
-    const modNum = metaStr(example, 'module');
-    const lesNum = metaStr(example, 'lesson');
+    const modNum = metaStr(example, "module");
+    const lesNum = metaStr(example, "lesson");
     if (!modNum || !lesNum) continue;
     const lesson = lessonsByKey.get(`${modNum}.${lesNum}`);
     if (!lesson) continue;
-    candidates.push(makeCandidate(
-      'contains', lesson.id, example.id, 1.0, 'high', true, METHOD,
-      `Lesson contains worked example`,
-      { module: modNum, lesson: lesNum },
-    ));
+    candidates.push(
+      makeCandidate(
+        "contains",
+        lesson.id,
+        example.id,
+        1.0,
+        "high",
+        true,
+        METHOD,
+        `Lesson contains worked example`,
+        { module: modNum, lesson: lesNum },
+      ),
+    );
   }
 
   return candidates;
@@ -221,70 +255,92 @@ function suggestContainmentEdges(
  * @param {KnowledgeSpaceNode[]} nodes - All nodes in the knowledge space
  * @returns {EdgeCandidate[]} - Array of placement edge candidates
  */
-function suggestPlacementEdges(
-  nodes: KnowledgeSpaceNode[],
-): EdgeCandidate[] {
+function suggestPlacementEdges(nodes: KnowledgeSpaceNode[]): EdgeCandidate[] {
   const candidates: EdgeCandidate[] = [];
-  const METHOD = 'lesson-sequence-placement-v1';
+  const METHOD = "lesson-sequence-placement-v1";
 
-  const lessons = nodes.filter((n) => n.kind === 'instructional_unit');
-  const modules = nodes.filter((n) => n.kind === 'content_group');
-  const skills = nodes.filter((n) => n.kind === 'skill');
-  const concepts = nodes.filter((n) => n.kind === 'concept');
-  const examples = nodes.filter((n) => n.kind === 'worked_example');
+  const lessons = nodes.filter((n) => n.kind === "instructional_unit");
+  const modules = nodes.filter((n) => n.kind === "content_group");
+  const skills = nodes.filter((n) => n.kind === "skill");
+  const concepts = nodes.filter((n) => n.kind === "concept");
+  const examples = nodes.filter((n) => n.kind === "worked_example");
 
   const lessonsByKey = new Map<string, KnowledgeSpaceNode>();
   for (const lesson of lessons) {
-    const modNum = metaStr(lesson, 'module');
-    const lesNum = metaStr(lesson, 'lesson');
+    const modNum = metaStr(lesson, "module");
+    const lesNum = metaStr(lesson, "lesson");
     if (modNum && lesNum) lessonsByKey.set(`${modNum}.${lesNum}`, lesson);
   }
 
   const modulesByKey = new Map<string, KnowledgeSpaceNode>();
   for (const mod of modules) {
-    const modNum = metaStr(mod, 'module');
+    const modNum = metaStr(mod, "module");
     if (modNum) modulesByKey.set(modNum, mod);
   }
 
   // skill → lesson
   for (const skill of skills) {
-    const modNum = metaStr(skill, 'module');
-    const lesNum = metaStr(skill, 'lesson');
+    const modNum = metaStr(skill, "module");
+    const lesNum = metaStr(skill, "lesson");
     if (!modNum || !lesNum) continue;
     const lesson = lessonsByKey.get(`${modNum}.${lesNum}`);
     if (!lesson) continue;
-    candidates.push(makeCandidate(
-      'appears_in_context', skill.id, lesson.id, 0.75, 'medium', true, METHOD,
-      `Skill appears in lesson context`,
-      { module: modNum, lesson: lesNum },
-    ));
+    candidates.push(
+      makeCandidate(
+        "appears_in_context",
+        skill.id,
+        lesson.id,
+        0.75,
+        "medium",
+        true,
+        METHOD,
+        `Skill appears in lesson context`,
+        { module: modNum, lesson: lesNum },
+      ),
+    );
   }
 
   // concept → module (ALEKS concepts appear in module context, not a specific lesson)
   for (const concept of concepts) {
-    const modNum = metaStr(concept, 'module');
+    const modNum = metaStr(concept, "module");
     if (!modNum) continue;
     const mod = modulesByKey.get(modNum);
     if (!mod) continue;
-    candidates.push(makeCandidate(
-      'appears_in_context', concept.id, mod.id, 0.75, 'medium', true, METHOD,
-      `Concept appears in module context`,
-      { module: modNum },
-    ));
+    candidates.push(
+      makeCandidate(
+        "appears_in_context",
+        concept.id,
+        mod.id,
+        0.75,
+        "medium",
+        true,
+        METHOD,
+        `Concept appears in module context`,
+        { module: modNum },
+      ),
+    );
   }
 
   // worked_example → lesson
   for (const example of examples) {
-    const modNum = metaStr(example, 'module');
-    const lesNum = metaStr(example, 'lesson');
+    const modNum = metaStr(example, "module");
+    const lesNum = metaStr(example, "lesson");
     if (!modNum || !lesNum) continue;
     const lesson = lessonsByKey.get(`${modNum}.${lesNum}`);
     if (!lesson) continue;
-    candidates.push(makeCandidate(
-      'appears_in_context', example.id, lesson.id, 0.75, 'medium', true, METHOD,
-      `Worked example appears in lesson context`,
-      { module: modNum, lesson: lesNum },
-    ));
+    candidates.push(
+      makeCandidate(
+        "appears_in_context",
+        example.id,
+        lesson.id,
+        0.75,
+        "medium",
+        true,
+        METHOD,
+        `Worked example appears in lesson context`,
+        { module: modNum, lesson: lesNum },
+      ),
+    );
   }
 
   return candidates;
@@ -295,19 +351,17 @@ function suggestPlacementEdges(
  * @param {KnowledgeSpaceNode[]} nodes - All nodes in the knowledge space
  * @returns {EdgeCandidate[]} - Array of prerequisite edge candidates
  */
-function suggestPrerequisiteEdges(
-  nodes: KnowledgeSpaceNode[],
-): EdgeCandidate[] {
+function suggestPrerequisiteEdges(nodes: KnowledgeSpaceNode[]): EdgeCandidate[] {
   const candidates: EdgeCandidate[] = [];
-  const METHOD = 'lesson-sequence-prerequisite-v1';
+  const METHOD = "lesson-sequence-prerequisite-v1";
 
-  const skills = nodes.filter((n) => n.kind === 'skill');
+  const skills = nodes.filter((n) => n.kind === "skill");
 
   // Group skills by (module, lesson) → sorted list
   const skillsByLesson = new Map<string, KnowledgeSpaceNode[]>();
   for (const skill of skills) {
-    const modNum = metaStr(skill, 'module');
-    const lesNum = metaStr(skill, 'lesson');
+    const modNum = metaStr(skill, "module");
+    const lesNum = metaStr(skill, "lesson");
     if (!modNum || !lesNum) continue;
     const key = `${modNum}.${lesNum}`;
     if (!skillsByLesson.has(key)) skillsByLesson.set(key, []);
@@ -316,8 +370,8 @@ function suggestPrerequisiteEdges(
 
   // Sort lesson keys: first by module number, then by lesson number
   const lessonKeys = [...skillsByLesson.keys()].sort((a, b) => {
-    const [am, al] = a.split('.').map(Number);
-    const [bm, bl] = b.split('.').map(Number);
+    const [am, al] = a.split(".").map(Number);
+    const [bm, bl] = b.split(".").map(Number);
     return am !== bm ? am - bm : al - bl;
   });
 
@@ -338,17 +392,26 @@ function suggestPrerequisiteEdges(
     const source = currSkills[currSkills.length - 1];
     const target = nextSkills[0];
 
-    const [cm, cl] = currKey.split('.');
-    const [nm, nl] = nextKey.split('.');
-    const transitionNote = cm === nm
-      ? `lesson ${cl} precedes lesson ${nl} in module ${cm}`
-      : `last lesson of module ${cm} precedes first lesson of module ${nm}`;
+    const [cm, cl] = currKey.split(".");
+    const [nm, nl] = nextKey.split(".");
+    const transitionNote =
+      cm === nm
+        ? `lesson ${cl} precedes lesson ${nl} in module ${cm}`
+        : `last lesson of module ${cm} precedes first lesson of module ${nm}`;
 
-    candidates.push(makeCandidate(
-      'prerequisite_for', source.id, target.id, 0.5, 'low', true, METHOD,
-      `Lesson-sequence prerequisite: ${transitionNote}`,
-      { fromLesson: currKey, toLesson: nextKey },
-    ));
+    candidates.push(
+      makeCandidate(
+        "prerequisite_for",
+        source.id,
+        target.id,
+        0.5,
+        "low",
+        true,
+        METHOD,
+        `Lesson-sequence prerequisite: ${transitionNote}`,
+        { fromLesson: currKey, toLesson: nextKey },
+      ),
+    );
   }
 
   return candidates;
@@ -359,31 +422,35 @@ function suggestPrerequisiteEdges(
  * @param {KnowledgeSpaceNode[]} nodes - All nodes in the knowledge space
  * @returns {EdgeCandidate[]} - Array of support edge candidates
  */
-function suggestSupportEdges(
-  nodes: KnowledgeSpaceNode[],
-): EdgeCandidate[] {
+function suggestSupportEdges(nodes: KnowledgeSpaceNode[]): EdgeCandidate[] {
   const candidates: EdgeCandidate[] = [];
-  const METHOD = 'concept-supports-skill-v1';
+  const METHOD = "concept-supports-skill-v1";
 
-  const concepts = nodes.filter((n) => n.kind === 'concept');
+  const concepts = nodes.filter((n) => n.kind === "concept");
   // Group skills by module
-  const skillsByModule = groupByMeta(nodes, ['skill'], (n) =>
-    metaStr(n, 'module'),
+  const skillsByModule = groupByMeta(nodes, ["skill"], (n) =>
+    metaStr(n, "module"),
   ) as NodesByModule;
 
   // Each concept supports all skills in the same module
   for (const concept of concepts) {
-    const modNum = metaStr(concept, 'module');
+    const modNum = metaStr(concept, "module");
     if (!modNum) continue;
-    const modSkills = (skillsByModule.get(modNum) ?? []).sort((a, b) =>
-      a.id.localeCompare(b.id),
-    );
+    const modSkills = (skillsByModule.get(modNum) ?? []).sort((a, b) => a.id.localeCompare(b.id));
     for (const skill of modSkills) {
-      candidates.push(makeCandidate(
-        'supports', concept.id, skill.id, 0.75, 'medium', true, METHOD,
-        `ALEKS concept supports lesson-level skill in module ${modNum}`,
-        { module: modNum },
-      ));
+      candidates.push(
+        makeCandidate(
+          "supports",
+          concept.id,
+          skill.id,
+          0.75,
+          "medium",
+          true,
+          METHOD,
+          `ALEKS concept supports lesson-level skill in module ${modNum}`,
+          { module: modNum },
+        ),
+      );
     }
   }
 
@@ -399,17 +466,15 @@ function suggestSupportEdges(
  * @param {KnowledgeSpaceNode[]} nodes - All nodes in the knowledge space
  * @returns {EdgeCandidate[]} - Array of equivalence edge candidates
  */
-function suggestEquivalenceEdges(
-  nodes: KnowledgeSpaceNode[],
-): EdgeCandidate[] {
+function suggestEquivalenceEdges(nodes: KnowledgeSpaceNode[]): EdgeCandidate[] {
   const candidates: EdgeCandidate[] = [];
-  const METHOD = 'intra-course-equivalence-v1';
+  const METHOD = "intra-course-equivalence-v1";
 
   // Detect concepts sharing the same familyKey within the same course
-  const concepts = nodes.filter((n) => n.kind === 'concept');
+  const concepts = nodes.filter((n) => n.kind === "concept");
   const byFamilyKey = new Map<string, KnowledgeSpaceNode[]>();
   for (const concept of concepts) {
-    const fk = metaStr(concept, 'familyKey');
+    const fk = metaStr(concept, "familyKey");
     if (!fk) continue;
     if (!byFamilyKey.has(fk)) byFamilyKey.set(fk, []);
     byFamilyKey.get(fk)!.push(concept);
@@ -419,11 +484,19 @@ function suggestEquivalenceEdges(
     if (group.length < 2) continue;
     const sorted = [...group].sort((a, b) => a.id.localeCompare(b.id));
     for (let i = 0; i < sorted.length - 1; i++) {
-      candidates.push(makeCandidate(
-        'equivalent_to', sorted[i].id, sorted[i + 1].id, 0.5, 'low', true, METHOD,
-        `Concepts share familyKey — potential intra-course equivalent pair`,
-        { familyKey: metaStr(sorted[i], 'familyKey') },
-      ));
+      candidates.push(
+        makeCandidate(
+          "equivalent_to",
+          sorted[i].id,
+          sorted[i + 1].id,
+          0.5,
+          "low",
+          true,
+          METHOD,
+          `Concepts share familyKey — potential intra-course equivalent pair`,
+          { familyKey: metaStr(sorted[i], "familyKey") },
+        ),
+      );
     }
   }
 
@@ -468,7 +541,7 @@ export function suggestEdges(input: EdgeSuggestionInput): KnowledgeSpaceEdge[] {
 
   // Assign sequential IDs
   return unique.map((candidate, idx) => ({
-    id: `${idPrefix}.edge.${String(idx + 1).padStart(4, '0')}`,
+    id: `${idPrefix}.edge.${String(idx + 1).padStart(4, "0")}`,
     ...candidate,
   }));
 }

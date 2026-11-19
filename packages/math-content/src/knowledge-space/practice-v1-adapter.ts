@@ -4,7 +4,7 @@
 // knowledge-space-practice (reusable) because the mapping rules from
 // generic evidence to practice submission parts are domain-specific.
 
-import type { PracticeSubmissionPart } from '@math-platform/practice-core';
+import type { PracticeSubmissionPart } from "@math-platform/practice-core";
 
 export interface GenericEvidencePart {
   partId: string;

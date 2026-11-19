@@ -1,34 +1,23 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 import type {
   KnowledgeBlueprint,
   ProjectedActivity,
   SrsProjectionEntry,
-} from '@math-platform/knowledge-space-practice';
-import {
-  projectActivityMap,
-  projectSrsInputs,
-} from '@math-platform/knowledge-space-practice';
+} from "@math-platform/knowledge-space-practice";
+import { projectActivityMap, projectSrsInputs } from "@math-platform/knowledge-space-practice";
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
-const GRAPH_DIR = path.resolve(TEST_DIR, '../../../curriculum/skill-graph');
-const NODE_ID =
-  'math.precalc.skill.1.6.determine-polynomial-end-behavior-from-equations';
-const SOURCE_ID = 'math.precalc.example.1.6.003';
-const ALIGNMENT_IDS = [
-  'math.standard.ccss.hsf-if-b-4',
-  'math.standard.ccss.hsf-if-c-7c',
-] as const;
-const RENDERER_KEY = 'polynomial-equation-end-behavior';
-const GENERATOR_KEY = 'topic16-equation-end-behavior';
-const MODES = [
-  'worked_example',
-  'guided_practice',
-  'independent_practice',
-] as const;
+const GRAPH_DIR = path.resolve(TEST_DIR, "../../../curriculum/skill-graph");
+const NODE_ID = "math.precalc.skill.1.6.determine-polynomial-end-behavior-from-equations";
+const SOURCE_ID = "math.precalc.example.1.6.003";
+const ALIGNMENT_IDS = ["math.standard.ccss.hsf-if-b-4", "math.standard.ccss.hsf-if-c-7c"] as const;
+const RENDERER_KEY = "polynomial-equation-end-behavior";
+const GENERATOR_KEY = "topic16-equation-end-behavior";
+const MODES = ["worked_example", "guided_practice", "independent_practice"] as const;
 
 type StoredSrsRow = SrsProjectionEntry & {
   apTopic?: unknown;
@@ -47,31 +36,28 @@ type JsonDocument = {
 };
 
 function readJson(fileName: string): JsonDocument {
-  return JSON.parse(
-    fs.readFileSync(path.join(GRAPH_DIR, fileName), 'utf8'),
-  ) as JsonDocument;
+  return JSON.parse(fs.readFileSync(path.join(GRAPH_DIR, fileName), "utf8")) as JsonDocument;
 }
 
 const expectedNode = {
   id: NODE_ID,
-  kind: 'skill',
-  title: 'Determine polynomial end behavior from equations',
-  domain: 'math.precalc',
-  description: 'Given a polynomial equation, use degree parity and the leading coefficient to state the left and right end behavior verbally.',
-  sourceRefs: [
-    'apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=78',
-  ],
-  reviewStatus: 'draft',
-  metadata: { course: 'precalc', unit: '1', lesson: '6' },
+  kind: "skill",
+  title: "Determine polynomial end behavior from equations",
+  domain: "math.precalc",
+  description:
+    "Given a polynomial equation, use degree parity and the leading coefficient to state the left and right end behavior verbally.",
+  sourceRefs: ["apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=78"],
+  reviewStatus: "draft",
+  metadata: { course: "precalc", unit: "1", lesson: "6" },
   rendererKey: RENDERER_KEY,
   generatorKey: GENERATOR_KEY,
   independentPracticeReady: true,
 };
 
-describe('Topic 1.6 Example 3 graph readiness', () => {
-  it('promotes the exact node and its derived projections', () => {
-    const nodesDocument = readJson('nodes.json');
-    const draftNodesDocument = readJson('draft-nodes.json');
+describe("Topic 1.6 Example 3 graph readiness", () => {
+  it("promotes the exact node and its derived projections", () => {
+    const nodesDocument = readJson("nodes.json");
+    const draftNodesDocument = readJson("draft-nodes.json");
     const rootNodes = nodesDocument.nodes!;
     const draftNodes = draftNodesDocument.nodes!;
     const rootMatches = rootNodes.filter((node) => node.id === NODE_ID);
@@ -86,12 +72,16 @@ describe('Topic 1.6 Example 3 graph readiness', () => {
     const readyNodes = rootNodes.map((node) =>
       node.id === NODE_ID ? { ...node, independentPracticeReady: true } : node,
     ) as unknown as Parameters<typeof projectActivityMap>[0];
-    const edges = readJson('edges.json').edges! as unknown as Parameters<typeof projectActivityMap>[1];
-    const blueprints = readJson('blueprints.json').blueprints!;
-    const expectedActivities = projectActivityMap(readyNodes, edges, blueprints)
-      .filter((row) => row.nodeId === NODE_ID);
-    const storedActivities = readJson('projection/practice-v1-activity-map.json').activities!
-      .filter((row) => row.nodeId === NODE_ID);
+    const edges = readJson("edges.json").edges! as unknown as Parameters<
+      typeof projectActivityMap
+    >[1];
+    const blueprints = readJson("blueprints.json").blueprints!;
+    const expectedActivities = projectActivityMap(readyNodes, edges, blueprints).filter(
+      (row) => row.nodeId === NODE_ID,
+    );
+    const storedActivities = readJson(
+      "projection/practice-v1-activity-map.json",
+    ).activities!.filter((row) => row.nodeId === NODE_ID);
 
     expect(expectedActivities).toHaveLength(3);
     expect(storedActivities).toHaveLength(3);
@@ -102,12 +92,15 @@ describe('Topic 1.6 Example 3 graph readiness', () => {
     );
     expect(storedActivities.map((row) => row.srsEligible)).toEqual([false, true, true]);
 
-    const expectedSrs = projectSrsInputs(readyNodes, edges, blueprints)
-      .filter((row) => row.nodeId === NODE_ID);
-    const storedCombinedSrs = readJson('projection/practice-v1-activity-map.json').srsInputs!
-      .filter((row) => row.nodeId === NODE_ID);
-    const storedStandaloneSrs = readJson('projection/srs-input.json').inputs!
-      .filter((row) => row.nodeId === NODE_ID);
+    const expectedSrs = projectSrsInputs(readyNodes, edges, blueprints).filter(
+      (row) => row.nodeId === NODE_ID,
+    );
+    const storedCombinedSrs = readJson(
+      "projection/practice-v1-activity-map.json",
+    ).srsInputs!.filter((row) => row.nodeId === NODE_ID);
+    const storedStandaloneSrs = readJson("projection/srs-input.json").inputs!.filter(
+      (row) => row.nodeId === NODE_ID,
+    );
 
     expect(expectedSrs).toHaveLength(1);
     expect(storedCombinedSrs).toHaveLength(1);
@@ -140,14 +133,18 @@ describe('Topic 1.6 Example 3 graph readiness', () => {
         independentPractice: RENDERER_KEY,
       },
       generatorKey: GENERATOR_KEY,
-      reviewStatus: 'draft',
-      metadata: { course: 'precalc', unit: '1', lesson: '6' },
+      reviewStatus: "draft",
+      metadata: { course: "precalc", unit: "1", lesson: "6" },
     });
 
-    const generatorGapQueue = readJson('generator-gap-queue.json');
+    const generatorGapQueue = readJson("generator-gap-queue.json");
     expect(generatorGapQueue.items!.filter((item) => item.nodeId === NODE_ID)).toHaveLength(0);
-    expect(new Set(readJson('projection/practice-v1-activity-map.json').activities!
-      .map((row) => row.stableActivityId)).size)
-      .toBe(readJson('projection/practice-v1-activity-map.json').activities!.length);
+    expect(
+      new Set(
+        readJson("projection/practice-v1-activity-map.json").activities!.map(
+          (row) => row.stableActivityId,
+        ),
+      ).size,
+    ).toBe(readJson("projection/practice-v1-activity-map.json").activities!.length);
   });
 });

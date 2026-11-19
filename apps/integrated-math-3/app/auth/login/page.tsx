@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, type FormEvent } from 'react';
-import Link from 'next/link';
-import { useAuth } from '@/components/auth/AuthProvider';
+import { useState, type FormEvent } from "react";
+import Link from "next/link";
+import { useAuth } from "@/components/auth/AuthProvider";
 
 /**
  * Renders the login page with a username/password form and handles authentication.
@@ -11,8 +11,8 @@ import { useAuth } from '@/components/auth/AuthProvider';
  */
 export default function LoginPage() {
   const { signIn } = useAuth();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -24,7 +24,7 @@ export default function LoginPage() {
     try {
       await signIn(username, password);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Login failed');
+      setError(err instanceof Error ? err.message : "Login failed");
     } finally {
       setSubmitting(false);
     }
@@ -43,7 +43,9 @@ export default function LoginPage() {
         {error && (
           <div
             className="rounded-md bg-destructive/10 px-4 py-3 text-sm text-destructive"
-            {...(error === 'Account is deactivated' ? { 'data-testid': 'deactivated-login-error' } : {})}
+            {...(error === "Account is deactivated"
+              ? { "data-testid": "deactivated-login-error" }
+              : {})}
           >
             {error}
           </div>
@@ -89,7 +91,7 @@ export default function LoginPage() {
           data-testid="login-submit"
           className="w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring disabled:opacity-50"
         >
-          {submitting ? 'Signing in...' : 'Sign In'}
+          {submitting ? "Signing in..." : "Sign In"}
         </button>
       </form>
 

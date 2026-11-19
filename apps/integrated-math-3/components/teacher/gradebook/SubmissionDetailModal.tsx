@@ -1,8 +1,11 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Dialog } from '@/components/ui/dialog';
-import type { SubmissionEvidence, DeterministicErrorSummary } from '@math-platform/practice-core/error-analysis';
+import { useState } from "react";
+import { Dialog } from "@/components/ui/dialog";
+import type {
+  SubmissionEvidence,
+  DeterministicErrorSummary,
+} from "@math-platform/practice-core/error-analysis";
 
 interface PhaseData {
   phaseNumber: number;
@@ -27,7 +30,7 @@ interface SubmissionDetailModalProps {
   data: SubmissionDetailData | null;
 }
 
-type FilterKind = 'all' | 'practice' | 'spreadsheet';
+type FilterKind = "all" | "practice" | "spreadsheet";
 
 /**
  * Returns a Tailwind color class string for a given phase status.
@@ -37,15 +40,15 @@ type FilterKind = 'all' | 'practice' | 'spreadsheet';
  */
 function statusBadgeClass(status: string): string {
   switch (status) {
-    case 'completed':
-      return 'bg-green-100 text-green-800';
-    case 'in_progress':
-      return 'bg-yellow-100 text-yellow-800';
-    case 'skipped':
-      return 'bg-blue-100 text-blue-800';
-    case 'not_started':
+    case "completed":
+      return "bg-green-100 text-green-800";
+    case "in_progress":
+      return "bg-yellow-100 text-yellow-800";
+    case "skipped":
+      return "bg-blue-100 text-blue-800";
+    case "not_started":
     default:
-      return 'bg-muted/30 text-muted-foreground';
+      return "bg-muted/30 text-muted-foreground";
   }
 }
 
@@ -56,7 +59,7 @@ function statusBadgeClass(status: string): string {
  * @returns {string} Formatted date string or em dash.
  */
 function formatDate(timestamp: number | null): string {
-  if (timestamp === null) return '—';
+  if (timestamp === null) return "—";
   return new Date(timestamp).toLocaleDateString();
 }
 
@@ -67,7 +70,7 @@ function formatDate(timestamp: number | null): string {
  * @returns {JSX.Element} A styled submission detail modal.
  */
 export function SubmissionDetailModal({ open, onOpenChange, data }: SubmissionDetailModalProps) {
-  const [filterKind, setFilterKind] = useState<FilterKind>('all');
+  const [filterKind, setFilterKind] = useState<FilterKind>("all");
   const [expandedPhases, setExpandedPhases] = useState<Set<string>>(new Set());
 
   if (!open || !data) {
@@ -87,12 +90,12 @@ export function SubmissionDetailModal({ open, onOpenChange, data }: SubmissionDe
   };
 
   const filteredPhases = data.phases.filter((phase) => {
-    if (filterKind === 'all') return true;
-    if (filterKind === 'practice') {
-      return phase.evidence.some((e) => e.kind === 'practice');
+    if (filterKind === "all") return true;
+    if (filterKind === "practice") {
+      return phase.evidence.some((e) => e.kind === "practice");
     }
-    if (filterKind === 'spreadsheet') {
-      return phase.evidence.some((e) => e.kind === 'spreadsheet');
+    if (filterKind === "spreadsheet") {
+      return phase.evidence.some((e) => e.kind === "spreadsheet");
     }
     return true;
   });
@@ -112,16 +115,16 @@ export function SubmissionDetailModal({ open, onOpenChange, data }: SubmissionDe
         ) : (
           <>
             <div className="flex gap-2 border-b border-border pb-2">
-              {(['all', 'practice', 'spreadsheet'] as FilterKind[]).map((kind) => (
+              {(["all", "practice", "spreadsheet"] as FilterKind[]).map((kind) => (
                 <button
                   key={kind}
                   onClick={() => setFilterKind(kind)}
                   className={[
-                    'px-3 py-1.5 text-sm font-medium rounded-md transition-colors',
+                    "px-3 py-1.5 text-sm font-medium rounded-md transition-colors",
                     filterKind === kind
-                      ? 'bg-primary text-primary-foreground'
-                      : 'text-muted-foreground hover:bg-muted/40',
-                  ].join(' ')}
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:bg-muted/40",
+                  ].join(" ")}
                 >
                   {kind.charAt(0).toUpperCase() + kind.slice(1)}
                 </button>
@@ -153,7 +156,7 @@ export function SubmissionDetailModal({ open, onOpenChange, data }: SubmissionDe
                         <span
                           className={`px-2 py-0.5 rounded text-xs font-medium ${statusBadgeClass(phase.status)}`}
                         >
-                          {phase.status.replace('_', ' ')}
+                          {phase.status.replace("_", " ")}
                         </span>
                       </div>
                       <div className="flex items-center gap-3">
@@ -164,18 +167,24 @@ export function SubmissionDetailModal({ open, onOpenChange, data }: SubmissionDe
                         )}
                         {hasEvidence && (
                           <span className="text-xs text-muted-foreground">
-                            {phase.evidence.length} submission{phase.evidence.length !== 1 ? 's' : ''}
+                            {phase.evidence.length} submission
+                            {phase.evidence.length !== 1 ? "s" : ""}
                           </span>
                         )}
                         {hasEvidence && (
                           <svg
-                            className={`w-4 h-4 text-muted-foreground transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                            className={`w-4 h-4 text-muted-foreground transition-transform ${isExpanded ? "rotate-180" : ""}`}
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
                             aria-hidden="true"
                           >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 9l-7 7-7-7"
+                            />
                           </svg>
                         )}
                       </div>
@@ -183,19 +192,24 @@ export function SubmissionDetailModal({ open, onOpenChange, data }: SubmissionDe
 
                     {isExpanded && hasEvidence && (
                       <div className="p-4 space-y-4 border-t border-border">
-{phase.evidence.map((evidence) => (
-                          <div key={`${evidence.componentKey}-${evidence.submittedAt}`} className="space-y-2">
+                        {phase.evidence.map((evidence) => (
+                          <div
+                            key={`${evidence.componentKey}-${evidence.submittedAt}`}
+                            className="space-y-2"
+                          >
                             <div className="flex items-center justify-between">
                               <div>
                                 <span className="font-medium text-foreground">
                                   {evidence.activityTitle}
                                 </span>
                                 <span className="text-sm text-muted-foreground ml-2">
-                                  {evidence.kind === 'practice' && evidence.score !== null && evidence.maxScore !== null && (
-                                    <span className="font-mono-num">
-                                      Score: {evidence.score}/{evidence.maxScore}
-                                    </span>
-                                  )}
+                                  {evidence.kind === "practice" &&
+                                    evidence.score !== null &&
+                                    evidence.maxScore !== null && (
+                                      <span className="font-mono-num">
+                                        Score: {evidence.score}/{evidence.maxScore}
+                                      </span>
+                                    )}
                                 </span>
                               </div>
                               <span className="text-xs text-muted-foreground">
@@ -203,13 +217,13 @@ export function SubmissionDetailModal({ open, onOpenChange, data }: SubmissionDe
                               </span>
                             </div>
 
-                            {evidence.kind === 'practice' && evidence.submissionData && (
+                            {evidence.kind === "practice" && evidence.submissionData && (
                               <div className="pl-4 border-l-2 border-border space-y-2">
                                 {renderPracticeEvidence(evidence)}
                               </div>
                             )}
 
-                            {evidence.kind === 'spreadsheet' && !!evidence.spreadsheetData && (
+                            {evidence.kind === "spreadsheet" && !!evidence.spreadsheetData && (
                               <div className="pl-4 border-l-2 border-border">
                                 <p className="text-sm text-muted-foreground">
                                   Spreadsheet submission data available
@@ -272,7 +286,7 @@ export function SubmissionDetailModal({ open, onOpenChange, data }: SubmissionDe
  * @returns {React.ReactNode} Rendered practice evidence nodes.
  */
 function renderPracticeEvidence(evidence: SubmissionEvidence): React.ReactNode {
-  if (evidence.kind !== 'practice' || !evidence.submissionData) {
+  if (evidence.kind !== "practice" || !evidence.submissionData) {
     return null;
   }
 
@@ -297,31 +311,27 @@ function renderPracticeEvidence(evidence: SubmissionEvidence): React.ReactNode {
         <div
           key={part.partId}
           className={[
-            'p-3 rounded-lg border',
-            part.isCorrect ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50',
-          ].join(' ')}
+            "p-3 rounded-lg border",
+            part.isCorrect ? "border-green-200 bg-green-50" : "border-red-200 bg-red-50",
+          ].join(" ")}
         >
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium">Part {index + 1}</span>
             <div className="flex items-center gap-2">
               {part.hintsUsed !== undefined && part.hintsUsed > 0 && (
-                <span className="text-xs text-muted-foreground">
-                  Hints used: {part.hintsUsed}
-                </span>
+                <span className="text-xs text-muted-foreground">Hints used: {part.hintsUsed}</span>
               )}
               <span
                 className={[
-                  'px-2 py-0.5 rounded text-xs font-medium',
-                  part.isCorrect ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800',
-                ].join(' ')}
+                  "px-2 py-0.5 rounded text-xs font-medium",
+                  part.isCorrect ? "bg-green-200 text-green-800" : "bg-red-200 text-red-800",
+                ].join(" ")}
               >
-                {part.isCorrect ? 'Correct' : 'Incorrect'}
+                {part.isCorrect ? "Correct" : "Incorrect"}
               </span>
             </div>
           </div>
-          <p className="text-sm mt-1 font-mono-num">
-            {String(part.rawAnswer)}
-          </p>
+          <p className="text-sm mt-1 font-mono-num">{String(part.rawAnswer)}</p>
           {part.misconceptionTags && part.misconceptionTags.length > 0 && (
             <div className="flex flex-wrap gap-1 mt-2">
               {part.misconceptionTags.map((tag) => (

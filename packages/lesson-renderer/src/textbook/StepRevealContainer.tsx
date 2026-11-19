@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
-export type StepMode = 'teaching' | 'guided' | 'practice';
+export type StepMode = "teaching" | "guided" | "practice";
 
 export interface Step {
   content: React.ReactNode;
@@ -19,21 +19,19 @@ export interface StepRevealContainerProps {
  * @param {StepRevealContainerProps} props - Step mode ('teaching', 'guided', 'practice') and step content
  */
 export function StepRevealContainer({ mode, steps }: StepRevealContainerProps) {
-  const [visibleSteps, setVisibleSteps] = useState(
-    mode === 'teaching' ? steps.length : 1
-  );
+  const [visibleSteps, setVisibleSteps] = useState(mode === "teaching" ? steps.length : 1);
 
   const canShowMore = visibleSteps < steps.length;
-  const isInteractive = mode === 'guided' || mode === 'practice';
+  const isInteractive = mode === "guided" || mode === "practice";
 
   const handleShowNext = () => {
     if (canShowMore) {
-      setVisibleSteps(prev => prev + 1);
+      setVisibleSteps((prev) => prev + 1);
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       handleShowNext();
     }
@@ -55,9 +53,7 @@ export function StepRevealContainer({ mode, steps }: StepRevealContainerProps) {
               {index + 1}
             </div>
             <div className="flex-1 pt-1">
-              <div className="prose prose-sm max-w-none">
-                {step.content}
-              </div>
+              <div className="prose prose-sm max-w-none">{step.content}</div>
             </div>
           </div>
         ))}

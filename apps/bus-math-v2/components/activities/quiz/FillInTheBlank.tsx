@@ -1,30 +1,30 @@
-'use client';
+"use client";
 
-import { useMemo, useState } from 'react';
-import { Lightbulb, RotateCcw } from 'lucide-react';
+import { useMemo, useState } from "react";
+import { Lightbulb, RotateCcw } from "lucide-react";
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { type FillInTheBlankActivityProps } from '@/types/activities';
-import { type Activity } from '@/lib/schemas/validators';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { type FillInTheBlankActivityProps } from "@/types/activities";
+import { type Activity } from "@/lib/schemas/validators";
 import {
   buildPracticeSubmissionEnvelope,
   buildPracticeSubmissionParts,
   normalizePracticeValue,
   type PracticeSubmissionCallbackPayload,
-} from '@math-platform/practice-core/contract';
+} from "@math-platform/practice-core/contract";
 
-export type FillInTheBlankActivity = Omit<Activity, 'componentKey' | 'props'> & {
-  componentKey: 'fill-in-the-blank';
+export type FillInTheBlankActivity = Omit<Activity, "componentKey" | "props"> & {
+  componentKey: "fill-in-the-blank";
   props: FillInTheBlankActivityProps;
 };
 
 export const FILL_IN_THE_BLANK_SUPPORTED_MODES = [
-  'guided_practice',
-  'independent_practice',
-  'assessment',
+  "guided_practice",
+  "independent_practice",
+  "assessment",
 ] as const;
 
 interface FillInTheBlankProps {
@@ -38,7 +38,6 @@ interface SentenceState {
   isCorrect: boolean;
 }
 
-
 /**
  * Sort words into a deterministic order using a seed-based scoring function.
  *
@@ -48,15 +47,14 @@ interface SentenceState {
  */
 function createDeterministicOrder(words: string[], seed: string): string[] {
   return [...words].sort((a, b) => {
-    const scoreA = `${seed}:${a}`.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    const scoreB = `${seed}:${b}`.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const scoreA = `${seed}:${a}`.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const scoreB = `${seed}:${b}`.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
     if (scoreA === scoreB) {
       return a.localeCompare(b);
     }
     return scoreA - scoreB;
   });
 }
-
 
 /**
  * Fill-in-the-blank activity where students complete sentences with correct
@@ -67,13 +65,14 @@ function createDeterministicOrder(words: string[], seed: string): string[] {
  */
 export function FillInTheBlank({ activity, onSubmit }: FillInTheBlankProps) {
   const { sentences, showWordList, randomizeWordOrder, showHints } = activity.props;
-  const hasAnswerKeys = sentences.every((sentence) => typeof sentence.answer === 'string');
-  const safeWordBank = (activity.props as FillInTheBlankActivityProps & { wordBank?: string[] }).wordBank;
+  const hasAnswerKeys = sentences.every((sentence) => typeof sentence.answer === "string");
+  const safeWordBank = (activity.props as FillInTheBlankActivityProps & { wordBank?: string[] })
+    .wordBank;
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [sentenceStates, setSentenceStates] = useState<SentenceState[]>([]);
   const [hintsEnabled, setHintsEnabled] = useState(showHints);
-  const practiceMode = showHints || showWordList ? 'guided_practice' : 'independent_practice';
+  const practiceMode = showHints || showWordList ? "guided_practice" : "independent_practice";
   const [prevSentences, setPrevSentences] = useState(sentences);
   if (sentences !== prevSentences) {
     setPrevSentences(sentences);
@@ -84,7 +83,11 @@ export function FillInTheBlank({ activity, onSubmit }: FillInTheBlankProps) {
 
   const wordBank = useMemo(() => {
     if (!showWordList) return [];
-    const baseWords = safeWordBank ?? (hasAnswerKeys ? sentences.flatMap((sentence) => [sentence.answer, ...(sentence.alternativeAnswers ?? [])]) : []);
+    const baseWords =
+      safeWordBank ??
+      (hasAnswerKeys
+        ? sentences.flatMap((sentence) => [sentence.answer, ...(sentence.alternativeAnswers ?? [])])
+        : []);
     const uniqueWords = Array.from(new Set(baseWords));
     if (!randomizeWordOrder) {
       return uniqueWords;
@@ -94,15 +97,16 @@ export function FillInTheBlank({ activity, onSubmit }: FillInTheBlankProps) {
     return createDeterministicOrder(uniqueWords, activity.id);
   }, [activity.id, sentences, showWordList, randomizeWordOrder, hasAnswerKeys, safeWordBank]);
 
-
   /**
    * Submit answers, evaluate correctness against accepted answers, and
    * build the practice submission envelope.
    */
   const handleSubmit = () => {
     const updatedStates: SentenceState[] = sentences.map((sentence) => {
-      const userAnswer = answers[sentence.id] ?? '';
-      const acceptedAnswers = [sentence.answer, ...(sentence.alternativeAnswers ?? [])].map(normalizePracticeValue);
+      const userAnswer = answers[sentence.id] ?? "";
+      const acceptedAnswers = [sentence.answer, ...(sentence.alternativeAnswers ?? [])].map(
+        normalizePracticeValue,
+      );
       return {
         sentenceId: sentence.id,
         answer: userAnswer,
@@ -131,7 +135,7 @@ export function FillInTheBlank({ activity, onSubmit }: FillInTheBlankProps) {
         buildPracticeSubmissionEnvelope({
           activityId: activity.id,
           mode: practiceMode,
-          status: 'submitted',
+          status: "submitted",
           attemptNumber: 1,
           submittedAt: new Date(),
           answers,
@@ -146,11 +150,10 @@ export function FillInTheBlank({ activity, onSubmit }: FillInTheBlankProps) {
         }),
       );
     } catch (err) {
-      console.error('FillInTheBlank submission failed:', err);
+      console.error("FillInTheBlank submission failed:", err);
       setSubmitted(false);
     }
   };
-
 
   /**
    * Reset all answers and submission state for a fresh attempt.
@@ -167,7 +170,7 @@ export function FillInTheBlank({ activity, onSubmit }: FillInTheBlankProps) {
         <CardTitle className="flex items-center gap-3 text-2xl">
           {activity.props.title}
           <Badge variant="outline" className="uppercase">
-            {practiceMode.replace('_', ' ')}
+            {practiceMode.replace("_", " ")}
           </Badge>
         </CardTitle>
         <CardDescription>{activity.props.description ?? activity.description}</CardDescription>
@@ -228,23 +231,31 @@ export function FillInTheBlank({ activity, onSubmit }: FillInTheBlankProps) {
 
             return (
               <div key={sentence.id} className="space-y-2">
-                <p className="text-base">
-                  {sentence.text.replace('{blank}', '_____')}
-                </p>
+                <p className="text-base">{sentence.text.replace("{blank}", "_____")}</p>
                 <Input
-                  value={answers[sentence.id] ?? ''}
+                  value={answers[sentence.id] ?? ""}
                   onChange={(event) => {
                     const value = event.target.value;
                     setAnswers((prev) => ({ ...prev, [sentence.id]: value }));
                   }}
                   placeholder="Type your answer"
                   disabled={submitted && isCorrect}
-                  className={submitted && hasAnswerKeys ? (isCorrect ? 'border-green-500' : 'border-destructive') : undefined}
+                  className={
+                    submitted && hasAnswerKeys
+                      ? isCorrect
+                        ? "border-green-500"
+                        : "border-destructive"
+                      : undefined
+                  }
                 />
                 <div className="flex items-center justify-between text-xs text-muted-foreground">
-                  <span>{(answers[sentence.id] ?? '').length} characters</span>
-                  {submitted && hasAnswerKeys && isCorrect && <span className="text-green-600">Correct</span>}
-                  {submitted && hasAnswerKeys && hasAnswer && !isCorrect && <span className="text-destructive">Try again</span>}
+                  <span>{(answers[sentence.id] ?? "").length} characters</span>
+                  {submitted && hasAnswerKeys && isCorrect && (
+                    <span className="text-green-600">Correct</span>
+                  )}
+                  {submitted && hasAnswerKeys && hasAnswer && !isCorrect && (
+                    <span className="text-destructive">Try again</span>
+                  )}
                 </div>
                 {hintsEnabled && sentence.hint && (
                   <p className="text-sm text-muted-foreground">Hint: {sentence.hint}</p>
@@ -260,7 +271,10 @@ export function FillInTheBlank({ activity, onSubmit }: FillInTheBlankProps) {
               <RotateCcw className="h-4 w-4" /> Reset
             </Button>
           ) : (
-            <Button onClick={handleSubmit} disabled={Object.keys(answers).length !== sentences.length}>
+            <Button
+              onClick={handleSubmit}
+              disabled={Object.keys(answers).length !== sentences.length}
+            >
               Check answers
             </Button>
           )}

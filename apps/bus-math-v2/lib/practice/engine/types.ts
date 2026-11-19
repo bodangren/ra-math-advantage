@@ -1,21 +1,21 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 import {
   PRACTICE_CONTRACT_VERSION,
   buildPracticeSubmissionEnvelope,
   practiceModeSchema,
   type PracticeSubmissionEnvelope,
-} from '@/lib/practice/contract';
+} from "@/lib/practice/contract";
 
 export type PracticeMode = z.infer<typeof practiceModeSchema>;
 
 export type ProblemPartKind =
-  | 'numeric'
-  | 'selection'
-  | 'journal-entry'
-  | 'statement-row'
-  | 'categorization'
-  | 'explanation';
+  | "numeric"
+  | "selection"
+  | "journal-entry"
+  | "statement-row"
+  | "categorization"
+  | "explanation";
 
 export interface ProblemPartDefinition {
   id: string;
@@ -44,7 +44,7 @@ export interface ProblemDefinition {
   scaffolding?: Record<string, unknown>;
   workedExample?: Record<string, unknown>;
   grading: {
-    strategy: 'exact' | 'numeric' | 'rubric';
+    strategy: "exact" | "numeric" | "rubric";
     partialCredit?: boolean;
     rubric?: unknown;
   };
@@ -72,7 +72,11 @@ export interface ProblemFamily<TDefinition, TResponse, TConfig = unknown> {
   generate(seed: number, config: TConfig): TDefinition;
   solve(definition: TDefinition): TResponse;
   grade(definition: TDefinition, studentResponse: TResponse): GradeResult;
-  toEnvelope(definition: TDefinition, studentResponse: TResponse, gradeResult: GradeResult): PracticeSubmissionEnvelope;
+  toEnvelope(
+    definition: TDefinition,
+    studentResponse: TResponse,
+    gradeResult: GradeResult,
+  ): PracticeSubmissionEnvelope;
 }
 
 /**
@@ -84,7 +88,7 @@ export interface ProblemFamily<TDefinition, TResponse, TConfig = unknown> {
  * @returns The constructed result
  */
 export function buildPracticeSubmissionEnvelopeFromGrade(
-  definition: Pick<ProblemDefinition, 'activityId' | 'mode'>,
+  definition: Pick<ProblemDefinition, "activityId" | "mode">,
   studentResponse: Record<string, unknown>,
   gradeResult: GradeResult,
   submittedAt: Date | string = new Date(),

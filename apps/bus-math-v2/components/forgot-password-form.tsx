@@ -2,18 +2,11 @@
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useState } from "react";
-
 
 /**
  * Renders a password-help form that directs users to their admin for resets.
@@ -21,13 +14,9 @@ import { useState } from "react";
  * @param props - Standard div props with optional className
  * @returns A card containing the forgot-password form
  */
-export function ForgotPasswordForm({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+export function ForgotPasswordForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
   const [identifier, setIdentifier] = useState("");
   const [message, setMessage] = useState<string | null>(null);
-
 
   /**
    * Handles the forgot-password form submission by showing admin-contact instructions.
@@ -76,10 +65,7 @@ export function ForgotPasswordForm({
             </div>
             <div className="mt-4 text-center text-sm">
               Already have an account?{" "}
-              <Link
-                href="/auth/login"
-                className="underline underline-offset-4"
-              >
+              <Link href="/auth/login" className="underline underline-offset-4">
                 Login
               </Link>
             </div>

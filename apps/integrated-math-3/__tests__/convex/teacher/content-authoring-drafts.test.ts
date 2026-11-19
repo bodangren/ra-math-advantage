@@ -1,23 +1,23 @@
-import { describe, it, expect, vi } from 'vitest';
-import type { Id } from '../../../convex/_generated/dataModel';
-import type { MutationCtx, QueryCtx } from '../../../convex/_generated/server';
-import { computeComponentContentHash } from '../../../lib/activities/content-hash';
-import { resolveComponentKind } from '../../../lib/activities/review-queue';
-import { sanitizeAuthoringText } from '../../../lib/teacher/content-authoring/sanitize-authored-text';
-import { toTeacherFacingStatus } from '../../../convex/teacher/content_authoring';
+import { describe, it, expect, vi } from "vitest";
+import type { Id } from "../../../convex/_generated/dataModel";
+import type { MutationCtx, QueryCtx } from "../../../convex/_generated/server";
+import { computeComponentContentHash } from "../../../lib/activities/content-hash";
+import { resolveComponentKind } from "../../../lib/activities/review-queue";
+import { sanitizeAuthoringText } from "../../../lib/teacher/content-authoring/sanitize-authored-text";
+import { toTeacherFacingStatus } from "../../../convex/teacher/content_authoring";
 
 type StoreName =
-  | 'profiles'
-  | 'classes'
-  | 'lessons'
-  | 'lesson_versions'
-  | 'phase_versions'
-  | 'phase_sections'
-  | 'activities'
-  | 'component_reviews'
-  | 'component_approvals'
-  | 'class_lessons'
-  | 'class_enrollments';
+  | "profiles"
+  | "classes"
+  | "lessons"
+  | "lesson_versions"
+  | "phase_versions"
+  | "phase_sections"
+  | "activities"
+  | "component_reviews"
+  | "component_approvals"
+  | "class_lessons"
+  | "class_enrollments";
 
 interface MockRecord {
   _id: string;
@@ -59,9 +59,7 @@ function makeMockDb(stores: Record<StoreName, MockRecord[]>) {
   const idToTable = new Map<string, StoreName>();
 
   const applyFilters = (rows: MockRecord[], filters: Record<string, unknown>) =>
-    rows.filter((row) =>
-      Object.entries(filters).every(([field, value]) => row[field] === value),
-    );
+    rows.filter((row) => Object.entries(filters).every(([field, value]) => row[field] === value));
 
   const db = {
     get: vi.fn(async (table: StoreName, id: string) => {
@@ -130,82 +128,82 @@ function makeQueryMockCtx(seed: Partial<Record<StoreName, MockRecord[]>> = {}) {
 }
 
 const VALID_ACTIVITY_PROPS: Record<string, Record<string, unknown>> = {
-  'graphing-explorer': { equation: 'x^2 + 3x - 4' },
-  'step-by-step-solver': {
-    problemType: 'factoring',
-    equation: 'x^2 + 3x - 4 = 0',
+  "graphing-explorer": { equation: "x^2 + 3x - 4" },
+  "step-by-step-solver": {
+    problemType: "factoring",
+    equation: "x^2 + 3x - 4 = 0",
     steps: [
       {
-        id: 's1',
-        description: 'Factor the quadratic.',
-        expression: 'x^2 + 3x - 4 = 0',
+        id: "s1",
+        description: "Factor the quadratic.",
+        expression: "x^2 + 3x - 4 = 0",
       },
     ],
   },
-  'comprehension-quiz': {
+  "comprehension-quiz": {
     questions: [
       {
-        id: 'q1',
-        prompt: 'What is the vertex form?',
-        correctAnswer: 'y = a(x - h)^2 + k',
+        id: "q1",
+        prompt: "What is the vertex form?",
+        correctAnswer: "y = a(x - h)^2 + k",
       },
     ],
   },
-  'fill-in-the-blank': {
-    template: 'A quadratic has degree {{blank:degree}}.',
-    blanks: [{ id: 'degree', correctAnswer: '2' }],
+  "fill-in-the-blank": {
+    template: "A quadratic has degree {{blank:degree}}.",
+    blanks: [{ id: "degree", correctAnswer: "2" }],
   },
 };
 
 function buildAuthoredDraft(overrides: Record<string, unknown> = {}) {
   return {
-    title: 'Authored Quadratic Lesson',
+    title: "Authored Quadratic Lesson",
     phases: [
       {
-        title: 'Explore',
-        phaseType: 'explore',
+        title: "Explore",
+        phaseType: "explore",
         sections: [
           {
-            title: 'Graphing a parabola',
-            markdown: 'Use the graphing tool.',
+            title: "Graphing a parabola",
+            markdown: "Use the graphing tool.",
             activities: [
               {
-                componentKey: 'graphing-explorer',
-                props: VALID_ACTIVITY_PROPS['graphing-explorer'],
+                componentKey: "graphing-explorer",
+                props: VALID_ACTIVITY_PROPS["graphing-explorer"],
               },
             ],
           },
         ],
       },
       {
-        title: 'Worked Example',
-        phaseType: 'worked_example',
+        title: "Worked Example",
+        phaseType: "worked_example",
         sections: [
           {
-            title: 'Solving by factoring',
+            title: "Solving by factoring",
             activities: [
               {
-                componentKey: 'step-by-step-solver',
-                props: VALID_ACTIVITY_PROPS['step-by-step-solver'],
+                componentKey: "step-by-step-solver",
+                props: VALID_ACTIVITY_PROPS["step-by-step-solver"],
               },
             ],
           },
         ],
       },
       {
-        title: 'Guided Practice',
-        phaseType: 'guided_practice',
+        title: "Guided Practice",
+        phaseType: "guided_practice",
         sections: [
           {
-            title: 'Check for understanding',
+            title: "Check for understanding",
             activities: [
               {
-                componentKey: 'comprehension-quiz',
-                props: VALID_ACTIVITY_PROPS['comprehension-quiz'],
+                componentKey: "comprehension-quiz",
+                props: VALID_ACTIVITY_PROPS["comprehension-quiz"],
               },
               {
-                componentKey: 'fill-in-the-blank',
-                props: VALID_ACTIVITY_PROPS['fill-in-the-blank'],
+                componentKey: "fill-in-the-blank",
+                props: VALID_ACTIVITY_PROPS["fill-in-the-blank"],
               },
             ],
           },
@@ -216,7 +214,7 @@ function buildAuthoredDraft(overrides: Record<string, unknown> = {}) {
   };
 }
 
-function makeTeacher(id: string, organizationId: string, role: 'teacher' | 'admin' = 'teacher') {
+function makeTeacher(id: string, organizationId: string, role: "teacher" | "admin" = "teacher") {
   return {
     _id: id,
     username: id,
@@ -232,7 +230,7 @@ function makeStudent(id: string, organizationId: string) {
   return {
     _id: id,
     username: id,
-    role: 'student',
+    role: "student",
     organizationId,
     displayName: id,
     createdAt: 1000,
@@ -247,7 +245,7 @@ async function expectedActivityHash(
 ) {
   const sanitized = JSON.parse(JSON.stringify(props));
   for (const key of Object.keys(sanitized)) {
-    if (typeof sanitized[key] === 'string') {
+    if (typeof sanitized[key] === "string") {
       sanitized[key] = sanitizeAuthoringText(sanitized[key]);
     }
   }
@@ -262,21 +260,19 @@ async function expectedActivityHash(
 // The module does not yet exist, so every test fails for the expected reason:
 // missing implementation/behavior rather than a fake assertion or measure import.
 
-describe('Phase 2 — Draft lifecycle and persistence', () => {
-  it('creates a teacher-scoped draft in draft status with normalized content', async () => {
-    const {
-      saveTeacherDraftHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+describe("Phase 2 — Draft lifecycle and persistence", () => {
+  it("creates a teacher-scoped draft in draft status with normalized content", async () => {
+    const { saveTeacherDraftHandler } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({
       profiles: [teacher],
     });
 
     const result = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'draft-key-1',
+      idempotencyKey: "draft-key-1",
     });
 
     expect(result.success).toBe(true);
@@ -284,28 +280,26 @@ describe('Phase 2 — Draft lifecycle and persistence', () => {
 
     expect(stores.lessons).toHaveLength(1);
     expect(stores.lesson_versions).toHaveLength(1);
-    expect(stores.lesson_versions[0].status).toBe('draft');
+    expect(stores.lesson_versions[0].status).toBe("draft");
     expect(stores.lesson_versions[0].teacherId).toBe(teacher._id);
     expect(stores.activities).toHaveLength(4);
     expect(stores.phase_versions).toHaveLength(3);
     expect(stores.phase_sections).toHaveLength(3);
   });
 
-  it('is idempotent: same idempotency key patches existing rows instead of duplicating', async () => {
-    const {
-      saveTeacherDraftHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+  it("is idempotent: same idempotency key patches existing rows instead of duplicating", async () => {
+    const { saveTeacherDraftHandler } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({
       profiles: [teacher],
     });
 
     const draft = buildAuthoredDraft();
     const args = {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft,
-      idempotencyKey: 'same-key',
+      idempotencyKey: "same-key",
     };
 
     const first = await saveTeacherDraftHandler(ctx, args);
@@ -320,32 +314,30 @@ describe('Phase 2 — Draft lifecycle and persistence', () => {
     expect(stores.phase_versions).toHaveLength(3);
   });
 
-  it('persists sanitized free-text fields, not raw unsafe markup', async () => {
-    const {
-      saveTeacherDraftHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+  it("persists sanitized free-text fields, not raw unsafe markup", async () => {
+    const { saveTeacherDraftHandler } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({
       profiles: [teacher],
     });
 
     const draft = buildAuthoredDraft({
-      title: 'Lesson <script>alert(1)</script>',
+      title: "Lesson <script>alert(1)</script>",
       phases: [
         {
           title: 'Phase <img onerror="alert(2)">',
-          phaseType: 'explore',
+          phaseType: "explore",
           sections: [
             {
-              title: 'Section',
+              title: "Section",
               markdown: '<a href="javascript:alert(3)">bad</a>',
               activities: [
                 {
-                  componentKey: 'graphing-explorer',
+                  componentKey: "graphing-explorer",
                   props: {
-                    equation: 'x^2',
-                    comparisonQuestion: '<script>alert(4)</script>Which?',
+                    equation: "x^2",
+                    comparisonQuestion: "<script>alert(4)</script>Which?",
                   },
                 },
               ],
@@ -356,119 +348,114 @@ describe('Phase 2 — Draft lifecycle and persistence', () => {
     });
 
     const result = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft,
-      idempotencyKey: 'sanitize-key',
+      idempotencyKey: "sanitize-key",
     });
 
     expect(result.success).toBe(true);
 
     const allText = JSON.stringify(stores);
-    expect(allText).not.toContain('<script>');
-    expect(allText).not.toContain('onerror=');
-    expect(allText).not.toContain('javascript:');
-    expect(allText).toContain('Which?');
+    expect(allText).not.toContain("<script>");
+    expect(allText).not.toContain("onerror=");
+    expect(allText).not.toContain("javascript:");
+    expect(allText).toContain("Which?");
   });
 
-  it('allows draft -> submitted and rejects direct draft -> published', async () => {
-    const {
-      saveTeacherDraftHandler,
-      submitDraftForReviewHandler,
-      publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+  it("allows draft -> submitted and rejects direct draft -> published", async () => {
+    const { saveTeacherDraftHandler, submitDraftForReviewHandler, publishAuthoredLessonHandler } =
+      await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'transition-key',
+      idempotencyKey: "transition-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     const submitted = await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     expect(submitted.success).toBe(true);
-    expect(submitted.teacherFacingStatus).toBe('submitted');
+    expect(submitted.teacherFacingStatus).toBe("submitted");
 
     await expect(
       publishAuthoredLessonHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         lessonId: saved.lessonId,
       }),
     ).rejects.toThrow();
   });
 
-  it('records a rejection comment and allows edit-after-reject back to draft', async () => {
+  it("records a rejection comment and allows edit-after-reject back to draft", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       editRejectedDraftHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'reject-key',
+      idempotencyKey: "reject-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
 
     const rejected = await reviewAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'rejected',
-      comment: 'Fix the equation.',
+      decision: "rejected",
+      comment: "Fix the equation.",
     });
     expect(rejected.success).toBe(true);
-    expect(rejected.teacherFacingStatus).toBe('rejected');
-    expect(rejected.rejectionComment).toBe('Fix the equation.');
-    expect(stores.component_reviews[0].comment).toBe('Fix the equation.');
+    expect(rejected.teacherFacingStatus).toBe("rejected");
+    expect(rejected.rejectionComment).toBe("Fix the equation.");
+    expect(stores.component_reviews[0].comment).toBe("Fix the equation.");
 
     const edited = await editRejectedDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      draft: buildAuthoredDraft({ title: 'Updated title' }),
-      idempotencyKey: 'reject-key-edited',
+      draft: buildAuthoredDraft({ title: "Updated title" }),
+      idempotencyKey: "reject-key-edited",
     });
     expect(edited.success).toBe(true);
-    expect(stores.lesson_versions[stores.lesson_versions.length - 1].status).toBe('draft');
+    expect(stores.lesson_versions[stores.lesson_versions.length - 1].status).toBe("draft");
   });
 });
 
-describe('Phase 2 — Approval queue and content hashing', () => {
-  it('submits drafts with real content hashes and placement-derived component kinds', async () => {
-    const {
-      saveTeacherDraftHandler,
-      submitDraftForReviewHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+describe("Phase 2 — Approval queue and content hashing", () => {
+  it("submits drafts with real content hashes and placement-derived component kinds", async () => {
+    const { saveTeacherDraftHandler, submitDraftForReviewHandler } =
+      await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'hash-key',
+      idempotencyKey: "hash-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     const submitted = await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     expect(submitted.success).toBe(true);
@@ -476,265 +463,255 @@ describe('Phase 2 — Approval queue and content hashing', () => {
     expect(stores.component_reviews.length).toBeGreaterThanOrEqual(3);
 
     const exploreReview = stores.component_reviews.find(
-      (r) => r.componentKey === 'graphing-explorer',
+      (r) => r.componentKey === "graphing-explorer",
     );
     const exampleReview = stores.component_reviews.find(
-      (r) => r.componentKey === 'step-by-step-solver',
+      (r) => r.componentKey === "step-by-step-solver",
     );
     const practiceReview = stores.component_reviews.find(
-      (r) => r.componentKey === 'comprehension-quiz',
+      (r) => r.componentKey === "comprehension-quiz",
     );
 
-    expect(exploreReview?.componentKind).toBe('activity');
-    expect(exampleReview?.componentKind).toBe('example');
-    expect(practiceReview?.componentKind).toBe('practice');
+    expect(exploreReview?.componentKind).toBe("activity");
+    expect(exampleReview?.componentKind).toBe("example");
+    expect(practiceReview?.componentKind).toBe("practice");
 
     const expectedExploreHash = await expectedActivityHash(
-      'explore',
-      'graphing-explorer',
-      VALID_ACTIVITY_PROPS['graphing-explorer'],
+      "explore",
+      "graphing-explorer",
+      VALID_ACTIVITY_PROPS["graphing-explorer"],
     );
     expect(exploreReview?.componentContentHash).toBe(expectedExploreHash);
   });
 
-  it('publishes only when every activity is approved and current hash matches stored hash', async () => {
+  it("publishes only when every activity is approved and current hash matches stored hash", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'publish-key',
+      idempotencyKey: "publish-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
 
     await reviewAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
 
     const published = await publishAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     expect(published.success).toBe(true);
-    expect(published.teacherFacingStatus).toBe('published');
+    expect(published.teacherFacingStatus).toBe("published");
   });
 
-  it('rejects publish when an approved activity becomes stale after an edit', async () => {
+  it("rejects publish when an approved activity becomes stale after an edit", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       editRejectedDraftHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'stale-key',
+      idempotencyKey: "stale-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
 
     await reviewAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
 
     await editRejectedDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      draft: buildAuthoredDraft({ title: 'Changed title after approval' }),
-      idempotencyKey: 'stale-key-edited',
+      draft: buildAuthoredDraft({ title: "Changed title after approval" }),
+      idempotencyKey: "stale-key-edited",
     });
 
     await expect(
       publishAuthoredLessonHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         lessonId: saved.lessonId,
       }),
     ).rejects.toThrow();
   });
 
-  it('requires a comment for needs_changes and rejected decisions', async () => {
-    const {
-      saveTeacherDraftHandler,
-      submitDraftForReviewHandler,
-      reviewAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+  it("requires a comment for needs_changes and rejected decisions", async () => {
+    const { saveTeacherDraftHandler, submitDraftForReviewHandler, reviewAuthoredLessonHandler } =
+      await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'comment-key',
+      idempotencyKey: "comment-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
 
     await expect(
       reviewAuthoredLessonHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         lessonId: saved.lessonId,
-        decision: 'rejected',
+        decision: "rejected",
       }),
     ).rejects.toThrow();
 
     await expect(
       reviewAuthoredLessonHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         lessonId: saved.lessonId,
-        decision: 'needs_changes',
+        decision: "needs_changes",
       }),
     ).rejects.toThrow();
   });
 });
 
-describe('Phase 2 — Teacher authorization and assignment/enrollment visibility', () => {
-  it('rejects non-teachers from creating or mutating drafts', async () => {
-    const {
-      saveTeacherDraftHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+describe("Phase 2 — Teacher authorization and assignment/enrollment visibility", () => {
+  it("rejects non-teachers from creating or mutating drafts", async () => {
+    const { saveTeacherDraftHandler } = await import("../../../convex/teacher/content_authoring");
 
-    const student = makeStudent('student_1', 'org_1');
+    const student = makeStudent("student_1", "org_1");
     const parent = {
-      ...makeStudent('parent_1', 'org_1'),
-      role: 'parent',
+      ...makeStudent("parent_1", "org_1"),
+      role: "parent",
     };
     const { ctx } = makeMutationMockCtx({ profiles: [student, parent] });
 
     for (const user of [student, parent]) {
       await expect(
         saveTeacherDraftHandler(ctx, {
-          userId: user._id as Id<'profiles'>,
+          userId: user._id as Id<"profiles">,
           draft: buildAuthoredDraft(),
-          idempotencyKey: 'unauthorized-key',
+          idempotencyKey: "unauthorized-key",
         }),
       ).rejects.toThrow();
     }
   });
 
-  it('prevents a teacher from mutating another teachers draft', async () => {
-    const {
-      saveTeacherDraftHandler,
-      submitDraftForReviewHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+  it("prevents a teacher from mutating another teachers draft", async () => {
+    const { saveTeacherDraftHandler, submitDraftForReviewHandler } =
+      await import("../../../convex/teacher/content_authoring");
 
-    const owner = makeTeacher('teacher_owner', 'org_1');
-    const other = makeTeacher('teacher_other', 'org_1');
+    const owner = makeTeacher("teacher_owner", "org_1");
+    const other = makeTeacher("teacher_other", "org_1");
     const { ctx } = makeMutationMockCtx({ profiles: [owner, other] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: owner._id as Id<'profiles'>,
+      userId: owner._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'ownership-key',
+      idempotencyKey: "ownership-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await expect(
       submitDraftForReviewHandler(ctx, {
-        userId: other._id as Id<'profiles'>,
+        userId: other._id as Id<"profiles">,
         lessonId: saved.lessonId,
       }),
     ).rejects.toThrow();
   });
 
-  it('prevents a teacher from reviewing or approving another teachers submitted draft', async () => {
-    const {
-      saveTeacherDraftHandler,
-      submitDraftForReviewHandler,
-      reviewAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+  it("prevents a teacher from reviewing or approving another teachers submitted draft", async () => {
+    const { saveTeacherDraftHandler, submitDraftForReviewHandler, reviewAuthoredLessonHandler } =
+      await import("../../../convex/teacher/content_authoring");
 
-    const owner = makeTeacher('teacher_owner', 'org_1');
-    const other = makeTeacher('teacher_other', 'org_1');
+    const owner = makeTeacher("teacher_owner", "org_1");
+    const other = makeTeacher("teacher_other", "org_1");
     const { ctx } = makeMutationMockCtx({ profiles: [owner, other] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: owner._id as Id<'profiles'>,
+      userId: owner._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'review-ownership-key',
+      idempotencyKey: "review-ownership-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: owner._id as Id<'profiles'>,
+      userId: owner._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
 
     await expect(
       reviewAuthoredLessonHandler(ctx, {
-        userId: other._id as Id<'profiles'>,
+        userId: other._id as Id<"profiles">,
         lessonId: saved.lessonId,
-        decision: 'approved',
+        decision: "approved",
       }),
     ).rejects.toThrow();
 
     const ownerReview = await reviewAuthoredLessonHandler(ctx, {
-      userId: owner._id as Id<'profiles'>,
+      userId: owner._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
     expect(ownerReview.success).toBe(true);
   });
 
-  it('only allows assigning a published authored lesson to a class the teacher owns', async () => {
+  it("only allows assigning a published authored lesson to a class the teacher owns", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
       assignAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
-    const otherTeacher = makeTeacher('teacher_2', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
+    const otherTeacher = makeTeacher("teacher_2", "org_1");
     const cls = {
-      _id: 'class_1',
+      _id: "class_1",
       teacherId: teacher._id,
-      name: 'Period 1',
+      name: "Period 1",
       archived: false,
       createdAt: 1000,
       updatedAt: 1000,
     };
     const otherCls = {
-      _id: 'class_2',
+      _id: "class_2",
       teacherId: otherTeacher._id,
-      name: 'Period 2',
+      name: "Period 2",
       archived: false,
       createdAt: 1000,
       updatedAt: 1000,
@@ -746,39 +723,39 @@ describe('Phase 2 — Teacher authorization and assignment/enrollment visibility
     });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'assign-key',
+      idempotencyKey: "assign-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
     await publishAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
 
     const assigned = await assignAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      classId: cls._id as Id<'classes'>,
+      classId: cls._id as Id<"classes">,
     });
     expect(assigned.success).toBe(true);
 
     await expect(
       assignAuthoredLessonHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         lessonId: saved.lessonId,
-        classId: otherCls._id as Id<'classes'>,
+        classId: otherCls._id as Id<"classes">,
       }),
     ).rejects.toThrow();
 
@@ -786,7 +763,7 @@ describe('Phase 2 — Teacher authorization and assignment/enrollment visibility
     expect(stores.class_lessons[0].classId).toBe(cls._id);
   });
 
-  it('only returns authored lessons to students with active assignment and enrollment', async () => {
+  it("only returns authored lessons to students with active assignment and enrollment", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
@@ -794,18 +771,18 @@ describe('Phase 2 — Teacher authorization and assignment/enrollment visibility
       publishAuthoredLessonHandler,
       assignAuthoredLessonHandler,
       getAuthoredLessonForStudentHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
-    const activeStudent = makeStudent('student_active', 'org_1');
-    const withdrawnStudent = makeStudent('student_withdrawn', 'org_1');
-    const otherClassStudent = makeStudent('student_other_class', 'org_1');
-    const otherOrgStudent = makeStudent('student_other_org', 'org_2');
+    const teacher = makeTeacher("teacher_1", "org_1");
+    const activeStudent = makeStudent("student_active", "org_1");
+    const withdrawnStudent = makeStudent("student_withdrawn", "org_1");
+    const otherClassStudent = makeStudent("student_other_class", "org_1");
+    const otherOrgStudent = makeStudent("student_other_org", "org_2");
 
     const cls = {
-      _id: 'class_1',
+      _id: "class_1",
       teacherId: teacher._id,
-      name: 'Period 1',
+      name: "Period 1",
       archived: false,
       createdAt: 1000,
       updatedAt: 1000,
@@ -817,48 +794,48 @@ describe('Phase 2 — Teacher authorization and assignment/enrollment visibility
     });
 
     const saved = await saveTeacherDraftHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'visibility-key',
+      idempotencyKey: "visibility-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
     await publishAuthoredLessonHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await assignAuthoredLessonHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      classId: cls._id as Id<'classes'>,
+      classId: cls._id as Id<"classes">,
     });
 
     const { ctx: qCtx, stores: qStores } = makeQueryMockCtx(stores);
     qStores.class_enrollments.push(
       {
-        _id: 'enrollment_active',
+        _id: "enrollment_active",
         classId: cls._id,
         studentId: activeStudent._id,
-        status: 'active',
+        status: "active",
         enrolledAt: 1000,
         createdAt: 1000,
         updatedAt: 1000,
       },
       {
-        _id: 'enrollment_withdrawn',
+        _id: "enrollment_withdrawn",
         classId: cls._id,
         studentId: withdrawnStudent._id,
-        status: 'withdrawn',
+        status: "withdrawn",
         enrolledAt: 1000,
         createdAt: 1000,
         updatedAt: 1000,
@@ -866,92 +843,92 @@ describe('Phase 2 — Teacher authorization and assignment/enrollment visibility
     );
 
     const activeResult = await getAuthoredLessonForStudentHandler(qCtx, {
-      userId: activeStudent._id as Id<'profiles'>,
+      userId: activeStudent._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     expect(activeResult).not.toBeNull();
 
     const withdrawnResult = await getAuthoredLessonForStudentHandler(qCtx, {
-      userId: withdrawnStudent._id as Id<'profiles'>,
+      userId: withdrawnStudent._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     expect(withdrawnResult).toBeNull();
 
     const otherClassResult = await getAuthoredLessonForStudentHandler(qCtx, {
-      userId: otherClassStudent._id as Id<'profiles'>,
+      userId: otherClassStudent._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     expect(otherClassResult).toBeNull();
 
     const otherOrgResult = await getAuthoredLessonForStudentHandler(qCtx, {
-      userId: otherOrgStudent._id as Id<'profiles'>,
+      userId: otherOrgStudent._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     expect(otherOrgResult).toBeNull();
   });
 });
 
-describe('Phase 2 — Teacher-facing status mapping', () => {
-  it('maps persisted DB statuses to teacher-facing lifecycle statuses', () => {
-    expect(toTeacherFacingStatus('draft')).toBe('draft');
-    expect(toTeacherFacingStatus('review')).toBe('submitted');
-    expect(toTeacherFacingStatus('approved')).toBe('approved');
-    expect(toTeacherFacingStatus('archived')).toBe('rejected');
-    expect(toTeacherFacingStatus('published')).toBe('published');
+describe("Phase 2 — Teacher-facing status mapping", () => {
+  it("maps persisted DB statuses to teacher-facing lifecycle statuses", () => {
+    expect(toTeacherFacingStatus("draft")).toBe("draft");
+    expect(toTeacherFacingStatus("review")).toBe("submitted");
+    expect(toTeacherFacingStatus("approved")).toBe("approved");
+    expect(toTeacherFacingStatus("archived")).toBe("rejected");
+    expect(toTeacherFacingStatus("published")).toBe("published");
   });
 
-  it('rejects are distinguishable from published in the teacher-facing DTO', async () => {
+  it("rejects are distinguishable from published in the teacher-facing DTO", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       editRejectedDraftHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'status-map-key',
+      idempotencyKey: "status-map-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
 
     const approved = await reviewAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
-    expect(approved.teacherFacingStatus).toBe('approved');
+    expect(approved.teacherFacingStatus).toBe("approved");
 
     // Edit the approved lesson back to draft, then resubmit for rejection test
     await editRejectedDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'status-map-key-edited',
+      idempotencyKey: "status-map-key-edited",
     });
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
 
     const rejected = await reviewAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'rejected',
-      comment: 'Needs work.',
+      decision: "rejected",
+      comment: "Needs work.",
     });
-    expect(rejected.teacherFacingStatus).toBe('rejected');
-    expect(rejected.rejectionComment).toBe('Needs work.');
+    expect(rejected.teacherFacingStatus).toBe("rejected");
+    expect(rejected.rejectionComment).toBe("Needs work.");
   });
 });
 
@@ -959,155 +936,148 @@ describe('Phase 2 — Teacher-facing status mapping', () => {
 /* Adversarial tests                                                       */
 /* ----------------------------------------------------------------------- */
 
-describe('Phase 2 — Adversarial — Lifecycle edge cases', () => {
-  it('rejects double-submit once the lesson_version is already in review status', async () => {
-    const {
-      saveTeacherDraftHandler,
-      submitDraftForReviewHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+describe("Phase 2 — Adversarial — Lifecycle edge cases", () => {
+  it("rejects double-submit once the lesson_version is already in review status", async () => {
+    const { saveTeacherDraftHandler, submitDraftForReviewHandler } =
+      await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'double-submit-key',
+      idempotencyKey: "double-submit-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     const first = await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
-    expect(first.teacherFacingStatus).toBe('submitted');
+    expect(first.teacherFacingStatus).toBe("submitted");
 
     await expect(
       submitDraftForReviewHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         lessonId: saved.lessonId,
       }),
     ).rejects.toThrow();
   });
 
-  it('rejects approving a lesson_version that is already approved', async () => {
-    const {
-      saveTeacherDraftHandler,
-      submitDraftForReviewHandler,
-      reviewAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+  it("rejects approving a lesson_version that is already approved", async () => {
+    const { saveTeacherDraftHandler, submitDraftForReviewHandler, reviewAuthoredLessonHandler } =
+      await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'double-approve-key',
+      idempotencyKey: "double-approve-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
 
     await expect(
       reviewAuthoredLessonHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         lessonId: saved.lessonId,
-        decision: 'approved',
+        decision: "approved",
       }),
     ).rejects.toThrow();
   });
 
-  it('publish twice is idempotent for lesson_version.status (still published)', async () => {
+  it("publish twice is idempotent for lesson_version.status (still published)", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'double-publish-key',
+      idempotencyKey: "double-publish-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
 
     const first = await publishAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
-    expect(first.teacherFacingStatus).toBe('published');
+    expect(first.teacherFacingStatus).toBe("published");
 
     // After publish, lesson_version.status === "published". A second publish on
     // the same lesson is an illegal transition (publish requires approved), so the
     // handler throws. We pin that behavior to detect accidental acceptance.
     await expect(
       publishAuthoredLessonHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         lessonId: saved.lessonId,
       }),
     ).rejects.toThrow();
 
-    const stillPublished = stores.lesson_versions.find(
-      (v) => v._id === saved.lessonVersionId,
-    );
-    expect(stillPublished?.status).toBe('published');
+    const stillPublished = stores.lesson_versions.find((v) => v._id === saved.lessonVersionId);
+    expect(stillPublished?.status).toBe("published");
   });
 
-  it('edit-after-reject then re-submit yields a NEW content hash, not the old one', async () => {
+  it("edit-after-reject then re-submit yields a NEW content hash, not the old one", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       editRejectedDraftHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
     const draftA = buildAuthoredDraft();
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: draftA,
-      idempotencyKey: 'hash-evolution-key',
+      idempotencyKey: "hash-evolution-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'rejected',
-      comment: 'Trim the worked example',
+      decision: "rejected",
+      comment: "Trim the worked example",
     });
 
     const oldReviews = stores.component_reviews.filter(
@@ -1121,20 +1091,20 @@ describe('Phase 2 — Adversarial — Lifecycle edge cases', () => {
 
     // Edit with content that changes the sanitize-stable input for at least one activity.
     const draftB = buildAuthoredDraft({
-      title: 'Edited after reject',
+      title: "Edited after reject",
       phases: [
         {
-          title: 'Explore',
-          phaseType: 'explore',
+          title: "Explore",
+          phaseType: "explore",
           sections: [
             {
-              title: 'Graphing a parabola',
+              title: "Graphing a parabola",
               activities: [
                 {
-                  componentKey: 'graphing-explorer',
+                  componentKey: "graphing-explorer",
                   props: {
-                    ...VALID_ACTIVITY_PROPS['graphing-explorer'],
-                    comparisonQuestion: 'New comparison prompt (different from before)',
+                    ...VALID_ACTIVITY_PROPS["graphing-explorer"],
+                    comparisonQuestion: "New comparison prompt (different from before)",
                   },
                 },
               ],
@@ -1142,34 +1112,34 @@ describe('Phase 2 — Adversarial — Lifecycle edge cases', () => {
           ],
         },
         {
-          title: 'Worked Example',
-          phaseType: 'worked_example',
+          title: "Worked Example",
+          phaseType: "worked_example",
           sections: [
             {
-              title: 'Solving by factoring',
+              title: "Solving by factoring",
               activities: [
                 {
-                  componentKey: 'step-by-step-solver',
-                  props: VALID_ACTIVITY_PROPS['step-by-step-solver'],
+                  componentKey: "step-by-step-solver",
+                  props: VALID_ACTIVITY_PROPS["step-by-step-solver"],
                 },
               ],
             },
           ],
         },
         {
-          title: 'Guided Practice',
-          phaseType: 'guided_practice',
+          title: "Guided Practice",
+          phaseType: "guided_practice",
           sections: [
             {
-              title: 'Check for understanding',
+              title: "Check for understanding",
               activities: [
                 {
-                  componentKey: 'comprehension-quiz',
-                  props: VALID_ACTIVITY_PROPS['comprehension-quiz'],
+                  componentKey: "comprehension-quiz",
+                  props: VALID_ACTIVITY_PROPS["comprehension-quiz"],
                 },
                 {
-                  componentKey: 'fill-in-the-blank',
-                  props: VALID_ACTIVITY_PROPS['fill-in-the-blank'],
+                  componentKey: "fill-in-the-blank",
+                  props: VALID_ACTIVITY_PROPS["fill-in-the-blank"],
                 },
               ],
             },
@@ -1179,16 +1149,16 @@ describe('Phase 2 — Adversarial — Lifecycle edge cases', () => {
     });
 
     const edited = await editRejectedDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
       draft: draftB,
-      idempotencyKey: 'hash-evolution-key-edited',
+      idempotencyKey: "hash-evolution-key-edited",
     });
     expect(edited.success).toBe(true);
 
     // After the edit, submit (creates a new component_reviews batch with the current hash).
     const resubmitted = await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     expect(resubmitted.success).toBe(true);
@@ -1207,50 +1177,43 @@ describe('Phase 2 — Adversarial — Lifecycle edge cases', () => {
 
     // The graphing-explorer review must reflect the changed content (its comparisonQuestion
     // was the only input that changed). The recomputed hash must differ from the old one.
-    expect(newHashByActivityKey['graphing-explorer']).toBeDefined();
-    expect(oldHashByActivityKey['graphing-explorer']).toBeDefined();
-    expect(newHashByActivityKey['graphing-explorer']).not.toBe(
-      oldHashByActivityKey['graphing-explorer'],
+    expect(newHashByActivityKey["graphing-explorer"]).toBeDefined();
+    expect(oldHashByActivityKey["graphing-explorer"]).toBeDefined();
+    expect(newHashByActivityKey["graphing-explorer"]).not.toBe(
+      oldHashByActivityKey["graphing-explorer"],
     );
 
     // For unchanged activities the hash should match (sanitized props are identical).
     for (const key of Object.keys(oldHashByActivityKey)) {
-      if (key === 'graphing-explorer') continue;
+      if (key === "graphing-explorer") continue;
       expect(newHashByActivityKey[key]).toBe(oldHashByActivityKey[key]);
     }
 
     // Pin the recomputed hash against the real primitive for ground truth.
-    const expectedNewHash = await expectedActivityHash(
-      'explore',
-      'graphing-explorer',
-      {
-        ...VALID_ACTIVITY_PROPS['graphing-explorer'],
-        comparisonQuestion: 'New comparison prompt (different from before)',
-      },
-    );
-    expect(newHashByActivityKey['graphing-explorer']).toBe(expectedNewHash);
+    const expectedNewHash = await expectedActivityHash("explore", "graphing-explorer", {
+      ...VALID_ACTIVITY_PROPS["graphing-explorer"],
+      comparisonQuestion: "New comparison prompt (different from before)",
+    });
+    expect(newHashByActivityKey["graphing-explorer"]).toBe(expectedNewHash);
   });
 
-  it('rejects save / edit while a lesson is in review or published status', async () => {
-    const {
-      saveTeacherDraftHandler,
-      submitDraftForReviewHandler,
-      editRejectedDraftHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+  it("rejects save / edit while a lesson is in review or published status", async () => {
+    const { saveTeacherDraftHandler, submitDraftForReviewHandler, editRejectedDraftHandler } =
+      await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'review-edit-key',
+      idempotencyKey: "review-edit-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
 
@@ -1258,118 +1221,111 @@ describe('Phase 2 — Adversarial — Lifecycle edge cases', () => {
     // require archived, approved, or draft to accept an edit).
     await expect(
       editRejectedDraftHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         lessonId: saved.lessonId,
-        draft: buildAuthoredDraft({ title: 'Editing while in review' }),
-        idempotencyKey: 'review-edit-key-2',
+        draft: buildAuthoredDraft({ title: "Editing while in review" }),
+        idempotencyKey: "review-edit-key-2",
       }),
     ).rejects.toThrow();
   });
 
-  it('rejects needs_changes decision without a comment', async () => {
+  it("rejects needs_changes decision without a comment", async () => {
     // The Phase 2 closeout covers this; the adversarial surface here is to pin the
     // exact messaging so a future handler regression that lost the comment gate
     // is detected at test time.
-    const {
-      saveTeacherDraftHandler,
-      submitDraftForReviewHandler,
-      reviewAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    const { saveTeacherDraftHandler, submitDraftForReviewHandler, reviewAuthoredLessonHandler } =
+      await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'comment-required-key',
+      idempotencyKey: "comment-required-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
 
     await expect(
       reviewAuthoredLessonHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         lessonId: saved.lessonId,
-        decision: 'needs_changes',
+        decision: "needs_changes",
       }),
     ).rejects.toThrow(/comment/i);
 
     await expect(
       reviewAuthoredLessonHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         lessonId: saved.lessonId,
-        decision: 'rejected',
+        decision: "rejected",
       }),
     ).rejects.toThrow(/comment/i);
   });
 });
 
-describe('Phase 2 — Adversarial — Idempotency abuse', () => {
-  it('same idempotency key with DIFFERENT title patches the existing lesson (no duplicate lessons)', async () => {
-    const {
-      saveTeacherDraftHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+describe("Phase 2 — Adversarial — Idempotency abuse", () => {
+  it("same idempotency key with DIFFERENT title patches the existing lesson (no duplicate lessons)", async () => {
+    const { saveTeacherDraftHandler } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
-    const draftA = buildAuthoredDraft({ title: 'First title' });
-    const draftB = buildAuthoredDraft({ title: 'Second title' });
+    const draftA = buildAuthoredDraft({ title: "First title" });
+    const draftB = buildAuthoredDraft({ title: "Second title" });
 
     await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: draftA,
-      idempotencyKey: 'same-key-different-content',
+      idempotencyKey: "same-key-different-content",
     });
 
     await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: draftB,
-      idempotencyKey: 'same-key-different-content',
+      idempotencyKey: "same-key-different-content",
     });
 
     // Labeled count: one lesson row, not two. (A3: array length, not regex.)
     expect(stores.lessons).toHaveLength(1);
-    expect(stores.lessons[0].title).toBe('Second title');
+    expect(stores.lessons[0].title).toBe("Second title");
     // Labeled count: persisted activities match the fresh draft (4 activities total).
     expect(stores.activities).toHaveLength(4);
   });
 
-  it('saving with the same idempotency key while reducing activity count in a section does not leave orphan activities', async () => {
-    const {
-      saveTeacherDraftHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+  it("saving with the same idempotency key while reducing activity count in a section does not leave orphan activities", async () => {
+    const { saveTeacherDraftHandler } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
     // First draft: one phase, one section with 3 activities.
     const draftA = buildAuthoredDraft({
       phases: [
         {
-          title: 'Explore',
-          phaseType: 'explore',
+          title: "Explore",
+          phaseType: "explore",
           sections: [
             {
-              title: 'Multi-activity section',
+              title: "Multi-activity section",
               activities: [
                 {
-                  componentKey: 'graphing-explorer',
-                  props: VALID_ACTIVITY_PROPS['graphing-explorer'],
+                  componentKey: "graphing-explorer",
+                  props: VALID_ACTIVITY_PROPS["graphing-explorer"],
                 },
                 {
-                  componentKey: 'comprehension-quiz',
-                  props: VALID_ACTIVITY_PROPS['comprehension-quiz'],
+                  componentKey: "comprehension-quiz",
+                  props: VALID_ACTIVITY_PROPS["comprehension-quiz"],
                 },
                 {
-                  componentKey: 'fill-in-the-blank',
-                  props: VALID_ACTIVITY_PROPS['fill-in-the-blank'],
+                  componentKey: "fill-in-the-blank",
+                  props: VALID_ACTIVITY_PROPS["fill-in-the-blank"],
                 },
               ],
             },
@@ -1379,9 +1335,9 @@ describe('Phase 2 — Adversarial — Idempotency abuse', () => {
     });
 
     await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: draftA,
-      idempotencyKey: 'shrink-section',
+      idempotencyKey: "shrink-section",
     });
     expect(stores.activities).toHaveLength(3);
 
@@ -1389,15 +1345,15 @@ describe('Phase 2 — Adversarial — Idempotency abuse', () => {
     const draftB = buildAuthoredDraft({
       phases: [
         {
-          title: 'Explore',
-          phaseType: 'explore',
+          title: "Explore",
+          phaseType: "explore",
           sections: [
             {
-              title: 'Multi-activity section',
+              title: "Multi-activity section",
               activities: [
                 {
-                  componentKey: 'graphing-explorer',
-                  props: VALID_ACTIVITY_PROPS['graphing-explorer'],
+                  componentKey: "graphing-explorer",
+                  props: VALID_ACTIVITY_PROPS["graphing-explorer"],
                 },
               ],
             },
@@ -1407,9 +1363,9 @@ describe('Phase 2 — Adversarial — Idempotency abuse', () => {
     });
 
     await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: draftB,
-      idempotencyKey: 'shrink-section',
+      idempotencyKey: "shrink-section",
     });
 
     // After idempotent shrink: 1 activity row, no orphans from the dropped two.
@@ -1419,12 +1375,10 @@ describe('Phase 2 — Adversarial — Idempotency abuse', () => {
     expect(stores.lesson_versions).toHaveLength(1);
   });
 
-  it('concurrent-ish sequential saves with the same key leave the DB in a coherent state', async () => {
-    const {
-      saveTeacherDraftHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+  it("concurrent-ish sequential saves with the same key leave the DB in a coherent state", async () => {
+    const { saveTeacherDraftHandler } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
     // Sequential idempotent saves — each save completes before the next
@@ -1432,19 +1386,19 @@ describe('Phase 2 — Adversarial — Idempotency abuse', () => {
     // row, activity count reflects the *last* write, and the last write's
     // title wins.
     await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
-      draft: buildAuthoredDraft({ title: 'seq-1' }),
-      idempotencyKey: 'sequenced-key',
+      userId: teacher._id as Id<"profiles">,
+      draft: buildAuthoredDraft({ title: "seq-1" }),
+      idempotencyKey: "sequenced-key",
     });
     await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
-      draft: buildAuthoredDraft({ title: 'seq-2' }),
-      idempotencyKey: 'sequenced-key',
+      userId: teacher._id as Id<"profiles">,
+      draft: buildAuthoredDraft({ title: "seq-2" }),
+      idempotencyKey: "sequenced-key",
     });
     const last = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
-      draft: buildAuthoredDraft({ title: 'seq-3' }),
-      idempotencyKey: 'sequenced-key',
+      userId: teacher._id as Id<"profiles">,
+      draft: buildAuthoredDraft({ title: "seq-3" }),
+      idempotencyKey: "sequenced-key",
     });
     expect(last.success).toBe(true);
 
@@ -1453,237 +1407,229 @@ describe('Phase 2 — Adversarial — Idempotency abuse', () => {
     // Activity count derived from the canonical draft (4 activities).
     expect(stores.activities).toHaveLength(4);
     // The last write wins for the title.
-    expect(stores.lessons[0].title).toBe('seq-3');
+    expect(stores.lessons[0].title).toBe("seq-3");
   });
 });
 
-describe('Phase 2 — Adversarial — Approval/hash tampering', () => {
-  it('publish is blocked when only some placed activities are approved (mixed approved/unapproved set)', async () => {
+describe("Phase 2 — Adversarial — Approval/hash tampering", () => {
+  it("publish is blocked when only some placed activities are approved (mixed approved/unapproved set)", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'mixed-approval-key',
+      idempotencyKey: "mixed-approval-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
 
     // First approval lands all four activities as approved.
     await reviewAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
 
     // Pick one example/practice approval and force its stored hash to a
     // different value, simulating tampering or a content edit that did not
     // trigger the handler's stale-defense path. Then try to publish.
-    const explorerApproval = stores.activities.find(
-      (a) => a.componentKey === 'graphing-explorer',
-    );
+    const explorerApproval = stores.activities.find((a) => a.componentKey === "graphing-explorer");
     expect(explorerApproval).toBeDefined();
-    await ctx.db.patch(explorerApproval!._id as Id<'activities'>, {
+    await ctx.db.patch(explorerApproval!._id as Id<"activities">, {
       approval: {
-        status: 'approved',
-        contentHash: 'forged-hash',
+        status: "approved",
+        contentHash: "forged-hash",
         reviewedAt: 1000,
-        reviewedBy: teacher._id as Id<'profiles'>,
+        reviewedBy: teacher._id as Id<"profiles">,
       },
       updatedAt: 2000,
     });
 
     await expect(
       publishAuthoredLessonHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         lessonId: saved.lessonId,
       }),
     ).rejects.toThrow();
   });
 
-  it('publish is blocked when a stored approval hash for an example/practice placement is stale', async () => {
+  it("publish is blocked when a stored approval hash for an example/practice placement is stale", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'stale-hash-key',
+      idempotencyKey: "stale-hash-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
 
     // Pin the original approval rows so we can mutate them deterministically.
     const stepByStepApproval = stores.component_approvals.find(
-      (a) => a.componentKey === 'step-by-step-solver',
+      (a) => a.componentKey === "step-by-step-solver",
     );
     expect(stepByStepApproval).toBeDefined();
     const stepOriginalHash = stepByStepApproval!.contentHash;
 
     // Forge the stored approval hash so it differs from the current hash.
-    await ctx.db.patch(stepByStepApproval!._id as Id<'component_approvals'>, {
+    await ctx.db.patch(stepByStepApproval!._id as Id<"component_approvals">, {
       contentHash: `${stepOriginalHash}-tampered`,
       updatedAt: 9000,
     });
 
     await expect(
       publishAuthoredLessonHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         lessonId: saved.lessonId,
       }),
     ).rejects.toThrow(/stale/i);
 
     // lesson_version.status must remain 'approved' (publish rejected, no flip).
-    const lessonVersion = stores.lesson_versions.find(
-      (v) => v._id === saved.lessonVersionId,
-    );
-    expect(lessonVersion?.status).toBe('approved');
+    const lessonVersion = stores.lesson_versions.find((v) => v._id === saved.lessonVersionId);
+    expect(lessonVersion?.status).toBe("approved");
   });
 
-  it('publish blocked when one of several approvals is stale and the others are fresh (mixed set)', async () => {
+  it("publish blocked when one of several approvals is stale and the others are fresh (mixed set)", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'mixed-stale-key',
+      idempotencyKey: "mixed-stale-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
 
     // Tamper with exactly one approval row (the comprehension-quiz one is
     // placed under `guided_practice` which resolves to `practice` kind).
     const quizApproval = stores.component_approvals.find(
-      (a) => a.componentKey === 'comprehension-quiz',
+      (a) => a.componentKey === "comprehension-quiz",
     );
     expect(quizApproval).toBeDefined();
-    await ctx.db.patch(quizApproval!._id as Id<'component_approvals'>, {
-      contentHash: 'tampered-mixed-set',
+    await ctx.db.patch(quizApproval!._id as Id<"component_approvals">, {
+      contentHash: "tampered-mixed-set",
       updatedAt: 8000,
     });
 
     await expect(
       publishAuthoredLessonHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         lessonId: saved.lessonId,
       }),
     ).rejects.toThrow();
 
-    const lessonVersion = stores.lesson_versions.find(
-      (v) => v._id === saved.lessonVersionId,
-    );
-    expect(lessonVersion?.status).toBe('approved');
+    const lessonVersion = stores.lesson_versions.find((v) => v._id === saved.lessonVersionId);
+    expect(lessonVersion?.status).toBe("approved");
   });
 
-  it('hash computes over the post-sanitization activity props, not the raw teacher input', async () => {
+  it("hash computes over the post-sanitization activity props, not the raw teacher input", async () => {
     // Verifies both that (a) sanitization runs before the hash is computed
     // and (b) the persisted row content reflects sanitized text. A handler
     // regression that persists unsanitized strings *and* feeds them to the
     // hash would no longer reproduce the in-handler sanitized hash.
-    const {
-      saveTeacherDraftHandler,
-      submitDraftForReviewHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    const { saveTeacherDraftHandler, submitDraftForReviewHandler } =
+      await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
     const unsafeProps = {
-      ...VALID_ACTIVITY_PROPS['graphing-explorer'],
-      comparisonQuestion: '<script>alert(1)</script>Safe prompt?',
+      ...VALID_ACTIVITY_PROPS["graphing-explorer"],
+      comparisonQuestion: "<script>alert(1)</script>Safe prompt?",
     };
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft({
         phases: [
           {
-            title: 'Explore',
-            phaseType: 'explore',
+            title: "Explore",
+            phaseType: "explore",
             sections: [
               {
-                title: 'Section',
-                activities: [{ componentKey: 'graphing-explorer', props: unsafeProps }],
+                title: "Section",
+                activities: [{ componentKey: "graphing-explorer", props: unsafeProps }],
               },
             ],
           },
           {
-            title: 'Worked Example',
-            phaseType: 'worked_example',
+            title: "Worked Example",
+            phaseType: "worked_example",
             sections: [
               {
-                title: 'Solving by factoring',
+                title: "Solving by factoring",
                 activities: [
                   {
-                    componentKey: 'step-by-step-solver',
-                    props: VALID_ACTIVITY_PROPS['step-by-step-solver'],
+                    componentKey: "step-by-step-solver",
+                    props: VALID_ACTIVITY_PROPS["step-by-step-solver"],
                   },
                 ],
               },
             ],
           },
           {
-            title: 'Guided Practice',
-            phaseType: 'guided_practice',
+            title: "Guided Practice",
+            phaseType: "guided_practice",
             sections: [
               {
-                title: 'Check for understanding',
+                title: "Check for understanding",
                 activities: [
                   {
-                    componentKey: 'comprehension-quiz',
-                    props: VALID_ACTIVITY_PROPS['comprehension-quiz'],
+                    componentKey: "comprehension-quiz",
+                    props: VALID_ACTIVITY_PROPS["comprehension-quiz"],
                   },
                   {
-                    componentKey: 'fill-in-the-blank',
-                    props: VALID_ACTIVITY_PROPS['fill-in-the-blank'],
+                    componentKey: "fill-in-the-blank",
+                    props: VALID_ACTIVITY_PROPS["fill-in-the-blank"],
                   },
                 ],
               },
@@ -1691,28 +1637,24 @@ describe('Phase 2 — Adversarial — Approval/hash tampering', () => {
           },
         ],
       }),
-      idempotencyKey: 'sanitize-into-hash-key',
+      idempotencyKey: "sanitize-into-hash-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
 
-    const activityRow = stores.activities.find(
-      (a) => a.componentKey === 'graphing-explorer',
-    );
+    const activityRow = stores.activities.find((a) => a.componentKey === "graphing-explorer");
     expect(activityRow).toBeDefined();
     // Stored props must be sanitized (no <script> token in any string).
     const flattened = JSON.stringify(activityRow!.props);
-    expect(flattened).not.toContain('<script>');
-    expect(flattened).toContain('Safe prompt?');
+    expect(flattened).not.toContain("<script>");
+    expect(flattened).toContain("Safe prompt?");
 
-    const reviewRow = stores.component_reviews.find(
-      (r) => r.componentKey === 'graphing-explorer',
-    );
+    const reviewRow = stores.component_reviews.find((r) => r.componentKey === "graphing-explorer");
     expect(reviewRow).toBeDefined();
 
     // The hash recorded in the review queue must equal the hash computed
@@ -1721,8 +1663,8 @@ describe('Phase 2 — Adversarial — Approval/hash tampering', () => {
     // of the raw <script>-bearing props and this assertion would fail.
     const sanitizedProps = JSON.parse(JSON.stringify(activityRow!.props));
     const expectedPostSanitizeHash = await expectedActivityHash(
-      'explore',
-      'graphing-explorer',
+      "explore",
+      "graphing-explorer",
       sanitizedProps,
     );
     expect(reviewRow!.componentContentHash).toBe(expectedPostSanitizeHash);
@@ -1734,119 +1676,119 @@ describe('Phase 2 — Adversarial — Approval/hash tampering', () => {
     // We compute the raw hash by calling computeComponentContentHash
     // directly (bypassing expectedActivityHash, which sanitizes internally).
     const rawHash = await computeComponentContentHash({
-      componentKind: resolveComponentKind('explore'),
-      componentKey: 'graphing-explorer',
+      componentKind: resolveComponentKind("explore"),
+      componentKey: "graphing-explorer",
       props: unsafeProps,
     });
     expect(rawHash).not.toBe(expectedPostSanitizeHash);
   });
 });
 
-describe('Phase 2 — Adversarial — Authorization boundaries', () => {
-  it('cross-teacher edit-after-reject is rejected on someone else’s lesson', async () => {
+describe("Phase 2 — Adversarial — Authorization boundaries", () => {
+  it("cross-teacher edit-after-reject is rejected on someone else’s lesson", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       editRejectedDraftHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const owner = makeTeacher('teacher_owner', 'org_1');
-    const other = makeTeacher('teacher_other', 'org_1');
+    const owner = makeTeacher("teacher_owner", "org_1");
+    const other = makeTeacher("teacher_other", "org_1");
     const { ctx } = makeMutationMockCtx({ profiles: [owner, other] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: owner._id as Id<'profiles'>,
+      userId: owner._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'cross-edit-key',
+      idempotencyKey: "cross-edit-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: owner._id as Id<'profiles'>,
+      userId: owner._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(ctx, {
-      userId: owner._id as Id<'profiles'>,
+      userId: owner._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'rejected',
-      comment: 'Try again',
+      decision: "rejected",
+      comment: "Try again",
     });
 
     // The owning teacher CAN edit after reject.
     const ownEdit = await editRejectedDraftHandler(ctx, {
-      userId: owner._id as Id<'profiles'>,
+      userId: owner._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      draft: buildAuthoredDraft({ title: 'Owner edit' }),
-      idempotencyKey: 'cross-edit-key-owner',
+      draft: buildAuthoredDraft({ title: "Owner edit" }),
+      idempotencyKey: "cross-edit-key-owner",
     });
     expect(ownEdit.success).toBe(true);
 
     // A different teacher in the same org CANNOT.
     await expect(
       editRejectedDraftHandler(ctx, {
-        userId: other._id as Id<'profiles'>,
+        userId: other._id as Id<"profiles">,
         lessonId: saved.lessonId,
-        draft: buildAuthoredDraft({ title: 'Other edit' }),
-        idempotencyKey: 'cross-edit-key-other',
+        draft: buildAuthoredDraft({ title: "Other edit" }),
+        idempotencyKey: "cross-edit-key-other",
       }),
     ).rejects.toThrow();
   });
 
-  it('cross-teacher publish is rejected on someone else’s approved lesson', async () => {
+  it("cross-teacher publish is rejected on someone else’s approved lesson", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const owner = makeTeacher('teacher_owner', 'org_1');
-    const other = makeTeacher('teacher_other', 'org_1');
+    const owner = makeTeacher("teacher_owner", "org_1");
+    const other = makeTeacher("teacher_other", "org_1");
     const { ctx } = makeMutationMockCtx({ profiles: [owner, other] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: owner._id as Id<'profiles'>,
+      userId: owner._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'cross-publish-key',
+      idempotencyKey: "cross-publish-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: owner._id as Id<'profiles'>,
+      userId: owner._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(ctx, {
-      userId: owner._id as Id<'profiles'>,
+      userId: owner._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
 
     await expect(
       publishAuthoredLessonHandler(ctx, {
-        userId: other._id as Id<'profiles'>,
+        userId: other._id as Id<"profiles">,
         lessonId: saved.lessonId,
       }),
     ).rejects.toThrow();
   });
 
-  it('cross-teacher assign is rejected on another teacher’s published lesson', async () => {
+  it("cross-teacher assign is rejected on another teacher’s published lesson", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
       assignAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const owner = makeTeacher('teacher_owner', 'org_1');
-    const other = makeTeacher('teacher_other', 'org_1');
+    const owner = makeTeacher("teacher_owner", "org_1");
+    const other = makeTeacher("teacher_other", "org_1");
     const cls = {
-      _id: 'class_other',
+      _id: "class_other",
       teacherId: other._id,
-      name: 'Other Period',
+      name: "Other Period",
       archived: false,
       createdAt: 1000,
       updatedAt: 1000,
@@ -1857,24 +1799,24 @@ describe('Phase 2 — Adversarial — Authorization boundaries', () => {
     });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: owner._id as Id<'profiles'>,
+      userId: owner._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'cross-assign-key',
+      idempotencyKey: "cross-assign-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: owner._id as Id<'profiles'>,
+      userId: owner._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(ctx, {
-      userId: owner._id as Id<'profiles'>,
+      userId: owner._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
     await publishAuthoredLessonHandler(ctx, {
-      userId: owner._id as Id<'profiles'>,
+      userId: owner._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
 
@@ -1882,14 +1824,14 @@ describe('Phase 2 — Adversarial — Authorization boundaries', () => {
     // able to assign someone else's published authored lesson.
     await expect(
       assignAuthoredLessonHandler(ctx, {
-        userId: other._id as Id<'profiles'>,
+        userId: other._id as Id<"profiles">,
         lessonId: saved.lessonId,
-        classId: cls._id as Id<'classes'>,
+        classId: cls._id as Id<"classes">,
       }),
     ).rejects.toThrow();
   });
 
-  it('an admin who is NOT the authoring teacher cannot publish someone else’s lesson', async () => {
+  it("an admin who is NOT the authoring teacher cannot publish someone else’s lesson", async () => {
     // getAuthoringTeacher accepts role==='admin' for the role gate, but the
     // lesson.metadata.authoringTeacherId ownership check still blocks the
     // admin unless they are also the authoring teacher. Pin that boundary.
@@ -1898,52 +1840,52 @@ describe('Phase 2 — Adversarial — Authorization boundaries', () => {
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const owner = makeTeacher('teacher_owner', 'org_1');
-    const admin = makeTeacher('admin_alice', 'org_1', 'admin');
+    const owner = makeTeacher("teacher_owner", "org_1");
+    const admin = makeTeacher("admin_alice", "org_1", "admin");
     const { ctx } = makeMutationMockCtx({ profiles: [owner, admin] });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: owner._id as Id<'profiles'>,
+      userId: owner._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'admin-publish-key',
+      idempotencyKey: "admin-publish-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: owner._id as Id<'profiles'>,
+      userId: owner._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(ctx, {
-      userId: owner._id as Id<'profiles'>,
+      userId: owner._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
 
     await expect(
       publishAuthoredLessonHandler(ctx, {
-        userId: admin._id as Id<'profiles'>,
+        userId: admin._id as Id<"profiles">,
         lessonId: saved.lessonId,
       }),
     ).rejects.toThrow();
   });
 
-  it('assignment to an archived class is rejected even when the teacher owns both', async () => {
+  it("assignment to an archived class is rejected even when the teacher owns both", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
       assignAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const cls = {
-      _id: 'class_archived',
+      _id: "class_archived",
       teacherId: teacher._id,
-      name: 'Archived Period',
+      name: "Archived Period",
       archived: true,
       createdAt: 1000,
       updatedAt: 1000,
@@ -1954,47 +1896,45 @@ describe('Phase 2 — Adversarial — Authorization boundaries', () => {
     });
 
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'archived-class-key',
+      idempotencyKey: "archived-class-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
     await publishAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
 
     await expect(
       assignAuthoredLessonHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         lessonId: saved.lessonId,
-        classId: cls._id as Id<'classes'>,
+        classId: cls._id as Id<"classes">,
       }),
     ).rejects.toThrow();
   });
 
-  it('rejects assignment of an unpublished lesson to a class', async () => {
-    const {
-      saveTeacherDraftHandler,
-      assignAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+  it("rejects assignment of an unpublished lesson to a class", async () => {
+    const { saveTeacherDraftHandler, assignAuthoredLessonHandler } =
+      await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const cls = {
-      _id: 'class_draft_target',
+      _id: "class_draft_target",
       teacherId: teacher._id,
-      name: 'Period',
+      name: "Period",
       archived: false,
       createdAt: 1000,
       updatedAt: 1000,
@@ -2006,38 +1946,38 @@ describe('Phase 2 — Adversarial — Authorization boundaries', () => {
 
     // Save a draft but never submit/approve/publish.
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'unpublished-assign-key',
+      idempotencyKey: "unpublished-assign-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await expect(
       assignAuthoredLessonHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         lessonId: saved.lessonId,
-        classId: cls._id as Id<'classes'>,
+        classId: cls._id as Id<"classes">,
       }),
     ).rejects.toThrow();
   });
 });
 
-describe('Phase 2 — Adversarial — Student visibility failure paths', () => {
-  it('returns null when the latest authored lesson_version is NOT published', async () => {
+describe("Phase 2 — Adversarial — Student visibility failure paths", () => {
+  it("returns null when the latest authored lesson_version is NOT published", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       getAuthoredLessonForStudentHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
-    const activeStudent = makeStudent('student_active', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
+    const activeStudent = makeStudent("student_active", "org_1");
 
     const cls = {
-      _id: 'class_1',
+      _id: "class_1",
       teacherId: teacher._id,
-      name: 'Period 1',
+      name: "Period 1",
       archived: false,
       createdAt: 1000,
       updatedAt: 1000,
@@ -2049,16 +1989,16 @@ describe('Phase 2 — Adversarial — Student visibility failure paths', () => {
     });
 
     const saved = await saveTeacherDraftHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'unpublished-key',
+      idempotencyKey: "unpublished-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     // Submitted but not approved or published.
     await submitDraftForReviewHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
 
@@ -2066,17 +2006,17 @@ describe('Phase 2 — Adversarial — Student visibility failure paths', () => {
     // student still cannot see the lesson (because status is "review" not
     // "published").
     stores.class_lessons.push({
-      _id: 'class_lesson_row',
+      _id: "class_lesson_row",
       classId: cls._id,
       lessonId: saved.lessonId,
       assignedAt: 2000,
       createdAt: 2000,
     });
     stores.class_enrollments.push({
-      _id: 'enrollment_active',
+      _id: "enrollment_active",
       classId: cls._id,
       studentId: activeStudent._id,
-      status: 'active',
+      status: "active",
       enrolledAt: 2000,
       createdAt: 2000,
       updatedAt: 2000,
@@ -2084,7 +2024,7 @@ describe('Phase 2 — Adversarial — Student visibility failure paths', () => {
 
     const { ctx: qCtx } = makeQueryMockCtx(stores);
     const result = await getAuthoredLessonForStudentHandler(qCtx, {
-      userId: activeStudent._id as Id<'profiles'>,
+      userId: activeStudent._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     expect(result).toBeNull();
@@ -2098,15 +2038,15 @@ describe('Phase 2 — Adversarial — Student visibility failure paths', () => {
       publishAuthoredLessonHandler,
       assignAuthoredLessonHandler,
       getAuthoredLessonForStudentHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
-    const completedStudent = makeStudent('student_completed', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
+    const completedStudent = makeStudent("student_completed", "org_1");
 
     const cls = {
-      _id: 'class_1',
+      _id: "class_1",
       teacherId: teacher._id,
-      name: 'Period 1',
+      name: "Period 1",
       archived: false,
       createdAt: 1000,
       updatedAt: 1000,
@@ -2118,37 +2058,37 @@ describe('Phase 2 — Adversarial — Student visibility failure paths', () => {
     });
 
     const saved = await saveTeacherDraftHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'completed-enroll-key',
+      idempotencyKey: "completed-enroll-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
     await publishAuthoredLessonHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await assignAuthoredLessonHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      classId: cls._id as Id<'classes'>,
+      classId: cls._id as Id<"classes">,
     });
 
     stores.class_enrollments.push({
-      _id: 'enrollment_completed',
+      _id: "enrollment_completed",
       classId: cls._id,
       studentId: completedStudent._id,
-      status: 'completed',
+      status: "completed",
       enrolledAt: 1000,
       createdAt: 1000,
       updatedAt: 1000,
@@ -2156,28 +2096,28 @@ describe('Phase 2 — Adversarial — Student visibility failure paths', () => {
 
     const { ctx: qCtx } = makeQueryMockCtx(stores);
     const result = await getAuthoredLessonForStudentHandler(qCtx, {
-      userId: completedStudent._id as Id<'profiles'>,
+      userId: completedStudent._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     expect(result).toBeNull();
   });
 
-  it('returns null for a student when there is no class_lessons assignment row', async () => {
+  it("returns null for a student when there is no class_lessons assignment row", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
       getAuthoredLessonForStudentHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
-    const activeStudent = makeStudent('student_active', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
+    const activeStudent = makeStudent("student_active", "org_1");
 
     const cls = {
-      _id: 'class_1',
+      _id: "class_1",
       teacherId: teacher._id,
-      name: 'Period 1',
+      name: "Period 1",
       archived: false,
       createdAt: 1000,
       updatedAt: 1000,
@@ -2188,33 +2128,33 @@ describe('Phase 2 — Adversarial — Student visibility failure paths', () => {
     });
 
     const saved = await saveTeacherDraftHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft(),
-      idempotencyKey: 'no-assign-key',
+      idempotencyKey: "no-assign-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     await submitDraftForReviewHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'approved',
+      decision: "approved",
     });
     await publishAuthoredLessonHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     // Note: no assignAuthoredLessonHandler call.
 
     stores.class_enrollments.push({
-      _id: 'enrollment_active',
+      _id: "enrollment_active",
       classId: cls._id,
       studentId: activeStudent._id,
-      status: 'active',
+      status: "active",
       enrolledAt: 1000,
       createdAt: 1000,
       updatedAt: 1000,
@@ -2222,87 +2162,81 @@ describe('Phase 2 — Adversarial — Student visibility failure paths', () => {
 
     const { ctx: qCtx } = makeQueryMockCtx(stores);
     const result = await getAuthoredLessonForStudentHandler(qCtx, {
-      userId: activeStudent._id as Id<'profiles'>,
+      userId: activeStudent._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     expect(result).toBeNull();
   });
 });
 
-describe('Phase 2 — Adversarial — Input validation', () => {
-  it('rejects drafts with an empty phases array at save time', async () => {
-    const { saveTeacherDraftHandler } = await import(
-      '../../../convex/teacher/content_authoring'
-    );
+describe("Phase 2 — Adversarial — Input validation", () => {
+  it("rejects drafts with an empty phases array at save time", async () => {
+    const { saveTeacherDraftHandler } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
 
     await expect(
       saveTeacherDraftHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
-        draft: { title: 'No phases', phases: [] },
-        idempotencyKey: 'empty-phases-key',
+        userId: teacher._id as Id<"profiles">,
+        draft: { title: "No phases", phases: [] },
+        idempotencyKey: "empty-phases-key",
       }),
     ).rejects.toThrow();
   });
 
-  it('rejects drafts with an empty activities array inside a section at save time', async () => {
-    const { saveTeacherDraftHandler } = await import(
-      '../../../convex/teacher/content_authoring'
-    );
+  it("rejects drafts with an empty activities array inside a section at save time", async () => {
+    const { saveTeacherDraftHandler } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
 
     await expect(
       saveTeacherDraftHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         draft: {
-          title: 'Empty activities',
+          title: "Empty activities",
           phases: [
             {
-              title: 'Explore',
-              phaseType: 'explore',
+              title: "Explore",
+              phaseType: "explore",
               sections: [
                 {
-                  title: 'No activities',
+                  title: "No activities",
                   activities: [],
                 },
               ],
             },
           ],
         },
-        idempotencyKey: 'empty-acts-key',
+        idempotencyKey: "empty-acts-key",
       }),
     ).rejects.toThrow();
   });
 
-  it('rejects drafts whose activity props fail the canonical schema', async () => {
-    const { saveTeacherDraftHandler } = await import(
-      '../../../convex/teacher/content_authoring'
-    );
+  it("rejects drafts whose activity props fail the canonical schema", async () => {
+    const { saveTeacherDraftHandler } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
 
     // graphing-explorer requires `equation` as a non-empty string. Omit it.
     await expect(
       saveTeacherDraftHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         draft: {
-          title: 'Schema invalid',
+          title: "Schema invalid",
           phases: [
             {
-              title: 'Explore',
-              phaseType: 'explore',
+              title: "Explore",
+              phaseType: "explore",
               sections: [
                 {
-                  title: 'Bad',
+                  title: "Bad",
                   activities: [
                     {
-                      componentKey: 'graphing-explorer',
-                      props: { comparisonQuestion: 'x or y?' }, // missing required equation
+                      componentKey: "graphing-explorer",
+                      props: { comparisonQuestion: "x or y?" }, // missing required equation
                     },
                   ],
                 },
@@ -2310,37 +2244,35 @@ describe('Phase 2 — Adversarial — Input validation', () => {
             },
           ],
         },
-        idempotencyKey: 'schema-invalid-key',
+        idempotencyKey: "schema-invalid-key",
       }),
     ).rejects.toThrow();
   });
 
-  it('rejects drafts that reference a placeholder / schema-less componentKey', async () => {
-    const { saveTeacherDraftHandler } = await import(
-      '../../../convex/teacher/content_authoring'
-    );
+  it("rejects drafts that reference a placeholder / schema-less componentKey", async () => {
+    const { saveTeacherDraftHandler } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
 
     // `equation-solver` is a runtime placeholder — explicitly NOT in
     // SCHEMA_REGISTRY. Authoring must reject it.
     await expect(
       saveTeacherDraftHandler(ctx, {
-        userId: teacher._id as Id<'profiles'>,
+        userId: teacher._id as Id<"profiles">,
         draft: {
-          title: 'Placeholder key',
+          title: "Placeholder key",
           phases: [
             {
-              title: 'Explore',
-              phaseType: 'explore',
+              title: "Explore",
+              phaseType: "explore",
               sections: [
                 {
-                  title: 'Bad',
+                  title: "Bad",
                   activities: [
                     {
-                      componentKey: 'equation-solver',
-                      props: { equation: 'x + 1 = 0' },
+                      componentKey: "equation-solver",
+                      props: { equation: "x + 1 = 0" },
                     },
                   ],
                 },
@@ -2348,34 +2280,32 @@ describe('Phase 2 — Adversarial — Input validation', () => {
             },
           ],
         },
-        idempotencyKey: 'placeholder-key',
+        idempotencyKey: "placeholder-key",
       }),
     ).rejects.toThrow();
   });
 
-  it('strips unsafe markup in activity prompts before persistence, and the sanitized text is reflected in the stored props', async () => {
-    const {
-      saveTeacherDraftHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+  it("strips unsafe markup in activity prompts before persistence, and the sanitized text is reflected in the stored props", async () => {
+    const { saveTeacherDraftHandler } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
     const result = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft({
         phases: [
           {
-            title: 'Explore',
-            phaseType: 'explore',
+            title: "Explore",
+            phaseType: "explore",
             sections: [
               {
-                title: 'Section',
+                title: "Section",
                 activities: [
                   {
-                    componentKey: 'graphing-explorer',
+                    componentKey: "graphing-explorer",
                     props: {
-                      equation: 'x^2',
+                      equation: "x^2",
                       comparisonQuestion:
                         '<img onerror="alert(1)">Safe?</a><a href="javascript:doBad()">click</a>',
                     },
@@ -2385,34 +2315,34 @@ describe('Phase 2 — Adversarial — Input validation', () => {
             ],
           },
           {
-            title: 'Worked Example',
-            phaseType: 'worked_example',
+            title: "Worked Example",
+            phaseType: "worked_example",
             sections: [
               {
-                title: 'Solving by factoring',
+                title: "Solving by factoring",
                 activities: [
                   {
-                    componentKey: 'step-by-step-solver',
-                    props: VALID_ACTIVITY_PROPS['step-by-step-solver'],
+                    componentKey: "step-by-step-solver",
+                    props: VALID_ACTIVITY_PROPS["step-by-step-solver"],
                   },
                 ],
               },
             ],
           },
           {
-            title: 'Guided Practice',
-            phaseType: 'guided_practice',
+            title: "Guided Practice",
+            phaseType: "guided_practice",
             sections: [
               {
-                title: 'Check for understanding',
+                title: "Check for understanding",
                 activities: [
                   {
-                    componentKey: 'comprehension-quiz',
-                    props: VALID_ACTIVITY_PROPS['comprehension-quiz'],
+                    componentKey: "comprehension-quiz",
+                    props: VALID_ACTIVITY_PROPS["comprehension-quiz"],
                   },
                   {
-                    componentKey: 'fill-in-the-blank',
-                    props: VALID_ACTIVITY_PROPS['fill-in-the-blank'],
+                    componentKey: "fill-in-the-blank",
+                    props: VALID_ACTIVITY_PROPS["fill-in-the-blank"],
                   },
                 ],
               },
@@ -2420,54 +2350,54 @@ describe('Phase 2 — Adversarial — Input validation', () => {
           },
         ],
       }),
-      idempotencyKey: 'sanitize-prompt-key',
+      idempotencyKey: "sanitize-prompt-key",
     });
     expect(result.success).toBe(true);
 
     const allText = JSON.stringify(stores);
-    expect(allText).not.toContain('<script>');
-    expect(allText).not.toContain('onerror=');
-    expect(allText).not.toContain('javascript:');
+    expect(allText).not.toContain("<script>");
+    expect(allText).not.toContain("onerror=");
+    expect(allText).not.toContain("javascript:");
     // Surviving tail preserved.
-    expect(allText).toContain('Safe?');
+    expect(allText).toContain("Safe?");
   });
 });
 
-describe('Phase 2 — Adversarial — Review A orphan activity repro', () => {
-  it('after edit-after-reject with a multi-activity section, the new activities are recorded in metadata.authoringActivityIds', async () => {
+describe("Phase 2 — Adversarial — Review A orphan activity repro", () => {
+  it("after edit-after-reject with a multi-activity section, the new activities are recorded in metadata.authoringActivityIds", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       editRejectedDraftHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
     // First draft: section with 3 activities.
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft({
         phases: [
           {
-            title: 'Explore',
-            phaseType: 'explore',
+            title: "Explore",
+            phaseType: "explore",
             sections: [
               {
-                title: 'Multi-activity section',
+                title: "Multi-activity section",
                 activities: [
                   {
-                    componentKey: 'graphing-explorer',
-                    props: VALID_ACTIVITY_PROPS['graphing-explorer'],
+                    componentKey: "graphing-explorer",
+                    props: VALID_ACTIVITY_PROPS["graphing-explorer"],
                   },
                   {
-                    componentKey: 'comprehension-quiz',
-                    props: VALID_ACTIVITY_PROPS['comprehension-quiz'],
+                    componentKey: "comprehension-quiz",
+                    props: VALID_ACTIVITY_PROPS["comprehension-quiz"],
                   },
                   {
-                    componentKey: 'fill-in-the-blank',
-                    props: VALID_ACTIVITY_PROPS['fill-in-the-blank'],
+                    componentKey: "fill-in-the-blank",
+                    props: VALID_ACTIVITY_PROPS["fill-in-the-blank"],
                   },
                 ],
               },
@@ -2475,15 +2405,13 @@ describe('Phase 2 — Adversarial — Review A orphan activity repro', () => {
           },
         ],
       }),
-      idempotencyKey: 'orphan-repro-key',
+      idempotencyKey: "orphan-repro-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
 
     // Pin the original metadata list length to confirm scale.
-    const originalLessonRow = stores.lessons.find(
-      (l) => l._id === saved.lessonId,
-    );
+    const originalLessonRow = stores.lessons.find((l) => l._id === saved.lessonId);
     expect(originalLessonRow?.metadata?.authoringActivityIds).toHaveLength(3);
     const originalAuthoredIds: string[] = JSON.parse(
       JSON.stringify(originalLessonRow!.metadata.authoringActivityIds),
@@ -2491,45 +2419,45 @@ describe('Phase 2 — Adversarial — Review A orphan activity repro', () => {
 
     // Submit, reject.
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'rejected',
-      comment: 'Refine',
+      decision: "rejected",
+      comment: "Refine",
     });
 
     // Edit-after-reject with a different draft: still 3 activities but a
     // different mix (so the activity ids must all change).
     const edited = await editRejectedDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
       draft: buildAuthoredDraft({
-        title: 'Edited after reject',
+        title: "Edited after reject",
         phases: [
           {
-            title: 'Explore',
-            phaseType: 'explore',
+            title: "Explore",
+            phaseType: "explore",
             sections: [
               {
-                title: 'Multi-activity section',
+                title: "Multi-activity section",
                 activities: [
                   {
-                    componentKey: 'graphing-explorer',
+                    componentKey: "graphing-explorer",
                     props: {
-                      ...VALID_ACTIVITY_PROPS['graphing-explorer'],
-                      comparisonQuestion: 'Different prompt after edit',
+                      ...VALID_ACTIVITY_PROPS["graphing-explorer"],
+                      comparisonQuestion: "Different prompt after edit",
                     },
                   },
                   {
-                    componentKey: 'comprehension-quiz',
-                    props: VALID_ACTIVITY_PROPS['comprehension-quiz'],
+                    componentKey: "comprehension-quiz",
+                    props: VALID_ACTIVITY_PROPS["comprehension-quiz"],
                   },
                   {
-                    componentKey: 'fill-in-the-blank',
-                    props: VALID_ACTIVITY_PROPS['fill-in-the-blank'],
+                    componentKey: "fill-in-the-blank",
+                    props: VALID_ACTIVITY_PROPS["fill-in-the-blank"],
                   },
                 ],
               },
@@ -2537,7 +2465,7 @@ describe('Phase 2 — Adversarial — Review A orphan activity repro', () => {
           },
         ],
       }),
-      idempotencyKey: 'orphan-repro-key-edited',
+      idempotencyKey: "orphan-repro-key-edited",
     });
     expect(edited.success).toBe(true);
     expect(edited.activityIds).toHaveLength(3);
@@ -2547,9 +2475,7 @@ describe('Phase 2 — Adversarial — Review A orphan activity repro', () => {
     // The fix refreshes the metadata so it reflects the post-edit ids.
     // If the bug is reintroduced, this assertion fails (the metadata list
     // would still hold the OLD ids or be empty after deleteLessonTree).
-    const lessonAfterEdit = stores.lessons.find(
-      (l) => l._id === saved.lessonId,
-    );
+    const lessonAfterEdit = stores.lessons.find((l) => l._id === saved.lessonId);
     expect(lessonAfterEdit?.metadata?.authoringActivityIds).toHaveLength(3);
 
     const postEditIds: string[] = JSON.parse(
@@ -2567,40 +2493,40 @@ describe('Phase 2 — Adversarial — Review A orphan activity repro', () => {
     }
   });
 
-  it('after edit-after-reject followed by an idempotent re-save, no orphan activity rows remain in the activities table', async () => {
+  it("after edit-after-reject followed by an idempotent re-save, no orphan activity rows remain in the activities table", async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       editRejectedDraftHandler,
-    } = await import('../../../convex/teacher/content_authoring');
+    } = await import("../../../convex/teacher/content_authoring");
 
-    const teacher = makeTeacher('teacher_1', 'org_1');
+    const teacher = makeTeacher("teacher_1", "org_1");
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
 
     // 3-activity section in the first draft.
     const saved = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft({
         phases: [
           {
-            title: 'Explore',
-            phaseType: 'explore',
+            title: "Explore",
+            phaseType: "explore",
             sections: [
               {
-                title: 'Multi-activity section',
+                title: "Multi-activity section",
                 activities: [
                   {
-                    componentKey: 'graphing-explorer',
-                    props: VALID_ACTIVITY_PROPS['graphing-explorer'],
+                    componentKey: "graphing-explorer",
+                    props: VALID_ACTIVITY_PROPS["graphing-explorer"],
                   },
                   {
-                    componentKey: 'comprehension-quiz',
-                    props: VALID_ACTIVITY_PROPS['comprehension-quiz'],
+                    componentKey: "comprehension-quiz",
+                    props: VALID_ACTIVITY_PROPS["comprehension-quiz"],
                   },
                   {
-                    componentKey: 'fill-in-the-blank',
-                    props: VALID_ACTIVITY_PROPS['fill-in-the-blank'],
+                    componentKey: "fill-in-the-blank",
+                    props: VALID_ACTIVITY_PROPS["fill-in-the-blank"],
                   },
                 ],
               },
@@ -2608,7 +2534,7 @@ describe('Phase 2 — Adversarial — Review A orphan activity repro', () => {
           },
         ],
       }),
-      idempotencyKey: 'orphan-cleanup-key',
+      idempotencyKey: "orphan-cleanup-key",
     });
     expect(saved.success).toBe(true);
     if (!saved.success) return;
@@ -2616,14 +2542,14 @@ describe('Phase 2 — Adversarial — Review A orphan activity repro', () => {
     const initialActivityIds = JSON.parse(JSON.stringify(saved.activityIds));
 
     await submitDraftForReviewHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
     });
     await reviewAuthoredLessonHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
-      decision: 'rejected',
-      comment: 'Refine',
+      decision: "rejected",
+      comment: "Refine",
     });
 
     // Edit-after-reject with a 2-activity section (same idempotency key so
@@ -2631,28 +2557,28 @@ describe('Phase 2 — Adversarial — Review A orphan activity repro', () => {
     // lesson). The two inserted activities must be the only activities in
     // stores.activities once the Review A fix is applied.
     const edited = await editRejectedDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       lessonId: saved.lessonId,
       draft: buildAuthoredDraft({
-        title: 'Edited down',
+        title: "Edited down",
         phases: [
           {
-            title: 'Explore',
-            phaseType: 'explore',
+            title: "Explore",
+            phaseType: "explore",
             sections: [
               {
-                title: 'Multi-activity section',
+                title: "Multi-activity section",
                 activities: [
                   {
-                    componentKey: 'graphing-explorer',
+                    componentKey: "graphing-explorer",
                     props: {
-                      ...VALID_ACTIVITY_PROPS['graphing-explorer'],
-                      comparisonQuestion: 'Down to 2 activities',
+                      ...VALID_ACTIVITY_PROPS["graphing-explorer"],
+                      comparisonQuestion: "Down to 2 activities",
                     },
                   },
                   {
-                    componentKey: 'comprehension-quiz',
-                    props: VALID_ACTIVITY_PROPS['comprehension-quiz'],
+                    componentKey: "comprehension-quiz",
+                    props: VALID_ACTIVITY_PROPS["comprehension-quiz"],
                   },
                 ],
               },
@@ -2660,7 +2586,7 @@ describe('Phase 2 — Adversarial — Review A orphan activity repro', () => {
           },
         ],
       }),
-      idempotencyKey: 'orphan-cleanup-key',
+      idempotencyKey: "orphan-cleanup-key",
     });
     expect(edited.success).toBe(true);
     expect(edited.activityIds).toHaveLength(2);
@@ -2668,22 +2594,22 @@ describe('Phase 2 — Adversarial — Review A orphan activity repro', () => {
 
     // Idempotent re-save with same key + a 1-activity section.
     const finalSave = await saveTeacherDraftHandler(ctx, {
-      userId: teacher._id as Id<'profiles'>,
+      userId: teacher._id as Id<"profiles">,
       draft: buildAuthoredDraft({
-        title: 'Edited down',
+        title: "Edited down",
         phases: [
           {
-            title: 'Explore',
-            phaseType: 'explore',
+            title: "Explore",
+            phaseType: "explore",
             sections: [
               {
-                title: 'Multi-activity section',
+                title: "Multi-activity section",
                 activities: [
                   {
-                    componentKey: 'graphing-explorer',
+                    componentKey: "graphing-explorer",
                     props: {
-                      ...VALID_ACTIVITY_PROPS['graphing-explorer'],
-                      comparisonQuestion: 'Down to 1 activity',
+                      ...VALID_ACTIVITY_PROPS["graphing-explorer"],
+                      comparisonQuestion: "Down to 1 activity",
                     },
                   },
                 ],
@@ -2692,7 +2618,7 @@ describe('Phase 2 — Adversarial — Review A orphan activity repro', () => {
           },
         ],
       }),
-      idempotencyKey: 'orphan-cleanup-key',
+      idempotencyKey: "orphan-cleanup-key",
     });
     expect(finalSave.success).toBe(true);
 
@@ -2708,17 +2634,26 @@ describe('Phase 2 — Adversarial — Review A orphan activity repro', () => {
   });
 });
 
-it('revalidates stored activity props before publication', async () => {
-  const { saveTeacherDraftHandler, submitDraftForReviewHandler, reviewAuthoredLessonHandler, publishAuthoredLessonHandler } = await import('../../../convex/teacher/content_authoring');
-  const teacher = makeTeacher('teacher_1', 'org_1');
+it("revalidates stored activity props before publication", async () => {
+  const {
+    saveTeacherDraftHandler,
+    submitDraftForReviewHandler,
+    reviewAuthoredLessonHandler,
+    publishAuthoredLessonHandler,
+  } = await import("../../../convex/teacher/content_authoring");
+  const teacher = makeTeacher("teacher_1", "org_1");
   const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
-  const saved = await saveTeacherDraftHandler(ctx, { userId: teacher._id as Id<'profiles'>, draft: buildAuthoredDraft(), idempotencyKey: 'publish-props-check' });
+  const saved = await saveTeacherDraftHandler(ctx, {
+    userId: teacher._id as Id<"profiles">,
+    draft: buildAuthoredDraft(),
+    idempotencyKey: "publish-props-check",
+  });
   expect(saved.success).toBe(true);
-  if (!saved.success) throw new Error('Draft save failed');
-  const args = { userId: teacher._id as Id<'profiles'>, lessonId: saved.lessonId };
+  if (!saved.success) throw new Error("Draft save failed");
+  const args = { userId: teacher._id as Id<"profiles">, lessonId: saved.lessonId };
   await submitDraftForReviewHandler(ctx, args);
-  await reviewAuthoredLessonHandler(ctx, { ...args, decision: 'approved' });
+  await reviewAuthoredLessonHandler(ctx, { ...args, decision: "approved" });
   stores.activities[0].props = {};
-  await expect(publishAuthoredLessonHandler(ctx, args)).rejects.toThrow('schema validation');
-  expect(stores.lesson_versions[0].status).toBe('approved');
+  await expect(publishAuthoredLessonHandler(ctx, args)).rejects.toThrow("schema validation");
+  expect(stores.lesson_versions[0].status).toBe("approved");
 });

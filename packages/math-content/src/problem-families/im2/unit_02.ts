@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const UNIT2_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Polygon Angle Sums
@@ -16,7 +16,8 @@ export const UNIT2_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "comprehension-quiz:parallelogram-properties",
     componentKey: "comprehension-quiz",
     displayName: "Parallelogram Properties",
-    description: "Identify and apply properties of parallelograms including opposite sides, angles, and diagonals",
+    description:
+      "Identify and apply properties of parallelograms including opposite sides, angles, and diagonals",
     objectiveIds: ["G-CO.C.11"],
     difficulty: "standard",
     metadata: { unit: 2, topic: "parallelograms" },
@@ -26,7 +27,8 @@ export const UNIT2_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "step-by-step-solver:special-parallelograms",
     componentKey: "step-by-step-solver",
     displayName: "Special Parallelograms",
-    description: "Solve problems involving rectangles, rhombi, and squares using their unique properties",
+    description:
+      "Solve problems involving rectangles, rhombi, and squares using their unique properties",
     objectiveIds: ["G-CO.C.11"],
     difficulty: "standard",
     metadata: { unit: 2, topic: "special-parallelograms" },

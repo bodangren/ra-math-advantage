@@ -1,17 +1,17 @@
-import { z } from 'zod';
+import { z } from "zod";
 
-import { resolveActivityComponentKey } from '../activities/component-keys';
-import { activityPropsSchemas, gradingConfigSchema } from './activity-props';
-import { submissionDataSchema } from './activity-submissions';
-import { classMetadataSchema } from './classes';
-import { contentBlockSchema, phaseMetadataSchema } from './phase-content';
-import { lessonMetadataSchema } from './lessons';
-import { liveResponseAnswerSchema } from './live-responses';
-import { sessionSettingsSchema } from './live-sessions';
-import { profileMetadataSchema } from './profiles';
-import { resourceMetadataSchema } from './resources';
-import { validationErrorSchema } from './content-revisions';
-import { organizationSettingsSchema } from './organizations';
+import { resolveActivityComponentKey } from "../activities/component-keys";
+import { activityPropsSchemas, gradingConfigSchema } from "./activity-props";
+import { submissionDataSchema } from "./activity-submissions";
+import { classMetadataSchema } from "./classes";
+import { contentBlockSchema, phaseMetadataSchema } from "./phase-content";
+import { lessonMetadataSchema } from "./lessons";
+import { liveResponseAnswerSchema } from "./live-responses";
+import { sessionSettingsSchema } from "./live-sessions";
+import { profileMetadataSchema } from "./profiles";
+import { resourceMetadataSchema } from "./resources";
+import { validationErrorSchema } from "./content-revisions";
+import { organizationSettingsSchema } from "./organizations";
 
 const jsonRecordSchema = z.record(z.string(), z.unknown());
 
@@ -21,17 +21,13 @@ const jsonRecordSchema = z.record(z.string(), z.unknown());
  * @param componentKey - component key
  * @param props - Properties object
  */
-function addActivityPropsIssues(
-  ctx: z.RefinementCtx,
-  componentKey: string,
-  props: unknown,
-) {
+function addActivityPropsIssues(ctx: z.RefinementCtx, componentKey: string, props: unknown) {
   const canonicalComponentKey = resolveActivityComponentKey(componentKey);
 
   if (!canonicalComponentKey || !(canonicalComponentKey in activityPropsSchemas)) {
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
-      path: ['componentKey'],
+      path: ["componentKey"],
       message: `Unknown activity component: ${componentKey}`,
     });
     return;
@@ -45,7 +41,7 @@ function addActivityPropsIssues(
   result.error.issues.forEach((issue) => {
     ctx.addIssue({
       ...issue,
-      path: ['props', ...issue.path],
+      path: ["props", ...issue.path],
     });
   });
 }
@@ -109,33 +105,37 @@ export type NewPhase = z.infer<typeof insertPhaseSchema>;
 // Activity
 // ---------------------------------------------------------------------------
 
-export const insertActivitySchema = z.object({
-  id: z.string().optional(),
-  componentKey: z.string(),
-  displayName: z.string(),
-  description: z.string().nullable().optional(),
-  props: z.unknown(),
-  gradingConfig: gradingConfigSchema.nullable().optional(),
-  standardId: z.string().nullable().optional(),
-  createdAt: z.date().optional(),
-  updatedAt: z.date().optional(),
-}).superRefine((activity, ctx) => {
-  addActivityPropsIssues(ctx, activity.componentKey, activity.props);
-});
+export const insertActivitySchema = z
+  .object({
+    id: z.string().optional(),
+    componentKey: z.string(),
+    displayName: z.string(),
+    description: z.string().nullable().optional(),
+    props: z.unknown(),
+    gradingConfig: gradingConfigSchema.nullable().optional(),
+    standardId: z.string().nullable().optional(),
+    createdAt: z.date().optional(),
+    updatedAt: z.date().optional(),
+  })
+  .superRefine((activity, ctx) => {
+    addActivityPropsIssues(ctx, activity.componentKey, activity.props);
+  });
 
-export const selectActivitySchema = z.object({
-  id: z.string(),
-  componentKey: z.string(),
-  displayName: z.string(),
-  description: z.string().nullable(),
-  props: z.unknown(),
-  gradingConfig: gradingConfigSchema.nullable(),
-  standardId: z.string().nullable(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
-}).superRefine((activity, ctx) => {
-  addActivityPropsIssues(ctx, activity.componentKey, activity.props);
-});
+export const selectActivitySchema = z
+  .object({
+    id: z.string(),
+    componentKey: z.string(),
+    displayName: z.string(),
+    description: z.string().nullable(),
+    props: z.unknown(),
+    gradingConfig: gradingConfigSchema.nullable(),
+    standardId: z.string().nullable(),
+    createdAt: z.date(),
+    updatedAt: z.date(),
+  })
+  .superRefine((activity, ctx) => {
+    addActivityPropsIssues(ctx, activity.componentKey, activity.props);
+  });
 
 export type Activity = z.infer<typeof selectActivitySchema>;
 export type NewActivity = z.infer<typeof insertActivitySchema>;
@@ -150,7 +150,7 @@ export const insertResourceSchema = z.object({
   phaseId: z.string().nullable().optional(),
   title: z.string(),
   description: z.string().nullable().optional(),
-  resourceType: z.enum(['dataset', 'pdf', 'excel', 'link', 'video']),
+  resourceType: z.enum(["dataset", "pdf", "excel", "link", "video"]),
   filePath: z.string().nullable().optional(),
   externalUrl: z.string().nullable().optional(),
   metadata: resourceMetadataSchema.nullable().optional(),
@@ -164,7 +164,7 @@ export const selectResourceSchema = z.object({
   phaseId: z.string().nullable(),
   title: z.string(),
   description: z.string().nullable(),
-  resourceType: z.enum(['dataset', 'pdf', 'excel', 'link', 'video']),
+  resourceType: z.enum(["dataset", "pdf", "excel", "link", "video"]),
   filePath: z.string().nullable(),
   externalUrl: z.string().nullable(),
   metadata: resourceMetadataSchema.nullable(),
@@ -183,7 +183,7 @@ export const insertProfileSchema = z.object({
   id: z.string().optional(),
   organizationId: z.string(),
   username: z.string(),
-  role: z.enum(['student', 'teacher', 'admin']).default('student'),
+  role: z.enum(["student", "teacher", "admin"]).default("student"),
   displayName: z.string().nullable().optional(),
   avatarUrl: z.string().nullable().optional(),
   metadata: profileMetadataSchema.nullable().optional(),
@@ -195,7 +195,7 @@ export const selectProfileSchema = z.object({
   id: z.string(),
   organizationId: z.string(),
   username: z.string(),
-  role: z.enum(['student', 'teacher', 'admin']),
+  role: z.enum(["student", "teacher", "admin"]),
   displayName: z.string().nullable(),
   avatarUrl: z.string().nullable(),
   metadata: profileMetadataSchema.nullable(),
@@ -214,7 +214,7 @@ export const insertStudentProgressSchema = z.object({
   id: z.string().optional(),
   userId: z.string(),
   phaseId: z.string(),
-  status: z.enum(['not_started', 'in_progress', 'completed']).default('not_started'),
+  status: z.enum(["not_started", "in_progress", "completed"]).default("not_started"),
   startedAt: z.date().nullable().optional(),
   completedAt: z.date().nullable().optional(),
   timeSpentSeconds: z.number().int().nullable().optional(),
@@ -227,7 +227,7 @@ export const selectStudentProgressSchema = z.object({
   id: z.string(),
   userId: z.string(),
   phaseId: z.string(),
-  status: z.enum(['not_started', 'in_progress', 'completed']),
+  status: z.enum(["not_started", "in_progress", "completed"]),
   startedAt: z.date().nullable(),
   completedAt: z.date().nullable(),
   timeSpentSeconds: z.number().int().nullable(),
@@ -316,7 +316,7 @@ export const insertClassEnrollmentSchema = z.object({
   classId: z.string(),
   studentId: z.string(),
   enrolledAt: z.date().optional(),
-  status: z.enum(['active', 'withdrawn', 'completed']).default('active'),
+  status: z.enum(["active", "withdrawn", "completed"]).default("active"),
   createdAt: z.date().optional(),
   updatedAt: z.date().optional(),
 });
@@ -326,7 +326,7 @@ export const selectClassEnrollmentSchema = z.object({
   classId: z.string(),
   studentId: z.string(),
   enrolledAt: z.date(),
-  status: z.enum(['active', 'withdrawn', 'completed']),
+  status: z.enum(["active", "withdrawn", "completed"]),
   createdAt: z.date(),
   updatedAt: z.date(),
 });
@@ -343,7 +343,7 @@ export const insertLiveSessionSchema = z.object({
   activityId: z.string(),
   classId: z.string(),
   hostId: z.string(),
-  status: z.enum(['waiting', 'active', 'completed']).default('waiting'),
+  status: z.enum(["waiting", "active", "completed"]).default("waiting"),
   startedAt: z.date().nullable().optional(),
   endedAt: z.date().nullable().optional(),
   settings: sessionSettingsSchema.nullable().optional(),
@@ -356,7 +356,7 @@ export const selectLiveSessionSchema = z.object({
   activityId: z.string(),
   classId: z.string(),
   hostId: z.string(),
-  status: z.enum(['waiting', 'active', 'completed']),
+  status: z.enum(["waiting", "active", "completed"]),
   startedAt: z.date().nullable(),
   endedAt: z.date().nullable(),
   settings: sessionSettingsSchema.nullable(),
@@ -433,10 +433,10 @@ export type NewSessionLeaderboardEntry = z.infer<typeof insertSessionLeaderboard
 
 export const insertContentRevisionSchema = z.object({
   id: z.string().optional(),
-  entityType: z.enum(['lesson', 'phase', 'activity']),
+  entityType: z.enum(["lesson", "phase", "activity"]),
   entityId: z.string(),
   proposedChanges: jsonRecordSchema,
-  validationStatus: z.enum(['pending', 'approved', 'rejected']).default('pending'),
+  validationStatus: z.enum(["pending", "approved", "rejected"]).default("pending"),
   validationErrors: validationErrorSchema.array().nullable().optional(),
   proposedBy: z.string(),
   reviewedBy: z.string().nullable().optional(),
@@ -448,10 +448,10 @@ export const insertContentRevisionSchema = z.object({
 
 export const selectContentRevisionSchema = z.object({
   id: z.string(),
-  entityType: z.enum(['lesson', 'phase', 'activity']),
+  entityType: z.enum(["lesson", "phase", "activity"]),
   entityId: z.string(),
   proposedChanges: jsonRecordSchema,
-  validationStatus: z.enum(['pending', 'approved', 'rejected']),
+  validationStatus: z.enum(["pending", "approved", "rejected"]),
   validationErrors: validationErrorSchema.array().nullable(),
   proposedBy: z.string(),
   reviewedBy: z.string().nullable(),

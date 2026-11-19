@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState, useCallback } from 'react';
-import { SlidersHorizontal, Code2, AlertTriangle } from 'lucide-react';
-import { getGenerator } from '@math-platform/math-content/knowledge-space';
-import type { HarnessState, ReviewBlueprint, SkillNode } from '../types';
-import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
+import { useEffect, useRef, useState, useCallback } from "react";
+import { SlidersHorizontal, Code2, AlertTriangle } from "lucide-react";
+import { getGenerator } from "@math-platform/math-content/knowledge-space";
+import type { HarnessState, ReviewBlueprint, SkillNode } from "../types";
+import type { GeneratorOutput } from "@math-platform/knowledge-space-practice";
 
 interface GeneratorPanelProps {
   state: HarnessState;
@@ -23,7 +23,12 @@ interface GeneratorPanelProps {
  * @param props.onUpdateState - Callback to merge a partial state update.
  * @returns The generator panel JSX element.
  */
-export function GeneratorPanel({ state, selectedNode, selectedBlueprint, onUpdateState }: GeneratorPanelProps) {
+export function GeneratorPanel({
+  state,
+  selectedNode,
+  selectedBlueprint,
+  onUpdateState,
+}: GeneratorPanelProps) {
   const debounceRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const [isGenerating, setIsGenerating] = useState(false);
 
@@ -69,20 +74,24 @@ export function GeneratorPanel({ state, selectedNode, selectedBlueprint, onUpdat
     <div className="space-y-4 rounded-2xl border bg-white/90 p-6 shadow-sm">
       <div className="flex items-center gap-2">
         <SlidersHorizontal className="size-4 text-slate-400" />
-        <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Generator</h2>
+        <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+          Generator
+        </h2>
         {isGenerating && <span className="text-xs text-slate-400">running...</span>}
       </div>
 
       {!selectedNode ? (
-        <p className="text-xs text-slate-400">Select a skill from the sidebar to generate output.</p>
+        <p className="text-xs text-slate-400">
+          Select a skill from the sidebar to generate output.
+        </p>
       ) : !generatorKey ? (
         <div className="flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 p-3">
           <AlertTriangle className="size-4 shrink-0 text-amber-500 mt-0.5" />
           <p className="text-xs text-amber-700">
-            No generator key assigned to this skill.{' '}
+            No generator key assigned to this skill.{" "}
             {selectedBlueprint
-              ? 'The blueprint exists but lacks a generatorKey field.'
-              : 'No blueprint exists for this skill either.'}
+              ? "The blueprint exists but lacks a generatorKey field."
+              : "No blueprint exists for this skill either."}
           </p>
         </div>
       ) : (
@@ -98,7 +107,7 @@ export function GeneratorPanel({ state, selectedNode, selectedBlueprint, onUpdat
               <label className="mb-1 block text-xs font-medium text-slate-600">Mode</label>
               <select
                 value={state.mode}
-                onChange={(e) => onUpdateState({ mode: e.target.value as HarnessState['mode'] })}
+                onChange={(e) => onUpdateState({ mode: e.target.value as HarnessState["mode"] })}
                 className="w-full rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs text-slate-700 outline-none"
               >
                 <option value="worked_example">Worked Example</option>

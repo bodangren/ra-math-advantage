@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import React, { useState, useCallback } from 'react';
-import { parseQuadratic } from '@math-platform/graphing-core';
+import React, { useState, useCallback } from "react";
+import { parseQuadratic } from "@math-platform/graphing-core";
 
 export interface HintData {
-  type: 'axis_of_symmetry' | 'vertex' | 'direction';
+  type: "axis_of_symmetry" | "vertex" | "direction";
   data: { x?: number; y?: number; opens?: string } | null;
   timestamp: number;
 }
@@ -15,20 +15,14 @@ export interface HintPanelProps {
   readonly?: boolean;
 }
 
-
 /**
  * Panel displaying hint buttons for quadratic function analysis.
  *
  * @param props - Function expression and hint callback configuration.
  * @returns A set of hint buttons with usage tracking.
  */
-export function HintPanel({
-  functionExpression,
-  onHintUsed,
-  readonly = false,
-}: HintPanelProps) {
+export function HintPanel({ functionExpression, onHintUsed, readonly = false }: HintPanelProps) {
   const [usedHints, setUsedHints] = useState<Set<string>>(new Set());
-
 
   /**
    * Handle a hint button click by computing the hint data and notifying the
@@ -37,31 +31,31 @@ export function HintPanel({
    * @param type - The type of hint to compute.
    */
   const handleHintClick = useCallback(
-    (type: HintData['type']) => {
+    (type: HintData["type"]) => {
       if (readonly || usedHints.has(type)) return;
 
       const coeffs = parseQuadratic(functionExpression);
-      let data: HintData['data'] = null;
+      let data: HintData["data"] = null;
 
       if (coeffs && coeffs.a !== 0) {
         const { a, b, c } = coeffs;
 
         switch (type) {
-          case 'axis_of_symmetry':
+          case "axis_of_symmetry":
             let axisX = -b / (2 * a);
             if (Object.is(axisX, -0)) axisX = 0;
             data = { x: axisX };
             break;
 
-          case 'vertex':
+          case "vertex":
             let vertexX = -b / (2 * a);
             if (Object.is(vertexX, -0)) vertexX = 0;
             const vertexY = a * vertexX * vertexX + b * vertexX + c;
             data = { x: vertexX, y: vertexY };
             break;
 
-          case 'direction':
-            data = { opens: a > 0 ? 'up' : 'down' };
+          case "direction":
+            data = { opens: a > 0 ? "up" : "down" };
             break;
         }
       }
@@ -72,12 +66,11 @@ export function HintPanel({
         timestamp: Date.now(),
       };
 
-      setUsedHints(prev => new Set(prev).add(type));
+      setUsedHints((prev) => new Set(prev).add(type));
       onHintUsed(hint);
     },
-    [functionExpression, readonly, usedHints, onHintUsed]
+    [functionExpression, readonly, usedHints, onHintUsed],
   );
-
 
   /**
    * Get the CSS class for a hint button based on its usage state.
@@ -89,8 +82,8 @@ export function HintPanel({
     const isUsed = usedHints.has(type);
     return `px-4 py-2 rounded-md text-sm font-medium transition-all ${
       isUsed || readonly
-        ? 'bg-muted text-muted-foreground cursor-not-allowed opacity-50'
-        : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+        ? "bg-muted text-muted-foreground cursor-not-allowed opacity-50"
+        : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
     }`;
   };
 
@@ -99,23 +92,23 @@ export function HintPanel({
       <h3 className="text-sm font-semibold text-foreground">Hints</h3>
       <div className="flex flex-wrap gap-2">
         <button
-          onClick={() => handleHintClick('axis_of_symmetry')}
-          disabled={readonly || usedHints.has('axis_of_symmetry')}
-          className={getButtonClass('axis_of_symmetry')}
+          onClick={() => handleHintClick("axis_of_symmetry")}
+          disabled={readonly || usedHints.has("axis_of_symmetry")}
+          className={getButtonClass("axis_of_symmetry")}
         >
           Show Axis of Symmetry
         </button>
         <button
-          onClick={() => handleHintClick('vertex')}
-          disabled={readonly || usedHints.has('vertex')}
-          className={getButtonClass('vertex')}
+          onClick={() => handleHintClick("vertex")}
+          disabled={readonly || usedHints.has("vertex")}
+          className={getButtonClass("vertex")}
         >
           Show Vertex
         </button>
         <button
-          onClick={() => handleHintClick('direction')}
-          disabled={readonly || usedHints.has('direction')}
-          className={getButtonClass('direction')}
+          onClick={() => handleHintClick("direction")}
+          disabled={readonly || usedHints.has("direction")}
+          className={getButtonClass("direction")}
         >
           Show Direction
         </button>

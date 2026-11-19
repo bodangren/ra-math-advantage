@@ -11,4 +11,4 @@
  * harness seed. We pin a string token so RNG libs that accept string seeds
  * (e.g. seedrandom) work directly, and the value stays human-readable.
  */
-export const SCALE_RNG_SEED_VALUE = 'load-2026' as const;
+export const SCALE_RNG_SEED_VALUE = "load-2026" as const;

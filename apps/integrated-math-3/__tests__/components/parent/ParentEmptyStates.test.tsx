@@ -43,16 +43,16 @@
 // (e.g. from a future invite/approval flow). The Phase 2 fixture
 // `ParentLinkFixture.status` has been widened accordingly.
 
-import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen, within } from '@testing-library/react';
-import type { ReactNode } from 'react';
+import { describe, it, expect, beforeEach } from "vitest";
+import { render, screen, within } from "@testing-library/react";
+import type { ReactNode } from "react";
 
 import {
   pendingParentLinks,
   STUDENT_ALPHA_ID,
   STUDENT_PENDING_ID,
   type ParentLinkFixture,
-} from '@/__tests__/_fixtures/parent-portal/parentLinks';
+} from "@/__tests__/_fixtures/parent-portal/parentLinks";
 
 // ---------------------------------------------------------------------------
 // Module-shape helpers
@@ -71,7 +71,7 @@ type ParentEmptyStatesProps = {
 type ParentEmptyStatesComponent = (props: ParentEmptyStatesProps) => ReactNode;
 
 async function loadParentEmptyStates(): Promise<ParentEmptyStatesComponent> {
-  const mod = await import('@/components/parent/ParentEmptyStates');
+  const mod = await import("@/components/parent/ParentEmptyStates");
   return mod.ParentEmptyStates as ParentEmptyStatesComponent;
 }
 
@@ -79,29 +79,29 @@ async function loadParentEmptyStates(): Promise<ParentEmptyStatesComponent> {
 // Tests
 // ---------------------------------------------------------------------------
 
-describe('ParentEmptyStates (Phase 3.1 — empty/pending state branches)', () => {
+describe("ParentEmptyStates (Phase 3.1 — empty/pending state branches)", () => {
   beforeEach(() => {
     // No mocks: this is a presentational dispatcher. Convex boundary is
     // owned by the page-level server component, not by this component.
   });
 
-  describe('existence and module surface', () => {
-    it('exports a ParentEmptyStates component', async () => {
+  describe("existence and module surface", () => {
+    it("exports a ParentEmptyStates component", async () => {
       const ParentEmptyStates = await loadParentEmptyStates();
-      expect(typeof ParentEmptyStates).toBe('function');
+      expect(typeof ParentEmptyStates).toBe("function");
     });
   });
 
-  describe('pre-link branch (links.length === 0)', () => {
+  describe("pre-link branch (links.length === 0)", () => {
     it('renders the "no links" empty state when the link list is empty', async () => {
       const ParentEmptyStates = await loadParentEmptyStates();
       render(<ParentEmptyStates links={[]} />);
 
-      const region = screen.getByTestId('parent-empty-state-no-links');
+      const region = screen.getByTestId("parent-empty-state-no-links");
       expect(region).toBeInTheDocument();
     });
 
-    it('does NOT render the active children when the link list is empty', async () => {
+    it("does NOT render the active children when the link list is empty", async () => {
       const ParentEmptyStates = await loadParentEmptyStates();
       render(
         <ParentEmptyStates links={[]}>
@@ -109,16 +109,16 @@ describe('ParentEmptyStates (Phase 3.1 — empty/pending state branches)', () =>
         </ParentEmptyStates>,
       );
 
-      expect(screen.queryByTestId('active-children')).not.toBeInTheDocument();
-      expect(screen.queryByTestId('parent-empty-state-pending-link')).not.toBeInTheDocument();
-      expect(screen.queryByTestId('parent-empty-state-no-activity')).not.toBeInTheDocument();
+      expect(screen.queryByTestId("active-children")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("parent-empty-state-pending-link")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("parent-empty-state-no-activity")).not.toBeInTheDocument();
     });
 
-    it('explains the teacher-initiated linking mechanism in the no-links copy', async () => {
+    it("explains the teacher-initiated linking mechanism in the no-links copy", async () => {
       const ParentEmptyStates = await loadParentEmptyStates();
       render(<ParentEmptyStates links={[]} />);
 
-      const region = screen.getByTestId('parent-empty-state-no-links');
+      const region = screen.getByTestId("parent-empty-state-no-links");
       // Must explain how a parent gets linked — teacher / school / admin.
       // The pattern mirrors the Phase 2 dashboard empty-state copy style:
       // a plain-language sentence that orients the parent toward next steps.
@@ -129,15 +129,15 @@ describe('ParentEmptyStates (Phase 3.1 — empty/pending state branches)', () =>
   });
 
   describe('pending branch (links[0].status === "pending")', () => {
-    it('renders the pending-link empty state when only pending links exist', async () => {
+    it("renders the pending-link empty state when only pending links exist", async () => {
       const ParentEmptyStates = await loadParentEmptyStates();
       render(<ParentEmptyStates links={pendingParentLinks} />);
 
-      const region = screen.getByTestId('parent-empty-state-pending-link');
+      const region = screen.getByTestId("parent-empty-state-pending-link");
       expect(region).toBeInTheDocument();
     });
 
-    it('does NOT render the active children when all links are pending', async () => {
+    it("does NOT render the active children when all links are pending", async () => {
       const ParentEmptyStates = await loadParentEmptyStates();
       render(
         <ParentEmptyStates links={pendingParentLinks}>
@@ -145,93 +145,90 @@ describe('ParentEmptyStates (Phase 3.1 — empty/pending state branches)', () =>
         </ParentEmptyStates>,
       );
 
-      expect(screen.queryByTestId('active-children')).not.toBeInTheDocument();
-      expect(screen.queryByTestId('parent-empty-state-no-links')).not.toBeInTheDocument();
-      expect(screen.queryByTestId('parent-empty-state-no-activity')).not.toBeInTheDocument();
+      expect(screen.queryByTestId("active-children")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("parent-empty-state-no-links")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("parent-empty-state-no-activity")).not.toBeInTheDocument();
     });
 
-    it('mentions wait / pending / approval in the pending-link copy', async () => {
+    it("mentions wait / pending / approval in the pending-link copy", async () => {
       const ParentEmptyStates = await loadParentEmptyStates();
-      render(
-        <ParentEmptyStates
-          links={pendingParentLinks}
-          studentName="Pending Student"
-        />,
-      );
+      render(<ParentEmptyStates links={pendingParentLinks} studentName="Pending Student" />);
 
-      const region = screen.getByTestId('parent-empty-state-pending-link');
+      const region = screen.getByTestId("parent-empty-state-pending-link");
       expect(region.textContent).toMatch(/pending|wait|approval|approve|review|confirm/i);
       // Privacy boundary: must NOT leak the projection payload.
       expect(region.textContent).not.toMatch(/Quadratic basics/i);
     });
   });
 
-  describe('no-activity branch (active link, projection has no nodes)', () => {
-    it('renders the no-activity empty state when an active link exists but the projection is empty', async () => {
+  describe("no-activity branch (active link, projection has no nodes)", () => {
+    it("renders the no-activity empty state when an active link exists but the projection is empty", async () => {
       const ParentEmptyStates = await loadParentEmptyStates();
       render(
         <ParentEmptyStates
-          links={[{ studentId: STUDENT_ALPHA_ID, status: 'active' }]}
+          links={[{ studentId: STUDENT_ALPHA_ID, status: "active" }]}
           hasProjectionNodes={false}
         />,
       );
 
-      const region = screen.getByTestId('parent-empty-state-no-activity');
+      const region = screen.getByTestId("parent-empty-state-no-activity");
       expect(region).toBeInTheDocument();
     });
 
-    it('does NOT render the active children when the projection has no nodes', async () => {
+    it("does NOT render the active children when the projection has no nodes", async () => {
       const ParentEmptyStates = await loadParentEmptyStates();
       render(
         <ParentEmptyStates
-          links={[{ studentId: STUDENT_ALPHA_ID, status: 'active' }]}
+          links={[{ studentId: STUDENT_ALPHA_ID, status: "active" }]}
           hasProjectionNodes={false}
         >
           <div data-testid="active-children">Dashboard content</div>
         </ParentEmptyStates>,
       );
 
-      expect(screen.queryByTestId('active-children')).not.toBeInTheDocument();
-      expect(screen.queryByTestId('parent-empty-state-no-links')).not.toBeInTheDocument();
-      expect(screen.queryByTestId('parent-empty-state-pending-link')).not.toBeInTheDocument();
+      expect(screen.queryByTestId("active-children")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("parent-empty-state-no-links")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("parent-empty-state-pending-link")).not.toBeInTheDocument();
     });
 
     it('mentions "no activity" / "no skills yet" / "getting started" in the no-activity copy', async () => {
       const ParentEmptyStates = await loadParentEmptyStates();
       render(
         <ParentEmptyStates
-          links={[{ studentId: STUDENT_ALPHA_ID, status: 'active' }]}
+          links={[{ studentId: STUDENT_ALPHA_ID, status: "active" }]}
           hasProjectionNodes={false}
           studentName="Alpha Student"
         />,
       );
 
-      const region = screen.getByTestId('parent-empty-state-no-activity');
-      expect(region.textContent).toMatch(/no activity|no skills|no progress|getting started|hasn't started|not started/i);
+      const region = screen.getByTestId("parent-empty-state-no-activity");
+      expect(region.textContent).toMatch(
+        /no activity|no skills|no progress|getting started|hasn't started|not started/i,
+      );
       // Privacy boundary: must NOT leak the projection payload fields.
       expect(region.textContent).not.toMatch(/Quadratic basics/i);
     });
   });
 
-  describe('active branch (active link + projection has nodes)', () => {
-    it('renders the active children when there is an active link and a non-empty projection', async () => {
+  describe("active branch (active link + projection has nodes)", () => {
+    it("renders the active children when there is an active link and a non-empty projection", async () => {
       const ParentEmptyStates = await loadParentEmptyStates();
       render(
         <ParentEmptyStates
-          links={[{ studentId: STUDENT_ALPHA_ID, status: 'active' }]}
+          links={[{ studentId: STUDENT_ALPHA_ID, status: "active" }]}
           hasProjectionNodes={true}
         >
           <div data-testid="active-children">Dashboard content</div>
         </ParentEmptyStates>,
       );
 
-      expect(screen.getByTestId('active-children')).toBeInTheDocument();
-      expect(screen.queryByTestId('parent-empty-state-no-links')).not.toBeInTheDocument();
-      expect(screen.queryByTestId('parent-empty-state-pending-link')).not.toBeInTheDocument();
-      expect(screen.queryByTestId('parent-empty-state-no-activity')).not.toBeInTheDocument();
+      expect(screen.getByTestId("active-children")).toBeInTheDocument();
+      expect(screen.queryByTestId("parent-empty-state-no-links")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("parent-empty-state-pending-link")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("parent-empty-state-no-activity")).not.toBeInTheDocument();
     });
 
-    it('renders the active children by default when hasProjectionNodes is omitted (truthy active link + projection-with-nodes is the call-site contract)', async () => {
+    it("renders the active children by default when hasProjectionNodes is omitted (truthy active link + projection-with-nodes is the call-site contract)", async () => {
       // The page-level server component is expected to pass
       // `hasProjectionNodes={true}` (or omit it) when it has already
       // verified the projection has data. Omitting the prop must NOT
@@ -239,21 +236,19 @@ describe('ParentEmptyStates (Phase 3.1 — empty/pending state branches)', () =>
       // a regression where a parent with data sees a blank state.
       const ParentEmptyStates = await loadParentEmptyStates();
       render(
-        <ParentEmptyStates
-          links={[{ studentId: STUDENT_ALPHA_ID, status: 'active' }]}
-        >
+        <ParentEmptyStates links={[{ studentId: STUDENT_ALPHA_ID, status: "active" }]}>
           <div data-testid="active-children">Dashboard content</div>
         </ParentEmptyStates>,
       );
 
       // When hasProjectionNodes is omitted, the dispatcher should treat
       // the link as live and render the children.
-      expect(screen.getByTestId('active-children')).toBeInTheDocument();
+      expect(screen.getByTestId("active-children")).toBeInTheDocument();
     });
   });
 
-  describe('branch dispatch — privacy boundary (no projection leak in empty branches)', () => {
-    it('renders only one empty-state region per render (never multiple)', async () => {
+  describe("branch dispatch — privacy boundary (no projection leak in empty branches)", () => {
+    it("renders only one empty-state region per render (never multiple)", async () => {
       // Regression guard: a buggy dispatcher could render more than one
       // empty state (e.g. both no-links AND no-activity). This would
       // confuse screen readers and indicates a logic error in the
@@ -262,7 +257,7 @@ describe('ParentEmptyStates (Phase 3.1 — empty/pending state branches)', () =>
       render(<ParentEmptyStates links={[]} />);
 
       const emptyRegions = screen.queryAllByTestId(/^parent-empty-state-/);
-      expect(within(document.body).queryAllByRole('status')).toHaveLength(emptyRegions.length);
+      expect(within(document.body).queryAllByRole("status")).toHaveLength(emptyRegions.length);
       expect(emptyRegions.length).toBe(1);
     });
   });
@@ -274,10 +269,10 @@ describe('ParentEmptyStates (Phase 3.1 — empty/pending state branches)', () =>
 // behavior, which is unreliable across vitest versions).
 // ---------------------------------------------------------------------------
 
-describe('ParentEmptyStates — fixture sanity', () => {
-  it('pendingParentLinks fixture has exactly one pending row and the correct student id', () => {
+describe("ParentEmptyStates — fixture sanity", () => {
+  it("pendingParentLinks fixture has exactly one pending row and the correct student id", () => {
     expect(pendingParentLinks).toHaveLength(1);
-    expect(pendingParentLinks[0]?.status).toBe('pending');
+    expect(pendingParentLinks[0]?.status).toBe("pending");
     expect(pendingParentLinks[0]?.studentId).toBe(STUDENT_PENDING_ID);
   });
 });

@@ -1,16 +1,24 @@
-import { buildPracticeSubmissionEnvelope, type PracticeSubmissionEnvelope } from '@/lib/practice/contract';
-import { getAccountById } from '@/lib/practice/engine/accounts';
-import type { GradeResult, ProblemDefinition, ProblemFamily, ProblemPartDefinition } from '@/lib/practice/engine/types';
+import {
+  buildPracticeSubmissionEnvelope,
+  type PracticeSubmissionEnvelope,
+} from "@/lib/practice/contract";
+import { getAccountById } from "@/lib/practice/engine/accounts";
+import type {
+  GradeResult,
+  ProblemDefinition,
+  ProblemFamily,
+  ProblemPartDefinition,
+} from "@/lib/practice/engine/types";
 import {
   generateMerchandisingTimeline,
   solveMerchandisingTimeline,
   type MerchandisingJournalLine,
   type MerchandisingTimelineDefinition,
   type MerchandisingTimelineEvent,
-} from '@/lib/practice/engine/merchandising';
-import type { JournalEntryAccountOption } from './journal-entry';
+} from "@/lib/practice/engine/merchandising";
+import type { JournalEntryAccountOption } from "./journal-entry";
 
-export type MerchandisingEntryScenarioKind = 'seller-timeline' | 'buyer-timeline';
+export type MerchandisingEntryScenarioKind = "seller-timeline" | "buyer-timeline";
 
 export interface MerchandisingEntryLine extends MerchandisingJournalLine {
   id: string;
@@ -18,7 +26,7 @@ export interface MerchandisingEntryLine extends MerchandisingJournalLine {
 
 export interface MerchandisingEntryPart extends ProblemPartDefinition {
   id: string;
-  kind: 'journal-entry';
+  kind: "journal-entry";
   label: string;
   description?: string;
   targetId: string;
@@ -63,12 +71,12 @@ export interface MerchandisingEntryDefinition extends ProblemDefinition {
 export type MerchandisingEntryResponse = MerchandisingEntryLine[];
 
 export interface MerchandisingEntryConfig {
-  mode?: ProblemDefinition['mode'];
+  mode?: ProblemDefinition["mode"];
   scenarioKey?: MerchandisingEntryScenarioKind;
 }
 
 export interface MerchandisingEntryReviewFeedback {
-  status: 'correct' | 'incorrect' | 'partial';
+  status: "correct" | "incorrect" | "partial";
   scoreLabel?: string;
   selectedLabel?: string;
   expectedLabel?: string;
@@ -112,7 +120,7 @@ function pick<T>(items: readonly T[], rng: () => number) {
  * @returns The formatted amount string
  */
 function formatAmount(amount: number) {
-  return amount.toLocaleString('en-US');
+  return amount.toLocaleString("en-US");
 }
 
 /**
@@ -135,7 +143,7 @@ function lineSignature(line: MerchandisingEntryLine) {
     line.accountId.trim().toLowerCase(),
     Number(line.debit ?? 0).toFixed(2),
     Number(line.credit ?? 0).toFixed(2),
-  ].join('|');
+  ].join("|");
 }
 
 /**
@@ -154,7 +162,10 @@ function lineMatches(expected: MerchandisingEntryLine, actual?: MerchandisingEnt
  * @param actualLines - Array of actual lines to search
  * @returns True if the expected line is present in any position
  */
-function linePresentAnywhere(expected: MerchandisingEntryLine, actualLines: MerchandisingEntryLine[]) {
+function linePresentAnywhere(
+  expected: MerchandisingEntryLine,
+  actualLines: MerchandisingEntryLine[],
+) {
   const expectedSignature = lineSignature(expected);
   return actualLines.some((line) => lineSignature(line) === expectedSignature);
 }
@@ -164,8 +175,11 @@ function linePresentAnywhere(expected: MerchandisingEntryLine, actualLines: Merc
  * @param role - Either 'seller' or 'buyer'
  * @returns A human-readable scenario title
  */
-function buildScenarioTitle(role: 'seller' | 'buyer') {
-  const action = role === 'seller' ? 'Seller perpetual merchandising entries' : 'Buyer perpetual merchandising entries';
+function buildScenarioTitle(role: "seller" | "buyer") {
+  const action =
+    role === "seller"
+      ? "Seller perpetual merchandising entries"
+      : "Buyer perpetual merchandising entries";
   return `${action}`;
 }
 
@@ -176,21 +190,25 @@ function buildScenarioTitle(role: 'seller' | 'buyer') {
  */
 function buildFocus(timeline: MerchandisingTimelineDefinition) {
   const traps = [];
-  if (timeline.role === 'seller') {
-    traps.push('seller-side paired revenue and inventory relief');
+  if (timeline.role === "seller") {
+    traps.push("seller-side paired revenue and inventory relief");
   } else {
-    traps.push(timeline.discountMethod === 'gross' ? 'gross-method discount treatment' : 'net-method purchase logic');
+    traps.push(
+      timeline.discountMethod === "gross"
+        ? "gross-method discount treatment"
+        : "net-method purchase logic",
+    );
   }
 
   if (timeline.freightAmount > 0) {
-    traps.push(timeline.fobCondition === 'destination' ? 'seller freight-out' : 'buyer freight-in');
+    traps.push(timeline.fobCondition === "destination" ? "seller freight-out" : "buyer freight-in");
   }
 
   if (timeline.returnAmount > 0) {
-    traps.push('return and allowance sequencing');
+    traps.push("return and allowance sequencing");
   }
 
-  return traps.join(' • ');
+  return traps.join(" • ");
 }
 
 /**
@@ -218,16 +236,16 @@ function enrichTimeline(timeline: MerchandisingTimelineDefinition): Merchandisin
   );
 
   return {
-    kind: timeline.role === 'seller' ? 'seller-timeline' : 'buyer-timeline',
+    kind: timeline.role === "seller" ? "seller-timeline" : "buyer-timeline",
     title: buildScenarioTitle(timeline.role),
     stem:
-      timeline.role === 'seller'
-        ? 'Read the timeline before entering the seller-side perpetual inventory entries.'
-        : 'Read the timeline before entering the buyer-side perpetual inventory entries.',
+      timeline.role === "seller"
+        ? "Read the timeline before entering the seller-side perpetual inventory entries."
+        : "Read the timeline before entering the buyer-side perpetual inventory entries.",
     narrative:
-      timeline.role === 'seller'
-        ? 'Seller perpetual timeline with sale, return, freight, and collection.'
-        : 'Buyer perpetual timeline with purchase, return, freight, and payment.',
+      timeline.role === "seller"
+        ? "Seller perpetual timeline with sale, return, freight, and collection."
+        : "Buyer perpetual timeline with purchase, return, freight, and payment.",
     focus: buildFocus(timeline),
     dates,
     timeline,
@@ -254,10 +272,10 @@ function buildSellerScenario(seed: number): MerchandisingEntryScenario {
   const saleAmount = pick([1200, 1500, 1800, 2400, 3000], rng);
   return enrichTimeline(
     generateMerchandisingTimeline(seed, {
-      role: 'seller',
-      discountMethod: pick(['gross', 'net'] as const, rng),
-      paymentTiming: pick(['within-discount-period', 'after-discount-period'] as const, rng),
-      fobCondition: pick(['destination', 'shipping-point'] as const, rng),
+      role: "seller",
+      discountMethod: pick(["gross", "net"] as const, rng),
+      paymentTiming: pick(["within-discount-period", "after-discount-period"] as const, rng),
+      fobCondition: pick(["destination", "shipping-point"] as const, rng),
       saleAmount,
       costAmount: Math.round(saleAmount * 0.6),
       returnAmount: pick([0, 120, 150, 180, 240] as const, rng),
@@ -277,10 +295,10 @@ function buildBuyerScenario(seed: number): MerchandisingEntryScenario {
   const saleAmount = pick([900, 1200, 1500, 1800, 2400], rng);
   return enrichTimeline(
     generateMerchandisingTimeline(seed, {
-      role: 'buyer',
-      discountMethod: pick(['gross', 'net'] as const, rng),
-      paymentTiming: pick(['within-discount-period', 'after-discount-period'] as const, rng),
-      fobCondition: pick(['shipping-point', 'destination'] as const, rng),
+      role: "buyer",
+      discountMethod: pick(["gross", "net"] as const, rng),
+      paymentTiming: pick(["within-discount-period", "after-discount-period"] as const, rng),
+      fobCondition: pick(["shipping-point", "destination"] as const, rng),
       saleAmount,
       costAmount: Math.round(saleAmount * 0.6),
       returnAmount: pick([0, 90, 120, 150, 180] as const, rng),
@@ -291,8 +309,8 @@ function buildBuyerScenario(seed: number): MerchandisingEntryScenario {
 }
 
 export const merchandisingEntryScenarioCatalog = [
-  { kind: 'seller-timeline', build: buildSellerScenario },
-  { kind: 'buyer-timeline', build: buildBuyerScenario },
+  { kind: "seller-timeline", build: buildSellerScenario },
+  { kind: "buyer-timeline", build: buildBuyerScenario },
 ] as const satisfies readonly MerchandisingEntryScenarioBuilder[];
 
 /**
@@ -302,7 +320,9 @@ export const merchandisingEntryScenarioCatalog = [
  */
 function pickScenarioKind(seed: number) {
   const rng = mulberry32(seed ^ 0x3c6ef372);
-  return merchandisingEntryScenarioCatalog[Math.floor(rng() * merchandisingEntryScenarioCatalog.length)].kind;
+  return merchandisingEntryScenarioCatalog[
+    Math.floor(rng() * merchandisingEntryScenarioCatalog.length)
+  ].kind;
 }
 
 /**
@@ -313,7 +333,9 @@ function pickScenarioKind(seed: number) {
  */
 function buildScenario(seed: number, config: MerchandisingEntryConfig): MerchandisingEntryScenario {
   const scenarioKey = config.scenarioKey ?? pickScenarioKind(seed);
-  const builder = merchandisingEntryScenarioCatalog.find((entry) => entry.kind === scenarioKey) ?? merchandisingEntryScenarioCatalog[0];
+  const builder =
+    merchandisingEntryScenarioCatalog.find((entry) => entry.kind === scenarioKey) ??
+    merchandisingEntryScenarioCatalog[0];
   return builder.build(seed);
 }
 
@@ -327,15 +349,15 @@ function buildParts(scenario: MerchandisingEntryScenario): MerchandisingEntryPar
     const accountLabel = getAccountById(line.accountId)?.label ?? line.accountId;
     return {
       id: line.id,
-      kind: 'journal-entry',
+      kind: "journal-entry",
       label: `Line ${index + 1}`,
       description: `${line.date} ${accountLabel}`,
       prompt: `Enter the journal line for ${accountLabel}.`,
-      expectedAnswerShape: 'journal-line',
+      expectedAnswerShape: "journal-line",
       canonicalAnswer: line,
-      explanation: `${accountLabel} is recorded with ${line.debit > 0 ? 'a debit' : 'a credit'} of $${formatAmount(line.debit > 0 ? line.debit : line.credit)}.`,
+      explanation: `${accountLabel} is recorded with ${line.debit > 0 ? "a debit" : "a credit"} of $${formatAmount(line.debit > 0 ? line.debit : line.credit)}.`,
       misconceptionTags: [`merchandising-entries:${scenario.kind}:${line.accountId}`],
-      standardCode: `ACC-M7-ME-${scenario.kind.toUpperCase().replace(/-/g, '_')}`,
+      standardCode: `ACC-M7-ME-${scenario.kind.toUpperCase().replace(/-/g, "_")}`,
       artifactTarget: lineSignature(line),
       targetId: line.id,
       details: {
@@ -346,7 +368,7 @@ function buildParts(scenario: MerchandisingEntryScenario): MerchandisingEntryPar
         debit: line.debit,
         credit: line.credit,
         memo: line.memo,
-        explanation: `${accountLabel} is recorded with ${line.debit > 0 ? 'a debit' : 'a credit'} of $${formatAmount(line.debit > 0 ? line.debit : line.credit)}.`,
+        explanation: `${accountLabel} is recorded with ${line.debit > 0 ? "a debit" : "a credit"} of $${formatAmount(line.debit > 0 ? line.debit : line.credit)}.`,
       },
     };
   });
@@ -373,18 +395,21 @@ function buildResponse(definition: MerchandisingEntryDefinition): MerchandisingE
 function buildPartFeedback(
   part: MerchandisingEntryPart,
   studentResponse: MerchandisingEntryResponse,
-  gradeResultPart: GradeResult['parts'][number],
+  gradeResultPart: GradeResult["parts"][number],
   expectedLine: MerchandisingEntryLine,
   studentLine: MerchandisingEntryLine | undefined,
 ): MerchandisingEntryReviewFeedback {
-  const selectedLabel = studentLine ? `${studentLine.date} • ${studentLine.accountId}` : 'Not entered';
+  const selectedLabel = studentLine
+    ? `${studentLine.date} • ${studentLine.accountId}`
+    : "Not entered";
   const expectedLabel = `${part.details.date} • ${part.details.accountLabel} ${part.details.debit ? `debit $${formatAmount(part.details.debit)}` : `credit $${formatAmount(part.details.credit)}`}`;
   const exactMatch = lineMatches(expectedLine, studentLine);
-  const equivalent = !exactMatch && studentLine ? linePresentAnywhere(expectedLine, studentResponse) : false;
+  const equivalent =
+    !exactMatch && studentLine ? linePresentAnywhere(expectedLine, studentResponse) : false;
 
   if (exactMatch) {
     return {
-      status: 'correct',
+      status: "correct",
       scoreLabel: `${gradeResultPart.score}/${gradeResultPart.maxScore}`,
       selectedLabel,
       expectedLabel,
@@ -394,7 +419,7 @@ function buildPartFeedback(
   }
 
   return {
-    status: equivalent ? 'partial' : 'incorrect',
+    status: equivalent ? "partial" : "incorrect",
     scoreLabel: `${gradeResultPart.score}/${gradeResultPart.maxScore}`,
     selectedLabel,
     expectedLabel,
@@ -423,34 +448,44 @@ export function buildMerchandisingEntryReviewFeedback(
         return [
           gradeResultPart.partId,
           {
-            status: gradeResultPart.isCorrect ? 'correct' : 'incorrect',
+            status: gradeResultPart.isCorrect ? "correct" : "incorrect",
             scoreLabel: `${gradeResultPart.score}/${gradeResultPart.maxScore}`,
-            selectedLabel: 'Not entered',
-            expectedLabel: 'Unknown',
+            selectedLabel: "Not entered",
+            expectedLabel: "Unknown",
             misconceptionTags: gradeResultPart.misconceptionTags,
-            message: 'Review data unavailable.',
+            message: "Review data unavailable.",
           },
         ] as const;
       }
 
-      const expectedIndex = Number.parseInt(part.id.replace('line-', ''), 10) - 1;
+      const expectedIndex = Number.parseInt(part.id.replace("line-", ""), 10) - 1;
       return [
         part.id,
-        buildPartFeedback(part, studentResponse, gradeResultPart, definition.journalLines[expectedIndex], studentResponse[expectedIndex]),
+        buildPartFeedback(
+          part,
+          studentResponse,
+          gradeResultPart,
+          definition.journalLines[expectedIndex],
+          studentResponse[expectedIndex],
+        ),
       ] as const;
     }),
   );
 }
 
-export const merchandisingEntriesFamily: ProblemFamily<MerchandisingEntryDefinition, MerchandisingEntryResponse, MerchandisingEntryConfig> = {
+export const merchandisingEntriesFamily: ProblemFamily<
+  MerchandisingEntryDefinition,
+  MerchandisingEntryResponse,
+  MerchandisingEntryConfig
+> = {
   generate(seed, config = {}) {
     const scenario = buildScenario(seed, config);
     const parts = buildParts(scenario);
 
     return {
-      contractVersion: 'practice.v1',
-      familyKey: 'merchandising-entries',
-      mode: config.mode ?? 'guided_practice',
+      contractVersion: "practice.v1",
+      familyKey: "merchandising-entries",
+      mode: config.mode ?? "guided_practice",
       activityId: `merchandising-entries-${scenario.kind}-${seed}`,
       prompt: {
         title: scenario.title,
@@ -476,14 +511,14 @@ export const merchandisingEntriesFamily: ProblemFamily<MerchandisingEntryDefinit
         role: scenario.timeline.role,
       },
       grading: {
-        strategy: 'exact',
+        strategy: "exact",
         partialCredit: true,
         rubric: {
           scenarioKind: scenario.kind,
         },
       },
       analyticsConfig: {
-        generator: 'merchandising-entries-family',
+        generator: "merchandising-entries-family",
         seed,
         scenarioKind: scenario.kind,
       },
@@ -498,7 +533,7 @@ export const merchandisingEntriesFamily: ProblemFamily<MerchandisingEntryDefinit
     const parts = definition.parts.map((part, index) => {
       const expectedLine = definition.journalLines[index];
       const rawLine = studentResponse[index];
-      const normalizedAnswer = rawLine ? lineSignature(rawLine) : '';
+      const normalizedAnswer = rawLine ? lineSignature(rawLine) : "";
       const exactMatch = lineMatches(expectedLine, rawLine);
       const presentAnywhere = rawLine ? linePresentAnywhere(expectedLine, studentResponse) : false;
       const isCorrect = exactMatch || presentAnywhere;
@@ -510,7 +545,9 @@ export const merchandisingEntriesFamily: ProblemFamily<MerchandisingEntryDefinit
         isCorrect,
         score: isCorrect ? 1 : 0,
         maxScore: 1,
-        misconceptionTags: isCorrect ? [] : [`merchandising-entries:${definition.scenario.kind}:${part.id}`],
+        misconceptionTags: isCorrect
+          ? []
+          : [`merchandising-entries:${definition.scenario.kind}:${part.id}`],
       };
     });
 
@@ -526,7 +563,7 @@ export const merchandisingEntriesFamily: ProblemFamily<MerchandisingEntryDefinit
 
   toEnvelope(definition, studentResponse, gradeResult): PracticeSubmissionEnvelope {
     const artifact = {
-      kind: 'merchandising-entry-recording',
+      kind: "merchandising-entry-recording",
       family: definition.familyKey,
       scenario: {
         kind: definition.scenario.kind,
@@ -553,12 +590,19 @@ export const merchandisingEntriesFamily: ProblemFamily<MerchandisingEntryDefinit
     return buildPracticeSubmissionEnvelope({
       activityId: definition.activityId,
       mode: definition.mode,
-      status: 'submitted',
+      status: "submitted",
       attemptNumber: 1,
-      answers: Object.fromEntries(studentResponse.map((line, index) => [definition.parts[index]?.id ?? `line-${index + 1}`, line])),
+      answers: Object.fromEntries(
+        studentResponse.map((line, index) => [
+          definition.parts[index]?.id ?? `line-${index + 1}`,
+          line,
+        ]),
+      ),
       parts: gradeResult.parts.map((part) => ({
         partId: part.partId,
-        rawAnswer: part.rawAnswer ?? studentResponse[Number.parseInt(part.partId.replace('line-', ''), 10) - 1],
+        rawAnswer:
+          part.rawAnswer ??
+          studentResponse[Number.parseInt(part.partId.replace("line-", ""), 10) - 1],
         normalizedAnswer: part.normalizedAnswer,
         isCorrect: part.isCorrect,
         score: part.score,

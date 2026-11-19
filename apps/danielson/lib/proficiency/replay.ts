@@ -1,11 +1,11 @@
-import type { KnowledgeSpace } from '@math-platform/knowledge-space-core';
+import type { KnowledgeSpace } from "@math-platform/knowledge-space-core";
 
 import {
   processTeacherEvidence,
   type TeacherEvidenceCommit,
   type TeacherProficiencyPort,
   type TeacherState,
-} from './processor';
+} from "./processor";
 
 function emptyTeacherState(teacherId: string): TeacherState {
   return {
@@ -36,22 +36,27 @@ function upsertRows(
 function applyCommit(state: TeacherState, commit: TeacherEvidenceCommit) {
   state.idempotency.push(commit.idempotency);
   state.observationOutcomes.push(commit.outcome);
-  upsertRows(state.cards, commit.cards ?? [], 'objectiveId');
-  upsertRows(state.reviews, commit.reviews ?? [], 'reviewId');
-  upsertRows(state.proficiency, commit.proficiency ?? [], 'skillId');
-  upsertRows(state.knowledgeState, commit.knowledgeState ?? [], 'nodeId');
-  upsertRows(state.priority, commit.priority ?? [], 'skillId');
+  upsertRows(state.cards, commit.cards ?? [], "objectiveId");
+  upsertRows(state.reviews, commit.reviews ?? [], "reviewId");
+  upsertRows(state.proficiency, commit.proficiency ?? [], "skillId");
+  upsertRows(state.knowledgeState, commit.knowledgeState ?? [], "nodeId");
+  upsertRows(state.priority, commit.priority ?? [], "skillId");
 }
 
 function eventOrder(left: unknown, right: unknown): number {
   const leftValue = left as Record<string, unknown>;
   const rightValue = right as Record<string, unknown>;
-  const time = String(leftValue.occurredAt ?? leftValue.eventTime ?? '')
-    .localeCompare(String(rightValue.occurredAt ?? rightValue.eventTime ?? ''));
+  const time = String(leftValue.occurredAt ?? leftValue.eventTime ?? "").localeCompare(
+    String(rightValue.occurredAt ?? rightValue.eventTime ?? ""),
+  );
   if (time !== 0) return time;
-  const source = String(leftValue.sourceRecordId ?? '').localeCompare(String(rightValue.sourceRecordId ?? ''));
+  const source = String(leftValue.sourceRecordId ?? "").localeCompare(
+    String(rightValue.sourceRecordId ?? ""),
+  );
   if (source !== 0) return source;
-  return String(leftValue.idempotencyKey ?? '').localeCompare(String(rightValue.idempotencyKey ?? ''));
+  return String(leftValue.idempotencyKey ?? "").localeCompare(
+    String(rightValue.idempotencyKey ?? ""),
+  );
 }
 
 /** Replay a bounded effective evidence timeline from an empty teacher state. */
@@ -73,15 +78,21 @@ export async function replayTeacherEvidence(input: {
     },
   };
   for (const rawEvidence of [...input.evidence].sort(eventOrder)) {
-    const evidence = rawEvidence && typeof rawEvidence === 'object'
-      ? Object.fromEntries(
-          Object.entries(rawEvidence).filter(
-            ([field]) => field !== 'scoringEffect' && field !== 'targetEvidence',
-          ),
-        )
-      : rawEvidence;
-    const result = await processTeacherEvidence({ evidence, graph: input.graph, now: input.now, port });
-    if (result.kind === 'idempotency_conflict') throw new Error('idempotency_conflict');
+    const evidence =
+      rawEvidence && typeof rawEvidence === "object"
+        ? Object.fromEntries(
+            Object.entries(rawEvidence).filter(
+              ([field]) => field !== "scoringEffect" && field !== "targetEvidence",
+            ),
+          )
+        : rawEvidence;
+    const result = await processTeacherEvidence({
+      evidence,
+      graph: input.graph,
+      now: input.now,
+      port,
+    });
+    if (result.kind === "idempotency_conflict") throw new Error("idempotency_conflict");
   }
   return { state: structuredClone(state), commits };
 }

@@ -1,30 +1,37 @@
-'use client';
+"use client";
 
-import { useCallback, useMemo, useState } from 'react';
-import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
-import { ArrowDownRight, ArrowUpRight, Calendar, PiggyBank, RotateCcw, TrendingDown } from 'lucide-react';
+import { useCallback, useMemo, useState } from "react";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
+import {
+  ArrowDownRight,
+  ArrowUpRight,
+  Calendar,
+  PiggyBank,
+  RotateCcw,
+  TrendingDown,
+} from "lucide-react";
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
-import { cn } from '@/lib/utils';
-import type { Activity } from '@/lib/schemas/validators';
-import { type CashFlowTimelineActivityProps } from '@/types/activities';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
+import type { Activity } from "@/lib/schemas/validators";
+import { type CashFlowTimelineActivityProps } from "@/types/activities";
 import {
   CATEGORIZATION_SUPPORTED_MODES,
   buildCategorizationPracticeSubmission,
-} from './practiceSubmission';
+} from "./practiceSubmission";
 
 import {
   AVAILABLE_ITEMS_DROPPABLE,
   getZoneDroppableId,
   useCategorizationExercise,
-  type CategorizationItem
-} from './useCategorizationExercise';
+  type CategorizationItem,
+} from "./useCategorizationExercise";
 
-export type CashFlowTimelineActivity = Omit<Activity, 'componentKey' | 'props'> & {
-  componentKey: 'cash-flow-timeline';
+export type CashFlowTimelineActivity = Omit<Activity, "componentKey" | "props"> & {
+  componentKey: "cash-flow-timeline";
   props: CashFlowTimelineActivityProps;
 };
 
@@ -32,18 +39,17 @@ export const CASH_FLOW_TIMELINE_SUPPORTED_MODES = CATEGORIZATION_SUPPORTED_MODES
 
 interface CashFlowTimelineProps {
   activity: CashFlowTimelineActivity;
-  onSubmit?: (payload: import('@/lib/practice/contract').PracticeSubmissionCallbackPayload) => void;
+  onSubmit?: (payload: import("@/lib/practice/contract").PracticeSubmissionCallbackPayload) => void;
 }
 
-type CashFlowItem = CashFlowTimelineActivityProps['cashFlowItems'][number] & CategorizationItem;
-type TimelinePeriod = CashFlowTimelineActivityProps['periods'][number];
+type CashFlowItem = CashFlowTimelineActivityProps["cashFlowItems"][number] & CategorizationItem;
+type TimelinePeriod = CashFlowTimelineActivityProps["periods"][number];
 
-const currencyFormatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-  maximumFractionDigits: 0
+const currencyFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  maximumFractionDigits: 0,
 });
-
 
 /**
  * Renders a drag-and-drop cash flow timeline where students schedule
@@ -54,22 +60,23 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
  */
 export function CashFlowTimeline({ activity, onSubmit }: CashFlowTimelineProps) {
   const [showHints, setShowHints] = useState(activity.props.showHintsByDefault);
-  const practiceMode = activity.props.showHintsByDefault ? 'guided_practice' : 'independent_practice';
+  const practiceMode = activity.props.showHintsByDefault
+    ? "guided_practice"
+    : "independent_practice";
 
   const sortedPeriods = useMemo<TimelinePeriod[]>(
     () => [...activity.props.periods].sort((a, b) => a.order - b.order),
-    [activity.props.periods]
+    [activity.props.periods],
   );
   const zoneIds = useMemo(() => sortedPeriods.map((period) => period.id), [sortedPeriods]);
   const items = useMemo<CashFlowItem[]>(
     () =>
       activity.props.cashFlowItems.map((item) => ({
         ...item,
-        targetId: item.periodId
+        targetId: item.periodId,
       })),
-    [activity.props.cashFlowItems]
+    [activity.props.cashFlowItems],
   );
-
 
   /**
    * Build and submit the practice submission when the exercise is completed.
@@ -77,7 +84,15 @@ export function CashFlowTimeline({ activity, onSubmit }: CashFlowTimelineProps) 
    * @param payload - Score, attempt count, and final placements
    */
   const handleCompletion = useCallback(
-    ({ score, attempts, placements }: { score: number; attempts: number; placements: Record<string, CashFlowItem[]> }) => {
+    ({
+      score,
+      attempts,
+      placements,
+    }: {
+      score: number;
+      attempts: number;
+      placements: Record<string, CashFlowItem[]>;
+    }) => {
       try {
         onSubmit?.({
           ...buildCategorizationPracticeSubmission({
@@ -86,7 +101,7 @@ export function CashFlowTimeline({ activity, onSubmit }: CashFlowTimelineProps) 
             attemptNumber: attempts,
             completedAt: new Date(),
             family: activity.componentKey,
-            artifactKind: 'cash_flow_timeline',
+            artifactKind: "cash_flow_timeline",
             items,
             placements,
             zones: sortedPeriods.map((period) => ({
@@ -113,33 +128,51 @@ export function CashFlowTimeline({ activity, onSubmit }: CashFlowTimelineProps) 
           }),
         });
       } catch (err) {
-        console.error('CashFlowTimeline submission failed:', err);
+        console.error("CashFlowTimeline submission failed:", err);
       }
     },
-    [activity.componentKey, activity.id, activity.props.startingCash, items, onSubmit, practiceMode, showHints, sortedPeriods]
+    [
+      activity.componentKey,
+      activity.id,
+      activity.props.startingCash,
+      items,
+      onSubmit,
+      practiceMode,
+      showHints,
+      sortedPeriods,
+    ],
   );
 
-  const { availableItems, placements, attempts, score, completed, handleDragEnd, reset } = useCategorizationExercise(items, zoneIds, {
-    shuffleItems: activity.props.shuffleItems,
-    resetKey: activity.id,
-    onComplete: handleCompletion
-  });
+  const { availableItems, placements, attempts, score, completed, handleDragEnd, reset } =
+    useCategorizationExercise(items, zoneIds, {
+      shuffleItems: activity.props.shuffleItems,
+      resetKey: activity.id,
+      onComplete: handleCompletion,
+    });
 
   const timelineStats = useMemo(() => {
     return sortedPeriods.reduce<{
-      stats: { period: TimelinePeriod; items: CashFlowItem[]; netFlow: number; endingBalance: number }[];
+      stats: {
+        period: TimelinePeriod;
+        items: CashFlowItem[];
+        netFlow: number;
+        endingBalance: number;
+      }[];
       balance: number;
     }>(
       (acc, period) => {
         const periodItems = placements[period.id] ?? [];
-        const netFlow = periodItems.reduce((sum, item) => sum + (item.direction === 'inflow' ? item.amount : -item.amount), 0);
+        const netFlow = periodItems.reduce(
+          (sum, item) => sum + (item.direction === "inflow" ? item.amount : -item.amount),
+          0,
+        );
         const endingBalance = acc.balance + netFlow;
         return {
           stats: [...acc.stats, { period, items: periodItems, netFlow, endingBalance }],
           balance: endingBalance,
         };
       },
-      { stats: [], balance: activity.props.startingCash ?? 0 }
+      { stats: [], balance: activity.props.startingCash ?? 0 },
     ).stats;
   }, [activity.props.startingCash, placements, sortedPeriods]);
 
@@ -166,7 +199,12 @@ export function CashFlowTimeline({ activity, onSubmit }: CashFlowTimelineProps) 
       <CardContent className="space-y-6">
         <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
           <label className="inline-flex items-center gap-2">
-            <input type="checkbox" checked={showHints} onChange={() => setShowHints((prev) => !prev)} className="h-4 w-4" />
+            <input
+              type="checkbox"
+              checked={showHints}
+              onChange={() => setShowHints((prev) => !prev)}
+              className="h-4 w-4"
+            />
             Show scenario hints
           </label>
           <div className="inline-flex items-center gap-2">
@@ -178,7 +216,9 @@ export function CashFlowTimeline({ activity, onSubmit }: CashFlowTimelineProps) 
           <div className="grid gap-6 lg:grid-cols-[minmax(280px,1fr)_minmax(0,2fr)]">
             <section className="rounded-xl border bg-muted/20 p-4">
               <div className="mb-3 flex items-center justify-between">
-                <h3 className="text-sm font-semibold uppercase text-muted-foreground">Cash flow queue</h3>
+                <h3 className="text-sm font-semibold uppercase text-muted-foreground">
+                  Cash flow queue
+                </h3>
                 <Button variant="ghost" size="sm" onClick={reset} className="gap-2 text-xs">
                   <RotateCcw className="h-4 w-4" />
                   Reset
@@ -199,18 +239,25 @@ export function CashFlowTimeline({ activity, onSubmit }: CashFlowTimelineProps) 
                             {...dragProvided.draggableProps}
                             style={dragProvided.draggableProps.style as React.CSSProperties}
                             {...dragProvided.dragHandleProps}
-                            className={cn('rounded-lg border bg-card p-3 transition', snapshot.isDragging && 'ring-2 ring-primary')}
+                            className={cn(
+                              "rounded-lg border bg-card p-3 transition",
+                              snapshot.isDragging && "ring-2 ring-primary",
+                            )}
                           >
                             <div className="flex items-center justify-between gap-2">
                               <p className="font-semibold">{item.label}</p>
-                              <Badge variant={item.direction === 'inflow' ? 'secondary' : 'destructive'}>
-                                {item.direction === 'inflow' ? '+' : '-'}
+                              <Badge
+                                variant={item.direction === "inflow" ? "secondary" : "destructive"}
+                              >
+                                {item.direction === "inflow" ? "+" : "-"}
                                 {currencyFormatter.format(Math.abs(item.amount))}
                               </Badge>
                             </div>
                             <p className="text-sm text-muted-foreground">{item.description}</p>
                             {showHints && item.category && (
-                              <p className="mt-1 text-xs text-muted-foreground/80">Category: {item.category}</p>
+                              <p className="mt-1 text-xs text-muted-foreground/80">
+                                Category: {item.category}
+                              </p>
                             )}
                           </div>
                         )}
@@ -218,7 +265,9 @@ export function CashFlowTimeline({ activity, onSubmit }: CashFlowTimelineProps) 
                     ))}
                     {provided.placeholder}
                     {availableItems.length === 0 && (
-                      <p className="text-center text-sm text-muted-foreground">All cash events scheduled—double-check timing.</p>
+                      <p className="text-center text-sm text-muted-foreground">
+                        All cash events scheduled—double-check timing.
+                      </p>
                     )}
                   </div>
                 )}
@@ -234,15 +283,25 @@ export function CashFlowTimeline({ activity, onSubmit }: CashFlowTimelineProps) 
                       <p className="text-sm text-muted-foreground">{period.description}</p>
                     </div>
                     <div className="flex flex-wrap gap-2 text-sm">
-                      <Badge variant={netFlow >= 0 ? 'secondary' : 'destructive'} className="flex items-center gap-1">
-                        {netFlow >= 0 ? <ArrowUpRight className="h-4 w-4" /> : <ArrowDownRight className="h-4 w-4" />}
-                        {netFlow >= 0 ? '+' : '-'}{currencyFormatter.format(Math.abs(netFlow))}
+                      <Badge
+                        variant={netFlow >= 0 ? "secondary" : "destructive"}
+                        className="flex items-center gap-1"
+                      >
+                        {netFlow >= 0 ? (
+                          <ArrowUpRight className="h-4 w-4" />
+                        ) : (
+                          <ArrowDownRight className="h-4 w-4" />
+                        )}
+                        {netFlow >= 0 ? "+" : "-"}
+                        {currencyFormatter.format(Math.abs(netFlow))}
                       </Badge>
                       <Badge
                         variant="outline"
                         className={cn(
-                          'flex items-center gap-1',
-                          period.highlightThreshold !== undefined && endingBalance < period.highlightThreshold && 'border-destructive text-destructive'
+                          "flex items-center gap-1",
+                          period.highlightThreshold !== undefined &&
+                            endingBalance < period.highlightThreshold &&
+                            "border-destructive text-destructive",
                         )}
                       >
                         Balance: {currencyFormatter.format(endingBalance)}
@@ -263,24 +322,33 @@ export function CashFlowTimeline({ activity, onSubmit }: CashFlowTimelineProps) 
                               <div
                                 ref={dragProvided.innerRef}
                                 {...dragProvided.draggableProps}
-                            style={dragProvided.draggableProps.style as React.CSSProperties}
+                                style={dragProvided.draggableProps.style as React.CSSProperties}
                                 {...dragProvided.dragHandleProps}
                                 className={cn(
-                                  'rounded-lg border bg-card p-3 transition',
-                                  attempts > 0 && (item.targetId === period.id ? 'border-green-500 bg-green-50' : 'border-destructive bg-destructive/10'),
-                                  snapshot.isDragging && 'ring-2 ring-primary'
+                                  "rounded-lg border bg-card p-3 transition",
+                                  attempts > 0 &&
+                                    (item.targetId === period.id
+                                      ? "border-green-500 bg-green-50"
+                                      : "border-destructive bg-destructive/10"),
+                                  snapshot.isDragging && "ring-2 ring-primary",
                                 )}
                               >
                                 <div className="flex items-center justify-between gap-2">
                                   <p className="font-medium">{item.label}</p>
-                                  <Badge variant={item.direction === 'inflow' ? 'secondary' : 'destructive'}>
-                                    {item.direction === 'inflow' ? '+' : '-'}
+                                  <Badge
+                                    variant={
+                                      item.direction === "inflow" ? "secondary" : "destructive"
+                                    }
+                                  >
+                                    {item.direction === "inflow" ? "+" : "-"}
                                     {currencyFormatter.format(Math.abs(item.amount))}
                                   </Badge>
                                 </div>
                                 <p className="text-sm text-muted-foreground">{item.description}</p>
                                 {showHints && item.hint && (
-                                  <p className="mt-1 text-xs text-muted-foreground/80">Hint: {item.hint}</p>
+                                  <p className="mt-1 text-xs text-muted-foreground/80">
+                                    Hint: {item.hint}
+                                  </p>
                                 )}
                               </div>
                             )}
@@ -288,7 +356,9 @@ export function CashFlowTimeline({ activity, onSubmit }: CashFlowTimelineProps) 
                         ))}
                         {provided.placeholder}
                         {periodItems.length === 0 && (
-                          <p className="text-center text-xs text-muted-foreground">Drop cash events for this period</p>
+                          <p className="text-center text-xs text-muted-foreground">
+                            Drop cash events for this period
+                          </p>
                         )}
                       </div>
                     )}

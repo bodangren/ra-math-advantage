@@ -30,49 +30,49 @@
  * missing export, not durable-record staleness.
  */
 
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { planRemediationInjection } from '../planner/injection';
+import { planRemediationInjection } from "../planner/injection";
 
 interface PlannedActivity {
   readonly activityId: string;
-  readonly activityKind: 'worked_example' | 'task_blueprint' | 'skill';
+  readonly activityKind: "worked_example" | "task_blueprint" | "skill";
   readonly label: string;
 }
 
 const SIGN_ERROR_REM_1: PlannedActivity = {
-  activityId: 'math.im3.example.1.4.019',
-  activityKind: 'worked_example',
-  label: 'Worked example: sign errors when factoring',
+  activityId: "math.im3.example.1.4.019",
+  activityKind: "worked_example",
+  label: "Worked example: sign errors when factoring",
 };
 
 const SIGN_ERROR_REM_2: PlannedActivity = {
-  activityId: 'math.im3.skill.1.4.solve-quadratic-equations-by-factoring',
-  activityKind: 'skill',
-  label: 'Skill practice: solve quadratic equations by factoring',
+  activityId: "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
+  activityKind: "skill",
+  label: "Skill practice: solve quadratic equations by factoring",
 };
 
 const QUAD_FORMULA_REM: PlannedActivity = {
-  activityId: 'math.im3.example.1.6.036',
-  activityKind: 'worked_example',
-  label: 'Worked example: tracking the ± sign in the quadratic formula',
+  activityId: "math.im3.example.1.6.036",
+  activityKind: "worked_example",
+  label: "Worked example: tracking the ± sign in the quadratic formula",
 };
 
 const NORMAL_NEXT: readonly PlannedActivity[] = [
   {
-    activityId: 'math.im3.skill.2.1.solve-systems',
-    activityKind: 'skill',
-    label: 'Solve systems of equations',
+    activityId: "math.im3.skill.2.1.solve-systems",
+    activityKind: "skill",
+    label: "Solve systems of equations",
   },
   {
-    activityId: 'math.im3.skill.2.2.graph-linear',
-    activityKind: 'skill',
-    label: 'Graph linear functions',
+    activityId: "math.im3.skill.2.2.graph-linear",
+    activityKind: "skill",
+    label: "Graph linear functions",
   },
 ];
 
-describe('planRemediationInjection — empty-injected baseline', () => {
-  it('returns the next list unchanged when the injected list is empty', () => {
+describe("planRemediationInjection — empty-injected baseline", () => {
+  it("returns the next list unchanged when the injected list is empty", () => {
     const result = planRemediationInjection({
       nextActivities: NORMAL_NEXT,
       injectedActivities: [],
@@ -80,7 +80,7 @@ describe('planRemediationInjection — empty-injected baseline', () => {
     expect(result).toEqual(NORMAL_NEXT);
   });
 
-  it('returns an empty list when both next and injected are empty', () => {
+  it("returns an empty list when both next and injected are empty", () => {
     const result = planRemediationInjection({
       nextActivities: [],
       injectedActivities: [],
@@ -89,8 +89,8 @@ describe('planRemediationInjection — empty-injected baseline', () => {
   });
 });
 
-describe('planRemediationInjection — prepending injection activities', () => {
-  it('prepends a single injected activity to the front of the next list', () => {
+describe("planRemediationInjection — prepending injection activities", () => {
+  it("prepends a single injected activity to the front of the next list", () => {
     const result = planRemediationInjection({
       nextActivities: NORMAL_NEXT,
       injectedActivities: [SIGN_ERROR_REM_1],
@@ -99,7 +99,7 @@ describe('planRemediationInjection — prepending injection activities', () => {
     expect(result).toHaveLength(NORMAL_NEXT.length + 1);
   });
 
-  it('preserves the order of next activities (no shuffling)', () => {
+  it("preserves the order of next activities (no shuffling)", () => {
     const result = planRemediationInjection({
       nextActivities: NORMAL_NEXT,
       injectedActivities: [SIGN_ERROR_REM_1],
@@ -107,21 +107,17 @@ describe('planRemediationInjection — prepending injection activities', () => {
     expect(result.slice(1)).toEqual(NORMAL_NEXT);
   });
 
-  it('preserves the order of multiple injected activities (T6 injects in registry order)', () => {
+  it("preserves the order of multiple injected activities (T6 injects in registry order)", () => {
     const result = planRemediationInjection({
       nextActivities: NORMAL_NEXT,
       injectedActivities: [SIGN_ERROR_REM_1, SIGN_ERROR_REM_2, QUAD_FORMULA_REM],
     });
-    expect(result.slice(0, 3)).toEqual([
-      SIGN_ERROR_REM_1,
-      SIGN_ERROR_REM_2,
-      QUAD_FORMULA_REM,
-    ]);
+    expect(result.slice(0, 3)).toEqual([SIGN_ERROR_REM_1, SIGN_ERROR_REM_2, QUAD_FORMULA_REM]);
     expect(result.slice(3)).toEqual(NORMAL_NEXT);
     expect(result).toHaveLength(NORMAL_NEXT.length + 3);
   });
 
-  it('returns only the injected activities when the next list is empty', () => {
+  it("returns only the injected activities when the next list is empty", () => {
     const result = planRemediationInjection({
       nextActivities: [],
       injectedActivities: [SIGN_ERROR_REM_1, QUAD_FORMULA_REM],
@@ -130,8 +126,8 @@ describe('planRemediationInjection — prepending injection activities', () => {
   });
 });
 
-describe('planRemediationInjection — dedup policy (injected wins, ahead of next)', () => {
-  it('removes a next-list activity whose activityId also appears in the injected list (injected copy wins at the front)', () => {
+describe("planRemediationInjection — dedup policy (injected wins, ahead of next)", () => {
+  it("removes a next-list activity whose activityId also appears in the injected list (injected copy wins at the front)", () => {
     const nextWithDup: readonly PlannedActivity[] = [
       SIGN_ERROR_REM_1,
       NORMAL_NEXT[0],
@@ -145,7 +141,7 @@ describe('planRemediationInjection — dedup policy (injected wins, ahead of nex
     expect(result).toHaveLength(nextWithDup.length);
   });
 
-  it('removes every duplicate activityId, keeping the front-injected copy', () => {
+  it("removes every duplicate activityId, keeping the front-injected copy", () => {
     const nextWithDups: readonly PlannedActivity[] = [
       SIGN_ERROR_REM_1,
       SIGN_ERROR_REM_2,
@@ -160,8 +156,8 @@ describe('planRemediationInjection — dedup policy (injected wins, ahead of nex
   });
 });
 
-describe('planRemediationInjection — purity', () => {
-  it('does not mutate the input next-activities array or its elements', () => {
+describe("planRemediationInjection — purity", () => {
+  it("does not mutate the input next-activities array or its elements", () => {
     const nextSnap = JSON.stringify(NORMAL_NEXT);
     planRemediationInjection({
       nextActivities: NORMAL_NEXT,
@@ -170,7 +166,7 @@ describe('planRemediationInjection — purity', () => {
     expect(JSON.stringify(NORMAL_NEXT)).toBe(nextSnap);
   });
 
-  it('does not mutate the input injected-activities array or its elements', () => {
+  it("does not mutate the input injected-activities array or its elements", () => {
     const injected: readonly PlannedActivity[] = [SIGN_ERROR_REM_1, SIGN_ERROR_REM_2];
     const injectedSnap = JSON.stringify(injected);
     planRemediationInjection({

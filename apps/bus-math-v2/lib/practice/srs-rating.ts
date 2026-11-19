@@ -5,4 +5,4 @@ export {
   computeBaseRating,
   applyTimingToRating,
   mapPracticeToSrsRating,
-} from '@math-platform/practice-core';
+} from "@math-platform/practice-core";

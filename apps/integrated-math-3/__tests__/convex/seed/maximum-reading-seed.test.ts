@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { graphingExplorerSchema } from '@math-platform/math-content';
-import { getGenerator } from '@math-platform/math-content/knowledge-space';
-import type { Id } from '@/convex/_generated/dataModel';
+import { graphingExplorerSchema } from "@math-platform/math-content";
+import { getGenerator } from "@math-platform/math-content/knowledge-space";
+import type { Id } from "@/convex/_generated/dataModel";
 import {
   buildIm3MaximumReadingGuidedSeedDocuments,
   buildIm3MaximumReadingIndependentSeedDocuments,
@@ -14,44 +14,46 @@ import {
   upsertIm3MaximumReadingIndependentActivity,
   upsertIm3MaximumReadingIndependentVariant,
   upsertIm3MaximumReadingIndependentPracticeItem,
-} from '@/convex/seed/seed_lesson_1_1';
+} from "@/convex/seed/seed_lesson_1_1";
 import {
   IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
   IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
   IM3_MAXIMUM_READING_NODE,
   IM3_MAXIMUM_READING_WORKED_ACTIVITY_ID,
-} from '@/lib/practice/learning-evidence-pilot';
+} from "@/lib/practice/learning-evidence-pilot";
 
-const ACTIVITY_ID = 'activities:maximum-reading-seed' as Id<'activities'>;
+const ACTIVITY_ID = "activities:maximum-reading-seed" as Id<"activities">;
 const NOW = 100;
-const MAXIMUM_READING_RUBRIC = [{
-  criteria: 'Identify the maximum value from the displayed graph.',
-  partId: 'maximum_value',
-  points: 1,
-}];
+const MAXIMUM_READING_RUBRIC = [
+  {
+    criteria: "Identify the maximum value from the displayed graph.",
+    partId: "maximum_value",
+    points: 1,
+  },
+];
 const FORBIDDEN_PROP_KEYS = new Set([
-  'answer',
-  'answers',
-  'correctAnswer',
-  'expectedAnswer',
-  'gradingRules',
-  'gradingMetadata',
-  'partAnswers',
-  'finalAnswer',
-  'solutionSteps',
-  'isCorrect',
-  'score',
-  'maxScore',
+  "answer",
+  "answers",
+  "correctAnswer",
+  "expectedAnswer",
+  "gradingRules",
+  "gradingMetadata",
+  "partAnswers",
+  "finalAnswer",
+  "solutionSteps",
+  "isCorrect",
+  "score",
+  "maxScore",
 ]);
 
-describe('IM3 maximum-reading seed documents', () => {
-  it('builds exact deterministic Worked, Guided, and Independent documents', () => {
+describe("IM3 maximum-reading seed documents", () => {
+  it("builds exact deterministic Worked, Guided, and Independent documents", () => {
     const worked = buildIm3MaximumReadingWorkedSeedDocument(NOW);
     const guided = buildIm3MaximumReadingGuidedSeedDocuments(ACTIVITY_ID, NOW);
     const guidedAgain = buildIm3MaximumReadingGuidedSeedDocuments(ACTIVITY_ID, NOW);
     const independent = buildIm3MaximumReadingIndependentSeedDocuments(ACTIVITY_ID, NOW);
     const independentAgain = buildIm3MaximumReadingIndependentSeedDocuments(ACTIVITY_ID, NOW);
-    const generator = getGenerator('quadratic-graph-analysis');
+    const generator = getGenerator("quadratic-graph-analysis");
     const guidedGenerated = generator.generate({
       nodeId: IM3_MAXIMUM_READING_NODE,
       seed: 0,
@@ -67,13 +69,13 @@ describe('IM3 maximum-reading seed documents', () => {
     expect(buildIm3MaximumReadingGuidedSeedDocuments).toHaveLength(2);
     expect(buildIm3MaximumReadingIndependentSeedDocuments).toHaveLength(2);
     expect(worked).toEqual({
-      componentKey: 'graphing-explorer',
-      displayName: 'Identify a quadratic maximum from its graph',
-      description: 'Worked Example 2: Identify the maximum value from the graph.',
+      componentKey: "graphing-explorer",
+      displayName: "Identify a quadratic maximum from its graph",
+      description: "Worked Example 2: Identify the maximum value from the graph.",
       props: {
-        equation: 'f(x) = -x^2 + 6x - 4',
-        variant: 'plot_from_equation',
-        responseVariant: 'maximum_value',
+        equation: "f(x) = -x^2 + 6x - 4",
+        variant: "plot_from_equation",
+        responseVariant: "maximum_value",
         domain: [-2, 8],
         range: [-3, 7],
       },
@@ -81,12 +83,12 @@ describe('IM3 maximum-reading seed documents', () => {
         autoGrade: true,
         passingScore: 1,
         partialCredit: false,
-        partIds: ['maximum_value'],
+        partIds: ["maximum_value"],
         rubric: MAXIMUM_READING_RUBRIC,
       },
       stableActivityId: IM3_MAXIMUM_READING_WORKED_ACTIVITY_ID,
       masteryNodeId: IM3_MAXIMUM_READING_NODE,
-      learningEvidenceMode: 'worked_example',
+      learningEvidenceMode: "worked_example",
       srsEligible: false,
       createdAt: NOW,
       updatedAt: NOW,
@@ -95,9 +97,9 @@ describe('IM3 maximum-reading seed documents', () => {
     expect(guided).toEqual(guidedAgain);
     expect(independent).toEqual(independentAgain);
     expect(guidedGenerated.data.rendererProps).toEqual({
-      equation: 'y = -x^2 - 1',
-      variant: 'plot_from_equation',
-      responseVariant: 'maximum_value',
+      equation: "y = -x^2 - 1",
+      variant: "plot_from_equation",
+      responseVariant: "maximum_value",
       domain: [-5, 5],
       range: [-10, 10],
     });
@@ -105,18 +107,18 @@ describe('IM3 maximum-reading seed documents', () => {
     expect(guidedGenerated.gradingMetadata).toEqual({
       partAnswers: { maximum_value: -1 },
       partMaxScores: { maximum_value: 1 },
-      partGradingRules: { maximum_value: 'numeric_tolerance' },
+      partGradingRules: { maximum_value: "numeric_tolerance" },
     });
     expect(guided.activity).toEqual({
-      componentKey: 'graphing-explorer',
-      displayName: 'Guided maximum value from a quadratic graph',
-      description: 'Use the graph of a quadratic function to identify its maximum value.',
+      componentKey: "graphing-explorer",
+      displayName: "Guided maximum value from a quadratic graph",
+      description: "Use the graph of a quadratic function to identify its maximum value.",
       props: guidedGenerated.data.rendererProps,
       gradingConfig: {
         autoGrade: true,
         passingScore: 1,
         partialCredit: false,
-        partIds: ['maximum_value'],
+        partIds: ["maximum_value"],
         rubric: MAXIMUM_READING_RUBRIC,
       },
       stableActivityId: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
@@ -128,13 +130,13 @@ describe('IM3 maximum-reading seed documents', () => {
     expect(guided.variant).toEqual({
       variantKey: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
       legacyProblemFamilyId: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
-      migrationVersion: 'kst-srs.v3.2',
+      migrationVersion: "kst-srs.v3.2",
       sourceTimestamp: NOW,
-      componentKey: 'graphing-explorer',
-      displayName: 'Guided maximum value from a quadratic graph',
-      description: 'Use the graph to identify the maximum value of the quadratic.',
+      componentKey: "graphing-explorer",
+      displayName: "Guided maximum value from a quadratic graph",
+      description: "Use the graph to identify the maximum value of the quadratic.",
       objectiveIds: [IM3_MAXIMUM_READING_NODE],
-      difficulty: 'standard',
+      difficulty: "standard",
       metadata: { stableActivityId: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID },
     });
     expect(guided.item).toEqual({
@@ -142,29 +144,29 @@ describe('IM3 maximum-reading seed documents', () => {
       activityId: ACTIVITY_ID,
       variantKey: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
       legacyProblemFamilyId: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
-      migrationVersion: 'kst-srs.v3.2',
+      migrationVersion: "kst-srs.v3.2",
       sourceTimestamp: NOW,
-      variantLabel: 'Seed 0',
+      variantLabel: "Seed 0",
     });
     expect(graphingExplorerSchema.parse(guided.activity.props)).toEqual(guided.activity.props);
     expect(independentGenerated.data.rendererProps).toEqual({
-      equation: 'y = -x^2 + 2',
-      variant: 'plot_from_equation',
-      responseVariant: 'maximum_value',
+      equation: "y = -x^2 + 2",
+      variant: "plot_from_equation",
+      responseVariant: "maximum_value",
       domain: [-5, 5],
       range: [-10, 10],
     });
     expect(independentGenerated.expectedAnswer).toEqual({ maximum_value: 2 });
     expect(independent.activity).toEqual({
-      componentKey: 'graphing-explorer',
-      displayName: 'Independent maximum value from a quadratic graph',
-      description: 'Independent practice for the maximum value from a quadratic graph.',
+      componentKey: "graphing-explorer",
+      displayName: "Independent maximum value from a quadratic graph",
+      description: "Independent practice for the maximum value from a quadratic graph.",
       props: independentGenerated.data.rendererProps,
       gradingConfig: {
         autoGrade: true,
         passingScore: 1,
         partialCredit: false,
-        partIds: ['maximum_value'],
+        partIds: ["maximum_value"],
         rubric: MAXIMUM_READING_RUBRIC,
       },
       stableActivityId: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
@@ -176,13 +178,13 @@ describe('IM3 maximum-reading seed documents', () => {
     expect(independent.variant).toEqual({
       variantKey: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
       legacyProblemFamilyId: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
-      migrationVersion: 'kst-srs.v3.2',
+      migrationVersion: "kst-srs.v3.2",
       sourceTimestamp: NOW,
-      componentKey: 'graphing-explorer',
-      displayName: 'Independent maximum value from a quadratic graph',
-      description: 'Practice identifying the maximum value of a quadratic graph.',
+      componentKey: "graphing-explorer",
+      displayName: "Independent maximum value from a quadratic graph",
+      description: "Practice identifying the maximum value of a quadratic graph.",
       objectiveIds: [IM3_MAXIMUM_READING_NODE],
-      difficulty: 'standard',
+      difficulty: "standard",
       metadata: { stableActivityId: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID },
     });
     expect(independent.item).toEqual({
@@ -190,15 +192,16 @@ describe('IM3 maximum-reading seed documents', () => {
       activityId: ACTIVITY_ID,
       variantKey: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
       legacyProblemFamilyId: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
-      migrationVersion: 'kst-srs.v3.2',
+      migrationVersion: "kst-srs.v3.2",
       sourceTimestamp: NOW,
-      variantLabel: 'Seed 34',
+      variantLabel: "Seed 34",
     });
-    expect(graphingExplorerSchema.parse(independent.activity.props))
-      .toEqual(independent.activity.props);
+    expect(graphingExplorerSchema.parse(independent.activity.props)).toEqual(
+      independent.activity.props,
+    );
 
     const scanProps = (value: unknown): void => {
-      if (!value || typeof value !== 'object') return;
+      if (!value || typeof value !== "object") return;
       if (Array.isArray(value)) {
         value.forEach(scanProps);
         return;
@@ -213,18 +216,19 @@ describe('IM3 maximum-reading seed documents', () => {
     scanProps(independent.activity.props);
   });
 
-  it('upserts the maximum-reading Worked activity by stable identity', async () => {
+  it("upserts the maximum-reading Worked activity by stable identity", async () => {
     const operations: string[] = [];
     let stored: Record<string, unknown> | undefined;
-    const storedActivityId = 'activities:maximum-reading-worked' as Id<'activities'>;
+    const storedActivityId = "activities:maximum-reading-worked" as Id<"activities">;
     const ctx = {
       db: {
         query(table: string) {
           operations.push(`query:${table}`);
           return {
-            withIndex(index: string, callback: (query: {
-              eq: (field: string, value: unknown) => unknown;
-            }) => unknown) {
+            withIndex(
+              index: string,
+              callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+            ) {
               operations.push(`index:${index}`);
               callback({
                 eq: (field: string, value: unknown) => {
@@ -234,7 +238,7 @@ describe('IM3 maximum-reading seed documents', () => {
               });
               return {
                 unique: async () => {
-                  operations.push('unique');
+                  operations.push("unique");
                   return stored ? { ...stored, _id: storedActivityId } : null;
                 },
               };
@@ -246,7 +250,7 @@ describe('IM3 maximum-reading seed documents', () => {
           stored = { ...document, _id: storedActivityId };
           return storedActivityId;
         },
-        patch: async (id: Id<'activities'>, document: Record<string, unknown>) => {
+        patch: async (id: Id<"activities">, document: Record<string, unknown>) => {
           operations.push(`patch:${id}`);
           stored = { ...stored, ...document, _id: id };
         },
@@ -259,15 +263,15 @@ describe('IM3 maximum-reading seed documents', () => {
     expect(firstId).toBe(storedActivityId);
     expect(secondId).toBe(storedActivityId);
     expect(operations).toEqual([
-      'query:activities',
-      'index:by_stable_activity_id',
+      "query:activities",
+      "index:by_stable_activity_id",
       `eq:stableActivityId:${IM3_MAXIMUM_READING_WORKED_ACTIVITY_ID}`,
-      'unique',
-      'insert:activities',
-      'query:activities',
-      'index:by_stable_activity_id',
+      "unique",
+      "insert:activities",
+      "query:activities",
+      "index:by_stable_activity_id",
       `eq:stableActivityId:${IM3_MAXIMUM_READING_WORKED_ACTIVITY_ID}`,
-      'unique',
+      "unique",
       `patch:${storedActivityId}`,
     ]);
     expect(stored).toEqual({
@@ -275,23 +279,27 @@ describe('IM3 maximum-reading seed documents', () => {
       createdAt: 100,
       _id: storedActivityId,
     });
-    expect(operations.filter((operation) => (
-      operation.includes('practice_variants') || operation.includes('practice_items')
-    ))).toEqual([]);
+    expect(
+      operations.filter(
+        (operation) =>
+          operation.includes("practice_variants") || operation.includes("practice_items"),
+      ),
+    ).toEqual([]);
   });
 
-  it('upserts the maximum-reading Guided activity by stable identity', async () => {
+  it("upserts the maximum-reading Guided activity by stable identity", async () => {
     const operations: string[] = [];
     let stored: Record<string, unknown> | undefined;
-    const storedActivityId = 'activities:maximum-reading-guided' as Id<'activities'>;
+    const storedActivityId = "activities:maximum-reading-guided" as Id<"activities">;
     const ctx = {
       db: {
         query(table: string) {
           operations.push(`query:${table}`);
           return {
-            withIndex(index: string, callback: (query: {
-              eq: (field: string, value: unknown) => unknown;
-            }) => unknown) {
+            withIndex(
+              index: string,
+              callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+            ) {
               operations.push(`index:${index}`);
               callback({
                 eq: (field: string, value: unknown) => {
@@ -301,7 +309,7 @@ describe('IM3 maximum-reading seed documents', () => {
               });
               return {
                 unique: async () => {
-                  operations.push('unique');
+                  operations.push("unique");
                   return stored ? { ...stored, _id: storedActivityId } : null;
                 },
               };
@@ -313,7 +321,7 @@ describe('IM3 maximum-reading seed documents', () => {
           stored = { ...document, _id: storedActivityId };
           return storedActivityId;
         },
-        patch: async (id: Id<'activities'>, document: Record<string, unknown>) => {
+        patch: async (id: Id<"activities">, document: Record<string, unknown>) => {
           operations.push(`patch:${id}`);
           stored = { ...stored, ...document, _id: id };
         },
@@ -326,15 +334,15 @@ describe('IM3 maximum-reading seed documents', () => {
     expect(firstId).toBe(storedActivityId);
     expect(secondId).toBe(storedActivityId);
     expect(operations).toEqual([
-      'query:activities',
-      'index:by_stable_activity_id',
+      "query:activities",
+      "index:by_stable_activity_id",
       `eq:stableActivityId:${IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID}`,
-      'unique',
-      'insert:activities',
-      'query:activities',
-      'index:by_stable_activity_id',
+      "unique",
+      "insert:activities",
+      "query:activities",
+      "index:by_stable_activity_id",
       `eq:stableActivityId:${IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID}`,
-      'unique',
+      "unique",
       `patch:${storedActivityId}`,
     ]);
     expect(stored).toEqual({
@@ -347,23 +355,27 @@ describe('IM3 maximum-reading seed documents', () => {
       masteryNodeId: IM3_MAXIMUM_READING_NODE,
       srsEligible: true,
     });
-    expect(operations.filter((operation) => (
-      operation.includes('practice_variants') || operation.includes('practice_items')
-    ))).toEqual([]);
+    expect(
+      operations.filter(
+        (operation) =>
+          operation.includes("practice_variants") || operation.includes("practice_items"),
+      ),
+    ).toEqual([]);
   });
 
-  it('upserts the maximum-reading Guided variant by stable identity', async () => {
+  it("upserts the maximum-reading Guided variant by stable identity", async () => {
     const operations: string[] = [];
     let stored: Record<string, unknown> | undefined;
-    const storedVariantId = 'practice_variants:maximum-reading-guided' as Id<'practice_variants'>;
+    const storedVariantId = "practice_variants:maximum-reading-guided" as Id<"practice_variants">;
     const ctx = {
       db: {
         query(table: string) {
           operations.push(`query:${table}`);
           return {
-            withIndex(index: string, callback: (query: {
-              eq: (field: string, value: unknown) => unknown;
-            }) => unknown) {
+            withIndex(
+              index: string,
+              callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+            ) {
               operations.push(`index:${index}`);
               callback({
                 eq: (field: string, value: unknown) => {
@@ -373,7 +385,7 @@ describe('IM3 maximum-reading seed documents', () => {
               });
               return {
                 unique: async () => {
-                  operations.push('unique');
+                  operations.push("unique");
                   return stored ? { ...stored, _id: storedVariantId } : null;
                 },
               };
@@ -385,7 +397,7 @@ describe('IM3 maximum-reading seed documents', () => {
           stored = { ...document, _id: storedVariantId };
           return storedVariantId;
         },
-        patch: async (id: Id<'practice_variants'>, document: Record<string, unknown>) => {
+        patch: async (id: Id<"practice_variants">, document: Record<string, unknown>) => {
           operations.push(`patch:${id}`);
           stored = { ...stored, ...document, _id: id };
         },
@@ -398,22 +410,20 @@ describe('IM3 maximum-reading seed documents', () => {
     expect(firstId).toBe(storedVariantId);
     expect(secondId).toBe(storedVariantId);
     expect(operations).toEqual([
-      'query:practice_variants',
-      'index:by_variantKey',
+      "query:practice_variants",
+      "index:by_variantKey",
       `eq:variantKey:${IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID}`,
-      'unique',
-      'insert:practice_variants',
-      'query:practice_variants',
-      'index:by_variantKey',
+      "unique",
+      "insert:practice_variants",
+      "query:practice_variants",
+      "index:by_variantKey",
       `eq:variantKey:${IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID}`,
-      'unique',
+      "unique",
       `patch:${storedVariantId}`,
     ]);
     expect(stored).toEqual({
-      ...buildIm3MaximumReadingGuidedSeedDocuments(
-        'activities:pending' as Id<'activities'>,
-        200,
-      ).variant,
+      ...buildIm3MaximumReadingGuidedSeedDocuments("activities:pending" as Id<"activities">, 200)
+        .variant,
       _id: storedVariantId,
     });
     expect(stored).toMatchObject({
@@ -421,24 +431,27 @@ describe('IM3 maximum-reading seed documents', () => {
       objectiveIds: [IM3_MAXIMUM_READING_NODE],
       metadata: { stableActivityId: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID },
     });
-    expect(operations.filter((operation) => (
-      operation.includes('activities') || operation.includes('practice_items')
-    ))).toEqual([]);
+    expect(
+      operations.filter(
+        (operation) => operation.includes("activities") || operation.includes("practice_items"),
+      ),
+    ).toEqual([]);
   });
 
-  it('upserts the maximum-reading Guided practice item by linked identity', async () => {
+  it("upserts the maximum-reading Guided practice item by linked identity", async () => {
     const operations: string[] = [];
     let stored: Record<string, unknown> | undefined;
-    const activityId = 'activities:maximum-reading-guided' as Id<'activities'>;
-    const storedItemId = 'practice_items:maximum-reading-guided' as Id<'practice_items'>;
+    const activityId = "activities:maximum-reading-guided" as Id<"activities">;
+    const storedItemId = "practice_items:maximum-reading-guided" as Id<"practice_items">;
     const ctx = {
       db: {
         query(table: string) {
           operations.push(`query:${table}`);
           return {
-            withIndex(index: string, callback: (query: {
-              eq: (field: string, value: unknown) => unknown;
-            }) => unknown) {
+            withIndex(
+              index: string,
+              callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+            ) {
               operations.push(`index:${index}`);
               callback({
                 eq: (field: string, value: unknown) => {
@@ -460,7 +473,7 @@ describe('IM3 maximum-reading seed documents', () => {
           stored = { ...document, _id: storedItemId };
           return storedItemId;
         },
-        patch: async (id: Id<'practice_items'>, document: Record<string, unknown>) => {
+        patch: async (id: Id<"practice_items">, document: Record<string, unknown>) => {
           operations.push(`patch:${id}`);
           stored = { ...stored, ...document, _id: id };
         },
@@ -473,23 +486,23 @@ describe('IM3 maximum-reading seed documents', () => {
     expect(firstId).toBe(storedItemId);
     expect(secondId).toBe(storedItemId);
     expect(operations).toEqual([
-      'query:practice_items',
-      'index:by_variantKey',
+      "query:practice_items",
+      "index:by_variantKey",
       `eq:variantKey:${IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID}`,
-      'take:2',
-      'query:practice_items',
-      'index:by_activityId',
+      "take:2",
+      "query:practice_items",
+      "index:by_activityId",
       `eq:activityId:${activityId}`,
-      'take:2',
-      'insert:practice_items',
-      'query:practice_items',
-      'index:by_variantKey',
+      "take:2",
+      "insert:practice_items",
+      "query:practice_items",
+      "index:by_variantKey",
       `eq:variantKey:${IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID}`,
-      'take:2',
-      'query:practice_items',
-      'index:by_activityId',
+      "take:2",
+      "query:practice_items",
+      "index:by_activityId",
       `eq:activityId:${activityId}`,
-      'take:2',
+      "take:2",
       `patch:${storedItemId}`,
     ]);
     expect(stored).toEqual({
@@ -500,33 +513,37 @@ describe('IM3 maximum-reading seed documents', () => {
       practiceItemId: `${IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID}:seed-0`,
       activityId,
       variantKey: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
-      variantLabel: 'Seed 0',
+      variantLabel: "Seed 0",
       sourceTimestamp: 200,
     });
-    expect(operations.filter((operation) => operation.startsWith('query:') && (
-      !operation.includes('practice_items')
-    ))).toEqual([]);
+    expect(
+      operations.filter(
+        (operation) => operation.startsWith("query:") && !operation.includes("practice_items"),
+      ),
+    ).toEqual([]);
   });
 
-  it('rejects a conflicting maximum-reading Guided practice-item mapping before writes', async () => {
+  it("rejects a conflicting maximum-reading Guided practice-item mapping before writes", async () => {
     const operations: string[] = [];
-    const activityId = 'activities:maximum-reading-guided-conflict' as Id<'activities'>;
-    const conflictingItemId = 'practice_items:maximum-reading-guided-conflict' as Id<'practice_items'>;
+    const activityId = "activities:maximum-reading-guided-conflict" as Id<"activities">;
+    const conflictingItemId =
+      "practice_items:maximum-reading-guided-conflict" as Id<"practice_items">;
     const conflictingRow = {
       _id: conflictingItemId,
       practiceItemId: `${IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID}:conflict`,
       activityId,
       variantKey: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
-      variantLabel: 'Seed 0',
+      variantLabel: "Seed 0",
     };
     const ctx = {
       db: {
         query(table: string) {
           operations.push(`query:${table}`);
           return {
-            withIndex(index: string, callback: (query: {
-              eq: (field: string, value: unknown) => unknown;
-            }) => unknown) {
+            withIndex(
+              index: string,
+              callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+            ) {
               operations.push(`index:${index}`);
               callback({
                 eq: (field: string, value: unknown) => {
@@ -537,14 +554,14 @@ describe('IM3 maximum-reading seed documents', () => {
               return {
                 take: async (limit: number) => {
                   operations.push(`take:${limit}`);
-                  return index === 'by_variantKey' ? [conflictingRow] : [];
+                  return index === "by_variantKey" ? [conflictingRow] : [];
                 },
               };
             },
           };
         },
         insert: async () => {
-          operations.push('insert:practice_items');
+          operations.push("insert:practice_items");
           return conflictingItemId;
         },
         patch: async () => {
@@ -553,36 +570,39 @@ describe('IM3 maximum-reading seed documents', () => {
       },
     } as never;
 
-    await expect(
-      upsertIm3MaximumReadingGuidedPracticeItem(ctx, activityId, 100),
-    ).rejects.toThrow('Duplicate or conflicting IM3 maximum-reading Guided practice-item mapping');
+    await expect(upsertIm3MaximumReadingGuidedPracticeItem(ctx, activityId, 100)).rejects.toThrow(
+      "Duplicate or conflicting IM3 maximum-reading Guided practice-item mapping",
+    );
     expect(operations).toEqual([
-      'query:practice_items',
-      'index:by_variantKey',
+      "query:practice_items",
+      "index:by_variantKey",
       `eq:variantKey:${IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID}`,
-      'take:2',
-      'query:practice_items',
-      'index:by_activityId',
+      "take:2",
+      "query:practice_items",
+      "index:by_activityId",
       `eq:activityId:${activityId}`,
-      'take:2',
+      "take:2",
     ]);
-    expect(operations.filter((operation) => (
-      operation.startsWith('insert:') || operation.startsWith('patch:')
-    ))).toEqual([]);
+    expect(
+      operations.filter(
+        (operation) => operation.startsWith("insert:") || operation.startsWith("patch:"),
+      ),
+    ).toEqual([]);
   });
 
-  it('upserts the maximum-reading Independent activity by stable identity', async () => {
+  it("upserts the maximum-reading Independent activity by stable identity", async () => {
     const operations: string[] = [];
     let stored: Record<string, unknown> | undefined;
-    const storedActivityId = 'activities:maximum-reading-independent' as Id<'activities'>;
+    const storedActivityId = "activities:maximum-reading-independent" as Id<"activities">;
     const ctx = {
       db: {
         query(table: string) {
           operations.push(`query:${table}`);
           return {
-            withIndex(index: string, callback: (query: {
-              eq: (field: string, value: unknown) => unknown;
-            }) => unknown) {
+            withIndex(
+              index: string,
+              callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+            ) {
               operations.push(`index:${index}`);
               callback({
                 eq: (field: string, value: unknown) => {
@@ -592,7 +612,7 @@ describe('IM3 maximum-reading seed documents', () => {
               });
               return {
                 unique: async () => {
-                  operations.push('unique');
+                  operations.push("unique");
                   return stored ? { ...stored, _id: storedActivityId } : null;
                 },
               };
@@ -604,7 +624,7 @@ describe('IM3 maximum-reading seed documents', () => {
           stored = { ...document, _id: storedActivityId };
           return storedActivityId;
         },
-        patch: async (id: Id<'activities'>, document: Record<string, unknown>) => {
+        patch: async (id: Id<"activities">, document: Record<string, unknown>) => {
           operations.push(`patch:${id}`);
           stored = { ...stored, ...document, _id: id };
         },
@@ -617,15 +637,15 @@ describe('IM3 maximum-reading seed documents', () => {
     expect(firstId).toBe(storedActivityId);
     expect(secondId).toBe(storedActivityId);
     expect(operations).toEqual([
-      'query:activities',
-      'index:by_stable_activity_id',
+      "query:activities",
+      "index:by_stable_activity_id",
       `eq:stableActivityId:${IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID}`,
-      'unique',
-      'insert:activities',
-      'query:activities',
-      'index:by_stable_activity_id',
+      "unique",
+      "insert:activities",
+      "query:activities",
+      "index:by_stable_activity_id",
       `eq:stableActivityId:${IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID}`,
-      'unique',
+      "unique",
       `patch:${storedActivityId}`,
     ]);
     expect(stored).toEqual({
@@ -638,23 +658,28 @@ describe('IM3 maximum-reading seed documents', () => {
       masteryNodeId: IM3_MAXIMUM_READING_NODE,
       srsEligible: true,
     });
-    expect(operations.filter((operation) => (
-      operation.includes('practice_variants') || operation.includes('practice_items')
-    ))).toEqual([]);
+    expect(
+      operations.filter(
+        (operation) =>
+          operation.includes("practice_variants") || operation.includes("practice_items"),
+      ),
+    ).toEqual([]);
   });
 
-  it('upserts the maximum-reading Independent variant by stable identity', async () => {
+  it("upserts the maximum-reading Independent variant by stable identity", async () => {
     const operations: string[] = [];
     let stored: Record<string, unknown> | undefined;
-    const storedVariantId = 'practice_variants:maximum-reading-independent' as Id<'practice_variants'>;
+    const storedVariantId =
+      "practice_variants:maximum-reading-independent" as Id<"practice_variants">;
     const ctx = {
       db: {
         query(table: string) {
           operations.push(`query:${table}`);
           return {
-            withIndex(index: string, callback: (query: {
-              eq: (field: string, value: unknown) => unknown;
-            }) => unknown) {
+            withIndex(
+              index: string,
+              callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+            ) {
               operations.push(`index:${index}`);
               callback({
                 eq: (field: string, value: unknown) => {
@@ -664,7 +689,7 @@ describe('IM3 maximum-reading seed documents', () => {
               });
               return {
                 unique: async () => {
-                  operations.push('unique');
+                  operations.push("unique");
                   return stored ? { ...stored, _id: storedVariantId } : null;
                 },
               };
@@ -676,7 +701,7 @@ describe('IM3 maximum-reading seed documents', () => {
           stored = { ...document, _id: storedVariantId };
           return storedVariantId;
         },
-        patch: async (id: Id<'practice_variants'>, document: Record<string, unknown>) => {
+        patch: async (id: Id<"practice_variants">, document: Record<string, unknown>) => {
           operations.push(`patch:${id}`);
           stored = { ...stored, ...document, _id: id };
         },
@@ -689,20 +714,20 @@ describe('IM3 maximum-reading seed documents', () => {
     expect(firstId).toBe(storedVariantId);
     expect(secondId).toBe(storedVariantId);
     expect(operations).toEqual([
-      'query:practice_variants',
-      'index:by_variantKey',
+      "query:practice_variants",
+      "index:by_variantKey",
       `eq:variantKey:${IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID}`,
-      'unique',
-      'insert:practice_variants',
-      'query:practice_variants',
-      'index:by_variantKey',
+      "unique",
+      "insert:practice_variants",
+      "query:practice_variants",
+      "index:by_variantKey",
       `eq:variantKey:${IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID}`,
-      'unique',
+      "unique",
       `patch:${storedVariantId}`,
     ]);
     expect(stored).toEqual({
       ...buildIm3MaximumReadingIndependentSeedDocuments(
-        'activities:pending' as Id<'activities'>,
+        "activities:pending" as Id<"activities">,
         200,
       ).variant,
       _id: storedVariantId,
@@ -712,29 +737,32 @@ describe('IM3 maximum-reading seed documents', () => {
       legacyProblemFamilyId: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
       objectiveIds: [IM3_MAXIMUM_READING_NODE],
       metadata: { stableActivityId: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID },
-      migrationVersion: 'kst-srs.v3.2',
-      componentKey: 'graphing-explorer',
-      difficulty: 'standard',
+      migrationVersion: "kst-srs.v3.2",
+      componentKey: "graphing-explorer",
+      difficulty: "standard",
       sourceTimestamp: 200,
     });
-    expect(operations.filter((operation) => (
-      operation.includes('activities') || operation.includes('practice_items')
-    ))).toEqual([]);
+    expect(
+      operations.filter(
+        (operation) => operation.includes("activities") || operation.includes("practice_items"),
+      ),
+    ).toEqual([]);
   });
 
-  it('upserts the maximum-reading Independent practice item by linked identity', async () => {
+  it("upserts the maximum-reading Independent practice item by linked identity", async () => {
     const operations: string[] = [];
     let stored: Record<string, unknown> | undefined;
-    const activityId = 'activities:maximum-reading-independent' as Id<'activities'>;
-    const storedItemId = 'practice_items:maximum-reading-independent' as Id<'practice_items'>;
+    const activityId = "activities:maximum-reading-independent" as Id<"activities">;
+    const storedItemId = "practice_items:maximum-reading-independent" as Id<"practice_items">;
     const ctx = {
       db: {
         query(table: string) {
           operations.push(`query:${table}`);
           return {
-            withIndex(index: string, callback: (query: {
-              eq: (field: string, value: unknown) => unknown;
-            }) => unknown) {
+            withIndex(
+              index: string,
+              callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+            ) {
               operations.push(`index:${index}`);
               callback({
                 eq: (field: string, value: unknown) => {
@@ -756,44 +784,36 @@ describe('IM3 maximum-reading seed documents', () => {
           stored = { ...document, _id: storedItemId };
           return storedItemId;
         },
-        patch: async (id: Id<'practice_items'>, document: Record<string, unknown>) => {
+        patch: async (id: Id<"practice_items">, document: Record<string, unknown>) => {
           operations.push(`patch:${id}`);
           stored = { ...stored, ...document, _id: id };
         },
       },
     } as never;
 
-    const firstId = await upsertIm3MaximumReadingIndependentPracticeItem(
-      ctx,
-      activityId,
-      100,
-    );
-    const secondId = await upsertIm3MaximumReadingIndependentPracticeItem(
-      ctx,
-      activityId,
-      200,
-    );
+    const firstId = await upsertIm3MaximumReadingIndependentPracticeItem(ctx, activityId, 100);
+    const secondId = await upsertIm3MaximumReadingIndependentPracticeItem(ctx, activityId, 200);
 
     expect(firstId).toBe(storedItemId);
     expect(secondId).toBe(storedItemId);
     expect(operations).toEqual([
-      'query:practice_items',
-      'index:by_variantKey',
+      "query:practice_items",
+      "index:by_variantKey",
       `eq:variantKey:${IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID}`,
-      'take:2',
-      'query:practice_items',
-      'index:by_activityId',
+      "take:2",
+      "query:practice_items",
+      "index:by_activityId",
       `eq:activityId:${activityId}`,
-      'take:2',
-      'insert:practice_items',
-      'query:practice_items',
-      'index:by_variantKey',
+      "take:2",
+      "insert:practice_items",
+      "query:practice_items",
+      "index:by_variantKey",
       `eq:variantKey:${IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID}`,
-      'take:2',
-      'query:practice_items',
-      'index:by_activityId',
+      "take:2",
+      "query:practice_items",
+      "index:by_activityId",
       `eq:activityId:${activityId}`,
-      'take:2',
+      "take:2",
       `patch:${storedItemId}`,
     ]);
     expect(stored).toEqual({
@@ -804,36 +824,41 @@ describe('IM3 maximum-reading seed documents', () => {
       practiceItemId: `${IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID}:seed-34`,
       activityId,
       variantKey: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
-      variantLabel: 'Seed 34',
+      variantLabel: "Seed 34",
       sourceTimestamp: 200,
     });
-    expect(operations.filter((operation) => (
-      operation === 'insert:activities'
-      || operation === 'patch:activities'
-      || operation === 'insert:practice_variants'
-      || operation === 'patch:practice_variants'
-    ))).toEqual([]);
+    expect(
+      operations.filter(
+        (operation) =>
+          operation === "insert:activities" ||
+          operation === "patch:activities" ||
+          operation === "insert:practice_variants" ||
+          operation === "patch:practice_variants",
+      ),
+    ).toEqual([]);
   });
 
-  it('rejects a conflicting maximum-reading Independent practice-item mapping before writes', async () => {
+  it("rejects a conflicting maximum-reading Independent practice-item mapping before writes", async () => {
     const operations: string[] = [];
-    const activityId = 'activities:maximum-reading-independent-conflict' as Id<'activities'>;
-    const conflictingItemId = 'practice_items:maximum-reading-independent-conflict' as Id<'practice_items'>;
+    const activityId = "activities:maximum-reading-independent-conflict" as Id<"activities">;
+    const conflictingItemId =
+      "practice_items:maximum-reading-independent-conflict" as Id<"practice_items">;
     const conflictingRow = {
       _id: conflictingItemId,
       practiceItemId: `${IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID}:conflict`,
       activityId,
       variantKey: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
-      variantLabel: 'Seed 34',
+      variantLabel: "Seed 34",
     };
     const ctx = {
       db: {
         query(table: string) {
           operations.push(`query:${table}`);
           return {
-            withIndex(index: string, callback: (query: {
-              eq: (field: string, value: unknown) => unknown;
-            }) => unknown) {
+            withIndex(
+              index: string,
+              callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+            ) {
               operations.push(`index:${index}`);
               callback({
                 eq: (field: string, value: unknown) => {
@@ -844,14 +869,14 @@ describe('IM3 maximum-reading seed documents', () => {
               return {
                 take: async (limit: number) => {
                   operations.push(`take:${limit}`);
-                  return index === 'by_variantKey' ? [conflictingRow] : [];
+                  return index === "by_variantKey" ? [conflictingRow] : [];
                 },
               };
             },
           };
         },
         insert: async () => {
-          operations.push('insert:practice_items');
+          operations.push("insert:practice_items");
           return conflictingItemId;
         },
         patch: async () => {
@@ -862,19 +887,23 @@ describe('IM3 maximum-reading seed documents', () => {
 
     await expect(
       upsertIm3MaximumReadingIndependentPracticeItem(ctx, activityId, 100),
-    ).rejects.toThrow('Duplicate or conflicting IM3 maximum-reading Independent practice-item mapping');
+    ).rejects.toThrow(
+      "Duplicate or conflicting IM3 maximum-reading Independent practice-item mapping",
+    );
     expect(operations).toEqual([
-      'query:practice_items',
-      'index:by_variantKey',
+      "query:practice_items",
+      "index:by_variantKey",
       `eq:variantKey:${IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID}`,
-      'take:2',
-      'query:practice_items',
-      'index:by_activityId',
+      "take:2",
+      "query:practice_items",
+      "index:by_activityId",
       `eq:activityId:${activityId}`,
-      'take:2',
+      "take:2",
     ]);
-    expect(operations.filter((operation) => (
-      operation.startsWith('insert:') || operation.startsWith('patch:')
-    ))).toEqual([]);
+    expect(
+      operations.filter(
+        (operation) => operation.startsWith("insert:") || operation.startsWith("patch:"),
+      ),
+    ).toEqual([]);
   });
 });

@@ -89,8 +89,20 @@ function assertFixtureDirectoriesAbsent() {
 
 function runOxlint(filePaths, extraArgs = []) {
   const paths = Array.isArray(filePaths) ? filePaths : [filePaths];
-  const args = ["--config", RUNTIME_CONFIG_PATH, "--no-ignore", "--format", "json", ...extraArgs, ...paths];
-  const result = spawnSync(OXLINT, args, { cwd: ROOT, encoding: "utf8", maxBuffer: 32 * 1024 * 1024 });
+  const args = [
+    "--config",
+    RUNTIME_CONFIG_PATH,
+    "--no-ignore",
+    "--format",
+    "json",
+    ...extraArgs,
+    ...paths,
+  ];
+  const result = spawnSync(OXLINT, args, {
+    cwd: ROOT,
+    encoding: "utf8",
+    maxBuffer: 32 * 1024 * 1024,
+  });
   let parsed;
   try {
     parsed = JSON.parse(result.stdout || "{}");
@@ -115,7 +127,12 @@ function expectedCode(targetRule) {
   if (separator === -1) return `eslint(${targetRule})`;
   const scope = targetRule.slice(0, separator);
   const ruleName = targetRule.slice(separator + 1);
-  const diagnosticScope = scope === "nextjs" ? "next" : scope === "react" && ["rules-of-hooks", "exhaustive-deps"].includes(ruleName) ? "react-hooks" : scope;
+  const diagnosticScope =
+    scope === "nextjs"
+      ? "next"
+      : scope === "react" && ["rules-of-hooks", "exhaustive-deps"].includes(ruleName)
+        ? "react-hooks"
+        : scope;
   return `${diagnosticScope}(${ruleName})`;
 }
 
@@ -132,7 +149,11 @@ function caseFilePath(testCase) {
 
 function runCases(testCases) {
   const filePaths = testCases.map((testCase) => caseFilePath(testCase));
-  assert.equal(new Set(filePaths).size, filePaths.length, "selected cases must use unique fixture paths");
+  assert.equal(
+    new Set(filePaths).size,
+    filePaths.length,
+    "selected cases must use unique fixture paths",
+  );
   for (const [index, filePath] of filePaths.entries()) {
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
     fs.writeFileSync(filePath, testCases[index].source, "utf8");
@@ -201,7 +222,11 @@ test("migration policy and cases have matching schema-shaped records", () => {
   assert.equal(reviewExceptions.schemaVersion, 1);
   const exceptionIds = new Set();
   for (const exception of reviewExceptions.exceptions) {
-    assert.equal(exceptionIds.has(exception.policyId), false, `duplicate review exception: ${exception.policyId}`);
+    assert.equal(
+      exceptionIds.has(exception.policyId),
+      false,
+      `duplicate review exception: ${exception.policyId}`,
+    );
     exceptionIds.add(exception.policyId);
     const entry = entryById.get(exception.policyId);
     assert.ok(entry, `${exception.policyId} review exception references an unknown policy entry`);
@@ -214,7 +239,9 @@ test("migration policy and cases have matching schema-shaped records", () => {
       .map((testCase) => testCase.policyId),
   );
   assert.deepEqual(
-    [...activePolicyIds].filter((policyId) => !violatingPolicyIds.has(policyId) && !exceptionIds.has(policyId)),
+    [...activePolicyIds].filter(
+      (policyId) => !violatingPolicyIds.has(policyId) && !exceptionIds.has(policyId),
+    ),
     [],
     "every active policy entry requires a diagnostic-producing violation case or an explicit review exception",
   );
@@ -231,9 +258,20 @@ test("review exceptions have explicit owner approval", () => {
 test("standard config has the explicit native policy and separate anti-slop boundary", () => {
   const config = readJson(CONFIG_PATH);
   assert.deepEqual(config.plugins, ["typescript", "react", "import", "jsx-a11y", "nextjs"]);
-  assert.deepEqual(config.jsPlugins.map((plugin) => plugin.name), ["eslint-js", "react-js", "react-hooks-js"]);
+  assert.deepEqual(
+    config.jsPlugins.map((plugin) => plugin.name),
+    ["eslint-js", "react-js", "react-hooks-js"],
+  );
   assert.deepEqual(config.settings.react, { version: "19" });
-  for (const category of ["correctness", "nursery", "pedantic", "perf", "restriction", "style", "suspicious"]) {
+  for (const category of [
+    "correctness",
+    "nursery",
+    "pedantic",
+    "perf",
+    "restriction",
+    "style",
+    "suspicious",
+  ]) {
     assert.equal(config.categories[category], "off", `${category} defaults must be disabled`);
   }
   assert.equal(JSON.stringify(config).includes('"anti-slop/'), false);
@@ -244,58 +282,102 @@ test("standard config has the explicit native policy and separate anti-slop boun
     override.files?.includes("packages/**/src/**/__tests__/**/*.{ts,tsx}"),
   );
   assert.deepEqual(packageTestOverride.rules["typescript/ban-ts-comment"], "error");
-  assert.deepEqual(packageTestOverride.rules["no-unused-vars"], ["error", { argsIgnorePattern: "^_" }]);
+  assert.deepEqual(packageTestOverride.rules["no-unused-vars"], [
+    "error",
+    { argsIgnorePattern: "^_" },
+  ]);
 });
 
 test("workspace lint commands use the root Oxlint policy", () => {
-  const governed = manifest.workspaces.filter((workspace) => workspace.kind === "app" || workspace.kind === "package");
+  const governed = manifest.workspaces.filter(
+    (workspace) => workspace.kind === "app" || workspace.kind === "package",
+  );
   assert.equal(governed.length, 26);
   assert.equal(manifest.excludedWorkspaces.includes("packages/_template"), true);
 
   for (const workspace of governed) {
     const packageJson = readJson(path.join(ROOT, workspace.path, "package.json"));
     const lint = packageJson.scripts?.lint ?? "";
-    assert.match(lint, /^oxlint --config \.\.\/\.\.\/\.oxlintrc\.json (?:\. |src )--max-warnings 0$/);
+    assert.match(
+      lint,
+      /^oxlint --config \.\.\/\.\.\/\.oxlintrc\.json (?:\. |src )--max-warnings 0$/,
+    );
     assert.equal(lint.includes("eslint"), false);
   }
   const rootPackage = readJson(path.join(ROOT, "package.json"));
-  assert.match(rootPackage.scripts.lint, /run-workspace-quality\.mjs --kind package --capability lint/);
-  assert.equal(rootPackage.scripts["lint:anti-slop"], "oxlint --config oxlint.anti-slop.config.ts .");
+  assert.match(
+    rootPackage.scripts.lint,
+    /run-workspace-quality\.mjs --kind package --capability lint/,
+  );
+  assert.equal(
+    rootPackage.scripts["lint:anti-slop"],
+    "oxlint --config oxlint.anti-slop.config.ts .",
+  );
 });
 
 test("final cutover removes live ESLint configuration and direct workspace dependencies", () => {
-  for (const relativePath of [...appConfigFiles, ...packageConfigFiles, "scripts/architecture/eslint.package.config.mjs"]) {
-    assert.equal(fs.existsSync(path.join(ROOT, relativePath)), false, `${relativePath} still exists`);
+  for (const relativePath of [
+    ...appConfigFiles,
+    ...packageConfigFiles,
+    "scripts/architecture/eslint.package.config.mjs",
+  ]) {
+    assert.equal(
+      fs.existsSync(path.join(ROOT, relativePath)),
+      false,
+      `${relativePath} still exists`,
+    );
   }
 
-  for (const workspace of manifest.workspaces.filter((item) => item.kind === "app" || item.kind === "package")) {
+  for (const workspace of manifest.workspaces.filter(
+    (item) => item.kind === "app" || item.kind === "package",
+  )) {
     const packageJson = readJson(path.join(ROOT, workspace.path, "package.json"));
-    for (const dependencyName of ["eslint", "@eslint/js", "@eslint/eslintrc", "eslint-config-next", "typescript-eslint"]) {
-      assert.equal(packageJson.dependencies?.[dependencyName], undefined, `${workspace.path} declares ${dependencyName}`);
-      assert.equal(packageJson.devDependencies?.[dependencyName], undefined, `${workspace.path} declares ${dependencyName}`);
+    for (const dependencyName of [
+      "eslint",
+      "@eslint/js",
+      "@eslint/eslintrc",
+      "eslint-config-next",
+      "typescript-eslint",
+    ]) {
+      assert.equal(
+        packageJson.dependencies?.[dependencyName],
+        undefined,
+        `${workspace.path} declares ${dependencyName}`,
+      );
+      assert.equal(
+        packageJson.devDependencies?.[dependencyName],
+        undefined,
+        `${workspace.path} declares ${dependencyName}`,
+      );
     }
   }
 });
 
-test("controlled violation and valid cases produce the recorded JSON behavior", { timeout: 120_000 }, () => {
-  assertFixtureDirectoriesAbsent();
-  const selected = [
-    ...cases.cases.filter((testCase) => testCase.purpose === "violation"),
-    cases.cases.find((testCase) => testCase.purpose === "valid"),
-  ];
-  try {
-    runCases(selected);
-  } finally {
-    for (const directory of fixtureDirectories) {
-      fs.rmSync(directory, { recursive: true, force: true });
-      assert.equal(fs.existsSync(directory), false, `fixture directory remained: ${directory}`);
+test(
+  "controlled violation and valid cases produce the recorded JSON behavior",
+  { timeout: 120_000 },
+  () => {
+    assertFixtureDirectoriesAbsent();
+    const selected = [
+      ...cases.cases.filter((testCase) => testCase.purpose === "violation"),
+      cases.cases.find((testCase) => testCase.purpose === "valid"),
+    ];
+    try {
+      runCases(selected);
+    } finally {
+      for (const directory of fixtureDirectories) {
+        fs.rmSync(directory, { recursive: true, force: true });
+        assert.equal(fs.existsSync(directory), false, `fixture directory remained: ${directory}`);
+      }
     }
-  }
-});
+  },
+);
 
 test("zero-warning policy rejects a warning diagnostic", { timeout: 30_000 }, () => {
   assertFixtureDirectoriesAbsent();
-  const warningCase = cases.cases.find((testCase) => testCase.targetRule === "nextjs/no-img-element" && testCase.expectedDiagnostic);
+  const warningCase = cases.cases.find(
+    (testCase) => testCase.targetRule === "nextjs/no-img-element" && testCase.expectedDiagnostic,
+  );
   assert.ok(warningCase, "warning fixture is required");
   const filePath = caseFilePath(warningCase);
   try {
@@ -315,32 +397,44 @@ test("anti-slop config loads its 15 error rules without entering standard policy
   const antiSlopConfig = fs.readFileSync(path.join(ROOT, "oxlint.anti-slop.config.ts"), "utf8");
   const ruleLines = antiSlopConfig.split("\n").filter((line) => line.includes('"anti-slop/'));
   assert.equal(ruleLines.length, 15);
-  assert.equal(ruleLines.every((line) => line.includes('": "error"')), true);
+  assert.equal(
+    ruleLines.every((line) => line.includes('": "error"')),
+    true,
+  );
   assert.match(antiSlopConfig, /specifier: "\.\/tools\/oxlint\/anti-slop\/index\.ts"/);
 });
 
 test("no final command invokes ESLint or next lint", () => {
   const offenders = [];
-  const files = ["package.json", ...manifest.workspaces.map((workspace) => `${workspace.path}/package.json`)];
+  const files = [
+    "package.json",
+    ...manifest.workspaces.map((workspace) => `${workspace.path}/package.json`),
+  ];
   for (const relativePath of files) {
     const packageJson = readJson(path.join(ROOT, relativePath));
     for (const [scriptName, command] of Object.entries(packageJson.scripts ?? {})) {
-      if (/\beslint(?:\s|$)|\bnext lint\b/.test(command)) offenders.push(`${relativePath}#${scriptName}`);
+      if (/\beslint(?:\s|$)|\bnext lint\b/.test(command))
+        offenders.push(`${relativePath}#${scriptName}`);
     }
   }
   assert.deepEqual(offenders, []);
 });
 
 test("policy rule aliases match the installed Oxlint rule inventory", () => {
-  const inventory = JSON.parse(execFileSync(OXLINT, ["--rules", "--format", "json"], { cwd: "/tmp", encoding: "utf8" }));
+  const inventory = JSON.parse(
+    execFileSync(OXLINT, ["--rules", "--format", "json"], { cwd: "/tmp", encoding: "utf8" }),
+  );
   const nativeNames = new Set(inventory.map((rule) => `${rule.scope}/${rule.value}`));
   const pluginAliases = new Set(["eslint-js", "react-js", "react-hooks-js"]);
   const missing = [];
   for (const entry of policy.entries) {
     if (entry.disposition !== "native") continue;
-    const [scope, name] = entry.targetRule.includes("/") ? entry.targetRule.split("/") : ["eslint", entry.targetRule];
+    const [scope, name] = entry.targetRule.includes("/")
+      ? entry.targetRule.split("/")
+      : ["eslint", entry.targetRule];
     const normalizedScope = scope === "jsx-a11y" ? "jsx_a11y" : scope;
-    if (!pluginAliases.has(scope) && !nativeNames.has(`${normalizedScope}/${name}`)) missing.push(entry.targetRule);
+    if (!pluginAliases.has(scope) && !nativeNames.has(`${normalizedScope}/${name}`))
+      missing.push(entry.targetRule);
   }
   assert.deepEqual([...new Set(missing)], []);
 });

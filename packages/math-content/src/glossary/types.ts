@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 export const glossaryTermSchema = z.object({
   slug: z.string().min(1),

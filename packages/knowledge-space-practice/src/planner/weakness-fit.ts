@@ -12,16 +12,13 @@
  * Boundary: does NOT import from `./misconception-loop`.
  */
 
-import type { PlannerInput } from './types';
+import type { PlannerInput } from "./types";
 
 /**
  * Per-node oracle: returns 0 for every node in stub mode.
  * Track 6 integration will inject the full boost computation.
  */
-export function getWeaknessFit(
-  _nodeId: string,
-  _graph: PlannerInput,
-): number {
+export function getWeaknessFit(_nodeId: string, _graph: PlannerInput): number {
   return 0;
 }
 
@@ -29,9 +26,7 @@ export function getWeaknessFit(
  * Bulk precompute weaknessFit values for every node in the graph.
  * Returns a map keyed by every node id in `graph.nodes`.
  */
-export function computeWeaknessFitMap(
-  graph: PlannerInput,
-): ReadonlyMap<string, number> {
+export function computeWeaknessFitMap(graph: PlannerInput): ReadonlyMap<string, number> {
   const map = new Map<string, number>();
   for (const node of graph.nodes) {
     map.set(node.id, 0);

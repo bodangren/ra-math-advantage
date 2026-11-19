@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useState, useCallback, useEffect } from 'react';
-import Link from 'next/link';
-import { ReviewSession } from '@/components/student/ReviewSession';
-import type { GlossaryTerm } from '@/lib/study/types';
-import { getGlossaryTermBySlug } from '@/lib/study/glossary';
-import { fetchInternalQuery, fetchInternalMutation, internal } from '@/lib/convex/server';
-import type { Id } from '@/convex/_generated/dataModel';
+import { useState, useCallback, useEffect } from "react";
+import Link from "next/link";
+import { ReviewSession } from "@/components/student/ReviewSession";
+import type { GlossaryTerm } from "@/lib/study/types";
+import { getGlossaryTermBySlug } from "@/lib/study/glossary";
+import { fetchInternalQuery, fetchInternalMutation, internal } from "@/lib/convex/server";
+import type { Id } from "@/convex/_generated/dataModel";
 
 interface ReviewPageClientProps {
   studentId: string;
@@ -36,10 +36,9 @@ export function ReviewPageClient({ studentId }: ReviewPageClientProps) {
      */
     async function loadDueTerms() {
       try {
-        const due: DueTerm[] = await fetchInternalQuery(
-          internal.study.getDueTerms,
-          { userId: studentId as Id<'profiles'> }
-        );
+        const due: DueTerm[] = await fetchInternalQuery(internal.study.getDueTerms, {
+          userId: studentId as Id<"profiles">,
+        });
         const terms: GlossaryTerm[] = [];
         for (const d of due) {
           const term = getGlossaryTermBySlug(d.termSlug);
@@ -49,7 +48,7 @@ export function ReviewPageClient({ studentId }: ReviewPageClientProps) {
         }
         setDueTerms(terms);
       } catch (err) {
-        console.error('Failed to load due terms:', err);
+        console.error("Failed to load due terms:", err);
         setDueTerms([]);
       } finally {
         setIsLoading(false);
@@ -67,8 +66,8 @@ export function ReviewPageClient({ studentId }: ReviewPageClientProps) {
     }) => {
       try {
         await fetchInternalMutation(internal.study.recordStudySession, {
-          userId: studentId as Id<'profiles'>,
-          activityType: 'srs_review',
+          userId: studentId as Id<"profiles">,
+          activityType: "srs_review",
           results: {
             itemsSeen: results.itemsSeen,
             itemsCorrect: results.itemsCorrect,
@@ -77,10 +76,10 @@ export function ReviewPageClient({ studentId }: ReviewPageClientProps) {
           },
         });
       } catch (err) {
-        console.error('Failed to record session:', err);
+        console.error("Failed to record session:", err);
       }
     },
-    [studentId]
+    [studentId],
   );
 
   if (isLoading) {
@@ -119,9 +118,7 @@ export function ReviewPageClient({ studentId }: ReviewPageClientProps) {
         >
           ← Back to Study Hub
         </Link>
-        <h1 className="text-3xl font-display font-bold text-foreground mt-2">
-          SRS Review
-        </h1>
+        <h1 className="text-3xl font-display font-bold text-foreground mt-2">SRS Review</h1>
         <p className="text-muted-foreground">
           Review terms scheduled by the spaced repetition system
         </p>
@@ -155,11 +152,9 @@ export function ReviewPageClient({ studentId }: ReviewPageClientProps) {
         <div className="space-y-6">
           <div className="rounded-xl border border-border bg-card p-6">
             <div className="text-center space-y-2">
-              <p className="text-4xl font-display font-bold text-primary">
-                {dueTerms.length}
-              </p>
+              <p className="text-4xl font-display font-bold text-primary">{dueTerms.length}</p>
               <p className="text-muted-foreground">
-                term{dueTerms.length !== 1 ? 's' : ''} due for review
+                term{dueTerms.length !== 1 ? "s" : ""} due for review
               </p>
             </div>
           </div>

@@ -1,17 +1,17 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { coerceNullableString, getOrCreateMapEntry } from '@/convex/dashboardHelpers';
+import { coerceNullableString, getOrCreateMapEntry } from "@/convex/dashboardHelpers";
 
-describe('convex/dashboardHelpers', () => {
-  it('normalizes undefined descriptions to null', () => {
+describe("convex/dashboardHelpers", () => {
+  it("normalizes undefined descriptions to null", () => {
     expect(coerceNullableString(undefined)).toBeNull();
     expect(coerceNullableString(null)).toBeNull();
-    expect(coerceNullableString('Lesson summary')).toBe('Lesson summary');
+    expect(coerceNullableString("Lesson summary")).toBe("Lesson summary");
   });
 
-  it('returns an existing map entry instead of recreating it', () => {
+  it("returns an existing map entry instead of recreating it", () => {
     const units = new Map<number, { lessons: string[] }>();
-    const existing = { lessons: ['Phase 1'] };
+    const existing = { lessons: ["Phase 1"] };
 
     units.set(1, existing);
 
@@ -21,7 +21,7 @@ describe('convex/dashboardHelpers', () => {
     expect(units.get(1)).toBe(existing);
   });
 
-  it('creates and stores a map entry when one does not exist', () => {
+  it("creates and stores a map entry when one does not exist", () => {
     const units = new Map<number, { lessons: string[] }>();
 
     const result = getOrCreateMapEntry(units, 2, () => ({ lessons: [] }));

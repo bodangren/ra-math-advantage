@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useState, useCallback } from 'react';
-import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
-import { SpeedRoundGame } from '@/components/student/SpeedRoundGame';
-import type { GlossaryTerm } from '@/lib/study/types';
-import { getGlossaryTermsByModule } from '@/lib/study/glossary';
-import { fetchInternalMutation, internal } from '@/lib/convex/server';
-import type { Id } from '@/convex/_generated/dataModel';
+import { useState, useCallback } from "react";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { SpeedRoundGame } from "@/components/student/SpeedRoundGame";
+import type { GlossaryTerm } from "@/lib/study/types";
+import { getGlossaryTermsByModule } from "@/lib/study/glossary";
+import { fetchInternalMutation, internal } from "@/lib/convex/server";
+import type { Id } from "@/convex/_generated/dataModel";
 
 interface SpeedRoundPageClientProps {
   allTerms: GlossaryTerm[];
@@ -28,7 +28,7 @@ export function SpeedRoundPageClient({
 }: SpeedRoundPageClientProps) {
   const searchParams = useSearchParams();
   const [selectedModule, setSelectedModule] = useState<number | null>(() => {
-    const moduleParam = searchParams.get('module');
+    const moduleParam = searchParams.get("module");
     if (moduleParam) {
       const moduleNumber = parseInt(moduleParam, 10);
       if (!isNaN(moduleNumber) && moduleNumbers.includes(moduleNumber)) {
@@ -38,7 +38,7 @@ export function SpeedRoundPageClient({
     return null;
   });
   const [sessionTerms, setSessionTerms] = useState<GlossaryTerm[]>(() => {
-    const moduleParam = searchParams.get('module');
+    const moduleParam = searchParams.get("module");
     if (moduleParam) {
       const moduleNumber = parseInt(moduleParam, 10);
       if (!isNaN(moduleNumber) && moduleNumbers.includes(moduleNumber)) {
@@ -58,7 +58,7 @@ export function SpeedRoundPageClient({
         setSessionTerms(getGlossaryTermsByModule(moduleNumber));
       }
     },
-    [allTerms]
+    [allTerms],
   );
 
   const handleStartGame = () => {
@@ -74,19 +74,19 @@ export function SpeedRoundPageClient({
     }) => {
       try {
         await fetchInternalMutation(internal.study.recordStudySession, {
-          userId: studentId as Id<'profiles'>,
-          activityType: 'speed_round',
+          userId: studentId as Id<"profiles">,
+          activityType: "speed_round",
           curriculumScope:
             selectedModule !== null
-              ? { type: 'module', moduleNumber: selectedModule }
-              : { type: 'all_units' },
+              ? { type: "module", moduleNumber: selectedModule }
+              : { type: "all_units" },
           results,
         });
       } catch (err) {
-        console.error('Failed to record speed round session:', err);
+        console.error("Failed to record speed round session:", err);
       }
     },
-    [studentId, selectedModule]
+    [studentId, selectedModule],
   );
 
   if (showGame) {
@@ -114,9 +114,7 @@ export function SpeedRoundPageClient({
         >
           ← Back to Study Hub
         </Link>
-        <h1 className="text-3xl font-display font-bold text-foreground mt-2">
-          Speed Round
-        </h1>
+        <h1 className="text-3xl font-display font-bold text-foreground mt-2">Speed Round</h1>
         <p className="text-muted-foreground">
           Test your knowledge in a timed challenge! Match terms to definitions as fast as you can.
         </p>
@@ -128,8 +126,8 @@ export function SpeedRoundPageClient({
             onClick={() => handleModuleSelect(null)}
             className={`rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${
               selectedModule === null
-                ? 'border-primary bg-primary/10 text-primary'
-                : 'border-border bg-card text-foreground hover:border-primary/40'
+                ? "border-primary bg-primary/10 text-primary"
+                : "border-border bg-card text-foreground hover:border-primary/40"
             }`}
           >
             All Modules ({allTerms.length} terms)
@@ -142,8 +140,8 @@ export function SpeedRoundPageClient({
                 onClick={() => handleModuleSelect(mod)}
                 className={`rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${
                   selectedModule === mod
-                    ? 'border-primary bg-primary/10 text-primary'
-                    : 'border-border bg-card text-foreground hover:border-primary/40'
+                    ? "border-primary bg-primary/10 text-primary"
+                    : "border-border bg-card text-foreground hover:border-primary/40"
                 }`}
               >
                 Module {mod} ({modTerms.length} terms)
@@ -178,10 +176,18 @@ export function SpeedRoundPageClient({
       <div className="rounded-xl border border-border bg-card p-4 space-y-3">
         <h3 className="font-medium text-foreground">How to Play</h3>
         <ul className="space-y-2 text-sm text-muted-foreground">
-          <li>• You have <span className="font-semibold text-foreground">90 seconds</span> to answer as many questions as possible</li>
+          <li>
+            • You have <span className="font-semibold text-foreground">90 seconds</span> to answer
+            as many questions as possible
+          </li>
           <li>• Each question shows a term — pick the correct definition from 4 options</li>
-          <li>• You have <span className="font-semibold text-foreground">3 lives</span> — wrong answers cost a life</li>
-          <li>• Build <span className="font-semibold text-foreground">streaks</span> for bonus points</li>
+          <li>
+            • You have <span className="font-semibold text-foreground">3 lives</span> — wrong
+            answers cost a life
+          </li>
+          <li>
+            • Build <span className="font-semibold text-foreground">streaks</span> for bonus points
+          </li>
         </ul>
       </div>
 

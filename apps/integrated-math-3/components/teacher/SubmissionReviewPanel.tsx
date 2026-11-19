@@ -1,8 +1,11 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import type { SubmissionEvidence, DeterministicErrorSummary } from '@math-platform/practice-core/error-analysis';
-import { ActivityRenderer } from '@/components/lesson/ActivityRenderer';
+import { useState } from "react";
+import type {
+  SubmissionEvidence,
+  DeterministicErrorSummary,
+} from "@math-platform/practice-core/error-analysis";
+import { ActivityRenderer } from "@/components/lesson/ActivityRenderer";
 
 interface SubmissionReviewPanelProps {
   evidence: SubmissionEvidence | null;
@@ -26,9 +29,7 @@ export function SubmissionReviewPanel({
   const [expanded, setExpanded] = useState(isOpen);
 
   if (!evidence) {
-    return (
-      <div data-testid="teacher-submission-review" />
-    );
+    return <div data-testid="teacher-submission-review" />;
   }
 
   const handleReviewClick = () => {
@@ -50,7 +51,7 @@ export function SubmissionReviewPanel({
   };
 
   const renderStudentAnswers = () => {
-    if (evidence.kind === 'practice' && evidence.submissionData) {
+    if (evidence.kind === "practice" && evidence.submissionData) {
       const data = evidence.submissionData as {
         parts?: Array<{
           partId: string;
@@ -68,9 +69,9 @@ export function SubmissionReviewPanel({
               <div
                 key={part.partId}
                 className={[
-                  'p-3 rounded-lg border',
-                  part.isCorrect ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50',
-                ].join(' ')}
+                  "p-3 rounded-lg border",
+                  part.isCorrect ? "border-green-200 bg-green-50" : "border-red-200 bg-red-50",
+                ].join(" ")}
               >
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium">Part {index + 1}</span>
@@ -82,17 +83,15 @@ export function SubmissionReviewPanel({
                     )}
                     <span
                       className={[
-                        'px-2 py-0.5 rounded text-xs font-medium',
-                        part.isCorrect ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800',
-                      ].join(' ')}
+                        "px-2 py-0.5 rounded text-xs font-medium",
+                        part.isCorrect ? "bg-green-200 text-green-800" : "bg-red-200 text-red-800",
+                      ].join(" ")}
                     >
-                      {part.isCorrect ? 'Correct' : 'Incorrect'}
+                      {part.isCorrect ? "Correct" : "Incorrect"}
                     </span>
                   </div>
                 </div>
-                <p className="text-sm mt-1 font-mono-num">
-                  {String(part.rawAnswer)}
-                </p>
+                <p className="text-sm mt-1 font-mono-num">{String(part.rawAnswer)}</p>
                 {part.misconceptionTags && part.misconceptionTags.length > 0 && (
                   <div className="flex flex-wrap gap-1 mt-2">
                     {part.misconceptionTags.map((tag) => (
@@ -115,7 +114,7 @@ export function SubmissionReviewPanel({
   };
 
   const renderTimingSummary = () => {
-    if (evidence.kind !== 'practice' || !evidence.submissionData) return null;
+    if (evidence.kind !== "practice" || !evidence.submissionData) return null;
     const data = evidence.submissionData as { timing?: PracticeTimingEvidence };
     if (!data.timing) return null;
 
@@ -131,11 +130,11 @@ export function SubmissionReviewPanel({
     };
 
     const confidenceColor =
-      confidence === 'high'
-        ? 'bg-green-100 text-green-800'
-        : confidence === 'medium'
-          ? 'bg-yellow-100 text-yellow-800'
-          : 'bg-red-100 text-red-800';
+      confidence === "high"
+        ? "bg-green-100 text-green-800"
+        : confidence === "medium"
+          ? "bg-yellow-100 text-yellow-800"
+          : "bg-red-100 text-red-800";
 
     return (
       <div className="mt-4 p-4 bg-muted/50 rounded-lg space-y-3">
@@ -168,7 +167,7 @@ export function SubmissionReviewPanel({
                 key={reason}
                 className="px-2 py-0.5 bg-orange-100 text-orange-800 rounded text-xs"
               >
-                {reason.replace('_', ' ')}
+                {reason.replace("_", " ")}
               </span>
             ))}
           </div>
@@ -215,7 +214,7 @@ export function SubmissionReviewPanel({
     wallClockMs: number;
     activeMs: number;
     idleMs: number;
-    confidence: 'high' | 'medium' | 'low';
+    confidence: "high" | "medium" | "low";
     confidenceReasons?: string[];
   }
 
@@ -227,7 +226,7 @@ export function SubmissionReviewPanel({
       >
         <span>Review</span>
         <svg
-          className={`w-4 h-4 transition-transform ${expanded ? 'rotate-180' : ''}`}
+          className={`w-4 h-4 transition-transform ${expanded ? "rotate-180" : ""}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -244,9 +243,7 @@ export function SubmissionReviewPanel({
               <div className="flex items-center gap-3 text-sm text-muted-foreground mt-1">
                 <span>Attempt {evidence.attemptNumber ?? 1}</span>
                 {renderScore()}
-                <span>
-                  {new Date(evidence.submittedAt).toLocaleDateString()}
-                </span>
+                <span>{new Date(evidence.submittedAt).toLocaleDateString()}</span>
               </div>
             </div>
           </div>

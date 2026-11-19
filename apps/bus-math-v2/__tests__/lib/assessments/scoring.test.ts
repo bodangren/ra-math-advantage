@@ -1,42 +1,42 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { calculateScore } from '@/lib/assessments/scoring';
-import { generateProblemInstance } from '@/lib/curriculum/problem-generator';
-import type { Activity } from '@/lib/schemas/validators';
+import { calculateScore } from "@/lib/assessments/scoring";
+import { generateProblemInstance } from "@/lib/curriculum/problem-generator";
+import type { Activity } from "@/lib/schemas/validators";
 
 const baseTieredActivity: Activity = {
-  id: '11111111-1111-4111-8111-111111111111',
-  componentKey: 'tiered-assessment',
-  displayName: 'Tiered Assessment',
-  description: 'Assessment with questions and application problems',
+  id: "11111111-1111-4111-8111-111111111111",
+  componentKey: "tiered-assessment",
+  displayName: "Tiered Assessment",
+  description: "Assessment with questions and application problems",
   standardId: null,
   props: {
-    tier: 'application',
-    title: 'Application Tier',
-    description: 'Complete both sections',
+    tier: "application",
+    title: "Application Tier",
+    description: "Complete both sections",
     showExplanations: false,
     allowRetry: true,
     questions: [
       {
-        id: 'q1',
-        text: 'Assets = Liabilities + Equity is the accounting equation.',
-        type: 'true-false',
-        options: ['True', 'False'],
-        correctAnswer: 'True',
+        id: "q1",
+        text: "Assets = Liabilities + Equity is the accounting equation.",
+        type: "true-false",
+        options: ["True", "False"],
+        correctAnswer: "True",
       },
     ],
     applicationProblems: [
       {
-        id: 'ap-1',
-        standardCode: 'ACC-1.1',
-        prompt: 'Compute equity from generated assets and liabilities.',
+        id: "ap-1",
+        standardCode: "ACC-1.1",
+        prompt: "Compute equity from generated assets and liabilities.",
         problemTemplate: {
           parameters: {
             assets: { min: 10000, max: 12000, step: 100 },
             liabilities: { min: 3000, max: 5000, step: 100 },
           },
-          answerFormula: 'assets - liabilities',
-          questionTemplate: 'Assets {{assets}}, liabilities {{liabilities}}. Equity?',
+          answerFormula: "assets - liabilities",
+          questionTemplate: "Assets {{assets}}, liabilities {{liabilities}}. Equity?",
           tolerance: 1,
         },
       },
@@ -47,8 +47,8 @@ const baseTieredActivity: Activity = {
     passingScore: 70,
     partialCredit: false,
   },
-  createdAt: new Date('2026-02-23T00:00:00.000Z'),
-  updatedAt: new Date('2026-02-23T00:00:00.000Z'),
+  createdAt: new Date("2026-02-23T00:00:00.000Z"),
+  updatedAt: new Date("2026-02-23T00:00:00.000Z"),
 };
 
 function stableHash(value: string) {
@@ -59,8 +59,8 @@ function stableHash(value: string) {
   return hash;
 }
 
-describe('calculateScore', () => {
-  it('scores tiered-assessment application problems and includes them in maxScore', () => {
+describe("calculateScore", () => {
+  it("scores tiered-assessment application problems and includes them in maxScore", () => {
     const props = baseTieredActivity.props as Record<string, unknown>;
     const applicationProblems = props.applicationProblems as Array<Record<string, unknown>>;
     const problem = applicationProblems?.[0];
@@ -72,8 +72,8 @@ describe('calculateScore', () => {
     ).correctAnswer;
 
     const result = calculateScore(baseTieredActivity, {
-      q1: 'true',
-      'ap-1': String(expected),
+      q1: "true",
+      "ap-1": String(expected),
     });
 
     expect(result.score).toBe(2);
@@ -81,9 +81,9 @@ describe('calculateScore', () => {
     expect(result.percentage).toBe(100);
   });
 
-  it('does not allow skipping application problems without score impact', () => {
+  it("does not allow skipping application problems without score impact", () => {
     const result = calculateScore(baseTieredActivity, {
-      q1: 'true',
+      q1: "true",
     });
 
     expect(result.score).toBe(1);
@@ -92,11 +92,17 @@ describe('calculateScore', () => {
   });
 });
 
-it.each(['5,300', '5300.00', 5300])('accepts an equivalent numeric response %s', (answer) => {
- const activity = { ...baseTieredActivity, props: { questions: [{id:'n',correctAnswer:5300}] } };
- expect(calculateScore(activity, {n:answer}).score).toBe(1);
+it.each(["5,300", "5300.00", 5300])("accepts an equivalent numeric response %s", (answer) => {
+  const activity = {
+    ...baseTieredActivity,
+    props: { questions: [{ id: "n", correctAnswer: 5300 }] },
+  };
+  expect(calculateScore(activity, { n: answer }).score).toBe(1);
 });
-it.each(['', '5,30', false])('rejects malformed numeric input %s', (answer) => {
- const activity = { ...baseTieredActivity, props: { questions: [{id:'n',correctAnswer:5300}] } };
- expect(calculateScore(activity, {n:answer}).score).toBe(0);
+it.each(["", "5,30", false])("rejects malformed numeric input %s", (answer) => {
+  const activity = {
+    ...baseTieredActivity,
+    props: { questions: [{ id: "n", correctAnswer: 5300 }] },
+  };
+  expect(calculateScore(activity, { n: answer }).score).toBe(0);
 });

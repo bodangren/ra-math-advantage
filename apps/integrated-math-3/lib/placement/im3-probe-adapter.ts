@@ -1,4 +1,4 @@
-import type { ProbeAdapter, ProbeResult } from '@math-platform/knowledge-space-core';
+import type { ProbeAdapter, ProbeResult } from "@math-platform/knowledge-space-core";
 
 export interface Im3ProblemEntry {
   problemId: string;
@@ -6,7 +6,7 @@ export interface Im3ProblemEntry {
   module: number;
   lesson: number;
   prompt: string;
-  difficulty: 'easy' | 'medium' | 'hard';
+  difficulty: "easy" | "medium" | "hard";
 }
 
 export interface Im3ProbeAnswerSource {
@@ -18,7 +18,7 @@ export class Im3ProbeAdapterError extends Error {
 
   constructor(nodeId: string) {
     super(`IM3 probe adapter: no problem mapped to nodeId "${nodeId}"`);
-    this.name = 'Im3ProbeAdapterError';
+    this.name = "Im3ProbeAdapterError";
     this.nodeId = nodeId;
   }
 }
@@ -37,7 +37,7 @@ export function createIm3ProbeAdapter(
   }
 
   return {
-    domain: 'math.im3',
+    domain: "math.im3",
     probe(nodeId: string): ProbeResult {
       const problemId = nodeIdToProblemId.get(nodeId);
       if (problemId === undefined) {

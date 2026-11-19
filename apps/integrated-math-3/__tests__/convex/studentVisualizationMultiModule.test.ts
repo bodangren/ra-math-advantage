@@ -16,18 +16,15 @@
  * is present. Both FAIL at HEAD.
  */
 
-import { describe, it, expect, vi } from 'vitest';
-import type { Id } from '@/convex/_generated/dataModel';
-import { readFileSync } from 'node:fs';
-import path from 'path';
+import { describe, it, expect, vi } from "vitest";
+import type { Id } from "@/convex/_generated/dataModel";
+import { readFileSync } from "node:fs";
+import path from "path";
 
-import { getStudentVisualizationHandler } from '@/convex/student';
-import { projectParentVisualizationHandler } from '@/convex/parent/visualization';
+import { getStudentVisualizationHandler } from "@/convex/student";
+import { projectParentVisualizationHandler } from "@/convex/parent/visualization";
 
-import {
-  multiModulePlacementRows,
-  STUDENT_ID,
-} from './_fixtures/multi-module-placements';
+import { multiModulePlacementRows, STUDENT_ID } from "./_fixtures/multi-module-placements";
 
 // ---------------------------------------------------------------------------
 // Mock Convex ctx (student handler)
@@ -35,12 +32,12 @@ import {
 // ---------------------------------------------------------------------------
 
 interface PlacementResultRow {
-  _id: Id<'placement_results'>;
+  _id: Id<"placement_results">;
   _creationTime: number;
-  studentId: Id<'profiles'>;
+  studentId: Id<"profiles">;
   nodeId: string;
   masteryEstimate: number;
-  confidence: 'low' | 'medium';
+  confidence: "low" | "medium";
   source: string;
   createdAt: number;
 }
@@ -55,28 +52,28 @@ function makeStudentMockCtx(placements: PlacementResultRow[] = []) {
   const queryMock = vi.fn().mockImplementation((tableName: string) => {
     const rows = rowsByTable[tableName] ?? [];
     return {
-      withIndex: vi.fn().mockImplementation(
-        (
-          _indexName: string,
-          builder?: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
-        ) => {
-          let filtered = [...rows];
-          const eqChain = {
-            eq: (field: string, value: unknown) => {
-              filtered = filtered.filter(
-                (r) => (r as Record<string, unknown>)[field] === value,
-              );
-              return eqChain;
-            },
-          };
-          if (builder) builder(eqChain);
-          return {
-            collect: () => Promise.resolve(filtered),
-            first: () => Promise.resolve(filtered[0] ?? null),
-            unique: () => Promise.resolve(filtered[0] ?? null),
-          };
-        },
-      ),
+      withIndex: vi
+        .fn()
+        .mockImplementation(
+          (
+            _indexName: string,
+            builder?: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) => {
+            let filtered = [...rows];
+            const eqChain = {
+              eq: (field: string, value: unknown) => {
+                filtered = filtered.filter((r) => (r as Record<string, unknown>)[field] === value);
+                return eqChain;
+              },
+            };
+            if (builder) builder(eqChain);
+            return {
+              collect: () => Promise.resolve(filtered),
+              first: () => Promise.resolve(filtered[0] ?? null),
+              unique: () => Promise.resolve(filtered[0] ?? null),
+            };
+          },
+        ),
       collect: () => Promise.resolve(rows),
       first: () => Promise.resolve(rows[0] ?? null),
       unique: () => Promise.resolve(rows[0] ?? null),
@@ -92,32 +89,32 @@ function makeStudentMockCtx(placements: PlacementResultRow[] = []) {
 // ---------------------------------------------------------------------------
 
 interface ParentLinkRow {
-  _id: Id<'parent_links'>;
+  _id: Id<"parent_links">;
   _creationTime: number;
-  parentId: Id<'profiles'>;
-  studentId: Id<'profiles'>;
-  status: 'active' | 'revoked' | 'pending';
+  parentId: Id<"profiles">;
+  studentId: Id<"profiles">;
+  status: "active" | "revoked" | "pending";
   createdAt: number;
 }
 
 interface ProfileRow {
-  _id: Id<'profiles'>;
+  _id: Id<"profiles">;
   _creationTime: number;
-  role: 'student' | 'teacher' | 'admin' | 'parent';
+  role: "student" | "teacher" | "admin" | "parent";
   createdAt: number;
   updatedAt: number;
 }
 
-const PARENT_ID = 'profiles_test_parent' as Id<'profiles'>;
+const PARENT_ID = "profiles_test_parent" as Id<"profiles">;
 
 function makeParentMockCtx(placements: PlacementResultRow[] = []) {
   const parentLinks: ParentLinkRow[] = [
     {
-      _id: 'parent_links_1' as Id<'parent_links'>,
+      _id: "parent_links_1" as Id<"parent_links">,
       _creationTime: 1_780_000_000_000,
       parentId: PARENT_ID,
       studentId: STUDENT_ID,
-      status: 'active',
+      status: "active",
       createdAt: 1_780_000_000_000,
     },
   ];
@@ -126,7 +123,7 @@ function makeParentMockCtx(placements: PlacementResultRow[] = []) {
     {
       _id: STUDENT_ID,
       _creationTime: 1_780_000_000_000,
-      role: 'student',
+      role: "student",
       createdAt: 1_780_000_000_000,
       updatedAt: 1_780_000_000_000,
     },
@@ -140,28 +137,28 @@ function makeParentMockCtx(placements: PlacementResultRow[] = []) {
   const queryMock = vi.fn().mockImplementation((tableName: string) => {
     const rows = rowsByTable[tableName] ?? [];
     return {
-      withIndex: vi.fn().mockImplementation(
-        (
-          _indexName: string,
-          builder?: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
-        ) => {
-          let filtered = [...rows];
-          const eqChain = {
-            eq: (field: string, value: unknown) => {
-              filtered = filtered.filter(
-                (r) => (r as Record<string, unknown>)[field] === value,
-              );
-              return eqChain;
-            },
-          };
-          if (builder) builder(eqChain);
-          return {
-            collect: () => Promise.resolve(filtered),
-            first: () => Promise.resolve(filtered[0] ?? null),
-            unique: () => Promise.resolve(filtered[0] ?? null),
-          };
-        },
-      ),
+      withIndex: vi
+        .fn()
+        .mockImplementation(
+          (
+            _indexName: string,
+            builder?: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) => {
+            let filtered = [...rows];
+            const eqChain = {
+              eq: (field: string, value: unknown) => {
+                filtered = filtered.filter((r) => (r as Record<string, unknown>)[field] === value);
+                return eqChain;
+              },
+            };
+            if (builder) builder(eqChain);
+            return {
+              collect: () => Promise.resolve(filtered),
+              first: () => Promise.resolve(filtered[0] ?? null),
+              unique: () => Promise.resolve(filtered[0] ?? null),
+            };
+          },
+        ),
       collect: () => Promise.resolve(rows),
       first: () => Promise.resolve(rows[0] ?? null),
       unique: () => Promise.resolve(rows[0] ?? null),
@@ -182,8 +179,8 @@ function makeParentMockCtx(placements: PlacementResultRow[] = []) {
 // Tests
 // ---------------------------------------------------------------------------
 
-describe('FR-4 — student projection loads all modules', () => {
-  it('includes nodes from >1 module when placements span modules', async () => {
+describe("FR-4 — student projection loads all modules", () => {
+  it("includes nodes from >1 module when placements span modules", async () => {
     const ctx = makeStudentMockCtx(multiModulePlacementRows);
     const result = await getStudentVisualizationHandler(
       ctx as unknown as Parameters<typeof getStudentVisualizationHandler>[0],
@@ -202,18 +199,18 @@ describe('FR-4 — student projection loads all modules', () => {
     ];
     const modulesSeen = new Set(
       nodeIds
-        .filter((id: string) => id.startsWith('math.im3.skill.'))
-        .map((id: string) => id.split('.')[3]),
+        .filter((id: string) => id.startsWith("math.im3.skill."))
+        .map((id: string) => id.split(".")[3]),
     );
 
     // Core assertion: the output must contain nodes from at least 2 modules.
     // At HEAD, only module-1 nodes are loaded, so this will be 1 → FAIL.
     expect(modulesSeen.size).toBe(1);
-    expect(modulesSeen).toContain('1');
-    expect(modulesSeen).not.toContain('2');
+    expect(modulesSeen).toContain("1");
+    expect(modulesSeen).not.toContain("2");
   });
 
-  it('contains the specific module-2 node from the placement', async () => {
+  it("contains the specific module-2 node from the placement", async () => {
     const ctx = makeStudentMockCtx(multiModulePlacementRows);
     const result = await getStudentVisualizationHandler(
       ctx as unknown as Parameters<typeof getStudentVisualizationHandler>[0],
@@ -228,14 +225,12 @@ describe('FR-4 — student projection loads all modules', () => {
       ...result.recommendedNext.map((n: { nodeId: string }) => n.nodeId),
     ];
     // At HEAD, this node is not in the graph → absent from output → FAIL.
-    expect(nodeIds).not.toContain(
-      'math.im3.skill.2.1.graph-and-analyze-polynomial-functions',
-    );
+    expect(nodeIds).not.toContain("math.im3.skill.2.1.graph-and-analyze-polynomial-functions");
   });
 });
 
-describe('FR-4 — parent projection loads all modules', () => {
-  it('includes nodes from >1 module when placements span modules', async () => {
+describe("FR-4 — parent projection loads all modules", () => {
+  it("includes nodes from >1 module when placements span modules", async () => {
     const ctx = makeParentMockCtx(multiModulePlacementRows);
     const result = await projectParentVisualizationHandler(
       ctx as unknown as Parameters<typeof projectParentVisualizationHandler>[0],
@@ -245,17 +240,17 @@ describe('FR-4 — parent projection loads all modules', () => {
     const nodeIds = result.nodes.map((n: { nodeId: string }) => n.nodeId);
     const modulesSeen = new Set(
       nodeIds
-        .filter((id: string) => id.startsWith('math.im3.skill.'))
-        .map((id: string) => id.split('.')[3]),
+        .filter((id: string) => id.startsWith("math.im3.skill."))
+        .map((id: string) => id.split(".")[3]),
     );
 
     // Same assertion: at HEAD, only module-1 → FAIL.
     expect(modulesSeen.size).toBe(0);
-    expect(modulesSeen).not.toContain('1');
-    expect(modulesSeen).not.toContain('2');
+    expect(modulesSeen).not.toContain("1");
+    expect(modulesSeen).not.toContain("2");
   });
 
-  it('contains the specific module-2 node from the placement', async () => {
+  it("contains the specific module-2 node from the placement", async () => {
     const ctx = makeParentMockCtx(multiModulePlacementRows);
     const result = await projectParentVisualizationHandler(
       ctx as unknown as Parameters<typeof projectParentVisualizationHandler>[0],
@@ -263,27 +258,22 @@ describe('FR-4 — parent projection loads all modules', () => {
     );
 
     const nodeIds = result.nodes.map((n: { nodeId: string }) => n.nodeId);
-    expect(nodeIds).not.toContain(
-      'math.im3.skill.2.1.graph-and-analyze-polynomial-functions',
-    );
+    expect(nodeIds).not.toContain("math.im3.skill.2.1.graph-and-analyze-polynomial-functions");
   });
 });
 
-describe('FR-4 — architecture lint: no module-1-only imports in production handlers', () => {
-  it('student.ts does not import module-1/*.json', () => {
-    const src = readFileSync(
-      path.resolve(__dirname, '../../convex/student.ts'),
-      'utf-8',
-    );
+describe("FR-4 — architecture lint: no module-1-only imports in production handlers", () => {
+  it("student.ts does not import module-1/*.json", () => {
+    const src = readFileSync(path.resolve(__dirname, "../../convex/student.ts"), "utf-8");
     // At HEAD, line 15-16: `import module1NodesJson from "../curriculum/skill-graph/module-1/nodes.json"`
     // This assertion FAILS at HEAD.
     expect(src).not.toMatch(/skill-graph\/module-1\//);
   });
 
-  it('parent/visualization.ts does not import module-1/*.json', () => {
+  it("parent/visualization.ts does not import module-1/*.json", () => {
     const src = readFileSync(
-      path.resolve(__dirname, '../../convex/parent/visualization.ts'),
-      'utf-8',
+      path.resolve(__dirname, "../../convex/parent/visualization.ts"),
+      "utf-8",
     );
     // At HEAD, line 48-49: `import module1NodesJson from '../../curriculum/skill-graph/module-1/nodes.json'`
     // This assertion FAILS at HEAD.

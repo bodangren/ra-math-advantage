@@ -14,7 +14,7 @@
  * Convention: LaTeX formatting uses \log, \ln, and \exp commands.
  */
 
-import { seededRandom } from './utils/prng';
+import { seededRandom } from "./utils/prng";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -22,7 +22,7 @@ import { seededRandom } from './utils/prng';
 
 export interface ExpLogProblem {
   /** The class of problem. */
-  problemType: 'log' | 'exp' | 'ln';
+  problemType: "log" | "exp" | "ln";
   /** LaTeX equation string, e.g. "\\log_{10}(3x + 7) = 1". */
   equation: string;
   /** Numeric solution to the equation. */
@@ -30,7 +30,7 @@ export interface ExpLogProblem {
   /** Domain constraint: x must be in (domain.min, domain.max). */
   domain: { min: number; max: number };
   /** Family identifier for the step-by-step-solver fallback UI. */
-  familyId: 'step-by-step-solver:exp-log';
+  familyId: "step-by-step-solver:exp-log";
   /** Step-by-step solution breakdown. */
   steps: string[];
 }
@@ -74,13 +74,11 @@ function generateLogProblem(rand: () => number): ExpLogProblem {
 
   // Domain: Ax + C > 0  →  x > -C/A  (if A > 0) or x < -C/A (if A < 0)
   const boundary = -C / A;
-  const domain = A > 0
-    ? { min: boundary, max: Infinity }
-    : { min: -Infinity, max: boundary };
+  const domain = A > 0 ? { min: boundary, max: Infinity } : { min: -Infinity, max: boundary };
 
   // Format Ax+C for display
   const cSign = C >= 0 ? ` + ${C}` : ` - ${Math.abs(C)}`;
-  const aCoeff = Math.abs(A) === 1 ? (A < 0 ? '-' : '') : String(A);
+  const aCoeff = Math.abs(A) === 1 ? (A < 0 ? "-" : "") : String(A);
   const arg = `${aCoeff}x${cSign}`;
 
   const equation = `\\log_{10}(${arg}) = ${D}`;
@@ -91,7 +89,14 @@ function generateLogProblem(rand: () => number): ExpLogProblem {
     `Solve for x: x = (${10 ** D} - (${C})) / ${A} = ${roundTo(answer, 6)}`,
   ];
 
-  return { problemType: 'log', equation, answer, domain, familyId: 'step-by-step-solver:exp-log', steps };
+  return {
+    problemType: "log",
+    equation,
+    answer,
+    domain,
+    familyId: "step-by-step-solver:exp-log",
+    steps,
+  };
 }
 
 function generateLnProblem(rand: () => number): ExpLogProblem {
@@ -106,12 +111,10 @@ function generateLnProblem(rand: () => number): ExpLogProblem {
 
   // Domain: Ax + C > 0
   const boundary = -C / A;
-  const domain = A > 0
-    ? { min: boundary, max: Infinity }
-    : { min: -Infinity, max: boundary };
+  const domain = A > 0 ? { min: boundary, max: Infinity } : { min: -Infinity, max: boundary };
 
   const cSign = C >= 0 ? ` + ${C}` : ` - ${Math.abs(C)}`;
-  const aCoeff = Math.abs(A) === 1 ? (A < 0 ? '-' : '') : String(A);
+  const aCoeff = Math.abs(A) === 1 ? (A < 0 ? "-" : "") : String(A);
   const arg = `${aCoeff}x${cSign}`;
 
   const equation = `\\ln(${arg}) = ${D}`;
@@ -122,7 +125,14 @@ function generateLnProblem(rand: () => number): ExpLogProblem {
     `Solve for x: x = (${roundTo(eD, 4)} - (${C})) / ${A} = ${roundTo(answer, 6)}`,
   ];
 
-  return { problemType: 'ln', equation, answer, domain, familyId: 'step-by-step-solver:exp-log', steps };
+  return {
+    problemType: "ln",
+    equation,
+    answer,
+    domain,
+    familyId: "step-by-step-solver:exp-log",
+    steps,
+  };
 }
 
 function generateExpProblem(rand: () => number): ExpLogProblem {
@@ -144,7 +154,14 @@ function generateExpProblem(rand: () => number): ExpLogProblem {
     `Since 2^${exponent} = ${N}, we have x = ${exponent}`,
   ];
 
-  return { problemType: 'exp', equation, answer, domain, familyId: 'step-by-step-solver:exp-log', steps };
+  return {
+    problemType: "exp",
+    equation,
+    answer,
+    domain,
+    familyId: "step-by-step-solver:exp-log",
+    steps,
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -163,9 +180,7 @@ function generateExpProblem(rand: () => number): ExpLogProblem {
  * @param {number;} options.seed - — PRNG seed (integer).
  * @returns {ExpLogProblem} - An ExpLogProblem with equation, answer, domain, and steps.
  */
-export function generateExpLogProblem(options: {
-  seed: number;
-}): ExpLogProblem {
+export function generateExpLogProblem(options: { seed: number }): ExpLogProblem {
   const { seed } = options;
   const rand = seededRandom(seed);
 

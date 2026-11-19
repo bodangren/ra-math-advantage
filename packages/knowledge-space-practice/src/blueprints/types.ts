@@ -1,5 +1,5 @@
 // Domain-neutral blueprint types for knowledge-space-practice
-import type { ReviewStatus } from '@math-platform/knowledge-space-core';
+import type { ReviewStatus } from "@math-platform/knowledge-space-core";
 
 export interface KnowledgeBlueprint {
   nodeId: string;
@@ -39,7 +39,7 @@ export interface GuidedPracticeSpec {
   stepPrompts: string[];
   hints: string[];
   checksPerStep: Array<{ check: string; answerPattern?: string }>;
-  revealPolicy: 'all_at_once' | 'one_at_a_time' | 'after_attempt';
+  revealPolicy: "all_at_once" | "one_at_a_time" | "after_attempt";
   rendererProps?: Record<string, unknown>;
 }
 
@@ -48,12 +48,12 @@ export interface IndependentPracticeSpec {
   generatorInputConstraints?: Record<string, unknown>;
   answerSchema: Record<string, unknown>;
   gradingRules: GradingRule[];
-  replayPolicy: 'any_seed' | 'unique_seeds' | 'uniq_seeds_per_learner';
+  replayPolicy: "any_seed" | "unique_seeds" | "uniq_seeds_per_learner";
   rendererProps?: Record<string, unknown>;
 }
 
 export interface VariantParameter {
-  type: 'number' | 'integer' | 'string' | 'boolean' | 'enum';
+  type: "number" | "integer" | "string" | "boolean" | "enum";
   min?: number;
   max?: number;
   step?: number;
@@ -70,7 +70,7 @@ export interface GradingSpec {
 
 export interface GradingRule {
   partId: string;
-  ruleType: 'exact_match' | 'numeric_tolerance' | 'expression_equivalence' | 'custom';
+  ruleType: "exact_match" | "numeric_tolerance" | "expression_equivalence" | "custom";
   tolerance?: number;
   maxScore: number;
 }
@@ -93,7 +93,10 @@ export interface GeneratorOutput {
 export interface GradingMetadata {
   partAnswers: Record<string, unknown>;
   partMaxScores: Record<string, number>;
-  partGradingRules: Record<string, 'exact_match' | 'numeric_tolerance' | 'expression_equivalence' | 'custom'>;
+  partGradingRules: Record<
+    string,
+    "exact_match" | "numeric_tolerance" | "expression_equivalence" | "custom"
+  >;
   partTolerances?: Record<string, number>;
 }
 

@@ -1,29 +1,29 @@
-'use client';
+"use client";
 
-import React, { useState, useCallback, useRef } from 'react';
-import InlineMath from '@matejmazur/react-katex';
-import 'katex/dist/katex.min.css';
-import { GraphingCanvas, Point, FunctionPlot } from './GraphingCanvas';
-import { InteractiveTableOfValues } from './InteractiveTableOfValues';
-import { HintPanel, HintData } from './HintPanel';
-import { InterceptIdentification, InterceptData } from './InterceptIdentification';
-import { toConvexActivityId } from '@math-platform/practice-core';
-import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
-import { evaluateFunction, parseQuadratic, parseLinear } from '@math-platform/graphing-core';
+import React, { useState, useCallback, useRef } from "react";
+import InlineMath from "@matejmazur/react-katex";
+import "katex/dist/katex.min.css";
+import { GraphingCanvas, Point, FunctionPlot } from "./GraphingCanvas";
+import { InteractiveTableOfValues } from "./InteractiveTableOfValues";
+import { HintPanel, HintData } from "./HintPanel";
+import { InterceptIdentification, InterceptData } from "./InterceptIdentification";
+import { toConvexActivityId } from "@math-platform/practice-core";
+import type { PracticeSubmissionEnvelope } from "@math-platform/practice-core/contract";
+import { evaluateFunction, parseQuadratic, parseLinear } from "@math-platform/graphing-core";
 
 export interface GraphingExplorerProps {
   activityId: string;
-  mode: 'teaching' | 'guided' | 'practice' | 'explore';
+  mode: "teaching" | "guided" | "practice" | "explore";
   onSubmit?: (payload: PracticeSubmissionEnvelope) => void | Promise<void>;
-  variant?: 'plot_from_equation' | 'compare_functions' | 'find_intercepts' | 'graph_system';
-  responseVariant?: 'quadratic_features' | 'table_graph' | 'one_real_solution';
+  variant?: "plot_from_equation" | "compare_functions" | "find_intercepts" | "graph_system";
+  responseVariant?: "quadratic_features" | "table_graph" | "one_real_solution";
   equation: string;
   domain?: [number, number];
   range?: [number, number];
   points?: [number, number][];
   comparisonEquation?: string;
   comparisonQuestion?: string;
-  comparisonAnswer?: 'first' | 'second';
+  comparisonAnswer?: "first" | "second";
   linearEquation?: string;
   exploreQuestion?: string;
   explorationPrompts?: string[];
@@ -42,7 +42,7 @@ export function GraphingExplorer({
   activityId,
   mode,
   onSubmit,
-  variant = 'plot_from_equation',
+  variant = "plot_from_equation",
   responseVariant,
   equation,
   domain = DEFAULT_DOMAIN,
@@ -61,13 +61,17 @@ export function GraphingExplorer({
   const [tableValues, setTableValues] = useState<Array<{ x: number; y: number }>>([]);
   const [hints, setHints] = useState<HintData[]>([]);
   const [intercepts, setIntercepts] = useState<InterceptData[]>([]);
-  const [interactionHistory, setInteractionHistory] = useState<Array<{ type: string; timestamp: number; data?: unknown }>>([]);
+  const [interactionHistory, setInteractionHistory] = useState<
+    Array<{ type: string; timestamp: number; data?: unknown }>
+  >([]);
   const [showSolution, setShowSolution] = useState(false);
   const [deferredSubmitted, setDeferredSubmitted] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState(false);
   const savingRef = useRef(false);
-  const [comparisonAnswerSelected, setComparisonAnswerSelected] = useState<'first' | 'second' | null>(null);
+  const [comparisonAnswerSelected, setComparisonAnswerSelected] = useState<
+    "first" | "second" | null
+  >(null);
   const [showComparisonFeedback, setShowComparisonFeedback] = useState(false);
   const [intersectionPoints, setIntersectionPoints] = useState<Point[]>([]);
   const [sliderA, setSliderA] = useState(sliderDefaults?.a ?? 1);
@@ -78,75 +82,104 @@ export function GraphingExplorer({
   // sets the comparison/submit feedback. Colocating them in one region prevents
   // screen readers from missing announcements when multiple status regions
   // exist on the same surface.
-  const [feedbackMessage, setFeedbackMessage] = useState('');
-  const isDeferredTableGraph = (mode === 'practice' || mode === 'guided') && responseVariant === 'table_graph' && variant === 'plot_from_equation';
+  const [feedbackMessage, setFeedbackMessage] = useState("");
+  const isDeferredTableGraph =
+    (mode === "practice" || mode === "guided") &&
+    responseVariant === "table_graph" &&
+    variant === "plot_from_equation";
 
   const addInteraction = useCallback((type: string, data?: unknown) => {
-    setInteractionHistory(prev => [...prev, { type, timestamp: Date.now(), data }]);
+    setInteractionHistory((prev) => [...prev, { type, timestamp: Date.now(), data }]);
   }, []);
 
-  const handlePointAdd = useCallback((point: Point) => {
-    setPlacedPoints(prev => [...prev, { ...point, label: `${point.x.toFixed(1)}, ${point.y.toFixed(1)}` }]);
-    addInteraction('point_placed', point);
+  const handlePointAdd = useCallback(
+    (point: Point) => {
+      setPlacedPoints((prev) => [
+        ...prev,
+        { ...point, label: `${point.x.toFixed(1)}, ${point.y.toFixed(1)}` },
+      ]);
+      addInteraction("point_placed", point);
 
-    if (variant === 'find_intercepts' && Math.abs(point.y) < 1.0) {
-      setIntercepts(prev => [...prev, {
-        type: 'intercept',
-        data: { x: point.x, y: 0 },
-        timestamp: Date.now(),
-      }]);
-      addInteraction('intercept_identified', { x: point.x, y: 0 });
-    }
+      if (variant === "find_intercepts" && Math.abs(point.y) < 1.0) {
+        setIntercepts((prev) => [
+          ...prev,
+          {
+            type: "intercept",
+            data: { x: point.x, y: 0 },
+            timestamp: Date.now(),
+          },
+        ]);
+        addInteraction("intercept_identified", { x: point.x, y: 0 });
+      }
 
-    if (variant === 'graph_system') {
-      setIntersectionPoints(prev => [...prev, point]);
-      addInteraction('intersection_identified', point);
-    }
-  }, [addInteraction, variant]);
+      if (variant === "graph_system") {
+        setIntersectionPoints((prev) => [...prev, point]);
+        addInteraction("intersection_identified", point);
+      }
+    },
+    [addInteraction, variant],
+  );
 
-  const handlePointRemove = useCallback((label: string) => {
-    setPlacedPoints(prev => prev.filter(p => p.label !== label));
-    if (variant === 'find_intercepts') {
-      setIntercepts(prev => prev.filter(i => {
-        if (i.type === 'intercept' && i.data) {
-          return i.data.x.toFixed(1) !== label.split(', ')[0];
-        }
-        return true;
-      }));
-    }
-    if (variant === 'graph_system') {
-      setIntersectionPoints(prev => prev.filter(p => p.label !== label));
-    }
-    addInteraction('point_removed', { label });
-  }, [addInteraction, variant]);
+  const handlePointRemove = useCallback(
+    (label: string) => {
+      setPlacedPoints((prev) => prev.filter((p) => p.label !== label));
+      if (variant === "find_intercepts") {
+        setIntercepts((prev) =>
+          prev.filter((i) => {
+            if (i.type === "intercept" && i.data) {
+              return i.data.x.toFixed(1) !== label.split(", ")[0];
+            }
+            return true;
+          }),
+        );
+      }
+      if (variant === "graph_system") {
+        setIntersectionPoints((prev) => prev.filter((p) => p.label !== label));
+      }
+      addInteraction("point_removed", { label });
+    },
+    [addInteraction, variant],
+  );
 
-  const handleTableComplete = useCallback((points: Array<{ x: number; y: number }>) => {
-    setTableValues(points);
-    setTableComplete(points.length > 0);
-    addInteraction('table_complete', { points });
-  }, [addInteraction]);
+  const handleTableComplete = useCallback(
+    (points: Array<{ x: number; y: number }>) => {
+      setTableValues(points);
+      setTableComplete(points.length > 0);
+      addInteraction("table_complete", { points });
+    },
+    [addInteraction],
+  );
 
-  const handleHintUsed = useCallback((hint: HintData) => {
-    setHints(prev => [...prev, hint]);
-    addInteraction('hint_used', { hintType: hint.type, data: hint.data });
-  }, [addInteraction]);
+  const handleHintUsed = useCallback(
+    (hint: HintData) => {
+      setHints((prev) => [...prev, hint]);
+      addInteraction("hint_used", { hintType: hint.type, data: hint.data });
+    },
+    [addInteraction],
+  );
 
-  const handleInterceptIdentified = useCallback((intercept: InterceptData) => {
-    setIntercepts(prev => [...prev, intercept]);
-    addInteraction('intercept_identified', intercept);
-  }, [addInteraction]);
+  const handleInterceptIdentified = useCallback(
+    (intercept: InterceptData) => {
+      setIntercepts((prev) => [...prev, intercept]);
+      addInteraction("intercept_identified", intercept);
+    },
+    [addInteraction],
+  );
 
-  const handleComparisonAnswerSelect = useCallback((answer: 'first' | 'second') => {
-    setComparisonAnswerSelected(answer);
-    addInteraction('comparison_answer_selected', { answer });
-  }, [addInteraction]);
+  const handleComparisonAnswerSelect = useCallback(
+    (answer: "first" | "second") => {
+      setComparisonAnswerSelected(answer);
+      addInteraction("comparison_answer_selected", { answer });
+    },
+    [addInteraction],
+  );
 
   const assessPointsCorrectness = useCallback((): boolean => {
     if (initialPoints.length === 0) return true;
     if (placedPoints.length === 0) return false;
 
     return initialPoints.every(([expectedX, expectedY]) =>
-      placedPoints.some(p => Math.abs(p.x - expectedX) < 0.1 && Math.abs(p.y - expectedY) < 0.1)
+      placedPoints.some((p) => Math.abs(p.x - expectedX) < 0.1 && Math.abs(p.y - expectedY) < 0.1),
     );
   }, [initialPoints, placedPoints]);
 
@@ -203,10 +236,10 @@ export function GraphingExplorer({
       const submittedTableValues = tableValues.map(({ x, y }) => ({ x, y }));
       const submittedPlacedPoints = placedPoints.map(({ x, y }) => ({ x, y }));
       const envelope: PracticeSubmissionEnvelope = {
-        contractVersion: 'practice.v1',
+        contractVersion: "practice.v1",
         activityId: toConvexActivityId(activityId),
-        mode: mode === 'guided' ? 'guided_practice' : 'independent_practice',
-        status: 'submitted',
+        mode: mode === "guided" ? "guided_practice" : "independent_practice",
+        status: "submitted",
         attemptNumber: 1,
         submittedAt: new Date().toISOString(),
         answers: {
@@ -214,8 +247,8 @@ export function GraphingExplorer({
           placed_points: submittedPlacedPoints,
         },
         parts: [
-          { partId: 'table_values', rawAnswer: submittedTableValues, hintsUsed: 0 },
-          { partId: 'placed_points', rawAnswer: submittedPlacedPoints, hintsUsed: hints.length },
+          { partId: "table_values", rawAnswer: submittedTableValues, hintsUsed: 0 },
+          { partId: "placed_points", rawAnswer: submittedPlacedPoints, hintsUsed: hints.length },
         ],
         artifact: {
           graphState: {
@@ -230,17 +263,17 @@ export function GraphingExplorer({
       setIsSaving(true);
       setSaveError(false);
       setDeferredSubmitted(false);
-      setFeedbackMessage('Saving your submission.');
+      setFeedbackMessage("Saving your submission.");
       setShowSolution(false);
       setShowComparisonFeedback(false);
       void (async () => {
         try {
-          if (!onSubmit) throw new Error('Missing submission handler');
+          if (!onSubmit) throw new Error("Missing submission handler");
           await onSubmit(envelope);
-          setFeedbackMessage('Submission recorded for grading.');
+          setFeedbackMessage("Submission recorded for grading.");
           setDeferredSubmitted(true);
         } catch {
-          setFeedbackMessage('Your submission could not be saved. Try again.');
+          setFeedbackMessage("Your submission could not be saved. Try again.");
           setSaveError(true);
         } finally {
           savingRef.current = false;
@@ -257,12 +290,12 @@ export function GraphingExplorer({
       hintsUsed?: number;
     }> = [
       {
-        partId: 'placed_points',
-        rawAnswer: placedPoints.map(p => ({ x: p.x, y: p.y })),
+        partId: "placed_points",
+        rawAnswer: placedPoints.map((p) => ({ x: p.x, y: p.y })),
         isCorrect: assessPointsCorrectness(),
       },
       {
-        partId: 'intercepts',
+        partId: "intercepts",
         rawAnswer: intercepts,
         isCorrect: assessInterceptsCorrectness(),
         hintsUsed: hints.length,
@@ -270,22 +303,22 @@ export function GraphingExplorer({
     ];
 
     const answers: Record<string, unknown> = {
-      placedPoints: placedPoints.map(p => ({ x: p.x, y: p.y })),
+      placedPoints: placedPoints.map((p) => ({ x: p.x, y: p.y })),
       intercepts: intercepts,
     };
 
-    if (variant === 'compare_functions' && comparisonAnswerSelected) {
+    if (variant === "compare_functions" && comparisonAnswerSelected) {
       parts.push({
-        partId: 'comparison',
+        partId: "comparison",
         rawAnswer: comparisonAnswerSelected,
         isCorrect: assessComparisonCorrectness(),
       });
       answers.comparisonAnswer = comparisonAnswerSelected;
     }
 
-    if (variant === 'graph_system') {
+    if (variant === "graph_system") {
       parts.push({
-        partId: 'intersections',
+        partId: "intersections",
         rawAnswer: intersectionPoints,
         isCorrect: assessPointsCorrectness(),
       });
@@ -305,28 +338,32 @@ export function GraphingExplorer({
     // throw on multiple matches. The Phase 2 a11y tests still see the result
     // (live region text contains "correct" as substring, matching the
     // /correct|incorrect/ regex used by `live-regions.test.tsx`).
-    if (variant === 'compare_functions' && comparisonAnswerSelected) {
+    if (variant === "compare_functions" && comparisonAnswerSelected) {
       setFeedbackMessage(
         assessComparisonCorrectness()
-          ? 'Submission outcome: your answer is correct — the selected function opens upward.'
-          : 'Submission outcome: your answer is not correct — compare the two functions and try again.'
+          ? "Submission outcome: your answer is correct — the selected function opens upward."
+          : "Submission outcome: your answer is not correct — compare the two functions and try again.",
       );
     } else {
       const correct = assessPointsCorrectness();
       setFeedbackMessage(
         correct
-          ? 'Submission outcome: your answer is correct — all points are placed accurately.'
-          : 'Submission outcome: your answer is not correct — keep trying.'
+          ? "Submission outcome: your answer is correct — all points are placed accurately."
+          : "Submission outcome: your answer is not correct — keep trying.",
       );
     }
 
     if (!onSubmit) return;
 
     const envelope: PracticeSubmissionEnvelope = {
-      contractVersion: 'practice.v1',
+      contractVersion: "practice.v1",
       activityId: toConvexActivityId(activityId),
-      mode: (mode === 'practice' ? 'independent_practice' : mode === 'guided' ? 'guided_practice' : mode) as PracticeSubmissionEnvelope['mode'],
-      status: 'submitted',
+      mode: (mode === "practice"
+        ? "independent_practice"
+        : mode === "guided"
+          ? "guided_practice"
+          : mode) as PracticeSubmissionEnvelope["mode"],
+      status: "submitted",
       attemptNumber: 1,
       submittedAt: new Date().toISOString(),
       answers,
@@ -349,24 +386,49 @@ export function GraphingExplorer({
     onSubmit(envelope);
     setShowSolution(true);
     setShowComparisonFeedback(true);
-  }, [activityId, mode, onSubmit, placedPoints, intercepts, hints, interactionHistory, equation, comparisonEquation, linearEquation, domain, range, assessPointsCorrectness, assessInterceptsCorrectness, variant, comparisonAnswerSelected, assessComparisonCorrectness, intersectionPoints, isDeferredTableGraph, tableValues]);
+  }, [
+    activityId,
+    mode,
+    onSubmit,
+    placedPoints,
+    intercepts,
+    hints,
+    interactionHistory,
+    equation,
+    comparisonEquation,
+    linearEquation,
+    domain,
+    range,
+    assessPointsCorrectness,
+    assessInterceptsCorrectness,
+    variant,
+    comparisonAnswerSelected,
+    assessComparisonCorrectness,
+    intersectionPoints,
+    isDeferredTableGraph,
+    tableValues,
+  ]);
 
   const functions: FunctionPlot[] = [
     {
       expression: equation,
-      color: '#3b82f6',
+      color: "#3b82f6",
     },
-    ...(variant === 'compare_functions' && comparisonEquation
-      ? [{
-          expression: comparisonEquation,
-          color: '#ef4444',
-        }]
+    ...(variant === "compare_functions" && comparisonEquation
+      ? [
+          {
+            expression: comparisonEquation,
+            color: "#ef4444",
+          },
+        ]
       : []),
-    ...(variant === 'graph_system' && linearEquation
-      ? [{
-          expression: linearEquation,
-          color: '#10b981',
-        }]
+    ...(variant === "graph_system" && linearEquation
+      ? [
+          {
+            expression: linearEquation,
+            color: "#10b981",
+          },
+        ]
       : []),
   ];
 
@@ -374,16 +436,16 @@ export function GraphingExplorer({
     x,
     y,
     label: `${x.toFixed(1)}, ${y.toFixed(1)}`,
-    type: 'vertex',
+    type: "vertex",
   }));
 
-  const isTeaching = mode === 'teaching';
-  const isGuided = mode === 'guided';
-  const isPractice = mode === 'practice';
-  const isExplore = mode === 'explore';
+  const isTeaching = mode === "teaching";
+  const isGuided = mode === "guided";
+  const isPractice = mode === "practice";
+  const isExplore = mode === "explore";
 
   const workedExample = (() => {
-    if (!isTeaching || variant !== 'plot_from_equation') return null;
+    if (!isTeaching || variant !== "plot_from_equation") return null;
     const coefficients = parseQuadratic(equation);
     if (!coefficients || coefficients.a === 0) return null;
 
@@ -395,7 +457,7 @@ export function GraphingExplorer({
       x,
       y: evaluateFunction(equation, x),
       label: `${x}, ${evaluateFunction(equation, x)}`,
-      type: x === axisX ? 'vertex' : undefined,
+      type: x === axisX ? "vertex" : undefined,
     }));
 
     return {
@@ -414,20 +476,20 @@ export function GraphingExplorer({
   };
 
   const formatCoefficient = (coeff: number, variable: string, isFirst: boolean): string => {
-    if (coeff === 0) return '';
-    const sign = coeff > 0 ? (isFirst ? '' : ' + ') : ' - ';
+    if (coeff === 0) return "";
+    const sign = coeff > 0 ? (isFirst ? "" : " + ") : " - ";
     const absCoeff = Math.abs(coeff);
-    const coeffStr = absCoeff === 1 && variable ? '' : absCoeff.toString();
+    const coeffStr = absCoeff === 1 && variable ? "" : absCoeff.toString();
     return `${sign}${coeffStr}${variable}`;
   };
 
   const exploreEquation = (() => {
-    let result = 'y = ';
-    const aPart = formatCoefficient(sliderA, 'x²', true);
-    const bPart = formatCoefficient(sliderB, 'x', !aPart);
-    const cPart = formatCoefficient(sliderC, '', !aPart && !bPart);
+    let result = "y = ";
+    const aPart = formatCoefficient(sliderA, "x²", true);
+    const bPart = formatCoefficient(sliderB, "x", !aPart);
+    const cPart = formatCoefficient(sliderC, "", !aPart && !bPart);
     result += aPart + bPart + cPart;
-    return result || 'y = 0';
+    return result || "y = 0";
   })();
 
   const handleSliderReset = () => {
@@ -436,7 +498,7 @@ export function GraphingExplorer({
     setSliderC(sliderDefaults?.c ?? 0);
   };
 
-  const exploreFunctions: FunctionPlot[] = [{ expression: exploreEquation, color: '#3b82f6' }];
+  const exploreFunctions: FunctionPlot[] = [{ expression: exploreEquation, color: "#3b82f6" }];
 
   return (
     <div className="space-y-6">
@@ -554,277 +616,307 @@ export function GraphingExplorer({
           />
         </>
       ) : (
-      <>
-        <div>
-          {workedExample && (
-            <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-primary">
-              Worked example
-            </p>
-          )}
-          <h2 className="text-xl font-semibold text-foreground mb-2">
-            {workedExample
-              ? 'Graph a Quadratic Function by Using a Table'
-              : variant === 'compare_functions'
-              ? 'Compare the Functions'
-              : variant === 'find_intercepts'
-              ? 'Find the X-Intercepts'
-              : variant === 'graph_system'
-              ? 'Graph the System of Equations'
-              : 'Graph the Function'}
-          </h2>
-          <div
-            className="text-muted-foreground"
-            data-testid={workedExample ? 'worked-equation' : 'graphing-equation'}
-          >
-            <InlineMath math={equation} />
-            {variant === 'compare_functions' && comparisonEquation && (
-              <>
-                <br />
-                <InlineMath math={comparisonEquation} />
-              </>
-            )}
-            {variant === 'graph_system' && linearEquation && (
-              <>
-                <br />
-                <InlineMath math={linearEquation} />
-              </>
-            )}
-          </div>
-        </div>
-
-        {workedExample && (
-          <section className="space-y-3 rounded-lg border border-border bg-card p-4 text-foreground">
-            <h3 className="text-lg font-semibold">Step 1: Analyze the function</h3>
-            <p>
-              <InlineMath
-                math={`a = ${formatNumber(workedExample.coefficients.a)},\\quad b = ${formatNumber(workedExample.coefficients.b)},\\quad c = ${formatNumber(workedExample.coefficients.c)}`}
-              />
-            </p>
-            <p>
-              The y-intercept is{' '}
-              <InlineMath math={`${formatNumber(workedExample.coefficients.c)}`} />.
-            </p>
-            <p data-testid="worked-axis">
-              Axis of symmetry:{' '}
-              <InlineMath
-                math={`x = -\\frac{b}{2a} = ${formatNumber(workedExample.axisX)}`}
-              />
-            </p>
-            <p>
-              The vertex is{' '}
-              <InlineMath
-                math={`(${formatNumber(workedExample.axisX)}, ${formatNumber(workedExample.vertexY)})`}
-              />.
-              {' '}The parabola opens {workedExample.coefficients.a > 0 ? 'upward' : 'downward'},
-              so the vertex is a {workedExample.coefficients.a > 0 ? 'minimum' : 'maximum'}.
-            </p>
-          </section>
-        )}
-
-        {variant === 'graph_system' && (
-        <p className="text-sm text-muted-foreground">
-          Find the intersection points
-        </p>
-      )}
-
-      {(isDeferredTableGraph || (isGuided && !tableComplete)) && (
-        <InteractiveTableOfValues
-          xValues={[-2, -1, 0, 1, 2]}
-          functionExpression={equation}
-          onTableComplete={handleTableComplete}
-          assessmentMode={isDeferredTableGraph ? 'deferred' : undefined}
-          readonly={isTeaching}
-        />
-      )}
-
-      {workedExample && (
-        <section aria-labelledby="worked-graph-step" className="space-y-3">
-          <h3 id="worked-graph-step" className="text-lg font-semibold text-foreground">
-            Step 2: Graph the function
-          </h3>
-          <InteractiveTableOfValues
-            xValues={workedExample.xValues}
-            functionExpression={equation}
-            onTableComplete={() => undefined}
-            preFilledValues={workedExample.preFilledValues}
-            readonly
-          />
-        </section>
-      )}
-
-      {isGuided && tableComplete && (
-        <div className="bg-green-50 border border-green-200 rounded-md p-3">
-          <p className="text-green-800 text-sm">The table is complete. Plot your points on the graph.</p>
-        </div>
-      )}
-
-      {isGuided && (
-        <HintPanel
-          functionExpression={equation}
-          onHintUsed={handleHintUsed}
-          readonly={isTeaching}
-        />
-      )}
-
-      <GraphingCanvas
-        domain={domain}
-        range={range}
-        functions={isDeferredTableGraph ? [] : functions}
-        points={workedExample
-          ? [
-              ...workedExample.points,
-              ...preSetPoints.filter((point) => !workedExample.points.some(
-                (workedPoint) => workedPoint.x === point.x && workedPoint.y === point.y,
-              )),
-            ]
-          : [...preSetPoints, ...placedPoints]}
-        onPointAdd={(!isTeaching && (isDeferredTableGraph ? tableComplete : (isPractice || tableComplete))) ? handlePointAdd : undefined}
-        onPointRemove={(!isTeaching && (isDeferredTableGraph ? tableComplete : (isPractice || tableComplete))) ? handlePointRemove : undefined}
-        readonly={isTeaching}
-        snapToGrid={isGuided}
-        onAnnounce={setFeedbackMessage}
-      />
-
-      {workedExample && (
-        <section className="space-y-2 rounded-lg border border-border bg-card p-4 text-foreground">
-          <h3 className="text-lg font-semibold">Step 3: Analyze the graph</h3>
-          <p>The domain is all real numbers.</p>
-          <p data-testid="worked-range">
-            Range:{' '}
-            <InlineMath
-              math={workedExample.coefficients.a > 0
-                ? `\\{y \\mid y \\ge ${formatNumber(workedExample.vertexY)}\\}`
-                : `\\{y \\mid y \\le ${formatNumber(workedExample.vertexY)}\\}`}
-            />
-          </p>
-        </section>
-      )}
-
-      {isGuided && tableComplete && !isDeferredTableGraph && (
-        <InterceptIdentification
-          functionExpression={equation}
-          onInterceptIdentified={handleInterceptIdentified}
-          readonly={isTeaching}
-        />
-      )}
-
-      {variant === 'find_intercepts' && !hasRealIntercepts() && (
-        <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4">
-          <p className="text-sm text-yellow-800 font-medium">
-            This function has no real x-intercepts.
-          </p>
-          <p className="text-xs text-yellow-700 mt-1">
-            The graph does not cross the x-axis.
-          </p>
-        </div>
-      )}
-
-      {variant === 'graph_system' && !hasRealIntersections() && (
-        <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4">
-          <p className="text-sm text-yellow-800 font-medium">
-            This system has no real intersection points.
-          </p>
-          <p className="text-xs text-yellow-700 mt-1">
-            The quadratic and linear functions do not intersect.
-          </p>
-        </div>
-      )}
-
-      {variant === 'compare_functions' && comparisonQuestion && (
-        <div className="bg-white border border-gray-200 rounded-md p-4">
-          <p className="font-medium text-foreground mb-3">{comparisonQuestion}</p>
-          {!isTeaching ? (
-            <div className="space-y-2">
-              <label className="flex items-center space-x-2 cursor-pointer">
-                <input
-                  type="radio"
-                  name="comparison"
-                  value="first"
-                  checked={comparisonAnswerSelected === 'first'}
-                  onChange={(e) => handleComparisonAnswerSelect(e.target.value as 'first' | 'second')}
-                  className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
-                />
-                <span className="text-foreground">First function: {equation}</span>
-              </label>
-              <label className="flex items-center space-x-2 cursor-pointer">
-                <input
-                  type="radio"
-                  name="comparison"
-                  value="second"
-                  checked={comparisonAnswerSelected === 'second'}
-                  onChange={(e) => handleComparisonAnswerSelect(e.target.value as 'first' | 'second')}
-                  className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
-                />
-                <span className="text-foreground">Second function: {comparisonEquation}</span>
-              </label>
-            </div>
-          ) : (
-            <p className="text-sm text-green-700 font-medium">
-              Correct answer: {comparisonAnswer === 'first' ? 'First' : 'Second'} function
-            </p>
-          )}
-        </div>
-      )}
-
-      {showSolution && (
         <>
-          {showComparisonFeedback && variant === 'compare_functions' && comparisonAnswerSelected && (
-            <div className={`border rounded-md p-4 ${assessComparisonCorrectness() ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
-              <h3 className={`font-semibold mb-2 ${assessComparisonCorrectness() ? 'text-green-900' : 'text-red-900'}`}>
-                {assessComparisonCorrectness() ? 'Correct!' : 'Incorrect'}
+          <div>
+            {workedExample && (
+              <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-primary">
+                Worked example
+              </p>
+            )}
+            <h2 className="text-xl font-semibold text-foreground mb-2">
+              {workedExample
+                ? "Graph a Quadratic Function by Using a Table"
+                : variant === "compare_functions"
+                  ? "Compare the Functions"
+                  : variant === "find_intercepts"
+                    ? "Find the X-Intercepts"
+                    : variant === "graph_system"
+                      ? "Graph the System of Equations"
+                      : "Graph the Function"}
+            </h2>
+            <div
+              className="text-muted-foreground"
+              data-testid={workedExample ? "worked-equation" : "graphing-equation"}
+            >
+              <InlineMath math={equation} />
+              {variant === "compare_functions" && comparisonEquation && (
+                <>
+                  <br />
+                  <InlineMath math={comparisonEquation} />
+                </>
+              )}
+              {variant === "graph_system" && linearEquation && (
+                <>
+                  <br />
+                  <InlineMath math={linearEquation} />
+                </>
+              )}
+            </div>
+          </div>
+
+          {workedExample && (
+            <section className="space-y-3 rounded-lg border border-border bg-card p-4 text-foreground">
+              <h3 className="text-lg font-semibold">Step 1: Analyze the function</h3>
+              <p>
+                <InlineMath
+                  math={`a = ${formatNumber(workedExample.coefficients.a)},\\quad b = ${formatNumber(workedExample.coefficients.b)},\\quad c = ${formatNumber(workedExample.coefficients.c)}`}
+                />
+              </p>
+              <p>
+                The y-intercept is{" "}
+                <InlineMath math={`${formatNumber(workedExample.coefficients.c)}`} />.
+              </p>
+              <p data-testid="worked-axis">
+                Axis of symmetry:{" "}
+                <InlineMath math={`x = -\\frac{b}{2a} = ${formatNumber(workedExample.axisX)}`} />
+              </p>
+              <p>
+                The vertex is{" "}
+                <InlineMath
+                  math={`(${formatNumber(workedExample.axisX)}, ${formatNumber(workedExample.vertexY)})`}
+                />
+                . The parabola opens {workedExample.coefficients.a > 0 ? "upward" : "downward"}, so
+                the vertex is a {workedExample.coefficients.a > 0 ? "minimum" : "maximum"}.
+              </p>
+            </section>
+          )}
+
+          {variant === "graph_system" && (
+            <p className="text-sm text-muted-foreground">Find the intersection points</p>
+          )}
+
+          {(isDeferredTableGraph || (isGuided && !tableComplete)) && (
+            <InteractiveTableOfValues
+              xValues={[-2, -1, 0, 1, 2]}
+              functionExpression={equation}
+              onTableComplete={handleTableComplete}
+              assessmentMode={isDeferredTableGraph ? "deferred" : undefined}
+              readonly={isTeaching}
+            />
+          )}
+
+          {workedExample && (
+            <section aria-labelledby="worked-graph-step" className="space-y-3">
+              <h3 id="worked-graph-step" className="text-lg font-semibold text-foreground">
+                Step 2: Graph the function
               </h3>
-              {!assessComparisonCorrectness() && (
-                <p className={`text-sm ${assessComparisonCorrectness() ? 'text-green-800' : 'text-red-800'}`}>
-                  The correct answer is: {comparisonAnswer === 'first' ? 'First' : 'Second'} function
+              <InteractiveTableOfValues
+                xValues={workedExample.xValues}
+                functionExpression={equation}
+                onTableComplete={() => undefined}
+                preFilledValues={workedExample.preFilledValues}
+                readonly
+              />
+            </section>
+          )}
+
+          {isGuided && tableComplete && (
+            <div className="bg-green-50 border border-green-200 rounded-md p-3">
+              <p className="text-green-800 text-sm">
+                The table is complete. Plot your points on the graph.
+              </p>
+            </div>
+          )}
+
+          {isGuided && (
+            <HintPanel
+              functionExpression={equation}
+              onHintUsed={handleHintUsed}
+              readonly={isTeaching}
+            />
+          )}
+
+          <GraphingCanvas
+            domain={domain}
+            range={range}
+            functions={isDeferredTableGraph ? [] : functions}
+            points={
+              workedExample
+                ? [
+                    ...workedExample.points,
+                    ...preSetPoints.filter(
+                      (point) =>
+                        !workedExample.points.some(
+                          (workedPoint) => workedPoint.x === point.x && workedPoint.y === point.y,
+                        ),
+                    ),
+                  ]
+                : [...preSetPoints, ...placedPoints]
+            }
+            onPointAdd={
+              !isTeaching && (isDeferredTableGraph ? tableComplete : isPractice || tableComplete)
+                ? handlePointAdd
+                : undefined
+            }
+            onPointRemove={
+              !isTeaching && (isDeferredTableGraph ? tableComplete : isPractice || tableComplete)
+                ? handlePointRemove
+                : undefined
+            }
+            readonly={isTeaching}
+            snapToGrid={isGuided}
+            onAnnounce={setFeedbackMessage}
+          />
+
+          {workedExample && (
+            <section className="space-y-2 rounded-lg border border-border bg-card p-4 text-foreground">
+              <h3 className="text-lg font-semibold">Step 3: Analyze the graph</h3>
+              <p>The domain is all real numbers.</p>
+              <p data-testid="worked-range">
+                Range:{" "}
+                <InlineMath
+                  math={
+                    workedExample.coefficients.a > 0
+                      ? `\\{y \\mid y \\ge ${formatNumber(workedExample.vertexY)}\\}`
+                      : `\\{y \\mid y \\le ${formatNumber(workedExample.vertexY)}\\}`
+                  }
+                />
+              </p>
+            </section>
+          )}
+
+          {isGuided && tableComplete && !isDeferredTableGraph && (
+            <InterceptIdentification
+              functionExpression={equation}
+              onInterceptIdentified={handleInterceptIdentified}
+              readonly={isTeaching}
+            />
+          )}
+
+          {variant === "find_intercepts" && !hasRealIntercepts() && (
+            <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4">
+              <p className="text-sm text-yellow-800 font-medium">
+                This function has no real x-intercepts.
+              </p>
+              <p className="text-xs text-yellow-700 mt-1">The graph does not cross the x-axis.</p>
+            </div>
+          )}
+
+          {variant === "graph_system" && !hasRealIntersections() && (
+            <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4">
+              <p className="text-sm text-yellow-800 font-medium">
+                This system has no real intersection points.
+              </p>
+              <p className="text-xs text-yellow-700 mt-1">
+                The quadratic and linear functions do not intersect.
+              </p>
+            </div>
+          )}
+
+          {variant === "compare_functions" && comparisonQuestion && (
+            <div className="bg-white border border-gray-200 rounded-md p-4">
+              <p className="font-medium text-foreground mb-3">{comparisonQuestion}</p>
+              {!isTeaching ? (
+                <div className="space-y-2">
+                  <label className="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="comparison"
+                      value="first"
+                      checked={comparisonAnswerSelected === "first"}
+                      onChange={(e) =>
+                        handleComparisonAnswerSelect(e.target.value as "first" | "second")
+                      }
+                      className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                    />
+                    <span className="text-foreground">First function: {equation}</span>
+                  </label>
+                  <label className="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="comparison"
+                      value="second"
+                      checked={comparisonAnswerSelected === "second"}
+                      onChange={(e) =>
+                        handleComparisonAnswerSelect(e.target.value as "first" | "second")
+                      }
+                      className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                    />
+                    <span className="text-foreground">Second function: {comparisonEquation}</span>
+                  </label>
+                </div>
+              ) : (
+                <p className="text-sm text-green-700 font-medium">
+                  Correct answer: {comparisonAnswer === "first" ? "First" : "Second"} function
                 </p>
               )}
             </div>
           )}
-          {variant === 'find_intercepts' && (
-            <div className={`border rounded-md p-4 ${assessInterceptsCorrectness() ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
-              <h3 className={`font-semibold mb-2 ${assessInterceptsCorrectness() ? 'text-green-900' : 'text-red-900'}`}>
-                {assessInterceptsCorrectness() ? 'Correct!' : 'Incorrect'}
-              </h3>
-            </div>
-          )}
-          {variant === 'graph_system' && (
-            <div className={`border rounded-md p-4 ${assessPointsCorrectness() ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
-              <h3 className={`font-semibold mb-2 ${assessPointsCorrectness() ? 'text-green-900' : 'text-red-900'}`}>
-                {assessPointsCorrectness() ? 'Correct!' : 'Incorrect'}
-              </h3>
-            </div>
-          )}
-          <div className="bg-blue-50 border border-blue-200 rounded-md p-4">
-            <h3 className="font-semibold text-blue-900 mb-2">Correct Solution</h3>
-            <div className="text-sm text-blue-800 space-y-1">
-              {preSetPoints.map((point, index) => (
-                <div key={index}>
-                  Point: ({point.x.toFixed(1)}, {point.y.toFixed(1)})
-                </div>
-              ))}
-            </div>
-          </div>
-        </>
-      )}
 
-      {!isTeaching && (
-        (isDeferredTableGraph
-          ? tableComplete
-          : variant === 'compare_functions'
-            ? comparisonAnswerSelected
-            : isPractice || tableComplete
-        ) && (
-          <button
-            type="submit"
-            onClick={handleSubmit}
-            disabled={isDeferredTableGraph && isSaving}
-            className="px-6 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
-          >
-            Submit
-          </button>
-        )
-      )}
-      </>
+          {showSolution && (
+            <>
+              {showComparisonFeedback &&
+                variant === "compare_functions" &&
+                comparisonAnswerSelected && (
+                  <div
+                    className={`border rounded-md p-4 ${assessComparisonCorrectness() ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"}`}
+                  >
+                    <h3
+                      className={`font-semibold mb-2 ${assessComparisonCorrectness() ? "text-green-900" : "text-red-900"}`}
+                    >
+                      {assessComparisonCorrectness() ? "Correct!" : "Incorrect"}
+                    </h3>
+                    {!assessComparisonCorrectness() && (
+                      <p
+                        className={`text-sm ${assessComparisonCorrectness() ? "text-green-800" : "text-red-800"}`}
+                      >
+                        The correct answer is: {comparisonAnswer === "first" ? "First" : "Second"}{" "}
+                        function
+                      </p>
+                    )}
+                  </div>
+                )}
+              {variant === "find_intercepts" && (
+                <div
+                  className={`border rounded-md p-4 ${assessInterceptsCorrectness() ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"}`}
+                >
+                  <h3
+                    className={`font-semibold mb-2 ${assessInterceptsCorrectness() ? "text-green-900" : "text-red-900"}`}
+                  >
+                    {assessInterceptsCorrectness() ? "Correct!" : "Incorrect"}
+                  </h3>
+                </div>
+              )}
+              {variant === "graph_system" && (
+                <div
+                  className={`border rounded-md p-4 ${assessPointsCorrectness() ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"}`}
+                >
+                  <h3
+                    className={`font-semibold mb-2 ${assessPointsCorrectness() ? "text-green-900" : "text-red-900"}`}
+                  >
+                    {assessPointsCorrectness() ? "Correct!" : "Incorrect"}
+                  </h3>
+                </div>
+              )}
+              <div className="bg-blue-50 border border-blue-200 rounded-md p-4">
+                <h3 className="font-semibold text-blue-900 mb-2">Correct Solution</h3>
+                <div className="text-sm text-blue-800 space-y-1">
+                  {preSetPoints.map((point, index) => (
+                    <div key={index}>
+                      Point: ({point.x.toFixed(1)}, {point.y.toFixed(1)})
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
+
+          {!isTeaching &&
+            (isDeferredTableGraph
+              ? tableComplete
+              : variant === "compare_functions"
+                ? comparisonAnswerSelected
+                : isPractice || tableComplete) && (
+              <button
+                type="submit"
+                onClick={handleSubmit}
+                disabled={isDeferredTableGraph && isSaving}
+                className="px-6 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+              >
+                Submit
+              </button>
+            )}
+        </>
       )}
       {/* Always-present polite live region — colocates GraphingCanvas point-
           placement announcements (via onAnnounce) and submit/compare feedback

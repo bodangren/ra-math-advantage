@@ -1,4 +1,4 @@
-import type { PracticeTimingSummary, PracticeTimingConfidence } from './contract';
+import type { PracticeTimingSummary, PracticeTimingConfidence } from "./contract";
 
 /**
  * Practice Timing Baselines
@@ -39,7 +39,7 @@ export const SPEED_BAND_THRESHOLDS = {
  * - **slow**: Noticeably slower than baseline.
  * - **very_slow**: Far slower than baseline.
  */
-export type TimingSpeedBand = 'fast' | 'expected' | 'slow' | 'very_slow';
+export type TimingSpeedBand = "fast" | "expected" | "slow" | "very_slow";
 
 /**
  * Baseline timing statistics for a practice variant.
@@ -113,7 +113,7 @@ export type PracticeTimingFeatures = {
 export type ComputeBaselineInput = {
   variantKey: string;
   /** Only high/medium confidence submissions should be included. */
-  timings: Pick<PracticeTimingSummary, 'activeMs' | 'confidence'>[];
+  timings: Pick<PracticeTimingSummary, "activeMs" | "confidence">[];
   /** Defaults to TIMING_BASELINE_MIN_SAMPLES. */
   minSamples?: number;
   /** Defaults to now. */
@@ -135,10 +135,9 @@ export type ComputeBaselineInput = {
  * // baseline.minSamplesMet tells you whether the baseline is reliable
  * */
 export function computeTimingBaseline(input: ComputeBaselineInput): PracticeTimingBaseline {
-  const { variantKey, timings, minSamples = TIMING_BASELINE_MIN_SAMPLES, computedAt } =
-    input;
+  const { variantKey, timings, minSamples = TIMING_BASELINE_MIN_SAMPLES, computedAt } = input;
 
-  const eligible = timings.filter((t) => t.confidence !== 'low');
+  const eligible = timings.filter((t) => t.confidence !== "low");
   const activeMsValues = eligible.map((t) => t.activeMs).sort((a, b) => a - b);
   const sampleCount = activeMsValues.length;
   const minSamplesMet = sampleCount >= minSamples;
@@ -175,18 +174,18 @@ export function deriveTimingFeatures(
 ): PracticeTimingFeatures {
   const reasons: string[] = [];
 
-  if (timing.confidence === 'low') {
-    reasons.push('timing_confidence_low');
+  if (timing.confidence === "low") {
+    reasons.push("timing_confidence_low");
     return {
       hasReliableTiming: false,
       activeMs: timing.activeMs,
-      confidence: 'low',
+      confidence: "low",
       reasons,
     };
   }
 
   if (!baseline || !baseline.minSamplesMet) {
-    reasons.push(baseline ? 'baseline_sample_count_insufficient' : 'baseline_missing');
+    reasons.push(baseline ? "baseline_sample_count_insufficient" : "baseline_missing");
     return {
       hasReliableTiming: false,
       activeMs: timing.activeMs,
@@ -199,7 +198,7 @@ export function deriveTimingFeatures(
   const timeRatio = timing.activeMs / baseline.medianActiveMs;
   const speedBand = resolveSpeedBand(timeRatio);
 
-  if (speedBand !== 'expected') {
+  if (speedBand !== "expected") {
     reasons.push(`timing_${speedBand}`);
   }
 
@@ -220,10 +219,10 @@ export function deriveTimingFeatures(
  * @returns {TimingSpeedBand} - Speed band label
  */
 function resolveSpeedBand(timeRatio: number): TimingSpeedBand {
-  if (timeRatio < SPEED_BAND_THRESHOLDS.fast) return 'fast';
-  if (timeRatio <= SPEED_BAND_THRESHOLDS.expected) return 'expected';
-  if (timeRatio <= SPEED_BAND_THRESHOLDS.slow) return 'slow';
-  return 'very_slow';
+  if (timeRatio < SPEED_BAND_THRESHOLDS.fast) return "fast";
+  if (timeRatio <= SPEED_BAND_THRESHOLDS.expected) return "expected";
+  if (timeRatio <= SPEED_BAND_THRESHOLDS.slow) return "slow";
+  return "very_slow";
 }
 
 /**

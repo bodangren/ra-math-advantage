@@ -1,22 +1,24 @@
-import { describe, it, expect } from 'vitest';
-import { toConvexActivityId } from '@math-platform/practice-core';
-import { processPracticeSubmission } from '../../../lib/srs/review-processor';
-import { createCard } from '../../../lib/srs/scheduler';
+import { describe, it, expect } from "vitest";
+import { toConvexActivityId } from "@math-platform/practice-core";
+import { processPracticeSubmission } from "../../../lib/srs/review-processor";
+import { createCard } from "../../../lib/srs/scheduler";
 
-import type { PracticeSubmissionEnvelope } from '../../../lib/practice/contract';
-import type { PracticeTimingSummary } from '../../../lib/practice/contract';
+import type { PracticeSubmissionEnvelope } from "../../../lib/practice/contract";
+import type { PracticeTimingSummary } from "../../../lib/practice/contract";
 
-function makeEnvelope(parts: Array<{
-  partId: string;
-  isCorrect?: boolean;
-  hintsUsed?: number;
-  misconceptionTags?: string[];
-}>): PracticeSubmissionEnvelope {
+function makeEnvelope(
+  parts: Array<{
+    partId: string;
+    isCorrect?: boolean;
+    hintsUsed?: number;
+    misconceptionTags?: string[];
+  }>,
+): PracticeSubmissionEnvelope {
   return {
-    contractVersion: 'practice.v1',
-    activityId: toConvexActivityId('transaction-effects'),
-    mode: 'independent_practice',
-    status: 'submitted',
+    contractVersion: "practice.v1",
+    activityId: toConvexActivityId("transaction-effects"),
+    mode: "independent_practice",
+    status: "submitted",
     attemptNumber: 1,
     submittedAt: new Date().toISOString(),
     answers: {},
@@ -30,7 +32,7 @@ function makeEnvelope(parts: Array<{
   };
 }
 
-function makeTiming(confidence: 'high' | 'medium' | 'low' = 'high'): PracticeTimingSummary {
+function makeTiming(confidence: "high" | "medium" | "low" = "high"): PracticeTimingSummary {
   return {
     startedAt: new Date(Date.now() - 60000).toISOString(),
     submittedAt: new Date().toISOString(),
@@ -45,110 +47,152 @@ function makeTiming(confidence: 'high' | 'medium' | 'low' = 'high'): PracticeTim
   };
 }
 
-describe('lib/srs/review-processor', () => {
-  describe('processPracticeSubmission', () => {
-    it('all-correct submission produces Good or Easy rating', () => {
+describe("lib/srs/review-processor", () => {
+  describe("processPracticeSubmission", () => {
+    it("all-correct submission produces Good or Easy rating", () => {
       const envelope = makeEnvelope([
-        { partId: 'p1', isCorrect: true },
-        { partId: 'p2', isCorrect: true },
+        { partId: "p1", isCorrect: true },
+        { partId: "p2", isCorrect: true },
       ]);
-      const result = processPracticeSubmission(envelope, null, makeTiming('high'), undefined, 'student-1');
-      expect(['Good', 'Easy']).toContain(result.rating);
+      const result = processPracticeSubmission(
+        envelope,
+        null,
+        makeTiming("high"),
+        undefined,
+        "student-1",
+      );
+      expect(["Good", "Easy"]).toContain(result.rating);
     });
 
-    it('incorrect submission produces Again rating', () => {
+    it("incorrect submission produces Again rating", () => {
       const envelope = makeEnvelope([
-        { partId: 'p1', isCorrect: false },
-        { partId: 'p2', isCorrect: true },
+        { partId: "p1", isCorrect: false },
+        { partId: "p2", isCorrect: true },
       ]);
-      const result = processPracticeSubmission(envelope, null, makeTiming('high'), undefined, 'student-1');
-      expect(result.rating).toBe('Again');
+      const result = processPracticeSubmission(
+        envelope,
+        null,
+        makeTiming("high"),
+        undefined,
+        "student-1",
+      );
+      expect(result.rating).toBe("Again");
     });
 
-    it('submission with hints used produces Hard rating', () => {
+    it("submission with hints used produces Hard rating", () => {
       const envelope = makeEnvelope([
-        { partId: 'p1', isCorrect: true, hintsUsed: 1 },
-        { partId: 'p2', isCorrect: true },
+        { partId: "p1", isCorrect: true, hintsUsed: 1 },
+        { partId: "p2", isCorrect: true },
       ]);
-      const result = processPracticeSubmission(envelope, null, makeTiming('high'), undefined, 'student-1');
-      expect(result.rating).toBe('Hard');
+      const result = processPracticeSubmission(
+        envelope,
+        null,
+        makeTiming("high"),
+        undefined,
+        "student-1",
+      );
+      expect(result.rating).toBe("Hard");
     });
 
-    it('null cardState creates new card with provided studentId', () => {
-      const envelope = makeEnvelope([{ partId: 'p1', isCorrect: true }]);
-      const result = processPracticeSubmission(envelope, null, makeTiming('high'), undefined, 'student-42');
-      expect(result.card.problemFamilyId).toBe('transaction-effects');
-      expect(result.card.studentId).toBe('student-42');
+    it("null cardState creates new card with provided studentId", () => {
+      const envelope = makeEnvelope([{ partId: "p1", isCorrect: true }]);
+      const result = processPracticeSubmission(
+        envelope,
+        null,
+        makeTiming("high"),
+        undefined,
+        "student-42",
+      );
+      expect(result.card.problemFamilyId).toBe("transaction-effects");
+      expect(result.card.studentId).toBe("student-42");
       expect(result.card.reps).toBe(1);
     });
 
-    it('null cardState without studentId throws error', () => {
-      const envelope = makeEnvelope([{ partId: 'p1', isCorrect: true }]);
-      expect(() => processPracticeSubmission(envelope, null, makeTiming('high'))).toThrow(
-        'studentId is required when no existing card state is provided'
+    it("null cardState without studentId throws error", () => {
+      const envelope = makeEnvelope([{ partId: "p1", isCorrect: true }]);
+      expect(() => processPracticeSubmission(envelope, null, makeTiming("high"))).toThrow(
+        "studentId is required when no existing card state is provided",
       );
     });
 
-    it('existing cardState updates card', () => {
-      const envelope = makeEnvelope([{ partId: 'p1', isCorrect: true }]);
+    it("existing cardState updates card", () => {
+      const envelope = makeEnvelope([{ partId: "p1", isCorrect: true }]);
       const existingCard = createCard({
-        studentId: 'student-1',
-        objectiveId: 'transaction-effects',
-        problemFamilyId: 'transaction-effects',
+        studentId: "student-1",
+        objectiveId: "transaction-effects",
+        problemFamilyId: "transaction-effects",
       });
       existingCard.reps = 3;
-      const result = processPracticeSubmission(envelope, existingCard, makeTiming('high'));
+      const result = processPracticeSubmission(envelope, existingCard, makeTiming("high"));
       expect(result.card.reps).toBe(4);
     });
 
-it('timing data with fast speed band can upgrade Good to Easy', () => {
-      const envelope = makeEnvelope([{ partId: 'p1', isCorrect: true }]);
-      const timing = makeTiming('high');
+    it("timing data with fast speed band can upgrade Good to Easy", () => {
+      const envelope = makeEnvelope([{ partId: "p1", isCorrect: true }]);
+      const timing = makeTiming("high");
       timing.activeMs = 5000;
-      const baseline: import('../../../lib/practice/timing-baseline').PracticeTimingBaseline = {
-        variantKey: 'transaction-effects',
+      const baseline: import("../../../lib/practice/timing-baseline").PracticeTimingBaseline = {
+        variantKey: "transaction-effects",
         sampleCount: 15,
         medianActiveMs: 30000,
         minSamplesMet: true,
         lastComputedAt: new Date().toISOString(),
       };
-      const result = processPracticeSubmission(envelope, null, timing, baseline, 'student-1');
-      expect(result.rating).toBe('Easy');
+      const result = processPracticeSubmission(envelope, null, timing, baseline, "student-1");
+      expect(result.rating).toBe("Easy");
     });
 
-    it('timing data with slow speed band can downgrade Good to Hard', () => {
-      const envelope = makeEnvelope([{ partId: 'p1', isCorrect: true }]);
-      const timing = makeTiming('high');
+    it("timing data with slow speed band can downgrade Good to Hard", () => {
+      const envelope = makeEnvelope([{ partId: "p1", isCorrect: true }]);
+      const timing = makeTiming("high");
       timing.activeMs = 120000;
-      const baseline: import('../../../lib/practice/timing-baseline').PracticeTimingBaseline = {
-        variantKey: 'transaction-effects',
+      const baseline: import("../../../lib/practice/timing-baseline").PracticeTimingBaseline = {
+        variantKey: "transaction-effects",
         sampleCount: 15,
         medianActiveMs: 30000,
         minSamplesMet: true,
         lastComputedAt: new Date().toISOString(),
       };
-      const result = processPracticeSubmission(envelope, null, timing, baseline, 'student-1');
-      expect(result.rating).toBe('Hard');
+      const result = processPracticeSubmission(envelope, null, timing, baseline, "student-1");
+      expect(result.rating).toBe("Hard");
     });
 
-    it('low confidence timing is ignored', () => {
-      const envelope = makeEnvelope([{ partId: 'p1', isCorrect: true }]);
-      const result = processPracticeSubmission(envelope, null, makeTiming('low'), undefined, 'student-1');
-      expect(result.rating).toBe('Good');
+    it("low confidence timing is ignored", () => {
+      const envelope = makeEnvelope([{ partId: "p1", isCorrect: true }]);
+      const result = processPracticeSubmission(
+        envelope,
+        null,
+        makeTiming("low"),
+        undefined,
+        "student-1",
+      );
+      expect(result.rating).toBe("Good");
     });
 
-    it('misconception tags produce Again rating', () => {
+    it("misconception tags produce Again rating", () => {
       const envelope = makeEnvelope([
-        { partId: 'p1', isCorrect: true, misconceptionTags: ['misconception-1'] },
+        { partId: "p1", isCorrect: true, misconceptionTags: ["misconception-1"] },
       ]);
-      const result = processPracticeSubmission(envelope, null, makeTiming('high'), undefined, 'student-1');
-      expect(result.rating).toBe('Again');
+      const result = processPracticeSubmission(
+        envelope,
+        null,
+        makeTiming("high"),
+        undefined,
+        "student-1",
+      );
+      expect(result.rating).toBe("Again");
     });
 
-    it('reviewLog has correct fields', () => {
-      const envelope = makeEnvelope([{ partId: 'p1', isCorrect: true }]);
-      const result = processPracticeSubmission(envelope, null, makeTiming('high'), undefined, 'student-1');
-      expect(result.reviewLog.problemFamilyId).toBe('transaction-effects');
+    it("reviewLog has correct fields", () => {
+      const envelope = makeEnvelope([{ partId: "p1", isCorrect: true }]);
+      const result = processPracticeSubmission(
+        envelope,
+        null,
+        makeTiming("high"),
+        undefined,
+        "student-1",
+      );
+      expect(result.reviewLog.problemFamilyId).toBe("transaction-effects");
       expect(result.reviewLog.rating).toBe(result.rating);
       expect(result.reviewLog.scheduledAt).toBeGreaterThan(0);
       expect(result.reviewLog.reviewedAt).toBeGreaterThan(0);

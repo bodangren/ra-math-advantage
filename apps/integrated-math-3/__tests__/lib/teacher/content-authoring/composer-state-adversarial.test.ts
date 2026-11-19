@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 
 /**
  * Phase 3 — Composer state adversarial tests.
@@ -30,22 +30,22 @@ import { describe, it, expect } from 'vitest';
  */
 
 const VALID_ACTIVITY_PROPS: Record<string, Record<string, unknown>> = {
-  'graphing-explorer': { equation: 'x^2 + 3x - 4' },
-  'comprehension-quiz': {
+  "graphing-explorer": { equation: "x^2 + 3x - 4" },
+  "comprehension-quiz": {
     questions: [
       {
-        id: 'q1',
-        prompt: 'What is the vertex form of a quadratic?',
-        correctAnswer: 'y = a(x - h)^2 + k',
+        id: "q1",
+        prompt: "What is the vertex form of a quadratic?",
+        correctAnswer: "y = a(x - h)^2 + k",
       },
     ],
   },
-  'fill-in-the-blank': {
-    template: 'A quadratic has degree {{blank:degree}}.',
-    blanks: [{ id: 'degree', correctAnswer: '2' }],
+  "fill-in-the-blank": {
+    template: "A quadratic has degree {{blank:degree}}.",
+    blanks: [{ id: "degree", correctAnswer: "2" }],
   },
-  'rate-of-change-calculator': {
-    sourceType: 'table',
+  "rate-of-change-calculator": {
+    sourceType: "table",
     data: { x: [1, 2, 3], y: [2, 4, 6] },
     interval: { start: 1, end: 3 },
   },
@@ -53,18 +53,18 @@ const VALID_ACTIVITY_PROPS: Record<string, Record<string, unknown>> = {
 
 function buildMinimalDraft() {
   return {
-    title: 'Authored Quadratic Lesson',
+    title: "Authored Quadratic Lesson",
     phases: [
       {
-        title: 'Explore',
-        phaseType: 'explore',
+        title: "Explore",
+        phaseType: "explore",
         sections: [
           {
-            title: 'Graphing a parabola',
+            title: "Graphing a parabola",
             activities: [
               {
-                componentKey: 'graphing-explorer',
-                props: VALID_ACTIVITY_PROPS['graphing-explorer'],
+                componentKey: "graphing-explorer",
+                props: VALID_ACTIVITY_PROPS["graphing-explorer"],
               },
             ],
           },
@@ -76,28 +76,34 @@ function buildMinimalDraft() {
 
 function buildTwoPhaseDraft() {
   return {
-    title: 'Two-phase',
+    title: "Two-phase",
     phases: [
       {
-        title: 'P1',
-        phaseType: 'explore',
+        title: "P1",
+        phaseType: "explore",
         sections: [
           {
-            title: 'S1',
+            title: "S1",
             activities: [
-              { componentKey: 'graphing-explorer', props: VALID_ACTIVITY_PROPS['graphing-explorer'] },
+              {
+                componentKey: "graphing-explorer",
+                props: VALID_ACTIVITY_PROPS["graphing-explorer"],
+              },
             ],
           },
         ],
       },
       {
-        title: 'P2',
-        phaseType: 'worked_example',
+        title: "P2",
+        phaseType: "worked_example",
         sections: [
           {
-            title: 'S2',
+            title: "S2",
             activities: [
-              { componentKey: 'comprehension-quiz', props: VALID_ACTIVITY_PROPS['comprehension-quiz'] },
+              {
+                componentKey: "comprehension-quiz",
+                props: VALID_ACTIVITY_PROPS["comprehension-quiz"],
+              },
             ],
           },
         ],
@@ -106,16 +112,16 @@ function buildTwoPhaseDraft() {
   };
 }
 
-describe('Phase 3 adversarial: empty-state gates', () => {
-  it('removing the last phase blocks both save and preview', async () => {
+describe("Phase 3 adversarial: empty-state gates", () => {
+  it("removing the last phase blocks both save and preview", async () => {
     const { createComposerState, composerReducer, canSaveComposerState, canPreviewComposerState } =
-      await import('../../../../lib/teacher/content-authoring/composer-state');
+      await import("../../../../lib/teacher/content-authoring/composer-state");
 
     const state = createComposerState(buildMinimalDraft());
     const phaseId = state.lesson.phases[0].id;
 
     const next = composerReducer(state, {
-      type: 'REMOVE_PHASE',
+      type: "REMOVE_PHASE",
       payload: { phaseId },
     });
 
@@ -125,16 +131,16 @@ describe('Phase 3 adversarial: empty-state gates', () => {
     expect(next.errors.length).toBeGreaterThan(0);
   });
 
-  it('removing the last section from a phase blocks both save and preview', async () => {
+  it("removing the last section from a phase blocks both save and preview", async () => {
     const { createComposerState, composerReducer, canSaveComposerState, canPreviewComposerState } =
-      await import('../../../../lib/teacher/content-authoring/composer-state');
+      await import("../../../../lib/teacher/content-authoring/composer-state");
 
     const state = createComposerState(buildMinimalDraft());
     const phaseId = state.lesson.phases[0].id;
     const sectionId = state.lesson.phases[0].sections[0].id;
 
     const next = composerReducer(state, {
-      type: 'REMOVE_SECTION',
+      type: "REMOVE_SECTION",
       payload: { phaseId, sectionId },
     });
 
@@ -143,9 +149,9 @@ describe('Phase 3 adversarial: empty-state gates', () => {
     expect(canPreviewComposerState(next)).toBe(false);
   });
 
-  it('removing the last activity from a section blocks both save and preview', async () => {
+  it("removing the last activity from a section blocks both save and preview", async () => {
     const { createComposerState, composerReducer, canSaveComposerState, canPreviewComposerState } =
-      await import('../../../../lib/teacher/content-authoring/composer-state');
+      await import("../../../../lib/teacher/content-authoring/composer-state");
 
     const state = createComposerState(buildMinimalDraft());
     const phaseId = state.lesson.phases[0].id;
@@ -153,7 +159,7 @@ describe('Phase 3 adversarial: empty-state gates', () => {
     const activityId = state.lesson.phases[0].sections[0].activities[0].id;
 
     const next = composerReducer(state, {
-      type: 'REMOVE_ACTIVITY',
+      type: "REMOVE_ACTIVITY",
       payload: { phaseId, sectionId, activityId },
     });
 
@@ -162,10 +168,9 @@ describe('Phase 3 adversarial: empty-state gates', () => {
     expect(canPreviewComposerState(next)).toBe(false);
   });
 
-  it('a fresh empty composer state (zero phases) cannot be saved or previewed', async () => {
-    const { createComposerState, canSaveComposerState, canPreviewComposerState } = await import(
-      '../../../../lib/teacher/content-authoring/composer-state'
-    );
+  it("a fresh empty composer state (zero phases) cannot be saved or previewed", async () => {
+    const { createComposerState, canSaveComposerState, canPreviewComposerState } =
+      await import("../../../../lib/teacher/content-authoring/composer-state");
 
     const state = createComposerState({});
     expect(state.lesson.phases).toHaveLength(0);
@@ -174,11 +179,10 @@ describe('Phase 3 adversarial: empty-state gates', () => {
   });
 });
 
-describe('Phase 3 adversarial: reducer robustness', () => {
-  it('REORDER_PHASES with an out-of-bounds fromIndex is a safe no-op', async () => {
-    const { createComposerState, composerReducer } = await import(
-      '../../../../lib/teacher/content-authoring/composer-state'
-    );
+describe("Phase 3 adversarial: reducer robustness", () => {
+  it("REORDER_PHASES with an out-of-bounds fromIndex is a safe no-op", async () => {
+    const { createComposerState, composerReducer } =
+      await import("../../../../lib/teacher/content-authoring/composer-state");
 
     const state = createComposerState(buildTwoPhaseDraft());
     const originalIds = state.lesson.phases.map((p) => p.id);
@@ -186,13 +190,13 @@ describe('Phase 3 adversarial: reducer robustness', () => {
     // From index beyond end (-1 or +N) must not throw and must not mutate
     // the original state or the order.
     const nextNeg = composerReducer(state, {
-      type: 'REORDER_PHASES',
+      type: "REORDER_PHASES",
       payload: { fromIndex: -1, toIndex: 0 },
     });
     expect(nextNeg.lesson.phases.map((p) => p.id)).toEqual(originalIds);
 
     const nextLarge = composerReducer(state, {
-      type: 'REORDER_PHASES',
+      type: "REORDER_PHASES",
       payload: { fromIndex: 99, toIndex: 0 },
     });
     expect(nextLarge.lesson.phases.map((p) => p.id)).toEqual(originalIds);
@@ -200,39 +204,43 @@ describe('Phase 3 adversarial: reducer robustness', () => {
     expect(state.lesson.phases.map((p) => p.id)).toEqual(originalIds);
   });
 
-  it('REORDER_PHASES with an out-of-bounds toIndex is a safe no-op', async () => {
-    const { createComposerState, composerReducer } = await import(
-      '../../../../lib/teacher/content-authoring/composer-state'
-    );
+  it("REORDER_PHASES with an out-of-bounds toIndex is a safe no-op", async () => {
+    const { createComposerState, composerReducer } =
+      await import("../../../../lib/teacher/content-authoring/composer-state");
 
     const state = createComposerState(buildTwoPhaseDraft());
     const originalIds = state.lesson.phases.map((p) => p.id);
 
     const next = composerReducer(state, {
-      type: 'REORDER_PHASES',
+      type: "REORDER_PHASES",
       payload: { fromIndex: 0, toIndex: 99 },
     });
     expect(next.lesson.phases.map((p) => p.id)).toEqual(originalIds);
   });
 
-  it('REORDER_ACTIVITIES keeps section activity ids unique after reordering', async () => {
-    const { createComposerState, composerReducer } = await import(
-      '../../../../lib/teacher/content-authoring/composer-state'
-    );
+  it("REORDER_ACTIVITIES keeps section activity ids unique after reordering", async () => {
+    const { createComposerState, composerReducer } =
+      await import("../../../../lib/teacher/content-authoring/composer-state");
 
     const state = createComposerState({
-      title: 'Multi-activity',
+      title: "Multi-activity",
       phases: [
         {
-          title: 'P1',
-          phaseType: 'explore',
+          title: "P1",
+          phaseType: "explore",
           sections: [
             {
-              title: 'S1',
+              title: "S1",
               activities: [
-                { componentKey: 'graphing-explorer', props: { equation: 'x^2' } },
-                { componentKey: 'comprehension-quiz', props: VALID_ACTIVITY_PROPS['comprehension-quiz'] },
-                { componentKey: 'fill-in-the-blank', props: VALID_ACTIVITY_PROPS['fill-in-the-blank'] },
+                { componentKey: "graphing-explorer", props: { equation: "x^2" } },
+                {
+                  componentKey: "comprehension-quiz",
+                  props: VALID_ACTIVITY_PROPS["comprehension-quiz"],
+                },
+                {
+                  componentKey: "fill-in-the-blank",
+                  props: VALID_ACTIVITY_PROPS["fill-in-the-blank"],
+                },
               ],
             },
           ],
@@ -246,7 +254,7 @@ describe('Phase 3 adversarial: reducer robustness', () => {
 
     // Cycle: move first -> last, then last -> middle, then middle -> first.
     let next = composerReducer(state, {
-      type: 'REORDER_ACTIVITIES',
+      type: "REORDER_ACTIVITIES",
       payload: { phaseId, sectionId, fromIndex: 0, toIndex: 2 },
     });
     let afterIds = next.lesson.phases[0].sections[0].activities.map((a) => a.id);
@@ -254,14 +262,14 @@ describe('Phase 3 adversarial: reducer robustness', () => {
     expect(afterIds.length).toBe(beforeIds.length);
 
     next = composerReducer(next, {
-      type: 'REORDER_ACTIVITIES',
+      type: "REORDER_ACTIVITIES",
       payload: { phaseId, sectionId, fromIndex: 2, toIndex: 1 },
     });
     afterIds = next.lesson.phases[0].sections[0].activities.map((a) => a.id);
     expect(new Set(afterIds).size).toBe(afterIds.length);
 
     next = composerReducer(next, {
-      type: 'REORDER_ACTIVITIES',
+      type: "REORDER_ACTIVITIES",
       payload: { phaseId, sectionId, fromIndex: 1, toIndex: 0 },
     });
     afterIds = next.lesson.phases[0].sections[0].activities.map((a) => a.id);
@@ -270,10 +278,9 @@ describe('Phase 3 adversarial: reducer robustness', () => {
     expect(state.lesson.phases[0].sections[0].activities.map((a) => a.id)).toEqual(beforeIds);
   });
 
-  it('ADD_ACTIVITY always emits a fresh id; no duplicate activity ids within a section', async () => {
-    const { createComposerState, composerReducer } = await import(
-      '../../../../lib/teacher/content-authoring/composer-state'
-    );
+  it("ADD_ACTIVITY always emits a fresh id; no duplicate activity ids within a section", async () => {
+    const { createComposerState, composerReducer } =
+      await import("../../../../lib/teacher/content-authoring/composer-state");
 
     const state = createComposerState(buildMinimalDraft());
     const phaseId = state.lesson.phases[0].id;
@@ -282,11 +289,11 @@ describe('Phase 3 adversarial: reducer robustness', () => {
     let next = state;
     for (let i = 0; i < 5; i += 1) {
       next = composerReducer(next, {
-        type: 'ADD_ACTIVITY',
+        type: "ADD_ACTIVITY",
         payload: {
           phaseId,
           sectionId,
-          componentKey: 'graphing-explorer',
+          componentKey: "graphing-explorer",
           props: { equation: `x^${i}` },
         },
       });
@@ -296,21 +303,20 @@ describe('Phase 3 adversarial: reducer robustness', () => {
     expect(new Set(ids).size).toBe(6);
   });
 
-  it('rejects ADD_ACTIVITY with placeholder key drag-drop-categorization with a structured error bound to the key', async () => {
-    const { createComposerState, composerReducer } = await import(
-      '../../../../lib/teacher/content-authoring/composer-state'
-    );
+  it("rejects ADD_ACTIVITY with placeholder key drag-drop-categorization with a structured error bound to the key", async () => {
+    const { createComposerState, composerReducer } =
+      await import("../../../../lib/teacher/content-authoring/composer-state");
 
     const state = createComposerState(buildMinimalDraft());
     const phaseId = state.lesson.phases[0].id;
     const sectionId = state.lesson.phases[0].sections[0].id;
 
     const next = composerReducer(state, {
-      type: 'ADD_ACTIVITY',
+      type: "ADD_ACTIVITY",
       payload: {
         phaseId,
         sectionId,
-        componentKey: 'drag-drop-categorization',
+        componentKey: "drag-drop-categorization",
         props: {},
       },
     });
@@ -321,45 +327,42 @@ describe('Phase 3 adversarial: reducer robustness', () => {
     // targeted message rather than a generic "invalid".
     const offending = next.errors.find(
       (e: { componentKey?: string; message: string }) =>
-        e.componentKey === 'drag-drop-categorization',
+        e.componentKey === "drag-drop-categorization",
     );
     expect(offending).toBeDefined();
-    expect(offending!.message).toContain('drag-drop-categorization');
+    expect(offending!.message).toContain("drag-drop-categorization");
   });
 
-  it('rejects ADD_ACTIVITY with placeholder key equation-solver with a structured error bound to the key', async () => {
-    const { createComposerState, composerReducer } = await import(
-      '../../../../lib/teacher/content-authoring/composer-state'
-    );
+  it("rejects ADD_ACTIVITY with placeholder key equation-solver with a structured error bound to the key", async () => {
+    const { createComposerState, composerReducer } =
+      await import("../../../../lib/teacher/content-authoring/composer-state");
 
     const state = createComposerState(buildMinimalDraft());
     const phaseId = state.lesson.phases[0].id;
     const sectionId = state.lesson.phases[0].sections[0].id;
 
     const next = composerReducer(state, {
-      type: 'ADD_ACTIVITY',
+      type: "ADD_ACTIVITY",
       payload: {
         phaseId,
         sectionId,
-        componentKey: 'equation-solver',
-        props: { equation: '2+2' },
+        componentKey: "equation-solver",
+        props: { equation: "2+2" },
       },
     });
 
     expect(next.lesson.phases[0].sections[0].activities).toHaveLength(1);
     const offending = next.errors.find(
-      (e: { componentKey?: string; message: string }) =>
-        e.componentKey === 'equation-solver',
+      (e: { componentKey?: string; message: string }) => e.componentKey === "equation-solver",
     );
     expect(offending).toBeDefined();
   });
 });
 
-describe('Phase 3 adversarial: schema-driven save gating', () => {
-  it('UPDATE_ACTIVITY_PROPS with a schema-invalid value BLOCKS save AND preserves the prior valid props', async () => {
-    const { createComposerState, composerReducer, canSaveComposerState } = await import(
-      '../../../../lib/teacher/content-authoring/composer-state'
-    );
+describe("Phase 3 adversarial: schema-driven save gating", () => {
+  it("UPDATE_ACTIVITY_PROPS with a schema-invalid value BLOCKS save AND preserves the prior valid props", async () => {
+    const { createComposerState, composerReducer, canSaveComposerState } =
+      await import("../../../../lib/teacher/content-authoring/composer-state");
 
     const state = createComposerState(buildMinimalDraft());
     const activityId = state.lesson.phases[0].sections[0].activities[0].id;
@@ -367,53 +370,51 @@ describe('Phase 3 adversarial: schema-driven save gating', () => {
     // graphing-explorer requires equation: z.string().min(1).
     // Empty string is schema-invalid.
     const next = composerReducer(state, {
-      type: 'UPDATE_ACTIVITY_PROPS',
-      payload: { activityId, props: { equation: '' } },
+      type: "UPDATE_ACTIVITY_PROPS",
+      payload: { activityId, props: { equation: "" } },
     });
 
     expect(canSaveComposerState(next)).toBe(false);
     // The prior valid `equation` is preserved verbatim (no silent strip-to-pass).
-    expect(next.lesson.phases[0].sections[0].activities[0].props.equation).toBe('x^2 + 3x - 4');
+    expect(next.lesson.phases[0].sections[0].activities[0].props.equation).toBe("x^2 + 3x - 4");
   });
 
-  it('UPDATE_ACTIVITY_PROPS with the wrong type for a schema field BLOCKS save with a structured path error', async () => {
-    const { createComposerState, composerReducer, canSaveComposerState } = await import(
-      '../../../../lib/teacher/content-authoring/composer-state'
-    );
+  it("UPDATE_ACTIVITY_PROPS with the wrong type for a schema field BLOCKS save with a structured path error", async () => {
+    const { createComposerState, composerReducer, canSaveComposerState } =
+      await import("../../../../lib/teacher/content-authoring/composer-state");
 
     const state = createComposerState(buildMinimalDraft());
     const activityId = state.lesson.phases[0].sections[0].activities[0].id;
 
     // graphing-explorer.equation must be a string; a number is wrong type.
     const next = composerReducer(state, {
-      type: 'UPDATE_ACTIVITY_PROPS',
+      type: "UPDATE_ACTIVITY_PROPS",
       payload: { activityId, props: { equation: 123 } },
     });
 
     expect(canSaveComposerState(next)).toBe(false);
     const offending = next.errors.find(
       (e: { componentKey?: string; path: string[]; message: string }) =>
-        e.componentKey === 'graphing-explorer' && e.path.includes('equation'),
+        e.componentKey === "graphing-explorer" && e.path.includes("equation"),
     );
     expect(offending).toBeDefined();
   });
 
-  it('UPDATE_ACTIVITY_PROPS with cross-key props (comprehension-quiz questions on graphing-explorer) BLOCKS save', async () => {
-    const { createComposerState, composerReducer, canSaveComposerState } = await import(
-      '../../../../lib/teacher/content-authoring/composer-state'
-    );
+  it("UPDATE_ACTIVITY_PROPS with cross-key props (comprehension-quiz questions on graphing-explorer) BLOCKS save", async () => {
+    const { createComposerState, composerReducer, canSaveComposerState } =
+      await import("../../../../lib/teacher/content-authoring/composer-state");
 
     const state = createComposerState(buildMinimalDraft());
     const activityId = state.lesson.phases[0].sections[0].activities[0].id;
 
     // graphing-explorer schema is `.strict()` so cross-key props fail validation.
     const next = composerReducer(state, {
-      type: 'UPDATE_ACTIVITY_PROPS',
+      type: "UPDATE_ACTIVITY_PROPS",
       payload: {
         activityId,
         props: {
-          equation: 'x^2',
-          questions: [{ id: 'q1', prompt: 'p', correctAnswer: 'a' }],
+          equation: "x^2",
+          questions: [{ id: "q1", prompt: "p", correctAnswer: "a" }],
         },
       },
     });
@@ -421,9 +422,9 @@ describe('Phase 3 adversarial: schema-driven save gating', () => {
     expect(canSaveComposerState(next)).toBe(false);
   });
 
-  it('sanitizeComposerState yields a tree whose every activity validates against the canonical schema', async () => {
+  it("sanitizeComposerState yields a tree whose every activity validates against the canonical schema", async () => {
     const { createComposerState, composerReducer, sanitizeComposerState, canSaveComposerState } =
-      await import('../../../../lib/teacher/content-authoring/composer-state');
+      await import("../../../../lib/teacher/content-authoring/composer-state");
 
     const state = createComposerState(buildTwoPhaseDraft());
     const activityId = state.lesson.phases[0].sections[0].activities[0].id;
@@ -431,11 +432,11 @@ describe('Phase 3 adversarial: schema-driven save gating', () => {
     // Authoring text containing executable markup. Sanitizer must strip
     // it before the save payload reaches Phase 2 hashing.
     const dirty = composerReducer(state, {
-      type: 'UPDATE_ACTIVITY_PROPS',
+      type: "UPDATE_ACTIVITY_PROPS",
       payload: {
         activityId,
         props: {
-          equation: 'y = x^2',
+          equation: "y = x^2",
           comparisonQuestion:
             '<script>alert(1)</script>Which? <img src=x onerror=alert(2)> Pick the <a href="javascript:alert(3)">first</a>.',
         },
@@ -445,19 +446,18 @@ describe('Phase 3 adversarial: schema-driven save gating', () => {
     expect(canSaveComposerState(dirty)).toBe(true);
     const sanitized = sanitizeComposerState(dirty);
     const json = JSON.stringify(sanitized);
-    expect(json).not.toContain('<script>');
-    expect(json).not.toContain('onerror=');
-    expect(json).not.toContain('javascript:');
+    expect(json).not.toContain("<script>");
+    expect(json).not.toContain("onerror=");
+    expect(json).not.toContain("javascript:");
     // The preserved math notation and the meaningful text are intact.
-    expect(json).toContain('Which?');
-    expect(json).toContain('Pick the');
-    expect(json).toContain('first');
+    expect(json).toContain("Which?");
+    expect(json).toContain("Pick the");
+    expect(json).toContain("first");
   });
 
-  it('sanitizeComposerState preserves structural ids so Phase 2 hashing is stable', async () => {
-    const { createComposerState, sanitizeComposerState } = await import(
-      '../../../../lib/teacher/content-authoring/composer-state'
-    );
+  it("sanitizeComposerState preserves structural ids so Phase 2 hashing is stable", async () => {
+    const { createComposerState, sanitizeComposerState } =
+      await import("../../../../lib/teacher/content-authoring/composer-state");
 
     const state = createComposerState(buildTwoPhaseDraft());
     const beforePhaseIds = state.lesson.phases.map((p) => p.id);

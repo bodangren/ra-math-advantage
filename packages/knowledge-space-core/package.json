@@ -23,8 +23,8 @@
     "build": "npm run typecheck"
   },
   "dependencies": {
-    "zod": "^4.6.7",
-    "@math-platform/srs-engine": "*"
+    "@math-platform/srs-engine": "*",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "vitest": "^4.1.8"

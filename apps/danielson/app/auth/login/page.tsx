@@ -1,13 +1,17 @@
-import { getSafePostSignInRedirect } from '@/lib/auth/login-policy';
-import { LoginForm } from '@/components/login-form';
-import { SiteHeader } from '@/components/site-header';
-import { DEMO_USERNAMES } from '@/lib/demo/scenarios';
-import { HDKWA_BRANDING, HDKWA_ORGANIZATION_NAME } from '@/lib/organization-branding';
+import { getSafePostSignInRedirect } from "@/lib/auth/login-policy";
+import { LoginForm } from "@/components/login-form";
+import { SiteHeader } from "@/components/site-header";
+import { DEMO_USERNAMES } from "@/lib/demo/scenarios";
+import { HDKWA_BRANDING, HDKWA_ORGANIZATION_NAME } from "@/lib/organization-branding";
 
-export default async function LoginPage({ searchParams }: { searchParams: Promise<{ redirect?: string }> }) {
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ redirect?: string }>;
+}) {
   const params = await searchParams;
   const redirectTo = getSafePostSignInRedirect(params.redirect);
-  const demoPassword = process.env.CONVEX_DEPLOYMENT?.startsWith('local:')
+  const demoPassword = process.env.CONVEX_DEPLOYMENT?.startsWith("local:")
     ? process.env.DANIELSON_DEMO_PASSWORD
     : undefined;
   return (
@@ -28,10 +32,22 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
               <p>Use any pilot account below. Each account uses the listed password.</p>
               <div className="table-wrap">
                 <table>
-                  <thead><tr><th scope="col">Username</th><th scope="col">Password</th></tr></thead>
+                  <thead>
+                    <tr>
+                      <th scope="col">Username</th>
+                      <th scope="col">Password</th>
+                    </tr>
+                  </thead>
                   <tbody>
                     {DEMO_USERNAMES.map((username) => (
-                      <tr key={username}><td><code>{username}</code></td><td><code>{demoPassword}</code></td></tr>
+                      <tr key={username}>
+                        <td>
+                          <code>{username}</code>
+                        </td>
+                        <td>
+                          <code>{demoPassword}</code>
+                        </td>
+                      </tr>
                     ))}
                   </tbody>
                 </table>

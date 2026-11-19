@@ -30,7 +30,7 @@ export interface RateLimitResult {
 export function getStatus(
   record: RateLimitRecord | null | undefined,
   config: RateLimitConfig,
-  now: number = Date.now()
+  now: number = Date.now(),
 ): RateLimitStatus {
   if (!record) {
     return {
@@ -56,7 +56,7 @@ export function getStatus(
 }
 
 export interface CheckResult {
-  action: 'insert' | 'reset' | 'deny' | 'increment';
+  action: "insert" | "reset" | "deny" | "increment";
   result: RateLimitResult;
 }
 
@@ -70,11 +70,11 @@ export interface CheckResult {
 export function checkAndIncrement(
   record: RateLimitRecord | null | undefined,
   config: RateLimitConfig,
-  now: number = Date.now()
+  now: number = Date.now(),
 ): CheckResult {
   if (!record) {
     return {
-      action: 'insert',
+      action: "insert",
       result: {
         allowed: true,
         remaining: Math.max(0, config.maxRequests - 1),
@@ -85,7 +85,7 @@ export function checkAndIncrement(
 
   if (now - record.windowStart >= config.windowMs) {
     return {
-      action: 'reset',
+      action: "reset",
       result: {
         allowed: true,
         remaining: Math.max(0, config.maxRequests - 1),
@@ -96,7 +96,7 @@ export function checkAndIncrement(
 
   if (record.requestCount >= config.maxRequests) {
     return {
-      action: 'deny',
+      action: "deny",
       result: {
         allowed: false,
         remaining: 0,
@@ -106,7 +106,7 @@ export function checkAndIncrement(
   }
 
   return {
-    action: 'increment',
+    action: "increment",
     result: {
       allowed: true,
       remaining: Math.max(0, config.maxRequests - record.requestCount - 1),
@@ -122,7 +122,7 @@ export function checkAndIncrement(
  */
 export function isDuplicateInsertError(e: unknown): boolean {
   const message = e instanceof Error ? e.message : String(e);
-  return message.includes('duplicate') || message.includes('unique');
+  return message.includes("duplicate") || message.includes("unique");
 }
 
 /**

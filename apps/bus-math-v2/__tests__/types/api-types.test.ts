@@ -1,5 +1,5 @@
-import { describe, expect, expectTypeOf, it } from 'vitest';
-import { API_PHASE_STATUSES } from '@/types/api';
+import { describe, expect, expectTypeOf, it } from "vitest";
+import { API_PHASE_STATUSES } from "@/types/api";
 import type {
   CompleteActivityRequest,
   CompleteActivityResponse,
@@ -8,13 +8,13 @@ import type {
   LessonProgressResponse,
   PhaseProgressResponse,
   PhaseStatus,
-} from '@/types/api';
+} from "@/types/api";
 
-describe('types/api exports', () => {
-  it('exports canonical phase status values and shared route contracts', () => {
-    expect(API_PHASE_STATUSES).toEqual(['completed', 'current', 'available', 'locked']);
+describe("types/api exports", () => {
+  it("exports canonical phase status values and shared route contracts", () => {
+    expect(API_PHASE_STATUSES).toEqual(["completed", "current", "available", "locked"]);
 
-    expectTypeOf<PhaseStatus>().toMatchTypeOf<'completed' | 'current' | 'available' | 'locked'>();
+    expectTypeOf<PhaseStatus>().toMatchTypeOf<"completed" | "current" | "available" | "locked">();
 
     expectTypeOf<CompletePhaseRequest>().toMatchTypeOf<{
       lessonId: string;

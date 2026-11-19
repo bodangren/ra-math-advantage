@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { ReactNode } from 'react';
-import { ConvexProvider, ConvexReactClient } from 'convex/react';
-import { getConvexUrl } from '@math-platform/core-convex/config';
+import { ReactNode } from "react";
+import { ConvexProvider, ConvexReactClient } from "convex/react";
+import { getConvexUrl } from "@math-platform/core-convex/config";
 
 const convex = new ConvexReactClient(getConvexUrl());
 

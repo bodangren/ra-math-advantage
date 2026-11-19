@@ -23,14 +23,14 @@ interface MigrationDb {
 }
 
 async function migrate(db: MigrationDb): Promise<void> {
-  const rows = await db.query('srs_cards').collect();
+  const rows = await db.query("srs_cards").collect();
   for (const row of rows) {
     await db.patch(row._id, { variantKey: row.problemFamilyId });
   }
 }
 
 async function rollback(db: MigrationDb): Promise<void> {
-  const rows = await db.query('srs_cards').collect();
+  const rows = await db.query("srs_cards").collect();
   for (const row of rows) {
     await db.patch(row._id, { problemFamilyId: row.variantKey ?? row.problemFamilyId });
   }

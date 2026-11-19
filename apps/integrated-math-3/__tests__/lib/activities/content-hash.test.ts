@@ -13,7 +13,7 @@ test("hash is stable for equivalent content with different key order", async () 
     props: { b: 2, a: 1 },
   };
   await expect(computeComponentContentHash(component1)).resolves.toBe(
-    await computeComponentContentHash(component2)
+    await computeComponentContentHash(component2),
   );
 });
 
@@ -27,7 +27,7 @@ test("hash changes when props change", async () => {
     props: { a: 2 },
   };
   await expect(computeComponentContentHash(component1)).resolves.not.toBe(
-    await computeComponentContentHash(component2)
+    await computeComponentContentHash(component2),
   );
 });
 
@@ -41,7 +41,7 @@ test("hash changes when componentKind changes", async () => {
     componentKey: "test",
   };
   await expect(computeComponentContentHash(component1)).resolves.not.toBe(
-    await computeComponentContentHash(component2)
+    await computeComponentContentHash(component2),
   );
 });
 
@@ -55,7 +55,7 @@ test("hash changes when gradingConfig changes", async () => {
     gradingConfig: { maxScore: 20 },
   };
   await expect(computeComponentContentHash(component1)).resolves.not.toBe(
-    await computeComponentContentHash(component2)
+    await computeComponentContentHash(component2),
   );
 });
 
@@ -80,10 +80,10 @@ test("hash ignores approval metadata and timestamps", async () => {
     updatedAt: Date.now(),
   };
   await expect(computeComponentContentHash(componentBase)).resolves.toBe(
-    await computeComponentContentHash(componentWithApproval)
+    await computeComponentContentHash(componentWithApproval),
   );
   await expect(computeComponentContentHash(componentBase)).resolves.toBe(
-    await computeComponentContentHash(componentWithTimestamps)
+    await computeComponentContentHash(componentWithTimestamps),
   );
 });
 
@@ -99,7 +99,7 @@ test("hash is stable for example content with different key order", async () => 
     props: { showHints: true, problemType: "factoring" },
   };
   await expect(computeComponentContentHash(component1)).resolves.toBe(
-    await computeComponentContentHash(component2)
+    await computeComponentContentHash(component2),
   );
 });
 
@@ -115,7 +115,7 @@ test("hash changes when example props change", async () => {
     props: { problemType: "quadratic_formula" },
   };
   await expect(computeComponentContentHash(component1)).resolves.not.toBe(
-    await computeComponentContentHash(component2)
+    await computeComponentContentHash(component2),
   );
 });
 
@@ -133,7 +133,7 @@ test("hash is stable for practice content with different key order", async () =>
     props: { questions: [{ id: "q1" }] },
   };
   await expect(computeComponentContentHash(component1)).resolves.toBe(
-    await computeComponentContentHash(component2)
+    await computeComponentContentHash(component2),
   );
 });
 
@@ -151,7 +151,7 @@ test("hash changes when practice gradingConfig changes", async () => {
     gradingConfig: { maxScore: 20 },
   };
   await expect(computeComponentContentHash(component1)).resolves.not.toBe(
-    await computeComponentContentHash(component2)
+    await computeComponentContentHash(component2),
   );
 });
 
@@ -171,6 +171,6 @@ test("hash for example excludes approval metadata", async () => {
     },
   };
   await expect(computeComponentContentHash(componentBase)).resolves.toBe(
-    await computeComponentContentHash(componentWithApproval)
+    await computeComponentContentHash(componentWithApproval),
   );
 });

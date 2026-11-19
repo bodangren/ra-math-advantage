@@ -16,7 +16,7 @@
  * `lib/teacher/gradebook-export.ts:5`, which is the canonical client-download
  * pattern in IM3.
  */
-import { afterEach, vi, type MockInstance } from 'vitest';
+import { afterEach, vi, type MockInstance } from "vitest";
 
 export interface CapturedDownload {
   filename: string;
@@ -30,7 +30,7 @@ export interface BrowserDownloadHandle {
   createObjectURL: MockInstance<typeof URL.createObjectURL>;
   revokeObjectURL: MockInstance<typeof URL.revokeObjectURL>;
   Blob: MockInstance<typeof Blob>;
-  anchorClick: MockInstance<HTMLAnchorElement['click']>;
+  anchorClick: MockInstance<HTMLAnchorElement["click"]>;
   getCapturedDownloads: () => CapturedDownload[];
   clear: () => void;
 }
@@ -53,13 +53,13 @@ export function installBrowserDownloadMock(): BrowserDownloadHandle {
   });
 
   const originalBlob = globalThis.Blob;
-  const BlobCtor = (function (this: unknown, parts?: BlobPart[], options?: BlobPropertyBag) {
+  const BlobCtor = function (this: unknown, parts?: BlobPart[], options?: BlobPropertyBag) {
     const joined = (parts ?? [])
-      .map((part) => (typeof part === 'string' ? part : '[binary]'))
-      .join('');
-    BlobCtor.__captured.push({ text: joined, type: options?.type ?? '' });
+      .map((part) => (typeof part === "string" ? part : "[binary]"))
+      .join("");
+    BlobCtor.__captured.push({ text: joined, type: options?.type ?? "" });
     return new originalBlob(parts ?? [], options);
-  }) as unknown as typeof Blob & {
+  } as unknown as typeof Blob & {
     __captured: { text: string; type: string }[];
   };
   BlobCtor.__captured = [];
@@ -67,30 +67,32 @@ export function installBrowserDownloadMock(): BrowserDownloadHandle {
   (trackedBlob as unknown as { __captured: { text: string; type: string }[] }).__captured =
     BlobCtor.__captured;
 
-  const anchorClick = vi.fn<HTMLAnchorElement['click']>().mockImplementation(function (this: HTMLAnchorElement) {
-    const download = this.getAttribute('download') ?? '';
-    const href = this.getAttribute('href') ?? '';
+  const anchorClick = vi.fn<HTMLAnchorElement["click"]>().mockImplementation(function (
+    this: HTMLAnchorElement,
+  ) {
+    const download = this.getAttribute("download") ?? "";
+    const href = this.getAttribute("href") ?? "";
     const last = BlobCtor.__captured[BlobCtor.__captured.length - 1];
     captured.push({
       filename: download,
-      mimeType: last?.type ?? '',
-      blobText: last?.text ?? '',
+      mimeType: last?.type ?? "",
+      blobText: last?.text ?? "",
       objectUrl: href,
       revoked: false,
     });
   });
 
-  Object.defineProperty(URL, 'createObjectURL', {
+  Object.defineProperty(URL, "createObjectURL", {
     configurable: true,
     writable: true,
     value: createObjectURL,
   });
-  Object.defineProperty(URL, 'revokeObjectURL', {
+  Object.defineProperty(URL, "revokeObjectURL", {
     configurable: true,
     writable: true,
     value: revokeObjectURL,
   });
-  Object.defineProperty(globalThis, 'Blob', {
+  Object.defineProperty(globalThis, "Blob", {
     configurable: true,
     writable: true,
     value: trackedBlob,

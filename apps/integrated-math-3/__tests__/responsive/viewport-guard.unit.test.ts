@@ -35,7 +35,7 @@
 // deliberate Red stays out of the default `test:e2e` / `test:a11y`
 // aggregates until Phase 3 wires the guard into CI.
 
-import { describe, it, expect, test } from 'vitest';
+import { describe, it, expect, test } from "vitest";
 
 // Known-bad fixture HTML (inlined so the test is self-contained). Mirrors
 // the strategy §2 VIEWPORTS contract: a `.overflow-host` with
@@ -79,9 +79,9 @@ type ViewportCase = {
 // 1280×800. Keep in lockstep with the Phase 3 Playwright spec that
 // reuses this same table at the route-regression level.
 const VIEWPORT_CASES: ReadonlyArray<ViewportCase> = [
-  { label: 'phone', width: 390, height: 844 },
-  { label: 'tablet', width: 768, height: 1024 },
-  { label: 'desktop', width: 1280, height: 800 },
+  { label: "phone", width: 390, height: 844 },
+  { label: "tablet", width: 768, height: 1024 },
+  { label: "desktop", width: 1280, height: 800 },
 ];
 
 const VW_CSS_RE = /width\s*:\s*(\d+(?:\.\d+)?)vw\b/g;
@@ -134,17 +134,17 @@ async function measureViewportOverflow(
   };
 }
 
-describe('Viewport Guard — Phase 1 Red (known-bad fixture)', () => {
-  it('known-bad fixture HTML contains a deliberate 200vw overflow-host sentinel', () => {
+describe("Viewport Guard — Phase 1 Red (known-bad fixture)", () => {
+  it("known-bad fixture HTML contains a deliberate 200vw overflow-host sentinel", () => {
     // Sanity gate so a future fixture rewrite can't silently remove the
     // overflow and break the non-vacuous proof. The fixture must carry
     // both the CSS declaration (`width: 200vw`) AND the data-testid
     // sentinel used by the downstream Playwright spec.
-    expect(KNOWN_BAD_FIXTURE_HTML).toContain('width: 200vw');
-    expect(KNOWN_BAD_FIXTURE_HTML).toContain('known-bad-overflow-host');
+    expect(KNOWN_BAD_FIXTURE_HTML).toContain("width: 200vw");
+    expect(KNOWN_BAD_FIXTURE_HTML).toContain("known-bad-overflow-host");
   });
 
-  it('guard detects horizontal overflow on the known-bad fixture (non-vacuity proof, strategy §7)', async () => {
+  it("guard detects horizontal overflow on the known-bad fixture (non-vacuity proof, strategy §7)", async () => {
     // Permanent, re-runnable, PASSING proof that the guard is non-vacuous.
     // measureViewportOverflow returns overflowPx > 0 on the 200vw fixture.
     // This exercises the helper (otherwise only reached by test.skip cases
@@ -177,28 +177,25 @@ describe('Viewport Guard — Phase 1 Red (known-bad fixture)', () => {
     // exclusion from default aggregates) so the deliberate Red stays
     // out of `test:e2e` / `test:a11y` until Phase 2 remediates the
     // representative routes and Phase 3 wires the guard into CI.
-    test.skip(
-      `detects horizontal overflow at ${viewport.label} ${viewport.width}x${viewport.height} (strategy §2 VIEWPORTS)`,
-      async () => {
-        const result = await measureViewportOverflow(
-          KNOWN_BAD_FIXTURE_HTML,
-          viewport.width,
-          viewport.height,
-        );
+    test.skip(`detects horizontal overflow at ${viewport.label} ${viewport.width}x${viewport.height} (strategy §2 VIEWPORTS)`, async () => {
+      const result = await measureViewportOverflow(
+        KNOWN_BAD_FIXTURE_HTML,
+        viewport.width,
+        viewport.height,
+      );
 
-        expect(
-          result.overflowPx,
-          [
-            `viewport guard FAILED at ${viewport.label} `,
-            `(${viewport.width}x${viewport.height}) on the known-bad fixture. `,
-            `scrollWidth=${result.scrollWidth}, layoutViewport=${result.layoutViewport}, `,
-            `overflowPx=${result.overflowPx}. This is the expected Phase 1 `,
-            `Red signal — the guard correctly detected the deliberate `,
-            `200vw overflow. Phase 2 fixes real representative routes; `,
-            `this fixture is owned by P2 [~] activity remediation.`,
-          ].join(''),
-        ).toBe(0);
-      },
-    );
+      expect(
+        result.overflowPx,
+        [
+          `viewport guard FAILED at ${viewport.label} `,
+          `(${viewport.width}x${viewport.height}) on the known-bad fixture. `,
+          `scrollWidth=${result.scrollWidth}, layoutViewport=${result.layoutViewport}, `,
+          `overflowPx=${result.overflowPx}. This is the expected Phase 1 `,
+          `Red signal — the guard correctly detected the deliberate `,
+          `200vw overflow. Phase 2 fixes real representative routes; `,
+          `this fixture is owned by P2 [~] activity remediation.`,
+        ].join(""),
+      ).toBe(0);
+    });
   }
 });

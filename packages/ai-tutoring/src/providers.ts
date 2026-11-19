@@ -2,9 +2,9 @@
  * Shared AI provider adapters for both teacher and student features.
  */
 
-import { withRetry, EmptyResponseError } from './retry';
+import { withRetry, EmptyResponseError } from "./retry";
 
-const OPENROUTER_API_BASE = 'https://openrouter.ai/api/v1';
+const OPENROUTER_API_BASE = "https://openrouter.ai/api/v1";
 
 export interface OpenRouterProviderOptions {
   apiKey: string;
@@ -21,14 +21,14 @@ export interface OpenRouterProviderOptions {
 export function createOpenRouterProvider(options: OpenRouterProviderOptions) {
   const {
     apiKey,
-    model = 'openrouter/free',
+    model = "openrouter/free",
     baseUrl = OPENROUTER_API_BASE,
     timeoutMs = 15000,
   } = options;
 
   return async function openRouterProvider(
     prompt: string,
-    abortSignal?: AbortSignal
+    abortSignal?: AbortSignal,
   ): Promise<string> {
     return withRetry(async () => {
       const controller = new AbortController();
@@ -39,22 +39,22 @@ export function createOpenRouterProvider(options: OpenRouterProviderOptions) {
           controller.abort();
         } else {
           const onAbort = () => controller.abort();
-          abortSignal.addEventListener('abort', onAbort, { once: true });
+          abortSignal.addEventListener("abort", onAbort, { once: true });
         }
       }
 
       try {
         const response = await fetch(`${baseUrl}/chat/completions`, {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
             Authorization: `Bearer ${apiKey}`,
-            'HTTP-Referer': 'https://github.com/bodangren/ra-integrated-math-3',
-            'X-Title': 'Integrated Math 3',
+            "HTTP-Referer": "https://github.com/bodangren/ra-integrated-math-3",
+            "X-Title": "Integrated Math 3",
           },
           body: JSON.stringify({
             model,
-            messages: [{ role: 'user', content: prompt }],
+            messages: [{ role: "user", content: prompt }],
           }),
           signal: controller.signal,
         });
@@ -73,7 +73,7 @@ export function createOpenRouterProvider(options: OpenRouterProviderOptions) {
 
         const data = (await response.json()) as OpenRouterResponse;
         const content = data.choices?.[0]?.message?.content;
-        if (typeof content !== 'string' || content.trim().length === 0) {
+        if (typeof content !== "string" || content.trim().length === 0) {
           throw new EmptyResponseError();
         }
         return content.trim();
@@ -85,7 +85,7 @@ export function createOpenRouterProvider(options: OpenRouterProviderOptions) {
 }
 
 export interface ChatMessage {
-  role: 'system' | 'user' | 'assistant';
+  role: "system" | "user" | "assistant";
   content: string;
 }
 
@@ -97,14 +97,14 @@ export interface ChatMessage {
 export function createOpenRouterProviderWithMessages(options: OpenRouterProviderOptions) {
   const {
     apiKey,
-    model = 'openrouter/free',
+    model = "openrouter/free",
     baseUrl = OPENROUTER_API_BASE,
     timeoutMs = 15000,
   } = options;
 
   return async function openRouterProviderWithMessages(
     messages: ChatMessage[],
-    abortSignal?: AbortSignal
+    abortSignal?: AbortSignal,
   ): Promise<string> {
     return withRetry(async () => {
       const controller = new AbortController();
@@ -115,18 +115,18 @@ export function createOpenRouterProviderWithMessages(options: OpenRouterProvider
           controller.abort();
         } else {
           const onAbort = () => controller.abort();
-          abortSignal.addEventListener('abort', onAbort, { once: true });
+          abortSignal.addEventListener("abort", onAbort, { once: true });
         }
       }
 
       try {
         const response = await fetch(`${baseUrl}/chat/completions`, {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
             Authorization: `Bearer ${apiKey}`,
-            'HTTP-Referer': 'https://github.com/bodangren/ra-integrated-math-3',
-            'X-Title': 'Integrated Math 3',
+            "HTTP-Referer": "https://github.com/bodangren/ra-integrated-math-3",
+            "X-Title": "Integrated Math 3",
           },
           body: JSON.stringify({
             model,
@@ -149,7 +149,7 @@ export function createOpenRouterProviderWithMessages(options: OpenRouterProvider
 
         const data = (await response.json()) as OpenRouterResponse;
         const content = data.choices?.[0]?.message?.content;
-        if (typeof content !== 'string' || content.trim().length === 0) {
+        if (typeof content !== "string" || content.trim().length === 0) {
           throw new EmptyResponseError();
         }
         return content.trim();
@@ -160,7 +160,7 @@ export function createOpenRouterProviderWithMessages(options: OpenRouterProvider
   };
 }
 
-export { EmptyResponseError } from './retry';
+export { EmptyResponseError } from "./retry";
 
 /**
  * Type guard to check if an error is an OpenRouter API error.
@@ -168,7 +168,7 @@ export { EmptyResponseError } from './retry';
  * @returns {error is Error &} - True if error has OpenRouter API error format
  */
 export function isOpenRouterError(error: unknown): error is Error & { status?: number } {
-  return error instanceof Error && error.message.startsWith('OpenRouter API error:');
+  return error instanceof Error && error.message.startsWith("OpenRouter API error:");
 }
 
 /**
@@ -183,7 +183,9 @@ export function getErrorStatus(error: Error): number | null {
 
 let cachedProvider: ((prompt: string, abortSignal?: AbortSignal) => Promise<string>) | null = null;
 
-let cachedMessagesProvider: ((messages: ChatMessage[], abortSignal?: AbortSignal) => Promise<string>) | null = null;
+let cachedMessagesProvider:
+  | ((messages: ChatMessage[], abortSignal?: AbortSignal) => Promise<string>)
+  | null = null;
 
 /**
  * Clears the cached OpenRouter providers (prompt and messages variants).
@@ -197,7 +199,9 @@ export function clearProviderCache(): void {
  * Resolves OpenRouter provider from environment variables (single-prompt variant).
  * @returns {((prompt: string, abortSignal?: AbortSignal) => Promise<string>) | null} - Provider function or null if OPENROUTER_API_KEY not set
  */
-export function resolveOpenRouterProviderFromEnv(): ((prompt: string, abortSignal?: AbortSignal) => Promise<string>) | null {
+export function resolveOpenRouterProviderFromEnv():
+  | ((prompt: string, abortSignal?: AbortSignal) => Promise<string>)
+  | null {
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey || apiKey.trim().length === 0) {
     return null;
@@ -209,7 +213,7 @@ export function resolveOpenRouterProviderFromEnv(): ((prompt: string, abortSigna
 
   cachedProvider = createOpenRouterProvider({
     apiKey,
-    model: process.env.OPENROUTER_MODEL || 'openrouter/free',
+    model: process.env.OPENROUTER_MODEL || "openrouter/free",
     baseUrl: process.env.OPENROUTER_API_BASE || OPENROUTER_API_BASE,
   });
 
@@ -220,7 +224,9 @@ export function resolveOpenRouterProviderFromEnv(): ((prompt: string, abortSigna
  * Resolve OpenRouter multi-message provider from environment variables.
  * @returns {((messages: ChatMessage[], abortSignal?: AbortSignal) => Promise<string>) | null} - Messages provider function or null if OPENROUTER_API_KEY not set
  */
-export function resolveOpenRouterProviderWithMessagesFromEnv(): ((messages: ChatMessage[], abortSignal?: AbortSignal) => Promise<string>) | null {
+export function resolveOpenRouterProviderWithMessagesFromEnv():
+  | ((messages: ChatMessage[], abortSignal?: AbortSignal) => Promise<string>)
+  | null {
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey || apiKey.trim().length === 0) {
     return null;
@@ -232,7 +238,7 @@ export function resolveOpenRouterProviderWithMessagesFromEnv(): ((messages: Chat
 
   cachedMessagesProvider = createOpenRouterProviderWithMessages({
     apiKey,
-    model: process.env.OPENROUTER_MODEL || 'openrouter/free',
+    model: process.env.OPENROUTER_MODEL || "openrouter/free",
     baseUrl: process.env.OPENROUTER_API_BASE || OPENROUTER_API_BASE,
   });
 

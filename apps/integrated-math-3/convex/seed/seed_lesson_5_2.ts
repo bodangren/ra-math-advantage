@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -138,9 +138,15 @@ export const seedLesson5_2 = internalMutation({
                 equation: "4^(5x+1) = 64^7",
                 steps: [
                   { expression: "64 = 4^3", explanation: "Rewrite 64 with base 4" },
-                  { expression: "4^(5x+1) = (4^3)^7", explanation: "Substitute the rewritten form" },
+                  {
+                    expression: "4^(5x+1) = (4^3)^7",
+                    explanation: "Substitute the rewritten form",
+                  },
                   { expression: "4^(5x+1) = 4^21", explanation: "Apply power of a power rule" },
-                  { expression: "5x + 1 = 21", explanation: "Using property of equality: if b^x = b^y, then x = y" },
+                  {
+                    expression: "5x + 1 = 21",
+                    explanation: "Using property of equality: if b^x = b^y, then x = y",
+                  },
                   { expression: "5x = 20", explanation: "Subtract 1 from both sides" },
                   { expression: "x = 4", explanation: "Divide both sides by 5" },
                 ],
@@ -172,12 +178,27 @@ export const seedLesson5_2 = internalMutation({
                 problemType: "polynomial",
                 equation: "C = 0.058(1.099)^x, find when C > 1",
                 steps: [
-                  { expression: "Initial cost: 0.058 million", explanation: "Convert $58,000 to millions" },
+                  {
+                    expression: "Initial cost: 0.058 million",
+                    explanation: "Convert $58,000 to millions",
+                  },
                   { expression: "Growth rate: 0.099", explanation: "Convert 9.9% to decimal" },
-                  { expression: "Set up y = 1 and y = 0.058(1.099)^x", explanation: "System to solve" },
-                  { expression: "Intersection at x ≈ 30.16", explanation: "Solve using technology" },
-                  { expression: "Super Bowl 30: C < 1 million", explanation: "At x = 30, cost has not surpassed $1 million" },
-                  { expression: "Super Bowl 31: C > 1 million", explanation: "First time cost surpasses $1 million" },
+                  {
+                    expression: "Set up y = 1 and y = 0.058(1.099)^x",
+                    explanation: "System to solve",
+                  },
+                  {
+                    expression: "Intersection at x ≈ 30.16",
+                    explanation: "Solve using technology",
+                  },
+                  {
+                    expression: "Super Bowl 30: C < 1 million",
+                    explanation: "At x = 30, cost has not surpassed $1 million",
+                  },
+                  {
+                    expression: "Super Bowl 31: C > 1 million",
+                    explanation: "First time cost surpasses $1 million",
+                  },
                 ],
               },
             },
@@ -207,11 +228,20 @@ export const seedLesson5_2 = internalMutation({
                 problemType: "polynomial",
                 equation: "A = 1700(1 + 0.018/12)^(12*5)",
                 steps: [
-                  { expression: "P = 1700, r = 0.018, n = 12, t = 5", explanation: "Identify given values" },
-                  { expression: "A = 1700(1 + 0.018/12)^(12*5)", explanation: "Substitute into compound interest formula" },
+                  {
+                    expression: "P = 1700, r = 0.018, n = 12, t = 5",
+                    explanation: "Identify given values",
+                  },
+                  {
+                    expression: "A = 1700(1 + 0.018/12)^(12*5)",
+                    explanation: "Substitute into compound interest formula",
+                  },
                   { expression: "1 + 0.018/12 = 1.0015", explanation: "Calculate monthly rate" },
                   { expression: "(1.0015)^60 ≈ 1.0941", explanation: "Calculate compound factor" },
-                  { expression: "A ≈ 1700 × 1.0941 ≈ 1859.97", explanation: "Multiply to find final amount" },
+                  {
+                    expression: "A ≈ 1700 × 1.0941 ≈ 1859.97",
+                    explanation: "Multiply to find final amount",
+                  },
                   { expression: "Balance after 5 years: $1859.97", explanation: "Result" },
                 ],
               },
@@ -260,12 +290,24 @@ export const seedLesson5_2 = internalMutation({
                 steps: [
                   { expression: "27 = 3^3", explanation: "Rewrite 27 with base 3" },
                   { expression: "81 = 3^4", explanation: "Rewrite 81 with base 3" },
-                  { expression: "(3^3)^(2x+6) >= (3^4)^(x-5)", explanation: "Substitute the rewritten forms" },
-                  { expression: "3^(6x+18) >= 3^(4x-20)", explanation: "Apply power of a power rule" },
-                  { expression: "6x + 18 >= 4x - 20", explanation: "Using property of inequality for exponential equations" },
+                  {
+                    expression: "(3^3)^(2x+6) >= (3^4)^(x-5)",
+                    explanation: "Substitute the rewritten forms",
+                  },
+                  {
+                    expression: "3^(6x+18) >= 3^(4x-20)",
+                    explanation: "Apply power of a power rule",
+                  },
+                  {
+                    expression: "6x + 18 >= 4x - 20",
+                    explanation: "Using property of inequality for exponential equations",
+                  },
                   { expression: "2x >= -38", explanation: "Isolate x terms" },
                   { expression: "x >= -19", explanation: "Divide both sides by 2" },
-                  { expression: "Solution set: {x | x >= -19}", explanation: "Express in interval notation or set notation" },
+                  {
+                    expression: "Solution set: {x | x >= -19}",
+                    explanation: "Express in interval notation or set notation",
+                  },
                 ],
               },
             },
@@ -334,7 +376,7 @@ export const seedLesson5_2 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

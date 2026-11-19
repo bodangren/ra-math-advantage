@@ -10,20 +10,20 @@
 //
 // <course> ∈ {im1, im2, im3, precalc}
 
-export const MATH_COURSES = ['im1', 'im2', 'im3', 'precalc'] as const;
+export const MATH_COURSES = ["im1", "im2", "im3", "precalc"] as const;
 export type MathCourse = (typeof MATH_COURSES)[number];
 
-export const MATH_DOMAIN_PREFIX = 'math';
+export const MATH_DOMAIN_PREFIX = "math";
 
 // Regex patterns for each math node kind — informational reference for adapter consumers.
 // `validateMathId` is authoritative; these patterns are for quick ad-hoc checks.
 export const ID_PATTERNS: Record<string, RegExp> = {
-  skill:             /^math\.[a-z0-9]+\.skill\.[^.]+\.[^.]+\.[a-z0-9-]+$/,
-  worked_example:    /^math\.[a-z0-9]+\.example\.[^.]+\.[^.]+\.[a-z0-9-]+$/,
-  instructional_unit:/^math\.[a-z0-9]+\.lesson\.[^.]+\.[^.]+$/,
-  content_group:     /^math\.[a-z0-9]+\.module\.[^.]+$/,
-  domain:            /^math\.[a-z0-9]+$/,
-  standard:          /^math\.standard\.[a-z]+\..+$/,
+  skill: /^math\.[a-z0-9]+\.skill\.[^.]+\.[^.]+\.[a-z0-9-]+$/,
+  worked_example: /^math\.[a-z0-9]+\.example\.[^.]+\.[^.]+\.[a-z0-9-]+$/,
+  instructional_unit: /^math\.[a-z0-9]+\.lesson\.[^.]+\.[^.]+$/,
+  content_group: /^math\.[a-z0-9]+\.module\.[^.]+$/,
+  domain: /^math\.[a-z0-9]+$/,
+  standard: /^math\.standard\.[a-z]+\..+$/,
 };
 
 // ---------------------------------------------------------------------------
@@ -71,11 +71,7 @@ export function buildWorkedExampleId(
  * @param {string} lesson - Lesson number
  * @returns {string} - Formatted lesson ID string
  */
-export function buildLessonId(
-  course: MathCourse,
-  module: string,
-  lesson: string,
-): string {
+export function buildLessonId(course: MathCourse, module: string, lesson: string): string {
   return `${MATH_DOMAIN_PREFIX}.${course}.lesson.${module}.${lesson}`;
 }
 
@@ -125,7 +121,7 @@ export interface IdValidationResult {
  */
 export function validateMathId(id: string, kind: string): IdValidationResult {
   const errors: string[] = [];
-  const parts = id.split('.');
+  const parts = id.split(".");
 
   // Must start with math.
   if (parts[0] !== MATH_DOMAIN_PREFIX) {
@@ -135,45 +131,47 @@ export function validateMathId(id: string, kind: string): IdValidationResult {
 
   // Course check (skip for standard IDs which use math.standard.<authority>.<code>)
   const course = parts[1];
-  if (kind !== 'standard' && !MATH_COURSES.includes(course as MathCourse)) {
-    errors.push(`Unsupported course "${course}" — must be one of: ${MATH_COURSES.join(', ')}`);
+  if (kind !== "standard" && !MATH_COURSES.includes(course as MathCourse)) {
+    errors.push(`Unsupported course "${course}" — must be one of: ${MATH_COURSES.join(", ")}`);
   }
 
   // Kind-specific segment validation
   const typePart = parts[2];
 
   switch (kind) {
-    case 'skill': {
+    case "skill": {
       // math.<course>.skill.<module>.<lesson>.<slug>
-      if (typePart !== 'skill') {
+      if (typePart !== "skill") {
         errors.push(`Expected kind "skill" but ID segment is "${typePart}"`);
       }
       if (parts.length !== 6) {
-        errors.push(`Skill ID must have 6 segments (math.<course>.skill.<module>.<lesson>.<slug>), got ${parts.length}`);
+        errors.push(
+          `Skill ID must have 6 segments (math.<course>.skill.<module>.<lesson>.<slug>), got ${parts.length}`,
+        );
       }
       if (!parts[5] || parts[5].length === 0) {
-        errors.push('Skill ID slug must not be empty');
+        errors.push("Skill ID slug must not be empty");
       }
       break;
     }
 
-    case 'worked_example': {
+    case "worked_example": {
       // math.<course>.example.<module>.<lesson>.<index>
-      if (typePart !== 'example') {
+      if (typePart !== "example") {
         errors.push(`Expected kind "worked_example" but ID segment is "${typePart}"`);
       }
       if (parts.length !== 6) {
         errors.push(`Worked example ID must have 6 segments, got ${parts.length}`);
       }
       if (!parts[5] || parts[5].length === 0) {
-        errors.push('Worked example index must not be empty');
+        errors.push("Worked example index must not be empty");
       }
       break;
     }
 
-    case 'instructional_unit': {
+    case "instructional_unit": {
       // math.<course>.lesson.<module>.<lesson>
-      if (typePart !== 'lesson') {
+      if (typePart !== "lesson") {
         errors.push(`Expected kind "instructional_unit" (lesson) but ID segment is "${typePart}"`);
       }
       if (parts.length !== 5) {
@@ -182,9 +180,9 @@ export function validateMathId(id: string, kind: string): IdValidationResult {
       break;
     }
 
-    case 'content_group': {
+    case "content_group": {
       // math.<course>.module.<module>
-      if (typePart !== 'module') {
+      if (typePart !== "module") {
         errors.push(`Expected kind "content_group" (module) but ID segment is "${typePart}"`);
       }
       if (parts.length !== 4) {
@@ -193,7 +191,7 @@ export function validateMathId(id: string, kind: string): IdValidationResult {
       break;
     }
 
-    case 'domain': {
+    case "domain": {
       // math.<course>
       if (parts.length !== 2) {
         errors.push(`Course ID must have 2 segments, got ${parts.length}`);
@@ -201,20 +199,20 @@ export function validateMathId(id: string, kind: string): IdValidationResult {
       break;
     }
 
-    case 'standard': {
+    case "standard": {
       // math.standard.<authority>.<code>
-      if (parts[1] !== 'standard') {
+      if (parts[1] !== "standard") {
         errors.push(`Expected kind "standard" but ID segment 1 is "${parts[1]}"`);
       }
       if (parts.length < 4) {
         errors.push(`Standard ID must have at least 4 segments, got ${parts.length}`);
       }
       if (!parts[2] || parts[2].length === 0) {
-        errors.push('Standard authority must not be empty');
+        errors.push("Standard authority must not be empty");
       }
       // Verify there's a code part after authority
       if (!parts[3] || parts[3].length === 0) {
-        errors.push('Standard code must not be empty');
+        errors.push("Standard code must not be empty");
       }
       break;
     }

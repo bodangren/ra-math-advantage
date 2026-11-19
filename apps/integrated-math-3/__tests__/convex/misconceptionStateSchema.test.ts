@@ -36,35 +36,35 @@
  * — i.e., the field is actually declared.
  */
 
-import { describe, it, expect } from 'vitest';
-import schema from '@/convex/schema';
+import { describe, it, expect } from "vitest";
+import schema from "@/convex/schema";
 import {
   misconceptionLifecycleStatusValidator,
   misconceptionSeverityValidator,
   studentMisconceptionStateValidator,
-} from '@/convex/misconceptionState';
+} from "@/convex/misconceptionState";
 
 // ---------------------------------------------------------------------------
 // 1. student_misconception_state table — schema presence + field shape
 // ---------------------------------------------------------------------------
 
-describe('student_misconception_state table — schema (spec FR3)', () => {
-  it('exists in the IM3 Convex schema', () => {
-    expect(schema.tables).toHaveProperty('student_misconception_state');
+describe("student_misconception_state table — schema (spec FR3)", () => {
+  it("exists in the IM3 Convex schema", () => {
+    expect(schema.tables).toHaveProperty("student_misconception_state");
   });
 
-  it('declares the required fields (per-student misconception state row)', () => {
+  it("declares the required fields (per-student misconception state row)", () => {
     const table = schema.tables.student_misconception_state;
     // Required scalar fields (art: validators are imported separately below)
     for (const field of [
-      'studentId',
-      'misconceptionId',
-      'status',
-      'severity',
-      'cleanStreak',
-      'firstDetectedAt',
-      'lastUpdatedAt',
-      'affectedSkills',
+      "studentId",
+      "misconceptionId",
+      "status",
+      "severity",
+      "cleanStreak",
+      "firstDetectedAt",
+      "lastUpdatedAt",
+      "affectedSkills",
     ]) {
       expect(
         () => (table as unknown as Record<string, unknown>)[field],
@@ -78,8 +78,8 @@ describe('student_misconception_state table — schema (spec FR3)', () => {
 // 2. misconceptionLifecycleStatusValidator — closed-set enum
 // ---------------------------------------------------------------------------
 
-describe('misconceptionLifecycleStatusValidator (kst-srs.v2 §9.3, spec FR3)', () => {
-  it('is a non-undefined Convex validator exported from the planned module', () => {
+describe("misconceptionLifecycleStatusValidator (kst-srs.v2 §9.3, spec FR3)", () => {
+  it("is a non-undefined Convex validator exported from the planned module", () => {
     expect(misconceptionLifecycleStatusValidator).toBeDefined();
     // Construct-time smoke (Convex validators are factory objects; reading the
     // export should never throw).
@@ -91,8 +91,8 @@ describe('misconceptionLifecycleStatusValidator (kst-srs.v2 §9.3, spec FR3)', (
 // 3. misconceptionSeverityValidator — closed-set enum
 // ---------------------------------------------------------------------------
 
-describe('misconceptionSeverityValidator (kst-srs.v2 §9.1, spec FR2)', () => {
-  it('is a non-undefined Convex validator exported from the planned module', () => {
+describe("misconceptionSeverityValidator (kst-srs.v2 §9.1, spec FR2)", () => {
+  it("is a non-undefined Convex validator exported from the planned module", () => {
     expect(misconceptionSeverityValidator).toBeDefined();
     expect(() => misconceptionSeverityValidator).not.toThrow();
   });
@@ -102,8 +102,8 @@ describe('misconceptionSeverityValidator (kst-srs.v2 §9.1, spec FR2)', () => {
 // 4. studentMisconceptionStateValidator — full row validator
 // ---------------------------------------------------------------------------
 
-describe('studentMisconceptionStateValidator (spec FR3)', () => {
-  it('is a non-undefined Convex object validator exported from the planned module', () => {
+describe("studentMisconceptionStateValidator (spec FR3)", () => {
+  it("is a non-undefined Convex object validator exported from the planned module", () => {
     expect(studentMisconceptionStateValidator).toBeDefined();
     expect(() => studentMisconceptionStateValidator).not.toThrow();
   });

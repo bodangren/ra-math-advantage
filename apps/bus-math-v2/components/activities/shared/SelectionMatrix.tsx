@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { useId, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useId, useMemo, useRef, useState, type ReactNode } from "react";
 
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import type { PracticeMode } from '@/lib/practice/engine/types';
-import { cn } from '@/lib/utils';
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import type { PracticeMode } from "@/lib/practice/engine/types";
+import { cn } from "@/lib/utils";
 
-import { TeachingModePanel } from './TeachingModePanel';
+import { TeachingModePanel } from "./TeachingModePanel";
 
-type SelectionMode = 'single' | 'multiple';
+type SelectionMode = "single" | "multiple";
 
 export interface SelectionMatrixColumn {
   id: string;
@@ -26,7 +26,7 @@ export interface SelectionMatrixRow {
 }
 
 export interface SelectionMatrixRowFeedback {
-  status: 'correct' | 'incorrect' | 'partial';
+  status: "correct" | "incorrect" | "partial";
   scoreLabel?: string;
   misconceptionTags?: string[];
   selectedLabel?: string;
@@ -57,7 +57,6 @@ export interface SelectionMatrixProps {
   submissionSummary?: SelectionMatrixReviewSummary;
 }
 
-
 /**
  * Normalize a selection entry into its expected shape based on selection mode.
  *
@@ -66,13 +65,12 @@ export interface SelectionMatrixProps {
  * @returns A string for single mode, or an array for multiple mode.
  */
 function getSelectedValues(entry: string | string[] | undefined, selectionMode: SelectionMode) {
-  if (selectionMode === 'multiple') {
+  if (selectionMode === "multiple") {
     return Array.isArray(entry) ? entry : entry ? [entry] : [];
   }
 
-  return typeof entry === 'string' ? entry : undefined;
+  return typeof entry === "string" ? entry : undefined;
 }
-
 
 /**
  * Toggle a column selection for a row, supporting both single and multiple
@@ -88,10 +86,10 @@ function toggleSelectedValue(
   row: SelectionMatrixRow,
   columnId: string,
 ) {
-  const selectionMode = row.selectionMode ?? 'single';
+  const selectionMode = row.selectionMode ?? "single";
   const existing = getSelectedValues(current[row.id], selectionMode);
 
-  if (selectionMode === 'multiple') {
+  if (selectionMode === "multiple") {
     const next = new Set(existing ?? []);
     if (next.has(columnId)) {
       next.delete(columnId);
@@ -111,7 +109,6 @@ function toggleSelectedValue(
   };
 }
 
-
 /**
  * Selection matrix for classifying rows against columns with single or
  * multiple selection, keyboard navigation, and teacher feedback.
@@ -126,7 +123,7 @@ export function SelectionMatrix({
   rows,
   columns,
   scenarioPanel,
-  mode = 'guided_practice',
+  mode = "guided_practice",
   defaultValue,
   value,
   onValueChange,
@@ -135,31 +132,39 @@ export function SelectionMatrix({
   rowFeedback = {},
   submissionSummary,
 }: SelectionMatrixProps) {
-  const [internalValue, setInternalValue] = useState<Record<string, string | string[]>>(defaultValue ?? {});
-  const [announcement, setAnnouncement] = useState('');
+  const [internalValue, setInternalValue] = useState<Record<string, string | string[]>>(
+    defaultValue ?? {},
+  );
+  const [announcement, setAnnouncement] = useState("");
   const selectedValues = value ?? internalValue;
   const cellRefs = useRef(new Map<string, HTMLButtonElement>());
-  const lastInteractionRef = useRef<'keyboard' | 'pointer' | 'touch' | null>(null);
+  const lastInteractionRef = useRef<"keyboard" | "pointer" | "touch" | null>(null);
   const matrixId = useId();
 
   const rowIndexes = useMemo(() => new Map(rows.map((row, index) => [row.id, index])), [rows]);
-  const columnIndexes = useMemo(() => new Map(columns.map((column, index) => [column.id, index])), [columns]);
-  const columnLabels = useMemo(() => new Map(columns.map((column) => [column.id, column.label])), [columns]);
+  const columnIndexes = useMemo(
+    () => new Map(columns.map((column, index) => [column.id, index])),
+    [columns],
+  );
+  const columnLabels = useMemo(
+    () => new Map(columns.map((column) => [column.id, column.label])),
+    [columns],
+  );
   const summaryScoreLabel =
     submissionSummary?.scoreLabel ??
-    `${Object.values(rowFeedback).filter((feedback) => feedback.status === 'correct').length}/${rows.length} correct`;
+    `${Object.values(rowFeedback).filter((feedback) => feedback.status === "correct").length}/${rows.length} correct`;
   const summaryMisconceptionCount =
     submissionSummary?.misconceptionCount ??
-    new Set(Object.values(rowFeedback).flatMap((feedback) => feedback.misconceptionTags ?? [])).size;
+    new Set(Object.values(rowFeedback).flatMap((feedback) => feedback.misconceptionTags ?? []))
+      .size;
   const teachingSteps = useMemo(
     () => [
-      'Read each row label and any short hint before choosing.',
-      'Compare the row to the column labels and pick the best match.',
-      'Review the misconception tags to see why the choice matters.',
+      "Read each row label and any short hint before choosing.",
+      "Compare the row to the column labels and pick the best match.",
+      "Review the misconception tags to see why the choice matters.",
     ],
     [],
   );
-
 
   /**
    * Update the selection values and propagate to controlled state.
@@ -173,7 +178,6 @@ export function SelectionMatrix({
     onValueChange?.(nextValue);
   };
 
-
   /**
    * Move keyboard focus to an adjacent cell in the matrix.
    *
@@ -181,15 +185,25 @@ export function SelectionMatrix({
    * @param columnId - The current column identifier.
    * @param direction - The arrow key direction.
    */
-  const moveFocus = (rowId: string, columnId: string, direction: 'up' | 'down' | 'left' | 'right') => {
+  const moveFocus = (
+    rowId: string,
+    columnId: string,
+    direction: "up" | "down" | "left" | "right",
+  ) => {
     const rowIndex = rowIndexes.get(rowId);
     const columnIndex = columnIndexes.get(columnId);
     if (rowIndex === undefined || columnIndex === undefined) {
       return;
     }
 
-    const nextRowIndex = direction === 'up' ? rowIndex - 1 : direction === 'down' ? rowIndex + 1 : rowIndex;
-    const nextColumnIndex = direction === 'left' ? columnIndex - 1 : direction === 'right' ? columnIndex + 1 : columnIndex;
+    const nextRowIndex =
+      direction === "up" ? rowIndex - 1 : direction === "down" ? rowIndex + 1 : rowIndex;
+    const nextColumnIndex =
+      direction === "left"
+        ? columnIndex - 1
+        : direction === "right"
+          ? columnIndex + 1
+          : columnIndex;
     const nextRow = rows[nextRowIndex];
     const nextColumn = columns[nextColumnIndex];
     if (!nextRow || !nextColumn) {
@@ -199,7 +213,6 @@ export function SelectionMatrix({
     const nextCell = cellRefs.current.get(`${nextRow.id}:${nextColumn.id}`);
     nextCell?.focus();
   };
-
 
   /**
    * Move focus to the first cell in the next row after a single selection.
@@ -218,7 +231,6 @@ export function SelectionMatrix({
     cellRefs.current.get(`${nextRow.id}:${firstColumn.id}`)?.focus();
   };
 
-
   /**
    * Render a single cell button in the selection matrix.
    *
@@ -227,10 +239,10 @@ export function SelectionMatrix({
    * @returns A button element for the cell.
    */
   const renderCell = (row: SelectionMatrixRow, column: SelectionMatrixColumn) => {
-    const selectionMode = row.selectionMode ?? 'single';
+    const selectionMode = row.selectionMode ?? "single";
     const rowValue = selectedValues[row.id];
     const isSelected =
-      selectionMode === 'multiple'
+      selectionMode === "multiple"
         ? Array.isArray(rowValue) && rowValue.includes(column.id)
         : rowValue === column.id;
     const feedback = rowFeedback[row.id];
@@ -247,68 +259,73 @@ export function SelectionMatrix({
           }
         }}
         type="button"
-        role={selectionMode === 'multiple' ? 'checkbox' : 'radio'}
+        role={selectionMode === "multiple" ? "checkbox" : "radio"}
         aria-checked={isSelected}
         aria-label={`${row.label}: ${column.label}`}
         aria-describedby={row.description ? `${matrixId}-${row.id}-description` : undefined}
         disabled={readOnly}
         onPointerDown={(event) => {
-          lastInteractionRef.current = event.pointerType === 'touch' ? 'touch' : 'pointer';
+          lastInteractionRef.current = event.pointerType === "touch" ? "touch" : "pointer";
         }}
         onClick={() => {
-          if (readOnly || lastInteractionRef.current === 'keyboard') return;
+          if (readOnly || lastInteractionRef.current === "keyboard") return;
           updateValue(toggleSelectedValue(selectedValues, row, column.id));
           setAnnouncement(`${row.label} set to ${column.label}`);
-          if (selectionMode === 'single' && lastInteractionRef.current !== 'touch') {
+          if (selectionMode === "single" && lastInteractionRef.current !== "touch") {
             moveToFirstCellInNextRow(row.id);
           }
         }}
         onKeyDown={(event) => {
           if (readOnly) return;
-          if (event.key === 'Enter' || event.key === ' ') {
+          if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
-            lastInteractionRef.current = 'keyboard';
+            lastInteractionRef.current = "keyboard";
             updateValue(toggleSelectedValue(selectedValues, row, column.id));
             setAnnouncement(`${row.label} set to ${column.label}`);
-            if (selectionMode === 'single') {
+            if (selectionMode === "single") {
               moveToFirstCellInNextRow(row.id);
             }
             return;
           }
 
-          if (event.key === 'ArrowLeft') {
+          if (event.key === "ArrowLeft") {
             event.preventDefault();
-            lastInteractionRef.current = 'keyboard';
-            moveFocus(row.id, column.id, 'left');
-          } else if (event.key === 'ArrowRight') {
+            lastInteractionRef.current = "keyboard";
+            moveFocus(row.id, column.id, "left");
+          } else if (event.key === "ArrowRight") {
             event.preventDefault();
-            lastInteractionRef.current = 'keyboard';
-            moveFocus(row.id, column.id, 'right');
-          } else if (event.key === 'ArrowUp') {
+            lastInteractionRef.current = "keyboard";
+            moveFocus(row.id, column.id, "right");
+          } else if (event.key === "ArrowUp") {
             event.preventDefault();
-            lastInteractionRef.current = 'keyboard';
-            moveFocus(row.id, column.id, 'up');
-          } else if (event.key === 'ArrowDown') {
+            lastInteractionRef.current = "keyboard";
+            moveFocus(row.id, column.id, "up");
+          } else if (event.key === "ArrowDown") {
             event.preventDefault();
-            lastInteractionRef.current = 'keyboard';
-            moveFocus(row.id, column.id, 'down');
+            lastInteractionRef.current = "keyboard";
+            moveFocus(row.id, column.id, "down");
           }
         }}
         className={cn(
-          'flex min-h-11 w-full flex-col items-center justify-center rounded-md border px-3 py-2 text-sm transition focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
-          isSelected ? 'border-primary bg-primary/10 text-foreground' : 'border-border bg-background hover:bg-accent/40',
-          teacherView && feedback?.status === 'correct' && 'border-emerald-500 bg-emerald-50',
-          teacherView && feedback?.status === 'incorrect' && 'border-destructive bg-destructive/10',
-          teacherView && feedback?.status === 'partial' && 'border-amber-500 bg-amber-50'
+          "flex min-h-11 w-full flex-col items-center justify-center rounded-md border px-3 py-2 text-sm transition focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
+          isSelected
+            ? "border-primary bg-primary/10 text-foreground"
+            : "border-border bg-background hover:bg-accent/40",
+          teacherView && feedback?.status === "correct" && "border-emerald-500 bg-emerald-50",
+          teacherView && feedback?.status === "incorrect" && "border-destructive bg-destructive/10",
+          teacherView && feedback?.status === "partial" && "border-amber-500 bg-amber-50",
         )}
       >
         <span className="sr-only">
-          {selectionMode === 'multiple' ? 'Toggle' : 'Select'} {column.label}
+          {selectionMode === "multiple" ? "Toggle" : "Select"} {column.label}
         </span>
         <span aria-hidden="true" className="font-medium leading-none">
-          {isSelected ? '●' : '○'}
+          {isSelected ? "●" : "○"}
         </span>
-        <span aria-hidden="true" className="text-[11px] font-semibold uppercase tracking-[0.18em] text-current/90">
+        <span
+          aria-hidden="true"
+          className="text-[11px] font-semibold uppercase tracking-[0.18em] text-current/90"
+        >
           {column.label}
         </span>
       </button>
@@ -323,7 +340,7 @@ export function SelectionMatrix({
           {description && <CardDescription>{description}</CardDescription>}
         </div>
         {scenarioPanel && <div className="space-y-3">{scenarioPanel}</div>}
-        {mode === 'teaching' && (
+        {mode === "teaching" && (
           <TeachingModePanel
             title="Classification walkthrough"
             summary="Guide the class from the row label to the correct column choice."
@@ -336,10 +353,10 @@ export function SelectionMatrix({
               Score: {summaryScoreLabel}
             </Badge>
             <Badge variant="outline" className="justify-start gap-2">
-              Attempts: {submissionSummary?.attempts ?? '—'}
+              Attempts: {submissionSummary?.attempts ?? "—"}
             </Badge>
             <Badge variant="outline" className="justify-start gap-2">
-              Submitted: {submissionSummary?.submittedAt ?? '—'}
+              Submitted: {submissionSummary?.submittedAt ?? "—"}
             </Badge>
             <Badge variant="secondary" className="justify-start gap-2">
               Misconceptions: {summaryMisconceptionCount}
@@ -357,29 +374,42 @@ export function SelectionMatrix({
             const selectedValue = selectedValues[row.id];
             const selectedLabel =
               feedback?.selectedLabel ??
-              (typeof selectedValue === 'string' ? columnLabels.get(selectedValue) : undefined) ??
-              'Not selected';
-            const expectedLabel = feedback?.expectedLabel ?? (feedback?.status === 'correct' ? selectedLabel : undefined);
+              (typeof selectedValue === "string" ? columnLabels.get(selectedValue) : undefined) ??
+              "Not selected";
+            const expectedLabel =
+              feedback?.expectedLabel ??
+              (feedback?.status === "correct" ? selectedLabel : undefined);
 
             return (
               <div
                 key={row.id}
                 className={cn(
-                  'rounded-xl border bg-background p-4',
-                  teacherView && feedback?.status === 'correct' && 'border-emerald-500/50 bg-emerald-50/50',
-                  teacherView && feedback?.status === 'incorrect' && 'border-destructive/60 bg-destructive/10',
-                  teacherView && feedback?.status === 'partial' && 'border-amber-500/60 bg-amber-50/70'
+                  "rounded-xl border bg-background p-4",
+                  teacherView &&
+                    feedback?.status === "correct" &&
+                    "border-emerald-500/50 bg-emerald-50/50",
+                  teacherView &&
+                    feedback?.status === "incorrect" &&
+                    "border-destructive/60 bg-destructive/10",
+                  teacherView &&
+                    feedback?.status === "partial" &&
+                    "border-amber-500/60 bg-amber-50/70",
                 )}
               >
                 <div className="grid gap-3 md:grid-cols-[minmax(220px,1.2fr)_minmax(0,1fr)]">
                   <div className="space-y-1">
                     <div className="font-medium">{row.label}</div>
                     {row.description && (
-                      <div id={`${matrixId}-${row.id}-description`} className="text-sm text-muted-foreground">
+                      <div
+                        id={`${matrixId}-${row.id}-description`}
+                        className="text-sm text-muted-foreground"
+                      >
                         {row.description}
                       </div>
                     )}
-                    {row.hint && !readOnly && <div className="text-xs text-muted-foreground/80">{row.hint}</div>}
+                    {row.hint && !readOnly && (
+                      <div className="text-xs text-muted-foreground/80">{row.hint}</div>
+                    )}
                   </div>
                   <div
                     className="grid gap-2"
@@ -391,10 +421,15 @@ export function SelectionMatrix({
                 {teacherView && feedback && (
                   <div className="mt-3 space-y-2 rounded-lg border bg-muted/20 p-3">
                     <p className="text-sm font-medium text-foreground">
-                      Your answer: {selectedLabel}.{expectedLabel ? ` Expected: ${expectedLabel}.` : ''}
+                      Your answer: {selectedLabel}.
+                      {expectedLabel ? ` Expected: ${expectedLabel}.` : ""}
                     </p>
-                    {feedback.message && <p className="text-xs text-muted-foreground">{feedback.message}</p>}
-                    {feedback.scoreLabel && <p className="text-xs text-muted-foreground">{feedback.scoreLabel}</p>}
+                    {feedback.message && (
+                      <p className="text-xs text-muted-foreground">{feedback.message}</p>
+                    )}
+                    {feedback.scoreLabel && (
+                      <p className="text-xs text-muted-foreground">{feedback.scoreLabel}</p>
+                    )}
                     {feedback.misconceptionTags?.length ? (
                       <div className="flex flex-wrap gap-2">
                         {feedback.misconceptionTags.map((tag) => (

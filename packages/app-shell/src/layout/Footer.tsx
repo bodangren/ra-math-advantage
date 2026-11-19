@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import type { ReactNode } from 'react';
+import Link from "next/link";
+import type { ReactNode } from "react";
 
 export interface FooterLink {
   href: string;
@@ -38,8 +38,8 @@ export function Footer({
   brandIcon,
   sections = [],
   copyright,
-  accentColor = 'oklch(0.46 0.18 264)',
-  bgClassName = 'bg-slate-dark',
+  accentColor = "oklch(0.46 0.18 264)",
+  bgClassName = "bg-slate-dark",
 }: FooterProps) {
   return (
     <footer role="contentinfo" className={`${bgClassName} mt-auto`}>
@@ -61,13 +61,9 @@ export function Footer({
               </h2>
             </div>
             {brandDescription && (
-              <p className="text-sm text-white/70 font-body leading-relaxed">
-                {brandDescription}
-              </p>
+              <p className="text-sm text-white/70 font-body leading-relaxed">{brandDescription}</p>
             )}
-            {copyright && (
-              <p className="text-xs text-white/70 font-mono-num">{copyright}</p>
-            )}
+            {copyright && <p className="text-xs text-white/70 font-mono-num">{copyright}</p>}
           </div>
 
           {sections.map((section) => (

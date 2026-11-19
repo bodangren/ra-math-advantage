@@ -1,7 +1,4 @@
-import {
-  deriveStudentIntervention,
-  type StudentDashboardRow,
-} from "@/lib/teacher/intervention";
+import { deriveStudentIntervention, type StudentDashboardRow } from "@/lib/teacher/intervention";
 import {
   clampTeacherProgressPercentage,
   formatTeacherLastActiveDate,
@@ -19,7 +16,6 @@ const HEADERS = [
   "Last Active",
 ] as const;
 
-
 /**
  * Escapes a CSV field value by wrapping in quotes if it contains commas,
  * quotes, or newlines.
@@ -34,7 +30,6 @@ function escapeCsvValue(value: string) {
 
   return value;
 }
-
 
 /**
  * Converts an array of student dashboard rows into a CSV string with headers.
@@ -53,9 +48,7 @@ export function studentRowsToCsv(students: StudentDashboardRow[]) {
       derived.status,
       derived.needsAttention ? "Yes" : "No",
       formatTeacherProgressPercentage(student.progressPercentage),
-      Number.isFinite(student.completedPhases)
-        ? String(student.completedPhases)
-        : "0",
+      Number.isFinite(student.completedPhases) ? String(student.completedPhases) : "0",
       Number.isFinite(student.totalPhases) ? String(student.totalPhases) : "",
       formatTeacherLastActiveDate(student.lastActive),
     ];
@@ -65,7 +58,6 @@ export function studentRowsToCsv(students: StudentDashboardRow[]) {
 
   return rows.join("\n");
 }
-
 
 /**
  * Builds a timestamped CSV filename for a student progress export.

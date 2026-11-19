@@ -1,5 +1,5 @@
-import '../lib/practice-tests/modules';
-import { gradePracticeTest } from '../lib/practice-tests/question-banks';
+import "../lib/practice-tests/modules";
+import { gradePracticeTest } from "../lib/practice-tests/question-banks";
 import { internalMutation, internalQuery } from "./_generated/server";
 import { v } from "convex/values";
 import type { MutationCtx, QueryCtx } from "./_generated/server";
@@ -98,25 +98,17 @@ type GetTermMasteryByUnitArgs = {
  * @param {ProcessReviewArgs} args - The review data including term, rating, and FSRS state
  * @returns {{ success: boolean }} Object with success status
  */
-export async function processReviewHandler(
-  ctx: MutationCtx,
-  args: ProcessReviewArgs
-) {
+export async function processReviewHandler(ctx: MutationCtx, args: ProcessReviewArgs) {
   const now = args.now ?? Date.now();
   const isCorrect = args.rating !== "again";
 
   const existingMastery = await ctx.db
     .query("term_mastery")
-    .withIndex("by_user_and_term", (q) =>
-      q.eq("userId", args.userId).eq("termSlug", args.termSlug)
-    )
+    .withIndex("by_user_and_term", (q) => q.eq("userId", args.userId).eq("termSlug", args.termSlug))
     .first();
 
   if (existingMastery) {
-    const newMasteryScore = updateMastery(
-      existingMastery.masteryScore,
-      args.masteryDelta
-    );
+    const newMasteryScore = updateMastery(existingMastery.masteryScore, args.masteryDelta);
     await ctx.db.patch(existingMastery._id, {
       masteryScore: newMasteryScore,
       proficiencyBand: proficiencyBand(newMasteryScore),
@@ -142,9 +134,7 @@ export async function processReviewHandler(
 
   const existingReview = await ctx.db
     .query("due_reviews")
-    .withIndex("by_user_and_term", (q) =>
-      q.eq("userId", args.userId).eq("termSlug", args.termSlug)
-    )
+    .withIndex("by_user_and_term", (q) => q.eq("userId", args.userId).eq("termSlug", args.termSlug))
     .first();
 
   const isDue = args.scheduledFor <= now;
@@ -177,10 +167,7 @@ export async function processReviewHandler(
  * @param {GetDueTermsArgs} args - The user ID and optional current timestamp
  * @returns {Promise<{ termSlug: string; fsrsState: object; scheduledFor: number }[]>} Array of due term reviews with FSRS state and schedule
  */
-export async function getDueTermsHandler(
-  ctx: QueryCtx,
-  args: GetDueTermsArgs
-) {
+export async function getDueTermsHandler(ctx: QueryCtx, args: GetDueTermsArgs) {
   const now = args.now ?? Date.now();
 
   const reviews = await ctx.db
@@ -206,10 +193,7 @@ export async function getDueTermsHandler(
  * @param {GetTermMasteryByUnitArgs} args - The user ID and module number
  * @returns {Promise<Doc<"term_mastery">[]>} Array of mastery records for terms in the module
  */
-export async function getTermMasteryByUnitHandler(
-  ctx: QueryCtx,
-  args: GetTermMasteryByUnitArgs
-) {
+export async function getTermMasteryByUnitHandler(ctx: QueryCtx, args: GetTermMasteryByUnitArgs) {
   const masteryRecords = await ctx.db
     .query("term_mastery")
     .withIndex("by_user", (q) => q.eq("userId", args.userId))
@@ -231,7 +215,7 @@ export async function getTermMasteryByUnitHandler(
  */
 export async function getPracticeTestResultsHandler(
   ctx: QueryCtx,
-  args: GetPracticeTestResultsArgs
+  args: GetPracticeTestResultsArgs,
 ) {
   let resultsQuery = ctx.db
     .query("practice_test_results")
@@ -242,7 +226,7 @@ export async function getPracticeTestResultsHandler(
     resultsQuery = ctx.db
       .query("practice_test_results")
       .withIndex("by_user_and_module", (q) =>
-        q.eq("userId", args.userId).eq("moduleNumber", moduleNum)
+        q.eq("userId", args.userId).eq("moduleNumber", moduleNum),
       );
   }
 
@@ -258,7 +242,7 @@ export async function getPracticeTestResultsHandler(
  */
 export async function getRecentStudySessionsHandler(
   ctx: QueryCtx,
-  args: GetRecentStudySessionsArgs
+  args: GetRecentStudySessionsArgs,
 ) {
   const sessions = await ctx.db
     .query("study_sessions")
@@ -278,7 +262,7 @@ export async function getRecentStudySessionsHandler(
  */
 export async function savePracticeTestResultHandler(
   ctx: MutationCtx,
-  args: SavePracticeTestResultArgs
+  args: SavePracticeTestResultArgs,
 ) {
   const now = Date.now();
 
@@ -312,10 +296,7 @@ export async function savePracticeTestResultHandler(
  * @param {RecordStudySessionArgs} args - The session data including activity type and results
  * @returns {{ sessionId: Id<"study_sessions"> }} Object with the session ID
  */
-export async function recordStudySessionHandler(
-  ctx: MutationCtx,
-  args: RecordStudySessionArgs
-) {
+export async function recordStudySessionHandler(ctx: MutationCtx, args: RecordStudySessionArgs) {
   const now = Date.now();
 
   const sessionId = await ctx.db.insert("study_sessions", {
@@ -339,7 +320,7 @@ export async function recordStudySessionHandler(
  */
 export async function getStudySessionByIdHandler(
   ctx: QueryCtx,
-  args: { sessionId: Id<"study_sessions"> }
+  args: { sessionId: Id<"study_sessions"> },
 ) {
   const session = await ctx.db.get(args.sessionId);
   return session;
@@ -353,7 +334,7 @@ export async function getStudySessionByIdHandler(
  */
 export async function getPracticeTestResultByIdHandler(
   ctx: QueryCtx,
-  args: { resultId: Id<"practice_test_results"> }
+  args: { resultId: Id<"practice_test_results"> },
 ) {
   const result = await ctx.db.get(args.resultId);
   return result;
@@ -367,7 +348,7 @@ export async function getPracticeTestResultByIdHandler(
  */
 export async function getPracticeTestResultsForTeacherHandler(
   ctx: QueryCtx,
-  args: { studentId: Id<"profiles">; moduleNumber?: number }
+  args: { studentId: Id<"profiles">; moduleNumber?: number },
 ) {
   let resultsQuery = ctx.db
     .query("practice_test_results")
@@ -378,7 +359,7 @@ export async function getPracticeTestResultsForTeacherHandler(
     resultsQuery = ctx.db
       .query("practice_test_results")
       .withIndex("by_user_and_module", (q) =>
-        q.eq("userId", args.studentId).eq("moduleNumber", moduleNum)
+        q.eq("userId", args.studentId).eq("moduleNumber", moduleNum),
       );
   }
 
@@ -397,14 +378,14 @@ export async function getStudySessionsForTeacherHandler(
   args: {
     studentId: Id<"profiles">;
     activityType?: "flashcards" | "matching" | "speed_round" | "srs_review" | "practice_test";
-  }
+  },
 ) {
   if (args.activityType !== undefined) {
     const activityType = args.activityType;
     const sessions = await ctx.db
       .query("study_sessions")
       .withIndex("by_user_and_activity", (q) =>
-        q.eq("userId", args.studentId).eq("activityType", activityType)
+        q.eq("userId", args.studentId).eq("activityType", activityType),
       )
       .order("desc")
       .collect();
@@ -465,7 +446,7 @@ export const savePracticeTestResult = internalMutation({
         lessonTitle: v.string(),
         correct: v.number(),
         total: v.number(),
-      })
+      }),
     ),
   },
   handler: savePracticeTestResultHandler,
@@ -485,12 +466,14 @@ export const recordStudySession = internalMutation({
       v.literal("matching"),
       v.literal("speed_round"),
       v.literal("srs_review"),
-      v.literal("practice_test")
+      v.literal("practice_test"),
     ),
-    curriculumScope: v.optional(v.object({
-      type: v.union(v.literal("all_units"), v.literal("module")),
-      moduleNumber: v.optional(v.number()),
-    })),
+    curriculumScope: v.optional(
+      v.object({
+        type: v.union(v.literal("all_units"), v.literal("module")),
+        moduleNumber: v.optional(v.number()),
+      }),
+    ),
     results: v.object({
       itemsSeen: v.number(),
       itemsCorrect: v.number(),
@@ -546,13 +529,15 @@ export const getPracticeTestResultsForTeacher = internalQuery({
 export const getStudySessionsForTeacher = internalQuery({
   args: {
     studentId: v.id("profiles"),
-    activityType: v.optional(v.union(
-      v.literal("flashcards"),
-      v.literal("matching"),
-      v.literal("speed_round"),
-      v.literal("srs_review"),
-      v.literal("practice_test")
-    )),
+    activityType: v.optional(
+      v.union(
+        v.literal("flashcards"),
+        v.literal("matching"),
+        v.literal("speed_round"),
+        v.literal("srs_review"),
+        v.literal("practice_test"),
+      ),
+    ),
   },
   handler: getStudySessionsForTeacherHandler,
 });
@@ -567,12 +552,7 @@ export const processReview = internalMutation({
   args: {
     userId: v.id("profiles"),
     termSlug: v.string(),
-    rating: v.union(
-      v.literal("again"),
-      v.literal("hard"),
-      v.literal("good"),
-      v.literal("easy")
-    ),
+    rating: v.union(v.literal("again"), v.literal("hard"), v.literal("good"), v.literal("easy")),
     masteryDelta: v.number(),
     fsrsState: fsrsStateValidator,
     scheduledFor: v.number(),
@@ -609,24 +589,46 @@ export const getTermMasteryByUnit = internalQuery({
 /** Grades and saves a completed attempt in one transaction. Retries return the saved result. */
 export const completePracticeTest = internalMutation({
   args: {
-    userId: v.id('profiles'), attemptId: v.string(), moduleNumber: v.number(),
+    userId: v.id("profiles"),
+    attemptId: v.string(),
+    moduleNumber: v.number(),
     answers: v.array(v.object({ questionId: v.string(), answer: v.string() })),
     durationSeconds: v.number(),
   },
   handler: async (ctx, args) => {
-    if (!args.attemptId || args.attemptId.length > 100 || !Number.isInteger(args.durationSeconds)
-      || args.durationSeconds < 0 || args.durationSeconds > 86400) throw new Error('Invalid attempt');
-    const existing = await ctx.db.query('practice_test_results')
-      .withIndex('by_user_and_attempt', (q) => q.eq('userId', args.userId).eq('attemptId', args.attemptId)).unique();
-    if (existing) return { resultId: existing._id, score: existing.score, questionCount: existing.questionCount };
+    if (
+      !args.attemptId ||
+      args.attemptId.length > 100 ||
+      !Number.isInteger(args.durationSeconds) ||
+      args.durationSeconds < 0 ||
+      args.durationSeconds > 86400
+    )
+      throw new Error("Invalid attempt");
+    const existing = await ctx.db
+      .query("practice_test_results")
+      .withIndex("by_user_and_attempt", (q) =>
+        q.eq("userId", args.userId).eq("attemptId", args.attemptId),
+      )
+      .unique();
+    if (existing)
+      return {
+        resultId: existing._id,
+        score: existing.score,
+        questionCount: existing.questionCount,
+      };
     const result = gradePracticeTest(args.moduleNumber, args.answers);
     const saved = await savePracticeTestResultHandler(ctx, { userId: args.userId, ...result });
     await ctx.db.patch(saved.resultId, { attemptId: args.attemptId });
     await recordStudySessionHandler(ctx, {
-      userId: args.userId, activityType: 'practice_test',
-      curriculumScope: { type: 'module', moduleNumber: result.moduleNumber },
-      results: { itemsSeen: result.questionCount, itemsCorrect: result.score,
-        itemsIncorrect: result.questionCount - result.score, durationSeconds: args.durationSeconds },
+      userId: args.userId,
+      activityType: "practice_test",
+      curriculumScope: { type: "module", moduleNumber: result.moduleNumber },
+      results: {
+        itemsSeen: result.questionCount,
+        itemsCorrect: result.score,
+        itemsIncorrect: result.questionCount - result.score,
+        durationSeconds: args.durationSeconds,
+      },
     });
     return { ...saved, score: result.score, questionCount: result.questionCount };
   },

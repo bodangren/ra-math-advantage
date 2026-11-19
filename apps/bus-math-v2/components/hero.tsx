@@ -12,7 +12,6 @@ interface HeroProps {
   stats: CurriculumStats | null;
 }
 
-
 /**
  * Renders the landing-page hero section with headline, stats, CTAs, and textbook cover.
  *
@@ -21,10 +20,7 @@ interface HeroProps {
  */
 export function Hero({ stats }: HeroProps) {
   return (
-    <section
-      aria-labelledby="hero-heading"
-      className="relative overflow-hidden hero-gradient"
-    >
+    <section aria-labelledby="hero-heading" className="relative overflow-hidden hero-gradient">
       {/* Spreadsheet grid overlay */}
       <div
         className="absolute inset-0 accounting-grid-dark pointer-events-none"
@@ -35,22 +31,18 @@ export function Hero({ stats }: HeroProps) {
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 items-center">
           {/* Left: copy */}
           <div className="space-y-7 animate-fade-up">
-            <span className="section-label section-label-light">
-              Grade 12 · Applied Math
-            </span>
+            <span className="section-label section-label-light">Grade 12 · Applied Math</span>
 
             <h1
               id="hero-heading"
               className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight"
             >
-              Math for Business{" "}
-              <span style={{ color: "oklch(0.68 0.17 157)" }}>Operations</span>
+              Math for Business <span style={{ color: "oklch(0.68 0.17 157)" }}>Operations</span>
             </h1>
 
             <p className="text-lg text-white/65 font-body leading-relaxed max-w-lg">
-              Master accounting principles, spreadsheet modeling, and
-              entrepreneurship through hands-on Excel projects and real-world
-              business applications.
+              Master accounting principles, spreadsheet modeling, and entrepreneurship through
+              hands-on Excel projects and real-world business applications.
             </p>
 
             {/* Stats as styled cell-badges */}
@@ -69,13 +61,8 @@ export function Hero({ stats }: HeroProps) {
                       borderColor: "oklch(1 0 0 / 0.12)",
                     }}
                   >
-                    <Icon
-                      className="h-4 w-4 shrink-0"
-                      style={{ color: "oklch(0.68 0.17 157)" }}
-                    />
-                    <span className="font-mono-num text-white font-semibold text-sm">
-                      {value}
-                    </span>
+                    <Icon className="h-4 w-4 shrink-0" style={{ color: "oklch(0.68 0.17 157)" }} />
+                    <span className="font-mono-num text-white font-semibold text-sm">{value}</span>
                     <span className="text-white/45 text-xs font-body">{label}</span>
                   </div>
                 ))}
@@ -102,9 +89,7 @@ export function Hero({ stats }: HeroProps) {
           </div>
 
           {/* Right: textbook cover */}
-          <div
-            className="flex justify-center xl:justify-end mt-8 xl:mt-0 animate-fade-up-3"
-          >
+          <div className="flex justify-center xl:justify-end mt-8 xl:mt-0 animate-fade-up-3">
             <div className="relative w-full max-w-[320px] md:max-w-[380px]">
               {/* Decorative column letters above the cover */}
               <div
@@ -112,10 +97,7 @@ export function Hero({ stats }: HeroProps) {
                 aria-hidden="true"
               >
                 {["A", "B", "C"].map((col) => (
-                  <div
-                    key={col}
-                    className="flex-1 text-center py-1 border border-white/[0.07]"
-                  >
+                  <div key={col} className="flex-1 text-center py-1 border border-white/[0.07]">
                     {col}
                   </div>
                 ))}

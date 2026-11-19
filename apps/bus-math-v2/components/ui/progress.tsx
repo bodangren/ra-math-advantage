@@ -1,11 +1,10 @@
-import type { HTMLAttributes } from 'react';
+import type { HTMLAttributes } from "react";
 
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
 export interface ProgressProps extends HTMLAttributes<HTMLDivElement> {
   value?: number;
 }
-
 
 /**
  * Renders a progress bar clamped between 0 and 100.
@@ -22,7 +21,7 @@ export function Progress({ value = 0, className, ...props }: ProgressProps) {
       aria-valuenow={Math.round(clampedValue)}
       aria-valuemin={0}
       aria-valuemax={100}
-      className={cn('h-2 w-full rounded-full bg-muted', className)}
+      className={cn("h-2 w-full rounded-full bg-muted", className)}
       {...props}
     >
       <div

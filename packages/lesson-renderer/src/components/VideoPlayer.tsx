@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Play, FileText, ChevronDown, ChevronUp } from 'lucide-react';
+import { useState } from "react";
+import { Play, FileText, ChevronDown, ChevronUp } from "lucide-react";
 
 interface VideoPlayerProps {
   videoUrl: string;
@@ -63,16 +63,14 @@ export function VideoPlayer({ videoUrl, duration, transcript }: VideoPlayerProps
           )}
         </div>
 
-        <div className="text-sm text-muted-foreground">
-          Duration: {duration} minutes
-        </div>
+        <div className="text-sm text-muted-foreground">Duration: {duration} minutes</div>
 
         {/* Transcript */}
         {transcript && (
           <div>
             <button
               type="button"
-              onClick={() => setTranscriptOpen(o => !o)}
+              onClick={() => setTranscriptOpen((o) => !o)}
               className="w-full flex items-center justify-between px-4 py-2 border rounded-md hover:bg-accent/5 transition-colors text-sm font-medium"
               aria-label="Toggle video transcript"
             >
@@ -80,7 +78,11 @@ export function VideoPlayer({ videoUrl, duration, transcript }: VideoPlayerProps
                 <FileText className="h-4 w-4" />
                 Video Transcript
               </span>
-              {transcriptOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+              {transcriptOpen ? (
+                <ChevronUp className="h-4 w-4" />
+              ) : (
+                <ChevronDown className="h-4 w-4" />
+              )}
             </button>
             {transcriptOpen && (
               <div className="mt-3 bg-muted/30 p-4 rounded-lg border max-h-64 overflow-y-auto">

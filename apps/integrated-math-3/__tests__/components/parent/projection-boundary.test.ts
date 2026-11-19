@@ -28,15 +28,10 @@
 // Pattern reference: `__tests__/lib/placement/phase5-docs-and-doctor.test.ts`
 // (Adaptive Placement Phase 5 boundary lint, same shape).
 
-import { describe, it, expect, beforeAll } from 'vitest';
-import {
-  readFileSync,
-  readdirSync,
-  statSync,
-  existsSync,
-} from 'node:fs';
-import { join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { describe, it, expect, beforeAll } from "vitest";
+import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
+import { join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 // ---------------------------------------------------------------------------
 // Path resolution
@@ -50,22 +45,10 @@ import { fileURLToPath } from 'node:url';
 // which produced doubled `apps/apps/integrated-math-3/...` paths and
 // masked a real Red signal behind a path-resolution bug.
 
-const __dirname = resolve(fileURLToPath(import.meta.url), '..');
-const REPO_ROOT = resolve(__dirname, '../../../../../');
-const PARENT_COMPONENTS_DIR = join(
-  REPO_ROOT,
-  'apps',
-  'integrated-math-3',
-  'components',
-  'parent',
-);
-const PARENT_APP_DIR = join(
-  REPO_ROOT,
-  'apps',
-  'integrated-math-3',
-  'app',
-  'parent',
-);
+const __dirname = resolve(fileURLToPath(import.meta.url), "..");
+const REPO_ROOT = resolve(__dirname, "../../../../../");
+const PARENT_COMPONENTS_DIR = join(REPO_ROOT, "apps", "integrated-math-3", "components", "parent");
+const PARENT_APP_DIR = join(REPO_ROOT, "apps", "integrated-math-3", "app", "parent");
 
 // ---------------------------------------------------------------------------
 // Forbidden / required import patterns
@@ -101,9 +84,9 @@ function collectTsFiles(dir: string): string[] {
     const full = join(dir, entry);
     const stat = statSync(full);
     if (stat.isDirectory()) {
-      if (entry === '__tests__' || entry === 'node_modules' || entry === 'dist') continue;
+      if (entry === "__tests__" || entry === "node_modules" || entry === "dist") continue;
       out.push(...collectTsFiles(full));
-    } else if (entry.endsWith('.ts') || entry.endsWith('.tsx')) {
+    } else if (entry.endsWith(".ts") || entry.endsWith(".tsx")) {
       out.push(full);
     }
   }
@@ -118,44 +101,41 @@ function collectTsFiles(dir: string): string[] {
 let allFiles: string[] = [];
 
 beforeAll(() => {
-  allFiles = [
-    ...collectTsFiles(PARENT_COMPONENTS_DIR),
-    ...collectTsFiles(PARENT_APP_DIR),
-  ];
+  allFiles = [...collectTsFiles(PARENT_COMPONENTS_DIR), ...collectTsFiles(PARENT_APP_DIR)];
 });
 
 // ---------------------------------------------------------------------------
 // Tests
 // ---------------------------------------------------------------------------
 
-describe('parent UI — projection boundary (Phase 2.4)', () => {
-  it('parent UI directories exist by Phase 2 Green (Red signal at HEAD)', () => {
+describe("parent UI — projection boundary (Phase 2.4)", () => {
+  it("parent UI directories exist by Phase 2 Green (Red signal at HEAD)", () => {
     const missing: string[] = [];
     if (!existsSync(PARENT_COMPONENTS_DIR)) missing.push(PARENT_COMPONENTS_DIR);
     if (!existsSync(PARENT_APP_DIR)) missing.push(PARENT_APP_DIR);
     expect(
       missing,
-      `parent UI directories missing (Phase 2 Green has not landed):\n${missing.join('\n')}`,
+      `parent UI directories missing (Phase 2 Green has not landed):\n${missing.join("\n")}`,
     ).toEqual([]);
   });
 
-  it('no parent UI file imports the raw graph package @math-platform/knowledge-space-core', () => {
+  it("no parent UI file imports the raw graph package @math-platform/knowledge-space-core", () => {
     expect(
       allFiles.length,
-      'parent UI directories must contain at least one .ts/.tsx file by Phase 2 Green',
+      "parent UI directories must contain at least one .ts/.tsx file by Phase 2 Green",
     ).toBeGreaterThan(0);
 
     const violations: Array<{ file: string; line: number; match: string; pattern: string }> = [];
 
     for (const file of allFiles) {
-      const content = readFileSync(file, 'utf-8');
-      const lines = content.split('\n');
+      const content = readFileSync(file, "utf-8");
+      const lines = content.split("\n");
       for (let i = 0; i < lines.length; i++) {
-        const line = lines[i] ?? '';
+        const line = lines[i] ?? "";
         for (const pattern of FORBIDDEN_RAW_GRAPH_IMPORTS) {
           if (pattern.test(line)) {
             violations.push({
-              file: file.replace(REPO_ROOT + '/', ''),
+              file: file.replace(REPO_ROOT + "/", ""),
               line: i + 1,
               match: line.trim(),
               pattern: pattern.source,
@@ -169,31 +149,31 @@ describe('parent UI — projection boundary (Phase 2.4)', () => {
       expect.fail(
         `Parent UI boundary violations — files must not import raw graph:\n${violations
           .map((v) => `  ${v.file}:${v.line} (pattern ${v.pattern})\n    ${v.match}`)
-          .join('\n\n')}`,
+          .join("\n\n")}`,
       );
     }
 
     expect(violations).toHaveLength(0);
   });
 
-  it('at least one parent UI file imports the projection package @math-platform/knowledge-space-practice', () => {
+  it("at least one parent UI file imports the projection package @math-platform/knowledge-space-practice", () => {
     expect(
       allFiles.length,
-      'parent UI directories must contain at least one .ts/.tsx file by Phase 2 Green',
+      "parent UI directories must contain at least one .ts/.tsx file by Phase 2 Green",
     ).toBeGreaterThan(0);
 
     let foundProjectionImport = false;
     const sampleFiles: string[] = [];
 
     for (const file of allFiles) {
-      const content = readFileSync(file, 'utf-8');
-      const lines = content.split('\n');
+      const content = readFileSync(file, "utf-8");
+      const lines = content.split("\n");
       for (let i = 0; i < lines.length; i++) {
-        const line = lines[i] ?? '';
+        const line = lines[i] ?? "";
         for (const pattern of REQUIRED_PROJECTION_IMPORTS) {
           if (pattern.test(line)) {
             foundProjectionImport = true;
-            sampleFiles.push(`${file.replace(REPO_ROOT + '/', '')}:${i + 1}`);
+            sampleFiles.push(`${file.replace(REPO_ROOT + "/", "")}:${i + 1}`);
           }
         }
       }

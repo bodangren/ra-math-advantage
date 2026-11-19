@@ -1,14 +1,14 @@
-import { describe, expect, it } from 'vitest';
-import { generatorOutputSchema } from '@math-platform/knowledge-space-practice';
+import { describe, expect, it } from "vitest";
+import { generatorOutputSchema } from "@math-platform/knowledge-space-practice";
 
-import { graphingExplorerSchema } from '../schemas/graphing-explorer.schema';
-import { GENERATOR_KEYS, getGenerator } from '../knowledge-space/generators/registry';
+import { graphingExplorerSchema } from "../schemas/graphing-explorer.schema";
+import { GENERATOR_KEYS, getGenerator } from "../knowledge-space/generators/registry";
 
-const GENERATOR_KEY = 'two-real-solutions-graphing';
-const ATOMIC_NODE_ID = 'math.im3.skill.1.2.find-two-numbers-with-given-sum-and-product-by-graphing';
+const GENERATOR_KEY = "two-real-solutions-graphing";
+const ATOMIC_NODE_ID = "math.im3.skill.1.2.find-two-numbers-with-given-sum-and-product-by-graphing";
 
-describe('two-real-solutions-graphing generator', () => {
-  it('resolves the exact registry identity', () => {
+describe("two-real-solutions-graphing generator", () => {
+  it("resolves the exact registry identity", () => {
     const generator = getGenerator(GENERATOR_KEY);
 
     expect(generator.key).toBe(GENERATOR_KEY);
@@ -16,7 +16,7 @@ describe('two-real-solutions-graphing generator', () => {
     expect(GENERATOR_KEYS).toContain(GENERATOR_KEY);
   });
 
-  it('emits the exact deterministic seed 0 source specimen', () => {
+  it("emits the exact deterministic seed 0 source specimen", () => {
     const generator = getGenerator(GENERATOR_KEY);
     const input = { nodeId: ATOMIC_NODE_ID, seed: 0, difficulty: 0.5 };
     const output = generator.generate(input);
@@ -30,11 +30,17 @@ describe('two-real-solutions-graphing generator', () => {
       { x: 14, y: 3 },
     ];
     const rendererProps = {
-      equation: 'f(x) = x^2 - 24x + 143',
-      variant: 'plot_from_equation',
-      responseVariant: 'two_real_solutions',
-      originalEquation: 'x(24 - x) = 143',
-      points: [[10, 3], [11, 0], [12, -1], [13, 0], [14, 3]],
+      equation: "f(x) = x^2 - 24x + 143",
+      variant: "plot_from_equation",
+      responseVariant: "two_real_solutions",
+      originalEquation: "x(24 - x) = 143",
+      points: [
+        [10, 3],
+        [11, 0],
+        [12, -1],
+        [13, 0],
+        [14, 3],
+      ],
       domain: [8, 16],
       range: [-2, 8],
       sum: 24,
@@ -42,10 +48,10 @@ describe('two-real-solutions-graphing generator', () => {
     };
 
     expect(repeat).toEqual(output);
-    expect(output.prompt).toContain('sum of 24');
-    expect(output.prompt).toContain('product of 143');
-    expect(output.prompt).not.toContain('11');
-    expect(output.prompt).not.toContain('13');
+    expect(output.prompt).toContain("sum of 24");
+    expect(output.prompt).toContain("product of 143");
+    expect(output.prompt).not.toContain("11");
+    expect(output.prompt).not.toContain("13");
     expect(data).toEqual({
       axis: 12,
       distance: 1,
@@ -65,12 +71,12 @@ describe('two-real-solutions-graphing generator', () => {
       solutions: [11, 13],
     });
     expect(output.solutionSteps).toHaveLength(5);
-    expect(output.solutionSteps.map(step => step.expression)).toEqual([
-      'x(24 - x) = 143',
-      '0 = x^2 - 24x + 143',
-      'x = 12',
-      '(10, 3), (11, 0), (12, -1), (13, 0), (14, 3)',
-      'x = 11 or x = 13; the two numbers are 11 and 13',
+    expect(output.solutionSteps.map((step) => step.expression)).toEqual([
+      "x(24 - x) = 143",
+      "0 = x^2 - 24x + 143",
+      "x = 12",
+      "(10, 3), (11, 0), (12, -1), (13, 0), (14, 3)",
+      "x = 11 or x = 13; the two numbers are 11 and 13",
     ]);
     expect(output.gradingMetadata).toEqual({
       partAnswers: {
@@ -84,16 +90,16 @@ describe('two-real-solutions-graphing generator', () => {
         solutions: 1,
       },
       partGradingRules: {
-        table_values: 'custom',
-        placed_points: 'custom',
-        solutions: 'custom',
+        table_values: "custom",
+        placed_points: "custom",
+        solutions: "custom",
       },
     });
     expect(graphingExplorerSchema.safeParse(rendererProps).success).toBe(true);
     expect(generatorOutputSchema.safeParse(output).success).toBe(true);
   });
 
-  it('keeps every generated specimen coherent across 1000 seeds', () => {
+  it("keeps every generated specimen coherent across 1000 seeds", () => {
     const generator = getGenerator(GENERATOR_KEY);
     const axes = new Set<number>();
     const distances = new Set<number>();
@@ -128,8 +134,8 @@ describe('two-real-solutions-graphing generator', () => {
       const maximumTableY = Math.max(...expectedTableValues.map(({ y }) => y));
       const expectedRendererProps = {
         equation: `f(x) = x^2 - ${data.sum}x + ${data.product}`,
-        variant: 'plot_from_equation',
-        responseVariant: 'two_real_solutions',
+        variant: "plot_from_equation",
+        responseVariant: "two_real_solutions",
         originalEquation: `x(${data.sum} - x) = ${data.product}`,
         points: expectedPoints,
         domain: [data.axis - 4, data.axis + 4],
@@ -165,11 +171,11 @@ describe('two-real-solutions-graphing generator', () => {
         solutions: data.roots,
       });
       expect(output.solutionSteps).toHaveLength(5);
-      expect(output.solutionSteps.map(step => step.expression)).toEqual([
+      expect(output.solutionSteps.map((step) => step.expression)).toEqual([
         `x(${data.sum} - x) = ${data.product}`,
         `0 = x^2 - ${data.sum}x + ${data.product}`,
         `x = ${data.axis}`,
-        expectedTableValues.map(({ x, y }) => `(${x}, ${y})`).join(', '),
+        expectedTableValues.map(({ x, y }) => `(${x}, ${y})`).join(", "),
         `x = ${data.roots[0]} or x = ${data.roots[1]}; the two numbers are ${data.roots[0]} and ${data.roots[1]}`,
       ]);
       expect(output.gradingMetadata).toEqual({
@@ -184,9 +190,9 @@ describe('two-real-solutions-graphing generator', () => {
           solutions: 1,
         },
         partGradingRules: {
-          table_values: 'custom',
-          placed_points: 'custom',
-          solutions: 'custom',
+          table_values: "custom",
+          placed_points: "custom",
+          solutions: "custom",
         },
       });
       expect(output.prompt).toContain(`sum of ${data.sum}`);
@@ -194,12 +200,15 @@ describe('two-real-solutions-graphing generator', () => {
       expect(output.prompt).not.toContain(`numbers are ${data.roots[0]} and ${data.roots[1]}`);
       expect(output.prompt).not.toContain(`x = ${data.roots[0]}`);
       expect(output.prompt).not.toContain(`x = ${data.roots[1]}`);
-      expect(data.tableValues.every(({ x, y }) => (
-        x > data.axis - 4
-        && x < data.axis + 4
-        && y > minimumTableY - 1
-        && y < maximumTableY + 5
-      ))).toBe(true);
+      expect(
+        data.tableValues.every(
+          ({ x, y }) =>
+            x > data.axis - 4 &&
+            x < data.axis + 4 &&
+            y > minimumTableY - 1 &&
+            y < maximumTableY + 5,
+        ),
+      ).toBe(true);
       expect(graphingExplorerSchema.safeParse(data.rendererProps).success).toBe(true);
       expect(generatorOutputSchema.safeParse(output).success).toBe(true);
 

@@ -10,7 +10,7 @@ import {
   type ObservationAmendment,
   type ObservationItemChange,
   type SubmittedObservation,
-} from './contracts';
+} from "./contracts";
 
 export type ObservationAmendmentCommand = {
   idempotencyKey: string;
@@ -21,20 +21,20 @@ export type ObservationAmendmentCommand = {
 };
 
 function normalizeChangedItems(value: unknown): ObservationItemChange[] {
-  if (!Array.isArray(value)) throw new Error('changedItems must be an array');
+  if (!Array.isArray(value)) throw new Error("changedItems must be an array");
   const seen = new Set<string>();
   return value.map((raw) => {
-    if (!isRecord(raw)) throw new Error('Each changed item must be an object');
+    if (!isRecord(raw)) throw new Error("Each changed item must be an object");
     for (const field of Object.keys(raw)) {
-      if (field !== 'itemId' && field !== 'outcome' && field !== 'evidenceNote') {
+      if (field !== "itemId" && field !== "outcome" && field !== "evidenceNote") {
         throw new Error(`An amendment cannot change item field ${field}`);
       }
     }
-    const itemId = requireNonEmptyString(raw.itemId, 'itemId');
+    const itemId = requireNonEmptyString(raw.itemId, "itemId");
     if (seen.has(itemId)) throw new Error(`Duplicate changed item ${itemId}`);
     seen.add(itemId);
-    const hasOutcome = Object.hasOwn(raw, 'outcome');
-    const hasEvidenceNote = Object.hasOwn(raw, 'evidenceNote');
+    const hasOutcome = Object.hasOwn(raw, "outcome");
+    const hasEvidenceNote = Object.hasOwn(raw, "evidenceNote");
     if (!hasOutcome && !hasEvidenceNote) throw new Error(`Changed item ${itemId} has no changes`);
     return {
       itemId,
@@ -45,15 +45,15 @@ function normalizeChangedItems(value: unknown): ObservationItemChange[] {
 }
 
 function normalizeCommand(value: unknown): ObservationAmendmentCommand {
-  if (!isRecord(value)) throw new Error('Amendment command must be an object');
+  if (!isRecord(value)) throw new Error("Amendment command must be an object");
   if (!Number.isInteger(value.expectedVersion) || Number(value.expectedVersion) < 0) {
-    throw new Error('expectedVersion must be a non-negative integer');
+    throw new Error("expectedVersion must be a non-negative integer");
   }
   return {
-    idempotencyKey: requireNonEmptyString(value.idempotencyKey, 'idempotencyKey'),
+    idempotencyKey: requireNonEmptyString(value.idempotencyKey, "idempotencyKey"),
     expectedVersion: Number(value.expectedVersion),
-    authorAccountId: requireNonEmptyString(value.authorAccountId, 'authorAccountId'),
-    reason: typeof value.reason === 'string' ? value.reason.trim() : '',
+    authorAccountId: requireNonEmptyString(value.authorAccountId, "authorAccountId"),
+    reason: typeof value.reason === "string" ? value.reason.trim() : "",
     changedItems: normalizeChangedItems(value.changedItems),
   };
 }
@@ -66,8 +66,9 @@ export function observationAmendmentFingerprint(value: unknown): string {
     expectedVersion: command.expectedVersion,
     authorAccountId: command.authorAccountId,
     reason: command.reason,
-    changedItems: [...command.changedItems]
-      .sort((left, right) => compareText(left.itemId, right.itemId)),
+    changedItems: [...command.changedItems].sort((left, right) =>
+      compareText(left.itemId, right.itemId),
+    ),
   });
 }
 
@@ -84,14 +85,17 @@ export function projectEffectiveObservation(
       const item = itemById.get(change.itemId);
       if (!item) throw new Error(`Unknown observation item ${change.itemId}`);
       if (change.outcome !== undefined) item.outcome = cloneValue(change.outcome);
-      if (Object.hasOwn(change, 'evidenceNote')) item.evidenceNote = change.evidenceNote ?? null;
+      if (Object.hasOwn(change, "evidenceNote")) item.evidenceNote = change.evidenceNote ?? null;
     }
   }
   return effective;
 }
 
-function evidenceKey(record: SubmittedObservation, item: SubmittedObservation['items'][number]): string {
-  if (record.observationType === 'walkthrough') {
+function evidenceKey(
+  record: SubmittedObservation,
+  item: SubmittedObservation["items"][number],
+): string {
+  if (record.observationType === "walkthrough") {
     if (!item.skillId) throw new Error(`Walkthrough item ${item.itemId} has no skill`);
     return `${record.submissionKey}:skill:${item.skillId}`;
   }
@@ -115,11 +119,14 @@ function supersessionsFor(
     if (JSON.stringify(before.outcome) === JSON.stringify(change.outcome)) continue;
     const priorOutcomeAmendment = [...priorAmendments]
       .sort((left, right) => right.version - left.version)
-      .find((candidate) => candidate.changedItems.some((item) => (
-        item.itemId === change.itemId && item.outcome !== undefined
-      )));
-    const targetKind = original.observationType === 'walkthrough' ? 'skill' : 'component';
-    const targetId = original.observationType === 'walkthrough' ? source.skillId : source.componentId;
+      .find((candidate) =>
+        candidate.changedItems.some(
+          (item) => item.itemId === change.itemId && item.outcome !== undefined,
+        ),
+      );
+    const targetKind = original.observationType === "walkthrough" ? "skill" : "component";
+    const targetId =
+      original.observationType === "walkthrough" ? source.skillId : source.componentId;
     const supersededEvidenceKey = priorOutcomeAmendment
       ? `${priorOutcomeAmendment.idempotencyKey}:${targetKind}:${targetId}`
       : evidenceKey(original, source);
@@ -149,13 +156,13 @@ export function applyObservationAmendment(input: {
   const fingerprint = observationAmendmentFingerprint(command);
   const replay = prior.find((amendment) => amendment.idempotencyKey === command.idempotencyKey);
   if (replay) {
-    if (replay.fingerprint !== fingerprint) return { kind: 'idempotency_conflict' as const };
+    if (replay.fingerprint !== fingerprint) return { kind: "idempotency_conflict" as const };
     const effectiveBefore = projectEffectiveObservation(
       input.original,
       prior.filter((amendment) => amendment.version < replay.version),
     );
     return {
-      kind: 'replayed' as const,
+      kind: "replayed" as const,
       amendment: cloneValue(replay),
       supersessions: supersessionsFor(
         input.original,
@@ -168,33 +175,37 @@ export function applyObservationAmendment(input: {
   }
   const latestVersion = prior.at(-1)?.version ?? 0;
   if (command.expectedVersion !== latestVersion) {
-    return { kind: 'version_conflict' as const, latestVersion };
+    return { kind: "version_conflict" as const, latestVersion };
   }
-  if (command.reason.length === 0) return { kind: 'invalid_reason' as const };
-  if (command.changedItems.length === 0) return { kind: 'no_changes' as const };
+  if (command.reason.length === 0) return { kind: "invalid_reason" as const };
+  if (command.changedItems.length === 0) return { kind: "no_changes" as const };
   const originalIds = new Set(input.original.items.map((item) => item.itemId));
   for (const change of command.changedItems) {
-    if (!originalIds.has(change.itemId)) throw new Error(`Unknown observation item ${change.itemId}`);
+    if (!originalIds.has(change.itemId))
+      throw new Error(`Unknown observation item ${change.itemId}`);
   }
   const effectiveBefore = projectEffectiveObservation(input.original, prior);
   const effectiveById = new Map(effectiveBefore.items.map((item) => [item.itemId, item]));
   const effectiveChanges = command.changedItems.flatMap((change) => {
     const current = effectiveById.get(change.itemId);
     if (!current) throw new Error(`Unknown observation item ${change.itemId}`);
-    const outcomeChanged = change.outcome !== undefined
-      && JSON.stringify(change.outcome) !== JSON.stringify(current.outcome);
-    const noteChanged = Object.hasOwn(change, 'evidenceNote')
-      && change.evidenceNote !== current.evidenceNote;
+    const outcomeChanged =
+      change.outcome !== undefined &&
+      JSON.stringify(change.outcome) !== JSON.stringify(current.outcome);
+    const noteChanged =
+      Object.hasOwn(change, "evidenceNote") && change.evidenceNote !== current.evidenceNote;
     if (!outcomeChanged && !noteChanged) return [];
-    return [{
-      itemId: change.itemId,
-      ...(outcomeChanged ? { outcome: change.outcome } : {}),
-      ...(noteChanged ? { evidenceNote: change.evidenceNote ?? null } : {}),
-    }];
+    return [
+      {
+        itemId: change.itemId,
+        ...(outcomeChanged ? { outcome: change.outcome } : {}),
+        ...(noteChanged ? { evidenceNote: change.evidenceNote ?? null } : {}),
+      },
+    ];
   });
-  if (effectiveChanges.length === 0) return { kind: 'no_changes' as const };
+  if (effectiveChanges.length === 0) return { kind: "no_changes" as const };
   const version = latestVersion + 1;
-  const occurredAt = requireTimestamp(input.now, 'now');
+  const occurredAt = requireTimestamp(input.now, "now");
   const amendmentId = `observation_amendments:${encodeURIComponent(input.original.observationId)}:${version}`;
   const amendment: ObservationAmendment = {
     amendmentId,
@@ -210,7 +221,7 @@ export function applyObservationAmendment(input: {
     occurredAt,
   };
   return {
-    kind: 'amended' as const,
+    kind: "amended" as const,
     amendment,
     supersessions: supersessionsFor(input.original, effectiveBefore, amendment, prior),
     receipt: { amendmentId, version },

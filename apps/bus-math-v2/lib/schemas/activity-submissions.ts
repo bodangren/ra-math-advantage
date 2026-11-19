@@ -1,6 +1,6 @@
-import { z } from 'zod';
+import { z } from "zod";
 
-import { practiceSubmissionEnvelopeSchema } from '../practice/contract';
+import { practiceSubmissionEnvelopeSchema } from "../practice/contract";
 
 export const submissionDataSchema = practiceSubmissionEnvelopeSchema;
 

@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 import {
   ExampleReviewHarness,
   useExampleReviewHarnessState,
@@ -6,30 +6,30 @@ import {
   usePracticeReviewHarnessState,
   ActivityReviewHarness,
   useActivityReviewHarnessState,
-} from '@/components/dev/review-harness';
+} from "@/components/dev/review-harness";
 
-describe('review-harness exports', () => {
-  it('exports ExampleReviewHarness', () => {
+describe("review-harness exports", () => {
+  it("exports ExampleReviewHarness", () => {
     expect(ExampleReviewHarness).toBeDefined();
   });
 
-  it('exports useExampleReviewHarnessState', () => {
+  it("exports useExampleReviewHarnessState", () => {
     expect(useExampleReviewHarnessState).toBeDefined();
   });
 
-  it('exports PracticeReviewHarness', () => {
+  it("exports PracticeReviewHarness", () => {
     expect(PracticeReviewHarness).toBeDefined();
   });
 
-  it('exports usePracticeReviewHarnessState', () => {
+  it("exports usePracticeReviewHarnessState", () => {
     expect(usePracticeReviewHarnessState).toBeDefined();
   });
 
-  it('exports ActivityReviewHarness', () => {
+  it("exports ActivityReviewHarness", () => {
     expect(ActivityReviewHarness).toBeDefined();
   });
 
-  it('exports useActivityReviewHarnessState', () => {
+  it("exports useActivityReviewHarnessState", () => {
     expect(useActivityReviewHarnessState).toBeDefined();
   });
 });

@@ -4,14 +4,10 @@
 // with the readinessFn seam for custom overrides. Standalone exported
 // function (FR3 — not buried in the visualization projection).
 
-import type { KnowledgeSpace } from './types';
-import type {
-  KnowledgeStateEntry,
-  MasteryConfig,
-  ReadinessState,
-} from './mastery-state';
-import { normalizeMasteryConfig } from './mastery-state';
-import { computeWeightedReadiness } from './weighted-readiness';
+import type { KnowledgeSpace } from "./types";
+import type { KnowledgeStateEntry, MasteryConfig, ReadinessState } from "./mastery-state";
+import { normalizeMasteryConfig } from "./mastery-state";
+import { computeWeightedReadiness } from "./weighted-readiness";
 
 /**
  * A single outer-fringe entry (kst-srs.v2 §4).
@@ -44,10 +40,7 @@ export interface OuterFringeV3 {
  * the given node, given the current learner state. Track 2 (Weighted
  * Readiness) plugs a weighted-prerequisite implementation into this seam.
  */
-export type ReadinessFn = (
-  nodeId: string,
-  state: Map<string, KnowledgeStateEntry>,
-) => number;
+export type ReadinessFn = (nodeId: string, state: Map<string, KnowledgeStateEntry>) => number;
 
 /**
  * Get the outer fringe: nodes that are not yet mastered whose prerequisites
@@ -83,19 +76,19 @@ export function getOuterFringe(
     const entry = state.get(node.id);
 
     // Already mastered → exclude from fringe
-    if (entry && entry.state === 'mastered') continue;
+    if (entry && entry.state === "mastered") continue;
 
     if (readinessFn) {
       // Custom readiness function: include ALL non-mastered nodes
       const readinessScore = readinessFn(node.id, state);
 
       // Coarse label from threshold band
-      const readinessState: FringeEntry['readinessState'] =
+      const readinessState: FringeEntry["readinessState"] =
         readinessScore >= normalizedConfig.readyThreshold
-          ? 'ready'
+          ? "ready"
           : readinessScore >= normalizedConfig.nearThreshold
-            ? 'nearly_ready'
-            : 'blocked';
+            ? "nearly_ready"
+            : "blocked";
 
       result.push({
         nodeId: node.id,
@@ -104,10 +97,14 @@ export function getOuterFringe(
       });
     } else {
       // Default: weighted readiness. Only include ready ∪ nearly_ready.
-      const { score, state: readinessState } =
-        computeWeightedReadiness(node.id, state, graph, normalizedConfig);
+      const { score, state: readinessState } = computeWeightedReadiness(
+        node.id,
+        state,
+        graph,
+        normalizedConfig,
+      );
 
-      if (readinessState === 'blocked') continue;
+      if (readinessState === "blocked") continue;
 
       result.push({
         nodeId: node.id,
@@ -138,7 +135,7 @@ export function getOuterFringeV3(
   const result: OuterFringeV3 = { ready: [], nearly_ready: [] };
 
   for (const node of graph.nodes) {
-    if (node.kind !== 'skill' || state.get(node.id)?.state === 'mastered') {
+    if (node.kind !== "skill" || state.get(node.id)?.state === "mastered") {
       continue;
     }
 

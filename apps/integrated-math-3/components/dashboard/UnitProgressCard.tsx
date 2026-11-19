@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { CheckCircle2, Clock } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { CheckCircle2, Clock } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export interface UnitProgressCardProps {
   unitNumber: number;
@@ -25,8 +25,8 @@ export function UnitProgressCard({
   completedLessons,
 }: UnitProgressCardProps) {
   const isCompleted = progress === 100;
-  const lessonLabel = totalLessons === 1 ? '1 lesson' : `${totalLessons} lessons`;
-  const statusLabel = isCompleted ? 'Completed!' : 'In Progress';
+  const lessonLabel = totalLessons === 1 ? "1 lesson" : `${totalLessons} lessons`;
+  const statusLabel = isCompleted ? "Completed!" : "In Progress";
   const StatusIcon = isCompleted ? CheckCircle2 : Clock;
 
   return (
@@ -39,8 +39,12 @@ export function UnitProgressCard({
           <h3 className="text-lg font-semibold text-foreground">{unitTitle}</h3>
         </div>
         <div className="flex items-center gap-2 text-sm">
-          <StatusIcon className={cn('h-4 w-4', isCompleted ? 'text-green-600' : 'text-muted-foreground')} />
-          <span className={cn('font-medium', isCompleted ? 'text-green-600' : 'text-muted-foreground')}>
+          <StatusIcon
+            className={cn("h-4 w-4", isCompleted ? "text-green-600" : "text-muted-foreground")}
+          />
+          <span
+            className={cn("font-medium", isCompleted ? "text-green-600" : "text-muted-foreground")}
+          >
             {statusLabel}
           </span>
         </div>
@@ -56,8 +60,8 @@ export function UnitProgressCard({
         <div
           data-testid="progress-bar-fill"
           className={cn(
-            'h-3 rounded-full transition-all duration-500',
-            isCompleted ? 'bg-green-600' : 'bg-orange-600'
+            "h-3 rounded-full transition-all duration-500",
+            isCompleted ? "bg-green-600" : "bg-orange-600",
           )}
           style={{ width: `${progress}%` }}
         />

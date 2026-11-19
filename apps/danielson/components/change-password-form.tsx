@@ -1,11 +1,15 @@
-'use client';
+"use client";
 
-import { FormEvent, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export function ChangePasswordForm() {
   const router = useRouter();
-  const [values, setValues] = useState({ currentPassword: '', newPassword: '', confirmPassword: '' });
+  const [values, setValues] = useState({
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+  });
   const [error, setError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -15,16 +19,20 @@ export function ChangePasswordForm() {
     setBusy(true);
     setError(null);
     try {
-      const response = await fetch('/api/auth/change-password', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/auth/change-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
       });
-      const payload = await response.json().catch(() => ({})) as { error?: string };
-      if (!response.ok) setError(payload.error ?? 'Unable to update password.');
-      else { setSaved(true); router.push('/auth/login'); router.refresh(); }
+      const payload = (await response.json().catch(() => ({}))) as { error?: string };
+      if (!response.ok) setError(payload.error ?? "Unable to update password.");
+      else {
+        setSaved(true);
+        router.push("/auth/login");
+        router.refresh();
+      }
     } catch {
-      setError('Unable to update password. Try again.');
+      setError("Unable to update password. Try again.");
     } finally {
       setBusy(false);
     }
@@ -32,15 +40,37 @@ export function ChangePasswordForm() {
 
   return (
     <form className="form-stack" onSubmit={submit}>
-      {error ? <div className="error-summary" role="alert">{error}</div> : null}
+      {error ? (
+        <div className="error-summary" role="alert">
+          {error}
+        </div>
+      ) : null}
       {saved ? <p role="status">Password updated.</p> : null}
-      {(['currentPassword', 'newPassword', 'confirmPassword'] as const).map((field) => (
+      {(["currentPassword", "newPassword", "confirmPassword"] as const).map((field) => (
         <div className="field" key={field}>
-          <label htmlFor={field}>{field === 'currentPassword' ? 'Current password' : field === 'newPassword' ? 'New password' : 'Confirm new password'}</label>
-          <input id={field} name={field} type="password" autoComplete={field === 'currentPassword' ? 'current-password' : 'new-password'} value={values[field]} onChange={(event) => setValues((current) => ({ ...current, [field]: event.target.value }))} required />
+          <label htmlFor={field}>
+            {field === "currentPassword"
+              ? "Current password"
+              : field === "newPassword"
+                ? "New password"
+                : "Confirm new password"}
+          </label>
+          <input
+            id={field}
+            name={field}
+            type="password"
+            autoComplete={field === "currentPassword" ? "current-password" : "new-password"}
+            value={values[field]}
+            onChange={(event) =>
+              setValues((current) => ({ ...current, [field]: event.target.value }))
+            }
+            required
+          />
         </div>
       ))}
-      <button type="submit" disabled={busy}>{busy ? 'Saving…' : 'Save password'}</button>
+      <button type="submit" disabled={busy}>
+        {busy ? "Saving…" : "Save password"}
+      </button>
     </form>
   );
 }

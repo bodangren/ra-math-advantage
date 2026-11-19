@@ -1,7 +1,7 @@
-import { requireActiveRequestSessionClaims } from '@/lib/auth/server';
-import { buildCapstoneFilename } from '@math-platform/workbook-pipeline';
-import { NextRequest, NextResponse } from 'next/server';
-import { getWorkbookAsset } from '@/lib/server/lesson-assets';
+import { requireActiveRequestSessionClaims } from "@/lib/auth/server";
+import { buildCapstoneFilename } from "@math-platform/workbook-pipeline";
+import { NextRequest, NextResponse } from "next/server";
+import { getWorkbookAsset } from "@/lib/server/lesson-assets";
 
 /**
  * Serves a capstone workbook Excel file by type (student or teacher).
@@ -14,7 +14,7 @@ import { getWorkbookAsset } from '@/lib/server/lesson-assets';
  */
 export async function GET(
   request: NextRequest,
-  context: { params: Promise<{ type: 'student' | 'teacher' }> }
+  context: { params: Promise<{ type: "student" | "teacher" }> },
 ) {
   const session = await requireActiveRequestSessionClaims(request);
   if (session instanceof Response) {
@@ -24,28 +24,28 @@ export async function GET(
   const params = await context.params;
   const { type } = params;
 
-  if (type !== 'student' && type !== 'teacher') {
-    return NextResponse.json({ error: 'Invalid type' }, { status: 400 });
+  if (type !== "student" && type !== "teacher") {
+    return NextResponse.json({ error: "Invalid type" }, { status: 400 });
   }
 
   const role = session.role;
 
-  if (type === 'teacher' && role !== 'teacher' && role !== 'admin') {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  if (type === "teacher" && role !== "teacher" && role !== "admin") {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
-  const fileName = buildCapstoneFilename(type, 'investor_ready_workbook');
-  
+  const fileName = buildCapstoneFilename(type, "investor_ready_workbook");
+
   const fileBuffer = getWorkbookAsset(fileName, type);
   if (fileBuffer === null) {
-    return NextResponse.json({ error: 'File not found' }, { status: 404 });
+    return NextResponse.json({ error: "File not found" }, { status: 404 });
   }
 
   return new NextResponse(fileBuffer, {
     headers: {
-      'Cache-Control': 'private, no-store',
-      'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-      'Content-Disposition': `attachment; filename="${fileName}"`,
+      "Cache-Control": "private, no-store",
+      "Content-Type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "Content-Disposition": `attachment; filename="${fileName}"`,
     },
   });
 }

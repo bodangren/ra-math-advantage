@@ -2,10 +2,7 @@ import { internalQuery, type QueryCtx } from "../_generated/server";
 import { v } from "convex/values";
 import { Id, type Doc } from "../_generated/dataModel";
 import { getTeacherClassProficiencyHandler } from "../objectiveProficiency";
-import type {
-  ObjectivePriority,
-  TeacherProficiencyView,
-} from "@math-platform/srs-engine";
+import type { ObjectivePriority, TeacherProficiencyView } from "@math-platform/srs-engine";
 
 /**
  * Retrieves an authorized teacher profile for a user.
@@ -74,16 +71,16 @@ export const getClassSrsHealth = internalQuery({
           ctx.db
             .query("srs_cards")
             .withIndex("by_student", (q) => q.eq("studentId", studentId))
-            .collect()
-        )
+            .collect(),
+        ),
       ),
       Promise.all(
         studentIds.map((studentId) =>
           ctx.db
             .query("srs_sessions")
             .withIndex("by_student", (q) => q.eq("studentId", studentId))
-            .collect()
-        )
+            .collect(),
+        ),
       ),
     ]);
 
@@ -98,7 +95,7 @@ export const getClassSrsHealth = internalQuery({
       }
 
       const completedToday = sessionArrays[i].some(
-        (s) => s.completedAt && s.completedAt >= todayStartMs
+        (s) => s.completedAt && s.completedAt >= todayStartMs,
       );
       if (completedToday) {
         practicedToday++;
@@ -158,8 +155,8 @@ export const getOverdueLoad = internalQuery({
         ctx.db
           .query("srs_cards")
           .withIndex("by_student", (q) => q.eq("studentId", enrollment.studentId))
-          .collect()
-      )
+          .collect(),
+      ),
     );
 
     for (let i = 0; i < activeStudents.length; i++) {
@@ -224,16 +221,14 @@ export const getPracticeStreaks = internalQuery({
     }> = [];
 
     const [profiles, sessionArrays] = await Promise.all([
-      Promise.all(
-        activeStudents.map((enrollment) => ctx.db.get("profiles", enrollment.studentId))
-      ),
+      Promise.all(activeStudents.map((enrollment) => ctx.db.get("profiles", enrollment.studentId))),
       Promise.all(
         activeStudents.map((enrollment) =>
           ctx.db
             .query("srs_sessions")
             .withIndex("by_student", (q) => q.eq("studentId", enrollment.studentId))
-            .collect()
-        )
+            .collect(),
+        ),
       ),
     ]);
 
@@ -250,8 +245,8 @@ export const getPracticeStreaks = internalQuery({
           completedSessions.map((s) => {
             const d = new Date(s.completedAt!);
             return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
-          })
-        )
+          }),
+        ),
       ).sort((a, b) => b - a);
 
       const mostRecent = uniqueDays[0];
@@ -313,8 +308,8 @@ export async function getWeakObjectivesHandler(
   args: { classId: string },
   proficiencyProvider: (
     ctx: QueryCtx,
-    args: { classId: string }
-  ) => Promise<TeacherProficiencyView[]> = getTeacherClassProficiencyHandler
+    args: { classId: string },
+  ) => Promise<TeacherProficiencyView[]> = getTeacherClassProficiencyHandler,
 ): Promise<WeakObjectiveView[]> {
   const classDocId = args.classId as Id<"classes">;
 
@@ -406,7 +401,7 @@ export type StrugglingStudentView = {
  */
 export async function getStrugglingStudentsHandler(
   ctx: QueryCtx,
-  args: { classId: string; limit?: number }
+  args: { classId: string; limit?: number },
 ): Promise<StrugglingStudentView[]> {
   const classDocId = args.classId as Id<"classes">;
 
@@ -427,12 +422,10 @@ export async function getStrugglingStudentsHandler(
         ctx.db
           .query("srs_cards")
           .withIndex("by_student", (q) => q.eq("studentId", enrollment.studentId))
-          .collect()
-      )
+          .collect(),
+      ),
     ),
-    Promise.all(
-      activeStudents.map((enrollment) => ctx.db.get("profiles", enrollment.studentId))
-    ),
+    Promise.all(activeStudents.map((enrollment) => ctx.db.get("profiles", enrollment.studentId))),
   ]);
 
   for (let i = 0; i < activeStudents.length; i++) {
@@ -443,8 +436,7 @@ export async function getStrugglingStudentsHandler(
     }
 
     const overdueCount = cards.filter((c) => c.dueDate < now).length;
-    const avgRetention =
-      cards.reduce((sum, c) => sum + c.stability, 0) / cards.length;
+    const avgRetention = cards.reduce((sum, c) => sum + c.stability, 0) / cards.length;
 
     const objectiveStats = new Map<
       string,
@@ -549,7 +541,7 @@ export type MisconceptionView = {
  */
 export async function getMisconceptionSummaryHandler(
   ctx: QueryCtx,
-  args: { classId: string; sinceDays?: number }
+  args: { classId: string; sinceDays?: number },
 ): Promise<MisconceptionView[]> {
   const classDocId = args.classId as Id<"classes">;
 
@@ -575,18 +567,16 @@ export async function getMisconceptionSummaryHandler(
         .query("srs_review_log")
         .withIndex("by_student", (q) => q.eq("studentId", enrollment.studentId))
         .filter((q) => q.gte(q.field("reviewedAt"), sinceMs))
-        .collect()
-    )
+        .collect(),
+    ),
   );
 
   const allRecentReviews = reviewArrays.flat();
 
   const cardIds = [...new Set(allRecentReviews.map((r) => r.cardId))];
-  const cards = await Promise.all(
-    cardIds.map((cardId) => ctx.db.get("srs_cards", cardId))
-  );
+  const cards = await Promise.all(cardIds.map((cardId) => ctx.db.get("srs_cards", cardId)));
   const cardMap = new Map(
-    cards.filter((c): c is NonNullable<typeof c> => c !== null).map((c) => [c._id, c])
+    cards.filter((c): c is NonNullable<typeof c> => c !== null).map((c) => [c._id, c]),
   );
 
   for (const review of allRecentReviews) {

@@ -1,4 +1,4 @@
-import type { PracticeTimingSummary, PracticeTimingConfidence } from './contract';
+import type { PracticeTimingSummary, PracticeTimingConfidence } from "./contract";
 
 export type { PracticeTimingSummary, PracticeTimingConfidence };
 
@@ -14,16 +14,16 @@ export const DEFAULT_IDLE_THRESHOLD_MS = 30000;
  * Event types that the timing accumulator can process.
  */
 export type TimingEventType =
-  | 'start'
-  | 'interaction'
-  | 'pause'
-  | 'resume'
-  | 'blur'
-  | 'focus'
-  | 'visibility_hidden'
-  | 'visibility_visible'
-  | 'idle'
-  | 'pagehide';
+  | "start"
+  | "interaction"
+  | "pause"
+  | "resume"
+  | "blur"
+  | "focus"
+  | "visibility_hidden"
+  | "visibility_visible"
+  | "idle"
+  | "pagehide";
 
 /**
  * A single timing event emitted during a practice session.
@@ -149,7 +149,7 @@ export class TimingAccumulator {
       focusLossCount: 0,
       visibilityHiddenCount: 0,
       longestIdleMs: 0,
-      confidence: 'high',
+      confidence: "high",
       confidenceReasons: [],
       lastActiveTime: null,
       idleStartTime: null,
@@ -193,31 +193,31 @@ export class TimingAccumulator {
     this.state.wallClockMs += delta;
 
     switch (event.type) {
-      case 'interaction':
+      case "interaction":
         this.handleInteraction(prevTime, event.timestamp);
         break;
-      case 'pause':
+      case "pause":
         this.handlePause();
         break;
-      case 'resume':
+      case "resume":
         this.handleResume(event.timestamp);
         break;
-      case 'blur':
+      case "blur":
         this.handleBlur(prevTime, event.timestamp);
         break;
-      case 'focus':
+      case "focus":
         this.handleFocus(event.timestamp);
         break;
-      case 'visibility_hidden':
+      case "visibility_hidden":
         this.handleVisibilityHidden(prevTime, event.timestamp);
         break;
-      case 'visibility_visible':
+      case "visibility_visible":
         this.handleVisibilityVisible(event.timestamp);
         break;
-      case 'idle':
+      case "idle":
         this.handleIdle(event.timestamp);
         break;
-      case 'pagehide':
+      case "pagehide":
         this.handlePageHide(event.timestamp);
         break;
     }
@@ -236,8 +236,8 @@ export class TimingAccumulator {
         this.state.longestIdleMs = idleDuration;
       }
       if (idleDuration > this.idleThresholdMs) {
-        if (!this.state.confidenceReasons.includes('long_idle')) {
-          this.state.confidenceReasons.push('long_idle');
+        if (!this.state.confidenceReasons.includes("long_idle")) {
+          this.state.confidenceReasons.push("long_idle");
         }
       }
       this.state.idleStartTime = null;
@@ -262,8 +262,8 @@ export class TimingAccumulator {
         if (gap > this.state.longestIdleMs) {
           this.state.longestIdleMs = gap;
         }
-        if (!this.state.confidenceReasons.includes('long_idle')) {
-          this.state.confidenceReasons.push('long_idle');
+        if (!this.state.confidenceReasons.includes("long_idle")) {
+          this.state.confidenceReasons.push("long_idle");
         }
       } else {
         const activeDelta = currTime - this.state.lastActiveTime;
@@ -317,9 +317,9 @@ export class TimingAccumulator {
       this.state.totalFocusLossMs += blurDuration;
 
       if (blurDuration > 10000) {
-        this.state.confidence = 'medium';
-        if (!this.state.confidenceReasons.includes('focus_loss')) {
-          this.state.confidenceReasons.push('focus_loss');
+        this.state.confidence = "medium";
+        if (!this.state.confidenceReasons.includes("focus_loss")) {
+          this.state.confidenceReasons.push("focus_loss");
         }
       }
 
@@ -359,14 +359,14 @@ export class TimingAccumulator {
       const hiddenDuration = currTime - this.state.hiddenStartTime;
 
       if (hiddenDuration >= 60000) {
-        this.state.confidence = 'low';
-      } else if (hiddenDuration > 10000 && this.state.confidence === 'high') {
-        this.state.confidence = 'medium';
+        this.state.confidence = "low";
+      } else if (hiddenDuration > 10000 && this.state.confidence === "high") {
+        this.state.confidence = "medium";
       }
 
       if (hiddenDuration > 10000) {
-        if (!this.state.confidenceReasons.includes('visibility_hidden')) {
-          this.state.confidenceReasons.push('visibility_hidden');
+        if (!this.state.confidenceReasons.includes("visibility_hidden")) {
+          this.state.confidenceReasons.push("visibility_hidden");
         }
       }
 
@@ -396,31 +396,28 @@ export class TimingAccumulator {
       this.state.wallClockMs = timestamp - this.state.startedAt;
     }
 
-    if (!this.state.confidenceReasons.includes('interrupted')) {
-      this.state.confidenceReasons.push('interrupted');
+    if (!this.state.confidenceReasons.includes("interrupted")) {
+      this.state.confidenceReasons.push("interrupted");
     }
 
     if (this.state.wallClockMs < 30000) {
-      this.state.confidence = 'low';
-    } else if (this.state.confidence === 'high') {
-      this.state.confidence = 'medium';
+      this.state.confidence = "low";
+    } else if (this.state.confidence === "high") {
+      this.state.confidence = "medium";
     }
   }
 
   private recalculateConfidence(): void {
-    if (this.state.confidence === 'low') {
+    if (this.state.confidence === "low") {
       return;
     }
 
-    if (
-      this.state.focusLossCount > 3 ||
-      this.state.longestIdleMs > this.idleThresholdMs * 2
-    ) {
-      this.state.confidence = 'low';
+    if (this.state.focusLossCount > 3 || this.state.longestIdleMs > this.idleThresholdMs * 2) {
+      this.state.confidence = "low";
       return;
     }
 
-    if (this.state.confidence === 'medium') {
+    if (this.state.confidence === "medium") {
       return;
     }
 
@@ -429,7 +426,7 @@ export class TimingAccumulator {
       this.state.visibilityHiddenCount > 0 ||
       this.state.longestIdleMs > this.idleThresholdMs
     ) {
-      this.state.confidence = 'medium';
+      this.state.confidence = "medium";
     }
   }
 
@@ -442,9 +439,7 @@ export class TimingAccumulator {
     this.recalculateConfidence();
     return {
       startedAt:
-        this.state.startedAt !== null
-          ? new Date(this.state.startedAt).toISOString()
-          : null,
+        this.state.startedAt !== null ? new Date(this.state.startedAt).toISOString() : null,
       wallClockMs: this.state.wallClockMs,
       activeMs: this.state.activeMs,
       idleMs: this.state.idleMs,
@@ -472,11 +467,7 @@ export class TimingAccumulator {
    * and not finalized).
    */
   isActive(): boolean {
-    return (
-      this.state.startedAt !== null &&
-      !this.state.isInterrupted &&
-      !this.state.isFinalized
-    );
+    return this.state.startedAt !== null && !this.state.isInterrupted && !this.state.isFinalized;
   }
 
   /**
@@ -492,7 +483,7 @@ export class TimingAccumulator {
    */
   finalize(submittedAt: number): PracticeTimingSummary {
     if (this.state.startedAt === null) {
-      throw new Error('Cannot finalize before start');
+      throw new Error("Cannot finalize before start");
     }
 
     if (!this.state.isFinalized) {
@@ -531,9 +522,7 @@ export class TimingAccumulator {
       longestIdleMs: this.state.longestIdleMs ?? undefined,
       confidence: this.state.confidence,
       confidenceReasons:
-        this.state.confidenceReasons.length > 0
-          ? this.state.confidenceReasons
-          : undefined,
+        this.state.confidenceReasons.length > 0 ? this.state.confidenceReasons : undefined,
     };
   }
 
@@ -553,8 +542,6 @@ export class TimingAccumulator {
  * const acc = createTimingAccumulator({ idleThresholdMs: 20000 });
  * ```
  */
-export function createTimingAccumulator(
-  options: TimingAccumulatorOptions = {},
-): TimingAccumulator {
+export function createTimingAccumulator(options: TimingAccumulatorOptions = {}): TimingAccumulator {
   return new TimingAccumulator(options);
 }

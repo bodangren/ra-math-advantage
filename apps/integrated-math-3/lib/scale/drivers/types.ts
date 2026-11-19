@@ -1,4 +1,4 @@
-import type { CostRecord, HotPath } from '@/lib/scale/cost-record';
+import type { CostRecord, HotPath } from "@/lib/scale/cost-record";
 
 export type { HotPath };
 

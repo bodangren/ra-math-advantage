@@ -2,7 +2,7 @@ import {
   buildKstState,
   type KnowledgeSpace,
   type KnowledgeStateEntry,
-} from '@math-platform/knowledge-space-core';
+} from "@math-platform/knowledge-space-core";
 import {
   createCard,
   scheduleReview,
@@ -10,16 +10,16 @@ import {
   type SrsCardState,
   type SrsReviewLogEntry,
   type SrsReviewLogEntryV31,
-} from '@math-platform/srs-engine';
+} from "@math-platform/srs-engine";
 
 import {
   normalizeObservationEvidence,
   observationFingerprint,
   type NoEvidenceObservation,
   type RatedObservationEvidence,
-} from './evidence';
-import { getComponentSkillIds } from './graph';
-import { adaptDanielsonRating, isDanielsonRating } from './rating';
+} from "./evidence";
+import { getComponentSkillIds } from "./graph";
+import { adaptDanielsonRating, isDanielsonRating } from "./rating";
 
 export type TargetEvidence = {
   skillId: string;
@@ -27,12 +27,12 @@ export type TargetEvidence = {
   rawRating: 1 | 2 | 3 | 4;
   points: 70 | 80 | 90 | 100;
   passes: boolean;
-  srsRating: 'Again' | 'Hard' | 'Good' | 'Easy';
+  srsRating: "Again" | "Hard" | "Good" | "Easy";
   idempotencyKey: string;
   sourceRecordId: string;
   formalObservationId?: string;
   provenanceGroupId: string;
-  sourceType: RatedObservationEvidence['sourceType'];
+  sourceType: RatedObservationEvidence["sourceType"];
   occurredAt: string;
 };
 
@@ -53,13 +53,13 @@ export type PriorityProjection = {
 };
 
 export type TeacherEvidenceResult = {
-  kind: 'applied' | 'replayed' | 'idempotency_conflict';
+  kind: "applied" | "replayed" | "idempotency_conflict";
   targetEvidence: TargetEvidence[];
   knowledgeState: KnowledgeStateEntry[];
   priority: PriorityProjection[];
 };
 
-export type TeacherEvidenceSnapshot = Omit<TeacherEvidenceResult, 'kind'>;
+export type TeacherEvidenceSnapshot = Omit<TeacherEvidenceResult, "kind">;
 
 export type TeacherState = {
   teacherId: string;
@@ -117,20 +117,20 @@ export function applyTeacherEvidenceCommitToState(
     ...clone(state),
     idempotency: [...clone(state.idempotency), clone(commit.idempotency)],
     observationOutcomes: [...clone(state.observationOutcomes), clone(commit.outcome)],
-    cards: replaceByKey(state.cards, commit.cards ?? [], 'objectiveId'),
-    reviews: replaceByKey(state.reviews, commit.reviews ?? [], 'reviewId'),
-    proficiency: replaceByKey(state.proficiency, commit.proficiency ?? [], 'skillId'),
-    knowledgeState: replaceByKey(state.knowledgeState, commit.knowledgeState ?? [], 'nodeId'),
-    priority: replaceByKey(state.priority, commit.priority ?? [], 'skillId'),
+    cards: replaceByKey(state.cards, commit.cards ?? [], "objectiveId"),
+    reviews: replaceByKey(state.reviews, commit.reviews ?? [], "reviewId"),
+    proficiency: replaceByKey(state.proficiency, commit.proficiency ?? [], "skillId"),
+    knowledgeState: replaceByKey(state.knowledgeState, commit.knowledgeState ?? [], "nodeId"),
+    priority: replaceByKey(state.priority, commit.priority ?? [], "skillId"),
   };
 }
 
 const MAX_INTERVAL_DAYS = 180;
 const APPROVED_PRIORITY_INPUTS = [
-  'due_status',
-  'overdue_duration',
-  'current_proficiency',
-  'evidence_gap',
+  "due_status",
+  "overdue_duration",
+  "current_proficiency",
+  "evidence_gap",
 ] as const;
 
 function clone<T>(value: T): T {
@@ -139,12 +139,13 @@ function clone<T>(value: T): T {
 
 function asCard(value: Record<string, unknown>): SrsCardState | null {
   if (
-    typeof value.cardId !== 'string'
-    || typeof value.studentId !== 'string'
-    || typeof value.objectiveId !== 'string'
-    || typeof value.variantKey !== 'string'
-    || typeof value.dueDate !== 'string'
-  ) return null;
+    typeof value.cardId !== "string" ||
+    typeof value.studentId !== "string" ||
+    typeof value.objectiveId !== "string" ||
+    typeof value.variantKey !== "string" ||
+    typeof value.dueDate !== "string"
+  )
+    return null;
   return value as unknown as SrsCardState;
 }
 
@@ -152,7 +153,7 @@ function deterministicCardId(teacherId: string, skillId: string): string {
   return `teacher_srs_cards:${teacherId}:${skillId}`;
 }
 
-function stateBefore(card: SrsCardState): SrsReviewLogEntry['stateBefore'] {
+function stateBefore(card: SrsCardState): SrsReviewLogEntry["stateBefore"] {
   return {
     stability: card.stability,
     difficulty: card.difficulty,
@@ -162,7 +163,7 @@ function stateBefore(card: SrsCardState): SrsReviewLogEntry['stateBefore'] {
   };
 }
 
-function stateAfter(card: SrsCardState): SrsReviewLogEntry['stateAfter'] {
+function stateAfter(card: SrsCardState): SrsReviewLogEntry["stateAfter"] {
   return {
     stability: card.stability,
     difficulty: card.difficulty,
@@ -172,14 +173,11 @@ function stateAfter(card: SrsCardState): SrsReviewLogEntry['stateAfter'] {
   };
 }
 
-function targetIdsForEvidence(
-  evidence: RatedObservationEvidence,
-  graph: KnowledgeSpace,
-): string[] {
-  if (evidence.sourceType === 'formal_q1') {
+function targetIdsForEvidence(evidence: RatedObservationEvidence, graph: KnowledgeSpace): string[] {
+  if (evidence.sourceType === "formal_q1") {
     return getComponentSkillIds(graph, evidence.componentId);
   }
-  if (evidence.sourceType === 'formal_q4') return [];
+  if (evidence.sourceType === "formal_q4") return [];
   return evidence.targetSkillIds;
 }
 
@@ -189,10 +187,10 @@ function currentCardForSkill(
   skillId: string,
   now: string,
 ): SrsCardState {
-  const existing = cards.find((card) => (
-    card.studentId === teacherId
-    && (card.variantKey === skillId || card.objectiveId === skillId)
-  ));
+  const existing = cards.find(
+    (card) =>
+      card.studentId === teacherId && (card.variantKey === skillId || card.objectiveId === skillId),
+  );
   if (existing) {
     return {
       ...existing,
@@ -228,8 +226,8 @@ export function projectTeacherPriority(
 ): PriorityProjection[] {
   const componentBySkill = new Map(
     graph.edges
-      .filter((edge) => edge.type === 'contains')
-      .filter((edge) => graph.nodes.find((node) => node.id === edge.targetId)?.kind === 'skill')
+      .filter((edge) => edge.type === "contains")
+      .filter((edge) => graph.nodes.find((node) => node.id === edge.targetId)?.kind === "skill")
       .map((edge) => [edge.targetId, edge.sourceId]),
   );
   return skillIds.map((skillId) => {
@@ -243,14 +241,14 @@ export function projectTeacherPriority(
     return {
       teacherId,
       skillId,
-      componentId: typeof current?.componentId === 'string'
-        ? current.componentId
-        : componentBySkill.get(skillId),
+      componentId:
+        typeof current?.componentId === "string"
+          ? current.componentId
+          : componentBySkill.get(skillId),
       due,
       dueAt: card?.dueDate ?? null,
-      overdueDays: due && Number.isFinite(dueAt)
-        ? Math.max(0, Math.floor((nowMs - dueAt) / 86_400_000))
-        : 0,
+      overdueDays:
+        due && Number.isFinite(dueAt) ? Math.max(0, Math.floor((nowMs - dueAt) / 86_400_000)) : 0,
       currentProficiency: rating
         ? {
             rawRating: rating.rawRating,
@@ -258,7 +256,7 @@ export function projectTeacherPriority(
             passes: rating.passes,
           }
         : { rawRating: null, points: null, passes: false },
-      evidenceGaps: rating ? [] : ['no_valid_rated_evidence'],
+      evidenceGaps: rating ? [] : ["no_valid_rated_evidence"],
       approvedPriorityInputs: [...APPROVED_PRIORITY_INPUTS],
     };
   });
@@ -280,15 +278,18 @@ export function projectTeacherKnowledgeState(
   nowMs: number,
 ): KnowledgeStateEntry[] {
   const cardIds = new Set(skillIds);
-  const targetCards = cards.filter((card) => cardIds.has(card.objectiveId) || cardIds.has(card.variantKey));
+  const targetCards = cards.filter(
+    (card) => cardIds.has(card.objectiveId) || cardIds.has(card.variantKey),
+  );
   const targetProficiency = proficiency
-    .filter((item) => typeof item.skillId === 'string' && cardIds.has(item.skillId))
+    .filter((item) => typeof item.skillId === "string" && cardIds.has(item.skillId))
     .map((item) => {
       const rating = adaptDanielsonRating(item.rawRating);
       const card = targetCards.find((candidate) => candidate.objectiveId === item.skillId);
-      const retention = card && card.reps >= 1
-        ? stabilityToRetention(card.stability, elapsedDaysAt(card, nowMs))
-        : rating.points / 100;
+      const retention =
+        card && card.reps >= 1
+          ? stabilityToRetention(card.stability, elapsedDaysAt(card, nowMs))
+          : rating.points / 100;
       return {
         objectiveId: item.skillId as string,
         retentionStrength: Math.max(0, Math.min(1, retention)),
@@ -297,12 +298,7 @@ export function projectTeacherKnowledgeState(
       };
     });
 
-  const state = buildKstState(
-    targetCards,
-    targetProficiency,
-    graph,
-    nowMs,
-  ).state;
+  const state = buildKstState(targetCards, targetProficiency, graph, nowMs).state;
   return skillIds
     .map((skillId) => state.get(skillId))
     .filter((entry): entry is KnowledgeStateEntry => entry !== undefined)
@@ -310,23 +306,30 @@ export function projectTeacherKnowledgeState(
 }
 
 function asTargetEvidence(value: unknown): TargetEvidence | null {
-  if (!value || typeof value !== 'object') return null;
+  if (!value || typeof value !== "object") return null;
   const item = value as Record<string, unknown>;
   if (
-    typeof item.skillId !== 'string'
-    || typeof item.componentId !== 'string'
-    || (item.rawRating !== 1 && item.rawRating !== 2 && item.rawRating !== 3 && item.rawRating !== 4)
-    || typeof item.points !== 'number'
-    || typeof item.passes !== 'boolean'
-    || (item.srsRating !== 'Again' && item.srsRating !== 'Hard'
-      && item.srsRating !== 'Good' && item.srsRating !== 'Easy')
-    || typeof item.idempotencyKey !== 'string'
-    || typeof item.sourceRecordId !== 'string'
-    || typeof item.provenanceGroupId !== 'string'
-    || (item.sourceType !== 'walkthrough' && item.sourceType !== 'formal_q1'
-      && item.sourceType !== 'formal_q4')
-    || typeof item.occurredAt !== 'string'
-  ) return null;
+    typeof item.skillId !== "string" ||
+    typeof item.componentId !== "string" ||
+    (item.rawRating !== 1 &&
+      item.rawRating !== 2 &&
+      item.rawRating !== 3 &&
+      item.rawRating !== 4) ||
+    typeof item.points !== "number" ||
+    typeof item.passes !== "boolean" ||
+    (item.srsRating !== "Again" &&
+      item.srsRating !== "Hard" &&
+      item.srsRating !== "Good" &&
+      item.srsRating !== "Easy") ||
+    typeof item.idempotencyKey !== "string" ||
+    typeof item.sourceRecordId !== "string" ||
+    typeof item.provenanceGroupId !== "string" ||
+    (item.sourceType !== "walkthrough" &&
+      item.sourceType !== "formal_q1" &&
+      item.sourceType !== "formal_q4") ||
+    typeof item.occurredAt !== "string"
+  )
+    return null;
   return item as unknown as TargetEvidence;
 }
 
@@ -387,7 +390,7 @@ function reviewFromSchedule(input: {
     evidence: {
       baseRating: input.evidence.srsRating,
       timingAdjusted: false,
-      reasons: ['danielson_observation'],
+      reasons: ["danielson_observation"],
     },
     stateBefore: stateBefore(input.before),
     stateAfter: stateAfter(input.after),
@@ -433,23 +436,23 @@ export async function processTeacherEvidence(input: {
 }): Promise<TeacherEvidenceResult> {
   const evidence = normalizeObservationEvidence(input.evidence, input.graph);
   const nowMs = Date.parse(input.now);
-  if (!Number.isFinite(nowMs)) throw new Error('now must be an ISO timestamp');
+  if (!Number.isFinite(nowMs)) throw new Error("now must be an ISO timestamp");
   const fingerprint = observationFingerprint(evidence);
   const current = await input.port.getTeacherState(evidence.teacherId);
   const prior = current.idempotency.find((entry) => entry.key === evidence.idempotencyKey);
   if (prior) {
     if (prior.fingerprint !== fingerprint) {
-      return { kind: 'idempotency_conflict', ...emptyEvidenceSnapshot() };
+      return { kind: "idempotency_conflict", ...emptyEvidenceSnapshot() };
     }
     return {
-      kind: 'replayed',
+      kind: "replayed",
       ...clone(prior.result),
     };
   }
 
-  if (evidence.kind === 'not_enough_evidence') {
+  if (evidence.kind === "not_enough_evidence") {
     await input.port.commitTeacherEvidence(noEvidenceCommit(evidence, fingerprint, nowMs));
-    return { kind: 'applied', targetEvidence: [], knowledgeState: [], priority: [] };
+    return { kind: "applied", targetEvidence: [], knowledgeState: [], priority: [] };
   }
 
   const targetSkillIds = targetIdsForEvidence(evidence, input.graph);
@@ -468,19 +471,21 @@ export async function processTeacherEvidence(input: {
       knowledgeState: [],
       priority: [],
     });
-    return { kind: 'applied', targetEvidence: [], knowledgeState: [], priority: [] };
+    return { kind: "applied", targetEvidence: [], knowledgeState: [], priority: [] };
   }
   const projection = adaptDanielsonRating(evidence.rating);
   const existingCards = current.cards
     .map(asCard)
     .filter((card): card is SrsCardState => card !== null);
   const cards = [...existingCards];
-  const reviews: Array<SrsReviewLogEntryV31 & {
-    logicalReviewId: string;
-    isCorrection: boolean;
-    correctionIdempotencyKey?: string;
-    correctionSourceRecordId?: string;
-  }> = [];
+  const reviews: Array<
+    SrsReviewLogEntryV31 & {
+      logicalReviewId: string;
+      isCorrection: boolean;
+      correctionIdempotencyKey?: string;
+      correctionSourceRecordId?: string;
+    }
+  > = [];
   const targetEvidence: TargetEvidence[] = [];
   const updatedProficiency = [...current.proficiency];
   for (const skillId of targetSkillIds) {
@@ -493,7 +498,9 @@ export async function processTeacherEvidence(input: {
       srsRating: projection.srsRating,
       idempotencyKey: evidence.idempotencyKey,
       sourceRecordId: evidence.sourceRecordId,
-      ...(evidence.formalObservationId ? { formalObservationId: evidence.formalObservationId } : {}),
+      ...(evidence.formalObservationId
+        ? { formalObservationId: evidence.formalObservationId }
+        : {}),
       provenanceGroupId: evidence.provenanceGroupId,
       sourceType: evidence.sourceType,
       occurredAt: evidence.occurredAt,
@@ -503,12 +510,13 @@ export async function processTeacherEvidence(input: {
     const parsedCurrent = asTargetEvidence(currentProjection);
     const isOutOfOrder = parsedCurrent !== null && compareTargetEvidence(item, parsedCurrent) < 0;
     if (isOutOfOrder && current.historyComplete === false) {
-      throw new Error('out_of_order_history_capacity_exceeded');
+      throw new Error("out_of_order_history_capacity_exceeded");
     }
     const effectiveHistory = isOutOfOrder
       ? [
-          ...historicTargetEvidence(current.observationOutcomes)
-            .filter((candidate) => candidate.skillId === skillId),
+          ...historicTargetEvidence(current.observationOutcomes).filter(
+            (candidate) => candidate.skillId === skillId,
+          ),
           item,
         ].sort(compareTargetEvidence)
       : [item];
@@ -538,21 +546,20 @@ export async function processTeacherEvidence(input: {
         evidence: effective,
         teacherId: evidence.teacherId,
       });
-      if (
-        effective.idempotencyKey === item.idempotencyKey
-        && effective.skillId === item.skillId
-      ) {
+      if (effective.idempotencyKey === item.idempotencyKey && effective.skillId === item.skillId) {
         reviews.push(review);
       } else if (isOutOfOrder && compareTargetEvidence(effective, item) > 0) {
-        reviews.push(reviewFromSchedule({
-          before,
-          after,
-          scheduled,
-          evidence: effective,
-          teacherId: evidence.teacherId,
-          correctionIdempotencyKey: item.idempotencyKey,
-          correctionSourceRecordId: item.sourceRecordId,
-        }));
+        reviews.push(
+          reviewFromSchedule({
+            before,
+            after,
+            scheduled,
+            evidence: effective,
+            teacherId: evidence.teacherId,
+            correctionIdempotencyKey: item.idempotencyKey,
+            correctionSourceRecordId: item.sourceRecordId,
+          }),
+        );
       }
       before = after;
     }
@@ -596,10 +603,11 @@ export async function processTeacherEvidence(input: {
       .filter((card) => changedSkillIds.has(card.objectiveId))
       .map((card) => ({ ...card })),
     reviews: reviews.map((review) => ({ ...review })),
-    proficiency: updatedProficiency
-      .filter((item) => typeof item.skillId === 'string' && changedSkillIds.has(item.skillId)),
+    proficiency: updatedProficiency.filter(
+      (item) => typeof item.skillId === "string" && changedSkillIds.has(item.skillId),
+    ),
     knowledgeState: knowledgeState.map((entry) => ({ ...entry })) as Array<Record<string, unknown>>,
     priority,
   });
-  return { kind: 'applied', ...result };
+  return { kind: "applied", ...result };
 }

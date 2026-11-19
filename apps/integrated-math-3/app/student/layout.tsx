@@ -1,4 +1,4 @@
-import { requireStudentSessionClaims } from '@/lib/auth/server';
+import { requireStudentSessionClaims } from "@/lib/auth/server";
 
 /**
  * Layout wrapper for all student routes that enforces authentication by
@@ -7,6 +7,6 @@ import { requireStudentSessionClaims } from '@/lib/auth/server';
  * @returns {JSX.Element} The rendered StudentLayout JSX.
  */
 export default async function StudentLayout({ children }: { children: React.ReactNode }) {
-  await requireStudentSessionClaims('/student/dashboard');
+  await requireStudentSessionClaims("/student/dashboard");
   return <>{children}</>;
 }

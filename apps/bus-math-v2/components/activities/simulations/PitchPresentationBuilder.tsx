@@ -56,15 +56,15 @@
  * - Real-world entrepreneurship and funding processes
  */
 
-'use client'
+"use client";
 
-import { useState, useCallback, useRef, useEffect } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Progress } from '@/components/ui/progress'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import { useState, useCallback, useRef, useEffect } from "react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Presentation,
   Clock,
@@ -89,82 +89,112 @@ import {
   Mic,
   Timer,
   BarChart3,
-  PieChart
-} from 'lucide-react'
-import type { Activity } from '@/lib/schemas/validators'
-import type { PitchPresentationBuilderActivityProps } from '@/types/activities'
-import { buildPracticeSubmissionEnvelope, buildPracticeSubmissionParts, type PracticeSubmissionCallbackPayload } from '@/lib/practice/contract'
+  PieChart,
+} from "lucide-react";
+import type { Activity } from "@/lib/schemas/validators";
+import type { PitchPresentationBuilderActivityProps } from "@/types/activities";
+import {
+  buildPracticeSubmissionEnvelope,
+  buildPracticeSubmissionParts,
+  type PracticeSubmissionCallbackPayload,
+} from "@/lib/practice/contract";
 
-export type PitchPresentationBuilderActivity = Omit<Activity, 'componentKey' | 'props'> & {
-  componentKey: 'pitch-presentation-builder'
-  props: PitchPresentationBuilderActivityProps
-}
+export type PitchPresentationBuilderActivity = Omit<Activity, "componentKey" | "props"> & {
+  componentKey: "pitch-presentation-builder";
+  props: PitchPresentationBuilderActivityProps;
+};
 
-type PitchSection = 'problem' | 'solution' | 'market' | 'business-model' | 'financials' | 'ask'
-type BusinessType = 'saas' | 'ecommerce' | 'fintech' | 'healthtech' | 'marketplace' | 'ai-ml'
-type PresentationMode = 'build' | 'practice' | 'review'
+type PitchSection = "problem" | "solution" | "market" | "business-model" | "financials" | "ask";
+type BusinessType = "saas" | "ecommerce" | "fintech" | "healthtech" | "marketplace" | "ai-ml";
+type PresentationMode = "build" | "practice" | "review";
 
 interface PitchContent {
-  title: string
-  content: string
-  speakingNotes: string
-  timeAllocation: number // seconds
-  completeness: number // 0-100%
+  title: string;
+  content: string;
+  speakingNotes: string;
+  timeAllocation: number; // seconds
+  completeness: number; // 0-100%
 }
 
 interface BusinessModel {
-  type: BusinessType
-  name: string
-  industry: string
-  targetMarket: string
-  revenueModel: string
+  type: BusinessType;
+  name: string;
+  industry: string;
+  targetMarket: string;
+  revenueModel: string;
 }
 
 interface FinancialProjections {
-  year1Revenue: number
-  year2Revenue: number
-  year3Revenue: number
-  initialInvestment: number
-  useOfFunds: string[]
-  keyMetrics: Record<string, number>
+  year1Revenue: number;
+  year2Revenue: number;
+  year3Revenue: number;
+  initialInvestment: number;
+  useOfFunds: string[];
+  keyMetrics: Record<string, number>;
 }
 
 interface PitchState {
-  businessModel: BusinessModel
-  sections: Record<PitchSection, PitchContent>
-  financials: FinancialProjections
-  currentSection: PitchSection
-  presentationMode: PresentationMode
-  isTimerRunning: boolean
-  currentTime: number
-  totalPracticeTime: number
-  completedSections: Set<PitchSection>
-  feedbackScore: number
+  businessModel: BusinessModel;
+  sections: Record<PitchSection, PitchContent>;
+  financials: FinancialProjections;
+  currentSection: PitchSection;
+  presentationMode: PresentationMode;
+  isTimerRunning: boolean;
+  currentTime: number;
+  totalPracticeTime: number;
+  completedSections: Set<PitchSection>;
+  feedbackScore: number;
 }
 
 interface PitchPresentationBuilderProps {
-  activity: PitchPresentationBuilderActivity
-  onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void
+  activity: PitchPresentationBuilderActivity;
+  onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void;
 }
 
-const BUSINESS_TYPES: Record<BusinessType, { name: string; icon: React.ReactNode; description: string }> = {
-  saas: { name: 'SaaS Platform', icon: <Building className="w-5 h-5" />, description: 'Software as a Service solution' },
-  ecommerce: { name: 'E-Commerce', icon: <TrendingUp className="w-5 h-5" />, description: 'Online marketplace or retail' },
-  fintech: { name: 'FinTech', icon: <DollarSign className="w-5 h-5" />, description: 'Financial technology solution' },
-  healthtech: { name: 'HealthTech', icon: <Target className="w-5 h-5" />, description: 'Healthcare innovation' },
-  marketplace: { name: 'Marketplace', icon: <Users className="w-5 h-5" />, description: 'Two-sided market platform' },
-  'ai-ml': { name: 'AI/ML', icon: <Zap className="w-5 h-5" />, description: 'Artificial intelligence solution' }
-}
+const BUSINESS_TYPES: Record<
+  BusinessType,
+  { name: string; icon: React.ReactNode; description: string }
+> = {
+  saas: {
+    name: "SaaS Platform",
+    icon: <Building className="w-5 h-5" />,
+    description: "Software as a Service solution",
+  },
+  ecommerce: {
+    name: "E-Commerce",
+    icon: <TrendingUp className="w-5 h-5" />,
+    description: "Online marketplace or retail",
+  },
+  fintech: {
+    name: "FinTech",
+    icon: <DollarSign className="w-5 h-5" />,
+    description: "Financial technology solution",
+  },
+  healthtech: {
+    name: "HealthTech",
+    icon: <Target className="w-5 h-5" />,
+    description: "Healthcare innovation",
+  },
+  marketplace: {
+    name: "Marketplace",
+    icon: <Users className="w-5 h-5" />,
+    description: "Two-sided market platform",
+  },
+  "ai-ml": {
+    name: "AI/ML",
+    icon: <Zap className="w-5 h-5" />,
+    description: "Artificial intelligence solution",
+  },
+};
 
 const ICON_MAP: Record<string, React.ReactNode> = {
-  'alert-circle': <AlertCircle className="w-5 h-5" />,
-  'lightbulb': <Lightbulb className="w-5 h-5" />,
-  'bar-chart-3': <BarChart3 className="w-5 h-5" />,
-  'pie-chart': <PieChart className="w-5 h-5" />,
-  'chart-line': <ChartLine className="w-5 h-5" />,
-  'dollar-sign': <DollarSign className="w-5 h-5" />
-}
-
+  "alert-circle": <AlertCircle className="w-5 h-5" />,
+  lightbulb: <Lightbulb className="w-5 h-5" />,
+  "bar-chart-3": <BarChart3 className="w-5 h-5" />,
+  "pie-chart": <PieChart className="w-5 h-5" />,
+  "chart-line": <ChartLine className="w-5 h-5" />,
+  "dollar-sign": <DollarSign className="w-5 h-5" />,
+};
 
 /**
  * Renders an interactive pitch presentation builder where students create,
@@ -174,25 +204,24 @@ const ICON_MAP: Record<string, React.ReactNode> = {
  * @param onSubmit - Callback to submit practice results
  */
 export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentationBuilderProps) {
-  const { title, description, initialState, sectionDefinitions } = activity.props
+  const { title, description, initialState, sectionDefinitions } = activity.props;
   const [pitchState, setPitchState] = useState<PitchState>({
     businessModel: initialState.businessModel,
     sections: initialState.sections,
     financials: initialState.financials,
-    currentSection: 'problem',
-    presentationMode: 'build',
+    currentSection: "problem",
+    presentationMode: "build",
     isTimerRunning: false,
     currentTime: 0,
     totalPracticeTime: 0,
     completedSections: new Set(),
-    feedbackScore: 0
-  })
+    feedbackScore: 0,
+  });
 
-  const [showInstructions, setShowInstructions] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
-  const submittedRef = useRef(false)
-  const timerRef = useRef<NodeJS.Timeout | null>(null)
-
+  const [showInstructions, setShowInstructions] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const submittedRef = useRef(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   /**
    * Calculates a completeness score (0-100) for a pitch section based
@@ -203,14 +232,16 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
    * @param title - The section title text
    * @returns A completeness percentage
    */
-  const calculateCompleteness = useCallback((content: string, speakingNotes: string, title: string) => {
-    let score = 0
-    if (title.trim().length > 0) score += 25
-    if (content.trim().length > 50) score += 50
-    if (speakingNotes.trim().length > 20) score += 25
-    return Math.min(score, 100)
-  }, [])
-
+  const calculateCompleteness = useCallback(
+    (content: string, speakingNotes: string, title: string) => {
+      let score = 0;
+      if (title.trim().length > 0) score += 25;
+      if (content.trim().length > 50) score += 50;
+      if (speakingNotes.trim().length > 20) score += 25;
+      return Math.min(score, 100);
+    },
+    [],
+  );
 
   /**
    * Updates a field on a pitch section and recalculates completeness.
@@ -219,70 +250,72 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
    * @param field - The field within the section
    * @param value - The new value
    */
-  const updateSectionContent = useCallback((section: PitchSection, field: keyof PitchContent, value: string | number) => {
-    setPitchState(prev => {
-      const updatedSection = { ...prev.sections[section], [field]: value }
+  const updateSectionContent = useCallback(
+    (section: PitchSection, field: keyof PitchContent, value: string | number) => {
+      setPitchState((prev) => {
+        const updatedSection = { ...prev.sections[section], [field]: value };
 
-      if (field === 'title' || field === 'content' || field === 'speakingNotes') {
-        updatedSection.completeness = calculateCompleteness(
-          field === 'content' ? value as string : updatedSection.content,
-          field === 'speakingNotes' ? value as string : updatedSection.speakingNotes,
-          field === 'title' ? value as string : updatedSection.title
-        )
-      }
+        if (field === "title" || field === "content" || field === "speakingNotes") {
+          updatedSection.completeness = calculateCompleteness(
+            field === "content" ? (value as string) : updatedSection.content,
+            field === "speakingNotes" ? (value as string) : updatedSection.speakingNotes,
+            field === "title" ? (value as string) : updatedSection.title,
+          );
+        }
 
-      const newCompletedSections = new Set(prev.completedSections)
-      if (updatedSection.completeness >= 80) {
-        newCompletedSections.add(section)
-      } else {
-        newCompletedSections.delete(section)
-      }
+        const newCompletedSections = new Set(prev.completedSections);
+        if (updatedSection.completeness >= 80) {
+          newCompletedSections.add(section);
+        } else {
+          newCompletedSections.delete(section);
+        }
 
-      return {
-        ...prev,
-        sections: {
-          ...prev.sections,
-          [section]: updatedSection
-        },
-        completedSections: newCompletedSections
-      }
-    })
-  }, [calculateCompleteness])
+        return {
+          ...prev,
+          sections: {
+            ...prev.sections,
+            [section]: updatedSection,
+          },
+          completedSections: newCompletedSections,
+        };
+      });
+    },
+    [calculateCompleteness],
+  );
 
   const startTimer = useCallback(() => {
-    if (timerRef.current) clearInterval(timerRef.current)
+    if (timerRef.current) clearInterval(timerRef.current);
 
-    setPitchState(prev => ({ ...prev, isTimerRunning: true }))
+    setPitchState((prev) => ({ ...prev, isTimerRunning: true }));
 
     timerRef.current = setInterval(() => {
-      setPitchState(prev => ({
+      setPitchState((prev) => ({
         ...prev,
         currentTime: prev.currentTime + 1,
-        totalPracticeTime: prev.totalPracticeTime + 1
-      }))
-    }, 1000)
-  }, [])
+        totalPracticeTime: prev.totalPracticeTime + 1,
+      }));
+    }, 1000);
+  }, []);
 
   const pauseTimer = useCallback(() => {
     if (timerRef.current) {
-      clearInterval(timerRef.current)
-      timerRef.current = null
+      clearInterval(timerRef.current);
+      timerRef.current = null;
     }
-    setPitchState(prev => ({ ...prev, isTimerRunning: false }))
-  }, [])
+    setPitchState((prev) => ({ ...prev, isTimerRunning: false }));
+  }, []);
 
   const resetTimer = useCallback(() => {
     if (timerRef.current) {
-      clearInterval(timerRef.current)
-      timerRef.current = null
+      clearInterval(timerRef.current);
+      timerRef.current = null;
     }
-    setPitchState(prev => ({
+    setPitchState((prev) => ({
       ...prev,
       isTimerRunning: false,
-      currentTime: 0
-    }))
-  }, [])
-
+      currentTime: 0,
+    }));
+  }, []);
 
   /**
    * Formats a number of seconds as a M:SS time string.
@@ -291,11 +324,10 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
    * @returns A formatted time string
    */
   const formatTime = useCallback((seconds: number) => {
-    const mins = Math.floor(seconds / 60)
-    const secs = seconds % 60
-    return `${mins}:${secs.toString().padStart(2, '0')}`
-  }, [])
-
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  }, []);
 
   /**
    * Calculates the overall pitch progress as an average of all section
@@ -304,66 +336,66 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
    * @returns The overall progress percentage
    */
   const calculateOverallProgress = useCallback(() => {
-    const sections = Object.values(pitchState.sections)
-    const totalCompleteness = sections.reduce((sum, section) => sum + section.completeness, 0)
-    return Math.round(totalCompleteness / sections.length)
-  }, [pitchState.sections])
+    const sections = Object.values(pitchState.sections);
+    const totalCompleteness = sections.reduce((sum, section) => sum + section.completeness, 0);
+    return Math.round(totalCompleteness / sections.length);
+  }, [pitchState.sections]);
 
   const getTotalTargetTime = useCallback(() => {
-    return Object.values(sectionDefinitions).reduce((sum, section) => sum + section.timeTarget, 0)
-  }, [sectionDefinitions])
+    return Object.values(sectionDefinitions).reduce((sum, section) => sum + section.timeTarget, 0);
+  }, [sectionDefinitions]);
 
   const exportPitchDeck = useCallback(() => {
     const pitchData = {
       businessModel: pitchState.businessModel,
       sections: pitchState.sections,
       financials: pitchState.financials,
-      generatedAt: new Date().toISOString()
-    }
+      generatedAt: new Date().toISOString(),
+    };
 
-    const dataStr = JSON.stringify(pitchData, null, 2)
-    const dataBlob = new Blob([dataStr], { type: 'application/json' })
-    const url = URL.createObjectURL(dataBlob)
+    const dataStr = JSON.stringify(pitchData, null, 2);
+    const dataBlob = new Blob([dataStr], { type: "application/json" });
+    const url = URL.createObjectURL(dataBlob);
 
-    const link = document.createElement('a')
-    link.href = url
-    link.download = `${pitchState.businessModel.name || 'pitch'}-deck.json`
-    link.click()
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${pitchState.businessModel.name || "pitch"}-deck.json`;
+    link.click();
 
-    URL.revokeObjectURL(url)
-  }, [pitchState])
+    URL.revokeObjectURL(url);
+  }, [pitchState]);
 
   const handleSubmit = useCallback(() => {
-    if (submittedRef.current) return
+    if (submittedRef.current) return;
     if (onSubmit) {
-      const overallProgress = calculateOverallProgress()
-      const sections = Object.entries(pitchState.sections)
-      const sectionAnswers: Record<string, unknown> = {}
+      const overallProgress = calculateOverallProgress();
+      const sections = Object.entries(pitchState.sections);
+      const sectionAnswers: Record<string, unknown> = {};
       sections.forEach(([key, section]) => {
-        sectionAnswers[`${key}_title`] = section.title
-        sectionAnswers[`${key}_completeness`] = section.completeness
-      })
-      sectionAnswers.overallProgress = overallProgress
-      sectionAnswers.businessType = pitchState.businessModel.type
-      sectionAnswers.businessName = pitchState.businessModel.name
+        sectionAnswers[`${key}_title`] = section.title;
+        sectionAnswers[`${key}_completeness`] = section.completeness;
+      });
+      sectionAnswers.overallProgress = overallProgress;
+      sectionAnswers.businessType = pitchState.businessModel.type;
+      sectionAnswers.businessName = pitchState.businessModel.name;
 
       const parts = buildPracticeSubmissionParts(sectionAnswers).map((part) => ({
         ...part,
         isCorrect: overallProgress >= 80,
         score: overallProgress >= 80 ? 1 : 0,
         maxScore: 1,
-      }))
+      }));
 
       const envelope = buildPracticeSubmissionEnvelope({
-        activityId: activity?.id ?? 'pitch-presentation-builder',
-        mode: 'guided_practice',
-        status: 'submitted',
+        activityId: activity?.id ?? "pitch-presentation-builder",
+        mode: "guided_practice",
+        status: "submitted",
         attemptNumber: 1,
         submittedAt: new Date(),
         answers: sectionAnswers,
         parts,
         artifact: {
-          kind: 'pitch_presentation',
+          kind: "pitch_presentation",
           title: title,
           businessModel: pitchState.businessModel,
           sections: pitchState.sections,
@@ -376,25 +408,25 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
           totalSections: sections.length,
           totalPracticeTime: pitchState.totalPracticeTime,
         },
-      })
-      submittedRef.current = true
-      onSubmit(envelope)
-      setSubmitted(true)
+      });
+      submittedRef.current = true;
+      onSubmit(envelope);
+      setSubmitted(true);
     }
-  }, [pitchState, onSubmit, calculateOverallProgress, activity, title])
+  }, [pitchState, onSubmit, calculateOverallProgress, activity, title]);
 
   useEffect(() => {
     return () => {
       if (timerRef.current) {
-        clearInterval(timerRef.current)
+        clearInterval(timerRef.current);
       }
-    }
-  }, [])
+    };
+  }, []);
 
-  const overallProgress = calculateOverallProgress()
-  const totalTargetTime = getTotalTargetTime()
-  const currentSection = pitchState.sections[pitchState.currentSection]
-  const sectionInfo = sectionDefinitions[pitchState.currentSection]
+  const overallProgress = calculateOverallProgress();
+  const totalTargetTime = getTotalTargetTime();
+  const currentSection = pitchState.sections[pitchState.currentSection];
+  const sectionInfo = sectionDefinitions[pitchState.currentSection];
 
   return (
     <div className="max-w-6xl mx-auto space-y-6">
@@ -405,9 +437,7 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
             <Presentation className="w-8 h-8 text-indigo-600" />
             {title}
           </CardTitle>
-          <CardDescription className="text-lg">
-            {description}
-          </CardDescription>
+          <CardDescription className="text-lg">{description}</CardDescription>
           <div className="mt-4">
             <Button
               variant="outline"
@@ -417,7 +447,11 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
             >
               <HelpCircle className="w-4 h-4" />
               How to Build Your Pitch
-              {showInstructions ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              {showInstructions ? (
+                <ChevronUp className="w-4 h-4" />
+              ) : (
+                <ChevronDown className="w-4 h-4" />
+              )}
             </Button>
           </div>
         </CardHeader>
@@ -437,14 +471,17 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
             <div>
               <h4 className="font-semibold text-indigo-800 mb-2">🎯 Objective</h4>
               <p className="text-indigo-700">
-                Create a professional 4-minute investor pitch that tells your startup&apos;s story compellingly,
-                demonstrates market opportunity, and makes a clear funding request to potential investors.
+                Create a professional 4-minute investor pitch that tells your startup&apos;s story
+                compellingly, demonstrates market opportunity, and makes a clear funding request to
+                potential investors.
               </p>
             </div>
 
             {/* Pitch Structure */}
             <div>
-              <h4 className="font-semibold text-indigo-800 mb-3">📋 Pitch Structure (4 minutes total)</h4>
+              <h4 className="font-semibold text-indigo-800 mb-3">
+                📋 Pitch Structure (4 minutes total)
+              </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {Object.entries(sectionDefinitions).map(([key, section]) => (
                   <div key={key} className="p-3 bg-white rounded-lg border">
@@ -516,9 +553,7 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
             </div>
             <p className="text-sm text-blue-700 font-medium">Target Time</p>
             <p className="text-2xl font-bold text-blue-800">{formatTime(totalTargetTime)}</p>
-            <p className="text-xs text-blue-600">
-              4-minute pitch goal
-            </p>
+            <p className="text-xs text-blue-600">4-minute pitch goal</p>
           </CardContent>
         </Card>
 
@@ -528,10 +563,10 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
               <Timer className="w-6 h-6 text-purple-600" />
             </div>
             <p className="text-sm text-purple-700 font-medium">Practice Time</p>
-            <p className="text-2xl font-bold text-purple-800">{formatTime(pitchState.currentTime)}</p>
-            <p className="text-xs text-purple-600">
-              Current session
+            <p className="text-2xl font-bold text-purple-800">
+              {formatTime(pitchState.currentTime)}
             </p>
+            <p className="text-xs text-purple-600">Current session</p>
           </CardContent>
         </Card>
 
@@ -541,10 +576,10 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
               <TrendingUp className="w-6 h-6 text-amber-600" />
             </div>
             <p className="text-sm text-amber-700 font-medium">Business Type</p>
-            <p className="text-lg font-bold text-amber-800">{BUSINESS_TYPES[pitchState.businessModel.type].name}</p>
-            <p className="text-xs text-amber-600">
-              Selected model
+            <p className="text-lg font-bold text-amber-800">
+              {BUSINESS_TYPES[pitchState.businessModel.type].name}
             </p>
+            <p className="text-xs text-amber-600">Selected model</p>
           </CardContent>
         </Card>
       </div>
@@ -554,24 +589,24 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
         <CardContent className="p-6">
           <div className="flex items-center justify-center gap-4">
             <Button
-              variant={pitchState.presentationMode === 'build' ? 'default' : 'outline'}
-              onClick={() => setPitchState(prev => ({ ...prev, presentationMode: 'build' }))}
+              variant={pitchState.presentationMode === "build" ? "default" : "outline"}
+              onClick={() => setPitchState((prev) => ({ ...prev, presentationMode: "build" }))}
               className="flex items-center gap-2"
             >
               <Building className="w-4 h-4" />
               Build Content
             </Button>
             <Button
-              variant={pitchState.presentationMode === 'practice' ? 'default' : 'outline'}
-              onClick={() => setPitchState(prev => ({ ...prev, presentationMode: 'practice' }))}
+              variant={pitchState.presentationMode === "practice" ? "default" : "outline"}
+              onClick={() => setPitchState((prev) => ({ ...prev, presentationMode: "practice" }))}
               className="flex items-center gap-2"
             >
               <Mic className="w-4 h-4" />
               Practice Mode
             </Button>
             <Button
-              variant={pitchState.presentationMode === 'review' ? 'default' : 'outline'}
-              onClick={() => setPitchState(prev => ({ ...prev, presentationMode: 'review' }))}
+              variant={pitchState.presentationMode === "review" ? "default" : "outline"}
+              onClick={() => setPitchState((prev) => ({ ...prev, presentationMode: "review" }))}
               className="flex items-center gap-2"
             >
               <Eye className="w-4 h-4" />
@@ -582,7 +617,7 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
       </Card>
 
       {/* Build Mode */}
-      {pitchState.presentationMode === 'build' && (
+      {pitchState.presentationMode === "build" && (
         <>
           {/* Business Model Setup */}
           <Card className="border-2 border-blue-200 bg-blue-50">
@@ -600,13 +635,20 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
                     id="business-type"
                     className="w-full p-2 border border-input bg-background rounded-md"
                     value={pitchState.businessModel.type}
-                    onChange={(e) => setPitchState(prev => ({
-                      ...prev,
-                      businessModel: { ...prev.businessModel, type: e.target.value as BusinessType }
-                    }))}
+                    onChange={(e) =>
+                      setPitchState((prev) => ({
+                        ...prev,
+                        businessModel: {
+                          ...prev.businessModel,
+                          type: e.target.value as BusinessType,
+                        },
+                      }))
+                    }
                   >
                     {Object.entries(BUSINESS_TYPES).map(([key, type]) => (
-                      <option key={key} value={key}>{type.name} - {type.description}</option>
+                      <option key={key} value={key}>
+                        {type.name} - {type.description}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -616,10 +658,12 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
                     id="business-name"
                     placeholder="Enter your startup name"
                     value={pitchState.businessModel.name}
-                    onChange={(e) => setPitchState(prev => ({
-                      ...prev,
-                      businessModel: { ...prev.businessModel, name: e.target.value }
-                    }))}
+                    onChange={(e) =>
+                      setPitchState((prev) => ({
+                        ...prev,
+                        businessModel: { ...prev.businessModel, name: e.target.value },
+                      }))
+                    }
                   />
                 </div>
               </div>
@@ -633,9 +677,11 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
                 {Object.entries(sectionDefinitions).map(([key, section]) => (
                   <Button
                     key={key}
-                    variant={pitchState.currentSection === key ? 'default' : 'outline'}
+                    variant={pitchState.currentSection === key ? "default" : "outline"}
                     size="sm"
-                    onClick={() => setPitchState(prev => ({ ...prev, currentSection: key as PitchSection }))}
+                    onClick={() =>
+                      setPitchState((prev) => ({ ...prev, currentSection: key as PitchSection }))
+                    }
                     className="flex flex-col items-center gap-1 h-auto py-3"
                   >
                     {ICON_MAP[section.icon] || <AlertCircle className="w-5 h-5" />}
@@ -656,9 +702,7 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
                 <div className="flex items-center gap-2">
                   {ICON_MAP[sectionInfo.icon] || <AlertCircle className="w-5 h-5" />}
                   <CardTitle className="text-xl">{sectionInfo.name}</CardTitle>
-                  <Badge variant="outline">
-                    Target: {formatTime(sectionInfo.timeTarget)}
-                  </Badge>
+                  <Badge variant="outline">Target: {formatTime(sectionInfo.timeTarget)}</Badge>
                 </div>
                 <div className="flex items-center gap-2">
                   <Progress value={currentSection.completeness} className="w-20" />
@@ -686,7 +730,9 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
                     id="section-title"
                     placeholder={`Enter ${sectionInfo.name.toLowerCase()} title`}
                     value={currentSection.title}
-                    onChange={(e) => updateSectionContent(pitchState.currentSection, 'title', e.target.value)}
+                    onChange={(e) =>
+                      updateSectionContent(pitchState.currentSection, "title", e.target.value)
+                    }
                   />
                 </div>
 
@@ -697,7 +743,9 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
                     className="w-full min-h-[120px] p-3 border border-input bg-background text-sm rounded-md resize-vertical"
                     placeholder={`Describe your ${sectionInfo.name.toLowerCase()} in detail...`}
                     value={currentSection.content}
-                    onChange={(e) => updateSectionContent(pitchState.currentSection, 'content', e.target.value)}
+                    onChange={(e) =>
+                      updateSectionContent(pitchState.currentSection, "content", e.target.value)
+                    }
                   />
                 </div>
 
@@ -708,7 +756,13 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
                     className="w-full min-h-[80px] p-3 border border-input bg-background text-sm rounded-md resize-vertical"
                     placeholder="Add notes to help you present this section..."
                     value={currentSection.speakingNotes}
-                    onChange={(e) => updateSectionContent(pitchState.currentSection, 'speakingNotes', e.target.value)}
+                    onChange={(e) =>
+                      updateSectionContent(
+                        pitchState.currentSection,
+                        "speakingNotes",
+                        e.target.value,
+                      )
+                    }
                   />
                 </div>
               </div>
@@ -718,7 +772,7 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
       )}
 
       {/* Practice Mode */}
-      {pitchState.presentationMode === 'practice' && (
+      {pitchState.presentationMode === "practice" && (
         <Card className="border-2 border-green-200 bg-green-50">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl text-green-800 flex items-center justify-center gap-2">
@@ -732,16 +786,22 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
           <CardContent className="space-y-6">
             {/* Timer Controls */}
             <div className="text-center space-y-4">
-              <div className={`text-6xl font-mono font-bold ${
-                pitchState.currentTime > 240 ? 'text-red-600' : 'text-green-800'
-              }`}>
+              <div
+                className={`text-6xl font-mono font-bold ${
+                  pitchState.currentTime > 240 ? "text-red-600" : "text-green-800"
+                }`}
+              >
                 {formatTime(pitchState.currentTime)}
               </div>
               <div className="flex items-center justify-center gap-4">
                 <Button
                   onClick={pitchState.isTimerRunning ? pauseTimer : startTimer}
                   size="lg"
-                  className={pitchState.isTimerRunning ? 'bg-yellow-600 hover:bg-yellow-700' : 'bg-green-600 hover:bg-green-700'}
+                  className={
+                    pitchState.isTimerRunning
+                      ? "bg-yellow-600 hover:bg-yellow-700"
+                      : "bg-green-600 hover:bg-green-700"
+                  }
                 >
                   {pitchState.isTimerRunning ? (
                     <>
@@ -768,17 +828,23 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
               {Object.entries(sectionDefinitions).map(([key, section], index) => {
                 const startTime = Object.entries(sectionDefinitions)
                   .slice(0, index)
-                  .reduce((sum, [, s]) => sum + s.timeTarget, 0)
-                const endTime = startTime + section.timeTarget
-                const isActive = pitchState.currentTime >= startTime && pitchState.currentTime < endTime
-                const isCompleted = pitchState.currentTime >= endTime
+                  .reduce((sum, [, s]) => sum + s.timeTarget, 0);
+                const endTime = startTime + section.timeTarget;
+                const isActive =
+                  pitchState.currentTime >= startTime && pitchState.currentTime < endTime;
+                const isCompleted = pitchState.currentTime >= endTime;
 
                 return (
-                  <div key={key} className={`p-3 rounded-lg border ${
-                    isActive ? 'bg-green-100 border-green-300' :
-                    isCompleted ? 'bg-gray-100 border-gray-300' :
-                    'bg-white border-gray-200'
-                  }`}>
+                  <div
+                    key={key}
+                    className={`p-3 rounded-lg border ${
+                      isActive
+                        ? "bg-green-100 border-green-300"
+                        : isCompleted
+                          ? "bg-gray-100 border-gray-300"
+                          : "bg-white border-gray-200"
+                    }`}
+                  >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         {ICON_MAP[section.icon] || <AlertCircle className="w-5 h-5" />}
@@ -791,7 +857,7 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
                       </span>
                     </div>
                   </div>
-                )
+                );
               })}
             </div>
           </CardContent>
@@ -799,7 +865,7 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
       )}
 
       {/* Review & Export Mode */}
-      {pitchState.presentationMode === 'review' && (
+      {pitchState.presentationMode === "review" && (
         <div className="space-y-6">
           {/* Pitch Summary */}
           <Card>
@@ -814,9 +880,15 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
                 <div>
                   <h4 className="font-semibold mb-3">Business Overview</h4>
                   <div className="space-y-2 text-sm">
-                    <p><strong>Name:</strong> {pitchState.businessModel.name || 'Not specified'}</p>
-                    <p><strong>Type:</strong> {BUSINESS_TYPES[pitchState.businessModel.type].name}</p>
-                    <p><strong>Completion:</strong> {overallProgress}%</p>
+                    <p>
+                      <strong>Name:</strong> {pitchState.businessModel.name || "Not specified"}
+                    </p>
+                    <p>
+                      <strong>Type:</strong> {BUSINESS_TYPES[pitchState.businessModel.type].name}
+                    </p>
+                    <p>
+                      <strong>Completion:</strong> {overallProgress}%
+                    </p>
                   </div>
                 </div>
                 <div>
@@ -839,21 +911,30 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
 
           {/* Export Options */}
           <div className="flex justify-center gap-4">
-            <Button onClick={exportPitchDeck} size="lg" className="bg-indigo-600 hover:bg-indigo-700">
+            <Button
+              onClick={exportPitchDeck}
+              size="lg"
+              className="bg-indigo-600 hover:bg-indigo-700"
+            >
               <Download className="w-5 h-5 mr-2" />
               Export Pitch Deck
             </Button>
             {onSubmit && (
-              <Button onClick={handleSubmit} size="lg" className="bg-green-600 hover:bg-green-700" disabled={submitted}>
+              <Button
+                onClick={handleSubmit}
+                size="lg"
+                className="bg-green-600 hover:bg-green-700"
+                disabled={submitted}
+              >
                 <CheckCircle className="w-5 h-5 mr-2" />
-                {submitted ? 'Results Submitted' : 'Submit Results'}
+                {submitted ? "Results Submitted" : "Submit Results"}
               </Button>
             )}
           </div>
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default PitchPresentationBuilder
+export default PitchPresentationBuilder;

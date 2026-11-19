@@ -46,13 +46,13 @@
 // missing implementation rather than have TS compile errors mask the real
 // signal. Green phase removes the casts when the real function is added.
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 import {
   practiceSubmissionEnvelopeSchema,
   type PracticeSubmissionEnvelope,
   type PracticeSubmissionPart,
-} from '@math-platform/practice-core/contract';
-import { toConvexActivityId } from '@math-platform/practice-core';
+} from "@math-platform/practice-core/contract";
+import { toConvexActivityId } from "@math-platform/practice-core";
 
 // ---------------------------------------------------------------------------
 // Planned public surface (does not exist at HEAD).
@@ -91,17 +91,17 @@ import {
   type RunRealT6LoopInput,
   type RunRealT6LoopOutput,
   type StudentMisconceptionLoopState,
-} from '../misconception-loop';
+} from "../misconception-loop";
 
 // ---------------------------------------------------------------------------
 // Fixture helpers
 // ---------------------------------------------------------------------------
 
-const DEFAULT_ACTIVITY_ID = 'math.im3.example.1.1.001';
+const DEFAULT_ACTIVITY_ID = "math.im3.example.1.1.001";
 const RESOLUTION_THRESHOLD = 3;
 
-const KNOWN_SLUG = 'sign-error-in-factored-form';
-const KNOWN_SLUG_2 = 'quadratic-formula-sign-flip';
+const KNOWN_SLUG = "sign-error-in-factored-form";
+const KNOWN_SLUG_2 = "quadratic-formula-sign-flip";
 
 interface AlgebraicPartSpec {
   partId: string;
@@ -114,21 +114,21 @@ function makeAlgebraicSubmission(
 ): PracticeSubmissionEnvelope {
   const parts: PracticeSubmissionPart[] = partsSpec.map((spec) => ({
     partId: spec.partId,
-    rawAnswer: spec.isCorrect ? 'correct' : 'incorrect',
+    rawAnswer: spec.isCorrect ? "correct" : "incorrect",
     isCorrect: spec.isCorrect,
     misconceptionTags: spec.misconceptionTags ? [...spec.misconceptionTags] : [],
     hintsUsed: 0,
     revealStepsSeen: 0,
   }));
   return practiceSubmissionEnvelopeSchema.parse({
-    contractVersion: 'practice.v1',
+    contractVersion: "practice.v1",
     activityId: toConvexActivityId(DEFAULT_ACTIVITY_ID),
-    mode: 'independent_practice',
-    status: 'submitted',
+    mode: "independent_practice",
+    status: "submitted",
     attemptNumber: 1,
-    submittedAt: '2026-06-15T12:00:00.000Z',
+    submittedAt: "2026-06-15T12:00:00.000Z",
     answers: Object.fromEntries(
-      partsSpec.map((s) => [s.partId, s.isCorrect ? 'correct' : 'incorrect']),
+      partsSpec.map((s) => [s.partId, s.isCorrect ? "correct" : "incorrect"]),
     ),
     parts,
   });
@@ -152,9 +152,9 @@ function makeInput(
 //    package level keeps the contract pinned.
 // ---------------------------------------------------------------------------
 
-describe('runRealT6Loop — export surface (test-strategy §4 + §6)', () => {
-  it('is exported as a function from packages/knowledge-space-practice/misconception-loop', () => {
-    expect(typeof runRealT6Loop).toBe('function');
+describe("runRealT6Loop — export surface (test-strategy §4 + §6)", () => {
+  it("is exported as a function from packages/knowledge-space-practice/misconception-loop", () => {
+    expect(typeof runRealT6Loop).toBe("function");
   });
 });
 
@@ -162,28 +162,28 @@ describe('runRealT6Loop — export surface (test-strategy §4 + §6)', () => {
 // 2. Detection step — collects tags from submission, deduped.
 // ---------------------------------------------------------------------------
 
-describe('runRealT6Loop — detection step (spec FR3)', () => {
-  it('returns an empty `detected` list for a clean submission with no tags', () => {
-    const submission = makeAlgebraicSubmission([{ partId: 'p1', isCorrect: true }]);
+describe("runRealT6Loop — detection step (spec FR3)", () => {
+  it("returns an empty `detected` list for a clean submission with no tags", () => {
+    const submission = makeAlgebraicSubmission([{ partId: "p1", isCorrect: true }]);
     const result: RunRealT6LoopOutput = runRealT6Loop(makeInput(submission));
     expect(result.detected).toEqual([]);
   });
 
-  it('collects every distinct tag from parts[*].misconceptionTags, deduped', () => {
+  it("collects every distinct tag from parts[*].misconceptionTags, deduped", () => {
     const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
-      { partId: 'p2', isCorrect: false, misconceptionTags: [KNOWN_SLUG, KNOWN_SLUG_2] },
+      { partId: "p1", isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
+      { partId: "p2", isCorrect: false, misconceptionTags: [KNOWN_SLUG, KNOWN_SLUG_2] },
     ]);
     const result = runRealT6Loop(makeInput(submission));
     expect(new Set(result.detected)).toEqual(new Set([KNOWN_SLUG, KNOWN_SLUG_2]));
     expect(result.detected.length).toBe(2);
   });
 
-  it('preserves the order of first appearance in `detected`', () => {
+  it("preserves the order of first appearance in `detected`", () => {
     const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: false, misconceptionTags: [KNOWN_SLUG_2] },
-      { partId: 'p2', isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
-      { partId: 'p3', isCorrect: false, misconceptionTags: [KNOWN_SLUG_2] },
+      { partId: "p1", isCorrect: false, misconceptionTags: [KNOWN_SLUG_2] },
+      { partId: "p2", isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
+      { partId: "p3", isCorrect: false, misconceptionTags: [KNOWN_SLUG_2] },
     ]);
     const result = runRealT6Loop(makeInput(submission));
     // The first appearance order — KNOWN_SLUG_2 first, then KNOWN_SLUG.
@@ -198,19 +198,19 @@ describe('runRealT6Loop — detection step (spec FR3)', () => {
 // 3. Active-lifecycle transition (newly detected → active).
 // ---------------------------------------------------------------------------
 
-describe('runRealT6Loop — active transition (spec FR3, test-strategy §3)', () => {
-  it('moves a newly detected slug from inactive to active in updatedState', () => {
+describe("runRealT6Loop — active transition (spec FR3, test-strategy §3)", () => {
+  it("moves a newly detected slug from inactive to active in updatedState", () => {
     const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
+      { partId: "p1", isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
     ]);
     const result = runRealT6Loop(makeInput(submission));
     expect(result.active).toContain(KNOWN_SLUG);
     expect(result.updatedState.active).toContain(KNOWN_SLUG);
   });
 
-  it('preserves a pre-existing active slug that is not detected in this submission', () => {
+  it("preserves a pre-existing active slug that is not detected in this submission", () => {
     const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
+      { partId: "p1", isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
     ]);
     const prior: StudentMisconceptionLoopState = {
       active: [KNOWN_SLUG_2],
@@ -218,18 +218,16 @@ describe('runRealT6Loop — active transition (spec FR3, test-strategy §3)', ()
     };
     const result = runRealT6Loop(makeInput(submission, prior));
     expect(new Set(result.active)).toEqual(new Set([KNOWN_SLUG, KNOWN_SLUG_2]));
-    expect(new Set(result.updatedState.active)).toEqual(
-      new Set([KNOWN_SLUG, KNOWN_SLUG_2]),
-    );
+    expect(new Set(result.updatedState.active)).toEqual(new Set([KNOWN_SLUG, KNOWN_SLUG_2]));
   });
 
-  it('resets a re-detected active slug\'s clean streak to 0 (a wrong-answer refreshes the flag)', () => {
+  it("resets a re-detected active slug's clean streak to 0 (a wrong-answer refreshes the flag)", () => {
     const prior: StudentMisconceptionLoopState = {
       active: [KNOWN_SLUG],
       cleanStreaks: { [KNOWN_SLUG]: 2 },
     };
     const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
+      { partId: "p1", isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
     ]);
     const result = runRealT6Loop(makeInput(submission, prior));
     expect(result.resolved).not.toContain(KNOWN_SLUG);
@@ -248,39 +246,37 @@ describe('runRealT6Loop — active transition (spec FR3, test-strategy §3)', ()
 // because the slug is the row key in `student_misconception_state`.
 // ---------------------------------------------------------------------------
 
-describe('runRealT6Loop — resolution after N clean attempts (kst-srs.v2 §9.3, test-strategy §3)', () => {
-  it('does NOT resolve on the first clean attempt after a wrong-answer', () => {
+describe("runRealT6Loop — resolution after N clean attempts (kst-srs.v2 §9.3, test-strategy §3)", () => {
+  it("does NOT resolve on the first clean attempt after a wrong-answer", () => {
     const prior: StudentMisconceptionLoopState = {
       active: [KNOWN_SLUG],
       cleanStreaks: { [KNOWN_SLUG]: 0 },
     };
-    const submission = makeAlgebraicSubmission([{ partId: 'p1', isCorrect: true }]);
+    const submission = makeAlgebraicSubmission([{ partId: "p1", isCorrect: true }]);
     const result = runRealT6Loop(makeInput(submission, prior));
     expect(result.resolved).toEqual([]);
     expect(result.active).toContain(KNOWN_SLUG);
     expect(result.updatedState.cleanStreaks[KNOWN_SLUG]).toBe(1);
   });
 
-  it('does NOT resolve one short of the threshold (N-1 clean attempts)', () => {
+  it("does NOT resolve one short of the threshold (N-1 clean attempts)", () => {
     const prior: StudentMisconceptionLoopState = {
       active: [KNOWN_SLUG],
       cleanStreaks: { [KNOWN_SLUG]: RESOLUTION_THRESHOLD - 2 },
     };
-    const submission = makeAlgebraicSubmission([{ partId: 'p1', isCorrect: true }]);
+    const submission = makeAlgebraicSubmission([{ partId: "p1", isCorrect: true }]);
     const result = runRealT6Loop(makeInput(submission, prior));
     expect(result.resolved).toEqual([]);
     expect(result.active).toContain(KNOWN_SLUG);
-    expect(result.updatedState.cleanStreaks[KNOWN_SLUG]).toBe(
-      RESOLUTION_THRESHOLD - 1,
-    );
+    expect(result.updatedState.cleanStreaks[KNOWN_SLUG]).toBe(RESOLUTION_THRESHOLD - 1);
   });
 
-  it('resolves the slug when the clean streak reaches the threshold', () => {
+  it("resolves the slug when the clean streak reaches the threshold", () => {
     const prior: StudentMisconceptionLoopState = {
       active: [KNOWN_SLUG],
       cleanStreaks: { [KNOWN_SLUG]: RESOLUTION_THRESHOLD - 1 },
     };
-    const submission = makeAlgebraicSubmission([{ partId: 'p1', isCorrect: true }]);
+    const submission = makeAlgebraicSubmission([{ partId: "p1", isCorrect: true }]);
     const result = runRealT6Loop(makeInput(submission, prior));
     expect(result.resolved).toContain(KNOWN_SLUG);
     expect(result.active).not.toContain(KNOWN_SLUG);
@@ -288,7 +284,7 @@ describe('runRealT6Loop — resolution after N clean attempts (kst-srs.v2 §9.3,
     expect(result.updatedState.cleanStreaks[KNOWN_SLUG]).toBe(0);
   });
 
-  it('resolves each active slug independently based on its own clean streak (multi-skill / multi-slug)', () => {
+  it("resolves each active slug independently based on its own clean streak (multi-skill / multi-slug)", () => {
     const prior: StudentMisconceptionLoopState = {
       active: [KNOWN_SLUG, KNOWN_SLUG_2],
       cleanStreaks: {
@@ -296,13 +292,13 @@ describe('runRealT6Loop — resolution after N clean attempts (kst-srs.v2 §9.3,
         [KNOWN_SLUG_2]: 0,
       },
     };
-    const submission = makeAlgebraicSubmission([{ partId: 'p1', isCorrect: true }]);
+    const submission = makeAlgebraicSubmission([{ partId: "p1", isCorrect: true }]);
     const result = runRealT6Loop(makeInput(submission, prior));
     expect(result.resolved).toEqual([KNOWN_SLUG]);
     expect(result.active).toEqual([KNOWN_SLUG_2]);
   });
 
-  it('resolution flicker: clean → mistake → N cleans must still resolve (test-strategy §3)', () => {
+  it("resolution flicker: clean → mistake → N cleans must still resolve (test-strategy §3)", () => {
     // Sequence:
     //   1. Detection submission:  streak = 0
     //   2. Clean submission:      streak = 1 (active, not resolved)
@@ -312,11 +308,9 @@ describe('runRealT6Loop — resolution after N clean attempts (kst-srs.v2 §9.3,
     //   6. Clean submission:      streak = 3 → resolved
     const initial: StudentMisconceptionLoopState = emptyState();
     const wrongSubmission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
+      { partId: "p1", isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
     ]);
-    const cleanSubmission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: true },
-    ]);
+    const cleanSubmission = makeAlgebraicSubmission([{ partId: "p1", isCorrect: true }]);
 
     const step1 = runRealT6Loop(makeInput(wrongSubmission, initial));
     expect(step1.updatedState.cleanStreaks[KNOWN_SLUG]).toBe(0);
@@ -350,26 +344,26 @@ describe('runRealT6Loop — resolution after N clean attempts (kst-srs.v2 §9.3,
 // 5. Purity — the function is a pure transition over state.
 // ---------------------------------------------------------------------------
 
-describe('runRealT6Loop — purity (test-strategy §3)', () => {
-  it('does not mutate the input state', () => {
+describe("runRealT6Loop — purity (test-strategy §3)", () => {
+  it("does not mutate the input state", () => {
     const prior: StudentMisconceptionLoopState = {
       active: [KNOWN_SLUG_2],
       cleanStreaks: { [KNOWN_SLUG_2]: 1 },
     };
     const snapshot = JSON.stringify(prior);
     const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
+      { partId: "p1", isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
     ]);
     runRealT6Loop(makeInput(submission, prior));
     expect(JSON.stringify(prior)).toBe(snapshot);
   });
 
-  it('is referentially transparent — same input yields the same output', () => {
+  it("is referentially transparent — same input yields the same output", () => {
     const prior: StudentMisconceptionLoopState = {
       active: [KNOWN_SLUG],
       cleanStreaks: { [KNOWN_SLUG]: RESOLUTION_THRESHOLD - 1 },
     };
-    const submission = makeAlgebraicSubmission([{ partId: 'p1', isCorrect: true }]);
+    const submission = makeAlgebraicSubmission([{ partId: "p1", isCorrect: true }]);
     const a = runRealT6Loop(makeInput(submission, prior));
     const b = runRealT6Loop(makeInput(submission, prior));
     expect(a).toEqual(b);
@@ -388,9 +382,9 @@ describe('runRealT6Loop — purity (test-strategy §3)', () => {
 // both gracefully.
 // ---------------------------------------------------------------------------
 
-describe('runRealT6Loop — stale state default (test-strategy §3)', () => {
-  it('handles an empty prior state (no active misconceptions)', () => {
-    const submission = makeAlgebraicSubmission([{ partId: 'p1', isCorrect: true }]);
+describe("runRealT6Loop — stale state default (test-strategy §3)", () => {
+  it("handles an empty prior state (no active misconceptions)", () => {
+    const submission = makeAlgebraicSubmission([{ partId: "p1", isCorrect: true }]);
     const result = runRealT6Loop(makeInput(submission, emptyState()));
     expect(result.active).toEqual([]);
     expect(result.resolved).toEqual([]);
@@ -399,16 +393,16 @@ describe('runRealT6Loop — stale state default (test-strategy §3)', () => {
     expect(result.updatedState.cleanStreaks).toEqual({});
   });
 
-  it('handles a cleanStreaks map with entries for slugs no longer active (slugs that already resolved)', () => {
+  it("handles a cleanStreaks map with entries for slugs no longer active (slugs that already resolved)", () => {
     // The caller is responsible for evicting resolved slugs from
     // cleanStreaks, but the function must not crash if a stale entry
     // remains — it just ignores non-active slugs during the resolve pass.
     const prior: StudentMisconceptionLoopState = {
       active: [],
-      cleanStreaks: { 'some-stale-resolved-slug': 5 },
+      cleanStreaks: { "some-stale-resolved-slug": 5 },
     };
     const submission = makeAlgebraicSubmission([
-      { partId: 'p1', isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
+      { partId: "p1", isCorrect: false, misconceptionTags: [KNOWN_SLUG] },
     ]);
     expect(() => runRealT6Loop(makeInput(submission, prior))).not.toThrow();
     const result = runRealT6Loop(makeInput(submission, prior));
@@ -420,14 +414,14 @@ describe('runRealT6Loop — stale state default (test-strategy §3)', () => {
 // 7. Input validation — resolutionThreshold is a positive integer.
 // ---------------------------------------------------------------------------
 
-describe('runRealT6Loop — input validation', () => {
-  it('throws on a non-positive resolution threshold', () => {
-    const submission = makeAlgebraicSubmission([{ partId: 'p1', isCorrect: true }]);
+describe("runRealT6Loop — input validation", () => {
+  it("throws on a non-positive resolution threshold", () => {
+    const submission = makeAlgebraicSubmission([{ partId: "p1", isCorrect: true }]);
     expect(() => runRealT6Loop(makeInput(submission, emptyState(), 0))).toThrow();
   });
 
-  it('throws on a non-integer resolution threshold', () => {
-    const submission = makeAlgebraicSubmission([{ partId: 'p1', isCorrect: true }]);
+  it("throws on a non-integer resolution threshold", () => {
+    const submission = makeAlgebraicSubmission([{ partId: "p1", isCorrect: true }]);
     expect(() => runRealT6Loop(makeInput(submission, emptyState(), 1.5))).toThrow();
   });
 });

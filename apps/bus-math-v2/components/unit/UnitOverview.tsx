@@ -1,6 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { type UnitObjectives } from '@/types/curriculum';
-import { BarChart3, Target, Wrench } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { type UnitObjectives } from "@/types/curriculum";
+import { BarChart3, Target, Wrench } from "lucide-react";
 
 interface UnitOverviewProps {
   objectives: UnitObjectives;
@@ -8,25 +8,24 @@ interface UnitOverviewProps {
 
 const sections = [
   {
-    title: 'Learning Objectives',
+    title: "Learning Objectives",
     icon: <Target className="h-5 w-5 text-blue-600" />,
-    key: 'content' as const,
-    accent: 'text-blue-600'
+    key: "content" as const,
+    accent: "text-blue-600",
   },
   {
-    title: 'Tools & Skills',
+    title: "Tools & Skills",
     icon: <Wrench className="h-5 w-5 text-orange-600" />,
-    key: 'skills' as const,
-    accent: 'text-orange-600'
+    key: "skills" as const,
+    accent: "text-orange-600",
   },
   {
-    title: 'Final Deliverables',
+    title: "Final Deliverables",
     icon: <BarChart3 className="h-5 w-5 text-green-600" />,
-    key: 'deliverables' as const,
-    accent: 'text-green-600'
-  }
+    key: "deliverables" as const,
+    accent: "text-green-600",
+  },
 ];
-
 
 /**
  * Renders a three-column overview of learning objectives, tools/skills, and deliverables.
@@ -54,7 +53,10 @@ export function UnitOverview({ objectives }: UnitOverviewProps) {
                 {items.length ? (
                   <ul className="space-y-2">
                     {items.map((item, index) => (
-                      <li key={`${section.key}-${index}`} className="text-sm flex items-start gap-2">
+                      <li
+                        key={`${section.key}-${index}`}
+                        className="text-sm flex items-start gap-2"
+                      >
                         <span className={`${section.accent} mt-1`}>•</span>
                         <span>{item}</span>
                       </li>

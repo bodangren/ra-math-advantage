@@ -1,10 +1,6 @@
 import { NextResponse } from "next/server";
 import { requireStudentRequestClaims } from "@/lib/auth/server";
-import {
-  fetchInternalMutation,
-  fetchInternalQuery,
-  internal,
-} from "@/lib/convex/server";
+import { fetchInternalMutation, fetchInternalQuery, internal } from "@/lib/convex/server";
 import type { Id } from "@/convex/_generated/dataModel";
 
 const headers = { "Cache-Control": "private, no-store" };
@@ -15,11 +11,7 @@ function args(request: Request): {
   const params = new URL(request.url).searchParams;
   const activityId = params.get("activityId")?.trim();
   const mode = params.get("mode")?.trim();
-  if (
-    !activityId ||
-    (mode !== "guided_practice" && mode !== "independent_practice")
-  )
-    return null;
+  if (!activityId || (mode !== "guided_practice" && mode !== "independent_practice")) return null;
   return { activityId: activityId as Id<"activities">, mode };
 }
 function record(value: unknown): value is Record<string, unknown> {
@@ -29,12 +21,8 @@ function exactKeys(value: Record<string, unknown>, keys: readonly string[]) {
   return Object.keys(value).sort().join("|") === [...keys].sort().join("|");
 }
 const answer = (value: unknown) =>
-  typeof value === "string" ||
-  (typeof value === "number" && Number.isFinite(value));
-function validProps(
-  value: unknown,
-  mode: "guided_practice" | "independent_practice",
-): boolean {
+  typeof value === "string" || (typeof value === "number" && Number.isFinite(value));
+function validProps(value: unknown, mode: "guided_practice" | "independent_practice"): boolean {
   if (!record(value)) return false;
   const guided = mode === "guided_practice";
   if (
@@ -55,9 +43,7 @@ function validProps(
     !guided ||
     (record(value.fieldHelp) &&
       exactKeys(value.fieldHelp, ["discriminant", "x1", "x2"]) &&
-      Object.values(value.fieldHelp).every(
-        (text) => typeof text === "string" && text.length > 0,
-      ))
+      Object.values(value.fieldHelp).every((text) => typeof text === "string" && text.length > 0))
   );
 }
 function validResult(
@@ -66,8 +52,7 @@ function validResult(
   start: boolean,
 ): boolean {
   if (!record(value) || typeof value.state !== "string") return false;
-  if (value.state === "no_attempt")
-    return !start && exactKeys(value, ["state"]);
+  if (value.state === "no_attempt") return !start && exactKeys(value, ["state"]);
   if (value.state === "exhausted") return start && exactKeys(value, ["state"]);
   const common =
     value.state === "pending"
@@ -125,20 +110,13 @@ function validResult(
     !Object.values(value.answers).every(answer) ||
     !Array.isArray(value.parts) ||
     value.parts.length !== 3 ||
-    new Set(value.parts.map((part) => (record(part) ? part.partId : null)))
-      .size !== 3
+    new Set(value.parts.map((part) => (record(part) ? part.partId : null))).size !== 3
   )
     return false;
   return value.parts.every(
     (part) =>
       record(part) &&
-      exactKeys(part, [
-        "partId",
-        "rawAnswer",
-        "isCorrect",
-        "score",
-        "maxScore",
-      ]) &&
+      exactKeys(part, ["partId", "rawAnswer", "isCorrect", "score", "maxScore"]) &&
       ["discriminant", "x1", "x2"].includes(String(part.partId)) &&
       answer(part.rawAnswer) &&
       typeof part.isCorrect === "boolean" &&
@@ -156,23 +134,13 @@ async function respond(request: Request, start: boolean) {
   if (claims instanceof Response) return claims;
   const parsed = args(request);
   if (!parsed)
-    return NextResponse.json(
-      { error: "Invalid attempt request" },
-      { status: 400, headers },
-    );
+    return NextResponse.json({ error: "Invalid attempt request" }, { status: 400, headers });
   try {
     const input = { userId: claims.sub as Id<"profiles">, ...parsed };
     const result: unknown = start
-      ? await fetchInternalMutation(
-          internal.activities.startQuadraticFormulaAttempt,
-          input,
-        )
-      : await fetchInternalQuery(
-          internal.activities.getQuadraticFormulaAttempt,
-          input,
-        );
-    if (!validResult(result, parsed, start))
-      throw new Error("Invalid attempt response");
+      ? await fetchInternalMutation(internal.activities.startQuadraticFormulaAttempt, input)
+      : await fetchInternalQuery(internal.activities.getQuadraticFormulaAttempt, input);
+    if (!validResult(result, parsed, start)) throw new Error("Invalid attempt response");
     return NextResponse.json(result, { headers });
   } catch {
     return NextResponse.json(

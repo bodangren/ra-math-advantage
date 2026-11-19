@@ -20,14 +20,14 @@
  * Red command (per test-strategy §7):
  *   npx vitest run apps/integrated-math-3/__tests__/scale/regression-proof.test.ts
  */
-import { spawnSync } from 'node:child_process';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { describe, it, expect } from 'vitest';
+import { spawnSync } from "node:child_process";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import { describe, it, expect } from "vitest";
 
 const TEST_DIR = dirname(fileURLToPath(import.meta.url));
-const APP_ROOT = resolve(TEST_DIR, '../..');
-const RUN_SCRIPT = resolve(APP_ROOT, 'scripts/scale/run.mjs');
+const APP_ROOT = resolve(TEST_DIR, "../..");
+const RUN_SCRIPT = resolve(APP_ROOT, "scripts/scale/run.mjs");
 
 interface SpawnResultLite {
   status: number | null;
@@ -38,25 +38,25 @@ interface SpawnResultLite {
 function runRunner(args: string[], env: NodeJS.ProcessEnv = process.env): SpawnResultLite {
   const result = spawnSync(process.execPath, [RUN_SCRIPT, ...args], {
     cwd: APP_ROOT,
-    env: { ...env, IM3_SCALE_URL: '' },
-    encoding: 'utf8',
+    env: { ...env, IM3_SCALE_URL: "" },
+    encoding: "utf8",
     timeout: 30_000,
   });
   return {
     status: result.status,
-    stdout: result.stdout ?? '',
-    stderr: result.stderr ?? '',
+    stdout: result.stdout ?? "",
+    stderr: result.stderr ?? "",
   };
 }
 
-describe('scale — Phase 3 Red: regression-proof harness (AC3)', () => {
-  describe('regression injection — fails closed when injected cost exceeds the budget', () => {
-    it('exits 1 when --inject-regression is supplied and the inflated cost exceeds the budget', () => {
+describe("scale — Phase 3 Red: regression-proof harness (AC3)", () => {
+  describe("regression injection — fails closed when injected cost exceeds the budget", () => {
+    it("exits 1 when --inject-regression is supplied and the inflated cost exceeds the budget", () => {
       const result = runRunner([
-        '--paths=daily-practice',
-        '--once',
-        '--inject-regression',
-        '--deployment=https://example.convex.cloud',
+        "--paths=daily-practice",
+        "--once",
+        "--inject-regression",
+        "--deployment=https://example.convex.cloud",
       ]);
 
       expect(result.status).toBe(1);
@@ -64,57 +64,53 @@ describe('scale — Phase 3 Red: regression-proof harness (AC3)', () => {
       expect(combined).toMatch(/regression|budget|exceeded|exceeds/i);
     });
 
-    it('exits 1 even when the only failing metric is bytesRead (proves the per-metric verdict is honored)', () => {
+    it("exits 1 even when the only failing metric is bytesRead (proves the per-metric verdict is honored)", () => {
       const result = runRunner([
-        '--paths=heatmap',
-        '--once',
-        '--inject-regression',
-        '--deployment=https://example.convex.cloud',
+        "--paths=heatmap",
+        "--once",
+        "--inject-regression",
+        "--deployment=https://example.convex.cloud",
       ]);
 
       expect(result.status).toBe(1);
     });
   });
 
-  describe('happy path — exits 0 on a non-regressed evaluation', () => {
-    it('exits 0 when --evaluate is supplied with a baseline and no injected regression', () => {
+  describe("happy path — exits 0 on a non-regressed evaluation", () => {
+    it("exits 0 when --evaluate is supplied with a baseline and no injected regression", () => {
       const result = runRunner([
-        '--paths=daily-practice',
-        '--once',
-        '--evaluate',
-        '--deployment=https://example.convex.cloud',
-        '--baseline=baselines/default.json',
+        "--paths=daily-practice",
+        "--once",
+        "--evaluate",
+        "--deployment=https://example.convex.cloud",
+        "--baseline=baselines/default.json",
       ]);
 
       expect(result.status).toBe(0);
     });
   });
 
-  describe('fail-closed — refuses to evaluate without an isolated deployment', () => {
-    it('exits 1 and surfaces --deployment guidance when IM3_SCALE_URL is unset and --evaluate is requested', () => {
-      const result = runRunner([
-        '--paths=daily-practice',
-        '--once',
-        '--evaluate',
-      ]);
+  describe("fail-closed — refuses to evaluate without an isolated deployment", () => {
+    it("exits 1 and surfaces --deployment guidance when IM3_SCALE_URL is unset and --evaluate is requested", () => {
+      const result = runRunner(["--paths=daily-practice", "--once", "--evaluate"]);
 
       expect(result.status).toBe(1);
       const combined = `${result.stdout}\n${result.stderr}`;
-      expect(combined).toContain('--deployment');
+      expect(combined).toContain("--deployment");
     });
   });
 
-  describe('regression injection — surfaces the failing path in the failure output', () => {
-    it('names the failing path in the failure output (so a human can read the regression report)', () => {
+  describe("regression injection — surfaces the failing path in the failure output", () => {
+    it("names the failing path in the failure output (so a human can read the regression report)", () => {
       const result = runRunner([
-        '--paths=daily-practice',
-        '--once',
-        '--inject-regression',
-        '--deployment=https://example.convex.cloud',
+        "--paths=daily-practice",
+        "--once",
+        "--inject-regression",
+        "--deployment=https://example.convex.cloud",
       ]);
 
       const combined = `${result.stdout}\n${result.stderr}`;
-      expect(combined).toContain('daily-practice');
+      expect(combined).toContain("daily-practice");
     });
   });
 });

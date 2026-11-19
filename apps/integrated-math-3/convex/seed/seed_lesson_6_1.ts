@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -31,7 +31,8 @@ export const seedLesson6_1 = internalMutation({
           unitNumber: 6,
           title: "Logarithms and Logarithmic Functions",
           slug: lessonSlug,
-          description: "Students write logarithmic and exponential forms, and graph logarithmic functions.",
+          description:
+            "Students write logarithmic and exponential forms, and graph logarithmic functions.",
           orderIndex: 1,
           createdAt: now,
           updatedAt: now,
@@ -48,7 +49,8 @@ export const seedLesson6_1 = internalMutation({
           lessonId,
           version: 1,
           title: "Logarithms and Logarithmic Functions",
-          description: "Students write logarithmic and exponential forms, and graph logarithmic functions.",
+          description:
+            "Students write logarithmic and exponential forms, and graph logarithmic functions.",
           status: "published",
           createdAt: now,
         });
@@ -109,7 +111,7 @@ export const seedLesson6_1 = internalMutation({
             sectionType: "text" as const,
             content: {
               markdown:
-                "## Logarithmic Functions\n\nRecall the exponential function $f(x) = 2^x$. You can graph its inverse by interchanging the $x$- and $y$-values.\n\nThe inverse of $y = b^x$ is $x = b^y$. In $x = b^y$, $y$ is called the **logarithm, base $b$, of $x$**. This is written as:\n\n$$y = \\log_b x$$\n\nand is read as \"log base $b$ of $x$.\"\n\n### Key Concept: Logarithms with Base $b$\n\nLet $b$ and $x$ be positive numbers, with $b \\neq 1$.\n\n$$\\log_b x = y \\quad \\text{if and only if} \\quad b^y = x$$\n\nIn the expression $\\log_b x$, $x$ is called the **argument**.",
+                '## Logarithmic Functions\n\nRecall the exponential function $f(x) = 2^x$. You can graph its inverse by interchanging the $x$- and $y$-values.\n\nThe inverse of $y = b^x$ is $x = b^y$. In $x = b^y$, $y$ is called the **logarithm, base $b$, of $x$**. This is written as:\n\n$$y = \\log_b x$$\n\nand is read as "log base $b$ of $x$."\n\n### Key Concept: Logarithms with Base $b$\n\nLet $b$ and $x$ be positive numbers, with $b \\neq 1$.\n\n$$\\log_b x = y \\quad \\text{if and only if} \\quad b^y = x$$\n\nIn the expression $\\log_b x$, $x$ is called the **argument**.',
             },
           },
         ],
@@ -137,8 +139,14 @@ export const seedLesson6_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "\\log_4 64 = 3",
                 steps: [
-                  { expression: "\\log_4 64 = 3", explanation: "Start with the logarithmic equation" },
-                  { expression: "4^3 = 64", explanation: "Rewrite in exponential form: base^log = argument" },
+                  {
+                    expression: "\\log_4 64 = 3",
+                    explanation: "Start with the logarithmic equation",
+                  },
+                  {
+                    expression: "4^3 = 64",
+                    explanation: "Rewrite in exponential form: base^log = argument",
+                  },
                 ],
               },
             },
@@ -168,8 +176,14 @@ export const seedLesson6_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "7^6 = 117649",
                 steps: [
-                  { expression: "7^6 = 117649", explanation: "Start with the exponential equation" },
-                  { expression: "\\log_7 117649 = 6", explanation: "Rewrite in logarithmic form: log_base(result) = exponent" },
+                  {
+                    expression: "7^6 = 117649",
+                    explanation: "Start with the exponential equation",
+                  },
+                  {
+                    expression: "\\log_7 117649 = 6",
+                    explanation: "Rewrite in logarithmic form: log_base(result) = exponent",
+                  },
                 ],
               },
             },
@@ -201,8 +215,14 @@ export const seedLesson6_1 = internalMutation({
                 steps: [
                   { expression: "\\log_{216} 6 = y", explanation: "Let the logarithm equal y" },
                   { expression: "6 = 216^y", explanation: "Rewrite in exponential form" },
-                  { expression: "216 = 6^3", explanation: "Express the base as a power of the result" },
-                  { expression: "6 = (6^3)^y = 6^{3y}", explanation: "Substitute and simplify using power of a power" },
+                  {
+                    expression: "216 = 6^3",
+                    explanation: "Express the base as a power of the result",
+                  },
+                  {
+                    expression: "6 = (6^3)^y = 6^{3y}",
+                    explanation: "Substitute and simplify using power of a power",
+                  },
                   { expression: "1 = 3y", explanation: "Set the exponents equal" },
                   { expression: "y = \\frac{1}{3}", explanation: "Solve for y" },
                 ],
@@ -234,10 +254,22 @@ export const seedLesson6_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "P = 14.7(10^{-9h/100})",
                 steps: [
-                  { expression: "P = 14.7(10^{-9h/100})", explanation: "Start with the given equation with B = 14.7" },
-                  { expression: "\\frac{P}{14.7} = 10^{-9h/100}", explanation: "Divide both sides by 14.7" },
-                  { expression: "\\log_{10}(P/14.7) = -9h/100", explanation: "Rewrite in logarithmic form" },
-                  { expression: "h = -\\frac{100}{9} \\log_{10}(P/14.7)", explanation: "Solve for h by multiplying both sides by -100/9" },
+                  {
+                    expression: "P = 14.7(10^{-9h/100})",
+                    explanation: "Start with the given equation with B = 14.7",
+                  },
+                  {
+                    expression: "\\frac{P}{14.7} = 10^{-9h/100}",
+                    explanation: "Divide both sides by 14.7",
+                  },
+                  {
+                    expression: "\\log_{10}(P/14.7) = -9h/100",
+                    explanation: "Rewrite in logarithmic form",
+                  },
+                  {
+                    expression: "h = -\\frac{100}{9} \\log_{10}(P/14.7)",
+                    explanation: "Solve for h by multiplying both sides by -100/9",
+                  },
                 ],
               },
             },
@@ -284,9 +316,18 @@ export const seedLesson6_1 = internalMutation({
                 equation: "f(x) = \\log_6 x",
                 steps: [
                   { expression: "f(1) = \\log_6 1 = 0", explanation: "Find the x-intercept" },
-                  { expression: "domain: (0, \\infty)", explanation: "Logarithms are defined only for positive arguments" },
-                  { expression: "range: (-\\infty, \\infty)", explanation: "The logarithm can take any real value" },
-                  { expression: "asymptote: x = 0", explanation: "The y-axis is a vertical asymptote" },
+                  {
+                    expression: "domain: (0, \\infty)",
+                    explanation: "Logarithms are defined only for positive arguments",
+                  },
+                  {
+                    expression: "range: (-\\infty, \\infty)",
+                    explanation: "The logarithm can take any real value",
+                  },
+                  {
+                    expression: "asymptote: x = 0",
+                    explanation: "The y-axis is a vertical asymptote",
+                  },
                 ],
               },
             },
@@ -316,11 +357,23 @@ export const seedLesson6_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "g(x) = 2 \\log_{10}(x + 3) - 1",
                 steps: [
-                  { expression: "Parent: f(x) = \\log_{10} x", explanation: "Identify the parent function" },
+                  {
+                    expression: "Parent: f(x) = \\log_{10} x",
+                    explanation: "Identify the parent function",
+                  },
                   { expression: "a = 2: vertical stretch", explanation: "Multiply y-values by 2" },
-                  { expression: "h = -3: shift 3 units left", explanation: "x + 3 indicates a horizontal shift left by 3" },
-                  { expression: "k = -1: shift 1 unit down", explanation: "Subtract 1 shifts the graph down by 1" },
-                  { expression: "Asymptote: x = -3", explanation: "The vertical asymptote shifts left with h" },
+                  {
+                    expression: "h = -3: shift 3 units left",
+                    explanation: "x + 3 indicates a horizontal shift left by 3",
+                  },
+                  {
+                    expression: "k = -1: shift 1 unit down",
+                    explanation: "Subtract 1 shifts the graph down by 1",
+                  },
+                  {
+                    expression: "Asymptote: x = -3",
+                    explanation: "The vertical asymptote shifts left with h",
+                  },
                 ],
               },
             },
@@ -350,10 +403,22 @@ export const seedLesson6_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "g(x) = \\log_{10}(x - 2)",
                 steps: [
-                  { expression: "g(x) = \\log_{10}(x - 2)", explanation: "Start with the transformed function" },
-                  { expression: "h = 2: shift 2 units right", explanation: "x - 2 indicates a horizontal shift right by 2" },
-                  { expression: "Domain: (2, \\infty)", explanation: "The argument must be positive, so x > 2" },
-                  { expression: "Asymptote: x = 2", explanation: "The vertical asymptote shifts right with h" },
+                  {
+                    expression: "g(x) = \\log_{10}(x - 2)",
+                    explanation: "Start with the transformed function",
+                  },
+                  {
+                    expression: "h = 2: shift 2 units right",
+                    explanation: "x - 2 indicates a horizontal shift right by 2",
+                  },
+                  {
+                    expression: "Domain: (2, \\infty)",
+                    explanation: "The argument must be positive, so x > 2",
+                  },
+                  {
+                    expression: "Asymptote: x = 2",
+                    explanation: "The vertical asymptote shifts right with h",
+                  },
                 ],
               },
             },
@@ -383,10 +448,19 @@ export const seedLesson6_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "g(x) = \\log_4 x + 5",
                 steps: [
-                  { expression: "Parent: f(x) = \\log_4 x", explanation: "Identify the parent function" },
-                  { expression: "Translation is 5 units up", explanation: "A upward shift means k is positive" },
+                  {
+                    expression: "Parent: f(x) = \\log_4 x",
+                    explanation: "Identify the parent function",
+                  },
+                  {
+                    expression: "Translation is 5 units up",
+                    explanation: "A upward shift means k is positive",
+                  },
                   { expression: "k = 5", explanation: "Substitute the magnitude of the shift" },
-                  { expression: "g(x) = \\log_4 x + 5", explanation: "Write the final transformed function" },
+                  {
+                    expression: "g(x) = \\log_4 x + 5",
+                    explanation: "Write the final transformed function",
+                  },
                 ],
               },
             },
@@ -421,7 +495,11 @@ export const seedLesson6_1 = internalMutation({
                   },
                   {
                     question: "What is the domain of $f(x) = \\log_b x$?",
-                    options: ["All real numbers", "All positive real numbers", "All non-negative real numbers"],
+                    options: [
+                      "All real numbers",
+                      "All positive real numbers",
+                      "All non-negative real numbers",
+                    ],
                     correctIndex: 1,
                   },
                 ],
@@ -455,7 +533,7 @@ export const seedLesson6_1 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

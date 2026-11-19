@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 const spreadsheetCellSchema = z.object({
   value: z.union([z.string(), z.number()]),
@@ -15,18 +15,18 @@ const spreadsheetTemplateSchema = z.object({
 });
 
 const spreadsheetActivitySchema = z.object({
-  title: z.string().default('Spreadsheet Exercise'),
-  description: z.string().default('Complete the spreadsheet exercise using the provided template.'),
+  title: z.string().default("Spreadsheet Exercise"),
+  description: z.string().default("Complete the spreadsheet exercise using the provided template."),
   template: z.enum([
-    't-account',
-    'trial-balance',
-    'income-statement',
-    'statistical-analysis',
-    'payroll',
-    'break-even',
-    'balance-sheet',
-    'transaction-log',
-    'custom',
+    "t-account",
+    "trial-balance",
+    "income-statement",
+    "statistical-analysis",
+    "payroll",
+    "break-even",
+    "balance-sheet",
+    "transaction-log",
+    "custom",
   ]),
   customTemplate: spreadsheetTemplateSchema.optional(),
   initialData: spreadsheetDataSchema.optional(),
@@ -39,7 +39,7 @@ const spreadsheetActivitySchema = z.object({
 
 export const spreadsheetActivityPropsSchemas = {
   spreadsheet: spreadsheetActivitySchema,
-  'spreadsheet-evaluator': z.object({
+  "spreadsheet-evaluator": z.object({
     templateId: z.string(),
     instructions: z.string(),
     targetCells: z

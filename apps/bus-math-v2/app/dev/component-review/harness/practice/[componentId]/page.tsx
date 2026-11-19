@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { notFound } from 'next/navigation';
-import { use, useState, useCallback, useMemo } from 'react';
-import Link from 'next/link';
-import { ArrowLeft, Puzzle, RotateCcw, Shuffle, Eye, Send } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { getPracticeFamily } from '@/lib/practice/engine/family-registry';
-import { useQuery } from 'convex/react';
-import { api } from '@/convex/_generated/api';
-import type { GradeResult } from '@/lib/practice/engine/types';
+import { notFound } from "next/navigation";
+import { use, useState, useCallback, useMemo } from "react";
+import Link from "next/link";
+import { ArrowLeft, Puzzle, RotateCcw, Shuffle, Eye, Send } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { getPracticeFamily } from "@/lib/practice/engine/family-registry";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import type { GradeResult } from "@/lib/practice/engine/types";
 
 interface Props {
   params: Promise<{ componentId: string }>;
@@ -25,16 +25,16 @@ interface Props {
 export default function PracticeHarnessPage({ params }: Props) {
   const { componentId } = use(params);
 
-  if (process.env.NODE_ENV !== 'development') {
+  if (process.env.NODE_ENV !== "development") {
     notFound();
   }
 
   const family = useMemo(() => getPracticeFamily(componentId), [componentId]);
   const versionHashData = useQuery(api.component_approvals.getComponentVersionHash, {
-    componentType: 'practice',
+    componentType: "practice",
     componentId,
   });
-  const versionHash = versionHashData ?? 'loading...';
+  const versionHash = versionHashData ?? "loading...";
 
   const [seed, setSeed] = useState(12345);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -73,9 +73,9 @@ export default function PracticeHarnessPage({ params }: Props) {
     const wrongResponse: Record<string, unknown> = {};
     Object.keys(correctResponse as Record<string, unknown>).forEach((key) => {
       const val = (correctResponse as Record<string, unknown>)[key];
-      if (typeof val === 'number') {
+      if (typeof val === "number") {
         wrongResponse[key] = val + 9999;
-      } else if (typeof val === 'string') {
+      } else if (typeof val === "string") {
         wrongResponse[key] = `wrong_${val}`;
       } else {
         wrongResponse[key] = val;
@@ -83,7 +83,11 @@ export default function PracticeHarnessPage({ params }: Props) {
     });
     const grade = family.grade(problem, wrongResponse as Parameters<typeof family.grade>[1]);
     setGradeResult(grade);
-    const env = family.toEnvelope(problem, wrongResponse as Parameters<typeof family.toEnvelope>[1], grade);
+    const env = family.toEnvelope(
+      problem,
+      wrongResponse as Parameters<typeof family.toEnvelope>[1],
+      grade,
+    );
     setEnvelope(env as unknown as Record<string, unknown>);
     setAttempts((a) => a + 1);
   }, [family, problem]);
@@ -103,7 +107,9 @@ export default function PracticeHarnessPage({ params }: Props) {
             </div>
             <div className="flex items-center gap-2">
               <Puzzle className="size-5 text-slate-400" />
-              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Practice Harness</span>
+              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                Practice Harness
+              </span>
             </div>
             <h1 className="text-2xl font-semibold tracking-tight">{componentId}</h1>
             <p className="text-sm text-red-600">Practice family not found: {componentId}</p>
@@ -127,12 +133,17 @@ export default function PracticeHarnessPage({ params }: Props) {
           </div>
           <div className="flex items-center gap-2">
             <Puzzle className="size-5 text-slate-400" />
-            <span className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Practice Harness</span>
+            <span className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+              Practice Harness
+            </span>
             <Badge variant="outline">{componentId}</Badge>
           </div>
           <h1 className="text-2xl font-semibold tracking-tight">Practice Family: {componentId}</h1>
           <p className="text-sm text-slate-600">
-            Version hash: <code className="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-xs">{versionHash.slice(0, 12)}...</code>
+            Version hash:{" "}
+            <code className="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-xs">
+              {versionHash.slice(0, 12)}...
+            </code>
           </p>
         </header>
 
@@ -151,12 +162,7 @@ export default function PracticeHarnessPage({ params }: Props) {
                 <RotateCcw className="size-4" />
               </Button>
             </div>
-            <Button
-              variant="default"
-              size="sm"
-              onClick={generateNewProblem}
-              disabled={!family}
-            >
+            <Button variant="default" size="sm" onClick={generateNewProblem} disabled={!family}>
               <Shuffle className="size-4 mr-1" />
               Generate
             </Button>
@@ -172,9 +178,7 @@ export default function PracticeHarnessPage({ params }: Props) {
                 </Button>
               </>
             )}
-            {attempts > 0 && (
-              <Badge variant="outline">Attempts: {attempts}</Badge>
-            )}
+            {attempts > 0 && <Badge variant="outline">Attempts: {attempts}</Badge>}
           </div>
         </section>
 
@@ -184,7 +188,10 @@ export default function PracticeHarnessPage({ params }: Props) {
             <div className="rounded-lg bg-slate-50 p-4">
               <p className="text-sm font-medium">Family: {componentId}</p>
               <p className="text-sm text-slate-600">
-                Parts: {Array.isArray((problem as { parts?: unknown[] }).parts) ? (problem as { parts: unknown[] }).parts.length : 'N/A'}
+                Parts:{" "}
+                {Array.isArray((problem as { parts?: unknown[] }).parts)
+                  ? (problem as { parts: unknown[] }).parts.length
+                  : "N/A"}
               </p>
             </div>
             <pre className="max-h-48 overflow-auto rounded-lg bg-slate-900 p-4 text-xs text-slate-100">
@@ -199,7 +206,7 @@ export default function PracticeHarnessPage({ params }: Props) {
               <h2 className="text-lg font-semibold tracking-tight">Correct Solution</h2>
               <Button variant="ghost" size="sm" onClick={() => setShowSolution(!showSolution)}>
                 <Eye className="size-4 mr-1" />
-                {showSolution ? 'Hide' : 'Show'}
+                {showSolution ? "Hide" : "Show"}
               </Button>
             </div>
             {showSolution && (
@@ -214,12 +221,18 @@ export default function PracticeHarnessPage({ params }: Props) {
           <section className="space-y-4 rounded-2xl border bg-white/90 p-6 shadow-sm">
             <h2 className="text-lg font-semibold tracking-tight">Grading Result</h2>
             <div className="flex items-center gap-4">
-              <Badge className={gradeResult.score === gradeResult.maxScore ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}>
+              <Badge
+                className={
+                  gradeResult.score === gradeResult.maxScore
+                    ? "bg-emerald-100 text-emerald-800"
+                    : "bg-red-100 text-red-800"
+                }
+              >
                 {gradeResult.score} / {gradeResult.maxScore}
               </Badge>
               {gradeResult.parts && gradeResult.parts.length > 0 && (
                 <span className="text-sm text-slate-600">
-                  {gradeResult.parts.filter((p) => p.isCorrect).length} correct,{' '}
+                  {gradeResult.parts.filter((p) => p.isCorrect).length} correct,{" "}
                   {gradeResult.parts.filter((p) => !p.isCorrect).length} incorrect
                 </span>
               )}
@@ -237,12 +250,8 @@ export default function PracticeHarnessPage({ params }: Props) {
               <Badge className="bg-blue-100 text-blue-800">
                 {envelope.contractVersion as string}
               </Badge>
-              <Badge className="bg-slate-100 text-slate-800">
-                {envelope.status as string}
-              </Badge>
-              <Badge variant="outline">
-                Attempt {envelope.attemptNumber as number}
-              </Badge>
+              <Badge className="bg-slate-100 text-slate-800">{envelope.status as string}</Badge>
+              <Badge variant="outline">Attempt {envelope.attemptNumber as number}</Badge>
             </div>
             <pre className="max-h-80 overflow-auto rounded-lg bg-slate-900 p-4 text-xs text-slate-100">
               {JSON.stringify(envelope, null, 2)}

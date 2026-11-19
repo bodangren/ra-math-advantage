@@ -1,18 +1,18 @@
-import { Footer as SharedFooter } from '@math-platform/app-shell/layout';
+import { Footer as SharedFooter } from "@math-platform/app-shell/layout";
 
 const sections = [
   {
-    title: 'Quick Links',
+    title: "Quick Links",
     links: [
-      { href: '/preface', label: 'Preface' },
-      { href: '/curriculum', label: 'Curriculum' },
+      { href: "/preface", label: "Preface" },
+      { href: "/curriculum", label: "Curriculum" },
     ],
   },
   {
-    title: 'Teacher Resources',
+    title: "Teacher Resources",
     links: [
-      { href: '/teacher/dashboard', label: 'Teacher Dashboard' },
-      { href: '/teacher/gradebook', label: 'Gradebook' },
+      { href: "/teacher/dashboard", label: "Teacher Dashboard" },
+      { href: "/teacher/gradebook", label: "Gradebook" },
     ],
   },
 ];

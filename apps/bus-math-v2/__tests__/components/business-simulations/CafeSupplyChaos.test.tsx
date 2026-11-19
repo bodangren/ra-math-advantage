@@ -1,22 +1,20 @@
-import { render, screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { describe, expect, it, vi } from 'vitest'
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { describe, expect, it, vi } from "vitest";
 
-import type { CafeSupplyChaosActivity } from '../../../components/activities/simulations/CafeSupplyChaos'
-import { CafeSupplyChaos } from '../../../components/activities/simulations/CafeSupplyChaos'
+import type { CafeSupplyChaosActivity } from "../../../components/activities/simulations/CafeSupplyChaos";
+import { CafeSupplyChaos } from "../../../components/activities/simulations/CafeSupplyChaos";
 
 const mockActivity: CafeSupplyChaosActivity = {
-  id: 'cafe-supply-chaos-test',
-  displayName: 'Cafe Supply Chaos',
-  description: 'Track inventory costs with FIFO vs LIFO',
-  componentKey: 'cafe-supply-chaos',
+  id: "cafe-supply-chaos-test",
+  displayName: "Cafe Supply Chaos",
+  description: "Track inventory costs with FIFO vs LIFO",
+  componentKey: "cafe-supply-chaos",
   props: {
-    title: 'Cafe Supply Chaos',
-    description: 'Track inventory costs with FIFO vs LIFO',
+    title: "Cafe Supply Chaos",
+    description: "Track inventory costs with FIFO vs LIFO",
     days: 2,
-    shipments: [
-      { day: 1, quantity: 100, costPerUnit: 5 },
-    ],
+    shipments: [{ day: 1, quantity: 100, costPerUnit: 5 }],
     orders: [
       { day: 1, quantity: 50, pricePerUnit: 10 },
       { day: 2, quantity: 50, pricePerUnit: 12 },
@@ -24,52 +22,52 @@ const mockActivity: CafeSupplyChaosActivity = {
   },
   gradingConfig: null,
   standardId: null,
-  createdAt: new Date('2026-01-01'),
-  updatedAt: new Date('2026-01-01'),
-}
+  createdAt: new Date("2026-01-01"),
+  updatedAt: new Date("2026-01-01"),
+};
 
-describe('CafeSupplyChaos', () => {
-  it('renders with activity title', () => {
-    render(<CafeSupplyChaos activity={mockActivity} />)
+describe("CafeSupplyChaos", () => {
+  it("renders with activity title", () => {
+    render(<CafeSupplyChaos activity={mockActivity} />);
 
-    expect(screen.getByText('Cafe Supply Chaos')).toBeInTheDocument()
-  })
+    expect(screen.getByText("Cafe Supply Chaos")).toBeInTheDocument();
+  });
 
-  it('emits a practice.v1 envelope when simulation completes with FIFO', async () => {
-    const user = userEvent.setup()
-    const onSubmit = vi.fn()
+  it("emits a practice.v1 envelope when simulation completes with FIFO", async () => {
+    const user = userEvent.setup();
+    const onSubmit = vi.fn();
 
-    render(<CafeSupplyChaos activity={mockActivity} onSubmit={onSubmit} />)
+    render(<CafeSupplyChaos activity={mockActivity} onSubmit={onSubmit} />);
 
     // Select FIFO method
-    await user.click(screen.getByRole('button', { name: /choose fifo/i }))
+    await user.click(screen.getByRole("button", { name: /choose fifo/i }));
 
     // Day 1
     await waitFor(() => {
-      expect(screen.getByText(/fill order & advance day/i)).toBeInTheDocument()
-    })
+      expect(screen.getByText(/fill order & advance day/i)).toBeInTheDocument();
+    });
 
-    await user.click(screen.getByRole('button', { name: /fill order & advance day/i }))
+    await user.click(screen.getByRole("button", { name: /fill order & advance day/i }));
 
     // Day 2 (last day)
     await waitFor(() => {
-      expect(screen.getByText(/day 2 of 2/i)).toBeInTheDocument()
-    })
+      expect(screen.getByText(/day 2 of 2/i)).toBeInTheDocument();
+    });
 
-    await user.click(screen.getByRole('button', { name: /fill order & advance day/i }))
+    await user.click(screen.getByRole("button", { name: /fill order & advance day/i }));
 
     // Simulation complete
     await waitFor(() => {
-      expect(screen.getByText('SIMULATION COMPLETE')).toBeInTheDocument()
-    })
+      expect(screen.getByText("SIMULATION COMPLETE")).toBeInTheDocument();
+    });
 
-    expect(onSubmit).toHaveBeenCalled()
-    const envelope = onSubmit.mock.calls[0][0]
-    expect(envelope).toHaveProperty('contractVersion', 'practice.v1')
-    expect(envelope).toHaveProperty('artifact.kind', 'cafe_supply_chaos')
-    expect(envelope).toHaveProperty('activityId', 'cafe-supply-chaos-test')
-    expect(envelope).toHaveProperty('mode', 'guided_practice')
-    expect(envelope).toHaveProperty('status', 'submitted')
-    expect(envelope.parts.length).toBeGreaterThan(0)
-  })
-})
+    expect(onSubmit).toHaveBeenCalled();
+    const envelope = onSubmit.mock.calls[0][0];
+    expect(envelope).toHaveProperty("contractVersion", "practice.v1");
+    expect(envelope).toHaveProperty("artifact.kind", "cafe_supply_chaos");
+    expect(envelope).toHaveProperty("activityId", "cafe-supply-chaos-test");
+    expect(envelope).toHaveProperty("mode", "guided_practice");
+    expect(envelope).toHaveProperty("status", "submitted");
+    expect(envelope.parts.length).toBeGreaterThan(0);
+  });
+});

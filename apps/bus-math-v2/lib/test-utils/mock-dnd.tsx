@@ -1,9 +1,9 @@
-import type { ReactNode } from 'react';
-import type { DropResult } from '@hello-pangea/dnd';
-import { vi } from 'vitest';
+import type { ReactNode } from "react";
+import type { DropResult } from "@hello-pangea/dnd";
+import { vi } from "vitest";
 
 export const dragHandlers: { onDragEnd: ((result: DropResult) => void) | null } = {
-  onDragEnd: null
+  onDragEnd: null,
 };
 
 interface MockDroppableProvided {
@@ -22,11 +22,11 @@ interface MockDraggableSnapshot {
   isDragging: boolean;
 }
 
-vi.mock('@hello-pangea/dnd', () => {
+vi.mock("@hello-pangea/dnd", () => {
   return {
     DragDropContext: ({
       children,
-      onDragEnd
+      onDragEnd,
     }: {
       children: ReactNode;
       onDragEnd: (result: DropResult) => void;
@@ -36,22 +36,22 @@ vi.mock('@hello-pangea/dnd', () => {
     },
     Droppable: ({
       children,
-      droppableId
+      droppableId,
     }: {
       children: (provided: MockDroppableProvided) => ReactNode;
       droppableId: string;
     }) => (
       <div data-testid={`droppable-${droppableId}`}>
         {children({
-          droppableProps: { 'data-droppable-id': droppableId },
+          droppableProps: { "data-droppable-id": droppableId },
           innerRef: vi.fn(),
-          placeholder: null
+          placeholder: null,
         })}
       </div>
     ),
     Draggable: ({
       children,
-      draggableId
+      draggableId,
     }: {
       children: (provided: MockDraggableProvided, snapshot: MockDraggableSnapshot) => ReactNode;
       draggableId: string;
@@ -61,12 +61,12 @@ vi.mock('@hello-pangea/dnd', () => {
           {
             draggableProps: {},
             dragHandleProps: {},
-            innerRef: vi.fn()
+            innerRef: vi.fn(),
           },
-          { isDragging: false }
+          { isDragging: false },
         )}
       </div>
-    )
+    ),
   };
 });
 

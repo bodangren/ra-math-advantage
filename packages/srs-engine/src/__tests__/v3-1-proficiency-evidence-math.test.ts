@@ -1,22 +1,22 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { PROFICIENCY_EVIDENCE_POLICY_VERSION } from '../srs/proficiency-evidence-contract';
+import { PROFICIENCY_EVIDENCE_POLICY_VERSION } from "../srs/proficiency-evidence-contract";
 import {
   computePracticeVariantEvidence,
   computeRecencyWeightedCorrectness,
   oneSidedWilsonLowerBound,
   rescaleAgainstGuessFloor,
-} from '../srs/proficiency-evidence';
+} from "../srs/proficiency-evidence";
 
 const reliableTiming = {
   baselineSampleCount: 12,
   timingReliable: true,
-  fluencyConfidence: 'high',
+  fluencyConfidence: "high",
 } as const;
 
 function attemptsFromOutcomes(
   outcomesOldestToNewest: readonly boolean[],
-  answerFormat = 'free-response',
+  answerFormat = "free-response",
 ) {
   return outcomesOldestToNewest.map((isCorrect, sequence) => ({
     attemptId: `attempt-${sequence}`,
@@ -29,38 +29,67 @@ function attemptsFromOutcomes(
 function evidenceInput(
   outcomesOldestToNewest: readonly boolean[],
   guessFloor = 0,
-  answerFormat = 'free-response',
+  answerFormat = "free-response",
 ) {
   return {
     policyVersion: PROFICIENCY_EVIDENCE_POLICY_VERSION,
-    variantKey: 'variant-linear-equations',
+    variantKey: "variant-linear-equations",
     attempts: attemptsFromOutcomes(outcomesOldestToNewest, answerFormat),
     practiceCoverage: 0.8,
     guessFloor: {
-      policyVersion: 'math-answer-formats.v1',
+      policyVersion: "math-answer-formats.v1",
       answerFormat,
       value: guessFloor,
     },
   } as const;
 }
 
-describe('v3.1 recency-weighted proficiency evidence mathematics', () => {
-  it('weights newer sequence positions more heavily and ignores array order', () => {
+describe("v3.1 recency-weighted proficiency evidence mathematics", () => {
+  it("weights newer sequence positions more heavily and ignores array order", () => {
     const chronological = attemptsFromOutcomes([
-      false, false, false, false, false, false,
-      true, true, true, true, true, true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
     ]);
     const shuffled = [
-      chronological[8], chronological[1], chronological[11], chronological[4],
-      chronological[6], chronological[0], chronological[9], chronological[3],
-      chronological[10], chronological[5], chronological[7], chronological[2],
+      chronological[8],
+      chronological[1],
+      chronological[11],
+      chronological[4],
+      chronological[6],
+      chronological[0],
+      chronological[9],
+      chronological[3],
+      chronological[10],
+      chronological[5],
+      chronological[7],
+      chronological[2],
     ];
 
     const improving = computeRecencyWeightedCorrectness(shuffled);
     const regressing = computeRecencyWeightedCorrectness(
       attemptsFromOutcomes([
-        true, true, true, true, true, true,
-        false, false, false, false, false, false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
       ]),
     );
 
@@ -70,32 +99,27 @@ describe('v3.1 recency-weighted proficiency evidence mathematics', () => {
     expect(improving.weightedCorrectnessRate).toBeGreaterThan(regressing.weightedCorrectnessRate);
   });
 
-  it('matches the independent Wilson and guess-floor fixtures from the v3.1 spec', () => {
+  it("matches the independent Wilson and guess-floor fixtures from the v3.1 spec", () => {
     expect(oneSidedWilsonLowerBound(0.3, 10)).toBeCloseTo(0.1268668529, 10);
     expect(oneSidedWilsonLowerBound(0.8, 10)).toBeCloseTo(0.5407687136, 10);
     expect(oneSidedWilsonLowerBound(1, 5)).toBeCloseTo(0.6488429508, 10);
 
     expect(rescaleAgainstGuessFloor(0.1268668529, 0.25)).toBe(0);
-    expect(rescaleAgainstGuessFloor(0.5407687136, 0.25))
-      .toBeCloseTo(0.3876916181, 10);
-    expect(rescaleAgainstGuessFloor(0.5407687136, 0))
-      .toBeCloseTo(0.5407687136, 10);
+    expect(rescaleAgainstGuessFloor(0.5407687136, 0.25)).toBeCloseTo(0.3876916181, 10);
+    expect(rescaleAgainstGuessFloor(0.5407687136, 0)).toBeCloseTo(0.5407687136, 10);
   });
 
-  it('applies recency, Wilson, and guess correction as one deterministic pipeline', () => {
+  it("applies recency, Wilson, and guess correction as one deterministic pipeline", () => {
     const multipleChoice = computePracticeVariantEvidence(
       evidenceInput(
         [false, false, true, true, true, true, true, true, true, true],
         0.25,
-        'multiple-choice-4',
+        "multiple-choice-4",
       ),
       reliableTiming,
     );
     const freeResponse = computePracticeVariantEvidence(
-      evidenceInput(
-        [false, false, true, true, true, true, true, true, true, true],
-        0,
-      ),
+      evidenceInput([false, false, true, true, true, true, true, true, true, true], 0),
       reliableTiming,
     );
 
@@ -106,12 +130,12 @@ describe('v3.1 recency-weighted proficiency evidence mathematics', () => {
     expect(multipleChoice.retentionStrength).toBeLessThan(freeResponse.retentionStrength);
   });
 
-  it('removes chance-level signal and remains finite at zero and one extremes', () => {
+  it("removes chance-level signal and remains finite at zero and one extremes", () => {
     const chance = computePracticeVariantEvidence(
       evidenceInput(
         [false, false, false, false, false, false, false, true, true, true],
         0.25,
-        'multiple-choice-4',
+        "multiple-choice-4",
       ),
       reliableTiming,
     );
@@ -126,7 +150,7 @@ describe('v3.1 recency-weighted proficiency evidence mathematics', () => {
 
     expect(chance.wilsonLowerBound).toBeCloseTo(0.1743065096, 10);
     expect(chance.retentionStrength).toBe(0);
-    expect(chance.diagnosticReasons).toContain('guess_floor_removed_signal');
+    expect(chance.diagnosticReasons).toContain("guess_floor_removed_signal");
     expect(noneCorrect.weightedCorrectnessRate).toBe(0);
     expect(noneCorrect.wilsonLowerBound).toBe(0);
     expect(noneCorrect.retentionStrength).toBe(0);
@@ -144,13 +168,13 @@ describe('v3.1 recency-weighted proficiency evidence mathematics', () => {
   });
 });
 
-describe('v3.1 proficiency evidence confidence and timing diagnostics', () => {
+describe("v3.1 proficiency evidence confidence and timing diagnostics", () => {
   it.each([
-    { count: 2, cap: 'low', reason: 'small_sample_low_cap' },
-    { count: 3, cap: 'medium', reason: 'small_sample_medium_cap' },
-    { count: 5, cap: 'medium', reason: 'small_sample_medium_cap' },
+    { count: 2, cap: "low", reason: "small_sample_low_cap" },
+    { count: 3, cap: "medium", reason: "small_sample_medium_cap" },
+    { count: 5, cap: "medium", reason: "small_sample_medium_cap" },
     { count: 6, cap: null, reason: null },
-  ] as const)('caps $count attempts at $cap', ({ count, cap, reason }) => {
+  ] as const)("caps $count attempts at $cap", ({ count, cap, reason }) => {
     const result = computePracticeVariantEvidence(
       evidenceInput(Array.from({ length: count }, () => true)),
       reliableTiming,
@@ -159,14 +183,14 @@ describe('v3.1 proficiency evidence confidence and timing diagnostics', () => {
     expect(result.rawAttemptCount).toBe(count);
     expect(result.evidenceConfidenceCap).toBe(cap);
     if (reason === null) {
-      expect(result.diagnosticReasons).not.toContain('small_sample_low_cap');
-      expect(result.diagnosticReasons).not.toContain('small_sample_medium_cap');
+      expect(result.diagnosticReasons).not.toContain("small_sample_low_cap");
+      expect(result.diagnosticReasons).not.toContain("small_sample_medium_cap");
     } else {
       expect(result.diagnosticReasons).toContain(reason);
     }
   });
 
-  it('fails closed without attempts instead of producing NaN', () => {
+  it("fails closed without attempts instead of producing NaN", () => {
     const result = computePracticeVariantEvidence(evidenceInput([]), reliableTiming);
 
     expect(result.rawAttemptCount).toBe(0);
@@ -174,32 +198,32 @@ describe('v3.1 proficiency evidence confidence and timing diagnostics', () => {
     expect(result.weightedCorrectnessRate).toBe(0);
     expect(result.wilsonLowerBound).toBe(0);
     expect(result.retentionStrength).toBe(0);
-    expect(result.evidenceConfidenceCap).toBe('none');
-    expect(result.diagnosticReasons).toContain('no_attempts');
+    expect(result.evidenceConfidenceCap).toBe("none");
+    expect(result.diagnosticReasons).toContain("no_attempts");
   });
 
-  it('distinguishes missing, insufficient, unreliable, and reliable timing evidence', () => {
+  it("distinguishes missing, insufficient, unreliable, and reliable timing evidence", () => {
     const input = evidenceInput([true, true, true, true, true, true]);
     const missing = computePracticeVariantEvidence(input);
     const insufficient = computePracticeVariantEvidence(input, {
       baselineSampleCount: 5,
       timingReliable: false,
-      fluencyConfidence: 'none',
+      fluencyConfidence: "none",
     });
     const unreliable = computePracticeVariantEvidence(input, {
       baselineSampleCount: 12,
       timingReliable: false,
-      fluencyConfidence: 'low',
+      fluencyConfidence: "low",
     });
     const reliable = computePracticeVariantEvidence(input, reliableTiming);
 
-    expect(missing.diagnosticReasons).toContain('missing_timing_baseline');
-    expect(insufficient.diagnosticReasons).toContain('insufficient_timing_baseline');
-    expect(unreliable.diagnosticReasons).toContain('unreliable_timing');
-    expect(unreliable.fluencyConfidence).toBe('none');
-    expect(reliable.diagnosticReasons).not.toContain('missing_timing_baseline');
-    expect(reliable.diagnosticReasons).not.toContain('insufficient_timing_baseline');
-    expect(reliable.diagnosticReasons).not.toContain('unreliable_timing');
-    expect(reliable.fluencyConfidence).toBe('high');
+    expect(missing.diagnosticReasons).toContain("missing_timing_baseline");
+    expect(insufficient.diagnosticReasons).toContain("insufficient_timing_baseline");
+    expect(unreliable.diagnosticReasons).toContain("unreliable_timing");
+    expect(unreliable.fluencyConfidence).toBe("none");
+    expect(reliable.diagnosticReasons).not.toContain("missing_timing_baseline");
+    expect(reliable.diagnosticReasons).not.toContain("insufficient_timing_baseline");
+    expect(reliable.diagnosticReasons).not.toContain("unreliable_timing");
+    expect(reliable.fluencyConfidence).toBe("high");
   });
 });

@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { Check, Circle, CircleDot, Lock, SkipForward } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import type { PhaseType } from '@math-platform/activity-runtime/phase-types';
-import { getPhaseDisplayInfo } from '@math-platform/activity-runtime/phase-types';
+import { Check, Circle, CircleDot, Lock, SkipForward } from "lucide-react";
+import { cn } from "@/lib/utils";
+import type { PhaseType } from "@math-platform/activity-runtime/phase-types";
+import { getPhaseDisplayInfo } from "@math-platform/activity-runtime/phase-types";
 
-export type PhaseStatus = 'completed' | 'current' | 'available' | 'locked' | 'skipped';
+export type PhaseStatus = "completed" | "current" | "available" | "locked" | "skipped";
 
 export interface StepperPhase {
   phaseNumber: number;
@@ -28,15 +28,20 @@ export interface LessonStepperProps {
  * @param {LessonStepperProps} props - Lesson stepper configuration.
  * @returns {JSX.Element} A phase navigation stepper.
  */
-export function LessonStepper({ phases, currentPhase, onPhaseClick, className }: LessonStepperProps) {
+export function LessonStepper({
+  phases,
+  currentPhase,
+  onPhaseClick,
+  className,
+}: LessonStepperProps) {
   const handleClick = (phase: StepperPhase) => {
-    if (phase.status !== 'locked') {
+    if (phase.status !== "locked") {
       onPhaseClick?.(phase.phaseNumber, phase.phaseId);
     }
   };
 
   return (
-    <nav aria-label="Lesson phases" className={cn('w-full', className)} data-testid="phase-stepper">
+    <nav aria-label="Lesson phases" className={cn("w-full", className)} data-testid="phase-stepper">
       {/* Desktop: horizontal stepper with connectors */}
       <ol className="hidden md:flex items-center justify-between gap-2">
         {phases.map((phase, idx) => (
@@ -48,7 +53,10 @@ export function LessonStepper({ phases, currentPhase, onPhaseClick, className }:
             />
             {idx < phases.length - 1 && (
               <div
-                className={cn('h-0.5 flex-1 transition-colors', phase.status === 'completed' ? 'bg-green-600' : 'bg-muted')}
+                className={cn(
+                  "h-0.5 flex-1 transition-colors",
+                  phase.status === "completed" ? "bg-green-600" : "bg-muted",
+                )}
                 aria-hidden
               />
             )}
@@ -58,7 +66,7 @@ export function LessonStepper({ phases, currentPhase, onPhaseClick, className }:
 
       {/* Mobile: horizontal scroll */}
       <ol className="flex md:hidden items-center gap-3 overflow-x-auto pb-2">
-        {phases.map(phase => (
+        {phases.map((phase) => (
           <li key={phase.phaseId} className="flex-shrink-0">
             <StepButton
               phase={phase}
@@ -75,11 +83,16 @@ export function LessonStepper({ phases, currentPhase, onPhaseClick, className }:
 
 function StepIcon({ status }: { status: PhaseStatus }) {
   switch (status) {
-    case 'completed': return <Check className="h-4 w-4" aria-hidden />;
-    case 'current':   return <CircleDot className="h-4 w-4" aria-hidden />;
-    case 'locked':    return <Lock className="h-4 w-4" aria-hidden />;
-    case 'skipped':   return <SkipForward className="h-4 w-4" aria-hidden />;
-    default:          return <Circle className="h-4 w-4" aria-hidden />;
+    case "completed":
+      return <Check className="h-4 w-4" aria-hidden />;
+    case "current":
+      return <CircleDot className="h-4 w-4" aria-hidden />;
+    case "locked":
+      return <Lock className="h-4 w-4" aria-hidden />;
+    case "skipped":
+      return <SkipForward className="h-4 w-4" aria-hidden />;
+    default:
+      return <Circle className="h-4 w-4" aria-hidden />;
   }
 }
 
@@ -100,16 +113,16 @@ function StepButton({
   onClick: () => void;
   compact?: boolean;
 }) {
-  const isClickable = phase.status !== 'locked';
+  const isClickable = phase.status !== "locked";
   const displayInfo = getPhaseDisplayInfo(phase.phaseType);
   const label = displayInfo.label;
 
   const statusClass = {
-    completed: 'bg-green-600 text-white border-green-600',
-    current: 'bg-primary text-primary-foreground border-primary',
-    available: 'bg-background text-foreground border-border hover:border-primary/60',
-    locked: 'bg-muted text-muted-foreground border-muted cursor-not-allowed',
-    skipped: 'bg-amber-500 text-white border-amber-500',
+    completed: "bg-green-600 text-white border-green-600",
+    current: "bg-primary text-primary-foreground border-primary",
+    available: "bg-background text-foreground border-border hover:border-primary/60",
+    locked: "bg-muted text-muted-foreground border-muted cursor-not-allowed",
+    skipped: "bg-amber-500 text-white border-amber-500",
   }[phase.status];
 
   return (
@@ -119,21 +132,22 @@ function StepButton({
         onClick={onClick}
         disabled={!isClickable}
         aria-label={`Phase ${phase.phaseNumber}: ${phase.title}`}
-        aria-current={isCurrent ? 'step' : undefined}
-        title={phase.status === 'locked' ? 'Complete previous phase to unlock' : phase.title}
+        aria-current={isCurrent ? "step" : undefined}
+        title={phase.status === "locked" ? "Complete previous phase to unlock" : phase.title}
         data-testid="phase-stepper-dot"
         className={cn(
-          'flex items-center justify-center rounded-full border-2 transition-all',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-          compact ? 'min-h-[44px] min-w-[44px]' : 'h-11 w-11',
+          "flex items-center justify-center rounded-full border-2 transition-all",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+          compact ? "min-h-[44px] min-w-[44px]" : "h-11 w-11",
           statusClass,
-          isClickable && 'hover:scale-105',
+          isClickable && "hover:scale-105",
         )}
       >
-        {compact
-          ? <span className="text-sm font-semibold">{phase.phaseNumber}</span>
-          : <StepIcon status={phase.status} />
-        }
+        {compact ? (
+          <span className="text-sm font-semibold">{phase.phaseNumber}</span>
+        ) : (
+          <StepIcon status={phase.status} />
+        )}
       </button>
       {!compact && (
         <span className="text-xs text-muted-foreground font-medium text-center leading-tight max-w-[64px]">

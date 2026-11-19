@@ -1,4 +1,4 @@
-declare module '../dist/server/index.js' {
+declare module "../dist/server/index.js" {
   const handler: (
     request: Request,
     env?: unknown,

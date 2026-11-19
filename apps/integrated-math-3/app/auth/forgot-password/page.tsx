@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 /**
  * Renders the forgot-password page that instructs users to contact their teacher or administrator.
@@ -17,8 +17,8 @@ export default function ForgotPasswordPage() {
 
       <div className="rounded-md border border-border bg-card px-4 py-3 text-sm text-card-foreground">
         <p>
-          This platform does not use email-based password recovery. Ask your teacher
-          or school administrator to reset your password for you.
+          This platform does not use email-based password recovery. Ask your teacher or school
+          administrator to reset your password for you.
         </p>
       </div>
 

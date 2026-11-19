@@ -8,7 +8,7 @@ import {
   XAxis,
   YAxis,
   type XAxisProps,
-  type YAxisProps
+  type YAxisProps,
 } from "recharts";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,7 +17,7 @@ import {
   ChartLegend,
   ChartLegendContent,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 import { cn } from "@/lib/utils";
 
@@ -54,7 +54,6 @@ function DEFAULT_BAR_FORMAT(value: number) {
   return value.toLocaleString();
 }
 
-
 /**
  * Renders a bar chart with configurable axes, stacking, and optional card wrapper.
  *
@@ -79,7 +78,7 @@ export function BarChart({
   layout = "horizontal",
   formatValue = DEFAULT_BAR_FORMAT,
   xAxisProps,
-  yAxisProps
+  yAxisProps,
 }: BarChartProps) {
   const chartConfig = useMemo(() => buildChartConfig(series), [series]);
   const containerLabel = ariaLabel ?? `${title ?? "Bar"} chart visualization`;
@@ -135,7 +134,7 @@ export function BarChart({
               <ChartTooltipContent
                 formatter={(value, name) => [
                   formatValue(Number(value)),
-                  series.find((item) => item.key === name)?.label ?? name
+                  series.find((item) => item.key === name)?.label ?? name,
                 ]}
               />
             }

@@ -31,24 +31,17 @@
  * (defense-in-depth — the test-strategy §4 boundary guard).
  */
 
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import {
-  getWeaknessFit,
-  computeWeaknessFitMap,
-} from '../planner/weakness-fit';
-import {
-  makePlannerChain,
-  makePlannerEmpty,
-  makeMisconceptionLink,
-} from './planner-fixtures';
+import { getWeaknessFit, computeWeaknessFitMap } from "../planner/weakness-fit";
+import { makePlannerChain, makePlannerEmpty, makeMisconceptionLink } from "./planner-fixtures";
 
 // ---------------------------------------------------------------------------
 // Empty misconception links
 // ---------------------------------------------------------------------------
 
-describe('weaknessFit — empty misconceptionLinks (Track-6 stub returns 0)', () => {
-  it('returns 0 for every node when misconceptionLinks is empty', () => {
+describe("weaknessFit — empty misconceptionLinks (Track-6 stub returns 0)", () => {
+  it("returns 0 for every node when misconceptionLinks is empty", () => {
     const graph = makePlannerChain({ length: 5 });
     for (const node of graph.nodes) {
       expect(getWeaknessFit(node.id, graph)).toBe(0);
@@ -60,47 +53,47 @@ describe('weaknessFit — empty misconceptionLinks (Track-6 stub returns 0)', ()
 // Non-empty misconception links (stub mode)
 // ---------------------------------------------------------------------------
 
-describe('weaknessFit — non-empty misconceptionLinks (Track-6 stub returns 0)', () => {
-  it('returns 0 for a node explicitly listed in misconceptionLinks (stub does not yet apply a boost)', () => {
+describe("weaknessFit — non-empty misconceptionLinks (Track-6 stub returns 0)", () => {
+  it("returns 0 for a node explicitly listed in misconceptionLinks (stub does not yet apply a boost)", () => {
     const graph = {
       ...makePlannerChain({ length: 3 }),
-      misconceptionLinks: [makeMisconceptionLink('chain.n2', 'severe')],
+      misconceptionLinks: [makeMisconceptionLink("chain.n2", "severe")],
     };
-    expect(getWeaknessFit('chain.n2', graph)).toBe(0);
+    expect(getWeaknessFit("chain.n2", graph)).toBe(0);
   });
 
-  it('returns 0 for nodes not listed in misconceptionLinks (no spillover)', () => {
+  it("returns 0 for nodes not listed in misconceptionLinks (no spillover)", () => {
     const graph = {
       ...makePlannerChain({ length: 3 }),
-      misconceptionLinks: [makeMisconceptionLink('chain.n1', 'minor')],
+      misconceptionLinks: [makeMisconceptionLink("chain.n1", "minor")],
     };
-    expect(getWeaknessFit('chain.n2', graph)).toBe(0);
-    expect(getWeaknessFit('chain.n3', graph)).toBe(0);
+    expect(getWeaknessFit("chain.n2", graph)).toBe(0);
+    expect(getWeaknessFit("chain.n3", graph)).toBe(0);
   });
 
-  it('returns 0 regardless of severity (minor and severe both stubbed to 0)', () => {
+  it("returns 0 regardless of severity (minor and severe both stubbed to 0)", () => {
     const minorGraph = {
       ...makePlannerChain({ length: 3 }),
-      misconceptionLinks: [makeMisconceptionLink('chain.n2', 'minor')],
+      misconceptionLinks: [makeMisconceptionLink("chain.n2", "minor")],
     };
     const severeGraph = {
       ...makePlannerChain({ length: 3 }),
-      misconceptionLinks: [makeMisconceptionLink('chain.n2', 'severe')],
+      misconceptionLinks: [makeMisconceptionLink("chain.n2", "severe")],
     };
-    expect(getWeaknessFit('chain.n2', minorGraph)).toBe(0);
-    expect(getWeaknessFit('chain.n2', severeGraph)).toBe(0);
+    expect(getWeaknessFit("chain.n2", minorGraph)).toBe(0);
+    expect(getWeaknessFit("chain.n2", severeGraph)).toBe(0);
   });
 
-  it('returns 0 for a node listed in multiple misconception links (stub is uniform)', () => {
+  it("returns 0 for a node listed in multiple misconception links (stub is uniform)", () => {
     const graph = {
       ...makePlannerChain({ length: 3 }),
       misconceptionLinks: [
-        makeMisconceptionLink('chain.n2', 'minor', 'm.A'),
-        makeMisconceptionLink('chain.n2', 'severe', 'm.B'),
-        makeMisconceptionLink('chain.n2', 'minor', 'm.C'),
+        makeMisconceptionLink("chain.n2", "minor", "m.A"),
+        makeMisconceptionLink("chain.n2", "severe", "m.B"),
+        makeMisconceptionLink("chain.n2", "minor", "m.C"),
       ],
     };
-    expect(getWeaknessFit('chain.n2', graph)).toBe(0);
+    expect(getWeaknessFit("chain.n2", graph)).toBe(0);
   });
 });
 
@@ -108,23 +101,23 @@ describe('weaknessFit — non-empty misconceptionLinks (Track-6 stub returns 0)'
 // Determinism and purity
 // ---------------------------------------------------------------------------
 
-describe('weaknessFit — determinism and purity (Track-6 stub)', () => {
-  it('is deterministic: repeated calls with the same input return the same value', () => {
+describe("weaknessFit — determinism and purity (Track-6 stub)", () => {
+  it("is deterministic: repeated calls with the same input return the same value", () => {
     const graph = {
       ...makePlannerChain({ length: 3 }),
-      misconceptionLinks: [makeMisconceptionLink('chain.n1', 'severe')],
+      misconceptionLinks: [makeMisconceptionLink("chain.n1", "severe")],
     };
-    const first = getWeaknessFit('chain.n1', graph);
-    const second = getWeaknessFit('chain.n1', graph);
-    const third = getWeaknessFit('chain.n1', graph);
+    const first = getWeaknessFit("chain.n1", graph);
+    const second = getWeaknessFit("chain.n1", graph);
+    const third = getWeaknessFit("chain.n1", graph);
     expect(first).toBe(second);
     expect(second).toBe(third);
   });
 
-  it('does not mutate the input PlannerInput or its misconceptionLinks array', () => {
+  it("does not mutate the input PlannerInput or its misconceptionLinks array", () => {
     const graph = {
       ...makePlannerChain({ length: 3 }),
-      misconceptionLinks: [makeMisconceptionLink('chain.n1', 'severe')],
+      misconceptionLinks: [makeMisconceptionLink("chain.n1", "severe")],
     };
     const snap = JSON.stringify({
       nodes: graph.nodes,
@@ -133,7 +126,7 @@ describe('weaknessFit — determinism and purity (Track-6 stub)', () => {
       goalNodeIds: graph.goalNodeIds,
       misconceptionLinks: graph.misconceptionLinks,
     });
-    getWeaknessFit('chain.n1', graph);
+    getWeaknessFit("chain.n1", graph);
     computeWeaknessFitMap(graph);
     expect(
       JSON.stringify({
@@ -151,15 +144,15 @@ describe('weaknessFit — determinism and purity (Track-6 stub)', () => {
 // Empty graph / unknown node
 // ---------------------------------------------------------------------------
 
-describe('weaknessFit — empty graph and unknown node', () => {
-  it('returns 0 for an unknown node id against an empty graph', () => {
+describe("weaknessFit — empty graph and unknown node", () => {
+  it("returns 0 for an unknown node id against an empty graph", () => {
     const graph = makePlannerEmpty();
-    expect(getWeaknessFit('any-id', graph)).toBe(0);
+    expect(getWeaknessFit("any-id", graph)).toBe(0);
   });
 
-  it('returns 0 for an unknown node id against a non-empty graph', () => {
+  it("returns 0 for an unknown node id against a non-empty graph", () => {
     const graph = makePlannerChain({ length: 3 });
-    expect(getWeaknessFit('chain.does-not-exist', graph)).toBe(0);
+    expect(getWeaknessFit("chain.does-not-exist", graph)).toBe(0);
   });
 });
 
@@ -167,11 +160,11 @@ describe('weaknessFit — empty graph and unknown node', () => {
 // Bulk precompute API
 // ---------------------------------------------------------------------------
 
-describe('weaknessFit — computeWeaknessFitMap (bulk precompute)', () => {
-  it('returns a map keyed by every node id in the graph', () => {
+describe("weaknessFit — computeWeaknessFitMap (bulk precompute)", () => {
+  it("returns a map keyed by every node id in the graph", () => {
     const graph = {
       ...makePlannerChain({ length: 5 }),
-      misconceptionLinks: [makeMisconceptionLink('chain.n2', 'minor')],
+      misconceptionLinks: [makeMisconceptionLink("chain.n2", "minor")],
     };
     const map = computeWeaknessFitMap(graph);
     expect(map).toBeInstanceOf(Map);
@@ -180,12 +173,12 @@ describe('weaknessFit — computeWeaknessFitMap (bulk precompute)', () => {
     }
   });
 
-  it('matches the per-node oracle for every node in the graph (stub returns 0 everywhere)', () => {
+  it("matches the per-node oracle for every node in the graph (stub returns 0 everywhere)", () => {
     const graph = {
       ...makePlannerChain({ length: 4 }),
       misconceptionLinks: [
-        makeMisconceptionLink('chain.n1', 'minor'),
-        makeMisconceptionLink('chain.n3', 'severe'),
+        makeMisconceptionLink("chain.n1", "minor"),
+        makeMisconceptionLink("chain.n3", "severe"),
       ],
     };
     const map = computeWeaknessFitMap(graph);
@@ -194,12 +187,12 @@ describe('weaknessFit — computeWeaknessFitMap (bulk precompute)', () => {
     }
   });
 
-  it('returns a map of all zeros in stub mode (Track 6 not yet integrated)', () => {
+  it("returns a map of all zeros in stub mode (Track 6 not yet integrated)", () => {
     const graph = {
       ...makePlannerChain({ length: 4 }),
       misconceptionLinks: [
-        makeMisconceptionLink('chain.n1', 'severe'),
-        makeMisconceptionLink('chain.n2', 'minor'),
+        makeMisconceptionLink("chain.n1", "severe"),
+        makeMisconceptionLink("chain.n2", "minor"),
       ],
     };
     const map = computeWeaknessFitMap(graph);
@@ -213,26 +206,24 @@ describe('weaknessFit — computeWeaknessFitMap (bulk precompute)', () => {
 // Boundary lint: weakness-fit.ts must not import from misconception-loop
 // ---------------------------------------------------------------------------
 
-describe('weaknessFit — boundary lint (no Track-6 import inside planner/weakness-fit)', () => {
-  it('planner/weakness-fit.ts does not import from ./misconception-loop (defense-in-depth)', async () => {
+describe("weaknessFit — boundary lint (no Track-6 import inside planner/weakness-fit)", () => {
+  it("planner/weakness-fit.ts does not import from ./misconception-loop (defense-in-depth)", async () => {
     // Resolve the source file from this test's URL and read it via a
     // dynamic import of `node:fs` (avoids a static-import on the
     // `node` lib types, which the package tsconfig does not include).
     // This is the bounded non-fake proof from test-strategy §4 / §7:
     // the stub is a plain function-input default, not a re-exported
     // live Track-6 helper.
-    const fsModule = 'node:fs';
-    const urlModule = 'node:url';
+    const fsModule = "node:fs";
+    const urlModule = "node:url";
     const { readFileSync } = (await import(fsModule)) as {
-      readFileSync: (path: string, encoding: 'utf-8') => string;
+      readFileSync: (path: string, encoding: "utf-8") => string;
     };
     const { fileURLToPath } = (await import(urlModule)) as {
       fileURLToPath: (url: URL | string) => string;
     };
-    const sourcePath = fileURLToPath(
-      new URL('../planner/weakness-fit.ts', import.meta.url),
-    );
-    const source = readFileSync(sourcePath, 'utf-8');
+    const sourcePath = fileURLToPath(new URL("../planner/weakness-fit.ts", import.meta.url));
+    const source = readFileSync(sourcePath, "utf-8");
     expect(source).not.toMatch(/from\s+['"]\.\/misconception-loop['"]/);
     expect(source).not.toMatch(/from\s+['"]\.\/misconception-loop\.ts['"]/);
     // Also ban the package re-export to avoid the same coupling at a

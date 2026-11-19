@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import {
   Point,
   GraphingCanvasProps,
@@ -8,9 +8,9 @@ import {
   transformCanvasToData,
   snapToGridValue,
   generateFunctionPath,
-} from '@math-platform/graphing-core/canvas-utils';
+} from "@math-platform/graphing-core/canvas-utils";
 
-export type { Point, FunctionPlot } from '@math-platform/graphing-core/canvas-utils';
+export type { Point, FunctionPlot } from "@math-platform/graphing-core/canvas-utils";
 
 /**
  * Render an interactive SVG graphing canvas with point placement and function plotting.
@@ -42,7 +42,7 @@ export function GraphingCanvas({
   // caller can colocate this announcement with other status messages in a
   // single role="status" region). Falls back to internal state for any
   // standalone usage of GraphingCanvas (e.g. canvas-only tests).
-  const [internalAnnouncement, setInternalAnnouncement] = useState('');
+  const [internalAnnouncement, setInternalAnnouncement] = useState("");
   const announceRef = useRef(onAnnounce);
   announceRef.current = onAnnounce;
   const announce = useCallback((message: string) => {
@@ -111,67 +111,77 @@ export function GraphingCanvas({
     }
   };
 
-  const handleSvgKeyDown = useCallback((event: React.KeyboardEvent<SVGSVGElement>) => {
-    if (readonly || !onPointAdd) return;
+  const handleSvgKeyDown = useCallback(
+    (event: React.KeyboardEvent<SVGSVGElement>) => {
+      if (readonly || !onPointAdd) return;
 
-    const step = snapToGrid ? 1 : 0.5;
+      const step = snapToGrid ? 1 : 0.5;
 
-    switch (event.key) {
-      case 'ArrowLeft':
-        event.preventDefault();
-        setCursorPos(prev => ({
-          ...prev,
-          x: Math.max(domain[0], prev.x - step),
-        }));
-        break;
-      case 'ArrowRight':
-        event.preventDefault();
-        setCursorPos(prev => ({
-          ...prev,
-          x: Math.min(domain[1], prev.x + step),
-        }));
-        break;
-      case 'ArrowUp':
-        event.preventDefault();
-        setCursorPos(prev => ({
-          ...prev,
-          y: Math.min(range[1], prev.y + step),
-        }));
-        break;
-      case 'ArrowDown':
-        event.preventDefault();
-        setCursorPos(prev => ({
-          ...prev,
-          y: Math.max(range[0], prev.y - step),
-        }));
-        break;
-      case 'Enter':
-      case ' ': {
-        event.preventDefault();
-        const finalX = snapToGrid ? snapToGridValue(cursorPos.x) : cursorPos.x;
-        const finalY = snapToGrid ? snapToGridValue(cursorPos.y) : cursorPos.y;
-        if (isFinite(finalX) && isFinite(finalY)) {
-          onPointAdd({ x: finalX, y: finalY, label: `${finalX.toFixed(1)}, ${finalY.toFixed(1)}` });
-          announce(`Point placed at ${finalX.toFixed(1)}, ${finalY.toFixed(1)}`);
+      switch (event.key) {
+        case "ArrowLeft":
+          event.preventDefault();
+          setCursorPos((prev) => ({
+            ...prev,
+            x: Math.max(domain[0], prev.x - step),
+          }));
+          break;
+        case "ArrowRight":
+          event.preventDefault();
+          setCursorPos((prev) => ({
+            ...prev,
+            x: Math.min(domain[1], prev.x + step),
+          }));
+          break;
+        case "ArrowUp":
+          event.preventDefault();
+          setCursorPos((prev) => ({
+            ...prev,
+            y: Math.min(range[1], prev.y + step),
+          }));
+          break;
+        case "ArrowDown":
+          event.preventDefault();
+          setCursorPos((prev) => ({
+            ...prev,
+            y: Math.max(range[0], prev.y - step),
+          }));
+          break;
+        case "Enter":
+        case " ": {
+          event.preventDefault();
+          const finalX = snapToGrid ? snapToGridValue(cursorPos.x) : cursorPos.x;
+          const finalY = snapToGrid ? snapToGridValue(cursorPos.y) : cursorPos.y;
+          if (isFinite(finalX) && isFinite(finalY)) {
+            onPointAdd({
+              x: finalX,
+              y: finalY,
+              label: `${finalX.toFixed(1)}, ${finalY.toFixed(1)}`,
+            });
+            announce(`Point placed at ${finalX.toFixed(1)}, ${finalY.toFixed(1)}`);
+          }
+          break;
         }
-        break;
+        case "Escape":
+          event.preventDefault();
+          svgRef.current?.blur();
+          break;
       }
-      case 'Escape':
-        event.preventDefault();
-        svgRef.current?.blur();
-        break;
-    }
-  }, [readonly, onPointAdd, snapToGrid, domain, range, cursorPos, announce]);
+    },
+    [readonly, onPointAdd, snapToGrid, domain, range, cursorPos, announce],
+  );
 
-  const handlePointKeyDown = useCallback((point: Point, event: React.KeyboardEvent) => {
-    if (readonly || !onPointRemove) return;
-    if ((event.key === 'Delete' || event.key === 'Backspace') && point.label) {
-      event.preventDefault();
-      event.stopPropagation();
-      onPointRemove(point.label);
-      announce(`Point ${point.label} removed`);
-    }
-  }, [readonly, onPointRemove, announce]);
+  const handlePointKeyDown = useCallback(
+    (point: Point, event: React.KeyboardEvent) => {
+      if (readonly || !onPointRemove) return;
+      if ((event.key === "Delete" || event.key === "Backspace") && point.label) {
+        event.preventDefault();
+        event.stopPropagation();
+        onPointRemove(point.label);
+        announce(`Point ${point.label} removed`);
+      }
+    },
+    [readonly, onPointRemove, announce],
+  );
 
   const renderCursor = () => {
     if (!isFocused || readonly) return null;
@@ -194,8 +204,24 @@ export function GraphingCanvas({
           strokeWidth={2}
           strokeDasharray="4 2"
         />
-        <line x1={canvasX - 12} y1={canvasY} x2={canvasX + 12} y2={canvasY} stroke="#ef4444" strokeWidth={1} strokeDasharray="2 2" />
-        <line x1={canvasX} y1={canvasY - 12} x2={canvasX} y2={canvasY + 12} stroke="#ef4444" strokeWidth={1} strokeDasharray="2 2" />
+        <line
+          x1={canvasX - 12}
+          y1={canvasY}
+          x2={canvasX + 12}
+          y2={canvasY}
+          stroke="#ef4444"
+          strokeWidth={1}
+          strokeDasharray="2 2"
+        />
+        <line
+          x1={canvasX}
+          y1={canvasY - 12}
+          x2={canvasX}
+          y2={canvasY + 12}
+          stroke="#ef4444"
+          strokeWidth={1}
+          strokeDasharray="2 2"
+        />
       </g>
     );
   };
@@ -296,7 +322,7 @@ export function GraphingCanvas({
           y={canvasY + 20}
           textAnchor="middle"
           className="tick-label"
-          style={{ fontSize: '12px', fill: '#6b7280' }}
+          style={{ fontSize: "12px", fill: "#6b7280" }}
         >
           {x.toFixed(1)}
         </text>,
@@ -314,7 +340,7 @@ export function GraphingCanvas({
           y={canvasY + 5}
           textAnchor="end"
           className="tick-label"
-          style={{ fontSize: '12px', fill: '#6b7280' }}
+          style={{ fontSize: "12px", fill: "#6b7280" }}
         >
           {y.toFixed(1)}
         </text>,
@@ -347,16 +373,9 @@ export function GraphingCanvas({
     const { width: w, height: h } = canvasSize;
 
     return points.map((point, index) => {
-      const { canvasX, canvasY } = transformDataToCanvas(
-        point.x,
-        point.y,
-        domain,
-        range,
-        w,
-        h,
-      );
+      const { canvasX, canvasY } = transformDataToCanvas(point.x, point.y, domain, range, w, h);
 
-      const isVertex = point.type === 'vertex';
+      const isVertex = point.type === "vertex";
 
       return (
         <g
@@ -365,16 +384,16 @@ export function GraphingCanvas({
           onKeyDown={(e) => handlePointKeyDown(point, e)}
           tabIndex={0}
           aria-label={`Point at ${point.x.toFixed(1)}, ${point.y.toFixed(1)}. Press Delete to remove.`}
-          style={{ cursor: readonly ? 'default' : 'pointer' }}
+          style={{ cursor: readonly ? "default" : "pointer" }}
         >
           <circle
             cx={canvasX}
             cy={canvasY}
             r={isVertex ? 8 : 6}
-            fill={isVertex ? '#f59e0b' : '#3b82f6'}
+            fill={isVertex ? "#f59e0b" : "#3b82f6"}
             stroke="#ffffff"
             strokeWidth={2}
-            className={`point-marker ${point.type || ''}`}
+            className={`point-marker ${point.type || ""}`}
           />
           {point.label && (
             <text
@@ -382,7 +401,7 @@ export function GraphingCanvas({
               y={canvasY - 12}
               textAnchor="middle"
               className="point-label"
-              style={{ fontSize: '11px', fill: '#374151', fontWeight: '500' }}
+              style={{ fontSize: "11px", fill: "#374151", fontWeight: "500" }}
             >
               {`${point.x.toFixed(1)}, ${point.y.toFixed(1)}`}
             </text>
@@ -393,11 +412,11 @@ export function GraphingCanvas({
   };
 
   return (
-    <div style={{ width: '100%', maxWidth: '800px', margin: '0 auto' }}>
+    <div style={{ width: "100%", maxWidth: "800px", margin: "0 auto" }}>
       <div id="graphing-instructions" className="sr-only">
         {readonly
-          ? 'This is a completed coordinate graph.'
-          : 'Use arrow keys to move the cursor. Press Enter or Space to place a point. Tab to a placed point and press Delete to remove it.'}
+          ? "This is a completed coordinate graph."
+          : "Use arrow keys to move the cursor. Press Enter or Space to place a point. Tab to a placed point and press Delete to remove it."}
       </div>
       {/* Render the internal status region only when no caller has supplied
           onAnnounce. Callers that provide onAnnounce are responsible for
@@ -413,14 +432,19 @@ export function GraphingCanvas({
         width="100%"
         height="100%"
         viewBox={`0 0 ${canvasSize.width} ${canvasSize.height}`}
-        style={{ width: '100%', minHeight: '400px', backgroundColor: '#ffffff', touchAction: 'none' }}
+        style={{
+          width: "100%",
+          minHeight: "400px",
+          backgroundColor: "#ffffff",
+          touchAction: "none",
+        }}
         onClick={handleClick}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         onKeyDown={handleSvgKeyDown}
         tabIndex={readonly ? -1 : 0}
         role="img"
-        aria-label={readonly ? 'Completed coordinate plane graph' : 'Coordinate plane for graphing'}
+        aria-label={readonly ? "Completed coordinate plane graph" : "Coordinate plane for graphing"}
         aria-describedby="graphing-instructions"
       >
         {renderGrid()}

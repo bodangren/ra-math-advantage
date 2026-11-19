@@ -1,13 +1,13 @@
-import { type LessonMetadata, type UnitContent } from '@/types/curriculum';
-import { cn } from '@/lib/utils';
+import { type LessonMetadata, type UnitContent } from "@/types/curriculum";
+import { cn } from "@/lib/utils";
 
-import { AssessmentOverview } from './AssessmentOverview';
-import { DrivingQuestion } from './DrivingQuestion';
-import { LearningSequence } from './LearningSequence';
-import { Prerequisites } from './Prerequisites';
-import { StudentChoices } from './StudentChoices';
-import { UnitHeader } from './UnitHeader';
-import { UnitOverview } from './UnitOverview';
+import { AssessmentOverview } from "./AssessmentOverview";
+import { DrivingQuestion } from "./DrivingQuestion";
+import { LearningSequence } from "./LearningSequence";
+import { Prerequisites } from "./Prerequisites";
+import { StudentChoices } from "./StudentChoices";
+import { UnitHeader } from "./UnitHeader";
+import { UnitOverview } from "./UnitOverview";
 
 export interface UnitTemplateProps {
   unitNumber: number;
@@ -15,11 +15,10 @@ export interface UnitTemplateProps {
   description?: string | null;
   durationLabel?: string | null;
   durationMinutes?: number | null;
-  difficulty?: LessonMetadata['difficulty'];
+  difficulty?: LessonMetadata["difficulty"];
   unitContent: UnitContent;
   className?: string;
 }
-
 
 /**
  * Renders the full unit page layout composing all unit subsections.
@@ -35,10 +34,10 @@ export function UnitTemplate({
   durationMinutes,
   difficulty,
   unitContent,
-  className
+  className,
 }: UnitTemplateProps) {
   return (
-    <div className={cn('space-y-12', className)}>
+    <div className={cn("space-y-12", className)}>
       <UnitHeader
         unitNumber={unitNumber}
         title={title}

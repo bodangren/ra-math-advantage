@@ -36,13 +36,15 @@ import {
 } from "@math-platform/srs-engine";
 import { resolveCanonicalVariantKey } from "../lib/srs/v3-runtime-contract";
 
-const VALID_PRIORITIES = new Set<string>(['essential', 'supporting', 'extension', 'triaged']);
+const VALID_PRIORITIES = new Set<string>(["essential", "supporting", "extension", "triaged"]);
 
-function withCanonicalVariants<T extends {
-  variantKey?: string;
-  legacyProblemFamilyId?: string;
-  problemFamilyId?: string;
-}>(cards: readonly T[]): Array<T & { variantKey: string }> {
+function withCanonicalVariants<
+  T extends {
+    variantKey?: string;
+    legacyProblemFamilyId?: string;
+    problemFamilyId?: string;
+  },
+>(cards: readonly T[]): Array<T & { variantKey: string }> {
   return cards.flatMap((card) => {
     try {
       return [{ ...card, variantKey: resolveCanonicalVariantKey(card).variantKey }];
@@ -60,7 +62,7 @@ function withCanonicalVariants<T extends {
  * @returns {ObjectivePriority} A valid ObjectivePriority value, defaulting to 'essential'
  */
 function validatePriority(value: string): ObjectivePriority {
-  return VALID_PRIORITIES.has(value) ? (value as ObjectivePriority) : 'essential';
+  return VALID_PRIORITIES.has(value) ? (value as ObjectivePriority) : "essential";
 }
 
 type PracticeVariantDoc = {
@@ -105,8 +107,6 @@ type PreFetchedData = {
   policiesByStandardId: Map<string, ObjectivePolicyDoc>;
 };
 
-
-
 /**
  * Fetches timing baselines for problem families from the database.
  * @param {QueryCtx} ctx - The query context
@@ -115,18 +115,16 @@ type PreFetchedData = {
  */
 async function fetchTimingBaselines(
   ctx: QueryCtx,
-  familyIds: Set<string>
+  familyIds: Set<string>,
 ): Promise<TimingBaselines> {
   const familyIdArray = Array.from(familyIds);
   const allBaselines = await Promise.all(
-    familyIdArray.map(pfId =>
+    familyIdArray.map((pfId) =>
       ctx.db
         .query("timing_baselines")
-        .withIndex("by_variant", (q) =>
-          q.eq("variantKey", pfId)
-        )
-        .first()
-    )
+        .withIndex("by_variant", (q) => q.eq("variantKey", pfId))
+        .first(),
+    ),
   );
   const baselines: TimingBaselines = {};
   familyIdArray.forEach((pfId, i) => {
@@ -160,7 +158,7 @@ async function fetchSubmissionTimings(
   relevantReviews: Array<{
     submissionId?: string;
     cardId: Id<"srs_cards">;
-  }>
+  }>,
 ): Promise<Map<string, number>> {
   const uniqueActivityIds = new Set<string>();
   for (const review of relevantReviews) {
@@ -174,16 +172,14 @@ async function fetchSubmissionTimings(
 
   const activityIdArray = Array.from(uniqueActivityIds);
   const allSubmissions = await Promise.all(
-    activityIdArray.map(activityId =>
+    activityIdArray.map((activityId) =>
       ctx.db
         .query("activity_submissions")
         .withIndex("by_user_and_activity", (q) =>
-          q
-            .eq("userId", studentId)
-            .eq("activityId", activityId as Id<"activities">)
+          q.eq("userId", studentId).eq("activityId", activityId as Id<"activities">),
         )
-        .collect()
-    )
+        .collect(),
+    ),
   );
 
   const submissionTimings = new Map<string, number>();
@@ -220,7 +216,7 @@ function deriveSubmissionTimingsFromPreFetched(
     submissionId?: string;
     cardId: Id<"srs_cards">;
   }>,
-  preFetched: PreFetchedData
+  preFetched: PreFetchedData,
 ): Map<string, number> {
   const submissions = preFetched.submissionsByStudent.get(studentId) ?? [];
 
@@ -263,7 +259,7 @@ function deriveSubmissionTimingsFromPreFetched(
 async function preFetchTeacherClassData(
   ctx: QueryCtx,
   studentIds: Id<"profiles">[],
-  allStudentCards: Map<string, Array<{ objectiveId: string; variantKey: string }>>
+  allStudentCards: Map<string, Array<{ objectiveId: string; variantKey: string }>>,
 ): Promise<PreFetchedData> {
   const allObjectiveIds = new Set<string>();
   for (const cards of allStudentCards.values()) {
@@ -305,8 +301,11 @@ async function preFetchTeacherClassData(
   const submissionsByStudent = new Map<string, ActivitySubmissionDoc[]>();
   const submissionsArrays = await Promise.all(
     studentIds.map((sid) =>
-      ctx.db.query("activity_submissions").withIndex("by_user", (q) => q.eq("userId", sid)).collect()
-    )
+      ctx.db
+        .query("activity_submissions")
+        .withIndex("by_user", (q) => q.eq("userId", sid))
+        .collect(),
+    ),
   );
   for (const subs of submissionsArrays) {
     for (const sub of subs) {
@@ -348,14 +347,12 @@ async function preFetchTeacherClassData(
  */
 export async function getObjectiveProficiencyHandler(
   ctx: QueryCtx,
-  args: { studentId: string; objectiveId?: string }
+  args: { studentId: string; objectiveId?: string },
 ) {
   // 1. Fetch all cards for the student
   const rawCards = await ctx.db
     .query("srs_cards")
-    .withIndex("by_student", (q) =>
-      q.eq("studentId", args.studentId as Id<"profiles">)
-    )
+    .withIndex("by_student", (q) => q.eq("studentId", args.studentId as Id<"profiles">))
     .take(500);
   const cards = withCanonicalVariants(rawCards);
 
@@ -366,7 +363,7 @@ export async function getObjectiveProficiencyHandler(
       .query("practice_variants")
       .withIndex("by_objectiveId", (q) =>
         // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Convex multi-entry array index expects element, not array
-        (q as any).eq("objectiveIds", args.objectiveId!)
+        (q as any).eq("objectiveIds", args.objectiveId!),
       )
       .collect();
     const familyIds = new Set(families.map((f) => f.variantKey));
@@ -377,9 +374,7 @@ export async function getObjectiveProficiencyHandler(
   const cardDocIds = new Set(filteredCards.map((c) => c._id));
   const allReviews = await ctx.db
     .query("srs_review_log")
-    .withIndex("by_student", (q) =>
-      q.eq("studentId", args.studentId as Id<"profiles">)
-    )
+    .withIndex("by_student", (q) => q.eq("studentId", args.studentId as Id<"profiles">))
     .collect();
   const relevantReviews = allReviews.filter((r) => cardDocIds.has(r.cardId));
 
@@ -396,16 +391,16 @@ export async function getObjectiveProficiencyHandler(
 
   const activityIdArray = Array.from(uniqueActivityIds);
   const allSubmissions = await Promise.all(
-    activityIdArray.map(activityId =>
+    activityIdArray.map((activityId) =>
       ctx.db
         .query("activity_submissions")
         .withIndex("by_user_and_activity", (q) =>
           q
             .eq("userId", args.studentId as Id<"profiles">)
-            .eq("activityId", activityId as Id<"activities">)
+            .eq("activityId", activityId as Id<"activities">),
         )
-        .collect()
-    )
+        .collect(),
+    ),
   );
 
   const submissionTimings = new Map<string, number>();
@@ -432,14 +427,12 @@ export async function getObjectiveProficiencyHandler(
   const familyIds = new Set(filteredCards.map((c) => c.variantKey));
   const familyIdArray = Array.from(familyIds);
   const allBaselines = await Promise.all(
-    familyIdArray.map(pfId =>
+    familyIdArray.map((pfId) =>
       ctx.db
         .query("timing_baselines")
-        .withIndex("by_variant", (q) =>
-          q.eq("variantKey", pfId)
-        )
-        .first()
-    )
+        .withIndex("by_variant", (q) => q.eq("variantKey", pfId))
+        .first(),
+    ),
   );
   familyIdArray.forEach((pfId, i) => {
     const baseline = allBaselines[i];
@@ -573,7 +566,7 @@ async function computeProficiencyForObjective(
     stateAfter: unknown;
     reviewedAt: number;
   }>,
-  preFetched?: PreFetchedData
+  preFetched?: PreFetchedData,
 ) {
   let families: PracticeVariantDoc[];
   let baselines: TimingBaselines;
@@ -588,7 +581,11 @@ async function computeProficiencyForObjective(
     const relevantReviews = allReviews.filter((r) => cardDocIds.has(r.cardId));
 
     baselines = preFetched.baselines;
-    submissionTimings = deriveSubmissionTimingsFromPreFetched(studentId, relevantReviews, preFetched);
+    submissionTimings = deriveSubmissionTimingsFromPreFetched(
+      studentId,
+      relevantReviews,
+      preFetched,
+    );
 
     let p: ObjectivePriority = "essential";
     const standard = preFetched.standardsByObjective.get(objectiveId);
@@ -641,10 +638,10 @@ async function computeProficiencyForObjective(
 
   families = await ctx.db
     .query("practice_variants")
-      .withIndex("by_objectiveId", (q) =>
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Convex multi-entry array index expects element, not array
-        (q as any).eq("objectiveIds", objectiveId)
-      )
+    .withIndex("by_objectiveId", (q) =>
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Convex multi-entry array index expects element, not array
+      (q as any).eq("objectiveIds", objectiveId),
+    )
     .collect();
   const familyIds = new Set(families.map((f) => f.variantKey));
   const filteredCards = allCards.filter((c) => familyIds.has(c.variantKey));
@@ -715,10 +712,7 @@ async function computeProficiencyForObjective(
  * @param {Id<"profiles">} studentId - The student's profile ID
  * @returns {Promise<string[]>} Array of objective ID strings
  */
-async function getStudentObjectiveIds(
-  ctx: QueryCtx,
-  studentId: Id<"profiles">
-): Promise<string[]> {
+async function getStudentObjectiveIds(ctx: QueryCtx, studentId: Id<"profiles">): Promise<string[]> {
   const rawCards = await ctx.db
     .query("srs_cards")
     .withIndex("by_student", (q) => q.eq("studentId", studentId))
@@ -742,7 +736,7 @@ async function getStudentObjectiveIds(
  */
 export async function getStudentProficiencySummaryHandler(
   ctx: QueryCtx,
-  args: { studentId: string }
+  args: { studentId: string },
 ): Promise<StudentProficiencyView[]> {
   const sid = args.studentId as Id<"profiles">;
 
@@ -761,9 +755,9 @@ export async function getStudentProficiencySummaryHandler(
 
   const views: StudentProficiencyView[] = [];
   const results = await Promise.all(
-    objectiveIds.map(objectiveId =>
-      computeProficiencyForObjective(ctx, sid, objectiveId, cards, reviews)
-    )
+    objectiveIds.map((objectiveId) =>
+      computeProficiencyForObjective(ctx, sid, objectiveId, cards, reviews),
+    ),
   );
   for (const result of results) {
     views.push(buildStudentProficiencyView(result));
@@ -791,7 +785,7 @@ export const getStudentProficiencySummary = internalQuery({
  */
 export async function getTeacherClassProficiencyHandler(
   ctx: QueryCtx,
-  args: { classId: string }
+  args: { classId: string },
 ): Promise<TeacherProficiencyView[]> {
   const classDocId = args.classId as Id<"classes">;
 
@@ -844,13 +838,19 @@ export async function getTeacherClassProficiencyHandler(
   const [allCardsArrays, allReviewsArrays] = await Promise.all([
     Promise.all(
       studentIds.map((sid) =>
-        ctx.db.query("srs_cards").withIndex("by_student", (q) => q.eq("studentId", sid)).take(500)
-      )
+        ctx.db
+          .query("srs_cards")
+          .withIndex("by_student", (q) => q.eq("studentId", sid))
+          .take(500),
+      ),
     ),
     Promise.all(
       studentIds.map((sid) =>
-        ctx.db.query("srs_review_log").withIndex("by_student", (q) => q.eq("studentId", sid)).collect()
-      )
+        ctx.db
+          .query("srs_review_log")
+          .withIndex("by_student", (q) => q.eq("studentId", sid))
+          .collect(),
+      ),
     ),
   ]);
   for (const rawCards of allCardsArrays) {
@@ -898,10 +898,10 @@ export async function getTeacherClassProficiencyHandler(
           objectiveId,
           cards,
           reviews,
-          preFetched
+          preFetched,
         );
         return { studentId, result };
-      })
+      }),
     );
     studentProficiencies.push(...results);
 
@@ -913,7 +913,7 @@ export async function getTeacherClassProficiencyHandler(
         : 0;
 
     const strugglingStudents = studentProficiencies
-      .filter((sp) => !sp.result.isProficient && sp.result.evidenceConfidence !== 'none')
+      .filter((sp) => !sp.result.isProficient && sp.result.evidenceConfidence !== "none")
       .map((sp) => sp.studentId);
 
     const firstStudentResult = studentProficiencies[0]?.result;
@@ -933,7 +933,7 @@ export async function getTeacherClassProficiencyHandler(
       standardDescription,
       proficientCount,
       avgRetention,
-      strugglingStudents
+      strugglingStudents,
     );
 
     teacherViews.push(teacherResult);
@@ -962,22 +962,53 @@ export async function getKnowledgeProficiencyInputs(
   now: number,
 ) {
   const canonicalCards = withCanonicalVariants(cards);
-  const prefetched = await preFetchTeacherClassData(ctx, [studentId], new Map([[studentId, canonicalCards]]));
-  const objectiveIds = [...new Set(cards.map(card => card.objectiveId))];
-  const results = await Promise.all(objectiveIds.map(async objectiveId => {
-    const objectiveCards = canonicalCards.filter(card => card.objectiveId === objectiveId);
-    const latestAssessment = Math.max(0, ...objectiveCards.map(card => {
-      const timestamp = card.lastReview ? Date.parse(card.lastReview) : NaN;
-      return Number.isFinite(timestamp) ? Math.min(now, timestamp) : 0;
-    }));
-    const atTime = (timestamp: number) => objectiveCards.map(card => {
-      const lastReview = card.lastReview ? Date.parse(card.lastReview) : NaN;
-      return { ...card, elapsedDays: Number.isFinite(lastReview)
-        ? Math.max(0, (timestamp - lastReview) / 86_400_000) : card.elapsedDays };
-    });
-    const assessed = await computeProficiencyForObjective(ctx, studentId, objectiveId, atTime(latestAssessment), reviews, prefetched);
-    const current = await computeProficiencyForObjective(ctx, studentId, objectiveId, atTime(now), reviews, prefetched);
-    return { assessed, current: { ...current, isProficient: assessed.isProficient } };
-  }));
-  return { assessed: results.map(result => result.assessed), current: results.map(result => result.current) };
+  const prefetched = await preFetchTeacherClassData(
+    ctx,
+    [studentId],
+    new Map([[studentId, canonicalCards]]),
+  );
+  const objectiveIds = [...new Set(cards.map((card) => card.objectiveId))];
+  const results = await Promise.all(
+    objectiveIds.map(async (objectiveId) => {
+      const objectiveCards = canonicalCards.filter((card) => card.objectiveId === objectiveId);
+      const latestAssessment = Math.max(
+        0,
+        ...objectiveCards.map((card) => {
+          const timestamp = card.lastReview ? Date.parse(card.lastReview) : NaN;
+          return Number.isFinite(timestamp) ? Math.min(now, timestamp) : 0;
+        }),
+      );
+      const atTime = (timestamp: number) =>
+        objectiveCards.map((card) => {
+          const lastReview = card.lastReview ? Date.parse(card.lastReview) : NaN;
+          return {
+            ...card,
+            elapsedDays: Number.isFinite(lastReview)
+              ? Math.max(0, (timestamp - lastReview) / 86_400_000)
+              : card.elapsedDays,
+          };
+        });
+      const assessed = await computeProficiencyForObjective(
+        ctx,
+        studentId,
+        objectiveId,
+        atTime(latestAssessment),
+        reviews,
+        prefetched,
+      );
+      const current = await computeProficiencyForObjective(
+        ctx,
+        studentId,
+        objectiveId,
+        atTime(now),
+        reviews,
+        prefetched,
+      );
+      return { assessed, current: { ...current, isProficient: assessed.isProficient } };
+    }),
+  );
+  return {
+    assessed: results.map((result) => result.assessed),
+    current: results.map((result) => result.current),
+  };
 }

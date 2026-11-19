@@ -1,11 +1,11 @@
-import { describe, it, expect } from 'vitest';
-import { graphingExplorerSchema } from '@/lib/activities/schemas/graphing-explorer.schema';
+import { describe, it, expect } from "vitest";
+import { graphingExplorerSchema } from "@/lib/activities/schemas/graphing-explorer.schema";
 
-describe('graphing-explorer.schema', () => {
-  describe('valid props', () => {
-    it('accepts minimal valid props', () => {
+describe("graphing-explorer.schema", () => {
+  describe("valid props", () => {
+    it("accepts minimal valid props", () => {
       const props = {
-        equation: 'y = x^2',
+        equation: "y = x^2",
       };
 
       const result = graphingExplorerSchema.safeParse(props);
@@ -15,9 +15,9 @@ describe('graphing-explorer.schema', () => {
       }
     });
 
-    it('accepts props with domain and range', () => {
+    it("accepts props with domain and range", () => {
       const props = {
-        equation: 'y = x^2',
+        equation: "y = x^2",
         domain: [-10, 10],
         range: [-10, 10],
       };
@@ -29,9 +29,9 @@ describe('graphing-explorer.schema', () => {
       }
     });
 
-    it('accepts props with points', () => {
+    it("accepts props with points", () => {
       const props = {
-        equation: 'y = x^2',
+        equation: "y = x^2",
         points: [
           [0, 0],
           [1, 1],
@@ -46,9 +46,9 @@ describe('graphing-explorer.schema', () => {
       }
     });
 
-    it('accepts complete valid props', () => {
+    it("accepts complete valid props", () => {
       const props = {
-        equation: 'y = x^2',
+        equation: "y = x^2",
         domain: [-10, 10],
         range: [-10, 10],
         points: [
@@ -65,15 +65,10 @@ describe('graphing-explorer.schema', () => {
       }
     });
 
-    it('accepts various equation formats', () => {
-      const equations = [
-        'y = x^2',
-        'y = 2x + 3',
-        'y = x^2 - 4x + 3',
-        'y = (x - 2)^2',
-      ];
+    it("accepts various equation formats", () => {
+      const equations = ["y = x^2", "y = 2x + 3", "y = x^2 - 4x + 3", "y = (x - 2)^2"];
 
-      equations.forEach(equation => {
+      equations.forEach((equation) => {
         const props = { equation };
         const result = graphingExplorerSchema.safeParse(props);
         expect(result.success).toBe(true);
@@ -81,8 +76,8 @@ describe('graphing-explorer.schema', () => {
     });
   });
 
-  describe('invalid props', () => {
-    it('rejects props without equation', () => {
+  describe("invalid props", () => {
+    it("rejects props without equation", () => {
       const props = {
         domain: [-10, 10],
         range: [-10, 10],
@@ -91,22 +86,24 @@ describe('graphing-explorer.schema', () => {
       const result = graphingExplorerSchema.safeParse(props);
       expect(result.success).toBe(false);
       if (!result.success) {
-        expect(result.error.issues.some((issue: { path: (string | number | symbol)[] }) => issue.path.includes('equation'))).toBe(
-          true,
-        );
+        expect(
+          result.error.issues.some((issue: { path: (string | number | symbol)[] }) =>
+            issue.path.includes("equation"),
+          ),
+        ).toBe(true);
       }
     });
 
-    it('rejects empty string equation', () => {
+    it("rejects empty string equation", () => {
       const props = {
-        equation: '',
+        equation: "",
       };
 
       const result = graphingExplorerSchema.safeParse(props);
       expect(result.success).toBe(false);
     });
 
-    it('rejects non-string equation', () => {
+    it("rejects non-string equation", () => {
       const props = {
         equation: 123,
       };
@@ -115,19 +112,19 @@ describe('graphing-explorer.schema', () => {
       expect(result.success).toBe(false);
     });
 
-    it('rejects invalid domain (not an array)', () => {
+    it("rejects invalid domain (not an array)", () => {
       const props = {
-        equation: 'y = x^2',
-        domain: 'invalid',
+        equation: "y = x^2",
+        domain: "invalid",
       };
 
       const result = graphingExplorerSchema.safeParse(props);
       expect(result.success).toBe(false);
     });
 
-    it('rejects invalid domain (wrong length)', () => {
+    it("rejects invalid domain (wrong length)", () => {
       const props = {
-        equation: 'y = x^2',
+        equation: "y = x^2",
         domain: [-10],
       };
 
@@ -135,29 +132,29 @@ describe('graphing-explorer.schema', () => {
       expect(result.success).toBe(false);
     });
 
-    it('rejects invalid domain (non-numeric values)', () => {
+    it("rejects invalid domain (non-numeric values)", () => {
       const props = {
-        equation: 'y = x^2',
-        domain: [-10, 'invalid'],
+        equation: "y = x^2",
+        domain: [-10, "invalid"],
       };
 
       const result = graphingExplorerSchema.safeParse(props);
       expect(result.success).toBe(false);
     });
 
-    it('rejects invalid range (not an array)', () => {
+    it("rejects invalid range (not an array)", () => {
       const props = {
-        equation: 'y = x^2',
-        range: 'invalid',
+        equation: "y = x^2",
+        range: "invalid",
       };
 
       const result = graphingExplorerSchema.safeParse(props);
       expect(result.success).toBe(false);
     });
 
-    it('rejects invalid range (wrong length)', () => {
+    it("rejects invalid range (wrong length)", () => {
       const props = {
-        equation: 'y = x^2',
+        equation: "y = x^2",
         range: [-10],
       };
 
@@ -165,39 +162,39 @@ describe('graphing-explorer.schema', () => {
       expect(result.success).toBe(false);
     });
 
-    it('rejects invalid range (non-numeric values)', () => {
+    it("rejects invalid range (non-numeric values)", () => {
       const props = {
-        equation: 'y = x^2',
-        range: [-10, 'invalid'],
+        equation: "y = x^2",
+        range: [-10, "invalid"],
       };
 
       const result = graphingExplorerSchema.safeParse(props);
       expect(result.success).toBe(false);
     });
 
-    it('rejects invalid points (not an array)', () => {
+    it("rejects invalid points (not an array)", () => {
       const props = {
-        equation: 'y = x^2',
-        points: 'invalid',
+        equation: "y = x^2",
+        points: "invalid",
       };
 
       const result = graphingExplorerSchema.safeParse(props);
       expect(result.success).toBe(false);
     });
 
-    it('rejects invalid points (non-array elements)', () => {
+    it("rejects invalid points (non-array elements)", () => {
       const props = {
-        equation: 'y = x^2',
-        points: ['invalid'],
+        equation: "y = x^2",
+        points: ["invalid"],
       };
 
       const result = graphingExplorerSchema.safeParse(props);
       expect(result.success).toBe(false);
     });
 
-    it('rejects invalid points (wrong element length)', () => {
+    it("rejects invalid points (wrong element length)", () => {
       const props = {
-        equation: 'y = x^2',
+        equation: "y = x^2",
         points: [[0]],
       };
 
@@ -205,20 +202,20 @@ describe('graphing-explorer.schema', () => {
       expect(result.success).toBe(false);
     });
 
-    it('rejects invalid points (non-numeric coordinates)', () => {
+    it("rejects invalid points (non-numeric coordinates)", () => {
       const props = {
-        equation: 'y = x^2',
-        points: [[0, 'invalid']],
+        equation: "y = x^2",
+        points: [[0, "invalid"]],
       };
 
       const result = graphingExplorerSchema.safeParse(props);
       expect(result.success).toBe(false);
     });
 
-    it('rejects extra properties', () => {
+    it("rejects extra properties", () => {
       const props = {
-        equation: 'y = x^2',
-        extraProperty: 'should not be here',
+        equation: "y = x^2",
+        extraProperty: "should not be here",
       };
 
       const result = graphingExplorerSchema.safeParse(props);
@@ -226,13 +223,16 @@ describe('graphing-explorer.schema', () => {
     });
   });
 
-  describe('type inference', () => {
-    it('infers correct type from schema', () => {
+  describe("type inference", () => {
+    it("infers correct type from schema", () => {
       const props = {
-        equation: 'y = x^2',
+        equation: "y = x^2",
         domain: [-10, 10],
         range: [-10, 10],
-        points: [[0, 0], [1, 1]],
+        points: [
+          [0, 0],
+          [1, 1],
+        ],
       };
 
       const result = graphingExplorerSchema.safeParse(props);
@@ -244,7 +244,7 @@ describe('graphing-explorer.schema', () => {
         const range: number[] | undefined = result.data.range;
         const points: number[][] | undefined = result.data.points;
 
-        expect(typeof equation).toBe('string');
+        expect(typeof equation).toBe("string");
         expect(Array.isArray(domain)).toBe(true);
         expect(Array.isArray(range)).toBe(true);
         expect(Array.isArray(points)).toBe(true);

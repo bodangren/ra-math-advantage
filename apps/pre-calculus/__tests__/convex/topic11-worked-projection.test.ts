@@ -17,18 +17,22 @@ vi.mock("@/lib/convex/server", () => ({
   internal: {
     course: { getLesson: "course:getLesson" },
     activities: {
-      getApprovedTopic11WorkedSource:
-        "activities:getApprovedTopic11WorkedSource",
+      getApprovedTopic11WorkedSource: "activities:getApprovedTopic11WorkedSource",
       getTopic11LearnerDeliveryState: "activities:getTopic11LearnerDeliveryState",
       getApprovedPrecalculusPilot: "activities:getApprovedPrecalculusPilot",
     },
   },
-  fetchInternalQuery: vi.fn((ref: string) => Promise.resolve(
-    ref === "course:getLesson" ? pageMocks.lesson
-      : ref === "activities:getApprovedTopic11WorkedSource" ? pageMocks.worked
-        : ref === "activities:getTopic11LearnerDeliveryState" ? pageMocks.state
-          : pageMocks.pilot,
-  )),
+  fetchInternalQuery: vi.fn((ref: string) =>
+    Promise.resolve(
+      ref === "course:getLesson"
+        ? pageMocks.lesson
+        : ref === "activities:getApprovedTopic11WorkedSource"
+          ? pageMocks.worked
+          : ref === "activities:getTopic11LearnerDeliveryState"
+            ? pageMocks.state
+            : pageMocks.pilot,
+    ),
+  ),
 }));
 
 import blueprintsDocument from "@/curriculum/skill-graph/blueprints.json";
@@ -107,20 +111,14 @@ function harness() {
 }
 
 function handler<T>(value: unknown) {
-  return Reflect.get(value as object, "_handler") as (
-    ctx: any,
-    args: any,
-  ) => Promise<T>;
+  return Reflect.get(value as object, "_handler") as (ctx: any, args: any) => Promise<T>;
 }
 
 function approvedPublication() {
   const nodes = structuredClone(nodesDocument.nodes);
   const blueprints = structuredClone(blueprintsDocument.blueprints);
-  nodes.find((node) => node.id === PRECALCULUS_PILOT_NODE_ID)!.reviewStatus =
-    "approved";
-  blueprints.find(
-    (row) => row.nodeId === PRECALCULUS_PILOT_NODE_ID,
-  )!.reviewStatus = "approved";
+  nodes.find((node) => node.id === PRECALCULUS_PILOT_NODE_ID)!.reviewStatus = "approved";
+  blueprints.find((row) => row.nodeId === PRECALCULUS_PILOT_NODE_ID)!.reviewStatus = "approved";
   return { nodes, blueprints };
 }
 
@@ -142,8 +140,7 @@ describe("Topic 1.1 selected Worked projection", () => {
       reviewedAt: Date.now(),
     };
     state.rows.activities = state.rows.activities.filter(
-      (row) =>
-        row === source || row.componentKey !== PRECALCULUS_PILOT_COMPONENT_KEY,
+      (row) => row === source || row.componentKey !== PRECALCULUS_PILOT_COMPONENT_KEY,
     );
     const publication = approvedPublication();
     const projected = await getApprovedTopic11WorkedSourceHandler(
@@ -157,9 +154,8 @@ describe("Topic 1.1 selected Worked projection", () => {
       mode: "worked_example",
     });
     expect(projected?.props).toEqual(
-      publication.blueprints.find(
-        (row) => row.nodeId === PRECALCULUS_PILOT_NODE_ID,
-      )!.workedExampleSpec!.rendererProps,
+      publication.blueprints.find((row) => row.nodeId === PRECALCULUS_PILOT_NODE_ID)!
+        .workedExampleSpec!.rendererProps,
     );
 
     const lesson = await handler<any>(getLesson)(
@@ -179,8 +175,7 @@ describe("Topic 1.1 selected Worked projection", () => {
 
     pageMocks.lesson = lesson;
     pageMocks.worked = projected;
-    const { default: LessonPage } =
-      await import("@/app/student/lessons/[topic]/page");
+    const { default: LessonPage } = await import("@/app/student/lessons/[topic]/page");
     render(await LessonPage({ params: Promise.resolve({ topic: "1.1" }) }));
     expect(screen.getByTestId("precalc-topic-1-1-daily")).toBeInTheDocument();
     expect(
@@ -188,9 +183,7 @@ describe("Topic 1.1 selected Worked projection", () => {
         name: "Worked Example: Classify Graph Intervals",
       }),
     ).toBeInTheDocument();
-    expect(
-      screen.getAllByText(/Increasing: \[0,3\] and \[7,9\]/).length,
-    ).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Increasing: \[0,3\] and \[7,9\]/).length).toBeGreaterThan(0);
     expect(
       screen.getByRole("button", { name: "Mark worked example reviewed" }),
     ).toBeInTheDocument();
@@ -198,15 +191,11 @@ describe("Topic 1.1 selected Worked projection", () => {
     cleanup();
     pageMocks.worked = null;
     render(await LessonPage({ params: Promise.resolve({ topic: "1.1" }) }));
-    expect(
-      screen.getByText("This worked example is not available."),
-    ).toBeInTheDocument();
+    expect(screen.getByText("This worked example is not available.")).toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: "Mark worked example reviewed" }),
     ).not.toBeInTheDocument();
-    expect(
-      screen.queryByTestId("precalc-topic-1-1-daily"),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId("precalc-topic-1-1-daily")).not.toBeInTheDocument();
 
     cleanup();
     pageMocks.worked = projected;
@@ -221,26 +210,46 @@ describe("Topic 1.1 selected Worked projection", () => {
       (row) => row.nodeId === PRECALCULUS_PILOT_NODE_ID,
     )!;
     pageMocks.pilot = [
-      { mode: "guided_practice", stableActivityId: `${PRECALCULUS_PILOT_NODE_ID}.guided_practice`, props: selectedBlueprint.guidedPracticeSpec!.rendererProps },
-      { mode: "independent_practice", stableActivityId: `${PRECALCULUS_PILOT_NODE_ID}.independent_practice`, props: selectedBlueprint.independentPracticeSpec!.rendererProps },
+      {
+        mode: "guided_practice",
+        stableActivityId: `${PRECALCULUS_PILOT_NODE_ID}.guided_practice`,
+        props: selectedBlueprint.guidedPracticeSpec!.rendererProps,
+      },
+      {
+        mode: "independent_practice",
+        stableActivityId: `${PRECALCULUS_PILOT_NODE_ID}.independent_practice`,
+        props: selectedBlueprint.independentPracticeSpec!.rendererProps,
+      },
     ];
     render(await LessonPage({ params: Promise.resolve({ topic: "1.1" }) }));
     expect(screen.queryByTestId("precalc-topic-1-1-daily")).not.toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Guided Practice: Classify Graph Intervals" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Independent Practice: Classify Graph Intervals" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Guided Practice: Classify Graph Intervals" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Independent Practice: Classify Graph Intervals" }),
+    ).toBeInTheDocument();
 
     cleanup();
     pageMocks.pilot = pageMocks.pilot.filter((item) => item.mode === "guided_practice");
     render(await LessonPage({ params: Promise.resolve({ topic: "1.1" }) }));
-    expect(screen.getByRole("heading", { name: "Guided Practice: Classify Graph Intervals" })).toBeInTheDocument();
-    expect(screen.queryByRole("heading", { name: "Independent Practice: Classify Graph Intervals" })).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Guided Practice: Classify Graph Intervals" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "Independent Practice: Classify Graph Intervals" }),
+    ).not.toBeInTheDocument();
 
     cleanup();
     pageMocks.state = null;
     render(await LessonPage({ params: Promise.resolve({ topic: "1.1" }) }));
     expect(screen.getByText("This worked example is not available.")).toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: "Mark worked example reviewed" })).not.toBeInTheDocument();
-    expect(screen.queryByRole("heading", { name: "Guided Practice: Classify Graph Intervals" })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Mark worked example reviewed" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "Guided Practice: Classify Graph Intervals" }),
+    ).not.toBeInTheDocument();
 
     state.rows.lesson_versions.push({
       _id: "lesson_versions:draft",
@@ -250,10 +259,7 @@ describe("Topic 1.1 selected Worked projection", () => {
       createdAt: Date.now() + 1,
     });
     await expect(
-      getApprovedTopic11WorkedSourceHandler(
-        { db: state.db } as never,
-        publication,
-      ),
+      getApprovedTopic11WorkedSourceHandler({ db: state.db } as never, publication),
     ).resolves.toMatchObject({ activityId: source._id });
   });
 
@@ -270,14 +276,10 @@ describe("Topic 1.1 selected Worked projection", () => {
     )!;
 
     const incomplete = structuredClone(publication);
-    delete incomplete.blueprints.find(
-      (row) => row.nodeId === PRECALCULUS_PILOT_NODE_ID,
-    )!.guidedPracticeSpec;
+    delete incomplete.blueprints.find((row) => row.nodeId === PRECALCULUS_PILOT_NODE_ID)!
+      .guidedPracticeSpec;
     await expect(
-      getApprovedTopic11WorkedSourceHandler(
-        { db: state.db } as never,
-        incomplete,
-      ),
+      getApprovedTopic11WorkedSourceHandler({ db: state.db } as never, incomplete),
     ).resolves.toBeNull();
 
     const changedBlueprint = structuredClone(publication);
@@ -287,49 +289,32 @@ describe("Topic 1.1 selected Worked projection", () => {
     if (!changedWorkedBlueprint?.workedExampleSpec) {
       throw new Error("Expected the selected Worked blueprint");
     }
-    changedWorkedBlueprint.workedExampleSpec.rendererProps.title =
-      "Changed source";
+    changedWorkedBlueprint.workedExampleSpec.rendererProps.title = "Changed source";
     await expect(
-      getApprovedTopic11WorkedSourceHandler(
-        { db: state.db } as never,
-        changedBlueprint,
-      ),
+      getApprovedTopic11WorkedSourceHandler({ db: state.db } as never, changedBlueprint),
     ).resolves.toBeNull();
 
     const originalProps = structuredClone(source.props);
     source.props = { ...source.props, source: "changed" };
     await expect(
-      getApprovedTopic11WorkedSourceHandler(
-        { db: state.db } as never,
-        publication,
-      ),
+      getApprovedTopic11WorkedSourceHandler({ db: state.db } as never, publication),
     ).resolves.toBeNull();
     source.props = originalProps;
 
-    const currentVersion = state.rows.lesson_versions.find(
-      (row) => row.status === "published",
-    )!;
+    const currentVersion = state.rows.lesson_versions.find((row) => row.status === "published")!;
     state.rows.lesson_versions.push({
       ...structuredClone(currentVersion),
       _id: "lesson_versions:duplicate",
     });
     await expect(
-      getApprovedTopic11WorkedSourceHandler(
-        { db: state.db } as never,
-        publication,
-      ),
+      getApprovedTopic11WorkedSourceHandler({ db: state.db } as never, publication),
     ).resolves.toBeNull();
     state.rows.lesson_versions.pop();
 
-    const phase = state.rows.phase_versions.find(
-      (row) => row.phaseNumber === 4,
-    )!;
+    const phase = state.rows.phase_versions.find((row) => row.phaseNumber === 4)!;
     phase.phaseNumber = 5;
     await expect(
-      getApprovedTopic11WorkedSourceHandler(
-        { db: state.db } as never,
-        publication,
-      ),
+      getApprovedTopic11WorkedSourceHandler({ db: state.db } as never, publication),
     ).resolves.toBeNull();
     phase.phaseNumber = 4;
     const section = state.rows.phase_sections.find(
@@ -337,10 +322,7 @@ describe("Topic 1.1 selected Worked projection", () => {
     )!;
     section.sequenceOrder = 3;
     await expect(
-      getApprovedTopic11WorkedSourceHandler(
-        { db: state.db } as never,
-        publication,
-      ),
+      getApprovedTopic11WorkedSourceHandler({ db: state.db } as never, publication),
     ).resolves.toBeNull();
     section.sequenceOrder = 2;
 
@@ -349,34 +331,46 @@ describe("Topic 1.1 selected Worked projection", () => {
       _id: "activities:duplicate",
     });
     await expect(
-      getApprovedTopic11WorkedSourceHandler(
-        { db: state.db } as never,
-        publication,
-      ),
+      getApprovedTopic11WorkedSourceHandler({ db: state.db } as never, publication),
     ).resolves.toBeNull();
     expect(blueprint.workedExampleSpec).toBeDefined();
   });
 });
 
-
 describe("parent source ownership regressions", () => {
   it.each(["cross-phase link", "duplicate Worked phase", "occupied sequence"])(
-    "rejects %s even when one exact source link remains", async (kind) => {
+    "rejects %s even when one exact source link remains",
+    async (kind) => {
       const state = harness();
       await handler(seedLesson1_1)({ db: state.db }, {});
-      const source = state.rows.activities.find((row) => row.stableActivityId === PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID)!;
+      const source = state.rows.activities.find(
+        (row) => row.stableActivityId === PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID,
+      )!;
       source.approval = { status: "approved" };
       const phase = state.rows.phase_versions.find((row) => row.phaseNumber === 4)!;
-      const section = state.rows.phase_sections.find((row) => row.content?.activityId === source._id)!;
+      const section = state.rows.phase_sections.find(
+        (row) => row.content?.activityId === source._id,
+      )!;
       if (kind === "cross-phase link") {
         const other = state.rows.phase_versions.find((row) => row.phaseNumber === 3)!;
-        state.rows.phase_sections.push({ ...structuredClone(section), _id: "sections:cross-phase", phaseVersionId: other._id });
+        state.rows.phase_sections.push({
+          ...structuredClone(section),
+          _id: "sections:cross-phase",
+          phaseVersionId: other._id,
+        });
       } else if (kind === "duplicate Worked phase") {
         state.rows.phase_versions.push({ ...structuredClone(phase), _id: "phases:duplicate" });
       } else {
-        state.rows.phase_sections.push({ ...structuredClone(section), _id: "sections:occupied", sectionType: "text", content: { markdown: "Unrelated section at the selected sequence." } });
+        state.rows.phase_sections.push({
+          ...structuredClone(section),
+          _id: "sections:occupied",
+          sectionType: "text",
+          content: { markdown: "Unrelated section at the selected sequence." },
+        });
       }
-      await expect(getApprovedTopic11WorkedSourceHandler({ db: state.db } as never, approvedPublication())).resolves.toBeNull();
+      await expect(
+        getApprovedTopic11WorkedSourceHandler({ db: state.db } as never, approvedPublication()),
+      ).resolves.toBeNull();
     },
   );
 });

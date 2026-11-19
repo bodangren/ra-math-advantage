@@ -1,12 +1,12 @@
-'use client';
-import { useRouter } from 'next/navigation';
+"use client";
+import { useRouter } from "next/navigation";
 
-import { useRef, useState } from 'react';
+import { useRef, useState } from "react";
 
-import { IntervalClassificationActivity } from '@math-platform/activity-components';
-import type { IntervalClassificationProps } from '@math-platform/math-content/schemas';
+import { IntervalClassificationActivity } from "@math-platform/activity-components";
+import type { IntervalClassificationProps } from "@math-platform/math-content/schemas";
 
-const SAFE_ERROR = 'Unable to save the Topic 1.1 daily attempt.';
+const SAFE_ERROR = "Unable to save the Topic 1.1 daily attempt.";
 
 type AcknowledgementReceipt = {
   submissionId: string;
@@ -15,7 +15,7 @@ type AcknowledgementReceipt = {
 };
 
 function createIdempotencyKey(): string {
-  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
     return crypto.randomUUID();
   }
   return `precalc-topic-1-1-${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -23,21 +23,22 @@ function createIdempotencyKey(): string {
 
 async function readReceipt(response: Response): Promise<AcknowledgementReceipt> {
   const body: unknown = await response.json().catch(() => null);
-  if (!response.ok || typeof body !== 'object' || body === null || Array.isArray(body)) {
+  if (!response.ok || typeof body !== "object" || body === null || Array.isArray(body)) {
     throw new Error(SAFE_ERROR);
   }
   const value = body as Record<string, unknown>;
-  const timestamp = typeof value.submittedAt === 'string' ? Date.parse(value.submittedAt) : Number.NaN;
+  const timestamp =
+    typeof value.submittedAt === "string" ? Date.parse(value.submittedAt) : Number.NaN;
   if (
-    Object.keys(value).sort().join('|') !== 'attemptOrdinal|submissionId|submittedAt'
-    || typeof value.submissionId !== 'string'
-    || value.submissionId.trim().length === 0
-    || typeof value.attemptOrdinal !== 'number'
-    || !Number.isInteger(value.attemptOrdinal)
-    || value.attemptOrdinal < 1
-    || typeof value.submittedAt !== 'string'
-    || !Number.isFinite(timestamp)
-    || new Date(timestamp).toISOString() !== value.submittedAt
+    Object.keys(value).sort().join("|") !== "attemptOrdinal|submissionId|submittedAt" ||
+    typeof value.submissionId !== "string" ||
+    value.submissionId.trim().length === 0 ||
+    typeof value.attemptOrdinal !== "number" ||
+    !Number.isInteger(value.attemptOrdinal) ||
+    value.attemptOrdinal < 1 ||
+    typeof value.submittedAt !== "string" ||
+    !Number.isFinite(timestamp) ||
+    new Date(timestamp).toISOString() !== value.submittedAt
   ) {
     throw new Error(SAFE_ERROR);
   }
@@ -52,32 +53,31 @@ export function PrecalculusTopic11DailyCurriculumPilot({
   activityProps: IntervalClassificationProps;
 }) {
   const router = useRouter();
-  const [status, setStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
   const [message, setMessage] = useState<string | null>(null);
   const idempotencyKeyRef = useRef<string | null>(null);
 
-
   async function submit() {
-    if (status === 'saving') return;
+    if (status === "saving") return;
     idempotencyKeyRef.current ??= createIdempotencyKey();
-    setStatus('saving');
+    setStatus("saving");
     setMessage(null);
 
     try {
-      const response = await fetch('/api/activities/precalculus-topic-1-1/submissions', {
-        method: 'POST',
+      const response = await fetch("/api/activities/precalculus-topic-1-1/submissions", {
+        method: "POST",
         headers: {
-          'content-type': 'application/json',
-          'Idempotency-Key': idempotencyKeyRef.current,
+          "content-type": "application/json",
+          "Idempotency-Key": idempotencyKeyRef.current,
         },
         body: JSON.stringify({}),
       });
       await readReceipt(response);
-      setStatus('saved');
+      setStatus("saved");
       router.refresh();
-      setMessage('Your worked-example acknowledgement was saved.');
+      setMessage("Your worked-example acknowledgement was saved.");
     } catch {
-      setStatus('error');
+      setStatus("error");
       setMessage(SAFE_ERROR);
     }
   }
@@ -95,21 +95,23 @@ export function PrecalculusTopic11DailyCurriculumPilot({
       <button
         type="button"
         className="btn-primary mt-6"
-        disabled={status === 'saving' || status === 'saved'}
+        disabled={status === "saving" || status === "saved"}
         onClick={submit}
       >
-        {status === 'saving'
-          ? 'Saving…'
-          : status === 'error'
-            ? 'Retry worked example review'
-            : status === 'saved'
-              ? 'Worked example reviewed'
-              : 'Mark worked example reviewed'}
+        {status === "saving"
+          ? "Saving…"
+          : status === "error"
+            ? "Retry worked example review"
+            : status === "saved"
+              ? "Worked example reviewed"
+              : "Mark worked example reviewed"}
       </button>
-      {status === 'saved' && message && (
-        <p className="mt-4" role="status">{message}</p>
+      {status === "saved" && message && (
+        <p className="mt-4" role="status">
+          {message}
+        </p>
       )}
-      {status === 'error' && message && (
+      {status === "error" && message && (
         <div className="mt-4" role="alert">
           <p>{message}</p>
         </div>

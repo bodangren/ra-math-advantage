@@ -83,7 +83,12 @@ export const seedAll = internalAction({
     const results: {
       lessons: { slug: string; success: boolean; error?: string }[];
       standards: { code: string; success: boolean; error?: string }[];
-      lessonStandards: { lessonSlug: string; standardCode: string; success: boolean; error?: string }[];
+      lessonStandards: {
+        lessonSlug: string;
+        standardCode: string;
+        success: boolean;
+        error?: string;
+      }[];
       demo: { success: boolean; error?: string };
       progress: { success: boolean; error?: string };
     } = {
@@ -281,7 +286,10 @@ export const seedAll = internalAction({
     }
 
     try {
-      const lessonStandardResults1 = await ctx.runMutation(seedInternal.seedModule1LessonStandards, {});
+      const lessonStandardResults1 = await ctx.runMutation(
+        seedInternal.seedModule1LessonStandards,
+        {},
+      );
       for (const result of lessonStandardResults1) {
         results.lessonStandards.push({
           lessonSlug: result.lessonSlug,
@@ -300,7 +308,10 @@ export const seedAll = internalAction({
     }
 
     try {
-      const lessonStandardResults2 = await ctx.runMutation(seedInternal.seedModule2LessonStandards, {});
+      const lessonStandardResults2 = await ctx.runMutation(
+        seedInternal.seedModule2LessonStandards,
+        {},
+      );
       for (const result of lessonStandardResults2) {
         results.lessonStandards.push({
           lessonSlug: result.lessonSlug,
@@ -319,7 +330,10 @@ export const seedAll = internalAction({
     }
 
     try {
-      const lessonStandardResults3 = await ctx.runMutation(seedInternal.seedModule3LessonStandards, {});
+      const lessonStandardResults3 = await ctx.runMutation(
+        seedInternal.seedModule3LessonStandards,
+        {},
+      );
       for (const result of lessonStandardResults3) {
         results.lessonStandards.push({
           lessonSlug: result.lessonSlug,
@@ -338,7 +352,10 @@ export const seedAll = internalAction({
     }
 
     try {
-      const lessonStandardResults4 = await ctx.runMutation(seedInternal.seedModule4LessonStandards, {});
+      const lessonStandardResults4 = await ctx.runMutation(
+        seedInternal.seedModule4LessonStandards,
+        {},
+      );
       for (const result of lessonStandardResults4) {
         results.lessonStandards.push({
           lessonSlug: result.lessonSlug,
@@ -357,7 +374,10 @@ export const seedAll = internalAction({
     }
 
     try {
-      const lessonStandardResults5 = await ctx.runMutation(seedInternal.seedModule5LessonStandards, {});
+      const lessonStandardResults5 = await ctx.runMutation(
+        seedInternal.seedModule5LessonStandards,
+        {},
+      );
       for (const result of lessonStandardResults5) {
         results.lessonStandards.push({
           lessonSlug: result.lessonSlug,
@@ -376,7 +396,10 @@ export const seedAll = internalAction({
     }
 
     try {
-      const lessonStandardResults = await ctx.runMutation(seedInternal.seedModule6LessonStandards, {});
+      const lessonStandardResults = await ctx.runMutation(
+        seedInternal.seedModule6LessonStandards,
+        {},
+      );
       for (const result of lessonStandardResults) {
         results.lessonStandards.push({
           lessonSlug: result.lessonSlug,
@@ -395,7 +418,10 @@ export const seedAll = internalAction({
     }
 
     try {
-      const lessonStandardResults7 = await ctx.runMutation(seedInternal.seedModule7LessonStandards, {});
+      const lessonStandardResults7 = await ctx.runMutation(
+        seedInternal.seedModule7LessonStandards,
+        {},
+      );
       for (const result of lessonStandardResults7) {
         results.lessonStandards.push({
           lessonSlug: result.lessonSlug,
@@ -414,7 +440,10 @@ export const seedAll = internalAction({
     }
 
     try {
-      const lessonStandardResults8 = await ctx.runMutation(seedInternal.seedModule8LessonStandards, {});
+      const lessonStandardResults8 = await ctx.runMutation(
+        seedInternal.seedModule8LessonStandards,
+        {},
+      );
       for (const result of lessonStandardResults8) {
         results.lessonStandards.push({
           lessonSlug: result.lessonSlug,
@@ -433,7 +462,10 @@ export const seedAll = internalAction({
     }
 
     try {
-      const lessonStandardResults9 = await ctx.runMutation(seedInternal.seedModule9LessonStandards, {});
+      const lessonStandardResults9 = await ctx.runMutation(
+        seedInternal.seedModule9LessonStandards,
+        {},
+      );
       for (const result of lessonStandardResults9) {
         results.lessonStandards.push({
           lessonSlug: result.lessonSlug,
@@ -676,10 +708,20 @@ function getLessons(): SeedLesson[] {
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Graphing Power Functions", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Graphing Power Functions",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 6, title: "Learn: Graphing Polynomial Functions", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 6,
+          title: "Learn: Graphing Polynomial Functions",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 7, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 8, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
         { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
@@ -692,7 +734,8 @@ function getLessons(): SeedLesson[] {
       unitNumber: 2,
       title: "Analyzing Graphs of Polynomial Functions",
       slug: "module-2-lesson-2",
-      description: "Students analyze graphs of polynomial functions, approximate zeros, and find extrema.",
+      description:
+        "Students analyze graphs of polynomial functions, approximate zeros, and find extrema.",
       orderIndex: 2,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
@@ -750,7 +793,7 @@ function getLessons(): SeedLesson[] {
         { phaseNumber: 11, title: "Reflection", phaseType: "reflection", sections: [] },
       ],
     },
-      {
+    {
       unitNumber: 2,
       title: "Powers of Binomials",
       slug: "module-2-lesson-5",
@@ -776,7 +819,12 @@ function getLessons(): SeedLesson[] {
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Solving Polynomial Equations by Graphing", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Solving Polynomial Equations by Graphing",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Discourse", phaseType: "discourse", sections: [] },
@@ -792,13 +840,23 @@ function getLessons(): SeedLesson[] {
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Solving Polynomial Equations by Factoring", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Solving Polynomial Equations by Factoring",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 7, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
         { phaseNumber: 8, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 9, title: "Learn: Solving Polynomial Equations in Quadratic Form", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 9,
+          title: "Learn: Solving Polynomial Equations in Quadratic Form",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 10, title: "Worked Example 6", phaseType: "worked_example", sections: [] },
         { phaseNumber: 11, title: "Worked Example 7", phaseType: "worked_example", sections: [] },
         { phaseNumber: 12, title: "Discourse", phaseType: "discourse", sections: [] },
@@ -814,7 +872,12 @@ function getLessons(): SeedLesson[] {
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Proving Polynomial Identities", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Proving Polynomial Identities",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Discourse", phaseType: "discourse", sections: [] },
@@ -825,7 +888,8 @@ function getLessons(): SeedLesson[] {
       unitNumber: 3,
       title: "The Remainder and Factor Theorems",
       slug: "module-3-lesson-4",
-      description: "Students evaluate functions using synthetic substitution and use the Factor Theorem to determine factors of polynomials.",
+      description:
+        "Students evaluate functions using synthetic substitution and use the Factor Theorem to determine factors of polynomials.",
       orderIndex: 4,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
@@ -843,15 +907,26 @@ function getLessons(): SeedLesson[] {
       unitNumber: 3,
       title: "Roots and Zeros",
       slug: "module-3-lesson-5",
-      description: "Students apply the Fundamental Theorem of Algebra and find zeros of polynomial functions.",
+      description:
+        "Students apply the Fundamental Theorem of Algebra and find zeros of polynomial functions.",
       orderIndex: 5,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Fundamental Theorem of Algebra", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Fundamental Theorem of Algebra",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 6, title: "Learn: Finding Zeros of Polynomial Functions", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 6,
+          title: "Learn: Finding Zeros of Polynomial Functions",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 7, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 8, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
         { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
@@ -863,15 +938,26 @@ function getLessons(): SeedLesson[] {
       unitNumber: 4,
       title: "Operations on Functions",
       slug: "module-4-lesson-1",
-      description: "Students find sums, differences, products, quotients, and compositions of functions.",
+      description:
+        "Students find sums, differences, products, quotients, and compositions of functions.",
       orderIndex: 1,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Operations on Functions", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Operations on Functions",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 6, title: "Learn: Compositions of Functions", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 6,
+          title: "Learn: Compositions of Functions",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 7, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 8, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
         { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
@@ -884,12 +970,18 @@ function getLessons(): SeedLesson[] {
       unitNumber: 4,
       title: "Inverse Relations and Functions",
       slug: "module-4-lesson-2",
-      description: "Students find inverses of relations, verify inverse functions using compositions, and apply the horizontal line test.",
+      description:
+        "Students find inverses of relations, verify inverse functions using compositions, and apply the horizontal line test.",
       orderIndex: 2,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Inverse Relations and Functions", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Inverse Relations and Functions",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
@@ -905,7 +997,8 @@ function getLessons(): SeedLesson[] {
       unitNumber: 4,
       title: "nth Roots and Rational Exponents",
       slug: "module-4-lesson-3",
-      description: "Students simplify expressions involving radicals and rational exponents, and convert between exponential and radical forms.",
+      description:
+        "Students simplify expressions involving radicals and rational exponents, and convert between exponential and radical forms.",
       orderIndex: 3,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
@@ -931,12 +1024,22 @@ function getLessons(): SeedLesson[] {
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Graphing Square Root Functions", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Graphing Square Root Functions",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 7, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 8, title: "Learn: Graphing Cube Root Functions", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 8,
+          title: "Learn: Graphing Cube Root Functions",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
         { phaseNumber: 10, title: "Worked Example 6", phaseType: "worked_example", sections: [] },
         { phaseNumber: 11, title: "Worked Example 7", phaseType: "worked_example", sections: [] },
@@ -948,19 +1051,35 @@ function getLessons(): SeedLesson[] {
       unitNumber: 4,
       title: "Operations with Radical Expressions",
       slug: "module-4-lesson-5",
-      description: "Students simplify radical expressions, add, subtract, multiply, and divide radicals, and rationalize denominators.",
+      description:
+        "Students simplify radical expressions, add, subtract, multiply, and divide radicals, and rationalize denominators.",
       orderIndex: 5,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Properties of Radicals", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Properties of Radicals",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 6, title: "Learn: Adding and Subtracting Radical Expressions", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 6,
+          title: "Learn: Adding and Subtracting Radical Expressions",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 7, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 8, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
         { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 10, title: "Learn: Rationalizing the Denominator", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 10,
+          title: "Learn: Rationalizing the Denominator",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 11, title: "Worked Example 6", phaseType: "worked_example", sections: [] },
         { phaseNumber: 12, title: "Worked Example 7", phaseType: "worked_example", sections: [] },
         { phaseNumber: 13, title: "Discourse", phaseType: "discourse", sections: [] },
@@ -971,17 +1090,28 @@ function getLessons(): SeedLesson[] {
       unitNumber: 4,
       title: "Solving Radical Equations",
       slug: "module-4-lesson-6",
-      description: "Students solve radical equations in one variable, identify extraneous solutions, and solve radical equations by graphing systems of equations.",
+      description:
+        "Students solve radical equations in one variable, identify extraneous solutions, and solve radical equations by graphing systems of equations.",
       orderIndex: 6,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Solving Radical Equations Algebraically", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Solving Radical Equations Algebraically",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 7, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 8, title: "Learn: Solving Radical Equations by Graphing", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 8,
+          title: "Learn: Solving Radical Equations by Graphing",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
         { phaseNumber: 10, title: "Worked Example 6", phaseType: "worked_example", sections: [] },
         { phaseNumber: 11, title: "Worked Example 7", phaseType: "worked_example", sections: [] },
@@ -998,12 +1128,22 @@ function getLessons(): SeedLesson[] {
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Graphing Exponential Growth Functions", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Graphing Exponential Growth Functions",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 7, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 8, title: "Learn: Graphing Exponential Decay Functions", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 8,
+          title: "Learn: Graphing Exponential Decay Functions",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
         { phaseNumber: 10, title: "Worked Example 6", phaseType: "worked_example", sections: [] },
         { phaseNumber: 11, title: "Worked Example 7", phaseType: "worked_example", sections: [] },
@@ -1021,11 +1161,21 @@ function getLessons(): SeedLesson[] {
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Solving Exponential Equations", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Solving Exponential Equations",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 7, title: "Learn: Solving Exponential Inequalities", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 7,
+          title: "Learn: Solving Exponential Inequalities",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 8, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
         { phaseNumber: 9, title: "Discourse", phaseType: "discourse", sections: [] },
         { phaseNumber: 10, title: "Reflection", phaseType: "reflection", sections: [] },
@@ -1040,7 +1190,12 @@ function getLessons(): SeedLesson[] {
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Exponential Functions with Base e", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Exponential Functions with Base e",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
@@ -1082,7 +1237,12 @@ function getLessons(): SeedLesson[] {
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Choosing the Best Model", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Choosing the Best Model",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Discourse", phaseType: "discourse", sections: [] },
@@ -1093,7 +1253,8 @@ function getLessons(): SeedLesson[] {
       unitNumber: 6,
       title: "Logarithms and Logarithmic Functions",
       slug: "module-6-lesson-1",
-      description: "Students write logarithmic and exponential forms, and graph logarithmic functions.",
+      description:
+        "Students write logarithmic and exponential forms, and graph logarithmic functions.",
       orderIndex: 1,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
@@ -1103,7 +1264,12 @@ function getLessons(): SeedLesson[] {
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 7, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 8, title: "Learn: Graphing Logarithmic Functions", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 8,
+          title: "Learn: Graphing Logarithmic Functions",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
         { phaseNumber: 10, title: "Worked Example 6", phaseType: "worked_example", sections: [] },
         { phaseNumber: 11, title: "Worked Example 7", phaseType: "worked_example", sections: [] },
@@ -1116,7 +1282,8 @@ function getLessons(): SeedLesson[] {
       unitNumber: 6,
       title: "Properties of Logarithms",
       slug: "module-6-lesson-2",
-      description: "Students solve logarithmic equations using properties of equality, and simplify expressions using properties of logarithms.",
+      description:
+        "Students solve logarithmic equations using properties of equality, and simplify expressions using properties of logarithms.",
       orderIndex: 2,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
@@ -1124,7 +1291,12 @@ function getLessons(): SeedLesson[] {
         { phaseNumber: 3, title: "Learn: Logarithmic Equations", phaseType: "learn", sections: [] },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 6, title: "Learn: Properties of Logarithms", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 6,
+          title: "Learn: Properties of Logarithms",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 7, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 8, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
         { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
@@ -1137,7 +1309,8 @@ function getLessons(): SeedLesson[] {
       unitNumber: 6,
       title: "Common Logarithms",
       slug: "module-6-lesson-3",
-      description: "Students solve exponential equations by using common logarithms and evaluate logarithmic expressions by using the Change of Base Formula.",
+      description:
+        "Students solve exponential equations by using common logarithms and evaluate logarithmic expressions by using the Change of Base Formula.",
       orderIndex: 3,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
@@ -1147,7 +1320,12 @@ function getLessons(): SeedLesson[] {
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 7, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 8, title: "Learn: Change of Base Formula", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 8,
+          title: "Learn: Change of Base Formula",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
         { phaseNumber: 10, title: "Worked Example 6", phaseType: "worked_example", sections: [] },
         { phaseNumber: 11, title: "Discourse", phaseType: "discourse", sections: [] },
@@ -1158,16 +1336,27 @@ function getLessons(): SeedLesson[] {
       unitNumber: 6,
       title: "Natural Logarithms",
       slug: "module-6-lesson-4",
-      description: "Students simplify expressions with natural logarithms and solve exponential equations by using natural logarithms.",
+      description:
+        "Students simplify expressions with natural logarithms and solve exponential equations by using natural logarithms.",
       orderIndex: 4,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Simplifying Expressions with Natural Logarithms", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Simplifying Expressions with Natural Logarithms",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 7, title: "Learn: Solving Exponential Equations by Using Natural Logarithms", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 7,
+          title: "Learn: Solving Exponential Equations by Using Natural Logarithms",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 8, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
         { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
         { phaseNumber: 10, title: "Worked Example 6", phaseType: "worked_example", sections: [] },
@@ -1180,14 +1369,25 @@ function getLessons(): SeedLesson[] {
       unitNumber: 6,
       title: "Using Exponential and Logarithmic Functions",
       slug: "module-6-lesson-5",
-      description: "Students write and solve exponential growth equations and inequalities, and write and solve exponential decay equations.",
+      description:
+        "Students write and solve exponential growth equations and inequalities, and write and solve exponential decay equations.",
       orderIndex: 5,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Using Logarithms to Solve Exponential Growth Problems", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Using Logarithms to Solve Exponential Growth Problems",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 5, title: "Learn: Using Logarithms to Solve Exponential Decay Problems", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 5,
+          title: "Learn: Using Logarithms to Solve Exponential Decay Problems",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 6, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 7, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 8, title: "Pause and Reflect", phaseType: "reflection", sections: [] },
@@ -1197,7 +1397,8 @@ function getLessons(): SeedLesson[] {
       unitNumber: 7,
       title: "Multiplying and Dividing Rational Expressions",
       slug: "module-7-lesson-1",
-      description: "Students simplify rational expressions and multiply and divide rational expressions.",
+      description:
+        "Students simplify rational expressions and multiply and divide rational expressions.",
       orderIndex: 1,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
@@ -1214,7 +1415,8 @@ function getLessons(): SeedLesson[] {
       unitNumber: 7,
       title: "Adding and Subtracting Rational Expressions",
       slug: "module-7-lesson-2",
-      description: "Students add and subtract rational expressions with like and unlike denominators.",
+      description:
+        "Students add and subtract rational expressions with like and unlike denominators.",
       orderIndex: 2,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
@@ -1231,7 +1433,8 @@ function getLessons(): SeedLesson[] {
       unitNumber: 7,
       title: "Graphing Reciprocal Functions",
       slug: "module-7-lesson-3",
-      description: "Students graph reciprocal functions by making tables of values and by using transformations.",
+      description:
+        "Students graph reciprocal functions by making tables of values and by using transformations.",
       orderIndex: 3,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
@@ -1251,16 +1454,27 @@ function getLessons(): SeedLesson[] {
       unitNumber: 7,
       title: "Graphing Rational Functions",
       slug: "module-7-lesson-4",
-      description: "Students graph and analyze rational functions with vertical, horizontal, and oblique asymptotes, and identify point discontinuities.",
+      description:
+        "Students graph and analyze rational functions with vertical, horizontal, and oblique asymptotes, and identify point discontinuities.",
       orderIndex: 4,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Graphing Rational Functions with Vertical and Horizontal Asymptotes", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Graphing Rational Functions with Vertical and Horizontal Asymptotes",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 7, title: "Learn: Graphing Rational Functions with Oblique Asymptotes", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 7,
+          title: "Learn: Graphing Rational Functions with Oblique Asymptotes",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 8, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
         { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
         { phaseNumber: 10, title: "Discourse", phaseType: "discourse", sections: [] },
@@ -1271,15 +1485,26 @@ function getLessons(): SeedLesson[] {
       unitNumber: 7,
       title: "Variation",
       slug: "module-7-lesson-5",
-      description: "Students recognize and solve direct, joint, inverse, and combined variation equations.",
+      description:
+        "Students recognize and solve direct, joint, inverse, and combined variation equations.",
       orderIndex: 5,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Direct Variation and Joint Variation", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Direct Variation and Joint Variation",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 6, title: "Learn: Inverse Variation and Combined Variation", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 6,
+          title: "Learn: Inverse Variation and Combined Variation",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 7, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 8, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
         { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
@@ -1291,18 +1516,29 @@ function getLessons(): SeedLesson[] {
       unitNumber: 7,
       title: "Solving Rational Equations and Inequalities",
       slug: "module-7-lesson-6",
-      description: "Students solve rational equations and inequalities in one variable, and identify extraneous solutions.",
+      description:
+        "Students solve rational equations and inequalities in one variable, and identify extraneous solutions.",
       orderIndex: 6,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Solving Rational Equations", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Solving Rational Equations",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 7, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
         { phaseNumber: 8, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 9, title: "Learn: Solving Rational Inequalities", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 9,
+          title: "Learn: Solving Rational Inequalities",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 10, title: "Worked Example 6", phaseType: "worked_example", sections: [] },
         { phaseNumber: 11, title: "Worked Example 7", phaseType: "worked_example", sections: [] },
         { phaseNumber: 12, title: "Discourse", phaseType: "discourse", sections: [] },
@@ -1313,7 +1549,8 @@ function getLessons(): SeedLesson[] {
       unitNumber: 8,
       title: "Random Sampling",
       slug: "module-8-lesson-1",
-      description: "Students classify sampling methods, identify bias, and distinguish among sample surveys, experiments, and observational studies.",
+      description:
+        "Students classify sampling methods, identify bias, and distinguish among sample surveys, experiments, and observational studies.",
       orderIndex: 1,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
@@ -1335,12 +1572,18 @@ function getLessons(): SeedLesson[] {
       unitNumber: 8,
       title: "Using Statistical Experiments",
       slug: "module-8-lesson-2",
-      description: "Students compare theoretical and experimental probabilities and determine whether models are consistent with results from simulations.",
+      description:
+        "Students compare theoretical and experimental probabilities and determine whether models are consistent with results from simulations.",
       orderIndex: 2,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Theoretical and Experimental Probability", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Theoretical and Experimental Probability",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Learn: Simulations", phaseType: "learn", sections: [] },
         { phaseNumber: 6, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
@@ -1358,7 +1601,12 @@ function getLessons(): SeedLesson[] {
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Describing Distributions", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Describing Distributions",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
@@ -1370,19 +1618,30 @@ function getLessons(): SeedLesson[] {
       unitNumber: 8,
       title: "Normal Distributions",
       slug: "module-8-lesson-4",
-      description: "Students classify variables, analyze probability distributions, apply the Empirical Rule, and use z-values for standardization.",
+      description:
+        "Students classify variables, analyze probability distributions, apply the Empirical Rule, and use z-values for standardization.",
       orderIndex: 4,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Probability Distributions", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Probability Distributions",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 7, title: "Learn: Normal Distributions", phaseType: "learn", sections: [] },
         { phaseNumber: 8, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
         { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 10, title: "Learn: The Standard Normal Distribution", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 10,
+          title: "Learn: The Standard Normal Distribution",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 11, title: "Worked Example 6", phaseType: "worked_example", sections: [] },
         { phaseNumber: 12, title: "Worked Example 7", phaseType: "worked_example", sections: [] },
         { phaseNumber: 13, title: "Worked Example 8", phaseType: "worked_example", sections: [] },
@@ -1394,15 +1653,26 @@ function getLessons(): SeedLesson[] {
       unitNumber: 8,
       title: "Estimating Population Parameters",
       slug: "module-8-lesson-5",
-      description: "Students use sample data to infer population means and proportions by using confidence intervals and maximum error of the estimate.",
+      description:
+        "Students use sample data to infer population means and proportions by using confidence intervals and maximum error of the estimate.",
       orderIndex: 5,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Estimating the Population Mean", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Estimating the Population Mean",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 6, title: "Learn: Estimating the Population Proportion", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 6,
+          title: "Learn: Estimating the Population Proportion",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 7, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 8, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
         { phaseNumber: 9, title: "Discourse", phaseType: "discourse", sections: [] },
@@ -1413,12 +1683,18 @@ function getLessons(): SeedLesson[] {
       unitNumber: 9,
       title: "Angles and Angle Measure",
       slug: "module-9-lesson-1",
-      description: "Students draw angles in standard position, identify coterminal angles, and convert between degree and radian measures.",
+      description:
+        "Students draw angles in standard position, identify coterminal angles, and convert between degree and radian measures.",
       orderIndex: 1,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Angles in Standard Position", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Angles in Standard Position",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
@@ -1434,18 +1710,34 @@ function getLessons(): SeedLesson[] {
       unitNumber: 9,
       title: "Trigonometric Functions of General Angles",
       slug: "module-9-lesson-2",
-      description: "Students find values of trigonometric functions for acute angles, general angles, and by using reference angles.",
+      description:
+        "Students find values of trigonometric functions for acute angles, general angles, and by using reference angles.",
       orderIndex: 2,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Trigonometric Functions in Right Triangles", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Trigonometric Functions in Right Triangles",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 6, title: "Learn: Trigonometric Functions of General Angles", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 6,
+          title: "Learn: Trigonometric Functions of General Angles",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 7, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 8, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 9, title: "Learn: Trigonometric Functions with Reference Angles", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 9,
+          title: "Learn: Trigonometric Functions with Reference Angles",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 10, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
         { phaseNumber: 11, title: "Worked Example 6", phaseType: "worked_example", sections: [] },
         { phaseNumber: 12, title: "Worked Example 7", phaseType: "worked_example", sections: [] },
@@ -1457,7 +1749,8 @@ function getLessons(): SeedLesson[] {
       unitNumber: 9,
       title: "Circular and Periodic Functions",
       slug: "module-9-lesson-3",
-      description: "Students find values of trigonometric functions given a point on a unit circle or the measure of a special angle, and find values of trigonometric functions that model periodic events.",
+      description:
+        "Students find values of trigonometric functions given a point on a unit circle or the measure of a special angle, and find values of trigonometric functions that model periodic events.",
       orderIndex: 3,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
@@ -1477,17 +1770,28 @@ function getLessons(): SeedLesson[] {
       unitNumber: 9,
       title: "Graphing Sine and Cosine Functions",
       slug: "module-9-lesson-4",
-      description: "Students graph and analyze sine and cosine functions, and model periodic real-world situations with sine and cosine functions.",
+      description:
+        "Students graph and analyze sine and cosine functions, and model periodic real-world situations with sine and cosine functions.",
       orderIndex: 4,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Graphing Sine and Cosine Functions", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Graphing Sine and Cosine Functions",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 7, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 8, title: "Learn: Modeling with Sine and Cosine Functions", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 8,
+          title: "Learn: Modeling with Sine and Cosine Functions",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
         { phaseNumber: 10, title: "Worked Example 6", phaseType: "worked_example", sections: [] },
         { phaseNumber: 11, title: "Discourse", phaseType: "discourse", sections: [] },
@@ -1498,15 +1802,26 @@ function getLessons(): SeedLesson[] {
       unitNumber: 9,
       title: "Graphing Other Trigonometric Functions",
       slug: "module-9-lesson-5",
-      description: "Students graph and analyze tangent functions and reciprocal trigonometric functions.",
+      description:
+        "Students graph and analyze tangent functions and reciprocal trigonometric functions.",
       orderIndex: 5,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Graphing Tangent Functions", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Graphing Tangent Functions",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
-        { phaseNumber: 6, title: "Learn: Graphing Reciprocal Trigonometric Functions", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 6,
+          title: "Learn: Graphing Reciprocal Trigonometric Functions",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 7, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 8, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
         { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
@@ -1518,12 +1833,18 @@ function getLessons(): SeedLesson[] {
       unitNumber: 9,
       title: "Translations of Trigonometric Graphs",
       slug: "module-9-lesson-6",
-      description: "Students graph horizontal and vertical translations of trigonometric functions and model real-world situations.",
+      description:
+        "Students graph horizontal and vertical translations of trigonometric functions and model real-world situations.",
       orderIndex: 6,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Horizontal Translations", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Horizontal Translations",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Learn: Vertical Translations", phaseType: "learn", sections: [] },
@@ -1538,12 +1859,18 @@ function getLessons(): SeedLesson[] {
       unitNumber: 9,
       title: "Inverse Trigonometric Functions",
       slug: "module-9-lesson-7",
-      description: "Students find values of angle measures by using inverse trigonometric functions.",
+      description:
+        "Students find values of angle measures by using inverse trigonometric functions.",
       orderIndex: 7,
       phases: [
         { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
         { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
-        { phaseNumber: 3, title: "Learn: Inverse Trigonometric Functions", phaseType: "learn", sections: [] },
+        {
+          phaseNumber: 3,
+          title: "Learn: Inverse Trigonometric Functions",
+          phaseType: "learn",
+          sections: [],
+        },
         { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
@@ -1570,19 +1897,74 @@ function getDemoEnvironment(): SeedDemoEnvironment | undefined {
       password: "Demo1234!",
     },
     students: [
-      { organizationSlug: "demo", username: "student1@demo", role: "student", displayName: "Student One", password: "Demo1234!" },
-      { organizationSlug: "demo", username: "student2@demo", role: "student", displayName: "Student Two", password: "Demo1234!" },
-      { organizationSlug: "demo", username: "student3@demo", role: "student", displayName: "Student Three", password: "Demo1234!" },
-      { organizationSlug: "demo", username: "student4@demo", role: "student", displayName: "Student Four", password: "Demo1234!" },
-      { organizationSlug: "demo", username: "student5@demo", role: "student", displayName: "Student Five", password: "Demo1234!" },
+      {
+        organizationSlug: "demo",
+        username: "student1@demo",
+        role: "student",
+        displayName: "Student One",
+        password: "Demo1234!",
+      },
+      {
+        organizationSlug: "demo",
+        username: "student2@demo",
+        role: "student",
+        displayName: "Student Two",
+        password: "Demo1234!",
+      },
+      {
+        organizationSlug: "demo",
+        username: "student3@demo",
+        role: "student",
+        displayName: "Student Three",
+        password: "Demo1234!",
+      },
+      {
+        organizationSlug: "demo",
+        username: "student4@demo",
+        role: "student",
+        displayName: "Student Four",
+        password: "Demo1234!",
+      },
+      {
+        organizationSlug: "demo",
+        username: "student5@demo",
+        role: "student",
+        displayName: "Student Five",
+        password: "Demo1234!",
+      },
     ],
     className: "IM3 Period 1",
     studentProgress: [
-      { studentUsername: "student1@demo", lessonSlug: "module-1-lesson-1", phaseNumber: 1, status: "not_started" },
-      { studentUsername: "student2@demo", lessonSlug: "module-1-lesson-1", phaseNumber: 3, status: "in_progress" },
-      { studentUsername: "student3@demo", lessonSlug: "module-1-lesson-1", phaseNumber: 6, status: "in_progress" },
-      { studentUsername: "student4@demo", lessonSlug: "module-1-lesson-1", phaseNumber: 9, status: "completed" },
-      { studentUsername: "student5@demo", lessonSlug: "module-1-lesson-1", phaseNumber: 12, status: "completed" },
+      {
+        studentUsername: "student1@demo",
+        lessonSlug: "module-1-lesson-1",
+        phaseNumber: 1,
+        status: "not_started",
+      },
+      {
+        studentUsername: "student2@demo",
+        lessonSlug: "module-1-lesson-1",
+        phaseNumber: 3,
+        status: "in_progress",
+      },
+      {
+        studentUsername: "student3@demo",
+        lessonSlug: "module-1-lesson-1",
+        phaseNumber: 6,
+        status: "in_progress",
+      },
+      {
+        studentUsername: "student4@demo",
+        lessonSlug: "module-1-lesson-1",
+        phaseNumber: 9,
+        status: "completed",
+      },
+      {
+        studentUsername: "student5@demo",
+        lessonSlug: "module-1-lesson-1",
+        phaseNumber: 12,
+        status: "completed",
+      },
     ],
   };
 }

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 export const classMetadataSchema = z.object({
   period: z.string().optional(),

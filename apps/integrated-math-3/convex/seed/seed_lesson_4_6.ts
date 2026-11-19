@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -142,7 +142,10 @@ export const seedLesson4_6 = internalMutation({
                   { expression: "Isolate the radical", explanation: "sqrt(3x - 5) = 4" },
                   { expression: "Square both sides", explanation: "3x - 5 = 16" },
                   { expression: "Solve for x", explanation: "3x = 21, so x = 7" },
-                  { expression: "Check the result", explanation: "sqrt(3(7) - 5) + 2 = sqrt(16) + 2 = 6" },
+                  {
+                    expression: "Check the result",
+                    explanation: "sqrt(3(7) - 5) + 2 = sqrt(16) + 2 = 6",
+                  },
                 ],
               },
             },
@@ -208,7 +211,10 @@ export const seedLesson4_6 = internalMutation({
                   { expression: "Square both sides", explanation: "x + 21 = 9 - 6*sqrt(x) + x" },
                   { expression: "Simplify", explanation: "12 = -6*sqrt(x), so -2 = sqrt(x)" },
                   { expression: "Square again", explanation: "x = 4" },
-                  { expression: "Check in original", explanation: "sqrt(25) = 5, but 3 - sqrt(4) = 1" },
+                  {
+                    expression: "Check in original",
+                    explanation: "sqrt(25) = 5, but 3 - sqrt(4) = 1",
+                  },
                   { expression: "No real solution", explanation: "x = 4 is extraneous" },
                 ],
               },
@@ -243,7 +249,10 @@ export const seedLesson4_6 = internalMutation({
                   { expression: "Multiply by 3/2", explanation: "(11x + 14)^(1/6) = 3" },
                   { expression: "Raise to sixth power", explanation: "11x + 14 = 729" },
                   { expression: "Solve for x", explanation: "11x = 715, so x = 65" },
-                  { expression: "Check the result", explanation: "(2/3)*(729)^(1/6) + 8 = (2/3)*3 + 8 = 10" },
+                  {
+                    expression: "Check the result",
+                    explanation: "(2/3)*(729)^(1/6) + 8 = (2/3)*3 + 8 = 10",
+                  },
                 ],
               },
             },
@@ -289,9 +298,18 @@ export const seedLesson4_6 = internalMutation({
                 problemType: "polynomial",
                 equation: "2*cuberoot(3x - 4) + 10 = 9",
                 steps: [
-                  { expression: "Move all terms to one side", explanation: "2*cuberoot(3x - 4) + 1 = 0" },
-                  { expression: "Related function: f(x) = 2*cuberoot(3x - 4) + 1", explanation: "Set equal to y" },
-                  { expression: "Graph and find sign change", explanation: "Function changes sign between x = 1 and x = 2" },
+                  {
+                    expression: "Move all terms to one side",
+                    explanation: "2*cuberoot(3x - 4) + 1 = 0",
+                  },
+                  {
+                    expression: "Related function: f(x) = 2*cuberoot(3x - 4) + 1",
+                    explanation: "Set equal to y",
+                  },
+                  {
+                    expression: "Graph and find sign change",
+                    explanation: "Function changes sign between x = 1 and x = 2",
+                  },
                   { expression: "Use zero feature", explanation: "The zero is about x ≈ 1.29" },
                 ],
               },
@@ -322,10 +340,19 @@ export const seedLesson4_6 = internalMutation({
                 problemType: "polynomial",
                 equation: "sqrt(x + 6) - 5 = -sqrt(2x) + 1",
                 steps: [
-                  { expression: "Write as system", explanation: "y = sqrt(x + 6) - 5 and y = -sqrt(2x) + 1" },
+                  {
+                    expression: "Write as system",
+                    explanation: "y = sqrt(x + 6) - 5 and y = -sqrt(2x) + 1",
+                  },
                   { expression: "Graph both equations", explanation: "Enter in Y= list" },
-                  { expression: "Find intersection", explanation: "Use intersect feature on calculator" },
-                  { expression: "x ≈ 4.02", explanation: "x-coordinate of intersection is the solution" },
+                  {
+                    expression: "Find intersection",
+                    explanation: "Use intersect feature on calculator",
+                  },
+                  {
+                    expression: "x ≈ 4.02",
+                    explanation: "x-coordinate of intersection is the solution",
+                  },
                 ],
               },
             },
@@ -355,11 +382,17 @@ export const seedLesson4_6 = internalMutation({
                 problemType: "polynomial",
                 equation: "1.88 = sqrt(a^3)",
                 steps: [
-                  { expression: "Start with T = sqrt(a^3)", explanation: "Given formula for orbital period" },
+                  {
+                    expression: "Start with T = sqrt(a^3)",
+                    explanation: "Given formula for orbital period",
+                  },
                   { expression: "Substitute T = 1.88", explanation: "1.88 = sqrt(a^3)" },
                   { expression: "Square both sides", explanation: "3.5344 = a^3" },
                   { expression: "Take cube root", explanation: "a ≈ 1.5233" },
-                  { expression: "Answer: 1.5233 AU", explanation: "Mean distance from Mars to the Sun" },
+                  {
+                    expression: "Answer: 1.5233 AU",
+                    explanation: "Mean distance from Mars to the Sun",
+                  },
                 ],
               },
             },
@@ -436,7 +469,7 @@ export const seedLesson4_6 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

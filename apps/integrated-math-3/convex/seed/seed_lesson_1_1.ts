@@ -1,6 +1,6 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
-import nodesDocument from '../../curriculum/skill-graph/nodes.json';
-import blueprintsDocument from '../../curriculum/skill-graph/blueprints.json';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
+import nodesDocument from "../../curriculum/skill-graph/nodes.json";
+import blueprintsDocument from "../../curriculum/skill-graph/blueprints.json";
 import { internalMutation, type MutationCtx } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { v } from "convex/values";
@@ -73,23 +73,21 @@ export interface Im3PilotPublicationGate {
 }
 
 function parseReviewStatus(value: string | undefined): Im3PilotPublicationGate["nodeReviewStatus"] {
-  return value === "reviewed" || value === "approved" || value === "rejected"
-    ? value
-    : "draft";
+  return value === "reviewed" || value === "approved" || value === "rejected" ? value : "draft";
 }
 
 const CURRENT_IM3_PILOT_PUBLICATION = Object.freeze({
   nodeReviewStatus: parseReviewStatus(
     nodesDocument.nodes.find((node) => node.id === IM3_PILOT_NODE)?.reviewStatus,
   ),
-  blueprintReviewStatus: parseReviewStatus(blueprintsDocument.blueprints.find((blueprint) => (
-    blueprint.nodeId === IM3_PILOT_NODE
-  ))?.reviewStatus),
+  blueprintReviewStatus: parseReviewStatus(
+    blueprintsDocument.blueprints.find((blueprint) => blueprint.nodeId === IM3_PILOT_NODE)
+      ?.reviewStatus,
+  ),
 } satisfies Im3PilotPublicationGate);
 
 function isIm3PilotPublished(gate: Im3PilotPublicationGate): boolean {
-  return gate.nodeReviewStatus === "approved"
-    && gate.blueprintReviewStatus === "approved";
+  return gate.nodeReviewStatus === "approved" && gate.blueprintReviewStatus === "approved";
 }
 
 export const IM3_PHASE_FOUR_WORKED_PROPS = Object.freeze({
@@ -328,16 +326,24 @@ export const IM3_PHASE_ELEVEN_QUIZ_PROPS = Object.freeze({
   ],
 } satisfies ComprehensionQuizProps);
 
-const IM3_SELECTED_WORKED_MARKDOWN = "## Example 1: Graph $f(x) = x^2$ Using a Table\n\nLet's graph $f(x) = x^2$ by creating a table of values.";
+const IM3_SELECTED_WORKED_MARKDOWN =
+  "## Example 1: Graph $f(x) = x^2$ Using a Table\n\nLet's graph $f(x) = x^2$ by creating a table of values.";
 
-const IM3_SELECTED_ORIGINAL_WORKED_PROPS = normalizeSeedProps("step-by-step-solver", IM3_PHASE_FOUR_WORKED_PROPS);
+const IM3_SELECTED_ORIGINAL_WORKED_PROPS = normalizeSeedProps(
+  "step-by-step-solver",
+  IM3_PHASE_FOUR_WORKED_PROPS,
+);
 
 function serializeSelectedSeedContent(value: unknown): string {
-  return JSON.stringify(value, (_key, entry) => (
+  return JSON.stringify(value, (_key, entry) =>
     entry !== null && typeof entry === "object" && !Array.isArray(entry)
-      ? Object.fromEntries(Object.keys(entry).sort().map((key) => [key, entry[key]]))
-      : entry
-  ));
+      ? Object.fromEntries(
+          Object.keys(entry)
+            .sort()
+            .map((key) => [key, entry[key]]),
+        )
+      : entry,
+  );
 }
 
 function buildGeneratedPilotActivity(stableActivityId: string, seed: number, displayName: string) {
@@ -392,20 +398,74 @@ export function buildIm3WorkedPilotSeedDocument(now: number) {
 }
 
 export function buildIm3PilotSeedDocuments(activityId: Id<"activities">, now: number) {
-  const activity = { ...buildGeneratedPilotActivity(IM3_MASTERY_ADVANTAGE_ACTIVITY_ID, 0, "Mastery Advantage: Complete a quadratic table and plot the points"), createdAt: now, updatedAt: now };
+  const activity = {
+    ...buildGeneratedPilotActivity(
+      IM3_MASTERY_ADVANTAGE_ACTIVITY_ID,
+      0,
+      "Mastery Advantage: Complete a quadratic table and plot the points",
+    ),
+    createdAt: now,
+    updatedAt: now,
+  };
   return {
     activity,
-    variant: { variantKey: IM3_PILOT_VARIANT_KEY, legacyProblemFamilyId: IM3_PILOT_VARIANT_KEY, migrationVersion: "kst-srs.v3.2" as const, sourceTimestamp: now, componentKey: "graphing-explorer", displayName: "Graph quadratic functions", description: "The exact IM3 Mastery Advantage pilot variant.", objectiveIds: [IM3_PILOT_NODE], difficulty: "pilot", metadata: { pilot: true, stableActivityId: IM3_MASTERY_ADVANTAGE_ACTIVITY_ID } },
-    item: { practiceItemId: `${IM3_PILOT_VARIANT_KEY}:pilot`, activityId, variantKey: IM3_PILOT_VARIANT_KEY, legacyProblemFamilyId: IM3_PILOT_VARIANT_KEY, migrationVersion: "kst-srs.v3.2" as const, sourceTimestamp: now, variantLabel: "Pilot A" },
+    variant: {
+      variantKey: IM3_PILOT_VARIANT_KEY,
+      legacyProblemFamilyId: IM3_PILOT_VARIANT_KEY,
+      migrationVersion: "kst-srs.v3.2" as const,
+      sourceTimestamp: now,
+      componentKey: "graphing-explorer",
+      displayName: "Graph quadratic functions",
+      description: "The exact IM3 Mastery Advantage pilot variant.",
+      objectiveIds: [IM3_PILOT_NODE],
+      difficulty: "pilot",
+      metadata: { pilot: true, stableActivityId: IM3_MASTERY_ADVANTAGE_ACTIVITY_ID },
+    },
+    item: {
+      practiceItemId: `${IM3_PILOT_VARIANT_KEY}:pilot`,
+      activityId,
+      variantKey: IM3_PILOT_VARIANT_KEY,
+      legacyProblemFamilyId: IM3_PILOT_VARIANT_KEY,
+      migrationVersion: "kst-srs.v3.2" as const,
+      sourceTimestamp: now,
+      variantLabel: "Pilot A",
+    },
   };
 }
 
 export function buildIm3GuidedPilotSeedDocuments(activityId: Id<"activities">, now: number) {
-  const activity = { ...buildGeneratedPilotActivity(IM3_GUIDED_PRACTICE_ACTIVITY_ID, 1, "Guided graphing: Complete a quadratic table and plot the points"), createdAt: now, updatedAt: now };
+  const activity = {
+    ...buildGeneratedPilotActivity(
+      IM3_GUIDED_PRACTICE_ACTIVITY_ID,
+      1,
+      "Guided graphing: Complete a quadratic table and plot the points",
+    ),
+    createdAt: now,
+    updatedAt: now,
+  };
   return {
     activity,
-    variant: { variantKey: IM3_GUIDED_VARIANT_KEY, legacyProblemFamilyId: IM3_GUIDED_VARIANT_KEY, migrationVersion: "kst-srs.v3.2" as const, sourceTimestamp: now, componentKey: "graphing-explorer", displayName: "Guided graph quadratic functions", description: "Complete a quadratic table and plot the points.", objectiveIds: [IM3_PILOT_NODE], difficulty: "standard", metadata: { stableActivityId: IM3_GUIDED_PRACTICE_ACTIVITY_ID } },
-    item: { practiceItemId: `${IM3_GUIDED_VARIANT_KEY}:seed-1`, activityId, variantKey: IM3_GUIDED_VARIANT_KEY, legacyProblemFamilyId: IM3_GUIDED_VARIANT_KEY, migrationVersion: "kst-srs.v3.2" as const, sourceTimestamp: now, variantLabel: "Seed 1" },
+    variant: {
+      variantKey: IM3_GUIDED_VARIANT_KEY,
+      legacyProblemFamilyId: IM3_GUIDED_VARIANT_KEY,
+      migrationVersion: "kst-srs.v3.2" as const,
+      sourceTimestamp: now,
+      componentKey: "graphing-explorer",
+      displayName: "Guided graph quadratic functions",
+      description: "Complete a quadratic table and plot the points.",
+      objectiveIds: [IM3_PILOT_NODE],
+      difficulty: "standard",
+      metadata: { stableActivityId: IM3_GUIDED_PRACTICE_ACTIVITY_ID },
+    },
+    item: {
+      practiceItemId: `${IM3_GUIDED_VARIANT_KEY}:seed-1`,
+      activityId,
+      variantKey: IM3_GUIDED_VARIANT_KEY,
+      legacyProblemFamilyId: IM3_GUIDED_VARIANT_KEY,
+      migrationVersion: "kst-srs.v3.2" as const,
+      sourceTimestamp: now,
+      variantLabel: "Seed 1",
+    },
   };
 }
 
@@ -419,7 +479,8 @@ async function upsertSelectedActivity(
   stableActivityId: string,
   document: SelectedActivitySeedDocument,
 ): Promise<Id<"activities">> {
-  const existing = await ctx.db.query("activities")
+  const existing = await ctx.db
+    .query("activities")
     .withIndex("by_stable_activity_id", (query) => query.eq("stableActivityId", stableActivityId))
     .unique();
   if (!existing) return ctx.db.insert("activities", document);
@@ -429,9 +490,8 @@ async function upsertSelectedActivity(
     description: existing.description,
     masteryNodeId: existing.masteryNodeId,
     stableActivityId: existing.stableActivityId,
-    learningEvidenceMode: "learningEvidenceMode" in existing
-      ? existing.learningEvidenceMode
-      : undefined,
+    learningEvidenceMode:
+      "learningEvidenceMode" in existing ? existing.learningEvidenceMode : undefined,
     props: existing.props,
     gradingConfig: existing.gradingConfig,
   });
@@ -441,7 +501,8 @@ async function upsertSelectedActivity(
     description: document.description,
     masteryNodeId: document.masteryNodeId,
     stableActivityId: document.stableActivityId,
-    learningEvidenceMode: "learningEvidenceMode" in document ? document.learningEvidenceMode : undefined,
+    learningEvidenceMode:
+      "learningEvidenceMode" in document ? document.learningEvidenceMode : undefined,
     props: document.props,
     gradingConfig: document.gradingConfig,
   });
@@ -451,8 +512,8 @@ async function upsertSelectedActivity(
   const contentIsIdentical = reviewedContent === nextContent;
   await ctx.db.patch(existing._id, {
     ...document,
-    approval: contentIsIdentical ? existing.approval ?? document.approval : document.approval,
-    srsEligible: contentIsIdentical ? existing.srsEligible ?? document.srsEligible : false,
+    approval: contentIsIdentical ? (existing.approval ?? document.approval) : document.approval,
+    srsEligible: contentIsIdentical ? (existing.srsEligible ?? document.srsEligible) : false,
     createdAt: existing.createdAt,
   });
   return existing._id;
@@ -464,27 +525,34 @@ async function upsertSelectedPracticeDocuments(
     | ReturnType<typeof buildIm3PilotSeedDocuments>
     | ReturnType<typeof buildIm3GuidedPilotSeedDocuments>,
 ): Promise<void> {
-  const variant = await ctx.db.query("practice_variants")
+  const variant = await ctx.db
+    .query("practice_variants")
     .withIndex("by_variantKey", (query) => query.eq("variantKey", documents.variant.variantKey))
     .unique();
   if (variant) await ctx.db.patch(variant._id, documents.variant);
   else await ctx.db.insert("practice_variants", documents.variant);
 
-  const byVariant = await ctx.db.query("practice_items")
+  const byVariant = await ctx.db
+    .query("practice_items")
     .withIndex("by_variantKey", (query) => query.eq("variantKey", documents.item.variantKey))
     .take(2);
-  const byActivity = await ctx.db.query("practice_items")
+  const byActivity = await ctx.db
+    .query("practice_items")
     .withIndex("by_activityId", (query) => query.eq("activityId", documents.item.activityId))
     .take(2);
-  const items = [...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values()];
+  const items = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    items.length > 1
-    || items.some((row) => (
-      row.variantKey !== documents.item.variantKey
-      || String(row.activityId) !== String(documents.item.activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
-  ) throw new Error("Duplicate or conflicting selected IM3 practice-item mapping");
+    items.length > 1 ||
+    items.some(
+      (row) =>
+        row.variantKey !== documents.item.variantKey ||
+        String(row.activityId) !== String(documents.item.activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
+  )
+    throw new Error("Duplicate or conflicting selected IM3 practice-item mapping");
   if (items[0]) await ctx.db.patch(items[0]._id, documents.item);
   else await ctx.db.insert("practice_items", documents.item);
 }
@@ -496,42 +564,48 @@ export async function upsertIm3SelectedPilotSeed(
 ) {
   const lessonVersion = await ctx.db.get(lessonVersionId);
   const lesson = lessonVersion ? await ctx.db.get(lessonVersion.lessonId) : null;
-  const lessonVersions = lesson ? await ctx.db.query("lesson_versions")
-    .withIndex("by_lesson", (query) => query.eq("lessonId", lesson._id))
-    .collect() : [];
+  const lessonVersions = lesson
+    ? await ctx.db
+        .query("lesson_versions")
+        .withIndex("by_lesson", (query) => query.eq("lessonId", lesson._id))
+        .collect()
+    : [];
   const publishedVersions = lessonVersions
     .filter((version) => version.status === "published")
     .sort((left, right) => right.version - left.version);
   if (
-    !lessonVersion
-    || lessonVersion.status !== "published"
-    || !lesson
-    || lesson.slug !== "module-1-lesson-1"
-    || publishedVersions[0]?._id !== lessonVersionId
-    || publishedVersions.filter((version) => version.version === lessonVersion.version).length !== 1
+    !lessonVersion ||
+    lessonVersion.status !== "published" ||
+    !lesson ||
+    lesson.slug !== "module-1-lesson-1" ||
+    publishedVersions[0]?._id !== lessonVersionId ||
+    publishedVersions.filter((version) => version.version === lessonVersion.version).length !== 1
   ) {
     throw new Error("Selected IM3 lesson version is invalid");
   }
-  const phases = await ctx.db.query("phase_versions")
-    .withIndex("by_lesson_version_and_phase", (query) => (
-      query.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", 4)
-    ))
+  const phases = await ctx.db
+    .query("phase_versions")
+    .withIndex("by_lesson_version_and_phase", (query) =>
+      query.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", 4),
+    )
     .collect();
   if (phases.length !== 1 || phases[0].phaseType !== "worked_example") {
     throw new Error("Lesson 1.1 Worked Phase 4 must be unique");
   }
   const phase = phases[0];
-  const sections = await ctx.db.query("phase_sections")
+  const sections = await ctx.db
+    .query("phase_sections")
     .withIndex("by_phase_version", (query) => query.eq("phaseVersionId", phase._id))
     .collect();
   const sourceSections = sections.filter((section) => section.sequenceOrder === 1);
   const activitySections = sections.filter((section) => section.sequenceOrder === 2);
   if (
-    sourceSections.length !== 1
-    || sourceSections[0].sectionType !== "text"
-    || (sourceSections[0].content as { markdown?: unknown }).markdown !== IM3_SELECTED_WORKED_MARKDOWN
-    || activitySections.length !== 1
-    || activitySections[0].sectionType !== "activity"
+    sourceSections.length !== 1 ||
+    sourceSections[0].sectionType !== "text" ||
+    (sourceSections[0].content as { markdown?: unknown }).markdown !==
+      IM3_SELECTED_WORKED_MARKDOWN ||
+    activitySections.length !== 1 ||
+    activitySections[0].sectionType !== "activity"
   ) {
     throw new Error("Lesson 1.1 Worked Phase 4 source sections must be unique");
   }
@@ -543,16 +617,19 @@ export async function upsertIm3SelectedPilotSeed(
   const linkedActivity = currentSectionContent.activityId
     ? await ctx.db.get(currentSectionContent.activityId)
     : null;
-  const isOriginalWorkedSection = currentSectionContent.componentKey === "step-by-step-solver"
-    && linkedActivity?.componentKey === "step-by-step-solver"
-    && serializeSelectedSeedContent(linkedActivity.props) === serializeSelectedSeedContent(IM3_SELECTED_ORIGINAL_WORKED_PROPS);
-  const isCanonicalWorkedSection = currentSectionContent.componentKey === "graphing-explorer"
-    && linkedActivity?.componentKey === "graphing-explorer"
-    && linkedActivity.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
-    && linkedActivity.masteryNodeId === IM3_PILOT_NODE
-    && linkedActivity.learningEvidenceMode === "worked_example"
-    && serializeSelectedSeedContent(linkedActivity.props)
-      === serializeSelectedSeedContent(buildIm3WorkedPilotSeedDocument(now).props);
+  const isOriginalWorkedSection =
+    currentSectionContent.componentKey === "step-by-step-solver" &&
+    linkedActivity?.componentKey === "step-by-step-solver" &&
+    serializeSelectedSeedContent(linkedActivity.props) ===
+      serializeSelectedSeedContent(IM3_SELECTED_ORIGINAL_WORKED_PROPS);
+  const isCanonicalWorkedSection =
+    currentSectionContent.componentKey === "graphing-explorer" &&
+    linkedActivity?.componentKey === "graphing-explorer" &&
+    linkedActivity.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID &&
+    linkedActivity.masteryNodeId === IM3_PILOT_NODE &&
+    linkedActivity.learningEvidenceMode === "worked_example" &&
+    serializeSelectedSeedContent(linkedActivity.props) ===
+      serializeSelectedSeedContent(buildIm3WorkedPilotSeedDocument(now).props);
   if (!isOriginalWorkedSection && !isCanonicalWorkedSection) {
     throw new Error("Lesson 1.1 Worked activity source is invalid");
   }
@@ -560,7 +637,11 @@ export async function upsertIm3SelectedPilotSeed(
   const workedActivityId = await upsertSelectedActivity(ctx, worked.stableActivityId, worked);
 
   const independentDraft = {
-    ...buildGeneratedPilotActivity(IM3_MASTERY_ADVANTAGE_ACTIVITY_ID, 0, "Mastery Advantage: Complete a quadratic table and plot the points"),
+    ...buildGeneratedPilotActivity(
+      IM3_MASTERY_ADVANTAGE_ACTIVITY_ID,
+      0,
+      "Mastery Advantage: Complete a quadratic table and plot the points",
+    ),
     createdAt: now,
     updatedAt: now,
   };
@@ -573,7 +654,11 @@ export async function upsertIm3SelectedPilotSeed(
   await upsertSelectedPracticeDocuments(ctx, independent);
 
   const guidedDraft = {
-    ...buildGeneratedPilotActivity(IM3_GUIDED_PRACTICE_ACTIVITY_ID, 1, "Guided graphing: Complete a quadratic table and plot the points"),
+    ...buildGeneratedPilotActivity(
+      IM3_GUIDED_PRACTICE_ACTIVITY_ID,
+      1,
+      "Guided graphing: Complete a quadratic table and plot the points",
+    ),
     createdAt: now,
     updatedAt: now,
   };
@@ -592,8 +677,6 @@ export async function upsertIm3SelectedPilotSeed(
 
   return { workedActivityId, guidedActivityId, independentActivityId };
 }
-
-
 
 export function buildIm3GraphGuidedSeed2Documents(
   activityId: Id<"activities">,
@@ -730,10 +813,12 @@ export function buildIm3GraphIndependentSeed2Documents(
 }
 
 const IM3_EQUATION_RATE_GENERATOR_KEY = "average-rate-of-change" as const;
-const IM3_DOMAIN_RANGE_NODE = "math.im3.skill.1.1.state-the-domain-and-range-of-a-quadratic-from-its-graph" as const;
+const IM3_DOMAIN_RANGE_NODE =
+  "math.im3.skill.1.1.state-the-domain-and-range-of-a-quadratic-from-its-graph" as const;
 const IM3_DOMAIN_RANGE_WORKED_ACTIVITY_ID = `${IM3_DOMAIN_RANGE_NODE}.worked_example` as const;
 const IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID = `${IM3_DOMAIN_RANGE_NODE}.guided_practice` as const;
-const IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID = `${IM3_DOMAIN_RANGE_NODE}.independent_practice` as const;
+const IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID =
+  `${IM3_DOMAIN_RANGE_NODE}.independent_practice` as const;
 
 export function buildIm3EquationRateWorkedSeedDocument(now: number) {
   const props: RateOfChangeCalculatorProps = rateOfChangeCalculatorSchema.parse({
@@ -773,9 +858,9 @@ export async function upsertIm3EquationRateWorkedActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_EQUATION_RATE_WORKED_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_EQUATION_RATE_WORKED_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3EquationRateWorkedSeedDocument(now);
 
@@ -823,10 +908,7 @@ export function buildIm3DomainRangeWorkedSeedDocument(now: number) {
   };
 }
 
-export function buildIm3DomainRangeGuidedSeedDocuments(
-  activityId: Id<"activities">,
-  now: number,
-) {
+export function buildIm3DomainRangeGuidedSeedDocuments(activityId: Id<"activities">, now: number) {
   const generated = getGenerator("quadratic-graph-analysis").generate({
     nodeId: IM3_DOMAIN_RANGE_NODE,
     seed: 1,
@@ -887,10 +969,7 @@ export function buildIm3DomainRangeGuidedSeedDocuments(
   };
 }
 
-export function buildIm3DomainRangeGuidedSeed2Documents(
-  activityId: Id<"activities">,
-  now: number,
-) {
+export function buildIm3DomainRangeGuidedSeed2Documents(activityId: Id<"activities">, now: number) {
   const generated = getGenerator("quadratic-graph-analysis").generate({
     nodeId: IM3_DOMAIN_RANGE_NODE,
     seed: 2,
@@ -1098,11 +1177,13 @@ export function buildIm3MaximumReadingWorkedSeedDocument(now: number) {
       passingScore: 1,
       partialCredit: false,
       partIds: ["maximum_value"],
-      rubric: [{
-        criteria: "Identify the maximum value from the displayed graph.",
-        partId: "maximum_value",
-        points: 1,
-      }],
+      rubric: [
+        {
+          criteria: "Identify the maximum value from the displayed graph.",
+          partId: "maximum_value",
+          points: 1,
+        },
+      ],
     },
     stableActivityId: IM3_MAXIMUM_READING_WORKED_ACTIVITY_ID,
     masteryNodeId: IM3_MAXIMUM_READING_NODE,
@@ -1258,11 +1339,13 @@ export function buildIm3SymmetryWorkedSeedDocument(now: number) {
       passingScore: 1,
       partialCredit: false,
       partIds: ["placed_points"],
-      rubric: [{
-        criteria: "Place the vertex, the y-intercept, and the reflected point.",
-        partId: "placed_points",
-        points: 1,
-      }],
+      rubric: [
+        {
+          criteria: "Place the vertex, the y-intercept, and the reflected point.",
+          partId: "placed_points",
+          points: 1,
+        },
+      ],
     },
     stableActivityId: IM3_SYMMETRY_WORKED_ACTIVITY_ID,
     masteryNodeId: IM3_SYMMETRY_NODE,
@@ -1279,7 +1362,8 @@ export function buildIm3CompareMaximumWorkedSeedDocument(now: number) {
     variant: "compare_functions",
     responseVariant: "compare_maximums",
     comparisonEquation: "y = -3x^2 + 6x - 1",
-    comparisonQuestion: "The graph of f(x) is shown. Function g has a y-intercept of -1 and a vertex at (1, 2). Which function has the greater maximum value?",
+    comparisonQuestion:
+      "The graph of f(x) is shown. Function g has a y-intercept of -1 and a vertex at (1, 2). Which function has the greater maximum value?",
     comparisonAnswer: "first",
     vertex: [1, 2],
     yIntercept: [0, -1],
@@ -1297,11 +1381,13 @@ export function buildIm3CompareMaximumWorkedSeedDocument(now: number) {
       passingScore: 1,
       partialCredit: false,
       partIds: ["greater_maximum"],
-      rubric: [{
-        criteria: "Identify the function with the greater maximum.",
-        partId: "greater_maximum",
-        points: 1,
-      }],
+      rubric: [
+        {
+          criteria: "Identify the function with the greater maximum.",
+          partId: "greater_maximum",
+          points: 1,
+        },
+      ],
     },
     stableActivityId: IM3_COMPARE_MAXIMUM_WORKED_ACTIVITY_ID,
     masteryNodeId: IM3_COMPARE_MAXIMUM_NODE,
@@ -1440,9 +1526,9 @@ export async function upsertIm3CompareMaximumWorkedActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_COMPARE_MAXIMUM_WORKED_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_COMPARE_MAXIMUM_WORKED_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3CompareMaximumWorkedSeedDocument(now);
 
@@ -1463,12 +1549,12 @@ export async function upsertIm3CompareMaximumIndependentActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3CompareMaximumIndependentSeedDocuments(
-    existingActivity?._id ?? "activities:pending" as Id<"activities">,
+    existingActivity?._id ?? ("activities:pending" as Id<"activities">),
     now,
   ).activity;
 
@@ -1489,9 +1575,9 @@ export async function upsertIm3CompareMaximumIndependentVariant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) =>
+      q.eq("variantKey", IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID),
+    )
     .unique();
   const variant = buildIm3CompareMaximumIndependentSeedDocuments(
     "activities:pending" as Id<"activities">,
@@ -1514,26 +1600,29 @@ export async function upsertIm3CompareMaximumIndependentPracticeItem(
   const documents = buildIm3CompareMaximumIndependentSeedDocuments(activityId, now);
   const byVariant = await ctx.db
     .query("practice_items")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) =>
+      q.eq("variantKey", IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID),
+    )
     .take(2);
   const byActivity = await ctx.db
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
-    throw new Error("Duplicate or conflicting IM3 compare-maximum Independent practice-item mapping");
+    throw new Error(
+      "Duplicate or conflicting IM3 compare-maximum Independent practice-item mapping",
+    );
   }
 
   const parsedItem = practiceItemSchema.safeParse({
@@ -1543,7 +1632,9 @@ export async function upsertIm3CompareMaximumIndependentPracticeItem(
     variantLabel: documents.item.variantLabel,
   });
   if (!parsedItem.success) {
-    throw new Error(`IM3 compare-maximum Independent practice item is invalid: ${parsedItem.error.message}`);
+    throw new Error(
+      `IM3 compare-maximum Independent practice item is invalid: ${parsedItem.error.message}`,
+    );
   }
 
   const existingItem = mappedRows[0];
@@ -1561,12 +1652,12 @@ export async function upsertIm3CompareMaximumGuidedActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3CompareMaximumGuidedSeedDocuments(
-    existingActivity?._id ?? "activities:pending" as Id<"activities">,
+    existingActivity?._id ?? ("activities:pending" as Id<"activities">),
     now,
   ).activity;
 
@@ -1587,9 +1678,7 @@ export async function upsertIm3CompareMaximumGuidedVariant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID))
     .unique();
   const variant = buildIm3CompareMaximumGuidedSeedDocuments(
     "activities:pending" as Id<"activities">,
@@ -1612,24 +1701,23 @@ export async function upsertIm3CompareMaximumGuidedPracticeItem(
   const documents = buildIm3CompareMaximumGuidedSeedDocuments(activityId, now);
   const byVariant = await ctx.db
     .query("practice_items")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID))
     .take(2);
   const byActivity = await ctx.db
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
     throw new Error("Duplicate or conflicting IM3 compare-maximum Guided practice-item mapping");
   }
@@ -1641,7 +1729,9 @@ export async function upsertIm3CompareMaximumGuidedPracticeItem(
     variantLabel: documents.item.variantLabel,
   });
   if (!parsedItem.success) {
-    throw new Error(`IM3 compare-maximum Guided practice item is invalid: ${parsedItem.error.message}`);
+    throw new Error(
+      `IM3 compare-maximum Guided practice item is invalid: ${parsedItem.error.message}`,
+    );
   }
 
   const existingItem = mappedRows[0];
@@ -1653,10 +1743,7 @@ export async function upsertIm3CompareMaximumGuidedPracticeItem(
   return await ctx.db.insert("practice_items", documents.item);
 }
 
-export function buildIm3SymmetryGuidedSeedDocuments(
-  activityId: Id<"activities">,
-  now: number,
-) {
+export function buildIm3SymmetryGuidedSeedDocuments(activityId: Id<"activities">, now: number) {
   const generated = getGenerator("quadratic-graph-analysis").generate({
     nodeId: IM3_SYMMETRY_NODE,
     seed: 0,
@@ -1781,9 +1868,9 @@ export async function upsertIm3SymmetryWorkedActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_SYMMETRY_WORKED_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_SYMMETRY_WORKED_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3SymmetryWorkedSeedDocument(now);
 
@@ -1804,12 +1891,12 @@ export async function upsertIm3SymmetryGuidedActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_SYMMETRY_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_SYMMETRY_GUIDED_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3SymmetryGuidedSeedDocuments(
-    existingActivity?._id ?? "activities:pending" as Id<"activities">,
+    existingActivity?._id ?? ("activities:pending" as Id<"activities">),
     now,
   ).activity;
 
@@ -1830,9 +1917,7 @@ export async function upsertIm3SymmetryGuidedVariant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_SYMMETRY_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_SYMMETRY_GUIDED_ACTIVITY_ID))
     .unique();
   const variant = buildIm3SymmetryGuidedSeedDocuments(
     "activities:pending" as Id<"activities">,
@@ -1855,24 +1940,23 @@ export async function upsertIm3SymmetryGuidedPracticeItem(
   const documents = buildIm3SymmetryGuidedSeedDocuments(activityId, now);
   const byVariant = await ctx.db
     .query("practice_items")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_SYMMETRY_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_SYMMETRY_GUIDED_ACTIVITY_ID))
     .take(2);
   const byActivity = await ctx.db
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_SYMMETRY_GUIDED_ACTIVITY_ID
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_SYMMETRY_GUIDED_ACTIVITY_ID ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
     throw new Error("Duplicate or conflicting IM3 symmetry Guided practice-item mapping");
   }
@@ -1902,12 +1986,12 @@ export async function upsertIm3SymmetryIndependentActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3SymmetryIndependentSeedDocuments(
-    existingActivity?._id ?? "activities:pending" as Id<"activities">,
+    existingActivity?._id ?? ("activities:pending" as Id<"activities">),
     now,
   ).activity;
 
@@ -1928,9 +2012,7 @@ export async function upsertIm3SymmetryIndependentVariant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID))
     .unique();
   const variant = buildIm3SymmetryIndependentSeedDocuments(
     "activities:pending" as Id<"activities">,
@@ -1953,24 +2035,23 @@ export async function upsertIm3SymmetryIndependentPracticeItem(
   const documents = buildIm3SymmetryIndependentSeedDocuments(activityId, now);
   const byVariant = await ctx.db
     .query("practice_items")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID))
     .take(2);
   const byActivity = await ctx.db
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
     throw new Error("Duplicate or conflicting IM3 symmetry Independent practice-item mapping");
   }
@@ -1982,7 +2063,9 @@ export async function upsertIm3SymmetryIndependentPracticeItem(
     variantLabel: documents.item.variantLabel,
   });
   if (!parsedItem.success) {
-    throw new Error(`IM3 symmetry Independent practice item is invalid: ${parsedItem.error.message}`);
+    throw new Error(
+      `IM3 symmetry Independent practice item is invalid: ${parsedItem.error.message}`,
+    );
   }
 
   const existingItem = mappedRows[0];
@@ -2000,9 +2083,9 @@ export async function upsertIm3MaximumReadingWorkedActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_MAXIMUM_READING_WORKED_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_MAXIMUM_READING_WORKED_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3MaximumReadingWorkedSeedDocument(now);
 
@@ -2023,12 +2106,12 @@ export async function upsertIm3MaximumReadingGuidedActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3MaximumReadingGuidedSeedDocuments(
-    existingActivity?._id ?? "activities:pending" as Id<"activities">,
+    existingActivity?._id ?? ("activities:pending" as Id<"activities">),
     now,
   ).activity;
 
@@ -2049,9 +2132,7 @@ export async function upsertIm3MaximumReadingGuidedVariant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID))
     .unique();
   const variant = buildIm3MaximumReadingGuidedSeedDocuments(
     "activities:pending" as Id<"activities">,
@@ -2074,24 +2155,23 @@ export async function upsertIm3MaximumReadingGuidedPracticeItem(
   const documents = buildIm3MaximumReadingGuidedSeedDocuments(activityId, now);
   const byVariant = await ctx.db
     .query("practice_items")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID))
     .take(2);
   const byActivity = await ctx.db
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
     throw new Error("Duplicate or conflicting IM3 maximum-reading Guided practice-item mapping");
   }
@@ -2103,7 +2183,9 @@ export async function upsertIm3MaximumReadingGuidedPracticeItem(
     variantLabel: documents.item.variantLabel,
   });
   if (!parsedItem.success) {
-    throw new Error(`IM3 maximum-reading Guided practice item is invalid: ${parsedItem.error.message}`);
+    throw new Error(
+      `IM3 maximum-reading Guided practice item is invalid: ${parsedItem.error.message}`,
+    );
   }
 
   const existingItem = mappedRows[0];
@@ -2121,12 +2203,12 @@ export async function upsertIm3MaximumReadingIndependentActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3MaximumReadingIndependentSeedDocuments(
-    existingActivity?._id ?? "activities:pending" as Id<"activities">,
+    existingActivity?._id ?? ("activities:pending" as Id<"activities">),
     now,
   ).activity;
 
@@ -2147,9 +2229,9 @@ export async function upsertIm3MaximumReadingIndependentVariant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) =>
+      q.eq("variantKey", IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID),
+    )
     .unique();
   const variant = buildIm3MaximumReadingIndependentSeedDocuments(
     "activities:pending" as Id<"activities">,
@@ -2172,26 +2254,29 @@ export async function upsertIm3MaximumReadingIndependentPracticeItem(
   const documents = buildIm3MaximumReadingIndependentSeedDocuments(activityId, now);
   const byVariant = await ctx.db
     .query("practice_items")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) =>
+      q.eq("variantKey", IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID),
+    )
     .take(2);
   const byActivity = await ctx.db
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
-    throw new Error("Duplicate or conflicting IM3 maximum-reading Independent practice-item mapping");
+    throw new Error(
+      "Duplicate or conflicting IM3 maximum-reading Independent practice-item mapping",
+    );
   }
 
   const parsedItem = practiceItemSchema.safeParse({
@@ -2201,7 +2286,9 @@ export async function upsertIm3MaximumReadingIndependentPracticeItem(
     variantLabel: documents.item.variantLabel,
   });
   if (!parsedItem.success) {
-    throw new Error(`IM3 maximum-reading Independent practice item is invalid: ${parsedItem.error.message}`);
+    throw new Error(
+      `IM3 maximum-reading Independent practice item is invalid: ${parsedItem.error.message}`,
+    );
   }
 
   const existingItem = mappedRows[0];
@@ -2219,9 +2306,9 @@ export async function upsertIm3DomainRangeWorkedActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_DOMAIN_RANGE_WORKED_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_DOMAIN_RANGE_WORKED_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3DomainRangeWorkedSeedDocument(now);
 
@@ -2242,12 +2329,12 @@ export async function upsertIm3DomainRangeGuidedActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3DomainRangeGuidedSeedDocuments(
-    existingActivity?._id ?? "activities:pending" as Id<"activities">,
+    existingActivity?._id ?? ("activities:pending" as Id<"activities">),
     now,
   ).activity;
 
@@ -2265,9 +2352,7 @@ export async function upsertIm3DomainRangeGuidedVariant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID))
     .unique();
   const variant = buildIm3DomainRangeGuidedSeedDocuments(
     "activities:pending" as Id<"activities">,
@@ -2290,24 +2375,23 @@ export async function upsertIm3DomainRangeGuidedPracticeItem(
   const documents = buildIm3DomainRangeGuidedSeedDocuments(activityId, now);
   const byVariant = await ctx.db
     .query("practice_items")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID))
     .take(2);
   const byActivity = await ctx.db
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
     throw new Error("Duplicate or conflicting IM3 domain-range Guided practice-item mapping");
   }
@@ -2319,7 +2403,9 @@ export async function upsertIm3DomainRangeGuidedPracticeItem(
     variantLabel: documents.item.variantLabel,
   });
   if (!parsedItem.success) {
-    throw new Error(`IM3 domain-range Guided practice item is invalid: ${parsedItem.error.message}`);
+    throw new Error(
+      `IM3 domain-range Guided practice item is invalid: ${parsedItem.error.message}`,
+    );
   }
 
   const existingItem = mappedRows[0];
@@ -2337,12 +2423,12 @@ export async function upsertIm3DomainRangeGuidedSeed2Activity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_DOMAIN_RANGE_GUIDED_SEED_2_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_DOMAIN_RANGE_GUIDED_SEED_2_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3DomainRangeGuidedSeed2Documents(
-    existingActivity?._id ?? "activities:pending" as Id<"activities">,
+    existingActivity?._id ?? ("activities:pending" as Id<"activities">),
     now,
   ).activity;
 
@@ -2360,9 +2446,9 @@ export async function upsertIm3DomainRangeGuidedSeed2Variant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_DOMAIN_RANGE_GUIDED_SEED_2_VARIANT_KEY)
-    ))
+    .withIndex("by_variantKey", (q) =>
+      q.eq("variantKey", IM3_DOMAIN_RANGE_GUIDED_SEED_2_VARIANT_KEY),
+    )
     .unique();
   const variant = buildIm3DomainRangeGuidedSeed2Documents(
     "activities:pending" as Id<"activities">,
@@ -2385,24 +2471,29 @@ export async function upsertIm3DomainRangeGuidedSeed2PracticeItem(
   const documents = buildIm3DomainRangeGuidedSeed2Documents(activityId, now);
   const byVariant = await ctx.db
     .query("practice_items")
-    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_DOMAIN_RANGE_GUIDED_SEED_2_VARIANT_KEY))
+    .withIndex("by_variantKey", (q) =>
+      q.eq("variantKey", IM3_DOMAIN_RANGE_GUIDED_SEED_2_VARIANT_KEY),
+    )
     .take(2);
   const byActivity = await ctx.db
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_DOMAIN_RANGE_GUIDED_SEED_2_VARIANT_KEY
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_DOMAIN_RANGE_GUIDED_SEED_2_VARIANT_KEY ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
-    throw new Error("Duplicate or conflicting IM3 domain-range Guided seed-2 practice-item mapping");
+    throw new Error(
+      "Duplicate or conflicting IM3 domain-range Guided seed-2 practice-item mapping",
+    );
   }
 
   const parsedItem = practiceItemSchema.safeParse({
@@ -2412,7 +2503,9 @@ export async function upsertIm3DomainRangeGuidedSeed2PracticeItem(
     variantLabel: documents.item.variantLabel,
   });
   if (!parsedItem.success) {
-    throw new Error(`IM3 domain-range Guided seed-2 practice item is invalid: ${parsedItem.error.message}`);
+    throw new Error(
+      `IM3 domain-range Guided seed-2 practice item is invalid: ${parsedItem.error.message}`,
+    );
   }
 
   const existingItem = mappedRows[0];
@@ -2430,12 +2523,12 @@ export async function upsertIm3DomainRangeIndependentActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3DomainRangeIndependentSeedDocuments(
-    existingActivity?._id ?? "activities:pending" as Id<"activities">,
+    existingActivity?._id ?? ("activities:pending" as Id<"activities">),
     now,
   ).activity;
 
@@ -2456,9 +2549,7 @@ export async function upsertIm3DomainRangeIndependentVariant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID))
     .unique();
   const variant = buildIm3DomainRangeIndependentSeedDocuments(
     "activities:pending" as Id<"activities">,
@@ -2481,24 +2572,23 @@ export async function upsertIm3DomainRangeIndependentPracticeItem(
   const documents = buildIm3DomainRangeIndependentSeedDocuments(activityId, now);
   const byVariant = await ctx.db
     .query("practice_items")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID))
     .take(2);
   const byActivity = await ctx.db
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
     throw new Error("Duplicate or conflicting IM3 domain-range Independent practice-item mapping");
   }
@@ -2510,7 +2600,9 @@ export async function upsertIm3DomainRangeIndependentPracticeItem(
     variantLabel: documents.item.variantLabel,
   });
   if (!parsedItem.success) {
-    throw new Error(`IM3 domain-range Independent practice item is invalid: ${parsedItem.error.message}`);
+    throw new Error(
+      `IM3 domain-range Independent practice item is invalid: ${parsedItem.error.message}`,
+    );
   }
 
   const existingItem = mappedRows[0];
@@ -2585,10 +2677,7 @@ export function buildIm3EquationRateIndependentSeedDocuments(
   };
 }
 
-export function buildIm3EquationRateGuidedSeedDocuments(
-  activityId: Id<"activities">,
-  now: number,
-) {
+export function buildIm3EquationRateGuidedSeedDocuments(activityId: Id<"activities">, now: number) {
   const generated = getGenerator(IM3_EQUATION_RATE_GENERATOR_KEY).generate({
     nodeId: IM3_EQUATION_RATE_NODE,
     seed: 1,
@@ -2654,12 +2743,12 @@ export async function upsertIm3EquationRateGuidedActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_EQUATION_RATE_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_EQUATION_RATE_GUIDED_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3EquationRateGuidedSeedDocuments(
-    existingActivity?._id ?? "activities:pending" as Id<"activities">,
+    existingActivity?._id ?? ("activities:pending" as Id<"activities">),
     now,
   ).activity;
 
@@ -2677,9 +2766,7 @@ export async function upsertIm3EquationRateGuidedVariant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_EQUATION_RATE_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_EQUATION_RATE_GUIDED_ACTIVITY_ID))
     .unique();
   const variant = buildIm3EquationRateGuidedSeedDocuments(
     "activities:pending" as Id<"activities">,
@@ -2708,16 +2795,17 @@ export async function upsertIm3EquationRateGuidedPracticeItem(
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_EQUATION_RATE_GUIDED_ACTIVITY_ID
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_EQUATION_RATE_GUIDED_ACTIVITY_ID ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
     throw new Error("Duplicate or conflicting IM3 Guided practice-item mapping");
   }
@@ -2747,12 +2835,12 @@ export async function upsertIm3EquationRateIndependentActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_EQUATION_RATE_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_EQUATION_RATE_INDEPENDENT_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3EquationRateIndependentSeedDocuments(
-    existingActivity?._id ?? "activities:pending" as Id<"activities">,
+    existingActivity?._id ?? ("activities:pending" as Id<"activities">),
     now,
   ).activity;
 
@@ -2770,9 +2858,9 @@ export async function upsertIm3EquationRateIndependentVariant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_EQUATION_RATE_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) =>
+      q.eq("variantKey", IM3_EQUATION_RATE_INDEPENDENT_ACTIVITY_ID),
+    )
     .unique();
   const variant = buildIm3EquationRateIndependentSeedDocuments(
     "activities:pending" as Id<"activities">,
@@ -2795,22 +2883,25 @@ export async function upsertIm3EquationRateIndependentPracticeItem(
   const documents = buildIm3EquationRateIndependentSeedDocuments(activityId, now);
   const byVariant = await ctx.db
     .query("practice_items")
-    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_EQUATION_RATE_INDEPENDENT_ACTIVITY_ID))
+    .withIndex("by_variantKey", (q) =>
+      q.eq("variantKey", IM3_EQUATION_RATE_INDEPENDENT_ACTIVITY_ID),
+    )
     .take(2);
   const byActivity = await ctx.db
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_EQUATION_RATE_INDEPENDENT_ACTIVITY_ID
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_EQUATION_RATE_INDEPENDENT_ACTIVITY_ID ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
     throw new Error("Duplicate or conflicting IM3 equation-rate practice-item mapping");
   }
@@ -2840,12 +2931,12 @@ export async function upsertIm3GuidedPilotActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_GUIDED_PRACTICE_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_GUIDED_PRACTICE_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3GuidedPilotSeedDocuments(
-    existingActivity?._id ?? "activities:pending" as Id<"activities">,
+    existingActivity?._id ?? ("activities:pending" as Id<"activities">),
     now,
   ).activity;
 
@@ -2863,9 +2954,7 @@ export async function upsertIm3GuidedPilotVariant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_GUIDED_VARIANT_KEY)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_GUIDED_VARIANT_KEY))
     .unique();
   const variant = buildIm3GuidedPilotSeedDocuments(
     "activities:pending" as Id<"activities">,
@@ -2894,16 +2983,17 @@ export async function upsertIm3GuidedPilotPracticeItem(
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_GUIDED_VARIANT_KEY
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_GUIDED_VARIANT_KEY ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
     throw new Error("Duplicate or conflicting IM3 Guided practice-item mapping");
   }
@@ -2933,12 +3023,12 @@ export async function upsertIm3GraphGuidedSeed2Activity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_GRAPH_GUIDED_SEED_2_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_GRAPH_GUIDED_SEED_2_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3GraphGuidedSeed2Documents(
-    existingActivity?._id ?? "activities:pending" as Id<"activities">,
+    existingActivity?._id ?? ("activities:pending" as Id<"activities">),
     now,
   ).activity;
 
@@ -2956,9 +3046,7 @@ export async function upsertIm3GraphGuidedSeed2Variant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_GRAPH_GUIDED_SEED_2_VARIANT_KEY)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_GRAPH_GUIDED_SEED_2_VARIANT_KEY))
     .unique();
   const variant = buildIm3GraphGuidedSeed2Documents(
     "activities:pending" as Id<"activities">,
@@ -2987,16 +3075,17 @@ export async function upsertIm3GraphGuidedSeed2PracticeItem(
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_GRAPH_GUIDED_SEED_2_VARIANT_KEY
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_GRAPH_GUIDED_SEED_2_VARIANT_KEY ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
     throw new Error("Duplicate or conflicting IM3 graph Guided seed-2 practice-item mapping");
   }
@@ -3008,7 +3097,9 @@ export async function upsertIm3GraphGuidedSeed2PracticeItem(
     variantLabel: documents.item.variantLabel,
   });
   if (!parsedItem.success) {
-    throw new Error(`IM3 graph Guided seed-2 practice item is invalid: ${parsedItem.error.message}`);
+    throw new Error(
+      `IM3 graph Guided seed-2 practice item is invalid: ${parsedItem.error.message}`,
+    );
   }
 
   const existingItem = mappedRows[0];
@@ -3026,12 +3117,12 @@ export async function upsertIm3DomainRangeIndependentSeed2Activity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3DomainRangeIndependentSeed2Documents(
-    existingActivity?._id ?? "activities:pending" as Id<"activities">,
+    existingActivity?._id ?? ("activities:pending" as Id<"activities">),
     now,
   ).activity;
 
@@ -3052,9 +3143,9 @@ export async function upsertIm3DomainRangeIndependentSeed2Variant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY)
-    ))
+    .withIndex("by_variantKey", (q) =>
+      q.eq("variantKey", IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY),
+    )
     .unique();
   const variant = buildIm3DomainRangeIndependentSeed2Documents(
     "activities:pending" as Id<"activities">,
@@ -3077,26 +3168,29 @@ export async function upsertIm3DomainRangeIndependentSeed2PracticeItem(
   const documents = buildIm3DomainRangeIndependentSeed2Documents(activityId, now);
   const byVariant = await ctx.db
     .query("practice_items")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY)
-    ))
+    .withIndex("by_variantKey", (q) =>
+      q.eq("variantKey", IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY),
+    )
     .take(2);
   const byActivity = await ctx.db
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_VARIANT_KEY ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
-    throw new Error("Duplicate or conflicting IM3 domain-range Independent seed-2 practice-item mapping");
+    throw new Error(
+      "Duplicate or conflicting IM3 domain-range Independent seed-2 practice-item mapping",
+    );
   }
 
   const parsedItem = practiceItemSchema.safeParse({
@@ -3106,7 +3200,9 @@ export async function upsertIm3DomainRangeIndependentSeed2PracticeItem(
     variantLabel: documents.item.variantLabel,
   });
   if (!parsedItem.success) {
-    throw new Error("IM3 domain-range Independent seed-2 practice item is invalid: " + parsedItem.error.message);
+    throw new Error(
+      "IM3 domain-range Independent seed-2 practice item is invalid: " + parsedItem.error.message,
+    );
   }
 
   const existingItem = mappedRows[0];
@@ -3124,12 +3220,12 @@ export async function upsertIm3GraphIndependentSeed2Activity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_GRAPH_INDEPENDENT_SEED_2_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_GRAPH_INDEPENDENT_SEED_2_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3GraphIndependentSeed2Documents(
-    existingActivity?._id ?? "activities:pending" as Id<"activities">,
+    existingActivity?._id ?? ("activities:pending" as Id<"activities">),
     now,
   ).activity;
 
@@ -3147,9 +3243,7 @@ export async function upsertIm3GraphIndependentSeed2Variant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_GRAPH_INDEPENDENT_SEED_2_VARIANT_KEY)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_GRAPH_INDEPENDENT_SEED_2_VARIANT_KEY))
     .unique();
   const variant = buildIm3GraphIndependentSeed2Documents(
     "activities:pending" as Id<"activities">,
@@ -3178,16 +3272,17 @@ export async function upsertIm3GraphIndependentSeed2PracticeItem(
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_GRAPH_INDEPENDENT_SEED_2_VARIANT_KEY
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_GRAPH_INDEPENDENT_SEED_2_VARIANT_KEY ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
     throw new Error("Duplicate or conflicting IM3 graph Independent seed-2 practice-item mapping");
   }
@@ -3199,7 +3294,9 @@ export async function upsertIm3GraphIndependentSeed2PracticeItem(
     variantLabel: documents.item.variantLabel,
   });
   if (!parsedItem.success) {
-    throw new Error(`IM3 graph Independent seed-2 practice item is invalid: ${parsedItem.error.message}`);
+    throw new Error(
+      `IM3 graph Independent seed-2 practice item is invalid: ${parsedItem.error.message}`,
+    );
   }
 
   const existingItem = mappedRows[0];
@@ -3230,9 +3327,7 @@ export function buildIm3ProfitModelWorkedSeedDocument(now: number) {
     seed: 0,
     difficulty: 0.5,
   });
-  const generatedFillInTheBlankProps = parseSeedFillInTheBlankProps(
-    generated.data.rendererProps,
-  );
+  const generatedFillInTheBlankProps = parseSeedFillInTheBlankProps(generated.data.rendererProps);
   const fillInTheBlankProps = {
     template:
       "A ski resort sells 680 passes at a base price of $120. Each price increase is $5, and 20 fewer passes are sold for each increase. Let x be the number of price increases. Worked solution: p(x) = 120 + 5x; s(x) = 680 - 20x; P(x) = (120 + 5x)(680 - 20x) = 120(680) - 120(20x) + 5x(680) - 5x(20x) = -100x^2 + 1000x + 81600. Check the key values: base price {{blank:priceBase}}, price increase {{blank:priceStep}}, base sales {{blank:salesBase}}, sales loss {{blank:salesLoss}}, a {{blank:coefficientA}}, b {{blank:coefficientB}}, and c {{blank:coefficientC}}.",
@@ -3426,18 +3521,13 @@ export function buildIm3ProfitMaximumIndependentSeedDocuments(
   };
 }
 
-export function buildIm3ProfitModelGuidedSeedDocuments(
-  activityId: Id<"activities">,
-  now: number,
-) {
+export function buildIm3ProfitModelGuidedSeedDocuments(activityId: Id<"activities">, now: number) {
   const generated = getGenerator(IM3_PROFIT_MODEL_GENERATOR_KEY).generate({
     nodeId: IM3_PROFIT_MODEL_NODE,
     seed: 1,
     difficulty: 0.5,
   });
-  const fillInTheBlankProps = parseSeedFillInTheBlankProps(
-    generated.data.rendererProps,
-  );
+  const fillInTheBlankProps = parseSeedFillInTheBlankProps(generated.data.rendererProps);
   const partIds = Object.keys(generated.expectedAnswer);
   const rubric = partIds.map((partId) => ({
     criteria: `Correct ${partId}`,
@@ -3499,9 +3589,7 @@ export function buildIm3ProfitModelIndependentSeedDocuments(
     seed: 2,
     difficulty: 0.5,
   });
-  const fillInTheBlankProps = parseSeedFillInTheBlankProps(
-    generated.data.rendererProps,
-  );
+  const fillInTheBlankProps = parseSeedFillInTheBlankProps(generated.data.rendererProps);
 
   const partIds = Object.keys(generated.expectedAnswer);
   const rubric = partIds.map((partId) => ({
@@ -3561,9 +3649,9 @@ export async function upsertIm3ProfitModelWorkedActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_PROFIT_MODEL_WORKED_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_PROFIT_MODEL_WORKED_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3ProfitModelWorkedSeedDocument(now);
 
@@ -3584,9 +3672,9 @@ export async function upsertIm3ProfitMaximumWorkedActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_PROFIT_MAXIMUM_WORKED_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_PROFIT_MAXIMUM_WORKED_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3ProfitMaximumWorkedSeedDocument(now);
 
@@ -3607,12 +3695,12 @@ export async function upsertIm3ProfitMaximumGuidedActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3ProfitMaximumGuidedSeedDocuments(
-    existingActivity?._id ?? "activities:pending" as Id<"activities">,
+    existingActivity?._id ?? ("activities:pending" as Id<"activities">),
     now,
   ).activity;
 
@@ -3633,12 +3721,12 @@ export async function upsertIm3ProfitMaximumIndependentActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3ProfitMaximumIndependentSeedDocuments(
-    existingActivity?._id ?? "activities:pending" as Id<"activities">,
+    existingActivity?._id ?? ("activities:pending" as Id<"activities">),
     now,
   ).activity;
 
@@ -3659,9 +3747,7 @@ export async function upsertIm3ProfitMaximumGuidedVariant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID))
     .unique();
   const variant = buildIm3ProfitMaximumGuidedSeedDocuments(
     "activities:pending" as Id<"activities">,
@@ -3682,9 +3768,9 @@ export async function upsertIm3ProfitMaximumIndependentVariant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) =>
+      q.eq("variantKey", IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID),
+    )
     .unique();
   const variant = buildIm3ProfitMaximumIndependentSeedDocuments(
     "activities:pending" as Id<"activities">,
@@ -3705,12 +3791,12 @@ export async function upsertIm3ProfitModelGuidedActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3ProfitModelGuidedSeedDocuments(
-    existingActivity?._id ?? "activities:pending" as Id<"activities">,
+    existingActivity?._id ?? ("activities:pending" as Id<"activities">),
     now,
   ).activity;
 
@@ -3731,9 +3817,7 @@ export async function upsertIm3ProfitModelGuidedVariant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID))
     .unique();
   const variant = buildIm3ProfitModelGuidedSeedDocuments(
     "activities:pending" as Id<"activities">,
@@ -3755,9 +3839,9 @@ export async function linkIm3ProfitModelWorkedPhase(
 ): Promise<void> {
   const phase = await ctx.db
     .query("phase_versions")
-    .withIndex("by_lesson_version_and_phase", (q) => (
-      q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", 6)
-    ))
+    .withIndex("by_lesson_version_and_phase", (q) =>
+      q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", 6),
+    )
     .first();
   if (!phase) {
     throw new Error("Lesson 1.1 Phase 6 is missing");
@@ -3767,22 +3851,23 @@ export async function linkIm3ProfitModelWorkedPhase(
     .query("phase_sections")
     .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phase._id))
     .collect();
-  const textSection = sections.find((section) => (
-    section.sequenceOrder === 1 && section.sectionType === "text"
-  ));
+  const textSection = sections.find(
+    (section) => section.sequenceOrder === 1 && section.sectionType === "text",
+  );
   if (!textSection) {
     throw new Error("Lesson 1.1 Phase 6 text section is missing");
   }
-  const activitySection = sections.find((section) => (
-    section.sequenceOrder === 2 && section.sectionType === "activity"
-  ));
+  const activitySection = sections.find(
+    (section) => section.sequenceOrder === 2 && section.sectionType === "activity",
+  );
   if (!activitySection) {
     throw new Error("Lesson 1.1 Phase 6 activity section is missing");
   }
 
   await ctx.db.patch(textSection._id, {
     content: {
-      markdown: "## Example 3: Use Quadratic Functions\n\nA ski resort sold 680 holiday weekend passes at &#36;120 per pass. For each &#36;5 price increase, it expects to sell 20 fewer passes. Let x be the number of &#36;5 price increases. Build and simplify P(x) = (120 + 5x)(680 - 20x).",
+      markdown:
+        "## Example 3: Use Quadratic Functions\n\nA ski resort sold 680 holiday weekend passes at &#36;120 per pass. For each &#36;5 price increase, it expects to sell 20 fewer passes. Let x be the number of &#36;5 price increases. Build and simplify P(x) = (120 + 5x)(680 - 20x).",
     },
   });
   await ctx.db.patch(activitySection._id, {
@@ -3801,9 +3886,9 @@ export async function linkIm3ProfitMaximumWorkedPhase(
 ): Promise<void> {
   const phase = await ctx.db
     .query("phase_versions")
-    .withIndex("by_lesson_version_and_phase", (q) => (
-      q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", 6)
-    ))
+    .withIndex("by_lesson_version_and_phase", (q) =>
+      q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", 6),
+    )
     .first();
   if (!phase) {
     throw new Error("Lesson 1.1 Phase 6 is missing");
@@ -3854,12 +3939,12 @@ export async function upsertIm3ProfitModelIndependentActivity(
 ): Promise<Id<"activities">> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => (
-      q.eq("stableActivityId", IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID),
+    )
     .unique();
   const activity = buildIm3ProfitModelIndependentSeedDocuments(
-    existingActivity?._id ?? "activities:pending" as Id<"activities">,
+    existingActivity?._id ?? ("activities:pending" as Id<"activities">),
     now,
   ).activity;
 
@@ -3877,9 +3962,7 @@ export async function upsertIm3ProfitModelIndependentVariant(
 ): Promise<Id<"practice_variants">> {
   const existingVariant = await ctx.db
     .query("practice_variants")
-    .withIndex("by_variantKey", (q) => (
-      q.eq("variantKey", IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID)
-    ))
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID))
     .unique();
   const variant = buildIm3ProfitModelIndependentSeedDocuments(
     "activities:pending" as Id<"activities">,
@@ -3908,16 +3991,17 @@ export async function upsertIm3ProfitModelIndependentPracticeItem(
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
     throw new Error("Duplicate or conflicting IM3 profit-model practice-item mapping");
   }
@@ -3955,16 +4039,17 @@ export async function upsertIm3ProfitModelGuidedPracticeItem(
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
     throw new Error("Duplicate or conflicting IM3 profit-model Guided practice-item mapping");
   }
@@ -3976,7 +4061,9 @@ export async function upsertIm3ProfitModelGuidedPracticeItem(
     variantLabel: documents.item.variantLabel,
   });
   if (!parsedItem.success) {
-    throw new Error(`IM3 Guided profit-model practice item is invalid: ${parsedItem.error.message}`);
+    throw new Error(
+      `IM3 Guided profit-model practice item is invalid: ${parsedItem.error.message}`,
+    );
   }
 
   const existingItem = mappedRows[0];
@@ -4002,16 +4089,17 @@ export async function upsertIm3ProfitMaximumGuidedPracticeItem(
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
     throw new Error("Duplicate or conflicting IM3 maximum-profit Guided practice-item mapping");
   }
@@ -4023,7 +4111,9 @@ export async function upsertIm3ProfitMaximumGuidedPracticeItem(
     variantLabel: documents.item.variantLabel,
   });
   if (!parsedItem.success) {
-    throw new Error(`IM3 maximum-profit Guided practice item is invalid: ${parsedItem.error.message}`);
+    throw new Error(
+      `IM3 maximum-profit Guided practice item is invalid: ${parsedItem.error.message}`,
+    );
   }
 
   const existingItem = mappedRows[0];
@@ -4043,24 +4133,29 @@ export async function upsertIm3ProfitMaximumIndependentPracticeItem(
   const documents = buildIm3ProfitMaximumIndependentSeedDocuments(activityId, now);
   const byVariant = await ctx.db
     .query("practice_items")
-    .withIndex("by_variantKey", (q) => q.eq("variantKey", IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID))
+    .withIndex("by_variantKey", (q) =>
+      q.eq("variantKey", IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID),
+    )
     .take(2);
   const byActivity = await ctx.db
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
-    throw new Error("Duplicate or conflicting IM3 maximum-profit Independent practice-item mapping");
+    throw new Error(
+      "Duplicate or conflicting IM3 maximum-profit Independent practice-item mapping",
+    );
   }
 
   const parsedItem = practiceItemSchema.safeParse({
@@ -4070,7 +4165,9 @@ export async function upsertIm3ProfitMaximumIndependentPracticeItem(
     variantLabel: documents.item.variantLabel,
   });
   if (!parsedItem.success) {
-    throw new Error(`IM3 maximum-profit Independent practice item is invalid: ${parsedItem.error.message}`);
+    throw new Error(
+      `IM3 maximum-profit Independent practice item is invalid: ${parsedItem.error.message}`,
+    );
   }
 
   const existingItem = mappedRows[0];
@@ -4094,11 +4191,15 @@ export async function upsertIm3PilotSeed(
 }> {
   const existingActivity = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => q.eq("stableActivityId", IM3_MASTERY_ADVANTAGE_ACTIVITY_ID))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_MASTERY_ADVANTAGE_ACTIVITY_ID),
+    )
     .unique();
-  const activityId = existingActivity?._id ?? await ctx.db.insert("activities", {
-    ...buildIm3PilotSeedDocuments("activities:pending" as Id<"activities">, now).activity,
-  });
+  const activityId =
+    existingActivity?._id ??
+    (await ctx.db.insert("activities", {
+      ...buildIm3PilotSeedDocuments("activities:pending" as Id<"activities">, now).activity,
+    }));
   const documents = buildIm3PilotSeedDocuments(activityId, now);
   if (existingActivity) {
     await ctx.db.patch(existingActivity._id, documents.activity);
@@ -4122,16 +4223,17 @@ export async function upsertIm3PilotSeed(
     .query("practice_items")
     .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
     .take(2);
-  const mappedRows = [...new Map(
-    [...byVariant, ...byActivity].map((row) => [String(row._id), row]),
-  ).values()];
+  const mappedRows = [
+    ...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values(),
+  ];
   if (
-    mappedRows.length > 1
-    || mappedRows.some((row) => (
-      row.variantKey !== IM3_PILOT_VARIANT_KEY
-      || String(row.activityId) !== String(activityId)
-      || row.practiceItemId !== documents.item.practiceItemId
-    ))
+    mappedRows.length > 1 ||
+    mappedRows.some(
+      (row) =>
+        row.variantKey !== IM3_PILOT_VARIANT_KEY ||
+        String(row.activityId) !== String(activityId) ||
+        row.practiceItemId !== documents.item.practiceItemId,
+    )
   ) {
     throw new Error("Duplicate or conflicting IM3 pilot practice-item mapping");
   }
@@ -4168,9 +4270,9 @@ export async function linkIm3DomainRangeWorkedPhase(
 ): Promise<void> {
   const phases = await ctx.db
     .query("phase_versions")
-    .withIndex("by_lesson_version_and_phase", (q) => (
-      q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", 4)
-    ))
+    .withIndex("by_lesson_version_and_phase", (q) =>
+      q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", 4),
+    )
     .take(2);
   const phase = phases[0];
   if (phases.length !== 1 || phase.phaseType !== "worked_example") {
@@ -4178,13 +4280,18 @@ export async function linkIm3DomainRangeWorkedPhase(
   }
   const activity = await ctx.db.get(activityId);
   const expectedActivity = buildIm3DomainRangeWorkedSeedDocument(0);
-  if (!activity || activity.stableActivityId !== expectedActivity.stableActivityId
-    || activity.masteryNodeId !== expectedActivity.masteryNodeId
-    || activity.componentKey !== expectedActivity.componentKey
-    || activity.learningEvidenceMode !== expectedActivity.learningEvidenceMode
-    || activity.srsEligible !== false
-    || serializeSelectedSeedContent(activity.props) !== serializeSelectedSeedContent(expectedActivity.props)
-    || serializeSelectedSeedContent(activity.gradingConfig) !== serializeSelectedSeedContent(expectedActivity.gradingConfig)) {
+  if (
+    !activity ||
+    activity.stableActivityId !== expectedActivity.stableActivityId ||
+    activity.masteryNodeId !== expectedActivity.masteryNodeId ||
+    activity.componentKey !== expectedActivity.componentKey ||
+    activity.learningEvidenceMode !== expectedActivity.learningEvidenceMode ||
+    activity.srsEligible !== false ||
+    serializeSelectedSeedContent(activity.props) !==
+      serializeSelectedSeedContent(expectedActivity.props) ||
+    serializeSelectedSeedContent(activity.gradingConfig) !==
+      serializeSelectedSeedContent(expectedActivity.gradingConfig)
+  ) {
     throw new Error("Lesson 1.1 domain-range Worked activity does not match");
   }
 
@@ -4197,7 +4304,8 @@ export async function linkIm3DomainRangeWorkedPhase(
       sequenceOrder: 4,
       sectionType: "text" as const,
       content: {
-        markdown: "## State the Domain and Range\n\nGraph $f(x) = x^2 + 2x - 3$. State the domain and range.",
+        markdown:
+          "## State the Domain and Range\n\nGraph $f(x) = x^2 + 2x - 3$. State the domain and range.",
       },
     },
     {
@@ -4209,15 +4317,24 @@ export async function linkIm3DomainRangeWorkedPhase(
   // Validate both owned positions before inserting either section.
   for (const entry of expected) {
     const matches = sections.filter((section) => section.sequenceOrder === entry.sequenceOrder);
-    if (matches.length > 1 || (matches.length === 1
-      && (matches[0].sectionType !== entry.sectionType
-        || serializeSelectedSeedContent(matches[0].content) !== serializeSelectedSeedContent(entry.content)))) {
+    if (
+      matches.length > 1 ||
+      (matches.length === 1 &&
+        (matches[0].sectionType !== entry.sectionType ||
+          serializeSelectedSeedContent(matches[0].content) !==
+            serializeSelectedSeedContent(entry.content)))
+    ) {
       throw new Error("Lesson 1.1 domain-range Worked section conflicts with existing content");
     }
   }
-  if (sections.some((section) => section.sequenceOrder !== 5
-    && section.sectionType === "activity"
-    && (section.content as { activityId?: string }).activityId === activityId)) {
+  if (
+    sections.some(
+      (section) =>
+        section.sequenceOrder !== 5 &&
+        section.sectionType === "activity" &&
+        (section.content as { activityId?: string }).activityId === activityId,
+    )
+  ) {
     throw new Error("Lesson 1.1 domain-range Worked activity has another source link");
   }
   for (const entry of expected) {
@@ -4238,9 +4355,9 @@ export async function linkIm3MaximumReadingWorkedPhase(
 ): Promise<void> {
   const phase = await ctx.db
     .query("phase_versions")
-    .withIndex("by_lesson_version_and_phase", (q) => (
-      q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", 5)
-    ))
+    .withIndex("by_lesson_version_and_phase", (q) =>
+      q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", 5),
+    )
     .first();
   if (!phase) {
     throw new Error("Lesson 1.1 Phase 5 is missing");
@@ -4250,22 +4367,23 @@ export async function linkIm3MaximumReadingWorkedPhase(
     .query("phase_sections")
     .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phase._id))
     .collect();
-  const textSection = sections.find((section) => (
-    section.sequenceOrder === 1 && section.sectionType === "text"
-  ));
+  const textSection = sections.find(
+    (section) => section.sequenceOrder === 1 && section.sectionType === "text",
+  );
   if (!textSection) {
     throw new Error("Lesson 1.1 Phase 5 text section is missing");
   }
-  const activitySection = sections.find((section) => (
-    section.sequenceOrder === 2 && section.sectionType === "activity"
-  ));
+  const activitySection = sections.find(
+    (section) => section.sequenceOrder === 2 && section.sectionType === "activity",
+  );
   if (!activitySection) {
     throw new Error("Lesson 1.1 Phase 5 activity section is missing");
   }
 
   await ctx.db.patch(textSection._id, {
     content: {
-      markdown: "## Example 2: Compare Quadratic Functions\n\nThe graph of f(x) is shown. Function g has a y-intercept of -1 and a vertex at (1, 2). Which function has the greater maximum value?",
+      markdown:
+        "## Example 2: Compare Quadratic Functions\n\nThe graph of f(x) is shown. Function g has a y-intercept of -1 and a vertex at (1, 2). Which function has the greater maximum value?",
     },
   });
   await ctx.db.patch(activitySection._id, {
@@ -4283,9 +4401,9 @@ export async function ensureIm3TeacherLedSourceActivity(
 ): Promise<Id<"activities">> {
   const sourcePhase = await ctx.db
     .query("phase_versions")
-    .withIndex("by_lesson_version_and_phase", (q) => (
-      q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", 4)
-    ))
+    .withIndex("by_lesson_version_and_phase", (q) =>
+      q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", 4),
+    )
     .first();
 
   const sections = sourcePhase
@@ -4300,28 +4418,34 @@ export async function ensureIm3TeacherLedSourceActivity(
       const content = section.content as { activityId?: string; componentKey?: string };
       return content.componentKey === "graphing-explorer" && Boolean(content.activityId);
     })
-    .sort((left, right) => (
-      left.sequenceOrder - right.sequenceOrder
-      || String(left._id).localeCompare(String(right._id))
-    ));
-  const phaseSources = (await Promise.all(graphingSections.map(async (section) => {
-    const content = section.content as { activityId?: string };
-    return content.activityId
-      ? ctx.db.get(content.activityId as Id<"activities">)
-      : null;
-  }))).filter((candidate): candidate is NonNullable<typeof candidate> => (
-    candidate !== null
-    && candidate.componentKey === "graphing-explorer"
-    && candidate.stableActivityId !== IM3_MASTERY_ADVANTAGE_ACTIVITY_ID
-  ));
+    .sort(
+      (left, right) =>
+        left.sequenceOrder - right.sequenceOrder ||
+        String(left._id).localeCompare(String(right._id)),
+    );
+  const phaseSources = (
+    await Promise.all(
+      graphingSections.map(async (section) => {
+        const content = section.content as { activityId?: string };
+        return content.activityId ? ctx.db.get(content.activityId as Id<"activities">) : null;
+      }),
+    )
+  ).filter(
+    (candidate): candidate is NonNullable<typeof candidate> =>
+      candidate !== null &&
+      candidate.componentKey === "graphing-explorer" &&
+      candidate.stableActivityId !== IM3_MASTERY_ADVANTAGE_ACTIVITY_ID,
+  );
 
   const existingCanonicalSource = await ctx.db
     .query("activities")
-    .withIndex("by_stable_activity_id", (q) => q.eq("stableActivityId", IM3_TEACHER_LED_ACTIVITY_ID))
+    .withIndex("by_stable_activity_id", (q) =>
+      q.eq("stableActivityId", IM3_TEACHER_LED_ACTIVITY_ID),
+    )
     .unique();
-  const exactPhaseSource = phaseSources.find((candidate) => (
-    candidate.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
-  ));
+  const exactPhaseSource = phaseSources.find(
+    (candidate) => candidate.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID,
+  );
   const legacyPhaseSource = phaseSources.find((candidate) => !candidate.stableActivityId);
   const activity = exactPhaseSource ?? existingCanonicalSource ?? legacyPhaseSource ?? null;
   const sourceActivityContent = {
@@ -4356,34 +4480,31 @@ export async function ensureIm3TeacherLedSourceActivity(
     return content.activityId === String(sourceActivity._id);
   });
   if (sourcePhase && !sourceSectionExists) {
-    const nextSequenceOrder = sections.reduce(
-      (highest, section) => Math.max(highest, section.sequenceOrder),
-      0,
-    ) + 1;
+    const nextSequenceOrder =
+      sections.reduce((highest, section) => Math.max(highest, section.sequenceOrder), 0) + 1;
     await ctx.db.insert("phase_sections", {
       phaseVersionId: sourcePhase._id,
       sequenceOrder: nextSequenceOrder,
-        sectionType: "activity",
-        content: {
-          componentKey: "graphing-explorer",
-          activityId: sourceActivity._id,
-        },
-        createdAt: now,
-      });
+      sectionType: "activity",
+      content: {
+        componentKey: "graphing-explorer",
+        activityId: sourceActivity._id,
+      },
+      createdAt: now,
+    });
   }
 
   for (const section of graphingSections) {
     const content = section.content as { activityId?: string };
-    const sectionActivity = phaseSources.find((candidate) => (
-      String(candidate._id) === content.activityId
-    ));
+    const sectionActivity = phaseSources.find(
+      (candidate) => String(candidate._id) === content.activityId,
+    );
     if (
-      content.activityId === String(sourceActivity._id)
-      || (
-        sectionActivity?.learningEvidenceMode === "worked_example"
-        && sectionActivity.stableActivityId !== IM3_TEACHER_LED_ACTIVITY_ID
-      )
-    ) continue;
+      content.activityId === String(sourceActivity._id) ||
+      (sectionActivity?.learningEvidenceMode === "worked_example" &&
+        sectionActivity.stableActivityId !== IM3_TEACHER_LED_ACTIVITY_ID)
+    )
+      continue;
     await ctx.db.patch(section._id, {
       content: {
         ...(section.content as Record<string, unknown>),
@@ -4447,11 +4568,12 @@ export const seedLesson1 = internalMutation({
       throw new Error("Lesson 1.1 has no published version");
     }
     if (
-      publishedLessonVersions[0]
-      && publishedLessonVersions.filter((version) => (
-        version.version === publishedLessonVersions[0].version
-      )).length !== 1
-    ) throw new Error("Lesson 1.1 has duplicate latest published versions");
+      publishedLessonVersions[0] &&
+      publishedLessonVersions.filter(
+        (version) => version.version === publishedLessonVersions[0].version,
+      ).length !== 1
+    )
+      throw new Error("Lesson 1.1 has duplicate latest published versions");
     const existingLessonVersion = publishedLessonVersions[0];
 
     const lessonVersionId: Id<"lesson_versions"> = existingLessonVersion
@@ -4497,7 +4619,8 @@ export const seedLesson1 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Key Terms\n\n- **Quadratic function**: A function of the form $f(x) = ax^2 + bx + c$ where $a \\neq 0$\n- **Parabola**: The U-shaped graph of a quadratic function\n- **Vertex**: The highest or lowest point of a parabola\n- **Axis of symmetry**: The vertical line that divides the parabola into mirror images\n- **Standard form**: $f(x) = ax^2 + bx + c$\n- **Vertex form**: $f(x) = a(x-h)^2 + k$ where $(h,k)$ is the vertex\n- **Intercept form**: $f(x) = a(x-p)(x-q)$ where $p$ and $q$ are x-intercepts",
+              markdown:
+                "## Key Terms\n\n- **Quadratic function**: A function of the form $f(x) = ax^2 + bx + c$ where $a \\neq 0$\n- **Parabola**: The U-shaped graph of a quadratic function\n- **Vertex**: The highest or lowest point of a parabola\n- **Axis of symmetry**: The vertical line that divides the parabola into mirror images\n- **Standard form**: $f(x) = ax^2 + bx + c$\n- **Vertex form**: $f(x) = a(x-h)^2 + k$ where $(h,k)$ is the vertex\n- **Intercept form**: $f(x) = a(x-p)(x-q)$ where $p$ and $q$ are x-intercepts",
             },
           },
         ],
@@ -4512,7 +4635,8 @@ export const seedLesson1 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Understanding Quadratic Functions\n\nA **quadratic function** is a polynomial function of degree 2. Its graph is a parabola.\n\n### Three Forms of Quadratic Functions\n\n**Standard Form:** $f(x) = ax^2 + bx + c$\n- The coefficients $a$, $b$, and $c$ reveal different information\n- $a$ determines the direction (up if $a > 0$, down if $a < 0$) and width\n- $c$ is the y-intercept\n\n**Vertex Form:** $f(x) = a(x-h)^2 + k$\n- The vertex is at $(h, k)$\n- Easy to identify the maximum or minimum value\n- The axis of symmetry is $x = h$\n\n**Intercept Form:** $f(x) = a(x-p)(x-q)$\n- $p$ and $q$ are the x-intercepts\n- The axis of symmetry is $x = \\frac{p+q}{2}$",
+              markdown:
+                "## Understanding Quadratic Functions\n\nA **quadratic function** is a polynomial function of degree 2. Its graph is a parabola.\n\n### Three Forms of Quadratic Functions\n\n**Standard Form:** $f(x) = ax^2 + bx + c$\n- The coefficients $a$, $b$, and $c$ reveal different information\n- $a$ determines the direction (up if $a > 0$, down if $a < 0$) and width\n- $c$ is the y-intercept\n\n**Vertex Form:** $f(x) = a(x-h)^2 + k$\n- The vertex is at $(h, k)$\n- Easy to identify the maximum or minimum value\n- The axis of symmetry is $x = h$\n\n**Intercept Form:** $f(x) = a(x-p)(x-q)$\n- $p$ and $q$ are the x-intercepts\n- The axis of symmetry is $x = \\frac{p+q}{2}$",
             },
           },
         ],
@@ -4527,7 +4651,8 @@ export const seedLesson1 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 1: Graph $f(x) = x^2$ Using a Table\n\nLet's graph $f(x) = x^2$ by creating a table of values.",
+              markdown:
+                "## Example 1: Graph $f(x) = x^2$ Using a Table\n\nLet's graph $f(x) = x^2$ by creating a table of values.",
             },
           },
           {
@@ -4562,7 +4687,8 @@ export const seedLesson1 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 2: Compare $f(x) = x^2$ and $g(x) = 2x^2$\n\nHow does multiplying by 2 affect the graph?",
+              markdown:
+                "## Example 2: Compare $f(x) = x^2$ and $g(x) = 2x^2$\n\nHow does multiplying by 2 affect the graph?",
             },
           },
           {
@@ -4585,7 +4711,8 @@ export const seedLesson1 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 3: Real-World Application — Modeling with Quadratics\n\nA baseball is hit with an initial height of 4 feet and an initial velocity of 80 feet per second. The height is modeled by $h(t) = -16t^2 + 80t + 4$.\n\nFind the maximum height and when it occurs.",
+              markdown:
+                "## Example 3: Real-World Application — Modeling with Quadratics\n\nA baseball is hit with an initial height of 4 feet and an initial velocity of 80 feet per second. The height is modeled by $h(t) = -16t^2 + 80t + 4$.\n\nFind the maximum height and when it occurs.",
             },
           },
           {
@@ -4608,7 +4735,8 @@ export const seedLesson1 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Finding Key Features from Different Forms\n\n### From Standard Form $f(x) = ax^2 + bx + c$\n\n- **Y-intercept**: $(0, c)$\n- **Axis of symmetry**: $x = \\frac{-b}{2a}$\n- **Vertex**: $\\left(\\frac{-b}{2a}, f\\left(\\frac{-b}{2a}\\right)\\right)$\n\n### From Vertex Form $f(x) = a(x-h)^2 + k$\n\n- **Vertex**: $(h, k)$\n- **Axis of symmetry**: $x = h$\n- **Opens**: Up if $a > 0$, down if $a < 0$\n\n### From Intercept Form $f(x) = a(x-p)(x-q)$\n\n- **X-intercepts**: $(p, 0)$ and $(q, 0)$\n- **Axis of symmetry**: $x = \\frac{p+q}{2}$",
+              markdown:
+                "## Finding Key Features from Different Forms\n\n### From Standard Form $f(x) = ax^2 + bx + c$\n\n- **Y-intercept**: $(0, c)$\n- **Axis of symmetry**: $x = \\frac{-b}{2a}$\n- **Vertex**: $\\left(\\frac{-b}{2a}, f\\left(\\frac{-b}{2a}\\right)\\right)$\n\n### From Vertex Form $f(x) = a(x-h)^2 + k$\n\n- **Vertex**: $(h, k)$\n- **Axis of symmetry**: $x = h$\n- **Opens**: Up if $a > 0$, down if $a < 0$\n\n### From Intercept Form $f(x) = a(x-p)(x-q)$\n\n- **X-intercepts**: $(p, 0)$ and $(q, 0)$\n- **Axis of symmetry**: $x = \\frac{p+q}{2}$",
             },
           },
         ],
@@ -4623,7 +4751,8 @@ export const seedLesson1 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 4: Find Average Rate of Change from an Equation\n\nDetermine the average rate of change of $f(x) = -x^2 + 2x - 1$ over the interval $[-4, 4]$.",
+              markdown:
+                "## Example 4: Find Average Rate of Change from an Equation\n\nDetermine the average rate of change of $f(x) = -x^2 + 2x - 1$ over the interval $[-4, 4]$.",
             },
           },
           {
@@ -4646,7 +4775,8 @@ export const seedLesson1 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 5: Find Average Rate of Change from a Table\n\nGiven the table, find the average rate of change from $x = 2$ to $x = 5$.\n\n| x | f(x) |\n|---|------|\n| 2 | 7    |\n| 3 | 12   |\n| 4 | 19   |\n| 5 | 28   |",
+              markdown:
+                "## Example 5: Find Average Rate of Change from a Table\n\nGiven the table, find the average rate of change from $x = 2$ to $x = 5$.\n\n| x | f(x) |\n|---|------|\n| 2 | 7    |\n| 3 | 12   |\n| 4 | 19   |\n| 5 | 28   |",
             },
           },
           {
@@ -4669,7 +4799,8 @@ export const seedLesson1 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 6: Estimate Rate of Change from a Graph\n\nUsing the graph of $f(x)$, estimate the average rate of change from $x = 1$ to $x = 4$.",
+              markdown:
+                "## Example 6: Estimate Rate of Change from a Graph\n\nUsing the graph of $f(x)$, estimate the average rate of change from $x = 1$ to $x = 4$.",
             },
           },
           {
@@ -4696,7 +4827,8 @@ export const seedLesson1 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Discussion Questions\n\n1. How does the value of $a$ in $f(x) = ax^2$ affect the width of the parabola?\n2. Why is the vertex form useful for identifying the maximum or minimum of a quadratic function?\n3. When might you prefer to use the intercept form over the vertex form?\n4. How is the average rate of change of a quadratic function related to its shape?",
+              markdown:
+                "## Discussion Questions\n\n1. How does the value of $a$ in $f(x) = ax^2$ affect the width of the parabola?\n2. Why is the vertex form useful for identifying the maximum or minimum of a quadratic function?\n3. When might you prefer to use the intercept form over the vertex form?\n4. How is the average rate of change of a quadratic function related to its shape?",
             },
           },
           {
@@ -4719,7 +4851,8 @@ export const seedLesson1 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Reflection\n\nToday you learned about quadratic functions and their graphs. Consider the following:\n\n- What did you find most challenging about graphing quadratic functions?\n- How do the three forms (standard, vertex, intercept) help you understand different aspects of a quadratic function?\n- What questions do you still have about quadratic functions?\n\n**Tip**: Being aware of what you understand well and what needs more practice helps you study more effectively.",
+              markdown:
+                "## Reflection\n\nToday you learned about quadratic functions and their graphs. Consider the following:\n\n- What did you find most challenging about graphing quadratic functions?\n- How do the three forms (standard, vertex, intercept) help you understand different aspects of a quadratic function?\n- What questions do you still have about quadratic functions?\n\n**Tip**: Being aware of what you understand well and what needs more practice helps you study more effectively.",
             },
           },
         ],
@@ -4733,7 +4866,7 @@ export const seedLesson1 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 
@@ -4796,9 +4929,16 @@ export const seedLesson1 = internalMutation({
     const maximumReadingGuidedActivityId = await upsertIm3MaximumReadingGuidedActivity(ctx, now);
     await upsertIm3MaximumReadingGuidedVariant(ctx, now);
     await upsertIm3MaximumReadingGuidedPracticeItem(ctx, maximumReadingGuidedActivityId, now);
-    const maximumReadingIndependentActivityId = await upsertIm3MaximumReadingIndependentActivity(ctx, now);
+    const maximumReadingIndependentActivityId = await upsertIm3MaximumReadingIndependentActivity(
+      ctx,
+      now,
+    );
     await upsertIm3MaximumReadingIndependentVariant(ctx, now);
-    await upsertIm3MaximumReadingIndependentPracticeItem(ctx, maximumReadingIndependentActivityId, now);
+    await upsertIm3MaximumReadingIndependentPracticeItem(
+      ctx,
+      maximumReadingIndependentActivityId,
+      now,
+    );
     await upsertIm3SymmetryWorkedActivity(ctx, now);
     const symmetryGuidedActivityId = await upsertIm3SymmetryGuidedActivity(ctx, now);
     await upsertIm3SymmetryGuidedVariant(ctx, now);
@@ -4810,23 +4950,41 @@ export const seedLesson1 = internalMutation({
     const compareMaximumGuidedActivityId = await upsertIm3CompareMaximumGuidedActivity(ctx, now);
     await upsertIm3CompareMaximumGuidedVariant(ctx, now);
     await upsertIm3CompareMaximumGuidedPracticeItem(ctx, compareMaximumGuidedActivityId, now);
-    const compareMaximumIndependentActivityId = await upsertIm3CompareMaximumIndependentActivity(ctx, now);
+    const compareMaximumIndependentActivityId = await upsertIm3CompareMaximumIndependentActivity(
+      ctx,
+      now,
+    );
     await upsertIm3CompareMaximumIndependentVariant(ctx, now);
-    await upsertIm3CompareMaximumIndependentPracticeItem(ctx, compareMaximumIndependentActivityId, now);
+    await upsertIm3CompareMaximumIndependentPracticeItem(
+      ctx,
+      compareMaximumIndependentActivityId,
+      now,
+    );
     const domainRangeWorkedActivityId = await upsertIm3DomainRangeWorkedActivity(ctx, now);
     await linkIm3DomainRangeWorkedPhase(ctx, lessonVersionId, domainRangeWorkedActivityId);
     const domainRangeGuidedActivityId = await upsertIm3DomainRangeGuidedActivity(ctx, now);
     await upsertIm3DomainRangeGuidedVariant(ctx, now);
     await upsertIm3DomainRangeGuidedPracticeItem(ctx, domainRangeGuidedActivityId, now);
-    const domainRangeGuidedSeed2ActivityId = await upsertIm3DomainRangeGuidedSeed2Activity(ctx, now);
+    const domainRangeGuidedSeed2ActivityId = await upsertIm3DomainRangeGuidedSeed2Activity(
+      ctx,
+      now,
+    );
     await upsertIm3DomainRangeGuidedSeed2Variant(ctx, now);
     await upsertIm3DomainRangeGuidedSeed2PracticeItem(ctx, domainRangeGuidedSeed2ActivityId, now);
-    const domainRangeIndependentActivityId = await upsertIm3DomainRangeIndependentActivity(ctx, now);
+    const domainRangeIndependentActivityId = await upsertIm3DomainRangeIndependentActivity(
+      ctx,
+      now,
+    );
     await upsertIm3DomainRangeIndependentVariant(ctx, now);
     await upsertIm3DomainRangeIndependentPracticeItem(ctx, domainRangeIndependentActivityId, now);
-    const domainRangeIndependentSeed2ActivityId = await upsertIm3DomainRangeIndependentSeed2Activity(ctx, now);
+    const domainRangeIndependentSeed2ActivityId =
+      await upsertIm3DomainRangeIndependentSeed2Activity(ctx, now);
     await upsertIm3DomainRangeIndependentSeed2Variant(ctx, now);
-    await upsertIm3DomainRangeIndependentSeed2PracticeItem(ctx, domainRangeIndependentSeed2ActivityId, now);
+    await upsertIm3DomainRangeIndependentSeed2PracticeItem(
+      ctx,
+      domainRangeIndependentSeed2ActivityId,
+      now,
+    );
     const graphIndependentSeed2ActivityId = await upsertIm3GraphIndependentSeed2Activity(ctx, now);
     await upsertIm3GraphIndependentSeed2Variant(ctx, now);
     await upsertIm3GraphIndependentSeed2PracticeItem(ctx, graphIndependentSeed2ActivityId, now);
@@ -4836,9 +4994,9 @@ export const seedLesson1 = internalMutation({
     const equationRateWorkedActivityId = await upsertIm3EquationRateWorkedActivity(ctx, now);
     const phaseEight = await ctx.db
       .query("phase_versions")
-      .withIndex("by_lesson_version_and_phase", (q) => (
-        q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", 8)
-      ))
+      .withIndex("by_lesson_version_and_phase", (q) =>
+        q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", 8),
+      )
       .unique();
     if (!phaseEight) {
       throw new Error("Lesson 1.1 Phase 8 is missing");
@@ -4847,21 +5005,22 @@ export const seedLesson1 = internalMutation({
       .query("phase_sections")
       .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phaseEight._id))
       .collect();
-    const phaseEightText = phaseEightSections.find((section) => (
-      section.sequenceOrder === 1 && section.sectionType === "text"
-    ));
+    const phaseEightText = phaseEightSections.find(
+      (section) => section.sequenceOrder === 1 && section.sectionType === "text",
+    );
     if (!phaseEightText) {
       throw new Error("Lesson 1.1 Phase 8 text section is missing");
     }
-    const phaseEightActivity = phaseEightSections.find((section) => (
-      section.sequenceOrder === 2 && section.sectionType === "activity"
-    ));
+    const phaseEightActivity = phaseEightSections.find(
+      (section) => section.sequenceOrder === 2 && section.sectionType === "activity",
+    );
     if (!phaseEightActivity) {
       throw new Error("Lesson 1.1 Phase 8 activity section is missing");
     }
     await ctx.db.patch(phaseEightText._id, {
       content: {
-        markdown: "## Example 4: Find Average Rate of Change from an Equation\n\nDetermine the average rate of change of $f(x) = -x^2 + 2x - 1$ over the interval $[-4, 4]$.",
+        markdown:
+          "## Example 4: Find Average Rate of Change from an Equation\n\nDetermine the average rate of change of $f(x) = -x^2 + 2x - 1$ over the interval $[-4, 4]$.",
       },
     });
     await ctx.db.patch(phaseEightActivity._id, {
@@ -4873,7 +5032,10 @@ export const seedLesson1 = internalMutation({
     const equationRateGuidedActivityId = await upsertIm3EquationRateGuidedActivity(ctx, now);
     await upsertIm3EquationRateGuidedVariant(ctx, now);
     await upsertIm3EquationRateGuidedPracticeItem(ctx, equationRateGuidedActivityId, now);
-    const equationRateIndependentActivityId = await upsertIm3EquationRateIndependentActivity(ctx, now);
+    const equationRateIndependentActivityId = await upsertIm3EquationRateIndependentActivity(
+      ctx,
+      now,
+    );
     await upsertIm3EquationRateIndependentVariant(ctx, now);
     await upsertIm3EquationRateIndependentPracticeItem(ctx, equationRateIndependentActivityId, now);
     const profitModelGuidedActivityId = await upsertIm3ProfitModelGuidedActivity(ctx, now);
@@ -4889,9 +5051,16 @@ export const seedLesson1 = internalMutation({
     const profitMaximumGuidedActivityId = await upsertIm3ProfitMaximumGuidedActivity(ctx, now);
     await upsertIm3ProfitMaximumGuidedVariant(ctx, now);
     await upsertIm3ProfitMaximumGuidedPracticeItem(ctx, profitMaximumGuidedActivityId, now);
-    const profitMaximumIndependentActivityId = await upsertIm3ProfitMaximumIndependentActivity(ctx, now);
+    const profitMaximumIndependentActivityId = await upsertIm3ProfitMaximumIndependentActivity(
+      ctx,
+      now,
+    );
     await upsertIm3ProfitMaximumIndependentVariant(ctx, now);
-    await upsertIm3ProfitMaximumIndependentPracticeItem(ctx, profitMaximumIndependentActivityId, now);
+    await upsertIm3ProfitMaximumIndependentPracticeItem(
+      ctx,
+      profitMaximumIndependentActivityId,
+      now,
+    );
 
     return {
       lessonId,

@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation';
-import { Award, ArrowLeft } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { useRouter } from "next/navigation";
+import { Award, ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface ModuleCompleteScreenProps {
   moduleLabel: string;
@@ -28,9 +28,9 @@ function formatTime(minutes: number): string {
   const hours = Math.floor(minutes / 60);
   const mins = minutes % 60;
   if (mins === 0) {
-    return `${hours} hour${hours !== 1 ? 's' : ''}`;
+    return `${hours} hour${hours !== 1 ? "s" : ""}`;
   }
-  return `${hours} hour${hours !== 1 ? 's' : ''} ${mins} min`;
+  return `${hours} hour${hours !== 1 ? "s" : ""} ${mins} min`;
 }
 
 /**
@@ -45,7 +45,7 @@ export function ModuleCompleteScreen({
   totalLessons,
   totalTimeMinutes,
   onBackToDashboard,
-  dashboardHref = '/student/dashboard',
+  dashboardHref = "/student/dashboard",
   className,
 }: ModuleCompleteScreenProps) {
   const router = useRouter();
@@ -62,8 +62,8 @@ export function ModuleCompleteScreen({
   return (
     <div
       className={cn(
-        'flex flex-col items-center justify-center space-y-6 py-12 text-center',
-        className
+        "flex flex-col items-center justify-center space-y-6 py-12 text-center",
+        className,
       )}
       data-testid="module-complete-screen"
     >
@@ -75,7 +75,9 @@ export function ModuleCompleteScreen({
       </div>
 
       <div className="space-y-1 text-muted-foreground">
-        <p>{lessonsCompleted} / {totalLessons} lessons completed</p>
+        <p>
+          {lessonsCompleted} / {totalLessons} lessons completed
+        </p>
         <p>Total time: {formatTime(totalTimeMinutes)}</p>
         {isFullyComplete && (
           <p className="text-green-600 font-medium font-semibold mt-2">

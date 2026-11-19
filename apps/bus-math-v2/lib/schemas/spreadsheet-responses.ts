@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 // Zod schema for spreadsheet cell data
 export const spreadsheetCellSchema = z.object({
@@ -23,7 +23,7 @@ export const validationResultSchema = z.object({
       message: z.string().optional(),
       expectedValue: z.union([z.string(), z.number()]).optional(),
       actualValue: z.union([z.string(), z.number()]).optional(),
-    })
+    }),
   ),
   timestamp: z.string().datetime(),
 });

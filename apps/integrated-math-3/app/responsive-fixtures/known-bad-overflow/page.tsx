@@ -1,7 +1,7 @@
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Viewport Guard — Known-Bad Fixture',
+  title: "Viewport Guard — Known-Bad Fixture",
 };
 
 /**

@@ -14,12 +14,12 @@ import {
   type SrsCardState,
   type SrsReviewLogEntry,
   type SrsRating,
-} from '@math-platform/srs-engine';
+} from "@math-platform/srs-engine";
 import {
   createMockPracticeEnvelope,
   practiceSubmissionEnvelopeSchema,
   type PracticeSubmissionEnvelope,
-} from '@math-platform/practice-core';
+} from "@math-platform/practice-core";
 
 // ============================================
 // Deterministic time anchors
@@ -53,13 +53,13 @@ export type MakeCardOverrides = Partial<SrsCardState>;
 export function makeCard(overrides: MakeCardOverrides = {}): SrsCardState {
   const createdAt = isoAt(COHORT_WINDOW_START_MS);
   return createMockSrsCard({
-    cardId: 'card_fix_001',
-    studentId: 'stu_fix_001',
-    objectiveId: 'obj_fix_quadratic',
-    problemFamilyId: 'pf_fix_001',
+    cardId: "card_fix_001",
+    studentId: "stu_fix_001",
+    objectiveId: "obj_fix_quadratic",
+    problemFamilyId: "pf_fix_001",
     stability: 30,
     difficulty: 3,
-    state: 'review',
+    state: "review",
     reps: 3,
     lapses: 0,
     createdAt,
@@ -82,20 +82,18 @@ export type MakeReviewLogOverrides = Partial<SrsReviewLogEntry> & {
  * Build a deterministic SRS review-log entry. `reviewedAtMs` (optional)
  * pins the reviewedAt timestamp by epoch ms; defaults to COHORT_WINDOW_START_MS.
  */
-export function makeReviewLog(
-  overrides: MakeReviewLogOverrides = {},
-): SrsReviewLogEntry {
+export function makeReviewLog(overrides: MakeReviewLogOverrides = {}): SrsReviewLogEntry {
   const { reviewedAtMs, ...rest } = overrides;
   const reviewedAt = isoAt(reviewedAtMs ?? COHORT_WINDOW_START_MS);
   return createMockSrsReviewLog({
-    reviewId: 'rev_fix_001',
-    cardId: 'card_fix_001',
-    studentId: 'stu_fix_001',
-    rating: 'Good',
-    submissionId: 'sub_fix_001',
+    reviewId: "rev_fix_001",
+    cardId: "card_fix_001",
+    studentId: "stu_fix_001",
+    rating: "Good",
+    submissionId: "sub_fix_001",
     reviewedAt,
-    stateBefore: { stability: 0, difficulty: 0, state: 'new', reps: 0, lapses: 0 },
-    stateAfter: { stability: 1, difficulty: 0, state: 'learning', reps: 1, lapses: 0 },
+    stateBefore: { stability: 0, difficulty: 0, state: "new", reps: 0, lapses: 0 },
+    stateAfter: { stability: 1, difficulty: 0, state: "learning", reps: 1, lapses: 0 },
     ...rest,
   });
 }
@@ -113,7 +111,7 @@ export function makeReviewSequence(args: {
 }): SrsReviewLogEntry[] {
   const { cardId, studentId, baseMs = COHORT_WINDOW_START_MS, ratings, offsetsDays } = args;
   if (ratings.length !== offsetsDays.length) {
-    throw new Error('makeReviewSequence: ratings and offsetsDays must match length');
+    throw new Error("makeReviewSequence: ratings and offsetsDays must match length");
   }
   return ratings.map((rating, i) =>
     makeReviewLog({
@@ -123,8 +121,14 @@ export function makeReviewSequence(args: {
       rating,
       submissionId: `sub_${cardId}_${i + 1}`,
       reviewedAtMs: baseMs + offsetsDays[i] * MS_PER_DAY,
-      stateBefore: { stability: i, difficulty: 0, state: i === 0 ? 'new' : 'review', reps: i, lapses: 0 },
-      stateAfter: { stability: i + 1, difficulty: 0, state: 'review', reps: i + 1, lapses: 0 },
+      stateBefore: {
+        stability: i,
+        difficulty: 0,
+        state: i === 0 ? "new" : "review",
+        reps: i,
+        lapses: 0,
+      },
+      stateAfter: { stability: i + 1, difficulty: 0, state: "review", reps: i + 1, lapses: 0 },
     }),
   );
 }
@@ -150,12 +154,13 @@ export type MakeSubmissionOverrides = {
  * it's threaded through downstream evidence; we keep it in the result for
  * convenience.
  */
-export function makeSubmission(
-  overrides: MakeSubmissionOverrides = {},
-): { studentId: string; envelope: PracticeSubmissionEnvelope } {
+export function makeSubmission(overrides: MakeSubmissionOverrides = {}): {
+  studentId: string;
+  envelope: PracticeSubmissionEnvelope;
+} {
   const {
-    studentId = 'stu_fix_001',
-    activityId = 'act_fix_001',
+    studentId = "stu_fix_001",
+    activityId = "act_fix_001",
     attemptNumber = 1,
     isCorrect = true,
     submittedAtMs = COHORT_WINDOW_START_MS,
@@ -164,12 +169,12 @@ export function makeSubmission(
   const envelope = createMockPracticeEnvelope({
     activityId,
     attemptNumber,
-    status: 'submitted',
+    status: "submitted",
     submittedAt: isoAt(submittedAtMs),
     parts: [
       {
-        partId: 'q1',
-        rawAnswer: isCorrect ? 'correct' : 'incorrect',
+        partId: "q1",
+        rawAnswer: isCorrect ? "correct" : "incorrect",
         isCorrect,
       },
     ],

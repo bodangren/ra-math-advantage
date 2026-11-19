@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { ParentDashboard } from './ParentDashboard';
-import { StudentSwitcher, type StudentOption } from './StudentSwitcher';
-import { ParentEmptyStates, type ParentEmptyStateLink } from './ParentEmptyStates';
-import type { ParentVisualizationV1 } from '@math-platform/knowledge-space-practice';
+import { useState } from "react";
+import { ParentDashboard } from "./ParentDashboard";
+import { StudentSwitcher, type StudentOption } from "./StudentSwitcher";
+import { ParentEmptyStates, type ParentEmptyStateLink } from "./ParentEmptyStates";
+import type { ParentVisualizationV1 } from "@math-platform/knowledge-space-practice";
 
 export interface ParentPortalClientProps {
   /** All active links for this parent (status === 'active'). */
@@ -50,11 +50,9 @@ export function ParentPortalClient({
   const projectedIds = studentOptions.map((s) => s.studentId);
   const safeSelectedId = projectedIds.includes(selectedStudentId)
     ? selectedStudentId
-    : projectedIds[0] ?? '';
+    : (projectedIds[0] ?? "");
 
-  const selectedProjection = safeSelectedId
-    ? projectionsByStudentId[safeSelectedId]
-    : undefined;
+  const selectedProjection = safeSelectedId ? projectionsByStudentId[safeSelectedId] : undefined;
 
   // Defensive: if no projections resolved at all, render the
   // no-activity empty state via the dispatcher.
@@ -68,8 +66,7 @@ export function ParentPortalClient({
     );
   }
 
-  const displayName =
-    studentNamesById?.[safeSelectedId] ?? safeSelectedId;
+  const displayName = studentNamesById?.[safeSelectedId] ?? safeSelectedId;
 
   return (
     <div className="max-w-4xl mx-auto py-8 px-4 space-y-6">

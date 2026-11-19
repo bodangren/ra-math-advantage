@@ -1,28 +1,28 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 import {
   practiceSubmissionEnvelopeSchema,
   PRACTICE_CONTRACT_VERSION,
   buildPracticeSubmissionEnvelope,
-} from '@math-platform/practice-core/contract';
+} from "@math-platform/practice-core/contract";
 
-describe('practice timing schema', () => {
+describe("practice timing schema", () => {
   const baseEnvelope = {
     contractVersion: PRACTICE_CONTRACT_VERSION,
-    activityId: 'act-1',
-    mode: 'independent_practice' as const,
-    status: 'submitted' as const,
+    activityId: "act-1",
+    mode: "independent_practice" as const,
+    status: "submitted" as const,
     attemptNumber: 1,
     submittedAt: new Date().toISOString(),
-    answers: { q1: 'A' },
+    answers: { q1: "A" },
     parts: [
       {
-        partId: 'q1',
-        rawAnswer: 'A',
+        partId: "q1",
+        rawAnswer: "A",
       },
     ],
   };
 
-  it('validates envelope with no timing fields for backward compatibility', () => {
+  it("validates envelope with no timing fields for backward compatibility", () => {
     const result = practiceSubmissionEnvelopeSchema.safeParse(baseEnvelope);
     expect(result.success).toBe(true);
     if (result.success) {
@@ -30,7 +30,7 @@ describe('practice timing schema', () => {
     }
   });
 
-  it('validates envelope with a full timing summary', () => {
+  it("validates envelope with a full timing summary", () => {
     const envelope = {
       ...baseEnvelope,
       timing: {
@@ -43,25 +43,25 @@ describe('practice timing schema', () => {
         focusLossCount: 1,
         visibilityHiddenCount: 1,
         longestIdleMs: 15000,
-        confidence: 'high' as const,
-        confidenceReasons: ['focus_loss'],
+        confidence: "high" as const,
+        confidenceReasons: ["focus_loss"],
       },
     };
     const result = practiceSubmissionEnvelopeSchema.safeParse(envelope);
     expect(result.success).toBe(true);
     if (result.success) {
-      expect(result.data.timing?.confidence).toBe('high');
+      expect(result.data.timing?.confidence).toBe("high");
       expect(result.data.timing?.wallClockMs).toBe(120000);
     }
   });
 
-  it('validates part-level timing when present', () => {
+  it("validates part-level timing when present", () => {
     const envelope = {
       ...baseEnvelope,
       parts: [
         {
-          partId: 'q1',
-          rawAnswer: 'A',
+          partId: "q1",
+          rawAnswer: "A",
           firstInteractionAt: new Date().toISOString(),
           answeredAt: new Date().toISOString(),
           wallClockMs: 50000,
@@ -78,7 +78,7 @@ describe('practice timing schema', () => {
     }
   });
 
-  it('rejects negative durations in timing summary', () => {
+  it("rejects negative durations in timing summary", () => {
     const envelope = {
       ...baseEnvelope,
       timing: {
@@ -90,14 +90,14 @@ describe('practice timing schema', () => {
         pauseCount: 0,
         focusLossCount: 0,
         visibilityHiddenCount: 0,
-        confidence: 'high' as const,
+        confidence: "high" as const,
       },
     };
     const result = practiceSubmissionEnvelopeSchema.safeParse(envelope);
     expect(result.success).toBe(false);
   });
 
-  it('rejects activeMs greater than wallClockMs', () => {
+  it("rejects activeMs greater than wallClockMs", () => {
     const envelope = {
       ...baseEnvelope,
       timing: {
@@ -109,14 +109,14 @@ describe('practice timing schema', () => {
         pauseCount: 0,
         focusLossCount: 0,
         visibilityHiddenCount: 0,
-        confidence: 'high' as const,
+        confidence: "high" as const,
       },
     };
     const result = practiceSubmissionEnvelopeSchema.safeParse(envelope);
     expect(result.success).toBe(false);
   });
 
-  it('rejects invalid timing confidence values', () => {
+  it("rejects invalid timing confidence values", () => {
     const envelope = {
       ...baseEnvelope,
       timing: {
@@ -128,31 +128,31 @@ describe('practice timing schema', () => {
         pauseCount: 0,
         focusLossCount: 0,
         visibilityHiddenCount: 0,
-        confidence: 'excellent',
+        confidence: "excellent",
       },
     };
     const result = practiceSubmissionEnvelopeSchema.safeParse(envelope);
     expect(result.success).toBe(false);
   });
 
-  it('buildPracticeSubmissionEnvelope accepts optional timing', () => {
+  it("buildPracticeSubmissionEnvelope accepts optional timing", () => {
     const envelope = buildPracticeSubmissionEnvelope({
-      activityId: 'act-1',
-      mode: 'assessment',
-      answers: { q1: 'A' },
+      activityId: "act-1",
+      mode: "assessment",
+      answers: { q1: "A" },
       timing: {
-        startedAt: '2026-01-01T00:00:00.000Z',
-        submittedAt: '2026-01-01T00:02:00.000Z',
+        startedAt: "2026-01-01T00:00:00.000Z",
+        submittedAt: "2026-01-01T00:02:00.000Z",
         wallClockMs: 120000,
         activeMs: 90000,
         idleMs: 30000,
         pauseCount: 0,
         focusLossCount: 0,
         visibilityHiddenCount: 0,
-        confidence: 'medium',
+        confidence: "medium",
       },
     });
-    expect(envelope.timing?.confidence).toBe('medium');
+    expect(envelope.timing?.confidence).toBe("medium");
     expect(envelope.timing?.wallClockMs).toBe(120000);
   });
 });

@@ -1,20 +1,20 @@
 // Zod schemas for knowledge-space-practice blueprint contracts
 
-import { z } from 'zod';
+import { z } from "zod";
 import type {
   KnowledgeBlueprint,
   GeneratorOutput,
   SchemaAdapter,
   ValidationResult,
   ValidationError,
-} from './types';
+} from "./types";
 
 // ---------------------------------------------------------------------------
 // Sub-schemas
 // ---------------------------------------------------------------------------
 
 export const variantParameterSchema = z.object({
-  type: z.enum(['number', 'integer', 'string', 'boolean', 'enum']),
+  type: z.enum(["number", "integer", "string", "boolean", "enum"]),
   min: z.number().optional(),
   max: z.number().optional(),
   step: z.number().optional(),
@@ -24,7 +24,7 @@ export const variantParameterSchema = z.object({
 
 export const gradingRuleSchema = z.object({
   partId: z.string().min(1),
-  ruleType: z.enum(['exact_match', 'numeric_tolerance', 'expression_equivalence', 'custom']),
+  ruleType: z.enum(["exact_match", "numeric_tolerance", "expression_equivalence", "custom"]),
   tolerance: z.number().optional(),
   maxScore: z.number(),
 });
@@ -46,7 +46,7 @@ export const workedExampleSpecSchema = z.object({
   rendererProps: z.record(z.string(), z.unknown()).optional(),
 });
 
-const revealPolicySchema = z.enum(['all_at_once', 'one_at_a_time', 'after_attempt']);
+const revealPolicySchema = z.enum(["all_at_once", "one_at_a_time", "after_attempt"]);
 
 const stepCheckSchema = z.object({
   check: z.string().min(1),
@@ -62,7 +62,7 @@ export const guidedPracticeSpecSchema = z.object({
   rendererProps: z.record(z.string(), z.unknown()).optional(),
 });
 
-const replayPolicySchema = z.enum(['any_seed', 'unique_seeds', 'uniq_seeds_per_learner']);
+const replayPolicySchema = z.enum(["any_seed", "unique_seeds", "uniq_seeds_per_learner"]);
 
 export const independentPracticeSpecSchema = z.object({
   variantParameters: z.record(z.string(), variantParameterSchema),
@@ -77,11 +77,15 @@ export const gradingSpecSchema = z.object({
   partIds: z.array(z.string().min(1)),
   passingScore: z.number().optional(),
   partialCredit: z.boolean(),
-  rubric: z.array(z.object({
-    criteria: z.string().min(1),
-    points: z.number(),
-    partId: z.string().optional(),
-  })).optional(),
+  rubric: z
+    .array(
+      z.object({
+        criteria: z.string().min(1),
+        points: z.number(),
+        partId: z.string().optional(),
+      }),
+    )
+    .optional(),
 });
 
 export const knowledgeBlueprintSchema = z.object({
@@ -96,7 +100,7 @@ export const knowledgeBlueprintSchema = z.object({
   generatorKey: z.string().optional(),
   gradingSpec: gradingSpecSchema.optional(),
   misconceptionTags: z.array(z.string()).optional(),
-  reviewStatus: z.enum(['draft', 'reviewed', 'approved', 'rejected']),
+  reviewStatus: z.enum(["draft", "reviewed", "approved", "rejected"]),
   metadata: z.record(z.string(), z.unknown()),
 });
 
@@ -116,7 +120,7 @@ export const gradingMetadataSchema = z.object({
   partMaxScores: z.record(z.string(), z.number()),
   partGradingRules: z.record(
     z.string(),
-    z.enum(['exact_match', 'numeric_tolerance', 'expression_equivalence', 'custom']),
+    z.enum(["exact_match", "numeric_tolerance", "expression_equivalence", "custom"]),
   ),
   partTolerances: z.record(z.string(), z.number()).optional(),
 });
@@ -125,11 +129,13 @@ export const generatorOutputSchema = z.object({
   prompt: z.string().min(1),
   data: z.record(z.string(), z.unknown()),
   expectedAnswer: z.record(z.string(), z.unknown()),
-  solutionSteps: z.array(z.object({
-    description: z.string().min(1),
-    expression: z.string().optional(),
-    value: z.unknown().optional(),
-  })),
+  solutionSteps: z.array(
+    z.object({
+      description: z.string().min(1),
+      expression: z.string().optional(),
+      value: z.unknown().optional(),
+    }),
+  ),
   gradingMetadata: gradingMetadataSchema,
 });
 
@@ -183,7 +189,7 @@ export function validateGeneratorOutput(
   if (result.error) {
     for (const issue of result.error.issues) {
       errors.push({
-        code: 'SCHEMA_MISMATCH',
+        code: "SCHEMA_MISMATCH",
         message: issue.message,
       });
     }
@@ -205,8 +211,8 @@ export function validateBlueprintGeneratorReadiness(
     (!blueprint.generatorKey || blueprint.generatorKey.length === 0)
   ) {
     errors.push({
-      code: 'MISSING_GENERATOR',
-      message: 'Blueprint has an independentPracticeSpec but no generatorKey',
+      code: "MISSING_GENERATOR",
+      message: "Blueprint has an independentPracticeSpec but no generatorKey",
     });
   }
   return { valid: errors.length === 0, errors: errors.length > 0 ? errors : undefined };
@@ -222,16 +228,15 @@ export function validateRendererCompatibility(
   blueprint: KnowledgeBlueprint,
   adapter: SchemaAdapter,
 ): ValidationResult {
-  const rendererKeys = new Set([
-    blueprint.rendererKey,
-    ...Object.values(blueprint.rendererModeMap ?? {}),
-  ].filter(Boolean));
+  const rendererKeys = new Set(
+    [blueprint.rendererKey, ...Object.values(blueprint.rendererModeMap ?? {})].filter(Boolean),
+  );
   const unknownKeys = [...rendererKeys].filter((key) => !adapter.acceptRendererKey(key));
   if (unknownKeys.length > 0) {
     return {
       valid: false,
       errors: unknownKeys.map((key) => ({
-        code: 'UNKNOWN_RENDERER',
+        code: "UNKNOWN_RENDERER",
         message: `Renderer key "${key}" is not accepted by the schema adapter`,
       })),
     };
@@ -244,30 +249,29 @@ export function validateRendererCompatibility(
  * @param {KnowledgeBlueprint} blueprint - Knowledge blueprint to validate
  * @returns {ValidationResult} - ValidationResult with valid flag and any errors
  */
-export function validateModeSupport(
-  blueprint: KnowledgeBlueprint,
-): ValidationResult {
+export function validateModeSupport(blueprint: KnowledgeBlueprint): ValidationResult {
   const errors: ValidationError[] = [];
   const modeMap = blueprint.rendererModeMap ?? {};
 
-  if (modeMap['worked'] && !blueprint.workedExampleSpec) {
+  if (modeMap["worked"] && !blueprint.workedExampleSpec) {
     errors.push({
-      code: 'MISSING_WORKED_SPEC',
+      code: "MISSING_WORKED_SPEC",
       message: 'Blueprint has "worked" in rendererModeMap but no workedExampleSpec',
     });
   }
 
-  if (modeMap['guidedPractice'] && !blueprint.guidedPracticeSpec) {
+  if (modeMap["guidedPractice"] && !blueprint.guidedPracticeSpec) {
     errors.push({
-      code: 'MISSING_GUIDED_SPEC',
+      code: "MISSING_GUIDED_SPEC",
       message: 'Blueprint has "guidedPractice" in rendererModeMap but no guidedPracticeSpec',
     });
   }
 
-  if (modeMap['independentPractice'] && !blueprint.independentPracticeSpec) {
+  if (modeMap["independentPractice"] && !blueprint.independentPracticeSpec) {
     errors.push({
-      code: 'MISSING_INDEPENDENT_SPEC',
-      message: 'Blueprint has "independentPractice" in rendererModeMap but no independentPracticeSpec',
+      code: "MISSING_INDEPENDENT_SPEC",
+      message:
+        'Blueprint has "independentPractice" in rendererModeMap but no independentPracticeSpec',
     });
   }
 
@@ -279,9 +283,7 @@ export function validateModeSupport(
  * @param {KnowledgeBlueprint} blueprint - Knowledge blueprint to validate
  * @returns {ValidationResult} - ValidationResult with valid flag and any errors
  */
-export function validateGradingCompatibility(
-  blueprint: KnowledgeBlueprint,
-): ValidationResult {
+export function validateGradingCompatibility(blueprint: KnowledgeBlueprint): ValidationResult {
   const errors: ValidationError[] = [];
 
   if (!blueprint.gradingSpec && !blueprint.independentPracticeSpec) {
@@ -298,7 +300,7 @@ export function validateGradingCompatibility(
   for (const partId of gradingPartIds) {
     if (!rulePartIds.includes(partId)) {
       errors.push({
-        code: 'GRADING_PART_MISMATCH',
+        code: "GRADING_PART_MISMATCH",
         message: `Grading spec partId "${partId}" has no matching grading rule`,
       });
     }
@@ -308,7 +310,7 @@ export function validateGradingCompatibility(
   for (const partId of rulePartIds) {
     if (!gradingPartIds.includes(partId)) {
       errors.push({
-        code: 'GRADING_PART_MISMATCH',
+        code: "GRADING_PART_MISMATCH",
         message: `Grading rule partId "${partId}" has no matching grading spec partId`,
       });
     }
@@ -319,7 +321,7 @@ export function validateGradingCompatibility(
     for (const rule of gradingRules) {
       if (!answerKeys.includes(rule.partId)) {
         errors.push({
-          code: 'GRADING_ANSWER_MISMATCH',
+          code: "GRADING_ANSWER_MISMATCH",
           message: `Grading rule partId "${rule.partId}" not found in answer schema keys`,
         });
       }

@@ -2,7 +2,6 @@
 
 import { BaseReviewSession } from "./BaseReviewSession";
 
-
 /**
  * Renders an SRS review session using the BaseReviewSession component
  * with review-specific headers and messaging.

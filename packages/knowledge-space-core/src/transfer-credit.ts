@@ -13,9 +13,9 @@
 // `./cross-course-equivalence`. No app, convex, curriculum, or srs-engine
 // imports — boundary lint enforces it.
 
-import { z } from 'zod';
-import type { EquivalenceComponent } from './cross-course-equivalence';
-import type { KnowledgeStateEntry } from './mastery-state';
+import { z } from "zod";
+import type { EquivalenceComponent } from "./cross-course-equivalence";
+import type { KnowledgeStateEntry } from "./mastery-state";
 
 // ---------------------------------------------------------------------------
 // Public types
@@ -117,7 +117,7 @@ export const transferPolicySchema = z.strictObject({
  * behavior is identical at the app seam.
  */
 function courseFromId(nodeId: string): string {
-  return nodeId.split('.').slice(0, 2).join('.');
+  return nodeId.split(".").slice(0, 2).join(".");
 }
 
 /**
@@ -126,7 +126,7 @@ function courseFromId(nodeId: string): string {
  * neither contribute to the mean nor appear in `contributingNodeIds`.
  */
 function hasEvidence(entry: KnowledgeStateEntry | undefined): boolean {
-  return entry != null && entry.state !== 'untouched';
+  return entry != null && entry.state !== "untouched";
 }
 
 // ---------------------------------------------------------------------------
@@ -211,10 +211,7 @@ export function aggregateComponentMastery(
  *   - `seededMastery < 1.0` for every input in `[0, 1]` (never blindly 100%).
  *   - `seededMastery >= 0` for every non-negative input.
  */
-export function seedTransferMastery(
-  componentMastery: number,
-  policy: TransferPolicy,
-): number {
+export function seedTransferMastery(componentMastery: number, policy: TransferPolicy): number {
   const discounted = componentMastery * policy.confidenceDiscount;
   return Math.min(discounted, policy.maxSeededMastery);
 }
@@ -235,15 +232,13 @@ export function seedTransferMastery(
  * state machine to `inProgress` so the target can be re-seeded by a future
  * `computeTransferCredit` call.
  */
-export function revertTransferMastery(
-  entry: KnowledgeStateEntry,
-): KnowledgeStateEntry {
+export function revertTransferMastery(entry: KnowledgeStateEntry): KnowledgeStateEntry {
   return {
     nodeId: entry.nodeId,
     mastery: 0,
     retention: 0,
     isProficient: false,
-    state: 'inProgress',
+    state: "inProgress",
   };
 }
 
@@ -299,11 +294,7 @@ export function computeTransferCredit(
   const seededMastery = seedTransferMastery(aggregate.mastery, merged);
 
   const targetCourse = courseFromId(targetSkillId);
-  const sourceNodeId = pickSourceNodeId(
-    aggregate.contributingNodeIds,
-    state,
-    targetCourse,
-  );
+  const sourceNodeId = pickSourceNodeId(aggregate.contributingNodeIds, state, targetCourse);
 
   return {
     targetSkillId,
@@ -335,9 +326,7 @@ function pickSourceNodeId(
   }
 
   if (candidates.length > 0) {
-    candidates.sort(
-      (a, b) => b.mastery - a.mastery || a.id.localeCompare(b.id),
-    );
+    candidates.sort((a, b) => b.mastery - a.mastery || a.id.localeCompare(b.id));
     return candidates[0].id;
   }
 
@@ -364,9 +353,7 @@ export function batchComputeTransferCredit(
 ): BatchTransferCreditResult {
   const results: TransferCreditResult[] = [];
   for (const skillId of targetSkillIds) {
-    results.push(
-      computeTransferCredit(skillId, components, state, config),
-    );
+    results.push(computeTransferCredit(skillId, components, state, config));
   }
   return results;
 }

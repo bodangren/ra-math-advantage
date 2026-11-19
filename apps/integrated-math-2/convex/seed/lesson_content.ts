@@ -46,8 +46,7 @@ export async function seedModule(ctx: MutationCtx, unitNumber: number) {
       .withIndex("by_lesson_and_version", (q) => q.eq("lessonId", lessonId))
       .order("desc")
       .first();
-    const previous =
-      latest?.status === "draft" && latest.version >= 2 ? latest : null;
+    const previous = latest?.status === "draft" && latest.version >= 2 ? latest : null;
     const lessonVersionId = previous
       ? previous._id
       : await ctx.db.insert("lesson_versions", {
@@ -60,12 +59,9 @@ export async function seedModule(ctx: MutationCtx, unitNumber: number) {
     if (previous) {
       const oldPhases = await ctx.db
         .query("phase_versions")
-        .withIndex("by_lesson_version", (q) =>
-          q.eq("lessonVersionId", previous._id),
-        )
+        .withIndex("by_lesson_version", (q) => q.eq("lessonVersionId", previous._id))
         .take(101);
-      if (oldPhases.length > 100)
-        throw new ConvexError("too_many_draft_phases");
+      if (oldPhases.length > 100) throw new ConvexError("too_many_draft_phases");
       // A draft with legacy evidence requires a separate revision. Do not rewrite it.
       for (const phase of oldPhases) {
         const progress = await ctx.db
@@ -79,17 +75,11 @@ export async function seedModule(ctx: MutationCtx, unitNumber: number) {
         if (progress || resource) throw new ConvexError("draft_has_evidence");
         const sections = await ctx.db
           .query("phase_sections")
-          .withIndex("by_phase_version", (q) =>
-            q.eq("phaseVersionId", phase._id),
-          )
+          .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phase._id))
           .take(101);
-        if (sections.length > 100)
-          throw new ConvexError("too_many_draft_sections");
+        if (sections.length > 100) throw new ConvexError("too_many_draft_sections");
         for (const section of sections) {
-          if (
-            section.sectionType === "activity" &&
-            section.content?.activityId
-          ) {
+          if (section.sectionType === "activity" && section.content?.activityId) {
             for (const table of [
               "activity_submissions",
               "activity_completions",
@@ -98,10 +88,7 @@ export async function seedModule(ctx: MutationCtx, unitNumber: number) {
               const evidence = await ctx.db
                 .query(table)
                 .withIndex("by_activity", (q) =>
-                  q.eq(
-                    "activityId",
-                    section.content.activityId as Id<"activities">,
-                  ),
+                  q.eq("activityId", section.content.activityId as Id<"activities">),
                 )
                 .first();
               if (evidence) throw new ConvexError("draft_has_evidence");
@@ -112,14 +99,11 @@ export async function seedModule(ctx: MutationCtx, unitNumber: number) {
       for (const phase of oldPhases) {
         const sections = await ctx.db
           .query("phase_sections")
-          .withIndex("by_phase_version", (q) =>
-            q.eq("phaseVersionId", phase._id),
-          )
+          .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phase._id))
           .take(100);
         const obsolete = phase.phaseNumber > lesson.phases.length + 1;
         for (const section of sections)
-          if (obsolete || section.sequenceOrder !== 1)
-            await ctx.db.delete(section._id);
+          if (obsolete || section.sequenceOrder !== 1) await ctx.db.delete(section._id);
         if (obsolete) await ctx.db.delete(phase._id);
       }
       await ctx.db.patch(previous._id, { title: lesson.title });
@@ -131,9 +115,7 @@ export async function seedModule(ctx: MutationCtx, unitNumber: number) {
         const old = await ctx.db
           .query("phase_versions")
           .withIndex("by_lesson_version_and_phase", (q) =>
-            q
-              .eq("lessonVersionId", lessonVersionId)
-              .eq("phaseNumber", phase.phaseNumber),
+            q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
           )
           .unique();
         const data = {
@@ -154,8 +136,7 @@ export async function seedModule(ctx: MutationCtx, unitNumber: number) {
           )
           .unique();
         const content = { markdown: phase.markdown };
-        if (section)
-          await ctx.db.patch(section._id, { content, sectionType: "text" });
+        if (section) await ctx.db.patch(section._id, { content, sectionType: "text" });
         else
           await ctx.db.insert("phase_sections", {
             phaseVersionId: phaseId,
@@ -169,9 +150,7 @@ export async function seedModule(ctx: MutationCtx, unitNumber: number) {
       const oldCheckpoint = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q
-            .eq("lessonVersionId", lessonVersionId)
-            .eq("phaseNumber", phaseNumber),
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phaseNumber),
         )
         .unique();
       const checkpointData = {
@@ -188,9 +167,7 @@ export async function seedModule(ctx: MutationCtx, unitNumber: number) {
           });
       if (oldCheckpoint) await ctx.db.patch(checkpointId, checkpointData);
       else phasesCreated++;
-      const question = questionSchema.parse(
-        questions[lesson.slug as keyof typeof questions],
-      );
+      const question = questionSchema.parse(questions[lesson.slug as keyof typeof questions]);
       const oldSection = await ctx.db
         .query("phase_sections")
         .withIndex("by_phase_version_and_sequence", (q) =>
@@ -201,9 +178,7 @@ export async function seedModule(ctx: MutationCtx, unitNumber: number) {
         oldSection?.sectionType === "activity"
           ? (oldSection.content?.activityId as Id<"activities"> | undefined)
           : undefined;
-      const oldActivity = oldActivityId
-        ? await ctx.db.get(oldActivityId)
-        : null;
+      const oldActivity = oldActivityId ? await ctx.db.get(oldActivityId) : null;
       const activityData = {
         componentKey: "im2-question",
         displayName: `${lesson.title}: checkpoint`,

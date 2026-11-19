@@ -1,4 +1,4 @@
-import type { GradebookRow, GradebookLesson } from './gradebook';
+import type { GradebookRow, GradebookLesson } from "./gradebook";
 
 export interface GradebookCsvOptions {
   includeMasteryLevel?: boolean;
@@ -11,12 +11,12 @@ export interface GradebookCsvOptions {
  * @returns {string} - CSV-safe string
  */
 function escapeCsvValue(value: string | number | null): string {
-  if (value === null) return '';
+  if (value === null) return "";
   const str = String(value);
   if (/^[=+\-@\t\r]/.test(str)) {
     return `"'${str.replace(/"/g, '""')}"`;
   }
-  if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+  if (str.includes(",") || str.includes('"') || str.includes("\n")) {
     return `"${str.replace(/"/g, '""')}"`;
   }
   return str;
@@ -36,39 +36,40 @@ export function buildGradebookCsv(
 ): string {
   const { includeMasteryLevel = true, includeColorCoding = false } = options;
 
-  const headers = ['Student', 'Username'];
+  const headers = ["Student", "Username"];
   if (includeMasteryLevel) {
-    headers.push(...lessons.map(l => escapeCsvValue(l.lessonTitle)));
+    headers.push(...lessons.map((l) => escapeCsvValue(l.lessonTitle)));
   }
   if (includeColorCoding) {
-    headers.push(...lessons.map(l => escapeCsvValue(`${l.lessonTitle} (Status)`)));
+    headers.push(...lessons.map((l) => escapeCsvValue(`${l.lessonTitle} (Status)`)));
   }
 
   const csvRows: string[][] = [headers];
 
   for (const row of rows) {
-    const studentRow = [
-      escapeCsvValue(row.displayName),
-      escapeCsvValue(row.username),
-    ];
+    const studentRow = [escapeCsvValue(row.displayName), escapeCsvValue(row.username)];
 
     if (includeMasteryLevel) {
-      studentRow.push(...row.cells.map(cell =>
-        escapeCsvValue(cell.masteryLevel !== null ? String(cell.masteryLevel) : ''),
-      ));
+      studentRow.push(
+        ...row.cells.map((cell) =>
+          escapeCsvValue(cell.masteryLevel !== null ? String(cell.masteryLevel) : ""),
+        ),
+      );
     }
 
     if (includeColorCoding) {
-      studentRow.push(...row.cells.map(cell => {
-        if (cell.completionStatus === 'completed') return escapeCsvValue('Completed');
-        if (cell.completionStatus === 'in_progress') return escapeCsvValue('In Progress');
-        if (cell.completionStatus === 'not_started') return escapeCsvValue('Not Started');
-        return escapeCsvValue('Unknown');
-      }));
+      studentRow.push(
+        ...row.cells.map((cell) => {
+          if (cell.completionStatus === "completed") return escapeCsvValue("Completed");
+          if (cell.completionStatus === "in_progress") return escapeCsvValue("In Progress");
+          if (cell.completionStatus === "not_started") return escapeCsvValue("Not Started");
+          return escapeCsvValue("Unknown");
+        }),
+      );
     }
 
     csvRows.push(studentRow);
   }
 
-  return csvRows.map(row => row.join(',')).join('\n');
+  return csvRows.map((row) => row.join(",")).join("\n");
 }

@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { Menu, X } from 'lucide-react';
-import { useState } from 'react';
-import Link from 'next/link';
-import { cn } from '@/lib/utils';
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export interface StudentNavigationProps {
   activeRoute: string;
 }
 
 const navItems = [
-  { href: '/student/dashboard', label: 'Dashboard' },
-  { href: '/student/lessons', label: 'Lessons' },
-  { href: '/student/settings', label: 'Settings' },
+  { href: "/student/dashboard", label: "Dashboard" },
+  { href: "/student/lessons", label: "Lessons" },
+  { href: "/student/settings", label: "Settings" },
 ];
 
 /**
@@ -45,22 +45,22 @@ export function StudentNavigation({ activeRoute }: StudentNavigationProps) {
       <nav
         aria-label="Student navigation"
         className={cn(
-          'fixed left-0 top-0 h-screen w-64 bg-background border-r border-border p-6 pt-20 transition-transform',
-          'md:block md:translate-x-0',
-          isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+          "fixed left-0 top-0 h-screen w-64 bg-background border-r border-border p-6 pt-20 transition-transform",
+          "md:block md:translate-x-0",
+          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
         <ul className="space-y-4">
-          {navItems.map(item => (
+          {navItems.map((item) => (
             <li key={item.href}>
               <Link
                 href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                aria-current={activeRoute === item.href ? 'page' : undefined}
+                aria-current={activeRoute === item.href ? "page" : undefined}
                 className={cn(
-                  'block py-2 px-4 rounded-md transition-colors',
-                  'hover:bg-muted',
-                  activeRoute === item.href ? 'text-orange-600 font-semibold' : 'text-foreground'
+                  "block py-2 px-4 rounded-md transition-colors",
+                  "hover:bg-muted",
+                  activeRoute === item.href ? "text-orange-600 font-semibold" : "text-foreground",
                 )}
               >
                 {item.label}

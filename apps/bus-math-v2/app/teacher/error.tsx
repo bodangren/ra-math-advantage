@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { ErrorFallback } from '@/components/error-fallback';
+import { useEffect } from "react";
+import { ErrorFallback } from "@/components/error-fallback";
 
 interface TeacherErrorProps {
   error: Error & { digest?: string };
@@ -18,7 +18,7 @@ interface TeacherErrorProps {
  */
 export default function TeacherError({ error, reset }: TeacherErrorProps) {
   useEffect(() => {
-    console.error('Teacher route error:', error);
+    console.error("Teacher route error:", error);
   }, [error]);
 
   return (

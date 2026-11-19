@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mockGetClassSrsHealth = vi.fn();
 const mockGetWeakFamilies = vi.fn();
@@ -6,7 +6,7 @@ const mockGetStrugglingStudents = vi.fn();
 const mockResetStudentCard = vi.fn();
 const mockBumpFamilyPriority = vi.fn();
 
-vi.mock('@/convex/_generated/api', () => ({
+vi.mock("@/convex/_generated/api", () => ({
   api: {
     srs: {
       getClassSrsHealth: mockGetClassSrsHealth,
@@ -18,15 +18,15 @@ vi.mock('@/convex/_generated/api', () => ({
   },
 }));
 
-describe('convex/srs teacher queries and mutations', () => {
+describe("convex/srs teacher queries and mutations", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  describe('getClassSrsHealth', () => {
-    it('returns health metrics for a class', async () => {
+  describe("getClassSrsHealth", () => {
+    it("returns health metrics for a class", async () => {
       mockGetClassSrsHealth.mockReturnValue({
-        classId: 'class_123',
+        classId: "class_123",
         totalStudents: 10,
         studentsWithCards: 8,
         averageRetentionRate: 75.5,
@@ -35,7 +35,7 @@ describe('convex/srs teacher queries and mutations', () => {
         totalCards: 24,
       });
 
-      const result = await mockGetClassSrsHealth({ classId: 'class_123' });
+      const result = await mockGetClassSrsHealth({ classId: "class_123" });
 
       expect(result.totalStudents).toBe(10);
       expect(result.studentsWithCards).toBe(8);
@@ -43,25 +43,27 @@ describe('convex/srs teacher queries and mutations', () => {
       expect(result.overdueCardCount).toBe(12);
     });
 
-    it('rejects non-teachers', async () => {
-      mockGetClassSrsHealth.mockRejectedValue(new Error('Unauthorized'));
+    it("rejects non-teachers", async () => {
+      mockGetClassSrsHealth.mockRejectedValue(new Error("Unauthorized"));
 
-      await expect(mockGetClassSrsHealth({ classId: 'class_123' })).rejects.toThrow('Unauthorized');
+      await expect(mockGetClassSrsHealth({ classId: "class_123" })).rejects.toThrow("Unauthorized");
     });
 
-    it('rejects access to classes not taught by caller', async () => {
-      mockGetClassSrsHealth.mockRejectedValue(new Error('Unauthorized'));
+    it("rejects access to classes not taught by caller", async () => {
+      mockGetClassSrsHealth.mockRejectedValue(new Error("Unauthorized"));
 
-      await expect(mockGetClassSrsHealth({ classId: 'other_class' })).rejects.toThrow('Unauthorized');
+      await expect(mockGetClassSrsHealth({ classId: "other_class" })).rejects.toThrow(
+        "Unauthorized",
+      );
     });
   });
 
-  describe('getWeakFamilies', () => {
-    it('returns families sorted by again rate descending', async () => {
+  describe("getWeakFamilies", () => {
+    it("returns families sorted by again rate descending", async () => {
       mockGetWeakFamilies.mockReturnValue([
         {
-          problemFamilyId: 'transaction-effects',
-          displayName: 'Transaction Effects',
+          problemFamilyId: "transaction-effects",
+          displayName: "Transaction Effects",
           againCount: 5,
           hardCount: 2,
           goodCount: 3,
@@ -71,8 +73,8 @@ describe('convex/srs teacher queries and mutations', () => {
           averageRating: 1.7,
         },
         {
-          problemFamilyId: 'cvp-analysis',
-          displayName: 'Cvp Analysis',
+          problemFamilyId: "cvp-analysis",
+          displayName: "Cvp Analysis",
           againCount: 1,
           hardCount: 1,
           goodCount: 8,
@@ -83,20 +85,20 @@ describe('convex/srs teacher queries and mutations', () => {
         },
       ]);
 
-      const result = await mockGetWeakFamilies({ classId: 'class_123' });
+      const result = await mockGetWeakFamilies({ classId: "class_123" });
 
       expect(result).toHaveLength(2);
-      expect(result[0].problemFamilyId).toBe('transaction-effects');
+      expect(result[0].problemFamilyId).toBe("transaction-effects");
       expect(result[0].againRate).toBe(0.5);
-      expect(result[1].problemFamilyId).toBe('cvp-analysis');
+      expect(result[1].problemFamilyId).toBe("cvp-analysis");
       expect(result[1].againRate).toBe(0.1);
     });
 
-    it('includes display names for families', async () => {
+    it("includes display names for families", async () => {
       mockGetWeakFamilies.mockReturnValue([
         {
-          problemFamilyId: 'journal-entry',
-          displayName: 'Journal Entry',
+          problemFamilyId: "journal-entry",
+          displayName: "Journal Entry",
           againCount: 0,
           totalReviews: 0,
           againRate: 0,
@@ -104,27 +106,27 @@ describe('convex/srs teacher queries and mutations', () => {
         },
       ]);
 
-      const result = await mockGetWeakFamilies({ classId: 'class_123' });
+      const result = await mockGetWeakFamilies({ classId: "class_123" });
 
-      expect(result[0].displayName).toBe('Journal Entry');
+      expect(result[0].displayName).toBe("Journal Entry");
     });
 
-    it('rejects non-teachers', async () => {
-      mockGetWeakFamilies.mockRejectedValue(new Error('Unauthorized'));
+    it("rejects non-teachers", async () => {
+      mockGetWeakFamilies.mockRejectedValue(new Error("Unauthorized"));
 
-      await expect(mockGetWeakFamilies({ classId: 'class_123' })).rejects.toThrow('Unauthorized');
+      await expect(mockGetWeakFamilies({ classId: "class_123" })).rejects.toThrow("Unauthorized");
     });
   });
 
-  describe('getStrugglingStudents', () => {
-    it('returns students sorted by overdue cards descending', async () => {
+  describe("getStrugglingStudents", () => {
+    it("returns students sorted by overdue cards descending", async () => {
       mockGetStrugglingStudents.mockReturnValue({
-        classId: 'class_123',
+        classId: "class_123",
         students: [
           {
-            studentId: 's1',
-            username: 'alice',
-            displayName: 'Alice',
+            studentId: "s1",
+            username: "alice",
+            displayName: "Alice",
             overdueCards: 5,
             totalCards: 8,
             totalReviews: 12,
@@ -132,9 +134,9 @@ describe('convex/srs teacher queries and mutations', () => {
             lastActive: Date.now() - 86400000,
           },
           {
-            studentId: 's2',
-            username: 'bob',
-            displayName: 'Bob',
+            studentId: "s2",
+            username: "bob",
+            displayName: "Bob",
             overdueCards: 2,
             totalCards: 10,
             totalReviews: 20,
@@ -144,81 +146,83 @@ describe('convex/srs teacher queries and mutations', () => {
         ],
       });
 
-      const result = await mockGetStrugglingStudents({ classId: 'class_123' });
+      const result = await mockGetStrugglingStudents({ classId: "class_123" });
 
       expect(result.students).toHaveLength(2);
-      expect(result.students[0].studentId).toBe('s1');
+      expect(result.students[0].studentId).toBe("s1");
       expect(result.students[0].overdueCards).toBe(5);
-      expect(result.students[1].studentId).toBe('s2');
+      expect(result.students[1].studentId).toBe("s2");
     });
 
-    it('rejects non-teachers', async () => {
-      mockGetStrugglingStudents.mockRejectedValue(new Error('Unauthorized'));
+    it("rejects non-teachers", async () => {
+      mockGetStrugglingStudents.mockRejectedValue(new Error("Unauthorized"));
 
-      await expect(mockGetStrugglingStudents({ classId: 'class_123' })).rejects.toThrow('Unauthorized');
+      await expect(mockGetStrugglingStudents({ classId: "class_123" })).rejects.toThrow(
+        "Unauthorized",
+      );
     });
   });
 
-  describe('resetStudentCard', () => {
-    it('resets a student card to new state', async () => {
+  describe("resetStudentCard", () => {
+    it("resets a student card to new state", async () => {
       mockResetStudentCard.mockResolvedValue({ success: true });
 
       const result = await mockResetStudentCard({
-        studentId: 's1',
-        problemFamilyId: 'transaction-effects',
+        studentId: "s1",
+        problemFamilyId: "transaction-effects",
       });
 
       expect(result.success).toBe(true);
       expect(mockResetStudentCard).toHaveBeenCalledWith({
-        studentId: 's1',
-        problemFamilyId: 'transaction-effects',
+        studentId: "s1",
+        problemFamilyId: "transaction-effects",
       });
     });
 
-    it('rejects non-teachers', async () => {
-      mockResetStudentCard.mockRejectedValue(new Error('Unauthorized'));
+    it("rejects non-teachers", async () => {
+      mockResetStudentCard.mockRejectedValue(new Error("Unauthorized"));
 
       await expect(
-        mockResetStudentCard({ studentId: 's1', problemFamilyId: 'f1' }),
-      ).rejects.toThrow('Unauthorized');
+        mockResetStudentCard({ studentId: "s1", problemFamilyId: "f1" }),
+      ).rejects.toThrow("Unauthorized");
     });
 
-    it('rejects resetting cards for students outside teacher classes', async () => {
-      mockResetStudentCard.mockRejectedValue(new Error('Unauthorized'));
+    it("rejects resetting cards for students outside teacher classes", async () => {
+      mockResetStudentCard.mockRejectedValue(new Error("Unauthorized"));
 
       await expect(
-        mockResetStudentCard({ studentId: 'other_student', problemFamilyId: 'f1' }),
-      ).rejects.toThrow('Unauthorized');
+        mockResetStudentCard({ studentId: "other_student", problemFamilyId: "f1" }),
+      ).rejects.toThrow("Unauthorized");
     });
   });
 
-  describe('bumpFamilyPriority', () => {
-    it('bumps priority for a family across the class', async () => {
+  describe("bumpFamilyPriority", () => {
+    it("bumps priority for a family across the class", async () => {
       mockBumpFamilyPriority.mockResolvedValue({ success: true, affectedCount: 8 });
 
       const result = await mockBumpFamilyPriority({
-        classId: 'class_123',
-        problemFamilyId: 'transaction-effects',
+        classId: "class_123",
+        problemFamilyId: "transaction-effects",
       });
 
       expect(result.success).toBe(true);
       expect(result.affectedCount).toBe(8);
     });
 
-    it('rejects non-teachers', async () => {
-      mockBumpFamilyPriority.mockRejectedValue(new Error('Unauthorized'));
+    it("rejects non-teachers", async () => {
+      mockBumpFamilyPriority.mockRejectedValue(new Error("Unauthorized"));
 
       await expect(
-        mockBumpFamilyPriority({ classId: 'class_123', problemFamilyId: 'f1' }),
-      ).rejects.toThrow('Unauthorized');
+        mockBumpFamilyPriority({ classId: "class_123", problemFamilyId: "f1" }),
+      ).rejects.toThrow("Unauthorized");
     });
 
-    it('rejects bumping for classes not taught by caller', async () => {
-      mockBumpFamilyPriority.mockRejectedValue(new Error('Unauthorized'));
+    it("rejects bumping for classes not taught by caller", async () => {
+      mockBumpFamilyPriority.mockRejectedValue(new Error("Unauthorized"));
 
       await expect(
-        mockBumpFamilyPriority({ classId: 'other_class', problemFamilyId: 'f1' }),
-      ).rejects.toThrow('Unauthorized');
+        mockBumpFamilyPriority({ classId: "other_class", problemFamilyId: "f1" }),
+      ).rejects.toThrow("Unauthorized");
     });
   });
 });

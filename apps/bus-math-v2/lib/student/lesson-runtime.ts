@@ -1,8 +1,5 @@
-import type { DashboardLessonActionLink } from '@/lib/student/dashboard-presentation';
-import {
-  buildStudentDashboardViewModel,
-  type StudentDashboardUnit,
-} from '@/lib/student/dashboard';
+import type { DashboardLessonActionLink } from "@/lib/student/dashboard-presentation";
+import { buildStudentDashboardViewModel, type StudentDashboardUnit } from "@/lib/student/dashboard";
 
 /**
  * Determines the landing phase for a student entering a lesson.

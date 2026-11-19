@@ -25,10 +25,10 @@
 // test locks in the correct behavior so a future refactor cannot
 // silently swallow rejections.
 
-import { describe, it, expect } from 'vitest';
-import { runPlacementTraversal } from '../placement-engine';
-import type { KnowledgeSpace, KnowledgeSpaceNode, KnowledgeSpaceEdge } from '../types';
-import type { ProbeAdapter, ProbeResult } from '../placement';
+import { describe, it, expect } from "vitest";
+import { runPlacementTraversal } from "../placement-engine";
+import type { KnowledgeSpace, KnowledgeSpaceNode, KnowledgeSpaceEdge } from "../types";
+import type { ProbeAdapter, ProbeResult } from "../placement";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -42,11 +42,11 @@ import type { ProbeAdapter, ProbeResult } from '../placement';
 function makeSkill(id: string): KnowledgeSpaceNode {
   return {
     id,
-    kind: 'skill',
+    kind: "skill",
     title: id,
-    domain: 'math.test.invalid-probe',
-    sourceRefs: ['synthetic'],
-    reviewStatus: 'draft',
+    domain: "math.test.invalid-probe",
+    sourceRefs: ["synthetic"],
+    reviewStatus: "draft",
     metadata: {},
   };
 }
@@ -60,13 +60,13 @@ function makeSkill(id: string): KnowledgeSpaceNode {
 function prereqEdge(sourceId: string, targetId: string): KnowledgeSpaceEdge {
   return {
     id: `${sourceId}->${targetId}`,
-    type: 'prerequisite_for',
+    type: "prerequisite_for",
     sourceId,
     targetId,
     weight: 0.8,
-    confidence: 'high',
-    sourceRefs: ['synthetic'],
-    reviewStatus: 'draft',
+    confidence: "high",
+    sourceRefs: ["synthetic"],
+    reviewStatus: "draft",
   };
 }
 
@@ -76,8 +76,8 @@ function prereqEdge(sourceId: string, targetId: string): KnowledgeSpaceEdge {
  */
 function buildTwoNodeChain(): KnowledgeSpace {
   return {
-    nodes: [makeSkill('math.test.invalid.a'), makeSkill('math.test.invalid.b')],
-    edges: [prereqEdge('math.test.invalid.a', 'math.test.invalid.b')],
+    nodes: [makeSkill("math.test.invalid.a"), makeSkill("math.test.invalid.b")],
+    edges: [prereqEdge("math.test.invalid.a", "math.test.invalid.b")],
   };
 }
 
@@ -87,16 +87,16 @@ const INVALID_PROBE_RESULT_PATTERN = /invalid probe result/i;
 // Invalid sync probe result — engine should surface a clear error
 // ---------------------------------------------------------------------------
 
-describe('runPlacementTraversal — invalid sync probe result (Red)', () => {
+describe("runPlacementTraversal — invalid sync probe result (Red)", () => {
   it('rejects with "invalid probe result" when the probe returns a non-canonical string', async () => {
     const graph = buildTwoNodeChain();
     const adapter: ProbeAdapter = {
-      domain: 'math.test.invalid-probe',
-      probe: () => 'maybe' as unknown as ProbeResult,
+      domain: "math.test.invalid-probe",
+      probe: () => "maybe" as unknown as ProbeResult,
     };
     await expect(
       runPlacementTraversal(graph, adapter, {
-        startNodeId: 'math.test.invalid.a',
+        startNodeId: "math.test.invalid.a",
       }),
     ).rejects.toThrow(INVALID_PROBE_RESULT_PATTERN);
   });
@@ -104,12 +104,12 @@ describe('runPlacementTraversal — invalid sync probe result (Red)', () => {
   it('rejects with "invalid probe result" when the probe returns null', async () => {
     const graph = buildTwoNodeChain();
     const adapter: ProbeAdapter = {
-      domain: 'math.test.invalid-probe',
+      domain: "math.test.invalid-probe",
       probe: () => null as unknown as ProbeResult,
     };
     await expect(
       runPlacementTraversal(graph, adapter, {
-        startNodeId: 'math.test.invalid.a',
+        startNodeId: "math.test.invalid.a",
       }),
     ).rejects.toThrow(INVALID_PROBE_RESULT_PATTERN);
   });
@@ -117,12 +117,12 @@ describe('runPlacementTraversal — invalid sync probe result (Red)', () => {
   it('rejects with "invalid probe result" when the probe returns undefined', async () => {
     const graph = buildTwoNodeChain();
     const adapter: ProbeAdapter = {
-      domain: 'math.test.invalid-probe',
+      domain: "math.test.invalid-probe",
       probe: () => undefined as unknown as ProbeResult,
     };
     await expect(
       runPlacementTraversal(graph, adapter, {
-        startNodeId: 'math.test.invalid.a',
+        startNodeId: "math.test.invalid.a",
       }),
     ).rejects.toThrow(INVALID_PROBE_RESULT_PATTERN);
   });
@@ -130,12 +130,12 @@ describe('runPlacementTraversal — invalid sync probe result (Red)', () => {
   it('rejects with "invalid probe result" when the probe returns a number', async () => {
     const graph = buildTwoNodeChain();
     const adapter: ProbeAdapter = {
-      domain: 'math.test.invalid-probe',
+      domain: "math.test.invalid-probe",
       probe: () => 1 as unknown as ProbeResult,
     };
     await expect(
       runPlacementTraversal(graph, adapter, {
-        startNodeId: 'math.test.invalid.a',
+        startNodeId: "math.test.invalid.a",
       }),
     ).rejects.toThrow(INVALID_PROBE_RESULT_PATTERN);
   });
@@ -143,12 +143,12 @@ describe('runPlacementTraversal — invalid sync probe result (Red)', () => {
   it('rejects with "invalid probe result" when the probe returns an uppercase variant (case-sensitive)', async () => {
     const graph = buildTwoNodeChain();
     const adapter: ProbeAdapter = {
-      domain: 'math.test.invalid-probe',
-      probe: () => 'PASS' as unknown as ProbeResult,
+      domain: "math.test.invalid-probe",
+      probe: () => "PASS" as unknown as ProbeResult,
     };
     await expect(
       runPlacementTraversal(graph, adapter, {
-        startNodeId: 'math.test.invalid.a',
+        startNodeId: "math.test.invalid.a",
       }),
     ).rejects.toThrow(INVALID_PROBE_RESULT_PATTERN);
   });
@@ -158,16 +158,16 @@ describe('runPlacementTraversal — invalid sync probe result (Red)', () => {
 // Invalid async probe result — engine should surface a clear error
 // ---------------------------------------------------------------------------
 
-describe('runPlacementTraversal — invalid async probe result (Red)', () => {
+describe("runPlacementTraversal — invalid async probe result (Red)", () => {
   it('rejects with "invalid probe result" when an async probe resolves to a non-canonical string', async () => {
     const graph = buildTwoNodeChain();
     const adapter: ProbeAdapter = {
-      domain: 'math.test.invalid-probe',
-      probe: async () => 'maybe' as unknown as ProbeResult,
+      domain: "math.test.invalid-probe",
+      probe: async () => "maybe" as unknown as ProbeResult,
     };
     await expect(
       runPlacementTraversal(graph, adapter, {
-        startNodeId: 'math.test.invalid.a',
+        startNodeId: "math.test.invalid.a",
       }),
     ).rejects.toThrow(INVALID_PROBE_RESULT_PATTERN);
   });
@@ -175,12 +175,12 @@ describe('runPlacementTraversal — invalid async probe result (Red)', () => {
   it('rejects with "invalid probe result" when an async probe resolves to null', async () => {
     const graph = buildTwoNodeChain();
     const adapter: ProbeAdapter = {
-      domain: 'math.test.invalid-probe',
+      domain: "math.test.invalid-probe",
       probe: async () => null as unknown as ProbeResult,
     };
     await expect(
       runPlacementTraversal(graph, adapter, {
-        startNodeId: 'math.test.invalid.a',
+        startNodeId: "math.test.invalid.a",
       }),
     ).rejects.toThrow(INVALID_PROBE_RESULT_PATTERN);
   });
@@ -188,12 +188,12 @@ describe('runPlacementTraversal — invalid async probe result (Red)', () => {
   it('rejects with "invalid probe result" when an async probe resolves to undefined', async () => {
     const graph = buildTwoNodeChain();
     const adapter: ProbeAdapter = {
-      domain: 'math.test.invalid-probe',
+      domain: "math.test.invalid-probe",
       probe: async () => undefined as unknown as ProbeResult,
     };
     await expect(
       runPlacementTraversal(graph, adapter, {
-        startNodeId: 'math.test.invalid.a',
+        startNodeId: "math.test.invalid.a",
       }),
     ).rejects.toThrow(INVALID_PROBE_RESULT_PATTERN);
   });
@@ -204,18 +204,18 @@ describe('runPlacementTraversal — invalid async probe result (Red)', () => {
 // test locks it in so a future refactor cannot silently swallow rejections.
 // ---------------------------------------------------------------------------
 
-describe('runPlacementTraversal — async probe rejection propagation (Green lock-in)', () => {
-  it('propagates an async probe rejection to the caller with the original error message', async () => {
+describe("runPlacementTraversal — async probe rejection propagation (Green lock-in)", () => {
+  it("propagates an async probe rejection to the caller with the original error message", async () => {
     const graph = buildTwoNodeChain();
     const adapter: ProbeAdapter = {
-      domain: 'math.test.invalid-probe',
+      domain: "math.test.invalid-probe",
       probe: async () => {
-        throw new Error('async backend failure');
+        throw new Error("async backend failure");
       },
     };
     await expect(
       runPlacementTraversal(graph, adapter, {
-        startNodeId: 'math.test.invalid.a',
+        startNodeId: "math.test.invalid.a",
       }),
     ).rejects.toThrow(/async backend failure/);
   });

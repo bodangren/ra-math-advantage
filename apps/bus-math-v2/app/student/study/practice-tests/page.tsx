@@ -1,7 +1,7 @@
 import { requireStudentSessionClaims } from "@/lib/auth/server";
 import { PracticeTestSelection } from "@/components/student/PracticeTestSelection";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 /**
  * Page wrapper for the practice tests selection hub.

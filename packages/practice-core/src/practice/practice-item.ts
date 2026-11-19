@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 const basePracticeItemSchema = z.object({
   practiceItemId: z.string().trim().min(1),
@@ -10,7 +10,7 @@ const basePracticeItemSchema = z.object({
 
 export const practiceItemSchema = basePracticeItemSchema
   .refine((d) => d.variantKey != null || d.objectiveId != null, {
-    message: 'Either variantKey or objectiveId must be provided',
+    message: "Either variantKey or objectiveId must be provided",
   })
   .transform((d) => ({
     practiceItemId: d.practiceItemId,

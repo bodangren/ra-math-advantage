@@ -1,23 +1,27 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { ArrowUp, ArrowDown, ArrowUpDown } from 'lucide-react';
-import { cellBgClass, cellColorLabel, sortRowsByName, applyStudentRowUpdate } from '@/lib/teacher/gradebook';
-import type { CourseOverviewRow, UnitColumn } from '@math-platform/teacher-reporting-core';
+import { useState } from "react";
+import Link from "next/link";
+import { ArrowUp, ArrowDown, ArrowUpDown } from "lucide-react";
+import {
+  cellBgClass,
+  cellColorLabel,
+  sortRowsByName,
+  applyStudentRowUpdate,
+} from "@/lib/teacher/gradebook";
+import type { CourseOverviewRow, UnitColumn } from "@math-platform/teacher-reporting-core";
 import {
   TeacherStudentActions,
   type StudentAccountUpdate,
-} from '@/components/teacher/TeacherStudentActions';
-import { formatCurriculumSegmentLabel } from '@/lib/curriculum/segment-labels';
+} from "@/components/teacher/TeacherStudentActions";
+import { formatCurriculumSegmentLabel } from "@/lib/curriculum/segment-labels";
 
 interface CourseOverviewGridProps {
   rows: CourseOverviewRow[];
   units: UnitColumn[];
 }
 
-type SortDirection = 'asc' | 'desc';
-
+type SortDirection = "asc" | "desc";
 
 /**
  * Renders a course-level gradebook grid showing student mastery per unit.
@@ -27,8 +31,7 @@ type SortDirection = 'asc' | 'desc';
  */
 export function CourseOverviewGrid({ rows, units }: CourseOverviewGridProps) {
   const [managedRows, setManagedRows] = useState(rows);
-  const [sortDir, setSortDir] = useState<SortDirection>('asc');
-
+  const [sortDir, setSortDir] = useState<SortDirection>("asc");
 
   /**
    * Applies a student account update to the local row state.
@@ -36,7 +39,7 @@ export function CourseOverviewGrid({ rows, units }: CourseOverviewGridProps) {
    * @param update - The student account update to apply.
    */
   function handleStudentUpdated(update: StudentAccountUpdate) {
-    setManagedRows(current => applyStudentRowUpdate(current, update));
+    setManagedRows((current) => applyStudentRowUpdate(current, update));
   }
 
   if (managedRows.length === 0) {
@@ -56,11 +59,14 @@ export function CourseOverviewGrid({ rows, units }: CourseOverviewGridProps) {
   }
 
   // CourseOverviewRow has the same shape as GradebookRow for sorting purposes
-  const sortable = managedRows.map(r => ({ ...r, cells: [] as never[] }));
+  const sortable = managedRows.map((r) => ({ ...r, cells: [] as never[] }));
   const sorted = sortRowsByName(sortable);
-  const orderedIds = sortDir === 'asc' ? sorted.map(r => r.studentId) : [...sorted].reverse().map(r => r.studentId);
-  const rowById = new Map(managedRows.map(r => [r.studentId, r]));
-  const displayRows = orderedIds.map(id => rowById.get(id)!);
+  const orderedIds =
+    sortDir === "asc"
+      ? sorted.map((r) => r.studentId)
+      : [...sorted].reverse().map((r) => r.studentId);
+  const rowById = new Map(managedRows.map((r) => [r.studentId, r]));
+  const displayRows = orderedIds.map((id) => rowById.get(id)!);
 
   return (
     <div className="overflow-x-auto rounded-md border border-border">
@@ -77,26 +83,24 @@ export function CourseOverviewGrid({ rows, units }: CourseOverviewGridProps) {
             >
               <button
                 type="button"
-                onClick={() => setSortDir(d => d === 'asc' ? 'desc' : 'asc')}
+                onClick={() => setSortDir((d) => (d === "asc" ? "desc" : "asc"))}
                 aria-label="Sort by student name"
                 className="flex items-center gap-1 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 Student
-                {sortDir === 'asc'
-                  ? <ArrowUp className="size-3" aria-hidden="true" />
-                  : sortDir === 'desc'
-                    ? <ArrowDown className="size-3" aria-hidden="true" />
-                    : <ArrowUpDown className="size-3" aria-hidden="true" />}
+                {sortDir === "asc" ? (
+                  <ArrowUp className="size-3" aria-hidden="true" />
+                ) : sortDir === "desc" ? (
+                  <ArrowDown className="size-3" aria-hidden="true" />
+                ) : (
+                  <ArrowUpDown className="size-3" aria-hidden="true" />
+                )}
               </button>
             </th>
 
             {/* Unit column headers — each links to the unit gradebook */}
-            {units.map(unit => (
-              <th
-                key={unit.unitNumber}
-                scope="col"
-                className="px-3 py-2 text-center font-medium"
-              >
+            {units.map((unit) => (
+              <th key={unit.unitNumber} scope="col" className="px-3 py-2 text-center font-medium">
                 <Link
                   href={`/teacher/units/${unit.unitNumber}`}
                   className="hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -109,8 +113,8 @@ export function CourseOverviewGrid({ rows, units }: CourseOverviewGridProps) {
         </thead>
 
         <tbody className="divide-y divide-border">
-          {displayRows.map(row => {
-            const cellByUnit = new Map(row.cells.map(c => [c.unitNumber, c]));
+          {displayRows.map((row) => {
+            const cellByUnit = new Map(row.cells.map((c) => [c.unitNumber, c]));
 
             return (
               <tr key={row.studentId} className="bg-background hover:bg-muted/10">
@@ -122,7 +126,9 @@ export function CourseOverviewGrid({ rows, units }: CourseOverviewGridProps) {
                   <div className="flex items-center justify-between gap-2">
                     <div>
                       <div>{row.displayName}</div>
-                      <div className="text-xs text-muted-foreground font-normal">@{row.username}</div>
+                      <div className="text-xs text-muted-foreground font-normal">
+                        @{row.username}
+                      </div>
                     </div>
                     <TeacherStudentActions
                       studentId={row.studentId}
@@ -135,9 +141,9 @@ export function CourseOverviewGrid({ rows, units }: CourseOverviewGridProps) {
 
                 {/* Unit cells — each links to the Level 2 unit gradebook (spec: clicking a cell
                     OR column header navigates to Level 2) */}
-                {units.map(unit => {
+                {units.map((unit) => {
                   const cell = cellByUnit.get(unit.unitNumber);
-                  const color = cell?.color ?? 'gray';
+                  const color = cell?.color ?? "gray";
                   const mastery = cell?.avgMastery ?? null;
 
                   return (
@@ -150,7 +156,7 @@ export function CourseOverviewGrid({ rows, units }: CourseOverviewGridProps) {
                         className="block px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
                         aria-label={`${row.displayName} ${formatCurriculumSegmentLabel(unit.unitNumber)} — ${cellColorLabel(color)}`}
                       >
-                        {mastery !== null ? `${mastery}%` : '—'}
+                        {mastery !== null ? `${mastery}%` : "—"}
                       </Link>
                     </td>
                   );

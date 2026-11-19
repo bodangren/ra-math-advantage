@@ -11,10 +11,10 @@ import type {
   KnowledgeSpace,
   ProbeAdapter,
   PlacementResult,
-} from '@math-platform/knowledge-space-core';
-import { runPlacementTraversal } from '@math-platform/knowledge-space-core';
-import type { KnowledgeStateSeedStore } from './seed-knowledge-state';
-import { seedPlacementResultsIntoStore } from './seed-knowledge-state';
+} from "@math-platform/knowledge-space-core";
+import { runPlacementTraversal } from "@math-platform/knowledge-space-core";
+import type { KnowledgeStateSeedStore } from "./seed-knowledge-state";
+import { seedPlacementResultsIntoStore } from "./seed-knowledge-state";
 
 export interface PlacementFlowOptions {
   now?: number;
@@ -32,8 +32,8 @@ export interface PlacementFlowInput {
 }
 
 export interface PlacementFlowOutcome {
-  status: 'placed' | 'skipped';
-  reason?: 'already-placed';
+  status: "placed" | "skipped";
+  reason?: "already-placed";
   results: PlacementResult[];
   probesPerformed: number;
 }
@@ -50,8 +50,8 @@ export async function runNewStudentPlacementFlow(
     const existing = await store.getPlacementSeeds(studentId);
     if (existing.length > 0) {
       return {
-        status: 'skipped',
-        reason: 'already-placed',
+        status: "skipped",
+        reason: "already-placed",
         results: [],
         probesPerformed: 0,
       };
@@ -68,7 +68,7 @@ export async function runNewStudentPlacementFlow(
   }
 
   return {
-    status: 'placed',
+    status: "placed",
     results: engineResult.results,
     probesPerformed: engineResult.probesPerformed,
   };

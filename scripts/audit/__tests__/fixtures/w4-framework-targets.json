@@ -7,22 +7,10 @@
   "registry_stub_baseline": "scripts/audit/__tests__/fixtures/registry-stub.json",
   "compatibility_requirement": "Every target must satisfy the post-W4 declared manifest range for every owner workspace. Vinext 1.4.5, Vite 8.x, @vitejs/plugin-react 6.x, Next removed (absence guard), eslint-config-next 16.x, TypeScript 7.x (S3 forward move), ESLint 10.x, @eslint/js 10.x. @types/node stays at a single major floor across the workspace (post-W3 invariant).",
   "per_migration_scope": {
-    "W4-T1_vinext": [
-      "vinext"
-    ],
-    "W4-T2_vite_plugin": [
-      "vite",
-      "@vitejs/plugin-react"
-    ],
-    "W4-T3_next": [
-      "next",
-      "eslint-config-next"
-    ],
-    "W4-T4_toolchain": [
-      "typescript",
-      "eslint",
-      "@eslint/js"
-    ]
+    "W4-T1_vinext": ["vinext"],
+    "W4-T2_vite_plugin": ["vite", "@vitejs/plugin-react"],
+    "W4-T3_next": ["next", "eslint-config-next"],
+    "W4-T4_toolchain": ["typescript", "eslint", "@eslint/js"]
   },
   "targets": [
     {
@@ -36,11 +24,7 @@
         "apps/pre-calculus"
       ],
       "primary_wave": "W4-framework",
-      "peer_dependencies": [
-        "react ^19.3.1",
-        "react-dom ^19.2.7",
-        "@vitejs/plugin-rsc ^0.5.27"
-      ],
+      "peer_dependencies": ["react ^19.3.1", "react-dom ^19.2.7", "@vitejs/plugin-rsc ^0.5.27"],
       "notes": "T1 isolated upgrade; React/RSC peers already pinned in W2 (FR3). S1 of vinext-oxc-toolchain_20261114 moved vinext to ^1.4.5 and superseded the W4 0.0.55 target (updated forward per lessons-learned 2026-06-07)."
     },
     {
@@ -54,9 +38,7 @@
         "apps/pre-calculus"
       ],
       "primary_wave": "W4-framework",
-      "peer_dependencies": [
-        "@vitejs/plugin-react 6.x"
-      ],
+      "peer_dependencies": ["@vitejs/plugin-react 6.x"],
       "notes": "T2; verify each first-class app independently per P4 isolation rule (test-strategy.md §3)."
     },
     {
@@ -70,9 +52,7 @@
         "apps/pre-calculus"
       ],
       "primary_wave": "W4-framework",
-      "peer_dependencies": [
-        "vite 8.x"
-      ],
+      "peer_dependencies": ["vite 8.x"],
       "notes": "T2; verify each first-class app independently per P4 isolation rule (test-strategy.md §3)."
     },
     {
@@ -86,10 +66,7 @@
         "apps/pre-calculus"
       ],
       "primary_wave": "W4-framework",
-      "peer_dependencies": [
-        "react ^19.2.7",
-        "react-dom ^19.2.7"
-      ],
+      "peer_dependencies": ["react ^19.2.7", "react-dom ^19.2.7"],
       "notes": "T3 isolated migration; W2 ^15.5.19 pin is replaced by ^16.0.0 (or 16.x range) as a single transition. S1 of vinext-oxc-toolchain_20261114 removed next entirely; the 16.x target is superseded by a lockfile-absence guard."
     },
     {
@@ -103,10 +80,7 @@
         "apps/pre-calculus"
       ],
       "primary_wave": "W4-framework",
-      "peer_dependencies": [
-        "next ^16.x",
-        "eslint ^10.x"
-      ],
+      "peer_dependencies": ["next ^16.x", "eslint ^10.x"],
       "notes": "T3 isolated migration; W3 ^15.3.1 range must not pin 15 in a way that blocks T3 (test-strategy.md §3)."
     },
     {
@@ -121,9 +95,7 @@
         "packages/*"
       ],
       "primary_wave": "W4-framework",
-      "peer_dependencies": [
-        "@types/node >= ^22"
-      ],
+      "peer_dependencies": ["@types/node >= ^22"],
       "notes": "T4 isolated toolchain; run `tsc --noEmit` together with vitest (test-strategy.md §3, §5). S3 of vinext-oxc-toolchain_20261114 moves the target to 7.0.2 and the typecheck command to tsrs (oxlint --type-aware --type-check)."
     },
     {
@@ -138,21 +110,15 @@
         "packages/*"
       ],
       "primary_wave": "W4-framework",
-      "peer_dependencies": [
-        "typescript-eslint ^8.x"
-      ],
+      "peer_dependencies": ["typescript-eslint ^8.x"],
       "notes": "T4 isolated toolchain; pairs with @eslint/js 10.x."
     },
     {
       "package": "@eslint/js",
       "target_version": "10.0.0",
-      "owners": [
-        "packages/*"
-      ],
+      "owners": ["packages/*"],
       "primary_wave": "W4-framework",
-      "peer_dependencies": [
-        "eslint ^10.x"
-      ],
+      "peer_dependencies": ["eslint ^10.x"],
       "notes": "T4 isolated toolchain; tracks ESLint 9→10."
     }
   ],

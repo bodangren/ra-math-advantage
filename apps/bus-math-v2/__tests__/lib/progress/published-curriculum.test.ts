@@ -36,9 +36,7 @@ describe("published curriculum helpers", () => {
       _id: "version-published-new",
       version: 2,
     });
-    expect(
-      buildLatestPublishedLessonVersionMap(lessonVersions).get("lesson-1"),
-    ).toMatchObject({
+    expect(buildLatestPublishedLessonVersionMap(lessonVersions).get("lesson-1")).toMatchObject({
       _id: "version-published-new",
       version: 2,
     });
@@ -153,9 +151,30 @@ describe("published curriculum helpers", () => {
         },
       ],
       lessonVersions: [
-        { _id: "version-draft", lessonId: "lesson-1", version: 3, status: "draft", title: "Draft", description: "Draft desc" },
-        { _id: "version-published", lessonId: "lesson-1", version: 2, status: "published", title: "Published Title", description: "Published description" },
-        { _id: "version-lesson-2", lessonId: "lesson-2", version: 1, status: "published", title: "Earlier Lesson Published", description: null },
+        {
+          _id: "version-draft",
+          lessonId: "lesson-1",
+          version: 3,
+          status: "draft",
+          title: "Draft",
+          description: "Draft desc",
+        },
+        {
+          _id: "version-published",
+          lessonId: "lesson-1",
+          version: 2,
+          status: "published",
+          title: "Published Title",
+          description: "Published description",
+        },
+        {
+          _id: "version-lesson-2",
+          lessonId: "lesson-2",
+          version: 1,
+          status: "published",
+          title: "Earlier Lesson Published",
+          description: null,
+        },
       ],
       phaseVersions: [
         { _id: "phase-1", lessonVersionId: "version-published" },

@@ -14,4 +14,4 @@ export {
   SCALE_REVIEWS_PER_CARD,
   SCALE_SUBMISSIONS_PER_STUDENT,
   SCALE_TEACHERS_PER_SCHOOL,
-} from '@/lib/scale/constants';
+} from "@/lib/scale/constants";

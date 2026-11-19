@@ -66,9 +66,7 @@ describe("TeacherDashboardContent", () => {
       />,
     );
 
-    expect(
-      screen.getByText(/Teacher Dashboard — demo_teacher/i),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Teacher Dashboard — demo_teacher/i)).toBeInTheDocument();
     expect(screen.getByText("Demo School")).toBeInTheDocument();
     expect(screen.getByText("1 active in the last 7 days")).toBeInTheDocument();
     expect(screen.getByText("0 students need attention")).toBeInTheDocument();
@@ -118,9 +116,7 @@ describe("TeacherDashboardContent", () => {
     );
 
     // Grid should render with student rows from courseOverview (not the student progress list)
-    expect(
-      screen.getByRole("table", { name: /course overview/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("table", { name: /course overview/i })).toBeInTheDocument();
     expect(screen.getAllByText("Demo Student").length).toBeGreaterThan(0);
     // unit header link (exact name targets the column header, not cell aria-labels)
     expect(screen.getByRole("link", { name: "Unit 1" })).toBeInTheDocument();
@@ -135,9 +131,7 @@ describe("TeacherDashboardContent", () => {
       />,
     );
 
-    expect(
-      screen.getByText(/No students found in this gradebook/i),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/No students found in this gradebook/i)).toBeInTheDocument();
   });
 
   it("renders action buttons in the header", () => {

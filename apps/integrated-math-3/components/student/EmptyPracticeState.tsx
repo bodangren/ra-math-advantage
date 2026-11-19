@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
+import Link from "next/link";
 
 /**
  * Renders an empty state message when no practice items are due.
@@ -28,13 +28,9 @@ export function EmptyPracticeState() {
           </svg>
         </div>
 
-        <h1 className="text-2xl font-display font-bold text-foreground mb-4">
-          Daily Practice
-        </h1>
+        <h1 className="text-2xl font-display font-bold text-foreground mb-4">Daily Practice</h1>
 
-        <p className="text-lg text-foreground mb-2">
-          No practice due today. Come back tomorrow!
-        </p>
+        <p className="text-lg text-foreground mb-2">No practice due today. Come back tomorrow!</p>
 
         <p className="text-sm text-muted-foreground mb-6">
           Keep up the great work. Your daily practice will be ready soon.

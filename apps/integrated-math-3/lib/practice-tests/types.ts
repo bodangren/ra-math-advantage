@@ -8,7 +8,7 @@
  * timed testing, immediate feedback, and persistent scores.
  */
 
-export const PRACTICE_TEST_CONTRACT_VERSION = 'practice-test.contract.v1' as const;
+export const PRACTICE_TEST_CONTRACT_VERSION = "practice-test.contract.v1" as const;
 
 export type PracticeTestQuestion = {
   id: string;
@@ -90,7 +90,7 @@ export type PracticeTestResult = {
 };
 
 export type PracticeTestEngineState = {
-  phase: 'introduction' | 'assessment' | 'closing';
+  phase: "introduction" | "assessment" | "closing";
   selectedLessonIds: string[];
   questionCount: number;
   questions: PracticeTestQuestion[];

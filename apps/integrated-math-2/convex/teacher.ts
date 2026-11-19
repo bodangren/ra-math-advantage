@@ -6,9 +6,7 @@ import { teacherAccount, teacherClass } from "./classes";
 export const getTeacherDashboardData = internalQuery({
   args: { teacherId: v.id("profiles") },
   returns: v.object({
-    classes: v.array(
-      v.object({ id: v.id("classes"), name: v.string(), joinCode: v.string() }),
-    ),
+    classes: v.array(v.object({ id: v.id("classes"), name: v.string(), joinCode: v.string() })),
   }),
   handler: async (ctx, args) => {
     await teacherAccount(ctx, args.teacherId);
@@ -76,49 +74,75 @@ export const getStudentEvidence = internalQuery({
       .query("class_lessons")
       .withIndex("by_class_and_lesson", (q) => q.eq("classId", args.classId))
       .take(200);
-    const rows = page.page.filter((row) =>
-      assigned.some((a) => a.lessonId === row.lessonId),
-    );
+    const rows = page.page.filter((row) => assigned.some((a) => a.lessonId === row.lessonId));
     const submissions = await Promise.all(
       rows.map(async (row) => {
         const activity = await ctx.db.get(row.activityId);
         const source = await resolveTeacherExposureSource(ctx, args.studentId, row._id);
-        return ({
-        id: row._id,
-        activity: activity?.displayName ?? "Practice",
-        answer: (() => {
-          if (typeof row.submissionData?.rawResponse === "string") return row.submissionData.rawResponse;
-          if (typeof row.submissionData?.answers?.response === "string") return row.submissionData.answers.response;
-          const parts = Array.isArray(row.submissionData?.parts) ? row.submissionData.parts : [];
-          const currentPartId = row.submissionData?.artifact?.currentPartId;
-          const currentPart = parts.find((part: { partId?: unknown; rawAnswer?: unknown }) => part?.partId === currentPartId);
-          return typeof currentPart?.rawAnswer === "string" ? `${currentPart.partId}: ${currentPart.rawAnswer}` : "";
-        })(),
-        score: (() => {
-          const parts = Array.isArray(row.submissionData?.parts) ? row.submissionData.parts : [];
-          const complete = row.submissionData?.artifact?.finalPart === true && parts.every((part: { isCorrect?: unknown }) => part?.isCorrect === true);
-          const current = parts.find((part: { partId?: unknown; score?: unknown; maxScore?: unknown }) => part?.partId === row.submissionData?.artifact?.currentPartId);
-          return complete ? row.score ?? 0 : typeof current?.score === "number" ? current.score : row.score ?? 0;
-        })(),
-        maxScore: (() => {
-          const parts = Array.isArray(row.submissionData?.parts) ? row.submissionData.parts : [];
-          const complete = row.submissionData?.artifact?.finalPart === true && parts.every((part: { isCorrect?: unknown }) => part?.isCorrect === true);
-          const current = parts.find((part: { partId?: unknown; score?: unknown; maxScore?: unknown }) => part?.partId === row.submissionData?.artifact?.currentPartId);
-          return complete ? row.maxScore ?? 1 : typeof current?.maxScore === "number" ? current.maxScore : row.maxScore ?? 1;
-        })(),
-        feedback: row.feedback ?? "",
-        submittedAt: row.submittedAt,
-        canRecordExposure: source !== null
-          && (source.nodeId === "math.im2.skill.1.1.perpendicular-bisector-equidistance"
-            ? isPilotPublished()
-            : trianglePublished(source.nodeId))
-          && row.lessonId === source.lesson._id
-          && row.submittedAt >= Math.max(
-            enrollment.enrolledAt,
-            assigned.find((assignment) => assignment.lessonId === source.lesson._id)?.assignedAt ?? Number.POSITIVE_INFINITY,
-          )
-          && activity?._id === source.activity._id,
-      });}),
+        return {
+          id: row._id,
+          activity: activity?.displayName ?? "Practice",
+          answer: (() => {
+            if (typeof row.submissionData?.rawResponse === "string")
+              return row.submissionData.rawResponse;
+            if (typeof row.submissionData?.answers?.response === "string")
+              return row.submissionData.answers.response;
+            const parts = Array.isArray(row.submissionData?.parts) ? row.submissionData.parts : [];
+            const currentPartId = row.submissionData?.artifact?.currentPartId;
+            const currentPart = parts.find(
+              (part: { partId?: unknown; rawAnswer?: unknown }) => part?.partId === currentPartId,
+            );
+            return typeof currentPart?.rawAnswer === "string"
+              ? `${currentPart.partId}: ${currentPart.rawAnswer}`
+              : "";
+          })(),
+          score: (() => {
+            const parts = Array.isArray(row.submissionData?.parts) ? row.submissionData.parts : [];
+            const complete =
+              row.submissionData?.artifact?.finalPart === true &&
+              parts.every((part: { isCorrect?: unknown }) => part?.isCorrect === true);
+            const current = parts.find(
+              (part: { partId?: unknown; score?: unknown; maxScore?: unknown }) =>
+                part?.partId === row.submissionData?.artifact?.currentPartId,
+            );
+            return complete
+              ? (row.score ?? 0)
+              : typeof current?.score === "number"
+                ? current.score
+                : (row.score ?? 0);
+          })(),
+          maxScore: (() => {
+            const parts = Array.isArray(row.submissionData?.parts) ? row.submissionData.parts : [];
+            const complete =
+              row.submissionData?.artifact?.finalPart === true &&
+              parts.every((part: { isCorrect?: unknown }) => part?.isCorrect === true);
+            const current = parts.find(
+              (part: { partId?: unknown; score?: unknown; maxScore?: unknown }) =>
+                part?.partId === row.submissionData?.artifact?.currentPartId,
+            );
+            return complete
+              ? (row.maxScore ?? 1)
+              : typeof current?.maxScore === "number"
+                ? current.maxScore
+                : (row.maxScore ?? 1);
+          })(),
+          feedback: row.feedback ?? "",
+          submittedAt: row.submittedAt,
+          canRecordExposure:
+            source !== null &&
+            (source.nodeId === "math.im2.skill.1.1.perpendicular-bisector-equidistance"
+              ? isPilotPublished()
+              : trianglePublished(source.nodeId)) &&
+            row.lessonId === source.lesson._id &&
+            row.submittedAt >=
+              Math.max(
+                enrollment.enrolledAt,
+                assigned.find((assignment) => assignment.lessonId === source.lesson._id)
+                  ?.assignedAt ?? Number.POSITIVE_INFINITY,
+              ) &&
+            activity?._id === source.activity._id,
+        };
+      }),
     );
     return {
       name: student.displayName ?? student.username,
@@ -138,9 +162,7 @@ export const getGradebook = internalQuery({
   returns: v.object({
     className: v.string(),
     nextCursor: v.union(v.null(), v.string()),
-    lessons: v.array(
-      v.object({ id: v.id("lessons"), title: v.string(), total: v.number() }),
-    ),
+    lessons: v.array(v.object({ id: v.id("lessons"), title: v.string(), total: v.number() })),
     students: v.array(
       v.object({
         id: v.id("profiles"),
@@ -151,11 +173,7 @@ export const getGradebook = internalQuery({
   }),
   handler: async (ctx, args) => {
     const classroom = await teacherClass(ctx, args.teacherId, args.classId);
-    if (
-      !Number.isInteger(args.unitNumber) ||
-      args.unitNumber < 1 ||
-      args.unitNumber > 13
-    )
+    if (!Number.isInteger(args.unitNumber) || args.unitNumber < 1 || args.unitNumber > 13)
       throw new ConvexError("invalid_unit");
     const assigned = await ctx.db
       .query("class_lessons")
@@ -163,16 +181,11 @@ export const getGradebook = internalQuery({
       .take(200);
     const rows = await ctx.db
       .query("lessons")
-      .withIndex("by_unit_and_order", (q) =>
-        q.eq("unitNumber", args.unitNumber),
-      )
+      .withIndex("by_unit_and_order", (q) => q.eq("unitNumber", args.unitNumber))
       .take(30);
-    const lessons: Array<{ id: Id<"lessons">; title: string; total: number }> =
-      [];
+    const lessons: Array<{ id: Id<"lessons">; title: string; total: number }> = [];
     const phaseIds: Array<Set<Id<"phase_versions">>> = [];
-    for (const lesson of rows.filter((row) =>
-      assigned.some((a) => a.lessonId === row._id),
-    )) {
+    for (const lesson of rows.filter((row) => assigned.some((a) => a.lessonId === row._id))) {
       const version = await ctx.db
         .query("lesson_versions")
         .withIndex("by_lesson_status_version", (q) =>
@@ -183,9 +196,7 @@ export const getGradebook = internalQuery({
       if (!version) continue;
       const phases = await ctx.db
         .query("phase_versions")
-        .withIndex("by_lesson_version", (q) =>
-          q.eq("lessonVersionId", version._id),
-        )
+        .withIndex("by_lesson_version", (q) => q.eq("lessonVersionId", version._id))
         .take(100);
       lessons.push({
         id: lesson._id,

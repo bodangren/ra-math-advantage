@@ -1,4 +1,4 @@
-import type { ActivityComponentKey } from '../schemas/activity-props';
+import type { ActivityComponentKey } from "../schemas/activity-props";
 
 /**
  * Resolves a component key string to an ActivityComponentKey type.

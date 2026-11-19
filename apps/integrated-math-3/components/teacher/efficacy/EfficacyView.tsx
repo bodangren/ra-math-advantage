@@ -1,13 +1,18 @@
-'use client';
+"use client";
 
-import type { SessionClaims } from '@math-platform/core-auth';
-import { guardEfficacyAccess } from '@/lib/efficacy/roleGuard';
-import type { RetentionPoint, TimeToMasteryStat, AccuracyTrendPoint, ReviewSuccessRate } from '@math-platform/efficacy-core';
+import type { SessionClaims } from "@math-platform/core-auth";
+import { guardEfficacyAccess } from "@/lib/efficacy/roleGuard";
+import type {
+  RetentionPoint,
+  TimeToMasteryStat,
+  AccuracyTrendPoint,
+  ReviewSuccessRate,
+} from "@math-platform/efficacy-core";
 
 // ── View-model types (pre-computed props, no Convex calls) ─────────
 
 export interface EfficacyCohortOkView {
-  status: 'ok';
+  status: "ok";
   classId: string;
   n: number;
   windowStartMs: number;
@@ -19,7 +24,7 @@ export interface EfficacyCohortOkView {
 }
 
 export interface EfficacyCohortSuppressedView {
-  status: 'suppressed';
+  status: "suppressed";
   classId: string;
   n: number;
   threshold: number;
@@ -33,7 +38,7 @@ export interface EfficacyExperimentView {
   experimentId: string;
   status: string;
   variants: Record<string, { n: number; mean: number }>;
-  significance: 'none' | 'weak' | 'strong';
+  significance: "none" | "weak" | "strong";
 }
 
 export interface EfficacyViewProps {
@@ -58,7 +63,8 @@ function CohortOkTiles({ cohort }: { cohort: EfficacyCohortOkView }) {
 
   const accuracy =
     cohort.accuracy.length > 0
-      ? cohort.accuracy.reduce((sum, p) => sum + (p.firstAttemptAccuracy ?? 0), 0) / cohort.accuracy.length
+      ? cohort.accuracy.reduce((sum, p) => sum + (p.firstAttemptAccuracy ?? 0), 0) /
+        cohort.accuracy.length
       : 0;
 
   return (
@@ -71,9 +77,7 @@ function CohortOkTiles({ cohort }: { cohort: EfficacyCohortOkView }) {
       <div>
         <span>Time to Mastery</span>
         <span>
-          {cohort.timeToMastery.length > 0
-            ? `${cohort.timeToMastery[0].daysToMastery} days`
-            : '—'}
+          {cohort.timeToMastery.length > 0 ? `${cohort.timeToMastery[0].daysToMastery} days` : "—"}
         </span>
       </div>
       <div>
@@ -88,11 +92,7 @@ function CohortOkTiles({ cohort }: { cohort: EfficacyCohortOkView }) {
   );
 }
 
-function CohortSuppressedBanner({
-  cohort,
-}: {
-  cohort: EfficacyCohortSuppressedView;
-}) {
+function CohortSuppressedBanner({ cohort }: { cohort: EfficacyCohortSuppressedView }) {
   return (
     <div>
       Cohort too small to display (n={cohort.n}, threshold={cohort.threshold})
@@ -112,9 +112,7 @@ function ExperimentRow({ experiment }: { experiment: EfficacyExperimentView }) {
         </span>
       ))}
       <span>
-        {experiment.significance === 'none'
-          ? 'no significant effect'
-          : experiment.significance}
+        {experiment.significance === "none" ? "no significant effect" : experiment.significance}
       </span>
     </div>
   );
@@ -132,10 +130,8 @@ export function EfficacyView({ claims, cohort, experiments }: EfficacyViewProps)
       <h1>Efficacy Dashboard</h1>
 
       <h2>Cohort Metrics</h2>
-      {cohort?.status === 'ok' && <CohortOkTiles cohort={cohort} />}
-      {cohort?.status === 'suppressed' && (
-        <CohortSuppressedBanner cohort={cohort} />
-      )}
+      {cohort?.status === "ok" && <CohortOkTiles cohort={cohort} />}
+      {cohort?.status === "suppressed" && <CohortSuppressedBanner cohort={cohort} />}
 
       <h2>Active Experiments</h2>
       {experiments.map((exp) => (

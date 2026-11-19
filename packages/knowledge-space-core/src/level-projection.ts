@@ -1,15 +1,17 @@
-import { z } from 'zod';
-import { getKnowledgeState } from './knowledge-state-engine';
-import type { KnowledgeStateStudentRef, KnowledgeStateEvidence } from './knowledge-state-engine';
-import type { KnowledgeStateEntry, MasteryThresholds } from './mastery-state';
-import type { KnowledgeSpace } from './types';
-import { computeWeightedReadiness } from './weighted-readiness';
+import { z } from "zod";
+import { getKnowledgeState } from "./knowledge-state-engine";
+import type { KnowledgeStateStudentRef, KnowledgeStateEvidence } from "./knowledge-state-engine";
+import type { KnowledgeStateEntry, MasteryThresholds } from "./mastery-state";
+import type { KnowledgeSpace } from "./types";
+import { computeWeightedReadiness } from "./weighted-readiness";
 
 export const knowledgeStateSchema = z.object({
-  skills: z.array(z.object({
-    nodeId: z.string().min(1),
-    mastery: z.number().min(0).max(1),
-  })),
+  skills: z.array(
+    z.object({
+      nodeId: z.string().min(1),
+      mastery: z.number().min(0).max(1),
+    }),
+  ),
 });
 
 export const displayLevelItemSchema = z.object({
@@ -27,8 +29,9 @@ export const displayLevelItemSchema = z.object({
  * and descending minMastery are all rejected at validation time so the
  * invariant cannot slip downstream.
  */
-export const displayLevelSchema = z.array(displayLevelItemSchema)
-  .min(1, 'A display-level band must contain at least one level')
+export const displayLevelSchema = z
+  .array(displayLevelItemSchema)
+  .min(1, "A display-level band must contain at least one level")
   .superRefine((band, ctx) => {
     const seenIds = new Set<string>();
     for (let i = 0; i < band.length; i++) {
@@ -37,7 +40,7 @@ export const displayLevelSchema = z.array(displayLevelItemSchema)
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: `Duplicate display-level id "${level.id}" — ids must be unique within a band`,
-          path: [i, 'id'],
+          path: [i, "id"],
         });
         return;
       }
@@ -49,7 +52,7 @@ export const displayLevelSchema = z.array(displayLevelItemSchema)
           ctx.addIssue({
             code: z.ZodIssueCode.custom,
             message: `Display-level "${level.id}" has minMastery ${level.minMastery} which is below the previous level "${prev.id}" minMastery ${prev.minMastery} — values must be non-decreasing`,
-            path: [i, 'minMastery'],
+            path: [i, "minMastery"],
           });
           return;
         }
@@ -89,10 +92,7 @@ function averageMastery(state: KnowledgeState): number {
  * @returns {string} - The `id` of the matching display level
  * @throws {z.ZodError} - If `levels` is not a valid display-level band
  */
-export function projectDisplayLevel(
-  state: KnowledgeState,
-  levels: DisplayLevel[],
-): string {
+export function projectDisplayLevel(state: KnowledgeState, levels: DisplayLevel[]): string {
   const band = displayLevelSchema.parse(levels);
   const avg = averageMastery(state);
   let result = band[0];
@@ -136,7 +136,7 @@ export function computeNodeState(
     if (!entry) continue;
 
     // Mastered nodes are excluded from fringe; readiness is optional
-    if (entry.state === 'mastered') continue;
+    if (entry.state === "mastered") continue;
 
     const readiness = computeWeightedReadiness(node.id, state, graph, thresholds);
     entry.readinessScore = readiness.score;

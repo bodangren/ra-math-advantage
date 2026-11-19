@@ -1,25 +1,21 @@
-import { z } from 'zod';
+import { z } from "zod";
 
-import { PRACTICE_MODE_VALUES } from './contract';
+import { PRACTICE_MODE_VALUES } from "./contract";
 
 /** The versioned learning-evidence contract identifier. */
-export const LEARNING_EVIDENCE_CONTRACT_VERSION = 'learning-evidence.v1' as const;
+export const LEARNING_EVIDENCE_CONTRACT_VERSION = "learning-evidence.v1" as const;
 
 /** The origins that can produce learning evidence. */
-export const LEARNING_EVIDENCE_ORIGIN_VALUES = [
-  'teacher_led',
-  'mastery_advantage',
-] as const;
+export const LEARNING_EVIDENCE_ORIGIN_VALUES = ["teacher_led", "mastery_advantage"] as const;
 
-const utcTimestampPattern =
-  /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d{1,3}))?Z$/;
+const utcTimestampPattern = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d{1,3}))?Z$/;
 
 function canonicalUtcTimestamp(value: string): string | null {
   const match = utcTimestampPattern.exec(value);
   if (match === null) return null;
 
   const [, year, month, day, hour, minute, second, fraction] = match;
-  const milliseconds = (fraction ?? '').padEnd(3, '0');
+  const milliseconds = (fraction ?? "").padEnd(3, "0");
   const canonicalInput = `${year}-${month}-${day}T${hour}:${minute}:${second}.${milliseconds}Z`;
   const timestamp = Date.parse(value);
   if (!Number.isFinite(timestamp)) return null;
@@ -30,20 +26,19 @@ function canonicalUtcTimestamp(value: string): string | null {
 
 const nonBlankStringSchema = z.string().trim().min(1);
 
-const occurredAtSchema = z.string().refine(
-  (value) => canonicalUtcTimestamp(value) !== null,
-  'occurredAt must be a valid ISO-8601 UTC timestamp ending in Z',
-);
+const occurredAtSchema = z
+  .string()
+  .refine(
+    (value) => canonicalUtcTimestamp(value) !== null,
+    "occurredAt must be a valid ISO-8601 UTC timestamp ending in Z",
+  );
 
-const safeNumberSchema = z.number().refine(
-  Number.isFinite,
-  'value must be finite',
-);
+const safeNumberSchema = z.number().refine(Number.isFinite, "value must be finite");
 
 const attemptOrdinalSchema = safeNumberSchema
   .int()
   .positive()
-  .refine(Number.isSafeInteger, 'attemptOrdinal must be a safe integer');
+  .refine(Number.isSafeInteger, "attemptOrdinal must be a safe integer");
 
 const gradedEvidenceSchema = z
   .object({
@@ -54,13 +49,13 @@ const gradedEvidenceSchema = z
   .strict()
   .superRefine((value, context) => {
     if (
-      value.isCorrect === undefined
-      && value.score === undefined
-      && value.maxScore === undefined
+      value.isCorrect === undefined &&
+      value.score === undefined &&
+      value.maxScore === undefined
     ) {
       context.addIssue({
-        code: 'custom',
-        message: 'gradedEvidence must contain at least one outcome',
+        code: "custom",
+        message: "gradedEvidence must contain at least one outcome",
       });
     }
 
@@ -70,32 +65,32 @@ const gradedEvidenceSchema = z
     const hasMaxScore = maxScore !== undefined;
     if (hasScore !== hasMaxScore) {
       context.addIssue({
-        code: 'custom',
-        message: 'score and maxScore must be provided together',
-        path: [hasScore ? 'maxScore' : 'score'],
+        code: "custom",
+        message: "score and maxScore must be provided together",
+        path: [hasScore ? "maxScore" : "score"],
       });
     }
 
     if (hasScore && hasMaxScore) {
       if (score < 0) {
         context.addIssue({
-          code: 'custom',
-          message: 'score must be non-negative',
-          path: ['score'],
+          code: "custom",
+          message: "score must be non-negative",
+          path: ["score"],
         });
       }
       if (maxScore < 0) {
         context.addIssue({
-          code: 'custom',
-          message: 'maxScore must be non-negative',
-          path: ['maxScore'],
+          code: "custom",
+          message: "maxScore must be non-negative",
+          path: ["maxScore"],
         });
       }
       if (score > maxScore) {
         context.addIssue({
-          code: 'custom',
-          message: 'score cannot exceed maxScore',
-          path: ['score'],
+          code: "custom",
+          message: "score cannot exceed maxScore",
+          path: ["score"],
         });
       }
     }
@@ -120,21 +115,19 @@ export const learningEvidenceV1Schema = z
 export type LearningEvidenceV1 = z.infer<typeof learningEvidenceV1Schema>;
 
 /** The idempotency result for a candidate evidence record. */
-export type LearningEvidenceIdempotencyV1 = 'new' | 'replay' | 'conflict';
+export type LearningEvidenceIdempotencyV1 = "new" | "replay" | "conflict";
 
 /** The exposure state used by the teacher-first policy. */
-export type LearningEvidenceExposureStateV1 =
-  | 'awaiting_teacher_exposure'
-  | 'introduced';
+export type LearningEvidenceExposureStateV1 = "awaiting_teacher_exposure" | "introduced";
 
 /** Deterministic reasons returned by the learning-evidence policy. */
 export type LearningEvidenceDecisionReasonV1 =
-  | 'node_not_enabled'
-  | 'idempotency_conflict'
-  | 'teacher_led'
-  | 'awaiting_teacher_exposure'
-  | 'ungraded_evidence'
-  | 'eligible';
+  | "node_not_enabled"
+  | "idempotency_conflict"
+  | "teacher_led"
+  | "awaiting_teacher_exposure"
+  | "ungraded_evidence"
+  | "eligible";
 
 /** The pure policy result consumed by app persistence adapters. */
 export interface LearningEvidenceDecisionV1 {
@@ -153,20 +146,14 @@ export interface EvaluateLearningEvidenceV1Input {
 }
 
 function normalizeGradedEvidence(
-  gradedEvidence: LearningEvidenceV1['gradedEvidence'],
-): LearningEvidenceV1['gradedEvidence'] {
+  gradedEvidence: LearningEvidenceV1["gradedEvidence"],
+): LearningEvidenceV1["gradedEvidence"] {
   if (gradedEvidence === undefined) return undefined;
 
   return {
-    ...(gradedEvidence.isCorrect === undefined
-      ? {}
-      : { isCorrect: gradedEvidence.isCorrect }),
-    ...(gradedEvidence.score === undefined
-      ? {}
-      : { score: gradedEvidence.score }),
-    ...(gradedEvidence.maxScore === undefined
-      ? {}
-      : { maxScore: gradedEvidence.maxScore }),
+    ...(gradedEvidence.isCorrect === undefined ? {} : { isCorrect: gradedEvidence.isCorrect }),
+    ...(gradedEvidence.score === undefined ? {} : { score: gradedEvidence.score }),
+    ...(gradedEvidence.maxScore === undefined ? {} : { maxScore: gradedEvidence.maxScore }),
   };
 }
 
@@ -176,13 +163,11 @@ function normalizeGradedEvidence(
  * IDs and opaque keys lose surrounding whitespace. UTC timestamps use the
  * canonical millisecond form returned by `Date.toISOString()`.
  */
-export function normalizeLearningEvidenceV1(
-  input: LearningEvidenceV1,
-): LearningEvidenceV1 {
+export function normalizeLearningEvidenceV1(input: LearningEvidenceV1): LearningEvidenceV1 {
   const parsed = learningEvidenceV1Schema.parse(input);
   const occurredAt = canonicalUtcTimestamp(parsed.occurredAt);
   if (occurredAt === null) {
-    throw new Error('occurredAt must be a valid ISO-8601 UTC timestamp ending in Z');
+    throw new Error("occurredAt must be a valid ISO-8601 UTC timestamp ending in Z");
   }
   const gradedEvidence = normalizeGradedEvidence(parsed.gradedEvidence);
 
@@ -194,9 +179,7 @@ export function normalizeLearningEvidenceV1(
     origin: parsed.origin,
     mode: parsed.mode,
     occurredAt,
-    ...(gradedEvidence === undefined
-      ? {}
-      : { gradedEvidence }),
+    ...(gradedEvidence === undefined ? {} : { gradedEvidence }),
     idempotencyKey: parsed.idempotencyKey.trim(),
   };
 }
@@ -208,37 +191,37 @@ function getIdempotency(
   const matching = acceptedEvidence.filter(
     (accepted) => accepted.idempotencyKey === evidence.idempotencyKey,
   );
-  if (matching.length === 0) return 'new';
+  if (matching.length === 0) return "new";
 
   return matching.every(
-    (accepted) => (
-      accepted.contractVersion === evidence.contractVersion
-      && accepted.nodeId === evidence.nodeId
-      && accepted.activityId === evidence.activityId
-      && accepted.attemptOrdinal === evidence.attemptOrdinal
-      && accepted.origin === evidence.origin
-      && accepted.mode === evidence.mode
-      && accepted.occurredAt === evidence.occurredAt
-      && accepted.gradedEvidence?.isCorrect === evidence.gradedEvidence?.isCorrect
-      && accepted.gradedEvidence?.score === evidence.gradedEvidence?.score
-      && accepted.gradedEvidence?.maxScore === evidence.gradedEvidence?.maxScore
-    ),
+    (accepted) =>
+      accepted.contractVersion === evidence.contractVersion &&
+      accepted.nodeId === evidence.nodeId &&
+      accepted.activityId === evidence.activityId &&
+      accepted.attemptOrdinal === evidence.attemptOrdinal &&
+      accepted.origin === evidence.origin &&
+      accepted.mode === evidence.mode &&
+      accepted.occurredAt === evidence.occurredAt &&
+      accepted.gradedEvidence?.isCorrect === evidence.gradedEvidence?.isCorrect &&
+      accepted.gradedEvidence?.score === evidence.gradedEvidence?.score &&
+      accepted.gradedEvidence?.maxScore === evidence.gradedEvidence?.maxScore,
   )
-    ? 'replay'
-    : 'conflict';
+    ? "replay"
+    : "conflict";
 }
 
 function hasTeacherExposureAtOrBefore(
   evidence: LearningEvidenceV1,
   acceptedEvidence: readonly LearningEvidenceV1[],
 ): boolean {
-  if (evidence.origin === 'teacher_led') return true;
+  if (evidence.origin === "teacher_led") return true;
 
   const occurredAt = Date.parse(evidence.occurredAt);
   return acceptedEvidence.some(
-    (accepted) => accepted.origin === 'teacher_led'
-      && accepted.nodeId === evidence.nodeId
-      && Date.parse(accepted.occurredAt) <= occurredAt,
+    (accepted) =>
+      accepted.origin === "teacher_led" &&
+      accepted.nodeId === evidence.nodeId &&
+      Date.parse(accepted.occurredAt) <= occurredAt,
   );
 }
 
@@ -274,47 +257,32 @@ export function evaluateLearningEvidenceV1({
   const idempotency = getIdempotency(evidence, acceptedEvidence);
 
   if (
-    enabledNodeIds !== undefined
-    && !enabledNodeIds.some((nodeId) => nodeId.trim() === evidence.nodeId)
+    enabledNodeIds !== undefined &&
+    !enabledNodeIds.some((nodeId) => nodeId.trim() === evidence.nodeId)
   ) {
-    return decision(
-      idempotency,
-      'awaiting_teacher_exposure',
-      'node_not_enabled',
-      false,
-    );
+    return decision(idempotency, "awaiting_teacher_exposure", "node_not_enabled", false);
   }
 
   const introduced = hasTeacherExposureAtOrBefore(evidence, acceptedEvidence);
   const exposureState: LearningEvidenceExposureStateV1 = introduced
-    ? 'introduced'
-    : 'awaiting_teacher_exposure';
+    ? "introduced"
+    : "awaiting_teacher_exposure";
 
-  if (idempotency === 'conflict') {
-    return decision(
-      idempotency,
-      exposureState,
-      'idempotency_conflict',
-      false,
-    );
+  if (idempotency === "conflict") {
+    return decision(idempotency, exposureState, "idempotency_conflict", false);
   }
 
   if (!introduced) {
-    return decision(
-      idempotency,
-      exposureState,
-      'awaiting_teacher_exposure',
-      false,
-    );
+    return decision(idempotency, exposureState, "awaiting_teacher_exposure", false);
   }
 
-  if (evidence.origin === 'teacher_led') {
-    return decision(idempotency, exposureState, 'teacher_led', false);
+  if (evidence.origin === "teacher_led") {
+    return decision(idempotency, exposureState, "teacher_led", false);
   }
 
   if (evidence.gradedEvidence === undefined) {
-    return decision(idempotency, exposureState, 'ungraded_evidence', false);
+    return decision(idempotency, exposureState, "ungraded_evidence", false);
   }
 
-  return decision(idempotency, exposureState, 'eligible', true);
+  return decision(idempotency, exposureState, "eligible", true);
 }

@@ -1,14 +1,14 @@
-import { internalMutation, internalQuery } from './_generated/server';
-import { v } from 'convex/values';
+import { internalMutation, internalQuery } from "./_generated/server";
+import { v } from "convex/values";
 
-const roleValidator = v.union(v.literal('student'), v.literal('teacher'), v.literal('admin'));
+const roleValidator = v.union(v.literal("student"), v.literal("teacher"), v.literal("admin"));
 
 export const getCredentialByUsername = internalQuery({
   args: { username: v.string() },
   handler: async (ctx, args) => {
     const credential = await ctx.db
-      .query('auth_credentials')
-      .withIndex('by_username', (q) => q.eq('username', args.username))
+      .query("auth_credentials")
+      .withIndex("by_username", (q) => q.eq("username", args.username))
       .unique();
 
     if (!credential || !credential.isActive) {
@@ -52,8 +52,8 @@ export const ensureProfileByUsername = internalMutation({
   },
   handler: async (ctx, args) => {
     const existingProfile = await ctx.db
-      .query('profiles')
-      .withIndex('by_username', (q) => q.eq('username', args.username))
+      .query("profiles")
+      .withIndex("by_username", (q) => q.eq("username", args.username))
       .unique();
 
     if (existingProfile) {
@@ -66,16 +66,16 @@ export const ensureProfileByUsername = internalMutation({
     }
 
     const now = Date.now();
-    const demoOrgSlug = 'demo-org';
-    const demoOrgName = 'Demo Organization';
+    const demoOrgSlug = "demo-org";
+    const demoOrgName = "Demo Organization";
 
     let organization = await ctx.db
-      .query('organizations')
-      .withIndex('by_slug', (q) => q.eq('slug', demoOrgSlug))
+      .query("organizations")
+      .withIndex("by_slug", (q) => q.eq("slug", demoOrgSlug))
       .unique();
 
     if (!organization) {
-      const organizationId = await ctx.db.insert('organizations', {
+      const organizationId = await ctx.db.insert("organizations", {
         name: demoOrgName,
         slug: demoOrgSlug,
         settings: {},
@@ -86,10 +86,10 @@ export const ensureProfileByUsername = internalMutation({
     }
 
     if (!organization) {
-      return { ok: false as const, reason: 'organization_not_found' as const };
+      return { ok: false as const, reason: "organization_not_found" as const };
     }
 
-    const profileId = await ctx.db.insert('profiles', {
+    const profileId = await ctx.db.insert("profiles", {
       organizationId: organization._id,
       username: args.username,
       role: args.role,
@@ -119,19 +119,19 @@ export const upsertCredentialByUsername = internalMutation({
   },
   handler: async (ctx, args) => {
     const profile = await ctx.db
-      .query('profiles')
-      .withIndex('by_username', (q) => q.eq('username', args.username))
+      .query("profiles")
+      .withIndex("by_username", (q) => q.eq("username", args.username))
       .unique();
 
     if (!profile) {
-      return { ok: false as const, reason: 'profile_not_found' as const };
+      return { ok: false as const, reason: "profile_not_found" as const };
     }
 
     const now = Date.now();
 
     const existing = await ctx.db
-      .query('auth_credentials')
-      .withIndex('by_username', (q) => q.eq('username', args.username))
+      .query("auth_credentials")
+      .withIndex("by_username", (q) => q.eq("username", args.username))
       .unique();
 
     if (existing) {
@@ -147,7 +147,7 @@ export const upsertCredentialByUsername = internalMutation({
       return { ok: true as const, updated: true as const };
     }
 
-    await ctx.db.insert('auth_credentials', {
+    await ctx.db.insert("auth_credentials", {
       profileId: profile._id,
       username: args.username,
       role: args.role,

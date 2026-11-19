@@ -1,13 +1,13 @@
 /**
  * LemonadeStand Component
- * 
+ *
  * DEVELOPER USAGE:
  * ================
  * Import and use this component in any React page or component:
- * 
+ *
  * ```tsx
  * import { LemonadeStand } from '@/components/activities/simulations/LemonadeStand'
- * 
+ *
  * export default function MyPage() {
  *   return (
  *     <div>
@@ -16,62 +16,62 @@
  *   )
  * }
  * ```
- * 
+ *
  * The component is fully self-contained with its own state management.
  * No props are required - it initializes with default values.
- * 
+ *
  * STUDENT INTERACTION & LEARNING OBJECTIVES:
  * ==========================================
- * 
+ *
  * OBJECTIVE: Students learn fundamental business concepts through running
  * a lemonade stand: profit/loss, pricing strategy, inventory management,
  * customer satisfaction, and external factors (weather) affecting business.
- * 
+ *
  * HOW STUDENTS INTERACT:
  * 1. **Monitor Business Dashboard**: Students see current cash ($50 starting),
  *    day counter, total revenue, and profit/loss calculations.
- * 
+ *
  * 2. **Purchase Supplies**: Students buy ingredients with different costs:
  *    - LEMONS: $3.00 for 10 lemons (bag)
- *    - SUGAR: $2.00 for 10 units (bag) 
+ *    - SUGAR: $2.00 for 10 units (bag)
  *    - CUPS: $1.50 for 20 cups (pack)
- * 
+ *
  * 3. **Manage Inventory**: Track remaining supplies:
  *    - Monitor current stock levels of lemons, sugar, and cups
  *    - Calculate maximum lemonade cups possible from current inventory
  *    - Balance purchasing decisions with cash flow
- * 
+ *
  * 4. **Create Recipe & Set Pricing**:
  *    - Adjust lemons per cup (1-5, affects taste and cost)
  *    - Adjust sugar per cup (0-3, affects taste and cost)
  *    - Set selling price per cup ($0.25-$5.00)
  *    - Receive real-time feedback on recipe quality and pricing strategy
- * 
- * 5. **React to Weather Conditions**: 
+ *
+ * 5. **React to Weather Conditions**:
  *    - Weather changes daily and affects customer demand:
  *      * ☀️ Sunny: +50% demand boost
  *      * 🔥 Hot: +100% demand boost  
  *      * ☁️ Cloudy: -20% demand reduction
  *      * 🌧️ Rainy: -70% demand reduction
- * 
+ *
  * 6. **Daily Sales Simulation**: Click "Start Selling!" to begin:
  *    - Animated sales progress bar shows customers buying
  *    - Real-time updates of cups sold and revenue earned
  *    - Must have sufficient supplies to make lemonade
- * 
+ *
  * 7. **Daily Business Reports**: After each sales day:
  *    - Cups sold vs potential demand
  *    - Total revenue for the day
  *    - Cost of goods sold (ingredient costs per cup)
  *    - Daily profit/loss calculation
  *    - Customer satisfaction feedback
- * 
+ *
  * 8. **Strategic Optimization**: Students learn to:
  *    - Balance ingredient costs with selling price for profit
  *    - Adjust pricing based on weather forecasts
  *    - Manage cash flow between purchasing and sales
  *    - Optimize recipe for customer satisfaction vs cost
- * 
+ *
  * KEY LEARNING OUTCOMES:
  * - Understanding revenue vs profit concepts
  * - Price elasticity and demand sensitivity
@@ -83,18 +83,18 @@
  * - Basic financial statements: revenue, expenses, profit
  */
 
-'use client'
+"use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Progress } from '@/components/ui/progress'
-import { Separator } from '@/components/ui/separator'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { 
-  DollarSign, 
-  Calendar, 
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  DollarSign,
+  Calendar,
   TrendingUp,
   ShoppingCart,
   Package,
@@ -107,54 +107,57 @@ import {
   BarChart3,
   Users,
   Smile,
-  Frown
-} from 'lucide-react'
+  Frown,
+} from "lucide-react";
 
-import type { Activity } from '@/lib/schemas/validators'
-import type { LemonadeStandActivityProps } from '@/types/activities'
+import type { Activity } from "@/lib/schemas/validators";
+import type { LemonadeStandActivityProps } from "@/types/activities";
 
-import { buildPracticeSubmissionEnvelope, buildPracticeSubmissionParts, type PracticeSubmissionCallbackPayload } from '@/lib/practice/contract'
+import {
+  buildPracticeSubmissionEnvelope,
+  buildPracticeSubmissionParts,
+  type PracticeSubmissionCallbackPayload,
+} from "@/lib/practice/contract";
 
-export type LemonadeStandActivity = Omit<Activity, 'componentKey' | 'props'> & {
-  componentKey: 'lemonade-stand'
-  props: LemonadeStandActivityProps
-}
+export type LemonadeStandActivity = Omit<Activity, "componentKey" | "props"> & {
+  componentKey: "lemonade-stand";
+  props: LemonadeStandActivityProps;
+};
 
 export interface LemonadeStandState {
-  cash: number
-  day: number
-  revenue: number
-  expenses: number
+  cash: number;
+  day: number;
+  revenue: number;
+  expenses: number;
   inventory: {
-    lemons: number
-    sugar: number
-    cups: number
-  }
+    lemons: number;
+    sugar: number;
+    cups: number;
+  };
   recipe: {
-    lemons: number
-    sugar: number
-    price: number
-  }
-  weather: string
-  customerSatisfaction: number
-  isSellingActive: boolean
+    lemons: number;
+    sugar: number;
+    price: number;
+  };
+  weather: string;
+  customerSatisfaction: number;
+  isSellingActive: boolean;
   dailySales: {
-    cupsSold: number
-    dailyRevenue: number
-    dailyExpenses: number
-  }
-  gameStatus: 'playing' | 'ended'
+    cupsSold: number;
+    dailyRevenue: number;
+    dailyExpenses: number;
+  };
+  gameStatus: "playing" | "ended";
 }
 
 interface LemonadeStandProps {
-  activity: LemonadeStandActivity
-  initialState?: Partial<LemonadeStandState>
-  onStateChange?: (state: LemonadeStandState) => void
-  onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void
+  activity: LemonadeStandActivity;
+  initialState?: Partial<LemonadeStandState>;
+  onStateChange?: (state: LemonadeStandState) => void;
+  onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void;
 }
 
-type SupplyId = LemonadeStandActivityProps['supplyOptions'][number]['id']
-
+type SupplyId = LemonadeStandActivityProps["supplyOptions"][number]["id"];
 
 /**
  * Clones the initial lemonade stand state from the activity configuration.
@@ -162,15 +165,16 @@ type SupplyId = LemonadeStandActivityProps['supplyOptions'][number]['id']
  * @param state - The initial state from the activity config
  * @returns A fresh LemonadeStandState instance
  */
-function cloneStateFromConfig(state: LemonadeStandActivityProps['initialState']) : LemonadeStandState {
-  return ({
+function cloneStateFromConfig(
+  state: LemonadeStandActivityProps["initialState"],
+): LemonadeStandState {
+  return {
     ...state,
     inventory: { ...state.inventory },
     recipe: { ...state.recipe },
-    dailySales: { ...state.dailySales }
-  });
+    dailySales: { ...state.dailySales },
+  };
 }
-
 
 /**
  * Merges a base lemonade stand state with optional partial overrides.
@@ -179,9 +183,17 @@ function cloneStateFromConfig(state: LemonadeStandActivityProps['initialState'])
  * @param override - Optional partial state to merge on top
  * @returns A new merged LemonadeStandState
  */
-function mergeState(base: LemonadeStandState, override?: Partial<LemonadeStandState>) : LemonadeStandState {
+function mergeState(
+  base: LemonadeStandState,
+  override?: Partial<LemonadeStandState>,
+): LemonadeStandState {
   if (!override) {
-    return { ...base, inventory: { ...base.inventory }, recipe: { ...base.recipe }, dailySales: { ...base.dailySales } }
+    return {
+      ...base,
+      inventory: { ...base.inventory },
+      recipe: { ...base.recipe },
+      dailySales: { ...base.dailySales },
+    };
   }
 
   return {
@@ -192,12 +204,12 @@ function mergeState(base: LemonadeStandState, override?: Partial<LemonadeStandSt
     inventory: {
       lemons: override.inventory?.lemons ?? base.inventory.lemons,
       sugar: override.inventory?.sugar ?? base.inventory.sugar,
-      cups: override.inventory?.cups ?? base.inventory.cups
+      cups: override.inventory?.cups ?? base.inventory.cups,
     },
     recipe: {
       lemons: override.recipe?.lemons ?? base.recipe.lemons,
       sugar: override.recipe?.sugar ?? base.recipe.sugar,
-      price: override.recipe?.price ?? base.recipe.price
+      price: override.recipe?.price ?? base.recipe.price,
     },
     weather: override.weather ?? base.weather,
     customerSatisfaction: override.customerSatisfaction ?? base.customerSatisfaction,
@@ -205,12 +217,11 @@ function mergeState(base: LemonadeStandState, override?: Partial<LemonadeStandSt
     dailySales: {
       cupsSold: override.dailySales?.cupsSold ?? base.dailySales.cupsSold,
       dailyRevenue: override.dailySales?.dailyRevenue ?? base.dailySales.dailyRevenue,
-      dailyExpenses: override.dailySales?.dailyExpenses ?? base.dailySales.dailyExpenses
+      dailyExpenses: override.dailySales?.dailyExpenses ?? base.dailySales.dailyExpenses,
     },
-    gameStatus: override.gameStatus ?? base.gameStatus
-  }
+    gameStatus: override.gameStatus ?? base.gameStatus,
+  };
 }
-
 
 /**
  * Renders an interactive lemonade stand simulation where students manage
@@ -221,50 +232,61 @@ function mergeState(base: LemonadeStandState, override?: Partial<LemonadeStandSt
  * @param onStateChange - Callback fired when game state changes
  * @param onSubmit - Callback to submit practice results
  */
-export function LemonadeStand({ activity, initialState, onStateChange, onSubmit }: LemonadeStandProps) {
-  const baseState = useMemo(() => cloneStateFromConfig(activity.props.initialState), [activity.props.initialState])
-  const [gameState, setGameState] = useState<LemonadeStandState>(() => mergeState(baseState, initialState))
-  const [showInstructions, setShowInstructions] = useState(false)
-  const [notifications, setNotifications] = useState<Array<{
-    id: string
-    message: string
-    type: 'success' | 'warning' | 'error' | 'info'
-  }>>([])
-  const [salesProgress, setSalesProgress] = useState(0)
-  const [submitted, setSubmitted] = useState(false)
-  const submittedRef = useRef(false)
-  const salesIntervalRef = useRef<NodeJS.Timeout | null>(null)
-  const notificationTimeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([])
+export function LemonadeStand({
+  activity,
+  initialState,
+  onStateChange,
+  onSubmit,
+}: LemonadeStandProps) {
+  const baseState = useMemo(
+    () => cloneStateFromConfig(activity.props.initialState),
+    [activity.props.initialState],
+  );
+  const [gameState, setGameState] = useState<LemonadeStandState>(() =>
+    mergeState(baseState, initialState),
+  );
+  const [showInstructions, setShowInstructions] = useState(false);
+  const [notifications, setNotifications] = useState<
+    Array<{
+      id: string;
+      message: string;
+      type: "success" | "warning" | "error" | "info";
+    }>
+  >([]);
+  const [salesProgress, setSalesProgress] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
+  const submittedRef = useRef(false);
+  const salesIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const notificationTimeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-  const heroDescription = activity.description ?? activity.props.description
-  const supplyOptions = activity.props.supplyOptions
+  const heroDescription = activity.description ?? activity.props.description;
+  const supplyOptions = activity.props.supplyOptions;
   const supplyLookup = useMemo(
     () => Object.fromEntries(supplyOptions.map((option) => [option.id, option])),
-    [supplyOptions]
-  )
-  const weatherPatterns = activity.props.weatherPatterns
+    [supplyOptions],
+  );
+  const weatherPatterns = activity.props.weatherPatterns;
   const weatherLookup = useMemo(
     () => Object.fromEntries(weatherPatterns.map((pattern) => [pattern.id, pattern])),
-    [weatherPatterns]
-  )
-  const ingredientCosts = activity.props.ingredientCosts
-  const demandConfig = activity.props.demand
-  const recipeGuidance = activity.props.recipeGuidance
+    [weatherPatterns],
+  );
+  const ingredientCosts = activity.props.ingredientCosts;
+  const demandConfig = activity.props.demand;
+  const recipeGuidance = activity.props.recipeGuidance;
 
   useEffect(() => {
-    const timeouts = notificationTimeoutsRef.current
+    const timeouts = notificationTimeoutsRef.current;
     return () => {
       if (salesIntervalRef.current) {
-        clearInterval(salesIntervalRef.current)
+        clearInterval(salesIntervalRef.current);
       }
-      timeouts.forEach(clearTimeout)
-    }
-  }, [])
+      timeouts.forEach(clearTimeout);
+    };
+  }, []);
 
   useEffect(() => {
-    onStateChange?.(gameState)
-  }, [gameState, onStateChange])
-
+    onStateChange?.(gameState);
+  }, [gameState, onStateChange]);
 
   /**
    * Adds a temporary notification toast that auto-dismisses after 4 seconds.
@@ -272,45 +294,52 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
    * @param message - The notification message text
    * @param type - The notification severity type
    */
-  const addNotification = useCallback((message: string, type: 'success' | 'warning' | 'error' | 'info') => {
-    const id = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
-    setNotifications(prev => [...prev, { id, message, type }])
-    const timeoutId = setTimeout(() => {
-      setNotifications(prev => prev.filter(n => n.id !== id))
-    }, 4000)
-    notificationTimeoutsRef.current.push(timeoutId)
-  }, [])
-
+  const addNotification = useCallback(
+    (message: string, type: "success" | "warning" | "error" | "info") => {
+      const id = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+      setNotifications((prev) => [...prev, { id, message, type }]);
+      const timeoutId = setTimeout(() => {
+        setNotifications((prev) => prev.filter((n) => n.id !== id));
+      }, 4000);
+      notificationTimeoutsRef.current.push(timeoutId);
+    },
+    [],
+  );
 
   /**
    * Purchases a supply option, deducting cost from cash and adding to inventory.
    *
    * @param supplyId - The supply option ID to purchase
    */
-  const buySupply = useCallback((supplyId: SupplyId) => {
-    const config = supplyLookup[supplyId]
-    if (!config) {
-      return
-    }
-
-    if (gameState.cash < config.cost) {
-      addNotification(`Not enough cash! Need $${config.cost.toFixed(2)}`, 'error')
-      return
-    }
-
-    setGameState(prev => ({
-      ...prev,
-      cash: prev.cash - config.cost,
-      expenses: prev.expenses + config.cost,
-      inventory: {
-        ...prev.inventory,
-        [supplyId]: prev.inventory[supplyId] + config.quantity
+  const buySupply = useCallback(
+    (supplyId: SupplyId) => {
+      const config = supplyLookup[supplyId];
+      if (!config) {
+        return;
       }
-    }))
 
-    addNotification(`Bought ${config.quantity} ${config.label} for $${config.cost.toFixed(2)}`, 'success')
-  }, [gameState.cash, supplyLookup, addNotification])
+      if (gameState.cash < config.cost) {
+        addNotification(`Not enough cash! Need $${config.cost.toFixed(2)}`, "error");
+        return;
+      }
 
+      setGameState((prev) => ({
+        ...prev,
+        cash: prev.cash - config.cost,
+        expenses: prev.expenses + config.cost,
+        inventory: {
+          ...prev.inventory,
+          [supplyId]: prev.inventory[supplyId] + config.quantity,
+        },
+      }));
+
+      addNotification(
+        `Bought ${config.quantity} ${config.label} for $${config.cost.toFixed(2)}`,
+        "success",
+      );
+    },
+    [gameState.cash, supplyLookup, addNotification],
+  );
 
   /**
    * Updates a single recipe field (lemons, sugar, or price).
@@ -318,16 +347,15 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
    * @param field - The recipe field to update
    * @param value - The new value for the field
    */
-  const updateRecipe = useCallback((field: keyof LemonadeStandState['recipe'], value: number) => {
-    setGameState(prev => ({
+  const updateRecipe = useCallback((field: keyof LemonadeStandState["recipe"], value: number) => {
+    setGameState((prev) => ({
       ...prev,
       recipe: {
         ...prev.recipe,
-        [field]: value
-      }
-    }))
-  }, [])
-
+        [field]: value,
+      },
+    }));
+  }, []);
 
   /**
    * Evaluates the current recipe and returns feedback on quality and pricing.
@@ -335,22 +363,41 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
    * @returns An object with feedback message, color class, and icon
    */
   const getRecipeFeedback = useCallback(() => {
-    const { lemons, sugar, price } = gameState.recipe
-    const totalIngredients = lemons + sugar
+    const { lemons, sugar, price } = gameState.recipe;
+    const totalIngredients = lemons + sugar;
 
     if (totalIngredients < recipeGuidance.minimumStrength) {
-      return { message: "Recipe too weak - customers won't like it!", color: 'text-red-600', icon: <Frown className="w-4 h-4" /> }
+      return {
+        message: "Recipe too weak - customers won't like it!",
+        color: "text-red-600",
+        icon: <Frown className="w-4 h-4" />,
+      };
     } else if (totalIngredients > recipeGuidance.maximumStrength) {
-      return { message: "Recipe too strong - too expensive to make!", color: 'text-red-600', icon: <Frown className="w-4 h-4" /> }
+      return {
+        message: "Recipe too strong - too expensive to make!",
+        color: "text-red-600",
+        icon: <Frown className="w-4 h-4" />,
+      };
     } else if (price < recipeGuidance.minimumPrice) {
-      return { message: "Price too low - you won't make profit!", color: 'text-red-600', icon: <Frown className="w-4 h-4" /> }
+      return {
+        message: "Price too low - you won't make profit!",
+        color: "text-red-600",
+        icon: <Frown className="w-4 h-4" />,
+      };
     } else if (price > recipeGuidance.maximumPrice) {
-      return { message: "Price too high - customers won't buy!", color: 'text-red-600', icon: <Frown className="w-4 h-4" /> }
+      return {
+        message: "Price too high - customers won't buy!",
+        color: "text-red-600",
+        icon: <Frown className="w-4 h-4" />,
+      };
     } else {
-      return { message: "Great recipe and pricing!", color: 'text-green-600', icon: <Smile className="w-4 h-4" /> }
+      return {
+        message: "Great recipe and pricing!",
+        color: "text-green-600",
+        icon: <Smile className="w-4 h-4" />,
+      };
     }
-  }, [gameState.recipe, recipeGuidance])
-
+  }, [gameState.recipe, recipeGuidance]);
 
   /**
    * Calculates the maximum cups of lemonade producible from current
@@ -359,16 +406,15 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
    * @returns The maximum number of cups
    */
   const getMaxCupsFromInventory = useCallback(() => {
-    const { lemons, sugar, cups } = gameState.inventory
-    const { lemons: lemonsPerCup, sugar: sugarPerCup } = gameState.recipe
-    
+    const { lemons, sugar, cups } = gameState.inventory;
+    const { lemons: lemonsPerCup, sugar: sugarPerCup } = gameState.recipe;
+
     return Math.min(
       cups,
       lemonsPerCup > 0 ? Math.floor(lemons / lemonsPerCup) : cups,
-      sugarPerCup > 0 ? Math.floor(sugar / sugarPerCup) : cups
-    )
-  }, [gameState.inventory, gameState.recipe])
-
+      sugarPerCup > 0 ? Math.floor(sugar / sugarPerCup) : cups,
+    );
+  }, [gameState.inventory, gameState.recipe]);
 
   /**
    * Generates a random weather pattern for the current day.
@@ -377,108 +423,118 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
    */
   const generateRandomWeather = useCallback(() => {
     if (weatherPatterns.length === 0) {
-      return gameState.weather
+      return gameState.weather;
     }
-    const index = Math.floor(Math.random() * weatherPatterns.length)
-    return weatherPatterns[index]?.id ?? gameState.weather
-  }, [weatherPatterns, gameState.weather])
-
+    const index = Math.floor(Math.random() * weatherPatterns.length);
+    return weatherPatterns[index]?.id ?? gameState.weather;
+  }, [weatherPatterns, gameState.weather]);
 
   /**
    * Completes a sales day, updating revenue, inventory, and daily sales records.
    *
    * @param cupsSold - The number of cups sold during the day
    */
-  const completeSales = useCallback((cupsSold: number) => {
-    const dailyRevenue = cupsSold * gameState.recipe.price
-    const ingredientCost =
-      cupsSold *
-      (gameState.recipe.lemons * ingredientCosts.lemons +
-        gameState.recipe.sugar * ingredientCosts.sugar +
-        ingredientCosts.cup)
+  const completeSales = useCallback(
+    (cupsSold: number) => {
+      const dailyRevenue = cupsSold * gameState.recipe.price;
+      const ingredientCost =
+        cupsSold *
+        (gameState.recipe.lemons * ingredientCosts.lemons +
+          gameState.recipe.sugar * ingredientCosts.sugar +
+          ingredientCosts.cup);
 
-    setGameState(prev => ({
-      ...prev,
-      revenue: prev.revenue + dailyRevenue,
-      inventory: {
-        lemons: prev.inventory.lemons - cupsSold * prev.recipe.lemons,
-        sugar: prev.inventory.sugar - cupsSold * prev.recipe.sugar,
-        cups: prev.inventory.cups - cupsSold
-      },
-      dailySales: {
-        cupsSold,
-        dailyRevenue,
-        dailyExpenses: ingredientCost
-      },
-      isSellingActive: false
-    }))
+      setGameState((prev) => ({
+        ...prev,
+        revenue: prev.revenue + dailyRevenue,
+        inventory: {
+          lemons: prev.inventory.lemons - cupsSold * prev.recipe.lemons,
+          sugar: prev.inventory.sugar - cupsSold * prev.recipe.sugar,
+          cups: prev.inventory.cups - cupsSold,
+        },
+        dailySales: {
+          cupsSold,
+          dailyRevenue,
+          dailyExpenses: ingredientCost,
+        },
+        isSellingActive: false,
+      }));
 
-    if (cupsSold > 30) {
-      addNotification('🎉 Amazing sales day! Customers loved your lemonade!', 'success')
-    } else if (cupsSold > 15) {
-      addNotification('👍 Good sales! Customers were satisfied.', 'success')
-    } else {
-      addNotification('😕 Slow sales day. Try adjusting your recipe or pricing.', 'warning')
-    }
+      if (cupsSold > 30) {
+        addNotification("🎉 Amazing sales day! Customers loved your lemonade!", "success");
+      } else if (cupsSold > 15) {
+        addNotification("👍 Good sales! Customers were satisfied.", "success");
+      } else {
+        addNotification("😕 Slow sales day. Try adjusting your recipe or pricing.", "warning");
+      }
 
-    addNotification(`Sold ${cupsSold} cups for $${dailyRevenue.toFixed(2)}!`, 'success')
-  }, [addNotification, gameState.recipe, ingredientCosts])
-
+      addNotification(`Sold ${cupsSold} cups for $${dailyRevenue.toFixed(2)}!`, "success");
+    },
+    [addNotification, gameState.recipe, ingredientCosts],
+  );
 
   /**
    * Starts the sales simulation, calculating demand based on weather,
    * recipe quality, and price, then animating sales progress.
    */
   const simulateSales = useCallback(() => {
-    const maxCups = getMaxCupsFromInventory()
+    const maxCups = getMaxCupsFromInventory();
     if (maxCups <= 0) {
-      addNotification('Not enough supplies to make lemonade!', 'error')
-      return
+      addNotification("Not enough supplies to make lemonade!", "error");
+      return;
     }
 
-    const newWeather = generateRandomWeather()
+    const newWeather = generateRandomWeather();
 
-    setGameState(prev => ({ ...prev, weather: newWeather, isSellingActive: true }))
-    setSalesProgress(0)
+    setGameState((prev) => ({ ...prev, weather: newWeather, isSellingActive: true }));
+    setSalesProgress(0);
 
-    const weatherEffect = weatherLookup[newWeather] ?? { multiplier: 1, emoji: '⛅', description: 'Normal demand' }
-    let demandMultiplier = weatherEffect.multiplier
+    const weatherEffect = weatherLookup[newWeather] ?? {
+      multiplier: 1,
+      emoji: "⛅",
+      description: "Normal demand",
+    };
+    let demandMultiplier = weatherEffect.multiplier;
 
     if (gameState.recipe.price > demandConfig.priceSensitivity.highPriceThreshold) {
-      demandMultiplier *= demandConfig.priceSensitivity.highPriceMultiplier
+      demandMultiplier *= demandConfig.priceSensitivity.highPriceMultiplier;
     }
     if (gameState.recipe.price < demandConfig.priceSensitivity.lowPriceThreshold) {
-      demandMultiplier *= demandConfig.priceSensitivity.lowPriceMultiplier
+      demandMultiplier *= demandConfig.priceSensitivity.lowPriceMultiplier;
     }
 
-    const recipeQuality = (gameState.recipe.lemons + gameState.recipe.sugar) / 4
+    const recipeQuality = (gameState.recipe.lemons + gameState.recipe.sugar) / 4;
     demandMultiplier *= Math.max(
       demandConfig.recipeQualityRange.min,
-      Math.min(demandConfig.recipeQualityRange.max, recipeQuality)
-    )
+      Math.min(demandConfig.recipeQualityRange.max, recipeQuality),
+    );
 
-    const customerRange = Math.max(0, demandConfig.baseCustomers.max - demandConfig.baseCustomers.min)
-    const potentialCustomers = Math.floor(Math.random() * (customerRange || 1) + demandConfig.baseCustomers.min)
-    const actualCustomers = Math.min(maxCups, Math.floor(potentialCustomers * demandMultiplier))
+    const customerRange = Math.max(
+      0,
+      demandConfig.baseCustomers.max - demandConfig.baseCustomers.min,
+    );
+    const potentialCustomers = Math.floor(
+      Math.random() * (customerRange || 1) + demandConfig.baseCustomers.min,
+    );
+    const actualCustomers = Math.min(maxCups, Math.floor(potentialCustomers * demandMultiplier));
 
-    addNotification(`${weatherEffect.emoji} ${weatherEffect.description}`, 'info')
+    addNotification(`${weatherEffect.emoji} ${weatherEffect.description}`, "info");
 
     if (salesIntervalRef.current) {
-      clearInterval(salesIntervalRef.current)
+      clearInterval(salesIntervalRef.current);
     }
 
-    let progress = 0
+    let progress = 0;
     salesIntervalRef.current = setInterval(() => {
-      progress += Math.random() * 15 + 5
-      setSalesProgress(Math.min(100, progress))
+      progress += Math.random() * 15 + 5;
+      setSalesProgress(Math.min(100, progress));
 
       if (progress >= 100) {
         if (salesIntervalRef.current) {
-          clearInterval(salesIntervalRef.current)
+          clearInterval(salesIntervalRef.current);
         }
-        completeSales(actualCustomers)
+        completeSales(actualCustomers);
       }
-    }, 300)
+    }, 300);
   }, [
     addNotification,
     demandConfig,
@@ -486,37 +542,37 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
     generateRandomWeather,
     getMaxCupsFromInventory,
     weatherLookup,
-    completeSales
-  ])
+    completeSales,
+  ]);
 
   const endDay = useCallback(() => {
-    setGameState(prev => ({
+    setGameState((prev) => ({
       ...prev,
       day: prev.day + 1,
-      dailySales: { cupsSold: 0, dailyRevenue: 0, dailyExpenses: 0 }
-    }))
-    setSalesProgress(0)
-  }, [])
+      dailySales: { cupsSold: 0, dailyRevenue: 0, dailyExpenses: 0 },
+    }));
+    setSalesProgress(0);
+  }, []);
 
   const resetGame = useCallback(() => {
     if (salesIntervalRef.current) {
-      clearInterval(salesIntervalRef.current)
-      salesIntervalRef.current = null
+      clearInterval(salesIntervalRef.current);
+      salesIntervalRef.current = null;
     }
-    setGameState(cloneStateFromConfig(activity.props.initialState))
-    setSalesProgress(0)
-    setNotifications([])
-    setSubmitted(false)
-    submittedRef.current = false
-    addNotification('Game reset successfully!', 'info')
-  }, [activity.props.initialState, addNotification])
+    setGameState(cloneStateFromConfig(activity.props.initialState));
+    setSalesProgress(0);
+    setNotifications([]);
+    setSubmitted(false);
+    submittedRef.current = false;
+    addNotification("Game reset successfully!", "info");
+  }, [activity.props.initialState, addNotification]);
 
   const handleSubmitResults = useCallback(() => {
-    if (submittedRef.current || gameState.revenue === 0) return
-    submittedRef.current = true
+    if (submittedRef.current || gameState.revenue === 0) return;
+    submittedRef.current = true;
 
-    const totalExpenses = gameState.expenses
-    const totalProfit = gameState.revenue - totalExpenses
+    const totalExpenses = gameState.expenses;
+    const totalProfit = gameState.revenue - totalExpenses;
 
     const answers: Record<string, unknown> = {
       totalRevenue: gameState.revenue,
@@ -524,25 +580,25 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
       totalProfit,
       finalCash: gameState.cash,
       daysPlayed: gameState.day,
-    }
+    };
     const parts = buildPracticeSubmissionParts(answers).map((part) => ({
       ...part,
       isCorrect: true,
       score: 1,
       maxScore: 1,
-    }))
+    }));
 
     const envelope = buildPracticeSubmissionEnvelope({
-      activityId: activity.id ?? activity.componentKey ?? 'lemonade-stand',
-      mode: 'guided_practice',
-      status: 'submitted',
+      activityId: activity.id ?? activity.componentKey ?? "lemonade-stand",
+      mode: "guided_practice",
+      status: "submitted",
       attemptNumber: 1,
       submittedAt: new Date(),
       answers,
       parts,
       artifact: {
-        kind: 'lemonade_stand',
-        title: activity.props.title ?? 'Lemonade Stand',
+        kind: "lemonade_stand",
+        title: activity.props.title ?? "Lemonade Stand",
         finalCash: gameState.cash,
         totalRevenue: gameState.revenue,
         totalExpenses,
@@ -557,28 +613,32 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
         totalProfit,
         profitMargin: gameState.revenue > 0 ? totalProfit / gameState.revenue : 0,
       },
-    })
+    });
 
     try {
-      setSubmitted(true)
-      onSubmit?.(envelope)
-      addNotification('Results submitted as practice evidence!', 'success')
+      setSubmitted(true);
+      onSubmit?.(envelope);
+      addNotification("Results submitted as practice evidence!", "success");
     } catch (err) {
-      console.error('LemonadeStand submission failed:', err)
-      submittedRef.current = false
-      setSubmitted(false)
+      console.error("LemonadeStand submission failed:", err);
+      submittedRef.current = false;
+      setSubmitted(false);
     }
-  }, [gameState, activity, onSubmit, addNotification])
+  }, [gameState, activity, onSubmit, addNotification]);
 
-  const profit = gameState.revenue - gameState.expenses
-  const recipeFeedback = getRecipeFeedback()
-  const maxCups = getMaxCupsFromInventory()
-  const weatherInfo = weatherLookup[gameState.weather] ?? { emoji: '⛅', description: 'Normal demand', multiplier: 1 }
+  const profit = gameState.revenue - gameState.expenses;
+  const recipeFeedback = getRecipeFeedback();
+  const maxCups = getMaxCupsFromInventory();
+  const weatherInfo = weatherLookup[gameState.weather] ?? {
+    emoji: "⛅",
+    description: "Normal demand",
+    multiplier: 1,
+  };
   const costPerCup =
     gameState.recipe.lemons * ingredientCosts.lemons +
     gameState.recipe.sugar * ingredientCosts.sugar +
-    ingredientCosts.cup
-  const profitPerCup = gameState.recipe.price - costPerCup
+    ingredientCosts.cup;
+  const profitPerCup = gameState.recipe.price - costPerCup;
 
   return (
     <div className="max-w-6xl mx-auto space-y-6">
@@ -588,9 +648,7 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
           <CardTitle className="text-3xl flex items-center justify-center gap-2">
             {activity.props.title}
           </CardTitle>
-          <CardDescription className="text-lg">
-            {heroDescription}
-          </CardDescription>
+          <CardDescription className="text-lg">{heroDescription}</CardDescription>
           <div className="mt-4">
             <Button
               variant="outline"
@@ -600,7 +658,11 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
             >
               <HelpCircle className="w-4 h-4" />
               How to Play
-              {showInstructions ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              {showInstructions ? (
+                <ChevronUp className="w-4 h-4" />
+              ) : (
+                <ChevronDown className="w-4 h-4" />
+              )}
             </Button>
           </div>
         </CardHeader>
@@ -620,7 +682,7 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
             <div>
               <h4 className="font-semibold text-yellow-800 mb-2">🎯 Objective</h4>
               <p className="text-yellow-700">
-                Run a profitable lemonade stand by managing inventory, creating the perfect recipe, 
+                Run a profitable lemonade stand by managing inventory, creating the perfect recipe,
                 setting optimal prices, and adapting to changing weather conditions!
               </p>
             </div>
@@ -634,7 +696,8 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
                   <ul className="text-sm text-yellow-600 space-y-1">
                     {supplyOptions.map((option) => (
                       <li key={option.id}>
-                        • {option.label}: ${option.cost.toFixed(2)} for {option.quantity} {option.unit}
+                        • {option.label}: ${option.cost.toFixed(2)} for {option.quantity}{" "}
+                        {option.unit}
                       </li>
                     ))}
                   </ul>
@@ -659,7 +722,7 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
                     <div className="text-lg mb-1">{pattern.emoji}</div>
                     <div className="font-medium capitalize">{pattern.id}</div>
                     <div className="text-gray-600">
-                      {pattern.multiplier > 1 ? '+' : ''}
+                      {pattern.multiplier > 1 ? "+" : ""}
                       {((pattern.multiplier - 1) * 100).toFixed(0)}%
                     </div>
                   </div>
@@ -701,7 +764,9 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
               <DollarSign className="w-6 h-6 text-green-600" />
             </div>
             <p className="text-sm text-green-700 font-medium">Cash</p>
-            <p className={`text-2xl font-bold ${gameState.cash >= 0 ? 'text-green-800' : 'text-red-800'}`}>
+            <p
+              className={`text-2xl font-bold ${gameState.cash >= 0 ? "text-green-800" : "text-red-800"}`}
+            >
               ${gameState.cash.toFixed(2)}
             </p>
           </CardContent>
@@ -723,9 +788,7 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
               <TrendingUp className="w-6 h-6 text-purple-600" />
             </div>
             <p className="text-sm text-purple-700 font-medium">Total Revenue</p>
-            <p className="text-2xl font-bold text-purple-800">
-              ${gameState.revenue.toFixed(2)}
-            </p>
+            <p className="text-2xl font-bold text-purple-800">${gameState.revenue.toFixed(2)}</p>
           </CardContent>
         </Card>
 
@@ -735,7 +798,7 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
               <BarChart3 className="w-6 h-6 text-orange-600" />
             </div>
             <p className="text-sm text-orange-700 font-medium">Profit</p>
-            <p className={`text-2xl font-bold ${profit >= 0 ? 'text-orange-800' : 'text-red-800'}`}>
+            <p className={`text-2xl font-bold ${profit >= 0 ? "text-orange-800" : "text-red-800"}`}>
               ${profit.toFixed(2)}
             </p>
           </CardContent>
@@ -753,7 +816,8 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
               </h3>
               <p className="text-sky-600">{weatherInfo.description}</p>
               <p className="text-sm text-sky-500">
-                Customer demand: {weatherInfo.multiplier > 1 ? '+' : ''}{((weatherInfo.multiplier - 1) * 100).toFixed(0)}%
+                Customer demand: {weatherInfo.multiplier > 1 ? "+" : ""}
+                {((weatherInfo.multiplier - 1) * 100).toFixed(0)}%
               </p>
             </div>
           </div>
@@ -772,9 +836,14 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
           </CardHeader>
           <CardContent className="space-y-4">
             {supplyOptions.map((option) => (
-              <div key={option.id} className="flex items-center justify-between p-3 border rounded-lg">
+              <div
+                key={option.id}
+                className="flex items-center justify-between p-3 border rounded-lg"
+              >
                 <div>
-                  <div className="font-medium">{option.label} ({option.unit})</div>
+                  <div className="font-medium">
+                    {option.label} ({option.unit})
+                  </div>
                   <div className="text-sm text-gray-600">
                     {option.quantity} units - ${option.cost.toFixed(2)}
                   </div>
@@ -845,7 +914,7 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
                 min="1"
                 max="5"
                 value={gameState.recipe.lemons}
-                onChange={(e) => updateRecipe('lemons', parseInt(e.target.value))}
+                onChange={(e) => updateRecipe("lemons", parseInt(e.target.value))}
               />
             </div>
             <div className="space-y-2">
@@ -856,7 +925,7 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
                 min="0"
                 max="3"
                 value={gameState.recipe.sugar}
-                onChange={(e) => updateRecipe('sugar', parseInt(e.target.value))}
+                onChange={(e) => updateRecipe("sugar", parseInt(e.target.value))}
               />
             </div>
             <div className="space-y-2">
@@ -868,7 +937,7 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
                 max="5.00"
                 step="0.25"
                 value={gameState.recipe.price}
-                onChange={(e) => updateRecipe('price', parseFloat(e.target.value))}
+                onChange={(e) => updateRecipe("price", parseFloat(e.target.value))}
               />
             </div>
           </div>
@@ -888,13 +957,13 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
               <div className="grid grid-cols-2 gap-2 text-sm">
                 <div>
                   <span className="text-gray-600">Cost per cup:</span>
-                  <span className="ml-2 font-semibold text-red-600">
-                    ${costPerCup.toFixed(2)}
-                  </span>
+                  <span className="ml-2 font-semibold text-red-600">${costPerCup.toFixed(2)}</span>
                 </div>
                 <div>
                   <span className="text-gray-600">Profit per cup:</span>
-                  <span className={`ml-2 font-semibold ${profitPerCup >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  <span
+                    className={`ml-2 font-semibold ${profitPerCup >= 0 ? "text-green-600" : "text-red-600"}`}
+                  >
                     ${profitPerCup.toFixed(2)}
                   </span>
                 </div>
@@ -918,9 +987,7 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
               <Progress value={salesProgress} className="h-4" />
               <div className="text-center">
                 <div className="text-sm text-blue-600">Sales in progress...</div>
-                <div className="text-xs text-blue-500">
-                  Customers are trying your lemonade!
-                </div>
+                <div className="text-xs text-blue-500">Customers are trying your lemonade!</div>
               </div>
             </div>
           </CardContent>
@@ -957,8 +1024,13 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
                 <div className="text-sm text-red-600">Expenses</div>
               </div>
               <div className="text-center">
-                <div className={`text-2xl font-bold ${(gameState.dailySales.dailyRevenue - gameState.dailySales.dailyExpenses) >= 0 ? 'text-green-800' : 'text-red-800'}`}>
-                  ${(gameState.dailySales.dailyRevenue - gameState.dailySales.dailyExpenses).toFixed(2)}
+                <div
+                  className={`text-2xl font-bold ${gameState.dailySales.dailyRevenue - gameState.dailySales.dailyExpenses >= 0 ? "text-green-800" : "text-red-800"}`}
+                >
+                  $
+                  {(gameState.dailySales.dailyRevenue - gameState.dailySales.dailyExpenses).toFixed(
+                    2,
+                  )}
                 </div>
                 <div className="text-sm text-gray-600">Daily Profit</div>
               </div>
@@ -969,7 +1041,7 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
 
       {/* Game Controls */}
       <div className="flex justify-center gap-4">
-        <Button 
+        <Button
           onClick={simulateSales}
           size="lg"
           className="bg-yellow-500 hover:bg-yellow-600"
@@ -978,23 +1050,15 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
           <Play className="w-4 h-4 mr-2" />
           Start Selling!
         </Button>
-        
+
         {gameState.dailySales.cupsSold > 0 && (
-          <Button 
-            onClick={endDay}
-            size="lg"
-            variant="outline"
-          >
+          <Button onClick={endDay} size="lg" variant="outline">
             <Calendar className="w-4 h-4 mr-2" />
             End Day
           </Button>
         )}
-        
-        <Button 
-          onClick={resetGame} 
-          variant="outline" 
-          size="lg"
-        >
+
+        <Button onClick={resetGame} variant="outline" size="lg">
           <RefreshCw className="w-4 h-4 mr-2" />
           Reset Game
         </Button>
@@ -1002,10 +1066,10 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
           <Button
             onClick={handleSubmitResults}
             size="lg"
-            variant={submitted ? 'outline' : 'default'}
+            variant={submitted ? "outline" : "default"}
             disabled={submitted}
           >
-            {submitted ? 'Submitted' : 'Submit Results'}
+            {submitted ? "Submitted" : "Submit Results"}
           </Button>
         )}
       </div>
@@ -1014,21 +1078,32 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
       {notifications.length > 0 && (
         <div className="fixed bottom-4 right-4 space-y-2 z-50">
           {notifications.map((notification) => (
-            <Card key={notification.id} className={`
+            <Card
+              key={notification.id}
+              className={`
               max-w-sm border-l-4 ${
-                notification.type === 'success' ? 'border-l-green-500 bg-green-50' :
-                notification.type === 'warning' ? 'border-l-yellow-500 bg-yellow-50' :
-                notification.type === 'error' ? 'border-l-red-500 bg-red-50' :
-                'border-l-blue-500 bg-blue-50'
+                notification.type === "success"
+                  ? "border-l-green-500 bg-green-50"
+                  : notification.type === "warning"
+                    ? "border-l-yellow-500 bg-yellow-50"
+                    : notification.type === "error"
+                      ? "border-l-red-500 bg-red-50"
+                      : "border-l-blue-500 bg-blue-50"
               }
-            `}>
+            `}
+            >
               <CardContent className="p-3">
-                <p className={`text-sm font-medium ${
-                  notification.type === 'success' ? 'text-green-800' :
-                  notification.type === 'warning' ? 'text-yellow-800' :
-                  notification.type === 'error' ? 'text-red-800' :
-                  'text-blue-800'
-                }`}>
+                <p
+                  className={`text-sm font-medium ${
+                    notification.type === "success"
+                      ? "text-green-800"
+                      : notification.type === "warning"
+                        ? "text-yellow-800"
+                        : notification.type === "error"
+                          ? "text-red-800"
+                          : "text-blue-800"
+                  }`}
+                >
                   {notification.message}
                 </p>
               </CardContent>
@@ -1037,6 +1112,6 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
         </div>
       )}
     </div>
-  )
+  );
 }
-export default LemonadeStand
+export default LemonadeStand;

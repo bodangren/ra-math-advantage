@@ -1,5 +1,3 @@
-
-
 export interface SrsCardData {
   studentId: string;
   problemFamilyId: string;
@@ -74,7 +72,7 @@ export function computeClassHealth(
   cards: SrsCardData[],
   now: number,
   startOfDay: number,
-  endOfDay: number
+  endOfDay: number,
 ): ClassHealthSummary {
   const totalStudents = students.length;
   const studentIdsWithCards = new Set(cards.map((c) => c.studentId));
@@ -99,8 +97,7 @@ export function computeClassHealth(
     }
   }
 
-  const averageRetentionRate =
-    totalCards > 0 ? (reviewedCards / totalCards) * 100 : 0;
+  const averageRetentionRate = totalCards > 0 ? (reviewedCards / totalCards) * 100 : 0;
 
   return {
     totalStudents,
@@ -117,9 +114,7 @@ export function computeClassHealth(
  * @param reviews - reviews
  * @returns Computed result
  */
-export function computeFamilyPerformance(
-  reviews: SrsReviewLogEntry[]
-): FamilyPerformance[] {
+export function computeFamilyPerformance(reviews: SrsReviewLogEntry[]): FamilyPerformance[] {
   const familyMap = new Map<string, FamilyPerformance>();
 
   for (const review of reviews) {
@@ -146,8 +141,7 @@ export function computeFamilyPerformance(
 
   const results: FamilyPerformance[] = [];
   for (const perf of familyMap.values()) {
-    perf.againRate =
-      perf.totalReviews > 0 ? perf.againCount / perf.totalReviews : 0;
+    perf.againRate = perf.totalReviews > 0 ? perf.againCount / perf.totalReviews : 0;
 
     const weightedSum =
       perf.againCount * RATING_VALUES.Again +
@@ -155,8 +149,7 @@ export function computeFamilyPerformance(
       perf.goodCount * RATING_VALUES.Good +
       perf.easyCount * RATING_VALUES.Easy;
 
-    perf.averageRating =
-      perf.totalReviews > 0 ? weightedSum / perf.totalReviews : 0;
+    perf.averageRating = perf.totalReviews > 0 ? weightedSum / perf.totalReviews : 0;
 
     results.push(perf);
   }
@@ -177,7 +170,7 @@ export function computeStrugglingStudents(
   students: StudentInfo[],
   cards: SrsCardData[],
   reviews: SrsReviewLogEntry[],
-  now: number
+  now: number,
 ): StudentStruggleMetrics[] {
   const studentMap = new Map<string, StudentStruggleMetrics>();
 
@@ -216,7 +209,7 @@ export function computeStrugglingStudents(
       if (review.rating === "Again") {
         studentAgainCounts.set(
           review.studentId,
-          (studentAgainCounts.get(review.studentId) || 0) + 1
+          (studentAgainCounts.get(review.studentId) || 0) + 1,
         );
       }
       // Track last active
@@ -229,8 +222,7 @@ export function computeStrugglingStudents(
   // Compute again rates
   for (const student of studentMap.values()) {
     const againCount = studentAgainCounts.get(student.studentId) || 0;
-    student.againRate =
-      student.totalReviews > 0 ? againCount / student.totalReviews : 0;
+    student.againRate = student.totalReviews > 0 ? againCount / student.totalReviews : 0;
   }
 
   // Convert to array and sort by overdue cards descending, then by again rate

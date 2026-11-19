@@ -28,8 +28,7 @@ function memory() {
         .find((row) => row._id === id) ?? null,
     query(name: string) {
       const filters: [string, unknown][] = [];
-      const selected = () =>
-        table(name).filter((row) => filters.every(([k, v]) => row[k] === v));
+      const selected = () => table(name).filter((row) => filters.every(([k, v]) => row[k] === v));
       const chain: any = {
         withIndex(_name: string, apply: (q: any) => void) {
           const q: any = {
@@ -51,10 +50,11 @@ function memory() {
         first: async () => selected()[0] ?? null,
         order: () => ({
           first: async () =>
-            selected().sort(
-              (a, b) => (b.attemptOrdinal ?? 0) - (a.attemptOrdinal ?? 0),
-            )[0] ?? null,
-          take: async (n: number) => selected().sort((a, b) => (b.attemptOrdinal ?? 0) - (a.attemptOrdinal ?? 0)).slice(0, n),
+            selected().sort((a, b) => (b.attemptOrdinal ?? 0) - (a.attemptOrdinal ?? 0))[0] ?? null,
+          take: async (n: number) =>
+            selected()
+              .sort((a, b) => (b.attemptOrdinal ?? 0) - (a.attemptOrdinal ?? 0))
+              .slice(0, n),
         }),
         async *[Symbol.asyncIterator]() {
           yield* selected();
@@ -97,10 +97,7 @@ async function fixture(mode: keyof typeof IM3_QF_DRAFT_MAPPINGS) {
   await upsertIm3QuadraticFormulaDrafts(f.ctx as never, 1);
   const activityId = f
     .table("activities")
-    .find(
-      (row) =>
-        row.stableActivityId === IM3_QF_DRAFT_MAPPINGS[mode].stableActivityId,
-    )._id;
+    .find((row) => row.stableActivityId === IM3_QF_DRAFT_MAPPINGS[mode].stableActivityId)._id;
   return { ...f, userId, activityId } as any;
 }
 function envelope(
@@ -154,7 +151,12 @@ function addLegacyFinal(f: any, userId: string, ordinal = 9, key = "legacy") {
 describe("quadratic-formula immutable allocation", () => {
   it("seeds only canonical relations and creates the selected suffix on Start", async () => {
     const f: any = await fixture("guided_practice");
-    expect(f.table("practice_variants").map((row: any) => row.variantKey).sort()).toEqual(
+    expect(
+      f
+        .table("practice_variants")
+        .map((row: any) => row.variantKey)
+        .sort(),
+    ).toEqual(
       [
         quadraticFormulaVariantKey("guided_practice", 0),
         quadraticFormulaVariantKey("independent_practice", 0),
@@ -168,9 +170,9 @@ describe("quadratic-formula immutable allocation", () => {
       publication,
     );
     expect(
-      f.table("practice_variants").filter(
-        (row: any) => row.variantKey === quadraticFormulaVariantKey("guided_practice", 1),
-      ),
+      f
+        .table("practice_variants")
+        .filter((row: any) => row.variantKey === quadraticFormulaVariantKey("guided_practice", 1)),
     ).toHaveLength(1);
   });
   it("preserves an existing suffix and does not create future suffixes on seed rerun", async () => {
@@ -182,20 +184,20 @@ describe("quadratic-formula immutable allocation", () => {
       publication,
     );
     const existingSuffix = structuredClone(
-      f.table("practice_variants").find(
-        (row: any) => row.variantKey === quadraticFormulaVariantKey("guided_practice", 1),
-      ),
+      f
+        .table("practice_variants")
+        .find((row: any) => row.variantKey === quadraticFormulaVariantKey("guided_practice", 1)),
     );
     await upsertIm3QuadraticFormulaDrafts(f.ctx as never, 20);
     expect(
-      f.table("practice_variants").find(
-        (row: any) => row.variantKey === quadraticFormulaVariantKey("guided_practice", 1),
-      ),
+      f
+        .table("practice_variants")
+        .find((row: any) => row.variantKey === quadraticFormulaVariantKey("guided_practice", 1)),
     ).toEqual(existingSuffix);
     expect(
-      f.table("practice_variants").some(
-        (row: any) => row.variantKey === quadraticFormulaVariantKey("guided_practice", 2),
-      ),
+      f
+        .table("practice_variants")
+        .some((row: any) => row.variantKey === quadraticFormulaVariantKey("guided_practice", 2)),
     ).toBe(false);
   });
   it("accepts canonical metadata with a different object key order", async () => {
@@ -225,7 +227,9 @@ describe("quadratic-formula immutable allocation", () => {
         expect(pending).toMatchObject({
           state: "pending",
           attemptOrdinal: index + 1,
-          props: { equation: `${generateQuadraticFormula({ seed: IM3_QF_VARIANT_SCHEDULES[mode][index] }).quadratic} = 0` },
+          props: {
+            equation: `${generateQuadraticFormula({ seed: IM3_QF_VARIANT_SCHEDULES[mode][index] }).quadratic} = 0`,
+          },
         });
         expect(JSON.stringify(pending)).not.toContain("allocatedVariantKey");
         expect(
@@ -235,19 +239,24 @@ describe("quadratic-formula immutable allocation", () => {
             publication,
           ),
         ).toEqual(pending);
-        const timing = { startedAt: "2026-09-09T00:00:00.000Z", submittedAt: "2026-09-09T00:01:00.000Z", wallClockMs: 60000, activeMs: 50000, idleMs: 10000, pauseCount: 0, focusLossCount: 0, visibilityHiddenCount: 0, confidence: "high" as const };
+        const timing = {
+          startedAt: "2026-09-09T00:00:00.000Z",
+          submittedAt: "2026-09-09T00:01:00.000Z",
+          wallClockMs: 60000,
+          activeMs: 50000,
+          idleMs: 10000,
+          pauseCount: 0,
+          focusLossCount: 0,
+          visibilityHiddenCount: 0,
+          confidence: "high" as const,
+        };
         const submitArgs = {
           userId: f.userId,
           activityId: f.activityId,
           pendingSubmissionId: pending.pendingSubmissionId,
           idempotencyKey: pending.idempotencyKey,
           submissionData: {
-            ...envelope(
-              f.activityId,
-              mode,
-              IM3_QF_VARIANT_SCHEDULES[mode][index],
-              index + 1,
-            ),
+            ...envelope(f.activityId, mode, IM3_QF_VARIANT_SCHEDULES[mode][index], index + 1),
             timing,
           },
         };
@@ -258,11 +267,7 @@ describe("quadratic-formula immutable allocation", () => {
         );
         expect(result.submissionId).toBe(pending.pendingSubmissionId);
         await expect(
-          createServerOwnedSubmissionHandler(
-            f.ctx as never,
-            submitArgs as never,
-            publication,
-          ),
+          createServerOwnedSubmissionHandler(f.ctx as never, submitArgs as never, publication),
         ).resolves.toEqual(result);
         await expect(
           createServerOwnedSubmissionHandler(
@@ -285,7 +290,10 @@ describe("quadratic-formula immutable allocation", () => {
           attemptOrdinal: index + 1,
           props: { equation: pending.props.equation },
         });
-        expect(f.table("activity_submissions").find((row: any) => row._id === result.submissionId).submissionData.timing).toEqual(timing);
+        expect(
+          f.table("activity_submissions").find((row: any) => row._id === result.submissionId)
+            .submissionData.timing,
+        ).toEqual(timing);
         expect(JSON.stringify(final)).not.toMatch(
           /allocatedVariantKey|generatorKey|canonicalRoots|"seed"/,
         );
@@ -373,15 +381,11 @@ describe("quadratic-formula immutable allocation", () => {
     });
     const laterKey = quadraticFormulaVariantKey("guided_practice", 1);
     f.table("practice_variants").splice(
-      f
-        .table("practice_variants")
-        .findIndex((row: any) => row.variantKey === laterKey),
+      f.table("practice_variants").findIndex((row: any) => row.variantKey === laterKey),
       1,
     );
     f.table("practice_items").splice(
-      f
-        .table("practice_items")
-        .findIndex((row: any) => row.variantKey === laterKey),
+      f.table("practice_items").findIndex((row: any) => row.variantKey === laterKey),
       1,
     );
     const pending: any = await startQuadraticFormulaAttemptHandler(
@@ -390,21 +394,24 @@ describe("quadratic-formula immutable allocation", () => {
       publication,
     );
     expect(pending).toMatchObject({ state: "pending", attemptOrdinal: 10 });
-    expect(f.table("activity_submissions").at(-1).allocatedVariantKey).toBe(
-      laterKey,
-    );
+    expect(f.table("activity_submissions").at(-1).allocatedVariantKey).toBe(laterKey);
     expect(
-      f
-        .table("practice_items")
-        .filter((row: any) => row.variantKey === laterKey),
+      f.table("practice_items").filter((row: any) => row.variantKey === laterKey),
     ).toHaveLength(1);
   });
   it("reads a bounded tail after a long sparse legacy prefix", async () => {
     const f: any = await fixture("guided_practice");
-    for (const ordinal of [1, 3, 8, 20, 21, 40, 75, 120]) addLegacyFinal(f, f.userId, ordinal, `legacy-${ordinal}`);
-    const pending: any = await startQuadraticFormulaAttemptHandler(f.ctx as never, { userId: f.userId, activityId: f.activityId, mode: "guided_practice" }, publication);
+    for (const ordinal of [1, 3, 8, 20, 21, 40, 75, 120])
+      addLegacyFinal(f, f.userId, ordinal, `legacy-${ordinal}`);
+    const pending: any = await startQuadraticFormulaAttemptHandler(
+      f.ctx as never,
+      { userId: f.userId, activityId: f.activityId, mode: "guided_practice" },
+      publication,
+    );
     expect(pending).toMatchObject({ state: "pending", attemptOrdinal: 121 });
-    expect(f.table("activity_submissions").at(-1).allocatedVariantKey).toBe(quadraticFormulaVariantKey("guided_practice", 1));
+    expect(f.table("activity_submissions").at(-1).allocatedVariantKey).toBe(
+      quadraticFormulaVariantKey("guided_practice", 1),
+    );
   });
   it.each(["wrong mode", "draft"])(
     "rejects a %s legacy anchor behind an allocated final without writes",
@@ -452,8 +459,14 @@ describe("quadratic-formula immutable allocation", () => {
     const f: any = await fixture("guided_practice");
     addLegacyFinal(f, f.userId, Number.MAX_SAFE_INTEGER);
     const key = quadraticFormulaVariantKey("guided_practice", 1);
-    f.table("practice_variants").splice(f.table("practice_variants").findIndex((row: any) => row.variantKey === key), 1);
-    f.table("practice_items").splice(f.table("practice_items").findIndex((row: any) => row.variantKey === key), 1);
+    f.table("practice_variants").splice(
+      f.table("practice_variants").findIndex((row: any) => row.variantKey === key),
+      1,
+    );
+    f.table("practice_items").splice(
+      f.table("practice_items").findIndex((row: any) => row.variantKey === key),
+      1,
+    );
     const before = structuredClone({
       submissions: f.table("activity_submissions"),
       variants: f.table("practice_variants"),
@@ -509,9 +522,7 @@ describe("quadratic-formula immutable allocation", () => {
       f
         .table("practice_items")
         .filter(
-          (item: any) =>
-            item.variantKey ===
-            quadraticFormulaVariantKey("guided_practice", 1),
+          (item: any) => item.variantKey === quadraticFormulaVariantKey("guided_practice", 1),
         ),
     ).toHaveLength(1);
   });
@@ -543,16 +554,12 @@ describe("quadratic-formula immutable allocation", () => {
       f.table("activity_submissions").pop();
       if (cause === "duplicate variant")
         f.table("practice_variants").push({
-          ...f
-            .table("practice_variants")
-            .find((row: any) => row.variantKey === key),
+          ...f.table("practice_variants").find((row: any) => row.variantKey === key),
           _id: "practice_variants:duplicate",
         });
       else
         f.table("practice_items").push({
-          ...f
-            .table("practice_items")
-            .find((row: any) => row.variantKey === key),
+          ...f.table("practice_items").find((row: any) => row.variantKey === key),
           _id: "practice_items:reverse",
           activityId: "activities:other",
         });
@@ -601,16 +608,35 @@ describe("quadratic-formula immutable allocation", () => {
       expect(pending.state).toBe("pending");
     },
   );
-  it.each(["timing", "ordinal", "score", "retry"])("rejects a corrupt pending %s row during Guided check", async cause => {
-    const f: any = await fixture("guided_practice");
-    const pending: any = await startQuadraticFormulaAttemptHandler(f.ctx as never, { userId: f.userId, activityId: f.activityId, mode: "guided_practice" }, publication);
-    const row = f.table("activity_submissions").at(-1);
-    if (cause === "timing") row.submissionData.timing = { activeMs: 1 };
-    if (cause === "ordinal") row.attemptOrdinal = 0;
-    if (cause === "score") row.score = 1;
-    if (cause === "retry") row.idempotencyKey = "bad";
-    await expect(checkQuadraticFormulaDiscriminantHandler(f.ctx as never, { userId: f.userId, activityId: f.activityId, pendingSubmissionId: pending.pendingSubmissionId, fieldId: "discriminant", rawAnswer: "1" }, publication)).rejects.toThrow(/pending/);
-  });
+  it.each(["timing", "ordinal", "score", "retry"])(
+    "rejects a corrupt pending %s row during Guided check",
+    async (cause) => {
+      const f: any = await fixture("guided_practice");
+      const pending: any = await startQuadraticFormulaAttemptHandler(
+        f.ctx as never,
+        { userId: f.userId, activityId: f.activityId, mode: "guided_practice" },
+        publication,
+      );
+      const row = f.table("activity_submissions").at(-1);
+      if (cause === "timing") row.submissionData.timing = { activeMs: 1 };
+      if (cause === "ordinal") row.attemptOrdinal = 0;
+      if (cause === "score") row.score = 1;
+      if (cause === "retry") row.idempotencyKey = "bad";
+      await expect(
+        checkQuadraticFormulaDiscriminantHandler(
+          f.ctx as never,
+          {
+            userId: f.userId,
+            activityId: f.activityId,
+            pendingSubmissionId: pending.pendingSubmissionId,
+            fieldId: "discriminant",
+            rawAnswer: "1",
+          },
+          publication,
+        ),
+      ).rejects.toThrow(/pending/);
+    },
+  );
   it.each(["duplicate pending", "duplicate ordinal", "invalid earlier key"])(
     "rejects %s before another write",
     async (cause) => {
@@ -665,10 +691,7 @@ describe("quadratic-formula immutable allocation", () => {
           gradedAt: 1,
         });
       if (cause === "invalid earlier key")
-        row.allocatedVariantKey = quadraticFormulaVariantKey(
-          "guided_practice",
-          2,
-        );
+        row.allocatedVariantKey = quadraticFormulaVariantKey("guided_practice", 2);
       const before = f.table("activity_submissions").length;
       await expect(
         startQuadraticFormulaAttemptHandler(
@@ -685,18 +708,40 @@ describe("quadratic-formula immutable allocation", () => {
       expect(pending.state).toBe("pending");
     },
   );
-  it.each(["canonical after legacy", "allocated ordinal gap", "excess allocated"])("rejects invalid bounded-tail transition: %s", async cause => {
-    const f: any = await fixture("guided_practice"); addLegacyFinal(f, f.userId, 1);
-    const pending: any = await startQuadraticFormulaAttemptHandler(f.ctx as never, { userId: f.userId, activityId: f.activityId, mode: "guided_practice" }, publication);
-    const row = f.table("activity_submissions").at(-1);
-    if (cause === "canonical after legacy") row.allocatedVariantKey = quadraticFormulaVariantKey("guided_practice", 0);
-    if (cause === "allocated ordinal gap") row.attemptOrdinal = 3;
-    if (cause === "excess allocated") for (let index = 0; index < 4; index++) f.table("activity_submissions").push({ ...structuredClone(row), _id: `activity_submissions:extra-${index}`, attemptOrdinal: 3 + index, idempotencyKey: `qf:activity_submissions:extra-${index}` });
-    const before = f.table("activity_submissions").length;
-    await expect(startQuadraticFormulaAttemptHandler(f.ctx as never, { userId: f.userId, activityId: f.activityId, mode: "guided_practice" }, publication)).rejects.toThrow(/sequence/);
-    expect(f.table("activity_submissions")).toHaveLength(before);
-    expect(pending.state).toBe("pending");
-  });
+  it.each(["canonical after legacy", "allocated ordinal gap", "excess allocated"])(
+    "rejects invalid bounded-tail transition: %s",
+    async (cause) => {
+      const f: any = await fixture("guided_practice");
+      addLegacyFinal(f, f.userId, 1);
+      const pending: any = await startQuadraticFormulaAttemptHandler(
+        f.ctx as never,
+        { userId: f.userId, activityId: f.activityId, mode: "guided_practice" },
+        publication,
+      );
+      const row = f.table("activity_submissions").at(-1);
+      if (cause === "canonical after legacy")
+        row.allocatedVariantKey = quadraticFormulaVariantKey("guided_practice", 0);
+      if (cause === "allocated ordinal gap") row.attemptOrdinal = 3;
+      if (cause === "excess allocated")
+        for (let index = 0; index < 4; index++)
+          f.table("activity_submissions").push({
+            ...structuredClone(row),
+            _id: `activity_submissions:extra-${index}`,
+            attemptOrdinal: 3 + index,
+            idempotencyKey: `qf:activity_submissions:extra-${index}`,
+          });
+      const before = f.table("activity_submissions").length;
+      await expect(
+        startQuadraticFormulaAttemptHandler(
+          f.ctx as never,
+          { userId: f.userId, activityId: f.activityId, mode: "guided_practice" },
+          publication,
+        ),
+      ).rejects.toThrow(/sequence/);
+      expect(f.table("activity_submissions")).toHaveLength(before);
+      expect(pending.state).toBe("pending");
+    },
+  );
   it("rejects corrupt fixed props with a valid pending handle", async () => {
     const f: any = await fixture("guided_practice");
     const pending: any = await startQuadraticFormulaAttemptHandler(
@@ -704,9 +749,7 @@ describe("quadratic-formula immutable allocation", () => {
       { userId: f.userId, activityId: f.activityId, mode: "guided_practice" },
       publication,
     );
-    f
-      .table("activities")
-      .find((row: any) => row._id === f.activityId).props.equation = "x^2 = 0";
+    f.table("activities").find((row: any) => row._id === f.activityId).props.equation = "x^2 = 0";
     await expect(
       createServerOwnedSubmissionHandler(
         f.ctx as never,
@@ -752,32 +795,82 @@ describe("quadratic-formula immutable allocation", () => {
   });
   it("reads, replays, and advances a timing-enriched final receipt", async () => {
     const f: any = await fixture("guided_practice");
-    const pending: any = await startQuadraticFormulaAttemptHandler(f.ctx as never, { userId: f.userId, activityId: f.activityId, mode: "guided_practice" }, publication);
+    const pending: any = await startQuadraticFormulaAttemptHandler(
+      f.ctx as never,
+      { userId: f.userId, activityId: f.activityId, mode: "guided_practice" },
+      publication,
+    );
     const submissionData: any = envelope(f.activityId, "guided_practice", 1, 1);
-    submissionData.timing = { startedAt: "2026-09-09T00:00:00.000Z", submittedAt: "2026-09-09T00:01:00.000Z", wallClockMs: 60000, activeMs: 50000, idleMs: 10000, pauseCount: 0, focusLossCount: 0, visibilityHiddenCount: 0, confidence: "high" };
-    const args = { userId: f.userId, activityId: f.activityId, pendingSubmissionId: pending.pendingSubmissionId, idempotencyKey: pending.idempotencyKey, submissionData };
-    const saved = await createServerOwnedSubmissionHandler(f.ctx as never, args as never, publication);
-    expect((await getQuadraticFormulaAttemptHandler(f.ctx as never, { userId: f.userId, activityId: f.activityId, mode: "guided_practice" }, publication) as any).state).toBe("final");
-    await expect(createServerOwnedSubmissionHandler(f.ctx as never, args as never, publication)).resolves.toEqual(saved);
-    await expect(startQuadraticFormulaAttemptHandler(f.ctx as never, { userId: f.userId, activityId: f.activityId, mode: "guided_practice" }, publication)).resolves.toMatchObject({ state: "pending", attemptOrdinal: 2 });
+    submissionData.timing = {
+      startedAt: "2026-09-09T00:00:00.000Z",
+      submittedAt: "2026-09-09T00:01:00.000Z",
+      wallClockMs: 60000,
+      activeMs: 50000,
+      idleMs: 10000,
+      pauseCount: 0,
+      focusLossCount: 0,
+      visibilityHiddenCount: 0,
+      confidence: "high",
+    };
+    const args = {
+      userId: f.userId,
+      activityId: f.activityId,
+      pendingSubmissionId: pending.pendingSubmissionId,
+      idempotencyKey: pending.idempotencyKey,
+      submissionData,
+    };
+    const saved = await createServerOwnedSubmissionHandler(
+      f.ctx as never,
+      args as never,
+      publication,
+    );
+    expect(
+      (
+        (await getQuadraticFormulaAttemptHandler(
+          f.ctx as never,
+          { userId: f.userId, activityId: f.activityId, mode: "guided_practice" },
+          publication,
+        )) as any
+      ).state,
+    ).toBe("final");
+    await expect(
+      createServerOwnedSubmissionHandler(f.ctx as never, args as never, publication),
+    ).resolves.toEqual(saved);
+    await expect(
+      startQuadraticFormulaAttemptHandler(
+        f.ctx as never,
+        { userId: f.userId, activityId: f.activityId, mode: "guided_practice" },
+        publication,
+      ),
+    ).resolves.toMatchObject({ state: "pending", attemptOrdinal: 2 });
   });
   it("rejects a mismatched allocated attempt number without writes", async () => {
     const f: any = await fixture("guided_practice");
-    const pending: any = await startQuadraticFormulaAttemptHandler(f.ctx as never, { userId: f.userId, activityId: f.activityId, mode: "guided_practice" }, publication);
+    const pending: any = await startQuadraticFormulaAttemptHandler(
+      f.ctx as never,
+      { userId: f.userId, activityId: f.activityId, mode: "guided_practice" },
+      publication,
+    );
     const before = structuredClone(f.table("activity_submissions"));
-    await expect(createServerOwnedSubmissionHandler(f.ctx as never, { userId: f.userId, activityId: f.activityId, pendingSubmissionId: pending.pendingSubmissionId, idempotencyKey: pending.idempotencyKey, submissionData: envelope(f.activityId, "guided_practice", 1, 99) } as never, publication)).rejects.toThrow(/pending/);
+    await expect(
+      createServerOwnedSubmissionHandler(
+        f.ctx as never,
+        {
+          userId: f.userId,
+          activityId: f.activityId,
+          pendingSubmissionId: pending.pendingSubmissionId,
+          idempotencyKey: pending.idempotencyKey,
+          submissionData: envelope(f.activityId, "guided_practice", 1, 99),
+        } as never,
+        publication,
+      ),
+    ).rejects.toThrow(/pending/);
     expect(f.table("activity_submissions")).toEqual(before);
   });
   it("keeps exact finite keys and seeds", () => {
     expect(IM3_QF_VARIANT_SCHEDULES.guided_practice).toEqual([1, 7, 12, 4]);
-    expect(IM3_QF_VARIANT_SCHEDULES.independent_practice).toEqual([
-      2, 8, 14, 30,
-    ]);
-    expect(quadraticFormulaVariantKey("guided_practice", 3)).toMatch(
-      /\.variant\.3$/,
-    );
-    expect(() => quadraticFormulaVariantKey("guided_practice", 4)).toThrow(
-      /exhausted/,
-    );
+    expect(IM3_QF_VARIANT_SCHEDULES.independent_practice).toEqual([2, 8, 14, 30]);
+    expect(quadraticFormulaVariantKey("guided_practice", 3)).toMatch(/\.variant\.3$/);
+    expect(() => quadraticFormulaVariantKey("guided_practice", 4)).toThrow(/exhausted/);
   });
 });

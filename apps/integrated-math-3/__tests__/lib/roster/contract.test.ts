@@ -36,7 +36,7 @@
 // (then parser.test.ts and dry-run-preview.test.ts run on the same import
 // surface, so the Red signal compounds inside the directory).
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 
 // Production module — does not exist yet (Red phase).
 // The Green-phase implementer creates
@@ -51,21 +51,21 @@ import {
   type RosterParseResult,
   type RosterImportResult,
   IDENTIFIER_PRECEDENCE,
-} from '@/lib/roster/csv-contract';
+} from "@/lib/roster/csv-contract";
 
 // ---------------------------------------------------------------------------
 // 1. Column contract — the canonical header set, in canonical order
 // ---------------------------------------------------------------------------
 
-describe('Roster CSV — column contract (FR2, test-strategy §6)', () => {
-  it('exports ROSTER_COLUMNS listing the canonical column names in canonical order', () => {
+describe("Roster CSV — column contract (FR2, test-strategy §6)", () => {
+  it("exports ROSTER_COLUMNS listing the canonical column names in canonical order", () => {
     // FR2 requires columns: name, email/identifier, section. We pin a
     // 4-column contract: name, email, sisId, section. The header order
     // matters for parser determinism (golden CSVs assert byte-for-byte).
     expect(Array.isArray(ROSTER_COLUMNS)).toBe(true);
-    expect(ROSTER_COLUMNS).toContain('name');
-    expect(ROSTER_COLUMNS).toContain('email');
-    expect(ROSTER_COLUMNS).toContain('section');
+    expect(ROSTER_COLUMNS).toContain("name");
+    expect(ROSTER_COLUMNS).toContain("email");
+    expect(ROSTER_COLUMNS).toContain("section");
   });
 
   it('exports REQUIRED_COLUMNS as a Set/array containing "name" and "email"', () => {
@@ -75,9 +75,9 @@ describe('Roster CSV — column contract (FR2, test-strategy §6)', () => {
     const requiredArr = Array.isArray(REQUIRED_COLUMNS)
       ? REQUIRED_COLUMNS
       : Array.from(REQUIRED_COLUMNS as Set<RosterColumn>);
-    expect(requiredArr).toContain('name');
-    expect(requiredArr).toContain('email');
-    expect(requiredArr).not.toContain('section');
+    expect(requiredArr).toContain("name");
+    expect(requiredArr).toContain("email");
+    expect(requiredArr).not.toContain("section");
   });
 });
 
@@ -85,8 +85,8 @@ describe('Roster CSV — column contract (FR2, test-strategy §6)', () => {
 // 2. Identifier semantics — locked here, re-asserted in Phase 2
 // ---------------------------------------------------------------------------
 
-describe('Roster CSV — identifier precedence (test-strategy §4)', () => {
-  it('exports IDENTIFIER_PRECEDENCE pinning email > sisId', () => {
+describe("Roster CSV — identifier precedence (test-strategy §4)", () => {
+  it("exports IDENTIFIER_PRECEDENCE pinning email > sisId", () => {
     // When a row has BOTH email and sisId, the parser MUST treat
     // email as the canonical identifier (Phase 2 idempotency test will
     // re-assert this against by_class_and_student). When only sisId
@@ -97,8 +97,8 @@ describe('Roster CSV — identifier precedence (test-strategy §4)', () => {
     const order: ReadonlyArray<string> = Array.isArray(IDENTIFIER_PRECEDENCE)
       ? (IDENTIFIER_PRECEDENCE as ReadonlyArray<string>)
       : Array.from(IDENTIFIER_PRECEDENCE as Iterable<string>);
-    const idxEmail = order.indexOf('email');
-    const idxSis = order.indexOf('sisId');
+    const idxEmail = order.indexOf("email");
+    const idxSis = order.indexOf("sisId");
     expect(idxEmail).toBeGreaterThanOrEqual(0);
     expect(idxSis).toBeGreaterThanOrEqual(0);
     expect(idxEmail).toBeLessThan(idxSis);
@@ -109,8 +109,8 @@ describe('Roster CSV — identifier precedence (test-strategy §4)', () => {
 // 3. Type shapes — RosterRow
 // ---------------------------------------------------------------------------
 
-describe('Roster CSV — RosterRow type shape (FR2 / FR6)', () => {
-  it('RosterRow carries rowIndex + name, and exposes optional email/sisId/section', () => {
+describe("Roster CSV — RosterRow type shape (FR2 / FR6)", () => {
+  it("RosterRow carries rowIndex + name, and exposes optional email/sisId/section", () => {
     // Structural compile-time check: the Green-phase module's RosterRow
     // must accept rowIndex (1-based for the first data row; the header
     // is not counted) and a non-optional name. Email and sisId are
@@ -118,16 +118,16 @@ describe('Roster CSV — RosterRow type shape (FR2 / FR6)', () => {
     // the canonical id.
     const row: RosterRow = {
       rowIndex: 2,
-      name: 'Alice Anderson',
-      email: 'alice.anderson@school.edu',
-      sisId: 'SIS-001',
-      section: 'Period 1',
+      name: "Alice Anderson",
+      email: "alice.anderson@school.edu",
+      sisId: "SIS-001",
+      section: "Period 1",
     };
     expect(row.rowIndex).toBe(2);
-    expect(row.name).toBe('Alice Anderson');
+    expect(row.name).toBe("Alice Anderson");
     // The test compiles iff the type accepts the shape. Runtime check
     // is a no-op assertion to keep the file from being tree-shaken.
-    expect(typeof row).toBe('object');
+    expect(typeof row).toBe("object");
   });
 });
 
@@ -135,8 +135,8 @@ describe('Roster CSV — RosterRow type shape (FR2 / FR6)', () => {
 // 4. Type shapes — RosterImportError
 // ---------------------------------------------------------------------------
 
-describe('Roster CSV — RosterImportError type shape (test-strategy §4 PII)', () => {
-  it('RosterImportError carries rowIndex + code + optional column, and no PII fields', () => {
+describe("Roster CSV — RosterImportError type shape (test-strategy §4 PII)", () => {
+  it("RosterImportError carries rowIndex + code + optional column, and no PII fields", () => {
     // PII-safety: errors must include rowIndex and column for the
     // teacher to locate the issue, but the contract MUST NOT add raw
     // email or full name fields. Phase 1/2 tests assert that the
@@ -144,18 +144,18 @@ describe('Roster CSV — RosterImportError type shape (test-strategy §4 PII)', 
     // shape so a future commit cannot accidentally widen the contract.
     const err: RosterImportError = {
       rowIndex: 3,
-      column: 'email',
-      code: 'invalid_email',
-      message: 'malformed email',
+      column: "email",
+      code: "invalid_email",
+      message: "malformed email",
     };
     expect(err.rowIndex).toBe(3);
-    expect(err.column).toBe('email');
-    expect(err.code).toBe('invalid_email');
+    expect(err.column).toBe("email");
+    expect(err.code).toBe("invalid_email");
     // The keys "email" and "name" in the *error payload* (not column
     // name) are PII-leak vectors — pin their absence.
     const safeKeys = Object.keys(err).sort();
-    expect(safeKeys).not.toContain('rawEmail');
-    expect(safeKeys).not.toContain('rawName');
+    expect(safeKeys).not.toContain("rawEmail");
+    expect(safeKeys).not.toContain("rawName");
   });
 });
 
@@ -163,8 +163,8 @@ describe('Roster CSV — RosterImportError type shape (test-strategy §4 PII)', 
 // 5. Type shapes — RosterParseResult and RosterImportResult
 // ---------------------------------------------------------------------------
 
-describe('Roster CSV — aggregate result shapes (FR6)', () => {
-  it('RosterParseResult contains rows + errors arrays', () => {
+describe("Roster CSV — aggregate result shapes (FR6)", () => {
+  it("RosterParseResult contains rows + errors arrays", () => {
     // The parser returns both successful rows and validation errors in
     // one pass — never throw on a per-row validation failure. Errors
     // are surfaced, not raised, so the wizard can render them in a
@@ -174,7 +174,7 @@ describe('Roster CSV — aggregate result shapes (FR6)', () => {
     expect(Array.isArray(parsed.errors)).toBe(true);
   });
 
-  it('RosterImportResult contains created/updated/skipped counts + errors array (FR6)', () => {
+  it("RosterImportResult contains created/updated/skipped counts + errors array (FR6)", () => {
     // FR6: "Import results (created/updated/skipped/errors) are
     // summarized and retrievable." The dry-run preview, the
     // mutation handler's persisted summary, and the teacher UI's

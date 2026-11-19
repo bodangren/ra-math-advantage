@@ -1,6 +1,6 @@
 // Evidence bridge: converts generic evidence parts to practice.v1 submission parts
 
-import type { GenericEvidencePart, GenericEvidenceResult } from './types';
+import type { GenericEvidencePart, GenericEvidenceResult } from "./types";
 
 export interface EvidenceAdapter {
   mapPart(part: GenericEvidencePart): PracticeSubmissionPart;

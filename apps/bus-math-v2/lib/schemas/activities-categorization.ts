@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 const percentageCategorySchema = z.object({
   id: z.string(),
@@ -16,7 +16,7 @@ const percentageScenarioSchema = z.object({
   calculationTypeId: z.string(),
   dataPoints: z.string(),
   businessContext: z.string().optional(),
-  difficulty: z.enum(['easy', 'medium', 'hard']).default('medium'),
+  difficulty: z.enum(["easy", "medium", "hard"]).default("medium"),
   formula: z.string().optional(),
 });
 
@@ -58,7 +58,7 @@ const cashFlowItemSchema = z.object({
   id: z.string(),
   label: z.string(),
   amount: z.number(),
-  direction: z.enum(['inflow', 'outflow']),
+  direction: z.enum(["inflow", "outflow"]),
   periodId: z.string(),
   category: z.string().optional(),
   description: z.string().optional(),
@@ -82,7 +82,7 @@ const classificationAccountSchema = z.object({
 });
 
 export const categorizationActivityPropsSchemas = {
-  'percentage-calculation-sorting': z.object({
+  "percentage-calculation-sorting": z.object({
     title: z.string(),
     description: z.string(),
     calculationTypes: z.array(percentageCategorySchema).min(1),
@@ -90,12 +90,12 @@ export const categorizationActivityPropsSchemas = {
     showHintsByDefault: z.boolean().default(false),
     shuffleItems: z.boolean().default(true),
   }),
-  'inventory-flow-diagram': z.object({
+  "inventory-flow-diagram": z.object({
     title: z.string(),
     description: z.string(),
     scenarios: z.array(inventoryScenarioSchema).min(1),
   }),
-  'cash-flow-timeline': z.object({
+  "cash-flow-timeline": z.object({
     title: z.string(),
     description: z.string(),
     periods: z.array(cashFlowPeriodSchema).min(1),
@@ -104,13 +104,15 @@ export const categorizationActivityPropsSchemas = {
     showHintsByDefault: z.boolean().default(false),
     shuffleItems: z.boolean().default(true),
   }),
-  'classification': z.object({
+  classification: z.object({
     title: z.string(),
     description: z.string(),
     categories: z.array(classificationCategorySchema).min(1),
     accounts: z.array(classificationAccountSchema).optional(),
-    scaffolding: z.object({
-      showHints: z.boolean().default(false),
-    }).optional(),
+    scaffolding: z
+      .object({
+        showHints: z.boolean().default(false),
+      })
+      .optional(),
   }),
 } as const;

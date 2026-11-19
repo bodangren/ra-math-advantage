@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # Weekly on Mondays at 06:00 UTC (off-peak for the IM3 school-day window).
-    - cron: '0 6 * * 1'
+    - cron: "0 6 * * 1"
 
 concurrency:
   group: scale-benchmarks-${{ github.ref }}
@@ -22,8 +22,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24.4.0'
-          cache: 'npm'
+          node-version: "24.4.0"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci

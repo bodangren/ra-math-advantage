@@ -30,12 +30,8 @@ export interface RosterRow {
  *  Green-phase `RosterImportError` type. */
 export interface RosterImportError {
   rowIndex: number;
-  column?: 'name' | 'email' | 'sisId' | 'section';
-  code:
-    | 'missing_required'
-    | 'invalid_email'
-    | 'duplicate_identifier'
-    | 'malformed_row';
+  column?: "name" | "email" | "sisId" | "section";
+  code: "missing_required" | "invalid_email" | "duplicate_identifier" | "malformed_row";
   message: string;
 }
 
@@ -66,13 +62,13 @@ export function makeRosterRow(
 /** Build a synthetic RosterImportError. The `message` defaults to a
  *  stable, code-derived string so tests can assert on the code only. */
 export function makeImportError(
-  partial: Partial<RosterImportError> & { rowIndex: number; code: RosterImportError['code'] },
+  partial: Partial<RosterImportError> & { rowIndex: number; code: RosterImportError["code"] },
 ): RosterImportError {
-  const defaults: Record<RosterImportError['code'], string> = {
-    missing_required: 'missing required column',
-    invalid_email: 'malformed email',
-    duplicate_identifier: 'duplicate identifier within file',
-    malformed_row: 'malformed row',
+  const defaults: Record<RosterImportError["code"], string> = {
+    missing_required: "missing required column",
+    invalid_email: "malformed email",
+    duplicate_identifier: "duplicate identifier within file",
+    malformed_row: "malformed row",
   };
   return {
     column: partial.column,
@@ -83,9 +79,7 @@ export function makeImportError(
 }
 
 /** Build a synthetic RosterImportResult (used by dry-run-preview tests). */
-export function makeImportResult(
-  partial: Partial<RosterImportResult> = {},
-): RosterImportResult {
+export function makeImportResult(partial: Partial<RosterImportResult> = {}): RosterImportResult {
   return {
     created: partial.created ?? 0,
     updated: partial.updated ?? 0,
@@ -99,10 +93,8 @@ export function makeImportResult(
  *  `name,email,sisId,section`. Empty cells are written as empty (no
  *  quoting) so golden CSVs match the expected bytes-for-bytes. */
 export function rowsToCsv(rows: ReadonlyArray<RosterCsvShape>): string {
-  const headers = ['name', 'email', 'sisId', 'section'] as const;
-  const headerLine = headers.join(',');
-  const lines = rows.map((r) =>
-    headers.map((h) => (r[h] ?? '').toString()).join(','),
-  );
-  return [headerLine, ...lines].join('\n');
+  const headers = ["name", "email", "sisId", "section"] as const;
+  const headerLine = headers.join(",");
+  const lines = rows.map((r) => headers.map((h) => (r[h] ?? "").toString()).join(","));
+  return [headerLine, ...lines].join("\n");
 }

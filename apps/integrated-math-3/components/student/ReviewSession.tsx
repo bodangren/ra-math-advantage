@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { BaseReviewSession } from '@math-platform/study-hub-core';
-import type { GlossaryTerm } from '@/lib/study/types';
+import { BaseReviewSession } from "@math-platform/study-hub-core";
+import type { GlossaryTerm } from "@/lib/study/types";
 
 interface ReviewSessionProps {
   terms: GlossaryTerm[];
@@ -21,14 +21,9 @@ interface ReviewSessionProps {
  */
 export function ReviewSession({ terms, onComplete }: ReviewSessionProps) {
   const renderHeader = (currentIndex: number, total: number) => (
-    <div
-      className="flex items-center justify-between"
-      data-testid="review-header"
-    >
+    <div className="flex items-center justify-between" data-testid="review-header">
       <div>
-        <h1 className="text-2xl font-display font-bold text-foreground">
-          SRS Review
-        </h1>
+        <h1 className="text-2xl font-display font-bold text-foreground">SRS Review</h1>
         <p className="text-sm text-muted-foreground">Review terms due today</p>
       </div>
       <span className="text-sm text-muted-foreground font-mono-num">

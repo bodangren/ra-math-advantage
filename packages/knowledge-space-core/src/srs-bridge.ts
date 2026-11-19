@@ -6,16 +6,13 @@
 //
 // Domain-neutral boundary: no app, convex, curriculum, or srs-engine imports.
 
-import type { KnowledgeSpace } from './types';
-import type {
-  KnowledgeStateEntry,
-  MasteryConfig,
-} from './mastery-state';
-import { normalizeMasteryConfig } from './mastery-state';
-import { getKnowledgeState, stabilityToRetention } from './knowledge-state-engine';
-import type { KnowledgeStateEvidence } from './knowledge-state-engine';
-import { getOuterFringe, getOuterFringeV3 } from './outer-fringe';
-import type { FringeEntry, OuterFringeV3 } from './outer-fringe';
+import type { KnowledgeSpace } from "./types";
+import type { KnowledgeStateEntry, MasteryConfig } from "./mastery-state";
+import { normalizeMasteryConfig } from "./mastery-state";
+import { getKnowledgeState, stabilityToRetention } from "./knowledge-state-engine";
+import type { KnowledgeStateEvidence } from "./knowledge-state-engine";
+import { getOuterFringe, getOuterFringeV3 } from "./outer-fringe";
+import type { FringeEntry, OuterFringeV3 } from "./outer-fringe";
 
 // Re-export stabilityToRetention for bridge consumers
 export { stabilityToRetention };
@@ -51,7 +48,7 @@ export interface SrsCardState {
   /** Optional FSRS-style stability in days. */
   stability?: number;
   /** Optional raw review state. */
-  state?: 'new' | 'learning' | 'review' | 'relearning';
+  state?: "new" | "learning" | "review" | "relearning";
   /** Optional timestamp of the last review (epoch ms). Used for recency. */
   lastReviewedAt?: number;
 }
@@ -166,7 +163,7 @@ export class DefaultSrsToKstBridge implements SrsToKstBridge {
   convert(args: ConvertArgs): Map<string, KnowledgeStateEntry> {
     const evidence = buildEvidence(args.cards, args.proficiencies, args.now);
     return getKnowledgeState(
-      { id: 'bridge.anonymous' },
+      { id: "bridge.anonymous" },
       evidence,
       args.graph,
       args.now,
@@ -252,7 +249,7 @@ function buildEvidence(
       entry.isProficient = prof.isProficient;
     } else if (card) {
       // Card state drives isProficient when no proficiency result
-      entry.isProficient = card.state === 'review';
+      entry.isProficient = card.state === "review";
     }
 
     evidence.push(entry);

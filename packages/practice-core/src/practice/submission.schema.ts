@@ -1,6 +1,6 @@
-import { z } from 'zod';
+import { z } from "zod";
 
-export const PracticeTimingConfidenceSchema = z.enum(['high', 'medium', 'low']);
+export const PracticeTimingConfidenceSchema = z.enum(["high", "medium", "low"]);
 export type PracticeTimingConfidence = z.infer<typeof PracticeTimingConfidenceSchema>;
 
 export const PracticeTimingSummarySchema = z
@@ -18,8 +18,8 @@ export const PracticeTimingSummarySchema = z
     confidenceReasons: z.array(z.string()).optional(),
   })
   .refine((data) => data.activeMs <= data.wallClockMs, {
-    message: 'activeMs cannot exceed wallClockMs',
-    path: ['activeMs'],
+    message: "activeMs cannot exceed wallClockMs",
+    path: ["activeMs"],
   });
 
 export type PracticeTimingSummary = z.infer<typeof PracticeTimingSummarySchema>;
@@ -44,10 +44,16 @@ export const PracticeSubmissionPartSchema = z.object({
 export type PracticeSubmissionPart = z.infer<typeof PracticeSubmissionPartSchema>;
 
 export const PracticeSubmissionEnvelopeSchema = z.object({
-  contractVersion: z.literal('practice.v1'),
+  contractVersion: z.literal("practice.v1"),
   activityId: z.string(),
-  mode: z.enum(['worked_example', 'guided_practice', 'independent_practice', 'assessment', 'teaching']),
-  status: z.enum(['draft', 'submitted', 'graded', 'returned']),
+  mode: z.enum([
+    "worked_example",
+    "guided_practice",
+    "independent_practice",
+    "assessment",
+    "teaching",
+  ]),
+  status: z.enum(["draft", "submitted", "graded", "returned"]),
   attemptNumber: z.number().int().positive(),
   submittedAt: z.string(),
   answers: z.record(z.string(), z.unknown()),

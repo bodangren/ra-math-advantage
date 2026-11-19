@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { cn } from '../lib/cn';
+import { cn } from "../lib/cn";
 
 interface LessonSkeletonProps {
   phaseCount?: number;
@@ -13,7 +13,7 @@ interface LessonSkeletonProps {
  */
 export function LessonSkeleton({ phaseCount = 4, className }: LessonSkeletonProps) {
   return (
-    <div className={cn('space-y-6', className)} data-testid="lesson-skeleton">
+    <div className={cn("space-y-6", className)} data-testid="lesson-skeleton">
       <div className="flex gap-2" data-testid="skeleton-stepper">
         {Array.from({ length: phaseCount }).map((_, i) => (
           <div
@@ -53,7 +53,7 @@ interface ActivitySkeletonProps {
 export function ActivitySkeleton({ className }: ActivitySkeletonProps) {
   return (
     <div
-      className={cn('space-y-4 p-4 rounded-lg border bg-card', className)}
+      className={cn("space-y-4 p-4 rounded-lg border bg-card", className)}
       data-testid="activity-skeleton"
     >
       <div className="space-y-2" data-testid="skeleton-activity-content">

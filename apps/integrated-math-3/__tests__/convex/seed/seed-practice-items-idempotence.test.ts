@@ -1,9 +1,9 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from "vitest";
 
-import { seedPracticeItems } from '@/convex/seed/seed_practice_items';
+import { seedPracticeItems } from "@/convex/seed/seed_practice_items";
 
-const SEED_VARIANT_KEY = 'graphing-explorer:quadratic-vertex-form';
-const ACTIVITY_ID = 'im3-seed-activity-document';
+const SEED_VARIANT_KEY = "graphing-explorer:quadratic-vertex-form";
+const ACTIVITY_ID = "im3-seed-activity-document";
 
 type SeedResult = {
   practiceItemId: string;
@@ -15,9 +15,8 @@ type SeedResult = {
 
 type SeedHandler = (ctx: unknown) => Promise<SeedResult[]>;
 
-const seedPracticeItemsHandler = (
-  seedPracticeItems as unknown as { _handler: SeedHandler }
-)._handler;
+const seedPracticeItemsHandler = (seedPracticeItems as unknown as { _handler: SeedHandler })
+  ._handler;
 
 function makeSeedContext() {
   const practiceItems: Array<Record<string, unknown>> = [];
@@ -27,13 +26,13 @@ function makeSeedContext() {
   });
 
   const query = vi.fn((tableName: string) => {
-    if (tableName === 'practice_variants') {
+    if (tableName === "practice_variants") {
       return {
         withIndex: (
           _indexName: string,
           callback: (q: { eq: (field: string, value: string) => unknown }) => void,
         ) => {
-          let variantKey = '';
+          let variantKey = "";
           callback({
             eq: (_field, value) => {
               variantKey = value;
@@ -41,27 +40,26 @@ function makeSeedContext() {
             },
           });
           return {
-            unique: async () => (
+            unique: async () =>
               variantKey === SEED_VARIANT_KEY
                 ? {
                     variantKey: SEED_VARIANT_KEY,
-                    componentKey: 'graphing-explorer',
-                    objectiveIds: ['HSA-SSE.B.3'],
+                    componentKey: "graphing-explorer",
+                    objectiveIds: ["HSA-SSE.B.3"],
                   }
-                : null
-            ),
+                : null,
           };
         },
       };
     }
 
-    if (tableName === 'competency_standards') {
+    if (tableName === "competency_standards") {
       return {
         withIndex: (
           _indexName: string,
           callback: (q: { eq: (field: string, value: string) => unknown }) => void,
         ) => {
-          let code = '';
+          let code = "";
           callback({
             eq: (_field, value) => {
               code = value;
@@ -69,30 +67,28 @@ function makeSeedContext() {
             },
           });
           return {
-            unique: async () => (
-              code === 'HSA-SSE.B.3' ? { _id: 'im3-seed-standard' } : null
-            ),
+            unique: async () => (code === "HSA-SSE.B.3" ? { _id: "im3-seed-standard" } : null),
           };
         },
       };
     }
 
-    if (tableName === 'activities') {
+    if (tableName === "activities") {
       return {
         withIndex: () => ({
-          take: async () => [{ _id: ACTIVITY_ID, componentKey: 'graphing-explorer' }],
+          take: async () => [{ _id: ACTIVITY_ID, componentKey: "graphing-explorer" }],
         }),
-        take: async () => [{ _id: ACTIVITY_ID, componentKey: 'graphing-explorer' }],
+        take: async () => [{ _id: ACTIVITY_ID, componentKey: "graphing-explorer" }],
       };
     }
 
-    if (tableName === 'practice_items') {
+    if (tableName === "practice_items") {
       return {
         withIndex: (
           _indexName: string,
           callback: (q: { eq: (field: string, value: string) => unknown }) => void,
         ) => {
-          let activityId = '';
+          let activityId = "";
           callback({
             eq: (_field, value) => {
               activityId = value;
@@ -100,9 +96,7 @@ function makeSeedContext() {
             },
           });
           return {
-            first: async () => (
-              practiceItems.find((item) => item.activityId === activityId) ?? null
-            ),
+            first: async () => practiceItems.find((item) => item.activityId === activityId) ?? null,
           };
         },
       };
@@ -118,8 +112,8 @@ function makeSeedContext() {
   };
 }
 
-describe('seedPracticeItems', () => {
-  it('is idempotent when the standalone seed runs twice', async () => {
+describe("seedPracticeItems", () => {
+  it("is idempotent when the standalone seed runs twice", async () => {
     const { ctx, insert, practiceItems } = makeSeedContext();
 
     const first = await seedPracticeItemsHandler(ctx);

@@ -1,4 +1,4 @@
-import type { Id } from '@/convex/_generated/dataModel';
+import type { Id } from "@/convex/_generated/dataModel";
 
 /**
  * Multi-module placement fixtures for FR-4 Red tests.
@@ -14,17 +14,17 @@ import type { Id } from '@/convex/_generated/dataModel';
  */
 
 interface PlacementResultRow {
-  _id: Id<'placement_results'>;
+  _id: Id<"placement_results">;
   _creationTime: number;
-  studentId: Id<'profiles'>;
+  studentId: Id<"profiles">;
   nodeId: string;
   masteryEstimate: number;
-  confidence: 'low' | 'medium';
+  confidence: "low" | "medium";
   source: string;
   createdAt: number;
 }
 
-export const STUDENT_ID = 'profiles_test_multi_module' as Id<'profiles'>;
+export const STUDENT_ID = "profiles_test_multi_module" as Id<"profiles">;
 
 /**
  * Two placement rows — one in module 1, one in module 2.
@@ -33,26 +33,26 @@ export const STUDENT_ID = 'profiles_test_multi_module' as Id<'profiles'>;
  */
 export const multiModulePlacementRows: PlacementResultRow[] = [
   {
-    _id: 'placement_results_m1' as Id<'placement_results'>,
+    _id: "placement_results_m1" as Id<"placement_results">,
     _creationTime: 1_780_000_000_000,
     studentId: STUDENT_ID,
-    nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+    nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
     masteryEstimate: 0.85,
-    confidence: 'medium',
-    source: 'placement',
+    confidence: "medium",
+    source: "placement",
     createdAt: 1_780_000_000_000,
   },
   {
-    _id: 'placement_results_m2' as Id<'placement_results'>,
+    _id: "placement_results_m2" as Id<"placement_results">,
     _creationTime: 1_780_000_000_001,
     studentId: STUDENT_ID,
-    nodeId: 'math.im3.skill.2.1.graph-and-analyze-polynomial-functions',
+    nodeId: "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
     masteryEstimate: 0.5,
-    confidence: 'medium',
-    source: 'placement',
+    confidence: "medium",
+    source: "placement",
     createdAt: 1_780_000_000_001,
   },
 ];
 
 /** Expected module segments for assertion convenience. */
-export const expectedModulesSeen = ['1', '2'];
+export const expectedModulesSeen = ["1", "2"];

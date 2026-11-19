@@ -16,10 +16,10 @@
  * "undefined" (AD9 / AD7 defenses in the test suite).
  */
 const COURSE_LABELS: Readonly<Record<string, string>> = Object.freeze({
-  'math.im1': 'IM1',
-  'math.im2': 'IM2',
-  'math.im3': 'IM3',
-  'math.precalc': 'AP Precalculus',
+  "math.im1": "IM1",
+  "math.im2": "IM2",
+  "math.im3": "IM3",
+  "math.precalc": "AP Precalculus",
 });
 
 /**
@@ -27,7 +27,7 @@ const COURSE_LABELS: Readonly<Record<string, string>> = Object.freeze({
  * prefix is malformed. Kept friendly and course-agnostic so the prompt
  * never reads "You already mastered this in undefined".
  */
-const UNKNOWN_COURSE_LABEL = 'a previous course';
+const UNKNOWN_COURSE_LABEL = "a previous course";
 
 /**
  * Extract the course prefix from a source-course id.
@@ -37,8 +37,8 @@ const UNKNOWN_COURSE_LABEL = 'a previous course';
  * caller maps to the fallback label.
  */
 function extractCoursePrefix(sourceCourse: string): string {
-  const segments = sourceCourse.split('.');
-  if (segments.length < 2) return '';
+  const segments = sourceCourse.split(".");
+  if (segments.length < 2) return "";
   return `${segments[0]}.${segments[1]}`;
 }
 

@@ -1,1 +1,1 @@
-export { isDemoProvisioningEnabled } from '@math-platform/core-auth';
+export { isDemoProvisioningEnabled } from "@math-platform/core-auth";

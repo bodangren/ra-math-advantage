@@ -1,10 +1,12 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import type { DailyPracticeAnswerInputProps } from '@/lib/srs/answer-inputs/registry';
-import type { ClassificationDefinition, ClassificationResponse } from '@/lib/practice/engine/families/classification';
-
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import type { DailyPracticeAnswerInputProps } from "@/lib/srs/answer-inputs/registry";
+import type {
+  ClassificationDefinition,
+  ClassificationResponse,
+} from "@/lib/practice/engine/families/classification";
 
 /**
  * Renders an answer input for classification problems, showing items to
@@ -16,7 +18,11 @@ import type { ClassificationDefinition, ClassificationResponse } from '@/lib/pra
  * @param props.onSubmit - Callback to submit the graded practice envelope.
  * @returns A problem display with category selects and submit/grade result.
  */
-export function ClassificationInput({ family, definition, onSubmit }: DailyPracticeAnswerInputProps) {
+export function ClassificationInput({
+  family,
+  definition,
+  onSubmit,
+}: DailyPracticeAnswerInputProps) {
   const def = definition as ClassificationDefinition;
   const [submitted, setSubmitted] = useState(false);
   const [selections, setSelections] = useState<Record<string, string>>({});
@@ -26,7 +32,6 @@ export function ClassificationInput({ family, definition, onSubmit }: DailyPract
     maxScore: number;
     parts: Array<{ partId: string; isCorrect: boolean }>;
   } | null>(null);
-
 
   /**
    * Updates the category selection for a given part.
@@ -38,7 +43,6 @@ export function ClassificationInput({ family, definition, onSubmit }: DailyPract
     if (submitted) return;
     setSelections((prev) => ({ ...prev, [partId]: categoryId }));
   };
-
 
   /**
    * Grades all selections and submits the practice envelope.
@@ -73,13 +77,18 @@ export function ClassificationInput({ family, definition, onSubmit }: DailyPract
     <div className="space-y-6">
       <div className="bg-muted/50 p-4 rounded-lg">
         <h3 className="font-medium mb-3 text-sm text-muted-foreground">Problem</h3>
-        <p className="text-sm mb-4">{def.prompt?.stem ?? 'Classify each item into the correct category.'}</p>
+        <p className="text-sm mb-4">
+          {def.prompt?.stem ?? "Classify each item into the correct category."}
+        </p>
         <div className="space-y-3">
           {def.parts.map((part) => (
-            <div key={part.id} className="flex items-center justify-between p-3 bg-background rounded border">
+            <div
+              key={part.id}
+              className="flex items-center justify-between p-3 bg-background rounded border"
+            >
               <span className="font-medium">{part.label}</span>
               <select
-                value={selections[part.id] ?? ''}
+                value={selections[part.id] ?? ""}
                 onChange={(e) => handleSelect(part.id, e.target.value)}
                 disabled={submitted}
                 data-testid={`${part.id}-select`}
@@ -101,10 +110,12 @@ export function ClassificationInput({ family, definition, onSubmit }: DailyPract
         <div className="bg-muted/50 p-4 rounded-lg space-y-3">
           <div
             className={`text-sm font-medium ${
-              gradeResult.isCorrect ? 'text-green-600' : 'text-red-600'
+              gradeResult.isCorrect ? "text-green-600" : "text-red-600"
             }`}
           >
-            {gradeResult.isCorrect ? 'Correct!' : `Incorrect — ${gradeResult.score}/${gradeResult.maxScore} correct`}
+            {gradeResult.isCorrect
+              ? "Correct!"
+              : `Incorrect — ${gradeResult.score}/${gradeResult.maxScore} correct`}
           </div>
           <div className="space-y-1">
             {gradeResult.parts.map((part) => {
@@ -113,9 +124,12 @@ export function ClassificationInput({ family, definition, onSubmit }: DailyPract
               return (
                 <div
                   key={part.partId}
-                  className={`text-sm ${part.isCorrect ? 'text-green-600' : 'text-red-600'}`}
+                  className={`text-sm ${part.isCorrect ? "text-green-600" : "text-red-600"}`}
                 >
-                  {partDef?.label ?? part.partId}: {part.isCorrect ? 'Correct' : `Incorrect (expected ${expectedCategory?.label ?? partDef?.targetId})`}
+                  {partDef?.label ?? part.partId}:{" "}
+                  {part.isCorrect
+                    ? "Correct"
+                    : `Incorrect (expected ${expectedCategory?.label ?? partDef?.targetId})`}
                 </div>
               );
             })}

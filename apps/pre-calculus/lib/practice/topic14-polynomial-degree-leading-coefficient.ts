@@ -1,4 +1,4 @@
-import { generateTopic14PolynomialDegreeLeadingCoefficientOutput } from '@math-platform/math-content/knowledge-space';
+import { generateTopic14PolynomialDegreeLeadingCoefficientOutput } from "@math-platform/math-content/knowledge-space";
 
 export interface Topic14PolynomialDegreeLeadingCoefficientAnswers {
   readonly a_degree: string;
@@ -10,16 +10,16 @@ export interface Topic14PolynomialDegreeLeadingCoefficientAnswers {
 }
 
 const PART_IDS = [
-  'a_degree',
-  'a_leading_coefficient',
-  'b_degree',
-  'b_leading_coefficient',
-  'c_degree',
-  'c_leading_coefficient',
+  "a_degree",
+  "a_leading_coefficient",
+  "b_degree",
+  "b_leading_coefficient",
+  "c_degree",
+  "c_leading_coefficient",
 ] as const;
 
 function parseDecimal(rawAnswer: unknown): number | null {
-  if (typeof rawAnswer !== 'string') return null;
+  if (typeof rawAnswer !== "string") return null;
   const trimmed = rawAnswer.trim();
   if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(trimmed)) return null;
   const parsed = Number(trimmed);
@@ -29,8 +29,19 @@ function parseDecimal(rawAnswer: unknown): number | null {
 export function gradeTopic14PolynomialDegreeLeadingCoefficient(
   seed: number,
   answers: Topic14PolynomialDegreeLeadingCoefficientAnswers,
-): { score: number; maxScore: number; parts: { partId: string; rawAnswer: string; isCorrect: boolean; score: number; maxScore: number }[] } {
-  const expected = generateTopic14PolynomialDegreeLeadingCoefficientOutput(seed).expectedAnswer as Record<typeof PART_IDS[number], number>;
+): {
+  score: number;
+  maxScore: number;
+  parts: {
+    partId: string;
+    rawAnswer: string;
+    isCorrect: boolean;
+    score: number;
+    maxScore: number;
+  }[];
+} {
+  const expected = generateTopic14PolynomialDegreeLeadingCoefficientOutput(seed)
+    .expectedAnswer as Record<(typeof PART_IDS)[number], number>;
   const parts = PART_IDS.map((partId) => {
     const rawAnswer = answers[partId];
     const parsedAnswer = parseDecimal(rawAnswer);

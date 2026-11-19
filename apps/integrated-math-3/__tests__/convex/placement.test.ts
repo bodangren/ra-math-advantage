@@ -23,8 +23,8 @@
 // The mock ctx pattern follows the existing __tests__/convex/study.test.ts
 // and __tests__/convex/dev.test.ts conventions.
 
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import type { Id } from '@/convex/_generated/dataModel';
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import type { Id } from "@/convex/_generated/dataModel";
 
 // Production module — does not exist yet (Red phase).
 // The Green-phase implementer creates
@@ -35,19 +35,19 @@ import {
   seedPlacementResultsHandler,
   hasPlacementResultsHandler,
   getStudentPlacementResultsHandler,
-} from '@/convex/placement';
+} from "@/convex/placement";
 
 // ---------------------------------------------------------------------------
 // Types — mirror the convex schema for placement_results
 // ---------------------------------------------------------------------------
 
 type PlacementResultRow = {
-  _id: Id<'placement_results'>;
+  _id: Id<"placement_results">;
   _creationTime: number;
-  studentId: Id<'profiles'>;
+  studentId: Id<"profiles">;
   nodeId: string;
   masteryEstimate: number;
-  confidence: 'low' | 'medium';
+  confidence: "low" | "medium";
   source: string;
   createdAt: number;
 };
@@ -88,44 +88,49 @@ function makeMockCtx(options: MakeMockCtxOptions = {}): MockCtx {
   let insertIdCounter = 1;
 
   const placementResultsQueryMock: PlacementResultsQueryMock = {
-    withIndex: vi.fn().mockImplementation(
-      (
-        indexName: string,
-        builder?: (q: {
-          eq: (field: string, value: unknown) => { eq: (field: string, value: unknown) => unknown };
-        }) => unknown,
-      ) => {
-        let filtered: PlacementResultRow[] = [...placementResults];
-        const eqChain = {
-          eq: (field: string, value: unknown) => {
-            filtered = filtered.filter((d) => (d as unknown as Record<string, unknown>)[field] === value);
-            return eqChain;
-          },
-        };
-        if (builder) builder(eqChain);
-        return {
-          collect: () => Promise.resolve(filtered),
-          first: () => Promise.resolve(filtered[0] ?? null),
-          unique: () => Promise.resolve(filtered[0] ?? null),
-        };
-      },
-    ),
+    withIndex: vi
+      .fn()
+      .mockImplementation(
+        (
+          indexName: string,
+          builder?: (q: {
+            eq: (
+              field: string,
+              value: unknown,
+            ) => { eq: (field: string, value: unknown) => unknown };
+          }) => unknown,
+        ) => {
+          let filtered: PlacementResultRow[] = [...placementResults];
+          const eqChain = {
+            eq: (field: string, value: unknown) => {
+              filtered = filtered.filter(
+                (d) => (d as unknown as Record<string, unknown>)[field] === value,
+              );
+              return eqChain;
+            },
+          };
+          if (builder) builder(eqChain);
+          return {
+            collect: () => Promise.resolve(filtered),
+            first: () => Promise.resolve(filtered[0] ?? null),
+            unique: () => Promise.resolve(filtered[0] ?? null),
+          };
+        },
+      ),
   };
 
-  const insertSpy = vi.fn().mockImplementation(
-    (table: string, doc: Record<string, unknown>) => {
-      const id = `placement_results_${insertIdCounter++}` as Id<'placement_results'>;
-      if (table === 'placement_results') {
-        placementResults.push({ _id: id, ...doc } as PlacementResultRow);
-      }
-      return Promise.resolve(id);
-    },
-  );
+  const insertSpy = vi.fn().mockImplementation((table: string, doc: Record<string, unknown>) => {
+    const id = `placement_results_${insertIdCounter++}` as Id<"placement_results">;
+    if (table === "placement_results") {
+      placementResults.push({ _id: id, ...doc } as PlacementResultRow);
+    }
+    return Promise.resolve(id);
+  });
 
   const ctx: MockCtx = {
     db: {
       query: vi.fn().mockImplementation((tableName: string) => {
-        if (tableName === 'placement_results') {
+        if (tableName === "placement_results") {
           return placementResultsQueryMock;
         }
         return {
@@ -148,28 +153,28 @@ function makeMockCtx(options: MakeMockCtxOptions = {}): MockCtx {
   return ctx;
 }
 
-const STUDENT_A = 'student-im3-a' as Id<'profiles'>;
-const STUDENT_B = 'student-im3-b' as Id<'profiles'>;
+const STUDENT_A = "student-im3-a" as Id<"profiles">;
+const STUDENT_B = "student-im3-b" as Id<"profiles">;
 const FIXED_NOW_MS = 1_780_000_000_000;
 
-function makeArgs(studentId: Id<'profiles'>) {
+function makeArgs(studentId: Id<"profiles">) {
   return {
     studentId,
     results: [
       {
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 0.85,
-        confidence: 'medium' as const,
+        confidence: "medium" as const,
       },
       {
-        nodeId: 'math.im3.skill.1.4.solve-quadratic-equations-by-factoring',
+        nodeId: "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
         masteryEstimate: 0.15,
-        confidence: 'low' as const,
+        confidence: "low" as const,
       },
       {
-        nodeId: 'math.im3.skill.2.3.multiply-polynomials',
+        nodeId: "math.im3.skill.2.3.multiply-polynomials",
         masteryEstimate: 0.4,
-        confidence: 'low' as const,
+        confidence: "low" as const,
       },
     ],
   };
@@ -179,31 +184,40 @@ function makeArgs(studentId: Id<'profiles'>) {
 // Task 4.2.a — seedPlacementResultsHandler: persistence + idempotency
 // ---------------------------------------------------------------------------
 
-describe('seedPlacementResultsHandler — persistence + idempotency', () => {
+describe("seedPlacementResultsHandler — persistence + idempotency", () => {
   let ctx: MockCtx;
 
   beforeEach(() => {
     ctx = makeMockCtx();
   });
 
-  it('inserts one row per PlacementResult into the placement_results table', async () => {
+  it("inserts one row per PlacementResult into the placement_results table", async () => {
     const args = makeArgs(STUDENT_A);
-    await seedPlacementResultsHandler(ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0], args);
+    await seedPlacementResultsHandler(
+      ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0],
+      args,
+    );
 
     expect(ctx.insertSpy).toHaveBeenCalledTimes(args.results.length);
     for (const r of args.results) {
-      expect(ctx.insertSpy).toHaveBeenCalledWith('placement_results', expect.objectContaining({
-        studentId: STUDENT_A,
-        nodeId: r.nodeId,
-        masteryEstimate: r.masteryEstimate,
-        confidence: r.confidence,
-      }));
+      expect(ctx.insertSpy).toHaveBeenCalledWith(
+        "placement_results",
+        expect.objectContaining({
+          studentId: STUDENT_A,
+          nodeId: r.nodeId,
+          masteryEstimate: r.masteryEstimate,
+          confidence: r.confidence,
+        }),
+      );
     }
   });
 
   it('persists createdAt from the supplied "now" timestamp', async () => {
     const args = makeArgs(STUDENT_A);
-    await seedPlacementResultsHandler(ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0], { ...args, now: FIXED_NOW_MS });
+    await seedPlacementResultsHandler(
+      ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0],
+      { ...args, now: FIXED_NOW_MS },
+    );
 
     for (const call of ctx.insertSpy.mock.calls) {
       expect(call[1]).toMatchObject({ createdAt: FIXED_NOW_MS });
@@ -213,7 +227,10 @@ describe('seedPlacementResultsHandler — persistence + idempotency', () => {
   it('defaults createdAt to Date.now() when "now" is not provided', async () => {
     const before = Date.now();
     const args = makeArgs(STUDENT_A);
-    await seedPlacementResultsHandler(ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0], args);
+    await seedPlacementResultsHandler(
+      ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0],
+      args,
+    );
     const after = Date.now();
 
     for (const call of ctx.insertSpy.mock.calls) {
@@ -225,16 +242,22 @@ describe('seedPlacementResultsHandler — persistence + idempotency', () => {
 
   it('tags every persisted row with source="placement"', async () => {
     const args = makeArgs(STUDENT_A);
-    await seedPlacementResultsHandler(ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0], args);
+    await seedPlacementResultsHandler(
+      ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0],
+      args,
+    );
 
     for (const call of ctx.insertSpy.mock.calls) {
-      expect(call[1]).toMatchObject({ source: 'placement' });
+      expect(call[1]).toMatchObject({ source: "placement" });
     }
   });
 
-  it('returns an array of inserted row ids, one per PlacementResult', async () => {
+  it("returns an array of inserted row ids, one per PlacementResult", async () => {
     const args = makeArgs(STUDENT_A);
-    const result = await seedPlacementResultsHandler(ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0], args);
+    const result = await seedPlacementResultsHandler(
+      ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0],
+      args,
+    );
 
     expect(result).toBeDefined();
     expect(result.persistedIds).toHaveLength(args.results.length);
@@ -243,24 +266,30 @@ describe('seedPlacementResultsHandler — persistence + idempotency', () => {
     }
   });
 
-  it('isolates rows by studentId (different students get separate inserts)', async () => {
-    await seedPlacementResultsHandler(ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0], makeArgs(STUDENT_A));
-    await seedPlacementResultsHandler(ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0], {
-      ...makeArgs(STUDENT_B),
-      results: [
-        {
-          nodeId: 'math.im3.skill.9.1.convert-between-degree-and-radian-measures',
-          masteryEstimate: 0.6,
-          confidence: 'medium' as const,
-        },
-      ],
-    });
+  it("isolates rows by studentId (different students get separate inserts)", async () => {
+    await seedPlacementResultsHandler(
+      ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0],
+      makeArgs(STUDENT_A),
+    );
+    await seedPlacementResultsHandler(
+      ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0],
+      {
+        ...makeArgs(STUDENT_B),
+        results: [
+          {
+            nodeId: "math.im3.skill.9.1.convert-between-degree-and-radian-measures",
+            masteryEstimate: 0.6,
+            confidence: "medium" as const,
+          },
+        ],
+      },
+    );
 
     const aInserts = ctx.insertSpy.mock.calls.filter(
-      (c) => (c[1] as { studentId: Id<'profiles'> }).studentId === STUDENT_A,
+      (c) => (c[1] as { studentId: Id<"profiles"> }).studentId === STUDENT_A,
     );
     const bInserts = ctx.insertSpy.mock.calls.filter(
-      (c) => (c[1] as { studentId: Id<'profiles'> }).studentId === STUDENT_B,
+      (c) => (c[1] as { studentId: Id<"profiles"> }).studentId === STUDENT_B,
     );
 
     expect(aInserts).toHaveLength(3);
@@ -272,30 +301,36 @@ describe('seedPlacementResultsHandler — persistence + idempotency', () => {
       studentId: STUDENT_A,
       results: [
         {
-          nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+          nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
           masteryEstimate: 0.9,
-          confidence: 'high' as unknown as 'medium',
+          confidence: "high" as unknown as "medium",
         },
       ],
     };
     await expect(
-      seedPlacementResultsHandler(ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0], sneaky),
+      seedPlacementResultsHandler(
+        ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0],
+        sneaky,
+      ),
     ).rejects.toThrowError(/confidence/i);
   });
 
-  it('rejects PlacementResult with masteryEstimate out of [0, 1]', async () => {
+  it("rejects PlacementResult with masteryEstimate out of [0, 1]", async () => {
     const oob = {
       studentId: STUDENT_A,
       results: [
         {
-          nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+          nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
           masteryEstimate: 1.5,
-          confidence: 'low' as const,
+          confidence: "low" as const,
         },
       ],
     };
     await expect(
-      seedPlacementResultsHandler(ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0], oob),
+      seedPlacementResultsHandler(
+        ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0],
+        oob,
+      ),
     ).rejects.toThrowError(/masteryEstimate/i);
   });
 });
@@ -308,18 +343,24 @@ describe('seedPlacementResultsHandler — persistence + idempotency', () => {
 // be idempotent per student" and §5 "Idempotency: calling twice with same
 // student ID yields same state".
 
-describe('seedPlacementResultsHandler — idempotency', () => {
-  it('calling twice with the same input yields a stable set of (studentId, nodeId) rows', async () => {
+describe("seedPlacementResultsHandler — idempotency", () => {
+  it("calling twice with the same input yields a stable set of (studentId, nodeId) rows", async () => {
     const ctx = makeMockCtx();
     const args = makeArgs(STUDENT_A);
 
-    await seedPlacementResultsHandler(ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0], args);
+    await seedPlacementResultsHandler(
+      ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0],
+      args,
+    );
     const firstIds = ctx.placementResults
       .filter((r) => r.studentId === STUDENT_A)
       .map((r) => r.nodeId)
       .sort();
 
-    await seedPlacementResultsHandler(ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0], args);
+    await seedPlacementResultsHandler(
+      ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0],
+      args,
+    );
     const secondIds = ctx.placementResults
       .filter((r) => r.studentId === STUDENT_A)
       .map((r) => r.nodeId)
@@ -329,18 +370,18 @@ describe('seedPlacementResultsHandler — idempotency', () => {
     expect(secondIds).toEqual(firstIds);
   });
 
-  it('upsert semantics: the second call replaces the existing (studentId, nodeId) row, not appends', async () => {
+  it("upsert semantics: the second call replaces the existing (studentId, nodeId) row, not appends", async () => {
     const ctx = makeMockCtx();
 
     const initial: PlacementResultRow[] = [
       {
-        _id: 'placement_results_existing' as Id<'placement_results'>,
+        _id: "placement_results_existing" as Id<"placement_results">,
         _creationTime: FIXED_NOW_MS - 1_000,
         studentId: STUDENT_A,
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 0.3,
-        confidence: 'low',
-        source: 'placement',
+        confidence: "low",
+        source: "placement",
         createdAt: FIXED_NOW_MS - 1_000,
       },
     ];
@@ -352,15 +393,18 @@ describe('seedPlacementResultsHandler — idempotency', () => {
       studentId: STUDENT_A,
       results: [
         {
-          nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+          nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
           masteryEstimate: 0.7,
-          confidence: 'medium' as const,
+          confidence: "medium" as const,
         },
       ],
       now: FIXED_NOW_MS,
     };
 
-    await seedPlacementResultsHandler(seededCtx as unknown as Parameters<typeof seedPlacementResultsHandler>[0], updated);
+    await seedPlacementResultsHandler(
+      seededCtx as unknown as Parameters<typeof seedPlacementResultsHandler>[0],
+      updated,
+    );
 
     // Implementation strategy: the existing row is patched in place OR
     // deleted + re-inserted. Either way the persisted (studentId, nodeId)
@@ -368,7 +412,7 @@ describe('seedPlacementResultsHandler — idempotency', () => {
     const rowsForStudent = seededCtx.placementResults.filter((r) => r.studentId === STUDENT_A);
     expect(rowsForStudent).toHaveLength(1);
     expect(rowsForStudent[0]!.masteryEstimate).toBe(0.7);
-    expect(rowsForStudent[0]!.confidence).toBe('medium');
+    expect(rowsForStudent[0]!.confidence).toBe("medium");
   });
 });
 
@@ -376,18 +420,18 @@ describe('seedPlacementResultsHandler — idempotency', () => {
 // Task 4.2.c — hasPlacementResultsHandler: returning-student guard
 // ---------------------------------------------------------------------------
 
-describe('hasPlacementResultsHandler — guard query', () => {
-  it('returns true for a student with at least one placement_results row', async () => {
+describe("hasPlacementResultsHandler — guard query", () => {
+  it("returns true for a student with at least one placement_results row", async () => {
     const ctx = makeMockCtx({
       placementResults: [
         {
-          _id: 'placement_results_1' as Id<'placement_results'>,
+          _id: "placement_results_1" as Id<"placement_results">,
           _creationTime: FIXED_NOW_MS,
           studentId: STUDENT_A,
-          nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+          nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
           masteryEstimate: 0.5,
-          confidence: 'low',
-          source: 'placement',
+          confidence: "low",
+          source: "placement",
           createdAt: FIXED_NOW_MS,
         },
       ],
@@ -401,7 +445,7 @@ describe('hasPlacementResultsHandler — guard query', () => {
     expect(result).toBe(true);
   });
 
-  it('returns false for a student with no placement_results rows', async () => {
+  it("returns false for a student with no placement_results rows", async () => {
     const ctx = makeMockCtx();
 
     const result = await hasPlacementResultsHandler(
@@ -412,13 +456,16 @@ describe('hasPlacementResultsHandler — guard query', () => {
     expect(result).toBe(false);
   });
 
-  it('uses the by_student index (does not full-table-scan)', async () => {
+  it("uses the by_student index (does not full-table-scan)", async () => {
     const ctx = makeMockCtx();
     await hasPlacementResultsHandler(
       ctx as unknown as Parameters<typeof hasPlacementResultsHandler>[0],
       { studentId: STUDENT_A },
     );
-    expect(ctx.placementResultsQueryMock.withIndex).toHaveBeenCalledWith('by_student', expect.any(Function));
+    expect(ctx.placementResultsQueryMock.withIndex).toHaveBeenCalledWith(
+      "by_student",
+      expect.any(Function),
+    );
   });
 });
 
@@ -426,37 +473,37 @@ describe('hasPlacementResultsHandler — guard query', () => {
 // Task 4.2.d — getStudentPlacementResultsHandler: read query
 // ---------------------------------------------------------------------------
 
-describe('getStudentPlacementResultsHandler — read query', () => {
-  it('returns all placement rows for the given student', async () => {
+describe("getStudentPlacementResultsHandler — read query", () => {
+  it("returns all placement rows for the given student", async () => {
     const rows: PlacementResultRow[] = [
       {
-        _id: 'placement_results_1' as Id<'placement_results'>,
+        _id: "placement_results_1" as Id<"placement_results">,
         _creationTime: FIXED_NOW_MS,
         studentId: STUDENT_A,
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 0.85,
-        confidence: 'medium',
-        source: 'placement',
+        confidence: "medium",
+        source: "placement",
         createdAt: FIXED_NOW_MS,
       },
       {
-        _id: 'placement_results_2' as Id<'placement_results'>,
+        _id: "placement_results_2" as Id<"placement_results">,
         _creationTime: FIXED_NOW_MS,
         studentId: STUDENT_A,
-        nodeId: 'math.im3.skill.1.4.solve-quadratic-equations-by-factoring',
+        nodeId: "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
         masteryEstimate: 0.15,
-        confidence: 'low',
-        source: 'placement',
+        confidence: "low",
+        source: "placement",
         createdAt: FIXED_NOW_MS,
       },
       {
-        _id: 'placement_results_3' as Id<'placement_results'>,
+        _id: "placement_results_3" as Id<"placement_results">,
         _creationTime: FIXED_NOW_MS,
         studentId: STUDENT_B,
-        nodeId: 'math.im3.skill.9.1.convert-between-degree-and-radian-measures',
+        nodeId: "math.im3.skill.9.1.convert-between-degree-and-radian-measures",
         masteryEstimate: 0.6,
-        confidence: 'medium',
-        source: 'placement',
+        confidence: "medium",
+        source: "placement",
         createdAt: FIXED_NOW_MS,
       },
     ];
@@ -473,7 +520,7 @@ describe('getStudentPlacementResultsHandler — read query', () => {
     }
   });
 
-  it('returns an empty array for a student with no placement results', async () => {
+  it("returns an empty array for a student with no placement results", async () => {
     const ctx = makeMockCtx();
 
     const result = await getStudentPlacementResultsHandler(
@@ -487,13 +534,13 @@ describe('getStudentPlacementResultsHandler — read query', () => {
   it('every returned row has confidence in {"low","medium"} (never "high")', async () => {
     const rows: PlacementResultRow[] = [
       {
-        _id: 'placement_results_1' as Id<'placement_results'>,
+        _id: "placement_results_1" as Id<"placement_results">,
         _creationTime: FIXED_NOW_MS,
         studentId: STUDENT_A,
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 0.85,
-        confidence: 'medium',
-        source: 'placement',
+        confidence: "medium",
+        source: "placement",
         createdAt: FIXED_NOW_MS,
       },
     ];
@@ -505,8 +552,8 @@ describe('getStudentPlacementResultsHandler — read query', () => {
     );
 
     for (const r of result) {
-      expect(['low', 'medium']).toContain(r.confidence);
-      expect(r.confidence).not.toBe('high');
+      expect(["low", "medium"]).toContain(r.confidence);
+      expect(r.confidence).not.toBe("high");
     }
   });
 });
@@ -522,8 +569,8 @@ describe('getStudentPlacementResultsHandler — read query', () => {
 // `placement_results` table to model a returning student and verifies
 // the guard flow at the persistence layer.
 
-describe('Convex placement wiring — new vs returning student routing', () => {
-  it('a new student passes the guard and gets persistence', async () => {
+describe("Convex placement wiring — new vs returning student routing", () => {
+  it("a new student passes the guard and gets persistence", async () => {
     const ctx = makeMockCtx();
     const hasExisting = await hasPlacementResultsHandler(
       ctx as unknown as Parameters<typeof hasPlacementResultsHandler>[0],
@@ -531,10 +578,13 @@ describe('Convex placement wiring — new vs returning student routing', () => {
     );
     expect(hasExisting).toBe(false);
 
-    await seedPlacementResultsHandler(ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0], {
-      ...makeArgs(STUDENT_A),
-      now: FIXED_NOW_MS,
-    });
+    await seedPlacementResultsHandler(
+      ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0],
+      {
+        ...makeArgs(STUDENT_A),
+        now: FIXED_NOW_MS,
+      },
+    );
 
     const hasExistingAfter = await hasPlacementResultsHandler(
       ctx as unknown as Parameters<typeof hasPlacementResultsHandler>[0],
@@ -543,17 +593,17 @@ describe('Convex placement wiring — new vs returning student routing', () => {
     expect(hasExistingAfter).toBe(true);
   });
 
-  it('a returning student is short-circuited by the guard (no second seed)', async () => {
+  it("a returning student is short-circuited by the guard (no second seed)", async () => {
     const ctx = makeMockCtx({
       placementResults: [
         {
-          _id: 'placement_results_existing' as Id<'placement_results'>,
+          _id: "placement_results_existing" as Id<"placement_results">,
           _creationTime: FIXED_NOW_MS - 1_000,
           studentId: STUDENT_A,
-          nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+          nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
           masteryEstimate: 0.7,
-          confidence: 'medium',
-          source: 'placement',
+          confidence: "medium",
+          source: "placement",
           createdAt: FIXED_NOW_MS - 1_000,
         },
       ],
@@ -568,20 +618,24 @@ describe('Convex placement wiring — new vs returning student routing', () => {
 
     // Caller skips the mutation when guard is true — no insert calls.
     if (!hasExisting) {
-      await seedPlacementResultsHandler(ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0], makeArgs(STUDENT_A));
+      await seedPlacementResultsHandler(
+        ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0],
+        makeArgs(STUDENT_A),
+      );
     }
 
-    const inserts = ctx.insertSpy.mock.calls.filter(
-      (c) => c[0] === 'placement_results',
-    );
+    const inserts = ctx.insertSpy.mock.calls.filter((c) => c[0] === "placement_results");
     expect(inserts).toHaveLength(0);
   });
 
-  it('after a placement run, getStudentPlacementResults returns the persisted rows', async () => {
+  it("after a placement run, getStudentPlacementResults returns the persisted rows", async () => {
     const ctx = makeMockCtx();
     const args = { ...makeArgs(STUDENT_A), now: FIXED_NOW_MS };
 
-    await seedPlacementResultsHandler(ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0], args);
+    await seedPlacementResultsHandler(
+      ctx as unknown as Parameters<typeof seedPlacementResultsHandler>[0],
+      args,
+    );
 
     const rows = await getStudentPlacementResultsHandler(
       ctx as unknown as Parameters<typeof getStudentPlacementResultsHandler>[0],

@@ -1,9 +1,9 @@
-import type { ContentBlock, LessonMetadata, PhaseMetadata } from '@/types/curriculum';
+import type { ContentBlock, LessonMetadata, PhaseMetadata } from "@/types/curriculum";
 import {
   fallbackPublishedPhaseTitle,
   publishedPhaseMetadata,
   toPublishedContentBlock,
-} from '@/lib/curriculum/published-lesson-presentation';
+} from "@/lib/curriculum/published-lesson-presentation";
 
 export interface TeacherLessonMonitoringSection {
   id: string;

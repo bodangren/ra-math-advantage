@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const UNIT10_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Laws of Exponents

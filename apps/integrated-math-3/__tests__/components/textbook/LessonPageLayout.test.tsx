@@ -1,16 +1,16 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { LessonPageLayout, type PhaseNavItem } from '@/components/textbook/LessonPageLayout';
+import { describe, it, expect } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { LessonPageLayout, type PhaseNavItem } from "@/components/textbook/LessonPageLayout";
 
 const samplePhases: PhaseNavItem[] = [
-  { phaseType: 'explore', label: 'Explore', completed: true, isCurrent: false },
-  { phaseType: 'learn', label: 'Learn', completed: false, isCurrent: true },
-  { phaseType: 'worked_example', label: 'Example', completed: false, isCurrent: false },
+  { phaseType: "explore", label: "Explore", completed: true, isCurrent: false },
+  { phaseType: "learn", label: "Learn", completed: false, isCurrent: true },
+  { phaseType: "worked_example", label: "Example", completed: false, isCurrent: false },
 ];
 
-describe('LessonPageLayout', () => {
-  describe('header rendering', () => {
-    it('renders the lesson title', () => {
+describe("LessonPageLayout", () => {
+  describe("header rendering", () => {
+    it("renders the lesson title", () => {
       render(
         <LessonPageLayout
           lessonTitle="Introduction to Linear Functions"
@@ -19,12 +19,12 @@ describe('LessonPageLayout', () => {
           phases={samplePhases}
         >
           <div>content</div>
-        </LessonPageLayout>
+        </LessonPageLayout>,
       );
-      expect(screen.getByText('Introduction to Linear Functions')).toBeInTheDocument();
+      expect(screen.getByText("Introduction to Linear Functions")).toBeInTheDocument();
     });
 
-    it('renders the module label', () => {
+    it("renders the module label", () => {
       render(
         <LessonPageLayout
           lessonTitle="Introduction to Linear Functions"
@@ -33,12 +33,12 @@ describe('LessonPageLayout', () => {
           phases={samplePhases}
         >
           <div>content</div>
-        </LessonPageLayout>
+        </LessonPageLayout>,
       );
-      expect(screen.getByText('Module 1')).toBeInTheDocument();
+      expect(screen.getByText("Module 1")).toBeInTheDocument();
     });
 
-    it('renders the lesson number', () => {
+    it("renders the lesson number", () => {
       render(
         <LessonPageLayout
           lessonTitle="Introduction to Linear Functions"
@@ -47,12 +47,12 @@ describe('LessonPageLayout', () => {
           phases={samplePhases}
         >
           <div>content</div>
-        </LessonPageLayout>
+        </LessonPageLayout>,
       );
       expect(screen.getByText(/Lesson 3/)).toBeInTheDocument();
     });
 
-    it('renders optional goals when provided', () => {
+    it("renders optional goals when provided", () => {
       render(
         <LessonPageLayout
           lessonTitle="Linear Functions"
@@ -62,12 +62,12 @@ describe('LessonPageLayout', () => {
           phases={samplePhases}
         >
           <div>content</div>
-        </LessonPageLayout>
+        </LessonPageLayout>,
       );
-      expect(screen.getByText('Understand slope and intercept')).toBeInTheDocument();
+      expect(screen.getByText("Understand slope and intercept")).toBeInTheDocument();
     });
 
-    it('does not render goals section when not provided', () => {
+    it("does not render goals section when not provided", () => {
       render(
         <LessonPageLayout
           lessonTitle="Linear Functions"
@@ -76,14 +76,14 @@ describe('LessonPageLayout', () => {
           phases={samplePhases}
         >
           <div>content</div>
-        </LessonPageLayout>
+        </LessonPageLayout>,
       );
       expect(screen.queryByText(/Goals/i)).not.toBeInTheDocument();
     });
   });
 
-  describe('sidebar navigation', () => {
-    it('renders all phase nav items', () => {
+  describe("sidebar navigation", () => {
+    it("renders all phase nav items", () => {
       render(
         <LessonPageLayout
           lessonTitle="Linear Functions"
@@ -92,14 +92,14 @@ describe('LessonPageLayout', () => {
           phases={samplePhases}
         >
           <div>content</div>
-        </LessonPageLayout>
+        </LessonPageLayout>,
       );
-      expect(screen.getByText('Explore')).toBeInTheDocument();
-      expect(screen.getByText('Learn')).toBeInTheDocument();
-      expect(screen.getByText('Example')).toBeInTheDocument();
+      expect(screen.getByText("Explore")).toBeInTheDocument();
+      expect(screen.getByText("Learn")).toBeInTheDocument();
+      expect(screen.getByText("Example")).toBeInTheDocument();
     });
 
-    it('visually distinguishes the current phase', () => {
+    it("visually distinguishes the current phase", () => {
       const { container } = render(
         <LessonPageLayout
           lessonTitle="Linear Functions"
@@ -108,14 +108,14 @@ describe('LessonPageLayout', () => {
           phases={samplePhases}
         >
           <div>content</div>
-        </LessonPageLayout>
+        </LessonPageLayout>,
       );
       // The current phase item should have a distinct class
       const currentItem = container.querySelector('[data-current="true"]');
       expect(currentItem).toBeInTheDocument();
     });
 
-    it('marks completed phases', () => {
+    it("marks completed phases", () => {
       const { container } = render(
         <LessonPageLayout
           lessonTitle="Linear Functions"
@@ -124,15 +124,15 @@ describe('LessonPageLayout', () => {
           phases={samplePhases}
         >
           <div>content</div>
-        </LessonPageLayout>
+        </LessonPageLayout>,
       );
       const completedItems = container.querySelectorAll('[data-completed="true"]');
       expect(completedItems.length).toBe(1);
     });
   });
 
-  describe('mobile sidebar toggle', () => {
-    it('renders a menu toggle button', () => {
+  describe("mobile sidebar toggle", () => {
+    it("renders a menu toggle button", () => {
       render(
         <LessonPageLayout
           lessonTitle="Linear Functions"
@@ -141,13 +141,13 @@ describe('LessonPageLayout', () => {
           phases={samplePhases}
         >
           <div>content</div>
-        </LessonPageLayout>
+        </LessonPageLayout>,
       );
-      const toggle = screen.getByRole('button', { name: /menu|navigation|phases/i });
+      const toggle = screen.getByRole("button", { name: /menu|navigation|phases/i });
       expect(toggle).toBeInTheDocument();
     });
 
-    it('toggles sidebar visibility on mobile button click', () => {
+    it("toggles sidebar visibility on mobile button click", () => {
       const { container } = render(
         <LessonPageLayout
           lessonTitle="Linear Functions"
@@ -156,18 +156,18 @@ describe('LessonPageLayout', () => {
           phases={samplePhases}
         >
           <div>content</div>
-        </LessonPageLayout>
+        </LessonPageLayout>,
       );
-      const toggle = screen.getByRole('button', { name: /menu|navigation|phases/i });
+      const toggle = screen.getByRole("button", { name: /menu|navigation|phases/i });
       fireEvent.click(toggle);
       // Sidebar should have an open state class
-      const sidebar = container.querySelector('[data-sidebar]');
+      const sidebar = container.querySelector("[data-sidebar]");
       expect(sidebar).toBeInTheDocument();
     });
   });
 
-  describe('progress bar', () => {
-    it('renders a progress bar', () => {
+  describe("progress bar", () => {
+    it("renders a progress bar", () => {
       const { container } = render(
         <LessonPageLayout
           lessonTitle="Linear Functions"
@@ -176,13 +176,13 @@ describe('LessonPageLayout', () => {
           phases={samplePhases}
         >
           <div>content</div>
-        </LessonPageLayout>
+        </LessonPageLayout>,
       );
       const progressBar = container.querySelector('[role="progressbar"]');
       expect(progressBar).toBeInTheDocument();
     });
 
-    it('progress bar reflects completed phase count', () => {
+    it("progress bar reflects completed phase count", () => {
       const { container } = render(
         <LessonPageLayout
           lessonTitle="Linear Functions"
@@ -191,17 +191,17 @@ describe('LessonPageLayout', () => {
           phases={samplePhases}
         >
           <div>content</div>
-        </LessonPageLayout>
+        </LessonPageLayout>,
       );
       const progressBar = container.querySelector('[role="progressbar"]');
       // 1 of 3 phases complete → 33%
-      expect(progressBar).toHaveAttribute('aria-valuenow', '33');
+      expect(progressBar).toHaveAttribute("aria-valuenow", "33");
     });
 
-    it('shows 100% when all phases are completed', () => {
+    it("shows 100% when all phases are completed", () => {
       const allComplete: PhaseNavItem[] = [
-        { phaseType: 'explore', label: 'Explore', completed: true, isCurrent: false },
-        { phaseType: 'learn', label: 'Learn', completed: true, isCurrent: false },
+        { phaseType: "explore", label: "Explore", completed: true, isCurrent: false },
+        { phaseType: "learn", label: "Learn", completed: true, isCurrent: false },
       ];
       const { container } = render(
         <LessonPageLayout
@@ -211,15 +211,15 @@ describe('LessonPageLayout', () => {
           phases={allComplete}
         >
           <div>content</div>
-        </LessonPageLayout>
+        </LessonPageLayout>,
       );
       const progressBar = container.querySelector('[role="progressbar"]');
-      expect(progressBar).toHaveAttribute('aria-valuenow', '100');
+      expect(progressBar).toHaveAttribute("aria-valuenow", "100");
     });
   });
 
-  describe('main content', () => {
-    it('renders children in the main content area', () => {
+  describe("main content", () => {
+    it("renders children in the main content area", () => {
       render(
         <LessonPageLayout
           lessonTitle="Linear Functions"
@@ -228,12 +228,12 @@ describe('LessonPageLayout', () => {
           phases={samplePhases}
         >
           <p>Main lesson content</p>
-        </LessonPageLayout>
+        </LessonPageLayout>,
       );
-      expect(screen.getByText('Main lesson content')).toBeInTheDocument();
+      expect(screen.getByText("Main lesson content")).toBeInTheDocument();
     });
 
-    it('has a constrained max-width for readability', () => {
+    it("has a constrained max-width for readability", () => {
       const { container } = render(
         <LessonPageLayout
           lessonTitle="Linear Functions"
@@ -242,16 +242,16 @@ describe('LessonPageLayout', () => {
           phases={samplePhases}
         >
           <div>content</div>
-        </LessonPageLayout>
+        </LessonPageLayout>,
       );
-      const main = container.querySelector('main');
+      const main = container.querySelector("main");
       expect(main).toBeInTheDocument();
       expect(main?.className).toMatch(/max-w-/);
     });
   });
 
-  describe('accessibility', () => {
-    it('has a main landmark', () => {
+  describe("accessibility", () => {
+    it("has a main landmark", () => {
       render(
         <LessonPageLayout
           lessonTitle="Linear Functions"
@@ -260,12 +260,12 @@ describe('LessonPageLayout', () => {
           phases={samplePhases}
         >
           <div>content</div>
-        </LessonPageLayout>
+        </LessonPageLayout>,
       );
-      expect(screen.getByRole('main')).toBeInTheDocument();
+      expect(screen.getByRole("main")).toBeInTheDocument();
     });
 
-    it('has a navigation landmark for phases', () => {
+    it("has a navigation landmark for phases", () => {
       render(
         <LessonPageLayout
           lessonTitle="Linear Functions"
@@ -274,12 +274,12 @@ describe('LessonPageLayout', () => {
           phases={samplePhases}
         >
           <div>content</div>
-        </LessonPageLayout>
+        </LessonPageLayout>,
       );
-      expect(screen.getByRole('navigation')).toBeInTheDocument();
+      expect(screen.getByRole("navigation")).toBeInTheDocument();
     });
 
-    it('has a skip-to-content link targeting main content', () => {
+    it("has a skip-to-content link targeting main content", () => {
       render(
         <LessonPageLayout
           lessonTitle="Linear Functions"
@@ -288,13 +288,13 @@ describe('LessonPageLayout', () => {
           phases={samplePhases}
         >
           <div>content</div>
-        </LessonPageLayout>
+        </LessonPageLayout>,
       );
-      const skipLink = screen.getByRole('link', { name: /skip to main content/i });
-      expect(skipLink).toHaveAttribute('href', '#main');
+      const skipLink = screen.getByRole("link", { name: /skip to main content/i });
+      expect(skipLink).toHaveAttribute("href", "#main");
     });
 
-    it('lesson main content has id matching skip link target', () => {
+    it("lesson main content has id matching skip link target", () => {
       const { container } = render(
         <LessonPageLayout
           lessonTitle="Linear Functions"
@@ -303,11 +303,11 @@ describe('LessonPageLayout', () => {
           phases={samplePhases}
         >
           <div>content</div>
-        </LessonPageLayout>
+        </LessonPageLayout>,
       );
-      const main = container.querySelector('main#main');
+      const main = container.querySelector("main#main");
       expect(main).toBeInTheDocument();
-      expect(main).toHaveAttribute('tabIndex', '-1');
+      expect(main).toHaveAttribute("tabIndex", "-1");
     });
   });
 });

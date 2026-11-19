@@ -247,7 +247,7 @@ export const seedModule8Lessons = internalMutation({
                 sectionType: "text" as const,
                 content: {
                   markdown:
-                    "## Review Notes\n\n- Problems 13–16 and 37–40 include graphs (images) that cannot be described textually. These require visual inspection to determine transformation parameters and write equations.\n- Problem 41 includes a graph showing assets over time that must be visually inspected to describe the transformation and extrapolate the value of the antique toy automobile.\n- Problem 50 includes a graph of a parent function [ f(x) ] that must be visually inspected to identify the parent function, write a transformation [ g(x) ], describe the transformation, and graph the result.\n- Problem 49 includes an image showing four pairs of transformations labeled A, B, C, D for a \"Which One Doesn't Belong?\" task.",
+                    '## Review Notes\n\n- Problems 13–16 and 37–40 include graphs (images) that cannot be described textually. These require visual inspection to determine transformation parameters and write equations.\n- Problem 41 includes a graph showing assets over time that must be visually inspected to describe the transformation and extrapolate the value of the antique toy automobile.\n- Problem 50 includes a graph of a parent function [ f(x) ] that must be visually inspected to identify the parent function, write a transformation [ g(x) ], describe the transformation, and graph the result.\n- Problem 49 includes an image showing four pairs of transformations labeled A, B, C, D for a "Which One Doesn\'t Belong?" task.',
                 },
               },
             ],
@@ -881,7 +881,7 @@ export const seedModule8Lessons = internalMutation({
         const existingPhase = await ctx.db
           .query("phase_versions")
           .withIndex("by_lesson_version_and_phase", (q) =>
-            q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+            q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
           )
           .first();
 

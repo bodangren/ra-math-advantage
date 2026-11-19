@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const UNIT9_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Solving Linear Equations
@@ -6,7 +6,8 @@ export const UNIT9_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "step-by-step-solver:solving-linear-equations",
     componentKey: "step-by-step-solver",
     displayName: "Solving Linear Equations",
-    description: "Solve one-variable linear equations including multi-step and variables on both sides",
+    description:
+      "Solve one-variable linear equations including multi-step and variables on both sides",
     objectiveIds: ["HSF-IF.A.2"],
     difficulty: "standard",
     metadata: { unit: 9, topic: "linear-equations" },

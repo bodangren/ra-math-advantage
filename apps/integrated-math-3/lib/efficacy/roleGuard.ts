@@ -1,4 +1,4 @@
-import type { SessionClaims } from '@math-platform/core-auth';
+import type { SessionClaims } from "@math-platform/core-auth";
 
 /**
  * Defense-in-depth role guard for the efficacy dashboard.
@@ -12,6 +12,6 @@ export function guardEfficacyAccess(
   claims: SessionClaims | null | undefined,
 ): SessionClaims | null {
   if (!claims) return null;
-  if (claims.role === 'teacher' || claims.role === 'admin') return claims;
+  if (claims.role === "teacher" || claims.role === "admin") return claims;
   return null;
 }

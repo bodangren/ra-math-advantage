@@ -1,19 +1,33 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-const N =
-  "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs";
+const N = "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs";
 vi.mock("@/curriculum/skill-graph/nodes.json", async (importOriginal) => {
   const source = await importOriginal<{ default: { nodes: Array<Record<string, unknown>> } }>();
-  return { default: { ...source.default, nodes: source.default.nodes.map((node) =>
-    node.id === "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs"
-      ? { ...node, kind: "skill", reviewStatus: "approved" }
-      : node) } };
+  return {
+    default: {
+      ...source.default,
+      nodes: source.default.nodes.map((node) =>
+        node.id === "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs"
+          ? { ...node, kind: "skill", reviewStatus: "approved" }
+          : node,
+      ),
+    },
+  };
 });
 vi.mock("@/curriculum/skill-graph/blueprints.json", async (importOriginal) => {
-  const source = await importOriginal<{ default: { blueprints: Array<Record<string, unknown>> } }>();
-  return { default: { ...source.default, blueprints: source.default.blueprints.map((blueprint) =>
-    blueprint.nodeId === "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs"
-      ? { ...blueprint, reviewStatus: "approved" }
-      : blueprint) } };
+  const source = await importOriginal<{
+    default: { blueprints: Array<Record<string, unknown>> };
+  }>();
+  return {
+    default: {
+      ...source.default,
+      blueprints: source.default.blueprints.map((blueprint) =>
+        blueprint.nodeId ===
+        "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs"
+          ? { ...blueprint, reviewStatus: "approved" }
+          : blueprint,
+      ),
+    },
+  };
 });
 import {
   createTopic11DailySubmission,
@@ -22,8 +36,7 @@ import {
 import { submitTopic11TeacherSubmission } from "@/convex/learningEvidence";
 import { evaluateLearningEvidenceV1 } from "@math-platform/practice-core";
 const S = `${N}.worked_example`,
-  h = (x: unknown) =>
-    Reflect.get(x as object, "_handler") as (c: any, a: any) => Promise<any>;
+  h = (x: unknown) => Reflect.get(x as object, "_handler") as (c: any, a: any) => Promise<any>;
 function db() {
   const r: any = {
     profiles: [
@@ -45,12 +58,14 @@ function db() {
     class_lessons: [{ _id: "a", classId: "c", lessonId: "l", assignedAt: 1 }],
     lesson_versions: [{ _id: "lv", lessonId: "l", status: "published" }],
     phase_versions: [{ _id: "pv", lessonVersionId: "lv" }],
-    phase_sections: [{
-      _id: "ps",
-      phaseVersionId: "pv",
-      sectionType: "activity",
-      content: { activityId: "x" },
-    }],
+    phase_sections: [
+      {
+        _id: "ps",
+        phaseVersionId: "pv",
+        sectionType: "activity",
+        content: { activityId: "x" },
+      },
+    ],
     activities: [
       {
         _id: "x",
@@ -92,8 +107,7 @@ function db() {
       const z: any = {
         unique: async () => a[0] ?? null,
         collect: async () => a,
-        first: async () =>
-          dir === "desc" ? (a.at(-1) ?? null) : (a[0] ?? null),
+        first: async () => (dir === "desc" ? (a.at(-1) ?? null) : (a[0] ?? null)),
         order: (x: string) => ((dir = x), z),
         take: async (limit: number) => a.slice(0, limit),
       };
@@ -179,17 +193,9 @@ describe("trusted Topic 1.1 teacher flow", () => {
   it.each([
     ["wrong teacher", (_r: any) => {}, { teacherId: "o" }],
     ["wrong class", (_r: any) => {}, { classId: "z" }],
-    [
-      "inactive enrollment",
-      (r: any) => (r.class_enrollments[0].status = "withdrawn"),
-      {},
-    ],
+    ["inactive enrollment", (r: any) => (r.class_enrollments[0].status = "withdrawn"), {}],
     ["missing assignment", (r: any) => (r.class_lessons = []), {}],
-    [
-      "late enrollment",
-      (r: any) => (r.class_enrollments[0].enrolledAt = 3),
-      {},
-    ],
+    ["late enrollment", (r: any) => (r.class_enrollments[0].enrolledAt = 3), {}],
     ["late assignment", (r: any) => (r.class_lessons[0].assignedAt = 3), {}],
   ])("rejects %s", async (_n, mut, over) => {
     const { ctx, r } = db(),

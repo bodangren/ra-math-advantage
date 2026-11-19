@@ -22,10 +22,10 @@
  * existing 5 green UserMenu cases in that same file.
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { UserMenu } from '@/components/user-menu';
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { UserMenu } from "@/components/user-menu";
 
 // UserMenu imports useAuth from '../auth/AuthProvider' inside
 // packages/app-shell/src/components/UserMenu.tsx. The mock specifier must
@@ -36,7 +36,7 @@ import { UserMenu } from '@/components/user-menu';
 const { authProviderPath } = vi.hoisted(() => {
   const fromCwd = (rel: string) => `${process.cwd()}/${rel}`;
   return {
-    authProviderPath: fromCwd('../../packages/app-shell/src/auth/AuthProvider.tsx'),
+    authProviderPath: fromCwd("../../packages/app-shell/src/auth/AuthProvider.tsx"),
   };
 });
 
@@ -45,7 +45,7 @@ const mockSignOut = vi.fn();
 type MockProfile = {
   id: string;
   username: string;
-  role: 'student' | 'teacher' | 'admin';
+  role: "student" | "teacher" | "admin";
   organization_id: string;
   display_name: string | null;
   avatar_url: string | null;
@@ -73,28 +73,28 @@ vi.mock(authProviderPath, () => ({
   AuthProvider: ({ children }: { children: React.ReactNode }) => children,
 }));
 
-vi.mock('@math-platform/app-shell/auth', () => ({
+vi.mock("@math-platform/app-shell/auth", () => ({
   useAuth: () => mockAuthContext,
   AuthProvider: ({ children }: { children: React.ReactNode }) => children,
 }));
 
-function makeProfile(role: MockProfile['role']): MockProfile {
+function makeProfile(role: MockProfile["role"]): MockProfile {
   return {
     id: `profile-${role}`,
     username: `${role}-user`,
     role,
-    organization_id: 'org-1',
+    organization_id: "org-1",
     display_name: `${role[0].toUpperCase()}${role.slice(1)} User`,
     avatar_url: null,
     metadata: null,
-    created_at: '2024-01-01T00:00:00Z',
-    updated_at: '2024-01-01T00:00:00Z',
+    created_at: "2024-01-01T00:00:00Z",
+    updated_at: "2024-01-01T00:00:00Z",
   };
 }
 
-describe('UserMenu Dashboard link (Red contract for Task 3.1b)', () => {
+describe("UserMenu Dashboard link (Red contract for Task 3.1b)", () => {
   beforeEach(() => {
-    mockAuthContext.user = { id: 'user-1', email: 'user@example.com' };
+    mockAuthContext.user = { id: "user-1", email: "user@example.com" };
     mockAuthContext.loading = false;
   });
 
@@ -102,44 +102,44 @@ describe('UserMenu Dashboard link (Red contract for Task 3.1b)', () => {
     vi.restoreAllMocks();
   });
 
-  it('renders a Dashboard link in the dropdown for a student pointing to /student/dashboard', async () => {
-    mockAuthContext.profile = makeProfile('student');
+  it("renders a Dashboard link in the dropdown for a student pointing to /student/dashboard", async () => {
+    mockAuthContext.profile = makeProfile("student");
     render(<UserMenu />);
 
-    await userEvent.click(screen.getByRole('button'));
+    await userEvent.click(screen.getByRole("button"));
 
-    const dashboardLink = screen.getByText('Dashboard').closest('a');
+    const dashboardLink = screen.getByText("Dashboard").closest("a");
     expect(dashboardLink).not.toBeNull();
-    expect(dashboardLink).toHaveAttribute('href', '/student/dashboard');
+    expect(dashboardLink).toHaveAttribute("href", "/student/dashboard");
   });
 
-  it('renders a Dashboard link in the dropdown for a teacher pointing to /teacher/dashboard', async () => {
-    mockAuthContext.profile = makeProfile('teacher');
+  it("renders a Dashboard link in the dropdown for a teacher pointing to /teacher/dashboard", async () => {
+    mockAuthContext.profile = makeProfile("teacher");
     render(<UserMenu />);
 
-    await userEvent.click(screen.getByRole('button'));
+    await userEvent.click(screen.getByRole("button"));
 
-    const dashboardLink = screen.getByText('Dashboard').closest('a');
+    const dashboardLink = screen.getByText("Dashboard").closest("a");
     expect(dashboardLink).not.toBeNull();
-    expect(dashboardLink).toHaveAttribute('href', '/teacher/dashboard');
+    expect(dashboardLink).toHaveAttribute("href", "/teacher/dashboard");
   });
 
-  it('renders a Dashboard link in the dropdown for an admin pointing to /teacher/dashboard', async () => {
-    mockAuthContext.profile = makeProfile('admin');
+  it("renders a Dashboard link in the dropdown for an admin pointing to /teacher/dashboard", async () => {
+    mockAuthContext.profile = makeProfile("admin");
     render(<UserMenu />);
 
-    await userEvent.click(screen.getByRole('button'));
+    await userEvent.click(screen.getByRole("button"));
 
-    const dashboardLink = screen.getByText('Dashboard').closest('a');
+    const dashboardLink = screen.getByText("Dashboard").closest("a");
     expect(dashboardLink).not.toBeNull();
-    expect(dashboardLink).toHaveAttribute('href', '/teacher/dashboard');
+    expect(dashboardLink).toHaveAttribute("href", "/teacher/dashboard");
   });
 
-  it('does not render a Dashboard link for an unauthenticated user', () => {
+  it("does not render a Dashboard link for an unauthenticated user", () => {
     mockAuthContext.user = null;
     mockAuthContext.profile = null;
     render(<UserMenu />);
 
-    expect(screen.queryByText('Dashboard')).toBeNull();
+    expect(screen.queryByText("Dashboard")).toBeNull();
   });
 });

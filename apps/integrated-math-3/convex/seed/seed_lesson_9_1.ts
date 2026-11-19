@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -78,7 +78,8 @@ export const seedLesson9_1 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "A circle has radius 5. What is the arc length subtended by a central angle of 2 radians?",
+                    question:
+                      "A circle has radius 5. What is the arc length subtended by a central angle of 2 radians?",
                     options: ["10", "25", "5/2"],
                     correctIndex: 0,
                   },
@@ -147,7 +148,8 @@ export const seedLesson9_1 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "To draw a 200° angle in standard position, which direction do you rotate?",
+                    question:
+                      "To draw a 200° angle in standard position, which direction do you rotate?",
                     options: ["Clockwise", "Counterclockwise"],
                     correctIndex: 1,
                   },
@@ -323,7 +325,8 @@ export const seedLesson9_1 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "What is the arc length for three-fourths of a 160-ft diameter circle?",
+                    question:
+                      "What is the arc length for three-fourths of a 160-ft diameter circle?",
                     options: ["120π feet", "160π feet", "80π feet"],
                     correctIndex: 0,
                   },
@@ -395,7 +398,7 @@ export const seedLesson9_1 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

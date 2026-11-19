@@ -1,8 +1,8 @@
-import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
+import type { GeneratorOutput } from "@math-platform/knowledge-space-practice";
 
-import { mulberry32 } from '../../utils/prng';
+import { mulberry32 } from "../../utils/prng";
 
-export type Topic13ConcavityClassification = 'concave_up' | 'concave_down' | 'neither';
+export type Topic13ConcavityClassification = "concave_up" | "concave_down" | "neither";
 
 export interface Topic13ConcavityTableCase {
   readonly functionName: string;
@@ -16,11 +16,11 @@ export interface Topic13ConcavityVariant extends Topic13ConcavityTableCase {
 }
 
 export const TOPIC13_CONCAVITY_FROM_RATE_CHANGE_NODE_ID =
-  'math.precalc.skill.1.3.determine-concavity-from-rate-of-change';
+  "math.precalc.skill.1.3.determine-concavity-from-rate-of-change";
 
-const SOURCE_PROMPT = 'Determine concavity.';
-const GENERATED_PROMPT = 'Determine concavity from the rate-of-change pattern.';
-const FUNCTION_NAME = 'k';
+const SOURCE_PROMPT = "Determine concavity.";
+const GENERATED_PROMPT = "Determine concavity from the rate-of-change pattern.";
+const FUNCTION_NAME = "k";
 const SOURCE_X_VALUES = [1, 1.1, 1.2, 1.3] as const;
 const SOURCE_Y_VALUES = [4, 1, -1, -2] as const;
 
@@ -55,11 +55,12 @@ function generatedVariant(seed: number): Topic13ConcavityVariant {
   const firstDifference = randomInteger(random, -100, 100);
   const curvature = randomInteger(random, 1, 25);
   const classIndex = (seed - 1) % 3;
-  const firstDifferences = classIndex === 0
-    ? [firstDifference, firstDifference + curvature, firstDifference + 2 * curvature]
-    : classIndex === 1
-      ? [firstDifference, firstDifference - curvature, firstDifference - 2 * curvature]
-      : [firstDifference, firstDifference + curvature, firstDifference];
+  const firstDifferences =
+    classIndex === 0
+      ? [firstDifference, firstDifference + curvature, firstDifference + 2 * curvature]
+      : classIndex === 1
+        ? [firstDifference, firstDifference - curvature, firstDifference - 2 * curvature]
+        : [firstDifference, firstDifference + curvature, firstDifference];
   const xValues = [0, 1, 2, 3].map((index) => xStart + index * width);
   const yValues = buildYValues(startingY, firstDifferences);
 
@@ -78,50 +79,60 @@ function differences(values: readonly number[]): number[] {
 
 function classifyVariant(variant: Topic13ConcavityVariant): Topic13ConcavityClassification {
   const firstDifferences = differences(variant.yValues);
-  if (firstDifferences.every((difference, index) => index === 0 || difference > firstDifferences[index - 1]!)) {
-    return 'concave_up';
+  if (
+    firstDifferences.every(
+      (difference, index) => index === 0 || difference > firstDifferences[index - 1]!,
+    )
+  ) {
+    return "concave_up";
   }
-  if (firstDifferences.every((difference, index) => index === 0 || difference < firstDifferences[index - 1]!)) {
-    return 'concave_down';
+  if (
+    firstDifferences.every(
+      (difference, index) => index === 0 || difference < firstDifferences[index - 1]!,
+    )
+  ) {
+    return "concave_down";
   }
-  return 'neither';
+  return "neither";
 }
 
 function sourceSolutionSteps(): Array<{ description: string }> {
   return [
-    { description: 'The first differences are -3, -2, and -1.' },
-    { description: 'The first differences increase from -3 to -2 to -1.' },
-    { description: 'Therefore, k is concave up.' },
+    { description: "The first differences are -3, -2, and -1." },
+    { description: "The first differences increase from -3 to -2 to -1." },
+    { description: "Therefore, k is concave up." },
   ];
 }
 
 function generatedSolutionSteps(variant: Topic13ConcavityVariant): Array<{ description: string }> {
   const firstDifferences = differences(variant.yValues);
   const classification = classifyVariant(variant);
-  if (classification === 'concave_up') {
+  if (classification === "concave_up") {
     return [
-      { description: `The first differences are ${firstDifferences.join(', ')}.` },
-      { description: `The first differences increase from ${firstDifferences.join(' to ')}.` },
+      { description: `The first differences are ${firstDifferences.join(", ")}.` },
+      { description: `The first differences increase from ${firstDifferences.join(" to ")}.` },
       { description: `Therefore, ${variant.functionName} is concave up.` },
     ];
   }
-  if (classification === 'concave_down') {
+  if (classification === "concave_down") {
     return [
-      { description: `The first differences are ${firstDifferences.join(', ')}.` },
-      { description: `The first differences decrease from ${firstDifferences.join(' to ')}.` },
+      { description: `The first differences are ${firstDifferences.join(", ")}.` },
+      { description: `The first differences decrease from ${firstDifferences.join(" to ")}.` },
       { description: `Therefore, ${variant.functionName} is concave down.` },
     ];
   }
   return [
-    { description: `The first differences are ${firstDifferences.join(', ')}.` },
-    { description: 'The first differences do not consistently increase or decrease.' },
-    { description: `Therefore, ${variant.functionName} has neither concave-up nor concave-down behavior.` },
+    { description: `The first differences are ${firstDifferences.join(", ")}.` },
+    { description: "The first differences do not consistently increase or decrease." },
+    {
+      description: `Therefore, ${variant.functionName} has neither concave-up nor concave-down behavior.`,
+    },
   ];
 }
 
 export function generateTopic13ConcavityFromRateChange(seed: number): Topic13ConcavityVariant {
   if (!Number.isInteger(seed) || seed < 0) {
-    throw new RangeError('seed must be a non-negative integer');
+    throw new RangeError("seed must be a non-negative integer");
   }
   return seed === 0 ? sourceVariant() : generatedVariant(seed);
 }
@@ -134,7 +145,7 @@ export function generateTopic13ConcavityFromRateChangeOutput(seed: number): Gene
     functionName: variant.functionName,
     xValues: variant.xValues,
     yValues: variant.yValues,
-    presentationMode: 'independent_practice' as const,
+    presentationMode: "independent_practice" as const,
   };
 
   return {
@@ -145,7 +156,7 @@ export function generateTopic13ConcavityFromRateChangeOutput(seed: number): Gene
     gradingMetadata: {
       partAnswers: answer,
       partMaxScores: { classification: 1 },
-      partGradingRules: { classification: 'exact_match' },
+      partGradingRules: { classification: "exact_match" },
     },
   };
 }

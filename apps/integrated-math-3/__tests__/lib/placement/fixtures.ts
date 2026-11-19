@@ -8,7 +8,7 @@
 // All exports are test-only. Production wiring (Convex-backed store, real
 // problem-bank lookups) lands in Phase 4.
 
-import type { ProbeResult, PlacementResult } from '@math-platform/knowledge-space-core';
+import type { ProbeResult, PlacementResult } from "@math-platform/knowledge-space-core";
 
 // ---------------------------------------------------------------------------
 // Im3ProblemEntry — shape of a single problem-bank entry
@@ -26,7 +26,7 @@ export interface Im3ProblemEntry {
   /** Human-readable prompt for the diagnostic problem. */
   prompt: string;
   /** Coarse difficulty band used for ordering / sampling. */
-  difficulty: 'easy' | 'medium' | 'hard';
+  difficulty: "easy" | "medium" | "hard";
 }
 
 // ---------------------------------------------------------------------------
@@ -41,212 +41,213 @@ export interface Im3ProblemEntry {
 export const IM3_PROBLEM_BANK: ReadonlyArray<Im3ProblemEntry> = Object.freeze([
   // Module 1 — Quadratic Functions
   {
-    problemId: 'im3-m1-l1-graph-quadratic',
-    nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+    problemId: "im3-m1-l1-graph-quadratic",
+    nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
     module: 1,
     lesson: 1,
-    prompt: 'Sketch the parabola y = x^2 - 4x + 3 and identify its vertex.',
-    difficulty: 'easy',
+    prompt: "Sketch the parabola y = x^2 - 4x + 3 and identify its vertex.",
+    difficulty: "easy",
   },
   {
-    problemId: 'im3-m1-l2-roots-by-graphing',
-    nodeId: 'math.im3.skill.1.2.solve-quadratic-equations-by-graphing',
+    problemId: "im3-m1-l2-roots-by-graphing",
+    nodeId: "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
     module: 1,
     lesson: 2,
-    prompt: 'Estimate the roots of y = x^2 - 5x + 6 from its graph.',
-    difficulty: 'easy',
+    prompt: "Estimate the roots of y = x^2 - 5x + 6 from its graph.",
+    difficulty: "easy",
   },
   {
-    problemId: 'im3-m1-l3-imaginary-unit',
-    nodeId: 'math.im3.skill.1.3.understand-and-use-the-imaginary-unit-i',
+    problemId: "im3-m1-l3-imaginary-unit",
+    nodeId: "math.im3.skill.1.3.understand-and-use-the-imaginary-unit-i",
     module: 1,
     lesson: 3,
-    prompt: 'Simplify sqrt(-49) using the imaginary unit i.',
-    difficulty: 'easy',
+    prompt: "Simplify sqrt(-49) using the imaginary unit i.",
+    difficulty: "easy",
   },
   {
-    problemId: 'im3-m1-l4-factor-quadratic',
-    nodeId: 'math.im3.skill.1.4.solve-quadratic-equations-by-factoring',
+    problemId: "im3-m1-l4-factor-quadratic",
+    nodeId: "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
     module: 1,
     lesson: 4,
-    prompt: 'Solve x^2 - 7x + 12 = 0 by factoring.',
-    difficulty: 'medium',
+    prompt: "Solve x^2 - 7x + 12 = 0 by factoring.",
+    difficulty: "medium",
   },
   {
-    problemId: 'im3-m1-l6-quadratic-formula',
-    nodeId: 'math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations',
+    problemId: "im3-m1-l6-quadratic-formula",
+    nodeId: "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
     module: 1,
     lesson: 6,
-    prompt: 'Use the quadratic formula to solve 2x^2 + 3x - 5 = 0.',
-    difficulty: 'medium',
+    prompt: "Use the quadratic formula to solve 2x^2 + 3x - 5 = 0.",
+    difficulty: "medium",
   },
   // Module 2 — Polynomials
   {
-    problemId: 'im3-m2-l1-graph-polynomial',
-    nodeId: 'math.im3.skill.2.1.graph-and-analyze-polynomial-functions',
+    problemId: "im3-m2-l1-graph-polynomial",
+    nodeId: "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
     module: 2,
     lesson: 1,
-    prompt: 'Sketch p(x) = x^3 - 3x and identify end behavior.',
-    difficulty: 'medium',
+    prompt: "Sketch p(x) = x^3 - 3x and identify end behavior.",
+    difficulty: "medium",
   },
   {
-    problemId: 'im3-m2-l3-multiply-polynomials',
-    nodeId: 'math.im3.skill.2.3.multiply-polynomials',
+    problemId: "im3-m2-l3-multiply-polynomials",
+    nodeId: "math.im3.skill.2.3.multiply-polynomials",
     module: 2,
     lesson: 3,
-    prompt: 'Expand (x + 2)(x^2 - 5x + 1).',
-    difficulty: 'medium',
+    prompt: "Expand (x + 2)(x^2 - 5x + 1).",
+    difficulty: "medium",
   },
   {
-    problemId: 'im3-m2-l4-synthetic-division',
-    nodeId: 'math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division',
+    problemId: "im3-m2-l4-synthetic-division",
+    nodeId: "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
     module: 2,
     lesson: 4,
-    prompt: 'Divide x^3 - 4x^2 + x + 6 by (x - 1) using synthetic division.',
-    difficulty: 'hard',
+    prompt: "Divide x^3 - 4x^2 + x + 6 by (x - 1) using synthetic division.",
+    difficulty: "hard",
   },
   // Module 3 — Polynomial Equations
   {
-    problemId: 'im3-m3-l1-poly-equation-graphing',
-    nodeId: 'math.im3.skill.3.1.solve-polynomial-equations-by-graphing',
+    problemId: "im3-m3-l1-poly-equation-graphing",
+    nodeId: "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
     module: 3,
     lesson: 1,
-    prompt: 'Solve x^3 - 2x^2 - 5x + 6 = 0 by graphing.',
-    difficulty: 'medium',
+    prompt: "Solve x^3 - 2x^2 - 5x + 6 = 0 by graphing.",
+    difficulty: "medium",
   },
   {
-    problemId: 'im3-m3-l2-poly-equation-factoring',
-    nodeId: 'math.im3.skill.3.2.solve-polynomial-equations-by-factoring',
+    problemId: "im3-m3-l2-poly-equation-factoring",
+    nodeId: "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
     module: 3,
     lesson: 2,
-    prompt: 'Factor and solve x^3 - 9x = 0.',
-    difficulty: 'medium',
+    prompt: "Factor and solve x^3 - 9x = 0.",
+    difficulty: "medium",
   },
   {
-    problemId: 'im3-m3-l4-synthetic-substitution',
-    nodeId: 'math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution',
+    problemId: "im3-m3-l4-synthetic-substitution",
+    nodeId: "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
     module: 3,
     lesson: 4,
-    prompt: 'Use synthetic substitution to evaluate f(2) for f(x) = x^3 - 4x + 1.',
-    difficulty: 'hard',
+    prompt: "Use synthetic substitution to evaluate f(2) for f(x) = x^3 - 4x + 1.",
+    difficulty: "hard",
   },
   // Module 4 — Inverses & Radicals
   {
-    problemId: 'im3-m4-l1-inverse-functions',
-    nodeId: 'math.im3.skill.4.2.find-inverses-of-relations',
+    problemId: "im3-m4-l1-inverse-functions",
+    nodeId: "math.im3.skill.4.2.find-inverses-of-relations",
     module: 4,
     lesson: 1,
-    prompt: 'Find the inverse of f(x) = 2x + 5.',
-    difficulty: 'easy',
+    prompt: "Find the inverse of f(x) = 2x + 5.",
+    difficulty: "easy",
   },
   {
-    problemId: 'im3-m4-l3-radical-equations',
-    nodeId: 'math.im3.skill.4.6.solve-radical-equations-in-one-variable-and-identify-extrane',
+    problemId: "im3-m4-l3-radical-equations",
+    nodeId: "math.im3.skill.4.6.solve-radical-equations-in-one-variable-and-identify-extrane",
     module: 4,
     lesson: 3,
-    prompt: 'Solve sqrt(2x + 1) = x - 1.',
-    difficulty: 'hard',
+    prompt: "Solve sqrt(2x + 1) = x - 1.",
+    difficulty: "hard",
   },
   // Module 5 — Exponential Functions
   {
-    problemId: 'im3-m5-l1-graph-exponential',
-    nodeId: 'math.im3.skill.5.1.graph-exponential-growth-functions',
+    problemId: "im3-m5-l1-graph-exponential",
+    nodeId: "math.im3.skill.5.1.graph-exponential-growth-functions",
     module: 5,
     lesson: 1,
-    prompt: 'Sketch y = 2^x and identify asymptotes.',
-    difficulty: 'easy',
+    prompt: "Sketch y = 2^x and identify asymptotes.",
+    difficulty: "easy",
   },
   {
-    problemId: 'im3-m5-l3-solve-exponential',
-    nodeId: 'math.im3.skill.5.2.solve-exponential-equations-in-one-variable',
+    problemId: "im3-m5-l3-solve-exponential",
+    nodeId: "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
     module: 5,
     lesson: 3,
-    prompt: 'Solve 3^(x+1) = 27.',
-    difficulty: 'medium',
+    prompt: "Solve 3^(x+1) = 27.",
+    difficulty: "medium",
   },
   // Module 6 — Logarithmic Functions
   {
-    problemId: 'im3-m6-l1-evaluate-logs',
-    nodeId: 'math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write',
+    problemId: "im3-m6-l1-evaluate-logs",
+    nodeId: "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
     module: 6,
     lesson: 1,
-    prompt: 'Evaluate log_2(32).',
-    difficulty: 'easy',
+    prompt: "Evaluate log_2(32).",
+    difficulty: "easy",
   },
   {
-    problemId: 'im3-m6-l3-log-properties',
-    nodeId: 'math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms',
+    problemId: "im3-m6-l3-log-properties",
+    nodeId: "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
     module: 6,
     lesson: 3,
-    prompt: 'Expand log(x^2 y / z) using log properties.',
-    difficulty: 'medium',
+    prompt: "Expand log(x^2 y / z) using log properties.",
+    difficulty: "medium",
   },
   {
-    problemId: 'im3-m6-l4-solve-log-equation',
-    nodeId: 'math.im3.skill.6.4.simplify-expressions-with-natural-logarithms',
+    problemId: "im3-m6-l4-solve-log-equation",
+    nodeId: "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
     module: 6,
     lesson: 4,
-    prompt: 'Solve log_3(x) + log_3(x - 2) = 1.',
-    difficulty: 'hard',
+    prompt: "Solve log_3(x) + log_3(x - 2) = 1.",
+    difficulty: "hard",
   },
   // Module 7 — Rational Functions
   {
-    problemId: 'im3-m7-l1-graph-rational',
-    nodeId: 'math.im3.skill.7.1.simplify-rational-expressions',
+    problemId: "im3-m7-l1-graph-rational",
+    nodeId: "math.im3.skill.7.1.simplify-rational-expressions",
     module: 7,
     lesson: 1,
-    prompt: 'Sketch f(x) = (x - 1)/(x + 2) and identify asymptotes.',
-    difficulty: 'medium',
+    prompt: "Sketch f(x) = (x - 1)/(x + 2) and identify asymptotes.",
+    difficulty: "medium",
   },
   {
-    problemId: 'im3-m7-l3-solve-rational',
-    nodeId: 'math.im3.skill.7.6.solve-rational-equations-in-one-variable',
+    problemId: "im3-m7-l3-solve-rational",
+    nodeId: "math.im3.skill.7.6.solve-rational-equations-in-one-variable",
     module: 7,
     lesson: 3,
-    prompt: 'Solve 1/x + 1/(x+1) = 5/6.',
-    difficulty: 'hard',
+    prompt: "Solve 1/x + 1/(x+1) = 5/6.",
+    difficulty: "hard",
   },
   // Module 8 — Inferential Statistics
   {
-    problemId: 'im3-m8-l1-mean-stddev',
-    nodeId: 'math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s',
+    problemId: "im3-m8-l1-mean-stddev",
+    nodeId: "math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s",
     module: 8,
     lesson: 1,
-    prompt: 'Find the mean and standard deviation of {4, 8, 10, 12, 16}.',
-    difficulty: 'easy',
+    prompt: "Find the mean and standard deviation of {4, 8, 10, 12, 16}.",
+    difficulty: "easy",
   },
   {
-    problemId: 'im3-m8-l3-confidence-interval',
-    nodeId: 'math.im3.skill.8.5.use-sample-data-to-infer-a-population-mean-by-using-confiden',
+    problemId: "im3-m8-l3-confidence-interval",
+    nodeId: "math.im3.skill.8.5.use-sample-data-to-infer-a-population-mean-by-using-confiden",
     module: 8,
     lesson: 3,
-    prompt: 'Compute a 95% confidence interval for a sample mean of 50 with sample standard deviation 5 and n = 100.',
-    difficulty: 'hard',
+    prompt:
+      "Compute a 95% confidence interval for a sample mean of 50 with sample standard deviation 5 and n = 100.",
+    difficulty: "hard",
   },
   // Module 9 — Trigonometric Functions
   {
-    problemId: 'im3-m9-l1-unit-circle',
-    nodeId: 'math.im3.skill.9.1.convert-between-degree-and-radian-measures-and-find-arc-leng',
+    problemId: "im3-m9-l1-unit-circle",
+    nodeId: "math.im3.skill.9.1.convert-between-degree-and-radian-measures-and-find-arc-leng",
     module: 9,
     lesson: 1,
-    prompt: 'Find sin(2π/3) using the unit circle.',
-    difficulty: 'medium',
+    prompt: "Find sin(2π/3) using the unit circle.",
+    difficulty: "medium",
   },
   {
-    problemId: 'im3-m9-l3-graph-sine',
-    nodeId: 'math.im3.skill.9.4.graph-and-analyze-sine-and-cosine-functions',
+    problemId: "im3-m9-l3-graph-sine",
+    nodeId: "math.im3.skill.9.4.graph-and-analyze-sine-and-cosine-functions",
     module: 9,
     lesson: 3,
-    prompt: 'Sketch y = 2 sin(x) over [0, 2π].',
-    difficulty: 'medium',
+    prompt: "Sketch y = 2 sin(x) over [0, 2π].",
+    difficulty: "medium",
   },
   {
-    problemId: 'im3-m9-l5-trig-equation',
-    nodeId: 'math.im3.skill.9.7.find-values-of-angle-measures-by-using-inverse-trigonometric',
+    problemId: "im3-m9-l5-trig-equation",
+    nodeId: "math.im3.skill.9.7.find-values-of-angle-measures-by-using-inverse-trigonometric",
     module: 9,
     lesson: 5,
-    prompt: 'Solve 2 sin(x) - 1 = 0 on [0, 2π).',
-    difficulty: 'hard',
+    prompt: "Solve 2 sin(x) - 1 = 0 on [0, 2π).",
+    difficulty: "hard",
   },
 ]);
 
@@ -282,7 +283,7 @@ export function createDeterministicAnswerSource(
   preset: Record<string, ProbeResult>,
   options: DeterministicAnswerSourceOptions = {},
 ): DeterministicAnswerSource {
-  const defaultResult: ProbeResult = options.defaultResult ?? 'partial';
+  const defaultResult: ProbeResult = options.defaultResult ?? "partial";
   const calls: string[] = [];
 
   return {
@@ -322,9 +323,9 @@ export interface PlacementKnowledgeStateSeed {
   /** Mastery estimate in [0, 1] derived from the probe outcome. */
   masteryEstimate: number;
   /** Confidence band — placement seeds are 'low' or 'medium' only. */
-  confidence: 'low' | 'medium';
+  confidence: "low" | "medium";
   /** Source tag — always 'placement' for entries from this pipeline. */
-  source: 'placement';
+  source: "placement";
   /** Unix ms timestamp the seed was produced. */
   seededAt: number;
 }
@@ -384,12 +385,12 @@ export function createInMemoryKnowledgeStateStore(): InMemoryKnowledgeStateStore
 // factory whose default nodeId is a synthetic test ID. IM3 placement seeding
 // tests need realistic IM3 node IDs in their PlacementResult fixtures.
 
-const DEFAULT_IM3_NODE_ID = 'math.im3.skill.1.1.graph-quadratic-functions';
+const DEFAULT_IM3_NODE_ID = "math.im3.skill.1.1.graph-quadratic-functions";
 
 export interface MockIm3PlacementResultOverrides {
   nodeId?: string;
   masteryEstimate?: number;
-  confidence?: PlacementResult['confidence'];
+  confidence?: PlacementResult["confidence"];
   metadata?: Record<string, unknown>;
 }
 
@@ -399,7 +400,7 @@ export function createMockIm3PlacementResult(
   return {
     nodeId: overrides.nodeId ?? DEFAULT_IM3_NODE_ID,
     masteryEstimate: overrides.masteryEstimate ?? 0.5,
-    confidence: overrides.confidence ?? 'low',
+    confidence: overrides.confidence ?? "low",
     ...(overrides.metadata !== undefined ? { metadata: overrides.metadata } : {}),
   };
 }

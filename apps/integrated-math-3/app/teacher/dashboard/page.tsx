@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import { requireTeacherSessionClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
+import Link from "next/link";
+import { requireTeacherSessionClaims } from "@/lib/auth/server";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
 
-type AtGlanceStatus = 'on-track' | 'behind' | 'not-started';
+type AtGlanceStatus = "on-track" | "behind" | "not-started";
 
 interface StudentRow {
   id: string;
@@ -27,12 +27,12 @@ interface TeacherDashboardData {
 
 function statusBadgeClass(status: AtGlanceStatus): string {
   switch (status) {
-    case 'on-track':
-      return 'bg-green-100 text-green-800';
-    case 'behind':
-      return 'bg-yellow-100 text-yellow-800';
-    case 'not-started':
-      return 'bg-muted/30 text-muted-foreground';
+    case "on-track":
+      return "bg-green-100 text-green-800";
+    case "behind":
+      return "bg-yellow-100 text-yellow-800";
+    case "not-started":
+      return "bg-muted/30 text-muted-foreground";
   }
 }
 
@@ -46,7 +46,7 @@ function getActiveTodayCount(students: StudentRow[]): number {
 }
 
 export default async function TeacherDashboardPage() {
-  const claims = await requireTeacherSessionClaims('/auth/login');
+  const claims = await requireTeacherSessionClaims("/auth/login");
 
   const data: TeacherDashboardData | null = await fetchInternalQuery(
     internal.teacher.getTeacherDashboardData,
@@ -54,20 +54,19 @@ export default async function TeacherDashboardPage() {
   );
 
   const students = data?.students ?? [];
-  const orgName = data?.teacher.organizationName ?? 'Your Organization';
+  const orgName = data?.teacher.organizationName ?? "Your Organization";
 
-  const avgProgress = students.length > 0
-    ? Math.round(students.reduce((s, st) => s + st.progressPercentage, 0) / students.length)
-    : 0;
+  const avgProgress =
+    students.length > 0
+      ? Math.round(students.reduce((s, st) => s + st.progressPercentage, 0) / students.length)
+      : 0;
 
   const activeToday = getActiveTodayCount(students);
 
   return (
     <div className="max-w-5xl mx-auto space-y-10 py-8">
       <div className="space-y-1">
-        <p className="text-sm text-muted-foreground font-mono-num">
-          {orgName}
-        </p>
+        <p className="text-sm text-muted-foreground font-mono-num">{orgName}</p>
         <h1 className="text-3xl font-display font-bold text-foreground">Teacher Dashboard</h1>
       </div>
 
@@ -88,9 +87,9 @@ export default async function TeacherDashboardPage() {
       {/* Summary */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {[
-          { label: 'Students', value: students.length },
-          { label: 'Avg Progress', value: `${avgProgress}%` },
-          { label: 'Active Today', value: activeToday },
+          { label: "Students", value: students.length },
+          { label: "Avg Progress", value: `${avgProgress}%` },
+          { label: "Active Today", value: activeToday },
         ].map((stat) => (
           <div key={stat.label} className="card-workbook p-4 space-y-1 text-center">
             <p className="font-mono-num text-2xl font-bold text-primary">{stat.value}</p>
@@ -127,11 +126,17 @@ export default async function TeacherDashboardPage() {
           <thead className="bg-muted/50 border-b border-border">
             <tr>
               <th className="text-left px-4 py-3 font-medium text-muted-foreground">Student</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden md:table-cell">Progress</th>
-              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell">Current Lesson</th>
+              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden md:table-cell">
+                Progress
+              </th>
+              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell">
+                Current Lesson
+              </th>
               <th className="text-center px-4 py-3 font-medium text-muted-foreground">Status</th>
               <th className="text-right px-4 py-3 font-medium text-muted-foreground">Phases</th>
-              <th className="text-right px-4 py-3 font-medium text-muted-foreground hidden sm:table-cell">Last Active</th>
+              <th className="text-right px-4 py-3 font-medium text-muted-foreground hidden sm:table-cell">
+                Last Active
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
@@ -184,9 +189,7 @@ export default async function TeacherDashboardPage() {
                     {student.completedPhases}/{student.totalPhases}
                   </td>
                   <td className="px-4 py-3 text-right text-xs text-muted-foreground hidden sm:table-cell">
-                    {student.lastActive
-                      ? new Date(student.lastActive).toLocaleDateString()
-                      : '—'}
+                    {student.lastActive ? new Date(student.lastActive).toLocaleDateString() : "—"}
                   </td>
                 </tr>
               ))

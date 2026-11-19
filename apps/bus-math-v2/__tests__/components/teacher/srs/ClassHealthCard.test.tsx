@@ -65,8 +65,6 @@ describe("ClassHealthCard", () => {
 
     render(<ClassHealthCard health={healthData} />);
 
-    expect(
-      screen.getByText(/25 of 30 students have started SRS practice/i)
-    ).toBeInTheDocument();
+    expect(screen.getByText(/25 of 30 students have started SRS practice/i)).toBeInTheDocument();
   });
 });

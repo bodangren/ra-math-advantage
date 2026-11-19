@@ -45,70 +45,81 @@ function createUpgradeState() {
   const phaseFourId = "phase_versions:module-1-lesson-2:4";
   const phaseFiveId = "phase_versions:module-1-lesson-2:5";
   const rows: Record<string, Row[]> = {
-    lessons: [{
-      _id: lessonId,
-      slug: "module-1-lesson-2",
-      title: "Protected Lesson 1.2 title",
-    }],
-    lesson_versions: [{
-      _id: lessonVersionId,
-      lessonId,
-      title: "Protected Lesson 1.2 version title",
-    }],
+    lessons: [
+      {
+        _id: lessonId,
+        slug: "module-1-lesson-2",
+        title: "Protected Lesson 1.2 title",
+      },
+    ],
+    lesson_versions: [
+      {
+        _id: lessonVersionId,
+        lessonId,
+        title: "Protected Lesson 1.2 version title",
+      },
+    ],
     phase_versions: Array.from({ length: 10 }, (_, index) => ({
       _id: `phase_versions:module-1-lesson-2:${index + 1}`,
       lessonVersionId,
       phaseNumber: index + 1,
     })),
-    phase_sections: [{
-      _id: "phase_sections:lesson-2-example-1-text",
-      phaseVersionId: phaseFourId,
-      sequenceOrder: 1,
-      sectionType: "text",
-      content: { markdown: "## Example 1: Legacy quadratic lesson" },
-    }, {
-      _id: "phase_sections:lesson-2-example-1-activity",
-      phaseVersionId: phaseFourId,
-      sequenceOrder: 2,
-      sectionType: "activity",
-      content: {
-        componentKey: "step-by-step-solver",
-        activityId: "activities:legacy-one-real-solution",
+    phase_sections: [
+      {
+        _id: "phase_sections:lesson-2-example-1-text",
+        phaseVersionId: phaseFourId,
+        sequenceOrder: 1,
+        sectionType: "text",
+        content: { markdown: "## Example 1: Legacy quadratic lesson" },
       },
-    }, {
-      _id: "phase_sections:lesson-2-example-1-other",
-      phaseVersionId: phaseFourId,
-      sequenceOrder: 3,
-      sectionType: "activity",
-      content: {
-        componentKey: "graphing-explorer",
-        activityId: "activities:unrelated-phase-4-activity",
+      {
+        _id: "phase_sections:lesson-2-example-1-activity",
+        phaseVersionId: phaseFourId,
+        sequenceOrder: 2,
+        sectionType: "activity",
+        content: {
+          componentKey: "step-by-step-solver",
+          activityId: "activities:legacy-one-real-solution",
+        },
       },
-    }, {
-      _id: "phase_sections:lesson-2-example-2-text",
-      phaseVersionId: phaseFiveId,
-      sequenceOrder: 1,
-      sectionType: "text",
-      content: { markdown: "## Example 2: Legacy quadratic lesson" },
-    }, {
-      _id: "phase_sections:lesson-2-example-2-activity",
-      phaseVersionId: phaseFiveId,
-      sequenceOrder: 2,
-      sectionType: "activity",
-      content: {
-        componentKey: "step-by-step-solver",
-        activityId: "activities:legacy-two-real-solutions",
+      {
+        _id: "phase_sections:lesson-2-example-1-other",
+        phaseVersionId: phaseFourId,
+        sequenceOrder: 3,
+        sectionType: "activity",
+        content: {
+          componentKey: "graphing-explorer",
+          activityId: "activities:unrelated-phase-4-activity",
+        },
       },
-    }, {
-      _id: "phase_sections:lesson-2-example-2-other",
-      phaseVersionId: phaseFiveId,
-      sequenceOrder: 3,
-      sectionType: "activity",
-      content: {
-        componentKey: "graphing-explorer",
-        activityId: "activities:unrelated-phase-5-activity",
+      {
+        _id: "phase_sections:lesson-2-example-2-text",
+        phaseVersionId: phaseFiveId,
+        sequenceOrder: 1,
+        sectionType: "text",
+        content: { markdown: "## Example 2: Legacy quadratic lesson" },
       },
-    }],
+      {
+        _id: "phase_sections:lesson-2-example-2-activity",
+        phaseVersionId: phaseFiveId,
+        sequenceOrder: 2,
+        sectionType: "activity",
+        content: {
+          componentKey: "step-by-step-solver",
+          activityId: "activities:legacy-two-real-solutions",
+        },
+      },
+      {
+        _id: "phase_sections:lesson-2-example-2-other",
+        phaseVersionId: phaseFiveId,
+        sequenceOrder: 3,
+        sectionType: "activity",
+        content: {
+          componentKey: "graphing-explorer",
+          activityId: "activities:unrelated-phase-5-activity",
+        },
+      },
+    ],
     activities: [],
     practice_variants: [],
     practice_items: [],
@@ -169,32 +180,42 @@ function createUpgradeState() {
 describe("IM3 one-real-solution Lesson 1.2 seed upgrade", () => {
   it("converges activities and the Worked Phase 4 link across two handler runs", async () => {
     const state = createUpgradeState();
-    const nowSpy = vi.spyOn(Date, "now")
-      .mockReturnValueOnce(100)
-      .mockReturnValueOnce(200);
+    const nowSpy = vi.spyOn(Date, "now").mockReturnValueOnce(100).mockReturnValueOnce(200);
 
     try {
       const first = await seedLesson2Handler(state.ctx);
       const firstInsertCount = state.insertCalls.length;
       const firstTwoRealPhysicalIds = {
         activities: state.rows.activities
-          .filter((row) => ([
-            IM3_TWO_REAL_SOLUTIONS_WORKED_ACTIVITY_ID,
-            IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID,
-            IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
-          ] as readonly string[]).includes(String(row.stableActivityId)))
+          .filter((row) =>
+            (
+              [
+                IM3_TWO_REAL_SOLUTIONS_WORKED_ACTIVITY_ID,
+                IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID,
+                IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
+              ] as readonly string[]
+            ).includes(String(row.stableActivityId)),
+          )
           .map((row) => row._id),
         variants: state.rows.practice_variants
-          .filter((row) => ([
-            IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID,
-            IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
-          ] as readonly string[]).includes(String(row.variantKey)))
+          .filter((row) =>
+            (
+              [
+                IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID,
+                IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
+              ] as readonly string[]
+            ).includes(String(row.variantKey)),
+          )
           .map((row) => row._id),
         items: state.rows.practice_items
-          .filter((row) => ([
-            `${IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID}:seed-5`,
-            `${IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID}:seed-2`,
-          ] as readonly string[]).includes(String(row.practiceItemId)))
+          .filter((row) =>
+            (
+              [
+                `${IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID}:seed-5`,
+                `${IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID}:seed-2`,
+              ] as readonly string[]
+            ).includes(String(row.practiceItemId)),
+          )
           .map((row) => row._id),
       };
       const second = await seedLesson2Handler(state.ctx);
@@ -219,12 +240,20 @@ describe("IM3 one-real-solution Lesson 1.2 seed upgrade", () => {
       expect(state.insertCalls).toHaveLength(14);
       expect(state.insertCalls).toHaveLength(firstInsertCount);
       expect(state.insertCalls.filter(([tableName]) => tableName === "activities")).toHaveLength(6);
-      expect(state.insertCalls.filter(([tableName]) => tableName === "practice_variants")).toHaveLength(4);
-      expect(state.insertCalls.filter(([tableName]) => tableName === "practice_items")).toHaveLength(4);
-      expect(state.insertCalls.slice(7).map(([tableName, document]) => [
-        tableName,
-        document.stableActivityId ?? document.practiceItemId ?? document.variantKey,
-      ])).toEqual([
+      expect(
+        state.insertCalls.filter(([tableName]) => tableName === "practice_variants"),
+      ).toHaveLength(4);
+      expect(
+        state.insertCalls.filter(([tableName]) => tableName === "practice_items"),
+      ).toHaveLength(4);
+      expect(
+        state.insertCalls
+          .slice(7)
+          .map(([tableName, document]) => [
+            tableName,
+            document.stableActivityId ?? document.practiceItemId ?? document.variantKey,
+          ]),
+      ).toEqual([
         ["activities", IM3_TWO_REAL_SOLUTIONS_WORKED_ACTIVITY_ID],
         ["activities", IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID],
         ["practice_variants", IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID],
@@ -237,12 +266,15 @@ describe("IM3 one-real-solution Lesson 1.2 seed upgrade", () => {
       const expectedActivities = [
         [IM3_ONE_REAL_SOLUTION_WORKED_ACTIVITY_ID, buildIm3OneRealSolutionWorkedSeedDocument(200)],
         [IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID, buildIm3OneRealSolutionGuidedSeedDocument(200)],
-        [IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID, buildIm3OneRealSolutionIndependentSeedDocument(200)],
+        [
+          IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID,
+          buildIm3OneRealSolutionIndependentSeedDocument(200),
+        ],
       ] as const;
       for (const [stableActivityId, expectedActivity] of expectedActivities) {
-        const activities = state.rows.activities.filter((activity) => (
-          activity.stableActivityId === stableActivityId
-        ));
+        const activities = state.rows.activities.filter(
+          (activity) => activity.stableActivityId === stableActivityId,
+        );
         expect(activities).toHaveLength(1);
         expect(activities[0]).toEqual({
           ...expectedActivity,
@@ -252,15 +284,15 @@ describe("IM3 one-real-solution Lesson 1.2 seed upgrade", () => {
         expect(activities[0]?.masteryNodeId).toBe(IM3_ONE_REAL_SOLUTION_NODE);
       }
 
-      const phaseFourSections = state.rows.phase_sections.filter((section) => (
-        section.phaseVersionId === state.phaseFourId
-      ));
+      const phaseFourSections = state.rows.phase_sections.filter(
+        (section) => section.phaseVersionId === state.phaseFourId,
+      );
       expect(phaseFourSections.find((section) => section.sequenceOrder === 1)?.content).toEqual({
         markdown: "## Example 1: One Real Solution\n\nSolve $10 - x^2 = 4x + 14$ by graphing.",
       });
-      const workedActivity = state.rows.activities.find((activity) => (
-        activity.stableActivityId === IM3_ONE_REAL_SOLUTION_WORKED_ACTIVITY_ID
-      ));
+      const workedActivity = state.rows.activities.find(
+        (activity) => activity.stableActivityId === IM3_ONE_REAL_SOLUTION_WORKED_ACTIVITY_ID,
+      );
       expect(phaseFourSections.find((section) => section.sequenceOrder === 2)?.content).toEqual({
         componentKey: "graphing-explorer",
         activityId: workedActivity?._id,
@@ -269,20 +301,20 @@ describe("IM3 one-real-solution Lesson 1.2 seed upgrade", () => {
         componentKey: "graphing-explorer",
         activityId: "activities:unrelated-phase-4-activity",
       });
-      const guidedActivity = state.rows.activities.find((activity) => (
-        activity.stableActivityId === IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID
-      ));
+      const guidedActivity = state.rows.activities.find(
+        (activity) => activity.stableActivityId === IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID,
+      );
       expect(guidedActivity).toBeDefined();
       const guidedDocuments = buildIm3OneRealSolutionGuidedPracticeSeedDocuments(
         guidedActivity!._id as Id<"activities">,
         200,
       );
-      const guidedVariants = state.rows.practice_variants.filter((variant) => (
-        variant.variantKey === IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID
-      ));
-      const guidedItems = state.rows.practice_items.filter((item) => (
-        item.practiceItemId === guidedDocuments.item.practiceItemId
-      ));
+      const guidedVariants = state.rows.practice_variants.filter(
+        (variant) => variant.variantKey === IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID,
+      );
+      const guidedItems = state.rows.practice_items.filter(
+        (item) => item.practiceItemId === guidedDocuments.item.practiceItemId,
+      );
       expect(guidedVariants).toHaveLength(1);
       expect(guidedItems).toHaveLength(1);
       expect(guidedVariants[0]).toEqual({
@@ -296,20 +328,20 @@ describe("IM3 one-real-solution Lesson 1.2 seed upgrade", () => {
       expect(state.patchCalls.map(([id]) => id)).toContain(guidedVariants[0]!._id);
       expect(state.patchCalls.map(([id]) => id)).toContain(guidedItems[0]!._id);
 
-      const independentActivity = state.rows.activities.find((activity) => (
-        activity.stableActivityId === IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID
-      ));
+      const independentActivity = state.rows.activities.find(
+        (activity) => activity.stableActivityId === IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID,
+      );
       expect(independentActivity).toBeDefined();
       const independentDocuments = buildIm3OneRealSolutionIndependentPracticeSeedDocuments(
         independentActivity!._id as Id<"activities">,
         200,
       );
-      const independentVariants = state.rows.practice_variants.filter((variant) => (
-        variant.variantKey === IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID
-      ));
-      const independentItems = state.rows.practice_items.filter((item) => (
-        item.practiceItemId === independentDocuments.item.practiceItemId
-      ));
+      const independentVariants = state.rows.practice_variants.filter(
+        (variant) => variant.variantKey === IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID,
+      );
+      const independentItems = state.rows.practice_items.filter(
+        (item) => item.practiceItemId === independentDocuments.item.practiceItemId,
+      );
       expect(independentVariants).toHaveLength(1);
       expect(independentItems).toHaveLength(1);
       expect(independentVariants[0]).toEqual({
@@ -324,14 +356,23 @@ describe("IM3 one-real-solution Lesson 1.2 seed upgrade", () => {
       expect(state.patchCalls.map(([id]) => id)).toContain(independentItems[0]!._id);
 
       const expectedTwoRealActivities = [
-        [IM3_TWO_REAL_SOLUTIONS_WORKED_ACTIVITY_ID, buildIm3TwoRealSolutionsWorkedSeedDocument(200)],
-        [IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID, buildIm3TwoRealSolutionsGuidedSeedDocument(200)],
-        [IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID, buildIm3TwoRealSolutionsIndependentSeedDocument(200)],
+        [
+          IM3_TWO_REAL_SOLUTIONS_WORKED_ACTIVITY_ID,
+          buildIm3TwoRealSolutionsWorkedSeedDocument(200),
+        ],
+        [
+          IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID,
+          buildIm3TwoRealSolutionsGuidedSeedDocument(200),
+        ],
+        [
+          IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
+          buildIm3TwoRealSolutionsIndependentSeedDocument(200),
+        ],
       ] as const;
       for (const [stableActivityId, expectedActivity] of expectedTwoRealActivities) {
-        const activities = state.rows.activities.filter((activity) => (
-          activity.stableActivityId === stableActivityId
-        ));
+        const activities = state.rows.activities.filter(
+          (activity) => activity.stableActivityId === stableActivityId,
+        );
         expect(activities).toHaveLength(1);
         expect(activities[0]).toEqual({
           ...expectedActivity,
@@ -342,40 +383,58 @@ describe("IM3 one-real-solution Lesson 1.2 seed upgrade", () => {
         expect(activities[0]?.masteryNodeId).toBe(IM3_TWO_REAL_SOLUTIONS_NODE);
       }
 
-      expect(state.rows.activities
-        .filter((row) => ([
-          IM3_TWO_REAL_SOLUTIONS_WORKED_ACTIVITY_ID,
-          IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID,
-          IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
-        ] as readonly string[]).includes(String(row.stableActivityId)))
-        .map((row) => row._id)).toEqual(firstTwoRealPhysicalIds.activities);
-      expect(state.rows.practice_variants
-        .filter((row) => ([
-          IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID,
-          IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
-        ] as readonly string[]).includes(String(row.variantKey)))
-        .map((row) => row._id)).toEqual(firstTwoRealPhysicalIds.variants);
-      expect(state.rows.practice_items
-        .filter((row) => ([
-          `${IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID}:seed-5`,
-          `${IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID}:seed-2`,
-        ] as readonly string[]).includes(String(row.practiceItemId)))
-        .map((row) => row._id)).toEqual(firstTwoRealPhysicalIds.items);
+      expect(
+        state.rows.activities
+          .filter((row) =>
+            (
+              [
+                IM3_TWO_REAL_SOLUTIONS_WORKED_ACTIVITY_ID,
+                IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID,
+                IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
+              ] as readonly string[]
+            ).includes(String(row.stableActivityId)),
+          )
+          .map((row) => row._id),
+      ).toEqual(firstTwoRealPhysicalIds.activities);
+      expect(
+        state.rows.practice_variants
+          .filter((row) =>
+            (
+              [
+                IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID,
+                IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
+              ] as readonly string[]
+            ).includes(String(row.variantKey)),
+          )
+          .map((row) => row._id),
+      ).toEqual(firstTwoRealPhysicalIds.variants);
+      expect(
+        state.rows.practice_items
+          .filter((row) =>
+            (
+              [
+                `${IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID}:seed-5`,
+                `${IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID}:seed-2`,
+              ] as readonly string[]
+            ).includes(String(row.practiceItemId)),
+          )
+          .map((row) => row._id),
+      ).toEqual(firstTwoRealPhysicalIds.items);
 
-      const twoRealGuidedActivity = state.rows.activities.find((activity) => (
-        activity.stableActivityId === IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID
-      ));
+      const twoRealGuidedActivity = state.rows.activities.find(
+        (activity) => activity.stableActivityId === IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID,
+      );
       expect(twoRealGuidedActivity).toBeDefined();
       const twoRealGuidedDocuments = buildIm3TwoRealSolutionsGuidedPracticeSeedDocuments(
         twoRealGuidedActivity!._id as Id<"activities">,
         200,
       );
-      const twoRealGuidedVariants = state.rows.practice_variants.filter((variant) => (
-        variant.variantKey === IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID
-      ));
-      const twoRealGuidedItems = state.rows.practice_items.filter((item) => (
-        item.practiceItemId === twoRealGuidedDocuments.item.practiceItemId
-      ));
+      const twoRealGuidedVariants = state.rows.practice_variants.filter(
+        (variant) => variant.variantKey === IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID,
+      );
+      const twoRealGuidedItems = state.rows.practice_items.filter(
+        (item) => item.practiceItemId === twoRealGuidedDocuments.item.practiceItemId,
+      );
       expect(twoRealGuidedVariants).toHaveLength(1);
       expect(twoRealGuidedItems).toHaveLength(1);
       expect(twoRealGuidedVariants[0]).toEqual({
@@ -387,20 +446,20 @@ describe("IM3 one-real-solution Lesson 1.2 seed upgrade", () => {
         _id: twoRealGuidedItems[0]!._id,
       });
 
-      const twoRealIndependentActivity = state.rows.activities.find((activity) => (
-        activity.stableActivityId === IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID
-      ));
+      const twoRealIndependentActivity = state.rows.activities.find(
+        (activity) => activity.stableActivityId === IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
+      );
       expect(twoRealIndependentActivity).toBeDefined();
       const twoRealIndependentDocuments = buildIm3TwoRealSolutionsIndependentPracticeSeedDocuments(
         twoRealIndependentActivity!._id as Id<"activities">,
         200,
       );
-      const twoRealIndependentVariants = state.rows.practice_variants.filter((variant) => (
-        variant.variantKey === IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID
-      ));
-      const twoRealIndependentItems = state.rows.practice_items.filter((item) => (
-        item.practiceItemId === twoRealIndependentDocuments.item.practiceItemId
-      ));
+      const twoRealIndependentVariants = state.rows.practice_variants.filter(
+        (variant) => variant.variantKey === IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
+      );
+      const twoRealIndependentItems = state.rows.practice_items.filter(
+        (item) => item.practiceItemId === twoRealIndependentDocuments.item.practiceItemId,
+      );
       expect(twoRealIndependentVariants).toHaveLength(1);
       expect(twoRealIndependentItems).toHaveLength(1);
       expect(twoRealIndependentVariants[0]).toEqual({
@@ -412,15 +471,16 @@ describe("IM3 one-real-solution Lesson 1.2 seed upgrade", () => {
         _id: twoRealIndependentItems[0]!._id,
       });
 
-      const phaseFiveSections = state.rows.phase_sections.filter((section) => (
-        section.phaseVersionId === state.phaseFiveId
-      ));
+      const phaseFiveSections = state.rows.phase_sections.filter(
+        (section) => section.phaseVersionId === state.phaseFiveId,
+      );
       expect(phaseFiveSections.find((section) => section.sequenceOrder === 1)?.content).toEqual({
-        markdown: "## Example 2: Two Real Solutions\n\nUse a quadratic equation to find two real numbers with a sum of 24 and a product of 143.",
+        markdown:
+          "## Example 2: Two Real Solutions\n\nUse a quadratic equation to find two real numbers with a sum of 24 and a product of 143.",
       });
-      const twoRealWorkedActivity = state.rows.activities.find((activity) => (
-        activity.stableActivityId === IM3_TWO_REAL_SOLUTIONS_WORKED_ACTIVITY_ID
-      ));
+      const twoRealWorkedActivity = state.rows.activities.find(
+        (activity) => activity.stableActivityId === IM3_TWO_REAL_SOLUTIONS_WORKED_ACTIVITY_ID,
+      );
       expect(phaseFiveSections.find((section) => section.sequenceOrder === 2)?.content).toEqual({
         componentKey: "graphing-explorer",
         activityId: twoRealWorkedActivity?._id,

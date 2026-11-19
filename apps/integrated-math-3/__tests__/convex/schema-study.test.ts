@@ -1,12 +1,12 @@
-import { describe, it, expect } from 'vitest';
-import schema from '@/convex/schema';
+import { describe, it, expect } from "vitest";
+import schema from "@/convex/schema";
 
-describe('term_mastery table schema', () => {
-  it('exists in the schema', () => {
-    expect(schema.tables).toHaveProperty('term_mastery');
+describe("term_mastery table schema", () => {
+  it("exists in the schema", () => {
+    expect(schema.tables).toHaveProperty("term_mastery");
   });
 
-  it('has required fields defined', () => {
+  it("has required fields defined", () => {
     const table = schema.tables.term_mastery;
     expect(() => (table as unknown as { userId: unknown }).userId).not.toThrow();
     expect(() => (table as unknown as { termSlug: unknown }).termSlug).not.toThrow();
@@ -20,12 +20,12 @@ describe('term_mastery table schema', () => {
   });
 });
 
-describe('due_reviews table schema', () => {
-  it('exists in the schema', () => {
-    expect(schema.tables).toHaveProperty('due_reviews');
+describe("due_reviews table schema", () => {
+  it("exists in the schema", () => {
+    expect(schema.tables).toHaveProperty("due_reviews");
   });
 
-  it('has required fields defined', () => {
+  it("has required fields defined", () => {
     const table = schema.tables.due_reviews;
     expect(() => (table as unknown as { userId: unknown }).userId).not.toThrow();
     expect(() => (table as unknown as { termSlug: unknown }).termSlug).not.toThrow();
@@ -37,12 +37,12 @@ describe('due_reviews table schema', () => {
   });
 });
 
-describe('study_preferences table schema', () => {
-  it('exists in the schema', () => {
-    expect(schema.tables).toHaveProperty('study_preferences');
+describe("study_preferences table schema", () => {
+  it("exists in the schema", () => {
+    expect(schema.tables).toHaveProperty("study_preferences");
   });
 
-  it('has required fields defined', () => {
+  it("has required fields defined", () => {
     const table = schema.tables.study_preferences;
     expect(() => (table as unknown as { userId: unknown }).userId).not.toThrow();
     expect(() => (table as unknown as { preferences: unknown }).preferences).not.toThrow();

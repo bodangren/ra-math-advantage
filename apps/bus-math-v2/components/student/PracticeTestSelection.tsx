@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { BookOpen } from "lucide-react";
 import { getUnitConfig } from "@/lib/practice-tests/question-banks";
 
-
 /**
  * Renders a practice test selection page with unit cards linking to
  * individual practice test pages.
@@ -24,16 +23,18 @@ export function PracticeTestSelection() {
             <h1 className="text-3xl font-semibold tracking-tight md:text-4xl mb-2">
               Practice Tests
             </h1>
-            <p className="text-muted-foreground">
-              Select a unit to test your knowledge.
-            </p>
+            <p className="text-muted-foreground">Select a unit to test your knowledge.</p>
           </header>
 
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {units.map((unitNumber) => {
               const unitConfig = getUnitConfig(unitNumber);
               return (
-                <Link href={`/student/study/practice-tests/${unitNumber}`} key={unitNumber} className="block">
+                <Link
+                  href={`/student/study/practice-tests/${unitNumber}`}
+                  key={unitNumber}
+                  className="block"
+                >
                   <Card className="border-primary/20 bg-background hover:border-primary/40 transition-colors h-full">
                     <CardHeader className="pb-2">
                       <BookOpen className="h-6 w-6 text-primary" />

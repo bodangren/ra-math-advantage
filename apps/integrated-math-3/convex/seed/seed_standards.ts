@@ -32,7 +32,8 @@ export const seedStandards = internalMutation({
       },
       {
         code: "HSA-APR.B.2",
-        description: "Know and apply the Remainder Theorem: for a polynomial p(x) and a number a, the remainder on division by x - a is p(a)",
+        description:
+          "Know and apply the Remainder Theorem: for a polynomial p(x) and a number a, the remainder on division by x - a is p(a)",
         studentFriendlyDescription: "I can use the Remainder Theorem to evaluate polynomials.",
         category: "Algebra",
         isActive: true,
@@ -109,140 +110,170 @@ export const seedStandards = internalMutation({
       },
       {
         code: "HSF-IF.B.5",
-        description: "Relate the domain of a function to its graph and, where applicable, to the quantitative relationship it describes.",
-        studentFriendlyDescription: "I can connect a function's domain to the quantities it describes.",
+        description:
+          "Relate the domain of a function to its graph and, where applicable, to the quantitative relationship it describes.",
+        studentFriendlyDescription:
+          "I can connect a function's domain to the quantities it describes.",
         category: "Functions",
         isActive: true,
       },
       {
         code: "HSF-IF.B.6",
-        description: "Calculate and interpret the average rate of change of a function (presented symbolically or as a table) over a specified interval. Estimate the rate of change from a graph.",
-        studentFriendlyDescription: "I can calculate and interpret a function's average rate of change from a formula, table, or graph.",
+        description:
+          "Calculate and interpret the average rate of change of a function (presented symbolically or as a table) over a specified interval. Estimate the rate of change from a graph.",
+        studentFriendlyDescription:
+          "I can calculate and interpret a function's average rate of change from a formula, table, or graph.",
         category: "Functions",
         isActive: true,
       },
       {
         code: "HSF-BF.B.5",
         description: "Understanding the inverse relationship between exponents and logarithms",
-        studentFriendlyDescription: "I can use the relationship between exponents and logarithms to solve problems.",
+        studentFriendlyDescription:
+          "I can use the relationship between exponents and logarithms to solve problems.",
         category: "Functions",
         isActive: true,
       },
       {
         code: "HSF-LE.A.4",
         description: "Expressing solutions to exponential models as logarithms",
-        studentFriendlyDescription: "I can solve exponential equations using logarithms and technology.",
+        studentFriendlyDescription:
+          "I can solve exponential equations using logarithms and technology.",
         category: "Functions",
         isActive: true,
       },
       {
         code: "HSF-IF.C.7e",
-        description: "Graphing exponential and logarithmic functions, showing intercepts and end behavior",
-        studentFriendlyDescription: "I can graph exponential and logarithmic functions and identify their key features.",
+        description:
+          "Graphing exponential and logarithmic functions, showing intercepts and end behavior",
+        studentFriendlyDescription:
+          "I can graph exponential and logarithmic functions and identify their key features.",
         category: "Functions",
         isActive: true,
       },
       {
         code: "HSF-IF.C.9",
-        description: "Compare properties of two functions each represented in a different way (algebraically, graphically, numerically in tables, or by verbal descriptions).",
+        description:
+          "Compare properties of two functions each represented in a different way (algebraically, graphically, numerically in tables, or by verbal descriptions).",
         studentFriendlyDescription: "I can compare two functions shown in different ways.",
         category: "Functions",
         isActive: true,
       },
       {
         code: "HSF-LE.A.1",
-        description: "Distinguish between situations that can be modeled with linear functions and with exponential functions",
-        studentFriendlyDescription: "I can tell whether a situation is modeled by a linear or exponential function.",
+        description:
+          "Distinguish between situations that can be modeled with linear functions and with exponential functions",
+        studentFriendlyDescription:
+          "I can tell whether a situation is modeled by a linear or exponential function.",
         category: "Functions",
         isActive: true,
       },
       {
         code: "HSA-CED.A.2",
-        description: "Create equations in two or more variables to represent relationships between quantities",
+        description:
+          "Create equations in two or more variables to represent relationships between quantities",
         studentFriendlyDescription: "I can write equations that relate two or more quantities.",
         category: "Algebra",
         isActive: true,
       },
       {
         code: "HSA-APR.D.6",
-        description: "Rewrite simple rational expressions in different forms; write a(x)/b(x) in the form q(x) + r(x)/b(x) where a, b, q, and r are polynomials",
-        studentFriendlyDescription: "I can rewrite rational expressions in different forms using polynomial long division.",
+        description:
+          "Rewrite simple rational expressions in different forms; write a(x)/b(x) in the form q(x) + r(x)/b(x) where a, b, q, and r are polynomials",
+        studentFriendlyDescription:
+          "I can rewrite rational expressions in different forms using polynomial long division.",
         category: "Algebra",
         isActive: true,
       },
       {
         code: "HSF-IF.C.7d",
-        description: "Graph rational functions, showing intercepts and asymptotes when suitable factorizations are available",
-        studentFriendlyDescription: "I can graph rational functions and identify key features like intercepts and asymptotes.",
+        description:
+          "Graph rational functions, showing intercepts and asymptotes when suitable factorizations are available",
+        studentFriendlyDescription:
+          "I can graph rational functions and identify key features like intercepts and asymptotes.",
         category: "Functions",
         isActive: true,
       },
       {
         code: "HSA-REI.A.2",
-        description: "Solve rational equations in one variable and give examples showing how extraneous solutions can arise",
-        studentFriendlyDescription: "I can solve rational equations and check for extraneous solutions.",
+        description:
+          "Solve rational equations in one variable and give examples showing how extraneous solutions can arise",
+        studentFriendlyDescription:
+          "I can solve rational equations and check for extraneous solutions.",
         category: "Algebra",
         isActive: true,
       },
       {
         code: "HSS-ID.A.1",
-        description: "Represent data with plots on the real number line (dot plots, histograms, box plots)",
+        description:
+          "Represent data with plots on the real number line (dot plots, histograms, box plots)",
         studentFriendlyDescription: "I can display data using different types of graphs.",
         category: "Statistics",
         isActive: true,
       },
       {
         code: "HSS-ID.A.2",
-        description: "Use statistics appropriate to the shape of the data distribution to compare center and spread of two or more different data sets",
+        description:
+          "Use statistics appropriate to the shape of the data distribution to compare center and spread of two or more different data sets",
         studentFriendlyDescription: "I can use statistics to compare different data sets.",
         category: "Statistics",
         isActive: true,
       },
       {
         code: "HSS-ID.A.3",
-        description: "Interpret differences in shape, center, and spread in the context of the data sets",
+        description:
+          "Interpret differences in shape, center, and spread in the context of the data sets",
         studentFriendlyDescription: "I can describe what differences in data distributions mean.",
         category: "Statistics",
         isActive: true,
       },
       {
         code: "HSS-ID.B.6",
-        description: "Represent data on two quantitative variables, and describe how those variables vary together",
+        description:
+          "Represent data on two quantitative variables, and describe how those variables vary together",
         studentFriendlyDescription: "I can show how two variables relate to each other.",
         category: "Statistics",
         isActive: true,
       },
       {
         code: "HSS-IC.A.1",
-        description: "Understand statistics as a process for making inferences about population parameters based on a random sample from that population",
-        studentFriendlyDescription: "I understand how statistics helps us make conclusions about a whole population from a sample.",
+        description:
+          "Understand statistics as a process for making inferences about population parameters based on a random sample from that population",
+        studentFriendlyDescription:
+          "I understand how statistics helps us make conclusions about a whole population from a sample.",
         category: "Statistics",
         isActive: true,
       },
       {
         code: "HSS-IC.B.3",
-        description: "Recognize the purposes of and differences among sample surveys, experiments, and observational studies",
-        studentFriendlyDescription: "I can explain how surveys, experiments, and observational studies are different.",
+        description:
+          "Recognize the purposes of and differences among sample surveys, experiments, and observational studies",
+        studentFriendlyDescription:
+          "I can explain how surveys, experiments, and observational studies are different.",
         category: "Statistics",
         isActive: true,
       },
       {
         code: "HSS-IC.B.4",
-        description: "Use data from a sample survey to estimate a population mean or proportion and develop a margin of error through simulations",
+        description:
+          "Use data from a sample survey to estimate a population mean or proportion and develop a margin of error through simulations",
         studentFriendlyDescription: "I can use sample data to estimate population values.",
         category: "Statistics",
         isActive: true,
       },
       {
         code: "HSS-IC.B.5",
-        description: "Use data from a randomized experiment to compare two treatments and use simulations to decide if differences between them are statistically significant",
-        studentFriendlyDescription: "I can compare two treatments and determine if their differences are meaningful.",
+        description:
+          "Use data from a randomized experiment to compare two treatments and use simulations to decide if differences between them are statistically significant",
+        studentFriendlyDescription:
+          "I can compare two treatments and determine if their differences are meaningful.",
         category: "Statistics",
         isActive: true,
       },
       {
         code: "HSS-IC.B.6",
-        description: "Evaluate reports based on data by identifying sources of bias, questionable conclusions, and the statistical question asked",
+        description:
+          "Evaluate reports based on data by identifying sources of bias, questionable conclusions, and the statistical question asked",
         studentFriendlyDescription: "I can evaluate whether data conclusions are trustworthy.",
         category: "Statistics",
         isActive: true,
@@ -250,55 +281,68 @@ export const seedStandards = internalMutation({
       {
         code: "HSF-TF.A.1",
         description: "Extend the domain of the trigonometric functions using the unit circle",
-        studentFriendlyDescription: "I can use the unit circle to extend trigonometric functions to all angles.",
+        studentFriendlyDescription:
+          "I can use the unit circle to extend trigonometric functions to all angles.",
         category: "Functions",
         isActive: true,
       },
       {
         code: "HSF-TF.A.2",
-        description: "Explain how the unit circle in the coordinate plane enables the extension of trigonometric functions to all real numbers, and interpret these functions in terms of a periodic phenomenon",
-        studentFriendlyDescription: "I can explain how the unit circle helps find trigonometric values for any angle.",
+        description:
+          "Explain how the unit circle in the coordinate plane enables the extension of trigonometric functions to all real numbers, and interpret these functions in terms of a periodic phenomenon",
+        studentFriendlyDescription:
+          "I can explain how the unit circle helps find trigonometric values for any angle.",
         category: "Functions",
         isActive: true,
       },
       {
         code: "HSF-TF.A.4",
-        description: "Use the unit circle to explain symmetry and periodicity of trigonometric functions",
-        studentFriendlyDescription: "I can use the unit circle to show why trigonometric functions repeat.",
+        description:
+          "Use the unit circle to explain symmetry and periodicity of trigonometric functions",
+        studentFriendlyDescription:
+          "I can use the unit circle to show why trigonometric functions repeat.",
         category: "Functions",
         isActive: true,
       },
       {
         code: "HSF-TF.B.5",
-        description: "Choose trigonometric functions to model periodic phenomena with specified amplitude, frequency, and midline",
-        studentFriendlyDescription: "I can use sine and cosine functions to model repeating patterns.",
+        description:
+          "Choose trigonometric functions to model periodic phenomena with specified amplitude, frequency, and midline",
+        studentFriendlyDescription:
+          "I can use sine and cosine functions to model repeating patterns.",
         category: "Functions",
         isActive: true,
       },
       {
         code: "HSA-CED.A.3",
-        description: "Represent constraints by equations or inequalities, and by systems of equations and/or inequalities, and interpret solutions as viable or nonviable options",
-        studentFriendlyDescription: "I can represent real-world constraints with equations/inequalities and interpret solutions.",
+        description:
+          "Represent constraints by equations or inequalities, and by systems of equations and/or inequalities, and interpret solutions as viable or nonviable options",
+        studentFriendlyDescription:
+          "I can represent real-world constraints with equations/inequalities and interpret solutions.",
         category: "Algebra",
         isActive: true,
       },
       {
         code: "HSA-REI.C.7",
-        description: "Solve systems consisting of linear and quadratic equations graphically and algebraically",
+        description:
+          "Solve systems consisting of linear and quadratic equations graphically and algebraically",
         studentFriendlyDescription: "I can solve systems with linear and quadratic equations.",
         category: "Algebra",
         isActive: true,
       },
       {
         code: "HSF-IF.C.7c",
-        description: "Graph polynomial functions, identifying zeros when suitable factorizations are available, and showing end behavior",
-        studentFriendlyDescription: "I can graph polynomial functions and identify their key features.",
+        description:
+          "Graph polynomial functions, identifying zeros when suitable factorizations are available, and showing end behavior",
+        studentFriendlyDescription:
+          "I can graph polynomial functions and identify their key features.",
         category: "Functions",
         isActive: true,
       },
       {
         code: "HSF-IF.A.2",
-        description: "Use function notation, evaluate functions for inputs in their domains, and interpret statements that use function notation in terms of a context",
+        description:
+          "Use function notation, evaluate functions for inputs in their domains, and interpret statements that use function notation in terms of a context",
         studentFriendlyDescription: "I can use function notation and evaluate functions.",
         category: "Functions",
         isActive: true,
@@ -313,35 +357,43 @@ export const seedStandards = internalMutation({
       {
         code: "HSF-IF.C.7a",
         description: "Graph linear and quadratic functions and show intercepts, maxima, and minima",
-        studentFriendlyDescription: "I can graph linear and quadratic functions and identify intercepts, maxima, and minima.",
+        studentFriendlyDescription:
+          "I can graph linear and quadratic functions and identify intercepts, maxima, and minima.",
         category: "Functions",
         isActive: true,
       },
       {
         code: "HSF-IF.C.7b",
-        description: "Graph square root, cube root, and piecewise-defined functions, including step functions and absolute value functions",
+        description:
+          "Graph square root, cube root, and piecewise-defined functions, including step functions and absolute value functions",
         studentFriendlyDescription: "I can graph square root, cube root, and piecewise functions.",
         category: "Functions",
         isActive: true,
       },
       {
         code: "HSF-BF.A.1a",
-        description: "Determine an explicit expression, a recursive process, or steps for calculation from a context",
-        studentFriendlyDescription: "I can determine an expression, recursive process, or steps for calculation from a real-world context.",
+        description:
+          "Determine an explicit expression, a recursive process, or steps for calculation from a context",
+        studentFriendlyDescription:
+          "I can determine an expression, recursive process, or steps for calculation from a real-world context.",
         category: "Functions",
         isActive: true,
       },
       {
         code: "HSF-LE.A.2",
-        description: "Construct linear and exponential functions, including arithmetic and geometric sequences, given a graph, a description of a relationship, or two input-output pairs",
-        studentFriendlyDescription: "I can construct linear and exponential functions from graphs, descriptions, or data pairs.",
+        description:
+          "Construct linear and exponential functions, including arithmetic and geometric sequences, given a graph, a description of a relationship, or two input-output pairs",
+        studentFriendlyDescription:
+          "I can construct linear and exponential functions from graphs, descriptions, or data pairs.",
         category: "Functions",
         isActive: true,
       },
       {
         code: "HSF-LE.B.5",
-        description: "Interpret the parameters in a linear function or an exponential function in terms of a context",
-        studentFriendlyDescription: "I can interpret what linear and exponential function parameters mean in context.",
+        description:
+          "Interpret the parameters in a linear function or an exponential function in terms of a context",
+        studentFriendlyDescription:
+          "I can interpret what linear and exponential function parameters mean in context.",
         category: "Functions",
         isActive: true,
       },

@@ -1,8 +1,5 @@
 // Generator contract — deterministic generator interface and validation re-exports
 
-export type { DeterministicGenerator } from './types';
+export type { DeterministicGenerator } from "./types";
 
-export {
-  validateGeneratorOutput,
-  validateBlueprintGeneratorReadiness,
-} from './schemas';
+export { validateGeneratorOutput, validateBlueprintGeneratorReadiness } from "./schemas";

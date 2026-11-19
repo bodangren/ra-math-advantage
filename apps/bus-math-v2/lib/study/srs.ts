@@ -1,5 +1,5 @@
-import { createEmptyCard, Card, Rating, FSRS } from 'ts-fsrs';
-import type { Grade } from 'ts-fsrs';
+import { createEmptyCard, Card, Rating, FSRS } from "ts-fsrs";
+import type { Grade } from "ts-fsrs";
 
 export type SerializedCardState = {
   due: string | number;
@@ -11,7 +11,7 @@ export type SerializedCardState = {
   lapses: number;
   // ts-fsrs 6 replaced the numeric State enum with a numeric union type; the
   // serialized value is one of the four state numbers.
-  state: Card['state'];
+  state: Card["state"];
   learning_steps?: number;
   last_review?: string | number | null;
 };
@@ -99,7 +99,7 @@ export function scheduleNewTerm(termSlug: string): ScheduledTerm {
  */
 export function processReview(
   scheduledTerm: ScheduledTerm,
-  rating: 'again' | 'hard' | 'good' | 'easy'
+  rating: "again" | "hard" | "good" | "easy",
 ): ReviewResult {
   const card = deserializeCard(scheduledTerm.fsrsState);
   const now = new Date();
@@ -135,7 +135,7 @@ export function processReview(
  */
 export function getDueTerms(
   scheduledTerms: ScheduledTerm[],
-  now: number = Date.now()
+  now: number = Date.now(),
 ): ScheduledTerm[] {
   return scheduledTerms.filter((term) => term.scheduledFor <= now);
 }
@@ -145,11 +145,13 @@ export function getDueTerms(
  * @param masteryScore - Numeric mastery score (0-1 range)
  * @returns Proficiency band category string
  */
-export function proficiencyBand(masteryScore: number): 'new' | 'learning' | 'familiar' | 'mastered' {
-  if (masteryScore === 0) return 'new';
-  if (masteryScore < 0.3) return 'learning';
-  if (masteryScore < 0.7) return 'familiar';
-  return 'mastered';
+export function proficiencyBand(
+  masteryScore: number,
+): "new" | "learning" | "familiar" | "mastered" {
+  if (masteryScore === 0) return "new";
+  if (masteryScore < 0.3) return "learning";
+  if (masteryScore < 0.7) return "familiar";
+  return "mastered";
 }
 
 /**

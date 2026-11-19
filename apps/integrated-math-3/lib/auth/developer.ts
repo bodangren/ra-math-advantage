@@ -1,30 +1,32 @@
-import { redirect } from 'next/navigation';
+import { redirect } from "next/navigation";
 
-import { getServerSessionClaims } from '@/lib/auth/server';
-import type { SessionClaims } from '@math-platform/core-auth';
+import { getServerSessionClaims } from "@/lib/auth/server";
+import type { SessionClaims } from "@math-platform/core-auth";
 
 /** Checks whether developer approval flows are enabled based on the NODE_ENV value. */
-export function isDevApprovalEnabledForRequest(env: Record<string, string | undefined> = process.env): boolean {
+export function isDevApprovalEnabledForRequest(
+  env: Record<string, string | undefined> = process.env,
+): boolean {
   const nodeEnv = env.NODE_ENV?.trim();
 
-  if (nodeEnv === 'production' || nodeEnv === 'preview') {
+  if (nodeEnv === "production" || nodeEnv === "preview") {
     return false;
   }
 
-  return nodeEnv === 'development' || nodeEnv === 'test';
+  return nodeEnv === "development" || nodeEnv === "test";
 }
 
 /** Requires an admin server session for developer pages, redirecting on failure. */
 export async function requireDeveloperSessionClaims(
   loginRedirectPath: string,
-  unauthorizedRedirectPath = '/',
+  unauthorizedRedirectPath = "/",
 ): Promise<SessionClaims> {
   const claims = await getServerSessionClaims();
   if (!claims) {
     redirect(buildLoginRedirect(loginRedirectPath));
   }
 
-  if (claims.role !== 'admin') {
+  if (claims.role !== "admin") {
     redirect(unauthorizedRedirectPath);
   }
 
@@ -42,7 +44,7 @@ export async function requireDeveloperSessionClaimsOrRedirect(): Promise<Session
     return null;
   }
 
-  if (claims.role !== 'admin') {
+  if (claims.role !== "admin") {
     return null;
   }
 

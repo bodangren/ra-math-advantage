@@ -84,7 +84,7 @@ export const seedModule12LessonStandards = internalMutation({
       const existing = await ctx.db
         .query("lesson_standards")
         .withIndex("by_lesson_version_and_standard", (q) =>
-          q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id)
+          q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id),
         )
         .first();
       if (existing) continue;

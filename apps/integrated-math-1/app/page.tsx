@@ -1,55 +1,55 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
 const stats = [
-  { value: '14', label: 'Modules', description: 'From expressions and equations to geometry and congruence' },
-  { value: '99', label: 'Lessons', description: 'Interactive lessons with practice activities' },
-  { value: '100+', label: 'Activities', description: 'Hands-on exercises to build understanding' },
+  {
+    value: "14",
+    label: "Modules",
+    description: "From expressions and equations to geometry and congruence",
+  },
+  { value: "99", label: "Lessons", description: "Interactive lessons with practice activities" },
+  { value: "100+", label: "Activities", description: "Hands-on exercises to build understanding" },
 ];
 
 const unitGroups = [
   {
-    title: 'Algebra Foundations',
+    title: "Algebra Foundations",
     units: [
-      { number: 1, title: 'Expressions', lessons: 6 },
-      { number: 2, title: 'Equations in One Variable', lessons: 7 },
+      { number: 1, title: "Expressions", lessons: 6 },
+      { number: 2, title: "Equations in One Variable", lessons: 7 },
     ],
   },
   {
-    title: 'Functions & Linear Models',
+    title: "Functions & Linear Models",
     units: [
-      { number: 3, title: 'Relations and Functions', lessons: 6 },
-      { number: 4, title: 'Linear and Nonlinear Functions', lessons: 7 },
-      { number: 5, title: 'Creating Linear Equations', lessons: 6 },
+      { number: 3, title: "Relations and Functions", lessons: 6 },
+      { number: 4, title: "Linear and Nonlinear Functions", lessons: 7 },
+      { number: 5, title: "Creating Linear Equations", lessons: 6 },
     ],
   },
   {
-    title: 'Equations & Inequalities',
+    title: "Equations & Inequalities",
     units: [
-      { number: 6, title: 'Linear Inequalities', lessons: 5 },
-      { number: 7, title: 'Systems of Linear Equations and Inequalities', lessons: 5 },
+      { number: 6, title: "Linear Inequalities", lessons: 5 },
+      { number: 7, title: "Systems of Linear Equations and Inequalities", lessons: 5 },
     ],
   },
   {
-    title: 'Exponential Functions',
-    units: [
-      { number: 8, title: 'Exponential Functions', lessons: 6 },
-    ],
+    title: "Exponential Functions",
+    units: [{ number: 8, title: "Exponential Functions", lessons: 6 }],
   },
   {
-    title: 'Statistics',
-    units: [
-      { number: 9, title: 'Statistics', lessons: 8 },
-    ],
+    title: "Statistics",
+    units: [{ number: 9, title: "Statistics", lessons: 8 }],
   },
   {
-    title: 'Geometry',
+    title: "Geometry",
     units: [
-      { number: 10, title: 'Tools of Geometry', lessons: 7 },
-      { number: 11, title: 'Angles and Geometric Figures', lessons: 8 },
-      { number: 12, title: 'Logical Arguments and Line Relationships', lessons: 10 },
-      { number: 13, title: 'Transformations and Symmetry', lessons: 6 },
-      { number: 14, title: 'Triangles and Congruence', lessons: 7 },
+      { number: 10, title: "Tools of Geometry", lessons: 7 },
+      { number: 11, title: "Angles and Geometric Figures", lessons: 8 },
+      { number: 12, title: "Logical Arguments and Line Relationships", lessons: 10 },
+      { number: 13, title: "Transformations and Symmetry", lessons: 6 },
+      { number: 14, title: "Triangles and Congruence", lessons: 7 },
     ],
   },
 ];
@@ -69,13 +69,22 @@ export default function HomePage() {
                 <div className="space-y-2">
                   <h1
                     className="text-[#EDEBE8] font-display"
-                    style={{ fontSize: 'clamp(48px, 8vw, 96px)', fontWeight: 700, lineHeight: 0.95, letterSpacing: '-2px' }}
+                    style={{
+                      fontSize: "clamp(48px, 8vw, 96px)",
+                      fontWeight: 700,
+                      lineHeight: 0.95,
+                      letterSpacing: "-2px",
+                    }}
                   >
                     IM1
                   </h1>
                   <p
                     className="text-[#EDEBE8]/90 font-display"
-                    style={{ fontSize: 'clamp(20px, 3vw, 30px)', fontWeight: 600, letterSpacing: '-0.5px' }}
+                    style={{
+                      fontSize: "clamp(20px, 3vw, 30px)",
+                      fontWeight: 600,
+                      letterSpacing: "-0.5px",
+                    }}
                   >
                     Integrated Math 1
                   </p>
@@ -91,11 +100,21 @@ export default function HomePage() {
                 <Link
                   href="/auth/login"
                   className="group inline-flex items-center gap-2 px-8 py-4 rounded-md font-medium transition-all hover:-translate-y-0.5"
-                  style={{ backgroundColor: '#B14C00', color: '#fff', fontWeight: 500 }}
+                  style={{ backgroundColor: "#B14C00", color: "#fff", fontWeight: 500 }}
                 >
                   Sign In
-                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  <svg
+                    className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
                   </svg>
                 </Link>
                 <Link
@@ -109,7 +128,13 @@ export default function HomePage() {
             </div>
 
             <div className="relative animate-fade-up-1">
-              <div className="absolute -inset-4 rounded-panel blur-3xl" style={{ background: 'linear-gradient(135deg, oklch(0.55 0.19 40 / 0.15) 0%, transparent 50%, oklch(0.60 0.14 195 / 0.10) 100%)' }} />
+              <div
+                className="absolute -inset-4 rounded-panel blur-3xl"
+                style={{
+                  background:
+                    "linear-gradient(135deg, oklch(0.55 0.19 40 / 0.15) 0%, transparent 50%, oklch(0.60 0.14 195 / 0.10) 100%)",
+                }}
+              />
               <div className="relative bg-panel rounded-panel shadow-default overflow-hidden border border-subtle">
                 <Image
                   src="/im-1-hero.png"
@@ -120,36 +145,46 @@ export default function HomePage() {
                   priority
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 rounded-full blur-2xl" style={{ backgroundColor: 'oklch(0.60 0.14 195 / 0.15)' }} />
+              <div
+                className="absolute -bottom-6 -right-6 w-32 h-32 rounded-full blur-2xl"
+                style={{ backgroundColor: "oklch(0.60 0.14 195 / 0.15)" }}
+              />
             </div>
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(to right, transparent, oklch(0.55 0.19 40 / 0.20), transparent)' }} />
+        <div
+          className="absolute bottom-0 left-0 right-0 h-px"
+          style={{
+            background:
+              "linear-gradient(to right, transparent, oklch(0.55 0.19 40 / 0.20), transparent)",
+          }}
+        />
       </div>
 
       <div className="bg-canvas max-w-content mx-auto px-6 py-20">
         <div className="grid md:grid-cols-3 gap-8">
           {stats.map((stat, index) => (
-            <div
-              key={stat.label}
-              className={`group p-8 card-surface animate-fade-up-${index + 3}`}
-            >
+            <div key={stat.label} className={`group p-8 card-surface animate-fade-up-${index + 3}`}>
               <div className="flex items-start justify-between mb-6">
                 <span
                   className="font-mono-num text-7xl font-semibold group-hover:opacity-80 transition-opacity"
-                  style={{ color: 'oklch(0.55 0.19 40 / 0.25)' }}
+                  style={{ color: "oklch(0.55 0.19 40 / 0.25)" }}
                 >
                   {stat.value}
                 </span>
-                <span className="w-2 h-2 rounded-full mt-2" style={{ backgroundColor: '#B14C00' }} />
+                <span
+                  className="w-2 h-2 rounded-full mt-2"
+                  style={{ backgroundColor: "#B14C00" }}
+                />
               </div>
-              <h3 className="text-primary-text text-2xl mb-2 font-display" style={{ fontWeight: 600 }}>
+              <h3
+                className="text-primary-text text-2xl mb-2 font-display"
+                style={{ fontWeight: 600 }}
+              >
                 {stat.label}
               </h3>
-              <p className="text-secondary-text">
-                {stat.description}
-              </p>
+              <p className="text-secondary-text">{stat.description}</p>
             </div>
           ))}
         </div>
@@ -158,11 +193,15 @@ export default function HomePage() {
       <div className="bg-canvas max-w-content mx-auto px-6 pb-20">
         <div className="mb-12">
           <span className="section-label mb-4 inline-block">Course Overview</span>
-          <h2 className="text-primary-text text-3xl md:text-4xl mb-4 font-display" style={{ fontWeight: 700 }}>
+          <h2
+            className="text-primary-text text-3xl md:text-4xl mb-4 font-display"
+            style={{ fontWeight: 700 }}
+          >
             14 Modules Across 6 Subject Areas
           </h2>
           <p className="text-secondary-text text-lg max-w-2xl">
-            From algebraic expressions and equations through functions and geometry to proofs and congruence.
+            From algebraic expressions and equations through functions and geometry to proofs and
+            congruence.
           </p>
         </div>
 
@@ -176,14 +215,16 @@ export default function HomePage() {
                 <div key={unit.number} className="card-surface p-4 flex items-center gap-4">
                   <span
                     className="flex items-center justify-center w-8 h-8 rounded-md text-sm font-bold text-white shrink-0"
-                    style={{ backgroundColor: '#B14C00' }}
+                    style={{ backgroundColor: "#B14C00" }}
                   >
                     {unit.number}
                   </span>
                   <div className="flex-1 min-w-0">
                     <h4 className="text-primary-text text-sm font-medium truncate">{unit.title}</h4>
                   </div>
-                  <span className="text-muted-text text-xs font-mono-num shrink-0">{unit.lessons} lessons</span>
+                  <span className="text-muted-text text-xs font-mono-num shrink-0">
+                    {unit.lessons} lessons
+                  </span>
                 </div>
               ))}
             </div>
@@ -192,28 +233,48 @@ export default function HomePage() {
       </div>
 
       <div className="bg-canvas max-w-4xl mx-auto px-6 pb-20">
-        <div className="relative p-10 md:p-14 rounded-lg border border-subtle animate-fade-up-6" style={{ background: 'linear-gradient(135deg, oklch(0.985 0.003 75 / 0.8) 0%, oklch(0.94 0.012 70 / 0.6) 100%)' }}>
-          <div className="absolute top-0 left-0 w-full h-px" style={{ background: 'linear-gradient(to right, transparent, oklch(0.55 0.19 40 / 0.20), transparent)' }} />
+        <div
+          className="relative p-10 md:p-14 rounded-lg border border-subtle animate-fade-up-6"
+          style={{
+            background:
+              "linear-gradient(135deg, oklch(0.985 0.003 75 / 0.8) 0%, oklch(0.94 0.012 70 / 0.6) 100%)",
+          }}
+        >
+          <div
+            className="absolute top-0 left-0 w-full h-px"
+            style={{
+              background:
+                "linear-gradient(to right, transparent, oklch(0.55 0.19 40 / 0.20), transparent)",
+            }}
+          />
           <div className="relative">
             <span className="inline-block font-mono-num text-xs tracking-widest text-muted-text uppercase mb-4">
               Course Scope
             </span>
-            <h2 className="text-primary-text text-3xl md:text-4xl mb-4 font-display" style={{ fontWeight: 700 }}>
+            <h2
+              className="text-primary-text text-3xl md:text-4xl mb-4 font-display"
+              style={{ fontWeight: 700 }}
+            >
               Standards-Aligned
             </h2>
             <p className="text-lg text-secondary-text leading-relaxed mb-6">
               Covers expressions, equations, relations and functions, linear models, inequalities,
-              systems, exponential functions, statistics, geometric tools, angles, logical arguments,
-              transformations, and triangle congruence.
+              systems, exponential functions, statistics, geometric tools, angles, logical
+              arguments, transformations, and triangle congruence.
             </p>
             <Link
               href="/curriculum"
               className="inline-flex items-center gap-2 text-sm transition-all hover:gap-3"
-              style={{ color: '#00828C', fontWeight: 500 }}
+              style={{ color: "#00828C", fontWeight: 500 }}
             >
               Explore the full curriculum
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
               </svg>
             </Link>
           </div>

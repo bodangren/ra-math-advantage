@@ -5,14 +5,14 @@
  * writer.  Pure schema — no side effects.
  */
 
-import { z } from 'zod';
+import { z } from "zod";
 
 export const SCALE_HOT_PATHS = [
-  'daily-practice',
-  'gradebook',
-  'heatmap',
-  'proficiency',
-  'curriculum-summaries',
+  "daily-practice",
+  "gradebook",
+  "heatmap",
+  "proficiency",
+  "curriculum-summaries",
 ] as const;
 
 export type HotPath = (typeof SCALE_HOT_PATHS)[number];
@@ -43,9 +43,7 @@ export function emptyCostRecord(path: HotPath): CostRecord {
  */
 export function mergeCostRecords(a: CostRecord, b: CostRecord): CostRecord {
   if (a.path !== b.path) {
-    throw new Error(
-      `Cannot merge cost records with different paths: "${a.path}" vs "${b.path}"`,
-    );
+    throw new Error(`Cannot merge cost records with different paths: "${a.path}" vs "${b.path}"`);
   }
   return {
     path: a.path,

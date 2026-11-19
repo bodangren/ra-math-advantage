@@ -5,14 +5,14 @@
  * Game configurations come from database instead of hardcoded constants.
  */
 
-'use client'
+"use client";
 
-import { useState, useCallback, useEffect, useRef } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Progress } from '@/components/ui/progress'
-import { Separator } from '@/components/ui/separator'
+import { useState, useCallback, useEffect, useRef } from "react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import { Separator } from "@/components/ui/separator";
 import {
   DollarSign,
   Calendar,
@@ -28,58 +28,61 @@ import {
   ChevronDown,
   ChevronUp,
   Warehouse,
-  BarChart3
-} from 'lucide-react'
-import type { Activity } from '@/lib/schemas/validators'
-import type { InventoryManagerActivityProps } from '@/types/activities'
-import { buildPracticeSubmissionEnvelope, buildPracticeSubmissionParts, type PracticeSubmissionCallbackPayload } from '@/lib/practice/contract'
+  BarChart3,
+} from "lucide-react";
+import type { Activity } from "@/lib/schemas/validators";
+import type { InventoryManagerActivityProps } from "@/types/activities";
+import {
+  buildPracticeSubmissionEnvelope,
+  buildPracticeSubmissionParts,
+  type PracticeSubmissionCallbackPayload,
+} from "@/lib/practice/contract";
 
-export type InventoryManagerActivity = Omit<Activity, 'componentKey' | 'props'> & {
-  componentKey: 'inventory-manager'
-  props: InventoryManagerActivityProps
-}
+export type InventoryManagerActivity = Omit<Activity, "componentKey" | "props"> & {
+  componentKey: "inventory-manager";
+  props: InventoryManagerActivityProps;
+};
 
 interface Product {
-  id: string
-  name: string
-  icon: React.ReactNode
-  quantity: number
-  cost: number
-  price: number
-  demand: 'high' | 'medium' | 'low'
-  demandHistory: number[]
-  totalSold: number
-  totalOrdered: number
+  id: string;
+  name: string;
+  icon: React.ReactNode;
+  quantity: number;
+  cost: number;
+  price: number;
+  demand: "high" | "medium" | "low";
+  demandHistory: number[];
+  totalSold: number;
+  totalOrdered: number;
 }
 
 interface MarketEvent {
-  id: string
-  type: 'demand_spike' | 'demand_drop' | 'price_change' | 'storage_discount'
-  message: string
-  productId?: string
-  effect: Record<string, unknown>
-  duration: number
+  id: string;
+  type: "demand_spike" | "demand_drop" | "price_change" | "storage_discount";
+  message: string;
+  productId?: string;
+  effect: Record<string, unknown>;
+  duration: number;
 }
 
 interface GameState {
-  cash: number
-  day: number
-  maxDays: number
-  totalRevenue: number
-  totalExpenses: number
-  storageCost: number
-  dailyStorageCost: number
-  products: Product[]
-  marketEvents: MarketEvent[]
-  gameStatus: 'playing' | 'won' | 'lost'
-  profitTarget: number
+  cash: number;
+  day: number;
+  maxDays: number;
+  totalRevenue: number;
+  totalExpenses: number;
+  storageCost: number;
+  dailyStorageCost: number;
+  products: Product[];
+  marketEvents: MarketEvent[];
+  gameStatus: "playing" | "won" | "lost";
+  profitTarget: number;
 }
 
 interface InventoryManagerProps {
-  activity: InventoryManagerActivity
-  onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void
+  activity: InventoryManagerActivity;
+  onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void;
 }
-
 
 /**
  * Returns a Lucide icon component for the given product icon name.
@@ -89,17 +92,16 @@ interface InventoryManagerProps {
  */
 function getIconForProduct(iconName: string) {
   switch (iconName) {
-    case 'laptop':
-      return <Laptop className="w-5 h-5" />
-    case 'smartphone':
-      return <Smartphone className="w-5 h-5" />
-    case 'tablet':
-      return <Tablet className="w-5 h-5" />
+    case "laptop":
+      return <Laptop className="w-5 h-5" />;
+    case "smartphone":
+      return <Smartphone className="w-5 h-5" />;
+    case "tablet":
+      return <Tablet className="w-5 h-5" />;
     default:
-      return <Package className="w-5 h-5" />
+      return <Package className="w-5 h-5" />;
   }
 }
-
 
 /**
  * Renders an inventory management simulation where students order stock,
@@ -109,17 +111,18 @@ function getIconForProduct(iconName: string) {
  * @param onSubmit - Callback to submit practice results
  */
 export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) {
-  const { title, description, initialState, products } = activity.props
-  const runtimeIdCounterRef = useRef(0)
-  const [submitted, setSubmitted] = useState(false)
-  const submittedRef = useRef(false)
-  const notificationTimeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([])
+  const { title, description, initialState, products } = activity.props;
+  const runtimeIdCounterRef = useRef(0);
+  const [submitted, setSubmitted] = useState(false);
+  const submittedRef = useRef(false);
+  const notificationTimeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   useEffect(() => {
-    const timeouts = notificationTimeoutsRef.current
-    return () => { timeouts.forEach(clearTimeout) }
-  }, [])
-
+    const timeouts = notificationTimeoutsRef.current;
+    return () => {
+      timeouts.forEach(clearTimeout);
+    };
+  }, []);
 
   /**
    * Generates a unique runtime ID for events and notifications.
@@ -127,10 +130,10 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
    * @param prefix - The prefix for the ID ('event' or 'notification')
    * @returns A unique string ID
    */
-  const generateRuntimeId = useCallback((prefix: 'event' | 'notification') => {
-    runtimeIdCounterRef.current += 1
-    return `${prefix}-${Date.now()}-${runtimeIdCounterRef.current}`
-  }, [])
+  const generateRuntimeId = useCallback((prefix: "event" | "notification") => {
+    runtimeIdCounterRef.current += 1;
+    return `${prefix}-${Date.now()}-${runtimeIdCounterRef.current}`;
+  }, []);
 
   const [gameState, setGameState] = useState<GameState>({
     cash: initialState.cash,
@@ -142,21 +145,22 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
     dailyStorageCost: initialState.financials.dailyStorageCost,
     products: products.map((product) => ({
       ...product,
-      icon: getIconForProduct(product.icon)
+      icon: getIconForProduct(product.icon),
     })),
     marketEvents: [],
     gameStatus: initialState.gameStatus,
-    profitTarget: initialState.profitTarget
-  })
+    profitTarget: initialState.profitTarget,
+  });
 
-  const [notifications, setNotifications] = useState<Array<{
-    id: string
-    message: string
-    type: 'success' | 'warning' | 'error' | 'info'
-  }>>([])
+  const [notifications, setNotifications] = useState<
+    Array<{
+      id: string;
+      message: string;
+      type: "success" | "warning" | "error" | "info";
+    }>
+  >([]);
 
-  const [showInstructions, setShowInstructions] = useState(false)
-
+  const [showInstructions, setShowInstructions] = useState(false);
 
   /**
    * Adds a temporary notification toast that auto-dismisses after 5 seconds.
@@ -164,15 +168,17 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
    * @param message - The notification message text
    * @param type - The notification severity type
    */
-  const addNotification = useCallback((message: string, type: 'success' | 'warning' | 'error' | 'info') => {
-    const id = generateRuntimeId('notification')
-    setNotifications(prev => [...prev, { id, message, type }])
-    const timeoutId = setTimeout(() => {
-      setNotifications(prev => prev.filter(n => n.id !== id))
-    }, 5000)
-    notificationTimeoutsRef.current.push(timeoutId)
-  }, [generateRuntimeId])
-
+  const addNotification = useCallback(
+    (message: string, type: "success" | "warning" | "error" | "info") => {
+      const id = generateRuntimeId("notification");
+      setNotifications((prev) => [...prev, { id, message, type }]);
+      const timeoutId = setTimeout(() => {
+        setNotifications((prev) => prev.filter((n) => n.id !== id));
+      }, 5000);
+      notificationTimeoutsRef.current.push(timeoutId);
+    },
+    [generateRuntimeId],
+  );
 
   /**
    * Returns Tailwind classes for demand-level badge coloring.
@@ -182,13 +188,16 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
    */
   const getDemandColor = (demand: string) => {
     switch (demand) {
-      case 'high': return 'text-green-600 bg-green-50 border-green-200'
-      case 'medium': return 'text-yellow-600 bg-yellow-50 border-yellow-200'
-      case 'low': return 'text-red-600 bg-red-50 border-red-200'
-      default: return 'text-gray-600 bg-gray-50 border-gray-200'
+      case "high":
+        return "text-green-600 bg-green-50 border-green-200";
+      case "medium":
+        return "text-yellow-600 bg-yellow-50 border-yellow-200";
+      case "low":
+        return "text-red-600 bg-red-50 border-red-200";
+      default:
+        return "text-gray-600 bg-gray-50 border-gray-200";
     }
-  }
-
+  };
 
   /**
    * Returns a demand multiplier for sales simulation based on demand level.
@@ -198,13 +207,16 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
    */
   const getDemandMultiplier = (demand: string) => {
     switch (demand) {
-      case 'high': return 1.5
-      case 'medium': return 1.0
-      case 'low': return 0.6
-      default: return 1.0
+      case "high":
+        return 1.5;
+      case "medium":
+        return 1.0;
+      case "low":
+        return 0.6;
+      default:
+        return 1.0;
     }
-  }
-
+  };
 
   /**
    * Simulates customer demand for a product based on base units,
@@ -214,13 +226,12 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
    * @returns The number of units demanded
    */
   const simulateDemand = useCallback((product: Product) => {
-    const baseUnits = product.name === 'Phones' ? 8 : product.name === 'Laptops' ? 3 : 5
-    const demandMultiplier = getDemandMultiplier(product.demand)
-    const randomFactor = 0.7 + (Math.random() * 0.6) // 70% to 130% of base
+    const baseUnits = product.name === "Phones" ? 8 : product.name === "Laptops" ? 3 : 5;
+    const demandMultiplier = getDemandMultiplier(product.demand);
+    const randomFactor = 0.7 + Math.random() * 0.6; // 70% to 130% of base
 
-    return Math.floor(baseUnits * demandMultiplier * randomFactor)
-  }, [])
-
+    return Math.floor(baseUnits * demandMultiplier * randomFactor);
+  }, []);
 
   /**
    * Generates a random market event (demand spike, demand drop,
@@ -229,48 +240,49 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
    * @returns A new MarketEvent object with a unique ID
    */
   const generateMarketEvent = useCallback(() => {
-    const eventTypes = ['demand_spike', 'demand_drop', 'price_change', 'storage_discount']
-    const eventType = eventTypes[Math.floor(Math.random() * eventTypes.length)] as MarketEvent['type']
-    const productIndex = Math.floor(Math.random() * gameState.products.length)
-    const productName = gameState.products[productIndex]?.name || 'Products'
-    const productId = gameState.products[productIndex]?.id
+    const eventTypes = ["demand_spike", "demand_drop", "price_change", "storage_discount"];
+    const eventType = eventTypes[
+      Math.floor(Math.random() * eventTypes.length)
+    ] as MarketEvent["type"];
+    const productIndex = Math.floor(Math.random() * gameState.products.length);
+    const productName = gameState.products[productIndex]?.name || "Products";
+    const productId = gameState.products[productIndex]?.id;
 
-    const events: Record<MarketEvent['type'], Omit<MarketEvent, 'id'>> = {
+    const events: Record<MarketEvent["type"], Omit<MarketEvent, "id">> = {
       demand_spike: {
-        type: 'demand_spike',
+        type: "demand_spike",
         message: `High demand for ${productName}! Customers are buying more.`,
         productId: productId,
         effect: { demandBoost: 0.5 },
-        duration: 3
+        duration: 3,
       },
       demand_drop: {
-        type: 'demand_drop',
+        type: "demand_drop",
         message: `Low interest in ${productName}. Demand has decreased.`,
         productId: productId,
         effect: { demandReduction: 0.3 },
-        duration: 2
+        duration: 2,
       },
       price_change: {
-        type: 'price_change',
+        type: "price_change",
         message: `Market prices for ${productName} are fluctuating.`,
         productId: productId,
         effect: { priceChange: Math.random() > 0.5 ? 50 : -50 },
-        duration: 4
+        duration: 4,
       },
       storage_discount: {
-        type: 'storage_discount',
-        message: 'Storage costs reduced due to warehouse efficiency!',
+        type: "storage_discount",
+        message: "Storage costs reduced due to warehouse efficiency!",
         effect: { storageDiscount: 0.5 },
-        duration: 5
-      }
-    }
+        duration: 5,
+      },
+    };
 
     return {
       ...events[eventType],
-      id: generateRuntimeId('event')
-    }
-  }, [gameState.products, generateRuntimeId])
-
+      id: generateRuntimeId("event"),
+    };
+  }, [gameState.products, generateRuntimeId]);
 
   /**
    * Orders additional stock for a product, deducting the cost from cash.
@@ -278,115 +290,132 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
    * @param productId - The product ID to order
    * @param quantity - The number of units to order
    */
-  const orderStock = useCallback((productId: string, quantity: number) => {
-    setGameState(prev => {
-      const product = prev.products.find(p => p.id === productId)
-      if (!product) return prev
+  const orderStock = useCallback(
+    (productId: string, quantity: number) => {
+      setGameState((prev) => {
+        const product = prev.products.find((p) => p.id === productId);
+        if (!product) return prev;
 
-      const totalCost = product.cost * quantity
-      if (prev.cash < totalCost) {
-        queueMicrotask(() => addNotification(`Insufficient funds! Need $${totalCost.toLocaleString()}`, 'error'))
-        return prev
-      }
+        const totalCost = product.cost * quantity;
+        if (prev.cash < totalCost) {
+          queueMicrotask(() =>
+            addNotification(`Insufficient funds! Need $${totalCost.toLocaleString()}`, "error"),
+          );
+          return prev;
+        }
 
-      const updatedProducts = prev.products.map(p =>
-        p.id === productId
-          ? {
-              ...p,
-              quantity: p.quantity + quantity,
-              totalOrdered: p.totalOrdered + quantity
-            }
-          : p
-      )
+        const updatedProducts = prev.products.map((p) =>
+          p.id === productId
+            ? {
+                ...p,
+                quantity: p.quantity + quantity,
+                totalOrdered: p.totalOrdered + quantity,
+              }
+            : p,
+        );
 
-      queueMicrotask(() => addNotification(
-        `Ordered ${quantity} ${product.name} for $${totalCost.toLocaleString()}`,
-        'success'
-      ))
+        queueMicrotask(() =>
+          addNotification(
+            `Ordered ${quantity} ${product.name} for $${totalCost.toLocaleString()}`,
+            "success",
+          ),
+        );
 
-      return {
-        ...prev,
-        cash: prev.cash - totalCost,
-        totalExpenses: prev.totalExpenses + totalCost,
-        products: updatedProducts
-      }
-    })
-  }, [addNotification])
-
+        return {
+          ...prev,
+          cash: prev.cash - totalCost,
+          totalExpenses: prev.totalExpenses + totalCost,
+          products: updatedProducts,
+        };
+      });
+    },
+    [addNotification],
+  );
 
   /**
    * Advances the simulation by one day, processing sales, applying market
    * events, deducting storage costs, and checking win/loss conditions.
    */
   const advanceDay = useCallback(() => {
-    if (gameState.gameStatus !== 'playing') return
+    if (gameState.gameStatus !== "playing") return;
 
-    const pendingNotifications: Array<{ message: string; type: 'success' | 'warning' | 'error' | 'info' }> = []
+    const pendingNotifications: Array<{
+      message: string;
+      type: "success" | "warning" | "error" | "info";
+    }> = [];
 
-    setGameState(prev => {
-      const newDay = prev.day + 1
-      let dayRevenue = 0
-      let dayStorageCost = prev.dailyStorageCost
-      const salesReport: string[] = []
+    setGameState((prev) => {
+      const newDay = prev.day + 1;
+      let dayRevenue = 0;
+      let dayStorageCost = prev.dailyStorageCost;
+      const salesReport: string[] = [];
 
       // Apply storage cost discount if active
-      const storageEvent = prev.marketEvents.find(e => e.type === 'storage_discount')
-      if (storageEvent && typeof storageEvent.effect.storageDiscount === 'number') {
-        dayStorageCost *= (1 - storageEvent.effect.storageDiscount)
+      const storageEvent = prev.marketEvents.find((e) => e.type === "storage_discount");
+      if (storageEvent && typeof storageEvent.effect.storageDiscount === "number") {
+        dayStorageCost *= 1 - storageEvent.effect.storageDiscount;
       }
 
       // Process sales for each product
-      const updatedProducts = prev.products.map(product => {
-        let demand = simulateDemand(product)
+      const updatedProducts = prev.products.map((product) => {
+        let demand = simulateDemand(product);
 
         // Apply market event effects
-        const demandEvent = prev.marketEvents.find(e =>
-          e.productId === product.id && (e.type === 'demand_spike' || e.type === 'demand_drop')
-        )
+        const demandEvent = prev.marketEvents.find(
+          (e) =>
+            e.productId === product.id && (e.type === "demand_spike" || e.type === "demand_drop"),
+        );
         if (demandEvent) {
-          if (demandEvent.type === 'demand_spike' && typeof demandEvent.effect.demandBoost === 'number') {
-            demand = Math.floor(demand * (1 + demandEvent.effect.demandBoost))
-          } else if (demandEvent.type === 'demand_drop' && typeof demandEvent.effect.demandReduction === 'number') {
-            demand = Math.floor(demand * (1 - demandEvent.effect.demandReduction))
+          if (
+            demandEvent.type === "demand_spike" &&
+            typeof demandEvent.effect.demandBoost === "number"
+          ) {
+            demand = Math.floor(demand * (1 + demandEvent.effect.demandBoost));
+          } else if (
+            demandEvent.type === "demand_drop" &&
+            typeof demandEvent.effect.demandReduction === "number"
+          ) {
+            demand = Math.floor(demand * (1 - demandEvent.effect.demandReduction));
           }
         }
 
-        const unitsSold = Math.min(demand, product.quantity)
-        let salePrice = product.price
+        const unitsSold = Math.min(demand, product.quantity);
+        let salePrice = product.price;
 
         // Apply price change effects
-        const priceEvent = prev.marketEvents.find(e =>
-          e.productId === product.id && e.type === 'price_change'
-        )
-        if (priceEvent && typeof priceEvent.effect.priceChange === 'number') {
-          salePrice += priceEvent.effect.priceChange
+        const priceEvent = prev.marketEvents.find(
+          (e) => e.productId === product.id && e.type === "price_change",
+        );
+        if (priceEvent && typeof priceEvent.effect.priceChange === "number") {
+          salePrice += priceEvent.effect.priceChange;
         }
 
-        const revenue = unitsSold * salePrice
-        dayRevenue += revenue
+        const revenue = unitsSold * salePrice;
+        dayRevenue += revenue;
 
         if (unitsSold > 0) {
-          salesReport.push(`Sold ${unitsSold} ${product.name} for $${revenue.toLocaleString()}`)
+          salesReport.push(`Sold ${unitsSold} ${product.name} for $${revenue.toLocaleString()}`);
         }
         if (demand > product.quantity && product.quantity === 0) {
-          salesReport.push(`Stockout: ${demand - unitsSold} ${product.name} lost sales`)
+          salesReport.push(`Stockout: ${demand - unitsSold} ${product.name} lost sales`);
         }
 
         // Update demand history (last 5 days)
-        const newDemandHistory = [...product.demandHistory.slice(1), demand]
+        const newDemandHistory = [...product.demandHistory.slice(1), demand];
 
         // Randomly update demand level based on recent sales performance
-        let newDemand = product.demand
-        const avgDemand = newDemandHistory.reduce((a, b) => a + b, 0) / 5
-        const fulfillmentRate = unitsSold / Math.max(demand, 1)
+        let newDemand = product.demand;
+        const avgDemand = newDemandHistory.reduce((a, b) => a + b, 0) / 5;
+        const fulfillmentRate = unitsSold / Math.max(demand, 1);
 
-        if (Math.random() < 0.3) { // 30% chance of demand change
+        if (Math.random() < 0.3) {
+          // 30% chance of demand change
           if (avgDemand > 8 && fulfillmentRate > 0.8) {
-            newDemand = 'high'
+            newDemand = "high";
           } else if (avgDemand < 4 || fulfillmentRate < 0.5) {
-            newDemand = 'low'
+            newDemand = "low";
           } else {
-            newDemand = 'medium'
+            newDemand = "medium";
           }
         }
 
@@ -395,57 +424,62 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
           quantity: product.quantity - unitsSold,
           demand: newDemand,
           demandHistory: newDemandHistory,
-          totalSold: product.totalSold + unitsSold
-        }
-      })
+          totalSold: product.totalSold + unitsSold,
+        };
+      });
 
       // Deduct storage costs
-      const totalInventory = updatedProducts.reduce((sum, p) => sum + p.quantity, 0)
-      const storageExpense = totalInventory > 0 ? dayStorageCost : 0
+      const totalInventory = updatedProducts.reduce((sum, p) => sum + p.quantity, 0);
+      const storageExpense = totalInventory > 0 ? dayStorageCost : 0;
 
       // Generate random market event (20% chance)
-      const newMarketEvents = prev.marketEvents.map(event => ({
-        ...event,
-        duration: event.duration - 1
-      })).filter(event => event.duration > 0)
+      const newMarketEvents = prev.marketEvents
+        .map((event) => ({
+          ...event,
+          duration: event.duration - 1,
+        }))
+        .filter((event) => event.duration > 0);
 
       if (Math.random() < 0.2 && newMarketEvents.length < 2) {
-        const newEvent = generateMarketEvent()
-        newMarketEvents.push(newEvent)
-        pendingNotifications.push({ message: newEvent.message, type: 'info' })
+        const newEvent = generateMarketEvent();
+        newMarketEvents.push(newEvent);
+        pendingNotifications.push({ message: newEvent.message, type: "info" });
       }
 
       // Calculate new totals
-      const newCash = prev.cash + dayRevenue - storageExpense
-      const newTotalRevenue = prev.totalRevenue + dayRevenue
-      const newTotalExpenses = prev.totalExpenses + storageExpense
-      const newStorageCost = prev.storageCost + storageExpense
+      const newCash = prev.cash + dayRevenue - storageExpense;
+      const newTotalRevenue = prev.totalRevenue + dayRevenue;
+      const newTotalExpenses = prev.totalExpenses + storageExpense;
+      const newStorageCost = prev.storageCost + storageExpense;
 
       // Collect day summary notifications
-      salesReport.forEach(report => {
-        if (report.includes('Sold')) {
-          pendingNotifications.push({ message: report, type: 'success' })
+      salesReport.forEach((report) => {
+        if (report.includes("Sold")) {
+          pendingNotifications.push({ message: report, type: "success" });
         } else {
-          pendingNotifications.push({ message: report, type: 'warning' })
+          pendingNotifications.push({ message: report, type: "warning" });
         }
-      })
+      });
 
       if (storageExpense > 0) {
-        pendingNotifications.push({ message: `Storage costs: $${storageExpense.toLocaleString()}`, type: 'info' })
+        pendingNotifications.push({
+          message: `Storage costs: $${storageExpense.toLocaleString()}`,
+          type: "info",
+        });
       }
 
       // Check game status
-      let newGameStatus = prev.gameStatus
-      const profit = newTotalRevenue - newTotalExpenses
+      let newGameStatus = prev.gameStatus;
+      const profit = newTotalRevenue - newTotalExpenses;
 
       if (newDay >= prev.maxDays) {
         if (profit >= prev.profitTarget) {
-          newGameStatus = 'won'
+          newGameStatus = "won";
         } else {
-          newGameStatus = 'lost'
+          newGameStatus = "lost";
         }
       } else if (newCash < 0) {
-        newGameStatus = 'lost'
+        newGameStatus = "lost";
       }
 
       return {
@@ -457,15 +491,15 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
         storageCost: newStorageCost,
         products: updatedProducts,
         marketEvents: newMarketEvents,
-        gameStatus: newGameStatus
-      }
-    })
+        gameStatus: newGameStatus,
+      };
+    });
 
     // Fire notifications outside the state updater
     for (const n of pendingNotifications) {
-      addNotification(n.message, n.type)
+      addNotification(n.message, n.type);
     }
-  }, [gameState.gameStatus, simulateDemand, generateMarketEvent, addNotification])
+  }, [gameState.gameStatus, simulateDemand, generateMarketEvent, addNotification]);
 
   const resetGame = useCallback(() => {
     setGameState({
@@ -478,22 +512,22 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
       dailyStorageCost: initialState.financials.dailyStorageCost,
       products: products.map((product) => ({
         ...product,
-        icon: getIconForProduct(product.icon)
+        icon: getIconForProduct(product.icon),
       })),
       marketEvents: [],
       gameStatus: initialState.gameStatus,
-      profitTarget: initialState.profitTarget
-    })
-    setNotifications([])
-    setSubmitted(false)
-    submittedRef.current = false
-    addNotification('Game reset successfully', 'info')
-  }, [initialState, products, addNotification])
+      profitTarget: initialState.profitTarget,
+    });
+    setNotifications([]);
+    setSubmitted(false);
+    submittedRef.current = false;
+    addNotification("Game reset successfully", "info");
+  }, [initialState, products, addNotification]);
 
   const handleSubmit = useCallback(() => {
-    if (submittedRef.current) return
-    if (onSubmit && gameState.gameStatus !== 'playing') {
-      const finalProfit = gameState.totalRevenue - gameState.totalExpenses
+    if (submittedRef.current) return;
+    if (onSubmit && gameState.gameStatus !== "playing") {
+      const finalProfit = gameState.totalRevenue - gameState.totalExpenses;
       const answers: Record<string, unknown> = {
         finalProfit,
         totalRevenue: gameState.totalRevenue,
@@ -501,23 +535,23 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
         finalCash: gameState.cash,
         daysPlayed: gameState.day,
         gameStatus: gameState.gameStatus,
-      }
+      };
       const parts = buildPracticeSubmissionParts(answers).map((part) => ({
         ...part,
-        isCorrect: gameState.gameStatus === 'won',
-        score: gameState.gameStatus === 'won' ? 1 : 0,
+        isCorrect: gameState.gameStatus === "won",
+        score: gameState.gameStatus === "won" ? 1 : 0,
         maxScore: 1,
-      }))
+      }));
       const envelope = buildPracticeSubmissionEnvelope({
-        activityId: activity?.id ?? 'inventory-manager',
-        mode: 'guided_practice',
-        status: 'submitted',
+        activityId: activity?.id ?? "inventory-manager",
+        mode: "guided_practice",
+        status: "submitted",
         attemptNumber: 1,
         submittedAt: new Date(),
         answers,
         parts,
         artifact: {
-          kind: 'inventory_manager',
+          kind: "inventory_manager",
           title,
           finalProfit,
           totalRevenue: gameState.totalRevenue,
@@ -525,25 +559,38 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
           finalCash: gameState.cash,
           daysPlayed: gameState.day,
           gameStatus: gameState.gameStatus,
-          products: gameState.products.map(p => ({ id: p.id, name: p.name, totalSold: p.totalSold, totalOrdered: p.totalOrdered })),
+          products: gameState.products.map((p) => ({
+            id: p.id,
+            name: p.name,
+            totalSold: p.totalSold,
+            totalOrdered: p.totalOrdered,
+          })),
         },
         analytics: {
           finalProfit,
           profitTarget: gameState.profitTarget,
           profitMargin: gameState.totalRevenue > 0 ? finalProfit / gameState.totalRevenue : 0,
-          inventoryTurnover: gameState.totalRevenue > 0 ? gameState.totalRevenue / Math.max(gameState.products.reduce((sum, p) => sum + (p.quantity * p.cost), 0), 1) : 0,
+          inventoryTurnover:
+            gameState.totalRevenue > 0
+              ? gameState.totalRevenue /
+                Math.max(
+                  gameState.products.reduce((sum, p) => sum + p.quantity * p.cost, 0),
+                  1,
+                )
+              : 0,
         },
-      })
-      submittedRef.current = true
-      onSubmit(envelope)
-      setSubmitted(true)
-      addNotification('Results submitted as practice evidence!', 'success')
+      });
+      submittedRef.current = true;
+      onSubmit(envelope);
+      setSubmitted(true);
+      addNotification("Results submitted as practice evidence!", "success");
     }
-  }, [gameState, onSubmit, addNotification, activity.id, title])
+  }, [gameState, onSubmit, addNotification, activity.id, title]);
 
-  const profit = gameState.totalRevenue - gameState.totalExpenses
-  const totalInventoryValue = gameState.products.reduce((sum, p) => sum + (p.quantity * p.cost), 0)
-  const inventoryTurnover = gameState.totalRevenue > 0 ? gameState.totalRevenue / Math.max(totalInventoryValue, 1) : 0
+  const profit = gameState.totalRevenue - gameState.totalExpenses;
+  const totalInventoryValue = gameState.products.reduce((sum, p) => sum + p.quantity * p.cost, 0);
+  const inventoryTurnover =
+    gameState.totalRevenue > 0 ? gameState.totalRevenue / Math.max(totalInventoryValue, 1) : 0;
 
   return (
     <div className="max-w-6xl mx-auto space-y-6">
@@ -554,9 +601,7 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
             <Package className="w-8 h-8 text-purple-600" />
             {title}
           </CardTitle>
-          <CardDescription className="text-lg">
-            {description}
-          </CardDescription>
+          <CardDescription className="text-lg">{description}</CardDescription>
           <div className="mt-4">
             <Button
               variant="outline"
@@ -566,7 +611,11 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
             >
               <HelpCircle className="w-4 h-4" />
               How to Play
-              {showInstructions ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              {showInstructions ? (
+                <ChevronUp className="w-4 h-4" />
+              ) : (
+                <ChevronDown className="w-4 h-4" />
+              )}
             </Button>
           </div>
         </CardHeader>
@@ -586,8 +635,9 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
             <div>
               <h4 className="font-semibold text-purple-800 mb-2">🎯 Objective</h4>
               <p className="text-purple-700">
-                Manage a retail electronics store for {gameState.maxDays} days. Achieve at least ${gameState.profitTarget.toLocaleString()} profit by balancing
-                inventory purchases with customer demand while minimizing storage costs.
+                Manage a retail electronics store for {gameState.maxDays} days. Achieve at least $
+                {gameState.profitTarget.toLocaleString()} profit by balancing inventory purchases
+                with customer demand while minimizing storage costs.
               </p>
             </div>
 
@@ -602,8 +652,13 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
                       <h5 className="font-medium">{product.name}</h5>
                     </div>
                     <div className="text-xs space-y-1">
-                      <p><strong>Cost:</strong> ${product.cost} | <strong>Sell:</strong> ${product.price}</p>
-                      <p><strong>Profit:</strong> ${product.price - product.cost} per unit</p>
+                      <p>
+                        <strong>Cost:</strong> ${product.cost} | <strong>Sell:</strong> $
+                        {product.price}
+                      </p>
+                      <p>
+                        <strong>Profit:</strong> ${product.price - product.cost} per unit
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -619,7 +674,9 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
                   <ul className="text-sm text-purple-600 space-y-1">
                     <li>• Customer demand simulated automatically</li>
                     <li>• Sales processed from available inventory</li>
-                    <li>• Storage costs: ${gameState.dailyStorageCost}/day (if you have inventory)</li>
+                    <li>
+                      • Storage costs: ${gameState.dailyStorageCost}/day (if you have inventory)
+                    </li>
                     <li>• Demand levels change based on performance</li>
                   </ul>
                 </div>
@@ -687,30 +744,35 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
       )}
 
       {/* Game Status */}
-      {gameState.gameStatus !== 'playing' && (
-        <Card className={`border-2 ${gameState.gameStatus === 'won' ? 'border-green-500 bg-green-50' : 'border-red-500 bg-red-50'}`}>
+      {gameState.gameStatus !== "playing" && (
+        <Card
+          className={`border-2 ${gameState.gameStatus === "won" ? "border-green-500 bg-green-50" : "border-red-500 bg-red-50"}`}
+        >
           <CardContent className="p-6 text-center">
             <div className="flex items-center justify-center gap-2 mb-2">
-              {gameState.gameStatus === 'won' ? (
+              {gameState.gameStatus === "won" ? (
                 <CheckCircle className="w-8 h-8 text-green-600" />
               ) : (
                 <XCircle className="w-8 h-8 text-red-600" />
               )}
-              <h3 className={`text-2xl font-bold ${gameState.gameStatus === 'won' ? 'text-green-800' : 'text-red-800'}`}>
-                {gameState.gameStatus === 'won' ? 'Business Success!' : 'Game Over'}
+              <h3
+                className={`text-2xl font-bold ${gameState.gameStatus === "won" ? "text-green-800" : "text-red-800"}`}
+              >
+                {gameState.gameStatus === "won" ? "Business Success!" : "Game Over"}
               </h3>
             </div>
-            <p className={`text-lg ${gameState.gameStatus === 'won' ? 'text-green-700' : 'text-red-700'}`}>
-              {gameState.gameStatus === 'won'
+            <p
+              className={`text-lg ${gameState.gameStatus === "won" ? "text-green-700" : "text-red-700"}`}
+            >
+              {gameState.gameStatus === "won"
                 ? `Achieved $${profit.toLocaleString()} profit! Target was $${gameState.profitTarget.toLocaleString()}.`
                 : profit < gameState.profitTarget
                   ? `Only made $${profit.toLocaleString()} profit. Target was $${gameState.profitTarget.toLocaleString()}.`
-                  : 'Ran out of cash! Better inventory management needed.'
-              }
+                  : "Ran out of cash! Better inventory management needed."}
             </p>
             {onSubmit && (
               <Button onClick={handleSubmit} className="mt-4" size="lg" disabled={submitted}>
-                {submitted ? 'Results Submitted' : 'Submit Results'}
+                {submitted ? "Results Submitted" : "Submit Results"}
               </Button>
             )}
           </CardContent>
@@ -725,7 +787,9 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
               <DollarSign className="w-6 h-6 text-green-600" />
             </div>
             <p className="text-sm text-green-700 font-medium">Cash</p>
-            <p className={`text-2xl font-bold ${gameState.cash >= 0 ? 'text-green-800' : 'text-red-800'}`}>
+            <p
+              className={`text-2xl font-bold ${gameState.cash >= 0 ? "text-green-800" : "text-red-800"}`}
+            >
               ${gameState.cash.toLocaleString()}
             </p>
           </CardContent>
@@ -749,7 +813,7 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
               <TrendingUp className="w-6 h-6 text-purple-600" />
             </div>
             <p className="text-sm text-purple-700 font-medium">Profit</p>
-            <p className={`text-2xl font-bold ${profit >= 0 ? 'text-purple-800' : 'text-red-800'}`}>
+            <p className={`text-2xl font-bold ${profit >= 0 ? "text-purple-800" : "text-red-800"}`}>
               ${profit.toLocaleString()}
             </p>
           </CardContent>
@@ -780,7 +844,10 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
           <CardContent>
             <div className="space-y-2">
               {gameState.marketEvents.map((event) => (
-                <div key={event.id} className="flex items-center justify-between p-3 bg-white rounded-lg border">
+                <div
+                  key={event.id}
+                  className="flex items-center justify-between p-3 bg-white rounded-lg border"
+                >
                   <span className="text-sm text-yellow-800">{event.message}</span>
                   <Badge variant="outline" className="text-xs">
                     {event.duration} days left
@@ -844,7 +911,10 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
                     <div>
                       <p className="text-gray-600">Margin</p>
                       <p className="font-semibold text-blue-600">
-                        {product.price > 0 ? (((product.price - product.cost) / product.price) * 100).toFixed(0) : '0'}%
+                        {product.price > 0
+                          ? (((product.price - product.cost) / product.price) * 100).toFixed(0)
+                          : "0"}
+                        %
                       </p>
                     </div>
                   </div>
@@ -869,23 +939,23 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
                       size="sm"
                       variant="outline"
                       onClick={() => orderStock(product.id, 5)}
-                      disabled={gameState.gameStatus !== 'playing' || gameState.cash < product.cost * 5}
+                      disabled={
+                        gameState.gameStatus !== "playing" || gameState.cash < product.cost * 5
+                      }
                     >
                       Order 5
-                      <span className="text-xs block">
-                        ${(product.cost * 5).toLocaleString()}
-                      </span>
+                      <span className="text-xs block">${(product.cost * 5).toLocaleString()}</span>
                     </Button>
                     <Button
                       size="sm"
                       variant="outline"
                       onClick={() => orderStock(product.id, 10)}
-                      disabled={gameState.gameStatus !== 'playing' || gameState.cash < product.cost * 10}
+                      disabled={
+                        gameState.gameStatus !== "playing" || gameState.cash < product.cost * 10
+                      }
                     >
                       Order 10
-                      <span className="text-xs block">
-                        ${(product.cost * 10).toLocaleString()}
-                      </span>
+                      <span className="text-xs block">${(product.cost * 10).toLocaleString()}</span>
                     </Button>
                   </div>
                 </CardContent>
@@ -925,9 +995,7 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
             </div>
             <div className="text-center p-3 bg-purple-50 rounded-lg">
               <p className="text-sm text-purple-600 font-medium">Turnover Rate</p>
-              <p className="text-xl font-bold text-purple-800">
-                {inventoryTurnover.toFixed(1)}x
-              </p>
+              <p className="text-xl font-bold text-purple-800">{inventoryTurnover.toFixed(1)}x</p>
             </div>
           </div>
 
@@ -952,16 +1020,12 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
           onClick={advanceDay}
           size="lg"
           className="bg-purple-600 hover:bg-purple-700"
-          disabled={gameState.gameStatus !== 'playing'}
+          disabled={gameState.gameStatus !== "playing"}
         >
           <Calendar className="w-4 h-4 mr-2" />
           End Day
         </Button>
-        <Button
-          onClick={resetGame}
-          variant="outline"
-          size="lg"
-        >
+        <Button onClick={resetGame} variant="outline" size="lg">
           <RefreshCw className="w-4 h-4 mr-2" />
           Reset Game
         </Button>
@@ -971,21 +1035,32 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
       {notifications.length > 0 && (
         <div className="fixed bottom-4 right-4 space-y-2 z-50">
           {notifications.map((notification) => (
-            <Card key={notification.id} className={`
+            <Card
+              key={notification.id}
+              className={`
               max-w-sm border-l-4 ${
-                notification.type === 'success' ? 'border-l-green-500 bg-green-50' :
-                notification.type === 'warning' ? 'border-l-yellow-500 bg-yellow-50' :
-                notification.type === 'error' ? 'border-l-red-500 bg-red-50' :
-                'border-l-blue-500 bg-blue-50'
+                notification.type === "success"
+                  ? "border-l-green-500 bg-green-50"
+                  : notification.type === "warning"
+                    ? "border-l-yellow-500 bg-yellow-50"
+                    : notification.type === "error"
+                      ? "border-l-red-500 bg-red-50"
+                      : "border-l-blue-500 bg-blue-50"
               }
-            `}>
+            `}
+            >
               <CardContent className="p-3">
-                <p className={`text-sm font-medium ${
-                  notification.type === 'success' ? 'text-green-800' :
-                  notification.type === 'warning' ? 'text-yellow-800' :
-                  notification.type === 'error' ? 'text-red-800' :
-                  'text-blue-800'
-                }`}>
+                <p
+                  className={`text-sm font-medium ${
+                    notification.type === "success"
+                      ? "text-green-800"
+                      : notification.type === "warning"
+                        ? "text-yellow-800"
+                        : notification.type === "error"
+                          ? "text-red-800"
+                          : "text-blue-800"
+                  }`}
+                >
                   {notification.message}
                 </p>
               </CardContent>
@@ -994,7 +1069,7 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default InventoryManager
+export default InventoryManager;

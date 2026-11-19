@@ -1,27 +1,38 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { generateTopic14PolynomialEndBehaviorOutput } from '@math-platform/math-content/knowledge-space';
+import { generateTopic14PolynomialEndBehaviorOutput } from "@math-platform/math-content/knowledge-space";
 
 import {
   gradeTopic14PolynomialEndBehavior,
   type Topic14PolynomialEndBehaviorAnswers,
-} from '../../../lib/practice/topic14-polynomial-end-behavior';
+} from "../../../lib/practice/topic14-polynomial-end-behavior";
 
-const PART_IDS = ['leftEnd', 'rightEnd'] as const;
+const PART_IDS = ["leftEnd", "rightEnd"] as const;
 type PartId = (typeof PART_IDS)[number];
 
 const SOURCE_ANSWERS = {
-  leftEnd: 'negative_infinity',
-  rightEnd: 'negative_infinity',
+  leftEnd: "negative_infinity",
+  rightEnd: "negative_infinity",
 } as const;
 
 const AUTHORITY_KEYS = [
-  'answer', 'answerKey', 'correctAnswer', 'correctAnswers', 'expectedAnswer',
-  'grading', 'gradingMetadata', 'normalizedAnswer', 'solution', 'solutionSteps',
-  'authority', 'correctness',
+  "answer",
+  "answerKey",
+  "correctAnswer",
+  "correctAnswers",
+  "expectedAnswer",
+  "grading",
+  "gradingMetadata",
+  "normalizedAnswer",
+  "solution",
+  "solutionSteps",
+  "authority",
+  "correctness",
 ] as const;
 
-function makeAnswers(values: Partial<Record<PartId, unknown>>): Topic14PolynomialEndBehaviorAnswers {
+function makeAnswers(
+  values: Partial<Record<PartId, unknown>>,
+): Topic14PolynomialEndBehaviorAnswers {
   return values as unknown as Topic14PolynomialEndBehaviorAnswers;
 }
 
@@ -32,10 +43,11 @@ function independentAnswers(seed: number): Topic14PolynomialEndBehaviorAnswers {
 
 function collectObjectKeys(value: unknown, keys: string[] = []): string[] {
   if (Array.isArray(value)) value.forEach((item) => collectObjectKeys(item, keys));
-  else if (value && typeof value === 'object') Object.entries(value).forEach(([key, nested]) => {
-    keys.push(key);
-    collectObjectKeys(nested, keys);
-  });
+  else if (value && typeof value === "object")
+    Object.entries(value).forEach(([key, nested]) => {
+      keys.push(key);
+      collectObjectKeys(nested, keys);
+    });
   return keys;
 }
 
@@ -47,19 +59,23 @@ function expectNoAuthority(value: unknown): void {
 function expectExactResultShape(
   result: ReturnType<typeof gradeTopic14PolynomialEndBehavior>,
 ): void {
-  expect(Object.keys(result).sort()).toEqual(['maxScore', 'parts', 'score']);
+  expect(Object.keys(result).sort()).toEqual(["maxScore", "parts", "score"]);
   expect(result.parts).toHaveLength(2);
   expect(result.parts.map((part) => part.partId)).toEqual(PART_IDS);
   for (const part of result.parts) {
     expect(Object.keys(part).sort()).toEqual([
-      'isCorrect', 'maxScore', 'partId', 'rawAnswer', 'score',
+      "isCorrect",
+      "maxScore",
+      "partId",
+      "rawAnswer",
+      "score",
     ]);
   }
   expectNoAuthority(result);
 }
 
-describe('topic14 polynomial end behavior grader', () => {
-  it('grades the source answers with the exact two-part result shape', () => {
+describe("topic14 polynomial end behavior grader", () => {
+  it("grades the source answers with the exact two-part result shape", () => {
     const result = gradeTopic14PolynomialEndBehavior(0, SOURCE_ANSWERS);
 
     expect(result).toEqual({
@@ -76,7 +92,7 @@ describe('topic14 polynomial end behavior grader', () => {
     expectExactResultShape(result);
   });
 
-  it('uses live generator authority across all four sign and parity patterns', () => {
+  it("uses live generator authority across all four sign and parity patterns", () => {
     const combinations = new Set<string>();
 
     for (let seed = 0; seed <= 200; seed += 1) {
@@ -88,52 +104,87 @@ describe('topic14 polynomial end behavior grader', () => {
       expectExactResultShape(result);
     }
 
-    expect(combinations).toEqual(new Set([
-      'positive_infinity/positive_infinity',
-      'positive_infinity/negative_infinity',
-      'negative_infinity/positive_infinity',
-      'negative_infinity/negative_infinity',
-    ]));
+    expect(combinations).toEqual(
+      new Set([
+        "positive_infinity/positive_infinity",
+        "positive_infinity/negative_infinity",
+        "negative_infinity/positive_infinity",
+        "negative_infinity/negative_infinity",
+      ]),
+    );
   });
 
-  it('awards independent partial credit and preserves raw values', () => {
-    const leftWrong = gradeTopic14PolynomialEndBehavior(0, makeAnswers({
-      leftEnd: 'positive_infinity',
-      rightEnd: SOURCE_ANSWERS.rightEnd,
-    }));
-    const rightWrong = gradeTopic14PolynomialEndBehavior(0, makeAnswers({
-      leftEnd: SOURCE_ANSWERS.leftEnd,
-      rightEnd: 'positive_infinity',
-    }));
+  it("awards independent partial credit and preserves raw values", () => {
+    const leftWrong = gradeTopic14PolynomialEndBehavior(
+      0,
+      makeAnswers({
+        leftEnd: "positive_infinity",
+        rightEnd: SOURCE_ANSWERS.rightEnd,
+      }),
+    );
+    const rightWrong = gradeTopic14PolynomialEndBehavior(
+      0,
+      makeAnswers({
+        leftEnd: SOURCE_ANSWERS.leftEnd,
+        rightEnd: "positive_infinity",
+      }),
+    );
 
     expect(leftWrong.score).toBe(1);
     expect(rightWrong.score).toBe(1);
-    expect(leftWrong.parts[0]).toMatchObject({ rawAnswer: 'positive_infinity', isCorrect: false, score: 0 });
-    expect(rightWrong.parts[1]).toMatchObject({ rawAnswer: 'positive_infinity', isCorrect: false, score: 0 });
+    expect(leftWrong.parts[0]).toMatchObject({
+      rawAnswer: "positive_infinity",
+      isCorrect: false,
+      score: 0,
+    });
+    expect(rightWrong.parts[1]).toMatchObject({
+      rawAnswer: "positive_infinity",
+      isCorrect: false,
+      score: 0,
+    });
 
-    const zero = gradeTopic14PolynomialEndBehavior(0, makeAnswers({
-      leftEnd: 'positive_infinity',
-      rightEnd: 'positive_infinity',
-    }));
+    const zero = gradeTopic14PolynomialEndBehavior(
+      0,
+      makeAnswers({
+        leftEnd: "positive_infinity",
+        rightEnd: "positive_infinity",
+      }),
+    );
     expect(zero.score).toBe(0);
     expect(zero.parts.map((part) => part.rawAnswer)).toEqual([
-      'positive_infinity', 'positive_infinity',
+      "positive_infinity",
+      "positive_infinity",
     ]);
     expectExactResultShape(zero);
   });
 
-  it('keeps malformed, missing, and non-string answers wrong without erasing other credit', () => {
+  it("keeps malformed, missing, and non-string answers wrong without erasing other credit", () => {
     const malformed: unknown[] = [
-      '', ' positive_infinity', 'positive_infinity ', 'Positive_infinity',
-      'positive infinity', 'positive', '1', null, undefined, true, false, 1, [], {},
+      "",
+      " positive_infinity",
+      "positive_infinity ",
+      "Positive_infinity",
+      "positive infinity",
+      "positive",
+      "1",
+      null,
+      undefined,
+      true,
+      false,
+      1,
+      [],
+      {},
     ];
 
     for (const partId of PART_IDS) {
       for (const rawAnswer of malformed) {
-        const result = gradeTopic14PolynomialEndBehavior(0, makeAnswers({
-          ...SOURCE_ANSWERS,
-          [partId]: rawAnswer,
-        }));
+        const result = gradeTopic14PolynomialEndBehavior(
+          0,
+          makeAnswers({
+            ...SOURCE_ANSWERS,
+            [partId]: rawAnswer,
+          }),
+        );
         expect(result.score).toBe(1);
         expect(result.parts.find((part) => part.partId === partId)).toEqual({
           partId,
@@ -142,24 +193,29 @@ describe('topic14 polynomial end behavior grader', () => {
           score: 0,
           maxScore: 1,
         });
-        expect(result.parts.filter((part) => part.partId !== partId).every((part) => part.isCorrect)).toBe(true);
+        expect(
+          result.parts.filter((part) => part.partId !== partId).every((part) => part.isCorrect),
+        ).toBe(true);
         expectExactResultShape(result);
       }
     }
 
-    const missing = gradeTopic14PolynomialEndBehavior(0, makeAnswers({ leftEnd: SOURCE_ANSWERS.leftEnd }));
+    const missing = gradeTopic14PolynomialEndBehavior(
+      0,
+      makeAnswers({ leftEnd: SOURCE_ANSWERS.leftEnd }),
+    );
     expect(missing.score).toBe(1);
     expect(missing.parts[1]?.rawAnswer).toBeUndefined();
 
     const extra = gradeTopic14PolynomialEndBehavior(0, {
       ...SOURCE_ANSWERS,
-      extra: 'ignored',
+      extra: "ignored",
     } as Topic14PolynomialEndBehaviorAnswers & { extra: string });
     expect(extra.score).toBe(2);
     expectExactResultShape(extra);
   });
 
-  it('is deterministic and passes invalid seeds through unchanged', () => {
+  it("is deterministic and passes invalid seeds through unchanged", () => {
     expect(gradeTopic14PolynomialEndBehavior(17, independentAnswers(17))).toEqual(
       gradeTopic14PolynomialEndBehavior(17, independentAnswers(17)),
     );

@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -250,7 +250,8 @@ export const seedLesson9_3 = internalMutation({
               props: {
                 questions: [
                   {
-                    question: "If a carousel completes 10 rotations per minute, what is the period in seconds?",
+                    question:
+                      "If a carousel completes 10 rotations per minute, what is the period in seconds?",
                     options: ["6 seconds", "10 seconds", "60 seconds"],
                     correctIndex: 0,
                   },
@@ -354,7 +355,7 @@ export const seedLesson9_3 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

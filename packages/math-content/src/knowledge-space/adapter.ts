@@ -4,12 +4,12 @@ import type {
   KnowledgeSpaceNode,
   KnowledgeSpaceEdge,
   DomainAdapter,
-} from '@math-platform/knowledge-space-core';
-import { MATH_DOMAIN_PREFIX, validateMathId, ID_PATTERNS, type IdValidationResult } from './ids';
-import { validateMathNodeMetadata, validateMathEdgeMetadata } from './metadata';
-import { getGenerator } from './generators/registry';
-import { getRenderer } from './renderers/registry';
-import { evidenceToPracticeV1 } from './practice-v1-adapter';
+} from "@math-platform/knowledge-space-core";
+import { MATH_DOMAIN_PREFIX, validateMathId, ID_PATTERNS, type IdValidationResult } from "./ids";
+import { validateMathNodeMetadata, validateMathEdgeMetadata } from "./metadata";
+import { getGenerator } from "./generators/registry";
+import { getRenderer } from "./renderers/registry";
+import { evidenceToPracticeV1 } from "./practice-v1-adapter";
 
 // ---------------------------------------------------------------------------
 // Math domain adapter

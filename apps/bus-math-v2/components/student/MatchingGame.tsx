@@ -18,7 +18,6 @@ type CardItem = {
 
 type MatchState = "idle" | "selected" | "matched" | "wrong";
 
-
 /**
  * Renders a term-definition matching game where students pair terms with
  * their correct definitions by clicking cards.
@@ -41,9 +40,7 @@ export function MatchingGame() {
   const wrongPairTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const terms = useMemo(() => {
-    let availableTerms = unitParam
-      ? getGlossaryTermsByUnit(parseInt(unitParam, 10))
-      : GLOSSARY;
+    let availableTerms = unitParam ? getGlossaryTermsByUnit(parseInt(unitParam, 10)) : GLOSSARY;
     if (availableTerms.length < 6) {
       availableTerms = GLOSSARY;
     }
@@ -87,7 +84,6 @@ export function MatchingGame() {
     };
   }, []);
 
-
   /**
    * Determines the visual state of a card (idle, selected, matched, or wrong).
    *
@@ -100,7 +96,6 @@ export function MatchingGame() {
     if (selectedCard?.id === card.id) return "selected";
     return "idle";
   };
-
 
   /**
    * Handles a card click: selects, deselects, matches, or marks as wrong.
@@ -147,7 +142,6 @@ export function MatchingGame() {
     }
   };
 
-
   /**
    * Resets the game with freshly shuffled cards.
    */
@@ -164,7 +158,6 @@ export function MatchingGame() {
     setStartTime(Date.now());
     setElapsedTime(0);
   };
-
 
   /**
    * Formats milliseconds into a "M:SS" time string.

@@ -9,10 +9,10 @@
  * Pure functions, no I/O, no app imports, domain-neutral.
  */
 
-import type { PlannerInput } from './types';
-import { getUnlockValue, computeUnlockValues } from './unlock-value';
-import { getGoalProximity, computeGoalProximities } from './goal-proximity';
-import { getWeaknessFit } from './weakness-fit';
+import type { PlannerInput } from "./types";
+import { getUnlockValue, computeUnlockValues } from "./unlock-value";
+import { getGoalProximity, computeGoalProximities } from "./goal-proximity";
+import { getWeaknessFit } from "./weakness-fit";
 
 export function getPriority(
   nodeId: string,

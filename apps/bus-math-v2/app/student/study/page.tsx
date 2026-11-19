@@ -1,7 +1,7 @@
 import { requireStudentSessionClaims } from "@/lib/auth/server";
 import { StudyHubHome } from "@/components/student/StudyHubHome";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 /**
  * Page wrapper for the study hub home view.

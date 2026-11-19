@@ -1,3 +1,3 @@
-'use client';
+"use client";
 
-export { UserMenu } from '@math-platform/app-shell/components';
+export { UserMenu } from "@math-platform/app-shell/components";

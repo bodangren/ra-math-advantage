@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { CheckCircle2, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { CheckCircle2, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface LessonCompleteScreenProps {
   lessonTitle: string;
@@ -32,8 +32,8 @@ export function LessonCompleteScreen({
   return (
     <div
       className={cn(
-        'flex flex-col items-center justify-center space-y-6 py-12 text-center',
-        className
+        "flex flex-col items-center justify-center space-y-6 py-12 text-center",
+        className,
       )}
       data-testid="lesson-complete-screen"
     >
@@ -45,10 +45,10 @@ export function LessonCompleteScreen({
       </div>
 
       <div className="space-y-1 text-muted-foreground">
-        <p>{phasesCompleted} / {totalPhases} phases completed</p>
-        {isFullyComplete && (
-          <p className="text-green-600 font-medium">All phases complete!</p>
-        )}
+        <p>
+          {phasesCompleted} / {totalPhases} phases completed
+        </p>
+        {isFullyComplete && <p className="text-green-600 font-medium">All phases complete!</p>}
       </div>
 
       <Button

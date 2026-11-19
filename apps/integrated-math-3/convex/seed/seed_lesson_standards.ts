@@ -386,7 +386,7 @@ export const seedModule1LessonStandards = internalMutation({
         const existing = await ctx.db
           .query("lesson_standards")
           .withIndex("by_lesson_version_and_standard", (q) =>
-            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id)
+            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id),
           )
           .unique();
 
@@ -482,7 +482,7 @@ export const seedModule2LessonStandards = internalMutation({
         const existing = await ctx.db
           .query("lesson_standards")
           .withIndex("by_lesson_version_and_standard", (q) =>
-            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id)
+            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id),
           )
           .unique();
 
@@ -578,7 +578,7 @@ export const seedModule3LessonStandards = internalMutation({
         const existing = await ctx.db
           .query("lesson_standards")
           .withIndex("by_lesson_version_and_standard", (q) =>
-            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id)
+            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id),
           )
           .unique();
 
@@ -674,7 +674,7 @@ export const seedModule4LessonStandards = internalMutation({
         const existing = await ctx.db
           .query("lesson_standards")
           .withIndex("by_lesson_version_and_standard", (q) =>
-            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id)
+            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id),
           )
           .unique();
 
@@ -770,7 +770,7 @@ export const seedModule5LessonStandards = internalMutation({
         const existing = await ctx.db
           .query("lesson_standards")
           .withIndex("by_lesson_version_and_standard", (q) =>
-            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id)
+            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id),
           )
           .unique();
 
@@ -866,7 +866,7 @@ export const seedModule6LessonStandards = internalMutation({
         const existing = await ctx.db
           .query("lesson_standards")
           .withIndex("by_lesson_version_and_standard", (q) =>
-            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id)
+            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id),
           )
           .unique();
 
@@ -962,7 +962,7 @@ export const seedModule7LessonStandards = internalMutation({
         const existing = await ctx.db
           .query("lesson_standards")
           .withIndex("by_lesson_version_and_standard", (q) =>
-            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id)
+            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id),
           )
           .unique();
 
@@ -1111,7 +1111,7 @@ export const seedModule8LessonStandards = internalMutation({
         const existing = await ctx.db
           .query("lesson_standards")
           .withIndex("by_lesson_version_and_standard", (q) =>
-            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id)
+            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id),
           )
           .unique();
 
@@ -1260,7 +1260,7 @@ export const seedModule9LessonStandards = internalMutation({
         const existing = await ctx.db
           .query("lesson_standards")
           .withIndex("by_lesson_version_and_standard", (q) =>
-            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id)
+            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id),
           )
           .unique();
 

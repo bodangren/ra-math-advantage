@@ -1,11 +1,11 @@
-import { describe, it, expect } from 'vitest';
-import { rateOfChangeCalculatorSchema } from '@/lib/activities/schemas/rate-of-change-calculator.schema';
+import { describe, it, expect } from "vitest";
+import { rateOfChangeCalculatorSchema } from "@/lib/activities/schemas/rate-of-change-calculator.schema";
 
-describe('rate-of-change-calculator.schema', () => {
-  describe('valid props', () => {
-    it('accepts minimal valid props with table data', () => {
+describe("rate-of-change-calculator.schema", () => {
+  describe("valid props", () => {
+    it("accepts minimal valid props with table data", () => {
       const props = {
-        sourceType: 'table',
+        sourceType: "table",
         data: {
           x: [0, 1, 2, 3],
           y: [0, 2, 4, 6],
@@ -23,11 +23,11 @@ describe('rate-of-change-calculator.schema', () => {
       }
     });
 
-    it('accepts props with function data', () => {
+    it("accepts props with function data", () => {
       const props = {
-        sourceType: 'function',
+        sourceType: "function",
         data: {
-          expression: 'y = 2x + 3',
+          expression: "y = 2x + 3",
         },
         interval: {
           start: 0,
@@ -42,9 +42,9 @@ describe('rate-of-change-calculator.schema', () => {
       }
     });
 
-    it('accepts props with graph data', () => {
+    it("accepts props with graph data", () => {
       const props = {
-        sourceType: 'graph',
+        sourceType: "graph",
         data: {
           points: [
             [0, 1],
@@ -65,9 +65,9 @@ describe('rate-of-change-calculator.schema', () => {
       }
     });
 
-    it('accepts props with multiple intervals', () => {
+    it("accepts props with multiple intervals", () => {
       const props = {
-        sourceType: 'table',
+        sourceType: "table",
         data: {
           x: [0, 1, 2, 3, 4],
           y: [0, 2, 4, 6, 8],
@@ -83,8 +83,8 @@ describe('rate-of-change-calculator.schema', () => {
     });
   });
 
-  describe('invalid props', () => {
-    it('rejects props without sourceType', () => {
+  describe("invalid props", () => {
+    it("rejects props without sourceType", () => {
       const props = {
         data: {
           x: [0, 1, 2],
@@ -99,15 +99,17 @@ describe('rate-of-change-calculator.schema', () => {
       const result = rateOfChangeCalculatorSchema.safeParse(props);
       expect(result.success).toBe(false);
       if (!result.success) {
-        expect(result.error.issues.some((issue: { path: (string | number | symbol)[] }) => issue.path.includes('sourceType'))).toBe(
-          true,
-        );
+        expect(
+          result.error.issues.some((issue: { path: (string | number | symbol)[] }) =>
+            issue.path.includes("sourceType"),
+          ),
+        ).toBe(true);
       }
     });
 
-    it('rejects invalid sourceType', () => {
+    it("rejects invalid sourceType", () => {
       const props = {
-        sourceType: 'invalid_type',
+        sourceType: "invalid_type",
         data: {
           x: [0, 1, 2],
           y: [0, 2, 4],
@@ -122,9 +124,9 @@ describe('rate-of-change-calculator.schema', () => {
       expect(result.success).toBe(false);
     });
 
-    it('rejects props without data', () => {
+    it("rejects props without data", () => {
       const props = {
-        sourceType: 'table',
+        sourceType: "table",
         interval: {
           start: 0,
           end: 2,
@@ -135,9 +137,9 @@ describe('rate-of-change-calculator.schema', () => {
       expect(result.success).toBe(false);
     });
 
-    it('rejects table data without x values', () => {
+    it("rejects table data without x values", () => {
       const props = {
-        sourceType: 'table',
+        sourceType: "table",
         data: {
           y: [0, 2, 4],
         },
@@ -151,9 +153,9 @@ describe('rate-of-change-calculator.schema', () => {
       expect(result.success).toBe(false);
     });
 
-    it('rejects table data with mismatched array lengths', () => {
+    it("rejects table data with mismatched array lengths", () => {
       const props = {
-        sourceType: 'table',
+        sourceType: "table",
         data: {
           x: [0, 1, 2],
           y: [0, 2],
@@ -168,9 +170,9 @@ describe('rate-of-change-calculator.schema', () => {
       expect(result.success).toBe(false);
     });
 
-    it('rejects function data without expression', () => {
+    it("rejects function data without expression", () => {
       const props = {
-        sourceType: 'function',
+        sourceType: "function",
         data: {},
         interval: {
           start: 0,
@@ -182,9 +184,9 @@ describe('rate-of-change-calculator.schema', () => {
       expect(result.success).toBe(false);
     });
 
-    it('rejects graph data with invalid points', () => {
+    it("rejects graph data with invalid points", () => {
       const props = {
-        sourceType: 'graph',
+        sourceType: "graph",
         data: {
           points: [[0], [1, 2]],
         },
@@ -198,9 +200,9 @@ describe('rate-of-change-calculator.schema', () => {
       expect(result.success).toBe(false);
     });
 
-    it('rejects props without interval', () => {
+    it("rejects props without interval", () => {
       const props = {
-        sourceType: 'table',
+        sourceType: "table",
         data: {
           x: [0, 1, 2],
           y: [0, 2, 4],
@@ -211,9 +213,9 @@ describe('rate-of-change-calculator.schema', () => {
       expect(result.success).toBe(false);
     });
 
-    it('rejects interval without start', () => {
+    it("rejects interval without start", () => {
       const props = {
-        sourceType: 'table',
+        sourceType: "table",
         data: {
           x: [0, 1, 2],
           y: [0, 2, 4],
@@ -227,9 +229,9 @@ describe('rate-of-change-calculator.schema', () => {
       expect(result.success).toBe(false);
     });
 
-    it('rejects interval without end', () => {
+    it("rejects interval without end", () => {
       const props = {
-        sourceType: 'table',
+        sourceType: "table",
         data: {
           x: [0, 1, 2],
           y: [0, 2, 4],
@@ -243,9 +245,9 @@ describe('rate-of-change-calculator.schema', () => {
       expect(result.success).toBe(false);
     });
 
-    it('rejects interval with start > end', () => {
+    it("rejects interval with start > end", () => {
       const props = {
-        sourceType: 'table',
+        sourceType: "table",
         data: {
           x: [0, 1, 2],
           y: [0, 2, 4],
@@ -260,9 +262,9 @@ describe('rate-of-change-calculator.schema', () => {
       expect(result.success).toBe(false);
     });
 
-    it('rejects extra properties', () => {
+    it("rejects extra properties", () => {
       const props = {
-        sourceType: 'table',
+        sourceType: "table",
         data: {
           x: [0, 1, 2],
           y: [0, 2, 4],
@@ -271,7 +273,7 @@ describe('rate-of-change-calculator.schema', () => {
           start: 0,
           end: 2,
         },
-        extraProperty: 'should not be here',
+        extraProperty: "should not be here",
       };
 
       const result = rateOfChangeCalculatorSchema.safeParse(props);
@@ -279,10 +281,10 @@ describe('rate-of-change-calculator.schema', () => {
     });
   });
 
-  describe('type inference', () => {
-    it('infers correct type from schema for table data', () => {
+  describe("type inference", () => {
+    it("infers correct type from schema for table data", () => {
       const props = {
-        sourceType: 'table' as const,
+        sourceType: "table" as const,
         data: {
           x: [0, 1, 2],
           y: [0, 2, 4],
@@ -300,11 +302,11 @@ describe('rate-of-change-calculator.schema', () => {
         const data: { x: number[]; y: number[] } = result.data.data as { x: number[]; y: number[] };
         const interval: { start: number; end: number } = result.data.interval;
 
-        expect(typeof sourceType).toBe('string');
+        expect(typeof sourceType).toBe("string");
         expect(Array.isArray(data.x)).toBe(true);
         expect(Array.isArray(data.y)).toBe(true);
-        expect(typeof interval.start).toBe('number');
-        expect(typeof interval.end).toBe('number');
+        expect(typeof interval.start).toBe("number");
+        expect(typeof interval.end).toBe("number");
       }
     });
   });

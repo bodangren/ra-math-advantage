@@ -1,12 +1,11 @@
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { type UnitLearningSequence } from '@/types/curriculum';
-import { BookOpen, Calendar, Target } from 'lucide-react';
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { type UnitLearningSequence } from "@/types/curriculum";
+import { BookOpen, Calendar, Target } from "lucide-react";
 
 interface LearningSequenceProps {
   learningSequence: UnitLearningSequence;
 }
-
 
 /**
  * Renders the unit's weekly learning sequence with day-by-day activities and resources.
@@ -37,14 +36,20 @@ export function LearningSequence({ learningSequence }: LearningSequenceProps) {
             <CardContent>
               <div className="grid gap-4">
                 {week.days.map((day) => (
-                  <div key={`${week.weekNumber}-day-${day.day}`} className="border-l-2 border-purple-200 pl-4">
+                  <div
+                    key={`${week.weekNumber}-day-${day.day}`}
+                    className="border-l-2 border-purple-200 pl-4"
+                  >
                     <div className="mb-2 flex flex-wrap items-center gap-3">
                       <Badge variant="secondary" className="text-xs">
                         Day {day.day}
                       </Badge>
                       <h4 className="font-medium">{day.focus}</h4>
                       {day.milestone ? (
-                        <Badge variant="outline" className="flex items-center gap-1 text-xs text-yellow-800">
+                        <Badge
+                          variant="outline"
+                          className="flex items-center gap-1 text-xs text-yellow-800"
+                        >
                           <Target className="h-3 w-3" />
                           Milestone
                         </Badge>
@@ -59,7 +64,10 @@ export function LearningSequence({ learningSequence }: LearningSequenceProps) {
                         </h5>
                         <ul className="ml-4 space-y-1">
                           {day.activities.map((activity, index) => (
-                            <li key={`activity-${week.weekNumber}-${day.day}-${index}`} className="flex items-start gap-2">
+                            <li
+                              key={`activity-${week.weekNumber}-${day.day}-${index}`}
+                              className="flex items-start gap-2"
+                            >
                               <span className="text-purple-600">•</span>
                               <span>{activity}</span>
                             </li>
@@ -72,7 +80,11 @@ export function LearningSequence({ learningSequence }: LearningSequenceProps) {
                           <h5 className="mb-1 font-medium text-muted-foreground">Resources</h5>
                           <div className="ml-4 flex flex-wrap gap-1">
                             {day.resources.map((resource, index) => (
-                              <Badge key={`resource-${week.weekNumber}-${day.day}-${index}`} variant="outline" className="text-xs">
+                              <Badge
+                                key={`resource-${week.weekNumber}-${day.day}-${index}`}
+                                variant="outline"
+                                className="text-xs"
+                              >
                                 {resource}
                               </Badge>
                             ))}

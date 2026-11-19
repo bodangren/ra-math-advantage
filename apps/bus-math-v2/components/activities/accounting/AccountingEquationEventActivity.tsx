@@ -1,14 +1,17 @@
-'use client';
+"use client";
 
-import { useRef, useState } from 'react';
+import { useRef, useState } from "react";
 
-import { AccountingEquationLayout } from '@/components/activities/shared/AccountingEquationLayout';
-import { SelectionMatrix } from '@/components/activities/shared/SelectionMatrix';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { buildPracticeSubmissionEnvelope, type PracticeSubmissionEnvelope } from '@/lib/practice/contract';
-import type { AccountingEquationEventDraft } from '@/lib/practice/drafts/accounting-equation-event';
+import { AccountingEquationLayout } from "@/components/activities/shared/AccountingEquationLayout";
+import { SelectionMatrix } from "@/components/activities/shared/SelectionMatrix";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import {
+  buildPracticeSubmissionEnvelope,
+  type PracticeSubmissionEnvelope,
+} from "@/lib/practice/contract";
+import type { AccountingEquationEventDraft } from "@/lib/practice/drafts/accounting-equation-event";
 
 export interface AccountingEquationEventActivityProps extends AccountingEquationEventDraft {
   onSubmit: (submission: PracticeSubmissionEnvelope) => void | Promise<void>;
@@ -16,67 +19,83 @@ export interface AccountingEquationEventActivityProps extends AccountingEquation
 }
 
 const directionColumns = [
-  { id: 'increase', label: 'Increase' },
-  { id: 'decrease', label: 'Decrease' },
-  { id: 'no-effect', label: 'No effect' },
+  { id: "increase", label: "Increase" },
+  { id: "decrease", label: "Decrease" },
+  { id: "no-effect", label: "No effect" },
 ];
 
 const categoryColumns = [
-  { id: 'Asset', label: 'Asset' },
-  { id: 'Liability', label: 'Liability' },
-  { id: 'Equity', label: 'Equity' },
+  { id: "Asset", label: "Asset" },
+  { id: "Liability", label: "Liability" },
+  { id: "Equity", label: "Equity" },
 ];
 
 export function AccountingEquationEventActivity({
-  activityId, mode, title, description, cases, onSubmit, onComplete,
+  activityId,
+  mode,
+  title,
+  description,
+  cases,
+  onSubmit,
+  onComplete,
 }: AccountingEquationEventActivityProps) {
   const [effects, setEffects] = useState<Record<string, Record<string, string | string[]>>>({});
-  const [categories, setCategories] = useState<Record<string, Record<string, string | string[]>>>({});
+  const [categories, setCategories] = useState<Record<string, Record<string, string | string[]>>>(
+    {},
+  );
   const [accountAmounts, setAccountAmounts] = useState<Record<string, Record<string, string>>>({});
   const [totals, setTotals] = useState<Record<string, Record<string, string>>>({});
   const [differences, setDifferences] = useState<Record<string, string>>({});
-  const [explanation, setExplanation] = useState('');
+  const [explanation, setExplanation] = useState("");
   const [hintCounts, setHintCounts] = useState<Record<string, number>>({});
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState(false);
   const [saved, setSaved] = useState(false);
   const savingRef = useRef(false);
   const pendingEnvelopeRef = useRef<PracticeSubmissionEnvelope | null>(null);
-  const responseIsComplete = mode === 'worked_example' || (
-    explanation.trim().length > 0
-    && cases.every((eventCase) => {
-      const caseEffects = effects[eventCase.id] ?? {};
-      const caseCategories = categories[eventCase.id] ?? {};
-      const caseAmounts = accountAmounts[eventCase.id] ?? {};
-      const caseTotals = totals[eventCase.id] ?? {};
-      return eventCase.accountRows.every((row) => typeof caseCategories[row.id] === 'string')
-        && eventCase.accountRows.every((row) => typeof caseEffects[row.id] === 'string')
-        && eventCase.accountRows.every((row) => {
-          const value = caseAmounts[row.id];
-          return value !== undefined
-            && value.trim() !== ''
-            && Number.isFinite(Number(value))
-            && Number(value) >= 0;
-        })
-        && ['assets', 'liabilities', 'equity'].every((term) => {
-          const value = caseTotals[term];
-          return value !== undefined && value.trim() !== '' && Number.isFinite(Number(value));
-        })
-        && differences[eventCase.id]?.trim() !== ''
-        && Number.isFinite(Number(differences[eventCase.id]));
-    })
-  );
+  const responseIsComplete =
+    mode === "worked_example" ||
+    (explanation.trim().length > 0 &&
+      cases.every((eventCase) => {
+        const caseEffects = effects[eventCase.id] ?? {};
+        const caseCategories = categories[eventCase.id] ?? {};
+        const caseAmounts = accountAmounts[eventCase.id] ?? {};
+        const caseTotals = totals[eventCase.id] ?? {};
+        return (
+          eventCase.accountRows.every((row) => typeof caseCategories[row.id] === "string") &&
+          eventCase.accountRows.every((row) => typeof caseEffects[row.id] === "string") &&
+          eventCase.accountRows.every((row) => {
+            const value = caseAmounts[row.id];
+            return (
+              value !== undefined &&
+              value.trim() !== "" &&
+              Number.isFinite(Number(value)) &&
+              Number(value) >= 0
+            );
+          }) &&
+          ["assets", "liabilities", "equity"].every((term) => {
+            const value = caseTotals[term];
+            return value !== undefined && value.trim() !== "" && Number.isFinite(Number(value));
+          }) &&
+          differences[eventCase.id]?.trim() !== "" &&
+          Number.isFinite(Number(differences[eventCase.id]))
+        );
+      }));
 
   const buildEnvelope = () => {
-    if (mode === 'worked_example') {
+    if (mode === "worked_example") {
       return buildPracticeSubmissionEnvelope({
-        activityId, mode, status: 'submitted', attemptNumber: 1,
-        answers: {}, parts: [],
-        artifact: { kind: 'accounting-equation-event-acknowledgement' },
+        activityId,
+        mode,
+        status: "submitted",
+        attemptNumber: 1,
+        answers: {},
+        parts: [],
+        artifact: { kind: "accounting-equation-event-acknowledgement" },
       });
     }
     const answers: Record<string, unknown> = {};
-    const parts: PracticeSubmissionEnvelope['parts'] = [];
+    const parts: PracticeSubmissionEnvelope["parts"] = [];
     for (const eventCase of cases) {
       const caseEffects = effects[eventCase.id] ?? {};
       const caseCategories = categories[eventCase.id] ?? {};
@@ -104,12 +123,16 @@ export function AccountingEquationEventActivity({
       }
     }
     answers.explanation = explanation;
-    parts.push({ partId: 'explanation', rawAnswer: explanation });
+    parts.push({ partId: "explanation", rawAnswer: explanation });
     return buildPracticeSubmissionEnvelope({
-      activityId, mode, status: 'submitted', attemptNumber: 1,
-      answers, parts,
+      activityId,
+      mode,
+      status: "submitted",
+      attemptNumber: 1,
+      answers,
+      parts,
       artifact: {
-        kind: 'accounting-equation-event-analysis',
+        kind: "accounting-equation-event-analysis",
         cases: cases.map((eventCase) => ({
           id: eventCase.id,
           eventNarrative: eventCase.eventNarrative,
@@ -119,7 +142,7 @@ export function AccountingEquationEventActivity({
           accountEffects: effects[eventCase.id] ?? {},
           accountAmounts: accountAmounts[eventCase.id] ?? {},
           endingTotals: totals[eventCase.id] ?? {},
-          equationDifference: differences[eventCase.id] ?? '',
+          equationDifference: differences[eventCase.id] ?? "",
         })),
         explanation,
       },
@@ -146,25 +169,38 @@ export function AccountingEquationEventActivity({
     }
   };
 
-  if (mode === 'worked_example') {
+  if (mode === "worked_example") {
     const eventCase = cases[0]!;
     return (
       <Card className="w-full border-primary/30">
-        <CardHeader><CardTitle>{title}</CardTitle><CardDescription>{description}</CardDescription></CardHeader>
+        <CardHeader>
+          <CardTitle>{title}</CardTitle>
+          <CardDescription>{description}</CardDescription>
+        </CardHeader>
         <CardContent className="space-y-4">
           <p>{eventCase.eventNarrative}</p>
-          <p className="font-mono">{eventCase.startingTotals.assets} = {eventCase.startingTotals.liabilities} + {eventCase.startingTotals.equity}</p>
+          <p className="font-mono">
+            {eventCase.startingTotals.assets} = {eventCase.startingTotals.liabilities} +{" "}
+            {eventCase.startingTotals.equity}
+          </p>
           <ul className="space-y-1">
             {eventCase.accountRows.map((row) => (
               <li key={row.id}>
-                {row.label} ({row.category}): {eventCase.workedSolution?.accountEffects[row.id]} by {eventCase.eventAmount}
+                {row.label} ({row.category}): {eventCase.workedSolution?.accountEffects[row.id]} by{" "}
+                {eventCase.eventAmount}
               </li>
             ))}
           </ul>
           <p>{eventCase.workedSolution?.explanation}</p>
           <p className="font-mono">{eventCase.workedSolution?.equation}</p>
-          {saveError && <p role="alert" className="text-destructive">Your response could not be saved. Try again.</p>}
-          <Button disabled={isSaving || saved} onClick={() => void save()}>{saveError ? 'Try again' : 'Continue'}</Button>
+          {saveError && (
+            <p role="alert" className="text-destructive">
+              Your response could not be saved. Try again.
+            </p>
+          )}
+          <Button disabled={isSaving || saved} onClick={() => void save()}>
+            {saveError ? "Try again" : "Continue"}
+          </Button>
         </CardContent>
       </Card>
     );
@@ -172,7 +208,10 @@ export function AccountingEquationEventActivity({
 
   return (
     <div className="space-y-6">
-      <header className="space-y-2"><h2 className="font-serif text-2xl font-semibold">{title}</h2><p>{description}</p></header>
+      <header className="space-y-2">
+        <h2 className="font-serif text-2xl font-semibold">{title}</h2>
+        <p>{description}</p>
+      </header>
       {cases.map((eventCase) => {
         const hintCount = hintCounts[eventCase.id] ?? 0;
         return (
@@ -187,7 +226,9 @@ export function AccountingEquationEventActivity({
               mode={mode}
               value={categories[eventCase.id] ?? {}}
               readOnly={isSaving || saveError || saved}
-              onValueChange={(value) => setCategories((current) => ({ ...current, [eventCase.id]: value }))}
+              onValueChange={(value) =>
+                setCategories((current) => ({ ...current, [eventCase.id]: value }))
+              }
             />
             <SelectionMatrix
               title="Account effects"
@@ -197,7 +238,9 @@ export function AccountingEquationEventActivity({
               mode={mode}
               value={effects[eventCase.id] ?? {}}
               readOnly={isSaving || saveError || saved}
-              onValueChange={(value) => setEffects((current) => ({ ...current, [eventCase.id]: value }))}
+              onValueChange={(value) =>
+                setEffects((current) => ({ ...current, [eventCase.id]: value }))
+              }
             />
             <div className="grid gap-3 sm:grid-cols-2">
               <p className="text-sm text-muted-foreground sm:col-span-2">
@@ -212,11 +255,13 @@ export function AccountingEquationEventActivity({
                     min={0}
                     inputMode="decimal"
                     disabled={isSaving || saveError || saved}
-                    value={accountAmounts[eventCase.id]?.[row.id] ?? ''}
-                    onChange={(event) => setAccountAmounts((current) => ({
-                      ...current,
-                      [eventCase.id]: { ...current[eventCase.id], [row.id]: event.target.value },
-                    }))}
+                    value={accountAmounts[eventCase.id]?.[row.id] ?? ""}
+                    onChange={(event) =>
+                      setAccountAmounts((current) => ({
+                        ...current,
+                        [eventCase.id]: { ...current[eventCase.id], [row.id]: event.target.value },
+                      }))
+                    }
                   />
                 </label>
               ))}
@@ -224,19 +269,25 @@ export function AccountingEquationEventActivity({
             <AccountingEquationLayout
               title="Ending accounting equation"
               facts={[
-                { id: 'assets', label: 'Starting Assets', value: eventCase.startingTotals.assets },
-                { id: 'liabilities', label: 'Starting Liabilities', value: eventCase.startingTotals.liabilities },
-                { id: 'equity', label: 'Starting Equity', value: eventCase.startingTotals.equity },
+                { id: "assets", label: "Starting Assets", value: eventCase.startingTotals.assets },
+                {
+                  id: "liabilities",
+                  label: "Starting Liabilities",
+                  value: eventCase.startingTotals.liabilities,
+                },
+                { id: "equity", label: "Starting Equity", value: eventCase.startingTotals.equity },
               ]}
               terms={{
-                assets: { id: 'assets', label: 'Ending Assets', editable: true },
-                liabilities: { id: 'liabilities', label: 'Ending Liabilities', editable: true },
-                equity: { id: 'equity', label: 'Ending Equity', editable: true },
+                assets: { id: "assets", label: "Ending Assets", editable: true },
+                liabilities: { id: "liabilities", label: "Ending Liabilities", editable: true },
+                equity: { id: "equity", label: "Ending Equity", editable: true },
               }}
               mode={mode}
               readOnly={isSaving || saveError || saved}
               values={totals[eventCase.id] ?? {}}
-              onValueChange={(value) => setTotals((current) => ({ ...current, [eventCase.id]: value }))}
+              onValueChange={(value) =>
+                setTotals((current) => ({ ...current, [eventCase.id]: value }))
+              }
             />
             <label className="block space-y-1 font-medium">
               Equation difference (Assets − Liabilities − Equity)
@@ -244,19 +295,29 @@ export function AccountingEquationEventActivity({
                 aria-label={`${eventCase.id} equation difference`}
                 inputMode="decimal"
                 disabled={isSaving || saveError || saved}
-                value={differences[eventCase.id] ?? ''}
-                onChange={(event) => setDifferences((current) => ({ ...current, [eventCase.id]: event.target.value }))}
+                value={differences[eventCase.id] ?? ""}
+                onChange={(event) =>
+                  setDifferences((current) => ({ ...current, [eventCase.id]: event.target.value }))
+                }
               />
             </label>
-            {mode === 'guided_practice' && eventCase.guidedHints && (
+            {mode === "guided_practice" && eventCase.guidedHints && (
               <div className="space-y-2">
                 <Button
                   type="button"
                   variant="secondary"
-                  disabled={isSaving || saveError || saved || hintCount >= eventCase.guidedHints.length}
-                  onClick={() => setHintCounts((current) => ({ ...current, [eventCase.id]: hintCount + 1 }))}
-                >Use hint</Button>
-                {eventCase.guidedHints.slice(0, hintCount).map((hint) => <p key={hint}>{hint}</p>)}
+                  disabled={
+                    isSaving || saveError || saved || hintCount >= eventCase.guidedHints.length
+                  }
+                  onClick={() =>
+                    setHintCounts((current) => ({ ...current, [eventCase.id]: hintCount + 1 }))
+                  }
+                >
+                  Use hint
+                </Button>
+                {eventCase.guidedHints.slice(0, hintCount).map((hint) => (
+                  <p key={hint}>{hint}</p>
+                ))}
               </div>
             )}
           </section>
@@ -272,9 +333,13 @@ export function AccountingEquationEventActivity({
           onChange={(event) => setExplanation(event.target.value)}
         />
       </label>
-      {saveError && <p role="alert" className="text-destructive">Your response could not be saved. Try again.</p>}
+      {saveError && (
+        <p role="alert" className="text-destructive">
+          Your response could not be saved. Try again.
+        </p>
+      )}
       <Button disabled={!responseIsComplete || isSaving || saved} onClick={() => void save()}>
-        {saveError ? 'Try again' : 'Submit event analysis'}
+        {saveError ? "Try again" : "Submit event analysis"}
       </Button>
     </div>
   );

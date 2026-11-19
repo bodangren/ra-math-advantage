@@ -1,4 +1,9 @@
-import { internalMutation, internalQuery, type MutationCtx, type QueryCtx } from "./_generated/server";
+import {
+  internalMutation,
+  internalQuery,
+  type MutationCtx,
+  type QueryCtx,
+} from "./_generated/server";
 import { internal } from "./_generated/api";
 import type { Doc, Id } from "./_generated/dataModel";
 import { v } from "convex/values";
@@ -72,9 +77,11 @@ export function isIm3GraphPilotPublished(
 ): boolean {
   const node = publication.nodes.find((row) => row.id === IM3_PILOT_NODE);
   const blueprint = publication.blueprints.find((row) => row.nodeId === IM3_PILOT_NODE);
-  return node?.kind === "skill"
-    && node.reviewStatus === "approved"
-    && blueprint?.reviewStatus === "approved";
+  return (
+    node?.kind === "skill" &&
+    node.reviewStatus === "approved" &&
+    blueprint?.reviewStatus === "approved"
+  );
 }
 
 /**
@@ -92,7 +99,7 @@ export const getSpreadsheetDraft = internalQuery({
     const response = await ctx.db
       .query("student_spreadsheet_responses")
       .withIndex("by_student_and_activity", (q) =>
-        q.eq("studentId", args.userId).eq("activityId", args.activityId)
+        q.eq("studentId", args.userId).eq("activityId", args.activityId),
       )
       .unique();
 
@@ -125,7 +132,7 @@ export const saveSpreadsheetDraft = internalMutation({
     const existingResponse = await ctx.db
       .query("student_spreadsheet_responses")
       .withIndex("by_student_and_activity", (q) =>
-        q.eq("studentId", args.userId).eq("activityId", args.activityId)
+        q.eq("studentId", args.userId).eq("activityId", args.activityId),
       )
       .unique();
 
@@ -165,7 +172,7 @@ export const getSpreadsheetResponse = internalQuery({
     const response = await ctx.db
       .query("student_spreadsheet_responses")
       .withIndex("by_student_and_activity", (q) =>
-        q.eq("studentId", args.studentId).eq("activityId", args.activityId)
+        q.eq("studentId", args.studentId).eq("activityId", args.activityId),
       )
       .unique();
 
@@ -232,7 +239,7 @@ export const submitSpreadsheet = internalMutation({
     const existingResponse = await ctx.db
       .query("student_spreadsheet_responses")
       .withIndex("by_student_and_activity", (q) =>
-        q.eq("studentId", args.userId).eq("activityId", args.activityId)
+        q.eq("studentId", args.userId).eq("activityId", args.activityId),
       )
       .unique();
 
@@ -283,7 +290,7 @@ export const updateCompetency = internalMutation({
     const existingCompetency = await ctx.db
       .query("student_competency")
       .withIndex("by_student_and_standard", (q) =>
-        q.eq("studentId", args.studentId).eq("standardId", args.standardId)
+        q.eq("studentId", args.studentId).eq("standardId", args.standardId),
       )
       .unique();
 
@@ -509,25 +516,21 @@ function validateCanonicalIm3PilotSubmission(
   answerParts: ReadonlyArray<{ answerKey: string; partId: string }>,
   answersUseWrappers = false,
 ): void {
-  const expectedAnswerKeys = new Set<string>(
-    answerParts.map(({ answerKey }) => answerKey),
-  );
+  const expectedAnswerKeys = new Set<string>(answerParts.map(({ answerKey }) => answerKey));
   const answerKeys = Object.keys(submissionData.answers);
   if (
-    answerKeys.length !== expectedAnswerKeys.size
-    || answerKeys.some((answerKey) => !expectedAnswerKeys.has(answerKey))
+    answerKeys.length !== expectedAnswerKeys.size ||
+    answerKeys.some((answerKey) => !expectedAnswerKeys.has(answerKey))
   ) {
     throw new Error("IM3 mastery submissions must contain exactly the canonical answer keys");
   }
 
   const submittedPartIds = submissionData.parts.map((part) => part.partId);
-  const expectedPartIds = new Set<string>(
-    answerParts.map(({ partId }) => partId),
-  );
+  const expectedPartIds = new Set<string>(answerParts.map(({ partId }) => partId));
   if (
-    submittedPartIds.length !== expectedPartIds.size
-    || new Set(submittedPartIds).size !== expectedPartIds.size
-    || submittedPartIds.some((partId) => !expectedPartIds.has(partId))
+    submittedPartIds.length !== expectedPartIds.size ||
+    new Set(submittedPartIds).size !== expectedPartIds.size ||
+    submittedPartIds.some((partId) => !expectedPartIds.has(partId))
   ) {
     throw new Error("IM3 mastery submissions must contain exactly one canonical part per answer");
   }
@@ -539,10 +542,10 @@ function validateCanonicalIm3PilotSubmission(
     }
     const submittedAnswer = submissionData.answers[answerKey];
     const answerValue = answersUseWrappers
-      ? typeof submittedAnswer === "object"
-        && submittedAnswer !== null
-        && !Array.isArray(submittedAnswer)
-        && Object.prototype.hasOwnProperty.call(submittedAnswer, "answer")
+      ? typeof submittedAnswer === "object" &&
+        submittedAnswer !== null &&
+        !Array.isArray(submittedAnswer) &&
+        Object.prototype.hasOwnProperty.call(submittedAnswer, "answer")
         ? (submittedAnswer as { answer: unknown }).answer
         : undefined
       : submittedAnswer;
@@ -560,22 +563,56 @@ function sameServerOwnedRequest(
 ): boolean {
   const existingKeys = Object.keys(existing.answers).sort();
   const receivedKeys = Object.keys(received.answers).sort();
-  return existing.contractVersion === received.contractVersion
-    && existing.activityId === received.activityId
-    && existing.mode === received.mode
-    && existingKeys.length === receivedKeys.length
-    && existingKeys.every((key, index) => (
-      key === receivedKeys[index]
-      && normalizePracticeValue(existing.answers[key])
-        === normalizePracticeValue(received.answers[key])
-    ));
+  return (
+    existing.contractVersion === received.contractVersion &&
+    existing.activityId === received.activityId &&
+    existing.mode === received.mode &&
+    existingKeys.length === receivedKeys.length &&
+    existingKeys.every(
+      (key, index) =>
+        key === receivedKeys[index] &&
+        normalizePracticeValue(existing.answers[key]) ===
+          normalizePracticeValue(received.answers[key]),
+    )
+  );
 }
 
-function sameSelectedGraphRequest(existing: PracticeSubmissionEnvelope, received: PracticeSubmissionEnvelope): boolean {
-  const canonical = (value: PracticeSubmissionEnvelope) => JSON.stringify({
-    contractVersion: value.contractVersion, activityId: value.activityId, mode: value.mode, answers: value.answers,
-    parts: [...value.parts].sort((a, b) => a.partId.localeCompare(b.partId)).map(({ partId, rawAnswer, hintsUsed, revealStepsSeen, changedCount, firstInteractionAt, answeredAt, wallClockMs, activeMs }) => ({ partId, rawAnswer, hintsUsed, revealStepsSeen, changedCount, firstInteractionAt, answeredAt, wallClockMs, activeMs })),
-  });
+function sameSelectedGraphRequest(
+  existing: PracticeSubmissionEnvelope,
+  received: PracticeSubmissionEnvelope,
+): boolean {
+  const canonical = (value: PracticeSubmissionEnvelope) =>
+    JSON.stringify({
+      contractVersion: value.contractVersion,
+      activityId: value.activityId,
+      mode: value.mode,
+      answers: value.answers,
+      parts: [...value.parts]
+        .sort((a, b) => a.partId.localeCompare(b.partId))
+        .map(
+          ({
+            partId,
+            rawAnswer,
+            hintsUsed,
+            revealStepsSeen,
+            changedCount,
+            firstInteractionAt,
+            answeredAt,
+            wallClockMs,
+            activeMs,
+          }) => ({
+            partId,
+            rawAnswer,
+            hintsUsed,
+            revealStepsSeen,
+            changedCount,
+            firstInteractionAt,
+            answeredAt,
+            wallClockMs,
+            activeMs,
+          }),
+        ),
+    });
   return canonical(existing) === canonical(received);
 }
 
@@ -601,26 +638,28 @@ function isExactIm3EquationRateWorkedSource(
   ];
   const envelopeKeys = Object.keys(submissionData);
   const answers = submissionData.answers;
-  return activity.stableActivityId === IM3_EQUATION_RATE_WORKED_ACTIVITY_ID
-    && activity.masteryNodeId === IM3_EQUATION_RATE_NODE
-    && activity.componentKey === "rate-of-change-calculator"
-    && activity.learningEvidenceMode === "worked_example"
-    && activity.srsEligible === false
-    && envelopeKeys.length === expectedEnvelopeKeys.length
-    && envelopeKeys.every((key) => expectedEnvelopeKeys.includes(key))
-    && submissionData.contractVersion === "practice.v1"
-    && submissionData.mode === "worked_example"
-    && submissionData.status === "submitted"
-    && Number.isInteger(submissionData.attemptNumber)
-    && submissionData.attemptNumber > 0
-    && new Date(submissionData.submittedAt).toISOString() === submissionData.submittedAt
-    && typeof answers === "object"
-    && answers !== null
-    && !Array.isArray(answers)
-    && Object.getPrototypeOf(answers) === Object.prototype
-    && Object.keys(answers).length === 0
-    && Array.isArray(submissionData.parts)
-    && submissionData.parts.length === 0;
+  return (
+    activity.stableActivityId === IM3_EQUATION_RATE_WORKED_ACTIVITY_ID &&
+    activity.masteryNodeId === IM3_EQUATION_RATE_NODE &&
+    activity.componentKey === "rate-of-change-calculator" &&
+    activity.learningEvidenceMode === "worked_example" &&
+    activity.srsEligible === false &&
+    envelopeKeys.length === expectedEnvelopeKeys.length &&
+    envelopeKeys.every((key) => expectedEnvelopeKeys.includes(key)) &&
+    submissionData.contractVersion === "practice.v1" &&
+    submissionData.mode === "worked_example" &&
+    submissionData.status === "submitted" &&
+    Number.isInteger(submissionData.attemptNumber) &&
+    submissionData.attemptNumber > 0 &&
+    new Date(submissionData.submittedAt).toISOString() === submissionData.submittedAt &&
+    typeof answers === "object" &&
+    answers !== null &&
+    !Array.isArray(answers) &&
+    Object.getPrototypeOf(answers) === Object.prototype &&
+    Object.keys(answers).length === 0 &&
+    Array.isArray(submissionData.parts) &&
+    submissionData.parts.length === 0
+  );
 }
 
 function isExactIm3DomainRangeWorkedSource(
@@ -645,26 +684,28 @@ function isExactIm3DomainRangeWorkedSource(
   ];
   const envelopeKeys = Object.keys(submissionData);
   const answers = submissionData.answers;
-  return activity.stableActivityId === IM3_DOMAIN_RANGE_WORKED_ACTIVITY_ID
-    && activity.masteryNodeId === IM3_DOMAIN_RANGE_NODE
-    && activity.componentKey === "graphing-explorer"
-    && activity.learningEvidenceMode === "worked_example"
-    && activity.srsEligible === false
-    && envelopeKeys.length === expectedEnvelopeKeys.length
-    && envelopeKeys.every((key) => expectedEnvelopeKeys.includes(key))
-    && submissionData.contractVersion === "practice.v1"
-    && submissionData.mode === "worked_example"
-    && submissionData.status === "submitted"
-    && Number.isInteger(submissionData.attemptNumber)
-    && submissionData.attemptNumber > 0
-    && new Date(submissionData.submittedAt).toISOString() === submissionData.submittedAt
-    && typeof answers === "object"
-    && answers !== null
-    && !Array.isArray(answers)
-    && Object.getPrototypeOf(answers) === Object.prototype
-    && Object.keys(answers).length === 0
-    && Array.isArray(submissionData.parts)
-    && submissionData.parts.length === 0;
+  return (
+    activity.stableActivityId === IM3_DOMAIN_RANGE_WORKED_ACTIVITY_ID &&
+    activity.masteryNodeId === IM3_DOMAIN_RANGE_NODE &&
+    activity.componentKey === "graphing-explorer" &&
+    activity.learningEvidenceMode === "worked_example" &&
+    activity.srsEligible === false &&
+    envelopeKeys.length === expectedEnvelopeKeys.length &&
+    envelopeKeys.every((key) => expectedEnvelopeKeys.includes(key)) &&
+    submissionData.contractVersion === "practice.v1" &&
+    submissionData.mode === "worked_example" &&
+    submissionData.status === "submitted" &&
+    Number.isInteger(submissionData.attemptNumber) &&
+    submissionData.attemptNumber > 0 &&
+    new Date(submissionData.submittedAt).toISOString() === submissionData.submittedAt &&
+    typeof answers === "object" &&
+    answers !== null &&
+    !Array.isArray(answers) &&
+    Object.getPrototypeOf(answers) === Object.prototype &&
+    Object.keys(answers).length === 0 &&
+    Array.isArray(submissionData.parts) &&
+    submissionData.parts.length === 0
+  );
 }
 
 function isExactIm3MaximumReadingWorkedSource(
@@ -689,26 +730,28 @@ function isExactIm3MaximumReadingWorkedSource(
   ];
   const envelopeKeys = Object.keys(submissionData);
   const answers = submissionData.answers;
-  return activity.stableActivityId === IM3_MAXIMUM_READING_WORKED_ACTIVITY_ID
-    && activity.masteryNodeId === IM3_MAXIMUM_READING_NODE
-    && activity.componentKey === "graphing-explorer"
-    && activity.learningEvidenceMode === "worked_example"
-    && activity.srsEligible === false
-    && envelopeKeys.length === expectedEnvelopeKeys.length
-    && envelopeKeys.every((key) => expectedEnvelopeKeys.includes(key))
-    && submissionData.contractVersion === "practice.v1"
-    && submissionData.mode === "worked_example"
-    && submissionData.status === "submitted"
-    && Number.isInteger(submissionData.attemptNumber)
-    && submissionData.attemptNumber > 0
-    && new Date(submissionData.submittedAt).toISOString() === submissionData.submittedAt
-    && typeof answers === "object"
-    && answers !== null
-    && !Array.isArray(answers)
-    && Object.getPrototypeOf(answers) === Object.prototype
-    && Object.keys(answers).length === 0
-    && Array.isArray(submissionData.parts)
-    && submissionData.parts.length === 0;
+  return (
+    activity.stableActivityId === IM3_MAXIMUM_READING_WORKED_ACTIVITY_ID &&
+    activity.masteryNodeId === IM3_MAXIMUM_READING_NODE &&
+    activity.componentKey === "graphing-explorer" &&
+    activity.learningEvidenceMode === "worked_example" &&
+    activity.srsEligible === false &&
+    envelopeKeys.length === expectedEnvelopeKeys.length &&
+    envelopeKeys.every((key) => expectedEnvelopeKeys.includes(key)) &&
+    submissionData.contractVersion === "practice.v1" &&
+    submissionData.mode === "worked_example" &&
+    submissionData.status === "submitted" &&
+    Number.isInteger(submissionData.attemptNumber) &&
+    submissionData.attemptNumber > 0 &&
+    new Date(submissionData.submittedAt).toISOString() === submissionData.submittedAt &&
+    typeof answers === "object" &&
+    answers !== null &&
+    !Array.isArray(answers) &&
+    Object.getPrototypeOf(answers) === Object.prototype &&
+    Object.keys(answers).length === 0 &&
+    Array.isArray(submissionData.parts) &&
+    submissionData.parts.length === 0
+  );
 }
 
 function isExactIm3SymmetryWorkedSource(
@@ -733,26 +776,28 @@ function isExactIm3SymmetryWorkedSource(
   ];
   const envelopeKeys = Object.keys(submissionData);
   const answers = submissionData.answers;
-  return activity.stableActivityId === IM3_SYMMETRY_WORKED_ACTIVITY_ID
-    && activity.masteryNodeId === IM3_SYMMETRY_NODE
-    && activity.componentKey === "graphing-explorer"
-    && activity.learningEvidenceMode === "worked_example"
-    && activity.srsEligible === false
-    && envelopeKeys.length === expectedEnvelopeKeys.length
-    && envelopeKeys.every((key) => expectedEnvelopeKeys.includes(key))
-    && submissionData.contractVersion === "practice.v1"
-    && submissionData.mode === "worked_example"
-    && submissionData.status === "submitted"
-    && Number.isInteger(submissionData.attemptNumber)
-    && submissionData.attemptNumber > 0
-    && new Date(submissionData.submittedAt).toISOString() === submissionData.submittedAt
-    && typeof answers === "object"
-    && answers !== null
-    && !Array.isArray(answers)
-    && Object.getPrototypeOf(answers) === Object.prototype
-    && Object.keys(answers).length === 0
-    && Array.isArray(submissionData.parts)
-    && submissionData.parts.length === 0;
+  return (
+    activity.stableActivityId === IM3_SYMMETRY_WORKED_ACTIVITY_ID &&
+    activity.masteryNodeId === IM3_SYMMETRY_NODE &&
+    activity.componentKey === "graphing-explorer" &&
+    activity.learningEvidenceMode === "worked_example" &&
+    activity.srsEligible === false &&
+    envelopeKeys.length === expectedEnvelopeKeys.length &&
+    envelopeKeys.every((key) => expectedEnvelopeKeys.includes(key)) &&
+    submissionData.contractVersion === "practice.v1" &&
+    submissionData.mode === "worked_example" &&
+    submissionData.status === "submitted" &&
+    Number.isInteger(submissionData.attemptNumber) &&
+    submissionData.attemptNumber > 0 &&
+    new Date(submissionData.submittedAt).toISOString() === submissionData.submittedAt &&
+    typeof answers === "object" &&
+    answers !== null &&
+    !Array.isArray(answers) &&
+    Object.getPrototypeOf(answers) === Object.prototype &&
+    Object.keys(answers).length === 0 &&
+    Array.isArray(submissionData.parts) &&
+    submissionData.parts.length === 0
+  );
 }
 
 function isExactIm3CompareMaximumWorkedSource(
@@ -777,26 +822,28 @@ function isExactIm3CompareMaximumWorkedSource(
   ];
   const envelopeKeys = Object.keys(submissionData);
   const answers = submissionData.answers;
-  return activity.stableActivityId === IM3_COMPARE_MAXIMUM_WORKED_ACTIVITY_ID
-    && activity.masteryNodeId === IM3_COMPARE_MAXIMUM_NODE
-    && activity.componentKey === "graphing-explorer"
-    && activity.learningEvidenceMode === "worked_example"
-    && activity.srsEligible === false
-    && envelopeKeys.length === expectedEnvelopeKeys.length
-    && envelopeKeys.every((key) => expectedEnvelopeKeys.includes(key))
-    && submissionData.contractVersion === "practice.v1"
-    && submissionData.mode === "worked_example"
-    && submissionData.status === "submitted"
-    && Number.isInteger(submissionData.attemptNumber)
-    && submissionData.attemptNumber > 0
-    && new Date(submissionData.submittedAt).toISOString() === submissionData.submittedAt
-    && typeof answers === "object"
-    && answers !== null
-    && !Array.isArray(answers)
-    && Object.getPrototypeOf(answers) === Object.prototype
-    && Object.keys(answers).length === 0
-    && Array.isArray(submissionData.parts)
-    && submissionData.parts.length === 0;
+  return (
+    activity.stableActivityId === IM3_COMPARE_MAXIMUM_WORKED_ACTIVITY_ID &&
+    activity.masteryNodeId === IM3_COMPARE_MAXIMUM_NODE &&
+    activity.componentKey === "graphing-explorer" &&
+    activity.learningEvidenceMode === "worked_example" &&
+    activity.srsEligible === false &&
+    envelopeKeys.length === expectedEnvelopeKeys.length &&
+    envelopeKeys.every((key) => expectedEnvelopeKeys.includes(key)) &&
+    submissionData.contractVersion === "practice.v1" &&
+    submissionData.mode === "worked_example" &&
+    submissionData.status === "submitted" &&
+    Number.isInteger(submissionData.attemptNumber) &&
+    submissionData.attemptNumber > 0 &&
+    new Date(submissionData.submittedAt).toISOString() === submissionData.submittedAt &&
+    typeof answers === "object" &&
+    answers !== null &&
+    !Array.isArray(answers) &&
+    Object.getPrototypeOf(answers) === Object.prototype &&
+    Object.keys(answers).length === 0 &&
+    Array.isArray(submissionData.parts) &&
+    submissionData.parts.length === 0
+  );
 }
 
 function isExactIm3ProfitModelWorkedSource(
@@ -822,27 +869,29 @@ function isExactIm3ProfitModelWorkedSource(
   ];
   const envelopeKeys = Object.keys(submissionData);
   const answers = submissionData.answers;
-  return activity.stableActivityId === IM3_PROFIT_MODEL_WORKED_ACTIVITY_ID
-    && activity.masteryNodeId === IM3_PROFIT_MODEL_NODE
-    && activity.componentKey === "fill-in-the-blank"
-    && activity.learningEvidenceMode === "worked_example"
-    && activity.srsEligible === false
-    && submissionData.activityId === activityId
-    && envelopeKeys.length === expectedEnvelopeKeys.length
-    && envelopeKeys.every((key) => expectedEnvelopeKeys.includes(key))
-    && submissionData.contractVersion === "practice.v1"
-    && submissionData.mode === "worked_example"
-    && submissionData.status === "submitted"
-    && Number.isInteger(submissionData.attemptNumber)
-    && submissionData.attemptNumber > 0
-    && new Date(submissionData.submittedAt).toISOString() === submissionData.submittedAt
-    && typeof answers === "object"
-    && answers !== null
-    && !Array.isArray(answers)
-    && Object.getPrototypeOf(answers) === Object.prototype
-    && Object.keys(answers).length === 0
-    && Array.isArray(submissionData.parts)
-    && submissionData.parts.length === 0;
+  return (
+    activity.stableActivityId === IM3_PROFIT_MODEL_WORKED_ACTIVITY_ID &&
+    activity.masteryNodeId === IM3_PROFIT_MODEL_NODE &&
+    activity.componentKey === "fill-in-the-blank" &&
+    activity.learningEvidenceMode === "worked_example" &&
+    activity.srsEligible === false &&
+    submissionData.activityId === activityId &&
+    envelopeKeys.length === expectedEnvelopeKeys.length &&
+    envelopeKeys.every((key) => expectedEnvelopeKeys.includes(key)) &&
+    submissionData.contractVersion === "practice.v1" &&
+    submissionData.mode === "worked_example" &&
+    submissionData.status === "submitted" &&
+    Number.isInteger(submissionData.attemptNumber) &&
+    submissionData.attemptNumber > 0 &&
+    new Date(submissionData.submittedAt).toISOString() === submissionData.submittedAt &&
+    typeof answers === "object" &&
+    answers !== null &&
+    !Array.isArray(answers) &&
+    Object.getPrototypeOf(answers) === Object.prototype &&
+    Object.keys(answers).length === 0 &&
+    Array.isArray(submissionData.parts) &&
+    submissionData.parts.length === 0
+  );
 }
 
 function isExactIm3ProfitMaximumWorkedSource(
@@ -868,27 +917,29 @@ function isExactIm3ProfitMaximumWorkedSource(
   ];
   const envelopeKeys = Object.keys(submissionData);
   const answers = submissionData.answers;
-  return activity.stableActivityId === IM3_PROFIT_MAXIMUM_WORKED_ACTIVITY_ID
-    && activity.masteryNodeId === IM3_PROFIT_MAXIMUM_NODE
-    && activity.componentKey === "fill-in-the-blank"
-    && activity.learningEvidenceMode === "worked_example"
-    && activity.srsEligible === false
-    && submissionData.activityId === activityId
-    && envelopeKeys.length === expectedEnvelopeKeys.length
-    && envelopeKeys.every((key) => expectedEnvelopeKeys.includes(key))
-    && submissionData.contractVersion === "practice.v1"
-    && submissionData.mode === "worked_example"
-    && submissionData.status === "submitted"
-    && Number.isInteger(submissionData.attemptNumber)
-    && submissionData.attemptNumber > 0
-    && new Date(submissionData.submittedAt).toISOString() === submissionData.submittedAt
-    && typeof answers === "object"
-    && answers !== null
-    && !Array.isArray(answers)
-    && Object.getPrototypeOf(answers) === Object.prototype
-    && Object.keys(answers).length === 0
-    && Array.isArray(submissionData.parts)
-    && submissionData.parts.length === 0;
+  return (
+    activity.stableActivityId === IM3_PROFIT_MAXIMUM_WORKED_ACTIVITY_ID &&
+    activity.masteryNodeId === IM3_PROFIT_MAXIMUM_NODE &&
+    activity.componentKey === "fill-in-the-blank" &&
+    activity.learningEvidenceMode === "worked_example" &&
+    activity.srsEligible === false &&
+    submissionData.activityId === activityId &&
+    envelopeKeys.length === expectedEnvelopeKeys.length &&
+    envelopeKeys.every((key) => expectedEnvelopeKeys.includes(key)) &&
+    submissionData.contractVersion === "practice.v1" &&
+    submissionData.mode === "worked_example" &&
+    submissionData.status === "submitted" &&
+    Number.isInteger(submissionData.attemptNumber) &&
+    submissionData.attemptNumber > 0 &&
+    new Date(submissionData.submittedAt).toISOString() === submissionData.submittedAt &&
+    typeof answers === "object" &&
+    answers !== null &&
+    !Array.isArray(answers) &&
+    Object.getPrototypeOf(answers) === Object.prototype &&
+    Object.keys(answers).length === 0 &&
+    Array.isArray(submissionData.parts) &&
+    submissionData.parts.length === 0
+  );
 }
 
 const serverOwnedSubmissionResultValidator = v.object({
@@ -919,33 +970,50 @@ function canonicalWorkedPayload(value: PracticeSubmissionEnvelope): string {
 }
 function isSelectedWorkedAcknowledgement(value: PracticeSubmissionEnvelope): boolean {
   const keys = Object.keys(value);
-  return keys.length === 8
-    && keys.every((key) => ["contractVersion", "activityId", "mode", "status", "attemptNumber", "submittedAt", "answers", "parts"].includes(key))
-    && value.mode === "worked_example"
-    && value.status === "submitted"
-    && Number.isInteger(value.attemptNumber)
-    && value.attemptNumber > 0
-    && !Number.isNaN(Date.parse(value.submittedAt))
-    && new Date(value.submittedAt).toISOString() === value.submittedAt
-    && Object.keys(value.answers).length === 0
-    && value.parts.length === 0;
+  return (
+    keys.length === 8 &&
+    keys.every((key) =>
+      [
+        "contractVersion",
+        "activityId",
+        "mode",
+        "status",
+        "attemptNumber",
+        "submittedAt",
+        "answers",
+        "parts",
+      ].includes(key),
+    ) &&
+    value.mode === "worked_example" &&
+    value.status === "submitted" &&
+    Number.isInteger(value.attemptNumber) &&
+    value.attemptNumber > 0 &&
+    !Number.isNaN(Date.parse(value.submittedAt)) &&
+    new Date(value.submittedAt).toISOString() === value.submittedAt &&
+    Object.keys(value.answers).length === 0 &&
+    value.parts.length === 0
+  );
 }
 
 export function isSelectedWorkedActivity(activity: Doc<"activities">): boolean {
   const props = activity.props as Record<string, unknown>;
   const grading = activity.gradingConfig as Record<string, unknown> | undefined;
-  return activity.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
-    && activity.masteryNodeId === IM3_PILOT_NODE
-    && activity.componentKey === "graphing-explorer"
-    && activity.learningEvidenceMode === "worked_example"
-    && activity.srsEligible === false
-    && activity.approval?.status === "approved"
-    && Object.keys(props).sort().join("|") === "equation|variant"
-    && props.variant === "plot_from_equation"
-    && props.equation === "f(x) = x^2"
-    && Object.keys(grading ?? {}).sort().join("|") === "autoGrade|partialCredit"
-    && grading?.autoGrade === false
-    && grading.partialCredit === false;
+  return (
+    activity.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID &&
+    activity.masteryNodeId === IM3_PILOT_NODE &&
+    activity.componentKey === "graphing-explorer" &&
+    activity.learningEvidenceMode === "worked_example" &&
+    activity.srsEligible === false &&
+    activity.approval?.status === "approved" &&
+    Object.keys(props).sort().join("|") === "equation|variant" &&
+    props.variant === "plot_from_equation" &&
+    props.equation === "f(x) = x^2" &&
+    Object.keys(grading ?? {})
+      .sort()
+      .join("|") === "autoGrade|partialCredit" &&
+    grading?.autoGrade === false &&
+    grading.partialCredit === false
+  );
 }
 
 export async function createServerOwnedSubmissionHandler(
@@ -960,182 +1028,221 @@ export async function createServerOwnedSubmissionHandler(
   if (!activity) {
     throw new Error("Activity not found: approved IM3 mastery pilot activity");
   }
-  const isSelectedOriginal = activity.stableActivityId === IM3_MASTERY_ADVANTAGE_ACTIVITY_ID || activity.stableActivityId === IM3_GUIDED_PRACTICE_ACTIVITY_ID;
+  const isSelectedOriginal =
+    activity.stableActivityId === IM3_MASTERY_ADVANTAGE_ACTIVITY_ID ||
+    activity.stableActivityId === IM3_GUIDED_PRACTICE_ACTIVITY_ID;
   const isSelectedWorked = activity.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID;
   if (isSelectedOriginal || isSelectedWorked) {
     const key = args.idempotencyKey.trim();
     if (!key || key.length > 80) throw new Error("Invalid idempotency key");
-    if (args.submissionData.contractVersion !== "practice.v1") throw new Error("Invalid practice contract");
+    if (args.submissionData.contractVersion !== "practice.v1")
+      throw new Error("Invalid practice contract");
     const profile = await ctx.db.get(args.userId);
-    const credential = profile ? await ctx.db.query("auth_credentials").withIndex("by_username", (q) => q.eq("username", profile.username)).unique() : null;
-    if (!profile || profile.role !== "student" || !credential || !credential.isActive || credential.profileId !== profile._id || credential.username !== profile.username || credential.role !== profile.role || credential.organizationId !== profile.organizationId) throw new Error("Inactive student identity");
+    const credential = profile
+      ? await ctx.db
+          .query("auth_credentials")
+          .withIndex("by_username", (q) => q.eq("username", profile.username))
+          .unique()
+      : null;
+    if (
+      !profile ||
+      profile.role !== "student" ||
+      !credential ||
+      !credential.isActive ||
+      credential.profileId !== profile._id ||
+      credential.username !== profile.username ||
+      credential.role !== profile.role ||
+      credential.organizationId !== profile.organizationId
+    )
+      throw new Error("Inactive student identity");
   }
   if (isSelectedWorked) {
     if (!isSelectedWorkedAcknowledgement(args.submissionData))
       throw new Error("Invalid selected IM3 Worked acknowledgement");
     if (!isIm3GraphPilotPublished(publication) || !isSelectedWorkedActivity(activity))
-      throw new Error("IM3 pilot activity metadata does not match the approved server-owned create mapping");
+      throw new Error(
+        "IM3 pilot activity metadata does not match the approved server-owned create mapping",
+      );
     const key = args.idempotencyKey.trim();
-    const existing = await ctx.db.query("activity_submissions")
-      .withIndex("by_user_activity_idempotency_key", (q) => q.eq("userId", args.userId).eq("activityId", args.activityId).eq("idempotencyKey", key))
+    const existing = await ctx.db
+      .query("activity_submissions")
+      .withIndex("by_user_activity_idempotency_key", (q) =>
+        q.eq("userId", args.userId).eq("activityId", args.activityId).eq("idempotencyKey", key),
+      )
       .unique();
     if (existing) {
-      if (canonicalWorkedPayload(existing.submissionData as PracticeSubmissionEnvelope) !== canonicalWorkedPayload(args.submissionData))
+      if (
+        canonicalWorkedPayload(existing.submissionData as PracticeSubmissionEnvelope) !==
+        canonicalWorkedPayload(args.submissionData)
+      )
         throw new Error("idempotency_conflict");
-      if (existing.attemptOrdinal === undefined) throw new Error("Stored IM3 submission is incomplete");
-      if (existing.score !== undefined || existing.maxScore !== undefined || existing.gradedAt !== undefined)
+      if (existing.attemptOrdinal === undefined)
+        throw new Error("Stored IM3 submission is incomplete");
+      if (
+        existing.score !== undefined ||
+        existing.maxScore !== undefined ||
+        existing.gradedAt !== undefined
+      )
         throw new Error("Stored IM3 Worked acknowledgement is graded");
       return { id: existing._id, submissionId: existing._id, acknowledged: true as const };
     }
-    const prior = await ctx.db.query("activity_submissions")
-      .withIndex("by_user_activity_attempt_ordinal", (q) => q.eq("userId", args.userId).eq("activityId", args.activityId))
-      .order("desc").first();
+    const prior = await ctx.db
+      .query("activity_submissions")
+      .withIndex("by_user_activity_attempt_ordinal", (q) =>
+        q.eq("userId", args.userId).eq("activityId", args.activityId),
+      )
+      .order("desc")
+      .first();
     const attemptOrdinal = (prior?.attemptOrdinal ?? 0) + 1;
     const now = Date.now();
     const submissionId = await ctx.db.insert("activity_submissions", {
-      userId: args.userId, activityId: args.activityId,
+      userId: args.userId,
+      activityId: args.activityId,
       submissionData: { ...args.submissionData, attemptNumber: attemptOrdinal },
-      attemptOrdinal, idempotencyKey: key, masteryContractVersion: "learning-evidence.v1",
-      submittedAt: now, createdAt: now, updatedAt: now,
+      attemptOrdinal,
+      idempotencyKey: key,
+      masteryContractVersion: "learning-evidence.v1",
+      submittedAt: now,
+      createdAt: now,
+      updatedAt: now,
     });
     return { id: submissionId, submissionId, acknowledged: true as const };
   }
-  const isEnabledIm3MasteryActivity = activity.masteryNodeId === IM3_PILOT_NODE
-    && activity.componentKey === "graphing-explorer"
-    && activity.srsEligible === true
-    && (!isSelectedOriginal || activity.approval?.status === "approved")
-    && isIm3GraphPilotPublished(publication);
-  const isAllowedIm3GraphSubmission = isEnabledIm3MasteryActivity
-    && args.submissionData.status === "submitted"
-    && (
-      (activity.stableActivityId === IM3_MASTERY_ADVANTAGE_ACTIVITY_ID
-        && args.submissionData.mode === "independent_practice")
-      || (activity.stableActivityId === IM3_GUIDED_PRACTICE_ACTIVITY_ID
-        && args.submissionData.mode === "guided_practice")
-      || (activity.stableActivityId === IM3_GRAPH_GUIDED_SEED_2_ACTIVITY_ID
-        && args.submissionData.mode === "guided_practice")
-      || (activity.stableActivityId === IM3_GRAPH_INDEPENDENT_SEED_2_ACTIVITY_ID
-        && args.submissionData.mode === "independent_practice")
-    );
-  const isEnabledIm3EquationRateActivity = activity.masteryNodeId === IM3_EQUATION_RATE_NODE
-    && activity.componentKey === "rate-of-change-calculator"
-    && activity.srsEligible === true;
-  const isAllowedIm3EquationRateSubmission = isEnabledIm3EquationRateActivity
-    && args.submissionData.status === "submitted"
-    && (
-      (activity.stableActivityId === IM3_EQUATION_RATE_GUIDED_ACTIVITY_ID
-        && args.submissionData.mode === "guided_practice")
-      || (activity.stableActivityId === IM3_EQUATION_RATE_INDEPENDENT_ACTIVITY_ID
-        && args.submissionData.mode === "independent_practice")
-    );
-  const isEnabledIm3DomainRangeActivity = activity.masteryNodeId === IM3_DOMAIN_RANGE_NODE
-    && activity.componentKey === "graphing-explorer"
-    && activity.srsEligible === true;
-  const isAllowedIm3DomainRangeSubmission = isEnabledIm3DomainRangeActivity
-    && args.submissionData.status === "submitted"
-    && (
-      (activity.stableActivityId === IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID
-        && args.submissionData.mode === "guided_practice")
-      || (activity.stableActivityId === IM3_DOMAIN_RANGE_GUIDED_SEED_2_ACTIVITY_ID
-        && args.submissionData.mode === "guided_practice")
-      || (activity.stableActivityId === IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID
-        && args.submissionData.mode === "independent_practice")
-      || (activity.stableActivityId === IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_ACTIVITY_ID
-        && args.submissionData.mode === "independent_practice")
-    );
-  const isAllowedIm3MaximumReadingSubmission = activity.masteryNodeId === IM3_MAXIMUM_READING_NODE
-    && activity.componentKey === "graphing-explorer"
-    && activity.srsEligible === true
-    && args.submissionData.status === "submitted"
-    && (
-      (activity.stableActivityId === IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID
-        && args.submissionData.mode === "guided_practice")
-      || (activity.stableActivityId === IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID
-        && args.submissionData.mode === "independent_practice")
-    );
+  const isEnabledIm3MasteryActivity =
+    activity.masteryNodeId === IM3_PILOT_NODE &&
+    activity.componentKey === "graphing-explorer" &&
+    activity.srsEligible === true &&
+    (!isSelectedOriginal || activity.approval?.status === "approved") &&
+    isIm3GraphPilotPublished(publication);
+  const isAllowedIm3GraphSubmission =
+    isEnabledIm3MasteryActivity &&
+    args.submissionData.status === "submitted" &&
+    ((activity.stableActivityId === IM3_MASTERY_ADVANTAGE_ACTIVITY_ID &&
+      args.submissionData.mode === "independent_practice") ||
+      (activity.stableActivityId === IM3_GUIDED_PRACTICE_ACTIVITY_ID &&
+        args.submissionData.mode === "guided_practice") ||
+      (activity.stableActivityId === IM3_GRAPH_GUIDED_SEED_2_ACTIVITY_ID &&
+        args.submissionData.mode === "guided_practice") ||
+      (activity.stableActivityId === IM3_GRAPH_INDEPENDENT_SEED_2_ACTIVITY_ID &&
+        args.submissionData.mode === "independent_practice"));
+  const isEnabledIm3EquationRateActivity =
+    activity.masteryNodeId === IM3_EQUATION_RATE_NODE &&
+    activity.componentKey === "rate-of-change-calculator" &&
+    activity.srsEligible === true;
+  const isAllowedIm3EquationRateSubmission =
+    isEnabledIm3EquationRateActivity &&
+    args.submissionData.status === "submitted" &&
+    ((activity.stableActivityId === IM3_EQUATION_RATE_GUIDED_ACTIVITY_ID &&
+      args.submissionData.mode === "guided_practice") ||
+      (activity.stableActivityId === IM3_EQUATION_RATE_INDEPENDENT_ACTIVITY_ID &&
+        args.submissionData.mode === "independent_practice"));
+  const isEnabledIm3DomainRangeActivity =
+    activity.masteryNodeId === IM3_DOMAIN_RANGE_NODE &&
+    activity.componentKey === "graphing-explorer" &&
+    activity.srsEligible === true;
+  const isAllowedIm3DomainRangeSubmission =
+    isEnabledIm3DomainRangeActivity &&
+    args.submissionData.status === "submitted" &&
+    ((activity.stableActivityId === IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID &&
+      args.submissionData.mode === "guided_practice") ||
+      (activity.stableActivityId === IM3_DOMAIN_RANGE_GUIDED_SEED_2_ACTIVITY_ID &&
+        args.submissionData.mode === "guided_practice") ||
+      (activity.stableActivityId === IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID &&
+        args.submissionData.mode === "independent_practice") ||
+      (activity.stableActivityId === IM3_DOMAIN_RANGE_INDEPENDENT_SEED_2_ACTIVITY_ID &&
+        args.submissionData.mode === "independent_practice"));
+  const isAllowedIm3MaximumReadingSubmission =
+    activity.masteryNodeId === IM3_MAXIMUM_READING_NODE &&
+    activity.componentKey === "graphing-explorer" &&
+    activity.srsEligible === true &&
+    args.submissionData.status === "submitted" &&
+    ((activity.stableActivityId === IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID &&
+      args.submissionData.mode === "guided_practice") ||
+      (activity.stableActivityId === IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID &&
+        args.submissionData.mode === "independent_practice"));
   const isAllowedIm3OneRealSolutionGuidedSubmission =
-    activity.masteryNodeId === IM3_ONE_REAL_SOLUTION_NODE
-    && activity.componentKey === "graphing-explorer"
-    && activity.srsEligible === true
-    && args.submissionData.status === "submitted"
-    && activity.stableActivityId === IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID
-    && args.submissionData.mode === "guided_practice";
+    activity.masteryNodeId === IM3_ONE_REAL_SOLUTION_NODE &&
+    activity.componentKey === "graphing-explorer" &&
+    activity.srsEligible === true &&
+    args.submissionData.status === "submitted" &&
+    activity.stableActivityId === IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID &&
+    args.submissionData.mode === "guided_practice";
   const isAllowedIm3OneRealSolutionIndependentSubmission =
-    activity.masteryNodeId === IM3_ONE_REAL_SOLUTION_NODE
-    && activity.componentKey === "graphing-explorer"
-    && activity.srsEligible === true
-    && args.submissionData.status === "submitted"
-    && activity.stableActivityId === IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID
-    && args.submissionData.mode === "independent_practice";
-  const isAllowedIm3SymmetrySubmission = activity.masteryNodeId === IM3_SYMMETRY_NODE
-    && activity.componentKey === "graphing-explorer"
-    && activity.srsEligible === true
-    && args.submissionData.status === "submitted"
-    && (
-      (activity.stableActivityId === IM3_SYMMETRY_GUIDED_ACTIVITY_ID
-        && args.submissionData.mode === "guided_practice")
-      || (activity.stableActivityId === IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID
-        && args.submissionData.mode === "independent_practice")
-    );
-  const isAllowedIm3CompareMaximumSubmission = activity.masteryNodeId === IM3_COMPARE_MAXIMUM_NODE
-    && activity.componentKey === "graphing-explorer"
-    && activity.srsEligible === true
-    && args.submissionData.status === "submitted"
-    && (
-      (activity.stableActivityId === IM3_COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID
-        && args.submissionData.mode === "guided_practice")
-      || (activity.stableActivityId === IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID
-        && args.submissionData.mode === "independent_practice")
-    );
+    activity.masteryNodeId === IM3_ONE_REAL_SOLUTION_NODE &&
+    activity.componentKey === "graphing-explorer" &&
+    activity.srsEligible === true &&
+    args.submissionData.status === "submitted" &&
+    activity.stableActivityId === IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID &&
+    args.submissionData.mode === "independent_practice";
+  const isAllowedIm3SymmetrySubmission =
+    activity.masteryNodeId === IM3_SYMMETRY_NODE &&
+    activity.componentKey === "graphing-explorer" &&
+    activity.srsEligible === true &&
+    args.submissionData.status === "submitted" &&
+    ((activity.stableActivityId === IM3_SYMMETRY_GUIDED_ACTIVITY_ID &&
+      args.submissionData.mode === "guided_practice") ||
+      (activity.stableActivityId === IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID &&
+        args.submissionData.mode === "independent_practice"));
+  const isAllowedIm3CompareMaximumSubmission =
+    activity.masteryNodeId === IM3_COMPARE_MAXIMUM_NODE &&
+    activity.componentKey === "graphing-explorer" &&
+    activity.srsEligible === true &&
+    args.submissionData.status === "submitted" &&
+    ((activity.stableActivityId === IM3_COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID &&
+      args.submissionData.mode === "guided_practice") ||
+      (activity.stableActivityId === IM3_COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID &&
+        args.submissionData.mode === "independent_practice"));
   const isAllowedIm3TwoRealSolutionsGuidedSubmission =
-    activity.masteryNodeId === IM3_TWO_REAL_SOLUTIONS_NODE
-    && activity.componentKey === "graphing-explorer"
-    && activity.srsEligible === true
-    && args.submissionData.status === "submitted"
-    && activity.stableActivityId === IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID
-    && args.submissionData.mode === "guided_practice";
+    activity.masteryNodeId === IM3_TWO_REAL_SOLUTIONS_NODE &&
+    activity.componentKey === "graphing-explorer" &&
+    activity.srsEligible === true &&
+    args.submissionData.status === "submitted" &&
+    activity.stableActivityId === IM3_TWO_REAL_SOLUTIONS_GUIDED_ACTIVITY_ID &&
+    args.submissionData.mode === "guided_practice";
   const isAllowedIm3TwoRealSolutionsIndependentSubmission =
-    activity.masteryNodeId === IM3_TWO_REAL_SOLUTIONS_NODE
-    && activity.componentKey === "graphing-explorer"
-    && activity.srsEligible === true
-    && args.submissionData.status === "submitted"
-    && activity.stableActivityId === IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID
-    && args.submissionData.mode === "independent_practice";
-  const isAllowedIm3ProfitModelSubmission = activity.masteryNodeId === IM3_PROFIT_MODEL_NODE
-    && activity.componentKey === "fill-in-the-blank"
-    && activity.srsEligible === true
-    && args.submissionData.status === "submitted"
-    && (
-      (activity.stableActivityId === IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID
-        && args.submissionData.mode === "guided_practice")
-      || (activity.stableActivityId === IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID
-        && args.submissionData.mode === "independent_practice")
-    );
-  const isAllowedIm3ProfitMaximumGuidedSubmission = activity.masteryNodeId === IM3_PROFIT_MAXIMUM_NODE
-    && activity.componentKey === "fill-in-the-blank"
-    && activity.srsEligible === true
-    && args.submissionData.status === "submitted"
-    && activity.stableActivityId === IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID
-    && args.submissionData.mode === "guided_practice";
-  const isAllowedIm3ProfitMaximumIndependentSubmission = activity.masteryNodeId === IM3_PROFIT_MAXIMUM_NODE
-    && activity.componentKey === "fill-in-the-blank"
-    && activity.srsEligible === true
-    && args.submissionData.status === "submitted"
-    && activity.stableActivityId === IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID
-    && args.submissionData.mode === "independent_practice";
-  const isAllowedIm3MasterySubmission = isAllowedIm3GraphSubmission
-    || isAllowedIm3EquationRateSubmission
-    || isAllowedIm3DomainRangeSubmission
-    || isAllowedIm3MaximumReadingSubmission
-    || isAllowedIm3OneRealSolutionGuidedSubmission
-    || isAllowedIm3OneRealSolutionIndependentSubmission
-    || isAllowedIm3SymmetrySubmission
-    || isAllowedIm3CompareMaximumSubmission
-    || isAllowedIm3TwoRealSolutionsGuidedSubmission
-    || isAllowedIm3TwoRealSolutionsIndependentSubmission
-    || isAllowedIm3ProfitModelSubmission
-    || isAllowedIm3ProfitMaximumGuidedSubmission
-    || isAllowedIm3ProfitMaximumIndependentSubmission;
+    activity.masteryNodeId === IM3_TWO_REAL_SOLUTIONS_NODE &&
+    activity.componentKey === "graphing-explorer" &&
+    activity.srsEligible === true &&
+    args.submissionData.status === "submitted" &&
+    activity.stableActivityId === IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID &&
+    args.submissionData.mode === "independent_practice";
+  const isAllowedIm3ProfitModelSubmission =
+    activity.masteryNodeId === IM3_PROFIT_MODEL_NODE &&
+    activity.componentKey === "fill-in-the-blank" &&
+    activity.srsEligible === true &&
+    args.submissionData.status === "submitted" &&
+    ((activity.stableActivityId === IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID &&
+      args.submissionData.mode === "guided_practice") ||
+      (activity.stableActivityId === IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID &&
+        args.submissionData.mode === "independent_practice"));
+  const isAllowedIm3ProfitMaximumGuidedSubmission =
+    activity.masteryNodeId === IM3_PROFIT_MAXIMUM_NODE &&
+    activity.componentKey === "fill-in-the-blank" &&
+    activity.srsEligible === true &&
+    args.submissionData.status === "submitted" &&
+    activity.stableActivityId === IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID &&
+    args.submissionData.mode === "guided_practice";
+  const isAllowedIm3ProfitMaximumIndependentSubmission =
+    activity.masteryNodeId === IM3_PROFIT_MAXIMUM_NODE &&
+    activity.componentKey === "fill-in-the-blank" &&
+    activity.srsEligible === true &&
+    args.submissionData.status === "submitted" &&
+    activity.stableActivityId === IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID &&
+    args.submissionData.mode === "independent_practice";
+  const isAllowedIm3MasterySubmission =
+    isAllowedIm3GraphSubmission ||
+    isAllowedIm3EquationRateSubmission ||
+    isAllowedIm3DomainRangeSubmission ||
+    isAllowedIm3MaximumReadingSubmission ||
+    isAllowedIm3OneRealSolutionGuidedSubmission ||
+    isAllowedIm3OneRealSolutionIndependentSubmission ||
+    isAllowedIm3SymmetrySubmission ||
+    isAllowedIm3CompareMaximumSubmission ||
+    isAllowedIm3TwoRealSolutionsGuidedSubmission ||
+    isAllowedIm3TwoRealSolutionsIndependentSubmission ||
+    isAllowedIm3ProfitModelSubmission ||
+    isAllowedIm3ProfitMaximumGuidedSubmission ||
+    isAllowedIm3ProfitMaximumIndependentSubmission;
   if (!isAllowedIm3MasterySubmission) {
     throw new Error(
       "IM3 pilot activity metadata does not match the approved server-owned create mapping",
@@ -1143,49 +1250,51 @@ export async function createServerOwnedSubmissionHandler(
   }
 
   if (
-    isAllowedIm3GraphSubmission
-    && args.submissionData.parts.some((part) => (
-      part.revealStepsSeen !== undefined && part.revealStepsSeen !== 0
-    ))
+    isAllowedIm3GraphSubmission &&
+    args.submissionData.parts.some(
+      (part) => part.revealStepsSeen !== undefined && part.revealStepsSeen !== 0,
+    )
   ) {
     throw new Error("Selected graph activities do not support reveal telemetry");
   }
 
   if (
-    (isAllowedIm3TwoRealSolutionsGuidedSubmission || isAllowedIm3TwoRealSolutionsIndependentSubmission)
-    && args.submissionData.parts.some((part) => (
-      part.isCorrect !== undefined
-      || part.score !== undefined
-      || part.maxScore !== undefined
-    ))
+    (isAllowedIm3TwoRealSolutionsGuidedSubmission ||
+      isAllowedIm3TwoRealSolutionsIndependentSubmission) &&
+    args.submissionData.parts.some(
+      (part) =>
+        part.isCorrect !== undefined || part.score !== undefined || part.maxScore !== undefined,
+    )
   ) {
     throw new Error("Two-real-solutions submissions must not contain client grading fields");
   }
 
   validateCanonicalIm3PilotSubmission(
     args.submissionData,
-    (isAllowedIm3ProfitMaximumGuidedSubmission || isAllowedIm3ProfitMaximumIndependentSubmission)
+    isAllowedIm3ProfitMaximumGuidedSubmission || isAllowedIm3ProfitMaximumIndependentSubmission
       ? IM3_PROFIT_MAXIMUM_ANSWER_PARTS
       : isAllowedIm3ProfitModelSubmission
-      ? IM3_PROFIT_MODEL_ANSWER_PARTS
-      : isAllowedIm3DomainRangeSubmission
-      ? IM3_DOMAIN_RANGE_ANSWER_PARTS
-      : isAllowedIm3MaximumReadingSubmission
-      ? IM3_MAXIMUM_READING_ANSWER_PARTS
-      : (isAllowedIm3OneRealSolutionGuidedSubmission || isAllowedIm3OneRealSolutionIndependentSubmission)
-      ? IM3_ONE_REAL_SOLUTION_ANSWER_PARTS
-      : isAllowedIm3SymmetrySubmission
-      ? IM3_SYMMETRY_ANSWER_PARTS
-      : isAllowedIm3CompareMaximumSubmission
-      ? IM3_COMPARE_MAXIMUM_ANSWER_PARTS
-      : (isAllowedIm3TwoRealSolutionsGuidedSubmission || isAllowedIm3TwoRealSolutionsIndependentSubmission)
-      ? IM3_TWO_REAL_SOLUTIONS_ANSWER_PARTS
-      : isAllowedIm3EquationRateSubmission
-        ? IM3_EQUATION_RATE_ANSWER_PARTS
-        : IM3_PILOT_ANSWER_PARTS,
-    isAllowedIm3ProfitModelSubmission
-      || isAllowedIm3ProfitMaximumGuidedSubmission
-      || isAllowedIm3ProfitMaximumIndependentSubmission,
+        ? IM3_PROFIT_MODEL_ANSWER_PARTS
+        : isAllowedIm3DomainRangeSubmission
+          ? IM3_DOMAIN_RANGE_ANSWER_PARTS
+          : isAllowedIm3MaximumReadingSubmission
+            ? IM3_MAXIMUM_READING_ANSWER_PARTS
+            : isAllowedIm3OneRealSolutionGuidedSubmission ||
+                isAllowedIm3OneRealSolutionIndependentSubmission
+              ? IM3_ONE_REAL_SOLUTION_ANSWER_PARTS
+              : isAllowedIm3SymmetrySubmission
+                ? IM3_SYMMETRY_ANSWER_PARTS
+                : isAllowedIm3CompareMaximumSubmission
+                  ? IM3_COMPARE_MAXIMUM_ANSWER_PARTS
+                  : isAllowedIm3TwoRealSolutionsGuidedSubmission ||
+                      isAllowedIm3TwoRealSolutionsIndependentSubmission
+                    ? IM3_TWO_REAL_SOLUTIONS_ANSWER_PARTS
+                    : isAllowedIm3EquationRateSubmission
+                      ? IM3_EQUATION_RATE_ANSWER_PARTS
+                      : IM3_PILOT_ANSWER_PARTS,
+    isAllowedIm3ProfitModelSubmission ||
+      isAllowedIm3ProfitMaximumGuidedSubmission ||
+      isAllowedIm3ProfitMaximumIndependentSubmission,
   );
 
   const idempotencyKey = args.idempotencyKey.trim();
@@ -1195,24 +1304,31 @@ export async function createServerOwnedSubmissionHandler(
 
   const existingSubmission = await ctx.db
     .query("activity_submissions")
-    .withIndex("by_user_activity_idempotency_key", (q) => (
-      q.eq("userId", args.userId)
+    .withIndex("by_user_activity_idempotency_key", (q) =>
+      q
+        .eq("userId", args.userId)
         .eq("activityId", args.activityId)
-        .eq("idempotencyKey", idempotencyKey)
-    ))
+        .eq("idempotencyKey", idempotencyKey),
+    )
     .unique();
 
   if (existingSubmission) {
     const sameCanonicalRequest = isSelectedOriginal
-      ? sameSelectedGraphRequest(existingSubmission.submissionData as unknown as PracticeSubmissionEnvelope, args.submissionData)
-      : sameServerOwnedRequest(existingSubmission.submissionData as unknown as PracticeSubmissionEnvelope, args.submissionData);
+      ? sameSelectedGraphRequest(
+          existingSubmission.submissionData as unknown as PracticeSubmissionEnvelope,
+          args.submissionData,
+        )
+      : sameServerOwnedRequest(
+          existingSubmission.submissionData as unknown as PracticeSubmissionEnvelope,
+          args.submissionData,
+        );
     if (!sameCanonicalRequest) {
       throw new Error("idempotency_conflict");
     }
     if (
-      existingSubmission.score === undefined
-      || existingSubmission.maxScore === undefined
-      || existingSubmission.attemptOrdinal === undefined
+      existingSubmission.score === undefined ||
+      existingSubmission.maxScore === undefined ||
+      existingSubmission.attemptOrdinal === undefined
     ) {
       throw new Error("Stored IM3 mastery submission is incomplete");
     }
@@ -1226,9 +1342,9 @@ export async function createServerOwnedSubmissionHandler(
 
   const latestSubmission = await ctx.db
     .query("activity_submissions")
-    .withIndex("by_user_activity_attempt_ordinal", (q) => (
-      q.eq("userId", args.userId).eq("activityId", args.activityId)
-    ))
+    .withIndex("by_user_activity_attempt_ordinal", (q) =>
+      q.eq("userId", args.userId).eq("activityId", args.activityId),
+    )
     .order("desc")
     .first();
   const serverAttemptOrdinal = (latestSubmission?.attemptOrdinal ?? 0) + 1;
@@ -1278,10 +1394,7 @@ export async function createServerOwnedSubmissionHandler(
   };
 }
 
-async function legacySubmitActivityHandler(
-  ctx: MutationCtx,
-  args: LegacySubmissionArgs,
-) {
+async function legacySubmitActivityHandler(ctx: MutationCtx, args: LegacySubmissionArgs) {
   const now = Date.now();
   if (String(args.activityId) !== args.submissionData.activityId) {
     throw new Error("Submission activityId must match the server activity document");
@@ -1296,12 +1409,11 @@ async function legacySubmitActivityHandler(
     throw new Error("IM3 Mastery Advantage submissions must use the server-owned create path");
   }
 
-  const isIm3EquationRateWorkedCandidate = activity.stableActivityId === IM3_EQUATION_RATE_WORKED_ACTIVITY_ID
-    || (
-      activity.masteryNodeId === IM3_EQUATION_RATE_NODE
-      && activity.componentKey === "rate-of-change-calculator"
-      && activity.learningEvidenceMode === "worked_example"
-    );
+  const isIm3EquationRateWorkedCandidate =
+    activity.stableActivityId === IM3_EQUATION_RATE_WORKED_ACTIVITY_ID ||
+    (activity.masteryNodeId === IM3_EQUATION_RATE_NODE &&
+      activity.componentKey === "rate-of-change-calculator" &&
+      activity.learningEvidenceMode === "worked_example");
   const isIm3EquationRateWorkedActivity = isExactIm3EquationRateWorkedSource(
     activity,
     args.submissionData,
@@ -1310,12 +1422,11 @@ async function legacySubmitActivityHandler(
     throw new Error("IM3 equation-rate Worked activity metadata or source envelope is invalid");
   }
 
-  const isIm3DomainRangeWorkedCandidate = activity.stableActivityId === IM3_DOMAIN_RANGE_WORKED_ACTIVITY_ID
-    || (
-      activity.masteryNodeId === IM3_DOMAIN_RANGE_NODE
-      && activity.componentKey === "graphing-explorer"
-      && activity.learningEvidenceMode === "worked_example"
-    );
+  const isIm3DomainRangeWorkedCandidate =
+    activity.stableActivityId === IM3_DOMAIN_RANGE_WORKED_ACTIVITY_ID ||
+    (activity.masteryNodeId === IM3_DOMAIN_RANGE_NODE &&
+      activity.componentKey === "graphing-explorer" &&
+      activity.learningEvidenceMode === "worked_example");
   const isIm3DomainRangeWorkedActivity = isExactIm3DomainRangeWorkedSource(
     activity,
     args.submissionData,
@@ -1324,12 +1435,11 @@ async function legacySubmitActivityHandler(
     throw new Error("IM3 domain-range Worked activity metadata or source envelope is invalid");
   }
 
-  const isIm3MaximumReadingWorkedCandidate = activity.stableActivityId === IM3_MAXIMUM_READING_WORKED_ACTIVITY_ID
-    || (
-      activity.masteryNodeId === IM3_MAXIMUM_READING_NODE
-      && activity.componentKey === "graphing-explorer"
-      && activity.learningEvidenceMode === "worked_example"
-    );
+  const isIm3MaximumReadingWorkedCandidate =
+    activity.stableActivityId === IM3_MAXIMUM_READING_WORKED_ACTIVITY_ID ||
+    (activity.masteryNodeId === IM3_MAXIMUM_READING_NODE &&
+      activity.componentKey === "graphing-explorer" &&
+      activity.learningEvidenceMode === "worked_example");
   const isIm3MaximumReadingWorkedActivity = isExactIm3MaximumReadingWorkedSource(
     activity,
     args.submissionData,
@@ -1338,26 +1448,21 @@ async function legacySubmitActivityHandler(
     throw new Error("IM3 maximum-reading Worked activity metadata or source envelope is invalid");
   }
 
-  const isIm3SymmetryWorkedCandidate = activity.stableActivityId === IM3_SYMMETRY_WORKED_ACTIVITY_ID
-    || (
-      activity.masteryNodeId === IM3_SYMMETRY_NODE
-      && activity.componentKey === "graphing-explorer"
-      && activity.learningEvidenceMode === "worked_example"
-    );
-  const isIm3SymmetryWorkedActivity = isExactIm3SymmetryWorkedSource(
-    activity,
-    args.submissionData,
-  );
+  const isIm3SymmetryWorkedCandidate =
+    activity.stableActivityId === IM3_SYMMETRY_WORKED_ACTIVITY_ID ||
+    (activity.masteryNodeId === IM3_SYMMETRY_NODE &&
+      activity.componentKey === "graphing-explorer" &&
+      activity.learningEvidenceMode === "worked_example");
+  const isIm3SymmetryWorkedActivity = isExactIm3SymmetryWorkedSource(activity, args.submissionData);
   if (isIm3SymmetryWorkedCandidate && !isIm3SymmetryWorkedActivity) {
     throw new Error("IM3 symmetry Worked activity metadata or source envelope is invalid");
   }
 
-  const isIm3CompareMaximumWorkedCandidate = activity.stableActivityId === IM3_COMPARE_MAXIMUM_WORKED_ACTIVITY_ID
-    || (
-      activity.masteryNodeId === IM3_COMPARE_MAXIMUM_NODE
-      && activity.componentKey === "graphing-explorer"
-      && activity.learningEvidenceMode === "worked_example"
-    );
+  const isIm3CompareMaximumWorkedCandidate =
+    activity.stableActivityId === IM3_COMPARE_MAXIMUM_WORKED_ACTIVITY_ID ||
+    (activity.masteryNodeId === IM3_COMPARE_MAXIMUM_NODE &&
+      activity.componentKey === "graphing-explorer" &&
+      activity.learningEvidenceMode === "worked_example");
   const isIm3CompareMaximumWorkedActivity = isExactIm3CompareMaximumWorkedSource(
     activity,
     args.submissionData,
@@ -1366,12 +1471,11 @@ async function legacySubmitActivityHandler(
     throw new Error("IM3 compare-maximum Worked activity metadata or source envelope is invalid");
   }
 
-  const isIm3ProfitModelWorkedCandidate = activity.stableActivityId === IM3_PROFIT_MODEL_WORKED_ACTIVITY_ID
-    || (
-      activity.masteryNodeId === IM3_PROFIT_MODEL_NODE
-      && activity.componentKey === "fill-in-the-blank"
-      && activity.learningEvidenceMode === "worked_example"
-    );
+  const isIm3ProfitModelWorkedCandidate =
+    activity.stableActivityId === IM3_PROFIT_MODEL_WORKED_ACTIVITY_ID ||
+    (activity.masteryNodeId === IM3_PROFIT_MODEL_NODE &&
+      activity.componentKey === "fill-in-the-blank" &&
+      activity.learningEvidenceMode === "worked_example");
   const isIm3ProfitModelWorkedActivity = isExactIm3ProfitModelWorkedSource(
     activity,
     String(args.activityId),
@@ -1381,12 +1485,11 @@ async function legacySubmitActivityHandler(
     throw new Error("IM3 profit-model Worked activity metadata or source envelope is invalid");
   }
 
-  const isIm3ProfitMaximumWorkedCandidate = activity.stableActivityId === IM3_PROFIT_MAXIMUM_WORKED_ACTIVITY_ID
-    || (
-      activity.masteryNodeId === IM3_PROFIT_MAXIMUM_NODE
-      && activity.componentKey === "fill-in-the-blank"
-      && activity.learningEvidenceMode === "worked_example"
-    );
+  const isIm3ProfitMaximumWorkedCandidate =
+    activity.stableActivityId === IM3_PROFIT_MAXIMUM_WORKED_ACTIVITY_ID ||
+    (activity.masteryNodeId === IM3_PROFIT_MAXIMUM_NODE &&
+      activity.componentKey === "fill-in-the-blank" &&
+      activity.learningEvidenceMode === "worked_example");
   const isIm3ProfitMaximumWorkedActivity = isExactIm3ProfitMaximumWorkedSource(
     activity,
     String(args.activityId),
@@ -1396,9 +1499,10 @@ async function legacySubmitActivityHandler(
     throw new Error("IM3 profit-maximum Worked activity metadata or source envelope is invalid");
   }
 
-  const isIm3TeacherLedActivity = activity.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
-    && activity.masteryNodeId === IM3_PILOT_NODE
-    && activity.componentKey === "graphing-explorer";
+  const isIm3TeacherLedActivity =
+    activity.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID &&
+    activity.masteryNodeId === IM3_PILOT_NODE &&
+    activity.componentKey === "graphing-explorer";
   if (activity.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID && !isIm3TeacherLedActivity) {
     throw new Error("IM3 pilot activity metadata does not match the approved mapping");
   }
@@ -1410,18 +1514,21 @@ async function legacySubmitActivityHandler(
 
   const existingSubmission = await ctx.db
     .query("activity_submissions")
-    .withIndex("by_user_activity_idempotency_key", (q) => (
-      q.eq("userId", args.userId)
+    .withIndex("by_user_activity_idempotency_key", (q) =>
+      q
+        .eq("userId", args.userId)
         .eq("activityId", args.activityId)
-        .eq("idempotencyKey", idempotencyKey)
-    ))
+        .eq("idempotencyKey", idempotencyKey),
+    )
     .unique();
 
   if (existingSubmission) {
-    if (!sameServerOwnedRequest(
-      existingSubmission.submissionData as unknown as PracticeSubmissionEnvelope,
-      args.submissionData,
-    )) {
+    if (
+      !sameServerOwnedRequest(
+        existingSubmission.submissionData as unknown as PracticeSubmissionEnvelope,
+        args.submissionData,
+      )
+    ) {
       throw new Error("idempotency_conflict");
     }
     return {
@@ -1435,18 +1542,19 @@ async function legacySubmitActivityHandler(
   const latestSubmission = await ctx.db
     .query("activity_submissions")
     .withIndex("by_user_activity_attempt_ordinal", (q) =>
-      q.eq("userId", args.userId).eq("activityId", args.activityId)
+      q.eq("userId", args.userId).eq("activityId", args.activityId),
     )
     .order("desc")
     .first();
   const serverAttemptOrdinal = (latestSubmission?.attemptOrdinal ?? 0) + 1;
-  const isIm3WorkedSource = isIm3EquationRateWorkedActivity
-    || isIm3DomainRangeWorkedActivity
-    || isIm3MaximumReadingWorkedActivity
-    || isIm3SymmetryWorkedActivity
-    || isIm3CompareMaximumWorkedActivity
-    || isIm3ProfitModelWorkedActivity
-    || isIm3ProfitMaximumWorkedActivity;
+  const isIm3WorkedSource =
+    isIm3EquationRateWorkedActivity ||
+    isIm3DomainRangeWorkedActivity ||
+    isIm3MaximumReadingWorkedActivity ||
+    isIm3SymmetryWorkedActivity ||
+    isIm3CompareMaximumWorkedActivity ||
+    isIm3ProfitModelWorkedActivity ||
+    isIm3ProfitMaximumWorkedActivity;
   const graded = isIm3WorkedSource
     ? {
         submissionData: args.submissionData,
@@ -1486,9 +1594,9 @@ async function legacySubmitActivityHandler(
           gradedAt: now,
         }),
     ...(graded.masteryContractVersion === undefined
-      ? (isIm3TeacherLedActivity || isIm3WorkedSource
+      ? isIm3TeacherLedActivity || isIm3WorkedSource
         ? { masteryContractVersion: IM3_LEARNING_EVIDENCE_CONTRACT_VERSION }
-        : {})
+        : {}
       : { masteryContractVersion: graded.masteryContractVersion }),
     submittedAt: now,
     createdAt: now,
@@ -1502,23 +1610,22 @@ async function legacySubmitActivityHandler(
     });
   }
 
-  const hasServerGrade = graded.score !== undefined
-    && graded.maxScore !== undefined
-    && storedSubmissionData.status === "graded";
+  const hasServerGrade =
+    graded.score !== undefined &&
+    graded.maxScore !== undefined &&
+    storedSubmissionData.status === "graded";
   if (!isIm3TeacherLedActivity && !isIm3WorkedSource && hasServerGrade) {
     if (activity.standardId) {
       const existingCompetency = await ctx.db
         .query("student_competency")
         .withIndex("by_student_and_standard", (q) =>
-          q.eq("studentId", args.userId).eq("standardId", activity.standardId!)
+          q.eq("studentId", args.userId).eq("standardId", activity.standardId!),
         )
         .unique();
 
       const score = graded.score ?? 0;
       const maxScore = graded.maxScore ?? 0;
-      const percentage = maxScore > 0
-        ? (score / maxScore) * 100
-        : 0;
+      const percentage = maxScore > 0 ? (score / maxScore) * 100 : 0;
       const masteryIncrement = Math.round(percentage);
       if (existingCompetency) {
         await ctx.db.patch(existingCompetency._id, {
@@ -1567,9 +1674,14 @@ export const createServerOwnedSubmission = internalMutation({
     submissionData: practiceSubmissionEnvelopeValidator,
     idempotencyKey: v.string(),
   },
-  returns: v.union(serverOwnedSubmissionResultValidator, v.object({
-    id: v.id("activity_submissions"), submissionId: v.id("activity_submissions"), acknowledged: v.literal(true),
-  })),
+  returns: v.union(
+    serverOwnedSubmissionResultValidator,
+    v.object({
+      id: v.id("activity_submissions"),
+      submissionId: v.id("activity_submissions"),
+      acknowledged: v.literal(true),
+    }),
+  ),
   handler: (ctx, args) => {
     if (String(args.activityId) !== args.submissionData.activityId) {
       throw new Error("Submission activityId must match the server activity document");
@@ -1589,47 +1701,46 @@ export async function getSelectedWorkedAcknowledgementHandler(
 ) {
   const profile = await ctx.db.get(args.userId);
   const credential = profile
-    ? await ctx.db.query("auth_credentials")
-      .withIndex("by_username", (query) => query.eq("username", profile.username))
-      .unique()
+    ? await ctx.db
+        .query("auth_credentials")
+        .withIndex("by_username", (query) => query.eq("username", profile.username))
+        .unique()
     : null;
   const activity = await ctx.db.get(args.activityId);
   if (
-    !profile
-    || profile.role !== "student"
-    || !credential
-    || !credential.isActive
-    || credential.profileId !== profile._id
-    || credential.username !== profile.username
-    || credential.role !== profile.role
-    || credential.organizationId !== profile.organizationId
-    || !activity
-    || !isIm3GraphPilotPublished(publication)
-    || !isSelectedWorkedActivity(activity)
+    !profile ||
+    profile.role !== "student" ||
+    !credential ||
+    !credential.isActive ||
+    credential.profileId !== profile._id ||
+    credential.username !== profile.username ||
+    credential.role !== profile.role ||
+    credential.organizationId !== profile.organizationId ||
+    !activity ||
+    !isIm3GraphPilotPublished(publication) ||
+    !isSelectedWorkedActivity(activity)
   ) {
     return null;
   }
   const key = `worked-example:${String(args.activityId)}`;
-  const submission = await ctx.db.query("activity_submissions")
-    .withIndex("by_user_activity_idempotency_key", (query) => query
-      .eq("userId", args.userId)
-      .eq("activityId", args.activityId)
-      .eq("idempotencyKey", key))
+  const submission = await ctx.db
+    .query("activity_submissions")
+    .withIndex("by_user_activity_idempotency_key", (query) =>
+      query.eq("userId", args.userId).eq("activityId", args.activityId).eq("idempotencyKey", key),
+    )
     .unique();
   if (
-    !submission
-    || submission.masteryContractVersion !== "learning-evidence.v1"
-    || !Number.isInteger(submission.attemptOrdinal)
-    || (submission.attemptOrdinal ?? 0) < 1
-    || !Number.isFinite(submission.submittedAt)
-    || submission.submissionData.activityId !== String(args.activityId)
-    || submission.submissionData.attemptNumber !== submission.attemptOrdinal
-    || submission.score !== undefined
-    || submission.maxScore !== undefined
-    || submission.gradedAt !== undefined
-    || !isSelectedWorkedAcknowledgement(
-      submission.submissionData as PracticeSubmissionEnvelope,
-    )
+    !submission ||
+    submission.masteryContractVersion !== "learning-evidence.v1" ||
+    !Number.isInteger(submission.attemptOrdinal) ||
+    (submission.attemptOrdinal ?? 0) < 1 ||
+    !Number.isFinite(submission.submittedAt) ||
+    submission.submissionData.activityId !== String(args.activityId) ||
+    submission.submissionData.attemptNumber !== submission.attemptOrdinal ||
+    submission.score !== undefined ||
+    submission.maxScore !== undefined ||
+    submission.gradedAt !== undefined ||
+    !isSelectedWorkedAcknowledgement(submission.submissionData as PracticeSubmissionEnvelope)
   ) {
     return null;
   }

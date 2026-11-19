@@ -24,8 +24,7 @@ const request = (body: unknown) =>
   });
 beforeEach(() => {
   vi.clearAllMocks();
-  process.env.AUTH_JWT_SECRET =
-    "local-test-secret-at-least-thirty-two-characters";
+  process.env.AUTH_JWT_SECRET = "local-test-secret-at-least-thirty-two-characters";
   backend.mutation.mockResolvedValue({ allowed: true, ok: true });
 });
 describe("authentication boundary", () => {
@@ -38,15 +37,9 @@ describe("authentication boundary", () => {
       organizationId: "org1",
       passwordSalt: salt,
       passwordHashIterations: PASSWORD_HASH_ITERATIONS,
-      passwordHash: await hashPassword(
-        "correct-password",
-        salt,
-        PASSWORD_HASH_ITERATIONS,
-      ),
+      passwordHash: await hashPassword("correct-password", salt, PASSWORD_HASH_ITERATIONS),
     });
-    const response = await login(
-      request({ username: "teacher", password: "correct-password" }),
-    );
+    const response = await login(request({ username: "teacher", password: "correct-password" }));
     expect(response.status).toBe(200);
     expect(response.headers.get("set-cookie")).toContain("HttpOnly");
     expect(await response.json()).toMatchObject({
@@ -59,9 +52,7 @@ describe("authentication boundary", () => {
       passwordHashIterations: 100,
       passwordHash: await hashPassword("correct", "salt", 100),
     });
-    expect(
-      (await login(request({ username: "student", password: "wrong" }))).status,
-    ).toBe(401);
+    expect((await login(request({ username: "student", password: "wrong" }))).status).toBe(401);
   });
   it.each([
     null,
@@ -76,11 +67,7 @@ describe("authentication boundary", () => {
   });
   it("returns 400 for malformed JSON", async () => {
     expect(
-      (
-        await login(
-          new Request("http://localhost", { method: "POST", body: "{" }),
-        )
-      ).status,
+      (await login(new Request("http://localhost", { method: "POST", body: "{" }))).status,
     ).toBe(400);
   });
   it("uses create-only registration and returns conflict for an existing username", async () => {
@@ -100,25 +87,18 @@ describe("authentication boundary", () => {
         )
       ).status,
     ).toBe(409);
-    expect(
-      backend.mutation.mock.calls.map(([ref]) => getFunctionName(ref)),
-    ).not.toContain("auth:upsertCredentialByUsername");
+    expect(backend.mutation.mock.calls.map(([ref]) => getFunctionName(ref))).not.toContain(
+      "auth:upsertCredentialByUsername",
+    );
   });
   it("requires a class code for registration", async () => {
     expect(
-      (
-        await register(
-          request({ username: "new-student", password: "validpass" }),
-        )
-      ).status,
+      (await register(request({ username: "new-student", password: "validpass" }))).status,
     ).toBe(400);
   });
   it("stops password work when the request limit is reached", async () => {
     backend.mutation.mockResolvedValue({ allowed: false });
-    expect(
-      (await login(request({ username: "student", password: "validpass" })))
-        .status,
-    ).toBe(429);
+    expect((await login(request({ username: "student", password: "validpass" }))).status).toBe(429);
     expect(backend.query).not.toHaveBeenCalled();
   });
   it("rejects a token whose account was removed or deactivated", async () => {

@@ -1,14 +1,14 @@
-import { internalMutation, type MutationCtx } from './_generated/server';
-import type { Id } from './_generated/dataModel';
-import { v } from 'convex/values';
+import { internalMutation, type MutationCtx } from "./_generated/server";
+import type { Id } from "./_generated/dataModel";
+import { v } from "convex/values";
 
-import { buildDemoScenario, type DemoObservation, type DemoTeacher } from '../lib/demo/scenarios';
-import { createCurrentGbfAssignment } from '../lib/gbf/progress';
-import { PIP_SOURCE_CONTRACT } from '../lib/improvement-plans/source';
-import { createDanielsonTeacherProficiencyPort } from '../lib/proficiency/convex-repository';
-import { buildDanielsonGraph, DANIELSON_COMPONENT_IDS } from '../lib/proficiency/graph';
-import { processTeacherEvidence } from '../lib/proficiency/processor';
-import { refreshAttentionSummary } from './observations';
+import { buildDemoScenario, type DemoObservation, type DemoTeacher } from "../lib/demo/scenarios";
+import { createCurrentGbfAssignment } from "../lib/gbf/progress";
+import { PIP_SOURCE_CONTRACT } from "../lib/improvement-plans/source";
+import { createDanielsonTeacherProficiencyPort } from "../lib/proficiency/convex-repository";
+import { buildDanielsonGraph, DANIELSON_COMPONENT_IDS } from "../lib/proficiency/graph";
+import { processTeacherEvidence } from "../lib/proficiency/processor";
+import { refreshAttentionSummary } from "./observations";
 
 const credentialInputValidator = v.object({
   username: v.string(),
@@ -19,9 +19,17 @@ const credentialInputValidator = v.object({
 });
 
 const resultValidator = v.union(
-  v.object({ kind: v.literal('created'), organizationId: v.id('organizations'), usernames: v.array(v.string()) }),
-  v.object({ kind: v.literal('already_seeded'), organizationId: v.id('organizations'), usernames: v.array(v.string()) }),
-  v.object({ kind: v.literal('conflict'), reason: v.string() }),
+  v.object({
+    kind: v.literal("created"),
+    organizationId: v.id("organizations"),
+    usernames: v.array(v.string()),
+  }),
+  v.object({
+    kind: v.literal("already_seeded"),
+    organizationId: v.id("organizations"),
+    usernames: v.array(v.string()),
+  }),
+  v.object({ kind: v.literal("conflict"), reason: v.string() }),
 );
 
 const DAY_MS = 86_400_000;
@@ -30,35 +38,38 @@ function observationItems(observation: DemoObservation) {
   const items = observation.componentRatings?.map((item) => ({
     componentId: item.componentId,
     rating: item.rating,
-  })) ?? [{
-    componentId: observation.componentId,
-    skillId: observation.targetSkillIds[0],
-    rating: observation.rating,
-  }];
+  })) ?? [
+    {
+      componentId: observation.componentId,
+      skillId: observation.targetSkillIds[0],
+      rating: observation.rating,
+    },
+  ];
   return items.map((item, index) => ({
     itemId: `demo:${observation.id}:item:${index}`,
     componentId: item.componentId,
-    ...('skillId' in item && item.skillId ? { skillId: item.skillId } : {}),
+    ...("skillId" in item && item.skillId ? { skillId: item.skillId } : {}),
     priorityReason: observation.priorityReason,
-    outcome: item.rating === null
-      ? { kind: 'not_enough_evidence' as const }
-      : { kind: 'rated' as const, rating: item.rating },
+    outcome:
+      item.rating === null
+        ? { kind: "not_enough_evidence" as const }
+        : { kind: "rated" as const, rating: item.rating },
     evidenceNote: observation.evidenceNote,
   }));
 }
 
 async function writeObservation(
   ctx: MutationCtx,
-  organizationId: Id<'organizations'>,
+  organizationId: Id<"organizations">,
   teacher: DemoTeacher,
-  profileId: Id<'teacher_profiles'>,
-  observerAccountId: Id<'accounts'>,
+  profileId: Id<"teacher_profiles">,
+  observerAccountId: Id<"accounts">,
   observation: DemoObservation,
   referenceTime: number,
-  graph: ReturnType<typeof buildDanielsonGraph>['graph'],
+  graph: ReturnType<typeof buildDanielsonGraph>["graph"],
 ) {
   const observedAtMs = Date.parse(observation.observedAt);
-  const observationId = await ctx.db.insert('observation_records', {
+  const observationId = await ctx.db.insert("observation_records", {
     organizationId,
     teacherProfileId: profileId,
     observerAccountId,
@@ -67,7 +78,7 @@ async function writeObservation(
     sourceVersion: observation.sourceVersion,
     frameworkVersion: observation.frameworkVersion,
     observedAt: observation.observedAt,
-    status: 'submitted',
+    status: "submitted",
     revision: 1,
     items: observationItems(observation),
     submissionKey: `demo:${observation.id}`,
@@ -79,11 +90,11 @@ async function writeObservation(
   });
 
   const evidence = {
-    kind: observation.rating === null ? 'not_enough_evidence' as const : 'rated' as const,
+    kind: observation.rating === null ? ("not_enough_evidence" as const) : ("rated" as const),
     organizationId: String(organizationId),
     teacherId: String(profileId),
     sourceRecordId: String(observationId),
-    ...(observation.observationType !== 'walkthrough'
+    ...(observation.observationType !== "walkthrough"
       ? { formalObservationId: String(observationId) }
       : {}),
     sourceType: observation.observationType,
@@ -108,41 +119,41 @@ async function writeObservation(
 
 async function writePip(
   ctx: MutationCtx,
-  organizationId: Id<'organizations'>,
+  organizationId: Id<"organizations">,
   teacher: DemoTeacher,
-  profileId: Id<'teacher_profiles'>,
-  departmentId: Id<'departments'>,
-  supervisorAccountId: Id<'accounts'>,
+  profileId: Id<"teacher_profiles">,
+  departmentId: Id<"departments">,
+  supervisorAccountId: Id<"accounts">,
   referenceTime: number,
-  graph: ReturnType<typeof buildDanielsonGraph>['graph'],
+  graph: ReturnType<typeof buildDanielsonGraph>["graph"],
 ) {
   const pip = teacher.pip;
   if (!pip) return;
   const teacherProfile = await ctx.db.get(profileId);
   const department = await ctx.db.get(departmentId);
-  if (!teacherProfile || !department) throw new Error('demo_pip_context_missing');
-  const planId = await ctx.db.insert('improvement_plans', {
+  if (!teacherProfile || !department) throw new Error("demo_pip_context_missing");
+  const planId = await ctx.db.insert("improvement_plans", {
     organizationId,
     teacherProfileId: profileId,
     state: pip.state,
-    revision: pip.state === 'closed' ? 3 : 2,
+    revision: pip.state === "closed" ? 3 : 2,
     latestVersion: 1,
     activeVersion: 1,
     activeTargets: pip.targets,
     approvedAt: Date.parse(pip.approvedAt),
     planEndAt: Date.parse(`${pip.planEndDate}T23:59:59.999Z`),
     reviewMeetingAt: Date.parse(`${pip.reviewMeetingDate}T00:00:00.000Z`),
-    ...(pip.state === 'closed'
+    ...(pip.state === "closed"
       ? {
           closedAt: Date.parse(pip.closedAt ?? new Date(referenceTime).toISOString()),
-          closureOutcome: pip.outcome ?? 'successful',
-          closureNote: pip.closureNote ?? 'The teacher met the expected standard.',
+          closureOutcome: pip.outcome ?? "successful",
+          closureNote: pip.closureNote ?? "The teacher met the expected standard.",
         }
       : {}),
     createdAt: Date.parse(pip.approvedAt) - DAY_MS,
     updatedAt: referenceTime,
   });
-  const versionId = await ctx.db.insert('improvement_plan_versions', {
+  const versionId = await ctx.db.insert("improvement_plan_versions", {
     organizationId,
     planId,
     teacherProfileId: profileId,
@@ -153,17 +164,18 @@ async function writePip(
     position: teacher.position,
     departmentId,
     departmentName: department.name,
-    supervisorName: 'Alex Morgan',
+    supervisorName: "Alex Morgan",
     requestedPlanEndDate: pip.planEndDate,
     reviewMeetingDate: pip.reviewMeetingDate,
     purpose: pip.purpose,
     areasOfConcern: pip.areasOfConcern,
-    expectedStandard: 'The teacher demonstrates the Danielson standard in published evidence.',
+    expectedStandard: "The teacher demonstrates the Danielson standard in published evidence.",
     requiredActions: pip.requiredActions,
     evidenceOfImprovement: pip.evidenceOfImprovement,
     schoolSupport: pip.schoolSupport,
     successfulCompletionCriteria: pip.successfulCompletionCriteria,
-    insufficientImprovementConsequences: PIP_SOURCE_CONTRACT.fixedText.insufficientImprovementConsequences,
+    insufficientImprovementConsequences:
+      PIP_SOURCE_CONTRACT.fixedText.insufficientImprovementConsequences,
     acknowledgmentText: PIP_SOURCE_CONTRACT.fixedText.acknowledgmentText,
     sourceId: PIP_SOURCE_CONTRACT.sourceId,
     sourceVersion: PIP_SOURCE_CONTRACT.sourceVersion,
@@ -173,7 +185,7 @@ async function writePip(
   for (const [ordinal, target] of pip.targets.entries()) {
     const component = graph.nodes.find((node) => node.id === target.componentId);
     const skill = graph.nodes.find((node) => node.id === target.skillId);
-    await ctx.db.insert('improvement_plan_targets', {
+    await ctx.db.insert("improvement_plan_targets", {
       organizationId,
       planId,
       versionId,
@@ -194,15 +206,17 @@ async function writePip(
   }
   await ctx.db.patch(planId, {
     activeVersionId: versionId,
-    ...(pip.state === 'closed' ? { closureEventId: `demo:${teacher.username}:pip-closed` } : { approvalEventId: `demo:${teacher.username}:pip-approved` }),
+    ...(pip.state === "closed"
+      ? { closureEventId: `demo:${teacher.username}:pip-closed` }
+      : { approvalEventId: `demo:${teacher.username}:pip-approved` }),
   });
-  await ctx.db.insert('improvement_plan_events', {
+  await ctx.db.insert("improvement_plan_events", {
     organizationId,
     planId,
     teacherProfileId: profileId,
     version: 1,
     versionId,
-    kind: 'proposed',
+    kind: "proposed",
     requestId: `demo:${teacher.username}:pip-proposed`,
     fingerprint: `demo:${teacher.username}:pip-proposed`,
     actorAccountId: supervisorAccountId,
@@ -210,13 +224,13 @@ async function writePip(
     revision: 1,
     payload: {},
   });
-  await ctx.db.insert('improvement_plan_events', {
+  await ctx.db.insert("improvement_plan_events", {
     organizationId,
     planId,
     teacherProfileId: profileId,
     version: 1,
     versionId,
-    kind: 'approved',
+    kind: "approved",
     requestId: `demo:${teacher.username}:pip-approved`,
     fingerprint: `demo:${teacher.username}:pip-approved`,
     actorAccountId: supervisorAccountId,
@@ -227,22 +241,22 @@ async function writePip(
       planEndAt: Date.parse(`${pip.planEndDate}T23:59:59.999Z`),
     },
   });
-  if (pip.state === 'closed') {
-    await ctx.db.insert('improvement_plan_events', {
+  if (pip.state === "closed") {
+    await ctx.db.insert("improvement_plan_events", {
       organizationId,
       planId,
       teacherProfileId: profileId,
       version: 1,
       versionId,
-      kind: 'closed',
+      kind: "closed",
       requestId: `demo:${teacher.username}:pip-closed`,
       fingerprint: `demo:${teacher.username}:pip-closed`,
       actorAccountId: supervisorAccountId,
       occurredAt: Date.parse(pip.closedAt ?? new Date(referenceTime).toISOString()),
       revision: 3,
       payload: {
-        outcome: pip.outcome ?? 'successful',
-        note: pip.closureNote ?? 'The teacher met the expected standard.',
+        outcome: pip.outcome ?? "successful",
+        note: pip.closureNote ?? "The teacher met the expected standard.",
       },
     });
   }
@@ -250,59 +264,83 @@ async function writePip(
 
 async function hasCorrectedDemoData(
   ctx: MutationCtx,
-  organizationId: Id<'organizations'>,
+  organizationId: Id<"organizations">,
   scenario: ReturnType<typeof buildDemoScenario>,
-  accounts: Array<{ _id: Id<'accounts'>; username: string; organizationId: Id<'organizations'> } | null>,
+  accounts: Array<{
+    _id: Id<"accounts">;
+    username: string;
+    organizationId: Id<"organizations">;
+  } | null>,
 ) {
-  const accountByUsername = new Map(accounts
-    .filter((account): account is NonNullable<typeof account> => account !== null)
-    .map((account) => [account.username, account]));
-  const profiles = await Promise.all(scenario.teachers.map((teacher) => {
-    const accountId = accountByUsername.get(teacher.username)?._id;
-    if (!accountId) return Promise.resolve(null);
-    return ctx.db.query('teacher_profiles')
-      .withIndex('by_accountId', (query) => query.eq('accountId', accountId))
-      .unique();
-  }));
-  if (profiles.some((profile) => !profile || profile.organizationId !== organizationId)) return false;
+  const accountByUsername = new Map(
+    accounts
+      .filter((account): account is NonNullable<typeof account> => account !== null)
+      .map((account) => [account.username, account]),
+  );
+  const profiles = await Promise.all(
+    scenario.teachers.map((teacher) => {
+      const accountId = accountByUsername.get(teacher.username)?._id;
+      if (!accountId) return Promise.resolve(null);
+      return ctx.db
+        .query("teacher_profiles")
+        .withIndex("by_accountId", (query) => query.eq("accountId", accountId))
+        .unique();
+    }),
+  );
+  if (profiles.some((profile) => !profile || profile.organizationId !== organizationId))
+    return false;
 
-  const summaries = await ctx.db.query('teacher_attention_summaries')
-    .withIndex('by_organizationId', (query) => query.eq('organizationId', organizationId))
+  const summaries = await ctx.db
+    .query("teacher_attention_summaries")
+    .withIndex("by_organizationId", (query) => query.eq("organizationId", organizationId))
     .take(scenario.teachers.length + 1);
   if (summaries.length !== scenario.teachers.length) return false;
   const summaryTeacherIds = new Set(summaries.map((summary) => String(summary.teacherProfileId)));
-  if (profiles.some((profile) => !profile || !summaryTeacherIds.has(String(profile._id)))) return false;
+  if (profiles.some((profile) => !profile || !summaryTeacherIds.has(String(profile._id))))
+    return false;
 
-  const requiredFormalData = scenario.teachers.map((teacher, index) => {
-    const observation = teacher.observations.find((candidate) => (
-      candidate.observationType === 'formal_q4'
-      && candidate.componentRatings?.length === DANIELSON_COMPONENT_IDS.length
-    ));
-    return { observation, profile: profiles[index] };
-  }).filter((value): value is {
-    observation: NonNullable<typeof value.observation>;
-    profile: NonNullable<typeof value.profile>;
-  } => value.observation !== undefined && value.profile !== null);
+  const requiredFormalData = scenario.teachers
+    .map((teacher, index) => {
+      const observation = teacher.observations.find(
+        (candidate) =>
+          candidate.observationType === "formal_q4" &&
+          candidate.componentRatings?.length === DANIELSON_COMPONENT_IDS.length,
+      );
+      return { observation, profile: profiles[index] };
+    })
+    .filter(
+      (
+        value,
+      ): value is {
+        observation: NonNullable<typeof value.observation>;
+        profile: NonNullable<typeof value.profile>;
+      } => value.observation !== undefined && value.profile !== null,
+    );
   if (requiredFormalData.length === 0) return false;
 
-  const formalRows = await Promise.all(requiredFormalData.map(({ observation, profile }) => (
-    ctx.db.query('observation_records')
-      .withIndex('by_org_teacher_type_year_status', (query) => query
-        .eq('organizationId', organizationId)
-        .eq('teacherProfileId', profile._id)
-        .eq('observationType', 'formal_q4')
-        .eq('schoolYear', observation.schoolYear)
-        .eq('status', 'submitted'))
-      .unique()
-  )));
+  const formalRows = await Promise.all(
+    requiredFormalData.map(({ observation, profile }) =>
+      ctx.db
+        .query("observation_records")
+        .withIndex("by_org_teacher_type_year_status", (query) =>
+          query
+            .eq("organizationId", organizationId)
+            .eq("teacherProfileId", profile._id)
+            .eq("observationType", "formal_q4")
+            .eq("schoolYear", observation.schoolYear)
+            .eq("status", "submitted"),
+        )
+        .unique(),
+    ),
+  );
   return formalRows.every((row) => {
     if (!row || row.items.length < DANIELSON_COMPONENT_IDS.length) return false;
-    const ratedComponents = new Set(row.items.flatMap((item) => (
-      item.outcome?.kind === 'rated' ? [item.componentId] : []
-    )));
-    return DANIELSON_COMPONENT_IDS.every((componentId) => (
-      ratedComponents.has(`danielson.framework.component.${componentId}`)
-    ));
+    const ratedComponents = new Set(
+      row.items.flatMap((item) => (item.outcome?.kind === "rated" ? [item.componentId] : [])),
+    );
+    return DANIELSON_COMPONENT_IDS.every((componentId) =>
+      ratedComponents.has(`danielson.framework.component.${componentId}`),
+    );
   });
 }
 
@@ -315,47 +353,74 @@ export const seedLocalDemo = internalMutation({
   },
   returns: resultValidator,
   handler: async (ctx, args) => {
-    if (!Number.isFinite(args.referenceTime)) return { kind: 'conflict' as const, reason: 'invalid_reference_time' };
+    if (!Number.isFinite(args.referenceTime))
+      return { kind: "conflict" as const, reason: "invalid_reference_time" };
     const scenario = buildDemoScenario(args.referenceTime);
-    if (args.organizationSlug !== scenario.organization.slug || args.organizationName !== scenario.organization.name) {
-      return { kind: 'conflict' as const, reason: 'invalid_demo_identity' };
+    if (
+      args.organizationSlug !== scenario.organization.slug ||
+      args.organizationName !== scenario.organization.name
+    ) {
+      return { kind: "conflict" as const, reason: "invalid_demo_identity" };
     }
-    const byUsername = new Map(args.credentials.map((credential) => [credential.username, credential]));
+    const byUsername = new Map(
+      args.credentials.map((credential) => [credential.username, credential]),
+    );
     if (scenario.accounts.some((account) => !byUsername.has(account.username))) {
-      return { kind: 'conflict' as const, reason: 'missing_demo_credential' };
+      return { kind: "conflict" as const, reason: "missing_demo_credential" };
     }
-    const organization = await ctx.db.query('organizations')
-      .withIndex('by_slug', (query) => query.eq('slug', args.organizationSlug))
+    const organization = await ctx.db
+      .query("organizations")
+      .withIndex("by_slug", (query) => query.eq("slug", args.organizationSlug))
       .unique();
     if (organization) {
-      const accounts = await Promise.all(scenario.accounts.map((account) => ctx.db.query('accounts')
-        .withIndex('by_username', (query) => query.eq('username', account.username))
-        .unique()));
-      const identityMatches = organization.name === args.organizationName
-        && accounts.every((account) => account?.organizationId === organization._id);
-      const brandingMatches = organization.branding?.displayName === scenario.organization.branding.displayName
-        && organization.branding?.logoPath === scenario.organization.branding.logoPath
-        && organization.branding?.primaryColor === scenario.organization.branding.primaryColor
-        && organization.branding?.accentColor === scenario.organization.branding.accentColor;
-      if (identityMatches && (!brandingMatches || !(await hasCorrectedDemoData(ctx, organization._id, scenario, accounts)))) {
-        return { kind: 'conflict' as const, reason: 'demo_reset_required' };
+      const accounts = await Promise.all(
+        scenario.accounts.map((account) =>
+          ctx.db
+            .query("accounts")
+            .withIndex("by_username", (query) => query.eq("username", account.username))
+            .unique(),
+        ),
+      );
+      const identityMatches =
+        organization.name === args.organizationName &&
+        accounts.every((account) => account?.organizationId === organization._id);
+      const brandingMatches =
+        organization.branding?.displayName === scenario.organization.branding.displayName &&
+        organization.branding?.logoPath === scenario.organization.branding.logoPath &&
+        organization.branding?.primaryColor === scenario.organization.branding.primaryColor &&
+        organization.branding?.accentColor === scenario.organization.branding.accentColor;
+      if (
+        identityMatches &&
+        (!brandingMatches ||
+          !(await hasCorrectedDemoData(ctx, organization._id, scenario, accounts)))
+      ) {
+        return { kind: "conflict" as const, reason: "demo_reset_required" };
       }
       return identityMatches
-        ? { kind: 'already_seeded' as const, organizationId: organization._id, usernames: [...scenario.accounts.map((account) => account.username)] }
-        : { kind: 'conflict' as const, reason: 'organization_identity_conflict' };
+        ? {
+            kind: "already_seeded" as const,
+            organizationId: organization._id,
+            usernames: [...scenario.accounts.map((account) => account.username)],
+          }
+        : { kind: "conflict" as const, reason: "organization_identity_conflict" };
     }
-    if ((await ctx.db.query('organizations').take(1)).length > 0) {
-      return { kind: 'conflict' as const, reason: 'unrelated_organization_exists' };
+    if ((await ctx.db.query("organizations").take(1)).length > 0) {
+      return { kind: "conflict" as const, reason: "unrelated_organization_exists" };
     }
-    const collidingAccount = await Promise.all(scenario.accounts.map((account) => ctx.db.query('accounts')
-      .withIndex('by_username', (query) => query.eq('username', account.username))
-      .unique()));
+    const collidingAccount = await Promise.all(
+      scenario.accounts.map((account) =>
+        ctx.db
+          .query("accounts")
+          .withIndex("by_username", (query) => query.eq("username", account.username))
+          .unique(),
+      ),
+    );
     if (collidingAccount.some((account) => account !== null)) {
-      return { kind: 'conflict' as const, reason: 'demo_username_exists' };
+      return { kind: "conflict" as const, reason: "demo_username_exists" };
     }
 
     const now = args.referenceTime;
-    const createdOrganizationId = await ctx.db.insert('organizations', {
+    const createdOrganizationId = await ctx.db.insert("organizations", {
       slug: scenario.organization.slug,
       name: scenario.organization.name,
       branding: scenario.organization.branding,
@@ -363,9 +428,9 @@ export const seedLocalDemo = internalMutation({
       createdAt: now,
       updatedAt: now,
     });
-    const accountIds = new Map<string, Id<'accounts'>>();
+    const accountIds = new Map<string, Id<"accounts">>();
     for (const account of scenario.accounts) {
-      const accountId = await ctx.db.insert('accounts', {
+      const accountId = await ctx.db.insert("accounts", {
         organizationId: createdOrganizationId,
         username: account.username,
         displayName: account.displayName,
@@ -376,8 +441,8 @@ export const seedLocalDemo = internalMutation({
       });
       accountIds.set(account.username, accountId);
       const credential = byUsername.get(account.username);
-      if (!credential) throw new Error('demo_credential_missing_after_validation');
-      await ctx.db.insert('auth_credentials', {
+      if (!credential) throw new Error("demo_credential_missing_after_validation");
+      await ctx.db.insert("auth_credentials", {
         accountId,
         username: account.username,
         passwordHash: credential.passwordHash,
@@ -389,26 +454,26 @@ export const seedLocalDemo = internalMutation({
         updatedAt: now,
       });
     }
-    const systemAdminId = accountIds.get('demo.sysadmin');
-    const sltId = accountIds.get('demo.slt');
-    if (!systemAdminId || !sltId) throw new Error('demo_admin_accounts_missing');
+    const systemAdminId = accountIds.get("demo.sysadmin");
+    const sltId = accountIds.get("demo.slt");
+    if (!systemAdminId || !sltId) throw new Error("demo_admin_accounts_missing");
     for (const account of scenario.accounts) {
       const accountId = accountIds.get(account.username);
-      if (!accountId) throw new Error('demo_account_missing');
+      if (!accountId) throw new Error("demo_account_missing");
       for (const role of account.roles) {
-        await ctx.db.insert('role_assignments', {
+        await ctx.db.insert("role_assignments", {
           organizationId: createdOrganizationId,
           accountId,
           role,
-          status: 'active',
+          status: "active",
           createdByAccountId: systemAdminId,
           createdAt: now,
         });
       }
     }
-    const departmentIds = new Map<string, Id<'departments'>>();
+    const departmentIds = new Map<string, Id<"departments">>();
     for (const department of scenario.departments) {
-      const departmentId = await ctx.db.insert('departments', {
+      const departmentId = await ctx.db.insert("departments", {
         organizationId: createdOrganizationId,
         key: department.key,
         name: department.name,
@@ -418,11 +483,11 @@ export const seedLocalDemo = internalMutation({
       });
       departmentIds.set(department.key, departmentId);
     }
-    const teacherProfileIds = new Map<string, Id<'teacher_profiles'>>();
+    const teacherProfileIds = new Map<string, Id<"teacher_profiles">>();
     for (const teacher of scenario.teachers) {
       const accountId = accountIds.get(teacher.username);
-      if (!accountId) throw new Error('demo_teacher_account_missing');
-      const profileId = await ctx.db.insert('teacher_profiles', {
+      if (!accountId) throw new Error("demo_teacher_account_missing");
+      const profileId = await ctx.db.insert("teacher_profiles", {
         organizationId: createdOrganizationId,
         accountId,
         position: teacher.position,
@@ -436,46 +501,46 @@ export const seedLocalDemo = internalMutation({
     for (const membership of scenario.departmentMemberships) {
       const departmentId = departmentIds.get(membership.departmentKey);
       const teacherProfileId = teacherProfileIds.get(membership.teacherUsername);
-      if (!departmentId || !teacherProfileId) throw new Error('demo_membership_target_missing');
-      await ctx.db.insert('department_memberships', {
+      if (!departmentId || !teacherProfileId) throw new Error("demo_membership_target_missing");
+      await ctx.db.insert("department_memberships", {
         organizationId: createdOrganizationId,
         departmentId,
         teacherProfileId,
-        status: 'active',
+        status: "active",
         createdByAccountId: systemAdminId,
         createdAt: now,
       });
     }
     const hodDepartmentId = departmentIds.get(scenario.hodAssignment.departmentKey);
     const hodAccountId = accountIds.get(scenario.hodAssignment.accountUsername);
-    if (!hodDepartmentId || !hodAccountId) throw new Error('demo_hod_target_missing');
-    await ctx.db.insert('hod_assignments', {
+    if (!hodDepartmentId || !hodAccountId) throw new Error("demo_hod_target_missing");
+    await ctx.db.insert("hod_assignments", {
       organizationId: createdOrganizationId,
       accountId: hodAccountId,
       departmentId: hodDepartmentId,
-      status: 'active',
+      status: "active",
       createdByAccountId: systemAdminId,
       createdAt: now,
     });
     for (const assignment of scenario.coachAssignments) {
       const accountId = accountIds.get(assignment.accountUsername);
       const teacherProfileId = teacherProfileIds.get(assignment.teacherUsername);
-      if (!accountId || !teacherProfileId) throw new Error('demo_coach_target_missing');
-      await ctx.db.insert('coach_assignments', {
+      if (!accountId || !teacherProfileId) throw new Error("demo_coach_target_missing");
+      await ctx.db.insert("coach_assignments", {
         organizationId: createdOrganizationId,
         accountId,
         teacherProfileId,
-        status: 'active',
+        status: "active",
         createdByAccountId: systemAdminId,
         createdAt: now,
       });
     }
 
     const graph = buildDanielsonGraph().graph;
-    const observationIds = new Map<string, Id<'observation_records'>>();
+    const observationIds = new Map<string, Id<"observation_records">>();
     for (const teacher of scenario.teachers) {
       const profileId = teacherProfileIds.get(teacher.username);
-      if (!profileId) throw new Error('demo_teacher_profile_missing');
+      if (!profileId) throw new Error("demo_teacher_profile_missing");
       for (const observation of teacher.observations) {
         const observationId = await writeObservation(
           ctx,
@@ -493,19 +558,25 @@ export const seedLocalDemo = internalMutation({
     const assignmentSource = scenario.teachers.find((teacher) => teacher.gbf !== null);
     if (assignmentSource?.gbf) {
       const profileId = teacherProfileIds.get(assignmentSource.username);
-      if (!profileId) throw new Error('demo_gbf_teacher_missing');
+      if (!profileId) throw new Error("demo_gbf_teacher_missing");
       const assignment = createCurrentGbfAssignment({
-        assignmentId: 'pending',
+        assignmentId: "pending",
         organizationId: String(createdOrganizationId),
         teacherProfileId: String(profileId),
         assignedByAccountId: String(sltId),
         assignedAt: now,
       });
-      const assignmentId = await ctx.db.insert('teacher_gbf_assignments', {
+      const assignmentId = await ctx.db.insert("teacher_gbf_assignments", {
         organizationId: createdOrganizationId,
         teacherProfileId: profileId,
-        assignedSkillIds: assignmentSource.gbf.assignedSkillIds.length > 0 ? assignmentSource.gbf.assignedSkillIds : assignment.assignedSkillIds,
-        unsequencedGapSkillIds: assignmentSource.gbf.unresolvedGapSkillIds.length > 0 ? assignmentSource.gbf.unresolvedGapSkillIds : assignment.unresolvedGapSkillIds,
+        assignedSkillIds:
+          assignmentSource.gbf.assignedSkillIds.length > 0
+            ? assignmentSource.gbf.assignedSkillIds
+            : assignment.assignedSkillIds,
+        unsequencedGapSkillIds:
+          assignmentSource.gbf.unresolvedGapSkillIds.length > 0
+            ? assignmentSource.gbf.unresolvedGapSkillIds
+            : assignment.unresolvedGapSkillIds,
         actorAccountId: sltId,
         assignedAt: now,
       });
@@ -514,36 +585,47 @@ export const seedLocalDemo = internalMutation({
     for (const teacher of scenario.teachers) {
       const profileId = teacherProfileIds.get(teacher.username);
       const departmentId = departmentIds.get(teacher.departmentKeys[0]);
-      if (!profileId || !departmentId) throw new Error('demo_pip_target_missing');
-      await writePip(ctx, createdOrganizationId, teacher, profileId, departmentId, sltId, now, graph);
+      if (!profileId || !departmentId) throw new Error("demo_pip_target_missing");
+      await writePip(
+        ctx,
+        createdOrganizationId,
+        teacher,
+        profileId,
+        departmentId,
+        sltId,
+        now,
+        graph,
+      );
       for (const content of teacher.publicComments) {
-        const observationId = observationIds.get(teacher.observations.at(-1)?.id ?? '');
-        if (observationId) await ctx.db.insert('observation_public_comments', {
-          organizationId: createdOrganizationId,
-          observationId,
-          teacherProfileId: profileId,
-          authorAccountId: sltId,
-          content,
-          createdAt: now,
-        });
+        const observationId = observationIds.get(teacher.observations.at(-1)?.id ?? "");
+        if (observationId)
+          await ctx.db.insert("observation_public_comments", {
+            organizationId: createdOrganizationId,
+            observationId,
+            teacherProfileId: profileId,
+            authorAccountId: sltId,
+            content,
+            createdAt: now,
+          });
       }
       for (const content of teacher.privateComments) {
-        const observationId = observationIds.get(teacher.observations.at(-1)?.id ?? '');
-        if (observationId) await ctx.db.insert('observation_private_comments', {
-          organizationId: createdOrganizationId,
-          observationId,
-          teacherProfileId: profileId,
-          authorAccountId: sltId,
-          content,
-          createdAt: now,
-        });
+        const observationId = observationIds.get(teacher.observations.at(-1)?.id ?? "");
+        if (observationId)
+          await ctx.db.insert("observation_private_comments", {
+            organizationId: createdOrganizationId,
+            observationId,
+            teacherProfileId: profileId,
+            authorAccountId: sltId,
+            content,
+            createdAt: now,
+          });
       }
       for (const content of teacher.responses) {
-        const observationId = observationIds.get(teacher.observations.at(-1)?.id ?? '');
+        const observationId = observationIds.get(teacher.observations.at(-1)?.id ?? "");
         if (observationId) {
           const accountId = accountIds.get(teacher.username);
-          if (!accountId) throw new Error('demo_response_author_missing');
-          await ctx.db.insert('teacher_observation_responses', {
+          if (!accountId) throw new Error("demo_response_author_missing");
+          await ctx.db.insert("teacher_observation_responses", {
             organizationId: createdOrganizationId,
             observationId,
             teacherProfileId: profileId,
@@ -556,11 +638,11 @@ export const seedLocalDemo = internalMutation({
     }
     for (const teacher of scenario.teachers) {
       const profileId = teacherProfileIds.get(teacher.username);
-      if (!profileId) throw new Error('demo_teacher_profile_missing_for_summary');
+      if (!profileId) throw new Error("demo_teacher_profile_missing_for_summary");
       await refreshAttentionSummary(ctx, createdOrganizationId, profileId, now);
     }
     return {
-      kind: 'created' as const,
+      kind: "created" as const,
       organizationId: createdOrganizationId,
       usernames: scenario.accounts.map((account) => account.username),
     };

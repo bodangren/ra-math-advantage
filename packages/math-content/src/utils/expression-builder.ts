@@ -17,7 +17,7 @@
  * piecewise named-coefficient formats.
  */
 
-const FORBIDDEN_VARIABLE_DEFAULT = 'x';
+const FORBIDDEN_VARIABLE_DEFAULT = "x";
 
 /**
  * Format a linear term `a*x + b` as a display string with no forbidden
@@ -34,7 +34,7 @@ export function formatLinearTerm(
   variable: string = FORBIDDEN_VARIABLE_DEFAULT,
 ): string {
   const xPart = formatX(a, variable);
-  if (xPart === null && b === 0) return '0';
+  if (xPart === null && b === 0) return "0";
   if (xPart === null) return String(b);
   if (b === 0) return xPart;
   return `${xPart} ${signSeparator(b)} ${Math.abs(b)}`;
@@ -80,10 +80,7 @@ function formatX(coeff: number, variable: string): string | null {
  * Render an "N*x^2" term with the 1/-1 collapse rule. Returns `null`
  * when the coefficient is 0.
  */
-function formatXSquared(
-  coeff: number,
-  variable: string,
-): string | null {
+function formatXSquared(coeff: number, variable: string): string | null {
   if (coeff === 0) return null;
   if (coeff === 1) return `${variable}^2`;
   if (coeff === -1) return `-${variable}^2`;
@@ -94,8 +91,8 @@ function formatXSquared(
  * Build "x" or "+ x" depending on sign so `formatLinearTerm` can join
  * pieces with consistent separators.
  */
-function signSeparator(n: number): '+' | '-' {
-  return n < 0 ? '-' : '+';
+function signSeparator(n: number): "+" | "-" {
+  return n < 0 ? "-" : "+";
 }
 
 /**
@@ -105,11 +102,11 @@ function signSeparator(n: number): '+' | '-' {
  * any mix of negative/positive subterms joins cleanly.
  */
 function joinSignedParts(parts: string[]): string {
-  if (parts.length === 0) return '0';
+  if (parts.length === 0) return "0";
   const first = parts[0];
   const tail = parts.slice(1).map((p) => {
-    if (p.startsWith('-')) return ` - ${p.slice(1)}`;
+    if (p.startsWith("-")) return ` - ${p.slice(1)}`;
     return ` + ${p}`;
   });
-  return first + tail.join('');
+  return first + tail.join("");
 }

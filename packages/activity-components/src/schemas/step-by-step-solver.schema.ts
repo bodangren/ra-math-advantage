@@ -1,14 +1,14 @@
-import { z } from 'zod';
-import type { PracticeSubmissionPart } from '@math-platform/practice-core/submission-schema';
+import { z } from "zod";
+import type { PracticeSubmissionPart } from "@math-platform/practice-core/submission-schema";
 
 const PROBLEM_TYPES = [
-  'quadratic_formula',
-  'factoring',
-  'completing_the_square',
-  'square_root_property',
-  'graphing',
-  'rate_of_change',
-  'expression',
+  "quadratic_formula",
+  "factoring",
+  "completing_the_square",
+  "square_root_property",
+  "graphing",
+  "rate_of_change",
+  "expression",
 ] as const;
 
 const stepSchema = z.object({
@@ -32,7 +32,7 @@ export type ProblemType = (typeof PROBLEM_TYPES)[number];
 
 export interface AlgebraicSubmissionInput {
   activityId: string;
-  mode: 'teaching' | 'guided' | 'practice';
+  mode: "teaching" | "guided" | "practice";
   steps: Array<{
     stepIndex: number;
     userAnswer: string | null;
@@ -50,15 +50,7 @@ export interface AlgebraicSubmissionInput {
  * @returns {{ contractVersion: "practice.v1"; activityId: string; mode: string; status: "submitted"; attemptNumber: number; submittedAt: string; answers: Record<string, unknown>; parts: { partId: string; rawAnswer: unknown; normalizedAnswer?: string | undefined; isCorrect?: boolean | undefined; score?: number | undefined; maxScore?: number | undefined; misconceptionTags?: string[] | undefined; hintsUsed?: number | undefined; revealStepsSeen?: number | undefined; changedCount?: number | undefined; firstInteractionAt?: string | undefined; answeredAt?: string | undefined; wallClockMs?: number | undefined; activeMs?: number | undefined; }[]; artifact: { problemType: "quadratic_formula" | "factoring" | "completing_the_square" | "square_root_property" | "graphing"; equation: string; steps: { stepIndex: number; userAnswer: string | null; isCorrect: boolean; }[]; hintsUsed: number; }; interactionHistory: { type: string; timestamp: number; data?: unknown; }[]; isCorrect: boolean; }} Practice.v1 formatted submission object
  */
 export function buildAlgebraicSubmission(input: AlgebraicSubmissionInput) {
-  const {
-    activityId,
-    mode,
-    steps,
-    hintsUsed,
-    interactionHistory,
-    problemType,
-    equation,
-  } = input;
+  const { activityId, mode, steps, hintsUsed, interactionHistory, problemType, equation } = input;
 
   const parts: PracticeSubmissionPart[] = steps.map((step) => ({
     partId: `step_${step.stepIndex}`,
@@ -76,10 +68,11 @@ export function buildAlgebraicSubmission(input: AlgebraicSubmissionInput) {
   const isFinalCorrect = steps.every((step) => step.isCorrect);
 
   return {
-    contractVersion: 'practice.v1' as const,
+    contractVersion: "practice.v1" as const,
     activityId,
-    mode: mode === 'practice' ? 'independent_practice' : mode === 'guided' ? 'guided_practice' : mode,
-    status: 'submitted' as const,
+    mode:
+      mode === "practice" ? "independent_practice" : mode === "guided" ? "guided_practice" : mode,
+    status: "submitted" as const,
     attemptNumber: 1,
     submittedAt: new Date().toISOString(),
     answers,
@@ -101,6 +94,10 @@ export function buildAlgebraicSubmission(input: AlgebraicSubmissionInput) {
 
 /** Normalizes notation without deleting meaningful arithmetic operators. */
 export function normalizeSolverAnswer(value: string): string {
-  return value.toLowerCase().split(/\s+or\s+/)
-    .map((part) => part.replace(/\s+/g, '').replace(/−/g, '-')).sort().join('or');
+  return value
+    .toLowerCase()
+    .split(/\s+or\s+/)
+    .map((part) => part.replace(/\s+/g, "").replace(/−/g, "-"))
+    .sort()
+    .join("or");
 }

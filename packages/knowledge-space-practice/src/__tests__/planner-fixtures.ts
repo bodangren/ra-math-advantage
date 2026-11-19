@@ -28,7 +28,7 @@ import type {
   PlannerNodeView,
   PlannerEdgeView,
   PlannerMisconceptionLink,
-} from '../planner/types';
+} from "../planner/types";
 
 // ---------------------------------------------------------------------------
 // Node / edge / link factories
@@ -46,9 +46,9 @@ export function makePlannerNode(
 ): PlannerNodeView {
   return {
     id,
-    kind: 'skill',
+    kind: "skill",
     title: id,
-    domain: 'math.test.planner',
+    domain: "math.test.planner",
     ...overrides,
   };
 }
@@ -58,14 +58,10 @@ export function makePlannerNode(
  * `PlannerEdgeView` shape. Mirrors the `prereqEdge` factory in
  * `placement-fixtures.ts` but emits the planner-edge subset.
  */
-export function makePrereqEdge(
-  sourceId: string,
-  targetId: string,
-  weight = 1,
-): PlannerEdgeView {
+export function makePrereqEdge(sourceId: string, targetId: string, weight = 1): PlannerEdgeView {
   return {
     id: `${sourceId}->${targetId}`,
-    type: 'prerequisite_for',
+    type: "prerequisite_for",
     sourceId,
     targetId,
     weight,
@@ -99,8 +95,8 @@ export function makeNonPrereqEdge(
  */
 export function makeMisconceptionLink(
   skillId: string,
-  severity: 'minor' | 'severe' = 'minor',
-  misconceptionId = 'm.test',
+  severity: "minor" | "severe" = "minor",
+  misconceptionId = "m.test",
 ): PlannerMisconceptionLink {
   return { skillId, misconceptionId, severity };
 }
@@ -127,7 +123,7 @@ export interface MakeChainOptions {
 export function makePlannerChain(opts: MakeChainOptions = {}): PlannerInput {
   const length = opts.length ?? 5;
   if (length < 1) {
-    throw new Error('makePlannerChain requires length >= 1');
+    throw new Error("makePlannerChain requires length >= 1");
   }
   const nodes: PlannerNodeView[] = [];
   const edges: PlannerEdgeView[] = [];
@@ -163,13 +159,11 @@ export interface MakeTreeOptions {
 export function makePlannerTree(opts: MakeTreeOptions): PlannerInput {
   const { depth, branching = 2, goalIds = [], readiness = {} } = opts;
   if (depth < 1) {
-    throw new Error('makePlannerTree requires depth >= 1');
+    throw new Error("makePlannerTree requires depth >= 1");
   }
-  const nodes: PlannerNodeView[] = [makePlannerNode('tree.root')];
+  const nodes: PlannerNodeView[] = [makePlannerNode("tree.root")];
   const edges: PlannerEdgeView[] = [];
-  const queue: { id: string; level: number }[] = [
-    { id: 'tree.root', level: 1 },
-  ];
+  const queue: { id: string; level: number }[] = [{ id: "tree.root", level: 1 }];
   let counter = 0;
   while (queue.length > 0) {
     const { id, level } = queue.shift()!;
@@ -206,15 +200,11 @@ export interface MakeCyclicOptions {
  */
 export function makePlannerCyclic(opts: MakeCyclicOptions = {}): PlannerInput {
   return {
-    nodes: [
-      makePlannerNode('cyc.a'),
-      makePlannerNode('cyc.b'),
-      makePlannerNode('cyc.c'),
-    ],
+    nodes: [makePlannerNode("cyc.a"), makePlannerNode("cyc.b"), makePlannerNode("cyc.c")],
     edges: [
-      makePrereqEdge('cyc.a', 'cyc.b'),
-      makePrereqEdge('cyc.b', 'cyc.c'),
-      makePrereqEdge('cyc.c', 'cyc.a'),
+      makePrereqEdge("cyc.a", "cyc.b"),
+      makePrereqEdge("cyc.b", "cyc.c"),
+      makePrereqEdge("cyc.c", "cyc.a"),
     ],
     readinessByNode: opts.readiness ?? {},
     goalNodeIds: [...(opts.goalIds ?? [])],
@@ -235,21 +225,19 @@ export interface MakeDisconnectedOptions {
  * Used to assert `goalProximity` = 0 for unreachable nodes and
  * `unlockValue` accounting is per-connected-component.
  */
-export function makePlannerDisconnected(
-  opts: MakeDisconnectedOptions = {},
-): PlannerInput {
+export function makePlannerDisconnected(opts: MakeDisconnectedOptions = {}): PlannerInput {
   return {
     nodes: [
-      makePlannerNode('disc.a1'),
-      makePlannerNode('disc.a2'),
-      makePlannerNode('disc.a3'),
-      makePlannerNode('disc.b1'),
-      makePlannerNode('disc.b2'),
+      makePlannerNode("disc.a1"),
+      makePlannerNode("disc.a2"),
+      makePlannerNode("disc.a3"),
+      makePlannerNode("disc.b1"),
+      makePlannerNode("disc.b2"),
     ],
     edges: [
-      makePrereqEdge('disc.a1', 'disc.a2'),
-      makePrereqEdge('disc.a2', 'disc.a3'),
-      makePrereqEdge('disc.b1', 'disc.b2'),
+      makePrereqEdge("disc.a1", "disc.a2"),
+      makePrereqEdge("disc.a2", "disc.a3"),
+      makePrereqEdge("disc.b1", "disc.b2"),
     ],
     readinessByNode: opts.readiness ?? {},
     goalNodeIds: [...(opts.goalIds ?? [])],

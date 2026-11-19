@@ -1,72 +1,107 @@
 #!/usr/bin/env node
 // @ts-check
 
-import { spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { spawnSync } from "node:child_process";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 export const SCALE_HOT_PATHS = [
-  'daily-practice',
-  'gradebook',
-  'heatmap',
-  'proficiency',
-  'curriculum-summaries',
+  "daily-practice",
+  "gradebook",
+  "heatmap",
+  "proficiency",
+  "curriculum-summaries",
 ];
 
 const DRIVER_FUNCTIONS = {
-  'daily-practice': 'queue/getDailyPracticeQueueHandler',
-  gradebook: 'lib/teacher/gradebook-export:exportGradebook',
-  heatmap: 'lib/teacher/competency-heatmap:buildCompetencyHeatmap',
-  proficiency: 'convex/objectiveProficiency:getObjectiveProficiencyHandler',
-  'curriculum-summaries': 'lib/scale/curriculum-summary:summarizeCurriculum',
+  "daily-practice": "queue/getDailyPracticeQueueHandler",
+  gradebook: "lib/teacher/gradebook-export:exportGradebook",
+  heatmap: "lib/teacher/competency-heatmap:buildCompetencyHeatmap",
+  proficiency: "convex/objectiveProficiency:getObjectiveProficiencyHandler",
+  "curriculum-summaries": "lib/scale/curriculum-summary:summarizeCurriculum",
 };
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
-const APP_ROOT = resolve(SCRIPT_DIR, '../..');
+const APP_ROOT = resolve(SCRIPT_DIR, "../..");
 
 const BASELINE_BUDGET_LIMITS = {
-  'daily-practice': { maxDocsRead: 50_000, maxBytesRead: 100_000_000, maxFnTimeMs: 5_000, maxOccConflicts: 5 },
-  gradebook: { maxDocsRead: 50_000, maxBytesRead: 100_000_000, maxFnTimeMs: 5_000, maxOccConflicts: 5 },
-  heatmap: { maxDocsRead: 50_000, maxBytesRead: 100_000_000, maxFnTimeMs: 5_000, maxOccConflicts: 5 },
-  proficiency: { maxDocsRead: 50_000, maxBytesRead: 100_000_000, maxFnTimeMs: 5_000, maxOccConflicts: 5 },
-  'curriculum-summaries': { maxDocsRead: 50_000, maxBytesRead: 100_000_000, maxFnTimeMs: 5_000, maxOccConflicts: 5 },
+  "daily-practice": {
+    maxDocsRead: 50_000,
+    maxBytesRead: 100_000_000,
+    maxFnTimeMs: 5_000,
+    maxOccConflicts: 5,
+  },
+  gradebook: {
+    maxDocsRead: 50_000,
+    maxBytesRead: 100_000_000,
+    maxFnTimeMs: 5_000,
+    maxOccConflicts: 5,
+  },
+  heatmap: {
+    maxDocsRead: 50_000,
+    maxBytesRead: 100_000_000,
+    maxFnTimeMs: 5_000,
+    maxOccConflicts: 5,
+  },
+  proficiency: {
+    maxDocsRead: 50_000,
+    maxBytesRead: 100_000_000,
+    maxFnTimeMs: 5_000,
+    maxOccConflicts: 5,
+  },
+  "curriculum-summaries": {
+    maxDocsRead: 50_000,
+    maxBytesRead: 100_000_000,
+    maxFnTimeMs: 5_000,
+    maxOccConflicts: 5,
+  },
 };
 
 const INFLATED_COST = {
-  'daily-practice': { docsRead: 999_999, bytesRead: 999_999_999, fnTimeMs: 9_999, occConflicts: 50 },
+  "daily-practice": {
+    docsRead: 999_999,
+    bytesRead: 999_999_999,
+    fnTimeMs: 9_999,
+    occConflicts: 50,
+  },
   gradebook: { docsRead: 999_999, bytesRead: 999_999_999, fnTimeMs: 9_999, occConflicts: 50 },
   heatmap: { docsRead: 999_999, bytesRead: 999_999_999, fnTimeMs: 9_999, occConflicts: 50 },
   proficiency: { docsRead: 999_999, bytesRead: 999_999_999, fnTimeMs: 9_999, occConflicts: 50 },
-  'curriculum-summaries': { docsRead: 999_999, bytesRead: 999_999_999, fnTimeMs: 9_999, occConflicts: 50 },
+  "curriculum-summaries": {
+    docsRead: 999_999,
+    bytesRead: 999_999_999,
+    fnTimeMs: 9_999,
+    occConflicts: 50,
+  },
 };
 
 function parseArgs(argv) {
   const options = {
     paths: SCALE_HOT_PATHS,
-    deployment: process.env.IM3_SCALE_URL || '',
+    deployment: process.env.IM3_SCALE_URL || "",
     once: false,
-    out: resolve(APP_ROOT, 'scale-report.json'),
+    out: resolve(APP_ROOT, "scale-report.json"),
     evaluate: false,
     injectRegression: false,
-    baseline: '',
+    baseline: "",
   };
 
   for (const arg of argv) {
-    if (arg === '--once') {
+    if (arg === "--once") {
       options.once = true;
-    } else if (arg === '--evaluate') {
+    } else if (arg === "--evaluate") {
       options.evaluate = true;
-    } else if (arg === '--inject-regression') {
+    } else if (arg === "--inject-regression") {
       options.injectRegression = true;
-    } else if (arg.startsWith('--paths=')) {
-      options.paths = arg.slice('--paths='.length).split(',').filter(Boolean);
-    } else if (arg.startsWith('--deployment=')) {
-      options.deployment = arg.slice('--deployment='.length);
-    } else if (arg.startsWith('--out=')) {
-      options.out = resolve(APP_ROOT, arg.slice('--out='.length));
-    } else if (arg.startsWith('--baseline=')) {
-      options.baseline = arg.slice('--baseline='.length);
+    } else if (arg.startsWith("--paths=")) {
+      options.paths = arg.slice("--paths=".length).split(",").filter(Boolean);
+    } else if (arg.startsWith("--deployment=")) {
+      options.deployment = arg.slice("--deployment=".length);
+    } else if (arg.startsWith("--out=")) {
+      options.out = resolve(APP_ROOT, arg.slice("--out=".length));
+    } else if (arg.startsWith("--baseline=")) {
+      options.baseline = arg.slice("--baseline=".length);
     } else {
       throw new Error(`Unknown argument: ${arg}`);
     }
@@ -77,7 +112,9 @@ function parseArgs(argv) {
 
 function validateOptions(options) {
   if (!options.deployment) {
-    throw new Error('Missing isolated scale deployment. Pass --deployment=$IM3_SCALE_URL or set IM3_SCALE_URL.');
+    throw new Error(
+      "Missing isolated scale deployment. Pass --deployment=$IM3_SCALE_URL or set IM3_SCALE_URL.",
+    );
   }
 
   for (const path of options.paths) {
@@ -90,9 +127,9 @@ function validateOptions(options) {
 function runConvexInsights(path, deployment) {
   const fn = DRIVER_FUNCTIONS[path];
   const result = spawnSync(
-    'npx',
-    ['convex', 'insights', '--deployment', deployment, '--function', fn, '--format', 'json'],
-    { cwd: APP_ROOT, encoding: 'utf8' },
+    "npx",
+    ["convex", "insights", "--deployment", deployment, "--function", fn, "--format", "json"],
+    { cwd: APP_ROOT, encoding: "utf8" },
   );
 
   if (result.status !== 0) {
@@ -104,7 +141,7 @@ function runConvexInsights(path, deployment) {
 
 function parseInsights(json, path) {
   const totals = json?.totals;
-  if (!totals || typeof totals !== 'object') {
+  if (!totals || typeof totals !== "object") {
     throw new Error(`Missing totals object for ${path}`);
   }
 
@@ -148,10 +185,10 @@ function evaluateRecord(record, budget) {
   }
   const deltas = [];
   for (const [metric, limitKey] of [
-    ['docsRead', 'maxDocsRead'],
-    ['bytesRead', 'maxBytesRead'],
-    ['fnTimeMs', 'maxFnTimeMs'],
-    ['occConflicts', 'maxOccConflicts'],
+    ["docsRead", "maxDocsRead"],
+    ["bytesRead", "maxBytesRead"],
+    ["fnTimeMs", "maxFnTimeMs"],
+    ["occConflicts", "maxOccConflicts"],
   ]) {
     if (record[metric] > budget[limitKey]) {
       deltas.push({ metric, actual: record[metric], limit: budget[limitKey] });
@@ -165,7 +202,7 @@ function loadBaseline(baselineArg) {
   if (!existsSync(baselinePath)) {
     throw new Error(`Baseline file not found: ${baselinePath}`);
   }
-  const raw = readFileSync(baselinePath, 'utf8');
+  const raw = readFileSync(baselinePath, "utf8");
   const parsed = JSON.parse(raw);
   if (!Array.isArray(parsed.paths)) {
     throw new Error('Baseline file must contain a "paths" array');
@@ -209,14 +246,14 @@ function runEvaluation(report, options) {
 function formatFailure(result) {
   const failing = result.perPath.filter((entry) => !entry.pass);
   const lines = [];
-  lines.push('Scale budget evaluation FAILED — regression detected.');
+  lines.push("Scale budget evaluation FAILED — regression detected.");
   for (const entry of failing) {
     const deltaStr = entry.deltas
       .map((d) => `${d.metric}=${d.actual} (limit ${d.limit})`)
-      .join(', ');
+      .join(", ");
     lines.push(`  ${entry.path}: ${deltaStr}`);
   }
-  return lines.join('\n');
+  return lines.join("\n");
 }
 
 function main() {

@@ -44,26 +44,23 @@
  * the new fields.
  */
 
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { syntheticMathFixture } from '@math-platform/knowledge-space-core';
+import { syntheticMathFixture } from "@math-platform/knowledge-space-core";
 
 import {
   projectStudentVisualization,
   projectTeacherVisualization,
-} from '../projections/visualization';
+} from "../projections/visualization";
 
-import {
-  studentVisualizationV1Schema,
-  teacherVisualizationV1Schema,
-} from '../projections/schemas';
+import { studentVisualizationV1Schema, teacherVisualizationV1Schema } from "../projections/schemas";
 
 const NODES = syntheticMathFixture.nodes;
 const EDGES = syntheticMathFixture.edges;
 
-const LEARNER_STATE: Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'> = {
-  'math.im3.skill.m1.l2.identify-roots': 'mastered',
-  'math.im3.skill.m1.l2.solve-quadratic-by-factoring': 'ready',
+const LEARNER_STATE: Record<string, "mastered" | "ready" | "blocked" | "review_due"> = {
+  "math.im3.skill.m1.l2.identify-roots": "mastered",
+  "math.im3.skill.m1.l2.solve-quadratic-by-factoring": "ready",
 };
 
 type StudentVisualizationWithCount = ReturnType<typeof projectStudentVisualization> & {
@@ -94,97 +91,94 @@ const looseProjectTeacherVisualization = projectTeacherVisualization as unknown 
   options?: TeacherProjectionOptions,
 ) => TeacherVisualizationWithCount;
 
-describe('Student projection — activeMisconceptionCount field (spec FR5)', () => {
-  it('reports the supplied active-misconception slug list length', () => {
+describe("Student projection — activeMisconceptionCount field (spec FR5)", () => {
+  it("reports the supplied active-misconception slug list length", () => {
     const viz = looseProjectStudentVisualization(NODES, EDGES, LEARNER_STATE, {
-      activeMisconceptionSlugs: [
-        'sign-error-in-factored-form',
-        'quadratic-formula-sign-flip',
-      ],
+      activeMisconceptionSlugs: ["sign-error-in-factored-form", "quadratic-formula-sign-flip"],
     });
     expect(viz.activeMisconceptionCount).toBe(2);
   });
 
-  it('reports zero when no active-misconception slugs are supplied', () => {
+  it("reports zero when no active-misconception slugs are supplied", () => {
     const viz = looseProjectStudentVisualization(NODES, EDGES, LEARNER_STATE, {
       activeMisconceptionSlugs: [],
     });
     expect(viz.activeMisconceptionCount).toBe(0);
   });
 
-  it('reports zero when the active-misconception arg is omitted (backward compat)', () => {
+  it("reports zero when the active-misconception arg is omitted (backward compat)", () => {
     const viz = looseProjectStudentVisualization(NODES, EDGES, LEARNER_STATE);
     expect(viz.activeMisconceptionCount).toBe(0);
   });
 
-  it('counts each slug in the supplied list (no implicit dedup)', () => {
+  it("counts each slug in the supplied list (no implicit dedup)", () => {
     const viz = looseProjectStudentVisualization(NODES, EDGES, LEARNER_STATE, {
       activeMisconceptionSlugs: [
-        'sign-error-in-factored-form',
-        'sign-error-in-factored-form',
-        'quadratic-formula-sign-flip',
+        "sign-error-in-factored-form",
+        "sign-error-in-factored-form",
+        "quadratic-formula-sign-flip",
       ],
     });
     expect(viz.activeMisconceptionCount).toBe(3);
   });
 });
 
-describe('Student projection — schema accepts the new field', () => {
-  it('parses an output that carries the new activeMisconceptionCount field', () => {
+describe("Student projection — schema accepts the new field", () => {
+  it("parses an output that carries the new activeMisconceptionCount field", () => {
     const viz = looseProjectStudentVisualization(NODES, EDGES, LEARNER_STATE, {
-      activeMisconceptionSlugs: ['sign-error-in-factored-form'],
+      activeMisconceptionSlugs: ["sign-error-in-factored-form"],
     });
     const result = studentVisualizationV1Schema.safeParse(viz);
     expect(result.success).toBe(true);
   });
 });
 
-describe('Teacher projection — activeMisconceptionStudentCount field (spec FR5)', () => {
+describe("Teacher projection — activeMisconceptionStudentCount field (spec FR5)", () => {
   const CLASS_STATS: Record<string, { mastered: number; total: number }> = {
-    'math.im3.skill.m1.l2.solve-quadratic-by-factoring': { mastered: 12, total: 20 },
-    'math.im3.skill.m1.l2.identify-roots': { mastered: 15, total: 20 },
+    "math.im3.skill.m1.l2.solve-quadratic-by-factoring": { mastered: 12, total: 20 },
+    "math.im3.skill.m1.l2.identify-roots": { mastered: 15, total: 20 },
   };
 
-  it('counts the number of distinct students with at least one active misconception', () => {
+  it("counts the number of distinct students with at least one active misconception", () => {
     const viz = looseProjectTeacherVisualization(NODES, EDGES, CLASS_STATS, {
       perStudentActiveMisconceptions: {
-        'student-a': ['sign-error-in-factored-form'],
-        'student-b': ['quadratic-formula-sign-flip', 'vertex-y-as-solution'],
-        'student-c': [],
-        'student-d': ['inequality-direction-flip'],
+        "student-a": ["sign-error-in-factored-form"],
+        "student-b": ["quadratic-formula-sign-flip", "vertex-y-as-solution"],
+        "student-c": [],
+        "student-d": ["inequality-direction-flip"],
       },
     });
     expect(viz.activeMisconceptionStudentCount).toBe(3);
   });
 
-  it('reports zero when no per-student map is supplied (backward compat)', () => {
+  it("reports zero when no per-student map is supplied (backward compat)", () => {
     const viz = looseProjectTeacherVisualization(NODES, EDGES, CLASS_STATS);
     expect(viz.activeMisconceptionStudentCount).toBe(0);
   });
 
-  it('reports zero when the per-student map is empty', () => {
+  it("reports zero when the per-student map is empty", () => {
     const viz = looseProjectTeacherVisualization(NODES, EDGES, CLASS_STATS, {
       perStudentActiveMisconceptions: {},
     });
     expect(viz.activeMisconceptionStudentCount).toBe(0);
   });
 
-  it('reports zero when every supplied student has an empty slug list', () => {
+  it("reports zero when every supplied student has an empty slug list", () => {
     const viz = looseProjectTeacherVisualization(NODES, EDGES, CLASS_STATS, {
       perStudentActiveMisconceptions: {
-        'student-a': [],
-        'student-b': [],
+        "student-a": [],
+        "student-b": [],
       },
     });
     expect(viz.activeMisconceptionStudentCount).toBe(0);
   });
 });
 
-describe('Teacher projection — schema accepts the new field', () => {
-  it('parses an output that carries the new activeMisconceptionStudentCount field', () => {
+describe("Teacher projection — schema accepts the new field", () => {
+  it("parses an output that carries the new activeMisconceptionStudentCount field", () => {
     const viz = looseProjectTeacherVisualization(NODES, EDGES, undefined, {
       perStudentActiveMisconceptions: {
-        'student-a': ['sign-error-in-factored-form'],
+        "student-a": ["sign-error-in-factored-form"],
       },
     });
     const result = teacherVisualizationV1Schema.safeParse(viz);

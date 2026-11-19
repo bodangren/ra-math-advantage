@@ -1,24 +1,32 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import type { SrsCardState } from '@math-platform/srs-engine';
-import { RestAdapterStub } from '@/lib/srs/__tests__/rest-adapter-stub';
-import { processReview } from '@math-platform/srs-engine';
-import { buildDailyQueue } from '@math-platform/srs-engine';
-import { buildPracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
+import { describe, it, expect, beforeEach, vi } from "vitest";
+import type { SrsCardState } from "@math-platform/srs-engine";
+import { RestAdapterStub } from "@/lib/srs/__tests__/rest-adapter-stub";
+import { processReview } from "@math-platform/srs-engine";
+import { buildDailyQueue } from "@math-platform/srs-engine";
+import { buildPracticeSubmissionEnvelope } from "@math-platform/practice-core/contract";
 
-vi.mock('ts-fsrs', () => {
+vi.mock("ts-fsrs", () => {
   const Rating = { Again: 1, Hard: 2, Good: 3, Easy: 4 } as const;
   const fsrs = vi.fn(() => ({
     next: vi.fn((card, now, rating) => {
       const isAgain = rating === Rating.Again;
       const isEasy = rating === Rating.Easy;
       const isGood = rating === Rating.Good;
-      const newStability = isAgain ? card.stability * 0.5 : isEasy ? card.stability * 2.5 : isGood ? card.stability * 1.5 : card.stability * 1.2;
+      const newStability = isAgain
+        ? card.stability * 0.5
+        : isEasy
+          ? card.stability * 2.5
+          : isGood
+            ? card.stability * 1.5
+            : card.stability * 1.2;
       const newScheduledDays = isAgain ? 1 : isEasy ? 14 : isGood ? 7 : 3;
       return {
         card: {
           ...card,
           stability: newStability,
-          difficulty: isAgain ? Math.min(card.difficulty + 1, 10) : Math.max(card.difficulty - 0.5, 1),
+          difficulty: isAgain
+            ? Math.min(card.difficulty + 1, 10)
+            : Math.max(card.difficulty - 0.5, 1),
           state: isAgain ? 3 : 2,
           reps: card.reps + 1,
           lapses: isAgain ? card.lapses + 1 : card.lapses,
@@ -42,38 +50,38 @@ vi.mock('ts-fsrs', () => {
   return { Rating, fsrs, generatorParameters };
 });
 
-import { createCard, reviewCard, getDueCards } from '@math-platform/srs-engine';
+import { createCard, reviewCard, getDueCards } from "@math-platform/srs-engine";
 
-describe('REST Adapter Integration', () => {
+describe("REST Adapter Integration", () => {
   let adapter: RestAdapterStub;
-  const studentId = 'student-1';
-  const now = '2026-04-16T12:00:00.000Z';
+  const studentId = "student-1";
+  const now = "2026-04-16T12:00:00.000Z";
 
   beforeEach(() => {
     adapter = new RestAdapterStub();
   });
 
-  describe('scheduler produces a valid session using the REST adapter', () => {
-    it('should retrieve due cards from adapter and apply review ratings', async () => {
+  describe("scheduler produces a valid session using the REST adapter", () => {
+    it("should retrieve due cards from adapter and apply review ratings", async () => {
       const pastDueCard = createCard({
         studentId,
-        objectiveId: 'obj-1',
-        variantKey: 'pf-1',
-        now: '2026-04-15T12:00:00.000Z',
+        objectiveId: "obj-1",
+        variantKey: "pf-1",
+        now: "2026-04-15T12:00:00.000Z",
       });
-      pastDueCard.dueDate = '2026-04-15T12:00:00.000Z';
-      pastDueCard.state = 'review';
+      pastDueCard.dueDate = "2026-04-15T12:00:00.000Z";
+      pastDueCard.state = "review";
       pastDueCard.reps = 3;
       pastDueCard.stability = 5;
 
       const futureCard = createCard({
         studentId,
-        objectiveId: 'obj-2',
-        variantKey: 'pf-2',
+        objectiveId: "obj-2",
+        variantKey: "pf-2",
         now,
       });
-      futureCard.dueDate = '2026-04-17T12:00:00.000Z';
-      futureCard.state = 'review';
+      futureCard.dueDate = "2026-04-17T12:00:00.000Z";
+      futureCard.state = "review";
       futureCard.reps = 3;
       futureCard.stability = 5;
 
@@ -84,47 +92,47 @@ describe('REST Adapter Integration', () => {
       expect(dueCards).toHaveLength(1);
       expect(dueCards[0].cardId).toBe(pastDueCard.cardId);
 
-      const updatedCard = reviewCard(dueCards[0], 'Good', now);
+      const updatedCard = reviewCard(dueCards[0], "Good", now);
       await adapter.saveCard(updatedCard);
 
       const stored = await adapter.getCard(pastDueCard.cardId);
       expect(stored).not.toBeNull();
       expect(stored!.reps).toBe(pastDueCard.reps + 1);
-      expect(stored!.state).toBe('review');
+      expect(stored!.state).toBe("review");
     });
 
-    it('should create a new card, save to adapter, and schedule first review', async () => {
+    it("should create a new card, save to adapter, and schedule first review", async () => {
       const newCard = createCard({
         studentId,
-        objectiveId: 'obj-1',
-        variantKey: 'pf-1',
+        objectiveId: "obj-1",
+        variantKey: "pf-1",
         now,
       });
       await adapter.saveCard(newCard);
 
-      const retrieved = await adapter.getCardByStudentAndVariant(studentId, 'pf-1');
+      const retrieved = await adapter.getCardByStudentAndVariant(studentId, "pf-1");
       expect(retrieved).not.toBeNull();
-      expect(retrieved!.state).toBe('new');
+      expect(retrieved!.state).toBe("new");
 
-      const reviewed = reviewCard(retrieved!, 'Good', now);
+      const reviewed = reviewCard(retrieved!, "Good", now);
       await adapter.saveCard(reviewed);
 
       const afterReview = await adapter.getCard(newCard.cardId);
       expect(afterReview!.reps).toBe(1);
-      expect(afterReview!.state).toBe('review');
+      expect(afterReview!.state).toBe("review");
     });
   });
 
-  describe('review processor updates cards through the REST adapter', () => {
-    it('should process a submission review and persist updated card to adapter', async () => {
+  describe("review processor updates cards through the REST adapter", () => {
+    it("should process a submission review and persist updated card to adapter", async () => {
       const card: SrsCardState = {
-        cardId: 'card-1',
+        cardId: "card-1",
         studentId,
-        objectiveId: 'obj-1',
-        variantKey: 'pf-1',
+        objectiveId: "obj-1",
+        variantKey: "pf-1",
         stability: 5,
         difficulty: 4,
-        state: 'review',
+        state: "review",
         dueDate: now,
         elapsedDays: 5,
         scheduledDays: 5,
@@ -137,14 +145,14 @@ describe('REST Adapter Integration', () => {
       await adapter.saveCard(card);
 
       const submission = buildPracticeSubmissionEnvelope({
-        activityId: 'act-1',
-        mode: 'independent_practice',
-        answers: { p1: 'x=2' },
+        activityId: "act-1",
+        mode: "independent_practice",
+        answers: { p1: "x=2" },
         parts: [
           {
-            partId: 'p1',
-            rawAnswer: 'x=2',
-            normalizedAnswer: 'x=2',
+            partId: "p1",
+            rawAnswer: "x=2",
+            normalizedAnswer: "x=2",
             isCorrect: true,
             hintsUsed: 0,
             revealStepsSeen: 0,
@@ -160,7 +168,7 @@ describe('REST Adapter Integration', () => {
           pauseCount: 0,
           focusLossCount: 0,
           visibilityHiddenCount: 0,
-          confidence: 'medium',
+          confidence: "medium",
         },
       });
 
@@ -180,25 +188,25 @@ describe('REST Adapter Integration', () => {
       expect(reviewEvidence.baseRating).toBe(resultEvidence.baseRating);
     });
 
-    it('should load card from adapter, process review, and save back', async () => {
-      const card = createCard({ studentId, objectiveId: 'obj-1', variantKey: 'pf-1', now });
-      card.state = 'review';
+    it("should load card from adapter, process review, and save back", async () => {
+      const card = createCard({ studentId, objectiveId: "obj-1", variantKey: "pf-1", now });
+      card.state = "review";
       card.reps = 2;
       card.stability = 3;
       await adapter.saveCard(card);
 
-      const loaded = await adapter.getCardByStudentAndVariant(studentId, 'pf-1');
+      const loaded = await adapter.getCardByStudentAndVariant(studentId, "pf-1");
       expect(loaded).not.toBeNull();
 
       const submission = buildPracticeSubmissionEnvelope({
-        activityId: 'act-2',
-        mode: 'independent_practice',
-        answers: { p1: '4' },
+        activityId: "act-2",
+        mode: "independent_practice",
+        answers: { p1: "4" },
         parts: [
           {
-            partId: 'p1',
-            rawAnswer: '4',
-            normalizedAnswer: '4',
+            partId: "p1",
+            rawAnswer: "4",
+            normalizedAnswer: "4",
             isCorrect: true,
             hintsUsed: 0,
             revealStepsSeen: 0,
@@ -215,28 +223,28 @@ describe('REST Adapter Integration', () => {
     });
   });
 
-  describe('queue engine builds a practice session end-to-end with the REST adapter', () => {
-    it('should build a daily queue from cards stored in the adapter', async () => {
-      const card1 = createCard({ studentId, objectiveId: 'obj-1', variantKey: 'pf-1', now });
-      card1.dueDate = '2026-04-15T12:00:00.000Z';
-      card1.state = 'review';
+  describe("queue engine builds a practice session end-to-end with the REST adapter", () => {
+    it("should build a daily queue from cards stored in the adapter", async () => {
+      const card1 = createCard({ studentId, objectiveId: "obj-1", variantKey: "pf-1", now });
+      card1.dueDate = "2026-04-15T12:00:00.000Z";
+      card1.state = "review";
       card1.reps = 3;
 
-      const card2 = createCard({ studentId, objectiveId: 'obj-2', variantKey: 'pf-2', now });
-      card2.state = 'new';
+      const card2 = createCard({ studentId, objectiveId: "obj-2", variantKey: "pf-2", now });
+      card2.state = "new";
 
-      const card3 = createCard({ studentId, objectiveId: 'obj-3', variantKey: 'pf-3', now });
-      card3.dueDate = '2026-04-17T12:00:00.000Z';
-      card3.state = 'review';
+      const card3 = createCard({ studentId, objectiveId: "obj-3", variantKey: "pf-3", now });
+      card3.dueDate = "2026-04-17T12:00:00.000Z";
+      card3.state = "review";
       card3.reps = 3;
 
       await adapter.saveCards([card1, card2, card3]);
 
       const allCards = await adapter.getCardsByStudent(studentId);
       const policies = new Map([
-        ['obj-1', { objectiveId: 'obj-1', priority: 'essential' as const }],
-        ['obj-2', { objectiveId: 'obj-2', priority: 'supporting' as const }],
-        ['obj-3', { objectiveId: 'obj-3', priority: 'extension' as const }],
+        ["obj-1", { objectiveId: "obj-1", priority: "essential" as const }],
+        ["obj-2", { objectiveId: "obj-2", priority: "supporting" as const }],
+        ["obj-3", { objectiveId: "obj-3", priority: "extension" as const }],
       ]);
       const config = { newCardsPerDay: 5, maxReviewsPerDay: 20, prioritizeOverdue: true };
 
@@ -245,8 +253,8 @@ describe('REST Adapter Integration', () => {
       expect(queue.length).toBeGreaterThan(0);
       expect(queue.length).toBeLessThanOrEqual(config.maxReviewsPerDay);
 
-      const newItems = queue.filter((item) => item.card.state === 'new');
-      const reviewItems = queue.filter((item) => item.card.state !== 'new');
+      const newItems = queue.filter((item) => item.card.state === "new");
+      const reviewItems = queue.filter((item) => item.card.state !== "new");
 
       expect(newItems).toHaveLength(1);
       expect(newItems[0].card.cardId).toBe(card2.cardId);
@@ -255,17 +263,17 @@ describe('REST Adapter Integration', () => {
       expect(reviewItems[0].card.cardId).toBe(card1.cardId);
     });
 
-    it('should respect newCardsPerDay and maxReviewsPerDay caps', async () => {
+    it("should respect newCardsPerDay and maxReviewsPerDay caps", async () => {
       const cards: SrsCardState[] = [];
       for (let i = 0; i < 10; i++) {
         const card = createCard({ studentId, objectiveId: `obj-${i}`, variantKey: `pf-${i}`, now });
-        card.state = 'new';
+        card.state = "new";
         cards.push(card);
       }
       for (let i = 10; i < 30; i++) {
         const card = createCard({ studentId, objectiveId: `obj-${i}`, variantKey: `pf-${i}`, now });
-        card.dueDate = '2026-04-15T12:00:00.000Z';
-        card.state = 'review';
+        card.dueDate = "2026-04-15T12:00:00.000Z";
+        card.state = "review";
         card.reps = 1;
         cards.push(card);
       }
@@ -273,14 +281,17 @@ describe('REST Adapter Integration', () => {
 
       const allCards = await adapter.getCardsByStudent(studentId);
       const policies = new Map(
-        cards.map((c) => [c.objectiveId, { objectiveId: c.objectiveId, priority: 'essential' as const }])
+        cards.map((c) => [
+          c.objectiveId,
+          { objectiveId: c.objectiveId, priority: "essential" as const },
+        ]),
       );
       const config = { newCardsPerDay: 3, maxReviewsPerDay: 10, prioritizeOverdue: true };
 
       const queue = buildDailyQueue(allCards, policies, config, now);
       expect(queue.length).toBeLessThanOrEqual(config.maxReviewsPerDay);
 
-      const newItems = queue.filter((item) => item.card.state === 'new');
+      const newItems = queue.filter((item) => item.card.state === "new");
       expect(newItems.length).toBeLessThanOrEqual(config.newCardsPerDay);
     });
   });

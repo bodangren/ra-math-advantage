@@ -55,9 +55,7 @@ export const getDashboardData = internalQuery({
       if (!version) continue;
       const phases = await ctx.db
         .query("phase_versions")
-        .withIndex("by_lesson_version", (q) =>
-          q.eq("lessonVersionId", version._id),
-        )
+        .withIndex("by_lesson_version", (q) => q.eq("lessonVersionId", version._id))
         .take(100);
       let completed = 0;
       for (const phase of phases) {
@@ -79,8 +77,6 @@ export const getDashboardData = internalQuery({
         total: phases.length,
       });
     }
-    return result.sort(
-      (a, b) => a.unitNumber - b.unitNumber || a.orderIndex - b.orderIndex,
-    );
+    return result.sort((a, b) => a.unitNumber - b.unitNumber || a.orderIndex - b.orderIndex);
   },
 });

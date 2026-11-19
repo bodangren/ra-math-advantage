@@ -1,20 +1,20 @@
-import { generatorOutputSchema } from '@math-platform/knowledge-space-practice';
-import { describe, expect, it } from 'vitest';
+import { generatorOutputSchema } from "@math-platform/knowledge-space-practice";
+import { describe, expect, it } from "vitest";
 
 import {
   generateTopic15PolynomialInequality,
   generateTopic15PolynomialInequalityOutput,
   getGenerator,
   TOPIC15_POLYNOMIAL_INEQUALITY_SIGN_CHART_NODE_ID,
-} from '../../index';
+} from "../../index";
 
-const GENERATOR_KEY = 'topic15-polynomial-inequality-sign-chart';
-const NODE_ID = 'math.precalc.skill.1.5.solve-polynomial-inequalities-using-sign-charts';
-const OPERATORS = ['<', '<=', '>', '>='] as const;
-const SIGNS = ['+', '-'] as const;
+const GENERATOR_KEY = "topic15-polynomial-inequality-sign-chart";
+const NODE_ID = "math.precalc.skill.1.5.solve-polynomial-inequalities-using-sign-charts";
+const OPERATORS = ["<", "<=", ">", ">="] as const;
+const SIGNS = ["+", "-"] as const;
 type Operator = (typeof OPERATORS)[number];
 type Sign = (typeof SIGNS)[number];
-type Bound = number | '-∞' | '∞';
+type Bound = number | "-∞" | "∞";
 type Interval = {
   left: Bound;
   right: Bound;
@@ -41,57 +41,66 @@ type GeneratedOutput = {
   };
   solutionSteps: Array<{ description: string }>;
   gradingMetadata: {
-    partAnswers: GeneratedOutput['expectedAnswer'];
+    partAnswers: GeneratedOutput["expectedAnswer"];
     partMaxScores: { roots: number; intervalSigns: number; solution: number };
-    partGradingRules: { roots: 'custom'; intervalSigns: 'exact_match'; solution: 'custom' };
+    partGradingRules: { roots: "custom"; intervalSigns: "exact_match"; solution: "custom" };
   };
 };
 
 function serializedKeys(value: unknown): string[] {
   if (Array.isArray(value)) return value.flatMap(serializedKeys);
-  if (!value || typeof value !== 'object') return [];
+  if (!value || typeof value !== "object") return [];
   return Object.entries(value).flatMap(([key, child]) => [key, ...serializedKeys(child)]);
 }
 
 function formatBound(bound: Bound): string {
-  return typeof bound === 'number' ? String(bound) : bound;
+  return typeof bound === "number" ? String(bound) : bound;
 }
 
 function boundValue(bound: Bound): number {
-  if (bound === '-∞') return Number.NEGATIVE_INFINITY;
-  if (bound === '∞') return Number.POSITIVE_INFINITY;
+  if (bound === "-∞") return Number.NEGATIVE_INFINITY;
+  if (bound === "∞") return Number.POSITIVE_INFINITY;
   return bound;
 }
 
 function rebuildCanonicalSolution(roots: number[], signs: Sign[], operator: Operator): string {
-  const keepsPositive = operator === '>' || operator === '>=';
-  const inclusive = operator === '<=' || operator === '>=';
+  const keepsPositive = operator === ">" || operator === ">=";
+  const inclusive = operator === "<=" || operator === ">=";
   const intervals: Interval[] = roots.map((root, index) => ({
-    left: index === 0 ? '-∞' : roots[index - 1],
+    left: index === 0 ? "-∞" : roots[index - 1],
     right: root,
     leftClosed: index > 0 && inclusive,
     rightClosed: inclusive,
   }));
   intervals.push({
-    left: roots[roots.length - 1] ?? '-∞',
-    right: '∞',
+    left: roots[roots.length - 1] ?? "-∞",
+    right: "∞",
     leftClosed: inclusive,
     rightClosed: false,
   });
 
   const selected = intervals.filter((_, index) =>
-    keepsPositive ? signs[index] === '+' : signs[index] === '-');
+    keepsPositive ? signs[index] === "+" : signs[index] === "-",
+  );
   if (inclusive) {
     for (const root of roots) {
       selected.push({ left: root, right: root, leftClosed: true, rightClosed: true });
     }
   }
-  selected.sort((left, right) =>
-    boundValue(left.left) - boundValue(right.left) || boundValue(left.right) - boundValue(right.right));
+  selected.sort(
+    (left, right) =>
+      boundValue(left.left) - boundValue(right.left) ||
+      boundValue(left.right) - boundValue(right.right),
+  );
   const merged: Interval[] = [];
   for (const interval of selected) {
     const previous = merged.at(-1);
-    if (previous && previous.right === interval.left && previous.rightClosed && interval.leftClosed) {
+    if (
+      previous &&
+      previous.right === interval.left &&
+      previous.rightClosed &&
+      interval.leftClosed
+    ) {
       previous.right = interval.right;
       previous.rightClosed = interval.rightClosed;
     } else {
@@ -99,11 +108,13 @@ function rebuildCanonicalSolution(roots: number[], signs: Sign[], operator: Oper
     }
   }
 
-  return merged.map((interval) => {
-    const leftMark = interval.leftClosed ? '[' : '(';
-    const rightMark = interval.rightClosed ? ']' : ')';
-    return `${leftMark}${formatBound(interval.left)}, ${formatBound(interval.right)}${rightMark}`;
-  }).join(' ∪ ');
+  return merged
+    .map((interval) => {
+      const leftMark = interval.leftClosed ? "[" : "(";
+      const rightMark = interval.rightClosed ? "]" : ")";
+      return `${leftMark}${formatBound(interval.left)}, ${formatBound(interval.right)}${rightMark}`;
+    })
+    .join(" ∪ ");
 }
 
 function expectPracticeProps(output: GeneratedOutput, variant: GeneratedVariant): void {
@@ -112,57 +123,57 @@ function expectPracticeProps(output: GeneratedOutput, variant: GeneratedVariant)
     expression: variant.expression,
     operator: variant.operator,
     distinctRootCount: variant.distinctRootCount,
-    presentationMode: 'independent_practice',
+    presentationMode: "independent_practice",
   });
   for (const key of [
-    'answer',
-    'answers',
-    'correctAnswer',
-    'correctAnswers',
-    'criticalPoints',
-    'expectedAnswer',
-    'grading',
-    'gradingMetadata',
-    'intervalSigns',
-    'roots',
-    'signs',
-    'solution',
-    'solutionSteps',
-    'testPoints',
+    "answer",
+    "answers",
+    "correctAnswer",
+    "correctAnswers",
+    "criticalPoints",
+    "expectedAnswer",
+    "grading",
+    "gradingMetadata",
+    "intervalSigns",
+    "roots",
+    "signs",
+    "solution",
+    "solutionSteps",
+    "testPoints",
   ]) {
     expect(serializedKeys(output.data.rendererProps)).not.toContain(key);
   }
 }
 
-describe('Topic 1.5 polynomial inequality sign-chart generator', () => {
-  it('reproduces the three authored Topic 1.5 problems', () => {
+describe("Topic 1.5 polynomial inequality sign-chart generator", () => {
+  it("reproduces the three authored Topic 1.5 problems", () => {
     const cases = [
       {
         seed: 0,
-        expression: '(x - 3)(x + 1)(x + 4)',
-        operator: '>' as const,
+        expression: "(x - 3)(x + 1)(x + 4)",
+        operator: ">" as const,
         roots: [-4, -1, 3],
-        intervalSigns: ['-', '+', '-', '+'] as Sign[],
-        solution: '(-4, -1) ∪ (3, ∞)',
-        sourceFacts: ['-4', '-1', '3', '-5', '-2', '0', '4', 'strict'],
+        intervalSigns: ["-", "+", "-", "+"] as Sign[],
+        solution: "(-4, -1) ∪ (3, ∞)",
+        sourceFacts: ["-4", "-1", "3", "-5", "-2", "0", "4", "strict"],
       },
       {
         seed: 1,
-        expression: '(x+2)^2(x-5)',
-        operator: '<=' as const,
+        expression: "(x+2)^2(x-5)",
+        operator: "<=" as const,
         roots: [-2, 5],
-        intervalSigns: ['-', '-', '+'] as Sign[],
-        solution: '(-∞, 5]',
-        sourceFacts: ['-2', '5', 'even', 'odd', 'include'],
+        intervalSigns: ["-", "-", "+"] as Sign[],
+        solution: "(-∞, 5]",
+        sourceFacts: ["-2", "5", "even", "odd", "include"],
       },
       {
         seed: 2,
-        expression: '(x+3)(x-1)(x-2)',
-        operator: '<' as const,
+        expression: "(x+3)(x-1)(x-2)",
+        operator: "<" as const,
         roots: [-3, 1, 2],
-        intervalSigns: ['-', '+', '-', '+'] as Sign[],
-        solution: '(-∞, -3) ∪ (1, 2)',
-        sourceFacts: ['-3', '1', '2', 'strict'],
+        intervalSigns: ["-", "+", "-", "+"] as Sign[],
+        solution: "(-∞, -3) ∪ (1, 2)",
+        sourceFacts: ["-3", "1", "2", "strict"],
       },
     ];
 
@@ -185,7 +196,10 @@ describe('Topic 1.5 polynomial inequality sign-chart generator', () => {
       });
       expectPracticeProps(output, variant);
       expect(output.solutionSteps.length).toBeGreaterThanOrEqual(4);
-      const solutionText = output.solutionSteps.map((step) => step.description).join(' ').toLowerCase();
+      const solutionText = output.solutionSteps
+        .map((step) => step.description)
+        .join(" ")
+        .toLowerCase();
       for (const fact of expected.sourceFacts) expect(solutionText).toContain(fact.toLowerCase());
       expect(solutionText).toContain(expected.solution.toLowerCase());
       expect(output.gradingMetadata).toEqual({
@@ -195,13 +209,13 @@ describe('Topic 1.5 polynomial inequality sign-chart generator', () => {
           solution: expected.solution,
         },
         partMaxScores: { roots: 1, intervalSigns: 1, solution: 1 },
-        partGradingRules: { roots: 'custom', intervalSigns: 'exact_match', solution: 'custom' },
+        partGradingRules: { roots: "custom", intervalSigns: "exact_match", solution: "custom" },
       });
       expect(generatorOutputSchema.safeParse(output).success).toBe(true);
     }
   });
 
-  it('rebuilds the canonical solution from the structured sign chart', () => {
+  it("rebuilds the canonical solution from the structured sign chart", () => {
     for (let seed = 0; seed <= 50; seed += 1) {
       const output = generateTopic15PolynomialInequalityOutput(seed) as GeneratedOutput;
       const { roots, intervalSigns, solution } = output.expectedAnswer;
@@ -214,16 +228,18 @@ describe('Topic 1.5 polynomial inequality sign-chart generator', () => {
     }
   });
 
-  it('includes an isolated inclusive root as a singleton interval', () => {
+  it("includes an isolated inclusive root as a singleton interval", () => {
     const sampledSeed = Array.from({ length: 48 }, (_, index) => index + 3).find((seed) => {
       const variant = generateTopic15PolynomialInequality(seed) as GeneratedVariant;
       const output = generateTopic15PolynomialInequalityOutput(seed) as GeneratedOutput;
-      return variant.operator === '>=' && output.expectedAnswer.intervalSigns.join(',') === '-,-,+';
+      return variant.operator === ">=" && output.expectedAnswer.intervalSigns.join(",") === "-,-,+";
     });
     expect(sampledSeed).toBeDefined();
 
     const variant = generateTopic15PolynomialInequality(sampledSeed as number) as GeneratedVariant;
-    const output = generateTopic15PolynomialInequalityOutput(sampledSeed as number) as GeneratedOutput;
+    const output = generateTopic15PolynomialInequalityOutput(
+      sampledSeed as number,
+    ) as GeneratedOutput;
     const { roots, intervalSigns } = output.expectedAnswer;
     const expectedSolution = rebuildCanonicalSolution(roots, intervalSigns, variant.operator);
 
@@ -232,7 +248,7 @@ describe('Topic 1.5 polynomial inequality sign-chart generator', () => {
     expect(output.expectedAnswer.solution).toBe(expectedSolution);
   });
 
-  it('generates the two bounded families with all strict and inclusive operators', () => {
+  it("generates the two bounded families with all strict and inclusive operators", () => {
     const operators = new Set<Operator>();
     const families = new Set<number>();
     const expressions = new Set<string>();
@@ -251,16 +267,18 @@ describe('Topic 1.5 polynomial inequality sign-chart generator', () => {
       expect(roots.every((root) => Number.isInteger(root) && root >= -5 && root <= 5)).toBe(true);
       expect(new Set(roots).size).toBe(roots.length);
       expect(variant.distinctRootCount === 2 || variant.distinctRootCount === 3).toBe(true);
-      expect(intervalSigns.every((sign) => sign === '+' || sign === '-')).toBe(true);
+      expect(intervalSigns.every((sign) => sign === "+" || sign === "-")).toBe(true);
 
       if (variant.distinctRootCount === 2) {
-        expect(['<=', '>=']).toContain(variant.operator);
+        expect(["<=", ">="]).toContain(variant.operator);
         expect(intervalSigns).toHaveLength(3);
-        expect(intervalSigns[2]).toBe('+');
-        expect(intervalSigns.slice(0, -1).filter((sign, index) => sign !== intervalSigns[index + 1])).toHaveLength(1);
+        expect(intervalSigns[2]).toBe("+");
+        expect(
+          intervalSigns.slice(0, -1).filter((sign, index) => sign !== intervalSigns[index + 1]),
+        ).toHaveLength(1);
       } else {
-        expect(['<', '>']).toContain(variant.operator);
-        expect(intervalSigns).toEqual(['-', '+', '-', '+']);
+        expect(["<", ">"]).toContain(variant.operator);
+        expect(intervalSigns).toEqual(["-", "+", "-", "+"]);
       }
     }
 
@@ -269,7 +287,7 @@ describe('Topic 1.5 polynomial inequality sign-chart generator', () => {
     expect(expressions.size).toBeGreaterThanOrEqual(10);
   });
 
-  it('resolves the exact generator identity through the public registry seam', () => {
+  it("resolves the exact generator identity through the public registry seam", () => {
     const generator = getGenerator(GENERATOR_KEY);
 
     expect(generator.key).toBe(GENERATOR_KEY);
@@ -280,7 +298,7 @@ describe('Topic 1.5 polynomial inequality sign-chart generator', () => {
     );
   });
 
-  it('rejects invalid seeds at the public boundary', () => {
+  it("rejects invalid seeds at the public boundary", () => {
     for (const seed of [
       -1,
       1.5,
@@ -288,7 +306,7 @@ describe('Topic 1.5 polynomial inequality sign-chart generator', () => {
       Number.POSITIVE_INFINITY,
       Number.NEGATIVE_INFINITY,
       Number.MAX_SAFE_INTEGER + 1,
-      '1',
+      "1",
       null,
       undefined,
     ]) {

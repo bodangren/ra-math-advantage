@@ -27,53 +27,49 @@
  *     and `student_competency` query spies.
  */
 
-import { describe, it, expect, vi } from 'vitest';
-import type { Id } from '@/convex/_generated/dataModel';
+import { describe, it, expect, vi } from "vitest";
+import type { Id } from "@/convex/_generated/dataModel";
 
 // ---------------------------------------------------------------------------
 // Production module import — Red because the handler export does not exist yet.
 // ---------------------------------------------------------------------------
 
-import { getStudentVisualizationHandler } from '@/convex/student';
+import { getStudentVisualizationHandler } from "@/convex/student";
 
 import {
   projectStudentVisualization,
   studentVisualizationV1Schema,
-} from '@math-platform/knowledge-space-practice';
+} from "@math-platform/knowledge-space-practice";
 
 // ---------------------------------------------------------------------------
 // Fixture (sanity-checks the projection contract independently of the
 // backend handler).
 // ---------------------------------------------------------------------------
 
-import {
-  fixtureNodes,
-  fixtureEdges,
-  fixtureLearnerState,
-} from './_fixtures/student-viz-fixture';
+import { fixtureNodes, fixtureEdges, fixtureLearnerState } from "./_fixtures/student-viz-fixture";
 
 // ---------------------------------------------------------------------------
 // Type mirrors for the tables the handler touches.
 // ---------------------------------------------------------------------------
 
 interface PlacementResultRow {
-  _id: Id<'placement_results'>;
+  _id: Id<"placement_results">;
   _creationTime: number;
-  studentId: Id<'profiles'>;
+  studentId: Id<"profiles">;
   nodeId: string;
   masteryEstimate: number;
-  confidence: 'low' | 'medium';
+  confidence: "low" | "medium";
   source: string;
   createdAt: number;
 }
 
 interface StudentMisconceptionStateRow {
-  _id: Id<'student_misconception_state'>;
+  _id: Id<"student_misconception_state">;
   _creationTime: number;
   studentId: string;
   misconceptionId: string;
-  status: 'active' | 'resolved';
-  severity: 'minor' | 'severe';
+  status: "active" | "resolved";
+  severity: "minor" | "severe";
   cleanStreak: number;
   firstDetectedAt: number;
   lastUpdatedAt: number;
@@ -97,10 +93,7 @@ interface MockCtx {
 }
 
 function makeMockCtx(options: MakeMockCtxOptions = {}): MockCtx {
-  const {
-    placementResults = [],
-    misconceptionRows = [],
-  } = options;
+  const { placementResults = [], misconceptionRows = [] } = options;
   const queryCalls: string[] = [];
 
   const rowsByTable: Record<string, unknown[]> = {
@@ -114,28 +107,28 @@ function makeMockCtx(options: MakeMockCtxOptions = {}): MockCtx {
     const rows = rowsByTable[tableName] ?? [];
 
     return {
-      withIndex: vi.fn().mockImplementation(
-        (
-          _indexName: string,
-          builder?: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
-        ) => {
-          let filtered = [...rows];
-          const eqChain = {
-            eq: (field: string, value: unknown) => {
-              filtered = filtered.filter(
-                (r) => (r as Record<string, unknown>)[field] === value,
-              );
-              return eqChain;
-            },
-          };
-          if (builder) builder(eqChain);
-          return {
-            collect: () => Promise.resolve(filtered),
-            first: () => Promise.resolve(filtered[0] ?? null),
-            unique: () => Promise.resolve(filtered[0] ?? null),
-          };
-        },
-      ),
+      withIndex: vi
+        .fn()
+        .mockImplementation(
+          (
+            _indexName: string,
+            builder?: (q: { eq: (field: string, value: unknown) => unknown }) => unknown,
+          ) => {
+            let filtered = [...rows];
+            const eqChain = {
+              eq: (field: string, value: unknown) => {
+                filtered = filtered.filter((r) => (r as Record<string, unknown>)[field] === value);
+                return eqChain;
+              },
+            };
+            if (builder) builder(eqChain);
+            return {
+              collect: () => Promise.resolve(filtered),
+              first: () => Promise.resolve(filtered[0] ?? null),
+              unique: () => Promise.resolve(filtered[0] ?? null),
+            };
+          },
+        ),
       collect: () => Promise.resolve(rows),
       first: () => Promise.resolve(rows[0] ?? null),
       unique: () => Promise.resolve(rows[0] ?? null),
@@ -152,18 +145,18 @@ function makeMockCtx(options: MakeMockCtxOptions = {}): MockCtx {
 // Helpers
 // ---------------------------------------------------------------------------
 
-const STUDENT_ID = 'profiles_test_student_viz' as Id<'profiles'>;
+const STUDENT_ID = "profiles_test_student_viz" as Id<"profiles">;
 
 // ---------------------------------------------------------------------------
 // Tests
 // ---------------------------------------------------------------------------
 
-describe('Phase 2 — student visualization backend query (test-strategy §5 P2)', () => {
-  it('handler exists as a named export for mock-ctx testing', () => {
-    expect(typeof getStudentVisualizationHandler).toBe('function');
+describe("Phase 2 — student visualization backend query (test-strategy §5 P2)", () => {
+  it("handler exists as a named export for mock-ctx testing", () => {
+    expect(typeof getStudentVisualizationHandler).toBe("function");
   });
 
-  it('returns a payload that parses as StudentVisualizationV1', async () => {
+  it("returns a payload that parses as StudentVisualizationV1", async () => {
     const ctx = makeMockCtx();
 
     const result = await getStudentVisualizationHandler(
@@ -175,26 +168,26 @@ describe('Phase 2 — student visualization backend query (test-strategy §5 P2)
     expect(parseResult.success).toBe(true);
   });
 
-  it('recommendedNext matches a direct projectStudentVisualization call with the same inputs', async () => {
+  it("recommendedNext matches a direct projectStudentVisualization call with the same inputs", async () => {
     const placements: PlacementResultRow[] = [
       {
-        _id: 'placement_results_1' as Id<'placement_results'>,
+        _id: "placement_results_1" as Id<"placement_results">,
         _creationTime: 1_780_000_000_000,
         studentId: STUDENT_ID,
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 0.85,
-        confidence: 'medium',
-        source: 'placement',
+        confidence: "medium",
+        source: "placement",
         createdAt: 1_780_000_000_000,
       },
       {
-        _id: 'placement_results_2' as Id<'placement_results'>,
+        _id: "placement_results_2" as Id<"placement_results">,
         _creationTime: 1_780_000_000_001,
         studentId: STUDENT_ID,
-        nodeId: 'math.im3.skill.1.2.solve-quadratic-equations-by-graphing',
+        nodeId: "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
         masteryEstimate: 0.5,
-        confidence: 'medium',
-        source: 'placement',
+        confidence: "medium",
+        source: "placement",
         createdAt: 1_780_000_000_001,
       },
     ];
@@ -208,21 +201,17 @@ describe('Phase 2 — student visualization backend query (test-strategy §5 P2)
 
     expect(result.recommendedNext).toEqual([]);
   });
-
 });
 
 // ---------------------------------------------------------------------------
 // Fixture sanity: the frozen slice itself produces a valid visualization.
 // ---------------------------------------------------------------------------
 
-describe('student-viz fixture parity', () => {
-  it('fixture projection parses as StudentVisualizationV1', () => {
-    const viz = projectStudentVisualization(
-      fixtureNodes,
-      fixtureEdges,
-      fixtureLearnerState,
-      { activeMisconceptionSlugs: [] },
-    );
+describe("student-viz fixture parity", () => {
+  it("fixture projection parses as StudentVisualizationV1", () => {
+    const viz = projectStudentVisualization(fixtureNodes, fixtureEdges, fixtureLearnerState, {
+      activeMisconceptionSlugs: [],
+    });
 
     expect(studentVisualizationV1Schema.safeParse(viz).success).toBe(true);
   });

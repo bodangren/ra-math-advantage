@@ -1,16 +1,19 @@
-import { z } from 'zod';
+import { z } from "zod";
 
-import { plannerRankingModeV3_2Schema } from './v3-2-contract';
+import { plannerRankingModeV3_2Schema } from "./v3-2-contract";
 
 const EPSILON = 1e-9;
-const idSchema = z.string().min(1).refine((value) => value.trim() === value, {
-  message: 'Identifiers must not have surrounding whitespace',
-});
+const idSchema = z
+  .string()
+  .min(1)
+  .refine((value) => value.trim() === value, {
+    message: "Identifiers must not have surrounding whitespace",
+  });
 const scalarSchema = z.union([z.string(), z.number().finite(), z.boolean(), z.null()]);
 
 export const learnerUtilityContextV3_2Schema = z
   .object({
-    schemaVersion: z.literal('planner.learner-context.v3.2'),
+    schemaVersion: z.literal("planner.learner-context.v3.2"),
     learnerId: idSchema,
     domain: idSchema,
     asOf: z.string().datetime({ offset: true }),
@@ -36,9 +39,9 @@ export const utilityProviderResultV3_2Schema = z
   .superRefine((result, ctx) => {
     if (result.signals.every((signal) => signal.weight === 0)) {
       ctx.addIssue({
-        code: 'custom',
-        path: ['signals'],
-        message: 'At least one provenance signal must contribute positive weight',
+        code: "custom",
+        path: ["signals"],
+        message: "At least one provenance signal must contribute positive weight",
       });
     }
   });
@@ -59,16 +62,13 @@ export const utilityReleaseIdentityV3_2Schema = z
 export interface DomainUtilityProviderV3_2 {
   readonly providerKey: string;
   readonly version: string;
-  getUtility(
-    nodeId: string,
-    context: LearnerUtilityContextV3_2,
-  ): UtilityProviderResultV3_2;
+  getUtility(nodeId: string, context: LearnerUtilityContextV3_2): UtilityProviderResultV3_2;
 }
 
 const providerResolutionSchema = z
   .object({
-    schemaVersion: z.literal('planner.utility-resolution.v3.2'),
-    kind: z.literal('provider'),
+    schemaVersion: z.literal("planner.utility-resolution.v3.2"),
+    kind: z.literal("provider"),
     releaseIdentity: utilityReleaseIdentityV3_2Schema,
     providerKey: idSchema,
     providerVersion: idSchema,
@@ -79,23 +79,27 @@ const providerResolutionSchema = z
   .strict()
   .superRefine((result, ctx) => {
     if (result.signals.every((signal) => signal.weight === 0)) {
-      ctx.addIssue({ code: 'custom', path: ['signals'], message: 'Provider signals need positive total weight' });
+      ctx.addIssue({
+        code: "custom",
+        path: ["signals"],
+        message: "Provider signals need positive total weight",
+      });
     }
   });
 
 const inertResolutionSchema = z
   .object({
-    schemaVersion: z.literal('planner.utility-resolution.v3.2'),
-    kind: z.literal('inert'),
+    schemaVersion: z.literal("planner.utility-resolution.v3.2"),
+    kind: z.literal("inert"),
     releaseIdentity: utilityReleaseIdentityV3_2Schema,
     utility: z.literal(0),
     signals: z.tuple([]),
-    reason: z.literal('no-provider'),
+    reason: z.literal("no-provider"),
     weightsRenormalized: z.literal(false),
   })
   .strict();
 
-export const utilityResolutionV3_2Schema = z.discriminatedUnion('kind', [
+export const utilityResolutionV3_2Schema = z.discriminatedUnion("kind", [
   providerResolutionSchema,
   inertResolutionSchema,
 ]);
@@ -108,13 +112,13 @@ const utilityRegistrationSchema = z
     precomputeInputHash: idSchema,
     providerKey: idSchema,
     providerVersion: idSchema,
-    executionPolicy: z.literal('deterministic-offline').default('deterministic-offline'),
+    executionPolicy: z.literal("deterministic-offline").default("deterministic-offline"),
   })
   .strict();
 
 export const domainUtilityRegistryV3_2Schema = z
   .object({
-    schemaVersion: z.literal('planner.utility-registry.v3.2'),
+    schemaVersion: z.literal("planner.utility-registry.v3.2"),
     registrations: z.array(utilityRegistrationSchema),
   })
   .strict()
@@ -123,18 +127,16 @@ export const domainUtilityRegistryV3_2Schema = z
     registry.registrations.forEach((registration, index) => {
       if (domains.has(registration.domain)) {
         ctx.addIssue({
-          code: 'custom',
-          path: ['registrations', index, 'domain'],
-          message: 'A domain adapter may register only one utility provider',
+          code: "custom",
+          path: ["registrations", index, "domain"],
+          message: "A domain adapter may register only one utility provider",
         });
       }
       domains.add(registration.domain);
     });
   });
 
-export type DomainUtilityRegistrationManifestV3_2 = z.input<
-  typeof utilityRegistrationSchema
->;
+export type DomainUtilityRegistrationManifestV3_2 = z.input<typeof utilityRegistrationSchema>;
 
 export interface BoundDomainUtilityProviderV3_2 {
   readonly manifest: z.output<typeof utilityRegistrationSchema>;
@@ -152,14 +154,14 @@ export function bindDomainUtilityProviderV3_2(
     parsedManifest.providerKey !== provider.providerKey ||
     parsedManifest.providerVersion !== provider.version
   ) {
-    throw new Error('Utility provider identity does not match its adapter manifest');
+    throw new Error("Utility provider identity does not match its adapter manifest");
   }
   return Object.freeze({ manifest: parsedManifest, provider });
 }
 
 export const prerequisiteSparseReleaseV3_2Schema = z
   .object({
-    schemaVersion: z.literal('planner.sparse-release.v3.2'),
+    schemaVersion: z.literal("planner.sparse-release.v3.2"),
     graphReleaseId: idSchema,
     graphContentHash: idSchema,
     precomputeInputHash: idSchema,
@@ -171,31 +173,50 @@ export const prerequisiteSparseReleaseV3_2Schema = z
     prerequisiteSparse: z.boolean(),
     rankingMode: plannerRankingModeV3_2Schema,
     readyThreshold: z.number().finite().min(0).max(1),
-    sparseWeights: z
-      .object({ utility: z.literal(0.7), weaknessFit: z.literal(0.3) })
-      .strict(),
+    sparseWeights: z.object({ utility: z.literal(0.7), weaknessFit: z.literal(0.3) }).strict(),
     readinessIsGateOnly: z.boolean(),
     syntheticPrerequisitesProhibited: z.literal(true),
   })
   .strict()
   .superRefine((release, ctx) => {
     if (release.skillsWithPrerequisiteInEdge > release.skillCount) {
-      ctx.addIssue({ code: 'custom', path: ['skillsWithPrerequisiteInEdge'], message: 'Count exceeds skill count' });
+      ctx.addIssue({
+        code: "custom",
+        path: ["skillsWithPrerequisiteInEdge"],
+        message: "Count exceeds skill count",
+      });
     }
-    const ratio = release.skillCount === 0 ? 0 : release.skillsWithPrerequisiteInEdge / release.skillCount;
+    const ratio =
+      release.skillCount === 0 ? 0 : release.skillsWithPrerequisiteInEdge / release.skillCount;
     const sparse = ratio < release.sparseThreshold;
     if (Math.abs(release.prerequisiteInEdgeRatio - ratio) > EPSILON) {
-      ctx.addIssue({ code: 'custom', path: ['prerequisiteInEdgeRatio'], message: 'Ratio must match counts' });
+      ctx.addIssue({
+        code: "custom",
+        path: ["prerequisiteInEdgeRatio"],
+        message: "Ratio must match counts",
+      });
     }
     if (release.prerequisiteSparse !== sparse) {
-      ctx.addIssue({ code: 'custom', path: ['prerequisiteSparse'], message: 'Sparse flag must match threshold' });
+      ctx.addIssue({
+        code: "custom",
+        path: ["prerequisiteSparse"],
+        message: "Sparse flag must match threshold",
+      });
     }
-    const mode = sparse ? 'utility-led' : 'normalized-prerequisite';
+    const mode = sparse ? "utility-led" : "normalized-prerequisite";
     if (release.rankingMode !== mode) {
-      ctx.addIssue({ code: 'custom', path: ['rankingMode'], message: 'Ranking mode must match sparse classification' });
+      ctx.addIssue({
+        code: "custom",
+        path: ["rankingMode"],
+        message: "Ranking mode must match sparse classification",
+      });
     }
     if (release.readinessIsGateOnly !== sparse) {
-      ctx.addIssue({ code: 'custom', path: ['readinessIsGateOnly'], message: 'Readiness is gate-only exactly in sparse mode' });
+      ctx.addIssue({
+        code: "custom",
+        path: ["readinessIsGateOnly"],
+        message: "Readiness is gate-only exactly in sparse mode",
+      });
     }
   });
 

@@ -1,10 +1,10 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { HintPanel } from '@math-platform/activity-components/graphing';
+import { describe, it, expect, vi } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { HintPanel } from "@math-platform/activity-components/graphing";
 
-describe('HintPanel', () => {
+describe("HintPanel", () => {
   const defaultProps = {
-    functionExpression: 'x^2 + 2x - 3',
+    functionExpression: "x^2 + 2x - 3",
     onHintUsed: vi.fn(),
   };
 
@@ -12,218 +12,218 @@ describe('HintPanel', () => {
     vi.clearAllMocks();
   });
 
-  describe('initial rendering', () => {
-    it('renders hint buttons', () => {
+  describe("initial rendering", () => {
+    it("renders hint buttons", () => {
       render(<HintPanel {...defaultProps} />);
 
-      expect(screen.getByText('Show Axis of Symmetry')).toBeInTheDocument();
-      expect(screen.getByText('Show Vertex')).toBeInTheDocument();
-      expect(screen.getByText('Show Direction')).toBeInTheDocument();
+      expect(screen.getByText("Show Axis of Symmetry")).toBeInTheDocument();
+      expect(screen.getByText("Show Vertex")).toBeInTheDocument();
+      expect(screen.getByText("Show Direction")).toBeInTheDocument();
     });
 
-    it('renders all hints as inactive initially', () => {
+    it("renders all hints as inactive initially", () => {
       render(<HintPanel {...defaultProps} />);
 
-      const buttons = screen.getAllByRole('button');
-      buttons.forEach(button => {
+      const buttons = screen.getAllByRole("button");
+      buttons.forEach((button) => {
         expect(button).not.toBeDisabled();
       });
     });
 
-    it('disables all hints when readonly', () => {
+    it("disables all hints when readonly", () => {
       render(<HintPanel {...defaultProps} readonly={true} />);
 
-      const buttons = screen.getAllByRole('button');
-      buttons.forEach(button => {
+      const buttons = screen.getAllByRole("button");
+      buttons.forEach((button) => {
         expect(button).toBeDisabled();
       });
     });
   });
 
-  describe('axis of symmetry hint', () => {
-    it('calls onHintUsed with axis of symmetry data when clicked', () => {
+  describe("axis of symmetry hint", () => {
+    it("calls onHintUsed with axis of symmetry data when clicked", () => {
       render(<HintPanel {...defaultProps} />);
 
-      const axisButton = screen.getByText('Show Axis of Symmetry');
+      const axisButton = screen.getByText("Show Axis of Symmetry");
       fireEvent.click(axisButton);
 
       expect(defaultProps.onHintUsed).toHaveBeenCalledWith(
         expect.objectContaining({
-          type: 'axis_of_symmetry',
+          type: "axis_of_symmetry",
           data: expect.objectContaining({
             x: expect.any(Number),
           }),
-        })
+        }),
       );
     });
 
-    it('calculates correct axis of symmetry for quadratic', () => {
+    it("calculates correct axis of symmetry for quadratic", () => {
       render(<HintPanel {...defaultProps} />);
 
-      const axisButton = screen.getByText('Show Axis of Symmetry');
+      const axisButton = screen.getByText("Show Axis of Symmetry");
       fireEvent.click(axisButton);
 
       expect(defaultProps.onHintUsed).toHaveBeenCalledWith(
         expect.objectContaining({
-          type: 'axis_of_symmetry',
+          type: "axis_of_symmetry",
           data: { x: -1 },
-        })
+        }),
       );
     });
 
-    it('handles simple x^2 expression', () => {
+    it("handles simple x^2 expression", () => {
       render(<HintPanel {...defaultProps} functionExpression="x^2" />);
 
-      const axisButton = screen.getByText('Show Axis of Symmetry');
+      const axisButton = screen.getByText("Show Axis of Symmetry");
       fireEvent.click(axisButton);
 
       expect(defaultProps.onHintUsed).toHaveBeenCalledWith(
         expect.objectContaining({
-          type: 'axis_of_symmetry',
+          type: "axis_of_symmetry",
           data: { x: 0 },
-        })
+        }),
       );
     });
   });
 
-  describe('vertex hint', () => {
-    it('calls onHintUsed with vertex data when clicked', () => {
+  describe("vertex hint", () => {
+    it("calls onHintUsed with vertex data when clicked", () => {
       render(<HintPanel {...defaultProps} />);
 
-      const vertexButton = screen.getByText('Show Vertex');
+      const vertexButton = screen.getByText("Show Vertex");
       fireEvent.click(vertexButton);
 
       expect(defaultProps.onHintUsed).toHaveBeenCalledWith(
         expect.objectContaining({
-          type: 'vertex',
+          type: "vertex",
           data: expect.objectContaining({
             x: expect.any(Number),
             y: expect.any(Number),
           }),
-        })
+        }),
       );
     });
 
-    it('calculates correct vertex for quadratic', () => {
+    it("calculates correct vertex for quadratic", () => {
       render(<HintPanel {...defaultProps} />);
 
-      const vertexButton = screen.getByText('Show Vertex');
+      const vertexButton = screen.getByText("Show Vertex");
       fireEvent.click(vertexButton);
 
       expect(defaultProps.onHintUsed).toHaveBeenCalledWith(
         expect.objectContaining({
-          type: 'vertex',
+          type: "vertex",
           data: { x: -1, y: -4 },
-        })
+        }),
       );
     });
 
-    it('handles simple x^2 expression', () => {
+    it("handles simple x^2 expression", () => {
       render(<HintPanel {...defaultProps} functionExpression="x^2" />);
 
-      const vertexButton = screen.getByText('Show Vertex');
+      const vertexButton = screen.getByText("Show Vertex");
       fireEvent.click(vertexButton);
 
       expect(defaultProps.onHintUsed).toHaveBeenCalledWith(
         expect.objectContaining({
-          type: 'vertex',
+          type: "vertex",
           data: { x: 0, y: 0 },
-        })
+        }),
       );
     });
   });
 
-  describe('direction hint', () => {
-    it('calls onHintUsed with direction data when clicked', () => {
+  describe("direction hint", () => {
+    it("calls onHintUsed with direction data when clicked", () => {
       render(<HintPanel {...defaultProps} />);
 
-      const directionButton = screen.getByText('Show Direction');
+      const directionButton = screen.getByText("Show Direction");
       fireEvent.click(directionButton);
 
       expect(defaultProps.onHintUsed).toHaveBeenCalledWith(
         expect.objectContaining({
-          type: 'direction',
+          type: "direction",
           data: expect.objectContaining({
             opens: expect.stringMatching(/up|down/),
           }),
-        })
+        }),
       );
     });
 
-    it('identifies upward opening for positive coefficient', () => {
+    it("identifies upward opening for positive coefficient", () => {
       render(<HintPanel {...defaultProps} functionExpression="x^2" />);
 
-      const directionButton = screen.getByText('Show Direction');
+      const directionButton = screen.getByText("Show Direction");
       fireEvent.click(directionButton);
 
       expect(defaultProps.onHintUsed).toHaveBeenCalledWith(
         expect.objectContaining({
-          type: 'direction',
-          data: { opens: 'up' },
-        })
+          type: "direction",
+          data: { opens: "up" },
+        }),
       );
     });
 
-    it('identifies downward opening for negative coefficient', () => {
+    it("identifies downward opening for negative coefficient", () => {
       render(<HintPanel {...defaultProps} functionExpression="-x^2" />);
 
-      const directionButton = screen.getByText('Show Direction');
+      const directionButton = screen.getByText("Show Direction");
       fireEvent.click(directionButton);
 
       expect(defaultProps.onHintUsed).toHaveBeenCalledWith(
         expect.objectContaining({
-          type: 'direction',
-          data: { opens: 'down' },
-        })
+          type: "direction",
+          data: { opens: "down" },
+        }),
       );
     });
   });
 
-  describe('hint usage tracking', () => {
-    it('records multiple hint uses', () => {
+  describe("hint usage tracking", () => {
+    it("records multiple hint uses", () => {
       render(<HintPanel {...defaultProps} />);
 
-      fireEvent.click(screen.getByText('Show Axis of Symmetry'));
-      fireEvent.click(screen.getByText('Show Vertex'));
-      fireEvent.click(screen.getByText('Show Direction'));
+      fireEvent.click(screen.getByText("Show Axis of Symmetry"));
+      fireEvent.click(screen.getByText("Show Vertex"));
+      fireEvent.click(screen.getByText("Show Direction"));
 
       expect(defaultProps.onHintUsed).toHaveBeenCalledTimes(3);
     });
 
-    it('passes hint type in callback', () => {
+    it("passes hint type in callback", () => {
       render(<HintPanel {...defaultProps} />);
 
-      fireEvent.click(screen.getByText('Show Axis of Symmetry'));
-      fireEvent.click(screen.getByText('Show Vertex'));
+      fireEvent.click(screen.getByText("Show Axis of Symmetry"));
+      fireEvent.click(screen.getByText("Show Vertex"));
 
       expect(defaultProps.onHintUsed).toHaveBeenNthCalledWith(
         1,
         expect.objectContaining({
-          type: 'axis_of_symmetry',
+          type: "axis_of_symmetry",
           data: expect.any(Object),
-        })
+        }),
       );
 
       expect(defaultProps.onHintUsed).toHaveBeenNthCalledWith(
         2,
         expect.objectContaining({
-          type: 'vertex',
+          type: "vertex",
           data: expect.any(Object),
-        })
+        }),
       );
     });
 
-    it('includes timestamp in hint usage', async () => {
+    it("includes timestamp in hint usage", async () => {
       render(<HintPanel {...defaultProps} />);
 
       const beforeClick = Date.now();
-      fireEvent.click(screen.getByText('Show Vertex'));
+      fireEvent.click(screen.getByText("Show Vertex"));
       const afterClick = Date.now();
 
       expect(defaultProps.onHintUsed).toHaveBeenCalledWith(
         expect.objectContaining({
           timestamp: expect.any(Number),
-        })
+        }),
       );
 
       const call = defaultProps.onHintUsed.mock.calls[0][0];
@@ -232,11 +232,11 @@ describe('HintPanel', () => {
     });
   });
 
-  describe('hint button states', () => {
-    it('disables hint button after it has been used', () => {
+  describe("hint button states", () => {
+    it("disables hint button after it has been used", () => {
       render(<HintPanel {...defaultProps} />);
 
-      const vertexButton = screen.getByText('Show Vertex');
+      const vertexButton = screen.getByText("Show Vertex");
       expect(vertexButton).not.toBeDisabled();
 
       fireEvent.click(vertexButton);
@@ -244,49 +244,49 @@ describe('HintPanel', () => {
       expect(vertexButton).toBeDisabled();
     });
 
-    it('shows visual indication for used hints', () => {
+    it("shows visual indication for used hints", () => {
       render(<HintPanel {...defaultProps} />);
 
-      const vertexButton = screen.getByText('Show Vertex');
+      const vertexButton = screen.getByText("Show Vertex");
       fireEvent.click(vertexButton);
 
-      expect(vertexButton).toHaveClass('opacity-50');
+      expect(vertexButton).toHaveClass("opacity-50");
     });
   });
 
-  describe('edge cases', () => {
-    it('handles linear functions (no axis of symmetry)', () => {
+  describe("edge cases", () => {
+    it("handles linear functions (no axis of symmetry)", () => {
       render(<HintPanel {...defaultProps} functionExpression="2x + 1" />);
 
-      const axisButton = screen.getByText('Show Axis of Symmetry');
+      const axisButton = screen.getByText("Show Axis of Symmetry");
       fireEvent.click(axisButton);
 
       expect(defaultProps.onHintUsed).toHaveBeenCalledWith(
         expect.objectContaining({
-          type: 'axis_of_symmetry',
+          type: "axis_of_symmetry",
           data: null,
-        })
+        }),
       );
     });
 
-    it('handles constant functions', () => {
+    it("handles constant functions", () => {
       render(<HintPanel {...defaultProps} functionExpression="5" />);
 
-      const axisButton = screen.getByText('Show Axis of Symmetry');
+      const axisButton = screen.getByText("Show Axis of Symmetry");
       fireEvent.click(axisButton);
 
       expect(defaultProps.onHintUsed).toHaveBeenCalledWith(
         expect.objectContaining({
-          type: 'axis_of_symmetry',
+          type: "axis_of_symmetry",
           data: null,
-        })
+        }),
       );
     });
 
-    it('handles malformed expressions gracefully', () => {
+    it("handles malformed expressions gracefully", () => {
       render(<HintPanel {...defaultProps} functionExpression="invalid" />);
 
-      const vertexButton = screen.getByText('Show Vertex');
+      const vertexButton = screen.getByText("Show Vertex");
       expect(() => fireEvent.click(vertexButton)).not.toThrow();
     });
   });

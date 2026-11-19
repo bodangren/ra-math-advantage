@@ -7,13 +7,13 @@
  * keyboard.
  */
 
-import type { DistractorType } from '@math-platform/math-content/algebraic';
+import type { DistractorType } from "@math-platform/math-content/algebraic";
 import {
   practiceSubmissionEnvelopeSchema,
   type PracticeSubmissionEnvelope,
   type PracticeSubmissionPart,
-} from '@math-platform/practice-core/contract';
-import { toConvexActivityId } from '@math-platform/practice-core';
+} from "@math-platform/practice-core/contract";
+import { toConvexActivityId } from "@math-platform/practice-core";
 
 /**
  * Prioritized IM3 Module 1 + common-algebra skill set the misconception
@@ -25,16 +25,16 @@ import { toConvexActivityId } from '@math-platform/practice-core';
  * the M1 + common-algebra set to keep the Red-phase surface bounded.
  */
 export const IM3_M1_SKILL_SET: readonly string[] = [
-  'math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change',
-  'math.im3.skill.1.1.graph-quadratic-functions',
-  'math.im3.skill.1.2.interpret-solutions-roots-in-context',
-  'math.im3.skill.1.2.solve-quadratic-equations-by-graphing',
-  'math.im3.skill.1.4.recognize-special-factor-patterns-gcf-trinomials-difference',
-  'math.im3.skill.1.4.solve-quadratic-equations-by-factoring',
-  'math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol',
-  'math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations',
-  'math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables',
-  'math.im3.skill.1.7.solve-quadratic-inequalities-in-one-variable-by-graphing',
+  "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
+  "math.im3.skill.1.1.graph-quadratic-functions",
+  "math.im3.skill.1.2.interpret-solutions-roots-in-context",
+  "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
+  "math.im3.skill.1.4.recognize-special-factor-patterns-gcf-trinomials-difference",
+  "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
+  "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
+  "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+  "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+  "math.im3.skill.1.7.solve-quadratic-inequalities-in-one-variable-by-graphing",
 ] as const;
 
 /**
@@ -45,13 +45,13 @@ export const IM3_M1_SKILL_SET: readonly string[] = [
  * surface).
  */
 export const ALGEBRAIC_DISTRACTOR_TYPES: readonly DistractorType[] = [
-  'factoring',
-  'linear',
-  'quadratic_formula',
-  'complex',
-  'completing_square',
-  'discriminant',
-  'system',
+  "factoring",
+  "linear",
+  "quadratic_formula",
+  "complex",
+  "completing_square",
+  "discriminant",
+  "system",
 ] as const;
 
 /**
@@ -61,10 +61,10 @@ export const ALGEBRAIC_DISTRACTOR_TYPES: readonly DistractorType[] = [
  * consistently in the teacher error view.
  */
 export const MISCONCEPTION_CATEGORIES = [
-  'mechanics',
-  'classification',
-  'computation',
-  'completeness',
+  "mechanics",
+  "classification",
+  "computation",
+  "completeness",
 ] as const;
 
 export type MisconceptionCategory = (typeof MISCONCEPTION_CATEGORIES)[number];
@@ -74,14 +74,9 @@ export type MisconceptionCategory = (typeof MISCONCEPTION_CATEGORIES)[number];
  * may point at. Mirrors the kst-srs.v2 §9.1 endpoint pair
  * (`misconception → worked_example | task_blueprint | skill`).
  */
-export const REMEDIATION_ACTIVITY_KINDS = [
-  'worked_example',
-  'task_blueprint',
-  'skill',
-] as const;
+export const REMEDIATION_ACTIVITY_KINDS = ["worked_example", "task_blueprint", "skill"] as const;
 
-export type RemediationActivityKindFixture =
-  (typeof REMEDIATION_ACTIVITY_KINDS)[number];
+export type RemediationActivityKindFixture = (typeof REMEDIATION_ACTIVITY_KINDS)[number];
 
 /**
  * Stub misconception node shape used by the Phase 2 integrity-check edge
@@ -106,15 +101,15 @@ export function makeMisconceptionNode(
   overrides: Partial<MisconceptionNodeFixture> = {},
 ): MisconceptionNodeFixture {
   return {
-    slug: 'test-misconception',
-    label: 'Test Misconception',
-    description: 'A synthetic misconception used by integrity-check tests.',
-    category: 'mechanics',
-    affectedSkills: ['math.im3.skill.1.1.graph-quadratic-functions'],
+    slug: "test-misconception",
+    label: "Test Misconception",
+    description: "A synthetic misconception used by integrity-check tests.",
+    category: "mechanics",
+    affectedSkills: ["math.im3.skill.1.1.graph-quadratic-functions"],
     detectionSignals: [
       {
-        distractorType: 'factoring',
-        description: 'Synthetic detection signal for integrity-check tests.',
+        distractorType: "factoring",
+        description: "Synthetic detection signal for integrity-check tests.",
       },
     ],
     ...overrides,
@@ -145,10 +140,9 @@ export function makeRemediationActivity(
 ): RemediationActivityFixture {
   return {
     activityId: nodeId,
-    activityKind: 'worked_example',
+    activityKind: "worked_example",
     label: `Remediation pointing at ${nodeId}`,
-    sourceRef:
-      'apps/integrated-math-3/__tests__/lib/practice/misconception-content.fixtures.ts',
+    sourceRef: "apps/integrated-math-3/__tests__/lib/practice/misconception-content.fixtures.ts",
     ...overrides,
   };
 }
@@ -157,7 +151,7 @@ export function makeRemediationActivity(
  * Default activityId used by `makeAlgebraicSubmission` when none is supplied.
  * Source: a real worked-example activity in the IM3 M1 curriculum.
  */
-export const DEFAULT_ALGEBRAIC_ACTIVITY_ID = 'math.im3.example.1.1.001';
+export const DEFAULT_ALGEBRAIC_ACTIVITY_ID = "math.im3.example.1.1.001";
 
 /**
  * Build a `PracticeSubmissionEnvelope` (validated against
@@ -187,26 +181,24 @@ export function makeAlgebraicSubmission(
     attemptNumber?: number;
   } = {},
 ): PracticeSubmissionEnvelope {
-  const submittedAt = new Date('2026-06-15T12:00:00.000Z').toISOString();
+  const submittedAt = new Date("2026-06-15T12:00:00.000Z").toISOString();
   const parts: PracticeSubmissionPart[] = partsSpec.map((spec) => ({
     partId: spec.partId,
-    rawAnswer: spec.isCorrect ? 'correct' : 'incorrect',
+    rawAnswer: spec.isCorrect ? "correct" : "incorrect",
     isCorrect: spec.isCorrect,
-    misconceptionTags: spec.misconceptionTags
-      ? [...spec.misconceptionTags]
-      : [],
+    misconceptionTags: spec.misconceptionTags ? [...spec.misconceptionTags] : [],
     hintsUsed: spec.hintsUsed ?? 0,
     revealStepsSeen: spec.revealStepsSeen ?? 0,
   }));
   return practiceSubmissionEnvelopeSchema.parse({
-    contractVersion: 'practice.v1',
+    contractVersion: "practice.v1",
     activityId: toConvexActivityId(overrides.activityId ?? DEFAULT_ALGEBRAIC_ACTIVITY_ID),
-    mode: 'independent_practice',
-    status: 'submitted',
+    mode: "independent_practice",
+    status: "submitted",
     attemptNumber: overrides.attemptNumber ?? 1,
     submittedAt,
     answers: Object.fromEntries(
-      partsSpec.map((spec) => [spec.partId, spec.isCorrect ? 'correct' : 'incorrect']),
+      partsSpec.map((spec) => [spec.partId, spec.isCorrect ? "correct" : "incorrect"]),
     ),
     parts,
   });

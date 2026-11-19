@@ -6,8 +6,8 @@
  * called from server components or API routes.
  */
 
-import type { SpreadsheetData } from '@/lib/schemas/spreadsheet-responses';
-import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract';
+import type { SpreadsheetData } from "@/lib/schemas/spreadsheet-responses";
+import type { PracticeSubmissionEnvelope } from "@/lib/practice/contract";
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -15,22 +15,22 @@ import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract';
 
 /** Fallback phase names used when phase_versions.title is null. */
 const DEFAULT_PHASE_NAMES: Record<number, string> = {
-  1: 'Hook',
-  2: 'Introduction',
-  3: 'Guided Practice',
-  4: 'Independent Practice',
-  5: 'Assessment',
-  6: 'Closing',
+  1: "Hook",
+  2: "Introduction",
+  3: "Guided Practice",
+  4: "Independent Practice",
+  5: "Assessment",
+  6: "Closing",
 };
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
-export type PhaseStatus = 'not_started' | 'in_progress' | 'completed';
+export type PhaseStatus = "not_started" | "in_progress" | "completed";
 
 export interface SpreadsheetEvidence {
-  kind: 'spreadsheet';
+  kind: "spreadsheet";
   activityId: string;
   activityTitle: string;
   componentKey: string;
@@ -49,7 +49,7 @@ export interface SpreadsheetEvidence {
 }
 
 export interface PracticeEvidence {
-  kind: 'practice';
+  kind: "practice";
   submissionId?: string;
   stableActivityId?: string;
   teacherVerified?: boolean;
@@ -95,7 +95,7 @@ export interface RawPhaseVersion {
 
 export interface RawProgressRow {
   phaseId: string;
-  status: 'not_started' | 'in_progress' | 'completed' | null;
+  status: "not_started" | "in_progress" | "completed" | null;
   completedAt: string | null;
 }
 
@@ -124,7 +124,7 @@ export function assembleSubmissionDetail(
     .sort((a, b) => a.phaseNumber - b.phaseNumber)
     .map((phase) => {
       const progress = progressByPhaseId.get(phase.id);
-      const status: PhaseStatus = progress?.status ?? 'not_started';
+      const status: PhaseStatus = progress?.status ?? "not_started";
       const title =
         phase.title?.trim() ||
         DEFAULT_PHASE_NAMES[phase.phaseNumber] ||

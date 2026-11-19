@@ -12,7 +12,7 @@ export interface TableOfValuesProps {
  */
 export function TableOfValues({ headers, data, highlightCells = [] }: TableOfValuesProps) {
   const isHighlighted = (rowIndex: number, colIndex: number) => {
-    return highlightCells.some(cell => cell.row === rowIndex && cell.col === colIndex);
+    return highlightCells.some((cell) => cell.row === rowIndex && cell.col === colIndex);
   };
 
   const formatCellValue = (value: string | number) => {
@@ -39,7 +39,7 @@ export function TableOfValues({ headers, data, highlightCells = [] }: TableOfVal
             <tr key={rowIndex} className="hover:bg-muted/30 transition-colors">
               {row.map((cell, colIndex) => {
                 const highlighted = isHighlighted(rowIndex, colIndex);
-                const isNumber = typeof cell === 'number';
+                const isNumber = typeof cell === "number";
                 const cellValue = formatCellValue(cell);
 
                 return (
@@ -47,8 +47,8 @@ export function TableOfValues({ headers, data, highlightCells = [] }: TableOfVal
                     key={colIndex}
                     className={`
                       px-4 py-3 border-b border-border last:border-b-0
-                      ${isNumber ? 'font-mono-num' : ''}
-                      ${highlighted ? 'bg-accent/20 font-semibold' : ''}
+                      ${isNumber ? "font-mono-num" : ""}
+                      ${highlighted ? "bg-accent/20 font-semibold" : ""}
                     `}
                   >
                     {cellValue}

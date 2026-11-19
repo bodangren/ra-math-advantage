@@ -1,8 +1,8 @@
-import { requireTeacherSessionClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
-import { TeacherNavigation } from '@/components/teacher/TeacherNavigation';
-import { ClassSelector } from './ClassSelector';
-import type { Id } from '@/convex/_generated/dataModel';
+import { requireTeacherSessionClaims } from "@/lib/auth/server";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
+import { TeacherNavigation } from "@/components/teacher/TeacherNavigation";
+import { ClassSelector } from "./ClassSelector";
+import type { Id } from "@/convex/_generated/dataModel";
 
 interface ClassWithLessons {
   classId: string;
@@ -38,12 +38,12 @@ interface PageProps {
  * @returns {JSX.Element} The rendered lessons page JSX.
  */
 export default async function TeacherLessonsPage({ searchParams }: PageProps) {
-  const claims = await requireTeacherSessionClaims('/auth/login');
+  const claims = await requireTeacherSessionClaims("/auth/login");
   const params = await searchParams;
 
   const data: PageData = await fetchInternalQuery(
     lessonAssignmentInternal.teacher.lessonAssignment.getTeacherClassesWithLessons,
-    { userId: claims.sub as Id<'profiles'> },
+    { userId: claims.sub as Id<"profiles"> },
   );
 
   const allLessons: LessonInfo[] = await fetchInternalQuery(
@@ -65,9 +65,10 @@ export default async function TeacherLessonsPage({ searchParams }: PageProps) {
 
   const paramClassId = params.classId;
   const defaultClassId = data.classes[0]?.classId ?? null;
-  const selectedClassId = (paramClassId && data.classes.some((c) => c.classId === paramClassId))
-    ? paramClassId
-    : defaultClassId;
+  const selectedClassId =
+    paramClassId && data.classes.some((c) => c.classId === paramClassId)
+      ? paramClassId
+      : defaultClassId;
   const selectedClass = data.classes.find((c) => c.classId === selectedClassId);
   const assignedLessonIds = new Set(selectedClass?.assignedLessonIds ?? []);
 
@@ -77,9 +78,7 @@ export default async function TeacherLessonsPage({ searchParams }: PageProps) {
       <main className="flex-1 ml-64 p-8">
         <div className="max-w-4xl mx-auto space-y-8" data-testid="teacher-lessons">
           <div className="space-y-1">
-            <h1 className="text-3xl font-display font-bold text-foreground">
-              Lesson Assignments
-            </h1>
+            <h1 className="text-3xl font-display font-bold text-foreground">Lesson Assignments</h1>
             <p className="text-sm text-muted-foreground">
               Assign lessons to your classes to control student access
             </p>
@@ -93,17 +92,12 @@ export default async function TeacherLessonsPage({ searchParams }: PageProps) {
             </div>
           ) : (
             <>
-              <ClassSelector
-                classes={data.classes}
-                selectedClassId={selectedClassId}
-              />
+              <ClassSelector classes={data.classes} selectedClassId={selectedClassId} />
 
               <div className="space-y-6">
                 {sortedUnits.map((unitNumber) => (
                   <section key={unitNumber} className="space-y-3">
-                    <h2 className="text-lg font-semibold text-foreground">
-                      Unit {unitNumber}
-                    </h2>
+                    <h2 className="text-lg font-semibold text-foreground">Unit {unitNumber}</h2>
                     <div className="space-y-2">
                       {lessonsByUnit[unitNumber]
                         .sort((a, b) => a.orderIndex - b.orderIndex)
@@ -168,11 +162,11 @@ function LessonAssignmentToggle({ classId, lessonId, isAssigned }: LessonAssignm
         data-testid="teacher-assign-toggle"
         className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
           isAssigned
-            ? 'bg-red-100 text-red-700 hover:bg-red-200'
-            : 'bg-green-100 text-green-700 hover:bg-green-200'
+            ? "bg-red-100 text-red-700 hover:bg-red-200"
+            : "bg-green-100 text-green-700 hover:bg-green-200"
         }`}
       >
-        {isAssigned ? 'Unassign' : 'Assign'}
+        {isAssigned ? "Unassign" : "Assign"}
       </button>
     </form>
   );
@@ -187,13 +181,13 @@ function LessonAssignmentToggle({ classId, lessonId, isAssigned }: LessonAssignm
  * @throws {Error} If the assignment mutation fails.
  */
 async function assignLessonToClassAction(formData: FormData) {
-  'use server';
-  const { fetchInternalMutation } = await import('@/lib/convex/server');
-  const { revalidatePath } = await import('next/cache');
-  const classId = formData.get('classId') as string;
-  const lessonId = formData.get('lessonId') as string;
-  const isAssigned = formData.get('isAssigned') === 'true';
-  const claims = await requireTeacherSessionClaims('/auth/login');
+  "use server";
+  const { fetchInternalMutation } = await import("@/lib/convex/server");
+  const { revalidatePath } = await import("next/cache");
+  const classId = formData.get("classId") as string;
+  const lessonId = formData.get("lessonId") as string;
+  const isAssigned = formData.get("isAssigned") === "true";
+  const claims = await requireTeacherSessionClaims("/auth/login");
 
   const mutation = isAssigned
     ? lessonAssignmentInternal.teacher.lessonAssignment.unassignLessonFromClass
@@ -201,13 +195,13 @@ async function assignLessonToClassAction(formData: FormData) {
 
   try {
     await fetchInternalMutation(mutation, {
-      userId: claims.sub as Id<'profiles'>,
-      classId: classId as Id<'classes'>,
-      lessonId: lessonId as Id<'lessons'>,
+      userId: claims.sub as Id<"profiles">,
+      classId: classId as Id<"classes">,
+      lessonId: lessonId as Id<"lessons">,
     });
-    revalidatePath('/teacher/lessons');
+    revalidatePath("/teacher/lessons");
   } catch (error) {
-    console.error('[lesson-assignment] Failed to update assignment:', error);
-    throw new Error(isAssigned ? 'Failed to unassign lesson' : 'Failed to assign lesson');
+    console.error("[lesson-assignment] Failed to update assignment:", error);
+    throw new Error(isAssigned ? "Failed to unassign lesson" : "Failed to assign lesson");
   }
 }

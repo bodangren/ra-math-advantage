@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 // TransferCreditPrompt — student-facing "You already mastered this in
 // <course>" card with Skip / Take confirmation check / Undo skip actions
@@ -10,11 +10,11 @@
 // and wires `onSkip` / `onConfirmCheck` / `onRevert` to the persistence
 // layer in Phase 4.
 
-import { useCallback } from 'react';
-import { Button } from '@/components/ui/button';
-import { getTransferCreditCopy } from '@/lib/transfer-credit/student-skip';
-import type { TransferSkipRecord } from '@math-platform/knowledge-space-core';
-import { applyTransferSkip, revertTransferSkip } from '@math-platform/knowledge-space-core';
+import { useCallback } from "react";
+import { Button } from "@/components/ui/button";
+import { getTransferCreditCopy } from "@/lib/transfer-credit/student-skip";
+import type { TransferSkipRecord } from "@math-platform/knowledge-space-core";
+import { applyTransferSkip, revertTransferSkip } from "@math-platform/knowledge-space-core";
 
 // ---------------------------------------------------------------------------
 // Props
@@ -84,12 +84,9 @@ export function TransferCreditPrompt({
       className="rounded-xl border border-accent/30 bg-accent/5 p-5 space-y-4"
     >
       <div className="space-y-1">
-        <p className="font-display text-base font-semibold text-foreground">
-          {copy}
-        </p>
+        <p className="font-display text-base font-semibold text-foreground">{copy}</p>
         <p className="text-sm text-muted-foreground">
-          You can skip this skill or take a short check to confirm you still
-          remember it.
+          You can skip this skill or take a short check to confirm you still remember it.
         </p>
       </div>
 

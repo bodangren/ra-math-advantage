@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import { requireTeacherSessionClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
-import type { Id } from '@/convex/_generated/dataModel';
+import Link from "next/link";
+import { requireTeacherSessionClaims } from "@/lib/auth/server";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
+import type { Id } from "@/convex/_generated/dataModel";
 
 interface StandardCoverage {
   standardId: string;
@@ -39,11 +39,11 @@ interface StandardsCoverageResult {
  * @returns {JSX.Element} The rendered TeacherUnitsPage JSX.
  */
 export default async function TeacherUnitsPage() {
-  const claims = await requireTeacherSessionClaims('/auth/login');
+  const claims = await requireTeacherSessionClaims("/auth/login");
 
   const coverage: StandardsCoverageResult = await fetchInternalQuery(
     internal.teacher.getStandardsCoverage,
-    { unitNumber: 1, userId: claims.sub as Id<'profiles'> },
+    { unitNumber: 1, userId: claims.sub as Id<"profiles"> },
   );
 
   return (
@@ -65,9 +65,15 @@ export default async function TeacherUnitsPage() {
             <thead>
               <tr className="border-b">
                 <th className="text-left py-2 pr-4 font-medium text-muted-foreground">Standard</th>
-                {coverage.lessons.map(lesson => (
-                  <th key={lesson.id} className="text-center py-2 px-2 font-medium text-muted-foreground">
-                    <div className="writing-mode-vertical" style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}>
+                {coverage.lessons.map((lesson) => (
+                  <th
+                    key={lesson.id}
+                    className="text-center py-2 px-2 font-medium text-muted-foreground"
+                  >
+                    <div
+                      className="writing-mode-vertical"
+                      style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
+                    >
                       {lesson.orderIndex}
                     </div>
                   </th>
@@ -75,21 +81,29 @@ export default async function TeacherUnitsPage() {
               </tr>
             </thead>
             <tbody>
-              {coverage.standards.map(standard => (
+              {coverage.standards.map((standard) => (
                 <tr key={standard.standardId} className="border-b last:border-b-0">
                   <td className="py-2 pr-4">
                     <div className="font-medium text-foreground">{standard.standardCode}</div>
-                    <div className="text-xs text-muted-foreground">{standard.studentFriendlyDescription ?? standard.standardDescription}</div>
+                    <div className="text-xs text-muted-foreground">
+                      {standard.studentFriendlyDescription ?? standard.standardDescription}
+                    </div>
                   </td>
-                  {coverage.lessons.map(lesson => {
-                    const lessonCoverage = standard.lessons.find(l => l.lessonId === lesson.id);
+                  {coverage.lessons.map((lesson) => {
+                    const lessonCoverage = standard.lessons.find((l) => l.lessonId === lesson.id);
                     return (
                       <td key={lesson.id} className="text-center py-2 px-2">
                         {lessonCoverage ? (
                           lessonCoverage.isPrimary ? (
-                            <span className="inline-block w-4 h-4 rounded-full bg-green-500" title="Primary standard" />
+                            <span
+                              className="inline-block w-4 h-4 rounded-full bg-green-500"
+                              title="Primary standard"
+                            />
                           ) : (
-                            <span className="inline-block w-4 h-4 rounded-full bg-yellow-400" title="Secondary standard" />
+                            <span
+                              className="inline-block w-4 h-4 rounded-full bg-yellow-400"
+                              title="Secondary standard"
+                            />
                           )
                         ) : (
                           <span className="inline-block w-4 h-4 rounded-full bg-muted" />
@@ -124,7 +138,7 @@ export default async function TeacherUnitsPage() {
           {coverage.lessons.length === 0 ? (
             <p className="text-muted-foreground">No lessons found for Module 1.</p>
           ) : (
-            coverage.lessons.map(lesson => (
+            coverage.lessons.map((lesson) => (
               <div key={lesson.id} className="card-workbook p-5 space-y-3">
                 <div className="flex items-start gap-4">
                   <span className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground font-mono-num text-sm font-bold flex items-center justify-center">
@@ -150,7 +164,9 @@ export default async function TeacherUnitsPage() {
                 </div>
                 {lesson.learningObjectives.length > 0 && (
                   <div className="ml-12">
-                    <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1">Learning Objectives</h4>
+                    <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1">
+                      Learning Objectives
+                    </h4>
                     <ul className="list-disc list-inside text-sm text-foreground space-y-0.5">
                       {lesson.learningObjectives.map((obj, idx) => (
                         <li key={idx}>{obj}</li>

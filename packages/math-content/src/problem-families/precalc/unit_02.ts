@@ -1,4 +1,4 @@
-import type { ProblemFamilyInput } from '@math-platform/practice-core';
+import type { ProblemFamilyInput } from "@math-platform/practice-core";
 
 export const UNIT2_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Arithmetic vs Geometric Sequences (HSF-LE.A.1, HSF-LE.A.2)
@@ -6,7 +6,8 @@ export const UNIT2_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "comprehension-quiz:arithmetic-vs-geometric",
     componentKey: "comprehension-quiz",
     displayName: "Arithmetic vs Geometric Sequences",
-    description: "Distinguish between arithmetic and geometric sequences and identify their properties",
+    description:
+      "Distinguish between arithmetic and geometric sequences and identify their properties",
     objectiveIds: ["HSF-LE.A.1", "HSF-LE.A.2"],
     difficulty: "introductory",
     metadata: { unit: 2, topic: "sequences" },
@@ -25,7 +26,8 @@ export const UNIT2_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "step-by-step-solver:construct-linear-exponential",
     componentKey: "step-by-step-solver",
     displayName: "Construct Linear and Exponential Functions",
-    description: "Build linear and exponential functions from graphs, tables, or verbal descriptions",
+    description:
+      "Build linear and exponential functions from graphs, tables, or verbal descriptions",
     objectiveIds: ["HSF-LE.A.1", "HSF-LE.A.2"],
     difficulty: "standard",
     metadata: { unit: 2, topic: "construct-functions" },
@@ -35,7 +37,8 @@ export const UNIT2_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     variantKey: "graphing-explorer:exponential-functions",
     componentKey: "graphing-explorer",
     displayName: "Graph Exponential Functions",
-    description: "Graph exponential functions and identify intercepts, asymptotes, and end behavior",
+    description:
+      "Graph exponential functions and identify intercepts, asymptotes, and end behavior",
     objectiveIds: ["HSF-IF.C.7e", "HSF-LE.B.5"],
     difficulty: "standard",
     metadata: { unit: 2, topic: "exponential-functions" },

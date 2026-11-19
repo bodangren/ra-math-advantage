@@ -12,46 +12,41 @@
  * Return value is a serializable StudentVisualizationV1 payload (no Map/Dates).
  */
 
-import { internalQuery, type QueryCtx } from '../_generated/server';
-import { v } from 'convex/values';
-import { Id } from '../_generated/dataModel';
+import { internalQuery, type QueryCtx } from "../_generated/server";
+import { v } from "convex/values";
+import { Id } from "../_generated/dataModel";
 import {
   loadFullCurriculumGraph,
   includeHistoricalEvidenceNodes,
   projectApprovedReadinessGraph,
-} from '../../lib/curriculum/skill-graph-loader';
+} from "../../lib/curriculum/skill-graph-loader";
 import {
   DefaultSrsToKstBridge,
   getOuterFringe,
   type SrsCardState,
-} from '@math-platform/knowledge-space-core';
+} from "@math-platform/knowledge-space-core";
 import {
   projectStudentVisualization,
   type StudentVisualizationV1,
-} from '@math-platform/knowledge-space-practice';
-import { getKnowledgeProficiencyInputs } from '../objectiveProficiency';
-
+} from "@math-platform/knowledge-space-practice";
+import { getKnowledgeProficiencyInputs } from "../objectiveProficiency";
 
 /**
  * Converts a Convex SRS card document into the bridge's SrsCardState shape.
  */
-function toSrsCardState(
-  card: {
-    _id: Id<'srs_cards'>;
-    objectiveId: string;
-    stability: number;
-    state: 'new' | 'learning' | 'review' | 'relearning';
-    lastReview?: string;
-  },
-): SrsCardState {
+function toSrsCardState(card: {
+  _id: Id<"srs_cards">;
+  objectiveId: string;
+  stability: number;
+  state: "new" | "learning" | "review" | "relearning";
+  lastReview?: string;
+}): SrsCardState {
   return {
     cardId: String(card._id),
     objectiveId: card.objectiveId,
     stability: card.stability,
     state: card.state,
-    lastReviewedAt: card.lastReview
-      ? new Date(card.lastReview).getTime()
-      : undefined,
+    lastReviewedAt: card.lastReview ? new Date(card.lastReview).getTime() : undefined,
   };
 }
 
@@ -69,7 +64,7 @@ function toSrsCardState(
  */
 export async function getStudentKnowledgeStateHandler(
   ctx: QueryCtx,
-  args: { studentId: Id<'profiles'> },
+  args: { studentId: Id<"profiles"> },
 ): Promise<StudentVisualizationV1> {
   // 1. Load the full IM3 knowledge-space graph from rollout artifacts
   const graph = loadFullCurriculumGraph();
@@ -78,12 +73,12 @@ export async function getStudentKnowledgeStateHandler(
   // 2. Batch-read SRS data (no N+1)
   const [srsCards, srsReviewLogs] = await Promise.all([
     ctx.db
-      .query('srs_cards')
-      .withIndex('by_student', (q) => q.eq('studentId', args.studentId))
+      .query("srs_cards")
+      .withIndex("by_student", (q) => q.eq("studentId", args.studentId))
       .collect(),
     ctx.db
-      .query('srs_review_log')
-      .withIndex('by_student', (q) => q.eq('studentId', args.studentId))
+      .query("srs_review_log")
+      .withIndex("by_student", (q) => q.eq("studentId", args.studentId))
       .collect(),
   ]);
 
@@ -110,11 +105,22 @@ export async function getStudentKnowledgeStateHandler(
     return state;
   });
   const now = Date.now();
-  const proficiency = await getKnowledgeProficiencyInputs(ctx, args.studentId, srsCards, srsReviewLogs, now);
+  const proficiency = await getKnowledgeProficiencyInputs(
+    ctx,
+    args.studentId,
+    srsCards,
+    srsReviewLogs,
+    now,
+  );
 
   // 5. Run the SRS→KST bridge → engine → fringe pipeline
   const bridge = new DefaultSrsToKstBridge();
-  const previousState = bridge.convert({ cards: cardStates, proficiencies: proficiency.assessed, graph, now });
+  const previousState = bridge.convert({
+    cards: cardStates,
+    proficiencies: proficiency.assessed,
+    graph,
+    now,
+  });
   const state = bridge.convert({
     cards: cardStates,
     proficiencies: proficiency.current,
@@ -128,24 +134,24 @@ export async function getStudentKnowledgeStateHandler(
   // 5. Convert KnowledgeStateEntry map → visualization learnerState record
   const learnerState: Record<
     string,
-    'mastered' | 'ready' | 'nearly_ready' | 'blocked' | 'review_due'
+    "mastered" | "ready" | "nearly_ready" | "blocked" | "review_due"
   > = {};
 
   for (const [nodeId, entry] of state) {
-    if (entry.state === 'mastered') {
-      learnerState[nodeId] = 'mastered';
-    } else if (entry.state === 'decaying') {
-      learnerState[nodeId] = 'review_due';
+    if (entry.state === "mastered") {
+      learnerState[nodeId] = "mastered";
+    } else if (entry.state === "decaying") {
+      learnerState[nodeId] = "review_due";
     }
   }
 
   // Mark fringe-ready nodes that are not already covered
   for (const f of fringe) {
     if (!learnerState[f.nodeId]) {
-      if (f.readinessState === 'ready') {
-        learnerState[f.nodeId] = 'ready';
-      } else if (f.readinessState === 'nearly_ready') {
-        learnerState[f.nodeId] = 'nearly_ready';
+      if (f.readinessState === "ready") {
+        learnerState[f.nodeId] = "ready";
+      } else if (f.readinessState === "nearly_ready") {
+        learnerState[f.nodeId] = "nearly_ready";
       }
     }
   }
@@ -170,6 +176,6 @@ export async function getStudentKnowledgeStateHandler(
  * via `fetchInternalQuery(internal.student.getStudentKnowledgeState, ...)`.
  */
 export const getStudentKnowledgeState = internalQuery({
-  args: { studentId: v.id('profiles') },
+  args: { studentId: v.id("profiles") },
   handler: getStudentKnowledgeStateHandler,
 });

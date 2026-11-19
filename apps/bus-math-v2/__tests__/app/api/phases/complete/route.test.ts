@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mockGetRequestSessionClaims = vi.fn();
 const mockRequireActiveStudentRequestClaims = vi.fn();
@@ -6,81 +6,81 @@ const mockFetchQuery = vi.fn();
 const mockFetchInternalQuery = vi.fn();
 const mockFetchInternalMutation = vi.fn();
 
-vi.mock('@/lib/auth/server', () => ({
+vi.mock("@/lib/auth/server", () => ({
   getRequestSessionClaims: mockGetRequestSessionClaims,
   requireActiveStudentRequestClaims: mockRequireActiveStudentRequestClaims,
 }));
 
-vi.mock('@/lib/convex/server', () => ({
+vi.mock("@/lib/convex/server", () => ({
   fetchQuery: mockFetchQuery,
   fetchInternalQuery: mockFetchInternalQuery,
   fetchInternalMutation: mockFetchInternalMutation,
   api: {
     api: {
-      getLessonBySlugOrId: 'api.getLessonBySlugOrId',
+      getLessonBySlugOrId: "api.getLessonBySlugOrId",
     },
   },
   internal: {
     api: {
-      canAccessPhase: 'internal.api.canAccessPhase',
-      getPhaseContext: 'internal.api.getPhaseContext',
-      getStudentProgressByIdempotencyKey: 'internal.api.getStudentProgressByIdempotencyKey',
-      getStudentProgressByPhase: 'internal.api.getStudentProgressByPhase',
-      checkNextPhaseExists: 'internal.api.checkNextPhaseExists',
-      completePhaseMutation: 'internal.api.completePhaseMutation',
+      canAccessPhase: "internal.api.canAccessPhase",
+      getPhaseContext: "internal.api.getPhaseContext",
+      getStudentProgressByIdempotencyKey: "internal.api.getStudentProgressByIdempotencyKey",
+      getStudentProgressByPhase: "internal.api.getStudentProgressByPhase",
+      checkNextPhaseExists: "internal.api.checkNextPhaseExists",
+      completePhaseMutation: "internal.api.completePhaseMutation",
     },
     apiRateLimits: {
-      checkAndIncrementApiRateLimit: 'internal.apiRateLimits.checkAndIncrementApiRateLimit',
+      checkAndIncrementApiRateLimit: "internal.apiRateLimits.checkAndIncrementApiRateLimit",
     },
   },
 }));
 
-const { POST } = await import('../../../../../app/api/phases/complete/route');
+const { POST } = await import("../../../../../app/api/phases/complete/route");
 
 function buildRequest(body: unknown) {
-  return new Request('http://localhost/api/phases/complete', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+  return new Request("http://localhost/api/phases/complete", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
 }
 
 const validPayload = {
-  lessonId: 'unit-1-lesson-1-accounting-equation',
+  lessonId: "unit-1-lesson-1-accounting-equation",
   phaseNumber: 2,
   timeSpent: 120,
-  idempotencyKey: '987e6543-e21b-12d3-a456-426614174000',
+  idempotencyKey: "987e6543-e21b-12d3-a456-426614174000",
 };
 
 function setupDefaultQueryMocks() {
   mockFetchQuery.mockImplementation(async (name: string) => {
-    if (name === 'api.getLessonBySlugOrId') {
-      return { _id: 'lesson_1' };
+    if (name === "api.getLessonBySlugOrId") {
+      return { _id: "lesson_1" };
     }
     return null;
   });
 
   mockFetchInternalQuery.mockImplementation(async (name: string) => {
-    if (name === 'internal.api.canAccessPhase') {
+    if (name === "internal.api.canAccessPhase") {
       return true;
     }
 
-    if (name === 'internal.api.getPhaseContext') {
+    if (name === "internal.api.getPhaseContext") {
       return {
-        phaseId: 'phase_2',
-        lessonVersionId: 'lesson_version_1',
+        phaseId: "phase_2",
+        lessonVersionId: "lesson_version_1",
       };
     }
 
-    if (name === 'internal.api.getStudentProgressByIdempotencyKey') {
+    if (name === "internal.api.getStudentProgressByIdempotencyKey") {
       return null;
     }
 
-    if (name === 'internal.api.getStudentProgressByPhase') {
+    if (name === "internal.api.getStudentProgressByPhase") {
       return null;
     }
 
-    if (name === 'internal.api.checkNextPhaseExists') {
+    if (name === "internal.api.checkNextPhaseExists") {
       return true;
     }
 
@@ -88,14 +88,14 @@ function setupDefaultQueryMocks() {
   });
 }
 
-describe('POST /api/phases/complete', () => {
+describe("POST /api/phases/complete", () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
     mockGetRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_123',
-      username: 'student',
-      role: 'student',
+      sub: "profile_123",
+      username: "student",
+      role: "student",
       iat: 1,
       exp: 2,
     });
@@ -103,12 +103,12 @@ describe('POST /api/phases/complete', () => {
       const claims = await mockGetRequestSessionClaims();
       if (!claims) {
         return Response.json(
-          { error: 'Unauthorized. Please sign in to complete phases.' },
+          { error: "Unauthorized. Please sign in to complete phases." },
           { status: 401 },
         );
       }
-      if (claims.role !== 'student') {
-        return Response.json({ error: 'Forbidden' }, { status: 403 });
+      if (claims.role !== "student") {
+        return Response.json({ error: "Forbidden" }, { status: 403 });
       }
       return claims;
     });
@@ -116,17 +116,17 @@ describe('POST /api/phases/complete', () => {
     setupDefaultQueryMocks();
 
     mockFetchInternalMutation.mockImplementation(async (name: string) => {
-      if (name === 'internal.apiRateLimits.checkAndIncrementApiRateLimit') {
+      if (name === "internal.apiRateLimits.checkAndIncrementApiRateLimit") {
         return { allowed: true, remaining: 59, windowExpiresAt: Date.now() + 60000 };
       }
-      if (name === 'internal.api.completePhaseMutation') {
-        return { completedAt: '2026-02-26T10:00:00.000Z' };
+      if (name === "internal.api.completePhaseMutation") {
+        return { completedAt: "2026-02-26T10:00:00.000Z" };
       }
       return null;
     });
   });
 
-  it('returns 401 when unauthenticated', async () => {
+  it("returns 401 when unauthenticated", async () => {
     mockGetRequestSessionClaims.mockResolvedValue(null);
 
     const response = await POST(buildRequest(validPayload));
@@ -136,9 +136,9 @@ describe('POST /api/phases/complete', () => {
     expect(mockFetchInternalQuery).not.toHaveBeenCalled();
   });
 
-  it('returns 401 when student session is deactivated', async () => {
+  it("returns 401 when student session is deactivated", async () => {
     mockRequireActiveStudentRequestClaims.mockResolvedValue(
-      Response.json({ error: 'Session revoked' }, { status: 401 }),
+      Response.json({ error: "Session revoked" }, { status: 401 }),
     );
 
     const response = await POST(buildRequest(validPayload));
@@ -148,16 +148,16 @@ describe('POST /api/phases/complete', () => {
     expect(mockFetchInternalQuery).not.toHaveBeenCalled();
   });
 
-  it('returns 403 when phase access is denied', async () => {
+  it("returns 403 when phase access is denied", async () => {
     mockFetchQuery.mockImplementation(async (name: string) => {
-      if (name === 'api.getLessonBySlugOrId') {
-        return { _id: 'lesson_1' };
+      if (name === "api.getLessonBySlugOrId") {
+        return { _id: "lesson_1" };
       }
       return null;
     });
 
     mockFetchInternalQuery.mockImplementation(async (name: string) => {
-      if (name === 'internal.api.canAccessPhase') {
+      if (name === "internal.api.canAccessPhase") {
         return false;
       }
 
@@ -171,11 +171,11 @@ describe('POST /api/phases/complete', () => {
     expect(body.error).toMatch(/cannot complete this phase/i);
   });
 
-  it('returns 403 when a teacher session attempts to complete a student phase', async () => {
+  it("returns 403 when a teacher session attempts to complete a student phase", async () => {
     mockGetRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_teacher',
-      username: 'teacher',
-      role: 'teacher',
+      sub: "profile_teacher",
+      username: "teacher",
+      role: "teacher",
       iat: 1,
       exp: 2,
     });
@@ -183,15 +183,15 @@ describe('POST /api/phases/complete', () => {
     const response = await POST(buildRequest(validPayload));
 
     expect(response.status).toBe(403);
-    await expect(response.json()).resolves.toMatchObject({ error: 'Forbidden' });
+    await expect(response.json()).resolves.toMatchObject({ error: "Forbidden" });
     expect(mockFetchQuery).not.toHaveBeenCalled();
     expect(mockFetchInternalQuery).not.toHaveBeenCalled();
     expect(mockFetchInternalMutation).not.toHaveBeenCalled();
   });
 
-  it('returns 404 when lesson cannot be resolved', async () => {
+  it("returns 404 when lesson cannot be resolved", async () => {
     mockFetchQuery.mockImplementation(async (name: string) => {
-      if (name === 'api.getLessonBySlugOrId') {
+      if (name === "api.getLessonBySlugOrId") {
         return null;
       }
 
@@ -205,28 +205,28 @@ describe('POST /api/phases/complete', () => {
     expect(body.error).toMatch(/lesson not found/i);
   });
 
-  it('returns 409 when idempotency key was used for a different phase', async () => {
+  it("returns 409 when idempotency key was used for a different phase", async () => {
     mockFetchQuery.mockImplementation(async (name: string) => {
-      if (name === 'api.getLessonBySlugOrId') {
-        return { _id: 'lesson_1' };
+      if (name === "api.getLessonBySlugOrId") {
+        return { _id: "lesson_1" };
       }
       return null;
     });
 
     mockFetchInternalQuery.mockImplementation(async (name: string) => {
-      if (name === 'internal.api.canAccessPhase') {
+      if (name === "internal.api.canAccessPhase") {
         return true;
       }
 
-      if (name === 'internal.api.getPhaseContext') {
+      if (name === "internal.api.getPhaseContext") {
         return {
-          phaseId: 'phase_2',
-          lessonVersionId: 'lesson_version_1',
+          phaseId: "phase_2",
+          lessonVersionId: "lesson_version_1",
         };
       }
 
-      if (name === 'internal.api.getStudentProgressByIdempotencyKey') {
-        return { phaseId: 'phase_99' };
+      if (name === "internal.api.getStudentProgressByIdempotencyKey") {
+        return { phaseId: "phase_99" };
       }
 
       return null;
@@ -237,51 +237,51 @@ describe('POST /api/phases/complete', () => {
     expect(response.status).toBe(409);
   });
 
-  it('accepts curriculum standard codes instead of UUID-only linkedStandardId values', async () => {
+  it("accepts curriculum standard codes instead of UUID-only linkedStandardId values", async () => {
     const response = await POST(
       buildRequest({
         ...validPayload,
-        linkedStandardId: 'ACC-1.1',
+        linkedStandardId: "ACC-1.1",
       }),
     );
 
     expect(response.status).toBe(200);
     expect(mockFetchInternalMutation).toHaveBeenCalledWith(
-      'internal.api.completePhaseMutation',
+      "internal.api.completePhaseMutation",
       expect.objectContaining({
-        linkedStandardId: 'ACC-1.1',
+        linkedStandardId: "ACC-1.1",
       }),
     );
   });
 
-  it('returns cached success for idempotent replay on the same phase', async () => {
+  it("returns cached success for idempotent replay on the same phase", async () => {
     mockFetchQuery.mockImplementation(async (name: string) => {
-      if (name === 'api.getLessonBySlugOrId') {
-        return { _id: 'lesson_1' };
+      if (name === "api.getLessonBySlugOrId") {
+        return { _id: "lesson_1" };
       }
       return null;
     });
 
     mockFetchInternalQuery.mockImplementation(async (name: string) => {
-      if (name === 'internal.api.canAccessPhase') {
+      if (name === "internal.api.canAccessPhase") {
         return true;
       }
 
-      if (name === 'internal.api.getPhaseContext') {
+      if (name === "internal.api.getPhaseContext") {
         return {
-          phaseId: 'phase_2',
-          lessonVersionId: 'lesson_version_1',
+          phaseId: "phase_2",
+          lessonVersionId: "lesson_version_1",
         };
       }
 
-      if (name === 'internal.api.getStudentProgressByIdempotencyKey') {
+      if (name === "internal.api.getStudentProgressByIdempotencyKey") {
         return {
-          phaseId: 'phase_2',
-          completedAt: '2026-02-26T10:00:00.000Z',
+          phaseId: "phase_2",
+          completedAt: "2026-02-26T10:00:00.000Z",
         };
       }
 
-      if (name === 'internal.api.checkNextPhaseExists') {
+      if (name === "internal.api.checkNextPhaseExists") {
         return true;
       }
 
@@ -294,24 +294,24 @@ describe('POST /api/phases/complete', () => {
     const body = await response.json();
     expect(body.message).toMatch(/idempotent request/i);
     expect(mockFetchInternalMutation).not.toHaveBeenCalledWith(
-      'internal.api.completePhaseMutation',
+      "internal.api.completePhaseMutation",
       expect.anything(),
     );
   });
 
-  it('completes a phase using the claims subject as user id', async () => {
+  it("completes a phase using the claims subject as user id", async () => {
     const response = await POST(buildRequest(validPayload));
 
     expect(response.status).toBe(200);
     const body = await response.json();
     expect(body.success).toBe(true);
-    expect(body.phaseId).toBe('phase_2');
+    expect(body.phaseId).toBe("phase_2");
 
     expect(mockFetchInternalMutation).toHaveBeenCalledWith(
-      'internal.api.completePhaseMutation',
+      "internal.api.completePhaseMutation",
       expect.objectContaining({
-        userId: 'profile_123',
-        phaseId: 'phase_2',
+        userId: "profile_123",
+        phaseId: "phase_2",
         timeSpent: 120,
       }),
     );

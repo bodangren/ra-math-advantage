@@ -1,6 +1,6 @@
 /** Returns the student dashboard route path. */
 export function studentDashboardPath() {
-  return '/student/dashboard';
+  return "/student/dashboard";
 }
 
 /** Returns a dashboard anchor link targeting a specific unit section. */

@@ -1,8 +1,19 @@
-import { buildPracticeSubmissionEnvelopeFromGrade, type GradeResult, type ProblemDefinition, type ProblemFamily, type ProblemPartDefinition } from '@/lib/practice/engine/types';
-import { normalizePracticeValue } from '@/lib/practice/contract';
-import { generateMiniLedger, type MiniLedger, type MiniLedgerCompanyType, type MiniLedgerConfig } from '@/lib/practice/engine/mini-ledger';
+import {
+  buildPracticeSubmissionEnvelopeFromGrade,
+  type GradeResult,
+  type ProblemDefinition,
+  type ProblemFamily,
+  type ProblemPartDefinition,
+} from "@/lib/practice/engine/types";
+import { normalizePracticeValue } from "@/lib/practice/contract";
+import {
+  generateMiniLedger,
+  type MiniLedger,
+  type MiniLedgerCompanyType,
+  type MiniLedgerConfig,
+} from "@/lib/practice/engine/mini-ledger";
 
-export type AccountingEquationTermId = 'assets' | 'liabilities' | 'equity';
+export type AccountingEquationTermId = "assets" | "liabilities" | "equity";
 
 export interface AccountingEquationFact {
   id: AccountingEquationTermId;
@@ -20,7 +31,7 @@ export interface AccountingEquationTerm {
 
 export interface AccountingEquationPart extends ProblemPartDefinition {
   id: AccountingEquationTermId;
-  kind: 'numeric';
+  kind: "numeric";
   label: string;
   description: string;
   targetId: number;
@@ -56,13 +67,13 @@ export interface AccountingEquationDefinition extends ProblemDefinition {
 export type AccountingEquationResponse = Partial<Record<AccountingEquationTermId, number>>;
 
 export interface AccountingEquationConfig extends MiniLedgerConfig {
-  mode?: ProblemDefinition['mode'];
+  mode?: ProblemDefinition["mode"];
   hiddenTermId?: AccountingEquationTermId;
   tolerance?: number;
 }
 
 export interface AccountingEquationReviewFeedback {
-  status: 'correct' | 'incorrect' | 'partial';
+  status: "correct" | "incorrect" | "partial";
   selectedLabel?: string;
   expectedLabel?: string;
   misconceptionTags?: string[];
@@ -70,9 +81,9 @@ export interface AccountingEquationReviewFeedback {
 }
 
 const ACCOUNTING_EQUATION_TERMS: Array<{ id: AccountingEquationTermId; label: string }> = [
-  { id: 'assets', label: 'Assets' },
-  { id: 'liabilities', label: 'Liabilities' },
-  { id: 'equity', label: "Owner's Equity" },
+  { id: "assets", label: "Assets" },
+  { id: "liabilities", label: "Liabilities" },
+  { id: "equity", label: "Owner's Equity" },
 ];
 
 /**
@@ -132,7 +143,10 @@ function buildHiddenTerm(seed: number, requested?: AccountingEquationTermId) {
  * @param hiddenTermId - hidden term id
  * @param values - values
  */
-function buildVisibleFacts(hiddenTermId: AccountingEquationTermId, values: Record<AccountingEquationTermId, number>) {
+function buildVisibleFacts(
+  hiddenTermId: AccountingEquationTermId,
+  values: Record<AccountingEquationTermId, number>,
+) {
   return ACCOUNTING_EQUATION_TERMS.filter((term) => term.id !== hiddenTermId).map((term) => ({
     id: term.id,
     label: term.label,
@@ -155,25 +169,26 @@ function buildParts(
   tolerance: number,
 ): AccountingEquationPart[] {
   const visibleFacts = buildVisibleFacts(hiddenTermId, values);
-  const partLabel = ACCOUNTING_EQUATION_TERMS.find((term) => term.id === hiddenTermId)?.label ?? hiddenTermId;
+  const partLabel =
+    ACCOUNTING_EQUATION_TERMS.find((term) => term.id === hiddenTermId)?.label ?? hiddenTermId;
 
   return [
     {
       id: hiddenTermId,
-      kind: 'numeric',
+      kind: "numeric",
       label: partLabel,
       description: `Complete the accounting equation for ${partLabel.toLowerCase()}.`,
       prompt: `What is ${partLabel.toLowerCase()}?`,
-      expectedAnswerShape: 'number',
+      expectedAnswerShape: "number",
       canonicalAnswer: values[hiddenTermId],
       explanation:
-        hiddenTermId === 'assets'
-          ? 'Assets equal liabilities plus equity.'
-          : hiddenTermId === 'liabilities'
-            ? 'Liabilities equal assets minus equity.'
+        hiddenTermId === "assets"
+          ? "Assets equal liabilities plus equity."
+          : hiddenTermId === "liabilities"
+            ? "Liabilities equal assets minus equity."
             : "Equity is the residual claim after liabilities are deducted from assets.",
-      misconceptionTags: ['equation-imbalance', `${hiddenTermId}-mismatch`],
-      standardCode: 'ACC-M7-B-ECON',
+      misconceptionTags: ["equation-imbalance", `${hiddenTermId}-mismatch`],
+      standardCode: "ACC-M7-B-ECON",
       artifactTarget: String(values[hiddenTermId]),
       targetId: values[hiddenTermId],
       details: {
@@ -183,11 +198,11 @@ function buildParts(
         formula: "Assets = Liabilities + Owner's Equity",
         tolerance,
         explanation:
-          hiddenTermId === 'assets'
-            ? 'Use liabilities and equity to find total assets.'
-            : hiddenTermId === 'liabilities'
-              ? 'Use assets and equity to isolate liabilities.'
-              : 'Use assets and liabilities to isolate owner equity.',
+          hiddenTermId === "assets"
+            ? "Use liabilities and equity to find total assets."
+            : hiddenTermId === "liabilities"
+              ? "Use assets and equity to isolate liabilities."
+              : "Use assets and liabilities to isolate owner equity.",
       },
     },
   ];
@@ -240,17 +255,17 @@ function scoreNumericPart(expected: number, actual: unknown, tolerance: number) 
 function buildPartFeedback(
   part: AccountingEquationPart,
   studentResponse: AccountingEquationResponse,
-  gradeResultPart: GradeResult['parts'][number],
+  gradeResultPart: GradeResult["parts"][number],
 ): AccountingEquationReviewFeedback {
   const selectedValue = studentResponse[part.id];
   return {
-    status: gradeResultPart.isCorrect ? 'correct' : 'incorrect',
-    selectedLabel: selectedValue === undefined ? 'Not entered' : String(selectedValue),
+    status: gradeResultPart.isCorrect ? "correct" : "incorrect",
+    selectedLabel: selectedValue === undefined ? "Not entered" : String(selectedValue),
     expectedLabel: String(part.targetId),
     misconceptionTags: gradeResultPart.misconceptionTags,
     message: gradeResultPart.isCorrect
       ? `${part.label} is correct.`
-      : `${part.label} should be ${part.targetId.toLocaleString('en-US')}.`,
+      : `${part.label} should be ${part.targetId.toLocaleString("en-US")}.`,
   };
 }
 
@@ -272,11 +287,11 @@ export function buildAccountingEquationReviewFeedback(
         return [
           partResult.partId,
           {
-            status: partResult.isCorrect ? 'correct' : 'incorrect',
-            selectedLabel: 'Not entered',
-            expectedLabel: 'Unknown',
+            status: partResult.isCorrect ? "correct" : "incorrect",
+            selectedLabel: "Not entered",
+            expectedLabel: "Unknown",
             misconceptionTags: partResult.misconceptionTags,
-            message: 'Review data unavailable.',
+            message: "Review data unavailable.",
           },
         ] as const;
       }
@@ -294,7 +309,7 @@ export const accountingEquationFamily: ProblemFamily<
   generate(seed, config = {}) {
     const miniLedger = generateMiniLedger(seed, {
       ...config,
-      capitalMode: 'ending',
+      capitalMode: "ending",
     });
     const values = buildEquationValues(miniLedger);
     const hiddenTermId = buildHiddenTerm(seed, config.hiddenTermId);
@@ -303,12 +318,12 @@ export const accountingEquationFamily: ProblemFamily<
     const visibleFacts = buildVisibleFacts(hiddenTermId, values);
 
     return {
-      contractVersion: 'practice.v1',
-      familyKey: 'accounting-equation',
-      mode: config.mode ?? 'assessment',
+      contractVersion: "practice.v1",
+      familyKey: "accounting-equation",
+      mode: config.mode ?? "assessment",
       activityId: `accounting-equation-${seed}-${hiddenTermId}`,
       prompt: {
-        title: 'Complete the accounting equation',
+        title: "Complete the accounting equation",
         stem: `Use the mini-ledger snapshot to solve for ${parts[0]?.label.toLowerCase() ?? hiddenTermId}.`,
       },
       miniLedger,
@@ -319,25 +334,25 @@ export const accountingEquationFamily: ProblemFamily<
       facts: visibleFacts,
       terms: {
         assets: {
-          id: 'assets',
-          label: 'Assets',
+          id: "assets",
+          label: "Assets",
           value: values.assets,
-          hidden: hiddenTermId === 'assets',
-          editable: hiddenTermId === 'assets',
+          hidden: hiddenTermId === "assets",
+          editable: hiddenTermId === "assets",
         },
         liabilities: {
-          id: 'liabilities',
-          label: 'Liabilities',
+          id: "liabilities",
+          label: "Liabilities",
           value: values.liabilities,
-          hidden: hiddenTermId === 'liabilities',
-          editable: hiddenTermId === 'liabilities',
+          hidden: hiddenTermId === "liabilities",
+          editable: hiddenTermId === "liabilities",
         },
         equity: {
-          id: 'equity',
+          id: "equity",
           label: "Owner's Equity",
           value: values.equity,
-          hidden: hiddenTermId === 'equity',
-          editable: hiddenTermId === 'equity',
+          hidden: hiddenTermId === "equity",
+          editable: hiddenTermId === "equity",
         },
       },
       parts,
@@ -345,18 +360,18 @@ export const accountingEquationFamily: ProblemFamily<
         formula: "Assets = Liabilities + Owner's Equity",
         hiddenTermId,
         helperText:
-          hiddenTermId === 'assets'
-            ? 'Use liabilities plus equity to find total assets.'
-            : hiddenTermId === 'liabilities'
-              ? 'Use assets minus equity to find liabilities.'
-              : 'Use assets minus liabilities to find owner equity.',
+          hiddenTermId === "assets"
+            ? "Use liabilities plus equity to find total assets."
+            : hiddenTermId === "liabilities"
+              ? "Use assets minus equity to find liabilities."
+              : "Use assets minus liabilities to find owner equity.",
       },
       grading: {
-        strategy: 'numeric',
+        strategy: "numeric",
         partialCredit: false,
       },
       analyticsConfig: {
-        generator: 'mini-ledger',
+        generator: "mini-ledger",
         seed,
         companyType: miniLedger.companyType,
         hiddenTermId,
@@ -372,21 +387,23 @@ export const accountingEquationFamily: ProblemFamily<
     const tolerance = definition.parts[0]?.details.tolerance ?? 0;
     const part = definition.parts[0];
     const scoreResult = scoreNumericPart(part.targetId, studentResponse[part.id], tolerance);
-    const partResult: GradeResult['parts'][number] = {
+    const partResult: GradeResult["parts"][number] = {
       partId: part.id,
       rawAnswer: studentResponse[part.id],
       normalizedAnswer: scoreResult.normalizedAnswer,
       isCorrect: scoreResult.isCorrect,
       score: scoreResult.score,
       maxScore: 1,
-      misconceptionTags: scoreResult.isCorrect ? [] : ['equation-imbalance', `${part.id}-mismatch`],
+      misconceptionTags: scoreResult.isCorrect ? [] : ["equation-imbalance", `${part.id}-mismatch`],
     };
 
     return {
       score: partResult.score,
       maxScore: 1,
       parts: [partResult],
-      feedback: partResult.isCorrect ? 'Correct equation balance.' : 'Recheck the accounting equation and the mini-ledger totals.',
+      feedback: partResult.isCorrect
+        ? "Correct equation balance."
+        : "Recheck the accounting equation and the mini-ledger totals.",
     };
   },
 

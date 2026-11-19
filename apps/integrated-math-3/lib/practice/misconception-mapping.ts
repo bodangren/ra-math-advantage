@@ -16,21 +16,18 @@
  * reverse mapping is a single-source change.
  */
 
-import type { DistractorType } from '@math-platform/math-content/algebraic';
+import type { DistractorType } from "@math-platform/math-content/algebraic";
 
-import {
-  IM3_MISCONCEPTION_TAGS,
-  type Im3MisconceptionTagSlug,
-} from './misconception-taxonomy';
+import { IM3_MISCONCEPTION_TAGS, type Im3MisconceptionTagSlug } from "./misconception-taxonomy";
 
 const VALID_DISTRACTOR_TYPES: ReadonlySet<DistractorType> = new Set<DistractorType>([
-  'factoring',
-  'linear',
-  'quadratic_formula',
-  'complex',
-  'completing_square',
-  'discriminant',
-  'system',
+  "factoring",
+  "linear",
+  "quadratic_formula",
+  "complex",
+  "completing_square",
+  "discriminant",
+  "system",
 ]);
 
 function isDistractorType(value: string): value is DistractorType {
@@ -73,9 +70,7 @@ export function mapDistractorToMisconception(
  * for an unknown slug so callers can use this as a safe reverse lookup
  * without throwing.
  */
-export function getDistractorTypesForMisconception(
-  slug: string,
-): readonly DistractorType[] {
+export function getDistractorTypesForMisconception(slug: string): readonly DistractorType[] {
   const entry = IM3_MISCONCEPTION_TAGS[slug as Im3MisconceptionTagSlug];
   if (!entry) {
     return [];

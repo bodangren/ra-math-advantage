@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 import {
   SESSION_COOKIE_NAME,
   SESSION_TTL_SECONDS,
@@ -13,100 +13,103 @@ import {
   generatePasswordSalt,
   isDemoProvisioningEnabled,
   validatePasswordForRole,
-} from '../index.js';
+} from "../index.js";
 
-describe('core-auth constants', () => {
-  it('exports session cookie name', () => {
-    expect(SESSION_COOKIE_NAME).toBe('bm_session');
+describe("core-auth constants", () => {
+  it("exports session cookie name", () => {
+    expect(SESSION_COOKIE_NAME).toBe("bm_session");
   });
 
-  it('exports session TTL in seconds', () => {
+  it("exports session TTL in seconds", () => {
     expect(SESSION_TTL_SECONDS).toBe(12 * 60 * 60);
   });
 
-  it('exports password hash iterations', () => {
+  it("exports password hash iterations", () => {
     expect(PASSWORD_HASH_ITERATIONS).toBe(120000);
   });
 
-  it('exports unambiguous password alphabet', () => {
-    expect(PASSWORD_ALPHABET).not.toContain('O');
-    expect(PASSWORD_ALPHABET).not.toContain('0');
-    expect(PASSWORD_ALPHABET).not.toContain('I');
-    expect(PASSWORD_ALPHABET).not.toContain('l');
-    expect(PASSWORD_ALPHABET).not.toContain('1');
+  it("exports unambiguous password alphabet", () => {
+    expect(PASSWORD_ALPHABET).not.toContain("O");
+    expect(PASSWORD_ALPHABET).not.toContain("0");
+    expect(PASSWORD_ALPHABET).not.toContain("I");
+    expect(PASSWORD_ALPHABET).not.toContain("l");
+    expect(PASSWORD_ALPHABET).not.toContain("1");
   });
 });
 
-describe('getAuthJwtSecret', () => {
-  it('returns env secret when set', () => {
+describe("getAuthJwtSecret", () => {
+  it("returns env secret when set", () => {
     const secret = getAuthJwtSecret();
-    expect(typeof secret).toBe('string');
+    expect(typeof secret).toBe("string");
     expect(secret.length).toBeGreaterThan(0);
   });
 });
 
-describe('session token signing and verification', () => {
-  const TEST_SECRET = 'test-secret-key-for-unit-tests';
+describe("session token signing and verification", () => {
+  const TEST_SECRET = "test-secret-key-for-unit-tests";
 
-  it('signs and verifies a valid session token', async () => {
+  it("signs and verifies a valid session token", async () => {
     const input = {
-      sub: 'user-123',
-      username: 'testuser',
-      role: 'student' as const,
+      sub: "user-123",
+      username: "testuser",
+      role: "student" as const,
     };
 
     const token = await signSessionToken(input, TEST_SECRET);
-    expect(typeof token).toBe('string');
-    expect(token.split('.').length).toBe(3);
+    expect(typeof token).toBe("string");
+    expect(token.split(".").length).toBe(3);
 
     const claims = await verifySessionToken(token, TEST_SECRET);
     expect(claims).not.toBeNull();
-    expect(claims?.sub).toBe('user-123');
-    expect(claims?.username).toBe('testuser');
-    expect(claims?.role).toBe('student');
+    expect(claims?.sub).toBe("user-123");
+    expect(claims?.username).toBe("testuser");
+    expect(claims?.role).toBe("student");
   });
 
-  it.each(['!', 'a', '%%%'])('rejects malformed signature %s without throwing', async (signature) => {
-    await expect(verifySessionToken(`a.b.${signature}`, TEST_SECRET)).resolves.toBeNull();
-  });
+  it.each(["!", "a", "%%%"])(
+    "rejects malformed signature %s without throwing",
+    async (signature) => {
+      await expect(verifySessionToken(`a.b.${signature}`, TEST_SECRET)).resolves.toBeNull();
+    },
+  );
 
-  it('rejects tampered tokens', async () => {
+  it("rejects tampered tokens", async () => {
     const input = {
-      sub: 'user-123',
-      username: 'testuser',
-      role: 'student' as const,
+      sub: "user-123",
+      username: "testuser",
+      role: "student" as const,
     };
 
     const token = await signSessionToken(input, TEST_SECRET);
-    const tamperedToken = token.slice(0, -5) + 'xxxxx';
+    const tamperedToken = token.slice(0, -5) + "xxxxx";
 
     const claims = await verifySessionToken(tamperedToken, TEST_SECRET);
     expect(claims).toBeNull();
   });
 
-  it('rejects tokens with wrong secret', async () => {
+  it("rejects tokens with wrong secret", async () => {
     const input = {
-      sub: 'user-123',
-      username: 'testuser',
-      role: 'teacher' as const,
+      sub: "user-123",
+      username: "testuser",
+      role: "teacher" as const,
     };
 
     const token = await signSessionToken(input, TEST_SECRET);
-    const claims = await verifySessionToken(token, 'wrong-secret');
+    const claims = await verifySessionToken(token, "wrong-secret");
     expect(claims).toBeNull();
   });
 
-  it('rejects malformed tokens', async () => {
-    expect(await verifySessionToken('not-a-jwt', TEST_SECRET)).toBeNull();
-    expect(await verifySessionToken('only.two', TEST_SECRET)).toBeNull();
-    expect(await verifySessionToken('', TEST_SECRET)).toBeNull();
+  it("rejects malformed tokens", async () => {
+    expect(await verifySessionToken("not-a-jwt", TEST_SECRET)).toBeNull();
+    expect(await verifySessionToken("only.two", TEST_SECRET)).toBeNull();
+    expect(await verifySessionToken("", TEST_SECRET)).toBeNull();
   });
 
-  it('rejects expired tokens', async () => {
+  it("rejects expired tokens", async () => {
     const input = {
-      sub: 'user-123',
-      username: 'testuser',
-      role: 'admin' as const,
+      sub: "user-123",
+      username: "testuser",
+      role: "admin" as const,
     };
 
     const token = await signSessionToken(input, TEST_SECRET, -1);
@@ -115,23 +118,23 @@ describe('session token signing and verification', () => {
   });
 });
 
-describe('password hashing', () => {
-  it('hashes and verifies a valid password', async () => {
-    const password = 'testPassword123';
+describe("password hashing", () => {
+  it("hashes and verifies a valid password", async () => {
+    const password = "testPassword123";
     const salt = generatePasswordSalt();
     const iterations = 1000;
 
     const hash = await hashPassword(password, salt, iterations);
-    expect(typeof hash).toBe('string');
+    expect(typeof hash).toBe("string");
     expect(hash.length).toBeGreaterThan(0);
 
     const isValid = await verifyPassword(password, { salt, iterations, passwordHash: hash });
     expect(isValid).toBe(true);
   });
 
-  it('rejects incorrect passwords', async () => {
-    const password = 'correctPassword';
-    const wrongPassword = 'wrongPassword';
+  it("rejects incorrect passwords", async () => {
+    const password = "correctPassword";
+    const wrongPassword = "wrongPassword";
     const salt = generatePasswordSalt();
     const iterations = 1000;
 
@@ -140,20 +143,24 @@ describe('password hashing', () => {
     expect(isValid).toBe(false);
   });
 
-  it('rejects tampered hashes with different length', async () => {
-    const password = 'testPassword123';
+  it("rejects tampered hashes with different length", async () => {
+    const password = "testPassword123";
     const salt = generatePasswordSalt();
     const iterations = 1000;
 
     const hash = await hashPassword(password, salt, iterations);
     const tamperedHash = hash.slice(0, -4);
-    const isValid = await verifyPassword(password, { salt, iterations, passwordHash: tamperedHash });
+    const isValid = await verifyPassword(password, {
+      salt,
+      iterations,
+      passwordHash: tamperedHash,
+    });
     expect(isValid).toBe(false);
   });
 });
 
-describe('random password generation', () => {
-  it('generates passwords of specified length', () => {
+describe("random password generation", () => {
+  it("generates passwords of specified length", () => {
     const pass16 = generateRandomPassword(16);
     expect(pass16.length).toBe(16);
 
@@ -161,21 +168,21 @@ describe('random password generation', () => {
     expect(pass8.length).toBe(8);
   });
 
-  it('generates passwords with only allowed characters', () => {
+  it("generates passwords with only allowed characters", () => {
     const password = generateRandomPassword(50);
     for (const char of password) {
       expect(PASSWORD_ALPHABET).toContain(char);
     }
   });
 
-  it('generates unique passwords', () => {
+  it("generates unique passwords", () => {
     const passwords = new Set(Array.from({ length: 100 }, () => generateRandomPassword(16)));
     expect(passwords.size).toBe(100);
   });
 });
 
-describe('salt generation', () => {
-  it('generates salts of specified byte length', () => {
+describe("salt generation", () => {
+  it("generates salts of specified byte length", () => {
     const salt16 = generatePasswordSalt(16);
     const salt32 = generatePasswordSalt(32);
 
@@ -183,65 +190,69 @@ describe('salt generation', () => {
     expect(salt32.length).toBeGreaterThan(salt16.length);
   });
 
-  it('generates unique salts', () => {
+  it("generates unique salts", () => {
     const salts = new Set(Array.from({ length: 100 }, () => generatePasswordSalt()));
     expect(salts.size).toBe(100);
   });
 });
 
-describe('isDemoProvisioningEnabled', () => {
-  it('returns false when NODE_ENV is production', () => {
-    expect(isDemoProvisioningEnabled({ NODE_ENV: 'production' })).toBe(false);
+describe("isDemoProvisioningEnabled", () => {
+  it("returns false when NODE_ENV is production", () => {
+    expect(isDemoProvisioningEnabled({ NODE_ENV: "production" })).toBe(false);
   });
 
-  it('returns false when VERCEL_ENV is production', () => {
-    expect(isDemoProvisioningEnabled({ VERCEL_ENV: 'production', NODE_ENV: 'development' })).toBe(false);
+  it("returns false when VERCEL_ENV is production", () => {
+    expect(isDemoProvisioningEnabled({ VERCEL_ENV: "production", NODE_ENV: "development" })).toBe(
+      false,
+    );
   });
 
-  it('returns false when VERCEL_ENV is preview', () => {
-    expect(isDemoProvisioningEnabled({ VERCEL_ENV: 'preview', NODE_ENV: 'development' })).toBe(false);
+  it("returns false when VERCEL_ENV is preview", () => {
+    expect(isDemoProvisioningEnabled({ VERCEL_ENV: "preview", NODE_ENV: "development" })).toBe(
+      false,
+    );
   });
 
-  it('returns true when NODE_ENV is development', () => {
-    expect(isDemoProvisioningEnabled({ NODE_ENV: 'development' })).toBe(true);
+  it("returns true when NODE_ENV is development", () => {
+    expect(isDemoProvisioningEnabled({ NODE_ENV: "development" })).toBe(true);
   });
 
-  it('returns true when NODE_ENV is test', () => {
-    expect(isDemoProvisioningEnabled({ NODE_ENV: 'test' })).toBe(true);
+  it("returns true when NODE_ENV is test", () => {
+    expect(isDemoProvisioningEnabled({ NODE_ENV: "test" })).toBe(true);
   });
 
-  it('returns false when no env vars are set', () => {
+  it("returns false when no env vars are set", () => {
     expect(isDemoProvisioningEnabled({})).toBe(false);
   });
 });
 
-describe('validatePasswordForRole', () => {
-  it('rejects passwords with leading/trailing spaces', () => {
-    expect(validatePasswordForRole('student', '  password  ')).not.toBeNull();
-    expect(validatePasswordForRole('teacher', '  password1  ')).not.toBeNull();
+describe("validatePasswordForRole", () => {
+  it("rejects passwords with leading/trailing spaces", () => {
+    expect(validatePasswordForRole("student", "  password  ")).not.toBeNull();
+    expect(validatePasswordForRole("teacher", "  password1  ")).not.toBeNull();
   });
 
-  it('accepts valid student passwords (6+ chars)', () => {
-    expect(validatePasswordForRole('student', 'abcdef')).toBeNull();
+  it("accepts valid student passwords (6+ chars)", () => {
+    expect(validatePasswordForRole("student", "abcdef")).toBeNull();
   });
 
-  it('rejects short student passwords', () => {
-    expect(validatePasswordForRole('student', 'abcde')).not.toBeNull();
+  it("rejects short student passwords", () => {
+    expect(validatePasswordForRole("student", "abcde")).not.toBeNull();
   });
 
-  it('accepts valid teacher passwords (8+ chars with letter and number)', () => {
-    expect(validatePasswordForRole('teacher', 'password1')).toBeNull();
+  it("accepts valid teacher passwords (8+ chars with letter and number)", () => {
+    expect(validatePasswordForRole("teacher", "password1")).toBeNull();
   });
 
-  it('rejects teacher passwords without a number', () => {
-    expect(validatePasswordForRole('teacher', 'password')).not.toBeNull();
+  it("rejects teacher passwords without a number", () => {
+    expect(validatePasswordForRole("teacher", "password")).not.toBeNull();
   });
 
-  it('rejects teacher passwords without a letter', () => {
-    expect(validatePasswordForRole('teacher', '12345678')).not.toBeNull();
+  it("rejects teacher passwords without a letter", () => {
+    expect(validatePasswordForRole("teacher", "12345678")).not.toBeNull();
   });
 
-  it('rejects short teacher passwords', () => {
-    expect(validatePasswordForRole('teacher', 'pass12')).not.toBeNull();
+  it("rejects short teacher passwords", () => {
+    expect(validatePasswordForRole("teacher", "pass12")).not.toBeNull();
   });
 });

@@ -1,9 +1,9 @@
-import { ImprovementPlanProposalForm } from '@/components/improvement-plan-proposal-form';
-import { SiteHeader } from '@/components/site-header';
+import { ImprovementPlanProposalForm } from "@/components/improvement-plan-proposal-form";
+import { SiteHeader } from "@/components/site-header";
 import {
   getImprovementPlan,
   getImprovementPlanProposalWorkspace,
-} from '@/lib/improvement-plans/improvement-plan-page';
+} from "@/lib/improvement-plans/improvement-plan-page";
 
 export default async function ReviseImprovementPlanPage({
   params,
@@ -12,13 +12,20 @@ export default async function ReviseImprovementPlanPage({
 }) {
   const { planId } = await params;
   const planResult = await getImprovementPlan(planId);
-  const workspaceResult = await getImprovementPlanProposalWorkspace(planResult.plan.teacherProfileId);
+  const workspaceResult = await getImprovementPlanProposalWorkspace(
+    planResult.plan.teacherProfileId,
+  );
   const version = planResult.plan.pendingVersion ?? planResult.plan.activeVersion;
-  if (!version) throw new Error('The plan has no proposal version.');
+  if (!version) throw new Error("The plan has no proposal version.");
   const roles = planResult.session.account.danielsonRoles as string[];
   return (
     <>
-      <SiteHeader isAuthenticated showReports showImprovementPlans showMyReport={roles.includes('teacher')} />
+      <SiteHeader
+        isAuthenticated
+        showReports
+        showImprovementPlans
+        showMyReport={roles.includes("teacher")}
+      />
       <main id="main-content" className="page-shell report-stack">
         <p className="eyebrow">Restricted personnel record</p>
         <h1>Create a revised proposal</h1>

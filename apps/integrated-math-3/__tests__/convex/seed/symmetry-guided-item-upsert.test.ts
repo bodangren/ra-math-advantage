@@ -1,28 +1,27 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import type { Id } from '@/convex/_generated/dataModel';
+import type { Id } from "@/convex/_generated/dataModel";
 import {
   buildIm3SymmetryGuidedSeedDocuments,
   upsertIm3SymmetryGuidedPracticeItem,
-} from '@/convex/seed/seed_lesson_1_1';
-import {
-  IM3_SYMMETRY_GUIDED_ACTIVITY_ID,
-} from '@/lib/practice/learning-evidence-pilot';
+} from "@/convex/seed/seed_lesson_1_1";
+import { IM3_SYMMETRY_GUIDED_ACTIVITY_ID } from "@/lib/practice/learning-evidence-pilot";
 
-describe('IM3 symmetry Guided practice-item upsert', () => {
-  it('upserts the exact Guided practice item by linked identity', async () => {
+describe("IM3 symmetry Guided practice-item upsert", () => {
+  it("upserts the exact Guided practice item by linked identity", async () => {
     const operations: string[] = [];
     let stored: Record<string, unknown> | undefined;
-    const activityId = 'activities:symmetry-guided' as Id<'activities'>;
-    const storedItemId = 'practice_items:symmetry-guided' as Id<'practice_items'>;
+    const activityId = "activities:symmetry-guided" as Id<"activities">;
+    const storedItemId = "practice_items:symmetry-guided" as Id<"practice_items">;
     const ctx = {
       db: {
         query(table: string) {
           operations.push(`query:${table}`);
           return {
-            withIndex(index: string, callback: (query: {
-              eq: (field: string, value: unknown) => unknown;
-            }) => unknown) {
+            withIndex(
+              index: string,
+              callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+            ) {
               operations.push(`index:${index}`);
               callback({
                 eq: (field: string, value: unknown) => {
@@ -44,7 +43,7 @@ describe('IM3 symmetry Guided practice-item upsert', () => {
           stored = { ...document, _id: storedItemId };
           return storedItemId;
         },
-        patch: async (id: Id<'practice_items'>, document: Record<string, unknown>) => {
+        patch: async (id: Id<"practice_items">, document: Record<string, unknown>) => {
           operations.push(`patch:${id}`);
           stored = { ...stored, ...document, _id: id };
         },
@@ -57,23 +56,23 @@ describe('IM3 symmetry Guided practice-item upsert', () => {
     expect(firstId).toBe(storedItemId);
     expect(secondId).toBe(storedItemId);
     expect(operations).toEqual([
-      'query:practice_items',
-      'index:by_variantKey',
+      "query:practice_items",
+      "index:by_variantKey",
       `eq:variantKey:${IM3_SYMMETRY_GUIDED_ACTIVITY_ID}`,
-      'take:2',
-      'query:practice_items',
-      'index:by_activityId',
+      "take:2",
+      "query:practice_items",
+      "index:by_activityId",
       `eq:activityId:${activityId}`,
-      'take:2',
-      'insert:practice_items',
-      'query:practice_items',
-      'index:by_variantKey',
+      "take:2",
+      "insert:practice_items",
+      "query:practice_items",
+      "index:by_variantKey",
       `eq:variantKey:${IM3_SYMMETRY_GUIDED_ACTIVITY_ID}`,
-      'take:2',
-      'query:practice_items',
-      'index:by_activityId',
+      "take:2",
+      "query:practice_items",
+      "index:by_activityId",
       `eq:activityId:${activityId}`,
-      'take:2',
+      "take:2",
       `patch:${storedItemId}`,
     ]);
     expect(stored).toEqual({
@@ -84,33 +83,36 @@ describe('IM3 symmetry Guided practice-item upsert', () => {
       practiceItemId: `${IM3_SYMMETRY_GUIDED_ACTIVITY_ID}:seed-0`,
       activityId,
       variantKey: IM3_SYMMETRY_GUIDED_ACTIVITY_ID,
-      variantLabel: 'Seed 0',
+      variantLabel: "Seed 0",
       sourceTimestamp: 200,
     });
-    expect(operations.filter((operation) => operation.startsWith('query:') && (
-      !operation.includes('practice_items')
-    ))).toEqual([]);
+    expect(
+      operations.filter(
+        (operation) => operation.startsWith("query:") && !operation.includes("practice_items"),
+      ),
+    ).toEqual([]);
   });
 
-  it('rejects a conflicting symmetry Guided practice-item mapping before writes', async () => {
+  it("rejects a conflicting symmetry Guided practice-item mapping before writes", async () => {
     const operations: string[] = [];
-    const activityId = 'activities:symmetry-guided' as Id<'activities'>;
-    const conflictingItemId = 'practice_items:symmetry-guided-conflict' as Id<'practice_items'>;
+    const activityId = "activities:symmetry-guided" as Id<"activities">;
+    const conflictingItemId = "practice_items:symmetry-guided-conflict" as Id<"practice_items">;
     const conflictingRow = {
       _id: conflictingItemId,
       practiceItemId: `${IM3_SYMMETRY_GUIDED_ACTIVITY_ID}:conflict`,
       activityId,
       variantKey: IM3_SYMMETRY_GUIDED_ACTIVITY_ID,
-      variantLabel: 'Seed 0',
+      variantLabel: "Seed 0",
     };
     const ctx = {
       db: {
         query(table: string) {
           operations.push(`query:${table}`);
           return {
-            withIndex(index: string, callback: (query: {
-              eq: (field: string, value: unknown) => unknown;
-            }) => unknown) {
+            withIndex(
+              index: string,
+              callback: (query: { eq: (field: string, value: unknown) => unknown }) => unknown,
+            ) {
               operations.push(`index:${index}`);
               callback({
                 eq: (field: string, value: unknown) => {
@@ -121,14 +123,14 @@ describe('IM3 symmetry Guided practice-item upsert', () => {
               return {
                 take: async (limit: number) => {
                   operations.push(`take:${limit}`);
-                  return index === 'by_variantKey' ? [conflictingRow] : [];
+                  return index === "by_variantKey" ? [conflictingRow] : [];
                 },
               };
             },
           };
         },
         insert: async () => {
-          operations.push('insert:practice_items');
+          operations.push("insert:practice_items");
           return conflictingItemId;
         },
         patch: async () => {
@@ -137,21 +139,23 @@ describe('IM3 symmetry Guided practice-item upsert', () => {
       },
     } as never;
 
-    await expect(
-      upsertIm3SymmetryGuidedPracticeItem(ctx, activityId, 100),
-    ).rejects.toThrow('Duplicate or conflicting IM3 symmetry Guided practice-item mapping');
+    await expect(upsertIm3SymmetryGuidedPracticeItem(ctx, activityId, 100)).rejects.toThrow(
+      "Duplicate or conflicting IM3 symmetry Guided practice-item mapping",
+    );
     expect(operations).toEqual([
-      'query:practice_items',
-      'index:by_variantKey',
+      "query:practice_items",
+      "index:by_variantKey",
       `eq:variantKey:${IM3_SYMMETRY_GUIDED_ACTIVITY_ID}`,
-      'take:2',
-      'query:practice_items',
-      'index:by_activityId',
+      "take:2",
+      "query:practice_items",
+      "index:by_activityId",
       `eq:activityId:${activityId}`,
-      'take:2',
+      "take:2",
     ]);
-    expect(operations.filter((operation) => (
-      operation.startsWith('insert:') || operation.startsWith('patch:')
-    ))).toEqual([]);
+    expect(
+      operations.filter(
+        (operation) => operation.startsWith("insert:") || operation.startsWith("patch:"),
+      ),
+    ).toEqual([]);
   });
 });

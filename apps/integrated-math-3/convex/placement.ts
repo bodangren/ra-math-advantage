@@ -33,9 +33,7 @@ export async function seedPlacementResultsHandler(
       );
     }
     if (r.masteryEstimate < 0 || r.masteryEstimate > 1) {
-      throw new Error(
-        `Invalid masteryEstimate: ${r.masteryEstimate}. Must be in [0, 1].`,
-      );
+      throw new Error(`Invalid masteryEstimate: ${r.masteryEstimate}. Must be in [0, 1].`);
     }
   }
 

@@ -34,11 +34,7 @@ const ENVELOPE_FIELDS = new Set([
   "teacherSummary",
   "timing",
 ]);
-const ANSWER_FIELDS = new Set([
-  "increasingIntervals",
-  "decreasingIntervals",
-  "constantIntervals",
-]);
+const ANSWER_FIELDS = new Set(["increasingIntervals", "decreasingIntervals", "constantIntervals"]);
 const PART_FIELDS = new Set([
   "partId",
   "rawAnswer",
@@ -57,9 +53,7 @@ type SubmissionResult = {
 };
 
 export interface PrecalculusPilotSubmissionRouteDependencies {
-  requireStudentSession: (
-    request: Request,
-  ) => Promise<StudentClaims | Response>;
+  requireStudentSession: (request: Request) => Promise<StudentClaims | Response>;
   createSubmission: (input: {
     userId: string;
     activityId: string;
@@ -83,16 +77,12 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function hasOnlyAllowedKeys(
-  value: Record<string, unknown>,
-  allowed: Set<string>,
-): boolean {
+function hasOnlyAllowedKeys(value: Record<string, unknown>, allowed: Set<string>): boolean {
   return Object.keys(value).every((key) => allowed.has(key));
 }
 
 function parseSubmissionData(body: unknown): Record<string, unknown> | null {
-  if (!isRecord(body) || !hasOnlyAllowedKeys(body, ENVELOPE_FIELDS))
-    return null;
+  if (!isRecord(body) || !hasOnlyAllowedKeys(body, ENVELOPE_FIELDS)) return null;
   if (Object.keys(body).some((key) => AUTHORITY_FIELDS.has(key))) return null;
   if (body.contractVersion !== "practice.v1") return null;
   if (
@@ -114,11 +104,7 @@ function parseSubmissionData(body: unknown): Record<string, unknown> | null {
       : body.activityId === PILOT_INDEPENDENT_ACTIVITY_ID
         ? "independent_practice"
         : null;
-  if (
-    expectedMode === null ||
-    body.mode !== expectedMode ||
-    body.status !== "submitted"
-  )
+  if (expectedMode === null || body.mode !== expectedMode || body.status !== "submitted")
     return null;
   if (
     body.parts.length !== 3 ||
@@ -134,14 +120,9 @@ function parseSubmissionData(body: unknown): Record<string, unknown> | null {
     return null;
   }
 
-  if (
-    !isRecord(body.answers) ||
-    !hasOnlyAllowedKeys(body.answers, ANSWER_FIELDS)
-  )
-    return null;
+  if (!isRecord(body.answers) || !hasOnlyAllowedKeys(body.answers, ANSWER_FIELDS)) return null;
   if (Object.keys(body.answers).length !== ANSWER_FIELDS.size) return null;
-  if (Object.values(body.answers).some((value) => typeof value !== "string"))
-    return null;
+  if (Object.values(body.answers).some((value) => typeof value !== "string")) return null;
 
   const seenPartIds = new Set<string>();
   for (const part of body.parts) {
@@ -202,8 +183,7 @@ export function createPrecalculusPilotSubmissionRoute({
     POST: async (request) => {
       const claimsOrResponse = await requireStudentSession(request);
       if (claimsOrResponse instanceof Response) return claimsOrResponse;
-      if (!claimsOrResponse.sub)
-        return jsonResponse({ error: "Unauthorized" }, 401);
+      if (!claimsOrResponse.sub) return jsonResponse({ error: "Unauthorized" }, 401);
 
       const idempotencyKey = parseIdempotencyKey(request);
       if (!idempotencyKey) {
@@ -219,19 +199,13 @@ export function createPrecalculusPilotSubmissionRoute({
 
       const submissionData = parseSubmissionData(body);
       if (!submissionData) {
-        return jsonResponse(
-          { error: "Invalid Precalculus pilot submission" },
-          400,
-        );
+        return jsonResponse({ error: "Invalid Precalculus pilot submission" }, 400);
       }
 
       try {
         const activityId = submissionData.activityId;
         if (typeof activityId !== "string") {
-          return jsonResponse(
-            { error: "Invalid Precalculus pilot submission" },
-            400,
-          );
+          return jsonResponse({ error: "Invalid Precalculus pilot submission" }, 400);
         }
         const result = await createSubmission({
           userId: claimsOrResponse.sub,
@@ -245,8 +219,7 @@ export function createPrecalculusPilotSubmissionRoute({
         if (message.includes("idempotency_conflict")) {
           return jsonResponse(
             {
-              error:
-                "Idempotency key was already used for a different submission",
+              error: "Idempotency key was already used for a different submission",
             },
             409,
           );
@@ -260,12 +233,7 @@ export function createPrecalculusPilotSubmissionRoute({
 export async function POST(request: Request): Promise<Response> {
   return createPrecalculusPilotSubmissionRoute({
     requireStudentSession: (input) => requireStudentRequestClaims(input),
-    createSubmission: ({
-      userId,
-      activityId,
-      submissionData,
-      idempotencyKey,
-    }) =>
+    createSubmission: ({ userId, activityId, submissionData, idempotencyKey }) =>
       fetchInternalMutation(internal.activities.createServerOwnedSubmission, {
         userId,
         activityId,

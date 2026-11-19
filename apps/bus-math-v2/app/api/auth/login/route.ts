@@ -1,14 +1,14 @@
-import { cookies } from 'next/headers';
-import { NextResponse } from 'next/server';
+import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 import {
   PASSWORD_HASH_ITERATIONS,
   SESSION_COOKIE_NAME,
   SESSION_TTL_SECONDS,
   getAuthJwtSecret,
-} from '@/lib/auth/constants';
-import { hashIpAddress } from '@/lib/auth/ip-hash';
-import { signSessionToken, verifyPassword } from '@/lib/auth/session';
-import { fetchInternalMutation, fetchInternalQuery, internal } from '@/lib/convex/server';
+} from "@/lib/auth/constants";
+import { hashIpAddress } from "@/lib/auth/ip-hash";
+import { signSessionToken, verifyPassword } from "@/lib/auth/session";
+import { fetchInternalMutation, fetchInternalQuery, internal } from "@/lib/convex/server";
 
 interface LoginBody {
   username?: string;
@@ -22,15 +22,15 @@ interface LoginBody {
  * @returns The client IP from x-forwarded-for or x-real-ip, defaulting to 127.0.0.1.
  */
 function getClientIp(request: Request): string {
-  const forwardedFor = request.headers.get('x-forwarded-for');
+  const forwardedFor = request.headers.get("x-forwarded-for");
   if (forwardedFor) {
-    return forwardedFor.split(',')[0].trim();
+    return forwardedFor.split(",")[0].trim();
   }
-  const realIp = request.headers.get('x-real-ip');
+  const realIp = request.headers.get("x-real-ip");
   if (realIp) {
     return realIp;
   }
-  return '127.0.0.1';
+  return "127.0.0.1";
 }
 
 /**
@@ -46,22 +46,22 @@ export async function POST(request: Request) {
   try {
     body = (await request.json()) as LoginBody;
   } catch {
-    return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+    return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
 
   const username = body.username?.trim();
-  const password = body.password ?? '';
+  const password = body.password ?? "";
 
   if (!username || !password) {
-    return NextResponse.json({ error: 'Username and password are required' }, { status: 400 });
+    return NextResponse.json({ error: "Username and password are required" }, { status: 400 });
   }
 
   if (username.length > 255) {
-    return NextResponse.json({ error: 'Username is too long' }, { status: 400 });
+    return NextResponse.json({ error: "Username is too long" }, { status: 400 });
   }
 
   if (password.length > 255) {
-    return NextResponse.json({ error: 'Password is too long' }, { status: 400 });
+    return NextResponse.json({ error: "Password is too long" }, { status: 400 });
   }
 
   const clientIp = getClientIp(request);
@@ -74,24 +74,26 @@ export async function POST(request: Request) {
     );
 
     if (!rateLimitResult.allowed) {
-      const retryAfter = Math.max(1, Math.ceil((rateLimitResult.windowExpiresAt - Date.now()) / 1000));
+      const retryAfter = Math.max(
+        1,
+        Math.ceil((rateLimitResult.windowExpiresAt - Date.now()) / 1000),
+      );
       return NextResponse.json(
-        { error: 'Too many login attempts. Please try again later.' },
-        { status: 429, headers: { 'Retry-After': String(retryAfter) } },
+        { error: "Too many login attempts. Please try again later." },
+        { status: 429, headers: { "Retry-After": String(retryAfter) } },
       );
     }
   } catch (error) {
-    console.error('[login] Rate limit check failed:', error);
-    return NextResponse.json(
-      { error: 'Authentication service unavailable' },
-      { status: 503 },
-    );
+    console.error("[login] Rate limit check failed:", error);
+    return NextResponse.json({ error: "Authentication service unavailable" }, { status: 503 });
   }
 
   try {
-    const credential = await fetchInternalQuery(internal.auth.getCredentialByUsername, { username });
+    const credential = await fetchInternalQuery(internal.auth.getCredentialByUsername, {
+      username,
+    });
     if (!credential) {
-      return NextResponse.json({ error: 'Invalid login credentials' }, { status: 401 });
+      return NextResponse.json({ error: "Invalid login credentials" }, { status: 401 });
     }
 
     const isValidPassword = await verifyPassword(password, {
@@ -101,7 +103,7 @@ export async function POST(request: Request) {
     });
 
     if (!isValidPassword) {
-      return NextResponse.json({ error: 'Invalid login credentials' }, { status: 401 });
+      return NextResponse.json({ error: "Invalid login credentials" }, { status: 401 });
     }
 
     const token = await signSessionToken(
@@ -118,15 +120,15 @@ export async function POST(request: Request) {
     const cookieStore = await cookies();
     cookieStore.set(SESSION_COOKIE_NAME, token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      path: '/',
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
       maxAge: SESSION_TTL_SECONDS,
     });
 
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error('Login route failed', error);
-    return NextResponse.json({ error: 'Authentication service unavailable' }, { status: 500 });
+    console.error("Login route failed", error);
+    return NextResponse.json({ error: "Authentication service unavailable" }, { status: 500 });
   }
 }

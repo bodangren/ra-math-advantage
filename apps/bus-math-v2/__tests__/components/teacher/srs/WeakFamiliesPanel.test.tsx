@@ -55,9 +55,7 @@ describe("WeakFamiliesPanel", () => {
     render(<WeakFamiliesPanel families={[]} isLoading={false} />);
 
     expect(screen.getByText("Weak Families")).toBeInTheDocument();
-    expect(
-      screen.getByText(/No family performance data available yet/i)
-    ).toBeInTheDocument();
+    expect(screen.getByText(/No family performance data available yet/i)).toBeInTheDocument();
   });
 
   it("renders families sorted by again rate descending", () => {
@@ -98,11 +96,7 @@ describe("WeakFamiliesPanel", () => {
   it("calls onBumpPriority when button is clicked", () => {
     const handleBump = vi.fn();
     render(
-      <WeakFamiliesPanel
-        families={sampleFamilies}
-        onBumpPriority={handleBump}
-        isLoading={false}
-      />
+      <WeakFamiliesPanel families={sampleFamilies} onBumpPriority={handleBump} isLoading={false} />,
     );
 
     const bumpButtons = screen.getAllByText("Bump Priority");

@@ -50,23 +50,23 @@
  *   - Single-root-lockfile invariant is preserved (one root, zero nested).
  */
 
-import { describe, it, expect, beforeAll } from 'vitest';
-import { readFileSync, existsSync } from 'node:fs';
-import { resolve } from 'node:path';
-import { satisfies } from 'semver';
+import { describe, it, expect, beforeAll } from "vitest";
+import { readFileSync, existsSync } from "node:fs";
+import { resolve } from "node:path";
+import { satisfies } from "semver";
 
 import {
   getAppManifests,
   getDeclarationDrift,
   type AppManifest,
   type DriftEntry,
-} from '../audit-contract';
+} from "../audit-contract";
 
 const REPO_ROOT = process.cwd();
-const FIXTURES_DIR = resolve(REPO_ROOT, 'scripts/audit/__tests__/fixtures');
+const FIXTURES_DIR = resolve(REPO_ROOT, "scripts/audit/__tests__/fixtures");
 
 const MATRIX = JSON.parse(
-  readFileSync(resolve(FIXTURES_DIR, 'package-wave-matrix.json'), 'utf-8')
+  readFileSync(resolve(FIXTURES_DIR, "package-wave-matrix.json"), "utf-8"),
 ) as {
   rows: Array<{
     package: string;
@@ -78,7 +78,7 @@ const MATRIX = JSON.parse(
 };
 
 const REGISTRY_STUB = JSON.parse(
-  readFileSync(resolve(FIXTURES_DIR, 'registry-stub.json'), 'utf-8')
+  readFileSync(resolve(FIXTURES_DIR, "registry-stub.json"), "utf-8"),
 ) as {
   registry_latest: Record<string, string>;
   range_classification_expectations: {
@@ -89,47 +89,34 @@ const REGISTRY_STUB = JSON.parse(
   };
 };
 
-const PACKAGE_LOCK = JSON.parse(
-  readFileSync(resolve(REPO_ROOT, 'package-lock.json'), 'utf-8')
-) as {
-  packages: Record<string, {
-    version?: string;
-    dependencies?: Record<string, string>;
-    devDependencies?: Record<string, string>;
-  }>;
+const PACKAGE_LOCK = JSON.parse(readFileSync(resolve(REPO_ROOT, "package-lock.json"), "utf-8")) as {
+  packages: Record<
+    string,
+    {
+      version?: string;
+      dependencies?: Record<string, string>;
+      devDependencies?: Record<string, string>;
+    }
+  >;
 };
 
-const W3_DRIFT_DISPOSITION_FIXTURE = resolve(
-  FIXTURES_DIR,
-  'w3-drift-disposition.json'
-);
-const W3_IN_RANGE_TARGETS_FIXTURE = resolve(
-  FIXTURES_DIR,
-  'w3-in-range-targets.json'
-);
-const W3_ADVISORY_DISPOSITION_FIXTURE = resolve(
-  FIXTURES_DIR,
-  'w3-advisory-disposition.json'
-);
-const W3_QUALITY_GATES_FIXTURE = resolve(
-  FIXTURES_DIR,
-  'w3-quality-gates.json'
-);
+const W3_DRIFT_DISPOSITION_FIXTURE = resolve(FIXTURES_DIR, "w3-drift-disposition.json");
+const W3_IN_RANGE_TARGETS_FIXTURE = resolve(FIXTURES_DIR, "w3-in-range-targets.json");
+const W3_ADVISORY_DISPOSITION_FIXTURE = resolve(FIXTURES_DIR, "w3-advisory-disposition.json");
+const W3_QUALITY_GATES_FIXTURE = resolve(FIXTURES_DIR, "w3-quality-gates.json");
 
-const PTE_WORKSPACE = 'packages/practice-test-engine';
-const LESSON_RENDERER_WORKSPACE = 'packages/lesson-renderer';
-const APP_SHELL_WORKSPACE = 'packages/app-shell';
+const PTE_WORKSPACE = "packages/practice-test-engine";
+const LESSON_RENDERER_WORKSPACE = "packages/lesson-renderer";
+const APP_SHELL_WORKSPACE = "packages/app-shell";
 
-function manifestByWorkspace(
-  manifests: AppManifest[],
-  workspace: string
-): AppManifest | undefined {
+function manifestByWorkspace(manifests: AppManifest[], workspace: string): AppManifest | undefined {
   return manifests.find((m) => m.workspace_path === workspace);
 }
 
 function allDeclaredRanges(manifest: AppManifest, pkg: string): string[] {
-  return [manifest.dependencies[pkg], manifest.devDependencies[pkg]]
-    .filter((r): r is string => typeof r === 'string' && r.length > 0);
+  return [manifest.dependencies[pkg], manifest.devDependencies[pkg]].filter(
+    (r): r is string => typeof r === "string" && r.length > 0,
+  );
 }
 
 function declaredRangeFloor(range: string): {
@@ -137,12 +124,12 @@ function declaredRangeFloor(range: string): {
   minor: number;
   patch: number;
 } {
-  const cleaned = range.replace(/^[\^~>=<]*/, '').split('-')[0];
-  const parts = cleaned.split('.');
+  const cleaned = range.replace(/^[\^~>=<]*/, "").split("-")[0];
+  const parts = cleaned.split(".");
   return {
-    major: parseInt(parts[0] || '0', 10),
-    minor: parseInt(parts[1] || '0', 10),
-    patch: parseInt(parts[2] || '0', 10),
+    major: parseInt(parts[0] || "0", 10),
+    minor: parseInt(parts[1] || "0", 10),
+    patch: parseInt(parts[2] || "0", 10),
   };
 }
 
@@ -158,17 +145,17 @@ function getRequiresManifestChangeFamilies(): string[] {
 // Task 2 — Reconcile avoidable version declaration drift (FR6 / AC6)
 // ===========================================================================
 
-describe('in-range-wave (W3) — drift reconciliation (Task 2 / FR6 / AC6)', () => {
+describe("in-range-wave (W3) — drift reconciliation (Task 2 / FR6 / AC6)", () => {
   let manifests: AppManifest[];
 
   beforeAll(() => {
     manifests = getAppManifests(REPO_ROOT);
   });
 
-  it('katex: every workspace declaration has a floor >= 0.16.45 (reconcile 0.16.21 floor in lesson-renderer + activity-components)', () => {
+  it("katex: every workspace declaration has a floor >= 0.16.45 (reconcile 0.16.21 floor in lesson-renderer + activity-components)", () => {
     const offenders: Array<{ workspace: string; range: string }> = [];
     for (const m of manifests) {
-      for (const r of allDeclaredRanges(m, 'katex')) {
+      for (const r of allDeclaredRanges(m, "katex")) {
         const f = declaredRangeFloor(r);
         const isAtOrAbove =
           f.major > 0 ||
@@ -181,17 +168,16 @@ describe('in-range-wave (W3) — drift reconciliation (Task 2 / FR6 / AC6)', () 
     }
     expect(
       offenders,
-      `katex floor must be >= 0.16.45 after W3 reconciliation, found: ${JSON.stringify(offenders)}`
+      `katex floor must be >= 0.16.45 after W3 reconciliation, found: ${JSON.stringify(offenders)}`,
     ).toEqual([]);
   });
 
-  it('lucide-react: every workspace declaration has a floor >= 0.511.0 (reconcile 0.475.0 in lesson-renderer and 0.468.0 in app-shell)', () => {
+  it("lucide-react: every workspace declaration has a floor >= 0.511.0 (reconcile 0.475.0 in lesson-renderer and 0.468.0 in app-shell)", () => {
     const offenders: Array<{ workspace: string; range: string }> = [];
     for (const m of manifests) {
-      for (const r of allDeclaredRanges(m, 'lucide-react')) {
+      for (const r of allDeclaredRanges(m, "lucide-react")) {
         const f = declaredRangeFloor(r);
-        const isAtOrAbove =
-          f.major > 0 || (f.major === 0 && f.minor >= 511);
+        const isAtOrAbove = f.major > 0 || (f.major === 0 && f.minor >= 511);
         if (!isAtOrAbove) {
           offenders.push({ workspace: m.workspace_path, range: r });
         }
@@ -199,14 +185,14 @@ describe('in-range-wave (W3) — drift reconciliation (Task 2 / FR6 / AC6)', () 
     }
     expect(
       offenders,
-      `lucide-react floor must be >= 0.511.0 after W3 reconciliation, found: ${JSON.stringify(offenders)}`
+      `lucide-react floor must be >= 0.511.0 after W3 reconciliation, found: ${JSON.stringify(offenders)}`,
     ).toEqual([]);
   });
 
-  it('tailwind-merge: every workspace declaration has a floor >= 3.3.0 (reconcile 3.0.2 floor in lesson-renderer)', () => {
+  it("tailwind-merge: every workspace declaration has a floor >= 3.3.0 (reconcile 3.0.2 floor in lesson-renderer)", () => {
     const offenders: Array<{ workspace: string; range: string }> = [];
     for (const m of manifests) {
-      for (const r of allDeclaredRanges(m, 'tailwind-merge')) {
+      for (const r of allDeclaredRanges(m, "tailwind-merge")) {
         const f = declaredRangeFloor(r);
         const isAtOrAbove =
           f.major > 3 ||
@@ -219,14 +205,14 @@ describe('in-range-wave (W3) — drift reconciliation (Task 2 / FR6 / AC6)', () 
     }
     expect(
       offenders,
-      `tailwind-merge floor must be >= 3.3.0 after W3 reconciliation, found: ${JSON.stringify(offenders)}`
+      `tailwind-merge floor must be >= 3.3.0 after W3 reconciliation, found: ${JSON.stringify(offenders)}`,
     ).toEqual([]);
   });
 
-  it('ts-fsrs: every workspace declaration has a floor >= 5.3.2 (reconcile 5.0.0 floor in srs-engine)', () => {
+  it("ts-fsrs: every workspace declaration has a floor >= 5.3.2 (reconcile 5.0.0 floor in srs-engine)", () => {
     const offenders: Array<{ workspace: string; range: string }> = [];
     for (const m of manifests) {
-      for (const r of allDeclaredRanges(m, 'ts-fsrs')) {
+      for (const r of allDeclaredRanges(m, "ts-fsrs")) {
         const f = declaredRangeFloor(r);
         const isAtOrAbove =
           f.major > 5 ||
@@ -239,14 +225,14 @@ describe('in-range-wave (W3) — drift reconciliation (Task 2 / FR6 / AC6)', () 
     }
     expect(
       offenders,
-      `ts-fsrs floor must be >= 5.3.2 after W3 reconciliation, found: ${JSON.stringify(offenders)}`
+      `ts-fsrs floor must be >= 5.3.2 after W3 reconciliation, found: ${JSON.stringify(offenders)}`,
     ).toEqual([]);
   });
 
-  it('vitest: every workspace declaration has a floor >= 4.1.8 (reconcile 4.0.16 floor in the 21 non-PTE workspaces; W2 already moved PTE to 4.1.8)', () => {
+  it("vitest: every workspace declaration has a floor >= 4.1.8 (reconcile 4.0.16 floor in the 21 non-PTE workspaces; W2 already moved PTE to 4.1.8)", () => {
     const offenders: Array<{ workspace: string; range: string }> = [];
     for (const m of manifests) {
-      for (const r of allDeclaredRanges(m, 'vitest')) {
+      for (const r of allDeclaredRanges(m, "vitest")) {
         const f = declaredRangeFloor(r);
         const isAtOrAbove =
           f.major > 4 ||
@@ -259,14 +245,14 @@ describe('in-range-wave (W3) — drift reconciliation (Task 2 / FR6 / AC6)', () 
     }
     expect(
       offenders,
-      `vitest floor must be >= 4.1.8 after W3 reconciliation, found: ${JSON.stringify(offenders)}`
+      `vitest floor must be >= 4.1.8 after W3 reconciliation, found: ${JSON.stringify(offenders)}`,
     ).toEqual([]);
   });
 
-  it('vitest: no workspace may still declare a 2.x range (W2 already removed the 2.x security finding; this guards a regression)', () => {
+  it("vitest: no workspace may still declare a 2.x range (W2 already removed the 2.x security finding; this guards a regression)", () => {
     const offenders: Array<{ workspace: string; range: string }> = [];
     for (const m of manifests) {
-      for (const r of allDeclaredRanges(m, 'vitest')) {
+      for (const r of allDeclaredRanges(m, "vitest")) {
         const f = declaredRangeFloor(r);
         if (f.major === 2) {
           offenders.push({ workspace: m.workspace_path, range: r });
@@ -275,17 +261,17 @@ describe('in-range-wave (W3) — drift reconciliation (Task 2 / FR6 / AC6)', () 
     }
     expect(
       offenders,
-      `no workspace may declare vitest in the 2.x range, found: ${JSON.stringify(offenders)}`
+      `no workspace may declare vitest in the 2.x range, found: ${JSON.stringify(offenders)}`,
     ).toEqual([]);
   });
 
-  it('eslint-config-next: every declaration uses a ^ range (not a hard pin) with floor >= 15.3.1, enabling W4 migration to 16.x (test-strategy.md §3)', () => {
+  it("eslint-config-next: every declaration uses a ^ range (not a hard pin) with floor >= 15.3.1, enabling W4 migration to 16.x (test-strategy.md §3)", () => {
     const offenders: Array<{ workspace: string; range: string }> = [];
     for (const m of manifests) {
-      for (const r of allDeclaredRanges(m, 'eslint-config-next')) {
+      for (const r of allDeclaredRanges(m, "eslint-config-next")) {
         expect(
           r,
-          `eslint-config-next declaration "${r}" in ${m.workspace_path} must use a range prefix (^ or ~) — a hard pin blocks the W4 framework migration to 16.x (test-strategy.md §3)`
+          `eslint-config-next declaration "${r}" in ${m.workspace_path} must use a range prefix (^ or ~) — a hard pin blocks the W4 framework migration to 16.x (test-strategy.md §3)`,
         ).toMatch(/^[\^~]/);
 
         const f = declaredRangeFloor(r);
@@ -300,14 +286,14 @@ describe('in-range-wave (W3) — drift reconciliation (Task 2 / FR6 / AC6)', () 
     }
     expect(
       offenders,
-      `eslint-config-next floor must be >= 15.3.1 after W3 reconciliation, found: ${JSON.stringify(offenders)}`
+      `eslint-config-next floor must be >= 15.3.1 after W3 reconciliation, found: ${JSON.stringify(offenders)}`,
     ).toEqual([]);
   });
 
-  it('@types/node: every workspace declaration shares a single major-version floor (reconcile ^20 in 5 apps with ^22 in lesson-renderer)', () => {
+  it("@types/node: every workspace declaration shares a single major-version floor (reconcile ^20 in 5 apps with ^22 in lesson-renderer)", () => {
     const floorsByMajor = new Map<number, Array<{ workspace: string; range: string }>>();
     for (const m of manifests) {
-      for (const r of allDeclaredRanges(m, '@types/node')) {
+      for (const r of allDeclaredRanges(m, "@types/node")) {
         const f = declaredRangeFloor(r);
         if (!floorsByMajor.has(f.major)) {
           floorsByMajor.set(f.major, []);
@@ -317,14 +303,14 @@ describe('in-range-wave (W3) — drift reconciliation (Task 2 / FR6 / AC6)', () 
     }
     expect(
       floorsByMajor.size,
-      `@types/node must share a single major floor after W3 reconciliation, found majors: ${[...floorsByMajor.keys()].join(', ')} with ranges: ${JSON.stringify([...floorsByMajor.entries()], null, 2)}`
+      `@types/node must share a single major floor after W3 reconciliation, found majors: ${[...floorsByMajor.keys()].join(", ")} with ranges: ${JSON.stringify([...floorsByMajor.entries()], null, 2)}`,
     ).toBe(1);
   });
 
-  it('eslint: every workspace declaration has a floor >= 9.39.4 (reconcile ^9 floor in 4 apps with ^9.39.4 floor in bm2)', () => {
+  it("eslint: every workspace declaration has a floor >= 9.39.4 (reconcile ^9 floor in 4 apps with ^9.39.4 floor in bm2)", () => {
     const offenders: Array<{ workspace: string; range: string }> = [];
     for (const m of manifests) {
-      for (const r of allDeclaredRanges(m, 'eslint')) {
+      for (const r of allDeclaredRanges(m, "eslint")) {
         const f = declaredRangeFloor(r);
         const isAtOrAbove =
           f.major > 9 ||
@@ -337,24 +323,24 @@ describe('in-range-wave (W3) — drift reconciliation (Task 2 / FR6 / AC6)', () 
     }
     expect(
       offenders,
-      `eslint floor must be >= 9.39.4 after W3 reconciliation, found: ${JSON.stringify(offenders)}`
+      `eslint floor must be >= 9.39.4 after W3 reconciliation, found: ${JSON.stringify(offenders)}`,
     ).toEqual([]);
   });
 
-  it('w3-drift-disposition.json fixture exists (Task 2.2 — document every intentionally retained difference, FR6 / AC6)', () => {
+  it("w3-drift-disposition.json fixture exists (Task 2.2 — document every intentionally retained difference, FR6 / AC6)", () => {
     expect(
       existsSync(W3_DRIFT_DISPOSITION_FIXTURE),
-      `W3 drift disposition fixture missing. Task 2.2 requires a Measure artifact documenting every intentionally retained declaration difference (spec FR6 / AC6). Expected at ${W3_DRIFT_DISPOSITION_FIXTURE}.`
+      `W3 drift disposition fixture missing. Task 2.2 requires a Measure artifact documenting every intentionally retained declaration difference (spec FR6 / AC6). Expected at ${W3_DRIFT_DISPOSITION_FIXTURE}.`,
     ).toBe(true);
   });
 
-  it('w3-drift-disposition.json carries schema_version, reconciled[], and intentional_retentions[]', () => {
+  it("w3-drift-disposition.json carries schema_version, reconciled[], and intentional_retentions[]", () => {
     if (!existsSync(W3_DRIFT_DISPOSITION_FIXTURE)) {
       throw new Error(
-        `w3-drift-disposition.json missing at ${W3_DRIFT_DISPOSITION_FIXTURE} — see sibling test`
+        `w3-drift-disposition.json missing at ${W3_DRIFT_DISPOSITION_FIXTURE} — see sibling test`,
       );
     }
-    const fixture = JSON.parse(readFileSync(W3_DRIFT_DISPOSITION_FIXTURE, 'utf-8')) as {
+    const fixture = JSON.parse(readFileSync(W3_DRIFT_DISPOSITION_FIXTURE, "utf-8")) as {
       schema_version: number;
       reconciled: Array<{ package: string; post_w3_floor: string }>;
       intentional_retentions: Array<{ package: string; wave: string }>;
@@ -363,31 +349,31 @@ describe('in-range-wave (W3) — drift reconciliation (Task 2 / FR6 / AC6)', () 
     expect(Array.isArray(fixture.reconciled)).toBe(true);
     expect(Array.isArray(fixture.intentional_retentions)).toBe(true);
     for (const row of fixture.reconciled) {
-      expect(row.package, 'reconciled[] row missing package').toBeTruthy();
-      expect(row.post_w3_floor, 'reconciled[] row missing post_w3_floor').toBeTruthy();
+      expect(row.package, "reconciled[] row missing package").toBeTruthy();
+      expect(row.post_w3_floor, "reconciled[] row missing post_w3_floor").toBeTruthy();
     }
     for (const row of fixture.intentional_retentions) {
-      expect(row.package, 'intentional_retentions[] row missing package').toBeTruthy();
-      expect(row.wave, 'intentional_retentions[] row missing wave').toBeTruthy();
+      expect(row.package, "intentional_retentions[] row missing package").toBeTruthy();
+      expect(row.wave, "intentional_retentions[] row missing wave").toBeTruthy();
     }
   });
 
-  it('w3-drift-disposition.json: reconciled[] covers the 8 W3 drift families from plan.md Task 2', () => {
+  it("w3-drift-disposition.json: reconciled[] covers the 8 W3 drift families from plan.md Task 2", () => {
     if (!existsSync(W3_DRIFT_DISPOSITION_FIXTURE)) {
-      throw new Error('w3-drift-disposition.json missing — see sibling test');
+      throw new Error("w3-drift-disposition.json missing — see sibling test");
     }
-    const fixture = JSON.parse(readFileSync(W3_DRIFT_DISPOSITION_FIXTURE, 'utf-8')) as {
+    const fixture = JSON.parse(readFileSync(W3_DRIFT_DISPOSITION_FIXTURE, "utf-8")) as {
       reconciled: Array<{ package: string }>;
     };
     const expected = [
-      'katex',
-      'lucide-react',
-      'tailwind-merge',
-      'ts-fsrs',
-      'vitest',
-      'eslint-config-next',
-      '@types/node',
-      'eslint',
+      "katex",
+      "lucide-react",
+      "tailwind-merge",
+      "ts-fsrs",
+      "vitest",
+      "eslint-config-next",
+      "@types/node",
+      "eslint",
     ];
     const covered = new Set(fixture.reconciled.map((r) => r.package));
     for (const pkg of expected) {
@@ -400,16 +386,17 @@ describe('in-range-wave (W3) — drift reconciliation (Task 2 / FR6 / AC6)', () 
 // Task 1 — Refresh all audit-confirmed in-range direct dependencies (FR5)
 // ===========================================================================
 
-describe('in-range-wave (W3) — in-range refresh verification (Task 1 / FR5)', () => {
+describe("in-range-wave (W3) — in-range refresh verification (Task 1 / FR5)", () => {
   let manifests: AppManifest[];
 
   beforeAll(() => {
     manifests = getAppManifests(REPO_ROOT);
   });
 
-  it('every W3 in-range family declared range admits the installed version (no in-range → requires-manifest-change regression introduced by P3)', () => {
+  it("every W3 in-range family declared range admits the installed version (no in-range → requires-manifest-change regression introduced by P3)", () => {
     const inRange = getInRangeFamilies();
-    const offenders: Array<{ pkg: string; range: string; installed: string; workspace: string }> = [];
+    const offenders: Array<{ pkg: string; range: string; installed: string; workspace: string }> =
+      [];
     for (const pkg of inRange) {
       const installed = PACKAGE_LOCK.packages[`node_modules/${pkg}`]?.version;
       for (const m of manifests) {
@@ -418,18 +405,23 @@ describe('in-range-wave (W3) — in-range refresh verification (Task 1 / FR5)', 
           // actually installed. The 2026-06-07 registry-stub snapshot stays as a
           // floor (checked in the sibling test), not as the comparison target.
           if (!installed || !satisfies(installed, r)) {
-            offenders.push({ pkg, range: r, installed: installed ?? 'MISSING_FROM_LOCKFILE', workspace: m.workspace_path });
+            offenders.push({
+              pkg,
+              range: r,
+              installed: installed ?? "MISSING_FROM_LOCKFILE",
+              workspace: m.workspace_path,
+            });
           }
         }
       }
     }
     expect(
       offenders,
-      `every W3 in-range family manifest range must admit the installed version, found: ${JSON.stringify(offenders, null, 2)}`
+      `every W3 in-range family manifest range must admit the installed version, found: ${JSON.stringify(offenders, null, 2)}`,
     ).toEqual([]);
   });
 
-  it('every W3 in-range family installed lockfile version never regresses below the registry-stub latest (W3 floor)', () => {
+  it("every W3 in-range family installed lockfile version never regresses below the registry-stub latest (W3 floor)", () => {
     const inRange = getInRangeFamilies();
     const offenders: Array<{ pkg: string; installed: string; floor: string }> = [];
     for (const pkg of inRange) {
@@ -443,26 +435,26 @@ describe('in-range-wave (W3) — in-range refresh verification (Task 1 / FR5)', 
         // that is still declared would be a real offender.
         const stillDeclared = manifests.some((m) => allDeclaredRanges(m, pkg).length > 0);
         if (!stillDeclared) continue;
-        offenders.push({ pkg, installed: 'MISSING_FROM_LOCKFILE', floor });
+        offenders.push({ pkg, installed: "MISSING_FROM_LOCKFILE", floor });
         continue;
       }
-      if (!satisfies(entry.version ?? '', `>=${floor}`)) {
-        offenders.push({ pkg, installed: entry.version ?? 'MISSING', floor });
+      if (!satisfies(entry.version ?? "", `>=${floor}`)) {
+        offenders.push({ pkg, installed: entry.version ?? "MISSING", floor });
       }
     }
     expect(
       offenders,
-      `every W3 in-range family must stay at or above its registry-stub floor, found: ${JSON.stringify(offenders, null, 2)}`
+      `every W3 in-range family must stay at or above its registry-stub floor, found: ${JSON.stringify(offenders, null, 2)}`,
     ).toEqual([]);
   });
 
-  it('w3-in-range-targets.json fixture exists and enumerates all 22 W3 in-range families (Task 1 deliverable)', () => {
+  it("w3-in-range-targets.json fixture exists and enumerates all 22 W3 in-range families (Task 1 deliverable)", () => {
     expect(
       existsSync(W3_IN_RANGE_TARGETS_FIXTURE),
-      `W3 in-range targets fixture missing. Task 1 requires a Measure artifact enumerating the post-W3 in-range versions (spec FR5). Expected at ${W3_IN_RANGE_TARGETS_FIXTURE}.`
+      `W3 in-range targets fixture missing. Task 1 requires a Measure artifact enumerating the post-W3 in-range versions (spec FR5). Expected at ${W3_IN_RANGE_TARGETS_FIXTURE}.`,
     ).toBe(true);
     if (!existsSync(W3_IN_RANGE_TARGETS_FIXTURE)) return;
-    const fixture = JSON.parse(readFileSync(W3_IN_RANGE_TARGETS_FIXTURE, 'utf-8')) as {
+    const fixture = JSON.parse(readFileSync(W3_IN_RANGE_TARGETS_FIXTURE, "utf-8")) as {
       schema_version: number;
       in_range_count: number;
       targets: Array<{ package: string; target_version: string; owners: string[] }>;
@@ -473,21 +465,21 @@ describe('in-range-wave (W3) — in-range refresh verification (Task 1 / FR5)', 
     const names = new Set(fixture.targets.map((t) => t.package));
     expect(
       names.size,
-      `w3-in-range-targets.json must have unique target rows for all 22 in-range families, found ${names.size} unique packages`
+      `w3-in-range-targets.json must have unique target rows for all 22 in-range families, found ${names.size} unique packages`,
     ).toBe(getInRangeFamilies().length);
     for (const pkg of getInRangeFamilies()) {
       expect(
         names.has(pkg),
-        `w3-in-range-targets.json is missing the in-range family: ${pkg}`
+        `w3-in-range-targets.json is missing the in-range family: ${pkg}`,
       ).toBe(true);
     }
   });
 
-  it('w3-in-range-targets.json target_version for every family is a concrete semver equal to the registry-stub latest', () => {
+  it("w3-in-range-targets.json target_version for every family is a concrete semver equal to the registry-stub latest", () => {
     if (!existsSync(W3_IN_RANGE_TARGETS_FIXTURE)) {
-      throw new Error('w3-in-range-targets.json missing — see sibling test');
+      throw new Error("w3-in-range-targets.json missing — see sibling test");
     }
-    const fixture = JSON.parse(readFileSync(W3_IN_RANGE_TARGETS_FIXTURE, 'utf-8')) as {
+    const fixture = JSON.parse(readFileSync(W3_IN_RANGE_TARGETS_FIXTURE, "utf-8")) as {
       targets: Array<{ package: string; target_version: string }>;
     };
     const offenders: Array<{ pkg: string; target: string; stubLatest: string }> = [];
@@ -499,7 +491,7 @@ describe('in-range-wave (W3) — in-range refresh verification (Task 1 / FR5)', 
     }
     expect(
       offenders,
-      `every w3-in-range-targets.json target_version must equal the registry-stub latest, found: ${JSON.stringify(offenders, null, 2)}`
+      `every w3-in-range-targets.json target_version must equal the registry-stub latest, found: ${JSON.stringify(offenders, null, 2)}`,
     ).toEqual([]);
   });
 });
@@ -508,33 +500,37 @@ describe('in-range-wave (W3) — in-range refresh verification (Task 1 / FR5)', 
 // Task 3 — Investigate residual moderate advisories (FR9 / AC2)
 // ===========================================================================
 
-describe('in-range-wave (W3) — moderate advisory disposition (Task 3 / FR9 / AC2)', () => {
-  it('w3-advisory-disposition.json fixture exists (Task 3 deliverable — disposition every residual advisory)', () => {
+describe("in-range-wave (W3) — moderate advisory disposition (Task 3 / FR9 / AC2)", () => {
+  it("w3-advisory-disposition.json fixture exists (Task 3 deliverable — disposition every residual advisory)", () => {
     expect(
       existsSync(W3_ADVISORY_DISPOSITION_FIXTURE),
-      `W3 advisory disposition fixture missing. Task 3 requires a Measure artifact documenting the disposition of every residual advisory (spec FR9 / AC2). Expected at ${W3_ADVISORY_DISPOSITION_FIXTURE}.`
+      `W3 advisory disposition fixture missing. Task 3 requires a Measure artifact documenting the disposition of every residual advisory (spec FR9 / AC2). Expected at ${W3_ADVISORY_DISPOSITION_FIXTURE}.`,
     ).toBe(true);
   });
 
-  it('w3-advisory-disposition.json carries schema_version, advisories[], baseline_pre_w3, and drizzle_kit_floor', () => {
+  it("w3-advisory-disposition.json carries schema_version, advisories[], baseline_pre_w3, and drizzle_kit_floor", () => {
     if (!existsSync(W3_ADVISORY_DISPOSITION_FIXTURE)) {
-      throw new Error('w3-advisory-disposition.json missing — see sibling test');
+      throw new Error("w3-advisory-disposition.json missing — see sibling test");
     }
-    const fixture = JSON.parse(
-      readFileSync(W3_ADVISORY_DISPOSITION_FIXTURE, 'utf-8')
-    ) as {
+    const fixture = JSON.parse(readFileSync(W3_ADVISORY_DISPOSITION_FIXTURE, "utf-8")) as {
       schema_version: number;
       baseline_pre_w3: { critical: number; high: number; moderate: number; total: number };
       drizzle_kit_floor: { downgrade_blocked_below: string };
       advisories: Array<Record<string, unknown>>;
-      summary: { resolved: number; deferred: number; accepted: number; rejected: number; total: number };
+      summary: {
+        resolved: number;
+        deferred: number;
+        accepted: number;
+        rejected: number;
+        total: number;
+      };
     };
     expect(fixture.schema_version).toBe(1);
     expect(fixture.baseline_pre_w3.critical).toBe(0);
     expect(fixture.baseline_pre_w3.high).toBe(0);
     expect(fixture.baseline_pre_w3.moderate).toBe(14);
     expect(fixture.baseline_pre_w3.total).toBe(14);
-    expect(fixture.drizzle_kit_floor.downgrade_blocked_below).toBe('0.31.10');
+    expect(fixture.drizzle_kit_floor.downgrade_blocked_below).toBe("0.31.10");
     expect(Array.isArray(fixture.advisories)).toBe(true);
     expect(fixture.advisories.length).toBeGreaterThan(0);
     expect(fixture.summary).toBeDefined();
@@ -543,66 +539,65 @@ describe('in-range-wave (W3) — moderate advisory disposition (Task 3 / FR9 / A
         fixture.summary.deferred +
         fixture.summary.accepted +
         fixture.summary.rejected,
-      `summary totals must equal advisories.length (${fixture.advisories.length})`
+      `summary totals must equal advisories.length (${fixture.advisories.length})`,
     ).toBe(fixture.advisories.length);
   });
 
-  it('every advisory in the disposition fixture carries severity, title, package, and a disposition from the closed set {resolved, deferred, accepted, rejected}', () => {
+  it("every advisory in the disposition fixture carries severity, title, package, and a disposition from the closed set {resolved, deferred, accepted, rejected}", () => {
     if (!existsSync(W3_ADVISORY_DISPOSITION_FIXTURE)) {
-      throw new Error('w3-advisory-disposition.json missing — see sibling test');
+      throw new Error("w3-advisory-disposition.json missing — see sibling test");
     }
-    const fixture = JSON.parse(
-      readFileSync(W3_ADVISORY_DISPOSITION_FIXTURE, 'utf-8')
-    ) as {
+    const fixture = JSON.parse(readFileSync(W3_ADVISORY_DISPOSITION_FIXTURE, "utf-8")) as {
       advisories: Array<Record<string, unknown>>;
     };
-    const allowed = new Set(['resolved', 'deferred', 'accepted', 'rejected']);
+    const allowed = new Set(["resolved", "deferred", "accepted", "rejected"]);
     for (const advisory of fixture.advisories) {
-      expect(advisory.severity, 'advisory missing severity').toBeTruthy();
-      expect(advisory.title, 'advisory missing title').toBeTruthy();
-      expect(advisory.package, 'advisory missing package').toBeTruthy();
+      expect(advisory.severity, "advisory missing severity").toBeTruthy();
+      expect(advisory.title, "advisory missing title").toBeTruthy();
+      expect(advisory.package, "advisory missing package").toBeTruthy();
       expect(
         allowed.has(advisory.disposition as string),
-        `advisory "${advisory.title}" has invalid disposition "${advisory.disposition}"`
+        `advisory "${advisory.title}" has invalid disposition "${advisory.disposition}"`,
       ).toBe(true);
     }
   });
 
-  it('w3-advisory-disposition.json names the exact post-W3 npm audit vulnerability packages with no placeholder rows', () => {
+  it("w3-advisory-disposition.json names the exact post-W3 npm audit vulnerability packages with no placeholder rows", () => {
     if (!existsSync(W3_ADVISORY_DISPOSITION_FIXTURE)) {
-      throw new Error('w3-advisory-disposition.json missing — see sibling test');
+      throw new Error("w3-advisory-disposition.json missing — see sibling test");
     }
-    const fixture = JSON.parse(
-      readFileSync(W3_ADVISORY_DISPOSITION_FIXTURE, 'utf-8')
-    ) as {
+    const fixture = JSON.parse(readFileSync(W3_ADVISORY_DISPOSITION_FIXTURE, "utf-8")) as {
       advisories: Array<{ advisory_id: string; package: string }>;
     };
     const actualAuditPackages = [
-      '@cloudflare/vite-plugin',
-      '@esbuild-kit/core-utils',
-      '@esbuild-kit/esm-loader',
-      '@unpic/react',
-      'brace-expansion',
-      'drizzle-kit',
-      'esbuild',
-      'geist',
-      'miniflare',
-      'postcss',
-      'wrangler',
-      'ws',
+      "@cloudflare/vite-plugin",
+      "@esbuild-kit/core-utils",
+      "@esbuild-kit/esm-loader",
+      "@unpic/react",
+      "brace-expansion",
+      "drizzle-kit",
+      "esbuild",
+      "geist",
+      "miniflare",
+      "postcss",
+      "wrangler",
+      "ws",
     ].sort();
     const fixturePackages = fixture.advisories.map((a) => a.package).sort();
     expect(fixturePackages).toEqual(actualAuditPackages);
     for (const advisory of fixture.advisories) {
-      expect(advisory.advisory_id, `${advisory.package} uses a placeholder advisory_id`).not.toMatch(/^PLACEHOLDER/);
+      expect(
+        advisory.advisory_id,
+        `${advisory.package} uses a placeholder advisory_id`,
+      ).not.toMatch(/^PLACEHOLDER/);
     }
   });
 
-  it('drizzle-kit: no manifest may declare a floor below 0.31.10 (FR9 / AC2 / Phase 3 Task 3)', () => {
+  it("drizzle-kit: no manifest may declare a floor below 0.31.10 (FR9 / AC2 / Phase 3 Task 3)", () => {
     const manifests = getAppManifests(REPO_ROOT);
     const offenders: Array<{ workspace: string; range: string }> = [];
     for (const m of manifests) {
-      for (const r of allDeclaredRanges(m, 'drizzle-kit')) {
+      for (const r of allDeclaredRanges(m, "drizzle-kit")) {
         const f = declaredRangeFloor(r);
         const isAtOrAbove =
           f.major > 0 ||
@@ -615,12 +610,12 @@ describe('in-range-wave (W3) — moderate advisory disposition (Task 3 / FR9 / A
     }
     expect(
       offenders,
-      `drizzle-kit floor must be >= 0.31.10 across the workspace (FR9 forbids audit-fix --force downgrades), found: ${JSON.stringify(offenders)}`
+      `drizzle-kit floor must be >= 0.31.10 across the workspace (FR9 forbids audit-fix --force downgrades), found: ${JSON.stringify(offenders)}`,
     ).toEqual([]);
   });
 
-  it('drizzle-kit: if present, installed lockfile version is >= 0.31.10 (FR9)', () => {
-    const entry = PACKAGE_LOCK.packages['node_modules/drizzle-kit'];
+  it("drizzle-kit: if present, installed lockfile version is >= 0.31.10 (FR9)", () => {
+    const entry = PACKAGE_LOCK.packages["node_modules/drizzle-kit"];
     if (!entry) {
       // drizzle-kit was removed from the project in the BM2 Drizzle Dead-Layer
       // Removal track (dependency-security-upgrades prerequisite). Absence is
@@ -632,30 +627,27 @@ describe('in-range-wave (W3) — moderate advisory disposition (Task 3 / FR9 / A
       f.major > 0 ||
       (f.major === 0 && f.minor > 31) ||
       (f.major === 0 && f.minor === 31 && f.patch >= 10);
-    expect(
-      isAtOrAbove,
-      `installed drizzle-kit must be >= 0.31.10, found ${entry.version}`
-    ).toBe(true);
+    expect(isAtOrAbove, `installed drizzle-kit must be >= 0.31.10, found ${entry.version}`).toBe(
+      true,
+    );
   });
 
-  it('drizzle-kit: the advisory disposition fixture contains a `rejected` row for the audit-suggested drizzle-kit downgrade (FR9 enforcement)', () => {
+  it("drizzle-kit: the advisory disposition fixture contains a `rejected` row for the audit-suggested drizzle-kit downgrade (FR9 enforcement)", () => {
     if (!existsSync(W3_ADVISORY_DISPOSITION_FIXTURE)) {
-      throw new Error('w3-advisory-disposition.json missing — see sibling test');
+      throw new Error("w3-advisory-disposition.json missing — see sibling test");
     }
-    const fixture = JSON.parse(
-      readFileSync(W3_ADVISORY_DISPOSITION_FIXTURE, 'utf-8')
-    ) as {
+    const fixture = JSON.parse(readFileSync(W3_ADVISORY_DISPOSITION_FIXTURE, "utf-8")) as {
       advisories: Array<{ package: string; disposition: string }>;
     };
-    const drizzleRow = fixture.advisories.find((a) => a.package === 'drizzle-kit');
+    const drizzleRow = fixture.advisories.find((a) => a.package === "drizzle-kit");
     expect(
       drizzleRow,
-      `w3-advisory-disposition.json must contain a row for drizzle-kit (FR9)`
+      `w3-advisory-disposition.json must contain a row for drizzle-kit (FR9)`,
     ).toBeDefined();
     expect(
       drizzleRow!.disposition,
-      `drizzle-kit row disposition must be "rejected" (FR9 forbids the audit-suggested downgrade), found "${drizzleRow!.disposition}"`
-    ).toBe('rejected');
+      `drizzle-kit row disposition must be "rejected" (FR9 forbids the audit-suggested downgrade), found "${drizzleRow!.disposition}"`,
+    ).toBe("rejected");
   });
 });
 
@@ -663,19 +655,19 @@ describe('in-range-wave (W3) — moderate advisory disposition (Task 3 / FR9 / A
 // Task 4 — Verify and checkpoint the in-range refresh (AC7 / AC8)
 // ===========================================================================
 
-describe('in-range-wave (W3) — phase 3 checkpoint invariants (Task 4 / AC7 / AC8)', () => {
-  it('w3-quality-gates.json fixture exists (Task 4 deliverable — record post-W3 quality-gate results)', () => {
+describe("in-range-wave (W3) — phase 3 checkpoint invariants (Task 4 / AC7 / AC8)", () => {
+  it("w3-quality-gates.json fixture exists (Task 4 deliverable — record post-W3 quality-gate results)", () => {
     expect(
       existsSync(W3_QUALITY_GATES_FIXTURE),
-      `W3 quality gates fixture missing. Task 4 requires a Measure artifact recording the post-W3 quality-gate results (spec AC8). Expected at ${W3_QUALITY_GATES_FIXTURE}.`
+      `W3 quality gates fixture missing. Task 4 requires a Measure artifact recording the post-W3 quality-gate results (spec AC8). Expected at ${W3_QUALITY_GATES_FIXTURE}.`,
     ).toBe(true);
   });
 
-  it('w3-quality-gates.json carries npm_ls, npm_audit, boundary_check, and per_app_quality_gates', () => {
+  it("w3-quality-gates.json carries npm_ls, npm_audit, boundary_check, and per_app_quality_gates", () => {
     if (!existsSync(W3_QUALITY_GATES_FIXTURE)) {
-      throw new Error('w3-quality-gates.json missing — see sibling test');
+      throw new Error("w3-quality-gates.json missing — see sibling test");
     }
-    const fixture = JSON.parse(readFileSync(W3_QUALITY_GATES_FIXTURE, 'utf-8')) as {
+    const fixture = JSON.parse(readFileSync(W3_QUALITY_GATES_FIXTURE, "utf-8")) as {
       npm_ls: unknown;
       npm_audit: unknown;
       boundary_check: unknown;
@@ -686,26 +678,24 @@ describe('in-range-wave (W3) — phase 3 checkpoint invariants (Task 4 / AC7 / A
     expect(fixture.boundary_check).toBeDefined();
     expect(fixture.per_app_quality_gates).toBeDefined();
     expect(Array.isArray(fixture.per_app_quality_gates.apps)).toBe(true);
-    const appWorkspaces = fixture.per_app_quality_gates.apps
-      .map((a) => a.workspace)
-      .sort();
+    const appWorkspaces = fixture.per_app_quality_gates.apps.map((a) => a.workspace).sort();
     expect(
       appWorkspaces,
-      `w3-quality-gates.json per_app_quality_gates must cover all 5 first-class apps`
+      `w3-quality-gates.json per_app_quality_gates must cover all 5 first-class apps`,
     ).toEqual([
-      'apps/bus-math-v2',
-      'apps/integrated-math-1',
-      'apps/integrated-math-2',
-      'apps/integrated-math-3',
-      'apps/pre-calculus',
+      "apps/bus-math-v2",
+      "apps/integrated-math-1",
+      "apps/integrated-math-2",
+      "apps/integrated-math-3",
+      "apps/pre-calculus",
     ]);
   });
 
-  it('w3-quality-gates.json npm_audit pins 0 critical / 0 high, force_fix_used=false, and total = critical+high+moderate', () => {
+  it("w3-quality-gates.json npm_audit pins 0 critical / 0 high, force_fix_used=false, and total = critical+high+moderate", () => {
     if (!existsSync(W3_QUALITY_GATES_FIXTURE)) {
-      throw new Error('w3-quality-gates.json missing — see sibling test');
+      throw new Error("w3-quality-gates.json missing — see sibling test");
     }
-    const fixture = JSON.parse(readFileSync(W3_QUALITY_GATES_FIXTURE, 'utf-8')) as {
+    const fixture = JSON.parse(readFileSync(W3_QUALITY_GATES_FIXTURE, "utf-8")) as {
       npm_audit: {
         expected_critical: number;
         expected_high: number;
@@ -721,15 +711,15 @@ describe('in-range-wave (W3) — phase 3 checkpoint invariants (Task 4 / AC7 / A
       fixture.npm_audit.expected_critical +
         fixture.npm_audit.expected_high +
         fixture.npm_audit.expected_moderate,
-      `npm_audit expected_total must equal critical+high+moderate`
+      `npm_audit expected_total must equal critical+high+moderate`,
     ).toBe(fixture.npm_audit.expected_total);
   });
 
-  it('w3-quality-gates.json npm_ls and boundary_check both expect clean exit (per app gates: lint/test/typecheck/build expected_exit_status=0 for all 5 apps)', () => {
+  it("w3-quality-gates.json npm_ls and boundary_check both expect clean exit (per app gates: lint/test/typecheck/build expected_exit_status=0 for all 5 apps)", () => {
     if (!existsSync(W3_QUALITY_GATES_FIXTURE)) {
-      throw new Error('w3-quality-gates.json missing — see sibling test');
+      throw new Error("w3-quality-gates.json missing — see sibling test");
     }
-    const fixture = JSON.parse(readFileSync(W3_QUALITY_GATES_FIXTURE, 'utf-8')) as {
+    const fixture = JSON.parse(readFileSync(W3_QUALITY_GATES_FIXTURE, "utf-8")) as {
       npm_ls: { expected_exit_status: number; expected_clean: boolean };
       boundary_check: { expected_exit_status: number; expected_clean: boolean };
       per_app_quality_gates: {
@@ -753,12 +743,12 @@ describe('in-range-wave (W3) — phase 3 checkpoint invariants (Task 4 / AC7 / A
     }
   });
 
-  it('single-root-lockfile invariant preserved (AC7 / FR10) — exactly one root lockfile, no nested', () => {
+  it("single-root-lockfile invariant preserved (AC7 / FR10) — exactly one root lockfile, no nested", () => {
     // This block is the cross-wave invariant. It must hold at every phase.
     // The P1 assertNoNestedLockfiles contract is the source of truth; this test
     // re-asserts it under the W3 Red-phase umbrella.
-    const root = resolve(REPO_ROOT, 'package-lock.json');
-    expect(existsSync(root), 'root package-lock.json missing').toBe(true);
+    const root = resolve(REPO_ROOT, "package-lock.json");
+    expect(existsSync(root), "root package-lock.json missing").toBe(true);
   });
 });
 
@@ -766,7 +756,7 @@ describe('in-range-wave (W3) — phase 3 checkpoint invariants (Task 4 / AC7 / A
 // Cross-task — Drift must not regress against the audit contract
 // ===========================================================================
 
-describe('in-range-wave (W3) — drift regression guard (cross-task)', () => {
+describe("in-range-wave (W3) — drift regression guard (cross-task)", () => {
   let manifests: AppManifest[];
   let drift: DriftEntry[];
 
@@ -775,40 +765,40 @@ describe('in-range-wave (W3) — drift regression guard (cross-task)', () => {
     drift = getDeclarationDrift(manifests);
   });
 
-  it('no drift entry may report a vitest 2.x range (W2 must hold; W3 must not re-introduce)', () => {
-    const vitestDrift = drift.find((d) => d.package === 'vitest');
+  it("no drift entry may report a vitest 2.x range (W2 must hold; W3 must not re-introduce)", () => {
+    const vitestDrift = drift.find((d) => d.package === "vitest");
     if (!vitestDrift) return;
     for (const v of vitestDrift.versions) {
-      const major = parseInt(v.range.replace(/^[\^~>=<]*/, ''), 10);
+      const major = parseInt(v.range.replace(/^[\^~>=<]*/, ""), 10);
       expect(
         major,
-        `vitest drift version "${v.range}" in ${v.workspace} must not regress to major 2`
+        `vitest drift version "${v.range}" in ${v.workspace} must not regress to major 2`,
       ).not.toBe(2);
     }
   });
 
-  it('the matrix rows for W3 in-range families all carry W3-in-range as a wave (sanity)', () => {
+  it("the matrix rows for W3 in-range families all carry W3-in-range as a wave (sanity)", () => {
     const inRange = new Set(getInRangeFamilies());
     for (const row of MATRIX.rows) {
       if (!inRange.has(row.package)) continue;
       expect(
-        row.waves.includes('W3-in-range'),
-        `matrix row for ${row.package} must include W3-in-range as one of its waves`
+        row.waves.includes("W3-in-range"),
+        `matrix row for ${row.package} must include W3-in-range as one of its waves`,
       ).toBe(true);
       expect(
         row.primary_wave,
-        `matrix row for ${row.package} primary_wave must be W3-in-range, found ${row.primary_wave}`
-      ).toBe('W3-in-range');
+        `matrix row for ${row.package} primary_wave must be W3-in-range, found ${row.primary_wave}`,
+      ).toBe("W3-in-range");
     }
   });
 
-  it('the matrix rows for W4/W5 majors are NOT marked as in-range (no classification regression)', () => {
+  it("the matrix rows for W4/W5 majors are NOT marked as in-range (no classification regression)", () => {
     const requires = new Set(getRequiresManifestChangeFamilies());
     for (const row of MATRIX.rows) {
-      if (row.primary_wave === 'W4-framework' || row.primary_wave === 'W5-remaining') {
+      if (row.primary_wave === "W4-framework" || row.primary_wave === "W5-remaining") {
         expect(
           requires.has(row.package),
-          `matrix row for ${row.package} (primary_wave=${row.primary_wave}) must NOT be classified as in-range`
+          `matrix row for ${row.package} (primary_wave=${row.primary_wave}) must NOT be classified as in-range`,
         ).toBe(true);
       }
     }
@@ -819,32 +809,31 @@ describe('in-range-wave (W3) — drift regression guard (cross-task)', () => {
 // Cross-task — PTE vitest must remain on 4.x after W2
 // ===========================================================================
 
-describe('in-range-wave (W3) — PTE vitest post-W2 invariant', () => {
-  it('PTE vitest is declared at 4.1.8 (post-W2) and is NOT in the 2.x range', () => {
+describe("in-range-wave (W3) — PTE vitest post-W2 invariant", () => {
+  it("PTE vitest is declared at 4.1.8 (post-W2) and is NOT in the 2.x range", () => {
     const manifests = getAppManifests(REPO_ROOT);
     const pte = manifestByWorkspace(manifests, PTE_WORKSPACE);
     expect(pte, `${PTE_WORKSPACE} manifest missing`).toBeDefined();
-    const ranges = allDeclaredRanges(pte!, 'vitest');
+    const ranges = allDeclaredRanges(pte!, "vitest");
     expect(ranges, `${PTE_WORKSPACE} must declare vitest`).toHaveLength(1);
     const range = ranges[0];
     const f = declaredRangeFloor(range);
     expect(
       f.major,
-      `${PTE_WORKSPACE} vitest major must remain 4 after W3, found ${f.major} in "${range}"`
+      `${PTE_WORKSPACE} vitest major must remain 4 after W3, found ${f.major} in "${range}"`,
     ).toBe(4);
     expect(
       f.major,
-      `${PTE_WORKSPACE} vitest must not regress to major 2, found ${f.major} in "${range}"`
+      `${PTE_WORKSPACE} vitest must not regress to major 2, found ${f.major} in "${range}"`,
     ).not.toBe(2);
   });
 
-  it('PTE vitest 4.1.8 is installed in the lockfile (post-W2 invariant)', () => {
-    const entry = PACKAGE_LOCK.packages['node_modules/vitest'];
-    expect(entry, 'vitest missing from lockfile').toBeDefined();
-    expect(
-      entry!.version,
-      'installed vitest must be 4.1.8 (post-W2 lockfile target)'
-    ).toBe('4.1.8');
+  it("PTE vitest 4.1.8 is installed in the lockfile (post-W2 invariant)", () => {
+    const entry = PACKAGE_LOCK.packages["node_modules/vitest"];
+    expect(entry, "vitest missing from lockfile").toBeDefined();
+    expect(entry!.version, "installed vitest must be 4.1.8 (post-W2 lockfile target)").toBe(
+      "4.1.8",
+    );
   });
 });
 
@@ -852,12 +841,12 @@ describe('in-range-wave (W3) — PTE vitest post-W2 invariant', () => {
 // Cross-task — app-shell and lesson-renderer floors (targeted W3 floors)
 // ===========================================================================
 
-describe('in-range-wave (W3) — lesson-renderer and app-shell floor alignment', () => {
-  it('lesson-renderer declares tailwind-merge at >= 3.3.0 (reconcile the 3.0.2 lag)', () => {
+describe("in-range-wave (W3) — lesson-renderer and app-shell floor alignment", () => {
+  it("lesson-renderer declares tailwind-merge at >= 3.3.0 (reconcile the 3.0.2 lag)", () => {
     const manifests = getAppManifests(REPO_ROOT);
     const lr = manifestByWorkspace(manifests, LESSON_RENDERER_WORKSPACE);
     expect(lr, `${LESSON_RENDERER_WORKSPACE} manifest missing`).toBeDefined();
-    const ranges = allDeclaredRanges(lr!, 'tailwind-merge');
+    const ranges = allDeclaredRanges(lr!, "tailwind-merge");
     expect(ranges, `${LESSON_RENDERER_WORKSPACE} must declare tailwind-merge`).toHaveLength(1);
     const f = declaredRangeFloor(ranges[0]);
     const isAtOrAbove =
@@ -866,15 +855,15 @@ describe('in-range-wave (W3) — lesson-renderer and app-shell floor alignment',
       (f.major === 3 && f.minor === 3 && f.patch >= 0);
     expect(
       isAtOrAbove,
-      `${LESSON_RENDERER_WORKSPACE} tailwind-merge floor must be >= 3.3.0 after W3, found "${ranges[0]}"`
+      `${LESSON_RENDERER_WORKSPACE} tailwind-merge floor must be >= 3.3.0 after W3, found "${ranges[0]}"`,
     ).toBe(true);
   });
 
-  it('lesson-renderer declares katex at >= 0.16.45 (reconcile the 0.16.21 lag)', () => {
+  it("lesson-renderer declares katex at >= 0.16.45 (reconcile the 0.16.21 lag)", () => {
     const manifests = getAppManifests(REPO_ROOT);
     const lr = manifestByWorkspace(manifests, LESSON_RENDERER_WORKSPACE);
     expect(lr, `${LESSON_RENDERER_WORKSPACE} manifest missing`).toBeDefined();
-    const ranges = allDeclaredRanges(lr!, 'katex');
+    const ranges = allDeclaredRanges(lr!, "katex");
     expect(ranges, `${LESSON_RENDERER_WORKSPACE} must declare katex`).toHaveLength(1);
     const f = declaredRangeFloor(ranges[0]);
     const isAtOrAbove =
@@ -883,46 +872,44 @@ describe('in-range-wave (W3) — lesson-renderer and app-shell floor alignment',
       (f.major === 0 && f.minor === 16 && f.patch >= 45);
     expect(
       isAtOrAbove,
-      `${LESSON_RENDERER_WORKSPACE} katex floor must be >= 0.16.45 after W3, found "${ranges[0]}"`
+      `${LESSON_RENDERER_WORKSPACE} katex floor must be >= 0.16.45 after W3, found "${ranges[0]}"`,
     ).toBe(true);
   });
 
-  it('lesson-renderer declares lucide-react at >= 0.511.0 (reconcile the 0.475.0 lag)', () => {
+  it("lesson-renderer declares lucide-react at >= 0.511.0 (reconcile the 0.475.0 lag)", () => {
     const manifests = getAppManifests(REPO_ROOT);
     const lr = manifestByWorkspace(manifests, LESSON_RENDERER_WORKSPACE);
     expect(lr, `${LESSON_RENDERER_WORKSPACE} manifest missing`).toBeDefined();
-    const ranges = allDeclaredRanges(lr!, 'lucide-react');
+    const ranges = allDeclaredRanges(lr!, "lucide-react");
     expect(ranges, `${LESSON_RENDERER_WORKSPACE} must declare lucide-react`).toHaveLength(1);
     const f = declaredRangeFloor(ranges[0]);
-    const isAtOrAbove =
-      f.major > 0 || (f.major === 0 && f.minor >= 511);
+    const isAtOrAbove = f.major > 0 || (f.major === 0 && f.minor >= 511);
     expect(
       isAtOrAbove,
-      `${LESSON_RENDERER_WORKSPACE} lucide-react floor must be >= 0.511.0 after W3, found "${ranges[0]}"`
+      `${LESSON_RENDERER_WORKSPACE} lucide-react floor must be >= 0.511.0 after W3, found "${ranges[0]}"`,
     ).toBe(true);
   });
 
-  it('app-shell declares lucide-react at >= 0.511.0 (reconcile the 0.468.0 lag)', () => {
+  it("app-shell declares lucide-react at >= 0.511.0 (reconcile the 0.468.0 lag)", () => {
     const manifests = getAppManifests(REPO_ROOT);
     const as = manifestByWorkspace(manifests, APP_SHELL_WORKSPACE);
     expect(as, `${APP_SHELL_WORKSPACE} manifest missing`).toBeDefined();
-    const ranges = allDeclaredRanges(as!, 'lucide-react');
+    const ranges = allDeclaredRanges(as!, "lucide-react");
     expect(ranges, `${APP_SHELL_WORKSPACE} must declare lucide-react`).toHaveLength(1);
     const f = declaredRangeFloor(ranges[0]);
-    const isAtOrAbove =
-      f.major > 0 || (f.major === 0 && f.minor >= 511);
+    const isAtOrAbove = f.major > 0 || (f.major === 0 && f.minor >= 511);
     expect(
       isAtOrAbove,
-      `${APP_SHELL_WORKSPACE} lucide-react floor must be >= 0.511.0 after W3, found "${ranges[0]}"`
+      `${APP_SHELL_WORKSPACE} lucide-react floor must be >= 0.511.0 after W3, found "${ranges[0]}"`,
     ).toBe(true);
   });
 
-  it('srs-engine declares ts-fsrs at >= 5.3.2 (reconcile the 5.0.0 lag)', () => {
+  it("srs-engine declares ts-fsrs at >= 5.3.2 (reconcile the 5.0.0 lag)", () => {
     const manifests = getAppManifests(REPO_ROOT);
-    const srs = manifestByWorkspace(manifests, 'packages/srs-engine');
-    expect(srs, 'packages/srs-engine manifest missing').toBeDefined();
-    const ranges = allDeclaredRanges(srs!, 'ts-fsrs');
-    expect(ranges, 'packages/srs-engine must declare ts-fsrs').toHaveLength(1);
+    const srs = manifestByWorkspace(manifests, "packages/srs-engine");
+    expect(srs, "packages/srs-engine manifest missing").toBeDefined();
+    const ranges = allDeclaredRanges(srs!, "ts-fsrs");
+    expect(ranges, "packages/srs-engine must declare ts-fsrs").toHaveLength(1);
     const f = declaredRangeFloor(ranges[0]);
     const isAtOrAbove =
       f.major > 5 ||
@@ -930,7 +917,7 @@ describe('in-range-wave (W3) — lesson-renderer and app-shell floor alignment',
       (f.major === 5 && f.minor === 3 && f.patch >= 2);
     expect(
       isAtOrAbove,
-      `packages/srs-engine ts-fsrs floor must be >= 5.3.2 after W3, found "${ranges[0]}"`
+      `packages/srs-engine ts-fsrs floor must be >= 5.3.2 after W3, found "${ranges[0]}"`,
     ).toBe(true);
   });
 });

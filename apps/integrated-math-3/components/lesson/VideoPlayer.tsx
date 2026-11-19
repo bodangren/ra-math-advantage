@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Play, FileText, ChevronDown, ChevronUp } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useState } from "react";
+import { Play, FileText, ChevronDown, ChevronUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface VideoPlayerProps {
   videoUrl: string;
@@ -46,7 +46,11 @@ export function VideoPlayer({ videoUrl, duration, transcript }: VideoPlayerProps
         <div className="relative aspect-video bg-muted rounded-lg overflow-hidden">
           {!videoLoaded && (
             <div className="absolute inset-0 flex items-center justify-center">
-              <Button onClick={() => setVideoLoaded(true)} size="lg" className="flex items-center gap-2">
+              <Button
+                onClick={() => setVideoLoaded(true)}
+                size="lg"
+                className="flex items-center gap-2"
+              >
                 <Play className="h-5 w-5" />
                 Load Video
               </Button>
@@ -63,16 +67,14 @@ export function VideoPlayer({ videoUrl, duration, transcript }: VideoPlayerProps
           )}
         </div>
 
-        <div className="text-sm text-muted-foreground">
-          Duration: {duration} minutes
-        </div>
+        <div className="text-sm text-muted-foreground">Duration: {duration} minutes</div>
 
         {/* Transcript */}
         {transcript && (
           <div>
             <Button
               variant="outline"
-              onClick={() => setTranscriptOpen(o => !o)}
+              onClick={() => setTranscriptOpen((o) => !o)}
               className="w-full flex items-center justify-between"
               aria-label="Toggle video transcript"
             >
@@ -80,7 +82,11 @@ export function VideoPlayer({ videoUrl, duration, transcript }: VideoPlayerProps
                 <FileText className="h-4 w-4" />
                 Video Transcript
               </span>
-              {transcriptOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+              {transcriptOpen ? (
+                <ChevronUp className="h-4 w-4" />
+              ) : (
+                <ChevronDown className="h-4 w-4" />
+              )}
             </Button>
             {transcriptOpen && (
               <div className="mt-3 bg-muted/30 p-4 rounded-lg border max-h-64 overflow-y-auto">

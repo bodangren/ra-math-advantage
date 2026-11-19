@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
 // Phase 1 — Viewport guard stand-up (responsive-mobile-audit_20260605)
 // VIEWPORTS per strategy §2: phone 390×844, tablet 768×1024, desktop 1280×800
@@ -20,48 +20,66 @@ const VIEWPORTS = {
   desktop: { width: 1280, height: 800 },
 } as const;
 
-test.describe('Viewport Guard — Regression Net (Phase 1 stand-up)', () => {
-  test('teacher dashboard @smoke — tablet 768×1024 no horizontal overflow', async ({ page }) => {
+test.describe("Viewport Guard — Regression Net (Phase 1 stand-up)", () => {
+  test("teacher dashboard @smoke — tablet 768×1024 no horizontal overflow", async ({ page }) => {
     await page.setViewportSize(VIEWPORTS.tablet);
-    await page.goto('/teacher/dashboard');
-    await page.waitForLoadState('networkidle');
+    await page.goto("/teacher/dashboard");
+    await page.waitForLoadState("networkidle");
 
     const bodyWidth = await page.evaluate(() => document.body.scrollWidth);
     const viewportWidth = await page.evaluate(() => window.innerWidth);
 
-    expect(bodyWidth, 'guard pass condition: no horizontal overflow at tablet 768×1024').toBeLessThanOrEqual(viewportWidth);
+    expect(
+      bodyWidth,
+      "guard pass condition: no horizontal overflow at tablet 768×1024",
+    ).toBeLessThanOrEqual(viewportWidth);
   });
 
-  test.fixme('known-bad fixture — phone 390×844 overflow detected on deliberately-bad page (owned by P2 [~] activity remediation)', async ({ page }) => {
+  test.fixme("known-bad fixture — phone 390×844 overflow detected on deliberately-bad page (owned by P2 [~] activity remediation)", async ({
+    page,
+  }) => {
     await page.setViewportSize(VIEWPORTS.phone);
-    await page.goto('/responsive-fixtures/known-bad-overflow');
-    await page.waitForLoadState('networkidle');
+    await page.goto("/responsive-fixtures/known-bad-overflow");
+    await page.waitForLoadState("networkidle");
 
     const bodyWidth = await page.evaluate(() => document.body.scrollWidth);
     const viewportWidth = await page.evaluate(() => window.innerWidth);
 
-    expect(bodyWidth, 'guard pass condition: no horizontal overflow at phone 390×844').toBeLessThanOrEqual(viewportWidth);
+    expect(
+      bodyWidth,
+      "guard pass condition: no horizontal overflow at phone 390×844",
+    ).toBeLessThanOrEqual(viewportWidth);
   });
 
-  test.fixme('known-bad fixture — tablet 768×1024 overflow detected on deliberately-bad page (owned by P2 [~] activity remediation)', async ({ page }) => {
+  test.fixme("known-bad fixture — tablet 768×1024 overflow detected on deliberately-bad page (owned by P2 [~] activity remediation)", async ({
+    page,
+  }) => {
     await page.setViewportSize(VIEWPORTS.tablet);
-    await page.goto('/responsive-fixtures/known-bad-overflow');
-    await page.waitForLoadState('networkidle');
+    await page.goto("/responsive-fixtures/known-bad-overflow");
+    await page.waitForLoadState("networkidle");
 
     const bodyWidth = await page.evaluate(() => document.body.scrollWidth);
     const viewportWidth = await page.evaluate(() => window.innerWidth);
 
-    expect(bodyWidth, 'guard pass condition: no horizontal overflow at tablet 768×1024').toBeLessThanOrEqual(viewportWidth);
+    expect(
+      bodyWidth,
+      "guard pass condition: no horizontal overflow at tablet 768×1024",
+    ).toBeLessThanOrEqual(viewportWidth);
   });
 
-  test.fixme('known-bad fixture — desktop 1280×800 overflow detected on deliberately-bad page (owned by P2 [~] activity remediation)', async ({ page }) => {
+  test.fixme("known-bad fixture — desktop 1280×800 overflow detected on deliberately-bad page (owned by P2 [~] activity remediation)", async ({
+    page,
+  }) => {
     await page.setViewportSize(VIEWPORTS.desktop);
-    await page.goto('/responsive-fixtures/known-bad-overflow');
-    await page.waitForLoadState('networkidle');
+    await page.goto("/responsive-fixtures/known-bad-overflow");
+    await page.waitForLoadState("networkidle");
 
     const bodyWidth = await page.evaluate(() => document.body.scrollWidth);
     const viewportWidth = await page.evaluate(() => window.innerWidth);
 
-    expect(bodyWidth, 'guard pass condition: no horizontal overflow at desktop 1280×800').toBeLessThanOrEqual(viewportWidth);
+    expect(
+      bodyWidth,
+      "guard pass condition: no horizontal overflow at desktop 1280×800",
+    ).toBeLessThanOrEqual(viewportWidth);
   });
 });

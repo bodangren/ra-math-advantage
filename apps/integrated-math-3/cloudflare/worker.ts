@@ -27,10 +27,10 @@ let cachedHandlerPromise: Promise<VinextHandler> | null = null;
  * @throws {TypeError} If the bundle does not export a default function.
  */
 async function loadVinextHandler(): Promise<VinextHandler> {
-  cachedHandlerPromise ??= import('../dist/server/index.js').then((module) => {
-    if (typeof module.default !== 'function') {
+  cachedHandlerPromise ??= import("../dist/server/index.js").then((module) => {
+    if (typeof module.default !== "function") {
       throw new TypeError(
-        'Expected apps/integrated-math-3/dist/server/index.js to export the built Vinext request handler.',
+        "Expected apps/integrated-math-3/dist/server/index.js to export the built Vinext request handler.",
       );
     }
 
@@ -54,7 +54,7 @@ const worker: WorkerFetcher = {
       const handleRequest = await loadVinextHandler();
       return await handleRequest(request, env, ctx);
     } catch (error) {
-      console.error('Worker handler failed, falling back to static assets:', error);
+      console.error("Worker handler failed, falling back to static assets:", error);
       return env.ASSETS.fetch(request);
     }
   },

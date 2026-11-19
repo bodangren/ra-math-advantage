@@ -1,12 +1,16 @@
-'use client';
+"use client";
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState } from "react";
 
-import { CategorizationList, type CategorizationListZone, type CategorizationListItem } from '@/components/activities/shared/CategorizationList';
-import type { z } from 'zod';
-import type { activityPropsSchemas } from '@/lib/schemas/activity-props';
+import {
+  CategorizationList,
+  type CategorizationListZone,
+  type CategorizationListItem,
+} from "@/components/activities/shared/CategorizationList";
+import type { z } from "zod";
+import type { activityPropsSchemas } from "@/lib/schemas/activity-props";
 
-type ClassificationActivityProps = z.infer<typeof activityPropsSchemas['classification']>;
+type ClassificationActivityProps = z.infer<(typeof activityPropsSchemas)["classification"]>;
 
 interface ClassificationActivityComponentProps {
   activity: ClassificationActivityProps;
@@ -18,16 +22,18 @@ interface ClassificationItem extends CategorizationListItem {
   categoryId: string;
 }
 
-
 /**
  * Renders a drag-and-drop classification activity using shared CategorizationList.
  *
  * @param props - The activity configuration and optional submit callback
  * @returns A classification activity UI or an empty-state message
  */
-export function ClassificationActivity({ activity, onSubmit }: ClassificationActivityComponentProps) {
+export function ClassificationActivity({
+  activity,
+  onSubmit,
+}: ClassificationActivityComponentProps) {
   const { title, description, categories, accounts } = activity;
-  
+
   // Convert categories to zones format expected by CategorizationList
   const zones: CategorizationListZone[] = useMemo(() => {
     return categories.map((cat) => ({
@@ -57,13 +63,16 @@ export function ClassificationActivity({ activity, onSubmit }: ClassificationAct
 
   const [isComplete, setIsComplete] = useState(false);
 
-
   /**
    * Converts CategorizationList placements to simplified format and fires onSubmit.
    *
    * @param payload - Completion data including score and zone placements
    */
-  const handleComplete = (payload: { score: number; attempts: number; placements: Record<string, CategorizationListItem[]> }) => {
+  const handleComplete = (payload: {
+    score: number;
+    attempts: number;
+    placements: Record<string, CategorizationListItem[]>;
+  }) => {
     setIsComplete(true);
 
     // Convert placements to the format expected by onSubmit
@@ -78,7 +87,7 @@ export function ClassificationActivity({ activity, onSubmit }: ClassificationAct
         placements: simplifiedPlacements,
       });
     } catch (err) {
-      console.error('ClassificationActivity submission failed:', err);
+      console.error("ClassificationActivity submission failed:", err);
       setIsComplete(false);
     }
   };

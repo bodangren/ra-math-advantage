@@ -47,12 +47,10 @@ export default function RegisterPage() {
     <div className="min-h-[80vh] flex items-center justify-center px-6">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-primary-text mb-2" style={{ fontSize: '32px', fontWeight: 510 }}>
+          <h1 className="text-primary-text mb-2" style={{ fontSize: "32px", fontWeight: 510 }}>
             Register
           </h1>
-          <p className="text-secondary-text">
-            Create your AP Precalculus account
-          </p>
+          <p className="text-secondary-text">Create your AP Precalculus account</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -63,7 +61,11 @@ export default function RegisterPage() {
           )}
 
           <div>
-            <label htmlFor="username" className="block text-sm text-secondary-text mb-1" style={{ fontWeight: 510 }}>
+            <label
+              htmlFor="username"
+              className="block text-sm text-secondary-text mb-1"
+              style={{ fontWeight: 510 }}
+            >
               Username
             </label>
             <input
@@ -78,7 +80,11 @@ export default function RegisterPage() {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm text-secondary-text mb-1" style={{ fontWeight: 510 }}>
+            <label
+              htmlFor="password"
+              className="block text-sm text-secondary-text mb-1"
+              style={{ fontWeight: 510 }}
+            >
               Password
             </label>
             <input
@@ -93,7 +99,11 @@ export default function RegisterPage() {
           </div>
 
           <div>
-            <label htmlFor="confirm-password" className="block text-sm text-secondary-text mb-1" style={{ fontWeight: 510 }}>
+            <label
+              htmlFor="confirm-password"
+              className="block text-sm text-secondary-text mb-1"
+              style={{ fontWeight: 510 }}
+            >
               Confirm Password
             </label>
             <input
@@ -118,7 +128,10 @@ export default function RegisterPage() {
 
         <p className="text-center text-muted-text text-sm mt-6">
           Already have an account?{" "}
-          <Link href="/auth/login" className="text-accent hover:text-accent-light transition-colors">
+          <Link
+            href="/auth/login"
+            className="text-accent hover:text-accent-light transition-colors"
+          >
             Sign in
           </Link>
         </p>

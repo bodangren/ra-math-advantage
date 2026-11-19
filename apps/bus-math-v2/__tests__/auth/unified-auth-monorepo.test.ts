@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest';
-import fs from 'fs/promises';
-import path from 'path';
+import { describe, expect, it } from "vitest";
+import fs from "fs/promises";
+import path from "path";
 
 /**
  * Phase 1 — Audit & Classification (Red)
@@ -13,33 +13,30 @@ import path from 'path';
  * a missing-file error — confirming the Red phase.
  */
 
-const REPO_ROOT = path.resolve(process.cwd(), '../..');
-const BM2_SERVER_PATH = path.join(
-  REPO_ROOT,
-  'apps/bus-math-v2/lib/auth/server.ts',
-);
+const REPO_ROOT = path.resolve(process.cwd(), "../..");
+const BM2_SERVER_PATH = path.join(REPO_ROOT, "apps/bus-math-v2/lib/auth/server.ts");
 const DECISION_DOC_PATH = path.join(
   REPO_ROOT,
-  'measure/archive/unified-auth-monorepo_20260609/decisions/auth-export-classification.md',
+  "measure/archive/unified-auth-monorepo_20260609/decisions/auth-export-classification.md",
 );
 
 const EXPECTED_BM2_EXPORTS = [
-  'getServerSessionClaims',
-  'getRequestSessionClaims',
-  'requireRequestSessionClaims',
-  'requireStudentRequestClaims',
-  'requireAdminRequestClaims',
-  'requireServerSessionClaims',
-  'requireServerRoles',
-  'requireTeacherSessionClaims',
-  'requireStudentSessionClaims',
-  'requireActiveRequestSessionClaims',
-  'requireActiveStudentRequestClaims',
-  'requireActiveTeacherRequestClaims',
+  "getServerSessionClaims",
+  "getRequestSessionClaims",
+  "requireRequestSessionClaims",
+  "requireStudentRequestClaims",
+  "requireAdminRequestClaims",
+  "requireServerSessionClaims",
+  "requireServerRoles",
+  "requireTeacherSessionClaims",
+  "requireStudentSessionClaims",
+  "requireActiveRequestSessionClaims",
+  "requireActiveStudentRequestClaims",
+  "requireActiveTeacherRequestClaims",
 ];
 
 async function readSourceFile(filePath: string): Promise<string> {
-  return fs.readFile(filePath, 'utf-8');
+  return fs.readFile(filePath, "utf-8");
 }
 
 function extractExportedFunctionNames(source: string): string[] {
@@ -62,8 +59,8 @@ function extractExportedFunctionNames(source: string): string[] {
   return [...new Set(names)].sort();
 }
 
-describe('Phase 1 — BM2 auth server export inventory', () => {
-  it('exports exactly the expected public identifiers', async () => {
+describe("Phase 1 — BM2 auth server export inventory", () => {
+  it("exports exactly the expected public identifiers", async () => {
     const source = await readSourceFile(BM2_SERVER_PATH);
     const actual = extractExportedFunctionNames(source);
     const expected = [...EXPECTED_BM2_EXPORTS].sort();
@@ -72,26 +69,22 @@ describe('Phase 1 — BM2 auth server export inventory', () => {
   });
 });
 
-describe('Phase 1 — Contract-First classification decision doc', () => {
-  it('exists and contains a classified section for every BM2 export', async () => {
+describe("Phase 1 — Contract-First classification decision doc", () => {
+  it("exists and contains a classified section for every BM2 export", async () => {
     const doc = await readSourceFile(DECISION_DOC_PATH);
 
     // Every BM2 export must have a dedicated heading.
     for (const exportName of EXPECTED_BM2_EXPORTS) {
-      const headingPattern = new RegExp(`^#{2,3}\\s+${exportName}\\s*$`, 'm');
-      expect(
-        doc,
-        `Decision doc is missing a heading for ${exportName}`,
-      ).toMatch(headingPattern);
+      const headingPattern = new RegExp(`^#{2,3}\\s+${exportName}\\s*$`, "m");
+      expect(doc, `Decision doc is missing a heading for ${exportName}`).toMatch(headingPattern);
 
       // Find the section for this export and assert it carries one of the
       // three allowed classifications.
       const sectionStart = doc.search(headingPattern);
       expect(sectionStart).toBeGreaterThanOrEqual(0);
 
-      const nextHeadingIndex = doc.indexOf('\n## ', sectionStart + 1);
-      const sectionEnd =
-        nextHeadingIndex === -1 ? doc.length : nextHeadingIndex;
+      const nextHeadingIndex = doc.indexOf("\n## ", sectionStart + 1);
+      const sectionEnd = nextHeadingIndex === -1 ? doc.length : nextHeadingIndex;
       const section = doc.slice(sectionStart, sectionEnd);
 
       const hasClassification =

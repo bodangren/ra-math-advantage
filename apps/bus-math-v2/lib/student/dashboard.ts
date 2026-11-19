@@ -15,12 +15,12 @@ export interface StudentDashboardUnit {
   lessons: StudentDashboardLesson[];
 }
 
-export type LessonStatus = 'not_started' | 'in_progress' | 'completed';
+export type LessonStatus = "not_started" | "in_progress" | "completed";
 type UnitStatus = LessonStatus;
 
 export interface DashboardLessonAction extends StudentDashboardLesson {
   status: LessonStatus;
-  actionLabel: 'Start Lesson' | 'Resume Lesson' | 'Review Lesson';
+  actionLabel: "Start Lesson" | "Resume Lesson" | "Review Lesson";
 }
 
 export interface StudentDashboardSummary {
@@ -62,14 +62,14 @@ function clampPercentage(value: number) {
  */
 function getLessonStatus(lesson: StudentDashboardLesson): LessonStatus {
   if (lesson.totalPhases > 0 && lesson.completedPhases >= lesson.totalPhases) {
-    return 'completed';
+    return "completed";
   }
 
   if (lesson.completedPhases > 0 || lesson.progressPercentage > 0) {
-    return 'in_progress';
+    return "in_progress";
   }
 
-  return 'not_started';
+  return "not_started";
 }
 
 /**
@@ -83,7 +83,12 @@ function toLessonAction(lesson: StudentDashboardLesson): DashboardLessonAction |
   return {
     ...lesson,
     status,
-    actionLabel: status === 'in_progress' ? 'Resume Lesson' : status === 'completed' ? 'Review Lesson' : 'Start Lesson',
+    actionLabel:
+      status === "in_progress"
+        ? "Resume Lesson"
+        : status === "completed"
+          ? "Review Lesson"
+          : "Start Lesson",
   };
 }
 
@@ -100,18 +105,18 @@ function getUnitStatus(
   nextLesson: DashboardLessonAction | null,
 ): UnitStatus {
   if (lessons.length > 0 && completedLessons === lessons.length) {
-    return 'completed';
+    return "completed";
   }
 
-  if (nextLesson && nextLesson.status === 'in_progress') {
-    return 'in_progress';
+  if (nextLesson && nextLesson.status === "in_progress") {
+    return "in_progress";
   }
 
   if (completedLessons > 0) {
-    return 'in_progress';
+    return "in_progress";
   }
 
-  return 'not_started';
+  return "not_started";
 }
 
 /**
@@ -135,30 +140,26 @@ export function buildStudentDashboardViewModel(
       totalPhases += lesson.totalPhases;
 
       const status = getLessonStatus(lesson);
-      if (status === 'completed') completedLessons += 1;
-      if (status === 'in_progress') inProgressLessons += 1;
+      if (status === "completed") completedLessons += 1;
+      if (status === "in_progress") inProgressLessons += 1;
     }
 
-    const lessonActions = lessons.map(toLessonAction).filter((l): l is DashboardLessonAction => l !== null);
-    
+    const lessonActions = lessons
+      .map(toLessonAction)
+      .filter((l): l is DashboardLessonAction => l !== null);
+
     const nextLesson =
-      lessonActions.find((lesson) => lesson.status === 'in_progress') ??
-      lessonActions.find((lesson) => lesson.status === 'not_started') ??
+      lessonActions.find((lesson) => lesson.status === "in_progress") ??
+      lessonActions.find((lesson) => lesson.status === "not_started") ??
       null;
 
-    const unitCompletedLessons = lessons.filter((lesson) => getLessonStatus(lesson) === 'completed').length;
-    const unitCompletedPhases = lessons.reduce(
-      (sum, lesson) => sum + lesson.completedPhases,
-      0,
-    );
-    const unitTotalPhases = lessons.reduce(
-      (sum, lesson) => sum + lesson.totalPhases,
-      0,
-    );
+    const unitCompletedLessons = lessons.filter(
+      (lesson) => getLessonStatus(lesson) === "completed",
+    ).length;
+    const unitCompletedPhases = lessons.reduce((sum, lesson) => sum + lesson.completedPhases, 0);
+    const unitTotalPhases = lessons.reduce((sum, lesson) => sum + lesson.totalPhases, 0);
     const unitProgress =
-      unitTotalPhases === 0
-        ? 0
-        : clampPercentage((unitCompletedPhases / unitTotalPhases) * 100);
+      unitTotalPhases === 0 ? 0 : clampPercentage((unitCompletedPhases / unitTotalPhases) * 100);
 
     return {
       ...unit,
@@ -173,16 +174,16 @@ export function buildStudentDashboardViewModel(
   const nextLesson =
     unitViews
       .map((unit) => unit.nextLesson)
-      .find((lesson): lesson is DashboardLessonAction => lesson?.status === 'in_progress') ??
+      .find((lesson): lesson is DashboardLessonAction => lesson?.status === "in_progress") ??
     unitViews
       .map((unit) => unit.nextLesson)
-      .find((lesson): lesson is DashboardLessonAction => lesson?.status === 'not_started') ??
+      .find((lesson): lesson is DashboardLessonAction => lesson?.status === "not_started") ??
     null;
 
   return {
     summary: {
       totalUnits: unitViews.length,
-      completedUnits: unitViews.filter((unit) => unit.status === 'completed').length,
+      completedUnits: unitViews.filter((unit) => unit.status === "completed").length,
       totalLessons: unitViews.reduce((sum, unit) => sum + unit.lessons.length, 0),
       completedLessons,
       inProgressLessons,

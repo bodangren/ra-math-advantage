@@ -2,6 +2,7 @@
   "name": "@math-platform/template",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
@@ -11,6 +12,5 @@
     "typecheck": "TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src",
     "build": "npm run typecheck"
   },
-  "devDependencies": {},
-  "type": "module"
+  "devDependencies": {}
 }

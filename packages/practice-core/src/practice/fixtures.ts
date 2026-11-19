@@ -4,7 +4,7 @@ import {
   type PracticeSubmissionEnvelope,
   type PracticeTimingSummary,
   type PracticeSubmissionPart,
-} from './contract';
+} from "./contract";
 
 /**
  * Create a mock practice.v1 submission envelope for testing.
@@ -22,7 +22,7 @@ import {
  * ```
  */
 export type MockPracticeEnvelopeOverrides = {
-  [K in keyof PracticeSubmissionEnvelope]?: K extends 'activityId'
+  [K in keyof PracticeSubmissionEnvelope]?: K extends "activityId"
     ? string
     : PracticeSubmissionEnvelope[K];
 };
@@ -39,9 +39,9 @@ export function createMockPracticeEnvelope(
 
   const defaults = {
     contractVersion: PRACTICE_CONTRACT_VERSION,
-    activityId: 'mock-activity-id',
-    mode: 'independent_practice' as const,
-    status: 'submitted' as const,
+    activityId: "mock-activity-id",
+    mode: "independent_practice" as const,
+    status: "submitted" as const,
     attemptNumber: 1,
     submittedAt: now,
     answers: {},
@@ -67,8 +67,7 @@ export function createMockPracticeTimingSummary(
   overrides: Partial<PracticeTimingSummary> = {},
 ): PracticeTimingSummary {
   const startedAt = overrides.startedAt ?? new Date().toISOString();
-  const submittedAt =
-    overrides.submittedAt ?? new Date(Date.now() + 60_000).toISOString();
+  const submittedAt = overrides.submittedAt ?? new Date(Date.now() + 60_000).toISOString();
 
   return {
     startedAt,
@@ -79,7 +78,7 @@ export function createMockPracticeTimingSummary(
     pauseCount: 0,
     focusLossCount: 0,
     visibilityHiddenCount: 0,
-    confidence: 'medium',
+    confidence: "medium",
     ...overrides,
   };
 }
@@ -100,7 +99,7 @@ export function createMockPracticeSubmissionPart(
   overrides: Partial<PracticeSubmissionPart> = {},
 ): PracticeSubmissionPart {
   return {
-    partId: 'mock-part',
+    partId: "mock-part",
     rawAnswer: null,
     ...overrides,
   };

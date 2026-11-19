@@ -17,10 +17,10 @@ const fakeWindow = {
   close: mockClose,
   print: mockPrint,
   setTimeout: (fn: () => void) => fn(), // execute synchronously; extra args ignored
-  location: { origin: 'http://localhost' },
+  location: { origin: "http://localhost" },
 } as unknown as Window;
 
-vi.spyOn(window, 'open').mockReturnValue(fakeWindow);
+vi.spyOn(window, "open").mockReturnValue(fakeWindow);
 
 describe("TeacherCredentialsSheet", () => {
   beforeEach(() => {

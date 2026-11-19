@@ -122,7 +122,7 @@ export const trialBalanceTemplate: SpreadsheetTemplate = {
     ],
     [
       { value: "Balance Check", readOnly: true },
-      { value: "=IF(B9=C9,\"BALANCED\",\"OUT OF BALANCE\")", readOnly: false },
+      { value: '=IF(B9=C9,"BALANCED","OUT OF BALANCE")', readOnly: false },
       { value: "", readOnly: true },
     ],
   ],
@@ -550,14 +550,14 @@ export const transactionLogTemplate: SpreadsheetTemplate = {
 
 // Export all templates
 export const spreadsheetTemplates = {
-  't-account': tAccountTemplate,
-  'trial-balance': trialBalanceTemplate,
-  'income-statement': incomeStatementTemplate,
-  'statistical-analysis': statisticalAnalysisTemplate,
-  'payroll': payrollTemplate,
-  'break-even': breakEvenTemplate,
-  'balance-sheet': balanceSheetTemplate,
-  'transaction-log': transactionLogTemplate,
+  "t-account": tAccountTemplate,
+  "trial-balance": trialBalanceTemplate,
+  "income-statement": incomeStatementTemplate,
+  "statistical-analysis": statisticalAnalysisTemplate,
+  payroll: payrollTemplate,
+  "break-even": breakEvenTemplate,
+  "balance-sheet": balanceSheetTemplate,
+  "transaction-log": transactionLogTemplate,
 };
 
 // Helper function to get template by key
@@ -568,7 +568,7 @@ export const spreadsheetTemplates = {
  * @param templateKey - The template key (e.g. 't-account', 'trial-balance')
  * @returns The matching SpreadsheetTemplate, or null if not found
  */
-export function getTemplateByKey(templateKey: string) : SpreadsheetTemplate | null {
+export function getTemplateByKey(templateKey: string): SpreadsheetTemplate | null {
   return spreadsheetTemplates[templateKey as keyof typeof spreadsheetTemplates] || null;
 }
 
@@ -580,7 +580,7 @@ export function getTemplateByKey(templateKey: string) : SpreadsheetTemplate | nu
  * @param unitNumber - The curriculum unit number (1-6)
  * @returns An array of matching SpreadsheetTemplate objects
  */
-export function getTemplateByUnit(unitNumber: number) : SpreadsheetTemplate[] {
+export function getTemplateByUnit(unitNumber: number): SpreadsheetTemplate[] {
   switch (unitNumber) {
     case 1:
       return [tAccountTemplate, balanceSheetTemplate, transactionLogTemplate];

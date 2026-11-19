@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -132,8 +132,7 @@ export const seedLesson5_3 = internalMutation({
             sequenceOrder: 2,
             sectionType: "text" as const,
             content: {
-              markdown:
-                "### Part b: $(-3e^{2x})^4$\n\n\n$$= (-3)^4 (e^{2x})^4$$\n\n$$= 81e^{8x}$$",
+              markdown: "### Part b: $(-3e^{2x})^4$\n\n\n$$= (-3)^4 (e^{2x})^4$$\n\n$$= 81e^{8x}$$",
             },
           },
           {
@@ -155,9 +154,18 @@ export const seedLesson5_3 = internalMutation({
                 steps: [
                   { expression: "e^7 * e^-2 = e^(7-2)", explanation: "Product of powers property" },
                   { expression: "= e^5", explanation: "Simplify exponent" },
-                  { expression: "(-3e^(2x))^4 = (-3)^4 * (e^(2x))^4", explanation: "Power of a product property" },
-                  { expression: "= 81 * e^(8x)", explanation: "Apply power and simplify (-3)^4 = 81" },
-                  { expression: "(42e^7)/(14e^5) = (42/14) * e^(7-5)", explanation: "Quotient of powers property" },
+                  {
+                    expression: "(-3e^(2x))^4 = (-3)^4 * (e^(2x))^4",
+                    explanation: "Power of a product property",
+                  },
+                  {
+                    expression: "= 81 * e^(8x)",
+                    explanation: "Apply power and simplify (-3)^4 = 81",
+                  },
+                  {
+                    expression: "(42e^7)/(14e^5) = (42/14) * e^(7-5)",
+                    explanation: "Quotient of powers property",
+                  },
                   { expression: "= 3e^2", explanation: "Simplify" },
                 ],
               },
@@ -189,11 +197,26 @@ export const seedLesson5_3 = internalMutation({
                 equation: "g(x) = -2e^(x-3) + 2",
                 steps: [
                   { expression: "Parent: f(x) = e^x", explanation: "Identify the parent function" },
-                  { expression: "a = -2: reflect and stretch vertically", explanation: "Negative a reflects across x-axis; |a| > 1 stretches" },
-                  { expression: "h = 3: shift 3 units right", explanation: "x - 3 means shift right by 3" },
-                  { expression: "k = 2: shift 2 units up", explanation: "+2 at the end shifts up by 2" },
-                  { expression: "Asymptote: y = 2", explanation: "Horizontal asymptote shifts up with k" },
-                  { expression: "Domain: all real numbers", explanation: "e^x is defined for all x" },
+                  {
+                    expression: "a = -2: reflect and stretch vertically",
+                    explanation: "Negative a reflects across x-axis; |a| > 1 stretches",
+                  },
+                  {
+                    expression: "h = 3: shift 3 units right",
+                    explanation: "x - 3 means shift right by 3",
+                  },
+                  {
+                    expression: "k = 2: shift 2 units up",
+                    explanation: "+2 at the end shifts up by 2",
+                  },
+                  {
+                    expression: "Asymptote: y = 2",
+                    explanation: "Horizontal asymptote shifts up with k",
+                  },
+                  {
+                    expression: "Domain: all real numbers",
+                    explanation: "e^x is defined for all x",
+                  },
                   { expression: "Range: (-∞, 2)", explanation: "All output values less than 2" },
                 ],
               },
@@ -224,12 +247,21 @@ export const seedLesson5_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "A = 1500e^(0.025*4)",
                 steps: [
-                  { expression: "P = 1500, r = 0.025, t = 4", explanation: "Identify given values" },
-                  { expression: "A = 1500e^(0.025*4)", explanation: "Continuously compounded interest formula" },
+                  {
+                    expression: "P = 1500, r = 0.025, t = 4",
+                    explanation: "Identify given values",
+                  },
+                  {
+                    expression: "A = 1500e^(0.025*4)",
+                    explanation: "Continuously compounded interest formula",
+                  },
                   { expression: "0.025 * 4 = 0.1", explanation: "Calculate exponent" },
                   { expression: "A = 1500e^0.1", explanation: "Substitute" },
                   { expression: "e^0.1 ≈ 1.10517", explanation: "Evaluate e^0.1" },
-                  { expression: "A ≈ 1500 × 1.10517 ≈ 1657.76", explanation: "Calculate final amount" },
+                  {
+                    expression: "A ≈ 1500 × 1.10517 ≈ 1657.76",
+                    explanation: "Calculate final amount",
+                  },
                   { expression: "Balance after 4 years: $1657.76", explanation: "Result" },
                 ],
               },
@@ -260,12 +292,24 @@ export const seedLesson5_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "5 = 2e^x",
                 steps: [
-                  { expression: "Set up system: y = 5 and y = 2e^x", explanation: "Rewrite equation as a system" },
-                  { expression: "Find intersection point", explanation: "Where both equations equal" },
+                  {
+                    expression: "Set up system: y = 5 and y = 2e^x",
+                    explanation: "Rewrite equation as a system",
+                  },
+                  {
+                    expression: "Find intersection point",
+                    explanation: "Where both equations equal",
+                  },
                   { expression: "2e^x = 5", explanation: "Set equations equal to solve" },
                   { expression: "e^x = 2.5", explanation: "Divide both sides by 2" },
-                  { expression: "x ≈ 0.916", explanation: "Take natural logarithm: ln(2.5) ≈ 0.916" },
-                  { expression: "Verify: 2e^0.916 ≈ 2(2.5) ≈ 5", explanation: "Check the solution" },
+                  {
+                    expression: "x ≈ 0.916",
+                    explanation: "Take natural logarithm: ln(2.5) ≈ 0.916",
+                  },
+                  {
+                    expression: "Verify: 2e^0.916 ≈ 2(2.5) ≈ 5",
+                    explanation: "Check the solution",
+                  },
                 ],
               },
             },
@@ -283,7 +327,7 @@ export const seedLesson5_3 = internalMutation({
             sectionType: "text" as const,
             content: {
               markdown:
-                "## Discussion Questions\n\n1. Does a base-$e$ exponential function behave in the same way as other exponential functions? Explain.\n2. If another account offers $2.5\\%$ annual interest compounded monthly, which should LaShawndra choose? Explain.\n3. Why is $e$ considered a \"natural\" base for exponential functions?",
+                '## Discussion Questions\n\n1. Does a base-$e$ exponential function behave in the same way as other exponential functions? Explain.\n2. If another account offers $2.5\\%$ annual interest compounded monthly, which should LaShawndra choose? Explain.\n3. Why is $e$ considered a "natural" base for exponential functions?',
             },
           },
           {
@@ -299,8 +343,13 @@ export const seedLesson5_3 = internalMutation({
                     correctIndex: 0,
                   },
                   {
-                    question: "In continuously compounded interest, what does A = Pe^(rt) represent?",
-                    options: ["A is the annual interest rate", "A is the amount after t years", "A is the principal"],
+                    question:
+                      "In continuously compounded interest, what does A = Pe^(rt) represent?",
+                    options: [
+                      "A is the annual interest rate",
+                      "A is the amount after t years",
+                      "A is the principal",
+                    ],
                     correctIndex: 1,
                   },
                 ],
@@ -334,7 +383,7 @@ export const seedLesson5_3 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

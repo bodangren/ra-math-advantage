@@ -28,9 +28,7 @@ it("creates deterministic, valid questions with independently verified equations
     expect(a * independentAnswer + c).toBeGreaterThan(0);
     expect(a * independentAnswer + c).toBe(b * independentAnswer + d);
     expect(gradeQuestion(question, String(independentAnswer)).score).toBe(1);
-    expect(gradeQuestion(question, String(independentAnswer + 1)).score).toBe(
-      0,
-    );
+    expect(gradeQuestion(question, String(independentAnswer + 1)).score).toBe(0);
     expect(question.hint).toContain("equal");
     prompts.add(result.prompt);
   }
@@ -48,7 +46,9 @@ it("projects three modes and keeps the independent answer private", () => {
   expect(independent).not.toHaveProperty("hint");
   expect(independent).not.toHaveProperty("solutionSteps");
   // DA = x + 2 and DB = 2x - 9, so equal distances give x = 11.
-  expect(independent.prompt).toBe("D lies on the perpendicular bisector of AB. DA = (1x + 2) cm and DB = (2x - 9) cm. Find x.");
+  expect(independent.prompt).toBe(
+    "D lies on the perpendicular bisector of AB. DA = (1x + 2) cm and DB = (2x - 9) cm. Find x.",
+  );
   expect(worked).toHaveProperty("answer", 11);
   expect(gradePerpendicularBisector(input, "11").score).toBe(1);
   expect(gradePerpendicularBisector(input, "12").score).toBe(0);
@@ -76,37 +76,28 @@ it("has one complete source-linked blueprint and does not claim unfinished modes
     const blueprint = knowledgeBlueprintSchema.parse(raw);
     expect(validateModeSupport(blueprint).valid).toBe(true);
     expect(validateGradingCompatibility(blueprint).valid).toBe(true);
-    if (blueprint.nodeId !== nodeId)
-      expect(blueprint.rendererModeMap).toEqual({});
+    if (blueprint.nodeId !== nodeId) expect(blueprint.rendererModeMap).toEqual({});
   }
   const blueprint = knowledgeBlueprintSchema.parse(
     data.blueprints.find((b) => b.nodeId === nodeId),
   );
   expect(blueprint.sourceNodeIds).toContain("math.im2.example.1.1.001");
-  expect(blueprint.generatorKey).toBe(
-    "im2-perpendicular-bisector-equidistance",
-  );
+  expect(blueprint.generatorKey).toBe("im2-perpendicular-bisector-equidistance");
   expect(blueprint.guidedPracticeSpec?.hints.length).toBeGreaterThan(1);
 });
 
 it("keeps graph projections consistent and unavailable for runtime practice", async () => {
-  const graph = (await import("../../curriculum/skill-graph/edges.json"))
-    .default;
+  const graph = (await import("../../curriculum/skill-graph/edges.json")).default;
   const teacher = (
     await import("../../curriculum/skill-graph/projection/teacher-evidence-map.json")
   ).default;
-  const srs = (
-    await import("../../curriculum/skill-graph/projection/srs-input.json")
-  ).default;
+  const srs = (await import("../../curriculum/skill-graph/projection/srs-input.json")).default;
   const activities = (
     await import("../../curriculum/skill-graph/projection/practice-v1-activity-map.json")
   ).default;
-  const ids = new Set(
-    graph.nodes.filter((n) => n.kind === "skill").map((n) => n.id),
-  );
+  const ids = new Set(graph.nodes.filter((n) => n.kind === "skill").map((n) => n.id));
   expect(ids.size).toBe(data.blueprints.length);
-  for (const blueprint of data.blueprints)
-    expect(ids.has(blueprint.nodeId)).toBe(true);
+  for (const blueprint of data.blueprints) expect(ids.has(blueprint.nodeId)).toBe(true);
   expect(new Set(teacher.skills.map((s) => s.nodeId))).toEqual(ids);
   expect(new Set(srs.skills.map((s) => s.nodeId))).toEqual(ids);
   expect(activities.activities).toEqual([]);

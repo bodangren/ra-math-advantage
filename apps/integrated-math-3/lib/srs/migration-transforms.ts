@@ -1,7 +1,4 @@
-import {
-  KST_SRS_V3_2_MIGRATION_VERSION,
-  resolveCanonicalVariantKey,
-} from './v3-runtime-contract';
+import { KST_SRS_V3_2_MIGRATION_VERSION, resolveCanonicalVariantKey } from "./v3-runtime-contract";
 
 export interface LegacyCardForMigration {
   readonly id: string;
@@ -29,7 +26,7 @@ export interface CardMigrationPatch {
  */
 export function transformLegacyCard(
   card: LegacyCardForMigration,
-): CardMigrationPatch['fields'] | null {
+): CardMigrationPatch["fields"] | null {
   const { variantKey } = resolveCanonicalVariantKey(card);
   const fields = {
     variantKey,
@@ -38,10 +35,11 @@ export function transformLegacyCard(
     sourceTimestamp: card.sourceTimestamp ?? card.createdAt,
   } as const;
 
-  const alreadyMigrated = card.variantKey === fields.variantKey
-    && card.legacyProblemFamilyId === fields.legacyProblemFamilyId
-    && card.migrationVersion === fields.migrationVersion
-    && card.sourceTimestamp === fields.sourceTimestamp;
+  const alreadyMigrated =
+    card.variantKey === fields.variantKey &&
+    card.legacyProblemFamilyId === fields.legacyProblemFamilyId &&
+    card.migrationVersion === fields.migrationVersion &&
+    card.sourceTimestamp === fields.sourceTimestamp;
   return alreadyMigrated ? null : fields;
 }
 
@@ -68,11 +66,12 @@ export function planCardMigrationBatch(
   options: CardMigrationBatchOptions,
 ): CardMigrationBatchPlan {
   if (!Number.isInteger(options.batchSize) || options.batchSize <= 0) {
-    throw new Error('batchSize must be a positive integer');
+    throw new Error("batchSize must be a positive integer");
   }
-  const start = options.cursor === undefined || options.cursor === null
-    ? 0
-    : cards.findIndex((card) => card.id === options.cursor) + 1;
+  const start =
+    options.cursor === undefined || options.cursor === null
+      ? 0
+      : cards.findIndex((card) => card.id === options.cursor) + 1;
   if (start < 0) {
     throw new Error(`unknown migration cursor: ${options.cursor}`);
   }
@@ -96,9 +95,7 @@ export function planCardMigrationBatch(
  * Evaluates one bounded verification page. Production verification accumulates
  * these results over component-managed pages rather than loading every row.
  */
-export function verifyCardMigrationBatch(
-  cards: readonly LegacyCardForMigration[],
-): {
+export function verifyCardMigrationBatch(cards: readonly LegacyCardForMigration[]): {
   readonly complete: boolean;
   readonly unmigratedIds: readonly string[];
   readonly conflictingIds: readonly string[];

@@ -22,7 +22,7 @@
 // KnowledgeStateSeedStore contract) so the orchestrator is exercised
 // without spinning up a Convex backend.
 
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach } from "vitest";
 import type {
   KnowledgeSpace,
   KnowledgeSpaceNode,
@@ -30,7 +30,7 @@ import type {
   PlacementResult,
   ProbeAdapter,
   ProbeResult,
-} from '@math-platform/knowledge-space-core';
+} from "@math-platform/knowledge-space-core";
 
 // Production module — does not exist yet (Red phase).
 // The Green-phase implementer creates
@@ -39,9 +39,9 @@ import type {
 import {
   runNewStudentPlacementFlow,
   type PlacementFlowOutcome,
-} from '@/lib/placement/placement-flow';
+} from "@/lib/placement/placement-flow";
 
-import { createIm3ProbeAdapter } from '@/lib/placement/im3-probe-adapter';
+import { createIm3ProbeAdapter } from "@/lib/placement/im3-probe-adapter";
 
 import {
   IM3_PROBLEM_BANK,
@@ -49,24 +49,24 @@ import {
   createInMemoryKnowledgeStateStore,
   type InMemoryKnowledgeStateStore,
   type Im3ProblemEntry,
-} from './fixtures';
+} from "./fixtures";
 
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 
-const STUDENT_NEW = 'student-im3-new';
-const STUDENT_RETURNING = 'student-im3-returning';
+const STUDENT_NEW = "student-im3-new";
+const STUDENT_RETURNING = "student-im3-returning";
 const FIXED_NOW_MS = 1_780_000_000_000; // 2026-05-21-ish
 
 function nodeFromBank(entry: Im3ProblemEntry): KnowledgeSpaceNode {
   return {
     id: entry.nodeId,
-    kind: 'skill',
+    kind: "skill",
     title: entry.prompt,
-    domain: 'math.im3',
-    sourceRefs: ['IM3_PROBLEM_BANK'],
-    reviewStatus: 'draft',
+    domain: "math.im3",
+    sourceRefs: ["IM3_PROBLEM_BANK"],
+    reviewStatus: "draft",
     metadata: { module: String(entry.module), lesson: String(entry.lesson) },
   };
 }
@@ -77,13 +77,13 @@ function buildBankSubgraph(entries: ReadonlyArray<Im3ProblemEntry>): KnowledgeSp
   for (let i = 0; i < entries.length - 1; i++) {
     edges.push({
       id: `${entries[i]!.nodeId}->${entries[i + 1]!.nodeId}`,
-      type: 'prerequisite_for',
+      type: "prerequisite_for",
       sourceId: entries[i]!.nodeId,
       targetId: entries[i + 1]!.nodeId,
       weight: 1,
-      confidence: 'high',
-      sourceRefs: ['IM3_PROBLEM_BANK'],
-      reviewStatus: 'draft',
+      confidence: "high",
+      sourceRefs: ["IM3_PROBLEM_BANK"],
+      reviewStatus: "draft",
     });
   }
   return { nodes, edges };
@@ -100,7 +100,7 @@ function presetForEntries(
 // Task 4.1.a — New-student happy path
 // ---------------------------------------------------------------------------
 
-describe('runNewStudentPlacementFlow — new student', () => {
+describe("runNewStudentPlacementFlow — new student", () => {
   let store: InMemoryKnowledgeStateStore;
 
   beforeEach(() => {
@@ -110,7 +110,7 @@ describe('runNewStudentPlacementFlow — new student', () => {
   it('returns status="placed" for a student with no existing seeds', async () => {
     const subset = IM3_PROBLEM_BANK.slice(0, 5);
     const graph = buildBankSubgraph(subset);
-    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, 'pass'));
+    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, "pass"));
     const adapter = createIm3ProbeAdapter(IM3_PROBLEM_BANK, answerSource);
 
     const outcome = await runNewStudentPlacementFlow({
@@ -121,14 +121,14 @@ describe('runNewStudentPlacementFlow — new student', () => {
       options: { now: FIXED_NOW_MS },
     });
 
-    expect(outcome.status).toBe('placed');
+    expect(outcome.status).toBe("placed");
     expect(outcome.reason).toBeUndefined();
   });
 
-  it('writes one placement seed per probed node to the store', async () => {
+  it("writes one placement seed per probed node to the store", async () => {
     const subset = IM3_PROBLEM_BANK.slice(0, 5);
     const graph = buildBankSubgraph(subset);
-    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, 'pass'));
+    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, "pass"));
     const adapter = createIm3ProbeAdapter(IM3_PROBLEM_BANK, answerSource);
 
     await runNewStudentPlacementFlow({
@@ -144,15 +144,15 @@ describe('runNewStudentPlacementFlow — new student', () => {
     expect(seeds.length).toBeLessThanOrEqual(subset.length);
     for (const seed of seeds) {
       expect(seed.nodeId).toMatch(/^math\.im3\./);
-      expect(seed.source).toBe('placement');
+      expect(seed.source).toBe("placement");
       expect(seed.seededAt).toBe(FIXED_NOW_MS);
     }
   });
 
-  it('returns the same PlacementResults it persisted (round-trippable)', async () => {
+  it("returns the same PlacementResults it persisted (round-trippable)", async () => {
     const subset = IM3_PROBLEM_BANK.slice(0, 5);
     const graph = buildBankSubgraph(subset);
-    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, 'pass'));
+    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, "pass"));
     const adapter = createIm3ProbeAdapter(IM3_PROBLEM_BANK, answerSource);
 
     const outcome = await runNewStudentPlacementFlow({
@@ -175,10 +175,10 @@ describe('runNewStudentPlacementFlow — new student', () => {
     }
   });
 
-  it('reports probesPerformed matching the engine result', async () => {
+  it("reports probesPerformed matching the engine result", async () => {
     const subset = IM3_PROBLEM_BANK.slice(0, 5);
     const graph = buildBankSubgraph(subset);
-    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, 'pass'));
+    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, "pass"));
     const adapter = createIm3ProbeAdapter(IM3_PROBLEM_BANK, answerSource);
 
     const outcome = await runNewStudentPlacementFlow({
@@ -196,7 +196,7 @@ describe('runNewStudentPlacementFlow — new student', () => {
   it('persists only low/medium-confidence seeds (no "high")', async () => {
     const subset = IM3_PROBLEM_BANK.slice(0, 5);
     const graph = buildBankSubgraph(subset);
-    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, 'pass'));
+    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, "pass"));
     const adapter = createIm3ProbeAdapter(IM3_PROBLEM_BANK, answerSource);
 
     const outcome = await runNewStudentPlacementFlow({
@@ -209,8 +209,8 @@ describe('runNewStudentPlacementFlow — new student', () => {
 
     expect(outcome.results.length).toBeGreaterThan(0);
     for (const r of outcome.results) {
-      expect(r.confidence).not.toBe('high');
-      expect(['low', 'medium']).toContain(r.confidence);
+      expect(r.confidence).not.toBe("high");
+      expect(["low", "medium"]).toContain(r.confidence);
     }
   });
 });
@@ -224,7 +224,7 @@ describe('runNewStudentPlacementFlow — new student', () => {
 // intentionally deferred to the Phase 4 caller, which is exactly this
 // orchestrator.
 
-describe('runNewStudentPlacementFlow — returning-student guard', () => {
+describe("runNewStudentPlacementFlow — returning-student guard", () => {
   let store: InMemoryKnowledgeStateStore;
 
   beforeEach(async () => {
@@ -238,9 +238,9 @@ describe('runNewStudentPlacementFlow — returning-student guard', () => {
     // Pre-seed: returning student already has placement results.
     const preseed: PlacementResult[] = [
       {
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 0.85,
-        confidence: 'medium',
+        confidence: "medium",
       },
     ];
     await store.upsertPlacementSeeds(STUDENT_RETURNING, [
@@ -248,12 +248,12 @@ describe('runNewStudentPlacementFlow — returning-student guard', () => {
         nodeId: preseed[0]!.nodeId,
         masteryEstimate: preseed[0]!.masteryEstimate,
         confidence: preseed[0]!.confidence,
-        source: 'placement',
+        source: "placement",
         seededAt: FIXED_NOW_MS - 1_000,
       },
     ]);
 
-    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, 'pass'));
+    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, "pass"));
     const adapter = createIm3ProbeAdapter(IM3_PROBLEM_BANK, answerSource);
 
     const outcome = await runNewStudentPlacementFlow({
@@ -264,25 +264,25 @@ describe('runNewStudentPlacementFlow — returning-student guard', () => {
       options: { now: FIXED_NOW_MS },
     });
 
-    expect(outcome.status).toBe('skipped');
-    expect(outcome.reason).toBe('already-placed');
+    expect(outcome.status).toBe("skipped");
+    expect(outcome.reason).toBe("already-placed");
   });
 
-  it('does NOT invoke adapter.probe() when the guard skips placement', async () => {
+  it("does NOT invoke adapter.probe() when the guard skips placement", async () => {
     const subset = IM3_PROBLEM_BANK.slice(0, 5);
     const graph = buildBankSubgraph(subset);
 
     await store.upsertPlacementSeeds(STUDENT_RETURNING, [
       {
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 0.5,
-        confidence: 'low',
-        source: 'placement',
+        confidence: "low",
+        source: "placement",
         seededAt: FIXED_NOW_MS - 1_000,
       },
     ]);
 
-    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, 'pass'));
+    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, "pass"));
     const adapter = createIm3ProbeAdapter(IM3_PROBLEM_BANK, answerSource);
     const probeCountBefore = answerSource.callCount;
 
@@ -297,20 +297,20 @@ describe('runNewStudentPlacementFlow — returning-student guard', () => {
     expect(answerSource.callCount).toBe(probeCountBefore);
   });
 
-  it('does NOT touch the existing seeds on a skipped run (no upsert)', async () => {
+  it("does NOT touch the existing seeds on a skipped run (no upsert)", async () => {
     const subset = IM3_PROBLEM_BANK.slice(0, 5);
     const graph = buildBankSubgraph(subset);
 
     const originalSeed = {
-      nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+      nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
       masteryEstimate: 0.42,
-      confidence: 'low' as const,
-      source: 'placement' as const,
+      confidence: "low" as const,
+      source: "placement" as const,
       seededAt: FIXED_NOW_MS - 1_000,
     };
     await store.upsertPlacementSeeds(STUDENT_RETURNING, [originalSeed]);
 
-    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, 'pass'));
+    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, "pass"));
     const adapter = createIm3ProbeAdapter(IM3_PROBLEM_BANK, answerSource);
 
     await runNewStudentPlacementFlow({
@@ -325,21 +325,21 @@ describe('runNewStudentPlacementFlow — returning-student guard', () => {
     expect(seeds).toEqual([originalSeed]);
   });
 
-  it('force=true bypasses the guard and re-runs placement for a returning student', async () => {
+  it("force=true bypasses the guard and re-runs placement for a returning student", async () => {
     const subset = IM3_PROBLEM_BANK.slice(0, 5);
     const graph = buildBankSubgraph(subset);
 
     await store.upsertPlacementSeeds(STUDENT_RETURNING, [
       {
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 0.1,
-        confidence: 'low',
-        source: 'placement',
+        confidence: "low",
+        source: "placement",
         seededAt: FIXED_NOW_MS - 1_000,
       },
     ]);
 
-    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, 'pass'));
+    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, "pass"));
     const adapter = createIm3ProbeAdapter(IM3_PROBLEM_BANK, answerSource);
 
     const outcome = await runNewStudentPlacementFlow({
@@ -350,7 +350,7 @@ describe('runNewStudentPlacementFlow — returning-student guard', () => {
       options: { now: FIXED_NOW_MS, force: true },
     });
 
-    expect(outcome.status).toBe('placed');
+    expect(outcome.status).toBe("placed");
     expect(outcome.probesPerformed).toBeGreaterThan(0);
   });
 });
@@ -359,26 +359,26 @@ describe('runNewStudentPlacementFlow — returning-student guard', () => {
 // Task 4.1.c — Routing: new student triggers placement, returning does not
 // ---------------------------------------------------------------------------
 
-describe('runNewStudentPlacementFlow — routing (new vs returning)', () => {
+describe("runNewStudentPlacementFlow — routing (new vs returning)", () => {
   let store: InMemoryKnowledgeStateStore;
 
   beforeEach(() => {
     store = createInMemoryKnowledgeStateStore();
   });
 
-  it('two students with the same graph route to different outcomes', async () => {
+  it("two students with the same graph route to different outcomes", async () => {
     const subset = IM3_PROBLEM_BANK.slice(0, 5);
     const graph = buildBankSubgraph(subset);
-    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, 'pass'));
+    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, "pass"));
     const adapter = createIm3ProbeAdapter(IM3_PROBLEM_BANK, answerSource);
 
     // Pre-seed the returning student.
     await store.upsertPlacementSeeds(STUDENT_RETURNING, [
       {
-        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
         masteryEstimate: 0.7,
-        confidence: 'medium',
-        source: 'placement',
+        confidence: "medium",
+        source: "placement",
         seededAt: FIXED_NOW_MS - 1_000,
       },
     ]);
@@ -398,24 +398,24 @@ describe('runNewStudentPlacementFlow — routing (new vs returning)', () => {
       options: { now: FIXED_NOW_MS },
     });
 
-    expect(newOutcome.status).toBe('placed');
-    expect(returningOutcome.status).toBe('skipped');
+    expect(newOutcome.status).toBe("placed");
+    expect(returningOutcome.status).toBe("skipped");
   });
 
-  it('after a skip, the returning student\'s existing data is preserved', async () => {
+  it("after a skip, the returning student's existing data is preserved", async () => {
     const subset = IM3_PROBLEM_BANK.slice(0, 5);
     const graph = buildBankSubgraph(subset);
 
     const preSeed = {
-      nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+      nodeId: "math.im3.skill.1.1.graph-quadratic-functions",
       masteryEstimate: 0.66,
-      confidence: 'medium' as const,
-      source: 'placement' as const,
+      confidence: "medium" as const,
+      source: "placement" as const,
       seededAt: FIXED_NOW_MS - 1_000,
     };
     await store.upsertPlacementSeeds(STUDENT_RETURNING, [preSeed]);
 
-    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, 'pass'));
+    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, "pass"));
     const adapter = createIm3ProbeAdapter(IM3_PROBLEM_BANK, answerSource);
 
     await runNewStudentPlacementFlow({
@@ -442,7 +442,7 @@ describe('runNewStudentPlacementFlow — routing (new vs returning)', () => {
 // Task 4.1.d — Edge cases: empty graph, max-probes cap, startNodeId
 // ---------------------------------------------------------------------------
 
-describe('runNewStudentPlacementFlow — edge cases', () => {
+describe("runNewStudentPlacementFlow — edge cases", () => {
   let store: InMemoryKnowledgeStateStore;
 
   beforeEach(() => {
@@ -452,8 +452,8 @@ describe('runNewStudentPlacementFlow — edge cases', () => {
   it('empty graph: returns status="placed" with empty results, no error', async () => {
     const emptyGraph: KnowledgeSpace = { nodes: [], edges: [] };
     const adapter: ProbeAdapter = {
-      domain: 'math.im3',
-      probe: () => 'partial',
+      domain: "math.im3",
+      probe: () => "partial",
     };
 
     const outcome = await runNewStudentPlacementFlow({
@@ -464,7 +464,7 @@ describe('runNewStudentPlacementFlow — edge cases', () => {
       options: { now: FIXED_NOW_MS },
     });
 
-    expect(outcome.status).toBe('placed');
+    expect(outcome.status).toBe("placed");
     expect(outcome.results).toEqual([]);
     expect(outcome.probesPerformed).toBe(0);
 
@@ -472,10 +472,10 @@ describe('runNewStudentPlacementFlow — edge cases', () => {
     expect(seeds).toEqual([]);
   });
 
-  it('respects maxProbes option: does not exceed the cap', async () => {
+  it("respects maxProbes option: does not exceed the cap", async () => {
     const subset = IM3_PROBLEM_BANK.slice(0, 8);
     const graph = buildBankSubgraph(subset);
-    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, 'pass'));
+    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, "pass"));
     const adapter = createIm3ProbeAdapter(IM3_PROBLEM_BANK, answerSource);
 
     const outcome = await runNewStudentPlacementFlow({
@@ -490,10 +490,10 @@ describe('runNewStudentPlacementFlow — edge cases', () => {
     expect(outcome.results.length).toBeLessThanOrEqual(3);
   });
 
-  it('honors startNodeId when supplied', async () => {
+  it("honors startNodeId when supplied", async () => {
     const subset = IM3_PROBLEM_BANK.slice(0, 5);
     const graph = buildBankSubgraph(subset);
-    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, 'pass'));
+    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, "pass"));
     const adapter = createIm3ProbeAdapter(IM3_PROBLEM_BANK, answerSource);
 
     const outcome = await runNewStudentPlacementFlow({
@@ -511,7 +511,7 @@ describe('runNewStudentPlacementFlow — edge cases', () => {
   it('defaults seededAt to Date.now() when "now" is not provided', async () => {
     const subset = IM3_PROBLEM_BANK.slice(0, 5);
     const graph = buildBankSubgraph(subset);
-    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, 'pass'));
+    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, "pass"));
     const adapter = createIm3ProbeAdapter(IM3_PROBLEM_BANK, answerSource);
 
     const before = Date.now();
@@ -535,13 +535,13 @@ describe('runNewStudentPlacementFlow — edge cases', () => {
 // Task 4.1.e — Purity + shape of PlacementFlowOutcome
 // ---------------------------------------------------------------------------
 
-describe('runNewStudentPlacementFlow — purity & outcome shape', () => {
-  it('does not mutate the input KnowledgeSpace or its nodes/edges', async () => {
+describe("runNewStudentPlacementFlow — purity & outcome shape", () => {
+  it("does not mutate the input KnowledgeSpace or its nodes/edges", async () => {
     const store = createInMemoryKnowledgeStateStore();
     const subset = IM3_PROBLEM_BANK.slice(0, 5);
     const graph = buildBankSubgraph(subset);
     const snapshot = JSON.parse(JSON.stringify(graph));
-    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, 'pass'));
+    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, "pass"));
     const adapter = createIm3ProbeAdapter(IM3_PROBLEM_BANK, answerSource);
 
     await runNewStudentPlacementFlow({
@@ -555,11 +555,11 @@ describe('runNewStudentPlacementFlow — purity & outcome shape', () => {
     expect(JSON.parse(JSON.stringify(graph))).toEqual(snapshot);
   });
 
-  it('returns a PlacementFlowOutcome with the documented shape', async () => {
+  it("returns a PlacementFlowOutcome with the documented shape", async () => {
     const store = createInMemoryKnowledgeStateStore();
     const subset = IM3_PROBLEM_BANK.slice(0, 5);
     const graph = buildBankSubgraph(subset);
-    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, 'pass'));
+    const answerSource = createDeterministicAnswerSource(presetForEntries(subset, "pass"));
     const adapter = createIm3ProbeAdapter(IM3_PROBLEM_BANK, answerSource);
 
     const outcome: PlacementFlowOutcome = await runNewStudentPlacementFlow({
@@ -571,10 +571,10 @@ describe('runNewStudentPlacementFlow — purity & outcome shape', () => {
     });
 
     expect(outcome).toMatchObject({
-      status: 'placed',
+      status: "placed",
       results: expect.any(Array),
       probesPerformed: expect.any(Number),
     });
-    expect(['placed', 'skipped']).toContain(outcome.status);
+    expect(["placed", "skipped"]).toContain(outcome.status);
   });
 });

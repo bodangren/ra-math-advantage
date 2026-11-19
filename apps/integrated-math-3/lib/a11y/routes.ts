@@ -11,8 +11,8 @@
 // (every route resolves to a real `app/.../page.tsx`), per the
 // test-strategy's A10 defense against generated-facts drift.
 
-export type A11ySurface = 'auth' | 'student' | 'teacher';
-export type A11yRiskCategory = 'form' | 'landmark' | 'activity' | 'color-state';
+export type A11ySurface = "auth" | "student" | "teacher";
+export type A11yRiskCategory = "form" | "landmark" | "activity" | "color-state";
 
 export interface A11yRoute {
   /** App-relative path used by the gate; matches Next.js route syntax. */
@@ -32,39 +32,39 @@ export interface A11yRoute {
  */
 export const A11Y_ROUTES: readonly A11yRoute[] = [
   {
-    path: '/auth/login',
-    name: 'Login',
-    surface: 'auth',
-    riskCategories: ['form'],
+    path: "/auth/login",
+    name: "Login",
+    surface: "auth",
+    riskCategories: ["form"],
   },
   {
-    path: '/student/dashboard',
-    name: 'Student Dashboard',
-    surface: 'student',
-    riskCategories: ['landmark'],
+    path: "/student/dashboard",
+    name: "Student Dashboard",
+    surface: "student",
+    riskCategories: ["landmark"],
   },
   {
-    path: '/student/lesson/[lessonSlug]',
-    name: 'Student Lesson',
-    surface: 'student',
-    riskCategories: ['activity'],
+    path: "/student/lesson/[lessonSlug]",
+    name: "Student Lesson",
+    surface: "student",
+    riskCategories: ["activity"],
   },
   {
-    path: '/student/practice',
-    name: 'Student Daily Practice',
-    surface: 'student',
-    riskCategories: ['activity'],
+    path: "/student/practice",
+    name: "Student Daily Practice",
+    surface: "student",
+    riskCategories: ["activity"],
   },
   {
-    path: '/teacher/dashboard',
-    name: 'Teacher Dashboard',
-    surface: 'teacher',
-    riskCategories: ['landmark'],
+    path: "/teacher/dashboard",
+    name: "Teacher Dashboard",
+    surface: "teacher",
+    riskCategories: ["landmark"],
   },
   {
-    path: '/teacher/gradebook',
-    name: 'Teacher Gradebook',
-    surface: 'teacher',
-    riskCategories: ['color-state'],
+    path: "/teacher/gradebook",
+    name: "Teacher Gradebook",
+    surface: "teacher",
+    riskCategories: ["color-state"],
   },
 ];

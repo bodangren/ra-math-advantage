@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { evaluateFunction } from '@/lib/activities/graphing/canvas-utils';
+import React, { useState, useEffect } from "react";
+import { evaluateFunction } from "@/lib/activities/graphing/canvas-utils";
 
 export interface InteractiveTableOfValuesProps {
   xValues: number[];
@@ -17,7 +17,6 @@ interface TableRow {
   isCorrect: boolean | null;
   isEmpty: boolean;
 }
-
 
 /**
  * Interactive table for entering y-values for given x-values of a function.
@@ -36,27 +35,26 @@ export function InteractiveTableOfValues({
   preFilledValues = {},
 }: InteractiveTableOfValuesProps) {
   const [rows, setRows] = useState<TableRow[]>(
-    xValues.map(x => ({
+    xValues.map((x) => ({
       x,
-      y: preFilledValues[x] !== undefined ? String(preFilledValues[x]) : '',
+      y: preFilledValues[x] !== undefined ? String(preFilledValues[x]) : "",
       isCorrect: null,
       isEmpty: preFilledValues[x] === undefined,
-    }))
+    })),
   );
 
   useEffect(() => {
-    const allFilled = rows.every(row => !row.isEmpty);
-    const allCorrect = rows.every(row => row.isCorrect === true);
+    const allFilled = rows.every((row) => !row.isEmpty);
+    const allCorrect = rows.every((row) => row.isCorrect === true);
 
     if (allFilled && allCorrect) {
-      const points = rows.map(row => ({
+      const points = rows.map((row) => ({
         x: row.x,
         y: parseFloat(row.y),
       }));
       onTableComplete(points);
     }
   }, [rows, onTableComplete]);
-
 
   /**
    * Handle a change to a table row's y-value input.
@@ -67,7 +65,7 @@ export function InteractiveTableOfValues({
   const handleInputChange = (index: number, value: string) => {
     const x = rows[index].x;
 
-    const isEmpty = value.trim() === '';
+    const isEmpty = value.trim() === "";
     let isCorrect: boolean | null = null;
 
     if (!isEmpty) {
@@ -79,16 +77,13 @@ export function InteractiveTableOfValues({
       }
     }
 
-    setRows(prevRows => {
+    setRows((prevRows) => {
       const newRows = prevRows.map((row, i) =>
-        i === index
-          ? { ...row, y: value, isCorrect, isEmpty }
-          : row
+        i === index ? { ...row, y: value, isCorrect, isEmpty } : row,
       );
       return newRows;
     });
   };
-
 
   /**
    * Get the row background class based on correctness state.
@@ -97,11 +92,11 @@ export function InteractiveTableOfValues({
    * @returns A Tailwind background class string.
    */
   const getRowClassName = (row: TableRow) => {
-    if (readonly) return '';
-    if (row.isEmpty) return '';
-    if (row.isCorrect === true) return 'bg-green-100';
-    if (row.isCorrect === false) return 'bg-red-100';
-    return '';
+    if (readonly) return "";
+    if (row.isEmpty) return "";
+    if (row.isCorrect === true) return "bg-green-100";
+    if (row.isCorrect === false) return "bg-red-100";
+    return "";
   };
 
   return (

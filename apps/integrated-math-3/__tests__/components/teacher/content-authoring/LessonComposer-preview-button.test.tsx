@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import { describe, it, expect, vi } from "vitest";
+import { render, screen, fireEvent, cleanup } from "@testing-library/react";
 
 afterEach(() => {
   cleanup();
@@ -23,66 +23,66 @@ afterEach(() => {
  */
 
 const VALID_ACTIVITY_PROPS: Record<string, Record<string, unknown>> = {
-  'graphing-explorer': { equation: 'x^2 + 3x - 4' },
-  'comprehension-quiz': {
+  "graphing-explorer": { equation: "x^2 + 3x - 4" },
+  "comprehension-quiz": {
     questions: [
       {
-        id: 'q1',
-        prompt: 'What is the vertex form?',
-        correctAnswer: 'y = a(x - h)^2 + k',
+        id: "q1",
+        prompt: "What is the vertex form?",
+        correctAnswer: "y = a(x - h)^2 + k",
       },
     ],
   },
-  'fill-in-the-blank': {
-    template: 'A quadratic has degree {{blank:degree}}.',
-    blanks: [{ id: 'degree', correctAnswer: '2' }],
+  "fill-in-the-blank": {
+    template: "A quadratic has degree {{blank:degree}}.",
+    blanks: [{ id: "degree", correctAnswer: "2" }],
   },
 };
 
 function buildPreviewableDraft() {
   return {
-    title: 'Authored Quadratic Lesson',
+    title: "Authored Quadratic Lesson",
     phases: [
       {
-        title: 'Explore Phase',
-        phaseType: 'explore',
+        title: "Explore Phase",
+        phaseType: "explore",
         sections: [
           {
-            title: 'Graphing Section',
+            title: "Graphing Section",
             activities: [
               {
-                componentKey: 'graphing-explorer',
-                props: VALID_ACTIVITY_PROPS['graphing-explorer'],
+                componentKey: "graphing-explorer",
+                props: VALID_ACTIVITY_PROPS["graphing-explorer"],
               },
             ],
           },
         ],
       },
       {
-        title: 'Worked Example',
-        phaseType: 'worked_example',
+        title: "Worked Example",
+        phaseType: "worked_example",
         sections: [
           {
-            title: 'Example Section',
+            title: "Example Section",
             activities: [
               {
-                componentKey: 'comprehension-quiz',
-                props: VALID_ACTIVITY_PROPS['comprehension-quiz'],
+                componentKey: "comprehension-quiz",
+                props: VALID_ACTIVITY_PROPS["comprehension-quiz"],
               },
             ],
           },
         ],
       },
       {
-        title: 'Guided Practice',
-        phaseType: 'guided_practice',
+        title: "Guided Practice",
+        phaseType: "guided_practice",
         sections: [
           {
-            title: 'Practice Section',
+            title: "Practice Section",
             activities: [
               {
-                componentKey: 'fill-in-the-blank',
-                props: VALID_ACTIVITY_PROPS['fill-in-the-blank'],
+                componentKey: "fill-in-the-blank",
+                props: VALID_ACTIVITY_PROPS["fill-in-the-blank"],
               },
             ],
           },
@@ -98,11 +98,10 @@ const mockClient = {
   editRejectedDraft: vi.fn(),
 };
 
-describe('LessonComposer Preview button wiring', () => {
-  it('invokes the onPreview callback when the enabled Preview button is clicked', async () => {
-    const { LessonComposer } = await import(
-      '@/components/teacher/content-authoring/LessonComposer'
-    );
+describe("LessonComposer Preview button wiring", () => {
+  it("invokes the onPreview callback when the enabled Preview button is clicked", async () => {
+    const { LessonComposer } =
+      await import("@/components/teacher/content-authoring/LessonComposer");
     const onPreview = vi.fn();
 
     render(
@@ -111,10 +110,10 @@ describe('LessonComposer Preview button wiring', () => {
         client={mockClient}
         teacherId="teacher_1"
         onPreview={onPreview}
-      />
+      />,
     );
 
-    const previewButton = screen.getByRole('button', { name: /preview draft/i });
+    const previewButton = screen.getByRole("button", { name: /preview draft/i });
     expect(previewButton).toBeEnabled();
 
     fireEvent.click(previewButton);
@@ -122,25 +121,24 @@ describe('LessonComposer Preview button wiring', () => {
     expect(onPreview).toHaveBeenCalledTimes(1);
   });
 
-  it('does NOT invoke onPreview when the draft is not previewable (button is disabled)', async () => {
-    const { LessonComposer } = await import(
-      '@/components/teacher/content-authoring/LessonComposer'
-    );
+  it("does NOT invoke onPreview when the draft is not previewable (button is disabled)", async () => {
+    const { LessonComposer } =
+      await import("@/components/teacher/content-authoring/LessonComposer");
     const onPreview = vi.fn();
 
     render(
       <LessonComposer
         initialDraft={{
-          title: 'Empty lesson',
+          title: "Empty lesson",
           phases: [],
         }}
         client={mockClient}
         teacherId="teacher_1"
         onPreview={onPreview}
-      />
+      />,
     );
 
-    const previewButton = screen.getByRole('button', { name: /preview draft/i });
+    const previewButton = screen.getByRole("button", { name: /preview draft/i });
     expect(previewButton).toBeDisabled();
 
     fireEvent.click(previewButton);
@@ -148,20 +146,19 @@ describe('LessonComposer Preview button wiring', () => {
     expect(onPreview).not.toHaveBeenCalled();
   });
 
-  it('does not throw when no onPreview is provided and the button is clicked (back-compat)', async () => {
-    const { LessonComposer } = await import(
-      '@/components/teacher/content-authoring/LessonComposer'
-    );
+  it("does not throw when no onPreview is provided and the button is clicked (back-compat)", async () => {
+    const { LessonComposer } =
+      await import("@/components/teacher/content-authoring/LessonComposer");
 
     render(
       <LessonComposer
         initialDraft={buildPreviewableDraft()}
         client={mockClient}
         teacherId="teacher_1"
-      />
+      />,
     );
 
-    const previewButton = screen.getByRole('button', { name: /preview draft/i });
+    const previewButton = screen.getByRole("button", { name: /preview draft/i });
     expect(previewButton).toBeEnabled();
 
     // Must not throw; onPreview is optional.

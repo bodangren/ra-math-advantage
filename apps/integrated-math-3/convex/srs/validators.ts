@@ -4,14 +4,14 @@ export const srsCardStateLiteralValidator = v.union(
   v.literal("new"),
   v.literal("learning"),
   v.literal("review"),
-  v.literal("relearning")
+  v.literal("relearning"),
 );
 
 export const srsRatingValidator = v.union(
   v.literal("Again"),
   v.literal("Hard"),
   v.literal("Good"),
-  v.literal("Easy")
+  v.literal("Easy"),
 );
 
 export const srsCardStatePickValidator = v.object({
@@ -32,5 +32,5 @@ export const srsEvidenceValidator = v.union(
     timingAdjusted: v.boolean(),
     reasons: v.array(v.string()),
     misconceptionTags: v.optional(v.array(v.string())),
-  })
+  }),
 );

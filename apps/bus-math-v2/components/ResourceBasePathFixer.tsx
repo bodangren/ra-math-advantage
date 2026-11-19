@@ -1,12 +1,11 @@
-'use client'
+"use client";
 
-import { useEffect } from 'react'
+import { useEffect } from "react";
 
 export interface ResourceBasePathFixerProps {
-  selector?: string
-  productionBasePath?: string
+  selector?: string;
+  productionBasePath?: string;
 }
-
 
 /**
  * Rewrites resource links to include the production base path when deployed.
@@ -16,18 +15,18 @@ export interface ResourceBasePathFixerProps {
  */
 export function ResourceBasePathFixer({
   selector = 'a[href^="/resources/"]',
-  productionBasePath = '/Business-Operations'
+  productionBasePath = "/Business-Operations",
 }: ResourceBasePathFixerProps) {
   useEffect(() => {
-    const prefix = process.env.NODE_ENV === 'production' ? productionBasePath : ''
-    const anchors = document.querySelectorAll<HTMLAnchorElement>(selector)
+    const prefix = process.env.NODE_ENV === "production" ? productionBasePath : "";
+    const anchors = document.querySelectorAll<HTMLAnchorElement>(selector);
     anchors.forEach((anchor) => {
-      const original = anchor.getAttribute('href') ?? ''
+      const original = anchor.getAttribute("href") ?? "";
       if (!original.startsWith(prefix)) {
-        anchor.setAttribute('href', `${prefix}${original}`)
+        anchor.setAttribute("href", `${prefix}${original}`);
       }
-    })
-  }, [selector, productionBasePath])
+    });
+  }, [selector, productionBasePath]);
 
-  return null
+  return null;
 }

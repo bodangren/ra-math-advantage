@@ -52,7 +52,7 @@ export const seedModule2Lessons = internalMutation({
                 sectionType: "text" as const,
                 content: {
                   markdown:
-                    "## Learn: Translating Between Words and Algebra\n\n### Key Concept: Verbal to Algebraic Translation\n\n- Identify the unknown quantity and assign a variable.\n- Look for key words that indicate operations: sum/addition, difference/subtraction, product/multiplication, quotient/division, squared/exponent.\n- Pay attention to grouping words such as \"the sum of\" or \"the product of,\" which often require parentheses.\n- Write the equation so that both sides are equal.\n\n### Key Concept: Algebraic to Verbal Translation\n\n- Read the equation left to right, naming each operation and quantity in words.\n- Use phrases like \"is equal to,\" \"is the same as,\" or \"is identical to\" for the equals sign.\n- Describe variables as \"a number\" or use their defined names in context.",
+                    '## Learn: Translating Between Words and Algebra\n\n### Key Concept: Verbal to Algebraic Translation\n\n- Identify the unknown quantity and assign a variable.\n- Look for key words that indicate operations: sum/addition, difference/subtraction, product/multiplication, quotient/division, squared/exponent.\n- Pay attention to grouping words such as "the sum of" or "the product of," which often require parentheses.\n- Write the equation so that both sides are equal.\n\n### Key Concept: Algebraic to Verbal Translation\n\n- Read the equation left to right, naming each operation and quantity in words.\n- Use phrases like "is equal to," "is the same as," or "is identical to" for the equals sign.\n- Describe variables as "a number" or use their defined names in context.',
                 },
               },
             ],
@@ -68,7 +68,7 @@ export const seedModule2Lessons = internalMutation({
                 sectionType: "text" as const,
                 content: {
                   markdown:
-                    "## Example 1 — Write an Equation from a Verbal Sentence\n\nTranslate verbal descriptions into algebraic equations using one or more variables.\n\n### Step 1: Identify the Variable and Operations\n\nRead the sentence carefully and determine which words indicate addition, subtraction, multiplication, division, or exponents. Watch for phrases like \"the sum of\" or \"the product of\" that require grouping with parentheses.\n\n### Step 2: Write the Equation\n\nPlace the verbal description on the left and the value on the right, connected by an equals sign.\n\nRepresentative equations:\n[\n2 + 3m = 18\n]\n[\n5(x + 3) = 12\n]\n[\n85 - 9y = 7(4 + y)\n]",
+                    '## Example 1 — Write an Equation from a Verbal Sentence\n\nTranslate verbal descriptions into algebraic equations using one or more variables.\n\n### Step 1: Identify the Variable and Operations\n\nRead the sentence carefully and determine which words indicate addition, subtraction, multiplication, division, or exponents. Watch for phrases like "the sum of" or "the product of" that require grouping with parentheses.\n\n### Step 2: Write the Equation\n\nPlace the verbal description on the left and the value on the right, connected by an equals sign.\n\nRepresentative equations:\n[\n2 + 3m = 18\n]\n[\n5(x + 3) = 12\n]\n[\n85 - 9y = 7(4 + y)\n]',
                 },
               },
             ],
@@ -116,7 +116,7 @@ export const seedModule2Lessons = internalMutation({
                 sectionType: "text" as const,
                 content: {
                   markdown:
-                    "## Example 4 and 5 — Write a Sentence for Each Equation\n\nGiven an algebraic equation, write a complete verbal sentence that describes the same relationship.\n\n### Step 1: Read the Equation Left to Right\n\nName each term using words. Use \"a number\" when a variable appears without context.\n\n### Step 2: Choose Appropriate Verbal Connectors\n\nUse phrases such as \"is equal to,\" \"is the same as,\" \"is as much as,\" or \"is identical to\" for the equals sign.\n\nRepresentative equations:\n[\nj + 16 = 35\n]\n[\n7(p + 23) = 102\n]\n[\n\\frac{2}{5}v + \\frac{3}{4} = \\frac{2}{3}x^2\n]\n[\n2(t + 4q) = 2q + 4t\n]",
+                    '## Example 4 and 5 — Write a Sentence for Each Equation\n\nGiven an algebraic equation, write a complete verbal sentence that describes the same relationship.\n\n### Step 1: Read the Equation Left to Right\n\nName each term using words. Use "a number" when a variable appears without context.\n\n### Step 2: Choose Appropriate Verbal Connectors\n\nUse phrases such as "is equal to," "is the same as," "is as much as," or "is identical to" for the equals sign.\n\nRepresentative equations:\n[\nj + 16 = 35\n]\n[\n7(p + 23) = 102\n]\n[\n\\frac{2}{5}v + \\frac{3}{4} = \\frac{2}{3}x^2\n]\n[\n2(t + 4q) = 2q + 4t\n]',
                 },
               },
             ],
@@ -164,7 +164,7 @@ export const seedModule2Lessons = internalMutation({
                 sectionType: "text" as const,
                 content: {
                   markdown:
-                    "## Review Notes\n\n* Problem 50 references an image (`media/image1.png`) of a kitchen floor plan that cannot be described from the extracted text. The problem states: \"The area of a kitchen is 182 square feet. This is 20% of the area of the first floor of the house. Let [ F ] represent the area of the first floor. Write an equation to represent the situation.\"\n* Problem 56 references an image (`media/image2.png`) that cannot be described from the extracted text. The problem asks students to translate the formula [ A = \\frac{b_1 + b_2}{2} \\cdot h ] into words and list any constraints on the variables.",
+                    '## Review Notes\n\n* Problem 50 references an image (`media/image1.png`) of a kitchen floor plan that cannot be described from the extracted text. The problem states: "The area of a kitchen is 182 square feet. This is 20% of the area of the first floor of the house. Let [ F ] represent the area of the first floor. Write an equation to represent the situation."\n* Problem 56 references an image (`media/image2.png`) that cannot be described from the extracted text. The problem asks students to translate the formula [ A = \\frac{b_1 + b_2}{2} \\cdot h ] into words and list any constraints on the variables.',
                 },
               },
             ],
@@ -301,7 +301,7 @@ export const seedModule2Lessons = internalMutation({
                 sectionType: "text" as const,
                 content: {
                   markdown:
-                    "## Mixed Exercises\n\nThe mixed exercises provide comprehensive practice with all one-step equation skills, including:\n\n* Writing equations from verbal sentences and then solving them, such as \"Six times a number is 132\" ([ 6x = 132 ]) and \"Two thirds equals negative eight times a number\" ([ \\frac{2}{3} = -8n ]).\n* Solving equations with fractions and checking solutions, including equations like [ \\frac{2}{3}n = 14 ], [ 4\\frac{1}{5} = 3p ], and [ -\\frac{2}{5} = -\\frac{z}{45} ].\n* Real-world applications involving travel distances, ticket prices, and food costs, requiring students to define variables, write equations, and solve multi-part problems.\n* Identifying and naming the Property of Equality used to solve an equation, such as [ \\frac{x}{9} = 24 ], [ m - 183 = -79 ], and [ -\\frac{4}{5}p = 32 ].\n* Deeper reasoning tasks including \"Which One Doesn't Belong,\" persevering through related-equation problems, analyzing whether statements are sometimes/always/never true, and comparing solution methods for multiplication versus addition equations.",
+                    '## Mixed Exercises\n\nThe mixed exercises provide comprehensive practice with all one-step equation skills, including:\n\n* Writing equations from verbal sentences and then solving them, such as "Six times a number is 132" ([ 6x = 132 ]) and "Two thirds equals negative eight times a number" ([ \\frac{2}{3} = -8n ]).\n* Solving equations with fractions and checking solutions, including equations like [ \\frac{2}{3}n = 14 ], [ 4\\frac{1}{5} = 3p ], and [ -\\frac{2}{5} = -\\frac{z}{45} ].\n* Real-world applications involving travel distances, ticket prices, and food costs, requiring students to define variables, write equations, and solve multi-part problems.\n* Identifying and naming the Property of Equality used to solve an equation, such as [ \\frac{x}{9} = 24 ], [ m - 183 = -79 ], and [ -\\frac{4}{5}p = 32 ].\n* Deeper reasoning tasks including "Which One Doesn\'t Belong," persevering through related-equation problems, analyzing whether statements are sometimes/always/never true, and comparing solution methods for multiplication versus addition equations.',
                 },
               },
             ],
@@ -317,7 +317,7 @@ export const seedModule2Lessons = internalMutation({
                 sectionType: "text" as const,
                 content: {
                   markdown:
-                    "## Review Notes\n\n* Problem 89 references an image (`media/image1.png`) that was not extracted. The context suggests it is a standard equation-solving problem, but the exact expression is unclear without the image.\n* Problem 99 references an image (`media/image2.png`) showing four equations for a \"Which One Doesn't Belong?\" task. The image was not extracted; teachers should consult the original worksheet for the exact equations.",
+                    '## Review Notes\n\n* Problem 89 references an image (`media/image1.png`) that was not extracted. The context suggests it is a standard equation-solving problem, but the exact expression is unclear without the image.\n* Problem 99 references an image (`media/image2.png`) showing four equations for a "Which One Doesn\'t Belong?" task. The image was not extracted; teachers should consult the original worksheet for the exact equations.',
                 },
               },
             ],
@@ -1035,7 +1035,7 @@ export const seedModule2Lessons = internalMutation({
         const existingPhase = await ctx.db
           .query("phase_versions")
           .withIndex("by_lesson_version_and_phase", (q) =>
-            q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+            q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
           )
           .first();
 

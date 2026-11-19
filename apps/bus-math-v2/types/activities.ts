@@ -1,14 +1,14 @@
-import type { SubmissionData } from '@/lib/schemas/activity-submissions';
+import type { SubmissionData } from "@/lib/schemas/activity-submissions";
 
 export const ACTIVITY_SUBMISSION_REQUIRED_FIELDS = [
-  'contractVersion',
-  'activityId',
-  'mode',
-  'status',
-  'attemptNumber',
-  'submittedAt',
-  'answers',
-  'parts',
+  "contractVersion",
+  "activityId",
+  "mode",
+  "status",
+  "attemptNumber",
+  "submittedAt",
+  "answers",
+  "parts",
 ] as const;
 
 export type ActivitySubmissionData = SubmissionData;
@@ -42,4 +42,4 @@ export type {
   SpreadsheetEvaluatorActivityProps,
   StartupJourneyActivityProps,
   TieredAssessmentActivityProps,
-} from '@/lib/schemas/activity-props';
+} from "@/lib/schemas/activity-props";

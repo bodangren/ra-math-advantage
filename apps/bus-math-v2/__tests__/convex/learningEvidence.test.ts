@@ -1,6 +1,6 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from "vitest";
 
-import type { LearningEvidenceV1 } from '@math-platform/practice-core';
+import type { LearningEvidenceV1 } from "@math-platform/practice-core";
 
 import {
   createBm2SubmissionLearningEvidenceHandler,
@@ -8,13 +8,13 @@ import {
   type Bm2LearningEvidenceStore,
   type Bm2SubmissionReceipt,
   type Bm2SubmissionReceiptStore,
-} from '../../convex/learningEvidence';
+} from "../../convex/learningEvidence";
 
-const LEARNER_ID = 'student-bm2-convex-pilot';
-const PILOT_NODE_ID = 'math.bm2.skill.1.1.apply-accounting-equation';
-const PILOT_ACTIVITY_ID = 'accounting-equation';
-const FROZEN_SOURCE_ACTIVITY_ID = 'd6b57545-65f6-4c39-80d5-000100001002';
-const SERVER_SUBMISSION_ID = 'server-owned-bm2-submission';
+const LEARNER_ID = "student-bm2-convex-pilot";
+const PILOT_NODE_ID = "math.bm2.skill.1.1.apply-accounting-equation";
+const PILOT_ACTIVITY_ID = "accounting-equation";
+const FROZEN_SOURCE_ACTIVITY_ID = "d6b57545-65f6-4c39-80d5-000100001002";
+const SERVER_SUBMISSION_ID = "server-owned-bm2-submission";
 
 class InMemoryEvidenceStore implements Bm2LearningEvidenceStore {
   readonly events: Array<{ learnerId: string; evidence: LearningEvidenceV1 }> = [];
@@ -30,12 +30,9 @@ class InMemoryEvidenceStore implements Bm2LearningEvidenceStore {
       .map((entry) => entry.evidence);
   }
 
-  async append(
-    learnerId: string,
-    evidence: LearningEvidenceV1,
-  ): Promise<void> {
+  async append(learnerId: string, evidence: LearningEvidenceV1): Promise<void> {
     this.events.push({ learnerId, evidence });
-    this.effectOrder.push('evidence');
+    this.effectOrder.push("evidence");
   }
 }
 
@@ -57,7 +54,7 @@ class InMemoryReceiptStore implements Bm2SubmissionReceiptStore {
     receipt: Bm2SubmissionReceipt,
   ): Promise<void> {
     this.receipts.set(`${learnerId}:${submissionId}`, receipt);
-    this.effectOrder.push('receipt');
+    this.effectOrder.push("receipt");
   }
 }
 
@@ -67,24 +64,24 @@ function makeMasterySubmission(
   return {
     submissionId: SERVER_SUBMISSION_ID,
     userId: LEARNER_ID,
-    activityId: 'bm2-pilot-activity-document',
+    activityId: "bm2-pilot-activity-document",
     activityStableActivityId: FROZEN_SOURCE_ACTIVITY_ID,
     stableActivityId: PILOT_ACTIVITY_ID,
     attemptOrdinal: 2,
-    masteryContractVersion: 'learning-evidence.v1',
-    submittedAt: '2026-08-19T10:00:00.000Z',
+    masteryContractVersion: "learning-evidence.v1",
+    submittedAt: "2026-08-19T10:00:00.000Z",
     submissionData: {
-      contractVersion: 'practice.v1',
+      contractVersion: "practice.v1",
       activityId: PILOT_ACTIVITY_ID,
       attemptNumber: 2,
-      mode: 'independent_practice',
-      status: 'graded',
-      submittedAt: '2026-08-19T10:00:00.000Z',
-      rawAnswer: 'server-only-bm2-answer',
+      mode: "independent_practice",
+      status: "graded",
+      submittedAt: "2026-08-19T10:00:00.000Z",
+      rawAnswer: "server-only-bm2-answer",
     },
     score: 0,
     maxScore: 2,
-    gradedAt: '2026-08-19T10:01:00.000Z',
+    gradedAt: "2026-08-19T10:01:00.000Z",
     ...overrides,
   };
 }
@@ -97,11 +94,11 @@ function createSubmissionHarness({
   const effectOrder: string[] = [];
   const evidenceStore = new InMemoryEvidenceStore(effectOrder);
   const receiptStore = new InMemoryReceiptStore(effectOrder);
-  const loadActivitySubmission = vi.fn(async (submissionId: string) => (
-    submission?.submissionId === submissionId ? submission : null
-  ));
+  const loadActivitySubmission = vi.fn(async (submissionId: string) =>
+    submission?.submissionId === submissionId ? submission : null,
+  );
   const masteryBridge = vi.fn(async (): Promise<void> => {
-    effectOrder.push('mastery');
+    effectOrder.push("mastery");
   });
   const handler = createBm2SubmissionLearningEvidenceHandler({
     evidenceStore,
@@ -120,8 +117,8 @@ function createSubmissionHarness({
   };
 }
 
-describe('BM2 Convex learning-evidence boundary', () => {
-  it('derives server grades after trusted exposure and applies the single mastery bridge once before evidence and receipt', async () => {
+describe("BM2 Convex learning-evidence boundary", () => {
+  it("derives server grades after trusted exposure and applies the single mastery bridge once before evidence and receipt", async () => {
     const {
       effectOrder,
       evidenceStore,
@@ -133,14 +130,14 @@ describe('BM2 Convex learning-evidence boundary', () => {
     evidenceStore.events.push({
       learnerId: LEARNER_ID,
       evidence: {
-        contractVersion: 'learning-evidence.v1',
+        contractVersion: "learning-evidence.v1",
         nodeId: PILOT_NODE_ID,
         activityId: FROZEN_SOURCE_ACTIVITY_ID,
         attemptOrdinal: 1,
-        origin: 'teacher_led',
-        mode: 'guided_practice',
-        occurredAt: '2026-08-19T09:00:00.000Z',
-        idempotencyKey: 'bm2-trusted-teacher-exposure',
+        origin: "teacher_led",
+        mode: "guided_practice",
+        occurredAt: "2026-08-19T09:00:00.000Z",
+        idempotencyKey: "bm2-trusted-teacher-exposure",
       },
     });
 
@@ -156,9 +153,9 @@ describe('BM2 Convex learning-evidence boundary', () => {
         nodeId: PILOT_NODE_ID,
         activityId: PILOT_ACTIVITY_ID,
         attemptOrdinal: 2,
-        origin: 'mastery_advantage',
-        mode: 'independent_practice',
-        occurredAt: '2026-08-19T10:00:00.000Z',
+        origin: "mastery_advantage",
+        mode: "independent_practice",
+        occurredAt: "2026-08-19T10:00:00.000Z",
         gradedEvidence: { isCorrect: false, score: 0, maxScore: 2 },
       }),
     };
@@ -166,17 +163,17 @@ describe('BM2 Convex learning-evidence boundary', () => {
     expect(loadActivitySubmission).toHaveBeenCalledWith(SERVER_SUBMISSION_ID);
     expect(masteryBridge).toHaveBeenCalledWith(expectedEffect);
     expect(masteryBridge).toHaveBeenCalledTimes(1);
-    expect(effectOrder).toEqual(['mastery', 'evidence', 'receipt']);
+    expect(effectOrder).toEqual(["mastery", "evidence", "receipt"]);
     expect(result).toEqual({
       persisted: true,
       masteryApplied: true,
       kstApplied: false,
-      delivery: 'new',
+      delivery: "new",
       decision: {
-        idempotency: 'new',
-        exposureState: 'introduced',
+        idempotency: "new",
+        exposureState: "introduced",
         eligible: true,
-        reason: 'eligible',
+        reason: "eligible",
         masteryBearing: true,
       },
     });
@@ -185,47 +182,44 @@ describe('BM2 Convex learning-evidence boundary', () => {
       masteryApplied: true,
       kstApplied: false,
       decision: {
-        idempotency: 'new',
-        exposureState: 'introduced',
+        idempotency: "new",
+        exposureState: "introduced",
         eligible: true,
-        reason: 'eligible',
+        reason: "eligible",
         masteryBearing: true,
       },
     });
-    expect(JSON.stringify(result)).not.toContain('server-only-bm2-answer');
-    expect(evidenceStore.events[1]?.evidence).not.toHaveProperty('rawAnswer');
+    expect(JSON.stringify(result)).not.toContain("server-only-bm2-answer");
+    expect(evidenceStore.events[1]?.evidence).not.toHaveProperty("rawAnswer");
   });
 
-  it('stops before mastery evidence and receipt when the single mastery bridge fails', async () => {
-    const {
-      effectOrder,
-      evidenceStore,
-      handler,
-      masteryBridge,
-      receiptStore,
-    } = createSubmissionHarness();
+  it("stops before mastery evidence and receipt when the single mastery bridge fails", async () => {
+    const { effectOrder, evidenceStore, handler, masteryBridge, receiptStore } =
+      createSubmissionHarness();
 
     evidenceStore.events.push({
       learnerId: LEARNER_ID,
       evidence: {
-        contractVersion: 'learning-evidence.v1',
+        contractVersion: "learning-evidence.v1",
         nodeId: PILOT_NODE_ID,
         activityId: FROZEN_SOURCE_ACTIVITY_ID,
         attemptOrdinal: 1,
-        origin: 'teacher_led',
-        mode: 'guided_practice',
-        occurredAt: '2026-08-19T09:00:00.000Z',
-        idempotencyKey: 'bm2-trusted-teacher-exposure',
+        origin: "teacher_led",
+        mode: "guided_practice",
+        occurredAt: "2026-08-19T09:00:00.000Z",
+        idempotencyKey: "bm2-trusted-teacher-exposure",
       },
     });
     const evidenceCountBeforeAttempt = evidenceStore.events.length;
     const receiptCountBeforeAttempt = receiptStore.receipts.size;
-    masteryBridge.mockRejectedValueOnce(new Error('mastery bridge failed'));
+    masteryBridge.mockRejectedValueOnce(new Error("mastery bridge failed"));
 
-    await expect(handler.process({
-      learnerId: LEARNER_ID,
-      submissionId: SERVER_SUBMISSION_ID,
-    })).rejects.toThrow('mastery bridge failed');
+    await expect(
+      handler.process({
+        learnerId: LEARNER_ID,
+        submissionId: SERVER_SUBMISSION_ID,
+      }),
+    ).rejects.toThrow("mastery bridge failed");
 
     expect(masteryBridge).toHaveBeenCalledTimes(1);
     expect(evidenceStore.events).toHaveLength(evidenceCountBeforeAttempt);
@@ -234,32 +228,35 @@ describe('BM2 Convex learning-evidence boundary', () => {
   });
 
   it.each([
-    ['an unknown submission', null],
-    ['a submission owned by another learner', makeMasterySubmission({ userId: 'other-bm2-learner' })],
-    ['a non-pilot activity', makeMasterySubmission({
-      submissionData: {
-        contractVersion: 'practice.v1',
-        activityId: 'unapproved-bm2-activity',
-        attemptNumber: 2,
-        mode: 'independent_practice',
-        status: 'graded',
-        submittedAt: '2026-08-19T10:00:00.000Z',
-        rawAnswer: 'server-only-bm2-answer',
-      },
-    })],
-  ])('rejects %s without a mastery effect, evidence, or a receipt', async (_label, submission) => {
-    const {
-      effectOrder,
-      evidenceStore,
-      handler,
-      masteryBridge,
-      receiptStore,
-    } = createSubmissionHarness({ submission });
+    ["an unknown submission", null],
+    [
+      "a submission owned by another learner",
+      makeMasterySubmission({ userId: "other-bm2-learner" }),
+    ],
+    [
+      "a non-pilot activity",
+      makeMasterySubmission({
+        submissionData: {
+          contractVersion: "practice.v1",
+          activityId: "unapproved-bm2-activity",
+          attemptNumber: 2,
+          mode: "independent_practice",
+          status: "graded",
+          submittedAt: "2026-08-19T10:00:00.000Z",
+          rawAnswer: "server-only-bm2-answer",
+        },
+      }),
+    ],
+  ])("rejects %s without a mastery effect, evidence, or a receipt", async (_label, submission) => {
+    const { effectOrder, evidenceStore, handler, masteryBridge, receiptStore } =
+      createSubmissionHarness({ submission });
 
-    await expect(handler.process({
-      learnerId: LEARNER_ID,
-      submissionId: SERVER_SUBMISSION_ID,
-    })).resolves.toEqual({ accepted: false, reason: 'submission_not_found' });
+    await expect(
+      handler.process({
+        learnerId: LEARNER_ID,
+        submissionId: SERVER_SUBMISSION_ID,
+      }),
+    ).resolves.toEqual({ accepted: false, reason: "submission_not_found" });
 
     expect(masteryBridge).not.toHaveBeenCalled();
     expect(evidenceStore.events).toEqual([]);
@@ -267,28 +264,25 @@ describe('BM2 Convex learning-evidence boundary', () => {
     expect(effectOrder).toEqual([]);
   });
 
-  it('denies a server-owned mastery submission before trusted exposure without writes', async () => {
-    const {
-      effectOrder,
-      evidenceStore,
-      handler,
-      masteryBridge,
-      receiptStore,
-    } = createSubmissionHarness();
+  it("denies a server-owned mastery submission before trusted exposure without writes", async () => {
+    const { effectOrder, evidenceStore, handler, masteryBridge, receiptStore } =
+      createSubmissionHarness();
 
-    await expect(handler.process({
-      learnerId: LEARNER_ID,
-      submissionId: SERVER_SUBMISSION_ID,
-    })).resolves.toEqual({
+    await expect(
+      handler.process({
+        learnerId: LEARNER_ID,
+        submissionId: SERVER_SUBMISSION_ID,
+      }),
+    ).resolves.toEqual({
       persisted: false,
       masteryApplied: false,
       kstApplied: false,
-      delivery: 'new',
+      delivery: "new",
       decision: {
-        idempotency: 'new',
-        exposureState: 'awaiting_teacher_exposure',
+        idempotency: "new",
+        exposureState: "awaiting_teacher_exposure",
         eligible: false,
-        reason: 'awaiting_teacher_exposure',
+        reason: "awaiting_teacher_exposure",
         masteryBearing: false,
       },
     });
@@ -299,26 +293,21 @@ describe('BM2 Convex learning-evidence boundary', () => {
     expect(effectOrder).toEqual([]);
   });
 
-  it('returns the original logical receipt on submission replay without another effect', async () => {
-    const {
-      effectOrder,
-      evidenceStore,
-      handler,
-      masteryBridge,
-      receiptStore,
-    } = createSubmissionHarness();
+  it("returns the original logical receipt on submission replay without another effect", async () => {
+    const { effectOrder, evidenceStore, handler, masteryBridge, receiptStore } =
+      createSubmissionHarness();
 
     evidenceStore.events.push({
       learnerId: LEARNER_ID,
       evidence: {
-        contractVersion: 'learning-evidence.v1',
+        contractVersion: "learning-evidence.v1",
         nodeId: PILOT_NODE_ID,
         activityId: FROZEN_SOURCE_ACTIVITY_ID,
         attemptOrdinal: 1,
-        origin: 'teacher_led',
-        mode: 'guided_practice',
-        occurredAt: '2026-08-19T09:00:00.000Z',
-        idempotencyKey: 'bm2-trusted-teacher-exposure',
+        origin: "teacher_led",
+        mode: "guided_practice",
+        occurredAt: "2026-08-19T09:00:00.000Z",
+        idempotencyKey: "bm2-trusted-teacher-exposure",
       },
     });
 
@@ -335,11 +324,10 @@ describe('BM2 Convex learning-evidence boundary', () => {
       submissionId: SERVER_SUBMISSION_ID,
     });
 
-    expect(replay).toEqual({ ...first, delivery: 'replay' });
+    expect(replay).toEqual({ ...first, delivery: "replay" });
     expect(masteryBridge).toHaveBeenCalledTimes(bridgeCallsBeforeReplay);
     expect(evidenceStore.events).toHaveLength(evidenceCountBeforeReplay);
     expect(receiptStore.receipts.size).toBe(receiptCountBeforeReplay);
     expect(effectOrder).toEqual(effectsBeforeReplay);
   });
-
 });

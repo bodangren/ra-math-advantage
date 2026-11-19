@@ -1,15 +1,15 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
-import { PhaseCompleteButton } from '../../../components/lesson/PhaseCompleteButton';
-import { usePhaseCompletion } from '@/hooks/usePhaseCompletion';
+import { PhaseCompleteButton } from "../../../components/lesson/PhaseCompleteButton";
+import { usePhaseCompletion } from "@/hooks/usePhaseCompletion";
 
-vi.mock('@/hooks/usePhaseCompletion', () => ({
+vi.mock("@/hooks/usePhaseCompletion", () => ({
   usePhaseCompletion: vi.fn(),
 }));
 
-describe('PhaseCompleteButton', () => {
+describe("PhaseCompleteButton", () => {
   const mockCompletePhase = vi.fn();
 
   beforeEach(() => {
@@ -28,7 +28,7 @@ describe('PhaseCompleteButton', () => {
     }));
   });
 
-  it('optimistically marks the phase as complete and calls completion hook', async () => {
+  it("optimistically marks the phase as complete and calls completion hook", async () => {
     const onStatusChange = vi.fn();
 
     render(
@@ -39,7 +39,7 @@ describe('PhaseCompleteButton', () => {
       />,
     );
 
-    const button = screen.getByRole('button', { name: /mark complete/i });
+    const button = screen.getByRole("button", { name: /mark complete/i });
     await userEvent.click(button);
 
     await waitFor(() => {
@@ -48,23 +48,23 @@ describe('PhaseCompleteButton', () => {
 
     expect(usePhaseCompletion).toHaveBeenCalledWith(
       expect.objectContaining({
-        lessonId: '123e4567-e89b-12d3-a456-426614174000',
+        lessonId: "123e4567-e89b-12d3-a456-426614174000",
         phaseNumber: 2,
-        phaseType: 'read',
+        phaseType: "read",
         onSuccess: expect.any(Function),
         onError: expect.any(Function),
       }),
     );
     expect(mockCompletePhase).toHaveBeenCalledTimes(1);
-    expect(onStatusChange).toHaveBeenCalledWith('completed');
+    expect(onStatusChange).toHaveBeenCalledWith("completed");
 
     expect(await screen.findByText(/phase completed/i)).toBeInTheDocument();
   });
 
-  it('renders error message and reverts status when completion fails', async () => {
+  it("renders error message and reverts status when completion fails", async () => {
     vi.mocked(usePhaseCompletion).mockImplementation((options) => ({
       completePhase: async () => {
-        options.onError?.(new Error('Mock failure'));
+        options.onError?.(new Error("Mock failure"));
       },
       isCompleting: false,
       error: null,
@@ -79,7 +79,7 @@ describe('PhaseCompleteButton', () => {
       />,
     );
 
-    const button = screen.getByRole('button', { name: /mark complete/i });
+    const button = screen.getByRole("button", { name: /mark complete/i });
     await userEvent.click(button);
 
     await waitFor(() => {
@@ -89,11 +89,11 @@ describe('PhaseCompleteButton', () => {
     const errorCopies = await screen.findAllByText(/mock failure/i);
     expect(errorCopies.length).toBeGreaterThanOrEqual(1);
     expect(await screen.findByText(/unable to save progress/i)).toBeInTheDocument();
-    expect(onStatusChange).toHaveBeenCalledWith('completed');
-    expect(onStatusChange).toHaveBeenCalledWith('not_started');
+    expect(onStatusChange).toHaveBeenCalledWith("completed");
+    expect(onStatusChange).toHaveBeenCalledWith("not_started");
   });
 
-  it('disables the button when the phase is already completed', () => {
+  it("disables the button when the phase is already completed", () => {
     render(
       <PhaseCompleteButton
         lessonId="123e4567-e89b-12d3-a456-426614174000"
@@ -102,7 +102,7 @@ describe('PhaseCompleteButton', () => {
       />,
     );
 
-    const button = screen.getByRole('button', { name: /completed/i });
+    const button = screen.getByRole("button", { name: /completed/i });
     expect(button).toBeDisabled();
     expect(mockCompletePhase).not.toHaveBeenCalled();
   });

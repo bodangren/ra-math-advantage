@@ -1,18 +1,10 @@
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { type UnitIntroduction as UnitIntroductionData } from '@/types/curriculum';
-import {
-  ArrowRight,
-  Clock,
-  Lightbulb,
-  PlayCircle,
-  Target,
-  Users
-} from 'lucide-react';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { type UnitIntroduction as UnitIntroductionData } from "@/types/curriculum";
+import { ArrowRight, Clock, Lightbulb, PlayCircle, Target, Users } from "lucide-react";
 
 type UnitIntroductionProps = UnitIntroductionData;
-
 
 /**
  * Builds a privacy-enhanced YouTube embed URL from a video ID.
@@ -23,7 +15,6 @@ type UnitIntroductionProps = UnitIntroductionData;
 function buildEmbedUrl(youtubeId: string) {
   return `https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0&modestbranding=1`;
 }
-
 
 /**
  * Renders the full unit introduction with driving question, video, entry event,
@@ -40,7 +31,7 @@ export function UnitIntroduction({
   entryEvent,
   projectOverview,
   learningObjectives,
-  nextSectionHref = '#'
+  nextSectionHref = "#",
 }: UnitIntroductionProps) {
   return (
     <section className="space-y-8">
@@ -112,7 +103,9 @@ export function UnitIntroduction({
           </div>
           {entryEvent.resources?.length ? (
             <div className="border-t pt-4">
-              <h5 className="mb-2 text-sm font-medium text-muted-foreground">Resources Provided:</h5>
+              <h5 className="mb-2 text-sm font-medium text-muted-foreground">
+                Resources Provided:
+              </h5>
               <div className="flex flex-wrap gap-2">
                 {entryEvent.resources.map((resource, index) => (
                   <Badge key={`entry-resource-${index}`} variant="secondary" className="text-xs">
@@ -149,7 +142,9 @@ export function UnitIntroduction({
             </div>
             <div className="space-y-3">
               <div>
-                <h4 className="mb-1 text-sm font-semibold text-muted-foreground">FINAL DELIVERABLE</h4>
+                <h4 className="mb-1 text-sm font-semibold text-muted-foreground">
+                  FINAL DELIVERABLE
+                </h4>
                 <p className="text-sm font-medium text-green-700">{projectOverview.deliverable}</p>
               </div>
               <div>
@@ -174,15 +169,18 @@ export function UnitIntroduction({
         <CardContent>
           <div className="grid gap-6 md:grid-cols-3">
             {[
-              { label: 'Content Knowledge', items: learningObjectives.content },
-              { label: 'Excel Skills', items: learningObjectives.skills },
-              { label: 'Deliverables', items: learningObjectives.deliverables }
+              { label: "Content Knowledge", items: learningObjectives.content },
+              { label: "Excel Skills", items: learningObjectives.skills },
+              { label: "Deliverables", items: learningObjectives.deliverables },
             ].map((section, index) => (
               <div key={`intro-objective-${index}`}>
                 <h4 className="mb-3 font-semibold text-purple-700">{section.label}</h4>
                 <ul className="space-y-2">
                   {section.items.map((item, itemIndex) => (
-                    <li key={`objective-${index}-${itemIndex}`} className="flex items-start gap-2 text-sm">
+                    <li
+                      key={`objective-${index}-${itemIndex}`}
+                      className="flex items-start gap-2 text-sm"
+                    >
                       <ArrowRight className="h-3 w-3 flex-shrink-0 text-purple-500" />
                       <span>{item}</span>
                     </li>

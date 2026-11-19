@@ -1,7 +1,7 @@
 // Math metadata schemas for knowledge-space nodes and edges
 
-import { z } from 'zod';
-import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from '@math-platform/knowledge-space-core';
+import { z } from "zod";
+import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from "@math-platform/knowledge-space-core";
 
 // ---------------------------------------------------------------------------
 // Math node metadata schemas
@@ -16,7 +16,7 @@ export const mathSkillMetadataSchema = z.object({
   difficulty: z.number().min(0).max(1).optional(),
   familyKey: z.string().optional(),
   frqTaskModel: z.string().optional(),
-  calculatorPolicy: z.enum(['required', 'allowed', 'forbidden']).optional(),
+  calculatorPolicy: z.enum(["required", "allowed", "forbidden"]).optional(),
 });
 
 export const mathWorkedExampleMetadataSchema = z.object({
@@ -74,42 +74,43 @@ export const mathEdgeMetadataSchema = z.object({
  * @param {KnowledgeSpaceNode} node - Knowledge-space node to validate
  * @returns {{ valid: boolean; errors?: string[] }} - Validation result with optional error messages
  */
-export function validateMathNodeMetadata(
-  node: KnowledgeSpaceNode,
-): { valid: boolean; errors?: string[] } {
+export function validateMathNodeMetadata(node: KnowledgeSpaceNode): {
+  valid: boolean;
+  errors?: string[];
+} {
   const errors: string[] = [];
 
   try {
     switch (node.kind) {
-      case 'skill': {
+      case "skill": {
         mathSkillMetadataSchema.parse(node.metadata);
         break;
       }
-      case 'worked_example': {
+      case "worked_example": {
         mathWorkedExampleMetadataSchema.parse(node.metadata);
         break;
       }
-      case 'instructional_unit': {
+      case "instructional_unit": {
         mathLessonMetadataSchema.parse(node.metadata);
         break;
       }
-      case 'content_group': {
+      case "content_group": {
         mathModuleMetadataSchema.parse(node.metadata);
         break;
       }
-      case 'domain': {
+      case "domain": {
         mathCourseMetadataSchema.parse(node.metadata);
         break;
       }
-      case 'standard': {
+      case "standard": {
         mathStandardMetadataSchema.parse(node.metadata);
         break;
       }
-      case 'generator': {
+      case "generator": {
         mathGeneratorMetadataSchema.parse(node.metadata);
         break;
       }
-      case 'renderer': {
+      case "renderer": {
         mathRendererMetadataSchema.parse(node.metadata);
         break;
       }
@@ -121,7 +122,7 @@ export function validateMathNodeMetadata(
   } catch (err) {
     if (err instanceof z.ZodError) {
       for (const issue of err.issues) {
-        errors.push(`${issue.path.join('.')}: ${issue.message}`);
+        errors.push(`${issue.path.join(".")}: ${issue.message}`);
       }
     } else {
       errors.push(String(err));
@@ -136,9 +137,10 @@ export function validateMathNodeMetadata(
  * @param {KnowledgeSpaceEdge} edge - Knowledge-space edge to validate
  * @returns {{ valid: boolean; errors?: string[] }} - Validation result with optional error messages
  */
-export function validateMathEdgeMetadata(
-  edge: KnowledgeSpaceEdge,
-): { valid: boolean; errors?: string[] } {
+export function validateMathEdgeMetadata(edge: KnowledgeSpaceEdge): {
+  valid: boolean;
+  errors?: string[];
+} {
   const errors: string[] = [];
 
   try {
@@ -146,7 +148,7 @@ export function validateMathEdgeMetadata(
   } catch (err) {
     if (err instanceof z.ZodError) {
       for (const issue of err.issues) {
-        errors.push(`${issue.path.join('.')}: ${issue.message}`);
+        errors.push(`${issue.path.join(".")}: ${issue.message}`);
       }
     } else {
       errors.push(String(err));

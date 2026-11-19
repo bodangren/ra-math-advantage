@@ -1,4 +1,4 @@
-import { normalizeSeedProps } from '../../lib/activities/seed-props';
+import { normalizeSeedProps } from "../../lib/activities/seed-props";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -64,7 +64,8 @@ export const seedLesson3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Explore: The Square Root of Negative Numbers\n\nYou've learned that $\\sqrt{4} = 2$ because $2^2 = 4$.\n\nBut what about $\\sqrt{-4}$? No real number squared gives $-4$.\n\nToday you'll discover a new kind of number that solves this problem!",
+              markdown:
+                "## Explore: The Square Root of Negative Numbers\n\nYou've learned that $\\sqrt{4} = 2$ because $2^2 = 4$.\n\nBut what about $\\sqrt{-4}$? No real number squared gives $-4$.\n\nToday you'll discover a new kind of number that solves this problem!",
             },
           },
           {
@@ -75,7 +76,12 @@ export const seedLesson3 = internalMutation({
               props: {
                 problemType: "simplify_imaginary",
                 equation: "sqrt(-9)",
-                steps: [{"expression": "3i", "explanation": "The principal square root of -9 is 3i because i^2 = -1."}],
+                steps: [
+                  {
+                    expression: "3i",
+                    explanation: "The principal square root of -9 is 3i because i^2 = -1.",
+                  },
+                ],
               },
             },
           },
@@ -91,7 +97,8 @@ export const seedLesson3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Key Terms\n\n- **Imaginary unit**: $i$ where $i^2 = -1$\n- **Complex number**: A number of the form $a + bi$ where $a$ and $b$ are real\n- **Real part**: The $a$ in $a + bi$\n- **Imaginary part**: The $b$ in $a + bi$\n- **Pure imaginary**: A complex number where $a = 0$ (of the form $bi$)\n\n**Note**: Every real number is also a complex number (with $b = 0$).",
+              markdown:
+                "## Key Terms\n\n- **Imaginary unit**: $i$ where $i^2 = -1$\n- **Complex number**: A number of the form $a + bi$ where $a$ and $b$ are real\n- **Real part**: The $a$ in $a + bi$\n- **Imaginary part**: The $b$ in $a + bi$\n- **Pure imaginary**: A complex number where $a = 0$ (of the form $bi$)\n\n**Note**: Every real number is also a complex number (with $b = 0$).",
             },
           },
         ],
@@ -106,7 +113,8 @@ export const seedLesson3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## The Imaginary Unit $i$\n\nBy definition: $i^2 = -1$\n\nThis means: $\\sqrt{-1} = i$\n\n### Simplifying Square Roots of Negative Numbers\n\n$$\\sqrt{-n} = i\\sqrt{n} \\text{ for } n > 0$$\n\n**Examples**:\n- $\\sqrt{-9} = \\sqrt{9} \\cdot \\sqrt{-1} = 3i$\n- $\\sqrt{-5} = \\sqrt{5}i$\n- $\\sqrt{-4} = 2i$",
+              markdown:
+                "## The Imaginary Unit $i$\n\nBy definition: $i^2 = -1$\n\nThis means: $\\sqrt{-1} = i$\n\n### Simplifying Square Roots of Negative Numbers\n\n$$\\sqrt{-n} = i\\sqrt{n} \\text{ for } n > 0$$\n\n**Examples**:\n- $\\sqrt{-9} = \\sqrt{9} \\cdot \\sqrt{-1} = 3i$\n- $\\sqrt{-5} = \\sqrt{5}i$\n- $\\sqrt{-4} = 2i$",
             },
           },
         ],
@@ -121,7 +129,8 @@ export const seedLesson3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 1: Square Roots of Negative Numbers\n\nSimplify $\\sqrt{-16}$.\n\n**Step 1**: Separate the negative\n$$\\sqrt{-16} = \\sqrt{16 \\cdot (-1)}$$\n\n**Step 2**: Apply the property\n$$= \\sqrt{16} \\cdot \\sqrt{-1} = 4i$$",
+              markdown:
+                "## Example 1: Square Roots of Negative Numbers\n\nSimplify $\\sqrt{-16}$.\n\n**Step 1**: Separate the negative\n$$\\sqrt{-16} = \\sqrt{16 \\cdot (-1)}$$\n\n**Step 2**: Apply the property\n$$= \\sqrt{16} \\cdot \\sqrt{-1} = 4i$$",
             },
           },
           {
@@ -154,7 +163,8 @@ export const seedLesson3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 2: Products with Imaginary Numbers\n\nSimplify $3i \\cdot 4i$.\n\n**Step 1**: Multiply coefficients\n$$3i \\cdot 4i = 12i^2$$\n\n**Step 2**: Replace $i^2$ with $-1$\n$$= 12(-1) = -12$$",
+              markdown:
+                "## Example 2: Products with Imaginary Numbers\n\nSimplify $3i \\cdot 4i$.\n\n**Step 1**: Multiply coefficients\n$$3i \\cdot 4i = 12i^2$$\n\n**Step 2**: Replace $i^2$ with $-1$\n$$= 12(-1) = -12$$",
             },
           },
           {
@@ -186,7 +196,8 @@ export const seedLesson3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 3: Equation with Pure Imaginary Solutions\n\nSolve $x^2 = -25$.\n\n**Step 1**: Take square root of both sides\n$$x = \\pm \\sqrt{-25}$$\n\n**Step 2**: Simplify\n$$x = \\pm 5i$$",
+              markdown:
+                "## Example 3: Equation with Pure Imaginary Solutions\n\nSolve $x^2 = -25$.\n\n**Step 1**: Take square root of both sides\n$$x = \\pm \\sqrt{-25}$$\n\n**Step 2**: Simplify\n$$x = \\pm 5i$$",
             },
           },
           {
@@ -201,7 +212,10 @@ export const seedLesson3 = internalMutation({
                   { expression: "x^2 = -25", explanation: "Original equation" },
                   { expression: "x = +/- sqrt(-25)", explanation: "Take square root" },
                   { expression: "x = +/- 5i", explanation: "Simplify using i" },
-                  { expression: "Solutions: x = 5i, x = -5i", explanation: "Two pure imaginary solutions" },
+                  {
+                    expression: "Solutions: x = 5i, x = -5i",
+                    explanation: "Two pure imaginary solutions",
+                  },
                 ],
               },
             },
@@ -218,7 +232,8 @@ export const seedLesson3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Operations with Complex Numbers\n\nGiven $z = a + bi$ and $w = c + di$:\n\n### Addition\n$$z + w = (a + c) + (b + d)i$$\n\n### Subtraction\n$$z - w = (a - c) + (b - d)i$$\n\n### Multiplication\n$$z \\cdot w = (ac - bd) + (ad + bc)i$$\n\n**Note**: We combine like terms, remembering that $i^2 = -1$.",
+              markdown:
+                "## Operations with Complex Numbers\n\nGiven $z = a + bi$ and $w = c + di$:\n\n### Addition\n$$z + w = (a + c) + (b + d)i$$\n\n### Subtraction\n$$z - w = (a - c) + (b - d)i$$\n\n### Multiplication\n$$z \\cdot w = (ac - bd) + (ad + bc)i$$\n\n**Note**: We combine like terms, remembering that $i^2 = -1$.",
             },
           },
         ],
@@ -233,7 +248,8 @@ export const seedLesson3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 4: Equate Complex Numbers\n\nSolve for $x$ and $y$ if $x + 2i = 5 + yi$.\n\n**Step 1**: Equate the real parts: $x = 5$.\n\n**Step 2**: Equate the imaginary parts: $2 = y$.\n\nSo $x = 5$ and $y = 2$.",
+              markdown:
+                "## Example 4: Equate Complex Numbers\n\nSolve for $x$ and $y$ if $x + 2i = 5 + yi$.\n\n**Step 1**: Equate the real parts: $x = 5$.\n\n**Step 2**: Equate the imaginary parts: $2 = y$.\n\nSo $x = 5$ and $y = 2$.",
             },
           },
           {
@@ -265,7 +281,8 @@ export const seedLesson3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 5: Add or Subtract Complex Numbers\n\nSimplify $(3 + 2i) + (1 + 4i)$.\n\n**Step 1**: Group real and imaginary parts\n$$= (3 + 1) + (2 + 4)i$$\n\n**Step 2**: Combine like terms\n$$= 4 + 6i$$",
+              markdown:
+                "## Example 5: Add or Subtract Complex Numbers\n\nSimplify $(3 + 2i) + (1 + 4i)$.\n\n**Step 1**: Group real and imaginary parts\n$$= (3 + 1) + (2 + 4)i$$\n\n**Step 2**: Combine like terms\n$$= 4 + 6i$$",
             },
           },
           {
@@ -296,7 +313,8 @@ export const seedLesson3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 6: Multiply Complex Numbers\n\nSimplify $(2 + 3i)(1 - 4i)$.\n\n**Step 1**: Use FOIL\n$$= 2 \\cdot 1 + 2(-4i) + 3i \\cdot 1 + 3i(-4i)$$\n\n**Step 2**: Simplify each term\n$$= 2 - 8i + 3i - 12i^2$$\n\n**Step 3**: Combine (remember $i^2 = -1$)\n$$= 2 - 5i - 12(-1) = 2 - 5i + 12$$\n\n**Step 4**: Final answer\n$$= 14 - 5i$$",
+              markdown:
+                "## Example 6: Multiply Complex Numbers\n\nSimplify $(2 + 3i)(1 - 4i)$.\n\n**Step 1**: Use FOIL\n$$= 2 \\cdot 1 + 2(-4i) + 3i \\cdot 1 + 3i(-4i)$$\n\n**Step 2**: Simplify each term\n$$= 2 - 8i + 3i - 12i^2$$\n\n**Step 3**: Combine (remember $i^2 = -1$)\n$$= 2 - 5i - 12(-1) = 2 - 5i + 12$$\n\n**Step 4**: Final answer\n$$= 14 - 5i$$",
             },
           },
           {
@@ -329,7 +347,8 @@ export const seedLesson3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 7: Divide Complex Numbers\n\nSimplify $\\frac{3 + 2i}{1 - i}$.\n\n**Step 1**: Multiply numerator and denominator by the conjugate of the denominator\n$$= \\frac{(3 + 2i)(1 + i)}{(1 - i)(1 + i)}$$\n\n**Step 2**: Simplify denominator\n$$(1 - i)(1 + i) = 1 - i^2 = 2$$\n\n**Step 3**: Expand numerator\n$$(3 + 2i)(1 + i) = 1 + 5i$$\n\n**Step 4**: Divide\n$$= \\frac{1}{2} + \\frac{5}{2}i$$",
+              markdown:
+                "## Example 7: Divide Complex Numbers\n\nSimplify $\\frac{3 + 2i}{1 - i}$.\n\n**Step 1**: Multiply numerator and denominator by the conjugate of the denominator\n$$= \\frac{(3 + 2i)(1 + i)}{(1 - i)(1 + i)}$$\n\n**Step 2**: Simplify denominator\n$$(1 - i)(1 + i) = 1 - i^2 = 2$$\n\n**Step 3**: Expand numerator\n$$(3 + 2i)(1 + i) = 1 + 5i$$\n\n**Step 4**: Divide\n$$= \\frac{1}{2} + \\frac{5}{2}i$$",
             },
           },
           {
@@ -341,8 +360,14 @@ export const seedLesson3 = internalMutation({
                 problemType: "complex_operations",
                 equation: "(3+2i)/(1-i)",
                 steps: [
-                  { expression: "(3+2i)/(1-i) * (1+i)/(1+i)", explanation: "Multiply by conjugate" },
-                  { expression: "Denominator: (1-i)(1+i) = 2", explanation: "Simplify denominator" },
+                  {
+                    expression: "(3+2i)/(1-i) * (1+i)/(1+i)",
+                    explanation: "Multiply by conjugate",
+                  },
+                  {
+                    expression: "Denominator: (1-i)(1+i) = 2",
+                    explanation: "Simplify denominator",
+                  },
                   { expression: "Numerator: (3+2i)(1+i) = 1+5i", explanation: "Expand numerator" },
                   { expression: "= (1+5i)/2 = 0.5 + 2.5i", explanation: "Final answer" },
                 ],
@@ -361,7 +386,8 @@ export const seedLesson3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Discussion Questions\n\n1. Why do we need the imaginary unit $i$?\n2. What is the conjugate of $a + bi$, and why is it useful?\n3. How is multiplying complex numbers similar to multiplying binomials?\n4. Why does $i^4 = 1$ but $i^2 = -1$?",
+              markdown:
+                "## Discussion Questions\n\n1. Why do we need the imaginary unit $i$?\n2. What is the conjugate of $a + bi$, and why is it useful?\n3. How is multiplying complex numbers similar to multiplying binomials?\n4. Why does $i^4 = 1$ but $i^2 = -1$?",
             },
           },
           {
@@ -397,7 +423,8 @@ export const seedLesson3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Reflection\n\nToday you learned about complex numbers and the imaginary unit $i$.\n\n- What was the most challenging concept in this lesson?\n- How does the set of complex numbers extend what you already knew about real numbers?\n- What questions do you still have about complex numbers?\n\n**Preview**: Next lesson, you'll use complex numbers to solve quadratic equations that have no real solutions!",
+              markdown:
+                "## Reflection\n\nToday you learned about complex numbers and the imaginary unit $i$.\n\n- What was the most challenging concept in this lesson?\n- How does the set of complex numbers extend what you already knew about real numbers?\n- What questions do you still have about complex numbers?\n\n**Preview**: Next lesson, you'll use complex numbers to solve quadratic equations that have no real solutions!",
             },
           },
         ],
@@ -411,7 +438,7 @@ export const seedLesson3 = internalMutation({
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

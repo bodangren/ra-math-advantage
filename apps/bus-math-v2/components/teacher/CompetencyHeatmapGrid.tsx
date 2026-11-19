@@ -1,9 +1,12 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { ArrowUp, ArrowDown, ArrowUpDown } from 'lucide-react';
-import { cellBgClass, sortRowsByName } from '@/lib/teacher/gradebook';
-import type { CompetencyHeatmapRow, CompetencyStandard } from '@math-platform/teacher-reporting-core';
+import { useState } from "react";
+import { ArrowUp, ArrowDown, ArrowUpDown } from "lucide-react";
+import { cellBgClass, sortRowsByName } from "@/lib/teacher/gradebook";
+import type {
+  CompetencyHeatmapRow,
+  CompetencyStandard,
+} from "@math-platform/teacher-reporting-core";
 
 interface CompetencyHeatmapGridProps {
   rows: CompetencyHeatmapRow[];
@@ -13,8 +16,7 @@ interface CompetencyHeatmapGridProps {
   onCellClick?: (studentId: string, standardId: string) => void;
 }
 
-type SortDirection = 'asc' | 'desc';
-
+type SortDirection = "asc" | "desc";
 
 /**
  * Renders a heatmap grid showing student mastery levels across competency standards.
@@ -22,8 +24,14 @@ type SortDirection = 'asc' | 'desc';
  * @param props - Component props containing rows, standards, and click handlers.
  * @returns A sortable table with color-coded mastery cells.
  */
-export function CompetencyHeatmapGrid({ rows, standards, onStudentClick, onStandardClick, onCellClick }: CompetencyHeatmapGridProps) {
-  const [sortDir, setSortDir] = useState<SortDirection>('asc');
+export function CompetencyHeatmapGrid({
+  rows,
+  standards,
+  onStudentClick,
+  onStandardClick,
+  onCellClick,
+}: CompetencyHeatmapGridProps) {
+  const [sortDir, setSortDir] = useState<SortDirection>("asc");
 
   if (rows.length === 0) {
     return (
@@ -41,11 +49,14 @@ export function CompetencyHeatmapGrid({ rows, standards, onStudentClick, onStand
     );
   }
 
-  const sortable = rows.map(r => ({ ...r, cells: [] as never[] }));
+  const sortable = rows.map((r) => ({ ...r, cells: [] as never[] }));
   const sorted = sortRowsByName(sortable);
-  const orderedIds = sortDir === 'asc' ? sorted.map(r => r.studentId) : [...sorted].reverse().map(r => r.studentId);
-  const rowById = new Map(rows.map(r => [r.studentId, r]));
-  const displayRows = orderedIds.map(id => rowById.get(id)!);
+  const orderedIds =
+    sortDir === "asc"
+      ? sorted.map((r) => r.studentId)
+      : [...sorted].reverse().map((r) => r.studentId);
+  const rowById = new Map(rows.map((r) => [r.studentId, r]));
+  const displayRows = orderedIds.map((id) => rowById.get(id)!);
 
   return (
     <div className="overflow-x-auto rounded-md border border-border">
@@ -61,25 +72,23 @@ export function CompetencyHeatmapGrid({ rows, standards, onStudentClick, onStand
             >
               <button
                 type="button"
-                onClick={() => setSortDir(d => d === 'asc' ? 'desc' : 'asc')}
+                onClick={() => setSortDir((d) => (d === "asc" ? "desc" : "asc"))}
                 aria-label="Sort by student name"
                 className="flex items-center gap-1 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 Student
-                {sortDir === 'asc'
-                  ? <ArrowUp className="size-3" aria-hidden="true" />
-                  : sortDir === 'desc'
-                    ? <ArrowDown className="size-3" aria-hidden="true" />
-                    : <ArrowUpDown className="size-3" aria-hidden="true" />}
+                {sortDir === "asc" ? (
+                  <ArrowUp className="size-3" aria-hidden="true" />
+                ) : sortDir === "desc" ? (
+                  <ArrowDown className="size-3" aria-hidden="true" />
+                ) : (
+                  <ArrowUpDown className="size-3" aria-hidden="true" />
+                )}
               </button>
             </th>
 
-            {standards.map(standard => (
-              <th
-                key={standard.id}
-                scope="col"
-                className="px-3 py-2 text-center font-medium"
-              >
+            {standards.map((standard) => (
+              <th key={standard.id} scope="col" className="px-3 py-2 text-center font-medium">
                 {onStandardClick ? (
                   <button
                     type="button"
@@ -105,11 +114,11 @@ export function CompetencyHeatmapGrid({ rows, standards, onStudentClick, onStand
         </thead>
 
         <tbody className="divide-y divide-border">
-          {displayRows.map(row => (
+          {displayRows.map((row) => (
             <tr key={row.studentId} className="bg-background hover:bg-muted/10">
               <th
                 scope="row"
-                className={`sticky left-0 z-10 bg-background px-3 py-2 text-left font-medium text-foreground ${onStudentClick ? 'cursor-pointer hover:bg-muted/30' : ''}`}
+                className={`sticky left-0 z-10 bg-background px-3 py-2 text-left font-medium text-foreground ${onStudentClick ? "cursor-pointer hover:bg-muted/30" : ""}`}
               >
                 {onStudentClick ? (
                   <button
@@ -128,14 +137,14 @@ export function CompetencyHeatmapGrid({ rows, standards, onStudentClick, onStand
                 )}
               </th>
 
-              {row.cells.map(cell => (
+              {row.cells.map((cell) => (
                 <td
                   key={cell.standardId}
-                  className={`p-0 text-center font-medium tabular-nums ${cellBgClass(cell.color)} ${onCellClick ? 'cursor-pointer hover:opacity-80' : ''}`}
+                  className={`p-0 text-center font-medium tabular-nums ${cellBgClass(cell.color)} ${onCellClick ? "cursor-pointer hover:opacity-80" : ""}`}
                   onClick={() => onCellClick?.(row.studentId, cell.standardId)}
                 >
                   <span className="block px-3 py-2">
-                    {cell.masteryLevel !== null ? `${cell.masteryLevel}%` : '—'}
+                    {cell.masteryLevel !== null ? `${cell.masteryLevel}%` : "—"}
                   </span>
                 </td>
               ))}

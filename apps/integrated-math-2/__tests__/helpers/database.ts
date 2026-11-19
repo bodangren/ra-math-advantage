@@ -13,10 +13,7 @@ export function database() {
       const predicates: Array<(row: Row) => boolean> = [];
       const range = {
         lt(key: string, value: number) {
-          predicates.push(
-            (row) =>
-              typeof row[key] === "number" && (row[key] as number) < value,
-          );
+          predicates.push((row) => typeof row[key] === "number" && (row[key] as number) < value);
           return range;
         },
         eq(key: string, value: unknown) {
@@ -25,9 +22,7 @@ export function database() {
         },
       };
       const selected = () => {
-        const rows = (tables[table] ?? []).filter((row) =>
-          predicates.every((p) => p(row)),
-        );
+        const rows = (tables[table] ?? []).filter((row) => predicates.every((p) => p(row)));
         return descending ? rows.toReversed() : rows;
       };
       return {
@@ -89,12 +84,9 @@ export function database() {
   };
   return { tables, db, ctx: { db } as unknown as MutationCtx };
 }
-export function invoke<Args, Result>(
-  fn: unknown,
-  ctx: MutationCtx,
-  args: Args,
-): Promise<Result> {
-  return (
-    fn as { _handler: (ctx: MutationCtx, args: Args) => Promise<Result> }
-  )._handler(ctx, args);
+export function invoke<Args, Result>(fn: unknown, ctx: MutationCtx, args: Args): Promise<Result> {
+  return (fn as { _handler: (ctx: MutationCtx, args: Args) => Promise<Result> })._handler(
+    ctx,
+    args,
+  );
 }

@@ -1,33 +1,33 @@
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
 
-import { UnitOverview } from '../../../components/unit/UnitOverview';
-import { buildUnitContent } from '@/lib/test-utils/mock-factories';
+import { UnitOverview } from "../../../components/unit/UnitOverview";
+import { buildUnitContent } from "@/lib/test-utils/mock-factories";
 
-describe('UnitOverview', () => {
-  it('lists learning objectives, skills, and deliverables', () => {
+describe("UnitOverview", () => {
+  it("lists learning objectives, skills, and deliverables", () => {
     const unitContent = buildUnitContent({
       objectives: {
-        content: ['Explain cash flow categories'],
-        skills: ['Use SUMIFS to reconcile data'],
-        deliverables: ['Board-ready dashboard']
-      }
+        content: ["Explain cash flow categories"],
+        skills: ["Use SUMIFS to reconcile data"],
+        deliverables: ["Board-ready dashboard"],
+      },
     });
 
     render(<UnitOverview objectives={unitContent.objectives} />);
 
-    expect(screen.getByText('Explain cash flow categories')).toBeInTheDocument();
-    expect(screen.getByText('Use SUMIFS to reconcile data')).toBeInTheDocument();
-    expect(screen.getByText('Board-ready dashboard')).toBeInTheDocument();
+    expect(screen.getByText("Explain cash flow categories")).toBeInTheDocument();
+    expect(screen.getByText("Use SUMIFS to reconcile data")).toBeInTheDocument();
+    expect(screen.getByText("Board-ready dashboard")).toBeInTheDocument();
   });
 
-  it('shows placeholder text when a section has no items', () => {
+  it("shows placeholder text when a section has no items", () => {
     const unitContent = buildUnitContent({
       objectives: {
         content: [],
         skills: [],
-        deliverables: []
-      }
+        deliverables: [],
+      },
     });
 
     render(<UnitOverview objectives={unitContent.objectives} />);

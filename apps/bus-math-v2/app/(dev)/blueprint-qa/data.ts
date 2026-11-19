@@ -1,7 +1,7 @@
-import { COURSE_GRAPH_DOCUMENTS } from './graph-documents';
-import { getSourceDocuments } from './source-documents';
-import type { ProjectedActivity } from '@math-platform/knowledge-space-practice';
-import type { CourseKey, GraphData, ReviewBlueprint, SkillNode } from './types';
+import { COURSE_GRAPH_DOCUMENTS } from "./graph-documents";
+import { getSourceDocuments } from "./source-documents";
+import type { ProjectedActivity } from "@math-platform/knowledge-space-practice";
+import type { CourseKey, GraphData, ReviewBlueprint, SkillNode } from "./types";
 
 interface NodesDocument {
   nodes: SkillNode[];
@@ -16,10 +16,9 @@ interface ActivitiesDocument {
 }
 
 export async function fetchGraphData(
-  courseKey: CourseKey = 'im3',
+  courseKey: CourseKey = "im3",
   request: typeof fetch = fetch,
 ): Promise<GraphData> {
-
   const course = COURSE_GRAPH_DOCUMENTS[courseKey];
   const [nodesResponse, blueprintsResponse, activitiesResponse] = await Promise.all([
     request(`/api/dev/curriculum-graph?course=${courseKey}&artifact=nodes`),

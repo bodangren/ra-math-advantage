@@ -41,28 +41,28 @@
  * bash measure/doctor.sh` close-out is owned by the Green step (Task 3).
  */
 
-import { describe, it, expect, beforeAll } from 'vitest';
-import { spawnSync } from 'node:child_process';
-import { resolve, dirname, relative } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { readFileSync, existsSync } from 'node:fs';
+import { describe, it, expect, beforeAll } from "vitest";
+import { spawnSync } from "node:child_process";
+import { resolve, dirname, relative } from "node:path";
+import { fileURLToPath } from "node:url";
+import { readFileSync, existsSync } from "node:fs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const REPO_ROOT = resolve(__dirname, '../..');
+const REPO_ROOT = resolve(__dirname, "../..");
 
 // Scope per spec FR1: practice-core, srs-engine, knowledge-space-practice.
 const SCOPE_PACKAGES = [
-  'packages/practice-core',
-  'packages/srs-engine',
-  'packages/knowledge-space-practice',
+  "packages/practice-core",
+  "packages/srs-engine",
+  "packages/knowledge-space-practice",
 ] as const;
 
 // Out-of-scope per spec FR1 + test-strategy §6: bm2 (different app),
 // math-content (domain curriculum), efficacy-core (out of scope).
 const OUT_OF_SCOPE_PATH_FRAGMENTS = [
-  'apps/bus-math-v2',
-  'packages/math-content',
-  'packages/efficacy-core',
+  "apps/bus-math-v2",
+  "packages/math-content",
+  "packages/efficacy-core",
 ] as const;
 
 interface StaleMatch {
@@ -78,25 +78,29 @@ interface StaleMatch {
  * assert against the legacy names per the P1-P3 Red phases.
  */
 function findStaleNameMatches(): StaleMatch[] {
-  const pattern = '\\b(ProblemFamily|problemFamilyId|minProblemFamilies)\\b';
+  const pattern = "\\b(ProblemFamily|problemFamilyId|minProblemFamilies)\\b";
   const matches: StaleMatch[] = [];
   for (const pkg of SCOPE_PACKAGES) {
     const pkgPath = resolve(REPO_ROOT, pkg);
     if (!existsSync(pkgPath)) continue;
-    const result = spawnSync('grep', [
-      '-rnE',
-      '--include=*.ts',
-      '--include=*.tsx',
-      '--exclude-dir=node_modules',
-      '--exclude-dir=__tests__',
-      '--exclude=*.test.ts',
-      '--exclude=*.test.tsx',
-      pattern,
-      pkgPath,
-    ], { encoding: 'utf-8' });
+    const result = spawnSync(
+      "grep",
+      [
+        "-rnE",
+        "--include=*.ts",
+        "--include=*.tsx",
+        "--exclude-dir=node_modules",
+        "--exclude-dir=__tests__",
+        "--exclude=*.test.ts",
+        "--exclude=*.test.tsx",
+        pattern,
+        pkgPath,
+      ],
+      { encoding: "utf-8" },
+    );
     if (result.status === 0 && result.stdout.trim()) {
-      for (const rawLine of result.stdout.split('\n').filter(Boolean)) {
-        const colonIdx = rawLine.indexOf(':');
+      for (const rawLine of result.stdout.split("\n").filter(Boolean)) {
+        const colonIdx = rawLine.indexOf(":");
         if (colonIdx === -1) continue;
         const file = rawLine.slice(0, colonIdx);
         const rest = rawLine.slice(colonIdx + 1);
@@ -107,13 +111,11 @@ function findStaleNameMatches(): StaleMatch[] {
   return matches;
 }
 
-describe('no-stale-problem-family (live grep, scope per spec FR1)', () => {
-  it('practice-core, srs-engine, knowledge-space-practice have zero stale problemFamily* identifiers in source files', () => {
+describe("no-stale-problem-family (live grep, scope per spec FR1)", () => {
+  it("practice-core, srs-engine, knowledge-space-practice have zero stale problemFamily* identifiers in source files", () => {
     const matches = findStaleNameMatches();
     if (matches.length > 0) {
-      const summary = matches
-        .map((m) => `  ${m.file}: ${m.line}`)
-        .join('\n');
+      const summary = matches.map((m) => `  ${m.file}: ${m.line}`).join("\n");
       throw new Error(
         `Found ${matches.length} stale problemFamily* identifier(s) in scope:\n${summary}\n` +
           `These must be renamed in the Phase 4 Green step. ` +
@@ -124,35 +126,35 @@ describe('no-stale-problem-family (live grep, scope per spec FR1)', () => {
   });
 });
 
-describe('kst-srs.v2 spec §12.1 (artifact, Task 1 deliverable)', () => {
-  const SPEC_PATH = resolve(REPO_ROOT, 'kst-srs.v2/SPECIFICATION.md');
+describe("kst-srs.v2 spec §12.1 (artifact, Task 1 deliverable)", () => {
+  const SPEC_PATH = resolve(REPO_ROOT, "kst-srs.v2/SPECIFICATION.md");
   let spec: string;
   beforeAll(() => {
-    spec = readFileSync(SPEC_PATH, 'utf-8');
+    spec = readFileSync(SPEC_PATH, "utf-8");
   });
 
-  it('contains a `### 12.1` heading', () => {
+  it("contains a `### 12.1` heading", () => {
     // §12 currently jumps from `### Domain/App` to `### 12.9 FSRS Per-Card
     // Limitation` — §12.1 through §12.8 are missing. The P4 deliverable adds
     // §12.1 documenting the practice-variant boundary.
     expect(spec).toMatch(/^### 12\.1 /m);
   });
 
-  it('§12.1 references practice variant / PracticeVariant / variantKey', () => {
+  it("§12.1 references practice variant / PracticeVariant / variantKey", () => {
     const match = spec.match(/^### 12\.1 [\s\S]*?(?=^### 12\.[0-9] |^## 1[3-9] )/m);
     expect(match).not.toBeNull();
     expect(match![0]).toMatch(/practice variant|PracticeVariant|variantKey/i);
   });
 });
 
-describe('kst-srs.v2 spec §13 (artifact, Task 1 deliverable)', () => {
-  const SPEC_PATH = resolve(REPO_ROOT, 'kst-srs.v2/SPECIFICATION.md');
+describe("kst-srs.v2 spec §13 (artifact, Task 1 deliverable)", () => {
+  const SPEC_PATH = resolve(REPO_ROOT, "kst-srs.v2/SPECIFICATION.md");
   let spec: string;
   beforeAll(() => {
-    spec = readFileSync(SPEC_PATH, 'utf-8');
+    spec = readFileSync(SPEC_PATH, "utf-8");
   });
 
-  it('§13 references practice variant / PracticeVariant / variantKey', () => {
+  it("§13 references practice variant / PracticeVariant / variantKey", () => {
     // §13 is the Non-Functional Requirements section. It currently covers
     // Core Determinism (§13.1), Persistence Isolation (§13.2), and
     // Misconception Lifecycle Purity (§13.3). The P4 deliverable adds a

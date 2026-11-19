@@ -4,7 +4,13 @@ vi.mock("@/lib/auth/server", () => ({
   requireStudentRequestClaims: mocks.auth,
 }));
 vi.mock("@/lib/convex/server", () => ({
-  internal: { activities: { createServerOwnedSubmission: "selected-writer", getSelectedWorkedAcknowledgement: "worked-reader", getLesson16QuizReceipt: "quiz-reader" } },
+  internal: {
+    activities: {
+      createServerOwnedSubmission: "selected-writer",
+      getSelectedWorkedAcknowledgement: "worked-reader",
+      getLesson16QuizReceipt: "quiz-reader",
+    },
+  },
   fetchInternalMutation: mocks.mutate,
   fetchInternalQuery: mocks.query,
 }));
@@ -40,9 +46,7 @@ function envelope(overrides: Record<string, unknown> = {}) {
   };
 }
 beforeEach(() => {
-  mocks.auth
-    .mockReset()
-    .mockResolvedValue({ sub: "profiles:student", role: "student" });
+  mocks.auth.mockReset().mockResolvedValue({ sub: "profiles:student", role: "student" });
   mocks.mutate.mockReset().mockResolvedValue({
     id: "activity_submissions:physical",
     submissionId: "activity_submissions:physical",
@@ -54,18 +58,55 @@ beforeEach(() => {
 
 describe("Lesson 1.6 quiz route", () => {
   it("uses the explicit receipt selector and rejects unknown selectors", async () => {
-    mocks.query.mockResolvedValue({ submissionId: "activity_submissions:quiz", score: 1, maxScore: 2, answers: { "discriminant-purpose": "x", "zero-discriminant-real-solution-count": "1" } });
-    const response = await GET(new Request("http://local/api/activities/submissions?activityId=activities%3Aquiz&receipt=lesson-1-6-quiz"));
+    mocks.query.mockResolvedValue({
+      submissionId: "activity_submissions:quiz",
+      score: 1,
+      maxScore: 2,
+      answers: { "discriminant-purpose": "x", "zero-discriminant-real-solution-count": "1" },
+    });
+    const response = await GET(
+      new Request(
+        "http://local/api/activities/submissions?activityId=activities%3Aquiz&receipt=lesson-1-6-quiz",
+      ),
+    );
     expect(response.status).toBe(200);
-    expect(mocks.query).toHaveBeenCalledWith("quiz-reader", expect.objectContaining({ activityId: "activities:quiz" }));
-    expect((await GET(new Request("http://local/api/activities/submissions?activityId=activities%3Aquiz&receipt=unknown"))).status).toBe(400);
+    expect(mocks.query).toHaveBeenCalledWith(
+      "quiz-reader",
+      expect.objectContaining({ activityId: "activities:quiz" }),
+    );
+    expect(
+      (
+        await GET(
+          new Request(
+            "http://local/api/activities/submissions?activityId=activities%3Aquiz&receipt=unknown",
+          ),
+        )
+      ).status,
+    ).toBe(400);
   });
 
   it("accepts the exact ungraded quiz request and rejects a client grade", async () => {
-    const quiz = envelope({ activityId: "activities:quiz", answers: { "discriminant-purpose": "The sum of the roots", "zero-discriminant-real-solution-count": "1" }, parts: [{ partId: "discriminant-purpose", rawAnswer: "The sum of the roots" }, { partId: "zero-discriminant-real-solution-count", rawAnswer: "1" }] });
+    const quiz = envelope({
+      activityId: "activities:quiz",
+      answers: {
+        "discriminant-purpose": "The sum of the roots",
+        "zero-discriminant-real-solution-count": "1",
+      },
+      parts: [
+        { partId: "discriminant-purpose", rawAnswer: "The sum of the roots" },
+        { partId: "zero-discriminant-real-solution-count", rawAnswer: "1" },
+      ],
+    });
     expect((await POST(request(quiz))).status).toBe(200);
-    expect((await POST(request({ ...quiz, parts: [{ ...quiz.parts[0], score: 1 }, quiz.parts[1]] }))).status).toBe(400);
-    const unknown = { ...quiz, answers: { ...quiz.answers, "discriminant-purpose": "Unknown choice" }, parts: [{ partId: "discriminant-purpose", rawAnswer: "Unknown choice" }, quiz.parts[1]] };
+    expect(
+      (await POST(request({ ...quiz, parts: [{ ...quiz.parts[0], score: 1 }, quiz.parts[1]] })))
+        .status,
+    ).toBe(400);
+    const unknown = {
+      ...quiz,
+      answers: { ...quiz.answers, "discriminant-purpose": "Unknown choice" },
+      parts: [{ partId: "discriminant-purpose", rawAnswer: "Unknown choice" }, quiz.parts[1]],
+    };
     expect((await POST(request(unknown))).status).toBe(400);
   });
 });
@@ -141,9 +182,7 @@ describe("selected quadratic submission route", () => {
     expect(mocks.mutate).not.toHaveBeenCalled();
   });
   it("maps a wrapped idempotency conflict to 409", async () => {
-    mocks.mutate.mockRejectedValue(
-      new Error("ConvexError: idempotency_conflict"),
-    );
+    mocks.mutate.mockRejectedValue(new Error("ConvexError: idempotency_conflict"));
     const response = await POST(request(envelope()));
     expect(response.status).toBe(409);
     expect(await response.json()).toEqual({

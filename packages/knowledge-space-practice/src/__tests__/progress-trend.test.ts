@@ -22,12 +22,12 @@
  * `parentVisualizationV1Schema` regression is also asserted so the
  * `unknown` branch does not break downstream Zod consumers.
  */
-import { describe, it, expect } from 'vitest';
-import { syntheticMathFixture } from '@math-platform/knowledge-space-core';
-import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from '@math-platform/knowledge-space-core';
+import { describe, it, expect } from "vitest";
+import { syntheticMathFixture } from "@math-platform/knowledge-space-core";
+import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from "@math-platform/knowledge-space-core";
 
-import { projectParentVisualization } from '../projections/visualization';
-import { parentVisualizationV1Schema } from '../projections/schemas';
+import { projectParentVisualization } from "../projections/visualization";
+import { parentVisualizationV1Schema } from "../projections/schemas";
 
 import {
   improvingHistory,
@@ -35,45 +35,35 @@ import {
   decliningHistory,
   insufficientHistory,
   singleSnapshotHistory,
-} from './progressTrendFixtures';
+} from "./progressTrendFixtures";
 
 const nodes: KnowledgeSpaceNode[] = syntheticMathFixture.nodes;
 const edges: KnowledgeSpaceEdge[] = syntheticMathFixture.edges;
 
-describe('progressTrend time-delta (FR3)', () => {
-  describe('Improving history', () => {
+describe("progressTrend time-delta (FR3)", () => {
+  describe("Improving history", () => {
     it('returns progressTrend "improving" when mastered count grew over the window', () => {
       // learnerState has zero mastered skills so the static-ratio path would
       // return 'declining' (0 / 3 = 0.0 < 0.3). The time-delta must read the
       // history and return 'improving' regardless of the current snapshot.
       const learnerState: Record<string, string> = {};
 
-      const viz = projectParentVisualization(
-        nodes,
-        edges,
-        learnerState,
-        improvingHistory,
-      );
+      const viz = projectParentVisualization(nodes, edges, learnerState, improvingHistory);
 
-      expect(viz.progressTrend).toBe('improving');
+      expect(viz.progressTrend).toBe("improving");
     });
 
-    it('parent viz payload still passes the v1 Zod schema (improving branch)', () => {
+    it("parent viz payload still passes the v1 Zod schema (improving branch)", () => {
       const learnerState: Record<string, string> = {};
 
-      const viz = projectParentVisualization(
-        nodes,
-        edges,
-        learnerState,
-        improvingHistory,
-      );
+      const viz = projectParentVisualization(nodes, edges, learnerState, improvingHistory);
 
       const result = parentVisualizationV1Schema.safeParse(viz);
       expect(result.success).toBe(true);
     });
   });
 
-  describe('Flat history', () => {
+  describe("Flat history", () => {
     it('returns progressTrend "stable" when mastered count is unchanged over the window', () => {
       // learnerState has zero mastered skills so the static-ratio path would
       // return 'declining' (0 / 3 = 0.0 < 0.3). The time-delta must read the
@@ -81,116 +71,86 @@ describe('progressTrend time-delta (FR3)', () => {
       // snapshot.
       const learnerState: Record<string, string> = {};
 
-      const viz = projectParentVisualization(
-        nodes,
-        edges,
-        learnerState,
-        flatHistory,
-      );
+      const viz = projectParentVisualization(nodes, edges, learnerState, flatHistory);
 
-      expect(viz.progressTrend).toBe('stable');
+      expect(viz.progressTrend).toBe("stable");
     });
 
-    it('ignores mastered ids outside the visualized knowledge-space graph', () => {
+    it("ignores mastered ids outside the visualized knowledge-space graph", () => {
       const learnerState: Record<string, string> = {};
       const historyWithExternalGrowth = flatHistory.map((snapshot, index) => ({
         ...snapshot,
         masteredNodeIds:
           index === 0
             ? snapshot.masteredNodeIds
-            : [...snapshot.masteredNodeIds, 'external.skill.not-in-this-graph'],
+            : [...snapshot.masteredNodeIds, "external.skill.not-in-this-graph"],
       }));
 
-      const viz = projectParentVisualization(
-        nodes,
-        edges,
-        learnerState,
-        historyWithExternalGrowth,
-      );
+      const viz = projectParentVisualization(nodes, edges, learnerState, historyWithExternalGrowth);
 
-      expect(viz.progressTrend).toBe('stable');
+      expect(viz.progressTrend).toBe("stable");
     });
   });
 
-  describe('Declining history', () => {
+  describe("Declining history", () => {
     it('returns progressTrend "declining" when mastered count shrank over the window', () => {
       // learnerState has both skills + the task_blueprint mastered, so the
       // static-ratio path would return 'improving' (3 / 3 = 1.0 >= 0.7). The
       // time-delta must read the history (delta = -1) and return 'declining'
       // regardless of the current snapshot.
       const learnerState: Record<string, string> = {
-        'math.im3.skill.m1.l2.identify-roots': 'mastered',
-        'math.im3.skill.m1.l2.solve-quadratic-by-factoring': 'mastered',
-        'math.im3.task-blueprint.m1.l2.factoring-drill': 'mastered',
+        "math.im3.skill.m1.l2.identify-roots": "mastered",
+        "math.im3.skill.m1.l2.solve-quadratic-by-factoring": "mastered",
+        "math.im3.task-blueprint.m1.l2.factoring-drill": "mastered",
       };
 
-      const viz = projectParentVisualization(
-        nodes,
-        edges,
-        learnerState,
-        decliningHistory,
-      );
+      const viz = projectParentVisualization(nodes, edges, learnerState, decliningHistory);
 
-      expect(viz.progressTrend).toBe('declining');
+      expect(viz.progressTrend).toBe("declining");
     });
   });
 
-  describe('Insufficient history', () => {
+  describe("Insufficient history", () => {
     it('returns progressTrend "unknown" when the history array is empty', () => {
       // learnerState has every skill mastered, so the static-ratio path would
       // return 'improving' (3 / 3 = 1.0). The new contract says the trend
       // cannot be computed without >= 2 snapshots in the window — return
       // 'unknown'.
       const learnerState: Record<string, string> = {
-        'math.im3.skill.m1.l2.identify-roots': 'mastered',
-        'math.im3.skill.m1.l2.solve-quadratic-by-factoring': 'mastered',
-        'math.im3.task-blueprint.m1.l2.factoring-drill': 'mastered',
+        "math.im3.skill.m1.l2.identify-roots": "mastered",
+        "math.im3.skill.m1.l2.solve-quadratic-by-factoring": "mastered",
+        "math.im3.task-blueprint.m1.l2.factoring-drill": "mastered",
       };
 
-      const viz = projectParentVisualization(
-        nodes,
-        edges,
-        learnerState,
-        insufficientHistory,
-      );
+      const viz = projectParentVisualization(nodes, edges, learnerState, insufficientHistory);
 
-      expect(viz.progressTrend).toBe('unknown');
+      expect(viz.progressTrend).toBe("unknown");
     });
 
     it('returns progressTrend "unknown" when the history has a single snapshot (no delta possible)', () => {
       const learnerState: Record<string, string> = {
-        'math.im3.skill.m1.l2.identify-roots': 'mastered',
-        'math.im3.skill.m1.l2.solve-quadratic-by-factoring': 'mastered',
-        'math.im3.task-blueprint.m1.l2.factoring-drill': 'mastered',
+        "math.im3.skill.m1.l2.identify-roots": "mastered",
+        "math.im3.skill.m1.l2.solve-quadratic-by-factoring": "mastered",
+        "math.im3.task-blueprint.m1.l2.factoring-drill": "mastered",
       };
 
-      const viz = projectParentVisualization(
-        nodes,
-        edges,
-        learnerState,
-        singleSnapshotHistory,
-      );
+      const viz = projectParentVisualization(nodes, edges, learnerState, singleSnapshotHistory);
 
-      expect(viz.progressTrend).toBe('unknown');
+      expect(viz.progressTrend).toBe("unknown");
     });
   });
 
-  describe('Static-ratio bug fix (FR3 acceptance criterion)', () => {
+  describe("Static-ratio bug fix (FR3 acceptance criterion)", () => {
     it('returns progressTrend "unknown" for a beginner with no history (was mislabeled "declining" by the static ratio)', () => {
       const learnerState: Record<string, string> = {};
 
-      const viz = projectParentVisualization(
-        nodes,
-        edges,
-        learnerState,
-        insufficientHistory,
-      );
+      const viz = projectParentVisualization(nodes, edges, learnerState, insufficientHistory);
 
-      expect(viz.progressTrend).toBe('unknown');
+      expect(viz.progressTrend).toBe("unknown");
     });
   });
 
-  describe('Regression — totalSkillNodes === 0', () => {
+  describe("Regression — totalSkillNodes === 0", () => {
     it('returns progressTrend "unknown" when the knowledge space has no skill nodes (existing branch must still pass)', () => {
       const learnerState: Record<string, string> = {};
 
@@ -201,10 +161,10 @@ describe('progressTrend time-delta (FR3)', () => {
         improvingHistory,
       );
 
-      expect(viz.progressTrend).toBe('unknown');
+      expect(viz.progressTrend).toBe("unknown");
     });
 
-    it('empty-graph payload still passes the v1 Zod schema', () => {
+    it("empty-graph payload still passes the v1 Zod schema", () => {
       const learnerState: Record<string, string> = {};
 
       const viz = projectParentVisualization(

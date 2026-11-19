@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useCallback, useRef, useState } from 'react';
-import { StepByStepper } from './StepByStepper';
-import type { AlgebraicStep, StepAttempt } from './StepByStepper';
-import type { ProblemType } from '../../schemas/step-by-step-solver.schema';
+import { useCallback, useRef, useState } from "react";
+import { StepByStepper } from "./StepByStepper";
+import type { AlgebraicStep, StepAttempt } from "./StepByStepper";
+import type { ProblemType } from "../../schemas/step-by-step-solver.schema";
 
 export interface ActivityComponentProps {
   activityId: string;
-  mode: 'teaching' | 'guided' | 'practice';
+  mode: "teaching" | "guided" | "practice";
   onSubmit?: (payload: unknown) => void | Promise<void>;
   onComplete?: () => void;
 }
@@ -20,20 +20,20 @@ export interface StepByStepSolverActivityProps extends ActivityComponentProps {
 
 const defaultSteps: AlgebraicStep[] = [
   {
-    expression: 'x^2 + 5x + 6 = 0',
-    explanation: 'Start with the quadratic equation in standard form.',
+    expression: "x^2 + 5x + 6 = 0",
+    explanation: "Start with the quadratic equation in standard form.",
   },
   {
-    expression: '(x + 2)(x + 3) = 0',
-    explanation: 'Factor the trinomial into two binomials.',
+    expression: "(x + 2)(x + 3) = 0",
+    explanation: "Factor the trinomial into two binomials.",
   },
   {
-    expression: 'x + 2 = 0 or x + 3 = 0',
-    explanation: 'Apply the Zero Product Property.',
+    expression: "x + 2 = 0 or x + 3 = 0",
+    explanation: "Apply the Zero Product Property.",
   },
   {
-    expression: 'x = -2 or x = -3',
-    explanation: 'Solve each linear equation.',
+    expression: "x = -2 or x = -3",
+    explanation: "Solve each linear equation.",
   },
 ];
 
@@ -60,10 +60,11 @@ function buildAlgebraicSubmission({
   equation: string;
 }): unknown {
   return {
-    contractVersion: 'practice.v1',
+    contractVersion: "practice.v1",
     activityId,
-    mode: mode === 'practice' ? 'independent_practice' : mode === 'guided' ? 'guided_practice' : mode,
-    status: 'submitted',
+    mode:
+      mode === "practice" ? "independent_practice" : mode === "guided" ? "guided_practice" : mode,
+    status: "submitted",
     attemptNumber: 1,
     submittedAt: new Date().toISOString(),
     answers: {
@@ -80,7 +81,7 @@ function buildAlgebraicSubmission({
     analytics: {
       hintsUsed,
       totalSteps: steps.length,
-      correctSteps: steps.filter(s => s.isCorrect).length,
+      correctSteps: steps.filter((s) => s.isCorrect).length,
       problemType,
     },
   };
@@ -95,50 +96,63 @@ export function StepByStepSolverActivity({
   activityId,
   mode,
   steps = defaultSteps,
-  problemType = 'factoring',
-  equation = 'x^2 + 5x + 6 = 0',
+  problemType = "factoring",
+  equation = "x^2 + 5x + 6 = 0",
   onSubmit,
   onComplete,
 }: StepByStepSolverActivityProps) {
-  const interactionHistoryRef = useRef<Array<{ type: string; timestamp: number; data?: unknown }>>([]);
+  const interactionHistoryRef = useRef<Array<{ type: string; timestamp: number; data?: unknown }>>(
+    [],
+  );
 
   const [saveError, setSaveError] = useState(false);
   const lastAttempts = useRef<StepAttempt[]>([]);
-  const handlePracticeComplete = useCallback(async (attempts: StepAttempt[]) => {
-    lastAttempts.current = attempts;
-    setSaveError(false);
-    const stepsAttemptData = attempts.map((attempt) => ({
-      stepIndex: attempt.stepIndex,
-      userAnswer: attempt.userAnswer,
-      isCorrect: attempt.isCorrect,
-    }));
+  const handlePracticeComplete = useCallback(
+    async (attempts: StepAttempt[]) => {
+      lastAttempts.current = attempts;
+      setSaveError(false);
+      const stepsAttemptData = attempts.map((attempt) => ({
+        stepIndex: attempt.stepIndex,
+        userAnswer: attempt.userAnswer,
+        isCorrect: attempt.isCorrect,
+      }));
 
-    const submission = buildAlgebraicSubmission({
-      activityId,
-      mode,
-      steps: stepsAttemptData,
-      hintsUsed: 0,
-      interactionHistory: interactionHistoryRef.current,
-      problemType,
-      equation,
-    });
+      const submission = buildAlgebraicSubmission({
+        activityId,
+        mode,
+        steps: stepsAttemptData,
+        hintsUsed: 0,
+        interactionHistory: interactionHistoryRef.current,
+        problemType,
+        equation,
+      });
 
-    try {
-      await onSubmit?.(submission);
-      onComplete?.();
-    } catch {
-      setSaveError(true);
-    }
-  }, [activityId, mode, problemType, equation, onSubmit, onComplete]);
+      try {
+        await onSubmit?.(submission);
+        onComplete?.();
+      } catch {
+        setSaveError(true);
+      }
+    },
+    [activityId, mode, problemType, equation, onSubmit, onComplete],
+  );
 
-  if (saveError) return <div role="alert">The answer was not saved. <button type="button" onClick={() => void handlePracticeComplete(lastAttempts.current)}>Retry save</button></div>;
+  if (saveError)
+    return (
+      <div role="alert">
+        The answer was not saved.{" "}
+        <button type="button" onClick={() => void handlePracticeComplete(lastAttempts.current)}>
+          Retry save
+        </button>
+      </div>
+    );
 
   return (
     <StepByStepper
       mode={mode}
       steps={steps}
       problemType={problemType}
-      onPracticeComplete={mode !== 'teaching' ? handlePracticeComplete : undefined}
+      onPracticeComplete={mode !== "teaching" ? handlePracticeComplete : undefined}
     />
   );
 }

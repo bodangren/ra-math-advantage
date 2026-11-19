@@ -18,9 +18,9 @@
  * applies to single equations.
  */
 
-import { mulberry32 } from './utils/prng';
-import { Fraction } from './utils/fraction';
-import { formatLinearTerm } from './utils/expression-builder';
+import { mulberry32 } from "./utils/prng";
+import { Fraction } from "./utils/fraction";
+import { formatLinearTerm } from "./utils/expression-builder";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -45,7 +45,7 @@ export interface LinearEquationProblem {
    * Family identifier for the step-by-step-solver fallback UI. Per spec §2
    * and test-strategy §4, this is `'step-by-step-solver:linear-equation'`.
    */
-  familyId: 'step-by-step-solver:linear-equation';
+  familyId: "step-by-step-solver:linear-equation";
   /** Step-by-step solution breakdown. */
   steps: string[];
 }
@@ -67,7 +67,7 @@ function randNonZero(rand: () => number, hi: number): number {
     n = randInt(rand, -hi, hi);
   } while (n === 0 && safety++ < 100);
   if (n === 0) {
-    throw new Error('randNonZero: unable to select a non-zero value after 100 attempts');
+    throw new Error("randNonZero: unable to select a non-zero value after 100 attempts");
   }
   return n;
 }
@@ -106,9 +106,7 @@ function pickAnswer(rand: () => number): Fraction {
  * @param options.seed — integer PRNG seed.
  * @returns A `LinearEquationProblem`.
  */
-export function generateLinearEquation(options: {
-  seed: number;
-}): LinearEquationProblem {
+export function generateLinearEquation(options: { seed: number }): LinearEquationProblem {
   const { seed } = options;
   // Single call to mulberry32; the returned closure may be drawn from many
   // times — that does not count against the single-pass contract.
@@ -151,6 +149,6 @@ export function generateLinearEquation(options: {
     b,
     c: cNum,
     steps,
-    familyId: 'step-by-step-solver:linear-equation',
+    familyId: "step-by-step-solver:linear-equation",
   };
 }

@@ -18,18 +18,18 @@
  * - Handling edge cases with parentheses
  */
 export function normalizeExpression(expr: string): string {
-  if (!expr || expr.trim() === '') return '';
+  if (!expr || expr.trim() === "") return "";
 
   return expr
     .toLowerCase()
-    .replace(/\s+/g, '')
-    .replace(/\++/g, '+')
-    .replace(/-+/g, (signs) => signs.length % 2 === 0 ? '+' : '-')
-    .replace(/(?<=[0-9)])\*(?=[a-z(])/g, '')
-    .replace(/\(\+/g, '(')
-    .replace(/\(-/g, '(-')
-    .replace(/(^|\+)1x/g, '$1x')
-    .replace(/-1x/g, '-x');
+    .replace(/\s+/g, "")
+    .replace(/\++/g, "+")
+    .replace(/-+/g, (signs) => (signs.length % 2 === 0 ? "+" : "-"))
+    .replace(/(?<=[0-9)])\*(?=[a-z(])/g, "")
+    .replace(/\(\+/g, "(")
+    .replace(/\(-/g, "(-")
+    .replace(/(^|\+)1x/g, "$1x")
+    .replace(/-1x/g, "-x");
 }
 
 /**
@@ -39,8 +39,8 @@ export function checkEquivalence(expr1: string, expr2: string): boolean {
   const normalized1 = normalizeExpression(expr1);
   const normalized2 = normalizeExpression(expr2);
 
-  if (normalized1 === '' && normalized2 === '') return true;
-  if (normalized1 === '' || normalized2 === '') return false;
+  if (normalized1 === "" && normalized2 === "") return true;
+  if (normalized1 === "" || normalized2 === "") return false;
   if (normalized1 === normalized2) return true;
   if (checkRearrangedTerms(normalized1, normalized2)) return true;
   if (checkPolynomialEquivalence(normalized1, normalized2)) return true;
@@ -59,11 +59,13 @@ export function checkEquivalence(expr1: string, expr2: string): boolean {
  */
 function checkRearrangedTerms(expr1: string, expr2: string): boolean {
   const splitTerms = (expr: string) => {
-    const terms = expr.split(/(?=[+-])/).filter(t => t.trim() !== '');
-    return terms.map(t => {
-      t = t.trim();
-      return t.startsWith('+') || t.startsWith('-') ? t : '+' + t;
-    }).sort();
+    const terms = expr.split(/(?=[+-])/).filter((t) => t.trim() !== "");
+    return terms
+      .map((t) => {
+        t = t.trim();
+        return t.startsWith("+") || t.startsWith("-") ? t : "+" + t;
+      })
+      .sort();
   };
 
   const terms1 = splitTerms(expr1);
@@ -107,19 +109,19 @@ function expandPolynomial(expr: string): string {
   if (psMatch) {
     const sign = psMatch[1];
     const a = parseFloat(psMatch[2]) || 0;
-    const num = sign === '-' ? -a : a;
+    const num = sign === "-" ? -a : a;
 
     const sum = 2 * num;
     const product = num * num;
 
-    let sumStr = '';
+    let sumStr = "";
     if (sum !== 0) {
       const absSum = Math.abs(sum);
-      const signStr = sum >= 0 ? '+' : '-';
-      sumStr = sum === 1 ? '+x' : sum === -1 ? '-x' : `${signStr}${absSum}x`;
+      const signStr = sum >= 0 ? "+" : "-";
+      sumStr = sum === 1 ? "+x" : sum === -1 ? "-x" : `${signStr}${absSum}x`;
     }
 
-    const productStr = product === 0 ? '' : product >= 0 ? `+${product}` : `${product}`;
+    const productStr = product === 0 ? "" : product >= 0 ? `+${product}` : `${product}`;
     return `x^2${sumStr}${productStr}`;
   }
 
@@ -131,29 +133,30 @@ function expandPolynomial(expr: string): string {
     const sign2 = match[3];
     const b = parseFloat(match[4]) || 0;
 
-    const num1 = sign1 === '-' ? -a : a;
-    const num2 = sign2 === '-' ? -b : b;
+    const num1 = sign1 === "-" ? -a : a;
+    const num2 = sign2 === "-" ? -b : b;
 
     const sum = num1 + num2;
     const product = num1 * num2;
 
-    let sumStr = '';
+    let sumStr = "";
     if (sum !== 0) {
       const absSum = Math.abs(sum);
-      const sign = sum >= 0 ? '+' : '-';
-      sumStr = sum === 1 ? '+x' : sum === -1 ? '-x' : `${sign}${absSum}x`;
+      const sign = sum >= 0 ? "+" : "-";
+      sumStr = sum === 1 ? "+x" : sum === -1 ? "-x" : `${sign}${absSum}x`;
     }
 
-    const productStr = product === 0 ? '' : product >= 0 ? `+${product}` : `${product}`;
+    const productStr = product === 0 ? "" : product >= 0 ? `+${product}` : `${product}`;
     return `x^2${sumStr}${productStr}`;
   }
 
-  const factoredPattern4 = /^(?:\(([+-]?\d*\.?\d*)x\+?([+-]?\d*\.?\d*)\)\(([+-]?\d*\.?\d*)x\+?([+-]?\d*\.?\d*)\))$/;
+  const factoredPattern4 =
+    /^(?:\(([+-]?\d*\.?\d*)x\+?([+-]?\d*\.?\d*)\)\(([+-]?\d*\.?\d*)x\+?([+-]?\d*\.?\d*)\))$/;
   const match4 = expr.match(factoredPattern4);
   if (match4) {
     const parseCoeff = (s: string, fallback: number) => {
-      if (s === '' || s === '+') return fallback;
-      if (s === '-') return -fallback;
+      if (s === "" || s === "+") return fallback;
+      if (s === "-") return -fallback;
       return parseFloat(s) || fallback;
     };
     const a = parseCoeff(match4[1], 1);
@@ -163,9 +166,9 @@ function expandPolynomial(expr: string): string {
     const ac = a * c;
     const adbc = a * d + b * c;
     const bd = b * d;
-    const acStr = ac === 1 ? 'x^2' : ac === -1 ? '-x^2' : `${ac}x^2`;
-    const adbcStr = adbc === 0 ? '' : adbc >= 0 ? `+${adbc}x` : `${adbc}x`;
-    const bdStr = bd === 0 ? '' : bd >= 0 ? `+${bd}` : `${bd}`;
+    const acStr = ac === 1 ? "x^2" : ac === -1 ? "-x^2" : `${ac}x^2`;
+    const adbcStr = adbc === 0 ? "" : adbc >= 0 ? `+${adbc}x` : `${adbc}x`;
+    const bdStr = bd === 0 ? "" : bd >= 0 ? `+${bd}` : `${bd}`;
     return `${acStr}${adbcStr}${bdStr}`;
   }
 
@@ -276,7 +279,8 @@ function findFactors(n: number): number[] {
  * @returns {boolean} - True if both expressions represent the same complex number
  */
 function checkComplexNumberEquivalence(expr1: string, expr2: string): boolean {
-  const complexPattern = /^(?:([+-]?\d*\.?\d*)\*?i\+?([+-]?\d*\.?\d*)|([+-]?\d*\.?\d*)\+?([+-]?\d*\.?\d*)\*?i)$/;
+  const complexPattern =
+    /^(?:([+-]?\d*\.?\d*)\*?i\+?([+-]?\d*\.?\d*)|([+-]?\d*\.?\d*)\+?([+-]?\d*\.?\d*)\*?i)$/;
 
   const parseComplex = (expr: string) => {
     const match = expr.match(complexPattern);
@@ -286,11 +290,11 @@ function checkComplexNumberEquivalence(expr1: string, expr2: string): boolean {
     let imag = 0;
 
     if (match[1] !== undefined && match[2] !== undefined) {
-      imag = parseFloat(match[1]) || (match[1]?.startsWith('-') ? -1 : 1);
+      imag = parseFloat(match[1]) || (match[1]?.startsWith("-") ? -1 : 1);
       real = parseFloat(match[2]) || 0;
     } else if (match[3] !== undefined && match[4] !== undefined) {
       real = parseFloat(match[3]) || 0;
-      imag = parseFloat(match[4]) || (match[4]?.startsWith('-') ? -1 : 1);
+      imag = parseFloat(match[4]) || (match[4]?.startsWith("-") ? -1 : 1);
     }
 
     return { real, imag };
@@ -318,7 +322,7 @@ function checkFractionEquivalence(expr1: string, expr2: string): boolean {
 
     if (match[1] !== undefined && match[2] !== undefined) {
       const whole = parseInt(match[1], 10);
-      const [num, den] = match[2].split('/').map(Number);
+      const [num, den] = match[2].split("/").map(Number);
       return { value: (whole * den + num) / den, numerator: whole * den + num, denominator: den };
     } else if (match[3] !== undefined && match[4] !== undefined) {
       const num = parseInt(match[3], 10);
@@ -352,7 +356,7 @@ function checkFractionEquivalence(expr1: string, expr2: string): boolean {
     const num = parseInt(match[1], 10);
     const den = parseInt(match[2], 10);
     const constant = parseFloat(match[3]) || 0;
-    return { value: (num / den) + constant, isAlgebraic: true };
+    return { value: num / den + constant, isAlgebraic: true };
   };
 
   const f1 = parseFractionAddition(expr1) || parseAlgebraicFraction(expr1) || parseFraction(expr1);
@@ -360,8 +364,8 @@ function checkFractionEquivalence(expr1: string, expr2: string): boolean {
 
   if (!f1 || !f2) return false;
 
-  const f1IsAlgebraic = 'isAlgebraic' in f1 && f1.isAlgebraic;
-  const f2IsAlgebraic = 'isAlgebraic' in f2 && f2.isAlgebraic;
+  const f1IsAlgebraic = "isAlgebraic" in f1 && f1.isAlgebraic;
+  const f2IsAlgebraic = "isAlgebraic" in f2 && f2.isAlgebraic;
 
   if (f1IsAlgebraic || f2IsAlgebraic) {
     return Math.abs(f1.value - f2.value) < 0.0001;
@@ -391,7 +395,7 @@ function checkRadicalEquivalence(expr1: string, expr2: string): boolean {
   };
 
   const parseRadical = (expr: string) => {
-    if (expr.includes('³√')) return null;
+    if (expr.includes("³√")) return null;
 
     const radicalPattern = /^(?:(\d*)\*?√(\d+)|√(\d+))$/;
     const match = expr.match(radicalPattern);

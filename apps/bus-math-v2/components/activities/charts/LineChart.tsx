@@ -9,7 +9,7 @@ import {
   ChartLegend,
   ChartLegendContent,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 import { cn } from "@/lib/utils";
 
@@ -42,7 +42,6 @@ function DEFAULT_LINE_VALUE(value: number) {
   return value.toLocaleString();
 }
 
-
 /**
  * Renders a line chart with one or more data series and optional card wrapper.
  *
@@ -63,7 +62,7 @@ export function LineChart({
   height = 340,
   className,
   ariaLabel,
-  formatValue = DEFAULT_LINE_VALUE
+  formatValue = DEFAULT_LINE_VALUE,
 }: LineChartProps) {
   const chartConfig = useMemo(() => buildChartConfig(series), [series]);
   const containerLabel = ariaLabel ?? `${title ?? "Line"} chart showing ${series.length} series`;
@@ -90,7 +89,7 @@ export function LineChart({
             top: 16,
             right: 16,
             left: 16,
-            bottom: 16
+            bottom: 16,
           }}
         >
           {showGrid && (
@@ -113,7 +112,7 @@ export function LineChart({
               <ChartTooltipContent
                 formatter={(value, name) => [
                   formatValue(Number(value)),
-                  series.find((item) => item.key === name)?.label ?? name
+                  series.find((item) => item.key === name)?.label ?? name,
                 ]}
               />
             }

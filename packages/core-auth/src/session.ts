@@ -1,6 +1,6 @@
-import { PASSWORD_ALPHABET } from './constants';
+import { PASSWORD_ALPHABET } from "./constants";
 
-export type UserRole = 'student' | 'teacher' | 'admin' | 'parent';
+export type UserRole = "student" | "teacher" | "admin" | "parent";
 
 export interface SessionClaims {
   sub: string;
@@ -32,16 +32,16 @@ const encoder = new TextEncoder();
  * @returns {string} - Base64 encoded string
  */
 function toBase64(bytes: Uint8Array): string {
-  let binary = '';
+  let binary = "";
   for (let i = 0; i < bytes.length; i += 1) {
     binary += String.fromCharCode(bytes[i]);
   }
 
-  if (typeof btoa === 'function') {
+  if (typeof btoa === "function") {
     return btoa(binary);
   }
 
-  return Buffer.from(binary, 'binary').toString('base64');
+  return Buffer.from(binary, "binary").toString("base64");
 }
 
 /**
@@ -51,9 +51,7 @@ function toBase64(bytes: Uint8Array): string {
  */
 function fromBase64(value: string): Uint8Array {
   const binary =
-    typeof atob === 'function'
-      ? atob(value)
-      : Buffer.from(value, 'base64').toString('binary');
+    typeof atob === "function" ? atob(value) : Buffer.from(value, "base64").toString("binary");
   const bytes = new Uint8Array(binary.length);
   for (let i = 0; i < binary.length; i += 1) {
     bytes[i] = binary.charCodeAt(i);
@@ -67,7 +65,7 @@ function fromBase64(value: string): Uint8Array {
  * @returns {string} - URL-safe Base64 string
  */
 function base64UrlEncodeBytes(bytes: Uint8Array): string {
-  return toBase64(bytes).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+  return toBase64(bytes).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
 }
 
 /**
@@ -76,8 +74,8 @@ function base64UrlEncodeBytes(bytes: Uint8Array): string {
  * @returns {Uint8Array} - Decoded byte array
  */
 function base64UrlDecodeToBytes(value: string): Uint8Array {
-  const normalized = value.replace(/-/g, '+').replace(/_/g, '/');
-  const padded = normalized + '='.repeat((4 - (normalized.length % 4)) % 4);
+  const normalized = value.replace(/-/g, "+").replace(/_/g, "/");
+  const padded = normalized + "=".repeat((4 - (normalized.length % 4)) % 4);
   return fromBase64(padded);
 }
 
@@ -108,14 +106,14 @@ function base64UrlDecodeToString(value: string): string {
  */
 async function hmacSign(value: string, secret: string): Promise<Uint8Array> {
   const key = await crypto.subtle.importKey(
-    'raw',
+    "raw",
     encoder.encode(secret),
-    { name: 'HMAC', hash: 'SHA-256' },
+    { name: "HMAC", hash: "SHA-256" },
     false,
-    ['sign'],
+    ["sign"],
   );
 
-  const signature = await crypto.subtle.sign('HMAC', key, encoder.encode(value));
+  const signature = await crypto.subtle.sign("HMAC", key, encoder.encode(value));
   return new Uint8Array(signature);
 }
 
@@ -153,7 +151,7 @@ export async function signSessionToken(
     exp: now + ttlSeconds,
   };
 
-  const header = base64UrlEncodeString(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
+  const header = base64UrlEncodeString(JSON.stringify({ alg: "HS256", typ: "JWT" }));
   const payload = base64UrlEncodeString(JSON.stringify(claims));
   const signingInput = `${header}.${payload}`;
   const signature = await hmacSign(signingInput, secret);
@@ -166,8 +164,11 @@ export async function signSessionToken(
  * @param {string} secret - JWT signing secret
  * @returns {Promise<SessionClaims | null>} - SessionClaims or null if invalid/expired
  */
-export async function verifySessionToken(token: string, secret: string): Promise<SessionClaims | null> {
-  const segments = token.split('.');
+export async function verifySessionToken(
+  token: string,
+  secret: string,
+): Promise<SessionClaims | null> {
+  const segments = token.split(".");
   if (segments.length !== 3) return null;
 
   const [header, payload, signature] = segments;
@@ -210,19 +211,23 @@ export async function verifySessionToken(token: string, secret: string): Promise
  * @param {number} iterations - PBKDF2 iteration count
  * @returns {Promise<string>} - Base64-encoded password hash
  */
-export async function hashPassword(password: string, salt: string, iterations: number): Promise<string> {
+export async function hashPassword(
+  password: string,
+  salt: string,
+  iterations: number,
+): Promise<string> {
   const keyMaterial = await crypto.subtle.importKey(
-    'raw',
+    "raw",
     encoder.encode(password),
-    'PBKDF2',
+    "PBKDF2",
     false,
-    ['deriveBits'],
+    ["deriveBits"],
   );
 
   const derived = await crypto.subtle.deriveBits(
     {
-      name: 'PBKDF2',
-      hash: 'SHA-256',
+      name: "PBKDF2",
+      hash: "SHA-256",
       salt: encoder.encode(salt),
       iterations,
     },
@@ -265,7 +270,7 @@ export function generateRandomPassword(length = 12): string {
       }
     }
   }
-  return result.join('');
+  return result.join("");
 }
 
 /**

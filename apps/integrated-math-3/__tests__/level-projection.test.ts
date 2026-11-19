@@ -26,21 +26,21 @@
 // Test count: 5 tests. Targeted Red command:
 //   npx vitest run -t "IM3 level projection" --root apps/integrated-math-3
 
-import { describe, it, expect } from 'vitest';
-import type { KnowledgeState } from '@math-platform/knowledge-space-core/level-projection';
+import { describe, it, expect } from "vitest";
+import type { KnowledgeState } from "@math-platform/knowledge-space-core/level-projection";
 // The Green phase must create the IM3 instance module at
 // `apps/integrated-math-3/lib/level-projection/im3-level-projection.ts` that
 // reads `gse-to-im3-advantage.csv` and exports `projectIm3Level`. At HEAD,
 // this import fails because the module does not exist.
-import { projectIm3Level } from '@/lib/level-projection/im3-level-projection';
+import { projectIm3Level } from "@/lib/level-projection/im3-level-projection";
 
 // ---------------------------------------------------------------------------
 // 1. projectIm3Level export contract
 // ---------------------------------------------------------------------------
 
-describe('IM3 level projection — export contract (kst-srs.v2 §11.2, FR2 AC2)', () => {
-  it('exports a projectIm3Level function derived from the GSE→IM3 advantage CSV', () => {
-    expect(typeof projectIm3Level).toBe('function');
+describe("IM3 level projection — export contract (kst-srs.v2 §11.2, FR2 AC2)", () => {
+  it("exports a projectIm3Level function derived from the GSE→IM3 advantage CSV", () => {
+    expect(typeof projectIm3Level).toBe("function");
   });
 });
 
@@ -48,15 +48,15 @@ describe('IM3 level projection — export contract (kst-srs.v2 §11.2, FR2 AC2)'
 // 2. Anchor: bottom level (empty state and zero mastery collapse to the same id)
 // ---------------------------------------------------------------------------
 
-describe('IM3 level projection — anchor points (kst-srs.v2 §11.2, FR2 AC2)', () => {
-  it('returns a non-empty string id for an empty state', () => {
+describe("IM3 level projection — anchor points (kst-srs.v2 §11.2, FR2 AC2)", () => {
+  it("returns a non-empty string id for an empty state", () => {
     const state: KnowledgeState = { skills: [] };
     const result = projectIm3Level(state);
-    expect(typeof result).toBe('string');
+    expect(typeof result).toBe("string");
     expect(result.length).toBeGreaterThan(0);
   });
 
-  it('empty state and zero-mastery state collapse to the same level id (bottom level anchor)', () => {
+  it("empty state and zero-mastery state collapse to the same level id (bottom level anchor)", () => {
     // Anchor 1: bottom level. Empty state and state with mastery=0 both
     // represent the lowest mastery profile — they MUST return the same
     // level id. This guards against an implementation that treats empty
@@ -64,26 +64,26 @@ describe('IM3 level projection — anchor points (kst-srs.v2 §11.2, FR2 AC2)', 
     // the bottom level.
     const stateEmpty: KnowledgeState = { skills: [] };
     const stateZero: KnowledgeState = {
-      skills: [{ nodeId: 'math.im3.skill.alpha', mastery: 0 }],
+      skills: [{ nodeId: "math.im3.skill.alpha", mastery: 0 }],
     };
     expect(projectIm3Level(stateEmpty)).toBe(projectIm3Level(stateZero));
   });
 
-  it('mastery 0.99 and mastery 1.00 collapse to the same level id (top level anchor)', () => {
+  it("mastery 0.99 and mastery 1.00 collapse to the same level id (top level anchor)", () => {
     // Anchor 2: top level. Both 0.99 and 1.00 must map to the same (top)
     // level id. This guards against an implementation that requires
     // mastery=1.0 strictly (off-by-one) or that lumps 0.99 into a lower
     // band.
     const stateHigh: KnowledgeState = {
       skills: [
-        { nodeId: 'math.im3.skill.alpha', mastery: 0.99 },
-        { nodeId: 'math.im3.skill.beta', mastery: 0.99 },
+        { nodeId: "math.im3.skill.alpha", mastery: 0.99 },
+        { nodeId: "math.im3.skill.beta", mastery: 0.99 },
       ],
     };
     const stateFull: KnowledgeState = {
       skills: [
-        { nodeId: 'math.im3.skill.alpha', mastery: 1.0 },
-        { nodeId: 'math.im3.skill.beta', mastery: 1.0 },
+        { nodeId: "math.im3.skill.alpha", mastery: 1.0 },
+        { nodeId: "math.im3.skill.beta", mastery: 1.0 },
       ],
     };
     expect(projectIm3Level(stateHigh)).toBe(projectIm3Level(stateFull));
@@ -94,8 +94,8 @@ describe('IM3 level projection — anchor points (kst-srs.v2 §11.2, FR2 AC2)', 
 // 3. Monotonicity property (sweep produces a non-decreasing rank sequence)
 // ---------------------------------------------------------------------------
 
-describe('IM3 level projection — monotonicity (kst-srs.v2 §11.2)', () => {
-  it('mastery sweep from 0.0 to 1.0 produces a non-decreasing rank sequence', () => {
+describe("IM3 level projection — monotonicity (kst-srs.v2 §11.2)", () => {
+  it("mastery sweep from 0.0 to 1.0 produces a non-decreasing rank sequence", () => {
     // We do not couple to specific IM3 level ids (they are defined by the
     // CSV in the Green phase). Instead, capture the sequence of returned
     // ids and assert it is weakly monotonic under the rank defined by
@@ -103,7 +103,7 @@ describe('IM3 level projection — monotonicity (kst-srs.v2 §11.2)', () => {
     // without naming the levels.
     const sweep = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 1.0];
     const ids = sweep.map((m) =>
-      projectIm3Level({ skills: [{ nodeId: 'math.im3.skill.alpha', mastery: m }] }),
+      projectIm3Level({ skills: [{ nodeId: "math.im3.skill.alpha", mastery: m }] }),
     );
     const rankOf = (() => {
       const seen = new Map<string, number>();

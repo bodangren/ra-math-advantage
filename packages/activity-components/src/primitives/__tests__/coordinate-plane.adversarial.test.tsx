@@ -13,13 +13,13 @@
 //   5. Two points at the same coordinates collapse to the same label, so remove
 //      filtering follows GraphingCanvas's label identity model (documented behavior).
 
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
-import React from 'react';
-import { CoordinatePlane } from '../coordinate-plane/CoordinatePlane';
+import { describe, it, expect, vi } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
+import React from "react";
+import { CoordinatePlane } from "../coordinate-plane/CoordinatePlane";
 
 function stubSvgRect(svg: SVGSVGElement, width = 600, height = 600): void {
-  Object.defineProperty(svg, 'getBoundingClientRect', {
+  Object.defineProperty(svg, "getBoundingClientRect", {
     configurable: true,
     value: () => ({
       x: 0,
@@ -36,48 +36,47 @@ function stubSvgRect(svg: SVGSVGElement, width = 600, height = 600): void {
 }
 
 function findSvg(container: HTMLElement): SVGSVGElement {
-  const svg = container.querySelector('svg');
-  if (!svg) throw new Error('No <svg> rendered by CoordinatePlane');
+  const svg = container.querySelector("svg");
+  if (!svg) throw new Error("No <svg> rendered by CoordinatePlane");
   return svg;
 }
 
-describe('CoordinatePlane — adversarial gaps', () => {
-  it('re-renders when the external owner supplies a new `value` (controlled component contract)', () => {
+describe("CoordinatePlane — adversarial gaps", () => {
+  it("re-renders when the external owner supplies a new `value` (controlled component contract)", () => {
     const { rerender } = render(
       <CoordinatePlane value={{ points: [{ x: 1, y: 2 }] }} onChange={() => {}} />,
     );
-    expect(screen.getByText('1.0, 2.0')).toBeTruthy();
-    expect(screen.queryByText('5.0, 6.0')).toBeNull();
+    expect(screen.getByText("1.0, 2.0")).toBeTruthy();
+    expect(screen.queryByText("5.0, 6.0")).toBeNull();
 
     rerender(<CoordinatePlane value={{ points: [{ x: 5, y: 6 }] }} onChange={() => {}} />);
-    expect(screen.getByText('5.0, 6.0')).toBeTruthy();
-    expect(screen.queryByText('1.0, 2.0')).toBeNull();
+    expect(screen.getByText("5.0, 6.0")).toBeTruthy();
+    expect(screen.queryByText("1.0, 2.0")).toBeNull();
   });
 
-  it('preserves an explicit `label` on a Point (label-based identity contract)', () => {
+  it("preserves an explicit `label` on a Point (label-based identity contract)", () => {
     const { container } = render(
-      <CoordinatePlane
-        value={{ points: [{ x: 1, y: 2, label: 'origin' }] }}
-        onChange={() => {}}
-      />,
+      <CoordinatePlane value={{ points: [{ x: 1, y: 2, label: "origin" }] }} onChange={() => {}} />,
     );
     // GraphingCanvas always renders `${x.toFixed(1)}, ${y.toFixed(1)}` as the
     // <text> content (GraphingCanvas.tsx line ~376), but uses `point.label`
     // as the identity token (line ~95). The point's aria-label reflects this.
-    const target = container.querySelector('[aria-label^="Point at 1.0, 2.0"]') as HTMLElement | null;
+    const target = container.querySelector(
+      '[aria-label^="Point at 1.0, 2.0"]',
+    ) as HTMLElement | null;
     expect(target).toBeTruthy();
     // sanity: text content is still "1.0, 2.0"
-    expect(screen.getByText('1.0, 2.0')).toBeTruthy();
+    expect(screen.getByText("1.0, 2.0")).toBeTruthy();
   });
 
-  it('fires onChange to remove a point when the user clicks it in interactive mode', () => {
+  it("fires onChange to remove a point when the user clicks it in interactive mode", () => {
     const onChange = vi.fn();
     const { container } = render(
       <CoordinatePlane
         value={{
           points: [
-            { x: 1, y: 2, label: 'P1' },
-            { x: 3, y: 4, label: 'P2' },
+            { x: 1, y: 2, label: "P1" },
+            { x: 3, y: 4, label: "P2" },
           ],
         }}
         onChange={onChange}
@@ -92,15 +91,15 @@ describe('CoordinatePlane — adversarial gaps', () => {
     expect(onChange).toHaveBeenCalledTimes(1);
     const next = onChange.mock.calls[0][0];
     expect(next.points).toHaveLength(1);
-    expect(next.points[0]).toMatchObject({ label: 'P2' });
+    expect(next.points[0]).toMatchObject({ label: "P2" });
   });
 
-  it('does NOT fire onChange when clicking a placed point in readonly mode', () => {
+  it("does NOT fire onChange when clicking a placed point in readonly mode", () => {
     const onChange = vi.fn();
     const { container } = render(
       <CoordinatePlane
         mode="readonly"
-        value={{ points: [{ x: 1, y: 2, label: 'P1' }] }}
+        value={{ points: [{ x: 1, y: 2, label: "P1" }] }}
         onChange={onChange}
       />,
     );
@@ -110,12 +109,12 @@ describe('CoordinatePlane — adversarial gaps', () => {
     expect(onChange).not.toHaveBeenCalled();
   });
 
-  it('does NOT fire onChange when clicking a placed point while disabled=true', () => {
+  it("does NOT fire onChange when clicking a placed point while disabled=true", () => {
     const onChange = vi.fn();
     const { container } = render(
       <CoordinatePlane
         disabled
-        value={{ points: [{ x: 1, y: 2, label: 'P1' }] }}
+        value={{ points: [{ x: 1, y: 2, label: "P1" }] }}
         onChange={onChange}
       />,
     );
@@ -125,11 +124,9 @@ describe('CoordinatePlane — adversarial gaps', () => {
     expect(onChange).not.toHaveBeenCalled();
   });
 
-  it('renders zero points and remains interactive when value.points is empty (default)', () => {
+  it("renders zero points and remains interactive when value.points is empty (default)", () => {
     const onChange = vi.fn();
-    const { container } = render(
-      <CoordinatePlane value={{ points: [] }} onChange={onChange} />,
-    );
+    const { container } = render(<CoordinatePlane value={{ points: [] }} onChange={onChange} />);
     const svg = findSvg(container);
     stubSvgRect(svg);
     fireEvent.click(svg, { clientX: 100, clientY: 100 });
@@ -137,29 +134,29 @@ describe('CoordinatePlane — adversarial gaps', () => {
     expect(onChange.mock.calls[0][0].points).toHaveLength(1);
   });
 
-  it('does not retain stale points across renders (controlled identity)', () => {
+  it("does not retain stale points across renders (controlled identity)", () => {
     const { rerender } = render(
       <CoordinatePlane value={{ points: [{ x: 1, y: 2 }] }} onChange={() => {}} />,
     );
-    expect(screen.getByText('1.0, 2.0')).toBeTruthy();
+    expect(screen.getByText("1.0, 2.0")).toBeTruthy();
     rerender(<CoordinatePlane value={{ points: [] }} onChange={() => {}} />);
-    expect(screen.queryByText('1.0, 2.0')).toBeNull();
+    expect(screen.queryByText("1.0, 2.0")).toBeNull();
   });
 
-  it('renders function curves when `functions` config is provided', () => {
+  it("renders function curves when `functions` config is provided", () => {
     const { container } = render(
       <CoordinatePlane
         value={{ points: [] }}
-        functions={[{ expression: 'x', color: '#ff0000' }]}
+        functions={[{ expression: "x", color: "#ff0000" }]}
         onChange={() => {}}
       />,
     );
     // GraphingCanvas renders each function as a visible SVG path.
-    const curves = container.querySelectorAll('path.function-curve');
+    const curves = container.querySelectorAll("path.function-curve");
     expect(curves.length).toBeGreaterThanOrEqual(1);
   });
 
-  it('still fires onChange when mode=interactive and disabled=false are explicit', () => {
+  it("still fires onChange when mode=interactive and disabled=false are explicit", () => {
     const onChange = vi.fn();
     const { container } = render(
       <CoordinatePlane
@@ -175,14 +172,10 @@ describe('CoordinatePlane — adversarial gaps', () => {
     expect(onChange).toHaveBeenCalledTimes(1);
   });
 
-  it('respects snapToGrid when adding a point (config passthrough)', () => {
+  it("respects snapToGrid when adding a point (config passthrough)", () => {
     const onChange = vi.fn();
     const { container } = render(
-      <CoordinatePlane
-        value={{ points: [] }}
-        snapToGrid
-        onChange={onChange}
-      />,
+      <CoordinatePlane value={{ points: [] }} snapToGrid onChange={onChange} />,
     );
     const svg = findSvg(container);
     stubSvgRect(svg);
@@ -194,7 +187,7 @@ describe('CoordinatePlane — adversarial gaps', () => {
     expect(next.points[0].y).toBeDefined();
   });
 
-  it('forwards the configured `domain`, `range`, `width`, `height` to GraphingCanvas', () => {
+  it("forwards the configured `domain`, `range`, `width`, `height` to GraphingCanvas", () => {
     const { container } = render(
       <CoordinatePlane
         value={{ points: [] }}
@@ -206,6 +199,6 @@ describe('CoordinatePlane — adversarial gaps', () => {
       />,
     );
     const svg = findSvg(container);
-    expect((svg as SVGElement).getAttribute('viewBox')).toBe('0 0 400 300');
+    expect((svg as SVGElement).getAttribute("viewBox")).toBe("0 0 400 300");
   });
 });

@@ -1,12 +1,6 @@
-export {
-  parseLinear,
-  type LinearCoefficients,
-} from './linear-parser';
+export { parseLinear, type LinearCoefficients } from "./linear-parser";
 
-export {
-  parseQuadratic,
-  type QuadraticCoefficients,
-} from './quadratic-parser';
+export { parseQuadratic, type QuadraticCoefficients } from "./quadratic-parser";
 
 export {
   evaluateFunction,
@@ -19,4 +13,4 @@ export {
   type FunctionPlot,
   type GraphingCanvasProps,
   type Point,
-} from './canvas-utils';
+} from "./canvas-utils";

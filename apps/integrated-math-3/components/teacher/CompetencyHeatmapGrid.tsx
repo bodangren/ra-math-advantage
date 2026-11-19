@@ -1,7 +1,11 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { cellBgClass, type CompetencyHeatmapRow, type CompetencyStandard } from '@math-platform/teacher-reporting-core';
+import { useState } from "react";
+import {
+  cellBgClass,
+  type CompetencyHeatmapRow,
+  type CompetencyStandard,
+} from "@math-platform/teacher-reporting-core";
 
 interface CompetencyHeatmapGridProps {
   rows: CompetencyHeatmapRow[];
@@ -34,7 +38,7 @@ export function CompetencyHeatmapGrid({
   onStudentClick,
   onCellClick,
 }: CompetencyHeatmapGridProps) {
-  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
+  const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
 
   if (rows.length === 0 || standards.length === 0) {
     return (
@@ -56,7 +60,7 @@ export function CompetencyHeatmapGrid({
   }
 
   const sorted = sortRowsByName(rows);
-  const displayRows = sortDir === 'asc' ? sorted : [...sorted].reverse();
+  const displayRows = sortDir === "asc" ? sorted : [...sorted].reverse();
 
   return (
     <div
@@ -75,12 +79,12 @@ export function CompetencyHeatmapGrid({
             >
               <button
                 type="button"
-                onClick={() => setSortDir((d) => (d === 'asc' ? 'desc' : 'asc'))}
+                onClick={() => setSortDir((d) => (d === "asc" ? "desc" : "asc"))}
                 aria-label="Sort by student name"
                 className="flex items-center gap-1 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring min-h-[44px] min-w-[44px]"
               >
                 Student
-                <span className="text-[10px]">{sortDir === 'asc' ? '▲' : '▼'}</span>
+                <span className="text-[10px]">{sortDir === "asc" ? "▲" : "▼"}</span>
               </button>
             </th>
 
@@ -129,11 +133,11 @@ export function CompetencyHeatmapGrid({
                 <td
                   key={cell.standardId}
                   className={`text-center px-2 py-2 font-medium tabular-nums min-h-[44px] ${cellBgClass(cell.color)} ${
-                    onCellClick ? 'cursor-pointer hover:opacity-80' : ''
+                    onCellClick ? "cursor-pointer hover:opacity-80" : ""
                   }`}
                   onClick={() => onCellClick?.(row.studentId, cell.standardId)}
                 >
-                  {cell.masteryLevel !== null ? `${cell.masteryLevel}%` : '—'}
+                  {cell.masteryLevel !== null ? `${cell.masteryLevel}%` : "—"}
                 </td>
               ))}
             </tr>

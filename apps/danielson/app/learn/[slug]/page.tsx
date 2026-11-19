@@ -1,9 +1,9 @@
-import { notFound } from 'next/navigation';
+import { notFound } from "next/navigation";
 
-import { LearnTechniqueView } from '@/components/learn-technique-view';
-import { SiteHeader } from '@/components/site-header';
-import { requireDanielsonSession } from '@/lib/auth/server';
-import { getLearnTechnique, getLearnTechniqueNavigation } from '@/lib/learn/catalog';
+import { LearnTechniqueView } from "@/components/learn-technique-view";
+import { SiteHeader } from "@/components/site-header";
+import { requireDanielsonSession } from "@/lib/auth/server";
+import { getLearnTechnique, getLearnTechniqueNavigation } from "@/lib/learn/catalog";
 
 export default async function LearnTechniquePage({
   params,
@@ -16,13 +16,13 @@ export default async function LearnTechniquePage({
   const technique = getLearnTechnique(slug);
   if (!technique) notFound();
   const roles = account.danielsonRoles as string[];
-  const canObserve = roles.some((role) => ['hod', 'coach', 'school_head', 'slt'].includes(role));
-  const isTeacher = roles.includes('teacher');
+  const canObserve = roles.some((role) => ["hod", "coach", "school_head", "slt"].includes(role));
+  const isTeacher = roles.includes("teacher");
   return (
     <>
       <SiteHeader
         isAuthenticated
-        showAdministration={roles.includes('sysadmin')}
+        showAdministration={roles.includes("sysadmin")}
         showObservations={canObserve}
         showMyObservations={isTeacher}
         showReports={canObserve}

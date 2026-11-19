@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
-import { IntervalClassificationActivity } from '@math-platform/activity-components';
-import type { IntervalClassificationProps } from '@math-platform/math-content/schemas';
+import { IntervalClassificationActivity } from "@math-platform/activity-components";
+import type { IntervalClassificationProps } from "@math-platform/math-content/schemas";
 
-import { PRECALCULUS_PILOT_NODE_ID } from '@/lib/learning-evidence/precalc-pilot';
-import { generateTopic11IntervalGraph } from '@/lib/practice/topic11-interval-graph';
+import { PRECALCULUS_PILOT_NODE_ID } from "@/lib/learning-evidence/precalc-pilot";
+import { generateTopic11IntervalGraph } from "@/lib/practice/topic11-interval-graph";
 
 type EvidenceResponse = {
   persisted: boolean;
@@ -26,23 +26,23 @@ type EvidenceResponse = {
 export type PrecalculusPilotKnowledgeState = {
   nodeId: string;
   title: string;
-  status: 'not_started' | 'in_progress' | 'mastered' | 'decaying';
-  readiness: 'ready' | 'blocked' | 'awaiting_teacher_exposure';
+  status: "not_started" | "in_progress" | "mastered" | "decaying";
+  readiness: "ready" | "blocked" | "awaiting_teacher_exposure";
 };
 
 function createIdempotencyKey(): string {
-  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
     return crypto.randomUUID();
   }
   return `precalc-pilot-${Date.now()}-${Math.random().toString(36).slice(2)}`;
 }
 
-export type PrecalculusPilotMode = 'guided_practice' | 'independent_practice';
+export type PrecalculusPilotMode = "guided_practice" | "independent_practice";
 
 async function readJson(response: Response): Promise<Record<string, unknown>> {
   const value: unknown = await response.json().catch(() => null);
-  if (!value || typeof value !== 'object' || Array.isArray(value)) {
-    throw new Error('The server returned an invalid response.');
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    throw new Error("The server returned an invalid response.");
   }
   return value as Record<string, unknown>;
 }
@@ -53,13 +53,7 @@ function hasExactKeys(value: Record<string, unknown>, keys: string[]): boolean {
 
 function parseSubmissionReceipt(value: Record<string, unknown>) {
   if (
-    !hasExactKeys(value, [
-      "submissionId",
-      "score",
-      "maxScore",
-      "attemptOrdinal",
-      "feedback",
-    ]) ||
+    !hasExactKeys(value, ["submissionId", "score", "maxScore", "attemptOrdinal", "feedback"]) ||
     typeof value.submissionId !== "string" ||
     value.submissionId.trim().length === 0 ||
     typeof value.score !== "number" ||
@@ -89,13 +83,7 @@ function parseEvidenceReceipt(
   mode: PrecalculusPilotMode,
 ): EvidenceResponse {
   if (
-    !hasExactKeys(value, [
-      "persisted",
-      "masteryApplied",
-      "kstApplied",
-      "delivery",
-      "decision",
-    ]) ||
+    !hasExactKeys(value, ["persisted", "masteryApplied", "kstApplied", "delivery", "decision"]) ||
     typeof value.decision !== "object" ||
     value.decision === null ||
     Array.isArray(value.decision)
@@ -114,9 +102,7 @@ function parseEvidenceReceipt(
     typeof decision.exposureState !== "string" ||
     !["awaiting_teacher_exposure", "introduced"].includes(decision.exposureState) ||
     typeof decision.reason !== "string" ||
-    !["awaiting_teacher_exposure", "ungraded_evidence", "eligible"].includes(
-      decision.reason,
-    ) ||
+    !["awaiting_teacher_exposure", "ungraded_evidence", "eligible"].includes(decision.reason) ||
     typeof decision.eligible !== "boolean" ||
     typeof decision.masteryBearing !== "boolean" ||
     typeof value.persisted !== "boolean" ||
@@ -143,7 +129,7 @@ function parseEvidenceReceipt(
 
 export function PrecalculusMasteryAdvantagePilot({
   knowledgeState,
-  mode = 'guided_practice',
+  mode = "guided_practice",
   seed = 0,
   stableActivityId,
   activityProps,
@@ -157,7 +143,7 @@ export function PrecalculusMasteryAdvantagePilot({
   const activityId = stableActivityId ?? `${PRECALCULUS_PILOT_NODE_ID}.${mode}`;
   const [attemptKey, setAttemptKey] = useState(0);
   const router = useRouter();
-  const [status, setStatus] = useState<'idle' | 'saving' | 'ready' | 'error'>('idle');
+  const [status, setStatus] = useState<"idle" | "saving" | "ready" | "error">("idle");
   const [feedback, setFeedback] = useState<string | null>(null);
   const [serverFeedback, setServerFeedback] = useState<string | null>(null);
   const [serverScore, setServerScore] = useState<{ score: number; maxScore: number } | null>(null);
@@ -167,79 +153,89 @@ export function PrecalculusMasteryAdvantagePilot({
   const submissionIdRef = useRef<string | null>(null);
   const submittingRef = useRef(false);
   const intervalGraph = generateTopic11IntervalGraph(seed);
-  const generatedActivityProps: IntervalClassificationProps = mode === 'guided_practice'
-    ? {
-        prompt: 'Identify the intervals where the graph increases, decreases, and stays constant.',
-        domain: [...intervalGraph.domain] as [number, number],
-        changePoints: [...intervalGraph.changePoints] as [number, number],
-        points: intervalGraph.points.map(({ x, y }) => ({ x, y })),
-        presentationMode: 'guided_practice',
-        guidedSteps: [
-          `Mark the domain endpoints and the change points x=${intervalGraph.changePoints[0]} and x=${intervalGraph.changePoints[1]}.`,
-          'Read each graph segment from left to right and decide whether it rises, falls, or stays flat.',
-          'Write each interval. Use U or ∪ between multiple intervals. Enter none when no interval exists.',
-        ],
-        fieldHelp: {
-          increasingIntervals: 'Find every segment that rises.',
-          decreasingIntervals: 'Find every segment that falls.',
-          constantIntervals: 'Check whether any segment stays flat.',
-        },
-      }
-    : {
-        prompt: 'Identify the intervals where the graph increases, decreases, and stays constant.',
-        domain: [...intervalGraph.domain] as [number, number],
-        changePoints: [...intervalGraph.changePoints] as [number, number],
-        points: intervalGraph.points.map(({ x, y }) => ({ x, y })),
-        presentationMode: 'independent_practice',
-      };
+  const generatedActivityProps: IntervalClassificationProps =
+    mode === "guided_practice"
+      ? {
+          prompt:
+            "Identify the intervals where the graph increases, decreases, and stays constant.",
+          domain: [...intervalGraph.domain] as [number, number],
+          changePoints: [...intervalGraph.changePoints] as [number, number],
+          points: intervalGraph.points.map(({ x, y }) => ({ x, y })),
+          presentationMode: "guided_practice",
+          guidedSteps: [
+            `Mark the domain endpoints and the change points x=${intervalGraph.changePoints[0]} and x=${intervalGraph.changePoints[1]}.`,
+            "Read each graph segment from left to right and decide whether it rises, falls, or stays flat.",
+            "Write each interval. Use U or ∪ between multiple intervals. Enter none when no interval exists.",
+          ],
+          fieldHelp: {
+            increasingIntervals: "Find every segment that rises.",
+            decreasingIntervals: "Find every segment that falls.",
+            constantIntervals: "Check whether any segment stays flat.",
+          },
+        }
+      : {
+          prompt:
+            "Identify the intervals where the graph increases, decreases, and stays constant.",
+          domain: [...intervalGraph.domain] as [number, number],
+          changePoints: [...intervalGraph.changePoints] as [number, number],
+          points: intervalGraph.points.map(({ x, y }) => ({ x, y })),
+          presentationMode: "independent_practice",
+        };
   const sharedActivityProps = activityProps ?? generatedActivityProps;
 
   async function deliverEvidence(submissionId: string) {
-    const response = await fetch('/api/learning-evidence/precalculus-pilot', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
+    const response = await fetch("/api/learning-evidence/precalculus-pilot", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
       body: JSON.stringify({ submissionId }),
     });
     const body = await readJson(response);
-    if (!response.ok) throw new Error('Evidence delivery failed. Please retry.');
+    if (!response.ok) throw new Error("Evidence delivery failed. Please retry.");
 
     const evidence = parseEvidenceReceipt(body, mode);
     const reason = evidence.decision?.reason;
-    if (reason === 'awaiting_teacher_exposure' || evidence.decision?.exposureState === 'awaiting_teacher_exposure') {
-      setFeedback('Complete this skill with your teacher before using Mastery Advantage.');
+    if (
+      reason === "awaiting_teacher_exposure" ||
+      evidence.decision?.exposureState === "awaiting_teacher_exposure"
+    ) {
+      setFeedback("Complete this skill with your teacher before using Mastery Advantage.");
     } else if (evidence.masteryApplied === true) {
-      setFeedback('Mastery Advantage updated your practice record.');
+      setFeedback("Mastery Advantage updated your practice record.");
     } else {
-      setFeedback('Your practice was saved.');
+      setFeedback("Your practice was saved.");
     }
-    setStatus('ready');
+    setStatus("ready");
     router.refresh();
   }
 
   async function submit(submittedEnvelope?: unknown) {
     if (submittingRef.current) return;
     submittingRef.current = true;
-    setStatus('saving');
+    setStatus("saving");
     setFeedback(null);
 
     try {
       if (!envelopeRef.current) {
-        if (!submittedEnvelope || typeof submittedEnvelope !== 'object' || Array.isArray(submittedEnvelope)) {
-          throw new Error('Unable to read the practice submission.');
+        if (
+          !submittedEnvelope ||
+          typeof submittedEnvelope !== "object" ||
+          Array.isArray(submittedEnvelope)
+        ) {
+          throw new Error("Unable to read the practice submission.");
         }
         const envelope = submittedEnvelope as Record<string, unknown>;
         if (envelope.activityId !== activityId || envelope.mode !== mode) {
-          throw new Error('Unable to read the practice submission.');
+          throw new Error("Unable to read the practice submission.");
         }
         const parts = Array.isArray(envelope.parts)
-          ? envelope.parts.map((part) => (
-              part && typeof part === 'object' && !Array.isArray(part)
+          ? envelope.parts.map((part) =>
+              part && typeof part === "object" && !Array.isArray(part)
                 ? {
                     partId: (part as Record<string, unknown>).partId,
                     rawAnswer: (part as Record<string, unknown>).rawAnswer,
                   }
-                : part
-            ))
+                : part,
+            )
           : envelope.parts;
         envelopeRef.current = { ...envelope, parts };
         createKeyRef.current ??= createIdempotencyKey();
@@ -248,16 +244,16 @@ export function PrecalculusMasteryAdvantagePilot({
       let submissionId = submissionIdRef.current;
       if (!submissionId) {
         createKeyRef.current ??= createIdempotencyKey();
-        const response = await fetch('/api/activities/precalculus-pilot/submissions', {
-          method: 'POST',
+        const response = await fetch("/api/activities/precalculus-pilot/submissions", {
+          method: "POST",
           headers: {
-            'content-type': 'application/json',
-            'Idempotency-Key': createKeyRef.current,
+            "content-type": "application/json",
+            "Idempotency-Key": createKeyRef.current,
           },
           body: JSON.stringify(envelopeRef.current),
         });
         const body = await readJson(response);
-        if (!response.ok) throw new Error('Unable to save the practice submission.');
+        if (!response.ok) throw new Error("Unable to save the practice submission.");
         const receipt = parseSubmissionReceipt(body);
         submissionId = receipt.submissionId;
         submissionIdRef.current = submissionId;
@@ -268,60 +264,82 @@ export function PrecalculusMasteryAdvantagePilot({
 
       await deliverEvidence(submissionId);
     } catch (error) {
-      setStatus('error');
-      setFeedback(error instanceof Error ? error.message : 'Unable to save the practice.');
+      setStatus("error");
+      setFeedback(error instanceof Error ? error.message : "Unable to save the practice.");
     } finally {
       submittingRef.current = false;
     }
   }
 
   return (
-    <section id={knowledgeState ? `${knowledgeState.nodeId}-${mode}` : undefined} className="mx-auto mt-10 max-w-2xl rounded-panel border border-subtle bg-surface p-6 shadow-sm">
+    <section
+      id={knowledgeState ? `${knowledgeState.nodeId}-${mode}` : undefined}
+      className="mx-auto mt-10 max-w-2xl rounded-panel border border-subtle bg-surface p-6 shadow-sm"
+    >
       {knowledgeState && (
         <div className="mt-4 rounded border border-subtle bg-background p-3">
           <p>{knowledgeState.title}</p>
-          <p>Mastery state: {knowledgeState.status.replace('_', ' ')}</p>
-          <p>Readiness: {knowledgeState.readiness === 'blocked' ? 'Review prerequisite skills' : knowledgeState.readiness === 'awaiting_teacher_exposure' ? 'Complete the classroom introduction' : 'Ready'}</p>
+          <p>Mastery state: {knowledgeState.status.replace("_", " ")}</p>
+          <p>
+            Readiness:{" "}
+            {knowledgeState.readiness === "blocked"
+              ? "Review prerequisite skills"
+              : knowledgeState.readiness === "awaiting_teacher_exposure"
+                ? "Complete the classroom introduction"
+                : "Ready"}
+          </p>
         </div>
       )}
       <IntervalClassificationActivity
         key={attemptKey}
         {...sharedActivityProps}
         activityId={activityId}
-        mode={mode === 'guided_practice' ? 'guided' : 'practice'}
+        mode={mode === "guided_practice" ? "guided" : "practice"}
         onSubmit={submit}
       />
       {serverScore && (
-        <p className="mt-4">
-          {`Server score: ${serverScore.score}/${serverScore.maxScore}`}
-        </p>
+        <p className="mt-4">{`Server score: ${serverScore.score}/${serverScore.maxScore}`}</p>
       )}
-      {status !== 'error' && (serverFeedback || feedback) && (
+      {status !== "error" && (serverFeedback || feedback) && (
         <p className="mt-2" role="status">
-          {[serverFeedback, feedback].filter((message): message is string => Boolean(message)).join(' ')}
+          {[serverFeedback, feedback]
+            .filter((message): message is string => Boolean(message))
+            .join(" ")}
         </p>
       )}
-      {status === 'error' && feedback && (
+      {status === "error" && feedback && (
         <div className="mt-4 grid gap-3" role="alert">
           <p>{feedback}</p>
-          <button type="button" className="btn-secondary" onClick={() => { void submit(); }}>
-            {hasOpaqueSubmission ? 'Retry evidence delivery' : 'Retry submission'}
+          <button
+            type="button"
+            className="btn-secondary"
+            onClick={() => {
+              void submit();
+            }}
+          >
+            {hasOpaqueSubmission ? "Retry evidence delivery" : "Retry submission"}
           </button>
         </div>
       )}
 
-      {status === 'ready' && (
-        <button type="button" className="btn-secondary mt-4" onClick={() => {
-          envelopeRef.current = null;
-          createKeyRef.current = null;
-          submissionIdRef.current = null;
-          setFeedback(null);
-          setServerFeedback(null);
-          setServerScore(null);
-          setHasOpaqueSubmission(false);
-          setStatus('idle');
-          setAttemptKey(key => key + 1);
-        }}>Start new attempt</button>
+      {status === "ready" && (
+        <button
+          type="button"
+          className="btn-secondary mt-4"
+          onClick={() => {
+            envelopeRef.current = null;
+            createKeyRef.current = null;
+            submissionIdRef.current = null;
+            setFeedback(null);
+            setServerFeedback(null);
+            setServerScore(null);
+            setHasOpaqueSubmission(false);
+            setStatus("idle");
+            setAttemptKey((key) => key + 1);
+          }}
+        >
+          Start new attempt
+        </button>
       )}
     </section>
   );

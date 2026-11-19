@@ -2,12 +2,7 @@
 
 import { useState } from "react";
 import { ArrowUp, ChevronDown, ChevronRight, AlertTriangle } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -29,7 +24,6 @@ interface WeakFamiliesPanelProps {
   isLoading?: boolean;
 }
 
-
 /**
  * Returns a Tailwind class string for the again-rate severity color.
  *
@@ -46,7 +40,6 @@ function getAgainRateColor(againRate: number): string {
 interface ExpandedFamilyProps {
   family: FamilyPerformance;
 }
-
 
 /**
  * Renders the expanded detail row for a weak family showing rating breakdown.
@@ -77,12 +70,12 @@ function ExpandedFamilyRow({ family }: ExpandedFamilyProps) {
         </div>
       </div>
       <div className="mt-2 text-center text-xs text-muted-foreground">
-        {family.totalReviews} total reviews &middot; Average rating: {family.averageRating.toFixed(2)}/4
+        {family.totalReviews} total reviews &middot; Average rating:{" "}
+        {family.averageRating.toFixed(2)}/4
       </div>
     </div>
   );
 }
-
 
 /**
  * Renders a panel listing weak problem families sorted by again rate,
@@ -96,7 +89,6 @@ function ExpandedFamilyRow({ family }: ExpandedFamilyProps) {
  */
 export function WeakFamiliesPanel({ families, onBumpPriority, isLoading }: WeakFamiliesPanelProps) {
   const [expandedFamilies, setExpandedFamilies] = useState<Set<string>>(new Set());
-
 
   /**
    * Toggles the expanded state for a given family ID.
@@ -142,7 +134,8 @@ export function WeakFamiliesPanel({ families, onBumpPriority, isLoading }: WeakF
         </CardHeader>
         <CardContent>
           <p className="text-sm text-muted-foreground">
-            No family performance data available yet. Students need to complete some practice reviews first.
+            No family performance data available yet. Students need to complete some practice
+            reviews first.
           </p>
         </CardContent>
       </Card>
@@ -191,7 +184,9 @@ export function WeakFamiliesPanel({ families, onBumpPriority, isLoading }: WeakF
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className={cn("rounded-full px-2 py-1 text-xs font-medium border", colorClass)}>
+                  <div
+                    className={cn("rounded-full px-2 py-1 text-xs font-medium border", colorClass)}
+                  >
                     {(family.againRate * 100).toFixed(0)}% Again
                   </div>
                   <div className="text-sm text-muted-foreground">

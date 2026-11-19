@@ -1,13 +1,17 @@
-import { normalizePracticeValue } from '@/lib/practice/contract';
+import { normalizePracticeValue } from "@/lib/practice/contract";
 import {
   buildPracticeSubmissionEnvelopeFromGrade,
   type GradeResult,
   type ProblemDefinition,
   type ProblemFamily,
   type ProblemPartDefinition,
-} from '@/lib/practice/engine/types';
+} from "@/lib/practice/engine/types";
 
-export type CvpVariant = 'break-even-units' | 'break-even-dollars' | 'contribution-margin-ratio' | 'target-profit-units';
+export type CvpVariant =
+  | "break-even-units"
+  | "break-even-dollars"
+  | "contribution-margin-ratio"
+  | "target-profit-units";
 
 export interface CvpScenario {
   companyName: string;
@@ -20,7 +24,7 @@ export interface CvpScenario {
 
 export interface CvpAnalysisPart extends ProblemPartDefinition {
   id: string;
-  kind: 'numeric';
+  kind: "numeric";
   label: string;
   targetValue: number;
   tolerance: number;
@@ -44,13 +48,13 @@ export interface CvpAnalysisDefinition extends ProblemDefinition {
 export type CvpAnalysisResponse = Record<string, number | undefined>;
 
 export interface CvpAnalysisConfig {
-  mode?: ProblemDefinition['mode'];
+  mode?: ProblemDefinition["mode"];
   variant?: CvpVariant;
   tolerance?: number;
 }
 
 export interface CvpAnalysisReviewFeedback {
-  status: 'correct' | 'incorrect';
+  status: "correct" | "incorrect";
   selectedLabel?: string;
   expectedLabel?: string;
   misconceptionTags?: string[];
@@ -86,11 +90,17 @@ function pick<T>(items: readonly T[], rng: () => number): T {
  * @param amount - Amount value
  */
 function formatAmount(amount: number) {
-  return amount.toLocaleString('en-US');
+  return amount.toLocaleString("en-US");
 }
 
-const COMPANY_NAMES = ['Riverside Crafts', 'Summit Products', 'Lakewood Manufacturing', 'Prairie Goods', 'Valley Enterprises'] as const;
-const PRODUCT_NAMES = ['widgets', 'units', 'assemblies', 'kits', 'packages'] as const;
+const COMPANY_NAMES = [
+  "Riverside Crafts",
+  "Summit Products",
+  "Lakewood Manufacturing",
+  "Prairie Goods",
+  "Valley Enterprises",
+] as const;
+const PRODUCT_NAMES = ["widgets", "units", "assemblies", "kits", "packages"] as const;
 
 /**
  * Builds scenario
@@ -145,21 +155,26 @@ function computeValues(scenario: CvpScenario) {
  * @param tolerance - Tolerance value
  * @returns The constructed result
  */
-function buildParts(variant: CvpVariant, scenario: CvpScenario, values: ReturnType<typeof computeValues>, tolerance: number): CvpAnalysisPart[] {
+function buildParts(
+  variant: CvpVariant,
+  scenario: CvpScenario,
+  values: ReturnType<typeof computeValues>,
+  tolerance: number,
+): CvpAnalysisPart[] {
   const base = {
-    kind: 'numeric' as const,
-    expectedAnswerShape: 'number',
+    kind: "numeric" as const,
+    expectedAnswerShape: "number",
     standardCode: `ACC-M8-R-CVP`,
   };
 
   switch (variant) {
-    case 'break-even-units':
+    case "break-even-units":
       return [
         {
           ...base,
-          id: 'contribution-margin',
-          label: 'Contribution Margin per Unit',
-          prompt: 'What is the contribution margin per unit?',
+          id: "contribution-margin",
+          label: "Contribution Margin per Unit",
+          prompt: "What is the contribution margin per unit?",
           canonicalAnswer: values.contributionMarginPerUnit,
           explanation: `$${formatAmount(scenario.sellingPricePerUnit)} − $${formatAmount(scenario.variableCostPerUnit)} = $${formatAmount(values.contributionMarginPerUnit)}`,
           artifactTarget: String(values.contributionMarginPerUnit),
@@ -167,36 +182,36 @@ function buildParts(variant: CvpVariant, scenario: CvpScenario, values: ReturnTy
           tolerance,
           details: {
             variant,
-            explanation: 'Selling price minus variable cost per unit.',
-            formula: 'SP − VC',
+            explanation: "Selling price minus variable cost per unit.",
+            formula: "SP − VC",
           },
         },
         {
           ...base,
-          id: 'break-even-units',
-          label: 'Break-Even Point (units)',
-          prompt: 'How many units must be sold to break even?',
+          id: "break-even-units",
+          label: "Break-Even Point (units)",
+          prompt: "How many units must be sold to break even?",
           canonicalAnswer: values.breakEvenUnits,
           explanation: `$${formatAmount(scenario.fixedCosts)} ÷ $${formatAmount(values.contributionMarginPerUnit)} = ${formatAmount(values.breakEvenUnits)} units`,
-          misconceptionTags: ['cvp-analysis:break-even-units'],
+          misconceptionTags: ["cvp-analysis:break-even-units"],
           artifactTarget: String(values.breakEvenUnits),
           targetValue: values.breakEvenUnits,
           tolerance,
           details: {
             variant,
-            explanation: 'Fixed costs divided by contribution margin per unit.',
-            formula: 'FC ÷ CM per unit',
+            explanation: "Fixed costs divided by contribution margin per unit.",
+            formula: "FC ÷ CM per unit",
           },
         },
       ];
 
-    case 'break-even-dollars':
+    case "break-even-dollars":
       return [
         {
           ...base,
-          id: 'cm-ratio',
-          label: 'Contribution Margin Ratio',
-          prompt: 'What is the contribution margin ratio (as a decimal)?',
+          id: "cm-ratio",
+          label: "Contribution Margin Ratio",
+          prompt: "What is the contribution margin ratio (as a decimal)?",
           canonicalAnswer: values.contributionMarginRatio,
           explanation: `$${formatAmount(values.contributionMarginPerUnit)} ÷ $${formatAmount(scenario.sellingPricePerUnit)} = ${values.contributionMarginRatio}`,
           artifactTarget: String(values.contributionMarginRatio),
@@ -204,36 +219,36 @@ function buildParts(variant: CvpVariant, scenario: CvpScenario, values: ReturnTy
           tolerance: tolerance || 0.01,
           details: {
             variant,
-            explanation: 'Contribution margin per unit divided by selling price.',
-            formula: 'CM ÷ SP',
+            explanation: "Contribution margin per unit divided by selling price.",
+            formula: "CM ÷ SP",
           },
         },
         {
           ...base,
-          id: 'break-even-dollars',
-          label: 'Break-Even Point (dollars)',
-          prompt: 'What is the break-even point in sales dollars?',
+          id: "break-even-dollars",
+          label: "Break-Even Point (dollars)",
+          prompt: "What is the break-even point in sales dollars?",
           canonicalAnswer: values.breakEvenDollars,
           explanation: `$${formatAmount(scenario.fixedCosts)} ÷ ${values.contributionMarginRatio} = $${formatAmount(values.breakEvenDollars)}`,
-          misconceptionTags: ['cvp-analysis:break-even-dollars'],
+          misconceptionTags: ["cvp-analysis:break-even-dollars"],
           artifactTarget: String(values.breakEvenDollars),
           targetValue: values.breakEvenDollars,
           tolerance,
           details: {
             variant,
-            explanation: 'Fixed costs divided by contribution margin ratio.',
-            formula: 'FC ÷ CM ratio',
+            explanation: "Fixed costs divided by contribution margin ratio.",
+            formula: "FC ÷ CM ratio",
           },
         },
       ];
 
-    case 'contribution-margin-ratio':
+    case "contribution-margin-ratio":
       return [
         {
           ...base,
-          id: 'contribution-margin',
-          label: 'Contribution Margin per Unit',
-          prompt: 'What is the contribution margin per unit?',
+          id: "contribution-margin",
+          label: "Contribution Margin per Unit",
+          prompt: "What is the contribution margin per unit?",
           canonicalAnswer: values.contributionMarginPerUnit,
           explanation: `$${formatAmount(scenario.sellingPricePerUnit)} − $${formatAmount(scenario.variableCostPerUnit)} = $${formatAmount(values.contributionMarginPerUnit)}`,
           artifactTarget: String(values.contributionMarginPerUnit),
@@ -241,36 +256,36 @@ function buildParts(variant: CvpVariant, scenario: CvpScenario, values: ReturnTy
           tolerance,
           details: {
             variant,
-            explanation: 'Selling price minus variable cost per unit.',
-            formula: 'SP − VC',
+            explanation: "Selling price minus variable cost per unit.",
+            formula: "SP − VC",
           },
         },
         {
           ...base,
-          id: 'cm-ratio',
-          label: 'Contribution Margin Ratio',
-          prompt: 'What is the contribution margin ratio (as a decimal)?',
+          id: "cm-ratio",
+          label: "Contribution Margin Ratio",
+          prompt: "What is the contribution margin ratio (as a decimal)?",
           canonicalAnswer: values.contributionMarginRatio,
           explanation: `$${formatAmount(values.contributionMarginPerUnit)} ÷ $${formatAmount(scenario.sellingPricePerUnit)} = ${values.contributionMarginRatio}`,
-          misconceptionTags: ['cvp-analysis:cm-ratio'],
+          misconceptionTags: ["cvp-analysis:cm-ratio"],
           artifactTarget: String(values.contributionMarginRatio),
           targetValue: values.contributionMarginRatio,
           tolerance: tolerance || 0.01,
           details: {
             variant,
-            explanation: 'Contribution margin per unit divided by selling price.',
-            formula: 'CM ÷ SP',
+            explanation: "Contribution margin per unit divided by selling price.",
+            formula: "CM ÷ SP",
           },
         },
       ];
 
-    case 'target-profit-units':
+    case "target-profit-units":
       return [
         {
           ...base,
-          id: 'contribution-margin',
-          label: 'Contribution Margin per Unit',
-          prompt: 'What is the contribution margin per unit?',
+          id: "contribution-margin",
+          label: "Contribution Margin per Unit",
+          prompt: "What is the contribution margin per unit?",
           canonicalAnswer: values.contributionMarginPerUnit,
           explanation: `$${formatAmount(scenario.sellingPricePerUnit)} − $${formatAmount(scenario.variableCostPerUnit)} = $${formatAmount(values.contributionMarginPerUnit)}`,
           artifactTarget: String(values.contributionMarginPerUnit),
@@ -278,25 +293,25 @@ function buildParts(variant: CvpVariant, scenario: CvpScenario, values: ReturnTy
           tolerance,
           details: {
             variant,
-            explanation: 'Selling price minus variable cost per unit.',
-            formula: 'SP − VC',
+            explanation: "Selling price minus variable cost per unit.",
+            formula: "SP − VC",
           },
         },
         {
           ...base,
-          id: 'target-profit-units',
-          label: 'Units for Target Profit',
+          id: "target-profit-units",
+          label: "Units for Target Profit",
           prompt: `How many units must be sold to earn a target profit of $${formatAmount(scenario.targetProfit ?? 0)}?`,
           canonicalAnswer: values.targetProfitUnits,
           explanation: `($${formatAmount(scenario.fixedCosts)} + $${formatAmount(scenario.targetProfit ?? 0)}) ÷ $${formatAmount(values.contributionMarginPerUnit)} = ${formatAmount(values.targetProfitUnits)} units`,
-          misconceptionTags: ['cvp-analysis:target-profit'],
+          misconceptionTags: ["cvp-analysis:target-profit"],
           artifactTarget: String(values.targetProfitUnits),
           targetValue: values.targetProfitUnits,
           tolerance,
           details: {
             variant,
-            explanation: 'Fixed costs plus target profit, divided by contribution margin per unit.',
-            formula: '(FC + TP) ÷ CM per unit',
+            explanation: "Fixed costs plus target profit, divided by contribution margin per unit.",
+            formula: "(FC + TP) ÷ CM per unit",
           },
         },
       ];
@@ -304,24 +319,26 @@ function buildParts(variant: CvpVariant, scenario: CvpScenario, values: ReturnTy
 }
 
 const VARIANT_LABELS: Record<CvpVariant, string> = {
-  'break-even-units': 'Break-even in units',
-  'break-even-dollars': 'Break-even in dollars',
-  'contribution-margin-ratio': 'Contribution margin ratio',
-  'target-profit-units': 'Target profit in units',
+  "break-even-units": "Break-even in units",
+  "break-even-dollars": "Break-even in dollars",
+  "contribution-margin-ratio": "Contribution margin ratio",
+  "target-profit-units": "Target profit in units",
 };
 
 const GUIDANCE: Record<CvpVariant, string> = {
-  'break-even-units': 'First find the contribution margin per unit, then divide fixed costs by it.',
-  'break-even-dollars': 'Find the contribution margin ratio, then divide fixed costs by it.',
-  'contribution-margin-ratio': 'Compute the contribution margin per unit, then express it as a ratio of the selling price.',
-  'target-profit-units': 'Add the target profit to fixed costs, then divide by the contribution margin per unit.',
+  "break-even-units": "First find the contribution margin per unit, then divide fixed costs by it.",
+  "break-even-dollars": "Find the contribution margin ratio, then divide fixed costs by it.",
+  "contribution-margin-ratio":
+    "Compute the contribution margin per unit, then express it as a ratio of the selling price.",
+  "target-profit-units":
+    "Add the target profit to fixed costs, then divide by the contribution margin per unit.",
 };
 
 const FORMULA_HINTS: Record<CvpVariant, string> = {
-  'break-even-units': 'BEP (units) = Fixed Costs ÷ CM per unit',
-  'break-even-dollars': 'BEP ($) = Fixed Costs ÷ CM ratio',
-  'contribution-margin-ratio': 'CM ratio = CM per unit ÷ Selling Price',
-  'target-profit-units': 'Target units = (FC + Target Profit) ÷ CM per unit',
+  "break-even-units": "BEP (units) = Fixed Costs ÷ CM per unit",
+  "break-even-dollars": "BEP ($) = Fixed Costs ÷ CM ratio",
+  "contribution-margin-ratio": "CM ratio = CM per unit ÷ Selling Price",
+  "target-profit-units": "Target units = (FC + Target Profit) ÷ CM per unit",
 };
 
 /**
@@ -355,39 +372,61 @@ export function buildCvpAnalysisReviewFeedback(
     gradeResult.parts.map((partResult) => {
       const part = definition.parts.find((p) => p.id === partResult.partId);
       if (!part) {
-        return [partResult.partId, { status: 'incorrect' as const, message: 'Review data unavailable.' }] as const;
+        return [
+          partResult.partId,
+          { status: "incorrect" as const, message: "Review data unavailable." },
+        ] as const;
       }
       return [
         part.id,
         {
-          status: partResult.isCorrect ? ('correct' as const) : ('incorrect' as const),
-          selectedLabel: studentResponse[part.id] === undefined ? 'Not entered' : formatAmount(Number(studentResponse[part.id])),
+          status: partResult.isCorrect ? ("correct" as const) : ("incorrect" as const),
+          selectedLabel:
+            studentResponse[part.id] === undefined
+              ? "Not entered"
+              : formatAmount(Number(studentResponse[part.id])),
           expectedLabel: formatAmount(part.targetValue),
           misconceptionTags: partResult.misconceptionTags,
-          message: partResult.isCorrect ? `${part.label} is correct.` : `${part.label} should be ${formatAmount(part.targetValue)}. ${part.details.explanation}`,
+          message: partResult.isCorrect
+            ? `${part.label} is correct.`
+            : `${part.label} should be ${formatAmount(part.targetValue)}. ${part.details.explanation}`,
         },
       ] as const;
     }),
   );
 }
 
-export const cvpAnalysisFamily: ProblemFamily<CvpAnalysisDefinition, CvpAnalysisResponse, CvpAnalysisConfig> = {
+export const cvpAnalysisFamily: ProblemFamily<
+  CvpAnalysisDefinition,
+  CvpAnalysisResponse,
+  CvpAnalysisConfig
+> = {
   generate(seed, config = {}) {
     const rng = mulberry32(seed ^ 0x1a2b3c4d);
-    const variant = config.variant ?? pick(['break-even-units', 'break-even-dollars', 'contribution-margin-ratio', 'target-profit-units'] as const, rng);
+    const variant =
+      config.variant ??
+      pick(
+        [
+          "break-even-units",
+          "break-even-dollars",
+          "contribution-margin-ratio",
+          "target-profit-units",
+        ] as const,
+        rng,
+      );
     const scenario = buildScenario(seed);
     const values = computeValues(scenario);
     const tolerance = config.tolerance ?? 0;
     const parts = buildParts(variant, scenario, values, tolerance);
 
     return {
-      contractVersion: 'practice.v1',
-      familyKey: 'cvp-analysis',
-      mode: config.mode ?? 'guided_practice',
+      contractVersion: "practice.v1",
+      familyKey: "cvp-analysis",
+      mode: config.mode ?? "guided_practice",
       activityId: `cvp-analysis-${variant}-${seed}`,
       prompt: {
         title: `CVP Analysis: ${VARIANT_LABELS[variant]}`,
-        stem: `${scenario.companyName} sells ${scenario.productName} at $${formatAmount(scenario.sellingPricePerUnit)} per unit. Variable costs are $${formatAmount(scenario.variableCostPerUnit)} per unit. Fixed costs total $${formatAmount(scenario.fixedCosts)}.${variant === 'target-profit-units' ? ` The company wants to earn a target profit of $${formatAmount(scenario.targetProfit ?? 0)}.` : ''}`,
+        stem: `${scenario.companyName} sells ${scenario.productName} at $${formatAmount(scenario.sellingPricePerUnit)} per unit. Variable costs are $${formatAmount(scenario.variableCostPerUnit)} per unit. Fixed costs total $${formatAmount(scenario.fixedCosts)}.${variant === "target-profit-units" ? ` The company wants to earn a target profit of $${formatAmount(scenario.targetProfit ?? 0)}.` : ""}`,
       },
       variant,
       scenario,
@@ -397,11 +436,11 @@ export const cvpAnalysisFamily: ProblemFamily<CvpAnalysisDefinition, CvpAnalysis
         formulaHint: FORMULA_HINTS[variant],
       },
       grading: {
-        strategy: 'numeric',
+        strategy: "numeric",
         partialCredit: false,
       },
       analyticsConfig: {
-        generator: 'cvp-analysis-family',
+        generator: "cvp-analysis-family",
         seed,
         variant,
       },
@@ -430,7 +469,9 @@ export const cvpAnalysisFamily: ProblemFamily<CvpAnalysisDefinition, CvpAnalysis
       score: parts.reduce((sum, p) => sum + p.score, 0),
       maxScore: parts.length,
       parts,
-      feedback: parts.every((p) => p.isCorrect) ? 'All CVP computations are correct.' : 'Recheck the cost-volume-profit relationships.',
+      feedback: parts.every((p) => p.isCorrect)
+        ? "All CVP computations are correct."
+        : "Recheck the cost-volume-profit relationships.",
     };
   },
 

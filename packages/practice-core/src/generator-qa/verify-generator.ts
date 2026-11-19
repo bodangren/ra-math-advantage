@@ -6,7 +6,7 @@
  * oracles belong in math-content/app.
  */
 
-import type { GeneratorCorrectnessContract } from './contract';
+import type { GeneratorCorrectnessContract } from "./contract";
 
 // ── Types ────────────────────────────────────────────────────────────
 
@@ -44,7 +44,7 @@ export interface VerifyGeneratorSummary {
 
 export interface VerifyGeneratorReport {
   /** Overall verdict: "pass" if every check passed, "fail" otherwise. */
-  readonly verdict: 'pass' | 'fail';
+  readonly verdict: "pass" | "fail";
   /** Individual check results. */
   readonly checks: VerifyGeneratorCheck[];
   /** Failures extracted from checks. */
@@ -74,18 +74,18 @@ export interface GeneratorLike<TOutput = unknown> {
  */
 function runDeterminismCheck(gen: GeneratorLike<unknown>, numSeeds: number): VerifyGeneratorCheck {
   for (let i = 0; i < numSeeds; i++) {
-    const input = { nodeId: 'test-node', seed: i, difficulty: 1 };
+    const input = { nodeId: "test-node", seed: i, difficulty: 1 };
     const a = gen.generate(input);
     const b = gen.generate(input);
     if (JSON.stringify(a) !== JSON.stringify(b)) {
       return {
-        name: 'determinism',
+        name: "determinism",
         passed: false,
         message: `Non-deterministic output for seed ${i}`,
       };
     }
   }
-  return { name: 'determinism', passed: true };
+  return { name: "determinism", passed: true };
 }
 
 /**
@@ -101,18 +101,18 @@ function runUniqueAnswerCheck(
   oracle?: (output: GeneratorCorrectnessContract) => boolean,
 ): VerifyGeneratorCheck {
   for (let i = 0; i < numSeeds; i++) {
-    const input = { nodeId: 'test-node', seed: i, difficulty: 1 };
+    const input = { nodeId: "test-node", seed: i, difficulty: 1 };
     const output = gen.generate(input) as GeneratorCorrectnessContract;
 
     // Skip if output doesn't conform to GeneratorCorrectnessContract
     const rec = output as unknown as Record<string, unknown>;
-    if (!('correctAnswer' in rec)) {
+    if (!("correctAnswer" in rec)) {
       continue;
     }
 
     if (output.correctAnswer === undefined || output.correctAnswer === null) {
       return {
-        name: 'unique-answer',
+        name: "unique-answer",
         passed: false,
         message: `Missing correctAnswer for seed ${i}`,
       };
@@ -121,14 +121,14 @@ function runUniqueAnswerCheck(
     if (oracle) {
       if (!oracle(output)) {
         return {
-          name: 'unique-answer',
+          name: "unique-answer",
           passed: false,
           message: `Oracle rejected correctAnswer for seed ${i}`,
         };
       }
     }
   }
-  return { name: 'unique-answer', passed: true };
+  return { name: "unique-answer", passed: true };
 }
 
 /**
@@ -137,20 +137,23 @@ function runUniqueAnswerCheck(
  * @param {number} numSeeds - Number of seeds to test
  * @returns {VerifyGeneratorCheck} - Check result indicating pass or fail with message
  */
-function runDistractorValidityCheck(gen: GeneratorLike<unknown>, numSeeds: number): VerifyGeneratorCheck {
+function runDistractorValidityCheck(
+  gen: GeneratorLike<unknown>,
+  numSeeds: number,
+): VerifyGeneratorCheck {
   for (let i = 0; i < numSeeds; i++) {
-    const input = { nodeId: 'test-node', seed: i, difficulty: 1 };
+    const input = { nodeId: "test-node", seed: i, difficulty: 1 };
     const output = gen.generate(input) as GeneratorCorrectnessContract;
 
     // Skip if output doesn't conform to GeneratorCorrectnessContract
     const rec = output as unknown as Record<string, unknown>;
-    if (!('distractors' in rec)) {
+    if (!("distractors" in rec)) {
       continue;
     }
 
     if (!Array.isArray(output.distractors)) {
       return {
-        name: 'distractor-validity',
+        name: "distractor-validity",
         passed: false,
         message: `distractors is not an array for seed ${i}`,
       };
@@ -163,21 +166,21 @@ function runDistractorValidityCheck(gen: GeneratorLike<unknown>, numSeeds: numbe
     for (const d of output.distractors) {
       if (d === correct) {
         return {
-          name: 'distractor-validity',
+          name: "distractor-validity",
           passed: false,
           message: `Distractor collides with correctAnswer for seed ${i}`,
         };
       }
       if (seen.has(d)) {
         return {
-          name: 'distractor-validity',
+          name: "distractor-validity",
           passed: false,
           message: `Duplicate distractor for seed ${i}`,
         };
       }
       if (typeof d !== correctType) {
         return {
-          name: 'distractor-validity',
+          name: "distractor-validity",
           passed: false,
           message: `Distractor type mismatch for seed ${i}`,
         };
@@ -185,7 +188,7 @@ function runDistractorValidityCheck(gen: GeneratorLike<unknown>, numSeeds: numbe
       seen.add(d);
     }
   }
-  return { name: 'distractor-validity', passed: true };
+  return { name: "distractor-validity", passed: true };
 }
 
 /**
@@ -196,12 +199,12 @@ function runDistractorValidityCheck(gen: GeneratorLike<unknown>, numSeeds: numbe
  */
 function runInvariantsCheck(gen: GeneratorLike<unknown>, numSeeds: number): VerifyGeneratorCheck {
   for (let i = 0; i < numSeeds; i++) {
-    const input = { nodeId: 'test-node', seed: i, difficulty: 1 };
+    const input = { nodeId: "test-node", seed: i, difficulty: 1 };
     const output = gen.generate(input) as GeneratorCorrectnessContract;
 
     // Skip if output doesn't conform to GeneratorCorrectnessContract
     const rec = output as unknown as Record<string, unknown>;
-    if (!('invariants' in rec)) {
+    if (!("invariants" in rec)) {
       continue;
     }
 
@@ -213,14 +216,14 @@ function runInvariantsCheck(gen: GeneratorLike<unknown>, numSeeds: number): Veri
       const inv = raw as { readonly name?: string; readonly passed?: boolean };
       if (inv.passed === false) {
         return {
-          name: 'invariants',
+          name: "invariants",
           passed: false,
-          message: `Invariant "${inv.name ?? 'unknown'}" failed for seed ${i}`,
+          message: `Invariant "${inv.name ?? "unknown"}" failed for seed ${i}`,
         };
       }
     }
   }
-  return { name: 'invariants', passed: true };
+  return { name: "invariants", passed: true };
 }
 
 // ── Public API ───────────────────────────────────────────────────────
@@ -260,7 +263,7 @@ export function verifyGenerator(
   const passedChecks = checks.filter((c) => c.passed).length;
 
   return {
-    verdict: errors.length === 0 ? 'pass' : 'fail',
+    verdict: errors.length === 0 ? "pass" : "fail",
     checks,
     errors,
     summary: {

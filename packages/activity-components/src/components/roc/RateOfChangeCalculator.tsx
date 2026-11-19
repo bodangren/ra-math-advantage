@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { toConvexActivityId } from '@math-platform/practice-core';
-import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
-import { RateOfChangeCalculatorProps } from '../../schemas/rate-of-change-calculator.schema';
+import React, { useState } from "react";
+import { toConvexActivityId } from "@math-platform/practice-core";
+import type { PracticeSubmissionEnvelope } from "@math-platform/practice-core/contract";
+import { RateOfChangeCalculatorProps } from "../../schemas/rate-of-change-calculator.schema";
 
-type ROCMode = 'teaching' | 'guided' | 'practice';
+type ROCMode = "teaching" | "guided" | "practice";
 
 interface ROCState {
   currentStep: number;
@@ -25,21 +25,23 @@ interface ROCState {
  * @returns {number} - The computed average rate of change
  */
 function computeRateOfChange(
-  sourceType: 'function' | 'table' | 'graph',
-  data: RateOfChangeCalculatorProps['data'],
-  interval: { start: number; end: number }
+  sourceType: "function" | "table" | "graph",
+  data: RateOfChangeCalculatorProps["data"],
+  interval: { start: number; end: number },
 ): number {
   const { start, end } = interval;
 
-  if (sourceType === 'table') {
+  if (sourceType === "table") {
     const tableData = data as { x: number[]; y: number[] };
     const aIndex = tableData.x.indexOf(start);
     const bIndex = tableData.x.indexOf(end);
     if (aIndex === -1 || bIndex === -1) return 0;
-    return (tableData.y[bIndex] - tableData.y[aIndex]) / (tableData.x[bIndex] - tableData.x[aIndex]);
+    return (
+      (tableData.y[bIndex] - tableData.y[aIndex]) / (tableData.x[bIndex] - tableData.x[aIndex])
+    );
   }
 
-  if (sourceType === 'function') {
+  if (sourceType === "function") {
     const expr = (data as { expression: string }).expression;
     const match = expr.match(/(?:y|f\(x\))\s*=\s*(.+)/i);
     if (!match) return 0;
@@ -49,12 +51,12 @@ function computeRateOfChange(
     return (fB - fA) / (end - start);
   }
 
-  if (sourceType === 'graph') {
+  if (sourceType === "graph") {
     const points = (data as { points: [number, number][] }).points;
     const normStart = start === 0 ? 0 : start;
     const normEnd = end === 0 ? 0 : end;
-    const aPoint = points.find(p => (p[0] === 0 ? 0 : p[0]) === normStart);
-    const bPoint = points.find(p => (p[0] === 0 ? 0 : p[0]) === normEnd);
+    const aPoint = points.find((p) => (p[0] === 0 ? 0 : p[0]) === normStart);
+    const bPoint = points.find((p) => (p[0] === 0 ? 0 : p[0]) === normEnd);
     if (!aPoint || !bPoint) return 0;
     return (bPoint[1] - aPoint[1]) / (bPoint[0] - aPoint[0]);
   }
@@ -70,11 +72,11 @@ function computeRateOfChange(
  */
 function evaluateExpression(formula: string, x: number): number {
   const expr = formula
-    .replace(/x\s*(?:\^2|²)/gi, 'x*x')
-    .replace(/\s+/g, '')
-    .replace(/\^/g, '**')
-    .replace(/(\d+)x/gi, '$1*x')
-    .replace(/x\^(\d+)/gi, 'x**$1')
+    .replace(/x\s*(?:\^2|²)/gi, "x*x")
+    .replace(/\s+/g, "")
+    .replace(/\^/g, "**")
+    .replace(/(\d+)x/gi, "$1*x")
+    .replace(/x\^(\d+)/gi, "x**$1")
     .replace(/x/g, `(${x})`);
 
   try {
@@ -92,18 +94,18 @@ function evaluateExpression(formula: string, x: number): number {
  */
 function safeEvalPolynomial(expr: string): number {
   if (!/^[\d\s+\-*/().]+$/.test(expr)) {
-    throw new Error('Invalid expression');
+    throw new Error("Invalid expression");
   }
-  
+
   let pos = 0;
-  
+
   function parseExpression(): number {
     let result = parseTerm();
     while (pos < expr.length) {
-      if (expr[pos] === '+') {
+      if (expr[pos] === "+") {
         pos++;
         result += parseTerm();
-      } else if (expr[pos] === '-') {
+      } else if (expr[pos] === "-") {
         pos++;
         result -= parseTerm();
       } else {
@@ -112,17 +114,17 @@ function safeEvalPolynomial(expr: string): number {
     }
     return result;
   }
-  
+
   function parseTerm(): number {
     let result = parseFactor();
     while (pos < expr.length) {
-      if (expr[pos] === '*') {
+      if (expr[pos] === "*") {
         pos++;
         result *= parseFactor();
-      } else if (expr[pos] === '/') {
+      } else if (expr[pos] === "/") {
         pos++;
         const divisor = parseFactor();
-        if (divisor === 0) throw new Error('Division by zero');
+        if (divisor === 0) throw new Error("Division by zero");
         result /= divisor;
       } else {
         break;
@@ -130,45 +132,45 @@ function safeEvalPolynomial(expr: string): number {
     }
     return result;
   }
-  
+
   function parseFactor(): number {
     let sign = 1;
-    while (pos < expr.length && (expr[pos] === '+' || expr[pos] === '-')) {
-      if (expr[pos] === '-') sign *= -1;
+    while (pos < expr.length && (expr[pos] === "+" || expr[pos] === "-")) {
+      if (expr[pos] === "-") sign *= -1;
       pos++;
     }
-    
+
     let result: number;
-    
-    if (pos < expr.length && expr[pos] === '(') {
+
+    if (pos < expr.length && expr[pos] === "(") {
       pos++;
       result = parseExpression();
-      if (pos < expr.length && expr[pos] === ')') {
+      if (pos < expr.length && expr[pos] === ")") {
         pos++;
       }
     } else {
       const start = pos;
-      while (pos < expr.length && (expr[pos] >= '0' && expr[pos] <= '9' || expr[pos] === '.')) {
+      while (pos < expr.length && ((expr[pos] >= "0" && expr[pos] <= "9") || expr[pos] === ".")) {
         pos++;
       }
       if (pos === start) {
-        throw new Error('Expected number');
+        throw new Error("Expected number");
       }
       result = parseFloat(expr.substring(start, pos));
     }
-    
+
     return sign * result;
   }
-  
-  while (pos < expr.length && expr[pos] === ' ') pos++;
-  
+
+  while (pos < expr.length && expr[pos] === " ") pos++;
+
   const result = parseExpression();
-  
-  while (pos < expr.length && expr[pos] === ' ') pos++;
+
+  while (pos < expr.length && expr[pos] === " ") pos++;
   if (pos < expr.length) {
-    throw new Error('Unexpected character');
+    throw new Error("Unexpected character");
   }
-  
+
   return result;
 }
 
@@ -180,32 +182,32 @@ function safeEvalPolynomial(expr: string): number {
  * @returns {string} - The y-value as a string, or empty string if not found
  */
 function getValueAtIndex(
-  sourceType: 'function' | 'table' | 'graph',
-  data: RateOfChangeCalculatorProps['data'],
-  index: number
+  sourceType: "function" | "table" | "graph",
+  data: RateOfChangeCalculatorProps["data"],
+  index: number,
 ): string {
-  if (sourceType === 'table') {
+  if (sourceType === "table") {
     const tableData = data as { x: number[]; y: number[] };
     const idx = tableData.x.indexOf(index);
-    if (idx === -1) return '';
+    if (idx === -1) return "";
     return String(tableData.y[idx]);
   }
 
-  if (sourceType === 'function') {
+  if (sourceType === "function") {
     const expr = (data as { expression: string }).expression;
     const match = expr.match(/(?:y|f\(x\))\s*=\s*(.+)/i);
-    if (!match) return '';
+    if (!match) return "";
     return String(evaluateExpression(match[1], index));
   }
 
-  if (sourceType === 'graph') {
+  if (sourceType === "graph") {
     const points = (data as { points: [number, number][] }).points;
     const normIndex = index === 0 ? 0 : index;
-    const point = points.find(p => (p[0] === 0 ? 0 : p[0]) === normIndex);
-    return point ? String(point[1]) : '';
+    const point = points.find((p) => (p[0] === 0 ? 0 : p[0]) === normIndex);
+    return point ? String(point[1]) : "";
   }
 
-  return '';
+  return "";
 }
 
 /**
@@ -221,21 +223,26 @@ export function RateOfChangeCalculator({
   interval,
   onSubmit,
   onComplete,
-}: RateOfChangeCalculatorProps & { activityId?: string; mode: ROCMode; onSubmit?: (payload: unknown) => void | Promise<void>; onComplete?: () => void }) {
+}: RateOfChangeCalculatorProps & {
+  activityId?: string;
+  mode: ROCMode;
+  onSubmit?: (payload: unknown) => void | Promise<void>;
+  onComplete?: () => void;
+}) {
   const [state, setState] = useState<ROCState>({
     currentStep: 0,
-    identifiedValues: { fA: '', fB: '' },
-    calculatedAnswer: '',
+    identifiedValues: { fA: "", fB: "" },
+    calculatedAnswer: "",
     submitted: false,
   });
 
   const rocValue = computeRateOfChange(sourceType, data, interval);
   const { start, end } = interval;
 
-  const totalSteps = mode === 'guided' ? 4 : 1;
+  const totalSteps = mode === "guided" ? 4 : 1;
 
-  const handleGuidedStep = (field: keyof ROCState['identifiedValues'], value: string) => {
-    setState(prev => ({
+  const handleGuidedStep = (field: keyof ROCState["identifiedValues"], value: string) => {
+    setState((prev) => ({
       ...prev,
       identifiedValues: { ...prev.identifiedValues, [field]: value },
     }));
@@ -243,20 +250,25 @@ export function RateOfChangeCalculator({
 
   const handleNextStep = () => {
     if (state.currentStep < totalSteps - 1) {
-      setState(prev => ({ ...prev, currentStep: prev.currentStep + 1 }));
+      setState((prev) => ({ ...prev, currentStep: prev.currentStep + 1 }));
     }
   };
 
   const handlePracticeSubmit = () => {
-    if (!activityId?.trim() || state.identifiedValues.fA.trim() === '' || state.identifiedValues.fB.trim() === '' || state.calculatedAnswer.trim() === '') {
+    if (
+      !activityId?.trim() ||
+      state.identifiedValues.fA.trim() === "" ||
+      state.identifiedValues.fB.trim() === "" ||
+      state.calculatedAnswer.trim() === ""
+    ) {
       return;
     }
 
     const envelope: PracticeSubmissionEnvelope = {
-      contractVersion: 'practice.v1',
+      contractVersion: "practice.v1",
       activityId: toConvexActivityId(activityId),
-      mode: mode === 'guided' ? 'guided_practice' : 'independent_practice',
-      status: 'submitted',
+      mode: mode === "guided" ? "guided_practice" : "independent_practice",
+      status: "submitted",
       attemptNumber: 1,
       submittedAt: new Date().toISOString(),
       answers: {
@@ -265,9 +277,9 @@ export function RateOfChangeCalculator({
         rate: state.calculatedAnswer,
       },
       parts: [
-        { partId: 'f_a', rawAnswer: state.identifiedValues.fA },
-        { partId: 'f_b', rawAnswer: state.identifiedValues.fB },
-        { partId: 'rate', rawAnswer: state.calculatedAnswer },
+        { partId: "f_a", rawAnswer: state.identifiedValues.fA },
+        { partId: "f_b", rawAnswer: state.identifiedValues.fB },
+        { partId: "rate", rawAnswer: state.calculatedAnswer },
       ],
     };
 
@@ -280,7 +292,7 @@ export function RateOfChangeCalculator({
       void Promise.resolve(result)
         .then(() => {
           onComplete?.();
-          setState(prev => ({ ...prev, submitted: true }));
+          setState((prev) => ({ ...prev, submitted: true }));
         })
         .catch(() => undefined);
     } catch {
@@ -288,16 +300,18 @@ export function RateOfChangeCalculator({
     }
   };
 
-  if (mode === 'teaching') {
+  if (mode === "teaching") {
     return (
       <div className="space-y-8 p-4">
         <h2 className="text-xl font-bold">Rate of Change Calculator</h2>
 
-        {sourceType === 'function' && (
+        {sourceType === "function" && (
           <div className="space-y-4">
             <div className="bg-blue-50 p-4 rounded-lg">
               <p className="text-sm font-medium text-blue-800 mb-2">Formula</p>
-              <p className="text-lg text-gray-900">Average Rate of Change = (f(b) - f(a)) / (b - a)</p>
+              <p className="text-lg text-gray-900">
+                Average Rate of Change = (f(b) - f(a)) / (b - a)
+              </p>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
@@ -317,19 +331,22 @@ export function RateOfChangeCalculator({
 
             <div className="bg-purple-50 p-4 rounded-lg">
               <p className="text-sm font-medium text-purple-800 mb-1">Expression</p>
-              <p className="text-lg font-mono text-gray-900">{(data as { expression: string }).expression}</p>
+              <p className="text-lg font-mono text-gray-900">
+                {(data as { expression: string }).expression}
+              </p>
             </div>
 
             <div className="bg-yellow-50 p-4 rounded-lg">
               <p className="text-sm font-medium text-yellow-800 mb-1">Result</p>
               <p className="text-2xl font-bold text-gray-900">
-                ({getValueAtIndex(sourceType, data, end)} - {getValueAtIndex(sourceType, data, start)}) / ({end} - {start}) = {rocValue}
+                ({getValueAtIndex(sourceType, data, end)} -{" "}
+                {getValueAtIndex(sourceType, data, start)}) / ({end} - {start}) = {rocValue}
               </p>
             </div>
           </div>
         )}
 
-        {sourceType === 'table' && (
+        {sourceType === "table" && (
           <div className="space-y-4">
             <div className="bg-blue-50 p-4 rounded-lg">
               <p className="text-sm font-medium text-blue-800 mb-2">Formula</p>
@@ -345,9 +362,9 @@ export function RateOfChangeCalculator({
                       <th
                         key={i}
                         className={`border px-4 py-2 ${
-                          val >= start && val <= end ? 'bg-yellow-100 font-bold' : ''
+                          val >= start && val <= end ? "bg-yellow-100 font-bold" : ""
                         }`}
-                        data-testid={val >= start && val <= end ? 'highlighted' : ''}
+                        data-testid={val >= start && val <= end ? "highlighted" : ""}
                       >
                         {val}
                       </th>
@@ -361,9 +378,10 @@ export function RateOfChangeCalculator({
                       <td
                         key={i}
                         className={`border px-4 py-2 ${
-                          (data as { x: number[] }).x[i] >= start && (data as { x: number[] }).x[i] <= end
-                            ? 'bg-yellow-100 font-bold'
-                            : ''
+                          (data as { x: number[] }).x[i] >= start &&
+                          (data as { x: number[] }).x[i] <= end
+                            ? "bg-yellow-100 font-bold"
+                            : ""
                         }`}
                       >
                         {val}
@@ -384,13 +402,14 @@ export function RateOfChangeCalculator({
             <div className="bg-yellow-50 p-4 rounded-lg">
               <p className="text-sm font-medium text-yellow-800 mb-1">Result</p>
               <p className="text-2xl font-bold">
-                ({getValueAtIndex(sourceType, data, end)} - {getValueAtIndex(sourceType, data, start)}) / ({end} - {start}) = {rocValue}
+                ({getValueAtIndex(sourceType, data, end)} -{" "}
+                {getValueAtIndex(sourceType, data, start)}) / ({end} - {start}) = {rocValue}
               </p>
             </div>
           </div>
         )}
 
-        {sourceType === 'graph' && (
+        {sourceType === "graph" && (
           <div className="space-y-4">
             <div className="bg-blue-50 p-4 rounded-lg">
               <p className="text-sm font-medium text-blue-800 mb-2">Formula</p>
@@ -403,14 +422,13 @@ export function RateOfChangeCalculator({
                   key={i}
                   className={`p-4 rounded-lg ${
                     point[0] === start || point[0] === end
-                      ? 'bg-yellow-100 border-2 border-yellow-400'
-                      : 'bg-gray-50'
+                      ? "bg-yellow-100 border-2 border-yellow-400"
+                      : "bg-gray-50"
                   }`}
                 >
                   <p className="text-sm font-medium">
-                    ({point[0]}, {point[1]})
-                    {point[0] === start && ' (start)'}
-                    {point[0] === end && ' (end)'}
+                    ({point[0]}, {point[1]}){point[0] === start && " (start)"}
+                    {point[0] === end && " (end)"}
                   </p>
                 </div>
               ))}
@@ -431,7 +449,7 @@ export function RateOfChangeCalculator({
     );
   }
 
-  if (mode === 'guided') {
+  if (mode === "guided") {
     return (
       <div className="space-y-6 p-4">
         <div className="flex justify-between items-center">
@@ -440,9 +458,11 @@ export function RateOfChangeCalculator({
           </span>
         </div>
 
-        {sourceType === 'function' && (
+        {sourceType === "function" && (
           <div className="bg-blue-50 p-4 rounded-lg">
-            <p className="font-mono text-lg text-gray-900">{(data as { expression: string }).expression}</p>
+            <p className="font-mono text-lg text-gray-900">
+              {(data as { expression: string }).expression}
+            </p>
           </div>
         )}
 
@@ -451,12 +471,14 @@ export function RateOfChangeCalculator({
             <div className="space-y-4">
               <p className="text-lg">Use a = {start} as the starting x-value.</p>
               <div>
-                <label htmlFor="guided-fA" className="block text-sm font-medium mb-1">f({start})</label>
+                <label htmlFor="guided-fA" className="block text-sm font-medium mb-1">
+                  f({start})
+                </label>
                 <input
                   id="guided-fA"
                   type="text"
                   value={state.identifiedValues.fA}
-                  onChange={(e) => handleGuidedStep('fA', e.target.value)}
+                  onChange={(e) => handleGuidedStep("fA", e.target.value)}
                   className="w-full border rounded-md px-3 py-2"
                   placeholder={`Enter f(${start})`}
                 />
@@ -468,12 +490,14 @@ export function RateOfChangeCalculator({
             <div className="space-y-4">
               <p className="text-lg">Use b = {end} as the ending x-value.</p>
               <div>
-                <label htmlFor="guided-fB" className="block text-sm font-medium mb-1">f({end})</label>
+                <label htmlFor="guided-fB" className="block text-sm font-medium mb-1">
+                  f({end})
+                </label>
                 <input
                   id="guided-fB"
                   type="text"
                   value={state.identifiedValues.fB}
-                  onChange={(e) => handleGuidedStep('fB', e.target.value)}
+                  onChange={(e) => handleGuidedStep("fB", e.target.value)}
                   className="w-full border rounded-md px-3 py-2"
                   placeholder={`Enter f(${end})`}
                 />
@@ -486,7 +510,8 @@ export function RateOfChangeCalculator({
               <p className="text-lg">Apply the rate of change formula</p>
               <div className="bg-blue-50 p-4 rounded-lg">
                 <p className="font-mono text-lg text-gray-900">
-                  (f(b) - f(a)) / (b - a) = ({state.identifiedValues.fB || '?'} - {state.identifiedValues.fA || '?'}) / ({end} - {start})
+                  (f(b) - f(a)) / (b - a) = ({state.identifiedValues.fB || "?"} -{" "}
+                  {state.identifiedValues.fA || "?"}) / ({end} - {start})
                 </p>
               </div>
             </div>
@@ -494,12 +519,16 @@ export function RateOfChangeCalculator({
 
           {state.currentStep === 3 && (
             <div className="space-y-4">
-              <label htmlFor="guided-rate" className="block text-lg">Average rate of change</label>
+              <label htmlFor="guided-rate" className="block text-lg">
+                Average rate of change
+              </label>
               <input
                 id="guided-rate"
                 type="text"
                 value={state.calculatedAnswer}
-                onChange={(e) => setState(prev => ({ ...prev, calculatedAnswer: e.target.value }))}
+                onChange={(e) =>
+                  setState((prev) => ({ ...prev, calculatedAnswer: e.target.value }))
+                }
                 className="w-full border rounded-md px-3 py-2"
                 placeholder="Enter calculated rate of change"
               />
@@ -514,7 +543,14 @@ export function RateOfChangeCalculator({
           {state.currentStep < totalSteps - 1 ? (
             <button
               onClick={handleNextStep}
-              disabled={state.currentStep === 0 ? state.identifiedValues.fA.trim() === '' : state.currentStep === 1 ? state.identifiedValues.fB.trim() === '' : state.identifiedValues.fA.trim() === '' || state.identifiedValues.fB.trim() === ''}
+              disabled={
+                state.currentStep === 0
+                  ? state.identifiedValues.fA.trim() === ""
+                  : state.currentStep === 1
+                    ? state.identifiedValues.fB.trim() === ""
+                    : state.identifiedValues.fA.trim() === "" ||
+                      state.identifiedValues.fB.trim() === ""
+              }
               className="px-4 py-2 bg-primary text-primary-foreground rounded-md"
             >
               Next
@@ -522,7 +558,11 @@ export function RateOfChangeCalculator({
           ) : (
             <button
               onClick={handlePracticeSubmit}
-              disabled={state.identifiedValues.fA.trim() === '' || state.identifiedValues.fB.trim() === '' || state.calculatedAnswer.trim() === ''}
+              disabled={
+                state.identifiedValues.fA.trim() === "" ||
+                state.identifiedValues.fB.trim() === "" ||
+                state.calculatedAnswer.trim() === ""
+              }
               className="px-4 py-2 bg-primary text-primary-foreground rounded-md"
             >
               Submit Answer
@@ -533,7 +573,7 @@ export function RateOfChangeCalculator({
     );
   }
 
-  if (mode === 'practice') {
+  if (mode === "practice") {
     return (
       <div className="space-y-8 p-4">
         <h2 className="text-xl font-bold">Rate of Change Calculator</h2>
@@ -543,7 +583,7 @@ export function RateOfChangeCalculator({
             Calculate the average rate of change from x = {start} to x = {end}
           </p>
 
-          {sourceType === 'table' && (
+          {sourceType === "table" && (
             <div className="overflow-x-auto">
               <table className="min-w-full border-collapse">
                 <thead>
@@ -570,13 +610,15 @@ export function RateOfChangeCalculator({
             </div>
           )}
 
-          {sourceType === 'function' && (
+          {sourceType === "function" && (
             <div className="bg-blue-50 p-4 rounded-lg">
-              <p className="font-mono text-lg text-gray-900">{(data as { expression: string }).expression}</p>
+              <p className="font-mono text-lg text-gray-900">
+                {(data as { expression: string }).expression}
+              </p>
             </div>
           )}
 
-          {sourceType === 'graph' && (
+          {sourceType === "graph" && (
             <div className="space-y-2">
               {(data as { points: [number, number][] }).points.map((point, i) => (
                 <div key={i} className="bg-gray-50 p-2 rounded">
@@ -589,34 +631,40 @@ export function RateOfChangeCalculator({
 
         <div className="space-y-4">
           <div>
-            <label htmlFor="practice-fA" className="block text-sm font-medium mb-1">f({start})</label>
+            <label htmlFor="practice-fA" className="block text-sm font-medium mb-1">
+              f({start})
+            </label>
             <input
               id="practice-fA"
               type="text"
               value={state.identifiedValues.fA}
-              onChange={(e) => handleGuidedStep('fA', e.target.value)}
+              onChange={(e) => handleGuidedStep("fA", e.target.value)}
               className="w-full border rounded-md px-3 py-2"
               placeholder={`Enter f(${start})`}
             />
           </div>
           <div>
-            <label htmlFor="practice-fB" className="block text-sm font-medium mb-1">f({end})</label>
+            <label htmlFor="practice-fB" className="block text-sm font-medium mb-1">
+              f({end})
+            </label>
             <input
               id="practice-fB"
               type="text"
               value={state.identifiedValues.fB}
-              onChange={(e) => handleGuidedStep('fB', e.target.value)}
+              onChange={(e) => handleGuidedStep("fB", e.target.value)}
               className="w-full border rounded-md px-3 py-2"
               placeholder={`Enter f(${end})`}
             />
           </div>
           <div>
-            <label htmlFor="practice-rate" className="block text-sm font-medium mb-1">Average rate of change</label>
+            <label htmlFor="practice-rate" className="block text-sm font-medium mb-1">
+              Average rate of change
+            </label>
             <input
               id="practice-rate"
               type="text"
               value={state.calculatedAnswer}
-              onChange={(e) => setState(prev => ({ ...prev, calculatedAnswer: e.target.value }))}
+              onChange={(e) => setState((prev) => ({ ...prev, calculatedAnswer: e.target.value }))}
               className="w-full border rounded-md px-3 py-2"
               placeholder="Enter the calculated rate of change"
             />
@@ -625,7 +673,11 @@ export function RateOfChangeCalculator({
 
         <button
           onClick={handlePracticeSubmit}
-          disabled={state.identifiedValues.fA.trim() === '' || state.identifiedValues.fB.trim() === '' || state.calculatedAnswer.trim() === ''}
+          disabled={
+            state.identifiedValues.fA.trim() === "" ||
+            state.identifiedValues.fB.trim() === "" ||
+            state.calculatedAnswer.trim() === ""
+          }
           className="px-6 py-2 bg-primary text-primary-foreground rounded-md"
         >
           Submit
