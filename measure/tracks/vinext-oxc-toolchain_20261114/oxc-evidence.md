@@ -224,6 +224,70 @@ declared range admits the installed release. The next run reported `NEWFAIL=0`.
 `convex/__oxc_probe__.ts(1,14): error TS2322: Type 'string' is not assignable to type 'number'.`
 The probe was deleted. `git status --porcelain` holds no probe path. The probe was not committed.
 
+### S4 Green run (2026-11-19)
+
+Tree: `39ce245f` (the gate refinement), on top of `e65553da` (the test fix),
+`2046b47f` (the blame ignore file), `dec3be20` (the format commit), and `e5f474b5`
+(the config commit). Labels: `lint s4`, `test s4`, and `checks-all s4`, all with
+`GATES_BASE=baseline-m2`.
+
+| Gate | Exit | Result line |
+|---|---|---|
+| `lint s4` | 0 | `NEWFAIL=0` |
+| `test s4` | 0 | `NEWFAIL=0` |
+| `checks-all s4` | 0 | `NEWFAIL=0`; `audit: critical=0 high=9 moderate=7 low=5` (baseline `high=11`) |
+
+Steps of `test s4`: `scripts-suite` exit 1 and `audit-suites` exit 1. Both codes
+equal `baseline-m2`, and neither log holds a new diagnostic key. `scripts-suite`
+holds exactly one failure: `remediate-concept-blueprints > production scan reports
+the honest count for the current repo state` (S1 Q3). `audit-suites` holds 5
+failures in 2 files, all pre-existing (section 10).
+
+Steps of `checks-all s4`: `boundary` 0, `ci-check` 0, `tree` 0, `next-absent` 0,
+and `measure-contract` 1 (pre-existing). The typecheck sweep and the build sweep
+hold the baseline exit codes.
+
+**Before sweep.** At the config state (`e5f474b5`), `lint s4` gives `NEWFAIL=0`,
+exit 0, and `checks-all s4` gives `NEWFAIL=0`, exit 0. `test s4` gives
+`NEWFAIL=1`, exit 1, with 33 new key lines: 29 `oxfmt --check` file lines and 2
+`FAIL` titles from case 1, and 2 `AssertionError` lines from cases 1 and 3. Cases 1
+and 3 are red by design until the format and blame commits. The before set holds
+only S4 case output.
+
+**Format regression and its fix.** The first after sweep (at `824d2b3f`) found 17
+tests that pass at `baseline-m2` and fail after the format. Each one reads a
+source file as text and pins its exact quote or layout; oxfmt 0.78.0 uses
+`singleQuote=false` and its own layout. The fix is one commit,
+`e65553da test(format): match the oxfmt source text in 17 tests`, over 12 test
+files: bus-math-v2 6 tests, integrated-math-2 2 tests, integrated-math-3 92 tests
+in 7 files. `npm run format:check` exits 0 on 3717 files, `npx tsc --noEmit` exits
+0, and `npm run lint` exits 0. The fixture canonical JSON is equal to its
+pre-format value and holds 49 entries. Three changes are quote-tolerant on
+purpose: the IM2 extractor guard rewrites the script with the formatted tokens,
+the IM3 teacher-flow contract reads the `as const` entry map with a quote-pair
+pattern, and the IM3 seed test builds the exact layout that oxfmt produced.
+
+**Gate refinement.** The format commit also changed the text that two failures
+that already existed at the baseline print: the IM3 submissions route test prints
+its own source as a code frame, and the pre-calculus module-paths test prints the
+production route source in its diff. The compare reported 18 new keys for those
+two failures. The spec keys a test failure by the test file and the test title,
+so `key()` now drops the echo lines (diff lines and code-frame lines) and
+normalizes the received value inside an assertion message. The failing test file
+and the failing test title stay in the key, so every new failing test is still a
+new key. The refinement is one commit,
+`39ce245f measure(gates): refine the key() comparison to the spec file+title
+granularity`. Proof: the committed gates-script cases give 26 passed, the S1-S4
+Red cases give 40 passed, the full scripts suite gives 94 passed and the one
+pre-existing `remediate-concept-blueprints` failure, no `FAIL` title is lost by
+the new key (checked over every baseline and after log), and the before sweep
+still holds its 33 S4 keys.
+
+**Filters.** `-t 'S4 oxfmt'`: 5 passed, exit 0. `-t 'S2 adversarial'`: 13 passed.
+`-t 'S3 tsrs'`: 8 passed. `-t 'S3 adversarial'`: 14 passed. The full scripts
+suite gives 94 passed and 1 failed (the pre-existing `remediate-concept-blueprints`
+row).
+
 ## 3. Package changes
 
 Filled by the S1 Implement tasks. The lockfile is the root `package-lock.json` only.
@@ -465,6 +529,42 @@ from 2 to 1 for a failing workspace.
 | `tsc --noEmit` in `packages/teacher-reporting-core` (median of 3) | tsc 7.0.2 | 0.2 |
 | `tsc --noEmit` in `packages/_template` (median of 3) | tsc 7.0.2 | 0.2 |
 | `tsc --noEmit` in `packages/workbook-pipeline` (median of 3) | tsc 7.0.2 | 0.2 |
+
+### S4 oxfmt timing (2026-11-19)
+
+Method: the plan "Timing Method". One warm `npm run format:check` run, then 3 timed
+runs with bash `time` and `TIMEFORMAT=%R`, in one `heavy-run.sh` job with no
+concurrent heavy job. The command is the root script `format:check`, which runs
+`oxfmt --check`. The formatter is oxfmt 0.78.0 (`npx --no-install oxfmt --version`
+prints `Version: 0.78.0`). The table holds the median of the 3 runs. The values
+include the npm overhead (about 0.5 s).
+
+| Task | Tool before | Seconds before | Tool after | Seconds after | Ratio |
+|---|---|---|---|---|---|
+| `npm run format:check` at the repository root (median of 3) | no formatter | n/a | oxfmt 0.78.0 | 0.29 | n/a |
+
+Raw values at the final tree (`39ce245f`): 0.269 s, 0.293 s, and 0.339 s. The
+first measurement after the format commit gave 0.267 s, 0.276 s, and 0.291 s
+(median 0.276 s). The difference is the machine load of the shared host.
+
+**File counts.** The pre-format `oxfmt --check` run listed 3499 files with a
+format issue, and the formatter scanned 3717 files. The two counts differ from the
+first scan by the two `workbooks-manifest.json` files that
+`**/workbooks-manifest.json` ignores (3501 and 3719 before that ignore rule).
+The format commit `dec3be20` holds those same 3499 files, zero paths that match
+an `ignorePatterns` entry, and none of the six dirty generated paths. The second
+`npm run format` run changed nothing, and `oxfmt --check` exits 0 with
+`All matched files use the correct format.`
+
+**Exact command and config.** The command is `npm run format:check` at the
+repository root, which runs `oxfmt --check`. The config is the root
+`.oxfmtrc.json`. It holds `$schema` and `ignorePatterns` only. The 18 ignore
+patterns are `**/*.md`, `**/*.mdx`, `measure/**`, `**/curriculum/**`,
+`kst-srs.v2/**`, `**/convex/_generated/**`, `**/package-lock.json`, `**/dist/**`,
+`**/build/**`, `**/.vinext/**`, `**/.next/**`, `**/coverage/**`,
+`**/playwright-report/**`, `**/test-results/**`, `.agents/**`, `.claude/**`, and
+`**/workbooks-manifest.json`. The file names no style option, so oxfmt 0.78.0
+runs with its defaults: `singleQuote` is false and the line width is 100.
 
 ## 6. Rule gaps
 
