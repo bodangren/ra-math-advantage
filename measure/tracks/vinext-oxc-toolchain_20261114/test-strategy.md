@@ -1,12 +1,13 @@
 # Test Strategy: vinext-oxc-toolchain_20261114
 
 Track: `vinext-oxc-toolchain_20261114` (Chore, 5 phases S1 to S5)
-Strategy revision: r7 (2026-11-19), `role_base_sha` 7ac6c9d68486dd920b63618162ec0d4bd6f6ba3a.
-Scope of revision r7: the S3 refresh at the S2 checkpoint. Section 16 records r7. Section 13
-records r4. Section 14 records r5. Section 15 records r6. A later section wins when an earlier
-rule disagrees with it. Detail level: S1 has full detail. S2 to S5 have the risks, the Red
-commands, and the gates. Refresh this file at the start of each later phase if the plan changed.
-Revision r7 replaced section 5 lines 221-222. Section 16.9 sets the S3 `phase_base_sha` point.
+Strategy revision: r8 (2026-11-19), `role_base_sha` 25036aefddd03718c8a3c8591095b186e5799c5d.
+Scope of revision r8: the S4 refresh at the S3 checkpoint. Section 17 records r8. Section 16
+records r7. Section 13 records r4. Section 14 records r5. Section 15 records r6. A later section
+wins when an earlier rule disagrees with it. Detail level: S1 has full detail. S2 to S5 have the
+risks, the Red commands, and the gates. Refresh this file at the start of each later phase if the
+plan changed. Revision r7 replaced section 5 lines 221-222. Section 16.9 sets the S3
+`phase_base_sha` point. Section 17.8 sets the S4 `phase_base_sha` point.
 
 ## 1. What this strategy proves
 
@@ -1539,3 +1540,260 @@ and 6 turn red by plan line 362; this is planned. Do not run the `test` gate bet
 Green. Pre-existing failures in evidence section 10, the Q3 row, and the two S1-accepted
 `checks-all` lines are not intentionally red. Nobody fixes them in S3. After Green the S3 filter
 exits 0; `GREEN_TEST_COMMAND` exits 1 for the one Q3 row only (16.5).
+
+## 17. Revision r8 (2026-11-19) — S4 refresh
+
+**Revision record.** This refresh uses role base
+`25036aefddd03718c8a3c8591095b186e5799c5d`, the S3 checkpoint. It re-derives the S4 Red set at
+that base, records the oxfmt facts, sets the gates and the review gates, carries the five open
+items from S3, and lists the plan amendments. It defines the S4 `phase_base_sha` point. This
+section wins when an earlier rule disagrees with it. S4 risk stays **medium** (section 3).
+
+### 17.1 Facts checked at the role base
+
+| Fact | Command and result |
+|------|--------------------|
+| HEAD is the S3 checkpoint. | `git rev-parse HEAD` → `25036aefddd03718c8a3c8591095b186e5799c5d`. |
+| oxfmt is absent from the tree. | `ls -d node_modules/oxfmt` → absent. `grep '"node_modules/oxfmt"' package-lock.json` → absent. `grep '"oxfmt"' package.json` → absent. No `format` or `format:check` script exists. |
+| The registry latest is 0.79.0. The plan pins 0.78.0. | `npm view oxfmt version` → `0.79.0`. `npm view oxfmt@0.78.0 version` → `0.78.0`. Plan line 456 says `0.78.0` exact. |
+| The config file name is `.oxfmtrc.json`. The CLI writes it with `--init`. | `npx --yes oxfmt@0.78.0 --help` → `--init  Initialize .oxfmtrc.json with default values`; `-c, --config=PATH` accepts `.json`, `.jsonc`, `.ts`, `.mts`, `.cts`, `.js`, `.mjs`, `.cjs`. |
+| The config schema keys are known. | `https://unpkg.com/oxfmt@0.78.0/configuration_schema.json` → title `Oxfmtrc`. Top-level keys include `ignorePatterns`, `overrides`, `associations`, `printWidth`, `tabWidth`, `semi`, `singleQuote`, `trailingComma`, `endOfLine`, `insertFinalNewline`, `objectWrap`, `sortPackageJson`, `sortImports`, `embeddedLanguageFormatting`, and the language-specific options. The target config holds `$schema` and `ignorePatterns` only (plan lines 451-452). Defaults stay active: `printWidth=100`, `tabWidth=2`, `semi=true`, `singleQuote=false`, `endOfLine=lf`, `insertFinalNewline=true`, `sortPackageJson=true`. |
+| No other formatter config exists. | `git ls-files` for prettier, biome, and editorconfig paths → none. No `.oxfmtrc.json` and no `.git-blame-ignore-revs` are tracked. |
+| oxfmt supports every named source type. | The schema `Language` enum holds javascript, jsx, typescript, tsx, json, jsonc, json5, css, scss, less, graphql, yaml, markdown, toml, html, angular-html, vue, svelte, astro, handlebars, and mdx. So ts, tsx, js, mjs, json, md, css, and yaml are all formatable. The target `**/*.md` ignore keeps markdown out of S4 (spec line 253). |
+| Unsupported extensions are skipped in a tree scan. | `git ls-files` shows 534 `.py`, 147 `.docx`, 145 `.log`, 71 `.xlsx`, 63 `.jpg`, 44 `.sh`, and other extensions. None appear in the format log. No error line names them. |
+| An explicit target set with only unsupported files exits 2. | In the worktree, `npx --yes oxfmt@0.78.0 --check __probe__.py __probe__.txt` → `Expected at least one target file. All matched files may have been excluded by ignore rules.` and exit 2. A `.ts` probe with `const  a={b:1}` → exit 1, names the probe, and counts 1 file. |
+| The format-only diff is large but bounded. | In the throwaway worktree `/tmp/opencode/oxfmt-s4-probe`, with the plan config of lines 451-452, `npx --yes oxfmt@0.78.0 --check` → exit 1, `Format issues found in above 3501 files`, `Finished in 173ms on 3719 files using 12 threads`. The 3501 files are ts 2352, tsx 1032, json 53, mjs 47, yml 6, css 6, jsonc 5. The log holds no error or failed line. Log: `/tmp/opencode/oxfmt-s4-check.log`. |
+| The change set excludes the plan ignores. | The log has zero `.md` paths and zero paths under `measure/`, `**/curriculum/`, `**/convex/_generated/`, or `package-lock.json`. |
+| Two generated manifests sit in the change set. | `apps/bus-math-v2/lib/workbooks-manifest.json` (log line 782) and `apps/integrated-math-3/lib/workbooks-manifest.json` (line 2171). The BM2 file is dirty at HEAD. `apps/bus-math-v2/scripts/generate-workbook-manifest.ts:67` writes `JSON.stringify(manifest, null, 2)`. Plan lines 453-454 require its output path in `ignorePatterns`. |
+| The 49-entry fixture is in the change set. | `scripts/__tests__/fixtures/lint-disable-allowlist.json` is log line 3427. `entries.length` is 49. Each entry holds `path`, `kinds`, `directiveCount`, `blanketBlocks`, `hiddenRules`, and `reason`. No entry stores a line number. `readDisableAllowlist()` parses the JSON at test file line 1710. |
+| The gate classifier still misses two forms. | `gates.sh` line 30 `DISK_FULL_RE` holds the ENOSPC, EDQUOT, `errno`, and `code` forms. It has no `No space left on device (os error 28)` and no `spawn ENOSPC` alternative (Review A S3 r2 F1). |
+| The tree has six dirty generated files and no other change. | `git status --porcelain` → ` M` for the four `apps/*/.next/types/routes.d.ts`, `apps/bus-math-v2/lib/workbooks-manifest.json`, and `measure/generated/routes.md`. No staged or untracked entry. |
+
+Questions and applied defaults are in 17.11. The dry-run counts are a pre-format estimate. Green
+records the real `npm run format:check` time after the format commit in evidence section 5.
+
+### 17.2 S4 Red set re-derived at role base `25036aef`
+
+The S4 describe does not exist at this base. Mid Red adds it. Run the discovery check of section
+5 first. **All five plan cases are red. No case is a guard. S4 is a real Red phase.** S2 was
+guard-only; S4 has an absent tool and absent config.
+
+| Case | Assertion (plan lines 458-463) | Base state and expected Red failure | Falsification condition |
+|------|-------------------------------|-------------------------------------|-------------------------|
+| 1 | `npx --no-install oxfmt --check` at the repository root exits 0. | Red. The tool is absent. `npx --no-install` prints `could not determine executable to run`. This is a positive case, so absence is the named reason. | The case passes while the tool is absent, or a filter makes it vacuous (A4). |
+| 2 | The root `package.json` has `"format": "oxfmt"` and `"format:check": "oxfmt --check"`. | Red. Neither key exists. Record the list of missing or wrong keys. | A bare-word grep passes on the word `oxfmt`; parse the two keys and their exact values (A3, A7). |
+| 3 | `.git-blame-ignore-revs` holds a 40-character SHA. `git log -1 --format=%s <sha>` is `style: format the repo with oxfmt`. | Red. The file is absent. Record the missing-file line. | A short SHA, a wrong subject, or a SHA that names another commit passes. It cannot pass before the format-only commit exists. |
+| 4 | A `.ts` probe with `const  a={b:1}` makes `oxfmt --check <probe>` exit non-zero. The output names the probe and has no absent-tool or absent-target phrase. | Red. The `oxfmt --version` precondition fails (section 5). Record the precondition line. | The probe uses `.py` and exits 2 for an unsupported target. A bare non-zero assertion then passes for the wrong reason (A4). |
+| 5 | A `.ts` probe with `const a = { b: 1 };` and a final newline makes `oxfmt --check <probe>` exit 0. | Red. The tool is absent. Absence is the named reason for this positive case. | The case passes while the tool is absent, or the probe has no final newline and fails after Green. |
+
+`RED_TEST_COMMAND` is `npx vitest run --config scripts/vitest.config.ts -t 'S4 oxfmt'`. It exits
+1 at Red. Mid Red copies the first failing line of each case into the Red log. Case 1 turns green
+after the config and format commits. Case 3 turns green only after the blame commit (plan lines
+480-484). Do not mark the S4 Test task green early. Do not run the `test` gate between Red and
+Green (section 9).
+
+### 17.3 S4 risks and the tests that defend each
+
+Guardrails for this phase: only `apps/` and `packages/` are formatter targets; `measure/**`,
+`**/curriculum/**`, and `**/convex/_generated/**` stay out of the format scope. Shared packages
+keep the rule that they import from neither `apps/` nor `convex/_generated/`. `npm run doctor`
+and the boundary check prove that rule before and after the format. CI is out of S4 scope: S5
+adds the `format:check` step. The changed contract of S4 is the pair of root script names; S5 case
+3 reads the exact strings of plan line 455.
+
+| Risk | Defense and falsification |
+|------|---------------------------|
+| The format changes behavior | Run `lint s4`, `test s4`, and `checks-all s4` before the format commit and again after it, with `GATES_BASE=baseline-m2`. Each run prints `NEWFAIL=0`. Run the S2 oxlint (7), S2 adversarial (13), S3 tsrs (8), and S3 adversarial (14) filters after the format. If one result changes, stop (plan line 476). Falsifies when a new diagnostic key appears after the format. |
+| The format-only commit holds extra files | `git show --name-only <format sha>` equals the pre-format `oxfmt --check` file list, minus the six dirty generated paths. Falsifies when a path is added or missing. |
+| A generated file enters the commit | Assert that `git show --name-only <format sha>` has none of the six dirty generated paths. `apps/bus-math-v2/lib/workbooks-manifest.json` is in the change set and dirty at HEAD. Never stage it. Falsifies when any of the six paths is in the commit. |
+| The format touches an ignored path | Enumerate `ignorePatterns` and assert that no changed path matches it (plan line 474). The dry run showed zero matches. Falsifies when an ignored path enters `git diff --name-only`. |
+| A second run changes files | Run `npm run format` twice. The second run leaves `git status --porcelain` unchanged, apart from the six generated paths. Falsifies when a tracked file changes on the second run. |
+| Script output breaks the check after a rerun | Add `**/workbooks-manifest.json` to `ignorePatterns` through plan lines 453-454. Run `generate-workbook-manifest.ts`, then `npm run format:check` exits 0. Falsifies when a generator rerun makes the check fail. |
+| The 49-entry allow-list drifts | Parse the fixture before and after the format. The two canonical JSON strings are equal and `entries.length` is 49. Run the S2 adversarial filter; `allowlistPinViolations` returns no unlisted, stale, or changed entry. Falsifies when a value changes, or when a formatted source file moves a disable directive and changes `directiveCount`, `kinds`, or `blanketBlocks`. |
+| A probe fails for the wrong reason | Both probes use `.ts`. Each negative probe asserts the exit code, the probe name in the output, and no absent-tool or absent-target phrase. Falsifies when a `.py` probe exits 2 and is read as a formatting failure (A4). |
+| `sortPackageJson` reorders manifests | oxfmt defaults `sortPackageJson=true`. Parse each `package.json` before and after the format. All dependency maps and script strings keep the same values. Falsifies when a value changes or a text-only gate reads a reordered key. |
+| The tool version drifts from the pin | `npx --no-install oxfmt --version` prints `0.78.0` and the lockfile has one `node_modules/oxfmt` key at that version. Record `0.79.0` as the registry latest. Falsifies when a different version is installed. |
+| Blame ignore does not work | Plan case 3 plus `git blame --ignore-revs-file .git-blame-ignore-revs -L <n>,<n> <file>` on a reformatted line. The output shows a commit older than the format commit. Falsifies when the blame shows the format commit. |
+| S4 changes CI or Measure prose | `git diff <phase_base_sha> --name-only` has no `.github/workflows/` path and no `measure/` path other than the run log and the evidence file. Falsifies when an S4 commit edits a workflow or a Measure record. |
+
+### 17.4 S4 gate values and closeout
+
+| Variable | S4 value |
+|----------|----------|
+| `RED_TEST_COMMAND` | `npx vitest run --config scripts/vitest.config.ts -t 'S4 oxfmt'`; exit 1 at Red, exit 0 at Green after the blame commit. |
+| `GREEN_TEST_COMMAND` | `npx vitest run --config scripts/vitest.config.ts`. See the known failure below. |
+| Gate labels | `lint s4`, `test s4`, `checks-all s4`. |
+| `GATES_BASE` | `baseline-m2` for all three gates. Do not use `s1`, `s2`, or `s3` as the base. |
+| `PROJECT_LINT` | `npm run format:check && bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh lint s4` (section 2, line 61). |
+| `PROJECT_CHECKS` | `GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh checks-all s4`. |
+| `PROJECT_TESTS` | `GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s4`. |
+| `UX_REQUIRED` | `never`. S4 changes no runtime. The live proof is the before-and-after gate sweep, the real probes, and the real `format:check`. |
+| `W4_AUDIT_COMMAND` | Not an S4 gate. It closed in S1 (section 14.2). |
+
+**Green gate.** The S4 filter exits 0 with all five cases green. The S2 filters (13 and 7) and the
+S3 filters (14 and 8) stay green. Each phase gate prints `NEWFAIL=0`. `npm run format:check` exits
+0. `node scripts/validate-ci.mjs` exits 0.
+
+**Known pre-existing failure.** `GREEN_TEST_COMMAND` exits 1. The one failing title is
+`remediate-concept-blueprints > production scan reports the honest count for the current repo
+state` (S1 question Q3, plan line 176, evidence section 10). Parse the summary and require exactly
+that one failure. A second failure stops the phase. Do not fix that row in S4.
+
+**Closeout gate.** The Green gate; the before-and-after gate sweeps both print `NEWFAIL=0`; the
+workspace-set check prints `workspaces-<script>=27` four times with no `comm` line; the fixture
+canonical JSON is unchanged; `git show --name-only <format sha>` excludes the six dirty generated
+paths; evidence section 5 holds the `format:check` time and the pre-format file count; `npm run
+generate` and `npm run doctor` exit 0; only the six dirty generated files remain unstaged;
+`measure/runs/` is gitignored; no push before closeout.
+
+### 17.5 Review gates for S4
+
+Risk classification of all phases stays as section 3: S1 `critical`, S2 `medium`, S3 `high`, S4
+`medium`, S5 `medium`. S4 is `medium` because it adds one exact-version dev dependency and one
+format commit. It changes no runtime and no API. The main fault is a false-green commit that
+changes behavior, and the deterministic before-and-after gates defend it.
+
+| Review or gate | Applies | What the reviewer does and why |
+|----------------|---------|--------------------------------|
+| Review A (independent gate review) | Yes | Not the Red author. Reads the gate, test, and evidence diff. Checks all five Red reasons, the fixture canonical compare, the pre-format file list, and that no S2 or S3 case was dropped. S4 creates a gate that S5 trusts. |
+| Security review (Review B) | No | One exact-version formatter is a dev dependency. No trust boundary, no secrets, no native prerelease compiler, and no install hook. Review A reads the single lockfile key and the `npm audit` totals. |
+| UX/API review (Review C) | No | No user or API surface changes. The root script names hold the S5 contract form. S5 owns the public naming review (section 3). |
+| Adversarial testing | No role | Idempotence, ignore patterns, canonical fixture compare, and before-and-after sweeps are deterministic. No input class is left to attack. The adversarial defense lives in Red's classifier guard cases of 17.6(a). A "not applicable" mark here is not a review failure for S4. |
+| Browser review (UX) | No | No runtime change, so no new render to compare. The live complement is the gate sweep and the real `format:check`. |
+
+### 17.6 S4 list carried from S3
+
+| Item | Source and state | Owner | Plan line it needs |
+|------|------------------|-------|--------------------|
+| (a) `gates.sh` `DISK_FULL_RE` misses the Rust form `No space left on device (os error 28)` and the Node form `spawn ENOSPC`. | Review A S3 r2 F1. Open. Plan line 442 moves it to S4 Red. | Red, as a test-infrastructure task like 16.7. | Add one box to S4 Test (Red), after plan line 464. Full text in 17.7 item 1. |
+| (b) The probe-folder sweep has no age guard. Two runs in one checkout can still interfere. | Review A F8. Accepted residual, set in plan line 443. | Orchestrator, record only. | None unless a cheap guard is found. Record in evidence section 8. |
+| (c) An errno data form inside a failing assertion diff still classifies as INFRA. | Adversarial F2r2. Accepted residual, pinned by committed case `r2 a` (plan line 442). | Adversarial role, record only. | None. Do not edit the case. |
+| (d) npm trailer-only errno lines match no alternative. | Adversarial F3r2. Accepted Nit, pinned by committed case `r2 d` (plan line 442). | Record only. | None. |
+| (e) Review A F9. | Closed in the S3 checkpoint (handoff reference plan.md:443; the checkpoint record is on line 444). Record only. | None. | None. |
+
+### 17.7 Plan amendments (listed for the plan owner; this role does not edit plan.md)
+
+1. S4 Test (Red), after line 464. Add this box:
+   > - [ ] Test-infrastructure guard: `gates.sh` classifies the Rust and Node disk-full forms as
+   >   infrastructure. Add two guard cases and one refutation case to
+   >   `scripts/__tests__/vinext-oxc-gates-script.test.ts`. Feed a fake job log with
+   >   `No space left on device (os error 28)` and one with `spawn ENOSPC`. Each expects
+   >   `INFRA FAILURE:`, exit 3, `INFRA=1`, and no `NEW FAILURE:`. Feed a failing test title that
+   >   names `spawn ENOSPC` in prose. It expects `NEWFAIL=1` and no `INFRA=1`. Then add two
+   >   full-line anchored alternatives to `DISK_FULL_RE`, shared by `has_infra_output()` and
+   >   `key()`. Keep the three existing guard cases green. Run `bash -n`. Falsification: remove
+   >   the alternatives and the two infra cases fail; remove the anchors and the refutation case
+   >   fails.
+2. S4 Contract, line 452. Add `**/workbooks-manifest.json` to `ignorePatterns`. The required
+   search of lines 453-454 finds `apps/bus-math-v2/scripts/generate-workbook-manifest.ts:67`.
+   The dry run also puts the IM3 manifest in the change set, so the glob covers both.
+3. S4 Test (Red), lines 462-463. State that both probes use a `.ts` extension. Require the probe
+   name in the output and no absent-tool or absent-target phrase. A `.py` probe with exit 2 is not
+   a valid negative probe.
+4. S4 Implement, line 456. Keep `oxfmt` `0.78.0` exact. Record `npm view oxfmt version` as
+   `0.79.0` in evidence section 3 and section 11. If the PM chooses 0.79.0, change the pin in the
+   same commit as the config and re-run this revision's version check.
+5. S4 Implement, line 474. Exclude the six dirty generated paths from the `git diff --name-only`
+   assertion. Require `git show --name-only <format sha>` to name none of them.
+6. S4 Verify, line 486. Add the before-and-after gate sweep of 17.3 and the canonical fixture
+   JSON compare.
+7. S4 Verify, line 488. Require the `format:check` time, the pre-format count of 3501 files, the
+   scanned count of 3719 files, and the exact command and config in evidence section 5.
+8. No plan line carries a phase SHA (F5). `phase_base_sha` lives in the run log and the role
+   handoff only.
+
+### 17.8 S4 `phase_base_sha` capture
+
+`role_base_sha` `25036aefddd03718c8a3c8591095b186e5799c5d` is the S3 checkpoint. It predates the
+strategy commit of this revision. The r7 base `7ac6c9d` and the S2 checkpoint also predate it. Do
+not use any of them as `phase_base_sha`. No SHA written in this file is a capture point.
+
+1. Land the strategy commit first: `measure(strategy): refresh the S4 test strategy`. It holds
+   `test-strategy.md` only.
+2. **Captured point.** Immediately after that commit returns, before any other commit and before
+   the first S4 task commit (plan line 449), run `git status --porcelain`. Only these six entries
+   may appear, each with status ` M`: `apps/integrated-math-1/.next/types/routes.d.ts`,
+   `apps/integrated-math-2/.next/types/routes.d.ts`,
+   `apps/integrated-math-3/.next/types/routes.d.ts`,
+   `apps/pre-calculus/.next/types/routes.d.ts`,
+   `apps/bus-math-v2/lib/workbooks-manifest.json`, and `measure/generated/routes.md`. Any other
+   entry stops the capture. A staged file, an untracked file, or another modified file also stops
+   it. `measure/runs/` is gitignored.
+3. Run `git rev-parse HEAD`. Store the value as `phase_base_sha` for S4 in the orchestrator run
+   log and in the role handoff. Do not write it into `plan.md` or `spec.md` (F5).
+4. The log commit `measure(runs): add the S4 strategy log` may follow the capture. It holds only
+   the log file. It changes no workspace file, so the captured SHA stays the base.
+5. Capture before the S4 Contract commit and before any manifest, config, or test change. A
+   `phase_base_sha` that is not a descendant of the strategy commit is invalid. Stop and report.
+
+### 17.9 Anti-pattern coverage
+
+The summary lists the A-class each phase defends. The detailed table gives every S4 defense a
+falsification condition. A case with no falsification condition is not in the S4 suite. The
+catalog in `measure/anti-patterns.md` runs from A1 to A12; all twelve are considered.
+
+| Phase | Anti-patterns | Defense summary and falsification |
+|-------|---------------|-----------------------------------|
+| S1 | A3, A4, A5, A7, A9, A10 | Section 6 and 14.9. Version majors as integers, sentinels, evidence claims tied to logs, anchored patterns, no `measure/tracks/` reads, generated drift control. Falsifies on a wrong count, an empty set, an unbacked claim, a dropped app, or a staged generated file. |
+| S2 | A3, A4, A7 | Section 8 and 14.9. Labeled file counts, per-config probes, path-based allow-list. Falsifies when a config lints no file or a bare-word filter hides a rule. |
+| S3 | A3, A4, A5, A7, A11, A12 | Section 16.10. Aliased parser API, seeded probes, same-commit claims, command-form matches, guard suite, unchanged supervisor rule. Falsifies on an absent tool, an empty collector, a bare-word match, or a supervisor edit. |
+| S4 | A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12 | The detailed table below. |
+| S5 | A5, A6, A7, A9, A10, A11, A12 | Section 8 and 11. Detectors at closeout, banned-string regex with path exclusions, planned-marker removal, generator and doctor runs. Falsifies on an overstated registry or a hidden command form. |
+
+| Anti-pattern | S4 defense | Falsifies when |
+|--------------|-----------|----------------|
+| A1 | No supervisor substring heuristic. The role gate reads structured `[~]` and `[x]` markers and the labeled `NEWFAIL=<n>` and `INFRA=1` lines. | A `[~]` task with a key word in its prose is counted as done. |
+| A2 | S4 makes no publish or consent decision. No publish gate is changed. | A gate treats a draft-to-publish step as passing without a consent artifact. |
+| A3 | Parse counts as labeled integers: `Format issues found in above 3501 files`, `on 3719 files`, `entries.length=49`, `NEWFAIL=<n>`, and the two version fields. The SHA length is 40 characters. | A digit-only or substring match passes a wrong count, version, or SHA length. |
+| A4 | The version precondition guards case 4. Cases 1 and 5 are positive and name absence as their Red reason. The fixture canonical compare is non-empty at 49 entries. The workflow and manifest maps need one entry per file. The six generated paths are excluded by an enumerated set. | The tool is absent and a case still passes; the fixture compare runs on an empty object; a file map is empty; a generated path is staged. |
+| A5 | `git show --name-only <format sha>` equals the pre-format check list. The time and counts of 17.1 name the run log. Plan and registry prose says "passes" only after a command exits 0 at that commit. | A claim has no command output at that commit, or the commit holds an unlisted file. |
+| A6 | The registry and evidence do not say "resolved" while the classifier guard cases are red. Run the A5 and A6 detectors at closeout. | A "resolved" claim survives a red guard case. |
+| A7 | Ignore and exclusion checks use exact path sets. The new `DISK_FULL_RE` alternatives are full-line anchored, so a test title that names `spawn ENOSPC` stays a normal diagnostic. Manifests and workflows are parsed, not word-filtered. | A real hit is dropped by a bare word, or a prose title becomes INFRA (exit 3). |
+| A8 | Green moves tasks from `[~]` to `[x]` with a SHA. The role gate reads the markers. | A marker uses a space or is set without the work. |
+| A9 | The test file reads nothing under `measure/tracks/`. The orchestrator checks the evidence file. | A test path breaks after closeout moves the track folder. |
+| A10 | Only the six dirty generated files may appear at capture. Stage no generated file. oxfmt never writes `measure/**`. | A generated file enters a commit or a gate fails on stale generated facts. |
+| A11 | `bash tests/measure_orchestrator_audit.sh` stays in the `checks-all` gate. | The guard suite disappears from the gate. |
+| A12 | The AGENTS.md peer-review rule is not changed in S4. A supervisor change needs its own reviewed flow. | An S4 commit edits the supervisor or its AGENTS.md rule. |
+
+### 17.10 Artifact tests, live tests, fixtures, and red-suite handling
+
+**Artifact and document tests.** Plan case 2 reads manifest text. Plan case 3 reads
+`.git-blame-ignore-revs` and one `git log` subject. The ignore-list check reads config text. The
+evidence check reads section 5 numbers. These tests prove that a text exists. They do not prove
+that a tool works (section 1).
+
+**Live behavior tests.** Case 1 runs `oxfmt --check` over the real tree. Cases 4 and 5 run real
+probe files. The second `npm run format` proves idempotence. The generator rerun plus
+`format:check` proves that script output stays clean. The before-and-after gates run real
+workspaces. `git blame --ignore-revs-file` reads a real reformatted line. `npm run generate` and
+`npm run doctor` run real checks. Each artifact check has one of these as its live complement.
+
+**Fixtures and mocks.** The S4 suite does not mock oxfmt. It runs version `0.78.0` from npx. The
+only mock is the fake job log of the gate-script guard cases in 17.7 item 1; that fixture is
+labeled as a mock. The 49-entry allow-list is parsed from disk, not mocked. The dry run of 17.1
+runs in a throwaway worktree under `/tmp/opencode`, never in the main checkout. Remove that
+worktree with `git worktree remove` before the phase starts.
+
+**Intentionally-red aggregate suite.** At the S4 Red commit only `describe('S4 oxfmt')` is red,
+with five cases. The aggregate scripts suite is red by design until Green. Do not run the `test`
+gate between Red and Green. Cases 1 and 3 turn green at different implement commits; this is
+planned. Pre-existing failures in evidence section 10, the Q3 row, the audit-suite failures, and
+the `measure-contract` line are not intentionally red. Nobody fixes them in S4. After Green the
+S4 filter exits 0; `GREEN_TEST_COMMAND` exits 1 for the one Q3 row only (17.4).
+
+### 17.11 Questions with applied defaults
+
+1. The plan pins oxfmt `0.78.0`; the registry latest is `0.79.0`. Default: keep the `0.78.0`
+   exact pin and record `0.79.0` as latest. A change to 0.79.0 needs the PM and a new dry run.
+2. May oxfmt format files under `measure/`? Default: no. The `measure/**` ignore of plan line
+   452 stays. Measure prose and records keep their current text.
+3. Do the S4 probes need a `.ts` extension? Default: yes. An unsupported extension exits 2 and
+   is not a valid negative probe (17.2 case 4).
+4. Does S4 need the adversarial or browser review role? Default: no. Both are deterministic
+   checks or out of scope (17.5). The Red classifier guard cases carry the adversarial defense.
+5. Does `**/workbooks-manifest.json` enter `ignorePatterns`? Default: yes. Plan lines 453-454
+   require the output path of the generator, and the dry run puts two manifests in the change set.
+6. Does this refresh need a plan owner to apply the eight amendments of 17.7? Default: yes. This
+   role did not edit `plan.md`.
+
+No question blocks the strategy. Each default is applied in this revision.
