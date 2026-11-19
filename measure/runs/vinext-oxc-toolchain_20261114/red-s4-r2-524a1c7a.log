@@ -1,0 +1,17 @@
+MEASURE_AGENT_RESULT
+role: measure-mid-red
+status: red
+track: vinext-oxc-toolchain_20261114
+phase: Phase S4: oxfmt
+baseline_sha: 85208f3a72cd739d661a938bfc75df6d77f71964
+role_base_sha: 107cdc18ff75097db1cd07ce03d24267871caa26
+head: 524a1c7af5c79325f534bd1d1e12a8678e67a76f
+red_commit: d0d4ad71b8a47c82183752b6704d4d8f6db83423
+commits: d0d4ad71 test(vinext-oxc): match the oxfmt clean-file output in S4 case 5; 524a1c7a measure(plan): record the S4 case 5 correction
+tests_run: RED_TEST_COMMAND exit 1 (3 passed, 2 failed, 90 skipped): case 2 pass, case 4 pass, new case 5 pass; case 1 fail; case 3 fail. Companions: -t 'S3 tsrs' 8 passed; -t 'S3 adversarial' 14 passed; -t 'S2 adversarial' 13 passed. Mutants: bad-spacing probe gives exit 1 and names the probe (new case 5 fails at the exit-0 assertion); unmatched path gives exit 2 with 'Expected at least one target file. All matched files may have been excluded by ignore rules.' (new case 5 fails at the absent-target assertions). Clean probe gives exit 0 with 'All matched files use the correct format.' and 'Finished in 1ms on 1 files using 12 threads.'
+failing_cases: S4 case 1: AssertionError: Checking formatting...: expected 1 to be +0 // Object.is equality (repo not formatted yet; format commit not made). S4 case 3: AssertionError: .git-blame-ignore-revs is missing: expected false to be true // Object.is equality (blame commit not made yet).
+files_changed: scripts/__tests__/oxc-toolchain-gates.test.ts; measure/tracks/vinext-oxc-toolchain_20261114/plan.md
+plan_updates: line 464 edge case 5 now asserts exit 0, no absent-tool phrase, no absent-target phrase, the labeled line 'All matched files use the correct format.', and the parsed count 'on 1 files' required 1; Phase S4 note added: Strategy 17.7 item 3 (probe name in the clean-file output) is superseded, oxfmt 0.78.0 prints no file name for a clean file (Red retry, 2026-11-19)
+known_failures: cases 1 and 3 fail by design until Green makes the format-only commit and the blame commit; 6 dirty generated files (4 .next routes.d.ts, 1 workbooks-manifest.json, measure/generated/routes.md) left unstaged
+handoff: Green continues with the S4 Implement format commit; cases 2, 4, 5 pass and cases 1, 3 fail for their named reasons. No open questions (default: none).
+END_MEASURE_AGENT_RESULT
