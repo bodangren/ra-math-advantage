@@ -139,8 +139,19 @@ describe("Monorepo CI Matrix Workflow", () => {
       ciContent = readFileSync(CI_WORKFLOW_PATH, "utf-8");
     });
 
-    it("should require production environment for deploy", () => {
-      expect(ciContent).toMatch(/deploy:\s*\n[\s\S]*?environment:\s*production/);
+    it("should keep production deploys out of the push CI workflow", () => {
+      // S5 (spec D7, AC10): no job of the push workflow deploys.
+      expect(ciContent).not.toMatch(/^\s{2}deploy:/m);
+      expect(ciContent).not.toContain("wrangler-action");
+      expect(ciContent).not.toContain("wrangler deploy");
+    });
+
+    it("should require the production environment in the dispatched deploy workflow", () => {
+      // The meaning stays: a production deploy needs the production environment gate,
+      // and only the manual workflow can start it. S5 moves that gate here.
+      const deployContent = readFileSync(WORKFLOW_PATH, "utf-8");
+      expect(deployContent).toContain("workflow_dispatch");
+      expect(deployContent).toMatch(/environment:\s*production/);
     });
   });
 });
