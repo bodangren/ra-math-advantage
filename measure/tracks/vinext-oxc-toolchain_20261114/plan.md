@@ -475,11 +475,25 @@ _Story ref: spec.md#story-s4_
       fails. (Done: guard cases in 4c4bd10e, `DISK_FULL_RE` alternatives in 97ef1021. Pre-change the two infra cases failed with `NEW FAILURE: lint apps/x exit 1` and the refutation case passed. Post-change the full gates-script file passes 26 of 26, including the three existing guard cases. `bash -n` passes.)
     - [x] Commit: `test(vinext-oxc): add the S4 gate tests (Red)`. (1acf85c4; classifier tests 4c4bd10e and classifier fix 97ef1021.)
 - [ ] Task: S4 Implement — add the oxfmt config
-    - [ ] Add `oxfmt` `0.78.0` to the root `devDependencies`.
-    - [ ] Create `.oxfmtrc.json` in the target form.
-    - [ ] Add the `format` and `format:check` scripts to the root `package.json`.
-    - [ ] Run `npm install`.
-    - [ ] Commit: `chore(format): add the oxfmt config`.
+    - [x] Add `oxfmt` `0.78.0` to the root `devDependencies`. (Done: `e5f474b5`. `npx --no-install oxfmt --version` prints `Version: 0.78.0`, exit 0. `package-lock.json` gains only oxfmt and the `@oxfmt/binding-*` entries.)
+    - [x] Create `.oxfmtrc.json` in the target form. (Done: `e5f474b5`. `$schema` plus the 18 `ignorePatterns` of line 452.)
+    - [x] Add the `format` and `format:check` scripts to the root `package.json`. (Done: `e5f474b5`. The values are `oxfmt` and `oxfmt --check`; S4 case 2 passes.)
+    - [x] Run `npm install`. (Done: the install ran through `heavy-run.sh`, exit 0.)
+    - [x] Commit: `chore(format): add the oxfmt config`. (`e5f474b5`.)
+- S4 Implement block (2026-11-19): the config commit `e5f474b5` landed. Green stops before the
+  format commit, because the committed Red case 5 cannot pass with an honest implementation.
+  Case 5 requires `oxfmt --check <clean .ts probe>` output to name the probe file. oxfmt `0.78.0`
+  prints no file name for a clean file. The real output is `Checking formatting...`,
+  `All matched files use the correct format.`, `Finished in 1ms on 1 files using 12 threads.`,
+  exit 0. So `expect(output).toContain('probe.ts')` (test line 2806) is unsatisfiable. Case 4
+  passes, because a file with format issues does print its name. Cases 1 and 3 are pending by
+  design: case 1 needs the format commit, and case 3 needs the blame commit. S4 filter state at
+  `e5f474b5`: 2 passed, 3 failed (cases 1, 3, 5). A Mid Red retry must correct case 5, and the
+  matching text of line 462-463 and test-strategy 17.7 item 3. Proposed case 5 assertions: exit
+  code 0, no absent-tool phrase, no absent-target phrase, and the summary line
+  `All matched files use the correct format.` with the labeled count `on 1 files`. No other S4
+  case, gate value, or fixture changes. Green did not edit the committed Red test, the fixture,
+  or an S1-S4 case.
 - [ ] Task: S4 Implement — format the repository in one format-only commit
     - [ ] Run `npm run format`.
     - [ ] Confirm that `git diff --name-only` lists no path that matches `ignorePatterns`. Exclude the six dirty generated paths from this assertion. Require `git show --name-only <format sha>` to name none of them.
