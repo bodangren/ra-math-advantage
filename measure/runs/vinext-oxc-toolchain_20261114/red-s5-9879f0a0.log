@@ -86,16 +86,13 @@ plan lines 687-691.
 
 MEASURE_AGENT_RESULT
 role: measure-mid-red
+status: red
 track: vinext-oxc-toolchain_20261114
 phase: Phase S5: Gate rules and CI
-baseline_sha: 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6
-role_base_sha: 9f64a2cab4679648b81e1528d16ee6ed1202eafd
-head_sha: bf4a528cc38c45829040623137087b9f6045b52b
-red_commit: 9879f0a0
-plan_commit: bf4a528c
-tests: scripts/__tests__/oxc-toolchain-gates.test.ts describe('S5 gate rules'), 10 cases
-files: scripts/__tests__/oxc-toolchain-gates.test.ts, measure/tracks/vinext-oxc-toolchain_20261114/plan.md
-red_test_command: npx vitest run --config scripts/vitest.config.ts -t 'S5 gate rules'
-red_result: exit 1, 6 failed (cases 1, 2, 3, 4, 7, 10), 4 passed (cases 5, 6, 8, 9)
-failures_remaining: cases 1, 2, 3, 4, 7, 10 fail for their named reasons; guards 5, 6, 8, 9 pass
-status: red
+commits: 9879f0a08677ac4ad0b117e2012f851eb0ea63c6, bf4a528cc38c45829040623137087b9f6045b52b
+tests_run: npx vitest run --config scripts/vitest.config.ts -t 'S5 gate rules' gives exit 1 with 6 failed (cases 1, 2, 3, 4, 7, 10) and 4 passed (cases 5, 6, 8, 9)
+files_changed: scripts/__tests__/oxc-toolchain-gates.test.ts, measure/tracks/vinext-oxc-toolchain_20261114/plan.md
+plan_updates: S5 Test task recorded [x] with Red SHA 9879f0a0 and the Red results; S5 Contract marked [~] as the active next task
+known_failures: cases 1, 2, 3, 4, 7, 10 fail for their named reasons; guards 5, 6, 8, 9 pass; the full scripts suite fails only these 6 plus the pre-existing Q3 remediate-concept-blueprints row
+handoff: Green owns the S5 Contract edits, the F1-F8 record fixes, and all doc and config changes. RED_TEST_COMMAND for Green: npx vitest run --config scripts/vitest.config.ts -t 'S5 gate rules'. Question with default: keep the two case 9 named exclusions (root ws:* values owned by red case 3, the architecture snapshot owned by the architecture track)? Default: keep. If Review A rejects the snapshot exclusion, Green adds the manifest qualityCommands update to the sweep of plan lines 687-691.
+END_MEASURE_AGENT_RESULT
