@@ -519,6 +519,45 @@ _Story ref: spec.md#story-s4_
     - [ ] Confirm that the scripts suite passes.
     - [ ] Commit the evidence file: `measure(vinext-oxc): record the S4 results`.
     - [ ] Record the `format:check` time in evidence section 5. Record the pre-format count of 3499 files (3501 minus the two manifests that `**/workbooks-manifest.json` now ignores) and the scanned count of 3717 files (3719 minus the same two). Record the exact command and config in evidence section 5.
+- S4 Verify block (2026-11-19, after `dec3be20`): the after sweep found a real regression. Green
+  stopped before the evidence file, the docs task, and the doctor run, per the "do not commit on
+  a changed result" rule. Results at `824d2b3f`: `lint s4` prints `NEWFAIL=0`, exit 0. `test s4`
+  prints `NEWFAIL=1`, exit 1. `test.exit` holds `apps/integrated-math-2 1` (it was 0 in the before
+  sweep) and the same exit for bus-math-v2, integrated-math-3, and pre-calculus. 17 tests that
+  pass at `baseline-m2` now fail. Each one reads a source file as text and asserts its exact
+  quote or layout. oxfmt defaults to `singleQuote=false` and to its own layout, so those files
+  changed. The new failing tests:
+  - `apps/bus-math-v2` (5): `__tests__/config/test-directory-structure.test.ts` (2 cases),
+    `__tests__/config/test-runner-discovery.test.ts` (2), `__tests__/setup/convex-provider.test.ts`.
+    Examples: `testDir: './tests/e2e'` and `'use client'` are now double-quoted.
+  - `apps/integrated-math-2` (2): `__tests__/curriculum/extractor-guard.test.ts` and
+    `__tests__/pages/text-contrast.test.ts`. The extractor test rewrites
+    `scripts/extract-skill-inventory.ts` with `.replace("path.resolve(__dirname, '..')", ...)`
+    and `.replaceAll("'../packages/", ...)`; the double quotes defeat both replacements, so the
+    spawned script cannot resolve its module.
+  - `apps/integrated-math-3` (10): `__tests__/a11y/axe-harness.test.tsx`,
+    `__tests__/ci-cd/workflow-validation.test.ts`,
+    `__tests__/convex/seed/seed-standards.test.ts` (3),
+    `__tests__/convex/visualizationLearnerStateUnion.test.ts`,
+    `__tests__/e2e/teacher-flow-contract.test.ts` (2),
+    `__tests__/lib/placement/phase5-docs-and-doctor.test.ts`,
+    `__tests__/setup/convex-provider.test.ts`.
+  - `apps/pre-calculus`: no new failing title. Its key drift comes from source lines that an
+    existing failure diff echoes.
+  The CSS assertion (`text-contrast`), the YAML assertion (`workflow-validation`), and the comment
+  assertion (`axe-harness`) also fail, so a `singleQuote: true` change alone would not close them.
+  Unchanged and proven: the fixture canonical JSON is equal, with 49 entries. `npm run format`
+  is idempotent (the second run changed nothing). `dec3be20` holds 3499 files, zero ignored paths,
+  and none of the six dirty generated paths. `S2 adversarial` 13, `S3 tsrs` 8, and
+  `S3 adversarial` 14 still pass; `npx tsc --noEmit` and `npm run lint` exit 0.
+  Green did not weaken a test, narrow `ignorePatterns`, or change the format style. Decision
+  needed:
+  (a) update the 17 text-assertion tests to accept the new style, in their app tracks (keeps the
+  format contract; largest scope; Green does not recommend a same-phase edit of tests that pin
+  source text); (b) set `singleQuote: true` and re-run the format (does not close CSS, YAML, or
+  comment assertions; departs from the recorded default style); (c) exclude the asserted files
+  (weakens the format gate; Green does not recommend it). Green default: (a) in a remediation
+  track that owns those tests, then resume S4 Verify on the same `dec3be20`.
 - [ ] Task: S4 Docs & Doctor
     - [ ] Run `npm run generate`. Confirm exit code 0.
     - [ ] Run `npm run doctor`. Confirm exit code 0.
