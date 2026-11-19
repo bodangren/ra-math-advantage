@@ -722,10 +722,10 @@ _Story ref: spec.md#story-s5_
         - `measure/tech-debt.md`, `measure/tracks.md`, `measure/reviews/**`, `measure/runs/**`, `measure/archive/**`, and `measure/tracks/**`: dated history, scope-excluded, or a committed test file.
         - `scripts/architecture/architecture.manifest.json`: a recorded `qualityCommands` snapshot. S5 case 9 names this one path.
         - `measure/generated/quality-gates.md`: generated output. `npm run generate` rewrites it in the Docs & Doctor task.
-- [ ] Task: S5 Implement — write the evidence summary
-    - [ ] Fill evidence section 11: the main results, the speed ratios, the blocking gaps, and the recommended order of steps for other repositories.
-    - [ ] Commit: `measure(vinext-oxc): write the evidence summary`.
-- [ ] Task: S5 Verify — run the full gate sweep
+- [x] Task: S5 Implement — write the evidence summary (b8733002)
+    - [x] Fill evidence section 11: the main results, the speed ratios, the blocking gaps, and the recommended order of steps for other repositories. (Section 11 holds the results table, the speed bullets, the blocking gaps of section 7, the exact oxfmt pin note, and the 7-step order.)
+    - [x] Commit: `measure(vinext-oxc): write the evidence summary`. (b8733002.)
+- [~] Task: S5 Verify — run the full gate sweep
     - [ ] Run `npm ci` on Node 24.
     - [ ] Run `npm run format:check`, `npm run lint`, and `npm run typecheck` at the root. Confirm that no gate has a new failure.
     - [ ] Run the test and build gates for each workspace. Confirm that no gate has a new failure.
