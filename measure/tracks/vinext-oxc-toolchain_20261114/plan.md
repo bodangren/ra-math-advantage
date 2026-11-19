@@ -660,20 +660,34 @@ _Story ref: spec.md#story-s5_
     - [ ] S4 record item F6 (strategy 18.7 item 6): at `test-strategy.md:1617`, replace the S4 CI risk row with the fact of `17.1`: the format diff holds 5 workflow YAML files, all inside `apps/`, and S4 edits no `.github/workflows/` path in a commit. Section 18 supersedes this row for S5.
     - [ ] S4 record item F7 (strategy 18.7 item 7): in evidence section 8, record: "The before-sweep logs of S4 live under the `gates/s4-before` label. A later `s4` run does not overwrite them. The label is separate from the after-sweep label."
     - [ ] Accepted residuals (strategy 18.7 item 8): in evidence section 8, keep one record line for each accepted residual: the sweep age guard, the npm trailer-only errno lines, and the errno data form inside an assertion diff. Do not edit a committed adversarial case to close a residual.
-- [ ] Task: S5 Test (Red) — add the S5 gate tests
-    - [ ] Add `describe('S5 gate rules')` to the test file.
-    - [ ] Normal case 1: `AGENTS.md`, `measure/workflow.md`, `measure/tech-stack.md`, the root `package.json`, and each `.github/workflows/*.yml` contain none of these strings: `npx tsc`, `tsc --noEmit`, `eslint .`, `eslint src`, `vinext lint`.
-    - [ ] Normal case 2: `.github/workflows/ci.yml` has a step with `run: npm run format:check`.
-    - [ ] Normal case 3: the root scripts `lint`, `typecheck`, `format`, and `format:check` are the target forms. No root `ws:*` script contains `tsc`. The 4 workspace typecheck scripts in `TSC_FALLBACK_LIST` keep `tsc --noEmit` under S3 AC4 and plan line 679. Use `TSC_FALLBACK_LIST` for script paths and `TYPESCRIPT_KEEP_LIST` for manifest fields.
-    - [ ] Normal case 4: the "Quality Gates" section of `measure/workflow.md` names `npm run format:check`, `npm run lint`, and `npm run typecheck`.
-    - [ ] Edge case 5: `node scripts/validate-ci.mjs` exits with code 0.
-    - [ ] Edge case 6: `git grep -n -E "npx tsc|tsc --noEmit|eslint \.|eslint src|vinext lint" -- measure/scripts` finds no match (exit code 1).
-    - [ ] Normal case 7: `.github/workflows/ci.yml` has no job key `deploy`, and no line that contains `wrangler-action` or `wrangler deploy`.
-    - [ ] Normal case 8: each `node-version` value in `.github/workflows/*.yml` has a major version of 22 or more.
-    - [ ] Normal case 9 (guard): command-form regexes over workflows, the root `package.json`, `scripts/` outside `__tests__/`, and `measure/scripts/` match nothing. The 4 fallback workspace manifests are the only path exclusion.
-    - [ ] Normal case 10: `git grep -n 'planned: vinext-oxc-toolchain_20261114' -- README.md measure/tech-stack.md measure/index.md` finds nothing. The two documents state the current versions.
-    - [ ] Run the scripts suite. Confirm that cases 1 to 4, case 7, and case 10 fail. Cases 5, 6, 8, and 9 pass; they guard the rules.
-    - [ ] Commit: `test(vinext-oxc): add the S5 gate tests (Red)`.
+- [x] Task: S5 Test (Red) — add the S5 gate tests (Red commit: 9879f0a0)
+    - [x] Add `describe('S5 gate rules')` to the test file.
+    - [x] Normal case 1: `AGENTS.md`, `measure/workflow.md`, `measure/tech-stack.md`, the root `package.json`, and each `.github/workflows/*.yml` contain none of these strings: `npx tsc`, `tsc --noEmit`, `eslint .`, `eslint src`, `vinext lint`.
+    - [x] Normal case 2: `.github/workflows/ci.yml` has a step with `run: npm run format:check`.
+    - [x] Normal case 3: the root scripts `lint`, `typecheck`, `format`, and `format:check` are the target forms. No root `ws:*` script contains `tsc`. The 4 workspace typecheck scripts in `TSC_FALLBACK_LIST` keep `tsc --noEmit` under S3 AC4 and plan line 679. Use `TSC_FALLBACK_LIST` for script paths and `TYPESCRIPT_KEEP_LIST` for manifest fields.
+    - [x] Normal case 4: the "Quality Gates" section of `measure/workflow.md` names `npm run format:check`, `npm run lint`, and `npm run typecheck`.
+    - [x] Edge case 5: `node scripts/validate-ci.mjs` exits with code 0.
+    - [x] Edge case 6: `git grep -n -E "npx tsc|tsc --noEmit|eslint \.|eslint src|vinext lint" -- measure/scripts` finds no match (exit code 1).
+    - [x] Normal case 7: `.github/workflows/ci.yml` has no job key `deploy`, and no line that contains `wrangler-action` or `wrangler deploy`.
+    - [x] Normal case 8: each `node-version` value in `.github/workflows/*.yml` has a major version of 22 or more.
+    - [x] Normal case 9 (guard): command-form regexes over workflows, the root `package.json`, `scripts/` outside `__tests__/`, and `measure/scripts/` match nothing. The 4 fallback workspace manifests are the only path exclusion.
+    - [x] Normal case 10: `git grep -n 'planned: vinext-oxc-toolchain_20261114' -- README.md measure/tech-stack.md measure/index.md` finds nothing. The two documents state the current versions.
+    - [x] Run the scripts suite. Confirm that cases 1 to 4, case 7, and case 10 fail. Cases 5, 6, 8, and 9 pass; they guard the rules.
+    - [x] Commit: `test(vinext-oxc): add the S5 gate tests (Red)`. (9879f0a0.)
+    - Red command: `npx vitest run --config scripts/vitest.config.ts -t 'S5 gate rules'`. It exits with code 1. Log: `measure/runs/vinext-oxc-toolchain_20261114/red-s5-9879f0a0.log`. Discovery check before Red: `npx vitest list --filesOnly --config scripts/vitest.config.ts` names `scripts/__tests__/oxc-toolchain-gates.test.ts`.
+    - Red result of each case (first failing line):
+        - case 1: red. `AssertionError: files that name a removed tool: expected [ 'AGENTS.md:135: [npx tsc]', …(17) ] to deeply equal []` (AGENTS.md:135, 4 tech-stack note lines, 6 root ws:* scripts with 2 hits each).
+        - case 2: red. `AssertionError: ci.yml run lines with npm run format:check: expected [ 'npm ci', …(31) ] to include 'npm run format:check'`.
+        - case 3: red. `AssertionError: root scripts that are not in the target form: expected [ …(2) ] to deeply equal []` (`lint` and `typecheck` call the architecture runner; the 6 ws:* scripts flag separately).
+        - case 4: red. `AssertionError: Quality Gates names missing from measure/workflow.md: expected [ 'npm run format:check', …(1) ] to deeply equal []` (`npm run lint` is already named; `format:check` and `typecheck` are missing).
+        - case 5: pass (green guard). `node scripts/validate-ci.mjs` exits 0; every `needs` entry names a job; the in-memory mutant with a dangling entry reports `build needs ghost-job`.
+        - case 6: pass (green guard). `git grep` over `measure/scripts` exits 1 over 3 files; the seeded temp file matches the same pattern.
+        - case 7: red. `AssertionError: ci.yml job keys: expected [ 'app-foundations', 'bm2', …(5) ] to not include 'deploy'` (plus 3 wrangler lines).
+        - case 8: pass (green guard). All setup-node majors parse as integers and are 22 or more; the mutant `20` is below the floor.
+        - case 9: pass (green guard). No command-form hit over workflows, non-ws root scripts, `scripts/` outside `__tests__` (except the architecture snapshot), and `measure/scripts/`; the mutant catches 3 of 3 seeded forms.
+        - case 10: red. `AssertionError: README.md:131: test bed for the Oxc tools (planned: vinext-oxc-toolchain_20261114).` (`git grep` exits 0 with the README and tech-stack hits).
+    - Companions at the Red commit: `-t 'S4 oxfmt'` 5 pass, `-t 'S3 tsrs'` 8 pass, `-t 'S3 adversarial'` 14 pass, `-t 'S2 adversarial'` 13 pass. Full scripts suite: 98 pass, 7 fail (the 6 S5 reds plus the pre-existing Q3 `remediate-concept-blueprints` row). `npm run format:check` exit 0. `npm run lint` exit 0.
+    - Scope note for case 9: the root `ws:*` script values are excluded because red case 3 owns them; `scripts/architecture/architecture.manifest.json` is excluded as a stale architecture-track `qualityCommands` snapshot, not a live call; workspace manifests are not scanned (the four fallback manifests stay out of the Green sweep by plan line 689). Seeded mutants prove each guard can fail.
 - [ ] Task: S5 Implement — apply the gate text
     - [ ] Make the `AGENTS.md`, `measure/workflow.md`, `measure/tech-stack.md`, and root `package.json` changes of the S5 Contract.
     - [ ] Commit: `docs(gates): name the Oxc gates in the guardrails and the workflow`.
