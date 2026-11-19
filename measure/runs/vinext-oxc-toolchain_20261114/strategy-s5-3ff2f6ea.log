@@ -1,0 +1,16 @@
+MEASURE_AGENT_RESULT
+role: measure-strategy
+status: PASS
+track: vinext-oxc-toolchain_20261114
+phase: Phase S5: Gate rules and CI
+role_base_sha: 5ca9187b388970d6ebc3feca54be45570ef9fbfa
+head: 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6
+phase_base_sha: 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6
+phase_base_capture: immediately after strategy commit 3ff2f6ea, before any other commit and before the first S5 task commit (plan line 637): run git status --porcelain (only the six known generated files may appear, each M), then git rev-parse HEAD. The orchestrator captures this value. role_base_sha 5ca9187b and all earlier SHAs predate the committed strategy and are invalid.
+commits: 3ff2f6ea measure(strategy): refresh the S5 test strategy; measure(runs): add the S5 strategy log (this commit)
+tests_run: none at this role; the S5 Red command runs at Mid Red
+files_changed: measure/tracks/vinext-oxc-toolchain_20261114/test-strategy.md; measure/runs/vinext-oxc-toolchain_20261114/strategy-s5-3ff2f6ea.log
+plan_updates: none by this role; nine proposed amendments in strategy 18.7 for the S5 Contract task, covering the seven S4 record-only items F1 to F7 (PA1, PA2) and the fallback naming fix
+known_failures: none new; the Q3 aggregate row and the audit-suite baseline rows are pre-existing
+handoff: Section 18 records revision r9 in the same form as section 17. Red set re-derived at role base 5ca9187b: cases 1,2,3,4,7 and added case 10 are red; cases 5,6,8,9 are guards. Medium risk with all-phase classification S1 critical, S2 medium, S3 high, S4 medium, S5 medium. Gates: filter S5 gate rules, labels s5, GATES_BASE baseline-m2, UX_REQUIRED never, Q3 known failure. Review applicability: Review A yes (last gate later tracks trust), security Review B yes (ci.yml deploy removal, no secret exposure, cloudflare-deploy.yml keeps workflow_dispatch), UX/API Review C yes (root script names are an interface), adversarial yes (other spellings of tsc and eslint, renamed deploy job, stray planned marker), browser no (no runtime change). Anti-pattern coverage A1 to A12 per phase with a falsification condition per test. Default 1 resolves the fallback conflict: scope no-tsc to root ws:* scripts and named docs/workflows; keep the four TSC_FALLBACK_LIST workspace scripts (BM2, IM1, IM3, PreCalc) with tsc --noEmit; TYPESCRIPT_KEEP_LIST names manifest fields, not scripts; add a presence guard. Other defaults: S5 stays medium; cloudflare-deploy.yml stays; the Open tech-debt row fits at 45 lines; all seven S4 carry items are record-only and owned by S5 Contract; no user question blocks the strategy. No push.
+END_MEASURE_AGENT_RESULT
