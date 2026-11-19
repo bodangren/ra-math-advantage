@@ -10,14 +10,23 @@ are paths of the IM3 app (`apps/integrated-math-3`).
 
 | Layer | Technology | Version | Rationale |
 |-------|-----------|---------|-----------|
-| Framework | Next.js (via `vinext`) | ^16.0.0 | App Router, RSC, server components |
-| Runtime adapter | vinext (Vite-backed Next.js) | ^0.0.55 | Faster dev builds via Vite |
-| Build tool | Vite | ^8.0.0 | vinext's underlying bundler |
-| Language | TypeScript (strict) | ^6 | Type safety across full stack |
-| React | React 19 | ^19.2.9 | Latest features, RSC support |
-| Node.js | Node.js | 22 or later | vinext 0.0.55 needs `node >=22` |
+| Framework | vinext (Vite-backed Next.js runtime) | ^1.4.5 (installed 1.4.6) | App Router, RSC, server components |
+| Build tool | Vite | ^8.3.8 | vinext's underlying bundler |
+| Language | TypeScript (strict) | ^7.0.2 | Type safety across full stack |
+| React | React 19 | ^19.3.1 | Latest features, RSC support |
+| Node.js | Node.js | 24 (22 or later) | vinext 1.x needs `node >=22` |
 
-Planned: vinext 1.x with no `next` package, oxfmt, and tsrs as the type-check gate. Oxlint is already in use (planned: vinext-oxc-toolchain_20261114).
+The toolchain uses the Oxc tools. These are the current versions:
+
+| Tool | Version | Role |
+|------|---------|------|
+| oxlint | ^1.79.0 (installed 1.93.0) | Lint gate, with three `jsPlugins` adapters |
+| tsrs | 0.25.0-ts7.1.0-beta (exact) | Type-check engine behind `oxlint --type-aware --type-check` |
+| oxfmt | 0.78.0 (exact) | Format gate |
+| kept `typescript` | ^7.0.2 in 4 apps | `tsc` fallback for the apps in `TSC_FALLBACK_LIST` |
+
+The repository has no `next` package. The types of the `next` and `next/*` modules come
+from `vinext/types`. CI uses Node 24.
 
 Note (2026-11-14, Phase S1 of `vinext-oxc-toolchain_20261114`): the stack changes before
 the work starts, as workflow principle 2 requires. Phase S1 moves every app to vinext
@@ -161,9 +170,8 @@ The repository uses Oxlint 1.79.0 as the standard lint engine. The root
 packages. The policy keeps native Oxlint rules where behavior matches and uses
 JavaScript plugins only where the migration contract requires them.
 
-The compatibility plugins are temporary adapters for verified rule gaps. The
-track does not add type-aware Oxlint or `oxlint-tsgolint`. TypeScript uses the
-separate blocking `tsc --noEmit` gate. A root ESLint package can remain only as
+The compatibility plugins are temporary adapters for verified rule gaps. TypeScript uses
+a separate blocking type-check gate. A root ESLint package can remain only as
 a peer resolution required by an approved compatibility plugin. It cannot be a
 root dependency or override, and no command can execute its binary or API.
 
@@ -201,14 +209,14 @@ The S3 task records the type-check change of this track. The root
 `overrides`. The root declares `tsrs` `0.25.0-ts7.1.0-beta` (exact) in
 `devDependencies` only. No workspace manifest declares `tsrs`.
 
-Final state (2026-11-19): the root declares no `typescript` and no `overrides` entry. The root holds the `typescript6` and `@typescript/native` aliases. BM2, IM1, IM3, and PreCalc keep `tsc --noEmit` in `TSC_FALLBACK_LIST`. The other 23 workspaces run tsrs.
+Final state (2026-11-19): the root declares no `typescript` and no `overrides` entry. The root holds the `typescript6` and `@typescript/native` aliases. BM2, IM1, IM3, and PreCalc keep a `tsc` fallback in `TSC_FALLBACK_LIST`. The other 23 workspaces run tsrs.
 
 tsrs `0.25.0-ts7.1.0-beta` uses the TypeScript 7.1.0-beta compiler line.
 The kept `typescript` package uses 7.0.2.
 
 The app typecheck script is `TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 .`.
 The package typecheck script is the same command with `src` in place of `.`.
-Each package `build` script that is `tsc --noEmit` now becomes `npm run typecheck`.
+Each package `build` script that was a bare `tsc` check now becomes `npm run typecheck`.
 bus-math-v2 gets the app typecheck script. Each CI typecheck step becomes
 `npm run typecheck --workspace=<app folder>`.
 
@@ -251,7 +259,9 @@ npm run dev          # Start dev server (vinext dev)
 npm run dev:stack    # Start full stack (convex + dev server)
 npm run build        # Production build (vinext build)
 npm run lint         # Lint (Oxlint)
-npm run typecheck    # Type check (tsc --noEmit)
+npm run typecheck    # Type check (oxlint with tsrs)
+npm run format       # Format the repository (oxfmt)
+npm run format:check # Check the format without writing (oxfmt --check)
 npm run test         # Run Vitest
 npm run test:watch   # Vitest in watch mode
 ```

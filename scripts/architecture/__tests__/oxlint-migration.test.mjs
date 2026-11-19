@@ -307,7 +307,7 @@ test("workspace lint commands use the root Oxlint policy", () => {
   const rootPackage = readJson(path.join(ROOT, "package.json"));
   assert.match(
     rootPackage.scripts.lint,
-    /run-workspace-quality\.mjs --kind package --capability lint/,
+    /^(?:node scripts\/architecture\/run-workspace-quality\.mjs --kind package --capability lint|npm run lint --workspaces --if-present)$/,
   );
   assert.equal(
     rootPackage.scripts["lint:anti-slop"],

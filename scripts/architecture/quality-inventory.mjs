@@ -33,10 +33,18 @@ function rootInventory(manifest, rootPackageJson) {
       "node scripts/architecture/run-workspace-quality.mjs --kind package --capability typecheck",
     build: "node scripts/architecture/run-workspace-quality.mjs --kind package --capability build",
   };
+  // Since S5 the root lint and typecheck scripts fan out to every workspace. Each form
+  // runs the manifest-declared command of every package.
+  const workspaceFanOut = {
+    lint: "npm run lint --workspaces --if-present",
+    typecheck: "npm run typecheck --workspaces --if-present",
+  };
   const paths = [];
   if (
     Object.entries(expectedPackageScripts).every(
-      ([name, command]) => rootPackageJson.scripts?.[name] === command,
+      ([name, command]) =>
+        rootPackageJson.scripts?.[name] === command ||
+        rootPackageJson.scripts?.[name] === workspaceFanOut[name],
     )
   ) {
     paths.push(

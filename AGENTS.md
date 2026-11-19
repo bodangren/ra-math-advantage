@@ -131,8 +131,8 @@ See `measure/practice-component-contract.md` for the full spec.
 
 - No `npm install` or dependency changes without explicit approval.
 - No destructive git commands (`reset --hard`, `checkout -- <file>`, `push --force`).
-- TDD: write/adjust tests first, run `npm run lint` and relevant tests before each commit.
-- Always run `npx tsc --noEmit` in addition to `npm run build` — vinext build does not enforce TypeScript types.
+- TDD: write/adjust tests first, run `npm run format:check`, `npm run lint`, and relevant tests before each commit.
+- Always run `npm run typecheck` in addition to `npm run build`. vinext build does not enforce TypeScript types. `npm run typecheck` runs oxlint with tsrs.
 - Report discovered bugs/tech debt in Measure planning artifacts.
 - **Commit policy:** When a skill-specific workflow (e.g., Measure's atomic-commits-per-task rule) is active, follow that workflow's commit requirements. Generic "do not commit unless asked" only applies to ad-hoc work outside tracked workflows.
 - **Deploys and cloud cleanup:** Daniel authorized the orchestrator to run the prod deploys

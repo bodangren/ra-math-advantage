@@ -128,7 +128,7 @@ track order.
    role needs it. Decision models come later
    (planned: openrouter-sdk-ai-layer_20261114).
 7. **Toolchain.** vinext 1.x with no `next`, oxlint, oxfmt, and tsrs. The repository is a
-   test bed for the Oxc tools (planned: vinext-oxc-toolchain_20261114).
+   test bed for the Oxc tools.
 8. **Deploys.** Cloudflare Workers and Convex, not Vercel. Deploys run locally on this
    machine with the OAuth logins of `wrangler` and `convex`. Deploy keys go through a pipe
    into `wrangler secret put`. The orchestrator runs the prod deploys and the cloud cleanup
@@ -253,7 +253,7 @@ Run from the monorepo root:
 | `npm run generate` | Generate the Measure facts |
 | `npm run doctor` | Run the Measure doctor |
 
-Always run `npx tsc --noEmit` together with `npm run build`, because the vinext build does
+Always run `npm run typecheck` together with `npm run build`, because the vinext build does
 not enforce the TypeScript types.
 
 ## Documentation

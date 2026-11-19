@@ -45,13 +45,12 @@ test("root package quality commands are deterministic manifest projections", asy
   }
 });
 
-test("every root quality script delegates to the manifest-driven runner", async () => {
+test("every root quality script covers the packages through the runner or the fan-out", async () => {
   const snapshot = await loadLiveQualitySnapshot(REPO_ROOT, { asOf: "2026-07-11" });
   assert.deepEqual(snapshot.rootScripts, {
-    lint: "node scripts/architecture/run-workspace-quality.mjs --kind package --capability lint",
+    lint: "npm run lint --workspaces --if-present",
     test: "node scripts/architecture/run-workspace-quality.mjs --kind package --capability test",
-    typecheck:
-      "node scripts/architecture/run-workspace-quality.mjs --kind package --capability typecheck",
+    typecheck: "npm run typecheck --workspaces --if-present",
     build: "node scripts/architecture/run-workspace-quality.mjs --kind package --capability build",
   });
 });

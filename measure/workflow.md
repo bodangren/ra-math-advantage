@@ -110,8 +110,9 @@ Before marking any task complete, verify:
 - [ ] All tests pass
 - [ ] Code coverage meets requirements (>80%)
 - [ ] Code follows project's code style guidelines
-- [ ] No linting errors (`npm run lint`)
-- [ ] TypeScript compiles without errors
+- [ ] No lint errors or warnings (`npm run lint`, oxlint)
+- [ ] Type check passes (`npm run typecheck`, oxlint with tsrs)
+- [ ] Formatting passes (`npm run format:check`, oxfmt)
 - [ ] No security vulnerabilities introduced
 
 ## Development Commands
@@ -126,11 +127,13 @@ npm install
 npm run dev          # Start dev server
 npm run test         # Run tests
 npm run lint         # Lint code
+npm run typecheck    # Type check the code
+npm run format       # Format the code
 ```
 
 ### Before Committing
 ```bash
-npm run lint && npm run test && npm run build
+npm run format:check && npm run lint && npm run typecheck && npm run test && npm run build
 ```
 
 ## Testing Requirements
