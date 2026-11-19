@@ -1190,6 +1190,9 @@ Phase S5 writes this section from the measured values of sections 1 to 10.
 (`npm view oxfmt version`, 2026-11-19). The exact pin keeps the format output the same
 between installs.
 
+The S5 gate test detects a quoted tool name, such as `npx --no-install "tsc" --noEmit` and
+`npm exec -- "eslint" .` (adversarial ADV-S5-1).
+
 ### Speed (section 5)
 
 - Build: vinext 1.4.6 gives 0.34 to 0.59 of the vinext 0.0.55 time for each app. BM2
