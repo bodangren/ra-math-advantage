@@ -429,7 +429,101 @@ config above.
 
 ## 7. Conformance gaps
 
-Phase S3 fills this section.
+### S3 comparison record (2026-11-19)
+
+Commit of all three collections: `dbf29cbd40e13af4f13b6ffec392a079f77c784d`.
+
+| Tool | Version line |
+|------|---|
+| tsrs | `Version 7.1.0-beta (tsrs 0.25.0-ts7.1.0-beta, microsoft/TypeScript@3e9236361fa9)` |
+| `tsc` 7.1.0-beta | `Version 7.1.0-beta` (`npx --yes -p typescript@7.1.0-beta tsc`) |
+| `tsc` 7.0.2 | `Version 7.0.2` (`npx --no-install tsc`) |
+
+The tsrs version names the TypeScript 7.1.0-beta line, so the comparison uses
+`typescript@7.1.0-beta` from the npx cache. No manifest declares it. Raw sets:
+`tsrs.txt`, `tsc71.txt`, `tsc70.txt`, `workspace-compare.txt` in the run folder.
+
+**Method.** The tsrs set is the target typecheck command with `--format json` in each
+workspace (`apps/*` run `.`, `packages/*` run `src`). The tsc sets are
+`tsc --noEmit --pretty false -p <cfg>` for the 27 workspace `tsconfig.json` and the 6
+`apps/*/convex/tsconfig.json`. A row is file, line, and TS code, with repo-relative
+paths. Comparison is per workspace.
+
+#### Compiler-version table: `tsc` 7.0.2 against `tsc` 7.1.0-beta
+
+| Workspace | 7.0.2 rows | 7.1.0-beta rows | Only 7.0.2 | Only 7.1.0-beta |
+|---|---|---|---|---|
+| `apps/bus-math-v2` | 71 | 71 | 0 | 0 |
+| `apps/integrated-math-1` | 21 | 21 | 0 | 0 |
+| `apps/integrated-math-3` | 60 | 60 | 0 | 0 |
+| `apps/pre-calculus` | 6 | 6 | 0 | 0 |
+| the other 23 workspaces | 0 | 0 | 0 | 0 |
+
+No diagnostic differs between 7.0.2 and 7.1.0-beta. Both versions are one compiler
+line for this tree; the kept `typescript` 7.0.2 is not a lower line than tsrs.
+
+#### Gap table: tsrs against `tsc` 7.1.0-beta (tsrs-only rows)
+
+38 rows, all in `apps/integrated-math-3`. Every other workspace has `gap=0`.
+
+| File | Code | Lines | Disposition |
+|---|---|---|---|
+| `apps/integrated-math-3/scripts/scale/run.mjs` | TS2591 | 4,5,6,7,47,224,241,253 | blocking: the `.mjs` scripts use `process`; tsrs type-checks them with `allowJs` and the app `types` list, which has no node. The app `tsconfig.json` `include` covers only `*.ts`/`*.tsx`, so `tsc` never checks these files. |
+| `apps/integrated-math-3/scripts/scale/run.mjs` | TS7006 | 44,78,90,105,120,121,132,143,163,176,180,184,188,195,196,197,204,209,210,215 | blocking: implicit `any` in the same `.mjs` file. |
+| `apps/integrated-math-3/scripts/scale/run.mjs` | TS7053 | 91,133,190 | blocking: same file. |
+| `apps/integrated-math-3/scripts/validate-seed-integrity.mjs` | TS2591 | 14,15,16,200 | blocking: same rule. |
+| `apps/integrated-math-3/scripts/validate-seed-integrity.mjs` | TS7006 | 44,65,68 | blocking: same rule. |
+
+No behavior-neutral code change exists. A fix would add `node` to the app `types`
+list and rewrite the two scripts, which is not behavior-neutral and is outside S3.
+`apps/integrated-math-3` stays on `tsc --noEmit` and is in `TSC_FALLBACK_LIST`.
+
+#### Rows that `tsc` 7.1.0-beta reports and tsrs does not (69 rows)
+
+No code change (plan line 404). These rows come from the `convex/tsconfig.json`
+project, where tsrs selects the app config for the same file because it uses the
+nearest tsconfig for each linted file.
+
+| Workspace | File | Codes and lines |
+|---|---|---|
+| `apps/bus-math-v2` | `lib/practice/engine/families/accounting-equation.ts` | TS2307 1,2,3; TS2339 300,301,308; TS2353 166; TS7006 269,294,367,371,393 |
+| `apps/bus-math-v2` | `lib/practice/engine/families/classification.ts` | TS2307 5,6,7,8; TS2339 366,369,370,373,384,398; TS2347 475; TS7006 172,175,178,274,298,325,365,425,429,430,436,437,450,464,473,474,475,480,507 |
+| `apps/bus-math-v2` | `lib/practice/engine/families/normal-balance.ts` | TS2307 5,6,7,8; TS2339 329,330,333,340,354; TS7006 106,107,108,234,302,328,385,389,390,414,424,435,437,464 |
+| `apps/bus-math-v2` | `lib/practice/grading/accounting-equation-event.ts` | TS2307 1; TS2550 196 |
+| `apps/integrated-math-3` | `lib/activities/review-queue.ts` | TS2307 1 |
+| `apps/integrated-math-3` | `lib/placement/v3-placement-migration.ts` | TS2307 5 |
+
+The BM2 rows are the missing `paths` and the ES2021 `lib` level of
+`apps/bus-math-v2/convex/tsconfig.json`. They are pre-existing (identical under
+6.0.3) and are the reason BM2 sits in `TSC_FALLBACK_LIST`. The two IM3 rows are the
+same rule for its convex project.
+
+#### Fallback rows and the gate baseline
+
+`TSC_FALLBACK_LIST` holds `apps/bus-math-v2`, `apps/integrated-math-1`,
+`apps/integrated-math-3`, `apps/pre-calculus`. Each app's gate baseline is its
+`tsc` project (`tsconfig.json`), which does not check `convex/*.ts` with
+`convex/tsconfig.json` and does not check imported package sources with their own
+config. The tsrs app check does both, so it reports pre-existing diagnostics that the
+baseline does not. IM1 and PreCalc have `gap=0` and `missed=0` against the union of
+their configs, because the diagnostics exist in both tools once the convex project is
+counted; they differ only from the gate baseline. Each row is `blocking` in the sense
+of plan lines 401 to 403.
+
+#### Seeded probe: TS2322 in all three outputs
+
+Probe project: `probe.ts` with `export const n: number = "x";` and a `tsconfig.json`
+with `strict`, `noEmit`, `types: []`, and `files: ["probe.ts"]`, in a temp folder
+outside the repo.
+
+| Tool | `TS2322` lines |
+|---|---|
+| tsrs (`TSRS_FAST=1 oxlint --type-aware --type-check probe.ts`) | 1 |
+| `tsc` 7.1.0-beta | 1 |
+| `tsc` 7.0.2 | 1 |
+
+The collector was able to see the seeded fault in every set, so no `none` claim in
+this section rests on an empty collector (A5).
 
 ## 8. Workarounds
 
