@@ -1136,6 +1136,59 @@ The pre-merge rows above stay the only record. The S1 Verify task runs both audi
 
 ## 11. Summary for other repositories
 
-Phase S5 fills this section. S4 contract record (2026-11-19): the format pin is
-`oxfmt` `0.78.0` exact; the registry latest is `0.79.0`
-(`npm view oxfmt version`).
+Phase S5 writes this section from the measured values of sections 1 to 10.
+
+### Main results
+
+| Area | Result |
+|---|---|
+| Framework | 6 apps build on vinext 1.4.6 (range `^1.4.5`). No manifest declares `next`, and no workspace resolves it. |
+| Lint | oxlint 1.93.0 (range `^1.79.0`) reads one root `.oxlintrc.json` for 26 workspaces. The 26 lint scripts exit 0 with zero warnings. 49 tracked files carry disable directives, pinned by a 49-entry allow-list. |
+| Type check | 23 workspaces run `TSRS_FAST=1 oxlint --type-aware --type-check` with tsrs `0.25.0-ts7.1.0-beta`. The 4 apps of `TSC_FALLBACK_LIST` keep `tsc --noEmit` on TypeScript 7.0.2. |
+| Format | oxfmt 0.78.0 (exact) formats 3717 files from one root `.oxfmtrc.json` with 17 ignore patterns. `npm run format:check` exits 0. |
+| Dependencies | S1 set every declared range to `^<latest>`. Section 4 lists no held package. |
+| Audit | At S4: critical 0, high 9, moderate 7, low 5. The baseline held high 11. |
+| CI | Each workflow uses Node 24. `ci.yml` runs `npm run format:check` in the boundary job, and it has no `deploy` job. `cloudflare-deploy.yml` keeps `workflow_dispatch`. |
+
+`oxfmt` stays at 0.78.0 exact while the registry latest is 0.79.0
+(`npm view oxfmt version`, 2026-11-19). The exact pin keeps the format output the same
+between installs.
+
+### Speed (section 5)
+
+- Build: vinext 1.4.6 gives 0.34 to 0.59 of the vinext 0.0.55 time for each app. BM2
+  43.4 s to 14.8 s; IM3 31.5 s to 12.0 s; PreCalc 18.3 s to 10.8 s.
+- Lint: no ESLint config remains, so no ESLint baseline exists. The oxlint values are
+  1.2 s to 8.9 s for the apps and 0.6 s to 0.7 s for each package.
+- Type check: tsc 6.0.3 to tsc 7.0.2 gives 0.13 to 0.22 for the 4 fallback apps. The
+  23 tsrs workspaces give 0.23 to 1.47 against tsc 6.0.3. A row of 0.6 s is the npm
+  overhead floor, so its ratio is about 1.0.
+- Format check: median 0.29 s at S4, with no "before" tool.
+
+### Blocking gaps (section 7)
+
+- tsrs reports 38 extra rows in the IM3 `.mjs` scripts, because it type-checks files
+  outside the app `include`. IM3 stays on `tsc --noEmit`.
+- tsrs misses 69 rows that `tsc` reports through the `convex/tsconfig.json` projects.
+  tsrs uses the nearest tsconfig for each file. BM2, IM1, IM3, and PreCalc stay on
+  `tsc --noEmit`.
+- No diagnostic differs between `tsc` 7.0.2 and `tsc` 7.1.0-beta on this tree.
+- No rule gap is derivable, because no ESLint config remains to diff against.
+
+### Recommended order for another repository
+
+1. Move the framework first. Set vinext 1.x, remove `next` from every manifest and
+   override, and add `vinext/types` to each `tsconfig.json`.
+2. Move to TypeScript 7.x. Collect the `tsc` diagnostics before and after the move.
+   Keep a `typescript6` alias if a tool needs the TypeScript 6 JavaScript API.
+3. Migrate the lint config to one root `.oxlintrc.json`. Name the config path in every
+   workspace lint script, with `--max-warnings 0`.
+4. Add tsrs as the type-check engine. Compare tsrs with `tsc` on the same compiler
+   line. Keep `tsc --noEmit` in a named fallback list where tsrs differs.
+5. Add oxfmt with an explicit ignore list. Run one format-only commit, and add that
+   commit to `.git-blame-ignore-revs`.
+6. Name the new gates in the agent instructions, the workflow, the root scripts, and
+   CI. Remove the deploy job from the push workflow.
+7. Keep one evidence file with 11 sections: environment, baseline gates, package
+   changes, held packages, speed, rule gaps, conformance gaps, workarounds, keep list,
+   pre-existing failures, and this summary.
