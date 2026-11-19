@@ -114,3 +114,13 @@ and the same test file. This role edited no production file, manifest,
 lockfile, tsconfig, CI workflow, allow-list fixture, or gates.sh line.
 git status --porcelain held only the six known dirty generated files after
 every probe run.
+
+MEASURE_AGENT_RESULT
+head: ad33c8a1 (the r2 test commit; the artifacts commit follows in measure/runs/)
+commits: ad33c8a1 test(vinext-oxc): extend the S3 adversarial tests (r2); 353c6ff3 measure(runs): add the S3 adversarial r2 result
+tests_run: -t 'S3 adversarial' 12 passed; -t 'S3 tsrs' 8 passed; -t 'S2 adversarial' 13 passed; the gates-script file 23 passed; full scripts suite 84 passed 1 failed (the pre-existing remediate-concept-blueprints row only); npx tsc --noEmit exit 0; PROJECT_TESTS test s3 exit 0 NEWFAIL=0 (the stale scripts-suite step record was dropped first, so the step re-ran with the r2 tests, 71 s)
+files_changed: scripts/__tests__/vinext-oxc-gates-script.test.ts (test commit ad33c8a1); measure/runs/vinext-oxc-toolchain_20261114/adversarial-s3-r2-ad33c8a1.{json,log} (artifacts commit)
+plan_updates: none (the adversarial re-run is not a plan task; the orchestrator records the verdict)
+known_failures: the pre-existing remediate-concept-blueprints scripts-suite failure only; every S3 adversarial test passes at this HEAD
+handoff: verdict fail with one Blocker routed to Green. F1r2: the suite's temp-folder seeds under apps/ and the root clean up only through afterEach, so an interrupt leaks a folder and the next gate run fails red on adv 7 (proven live with a LEAKPROBE seed; Green hit the same class with .oxlint-adv13-49VCiN in the first gate run); fix owner Green, a beforeAll sweep of stale .oxlint-adv*/.oxlint-probe-*/.oxlint-adv-cfg-* folders under the root, apps/integrated-math-3, and each workspace. F2r2 [Major]: an errno data form inside a failing assertion diff (Error: ENOSPC, code: 'ENOSPC', errno: -28) still classifies INFRA and leaves no key (the residual of r1 F1, pinned by the committed r2 a case; no live trigger, never a false green). F3r2 [Nit]: the npm trailer-only lines match no alternative; the full npm blocks are caught through their summary lines (pinned by r2 d). r1 F1 is closed by ddca656c (verified live through adv i and the probe matrix); r1 F2 to F5 stay closed in cb3d1ba1. Questions: Q1 (F1r2 disposition, default FIX: Green adds the beforeAll sweep in a test-file commit, then the relevant adversarial gate re-runs). Q2 (F2r2 disposition, default ACCEPT as a pinned residual: r2 a keeps the current behavior; a narrower form risks new false negatives, and no current test prints the form). No EDQUOT or ENOSPC infrastructure error occurred; no re-run was needed.
+END_MEASURE_AGENT_RESULT
