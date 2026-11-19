@@ -634,7 +634,7 @@ Phase note (2026-11-19, S4 checkpoint): S5 carry items are record-only; they hid
 ## Phase S5: Gate rules and CI
 _Story ref: spec.md#story-s5_
 
-- [ ] Task: S5 Contract — fix the new gate text
+- [~] Task: S5 Contract — fix the new gate text (active next task; marked by Red for the role-gate in-progress check)
     - [ ] `AGENTS.md`: replace the guardrail "Always run `npx tsc --noEmit` in addition to `npm run build` — vinext build does not enforce TypeScript types."
     - [ ] The new guardrail text is: "Always run `npm run typecheck` in addition to `npm run build`. vinext build does not enforce TypeScript types. `npm run typecheck` runs oxlint with tsrs."
     - [ ] `AGENTS.md`: change the TDD guardrail to "TDD: write/adjust tests first, run `npm run format:check`, `npm run lint`, and relevant tests before each commit."
