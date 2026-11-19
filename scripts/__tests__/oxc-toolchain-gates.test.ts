@@ -128,32 +128,47 @@ function manifestEntries(files: string[], base = REPO_ROOT): ManifestEntry[] {
 // Probe project helper (plan "Probe Test Helper").
 const tempDirs: string[] = [];
 
-// The prefixes of the seed folders that this file creates inside the repository. S3
-// adversarial F1r2: an interrupted run leaves a folder behind, and the next run fails
-// red on adv 7, because the folder holds carrier files that the allow-list does not
-// name. One constant holds the list, so the seeding helper and the startup sweep agree.
+// The two base forms of the seed folder names that this file creates inside the
+// repository. S3 adversarial F1r2: an interrupted run leaves a folder behind, and the
+// next run fails red on adv 7, because the folder holds carrier files that the
+// allow-list does not name. The rule below holds the accepted names, so the seeding
+// helper and the startup sweep agree.
 const PROBE_DIR_PREFIXES = ['.oxlint-adv', '.oxlint-probe-'];
 
+// A seed folder name matches when it starts with '.oxlint-probe-', or when it starts
+// with '.oxlint-adv' and the next character is '-' or a digit. Every seeded name has
+// that form. A near-miss name, such as '.oxlint-advisory', matches nothing, so the
+// sweep keeps it. The seeding helper and the startup sweep share this rule (F2r3).
+function isSeededProbeDirName(name: string): boolean {
+  if (name.startsWith('.oxlint-probe-')) return true;
+  if (!name.startsWith('.oxlint-adv')) return false;
+  const next = name.charAt('.oxlint-adv'.length);
+  return next === '-' || (next >= '0' && next <= '9');
+}
+
 // Create a seed folder under `parent` and register it for afterEach. The prefix must
-// start with a PROBE_DIR_PREFIXES entry, so the beforeAll sweep can remove a leak.
+// name a seed form, so the beforeAll sweep can remove a leak. The '.oxlint-adv' form
+// needs its separator, because the random suffix can start with a letter.
 function seedDir(parent: string, prefix: string): string {
-  if (!PROBE_DIR_PREFIXES.some((known) => prefix.startsWith(known))) {
+  const seedPrefix = prefix === '.oxlint-adv' ? '.oxlint-adv-' : prefix;
+  if (!isSeededProbeDirName(seedPrefix)) {
     throw new Error(`seed prefix ${prefix} is not in PROBE_DIR_PREFIXES`);
   }
-  const dir = fs.mkdtempSync(path.join(parent, prefix));
+  const dir = fs.mkdtempSync(path.join(parent, seedPrefix));
   tempDirs.push(dir);
   return dir;
 }
 
 // Remove a seed folder that an interrupted run left behind. The sweep reads one
-// directory level in each parent, matches the exact prefix, and skips a folder that
-// holds a tracked file. It never walks the tree, so a real path cannot be removed.
+// directory level in each seed parent, matches the seed name forms, and skips a
+// folder that holds a tracked file. It never walks the tree, so a real path cannot
+// be removed.
 function sweepStaleProbeDirs(): void {
-  for (const parent of [REPO_ROOT, ...WORKSPACE_DIRS]) {
+  for (const parent of [REPO_ROOT, path.join(REPO_ROOT, 'apps'), ...WORKSPACE_DIRS]) {
     if (!fs.existsSync(parent)) continue;
     for (const entry of fs.readdirSync(parent, { withFileTypes: true })) {
       if (!entry.isDirectory()) continue;
-      if (!PROBE_DIR_PREFIXES.some((prefix) => entry.name.startsWith(prefix))) continue;
+      if (!isSeededProbeDirName(entry.name)) continue;
       const target = path.join(parent, entry.name);
       // The tracked-path guard: git names every tracked path under `target`, and a
       // git call that fails skips the folder (the safe direction).
@@ -1015,8 +1030,7 @@ describe('S3 adversarial', () => {
       for (const dir of [staleRootAdv, staleRootProbe, staleIm3, stalePkg]) {
         fs.writeFileSync(path.join(dir, 'carrier.ts'), '/* eslint-disable */ const unused = 1;\n');
       }
-      // The apps/ parent is not in the sweep list, but makeLintProbe seeds there.
-      // This pin flips when Green sweeps that parent too (F1r3).
+      // The apps/ parent is a seed parent, so the sweep must read it too (F1r3).
       const appsParentSeed = seedDir(path.join(REPO_ROOT, 'apps'), '.oxlint-probe-r3stale-');
       fs.writeFileSync(path.join(appsParentSeed, 'probe.ts'), 'const unused = 1;\n');
       // A folder that git names must stay (the tracked-path guard). The keep file
@@ -1043,9 +1057,7 @@ describe('S3 adversarial', () => {
       fs.writeFileSync(path.join(deep, 'carrier.ts'), 'stale\n');
       const noDash = fs.mkdtempSync(path.join(REPO_ROOT, '.oxlint-probe'));
       tempDirs.push(noDash);
-      // F2r3 pin: '.oxlint-advisory' is no seed class, but it starts with
-      // '.oxlint-adv', so the sweep deletes it today. This pin flips when Green
-      // narrows the prefix.
+      // F2r3 pin: '.oxlint-advisory' is no seed class, so the sweep must keep it.
       const advisory = fs.mkdtempSync(path.join(REPO_ROOT, '.oxlint-advisory-r3pin-'));
       tempDirs.push(advisory);
       fs.writeFileSync(path.join(advisory, 'carrier.ts'), 'stale\n');
@@ -1070,9 +1082,9 @@ describe('S3 adversarial', () => {
         }
         expect(
           fs.existsSync(advisory),
-          'F2r3 pin: the broad prefix deletes the near-miss folder',
-        ).toBe(false);
-        expect(fs.existsSync(appsParentSeed), 'F1r3 pin: the apps/ parent is not swept').toBe(true);
+          'F2r3 pin: the near-miss folder must stay',
+        ).toBe(true);
+        expect(fs.existsSync(appsParentSeed), 'F1r3 pin: the apps/ parent must be swept').toBe(false);
         expect(fs.existsSync(keepDir), 'a folder that git names must stay').toBe(true);
         expect(fs.existsSync(link), 'a symlink must stay').toBe(true);
         expect(fs.existsSync(path.join(outside, 'sentinel.txt')), 'the symlink target must stay')
