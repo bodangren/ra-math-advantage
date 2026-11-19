@@ -336,7 +336,7 @@ Phase note (2026-11-19, S2 remediation): strategy section 8 rows "case 7" ("Zero
 - [x] Adversarial r4 at b9a4f0c2 passed (adv 13 added; Nits F1r4 and F2r4 accepted). (b9a4f0c2)
 - [x] Recorded deviation (Review A F9, 2026-11-19): the test file imports the installed `typescript` package for the comment scan, against test-strategy section 5 (lines 221-222). The S3 strategy refresh reconciles section 5 with the S3 contract (plan line 342: the kept `typescript` package uses 7.0.2) before S3 Red, and checks that the scan API stays available. (fde3eda2) Resolved by strategy r7 section 16.2.
 
-## Phase S3: TypeScript 7 and tsrs
+## Phase S3: TypeScript 7 and tsrs [checkpoint: 7e0f7a4]
 _Story ref: spec.md#story-s3_
 
 - [x] Task: S3 Contract — record the type-check change (3effc7e4)
@@ -430,11 +430,11 @@ _Story ref: spec.md#story-s3_
 - [x] Task: S3 Docs & Doctor (ab0440b3)
     - [x] Run `npm run generate`. Confirm exit code 0. (Exit 0 at ab0440b3: `routes.md`, `architecture.json`, and 5 architecture reports generated. Only the 6 known dirty generated files stay modified.)
     - [x] Run `npm run doctor`. Confirm exit code 0. (Exit 0: 5 architecture reports verified, 26 workspaces and 620 internal imports checked, package DAG acyclic.)
-- [x] Task: Measure - User Manual Verification 'Phase S3: TypeScript 7 and tsrs' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase S3: TypeScript 7 and tsrs' (Protocol in workflow.md) (7e0f7a4)
     - [x] Run the protocol: the automated tests, the manual verification plan, and the user confirmation. (S3 tsrs 8 pass, S3 adversarial 14 pass, phase acceptance at 80934197; PM is the confirming user, orchestrator default 2026-11-19. S3 has no user-facing change.)
-    - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S3`.
-    - [ ] Append `[checkpoint: <sha>]` to the Phase S3 heading.
-    - [ ] Commit: `measure(plan): Mark phase 'Phase S3: TypeScript 7 and tsrs' as complete`.
+    - [x] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S3`. (7e0f7a4)
+    - [x] Append `[checkpoint: 7e0f7a4]` to the Phase S3 heading. (7e0f7a4)
+    - [x] Commit: `measure(plan): Mark phase 'Phase S3: TypeScript 7 and tsrs' as complete`. (this commit)
 - [x] Task: S3 remediation round 3 — sweep the apps parent and match only the seeded probe names (f37a6b7e)
 
 S3 remediation sub-box (Jr Green rounds)
