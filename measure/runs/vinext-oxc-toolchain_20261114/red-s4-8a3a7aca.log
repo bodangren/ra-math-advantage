@@ -1,0 +1,17 @@
+MEASURE_AGENT_RESULT
+role: measure-mid-red
+status: red
+track: vinext-oxc-toolchain_20261114
+phase: Phase S4: oxfmt
+baseline_sha: 85208f3a72cd739d661a938bfc75df6d77f71964
+role_base_sha: 9b3a0d2500dff2734f377464b7805a1cde9f6468
+head: 8a3a7aca5b0164bc9aa3bd64b25cefe7eb363ae2
+red_commit: 1acf85c4034bf84ade07d037077a4e74e0689f9b
+commits: 2cda0dec measure(vinext-oxc): record the S4 format contract; 1acf85c4 test(vinext-oxc): add the S4 gate tests (Red); 4c4bd10e test(vinext-oxc): guard the Rust and spawn disk-full forms; 97ef1021 fix(vinext-oxc): classify the Rust and spawn disk-full forms as infrastructure; 8a3a7aca measure(plan): record the S4 Red
+tests_run: npx vitest run --config scripts/vitest.config.ts -t 'S4 oxfmt' (exit 1; 5 failed, 87 skipped); -t 'S3 tsrs' (exit 0; 8 passed); -t 'S3 adversarial' (exit 0; 14 passed); -t 'S2 adversarial' (exit 0; 13 passed); scripts/__tests__/vinext-oxc-gates-script.test.ts full file (exit 0; 26 passed)
+failing_cases: case 1: AssertionError: npm error npx canceled due to missing packages and no YES option: ["oxfmt@0.79.0"]; case 2: AssertionError: root scripts that are not in the target form: expected [ 'format: undefined', …(1) ] to deeply equal []; case 3: AssertionError: .git-blame-ignore-revs is missing: expected false to be true // Object.is equality; case 4: AssertionError: precondition: oxfmt --version: expected 1 to be +0 // Object.is equality; case 5: AssertionError: precondition: oxfmt --version: expected 1 to be +0 // Object.is equality
+files_changed: measure/tech-stack.md (S4 format contract note); measure/tracks/vinext-oxc-toolchain_20261114/oxc-evidence.md (S4 Contract rows in sections 3 and 11, writeFile output-path cover table); measure/tracks/vinext-oxc-toolchain_20261114/plan.md (Contract and Red boxes ticked); scripts/__tests__/oxc-toolchain-gates.test.ts (describe S4 oxfmt, 5 cases); scripts/__tests__/vinext-oxc-gates-script.test.ts (3 S4 classifier cases); measure/tracks/vinext-oxc-toolchain_20261114/gates.sh (2 full-line anchored DISK_FULL_RE alternatives)
+plan_updates: S4 Contract task boxes all [x] with evidence (pin, scripts, and config recorded as targets for Green); S4 Test (Red) sub-boxes all [x] with SHAs and first failing lines; parent task stays [~] for Green
+known_failures: the 5 S4 Red failures above are intended (tool and config absent); pre-existing remediate-concept-blueprints failure not in the filtered runs; the 6 dirty generated files (apps/*/.next/types/routes.d.ts x4, apps/bus-math-v2/lib/workbooks-manifest.json, measure/generated/routes.md) left unstaged; no push; no test gate run between Red and Green
+handoff: Green owns the Implement commits (oxfmt 0.78.0 exact pin, .oxfmtrc.json with the recorded ignorePatterns including **/workbooks-manifest.json, format and format:check scripts, one format-only commit, blame ignore file). Q1: keep oxfmt 0.78.0 exact when the registry latest is 0.79.0? Default yes, per plan line 457; Green proceeds on 0.78.0 unless the PM picks 0.79.0. No other question; no blocker.
+END_MEASURE_AGENT_RESULT
