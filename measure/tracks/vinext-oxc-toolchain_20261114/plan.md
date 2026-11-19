@@ -436,6 +436,9 @@ _Story ref: spec.md#story-s3_
     - [ ] Append `[checkpoint: <sha>]` to the Phase S3 heading.
     - [ ] Commit: `measure(plan): Mark phase 'Phase S3: TypeScript 7 and tsrs' as complete`.
 
+S3 remediation sub-box (Jr Green rounds)
+- Round 1 (2026-11-19, `ddca656c`): narrowed the disk-full matcher of `gates.sh` (adversarial F1). `has_infra_output` and `key()` now share `DISK_FULL_RE`. The matcher accepts only the real system message forms: `ENOSPC: no space left on device`, `EDQUOT: disk quota exceeded`, `Error: ENOSPC|EDQUOT`, `errno: -28|-122`, and `code: 'ENOSPC'|'EDQUOT'` (single or double quotes). A line that only names the errno word stays a normal diagnostic. Before the fix, a failing test title that named the word turned the job into INFRA (exit 3), and `key()` dropped the line, so a new failure could hide behind `NEWFAIL=0`. Adv i now proves the fix: the word-bearing title is not infrastructure, `key()` keeps it, and `new_keys` reports it; a real message line is still infrastructure and leaves no key. The three Red guard cases of `90b31fe0` still pass. Gates: `bash -n` passes, `S3 adversarial` 8 pass, `S3 tsrs` 8 pass, `S2 adversarial` 13 pass, the gates-script file 19 pass, full scripts suite 80 pass with only the pre-existing `remediate-concept-blueprints` failure, `GATES_RESUME=1 GATES_BASE=baseline-m2 gates.sh test s3` gives `NEWFAIL=0` (the stale `scripts-suite` step record was dropped first, so the step re-ran).
+
 ## Phase S4: oxfmt
 _Story ref: spec.md#story-s4_
 
