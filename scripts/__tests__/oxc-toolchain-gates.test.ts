@@ -3345,3 +3345,273 @@ describe("S5 gate rules", () => {
     TOOL_TIMEOUT_MS,
   );
 });
+
+describe("S5 adversarial", () => {
+  it.each(["lint", "typecheck"])(
+    "adv 1: root %s visits every workspace and preserves a failing exit",
+    (gate) => {
+      // Run the real root script with real npm discovery. Only the workspace
+      // commands are fixtures. No fake npm binary intercepts the command.
+      const root = readJson(path.join(REPO_ROOT, "package.json"));
+      const scripts = root.scripts as Record<string, string>;
+      const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "s5-fanout-"));
+      tempDirs.push(tmp);
+      fs.writeFileSync(
+        path.join(tmp, "package.json"),
+        JSON.stringify({
+          private: true,
+          workspaces: root.workspaces,
+          scripts: { [gate]: scripts[gate] },
+        }),
+      );
+      fs.writeFileSync(
+        path.join(tmp, "probe.cjs"),
+        [
+          'const fs = require("node:fs");',
+          'const path = require("node:path");',
+          'const workspace = path.relative(__dirname, process.cwd()).split(path.sep).join("/");',
+          'fs.appendFileSync(path.join(__dirname, "visits.log"), workspace + "\\n");',
+          "process.exit(workspace === process.env.S5_FAIL_WORKSPACE ? 23 : 0);",
+        ].join("\n"),
+      );
+      const expected = WORKSPACE_DIRS.map(relative).sort();
+      expect(expected.length, "the disk inventory contains all 27 workspaces").toBe(27);
+      for (const [index, workspace] of expected.entries()) {
+        const dir = path.join(tmp, workspace);
+        const liveScripts = readJson(path.join(REPO_ROOT, workspace, "package.json"))
+          .scripts as Record<string, string>;
+        expect(liveScripts[gate], `${workspace} supplies ${gate}`).toBeTypeOf("string");
+        fs.mkdirSync(dir, { recursive: true });
+        fs.writeFileSync(
+          path.join(dir, "package.json"),
+          JSON.stringify({
+            name: `s5-fixture-${index}`,
+            private: true,
+            scripts: { [gate]: "node ../../probe.cjs" },
+          }),
+        );
+      }
+      const run = (failWorkspace: string) => {
+        fs.writeFileSync(path.join(tmp, "visits.log"), "");
+        const result = spawnSync("npm", ["run", gate], {
+          cwd: tmp,
+          encoding: "utf8",
+          timeout: TOOL_TIMEOUT_MS,
+          env: { ...process.env, CI: "true", S5_FAIL_WORKSPACE: failWorkspace },
+        });
+        expect(result.error, "npm starts without a timeout or a spawn failure").toBeUndefined();
+        const visits = fs.readFileSync(path.join(tmp, "visits.log"), "utf8").trim().split("\n");
+        expect(
+          visits.sort(),
+          "each workspace runs exactly once, including after a failure",
+        ).toEqual(expected);
+        return result;
+      };
+      const clean = run("");
+      expect(clean.status, `${clean.stdout}${clean.stderr}`).toBe(0);
+      const failed = run(expected[0]);
+      expect(failed.status, `${failed.stdout}${failed.stderr}`).toBe(23);
+      expect(failed.stderr, "npm reports the actual probe exit").toContain("code 23");
+    },
+    TOOL_TIMEOUT_MS,
+  );
+
+  it.each(["never", "do not", "forbidden"])(
+    "adv 2: command scans preserve a banned call beside the filter words '%s'",
+    (words) => {
+      const text = `npx --no-install tsc --noEmit # ${words}\neslint src # ${words}`;
+      expect(s5ScanCommands("probe.sh", text)).toEqual([
+        `probe.sh:1: [${S5_TSC_CALL_RE.source}]`,
+        `probe.sh:1: [${S5_TSC_FLAG_RE.source}]`,
+        `probe.sh:2: [${S5_ESLINT_CALL_RE.source}]`,
+      ]);
+      expect(s5ScanStrings("probe.sh", text)).toEqual([
+        "probe.sh:1: [tsc --noEmit]",
+        "probe.sh:2: [eslint src]",
+      ]);
+    },
+  );
+
+  it.each([
+    ['npx --no-install "tsc" --noEmit', 'npx --no-install "tsc" --version', /^Version 7\./m],
+    ['npm exec -- "eslint" .', 'npm exec -- "eslint" --version', /^v\d+\./m],
+  ] as const)(
+    "adv 3: the removed-command scan detects the executable shell form %s",
+    (command, versionCommand, versionPattern) => {
+      // Shell quotes preserve the executable name. These calls evade both
+      // the exact-string scan and the command-form scan at the reviewed HEAD.
+      const result = spawnSync("sh", ["-c", versionCommand], {
+        cwd: REPO_ROOT,
+        encoding: "utf8",
+        timeout: TOOL_TIMEOUT_MS,
+      });
+      expect(result.error).toBeUndefined();
+      expect(result.status, `${result.stdout}${result.stderr}`).toBe(0);
+      expect(result.stdout, "the real shell resolves the quoted executable").toMatch(
+        versionPattern,
+      );
+      expect(s5ScanCommands("probe.sh", command), `hidden tool call: ${command}`).not.toEqual([]);
+    },
+    TOOL_TIMEOUT_MS,
+  );
+
+  it("adv 4: every script is scanned, with only exact fallback commands excluded", () => {
+    const manifests = [
+      path.join(REPO_ROOT, "package.json"),
+      ...WORKSPACE_DIRS.map((dir) => path.join(dir, "package.json")),
+    ];
+    const hits: string[] = [];
+    const fallbacks: string[] = [];
+    for (const file of manifests) {
+      const workspace = relative(path.dirname(file));
+      const scripts = (readJson(file).scripts ?? {}) as Record<string, string>;
+      for (const [name, command] of Object.entries(scripts)) {
+        if (
+          TSC_FALLBACK_LIST.includes(workspace) &&
+          name === "typecheck" &&
+          command === "tsc --noEmit"
+        ) {
+          fallbacks.push(workspace);
+          continue;
+        }
+        // Review A F4 is existing debt. Exclude this exact entry, not the
+        // workspace or every script whose name contains "backend".
+        if (
+          workspace === "apps/integrated-math-2" &&
+          name === "typecheck:backend" &&
+          command === "tsc --noEmit -p convex/tsconfig.json"
+        )
+          continue;
+        hits.push(...s5ScanCommands(`${relative(file)}:${name}`, command));
+      }
+    }
+    expect(fallbacks.sort(), "all four exact fallback scripts remain present").toEqual(
+      [...TSC_FALLBACK_LIST].sort(),
+    );
+    expect(
+      hits,
+      "root ws:* aliases and workspace auxiliary scripts have no new banned call",
+    ).toEqual([]);
+    // The excluded architecture file contains executable configuration.
+    // Read each command instead of excluding the complete file.
+    const manifest = readJson(path.join(REPO_ROOT, S5_ARCHITECTURE_SNAPSHOT)) as {
+      workspaces: Array<{ path: string; qualityCommands: Record<string, string | null> }>;
+    };
+    expect(manifest.workspaces.length).toBeGreaterThan(0);
+    for (const workspace of manifest.workspaces) {
+      for (const [name, command] of Object.entries(workspace.qualityCommands)) {
+        if (command === null) continue;
+        if (
+          TSC_FALLBACK_LIST.includes(workspace.path) &&
+          name === "typecheck" &&
+          command === `npx tsc --noEmit --project ${workspace.path}/tsconfig.json`
+        )
+          continue;
+        expect(s5ScanCommands(`${workspace.path}:${name}`, command)).toEqual([]);
+      }
+    }
+  });
+
+  it.todo(
+    "adv 4 debt: remove IM2 typecheck:backend tsc outside TSC_FALLBACK_LIST (Review A F4; pre-existing)",
+  );
+
+  it("adv 5: CI root commands exist, apart from the recorded curriculum:check debt", () => {
+    const doc = loadYaml(
+      fs.readFileSync(path.join(REPO_ROOT, ".github/workflows/ci.yml"), "utf8"),
+    ) as {
+      jobs: Record<string, { steps?: Array<{ name?: string; run?: string }> }>;
+    };
+    const scripts = (readJson(path.join(REPO_ROOT, "package.json")).scripts ?? {}) as Record<
+      string,
+      string
+    >;
+    const rootCommands = (text: string) =>
+      [...text.matchAll(/\bnpm\s+run\s+([\w:-]+)([^\n&|]*)/g)]
+        .filter((match) => !/--(?:workspace|prefix)/.test(match[2]))
+        .map((match) => match[1]);
+    const commands = Object.entries(doc.jobs).flatMap(([jobName, job]) =>
+      (job.steps ?? []).flatMap((step) =>
+        rootCommands(step.run ?? "").map((name) => ({ jobName, step, name })),
+      ),
+    );
+    expect(
+      commands.map(({ name }) => name),
+      "the new S5 format step is in the scan",
+    ).toContain("format:check");
+    const missing = commands.filter(({ jobName, step, name }) => {
+      if (name in scripts) return false;
+      return !(
+        jobName === "app-foundations" &&
+        step.name === "Check IM2 backend types and content bundle" &&
+        step.run ===
+          "npm run typecheck --workspace=apps/integrated-math-2 && npm run curriculum:check" &&
+        name === "curriculum:check"
+      );
+    });
+    expect(missing).toEqual([]);
+    const seeded = rootCommands("npm run deliberately-missing && npm run lint --workspace=apps/x");
+    expect(seeded.filter((name) => !(name in scripts))).toEqual(["deliberately-missing"]);
+  });
+
+  it.todo(
+    "adv 5 debt: CI curriculum:check must name an existing root script (Review C F2; pre-existing)",
+  );
+
+  it("adv 6: push CI contains no renamed deployment path or secret reference", () => {
+    type Workflow = {
+      jobs: Record<
+        string,
+        { environment?: unknown; uses?: string; steps?: Array<{ uses?: string; run?: string }> }
+      >;
+    };
+    const faults = (doc: Workflow): string[] => {
+      const hits: string[] = [];
+      if (/\bsecrets\s*(?:\.|\[)/.test(JSON.stringify(doc))) hits.push("secret reference");
+      for (const [name, job] of Object.entries(doc.jobs)) {
+        if (job.environment !== undefined) hits.push(`${name}: environment`);
+        for (const step of [job, ...(job.steps ?? [])]) {
+          if (/wrangler-action|deploy/i.test(step.uses ?? "")) hits.push(`${name}: deploy action`);
+          if (
+            "run" in step &&
+            /\b(?:wrangler|convex)\b[^\n]*\bdeploy\b|\bnpm\s+(?:run\s+)?deploy\b/.test(
+              step.run ?? "",
+            )
+          )
+            hits.push(`${name}: deploy command`);
+        }
+      }
+      return hits;
+    };
+    const doc = loadYaml(
+      fs.readFileSync(path.join(REPO_ROOT, ".github/workflows/ci.yml"), "utf8"),
+    ) as Workflow;
+    expect(Object.keys(doc.jobs).length).toBeGreaterThan(0);
+    expect(faults(doc)).toEqual([]);
+    for (const run of ["npm exec -- wrangler deploy", "npx convex deploy", "npm run deploy"]) {
+      expect(faults({ jobs: { production: { steps: [{ run }] } } })).toEqual([
+        "production: deploy command",
+      ]);
+    }
+    expect(
+      faults({ jobs: { production: { steps: [{ uses: "cloudflare/wrangler-action@v3" }] } } }),
+    ).toEqual(["production: deploy action"]);
+    expect(faults({ jobs: { production: { environment: "production" } } })).toEqual([
+      "production: environment",
+    ]);
+    for (const secret of [
+      "${{ secrets.CLOUDFLARE_API_TOKEN }}",
+      "${{ secrets['CLOUDFLARE_API_TOKEN'] }}",
+    ]) {
+      expect(faults({ jobs: { production: { steps: [{ run: `echo ${secret}` }] } } })).toEqual([
+        "secret reference",
+      ]);
+    }
+    const deploy = loadYaml(
+      fs.readFileSync(path.join(REPO_ROOT, ".github/workflows/cloudflare-deploy.yml"), "utf8"),
+    ) as { on: Record<string, unknown> };
+    expect(Object.keys(deploy.on), "only a manual dispatch can start the deploy workflow").toEqual([
+      "workflow_dispatch",
+    ]);
+  });
+});
