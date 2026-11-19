@@ -461,7 +461,7 @@ _Story ref: spec.md#story-s4_
     - [x] Normal case 2: the root `package.json` has the `format` and `format:check` scripts in the target form. (Red: `AssertionError: root scripts that are not in the target form: expected [ 'format: undefined', …(1) ] to deeply equal []`. Exact values, not a bare-word grep.)
     - [x] Normal case 3: `.git-blame-ignore-revs` has a 40-character SHA. `git log -1 --format=%s <sha>` gives `style: format the repo with oxfmt`. (Red: `AssertionError: .git-blame-ignore-revs is missing: expected false to be true // Object.is equality`. The file lands after the format-only commit.)
     - [x] Edge case 4: a `.ts` probe file `const  a={b:1}` makes `oxfmt --check <probe>` exit with a non-zero code. The output names the probe file. The output has no absent-tool phrase and no absent-target phrase. A `.py` probe with exit 2 is not a valid negative probe. (Red: `AssertionError: precondition: oxfmt --version: expected 1 to be +0 // Object.is equality`.)
-    - [x] Edge case 5: a `.ts` probe file `const a = { b: 1 };` with a final newline makes `oxfmt --check <probe>` exit with code 0. The output names the probe file. The output has no absent-tool phrase and no absent-target phrase. (Red: `AssertionError: precondition: oxfmt --version: expected 1 to be +0 // Object.is equality`. Positive case, so absence is the named reason.)
+    - [x] Edge case 5: a `.ts` probe file `const a = { b: 1 };` with a final newline makes `oxfmt --check <probe>` exit with code 0. The output holds `All matched files use the correct format.` and the labeled count `on 1 files` (parsed as an integer, required 1, so a check that matched zero files fails). The output has no absent-tool phrase and no absent-target phrase. (Red: `AssertionError: precondition: oxfmt --version: expected 1 to be +0 // Object.is equality`. Positive case, so absence is the named reason. Corrected 2026-11-19: oxfmt 0.78.0 prints no file name for a clean file, so the Red retry replaces the probe-name assertion with the summary line and the file count.)
     - [x] Run the scripts suite. Confirm that cases 1 to 5 fail. (`-t 'S4 oxfmt'`: 5 failed, 87 skipped, exit 1. Companions still green: `-t 'S3 tsrs'` 8 passed; `-t 'S3 adversarial'` 14 passed; `-t 'S2 adversarial'` 13 passed.)
     - [x] Test-infrastructure guard: `gates.sh` classifies the Rust and Node disk-full forms as
       infrastructure. Add two guard cases and one refutation case to
@@ -524,6 +524,7 @@ _Story ref: spec.md#story-s4_
     - [ ] Commit: `measure(plan): Mark phase 'Phase S4: oxfmt' as complete`.
 
 Phase note (2026-11-19): the r8 strategy commit lands before the S4 phase base capture (strategy section 17). The run log and the role handoff hold `phase_base_sha`. No plan line carries a phase SHA.
+Phase note (2026-11-19, Red retry): Strategy 17.7 item 3 (probe name in the clean-file output) is superseded: oxfmt 0.78.0 prints no file name for a clean file; case 5 asserts the summary line and the file count.
 
 ## Phase S5: Gate rules and CI
 _Story ref: spec.md#story-s5_
