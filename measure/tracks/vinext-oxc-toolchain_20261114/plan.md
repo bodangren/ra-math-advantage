@@ -349,7 +349,7 @@ _Story ref: spec.md#story-s3_
     - [x] `tsrs` `0.25.0-ts7.1.0-beta` (exact) goes in the root `devDependencies` only.
     - [x] Each CI typecheck step becomes `npm run typecheck --workspace=<app folder>`.
     - [x] Time `tsc --noEmit` on TypeScript 6.0.3 for each workspace. Record "before" in section 5. (27 workspaces, medians in section 5, raw `s3-tsc-before-raw.txt`; IM3 22.4 s, BM2 17.9 s; warm exits of IM3 and PreCalc are the section 10 pre-existing failures)
-- [~] Task: S3 Test (Red) — add the S3 gate tests (Red commit: 9c65b44a; Green marks `[x]` when the S3 cases pass)
+- [x] Task: S3 Test (Red) — add the S3 gate tests (Red commit: 9c65b44a; Green marks `[x]` when the S3 cases pass; Green at ec3a05ae: `-t 'S3 tsrs'` 8 passed, exit 0)
     - [x] Add `describe('S3 tsrs')` to the test file. Add two constants: `TYPESCRIPT_KEEP_LIST = []` and `TSC_FALLBACK_LIST = []`. Add `SCAN_PARSER_PACKAGE = 'typescript6'`. State that `TYPESCRIPT_KEEP_LIST` tracks only manifests that declare the package named `typescript`.
     - [x] Case 0: the S2 disable scan keeps the 6.0 parser API through the alias. Use `createRequire`, already imported, so a missing alias cannot break module load. Assert that the root `package.json` declares `devDependencies.typescript6` as `npm:@typescript/typescript6@^6.0.2`. Assert that `createRequire` from the repository root resolves `typescript6/package.json`, and that its `version` has major 6, parsed as an integer (A3). Assert that the required module exposes `createSourceFile`, `getLeadingCommentRanges`, and `getTrailingCommentRanges` as functions, and defines `ScriptKind.TSX`.
     - [x] Normal case 1: each workspace typecheck script is the target form. A workspace in `TSC_FALLBACK_LIST` has `tsc --noEmit`.
@@ -419,17 +419,17 @@ _Story ref: spec.md#story-s3_
     - [x] Record the `typescript6` alias in evidence section 9 with the reason "S2 disable-comment scan; TypeScript 7 ships no JavaScript API". Do not add `typescript6` to `TYPESCRIPT_KEEP_LIST` or to `TSC_FALLBACK_LIST`.
     - [x] Do not run `convex deploy`. Do not run `convex dev` against a cloud deployment.
     - [x] Commit: `chore(deps): keep typescript only where the Convex CLI needs it`. (bdebdf65.)
-- [ ] Task: S3 Verify — run the gates after the type-check change
-    - [ ] Run each gate. Confirm that no gate has a new failure.
-    - [ ] Confirm that the scripts suite passes.
-    - [ ] Confirm that `GREEN_TEST_COMMAND` exits 1 for the one Q3 row (16.5). Confirm that the S2 filters stay green after the import switch.
-    - [ ] Add the temporary file `apps/integrated-math-3/convex/__oxc_probe__.ts` with `export const n: number = "x";`.
-    - [ ] Run the IM3 typecheck. Confirm that the output contains `TS2322` for the probe file. Delete the probe file. Do not commit it.
-    - [ ] Time the tsrs typecheck for each workspace. Record "after" in section 5.
-    - [ ] Commit the evidence file: `measure(vinext-oxc): record the S3 results`.
-- [ ] Task: S3 Docs & Doctor
-    - [ ] Run `npm run generate`. Confirm exit code 0.
-    - [ ] Run `npm run doctor`. Confirm exit code 0.
+- [x] Task: S3 Verify — run the gates after the type-check change
+    - [x] Run each gate. Confirm that no gate has a new failure. (`lint s3` 0, `test s3` 0, `checks-all s3` 0; each prints `NEWFAIL=0` with `GATES_BASE=baseline-m2`. The first `test s3` run held one new step key from three W4 TypeScript 6.x pins; the gate fix `ec3a05ae` moved them to 7.0.2 with the same strength. Evidence section 2, "S3 Green run".)
+    - [x] Confirm that the scripts suite passes. (`GREEN_TEST_COMMAND`: 1 failed of 73; the failure is the pre-existing `remediate-concept-blueprints > production scan reports the honest count for the current repo state` row (S1 Q3). 72 pass.)
+    - [x] Confirm that `GREEN_TEST_COMMAND` exits 1 for the one Q3 row (16.5). Confirm that the S2 filters stay green after the import switch. (`test s3` step `scripts-suite` exit 1, one failure, no new diagnostic key against `baseline-m2`. `S2 oxlint` 7 passed; `S2 adversarial` 13 passed. S1 cases 5, 5b, and 6 passed. `node scripts/validate-ci.mjs` exit 0.)
+    - [x] Add the temporary file `apps/integrated-math-3/convex/__oxc_probe__.ts` with `export const n: number = "x";`.
+    - [x] Run the IM3 typecheck. Confirm that the output contains `TS2322` for the probe file. Delete the probe file. Do not commit it. (`npm run typecheck --workspace=apps/integrated-math-3` exit 1 with the pre-existing lines; `convex/__oxc_probe__.ts(1,14): error TS2322: Type 'string' is not assignable to type 'number'.` The probe was deleted; `git status --porcelain` holds no probe path.)
+    - [x] Time the tsrs typecheck for each workspace. Record "after" in section 5. (23 workspaces on tsrs 0.25.0-ts7.1.0-beta; the four `TSC_FALLBACK_LIST` apps on tsc 7.0.2 with a deleted tsbuildinfo per run. Medians: IM3 22.4 s to 3.73 s, BM2 17.9 s to 2.38 s, IM2 7.8 s to 1.83 s, danielson 5.8 s to 4.30 s. Raw: `s3-tsrs-raw.txt` and `s3-tsc-after-raw.txt`.)
+    - [x] Commit the evidence file: `measure(vinext-oxc): record the S3 results`. (ab0440b3.)
+- [x] Task: S3 Docs & Doctor
+    - [x] Run `npm run generate`. Confirm exit code 0. (Exit 0 at ab0440b3: `routes.md`, `architecture.json`, and 5 architecture reports generated. Only the 6 known dirty generated files stay modified.)
+    - [x] Run `npm run doctor`. Confirm exit code 0. (Exit 0: 5 architecture reports verified, 26 workspaces and 620 internal imports checked, package DAG acyclic.)
 - [ ] Task: Measure - User Manual Verification 'Phase S3: TypeScript 7 and tsrs' (Protocol in workflow.md)
     - [ ] Run the protocol: the automated tests, the manual verification plan, and the user confirmation.
     - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S3`.
