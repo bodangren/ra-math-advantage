@@ -10,6 +10,8 @@
     "build": "node scripts/architecture/run-workspace-quality.mjs --kind package --capability build",
     "test": "node scripts/architecture/run-workspace-quality.mjs --kind package --capability test",
     "typecheck": "node scripts/architecture/run-workspace-quality.mjs --kind package --capability typecheck",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
     "ws:im3:lint": "npm run --workspace=apps/integrated-math-3 lint 2>/dev/null || npm run lint --prefix apps/integrated-math-3",
     "ws:im3:test": "npm run --workspace=apps/integrated-math-3 test 2>/dev/null || npm run test --prefix apps/integrated-math-3",
     "ws:im3:typecheck": "npm run --workspace=apps/integrated-math-3 typecheck 2>/dev/null || npx tsc --noEmit --project apps/integrated-math-3/tsconfig.json",
@@ -51,6 +53,7 @@
     "@vitest/coverage-v8": "^4.1.8",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
+    "oxfmt": "0.78.0",
     "oxlint": "^1.79.0",
     "tsrs": "0.25.0-ts7.1.0-beta",
     "oxlint-plugin-eslint": "^1.79.0"
