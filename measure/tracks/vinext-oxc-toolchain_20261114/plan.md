@@ -725,19 +725,20 @@ _Story ref: spec.md#story-s5_
 - [x] Task: S5 Implement — write the evidence summary (b8733002)
     - [x] Fill evidence section 11: the main results, the speed ratios, the blocking gaps, and the recommended order of steps for other repositories. (Section 11 holds the results table, the speed bullets, the blocking gaps of section 7, the exact oxfmt pin note, and the 7-step order.)
     - [x] Commit: `measure(vinext-oxc): write the evidence summary`. (b8733002.)
-- [~] Task: S5 Verify — run the full gate sweep
-    - [ ] Run `npm ci` on Node 24.
-    - [ ] Run `npm run format:check`, `npm run lint`, and `npm run typecheck` at the root. Confirm that no gate has a new failure.
-    - [ ] Run the test and build gates for each workspace. Confirm that no gate has a new failure.
-    - [ ] Run the scripts suite, the audit suites, the CI check, the boundary check, the tree check, and `npm audit`.
-    - [ ] Confirm that the evidence file has content in all 11 sections (spec AC7).
-    - [ ] Commit the evidence file: `measure(vinext-oxc): record the S5 results`.
-- [ ] Task: S5 Docs & Doctor
-    - [ ] Run `npm run generate`. Confirm exit code 0.
-    - [ ] Run `npm run doctor`. Confirm exit code 0.
-- [ ] Task: Measure - User Manual Verification 'Phase S5: Gate rules and CI' (Protocol in workflow.md)
-    - [ ] Run the protocol: the automated tests, the manual verification plan, and the user confirmation.
-    - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S5`.
+- [x] Task: S5 Verify — run the full gate sweep (87e8a165; test fixes 09ca840d and 8337aa23)
+    - [x] Run `npm ci` on Node 24. (The active Node is v24.19.0. The first run stopped with a registry `ETIMEDOUT`; the second run exited 0. `@tsrs/linux-x64-gnu` is present. Logs `s5-npm-ci.log` and `s5-npm-ci-r2.log`.)
+    - [x] Run `npm run format:check`, `npm run lint`, and `npm run typecheck` at the root. Confirm that no gate has a new failure. (`format:check` exit 0 on 3717 files. `lint` exit 0. `typecheck` exits 1 with the 59 pre-existing `tsc` diagnostics of IM3 (55) and PreCalc (4); the typecheck sweep compare gives `NEWFAIL=0` for both. Logs `s5-format-check.log`, `s5-root-lint.log`, and `s5-root-typecheck.log`.)
+    - [x] Run the test and build gates for each workspace. Confirm that no gate has a new failure. (`GATES_BASE=baseline-m2`: `lint s5` exit 0 `NEWFAIL=0`; `test s5` exit 0 `NEWFAIL=0`; `checks-all s5` exit 0 `NEWFAIL=0`. The build sweep exits 0 for 26 workspaces and `n/a` for `practice-test-engine`, the baseline set.)
+    - [x] Run the scripts suite, the audit suites, the CI check, the boundary check, the tree check, and `npm audit`. (Scripts suite: 104 passed, 1 failed of 105, the pre-existing Q3 `remediate-concept-blueprints` row. Audit suites: 187 passed, 5 failed of 192, all section 10 baseline rows. Steps `ci-check` 0, `boundary` 0, `tree` 0, `next-absent` 0, `measure-contract` 1 (pre-existing). `audit: critical=0 high=9 moderate=7 low=5` against baseline `high=11`.)
+    - [x] Confirm that the evidence file has content in all 11 sections (spec AC7). (11 sections, each with a non-empty body: 65 to 37,355 characters.)
+    - [x] Commit the evidence file: `measure(vinext-oxc): record the S5 results`. (87e8a165. Two test updates came first: `09ca840d test(ci): read the last job section in the IM2 CI wiring test` and `8337aa23 test(ci): pin the deploy gate to the dispatched workflow`. The deploy removal leaves `app-foundations` as the last job, and the IM2 helper needed the end-of-file case. The IM3 workflow-validation test pinned the removed deploy job; it now keeps the production-environment gate on `cloudflare-deploy.yml` and adds the no-deploy rule for `ci.yml`. IM1 keeps its helper and its pre-existing `im1-im2-precalc` failure, which `baseline-m2` also holds.)
+- [x] Task: S5 Docs & Doctor (87e8a165)
+    - [x] Run `npm run generate`. Confirm exit code 0. (Exit 0. Log `s5-generate.log`. Only the 6 known dirty generated files stay modified, and they stay unstaged.)
+    - [x] Run `npm run doctor`. Confirm exit code 0. (Exit 0: 5 architecture reports verified, 620 internal imports checked, package DAG acyclic. Log `s5-doctor.log`.)
+- [b] Task: Measure - User Manual Verification 'Phase S5: Gate rules and CI' (Protocol in workflow.md) (deferred:closeout-steward)
+    - [x] Run the automated tests of the protocol. (`-t 'S5 gate rules'` 10 passed, exit 0. `-t 'S4 oxfmt'` 5 passed. `-t 'S3 tsrs'` 8 passed. `-t 'S3 adversarial'` 14 passed. `-t 'S2 adversarial'` 13 passed. `lint s5`, `test s5`, and `checks-all s5` each print `NEWFAIL=0`.)
+    - [ ] Run the manual verification plan and the user confirmation. (S5 changes no runtime. The confirming user is the PM (orchestrator default).)
+    - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S5`. (The closeout role makes it after the phase acceptance.)
     - [ ] Append `[checkpoint: <sha>]` to the Phase S5 heading.
     - [ ] Commit: `measure(plan): Mark phase 'Phase S5: Gate rules and CI' as complete`.
 
