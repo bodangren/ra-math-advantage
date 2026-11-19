@@ -1,0 +1,130 @@
+S3 adversarial testing, re-run after remediation round 2.
+Role: measure-adversarial-testing. Route: opencode-go/glm-5.3#high.
+Track: vinext-oxc-toolchain_20261114. Phase: Phase S3: TypeScript 7 and tsrs.
+phase_base_sha 2b3ffa8f2d6c6e6eea0bfe27f07015fdf969bf1d. role_base_sha b6ae211fc077ce5fa988f81c96dae5c5496e4502.
+Test commit: 6aa56a84 (test(vinext-oxc): extend the S3 adversarial tests (r3)).
+Green remediation under attack: 0dcc9ef1 (PROBE_DIR_PREFIXES, the seedDir
+guard, and the sweepStaleProbeDirs beforeAll sweep).
+
+== 1. Attack the sweep live, each row with a paired control ==
+One child vitest run of the suite file re-runs the real beforeAll sweep, so
+the seeded folders model the leak of an interrupted earlier run. Every seed
+holds probe text only, never user data.
+bash /tmp/opencode/adv-s3-r3/probe-sweep-matrix.sh
+bash /tmp/opencode/adv-s3-r3/probe-sweep-matrix2.sh
+
+(a) stale folders, each seeded prefix class, in each parent the sweep reads:
+  root/.oxlint-adv-cfg-R3STALE-*                    REMOVED
+  root/.oxlint-probe-R3STALE-*                      REMOVED
+  apps/integrated-math-3/.oxlint-adv-seed-R3STALE-* REMOVED
+  packages/app-shell/.oxlint-probe-R3STALE-*       REMOVED
+  apps/.oxlint-probe-R3STALE-*                      SURVIVED  <- F1r3
+
+(b) tracked-path guard: .oxlint-adv-R3KEEP-*/keep.ts staged with git add -f
+    SURVIVED; the finally path unstaged it. The guard holds.
+
+(c) symlink .oxlint-adv-R3LINK -> a temp folder outside the repo: the link
+    SURVIVED and the sentinel file in the target SURVIVED. Safe.
+
+(d) a plain file named .oxlint-adv-R3FILE SURVIVED. Safe.
+
+(e) apps/integrated-math-3/curriculum/.oxlint-adv-R3DEEP-* (two levels deep)
+    SURVIVED. No seed nests that deep, so untouched is safe.
+
+(f) near-miss names (matrix 2):
+  .oxlint-probe<rand> (no dash), root and IM3   SURVIVED  (safe)
+  .oxlint-advisory<rand>                        REMOVED   <- F2r3
+  .oxlint-advisory-R3-homK7V (matrix 1)         REMOVED   <- F2r3
+
+(g) seed bypass grep: every mkdtempSync and mkdirSync in scripts/__tests__
+    lives under os.tmpdir() or goes through seedDir
+    (vinext-oxc-gates-script.test.ts:18, oxc-toolchain-gates.test.ts:143,
+    remediate-concept-blueprints.test.ts under os.tmpdir). No bypass exists.
+
+(h) the LEAKPROBE through adv 7: seeded
+    apps/integrated-math-3/.oxlint-adv13-LEAKPROBE3/seed.ts
+    ('/* eslint-disable */ const unused = 1;'), then
+    '-t adv 7: every disable comment' PASSED and the folder was gone after.
+    The r2 red scenario is now green: the sweep removes the stale carrier
+    before the test reads the tree.
+
+== 2. Findings ==
+
+F1r3 [Blocker] adversarial-testing: the F1r2 remediation covers the root and
+each workspace but not the apps/ parent, where the suite still seeds
+leak-prone folders. The sweep reads [REPO_ROOT, ...WORKSPACE_DIRS]
+(oxc-toolchain-gates.test.ts:152; WORKSPACE_DIRS at :1335 holds apps/* and
+packages/* workspaces, never apps/ itself), and makeLintProbe seeds
+.oxlint-probe-* under apps/ (:1401), the class that the F1r2 blast radius
+named. Live proof: apps/.oxlint-probe-R3STALE-iPK7Cx/probe.ts survived the
+real beforeAll sweep while every covered class was removed. Honest impact:
+no current gate step reads the apps/ parent one level (gates.sh:95 skips
+dotfolders; adv 7 walks WORKSPACE_DIRS only, :1674), so the leak is
+unremoved litter today, not a red gate. Fix owner Green, one line: add
+path.join(REPO_ROOT, 'apps') to the sweep parent list. The r3 b pin flips.
+
+F2r3 [Blocker] adversarial-testing: the sweep prefix '.oxlint-adv' is
+broader than every seeded form, so the sweep deletes an untracked near-miss
+folder that no test seeded. Every seeded name continues with '-' or a digit
+(PROBE_DIR_PREFIXES at :135), but the match is
+entry.name.startsWith('.oxlint-adv') (:156), which also matches
+.oxlint-advisory and each similar name. Live proof: the seeded
+.oxlint-advisory-R3-homK7V and .oxlint-advisoryuMi3MP folders were removed
+by the real sweep; the true no-dash form .oxlint-probe<rand> stayed. The
+sweep deletes untracked data without confirmation, and its comment says
+"matches the exact prefix" (:149), so the behavior contradicts the comment.
+Fix owner Green, one line: require the character after '.oxlint-adv' to be
+'-' or a digit, or list the exact seeded prefixes. The r3 b pin flips.
+
+F2r2 and F3r2 stay accepted residuals: r2 a and r2 d still pass at this
+HEAD and pin them (the S3 adversarial filter selects both). No CONTEST
+item was routed back to this round.
+
+== 3. New committed cases ==
+r3 a: seedDir rejects a prefix outside the sweep list, so a new seed cannot
+escape the sweep (oxc-toolchain-gates.test.ts, describe 'S3 adversarial').
+r3 b: one child vitest run drives the real sweep over the full matrix. The
+case pins each removed class with its paired surviving control: the
+tracked-path guard, the symlink, the outside target, the plain file, the
+two-level-deep folder, the no-dash name, the apps/ parent gap (F1r3 pin),
+and the near-miss deletion (F2r3 pin). The r3 b child run takes about 1 s,
+because the '-t' filter loads one file and runs one fast case.
+
+== 4. Re-checks at this HEAD (b6ae211f + 6aa56a84) ==
+-t 'S3 adversarial' 14 passed (7 cases of r1, 5 of r2, 2 of r3).
+-t 'S3 tsrs' 8 passed. -t 'S2 adversarial' 13 passed.
+The gates-script file 23 passed. npx tsc --noEmit exit 0.
+The full scripts suite: 86 passed, 1 failed. The only failure is the known
+pre-existing 'remediate-concept-blueprints > production scan reports the
+honest count' row (the accepted S1 Q3 case, unchanged from r2).
+
+== 5. PROJECT_TESTS ==
+The stale scripts-suite step record was dropped from
+measure/runs/vinext-oxc-toolchain_20261114/gates/s3/test.steps first, so the
+step re-ran with the r3 tests.
+GATES_BASE=baseline-m2 GATES_RESUME=1 bash
+measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s3 (detached):
+exit 0, NEWFAIL=0, no INFRA line. The step row is 'step scripts-suite 359
+exit=1' (the baseline failure only, no new diagnostic against baseline-m2).
+
+== 6. Scope and hygiene ==
+Commit 6aa56a84 changes scripts/__tests__/oxc-toolchain-gates.test.ts only
+(106 insertions). This role edited no production file, manifest, lockfile,
+tsconfig, CI workflow, typecheck script, allow-list fixture, or gates.sh
+line. git status --porcelain held only the six known dirty generated files
+after every probe run. Every seed folder, symlink, staged index entry, and
+the outside target folder were removed.
+
+MEASURE_AGENT_RESULT
+role: measure-adversarial-testing
+status: fail
+track: vinext-oxc-toolchain_20261114
+phase: Phase S3: TypeScript 7 and tsrs
+head: 6aa56a84 (the r3 test commit; the artifacts commit follows in measure/runs/)
+commits: 6aa56a84 test(vinext-oxc): extend the S3 adversarial tests (r3); the artifacts commit measure(runs): add the S3 adversarial r3 result
+tests_run: -t 'r3 ' 2 passed; -t 'S3 adversarial' 14 passed; -t 'S3 tsrs' 8 passed; -t 'S2 adversarial' 13 passed; the gates-script file 23 passed; full scripts suite 86 passed 1 failed (the pre-existing remediate-concept-blueprints row only); npx tsc --noEmit exit 0; PROJECT_TESTS test s3 exit 0 NEWFAIL=0 (the stale scripts-suite step record was dropped first, so the step re-ran with the r3 tests, 359 s)
+files_changed: scripts/__tests__/oxc-toolchain-gates.test.ts (test commit 6aa56a84); measure/runs/vinext-oxc-toolchain_20261114/adversarial-s3-r3-6aa56a84.{json,log} (artifacts commit)
+plan_updates: none (the adversarial re-run is not a plan task; the orchestrator records the verdict and the dispositions)
+known_failures: the pre-existing remediate-concept-blueprints scripts-suite failure only; every S3 adversarial test passes at this HEAD
+handoff: verdict fail with two Blockers routed to Green, both defects in the lines that 0dcc9ef1 changed, so both report as blocking per the re-review scope. F1r3: the sweep covers the root and each workspace but not the apps/ parent, where makeLintProbe seeds .oxlint-probe-* (the F1r2 blast radius named this class); live proof: apps/.oxlint-probe-R3STALE-iPK7Cx survived the real sweep; no current gate step reads that parent, so the leak is litter today; one-line fix: add apps/ to the sweep parent list, the r3 b pin flips. F2r3: the prefix '.oxlint-adv' also matches non-seed names such as .oxlint-advisory, and the sweep deleted two seeded near-miss folders live; every seeded name continues with '-' or a digit; one-line fix: narrow the prefix, the r3 b pin flips. The r2 LEAKPROBE class is closed: the sweep removes a stale IM3 carrier before adv 7 reads the tree (proven live, then committed as r3 b). F2r2 and F3r2 stay accepted residuals, pinned by the passing r2 a and r2 d cases; no CONTEST item was routed back. This is after the second remediation round, so the orchestrator sends the findings to the user; a third round needs the escalation key in metadata.json. Questions: Q1 (F1r3 disposition, default FIX: Green adds the apps/ parent to the sweep parent list in a test-file commit, then the relevant adversarial gate re-runs). Q2 (F2r3 disposition, default FIX: Green narrows the prefix to the seeded forms; ACCEPT is also defensible because only contrived untracked names can be deleted). No EDQUOT or ENOSPC infrastructure error occurred; no re-run was needed.
+END_MEASURE_AGENT_RESULT
