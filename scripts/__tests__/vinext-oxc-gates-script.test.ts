@@ -466,13 +466,19 @@ describe('S1 adversarial: gates.sh workspace set', () => {
 // the key function dropped every line that held them. A diagnostic that only
 // mentions the word in its text was therefore classified infrastructure and
 // dropped from the compare, so a real new failure could hide behind the word.
-// The fix accepts only the real system message forms. This case pins that a
-// word-only title stays a diagnostic and yields NEWFAIL, and that a real
-// message still classifies as infrastructure. The word is composed at runtime
-// so this test's own failure diff cannot put it into the scripts-suite log and
-// cloak this test.
+// The fix accepts only the real system message forms. The round-1 case pins
+// that a word-only title stays a diagnostic and yields NEWFAIL, and that a real
+// message still classifies as infrastructure. The round-2 cases attack the new
+// matcher itself: errno data forms inside a diagnostic (r2 a), the real-failure
+// plus real-message trade-off (r2 c), the real npm and Node outputs (r2 d),
+// and the near-miss variants (r2 e). The trigger words are composed at runtime
+// so this test's own failure diff cannot put them into the scripts-suite log
+// and cloak this test.
 describe('S3 adversarial', () => {
   const DISK_ERRNO = ['EN', 'OSPC'].join('');
+  const DISK_QUOTA = ['ED', 'QUOT'].join('');
+  const NEG28 = ['-', '2', '8'].join('');
+  const NEG122 = ['-', '1', '2', '2'].join('');
 
   function runBashFn(script: string): { status: number | null; output: string } {
     const r = spawnSync('bash', ['-c', `source "${GATES_SH}"\n${script}`], {
@@ -539,5 +545,180 @@ describe('S3 adversarial', () => {
       runBashFn(`new_keys "${baseLog}" "${curPlainLog}"`).status,
       'the plain new failure is visible to the compare',
     ).toBe(0);
+  });
+
+  it('r2 a: a real failure whose diagnostic carries an errno data form is still hidden as infrastructure and dropped from the compare', () => {
+    // The round-2 residual of F1: the three data forms that the narrow matcher
+    // still accepts (`Error: <errno>`, `code: '<errno>'`, `errno: -28`) can sit
+    // inside a failing assertion diff, for example a test that asserts on a
+    // caught error object. Such a line is a real new failure, but the matcher
+    // classifies the job log as infrastructure and key() drops the line, so a
+    // baseline that already fails reports no new key. This case pins the
+    // current behavior so a Green fix has a failing-first target; each hit
+    // line has a paired control without the data form.
+    const tmp = makeTempDir('gates-adv-errno-r2a-');
+    const pairs: Array<{ hit: string; control: string; marker: string }> = [
+      {
+        hit: `FAIL  __tests__/disk.test.ts > rejects the write: AssertionError: expected 'Error: ${DISK_ERRNO}' to be 'Error: EACCES' [r2a-1]`,
+        control: `FAIL  __tests__/disk.test.ts > rejects the write: AssertionError: expected 'Error: EACCES' to be 'Error: EPERM' [r2a-1-ctrl]`,
+        marker: '[r2a-1]',
+      },
+      {
+        hit: `AssertionError: expected { code: '${DISK_ERRNO}', errno: ${NEG28} } to match { code: 'ENOENT' } [r2a-2]`,
+        control: `AssertionError: expected { code: 'EACCES', errno: -13 } to match { code: 'ENOENT' } [r2a-2-ctrl]`,
+        marker: '[r2a-2]',
+      },
+      {
+        hit: `AssertionError: the watcher state held errno: ${NEG28} after the write [r2a-3]`,
+        control: `AssertionError: the watcher state held errno: -13 after the write [r2a-3-ctrl]`,
+        marker: '[r2a-3]',
+      },
+    ];
+    for (const { hit, control, marker } of pairs) {
+      const hitLog = path.join(tmp, marker.slice(1, -1) + '-hit.log');
+      fs.writeFileSync(hitLog, `${hit}\n`);
+      const controlLog = path.join(tmp, marker.slice(1, -1) + '-ctrl.log');
+      fs.writeFileSync(controlLog, `${control}\n`);
+      // Pinned defect: the data-form hit is classified infrastructure.
+      expect(
+        runBashFn(`has_infra_output "${hitLog}"`).status,
+        `${marker}: the data-form diagnostic is classified infrastructure`,
+      ).toBe(0);
+      expect(
+        runBashFn(`has_infra_output "${controlLog}"`).status,
+        `${marker}: the control diagnostic is not infrastructure`,
+      ).not.toBe(0);
+      // Pinned defect: key() drops the data-form hit and keeps the control.
+      expect(
+        runBashFn(`key "${hitLog}"`).output,
+        `${marker}: the data-form diagnostic leaves no key`,
+      ).not.toContain(marker);
+      expect(runBashFn(`key "${controlLog}"`).output).toContain(`${marker.slice(1, -1)}-ctrl`);
+    }
+    // The compare is blind to a new failure whose diagnostic holds the form.
+    const baseLog = path.join(tmp, 'r2a-base.log');
+    fs.writeFileSync(baseLog, 'FAIL  __tests__/old.test.ts > an old failing test\n');
+    const curHit = path.join(tmp, 'r2a-cur-hit.log');
+    fs.writeFileSync(
+      curHit,
+      `FAIL  __tests__/old.test.ts > an old failing test\nFAIL  __tests__/disk.test.ts > rejects the write: AssertionError: expected 'Error: ${DISK_ERRNO}' to be 'Error: EACCES' [r2a-new]\n`,
+    );
+    const curCtrl = path.join(tmp, 'r2a-cur-ctrl.log');
+    fs.writeFileSync(
+      curCtrl,
+      `FAIL  __tests__/old.test.ts > an old failing test\nFAIL  __tests__/disk.test.ts > rejects the write: AssertionError: expected 'Error: EACCES' to be 'Error: EPERM' [r2a-new-ctrl]\n`,
+    );
+    expect(
+      runBashFn(`new_keys "${baseLog}" "${curHit}"`).status,
+      'the data-form new failure is invisible to the compare',
+    ).not.toBe(0);
+    expect(
+      runBashFn(`new_keys "${baseLog}" "${curCtrl}"`).status,
+      'the control new failure is visible to the compare',
+    ).toBe(0);
+  });
+
+  it('r2 c: a job log that holds one real disk-full line and a real failure still classifies the job as infrastructure', () => {
+    // Strategy 16.7 records the trade-off: /tmp is a memory disk near its
+    // quota, so a tool can write the real message and still exit with a real
+    // failure code. The gate prefers the re-run: one real message line makes
+    // the whole job infrastructure (exit 3, re-run once), even when a real
+    // TS2322 failure sits in the same log. This case pins that decision.
+    const tmp = makeTempDir('gates-adv-errno-r2c-');
+    const seed = path.join(tmp, 'seed.log');
+    fs.writeFileSync(
+      seed,
+      `Error: ${DISK_ERRNO}: no space left on device, write\n` +
+        "probe.ts(1,14): error TS2322: Type 'string' is not assignable to type 'number'.\n",
+    );
+    const outDir = path.join(tmp, 'out');
+    fs.mkdirSync(outDir);
+    const wrapper = path.join(tmp, 'heavy-run.sh');
+    fs.writeFileSync(wrapper, `#!/usr/bin/env bash\ncat "${seed}"\nexit 1\n`);
+    fs.chmodSync(wrapper, 0o755);
+    const harness = path.join(tmp, 'harness.sh');
+    fs.writeFileSync(
+      harness,
+      [
+        'set -u',
+        `source "${GATES_SH}"`,
+        `H="${wrapper}"`,
+        `OUT="${outDir}"`,
+        `run_job test x "${path.join(outDir, 'job.log')}" cat /dev/null`,
+        'echo "JOB_CODE=$JOB_CODE"',
+        '',
+      ].join('\n'),
+    );
+    // The job itself exited 1 for a real reason, but the real disk-full line
+    // upgrades the recorded code to 290 (infrastructure, one re-run).
+    expect(runBashFn(`bash "${harness}"`).output).toContain('JOB_CODE=290');
+  });
+
+  it('r2 d: the real Node and npm disk-full outputs are caught, and the npm trailer-only lines are not', () => {
+    // Real outputs, seeded verbatim (the errno words composed at runtime). The
+    // full npm error block is caught through its summary line, and Node prints
+    // the full message. The trailer-only lines (`npm ERR! code <errno>`,
+    // `npm error code <errno>`, `npm ERR! errno -28`) match no alternative, so
+    // a log that holds only them is not classified infrastructure; that miss
+    // is pinned for a Green decision.
+    const tmp = makeTempDir('gates-adv-errno-r2d-');
+    const writes: Array<[string, string, boolean]> = [
+      ['npm-err-bang', `npm ERR! code ${DISK_ERRNO}`, false],
+      ['npm-lower', `npm error code ${DISK_ERRNO}`, false],
+      ['npm-errno', `npm ERR! errno ${NEG28}`, false],
+      [
+        'npm-block',
+        `npm ERR! code ${DISK_ERRNO}\nnpm ERR! syscall write\nnpm ERR! errno ${NEG28}\nnpm ERR! enospc ${DISK_ERRNO}: no space left on device, write\n`,
+        true,
+      ],
+      ['node-write', `Error: ${DISK_ERRNO}: no space left on device, write`, true],
+      ['node-close', `Error: ${DISK_ERRNO}: no space left on device, close`, true],
+      ['quota-write', `Error: ${DISK_QUOTA}: disk quota exceeded, write`, true],
+      [
+        'node-fields',
+        `[Error: ${DISK_ERRNO}: no space left on device, write] { errno: ${NEG28}, code: '${DISK_ERRNO}', syscall: 'write' }`,
+        true,
+      ],
+      ['npm-modern', `npm error enospc ${DISK_ERRNO}: no space left on device, write`, true],
+    ];
+    for (const [name, content, infra] of writes) {
+      const log = path.join(tmp, `${name}.log`);
+      fs.writeFileSync(log, `${content}\n`);
+      const status = runBashFn(`has_infra_output "${log}"`).status;
+      if (infra) {
+        expect(status, `${name}: a real disk-full output is infrastructure`).toBe(0);
+      } else {
+        // Pinned miss: the trailer-only line classifies as a normal
+        // diagnostic. A Green fix that widens the matcher flips this half.
+        expect(status, `${name}: the trailer-only line is not infrastructure`).not.toBe(0);
+      }
+    }
+  });
+
+  it('r2 e: the canonical field forms stay infrastructure and the near-miss variants stay diagnostics', () => {
+    // Case and spacing edges around the new matcher. The canonical forms that
+    // Node prints stay infrastructure; the near-miss variants (lowercase, no
+    // space after the colon, compact JSON, a double space, a capitalized key)
+    // stay diagnostics. Node never prints the near-miss forms, so the misses
+    // are the safe direction: no real disk-full output escapes.
+    const tmp = makeTempDir('gates-adv-errno-r2e-');
+    const writes: Array<[string, string, boolean]> = [
+      ['errno-122', `errno: ${NEG122}`, true],
+      ['code-double-quotes', `code: "${DISK_ERRNO}"`, true],
+      ['code-no-quotes', `code: ${DISK_ERRNO}`, true],
+      ['lower-word', `${['en', 'ospc'].join('')}: no space left on device`, false],
+      ['compact-json', `{"code":"${DISK_ERRNO}"}`, false],
+      ['errno-tight', `errno:${NEG28}`, false],
+      ['errno-wide', `errno:  ${NEG28}`, false],
+      ['cap-code', `Code: '${DISK_ERRNO}'`, false],
+    ];
+    for (const [name, content, infra] of writes) {
+      const log = path.join(tmp, `${name}.log`);
+      fs.writeFileSync(log, `${content}\n`);
+      const status = runBashFn(`has_infra_output "${log}"`).status;
+      expect(status, `${name}: the infra flag must match the recorded decision`).toBe(
+        infra ? 0 : 1,
+      );
+    }
   });
 });
