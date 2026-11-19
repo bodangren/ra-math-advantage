@@ -558,6 +558,33 @@ _Story ref: spec.md#story-s4_
   comment assertions; departs from the recorded default style); (c) exclude the asserted files
   (weakens the format gate; Green does not recommend it). Green default: (a) in a remediation
   track that owns those tests, then resume S4 Verify on the same `dec3be20`.
+- S4 regression fix (2026-11-19): the orchestrator chose option (a) inside S4, not in a new
+  track, because the 17 broken tests are a regression of the S4 format commit. The fix is one
+  commit, `e65553da test(format): match the oxfmt source text in 17 tests`, which touches 12
+  test files. Each file run passes: bus-math-v2 6 tests, integrated-math-2 2 tests,
+  integrated-math-3 92 tests over 7 files. `npm run format:check` exits 0 on 3717 files
+  (169 ms), `npx tsc --noEmit` exits 0, and `npm run lint` exits 0. Only expected source text
+  changed. Three changes are quote-tolerant on purpose, because the test reads source text that
+  oxfmt owns:
+  - `apps/integrated-math-2/__tests__/curriculum/extractor-guard.test.ts` now rewrites the
+    script with `.replace('path.resolve(__dirname, "..")', ...)` and
+    `.replaceAll('"../packages/', ...)`, which are the formatted tokens, not a wider pattern.
+  - `apps/integrated-math-3/__tests__/e2e/teacher-flow-contract.test.ts` reads the `as const`
+    entry map with the pattern `/(\w+):\s*(["'])([^"']+)\2/g` and destructures
+    `[, key, , value]`. The pattern accepts one quote pair and one value; it does not widen the
+    set of keys or values the test then asserts.
+  - `apps/integrated-math-3/__tests__/convex/seed/seed-standards.test.ts` adds a local
+    `descriptionSnippet` helper with a per-record `wrapped` flag. The helper builds the exact
+    two layouts that oxfmt produced (inline or 10-space continuation), so the assertion stays an
+    exact `toContain` of the code line plus the description line.
+  The other nine files only moved their expected text to the double-quoted form or to the new
+  line layout: `test-directory-structure`, `test-runner-discovery`, and `convex-provider`
+  (bus-math-v2); `text-contrast` (IM2, now anchored with `^` and the `m` flag so the CSS block
+  match is exact, not wider); `axe-harness`, `workflow-validation`,
+  `visualizationLearnerStateUnion`, `phase5-docs-and-doctor` (its `nodeId` pattern now allows
+  the line break that oxfmt inserted, `nodeId:\s*z\s*\.string\(\)`), and `convex-provider` (IM3).
+  No test was deleted, skipped, or loosened. No S1-S4 Red case, fixture entry, or production
+  file changed. The six dirty generated paths stay unstaged.
 - [ ] Task: S4 Docs & Doctor
     - [ ] Run `npm run generate`. Confirm exit code 0.
     - [ ] Run `npm run doctor`. Confirm exit code 0.
