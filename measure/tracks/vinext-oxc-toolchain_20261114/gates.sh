@@ -51,14 +51,27 @@ has_infra_output() { grep -qE "$DISK_FULL_RE" "$1" 2>/dev/null; }
 # Success lines (vitest ✓ lines) are not
 # diagnostics and are dropped: vitest 5 changed their trailing whitespace, which made
 # passing tests look like new diagnostics. Trailing whitespace is stripped on all
-# remaining lines for the same reason. The baseline logs are re-keyed with the same
-# function at compare time, so both sides stay symmetric and no baseline re-run is needed.
+# remaining lines for the same reason.
+# S4 (vinext-oxc-toolchain_20261114) key refinement: the spec keys a test failure by
+# the test file and the test title. Vitest also prints the content it compared, as
+# diff lines (`+` and `-`) and as code-frame lines (`<line>| <source>`), and it puts the
+# received value inside the assertion message. That content is an echo of a file, not a
+# diagnostic of its own. The oxfmt format commit changed the quoted text and the line
+# layout of many files, so the echo of a failure that already existed at the baseline
+# changed too, and the compare reported it as a new failure. The echo lines are dropped
+# and the received value inside an assertion message is normalized to a placeholder. The
+# failing test title and the failing test file stay in the key, so every new failing test
+# is still a new key. The baseline logs are re-keyed with the same function at compare
+# time, so both sides stay symmetric and no baseline re-run is needed.
 # LC_ALL=C pins the collation: sort and comm must agree, or comm reports keys as new or
 # absent at random (the source of the earlier "input is not in sorted order" warnings).
 key() {
   grep -E 'TS[0-9]+|error|ERROR|FAIL|AssertionError|Failed to resolve|[0-9] (warning|error)' "$1" 2>/dev/null |
     grep -vE "$DISK_FULL_RE" |
     grep -v '^[[:space:]]*✓' |
+    grep -vE '^[[:space:]]*[+-]' |
+    grep -vE '^[[:space:]]*[0-9]+\|' |
+    LC_ALL=C sed -E "s/^(AssertionError: expected )'.*'( to )/\1'<value>'\2/" |
     LC_ALL=C sed -E 's/^([^ (]+)\([0-9]+,[0-9]+\): error (TS[0-9]+):.*/\1 \2/; s/^npm error code [0-9]+$/npm error code/; s/\([0-9]+,[0-9]+\)//g; s/:[0-9]+:[0-9]+//g; s/ in [0-9.]+ ?m?s//g; s/[0-9.]+ ?m?s( |$)/\1/g; s/[[:space:]]+$//' | LC_ALL=C sort -u
 }
 
