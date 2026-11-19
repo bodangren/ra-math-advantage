@@ -244,8 +244,9 @@ the honest count for the current repo state` (S1 Q3). `audit-suites` holds 5
 failures in 2 files, all pre-existing (section 10).
 
 Steps of `checks-all s4`: `boundary` 0, `ci-check` 0, `tree` 0, `next-absent` 0,
-and `measure-contract` 1 (pre-existing). The typecheck sweep and the build sweep
-hold the baseline exit codes.
+and `measure-contract` 1 (pre-existing). The typecheck and build sweeps differ from
+`baseline-m2` in three workspaces: bus-math-v2 `n/a` to 0, integrated-math-3 2 to 1,
+and pre-calculus 2 to 1. Each change is an improvement and holds no new diagnostic.
 
 **Before sweep.** At the config state (`e5f474b5`), `lint s4` gives `NEWFAIL=0`,
 exit 0, and `checks-all s4` gives `NEWFAIL=0`, exit 0. `test s4` gives
@@ -558,8 +559,9 @@ an `ignorePatterns` entry, and none of the six dirty generated paths. The second
 
 **Exact command and config.** The command is `npm run format:check` at the
 repository root, which runs `oxfmt --check`. The config is the root
-`.oxfmtrc.json`. It holds `$schema` and `ignorePatterns` only. The 18 ignore
-patterns are `**/*.md`, `**/*.mdx`, `measure/**`, `**/curriculum/**`,
+`.oxfmtrc.json`. `.oxfmtrc.json` holds `$schema` and 17 `ignorePatterns` entries.
+The two `**/workbooks-manifest.json` paths and the other 15 patterns are the full
+list. The patterns are `**/*.md`, `**/*.mdx`, `measure/**`, `**/curriculum/**`,
 `kst-srs.v2/**`, `**/convex/_generated/**`, `**/package-lock.json`, `**/dist/**`,
 `**/build/**`, `**/.vinext/**`, `**/.next/**`, `**/coverage/**`,
 `**/playwright-report/**`, `**/test-results/**`, `.agents/**`, `.claude/**`, and
@@ -727,6 +729,20 @@ this section rests on an empty collector (A5).
 | TypeScript 7 tsconfig sweep (S3) | TypeScript 7 rejects some options (release notes: `target: es5`, `downlevelIteration`, `moduleResolution: node`, `module: amd`, `baseUrl`, `esModuleInterop: false`, and others). | No option of this tree is rejected. All 33 configs run (27 workspace `tsconfig.json` and 6 `apps/*/convex/tsconfig.json`). No tsconfig file changed. Each failing config holds the same file-plus-code key set under 6.0.3 and 7.0.2: IM3 55, PreCalc 4 (section 10 rows); IM1 convex 21, BM2 convex 87, IM3 convex 6, PreCalc convex 2 (convex configs are outside the baseline gate and are pre-existing at parity). The exit code of a failing config moves from 2 to 1. | none |
 | `tsrs` platform binary (S3) | The first `npm install` wrote the `@tsrs/linux-x64-gnu` lockfile entries but did not place the package in `node_modules`, so `npx tsrs --version` printed "Cannot find the optional dependency @tsrs/linux-x64-gnu". | A second `npm install` reified the package. `npx --no-install tsrs --version` prints `Version 7.1.0-beta (tsrs 0.25.0-ts7.1.0-beta, microsoft/TypeScript@3e9236361fa9)`. `oxlint --type-aware --type-check` finds the executable through `tsrs`, so `oxlint-tsgolint` is not added. | none |
 | tsrs type-check scope (S3) | `oxlint --type-aware --type-check` discovers the nearest `tsconfig.json` for each file (its `--help` text). For an app it also type-checks `convex/*.ts` through `apps/<app>/convex/tsconfig.json` and imported package sources through the package config. Four apps therefore report diagnostics that their `tsc` project does not (evidence section 7, "blocking" rows). | Those four apps stay on `tsc --noEmit` and are listed in `TSC_FALLBACK_LIST`: IM1, BM2, IM3, PreCalc. IM2, danielson, and all 21 packages use the tsrs command. A behavior-neutral code fix does not exist: the extra diagnostics are pre-existing errors under the convex configs (section 10 rule: do not fix a pre-existing failure). | none |
+
+### Recorded limits and residuals (S5 Contract, 2026-11-19)
+
+- `npm run format` reaches a second-pass fixed point. The first pass formats the tree; the
+  second pass changes 4 files; the third pass changes none. The fixed point is the third
+  pass, and `npm run format:check` then exits 0.
+- The before-sweep logs of S4 live under the `gates/s4-before` label. A later `s4` run does
+  not overwrite them. The label is separate from the after-sweep label.
+- Accepted residual (Review A F8, S3): the `gates.sh` sweep has no age guard. Two overlapping
+  runs in one checkout can interfere.
+- Accepted residual (adversarial F3r2, S3): a trailer-only disk-full line in the npm output
+  matches no `DISK_FULL_RE` alternative, so it classifies as a normal failure.
+- Accepted residual (adversarial F2r2, S3): an errno data form inside a failing assertion
+  diff still classifies as infrastructure. No committed adversarial case is weakened.
 
 ## 9. Keep list
 

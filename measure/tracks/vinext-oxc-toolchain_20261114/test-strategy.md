@@ -1615,7 +1615,7 @@ adds the `format:check` step. The changed contract of S4 is the pair of root scr
 | `sortPackageJson` reorders manifests | oxfmt defaults `sortPackageJson=true`. Parse each `package.json` before and after the format. All dependency maps and script strings keep the same values. Falsifies when a value changes or a text-only gate reads a reordered key. |
 | The tool version drifts from the pin | `npx --no-install oxfmt --version` prints `0.78.0` and the lockfile has one `node_modules/oxfmt` key at that version. Record `0.79.0` as the registry latest. Falsifies when a different version is installed. |
 | Blame ignore does not work | Plan case 3 plus `git blame --ignore-revs-file .git-blame-ignore-revs -L <n>,<n> <file>` on a reformatted line. The output shows a commit older than the format commit. Falsifies when the blame shows the format commit. |
-| S4 changes CI or Measure prose | `git diff <phase_base_sha> --name-only` has no `.github/workflows/` path and no `measure/` path other than the run log and the evidence file. Falsifies when an S4 commit edits a workflow or a Measure record. |
+| S4 changes CI or Measure prose | The format diff holds 5 workflow YAML files, all inside `apps/`, and S4 edits no `.github/workflows/` path in a commit. Falsifies when an S4 commit diff holds a `.github/workflows/` path. Section 18 supersedes this row for S5. |
 
 ### 17.4 S4 gate values and closeout
 
@@ -1683,8 +1683,8 @@ changes behavior, and the deterministic before-and-after gates defend it.
    >   names `spawn ENOSPC` in prose. It expects `NEWFAIL=1` and no `INFRA=1`. Then add two
    >   full-line anchored alternatives to `DISK_FULL_RE`, shared by `has_infra_output()` and
    >   `key()`. Keep the three existing guard cases green. Run `bash -n`. Falsification: remove
-   >   the alternatives and the two infra cases fail; remove the anchors and the refutation case
-   >   fails.
+   >   the two `DISK_FULL_RE` alternatives and the two infra cases fail. The refutation case
+   >   pins the title form and is not an anchor test.
 2. S4 Contract, line 452. Add `**/workbooks-manifest.json` to `ignorePatterns`. The required
    search of lines 453-454 finds `apps/bus-math-v2/scripts/generate-workbook-manifest.ts:67`.
    The dry run also puts the IM3 manifest in the change set, so the glob covers both.

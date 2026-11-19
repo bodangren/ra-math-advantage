@@ -471,12 +471,12 @@ _Story ref: spec.md#story-s4_
       names `spawn ENOSPC` in prose. It expects `NEWFAIL=1` and no `INFRA=1`. Then add two
       full-line anchored alternatives to `DISK_FULL_RE`, shared by `has_infra_output()` and
       `key()`. Keep the three existing guard cases green. Run `bash -n`. Falsification: remove
-      the alternatives and the two infra cases fail; remove the anchors and the refutation case
-      fails. (Done: guard cases in 4c4bd10e, `DISK_FULL_RE` alternatives in 97ef1021. Pre-change the two infra cases failed with `NEW FAILURE: lint apps/x exit 1` and the refutation case passed. Post-change the full gates-script file passes 26 of 26, including the three existing guard cases. `bash -n` passes.)
+      the two `DISK_FULL_RE` alternatives and the two infra cases fail. The refutation case
+      pins the title form and is not an anchor test. (Done: guard cases in 4c4bd10e, `DISK_FULL_RE` alternatives in 97ef1021. Pre-change the two infra cases failed with `NEW FAILURE: lint apps/x exit 1` and the refutation case passed. Post-change the full gates-script file passes 26 of 26, including the three existing guard cases. `bash -n` passes.)
     - [x] Commit: `test(vinext-oxc): add the S4 gate tests (Red)`. (1acf85c4; classifier tests 4c4bd10e and classifier fix 97ef1021.)
 - [x] Task: S4 Implement — add the oxfmt config (e5f474b5)
     - [x] Add `oxfmt` `0.78.0` to the root `devDependencies`. (Done: `e5f474b5`. `npx --no-install oxfmt --version` prints `Version: 0.78.0`, exit 0. `package-lock.json` gains only oxfmt and the `@oxfmt/binding-*` entries.)
-    - [x] Create `.oxfmtrc.json` in the target form. (Done: `e5f474b5`. `$schema` plus the 18 `ignorePatterns` of line 452.)
+    - [x] Create `.oxfmtrc.json` in the target form. (Done: `e5f474b5`. `.oxfmtrc.json` holds `$schema` and 17 `ignorePatterns` entries. The two `**/workbooks-manifest.json` paths and the other 15 patterns are the full list.)
     - [x] Add the `format` and `format:check` scripts to the root `package.json`. (Done: `e5f474b5`. The values are `oxfmt` and `oxfmt --check`; S4 case 2 passes.)
     - [x] Run `npm install`. (Done: the install ran through `heavy-run.sh`, exit 0.)
     - [x] Commit: `chore(format): add the oxfmt config`. (`e5f474b5`.)
@@ -515,7 +515,7 @@ _Story ref: spec.md#story-s4_
 - [x] Task: S4 Verify — run the gates after the format change (7019c7b5)
     - [x] Run each gate, with the format check. Confirm that no gate has a new failure. (At `39ce245f`, with `GATES_BASE=baseline-m2`: `lint s4` 0, `test s4` 0, `checks-all s4` 0. Each prints `NEWFAIL=0`. `npm run format:check` exits 0 on 3717 files. Evidence section 2, "S4 Green run".)
     - [x] Run the before-and-after gate sweep of section 17.3. Run `lint s4`, `test s4`, and `checks-all s4` before the format commit and after it. Use `GATES_BASE=baseline-m2`. (Before, at the config state `e5f474b5`, 2026-11-19: `lint s4` gives `NEWFAIL=0`, exit 0; `checks-all s4` gives `NEWFAIL=0`, exit 0; `test s4` gives `NEWFAIL=1`, exit 1, with 33 new key lines: 29 `oxfmt --check` file lines and 2 `FAIL` titles from case 1, and 2 `AssertionError` lines from cases 1 and 3. Cases 1 and 3 are red by design until the format and blame commits, so a zero is impossible at that point. After, at `39ce245f`: `lint s4` gives `NEWFAIL=0`, exit 0; `test s4` gives `NEWFAIL=0`, exit 0; `checks-all s4` gives `NEWFAIL=0`, exit 0. The after sweep holds zero new keys for every workspace and every step, and the before set holds only S4 case output. The regression and its fix are in the dated blocks below.)
-    - [x] Compare the canonical fixture JSON before and after the format. The two strings must be equal. `entries.length` must be 49. (Equal at `39ce245f`; 49 entries. The fixture file is not in the format commit.)
+    - [x] Compare the canonical fixture JSON before and after the format. The two strings must be equal. `entries.length` must be 49. (Equal at `39ce245f`; 49 entries. The fixture canonical JSON before and after the format is equal, with 49 entries. The fixture `scripts/__tests__/fixtures/lint-disable-allowlist.json` is in the format commit `dec3be20`; its content is unchanged.)
     - [x] Confirm that the scripts suite passes. (`GREEN_TEST_COMMAND` gives exit 1: 94 passed and 1 failed of 95. The failure is the pre-existing `remediate-concept-blueprints > production scan reports the honest count for the current repo state` row (S1 Q3).)
     - [x] Commit the evidence file: `measure(vinext-oxc): record the S4 results`. (7019c7b5.)
     - [x] Record the `format:check` time in evidence section 5. Record the pre-format count of 3499 files (3501 minus the two manifests that `**/workbooks-manifest.json` now ignores) and the scanned count of 3717 files (3719 minus the same two). Record the exact command and config in evidence section 5. (Median of 3 runs is 0.293 s at `39ce245f` (0.269, 0.293, 0.339). The first measurement after the format commit gave 0.276 s. The counts, the command, and the config are in evidence section 5, "S4 oxfmt timing".)
@@ -547,7 +547,9 @@ _Story ref: spec.md#story-s4_
   The CSS assertion (`text-contrast`), the YAML assertion (`workflow-validation`), and the comment
   assertion (`axe-harness`) also fail, so a `singleQuote: true` change alone would not close them.
   Unchanged and proven: the fixture canonical JSON is equal, with 49 entries. `npm run format`
-  is idempotent (the second run changed nothing). `dec3be20` holds 3499 files, zero ignored paths,
+  reaches a second-pass fixed point. The first pass formats the tree; the second pass changes
+  4 files; the third pass changes none. The fixed point is the third pass, and
+  `npm run format:check` then exits 0. `dec3be20` holds 3499 files, zero ignored paths,
   and none of the six dirty generated paths. `S2 adversarial` 13, `S3 tsrs` 8, and
   `S3 adversarial` 14 still pass; `npx tsc --noEmit` and `npm run lint` exit 0.
   Green did not weaken a test, narrow `ignorePatterns`, or change the format style. Decision
