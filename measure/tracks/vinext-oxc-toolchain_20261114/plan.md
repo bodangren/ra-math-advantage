@@ -652,17 +652,27 @@ _Story ref: spec.md#story-s5_
     - [ ] `.github/workflows/ci.yml`: remove the `deploy` job (the "Phase 6: Deploy" comment and the job) (spec D7). `cloudflare-deploy.yml` stays the only deploy workflow, with `workflow_dispatch`.
     - [ ] Remove the marker `(planned: vinext-oxc-toolchain_20261114)` from `README.md` and `measure/tech-stack.md`. Write the current state in the same place (test-strategy section 10).
     - [ ] `measure/tech-debt.md`: add the row "Scale Benchmarks workflow fails each week" with severity `Medium`, status `Open`, and this note: "`scale-benchmarks.yml` has failed each week since at least 2026-07-27 (checked with `gh` on 2026-11-14). Not fixed in `vinext-oxc-toolchain_20261114`." Check the line count first (50-line limit).
+    - [ ] S4 record item F1 (strategy 18.7 item 1): in `oxc-evidence.md`, replace the sentence at lines 247-248 with: "Steps of `checks-all s4`: `boundary` 0, `ci-check` 0, `tree` 0, `next-absent` 0, and `measure-contract` 1 (pre-existing). The typecheck and build sweeps differ from `baseline-m2` in three workspaces: bus-math-v2 `n/a` to 0, integrated-math-3 2 to 1, and pre-calculus 2 to 1. Each change is an improvement and holds no new diagnostic."
+    - [ ] S4 record item F2 / PA1 (strategy 18.7 item 2): at `plan.md:518`, replace the last sentence with: "The fixture canonical JSON before and after the format is equal, with 49 entries. The fixture `scripts/__tests__/fixtures/lint-disable-allowlist.json` is in the format commit `dec3be20`; its content is unchanged."
+    - [ ] S4 record item F3 / PA2 (strategy 18.7 item 3): at `plan.md:479` and in evidence section 5, state: "`.oxfmtrc.json` holds `$schema` and 17 `ignorePatterns` entries. The two `**/workbooks-manifest.json` paths and the other 15 patterns are the full list."
+    - [ ] S4 record item F4 (strategy 18.7 item 4): at `plan.md:550`, replace the idempotence sentence with: "`npm run format` reaches a second-pass fixed point. The first pass formats the tree; the second pass changes 4 files; the third pass changes none. The fixed point is the third pass, and `npm run format:check` then exits 0." Add one sentence to evidence section 8 with the same fact. Do not add a tech-debt row.
+    - [ ] S4 record item F5 (strategy 18.7 item 5): at `plan.md:474-475`, drop the clause "remove the anchors and the refutation case fails" from both the plan and `test-strategy.md:1685`. Replace with: "Falsification: remove the two `DISK_FULL_RE` alternatives and the two infra cases fail. The refutation case pins the title form and is not an anchor test."
+    - [ ] S4 record item F6 (strategy 18.7 item 6): at `test-strategy.md:1617`, replace the S4 CI risk row with the fact of `17.1`: the format diff holds 5 workflow YAML files, all inside `apps/`, and S4 edits no `.github/workflows/` path in a commit. Section 18 supersedes this row for S5.
+    - [ ] S4 record item F7 (strategy 18.7 item 7): in evidence section 8, record: "The before-sweep logs of S4 live under the `gates/s4-before` label. A later `s4` run does not overwrite them. The label is separate from the after-sweep label."
+    - [ ] Accepted residuals (strategy 18.7 item 8): in evidence section 8, keep one record line for each accepted residual: the sweep age guard, the npm trailer-only errno lines, and the errno data form inside an assertion diff. Do not edit a committed adversarial case to close a residual.
 - [ ] Task: S5 Test (Red) — add the S5 gate tests
     - [ ] Add `describe('S5 gate rules')` to the test file.
     - [ ] Normal case 1: `AGENTS.md`, `measure/workflow.md`, `measure/tech-stack.md`, the root `package.json`, and each `.github/workflows/*.yml` contain none of these strings: `npx tsc`, `tsc --noEmit`, `eslint .`, `eslint src`, `vinext lint`.
     - [ ] Normal case 2: `.github/workflows/ci.yml` has a step with `run: npm run format:check`.
-    - [ ] Normal case 3: the root scripts `lint`, `typecheck`, `format`, and `format:check` are the target forms. No `ws:*` script contains `tsc`.
+    - [ ] Normal case 3: the root scripts `lint`, `typecheck`, `format`, and `format:check` are the target forms. No root `ws:*` script contains `tsc`. The 4 workspace typecheck scripts in `TSC_FALLBACK_LIST` keep `tsc --noEmit` under S3 AC4 and plan line 679. Use `TSC_FALLBACK_LIST` for script paths and `TYPESCRIPT_KEEP_LIST` for manifest fields.
     - [ ] Normal case 4: the "Quality Gates" section of `measure/workflow.md` names `npm run format:check`, `npm run lint`, and `npm run typecheck`.
     - [ ] Edge case 5: `node scripts/validate-ci.mjs` exits with code 0.
     - [ ] Edge case 6: `git grep -n -E "npx tsc|tsc --noEmit|eslint \.|eslint src|vinext lint" -- measure/scripts` finds no match (exit code 1).
     - [ ] Normal case 7: `.github/workflows/ci.yml` has no job key `deploy`, and no line that contains `wrangler-action` or `wrangler deploy`.
     - [ ] Normal case 8: each `node-version` value in `.github/workflows/*.yml` has a major version of 22 or more.
-    - [ ] Run the scripts suite. Confirm that cases 1 to 4 and case 7 fail. Case 8 passes after S1; it guards the rule.
+    - [ ] Normal case 9 (guard): command-form regexes over workflows, the root `package.json`, `scripts/` outside `__tests__/`, and `measure/scripts/` match nothing. The 4 fallback workspace manifests are the only path exclusion.
+    - [ ] Normal case 10: `git grep -n 'planned: vinext-oxc-toolchain_20261114' -- README.md measure/tech-stack.md measure/index.md` finds nothing. The two documents state the current versions.
+    - [ ] Run the scripts suite. Confirm that cases 1 to 4, case 7, and case 10 fail. Cases 5, 6, 8, and 9 pass; they guard the rules.
     - [ ] Commit: `test(vinext-oxc): add the S5 gate tests (Red)`.
 - [ ] Task: S5 Implement — apply the gate text
     - [ ] Make the `AGENTS.md`, `measure/workflow.md`, `measure/tech-stack.md`, and root `package.json` changes of the S5 Contract.
