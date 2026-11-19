@@ -987,6 +987,112 @@ describe('S3 adversarial', () => {
     }
     expect(realHits, 'workflow run lines that call tsc').toEqual([]);
   });
+
+  // The r3 cases attack the F1r2 startup sweep (Green 0dcc9ef1). Each seed holds
+  // only probe text, never user data. r3 a pins the seedDir guard; r3 b drives the
+  // real beforeAll sweep through one child vitest run and pins each survivor class.
+  it('r3 a: seedDir rejects a prefix outside the sweep list, so every new seed stays sweepable', () => {
+    expect(() => seedDir(IM3_DIR, '.oxlint-other-')).toThrow(
+      'seed prefix .oxlint-other- is not in PROBE_DIR_PREFIXES',
+    );
+    // Controls: each listed prefix is accepted, and afterEach removes the folders.
+    for (const prefix of PROBE_DIR_PREFIXES) {
+      const dir = seedDir(os.tmpdir(), prefix);
+      expect(dir.startsWith(path.join(os.tmpdir(), prefix)), `seeded under ${prefix}`).toBe(true);
+    }
+  });
+
+  it(
+    'r3 b: the startup sweep removes a stale seed folder in each swept parent, and the controls stay',
+    () => {
+      // The sweep runs in beforeAll, before this body. A child vitest run of this
+      // file re-runs the real sweep, so the folders below model the leak of an
+      // interrupted earlier run (F1r2).
+      const staleRootAdv = seedDir(REPO_ROOT, '.oxlint-adv-r3stale-');
+      const staleRootProbe = seedDir(REPO_ROOT, '.oxlint-probe-r3stale-');
+      const staleIm3 = seedDir(IM3_DIR, '.oxlint-adv-r3stale-');
+      const stalePkg = seedDir(APP_SHELL_DIR, '.oxlint-probe-r3stale-');
+      for (const dir of [staleRootAdv, staleRootProbe, staleIm3, stalePkg]) {
+        fs.writeFileSync(path.join(dir, 'carrier.ts'), '/* eslint-disable */ const unused = 1;\n');
+      }
+      // The apps/ parent is not in the sweep list, but makeLintProbe seeds there.
+      // This pin flips when Green sweeps that parent too (F1r3).
+      const appsParentSeed = seedDir(path.join(REPO_ROOT, 'apps'), '.oxlint-probe-r3stale-');
+      fs.writeFileSync(path.join(appsParentSeed, 'probe.ts'), 'const unused = 1;\n');
+      // A folder that git names must stay (the tracked-path guard). The keep file
+      // is staged for the child run, and the finally block unstages it.
+      const keepDir = seedDir(REPO_ROOT, '.oxlint-adv-r3keep-');
+      const keepFile = path.join(keepDir, 'keep.ts');
+      fs.writeFileSync(keepFile, 'stale\n');
+      const staged = spawnSync('git', ['-C', REPO_ROOT, 'add', '-f', relative(keepFile)], {
+        encoding: 'utf8',
+      });
+      expect(staged.status, 'precondition: git add -f the keep file').toBe(0);
+      // A symlink is not a directory entry, so the sweep must skip it, and the
+      // target outside the repository must survive.
+      const outside = fs.mkdtempSync(path.join(os.tmpdir(), 'oxc-r3-outside-'));
+      tempDirs.push(outside);
+      fs.writeFileSync(path.join(outside, 'sentinel.txt'), 'sentinel\n');
+      const link = path.join(REPO_ROOT, '.oxlint-adv-r3link');
+      fs.symlinkSync(outside, link);
+      // A file, a folder two levels deep, and a name with no separator after the
+      // prefix must each stay.
+      const fileSeed = path.join(REPO_ROOT, '.oxlint-adv-r3file');
+      fs.writeFileSync(fileSeed, 'stale\n');
+      const deep = seedDir(path.join(IM3_DIR, 'curriculum'), '.oxlint-adv-r3deep-');
+      fs.writeFileSync(path.join(deep, 'carrier.ts'), 'stale\n');
+      const noDash = fs.mkdtempSync(path.join(REPO_ROOT, '.oxlint-probe'));
+      tempDirs.push(noDash);
+      // F2r3 pin: '.oxlint-advisory' is no seed class, but it starts with
+      // '.oxlint-adv', so the sweep deletes it today. This pin flips when Green
+      // narrows the prefix.
+      const advisory = fs.mkdtempSync(path.join(REPO_ROOT, '.oxlint-advisory-r3pin-'));
+      tempDirs.push(advisory);
+      fs.writeFileSync(path.join(advisory, 'carrier.ts'), 'stale\n');
+      try {
+        const child = spawnSync(
+          'npx',
+          [
+            '--no-install',
+            'vitest',
+            'run',
+            '--config',
+            'scripts/vitest.config.ts',
+            '__tests__/oxc-toolchain-gates.test.ts',
+            '-t',
+            'case 1: vinext resolves to a 1.x release',
+          ],
+          { cwd: REPO_ROOT, encoding: 'utf8', timeout: TOOL_TIMEOUT_MS },
+        );
+        expect(child.status, `the child sweep run: ${child.status ?? 'no exit'}`).toBe(0);
+        for (const dir of [staleRootAdv, staleRootProbe, staleIm3, stalePkg]) {
+          expect(fs.existsSync(dir), `the sweep must remove ${relative(dir)}`).toBe(false);
+        }
+        expect(
+          fs.existsSync(advisory),
+          'F2r3 pin: the broad prefix deletes the near-miss folder',
+        ).toBe(false);
+        expect(fs.existsSync(appsParentSeed), 'F1r3 pin: the apps/ parent is not swept').toBe(true);
+        expect(fs.existsSync(keepDir), 'a folder that git names must stay').toBe(true);
+        expect(fs.existsSync(link), 'a symlink must stay').toBe(true);
+        expect(fs.existsSync(path.join(outside, 'sentinel.txt')), 'the symlink target must stay')
+          .toBe(true);
+        expect(fs.existsSync(fileSeed), 'a file is not a folder and must stay').toBe(true);
+        expect(fs.existsSync(deep), 'a folder two levels deep must stay').toBe(true);
+        expect(fs.existsSync(noDash), 'a name with no separator after the prefix must stay').toBe(
+          true,
+        );
+      } finally {
+        spawnSync('git', ['-C', REPO_ROOT, 'rm', '--cached', '--quiet', relative(keepFile)], {
+          encoding: 'utf8',
+        });
+        fs.rmSync(link, { force: true });
+        fs.rmSync(fileSeed, { force: true });
+      }
+      // afterEach removes every registered seed, the swept ones and the survivors.
+    },
+    300000,
+  );
 });
 
 // The lockfile shape that the S1 case 8 scan reads.
