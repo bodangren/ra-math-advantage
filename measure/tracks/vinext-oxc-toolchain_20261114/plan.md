@@ -699,12 +699,29 @@ _Story ref: spec.md#story-s5_
     - [x] Commit: `ci: remove the deploy job from the CI workflow`.
     - [x] Add the "Scale Benchmarks" row to `measure/tech-debt.md`, as the S5 Contract says.
     - [x] Commit: `measure(tech-debt): record the failing Scale Benchmarks workflow`.
-- [ ] Task: S5 Implement — remove the last calls to the removed tools
-    - [ ] Run `git grep -n -E "npx tsc|tsc --noEmit|eslint|vinext lint" -- ':!measure/archive' ':!measure/tracks' ':!**/package-lock.json'`.
-    - [ ] For each match that calls ESLint or `tsc` as a command in a live script, document, or config, change it to the Oxc gate.
-    - [ ] Do not change the typecheck scripts of the workspaces in `TSC_FALLBACK_LIST`.
-    - [ ] Do not change dated history notes. Record each change in this plan.
-    - [ ] Commit: `chore(gates): remove the last calls to ESLint and tsc`.
+- [x] Task: S5 Implement — remove the last calls to the removed tools (2b2e7ff1)
+    - [x] Run `git grep -n -E "npx tsc|tsc --noEmit|eslint|vinext lint" -- ':!measure/archive' ':!measure/tracks' ':!**/package-lock.json'`. (5806 hits at the start. Most are data, logs, fixtures, dated history, generator output, and disable directives. The live call sites are named below.)
+    - [x] For each match that calls ESLint or `tsc` as a command in a live script, document, or config, change it to the Oxc gate. (Changed 5 documents in `2b2e7ff1`. The record is below.)
+    - [x] Do not change the typecheck scripts of the workspaces in `TSC_FALLBACK_LIST`. (BM2, IM1, IM3, and PreCalc `package.json` keep `"typecheck": "tsc --noEmit"` under S3 AC4. Their scripts are unchanged.)
+    - [x] Do not change dated history notes. Record each change in this plan. (Record below.)
+    - [x] Commit: `chore(gates): remove the last calls to ESLint and tsc`. (2b2e7ff1.)
+    - Sweep record (2026-11-19). Changes in `2b2e7ff1`:
+        - `README.md:256`: "Always run `npx tsc --noEmit` together with `npm run build`" becomes the `npm run typecheck` form.
+        - `README.md:224`: the IM3 script row becomes "Run the type check (IM3 uses the `tsc` fallback)". The IM3 script is `tsc --noEmit`, so the row stays true.
+        - `INTEGRATION.md:246`: the BM2 full-gate line ends with `npm run typecheck` in place of `npx tsc --noEmit`. The BM2 script runs `tsc --noEmit` under S3 AC4.
+        - `apps/bus-math-v2/DEVELOPMENT.md:15`: the verification line starts with `npm run typecheck` in place of `npx --no-install tsc --noEmit`.
+        - `apps/danielson/README.md:112-113`: the two `npx tsc --noEmit --project` lines become one `npm run typecheck --workspace=apps/danielson` line. Danielson runs tsrs, which discovers both configs.
+        - `packages/_template/README.md:40` and `:141`: the template snippet names the tsrs package form, and the BM2 gate line ends with `npm run typecheck`.
+        - The gate documents, the root `package.json`, and the workflows changed in the Contract commits `732a9d90`, `f9e8a879`, and `4f73155b`.
+    - Left unchanged, with the reason:
+        - The 4 `TSC_FALLBACK_LIST` manifests: S3 AC4 (above).
+        - `.oxlintrc.json` and `tools/oxlint/**`: plugin, rule, and API names (`eslint-js`, `eslintCompatPlugin`), not tool calls.
+        - `apps/*/convex/_generated/**` and the source disable directives: generator output and the 49-entry S2 allow-list. Adv 7 pins that list.
+        - `__tests__/governance/no-stale-problem-family.test.ts`: a test comment that records FR1. It is not a call site.
+        - `.agents/skills/*.md`: vendored Convex skill documents. `npx convex ai-files install` regenerates them, and they are not this repository's gate documents.
+        - `measure/tech-debt.md`, `measure/tracks.md`, `measure/reviews/**`, `measure/runs/**`, `measure/archive/**`, and `measure/tracks/**`: dated history, scope-excluded, or a committed test file.
+        - `scripts/architecture/architecture.manifest.json`: a recorded `qualityCommands` snapshot. S5 case 9 names this one path.
+        - `measure/generated/quality-gates.md`: generated output. `npm run generate` rewrites it in the Docs & Doctor task.
 - [ ] Task: S5 Implement — write the evidence summary
     - [ ] Fill evidence section 11: the main results, the speed ratios, the blocking gaps, and the recommended order of steps for other repositories.
     - [ ] Commit: `measure(vinext-oxc): write the evidence summary`.
