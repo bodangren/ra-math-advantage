@@ -27,7 +27,11 @@ has_script() {
 # libuv/Node text ("ENOSPC: no space left on device"), the errno name after
 # "Error:", and the Node error fields (`errno: -28`, `code: 'ENOSPC'`).
 # -28 is ENOSPC and -122 is EDQUOT on Linux.
-DISK_FULL_RE="ENOSPC: no space left on device|EDQUOT: disk quota exceeded|Error: (ENOSPC|EDQUOT)|errno: -(28|122)|code: ['\"]?(ENOSPC|EDQUOT)['\"]?"
+# S4 (Review A S3 r2 F1): the Rust form ("No space left on device
+# (os error 28)") and the Node spawn form ("Error: spawn ENOSPC") count too.
+# Both new alternatives are full-line anchored, so a failing test title that
+# names the spawn form in prose stays a normal diagnostic (A7).
+DISK_FULL_RE="ENOSPC: no space left on device|EDQUOT: disk quota exceeded|Error: (ENOSPC|EDQUOT)|errno: -(28|122)|code: ['\"]?(ENOSPC|EDQUOT)['\"]?|^No space left on device \\(os error 28\\)$|^Error: spawn (ENOSPC|EDQUOT)$"
 
 # A job log that holds a real disk-full message is an infrastructure failure,
 # not a diagnostic. /tmp is a 16 GB memory disk near its quota, so a tool can
