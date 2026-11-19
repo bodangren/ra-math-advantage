@@ -1,0 +1,17 @@
+Role-gate exit code: 0
+Role-gate output:
+INFO: no heavy-run wrapper found; running gate commands directly
+PASS: jr-green gate passed
+
+MEASURE_AGENT_RESULT
+role: measure-jr-green
+status: pass
+track: vinext-oxc-toolchain_20261114
+phase: Phase S5: Gate rules and CI
+commits: c64dfddd (implementation), 4f095f29 (plan evidence)
+tests_run: S5 gate rules exit 0 (10 passed); S5 adversarial exit 0 (10 passed, 2 todo); S4 oxfmt exit 0 (5 passed); S3 tsrs exit 0 (8 passed); S3 adversarial exit 0 (14 passed); S2 adversarial exit 0 (13 passed); full scripts suite exit 1 (114 passed, 1 failed, 2 todo); the one failure is the pre-existing remediate-concept-blueprints production-scan row; format:check exit 0; lint exit 0
+files_changed: scripts/__tests__/oxc-toolchain-gates.test.ts; measure/tracks/vinext-oxc-toolchain_20261114/plan.md; measure/tracks/vinext-oxc-toolchain_20261114/oxc-evidence.md
+plan_updates: added the S5 remediation sub-box round 1 line under the S5 tasks; added one evidence line in oxc-evidence.md section 11; no task status changed
+known_failures: the pre-existing remediate-concept-blueprints production-scan row; the root typecheck keeps its 59 recorded diagnostics; ADV-S5-2 (IM2 typecheck:backend) and ADV-S5-3 (ci.yml curriculum:check) stay record-only todo cases
+handoff: ADV-S5-1 is fixed in c64dfddd. The three S5 regexes accept one optional quote around tsc and eslint, so the scanner detects `npx --no-install "tsc" --noEmit` and `npm exec -- "eslint" .`. The change only adds matches; no case body and no fixture entry changed. The stricter scan found no live call in a repository file, so this round added no path exclusion and no production fix. No task flipped to [x], and no task flipped to [b]; the S5 manual verification task stays [b] with (deferred:closeout-steward). No new file was added. Targeted Red command: `npx vitest run --config scripts/vitest.config.ts -t 'S5 adversarial'` failed with 2 failed, 8 passed, and 2 todo before the fix; it exits 0 after the fix. Immutable phase_base_sha: 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6. Role base: 04b5f0e5aea36912cf9f989a5f119eb9e9fafa9c. Final Green HEAD: 4f095f29. The two adversarial audit artifacts stay staged and untouched. The six generated files stay dirty and unstaged. Re-run the S5 adversarial role against c64dfddd. Re-run the Green role gate with PROJECT_TESTS set, because the adversarial gate reported it unset.
+END_MEASURE_AGENT_RESULT
