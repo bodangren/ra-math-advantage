@@ -735,6 +735,17 @@ _Story ref: spec.md#story-s5_
 - [x] Task: S5 Docs & Doctor (87e8a165)
     - [x] Run `npm run generate`. Confirm exit code 0. (Exit 0. Log `s5-generate.log`. Only the 6 known dirty generated files stay modified, and they stay unstaged.)
     - [x] Run `npm run doctor`. Confirm exit code 0. (Exit 0: 5 architecture reports verified, 620 internal imports checked, package DAG acyclic. Log `s5-doctor.log`.)
+- [x] Task: S5 adversarial rerun — test escaped executable quotes in YAML and JavaScript (ADV-S5-4; c0ea258e).
+    - Added four failing cases. Each case proves that the executable resolves before the scan fails.
+    - Preserved all earlier cases, the 49-entry fixture, and the path exclusions.
+    - The original S5 adversarial filter passes 10 cases with 2 todos. The S5 gate rules filter passes 10 cases.
+    - The scripts suite has 114 passed, 5 failed, and 2 todos. Four failures prove ADV-S5-4. The fifth is the recorded production-scan failure.
+    - Root format, lint, and package build checks exit 0. Root typecheck exits 1 with the same 59 diagnostics and 20 unique keys.
+    - The direct format and lint checks pass for the test file. No production behavior changed.
+- [ ] Task: S5 remediation — fix escaped executable quotes in the scanner (ADV-S5-4; Green).
+    - Preserve the four failing cases and all earlier cases.
+    - Keep ADV-S5-2 and ADV-S5-3 record-only.
+    - Rerun the adversarial gate and the independent reviews after the implementation commit.
 S5 remediation sub-box (Jr Green rounds)
 - Round 1 (2026-11-20, `c64dfddd`): the S5 command scanner detects a quoted executable name (adversarial ADV-S5-1). `S5_TSC_CALL_RE`, `S5_TSC_FLAG_RE`, and `S5_ESLINT_CALL_RE` accept one optional quote around `tsc` and `eslint`. The scanner now hits `npx --no-install "tsc" --noEmit` and `npm exec -- "eslint" .`. The change only adds matches. Adv 3 passes. No earlier case body and no fixture entry changed. The stricter scan finds no live call in a repository file, so no path exclusion was added. ADV-S5-2 and ADV-S5-3 stay record-only todos. Gates: `S5 gate rules` 10 pass; `S5 adversarial` 10 pass and 2 todo; `S4 oxfmt` 5, `S3 tsrs` 8, `S3 adversarial` 14, and `S2 adversarial` 13 pass; the full scripts suite fails only the pre-existing `remediate-concept-blueprints` row; `format:check` and `lint` exit 0.
 - [b] Task: Measure - User Manual Verification 'Phase S5: Gate rules and CI' (Protocol in workflow.md) (deferred:closeout-steward)

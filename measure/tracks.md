@@ -241,6 +241,7 @@ packages omitted from CI, shallow regex-only boundary guards, and an inverted
    *Link: [./tracks/live-classroom-presentation_20260703/](./tracks/live-classroom-presentation_20260703/)*
 
 - [~] **Track: vinext 1.x Upgrade and Oxc Toolchain Move**
+   S5 adversarial rerun: escaped executable quotes bypass the scanner (ADV-S5-4). Four failing cases are committed in c0ea258e. Green owns the fix. ADV-S5-2 and ADV-S5-3 stay record-only.
    *Chore, story-shaped spec with 5 phases: S1 package refresh and vinext 1.x (remove `next`), S2 ESLint to oxlint, S3 TypeScript 7 with tsrs as the type-check gate, S4 oxfmt with one format-only commit, S5 gate rules and CI. The repository is a test bed for a full move to the Oxc tools; the evidence file records speed, conformance gaps, rule gaps, and workarounds. User decisions 2026-11-14.*
    *Link: [./tracks/vinext-oxc-toolchain_20261114/](./tracks/vinext-oxc-toolchain_20261114/)*
 
