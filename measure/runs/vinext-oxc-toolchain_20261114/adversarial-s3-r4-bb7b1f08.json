@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "role": "measure-adversarial-testing",
+  "track": "vinext-oxc-toolchain_20261114",
+  "phase": "Phase S3: TypeScript 7 and tsrs",
+  "baseline_sha": "2b3ffa8f2d6c6e6eea0bfe27f07015fdf969bf1d",
+  "role_base_sha": "bb7b1f0800143b6d3edd6f609eb38b9536990d17",
+  "audited_head_sha": "bb7b1f08",
+  "status": "pass",
+  "summary": "Fourth S3 adversarial round, the final re-run after the Green remediation r7 f37a6b7e at role base bb7b1f08. The attack drove the beforeAll sweep end to end again through child vitest runs. Both r3 blockers are fixed live. F1r3: the sweep parent list now holds apps/ (oxc-toolchain-gates.test.ts:167), and a stale .oxlint-probe-r4stale under apps/ was removed, as were the stale seeds in the root, apps/integrated-math-3, and packages/app-shell. F2r3: the shared isSeededProbeDirName rule (:142) requires '-' or a digit after '.oxlint-adv', so the near-miss names of the full r4 matrix stayed: .oxlint-adv exact, .oxlint-adv_x-r4, .oxlint-probex-r4, two case variants, a U+2011 unicode hyphen form, and a Cyrillic look-alike. The deleted names are the exact seeded forms only, and no tracked or existing .oxlint-* path in the repository matches them, so no plausible user folder can be deleted. seedDir refuses a prefix outside the rule, the tracked-path guard, the symlink guard, and the plain-file guard each hold live, the LEAKPROBE through adv 7 is green with the adv13 carrier swept, and every seed parent sits inside the sweep list. No real gap exists, so no new case was committed. Re-checks: S3 adversarial 14 passed (adv 1-7, adv i, the five gates-script cases, r3 a and r3 b with flipped expectations), S3 tsrs 8 passed, S2 adversarial 13 passed, the gates-script file 23 passed, the full scripts suite 86 passed with only the pre-existing remediate-concept-blueprints failure, and PROJECT_TESTS (gates.sh test s3, the scripts-suite record dropped first so the step re-ran) exited 0 with NEWFAIL=0 and no INFRA line. Accepted residuals F2r2, F3r2, and Review A F8 stay accepted; no CONTEST item was routed back.",
+  "blocking_findings": [],
+  "nonblocking_findings": [],
+  "evidence": [
+    "Attack (a) live, node /tmp/opencode/adv-s3-r4/probe-matrix.js, 17 rows all as expected: DELETED .oxlint-adv-r4-A, .oxlint-adv9-r4, .oxlint-adv--r4, .oxlint-probe-r4-B (root), .oxlint-probe-r4stale (apps/), .oxlint-adv-r4stale (apps/integrated-math-3), .oxlint-probe-r4stale (packages/app-shell); KEPT .oxlint-adv exact, .oxlint-adv_x-r4, .oxlint-probex-r4, .OXLINT-ADV-r4, .Oxlint-Adv-r4, the U+2011 form .oxlint<U+2011>adv-r4, the Cyrillic form .oxlint-<U+0430>dv-r4, the symlink .oxlint-adv-r4link with its outside sentinel intact, the plain file .oxlint-adv-r4file, and the folder that held the staged keep.ts. Every deleted name is an exact seeded form; git ls-files holds no .oxlint-adv or .oxlint-probe path and a find over the tree found no such folder, so no plausible user folder can be deleted.",
+    "Attack (b): the grep over every seedDir call found only these in-repo parents: REPO_ROOT (:1026 :1027 :1038 :1942), apps/ (:1034 :1413), IM3 (:1028 :2060 :2167 :2363 :2412 :2470 :2528 :2601), app-shell (:1029), and a WORKSPACE_DIRS member (:2110). Each sits in the sweep parent list (:167). Every mkdtempSync outside seedDir lives under os.tmpdir() or is a pinned keep control (the no-dash form :1058 and the advisory form :1061, both at root where adv 7 never reads). The one deeper seed (IM3/curriculum :1056) is the committed keep control and its carrier file holds no disable comment, so adv 7 cannot fail on it.",
+    "Attack (c) live at this HEAD: the tracked-path guard kept the folder that held the staged keep.ts (unstaged in the finally path), the symlink .oxlint-adv-r4link stayed and the sentinel file in its target outside the repository survived, and the plain file .oxlint-adv-r4file stayed. All three guard paths hold.",
+    "Attack (d) live, node /tmp/opencode/adv-s3-r4/probe-leak.js: seeded apps/integrated-math-3/.oxlint-adv13-LEAKPROBE4/seed.ts ('/* eslint-disable */ const unused = 1;'), then '-t adv 7: every disable comment' passed 1 test and the folder was gone after. The r2 LEAKPROBE class stays closed.",
+    "The shared rule protects the digit branch: isSeededProbeDirName (:142) backs both seedDir (:154) and the sweep (:171), so a narrowing of the digit branch makes seedDir throw and adv 8 to adv 13, which seed .oxlint-adv8- through .oxlint-adv13- (:2167 :2363 :2412 :2470 :2528 :2601), fail red at seed time before the sweep matters.",
+    "No new committed case, because no failing-first defect exists: the committed r3 b case pins both routed fixes as passing behavior with paired controls (the apps/ parent seed gone after the sweep, the near-miss folder kept), a broadening regression flips the committed advisory expectation red, and the digit branch is pinned by the seeder through adv 8 to 13. The case, unicode, and exact-name keeps of the r4 matrix are the same class as the committed advisory keep.",
+    "Re-checks at this HEAD: '-t S3 adversarial' 14 passed (adv 1-7, the adv i errno case of gates.sh, the five gates-script cases: the errno-word diagnostic, r2 a, r2 c, r2 d, r2 e, and r3 a, r3 b); '-t S3 tsrs' 8 passed; '-t S2 adversarial' 13 passed (adv 1 to 13); 'npx vitest run scripts/__tests__/vinext-oxc-gates-script.test.ts' 23 passed.",
+    "Full suite: npx vitest run --config scripts/vitest.config.ts -> 86 passed, 1 failed; the only failure is the known pre-existing 'remediate-concept-blueprints > production scan reports the honest count for the current repo state' row (the accepted S1 Q3 case, unchanged from r3).",
+    "PROJECT_TESTS: the stale scripts-suite step record was dropped from measure/runs/vinext-oxc-toolchain_20261114/gates/s3/test.steps first, so the step re-ran with the r4 tests; then GATES_BASE=baseline-m2 GATES_RESUME=1 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s3, detached: exit 0, NEWFAIL=0, no INFRA line. The step row is 'step scripts-suite 2680 exit=1'; the 2680 s holds a lock-queue wait behind another session's pnpm install on the shared heavy-run lock, which is contention, not an infrastructure failure; the vitest part took about 90 s. The baseline failure only, no new diagnostic against baseline-m2.",
+    "Accepted residuals stay accepted: F2r2 and F3r2 are pinned by the passing r2 cases under the S3 adversarial filter, and Review A F8 (no age guard) stays with Review A. No CONTEST item was routed back to this round, so no CONTEST entry appears here.",
+    "Scope and hygiene: this role changed no production file, test file, manifest, lockfile, tsconfig, CI workflow, typecheck script, allow-list fixture, or gates.sh line; the only commit holds the two measure/runs artifacts. git status --porcelain held only the six known dirty generated files after every probe run, and every seed folder, symlink, staged index entry, and the outside target folder were removed."
+  ],
+  "commands": [
+    "node /tmp/opencode/adv-s3-r4/probe-matrix.js (the live 17-row near-miss and guard matrix through a child vitest run of the suite file, all rows as expected)",
+    "node /tmp/opencode/adv-s3-r4/probe-leak.js (the LEAKPROBE through adv 7: 1 passed, the adv13 folder swept)",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S3 adversarial' (14 passed)",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S3 tsrs' (8 passed)",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial' (13 passed)",
+    "npx vitest run scripts/__tests__/vinext-oxc-gates-script.test.ts (23 passed)",
+    "npx vitest run --config scripts/vitest.config.ts (86 passed, 1 failed: the pre-existing remediate-concept-blueprints row)",
+    "GATES_BASE=baseline-m2 GATES_RESUME=1 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s3, detached with an exit file (exit 0, NEWFAIL=0, the scripts-suite record dropped first so the step re-ran)"
+  ],
+  "changed_files": [
+    "scripts/__tests__/oxc-toolchain-gates.test.ts (the audited Green r7 fix f37a6b7e; this role changed no code file)"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "opencode-go/glm-5.3#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 5,
+      "evidence": "Every routed fix holds live: probe-matrix.js 17 rows all as expected (the apps/ parent swept, each near-miss kept, each seed form removed), and probe-leak.js shows adv 7 passing with the adv13 carrier swept."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 4,
+      "evidence": "The committed r3 b case pins the sweep end to end with paired controls and passes with the flipped expectations under '-t S3 adversarial' 14 passed, and the digit branch is pinned by the seeder (adv 8-13 fail red on a narrowing, oxc-toolchain-gates.test.ts:2167-2601), but the case, unicode, and exact-name keep rows are probe-only, with no committed pin."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "This round commits only measure/runs/vinext-oxc-toolchain_20261114/adversarial-s3-r4-bb7b1f08.{json,log}; git status --porcelain held only the six known dirty generated files, and no production, test, manifest, tsconfig, workflow, or gates.sh line was touched."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 5,
+      "evidence": "Every claim cites a probe row (probe-matrix.js, probe-leak.js), a filter run with its pass count ('S3 adversarial' 14, 'S3 tsrs' 8, 'S2 adversarial' 13, gates-script 23, full suite 86+1 known), the gate result (exit 0, NEWFAIL=0, step row scripts-suite 2680), or a file:line (oxc-toolchain-gates.test.ts:142,154,167,171,2167-2601)."
+    }
+  ]
+}

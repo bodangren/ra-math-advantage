@@ -1,0 +1,120 @@
+S3 adversarial testing, final re-run (r4) after remediation round 3.
+Role: measure-adversarial-testing. Route: opencode-go/glm-5.3#high.
+Track: vinext-oxc-toolchain_20261114. Phase: Phase S3: TypeScript 7 and tsrs.
+phase_base_sha 2b3ffa8f2d6c6e6eea0bfe27f07015fdf969bf1d. role_base_sha bb7b1f0800143b6d3edd6f609eb38b9536990d17.
+Green remediation under attack: f37a6b7e (the apps/ sweep parent, the shared
+isSeededProbeDirName rule, and the flipped r3 b expectations). No test commit
+follows this round, because no real gap exists (section 3).
+
+== 1. Attack the new rule live, each row with a paired control ==
+One child vitest run of the suite file re-runs the real beforeAll sweep, so the
+seeded folders model the leak of an interrupted earlier run. Every seed holds
+probe text only, never user data.
+node /tmp/opencode/adv-s3-r4/probe-matrix.js (17 rows, all as expected)
+node /tmp/opencode/adv-s3-r4/probe-leak.js
+
+(a) near-miss names against isSeededProbeDirName, live result:
+  .oxlint-adv-r4-A (seed form, dash)     DELETED  (correct)
+  .oxlint-adv9-r4 (seed form, digit)     DELETED  (correct)
+  .oxlint-adv--r4 (second dash)          DELETED  (correct)
+  .oxlint-probe-r4-B (seed form)         DELETED  (correct)
+  .oxlint-adv (exact, no next character) KEPT     (safe)
+  .oxlint-adv_x-r4 (underscore)          KEPT     (safe)
+  .oxlint-probex-r4                      KEPT     (safe)
+  .OXLINT-ADV-r4 (upper case)            KEPT     (safe)
+  .Oxlint-Adv-r4 (mixed case)            KEPT     (safe)
+  .oxlint<U+2011>adv-r4 (unicode dash)   KEPT     (safe)
+  .oxlint-<cyrillic a>dv-r4              KEPT     (safe)
+  Every deleted name is an exact seeded form. No deleted name is a plausible
+  user folder: git ls-files holds no .oxlint-adv or .oxlint-probe path, and a
+  find over the tree found no such folder outside the probe runs.
+
+(b) the apps/ parent (F1r3 fix) and each swept parent, live result:
+  apps/.oxlint-probe-r4stale              DELETED  (F1r3 fixed)
+  apps/integrated-math-3/.oxlint-adv-r4stale    DELETED
+  packages/app-shell/.oxlint-probe-r4stale      DELETED
+  Every in-repo seedDir parent sits in the sweep list
+  (oxc-toolchain-gates.test.ts:167): REPO_ROOT, apps/, and each workspace.
+  The grep over every seedDir and mkdtempSync call found no parent outside
+  the list. The one deeper seed (IM3/curriculum, :1056) is the committed
+  keep control: its carrier file holds no disable comment, so adv 7 cannot
+  fail on it, and the sweep must not walk the tree.
+
+(c) the guard paths at this HEAD, live result:
+  a staged keep.ts inside .oxlint-adv-r4keep   KEPT, unstaged after (guard holds)
+  a symlink .oxlint-adv-r4link to a folder outside the repo: link KEPT,
+  the sentinel file in the target KEPT (safe)
+  a plain file .oxlint-adv-r4file              KEPT (safe)
+
+(d) the LEAKPROBE through adv 7:
+  seeded apps/integrated-math-3/.oxlint-adv13-LEAKPROBE4/seed.ts
+  ('/* eslint-disable */ const unused = 1;'), then
+  '-t adv 7: every disable comment' PASSED and the folder was gone after.
+  The sweep removes the stale carrier before adv 7 reads the tree.
+
+== 2. Findings ==
+None. The two r3 blockers are fixed at this HEAD:
+F1r3: the sweep parent list now holds apps/, so the seed parent of
+makeLintProbe (:1413) is swept. Live proof: row (b) above.
+F2r3: isSeededProbeDirName (:142) requires '-' or a digit after '.oxlint-adv',
+so the near-miss folder stays. Live proof: rows (a) above. The comment and the
+behavior agree now. seedDir refuses a prefix outside the rule (:154), so a new
+seed cannot escape the sweep. The shared rule also protects the digit branch:
+a narrowing makes seedDir throw, so adv 8 to adv 13 (which seed .oxlint-adv8-
+through .oxlint-adv13-, :2167 :2363 :2412 :2470 :2528 :2601) fail red at seed
+time, before the sweep matters.
+Accepted residuals stay accepted: F2r2 and F3r2 (pinned by the passing r2
+cases), and Review A F8 (no age guard). No CONTEST item was routed back to
+this round.
+
+== 3. New committed cases ==
+None. The committed r3 b case pins both routed fixes as passing behavior with
+paired controls: the apps/ parent seed is gone after the sweep, and the
+near-miss folder stays. The case/unicode/exact-name keeps of row (a) are the
+same class as the committed advisory keep, and a broadening regression flips
+that committed expectation red. The digit branch is pinned by the seeder
+itself, as section 2 explains. No failing-first defect exists, so a new case
+would pin nothing.
+
+== 4. Re-checks at this HEAD (bb7b1f08) ==
+-t 'S3 adversarial' 14 passed: adv 1 to 7, the adv i errno case, the five
+gates-script cases (the errno-word diagnostic, r2 a, r2 c, r2 d, r2 e), and
+r3 a and r3 b.
+-t 'S3 tsrs' 8 passed. -t 'S2 adversarial' 13 passed (adv 1 to 13).
+The gates-script file 23 passed.
+The full scripts suite: 86 passed, 1 failed. The only failure is the known
+pre-existing 'remediate-concept-blueprints > production scan reports the
+honest count' row (the accepted S1 Q3 case, unchanged from r3).
+
+== 5. PROJECT_TESTS ==
+The stale scripts-suite step record was dropped from
+measure/runs/vinext-oxc-toolchain_20261114/gates/s3/test.steps first, so the
+step re-ran with the r4 tests.
+GATES_BASE=baseline-m2 GATES_RESUME=1 bash
+measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s3 (detached):
+exit 0, NEWFAIL=0, no INFRA line. The step row is 'step scripts-suite 2680
+exit=1' (2680 s; the time holds a lock-queue wait behind another session's
+pnpm install on the shared heavy-run lock; the vitest part took about 90 s).
+The baseline failure only; no new diagnostic against baseline-m2.
+
+== 6. Scope and hygiene ==
+This role edited no production file, test file, manifest, lockfile, tsconfig,
+CI workflow, typecheck script, allow-list fixture, or gates.sh line. The only
+commit of this round holds the two measure/runs artifacts. git
+status --porcelain held only the six known dirty generated files after every
+probe run. Every seed folder, symlink, staged index entry, and the outside
+target folder were removed.
+
+MEASURE_AGENT_RESULT
+role: measure-adversarial-testing
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S3: TypeScript 7 and tsrs
+head: bb7b1f08 (role base and audited head; Green r7 f37a6b7e is the fix under audit)
+commits: none for tests (no real gap, so no case follows); the artifacts commit measure(runs): add the S3 adversarial r4 result
+tests_run: probe-matrix.js 17 rows all as expected; probe-leak.js adv 7 passed and the LEAKPROBE folder swept; -t 'S3 adversarial' 14 passed; -t 'S3 tsrs' 8 passed; -t 'S2 adversarial' 13 passed; the gates-script file 23 passed; full scripts suite 86 passed 1 failed (the pre-existing remediate-concept-blueprints row only); PROJECT_TESTS test s3 exit 0 NEWFAIL=0 (the stale scripts-suite step record was dropped first, so the step re-ran with the r4 tests, 2680 s with the shared lock-queue wait)
+files_changed: measure/runs/vinext-oxc-toolchain_20261114/adversarial-s3-r4-bb7b1f08.{json,log} (the artifacts commit); no code file changed
+plan_updates: none (the adversarial re-run is not a plan task; the orchestrator records the verdict)
+known_failures: the pre-existing remediate-concept-blueprints scripts-suite failure only; every S3 and S2 adversarial test passes at this HEAD
+handoff: verdict pass. The r3 blockers are closed: F1r3 (the sweep reads apps/ now, live row (b)) and F2r3 (the shared name rule keeps each near-miss, live rows (a); the r3 b pins are green with flipped expectations). The r2 LEAKPROBE class stays closed (adv 13 carrier swept before adv 7). Accepted residuals stay: F2r2, F3r2, Review A F8. No CONTEST item was routed back, so no CONTEST entry appears. No new test case was committed, because the committed r3 a/b cases pin the routed fixes as passing behavior and no failing-first defect exists. The S3 phase is clear for acceptance from the adversarial side. Questions: Q1 (default CONFIRM the phase acceptance: the orchestrator runs the S4 contract task next, because every adversarial check passes at bb7b1f08). Q2 (default KEEP the accepted residuals F2r2, F3r2, and Review A F8 open in the S4 list, because each is pinned by a passing case and hides no failure). No EDQUOT or ENOSPC infrastructure error occurred; the lock-queue wait was contention on the shared heavy-run lock, not an infrastructure failure of the gate.
+END_MEASURE_AGENT_RESULT
