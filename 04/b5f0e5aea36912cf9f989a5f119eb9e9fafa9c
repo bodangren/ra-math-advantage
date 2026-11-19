@@ -1,0 +1,1 @@
+S5 adversarial tests cover workspace fan-out, failing exits, command scanning, CI script names, and deployment exclusions. Two quoted-command cases expose the S5 scanner defect. Two todo cases record existing IM2 and curriculum defects. Production files remain unchanged.
