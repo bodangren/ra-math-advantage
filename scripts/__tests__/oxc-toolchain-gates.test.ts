@@ -2795,7 +2795,7 @@ describe('S4 oxfmt', () => {
   );
 
   it(
-    'case 5: a .ts probe with correct spacing passes oxfmt --check and names the probe',
+    'case 5: a .ts probe with correct spacing passes oxfmt --check with the clean summary',
     () => {
       expect(runTool(['oxfmt', '--version']).status, 'precondition: oxfmt --version').toBe(0);
       const probe = makeOxfmtProbe('probe.ts', OX_FMT_GOOD_PROBE);
@@ -2803,7 +2803,10 @@ describe('S4 oxfmt', () => {
       for (const phrase of ABSENT_TOOL_PHRASES) expect(output).not.toContain(phrase);
       for (const phrase of ABSENT_TARGET_PHRASES) expect(output).not.toContain(phrase);
       expect(status, output).toBe(0);
-      expect(output).toContain('probe.ts');
+      expect(output).toContain('All matched files use the correct format.');
+      const countMatch = output.match(/on (\d+) files/);
+      expect(countMatch, 'oxfmt file count in the clean output').not.toBeNull();
+      expect(Number((countMatch as RegExpMatchArray)[1]), 'oxfmt checked file count').toBe(1);
     },
     TOOL_TIMEOUT_MS,
   );
