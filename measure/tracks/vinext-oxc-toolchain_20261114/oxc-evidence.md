@@ -388,7 +388,7 @@ script of the workspace. 23 workspaces run `TSRS_FAST=1 oxlint --type-aware --ty
 (BM2, IM1, IM3, PreCalc) run `tsc --noEmit` on TypeScript 7.0.2 (strategy 16.4; section 7).
 The `tsconfig.tsbuildinfo` of a fallback app was deleted before each run (timing method item 4).
 Each run set ran in one `heavy-run.sh` job with no concurrent heavy job. Raw values:
-`s3-tsrs-raw.txt` (23 workspaces) and `s3-tsc-after-raw.txt` (4 apps) in the run folder
+`s3-tsrs-raw.txt` (27 sections: 23 tsrs workspaces plus 4 `tsc --noEmit` warm rows) and `s3-tsc-after-raw.txt` (source of the 4 fallback medians) in the run folder
 (force-added). The four tsc rows agree with the 7.0.2 table within 0.3 s: BM2 2.38 against
 2.6, IM3 3.73 against 4.0. The command is the same, so the small difference is machine load.
 A row of 0.6 s sits at the npm overhead floor (about 0.5 s), so its ratio is about 1.0.
@@ -621,10 +621,10 @@ The paths are relative, so the CLI finds a compiler only when the app folder hol
 |---|---|---|
 | `apps/bus-math-v2` | 1 | CLI prints `No \`tsc\` binary found, so skipping typecheck.` then `Unable to typecheck; is TypeScript installed?` |
 | `apps/danielson` | 1 | same skip line |
-| `apps/integrated-math-1` | 1 | tsc 7.0.2 runs through `node_modules/@typescript/native/bin/tsc` and reports the pre-existing convex project diagnostics (katex CSS side-effect import) |
+| `apps/integrated-math-1` | 1 | tsc 7.0.2 runs; the output shows bundler loader errors for the katex CSS side-effect import |
 | `apps/integrated-math-2` | 1 | same skip line |
-| `apps/integrated-math-3` | 1 | tsc 7.0.2 runs and reports the pre-existing convex project diagnostics |
-| `apps/pre-calculus` | 1 | tsc 7.0.2 runs and reports the pre-existing convex project diagnostics |
+| `apps/integrated-math-3` | 1 | tsc 7.0.2 runs; the output shows bundler loader errors for the katex CSS side-effect import |
+| `apps/pre-calculus` | 1 | tsc 7.0.2 runs; the output shows bundler loader errors for the katex CSS side-effect import |
 
 No app passes the CLI check at this commit, so the command cannot select the keep
 set. The decision rests on three facts:

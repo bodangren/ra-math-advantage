@@ -201,6 +201,8 @@ The S3 task records the type-check change of this track. The root
 `overrides`. The root declares `tsrs` `0.25.0-ts7.1.0-beta` (exact) in
 `devDependencies` only. No workspace manifest declares `tsrs`.
 
+Final state (2026-11-19): the root declares no `typescript` and no `overrides` entry. The root holds the `typescript6` and `@typescript/native` aliases. BM2, IM1, IM3, and PreCalc keep `tsc --noEmit` in `TSC_FALLBACK_LIST`. The other 23 workspaces run tsrs.
+
 tsrs `0.25.0-ts7.1.0-beta` uses the TypeScript 7.1.0-beta compiler line.
 The kept `typescript` package uses 7.0.2.
 

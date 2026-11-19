@@ -1,0 +1,16 @@
+MEASURE_AGENT_RESULT
+role: measure-review-a-correctness
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S3: TypeScript 7 and tsrs
+baseline_sha: 2b3ffa8f2d6c6e6eea0bfe27f07015fdf969bf1d
+role_base_sha: 5d91443c498f84af3a8fef9aa358bdc5eeca98ec
+head: 5d91443c498f84af3a8fef9aa358bdc5eeca98ec
+verdict: pass
+tests_run: worktree at 5d91443c (detached, node_modules symlinked read-only): npx vitest -t 'S3 tsrs' 8 passed exit 0; -t 'S2 adversarial' 13 passed; -t 'S2 oxlint' 7 passed; full scripts suite 1 failed of 73 (pre-existing Q3 row) 72 pass; gates-script suite 18 passed. Main checkout read-only before any adversarial commit (HEAD stayed 5d91443c, only the 6 known dirty files): npx tsc --version 7.0.2; npx tsrs --version 7.1.0-beta line; node scripts/validate-ci.mjs exit 0; npm run typecheck IM2 (tsrs) exit 0; IM3 (tsc) exit 1 with 55 pre-existing lines; PreCalc and IM1 tsrs rows equal the union of their tsc configs; IM3 tsrs gap rows match the 38-row table; tsc70 vs tsc71 0 differences; convex typecheck danielson skip exit 1, IM1/IM3/PreCalc exit 1 katex bundler errors.
+files_changed: measure/runs/vinext-oxc-toolchain_20261114/review-a-correctness-s3-5d91443c.json and .log only
+plan_updates: none (audit only)
+known_failures: none new. The pre-existing rows stay: the Q3 remediate-concept-blueprints scripts-suite row, the audit-suites 5 rows, the measure-contract step, and the IM3/PreCalc typecheck exit 1 with baseline-identical keys.
+findings: no blocking findings. Nonblocking: F1 [Minor] measure/tech-stack.md S3 note names a contract the final tree does not hold (root typescript declaration, overrides, BM2 script form); the deviation is recorded in evidence and tech-debt but the note needs one final-state line. F2 [Nit] measure/tech-debt.md IM3 heap row is stale (the script lost the heap setting and tsc 7.0.2 is native). F3 [Nit] oxc-evidence.md section 9 says tsc 7.0.2 runs for IM1/IM3/PreCalc convex typecheck; the observed output holds only bundler loader errors for the same pre-existing katex CSS import; exit code and substance verified, mechanism not. F4 [Nit] s3-tsrs-raw.txt holds 27 sections, not the 23 the evidence text names; the 4 used fallback medians come from s3-tsc-after-raw.txt.
+handoff: S3 is correct and consistent; route nothing back to Green. The no-redirection rule of this role blocked a re-run of the IM3 convex live probe (plan line 426-427); the claim is corroborated by the case 6 re-run (TS2322 under the S3 command), by the same include path of the IM3 tsconfig, and by the recorded probe line in evidence section 2. The worktree was removed after the runs. Questions: none. Defaults: if the orchestrator wants F1 and F2 fixed, fold them into the S3 phase checkpoint or the first S4 plan commit (default: fix at checkpoint).
+END_MEASURE_AGENT_RESULT

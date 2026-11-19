@@ -1,0 +1,29 @@
+Review B (security and data handling) — Phase S3: TypeScript 7 and tsrs — track vinext-oxc-toolchain_20261114
+Audited HEAD: 5d91443c498f84af3a8fef9aa358bdc5eeca98ec (equals role_base_sha; phase_base_sha 2b3ffa8f2d6c6e6eea0bfe27f07015fdf969bf1d)
+Route: kimi-code-plan-cn/kimi-for-coding
+
+Checks performed:
+1. SHA binding: HEAD equals the audited head; phase base is an ancestor.
+2. Lockfile pins: tsrs 0.25.0-ts7.1.0-beta exact (integrity matches npm view); 8 @tsrs/* native packages at the same version with os/cpu constraints; @typescript/native alias resolves to the typescript 7.0.2 tarball; typescript6 resolves to @typescript/typescript6 6.0.2 and @typescript/old to the typescript 6.0.3 tarball; @typescript/native is E404 on the registry, so no third-party shadowing. All external URLs are registry.npmjs.org with sha512; only the 36 local workspace links lack integrity.
+3. Install scripts: zero hasInstallScript packages added or removed by the diff; the new packages carry no scripts field.
+4. Native loading: getExePath.js resolves the platform package locally, throws when absent, honors TSRS_BINARY, downloads nothing; the linux binary is a stripped ELF executable. .bin/tsc wins as @typescript/native (7.0.2), tsc6 as 6.0.3, tsrs as 7.1.0-beta.
+5. npx --yes: only in oxc-evidence.md:486 as an evidence row; not in any manifest, CI file, or script.
+6. CI: run lines only; no new secrets context, no new third-party action, no pull_request_target.
+7. npm audit: fresh run reproduces the recorded s3 totals exactly (critical=0 high=9 moderate=7 low=5, 21 names); strict subset of the re-captured baseline; no advisory on any new package.
+8. Fallback apps: BM2 gained a typecheck (coverage grew over the old root npx call); IM1 and PreCalc unchanged; IM3 dropped only the 8 GB heap flag, which fails loudly. No security-relevant check dropped.
+9. A2: no draft-to-published flip in the diff; not applicable. A6: tracks.md claims no resolved security state; evidence totals match my fresh audit.
+
+Verdict: PASS. No blocking or nonblocking findings.
+
+MEASURE_AGENT_RESULT
+role: measure-review-b-security
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S3: TypeScript 7 and tsrs
+commits: none (audit only)
+tests_run: npx vitest run --config scripts/vitest.config.ts -t 'S3 tsrs' -> 8 passed, 0 failed, exit 0 at 5d91443c; npm ls typescript tsrs --all -> exit 0; npm audit --json (fresh) -> exit 1 with critical=0 high=9 moderate=7 low=5, identical to the recorded s3 audit
+files_changed: measure/runs/vinext-oxc-toolchain_20261114/review-b-security-s3-5d91443c.json and this log only
+plan_updates: none (audit only)
+known_failures: none
+handoff: Security audit PASS at 5d91443c. Supply-chain surface is clean: exact tsrs pin with matching registry integrity, registry-verifiable aliases, zero new install scripts, honest audit totals that a fresh npm audit reproduces. A2 and A6 not triggered. No questions for the user; no findings to route.
+END_MEASURE_AGENT_RESULT

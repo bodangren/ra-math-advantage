@@ -1,0 +1,144 @@
+Phase Acceptance audit log — Phase S3: TypeScript 7 and tsrs
+Track: vinext-oxc-toolchain_20261114
+Role: measure-phase-acceptance (route opencode-go/glm-5.3#high)
+Audited HEAD: 80934197f5ca723f867c3465d3e4960baf5fe064 (immutable; no commit made)
+Phase base: 2b3ffa8f2d6c6e6eea0bfe27f07015fdf969bf1d (the S3 strategy commit)
+Date: 2026-11-19
+Result artifact: measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s3-80934197.json
+
+Verdict: PASS (no blocking finding; six checkpoint Nits recorded, five of them carried from Review A).
+
+1. Position checks
+- git rev-parse HEAD -> 80934197f5ca723f867c3465d3e4960baf5fe064. The audited HEAD is
+  current and equals role_base_sha.
+- Working tree: exactly the 6 known dirty generated files of strategy 16.9 stay unstaged
+  (4 .next/types/routes.d.ts, apps/bus-math-v2/lib/workbooks-manifest.json,
+  measure/generated/routes.md). No probe path, no staged file, no untracked file.
+- slot check: ok (5 of 14 busy, MemAvailable 18770 MB).
+- Phase base check: git show 2b3ffa8f --stat -> test-strategy.md only (274 insertions),
+  the captured point of strategy 16.9; the plan amendments landed at bd03e4ed (plan.md only).
+
+2. Prerequisite results read (all under measure/runs/vinext-oxc-toolchain_20261114/)
+- review-a-correctness-s3-bb7b1f08.json: PASS at bb7b1f08 (gate 0, nonblocking items only).
+- review-b-security-s3-5d91443c.json: PASS at 5d91443c, no findings.
+- adversarial-s3-r4-bb7b1f08.json: PASS at bb7b1f08 (NEWFAIL=0, gate 0).
+- Gate table check (test-strategy.md 16.6): S3 needs Review A, Review B, and adversarial;
+  no Review C; UX_REQUIRED=never. The set is complete.
+
+3. Review HEAD applicability (decision with evidence)
+- Review A and adversarial target bb7b1f08. git diff bb7b1f08..HEAD --name-only -> the
+  adversarial r4 json and log only (commit 80934197, run artifacts). So both results target
+  the same implementation content this audit accepted. Allowed successor commit named: 80934197.
+- Review B targets 5d91443c, which covers the full S3 implementation
+  (git merge-base --is-ancestor ab0440b3 5d91443c -> true).
+  git diff 5d91443c..HEAD --name-only -> scripts/__tests__/oxc-toolchain-gates.test.ts and
+  vinext-oxc-gates-script.test.ts (commits cb3d1ba1, ad33c8a1, 6aa56a84, f37a6b7e),
+  measure/tracks/vinext-oxc-toolchain_20261114/gates.sh (ddca656c, 90b31fe0, 4f4fc3c4),
+  plan.md, and measure/runs paths. No package.json, no package-lock.json, no
+  .github/workflows file, and no production script changed after the Review B HEAD, so the
+  Review B supply-chain scope is unchanged and its PASS holds. The acceptance names the
+  test-only and gates-harness commits it allowed to advance HEAD after 5d91443c.
+
+4. Test runs at HEAD 80934197 (each through heavy-run.sh, one at a time, no redirection)
+- -t 'S3 tsrs' -> 8 passed, 79 skipped, exit 0. The plan line 352 claim holds.
+- -t 'S3 adversarial' -> 14 passed, 73 skipped, exit 0. The plan round 3 claim holds.
+- -t 'S2 adversarial' -> 13 passed, 74 skipped, exit 0. The S2 filters stay green after
+  the typescript6 import switch.
+- Full scripts suite -> 1 failed of 87 (86 passed), exit 1. The single failure is
+  'remediate-concept-blueprints > production scan reports the honest count for the current
+  repo state', the accepted S1 Q3 row. No stale intentional red remains.
+- npx vitest run scripts/audit/__tests__ -> 5 failed of 192 (187 passed), identical to the
+  committed gates/s3/step-audit-suites.log; each of the 5 failing titles appears in the
+  baseline-m2 record that held 24 failed of 192, so the S3 window introduced no new failing
+  title (it turned 19 of the 24 into passes).
+- npx tsc --version -> Version 7.0.2. npx tsc --noEmit -> exit 0, no output.
+- node scripts/validate-ci.mjs -> exit 0, all PASS lines.
+- npm run typecheck --workspace=apps/integrated-math-2 (tsrs mode) -> the
+  TSRS_FAST=1 oxlint --type-aware --type-check command runs, exit 0.
+- npm run typecheck --workspace=apps/integrated-math-3 (tsc fallback mode) -> exit 1 with
+  55 error lines; the code histogram (TS2322 22, TS2305 22, TS2352 4, TS2339 4, TS2353 2,
+  TS2367 1) and the file-plus-code key set are identical to
+  gates/baseline-m2/typecheck-integrated-math-3.log; the only diff is compiler
+  message-wording order, which the gate key ignores.
+
+5. Story S3 acceptance criteria (spec.md lines 136 to 147)
+- tsc 7.0.2 with no new failure: evidence section 8 (33 configs, same key set as 6.0.3,
+  tsc-diff.txt new_keys=0), corroborated live (root exit 0, IM3 identical key set).
+- tsrs typecheck scripts with no new failure: case 1 passes live; 23 workspaces on the
+  tsrs form; the 4 fallback apps (BM2, IM1, IM3, PreCalc) are the recorded deviation with
+  blocking rows in evidence section 7 and the keep list in section 9.
+- TS2322 probe: case 6 passes live; the Green IM3 live probe (plan line 427) named
+  TS2322 for the probe file and the probe was deleted.
+- Conformance gap table: evidence section 7 holds the 38 tsrs-only rows (all in IM3
+  .mjs scripts, file, line, code, disposition), the 69 tsc-only rows, and the seeded
+  TS2322 probe in all three outputs, with the version lines and comparison commit
+  dbf29cbd at the top.
+- Compiler-version table: 7.0.2 against 7.1.0-beta shows 0 differences in all 27 workspaces.
+- Keep list: case 5 passes live; the root declares no typescript and no overrides block
+  (python3 read); the 4 keep apps equal TSC_FALLBACK_LIST; the typescript6 and
+  @typescript/native aliases are recorded in sections 8 and 9.
+- Honest timing: evidence section 5 records tsrs slower than tsc 7.0.2 where it runs
+  (danielson 4.30 s against 1.1 s; five package rows at ratios 1.00 to 1.47 at the npm
+  overhead floor), and the fallback medians come from s3-tsc-after-raw.txt.
+
+6. Brief-specific checks
+- Plan ticks: 9 [x] top-level tasks plus the [b] deferred manual verification task
+  (line 433, deferred:repo-owner) with its 4 checkpoint sub-items; 71 [x] sub-boxes;
+  no [~] marker remains. All 19 cited SHAs resolve as ancestors of HEAD.
+- Blocking findings of every S3 round: adversarial F1 fixed at ddca656c; F1r2 fixed at
+  0dcc9ef1; F1r3 and F2r3 fixed at f37a6b7e; F2r2 and F3r2 accepted residuals; Review A
+  r2 F1 routed to S4 Red; Review A F8 accepted residual; the PM confirmed the round-3
+  escalation default and capped further findings to the S4 list (plan round sub-boxes).
+- Caller updates: the W4 audit TypeScript pins moved from the 6.x line to 7.0.2 with the
+  same assertion strength (ec3a05ae, framework-wave-w4.test.ts lines 521 to 534 require
+  major 7); plan line 423 records the gate fix.
+- Root pins (Review B scope, re-read live): devDependencies hold tsrs
+  0.25.0-ts7.1.0-beta exact, typescript6 npm:@typescript/typescript6@^6.0.2, and
+  @typescript/native npm:typescript@^7.0.2; no typescript key; no overrides block.
+- Phase scope: git diff 2b3ffa8f..HEAD --name-only -- apps/ packages/ prints manifests
+  only; the rest is the lockfile, the 3 workflow typecheck lines, the 2 test files, the
+  3 W4 audit files, gates.sh, and measure docs and runs. Nothing outside the S3 plan.
+- Anti-pattern scan: A3 labeled integer parses (test lines 593, 834); A4 no vacuous marker
+  check, 9 [x] tasks recorded; A5 each plan claim re-checked live and holds; A6
+  measure/tracks.md holds this track [~] with no resolution wording; A7 the case 4 matcher
+  TSC_COMMAND_RE (test line 568) matches a command form with the file map enumerated, and
+  the -t filters drop no real hit (8, 14, 13 of 87).
+- Closeout items of strategy 16.5 for S3: evidence sections 5, 7, 8, 9, and 10 have
+  content (section 5 timing tables with raw files; section 7 both tables with the version
+  and commit header; section 8 five S3 workaround rows; section 9 the Convex CLI lookup,
+  the per-app exits, the final keep list, the removed list, and the alias reason; section
+  10 the pre-existing rows); npm run generate and npm run doctor exit 0 at ab0440b3
+  (plan lines 431 and 432) and no workspace file changed after ab0440b3 that touches them.
+
+7. Open findings routed to the checkpoint (all nonblocking)
+- F1: tech-stack.md S3 note final-state line (Review A F3). The note says the root keeps
+  typescript ^7.0.2 in devDependencies and overrides and that BM2 gets the tsrs script;
+  the final tree keeps no root typescript, no overrides, and BM2 runs tsc --noEmit.
+- F2: tech-debt.md line 42 stale IM3 heap row (Review A F4). The IM3 typecheck script is
+  plain 'tsc --noEmit' now; the heap-setting sentence is stale.
+- F3: oxc-evidence.md section 9 mechanism sentence for IM1, IM3, PreCalc (Review A F5).
+  A re-run prints only the bundler loader errors for the katex CSS import.
+- F4: s3-tsrs-raw.txt holds 27 sections (23 tsrs plus 4 tsc warm rows) while the record
+  says 23 workspaces (Review A F6). Bookkeeping precision only.
+- F5: plan.md line 443 sentence 'Every `seedDir` call has its parent in that list'
+  overstates; two pinned controls seed outside the list by design (os.tmpdir() at test
+  line 1015; the curriculum control two levels deep at line 1056) (Review A F9).
+- F6: accepted residuals stand: Review A F8 (no sweep age guard), adversarial F2r2 and
+  F3r2, and Review A r2 F1 routed to S4 Red. Note only.
+
+MEASURE_AGENT_RESULT
+role: measure-phase-acceptance
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S3: TypeScript 7 and tsrs
+baseline_sha: 2b3ffa8f2d6c6e6eea0bfe27f07015fdf969bf1d
+role_base_sha: 80934197f5ca723f867c3465d3e4960baf5fe064
+audited_head_sha: 80934197f5ca723f867c3465d3e4960baf5fe064
+commits: none (audit only; artifacts written under measure/runs/)
+tests_run: heavy-run.sh npx vitest -t 'S3 tsrs' -> 8 passed, exit 0; -t 'S3 adversarial' -> 14 passed, exit 0; -t 'S2 adversarial' -> 13 passed, exit 0; full scripts suite -> 1 failed of 87 (the accepted remediate-concept-blueprints row), exit 1; npx vitest scripts/audit/__tests__ -> 5 failed of 192, all 5 titles a subset of the 24 baseline-m2 failures; npx tsc --version -> 7.0.2; npx tsc --noEmit -> exit 0; node scripts/validate-ci.mjs -> exit 0; npm run typecheck --workspace=apps/integrated-math-2 (tsrs) -> exit 0; npm run typecheck --workspace=apps/integrated-math-3 (tsc) -> exit 1 with the same 55 pre-existing keys as baseline-m2; role-gate and audit-result exit codes reported in the reply
+files_changed: measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s3-80934197.json, measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s3-80934197.log
+plan_updates: none (audit only)
+known_failures: the pre-existing remediate-concept-blueprints scripts-suite row (accepted S1 Q3, the only full-suite failure and the only cause of GREEN_TEST_COMMAND exit 1); the 5 audit-suite failing titles (subset of the 24 baseline-m2 failures); the IM3 55 pre-existing tsc diagnostics (identical key set, exit 1); Review A F8 and adversarial F2r2/F3r2 stay accepted residuals
+handoff: S3 acceptance passes at 80934197. Prerequisites: Review A final PASS at bb7b1f08, Review B PASS at 5d91443c (no manifest, lockfile, CI, or production-script change after it; the test-only and gates-harness commits cb3d1ba1, ad33c8a1, 6aa56a84, f37a6b7e, ddca656c, 90b31fe0, 4f4fc3c4 and the plan and runs commits are the only advance), adversarial r4 PASS at bb7b1f08 (only the runs commit 80934197 after it). The checkpoint round owns: (1) the [b] manual verification task (plan line 433), the checkpoint commit, the heading marker, and the phase-complete commit; (2) F1 the tech-stack.md S3 final-state line; (3) F2 the tech-debt.md IM3 heap row; (4) F3 the evidence section 9 mechanism sentence; (5) F4 the s3-tsrs-raw.txt 27-section note; (6) F5 the plan line 443 seed-parent sentence naming the two pinned controls; F6 and the accepted residuals need no action. Review A r2 F1 (Rust os error 28, spawn ENOSPC) stays routed to S4 Red. No question for the user; no default needed.
+dispositions: none
+END_MEASURE_AGENT_RESULT
