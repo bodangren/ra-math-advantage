@@ -3617,3 +3617,59 @@ describe("S5 adversarial", () => {
     ]);
   });
 });
+
+describe("S5 escaped-source adversarial", () => {
+  it.each([
+    ['npx --no-install "tsc" --noEmit', 'npx --no-install "tsc" --version', /^Version 7\./m],
+    ['npm exec -- "eslint" .', 'npm exec -- "eslint" --version', /^v\d+\./m],
+  ] as const)(
+    "adv 7: the scanner detects an escaped YAML command: %s",
+    (command, versionCommand, versionPattern) => {
+      // JSON strings are valid YAML scalars. Workflows commonly use this form.
+      const source = `jobs:\n  check:\n    steps:\n      - run: ${JSON.stringify(command)}\n`;
+      const doc = loadYaml(source) as {
+        jobs: { check: { steps: Array<{ run: string }> } };
+      };
+      expect(doc.jobs.check.steps[0].run).toBe(command);
+      const result = spawnSync("sh", ["-c", versionCommand], {
+        cwd: REPO_ROOT,
+        encoding: "utf8",
+        timeout: TOOL_TIMEOUT_MS,
+      });
+      expect(result.error).toBeUndefined();
+      expect(result.status, `${result.stdout}${result.stderr}`).toBe(0);
+      expect(result.stdout, "the parsed shell form resolves the real executable").toMatch(
+        versionPattern,
+      );
+      expect(s5ScanCommands("probe.yml", source), `hidden YAML call: ${source}`).not.toEqual([]);
+    },
+    TOOL_TIMEOUT_MS,
+  );
+
+  it.each([
+    ['npx --no-install "tsc" --noEmit', 'npx --no-install "tsc" --version', /^Version 7\./m],
+    ['npm exec -- "eslint" .', 'npm exec -- "eslint" --version', /^v\d+\./m],
+  ] as const)(
+    "adv 8: the scanner detects an escaped JavaScript command: %s",
+    (command, versionCommand, versionPattern) => {
+      const sourceFor = (value: string) =>
+        `require("node:child_process").execSync(${JSON.stringify(value)}, { stdio: "inherit" });`;
+      // Run the actual JavaScript path. No fake child_process intercepts it.
+      const result = spawnSync(process.execPath, ["--eval", sourceFor(versionCommand)], {
+        cwd: REPO_ROOT,
+        encoding: "utf8",
+        timeout: TOOL_TIMEOUT_MS,
+      });
+      expect(result.error).toBeUndefined();
+      expect(result.status, `${result.stdout}${result.stderr}`).toBe(0);
+      expect(result.stdout, "the JavaScript source resolves the real executable").toMatch(
+        versionPattern,
+      );
+      const source = sourceFor(command);
+      expect(s5ScanCommands("probe.cjs", source), `hidden JavaScript call: ${source}`).not.toEqual(
+        [],
+      );
+    },
+    TOOL_TIMEOUT_MS,
+  );
+});
