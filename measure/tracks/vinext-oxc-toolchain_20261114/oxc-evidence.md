@@ -289,6 +289,42 @@ still holds its 33 S4 keys.
 suite gives 94 passed and 1 failed (the pre-existing `remediate-concept-blueprints`
 row).
 
+### S5 Green run (2026-11-20)
+
+HEAD at the run: `8337aa23`. Labels `lint s5`, `test s5`, and `checks-all s5`, all with
+`GATES_BASE=baseline-m2`. Node v24.19.0. `npm ci` ran twice: the first run stopped with a
+registry `ETIMEDOUT`, and the second run exited 0. The tsrs platform package
+(`@tsrs/linux-x64-gnu`) is present after the second run.
+
+| Gate | Exit | Result line |
+|---|---|---|
+| `lint s5` | 0 | `NEWFAIL=0`; 27 workspaces, each exit 0 |
+| `test s5` | 0 | `NEWFAIL=0`; `scripts-suite` 1 and `audit-suites` 1, both equal `baseline-m2` |
+| `checks-all s5` | 0 | `NEWFAIL=0`; `audit: critical=0 high=9 moderate=7 low=5` (baseline `high=11`) |
+
+Steps of `test s5`: `scripts-suite` 1 (104 passed, 1 failed: the pre-existing
+`remediate-concept-blueprints` row, S1 Q3) and `audit-suites` 1 (187 passed, 5 failed in
+2 files; the section 10 baseline rows). Neither log holds a new diagnostic key.
+
+Steps of `checks-all s5`: `boundary` 0, `ci-check` 0, `tree` 0, `next-absent` 0, and
+`measure-contract` 1 (pre-existing). The `typecheck-bm2` step of `baseline-m2` does not
+run, because BM2 has a `typecheck` script since S3. The typecheck sweep keeps its baseline
+keys: IM3 and PreCalc are the only nonzero workspaces (section 10 rows), and the compare
+prints `NEWFAIL=0`. The build sweep exits 0 for 26 workspaces and `n/a` for
+`packages/practice-test-engine`, the `baseline-m2` set.
+
+Root scripts: `npm run format:check` exits 0 on 3717 files. `npm run lint` exits 0.
+`npm run typecheck` exits 1 with the 59 pre-existing `tsc` diagnostics of IM3 (55) and
+PreCalc (4). The `checks-all s5` typecheck compare gives `NEWFAIL=0` for both workspaces.
+
+Two test updates belong to the S5 diff. The deploy removal leaves `app-foundations` as the
+last job of `ci.yml`, so the IM2 `extractJobSection` helper accepts the end of the file
+(`09ca840d`); its assertions are unchanged. The IM3 workflow-validation check keeps the
+production-environment gate and moves it to `cloudflare-deploy.yml`, and it adds the rule
+that `ci.yml` has no deploy job (`8337aa23`). IM1 keeps the same helper and the same
+failure: its target job `im1-im2-precalc` is absent at `baseline-m2` too.
+
+
 ## 3. Package changes
 
 Filled by the S1 Implement tasks. The lockfile is the root `package-lock.json` only.
