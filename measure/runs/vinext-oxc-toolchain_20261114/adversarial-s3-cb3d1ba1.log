@@ -1,0 +1,198 @@
+S3 adversarial testing (first round, HEAD 5d91443c)
+==================================================
+
+Track: vinext-oxc-toolchain_20261114. Phase: Phase S3: TypeScript 7 and tsrs.
+Route: opencode-go/glm-5.3#high (ra-quota pick adversarial, 2026-11-19).
+phase_base_sha 2b3ffa8f2d6c6e6eea0bfe27f07015fdf969bf1d.
+role_base_sha 5d91443c498f84af3a8fef9aa358bdc5eeca98ec.
+Pre-adversarial HEAD: 5d91443c. Audited HEAD after my test commit: cb3d1ba1.
+Slot check before the role: ok, 9 of 14 busy. Each long job ran detached with
+its own log and exit file. The 6 dirty generated files were never touched.
+
+Method
+------
+I attacked the S3 implementation at 5d91443c: the 27 workspace typecheck
+scripts, the four `tsc --noEmit` fallback apps, the keep and fallback lists,
+the CI workflow lines, the `typescript6` parse alias, the root `tsc` bin
+link, and the gates.sh errno classifier of commit 4f4fc3c4. Each attack ran
+as a live probe or as a seeded mutant against the exact guard logic of
+scripts/__tests__/oxc-toolchain-gates.test.ts, with a paired control on the
+real tree. The committed cases live in describe('S3 adversarial') in
+scripts/__tests__/oxc-toolchain-gates.test.ts (adv 1 to adv 7) and in
+describe('S3 adversarial') in scripts/__tests__/vinext-oxc-gates-script.test.ts
+(the errno case). Commit cb3d1ba1 holds them.
+
+Attack table
+------------
+(a) A typecheck script that runs no type check. Case 1 compares each script
+to the exact target string, so each briefed mutant fails: TSRS_FAST=1
+dropped, --type-check dropped, --type-aware dropped, --max-warnings 0
+dropped, the budget raised to 1, --config dropped, the wrong config target
+(.oxlintrc.json instead of ../../.oxlintrc.json), the wrong path (src for
+an app, . for a package), an npx prefix, and an extra flag. Adv 1 drives the
+extracted rule typecheckScriptFault over all 17 mutants and the real tree.
+Result: caught. See below for the fallback exception (d, F4).
+
+(b) A config that checks no file. Live probe (adv 5): a temp project with an
+empty src folder, the exact package target command, TSRS_FAST=1, and the
+root config exits 1 with 'No files found to lint'. A missing path also exits
+1. The same command with a probe in src reports TS2322. Result: the gate
+fails loudly, so no vacuous pass exists. Pinned as a tripwire.
+
+(c) A probe that passes while tsrs is absent or its native binary is
+missing. The Red log (red-s3-ba7635c0.log) proves the absent-tool path:
+oxlint prints 'Failed to find type-aware linter executable', so S3 cases 6
+and 7 fail on their preconditions and S1 cases 5, 5b, and 6 fail loudly on
+their output assertions. A missing native binary cannot produce the TS2322
+output that case 6 requires, and a type checker that cannot start makes
+oxlint exit non-zero, so case 7 (exit 0) fails too. The first-install break
+(evidence section 9, 'Cannot find the optional dependency') was caught the
+same way before Green closed. Residual: no committed test uninstalls tsrs
+to simulate the state; that would mutate node_modules. The defense is the
+precondition plus the TS2322 output assertion, both live in cases 6 and 7.
+
+(d) Keep list and fallback drift. Case 5 compares the declared set to
+TYPESCRIPT_KEEP_LIST by exact equality, so a dropped workspace or a stale
+entry fails. Adv 2 proves it with seeded drift and proves that a
+`typescript6` declaration never counts. Two holes were open at 5d91443c and
+are now closed in cb3d1ba1: no test asserted the strategy 16.3 subset rule
+(TSC_FALLBACK_LIST inside TYPESCRIPT_KEEP_LIST, plan line 413), and case 1
+accepted weakened fallback scripts through an includes match. See F2 and
+F4.
+
+(e) The parse alias. Adv 3 proves the alias is load-bearing: the hoisted
+`typescript` package at HEAD is 7.0.2 and exposes no createSourceFile, no
+comment-range functions, and no ScriptKind. A scan import pointed at
+`typescript` therefore crashes on the first API call, so the switch cannot
+pass silently. Case 0 already pins the alias declaration, the resolve, the
+major 6, and the API surface, so an alias that resolves to major 7 fails
+case 0.
+
+(f) The root tsc bin. Green proved the shadow in evidence section 9:
+without the `@typescript/native` alias, `npx tsc` prints Version 6.0.3
+through the `@typescript/old` bin, and no committed test pinned it. That was
+an open hole (F3): a reinstall that drops or reorders the alias silently
+flips the four fallback gates to TypeScript 6. Adv 4 closes it: the alias
+declaration `npm:typescript@^7.0.2`, a live `npx tsc --version` that prints
+`Version 7.`, and a bin link that resolves inside @typescript/native.
+
+(g) Hidden tsc calls in CI. Adv 7 drives the extracted case 4 match over
+`npx tsc --noEmit`, `npx --yes tsc`, `npx --no-install tsc -p .`, bare
+`tsc --noEmit`, both project flags, and a call behind a `cd` chain: each
+matches. A multi-line `run: |` block matches on its second line. The
+controls stay clean: `npm run typecheck --workspace=...`, the bare word in
+prose, an echo, and a comment line do not match (A7 holds). One hole was
+open: the case 4 per-file sentinel reads the same readdir list as the loop,
+so a workflow file deleted from the disk shrank both lists and nothing
+failed; validate-ci.mjs pins only ci.yml and cloudflare-deploy.yml. Adv 7
+now pins the five-file set. See F5.
+
+(h) The four fallback apps. No committed test or gate proved that the
+`tsc --noEmit` fallback still catches a real type error in BM2, IM1, and
+PreCalc; only the manual Verify loop covered IM3. Adv 6 closes it live:
+each app gets `__oxc_probe__.ts` at its root, `npm run typecheck
+--workspace=<app>` runs the real script, the output names the probe with
+TS2322, the probe is deleted in a finally block, and the file is gone after.
+Live check: BM2 2.7 s, and the committed loop holds all four apps.
+
+(i) The gates.sh errno classifier of 4f4fc3c4. The committed case proves
+both sides with the sourced functions. First: has_infra_output
+(gates.sh:27) greps the whole log, so a normal failing-test line whose
+title mentions the errno word is classified infrastructure (a false INFRA).
+Second: key() (gates.sh:45) drops every line that holds the word, so
+new_keys reports no new key when a new failure's diagnostic mentions the
+word and the baseline exit is already non-zero: the gate can print
+NEWFAIL=0 while a new failure exists. The word appears in this repository
+today only in the titles and seeded strings of
+scripts/__tests__/vinext-oxc-gates-script.test.ts:352-362, so the false
+INFRA fires if those tests ever fail, and the false green needs the word in
+a new failing diagnostic. This is F1, a Blocker routed to Green: the fix
+narrows the matcher to disk-full message forms (for example `code ENOSPC`,
+`ENOSPC: no space left`, `EDQUOT: disk quota`) or applies the infra label
+only to jobs that exited 0, and flips the expectations of the committed
+adv i case. The case itself pins the current behavior so the fix has a
+failing-first target after the flip.
+
+Re-check at this HEAD
+---------------------
+-t 'S2 adversarial': 13 passed. -t 'S1 adversarial': 7 passed. -t 'S2
+oxlint': 7 passed. -t 'S1 vinext 1.x': 11 passed. -t 'S3 tsrs': 8 passed.
+-t 'S3 adversarial': 8 passed (adv 1 to adv 7 plus the errno case). The
+full scripts suite: 80 passed, 1 failed, and the one failure is the known
+pre-existing remediate-concept-blueprints row (strategy 16.5). The 49-entry
+allow-list fixture is unchanged: no S2 case or fixture entry was dropped.
+
+Gate
+----
+PROJECT_TESTS: GATES_BASE=baseline-m2 GATES_RESUME=1 bash
+measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s3, run detached.
+The stale scripts-suite step record was dropped first, so the step re-ran
+with the new tests (69.07 s, exit 1, the same baseline failure and no new
+diagnostic). Exit 0, NEWFAIL=0, no INFRA line.
+
+Findings
+--------
+F1 [Blocker] gates.sh: the disk-space errno match is over-broad (attack i).
+has_infra_output (measure/tracks/vinext-oxc-toolchain_20261114/gates.sh:27)
+matches the word anywhere in a job log, so a real failure whose text only
+mentions the word is classified infrastructure and the gate exits 3, and
+key() (gates.sh:45) drops the line, so the compare can print NEWFAIL=0
+while a new failure exists. The over-classification guard of the Green
+commit ('still reports a normal TS2322 line as a new failure') covers only
+a line without the word. Rationale: section 2 of the strategy promises that
+a pre-existing failure never makes the aggregate green; the word-drop breaks
+that promise for one diagnostic class, and the repo's own errno test titles
+(vinext-oxc-gates-script.test.ts:352,361) are the live trigger of the false
+INFRA. Fix owner: Green.
+
+F2 [Major] the strategy-mandated subset assertion was absent. Strategy
+16.3 case 5 says 'TSC_FALLBACK_LIST is a subset of TYPESCRIPT_KEEP_LIST
+(added assertion)' and plan line 413 repeats it, but no test at 5d91443c
+asserted it; only comments claimed it. A fallback entry outside the keep
+set would have passed case 1 and case 5. Closed in cb3d1ba1 by adv 2.
+
+F3 [Major] no test pinned the root tsc bin shadow (attack f). Green proved
+the alias with commands in evidence section 9, but a later install that drops
+or reorders the `@typescript/native` link flips `npx tsc` to 6.0.3 and no
+test would fail. Closed in cb3d1ba1 by adv 4 (declaration, live version, bin
+link).
+
+F4 [Nit] case 1 accepted weakened fallback scripts. The fallback branch used
+includes('tsc --noEmit'), so `tsc --noEmit --skipLibCheck` and `npx tsc
+--noEmit` passed while the plan (line 389) says the four apps 'keep tsc
+--noEmit', one exact string. Hardened to exact equality in cb3d1ba1 through
+typecheckScriptFault. The real tree already held the exact form, so no
+Green behavior changed.
+
+F5 [Nit] the workflow file set was unpinned. The case 4 sentinel reads the
+same readdir list as the scan loop, so a workflow file deleted from the
+disk shrank both lists and no test failed; validate-ci.mjs pins only ci.yml
+and cloudflare-deploy.yml. Closed in cb3d1ba1 by the adv 7 five-file pin.
+
+Scope
+-----
+git show --stat cb3d1ba1 holds only scripts/__tests__/
+oxc-toolchain-gates.test.ts (adv 1 to 7, the extracted typecheckScriptFault
+and TSC_COMMAND_RE, and the hardened case 1 and case 4 match) and
+scripts/__tests__/vinext-oxc-gates-script.test.ts (the errno case). No
+production file, manifest, lockfile, tsconfig, CI workflow, fixture, or
+gates.sh line was edited. The case 1 and case 4 edits keep their assertions
+and only share the extracted rule, and the real tree passes both unchanged.
+
+PM rule compliance: no `openchamber` or `opencode` command ran in this role.
+
+MEASURE_AGENT_RESULT
+role: measure-adversarial-testing
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S3: TypeScript 7 and tsrs
+baseline_sha: 2b3ffa8f2d6c6e6eea0bfe27f07015fdf969bf1d
+role_base_sha: 5d91443c498f84af3a8fef9aa358bdc5eeca98ec
+head: cb3d1ba1 (the test commit; the artifacts commit follows in measure/runs/)
+commits: cb3d1ba1 test(vinext-oxc): add the S3 adversarial tests; artifacts commit: measure(runs): add the S3 adversarial result
+tests_run: -t 'S3 adversarial' 8 passed; -t 'S3 tsrs' 8 passed; -t 'S2 adversarial' 13 passed; -t 'S1 adversarial' 7 passed; -t 'S2 oxlint' 7 passed; -t 'S1 vinext 1.x' 11 passed; full scripts suite 80 passed 1 failed (the pre-existing remediate-concept-blueprints row only); PROJECT_TESTS test s3 exit 0 NEWFAIL=0 (the stale scripts-suite step record was dropped first, so the step re-ran, 69.07 s)
+files_changed: scripts/__tests__/oxc-toolchain-gates.test.ts and scripts/__tests__/vinext-oxc-gates-script.test.ts (test commit cb3d1ba1); measure/runs/vinext-oxc-toolchain_20261114/adversarial-s3-cb3d1ba1.{json,log} (artifacts commit)
+plan_updates: none (the S3 adversarial round is not a plan task; the orchestrator records the verdict)
+known_failures: the pre-existing remediate-concept-blueprints scripts-suite failure only; every S3 adversarial test passes at this HEAD
+handoff: verdict fail with one Blocker routed to Green. F1: the gates.sh disk-space errno match (gates.sh:27 has_infra_output, gates.sh:45 key) is over-broad; a diagnostic whose text only mentions the word becomes INFRA and is dropped from the compare, so a new failure can hide behind the word; the committed adv i case pins the current behavior, so the fix narrows the matcher (disk-full message forms, or an exit-0-only rule) and flips that case's expectations. F2 (missing subset assertion), F3 (unpinned tsc bin shadow), F4 (loose fallback form), and F5 (unpinned workflow file set) are closed in cb3d1ba1. Question Q1 (F1 disposition, default FIX: Green narrows the gates.sh matcher and flips the adv i expectations in one commit, then the relevant adversarial gate re-runs). No EDQUOT or ENOSPC infrastructure error occurred; no re-run was needed.
+END_MEASURE_AGENT_RESULT
