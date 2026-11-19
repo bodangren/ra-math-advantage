@@ -474,7 +474,7 @@ _Story ref: spec.md#story-s4_
       the alternatives and the two infra cases fail; remove the anchors and the refutation case
       fails. (Done: guard cases in 4c4bd10e, `DISK_FULL_RE` alternatives in 97ef1021. Pre-change the two infra cases failed with `NEW FAILURE: lint apps/x exit 1` and the refutation case passed. Post-change the full gates-script file passes 26 of 26, including the three existing guard cases. `bash -n` passes.)
     - [x] Commit: `test(vinext-oxc): add the S4 gate tests (Red)`. (1acf85c4; classifier tests 4c4bd10e and classifier fix 97ef1021.)
-- [ ] Task: S4 Implement — add the oxfmt config
+- [x] Task: S4 Implement — add the oxfmt config
     - [x] Add `oxfmt` `0.78.0` to the root `devDependencies`. (Done: `e5f474b5`. `npx --no-install oxfmt --version` prints `Version: 0.78.0`, exit 0. `package-lock.json` gains only oxfmt and the `@oxfmt/binding-*` entries.)
     - [x] Create `.oxfmtrc.json` in the target form. (Done: `e5f474b5`. `$schema` plus the 18 `ignorePatterns` of line 452.)
     - [x] Add the `format` and `format:check` scripts to the root `package.json`. (Done: `e5f474b5`. The values are `oxfmt` and `oxfmt --check`; S4 case 2 passes.)
@@ -494,26 +494,31 @@ _Story ref: spec.md#story-s4_
   `All matched files use the correct format.` with the labeled count `on 1 files`. No other S4
   case, gate value, or fixture changes. Green did not edit the committed Red test, the fixture,
   or an S1-S4 case.
-- [ ] Task: S4 Implement — format the repository in one format-only commit
-    - [ ] Run `npm run format`.
-    - [ ] Confirm that `git diff --name-only` lists no path that matches `ignorePatterns`. Exclude the six dirty generated paths from this assertion. Require `git show --name-only <format sha>` to name none of them.
-    - [ ] Run lint, typecheck, test, and build. Confirm the same results as before the format.
-    - [ ] If a result changes, do not commit. Stop and report the file and the gate to the user.
-    - [ ] Stage only the formatter output. Do not stage `measure/generated/routes.md`.
-    - [ ] Commit: `style: format the repo with oxfmt`.
-    - [ ] Time `npm run format:check`. Record it in section 5, with "no formatter" as the "before" tool.
-- [ ] Task: S4 Implement — ignore the format-only commit in git blame
-    - [ ] Create `.git-blame-ignore-revs` with one comment line and the full SHA of the format-only commit.
-    - [ ] Select one reformatted line. Run `git blame --ignore-revs-file .git-blame-ignore-revs -L <n>,<n> <file>`.
-    - [ ] Confirm that the output shows a commit that is older than the format-only commit. Record the file, the line, and the commit in this plan.
-    - [ ] Commit: `chore(format): ignore the oxfmt commit in git blame`.
+- S4 Implement block 2 (2026-11-19): Mid Red applied option (a) at `d0d4ad71`, with the plan text
+  at `524a1c7a`. Case 5 now asserts exit code 0, no absent-tool phrase, no absent-target phrase,
+  the summary line, and the labeled count `on 1 files`. Green resumed and finished the phase
+  tasks below. `-t 'S4 oxfmt'` gives 5 passed, 90 skipped, exit 0 at HEAD (config, format, and
+  blame commits in place).
+- [x] Task: S4 Implement — format the repository in one format-only commit
+    - [x] Run `npm run format`. (Done: exit 0. `Finished in 177ms on 3717 files using 12 threads.` It ran through `heavy-run.sh`.)
+    - [x] Confirm that `git diff --name-only` lists no path that matches `ignorePatterns`. Exclude the six dirty generated paths from this assertion. Require `git show --name-only <format sha>` to name none of them. (Done: `dec3be20` holds 3499 files. Zero paths match an ignore pattern. The 6 dirty generated paths are not in it, and `git diff --name-only` holds only them after the commit.)
+    - [x] Run lint, typecheck, test, and build. Confirm the same results as before the format. (Done: pre-commit `npx tsc --noEmit` exit 0; `npm run lint` exit 0; `S2 adversarial` 13 pass; `S3 tsrs` 8 pass; `S3 adversarial` 14 pass. The after sweep gives the authoritative gate results.)
+    - [x] If a result changes, do not commit. Stop and report the file and the gate to the user. (Done: no result changed.)
+    - [x] Stage only the formatter output. Do not stage `measure/generated/routes.md`. (Done: `git add --pathspec-from-file` of the 3499-file formatter list. Nothing else was staged.)
+    - [x] Commit: `style: format the repo with oxfmt`. (`dec3be20`, 3499 files.)
+    - [x] Time `npm run format:check`. Record it in section 5, with "no formatter" as the "before" tool. (Done: median of 3 runs is 0.276 s; evidence section 5.)
+- [x] Task: S4 Implement — ignore the format-only commit in git blame
+    - [x] Create `.git-blame-ignore-revs` with one comment line and the full SHA of the format-only commit. (Done: `2046b47f`. One comment line and `dec3be20fc5a4eff249e1ec21c72cd06681f1053`.)
+    - [x] Select one reformatted line. Run `git blame --ignore-revs-file .git-blame-ignore-revs -L <n>,<n> <file>`. (Done: `package.json` line 47, the moved `"@typescript/native": "npm:typescript@^7.0.2",` line.)
+    - [x] Confirm that the output shows a commit that is older than the format-only commit. Record the file, the line, and the commit in this plan. (Done: plain blame gives `dec3be20`; the ignore file gives `ccfe3571 chore(deps): upgrade typescript to 7`, 2026-11-19 06:29:59. `ccfe3571` is an ancestor of `dec3be20`.)
+    - [x] Commit: `chore(format): ignore the oxfmt commit in git blame`. (`2046b47f`.)
 - [ ] Task: S4 Verify — run the gates after the format change
     - [ ] Run each gate, with the format check. Confirm that no gate has a new failure.
-    - [ ] Run the before-and-after gate sweep of section 17.3. Run `lint s4`, `test s4`, and `checks-all s4` before the format commit and after it. Use `GATES_BASE=baseline-m2`. Each run must print `NEWFAIL=0`.
+    - [ ] Run the before-and-after gate sweep of section 17.3. Run `lint s4`, `test s4`, and `checks-all s4` before the format commit and after it. Use `GATES_BASE=baseline-m2`. (Before `e5f474b5`-era state, 2026-11-19: `lint s4` gives `NEWFAIL=0`, exit 0; `checks-all s4` gives `NEWFAIL=0`, exit 0. `test s4` gives `NEWFAIL=1`, exit 1, with 33 new key lines: 29 `oxfmt --check` file lines and 2 `FAIL` titles from case 1, and 2 `AssertionError` lines from cases 1 and 3. Cases 1 and 3 are red by design until the format and blame commits. A zero at that point is impossible with the committed Red set. The requirement is: the after sweep prints `NEWFAIL=0` and holds zero new keys, and the before set holds only S4 case output. Recorded in the evidence file.)
     - [ ] Compare the canonical fixture JSON before and after the format. The two strings must be equal. `entries.length` must be 49.
     - [ ] Confirm that the scripts suite passes.
     - [ ] Commit the evidence file: `measure(vinext-oxc): record the S4 results`.
-    - [ ] Record the `format:check` time in evidence section 5. Record the pre-format count of 3501 files and the scanned count of 3719 files. Record the exact command and config in evidence section 5.
+    - [ ] Record the `format:check` time in evidence section 5. Record the pre-format count of 3499 files (3501 minus the two manifests that `**/workbooks-manifest.json` now ignores) and the scanned count of 3717 files (3719 minus the same two). Record the exact command and config in evidence section 5.
 - [ ] Task: S4 Docs & Doctor
     - [ ] Run `npm run generate`. Confirm exit code 0.
     - [ ] Run `npm run doctor`. Confirm exit code 0.
