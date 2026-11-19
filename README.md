@@ -221,7 +221,7 @@ Run from `apps/integrated-math-3/`:
 | `npm run build` | Production build |
 | `npm run start` | Start the production server |
 | `npm run lint` | Run Oxlint |
-| `npm run typecheck` | Run `tsc --noEmit` |
+| `npm run typecheck` | Run the type check (IM3 uses the `tsc` fallback) |
 | `npm test` | Run the Vitest suite |
 | `npm run test:watch` | Run Vitest in watch mode |
 | `npm run test:e2e` | Run the Playwright tests |

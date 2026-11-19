@@ -243,7 +243,7 @@ cd apps/integrated-math-3 && npm run lint && npm test && npm run typecheck && np
 
 **BM2:**
 ```bash
-cd apps/bus-math-v2 && npm run lint && npm test && npm run build && npx tsc --noEmit
+cd apps/bus-math-v2 && npm run lint && npm test && npm run build && npm run typecheck
 ```
 
 ---

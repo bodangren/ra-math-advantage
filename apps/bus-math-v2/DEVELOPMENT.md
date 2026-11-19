@@ -12,7 +12,7 @@ Before changing Convex code, read `convex/_generated/ai/guidelines.md`. The app 
 
 ## Verification
 
-Run `npx --no-install tsc --noEmit`, `npm run lint`, `CI=true npm test -- --maxWorkers=2`, and `npm run build`. The vinext build does not enforce TypeScript types. Run the Playwright browser tests after these checks.
+Run `npm run typecheck`, `npm run lint`, `CI=true npm test -- --maxWorkers=2`, and `npm run build`. The vinext build does not enforce TypeScript types. Run the Playwright browser tests after these checks.
 
 ## Curriculum and resources
 

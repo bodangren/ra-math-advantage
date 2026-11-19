@@ -37,7 +37,7 @@ cp -r packages/_template packages/<your-package-name>
     }
   },
   "scripts": {
-    "typecheck": "tsc --noEmit",
+    "typecheck": "TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src",
     "test": "vitest run",
     "test:watch": "vitest"
   }
@@ -138,7 +138,7 @@ npm run ws --workspace=@math-platform/<your-package-name> test
 
 # Full app gates (after adoption in IM3 and BM2)
 cd apps/integrated-math-3 && npm run lint && npm test && npm run typecheck && npm run build
-cd apps/bus-math-v2 && npm run lint && npm test && npm run build && npx tsc --noEmit
+cd apps/bus-math-v2 && npm run lint && npm test && npm run build && npm run typecheck
 ```
 
 ## Publishing

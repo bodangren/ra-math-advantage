@@ -109,8 +109,7 @@ Run these commands from the repository root.
 ```sh
 CI=true npm run test --workspace=apps/danielson
 npm run lint --workspace=apps/danielson
-npx tsc --noEmit --project apps/danielson/tsconfig.json
-npx tsc --noEmit --project apps/danielson/convex/tsconfig.json
+npm run typecheck --workspace=apps/danielson
 npm run build --workspace=apps/danielson
 ```
 
