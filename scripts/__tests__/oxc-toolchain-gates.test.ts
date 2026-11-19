@@ -2700,3 +2700,111 @@ describe('S2 adversarial', () => {
     TOOL_TIMEOUT_MS,
   );
 });
+
+// ---------------------------------------------------------------------------
+// S4 oxfmt (test-strategy 17). The formatter is absent at Red: no `oxfmt`
+// package, no `format` script, no `.oxfmtrc.json`, and no
+// `.git-blame-ignore-revs`. Each case below fails for its named reason at Red
+// (strategy 17.2). Probes live in `seedDir` folders inside the repository, so
+// the stale-probe sweep covers them. Each probe uses a `.ts` extension: a
+// `.py` probe exits 2 for an unsupported target and is not a valid negative
+// probe (A4).
+// ---------------------------------------------------------------------------
+
+// Phrases that prove a probe ran against a missing tool or a missing target.
+// A negative probe must show neither: it must fail because the file is
+// unformatted (A4). The target phrases come from the 0.78.0 CLI run of
+// strategy 17.1.
+const ABSENT_TARGET_PHRASES = [
+  'Expected at least one target file',
+  'may have been excluded by ignore rules',
+];
+
+function runOxfmt(args: string[]): { status: number | null; output: string } {
+  return runTool(['oxfmt', ...args]);
+}
+
+// A `.ts` probe file inside the repository. The prefix keeps the sweepable seed
+// form, so an interrupted run cannot leak the folder past the sweep (F1r3).
+function makeOxfmtProbe(fileName: string, content: string): string {
+  const dir = seedDir(REPO_ROOT, '.oxlint-probe-');
+  const file = path.join(dir, fileName);
+  fs.writeFileSync(file, content);
+  return file;
+}
+
+const OX_FMT_BAD_PROBE = 'const  a={b:1}';
+const OX_FMT_GOOD_PROBE = 'const a = { b: 1 };\n';
+
+describe('S4 oxfmt', () => {
+  it('case 1: oxfmt --check at the repository root exits with code 0', () => {
+    // Positive case: the check itself proves the tool is installed (A4). At
+    // Red the tool is absent, so `npx --no-install` cannot find an executable
+    // and the status assertion fails with that output.
+    const { status, output } = runOxfmt(['--check']);
+    expect(status, output).toBe(0);
+  });
+
+  it('case 2: the root package.json has the format and format:check scripts in the target form', () => {
+    const scripts = (readJson(path.join(REPO_ROOT, 'package.json')).scripts ?? {}) as Record<
+      string,
+      string
+    >;
+    const wrong: string[] = [];
+    if (scripts.format !== 'oxfmt') wrong.push(`format: ${String(scripts.format)}`);
+    if (scripts['format:check'] !== 'oxfmt --check')
+      wrong.push(`format:check: ${String(scripts['format:check'])}`);
+    // Exact values, not a bare-word grep for `oxfmt` (A3, A7).
+    expect(wrong, 'root scripts that are not in the target form').toEqual([]);
+  });
+
+  it('case 3: .git-blame-ignore-revs holds the SHA of the format-only commit', () => {
+    const file = path.join(REPO_ROOT, '.git-blame-ignore-revs');
+    // The missing-file line is the named Red reason: the blame file lands in
+    // the Implement commit, after the format-only commit exists (A4).
+    expect(fs.existsSync(file), '.git-blame-ignore-revs is missing').toBe(true);
+    const lines = fs
+      .readFileSync(file, 'utf8')
+      .split('\n')
+      .map((line) => line.trim())
+      .filter((line) => line !== '' && !line.startsWith('#'));
+    const sha = lines[0] ?? '';
+    // A labeled length, not a digit-only match (A3).
+    expect(sha.length, '.git-blame-ignore-revs SHA length').toBe(40);
+    const subject = spawnSync('git', ['log', '-1', '--format=%s', sha], {
+      cwd: REPO_ROOT,
+      encoding: 'utf8',
+    });
+    expect(String(subject.stdout ?? '').trim(), `git log subject of ${sha}`).toBe(
+      'style: format the repo with oxfmt',
+    );
+  });
+
+  it(
+    'case 4: a .ts probe with bad spacing fails oxfmt --check and names the probe',
+    () => {
+      expect(runTool(['oxfmt', '--version']).status, 'precondition: oxfmt --version').toBe(0);
+      const probe = makeOxfmtProbe('probe.ts', OX_FMT_BAD_PROBE);
+      const { status, output } = runOxfmt(['--check', probe]);
+      for (const phrase of ABSENT_TOOL_PHRASES) expect(output).not.toContain(phrase);
+      for (const phrase of ABSENT_TARGET_PHRASES) expect(output).not.toContain(phrase);
+      expect(status, output).not.toBe(0);
+      expect(output).toContain('probe.ts');
+    },
+    TOOL_TIMEOUT_MS,
+  );
+
+  it(
+    'case 5: a .ts probe with correct spacing passes oxfmt --check and names the probe',
+    () => {
+      expect(runTool(['oxfmt', '--version']).status, 'precondition: oxfmt --version').toBe(0);
+      const probe = makeOxfmtProbe('probe.ts', OX_FMT_GOOD_PROBE);
+      const { status, output } = runOxfmt(['--check', probe]);
+      for (const phrase of ABSENT_TOOL_PHRASES) expect(output).not.toContain(phrase);
+      for (const phrase of ABSENT_TARGET_PHRASES) expect(output).not.toContain(phrase);
+      expect(status, output).toBe(0);
+      expect(output).toContain('probe.ts');
+    },
+    TOOL_TIMEOUT_MS,
+  );
+});

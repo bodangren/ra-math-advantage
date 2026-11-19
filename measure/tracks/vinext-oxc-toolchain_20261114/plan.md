@@ -455,7 +455,7 @@ _Story ref: spec.md#story-s4_
     - [x] The root scripts are `"format": "oxfmt"` and `"format:check": "oxfmt --check"`. (Target recorded; Green applies.)
     - [x] `oxfmt` `0.78.0` (exact) goes in the root `devDependencies`. (Target recorded; Green applies.)
     - [x] Keep `oxfmt` `0.78.0` exact. Record `npm view oxfmt version` as `0.79.0` in evidence section 3 and section 11. If the PM chooses 0.79.0, change the pin in the same commit as the config. Re-run this revision's version check. (Done: `npm view oxfmt version` gives `0.79.0`; `npm view oxfmt@0.78.0 version` gives `0.78.0`. Recorded in evidence section 3 "S4 Contract" and section 11.)
-- [ ] Task: S4 Test (Red) — add the S4 gate tests
+- [~] Task: S4 Test (Red) — add the S4 gate tests
     - [ ] Add `describe('S4 oxfmt')` to the test file.
     - [ ] Normal case 1: `npx --no-install oxfmt --check` at the repository root exits with code 0.
     - [ ] Normal case 2: the root `package.json` has the `format` and `format:check` scripts in the target form.
