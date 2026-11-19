@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "role": "measure-adversarial-testing",
+  "track": "vinext-oxc-toolchain_20261114",
+  "phase": "Phase S3: TypeScript 7 and tsrs",
+  "baseline_sha": "2b3ffa8f2d6c6e6eea0bfe27f07015fdf969bf1d",
+  "role_base_sha": "2bc7b2712cc4354296cae2b16c864c07b5fd7632",
+  "audited_head_sha": "ad33c8a1",
+  "status": "fail",
+  "summary": "Second S3 adversarial round after the Green remediation ddca656c at role base 2bc7b271. The attack hit the new DISK_FULL_RE matcher with seeded logs through the sourced gates.sh harness, each probe with a paired control. The F1 fix holds: a word-only title stays a diagnostic, key() keeps it, and new_keys reports it (adv i passes), and the real system message forms stay infrastructure: Node writes and closes, EDQUOT writes, the Node field dump, the full old and modern npm blocks, and a real message inside a job log that also fails for a real reason (run_job records 290, the strategy 16.7 re-run decision). Three findings stay open. F1r2 (Blocker): the tests that seed temp folders under apps/ and the root clean up only through afterEach; an interrupt leaks the folder, and the leak makes the deterministic gates fail red. Proven live: a seeded apps/integrated-math-3/.oxlint-adv13-LEAKPROBE folder made adv 7 fail with the file in unlisted; after the removal the case passed again. Green hit the same leak (.oxlint-adv13-49VCiN) in the first gate run of this phase, so the class already cost one gate cycle; no startup sweep exists. F2r2 (Major): a real failing assertion whose diff carries an errno data form (Error: ENOSPC, code: 'ENOSPC', errno: -28) is still classified infrastructure and key() drops the line, so the compare stays blind when the baseline already fails; no current test triggers the form and the gate never turns green (INFRA=1, exit 3), pinned by the committed r2 a case. F3r2 (Nit): the npm trailer-only lines (npm ERR! code ENOSPC, npm error code ENOSPC, npm ERR! errno -28) match no alternative, but real npm output always holds the caught summary line. The r1 findings stay closed: F1 by ddca656c (verified live), F2 to F5 in cb3d1ba1 (re-checked). Re-checks at this HEAD: S3 adversarial 12 pass (8 r1 cases plus 4 new r2 cases), S3 tsrs 8 pass, S2 adversarial 13 pass, the gates-script file 23 pass, the full scripts suite 84 pass with only the pre-existing remediate-concept-blueprints failure, npx tsc --noEmit exit 0, and the test s3 gate exits 0 with NEWFAIL=0 after the stale scripts-suite step record was dropped so the step re-ran.",
+  "blocking_findings": [
+    "F1r2 [Blocker] adversarial-testing: the test suite leaves its seeded temp folders under apps/ and the root when a run is interrupted, and a leak makes the deterministic gates fail red. The seeded folders: apps/.oxlint-probe-* (scripts/__tests__/oxc-toolchain-gates.test.ts:1251), apps/integrated-math-3/.oxlint-adv-seed- and .oxlint-adv8- through .oxlint-adv13- (lines 1900, 2009, 2206, 2256, 2315, 2374, 2448), <workspace>/.oxlint-adv-* copies (line 1951), and .oxlint-adv-cfg-* at the root (line 1781). The only cleanup is the tempDirs array in afterEach (lines 224-227); no signal handler and no beforeAll sweep exists, so a watchdog kill or Ctrl-C leaks the folder. Proven live: a seeded apps/integrated-math-3/.oxlint-adv13-LEAKPROBE/seed.ts made 'adv 7: every disable comment is pinned by the allow-list' fail with the file in unlisted (npx vitest -t 'adv 7: every disable comment' -> 1 failed); after the folder was removed the case passed again. Green hit the same class in the first gate run of this phase: the leaked .oxlint-adv13-49VCiN folder made adv 7 fail, and Green removed it in the ddca656c round. Rationale: the gate contract and strategy 16.11 promise deterministic gates; one interrupt poisons every later gate run with a false red that names no code change. Fix owner Green (test-file change): a beforeAll sweep that deletes stale .oxlint-adv*/.oxlint-probe-*/.oxlint-adv-cfg-* folders under REPO_ROOT, apps/integrated-math-3, and each workspace before the suite seeds new ones."
+  ],
+  "nonblocking_findings": [
+    "F2r2 [Major] adversarial-testing: the narrowed matcher still hides a real failure whose diagnostic carries an errno data form. has_infra_output (measure/tracks/vinext-oxc-toolchain_20261114/gates.sh:35, DISK_FULL_RE at gates.sh:30) matches 'Error: ENOSPC', 'code: ENOSPC', and 'errno: -28' anywhere in a job log, and key() (gates.sh:56) drops the line. A failing assertion that prints a caught error object, for example \"AssertionError: expected 'Error: ENOSPC' to be 'Error: EACCES'\" or a vitest object diff \"{ code: 'ENOSPC', errno: -28 }\", is a real failure, but the job classifies as INFRA (exit 3) and the compare reports no new key. Live probe on seeded logs: all three hit forms MATCH with KEY-DROPPED, the paired controls NO-MATCH with KEY-KEPT, and new_keys with an already-failing baseline reports NO-NEW-KEY for the hit and NEW-KEY-SEEN for the control. The gate never turns green (INFRA=1, exit 3) and no test in this repo prints the form today, so the cost is a wasted re-run plus a wrong failure class. Pinned by the committed r2 a case in scripts/__tests__/vinext-oxc-gates-script.test.ts, so a Green fix has a failing-first target.",
+    "F3r2 [Nit] adversarial-testing: the npm trailer-only disk-full lines match no alternative of DISK_FULL_RE. 'npm ERR! code ENOSPC', 'npm error code ENOSPC', and 'npm ERR! errno -28' classify as normal diagnostics, so a job log that holds only them records a real exit code and the gate reports a false NEW FAILURE instead of INFRA. The full npm blocks are caught: 'npm ERR! enospc ENOSPC: no space left on device, write' (old npm) and 'npm error enospc ...' (modern npm) match the first alternative, and the Node full messages match 'Error: (ENOSPC|EDQUOT)'. The miss is narrow because real npm output always holds the summary line. Pinned by the committed r2 d case; Green may add '^npm (ERR!|error) (code (ENOSPC|EDQUOT)|errno -(28|122))$' to DISK_FULL_RE, or record the residual as accepted."
+  ],
+  "evidence": [
+    "Attack (a) and (b) live: bash /tmp/opencode/adv-s3-r2/probe-matcher.sh on seeded logs. A failing assertion whose diff carries 'Error: ENOSPC' (a1), '{ code: ENOSPC, errno: -28 }' (a2), or 'errno: -28' in the failure text (a3) is MATCH and KEY-DROPPED; each paired control without the form is NO-MATCH and KEY-KEPT. b1: the same errno field inside a serialized failure context is MATCH. bash /tmp/opencode/adv-s3-r2/probe-newkeys.sh: new_keys with an already-failing baseline reports NO-NEW-KEY for the data-form new failure and NEW-KEY-SEEN for the control. This is F2r2, pinned by the committed r2 a case.",
+    "r1 F1 closed by ddca656c: the flipped adv i case passes at this HEAD; the word-only failure title is not infrastructure, key() keeps it, new_keys reports it, and a real message line is infrastructure and leaves no key. '-t S3 adversarial' selects 12 cases (8 of r1 plus 4 of r2) and all pass.",
+    "Attack (c) live: a sourced run_job whose fake heavy wrapper prints one real 'Error: ENOSPC: no space left on device, write' line plus a real TS2322 failure and exits 1 records JOB_CODE=290, so the sweep prints INFRA FAILURE and the gate exits 3 for one re-run. This is the recorded strategy 16.7 decision (gates.sh:32-34 comment names the memory-disk case), pinned by the committed r2 c case. No finding: the gate does what the strategy says.",
+    "Attack (d) live: 'npm ERR! code ENOSPC', 'npm error code ENOSPC', and 'npm ERR! errno -28' alone are NO-MATCH (F3r2); the full old npm block, the modern 'npm error enospc ENOSPC: no space left on device, write' line, 'Error: ENOSPC: no space left on device' write and close, 'Error: EDQUOT: disk quota exceeded, write', and the Node field dump '[Error: ENOSPC: ...] { errno: -28, code: ENOSPC, syscall: write }' are all MATCH. Pinned by the committed r2 d case.",
+    "Attack (e) live: the canonical field forms stay caught ('errno: -122', 'code: \"ENOSPC\"', 'code: ENOSPC' without quotes, 'Error:ENOSPC: no space left on device' and 'ERROR: ENOSPC: no space left on device' both hold the full first alternative). The near-miss variants stay diagnostics: lowercase enospc, compact JSON {\"code\":\"ENOSPC\"}, 'errno:-28' without a space, 'errno:  -28' with a double space, and \"Code: 'ENOSPC'\". Node prints only the canonical forms, so no real disk-full output escapes. Pinned by the committed r2 e case.",
+    "F1r2 live proof: seeded apps/integrated-math-3/.oxlint-adv13-LEAKPROBE/seed.ts ('/* eslint-disable */ const unused = 1;'), then 'npx vitest run --config scripts/vitest.config.ts -t adv 7: every disable comment' -> 1 failed, unlisted holds 'apps/integrated-math-3/.oxlint-adv13-LEAKPROBE/seed.ts'; the folder removed, the same filter -> 1 passed; git status --porcelain clean of probe folders after. The only cleanup path is afterEach (scripts/__tests__/oxc-toolchain-gates.test.ts:224-227); no beforeAll sweep and no signal handler exists in either test file (grep for beforeAll and process.on found none). Green's first gate run of this phase failed on the same class (.oxlint-adv13-49VCiN, removed in the ddca656c round).",
+    "Re-checks at this HEAD: '-t S3 adversarial' 12 passed; '-t S3 tsrs' 8 passed; '-t S2 adversarial' 13 passed (adv 1 to 13 hold); 'npx vitest run scripts/__tests__/vinext-oxc-gates-script.test.ts' 23 passed (19 before plus the 4 r2 cases); 'npx tsc --noEmit' exit 0.",
+    "Full suite: npx vitest run --config scripts/vitest.config.ts -> 84 passed, 1 failed; the only failure is the known pre-existing 'remediate-concept-blueprints > production scan reports the honest count for the current repo state' row (strategy 16.5).",
+    "PROJECT_TESTS: the stale scripts-suite step record was dropped from measure/runs/vinext-oxc-toolchain_20261114/gates/s3/test.steps first, so the step re-ran with the r2 tests; then GATES_BASE=baseline-m2 GATES_RESUME=1 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s3, detached: exit 0, NEWFAIL=0, no INFRA line; the step row is 'step scripts-suite 71 exit=1' (the baseline failure only, no new diagnostic against baseline-m2).",
+    "Scope: commit ad33c8a1 changes scripts/__tests__/vinext-oxc-gates-script.test.ts only (186 insertions, 5 deletions, all inside the 'S3 adversarial' describe so the filter selects them). The ddca656c remediation changed gates.sh and the same test file. This role edited no production file, manifest, lockfile, tsconfig, CI workflow, allow-list fixture, or gates.sh line.",
+    "Tree hygiene: git status --porcelain after every probe run held only the six known dirty generated files; the LEAKPROBE folder and every seeded log live outside the tree or were removed; no leaked .oxlint-* folder remains under apps/ or the root."
+  ],
+  "commands": [
+    "bash /tmp/opencode/adv-s3-r2/probe-matcher.sh (the a-e seeded-log matrix against the sourced gates.sh)",
+    "bash /tmp/opencode/adv-s3-r2/probe-newkeys.sh (NO-NEW-KEY for the data-form hit, NEW-KEY-SEEN for the control)",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S3 adversarial' (12 passed, 5.2 s)",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S3 tsrs' (8 passed)",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial' (13 passed, 63.5 s)",
+    "npx vitest run scripts/__tests__/vinext-oxc-gates-script.test.ts (23 passed)",
+    "npx vitest run --config scripts/vitest.config.ts (84 passed, 1 failed: the pre-existing remediate-concept-blueprints row)",
+    "npx tsc --noEmit (exit 0)",
+    "leak probe: seed .oxlint-adv13-LEAKPROBE, 'npx vitest -t adv 7: every disable comment' (1 failed, then 1 passed after the removal)",
+    "GATES_BASE=baseline-m2 GATES_RESUME=1 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s3, detached with an exit file (exit 0, NEWFAIL=0)"
+  ],
+  "changed_files": [
+    "scripts/__tests__/vinext-oxc-gates-script.test.ts"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "retry_implementation",
+  "confidence": "high",
+  "route": "opencode-go/glm-5.3#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 4,
+      "evidence": "The ddca656c matcher does what the strategy says in every live probe: word-only titles stay diagnostics (adv i), the real Node, EDQUOT, and npm-block forms are caught, and the mixed real-failure case records 290 (probe-matcher.sh c1/d rows); the edges F2r2 (data forms in a diagnostic) and the trailer-only npm lines keep it from 5."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 4,
+      "evidence": "Each claim now has a committed live case with a paired control (r2 a, c, d, e plus adv i, all passing at ad33c8a1, 12 cases under '-t S3 adversarial'), and the leak that broke Green's first gate run is proven live with a seed-remove-rerun loop; the interrupt-cleanup gap itself has no guard yet, which keeps the axis at 4."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "git show --stat ad33c8a1 lists one test file (186 insertions, 5 deletions); ddca656c lists gates.sh and the same test file; this role touched no production file, fixture, manifest, tsconfig, workflow, or lockfile."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 5,
+      "evidence": "Every attack row cites a probe result (probe-matcher.sh and probe-newkeys.sh outputs), a committed test name (r2 a to r2 e), or a file:line (gates.sh:30,35,56; oxc-toolchain-gates.test.ts:1251,1951,224-227), and each filter run reports its pass count and duration."
+    }
+  ]
+}

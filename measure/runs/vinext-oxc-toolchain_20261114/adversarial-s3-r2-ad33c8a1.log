@@ -1,0 +1,116 @@
+S3 adversarial testing, re-run after remediation round 1.
+Role: measure-adversarial-testing. Route: opencode-go/glm-5.3#high.
+Track: vinext-oxc-toolchain_20261114. Phase: Phase S3: TypeScript 7 and tsrs.
+phase_base_sha 2b3ffa8f2d6c6e6eea0bfe27f07015fdf969bf1d. role_base_sha 2bc7b2712cc4354296cae2b16c864c07b5fd7632.
+Test commit: ad33c8a1 (test(vinext-oxc): extend the S3 adversarial tests (r2)).
+Green remediation under attack: ddca656c (DISK_FULL_RE in gates.sh, adv i flipped).
+
+== 1. Attack the new matcher on seeded logs (sourced gates.sh harness) ==
+bash /tmp/opencode/adv-s3-r2/probe-matcher.sh
+
+== (a) diagnostics whose text carries errno data forms (real failing assertions) ==
+a1-errform   MATCH    KEY-DROPPED   FAIL ... AssertionError: expected 'Error: ENOSPC' to be 'Error: EACCES'
+a1-control   NO-MATCH KEY-KEPT     same line with EACCES/EPERM
+a2-codeform  MATCH    KEY-DROPPED   AssertionError: expected { code: 'ENOSPC', errno: -28 } to match { code: 'ENOENT' }
+a2-control   NO-MATCH KEY-KEPT     same line with EACCES/-13
+a3-errnoform MATCH    KEY-DROPPED   AssertionError: the watcher state held errno: -28
+a3-control   NO-MATCH KEY-KEPT     same line with errno: -13
+Result: a real failure whose assertion diff carries an errno data form is
+classified INFRA and leaves no key. Residual of r1 F1. Finding F2r2 [Major].
+Pinned by the committed r2 a case.
+
+== new_keys, paired (baseline already failing) ==
+bash /tmp/opencode/adv-s3-r2/probe-newkeys.sh
+hit (Error: ENOSPC in the new failure diff):  NO-NEW-KEY
+ctrl (same failure, no errno form):           NEW-KEY-SEEN
+The compare stays blind to the data-form new failure. The gate still exits 3
+(INFRA=1), so no false green exists.
+
+== (b) errno field inside a serialized failure context ==
+b1-stackish   MATCH    (include filter keeps AssertionError lines; the raw line holds errno: -28)
+b1-control    NO-MATCH (the control line fails the key include filter, but
+has_infra_output reads the raw log and stays clean)
+Same defect class as (a). No separate finding; covered by F2r2.
+
+== (c) one real disk-full line plus a real TS2322 failure in one job log ==
+c1 MATCH (infra); key holds only 'probe.ts TS2322'.
+run_job with a fake heavy wrapper (prints the log, exits 1):
+c1 JOB_CODE=290 (job exited 1 with a real failure in the log)
+Right result per strategy 16.7 (gates.sh:32-34 comment): infrastructure, one
+re-run. The gate does exactly that. Committed as r2 c. No finding.
+
+== (d) real Node and npm disk-full outputs ==
+d1-npm-err-bang  NO-MATCH  'npm ERR! code ENOSPC'
+d2-npm-lower      NO-MATCH  'npm error code ENOSPC'
+d3-npm-errno      NO-MATCH  'npm ERR! errno -28'
+d4-npm-block      MATCH      old npm block, caught via 'npm ERR! enospc ENOSPC: no space left on device, write'
+d5-node-write     MATCH      'Error: ENOSPC: no space left on device, write'
+d6-node-close     MATCH      'Error: ENOSPC: no space left on device, close'
+d7-edquot         MATCH      'Error: EDQUOT: disk quota exceeded, write'
+d8-node-fields    MATCH      '[Error: ENOSPC: ...] { errno: -28, code: 'ENOSPC', syscall: 'write' }'
+d9-npm-modern     MATCH      'npm error enospc ENOSPC: no space left on device, write'
+Result: the full npm blocks are caught through their summary lines; the
+trailer-only lines are not. Finding F3r2 [Nit]. Pinned by r2 d.
+
+== (e) case and spacing variants ==
+e1-lowercase      NO-MATCH  lowercase enospc (Node never prints this)
+e2-no-space       MATCH     'Error:ENOSPC: no space left on device' (the full message is present)
+e3-compact-json   NO-MATCH  {"code":"ENOSPC"} (no 'code: ' with a space)
+e4-errno-tight    NO-MATCH  'errno:-28'
+e4b-errno-wide    NO-MATCH  'errno:  -28'
+e5-upper-ERROR    MATCH     'ERROR: ENOSPC: no space left on device' (the full message is present)
+e6-cap-code       NO-MATCH  "Code: 'ENOSPC'"
+e7-no-quotes      MATCH     'code: ENOSPC'
+e8-quota-errno    MATCH     'errno: -122' (EDQUOT on Linux)
+e9-quoted-dbl     MATCH     'code: "ENOSPC"'
+Result: the canonical field forms stay caught; the near-miss variants stay
+diagnostics and Node never prints them. Safe direction. Committed as r2 e.
+
+== 2. r1 F1 closed by ddca656c ==
+adv i (flipped in ddca656c) passes: the word-only title is not infrastructure,
+key() keeps it, new_keys reports it; a real message line is infrastructure and
+leaves no key. '-t S3 adversarial' 12 passed (8 r1 cases + 4 r2 cases).
+
+== 3. Temp-folder interrupt cleanup (apps/ seeds) ==
+Folders under apps/ and the root that the suite seeds:
+  apps/.oxlint-probe-* (oxc-toolchain-gates.test.ts:1251)
+  apps/integrated-math-3/.oxlint-adv-seed- ... .oxlint-adv13- (lines 1900,
+  2009, 2206, 2256, 2315, 2374, 2448)
+  <workspace>/.oxlint-adv-* (line 1951), .oxlint-adv-cfg-* (line 1781)
+The only cleanup is the tempDirs array in afterEach (lines 224-227). No
+SIGINT/SIGTERM path exists, and no beforeAll sweep deletes stale folders.
+Live proof of the poison: seeded
+apps/integrated-math-3/.oxlint-adv13-LEAKPROBE/seed.ts
+('/* eslint-disable */ const unused = 1;'):
+  npx vitest -t 'adv 7: every disable comment' -> 1 failed, unlisted holds
+  'apps/integrated-math-3/.oxlint-adv13-LEAKPROBE/seed.ts'
+  folder removed -> 1 passed. Tree clean again.
+Green hit the same class with .oxlint-adv13-49VCiN in the first gate run
+(removed in the ddca656c round). Finding F1r2 [Blocker] for Green.
+
+== 4. Re-checks at this HEAD ==
+npx vitest run --config scripts/vitest.config.ts -t 'S3 adversarial' -> 12 passed
+npx vitest run --config scripts/vitest.config.ts -t 'S3 tsrs'         -> 8 passed
+npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial'   -> 13 passed
+npx vitest run scripts/__tests__/vinext-oxc-gates-script.test.ts      -> 23 passed
+npx vitest run --config scripts/vitest.config.ts -> 84 passed, 1 failed
+  (only the known pre-existing 'remediate-concept-blueprints > production
+  scan reports the honest count' row; strategy 16.5)
+npx tsc --noEmit -> exit 0
+
+== 5. PROJECT_TESTS gate ==
+The stale scripts-suite step record was dropped from
+measure/runs/vinext-oxc-toolchain_20261114/gates/s3/test.steps first, so the
+step re-ran with the r2 tests.
+GATES_BASE=baseline-m2 GATES_RESUME=1 bash
+measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s3 (detached):
+exit 0, NEWFAIL=0, no INFRA line. The step re-ran: 'step scripts-suite 71
+exit=1' (the baseline failure only, no new diagnostic against baseline-m2).
+
+== 6. Scope ==
+Commit ad33c8a1 changes scripts/__tests__/vinext-oxc-gates-script.test.ts
+only (186 insertions, 5 deletions). The ddca656c remediation changed gates.sh
+and the same test file. This role edited no production file, manifest,
+lockfile, tsconfig, CI workflow, allow-list fixture, or gates.sh line.
+git status --porcelain held only the six known dirty generated files after
+every probe run.
