@@ -459,3 +459,71 @@ describe('S1 adversarial: gates.sh workspace set', () => {
     expect(r.output).toContain('NEWFAIL=1');
   });
 });
+
+// The S3 adversarial errno probe (attack i of the S3 attack list, gates.sh
+// commit 4f4fc3c4). gates.sh greps a whole job log for the disk-space errno
+// words, and the key function drops every line that holds them. A diagnostic
+// that only mentions the word in its text is therefore classified
+// infrastructure and dropped from the compare, so a real new failure can hide
+// behind the word. The word is composed at runtime so this test's own failure
+// diff cannot put it into the scripts-suite log and cloak this test.
+describe('S3 adversarial', () => {
+  const DISK_ERRNO = ['EN', 'OSPC'].join('');
+
+  function runBashFn(script: string): { status: number | null; output: string } {
+    const r = spawnSync('bash', ['-c', `source "${GATES_SH}"\n${script}`], {
+      encoding: 'utf8',
+      timeout: 60000,
+    });
+    return { status: r.status, output: `${r.stdout ?? ''}${r.stderr ?? ''}` };
+  }
+
+  it('a diagnostic that only mentions the disk-space errno word is classified infrastructure and dropped from the compare', () => {
+    const tmp = makeTempDir('gates-adv-errno-');
+    // A normal failing-test line whose title mentions the errno word, and the
+    // same line without the word.
+    const wordLog = path.join(tmp, 'word.log');
+    fs.writeFileSync(wordLog, `FAIL  __tests__/disk.test.ts > handles the ${DISK_ERRNO} write path\n`);
+    const plainLog = path.join(tmp, 'plain.log');
+    fs.writeFileSync(plainLog, 'FAIL  __tests__/disk.test.ts > handles the write path\n');
+
+    // 1. has_infra_output classifies the word-bearing failure as infrastructure.
+    expect(
+      runBashFn(`has_infra_output "${wordLog}"`).status,
+      'the word-bearing failure is classified infrastructure (a false infra hit)',
+    ).toBe(0);
+    expect(
+      runBashFn(`has_infra_output "${plainLog}"`).status,
+      'the plain failure is not infrastructure',
+    ).not.toBe(0);
+
+    // 2. key() drops the word-bearing diagnostic, so the compare never sees it.
+    expect(runBashFn(`key "${wordLog}"`).output.trim(), 'the word-bearing diagnostic leaves no key').toBe('');
+    expect(runBashFn(`key "${plainLog}"`).output).toContain('handles the write path');
+
+    // 3. new_keys is blind to a new failure whose diagnostic holds the word:
+    // the baseline has one old diagnostic and a non-zero exit, and the current
+    // log adds the word-bearing failure. The compare reports no new key, so
+    // the gate can stay green while a new failure exists.
+    const baseLog = path.join(tmp, 'base.log');
+    fs.writeFileSync(baseLog, 'FAIL  __tests__/old.test.ts > an old failing test\n');
+    const curWordLog = path.join(tmp, 'cur-word.log');
+    fs.writeFileSync(
+      curWordLog,
+      `FAIL  __tests__/old.test.ts > an old failing test\nFAIL  __tests__/disk.test.ts > handles the ${DISK_ERRNO} write path\n`,
+    );
+    const curPlainLog = path.join(tmp, 'cur-plain.log');
+    fs.writeFileSync(
+      curPlainLog,
+      'FAIL  __tests__/old.test.ts > an old failing test\nFAIL  __tests__/disk.test.ts > handles the write path\n',
+    );
+    expect(
+      runBashFn(`new_keys "${baseLog}" "${curWordLog}"`).status,
+      'the word-bearing new failure is invisible to the compare',
+    ).not.toBe(0);
+    expect(
+      runBashFn(`new_keys "${baseLog}" "${curPlainLog}"`).status,
+      'the plain new failure is visible to the compare',
+    ).toBe(0);
+  });
+});

@@ -492,6 +492,22 @@ function targetTypecheckScript(rel: string): string {
     : 'TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src';
 }
 
+// The case 1 form rule, extracted so the S3 adversarial case drives the exact
+// guard logic against seeded mutants (the same pattern as lintScriptForm). A
+// fallback workspace must run the exact legacy command: a weakened variant (an
+// added flag, a prefixed runner) changes what the gate proves, and the plan
+// wording "stays `tsc --noEmit`" (plan line 389) names one exact string.
+function typecheckScriptFault(rel: string, script: string): string | null {
+  if (TSC_FALLBACK_LIST.includes(rel)) {
+    return script === 'tsc --noEmit' ? null : `${rel}: fallback must be exactly tsc --noEmit`;
+  }
+  return script === targetTypecheckScript(rel) ? null : `${rel}: ${script}`;
+}
+
+// The command form that case 4 rejects in a workflow `run` line: a `tsc` call,
+// not the bare word (A7). Shared with the S3 adversarial workflow case.
+const TSC_COMMAND_RE = /\b(npx\s+(-\S+\s+)*tsc\b|tsc\s+(-p|--project|--noEmit)\b)/;
+
 // The S3 probe tsconfig (plan line 360): strict, noEmit, no types, files list.
 function s3ProbeTsconfig(files: string[]): Json {
   return {
@@ -547,11 +563,8 @@ describe('S3 tsrs', () => {
         missing.push(rel);
         continue;
       }
-      if (TSC_FALLBACK_LIST.includes(rel)) {
-        if (!script.includes('tsc --noEmit')) wrong.push(`${rel}: fallback must run tsc`);
-      } else if (script !== targetTypecheckScript(rel)) {
-        wrong.push(`${rel}: ${script}`);
-      }
+      const fault = typecheckScriptFault(rel, script);
+      if (fault) wrong.push(fault);
     }
     // bus-math-v2 has no typecheck script, so the missing list names it (A4).
     expect(missing, 'workspaces without a typecheck script').toEqual([]);
@@ -583,7 +596,9 @@ describe('S3 tsrs', () => {
     const workflowDir = path.join(REPO_ROOT, '.github', 'workflows');
     const files = fs.readdirSync(workflowDir).filter((f) => /\.ya?ml$/.test(f)).sort();
     // A command form, not a bare word (A7): npx tsc, or tsc with a project flag.
-    const tscCommandRe = /\b(npx\s+(-\S+\s+)*tsc\b|tsc\s+(-p|--project|--noEmit)\b)/;
+    // The regex lives at module scope (TSC_COMMAND_RE) so the S3 adversarial
+    // workflow case drives the exact same match.
+    const tscCommandRe = TSC_COMMAND_RE;
     const parsedByFile: Record<string, number> = {};
     const hits: string[] = [];
     for (const file of files) {
@@ -651,6 +666,283 @@ describe('S3 tsrs', () => {
     },
     TOOL_TIMEOUT_MS,
   );
+});
+
+// The S3 adversarial cases (S3 attack list, test-strategy 16.4 plus the S3
+// refresh). Each case seeds a fault in a temp folder or in memory, runs the same
+// rule or command that the S3 guard uses, and asserts that the guard reports the
+// fault. A guard that cannot fail is vacuous (A4). No case edits a real
+// manifest, config, workflow, or node_modules folder. The one live case (adv 6)
+// writes a probe file into a fallback app, runs the app's real typecheck, and
+// deletes the probe in a finally block, so the tree stays clean.
+describe('S3 adversarial', () => {
+  it('adv 1: the case 1 form rule rejects each briefed mutant typecheck script, and the fallback form is exact', () => {
+    // Seeded mutants: each token of the tsrs target dropped or weakened, a
+    // wrong config target, the wrong path, a prefixed runner, an extra flag, a
+    // non-fallback workspace on tsc, a package on the app form, and weakened
+    // fallback scripts. Each mutant is one way to make the type gate check
+    // less, and the rule must reject each one (A4).
+    const mutants: Array<[string, string]> = [
+      ['apps/x', 'oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 .'],
+      ['apps/x', 'TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --max-warnings 0 .'],
+      ['apps/x', 'TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-check --max-warnings 0 .'],
+      ['apps/x', 'TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check .'],
+      ['apps/x', 'TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 1 .'],
+      ['apps/x', 'TSRS_FAST=1 oxlint --type-aware --type-check --max-warnings 0 .'],
+      ['apps/x', 'TSRS_FAST=1 oxlint --config .oxlintrc.json --type-aware --type-check --max-warnings 0 .'],
+      ['apps/x', 'TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src'],
+      ['apps/x', 'npx oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 .'],
+      ['apps/x', 'TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 . --silent'],
+      ['apps/x', 'tsc --noEmit'],
+      ['packages/y', 'TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 .'],
+      ['apps/bus-math-v2', 'tsc --noEmit --skipLibCheck'],
+      ['apps/bus-math-v2', 'npx tsc --noEmit'],
+      ['apps/bus-math-v2', 'tsc --noEmit -p .'],
+      ['apps/bus-math-v2', 'tsc'],
+      [
+        'apps/bus-math-v2',
+        'TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 .',
+      ],
+    ];
+    for (const [rel, script] of mutants) {
+      expect(typecheckScriptFault(rel, script), `the rule must reject: ${rel}: ${script}`).not.toBeNull();
+    }
+    // Controls: the two target forms, the exact fallback command, and the
+    // template package form pass.
+    expect(typecheckScriptFault('apps/x', targetTypecheckScript('apps/x'))).toBeNull();
+    expect(typecheckScriptFault('packages/y', targetTypecheckScript('packages/y'))).toBeNull();
+    expect(typecheckScriptFault('packages/_template', targetTypecheckScript('packages/_template'))).toBeNull();
+    expect(typecheckScriptFault('apps/bus-math-v2', 'tsc --noEmit')).toBeNull();
+    // Paired control on the real tree: every real typecheck script passes the rule.
+    for (const dir of WORKSPACE_DIRS) {
+      const rel = relative(dir);
+      const scripts = (readJson(path.join(dir, 'package.json')).scripts ?? {}) as Record<string, string>;
+      expect(typecheckScriptFault(rel, scripts.typecheck), `${rel} typecheck script`).toBeNull();
+    }
+  });
+
+  it('adv 2: the case 5 set comparison notices a dropped keep entry, a stale entry, and an alias declaration; the fallback list stays inside the keep list', () => {
+    const isTypescript = (key: string) => key === 'typescript';
+    const realManifests = [
+      path.join(REPO_ROOT, 'package.json'),
+      ...APP_DIRS.map((d) => path.join(d, 'package.json')),
+      ...PACKAGE_DIRS.map((d) => path.join(d, 'package.json')),
+    ];
+    const declared = scanDeclarations(manifestEntries(realManifests), isTypescript);
+    // Control: the real tree matches the keep list exactly (same scan as case 5).
+    expect(declared).toEqual(TYPESCRIPT_KEEP_LIST);
+    // A keep list that drops one workspace no longer equals the declarations.
+    expect(declared, 'a dropped keep entry must fail the compare').not.toEqual(TYPESCRIPT_KEEP_LIST.slice(1));
+    // A keep list with a stale entry no longer equals the declarations.
+    expect(declared, 'a stale keep entry must fail the compare').not.toEqual([
+      ...TYPESCRIPT_KEEP_LIST,
+      'apps/ghost/package.json:devDependencies.typescript',
+    ]);
+    // `typescript6` never counts, so a manifest that declares only the alias
+    // adds nothing to the declared set (strategy 16.2).
+    const aliasOnly = scanDeclarations(
+      [
+        {
+          display: 'package.json',
+          manifest: { devDependencies: { [SCAN_PARSER_PACKAGE]: 'npm:@typescript/typescript6@^6.0.2' } },
+        },
+      ],
+      isTypescript,
+    );
+    expect(aliasOnly, 'an alias declaration must not count as typescript').toEqual([]);
+    // The subset rule of plan line 413 and strategy 16.3 case 5: every fallback
+    // workspace has its keep entry, so a fallback list that names a workspace
+    // outside the keep set fails here.
+    for (const rel of TSC_FALLBACK_LIST) {
+      expect(TYPESCRIPT_KEEP_LIST, `${rel} must have a keep entry`).toContain(
+        `${rel}/package.json:devDependencies.typescript`,
+      );
+    }
+  });
+
+  it('adv 3: the typescript6 alias is load-bearing: the installed typescript package exposes none of the scan API', () => {
+    const root = readJson(path.join(REPO_ROOT, 'package.json'));
+    expect((root.devDependencies ?? {}) as Json, 'the alias declaration matches the compat spec').toMatchObject({
+      [SCAN_PARSER_PACKAGE]: 'npm:@typescript/typescript6@^6.0.2',
+    });
+    // The package named `typescript` resolves from the repository root (the
+    // hoisted copy of the workspace declarations). TypeScript 7 ships no
+    // JavaScript compiler API, so a scan import pointed at `typescript`
+    // crashes on the first API call. The case proves the alias is the only
+    // parse API the scan can use (strategy 16.2).
+    const req = createRequire(path.join(REPO_ROOT, 'package.json'));
+    const hoistedVersion = String(readJson(req.resolve('typescript/package.json')).version);
+    expect(Number.parseInt(hoistedVersion.split('.')[0], 10), 'the hoisted typescript major').toBe(7);
+    const ts7 = req('typescript') as {
+      createSourceFile?: unknown;
+      getLeadingCommentRanges?: unknown;
+      getTrailingCommentRanges?: unknown;
+      ScriptKind?: unknown;
+    };
+    expect(typeof ts7.createSourceFile, 'typescript 7 has no createSourceFile').not.toBe('function');
+    expect(typeof ts7.getLeadingCommentRanges, 'typescript 7 has no getLeadingCommentRanges').not.toBe('function');
+    expect(typeof ts7.getTrailingCommentRanges, 'typescript 7 has no getTrailingCommentRanges').not.toBe('function');
+    expect(ts7.ScriptKind, 'typescript 7 has no ScriptKind').toBeUndefined();
+  });
+
+  it(
+    'adv 4: the root tsc bin is pinned to TypeScript 7 by the @typescript/native alias',
+    () => {
+      const root = readJson(path.join(REPO_ROOT, 'package.json'));
+      expect((root.devDependencies ?? {}) as Json, 'the bin-shadow alias declaration').toMatchObject({
+        '@typescript/native': 'npm:typescript@^7.0.2',
+      });
+      // Live pin: `npx tsc` must run the 7.x binary. Without the alias, the
+      // `@typescript/old` bin shadow wins and prints `Version 6.0.3`
+      // (evidence section 9), which breaks the four `tsc --noEmit` fallback
+      // gates and the TypeScript 7 conformance sweep. No other test pinned
+      // this (attack f).
+      const { status, output } = runTool(['tsc', '--version']);
+      expect(status, output).toBe(0);
+      expect(output, 'npx tsc must report a 7.x version').toMatch(/^Version 7\./m);
+      // The bin link resolves inside the alias package, not into a 6.x shadow.
+      const binTarget = fs.realpathSync(path.join(REPO_ROOT, 'node_modules', '.bin', 'tsc'));
+      expect(binTarget, 'the tsc bin link points into @typescript/native').toContain(
+        path.join('@typescript', 'native'),
+      );
+    },
+    TOOL_TIMEOUT_MS,
+  );
+
+  it(
+    'adv 5: the tsrs command fails loudly when the target holds no file, and still finds a probe in src',
+    () => {
+      // A workspace whose target path matches nothing must not pass the type
+      // gate silently (attack b). The probe project symlinks the real
+      // node_modules, so the command runs the installed tools.
+      const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'oxc-adv-empty-'));
+      tempDirs.push(tmp);
+      fs.symlinkSync(path.join(REPO_ROOT, 'node_modules'), path.join(tmp, 'node_modules'), 'dir');
+      const src = path.join(tmp, 'src');
+      fs.mkdirSync(src);
+      fs.writeFileSync(
+        path.join(tmp, 'tsconfig.json'),
+        JSON.stringify({ compilerOptions: { strict: true, noEmit: true, types: [] }, include: ['src/**/*'] }),
+      );
+      const runFromTmp = (target: string) => {
+        const r = spawnSync(
+          'npx',
+          [
+            '--no-install',
+            'oxlint',
+            '--config',
+            path.join(REPO_ROOT, '.oxlintrc.json'),
+            '--type-aware',
+            '--type-check',
+            '--max-warnings',
+            '0',
+            target,
+          ],
+          { cwd: tmp, encoding: 'utf8', timeout: TOOL_TIMEOUT_MS, env: { ...process.env, TSRS_FAST: '1' } },
+        );
+        return { status: r.status, output: `${r.stdout ?? ''}${r.stderr ?? ''}` };
+      };
+      const empty = runFromTmp('src');
+      expect(empty.status, `an empty target must fail, not pass: ${empty.output}`).not.toBe(0);
+      expect(empty.output, 'the failure names the empty target').toContain('No files found');
+      // Control: the same command with a probe in src reports the TS2322.
+      fs.writeFileSync(path.join(src, 'probe.ts'), S3_TYPE_MISMATCH_PROBE);
+      const probe = runFromTmp('src');
+      expect(probe.status, probe.output).not.toBe(0);
+      expect(probe.output).toContain('TS2322');
+      expect(probe.output).toContain('probe.ts');
+    },
+    TOOL_TIMEOUT_MS,
+  );
+
+  it('adv 6: each fallback app typecheck reports a seeded TS2322 probe, and the probe is gone after', () => {
+    // Attack h: the four TSC_FALLBACK_LIST apps keep `tsc --noEmit`, so their
+    // gate is the TypeScript 7 binary through the root bin link. A committed
+    // proof must exist for each app, not only IM3. The probe file sits at the
+    // app root, which every app tsconfig includes through `**/*.ts`.
+    expect(TSC_FALLBACK_LIST.length, 'the fallback list names the four apps').toBe(4);
+    for (const rel of TSC_FALLBACK_LIST) {
+      const probeFile = path.join(REPO_ROOT, rel, '__oxc_probe__.ts');
+      fs.writeFileSync(probeFile, S3_TYPE_MISMATCH_PROBE);
+      let status: number | null = null;
+      let output = '';
+      try {
+        const r = spawnSync('npm', ['run', 'typecheck', `--workspace=${rel}`], {
+          cwd: REPO_ROOT,
+          encoding: 'utf8',
+          timeout: 300000,
+          env: { ...process.env, CI: 'true' },
+        });
+        status = r.status;
+        output = `${r.stdout ?? ''}${r.stderr ?? ''}`;
+      } finally {
+        fs.rmSync(probeFile, { force: true });
+      }
+      expect(fs.existsSync(probeFile), `${rel}: the probe file is gone after the run`).toBe(false);
+      expect(status, `${rel}: the probe must fail the app typecheck\n${output}`).not.toBe(0);
+      expect(output, `${rel}: the diagnostic names the probe`).toContain('__oxc_probe__');
+      expect(output, `${rel}: the diagnostic is a TS2322`).toContain('TS2322');
+    }
+  }, 600000);
+
+  it('adv 7: the case 4 command match catches each hidden tsc form, and the workflow file set is pinned', () => {
+    // Seeded forms: a bare npx call, `npx --yes`, `npx --no-install`, a bare
+    // `tsc --noEmit`, both project flags, and a tsc call after a `cd` chain.
+    const hits = [
+      'npx tsc --noEmit',
+      'npx --yes tsc',
+      'npx --no-install tsc -p .',
+      'tsc --noEmit',
+      'tsc -p apps/x/tsconfig.json',
+      'tsc --project apps/x',
+      'cd apps/x && npx tsc --noEmit',
+    ];
+    for (const line of hits) {
+      expect(TSC_COMMAND_RE.test(line), `the match must reject: ${line}`).toBe(true);
+    }
+    // Controls (A7): a workspace typecheck call, the bare word in prose and in
+    // an echo, and a comment line must not match.
+    const controls = [
+      'npm run typecheck --workspace=apps/bus-math-v2',
+      'npm run typecheck --workspace=apps/integrated-math-2 && npm run curriculum:check',
+      'echo "the tsc word"',
+      '# tsc is gone',
+    ];
+    for (const line of controls) {
+      expect(TSC_COMMAND_RE.test(line), `the match must keep: ${line}`).toBe(false);
+    }
+    // A multi-line `run: |` block holds the tsc call on its second line; the
+    // case 4 loop tests each line, so the call still matches.
+    const block = ['npm run build', 'npx tsc --noEmit'].join('\n');
+    expect(block.split('\n').some((line) => TSC_COMMAND_RE.test(line))).toBe(true);
+    // File-set pin (attack g): a workflow file dropped from the disk shrinks
+    // the readdir list, and no other check names the set. The pin makes the
+    // drop a failure.
+    const workflowDir = path.join(REPO_ROOT, '.github', 'workflows');
+    expect(fs.readdirSync(workflowDir).filter((f) => /\.ya?ml$/.test(f)).sort(), 'the workflow file set').toEqual([
+      'business-math-deploy.yml',
+      'ci.yml',
+      'cloudflare-deploy.yml',
+      'jsdoc-typed-params.yml',
+      'scale-benchmarks.yml',
+    ]);
+    // Paired control on the real tree: the same scan as case 4 reports no hit.
+    const realHits: string[] = [];
+    for (const file of fs.readdirSync(workflowDir).filter((f) => /\.ya?ml$/.test(f)).sort()) {
+      const doc = loadYaml(fs.readFileSync(path.join(workflowDir, file), 'utf8')) as {
+        jobs?: Record<string, { steps?: Array<{ run?: string }> }>;
+      };
+      for (const [jobName, job] of Object.entries(doc.jobs ?? {})) {
+        for (const step of job.steps ?? []) {
+          if (typeof step.run !== 'string') continue;
+          for (const line of step.run.split('\n')) {
+            if (TSC_COMMAND_RE.test(line)) realHits.push(`${file}:${jobName}: ${line.trim()}`);
+          }
+        }
+      }
+    }
+    expect(realHits, 'workflow run lines that call tsc').toEqual([]);
+  });
 });
 
 // The lockfile shape that the S1 case 8 scan reads.
