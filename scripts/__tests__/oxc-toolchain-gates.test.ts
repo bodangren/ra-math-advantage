@@ -2973,3 +2973,375 @@ describe("S4 oxfmt", () => {
     TOOL_TIMEOUT_MS,
   );
 });
+
+// ---------------------------------------------------------------------------
+// S5 gate rules (strategy 18.2). Cases 1 to 4, 7, and 10 are red at the S4
+// checkpoint base: the guardrails name `npx tsc`, the root `ws:*` scripts keep
+// the tsc fallback, `ci.yml` has no format:check step and keeps the deploy
+// job, and the planned markers remain. Cases 5, 6, 8, and 9 are guards.
+// Case 9 uses command-form regexes with named path exclusions only (A7). The
+// root `ws:*` hits are owned by the red case 3, and the architecture manifest
+// snapshot is a recorded value, not a live call site.
+// ---------------------------------------------------------------------------
+
+// The five exact banned strings of plan case 1: exact substrings, never a
+// bare word match.
+const S5_BANNED_STRINGS = ["npx tsc", "tsc --noEmit", "eslint .", "eslint src", "vinext lint"];
+
+// The command forms of strategy section 8, written with JS alternation. Each
+// form names a tool call, never a bare English word (A7).
+const S5_TSC_CALL_RE = /\b(npx|npm exec)\s+(-\S+\s+)*tsc\b/;
+const S5_TSC_FLAG_RE = /\btsc\s+(-p|--project|--noEmit)\b/;
+const S5_ESLINT_CALL_RE = /\beslint\s+(\.|src|--)/;
+const S5_COMMAND_RES = [S5_TSC_CALL_RE, S5_TSC_FLAG_RE, S5_ESLINT_CALL_RE];
+
+// The target root script forms of plan line 649 and the S4 format scripts.
+const S5_ROOT_LINT_TARGET = "npm run lint --workspaces --if-present";
+const S5_ROOT_TYPECHECK_TARGET = "npm run typecheck --workspaces --if-present";
+
+// The architecture-track snapshot holds a recorded command value, not a live
+// call site. The S5 Contract does not own it, so the live-call scan names
+// this one path (A7).
+const S5_ARCHITECTURE_SNAPSHOT = "scripts/architecture/architecture.manifest.json";
+
+function s5WorkflowFiles(): string[] {
+  const dir = path.join(REPO_ROOT, ".github", "workflows");
+  return fs
+    .readdirSync(dir)
+    .filter((f) => /\.ya?ml$/.test(f))
+    .sort();
+}
+
+function s5ScanStrings(label: string, text: string): string[] {
+  const hits: string[] = [];
+  text.split("\n").forEach((line, n) => {
+    for (const s of S5_BANNED_STRINGS) {
+      if (line.includes(s)) hits.push(`${label}:${n + 1}: [${s}]`);
+    }
+  });
+  return hits;
+}
+
+function s5ScanCommands(label: string, text: string): string[] {
+  const hits: string[] = [];
+  text.split("\n").forEach((line, n) => {
+    for (const re of S5_COMMAND_RES) {
+      if (re.test(line)) hits.push(`${label}:${n + 1}: [${re.source}]`);
+    }
+  });
+  return hits;
+}
+
+// Every file under a repo folder, except paths that hold a `__tests__`
+// segment. Fixtures and mocks under `__tests__` are not live call sites.
+function s5ListFiles(dir: string): string[] {
+  const out: string[] = [];
+  const walk = (d: string) => {
+    for (const entry of fs.readdirSync(d, { withFileTypes: true })) {
+      const full = path.join(d, entry.name);
+      if (entry.isDirectory()) {
+        if (entry.name !== "__tests__") walk(full);
+      } else {
+        out.push(full);
+      }
+    }
+  };
+  walk(path.join(REPO_ROOT, dir));
+  return out.sort();
+}
+
+describe("S5 gate rules", () => {
+  it("case 1: no gate document, manifest, or workflow names a removed tool", () => {
+    const files = [
+      "AGENTS.md",
+      path.join("measure", "workflow.md"),
+      path.join("measure", "tech-stack.md"),
+      "package.json",
+      ...s5WorkflowFiles().map((f) => path.join(".github", "workflows", f)),
+    ];
+    // Sentinel: the workflow list equals the disk list, so a dropped file
+    // fails here and not only on the content check (A4).
+    expect(
+      files
+        .filter((f) => f.includes("workflows"))
+        .map((f) => path.basename(f))
+        .sort(),
+      "workflow files read",
+    ).toEqual(s5WorkflowFiles());
+    const hits = files.flatMap((f) =>
+      s5ScanStrings(f, fs.readFileSync(path.join(REPO_ROOT, f), "utf8")),
+    );
+    expect(hits, "files that name a removed tool").toEqual([]);
+  });
+
+  it("case 2: ci.yml runs the format check", () => {
+    const doc = loadYaml(
+      fs.readFileSync(path.join(REPO_ROOT, ".github", "workflows", "ci.yml"), "utf8"),
+    ) as {
+      jobs?: Record<string, { steps?: Array<{ run?: string }> }>;
+    };
+    expect(doc.jobs?.["boundary-check"], "ci.yml has a boundary-check job").toBeDefined();
+    const runs: string[] = [];
+    for (const job of Object.values(doc.jobs ?? {})) {
+      for (const step of job.steps ?? []) {
+        if (typeof step.run === "string") runs.push(step.run);
+      }
+    }
+    // Exact run value, not a bare-word grep for `format` (A3, A7).
+    expect(runs, "ci.yml run lines with npm run format:check").toContain("npm run format:check");
+  });
+
+  it("case 3: the root scripts name the Oxc gates and no root ws:* script calls tsc", () => {
+    const scripts = (readJson(path.join(REPO_ROOT, "package.json")).scripts ?? {}) as Record<
+      string,
+      string
+    >;
+    const wrong: string[] = [];
+    if (scripts.lint !== S5_ROOT_LINT_TARGET) wrong.push(`lint: ${String(scripts.lint)}`);
+    if (scripts.typecheck !== S5_ROOT_TYPECHECK_TARGET)
+      wrong.push(`typecheck: ${String(scripts.typecheck)}`);
+    if (scripts.format !== "oxfmt") wrong.push(`format: ${String(scripts.format)}`);
+    if (scripts["format:check"] !== "oxfmt --check")
+      wrong.push(`format:check: ${String(scripts["format:check"])}`);
+    // Exact values, not a bare-word grep for `oxfmt` or `workspaces` (A3, A7).
+    expect(wrong, "root scripts that are not in the target form").toEqual([]);
+    // Scope: root `ws:*` scripts only. The four TSC_FALLBACK_LIST workspace
+    // scripts keep `tsc --noEmit` under S3 AC4 (strategy 18.11 default 1).
+    const flagged = Object.entries(scripts)
+      .filter(([key, value]) => key.startsWith("ws:") && String(value).includes("tsc"))
+      .map(([key]) => key);
+    expect(flagged, "root ws:* scripts that call tsc").toEqual([]);
+  });
+
+  it("case 4: the workflow quality gates name the three Oxc gate scripts", () => {
+    const text = fs.readFileSync(path.join(REPO_ROOT, "measure", "workflow.md"), "utf8");
+    const lines = text.split("\n");
+    const start = lines.findIndex((line) => line.trim() === "### Quality Gates");
+    expect(start, "Quality Gates section exists").toBeGreaterThanOrEqual(0);
+    const rest = lines.slice(start + 1);
+    const end = rest.findIndex((line) => /^## /.test(line));
+    const section = rest.slice(0, end === -1 ? undefined : end).join("\n");
+    const names = ["npm run format:check", "npm run lint", "npm run typecheck"];
+    const missing = names.filter((name) => !section.includes(name));
+    // Exact script names inside the section, not a bare word such as `lint` (A7).
+    expect(missing, "Quality Gates names missing from measure/workflow.md").toEqual([]);
+  });
+
+  it(
+    "case 5: the CI validator passes and every needs entry names a job",
+    () => {
+      const result = spawnSync("node", ["scripts/validate-ci.mjs"], {
+        cwd: REPO_ROOT,
+        encoding: "utf8",
+      });
+      const output = `${result.stdout ?? ""}${result.stderr ?? ""}`;
+      expect(result.status, output).toBe(0);
+      const doc = loadYaml(
+        fs.readFileSync(path.join(REPO_ROOT, ".github", "workflows", "ci.yml"), "utf8"),
+      ) as {
+        jobs?: Record<string, { needs?: string | string[] }>;
+      };
+      const names = new Set(Object.keys(doc.jobs ?? {}));
+      const dangling: string[] = [];
+      for (const [jobName, job] of Object.entries(doc.jobs ?? {})) {
+        const needsList: string[] = [];
+        if (typeof job.needs === "string") needsList.push(job.needs);
+        else if (Array.isArray(job.needs)) needsList.push(...job.needs);
+        for (const dep of needsList) {
+          if (!names.has(dep)) dangling.push(`${jobName} needs ${dep}`);
+        }
+      }
+      expect(dangling, "ci.yml needs entries without a job").toEqual([]);
+      // Mutant: the same closure check reports a dangling entry, so a removed
+      // job that leaves a `needs` behind cannot pass (A4).
+      const mutantNames = new Set(["build"]);
+      const mutantNeeds: Record<string, string[]> = { build: ["ghost-job"] };
+      const mutantDangling: string[] = [];
+      for (const [jobName, deps] of Object.entries(mutantNeeds)) {
+        for (const dep of deps) {
+          if (!mutantNames.has(dep)) mutantDangling.push(`${jobName} needs ${dep}`);
+        }
+      }
+      expect(mutantDangling, "mutant needs closure").toEqual(["build needs ghost-job"]);
+    },
+    TOOL_TIMEOUT_MS,
+  );
+
+  it(
+    "case 6: no measure script calls a removed tool",
+    () => {
+      const dir = path.join(REPO_ROOT, "measure", "scripts");
+      const files = fs.readdirSync(dir).sort();
+      // Sentinel: the scan ran over a non-empty folder (A4). Labeled integer (A3).
+      expect(files.length, "measure/scripts file count").toBeGreaterThanOrEqual(1);
+      const result = spawnSync(
+        "git",
+        [
+          "grep",
+          "-n",
+          "-E",
+          "npx tsc|tsc --noEmit|eslint \\.|eslint src|vinext lint",
+          "--",
+          "measure/scripts",
+        ],
+        { cwd: REPO_ROOT, encoding: "utf8" },
+      );
+      // git grep exits 1 when nothing matches: the exit code proves the
+      // empty result is real and not a dropped folder (A4).
+      expect(result.status, result.stdout).toBe(1);
+      // Positive control: the same pattern matches a seeded file, so the
+      // pattern cannot pass vacuously (A4). The seed lives in the system temp
+      // folder and is removed in afterEach.
+      const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "s5-case6-"));
+      tempDirs.push(tmp);
+      fs.writeFileSync(path.join(tmp, "seed.sh"), "run: npx tsc --noEmit\n");
+      const probe = spawnSync("grep", ["-E", "npx tsc|tsc --noEmit", path.join(tmp, "seed.sh")], {
+        encoding: "utf8",
+      });
+      expect(probe.status, "seeded command form matches").toBe(0);
+    },
+    TOOL_TIMEOUT_MS,
+  );
+
+  it("case 7: ci.yml has no deploy job and no wrangler deploy line", () => {
+    const text = fs.readFileSync(path.join(REPO_ROOT, ".github", "workflows", "ci.yml"), "utf8");
+    const doc = loadYaml(text) as { jobs?: Record<string, unknown> };
+    const jobNames = Object.keys(doc.jobs ?? {}).sort();
+    // Exact job-key set from the YAML parse, not a word filter (A7). A renamed
+    // deploy job keeps the wrangler lines below and still fails.
+    expect(jobNames, "ci.yml job keys").not.toContain("deploy");
+    const wrangler = text
+      .split("\n")
+      .filter((line) => line.includes("wrangler-action") || line.includes("wrangler deploy"))
+      .map((line) => line.trim());
+    expect(wrangler, "ci.yml lines that deploy with wrangler").toEqual([]);
+  });
+
+  it("case 8: every workflow uses Node 22 or later", () => {
+    const parsedByFile: Record<string, number> = {};
+    const below: string[] = [];
+    for (const file of s5WorkflowFiles()) {
+      const doc = loadYaml(
+        fs.readFileSync(path.join(REPO_ROOT, ".github", "workflows", file), "utf8"),
+      ) as {
+        jobs?: Record<
+          string,
+          { steps?: Array<{ uses?: string; with?: { "node-version"?: string } }> }
+        >;
+      };
+      parsedByFile[file] = 0;
+      for (const job of Object.values(doc.jobs ?? {})) {
+        for (const step of job.steps ?? []) {
+          const version = step.with?.["node-version"];
+          if (
+            typeof step.uses === "string" &&
+            step.uses.startsWith("actions/setup-node") &&
+            typeof version === "string"
+          ) {
+            parsedByFile[file] += 1;
+            const major = Number.parseInt(version.replace(/^v/, "").split(".")[0], 10);
+            // Labeled integer major, required >= 22 (A3).
+            expect(Number.isInteger(major), `${file} node-version parses to an integer`).toBe(true);
+            if (major < 22) below.push(`${file}: ${version}`);
+          }
+        }
+      }
+    }
+    // Sentinel: the parse produced one entry for each file on the disk (A4).
+    expect(Object.keys(parsedByFile).sort(), "workflow files read").toEqual(s5WorkflowFiles());
+    expect(below, "setup-node steps with a node-version below 22").toEqual([]);
+    // Mutant: the same threshold rejects a 20 line, so a lowered workflow
+    // cannot pass (A4).
+    expect(Number.parseInt("20", 10) >= 22, "mutant node-version 20 is below the floor").toBe(
+      false,
+    );
+  });
+
+  it("case 9: command-form regexes over the live call sites match nothing", () => {
+    // Root package.json: every script except `ws:*`. Case 3 owns every root
+    // `ws:*` script and is red for the six fallback lines, so this scan
+    // excludes exactly the `ws:`-prefixed keys (A7: a structural exclusion).
+    const scripts = (readJson(path.join(REPO_ROOT, "package.json")).scripts ?? {}) as Record<
+      string,
+      string
+    >;
+    const wsKeys = Object.keys(scripts)
+      .filter((key) => key.startsWith("ws:"))
+      .sort();
+    expect(wsKeys.length, "root ws:* script count").toBeGreaterThanOrEqual(1);
+    const hits: string[] = [];
+    for (const [key, value] of Object.entries(scripts)) {
+      if (!key.startsWith("ws:"))
+        hits.push(...s5ScanCommands(`package.json script ${key}`, String(value)));
+    }
+    // Workflows: the full text of every file on the disk.
+    for (const file of s5WorkflowFiles()) {
+      hits.push(
+        ...s5ScanCommands(
+          `.github/workflows/${file}`,
+          fs.readFileSync(path.join(REPO_ROOT, ".github", "workflows", file), "utf8"),
+        ),
+      );
+    }
+    // scripts/ outside __tests__, except the architecture snapshot. The
+    // snapshot records a command value; it is not a live call site, and the
+    // S5 Contract does not own it. The scan names the one path (A7).
+    const allScriptFiles = s5ListFiles("scripts");
+    expect(
+      allScriptFiles.map((f) => relative(f)),
+      "scripts scan sees the architecture snapshot",
+    ).toContain(S5_ARCHITECTURE_SNAPSHOT);
+    for (const file of allScriptFiles) {
+      if (relative(file) === S5_ARCHITECTURE_SNAPSHOT) continue;
+      hits.push(...s5ScanCommands(relative(file), fs.readFileSync(file, "utf8")));
+    }
+    // measure/scripts/: every file. The workspace manifests are not scanned
+    // here; the four TSC_FALLBACK_LIST manifests stay out of the Green removal
+    // sweep by plan line 689.
+    for (const file of s5ListFiles(path.join("measure", "scripts"))) {
+      hits.push(...s5ScanCommands(relative(file), fs.readFileSync(file, "utf8")));
+    }
+    expect(hits, "live call sites that use a removed command form").toEqual([]);
+    // Mutant: the same regexes catch one seeded form per pattern, so the
+    // scan cannot pass vacuously (A4). Each line matches exactly one form.
+    const mutant = ["run: npx tsc --version", "cmd: tsc -p tsconfig.json", "lint: eslint src"].join(
+      "\n",
+    );
+    for (const re of S5_COMMAND_RES) {
+      expect(
+        mutant.split("\n").some((line) => re.test(line)),
+        `mutant matches ${re.source}`,
+      ).toBe(true);
+    }
+    expect(s5ScanCommands("mutant", mutant).length, "mutant command-form hit count").toBe(3);
+  });
+
+  it(
+    "case 10: the planned markers are gone and the docs name the current tools",
+    () => {
+      for (const tool of ["vinext", "oxlint", "oxfmt", "tsrs"]) {
+        for (const file of ["README.md", path.join("measure", "tech-stack.md")]) {
+          const text = fs.readFileSync(path.join(REPO_ROOT, file), "utf8");
+          expect(text.includes(tool), `${file} names ${tool}`).toBe(true);
+        }
+      }
+      const result = spawnSync(
+        "git",
+        [
+          "grep",
+          "-n",
+          "planned: vinext-oxc-toolchain_20261114",
+          "--",
+          "README.md",
+          "measure/tech-stack.md",
+          "measure/index.md",
+        ],
+        { cwd: REPO_ROOT, encoding: "utf8" },
+      );
+      // git grep exits 1 when nothing matches. At Red it exits 0 and names
+      // README.md:131 and measure/tech-stack.md:20.
+      expect(result.status, result.stdout).toBe(1);
+    },
+    TOOL_TIMEOUT_MS,
+  );
+});
