@@ -390,35 +390,35 @@ _Story ref: spec.md#story-s3_
     - [x] If oxlint reports that `--type-aware` needs `oxlint-tsgolint`, add `oxlint-tsgolint` `^7.0.2007` to the root `devDependencies`. Record it in section 8. (Not needed: `tsrs` 0.25.0-ts7.1.0-beta provides the executable.)
     - [x] In `.github/workflows/ci.yml` and `cloudflare-deploy.yml`, replace each `cd <dir> && npx tsc --noEmit` with `npm run typecheck --workspace=<dir>`. (Also `business-math-deploy.yml`, so no run line in any workflow calls `tsc`. `node scripts/validate-ci.mjs` exits 0.)
     - [x] Commit: `chore(typecheck): run the type check through oxlint and tsrs`. (c0426865.)
-- [ ] Task: S3 Implement — compare tsrs with tsc on the same compiler line
-    - [ ] Run `npx tsrs --version` and `npx --yes -p typescript@7.1.0-beta tsc --version`. Record both versions at the top of section 7.
-    - [ ] If the tsrs version names a TypeScript line other than 7.1.0-beta, use `tsc` from that line in the next steps. Record the line.
-    - [ ] On one commit, collect the `tsc` 7.1.0-beta diagnostics of each workspace with `npx --yes -p typescript@7.1.0-beta tsc --noEmit --pretty false -p <tsconfig>`. For each app, include `<app>/convex/tsconfig.json`.
-    - [ ] Do not add `typescript@7.1.0-beta` to a manifest. The `npx -p` command runs it from the npx cache.
-    - [ ] On the same commit, collect the tsrs diagnostics with the typecheck command and `--format json`.
-    - [ ] On the same commit, collect the `tsc` 7.0.2 diagnostics with `npx tsc --noEmit --pretty false -p <tsconfig>`.
-    - [ ] Compare the `tsc` 7.1.0-beta set and the tsrs set by file, line, and TS code. Record each difference in the gap table of section 7.
-    - [ ] Compare the `tsc` 7.0.2 set and the `tsc` 7.1.0-beta set the same way. Record each difference in the compiler-version table of section 7.
-    - [ ] For a tsrs-only diagnostic, find a code change that does not change behavior and keeps `tsc` 7.0.2 and `tsc` 7.1.0-beta clean. If one exists, make it and record it in section 8.
-    - [ ] If no such change exists, set the typecheck script of that workspace to `tsc --noEmit`.
-    - [ ] Add that workspace to `TSC_FALLBACK_LIST` and to `TYPESCRIPT_KEEP_LIST`. Record the gap as "blocking" in section 7.
-    - [ ] For a diagnostic that only `tsc` 7.1.0-beta reports, record "missed by tsrs" in section 7. Make no code change.
-    - [ ] Commit: `measure(vinext-oxc): record the tsrs conformance gaps`.
-- [ ] Task: S3 Implement — decide where `typescript` stays
-    - [ ] Read the Convex CLI type-check code under `node_modules/convex/dist/cli/`. Search for `typecheck`.
-    - [ ] Record how the Convex CLI finds TypeScript in section 9, with the file and the line.
-    - [ ] Remove `typescript` from each manifest that `TYPESCRIPT_KEEP_LIST` does not name. Remove it from the root `overrides`.
-    - [ ] Run `npm install`.
-    - [ ] Run `npx convex typecheck` in each app. Record the exit code and the output in section 9.
-    - [ ] Keep `typescript` `^7.0.2` in an app only when `npx convex typecheck` fails without it.
-    - [ ] If the command also fails with 7.0.2, use the newest 6.x version. Record it as a held package.
-    - [ ] If the Convex CLI only skips its own check, do not keep the package. The tsrs gate checks `convex/` through `convex/tsconfig.json`.
-    - [ ] Do not keep `typescript` for editors. The repository has no `.vscode/settings.json`, so editors use their bundled TypeScript. Record this in section 9.
-    - [ ] Run `npm ls typescript --all`. If an installed package has a non-optional peer on `typescript`, keep `typescript` in the root `devDependencies`. Record the package in section 9.
-    - [ ] Set `TYPESCRIPT_KEEP_LIST` in the test file to the final keep list.
-    - [ ] Record the `typescript6` alias in evidence section 9 with the reason "S2 disable-comment scan; TypeScript 7 ships no JavaScript API". Do not add `typescript6` to `TYPESCRIPT_KEEP_LIST` or to `TSC_FALLBACK_LIST`.
-    - [ ] Do not run `convex deploy`. Do not run `convex dev` against a cloud deployment.
-    - [ ] Commit: `chore(deps): keep typescript only where the Convex CLI needs it`.
+- [x] Task: S3 Implement — compare tsrs with tsc on the same compiler line (fa72040e)
+    - [x] Run `npx tsrs --version` and `npx --yes -p typescript@7.1.0-beta tsc --version`. Record both versions at the top of section 7. (`Version 7.1.0-beta (tsrs 0.25.0-ts7.1.0-beta, microsoft/TypeScript@3e9236361fa9)` and `Version 7.1.0-beta`; commit `dbf29cbd`.)
+    - [x] If the tsrs version names a TypeScript line other than 7.1.0-beta, use `tsc` from that line in the next steps. Record the line. (It names 7.1.0-beta; `tsc` 7.1.0-beta is used.)
+    - [x] On one commit, collect the `tsc` 7.1.0-beta diagnostics of each workspace with `npx --yes -p typescript@7.1.0-beta tsc --noEmit --pretty false -p <tsconfig>`. For each app, include `<app>/convex/tsconfig.json`.
+    - [x] Do not add `typescript@7.1.0-beta` to a manifest. The `npx -p` command runs it from the npx cache. (No manifest entry; `npm ls typescript --all` holds only 7.0.2.)
+    - [x] On the same commit, collect the tsrs diagnostics with the typecheck command and `--format json`.
+    - [x] On the same commit, collect the `tsc` 7.0.2 diagnostics with `npx tsc --noEmit --pretty false -p <tsconfig>`.
+    - [x] Compare the `tsc` 7.1.0-beta set and the tsrs set by file, line, and TS code. Record each difference in the gap table of section 7. (38 tsrs-only rows, all in IM3 `scripts/*.mjs`; 69 tsc-only rows: BM2 67, IM3 2.)
+    - [x] Compare the `tsc` 7.0.2 set and the `tsc` 7.1.0-beta set the same way. Record each difference in the compiler-version table of section 7. (0 differences in all 27 workspaces.)
+    - [x] For a tsrs-only diagnostic, find a code change that does not change behavior and keeps `tsc` 7.0.2 and `tsc` 7.1.0-beta clean. If one exists, make it and record it in section 8. (None exists: the rows are `.mjs` scripts outside the app `include` and `process` under a `types` list without node.)
+    - [x] If no such change exists, set the typecheck script of that workspace to `tsc --noEmit`. (IM3 already has it.)
+    - [x] Add that workspace to `TSC_FALLBACK_LIST` and to `TYPESCRIPT_KEEP_LIST`. Record the gap as "blocking" in section 7. (IM3 is in both.)
+    - [x] For a diagnostic that only `tsc` 7.1.0-beta reports, record "missed by tsrs" in section 7. Make no code change.
+    - [x] Commit: `measure(vinext-oxc): record the tsrs conformance gaps`. (fa72040e.)
+- [x] Task: S3 Implement — decide where `typescript` stays (bdebdf65)
+    - [x] Read the Convex CLI type-check code under `node_modules/convex/dist/cli/`. Search for `typecheck`. (`dist/esm/cli/lib/typecheck.js`; the bundled `dist/cli.bundle.cjs` holds the same code.)
+    - [x] Record how the Convex CLI finds TypeScript in section 9, with the file and the line. (Lines 110-128.)
+    - [x] Remove `typescript` from each manifest that `TYPESCRIPT_KEEP_LIST` does not name. Remove it from the root `overrides`. (22 manifests, the root `devDependencies` entry, and the `overrides` block.)
+    - [x] Run `npm install`.
+    - [x] Run `npx convex typecheck` in each app. Record the exit code and the output in section 9. (All six exit 1: three skip with "No `tsc` binary found", three report the pre-existing convex diagnostics.)
+    - [x] Keep `typescript` `^7.0.2` in an app only when `npx convex typecheck` fails without it. (No app passes the CLI check, so the CLI cannot select the set. The four keep apps are `TSC_FALLBACK_LIST`, which must be a subset of the keep list, and their `tsc --noEmit` gate runs the package.)
+    - [x] If the command also fails with 7.0.2, use the newest 6.x version. Record it as a held package. (Not used: the failures are pre-existing code diagnostics, not a version problem.)
+    - [x] If the Convex CLI only skips its own check, do not keep the package. The tsrs gate checks `convex/` through `convex/tsconfig.json`. (The four keep apps keep it for their own `tsc --noEmit` gate; the other 23 manifests drop it.)
+    - [x] Do not keep `typescript` for editors. The repository has no `.vscode/settings.json`, so editors use their bundled TypeScript. Record this in section 9.
+    - [x] Run `npm ls typescript --all`. If an installed package has a non-optional peer on `typescript`, keep `typescript` in the root `devDependencies`. Record the package in section 9. (`convex-helpers` 0.1.135 only, and its peer is optional, so the root does not keep it.)
+    - [x] Set `TYPESCRIPT_KEEP_LIST` in the test file to the final keep list.
+    - [x] Record the `typescript6` alias in evidence section 9 with the reason "S2 disable-comment scan; TypeScript 7 ships no JavaScript API". Do not add `typescript6` to `TYPESCRIPT_KEEP_LIST` or to `TSC_FALLBACK_LIST`.
+    - [x] Do not run `convex deploy`. Do not run `convex dev` against a cloud deployment.
+    - [x] Commit: `chore(deps): keep typescript only where the Convex CLI needs it`. (bdebdf65.)
 - [ ] Task: S3 Verify — run the gates after the type-check change
     - [ ] Run each gate. Confirm that no gate has a new failure.
     - [ ] Confirm that the scripts suite passes.
