@@ -17,7 +17,7 @@ describe("ConvexProvider Integration", () => {
     expect(fs.existsSync(providerPath)).toBe(true);
 
     const providerContent = fs.readFileSync(providerPath, "utf8");
-    expect(providerContent).toContain("'use client'");
+    expect(providerContent).toContain('"use client"');
     expect(providerContent).toContain("ConvexClientProvider");
   });
 });

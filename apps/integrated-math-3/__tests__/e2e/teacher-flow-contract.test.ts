@@ -47,10 +47,11 @@ function extractSelConstant(source: string, constantName: string): Record<string
   }
   const body = source.slice(openBrace + 1, closeBrace);
   const result: Record<string, string> = {};
-  const entryPattern = /(\w+):\s*'([^']+)'/g;
+  // oxfmt owns the spec file, so the value quotes are single or double.
+  const entryPattern = /(\w+):\s*(["'])([^"']+)\2/g;
   let match: RegExpExecArray | null;
   while ((match = entryPattern.exec(body)) !== null) {
-    const [, key, value] = match;
+    const [, key, , value] = match;
     result[key] = value;
   }
   return result;

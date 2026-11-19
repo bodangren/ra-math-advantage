@@ -11,7 +11,9 @@ function luminance(hex: string) {
 it("keeps small muted and accent text readable on the light course surfaces", () => {
   const css = readFileSync(path.resolve(import.meta.dirname, "../../app/globals.css"), "utf8");
   for (const token of ["text-muted-text", "text-accent"]) {
-    const color = css.match(new RegExp(`  \\.${token} \\{ color: #([0-9a-fA-F]{6});`))?.[1];
+    const color = css.match(
+      new RegExp(`^  \\.${token} \\{\\n    color: #([0-9a-fA-F]{6});`, "m"),
+    )?.[1];
     expect(color).toBeDefined();
     for (const background of ["FFFFFF", "FAF9F6", "F4F1EA"]) {
       const [low, high] = [luminance(color!), luminance(background)].sort((a, b) => a - b);

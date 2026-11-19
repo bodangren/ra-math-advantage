@@ -11,8 +11,8 @@ it("rejects legacy IM2 extraction before writing any inventory", () => {
   try {
     // Redirect only filesystem locations. Run the actual CLI logic against an isolated fixture.
     const source = readFileSync(path.join(repo, "scripts/extract-skill-inventory.ts"), "utf8")
-      .replace("path.resolve(__dirname, '..')", JSON.stringify(temporary))
-      .replaceAll("'../packages/", `'${repo}/packages/`);
+      .replace('path.resolve(__dirname, "..")', JSON.stringify(temporary))
+      .replaceAll('"../packages/', `"${repo}/packages/`);
     const script = path.join(temporary, "extract.cts");
     writeFileSync(script, source);
     mkdirSync(path.join(temporary, "measure"));

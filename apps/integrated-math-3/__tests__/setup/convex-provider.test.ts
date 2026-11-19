@@ -8,7 +8,7 @@ describe("ConvexClientProvider", () => {
     const provider = fs.readFileSync(providerPath, "utf8");
 
     expect(provider).toContain(
-      "export { ConvexClientProvider } from '@math-platform/app-shell/providers'",
+      'export { ConvexClientProvider } from "@math-platform/app-shell/providers"',
     );
     expect(provider).not.toContain("process.env.NEXT_PUBLIC_CONVEX_URL!");
   });

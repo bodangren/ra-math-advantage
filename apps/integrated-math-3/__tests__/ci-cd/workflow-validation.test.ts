@@ -49,8 +49,8 @@ describe("Cloudflare Deploy Workflow", () => {
 
     it("should setup Node.js 24", () => {
       expect(workflowContent).toMatch(/uses:\s*actions\/setup-node@v4/);
-      expect(workflowContent).toMatch(/node-version:\s*'24'/);
-      expect(workflowContent).toMatch(/cache:\s*'npm'/);
+      expect(workflowContent).toMatch(/node-version:\s*"24"/);
+      expect(workflowContent).toMatch(/cache:\s*"npm"/);
     });
 
     it("should install dependencies with npm ci", () => {

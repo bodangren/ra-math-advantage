@@ -102,7 +102,7 @@ describe("Adversarial: axe rule-disable drift (A7 defense)", () => {
     const harnessPath = path.resolve(__dirname, "../../lib/a11y/harness.tsx");
     const src = readFileSync(harnessPath, "utf-8");
     // color-contrast + color-contrast-enhanced are the expected defaults.
-    expect(src).toMatch(/'color-contrast':\s*\{\s*enabled:\s*false\s*\}/);
+    expect(src).toMatch(/"color-contrast":\s*\{\s*enabled:\s*false\s*\}/);
     expect(src).toMatch(/jsdom/);
   });
 });

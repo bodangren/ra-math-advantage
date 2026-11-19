@@ -8,6 +8,20 @@ const seedStandardsSource = readFileSync(
   "utf8",
 );
 
+// oxfmt keeps a short description on the `description:` line and moves a long
+// one to its own line with a 10-space indent. `wrapped` records the layout that
+// the formatter chose, so the exact-source assertion stays exact.
+function descriptionSnippet(record: {
+  code: string;
+  description: string;
+  wrapped: boolean;
+}): string {
+  const description = record.wrapped
+    ? `\n          "${record.description}"`
+    : ` "${record.description}"`;
+  return `code: "${record.code}",\n        description:${description}`;
+}
+
 describe("seed-standards", () => {
   describe("official HSF-IF.C.7 source records", () => {
     it("assigns the official descriptions to 7a and 7b exactly once", () => {
@@ -16,11 +30,13 @@ describe("seed-standards", () => {
           code: "HSF-IF.C.7a",
           description:
             "Graph linear and quadratic functions and show intercepts, maxima, and minima",
+          wrapped: false,
         },
         {
           code: "HSF-IF.C.7b",
           description:
             "Graph square root, cube root, and piecewise-defined functions, including step functions and absolute value functions",
+          wrapped: true,
         },
       ];
 
@@ -28,9 +44,7 @@ describe("seed-standards", () => {
         expect(seedStandardsSource.match(new RegExp(`code: "${record.code}"`, "g"))).toHaveLength(
           1,
         );
-        expect(seedStandardsSource).toContain(
-          `code: "${record.code}",\n        description: "${record.description}"`,
-        );
+        expect(seedStandardsSource).toContain(descriptionSnippet(record));
       }
     });
   });
@@ -41,19 +55,19 @@ describe("seed-standards", () => {
         code: "HSF-IF.B.6",
         description:
           "Calculate and interpret the average rate of change of a function (presented symbolically or as a table) over a specified interval. Estimate the rate of change from a graph.",
+        wrapped: true,
       },
       {
         code: "HSF-IF.C.9",
         description:
           "Compare properties of two functions each represented in a different way (algebraically, graphically, numerically in tables, or by verbal descriptions).",
+        wrapped: true,
       },
     ];
 
     for (const record of expectedRecords) {
       expect(seedStandardsSource.match(new RegExp(`code: "${record.code}"`, "g"))).toHaveLength(1);
-      expect(seedStandardsSource).toContain(
-        `code: "${record.code}",\n        description: "${record.description}"`,
-      );
+      expect(seedStandardsSource).toContain(descriptionSnippet(record));
     }
   });
 
@@ -66,7 +80,7 @@ describe("seed-standards", () => {
 
     expect(seedStandardsSource.match(new RegExp(`code: "${code}"`, "g"))).toHaveLength(1);
     expect(seedStandardsSource).toContain(
-      `code: "${code}",\n        description: "${description}",\n        studentFriendlyDescription: "${studentFriendlyDescription}",\n        category: "Functions",\n        isActive: true,`,
+      `code: "${code}",\n        description:\n          "${description}",\n        studentFriendlyDescription:\n          "${studentFriendlyDescription}",\n        category: "Functions",\n        isActive: true,`,
     );
   });
 

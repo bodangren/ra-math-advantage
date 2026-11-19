@@ -33,7 +33,7 @@ describe("test runner discovery configuration", () => {
   it("keeps Vitest discovery focused on __tests__ directory", () => {
     const vitestConfig = fs.readFileSync(path.join(BM2_ROOT, "vitest.config.ts"), "utf8");
 
-    expect(vitestConfig).toContain("'__tests__/**/*.test.{ts,tsx}'");
+    expect(vitestConfig).toContain('"__tests__/**/*.test.{ts,tsx}"');
 
     const unitTests = listFiles(path.join(BM2_ROOT, "__tests__"), /\.test\.(ts|tsx)$/);
 
@@ -47,8 +47,8 @@ describe("test runner discovery configuration", () => {
     }
     const playwrightConfig = fs.readFileSync(playwrightConfigPath, "utf8");
 
-    expect(playwrightConfig).toContain("testDir: './tests/e2e'");
-    expect(playwrightConfig).toContain("testMatch: '**/*.spec.ts'");
+    expect(playwrightConfig).toContain('testDir: "./tests/e2e"');
+    expect(playwrightConfig).toContain('testMatch: "**/*.spec.ts"');
 
     const e2eSpecs = listFiles(path.join(BM2_ROOT, "tests/e2e"), /\.spec\.ts$/);
     if (e2eSpecs.length === 0) {

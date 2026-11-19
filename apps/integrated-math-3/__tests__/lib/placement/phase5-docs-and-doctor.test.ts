@@ -256,7 +256,7 @@ describe("Task 5.1 — spec ↔ implementation cross-check", () => {
     expect(PLACEMENT_TS_EXISTS).toBe(true);
     const src = readUtf8(PLACEMENT_TS);
     expect(src).toMatch(/placementResultSchema/);
-    expect(src).toMatch(/nodeId:\s*z\.string\(\)/);
+    expect(src).toMatch(/nodeId:\s*z\s*\.string\(\)/);
     expect(src).toMatch(/masteryEstimate:\s*z\.number\(\)/);
     expect(src).toMatch(/confidence:\s*z\.enum/);
   });
