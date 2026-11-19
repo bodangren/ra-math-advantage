@@ -188,6 +188,42 @@ differs from the `baseline-m2` set is a new failure. Plan box 116 and strategy 6
 record this rule. `GATES_BASE` unset selects the 26-name `baseline` folder, so the gate fails
 on `apps/danielson` at once.
 
+### S3 Green run (2026-11-19)
+
+Tree: `ec3a05ae`. Labels: `lint s3`, `test s3`, and `checks-all s3`, all with
+`GATES_BASE=baseline-m2`.
+
+| Gate | Exit | Result line |
+|---|---|---|
+| `lint s3` | 0 | `NEWFAIL=0`. The 27 results of the r3 run at `7ae37932` were reused with `GATES_RESUME=1`; all exit 0 |
+| `test s3` | 0 | `NEWFAIL=0` |
+| `checks-all s3` | 0 | `NEWFAIL=0`; `audit: critical=0 high=9 moderate=7 low=5` (baseline `high=11`) |
+
+Steps of `test s3`: `scripts-suite` exit 1 and `audit-suites` exit 1. Both codes equal
+`baseline-m2`, and neither log holds a new diagnostic key. `scripts-suite` holds exactly one
+failure: `remediate-concept-blueprints > production scan reports the honest count for the
+current repo state` (S1 Q3). `audit-suites` holds 5 failures in 2 files, all pre-existing
+(section 10).
+
+Steps of `checks-all s3`: `boundary` 0, `ci-check` 0, `tree` 0, `next-absent` 0, and
+`measure-contract` 1 (pre-existing). The typecheck sweep exits 1 in `apps/integrated-math-3`
+and `apps/pre-calculus`; `baseline-m2` exits 2 there with the same diagnostic keys. The build
+sweep exits 0 in all 27 workspaces.
+
+**First gate fix.** The first `test s3` run reported one new step key: three W4 audit
+assertions pinned the TypeScript 6.x line. `test(audit): move the W4 typescript target forward
+to 7` (`ec3a05ae`) moves them to 7.0.2 with the same strength: one major line, and every
+declared range admits the installed release. The next run reported `NEWFAIL=0`.
+
+**Filter results.** `-t 'S3 tsrs'`: 8 passed, exit 0. S1 cases 5, 5b, and 6: passed.
+`S2 oxlint`: 7 passed. `S2 adversarial`: 13 passed. `node scripts/validate-ci.mjs`: exit 0.
+
+**IM3 TS2322 probe.** The probe `apps/integrated-math-3/convex/__oxc_probe__.ts` held
+`export const n: number = "x";`. `npm run typecheck --workspace=apps/integrated-math-3` exits
+1 with the pre-existing diagnostics and prints
+`convex/__oxc_probe__.ts(1,14): error TS2322: Type 'string' is not assignable to type 'number'.`
+The probe was deleted. `git status --porcelain` holds no probe path. The probe was not committed.
+
 ## 3. Package changes
 
 Filled by the S1 Implement tasks. The lockfile is the root `package-lock.json` only.
@@ -318,33 +354,44 @@ cacheless form of the 1-vs-2 artifact of plan line 226.
 
 | Task | Tool before | Seconds before | Tool after | Seconds after | Ratio |
 |---|---|---|---|---|---|
-| `tsc --noEmit` in `apps/bus-math-v2` (median of 3) | tsc 6.0.3 | 17.9 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `apps/danielson` (median of 3) | tsc 6.0.3 | 5.8 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `apps/integrated-math-1` (median of 3) | tsc 6.0.3 | 9.1 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `apps/integrated-math-2` (median of 3) | tsc 6.0.3 | 7.8 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `apps/integrated-math-3` (median of 3) | tsc 6.0.3 | 22.4 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `apps/pre-calculus` (median of 3) | tsc 6.0.3 | 13.9 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/activity-components` (median of 3) | tsc 6.0.3 | 4.8 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/activity-runtime` (median of 3) | tsc 6.0.3 | 0.6 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/ai-tutoring` (median of 3) | tsc 6.0.3 | 0.9 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/app-shell` (median of 3) | tsc 6.0.3 | 1.5 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/component-approval` (median of 3) | tsc 6.0.3 | 0.6 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/core-auth` (median of 3) | tsc 6.0.3 | 0.9 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/core-convex` (median of 3) | tsc 6.0.3 | 1.0 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/efficacy-core` (median of 3) | tsc 6.0.3 | 1.4 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/graphing-core` (median of 3) | tsc 6.0.3 | 0.7 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/knowledge-space-core` (median of 3) | tsc 6.0.3 | 2.1 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/knowledge-space-practice` (median of 3) | tsc 6.0.3 | 2.3 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/lesson-renderer` (median of 3) | tsc 6.0.3 | 1.4 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/math-content` (median of 3) | tsc 6.0.3 | 3.7 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/practice-core` (median of 3) | tsc 6.0.3 | 1.3 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/practice-test-engine` (median of 3) | tsc 6.0.3 | 0.6 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/rate-limiter` (median of 3) | tsc 6.0.3 | 0.6 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/srs-engine` (median of 3) | tsc 6.0.3 | 1.8 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/study-hub-core` (median of 3) | tsc 6.0.3 | 0.9 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/teacher-reporting-core` (median of 3) | tsc 6.0.3 | 0.7 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/_template` (median of 3) | tsc 6.0.3 | 0.4 | tsrs typecheck (S3 Verify) | pending | pending |
-| `tsc --noEmit` in `packages/workbook-pipeline` (median of 3) | tsc 6.0.3 | 0.6 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `apps/bus-math-v2` (median of 3) | tsc 6.0.3 | 17.9 | tsc 7.0.2 | 2.38 | 0.13 |
+| `tsc --noEmit` in `apps/danielson` (median of 3) | tsc 6.0.3 | 5.8 | tsrs 0.25.0-ts7.1.0-beta | 4.30 | 0.74 |
+| `tsc --noEmit` in `apps/integrated-math-1` (median of 3) | tsc 6.0.3 | 9.1 | tsc 7.0.2 | 2.04 | 0.22 |
+| `tsc --noEmit` in `apps/integrated-math-2` (median of 3) | tsc 6.0.3 | 7.8 | tsrs 0.25.0-ts7.1.0-beta | 1.83 | 0.23 |
+| `tsc --noEmit` in `apps/integrated-math-3` (median of 3) | tsc 6.0.3 | 22.4 | tsc 7.0.2 | 3.73 | 0.17 |
+| `tsc --noEmit` in `apps/pre-calculus` (median of 3) | tsc 6.0.3 | 13.9 | tsc 7.0.2 | 2.85 | 0.21 |
+| `tsc --noEmit` in `packages/activity-components` (median of 3) | tsc 6.0.3 | 4.8 | tsrs 0.25.0-ts7.1.0-beta | 1.14 | 0.24 |
+| `tsc --noEmit` in `packages/activity-runtime` (median of 3) | tsc 6.0.3 | 0.6 | tsrs 0.25.0-ts7.1.0-beta | 0.64 | 1.07 |
+| `tsc --noEmit` in `packages/ai-tutoring` (median of 3) | tsc 6.0.3 | 0.9 | tsrs 0.25.0-ts7.1.0-beta | 0.66 | 0.73 |
+| `tsc --noEmit` in `packages/app-shell` (median of 3) | tsc 6.0.3 | 1.5 | tsrs 0.25.0-ts7.1.0-beta | 0.70 | 0.47 |
+| `tsc --noEmit` in `packages/component-approval` (median of 3) | tsc 6.0.3 | 0.6 | tsrs 0.25.0-ts7.1.0-beta | 0.65 | 1.08 |
+| `tsc --noEmit` in `packages/core-auth` (median of 3) | tsc 6.0.3 | 0.9 | tsrs 0.25.0-ts7.1.0-beta | 0.81 | 0.90 |
+| `tsc --noEmit` in `packages/core-convex` (median of 3) | tsc 6.0.3 | 1.0 | tsrs 0.25.0-ts7.1.0-beta | 0.61 | 0.61 |
+| `tsc --noEmit` in `packages/efficacy-core` (median of 3) | tsc 6.0.3 | 1.4 | tsrs 0.25.0-ts7.1.0-beta | 0.64 | 0.46 |
+| `tsc --noEmit` in `packages/graphing-core` (median of 3) | tsc 6.0.3 | 0.7 | tsrs 0.25.0-ts7.1.0-beta | 0.64 | 0.91 |
+| `tsc --noEmit` in `packages/knowledge-space-core` (median of 3) | tsc 6.0.3 | 2.1 | tsrs 0.25.0-ts7.1.0-beta | 0.74 | 0.35 |
+| `tsc --noEmit` in `packages/knowledge-space-practice` (median of 3) | tsc 6.0.3 | 2.3 | tsrs 0.25.0-ts7.1.0-beta | 0.70 | 0.30 |
+| `tsc --noEmit` in `packages/lesson-renderer` (median of 3) | tsc 6.0.3 | 1.4 | tsrs 0.25.0-ts7.1.0-beta | 0.68 | 0.49 |
+| `tsc --noEmit` in `packages/math-content` (median of 3) | tsc 6.0.3 | 3.7 | tsrs 0.25.0-ts7.1.0-beta | 1.12 | 0.30 |
+| `tsc --noEmit` in `packages/practice-core` (median of 3) | tsc 6.0.3 | 1.3 | tsrs 0.25.0-ts7.1.0-beta | 0.77 | 0.59 |
+| `tsc --noEmit` in `packages/practice-test-engine` (median of 3) | tsc 6.0.3 | 0.6 | tsrs 0.25.0-ts7.1.0-beta | 0.60 | 1.00 |
+| `tsc --noEmit` in `packages/rate-limiter` (median of 3) | tsc 6.0.3 | 0.6 | tsrs 0.25.0-ts7.1.0-beta | 0.62 | 1.03 |
+| `tsc --noEmit` in `packages/srs-engine` (median of 3) | tsc 6.0.3 | 1.8 | tsrs 0.25.0-ts7.1.0-beta | 0.71 | 0.39 |
+| `tsc --noEmit` in `packages/study-hub-core` (median of 3) | tsc 6.0.3 | 0.9 | tsrs 0.25.0-ts7.1.0-beta | 0.65 | 0.72 |
+| `tsc --noEmit` in `packages/teacher-reporting-core` (median of 3) | tsc 6.0.3 | 0.7 | tsrs 0.25.0-ts7.1.0-beta | 0.63 | 0.90 |
+| `tsc --noEmit` in `packages/_template` (median of 3) | tsc 6.0.3 | 0.4 | tsrs 0.25.0-ts7.1.0-beta | 0.59 | 1.47 |
+| `tsc --noEmit` in `packages/workbook-pipeline` (median of 3) | tsc 6.0.3 | 0.6 | tsrs 0.25.0-ts7.1.0-beta | 0.68 | 1.13 |
+
+The "after" cells were measured at `ec3a05ae` with the same method. The tool is the typecheck
+script of the workspace. 23 workspaces run `TSRS_FAST=1 oxlint --type-aware --type-check`
+(tsrs 0.25.0-ts7.1.0-beta, compiler line 7.1.0-beta). The four `TSC_FALLBACK_LIST` apps
+(BM2, IM1, IM3, PreCalc) run `tsc --noEmit` on TypeScript 7.0.2 (strategy 16.4; section 7).
+The `tsconfig.tsbuildinfo` of a fallback app was deleted before each run (timing method item 4).
+Each run set ran in one `heavy-run.sh` job with no concurrent heavy job. Raw values:
+`s3-tsrs-raw.txt` (23 workspaces) and `s3-tsc-after-raw.txt` (4 apps) in the run folder
+(force-added). The four tsc rows agree with the 7.0.2 table within 0.3 s: BM2 2.38 against
+2.6, IM3 3.73 against 4.0. The command is the same, so the small difference is machine load.
+A row of 0.6 s sits at the npm overhead floor (about 0.5 s), so its ratio is about 1.0.
 
 ### S3 TypeScript 7.0.2 timing (2026-11-19)
 

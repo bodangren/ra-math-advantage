@@ -1,0 +1,21 @@
+== apps/bus-math-v2 :: tsc --noEmit (tsbuildinfo deleted before each run)
+warm 0.584
+run1 2.433 exit=0
+run2 2.293 exit=0
+run3 2.382 exit=0
+== apps/integrated-math-1 :: tsc --noEmit (tsbuildinfo deleted before each run)
+warm 0.419
+run1 1.976 exit=0
+run2 2.044 exit=0
+run3 2.092 exit=0
+== apps/integrated-math-3 :: tsc --noEmit (tsbuildinfo deleted before each run)
+warm 0.829
+run1 3.922 exit=0
+run2 3.735 exit=0
+run3 3.687 exit=0
+== apps/pre-calculus :: tsc --noEmit (tsbuildinfo deleted before each run)
+warm 0.530
+run1 2.852 exit=0
+run2 2.755 exit=0
+run3 2.870 exit=0
+DONE

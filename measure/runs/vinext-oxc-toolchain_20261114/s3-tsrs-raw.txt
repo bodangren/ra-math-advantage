@@ -1,0 +1,136 @@
+== apps/bus-math-v2 :: tsc --noEmit
+warm 1.033
+run1 0.580 exit=0
+run2 0.652 exit=0
+run3 0.619 exit=0
+== apps/danielson :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 .
+warm 3.086
+run1 4.470 exit=0
+run2 4.020 exit=0
+run3 4.301 exit=0
+== apps/integrated-math-1 :: tsc --noEmit
+warm 0.707
+run1 0.655 exit=0
+run2 0.690 exit=0
+run3 0.572 exit=0
+== apps/integrated-math-2 :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 .
+warm 2.114
+run1 1.749 exit=0
+run2 1.830 exit=0
+run3 1.927 exit=0
+== apps/integrated-math-3 :: tsc --noEmit
+warm 1.489
+run1 1.218 exit=0
+run2 1.125 exit=0
+run3 1.116 exit=0
+== apps/pre-calculus :: tsc --noEmit
+warm 0.642
+run1 0.582 exit=0
+run2 0.568 exit=0
+run3 0.565 exit=0
+== packages/activity-components :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 1.095
+run1 1.144 exit=0
+run2 1.157 exit=0
+run3 1.083 exit=0
+== packages/activity-runtime :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.678
+run1 0.621 exit=0
+run2 0.667 exit=0
+run3 0.635 exit=0
+== packages/ai-tutoring :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.632
+run1 0.621 exit=0
+run2 0.660 exit=0
+run3 0.656 exit=0
+== packages/app-shell :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.677
+run1 0.671 exit=0
+run2 0.715 exit=0
+run3 0.702 exit=0
+== packages/component-approval :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.627
+run1 0.649 exit=0
+run2 0.653 exit=0
+run3 0.618 exit=0
+== packages/core-auth :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.640
+run1 0.863 exit=0
+run2 0.810 exit=0
+run3 0.815 exit=0
+== packages/core-convex :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.635
+run1 0.614 exit=0
+run2 0.614 exit=0
+run3 0.621 exit=0
+== packages/efficacy-core :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.636
+run1 0.626 exit=0
+run2 0.643 exit=0
+run3 0.641 exit=0
+== packages/graphing-core :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.634
+run1 0.639 exit=0
+run2 0.639 exit=0
+run3 0.629 exit=0
+== packages/knowledge-space-core :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.758
+run1 0.721 exit=0
+run2 0.740 exit=0
+run3 0.736 exit=0
+== packages/knowledge-space-practice :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.693
+run1 0.702 exit=0
+run2 0.693 exit=0
+run3 0.727 exit=0
+== packages/lesson-renderer :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.687
+run1 0.668 exit=0
+run2 0.683 exit=0
+run3 0.681 exit=0
+== packages/math-content :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.796
+run1 1.161 exit=0
+run2 0.997 exit=0
+run3 1.119 exit=0
+== packages/practice-core :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.951
+run1 0.874 exit=0
+run2 0.737 exit=0
+run3 0.770 exit=0
+== packages/practice-test-engine :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.712
+run1 0.624 exit=0
+run2 0.596 exit=0
+run3 0.593 exit=0
+== packages/rate-limiter :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.597
+run1 0.617 exit=0
+run2 0.626 exit=0
+run3 0.587 exit=0
+== packages/srs-engine :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.718
+run1 0.714 exit=0
+run2 0.705 exit=0
+run3 0.745 exit=0
+== packages/study-hub-core :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.689
+run1 0.634 exit=0
+run2 0.655 exit=0
+run3 0.649 exit=0
+== packages/teacher-reporting-core :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.634
+run1 0.690 exit=0
+run2 0.629 exit=0
+run3 0.629 exit=0
+== packages/_template :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.585
+run1 0.588 exit=0
+run2 0.590 exit=0
+run3 0.591 exit=0
+== packages/workbook-pipeline :: TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+warm 0.613
+run1 0.675 exit=0
+run2 0.713 exit=0
+run3 0.667 exit=0
+DONE
