@@ -27,7 +27,13 @@ function readCiWorkflow(): string {
 }
 
 function extractJobSection(workflowText: string, jobId: string): string {
-  const pattern = new RegExp(`^  ${jobId}:[\\s\\S]*?(?=\\n  [a-zA-Z][a-zA-Z0-9_-]*:)`, "m");
+  // The S5 deploy removal leaves `app-foundations` as the last job in ci.yml, so the
+  // lookahead also accepts the end of the file. The job section and its assertions
+  // stay the same.
+  const pattern = new RegExp(
+    `^  ${jobId}:[\\s\\S]*?(?=\\n  [a-zA-Z][a-zA-Z0-9_-]*:|(?![\\s\\S]))`,
+    "m",
+  );
   const match = workflowText.match(pattern);
   if (!match) {
     throw new Error(`Job '${jobId}' not found in CI workflow at ${CI_WORKFLOW_PATH}`);
