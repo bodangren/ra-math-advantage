@@ -455,15 +455,15 @@ _Story ref: spec.md#story-s4_
     - [x] The root scripts are `"format": "oxfmt"` and `"format:check": "oxfmt --check"`. (Target recorded; Green applies.)
     - [x] `oxfmt` `0.78.0` (exact) goes in the root `devDependencies`. (Target recorded; Green applies.)
     - [x] Keep `oxfmt` `0.78.0` exact. Record `npm view oxfmt version` as `0.79.0` in evidence section 3 and section 11. If the PM chooses 0.79.0, change the pin in the same commit as the config. Re-run this revision's version check. (Done: `npm view oxfmt version` gives `0.79.0`; `npm view oxfmt@0.78.0 version` gives `0.78.0`. Recorded in evidence section 3 "S4 Contract" and section 11.)
-- [~] Task: S4 Test (Red) — add the S4 gate tests
-    - [ ] Add `describe('S4 oxfmt')` to the test file.
-    - [ ] Normal case 1: `npx --no-install oxfmt --check` at the repository root exits with code 0.
-    - [ ] Normal case 2: the root `package.json` has the `format` and `format:check` scripts in the target form.
-    - [ ] Normal case 3: `.git-blame-ignore-revs` has a 40-character SHA. `git log -1 --format=%s <sha>` gives `style: format the repo with oxfmt`.
-    - [ ] Edge case 4: a `.ts` probe file `const  a={b:1}` makes `oxfmt --check <probe>` exit with a non-zero code. The output names the probe file. The output has no absent-tool phrase and no absent-target phrase. A `.py` probe with exit 2 is not a valid negative probe.
-    - [ ] Edge case 5: a `.ts` probe file `const a = { b: 1 };` with a final newline makes `oxfmt --check <probe>` exit with code 0. The output names the probe file. The output has no absent-tool phrase and no absent-target phrase.
-    - [ ] Run the scripts suite. Confirm that cases 1 to 5 fail.
-    - [ ] Test-infrastructure guard: `gates.sh` classifies the Rust and Node disk-full forms as
+- [~] Task: S4 Test (Red) — add the S4 gate tests (Red commit: 1acf85c4; Green marks `[x]` when the S4 cases pass)
+    - [x] Add `describe('S4 oxfmt')` to the test file. (1acf85c4: appended after the S2 adversarial block, with `ABSENT_TARGET_PHRASES`, `runOxfmt`, `makeOxfmtProbe`, and the two probe constants. Probes use `seedDir` with the `.oxlint-probe-` prefix, so the sweep covers them.)
+    - [x] Normal case 1: `npx --no-install oxfmt --check` at the repository root exits with code 0. (Red: `AssertionError: npm error npx canceled due to missing packages and no YES option: ["oxfmt@0.79.0"]`. Positive case, so absence is the named reason.)
+    - [x] Normal case 2: the root `package.json` has the `format` and `format:check` scripts in the target form. (Red: `AssertionError: root scripts that are not in the target form: expected [ 'format: undefined', …(1) ] to deeply equal []`. Exact values, not a bare-word grep.)
+    - [x] Normal case 3: `.git-blame-ignore-revs` has a 40-character SHA. `git log -1 --format=%s <sha>` gives `style: format the repo with oxfmt`. (Red: `AssertionError: .git-blame-ignore-revs is missing: expected false to be true // Object.is equality`. The file lands after the format-only commit.)
+    - [x] Edge case 4: a `.ts` probe file `const  a={b:1}` makes `oxfmt --check <probe>` exit with a non-zero code. The output names the probe file. The output has no absent-tool phrase and no absent-target phrase. A `.py` probe with exit 2 is not a valid negative probe. (Red: `AssertionError: precondition: oxfmt --version: expected 1 to be +0 // Object.is equality`.)
+    - [x] Edge case 5: a `.ts` probe file `const a = { b: 1 };` with a final newline makes `oxfmt --check <probe>` exit with code 0. The output names the probe file. The output has no absent-tool phrase and no absent-target phrase. (Red: `AssertionError: precondition: oxfmt --version: expected 1 to be +0 // Object.is equality`. Positive case, so absence is the named reason.)
+    - [x] Run the scripts suite. Confirm that cases 1 to 5 fail. (`-t 'S4 oxfmt'`: 5 failed, 87 skipped, exit 1. Companions still green: `-t 'S3 tsrs'` 8 passed; `-t 'S3 adversarial'` 14 passed; `-t 'S2 adversarial'` 13 passed.)
+    - [x] Test-infrastructure guard: `gates.sh` classifies the Rust and Node disk-full forms as
       infrastructure. Add two guard cases and one refutation case to
       `scripts/__tests__/vinext-oxc-gates-script.test.ts`. Feed a fake job log with
       `No space left on device (os error 28)` and one with `spawn ENOSPC`. Each expects
@@ -472,8 +472,8 @@ _Story ref: spec.md#story-s4_
       full-line anchored alternatives to `DISK_FULL_RE`, shared by `has_infra_output()` and
       `key()`. Keep the three existing guard cases green. Run `bash -n`. Falsification: remove
       the alternatives and the two infra cases fail; remove the anchors and the refutation case
-      fails.
-    - [ ] Commit: `test(vinext-oxc): add the S4 gate tests (Red)`.
+      fails. (Done: guard cases in 4c4bd10e, `DISK_FULL_RE` alternatives in 97ef1021. Pre-change the two infra cases failed with `NEW FAILURE: lint apps/x exit 1` and the refutation case passed. Post-change the full gates-script file passes 26 of 26, including the three existing guard cases. `bash -n` passes.)
+    - [x] Commit: `test(vinext-oxc): add the S4 gate tests (Red)`. (1acf85c4; classifier tests 4c4bd10e and classifier fix 97ef1021.)
 - [ ] Task: S4 Implement — add the oxfmt config
     - [ ] Add `oxfmt` `0.78.0` to the root `devDependencies`.
     - [ ] Create `.oxfmtrc.json` in the target form.
