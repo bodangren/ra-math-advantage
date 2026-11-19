@@ -449,19 +449,30 @@ _Story ref: spec.md#story-s4_
 - [ ] Task: S4 Contract — record the format change
     - [ ] In `measure/tech-stack.md`, add a dated note. The note names oxfmt 0.78.0, the default oxfmt style, the format-check gate, and `.git-blame-ignore-revs`.
     - [ ] Use this target `.oxfmtrc.json` at the repository root. It has `"$schema": "./node_modules/oxfmt/configuration_schema.json"` and no style options.
-    - [ ] Its `ignorePatterns` list is: `**/*.md`, `**/*.mdx`, `measure/**`, `**/curriculum/**`, `kst-srs.v2/**`, `**/convex/_generated/**`, `**/package-lock.json`, `**/dist/**`, `**/build/**`, `**/.vinext/**`, `**/.next/**`, `**/coverage/**`, `**/playwright-report/**`, `**/test-results/**`, `.agents/**`, `.claude/**`.
+    - [ ] Its `ignorePatterns` list is: `**/*.md`, `**/*.mdx`, `measure/**`, `**/curriculum/**`, `kst-srs.v2/**`, `**/convex/_generated/**`, `**/package-lock.json`, `**/dist/**`, `**/build/**`, `**/.vinext/**`, `**/.next/**`, `**/coverage/**`, `**/playwright-report/**`, `**/test-results/**`, `.agents/**`, `.claude/**`, `**/workbooks-manifest.json`.
     - [ ] Search `scripts/`, `apps/*/scripts/`, and `packages/*/scripts/` for `writeFileSync` and `writeFile(`.
     - [ ] Add each tracked output path of these scripts to `ignorePatterns` when the list does not cover it yet. Script output must not fail the format check after a rerun.
     - [ ] The root scripts are `"format": "oxfmt"` and `"format:check": "oxfmt --check"`.
     - [ ] `oxfmt` `0.78.0` (exact) goes in the root `devDependencies`.
+    - [ ] Keep `oxfmt` `0.78.0` exact. Record `npm view oxfmt version` as `0.79.0` in evidence section 3 and section 11. If the PM chooses 0.79.0, change the pin in the same commit as the config. Re-run this revision's version check.
 - [ ] Task: S4 Test (Red) — add the S4 gate tests
     - [ ] Add `describe('S4 oxfmt')` to the test file.
     - [ ] Normal case 1: `npx --no-install oxfmt --check` at the repository root exits with code 0.
     - [ ] Normal case 2: the root `package.json` has the `format` and `format:check` scripts in the target form.
     - [ ] Normal case 3: `.git-blame-ignore-revs` has a 40-character SHA. `git log -1 --format=%s <sha>` gives `style: format the repo with oxfmt`.
-    - [ ] Edge case 4: a probe file `const  a={b:1}` makes `oxfmt --check <probe>` exit with a non-zero code. The output names the probe file.
-    - [ ] Edge case 5: a probe file `const a = { b: 1 };` with a final newline makes `oxfmt --check <probe>` exit with code 0.
+    - [ ] Edge case 4: a `.ts` probe file `const  a={b:1}` makes `oxfmt --check <probe>` exit with a non-zero code. The output names the probe file. The output has no absent-tool phrase and no absent-target phrase. A `.py` probe with exit 2 is not a valid negative probe.
+    - [ ] Edge case 5: a `.ts` probe file `const a = { b: 1 };` with a final newline makes `oxfmt --check <probe>` exit with code 0. The output names the probe file. The output has no absent-tool phrase and no absent-target phrase.
     - [ ] Run the scripts suite. Confirm that cases 1 to 5 fail.
+    - [ ] Test-infrastructure guard: `gates.sh` classifies the Rust and Node disk-full forms as
+      infrastructure. Add two guard cases and one refutation case to
+      `scripts/__tests__/vinext-oxc-gates-script.test.ts`. Feed a fake job log with
+      `No space left on device (os error 28)` and one with `spawn ENOSPC`. Each expects
+      `INFRA FAILURE:`, exit 3, `INFRA=1`, and no `NEW FAILURE:`. Feed a failing test title that
+      names `spawn ENOSPC` in prose. It expects `NEWFAIL=1` and no `INFRA=1`. Then add two
+      full-line anchored alternatives to `DISK_FULL_RE`, shared by `has_infra_output()` and
+      `key()`. Keep the three existing guard cases green. Run `bash -n`. Falsification: remove
+      the alternatives and the two infra cases fail; remove the anchors and the refutation case
+      fails.
     - [ ] Commit: `test(vinext-oxc): add the S4 gate tests (Red)`.
 - [ ] Task: S4 Implement — add the oxfmt config
     - [ ] Add `oxfmt` `0.78.0` to the root `devDependencies`.
@@ -471,7 +482,7 @@ _Story ref: spec.md#story-s4_
     - [ ] Commit: `chore(format): add the oxfmt config`.
 - [ ] Task: S4 Implement — format the repository in one format-only commit
     - [ ] Run `npm run format`.
-    - [ ] Confirm that `git diff --name-only` lists no path that matches `ignorePatterns`.
+    - [ ] Confirm that `git diff --name-only` lists no path that matches `ignorePatterns`. Exclude the six dirty generated paths from this assertion. Require `git show --name-only <format sha>` to name none of them.
     - [ ] Run lint, typecheck, test, and build. Confirm the same results as before the format.
     - [ ] If a result changes, do not commit. Stop and report the file and the gate to the user.
     - [ ] Stage only the formatter output. Do not stage `measure/generated/routes.md`.
@@ -484,8 +495,11 @@ _Story ref: spec.md#story-s4_
     - [ ] Commit: `chore(format): ignore the oxfmt commit in git blame`.
 - [ ] Task: S4 Verify — run the gates after the format change
     - [ ] Run each gate, with the format check. Confirm that no gate has a new failure.
+    - [ ] Run the before-and-after gate sweep of section 17.3. Run `lint s4`, `test s4`, and `checks-all s4` before the format commit and after it. Use `GATES_BASE=baseline-m2`. Each run must print `NEWFAIL=0`.
+    - [ ] Compare the canonical fixture JSON before and after the format. The two strings must be equal. `entries.length` must be 49.
     - [ ] Confirm that the scripts suite passes.
     - [ ] Commit the evidence file: `measure(vinext-oxc): record the S4 results`.
+    - [ ] Record the `format:check` time in evidence section 5. Record the pre-format count of 3501 files and the scanned count of 3719 files. Record the exact command and config in evidence section 5.
 - [ ] Task: S4 Docs & Doctor
     - [ ] Run `npm run generate`. Confirm exit code 0.
     - [ ] Run `npm run doctor`. Confirm exit code 0.
@@ -494,6 +508,8 @@ _Story ref: spec.md#story-s4_
     - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S4`.
     - [ ] Append `[checkpoint: <sha>]` to the Phase S4 heading.
     - [ ] Commit: `measure(plan): Mark phase 'Phase S4: oxfmt' as complete`.
+
+Phase note (2026-11-19): the r8 strategy commit lands before the S4 phase base capture (strategy section 17). The run log and the role handoff hold `phase_base_sha`. No plan line carries a phase SHA.
 
 ## Phase S5: Gate rules and CI
 _Story ref: spec.md#story-s5_
