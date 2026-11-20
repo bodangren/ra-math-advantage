@@ -1191,7 +1191,8 @@ Phase S5 writes this section from the measured values of sections 1 to 10.
 between installs.
 
 The S5 gate test detects a quoted tool name, such as `npx --no-install "tsc" --noEmit` and
-`npm exec -- "eslint" .` (adversarial ADV-S5-1).
+`npm exec -- "eslint" .` (adversarial ADV-S5-1). It also detects an escaped name in a JSON
+or YAML string, such as `npx --no-install \"tsc\" --noEmit` (adversarial ADV-S5-4).
 
 ### Speed (section 5)
 

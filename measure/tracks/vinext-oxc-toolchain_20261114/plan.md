@@ -742,12 +742,13 @@ _Story ref: spec.md#story-s5_
     - The scripts suite has 114 passed, 5 failed, and 2 todos. Four failures prove ADV-S5-4. The fifth is the recorded production-scan failure.
     - Root format, lint, and package build checks exit 0. Root typecheck exits 1 with the same 59 diagnostics and 20 unique keys.
     - The direct format and lint checks pass for the test file. No production behavior changed.
-- [ ] Task: S5 remediation — fix escaped executable quotes in the scanner (ADV-S5-4; Green).
+- [x] Task: S5 remediation — fix escaped executable quotes in the scanner (ADV-S5-4; Green) (cb14a046).
     - Preserve the four failing cases and all earlier cases.
     - Keep ADV-S5-2 and ADV-S5-3 record-only.
     - Rerun the adversarial gate and the independent reviews after the implementation commit.
 S5 remediation sub-box (Jr Green rounds)
 - Round 1 (2026-11-20, `c64dfddd`): the S5 command scanner detects a quoted executable name (adversarial ADV-S5-1). `S5_TSC_CALL_RE`, `S5_TSC_FLAG_RE`, and `S5_ESLINT_CALL_RE` accept one optional quote around `tsc` and `eslint`. The scanner now hits `npx --no-install "tsc" --noEmit` and `npm exec -- "eslint" .`. The change only adds matches. Adv 3 passes. No earlier case body and no fixture entry changed. The stricter scan finds no live call in a repository file, so no path exclusion was added. ADV-S5-2 and ADV-S5-3 stay record-only todos. Gates: `S5 gate rules` 10 pass; `S5 adversarial` 10 pass and 2 todo; `S4 oxfmt` 5, `S3 tsrs` 8, `S3 adversarial` 14, and `S2 adversarial` 13 pass; the full scripts suite fails only the pre-existing `remediate-concept-blueprints` row; `format:check` and `lint` exit 0.
+- Round 2 (2026-11-20, `cb14a046`): the scanner accepts one backslash before the optional quote. JSON and YAML encode the quote that way, so the old patterns hid the call. Each pattern only adds matches. The four escaped-source cases now pass. The full scripts suite fails only the known production-scan row. `format:check` and `lint` exit 0.
 - [b] Task: Measure - User Manual Verification 'Phase S5: Gate rules and CI' (Protocol in workflow.md) (deferred:closeout-steward)
     - [x] Run the automated tests of the protocol. (`-t 'S5 gate rules'` 10 passed, exit 0. `-t 'S4 oxfmt'` 5 passed. `-t 'S3 tsrs'` 8 passed. `-t 'S3 adversarial'` 14 passed. `-t 'S2 adversarial'` 13 passed. `lint s5`, `test s5`, and `checks-all s5` each print `NEWFAIL=0`.)
     - [ ] Run the manual verification plan and the user confirmation. (S5 changes no runtime. The confirming user is the PM (orchestrator default).)
