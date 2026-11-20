@@ -233,9 +233,9 @@ describe("SDK transport", () => {
   beforeEach(() => {
     mockSend.mockReset();
     MockOpenRouter.mockReset();
-    MockOpenRouter.mockReturnValue({
-      chat: { send: mockSend },
-    } as unknown as InstanceType<typeof OpenRouter>);
+    MockOpenRouter.mockImplementation(function () {
+      return { chat: { send: mockSend } } as unknown as InstanceType<typeof OpenRouter>;
+    });
   });
 
   it("sends model and one user message through the SDK and returns trimmed content", async () => {
