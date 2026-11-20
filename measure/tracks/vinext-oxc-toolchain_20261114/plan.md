@@ -633,7 +633,7 @@ Phase note (2026-11-19, S4 checkpoint): S5 carry items are record-only; they hid
 - F6 (`test-strategy.md:1617`): align the S4 risk row with the yml fact row; the diff holds 5 formatted workflow YAML files.
 - F7: keep the before-sweep logs under their own gates label; the s4 label overwrote them.
 
-## Phase S5: Gate rules and CI
+## Phase S5: Gate rules and CI [checkpoint: 60253266]
 _Story ref: spec.md#story-s5_
 
 - [x] Task: S5 Contract — fix the new gate text (732a9d90; CI commits f9e8a879 and 4f73155b; record commits f54a49ca and bfef104b)
@@ -752,8 +752,8 @@ S5 remediation sub-box (Jr Green rounds)
 - [b] Task: Measure - User Manual Verification 'Phase S5: Gate rules and CI' (Protocol in workflow.md) (deferred:closeout-steward)
     - [x] Run the automated tests of the protocol. (`-t 'S5 gate rules'` 10 passed, exit 0. `-t 'S4 oxfmt'` 5 passed. `-t 'S3 tsrs'` 8 passed. `-t 'S3 adversarial'` 14 passed. `-t 'S2 adversarial'` 13 passed. `lint s5`, `test s5`, and `checks-all s5` each print `NEWFAIL=0`.)
     - [ ] Run the manual verification plan and the user confirmation. (S5 changes no runtime. The confirming user is the PM (orchestrator default).)
-    - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S5`. (The closeout role makes it after the phase acceptance.)
-    - [ ] Append `[checkpoint: <sha>]` to the Phase S5 heading.
+    - [x] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S5`. (60253266.)
+    - [x] Append `[checkpoint: <sha>]` to the Phase S5 heading. (60253266.)
     - [ ] Commit: `measure(plan): Mark phase 'Phase S5: Gate rules and CI' as complete`.
 
 ## Closeout
