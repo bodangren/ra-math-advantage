@@ -196,7 +196,8 @@ audit_step() {
 # Record the size of each .js file under dist/server, raw and gzip, plus totals.
 # Writes sizes-<app>.txt. A missing dist folder is a normal diagnostic, not infra.
 sizes_step() { # $1 app folder
-  local app=$1 out="$OUT/sizes-$(basename "$app").txt"
+  local app=$1
+  local out="$OUT/sizes-$(basename "$app").txt"
   if [ ! -d "$app/dist/server" ]; then
     echo "missing $app/dist/server" > "$out"
     echo "SIZE FAILURE: $app has no dist/server" ; newfail=1
@@ -208,7 +209,7 @@ sizes_step() { # $1 app folder
     gz=$(gzip -c "$f" | wc -c)
     echo "raw=$raw gzip=$gz $f"
   done >> "$out"
-  awk '{r+=$1; g+=$2} END{print "TOTAL raw="r" gzip="g}' "$out" | sed 's/raw=/raw=/;s/ gzip=/ gzip=/' >> "$out" || true
+  awk '{a=$1; b=$2; sub(/raw=/,"",a); sub(/gzip=/,"",b); r+=a; g+=b} END{print "TOTAL raw="r" gzip="g}' "$out" >> "$out"
 }
 
 main() {
