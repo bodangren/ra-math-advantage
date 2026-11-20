@@ -6,17 +6,50 @@ Strategy: `test-strategy.md` r1 (2026-11-20). Scope: Phase S1.
 
 ## SDK API
 
-Source: the installed files of `@openrouter/sdk` only. No guesswork.
+Source: the installed files of `@openrouter/sdk` 1.5.125 only (range `^1.5.102`
+resolved to 1.5.125 at install; lockfile entry `sdk-1.5.125.tgz`). No guesswork.
+The package has no `docs/` folder; the `.d.ts` files under `esm/` are the
+reference. `FUNCTIONS.md` holds no `chat.send` section, so it is not a source.
 
-(Contract task fills this section after the S1 Install task.)
-
-- Client constructor options (API key, server URL, `httpReferer`, `appTitle`, retry
-  settings, timeout): TBD.
-- Chat send method, request fields (`model`, `messages`, `responseFormat`, `provider`,
-  `temperature`, max tokens), request options for an `AbortSignal`: TBD.
-- Response fields (content, served `model`, token `usage`), error classes with HTTP
-  status fields: TBD.
-- Transport (`globalThis.fetch` or not), Cloudflare Workers support (`RUNTIMES.md`): TBD.
+- Client constructor: `new OpenRouter(options?: SDKOptions)` (`esm/lib/config.d.ts`,
+  `esm/sdk/sdk.d.ts`). `SDKOptions`: `apiKey` (string or async function),
+  `httpReferer`, `appTitle`, `appCategories`, `httpClient`, `server`
+  (`production` = `https://openrouter.ai/api/v1`), `serverURL` override,
+  `userAgent`, `retryConfig`, `timeoutMs`, `debugLogger`.
+- Retry off: `RetryConfig` is `{ strategy: "none" }` or `{ strategy: "backoff",
+  backoff?, retryConnectionErrors? }` (`esm/lib/retries.d.ts`). The SDK retry
+  layer can be turned off, so `withRetry` stays the only retry layer.
+- Chat send method: `openRouter.chat.send(request, options?: RequestOptions)`
+  (`esm/sdk/chat.d.ts`). Non-stream overload takes `{ chatRequest: { stream?:
+  false } }` and returns `Promise<ChatResult>`. Request fields (`ChatRequest`,
+  `esm/models/chatrequest.d.ts`): `model`, `models`, `messages` (required),
+  `responseFormat` (`ChatFormatJsonSchemaConfig` and others), `provider`
+  (`ProviderPreferences`), `temperature`, `topP`, `maxTokens`,
+  `maxCompletionTokens`, `seed`, `stop`, and others.
+- `ProviderPreferences` (`esm/models/providerpreferences.d.ts`): `requireParameters`,
+  `zdr`, `sort`, `order`, `allowFallbacks`, and others. The outbound JSON uses
+  snake_case (`require_parameters`).
+- Request options for an `AbortSignal`: `RequestOptions` is `RequestInit`
+  minus `method`/`body` (`esm/lib/sdks.d.ts`), so `options.signal` carries the
+  signal. `timeoutMs` in `RequestOptions` sets the per-request timeout. The old
+  `fetchOptions` wrapper is deprecated and flattened into `RequestOptions`.
+- Response fields (`ChatResult`, `esm/models/chatresult.d.ts`): `choices`
+  (`ChatChoice.message.content`: string or content blocks), the served `model`,
+  `id`, `created`, and `usage` (`ChatUsage`: `promptTokens`,
+  `completionTokens`, `totalTokens`, plus `cost` details).
+- Error classes (`esm/models/errors/`): the base is `OpenRouterError` with the
+  HTTP status in the field `statusCode` (not `status`), plus `body`, `headers`,
+  `contentType`, and `rawResponse`. One subclass exists for each status
+  (`BadRequestResponseError` 400 through `TooManyRequestsResponseError` 429 and
+  others); `OpenRouterDefaultError` is the fallback. Transport errors
+  (`httpclienterrors.d.ts`): `RequestAbortedError` (name field),
+  `RequestTimeoutError`, `ConnectionError`, `UnexpectedClientError`,
+  `InvalidRequestError`. The package depends on `zod` `^3.25.0 || ^4.0.0`;
+  the error inbound schemas import `zod/v4`.
+- Transport: `DEFAULT_FETCHER` in `esm/lib/http.js` calls the bare global
+  `fetch(input[, init])`. `RUNTIMES.md` names evergreen browsers, Node.js 18/20/22,
+  Bun 1+, and Deno 1.39. It does not name Cloudflare Workers. The workerd probe
+  proves the SDK path inside workerd.
 
 ## Bundle sizes
 

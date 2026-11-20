@@ -18,6 +18,9 @@
     "typecheck": "TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src",
     "build": "npm run typecheck"
   },
+  "dependencies": {
+    "@openrouter/sdk": "^1.5.102"
+  },
   "devDependencies": {
     "@types/node": "^24.19.2",
     "vitest": "^4.1.8"
