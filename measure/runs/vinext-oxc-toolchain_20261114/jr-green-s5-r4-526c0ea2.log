@@ -1,0 +1,53 @@
+Green round 4 for Phase S5 (ADV-S5-4).
+
+Role: measure-jr-green. Track: vinext-oxc-toolchain_20261114.
+phase_base_sha: 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6
+role_base_sha: 807bd098a2e31d23e2fefe8a4b5264d448a7b5b0
+Final Green HEAD: 526c0ea2
+
+Targeted Red command before the fix:
+npx vitest run --config scripts/vitest.config.ts -t 'S5 escaped-source adversarial'
+Result: Test Files 1 failed | 2 skipped (3); Tests 4 failed | 117 skipped (121).
+
+Fix:
+The three S5 command regexes accept one optional backslash before the optional quote.
+S5_TSC_CALL_RE, S5_TSC_FLAG_RE, and S5_ESLINT_CALL_RE change in scripts/__tests__/oxc-toolchain-gates.test.ts.
+The change only adds matches. No Red case body, adversarial case, fixture entry, or path exclusion changed.
+
+A7 bare-word check: PASS. Phrases with tsc, typescript, and eslint as plain words do not match.
+Live escaped-call check: no escaped call exists in workflows, root package.json, scripts/ outside __tests__, measure/scripts/, the architecture snapshot, or workspace manifests.
+
+Test results:
+- S5 escaped-source adversarial: 4 passed.
+- S5 adversarial: 10 passed, 2 todo.
+- S5 gate rules: 10 passed.
+- S4 oxfmt: 5 passed.
+- S3 tsrs: 8 passed.
+- S3 adversarial: 14 passed.
+- S2 adversarial: 13 passed.
+- Full scripts suite through heavy-run.sh: 118 passed, 1 failed, 2 todo. The failure is the known remediate-concept-blueprints production-scan row.
+- npm run format:check: exit 0.
+- npm run lint: exit 0.
+
+Plan: task at plan.md line 745 flipped to [x] with cb14a046. One Round 2 line added to the sub-box. One evidence line added in section 11.
+
+Commits: cb14a046 (implementation), 526c0ea2 (plan and evidence).
+
+Role-gate exit code: 0
+Role-gate output:
+INFO: no heavy-run wrapper found; running gate commands directly
+PASS: jr-green gate passed
+
+MEASURE_AGENT_RESULT
+role: measure-jr-green
+status: pass
+track: vinext-oxc-toolchain_20261114
+phase: Phase S5: Gate rules and CI
+commits: cb14a046 (implementation), 526c0ea2 (plan evidence)
+tests_run: S5 escaped-source adversarial exit 0 (4 passed); S5 adversarial exit 0 (10 passed, 2 todo); S5 gate rules exit 0 (10 passed); S4 oxfmt exit 0 (5 passed); S3 tsrs exit 0 (8 passed); S3 adversarial exit 0 (14 passed); S2 adversarial exit 0 (13 passed); full scripts suite exit 1 (118 passed, 1 failed, 2 todo); the one failure is the known remediate-concept-blueprints production-scan row; format:check exit 0; lint exit 0
+files_changed: scripts/__tests__/oxc-toolchain-gates.test.ts; measure/tracks/vinext-oxc-toolchain_20261114/plan.md; measure/tracks/vinext-oxc-toolchain_20261114/oxc-evidence.md
+plan_updates: flipped the S5 remediation task to [x] with cb14a046; added the Round 2 sub-box line; added one evidence line in oxc-evidence.md section 11; no other task status changed
+known_failures: the pre-existing remediate-concept-blueprints production-scan row; ADV-S5-2 (IM2 typecheck:backend) and ADV-S5-3 (ci.yml curriculum:check) stay record-only todo cases
+handoff: ADV-S5-4 is fixed in cb14a046. The three S5 regexes accept one optional backslash before the optional quote, so the scanner detects JSON and YAML escaped forms. The change only adds matches; no case body, fixture entry, or path exclusion changed. A7 still rejects bare English words. No live escaped call exists in the scanned files. Targeted Red command: `npx vitest run --config scripts/vitest.config.ts -t 'S5 escaped-source adversarial'` had 4 failed before the fix and exits 0 after it. Tasks flipped to [x]: the S5 remediation task, with SHA evidence cb14a046. No task flipped to [b]. No task flipped in this round beyond the remediation task. No new file was added. Immutable phase_base_sha: 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6. Final Green HEAD: 526c0ea2. The four staged adversarial artifacts stay untouched and outside the two commits. The six generated files stay dirty and unstaged.
+dispositions: ADV-S5-4=FIX
+END_MEASURE_AGENT_RESULT
