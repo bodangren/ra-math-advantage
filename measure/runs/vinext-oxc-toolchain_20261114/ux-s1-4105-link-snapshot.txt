@@ -1,0 +1,56 @@
+- link "Skip to main content":
+  - /url: "#main-content"
+- banner:
+  - link "Math for Business Applied Accounting · Excel":
+    - /url: /
+  - navigation "Main navigation":
+    - link "Home":
+      - /url: /
+    - link "Preface":
+      - /url: /preface
+    - link "Curriculum":
+      - /url: /curriculum
+    - link "Capstone":
+      - /url: /capstone
+    - link "Glossary":
+      - /url: /backmatter/glossary
+    - link "Search":
+      - /url: /search
+  - link "Sign in":
+    - /url: /auth/login
+- main:
+  - main:
+    - text: The Curriculum
+    - heading "8 units. 1 capstone. Real workbooks you can show off." [level=1]
+    - paragraph: Every unit ends with a deliverable you built yourself — not a worksheet you filled in.
+    - heading "Ready to start building?" [level=2]
+    - paragraph: Log in to access lessons, datasets, and your personal workbook progress.
+    - link "Student or teacher login":
+      - /url: /auth/login
+    - link "Back to home":
+      - /url: /
+- contentinfo:
+  - heading "Math for Business Operations" [level=2]
+  - paragraph: An interactive Grade 12 textbook blending applied accounting with Excel automation.
+  - paragraph: © 2025 Daniel Bodanske
+  - heading "Quick Links" [level=3]
+  - navigation "Quick Links":
+    - link "Getting Started":
+      - /url: /preface
+    - link "Glossary":
+      - /url: /backmatter/glossary
+    - link "Search":
+      - /url: /search
+    - link "Capstone":
+      - /url: /capstone
+  - heading "Teacher Resources" [level=3]
+  - navigation "Teacher Resources":
+    - link "PBL Methodology":
+      - /url: /teacher/course-overview/pbl-methodology
+    - link "Backward Design":
+      - /url: /teacher/course-overview/backward-design
+    - link "Teacher Dashboard":
+      - /url: /teacher
+  - heading "Support" [level=3]
+  - navigation "Support"
+  - paragraph: Math for Business Operations

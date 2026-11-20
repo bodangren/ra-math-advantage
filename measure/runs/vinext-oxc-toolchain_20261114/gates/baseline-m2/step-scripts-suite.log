@@ -1,0 +1,172 @@
+[33m(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (scripts/vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.[39m
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/scripts
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts (9 tests | 6 failed) 4018ms
+     × case 1: vinext resolves to a 1.x release from the root, each app, and app-shell 8ms
+     × case 2: vinext resolves, and next does not resolve, from the root, each app, and app-shell 2ms
+     × case 3: no manifest declares next 2ms
+     × case 4: each app and app-shell tsconfig loads vinext/types and has no next plugin 1ms
+     × case 7: each setup-node step in the workflows uses Node 24 9ms
+     × case 8: the lockfile has no next package and no workspace entry that lists next 5ms
+ ❯ __tests__/remediate-concept-blueprints.test.ts (11 tests | 1 failed) 179ms
+     × production scan reports the honest count for the current repo state 34ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 1: vinext resolves to a 1.x release from the root, each app, and app-shell
+AssertionError: folders that resolve a vinext release that is not 1.x: expected [ [ 'apps/danielson', +0 ] ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   [
++     "apps/danielson",
++     0,
++   ],
++ ]
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:213:77
+    211|     }
+    212|     const notOne = Object.entries(majors).filter(([, major]) => major …
+    213|     expect(notOne, `folders that resolve a vinext release that is not …
+       |                                                                             ^
+    214|   });
+    215|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 2: vinext resolves, and next does not resolve, from the root, each app, and app-shell
+AssertionError: folders where next is installed: expected [ …(8) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   ". -> node_modules/next/package.json",
++   "apps/bus-math-v2 -> node_modules/next/package.json",
++   "apps/danielson -> node_modules/next/package.json",
++   "apps/integrated-math-1 -> node_modules/next/package.json",
++   "apps/integrated-math-2 -> node_modules/next/package.json",
++   "apps/integrated-math-3 -> node_modules/next/package.json",
++   "apps/pre-calculus -> node_modules/next/package.json",
++   "packages/app-shell -> node_modules/next/package.json",
++ ]
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:235:61
+    233|       }
+    234|     }
+    235|     expect(resolvedNext, 'folders where next is installed').toEqual([]…
+       |                                                             ^
+    236|     expect(nodeResolvable, 'folders where require.resolve finds next/p…
+    237|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 3: no manifest declares next
+AssertionError: manifest fields that declare next: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "apps/danielson/package.json:dependencies.next",
++ ]
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:250:63
+    248|     expect(manifests.length).toBeGreaterThanOrEqual(1 + 5 + 20);
+    249|     const declarations = manifests.flatMap(findNextDeclarations);
+    250|     expect(declarations, 'manifest fields that declare next').toEqual(…
+       |                                                               ^
+    251|   });
+    252|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 4: each app and app-shell tsconfig loads vinext/types and has no next plugin
+AssertionError: tsconfig files without vinext/types in compilerOptions.types: expected [ 'apps/danielson/tsconfig.json' ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "apps/danielson/tsconfig.json",
++ ]
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:265:90
+    263|       if (plugins.some((plugin) => plugin.name === 'next')) nextPlugin…
+    264|     }
+    265|     expect(missingTypes, 'tsconfig files without vinext/types in compi…
+       |                                                                                          ^
+    266|     expect(nextPlugins, 'tsconfig files with the { "name": "next" } pl…
+    267|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 7: each setup-node step in the workflows uses Node 24
+AssertionError: setup-node steps with a node-version that is not 24: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "business-math-deploy.yml:deploy node-version='22'",
++ ]
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:341:78
+    339|     expect(stepsByFile['ci.yml'] ?? 0).toBeGreaterThanOrEqual(1);
+    340|     expect(stepsByFile['cloudflare-deploy.yml'] ?? 0).toBeGreaterThanO…
+    341|     expect(wrongNode, 'setup-node steps with a node-version that is no…
+       |                                                                              ^
+    342|   });
+    343|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 8: the lockfile has no next package and no workspace entry that lists next
+AssertionError: lockfile package keys that end with node_modules/next: expected [ 'node_modules/next' ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "node_modules/next",
++ ]
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:353:83
+    351|     expect(keys).toContain('packages/app-shell');
+    352|     const nextPackages = keys.filter((key) => key.endsWith('node_modul…
+    353|     expect(nextPackages, 'lockfile package keys that end with node_mod…
+       |                                                                                   ^
+    354|     const workspaceKeys = keys.filter((key) => !key.includes('node_mod…
+    355|     const listing: string[] = [];
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  __tests__/remediate-concept-blueprints.test.ts > remediate-concept-blueprints: production-scan true count (FR-12 closeout) > production scan reports the honest count for the current repo state
+AssertionError: expected [ …(17) ] to include '/home/daniebo/Desktop/ra-math-advanta…'
+ ❯ __tests__/remediate-concept-blueprints.test.ts:228:21
+    226|     for (const required of requiredArtifacts) {
+    227|       const expected = path.join(REPO_ROOT, required);
+    228|       expect(files).toContain(expected);
+       |                     ^
+    229|     }
+    230|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+
+ Test Files  2 failed | 1 passed (3)
+      Tests  7 failed | 24 passed (31)
+   Start at  19:29:01
+   Duration  5.00s (transform 44ms, setup 0ms, import 79ms, tests 4.64s, environment 0ms)
+

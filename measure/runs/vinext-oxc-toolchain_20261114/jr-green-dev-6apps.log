@@ -1,0 +1,24 @@
+PORT=4101 APP=integrated-math-1 BASE=200 GOT=200 VERDICT=match REDIRECT=
+Terminated                 setsid npx vinext dev --port "$port" > "$LOG" 2>&1
+PORT=4101 FREE=yes
+PORT=4101 SS=absent
+PORT=4102 APP=integrated-math-2 BASE=200 GOT=200 VERDICT=match REDIRECT=
+Terminated                 setsid npx vinext dev --port "$port" > "$LOG" 2>&1
+PORT=4102 FREE=yes
+PORT=4102 SS=absent
+PORT=4103 APP=integrated-math-3 BASE=200 GOT=200 VERDICT=match REDIRECT=
+Terminated                 setsid npx vinext dev --port "$port" > "$LOG" 2>&1
+PORT=4103 FREE=yes
+PORT=4103 SS=absent
+PORT=4104 APP=pre-calculus BASE=200 GOT=200 VERDICT=match REDIRECT=
+Terminated                 setsid npx vinext dev --port "$port" > "$LOG" 2>&1
+PORT=4104 FREE=yes
+PORT=4104 SS=absent
+PORT=4105 APP=bus-math-v2 BASE=200 GOT=200 VERDICT=match REDIRECT=
+Terminated                 setsid npx vinext dev --port "$port" > "$LOG" 2>&1
+PORT=4105 FREE=yes
+PORT=4105 SS=absent
+PORT=4106 APP=danielson BASE=307 GOT=307 VERDICT=match REDIRECT=http://localhost:4106/auth/login?redirect=%2F
+Terminated                 setsid npx vinext dev --port "$port" > "$LOG" 2>&1
+PORT=4106 FREE=yes
+PORT=4106 SS=absent

@@ -1,0 +1,1663 @@
+
+> test
+> vitest run
+
+[33m(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vitest.config.ts:43:25). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.[39m
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/apps/pre-calculus
+
+ ❯ __tests__/app/student/saved-practice-dashboard.test.tsx (2 tests | 1 failed) 1061ms
+     × authenticates, links lessons, and labels stored results without a completion claim 1056ms
+     ✓ does not query dashboard data when authentication fails 2ms
+ ❯ __tests__/convex/seed/topic12-source-link.acceptance.test.ts (14 tests | 7 failed) 220ms
+     ✓ keeps six source nodes and their Lesson 1.2 membership edges synchronized 18ms
+     ✓ keeps the six Topic 1.2 skills and their example mappings exact 12ms
+     ✓ quarantines Topic 1.2 skills without exact source-backed activities 4ms
+     × defines the source-backed Example 6 table blueprint for all three modes 35ms
+     × synchronizes the stored Example 6 activity and ready SRS projections 16ms
+     × defines the source-backed Example 3 graph blueprint and ready projections 22ms
+     ✓ defines the source-backed Example 1 pointwise rate-ordering blueprint for all three modes 12ms
+     × projects the ready Example 1 pointwise rate-ordering blueprint 19ms
+     ✓ defines the source-backed Example 2 least-rate blueprint with mirrored readiness 10ms
+     ✓ defines the source-backed Example 4 negative-rate context blueprint for all three modes 16ms
+     ✓ defines the source-backed Example 5 quadratic negative-rate interval blueprint for all three modes 11ms
+     × projects the ready Example 5 quadratic negative-rate interval blueprint 15ms
+     × projects the ready Example 4 negative-rate context blueprint 14ms
+     × keeps the Example 2 least-rate projections synchronized and ready 14ms
+ ❯ __tests__/convex/seed/topic14-source-link.acceptance.test.ts (15 tests | 4 failed) 166ms
+     ✓ synchronizes the Topic 1.4 lesson node across catalogs 11ms
+     ✓ preserves the authored Example 1 source and answers 2ms
+     ✓ preserves the corrected Example 2 graph result 2ms
+     ✓ preserves the corrected Example 3 rate result 2ms
+     ✓ preserves the corrected Example 4 end-behavior result 2ms
+     ✓ adds one exact mirrored draft skill and one exclusive support edge 7ms
+     ✓ keeps the four Topic 1.4 lesson membership edges 4ms
+     ✓ adds one graph-ready exclusive mirrored skill and support for Example 2 7ms
+     ✓ mirrors the existing Example 3 skill and adds one exclusive support edge 7ms
+     ✓ mirrors the existing Example 4 skill and adds one exclusive support edge 7ms
+     × stores the source-backed graph-ready Example 4 blueprint with live three-mode props 38ms
+     × stores the source-backed graph-ready Example 1 blueprint and projections 20ms
+     × stores the source-backed graph-ready Example 2 blueprint and projections 25ms
+     × stores the source-backed practice-ready Example 3 blueprint and projections 19ms
+     ✓ removes the obsolete combined Topic 1.4 artifacts 12ms
+ ❯ __tests__/app/student-dashboard.practice-sequence.test.tsx (3 tests | 2 failed) 193ms
+     ✓ does not show Topic 1.1 pilot activities when the publication query returns no rows 47ms
+     × authenticates first, queries all states at one request time, and renders all source sequences 128ms
+     × renders the rate-sign and end-behavior sequences when the end-behavior query is absent 15ms
+ ❯ __tests__/app/student/topic11-selected-lesson-page.test.tsx (4 tests | 1 failed) 120ms
+     ✓ renders exact Worked content and suppresses only its duplicate generic response 40ms
+     ✓ keeps the ordinary response for mixed, unrelated, null-source, wrong-ID, and wrong-component phases 9ms
+     ✓ shows pending state and shows two practice modes only after teacher confirmation 62ms
+     × shows historical practice when current practice is unavailable 7ms
+ ❯ __tests__/convex/seed/topic13-source-link.acceptance.test.ts (3 tests | 1 failed) 62ms
+     ✓ keeps both authored examples exact and synchronized across graph catalogs 12ms
+     ✓ mirrors both draft skills and adds only their direct source supports 7ms
+     × keeps both Topic 1.3 blueprints and projections source-linked 40ms
+ ❯ __tests__/convex/seed/topic15-polynomial-inequality-projection.acceptance.test.ts (2 tests | 1 failed) 39ms
+     × matches fresh activity and SRS projection output for the exact sign-chart node 35ms
+     ✓ preserves accepted Example 1, Example 2, and broad placeholder projections 2ms
+ ❯ __tests__/app/api/activities/precalculus-pilot/submissions/route.acceptance.test.ts (27 tests | 2 failed) 40ms
+     × accepts a long opaque key with the student-only gate and server-owned Topic 1.1 rubric 13ms
+     ✓ accepts the exact Independent activity and forwards its exact activity and mode pair 3ms
+     ✓ rejects a guided activity with Independent mode as an invalid activity and mode pair 1ms
+     ✓ rejects an Independent activity with Guided mode as an invalid activity and mode pair 1ms
+     ✓ rejects an unknown activity as an invalid activity and mode pair 1ms
+     ✓ requires a create idempotency key before server storage or grading 2ms
+     ✓ reuses the same opaque create key for a replay without letting the browser choose a new ordinal 2ms
+     ✓ returns HTTP 409 for an exact idempotency_conflict on a same-key request with a different Topic 1.1 payload 1ms
+     × maps a producer error that only contains idempotency_conflict to safe HTTP 500 1ms
+     ✓ rejects client grading metadata nested in a raw Topic 1.1 part before server storage or grading 1ms
+     ✓ rejects a duplicate canonical part ID before server storage or grading 1ms
+     ✓ rejects a missing canonical part ID despite three submitted parts before server storage or grading 1ms
+     ✓ rejects an unknown part ID before server storage or grading 1ms
+     ✓ rejects a raw part answer that disagrees with the named answer before server storage or grading 1ms
+     ✓ returns a forbidden student-gate response for an authenticated non-student without invoking the producer 1ms
+     ✓ returns an unauthorized student-gate response without invoking the producer 1ms
+     ✓ rejects the client-controlled submissionId field before server storage or grading 1ms
+     ✓ rejects the client-controlled score field before server storage or grading 1ms
+     ✓ rejects the client-controlled maxScore field before server storage or grading 1ms
+     ✓ rejects the client-controlled grade field before server storage or grading 1ms
+     ✓ rejects the client-controlled isCorrect field before server storage or grading 1ms
+     ✓ rejects the client-controlled learnerId field before server storage or grading 1ms
+     ✓ rejects the client-controlled attemptOrdinal field before server storage or grading 1ms
+     ✓ rejects the client-controlled feedback field before server storage or grading 1ms
+     ✓ rejects the client-controlled idempotencyKey field before server storage or grading 1ms
+     ✓ rejects the client-controlled stableActivityId field before server storage or grading 1ms
+     ✓ rejects the client-controlled rubric field before server storage or grading 1ms
+ ❯ __tests__/convex/seed/topic15-projection.acceptance.test.ts (2 tests | 1 failed) 46ms
+     × matches exact projector output for the three activity modes and both SRS surfaces 40ms
+     ✓ keeps both broad Topic 1.5 placeholder projections intact 4ms
+ ❯ __tests__/convex/seed/topic15-least-polynomial-degree-projection.acceptance.test.ts (2 tests | 1 failed) 44ms
+     × matches fresh projector output for activities and both SRS surfaces 39ms
+     ✓ keeps Example 1 and the broad Topic 1.5 placeholder projections 2ms
+ ❯ __tests__/convex/topic15-polynomial-inequality-activity-constants.acceptance.test.ts (1 test | 1 failed) 57ms
+     × defines exact identities, projected rows, configs, and enabled evidence 54ms
+ ❯ __tests__/convex/seed/topic16-equation-end-behavior-projection.acceptance.test.ts (1 test | 1 failed) 46ms
+     × stores exact projector output with readiness 44ms
+ ❯ __tests__/convex/topic16-equation-end-behavior-activity-constants.acceptance.test.ts (1 test | 1 failed) 35ms
+     × defines exact identities, projection rows, configs, and disabled evidence 33ms
+ ❯ __tests__/convex/seed/topic16-equation-end-behavior-readiness.acceptance.test.ts (1 test | 1 failed) 31ms
+     × promotes the exact node and its derived projections 29ms
+ ❯ __tests__/convex/seed/topic15-polynomial-inequality-readiness.acceptance.test.ts (1 test | 1 failed) 31ms
+     × promotes the exact sign-chart node and its derived projections 29ms
+ ❯ __tests__/app/teacher/topic11-dashboard.test.tsx (2 tests | 2 failed) 24ms
+   × requires a teacher session and renders the exact candidate choices 19ms
+   × renders the empty candidate state 3ms
+ ❯ __tests__/convex/topic11-real-production-flow.test.ts (3 tests | 1 failed) 21ms
+     × uses the production writers, teacher action, evidence wrapper, and replay-safe SRS effects 11ms
+     ✓ rejects a stored Topic 1.1 submission after node publication withdrawal without effects 7ms
+     ✓ rejects a stored Topic 1.1 submission after blueprint publication withdrawal without effects 1ms
+ ❯ __tests__/convex/topic11-trusted-teacher-flow.test.ts (8 tests | 8 failed) 14ms
+     × ack then teacher then replay 9ms
+     × changes later independent eligibility 1ms
+     × rejects wrong teacher 0ms
+     × rejects wrong class 0ms
+     × rejects inactive enrollment 0ms
+     × rejects missing assignment 0ms
+     × rejects late enrollment 0ms
+     × rejects late assignment 0ms
+ ❯ __tests__/convex/topic11-pilot-publication-boundary.test.ts (4 tests | 3 failed) 12ms
+     × accepts only an approved canonical skill and blueprint fixture 5ms
+     ✓ returns no approved activities for the current draft graph without reading storage 1ms
+     × returns the exact approved modes for an approved publication fixture 2ms
+     × rejects direct submission for the current draft graph before reading storage 2ms
+ ❯ __tests__/convex/topic11-teacher-first-publication.test.ts (2 tests | 2 failed) 13ms
+     × rejects student acknowledgement write 7ms
+     × rejects teacher exposure write 4ms
+ ❯ __tests__/convex/convex-module-paths.red.test.ts (3 tests | 1 failed) 15ms
+     ✓ keeps every source Convex module path free of hyphens 2ms
+     ✓ requires regenerated API types to expose learningEvidence and no stale hyphenated module 4ms
+     × uses only the generated internal.learningEvidence.submit reference in the public evidence route 7ms
+ ❯ __tests__/convex/topic15-least-polynomial-degree-activity-constants.acceptance.test.ts (1 test | 1 failed) 11ms
+     × defines exact identities, projected rows, configs, and enabled evidence 10ms
+ ❯ __tests__/convex/topic11-teacher-publication-authorization.test.ts (7 tests | 7 failed) 9ms
+     × rejects a learner from a different organization 5ms
+     × rejects a draft lesson version 1ms
+     × rejects a source absent from phase 0ms
+     × accepts the exact source in a published assigned lesson phase 0ms
+     × accepts the canonical stable source ID in the current published phase 0ms
+     × rejects a source that exists only in an older published version 0ms
+     × rejects duplicate physical activities for the canonical stable source ID 0ms
+ ❯ __tests__/convex/seed/topic16-equation-end-behavior-blueprint.acceptance.test.ts (1 test | 1 failed) 10ms
+     × stores the exact non-ready three-mode source blueprint 9ms
+ ❯ __tests__/app/api/teacher/course/topic11-surface-real-flow.test.ts (0 test)
+ ✓ __tests__/components/student/PrecalculusTopic16EquationEndBehaviorPracticePilot.test.tsx (47 tests) 16744ms
+     ✓ keeps Submit answer disabled until all 12 guided responses exist  396ms
+     ✓ keeps Submit answer disabled until all 12 independent responses exist  371ms
+     ✓ forwards the exact raw Guided node-not-enabled practice.v1 envelope and opaque evidence request, including one wrong answer  349ms
+     ✓ forwards the exact raw Guided awaiting reason practice.v1 envelope and opaque evidence request, including one wrong answer  353ms
+     ✓ forwards the exact raw Independent awaiting state practice.v1 envelope and opaque evidence request, including one wrong answer  347ms
+     ✓ accepts a valid score-0 server result with evidence delivery  339ms
+     ✓ allows one create request while pending and blocks another after success  347ms
+     ✓ retries a failed create with the same byte-identical body and key  348ms
+     ✓ shows the mastery-updated message after evidence delivery  328ms
+     ✓ retains the server result and retries evidence with the same opaque body  356ms
+     ✓ blocks duplicate evidence calls while evidence is pending and after save  344ms
+     ✓ preserves the server result when evidence delivery fails for non-OK response  333ms
+     ✓ preserves the server result when evidence delivery fails for invalid JSON  333ms
+     ✓ fails safely for malformed evidence response: missing outer field  338ms
+     ✓ fails safely for malformed evidence response: extra outer field  339ms
+     ✓ fails safely for malformed evidence response: wrong outer boolean  335ms
+     ✓ fails safely for malformed evidence response: wrong masteryApplied boolean  339ms
+     ✓ fails safely for malformed evidence response: wrong kstApplied boolean  401ms
+     ✓ fails safely for malformed evidence response: invalid delivery  529ms
+     ✓ fails safely for malformed evidence response: missing decision field  482ms
+     ✓ fails safely for malformed evidence response: extra decision field  481ms
+     ✓ fails safely for malformed evidence response: invalid decision idempotency  535ms
+     ✓ fails safely for malformed evidence response: invalid decision exposure state  455ms
+     ✓ fails safely for malformed evidence response: invalid decision reason  458ms
+     ✓ fails safely for malformed evidence response: non-boolean eligible  461ms
+     ✓ fails safely for malformed evidence response: non-boolean masteryBearing  379ms
+     ✓ shows one safe error and no evidence request for non-OK response  372ms
+     ✓ shows one safe error and no evidence request for invalid JSON  364ms
+     ✓ shows one safe error and no evidence request for non-object result  351ms
+     ✓ shows one safe error and no evidence request for extra result field  351ms
+     ✓ shows one safe error and no evidence request for missing result field  371ms
+     ✓ shows one safe error and no evidence request for non-string submission ID  382ms
+     ✓ shows one safe error and no evidence request for blank submission ID  411ms
+     ✓ shows one safe error and no evidence request for negative score  347ms
+     ✓ shows one safe error and no evidence request for fractional score  337ms
+     ✓ shows one safe error and no evidence request for unsafe score  352ms
+     ✓ shows one safe error and no evidence request for score above maximum  346ms
+     ✓ shows one safe error and no evidence request for wrong maxScore  328ms
+     ✓ shows one safe error and no evidence request for zero attempt ordinal  335ms
+     ✓ shows one safe error and no evidence request for fractional attempt ordinal  331ms
+     ✓ shows one safe error and no evidence request for unsafe attempt ordinal  333ms
+     ✓ shows one safe error and no evidence request for non-string attempt ordinal  357ms
+     ✓ shows one safe error and no evidence request for blank feedback  343ms
+     ✓ shows one safe error and no evidence request for non-string feedback  334ms
+stderr | __tests__/components/course-math-rendering.test.tsx > renders all published lesson mathematics without parse errors
+LaTeX-incompatible input and strict mode is set to 'warn': Unrecognized Unicode character "½" (189) [unknownSymbol]
+No character metrics for '½' in style 'Main-Regular' and mode 'text'
+LaTeX-incompatible input and strict mode is set to 'warn': Accented Unicode text character "ŷ" used in math mode [unicodeTextInMathMode]
+LaTeX-incompatible input and strict mode is set to 'warn': Accented Unicode text character "ŷ" used in math mode [unicodeTextInMathMode]
+LaTeX-incompatible input and strict mode is set to 'warn': % comment has no terminating newline; LaTeX would fail because of commenting the end of math mode (e.g. $) [commentAtEnd]
+
+ ✓ __tests__/components/course-math-rendering.test.tsx (5 tests) 2715ms
+   ✓ renders all published lesson mathematics without parse errors  2638ms
+ ✓ __tests__/components/student/PrecalculusTopic15RealZerosAndMultiplicitiesPracticePilot.test.tsx (37 tests) 1907ms
+ ✓ __tests__/components/student/PrecalculusTopic15PolynomialInequalityPracticePilot.test.tsx (49 tests) 1316ms
+ ✓ __tests__/components/student/PrecalculusTopic13RatePatternClassificationPracticePilot.test.tsx (23 tests) 1359ms
+ ✓ __tests__/convex/topic11-worked-projection.test.ts (5 tests) 1340ms
+     ✓ connects the real seed, exact projection, and real lesson query  1322ms
+ ✓ __tests__/components/student/PrecalculusMasteryAdvantagePilot.acceptance.test.tsx (8 tests) 832ms
+     ✓ renders the interactive pilot through the student dashboard  458ms
+ ✓ __tests__/components/student/PrecalculusTopic14PolynomialExtremaPracticePilot.test.tsx (22 tests) 829ms
+ ✓ __tests__/components/student/PrecalculusTopic11DailyCurriculumPilot.red.test.tsx (6 tests) 839ms
+ ✓ __tests__/components/student/PrecalculusTopic14PolynomialEndBehaviorPracticePilot.test.tsx (35 tests) 776ms
+ ✓ __tests__/components/student/PrecalculusTopic14PolynomialDegreeLeadingCoefficientPracticePilot.test.tsx (21 tests) 729ms
+ ✓ __tests__/components/student/PrecalculusTopic14RateSignAndTrendPracticePilot.test.tsx (25 tests) 681ms
+ ✓ __tests__/components/student/PrecalculusTopic15LeastPolynomialDegreePracticePilot.test.tsx (43 tests) 708ms
+ ✓ __tests__/components/student/PrecalculusTopic12NegativeRateContextPracticePilot.test.tsx (25 tests) 692ms
+ ✓ __tests__/convex/topic16-equation-end-behavior-worked-evidence.acceptance.test.ts (121 tests) 716ms
+ ✓ __tests__/convex/topic16-equation-end-behavior-worked-submission.acceptance.test.ts (177 tests) 670ms
+ ✓ __tests__/components/student/PrecalculusTopic12QuadraticNegativeRateIntervalPracticePilot.test.tsx (24 tests) 646ms
+ ✓ __tests__/components/student/PrecalculusTopic13ConcavityPracticePilot.test.tsx (21 tests) 618ms
+ ✓ __tests__/components/student/PrecalculusTopic14PolynomialExtremaWorkedPilot.test.tsx (14 tests) 607ms
+     ✓ renders the exact seed-0 graph, source answers, steps, and final explanation  381ms
+ ✓ __tests__/convex/learning-evidence-production-flow.red.test.ts (107 tests) 526ms
+ ✓ __tests__/convex/topic15-real-zeros-and-multiplicities-worked-evidence.acceptance.test.ts (91 tests) 503ms
+ ✓ __tests__/convex/topic15-polynomial-inequality-worked-evidence.acceptance.test.ts (85 tests) 517ms
+ ✓ __tests__/convex/topic16-equation-end-behavior-submission.acceptance.test.ts (123 tests) 469ms
+ ✓ __tests__/convex/topic11-selected-teacher-backend.test.ts (45 tests) 436ms
+     ✓ drives the actual lesson page from acknowledgement through teacher confirmation  389ms
+ ✓ __tests__/components/student/PrecalculusTopic13RatePatternClassificationWorkedPilot.test.tsx (13 tests) 454ms
+ ✓ __tests__/convex/topic15-real-zeros-and-multiplicities-worked-submission.acceptance.test.ts (122 tests) 464ms
+ ✓ __tests__/convex/topic14-polynomial-end-behavior-worked-evidence.acceptance.test.ts (74 tests) 417ms
+ ✓ __tests__/components/student/PrecalculusTopic12GraphPracticePilot.test.tsx (12 tests) 439ms
+ ✓ __tests__/components/student/PrecalculusTopic12PointwisePracticePilot.test.tsx (12 tests) 417ms
+ ✓ __tests__/components/student/PrecalculusTopic12PointwiseOrderingPracticePilot.test.tsx (10 tests) 424ms
+ ✓ __tests__/convex/activities-server-owned-submission.acceptance.test.ts (104 tests) 401ms
+ ✓ __tests__/components/student/PrecalculusTopic16EquationEndBehaviorWorkedPilot.test.tsx (18 tests) 351ms
+ ✓ __tests__/convex/topic15-least-polynomial-degree-worked-evidence.acceptance.test.ts (67 tests) 407ms
+ ✓ __tests__/convex/topic14-polynomial-end-behavior-worked-submission.acceptance.test.ts (99 tests) 400ms
+ ✓ __tests__/convex/topic14-rate-sign-and-trend-worked-evidence.acceptance.test.ts (58 tests) 470ms
+ ✓ __tests__/convex/topic14-polynomial-extrema-worked-evidence.acceptance.test.ts (56 tests) 395ms
+ ✓ __tests__/components/student/PrecalculusTopic15PolynomialInequalityWorkedPilot.test.tsx (19 tests) 382ms
+ ✓ __tests__/components/student/PrecalculusTopic15RealZerosAndMultiplicitiesWorkedPilot.test.tsx (17 tests) 350ms
+ ✓ __tests__/components/student/PrecalculusTopic14RateSignAndTrendWorkedPilot.test.tsx (14 tests) 337ms
+ ✓ __tests__/components/student/PrecalculusTopic13ConcavityWorkedPilot.test.tsx (13 tests) 342ms
+ ✓ __tests__/app/student/topic11-full-sequence.test.tsx (1 test) 337ms
+   ✓ connects the actual Worked, teacher confirmation, Guided, and Independent sequence  335ms
+ ✓ __tests__/components/student/PrecalculusMasteryAdvantagePilot-real-flow.test.tsx (2 tests) 326ms
+ ✓ __tests__/components/student/PrecalculusTopic12PracticePilot.test.tsx (7 tests) 281ms
+ ✓ __tests__/components/student/PrecalculusTopic14PolynomialEndBehaviorWorkedPilot.test.tsx (17 tests) 296ms
+ ✓ __tests__/convex/topic15-polynomial-inequality-worked-submission.acceptance.test.ts (78 tests) 299ms
+ ✓ __tests__/components/student/PrecalculusPhysicalContextPracticePilot.test.tsx (7 tests) 284ms
+ ✓ __tests__/components/student/PrecalculusTopic15LeastPolynomialDegreeWorkedPilot.test.tsx (19 tests) 283ms
+ ✓ __tests__/convex/topic14-polynomial-extrema-submission.acceptance.test.ts (78 tests) 286ms
+ ✓ __tests__/components/student/PrecalculusTopic12PointwiseWorkedPilot.test.tsx (6 tests) 270ms
+ ✓ __tests__/components/student/PrecalculusTopic14PolynomialDegreeLeadingCoefficientWorkedPilot.test.tsx (13 tests) 284ms
+ ✓ __tests__/components/student/PrecalculusTopic12GraphWorkedPilot.test.tsx (6 tests) 264ms
+ ✓ __tests__/convex/topic14-rate-sign-and-trend-worked-submission.acceptance.test.ts (72 tests) 251ms
+ ✓ __tests__/convex/topic14-polynomial-degree-leading-coefficient-worked-evidence.acceptance.test.ts (35 tests) 243ms
+ ✓ __tests__/convex/topic14-polynomial-extrema-worked-submission.acceptance.test.ts (70 tests) 242ms
+ ✓ __tests__/convex/topic16-equation-end-behavior-kst.acceptance.test.ts (11 tests) 234ms
+ ✓ __tests__/components/student/PrecalculusTopic11DailyCurriculumPilot-receipt.test.tsx (8 tests) 245ms
+ ✓ __tests__/convex/topic12-negative-rate-context-worked-evidence.acceptance.test.ts (35 tests) 255ms
+ ✓ __tests__/convex/topic13-rate-pattern-classification-worked-evidence.acceptance.test.ts (33 tests) 246ms
+ ✓ __tests__/convex/topic15-polynomial-inequality-kst.acceptance.test.ts (11 tests) 228ms
+ ✓ __tests__/convex/topic12-quadratic-negative-rate-interval-worked-evidence.acceptance.test.ts (32 tests) 238ms
+ ✓ __tests__/components/student/PrecalculusTopic12NegativeRateContextWorkedPilot.test.tsx (6 tests) 224ms
+ ✓ __tests__/convex/topic13-concavity-worked-evidence.acceptance.test.ts (29 tests) 229ms
+ ✓ __tests__/components/student/PrecalculusTopic12QuadraticNegativeRateIntervalWorkedPilot.test.tsx (6 tests) 233ms
+ ✓ __tests__/convex/topic14-polynomial-degree-leading-coefficient-submission.acceptance.test.ts (61 tests) 241ms
+ ✓ __tests__/components/student/PrecalculusTopic12PointwiseOrderingWorkedPilot.test.tsx (6 tests) 224ms
+ ✓ __tests__/components/student/PrecalculusTopic12WorkedPilot.test.tsx (3 tests) 203ms
+ ✓ __tests__/convex/selected-topic11-submission-writer.test.ts (42 tests) 195ms
+ ✓ __tests__/convex/selected-topic11-writer-evidence-flow.test.ts (9 tests) 194ms
+ ✓ __tests__/components/student/PrecalculusPhysicalContextWorkedPilot.test.tsx (3 tests) 202ms
+ ✓ __tests__/components/student/PrecalculusMasteryAdvantagePilot-receipts.test.tsx (11 tests) 194ms
+ ✓ __tests__/convex/topic13-rate-pattern-classification-submission.acceptance.test.ts (51 tests) 207ms
+ ✓ __tests__/convex/topic15-least-polynomial-degree-worked-submission.acceptance.test.ts (48 tests) 174ms
+ ✓ __tests__/lib/practice/topic16-equation-end-behavior-grader.test.ts (5 tests) 184ms
+ ✓ __tests__/components/course/Topic11ExposureForm.test.tsx (6 tests) 178ms
+ ✓ __tests__/convex/topic13-concavity-submission.acceptance.test.ts (46 tests) 182ms
+ ✓ __tests__/app/teacher/topic11-candidate-pages.test.tsx (2 tests) 168ms
+ ✓ __tests__/components/course/TeacherCourse-topic11-integration.test.tsx (2 tests) 167ms
+ ✓ __tests__/convex/topic12-quadratic-negative-rate-interval-submission.acceptance.test.ts (39 tests) 149ms
+ ✓ __tests__/convex/topic13-concavity-worked-submission.acceptance.test.ts (41 tests) 147ms
+ ✓ __tests__/convex/topic12-negative-rate-context-submission.acceptance.test.ts (38 tests) 135ms
+ ✓ __tests__/convex/topic12-negative-rate-context-worked-submission.acceptance.test.ts (34 tests) 126ms
+ ✓ __tests__/convex/topic13-rate-pattern-classification-worked-submission.acceptance.test.ts (37 tests) 141ms
+ ✓ __tests__/convex/topic12-quadratic-negative-rate-interval-worked-submission.acceptance.test.ts (35 tests) 130ms
+ ✓ __tests__/lib/practice/topic15-polynomial-inequality-sign-chart-grader.test.ts (7 tests) 121ms
+ ✓ __tests__/convex/topic14-polynomial-degree-leading-coefficient-worked-submission.acceptance.test.ts (31 tests) 117ms
+ ✓ __tests__/convex/topic12-pointwise-rate-ordering-worked-submission.acceptance.test.ts (32 tests) 121ms
+ ✓ __tests__/components/student/worked-progress-refresh.test.tsx (1 test) 108ms
+ ✓ __tests__/convex/topic12-pointwise-rate-ordering-submission.acceptance.test.ts (30 tests) 113ms
+ ✓ __tests__/components/student/practice-new-attempt.test.tsx (1 test) 114ms
+ ✓ __tests__/convex/topic12-pointwise-least-rate-worked-submission.acceptance.test.ts (25 tests) 102ms
+ ✓ __tests__/curriculum/generator-safety.test.ts (2 tests) 83ms
+ ✓ __tests__/convex/seed/topic16-source-link.acceptance.test.ts (22 tests) 88ms
+ ✓ __tests__/lib/practice/topic15-real-zeros-and-multiplicities-grader.test.ts (5 tests) 91ms
+ ✓ __tests__/convex/topic12-pointwise-least-rate-submission.acceptance.test.ts (24 tests) 96ms
+ ✓ __tests__/lib/practice/topic14-polynomial-end-behavior-grader.test.ts (5 tests) 83ms
+ ✓ __tests__/components/student/topic11-generated-graph.test.tsx (1 test) 91ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-5-polynomial-inequality-worked/submissions/route.acceptance.test.ts (79 tests) 86ms
+ ✓ __tests__/curriculum/graph-integrity.test.ts (6 tests) 97ms
+ ✓ __tests__/convex/topic11-teacher-candidates.test.ts (21 tests) 84ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-6-equation-end-behavior-worked/submissions/route.acceptance.test.ts (75 tests) 82ms
+ ✓ __tests__/lib/practice/topic15-least-polynomial-degree-grader.test.ts (5 tests) 79ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-6-equation-end-behavior/submissions/route.acceptance.test.ts (81 tests) 82ms
+ ✓ __tests__/lib/practice/topic14-polynomial-degree-leading-coefficient-grader.test.ts (6 tests) 71ms
+ ✓ __tests__/convex/precalculus-kst-consumer.red.test.ts (92 tests) 63ms
+ ✓ __tests__/curriculum/topic11-interval-blueprint.acceptance.test.ts (7 tests) 56ms
+ ✓ __tests__/convex/seed/topic11-source-link.acceptance.test.ts (11 tests) 54ms
+ ✓ __tests__/convex/learning-evidence-submission-authority.red.test.ts (126 tests) 50ms
+ ✓ __tests__/curriculum/curriculum-depth.test.ts (337 tests) 41ms
+ ✓ __tests__/curriculum/topic11-source-integration.test.ts (3 tests) 49ms
+ ✓ __tests__/curriculum/topic11-source-repair.test.ts (5 tests) 53ms
+ ✓ __tests__/lib/practice/topic14-rate-sign-and-trend-grader.test.ts (5 tests) 46ms
+ ✓ __tests__/app/api/learning-evidence/precalculus-pilot/submission-authority.red.test.ts (5 tests) 61ms
+ ✓ __tests__/convex/topic15-polynomial-inequality-submission.acceptance.test.ts (12 tests) 43ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-5-real-zeros-and-multiplicities-worked/submissions/route.acceptance.test.ts (81 tests) 32ms
+ ✓ __tests__/convex/topic15-least-polynomial-degree-submission.acceptance.test.ts (5 tests) 43ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-5-polynomial-inequality/submissions/route.acceptance.test.ts (77 tests) 36ms
+ ✓ __tests__/convex/topic15-real-zeros-and-multiplicities-submission.acceptance.test.ts (7 tests) 40ms
+ ✓ __tests__/convex/topic16-equation-end-behavior-evidence-enablement.acceptance.test.ts (7 tests) 33ms
+ ✓ __tests__/convex/seed/topic12-activity-seed.acceptance.test.ts (6 tests) 36ms
+ ✓ __tests__/convex/seed/topic16-limit-notation-end-behavior-projection.acceptance.test.ts (1 test) 35ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-5-real-zeros-and-multiplicities/submissions/route.acceptance.test.ts (70 tests) 32ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-5-least-polynomial-degree-worked/submissions/route.acceptance.test.ts (79 tests) 33ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-5-least-polynomial-degree/submissions/route.acceptance.test.ts (67 tests) 31ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-4-polynomial-end-behavior/submissions/route.acceptance.test.ts (52 tests) 30ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-4-polynomial-extrema/submissions/route.acceptance.test.ts (33 tests) 36ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-4-rate-sign-and-trend/submissions/route.acceptance.test.ts (50 tests) 28ms
+ ✓ __tests__/lib/practice/topic14-polynomial-extrema-from-graph-grader.test.ts (6 tests) 29ms
+ ✓ __tests__/convex/topic14-rate-sign-and-trend-submission.acceptance.test.ts (5 tests) 28ms
+ ✓ __tests__/convex/topic14-polynomial-end-behavior-submission.acceptance.test.ts (5 tests) 30ms
+ ✓ __tests__/convex/topic15-polynomial-inequality-evidence.acceptance.test.ts (75 tests) 28ms
+ ✓ __tests__/convex/topic15-real-zeros-and-multiplicities-evidence.acceptance.test.ts (53 tests) 26ms
+ ✓ __tests__/convex/topic15-least-polynomial-degree-evidence.acceptance.test.ts (73 tests) 28ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-4-polynomial-degree-leading-coefficient/submissions/route.acceptance.test.ts (33 tests) 24ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-4-polynomial-end-behavior-worked/submissions/route.acceptance.test.ts (72 tests) 27ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-3-rate-pattern-classification/submissions/route.acceptance.test.ts (38 tests) 25ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-2-negative-rate-context/submissions/route.acceptance.test.ts (27 tests) 23ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-3-concavity/submissions/route.acceptance.test.ts (35 tests) 24ms
+ ✓ __tests__/convex/topic14-polynomial-end-behavior-evidence.acceptance.test.ts (51 tests) 25ms
+ ✓ __tests__/convex/seed/topic15-polynomial-inequality-standards.acceptance.test.ts (4 tests) 21ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-2-pointwise/submissions/route.acceptance.test.ts (24 tests) 24ms
+ ✓ __tests__/convex/seed/topic15-polynomial-inequality-blueprint.acceptance.test.ts (3 tests) 30ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-2-quadratic-negative-rate-interval/submissions/route.acceptance.test.ts (27 tests) 28ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-4-rate-sign-and-trend-worked/submissions/route.acceptance.test.ts (46 tests) 25ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-2-pointwise-ordering/submissions/route.acceptance.test.ts (29 tests) 23ms
+ ✓ __tests__/convex/seed/topic15-blueprint.acceptance.test.ts (3 tests) 24ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-4-polynomial-extrema-worked/submissions/route.acceptance.test.ts (46 tests) 23ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-2-graph/submissions/route.acceptance.test.ts (24 tests) 22ms
+ ✓ __tests__/convex/seed/topic15-least-polynomial-degree-blueprint.acceptance.test.ts (3 tests) 22ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-2/submissions/route.acceptance.test.ts (21 tests) 28ms
+ ✓ __tests__/components/student/PrecalculusMasteryAdvantagePilot.shared.acceptance.test.tsx (3 tests) 20ms
+ ✓ __tests__/convex/topic14-rate-sign-and-trend-evidence.acceptance.test.ts (31 tests) 19ms
+ ✓ __tests__/components/brand-symbol.test.tsx (1 test) 21ms
+ ✓ __tests__/app/api/activities/precalculus-physical-context/submissions/route.acceptance.test.ts (17 tests) 19ms
+ ✓ __tests__/convex/seed/topic11-worked-source-lifecycle.test.ts (9 tests) 19ms
+ ✓ __tests__/convex/topic14-polynomial-extrema-evidence.acceptance.test.ts (30 tests) 21ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-1/submissions/route.red.test.ts (23 tests) 20ms
+ ✓ __tests__/convex/topic16-equation-end-behavior-evidence.acceptance.test.ts (52 tests) 17ms
+ ✓ __tests__/convex/topic14-polynomial-end-behavior-kst.acceptance.test.ts (11 tests) 13ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-2-pointwise-worked/submissions/route.acceptance.test.ts (37 tests) 17ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-2-graph-worked/submissions/route.acceptance.test.ts (37 tests) 17ms
+ ✓ __tests__/convex/learning-evidence-bounded-authority.red.test.ts (3 tests) 16ms
+ ✓ __tests__/components/student/PrecalculusTopic11DailyCurriculumPilot.shared.acceptance.test.tsx (1 test) 17ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-3-rate-pattern-classification-worked/submissions/route.acceptance.test.ts (37 tests) 17ms
+ ✓ __tests__/convex/selected-topic11-evidence.test.ts (11 tests) 17ms
+ ✓ __tests__/convex/rate-pattern-math.test.ts (2 tests) 13ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-2-worked/submissions/route.acceptance.test.ts (24 tests) 15ms
+ ✓ __tests__/convex/seed/topic16-limit-notation-end-behavior-blueprint.acceptance.test.ts (1 test) 15ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-2-quadratic-negative-rate-interval-worked/submissions/route.acceptance.test.ts (39 tests) 16ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-2-pointwise-ordering-worked/submissions/route.acceptance.test.ts (39 tests) 16ms
+ ✓ __tests__/app/api/teacher/course/topic11-exposure-route.test.ts (10 tests) 14ms
+ ✓ __tests__/convex/topic11-daily-handler.acceptance.test.ts (20 tests) 16ms
+ ✓ __tests__/convex/seed/topic15-source-link.acceptance.test.ts (4 tests) 16ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-2-negative-rate-context-worked/submissions/route.acceptance.test.ts (40 tests) 16ms
+ ✓ __tests__/convex/learning-evidence.test.ts (11 tests) 16ms
+ ✓ __tests__/app/api/learning-evidence/precalculus-pilot/production-route.test.ts (17 tests) 15ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-4-polynomial-degree-leading-coefficient-worked/submissions/route.acceptance.test.ts (34 tests) 16ms
+ ✓ __tests__/app/api/activities/precalculus-topic-1-3-concavity-worked/submissions/route.acceptance.test.ts (36 tests) 16ms
+ ✓ __tests__/app/api/activities/precalculus-physical-context-worked/submissions/route.acceptance.test.ts (21 tests) 13ms
+ ✓ __tests__/app/api/teacher/course/topic11-exposure-route-real-writer.test.ts (2 tests) 15ms
+ ✓ __tests__/convex/seed/topic14-polynomial-degree-leading-coefficient-activity-seed.acceptance.test.ts (1 test) 14ms
+ ✓ __tests__/convex/topic15-least-polynomial-degree-kst.acceptance.test.ts (11 tests) 15ms
+ ✓ __tests__/convex/seed/topic15-polynomial-inequality-source-link.acceptance.test.ts (3 tests) 14ms
+ ✓ __tests__/convex/topic14-rate-sign-and-trend-kst.acceptance.test.ts (11 tests) 14ms
+ ✓ __tests__/learning-evidence-pilot.test.ts (5 tests) 13ms
+ ✓ __tests__/convex/seed/topic15-polynomial-inequality-activity-seed.acceptance.test.ts (1 test) 15ms
+ ✓ __tests__/app/api/auth/routes.test.ts (8 tests) 12ms
+ ✓ __tests__/convex/seed/topic14-polynomial-extrema-activity-seed.acceptance.test.ts (1 test) 13ms
+ ✓ __tests__/convex/topic15-real-zeros-and-multiplicities-kst.acceptance.test.ts (11 tests) 13ms
+ ✓ __tests__/curriculum/implementation-artifacts.test.ts (3 tests) 11ms
+ ✓ __tests__/lib/auth/server.test.ts (10 tests) 12ms
+ ✓ __tests__/convex/seed/topic11-ordinary-source-parity.test.ts (1 test) 12ms
+ ✓ __tests__/app/api/activities/precalculus-pilot-selected-route.test.ts (10 tests) 12ms
+ ✓ __tests__/convex/seed/topic15-real-zeros-and-multiplicities-activity-seed.acceptance.test.ts (1 test) 12ms
+ ✓ __tests__/convex/seed/topic14-rate-sign-and-trend-activity-seed.acceptance.test.ts (1 test) 12ms
+ ✓ __tests__/convex/seed/topic14-polynomial-end-behavior-activity-seed.acceptance.test.ts (1 test) 12ms
+ ✓ __tests__/lib/practice/topic13-rate-pattern-classification-grader.test.ts (5 tests) 11ms
+ ✓ __tests__/convex/seed/topic16-equation-end-behavior-activity-seed.acceptance.test.ts (1 test) 12ms
+ ✓ __tests__/convex/seed/topic15-least-polynomial-degree-activity-seed.acceptance.test.ts (1 test) 12ms
+ ✓ __tests__/convex/seed/topic13-activity-seed.acceptance.test.ts (1 test) 11ms
+ ✓ __tests__/app/api/learning-evidence/precalculus-pilot/route.test.ts (4 tests) 8ms
+ ✓ __tests__/lib/learning-evidence/precalc-pilot.test.ts (6 tests) 10ms
+ ✓ __tests__/convex/seed/topic13-concavity-activity-seed.acceptance.test.ts (1 test) 10ms
+ ✓ __tests__/convex/seed/topic16-limit-notation-end-behavior-runtime-keys.acceptance.test.ts (1 test) 6ms
+ ✓ __tests__/setup/dev-stack-script.test.ts (2 tests) 8ms
+ ✓ __tests__/app/api/learning-evidence/precalculus-pilot/receipt-contract.test.ts (5 tests) 8ms
+ ✓ __tests__/curriculum/source-extraction.test.ts (4 tests) 7ms
+ ✓ __tests__/lib/practice/topic13-concavity-from-rate-change-grader.test.ts (4 tests) 8ms
+ ✓ __tests__/curriculum/planning-structure.test.ts (2 tests) 8ms
+ ✓ __tests__/convex/topic14-polynomial-extrema-activity-constants.acceptance.test.ts (2 tests) 7ms
+ ✓ __tests__/lib/utils.test.ts (4 tests) 7ms
+ ✓ __tests__/convex/seed/topic16-equation-end-behavior-runtime-keys.acceptance.test.ts (1 test) 7ms
+ ✓ __tests__/convex/seed-dispatch.test.ts (2 tests) 9ms
+ ✓ __tests__/convex/topic14-polynomial-end-behavior-activity-constants.acceptance.test.ts (2 tests) 7ms
+ ✓ __tests__/curriculum/source-inventory.test.ts (4 tests) 6ms
+ ✓ __tests__/convex/topic14-rate-sign-and-trend-activity-constants.acceptance.test.ts (2 tests) 6ms
+ ✓ __tests__/lib/practice/topic12-pointwise-rate-ordering-grader.test.ts (5 tests) 7ms
+ ✓ __tests__/lib/practice/topic12-graph-average-rate-choice-grader.test.ts (5 tests) 6ms
+ ✓ __tests__/convex/auth-safety.test.ts (4 tests) 7ms
+ ✓ __tests__/lib/practice/topic12-negative-rate-context-choice-grader.test.ts (5 tests) 6ms
+ ✓ __tests__/convex/topic12-pointwise-rate-ordering-activity-constants.acceptance.test.ts (1 test) 4ms
+ ✓ __tests__/lib/practice/topic12-pointwise-least-rate-choice-grader.test.ts (5 tests) 6ms
+ ✓ __tests__/convex/topic13-concavity-activity-constants.acceptance.test.ts (1 test) 4ms
+ ✓ __tests__/convex/topic15-real-zeros-and-multiplicities-activity-constants.acceptance.test.ts (1 test) 6ms
+ ✓ __tests__/convex/topic14-polynomial-degree-leading-coefficient-activity-constants.acceptance.test.ts (1 test) 5ms
+ ✓ __tests__/lib/practice/topic12-quadratic-negative-rate-interval-choice-grader.test.ts (5 tests) 5ms
+ ✓ __tests__/lib/practice/topic11-interval-graph.test.ts (5 tests) 6ms
+ ✓ __tests__/lib/practice/topic11-interval-grader.test.ts (4 tests) 5ms
+ ✓ __tests__/convex/course-access.test.ts (3 tests) 5ms
+ ✓ __tests__/lib/practice/topic12-table-average-rate-choice-grader.test.ts (4 tests) 5ms
+ ✓ __tests__/lib/practice/topic11-physical-context-graph-choice-grader.test.ts (4 tests) 5ms
+ ✓ __tests__/convex/topic13-rate-pattern-classification-activity-constants.acceptance.test.ts (1 test) 4ms
+ ✓ __tests__/convex/course-topic11-confirmed-projection.test.ts (1 test) 4ms
+ ✓ __tests__/convex/topic12-pointwise-activity-constants.acceptance.test.ts (1 test) 4ms
+ ✓ __tests__/convex/topic12-negative-rate-context-activity-constants.acceptance.test.ts (1 test) 4ms
+ ✓ __tests__/convex/topic12-quadratic-negative-rate-interval-activity-constants.acceptance.test.ts (1 test) 4ms
+ ✓ __tests__/config.test.ts (2 tests) 5ms
+ ✓ __tests__/convex/practice-readiness.test.ts (3 tests) 4ms
+ ✓ __tests__/setup/deployment.test.ts (2 tests) 3ms
+ ✓ __tests__/convex/function-names.test.ts (1 test) 3ms
+ ✓ __tests__/app/api/learning-evidence/precalculus-pilot/runtime-reference.test.ts (1 test) 3ms
+ ✓ __tests__/pages/curriculum.test.ts (1 test) 3ms
+ ✓ __tests__/pages/login.test.ts (1 test) 3ms
+ ✓ __tests__/setup/convex-provider.test.ts (1 test) 3ms
+ ✓ __tests__/pages/home.test.ts (1 test) 3ms
+ ✓ __tests__/setup/local-runtime.test.ts (1 test) 3ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  __tests__/app/api/teacher/course/topic11-surface-real-flow.test.ts [ __tests__/app/api/teacher/course/topic11-surface-real-flow.test.ts ]
+Error: Failed to resolve import "@/__tests__/convex/topic11-approved-publication.fixture" from "__tests__/app/api/teacher/course/topic11-surface-real-flow.test.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/daniebo/Desktop/ra-math-advantage/apps/pre-calculus/__tests__/app/api/teacher/course/topic11-surface-real-flow.test.ts:4:25
+  1  |  ...ll-graph/nodes.json", async () => ({ default: (await import("@/__tests__/convex/topic11-approved-publication.fixtu...
+     |                                                                 ^
+  2  |  vi.mock("@/curriculum/skill-graph/blueprints.json", async () => ({ default: (await import("@/__tests__/convex/topic11...
+  3  |  const state = vi.hoisted(() => ({ ctx: null }));
+ ❯ TransformPluginContext._formatLog ../../node_modules/vite/dist/node/chunks/node.js:8865:39
+ ❯ TransformPluginContext.error ../../node_modules/vite/dist/node/chunks/node.js:8862:14
+ ❯ resolveId ../../node_modules/vite/dist/node/chunks/node.js:26552:18
+ ❯ ../../node_modules/vite/dist/node/chunks/node.js:26651:23
+ ❯ TransformPluginContext.transform ../../node_modules/vite/dist/node/chunks/node.js:26624:4
+ ❯ EnvironmentPluginContainer.transform ../../node_modules/vite/dist/node/chunks/node.js:8636:14
+ ❯ loadAndTransform ../../node_modules/vite/dist/node/chunks/node.js:20112:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/53]⎯
+
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 52 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  __tests__/app/student-dashboard.practice-sequence.test.tsx > AP Precalculus student dashboard practice sequence > authenticates first, queries all states at one request time, and renders all source sequences
+AssertionError: expected [ 'Assigned lessons', …(52) ] to deeply equal [ 'Assigned lessons', …(55) ]
+
+- Expected
++ Received
+
+@@ -2,13 +2,10 @@
+    "Assigned lessons",
+    "Due reviews",
+    "Worked Example: Select a Physical-Context Graph",
+    "Guided Practice: Select a Physical-Context Graph",
+    "Independent Practice: Select a Physical-Context Graph",
+-   "Worked Example: Find Increasing Intervals",
+-   "Guided Practice: Classify Graph Intervals",
+-   "Independent Practice: Classify Graph Intervals",
+    "Worked Example: Order Pointwise Rates",
+    "Guided Practice: Order Pointwise Rates",
+    "Independent Practice: Order Pointwise Rates",
+    "Worked Example: Find the Least Pointwise Rate",
+    "Guided Practice: Find the Least Pointwise Rate",
+
+ ❯ __tests__/app/student-dashboard.practice-sequence.test.tsx:755:7
+    753|     expect(
+    754|       screen.getAllByRole("heading", { level: 2 }).map((heading) => he…
+    755|     ).toEqual([
+       |       ^
+    756|       "Assigned lessons",
+    757|       "Due reviews",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/53]⎯
+
+ FAIL  __tests__/app/student-dashboard.practice-sequence.test.tsx > AP Precalculus student dashboard practice sequence > renders the rate-sign and end-behavior sequences when the end-behavior query is absent
+AssertionError: expected 1st "vi.fn()" call to have been called with [ …(2) ]
+
+- Expected
++ Received
+
+  [
+    {
+-     "knowledgeState": {
+-       "nodeId": "math.precalc.skill.1.4.identify-relative-and-absolute-extrema-from-graphs",
+-       "readiness": "ready",
+-       "status": "not_started",
+-       "title": "Identify relative and absolute extrema from graphs",
+-     },
++     "knowledgeState": undefined,
+      "mode": "guided_practice",
+    },
+    undefined,
+  ]
+
+ ❯ __tests__/app/student-dashboard.practice-sequence.test.tsx:1477:45
+    1475|
+    1476|     expect(mocks.polynomialExtremaWorked).toHaveBeenCalledOnce();
+    1477|     expect(mocks.polynomialExtremaPractice).toHaveBeenNthCalledWith(
+       |                                             ^
+    1478|       1,
+    1479|       {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/53]⎯
+
+ FAIL  __tests__/convex/convex-module-paths.red.test.ts > AP Precalculus Convex deployment module paths > uses only the generated internal.learningEvidence.submit reference in the public evidence route
+AssertionError: expected 'import { requireStudentRequestClaims …' to contain 'internal.learningEvidence.submit'
+
+- Expected
++ Received
+
+- internal.learningEvidence.submit
++ import { requireStudentRequestClaims } from "@/lib/auth/server";
++ import { fetchInternalMutation, internal } from "@/lib/convex/server";
++
++ export interface PrecalculusPilotSession {
++   user: {
++     id: string;
++     role?: "student" | "teacher" | "admin";
++   };
++ }
++
++ export interface PrecalculusPilotRouteDependencies {
++   getServerSession: (request: Request) => Promise<PrecalculusPilotSession | null>;
++   submitLearningEvidence: (input: { learnerId: string; submissionId: string }) => Promise<unknown>;
++ }
++
++ export interface PrecalculusPilotRoute {
++   POST(request: Request): Promise<Response>;
++ }
++
++ function jsonResponse(body: unknown, status: number): Response {
++   return new Response(JSON.stringify(body), {
++     status,
++     headers: { "content-type": "application/json" },
++   });
++ }
++
++ function parseSubmissionId(body: unknown): { value: string | null; error: string } {
++   if (typeof body !== "object" || body === null || Array.isArray(body))
++     return { value: null, error: "submissionId is required" };
++   const keys = Object.keys(body);
++   const rejected = keys.filter((key) => key !== "submissionId");
++   if (rejected.length > 0)
++     return { value: null, error: `Rejected field(s): ${rejected.join(", ")}` };
++   if (keys.length !== 1) return { value: null, error: "submissionId is required" };
++   const value = (body as { submissionId?: unknown }).submissionId;
++   return typeof value === "string" && value.trim().length > 0
++     ? { value, error: "" }
++     : { value: null, error: "submissionId is required" };
++ }
++
++ function projectDecision(decision: unknown): Record<string, unknown> | undefined {
++   if (typeof decision !== "object" || decision === null || Array.isArray(decision))
++     return undefined;
++
++   const source = decision as Record<string, unknown>;
++   if (
++     Object.keys(source).sort().join("|") !==
++       "eligible|exposureState|idempotency|masteryBearing|reason" ||
++     typeof source.idempotency !== "string" ||
++     !["new", "replay", "conflict"].includes(source.idempotency) ||
++     typeof source.exposureState !== "string" ||
++     !["awaiting_teacher_exposure", "introduced"].includes(source.exposureState) ||
++     typeof source.eligible !== "boolean" ||
++     typeof source.reason !== "string" ||
++     !["awaiting_teacher_exposure", "ungraded_evidence", "eligible"].includes(source.reason) ||
++     typeof source.masteryBearing !== "boolean"
++   )
++     return undefined;
++   return {
++     idempotency: source.idempotency,
++     exposureState: source.exposureState,
++     eligible: source.eligible,
++     reason: source.reason,
++     masteryBearing: source.masteryBearing,
++   };
++ }
++
++ function projectResult(result: unknown): unknown {
++   if (typeof result !== "object" || result === null) {
++     return null;
++   }
++
++   const source = result as Record<string, unknown>;
++   const decision = projectDecision(source.decision);
++   if (
++     decision === undefined ||
++     typeof source.persisted !== "boolean" ||
++     typeof source.masteryApplied !== "boolean" ||
++     source.kstApplied !== false ||
++     (source.delivery !== "new" && source.delivery !== "replay")
++   ) {
++     return null;
++   }
++
++   const awaitingExposure = decision.reason === "awaiting_teacher_exposure";
++   const independentEvidence = decision.reason === "eligible";
++   // A replay returns the original decision stored by the first delivery.
++   if (
++     decision.idempotency !== "new" ||
++     decision.eligible !== independentEvidence ||
++     decision.masteryBearing !== independentEvidence ||
++     (decision.exposureState === "introduced") !== !awaitingExposure ||
++     source.persisted !== !awaitingExposure ||
++     source.masteryApplied !== independentEvidence ||
++     (awaitingExposure && source.delivery !== "new")
++   )
++     return null;
++
++   return {
++     ...(typeof source.persisted === "boolean" ? { persisted: source.persisted } : {}),
++     ...(typeof source.masteryApplied === "boolean"
++       ? { masteryApplied: source.masteryApplied }
++       : {}),
++     ...(typeof source.kstApplied === "boolean" ? { kstApplied: source.kstApplied } : {}),
++     ...(source.delivery === "new" || source.delivery === "replay"
++       ? { delivery: source.delivery }
++       : {}),
++     ...(decision ? { decision } : {}),
++   };
++ }
++
++ /**
++  * Creates the Precalculus pilot route with authentication and persistence
++  * supplied by the app boundary.
++  */
++ export function createPrecalculusPilotRoute({
++   getServerSession,
++   submitLearningEvidence,
++ }: PrecalculusPilotRouteDependencies): PrecalculusPilotRoute {
++   return {
++     POST: async (request) => {
++       const session = await getServerSession(request);
++       if (!session?.user?.id) {
++         return jsonResponse({ error: "Unauthorized" }, 401);
++       }
++       if (session.user.role !== undefined && session.user.role !== "student") {
++         return jsonResponse({ error: "Forbidden" }, 403);
++       }
++
++       let body: unknown;
++       try {
++         body = await request.json();
++       } catch {
++         return jsonResponse({ error: "Invalid JSON body" }, 400);
++       }
++
++       const parsedSubmission = parseSubmissionId(body);
++       if (!parsedSubmission.value) return jsonResponse({ error: parsedSubmission.error }, 400);
++
++       let result: unknown;
++       try {
++         result = await submitLearningEvidence({
++           learnerId: session.user.id,
++           submissionId: parsedSubmission.value,
++         });
++       } catch {
++         return jsonResponse({ error: "Unable to record learning evidence" }, 500);
++       }
++
++       if (typeof result === "object" && result !== null) {
++         const rejected = result as Record<string, unknown>;
++         if (rejected.accepted === false && rejected.reason === "submission_not_found") {
++           return jsonResponse({ error: "Submission not found" }, 404);
++         }
++         if (
++           rejected.accepted === false &&
++           rejected.reason === "attempt_ordinal_conflict" &&
++           typeof rejected.latestAttemptOrdinal === "number" &&
++           Number.isFinite(rejected.latestAttemptOrdinal) &&
++           typeof rejected.receivedAttemptOrdinal === "number" &&
++           Number.isFinite(rejected.receivedAttemptOrdinal)
++         ) {
++           return jsonResponse({ error: "The submission attempt is no longer current" }, 409);
++         }
++       }
++
++       const projected = projectResult(result);
++       return projected
++         ? jsonResponse(projected, 200)
++         : jsonResponse({ error: "Unable to record learning evidence" }, 500);
++     },
++   };
++ }
++
++ /**
++  * Production route. The custom Precalculus session is the only source of
++  * learner identity. The request body can provide only an opaque submission ID.
++  */
++ export async function POST(request: Request): Promise<Response> {
++   const claimsOrResponse = await requireStudentRequestClaims(request);
++   if (claimsOrResponse instanceof Response) return claimsOrResponse;
++
++   const route = createPrecalculusPilotRoute({
++     getServerSession: async () => ({ user: { id: claimsOrResponse.sub, role: "student" } }),
++     submitLearningEvidence: ({ learnerId, submissionId }) =>
++       fetchInternalMutation(internal.selectedLearningEvidence.submitRouted, {
++         learnerId,
++         submissionId,
++       }),
++   });
++
++   return route.POST(request);
++ }
++
+
+ ❯ __tests__/convex/convex-module-paths.red.test.ts:58:25
+     56|     const routeSource = await readFile(EVIDENCE_ROUTE_PATH, "utf8");
+     57|
+     58|     expect(routeSource).toContain("internal.learningEvidence.submit");
+       |                         ^
+     59|     expect(routeSource).not.toContain("internalApi['learning-evidence'…
+     60|     expect(routeSource).not.toContain("'learning-evidence'?:");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/53]⎯
+
+ FAIL  __tests__/convex/topic11-pilot-publication-boundary.test.ts > Topic 1.1 canonical publication boundary > accepts only an approved canonical skill and blueprint fixture
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ __tests__/convex/topic11-pilot-publication-boundary.test.ts:19:62
+     17| describe("Topic 1.1 canonical publication boundary", () => {
+     18|   it("accepts only an approved canonical skill and blueprint fixture",…
+     19|     expect(isPrecalculusPilotPublished(approvedPublication)).toBe(true…
+       |                                                              ^
+     20|     expect(isPrecalculusPilotPublished({ ...approvedPublication, bluep…
+     21|     expect(isPrecalculusPilotPublished({ ...approvedPublication, nodes…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/53]⎯
+
+ FAIL  __tests__/convex/topic11-pilot-publication-boundary.test.ts > Topic 1.1 canonical publication boundary > returns the exact approved modes for an approved publication fixture
+AssertionError: expected [] to deeply equal [ [ …(2) ], [ …(2) ], [ …(2) ] ]
+
+- Expected
++ Received
+
+- [
+-   [
+-     "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.worked_example",
+-     "worked_example",
+-   ],
+-   [
+-     "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.guided_practice",
+-     "guided_practice",
+-   ],
+-   [
+-     "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.independent_practice",
+-     "independent_practice",
+-   ],
+- ]
++ []
+
+ ❯ __tests__/convex/topic11-pilot-publication-boundary.test.ts:71:67
+     69|       approvedPublication,
+     70|     );
+     71|     expect(result.map((row) => [row.stableActivityId, row.mode])).toEq…
+       |                                                                   ^
+     72|       [`${PRECALCULUS_PILOT_NODE_ID}.worked_example`, "worked_example"…
+     73|       [`${PRECALCULUS_PILOT_NODE_ID}.guided_practice`, "guided_practic…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/53]⎯
+
+ FAIL  __tests__/convex/topic11-pilot-publication-boundary.test.ts > Topic 1.1 canonical publication boundary > rejects direct submission for the current draft graph before reading storage
+AssertionError: expected [Function] to throw error matching /curriculum is not approved/i but got 'ctx.db.get is not a function'
+
+- Expected:
+/curriculum is not approved/i
+
++ Received:
+"ctx.db.get is not a function"
+
+ ❯ __tests__/convex/topic11-pilot-publication-boundary.test.ts:98:6
+     96|         },
+     97|       ),
+     98|     ).rejects.toThrow(/curriculum is not approved/i);
+       |      ^
+     99|     expect(query).not.toHaveBeenCalled();
+    100|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/53]⎯
+
+ FAIL  __tests__/convex/topic11-real-production-flow.test.ts > Topic 1.1 real production flow > uses the production writers, teacher action, evidence wrapper, and replay-safe SRS effects
+Error: Precalculus Topic 1.1 source activity is not approved
+ ❯ handler convex/activities.ts:10074:13
+    10072|       activity.approval?.status !== "approved"
+    10073|     ) {
+    10074|       throw new Error("Precalculus Topic 1.1 source activity is not ap…
+       |             ^
+    10075|     }
+    10076|     const lesson = await ctx.db
+ ❯ __tests__/convex/topic11-real-production-flow.test.ts:234:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/53]⎯
+
+ FAIL  __tests__/convex/topic11-teacher-first-publication.test.ts > Topic 1.1 draft gate > rejects student acknowledgement write
+AssertionError: expected [Function] to throw error including 'curriculum is not approved' but got 'ctx.db.get is not a function'
+
+Expected: "curriculum is not approved"
+Received: "ctx.db.get is not a function"
+
+ ❯ __tests__/convex/topic11-teacher-first-publication.test.ts:26:6
+     24|         },
+     25|       ),
+     26|     ).rejects.toThrow("curriculum is not approved");
+       |      ^
+     27|   });
+     28|   it("rejects teacher exposure write", async () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/53]⎯
+
+ FAIL  __tests__/convex/topic11-teacher-first-publication.test.ts > Topic 1.1 draft gate > rejects teacher exposure write
+TypeError: ctx.db.get is not a function
+ ❯ handler convex/learningEvidence.ts:3269:14
+    3267|   handler: async (ctx, args) => {
+    3268|     const [teacher, learner, classroom, enrollment, submission] = awai…
+    3269|       ctx.db.get("profiles", args.teacherId),
+       |              ^
+    3270|       ctx.db.get("profiles", args.learnerId),
+    3271|       ctx.db.get("classes", args.classId),
+ ❯ __tests__/convex/topic11-teacher-first-publication.test.ts:30:46
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/53]⎯
+
+ FAIL  __tests__/convex/topic11-teacher-publication-authorization.test.ts > Topic 1.1 teacher publication authorization > rejects a learner from a different organization
+TypeError: rows[table] is not iterable
+ ❯ Object.query __tests__/convex/topic11-teacher-publication-authorization.test.ts:109:26
+    107|     },
+    108|     query: (table: string) => {
+    109|       let selected = [...rows[table]!];
+       |                          ^
+    110|       const index = {
+    111|         eq(field: string, value: unknown) {
+ ❯ handler convex/learningEvidence.ts:3283:14
+ ❯ __tests__/convex/topic11-teacher-publication-authorization.test.ts:149:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/53]⎯
+
+ FAIL  __tests__/convex/topic11-teacher-publication-authorization.test.ts > Topic 1.1 teacher publication authorization > rejects a draft lesson version
+ FAIL  __tests__/convex/topic11-teacher-publication-authorization.test.ts > Topic 1.1 teacher publication authorization > rejects a source absent from phase
+TypeError: rows[table] is not iterable
+ ❯ Object.query __tests__/convex/topic11-teacher-publication-authorization.test.ts:109:26
+    107|     },
+    108|     query: (table: string) => {
+    109|       let selected = [...rows[table]!];
+       |                          ^
+    110|       const index = {
+    111|         eq(field: string, value: unknown) {
+ ❯ handler convex/learningEvidence.ts:3283:14
+ ❯ __tests__/convex/topic11-teacher-publication-authorization.test.ts:171:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/53]⎯
+
+ FAIL  __tests__/convex/topic11-teacher-publication-authorization.test.ts > Topic 1.1 teacher publication authorization > accepts the exact source in a published assigned lesson phase
+TypeError: rows[table] is not iterable
+ ❯ Object.query __tests__/convex/topic11-teacher-publication-authorization.test.ts:109:26
+    107|     },
+    108|     query: (table: string) => {
+    109|       let selected = [...rows[table]!];
+       |                          ^
+    110|       const index = {
+    111|         eq(field: string, value: unknown) {
+ ❯ handler convex/learningEvidence.ts:3283:14
+ ❯ __tests__/convex/topic11-teacher-publication-authorization.test.ts:179:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/53]⎯
+
+ FAIL  __tests__/convex/topic11-teacher-publication-authorization.test.ts > Topic 1.1 teacher publication authorization > accepts the canonical stable source ID in the current published phase
+TypeError: rows[table] is not iterable
+ ❯ Object.query __tests__/convex/topic11-teacher-publication-authorization.test.ts:109:26
+    107|     },
+    108|     query: (table: string) => {
+    109|       let selected = [...rows[table]!];
+       |                          ^
+    110|       const index = {
+    111|         eq(field: string, value: unknown) {
+ ❯ handler convex/learningEvidence.ts:3283:14
+ ❯ __tests__/convex/topic11-teacher-publication-authorization.test.ts:188:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/53]⎯
+
+ FAIL  __tests__/convex/topic11-teacher-publication-authorization.test.ts > Topic 1.1 teacher publication authorization > rejects a source that exists only in an older published version
+TypeError: rows[table] is not iterable
+ ❯ Object.query __tests__/convex/topic11-teacher-publication-authorization.test.ts:109:26
+    107|     },
+    108|     query: (table: string) => {
+    109|       let selected = [...rows[table]!];
+       |                          ^
+    110|       const index = {
+    111|         eq(field: string, value: unknown) {
+ ❯ handler convex/learningEvidence.ts:3283:14
+ ❯ __tests__/convex/topic11-teacher-publication-authorization.test.ts:209:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/53]⎯
+
+ FAIL  __tests__/convex/topic11-teacher-publication-authorization.test.ts > Topic 1.1 teacher publication authorization > rejects duplicate physical activities for the canonical stable source ID
+TypeError: rows[table] is not iterable
+ ❯ Object.query __tests__/convex/topic11-teacher-publication-authorization.test.ts:109:26
+    107|     },
+    108|     query: (table: string) => {
+    109|       let selected = [...rows[table]!];
+       |                          ^
+    110|       const index = {
+    111|         eq(field: string, value: unknown) {
+ ❯ handler convex/learningEvidence.ts:3283:14
+ ❯ __tests__/convex/topic11-teacher-publication-authorization.test.ts:218:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/53]⎯
+
+ FAIL  __tests__/convex/topic11-trusted-teacher-flow.test.ts > trusted Topic 1.1 teacher flow > ack then teacher then replay
+TypeError: r[t] is not iterable
+ ❯ Object.query __tests__/convex/topic11-trusted-teacher-flow.test.ts:95:19
+     93|     },
+     94|     query: (t: string) => {
+     95|       let a = [...r[t]],
+       |                   ^
+     96|         dir = "asc";
+     97|       const q: any = {
+ ❯ handler convex/activities.ts:10012:12
+ ❯ __tests__/convex/topic11-trusted-teacher-flow.test.ts:136:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/53]⎯
+
+ FAIL  __tests__/convex/topic11-trusted-teacher-flow.test.ts > trusted Topic 1.1 teacher flow > changes later independent eligibility
+TypeError: r[t] is not iterable
+ ❯ Object.query __tests__/convex/topic11-trusted-teacher-flow.test.ts:95:19
+     93|     },
+     94|     query: (t: string) => {
+     95|       let a = [...r[t]],
+       |                   ^
+     96|         dir = "asc";
+     97|       const q: any = {
+ ❯ handler convex/activities.ts:10012:12
+ ❯ __tests__/convex/topic11-trusted-teacher-flow.test.ts:153:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/53]⎯
+
+ FAIL  __tests__/convex/topic11-trusted-teacher-flow.test.ts > trusted Topic 1.1 teacher flow > rejects wrong teacher
+ FAIL  __tests__/convex/topic11-trusted-teacher-flow.test.ts > trusted Topic 1.1 teacher flow > rejects wrong class
+ FAIL  __tests__/convex/topic11-trusted-teacher-flow.test.ts > trusted Topic 1.1 teacher flow > rejects inactive enrollment
+ FAIL  __tests__/convex/topic11-trusted-teacher-flow.test.ts > trusted Topic 1.1 teacher flow > rejects missing assignment
+ FAIL  __tests__/convex/topic11-trusted-teacher-flow.test.ts > trusted Topic 1.1 teacher flow > rejects late enrollment
+ FAIL  __tests__/convex/topic11-trusted-teacher-flow.test.ts > trusted Topic 1.1 teacher flow > rejects late assignment
+TypeError: r[t] is not iterable
+ ❯ Object.query __tests__/convex/topic11-trusted-teacher-flow.test.ts:95:19
+     93|     },
+     94|     query: (t: string) => {
+     95|       let a = [...r[t]],
+       |                   ^
+     96|         dir = "asc";
+     97|       const q: any = {
+ ❯ handler convex/activities.ts:10012:12
+ ❯ __tests__/convex/topic11-trusted-teacher-flow.test.ts:202:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/53]⎯
+
+ FAIL  __tests__/convex/topic15-least-polynomial-degree-activity-constants.acceptance.test.ts > Topic 1.5 least-polynomial-degree activity constants > defines exact identities, projected rows, configs, and enabled evidence
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+
+- Expected
++ Received
+
+@@ -76,11 +76,11 @@
+      "rendererKey": "least-polynomial-degree",
+      "sourceNodeIds": [
+        "math.precalc.example.1.5.002",
+        "math.precalc.skill.1.5.apply-complex-conjugate-zeros-theorem",
+      ],
+-     "srsEligible": true,
++     "srsEligible": false,
+      "stableActivityId": "math.precalc.skill.1.5.determine-least-polynomial-degree-from-zeros-and-conjugate-pairs.guided_practice",
+    },
+    {
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-apr-b-3",
+@@ -111,9 +111,9 @@
+      "rendererKey": "least-polynomial-degree",
+      "sourceNodeIds": [
+        "math.precalc.example.1.5.002",
+        "math.precalc.skill.1.5.apply-complex-conjugate-zeros-theorem",
+      ],
+-     "srsEligible": true,
++     "srsEligible": false,
+      "stableActivityId": "math.precalc.skill.1.5.determine-least-polynomial-degree-from-zeros-and-conjugate-pairs.independent_practice",
+    },
+  ]
+
+ ❯ __tests__/convex/topic15-least-polynomial-degree-activity-constants.acceptance.test.ts:127:7
+    125|         srsEligible: activity.srsEligible,
+    126|       })),
+    127|     ).toEqual(
+       |       ^
+    128|       expectedProps.map((props, index) => ({
+    129|         stableActivityId: ACTIVITY_IDS[index],
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/53]⎯
+
+ FAIL  __tests__/convex/topic15-polynomial-inequality-activity-constants.acceptance.test.ts > Topic 1.5 polynomial-inequality activity constants > defines exact identities, projected rows, configs, and enabled evidence
+AssertionError: expected [ false, false, false ] to deeply equal [ false, true, true ]
+
+- Expected
++ Received
+
+  [
+    false,
+-   true,
+-   true,
++   false,
++   false,
+  ]
+
+ ❯ __tests__/convex/topic15-polynomial-inequality-activity-constants.acceptance.test.ts:99:73
+     97|       ),
+     98|     ).toBe(true);
+     99|     expect(projectedActivities.map((activity) => activity.srsEligible)…
+       |                                                                         ^
+    100|       false,
+    101|       true,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/53]⎯
+
+ FAIL  __tests__/convex/topic16-equation-end-behavior-activity-constants.acceptance.test.ts > Topic 1.6 equation-end-behavior activity constants > defines exact identities, projection rows, configs, and disabled evidence
+AssertionError: expected [ false, false, false ] to deeply equal [ false, true, true ]
+
+- Expected
++ Received
+
+  [
+    false,
+-   true,
+-   true,
++   false,
++   false,
+  ]
+
+ ❯ __tests__/convex/topic16-equation-end-behavior-activity-constants.acceptance.test.ts:121:70
+    119|       ),
+    120|     ).toBe(true);
+    121|     expect(actualActivities.map((activity) => activity.srsEligible)).t…
+       |                                                                      ^
+    122|     expect(actualActivities.map((activity) => activity.gradingConfig))…
+    123|       {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/53]⎯
+
+ FAIL  __tests__/app/student/saved-practice-dashboard.test.tsx > student saved-practice dashboard > authenticates, links lessons, and labels stored results without a completion claim
+TypeError: Cannot read properties of undefined (reading 'getDashboardData')
+ ❯ StudentDashboard app/student/dashboard/page.tsx:45:63
+     43| export default async function StudentDashboard() {
+     44|   const claims = await requireStudentSessionClaims("/student/dashboard…
+     45|   const dashboard = await fetchInternalQuery(internal.student.getDashb…
+       |                                                               ^
+     46|     userId: claims.sub,
+     47|   });
+ ❯ __tests__/app/student/saved-practice-dashboard.test.tsx:31:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/53]⎯
+
+ FAIL  __tests__/app/student/topic11-selected-lesson-page.test.tsx > selected Topic 1.1 lesson page > shows historical practice when current practice is unavailable
+TestingLibraryElementError: Unable to find an element with the text: Historical score 2. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<main[39m
+      [33mclass[39m=[32m"max-w-4xl mx-auto p-6"[39m
+    [36m>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m"underline"[39m
+        [33mhref[39m=[32m"/student/lessons"[39m
+      [36m>[39m
+        [0mAll lessons[0m
+      [36m</a>[39m
+      [36m<h1[39m
+        [33mclass[39m=[32m"mt-6"[39m
+      [36m>[39m
+        [0m1.1[0m
+        [0m [0m
+        [0mRates[0m
+      [36m</h1>[39m
+      [36m<nav[39m
+        [33maria-label[39m=[32m"Lesson phases"[39m
+        [33mclass[39m=[32m"flex flex-wrap gap-4 my-6"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"underline"[39m
+          [33mhref[39m=[32m"#phase-phase:4"[39m
+        [36m>[39m
+          [0mWorked example[0m
+        [36m</a>[39m
+      [36m</nav>[39m
+      [36m<section[39m
+        [33mclass[39m=[32m"rounded-panel border border-subtle p-6 my-6"[39m
+        [33mid[39m=[32m"phase-phase:4"[39m
+      [36m>[39m
+        [36m<h2>[39m
+          [0mWorked example[0m
+        [36m</h2>[39m
+        [36m<p[39m
+          [33mrole[39m=[32m"status"[39m
+        [36m>[39m
+          [0mYour acknowledgement is saved. Wait for your teacher to confirm the lesson before you start practice.[0m
+          [36m<a[39m
+            [33mclass[39m=[32m"underline"[39m
+            [33mhref[39m=[32m"/student/lessons/1.1"[39m
+          [36m>[39m
+            [0mCheck lesson status[0m
+          [36m</a>[39m
+        [36m</p>[39m
+      [36m</section>[39m
+    [36m</main>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError ../../node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../../node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ __tests__/app/student/topic11-selected-lesson-page.test.tsx:135:19
+    133|     const Page = (await import("@/app/student/lessons/[topic]/page")).…
+    134|     render(await Page({ params: Promise.resolve({ topic: "1.1" }) }));
+    135|     expect(screen.getByText("Historical score 2")).toBeInTheDocument();
+       |                   ^
+    136|     expect(screen.queryByTestId("practice")).not.toBeInTheDocument();
+    137|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/53]⎯
+
+ FAIL  __tests__/app/teacher/topic11-dashboard.test.tsx > requires a teacher session and renders the exact candidate choices
+ FAIL  __tests__/app/teacher/topic11-dashboard.test.tsx > renders the empty candidate state
+TypeError: Cannot read properties of undefined (reading 'map')
+ ❯ TeacherCourse components/course/TeacherCourse.tsx:109:23
+    107|       Class
+    108|       <select aria-label="Class" name="classId" className="input-field…
+    109|         {data.classes.map((c) => (
+       |                       ^
+    110|           <option key={c._id} value={c._id}>
+    111|             {c.name}
+ ❯ Object.react_stack_bottom_frame ../../node_modules/react-dom/cjs/react-dom-client.development.js:28571:20
+ ❯ renderWithHooks ../../node_modules/react-dom/cjs/react-dom-client.development.js:8030:22
+ ❯ updateFunctionComponent ../../node_modules/react-dom/cjs/react-dom-client.development.js:10569:19
+ ❯ beginWork ../../node_modules/react-dom/cjs/react-dom-client.development.js:12205:18
+ ❯ runWithFiberInDEV ../../node_modules/react-dom/cjs/react-dom-client.development.js:1048:13
+ ❯ performUnitOfWork ../../node_modules/react-dom/cjs/react-dom-client.development.js:19176:22
+ ❯ workLoopSync ../../node_modules/react-dom/cjs/react-dom-client.development.js:19004:41
+ ❯ renderRootSync ../../node_modules/react-dom/cjs/react-dom-client.development.js:18985:11
+ ❯ performWorkOnRoot ../../node_modules/react-dom/cjs/react-dom-client.development.js:18094:35
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/53]⎯
+
+ FAIL  __tests__/convex/seed/topic12-source-link.acceptance.test.ts > Passwater Topic 1.2 authored examples > defines the source-backed Example 6 table blueprint for all three modes
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ __tests__/convex/seed/topic12-source-link.acceptance.test.ts:517:43
+    515|       true,
+    516|     );
+    517|     expect(projectedRows[2]!.srsEligible).toBe(true);
+       |                                           ^
+    518|     expect(getGenerator("topic12-table-average-rate-choice").key).toBe(
+    519|       "topic12-table-average-rate-choice",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/53]⎯
+
+ FAIL  __tests__/convex/seed/topic12-source-link.acceptance.test.ts > Passwater Topic 1.2 authored examples > synchronizes the stored Example 6 activity and ready SRS projections
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ __tests__/convex/seed/topic12-source-link.acceptance.test.ts:567:31
+    565|       expect(row.rendererKey).toBe("table-average-rate-choice");
+    566|       expect(getPropsSchema(String(row.rendererKey))?.safeParse(row.pr…
+    567|       expect(row.srsEligible).toBe(
+       |                               ^
+    568|         row.mode === "guided_practice" || row.mode === "independent_pr…
+    569|       );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/53]⎯
+
+ FAIL  __tests__/convex/seed/topic12-source-link.acceptance.test.ts > Passwater Topic 1.2 authored examples > defines the source-backed Example 3 graph blueprint and ready projections
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ __tests__/convex/seed/topic12-source-link.acceptance.test.ts:764:7
+    762|         (row) => row.mode === "independent_practice" && row.srsEligibl…
+    763|       ),
+    764|     ).toHaveLength(1);
+       |       ^
+    765|     expect(expectedSrs).toHaveLength(1);
+    766|     expect(actualCombinedSrs).toHaveLength(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/53]⎯
+
+ FAIL  __tests__/convex/seed/topic12-source-link.acceptance.test.ts > Passwater Topic 1.2 authored examples > projects the ready Example 1 pointwise rate-ordering blueprint
+AssertionError: expected [ false, false, false ] to deeply equal [ false, true, true ]
+
+- Expected
++ Received
+
+  [
+    false,
+-   true,
+-   true,
++   false,
++   false,
+  ]
+
+ ❯ __tests__/convex/seed/topic12-source-link.acceptance.test.ts:1006:60
+    1004|       }),
+    1005|     ).toBe(true);
+    1006|     expect(actualActivities.map((row) => row.srsEligible)).toEqual([fa…
+       |                                                            ^
+    1007|     expect(
+    1008|       actualActivities.every(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/53]⎯
+
+ FAIL  __tests__/convex/seed/topic12-source-link.acceptance.test.ts > Passwater Topic 1.2 authored examples > projects the ready Example 5 quadratic negative-rate interval blueprint
+AssertionError: expected [ false, false, false ] to deeply equal [ false, true, true ]
+
+- Expected
++ Received
+
+  [
+    false,
+-   true,
+-   true,
++   false,
++   false,
+  ]
+
+ ❯ __tests__/convex/seed/topic12-source-link.acceptance.test.ts:1648:60
+    1646|       expectedActivities.map((row) => row.gradingConfig),
+    1647|     );
+    1648|     expect(actualActivities.map((row) => row.srsEligible)).toEqual([fa…
+       |                                                            ^
+    1649|     expect(new Set(activityProjection.activities.map((row) => row.stab…
+    1650|       activityProjection.activities.length,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[30/53]⎯
+
+ FAIL  __tests__/convex/seed/topic12-source-link.acceptance.test.ts > Passwater Topic 1.2 authored examples > projects the ready Example 4 negative-rate context blueprint
+AssertionError: expected [ false, false, false ] to deeply equal [ false, true, true ]
+
+- Expected
++ Received
+
+  [
+    false,
+-   true,
+-   true,
++   false,
++   false,
+  ]
+
+ ❯ __tests__/convex/seed/topic12-source-link.acceptance.test.ts:1758:60
+    1756|       expectedActivities.map((row) => row.gradingConfig),
+    1757|     );
+    1758|     expect(actualActivities.map((row) => row.srsEligible)).toEqual([fa…
+       |                                                            ^
+    1759|     const stableActivityIds = activityProjection.activities.map((row) …
+    1760|     expect(new Set(stableActivityIds).size).toBe(stableActivityIds.len…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[31/53]⎯
+
+ FAIL  __tests__/convex/seed/topic12-source-link.acceptance.test.ts > Passwater Topic 1.2 authored examples > keeps the Example 2 least-rate projections synchronized and ready
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ __tests__/convex/seed/topic12-source-link.acceptance.test.ts:1832:31
+    1830|       expect(row.stableActivityId).toBe(`${nodeId}.${String(row.mode)}…
+    1831|       expect(row.rendererKey).toBe("pointwise-least-rate-choice");
+    1832|       expect(row.srsEligible).toBe(
+       |                               ^
+    1833|         row.mode === "guided_practice" || row.mode === "independent_pr…
+    1834|       );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[32/53]⎯
+
+ FAIL  __tests__/convex/seed/topic13-source-link.acceptance.test.ts > Topic 1.3 source-to-skill graph reconciliation > keeps both Topic 1.3 blueprints and projections source-linked
+AssertionError: expected [ false, false, false ] to deeply equal [ false, true, true ]
+
+- Expected
++ Received
+
+  [
+    false,
+-   true,
+-   true,
++   false,
++   false,
+  ]
+
+ ❯ __tests__/convex/seed/topic13-source-link.acceptance.test.ts:416:62
+    414|       true,
+    415|     );
+    416|     expect(classificationRows.map((row) => row.srsEligible)).toEqual([…
+       |                                                              ^
+    417|     expect(new Set(projection.activities.map((row) => row.stableActivi…
+    418|       projection.activities.length,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[33/53]⎯
+
+ FAIL  __tests__/convex/seed/topic14-source-link.acceptance.test.ts > Topic 1.4 Example 1 graph capability > stores the source-backed graph-ready Example 4 blueprint with live three-mode props
+AssertionError: expected [ false, false, false ] to deeply equal [ false, true, true ]
+
+- Expected
++ Received
+
+  [
+    false,
+-   true,
+-   true,
++   false,
++   false,
+  ]
+
+ ❯ __tests__/convex/seed/topic14-source-link.acceptance.test.ts:716:60
+    714|       blueprint.gradingSpec,
+    715|     ]);
+    716|     expect(actualActivities.map((row) => row.srsEligible)).toEqual([fa…
+       |                                                            ^
+    717|     expect(expectedSrs).toHaveLength(1);
+    718|     expect(actualCombinedSrs).toHaveLength(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[34/53]⎯
+
+ FAIL  __tests__/convex/seed/topic14-source-link.acceptance.test.ts > Topic 1.4 Example 1 graph capability > stores the source-backed graph-ready Example 1 blueprint and projections
+AssertionError: expected [ false, false, false ] to deeply equal [ false, true, true ]
+
+- Expected
++ Received
+
+  [
+    false,
+-   true,
+-   true,
++   false,
++   false,
+  ]
+
+ ❯ __tests__/convex/seed/topic14-source-link.acceptance.test.ts:911:60
+    909|     ]);
+    910|     for (const row of actualActivities) expect(row.sourceNodeIds).toCo…
+    911|     expect(actualActivities.map((row) => row.srsEligible)).toEqual([fa…
+       |                                                            ^
+    912|     expect(actualActivities.map((row) => row.props)).toEqual([
+    913|       workedProps,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[35/53]⎯
+
+ FAIL  __tests__/convex/seed/topic14-source-link.acceptance.test.ts > Topic 1.4 Example 1 graph capability > stores the source-backed graph-ready Example 2 blueprint and projections
+AssertionError: expected [ false, false, false ] to deeply equal [ false, true, true ]
+
+- Expected
++ Received
+
+  [
+    false,
+-   true,
+-   true,
++   false,
++   false,
+  ]
+
+ ❯ __tests__/convex/seed/topic14-source-link.acceptance.test.ts:1096:60
+    1094|     ]);
+    1095|     for (const row of actualActivities) expect(row.sourceNodeIds).toCo…
+    1096|     expect(actualActivities.map((row) => row.srsEligible)).toEqual([fa…
+       |                                                            ^
+    1097|     expect(actualActivities.map((row) => row.props)).toEqual([
+    1098|       workedProps,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[36/53]⎯
+
+ FAIL  __tests__/convex/seed/topic14-source-link.acceptance.test.ts > Topic 1.4 Example 1 graph capability > stores the source-backed practice-ready Example 3 blueprint and projections
+AssertionError: expected [ false, false, false ] to deeply equal [ false, true, true ]
+
+- Expected
++ Received
+
+  [
+    false,
+-   true,
+-   true,
++   false,
++   false,
+  ]
+
+ ❯ __tests__/convex/seed/topic14-source-link.acceptance.test.ts:1299:60
+    1297|     ]);
+    1298|     for (const row of actualActivities) expect(row.sourceNodeIds).toCo…
+    1299|     expect(actualActivities.map((row) => row.srsEligible)).toEqual([fa…
+       |                                                            ^
+    1300|     expect(actualActivities.map((row) => row.props)).toEqual([
+    1301|       blueprint.workedExampleSpec!.rendererProps,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[37/53]⎯
+
+ FAIL  __tests__/convex/seed/topic15-least-polynomial-degree-projection.acceptance.test.ts > Topic 1.5 Example 2 least-degree projections > matches fresh projector output for activities and both SRS surfaces
+AssertionError: expected [ false, false, false ] to deeply equal [ false, true, true ]
+
+- Expected
++ Received
+
+  [
+    false,
+-   true,
+-   true,
++   false,
++   false,
+  ]
+
+ ❯ __tests__/convex/seed/topic15-least-polynomial-degree-projection.acceptance.test.ts:97:60
+     95|     for (const row of actualActivities) expect(row.sourceNodeIds).toCo…
+     96|     expect(actualActivities.every((row) => row.rendererKey === RENDERE…
+     97|     expect(actualActivities.map((row) => row.srsEligible)).toEqual([fa…
+       |                                                            ^
+     98|     expect(actualActivities.map((row) => row.gradingConfig)).toEqual(
+     99|       Array.from({ length: 3 }, () => expectedActivities[0]!.gradingCo…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[38/53]⎯
+
+ FAIL  __tests__/convex/seed/topic15-polynomial-inequality-projection.acceptance.test.ts > Topic 1.5 Example 3 polynomial-inequality projections > matches fresh activity and SRS projection output for the exact sign-chart node
+AssertionError: expected [ false, false, false ] to deeply equal [ false, true, true ]
+
+- Expected
++ Received
+
+  [
+    false,
+-   true,
+-   true,
++   false,
++   false,
+  ]
+
+ ❯ __tests__/convex/seed/topic15-polynomial-inequality-projection.acceptance.test.ts:103:60
+    101|     );
+    102|     expect(actualActivities.every((row) => row.rendererKey === RENDERE…
+    103|     expect(actualActivities.map((row) => row.srsEligible)).toEqual([fa…
+       |                                                            ^
+    104|     expect(actualActivities.map((row) => row.gradingConfig)).toEqual(
+    105|       Array.from({ length: 3 }, () => expectedActivities[0]!.gradingCo…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[39/53]⎯
+
+ FAIL  __tests__/convex/seed/topic15-polynomial-inequality-readiness.acceptance.test.ts > Topic 1.5 Example 3 graph readiness > promotes the exact sign-chart node and its derived projections
+AssertionError: expected [ false, false, false ] to deeply equal [ false, true, true ]
+
+- Expected
++ Received
+
+  [
+    false,
+-   true,
+-   true,
++   false,
++   false,
+  ]
+
+ ❯ __tests__/convex/seed/topic15-polynomial-inequality-readiness.acceptance.test.ts:86:60
+     84|       MODES.map((mode) => `${NODE_ID}.${mode}`),
+     85|     );
+     86|     expect(storedActivities.map((row) => row.srsEligible)).toEqual([fa…
+       |                                                            ^
+     87|
+     88|     const expectedSrs = projectSrsInputs(nodes, edges, blueprints).fil…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[40/53]⎯
+
+ FAIL  __tests__/convex/seed/topic15-projection.acceptance.test.ts > Topic 1.5 Example 1 activity and SRS projections > matches exact projector output for the three activity modes and both SRS surfaces
+AssertionError: expected [ false, false, false ] to deeply equal [ false, true, true ]
+
+- Expected
++ Received
+
+  [
+    false,
+-   true,
+-   true,
++   false,
++   false,
+  ]
+
+ ❯ __tests__/convex/seed/topic15-projection.acceptance.test.ts:90:60
+     88|     for (const row of actualActivities) expect(row.sourceNodeIds).toCo…
+     89|     expect(actualActivities.every((row) => row.rendererKey === RENDERE…
+     90|     expect(actualActivities.map((row) => row.srsEligible)).toEqual([fa…
+       |                                                            ^
+     91|     expect(actualActivities.map((row) => row.gradingConfig)).toEqual(
+     92|       Array.from({ length: 3 }, () => expectedActivities[0]!.gradingCo…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[41/53]⎯
+
+ FAIL  __tests__/convex/seed/topic16-equation-end-behavior-blueprint.acceptance.test.ts > Topic 1.6 Example 3 equation-end-behavior blueprint > stores the exact non-ready three-mode source blueprint
+AssertionError: expected [ { …(12) }, { …(12) }, …(82) ] to have a length of 81 but got 84
+
+- Expected
++ Received
+
+- 81
++ 84
+
+ ❯ __tests__/convex/seed/topic16-equation-end-behavior-blueprint.acceptance.test.ts:175:24
+    173|
+    174|     expect(targetRows).toHaveLength(1);
+    175|     expect(blueprints).toHaveLength(81);
+       |                        ^
+    176|     expect(new Set(ids).size).toBe(ids.length);
+    177|     expect(ids[targetIndex - 1]).toBe(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[42/53]⎯
+
+ FAIL  __tests__/convex/seed/topic16-equation-end-behavior-projection.acceptance.test.ts > Topic 1.6 Example 3 equation-end-behavior projections > stores exact projector output with readiness
+AssertionError: expected [ false, false, false ] to deeply equal [ false, true, true ]
+
+- Expected
++ Received
+
+  [
+    false,
+-   true,
+-   true,
++   false,
++   false,
+  ]
+
+ ❯ __tests__/convex/seed/topic16-equation-end-behavior-projection.acceptance.test.ts:113:66
+    111|       true,
+    112|     );
+    113|     expect(actualTargetActivities.map((row) => row.srsEligible)).toEqu…
+       |                                                                  ^
+    114|
+    115|     const workedOutput = generateTopic16EquationEndBehaviorOutput(0);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[43/53]⎯
+
+ FAIL  __tests__/convex/seed/topic16-equation-end-behavior-readiness.acceptance.test.ts > Topic 1.6 Example 3 graph readiness > promotes the exact node and its derived projections
+AssertionError: expected [ false, false, false ] to deeply equal [ false, true, true ]
+
+- Expected
++ Received
+
+  [
+    false,
+-   true,
+-   true,
++   false,
++   false,
+  ]
+
+ ❯ __tests__/convex/seed/topic16-equation-end-behavior-readiness.acceptance.test.ts:93:60
+     91|       MODES.map((mode) => `${NODE_ID}.${mode}`),
+     92|     );
+     93|     expect(storedActivities.map((row) => row.srsEligible)).toEqual([fa…
+       |                                                            ^
+     94|
+     95|     const expectedSrs = projectSrsInputs(readyNodes, edges, blueprints…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[44/53]⎯
+
+ FAIL  __tests__/app/api/activities/precalculus-pilot/submissions/route.acceptance.test.ts > POST /api/activities/precalculus-pilot/submissions > accepts a long opaque key with the student-only gate and server-owned Topic 1.1 rubric
+AssertionError: expected 400 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 400
+
+ ❯ __tests__/app/api/activities/precalculus-pilot/submissions/route.acceptance.test.ts:115:29
+    113|     const response = await POST(request);
+    114|
+    115|     expect(response.status).toBe(200);
+       |                             ^
+    116|     await expect(response.json()).resolves.toStrictEqual(SERVER_OWNED_…
+    117|     expect(mocks.requireStudentRequestClaims).toHaveBeenCalledWith(req…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[45/53]⎯
+
+ FAIL  __tests__/app/api/activities/precalculus-pilot/submissions/route.acceptance.test.ts > POST /api/activities/precalculus-pilot/submissions > maps a producer error that only contains idempotency_conflict to safe HTTP 500
+AssertionError: expected 409 to be 500 // Object.is equality
+
+- Expected
++ Received
+
+- 500
++ 409
+
+ ❯ __tests__/app/api/activities/precalculus-pilot/submissions/route.acceptance.test.ts:290:29
+    288|     const response = await POST(makeRequest(RAW_ENVELOPE));
+    289|
+    290|     expect(response.status).toBe(500);
+       |                             ^
+    291|     await expect(response.json()).resolves.toEqual({ error: "Unable to…
+    292|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[46/53]⎯
+
+
+ Test Files  25 failed | 245 passed (270)
+      Tests  52 failed | 6134 passed (6186)
+   Start at  20:03:37
+   Duration  262.15s (transform 4.15s, setup 19.43s, import 41.30s, tests 60.03s, environment 116.72s)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /home/daniebo/Desktop/ra-math-advantage/apps/pre-calculus
+npm error workspace undefined
+npm error location /home/daniebo/Desktop/ra-math-advantage/apps/pre-calculus
+npm error command failed
+npm error command sh -c vitest run

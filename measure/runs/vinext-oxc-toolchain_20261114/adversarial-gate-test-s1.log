@@ -1,0 +1,3 @@
+NEW FAILURE: test packages/math-content has a new diagnostic
+NEWFAIL=1
+gate exit: 1

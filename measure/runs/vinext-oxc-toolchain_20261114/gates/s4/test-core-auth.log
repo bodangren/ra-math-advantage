@@ -1,0 +1,13 @@
+
+> @math-platform/core-auth@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/core-auth
+
+
+ Test Files  2 passed (2)
+      Tests  57 passed (57)
+   Start at  20:09:28
+   Duration  283ms (transform 39ms, setup 0ms, import 64ms, tests 44ms, environment 0ms)
+

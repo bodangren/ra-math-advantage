@@ -1,0 +1,31 @@
+
+> @math-platform/knowledge-space-practice@0.1.0 build
+> tsc --noEmit
+
+src/__tests__/projections-variant-rename.test.ts(28,30): error TS2591: Cannot find name 'node:fs'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+src/__tests__/projections-variant-rename.test.ts(29,25): error TS2591: Cannot find name 'node:path'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+src/__tests__/projections-variant-rename.test.ts(41,24): error TS2304: Cannot find name '__dirname'.
+src/__tests__/projections-variant-rename.test.ts(46,24): error TS2304: Cannot find name '__dirname'.
+src/__tests__/projections-variant-rename.test.ts(51,24): error TS2304: Cannot find name '__dirname'.
+src/__tests__/projections.test.ts(450,9): error TS2741: Property 'domain' is missing in type '{ id: string; kind: "concept"; title: string; description: string; reviewStatus: "approved"; metadata: {}; }' but required in type 'KnowledgeSpaceNode'.
+src/__tests__/projections.test.ts(458,9): error TS2741: Property 'domain' is missing in type '{ id: string; kind: "skill"; title: string; reviewStatus: "approved"; metadata: {}; }' but required in type 'KnowledgeSpaceNode'.
+src/__tests__/projections.test.ts(465,9): error TS2741: Property 'domain' is missing in type '{ id: string; kind: "skill"; title: string; reviewStatus: "approved"; metadata: {}; }' but required in type 'KnowledgeSpaceNode'.
+src/__tests__/projections.test.ts(472,9): error TS2741: Property 'domain' is missing in type '{ id: string; kind: "skill"; title: string; reviewStatus: "approved"; metadata: {}; }' but required in type 'KnowledgeSpaceNode'.
+src/__tests__/projections.test.ts(479,9): error TS2741: Property 'domain' is missing in type '{ id: string; kind: "concept"; title: string; reviewStatus: "approved"; metadata: {}; }' but required in type 'KnowledgeSpaceNode'.
+src/__tests__/projections.test.ts(534,11): error TS2741: Property 'rendererModeMap' is missing in type '{ nodeId: string; sourceNodeIds: never[]; alignmentNodeIds: never[]; rendererKey: string; independentPracticeSpec: { variantParameters: {}; answerSchema: { answer: {}; }; gradingRules: never[]; replayPolicy: "any_seed"; }; reviewStatus: "draft"; metadata: {}; }' but required in type 'KnowledgeBlueprint'.
+src/__tests__/projections.test.ts(570,7): error TS2741: Property 'target' is missing in type '{ prompt: string; givens: never[]; steps: never[]; explanation: string; }' but required in type 'WorkedExampleSpec'.
+src/__tests__/projections.test.ts(598,11): error TS2741: Property 'rendererModeMap' is missing in type '{ nodeId: string; sourceNodeIds: never[]; alignmentNodeIds: never[]; rendererKey: string; independentPracticeSpec: { variantParameters: {}; answerSchema: { answer: {}; }; gradingRules: never[]; replayPolicy: "any_seed"; }; reviewStatus: "draft"; metadata: {}; }' but required in type 'KnowledgeBlueprint'.
+src/__tests__/projections.test.ts(620,11): error TS2741: Property 'domain' is missing in type '{ id: string; kind: "skill"; title: string; reviewStatus: "approved"; metadata: {}; }' but required in type 'KnowledgeSpaceNode'.
+src/__tests__/projections.test.ts(627,11): error TS2741: Property 'domain' is missing in type '{ id: string; kind: "concept"; title: string; reviewStatus: "approved"; metadata: {}; }' but required in type 'KnowledgeSpaceNode'.
+src/__tests__/projections.test.ts(645,11): error TS2741: Property 'rendererModeMap' is missing in type '{ nodeId: string; sourceNodeIds: never[]; alignmentNodeIds: never[]; rendererKey: string; independentPracticeSpec: { variantParameters: {}; answerSchema: { answer: {}; }; gradingRules: never[]; replayPolicy: "any_seed"; }; reviewStatus: "draft"; metadata: {}; }' but required in type 'KnowledgeBlueprint'.
+src/__tests__/projections.test.ts(692,27): error TS2352: Conversion of type 'StudentVisualizationV1' to type 'Record<string, unknown>' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Index signature for type 'string' is missing in type 'StudentVisualizationV1'.
+src/__tests__/projections.test.ts(718,32): error TS2352: Conversion of type 'StudentVisualizationV1' to type 'Record<string, unknown>' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Index signature for type 'string' is missing in type 'StudentVisualizationV1'.
+npm error Lifecycle script `build` failed with error:
+npm error code 1
+npm error path /home/daniebo/Desktop/ra-math-advantage/packages/knowledge-space-practice
+npm error workspace @math-platform/knowledge-space-practice@0.1.0
+npm error location /home/daniebo/Desktop/ra-math-advantage/packages/knowledge-space-practice
+npm error command failed
+npm error command sh -c tsc --noEmit

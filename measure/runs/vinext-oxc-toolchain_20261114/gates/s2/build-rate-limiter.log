@@ -1,0 +1,4 @@
+
+> @math-platform/rate-limiter@0.1.0 build
+> tsc --noEmit
+

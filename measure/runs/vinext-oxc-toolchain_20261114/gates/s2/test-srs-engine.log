@@ -1,0 +1,13 @@
+
+> @math-platform/srs-engine@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/srs-engine
+
+
+ Test Files  44 passed (44)
+      Tests  478 passed (478)
+   Start at  23:43:39
+   Duration  6.45s (transform 331ms, setup 0ms, import 2.24s, tests 473ms, environment 3ms)
+

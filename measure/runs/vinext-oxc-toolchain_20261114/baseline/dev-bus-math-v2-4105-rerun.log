@@ -1,0 +1,116 @@
+
+  vinext dev  (Vite 8.0.16)
+
+The "middleware" file convention is deprecated. Please use "proxy" instead.
+
+  To migrate automatically, run:
+  npx @next/codemod@canary middleware-to-proxy .
+
+  Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+Using secrets defined in .env.local
+[2m12:32:27 AM[22m [36m[1m[vite][22m[39m [34m[2m(rsc)[22m[39m [optimizer] scanning dependencies...
+[2m12:32:27 AM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m [optimizer] scanning dependencies...
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4105[22m/[39m
+  [32m➜[39m  [1mDebug[22m:   [2m[33mhttp://localhost:[1m4105[22m[2m/__debug[39m[22m
+[2m12:32:43 AM[22m [36m[1m[vite][22m[39m [34m[2m(rsc)[22m[39m [32mhmr update [39m[2m/app/globals.css[22m
+[2m12:32:44 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [optimizer] bundling dependencies...
+[home] Failed to load landing data from Convex {
+  statsError: Error: Network connection lost.
+      at ConvexHttpClient.queryInner (/home/daniebo/Desktop/ra-math-advantage/node_modules/convex/src/browser/http_client.ts:310:22)
+      at ConvexHttpClient.query (/home/daniebo/Desktop/ra-math-advantage/node_modules/convex/src/browser/http_client.ts:275:12)
+      at async Promise.allSettled (index 0)
+      at Home (/home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2/app/page.tsx:53:36)
+      at /home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-page-execution.ts:488:11
+      at probeAppPageBeforeRender (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-page-probe.ts:341:22)
+      at renderAppPageLifecycle (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-page-render.ts:299:27)
+      at dispatchAppPage (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-page-dispatch.ts:358:10)
+      at handleAppRscRequest (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-rsc-handler.ts:690:24)
+      at route (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-rsc-handler.ts:836:24) {
+    remote: true,
+    retryable: true
+  },
+  unitsError: Error: Network connection lost.
+      at ConvexHttpClient.queryInner (/home/daniebo/Desktop/ra-math-advantage/node_modules/convex/src/browser/http_client.ts:310:22)
+      at ConvexHttpClient.query (/home/daniebo/Desktop/ra-math-advantage/node_modules/convex/src/browser/http_client.ts:275:12)
+      at async Promise.allSettled (index 1)
+      at Home (/home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2/app/page.tsx:53:36)
+      at /home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-page-execution.ts:488:11
+      at probeAppPageBeforeRender (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-page-probe.ts:341:22)
+      at renderAppPageLifecycle (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-page-render.ts:299:27)
+      at dispatchAppPage (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-page-dispatch.ts:358:10)
+      at handleAppRscRequest (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-rsc-handler.ts:690:24)
+      at route (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-rsc-handler.ts:836:24) {
+    remote: true,
+    retryable: true
+  }
+}
+[home] Failed to load landing data from Convex {
+  statsError: Error: Network connection lost.
+      at async ConvexHttpClient.queryInner (/home/daniebo/Desktop/ra-math-advantage/node_modules/convex/dist/esm/browser/http_client.js?v=dfd55a48:225:22)
+      at async ConvexHttpClient.query (/home/daniebo/Desktop/ra-math-advantage/node_modules/convex/dist/esm/browser/http_client.js?v=dfd55a48:202:12)
+      at async Promise.allSettled (index 0)
+      at async Home (/home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2/app/page.tsx:49:35) {
+    remote: true,
+    retryable: true
+  },
+  unitsError: Error: Network connection lost.
+      at async ConvexHttpClient.queryInner (/home/daniebo/Desktop/ra-math-advantage/node_modules/convex/dist/esm/browser/http_client.js?v=dfd55a48:225:22)
+      at async ConvexHttpClient.query (/home/daniebo/Desktop/ra-math-advantage/node_modules/convex/dist/esm/browser/http_client.js?v=dfd55a48:202:12)
+      at async Promise.allSettled (index 1)
+      at async Home (/home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2/app/page.tsx:49:35) {
+    remote: true,
+    retryable: true
+  }
+}
+ GET / 200 in 6.0s (compile: 1794677544.3s, render: 3.1s)
+[home] Failed to load landing data from Convex {
+  statsError: Error: Network connection lost.
+      at ConvexHttpClient.queryInner (/home/daniebo/Desktop/ra-math-advantage/node_modules/convex/src/browser/http_client.ts:310:22)
+      at ConvexHttpClient.query (/home/daniebo/Desktop/ra-math-advantage/node_modules/convex/src/browser/http_client.ts:275:12)
+      at async Promise.allSettled (index 0)
+      at Home (/home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2/app/page.tsx:53:36)
+      at /home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-page-execution.ts:488:11
+      at probeAppPageBeforeRender (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-page-probe.ts:341:22)
+      at renderAppPageLifecycle (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-page-render.ts:299:27)
+      at dispatchAppPage (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-page-dispatch.ts:358:10)
+      at handleAppRscRequest (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-rsc-handler.ts:690:24)
+      at route (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-rsc-handler.ts:836:24) {
+    remote: true,
+    retryable: true
+  },
+  unitsError: Error: Network connection lost.
+      at ConvexHttpClient.queryInner (/home/daniebo/Desktop/ra-math-advantage/node_modules/convex/src/browser/http_client.ts:310:22)
+      at ConvexHttpClient.query (/home/daniebo/Desktop/ra-math-advantage/node_modules/convex/src/browser/http_client.ts:275:12)
+      at async Promise.allSettled (index 1)
+      at Home (/home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2/app/page.tsx:53:36)
+      at /home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-page-execution.ts:488:11
+      at probeAppPageBeforeRender (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-page-probe.ts:341:22)
+      at renderAppPageLifecycle (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-page-render.ts:299:27)
+      at dispatchAppPage (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-page-dispatch.ts:358:10)
+      at handleAppRscRequest (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-rsc-handler.ts:690:24)
+      at route (/home/daniebo/Desktop/ra-math-advantage/node_modules/vinext/src/server/app-rsc-handler.ts:836:24) {
+    remote: true,
+    retryable: true
+  }
+}
+[home] Failed to load landing data from Convex {
+  statsError: Error: Network connection lost.
+      at async ConvexHttpClient.queryInner (/home/daniebo/Desktop/ra-math-advantage/node_modules/convex/dist/esm/browser/http_client.js?v=dfd55a48:225:22)
+      at async ConvexHttpClient.query (/home/daniebo/Desktop/ra-math-advantage/node_modules/convex/dist/esm/browser/http_client.js?v=dfd55a48:202:12)
+      at async Promise.allSettled (index 0)
+      at async Home (/home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2/app/page.tsx:49:35) {
+    remote: true,
+    retryable: true
+  },
+  unitsError: Error: Network connection lost.
+      at async ConvexHttpClient.queryInner (/home/daniebo/Desktop/ra-math-advantage/node_modules/convex/dist/esm/browser/http_client.js?v=dfd55a48:225:22)
+      at async ConvexHttpClient.query (/home/daniebo/Desktop/ra-math-advantage/node_modules/convex/dist/esm/browser/http_client.js?v=dfd55a48:202:12)
+      at async Promise.allSettled (index 1)
+      at async Home (/home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2/app/page.tsx:49:35) {
+    remote: true,
+    retryable: true
+  }
+}
+ GET / 200 in 195ms (compile: 1794677541.4s, render: 144ms)
+[2m12:33:02 AM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m Server  [home] Failed to load landing data from Convex {"statsError":{"name":"Error","message":"Network connection lost.","stack":"Error: Network connection lost.\n    at Home (about://React/Server/file:///home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2/app/page.tsx?31:49:35)\n    at resolveErrorDev (http://localhost:4105/node_modules/.vite/deps/@vitejs_plugin-rsc_vendor_react-server-dom_client__browser.js?v=43f44c41:1739:101)\n    at getOutlinedModel (http://localhost:4105/node_modules/.vite/deps/@vitejs_plugin-rsc_vendor_react-server-dom_client__browser.js?v=43f44c41:1329:17)\n    at parseModelString (http://localhost:4105/node_modules/.vite/deps/@vitejs_plugin-rsc_vendor_react-server-dom_client__browser.js?v=43f44c41:1427:45)\n    at Object.<anonymous> (http://localhost:4105/node_modules/.vite/deps/@vitejs_plugin-rsc_vendor_react-server-dom_client__browser.js?v=43f44c41:2286:44)\n    at JSON.parse (<anonymous>)\n    at initializeModelChunk (http://localhost:4105/node_modules/.vite/deps/@vitejs_plugin-rsc_vendor_react-server-dom_client__browser.js?v=43f44c41:965:22)\n    at getOutlinedModel (http://localhost:4105/node_modules/.vite/deps/@vitejs_plugin-rsc_vendor_react-server-dom_client__browser.js?v=43f44c41:1273:6)\n    at parseModelString (http://localhost:4105/node_modules/.vite/deps/@vitejs_plugin-rsc_vendor_react-server-dom_client__browser.js?v=43f44c41:1470:44)\n    at Array.<anonymous> (http://localhost:4105/node_modules/.vite/deps/@vitejs_plugin-rsc_vendor_react-server-dom_client__browser.js?v=43f44c41:2286:44)"},"unitsError":{"name":"Error","message":"Network connection lost.","stack":"Error: Network connection lost.\n    at Home (about://React/Server/file:///home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2/app/page.tsx?31:49:35)\n    at resolveErrorDev (http://localhost:4105/node_modules/.vite/deps/@vitejs_plugin-rsc_vendor_react-server-dom_client__browser.js?v=43f44c41:1739:101)\n    at getOutlinedModel (http://localhost:4105/node_modules/.vite/deps/@vitejs_plugin-rsc_vendor_react-server-dom_client__browser.js?v=43f44c41:1329:17)\n    at parseModelString (http://localhost:4105/node_modules/.vite/deps/@vitejs_plugin-rsc_vendor_react-server-dom_client__browser.js?v=43f44c41:1427:45)\n    at Object.<anonymous> (http://localhost:4105/node_modules/.vite/deps/@vitejs_plugin-rsc_vendor_react-server-dom_client__browser.js?v=43f44c41:2286:44)\n    at JSON.parse (<anonymous>)\n    at initializeModelChunk (http://localhost:4105/node_modules/.vite/deps/@vitejs_plugin-rsc_vendor_react-server-dom_client__browser.js?v=43f44c41:965:22)\n    at getOutlinedModel (http://localhost:4105/node_modules/.vite/deps/@vitejs_plugin-rsc_vendor_react-server-dom_client__browser.js?v=43f44c41:1273:6)\n    at parseModelString (http://localhost:4105/node_modules/.vite/deps/@vitejs_plugin-rsc_vendor_react-server-dom_client__browser.js?v=43f44c41:1470:44)\n    at Array.<anonymous> (http://localhost:4105/node_modules/.vite/deps/@vitejs_plugin-rsc_vendor_react-server-dom_client__browser.js?v=43f44c41:2286:44)"}}
+ GET /api/auth/session 200 in 25ms

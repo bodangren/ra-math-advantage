@@ -1,0 +1,23 @@
+{
+  "track": "vinext-oxc-toolchain_20261114",
+  "role": "spec-review",
+  "phase": "track setup",
+  "round": 2,
+  "role_base_sha": "f19620f894cae06309cc3e2e066154de5e920f45",
+  "audited_head_sha": "f19620f894cae06309cc3e2e066154de5e920f45",
+  "status": "pass",
+  "retry_recommendation": "none",
+  "paraphrase": {
+    "proposes": "This track moves the monorepo to vinext 1.x and replaces ESLint, tsc, and no formatter with the Oxc tools: oxlint, tsrs, and oxfmt. It runs in 5 phases: S1 refreshes packages and moves the apps to vinext 1.x without the next package, S2 migrates each ESLint config to oxlint, S3 makes TypeScript 7 and tsrs the type-check gate, S4 formats the repository with oxfmt in one format-only commit, and S5 names the new gates in AGENTS.md, the workflow, the tech stack, the root scripts, and CI. The track records speed, held packages, rule gaps, and conformance gaps in one evidence file so other repositories can reuse the results. Every dependency moves to the latest version that passes the gates.",
+    "current_system": "The 5 apps run vinext 0.0.55 and declare the next package, which the root overrides pin. Each workspace runs tsc --noEmit on TypeScript 6.0.3, 19 ESLint configs exist, and no formatter exists. CI uses Node 20 while the local Node is 24. The audit suites of the precedent track pin package lines but no CI step runs them."
+  },
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "F4 [Nit] plan.md \"S3 Implement — compare tsrs with tsc on the same compiler line\" and spec.md \"Terms\" \"New failure\": the plan records compiler-version differences in the section 7 table but does not say the implementer treats a compiler-version difference that tsrs reports as not a new failure of the tsrs gate. The baseline uses tsc 6.0.3, so a diagnostic that only the 7.1.0-beta line reports can look new at the gate. Rationale: the gate pass rule compares against the baseline, and the plan can send the implementer to fix a diagnostic that is not a code fault."
+  ],
+  "evidence": [
+    "F1 withdrawn: spec.md \"Terms\" lines 79-83 now defines the conformance gap on the same compiler line and adds the \"Compiler-version difference\" term; Story S3 acceptance criteria lines 126-131 now compare tsc 7.1.0-beta with tsrs and compare tsc 7.0.2 with tsc 7.1.0-beta apart; the Evidence File Contract section 7 (lines 177-179) records the compiler version of each tool and adds a second table for compiler-version differences; plan.md task \"S3 Implement — compare tsrs with tsc on the same compiler line\" (lines 264-277) runs tsc from typescript@7.1.0-beta through the npx cache, records both tool versions, and fills the two tables. npm view confirms typescript 7.1.0-beta, 7.0.2, and tsrs 0.25.0-ts7.1.0-beta exist, and tsrs has no dependency or peerDependency, so it carries its own compiler line.",
+    "F2 withdrawn: author response DECLINE. DECLINE is valid for a Nit. The author records the declined Nit.",
+    "F3 withdrawn: author response DECLINE. DECLINE is valid for a Nit. The author records the declined Nit."
+  ]
+}

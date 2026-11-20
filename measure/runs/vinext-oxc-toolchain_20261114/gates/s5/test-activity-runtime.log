@@ -1,0 +1,14 @@
+heavy-run: lock wait over 600 s — priority p2 — holder PID 1501258: flock -w 1800 -E 201 /home/daniebo/Desktop/primary-parity-progress/heavy.lock /home/daniebo/Desktop/advantage-pr/scripts/jobs/heavy-run.sh --locked -c FORGE_GL=software ./forge all sprout-tom 
+
+> @math-platform/activity-runtime@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/activity-runtime
+
+
+ Test Files  3 passed (3)
+      Tests  37 passed (37)
+   Start at  13:08:17
+   Duration  347ms (transform 34ms, setup 0ms, import 65ms, tests 14ms, environment 0ms)
+

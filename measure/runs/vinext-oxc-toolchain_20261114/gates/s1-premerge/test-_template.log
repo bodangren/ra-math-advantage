@@ -1,0 +1,19 @@
+
+> @math-platform/template@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 /home/daniebo/Desktop/ra-math-advantage/packages/_template
+
+No test files found, exiting with code 1
+
+include: **/*.{test,spec}.?(c|m)[jt]s?(x)
+exclude:  **/node_modules/**, **/.git/**
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /home/daniebo/Desktop/ra-math-advantage/packages/_template
+npm error workspace @math-platform/template@0.1.0
+npm error location /home/daniebo/Desktop/ra-math-advantage/packages/_template
+npm error command failed
+npm error command sh -c vitest run

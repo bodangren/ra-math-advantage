@@ -1,0 +1,16 @@
+
+> @math-platform/srs-engine@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 /home/daniebo/Desktop/ra-math-advantage/packages/srs-engine
+
+
+ Test Files  16 passed (16)
+      Tests  233 passed (233)
+   Start at  10:25:08
+   Duration  1.70s (import 48%, tests 29%, worker 14%, transform 8%, environment 1%)
+
+    Isolate  16 workers spawned · ~75ms startup each (spawn + environment, per file)
+             at least ~1.12s faster with isolate: false — reuses workers across files instead of one per file
+

@@ -1,0 +1,203 @@
+# jr-green log — Phase S1: Package refresh and vinext 1.x
+
+Role base: 7b5eb2fb (resume on the tower)
+Phase base: 4ae56e680cee620b0ee99deae5812531d4d51e93
+Red commit: abbe15f1 (Red model: claude-code/claude-sonnet-5-5#high)
+
+## Machine-move triage (2026-11-15)
+
+- Triage of `NEW FAILURE: test apps/bus-math-v2 has a new diagnostic` (gates/s1
+  test-bus-math-v2.log vs gates/baseline/test-bus-math-v2.log, 168 new keys):
+  **real new failure, class `Failed to resolve import "next/..."`** — strategy risk R4,
+  exactly as predicted ("Vitest cannot resolve next/* at runtime. The vitest configs do not
+  use the vinext plugin."). BM2's vitest config resolves `next/link`, `next/navigation`,
+  `next/server`, `next/headers`, `next/image` against the removed `next` package, so whole
+  test files fail to load ( dozens of `FAIL ... [file] (0 test)` lines). The sweep was
+  killed before the other 4 apps ran; they almost surely show the same class. Not a machine
+  difference, not a key-extraction artifact.
+- Planned fix (implementation-owned, gate-required): add vinext's `next/*` runtime shims to
+  the 5 app vitest configs (alias or plugin, per the vinext 1.x API). The test sweep after
+  the fix decides. Baseline-failing keys must keep their baseline shape (no fix for
+  pre-existing failures).
+
+## Resume progress (2026-11-15, tower)
+
+- npm ci: two runs failed with registry ETIMEDOUT (another session held the network);
+  third run exit 0 (858 packages, audit critical=0 high=10).
+- Triage verdict: real new failure (R4). Fix committed: 62f3fa60 — the 5 app
+  `vitest.config.ts` files alias `next/*` to `vinext/shims/*` (the
+  `vinext/shims/public-shim-map.json` mapping that `vinext build` uses). BM2 direct re-run:
+  335 files pass, 9 remaining failures == its 9 baseline failures (2 auth, 1 footer, 1
+  timing, 2 review-processor, 3 scheduler). No `Failed to resolve import` line remains.
+- Plan and evidence updated (deviation + section 8 row for the vitest shim fix; section 1
+  now has Machine A and Machine B).
+- Task 2 gates (lint s1, test s1, checks-all s1, chained) run in the background
+  (sh_1dc5330d7001g4NVUkfbvJkQGl).
+
+## Tower round 2 (2026-11-15)
+
+- npm ci succeeded on the third attempt (858 packages). Two earlier runs failed with
+  registry ETIMEDOUT (network contention with another session).
+- Triage of the interrupted-run failures:
+  - `test apps/bus-math-v2` — real R4 failure (next/* resolution), fixed in 62f3fa60
+    (vinext shim aliases in the 5 app vitest configs). BM2 re-run: 335 files pass, the
+    9 remaining failures are exactly its baseline failures.
+  - typecheck IM1/IM2 — only new key `npm error code 2`: tsc exits 2 on a fresh
+    (cacheless) run and 1 with a warm tsbuildinfo cache, with identical diagnostics
+    (verified: fresh=2, warm=1). Cache-state machine artifact.
+  - typecheck IM3 — zero new file+code keys (spec key level); the gate's line-level keys
+    flagged message-text drift in existing diagnostics (type shapes inside messages
+    changed with react 19.3.1/zod bumps). The stale June convex/_generated is the SAME
+    state the baseline ran on (233 mentions of problem_families in both logs), so no
+    regeneration is needed; the old machine's baseline used the same generated state.
+  - `ci-check` — real: validate-ci.mjs imported the CJS default of hoisted js-yaml 4.x;
+    js-yaml 5 is ESM with named exports. Fixed in 933cca0d.
+  - IM3 test `workflow-validation.test.ts` — real: it asserted the old node-version '20';
+    updated to '24' in 933cca0d. 20/20 pass.
+  - audit-suites — real, planned Task 3 work (see below).
+- Audit suites moved forward (Task 3, commit 4173b71f): durable contract per
+  lessons-learned 2026-06-07. next-pinning suites now assert absence (no manifest
+  declares next, no node_modules/next lockfile key); vinext pins moved to the 1.x line;
+  vite/katex/lucide admissions use the installed version with the old floors kept
+  (katex >= 0.17.0, react >= 19.2.7, convex >= 1.40.0, rsc >= 0.5.27,
+  react-server-dom-webpack >= 19.2.9, vitest >= 4). Fixtures refreshed forward:
+  w4-framework-targets.json (vinext 1.4.5, next removal note), audit-baseline.json
+  external_dep_count 49->48 (BM2) and 53->52 (IM3) for the geist removal. The registry
+  stub stayed untouched (hermetic, fixture-internal). Result: 190/192 pass; exactly the
+  2 baseline failures remain (audit-contract shared-package count, coherent report).
+- Commits this round: 933cca0d (fix(gates)), 4173b71f (test(audit)). Foreign session
+  commits b7e61583 and f6d96b1c landed between mine; no conflicts.
+- Task 2 + Task 3 gate cycle (lint/test/checks-all) running in the background
+  (sh_1dc75d59b001944RGTCA4KPzgB).
+
+## Tower round 3 (2026-11-15): gate-artifact triage
+
+- Second full gate cycle: lint NEWFAIL=0; test and checks-all flagged artifacts, triaged:
+  - typecheck IM2, IM3, activity-components, knowledge-space-practice, math-content:
+    ZERO new file+code keys (spec-level). The gate's line-level keys flagged
+    message-text drift inside unchanged diagnostics. IM1's earlier `npm error code 2`
+    flag: tsc exits 2 on a cacheless run and 1 with a warm tsbuildinfo cache, same
+    diagnostics (empirically verified both ways).
+  - test IM3 `sessions.test.ts` (3 failures): UTC-midnight flake. The test builds
+    sessions at `now - 3600000` with the comment "1 hour ago, same UTC day"; the
+    handler's isSameDay compares UTC calendar days. Runs inside the 00:00-01:00 UTC
+    window cross midnight (tower clock: 00:3x UTC when the sweep ran). The old machine
+    ran outside the window. Re-verification scheduled after 01:00 UTC.
+- Gate harness refinement (commit 21c70826): key() now keys tsc lines as file+TScode
+  (the spec's own "New failure" definition) and normalizes the npm error code trailer.
+  Baseline file names and formats unchanged; symmetric re-keying, no baseline re-run.
+  Deviation flagged for Review A.
+- Next: rerun the three gates after 01:00 UTC (the sessions flake needs the window to
+  pass), then mark Task 2 and Task 3 [x], then commits B (ts-fsrs 6) and C (vitest 5).
+
+## Tower round 4 (2026-11-15): commit B (ts-fsrs 6)
+
+- Gate reruns: lint NEWFAIL=0; checks-all NEWFAIL=0; test NEWFAIL=0 only after
+  01:06 UTC — proving the sessions.test UTC-midnight flake (same file passes outside
+  the 00:00-01:00 UTC window). Task 2 [x] and Task 3 [x] (plan commit bd0ca5fb).
+- ts-fsrs ^5.3.2 -> ^6.0.0 in 4 manifests (srs-engine, efficacy-core, IM3, BM2);
+  npm install exit 0 (installed 6.0.0).
+- Migration (guide-named changes only): `Card.elapsed_days` removed -> derived from
+  actual review timestamps in `mapFsrsCardToSrsCardState` (new `previousLastReview`
+  parameter, same derivation BM2's review-processor.ts already uses); `elapsed_days`
+  dropped from `toFsrsCard` (v6 ignores it); `mapSrsStateToNumber` returns the v6
+  numeric union (`Card['state']`) instead of `number` (Rating/State are frozen
+  constant objects in v6). srs-engine: tsc exit 0, 233/233 tests pass. IM3/BM2/efficacy
+  show only pre-existing baseline diagnostics (no ts-fsrs keys).
+
+## Tower round 5 (2026-11-15): commit C (vitest 5)
+
+- Commit B landed: 46e43cc5 (gates: lint NEWFAIL=0, test NEWFAIL=0, checks-all flagged
+  2 workspaces with zero new file+code keys — message drift from the ts-fsrs type
+  changes; recorded).
+- vitest ^4.1.8 -> ^5.1.0 in 25 manifests; npm install exit 0 (installed 5.1.0).
+- Discovery check after the major bump: `npx vitest list --filesOnly --config
+  scripts/vitest.config.ts` names scripts/__tests__/oxc-toolchain-gates.test.ts (exit 0).
+- GREEN_TEST_COMMAND (full scripts suite, unfiltered) on vitest 5: 20/20 pass.
+- BM2 direct run on vitest 5: 335 files pass, the same 9 baseline failures — runner
+  behavior changes (clear-mocks-by-default, unawaited-assertion failures) produced no
+  new failures there.
+- vitest 5.1.0 requires Node 22+/Vite 6.4+: Node 24.19.0 and Vite 8.3.8 satisfy it.
+- Commit C gate cycle (lint/test/checks-all) running in the background
+  (sh_1dcdfaa210011x3iyz0XprRibr).
+
+## Tower round 6 (2026-11-15): the vitest-5 fallout and the collation fix
+
+- The flags of the vitest-5 cycles were triaged with LC_ALL=C comparisons:
+  - Gate collation bug (real, fixed in a95a10cc): sort and comm used different
+    collations, so comm's result was locale-dependent — the source of every
+    "comm: input is not in sorted order" warning since the first gate run. key() now
+    runs LC_ALL=C end to end.
+  - REAL vitest-5 fallout, fixed: jest-dom 6.9.1's matcher types do not augment
+    vitest 5's inlined `expect` (TS2339 `toBeInTheDocument` etc., 137 keys in IM3,
+    more in IM1/BM2). Companion bump in the vitest family commit:
+    `@testing-library/jest-dom` -> `^7.0.1` (latest) and the 5 app vitest.setup.ts
+    files import `@testing-library/jest-dom/vitest`. IM1/IM3 matcher errors gone.
+  - REAL vitest-5 fallout, fixed: W3's own PTE vitest invariant pinned 4.1.8 exactly
+    (in-range-wave-w3.test.ts 'PTE vitest post-W2 invariant'). Rewritten to the
+    durable floor contract (major >= 4, never 2; installed satisfies the declared
+    range). Audit suites back to exactly the 2 baseline failures (190/192).
+  - srs-engine's gate exit 1: 1 ms timing race in `edge-calibration-review-queue.test.ts`
+    (`expected 1794709205137 to be less than or equal to 1794709205136`) — flake;
+    3 direct reruns all pass (233/233). Machine/timing difference, no fix.
+- Final commit C gate cycle (lint/test/checks-all) running in the background
+  (sh_1dd143a2b001C0JdiBionWtK5x).
+
+## Tower round 7 (2026-11-15): real ts-fsrs fallout in BM2 and the key noise fix
+
+- Root cause of my false "0 new keys" conclusions: several step-log comparisons ran
+  from the wrong cwd (`gates/` instead of `gates/s1/`), so grep found no file and the
+  comparison returned a null set. Corrected comparisons show the flags were real.
+- REAL ts-fsrs-6 fallout in BM2 `lib/study/srs.ts` (2 keys: TS2339 elapsed_days,
+  TS2322 state union). Fixed in 35c3a18f with the same guide-named changes as
+  srs-engine: serialize/deserialize stop using Card.elapsed_days (store 0; consumers
+  derive from last_review), SerializedCardState.state uses the v6 numeric union.
+  BM2 typecheck back to exactly its 29 baseline errors; BM2 tests at the same 9
+  baseline failures.
+- Gate key() refinement (same commit): success lines (vitest ✓ lines) are dropped —
+  they are not diagnostics, and vitest 5 changed their trailing whitespace, which
+  made PASSING tests look like new diagnostics (`✓ handles API error gracefully`).
+  Trailing whitespace stripped on all lines.
+- srs-engine's single gate-time exit 1 stays a 1 ms timing flake (3 clean reruns).
+- Full commit C gate cycle (lint/test/checks-all) running in the background
+  (sh_1dd306c1a0015jF4ak23s8Fpp2).
+- Tower hardware: AMD Ryzen 5 5600T 6-Core (12 threads), 30 GB RAM, Linux
+  7.0.0-43-generic, Node v24.19.0, npm 11.17.0. Goes into evidence section 1 as a second
+  machine row; baseline build times get re-timed on this machine in a worktree at 4ae56e68
+  (per the orchestrator's timing-evidence rule).
+
+- Gate chain (PID 2691343) and all children killed before the WIP commit. `pgrep -af
+  gates.sh` matches only itself. Ports 4101-4105 free. The only remaining heavy-run
+  process on the machine (watchdog 2786650, accounting tsc) belongs to the
+  reading-advantage-monorepo session, not to this role.
+- Partial gate results before the kill: lint s1 exit 0, NEWFAIL=0. test s1 exit 143
+  (killed), after BM2's sweep printed `NEW FAILURE: test apps/bus-math-v2 has a new
+  diagnostic` (log /tmp/opencode/gate-a-test.log may not survive the move; the s1 gate
+  folder holds test-bus-math-v2.log, but gates/ is gitignored). checks-all s1 never
+  started a job.
+
+MEASURE_AGENT_RESULT
+role: jr-green
+status: partial
+track: vinext-oxc-toolchain_20261114
+phase: Phase S1: Package refresh and vinext 1.x
+commits: dcde148d (vinext 1.x + next removed), 9d83588f (plan), 9a32a06a (plan [~]), 7fa14b56 (merge RSC hotfix), 7b5eb2fb (WIP: S1 Task 2 minor and patch updates, gates not run)
+tests_run: S1 filtered suite 9/9 pass (dcde148d state); lint s1 NEWFAIL=0 (twice: pre-merge and post-merge states); test s1 interrupted (exit 143) with one BM2 new-diagnostic line; checks-all s1 not run; npm install x5 via heavy-run exit 0; npm ls next --all (empty)
+files_changed: dcde148d (22 files), 7fa14b56 (merge: root + 5 app manifests, lockfile, tech-debt), 7b5eb2fb (17 manifests + lockfile WIP + plan + evidence sections 3 and 8)
+plan_updates: S1 Implement (vinext) [x] dcde148d; S1 Implement (deps) [~] with the WIP note in plan.md; merge deviation recorded in plan.md
+known_failures: one open triage item - `NEW FAILURE: test apps/bus-math-v2 has a new diagnostic` from the interrupted test s1 sweep. Pre-existing failures live in oxc-evidence.md section 10.
+handoff:
+ RESUME LIST FOR THE NEXT RUN (on the new machine)
+ 1. First step: `npm ci` through heavy-run.sh (the lockfile of WIP 7b5eb2fb matches the manifests; npm ci proves it).
+ 2. Triage the BM2 test new-diagnostic before rerunning test s1: compare gates/s1/test-bus-math-v2.log keys against gates/baseline/test-bus-math-v2.log (the gates folders are gitignored; if the new machine restored the repo fresh, rerun the gate). Likely suspects: the convex ^1.50.0 or zod ^4.6.7 bump changing BM2 test output.
+ 3. Rerun gates.sh test s1 and checks-all s1 (no heavy-run wrapper; one at a time; GATES_RESUME=1 continues). lint s1 passed twice already but rerun it with the others for one clean cycle.
+ 4. When all three print NEWFAIL=0: make the real commit A. Squash rule: the WIP commit 7b5eb2fb stays in history (no reset --hard allowed); make commit A as a follow-up commit `chore(deps): update packages to the latest minor and patch versions` that is empty of file changes is NOT possible - instead mark the plan task note "delivered by WIP 7b5eb2fb" and let commit A be the evidence/plan commit, or amend history is forbidden, so record in plan.md that commit A is 7b5eb2fb. Do NOT re-run npm outdated-driven edits.
+ 5. Commit B: ts-fsrs ^5.3.2 -> ^6.0.0 (IM3, BM2, srs-engine, efficacy-core), npm install, all gates, commit `chore(deps): upgrade ts-fsrs to 6`. Held-package rule applies.
+ 6. Commit C: vitest ^4.1.8 -> ^5.1.0 (20 packages, no @vitest/* anywhere), npm install, re-run the discovery check (npx vitest list --filesOnly --config scripts/vitest.config.ts), all gates, commit `chore(deps): upgrade vitest to 5`.
+ 7. Then: S1 Implement (audit suites forward), S1 Verify (npm ci via heavy-run, gates label s1, both bundle audits vs baseline BM2 entries, dev-server status of 5 apps inside HEAVY_MIN_AVAIL_MB=1500 heavy-run, build timing median of 3), the NEW security-regression check (per app: find the built RSC server chunk outside dist/server/ssr/ containing 'Attempted to call a temporary Client Reference'; it must contain 'Cannot handle action key' and 'Cannot transport a detached buffer'; record chunk path and both counts in evidence; a missing text stops the phase), S1 Docs & Doctor (npm run generate path-bug rule per strategy 6.7), flip 'S1 Test (Red)' to [x].
+ 8. Stashes: stash@{0} is this role's task-2 backup (65 bumps) - it is REDUNDANT now (WIP 7b5eb2fb holds the same content) but the PM said do not drop it; stash@{1} is the PM's. Touch neither.
+ 9. Build outputs: apps/bus-math-v2/lib/workbooks-manifest.json and apps/integrated-math-3/.next/types/routes.d.ts hold pre-existing baseline diffs, unstaged. Never stage them. Never git checkout -- or clean them.
+ 10. Evidence state: section 3 fully drafted (dcde148d rows, merge row, commit A rows); section 8 has the vinext check, eslint-config-next, geist, and gate-noise rows. Sections 4, 5 (after), 6, 7, 9, 11 pending. The evidence and plan changes of the WIP commit are already in 7b5eb2fb.
+ 11. npm audit at the WIP state: critical=0 high=10 moderate=18 low=5 (baseline critical=2 high=17; the gate only fails on an increase).
+ 12. Deviations so far: geist removed; 5 app eslint configs stripped of eslint-config-next (both in dcde148d and plan.md); RSC hotfix merge 7fa14b56.
+END_MEASURE_AGENT_RESULT

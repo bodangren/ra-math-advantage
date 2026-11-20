@@ -1,0 +1,13 @@
+
+> @math-platform/workbook-pipeline@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 /home/daniebo/Desktop/ra-math-advantage/packages/workbook-pipeline
+
+
+ Test Files  3 passed (3)
+      Tests  50 passed (50)
+   Start at  10:25:14
+   Duration  318ms (import 39%, tests 27%, worker 21%, transform 13%, environment 1%)
+

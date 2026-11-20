@@ -1,0 +1,610 @@
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage
+
+ ❯ scripts/audit/__tests__/in-range-wave-w3.test.ts (38 tests | 2 failed) 30ms
+     × @types/node: every workspace declaration shares a single major-version floor (reconcile ^20 in 5 apps with ^22 in lesson-renderer) 5ms
+     × PTE vitest 4.1.8 is installed in the lockfile (post-W2 invariant) 1ms
+ ❯ scripts/audit/__tests__/framework-wave-w4.test.ts (35 tests | 6 failed) 21ms
+     × next is absent from the lockfile (S1 removal supersedes the W4 16.x line) 5ms
+     × eslint-config-next installed lockfile version is on the 16.x line 0ms
+     × eslint installed lockfile version is on the 10.x line 1ms
+     × @eslint/js installed lockfile version is on the 10.x line 0ms
+     × @types/node: every workspace declaration shares a single major-version floor (W3 must hold; W4 must not re-introduce drift) 1ms
+     × W4 framework families are past their pre-W4 majors (sanity: this Red suite is not vacuous) 0ms
+ ❯ scripts/audit/__tests__/audit-contract.test.ts (36 tests | 4 failed) 101ms
+     × reports exactly the 5 first-class apps in apps/ 5ms
+     × reports all 21 shared packages (excludes _template from active list) 1ms
+     × counts external (non-workspace, non-`*`) deps per first-class app — Red on under-count 2ms
+     × getAuditReport() returns a coherent AuditReport matching the baseline 1ms
+ ❯ scripts/audit/__tests__/security-wave-w2.test.ts (47 tests | 7 failed) 32ms
+     × apps/bus-math-v2 does not declare "next" (removal supersedes the W2 intentional-range pin) 6ms
+     × apps/integrated-math-1 does not declare "next" (removal supersedes the W2 intentional-range pin) 1ms
+     × apps/integrated-math-2 does not declare "next" (removal supersedes the W2 intentional-range pin) 1ms
+     × apps/integrated-math-3 does not declare "next" (removal supersedes the W2 intentional-range pin) 0ms
+     × apps/pre-calculus does not declare "next" (removal supersedes the W2 intentional-range pin) 1ms
+     × all 5 first-class apps declare vinext instead of next, on one consistent 1.x-admitting range 0ms
+     × next is fully removed from the lockfile (the >= 15.5.19 W2 security floor is superseded by removal) 0ms
+ ❯ scripts/audit/__tests__/framework-wave-w4-audit.test.ts (15 tests | 5 failed) 11ms
+     × every W4 framework major installed lockfile version satisfies its w4-framework-targets.json target_version range 5ms
+     × eslint-config-next installed lockfile version is on the 16.x line (post-W4; vinext updated forward by S1) 0ms
+     × eslint installed lockfile version is on the 10.x line (post-W4; vinext updated forward by S1) 1ms
+     × @eslint/js installed lockfile version is on the 10.x line (post-W4; vinext updated forward by S1) 0ms
+     × next installed lockfile version is absent (S1 removal supersedes the W4 16.x line) 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 24 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  scripts/audit/__tests__/audit-contract.test.ts > audit-contract — first-class app coverage (Red on missing app, Red on under-count) > reports exactly the 5 first-class apps in apps/
+AssertionError: expected [ 'apps/bus-math-v2', …(5) ] to deeply equal [ 'apps/bus-math-v2', …(4) ]
+
+- Expected
++ Received
+
+  [
+    "apps/bus-math-v2",
++   "apps/danielson",
+    "apps/integrated-math-1",
+    "apps/integrated-math-2",
+    "apps/integrated-math-3",
+    "apps/pre-calculus",
+  ]
+
+ ❯ scripts/audit/__tests__/audit-contract.test.ts:146:34
+    144|       .map((m) => m.workspace_path)
+    145|       .sort();
+    146|     expect(firstClassWorkspaces).toEqual(
+       |                                  ^
+    147|       BASELINE.first_class_apps.map((a) => a.workspace).sort()
+    148|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/24]⎯
+
+ FAIL  scripts/audit/__tests__/audit-contract.test.ts > audit-contract — first-class app coverage (Red on missing app, Red on under-count) > reports all 21 shared packages (excludes _template from active list)
+AssertionError: expected [ …(20) ] to deeply equal [ …(19) ]
+
+- Expected
++ Received
+
+@@ -4,10 +4,11 @@
+    "packages/ai-tutoring",
+    "packages/app-shell",
+    "packages/component-approval",
+    "packages/core-auth",
+    "packages/core-convex",
++   "packages/efficacy-core",
+    "packages/graphing-core",
+    "packages/knowledge-space-core",
+    "packages/knowledge-space-practice",
+    "packages/lesson-renderer",
+    "packages/math-content",
+
+ ❯ scripts/audit/__tests__/audit-contract.test.ts:156:30
+    154|       .map((m) => m.workspace_path)
+    155|       .sort();
+    156|     expect(sharedWorkspaces).toEqual(
+       |                              ^
+    157|       BASELINE.shared_packages.map((a) => a.workspace).sort()
+    158|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/24]⎯
+
+ FAIL  scripts/audit/__tests__/audit-contract.test.ts > audit-contract — first-class app coverage (Red on missing app, Red on under-count) > counts external (non-workspace, non-`*`) deps per first-class app — Red on under-count
+AssertionError: first-class app dep count drift: [
+  {
+    "workspace": "apps/bus-math-v2",
+    "expected": 48,
+    "actual": 45,
+    "ok": false
+  },
+  {
+    "workspace": "apps/integrated-math-1",
+    "expected": 35,
+    "actual": 32,
+    "ok": false
+  },
+  {
+    "workspace": "apps/integrated-math-2",
+    "expected": 35,
+    "actual": 32,
+    "ok": false
+  },
+  {
+    "workspace": "apps/integrated-math-3",
+    "expected": 52,
+    "actual": 50,
+    "ok": false
+  },
+  {
+    "workspace": "apps/pre-calculus",
+    "expected": 35,
+    "actual": 32,
+    "ok": false
+  }
+]: expected [ { …(4) }, { …(4) }, { …(4) }, …(2) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "actual": 45,
++     "expected": 48,
++     "ok": false,
++     "workspace": "apps/bus-math-v2",
++   },
++   {
++     "actual": 32,
++     "expected": 35,
++     "ok": false,
++     "workspace": "apps/integrated-math-1",
++   },
++   {
++     "actual": 32,
++     "expected": 35,
++     "ok": false,
++     "workspace": "apps/integrated-math-2",
++   },
++   {
++     "actual": 50,
++     "expected": 52,
++     "ok": false,
++     "workspace": "apps/integrated-math-3",
++   },
++   {
++     "actual": 32,
++     "expected": 35,
++     "ok": false,
++     "workspace": "apps/pre-calculus",
++   },
++ ]
+
+ ❯ scripts/audit/__tests__/audit-contract.test.ts:167:7
+    165|       offenders,
+    166|       `first-class app dep count drift: ${JSON.stringify(offenders, nu…
+    167|     ).toEqual([]);
+       |       ^
+    168|     for (const c of coverage) {
+    169|       expect(c.actual).toBe(c.expected);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/24]⎯
+
+ FAIL  scripts/audit/__tests__/audit-contract.test.ts > audit-contract — full report integration > getAuditReport() returns a coherent AuditReport matching the baseline
+AssertionError: expected 6 to be 5 // Object.is equality
+
+- Expected
++ Received
+
+- 5
++ 6
+
+ ❯ scripts/audit/__tests__/audit-contract.test.ts:316:42
+    314|     const report: AuditReport = getAuditReport(REPO_ROOT, BASELINE, MA…
+    315|
+    316|     expect(report.firstClassApps.length).toBe(BASELINE.totals.first_cl…
+       |                                          ^
+    317|     expect(report.sharedPackages.length).toBe(BASELINE.totals.shared_p…
+    318|     expect(report.securityTotals).toEqual(BASELINE.security_totals);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/24]⎯
+
+ FAIL  scripts/audit/__tests__/framework-wave-w4-audit.test.ts > framework-wave (W4) adversarial audit — W4 lockfile/target self-consistency (regression guard) > every W4 framework major installed lockfile version satisfies its w4-framework-targets.json target_version range
+AssertionError: next must not appear in the lockfile after S1 removed it (supersedes the W4 16.x target): expected [ 'node_modules/next' ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "node_modules/next",
++ ]
+
+ ❯ scripts/audit/__tests__/framework-wave-w4-audit.test.ts:262:11
+    260|           stillThere,
+    261|           'next must not appear in the lockfile after S1 removed it (s…
+    262|         ).toEqual([]);
+       |           ^
+    263|         continue;
+    264|       }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/24]⎯
+
+ FAIL  scripts/audit/__tests__/framework-wave-w4-audit.test.ts > framework-wave (W4) adversarial audit — W4 majors on post-W4 major lines (sanity) > eslint-config-next installed lockfile version is on the 16.x line (post-W4; vinext updated forward by S1)
+AssertionError: eslint-config-next missing from lockfile: expected undefined to be defined
+ ❯ scripts/audit/__tests__/framework-wave-w4-audit.test.ts:308:49
+    306|     it(`${pkg} installed lockfile version is on the ${expectedMajor}.x…
+    307|       const v = installedVersion(pkg);
+    308|       expect(v, `${pkg} missing from lockfile`).toBeDefined();
+       |                                                 ^
+    309|       const [maj] = v!.split('.').map((n) => parseInt(n, 10));
+    310|       expect(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/24]⎯
+
+ FAIL  scripts/audit/__tests__/framework-wave-w4-audit.test.ts > framework-wave (W4) adversarial audit — W4 majors on post-W4 major lines (sanity) > eslint installed lockfile version is on the 10.x line (post-W4; vinext updated forward by S1)
+AssertionError: eslint major must be 10 after W4 (vinext: after S1), found 9 in 9.39.5: expected 9 to be 10 // Object.is equality
+
+- Expected
++ Received
+
+- 10
++ 9
+
+ ❯ scripts/audit/__tests__/framework-wave-w4-audit.test.ts:313:9
+    311|         maj,
+    312|         `${pkg} major must be ${expectedMajor} after W4 (vinext: after…
+    313|       ).toBe(expectedMajor);
+       |         ^
+    314|     });
+    315|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/24]⎯
+
+ FAIL  scripts/audit/__tests__/framework-wave-w4-audit.test.ts > framework-wave (W4) adversarial audit — W4 majors on post-W4 major lines (sanity) > @eslint/js installed lockfile version is on the 10.x line (post-W4; vinext updated forward by S1)
+AssertionError: @eslint/js major must be 10 after W4 (vinext: after S1), found 9 in 9.39.5: expected 9 to be 10 // Object.is equality
+
+- Expected
++ Received
+
+- 10
++ 9
+
+ ❯ scripts/audit/__tests__/framework-wave-w4-audit.test.ts:313:9
+    311|         maj,
+    312|         `${pkg} major must be ${expectedMajor} after W4 (vinext: after…
+    313|       ).toBe(expectedMajor);
+       |         ^
+    314|     });
+    315|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/24]⎯
+
+ FAIL  scripts/audit/__tests__/framework-wave-w4-audit.test.ts > framework-wave (W4) adversarial audit — W4 majors on post-W4 major lines (sanity) > next installed lockfile version is absent (S1 removal supersedes the W4 16.x line)
+AssertionError: next must not appear in the lockfile after S1 removed it: expected [ 'node_modules/next' ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "node_modules/next",
++ ]
+
+ ❯ scripts/audit/__tests__/framework-wave-w4-audit.test.ts:324:7
+    322|       stillThere,
+    323|       'next must not appear in the lockfile after S1 removed it'
+    324|     ).toEqual([]);
+       |       ^
+    325|   });
+    326| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/24]⎯
+
+ FAIL  scripts/audit/__tests__/framework-wave-w4.test.ts > framework-wave (W4) — Next.js 15 → 16 → removed (Task 3 / FR8; S1 removed next) > next is absent from the lockfile (S1 removal supersedes the W4 16.x line)
+AssertionError: next must not appear in the lockfile after S1 removed it (supersedes the W4 16.x guard): expected [ 'node_modules/next' ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "node_modules/next",
++ ]
+
+ ❯ scripts/audit/__tests__/framework-wave-w4.test.ts:413:7
+    411|       stillThere,
+    412|       'next must not appear in the lockfile after S1 removed it (super…
+    413|     ).toEqual([]);
+       |       ^
+    414|   });
+    415|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/24]⎯
+
+ FAIL  scripts/audit/__tests__/framework-wave-w4.test.ts > framework-wave (W4) — eslint-config-next 15 → 16 (Task 3 / FR8) > eslint-config-next installed lockfile version is on the 16.x line
+AssertionError: eslint-config-next missing from lockfile: expected undefined to be defined
+ ❯ scripts/audit/__tests__/framework-wave-w4.test.ts:436:59
+    434|   it('eslint-config-next installed lockfile version is on the 16.x lin…
+    435|     const v = installedVersion('eslint-config-next');
+    436|     expect(v, 'eslint-config-next missing from lockfile').toBeDefined(…
+       |                                                           ^
+    437|     const f = semverFloor(`^${v}`);
+    438|     expect(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/24]⎯
+
+ FAIL  scripts/audit/__tests__/framework-wave-w4.test.ts > framework-wave (W4) — ESLint 9 → 10 (Task 4 / FR8) > eslint installed lockfile version is on the 10.x line
+AssertionError: eslint major must be 10 after W4-T4, found 9 in 9.39.5: expected 9 to be 10 // Object.is equality
+
+- Expected
++ Received
+
+- 10
++ 9
+
+ ❯ scripts/audit/__tests__/framework-wave-w4.test.ts:507:7
+    505|       f.major,
+    506|       `eslint major must be 10 after W4-T4, found ${f.major} in ${v}`
+    507|     ).toBe(10);
+       |       ^
+    508|   });
+    509|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/24]⎯
+
+ FAIL  scripts/audit/__tests__/framework-wave-w4.test.ts > framework-wave (W4) — @eslint/js 9 → 10 (Task 4 / FR8) > @eslint/js installed lockfile version is on the 10.x line
+AssertionError: @eslint/js major must be 10 after W4-T4, found 9 in 9.39.5: expected 9 to be 10 // Object.is equality
+
+- Expected
++ Received
+
+- 10
++ 9
+
+ ❯ scripts/audit/__tests__/framework-wave-w4.test.ts:535:7
+    533|       f.major,
+    534|       `@eslint/js major must be 10 after W4-T4, found ${f.major} in ${…
+    535|     ).toBe(10);
+       |       ^
+    536|   });
+    537|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/24]⎯
+
+ FAIL  scripts/audit/__tests__/framework-wave-w4.test.ts > framework-wave (W4) — @types/node single-major floor invariant preserved (cross-task / FR6) > @types/node: every workspace declaration shares a single major-version floor (W3 must hold; W4 must not re-introduce drift)
+AssertionError: @types/node must share a single major floor after W4, found majors: 24, 22 with ranges: [
+  [
+    24,
+    [
+      {
+        "workspace": "apps/bus-math-v2",
+        "range": "^24.19.2"
+      },
+      {
+        "workspace": "apps/integrated-math-1",
+        "range": "^24.19.2"
+      },
+      {
+        "workspace": "apps/integrated-math-2",
+        "range": "^24.19.2"
+      },
+      {
+        "workspace": "apps/integrated-math-3",
+        "range": "^24.19.2"
+      },
+      {
+        "workspace": "apps/pre-calculus",
+        "range": "^24.19.2"
+      },
+      {
+        "workspace": "packages/ai-tutoring",
+        "range": "^24.19.2"
+      },
+      {
+        "workspace": "packages/core-auth",
+        "range": "^24.19.2"
+      },
+      {
+        "workspace": "packages/core-convex",
+        "range": "^24.19.2"
+      },
+      {
+        "workspace": "packages/lesson-renderer",
+        "range": "^24.19.2"
+      },
+      {
+        "workspace": "packages/practice-core",
+        "range": "^24.19.2"
+      }
+    ]
+  ],
+  [
+    22,
+    [
+      {
+        "workspace": "apps/danielson",
+        "range": "^22"
+      },
+      {
+        "workspace": "packages/knowledge-space-practice",
+        "range": "^22.20.1"
+      }
+    ]
+  ]
+]: expected 2 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ scripts/audit/__tests__/framework-wave-w4.test.ts:575:7
+    573|       floorsByMajor.size,
+    574|       `@types/node must share a single major floor after W4, found maj…
+    575|     ).toBe(1);
+       |       ^
+    576|   });
+    577|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/24]⎯
+
+ FAIL  scripts/audit/__tests__/framework-wave-w4.test.ts > framework-wave (W4) — package-wave-matrix assigns every W4 family to W4-framework > W4 framework families are past their pre-W4 majors (sanity: this Red suite is not vacuous)
+AssertionError: eslint installed 9.39.5 must be past its pre-W4 major 9 (W4 moved it; a regression to the pre-W4 major would falsify this suite): expected 9 to be greater than 9
+ ❯ scripts/audit/__tests__/framework-wave-w4.test.ts:653:9
+    651|         f.major,
+    652|         `${pkg} installed ${v} must be past its pre-W4 major ${preW4Ma…
+    653|       ).toBeGreaterThan(preW4Major);
+       |         ^
+    654|       checked.push({ pkg, installed: v, preW4Major });
+    655|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/24]⎯
+
+ FAIL  scripts/audit/__tests__/in-range-wave-w3.test.ts > in-range-wave (W3) — drift reconciliation (Task 2 / FR6 / AC6) > @types/node: every workspace declaration shares a single major-version floor (reconcile ^20 in 5 apps with ^22 in lesson-renderer)
+AssertionError: @types/node must share a single major floor after W3 reconciliation, found majors: 24, 22 with ranges: [
+  [
+    24,
+    [
+      {
+        "workspace": "apps/bus-math-v2",
+        "range": "^24.19.2"
+      },
+      {
+        "workspace": "apps/integrated-math-1",
+        "range": "^24.19.2"
+      },
+      {
+        "workspace": "apps/integrated-math-2",
+        "range": "^24.19.2"
+      },
+      {
+        "workspace": "apps/integrated-math-3",
+        "range": "^24.19.2"
+      },
+      {
+        "workspace": "apps/pre-calculus",
+        "range": "^24.19.2"
+      },
+      {
+        "workspace": "packages/ai-tutoring",
+        "range": "^24.19.2"
+      },
+      {
+        "workspace": "packages/core-auth",
+        "range": "^24.19.2"
+      },
+      {
+        "workspace": "packages/core-convex",
+        "range": "^24.19.2"
+      },
+      {
+        "workspace": "packages/lesson-renderer",
+        "range": "^24.19.2"
+      },
+      {
+        "workspace": "packages/practice-core",
+        "range": "^24.19.2"
+      }
+    ]
+  ],
+  [
+    22,
+    [
+      {
+        "workspace": "apps/danielson",
+        "range": "^22"
+      },
+      {
+        "workspace": "packages/knowledge-space-practice",
+        "range": "^22.20.1"
+      }
+    ]
+  ]
+]: expected 2 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ scripts/audit/__tests__/in-range-wave-w3.test.ts:321:7
+    319|       floorsByMajor.size,
+    320|       `@types/node must share a single major floor after W3 reconcilia…
+    321|     ).toBe(1);
+       |       ^
+    322|   });
+    323|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/24]⎯
+
+ FAIL  scripts/audit/__tests__/in-range-wave-w3.test.ts > in-range-wave (W3) — PTE vitest post-W2 invariant > PTE vitest 4.1.8 is installed in the lockfile (post-W2 invariant)
+AssertionError: installed vitest must be 4.1.8 (post-W2 lockfile target): expected '4.1.12' to be '4.1.8' // Object.is equality
+
+Expected: "4.1.8"
+Received: "4.1.12"
+
+ ❯ scripts/audit/__tests__/in-range-wave-w3.test.ts:847:7
+    845|       entry!.version,
+    846|       'installed vitest must be 4.1.8 (post-W2 lockfile target)'
+    847|     ).toBe('4.1.8');
+       |       ^
+    848|   });
+    849| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/24]⎯
+
+ FAIL  scripts/audit/__tests__/security-wave-w2.test.ts > security-wave (W2) — next absence (FR4 / AC4, after vinext-oxc-toolchain_20261114 removed next) > apps/bus-math-v2 does not declare "next" (removal supersedes the W2 intentional-range pin)
+ FAIL  scripts/audit/__tests__/security-wave-w2.test.ts > security-wave (W2) — next absence (FR4 / AC4, after vinext-oxc-toolchain_20261114 removed next) > apps/integrated-math-1 does not declare "next" (removal supersedes the W2 intentional-range pin)
+ FAIL  scripts/audit/__tests__/security-wave-w2.test.ts > security-wave (W2) — next absence (FR4 / AC4, after vinext-oxc-toolchain_20261114 removed next) > apps/integrated-math-2 does not declare "next" (removal supersedes the W2 intentional-range pin)
+ FAIL  scripts/audit/__tests__/security-wave-w2.test.ts > security-wave (W2) — next absence (FR4 / AC4, after vinext-oxc-toolchain_20261114 removed next) > apps/integrated-math-3 does not declare "next" (removal supersedes the W2 intentional-range pin)
+ FAIL  scripts/audit/__tests__/security-wave-w2.test.ts > security-wave (W2) — next absence (FR4 / AC4, after vinext-oxc-toolchain_20261114 removed next) > apps/pre-calculus does not declare "next" (removal supersedes the W2 intentional-range pin)
+AssertionError: package-lock.json must not hold any node_modules/next entry after S1 removed next: expected [ 'node_modules/next' ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "node_modules/next",
++ ]
+
+ ❯ expectNextAbsent scripts/audit/__tests__/security-wave-w2.test.ts:144:5
+    142|     nextDeclarationsInLockfile(),
+    143|     'package-lock.json must not hold any node_modules/next entry after…
+    144|   ).toEqual([]);
+       |     ^
+    145| }
+    146|
+ ❯ scripts/audit/__tests__/security-wave-w2.test.ts:192:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/24]⎯
+
+ FAIL  scripts/audit/__tests__/security-wave-w2.test.ts > security-wave (W2) — next absence (FR4 / AC4, after vinext-oxc-toolchain_20261114 removed next) > all 5 first-class apps declare vinext instead of next, on one consistent 1.x-admitting range
+AssertionError: apps/danielson must not declare next (see the W2 absence describe): expected [ '^16.0.0' ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "^16.0.0",
++ ]
+
+ ❯ scripts/audit/__tests__/security-wave-w2.test.ts:207:9
+    205|         allDeclaredRanges(app, 'next'),
+    206|         `${app.workspace_path} must not declare next (see the W2 absen…
+    207|       ).toEqual([]);
+       |         ^
+    208|     }
+    209|     expect(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/24]⎯
+
+ FAIL  scripts/audit/__tests__/security-wave-w2.test.ts > security-wave (W2) — lockfile sync proves installed versions match FR3/FR4 > next is fully removed from the lockfile (the >= 15.5.19 W2 security floor is superseded by removal)
+AssertionError: package-lock.json must not hold any node_modules/next entry after S1 removed next: expected [ 'node_modules/next' ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "node_modules/next",
++ ]
+
+ ❯ scripts/audit/__tests__/security-wave-w2.test.ts:448:7
+    446|       nextDeclarationsInLockfile(),
+    447|       'package-lock.json must not hold any node_modules/next entry aft…
+    448|     ).toEqual([]);
+       |       ^
+    449|   });
+    450|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/24]⎯
+
+
+ Test Files  5 failed | 1 passed (6)
+      Tests  24 failed | 168 passed (192)
+   Start at  19:29:08
+   Duration  1.12s (transform 82ms, setup 0ms, import 227ms, tests 333ms, environment 0ms)
+

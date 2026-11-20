@@ -1,0 +1,13 @@
+
+> @math-platform/study-hub-core@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/study-hub-core
+
+
+ Test Files  2 passed (2)
+      Tests  10 passed (10)
+   Start at  23:43:46
+   Duration  243ms (transform 42ms, setup 0ms, import 65ms, tests 7ms, environment 0ms)
+

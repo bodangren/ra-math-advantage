@@ -1,0 +1,13 @@
+integrated-math-1 4101 status=200 seconds_to_first_response=28
+integrated-math-1 4101 port-free-after-stop
+integrated-math-2 4102 status=200 seconds_to_first_response=22
+integrated-math-2 4102 port-free-after-stop
+pre-calculus 4104 status=200 seconds_to_first_response=33
+pre-calculus 4104 port-free-after-stop
+integrated-math-3 4103 status=200 seconds_to_first_response=33
+integrated-math-3 4103 rerun-under-heavy-run status=200 seconds_to_first_response=29
+integrated-math-3 4103 rerun port-free-after-stop
+integrated-math-3 4103 rerun-under-heavy-run status=200 seconds_to_first_response=27
+integrated-math-3 4103 rerun port-free-after-stop
+bus-math-v2 4105 rerun-under-heavy-run status=200 seconds_to_first_response=33
+bus-math-v2 4105 rerun port-free-after-stop

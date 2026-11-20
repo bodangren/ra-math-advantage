@@ -1,0 +1,75 @@
+
+> test
+> vitest run
+
+[33m(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vitest.config.ts:45:25). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.[39m
+
+ RUN  v5.1.0 /home/daniebo/Desktop/ra-math-advantage/apps/integrated-math-1
+
+ ❯ __tests__/setup/convex-provider.test.ts (1 test | 1 failed) 8ms
+   ❯ ConvexClientProvider (1)
+     × uses shared Convex URL fallback behavior 6ms
+ ✓ __tests__/practice/vertical-slice.test.tsx (6 tests) 30ms
+stderr | __tests__/setup/auth-provider.test.tsx > AuthProvider > renders children without crashing
+An update to AuthProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ ✓ __tests__/setup/auth-provider.test.tsx (1 test) 20ms
+ ✓ __tests__/convex/seed/seed-standards.test.ts (15 tests) 9ms
+ ✓ __tests__/convex/seed/standards-inventory.test.ts (5 tests) 8ms
+ ✓ __tests__/config.test.ts (2 tests) 5ms
+ ✓ __tests__/convex/seed/standards-integrity.test.ts (3 tests) 5ms
+ ✓ __tests__/ci/standards-integrity-ci-wiring.test.ts (3 tests) 4ms
+ ✓ __tests__/pages/home.test.ts (1 test) 3ms
+ ✓ __tests__/pages/login.test.ts (1 test) 3ms
+ ✓ __tests__/pages/curriculum.test.ts (1 test) 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  __tests__/setup/convex-provider.test.ts > ConvexClientProvider > uses shared Convex URL fallback behavior
+AssertionError: expected 'export { ConvexClientProvider } from …' to contain 'getConvexUrl'
+
+- Expected
++ Received
+
+- getConvexUrl
++ export { ConvexClientProvider } from "@math-platform/app-shell/providers";
++
+
+ ❯ __tests__/setup/convex-provider.test.ts:10:22
+      8|     const provider = fs.readFileSync(providerPath, 'utf8');
+      9|
+     10|     expect(provider).toContain('getConvexUrl');
+       |                      ^
+     11|     expect(provider).toContain('new ConvexReactClient(getConvexUrl())'…
+     12|     expect(provider).not.toContain('process.env.NEXT_PUBLIC_CONVEX_URL…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 10 passed (11)
+      Tests  1 failed | 38 passed (39)
+   Start at  10:17:00
+   Duration  6.87s (environment 83%, setup 13%, tests 2%, worker 1%, transform 1%, import 1%)
+
+Environment  jsdom was created 11 times · 5.00s total, 83% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /home/daniebo/Desktop/ra-math-advantage/apps/integrated-math-1
+npm error workspace undefined
+npm error location /home/daniebo/Desktop/ra-math-advantage/apps/integrated-math-1
+npm error command failed
+npm error command sh -c vitest run

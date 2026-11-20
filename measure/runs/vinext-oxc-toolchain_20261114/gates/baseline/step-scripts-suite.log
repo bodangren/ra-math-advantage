@@ -1,0 +1,8 @@
+
+ RUN  v4.1.8 /home/daniebo/Desktop/ra-math-advantage
+
+No test files found, exiting with code 1
+
+include: __tests__/remediate-concept-blueprints.test.ts
+exclude:  **/node_modules/**, **/.git/**
+

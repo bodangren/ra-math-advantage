@@ -1,0 +1,4 @@
+
+> lint
+> oxlint --config ../../.oxlintrc.json . --max-warnings 0
+

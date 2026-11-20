@@ -1,0 +1,58 @@
+# Final acceptance log: vinext-oxc-toolchain_20261114
+
+Audited HEAD: 93376db5ad5d976c50eb921ff2127fb830698e95. Track base: d4752739.
+
+## Result
+
+Final acceptance FAILS. Phase acceptance passed for S1 to S5. Each baseline is an ancestor
+of its audited HEAD. Each audited HEAD is an ancestor of current HEAD. The role gate failed
+on one new failing test.
+
+## Cause
+
+Commit 60253266 (the S5 checkpoint) deleted the Resolved row "IM3 auth wrapper inline
+duplication" from measure/tech-debt.md. The row was removed to hold the file at the 50-line
+limit. The test apps/integrated-math-3/__tests__/lib/auth/server-composition.test.ts:230
+reads measure/tech-debt.md and requires that row.
+
+The final test sweep gives 219 failed of 7068. The baseline gives 218 of 7067. gates.sh
+prints "NEW FAILURE: test apps/integrated-math-3 has a new diagnostic" with NEWFAIL=1. A
+targeted run gives 1 failed of 16 in that file, exit 1.
+
+## Passing checks
+
+- Lint gate: 27 workspaces at exit 0, NEWFAIL=0.
+- Checks gate: boundary 0, ci-check 0, tree 0, next-absent 0, measure-contract 1 (baseline),
+  NEWFAIL=0.
+- Typecheck exit rows: three improvements against the baseline, no new key.
+- Build exit rows: equal to the baseline.
+- `npm run format:check`: exit 0 on 3717 files.
+- `bash measure/doctor.sh`: exit 0.
+- AC1 to AC10 static checks hold, except AC8, which the new failing test breaks.
+- A5, A6, and A9 detectors: no hit for this track.
+- Top-level tasks: all [x] with a commit SHA. The three [b] tasks are deferred:closeout-steward.
+
+## Artifacts
+
+- final-acceptance-93376db5.json
+- final-acceptance-93376db5.log
+- final-acceptance-93376db5-gate.out (the role-gate output)
+- final-acceptance-93376db5-gate.exit (exit code 1)
+
+The role gate ran on the provisional JSON (status pass) and failed on PROJECT_TESTS only.
+The final JSON records that same failure as the blocker. A rerun on the final JSON would
+fail on `audit status must be pass, got 'fail'` and would repeat the same heavy sweeps, so
+this role does not rerun it.
+
+MEASURE_AGENT_RESULT
+role: measure-final-acceptance
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: track
+commits: none (gate-only role; no commit). Audited 93376db5 over d4752739..93376db5. Phase acceptance results: S1 413a2138, S2 6cbdbbdf, S3 80934197, S4 d6b60a19, S5 f348394f. Later commits: 60253266 and 93376db5.
+tests_run: role gate with PROJECT_LINT, PROJECT_CHECKS, and PROJECT_TESTS -> exit 1 (the output is in final-acceptance-93376db5-gate.out); lint final NEWFAIL=0 with 27 workspaces at exit 0; checks-all final NEWFAIL=0 with steps boundary 0, ci-check 0, tree 0, next-absent 0, measure-contract 1; test final NEWFAIL=1 with 219 failed and 6844 passed of 7068 (baseline 218 of 7067); targeted IM3 file run 1 failed of 16; npm run format:check exit 0 on 3717 files; bash measure/doctor.sh exit 0.
+files_changed: measure/runs/vinext-oxc-toolchain_20261114/final-acceptance-93376db5.json, .log, final-acceptance-93376db5-gate.out, and final-acceptance-93376db5-gate.exit. No implementation, test, plan, registry, or evidence file changed. The six dirty generated files stay unstaged.
+plan_updates: none. This role reads the plan and does not edit it. Every top-level S1 to S5 task is [x] with a commit SHA. The [b] tasks at plan.md:618, 752, and 761 are deferred:closeout-steward.
+known_failures: NEW at HEAD: apps/integrated-math-3/__tests__/lib/auth/server-composition.test.ts:230 fails because 60253266 removed the required tech-debt row. Baseline failures stay: scripts suite 1 (remediate-concept-blueprints), audit suites 5, measure-contract step 1, root typecheck 59 diagnostics (IM3 55, PreCalc 4), and the test sweeps (BM2 7 of 2695, IM1 54 of 481, IM3 218 of 7067 before this change, PreCalc 52 of 6186, math-content 2 of 886).
+handoff: Do not run closeout. Fix F1 first. Restore the row "| IM3 auth wrapper inline duplication | Medium | Resolved | ..." to measure/tech-debt.md. The file holds 49 lines now, so the restore gives 50 and stays inside the limit. Keep the 13 S5 carry rows. Then rerun the IM3 test file and `GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test final`. The later commits also change measure/tracks.md and measure/tech-debt.md, which are not plan or evidence files, so the coverage rule needs the same fix and a new final acceptance on the new HEAD. retry_recommendation is retry_implementation. No user decision blocks the work. No push before the closeout. The shell guard denied git add -f, so stage the four artifacts with the fix commit or the closeout.
+END_MEASURE_AGENT_RESULT

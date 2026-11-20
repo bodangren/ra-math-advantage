@@ -1,0 +1,4 @@
+
+> @math-platform/app-shell@0.1.0 build
+> tsc --noEmit
+

@@ -1,0 +1,7 @@
+- banner:
+  - link "Skip to content":
+    - /url: "#main-content"
+  - link "Danielson Teacher Growth":
+    - /url: /
+- main:
+h1: Sign in | horizontal overflow px at 375px width: 0

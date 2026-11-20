@@ -1,0 +1,113 @@
+
+> lint
+> npm run lint --workspaces --if-present
+
+
+> lint
+> oxlint --config ../../.oxlintrc.json . --max-warnings 0
+
+
+> lint
+> oxlint --config ../../.oxlintrc.json . --max-warnings 0
+
+
+> lint
+> oxlint --config ../../.oxlintrc.json . --max-warnings 0
+
+
+> lint
+> oxlint --config ../../.oxlintrc.json . --max-warnings 0
+
+
+> lint
+> oxlint --config ../../.oxlintrc.json . --max-warnings 0
+
+
+> lint
+> oxlint --config ../../.oxlintrc.json . --max-warnings 0
+
+
+> @math-platform/template@0.1.0 lint
+> echo 'No lint configured for template package'
+
+No lint configured for template package
+
+> @math-platform/activity-components@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/activity-runtime@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/ai-tutoring@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/app-shell@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/component-approval@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/core-auth@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/core-convex@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/efficacy-core@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/graphing-core@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/knowledge-space-core@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/knowledge-space-practice@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/lesson-renderer@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/math-content@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/practice-core@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/practice-test-engine@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/rate-limiter@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/srs-engine@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/study-hub-core@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/teacher-reporting-core@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/workbook-pipeline@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+

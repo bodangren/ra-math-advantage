@@ -1,0 +1,329 @@
+
+> test
+> vitest run
+
+[33m(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vitest.config.ts:45:25). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.[39m
+
+ RUN  v5.1.0 /home/daniebo/Desktop/ra-math-advantage/apps/integrated-math-2
+
+ ❯ __tests__/curriculum/curriculum-depth.test.ts (84 tests | 44 failed) 46ms
+   ✓ Curriculum Structure (3)
+     ✓ has README.md and course-spec.md at curriculum root 1ms
+     ✓ course-spec.md defines the class-period planning model 0ms
+     ✓ has modules, practice, implementation, and source directories 0ms
+   ❯ Unit Summary Files (14)
+     × has 13 unit summary files 5ms
+     × unit 1 summary file exists 1ms
+     × unit 2 summary file exists 0ms
+     × unit 3 summary file exists 0ms
+     × unit 4 summary file exists 0ms
+     × unit 5 summary file exists 0ms
+     × unit 6 summary file exists 0ms
+     × unit 7 summary file exists 0ms
+     × unit 8 summary file exists 0ms
+     × unit 9 summary file exists 0ms
+     × unit 10 summary file exists 0ms
+     × unit 11 summary file exists 0ms
+     × unit 12 summary file exists 0ms
+     × unit 13 summary file exists 0ms
+   ❯ Lesson Source Files (19)
+     × has at least 67 lesson files 0ms
+     × unit 1 has expected number of lesson files 0ms
+     × unit 2 has expected number of lesson files 0ms
+     × unit 3 has expected number of lesson files 0ms
+     × unit 4 has expected number of lesson files 0ms
+     × unit 5 has expected number of lesson files 0ms
+     × unit 6 has expected number of lesson files 0ms
+     × unit 7 has expected number of lesson files 0ms
+     × unit 8 has expected number of lesson files 0ms
+     × unit 9 has expected number of lesson files 0ms
+     × unit 10 has expected number of lesson files 0ms
+     × unit 11 has expected number of lesson files 0ms
+     × unit 12 has expected number of lesson files 0ms
+     × unit 13 has expected number of lesson files 0ms
+     ✓ no lesson file is under 60 lines 0ms
+     ✓ every lesson file contains Today's Goals section 0ms
+     ✓ every lesson file contains Vocabulary section 0ms
+     ✓ every lesson file contains Objective Alignment section 0ms
+     ✓ every lesson file contains at least 4 worked examples 0ms
+   ❯ Class-Period Plans (14)
+     × has 13 class-period plan files 0ms
+     × unit 1 class-period plan exists and uses valid day types 0ms
+     × unit 2 class-period plan exists and uses valid day types 0ms
+     × unit 3 class-period plan exists and uses valid day types 0ms
+     × unit 4 class-period plan exists and uses valid day types 0ms
+     × unit 5 class-period plan exists and uses valid day types 0ms
+     × unit 6 class-period plan exists and uses valid day types 0ms
+     × unit 7 class-period plan exists and uses valid day types 0ms
+     × unit 8 class-period plan exists and uses valid day types 0ms
+     × unit 9 class-period plan exists and uses valid day types 0ms
+     × unit 10 class-period plan exists and uses valid day types 0ms
+     × unit 11 class-period plan exists and uses valid day types 0ms
+     × unit 12 class-period plan exists and uses valid day types 0ms
+     × unit 13 class-period plan exists and uses valid day types 0ms
+   ❯ Class-Period Packages (18)
+     × has 13 class-period package JSON files 0ms
+     ✓ unit 1 package uses class-period-package.v1 schema 0ms
+     ✓ unit 2 package uses class-period-package.v1 schema 0ms
+     ✓ unit 3 package uses class-period-package.v1 schema 0ms
+     ✓ unit 4 package uses class-period-package.v1 schema 0ms
+     ✓ unit 5 package uses class-period-package.v1 schema 0ms
+     ✓ unit 6 package uses class-period-package.v1 schema 0ms
+     ✓ unit 7 package uses class-period-package.v1 schema 0ms
+     ✓ unit 8 package uses class-period-package.v1 schema 0ms
+     ✓ unit 9 package uses class-period-package.v1 schema 0ms
+     ✓ unit 10 package uses class-period-package.v1 schema 0ms
+     ✓ unit 11 package uses class-period-package.v1 schema 0ms
+     ✓ unit 12 package uses class-period-package.v1 schema 0ms
+     ✓ unit 13 package uses class-period-package.v1 schema 0ms
+     ✓ instruction periods have dailyPhases with all 6 phases 6ms
+     ✓ instruction periods have sourceLesson, objectiveCode, objective, and workedExamples 3ms
+     ✓ non-instruction periods have nonInstructionArtifact 1ms
+     ✓ dailyPhases text is not copy-paste (unique across instruction periods within each unit) 1ms
+   ❯ Activity Map (4)
+     ✓ has practice.v1 contract and curriculum-activity-map.v1 schema 1ms
+     ✓ has at least 400 activity entries 1ms
+     × no single componentKey exceeds 40% of entries 1ms
+     ✓ uses only known practice.v1 modes 6ms
+   ✓ Problem-Family Registry (3)
+     ✓ problem-type-registry.md exists 0ms
+     ✓ has familyKey entries for all 13 units 0ms
+     ✓ course-plan-map.md exists and covers all units 0ms
+   ✓ Source PDF Extractions (3)
+     ✓ pdf-manifest.json exists and lists 18 PDFs 0ms
+     ✓ has extracted markdown for all 18 PDFs 0ms
+     ✓ no source extraction file is empty 1ms
+   ✓ Exceptions (2)
+     ✓ exceptions.json documents filename anomalies 0ms
+     ✓ exceptions.json documents split modules 0ms
+   ✓ Audit (4)
+     ✓ audit/latest.json exists with all checks passing 0ms
+     ✓ audit reports 13 units 0ms
+     ✓ audit reports at least 67 lessons 0ms
+     ✓ audit reports at least 160 planned periods 0ms
+ ❯ __tests__/setup/convex-provider.test.ts (1 test | 1 failed) 7ms
+   ❯ ConvexClientProvider (1)
+     × uses shared Convex URL fallback behavior 5ms
+ ✓ __tests__/convex/seed/seed-standards.test.ts (10 tests) 8ms
+ ✓ __tests__/lib/utils.test.ts (4 tests) 7ms
+ ✓ __tests__/convex/seed/standards-inventory.test.ts (5 tests) 7ms
+ ✓ __tests__/setup/dev-stack-script.test.ts (2 tests) 7ms
+ ✓ __tests__/config.test.ts (2 tests) 5ms
+ ✓ __tests__/convex/seed/standards-integrity.test.ts (3 tests) 4ms
+ ✓ __tests__/ci/standards-integrity-ci-wiring.test.ts (3 tests) 4ms
+ ✓ __tests__/pages/login.test.ts (1 test) 4ms
+ ✓ __tests__/pages/curriculum.test.ts (1 test) 3ms
+ ✓ __tests__/pages/home.test.ts (1 test) 3ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 45 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Unit Summary Files > has 13 unit summary files
+AssertionError: expected +0 to be 13 // Object.is equality
+
+- Expected
++ Received
+
+- 13
++ 0
+
+ ❯ __tests__/curriculum/curriculum-depth.test.ts:57:30
+     55|   it('has 13 unit summary files', () => {
+     56|     const summaries = readdirSync(MODULES_DIR).filter(f => f.match(/^u…
+     57|     expect(summaries.length).toBe(13);
+       |                              ^
+     58|   });
+     59|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/45]⎯
+
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Unit Summary Files > unit 1 summary file exists
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Unit Summary Files > unit 2 summary file exists
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Unit Summary Files > unit 3 summary file exists
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Unit Summary Files > unit 4 summary file exists
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Unit Summary Files > unit 5 summary file exists
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Unit Summary Files > unit 6 summary file exists
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Unit Summary Files > unit 7 summary file exists
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Unit Summary Files > unit 8 summary file exists
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Unit Summary Files > unit 9 summary file exists
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Unit Summary Files > unit 10 summary file exists
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Unit Summary Files > unit 11 summary file exists
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Unit Summary Files > unit 12 summary file exists
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Unit Summary Files > unit 13 summary file exists
+AssertionError: expected 0 to be greater than or equal to 1
+ ❯ __tests__/curriculum/curriculum-depth.test.ts:64:28
+     62|     (unit) => {
+     63|       const files = readdirSync(MODULES_DIR).filter(f => f.startsWith(…
+     64|       expect(files.length).toBeGreaterThanOrEqual(1);
+       |                            ^
+     65|     }
+     66|   );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/45]⎯
+
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Lesson Source Files > has at least 67 lesson files
+AssertionError: expected 0 to be greater than or equal to 67
+ ❯ __tests__/curriculum/curriculum-depth.test.ts:73:32
+     71|
+     72|   it('has at least 67 lesson files', () => {
+     73|     expect(lessonFiles.length).toBeGreaterThanOrEqual(67);
+       |                                ^
+     74|   });
+     75|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/45]⎯
+
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Lesson Source Files > unit 1 has expected number of lesson files
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Lesson Source Files > unit 4 has expected number of lesson files
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Lesson Source Files > unit 7 has expected number of lesson files
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Lesson Source Files > unit 8 has expected number of lesson files
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Lesson Source Files > unit 11 has expected number of lesson files
+AssertionError: expected 0 to be greater than or equal to 6
+ ❯ __tests__/curriculum/curriculum-depth.test.ts:81:22
+     79|       const expected = EXPECTED_LESSONS[unit];
+     80|       const actual = readdirSync(MODULES_DIR).filter(f => f.startsWith…
+     81|       expect(actual).toBeGreaterThanOrEqual(expected);
+       |                      ^
+     82|     }
+     83|   );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/45]⎯
+
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Lesson Source Files > unit 2 has expected number of lesson files
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Lesson Source Files > unit 3 has expected number of lesson files
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Lesson Source Files > unit 5 has expected number of lesson files
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Lesson Source Files > unit 6 has expected number of lesson files
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Lesson Source Files > unit 9 has expected number of lesson files
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Lesson Source Files > unit 10 has expected number of lesson files
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Lesson Source Files > unit 12 has expected number of lesson files
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Lesson Source Files > unit 13 has expected number of lesson files
+AssertionError: expected 0 to be greater than or equal to 5
+ ❯ __tests__/curriculum/curriculum-depth.test.ts:81:22
+     79|       const expected = EXPECTED_LESSONS[unit];
+     80|       const actual = readdirSync(MODULES_DIR).filter(f => f.startsWith…
+     81|       expect(actual).toBeGreaterThanOrEqual(expected);
+       |                      ^
+     82|     }
+     83|   );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/45]⎯
+
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Class-Period Plans > has 13 class-period plan files
+AssertionError: expected +0 to be 13 // Object.is equality
+
+- Expected
++ Received
+
+- 13
++ 0
+
+ ❯ __tests__/curriculum/curriculum-depth.test.ts:145:26
+    143|   it('has 13 class-period plan files', () => {
+    144|     const plans = readdirSync(CURRICULUM_DIR).filter(f => f.match(/^un…
+    145|     expect(plans.length).toBe(13);
+       |                          ^
+    146|   });
+    147|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/45]⎯
+
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Class-Period Plans > unit 1 class-period plan exists and uses valid day types
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Class-Period Plans > unit 2 class-period plan exists and uses valid day types
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Class-Period Plans > unit 3 class-period plan exists and uses valid day types
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Class-Period Plans > unit 4 class-period plan exists and uses valid day types
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Class-Period Plans > unit 5 class-period plan exists and uses valid day types
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Class-Period Plans > unit 6 class-period plan exists and uses valid day types
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Class-Period Plans > unit 7 class-period plan exists and uses valid day types
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Class-Period Plans > unit 8 class-period plan exists and uses valid day types
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Class-Period Plans > unit 9 class-period plan exists and uses valid day types
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Class-Period Plans > unit 10 class-period plan exists and uses valid day types
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Class-Period Plans > unit 11 class-period plan exists and uses valid day types
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Class-Period Plans > unit 12 class-period plan exists and uses valid day types
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Class-Period Plans > unit 13 class-period plan exists and uses valid day types
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ __tests__/curriculum/curriculum-depth.test.ts:152:36
+    150|     (unit) => {
+    151|       const planPath = join(CURRICULUM_DIR, `unit-${unit}-class-period…
+    152|       expect(existsSync(planPath)).toBe(true);
+       |                                    ^
+    153|       const content = readFileSync(planPath, 'utf-8');
+    154|       expect(content).toContain('instruction');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/45]⎯
+
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Class-Period Packages > has 13 class-period package JSON files
+AssertionError: expected 252 to be 13 // Object.is equality
+
+- Expected
++ Received
+
+- 13
++ 252
+
+ ❯ __tests__/curriculum/curriculum-depth.test.ts:165:25
+    163|   it('has 13 class-period package JSON files', () => {
+    164|     const pkgs = readdirSync(join(IMPLEMENTATION_DIR, 'class-period-pa…
+    165|     expect(pkgs.length).toBe(13);
+       |                         ^
+    166|   });
+    167|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/45]⎯
+
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > Activity Map > no single componentKey exceeds 40% of entries
+AssertionError: expected 1 to be less than or equal to 0.4
+ ❯ __tests__/curriculum/curriculum-depth.test.ts:263:19
+    261|     for (const [, count] of Object.entries(counts)) {
+    262|       const pct = count / total;
+    263|       expect(pct).toBeLessThanOrEqual(0.40);
+       |                   ^
+    264|     }
+    265|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/45]⎯
+
+ FAIL  __tests__/setup/convex-provider.test.ts > ConvexClientProvider > uses shared Convex URL fallback behavior
+AssertionError: expected 'export { ConvexClientProvider } from …' to contain 'getConvexUrl'
+
+- Expected
++ Received
+
+- getConvexUrl
++ export { ConvexClientProvider } from "@math-platform/app-shell/providers";
++
+
+ ❯ __tests__/setup/convex-provider.test.ts:10:22
+      8|     const provider = fs.readFileSync(providerPath, 'utf8');
+      9|
+     10|     expect(provider).toContain('getConvexUrl');
+       |                      ^
+     11|     expect(provider).toContain('new ConvexReactClient(getConvexUrl())'…
+     12|     expect(provider).not.toContain('process.env.NEXT_PUBLIC_CONVEX_URL…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/45]⎯
+
+
+ Test Files  2 failed | 10 passed (12)
+      Tests  45 failed | 72 passed (117)
+   Start at  10:17:57
+   Duration  7.48s (environment 83%, setup 13%, tests 2%, worker 1%, import 1%)
+
+Environment  jsdom was created 12 times · 5.32s total, 83% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /home/daniebo/Desktop/ra-math-advantage/apps/integrated-math-2
+npm error workspace undefined
+npm error location /home/daniebo/Desktop/ra-math-advantage/apps/integrated-math-2
+npm error command failed
+npm error command sh -c vitest run

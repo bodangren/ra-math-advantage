@@ -1,0 +1,13 @@
+
+> @math-platform/lesson-renderer@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/lesson-renderer
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  13:08:54
+   Duration  537ms (transform 16ms, setup 0ms, import 24ms, tests 3ms, environment 418ms)
+

@@ -1,0 +1,13 @@
+
+> @math-platform/knowledge-space-core@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.8 /home/daniebo/Desktop/ra-math-advantage/packages/knowledge-space-core
+
+
+ Test Files  49 passed (49)
+      Tests  673 passed (673)
+   Start at  23:56:15
+   Duration  27.52s (transform 1.48s, setup 0ms, import 5.94s, tests 9.72s, environment 11ms)
+

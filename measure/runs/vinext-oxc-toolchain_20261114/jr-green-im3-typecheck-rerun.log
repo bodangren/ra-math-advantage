@@ -1,0 +1,29 @@
+
+> typecheck
+> tsc --noEmit
+
+
+<--- Last few GCs --->
+
+[1636287:0x2c22e000]    17113 ms: Mark-Compact 1420.9 (1431.2) -> 1414.7 (1429.2) MB, pooled: 1 MB, 315.61 / 0.00 ms  (average mu = 0.188, current mu = 0.040) allocation failure; scavenge might not succeed
+
+FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+ 1: 0x75356c node::OOMErrorHandler(char const*, v8::OOMDetails const&) [node]
+ 2: 0xc52cd0  [node]
+ 3: 0xc52dbf  [node]
+ 4: 0xef6695  [node]
+ 5: 0xef66c2  [node]
+ 6: 0xef69ba  [node]
+ 7: 0xf076ba  [node]
+ 8: 0xf0ba60  [node]
+ 9: 0x199e0d1  [node]
+Aborted (core dumped)
+npm error Lifecycle script `typecheck` failed with error:
+npm error code 134
+npm error path /home/daniebo/Desktop/ra-math-advantage/apps/integrated-math-3
+npm error workspace undefined
+npm error location /home/daniebo/Desktop/ra-math-advantage/apps/integrated-math-3
+npm error command failed
+npm error command sh -c tsc --noEmit

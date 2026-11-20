@@ -1,0 +1,5 @@
+heavy-run: load hold — load 6.37 over 6
+
+> @math-platform/ai-tutoring@0.1.0 build
+> tsc --noEmit
+

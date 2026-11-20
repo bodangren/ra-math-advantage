@@ -1,0 +1,6 @@
+Page: http://localhost:4106/
+Final URL: http://localhost:4106/auth/login?redirect=%2F
+Console errors: 1
+Page errors: 0
+
+[console 1] Failed to load resource: the server responded with a status of 404 ()

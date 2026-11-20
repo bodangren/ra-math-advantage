@@ -1,0 +1,71 @@
+tsc: Version 7.0.2
+=== apps/bus-math-v2/tsconfig.json exit=0 errors=0 seconds=2
+=== apps/danielson/tsconfig.json exit=0 errors=0 seconds=1
+=== apps/integrated-math-1/tsconfig.json exit=0 errors=0 seconds=2
+=== apps/integrated-math-2/tsconfig.json exit=0 errors=0 seconds=3
+=== apps/integrated-math-3/tsconfig.json exit=1 errors=55 seconds=5
+    apps/integrated-math-3/__tests__/components/activities/algebraic/StepByStepSolverActivity.test.tsx(188,15): error TS2322: Type '{ activityId: string; problemType: "system"; equations: { first: string; second: string; }; steps: { expression: string; explanation: string; }[]; mode: "guided" | "practice" | "teaching"; }' is not assignable to type 'StepByStepSolverActivityProps'.
+    apps/integrated-math-3/__tests__/components/activities/algebraic/StepByStepSolverActivity.test.tsx(199,15): error TS2322: Type '{ activityId: string; problemType: "system"; equations: { first: string; second: string; }; steps: { expression: string; explanation: string; }[]; mode: "guided"; }' is not assignable to type 'StepByStepSolverActivityProps'.
+    apps/integrated-math-3/__tests__/components/activities/algebraic/StepByStepSolverActivity.test.tsx(206,15): error TS2322: Type '{ activityId: string; problemType: "system"; equations: { first: string; second: string; }; steps: { expression: string; explanation: string; }[]; mode: "practice"; onSubmit: Mock<Procedure>; }' is not assignable to type 'StepByStepSolverActivityProps'.
+    apps/integrated-math-3/__tests__/components/activities/algebraic/StepByStepper.test.tsx(163,53): error TS2322: Type '{ mode: "guided" | "practice"; steps: { expression: string; explanation: string; }[]; showInitialProblem: boolean; }' is not assignable to type 'IntrinsicAttributes & StepByStepperProps'.
+    apps/integrated-math-3/__tests__/components/lesson/ActivityRenderer-quadratic-formula.test.tsx(31,103): error TS2322: Type '{ componentKey: string; activityId: string; mode: "practice"; pendingSubmissionId: string; attemptOrdinal: number; activityProps: { presentationMode: string; prompt: string; equation: string; }; onSubmit: Mock<...>; onComplete: Mock<...>; }' is not assignable to type 'IntrinsicAttributes & ActivityRendererProps'.
+    apps/integrated-math-3/__tests__/components/lesson/ActivityRenderer-quadratic-formula.test.tsx(51,103): error TS2322: Type '{ componentKey: string; activityId: string; mode: "practice"; pendingSubmissionId: string; attemptOrdinal: number; activityProps: { activityId: string; mode: string; onSubmit: Mock<Procedure>; presentationMode: string; prompt: string; equation: string; }; onSubmit: Mock<...>; }' is not assignable to type 'IntrinsicAttributes & ActivityRendererProps'.
+    apps/integrated-math-3/__tests__/components/lesson/ActivityRenderer-quadratic-formula.test.tsx(65,100): error TS2322: Type '{ componentKey: string; activityId: string; mode: "practice"; pendingSubmissionId: string; attemptOrdinal: number; activityProps: { presentationMode: string; prompt: string; equation: string; }; }' is not assignable to type 'IntrinsicAttributes & ActivityRendererProps'.
+    apps/integrated-math-3/__tests__/components/lesson/ActivityRenderer-quadratic-formula.test.tsx(73,102): error TS2322: Type '{ componentKey: string; activityId: string; mode: "practice"; pendingSubmissionId: string; attemptOrdinal: number; activityProps: { presentationMode: string; prompt: string; equation: string; }; onSubmit: Mock<...>; }' is not assignable to type 'IntrinsicAttributes & ActivityRendererProps'.
+=== apps/pre-calculus/tsconfig.json exit=1 errors=4 seconds=3
+    apps/pre-calculus/__tests__/app/api/teacher/course/topic11-surface-real-flow.test.ts(4,26): error TS2307: Cannot find module '@/__tests__/convex/topic11-approved-publication.fixture' or its corresponding type declarations.
+    apps/pre-calculus/__tests__/app/api/teacher/course/topic11-surface-real-flow.test.ts(7,26): error TS2307: Cannot find module '@/__tests__/convex/topic11-approved-publication.fixture' or its corresponding type declarations.
+    apps/pre-calculus/__tests__/app/api/teacher/course/topic11-surface-real-flow.test.ts(15,75): error TS2339: Property 'submitTopic11TeacherSubmission' does not exist on type 'typeof import("/home/daniebo/Desktop/ra-math-advantage/apps/pre-calculus/convex/selectedLearningEvidence")'.
+    apps/pre-calculus/__tests__/app/api/teacher/course/topic11-surface-real-flow.test.ts(23,46): error TS2307: Cannot find module '@/__tests__/convex/topic11-approved-publication.fixture' or its corresponding type declarations.
+=== packages/activity-components/tsconfig.json exit=0 errors=0 seconds=1
+=== packages/activity-runtime/tsconfig.json exit=0 errors=0 seconds=0
+=== packages/ai-tutoring/tsconfig.json exit=0 errors=0 seconds=1
+=== packages/app-shell/tsconfig.json exit=0 errors=0 seconds=0
+=== packages/component-approval/tsconfig.json exit=0 errors=0 seconds=0
+=== packages/core-auth/tsconfig.json exit=0 errors=0 seconds=1
+=== packages/core-convex/tsconfig.json exit=0 errors=0 seconds=0
+=== packages/efficacy-core/tsconfig.json exit=0 errors=0 seconds=1
+=== packages/graphing-core/tsconfig.json exit=0 errors=0 seconds=0
+=== packages/knowledge-space-core/tsconfig.json exit=0 errors=0 seconds=0
+=== packages/knowledge-space-practice/tsconfig.json exit=0 errors=0 seconds=1
+=== packages/lesson-renderer/tsconfig.json exit=0 errors=0 seconds=1
+=== packages/math-content/tsconfig.json exit=0 errors=0 seconds=1
+=== packages/practice-core/tsconfig.json exit=0 errors=0 seconds=0
+=== packages/practice-test-engine/tsconfig.json exit=0 errors=0 seconds=0
+=== packages/rate-limiter/tsconfig.json exit=0 errors=0 seconds=1
+=== packages/srs-engine/tsconfig.json exit=0 errors=0 seconds=0
+=== packages/study-hub-core/tsconfig.json exit=0 errors=0 seconds=1
+=== packages/teacher-reporting-core/tsconfig.json exit=0 errors=0 seconds=0
+=== packages/_template/tsconfig.json exit=0 errors=0 seconds=0
+=== packages/workbook-pipeline/tsconfig.json exit=0 errors=0 seconds=1
+=== apps/bus-math-v2/convex/tsconfig.json exit=1 errors=87 seconds=0
+    apps/bus-math-v2/convex/activities.ts(877,42): error TS7006: Parameter 'part' implicitly has an 'any' type.
+    apps/bus-math-v2/lib/practice/engine/families/accounting-equation.ts(1,148): error TS2307: Cannot find module '@/lib/practice/engine/types' or its corresponding type declarations.
+    apps/bus-math-v2/lib/practice/engine/families/accounting-equation.ts(2,40): error TS2307: Cannot find module '@/lib/practice/contract' or its corresponding type declarations.
+    apps/bus-math-v2/lib/practice/engine/families/accounting-equation.ts(3,104): error TS2307: Cannot find module '@/lib/practice/engine/mini-ledger' or its corresponding type declarations.
+    apps/bus-math-v2/lib/practice/engine/families/accounting-equation.ts(166,7): error TS2353: Object literal may only specify known properties, and 'prompt' does not exist in type 'AccountingEquationPart'.
+    apps/bus-math-v2/lib/practice/engine/families/accounting-equation.ts(269,28): error TS7006: Parameter 'partResult' implicitly has an 'any' type.
+    apps/bus-math-v2/lib/practice/engine/families/accounting-equation.ts(294,12): error TS7006: Parameter 'seed' implicitly has an 'any' type.
+    apps/bus-math-v2/lib/practice/engine/families/accounting-equation.ts(300,55): error TS2339: Property 'hiddenTermId' does not exist on type '{}'.
+=== apps/danielson/convex/tsconfig.json exit=0 errors=0 seconds=1
+=== apps/integrated-math-1/convex/tsconfig.json exit=1 errors=21 seconds=1
+    apps/integrated-math-1/convex/seed/seed_im1_module_10_standards.ts(2,10): error TS2305: Module '"./types"' has no exported member 'SeedLessonStandard'.
+    apps/integrated-math-1/convex/seed/seed_module_10_lessons.ts(1040,15): error TS2367: This comparison appears to be unintentional because the types '"text"' and '"activity"' have no overlap.
+    apps/integrated-math-1/convex/seed/seed_module_10_lessons.ts(1041,37): error TS2352: Conversion of type '{ markdown: string; } | { markdown: string; } | { markdown: string; } | { markdown: string; } | { markdown: string; }' to type 'SeedActivityContent' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+    apps/integrated-math-1/convex/seed/seed_module_11_lessons.ts(1180,15): error TS2367: This comparison appears to be unintentional because the types '"text"' and '"activity"' have no overlap.
+    apps/integrated-math-1/convex/seed/seed_module_11_lessons.ts(1181,37): error TS2352: Conversion of type '{ markdown: string; } | { markdown: string; } | { markdown: string; } | { markdown: string; } | { markdown: string; }' to type 'SeedActivityContent' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+    apps/integrated-math-1/convex/seed/seed_module_12_lessons.ts(1486,15): error TS2367: This comparison appears to be unintentional because the types '"text"' and '"activity"' have no overlap.
+    apps/integrated-math-1/convex/seed/seed_module_12_lessons.ts(1487,37): error TS2352: Conversion of type '{ markdown: string; } | { markdown: string; } | { markdown: string; } | { markdown: string; } | { markdown: string; }' to type 'SeedActivityContent' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+    apps/integrated-math-1/convex/seed/seed_module_14_lessons.ts(131,15): error TS2367: This comparison appears to be unintentional because the types '"text"' and '"activity"' have no overlap.
+=== apps/integrated-math-2/convex/tsconfig.json exit=0 errors=0 seconds=1
+=== apps/integrated-math-3/convex/tsconfig.json exit=1 errors=6 seconds=1
+    apps/integrated-math-3/convex/migration_operator.ts(53,49): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+    apps/integrated-math-3/convex/migration_operator.ts(69,49): error TS2591: Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+    apps/integrated-math-3/lib/activities/review-queue.ts(1,26): error TS2307: Cannot find module '@/convex/_generated/dataModel' or its corresponding type declarations.
+    apps/integrated-math-3/lib/placement/v3-placement-migration.ts(5,48): error TS2307: Cannot find module '@/lib/srs/v3-runtime-contract' or its corresponding type declarations.
+    packages/activity-components/src/components/algebraic/MathInputField.tsx(6,8): error TS2882: Cannot find module or type declarations for side-effect import of 'katex/dist/katex.min.css'.
+    packages/activity-components/src/components/algebraic/StepByStepper.tsx(5,8): error TS2882: Cannot find module or type declarations for side-effect import of 'katex/dist/katex.min.css'.
+=== apps/pre-calculus/convex/tsconfig.json exit=1 errors=2 seconds=2
+    packages/activity-components/src/components/algebraic/MathInputField.tsx(6,8): error TS2882: Cannot find module or type declarations for side-effect import of 'katex/dist/katex.min.css'.
+    packages/activity-components/src/components/algebraic/StepByStepper.tsx(5,8): error TS2882: Cannot find module or type declarations for side-effect import of 'katex/dist/katex.min.css'.
+CONFIGS_WITH_FAILURES=6

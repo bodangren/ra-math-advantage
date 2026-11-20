@@ -1,0 +1,59 @@
+- link "Skip to main content":
+  - /url: "#main-content"
+- banner:
+  - link "Integrated Math 3 Interactive Textbook":
+    - /url: /
+  - navigation "Main navigation":
+    - link "Home":
+      - /url: /
+    - link "Preface":
+      - /url: /preface
+    - link "Curriculum":
+      - /url: /curriculum
+  - link "Sign in":
+    - /url: /auth/login
+- main:
+  - text: Integrated Math 3 Honors
+  - heading "IM3" [level=1]
+  - paragraph: Integrated Mathematics 3
+  - paragraph: Master algebra, functions, modeling, and statistical reasoning through interactive lessons and real-world activities.
+  - link "Sign In":
+    - /url: /auth/login
+    - text: Sign In
+    - img
+  - link "View Curriculum":
+    - /url: /curriculum
+  - img "Integrated Math 3"
+  - text: "9"
+  - heading "Modules" [level=3]
+  - paragraph: From quadratic functions to trigonometry
+  - text: "52"
+  - heading "Lessons" [level=3]
+  - paragraph: Interactive lessons with practice activities
+  - text: 100+
+  - heading "Worked Examples" [level=3]
+  - paragraph: Step-by-step examples to build understanding
+  - text: Course Scope
+  - heading "Standards-Aligned" [level=2]
+  - paragraph: Covers quadratic functions, polynomials, inverses and radicals, exponentials, logarithms, rational functions, inferential statistics, and trigonometry.
+  - link "Read the course preface":
+    - /url: /preface
+    - text: Read the course preface
+    - img
+- contentinfo:
+  - heading "Integrated Math 3" [level=2]
+  - paragraph: An interactive textbook for Integrated Math 3.
+  - paragraph: © 2025 Daniel Bodanske
+  - heading "Quick Links" [level=3]
+  - navigation "Quick Links":
+    - link "Preface":
+      - /url: /preface
+    - link "Curriculum":
+      - /url: /curriculum
+  - heading "Teacher Resources" [level=3]
+  - navigation "Teacher Resources":
+    - link "Teacher Dashboard":
+      - /url: /teacher/dashboard
+    - link "Gradebook":
+      - /url: /teacher/gradebook
+  - paragraph: Integrated Math 3

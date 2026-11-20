@@ -1,0 +1,70 @@
+Strategy role log, revision r6, track vinext-oxc-toolchain_20261114, phase S1.
+role_base_sha: e341753803ed005b932355d1d78af565a759f245
+Commit: d475273969aee1e1248d4aa3b13e55fb3726b63f
+        measure(strategy): fix the r5 re-check findings in the S1 test strategy (r6)
+Input: Muse re-check of r5, measure/runs/vinext-oxc-toolchain_20261114/strategy-r5-check-3cef6c6f.md and .log
+(F8 to F14, and 14.8 item 7).
+A first run of this role stopped at the step limit with no edit. This run did the edits.
+
+Work done (section numbers are in test-strategy.md; "plan" is plan.md of the track)
+- F8: section 6.3 step 3 cites section 14.3.
+- F9: section 6.2 case 9 (c): case 9 checks only the workspace manifests and their lockfile copy.
+  It asserts nothing about lockfile keys that start with node_modules/.
+- F10: the plan audit-forward box cites section 14.2: the 8 titles (check K1), the closure checks
+  K2 and K3, the durability contract, and the peer-only rule.
+- F11: closure decision. See "F11 decision" below.
+- F12: the plan S1 Verify box names the S1 case set of section 6.2 (cases 1 to 9, with 5b and 9b: 11
+  tests) and the closure checks.
+- F13: section 3 cites section 6.1 (R16 and R18). Section 13.8 item 4 cites 6.1 (R17). The plan
+  baseline box cites sections 6.4 and 14.4 and drops the two-baseline compare.
+- F14: the 11-test count belongs to the time after the follow-up Red commit. The S1 describe holds
+  9 tests at this HEAD (collect-only vitest list, 2026-11-17).
+- Item 7: the plan S1 Test (Red) task has a box to rename gates/s1 to gates/s1-premerge before the
+  first r5 s1 gate. This role did NOT run the mv. gates/ still holds baseline, baseline-m2, and s1.
+- Derived edits: section 4 moves the capture point to the r6 commit; titles B and C lose "until S2";
+  sections 2, 6.4, and 6.7 name the closure checks; section 13.3 marks the r4 S1/S2 split bullet as
+  superseded; section 14.8 marks items 1, 6, and 7; new section 15 (finding map, facts, questions,
+  anti-pattern additions); plan phase note says r6.
+
+F11 decision (evidence in section 15.2 of test-strategy.md)
+- The root .oxlintrc.json loads eslint-plugin-react and eslint-plugin-react-hooks as jsPlugins
+  (3 + 42 = 45 enabled rule entries in 3 overrides). The plugins are live.
+- The lockfile keeps node_modules/eslint 9.39.5, @eslint/js 9.39.5, and @eslint/eslintrc 3.3.7 with
+  flags dev and peer. The lint track spec (eslint-to-oxlint-migration_20260820, items 6 to 8)
+  allows that peer-only copy. Issue #2 condition 1 says: preserve the Oxlint migration.
+- Closure does not need a removal of the plugins. A lockfile-absence case for eslint and @eslint/js
+  cannot pass and is a wrong test. S2 case 9 (peer-only) and case 9b replace the absence row.
+- W4 8/8 does not close issue #2 alone. The same file has a 5th failing test (line 249). After the
+  next key leaves, it still reports eslint-config-next (missing), eslint 9.39.5, and @eslint/js
+  9.39.5. The sibling file framework-wave-w4.test.ts also fails 5 tests on removed packages
+  (lines 406, 434, 500, 528, 630). The s1 gate cannot catch the sibling failures: their keys repeat.
+  Checks K1 to K5 (section 14.2) close issue #2.
+
+Commands run (read-only, or collect-only): git status, git log, git show, gh issue view 2 --json body,
+node -e scans of package-lock.json, .oxlintrc.json, and the W4 fixture, vitest list (collect only) for
+the W4 files and the S1 describe, ls and awk on gates/, grep. The K4 command was run with HEAD:
+jsplugins_changed=0 jsplugins_count=3. S2 case 9 clauses at this HEAD: 0 hits each (guard).
+Edits were made with two Python scripts in /tmp/r6 that check each old string once.
+No gate, build, or test sweep was run.
+
+phase_base_sha capture point: immediately after commit d475273969aee1e1248d4aa3b13e55fb3726b63f, before
+any other commit. At the commit, git status --porcelain listed only the six generated-drift files
+(apps/*/.next/types/routes.d.ts x4, apps/bus-math-v2/lib/workbooks-manifest.json, measure/generated/routes.md).
+Any value that was captured at 3cef6c6f or at e3417538 is void.
+
+Questions (defaults applied; the orchestrator confirms)
+- Q1: remove eslint-plugin-react and eslint-plugin-react-hooks? Default: no. S2 keeps them.
+- Q2: is framework-wave-w4.test.ts in the scope of issue #2? Default: yes (check K3 and a plan box).
+
+MEASURE_AGENT_RESULT
+role: strategy
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: S1 (Package refresh and vinext 1.x), revision r6
+commits: d475273969aee1e1248d4aa3b13e55fb3726b63f
+tests_run: read-only commands and collect-only vitest list only; K4 command with HEAD printed jsplugins_changed=0 jsplugins_count=3; no gate, build, or sweep run
+files_changed: measure/tracks/vinext-oxc-toolchain_20261114/test-strategy.md, measure/tracks/vinext-oxc-toolchain_20261114/plan.md
+plan_updates: F10 audit-forward box (K1 to K3, peer-only rule); F11 S2 boxes (case 9, case 9b, confirm box, Verify box); F12 Verify box; F13 baseline box; item 7 rename box in S1 Test (Red); phase note says r6; S1 Baseline (6 apps) stays [~] with its boxes unticked
+known_failures: none new; the S1 Red set is unchanged (cases 1, 2, 3, 4, 7, 8 red by design); W4 titles 4, 6, 7, 8 red by design; baseline-m2 audit suites hold 24 failures
+handoff: capture phase_base_sha with git rev-parse HEAD immediately after commit d475273969aee1e1248d4aa3b13e55fb3726b63f (only the six generated-drift entries may remain in git status --porcelain); run the gates/s1 to gates/s1-premerge mv before the first r5 s1 gate (plan box in S1 Test (Red)); answer Q1 (default: keep the plugins) and Q2 (default: the sibling file is in scope); see sections 14.2 and 15 of test-strategy.md
+END_MEASURE_AGENT_RESULT

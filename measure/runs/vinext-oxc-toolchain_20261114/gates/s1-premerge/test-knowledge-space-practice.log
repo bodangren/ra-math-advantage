@@ -1,0 +1,16 @@
+
+> @math-platform/knowledge-space-practice@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 /home/daniebo/Desktop/ra-math-advantage/packages/knowledge-space-practice
+
+
+ Test Files  18 passed (18)
+      Tests  377 passed (377)
+   Start at  10:24:52
+   Duration  2.43s (import 66%, tests 19%, worker 8%, transform 7%)
+
+    Isolate  18 workers spawned · ~71ms startup each (spawn + environment, per file)
+             at least ~1.20s faster with isolate: false — reuses workers across files instead of one per file
+

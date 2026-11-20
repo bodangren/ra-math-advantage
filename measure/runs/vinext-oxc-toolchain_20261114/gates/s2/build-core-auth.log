@@ -1,0 +1,4 @@
+
+> @math-platform/core-auth@0.1.0 build
+> tsc --noEmit
+

@@ -1,0 +1,13 @@
+
+> @math-platform/app-shell@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/app-shell
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  23:42:07
+   Duration  582ms (transform 23ms, setup 0ms, import 36ms, tests 2ms, environment 449ms)
+

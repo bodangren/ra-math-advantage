@@ -1,0 +1,48 @@
+Strategy role log, revision r5, track vinext-oxc-toolchain_20261114, phase S1.
+role_base_sha: b23bfb748e797e78a5f9836bafcbf9043d0ff60b
+Input: Muse check of r4, measure/runs/vinext-oxc-toolchain_20261114/spec-review-685b69c2.json (F1 to F7).
+The strategy-r4-check-685b69c2.md file named in the brief does not exist. The JSON and the log hold the findings.
+
+Work done
+- F1: section 14.2 holds the 8 exact W4 titles of scripts/audit/__tests__/framework-wave-w4-audit.test.ts
+  (describe line 294, loop lines 305-315, it line 317). At this HEAD 4 are red (eslint-config-next,
+  eslint, @eslint/js, next) and 4 are green (vinext, vite, @vitejs/plugin-react, typescript).
+  The red selector and the guard selector were checked with the collect-only `vitest list`: 4 and 4.
+  Case 9 (eslint and @eslint/js absent from every manifest) and case 9b (seeded fault) are added.
+  Case 9 passes at this HEAD, so it is a guard. The W4 check parses the JSON reporter output.
+- F2: section 6.4 compares the s1 run with baseline-m2 on 27 names. The pre-merge baseline folder
+  (26 names) is historical. gates.sh got a workspace-set compare in sweep() for non-baseline labels
+  when the base exit file exists. A hand harness in a temp folder: r4 script NEWFAIL=0 for a removed
+  workspace, an added workspace, and an unset GATES_BASE; r5 script NEWFAIL=1. bash -n ok.
+  The 11-case regression test passes before and after (vitest, scripts/vitest.config.ts).
+- F3: one risk table R1-R20 in section 6.1. Section 13.4 keeps an id map only (section 14.5).
+- F4: plan S2 rewritten for the single root .oxlintrc.json (26 of 27 lint scripts name it).
+- F5: the plan phase note keeps no SHA. Section 4 holds the r5 capture point.
+- F6: one plan box for the follow-up Red commit in the S1 Test (Red) task.
+- F7: danielson has 62 next import lines in 55 files (2 bare next). Command in section 14.7.
+- Extra findings (section 14.8, open items for the orchestrator): stale gates/s1 folder (26 names, rename
+  before the first r5 s1 gate); danielson vitest config lacks the next/* alias; merged-in ranges
+  (oxlint ^1.79.0 vs latest 1.94.0, vinext 1.4.6 vs lockfile 1.4.5) need a second npm outdated pass.
+
+Tests run (read-only or short): bash -n gates.sh; vitest list (collect only) for the W4 selectors;
+vitest run of scripts/__tests__/vinext-oxc-gates-script.test.ts (11 passed, before and after);
+hand harness for the workspace-set rule (temp folder); set-check command on the real exit files.
+No gate, build, or test sweep was run.
+
+phase_base_sha capture point: immediately after the commit below. git status --porcelain must list
+only the six generated-drift files (apps/*/.next/types/routes.d.ts x4, apps/bus-math-v2/lib/
+workbooks-manifest.json, measure/generated/routes.md). That was true at the commit. The r4 value
+3e141e05 is void. The orchestrator captures the new value with `git rev-parse HEAD` right after the commit.
+
+MEASURE_AGENT_RESULT
+role: strategy
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: S1 (Package refresh and vinext 1.x), revision r5
+commits: 3cef6c6f52b8d0c8f5dbb0008b1c484a5bd9368d
+tests_run: bash -n gates.sh ok; vitest list for the W4 selectors (8 / 4 / 4); gates-script regression test 11 passed before and after; temp-folder harness for the workspace-set rule; no gate, build, or sweep run
+files_changed: measure/tracks/vinext-oxc-toolchain_20261114/test-strategy.md, measure/tracks/vinext-oxc-toolchain_20261114/plan.md, measure/tracks/vinext-oxc-toolchain_20261114/gates.sh
+plan_updates: F4 (S2 boxes), F5 (phase note without SHA), F6 (follow-up Red box); S1 Baseline (6 apps) kept at [~] with its boxes unticked
+known_failures: S1 cases 1, 2, 3, 4, 7, 8 (red by design); W4 titles for eslint-config-next, eslint, @eslint/js, next (red by design)
+handoff: capture phase_base_sha with `git rev-parse HEAD` immediately after commit 3cef6c6f (only the six generated-drift entries may remain in git status --porcelain); the r4 value 3e141e05 is void; see section 14.8 of test-strategy.md for the open items; rename gates/s1 to gates/s1-premerge before the first r5 s1 gate
+END_MEASURE_AGENT_RESULT

@@ -1,0 +1,6 @@
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[error] %c%s%c [home] Failed to load landing data from Convex background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   {statsError: Error: Network connection lost.
+    at Home (about://React/Server/file:///home/daniebo/Desktop/ra-m…, unitsError: Error: Network connection lost.
+    at Home (about://React/Server/file:///home/daniebo/Desktop/ra-m…}

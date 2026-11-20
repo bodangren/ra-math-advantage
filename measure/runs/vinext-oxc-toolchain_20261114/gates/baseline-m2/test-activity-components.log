@@ -1,0 +1,17 @@
+
+> @math-platform/activity-components@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/activity-components
+
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+
+ Test Files  52 passed (52)
+      Tests  310 passed (310)
+   Start at  19:18:44
+   Duration  47.58s (transform 926ms, setup 293ms, import 7.44s, tests 12.47s, environment 22.64s)
+

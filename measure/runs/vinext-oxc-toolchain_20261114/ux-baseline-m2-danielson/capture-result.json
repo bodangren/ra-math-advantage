@@ -1,0 +1,9 @@
+{
+  "url": "http://localhost:4106/auth/login?redirect=%2F",
+  "title": "Danielson Teacher Growth",
+  "screenshot": true,
+  "snapshot": true,
+  "error": "",
+  "status": 200,
+  "html": true
+}

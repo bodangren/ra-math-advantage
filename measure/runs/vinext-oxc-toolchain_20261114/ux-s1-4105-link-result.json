@@ -1,0 +1,9 @@
+{
+  "selector": "a[href=\"/curriculum\"]",
+  "text": "Curriculum",
+  "href": "/curriculum",
+  "finalUrl": "http://localhost:4105/curriculum",
+  "status": 200,
+  "title": "Math for Business Operations: Applied Accounting with Excel",
+  "firstH1": "8 units. 1 capstone.Real workbooks you can show off."
+}

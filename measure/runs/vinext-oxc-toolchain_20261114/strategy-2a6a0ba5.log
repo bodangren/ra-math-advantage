@@ -1,0 +1,71 @@
+Role: strategy
+Track: vinext-oxc-toolchain_20261114
+role_base_sha: 2a6a0ba512f56f9ed43e386ec787145bcda6741c
+
+Summary
+- Wrote measure/tracks/vinext-oxc-toolchain_20261114/test-strategy.md (all phases, S1 in full detail).
+- Committed 3e9b9869 "measure(strategy): Test strategy for vinext-oxc-toolchain" (strategy file and one plan line).
+- Gate script text is in strategy section 12. It was syntax-checked with `bash -n`. It was not run on the workspaces, because the repository has no node_modules.
+- Review gates: Review A all phases; Review B S1, S3, S5; Review C S1, S5; adversarial S1, S2, S3, S5; UX browser S1 only.
+- Risk: S1 high, S2 medium, S3 high, S4 medium, S5 medium.
+- UX_REQUIRED: always in S1, never in S2 to S5. PROJECT_DEV_URL: http://localhost:4103 (IM3), second URL http://localhost:4105 (BM2).
+- phase_base_sha: capture `git rev-parse HEAD` right after the strategy commit 3e9b9869 (or the later HEAD), before the S1 Contract commit. The tree may show only ` M measure/generated/routes.md`.
+
+Findings that the orchestrator must read
+1. Plan gap, fixed: no step removed the `(planned: vinext-oxc-toolchain_20261114)` markers (README.md, measure/tech-stack.md). One S5 Contract line was added to plan.md.
+2. Plan gap, strategy covers it: S1 has no Red case for "CI jobs use Node 24". Strategy adds case 7.
+3. Risk: scripts/vitest.config.ts `include` uses a path relative to the Vite root. The root is the current folder, so the plan include may match nothing. Strategy requires a discovery check (`vitest list --filesOnly`) before Red.
+4. Risk: the app vitest configs do not use the vinext plugin. Tests that import `next/*` at runtime will fail to resolve when `next` is gone. Strategy names the log signature `Failed to resolve import "next`.
+5. Deviation to record: the plan makes Mid Red edit scripts/vitest.config.ts. The role-gate treats that file as non-test.
+6. Red probes could pass for the wrong reason (tool absent, or vinext/types unresolved). Strategy requires specific output codes (TS2307 with no TS2688, TS2741/TS2345, no-unused-vars, TS2322) and a `--version` precondition.
+
+MEASURE_AGENT_RESULT
+role: strategy
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S1: Package refresh and vinext 1.x
+commits: 3e9b9869
+tests_run: bash -n /tmp/oxc-gates/gates.sh (pass); has_script function check on two workspaces (pass); no test suite run, because node_modules does not exist
+files_changed: measure/tracks/vinext-oxc-toolchain_20261114/test-strategy.md (new); measure/tracks/vinext-oxc-toolchain_20261114/plan.md (one S5 Contract line for the planned-marker removal)
+plan_updates: added one S5 Contract task line that removes the planned markers from README.md and measure/tech-stack.md
+known_failures: none
+handoff: Set the gate values from strategy section 2 and copy section 12 to /tmp/oxc-gates/gates.sh before the S1 Baseline task. Capture phase_base_sha with `git rev-parse HEAD` after the strategy commit and before the S1 Contract commit. Run a baseline browser capture on vinext 0.0.55 before the first package change (UX_REQUIRED=always for S1). Record the vitest.config.ts non-test path as a deviation for Mid Red. Do not stage measure/generated/routes.md.
+END_MEASURE_AGENT_RESULT
+
+Revision (role_base_sha 3e9b986935bff1908003fc6581a466fe112a45b8)
+- SR1 fixed: the gate script is committed as measure/tracks/vinext-oxc-toolchain_20261114/gates.sh. Output and baseline go to measure/runs/vinext-oxc-toolchain_20261114/gates/<label> (gitignored). Strategy sections 2, 6.3, 6.4, 6.7, and 12 point to that file. Section 12 holds no script copy. bash -n passed.
+- SR2 fixed: section 6.3 names the owners. Mid Red runs the S1 Contract, S1 Baseline (baseline gate runs and the agent-browser capture under measure/runs/vinext-oxc-toolchain_20261114/ux-baseline-*), and S1 Test (Red) tasks. Jr Green runs steps 4 to 7. The orchestrator runs only the role gates and the section 6.4 checks.
+- plan.md was not changed in this revision.
+
+MEASURE_AGENT_RESULT
+role: strategy
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S1: Package refresh and vinext 1.x
+commits: 3e9b9869 (strategy), 4ae56e68 (gate script revision)
+tests_run: bash -n measure/tracks/vinext-oxc-toolchain_20261114/gates.sh (pass); no test suite run, because node_modules does not exist
+files_changed: measure/tracks/vinext-oxc-toolchain_20261114/gates.sh (new); measure/tracks/vinext-oxc-toolchain_20261114/test-strategy.md
+plan_updates: none in this revision (the earlier S5 marker line stays)
+known_failures: none
+handoff: Gate values use `bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh <gate> <label>`, with heavy-run.sh where section 2 says so. Capture phase_base_sha with `git rev-parse HEAD` after commit 4ae56e68 and before the S1 Contract commit. Mid Red owns the baseline gate runs and the baseline browser capture. The orchestrator must not capture a baseline. Do not stage measure/generated/routes.md.
+END_MEASURE_AGENT_RESULT
+
+Revision r3 (role_base_sha 5caedae02edf85d802c6ac078f4bc75146337e97)
+- SR3: gates.sh now calls heavy-run.sh for each workspace script and each step. Output names equal the baseline names (checked with base_code against the real baseline files). Added GATES_RESUME=1, an infrastructure exit code 3, and timing.txt. Section 2 gate values lost the outer wrapper. HEAVY_PRIORITY=p1 is not used. bash -n passed. No sweep was run.
+- SR4: section 6.5 holds the bundle-audit compare rule. BM2 baseline entries (Total dist/server, server/index.js) are not new failures. A new over-budget entry, any IM3 failure, or a budget change stops the phase. Sizes go in the evidence file. Growth goes in the Green handoff.
+- SR5 (r3 text): section 6.7 has the new rule. Green runs npm run generate. If the paths hold ../../../daniel-bo/, Green restores the file with git restore, skips generate as a deviation, and adds a tech-debt row. The routes-before.patch step is removed.
+- SR6: section 6.2 states that Green adds js-yaml (^<latest>) to the root devDependencies in the S1 manifest commit and records it in evidence section 3.
+- plan.md was not changed. measure/generated/routes.md was not staged. The working tree still has build outputs and a workbooks-manifest.json change from other roles. They were not staged.
+
+MEASURE_AGENT_RESULT
+role: strategy
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S1: Package refresh and vinext 1.x
+commits: 3e9b9869 (strategy), 4ae56e68 (gate script), 1896f08e (heavy-run split)
+tests_run: bash -n measure/tracks/vinext-oxc-toolchain_20261114/gates.sh (pass); base_code check against the baseline files (pass); no sweep run
+files_changed: measure/tracks/vinext-oxc-toolchain_20261114/gates.sh; measure/tracks/vinext-oxc-toolchain_20261114/test-strategy.md
+plan_updates: none in this revision
+known_failures: none
+handoff: Run gates with `bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh <gate> s1` and no heavy-run.sh wrapper. Run each gate in the background and use GATES_RESUME=1 to continue after an interruption. Exit code 3 means a heavy-run.sh infrastructure failure. Green adds js-yaml to the root devDependencies and records it in evidence section 3. Green follows the section 6.7 rule for npm run generate. Green compares the bundle audits by entry (section 6.5). The tree still holds an uncommitted workbooks-manifest.json change and .next build outputs; do not stage them.
+END_MEASURE_AGENT_RESULT

@@ -1,0 +1,5 @@
+heavy-run: lock wait over 600 s — priority p2 — holder PID 3673348: flock -w 1800 -E 201 /home/daniebo/Desktop/primary-parity-progress/heavy.lock /home/daniebo/Desktop/advantage-pr/scripts/jobs/heavy-run.sh --locked -c cd dashboard && CI=true npx vitest run --exclude __tests__/storytime-unit2-sound-stage.test.ts --exclude __tests__/constants.test.ts --exclude __tests__/origins-thai-support.test.ts > /tmp/opencode/green-s5g1-project-raw.txt 2>&1; v=$?; grep -E "Test Files|Tests |FAIL" /tmp/opencode/green-s5g1-project-raw.txt | tee ../measure/runs/primary_v2_look_20261020/green-s5g1-project-tests.txt; echo "VITEST_EXIT=$v"; rm -f /tmp/opencode/green-s5g1-project-raw.txt; exit $v 
+
+> typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 .
+

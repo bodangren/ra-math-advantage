@@ -1,0 +1,9 @@
+{
+  "selector": "a[href=\"/\"]",
+  "text": "Danielson Teacher Growth",
+  "href": "/",
+  "finalUrl": "http://localhost:4106/auth/login?redirect=%2F",
+  "status": 200,
+  "title": "Danielson Teacher Growth",
+  "firstH1": "Sign in"
+}

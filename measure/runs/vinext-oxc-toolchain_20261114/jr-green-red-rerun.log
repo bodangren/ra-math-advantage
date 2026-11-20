@@ -1,0 +1,158 @@
+[33m(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (scripts/vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.[39m
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/scripts
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts (11 tests | 6 failed) 3776ms
+     × case 1: vinext resolves to a 1.x release from the root, each app, and app-shell 8ms
+     × case 2: vinext resolves, and next does not resolve, from the root, each app, and app-shell 2ms
+     × case 3: no manifest declares next 2ms
+     × case 4: each app and app-shell tsconfig loads vinext/types and has no next plugin 1ms
+     × case 7: each setup-node step in the workflows uses Node 24 8ms
+     × case 8: the lockfile has no next package and no workspace entry that lists next 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 1: vinext resolves to a 1.x release from the root, each app, and app-shell
+AssertionError: folders that resolve a vinext release that is not 1.x: expected [ [ 'apps/danielson', +0 ] ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   [
++     "apps/danielson",
++     0,
++   ],
++ ]
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:230:77
+    228|     }
+    229|     const notOne = Object.entries(majors).filter(([, major]) => major …
+    230|     expect(notOne, `folders that resolve a vinext release that is not …
+       |                                                                             ^
+    231|   });
+    232|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 2: vinext resolves, and next does not resolve, from the root, each app, and app-shell
+AssertionError: folders where next is installed: expected [ …(8) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   ". -> node_modules/next/package.json",
++   "apps/bus-math-v2 -> node_modules/next/package.json",
++   "apps/danielson -> node_modules/next/package.json",
++   "apps/integrated-math-1 -> node_modules/next/package.json",
++   "apps/integrated-math-2 -> node_modules/next/package.json",
++   "apps/integrated-math-3 -> node_modules/next/package.json",
++   "apps/pre-calculus -> node_modules/next/package.json",
++   "packages/app-shell -> node_modules/next/package.json",
++ ]
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:252:61
+    250|       }
+    251|     }
+    252|     expect(resolvedNext, 'folders where next is installed').toEqual([]…
+       |                                                             ^
+    253|     expect(nodeResolvable, 'folders where require.resolve finds next/p…
+    254|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 3: no manifest declares next
+AssertionError: manifest fields that declare next: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "apps/danielson/package.json:dependencies.next",
++ ]
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:269:63
+    267|     expect(manifests.length).toBeGreaterThanOrEqual(28);
+    268|     const declarations = scanDeclarations(manifestEntries(manifests), …
+    269|     expect(declarations, 'manifest fields that declare next').toEqual(…
+       |                                                               ^
+    270|   });
+    271|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 4: each app and app-shell tsconfig loads vinext/types and has no next plugin
+AssertionError: tsconfig files without vinext/types in compilerOptions.types: expected [ 'apps/danielson/tsconfig.json' ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "apps/danielson/tsconfig.json",
++ ]
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:285:90
+    283|       if (plugins.some((plugin) => plugin.name === 'next')) nextPlugin…
+    284|     }
+    285|     expect(missingTypes, 'tsconfig files without vinext/types in compi…
+       |                                                                                          ^
+    286|     expect(nextPlugins, 'tsconfig files with the { "name": "next" } pl…
+    287|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 7: each setup-node step in the workflows uses Node 24
+AssertionError: setup-node steps with a node-version that is not 24: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "business-math-deploy.yml:deploy node-version='22'",
++ ]
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:366:78
+    364|     expect(stepsByFile['cloudflare-deploy.yml'] ?? 0).toBeGreaterThanO…
+    365|     expect(stepsByFile['jsdoc-typed-params.yml'] ?? -1).toBe(0);
+    366|     expect(wrongNode, 'setup-node steps with a node-version that is no…
+       |                                                                              ^
+    367|   });
+    368|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 8: the lockfile has no next package and no workspace entry that lists next
+AssertionError: lockfile package keys that end with node_modules/next: expected [ 'node_modules/next' ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "node_modules/next",
++ ]
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:378:83
+    376|     expect(keys).toContain('packages/app-shell');
+    377|     const nextPackages = keys.filter((key) => key.endsWith('node_modul…
+    378|     expect(nextPackages, 'lockfile package keys that end with node_mod…
+       |                                                                                   ^
+    379|     // A nested copy shadows the root vinext at runtime (risk R16). Th…
+    380|     // with node_modules/vinext is the root one.
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed | 2 skipped (3)
+      Tests  6 failed | 5 passed | 24 skipped (35)
+   Start at  00:55:12
+   Duration  4.12s (transform 43ms, setup 0ms, import 76ms, tests 3.78s, environment 0ms)
+

@@ -1,0 +1,4 @@
+commit: dbf29cbd40e13af4f13b6ffec392a079f77c784d
+tsrs: Version 7.1.0-beta (tsrs 0.25.0-ts7.1.0-beta, microsoft/TypeScript@3e9236361fa9)
+tsc71: Version 7.1.0-beta
+tsc70: Version 7.0.2

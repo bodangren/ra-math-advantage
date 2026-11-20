@@ -1,0 +1,9 @@
+{
+  "selector": "a[href=\"/curriculum\"]",
+  "text": "Curriculum",
+  "href": "/curriculum",
+  "finalUrl": "http://localhost:4103/",
+  "status": 200,
+  "title": "Integrated Math 3",
+  "firstH1": "IM3"
+}

@@ -1,0 +1,46 @@
+# Review A log: S1 correctness and architecture at bede55e8
+
+HEAD is bede55e8. Phase base is d4752739. The diff d4752739..bede55e8 holds
+nine S1 commits plus three non-S1 curriculum commits (d8b285e3, 3f05afe3,
+bede55e8). bede55e8 touches only cross-course-edges.json, not S1 files.
+
+## Verified live
+
+- S1 suite: 11 passed, 24 skipped. Full scripts suite: 1 failed, 34 passed.
+  The failure is the baseline remediate-concept-blueprints row of section 10.
+- K1 8/8 exact titles. K2 15 tests 0 failed. K3 35 tests 0 failed.
+  K4 jsplugins_changed=0 jsplugins_count=3, no .oxlintrc.json diff.
+- Workspace sets: 27 names for lint, test, typecheck, build. No comm line.
+  The run set equals the disk set.
+- IM3 typecheck: only the heap-script trailer line is new, only the old
+  trailer line is gone. The TS key sets match. Exit 2 on both sides.
+- Audit: base critical=0 high=22 total=33. S1 critical=0 high=21 total=32.
+  No S1 advisory is missing from the base.
+- Lockfile: vinext 1.4.6 is the sole vinext key. No next key. The eslint
+  copies stay peer-only. Danielson runs 436 tests through the 24-entry shim
+  alias. Dev 4106 gives 307 to the login gate. Doctor gives All checks passed.
+
+## Findings
+
+- F1 [Nit]: three non-S1 curriculum commits sit in the audited range.
+- F2 [Nit]: stale Next-isms remain in danielson (next.config.ts, .next includes).
+
+## Verdict
+
+Pass. No blocker. No retry.
+
+MEASURE_AGENT_RESULT
+role: review-a
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S1: Package refresh and vinext 1.x
+baseline_sha: d4752739
+role_base_sha: e3417538
+head: bede55e8
+commits: bbd37b97 af781b64 3c5f6a32 cd6567fe 050e916b b9d27742 be7c0061 ab3c4586 ea024eee
+tests_run: S1 filter 11/11 pass; full scripts 34/35 (baseline failure only); K1 8/8, K2 15/15, K3 35/35, K4 3 plugins unchanged; gate file comms clean
+files_changed: danielson manifests/tsconfig/vite/vitest, IM3 typecheck heap script, knowledge-space-practice types/node 24, business-math-deploy Node 24, W4 audit move, S1 gate tests, evidence and plan
+plan_updates: none (audit-only)
+known_failures: checks-all s1 NEWFAIL=1 with the two proof-backed lines (IM3 npm trailer, audit high 21 vs re-captured base 22); remediate-concept-blueprints baseline failure in scripts suite
+handoff: No question needs the user. Q1 default (keep React ESLint plugins peer-only) and Q2 default (sibling file in scope) hold and K1-K5 confirm them. Q3 (remediate baseline accepted) and Q4 (vinext 1.4.6 re-resolve kept) hold. No Q5 exists in the track records. Green owns F1/F2 Nits only if it wants the cleanup.
+END_MEASURE_AGENT_RESULT

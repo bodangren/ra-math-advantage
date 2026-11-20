@@ -1,0 +1,13 @@
+
+> @math-platform/rate-limiter@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/rate-limiter
+
+
+ Test Files  1 passed (1)
+      Tests  15 passed (15)
+   Start at  04:15:00
+   Duration  143ms (transform 21ms, setup 0ms, import 31ms, tests 5ms, environment 0ms)
+

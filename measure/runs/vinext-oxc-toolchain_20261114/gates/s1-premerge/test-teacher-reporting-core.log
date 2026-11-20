@@ -1,0 +1,13 @@
+
+> @math-platform/teacher-reporting-core@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 /home/daniebo/Desktop/ra-math-advantage/packages/teacher-reporting-core
+
+
+ Test Files  4 passed (4)
+      Tests  67 passed (67)
+   Start at  10:25:11
+   Duration  395ms (import 36%, tests 28%, worker 23%, transform 12%, environment 1%)
+

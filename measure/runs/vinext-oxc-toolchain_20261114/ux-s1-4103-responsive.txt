@@ -1,0 +1,5 @@
+Responsive check, IM3 port 4103, run at 375x720 before the PM load-watch rule (2026-11-18):
+- banner link name collapses to "IM3" (brandShort below the sm breakpoint)
+- first h1: IM3
+- horizontal overflow at 375px width: 0
+Same checks ran inside heavy-run.sh for 4105 and 4106 (ux-s1-4105-responsive.txt, ux-s1-4106-responsive.txt).

@@ -1,0 +1,364 @@
+
+> build
+> vinext build
+
+[vinext] Tip: migrate from `vinext build` to `vite build`.
+The "middleware" file convention is deprecated. Please use "proxy" instead.
+
+  To migrate automatically, run:
+  npx @next/codemod@canary middleware-to-proxy .
+
+  Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[34m[1/5] analyze client references...[39m
+[36mvite v8.3.8 [32mbuilding rsc environment for production...[36m[39m
+[warn] `manualChunks` option is ignored because the `codeSplitting` option is specified.
+transforming...
+✓ 401 modules transformed.
+rendering chunks...
+Using secrets defined in .env.local
+[32m✓ built in 480ms[39m
+[34m[2/5] analyze server references...[39m
+[36mvite v8.3.8 [32mbuilding ssr environment for production...[36m[39m
+transforming...
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Laptop" in barrel export map
+✓ 2540 modules transformed.
+rendering chunks...
+[32m✓ built in 1.29s[39m
+[34m[3/5] build rsc environment...[39m
+[36mvite v8.3.8 [32mbuilding rsc environment for production...[36m[39m
+[warn] `manualChunks` option is ignored because the `codeSplitting` option is specified.
+transforming...
+✓ 389 modules transformed.
+rendering chunks...
+Using secrets defined in .env.local
+computing gzip size...
+dist/server/__vinext_cacheability_manifest.js                                                                                                0.02 kB
+dist/server/__vinext_cacheability_request_projection.js                                                                                      0.02 kB
+dist/server/__vinext_pregenerated_concrete_paths.js                                                                                          0.05 kB
+dist/server/.dev.vars                                                                                                                        0.15 kB
+dist/server/wrangler.json                                                                                                                    1.42 kB │ gzip:  0.73 kB
+dist/server/.vite/manifest.json                                                                                                             28.01 kB │ gzip:  3.26 kB
+dist/server/_next/static/css/DWbrKgoE.css                                                                                                   26.15 kB │ gzip:  6.13 kB
+dist/server/_next/static/navigation.react-server-BXUAG2RX.js                                                                                 0.04 kB │ gzip:  0.06 kB
+dist/server/_next/static/cacheability-limits-BTpP4ZoO.js                                                                                     0.05 kB │ gzip:  0.07 kB
+dist/server/_next/static/websocket-upgrade-response-Br6dDtPT.js                                                                              0.06 kB │ gzip:  0.08 kB
+dist/server/_next/static/work-unit-async-storage-BmstBWJr.js                                                                                 0.13 kB │ gzip:  0.13 kB
+dist/server/_next/static/link-tQRic-im.js                                                                                                    0.17 kB │ gzip:  0.16 kB
+dist/server/_next/static/page-Disuf9Q6.js                                                                                                    0.18 kB │ gzip:  0.16 kB
+dist/server/_next/static/page-ienUlVJb.js                                                                                                    0.18 kB │ gzip:  0.16 kB
+dist/server/_next/static/framework~index--8-SYgNE.js                                                                                         0.19 kB │ gzip:  0.15 kB
+dist/server/_next/static/route-B_3hIEOX.js                                                                                                   0.22 kB │ gzip:  0.19 kB
+dist/server/_next/static/compare-c1f121CO.js                                                                                                 0.24 kB │ gzip:  0.17 kB
+dist/server/_next/static/client-trace-metadata-DUR2PiYt.js                                                                                   0.34 kB │ gzip:  0.21 kB
+dist/server/_next/static/revalidation-request-BPsUjGsp.js                                                                                    0.35 kB │ gzip:  0.24 kB
+dist/server/_next/static/base-path-DhuerTYQ.js                                                                                               0.37 kB │ gzip:  0.24 kB
+dist/server/_next/static/asset-prefix-DG5zdfn4.js                                                                                            0.39 kB │ gzip:  0.24 kB
+dist/server/_next/static/hash-lY2-Pf5M.js                                                                                                    0.43 kB │ gzip:  0.28 kB
+dist/server/_next/static/isolate-shared-promise-CGG5gYjB.js                                                                                  0.45 kB │ gzip:  0.29 kB
+dist/server/_next/static/navigation-errors-Buc8sstw.js                                                                                       0.59 kB │ gzip:  0.40 kB
+dist/server/_next/static/server-b2o4jAl9.js                                                                                                  0.60 kB │ gzip:  0.40 kB
+dist/server/_next/static/config-headers-DpqTCZAQ.js                                                                                          0.67 kB │ gzip:  0.42 kB
+dist/server/_next/static/rolldown-runtime-XKyaHtl9.js                                                                                        0.72 kB │ gzip:  0.42 kB
+dist/server/_next/static/route-CkHiCePB.js                                                                                                   0.73 kB │ gzip:  0.44 kB
+dist/server/_next/static/root-params-Dh1KpB03.js                                                                                             0.76 kB │ gzip:  0.43 kB
+dist/server/_next/static/isr-decision-BShslq9q.js                                                                                            0.76 kB │ gzip:  0.36 kB
+dist/server/_next/static/implicit-tags-zvWDhqSH.js                                                                                           0.78 kB │ gzip:  0.45 kB
+dist/server/_next/static/utils-JoVumalc.js                                                                                                   0.80 kB │ gzip:  0.36 kB
+dist/server/_next/static/framework~index~page~layout~page~page~page~page-BspfC2us.js                                                         0.82 kB │ gzip:  0.55 kB
+dist/server/_next/static/worker-prerender-discovery-ZjYteAYY.js                                                                              0.83 kB │ gzip:  0.48 kB
+dist/server/_next/static/route-DX7X-_Qw.js                                                                                                   0.87 kB │ gzip:  0.46 kB
+dist/server/_next/static/route-D97pP9-i.js                                                                                                   0.90 kB │ gzip:  0.49 kB
+dist/server/_next/static/app-static-generation-BX8cz43B.js                                                                                   0.91 kB │ gzip:  0.51 kB
+dist/server/_next/static/navigation-context-state-BO1FRmjb.js                                                                                0.93 kB │ gzip:  0.46 kB
+dist/server/_next/static/http-error-responses-B2gV-Vqb.js                                                                                    0.95 kB │ gzip:  0.42 kB
+dist/server/_next/static/route-ScXgCfei.js                                                                                                   0.97 kB │ gzip:  0.48 kB
+dist/server/_next/static/server-DnHAWb4I.js                                                                                                  1.02 kB │ gzip:  0.54 kB
+dist/server/_next/static/page-DkRecGbf.js                                                                                                    1.06 kB │ gzip:  0.57 kB
+dist/server/_next/static/page-BJahjg8U.js                                                                                                    1.10 kB │ gzip:  0.58 kB
+dist/server/_next/static/middleware-response-headers-DBycCSfk.js                                                                             1.27 kB │ gzip:  0.66 kB
+dist/server/_next/static/cdn-cache-BLgLQKPR.js                                                                                               1.29 kB │ gzip:  0.70 kB
+dist/server/_next/static/route-82WnTVHu.js                                                                                                   1.31 kB │ gzip:  0.65 kB
+dist/server/_next/static/parse-cookie-DWW3KDQS.js                                                                                            1.34 kB │ gzip:  0.73 kB
+dist/server/_next/static/page-CBa7U1JY.js                                                                                                    1.53 kB │ gzip:  0.80 kB
+dist/server/_next/static/app-prerender-static-params-ClczmOoI.js                                                                             1.65 kB │ gzip:  0.72 kB
+dist/server/_next/static/middleware-request-headers-CgjXJ-L3.js                                                                              1.79 kB │ gzip:  0.82 kB
+dist/server/_next/static/worker-image-optimization-BNk5vgBt.js                                                                               2.07 kB │ gzip:  1.01 kB
+dist/server/_next/static/src-B0puDT2c.js                                                                                                     2.10 kB │ gzip:  0.98 kB
+dist/server/_next/static/app-prerender-endpoints-DN1AZHiR.js                                                                                 2.56 kB │ gzip:  1.02 kB
+dist/server/_next/static/headers-Dp8euWUq.js                                                                                                 2.70 kB │ gzip:  1.12 kB
+dist/server/_next/static/app-page-cache-render-Ev-dXjkD.js                                                                                   2.91 kB │ gzip:  1.29 kB
+dist/server/_next/static/next-error-digest-DnJeV7uN.js                                                                                       3.24 kB │ gzip:  1.38 kB
+dist/server/_next/static/isr-cache-DjO_god1.js                                                                                               4.16 kB │ gzip:  1.98 kB
+dist/server/_next/static/request-pipeline-BLH-lEtz.js                                                                                        4.21 kB │ gzip:  1.73 kB
+dist/server/_next/static/cache-headers-DP339_D5.js                                                                                           4.40 kB │ gzip:  1.76 kB
+dist/server/_next/static/cache-handler-CUtYetkx.js                                                                                           4.43 kB │ gzip:  1.63 kB
+dist/server/_next/static/layout-DNj-XZqN.js                                                                                                  4.45 kB │ gzip:  1.83 kB
+dist/server/_next/static/cache-control-7uefKyZV.js                                                                                           4.47 kB │ gzip:  1.76 kB
+dist/server/_next/static/app-page-tracing-BhX4HtXc.js                                                                                        4.57 kB │ gzip:  2.26 kB
+dist/server/_next/static/framework~index~page~page~page~layout~page~page~app-rsc-response-stage~app-route-handler-di~im4fxs7c-CcOTYhCj.js    5.71 kB │ gzip:  2.34 kB
+dist/server/_next/static/request-context-CCa2vvON.js                                                                                         5.73 kB │ gzip:  2.26 kB
+dist/server/_next/static/response-stage-policy-CyjiIhfP.js                                                                                   6.90 kB │ gzip:  2.39 kB
+dist/server/_next/static/page-CCnHIEra.js                                                                                                    6.98 kB │ gzip:  2.46 kB
+dist/server/_next/static/app-rsc-response-stage-BXoZvRs7.js                                                                                  7.57 kB │ gzip:  2.63 kB
+dist/server/_next/static/app-page-cache-CpFm7Hrb.js                                                                                          8.19 kB │ gzip:  2.84 kB
+dist/server/_next/static/app-worker-stages-DSnQaMLl.js                                                                                       8.23 kB │ gzip:  3.30 kB
+dist/server/_next/static/app-page-cache-finalizer-rltQExtG.js                                                                                9.80 kB │ gzip:  3.37 kB
+dist/server/_next/static/config-matchers-T0lSZKNK.js                                                                                        10.10 kB │ gzip:  4.14 kB
+dist/server/_next/static/cacheability-request-D76xWjLI.js                                                                                   10.89 kB │ gzip:  3.78 kB
+dist/server/_next/static/route-miss-response-DYH-Vq8x.js                                                                                    11.63 kB │ gzip:  3.95 kB
+dist/server/_next/static/app-page-request-DcVqfLHH.js                                                                                       12.90 kB │ gzip:  4.17 kB
+dist/server/_next/static/client-build-files-D0NreAfb.js                                                                                     12.91 kB │ gzip:  5.25 kB
+dist/server/_next/static/app-page-execution-fJMdqbda.js                                                                                     13.09 kB │ gzip:  4.65 kB
+dist/server/_next/static/headers-HXENQ1t3.js                                                                                                14.57 kB │ gzip:  4.89 kB
+dist/server/_next/static/server-Bg6dLXI3.js                                                                                                 18.36 kB │ gzip:  6.13 kB
+dist/server/_next/static/text-stream-CaX2UIcW.js                                                                                            19.62 kB │ gzip:  6.19 kB
+dist/server/_next/static/page-tgeCmWFT.js                                                                                                   21.25 kB │ gzip:  6.42 kB
+dist/server/_next/static/fetch-cache-CoCFr2SZ.js                                                                                            24.43 kB │ gzip:  8.48 kB
+dist/server/_next/static/app-route-handler-dispatch-Bm1ji7mh.js                                                                             31.63 kB │ gzip: 10.01 kB
+dist/server/_next/static/server-DDgvxfBu.js                                                                                                 33.47 kB │ gzip: 12.98 kB
+dist/server/_next/static/framework~index~page~page~layout~page~page~page~page-CLzqBmUd.js                                                   56.39 kB │ gzip: 17.19 kB
+dist/server/index.js                                                                                                                       275.14 kB │ gzip: 75.13 kB
+
+[33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0m../../packages/core-convex/src/index.ts is dynamically imported by lib/convex/server.ts but also statically imported by lib/convex/server.ts, dynamic import will not move module into another chunk.
+[39m
+[32m✓ built in 774ms[39m
+[34m[4/5] build client environment...[39m
+[36mvite v8.3.8 [32mbuilding client environment for production...[36m[39m
+[warn] `manualChunks` option is ignored because the `codeSplitting` option is specified.
+[33m`output.codeSplitting.groups[0].name` is a function. Set `output.codeSplitting.groups[0].debugName` so the bundler timing report can identify this group.[39m
+[33m`output.codeSplitting.groups[1].name` is a function. Set `output.codeSplitting.groups[1].debugName` so the bundler timing report can identify this group.[39m
+[33m`output.codeSplitting.groups[2].name` is a function. Set `output.codeSplitting.groups[2].debugName` so the bundler timing report can identify this group.[39m
+transforming...
+✓ 2553 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/client/.assetsignore                                                  0.02 kB
+dist/client/.vite/vinext-client-reference-sources.json                     1.59 kB │ gzip:   0.51 kB
+dist/client/vinext-client-entry-manifest.json                              3.37 kB │ gzip:   0.68 kB
+dist/client/_next/static/media/KaTeX_Size3-Regular.gV2CO0n9.woff2          3.62 kB
+dist/client/_next/static/media/KaTeX_Size3-Regular.CTq5MqoE.woff           4.42 kB
+dist/client/_next/static/media/KaTeX_Size4-Regular.Dl5lxZxV.woff2          4.92 kB
+dist/client/_next/static/media/KaTeX_Size2-Regular.Dy4dx90m.woff2          5.20 kB
+dist/client/_next/static/media/KaTeX_Size1-Regular.mCD8mA8B.woff2          5.46 kB
+dist/client/_next/static/media/KaTeX_Size4-Regular.BF-4gkZK.woff           5.98 kB
+dist/client/_next/static/media/KaTeX_Size2-Regular.oD1tc_U0.woff           6.18 kB
+dist/client/_next/static/media/KaTeX_Size1-Regular.C195tn64.woff           6.49 kB
+dist/client/_next/static/media/KaTeX_Caligraphic-Regular.Di6jR-x-.woff2    6.90 kB
+dist/client/_next/static/media/KaTeX_Caligraphic-Bold.Dq_IR9rO.woff2       6.91 kB
+dist/client/_next/static/media/KaTeX_Size3-Regular.DgpXs0kz.ttf            7.58 kB
+dist/client/_next/static/media/KaTeX_Caligraphic-Regular.CTRA-rTL.woff     7.65 kB
+dist/client/_next/static/media/KaTeX_Caligraphic-Bold.BEiXGLvX.woff        7.71 kB
+dist/client/_next/static/media/KaTeX_Script-Regular.D3wIWfF6.woff2         9.64 kB
+dist/client/_next/static/media/KaTeX_SansSerif-Regular.DDBCnlJ7.woff2     10.34 kB
+dist/client/_next/static/media/KaTeX_Size4-Regular.DWFBv043.ttf           10.36 kB
+dist/client/_next/static/media/KaTeX_Script-Regular.D5yQViql.woff         10.58 kB
+dist/client/_next/static/media/KaTeX_Fraktur-Regular.CTYiF6lA.woff2       11.31 kB
+dist/client/_next/static/media/KaTeX_Fraktur-Bold.CL6g_b3V.woff2          11.34 kB
+dist/client/_next/static/media/KaTeX_Size2-Regular.B7gKUWhC.ttf           11.50 kB
+dist/client/_next/static/media/KaTeX_SansSerif-Italic.C3H0VqGB.woff2      12.02 kB
+dist/client/_next/static/media/KaTeX_SansSerif-Bold.D1sUS0GD.woff2        12.21 kB
+dist/client/_next/static/media/KaTeX_Size1-Regular.Dbsnue_I.ttf           12.22 kB
+dist/client/_next/static/media/KaTeX_SansSerif-Regular.CS6fqUqJ.woff      12.31 kB
+dist/client/_next/static/media/KaTeX_Caligraphic-Regular.wX97UBjC.ttf     12.34 kB
+dist/client/_next/static/media/KaTeX_Caligraphic-Bold.ATXxdsX0.ttf        12.36 kB
+dist/client/_next/static/media/KaTeX_Fraktur-Regular.Dxdc4cR9.woff        13.20 kB
+dist/client/_next/static/media/KaTeX_Fraktur-Bold.BsDP51OF.woff           13.29 kB
+dist/client/_next/static/media/KaTeX_Typewriter-Regular.CO6r4hn1.woff2    13.56 kB
+dist/client/_next/static/media/KaTeX_SansSerif-Italic.DN2j7dab.woff       14.11 kB
+dist/client/_next/static/media/KaTeX_SansSerif-Bold.DbIhKOiC.woff         14.40 kB
+dist/client/_next/static/media/KaTeX_Typewriter-Regular.C0xS9mPB.woff     16.02 kB
+dist/client/_next/static/media/KaTeX_Math-BoldItalic.CZnvNsCZ.woff2       16.40 kB
+dist/client/_next/static/media/KaTeX_Math-Italic.t53AETM-.woff2           16.44 kB
+dist/client/_next/static/media/KaTeX_Script-Regular.C5JkGWo-.ttf          16.64 kB
+dist/client/_next/static/media/KaTeX_Main-BoldItalic.DxDJ3AOS.woff2       16.78 kB
+dist/client/_next/static/media/KaTeX_Main-Italic.NWA7e6Wa.woff2           16.98 kB
+dist/client/_next/static/media/KaTeX_Math-BoldItalic.iY-2wyZ7.woff        18.66 kB
+dist/client/_next/static/media/KaTeX_Math-Italic.DA0__PXp.woff            18.74 kB
+dist/client/_next/static/media/KaTeX_Main-BoldItalic.SpSLRI95.woff        19.41 kB
+dist/client/_next/static/media/KaTeX_SansSerif-Regular.BNo7hRIc.ttf       19.43 kB
+dist/client/_next/static/media/KaTeX_Fraktur-Regular.CB_wures.ttf         19.57 kB
+dist/client/_next/static/media/KaTeX_Fraktur-Bold.BdnERNNW.ttf            19.58 kB
+dist/client/_next/static/media/KaTeX_Main-Italic.BMLOBm91.woff            19.67 kB
+dist/client/_next/static/media/KaTeX_SansSerif-Italic.YYjJ1zSn.ttf        22.36 kB
+dist/client/_next/static/media/KaTeX_SansSerif-Bold.CFMepnvq.ttf          24.50 kB
+dist/client/_next/static/media/KaTeX_Main-Bold.Cx986IdX.woff2             25.32 kB
+dist/client/_next/static/media/KaTeX_Main-Regular.B22Nviop.woff2          26.27 kB
+dist/client/_next/static/media/KaTeX_Typewriter-Regular.D3Ib7_Hf.ttf      27.55 kB
+dist/client/_next/static/media/KaTeX_AMS-Regular.BQhdFMY1.woff2           28.07 kB
+dist/client/_next/static/media/KaTeX_Main-Bold.Jm3AIy58.woff              29.91 kB
+dist/client/.vite/manifest.json                                           30.33 kB │ gzip:   2.88 kB
+dist/client/_next/static/media/KaTeX_Main-Regular.Dr94JaBh.woff           30.77 kB
+dist/client/_next/static/media/KaTeX_Math-BoldItalic.B3XSjfu4.ttf         31.19 kB
+dist/client/_next/static/media/KaTeX_Math-Italic.flOr_0UB.ttf             31.30 kB
+dist/client/_next/static/media/KaTeX_Main-BoldItalic.DzxPMmG6.ttf         32.96 kB
+dist/client/_next/static/media/KaTeX_AMS-Regular.DMm9YOAa.woff            33.51 kB
+dist/client/_next/static/media/KaTeX_Main-Italic.3WenGoN9.ttf             33.58 kB
+dist/client/_next/static/media/KaTeX_Main-Bold.waoOVXN0.ttf               51.33 kB
+dist/client/_next/static/media/KaTeX_Main-Regular.ypZvNtVU.ttf            53.58 kB
+dist/client/_next/static/media/KaTeX_AMS-Regular.DRggAlZN.ttf             63.63 kB
+dist/client/_next/static/css/DFJfPE9s.css                                 25.70 kB │ gzip:   4.03 kB
+dist/client/_next/static/css/DWbrKgoE.css                                 26.15 kB │ gzip:   6.13 kB
+dist/client/_next/static/chunks/BoGAmdrT.js                                0.07 kB │ gzip:   0.09 kB
+dist/client/_next/static/chunks/BWxbXWeL.js                                0.08 kB │ gzip:   0.10 kB
+dist/client/_next/static/chunks/D9QuSO72.js                                0.09 kB │ gzip:   0.10 kB
+dist/client/_next/static/chunks/DNAS_XQs.js                                0.09 kB │ gzip:   0.11 kB
+dist/client/_next/static/chunks/YxkmTkgA.js                                0.10 kB │ gzip:   0.11 kB
+dist/client/_next/static/chunks/B0KxFa9D.js                                0.10 kB │ gzip:   0.11 kB
+dist/client/_next/static/chunks/zJMSvEsG.js                                0.11 kB │ gzip:   0.11 kB
+dist/client/_next/static/chunks/DEUGD63m.js                                0.11 kB │ gzip:   0.11 kB
+dist/client/_next/static/chunks/BSCSqby7.js                                0.24 kB │ gzip:   0.17 kB
+dist/client/_next/static/chunks/DuMSVx4G.js                                0.39 kB │ gzip:   0.23 kB
+dist/client/_next/static/chunks/C0HBYF4a.js                                0.46 kB │ gzip:   0.32 kB
+dist/client/_next/static/chunks/CcyWYbDU.js                                0.75 kB │ gzip:   0.45 kB
+dist/client/_next/static/chunks/Cj8GvmAM.js                                1.41 kB │ gzip:   0.68 kB
+dist/client/_next/static/chunks/DsbFMkhn.js                                1.55 kB │ gzip:   0.40 kB
+dist/client/_next/static/chunks/C9b09anj.js                                2.09 kB │ gzip:   0.90 kB
+dist/client/_next/static/chunks/BIH80a8E.js                                2.17 kB │ gzip:   0.95 kB
+dist/client/_next/static/chunks/B4GOtCDM.js                                2.17 kB │ gzip:   1.06 kB
+dist/client/_next/static/chunks/CHlrgkTN.js                                2.18 kB │ gzip:   0.57 kB
+dist/client/_next/static/chunks/D62cLYPQ.js                                2.50 kB │ gzip:   1.07 kB
+dist/client/_next/static/chunks/DESDX2sh.js                                2.78 kB │ gzip:   1.11 kB
+dist/client/_next/static/chunks/CWmaBLFI.js                                3.19 kB │ gzip:   1.42 kB
+dist/client/_next/static/chunks/DRVZEUT3.js                               11.09 kB │ gzip:   4.29 kB
+dist/client/_next/static/chunks/BWW9FzlK.js                               13.71 kB │ gzip:   5.22 kB
+dist/client/_next/static/chunks/Bt-7k5Z_.js                               45.02 kB │ gzip:  14.46 kB
+dist/client/_next/static/chunks/RBTkr2ug.js                               65.89 kB │ gzip:  18.50 kB
+dist/client/_next/static/chunks/CRvCeCxj.js                              105.59 kB │ gzip:  31.82 kB
+dist/client/_next/static/chunks/a5gO7BWg.js                              146.45 kB │ gzip:  44.66 kB
+dist/client/_next/static/chunks/B0PXqnjO.js                              219.27 kB │ gzip:  68.42 kB
+dist/client/_next/static/chunks/BI1nD5fz.js                              513.47 kB │ gzip: 149.01 kB
+
+[33m[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+[32m✓ built in 1.36s[39m
+[34m[5/5] build ssr environment...[39m
+[36mvite v8.3.8 [32mbuilding ssr environment for production...[36m[39m
+transforming...
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Laptop" in barrel export map
+✓ 2537 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/server/ssr/_next/static/media/KaTeX_Size3-Regular.CTq5MqoE.woff           4.42 kB
+dist/server/ssr/_next/static/media/KaTeX_Size4-Regular.Dl5lxZxV.woff2          4.92 kB
+dist/server/ssr/_next/static/media/KaTeX_Size2-Regular.Dy4dx90m.woff2          5.20 kB
+dist/server/ssr/_next/static/media/KaTeX_Size1-Regular.mCD8mA8B.woff2          5.46 kB
+dist/server/ssr/_next/static/media/KaTeX_Size4-Regular.BF-4gkZK.woff           5.98 kB
+dist/server/ssr/_next/static/media/KaTeX_Size2-Regular.oD1tc_U0.woff           6.18 kB
+dist/server/ssr/_next/static/media/KaTeX_Size1-Regular.C195tn64.woff           6.49 kB
+dist/server/ssr/_next/static/media/KaTeX_Caligraphic-Regular.Di6jR-x-.woff2    6.90 kB
+dist/server/ssr/_next/static/media/KaTeX_Caligraphic-Bold.Dq_IR9rO.woff2       6.91 kB
+dist/server/ssr/_next/static/media/KaTeX_Size3-Regular.DgpXs0kz.ttf            7.58 kB
+dist/server/ssr/_next/static/media/KaTeX_Caligraphic-Regular.CTRA-rTL.woff     7.65 kB
+dist/server/ssr/_next/static/media/KaTeX_Caligraphic-Bold.BEiXGLvX.woff        7.71 kB
+dist/server/ssr/_next/static/media/KaTeX_Script-Regular.D3wIWfF6.woff2         9.64 kB
+dist/server/ssr/_next/static/media/KaTeX_SansSerif-Regular.DDBCnlJ7.woff2     10.34 kB
+dist/server/ssr/_next/static/media/KaTeX_Size4-Regular.DWFBv043.ttf           10.36 kB
+dist/server/ssr/_next/static/media/KaTeX_Script-Regular.D5yQViql.woff         10.58 kB
+dist/server/ssr/_next/static/media/KaTeX_Fraktur-Regular.CTYiF6lA.woff2       11.31 kB
+dist/server/ssr/_next/static/media/KaTeX_Fraktur-Bold.CL6g_b3V.woff2          11.34 kB
+dist/server/ssr/_next/static/media/KaTeX_Size2-Regular.B7gKUWhC.ttf           11.50 kB
+dist/server/ssr/_next/static/media/KaTeX_SansSerif-Italic.C3H0VqGB.woff2      12.02 kB
+dist/server/ssr/_next/static/media/KaTeX_SansSerif-Bold.D1sUS0GD.woff2        12.21 kB
+dist/server/ssr/_next/static/media/KaTeX_Size1-Regular.Dbsnue_I.ttf           12.22 kB
+dist/server/ssr/_next/static/media/KaTeX_SansSerif-Regular.CS6fqUqJ.woff      12.31 kB
+dist/server/ssr/_next/static/media/KaTeX_Caligraphic-Regular.wX97UBjC.ttf     12.34 kB
+dist/server/ssr/_next/static/media/KaTeX_Caligraphic-Bold.ATXxdsX0.ttf        12.36 kB
+dist/server/ssr/_next/static/media/KaTeX_Fraktur-Regular.Dxdc4cR9.woff        13.20 kB
+dist/server/ssr/_next/static/media/KaTeX_Fraktur-Bold.BsDP51OF.woff           13.29 kB
+dist/server/ssr/_next/static/media/KaTeX_Typewriter-Regular.CO6r4hn1.woff2    13.56 kB
+dist/server/ssr/_next/static/media/KaTeX_SansSerif-Italic.DN2j7dab.woff       14.11 kB
+dist/server/ssr/_next/static/media/KaTeX_SansSerif-Bold.DbIhKOiC.woff         14.40 kB
+dist/server/ssr/_next/static/media/KaTeX_Typewriter-Regular.C0xS9mPB.woff     16.02 kB
+dist/server/ssr/_next/static/media/KaTeX_Math-BoldItalic.CZnvNsCZ.woff2       16.40 kB
+dist/server/ssr/_next/static/media/KaTeX_Math-Italic.t53AETM-.woff2           16.44 kB
+dist/server/ssr/_next/static/media/KaTeX_Script-Regular.C5JkGWo-.ttf          16.64 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-BoldItalic.DxDJ3AOS.woff2       16.78 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-Italic.NWA7e6Wa.woff2           16.98 kB
+dist/server/ssr/_next/static/media/KaTeX_Math-BoldItalic.iY-2wyZ7.woff        18.66 kB
+dist/server/ssr/_next/static/media/KaTeX_Math-Italic.DA0__PXp.woff            18.74 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-BoldItalic.SpSLRI95.woff        19.41 kB
+dist/server/ssr/_next/static/media/KaTeX_SansSerif-Regular.BNo7hRIc.ttf       19.43 kB
+dist/server/ssr/_next/static/media/KaTeX_Fraktur-Regular.CB_wures.ttf         19.57 kB
+dist/server/ssr/_next/static/media/KaTeX_Fraktur-Bold.BdnERNNW.ttf            19.58 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-Italic.BMLOBm91.woff            19.67 kB
+dist/server/ssr/_next/static/media/KaTeX_SansSerif-Italic.YYjJ1zSn.ttf        22.36 kB
+dist/server/ssr/_next/static/media/KaTeX_SansSerif-Bold.CFMepnvq.ttf          24.50 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-Bold.Cx986IdX.woff2             25.32 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-Regular.B22Nviop.woff2          26.27 kB
+dist/server/ssr/_next/static/media/KaTeX_Typewriter-Regular.D3Ib7_Hf.ttf      27.55 kB
+dist/server/ssr/_next/static/media/KaTeX_AMS-Regular.BQhdFMY1.woff2           28.07 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-Bold.Jm3AIy58.woff              29.91 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-Regular.Dr94JaBh.woff           30.77 kB
+dist/server/ssr/_next/static/media/KaTeX_Math-BoldItalic.B3XSjfu4.ttf         31.19 kB
+dist/server/ssr/_next/static/media/KaTeX_Math-Italic.flOr_0UB.ttf             31.30 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-BoldItalic.DzxPMmG6.ttf         32.96 kB
+dist/server/ssr/_next/static/media/KaTeX_AMS-Regular.DMm9YOAa.woff            33.51 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-Italic.3WenGoN9.ttf             33.58 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-Bold.waoOVXN0.ttf               51.33 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-Regular.ypZvNtVU.ttf            53.58 kB
+dist/server/ssr/_next/static/media/KaTeX_AMS-Regular.DRggAlZN.ttf             63.63 kB
+dist/server/ssr/_next/static/css/DJ7sEWYW.css                                 30.51 kB │ gzip:   7.99 kB
+dist/server/ssr/_next/static/navigation-server-B9gIT73m.js                     0.04 kB │ gzip:   0.06 kB
+dist/server/ssr/_next/static/app-nav-failure-handler-BW2-CIfV.js               0.07 kB │ gzip:   0.07 kB
+dist/server/ssr/_next/static/static.edge-CQperz17.js                           0.21 kB │ gzip:   0.16 kB
+dist/server/ssr/_next/static/hybrid-client-route-owner-DIVAlnVe.js             0.26 kB │ gzip:   0.20 kB
+dist/server/ssr/_next/static/ConvexClientProvider-BE6A2EPt.js                  0.42 kB │ gzip:   0.30 kB
+dist/server/ssr/_next/static/jsx-runtime-LKYXHABd.js                           0.43 kB │ gzip:   0.30 kB
+dist/server/ssr/_next/static/layout-segment-context-CztSmo6O.js                0.53 kB │ gzip:   0.36 kB
+dist/server/ssr/_next/static/rolldown-runtime-XKyaHtl9.js                      0.72 kB │ gzip:   0.42 kB
+dist/server/ssr/_next/static/streamed-icons-CTcaJGyS.js                        0.74 kB │ gzip:   0.47 kB
+dist/server/ssr/_next/static/client-page-root-J4C2pTwS.js                      0.98 kB │ gzip:   0.56 kB
+dist/server/ssr/_next/static/navigation-BkF371iu.js                            1.07 kB │ gzip:   0.53 kB
+dist/server/ssr/_next/static/app-router-scroll-state-Chjrq4uf.js               1.07 kB │ gzip:   0.55 kB
+dist/server/ssr/_next/static/navigation-errors-CtjzsIPH.js                     1.17 kB │ gzip:   0.65 kB
+dist/server/ssr/_next/static/AuthProvider-CxIKlJC6.js                          1.51 kB │ gzip:   0.74 kB
+dist/server/ssr/_next/static/navigation-context-state-BhKsdM1Y.js              1.59 kB │ gzip:   0.64 kB
+dist/server/ssr/_next/static/HeaderSimple-D3zm_uhV.js                          2.17 kB │ gzip:   0.94 kB
+dist/server/ssr/_next/static/TranslationExposureForm-BQL9xfo6.js               2.19 kB │ gzip:   1.07 kB
+dist/server/ssr/_next/static/page-yXIEtGso.js                                  2.23 kB │ gzip:   0.98 kB
+dist/server/ssr/_next/static/app-router-scroll-Da79pJEl.js                     2.50 kB │ gzip:   1.14 kB
+dist/server/ssr/_next/static/header-simple-E6eI0EPx.js                         2.59 kB │ gzip:   1.11 kB
+dist/server/ssr/_next/static/page-DeT3JEoc.js                                  2.83 kB │ gzip:   1.13 kB
+dist/server/ssr/_next/static/dist-CZ82Iu-u.js                                  3.27 kB │ gzip:   1.46 kB
+dist/server/ssr/_next/static/react-dom-BorF8Z62.js                             3.91 kB │ gzip:   1.42 kB
+dist/server/ssr/_next/static/error-boundary-GyksjxP2.js                        6.28 kB │ gzip:   1.99 kB
+dist/server/ssr/_next/static/link-3i9Ryg_r.js                                 10.04 kB │ gzip:   4.20 kB
+dist/server/ssr/_next/static/app-elements-2XsxerCs.js                         11.08 kB │ gzip:   3.43 kB
+dist/server/ssr/_next/static/image-Vb4GrGau.js                                45.46 kB │ gzip:  14.60 kB
+dist/server/ssr/_next/static/app-router-navigation-BK24jnXE.js                52.24 kB │ gzip:  15.01 kB
+dist/server/ssr/_next/static/vendor-convex-Dj1-_csD.js                        72.28 kB │ gzip:  20.70 kB
+dist/server/ssr/index.js                                                     301.36 kB │ gzip:  95.43 kB
+dist/server/ssr/_next/static/PracticeSessionProvider-BYQoqCDZ.js             513.38 kB │ gzip: 149.07 kB
+
+[33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0m../../node_modules/vinext/dist/shims/slot.js is dynamically imported by \0virtual:vite-rsc/client-references but also statically imported by ../../node_modules/vinext/dist/server/app-route-tree.js, ../../node_modules/vinext/dist/server/app-ssr-entry.js, ../../node_modules/vinext/dist/shims/client-page-root.js, dynamic import will not move module into another chunk.
+[39m
+[33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0m../../node_modules/vinext/dist/shims/default-global-error.js is dynamically imported by \0virtual:vite-rsc/client-references but also statically imported by ../../node_modules/vinext/dist/server/app-ssr-entry.js, ../../node_modules/vinext/dist/shims/error-boundary.js, dynamic import will not move module into another chunk.
+[39m
+[32m✓ built in 1.63s[39m
+
+  Route (app)
+  ┌ ? /                                      
+  ├ λ /api/activities/:activityId/submissions
+  ├ λ /api/auth/login                        
+  ├ λ /api/auth/logout                       
+  ├ λ /api/auth/register                     
+  ├ λ /api/auth/session                      
+  ├ λ /api/teacher/translation-exposure      
+  ├ ? /auth/login                            
+  ├ ? /auth/register                         
+  ├ ? /curriculum                            
+  ├ ? /student/dashboard                     
+  ├ ? /student/practice                      
+  └ ? /teacher/dashboard                     
+
+  λ API  ? Unknown
+
+  ? Some routes could not be classified. vinext currently uses static analysis
+    and cannot detect dynamic API usage (headers(), cookies(), etc.) at build time.
+    Automatic classification will be improved in a future release.
+
+  Build complete.
+

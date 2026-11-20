@@ -1,0 +1,175 @@
+
+> build
+> node scripts/architecture/run-workspace-quality.mjs --kind package --capability build
+
+[quality] packages/activity-components build: npm run build --workspace=packages/activity-components
+
+> @math-platform/activity-components@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/activity-components@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+[quality] packages/activity-runtime build: npm run build --workspace=packages/activity-runtime
+
+> @math-platform/activity-runtime@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/activity-runtime@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+[quality] packages/ai-tutoring build: npm run build --workspace=packages/ai-tutoring
+
+> @math-platform/ai-tutoring@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/ai-tutoring@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+[quality] packages/app-shell build: npm run build --workspace=packages/app-shell
+
+> @math-platform/app-shell@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/app-shell@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+[quality] packages/component-approval build: npm run build --workspace=packages/component-approval
+
+> @math-platform/component-approval@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/component-approval@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+[quality] packages/core-auth build: npm run build --workspace=packages/core-auth
+
+> @math-platform/core-auth@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/core-auth@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+[quality] packages/core-convex build: npm run build --workspace=packages/core-convex
+
+> @math-platform/core-convex@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/core-convex@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+[quality] packages/efficacy-core build: npm run build --workspace=packages/efficacy-core
+
+> @math-platform/efficacy-core@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/efficacy-core@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+[quality] packages/graphing-core build: npm run build --workspace=packages/graphing-core
+
+> @math-platform/graphing-core@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/graphing-core@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+[quality] packages/knowledge-space-core build: npm run build --workspace=packages/knowledge-space-core
+
+> @math-platform/knowledge-space-core@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/knowledge-space-core@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+[quality] packages/knowledge-space-practice build: npm run build --workspace=packages/knowledge-space-practice
+
+> @math-platform/knowledge-space-practice@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/knowledge-space-practice@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+[quality] packages/lesson-renderer build: npm run build --workspace=packages/lesson-renderer
+
+> @math-platform/lesson-renderer@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/lesson-renderer@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+[quality] packages/math-content build: npm run build --workspace=packages/math-content
+
+> @math-platform/math-content@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/math-content@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+[quality] packages/practice-core build: npm run build --workspace=packages/practice-core
+
+> @math-platform/practice-core@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/practice-core@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+[quality] packages/rate-limiter build: npm run build --workspace=packages/rate-limiter
+
+> @math-platform/rate-limiter@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/rate-limiter@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+[quality] packages/srs-engine build: npm run build --workspace=packages/srs-engine
+
+> @math-platform/srs-engine@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/srs-engine@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+[quality] packages/study-hub-core build: npm run build --workspace=packages/study-hub-core
+
+> @math-platform/study-hub-core@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/study-hub-core@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+[quality] packages/teacher-reporting-core build: npm run build --workspace=packages/teacher-reporting-core
+
+> @math-platform/teacher-reporting-core@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/teacher-reporting-core@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+[quality] packages/workbook-pipeline build: npm run build --workspace=packages/workbook-pipeline
+
+> @math-platform/workbook-pipeline@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/workbook-pipeline@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+

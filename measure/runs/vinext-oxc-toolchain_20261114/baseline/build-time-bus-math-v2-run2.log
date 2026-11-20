@@ -1,0 +1,150 @@
+
+> build
+> tsx scripts/generate-workbook-manifest.ts && vinext build
+
+Generated workbook manifest with 66 files at /home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2/lib/workbooks-manifest.json
+
+  vinext build  (Vite 8.0.16)
+
+The "middleware" file convention is deprecated. Please use "proxy" instead.
+
+  To migrate automatically, run:
+  npx @next/codemod@canary middleware-to-proxy .
+
+  Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[34m[1/5] analyze client references...[39m
+[2Ktransforming...✓ 554 modules transformed.
+rendering chunks...
+Using secrets defined in .env.local
+[33m[33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+  - rsc:virtual-client-package (26%)
+  - vinext:css-data-url (20%)
+  - vinext:jsx-in-js (17%)
+  - vinext:middleware-server-only (8%)
+  - vinext:react-canary (3%)
+See https://rolldown.rs/options/checks#plugintimings for more details.
+[39m
+[32m✓ built in 6.23s[39m
+[34m[2/5] analyze server references...[39m
+[2Ktransforming...✓ 1567 modules transformed.
+rendering chunks...
+[33m[33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+  - rsc:virtual-client-package (28%)
+  - vinext:css-data-url (23%)
+  - vinext:middleware-server-only (9%)
+  - vinext:instrumentation-client-inject (8%)
+  - vinext:react-canary (7%)
+See https://rolldown.rs/options/checks#plugintimings for more details.
+[39m
+[32m✓ built in 5.90s[39m
+[34m[3/5] build rsc environment...[39m
+[2Ktransforming...✓ 561 modules transformed.
+rendering chunks...
+Using secrets defined in .env.local
+computing gzip size...
+[33m[33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+  - rsc:virtual-client-package (33%)
+  - vinext:css-data-url (18%)
+  - vinext:middleware-server-only (16%)
+  - vinext:react-canary (4%)
+  - vinext:instrumentation-client-inject (3%)
+See https://rolldown.rs/options/checks#plugintimings for more details.
+[39m
+[32m✓ built in 6.03s[39m
+[34m[4/5] build client environment...[39m
+[warn] `manualChunks` option is ignored because the `codeSplitting` option is specified.
+[2Ktransforming...[33m[plugin rolldown:vite-resolve] Module "node:path" has been externalized for browser compatibility, imported by "/home/daniebo/Desktop/ra-math-advantage/packages/core-convex/src/admin.ts". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.[39m
+[33m[plugin rolldown:vite-resolve] Module "node:os" has been externalized for browser compatibility, imported by "/home/daniebo/Desktop/ra-math-advantage/packages/core-convex/src/admin.ts". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.[39m
+[33m[plugin rolldown:vite-resolve] Module "node:fs/promises" has been externalized for browser compatibility, imported by "/home/daniebo/Desktop/ra-math-advantage/packages/core-convex/src/admin.ts". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.[39m
+✓ 3313 modules transformed.
+rendering chunks...
+computing gzip size...
+[33m[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+[32m✓ built in 11.50s[39m
+[34m[5/5] build ssr environment...[39m
+[2Ktransforming...✓ 1718 modules transformed.
+rendering chunks...
+computing gzip size...
+[32m✓ built in 7.48s[39m
+[0m
+  Route (app)
+  ┌ ? /                                                  
+  ├ ? /acknowledgments                                   
+  ├ λ /api/activities/:activityId                        
+  ├ λ /api/activities/complete                           
+  ├ λ /api/activities/spreadsheet/:activityId/draft      
+  ├ λ /api/activities/spreadsheet/:activityId/submit     
+  ├ λ /api/auth/change-password                          
+  ├ λ /api/auth/login                                    
+  ├ λ /api/auth/logout                                   
+  ├ λ /api/auth/session                                  
+  ├ λ /api/datasets/:filename                            
+  ├ λ /api/lessons/:lessonId/progress                    
+  ├ λ /api/pdfs/:pdfName                                 
+  ├ λ /api/phases/complete                               
+  ├ λ /api/progress/assessment                           
+  ├ λ /api/progress/phase                                
+  ├ λ /api/student/lesson-chatbot                        
+  ├ λ /api/teacher/ai-error-summary                      
+  ├ λ /api/teacher/error-summary                         
+  ├ λ /api/teacher/submission-detail                     
+  ├ λ /api/users/bulk-create-students                    
+  ├ λ /api/users/create-student                          
+  ├ λ /api/users/ensure-demo                             
+  ├ λ /api/users/reset-student-password                  
+  ├ λ /api/users/update-student                          
+  ├ λ /api/workbooks/:unit/:lesson/:type                 
+  ├ λ /api/workbooks/capstone/:type                      
+  ├ λ /auth/confirm                                      
+  ├ ? /auth/error                                        
+  ├ ? /auth/forgot-password                              
+  ├ ? /auth/login                                        
+  ├ ? /auth/update-password                              
+  ├ ? /blueprint-qa                                      
+  ├ ƒ /capstone                                          
+  ├ ? /capstone/guidelines                               
+  ├ ? /capstone/rubrics                                  
+  ├ ƒ /curriculum                                        
+  ├ ? /dev/component-review                              
+  ├ ƒ /dev/component-review/harness/activity/:componentId
+  ├ ƒ /dev/component-review/harness/example/:componentId 
+  ├ ƒ /dev/component-review/harness/practice/:componentId
+  ├ ? /dev/practice-preview                              
+  ├ ƒ /preface                                           
+  ├ ? /settings                                          
+  ├ ? /student                                           
+  ├ ƒ /student/dashboard                                 
+  ├ ƒ /student/lesson/:lessonSlug                        
+  ├ ƒ /student/practice                                  
+  ├ ƒ /student/study                                     
+  ├ ƒ /student/study/export                              
+  ├ ƒ /student/study/flashcards                          
+  ├ ƒ /student/study/matching                            
+  ├ ƒ /student/study/practice-tests                      
+  ├ ƒ /student/study/practice-tests/:unitNumber          
+  ├ ƒ /student/study/progress                            
+  ├ ƒ /student/study/review                              
+  ├ ƒ /student/study/speed-round                         
+  ├ ? /teacher                                           
+  ├ ? /teacher/competency                                
+  ├ ? /teacher/dashboard                                 
+  ├ ? /teacher/gradebook                                 
+  ├ ? /teacher/srs                                       
+  ├ ƒ /teacher/students/:studentId                       
+  ├ ƒ /teacher/students/:studentId/competency            
+  ├ ƒ /teacher/units/:unitNumber                         
+  └ ƒ /teacher/units/:unitNumber/lessons/:lessonId       
+
+  λ API  ƒ Dynamic  ? Unknown
+
+  ? Some routes could not be classified. vinext currently uses static analysis
+    and cannot detect dynamic API usage (headers(), cookies(), etc.) at build time.
+    Automatic classification will be improved in a future release.
+
+  Build complete. Run `vinext start` to start the production server.
+
+43.425

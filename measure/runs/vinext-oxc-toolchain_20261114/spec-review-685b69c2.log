@@ -1,0 +1,20 @@
+Spec-review log for vinext-oxc-toolchain_20261114 at 685b69c2 (round 1).
+HEAD confirmed: git rev-parse HEAD = 685b69c28da85c17f8a24a4c7101e3a216f502d9.
+Standard: ~/.agents/skills/measure/references/spec-review.md. Contracts file absent; used prior spec-review-f19620f.json shape with added paraphrase object.
+Subjects: test-strategy.md section 13 r4, gates.sh change in 3e141e05, plan.md amendment in 685b69c2, spec.md, gh issues #1 and #2, merged tree.
+
+Verdict: FAIL (2 blockers, 4 majors, 1 nit).
+Blocking findings: F1 (W4 titles mismatch, issue #2 not falsifiable), F2 (baseline-set check mis-specified, missing-workspace gap).
+Major findings: F3 (risk-id divergence plus wrong 13.8 item 9), F4 (stale S2 layout boxes), F5 (phase note SHA contradicts section 4), F6 (no plan box for follow-up Red commit).
+Nit findings: F7 (61 vs 62 next/* lines).
+Checks: (1) facts verified with file:line/command output except F7 count and F1 titles; (2) issue #1 maps to cases, issue #2 lacks manifest-absence Red case per F1; (3) no exclusion rule found, missing-workspace compare relies on F2 check; (4) gates.sh keeps all non-baseline comparisons; (5) id contradiction can mislead id-based handoffs; (6) plan boxes match strategy except F4/F6 gaps plus F5 contradiction.
+Role constraint note: this role writes only its two spec-review artifacts; the requested strategy-r4-check filenames were not created.
+
+MEASURE_AGENT_RESULT
+role: spec-review
+status: fail
+track: vinext-oxc-toolchain_20261114
+phase: track setup
+verdict: FAIL
+findings: blockers=2 majors=4 minors=1
+handoff: fix F1 (align four W4 titles with framework-wave-w4-audit.test.ts:294-317 or rewrite the file first; add manifest-absence Red coverage for eslint/@eslint/js) and F2 (correct 6.4 baseline-set command to compare s1 vs baseline-m2 with 27 names, keep pre-merge folder historical); then address F3-F6; F7 is a count correction only

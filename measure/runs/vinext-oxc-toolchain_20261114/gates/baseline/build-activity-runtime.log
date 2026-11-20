@@ -1,0 +1,5 @@
+heavy-run: load hold — load 6.40 over 6
+
+> @math-platform/activity-runtime@0.1.0 build
+> tsc --noEmit
+

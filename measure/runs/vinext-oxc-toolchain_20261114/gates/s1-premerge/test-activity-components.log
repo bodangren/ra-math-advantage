@@ -1,0 +1,21 @@
+
+> @math-platform/activity-components@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 /home/daniebo/Desktop/ra-math-advantage/packages/activity-components
+
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+
+ Test Files  13 passed (13)
+      Tests  110 passed (110)
+   Start at  10:24:19
+   Duration  9.27s (environment 68%, tests 18%, import 11%, transform 1%, worker 1%, setup 1%)
+
+Environment  jsdom was created 13 times · 5.67s total, 68% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+

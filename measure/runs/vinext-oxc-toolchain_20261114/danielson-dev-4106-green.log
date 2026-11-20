@@ -1,0 +1,12 @@
+[vinext] Tip: migrate from `vinext dev` to `vite dev`.
+[2m2:46:43 AM[22m [36m[1m[vite][22m[39m [34m[2m(rsc)[22m[39m Re-optimizing dependencies because lockfile has changed
+[2m2:46:43 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because lockfile has changed
+[2m2:46:43 AM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m Re-optimizing dependencies because lockfile has changed
+
+  [32m[1mVITE[22m v8.3.8[39m  [2mready in [0m[1m362[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4106[22m/[39m
+[2m2:46:44 AM[22m [36m[1m[vite][22m[39m [34m[2m(rsc)[22m[39m connected.
+[2m2:46:45 AM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m connected.
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Laptop" in barrel export map
+ GET / 307 in 4.8s

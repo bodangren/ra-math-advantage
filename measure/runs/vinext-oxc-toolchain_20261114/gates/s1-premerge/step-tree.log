@@ -1,0 +1,172 @@
+ra-math-advantage@ /home/daniebo/Desktop/ra-math-advantage
+├─┬ @math-platform/activity-components@0.1.0 -> ./packages/activity-components
+│ ├── @eslint/js@10.0.1
+│ ├── @hello-pangea/dnd@18.0.1
+│ ├── @matejmazur/react-katex@3.1.3
+│ ├── @math-platform/activity-runtime@0.1.0 deduped -> ./packages/activity-runtime
+│ ├── @math-platform/math-content@0.1.0 deduped -> ./packages/math-content
+│ ├── @math-platform/practice-core@0.1.0 deduped -> ./packages/practice-core
+│ ├── @testing-library/react@16.3.3
+│ ├── @types/react@19.3.0
+│ ├── eslint@10.4.1
+│ ├── katex@0.19.1
+│ ├── react@19.3.1
+│ ├── typescript-eslint@8.60.1
+│ ├── typescript@6.0.3
+│ ├── vitest@5.1.0
+│ └── zod@4.6.7
+├─┬ @math-platform/activity-runtime@0.1.0 -> ./packages/activity-runtime
+│ ├── @eslint/js@10.0.1 deduped
+│ ├── eslint@10.4.1 deduped
+│ ├── typescript-eslint@8.60.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@5.1.0 deduped
+├─┬ @math-platform/ai-tutoring@0.1.0 -> ./packages/ai-tutoring
+│ ├── @eslint/js@10.0.1 deduped
+│ ├── @types/node@24.19.2
+│ ├── eslint@10.4.1 deduped
+│ ├── typescript-eslint@8.60.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@5.1.0 deduped
+├─┬ @math-platform/app-shell@0.1.0 -> ./packages/app-shell
+│ ├── @eslint/js@10.0.1 deduped
+│ ├── @math-platform/core-auth@0.1.0 deduped -> ./packages/core-auth
+│ ├── @math-platform/core-convex@0.1.0 deduped -> ./packages/core-convex
+│ ├── @testing-library/react@16.3.3 deduped
+│ ├── @types/react@19.3.0 deduped
+│ ├── convex@1.50.0
+│ ├── eslint@10.4.1 deduped
+│ ├── lucide-react@1.73.0
+│ ├── next-themes@0.4.6
+│ ├── react@19.3.1 deduped
+│ ├── typescript-eslint@8.60.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ ├── vinext@1.4.5
+│ └── vitest@5.1.0 deduped
+├─┬ @math-platform/component-approval@0.1.0 -> ./packages/component-approval
+│ ├── @eslint/js@10.0.1 deduped
+│ ├── eslint@10.4.1 deduped
+│ ├── typescript-eslint@8.60.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@5.1.0 deduped
+├─┬ @math-platform/core-auth@0.1.0 -> ./packages/core-auth
+│ ├── @eslint/js@10.0.1 deduped
+│ ├── @types/node@24.19.2
+│ ├── eslint@10.4.1 deduped
+│ ├── typescript-eslint@8.60.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@5.1.0 deduped
+├─┬ @math-platform/core-convex@0.1.0 -> ./packages/core-convex
+│ ├── @eslint/js@10.0.1 deduped
+│ ├── @types/node@24.19.2
+│ ├── convex@1.50.0 deduped
+│ ├── eslint@10.4.1 deduped
+│ ├── typescript-eslint@8.60.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@5.1.0 deduped
+├─┬ @math-platform/efficacy-core@0.1.0 -> ./packages/efficacy-core
+│ ├── @eslint/js@10.0.1 deduped
+│ ├── @math-platform/practice-core@0.1.0 deduped -> ./packages/practice-core
+│ ├── @math-platform/srs-engine@0.1.0 deduped -> ./packages/srs-engine
+│ ├── eslint@10.4.1 deduped
+│ ├── typescript-eslint@8.60.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ ├── vitest@5.1.0 deduped
+│ └── zod@4.6.7 deduped
+├─┬ @math-platform/graphing-core@0.1.0 -> ./packages/graphing-core
+│ ├── @eslint/js@10.0.1 deduped
+│ ├── eslint@10.4.1 deduped
+│ ├── typescript-eslint@8.60.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@5.1.0 deduped
+├─┬ @math-platform/knowledge-space-core@0.1.0 -> ./packages/knowledge-space-core
+│ ├── @eslint/js@10.0.1 deduped
+│ ├── eslint@10.4.1 deduped
+│ ├── typescript-eslint@8.60.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ ├── vitest@5.1.0 deduped
+│ └── zod@4.6.7 deduped
+├─┬ @math-platform/knowledge-space-practice@0.1.0 -> ./packages/knowledge-space-practice
+│ ├── @eslint/js@10.0.1 deduped
+│ ├── @math-platform/knowledge-space-core@0.1.0 deduped -> ./packages/knowledge-space-core
+│ ├── eslint@10.4.1 deduped
+│ ├── typescript-eslint@8.60.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ ├── vitest@5.1.0 deduped
+│ └── zod@4.6.7 deduped
+├─┬ @math-platform/lesson-renderer@0.1.0 -> ./packages/lesson-renderer
+│ ├── @eslint/js@10.0.1 deduped
+│ ├── @matejmazur/react-katex@3.1.3 deduped
+│ ├── @types/node@24.19.2
+│ ├── @types/react@19.3.0 deduped
+│ ├── clsx@2.1.1
+│ ├── eslint@10.4.1 deduped
+│ ├── katex@0.19.1
+│ ├── lucide-react@1.73.0 deduped
+│ ├── react-markdown@10.1.0
+│ ├── react@19.3.1 deduped
+│ ├── rehype-katex@7.0.1
+│ ├── remark-gfm@4.0.1
+│ ├── remark-math@6.0.0
+│ ├── tailwind-merge@3.7.0
+│ ├── typescript-eslint@8.60.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@5.1.0 deduped
+├─┬ @math-platform/math-content@0.1.0 -> ./packages/math-content
+│ ├── @eslint/js@10.0.1 deduped
+│ ├── @math-platform/activity-runtime@0.1.0 deduped -> ./packages/activity-runtime
+│ ├── @math-platform/knowledge-space-core@0.1.0 deduped -> ./packages/knowledge-space-core
+│ ├── @math-platform/practice-core@0.1.0 deduped -> ./packages/practice-core
+│ ├── @math-platform/study-hub-core@0.1.0 deduped -> ./packages/study-hub-core
+│ ├── eslint@10.4.1 deduped
+│ ├── typescript-eslint@8.60.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ ├── vitest@5.1.0 deduped
+│ └── zod@4.6.7 deduped
+├─┬ @math-platform/practice-core@0.1.0 -> ./packages/practice-core
+│ ├── @eslint/js@10.0.1 deduped
+│ ├── @types/node@24.19.2
+│ ├── eslint@10.4.1 deduped
+│ ├── typescript-eslint@8.60.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ ├── vitest@5.1.0 deduped
+│ └── zod@4.6.7 deduped
+├─┬ @math-platform/practice-test-engine@0.1.0 -> ./packages/practice-test-engine
+│ └── vitest@5.1.0 deduped
+├─┬ @math-platform/rate-limiter@0.1.0 -> ./packages/rate-limiter
+│ ├── @eslint/js@10.0.1 deduped
+│ ├── eslint@10.4.1 deduped
+│ ├── typescript-eslint@8.60.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@5.1.0 deduped
+├─┬ @math-platform/srs-engine@0.1.0 -> ./packages/srs-engine
+│ ├── @eslint/js@10.0.1 deduped
+│ ├── @math-platform/practice-core@0.1.0 deduped -> ./packages/practice-core
+│ ├── eslint@10.4.1 deduped
+│ ├── ts-fsrs@6.0.0
+│ ├── typescript-eslint@8.60.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@5.1.0 deduped
+├─┬ @math-platform/study-hub-core@0.1.0 -> ./packages/study-hub-core
+│ ├── @eslint/js@10.0.1 deduped
+│ ├── @types/react@19.3.0 deduped
+│ ├── eslint@10.4.1 deduped
+│ ├── react@19.3.1 deduped
+│ ├── typescript-eslint@8.60.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@5.1.0 deduped
+├─┬ @math-platform/teacher-reporting-core@0.1.0 -> ./packages/teacher-reporting-core
+│ ├── @eslint/js@10.0.1 deduped
+│ ├── eslint@10.4.1 deduped
+│ ├── typescript-eslint@8.60.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@5.1.0 deduped
+├─┬ @math-platform/template@0.1.0 -> ./packages/_template
+│ └── typescript@6.0.3 deduped
+└─┬ @math-platform/workbook-pipeline@0.1.0 -> ./packages/workbook-pipeline
+  ├── @eslint/js@10.0.1 deduped
+  ├── eslint@10.4.1 deduped
+  ├── typescript-eslint@8.60.1 deduped
+  ├── typescript@6.0.3 deduped
+  └── vitest@5.1.0 deduped
+

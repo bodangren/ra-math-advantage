@@ -1,0 +1,7 @@
+- link "Skip to main content":
+  - /url: "#main-content"
+- banner:
+  - link "Math for Business":
+    - /url: /
+  - link "Sign in":
+h1: Math for Business Operations | horizontal overflow px at 375px width: 0

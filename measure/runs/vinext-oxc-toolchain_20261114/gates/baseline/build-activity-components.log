@@ -1,0 +1,21 @@
+
+> @math-platform/activity-components@0.1.0 build
+> tsc --noEmit
+
+src/__tests__/a11y/graphing-solver-a11y.test.tsx(6,16): error TS2591: Cannot find name 'node:fs'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+src/__tests__/a11y/graphing-solver-a11y.test.tsx(7,18): error TS2591: Cannot find name 'node:path'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+src/__tests__/a11y/graphing-solver-a11y.test.tsx(191,17): error TS2304: Cannot find name '__dirname'.
+src/__tests__/a11y/live-regions.test.tsx(110,6): error TS2352: Conversion of type 'SVGSVGElement | null' to type 'HTMLElement' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type 'SVGSVGElement' is missing the following properties from type 'HTMLElement': accessKey, accessKeyLabel, autocapitalize, autocorrect, and 26 more.
+src/__tests__/a11y/quiz-blanks-games-a11y.test.tsx(5,16): error TS2591: Cannot find name 'node:fs'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+src/__tests__/a11y/quiz-blanks-games-a11y.test.tsx(6,18): error TS2591: Cannot find name 'node:path'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+src/__tests__/a11y/quiz-blanks-games-a11y.test.tsx(192,35): error TS2304: Cannot find name '__dirname'.
+src/components/algebraic/MathInputField.tsx(5,8): error TS2882: Cannot find module or type declarations for side-effect import of 'katex/dist/katex.min.css'.
+src/components/algebraic/StepByStepper.tsx(5,8): error TS2882: Cannot find module or type declarations for side-effect import of 'katex/dist/katex.min.css'.
+npm error Lifecycle script `build` failed with error:
+npm error code 1
+npm error path /home/daniebo/Desktop/ra-math-advantage/packages/activity-components
+npm error workspace @math-platform/activity-components@0.1.0
+npm error location /home/daniebo/Desktop/ra-math-advantage/packages/activity-components
+npm error command failed
+npm error command sh -c tsc --noEmit

@@ -1,0 +1,269 @@
+
+ RUN  v4.1.8 /home/daniebo/Desktop/ra-math-advantage/scripts
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts (9 tests | 9 failed) 9639ms
+     × case 1: vinext resolves to a 1.x release from the root, each app, and app-shell 49ms
+     × case 2: vinext resolves, and next does not resolve, from the root, each app, and app-shell 25ms
+     × case 3: no manifest declares next 25ms
+     × case 4: each app and app-shell tsconfig loads vinext/types and has no next plugin 10ms
+     × case 5: a probe that imports next, next/link, and next/navigation type-checks with exit 0 4595ms
+     × case 5b: the next types are strict: Link without href and push(123) fail to type-check 2139ms
+     × case 6: a probe that imports next/does-not-exist fails with TS2307, and next/link still resolves 2726ms
+     × case 7: each setup-node step in the workflows uses Node 24 33ms
+     × case 8: the lockfile has no next package and no workspace entry that lists next 33ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 1: vinext resolves to a 1.x release from the root, each app, and app-shell
+AssertionError: folders that resolve a vinext release that is not 1.x: expected [ [ '.', +0 ], …(6) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   [
++     ".",
++     0,
++   ],
++   [
++     "apps/bus-math-v2",
++     0,
++   ],
++   [
++     "apps/integrated-math-1",
++     0,
++   ],
++   [
++     "apps/integrated-math-2",
++     0,
++   ],
++   [
++     "apps/integrated-math-3",
++     0,
++   ],
++   [
++     "apps/pre-calculus",
++     0,
++   ],
++   [
++     "packages/app-shell",
++     0,
++   ],
++ ]
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:213:77
+    211|     }
+    212|     const notOne = Object.entries(majors).filter(([, major]) => major …
+    213|     expect(notOne, `folders that resolve a vinext release that is not …
+       |                                                                             ^
+    214|   });
+    215|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 2: vinext resolves, and next does not resolve, from the root, each app, and app-shell
+AssertionError: folders where next is installed: expected [ …(7) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   ". -> node_modules/next/package.json",
++   "apps/bus-math-v2 -> node_modules/next/package.json",
++   "apps/integrated-math-1 -> node_modules/next/package.json",
++   "apps/integrated-math-2 -> node_modules/next/package.json",
++   "apps/integrated-math-3 -> node_modules/next/package.json",
++   "apps/pre-calculus -> node_modules/next/package.json",
++   "packages/app-shell -> node_modules/next/package.json",
++ ]
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:235:61
+    233|       }
+    234|     }
+    235|     expect(resolvedNext, 'folders where next is installed').toEqual([]…
+       |                                                             ^
+    236|     expect(nodeResolvable, 'folders where require.resolve finds next/p…
+    237|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 3: no manifest declares next
+AssertionError: manifest fields that declare next: expected [ …(8) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "package.json:devDependencies.next",
++   "package.json:overrides.next",
++   "apps/bus-math-v2/package.json:dependencies.next",
++   "apps/integrated-math-1/package.json:dependencies.next",
++   "apps/integrated-math-2/package.json:dependencies.next",
++   "apps/integrated-math-3/package.json:dependencies.next",
++   "apps/pre-calculus/package.json:dependencies.next",
++   "packages/app-shell/package.json:peerDependencies.next",
++ ]
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:250:63
+    248|     expect(manifests.length).toBeGreaterThanOrEqual(1 + 5 + 20);
+    249|     const declarations = manifests.flatMap(findNextDeclarations);
+    250|     expect(declarations, 'manifest fields that declare next').toEqual(…
+       |                                                               ^
+    251|   });
+    252|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 4: each app and app-shell tsconfig loads vinext/types and has no next plugin
+AssertionError: tsconfig files without vinext/types in compilerOptions.types: expected [ …(6) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "apps/bus-math-v2/tsconfig.json",
++   "apps/integrated-math-1/tsconfig.json",
++   "apps/integrated-math-2/tsconfig.json",
++   "apps/integrated-math-3/tsconfig.json",
++   "apps/pre-calculus/tsconfig.json",
++   "packages/app-shell/tsconfig.json",
++ ]
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:265:90
+    263|       if (plugins.some((plugin) => plugin.name === 'next')) nextPlugin…
+    264|     }
+    265|     expect(missingTypes, 'tsconfig files without vinext/types in compi…
+       |                                                                                          ^
+    266|     expect(nextPlugins, 'tsconfig files with the { "name": "next" } pl…
+    267|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 5: a probe that imports next, next/link, and next/navigation type-checks with exit 0
+AssertionError: expected 'error TS2688: Cannot find type defini…' not to contain 'TS2688'
+
+- Expected
++ Received
+
+- TS2688
++ error TS2688: Cannot find type definition file for 'vinext/types'.
++   The file is in the program because:
++     Entry point of type library 'vinext/types' specified in compilerOptions
++ npm warn allow-scripts .npmrc allow-scripts setting is being ignored because --allow-scripts was passed on the command line
++
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:275:26
+    273|       const tmp = makeProbeProject({ 'probe.tsx': VALID_NEXT_PROBE }, …
+    274|       const { status, output } = typecheckProbe(tmp);
+    275|       expect(output).not.toContain('TS2688');
+       |                          ^
+    276|       expect(status, output).toBe(0);
+    277|     },
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 5b: the next types are strict: Link without href and push(123) fail to type-check
+AssertionError: vinext/types did not resolve: expected 'error TS2688: Cannot find type defini…' not to contain 'TS2688'
+
+- Expected
++ Received
+
+- TS2688
++ error TS2688: Cannot find type definition file for 'vinext/types'.
++   The file is in the program because:
++     Entry point of type library 'vinext/types' specified in compilerOptions
++ npm warn allow-scripts .npmrc allow-scripts setting is being ignored because --allow-scripts was passed on the command line
++
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:290:58
+    288|       // vinext/types must resolve, and next/* must resolve. If the ty…
+    289|       // TS2741 and no TS2345 would appear.
+    290|       expect(output, 'vinext/types did not resolve').not.toContain('TS…
+       |                                                          ^
+    291|       expect(output).not.toContain('TS2307');
+    292|       expect(status, output).not.toBe(0);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 6: a probe that imports next/does-not-exist fails with TS2307, and next/link still resolves
+AssertionError: vinext/types did not resolve: expected 'error TS2688: Cannot find type defini…' not to contain 'TS2688'
+
+- Expected
++ Received
+
+- TS2688
++ error TS2688: Cannot find type definition file for 'vinext/types'.
++   The file is in the program because:
++     Entry point of type library 'vinext/types' specified in compilerOptions
++ npm warn allow-scripts .npmrc allow-scripts setting is being ignored because --allow-scripts was passed on the command line
++
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:307:58
+    305|       // At Red, an unresolved vinext/types gives TS2688. Without this…
+    306|       // would fail for the wrong reason.
+    307|       expect(output, 'vinext/types did not resolve').not.toContain('TS…
+       |                                                          ^
+    308|       expect(status, output).not.toBe(0);
+    309|       expect(output).toMatch(/TS2307/);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 7: each setup-node step in the workflows uses Node 24
+AssertionError: setup-node steps with a node-version that is not 24: expected [ …(8) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "ci.yml:packages node-version='20'",
++   "ci.yml:boundary-check node-version='20'",
++   "ci.yml:im3 node-version='20'",
++   "ci.yml:bm2 node-version='20'",
++   "ci.yml:e2e-im3 node-version='20'",
++   "ci.yml:im1-im2-precalc node-version='20'",
++   "ci.yml:deploy node-version='20'",
++   "cloudflare-deploy.yml:deploy-production node-version='20'",
++ ]
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:341:78
+    339|     expect(stepsByFile['ci.yml'] ?? 0).toBeGreaterThanOrEqual(1);
+    340|     expect(stepsByFile['cloudflare-deploy.yml'] ?? 0).toBeGreaterThanO…
+    341|     expect(wrongNode, 'setup-node steps with a node-version that is no…
+       |                                                                              ^
+    342|   });
+    343|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S1 vinext 1.x > case 8: the lockfile has no next package and no workspace entry that lists next
+AssertionError: lockfile package keys that end with node_modules/next: expected [ 'node_modules/next' ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "node_modules/next",
++ ]
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:353:83
+    351|     expect(keys).toContain('packages/app-shell');
+    352|     const nextPackages = keys.filter((key) => key.endsWith('node_modul…
+    353|     expect(nextPackages, 'lockfile package keys that end with node_mod…
+       |                                                                                   ^
+    354|     const workspaceKeys = keys.filter((key) => !key.includes('node_mod…
+    355|     const listing: string[] = [];
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯
+
+
+ Test Files  1 failed | 1 skipped (2)
+      Tests  9 failed | 11 skipped (20)
+   Start at  00:35:51
+   Duration  10.38s (transform 127ms, setup 0ms, import 195ms, tests 9.64s, environment 0ms)
+

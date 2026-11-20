@@ -1,0 +1,72 @@
+
+> test
+> vitest run
+
+[33m(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vitest.config.ts:45:25). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.[39m
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/apps/integrated-math-2
+
+ ✓ __tests__/curriculum/extractor-guard.test.ts (1 test) 491ms
+   ✓ rejects legacy IM2 extraction before writing any inventory  489ms
+ ✓ __tests__/curriculum/math-rendering.test.ts (4 tests) 489ms
+   ✓ renders every marked math expression without a KaTeX error  455ms
+ ✓ __tests__/convex/seed/lesson-seeding.test.ts (7 tests) 384ms
+   ✓ seeds all 96 source lessons without local filesystem access and replays without duplicate rows  373ms
+ ✓ __tests__/pages/curriculum.test.tsx (1 test) 277ms
+ ✓ __tests__/lib/perpendicular-bisector.test.ts (5 tests) 491ms
+   ✓ keeps graph projections consistent and unavailable for runtime practice  379ms
+ ✓ __tests__/pages/home.test.tsx (1 test) 213ms
+ ✓ __tests__/pages/login.test.tsx (5 tests) 190ms
+ ✓ __tests__/components/PerpendicularBisectorPilot.test.tsx (5 tests) 178ms
+ ✓ __tests__/app/teacher/student-evidence-perpendicular-bisector-composition.test.tsx (3 tests) 184ms
+ ✓ __tests__/components/triangle-ordering-practice.test.tsx (13 tests) 149ms
+ ✓ __tests__/components/teacher/PerpendicularBisectorExposureForm.test.tsx (1 test) 105ms
+ ✓ __tests__/curriculum/graph.test.ts (7 tests) 109ms
+ ✓ __tests__/auth/routes.test.ts (12 tests) 62ms
+ ✓ __tests__/curriculum/curriculum-depth.test.ts (99 tests) 68ms
+ ✓ __tests__/convex/triangle-ordering-practice.test.ts (45 tests) 50ms
+ ✓ __tests__/setup/convex-provider.test.tsx (1 test) 29ms
+ ✓ __tests__/convex/perpendicular-bisector-pilot.test.ts (24 tests) 23ms
+ ✓ __tests__/app/api/activities/submissions-route.test.ts (15 tests) 22ms
+ ✓ __tests__/curriculum/module-1-source-mappings.test.ts (9 tests) 22ms
+ ✓ __tests__/auth/enrollment-action.test.ts (3 tests) 19ms
+ ✓ __tests__/admin/publication-action.test.ts (3 tests) 18ms
+ ✓ __tests__/convex/triangle-ordering-practice-seed.test.ts (2 tests) 12ms
+ ✓ __tests__/curriculum/calendar.test.ts (2 tests) 20ms
+ ✓ __tests__/app/api/teacher/perpendicular-bisector-exposure-route.test.ts (16 tests) 19ms
+ ✓ __tests__/setup/dev-stack-script.test.ts (3 tests) 14ms
+ ✓ __tests__/convex/perpendicular-bisector-teacher-candidate.test.ts (3 tests) 18ms
+ ✓ __tests__/convex/learning.test.ts (6 tests) 12ms
+ ✓ __tests__/curriculum/activity-map.test.ts (1 test) 10ms
+ ✓ __tests__/convex/seed/seed-standards.test.ts (10 tests) 10ms
+ ✓ __tests__/curriculum/questions.test.ts (1 test) 9ms
+ ✓ __tests__/convex/publication-review.test.ts (2 tests) 8ms
+ ✓ __tests__/convex/seed/standards-inventory.test.ts (5 tests) 7ms
+ ✓ __tests__/convex/classes.test.ts (4 tests) 9ms
+ ✓ __tests__/convex/seed/lesson-alignment.test.ts (1 test) 10ms
+ ✓ __tests__/auth/mutations.test.ts (7 tests) 7ms
+ ✓ __tests__/lib/utils.test.ts (4 tests) 7ms
+ ✓ __tests__/convex/publication.test.ts (2 tests) 7ms
+ ✓ __tests__/lib/question.test.ts (3 tests) 6ms
+ ✓ __tests__/convex/seed/standards-integrity.test.ts (3 tests) 4ms
+ ✓ __tests__/convex/enrollment.test.ts (3 tests) 6ms
+ ✓ __tests__/config.test.ts (2 tests) 5ms
+ ✓ __tests__/lib/triangle-ordering.test.ts (4 tests) 5ms
+ ✓ __tests__/convex/student.test.ts (1 test) 6ms
+ ✓ __tests__/convex/public.test.ts (1 test) 4ms
+ ✓ __tests__/auth/guards.test.ts (2 tests) 6ms
+ ✓ __tests__/auth/admin-guard.test.ts (2 tests) 4ms
+ ✓ __tests__/convex/perpendicular-bisector-pilot-seed.test.ts (1 test) 5ms
+ ✓ __tests__/convex/lesson-standard-revisions.test.ts (1 test) 4ms
+ ✓ __tests__/convex/seed-all-standards.test.ts (1 test) 4ms
+ ✓ __tests__/ci/standards-integrity-ci-wiring.test.ts (3 tests) 4ms
+ ✓ __tests__/app/student/practice-page.test.tsx (1 test) 3ms
+ ✓ __tests__/pages/text-contrast.test.ts (1 test) 4ms
+
+ Test Files  52 passed (52)
+      Tests  362 passed (362)
+   Start at  18:44:00
+   Duration  25.40s (transform 1.44s, setup 3.80s, import 3.29s, tests 3.82s, environment 9.65s)
+

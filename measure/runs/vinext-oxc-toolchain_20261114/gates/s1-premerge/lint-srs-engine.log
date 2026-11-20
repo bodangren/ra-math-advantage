@@ -1,0 +1,24 @@
+
+> @math-platform/srs-engine@0.1.0 lint
+> eslint src --max-warnings 0
+
+
+/home/daniebo/Desktop/ra-math-advantage/packages/srs-engine/src/__tests__/variant-rename.test.ts
+  295:9  error  'mockNow' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/daniebo/Desktop/ra-math-advantage/packages/srs-engine/src/srs/contract.ts
+  70:26  error  'SrsRatingInput' is defined but never used   @typescript-eslint/no-unused-vars
+  70:42  error  'SrsRatingResult' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/daniebo/Desktop/ra-math-advantage/packages/srs-engine/src/srs/review-processor.ts
+  22:3  error  'PracticeSubmissionPart' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 4 problems (4 errors, 0 warnings)
+
+npm error Lifecycle script `lint` failed with error:
+npm error code 1
+npm error path /home/daniebo/Desktop/ra-math-advantage/packages/srs-engine
+npm error workspace @math-platform/srs-engine@0.1.0
+npm error location /home/daniebo/Desktop/ra-math-advantage/packages/srs-engine
+npm error command failed
+npm error command sh -c eslint src --max-warnings 0

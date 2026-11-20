@@ -1,0 +1,3 @@
+console errors: 0
+page errors: 0
+failed requests: 0

@@ -1,0 +1,19 @@
+{
+  "url": "http://localhost:4105/",
+  "finalUrl": "http://localhost:4105/",
+  "status": 200,
+  "title": "Math for Business Operations: Applied Accounting with Excel",
+  "firstH1": "Math for Business Operations",
+  "screenshot": true,
+  "snapshot": true,
+  "pageErrors": 0,
+  "link": {
+    "selector": "a[href=\"/curriculum\"]",
+    "text": "Curriculum",
+    "href": "/curriculum",
+    "finalUrl": "http://localhost:4105/curriculum",
+    "status": 200,
+    "title": "Math for Business Operations: Applied Accounting with Excel",
+    "firstH1": "8 units. 1 capstone.Real workbooks you can show off."
+  }
+}

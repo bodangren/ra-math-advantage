@@ -1,0 +1,75 @@
+## apps/bus-math-v2 tsrs=4 tsc71=71 gap=0 missed=67
+MISSED apps/bus-math-v2/lib/practice/engine/families/accounting-equation.ts TS2307 lines 1,2,3
+MISSED apps/bus-math-v2/lib/practice/engine/families/accounting-equation.ts TS2339 lines 300,301,308
+MISSED apps/bus-math-v2/lib/practice/engine/families/accounting-equation.ts TS2353 lines 166
+MISSED apps/bus-math-v2/lib/practice/engine/families/accounting-equation.ts TS7006 lines 269,294,367,371,393
+MISSED apps/bus-math-v2/lib/practice/engine/families/classification.ts TS2307 lines 5,6,7,8
+MISSED apps/bus-math-v2/lib/practice/engine/families/classification.ts TS2339 lines 366,369,370,373,384,398
+MISSED apps/bus-math-v2/lib/practice/engine/families/classification.ts TS2347 lines 475
+MISSED apps/bus-math-v2/lib/practice/engine/families/classification.ts TS7006 lines 172,175,178,274,298,325,365,425,429,430,436,437,450,464,473,474,475,480,507
+MISSED apps/bus-math-v2/lib/practice/engine/families/normal-balance.ts TS2307 lines 5,6,7,8
+MISSED apps/bus-math-v2/lib/practice/engine/families/normal-balance.ts TS2339 lines 329,330,333,340,354
+MISSED apps/bus-math-v2/lib/practice/engine/families/normal-balance.ts TS7006 lines 106,107,108,234,302,328,385,389,390,414,424,435,437,464
+MISSED apps/bus-math-v2/lib/practice/grading/accounting-equation-event.ts TS2307 lines 1
+MISSED apps/bus-math-v2/lib/practice/grading/accounting-equation-event.ts TS2550 lines 196
+## apps/danielson tsrs=0 tsc71=0 gap=0 missed=0
+## apps/integrated-math-1 tsrs=21 tsc71=21 gap=0 missed=0
+## apps/integrated-math-2 tsrs=0 tsc71=0 gap=0 missed=0
+## apps/integrated-math-3 tsrs=96 tsc71=60 gap=38 missed=2
+GAP apps/integrated-math-3/scripts/scale/run.mjs TS2591 lines 4,5,6,7,47,224,241,253
+GAP apps/integrated-math-3/scripts/scale/run.mjs TS7006 lines 44,78,90,105,120,121,132,143,163,176,180,184,188,195,196,197,204,209,210,215
+GAP apps/integrated-math-3/scripts/scale/run.mjs TS7053 lines 91,133,190
+GAP apps/integrated-math-3/scripts/validate-seed-integrity.mjs TS2591 lines 14,15,16,200
+GAP apps/integrated-math-3/scripts/validate-seed-integrity.mjs TS7006 lines 44,65,68
+MISSED apps/integrated-math-3/lib/activities/review-queue.ts TS2307 lines 1
+MISSED apps/integrated-math-3/lib/placement/v3-placement-migration.ts TS2307 lines 5
+## apps/pre-calculus tsrs=6 tsc71=6 gap=0 missed=0
+## packages/_template tsrs=0 tsc71=0 gap=0 missed=0
+## packages/activity-components tsrs=0 tsc71=0 gap=0 missed=0
+## packages/activity-runtime tsrs=0 tsc71=0 gap=0 missed=0
+## packages/ai-tutoring tsrs=0 tsc71=0 gap=0 missed=0
+## packages/app-shell tsrs=0 tsc71=0 gap=0 missed=0
+## packages/component-approval tsrs=0 tsc71=0 gap=0 missed=0
+## packages/core-auth tsrs=0 tsc71=0 gap=0 missed=0
+## packages/core-convex tsrs=0 tsc71=0 gap=0 missed=0
+## packages/efficacy-core tsrs=0 tsc71=0 gap=0 missed=0
+## packages/graphing-core tsrs=0 tsc71=0 gap=0 missed=0
+## packages/knowledge-space-core tsrs=0 tsc71=0 gap=0 missed=0
+## packages/knowledge-space-practice tsrs=0 tsc71=0 gap=0 missed=0
+## packages/lesson-renderer tsrs=0 tsc71=0 gap=0 missed=0
+## packages/math-content tsrs=0 tsc71=0 gap=0 missed=0
+## packages/practice-core tsrs=0 tsc71=0 gap=0 missed=0
+## packages/practice-test-engine tsrs=0 tsc71=0 gap=0 missed=0
+## packages/rate-limiter tsrs=0 tsc71=0 gap=0 missed=0
+## packages/srs-engine tsrs=0 tsc71=0 gap=0 missed=0
+## packages/study-hub-core tsrs=0 tsc71=0 gap=0 missed=0
+## packages/teacher-reporting-core tsrs=0 tsc71=0 gap=0 missed=0
+## packages/workbook-pipeline tsrs=0 tsc71=0 gap=0 missed=0
+TOTAL gap=38 missed=69
+VERSION apps/bus-math-v2 tsc70=71 tsc71=71 only70=0 only71=0
+VERSION apps/danielson tsc70=0 tsc71=0 only70=0 only71=0
+VERSION apps/integrated-math-1 tsc70=21 tsc71=21 only70=0 only71=0
+VERSION apps/integrated-math-2 tsc70=0 tsc71=0 only70=0 only71=0
+VERSION apps/integrated-math-3 tsc70=60 tsc71=60 only70=0 only71=0
+VERSION apps/pre-calculus tsc70=6 tsc71=6 only70=0 only71=0
+VERSION packages/_template tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/activity-components tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/activity-runtime tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/ai-tutoring tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/app-shell tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/component-approval tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/core-auth tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/core-convex tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/efficacy-core tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/graphing-core tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/knowledge-space-core tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/knowledge-space-practice tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/lesson-renderer tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/math-content tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/practice-core tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/practice-test-engine tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/rate-limiter tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/srs-engine tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/study-hub-core tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/teacher-reporting-core tsc70=0 tsc71=0 only70=0 only71=0
+VERSION packages/workbook-pipeline tsc70=0 tsc71=0 only70=0 only71=0

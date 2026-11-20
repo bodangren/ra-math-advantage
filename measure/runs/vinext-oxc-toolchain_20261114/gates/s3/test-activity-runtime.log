@@ -1,0 +1,13 @@
+
+> @math-platform/activity-runtime@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/activity-runtime
+
+
+ Test Files  3 passed (3)
+      Tests  37 passed (37)
+   Start at  08:30:37
+   Duration  367ms (transform 39ms, setup 0ms, import 73ms, tests 14ms, environment 0ms)
+

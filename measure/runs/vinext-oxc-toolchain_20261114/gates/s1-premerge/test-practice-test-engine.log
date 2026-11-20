@@ -1,0 +1,13 @@
+
+> @math-platform/practice-test-engine@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 /home/daniebo/Desktop/ra-math-advantage/packages/practice-test-engine
+
+
+ Test Files  1 passed (1)
+      Tests  21 passed (21)
+   Start at  10:25:06
+   Duration  108ms (import 37%, tests 28%, worker 20%, transform 15%)
+

@@ -240,17 +240,13 @@ packages omitted from CI, shallow regex-only boundary guards, and an inverted
    *Server/client architecture for a teacher to present lesson phases/steps with every student's screen synchronized in real time. Convex reactive queries/mutations drive sync over a new `live_sessions` table; teacher controls navigation, activity reveal, and inline annotations; students follow with local interaction. Sessions end explicitly or via idle timeout. Story-shaped spec (6 stories: S1 start, S2 follow, S3 navigate/reveal, S4 local interact, S5 annotations, S6 end).*
    *Link: [./tracks/live-classroom-presentation_20260703/](./tracks/live-classroom-presentation_20260703/)*
 
-- [~] **Track: vinext 1.x Upgrade and Oxc Toolchain Move**
-   S5 adversarial rerun: escaped executable quotes bypass the scanner (ADV-S5-4). Four failing cases are committed in c0ea258e. ADV-S5-4 is fixed in cb14a046. S5 passed phase acceptance at f348394f. The S5 checkpoint is next. ADV-S5-2 and ADV-S5-3 stay record-only.
-   *Chore, story-shaped spec with 5 phases: S1 package refresh and vinext 1.x (remove `next`), S2 ESLint to oxlint, S3 TypeScript 7 with tsrs as the type-check gate, S4 oxfmt with one format-only commit, S5 gate rules and CI. The repository is a test bed for a full move to the Oxc tools; the evidence file records speed, conformance gaps, rule gaps, and workarounds. User decisions 2026-11-14.*
-   *Link: [./tracks/vinext-oxc-toolchain_20261114/](./tracks/vinext-oxc-toolchain_20261114/)*
 
 - [ ] **Track: OpenRouter SDK AI Layer**
-   *Chore, story-shaped spec with 4 phases: S1 adopt `@openrouter/sdk` in `packages/ai-tutoring` (workerd probe, bundle sizes), S2 one model variable for each role with no default and fail-closed behavior, usage logging, and the PII flag, S3 structured output for BM2 spreadsheet feedback and the BM2 teacher summary (lesson-level prompt without the student name), S4 removal of the OpenAI paths and role docs. AI prompts contain no PII. Depends on: vinext-oxc-toolchain_20261114. User decisions 2026-11-14.*
+   *Chore, story-shaped spec with 4 phases: S1 adopt `@openrouter/sdk` in `packages/ai-tutoring` (workerd probe, bundle sizes), S2 one model variable for each role with no default and fail-closed behavior, usage logging, and the PII flag, S3 structured output for BM2 spreadsheet feedback and the BM2 teacher summary (lesson-level prompt without the student name), S4 removal of the OpenAI paths and role docs. AI prompts contain no PII. Depends on: the completed vinext 1.x and Oxc toolchain track (archived 2026-11-20). User decisions 2026-11-14.*
    *Link: [./tracks/openrouter-sdk-ai-layer_20261114/](./tracks/openrouter-sdk-ai-layer_20261114/)*
 
 - [x] **Track: Danielson App Import** — **SUPERSEDED / ARCHIVED** (2026-11-16)
-   *Chore, story-shaped spec with 3 phases: S1 import `github.com/bodangren/hdkwa-danielson` as `apps/danielson` in one snapshot commit of `c047df1` with no source history, replace the Danielson Framework text with own-word paraphrases and own-word labels (no exact Danielson Framework text; element IDs stay), move its open Measure tracks into this registry, remove the duplicate files, and join the npm workspaces; S2 the repository toolchain (vinext 1.x, oxlint, oxfmt, tsrs) and CI; S3 a static export to the new Worker `danielson` and a report to the PM. Depends on: `vinext-oxc-toolchain_20261114` (S1 and S2) and `prod-deploy-pipeline_20261114` (S3 only). Runs before the track set Unified Math App. Orchestrator decision 2026-11-14.*
+   *Chore, story-shaped spec with 3 phases: S1 import `github.com/bodangren/hdkwa-danielson` as `apps/danielson` in one snapshot commit of `c047df1` with no source history, replace the Danielson Framework text with own-word paraphrases and own-word labels (no exact Danielson Framework text; element IDs stay), move its open Measure tracks into this registry, remove the duplicate files, and join the npm workspaces; S2 the repository toolchain (vinext 1.x, oxlint, oxfmt, tsrs) and CI; S3 a static export to the new Worker `danielson` and a report to the PM. Depends on: the completed vinext 1.x and Oxc toolchain track (S1 and S2; archived 2026-11-20) and `prod-deploy-pipeline_20261114` (S3 only). Runs before the track set Unified Math App. Orchestrator decision 2026-11-14.*
    *Superseded by the open apps/danielson tracks (danielson-observation-cycle_20260819, danielson-admin-growth_20260907, danielson-slt-deck_20260907), PM 2026-11-16.*
    *Link: [./archive/danielson-app-import_20261114/](./archive/danielson-app-import_20261114/)*
 
@@ -1261,6 +1257,10 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
    *Link: [./archive/parent-portal_20260605/](./archive/parent-portal_20260605/)*
 
 ## Archived Tracks
+
+- [x] **Track: vinext 1.x Upgrade and Oxc Toolchain Move** — **COMPLETED / ARCHIVED** (2026-11-20)
+   *Link: [./archive/vinext-oxc-toolchain_20261114/](./archive/vinext-oxc-toolchain_20261114/)*
+  *Upgrade vinext 0.0.55 to 1.x and update all packages, then move the toolchain to Oxc: oxlint in place of ESLint, TypeScript 7 with tsrs as the type-check gate, and oxfmt as the formatter. Record speed, conformance gaps, rule gaps, and workarounds for other repositories.*
 
 - [x] **Track: Teacher Content Authoring** — **COMPLETED / ARCHIVED** (2026-07-03)
    *Tools for teachers to create/edit lesson content and activities, not just assign existing ones, gated by the component-approval workflow and activity schemas. All 4 phases complete with commit-SHA evidence (checkpoints: e51561e4, 01752a0c, 11745f94, 96000632). FR1–FR6 met via the passing E2E lifecycle (content-authoring-e2e.test.tsx). Final-acceptance verdict: PASS (final-acceptance-result.json). 4 per-phase UMV tasks deferred:user.*

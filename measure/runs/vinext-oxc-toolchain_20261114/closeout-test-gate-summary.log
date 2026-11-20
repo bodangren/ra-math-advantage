@@ -1,0 +1,18 @@
+command: heavy-run.sh -c 'npm run test'
+exit: 1
+scope: root package test gate (13 packages)
+      Tests  310 passed (310)
+      Tests  37 passed (37)
+      Tests  75 passed (75)
+      Tests  2 passed (2)
+      Tests  25 passed (25)
+      Tests  57 passed (57)
+      Tests  14 passed (14)
+      Tests  72 passed (72)
+      Tests  79 passed (79)
+      Tests  701 passed (701)
+      Tests  469 passed (469)
+      Tests  2 passed (2)
+      Tests  2 failed | 884 passed (886)
+failures: packages/math-content 2 failed | 884 passed (886) -- matches recorded baseline
+A9: no test references the archived track path; no new failure from the archive move

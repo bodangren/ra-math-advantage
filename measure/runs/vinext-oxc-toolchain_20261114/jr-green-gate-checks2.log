@@ -1,0 +1,5 @@
+NEW FAILURE: typecheck apps/integrated-math-3 has a new diagnostic
+audit: critical=0 high=21 moderate=6 low=5
+NEW FAILURE: audit high 11 -> 21
+NEWFAIL=1
+GATE_EXIT=1

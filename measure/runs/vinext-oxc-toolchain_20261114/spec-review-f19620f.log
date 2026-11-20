@@ -1,0 +1,15 @@
+Spec review round 2 — track vinext-oxc-toolchain_20261114
+Reviewer: Measure Spec Review subagent (Kimi K2.8 Preview, kimi-for-coding)
+Date: 2026-11-14
+Base: f19620f894cae06309cc3e2e066154de5e920f45, HEAD confirmed equal.
+
+Read: spec.md, plan.md, spec-review.md standard, registry checks with npm view.
+
+Checks:
+- F1 (Major, conformance gap on a mixed compiler line): FIXED. spec.md Terms lines 79-83 pin the conformance comparison to one compiler line (tsc from typescript@7.1.0-beta) and add the "Compiler-version difference" term. Story S3 lines 126-131 and the Evidence File Contract lines 177-179 match. plan.md lines 264-277 run tsc 7.1.0-beta from the npx cache, record both tool versions, and fill the gap table and the compiler-version table apart. Withdrawn.
+- F2 (Nit): DECLINE. Valid for a Nit. Withdrawn.
+- F3 (Nit): DECLINE. Valid for a Nit. Withdrawn.
+- Registry: typescript 7.1.0-beta, 7.0.2, tsrs 0.25.0-ts7.1.0-beta, oxlint 1.93.0, oxfmt 0.78.0 all exist. tsrs declares no dependency or peerDependency, so it carries its own compiler line.
+- New finding F4 (Nit): the "new failure" gate criterion does not exclude compiler-version differences that tsrs reports; the baseline uses tsc 6.0.3. The plan records the differences but does not tell the implementer to treat them as not-new-failures at the gate.
+
+No Blocker or Major finding remains. Status: pass.

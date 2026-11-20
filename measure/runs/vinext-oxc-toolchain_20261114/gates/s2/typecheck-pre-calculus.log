@@ -1,0 +1,15 @@
+
+> typecheck
+> tsc --noEmit
+
+__tests__/app/api/teacher/course/topic11-surface-real-flow.test.ts(4,26): error TS2307: Cannot find module '@/__tests__/convex/topic11-approved-publication.fixture' or its corresponding type declarations.
+__tests__/app/api/teacher/course/topic11-surface-real-flow.test.ts(7,26): error TS2307: Cannot find module '@/__tests__/convex/topic11-approved-publication.fixture' or its corresponding type declarations.
+__tests__/app/api/teacher/course/topic11-surface-real-flow.test.ts(15,75): error TS2339: Property 'submitTopic11TeacherSubmission' does not exist on type 'typeof import("/home/daniebo/Desktop/ra-math-advantage/apps/pre-calculus/convex/selectedLearningEvidence")'.
+__tests__/app/api/teacher/course/topic11-surface-real-flow.test.ts(23,46): error TS2307: Cannot find module '@/__tests__/convex/topic11-approved-publication.fixture' or its corresponding type declarations.
+npm error Lifecycle script `typecheck` failed with error:
+npm error code 1
+npm error path /home/daniebo/Desktop/ra-math-advantage/apps/pre-calculus
+npm error workspace undefined
+npm error location /home/daniebo/Desktop/ra-math-advantage/apps/pre-calculus
+npm error command failed
+npm error command sh -c tsc --noEmit

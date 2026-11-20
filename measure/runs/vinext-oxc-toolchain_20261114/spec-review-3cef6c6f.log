@@ -1,0 +1,24 @@
+Spec-review log for vinext-oxc-toolchain_20261114 at 3cef6c6f (round 2, refined).
+HEAD confirmed: git rev-parse HEAD = 3cef6c6f52b8d0c8f5dbb0008b1c484a5bd9368d.
+Standard: ~/.agents/skills/measure/references/spec-review.md.
+Subjects: test-strategy.md r5 (sections 14, 2, 3, 4, 6.1, 6.2, 6.4, 7, 8, 12, 13.2, 13.4), plan.md, gates.sh sweep() compare, framework-wave-w4-audit.test.ts:294-317.
+
+What this track proposes: this track moves six apps to vinext 1.x, replaces ESLint with oxlint, moves type-check to tsrs with TypeScript 7, and adds oxfmt with gates and evidence per phase. Revision r5 re-baselines on the merged six-app tree, pins the W4 audit rewrite with eight exact titles, and enforces workspace-set comparison in gates.sh.
+
+How the current system works, per this spec: five apps run vinext 0.0.55 and danielson runs Next 16 with vinext 0.0.55. The tree holds one root .oxlintrc.json and 27 workspaces. The pre-merge five-app baseline no longer describes the tree, so gates compare each phase run with baseline-m2 and the W4 audit pins post-W4 major lines.
+
+Verdict: PASS (0 blockers; F1-F7 withdrawn; 4 majors F8-F11 and 3 nits F12-F14 in nonblocking_findings).
+F8: 6.3 cites 13.3 for the follow-up Red commit; shape is in 14.3. Fix before Red r3.
+F9: case 9(c) ambiguous on node_modules keys; clarify before Red r3.
+F10: plan prefix titles cite superseded 13.3; fix before Green.
+F11: B/C assert the S1 half only; pin the S2 lockfile case before Green.
+F12-F14: wording fixes before Verify or anytime.
+
+MEASURE_AGENT_RESULT
+role: spec-review
+status: pass
+track: vinext-oxc-toolchain_20261114
+phase: track setup
+verdict: PASS
+findings: blockers=0 majors=4 minors=3
+handoff: F1-F7 withdrawn with evidence in the JSON. New findings F8-F14 need author FIX. No user decision needed.

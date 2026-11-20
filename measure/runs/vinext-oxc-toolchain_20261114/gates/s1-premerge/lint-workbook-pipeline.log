@@ -1,0 +1,4 @@
+
+> @math-platform/workbook-pipeline@0.1.0 lint
+> eslint src --max-warnings 0
+

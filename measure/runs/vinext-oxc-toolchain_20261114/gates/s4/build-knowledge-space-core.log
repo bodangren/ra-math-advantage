@@ -1,0 +1,8 @@
+
+> @math-platform/knowledge-space-core@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/knowledge-space-core@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+

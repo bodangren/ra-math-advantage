@@ -1,0 +1,19 @@
+
+  vinext dev  (Vite 8.0.16)
+
+The "middleware" file convention is deprecated. Please use "proxy" instead.
+
+  To migrate automatically, run:
+  npx @next/codemod@canary middleware-to-proxy .
+
+  Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+Using secrets defined in .env.local
+[2m12:31:41 AM[22m [33m[1m[vite][22m[39m [33m[2m(rsc)[22m[39m [33mwarning: client component dependency is inconsistently optimized. It's recommended to add the dependency to 'optimizeDeps.exclude'.[39m
+  Plugin: [35mrsc:use-client[39m
+  File: [36m/home/daniebo/Desktop/ra-math-advantage/node_modules/lucide-react/dist/esm/Icon.mjs?v=b20531f0[39m
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4103[22m/[39m
+  [32m➜[39m  [1mDebug[22m:   [2m[33mhttp://localhost:[1m4103[22m[2m/__debug[39m[22m
+[2m12:31:47 AM[22m [36m[1m[vite][22m[39m [34m[2m(rsc)[22m[39m [32mhmr update [39m[2m/app/globals.css[22m
+ GET / 200 in 4.2s (compile: 1794677489.5s, render: 3.6s)
+ GET / 200 in 138ms (compile: 1794677488.9s, render: 107ms)
+ GET /api/auth/session 200 in 28ms

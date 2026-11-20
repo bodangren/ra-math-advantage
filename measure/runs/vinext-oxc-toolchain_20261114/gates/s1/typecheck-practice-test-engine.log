@@ -1,0 +1,4 @@
+
+> @math-platform/practice-test-engine@0.1.0 typecheck
+> tsc --noEmit
+

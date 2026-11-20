@@ -1,0 +1,436 @@
+
+> @math-platform/math-content@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/math-content
+
+ ❯ src/problem-families/im1/__tests__/scaffold.test.ts (14 tests | 1 failed) 18ms
+     × vertical-slice module entries cover every module-1 skill from the rollout gap queue 9ms
+ ❯ src/schemas/__tests__/quadratic-formula-activity.schema.test.ts (6 tests | 1 failed) 14ms
+     × registers the public quadratic-formula schema 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/schemas/__tests__/quadratic-formula-activity.schema.test.ts > quadraticFormulaActivitySchema > registers the public quadratic-formula schema
+AssertionError: expected undefined to be ZodDiscriminatedUnion{ …(5) } // Object.is equality
+
+- Expected:
+ZodDiscriminatedUnion {
+  "def": {
+    "discriminator": "presentationMode",
+    "inclusive": false,
+    "options": [
+      ZodObject {
+        "def": {
+          "catchall": ZodNever {
+            "def": {
+              "type": "never",
+            },
+            "type": "never",
+          },
+          "shape": {
+            "equation": ZodString {
+              "def": {
+                "checks": [Array],
+                "type": "string",
+              },
+              "type": "string",
+            },
+            "presentationMode": ZodLiteral {
+              "def": {
+                "type": "literal",
+                "values": [Array],
+              },
+              "type": "literal",
+              "values": Set {
+                "worked",
+              },
+            },
+            "prompt": ZodString {
+              "def": {
+                "checks": [Array],
+                "type": "string",
+              },
+              "type": "string",
+            },
+            "title": ZodOptional {
+              "def": {
+                "innerType": [ZodString],
+                "type": "optional",
+              },
+              "type": "optional",
+              "unwrap": [Function anonymous],
+            },
+            "workedSteps": ZodArray {
+              "def": {
+                "checks": [Array],
+                "element": [ZodObject],
+                "type": "array",
+              },
+              "element": ZodObject {
+                "def": [Object],
+                "type": "object",
+              },
+              "type": "array",
+            },
+          },
+          "type": "object",
+        },
+        "type": "object",
+      },
+      ZodObject {
+        "def": {
+          "catchall": ZodNever {
+            "def": {
+              "type": "never",
+            },
+            "type": "never",
+          },
+          "shape": {
+            "equation": ZodString {
+              "def": {
+                "checks": [Array],
+                "type": "string",
+              },
+              "type": "string",
+            },
+            "fieldHelp": ZodOptional {
+              "def": {
+                "innerType": [ZodObject],
+                "type": "optional",
+              },
+              "type": "optional",
+              "unwrap": [Function anonymous],
+            },
+            "presentationMode": ZodLiteral {
+              "def": {
+                "type": "literal",
+                "values": [Array],
+              },
+              "type": "literal",
+              "values": Set {
+                "guided",
+              },
+            },
+            "prompt": ZodString {
+              "def": {
+                "checks": [Array],
+                "type": "string",
+              },
+              "type": "string",
+            },
+            "title": ZodOptional {
+              "def": {
+                "innerType": [ZodString],
+                "type": "optional",
+              },
+              "type": "optional",
+              "unwrap": [Function anonymous],
+            },
+          },
+          "type": "object",
+        },
+        "type": "object",
+      },
+      ZodObject {
+        "def": {
+          "catchall": ZodNever {
+            "def": {
+              "type": "never",
+            },
+            "type": "never",
+          },
+          "shape": {
+            "equation": ZodString {
+              "def": {
+                "checks": [Array],
+                "type": "string",
+              },
+              "type": "string",
+            },
+            "presentationMode": ZodLiteral {
+              "def": {
+                "type": "literal",
+                "values": [Array],
+              },
+              "type": "literal",
+              "values": Set {
+                "independent",
+              },
+            },
+            "prompt": ZodString {
+              "def": {
+                "checks": [Array],
+                "type": "string",
+              },
+              "type": "string",
+            },
+            "title": ZodOptional {
+              "def": {
+                "innerType": [ZodString],
+                "type": "optional",
+              },
+              "type": "optional",
+              "unwrap": [Function anonymous],
+            },
+          },
+          "type": "object",
+        },
+        "type": "object",
+      },
+    ],
+    "type": "union",
+  },
+  "options": [
+    ZodObject {
+      "def": {
+        "catchall": ZodNever {
+          "def": {
+            "type": "never",
+          },
+          "type": "never",
+        },
+        "shape": {
+          "equation": ZodString {
+            "def": {
+              "checks": [
+                [$ZodCheckMinLength],
+              ],
+              "type": "string",
+            },
+            "type": "string",
+          },
+          "presentationMode": ZodLiteral {
+            "def": {
+              "type": "literal",
+              "values": [
+                "worked",
+              ],
+            },
+            "type": "literal",
+            "values": Set {
+              "worked",
+            },
+          },
+          "prompt": ZodString {
+            "def": {
+              "checks": [
+                [$ZodCheckMinLength],
+              ],
+              "type": "string",
+            },
+            "type": "string",
+          },
+          "title": ZodOptional {
+            "def": {
+              "innerType": ZodString {
+                "def": [Object],
+                "optional": [Function bound optional],
+                "type": "string",
+              },
+              "type": "optional",
+            },
+            "type": "optional",
+            "unwrap": [Function anonymous],
+          },
+          "workedSteps": ZodArray {
+            "def": {
+              "checks": [
+                [$ZodCheckMinLength],
+              ],
+              "element": ZodObject {
+                "def": [Object],
+                "type": "object",
+              },
+              "type": "array",
+            },
+            "element": ZodObject {
+              "def": {
+                "catchall": [ZodNever],
+                "shape": [Object],
+                "type": "object",
+              },
+              "type": "object",
+            },
+            "type": "array",
+          },
+        },
+        "type": "object",
+      },
+      "type": "object",
+    },
+    ZodObject {
+      "def": {
+        "catchall": ZodNever {
+          "def": {
+            "type": "never",
+          },
+          "type": "never",
+        },
+        "shape": {
+          "equation": ZodString {
+            "def": {
+              "checks": [
+                [$ZodCheckMinLength],
+              ],
+              "type": "string",
+            },
+            "type": "string",
+          },
+          "fieldHelp": ZodOptional {
+            "def": {
+              "innerType": ZodObject {
+                "def": [Object],
+                "optional": [Function bound optional],
+                "type": "object",
+              },
+              "type": "optional",
+            },
+            "type": "optional",
+            "unwrap": [Function anonymous],
+          },
+          "presentationMode": ZodLiteral {
+            "def": {
+              "type": "literal",
+              "values": [
+                "guided",
+              ],
+            },
+            "type": "literal",
+            "values": Set {
+              "guided",
+            },
+          },
+          "prompt": ZodString {
+            "def": {
+              "checks": [
+                [$ZodCheckMinLength],
+              ],
+              "type": "string",
+            },
+            "type": "string",
+          },
+          "title": ZodOptional {
+            "def": {
+              "innerType": ZodString {
+                "def": [Object],
+                "optional": [Function bound optional],
+                "type": "string",
+              },
+              "type": "optional",
+            },
+            "type": "optional",
+            "unwrap": [Function anonymous],
+          },
+        },
+        "type": "object",
+      },
+      "type": "object",
+    },
+    ZodObject {
+      "def": {
+        "catchall": ZodNever {
+          "def": {
+            "type": "never",
+          },
+          "type": "never",
+        },
+        "shape": {
+          "equation": ZodString {
+            "def": {
+              "checks": [
+                [$ZodCheckMinLength],
+              ],
+              "type": "string",
+            },
+            "type": "string",
+          },
+          "presentationMode": ZodLiteral {
+            "def": {
+              "type": "literal",
+              "values": [
+                "independent",
+              ],
+            },
+            "type": "literal",
+            "values": Set {
+              "independent",
+            },
+          },
+          "prompt": ZodString {
+            "def": {
+              "checks": [
+                [$ZodCheckMinLength],
+              ],
+              "type": "string",
+            },
+            "type": "string",
+          },
+          "title": ZodOptional {
+            "def": {
+              "innerType": ZodString {
+                "def": [Object],
+                "optional": [Function bound optional],
+                "type": "string",
+              },
+              "type": "optional",
+            },
+            "type": "optional",
+            "unwrap": [Function anonymous],
+          },
+        },
+        "type": "object",
+      },
+      "type": "object",
+    },
+  ],
+  "parse": [Function bound _parse],
+  "type": "union",
+}
+
++ Received:
+undefined
+
+ ❯ src/schemas/__tests__/quadratic-formula-activity.schema.test.ts:19:49
+     17|
+     18|   it('registers the public quadratic-formula schema', () => {
+     19|     expect(getPropsSchema('quadratic-formula')).toBe(quadraticFormulaA…
+       |                                                 ^
+     20|   });
+     21|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/problem-families/im1/__tests__/scaffold.test.ts > IM1 scaffold — vertical-slice module coverage (Phase 2 Task 1) > vertical-slice module entries cover every module-1 skill from the rollout gap queue
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/problem-families/im1/__tests__/scaffold.test.ts:173:45
+    171|     }
+    172|     for (const skillId of expectedSkillIds) {
+    173|       expect(generatorNodeIds.has(skillId)).toBe(true);
+       |                                             ^
+    174|     }
+    175|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 89 passed (91)
+      Tests  2 failed | 884 passed (886)
+   Start at  08:31:22
+   Duration  56.44s (transform 1.46s, setup 0ms, import 9.81s, tests 38.28s, environment 7ms)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /home/daniebo/Desktop/ra-math-advantage/packages/math-content
+npm error workspace @math-platform/math-content@0.1.0
+npm error location /home/daniebo/Desktop/ra-math-advantage/packages/math-content
+npm error command failed
+npm error command sh -c vitest run

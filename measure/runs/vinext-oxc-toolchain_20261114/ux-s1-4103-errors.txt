@@ -1,0 +1,11 @@
+Page: http://localhost:4103/
+Final URL: http://localhost:4103/
+Console lines: 3
+Page errors: 0
+Failed requests: 0
+
+[console 1] [debug] [vite] connecting...
+[console 2] [debug] [vite] connected.
+[console 3] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+
+

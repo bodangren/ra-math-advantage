@@ -1,0 +1,44 @@
+URL: http://localhost:4106/auth/login?redirect=%2F
+Title: Danielson Teacher Growth
+HTTP status (initial navigation): 200
+Accessibility tree (role: name), 39 nodes
+
+RootWebArea: Danielson Teacher Growth
+none: 
+none: 
+none: 
+banner: 
+main: 
+link: Skip to content
+none: 
+link: Danielson Teacher Growth
+none: 
+paragraph: 
+heading: Sign in
+paragraph: 
+form: 
+StaticText: Skip to content
+StaticText: Danielson Teacher Growth
+StaticText: SECURE SIGN-IN
+StaticText: Sign in
+StaticText: Use your school account to open the Danielson workspace.
+none: 
+LabelText: 
+textbox: Username
+none: 
+LabelText: 
+textbox: Password
+button: Sign in
+InlineTextBox: Skip to content
+InlineTextBox: Danielson Teacher Growth
+InlineTextBox: SECURE SIGN-IN
+InlineTextBox: Sign in
+InlineTextBox: Use your school account to open the Danielson workspace.
+StaticText: Username
+generic: 
+StaticText: Password
+generic: 
+StaticText: Sign in
+InlineTextBox: Username
+InlineTextBox: Password
+InlineTextBox: Sign in

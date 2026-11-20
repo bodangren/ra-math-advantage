@@ -1,0 +1,13 @@
+
+> @math-platform/knowledge-space-practice@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/knowledge-space-practice
+
+
+ Test Files  29 passed (29)
+      Tests  469 passed (469)
+   Start at  20:09:45
+   Duration  4.96s (transform 391ms, setup 0ms, import 2.08s, tests 314ms, environment 2ms)
+

@@ -1,0 +1,28 @@
+heavy-run: load hold — load 8.40 over 6
+heavy-run: load hold — load 6.23 over 6
+
+added 855 packages, and audited 882 packages in 6m
+
+287 packages are looking for funding
+  run `npm fund` for details
+
+42 vulnerabilities (5 low, 18 moderate, 17 high, 2 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+npm warn allow-scripts 6 packages have install scripts not yet covered by allowScripts:
+npm warn allow-scripts   esbuild@0.27.0 (postinstall: node install.js)
+npm warn allow-scripts   sharp@0.34.5 (install: node install/check.js || npm run build)
+npm warn allow-scripts   esbuild@0.28.0 (postinstall: node install.js)
+npm warn allow-scripts   unrs-resolver@1.12.2 (postinstall: node postinstall.js)
+npm warn allow-scripts   workerd@1.20260603.1 (postinstall: node install.js)
+npm warn allow-scripts   esbuild@0.27.3 (postinstall: node install.js)
+npm warn allow-scripts
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+417.006
+exit=0

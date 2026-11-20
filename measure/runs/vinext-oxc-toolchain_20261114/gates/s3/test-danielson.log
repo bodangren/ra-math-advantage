@@ -1,0 +1,16 @@
+
+> test
+> vitest run
+
+[33m(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vitest.config.ts:42:25). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.[39m
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/apps/danielson
+
+
+ Test Files  67 passed (67)
+      Tests  436 passed (436)
+   Start at  07:55:26
+   Duration  51.75s (transform 1.07s, setup 4.93s, import 4.76s, tests 6.58s, environment 29.40s)
+

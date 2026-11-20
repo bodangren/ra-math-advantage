@@ -1,0 +1,1 @@
+critical=2 high=17 moderate=18 low=5

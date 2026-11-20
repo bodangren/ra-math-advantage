@@ -1,0 +1,9 @@
+
+ RUN  v4.1.8 /home/daniebo/Desktop/ra-math-advantage/scripts
+
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  00:37:01
+   Duration  1.06s (transform 135ms, setup 0ms, import 170ms, tests 613ms, environment 0ms)
+

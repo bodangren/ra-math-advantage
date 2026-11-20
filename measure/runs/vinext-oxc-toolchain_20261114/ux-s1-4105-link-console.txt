@@ -1,0 +1,17 @@
+[debug] [vite] connecting...
+[debug] [vite] connected.
+[info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[error] %c%s%c [home] Failed to load landing data from Convex background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   {statsError: Error: Network connection lost.
+    at Home (about://React/Server/file:///home/daniebo/Desktop/ra-m…, unitsError: Error: Network connection lost.
+    at Home (about://React/Server/file:///home/daniebo/Desktop/ra-m…}
+[error] %c%s%c Error fetching curriculum from Convex background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   Error: Network connection lost.
+    at CurriculumPage (about://React/Server/file:///home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2/app/curriculum/page.tsx?85:26:24)
+    at resolveErrorDev (http://localhost:4105/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=df2881ff:1883:100)
+    at getOutlinedModel (http://localhost:4105/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=df2881ff:1460:17)
+    at parseModelString (http://localhost:4105/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=df2881ff:1561:45)
+    at reviveModel (http://localhost:4105/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=df2881ff:2447:61)
+    at parseModel (http://localhost:4105/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=df2881ff:2444:11)
+    at initializeModelChunk (http://localhost:4105/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=df2881ff:1057:17)
+    at getOutlinedModel (http://localhost:4105/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=df2881ff:1401:6)
+    at parseModelString (http://localhost:4105/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=df2881ff:1605:44)
+    at reviveModel (http://localhost:4105/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=df2881ff:2447:61)

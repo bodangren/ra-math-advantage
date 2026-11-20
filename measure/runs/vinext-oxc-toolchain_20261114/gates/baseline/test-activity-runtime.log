@@ -1,0 +1,14 @@
+heavy-run: load hold — load 6.24 over 6
+
+> @math-platform/activity-runtime@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.8 /home/daniebo/Desktop/ra-math-advantage/packages/activity-runtime
+
+
+ Test Files  3 passed (3)
+      Tests  37 passed (37)
+   Start at  23:55:46
+   Duration  1.05s (transform 239ms, setup 0ms, import 331ms, tests 38ms, environment 1ms)
+

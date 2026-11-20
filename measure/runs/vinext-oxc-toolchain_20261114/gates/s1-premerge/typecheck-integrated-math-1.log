@@ -1,0 +1,17 @@
+
+> typecheck
+> tsc --noEmit
+
+convex/queue/queue.ts(37,5): error TS2353: Object literal may only specify known properties, and 'problemFamilyId' does not exist in type 'SrsCardState'.
+convex/queue/queue.ts(60,76): error TS2339: Property 'problemFamilyId' does not exist on type 'SrsCardState'.
+convex/queue/queue.ts(101,56): error TS2339: Property 'problemFamilyId' does not exist on type 'SrsCardState'.
+tailwind.config.ts(6,3): error TS2322: Type '["class"]' is not assignable to type 'DarkModeStrategy | undefined'.
+  Type '["class"]' is not assignable to type '["class", string]'.
+    Source has 1 element(s) but target requires 2.
+npm error Lifecycle script `typecheck` failed with error:
+npm error code 1
+npm error path /home/daniebo/Desktop/ra-math-advantage/apps/integrated-math-1
+npm error workspace undefined
+npm error location /home/daniebo/Desktop/ra-math-advantage/apps/integrated-math-1
+npm error command failed
+npm error command sh -c tsc --noEmit

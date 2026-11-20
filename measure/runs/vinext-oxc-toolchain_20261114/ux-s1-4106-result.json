@@ -1,0 +1,19 @@
+{
+  "url": "http://localhost:4106/",
+  "finalUrl": "http://localhost:4106/auth/login?redirect=%2F",
+  "status": 200,
+  "title": "Danielson Teacher Growth",
+  "firstH1": "Sign in",
+  "screenshot": true,
+  "snapshot": true,
+  "pageErrors": 0,
+  "link": {
+    "selector": "a[href=\"/\"]",
+    "text": "Danielson Teacher Growth",
+    "href": "/",
+    "finalUrl": "http://localhost:4106/auth/login?redirect=%2F",
+    "status": 200,
+    "title": "Danielson Teacher Growth",
+    "firstH1": "Sign in"
+  }
+}

@@ -1,0 +1,77 @@
+- link "Skip to main content":
+  - /url: "#main-content"
+- banner:
+  - link "Math for Business Applied Accounting · Excel":
+    - /url: /
+  - navigation "Main navigation":
+    - link "Home":
+      - /url: /
+    - link "Preface":
+      - /url: /preface
+    - link "Curriculum":
+      - /url: /curriculum
+    - link "Capstone":
+      - /url: /capstone
+    - link "Glossary":
+      - /url: /backmatter/glossary
+    - link "Search":
+      - /url: /search
+  - link "Sign in":
+    - /url: /auth/login
+- main:
+  - region "Math for Business Operations":
+    - text: Grade 12 · Applied Math
+    - heading "Math for Business Operations" [level=1]
+    - paragraph: Master accounting principles, spreadsheet modeling, and entrepreneurship through hands-on Excel projects and real-world business applications.
+    - link "Browse Units":
+      - /url: /curriculum
+    - link "Read Preface":
+      - /url: /preface
+    - img "Math for Business Operations textbook cover showing business charts and Excel spreadsheets"
+  - text: Why this course
+  - heading "Not worksheets. Workbooks." [level=2]
+  - heading "Build real Excel models" [level=3]
+  - paragraph: Ledgers, dashboards, financial statements, amortization schedules — every unit produces a workbook you designed from scratch.
+  - heading "Present to real audiences" [level=3]
+  - paragraph: Mock loan officers, mentor panels, and Demo Day judges. Learn to defend your numbers the way professionals do.
+  - heading "Finish with an investor pitch" [level=3]
+  - paragraph: The capstone is a linked business plan, a 3-minute model tour, and a pitch deck. One shot to prove it all connects.
+  - heading "Ready to start building?" [level=2]
+  - paragraph: Log in to access your first unit, or try a simulation on the preface page.
+  - link "Student or teacher login":
+    - /url: /auth/login
+  - link "Try it first":
+    - /url: /preface
+  - link "Curriculum":
+    - /url: /curriculum
+  - text: ·
+  - link "Capstone":
+    - /url: /capstone
+  - text: ·
+  - link "Acknowledgments":
+    - /url: /acknowledgments
+- contentinfo:
+  - heading "Math for Business Operations" [level=2]
+  - paragraph: An interactive Grade 12 textbook blending applied accounting with Excel automation.
+  - paragraph: © 2025 Daniel Bodanske
+  - heading "Quick Links" [level=3]
+  - navigation "Quick Links":
+    - link "Getting Started":
+      - /url: /preface
+    - link "Glossary":
+      - /url: /backmatter/glossary
+    - link "Search":
+      - /url: /search
+    - link "Capstone":
+      - /url: /capstone
+  - heading "Teacher Resources" [level=3]
+  - navigation "Teacher Resources":
+    - link "PBL Methodology":
+      - /url: /teacher/course-overview/pbl-methodology
+    - link "Backward Design":
+      - /url: /teacher/course-overview/backward-design
+    - link "Teacher Dashboard":
+      - /url: /teacher
+  - heading "Support" [level=3]
+  - navigation "Support"
+  - paragraph: Math for Business Operations

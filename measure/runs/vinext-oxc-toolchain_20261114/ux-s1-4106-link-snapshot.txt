@@ -1,0 +1,14 @@
+- banner:
+  - link "Skip to content":
+    - /url: "#main-content"
+  - link "Danielson Teacher Growth":
+    - /url: /
+- main:
+  - paragraph: Secure sign-in
+  - heading "Sign in" [level=1]
+  - paragraph: Use your school account to open the Danielson workspace.
+  - text: Username
+  - textbox "Username"
+  - text: Password
+  - textbox "Password"
+  - button "Sign in"

@@ -1,0 +1,126 @@
+# Mid Red role log — vinext-oxc-toolchain_20261114, S1
+# Step 1 of 2: merged-tree baseline and danielson live record
+# role_base_sha: 685b69c28da85c17f8a24a4c7101e3a216f502d9
+# phase_base_sha: 3e141e058d67e0ddc98b844795d9dacf45c84ac9
+# Date: 2026-11-17
+
+## Tree check
+(pending)
+
+## Baseline sweeps
+All three sweeps used GATES_RESUME=1. Each run was started detached with setsid and
+polled every ~60 s. One sweep ran at a time. `slot check` returned ok (4 of 8 busy).
+
+lint baseline-m2 (from inherited state): 27 workspaces, all exit 0. Not re-run.
+
+test baseline-m2 (resumed): 27 workspaces in test.exit. NEWFAIL=0 (record only).
+No INFRA FAILURE lines. Sweep output: measure/runs/vinext-oxc-toolchain_20261114/gates/baseline-m2/test-sweep.out
+test.exit:
+  apps/bus-math-v2 1
+  apps/danielson 0
+  apps/integrated-math-1 1
+  apps/integrated-math-2 0
+  apps/integrated-math-3 1
+  apps/pre-calculus 1
+  packages/activity-components 0
+  packages/activity-runtime 0
+  packages/ai-tutoring 0
+  packages/app-shell 0
+  packages/component-approval 0
+  packages/core-auth 0
+  packages/core-convex 0
+  packages/efficacy-core 0
+  packages/graphing-core 0
+  packages/knowledge-space-core 0
+  packages/knowledge-space-practice 0
+  packages/lesson-renderer 0
+  packages/math-content 1
+  packages/practice-core 0
+  packages/practice-test-engine 0
+  packages/rate-limiter 0
+  packages/srs-engine 0
+  packages/study-hub-core 0
+  packages/teacher-reporting-core 0
+  packages/_template 1
+  packages/workbook-pipeline 0
+test.steps:
+  scripts-suite 1
+  audit-suites 1
+  (both are pre-existing failures at baseline; recorded, not fixed)
+
+checks-all baseline-m2 (fresh): NEWFAIL=0 (record only).
+No INFRA FAILURE lines. Sweep output: measure/runs/vinext-oxc-toolchain_20261114/gates/baseline-m2/checks-all-sweep.out
+audit: critical=0 high=11 moderate=6 low=5
+checks-all.steps:
+  typecheck-bm2 0
+  boundary 0
+  ci-check 0
+  tree 0
+  next-absent 1   (expected at baseline: next is still installed before S1 change)
+  measure-contract 1   (pre-existing at baseline; recorded, not fixed)
+typecheck.exit (apps/bus-math-v2 n/a; apps/integrated-math-3 2; apps/pre-calculus 2;
+  all other workspaces 0):
+  apps/bus-math-v2 n/a
+  apps/danielson 0
+  apps/integrated-math-1 0
+  apps/integrated-math-2 0
+  apps/integrated-math-3 2
+  apps/pre-calculus 2
+  packages/... all 0 (21 packages)
+  packages/_template 0
+  packages/workbook-pipeline 0
+build.exit (all 27 workspaces with a build script exit 0;
+  packages/practice-test-engine n/a):
+  all apps 0, all packages 0 except packages/practice-test-engine n/a
+
+## Danielson live record
+Build: `npm run build --workspace=apps/danielson` through heavy-run.sh. Exit code 0.
+First log line "Build complete. Run `vinext start` to start the production server."
+Vite 8.3.8. 577 client modules, 2280 server modules; 5 of 5 build phases passed.
+Build log: measure/runs/vinext-oxc-toolchain_20261114/danielson-build.log
+Exit file: measure/runs/vinext-oxc-toolchain_20261114/danielson-build.exit
+
+Dev status: `setsid npx vinext dev --port 4106` in apps/danielson. Server came up
+("Local: http://localhost:4106/"). Request to `/` returned HTTP 307.
+Location header: http://localhost:4106/auth/login?redirect=%2F
+This is the login gate at baseline, a baseline fact and not a finding.
+Dev log: measure/runs/vinext-oxc-toolchain_20261114/danielson-dev.log
+The process group (PGID 2679955) was stopped with TERM. Port 4106 is free after
+the stop (curl returned 000; no matching processes remain).
+
+Browser capture: the agent-browser CLI is not installed. The skill folder
+(/home/daniebo/.agents/skills/agent-browser) holds only SKILL.md; the binary is
+not on PATH, not in node_modules, and `npx --no-install agent-browser` fails with
+"missing packages and no YES option". Installing it is out of scope (no npm
+install, no dependency changes). Playwright 1.60.0 and Google Chrome 157 are
+available, so a real browser capture was made with Playwright and the installed
+Chrome. Files in measure/runs/vinext-oxc-toolchain_20261114/ux-baseline-m2-danielson/:
+  danielson-screenshot.png  (28322 bytes, full page)
+  danielson-snapshot.txt    (39 accessibility nodes via CDP getFullAXTree)
+  danielson-console-errors.txt  (1 console error, 0 page errors)
+  page.html                 (curl-style HTML fallback, captured from the browser)
+  capture-result.json       (url, title, status, flags)
+Final URL: http://localhost:4106/auth/login?redirect=%2F
+Title: Danielson Teacher Growth. Login page with Username and Password fields and
+a "SECURE SIGN-IN" / "Sign in" heading. The single console error is
+"Failed to load resource: the server responded with a status of 404 ()", a missing
+resource at the login gate. No hydration or module error.
+
+## Evidence and plan updates
+(pending)
+
+## Commit
+(pending)
+
+MEASURE_AGENT_RESULT (provisional):
+  role: measure-mid-red (step 1 of 2)
+  status: in_progress
+  track: vinext-oxc-toolchain_20261114
+  phase: Phase S1: Package refresh and vinext 1.x
+  baseline_sha: 3e141e058d67e0ddc98b844795d9dacf45c84ac9
+  commits: (pending)
+  tests_run: (pending)
+  files_changed: (pending)
+  plan_updates: (pending)
+  known_failures: (pending)
+  handoff: (pending)

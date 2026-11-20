@@ -1,0 +1,13 @@
+
+> @math-platform/core-convex@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/core-convex
+
+
+ Test Files  2 passed (2)
+      Tests  14 passed (14)
+   Start at  23:42:11
+   Duration  289ms (transform 51ms, setup 0ms, import 97ms, tests 9ms, environment 0ms)
+

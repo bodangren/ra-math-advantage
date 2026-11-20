@@ -1,0 +1,4 @@
+STATUS=307
+REDIRECT=http://localhost:4106/auth/login?redirect=%2F
+PORT_FREE=yes
+SS_4106=absent

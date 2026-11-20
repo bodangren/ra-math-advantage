@@ -1,0 +1,14 @@
+
+  vinext dev  (Vite 8.3.8)
+
+  ➜  Local:   http://localhost:4106/
+7:36:49 PM [vite] (rsc) connected.
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Laptop" in barrel export map
+ GET / 307 in 2.5s
+ GET / 307 in 2ms
+ GET / 307 in 2ms
+7:38:05 PM [vite] (ssr) connected.
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Laptop" in barrel export map
+ GET /auth/login?redirect=%2F 200 in 4.7s (compile: 3ms, render: 4.6s)
+ GET /api/auth/session 200 in 3ms
+ GET / 307 in 4ms

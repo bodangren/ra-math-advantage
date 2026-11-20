@@ -1,0 +1,48 @@
+[33m(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (scripts/vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.[39m
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/scripts
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts (80 tests | 2 failed | 68 skipped | 2 todo) 3434ms
+     × adv 3: the removed-command scan detects the executable shell form npx --no-install "tsc" --noEmit 226ms
+     × adv 3: the removed-command scan detects the executable shell form npm exec -- "eslint" . 371ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S5 adversarial > adv 3: the removed-command scan detects the executable shell form npx --no-install "tsc" --noEmit
+AssertionError: hidden tool call: npx --no-install "tsc" --noEmit: expected [] to not deeply equal []
+
+Compared values have no visual difference.
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:3453:87
+    3451|         versionPattern,
+    3452|       );
+    3453|       expect(s5ScanCommands("probe.sh", command), `hidden tool call: $…
+       |                                                                                       ^
+    3454|     },
+    3455|     TOOL_TIMEOUT_MS,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  __tests__/oxc-toolchain-gates.test.ts > S5 adversarial > adv 3: the removed-command scan detects the executable shell form npm exec -- "eslint" .
+AssertionError: hidden tool call: npm exec -- "eslint" .: expected [] to not deeply equal []
+
+Compared values have no visual difference.
+
+ ❯ __tests__/oxc-toolchain-gates.test.ts:3453:87
+    3451|         versionPattern,
+    3452|       );
+    3453|       expect(s5ScanCommands("probe.sh", command), `hidden tool call: $…
+       |                                                                                       ^
+    3454|     },
+    3455|     TOOL_TIMEOUT_MS,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 2 skipped (3)
+      Tests  2 failed | 8 passed | 105 skipped | 2 todo (117)
+   Start at  02:43:15
+   Duration  3.99s (transform 93ms, setup 0ms, import 297ms, tests 3.43s, environment 0ms)
+

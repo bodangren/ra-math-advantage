@@ -1,0 +1,10 @@
+npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+npm error code ETIMEDOUT
+npm error syscall read
+npm error errno -110
+npm error network read ETIMEDOUT
+npm error network This is a problem related to network connectivity.
+npm error network In most cases you are behind a proxy or have bad network settings.
+npm error network
+npm error network If you are behind a proxy, please make sure that the 'proxy' config is set properly.  See: 'npm help config'
+npm error A complete log of this run can be found in: /home/daniebo/.npm/_logs/2026-11-19T16_44_33_693Z-debug-0.log

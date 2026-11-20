@@ -1,0 +1,13 @@
+
+> @math-platform/efficacy-core@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/efficacy-core
+
+
+ Test Files  8 passed (8)
+      Tests  72 passed (72)
+   Start at  08:30:52
+   Duration  1.69s (transform 318ms, setup 0ms, import 816ms, tests 141ms, environment 1ms)
+

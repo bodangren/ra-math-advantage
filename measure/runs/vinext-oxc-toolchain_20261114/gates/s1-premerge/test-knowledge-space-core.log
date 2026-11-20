@@ -1,0 +1,16 @@
+
+> @math-platform/knowledge-space-core@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 /home/daniebo/Desktop/ra-math-advantage/packages/knowledge-space-core
+
+
+ Test Files  49 passed (49)
+      Tests  673 passed (673)
+   Start at  10:24:43
+   Duration  8.02s (tests 49%, import 43%, worker 6%, transform 2%)
+
+    Isolate  49 workers spawned · ~73ms startup each (spawn + environment, per file)
+             at least ~3.51s faster with isolate: false — reuses workers across files instead of one per file
+

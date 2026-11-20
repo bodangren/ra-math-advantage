@@ -1,0 +1,244 @@
+
+> build
+> vinext build
+
+
+  vinext build  (Vite 8.0.16)
+
+The "middleware" file convention is deprecated. Please use "proxy" instead.
+
+  To migrate automatically, run:
+  npx @next/codemod@canary middleware-to-proxy .
+
+  Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[34m[1/5] analyze client references...[39m
+[2Ktransforming...
+fonts/KaTeX_AMS-Regular.woff2 referenced in fonts/KaTeX_AMS-Regular.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Caligraphic-Bold.woff2 referenced in fonts/KaTeX_Caligraphic-Bold.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Caligraphic-Regular.woff2 referenced in fonts/KaTeX_Caligraphic-Regular.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Fraktur-Bold.woff2 referenced in fonts/KaTeX_Fraktur-Bold.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Fraktur-Regular.woff2 referenced in fonts/KaTeX_Fraktur-Regular.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Main-Bold.woff2 referenced in fonts/KaTeX_Main-Bold.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Main-BoldItalic.woff2 referenced in fonts/KaTeX_Main-BoldItalic.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Math-Italic.woff2 referenced in fonts/KaTeX_Math-Italic.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_SansSerif-Bold.woff2 referenced in fonts/KaTeX_SansSerif-Bold.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_SansSerif-Italic.woff2 referenced in fonts/KaTeX_SansSerif-Italic.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_SansSerif-Regular.woff2 referenced in fonts/KaTeX_SansSerif-Regular.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Script-Regular.woff2 referenced in fonts/KaTeX_Script-Regular.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Size1-Regular.woff2 referenced in fonts/KaTeX_Size1-Regular.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Size2-Regular.woff2 referenced in fonts/KaTeX_Size2-Regular.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Size3-Regular.woff2 referenced in fonts/KaTeX_Size3-Regular.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Typewriter-Regular.woff2 referenced in fonts/KaTeX_Typewriter-Regular.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_AMS-Regular.woff referenced in fonts/KaTeX_AMS-Regular.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Caligraphic-Bold.woff referenced in fonts/KaTeX_Caligraphic-Bold.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Caligraphic-Regular.woff referenced in fonts/KaTeX_Caligraphic-Regular.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Fraktur-Bold.woff referenced in fonts/KaTeX_Fraktur-Bold.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Fraktur-Regular.woff referenced in fonts/KaTeX_Fraktur-Regular.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Main-Bold.woff referenced in fonts/KaTeX_Main-Bold.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Main-BoldItalic.woff referenced in fonts/KaTeX_Main-BoldItalic.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Main-Italic.woff2 referenced in fonts/KaTeX_Main-Italic.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Main-Regular.woff2 referenced in fonts/KaTeX_Main-Regular.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Math-BoldItalic.woff2 referenced in fonts/KaTeX_Math-BoldItalic.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Math-Italic.woff referenced in fonts/KaTeX_Math-Italic.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_SansSerif-Bold.woff referenced in fonts/KaTeX_SansSerif-Bold.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_SansSerif-Italic.woff referenced in fonts/KaTeX_SansSerif-Italic.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_SansSerif-Regular.woff referenced in fonts/KaTeX_SansSerif-Regular.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Script-Regular.woff referenced in fonts/KaTeX_Script-Regular.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Size1-Regular.woff referenced in fonts/KaTeX_Size1-Regular.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Size2-Regular.woff referenced in fonts/KaTeX_Size2-Regular.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Size3-Regular.woff referenced in fonts/KaTeX_Size3-Regular.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Size4-Regular.woff2 referenced in fonts/KaTeX_Size4-Regular.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Typewriter-Regular.woff referenced in fonts/KaTeX_Typewriter-Regular.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_AMS-Regular.ttf referenced in fonts/KaTeX_AMS-Regular.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Caligraphic-Bold.ttf referenced in fonts/KaTeX_Caligraphic-Bold.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Caligraphic-Regular.ttf referenced in fonts/KaTeX_Caligraphic-Regular.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Fraktur-Bold.ttf referenced in fonts/KaTeX_Fraktur-Bold.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Fraktur-Regular.ttf referenced in fonts/KaTeX_Fraktur-Regular.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Main-Bold.ttf referenced in fonts/KaTeX_Main-Bold.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Main-BoldItalic.ttf referenced in fonts/KaTeX_Main-BoldItalic.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Main-Italic.woff referenced in fonts/KaTeX_Main-Italic.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Main-Regular.woff referenced in fonts/KaTeX_Main-Regular.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Math-BoldItalic.woff referenced in fonts/KaTeX_Math-BoldItalic.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Math-Italic.ttf referenced in fonts/KaTeX_Math-Italic.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_SansSerif-Bold.ttf referenced in fonts/KaTeX_SansSerif-Bold.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_SansSerif-Italic.ttf referenced in fonts/KaTeX_SansSerif-Italic.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_SansSerif-Regular.ttf referenced in fonts/KaTeX_SansSerif-Regular.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Script-Regular.ttf referenced in fonts/KaTeX_Script-Regular.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Size1-Regular.ttf referenced in fonts/KaTeX_Size1-Regular.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Size2-Regular.ttf referenced in fonts/KaTeX_Size2-Regular.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Size3-Regular.ttf referenced in fonts/KaTeX_Size3-Regular.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Size4-Regular.woff referenced in fonts/KaTeX_Size4-Regular.woff didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Typewriter-Regular.ttf referenced in fonts/KaTeX_Typewriter-Regular.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Main-Italic.ttf referenced in fonts/KaTeX_Main-Italic.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Main-Regular.ttf referenced in fonts/KaTeX_Main-Regular.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Math-BoldItalic.ttf referenced in fonts/KaTeX_Math-BoldItalic.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+fonts/KaTeX_Size4-Regular.ttf referenced in fonts/KaTeX_Size4-Regular.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+✓ 435 modules transformed.
+rendering chunks...
+Using secrets defined in .env.local
+[33m[33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+  - vinext:css-data-url (19%)
+  - vinext:jsx-in-js (17%)
+  - rsc:virtual-client-package (15%)
+  - vinext:middleware-server-only (14%)
+  - vinext:react-canary (5%)
+See https://rolldown.rs/options/checks#plugintimings for more details.
+[39m
+[32m✓ built in 6.37s[39m
+[34m[2/5] analyze server references...[39m
+[2Ktransforming...✓ 1246 modules transformed.
+rendering chunks...
+[33m[33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+  - vinext:css-data-url (22%)
+  - rsc:virtual-client-package (19%)
+  - vinext:jsx-in-js (9%)
+  - vinext:react-canary (8%)
+  - vinext:middleware-server-only (6%)
+See https://rolldown.rs/options/checks#plugintimings for more details.
+[39m
+[32m✓ built in 4.26s[39m
+[34m[3/5] build rsc environment...[39m
+[2Ktransforming...✓ 441 modules transformed.
+rendering chunks...
+Using secrets defined in .env.local
+computing gzip size...
+[32m✓ built in 2.66s[39m
+[34m[4/5] build client environment...[39m
+[warn] `manualChunks` option is ignored because the `codeSplitting` option is specified.
+[2Ktransforming...[33m[plugin rolldown:vite-resolve] Module "node:os" has been externalized for browser compatibility, imported by "/home/daniebo/Desktop/ra-math-advantage/packages/core-convex/src/admin.ts". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.[39m
+[33m[plugin rolldown:vite-resolve] Module "node:fs/promises" has been externalized for browser compatibility, imported by "/home/daniebo/Desktop/ra-math-advantage/packages/core-convex/src/admin.ts". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.[39m
+[33m[plugin rolldown:vite-resolve] Module "node:path" has been externalized for browser compatibility, imported by "/home/daniebo/Desktop/ra-math-advantage/packages/core-convex/src/admin.ts". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.[39m
+✓ 3068 modules transformed.
+rendering chunks...
+computing gzip size...
+[32m✓ built in 7.04s[39m
+[34m[5/5] build ssr environment...[39m
+[2Ktransforming...✓ 1311 modules transformed.
+rendering chunks...
+computing gzip size...
+[33m[33m[PLUGIN_TIMINGS] [0mYour build spent significant time in plugins. Here is a breakdown:
+  - vinext:middleware-server-only (16%)
+  - vinext:css-data-url (14%)
+  - vinext:instrumentation-client-inject (13%)
+  - vinext:react-canary (11%)
+  - rsc:virtual-client-package (8%)
+See https://rolldown.rs/options/checks#plugintimings for more details.
+[39m
+[32m✓ built in 5.08s[39m
+[0m
+  Route (app)
+  ┌ ? /                                          
+  ├ ? /admin/dashboard                           
+  ├ λ /api/activities/submit                     
+  ├ λ /api/auth/change-password                  
+  ├ λ /api/auth/login                            
+  ├ λ /api/auth/logout                           
+  ├ λ /api/auth/session                          
+  ├ λ /api/dev/review-queue                      
+  ├ λ /api/phases/complete                       
+  ├ λ /api/phases/skip                           
+  ├ λ /api/practice-tests/complete               
+  ├ λ /api/practice/complete                     
+  ├ λ /api/student/lesson-chatbot                
+  ├ ? /auth/confirm                              
+  ├ ? /auth/error                                
+  ├ ? /auth/forgot-password                      
+  ├ ? /auth/login                                
+  ├ ? /auth/update-password                      
+  ├ ? /curriculum                                
+  ├ ? /dev/component-approval                    
+  ├ ? /parent                                    
+  ├ ? /preface                                   
+  ├ ? /responsive-fixtures/known-bad-overflow    
+  ├ ? /settings                                  
+  ├ ? /student                                   
+  ├ ? /student/dashboard                         
+  ├ ? /student/knowledge-state                   
+  ├ ƒ /student/lesson/:lessonSlug                
+  ├ ? /student/practice                          
+  ├ ? /student/study                             
+  ├ ? /student/study/flashcards                  
+  ├ ? /student/study/matching                    
+  ├ ƒ /student/study/practice-tests              
+  ├ ƒ /student/study/practice-tests/:moduleNumber
+  ├ ? /student/study/review                      
+  ├ ? /student/study/speed-round                 
+  ├ ? /teacher/competency                        
+  ├ ? /teacher/content-authoring                 
+  ├ ? /teacher/dashboard                         
+  ├ ? /teacher/dashboard/srs                     
+  ├ ? /teacher/gradebook                         
+  ├ ƒ /teacher/lesson/:lessonSlug                
+  ├ ? /teacher/lessons                           
+  ├ ? /teacher/students                          
+  ├ ƒ /teacher/students/:studentId/competency    
+  └ ? /teacher/units                             
+
+  λ API  ƒ Dynamic  ? Unknown
+
+  ? Some routes could not be classified. vinext currently uses static analysis
+    and cannot detect dynamic API usage (headers(), cookies(), etc.) at build time.
+    Automatic classification will be improved in a future release.
+
+  Build complete. Run `vinext start` to start the production server.
+
+31.503

@@ -1,0 +1,63 @@
+
+ RUN  v4.1.8 /home/daniebo/Desktop/ra-math-advantage
+
+ ❯ scripts/audit/__tests__/audit-contract.test.ts (36 tests | 2 failed) 207ms
+     × reports all 21 shared packages (excludes _template from active list) 12ms
+     × getAuditReport() returns a coherent AuditReport matching the baseline 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  scripts/audit/__tests__/audit-contract.test.ts > audit-contract — first-class app coverage (Red on missing app, Red on under-count) > reports all 21 shared packages (excludes _template from active list)
+AssertionError: expected [ …(20) ] to deeply equal [ …(19) ]
+
+- Expected
++ Received
+
+@@ -4,10 +4,11 @@
+    "packages/ai-tutoring",
+    "packages/app-shell",
+    "packages/component-approval",
+    "packages/core-auth",
+    "packages/core-convex",
++   "packages/efficacy-core",
+    "packages/graphing-core",
+    "packages/knowledge-space-core",
+    "packages/knowledge-space-practice",
+    "packages/lesson-renderer",
+    "packages/math-content",
+
+ ❯ scripts/audit/__tests__/audit-contract.test.ts:156:30
+    154|       .map((m) => m.workspace_path)
+    155|       .sort();
+    156|     expect(sharedWorkspaces).toEqual(
+       |                              ^
+    157|       BASELINE.shared_packages.map((a) => a.workspace).sort()
+    158|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  scripts/audit/__tests__/audit-contract.test.ts > audit-contract — full report integration > getAuditReport() returns a coherent AuditReport matching the baseline
+AssertionError: expected 20 to be 19 // Object.is equality
+
+- Expected
++ Received
+
+- 19
++ 20
+
+ ❯ scripts/audit/__tests__/audit-contract.test.ts:317:42
+    315|
+    316|     expect(report.firstClassApps.length).toBe(BASELINE.totals.first_cl…
+    317|     expect(report.sharedPackages.length).toBe(BASELINE.totals.shared_p…
+       |                                          ^
+    318|     expect(report.securityTotals).toEqual(BASELINE.security_totals);
+    319|     expect(report.openRangeViolations.filter((v) => v.package === 'nex…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 5 passed (6)
+      Tests  2 failed | 190 passed (192)
+   Start at  23:57:50
+   Duration  2.57s (transform 313ms, setup 0ms, import 669ms, tests 632ms, environment 1ms)
+

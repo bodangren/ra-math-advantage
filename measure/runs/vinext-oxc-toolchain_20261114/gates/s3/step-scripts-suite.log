@@ -1,0 +1,31 @@
+/home/daniebo/Desktop/advantage-pr/scripts/jobs/heavy-run.sh: line 586: /proc/710780/cmdline: No such file or directory
+heavy-run: lock wait over 600 s — priority p2 — holder PID 987314: flock -n -E 201 /home/daniebo/Desktop/primary-parity-progress/heavy.lock /home/daniebo/Desktop/advantage-pr/scripts/jobs/heavy-run.sh --locked -c cd /home/daniebo/Desktop/rama-worktrees/security-next-1646 && pnpm install --no-frozen-lockfile 
+[33m(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (scripts/vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.[39m
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/scripts
+
+ ❯ __tests__/remediate-concept-blueprints.test.ts (11 tests | 1 failed) 186ms
+     × production scan reports the honest count for the current repo state 34ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  __tests__/remediate-concept-blueprints.test.ts > remediate-concept-blueprints: production-scan true count (FR-12 closeout) > production scan reports the honest count for the current repo state
+AssertionError: expected [ …(17) ] to include '/home/daniebo/Desktop/ra-math-advanta…'
+ ❯ __tests__/remediate-concept-blueprints.test.ts:228:21
+    226|     for (const required of requiredArtifacts) {
+    227|       const expected = path.join(REPO_ROOT, required);
+    228|       expect(files).toContain(expected);
+       |                     ^
+    229|     }
+    230|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 86 passed (87)
+   Start at  12:52:18
+   Duration  68.71s (transform 105ms, setup 0ms, import 315ms, tests 68.12s, environment 0ms)
+

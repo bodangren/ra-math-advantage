@@ -1,0 +1,401 @@
+ra-math-advantage@ /home/daniebo/Desktop/ra-math-advantage
+├─┬ @math-platform/activity-components@0.1.0 -> ./packages/activity-components
+│ ├── @hello-pangea/dnd@18.0.1
+│ ├── @matejmazur/react-katex@3.1.3
+│ ├── @math-platform/activity-runtime@0.1.0 deduped -> ./packages/activity-runtime
+│ ├── @math-platform/graphing-core@0.1.0 deduped -> ./packages/graphing-core
+│ ├── @math-platform/practice-core@0.1.0 deduped -> ./packages/practice-core
+│ ├── @testing-library/react@16.3.3
+│ ├── @types/react@19.3.0
+│ ├── katex@0.19.1
+│ ├── react@19.3.1
+│ ├── typescript@6.0.3
+│ ├── vitest@4.1.12
+│ └── zod@4.6.7
+├─┬ @math-platform/activity-runtime@0.1.0 -> ./packages/activity-runtime
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@4.1.12 deduped
+├─┬ @math-platform/ai-tutoring@0.1.0 -> ./packages/ai-tutoring
+│ ├── @types/node@24.19.2
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@4.1.12 deduped
+├─┬ @math-platform/app-shell@0.1.0 -> ./packages/app-shell
+│ ├── @math-platform/core-auth@0.1.0 deduped -> ./packages/core-auth
+│ ├── @math-platform/core-convex@0.1.0 deduped -> ./packages/core-convex
+│ ├── @testing-library/react@16.3.3 deduped
+│ ├── @types/react@19.3.0 deduped
+│ ├── convex@1.50.0
+│ ├── lucide-react@1.73.0
+│ ├── next-themes@0.4.6
+│ ├── react@19.3.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ ├── vinext@1.4.6
+│ └── vitest@4.1.12 deduped
+├─┬ @math-platform/component-approval@0.1.0 -> ./packages/component-approval
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@4.1.12 deduped
+├─┬ @math-platform/core-auth@0.1.0 -> ./packages/core-auth
+│ ├── @types/node@24.19.2
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@4.1.12 deduped
+├─┬ @math-platform/core-convex@0.1.0 -> ./packages/core-convex
+│ ├── @types/node@24.19.2
+│ ├── convex@1.50.0 deduped
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@4.1.12 deduped
+├─┬ @math-platform/efficacy-core@0.1.0 -> ./packages/efficacy-core
+│ ├── @math-platform/practice-core@0.1.0 deduped -> ./packages/practice-core
+│ ├── @math-platform/srs-engine@0.1.0 deduped -> ./packages/srs-engine
+│ ├── typescript@6.0.3 deduped
+│ ├── vitest@4.1.12 deduped
+│ └── zod@4.6.7 deduped
+├─┬ @math-platform/graphing-core@0.1.0 -> ./packages/graphing-core
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@4.1.12 deduped
+├─┬ @math-platform/knowledge-space-core@0.1.0 -> ./packages/knowledge-space-core
+│ ├── @math-platform/srs-engine@0.1.0 deduped -> ./packages/srs-engine
+│ ├── typescript@6.0.3 deduped
+│ ├── vitest@4.1.12 deduped
+│ └── zod@4.6.7 deduped
+├─┬ @math-platform/knowledge-space-practice@0.1.0 -> ./packages/knowledge-space-practice
+│ ├── @math-platform/knowledge-space-core@0.1.0 deduped -> ./packages/knowledge-space-core
+│ ├── @math-platform/practice-core@0.1.0 deduped -> ./packages/practice-core
+│ ├── @types/node@24.19.2
+│ ├── typescript@6.0.3 deduped
+│ ├── vitest@4.1.12 deduped
+│ └── zod@4.6.7 deduped
+├─┬ @math-platform/lesson-renderer@0.1.0 -> ./packages/lesson-renderer
+│ ├── @matejmazur/react-katex@3.1.3 deduped
+│ ├── @math-platform/activity-runtime@0.1.0 deduped -> ./packages/activity-runtime
+│ ├── @types/node@24.19.2
+│ ├── @types/react@19.3.0 deduped
+│ ├── clsx@2.1.1
+│ ├── katex@0.19.1
+│ ├── lucide-react@1.73.0 deduped
+│ ├── react-markdown@10.1.0
+│ ├── react@19.3.1 deduped
+│ ├── rehype-katex@7.0.1
+│ ├── remark-gfm@4.0.1
+│ ├── remark-math@6.0.0
+│ ├── tailwind-merge@3.7.0
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@4.1.12 deduped
+├─┬ @math-platform/math-content@0.1.0 -> ./packages/math-content
+│ ├── @math-platform/activity-components@0.1.0 deduped -> ./packages/activity-components
+│ ├── @math-platform/activity-runtime@0.1.0 deduped -> ./packages/activity-runtime
+│ ├── @math-platform/knowledge-space-core@0.1.0 deduped -> ./packages/knowledge-space-core
+│ ├── @math-platform/knowledge-space-practice@0.1.0 deduped -> ./packages/knowledge-space-practice
+│ ├── @math-platform/practice-core@0.1.0 deduped -> ./packages/practice-core
+│ ├── @math-platform/study-hub-core@0.1.0 deduped -> ./packages/study-hub-core
+│ ├── typescript@6.0.3 deduped
+│ ├── vitest@4.1.12 deduped
+│ └── zod@4.6.7 deduped
+├─┬ @math-platform/practice-core@0.1.0 -> ./packages/practice-core
+│ ├── @types/node@24.19.2
+│ ├── typescript@6.0.3 deduped
+│ ├── vitest@4.1.12 deduped
+│ └── zod@4.6.7 deduped
+├─┬ @math-platform/practice-test-engine@0.1.0 -> ./packages/practice-test-engine
+│ └── vitest@4.1.12 deduped
+├─┬ @math-platform/rate-limiter@0.1.0 -> ./packages/rate-limiter
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@4.1.12 deduped
+├─┬ @math-platform/srs-engine@0.1.0 -> ./packages/srs-engine
+│ ├── @math-platform/practice-core@0.1.0 deduped -> ./packages/practice-core
+│ ├── ts-fsrs@6.0.0
+│ ├── typescript@6.0.3 deduped
+│ ├── vitest@4.1.12 deduped
+│ └── zod@4.6.7 deduped
+├─┬ @math-platform/study-hub-core@0.1.0 -> ./packages/study-hub-core
+│ ├── @types/react@19.3.0 deduped
+│ ├── react@19.3.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@4.1.12 deduped
+├─┬ @math-platform/teacher-reporting-core@0.1.0 -> ./packages/teacher-reporting-core
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@4.1.12 deduped
+├─┬ @math-platform/template@0.1.0 -> ./packages/_template
+│ └── typescript@6.0.3 deduped
+├─┬ @math-platform/workbook-pipeline@0.1.0 -> ./packages/workbook-pipeline
+│ ├── typescript@6.0.3 deduped
+│ └── vitest@4.1.12 deduped
+├─┬ bus-math-v2@ -> ./apps/bus-math-v2
+│ ├── @hello-pangea/dnd@18.0.1 deduped
+│ ├── @math-platform/activity-components@0.1.0 deduped -> ./packages/activity-components
+│ ├── @math-platform/activity-runtime@0.1.0 deduped -> ./packages/activity-runtime
+│ ├── @math-platform/ai-tutoring@0.1.0 deduped -> ./packages/ai-tutoring
+│ ├── @math-platform/app-shell@0.1.0 deduped -> ./packages/app-shell
+│ ├── @math-platform/component-approval@0.1.0 deduped -> ./packages/component-approval
+│ ├── @math-platform/core-auth@0.1.0 deduped -> ./packages/core-auth
+│ ├── @math-platform/core-convex@0.1.0 deduped -> ./packages/core-convex
+│ ├── @math-platform/graphing-core@0.1.0 deduped -> ./packages/graphing-core
+│ ├── @math-platform/knowledge-space-practice@0.1.0 deduped -> ./packages/knowledge-space-practice
+│ ├── @math-platform/math-content@0.1.0 deduped -> ./packages/math-content
+│ ├── @math-platform/practice-core@0.1.0 deduped -> ./packages/practice-core
+│ ├── @math-platform/rate-limiter@0.1.0 deduped -> ./packages/rate-limiter
+│ ├── @math-platform/srs-engine@0.1.0 deduped -> ./packages/srs-engine
+│ ├── @math-platform/teacher-reporting-core@0.1.0 deduped -> ./packages/teacher-reporting-core
+│ ├── @math-platform/workbook-pipeline@0.1.0 deduped -> ./packages/workbook-pipeline
+│ ├── @playwright/test@1.60.0
+│ ├── @radix-ui/react-avatar@1.1.12
+│ ├── @radix-ui/react-checkbox@1.3.4
+│ ├── @radix-ui/react-dropdown-menu@2.1.17
+│ ├── @radix-ui/react-label@2.1.9
+│ ├── @radix-ui/react-slot@1.2.5
+│ ├── @radix-ui/react-tabs@1.1.14
+│ ├── @tailwindcss/postcss@4.3.0
+│ ├── @tailwindcss/typography@0.5.19
+│ ├── @testing-library/jest-dom@6.9.1
+│ ├── @testing-library/react@16.3.3 deduped
+│ ├── @testing-library/user-event@14.6.1
+│ ├── @types/node@24.19.2
+│ ├── @types/react-dom@19.3.0
+│ ├── @types/react@19.3.0 deduped
+│ ├── @vitejs/plugin-react@6.3.0
+│ ├── @vitejs/plugin-rsc@0.5.39
+│ ├── autoprefixer@10.5.0
+│ ├── baseline-browser-mapping@2.10.34
+│ ├── class-variance-authority@0.7.1
+│ ├── clsx@2.1.1 deduped
+│ ├── convex@1.50.0 deduped
+│ ├── dotenv@17.4.2
+│ ├── jsdom@29.1.1
+│ ├── lucide-react@1.73.0 deduped
+│ ├── next-themes@0.4.6 deduped
+│ ├── postcss@8.5.23
+│ ├── react-dom@19.3.1
+│ ├── react-markdown@10.1.0 deduped
+│ ├── react-server-dom-webpack@19.3.1
+│ ├── react-spreadsheet@0.10.1
+│ ├── react@19.3.1 deduped
+│ ├── recharts@3.8.1
+│ ├── remark-gfm@4.0.1 deduped
+│ ├── tailwind-merge@3.7.0 deduped
+│ ├── tailwindcss-animate@1.0.7
+│ ├── tailwindcss@4.3.0
+│ ├── ts-fsrs@6.0.0 deduped
+│ ├── tsx@4.22.4
+│ ├── typescript@6.0.3 deduped
+│ ├── vinext@1.4.6 deduped
+│ ├── vite@8.3.8
+│ ├── vitest@4.1.12 deduped
+│ └── zod@4.6.7 deduped
+├─┬ danielson@ -> ./apps/danielson
+│ ├── @math-platform/app-shell@0.1.0 deduped -> ./packages/app-shell
+│ ├── @math-platform/core-auth@0.1.0 deduped -> ./packages/core-auth
+│ ├── @math-platform/core-convex@0.1.0 deduped -> ./packages/core-convex
+│ ├── @math-platform/knowledge-space-core@0.1.0 deduped -> ./packages/knowledge-space-core
+│ ├── @math-platform/srs-engine@0.1.0 deduped -> ./packages/srs-engine
+│ ├── @testing-library/jest-dom@6.9.1 deduped
+│ ├── @testing-library/react@16.3.3 deduped
+│ ├── @types/node@24.19.2
+│ ├── @types/react-dom@19.3.0 deduped
+│ ├── @types/react@19.3.0 deduped
+│ ├── @vitejs/plugin-react@6.3.0 deduped
+│ ├── convex@1.50.0 deduped
+│ ├── jsdom@29.1.1 deduped
+│ ├── react-dom@19.3.1 deduped
+│ ├── react@19.3.1 deduped
+│ ├── typescript@6.0.3 deduped
+│ ├── vinext@1.4.6 deduped
+│ ├── vite@8.3.8 deduped
+│ └── vitest@4.1.12 deduped
+├─┬ integrated-math-1@ -> ./apps/integrated-math-1
+│ ├── @cloudflare/vite-plugin@1.40.0
+│ ├── @math-platform/activity-components@0.1.0 deduped -> ./packages/activity-components
+│ ├── @math-platform/activity-runtime@0.1.0 deduped -> ./packages/activity-runtime
+│ ├── @math-platform/app-shell@0.1.0 deduped -> ./packages/app-shell
+│ ├── @math-platform/core-auth@0.1.0 deduped -> ./packages/core-auth
+│ ├── @math-platform/core-convex@0.1.0 deduped -> ./packages/core-convex
+│ ├── @math-platform/lesson-renderer@0.1.0 deduped -> ./packages/lesson-renderer
+│ ├── @math-platform/math-content@0.1.0 deduped -> ./packages/math-content
+│ ├── @math-platform/practice-core@0.1.0 deduped -> ./packages/practice-core
+│ ├── @math-platform/srs-engine@0.1.0 deduped -> ./packages/srs-engine
+│ ├── @tailwindcss/postcss@4.3.0 deduped
+│ ├── @tailwindcss/typography@0.5.19 deduped
+│ ├── @testing-library/dom@10.4.1
+│ ├── @testing-library/jest-dom@6.9.1 deduped
+│ ├── @testing-library/react@16.3.3 deduped
+│ ├── @types/node@24.19.2
+│ ├── @types/react-dom@19.3.0 deduped
+│ ├── @types/react@19.3.0 deduped
+│ ├── @vitejs/plugin-react@6.3.0 deduped
+│ ├── @vitejs/plugin-rsc@0.5.39 deduped
+│ ├── autoprefixer@10.5.0 deduped
+│ ├── class-variance-authority@0.7.1 deduped
+│ ├── clsx@2.1.1 deduped
+│ ├── convex@1.50.0 deduped
+│ ├── dotenv@17.4.2 deduped
+│ ├── jsdom@29.1.1 deduped
+│ ├── lucide-react@1.73.0 deduped
+│ ├── next-themes@0.4.6 deduped
+│ ├── postcss@8.5.23 deduped
+│ ├── react-dom@19.3.1 deduped
+│ ├── react-server-dom-webpack@19.3.1 deduped
+│ ├── react@19.3.1 deduped
+│ ├── tailwind-merge@3.7.0 deduped
+│ ├── tailwindcss-animate@1.0.7 deduped
+│ ├── tailwindcss@4.3.0 deduped
+│ ├── typescript@6.0.3 deduped
+│ ├── vinext@1.4.6 deduped
+│ ├── vite@8.3.8 deduped
+│ ├── vitest@4.1.12 deduped
+│ ├── wrangler@4.98.0
+│ └── zod@4.6.7 deduped
+├─┬ integrated-math-2@ -> ./apps/integrated-math-2
+│ ├── @cloudflare/vite-plugin@1.40.0 deduped
+│ ├── @math-platform/activity-runtime@0.1.0 deduped -> ./packages/activity-runtime
+│ ├── @math-platform/app-shell@0.1.0 deduped -> ./packages/app-shell
+│ ├── @math-platform/core-auth@0.1.0 deduped -> ./packages/core-auth
+│ ├── @math-platform/core-convex@0.1.0 deduped -> ./packages/core-convex
+│ ├── @math-platform/lesson-renderer@0.1.0 deduped -> ./packages/lesson-renderer
+│ ├── @math-platform/math-content@0.1.0 deduped -> ./packages/math-content
+│ ├── @math-platform/practice-core@0.1.0 deduped -> ./packages/practice-core
+│ ├── @math-platform/srs-engine@0.1.0 deduped -> ./packages/srs-engine
+│ ├── @tailwindcss/postcss@4.3.0 deduped
+│ ├── @tailwindcss/typography@0.5.19 deduped
+│ ├── @testing-library/dom@10.4.1 deduped
+│ ├── @testing-library/jest-dom@6.9.1 deduped
+│ ├── @testing-library/react@16.3.3 deduped
+│ ├── @types/node@24.19.2
+│ ├── @types/react-dom@19.3.0 deduped
+│ ├── @types/react@19.3.0 deduped
+│ ├── @vitejs/plugin-react@6.3.0 deduped
+│ ├── @vitejs/plugin-rsc@0.5.39 deduped
+│ ├── autoprefixer@10.5.0 deduped
+│ ├── class-variance-authority@0.7.1 deduped
+│ ├── clsx@2.1.1 deduped
+│ ├── convex@1.50.0 deduped
+│ ├── dotenv@17.4.2 deduped
+│ ├── jsdom@29.1.1 deduped
+│ ├── lucide-react@1.73.0 deduped
+│ ├── next-themes@0.4.6 deduped
+│ ├── postcss@8.5.23 deduped
+│ ├── react-dom@19.3.1 deduped
+│ ├── react-server-dom-webpack@19.3.1 deduped
+│ ├── react@19.3.1 deduped
+│ ├── tailwind-merge@3.7.0 deduped
+│ ├── tailwindcss-animate@1.0.7 deduped
+│ ├── tailwindcss@4.3.0 deduped
+│ ├── typescript@6.0.3 deduped
+│ ├── vinext@1.4.6 deduped
+│ ├── vite@8.3.8 deduped
+│ ├── vitest@4.1.12 deduped
+│ ├── wrangler@4.98.0 deduped
+│ └── zod@4.6.7 deduped
+├─┬ integrated-math-3@ -> ./apps/integrated-math-3
+│ ├── @axe-core/playwright@4.11.3
+│ ├── @cloudflare/vite-plugin@1.40.0 deduped
+│ ├── @convex-dev/migrations@0.3.8
+│ ├── @hello-pangea/dnd@18.0.1 deduped
+│ ├── @matejmazur/react-katex@3.1.3 deduped
+│ ├── @math-platform/activity-components@0.1.0 deduped -> ./packages/activity-components
+│ ├── @math-platform/activity-runtime@0.1.0 deduped -> ./packages/activity-runtime
+│ ├── @math-platform/ai-tutoring@0.1.0 deduped -> ./packages/ai-tutoring
+│ ├── @math-platform/app-shell@0.1.0 deduped -> ./packages/app-shell
+│ ├── @math-platform/component-approval@0.1.0 deduped -> ./packages/component-approval
+│ ├── @math-platform/core-auth@0.1.0 deduped -> ./packages/core-auth
+│ ├── @math-platform/core-convex@0.1.0 deduped -> ./packages/core-convex
+│ ├── @math-platform/efficacy-core@0.1.0 deduped -> ./packages/efficacy-core
+│ ├── @math-platform/graphing-core@0.1.0 deduped -> ./packages/graphing-core
+│ ├── @math-platform/knowledge-space-core@0.1.0 deduped -> ./packages/knowledge-space-core
+│ ├── @math-platform/knowledge-space-practice@0.1.0 deduped -> ./packages/knowledge-space-practice
+│ ├── @math-platform/lesson-renderer@0.1.0 deduped -> ./packages/lesson-renderer
+│ ├── @math-platform/math-content@0.1.0 deduped -> ./packages/math-content
+│ ├── @math-platform/practice-core@0.1.0 deduped -> ./packages/practice-core
+│ ├── @math-platform/practice-test-engine@0.1.0 deduped -> ./packages/practice-test-engine
+│ ├── @math-platform/rate-limiter@0.1.0 deduped -> ./packages/rate-limiter
+│ ├── @math-platform/srs-engine@0.1.0 deduped -> ./packages/srs-engine
+│ ├── @math-platform/study-hub-core@0.1.0 deduped -> ./packages/study-hub-core
+│ ├── @math-platform/teacher-reporting-core@0.1.0 deduped -> ./packages/teacher-reporting-core
+│ ├── @math-platform/workbook-pipeline@0.1.0 deduped -> ./packages/workbook-pipeline
+│ ├── @playwright/test@1.60.0 deduped
+│ ├── @radix-ui/react-avatar@1.1.12 deduped
+│ ├── @radix-ui/react-checkbox@1.3.4 deduped
+│ ├── @radix-ui/react-dropdown-menu@2.1.17 deduped
+│ ├── @radix-ui/react-label@2.1.9 deduped
+│ ├── @radix-ui/react-slot@1.2.5 deduped
+│ ├── @radix-ui/react-tabs@1.1.14 deduped
+│ ├── @tailwindcss/postcss@4.3.0 deduped
+│ ├── @tailwindcss/typography@0.5.19 deduped
+│ ├── @testing-library/dom@10.4.1 deduped
+│ ├── @testing-library/jest-dom@6.9.1 deduped
+│ ├── @testing-library/react@16.3.3 deduped
+│ ├── @testing-library/user-event@14.6.1 deduped
+│ ├── @types/node@24.19.2
+│ ├── @types/react-dom@19.3.0 deduped
+│ ├── @types/react@19.3.0 deduped
+│ ├── @vitejs/plugin-react@6.3.0 deduped
+│ ├── @vitejs/plugin-rsc@0.5.39 deduped
+│ ├── autoprefixer@10.5.0 deduped
+│ ├── class-variance-authority@0.7.1 deduped
+│ ├── clsx@2.1.1 deduped
+│ ├── convex@1.50.0 deduped
+│ ├── dotenv@17.4.2 deduped
+│ ├── jsdom@29.1.1 deduped
+│ ├── katex@0.19.1
+│ ├── lucide-react@1.73.0 deduped
+│ ├── next-themes@0.4.6 deduped
+│ ├── postcss@8.5.23 deduped
+│ ├── react-dom@19.3.1 deduped
+│ ├── react-markdown@10.1.0 deduped
+│ ├── react-server-dom-webpack@19.3.1 deduped
+│ ├── react@19.3.1 deduped
+│ ├── recharts@3.8.1 deduped
+│ ├── remark-gfm@4.0.1 deduped
+│ ├── tailwind-merge@3.7.0 deduped
+│ ├── tailwindcss-animate@1.0.7 deduped
+│ ├── tailwindcss@4.3.0 deduped
+│ ├── ts-fsrs@6.0.0 deduped
+│ ├── tsx@4.22.4 deduped
+│ ├── typescript@6.0.3 deduped
+│ ├── vinext@1.4.6 deduped
+│ ├── vite@8.3.8 deduped
+│ ├── vitest@4.1.12 deduped
+│ ├── wrangler@4.98.0 deduped
+│ └── zod@4.6.7 deduped
+└─┬ pre-calculus@ -> ./apps/pre-calculus
+  ├── @cloudflare/vite-plugin@1.40.0 deduped
+  ├── @math-platform/activity-components@0.1.0 deduped -> ./packages/activity-components
+  ├── @math-platform/activity-runtime@0.1.0 deduped -> ./packages/activity-runtime
+  ├── @math-platform/app-shell@0.1.0 deduped -> ./packages/app-shell
+  ├── @math-platform/core-auth@0.1.0 deduped -> ./packages/core-auth
+  ├── @math-platform/core-convex@0.1.0 deduped -> ./packages/core-convex
+  ├── @math-platform/knowledge-space-core@0.1.0 deduped -> ./packages/knowledge-space-core
+  ├── @math-platform/knowledge-space-practice@0.1.0 deduped -> ./packages/knowledge-space-practice
+  ├── @math-platform/lesson-renderer@0.1.0 deduped -> ./packages/lesson-renderer
+  ├── @math-platform/math-content@0.1.0 deduped -> ./packages/math-content
+  ├── @math-platform/practice-core@0.1.0 deduped -> ./packages/practice-core
+  ├── @math-platform/srs-engine@0.1.0 deduped -> ./packages/srs-engine
+  ├── @tailwindcss/postcss@4.3.0 deduped
+  ├── @tailwindcss/typography@0.5.19 deduped
+  ├── @testing-library/dom@10.4.1 deduped
+  ├── @testing-library/jest-dom@6.9.1 deduped
+  ├── @testing-library/react@16.3.3 deduped
+  ├── @types/node@24.19.2
+  ├── @types/react-dom@19.3.0 deduped
+  ├── @types/react@19.3.0 deduped
+  ├── @vitejs/plugin-react@6.3.0 deduped
+  ├── @vitejs/plugin-rsc@0.5.39 deduped
+  ├── autoprefixer@10.5.0 deduped
+  ├── class-variance-authority@0.7.1 deduped
+  ├── clsx@2.1.1 deduped
+  ├── convex@1.50.0 deduped
+  ├── dotenv@17.4.2 deduped
+  ├── jsdom@29.1.1 deduped
+  ├── lucide-react@1.73.0 deduped
+  ├── next-themes@0.4.6 deduped
+  ├── postcss@8.5.23 deduped
+  ├── react-dom@19.3.1 deduped
+  ├── react-server-dom-webpack@19.3.1 deduped
+  ├── react@19.3.1 deduped
+  ├── tailwind-merge@3.7.0 deduped
+  ├── tailwindcss-animate@1.0.7 deduped
+  ├── tailwindcss@4.3.0 deduped
+  ├── typescript@6.0.3 deduped
+  ├── vinext@1.4.6 deduped
+  ├── vite@8.3.8 deduped
+  ├── vitest@4.1.12 deduped
+  ├── wrangler@4.98.0 deduped
+  └── zod@4.6.7 deduped
+

@@ -1,0 +1,98 @@
+
+> build
+> vinext build
+
+
+  vinext build  (Vite 8.3.8)
+
+[34m[1/5] analyze client references...[39m
+transforming...
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Laptop" in barrel export map
+✓ 577 modules transformed.
+rendering chunks...
+[32m✓ built in 926ms[39m
+[34m[2/5] analyze server references...[39m
+transforming...
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Laptop" in barrel export map
+✓ 2280 modules transformed.
+rendering chunks...
+[32m✓ built in 1.50s[39m
+[34m[3/5] build rsc environment...[39m
+transforming...
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Laptop" in barrel export map
+✓ 583 modules transformed.
+rendering chunks...
+computing gzip size...
+[32m✓ built in 915ms[39m
+[34m[4/5] build client environment...[39m
+[33m`output.codeSplitting.groups[0].name` is a function. Set `output.codeSplitting.groups[0].debugName` so the bundler timing report can identify this group.[39m
+transforming...
+✓ 2290 modules transformed.
+rendering chunks...
+computing gzip size...
+[32m✓ built in 1.34s[39m
+[34m[5/5] build ssr environment...[39m
+transforming...
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Laptop" in barrel export map
+✓ 2281 modules transformed.
+rendering chunks...
+computing gzip size...
+[32m✓ built in 1.47s[39m
+[0m
+  Route (app)
+  ┌ ? /                                                     
+  ├ ? /admin                                                
+  ├ ? /admin/accounts                                       
+  ├ ƒ /admin/accounts/:accountId                            
+  ├ ? /admin/coaches                                        
+  ├ ? /admin/departments                                    
+  ├ ? /admin/relationships                                  
+  ├ λ /api/admin/accounts                                   
+  ├ λ /api/admin/assignments                                
+  ├ λ /api/admin/coaches                                    
+  ├ λ /api/admin/departments                                
+  ├ λ /api/auth/change-password                             
+  ├ λ /api/auth/login                                       
+  ├ λ /api/auth/logout                                      
+  ├ λ /api/auth/session                                     
+  ├ λ /api/coaching                                         
+  ├ λ /api/improvement-plans/:planId/acknowledgments        
+  ├ λ /api/improvement-plans/:planId/approval               
+  ├ λ /api/improvement-plans/:planId/closure                
+  ├ λ /api/improvement-plans/proposals                      
+  ├ λ /api/observations                                     
+  ├ λ /api/observations/drafts/:recordId                    
+  ├ λ /api/observations/drafts/:recordId/submit             
+  ├ λ /api/observations/records/:recordId/amend             
+  ├ λ /api/reports/comments/private                         
+  ├ λ /api/reports/comments/public                          
+  ├ λ /api/reports/responses                                
+  ├ λ /api/reports/teachers/:teacherProfileId/gbf-assignment
+  ├ ? /auth/change-password                                 
+  ├ ? /auth/login                                           
+  ├ ? /calibration                                          
+  ├ ƒ /coaching/:teacherProfileId                           
+  ├ ? /improvement-plans                                    
+  ├ ƒ /improvement-plans/:planId                            
+  ├ ƒ /improvement-plans/:planId/revise                     
+  ├ ? /improvement-plans/new                                
+  ├ ? /learn                                                
+  ├ ƒ /learn/:slug                                          
+  ├ ? /my-observations                                      
+  ├ ? /my-report                                            
+  ├ ? /observations                                         
+  ├ ƒ /observations/drafts/:recordId                        
+  ├ ƒ /observations/records/:recordId                       
+  ├ ƒ /observations/records/:recordId/amend                 
+  ├ ? /reports                                              
+  ├ ƒ /reports/teachers/:teacherProfileId                   
+  └ ? /unauthorized                                         
+
+  λ API  ƒ Dynamic  ? Unknown
+
+  ? Some routes could not be classified. vinext currently uses static analysis
+    and cannot detect dynamic API usage (headers(), cookies(), etc.) at build time.
+    Automatic classification will be improved in a future release.
+
+  Build complete. Run `vinext start` to start the production server.
+

@@ -1,0 +1,4 @@
+INFO: no heavy-run wrapper found; running gate commands directly
+FAIL: PROJECT_TESTS failed (expected success, exit 1): GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test final
+FAIL: NEW FAILURE: test apps/integrated-math-3 has a new diagnostic
+NEWFAIL=1

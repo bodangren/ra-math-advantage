@@ -1,0 +1,13 @@
+
+> @math-platform/graphing-core@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 /home/daniebo/Desktop/ra-math-advantage/packages/graphing-core
+
+
+ Test Files  3 passed (3)
+      Tests  56 passed (56)
+   Start at  10:24:42
+   Duration  290ms (import 37%, tests 26%, worker 25%, transform 13%)
+

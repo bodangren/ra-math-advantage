@@ -1,0 +1,24 @@
+npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+
+added 831 packages, and audited 859 packages in 35s
+
+279 packages are looking for funding
+  run `npm fund` for details
+
+21 vulnerabilities (5 low, 7 moderate, 9 high)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+npm warn allow-scripts 5 packages have install scripts not yet covered by allowScripts:
+npm warn allow-scripts   esbuild@0.27.0 (postinstall: node install.js)
+npm warn allow-scripts   sharp@0.34.5 (install: node install/check.js || npm run build)
+npm warn allow-scripts   esbuild@0.28.0 (postinstall: node install.js)
+npm warn allow-scripts   workerd@1.20260603.1 (postinstall: node install.js)
+npm warn allow-scripts   esbuild@0.27.3 (postinstall: node install.js)
+npm warn allow-scripts
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.

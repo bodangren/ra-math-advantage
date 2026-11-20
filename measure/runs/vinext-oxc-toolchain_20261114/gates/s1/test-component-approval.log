@@ -1,0 +1,13 @@
+
+> @math-platform/component-approval@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/component-approval
+
+
+ Test Files  2 passed (2)
+      Tests  25 passed (25)
+   Start at  04:12:52
+   Duration  234ms (transform 29ms, setup 0ms, import 47ms, tests 15ms, environment 0ms)
+
