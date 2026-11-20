@@ -2991,10 +2991,11 @@ const S5_BANNED_STRINGS = ["npx tsc", "tsc --noEmit", "eslint .", "eslint src", 
 // The command forms of strategy section 8, written with JS alternation. Each
 // form names a tool call, never a bare English word (A7). A shell can quote
 // the executable name, so each form also accepts one quote around the name
-// (strategy 18.3: a command call in another spelling).
-const S5_TSC_CALL_RE = /\b(npx|npm exec)\s+(-\S+\s+)*["']?tsc\b/;
-const S5_TSC_FLAG_RE = /\btsc["']?\s+(-p|--project|--noEmit)\b/;
-const S5_ESLINT_CALL_RE = /\beslint["']?\s+(\.|src|--)/;
+// (strategy 18.3: a command call in another spelling). JSON and YAML encode
+// that quote as `\"`, so each form also accepts one backslash before the quote.
+const S5_TSC_CALL_RE = /\b(npx|npm exec)\s+(-\S+\s+)*\\?["']?tsc\b/;
+const S5_TSC_FLAG_RE = /\btsc\\?["']?\s+(-p|--project|--noEmit)\b/;
+const S5_ESLINT_CALL_RE = /\beslint\\?["']?\s+(\.|src|--)/;
 const S5_COMMAND_RES = [S5_TSC_CALL_RE, S5_TSC_FLAG_RE, S5_ESLINT_CALL_RE];
 
 // The target root script forms of plan line 649 and the S4 format scripts.
