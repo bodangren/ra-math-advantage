@@ -71,7 +71,7 @@ GREEN_TEST_COMMAND is the targeted three-workspace command. The two
     - [ ] In `measure/tech-stack.md` "Key Dependencies", add a dated row for `@openrouter/sdk` (workflow principle 2).
     - [ ] Build IM3 and BM2 on the start commit. Record the size of each `.js` file under `dist/server/`, raw and gzip (`gzip -c <file> | wc -c`), and the totals.
     - [ ] Run `npm run bundle-size:audit --prefix apps/integrated-math-3` and `npm run bundle:audit --workspace=apps/bus-math-v2`. Record the results.
-- [ ] Task: S1 Install — add the SDK and read its API
+- [x] Task: S1 Install — add the SDK and read its API `fa35361`
     - [ ] Add `"@openrouter/sdk": "^1.5.102"` to the `dependencies` of `packages/ai-tutoring/package.json`. Run `npm install`.
     - [ ] Read `node_modules/@openrouter/sdk/README.md`, `RUNTIMES.md`, and the `docs/` pages for `chat`. Read the `.d.ts` files under `esm/models/errors/`.
     - [ ] Record these facts in the "SDK API" section, from the installed files only: the client constructor options (API key, server URL, `httpReferer`, `appTitle`, retry settings, timeout).
