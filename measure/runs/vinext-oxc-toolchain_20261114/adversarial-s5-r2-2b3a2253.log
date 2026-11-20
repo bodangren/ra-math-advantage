@@ -1,0 +1,83 @@
+Provisional rerun evidence:
+The phase base is 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6.
+The role base and pre-adversarial HEAD are 2b3a2253ce900bf9e74c723dc418e7690cae0d51.
+The original S5 adversarial filter exits 0: 10 passed and 2 todo.
+The S5 gate rules filter exits 0: 10 passed.
+The initial scripts suite exits 1: 114 passed, 1 failed, and 2 todo.
+Its only failure is the recorded remediate-concept-blueprints production-scan case.
+Green changed no earlier case body, fixture entry, or path exclusion.
+The 49-entry fixture is byte-identical between 04b5f0e5 and 2b3a2253.
+
+ADV-S5-4 probe:
+The scanner detects ten plain command forms, including single and double quotes.
+The scanner detects npm exec -- tsc --noEmit and npx --yes tsc --noEmit.
+The scanner misses four escaped YAML forms and four escaped JavaScript forms.
+Example YAML: run: "npx --no-install \"tsc\" --noEmit"
+Example JavaScript: require("node:child_process").execSync("npm exec -- \"eslint\" .");
+The YAML parser returns the exact shell command. The JavaScript preconditions run the real executables.
+The new S5 escaped-source adversarial filter exits 1 with four failed cases.
+Each failure follows successful executable resolution and version assertions.
+The full scripts rerun exits 1: 114 passed, 5 failed, and 2 todo.
+The five failures are the four new scanner cases and the recorded production-scan case.
+Root format:check, lint, and package build checks exit 0.
+Root typecheck exits 1 with 59 diagnostics and 20 unchanged file/code keys.
+The direct test-file format and lint checks exit 0.
+Commit c0ea258e adds only the four failing cases. Commit 807bd098 records the defect and the pending Green task.
+The final audited HEAD is 807bd098a2e31d23e2fefe8a4b5264d448a7b5b0.
+The implementation remains byte-identical to 2b3a2253. Parallel reviews at that HEAD are stale.
+The scratch probe script is removed. The six generated files remain unstaged.
+The PROJECT_TESTS environment prefix worked. The role gate exited 1 after the default 3600-second timeout.
+Shared heavy jobs delayed the workspace sweep. Three workspace results were recorded.
+No scripts-suite or audit-suite step completed in this gate invocation.
+The Python timeout left the owned gates.sh process alive. Only its checked process tree received TERM.
+No matching gate child remains. No other project process was stopped.
+
+Requested role-gate command:
+PROJECT_TESTS="GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s5" python3 /home/daniebo/Desktop/measure/skills/measure-orchestrator/scripts/measure_interphase_checks.py role-gate --repo . --role measure-adversarial-testing --track vinext-oxc-toolchain_20261114 --phase "Phase S5: Gate rules and CI" --baseline 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6 --log-file measure/runs/vinext-oxc-toolchain_20261114/adversarial-s5-r2-2b3a2253.log --result-file measure/runs/vinext-oxc-toolchain_20261114/adversarial-s5-r2-2b3a2253.json
+HEAVY_HANG_NOTIFY_CMD=true was also set to prevent CLI notifications from the wrapper.
+Role-gate exit code: 1.
+Role-gate output:
+INFO: no heavy-run wrapper found; running gate commands directly
+Traceback (most recent call last):
+  File "/home/daniebo/Desktop/measure/skills/measure-orchestrator/scripts/measure_interphase_checks.py", line 1470, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/home/daniebo/Desktop/measure/skills/measure-orchestrator/scripts/measure_interphase_checks.py", line 1466, in main
+    return args.func(args)
+           ~~~~~~~~~^^^^^^
+  File "/home/daniebo/Desktop/measure/skills/measure-orchestrator/scripts/measure_interphase_checks.py", line 1365, in cmd_role_gate
+    feedback.extend(gate_command(repo, "PROJECT_TESTS", gate_value(repo, "PROJECT_TESTS"), runner=runner, excludes=excludes))
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/daniebo/Desktop/measure/skills/measure-orchestrator/scripts/measure_interphase_checks.py", line 994, in gate_command
+    result = subprocess.run(
+        command,
+    ...<6 lines>...
+        check=False,
+    )
+  File "/usr/lib/python3.14/subprocess.py", line 557, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/subprocess.py", line 1221, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/subprocess.py", line 2154, in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/subprocess.py", line 1268, in _check_timeout
+    raise TimeoutExpired(
+    ...<2 lines>...
+            stderr=b''.join(stderr_seq) if stderr_seq else None)
+subprocess.TimeoutExpired: Command 'GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s5' timed out after 3600 seconds
+
+MEASURE_AGENT_RESULT
+role: measure-adversarial-testing
+status: fail
+track: vinext-oxc-toolchain_20261114
+phase: Phase S5: Gate rules and CI
+commits: c0ea258e; 807bd098
+tests_run: original S5 adversarial exit 0 (10 passed, 2 todo); S5 gate rules exit 0 (10 passed); escaped-source adversarial exit 1 (4 failed); scripts suite exit 1 (114 passed, 5 failed, 2 todo); format, lint, direct test-file checks, and root package build exit 0; root typecheck retains 59 diagnostics; role gate exits 1 after a 3600-second timeout
+files_changed: scripts/__tests__/oxc-toolchain-gates.test.ts; measure/tracks.md; plan.md; adversarial-s5-r2-2b3a2253.json; adversarial-s5-r2-2b3a2253.log
+plan_updates: completed the ADV-S5-4 coverage task; added the pending Green task; recorded the defect in the registry
+known_failures: ADV-S5-4 escaped quotes bypass the scanner; the recorded remediate-concept-blueprints failure remains; root typecheck retains its recorded diagnostics; the role gate timed out in the heavy queue
+handoff: ADV-S5-1 is fixed. Green owns ADV-S5-4. Preserve adv 7 and adv 8. Keep ADV-S5-2 and ADV-S5-3 record-only. The test commit makes parallel reviews stale. Retry the role gate when the heavy queue permits it. The environment prefix worked. Phase base: 3ff2f6ea. Role base and pre-adversarial HEAD: 2b3a2253. Final audited HEAD: 807bd098. Both audit artifacts are staged. The six generated files stay unstaged. No push ran.
+END_MEASURE_AGENT_RESULT

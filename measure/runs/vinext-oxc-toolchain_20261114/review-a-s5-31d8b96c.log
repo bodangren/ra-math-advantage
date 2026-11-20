@@ -1,0 +1,53 @@
+Review A: S5 correctness and architecture
+Route: openai/gpt-6.1-sol#high
+phase_base_sha: 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6
+role_base_sha: 31d8b96cf44d0f94e6494a32985949ef5e0b80d2
+audited_head_sha: 31d8b96cf44d0f94e6494a32985949ef5e0b80d2
+HEAD matched the supplied audit commit. The audit covered the exact phase diff.
+
+Verdict: PASS with five record-only items under the PM cap.
+F1: The claimed gates/s4-before directory does not exist.
+F2: dec3be20 changes six workflow YAML files. Five are under .github/workflows, not apps/.
+F3: Evidence section 5 still contradicts the corrected format fixed-point record.
+F4: IM2 typecheck:backend still calls tsc outside the four fallback workspaces. It exits 0.
+F5: Case 9 excludes all ws:* values, but case 3 checks only tsc. The architecture runner executes the excluded command configuration.
+These items hide no current failing gate and delete no tracked or user file. Keep them in the next-phase list.
+
+Independent commands ran through heavy-run.sh without shell redirection:
+- S5 filter: exit 0; 10 passed.
+- Full scripts suite: exit 1; 104 passed, one accepted Q3 failure.
+- Audit suites: exit 1; 187 passed, five recorded baseline failures.
+- Architecture tests: exit 0; 14 passed.
+- IM2 CI wiring: exit 0; three passed.
+- IM3 workflow validation: exit 0; 21 passed.
+- Root format check: exit 0; 3717 files.
+- Root lint: exit 0.
+- Root typecheck: exit 1; only IM3 and PreCalc fail, as recorded.
+- IM2 typecheck:backend: exit 0.
+Saved gate logs hold NEWFAIL=0 for lint/test/checks-all s5 against baseline-m2.
+Saved diagnostic counts are IM3 55 and PreCalc four.
+
+The Red cases remain unchanged after 9879f0a0. The CI helper fix preserves its assertions.
+The architecture deviation is necessary for the root fan-out forms. Its 14 tests pass.
+The Closeout deferral preserves pending work and correctly assigns it to the closeout steward.
+The graph is stale. Direct source searches identify the changed module and its callers.
+The shell denied an additional in-memory missing-deliverable and command-mutation probe. No mutation result is claimed.
+The six dirty generated files remain unstaged. No production file, test, plan, or registry changed.
+The shell denied git add -f of these two artifacts. The audit-only role instruction prohibits a commit. No commit was made.
+The wrapped gate attempt timed out after 600 seconds without output.
+Source inspection confirmed that the review-a gate runs structural checks, not project tests.
+The direct requested role-gate command exited 0.
+Its complete output was: PASS: review-a gate passed
+
+MEASURE_AGENT_RESULT
+role: measure-review-a-correctness
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S5: Gate rules and CI
+commits: none
+tests_run: S5 10 pass; architecture 14 pass; IM2 CI 3 pass; IM3 CI 21 pass; format and lint pass; scripts 104/1, audits 187/5, and root typecheck exit 1 match baseline exceptions
+files_changed: review-a-s5-31d8b96c.json; review-a-s5-31d8b96c.log
+plan_updates: none
+known_failures: accepted Q3 scripts failure; five baseline audit failures; root typecheck baseline diagnostics; optional mutation probe denied
+handoff: No blocker. Put F1-F5 in the next-phase list under the PM cap. Closeout stays with the steward. Role-gate exit 0: PASS: review-a gate passed. Staging was denied; the artifacts remain on disk without a commit.
+END_MEASURE_AGENT_RESULT

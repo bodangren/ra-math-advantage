@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "role": "measure-adversarial-testing",
+  "track": "vinext-oxc-toolchain_20261114",
+  "phase": "Phase S5: Gate rules and CI",
+  "baseline_sha": "3ff2f6ea2d706c26e7b750e3202d36891f2a83d6",
+  "audited_head_sha": "04b5f0e5aea36912cf9f989a5f119eb9e9fafa9c",
+  "status": "fail",
+  "summary": "Two adversarial cases expose a quoted-command bypass in the S5 scanner. Eight cases pass. Two todo cases record existing defects.",
+  "blocking_findings": [
+    "ADV-S5-1 [Blocker] adversarial-testing: scripts/__tests__/oxc-toolchain-gates.test.ts:2993-2996 misses quoted tsc and ESLint executables. Adv 3 reproduces both misses at line 3453. Green must fix the scanner without changing these cases. Rationale: Strategy 18.3 requires detection of other command spellings."
+  ],
+  "nonblocking_findings": [
+    "ADV-S5-2 [Nit] adversarial-testing: apps/integrated-math-2/package.json:16 retains typecheck:backend with tsc outside TSC_FALLBACK_LIST. The command exists at phase_base_sha. Rationale: Review A F4 already records this debt. Adv 4 excludes only that exact entry and adds a todo case.",
+    "ADV-S5-3 [Nit] adversarial-testing: .github/workflows/ci.yml:266 calls the absent root curriculum:check script. The command and missing script exist at phase_base_sha. Rationale: Review C F2 already records this debt. Adv 5 excludes only that exact step and adds a todo case."
+  ],
+  "evidence": [
+    "phase_base_sha=3ff2f6ea2d706c26e7b750e3202d36891f2a83d6; role_base_sha=31d8b96cf44d0f94e6494a32985949ef5e0b80d2; pre-adversarial HEAD=31d8b96cf44d0f94e6494a32985949ef5e0b80d2.",
+    "The pre-adversarial HEAD equals the supplied role base. Commit 04b5f0e5 adds only the S5 adversarial describe. It changes no implementation, earlier case, or fixture.",
+    "Read measure/index.md, workflow.md, current_directive.md, tracks.md, anti-patterns.md, the track spec, S5 plan, and strategy section 18. Read all three supplied review results and the strategy, Red, and Green handoffs. No separate routing artifact was found.",
+    "Read the exact phase_base_sha..31d8b96c diff, including the root commands, CI changes, architecture inventory, documentation, and test changes.",
+    "build-graph search graph.db scanBanned returned no result. The graph dates from 2026-08-08. Source inspection replaced stale graph queries.",
+    "Adv 1 copies the real root command and workspace globs into temporary fixtures. Real npm visits all 27 workspace paths exactly once. Both commands return 0 for clean probes and preserve exit 23 for a failing first workspace. Later workspaces still run.",
+    "Adv 2 preserves each exact hit beside never, do not, and forbidden. No English-word filter hides a banned call.",
+    "Adv 3 runs real quoted executable version commands through sh. Both commands exit 0 with version output. The actual scanner then returns no hit for npx --no-install \"tsc\" --noEmit and npm exec -- \"eslint\" . . Both detection assertions fail.",
+    "Adv 4 scans all root aliases and all workspace scripts. It preserves the four exact fallback commands. It also scans every architecture qualityCommands value, with exact fallback exclusions. Only the recorded IM2 entry remains deferred.",
+    "Adv 5 checks root commands in parsed CI steps. A missing-script fixture proves the check rejects an absent target. Only the existing curriculum:check step remains deferred.",
+    "Adv 6 checks the real push workflow and seeded renamed deployment jobs. Wrangler, Convex, npm deploy, deployment actions, production environments, and both secret reference forms trigger findings. The dispatched deploy workflow has only workflow_dispatch.",
+    "S5 adversarial: exit 1; eight passed, two failed, two todo. S5 gate rules: exit 0; ten passed. The full scripts suite exits 1 with 112 passed, three failed, and two todo. Its failures are the two quoted-command cases and the accepted remediate-concept-blueprints production-scan case.",
+    "npm run format:check exits 0 on 3717 files. npm run lint exits 0. Direct oxlint on the test file exits 0. npm run build exits 0 for the root package build command.",
+    "npm run typecheck exits 1 with 59 existing diagnostics. Its 20 unique file-plus-code keys equal the saved S5 root typecheck log. No key is added or removed.",
+    "A4: the phase changes no markers-consistent classifier. Source search finds no such checker in tests, scripts, or measure/scripts. This implementation audit makes no all-tilde classifier claim. Adv 1 instead proves non-empty workspace coverage and visible failures.",
+    "A5: the active plan has no PASS=N, FAIL=0 or all checks pass match. Its S5 gate-rules claim matches the ten passing cases. The plan explicitly records the nonzero root typecheck and scripts suite exits.",
+    "An initial test draft expected npm exit 1. Real npm preserved exit 23. The corrected test asserts exit 23. Formatting was corrected before the final suite run. Neither drafting error remains.",
+    "The provisional JSON and log were written before test execution. The test commit is 04b5f0e5. Its Git note records the scope and the scanner defect.",
+    "All temporary fixture folders use the existing tempDirs cleanup. No s5-fanout directory remains. The six supplied generated files remain unstaged.",
+    "git add -f staged both audit artifacts. The test commit succeeded. The artifacts remain staged and are not part of that commit.",
+    "The requested role-gate command exits 1. It rejects the fail audit and reports PROJECT_TESTS is required but unset. The failing audit remains valid evidence for Green. The orchestrator must restore PROJECT_TESTS for its next gate invocation."
+  ],
+  "commands": [
+    "~/Desktop/advantage-pr/scripts/jobs/slot check: exit 0; ok, 7 of 14 busy",
+    "git rev-parse HEAD: initially 31d8b96cf44d0f94e6494a32985949ef5e0b80d2; after the test commit 04b5f0e5aea36912cf9f989a5f119eb9e9fafa9c",
+    "git diff 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6 HEAD: exact phase diff inspected before changes",
+    "build-graph search graph.db scanBanned: no result; graph mtime 2026-08-08",
+    "heavy-run.sh npx --no-install vitest run --config scripts/vitest.config.ts -t 'S5 adversarial': exit 1; eight passed, two failed, two todo",
+    "heavy-run.sh npx --no-install vitest run --config scripts/vitest.config.ts -t 'S5 gate rules': exit 0; ten passed",
+    "heavy-run.sh npx --no-install vitest run --config scripts/vitest.config.ts: exit 1; 112 passed, three failed, two todo",
+    "heavy-run.sh npm run format:check: exit 0; 3717 files",
+    "heavy-run.sh npm run lint: exit 0",
+    "heavy-run.sh npx --no-install oxlint --config .oxlintrc.json scripts/__tests__/oxc-toolchain-gates.test.ts --max-warnings 0: exit 0",
+    "heavy-run.sh npm run typecheck: exit 1; 59 recorded diagnostics",
+    "heavy-run.sh npm run build: exit 0; root package build command",
+    "Read-only Python diagnostic comparison: 20 equal keys; zero added or removed",
+    "rg markers-consistent and A5 patterns: no matching classifier or active-plan claim",
+    "git diff --check: exit 0",
+    "git add scripts/__tests__/oxc-toolchain-gates.test.ts && git commit -m 'test(vinext-oxc): add the S5 adversarial tests' -- scripts/__tests__/oxc-toolchain-gates.test.ts: exit 0; 04b5f0e5",
+    "git notes add for 04b5f0e5: exit 0",
+    "git add -f measure/runs/vinext-oxc-toolchain_20261114/adversarial-s5-31d8b96c.json measure/runs/vinext-oxc-toolchain_20261114/adversarial-s5-31d8b96c.log: exit 0",
+    "python3 /home/daniebo/Desktop/measure/skills/measure-orchestrator/scripts/measure_interphase_checks.py role-gate --repo . --role measure-adversarial-testing --track vinext-oxc-toolchain_20261114 --phase 'Phase S5: Gate rules and CI' --baseline 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6 --log-file measure/runs/vinext-oxc-toolchain_20261114/adversarial-s5-31d8b96c.log --result-file measure/runs/vinext-oxc-toolchain_20261114/adversarial-s5-31d8b96c.json: exit 1; INFO: no heavy-run wrapper found; running gate commands directly; FAIL: audit status must be pass, got 'fail'; ADV-S5-1; FAIL: PROJECT_TESTS is required but unset"
+  ],
+  "changed_files": [
+    "scripts/__tests__/oxc-toolchain-gates.test.ts",
+    "measure/runs/vinext-oxc-toolchain_20261114/adversarial-s5-31d8b96c.json",
+    "measure/runs/vinext-oxc-toolchain_20261114/adversarial-s5-31d8b96c.log"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "retry_implementation",
+  "confidence": "high",
+  "route": "openai/gpt-6.1-sol#high",
+  "ratings": [
+    { "axis": "correctness", "score": 3, "evidence": "Adv 1 proves complete root fan-out, but adv 3 exposes two command-scan bypasses." },
+    { "axis": "test_meaning", "score": 4, "evidence": "Adv 1 uses real npm execution, and adv 3 fails after both executable preconditions pass." },
+    { "axis": "scope_discipline", "score": 5, "evidence": "Commit 04b5f0e5 adds only the S5 adversarial describe and leaves the existing cases unchanged." },
+    { "axis": "evidence_quality", "score": 5, "evidence": "Saved command logs reproduce the two scanner failures, eight passing cases, and the recorded baseline failures." }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "role": "review-b",
+  "track": "vinext-oxc-toolchain_20261114",
+  "phase": "Phase S5: Gate rules and CI",
+  "baseline_sha": "3ff2f6ea2d706c26e7b750e3202d36891f2a83d6",
+  "audited_head_sha": "31d8b96cf44d0f94e6494a32985949ef5e0b80d2",
+  "status": "pass",
+  "summary": "Security and CI risk review of 3ff2f6ea..31d8b96c found no blocking finding. The deploy job left ci.yml with no secret, permission, trigger, or deploy path moved elsewhere. cloudflare-deploy.yml is byte-identical and keeps workflow_dispatch, environment production, and both Cloudflare secrets. The format-check step adds no action and no PR-input interpolation. Root scripts add no untrusted command, network call, dependency, or lockfile change. Guardrails and npm audit figures are intact.",
+  "blocking_findings": [],
+  "nonblocking_findings": [],
+  "evidence": [
+    "Provenance: git rev-parse HEAD returns 31d8b96cf44d0f94e6494a32985949ef5e0b80d2, which equals the immutable audited HEAD. role_base_sha equals that HEAD. phase_base_sha 3ff2f6ea is an ancestor of HEAD (confirmed in jr-green-s5-d04944f4.log line 3).",
+    "Security applicability: test-strategy.md line 1929 marks Security review (Review B) as applicable for S5 because the phase removes the deploy job from ci.yml. The actual diff changes .github/workflows/ci.yml, so the audit is applicable, not not_applicable.",
+    "D7 deploy removal: git diff of ci.yml shows the 'Phase 6: Deploy' comment and the whole deploy job deleted. That deleted job held environment production, cloudflare/wrangler-action@v3, secrets.CLOUDFLARE_API_TOKEN and secrets.CLOUDFLARE_ACCOUNT_ID, and command deploy --config wrangler.jsonc.",
+    "Deploy path preserved: git rev-parse of the cloudflare-deploy.yml blob gives 0edfc43556dfe73a7b9776863c4e7af181a57e71 at both the phase base and the audited HEAD. The file is byte-identical. It keeps on.workflow_dispatch, job deploy-production, environment production, both Cloudflare secrets, and wrangler-action@v3 (cloudflare-deploy.yml lines 1-60).",
+    "No path moved: git diff --name-only over .github/ lists only ci.yml. The ci.yml file after the change has no secrets.* reference, no wrangler line, no environment: production, and no permissions: block. The file before the change had the same triggers (push master/main, pull_request, workflow_dispatch), no permissions: block, and its only secrets.* lines were inside the deleted deploy job.",
+    "No pull_request_target trigger and no top-level permissions: block appear in any workflow at HEAD (grep -rnE 'pull_request_target|^permissions:' .github/workflows/ returns no hit). node scripts/validate-ci.mjs exits 0 and reports that cloudflare-deploy.yml has deployment gating (workflow_dispatch/staging/environment).",
+    "f9e8a879 format-check step: the ci.yml diff adds only '- name: Run format check', 'run: npm run format:check', and 'env: CI: true' inside boundary-check. No new uses: line appears. All uses: entries stay actions/checkout@v4 and actions/setup-node@v4. The run line holds no ${{ }} interpolation, so PR input cannot inject script text.",
+    "Root package.json script changes: git diff shows lint and typecheck switch from scripts/architecture/run-workspace-quality.mjs to 'npm run <cap> --workspaces --if-present', and six root ws:*:typecheck fallbacks switch from 'npx tsc --noEmit --project ...' to 'npm run typecheck --prefix ...'. Each command runs a fixed local npm script. No command consumes user input, adds a network call, or adds a dependency.",
+    "No lockfile change: git diff over package-lock.json and over any path matching *lock* is empty. No dependency or lock entry changed in the range.",
+    "Guardrails intact: the AGENTS.md diff changes only the TDD line and the typecheck line. The Deploys and cloud cleanup rule (lines 138-142), the Secrets rule (lines 144-146), and the Paid spend rule (line 147) stay verbatim. The measure/workflow.md diff changes only the Before Committing quality-gate lines and adds format and typecheck commands. The '- [ ] No security vulnerabilities introduced' gate stays.",
+    "No secret in added lines: git diff --unified=0 piped through a grep for secret, token, api_key, password, credential, private_key, CLOUDFLARE, AKIA, sk-, ghp_, and bearer finds only documentation references to cloudflare-deploy.yml and Review B notes. No secret value, token, or key was added. The secrets.CLOUDFLARE_* references were in deleted lines.",
+    "npm audit: gates/s5/audit.txt line 1 and s5-gate-checks-all.log line 1 both record 'critical=0 high=9 moderate=7 low=5'. This equals the S3 and S4 values (oxc-evidence.md lines 200 and 238) and is below the merged-tree baseline high=11 (oxc-evidence.md line 165). No new high severity finding appears.",
+    "A2 consent-blind publish gate is not applicable: the range changes no application runtime, no status flip from draft to published, and no consent or anonymization artifact. No named subject is published by any added line.",
+    "A6 registry overstatement is not applicable: git diff --name-only over measure/tracks.md is empty. The range makes no registry security-state claim, so no 'resolved' claim needs an adversarial green proof.",
+    "Six generated files (four apps/*/.next/types/routes.d.ts, apps/bus-math-v2/lib/workbooks-manifest.json, measure/generated/routes.md) remain unstaged. The audit wrote no production code, test, plan, or registry file.",
+    "The shell denied 'git add -f' for the two result artifacts, so they remain on disk and uncommitted. No push was attempted."
+  ],
+  "commands": [
+    "git rev-parse HEAD -> 31d8b96cf44d0f94e6494a32985949ef5e0b80d2",
+    "git status --short -> the six expected generated files, all with ' M' and no staged entry",
+    "git diff 3ff2f6ea..31d8b96c -- .github/workflows/ci.yml -> deploy job deleted, format-check step added, no other change",
+    "git rev-parse <sha>:.github/workflows/cloudflare-deploy.yml -> 0edfc43556dfe73a7b9776863c4e7af181a57e71 at base and HEAD",
+    "git diff --name-only 3ff2f6ea..31d8b96c -- .github/ -> .github/workflows/ci.yml only",
+    "grep -nE 'secrets\\.|permissions:|on:|workflow_dispatch|pull_request|push:|environment:|wrangler|uses:' on ci.yml before and after -> no secrets, environment, or wrangler at HEAD; triggers unchanged; no permissions block in either",
+    "grep -rnE 'pull_request_target|^permissions:' .github/workflows/ -> no hit",
+    "node scripts/validate-ci.mjs -> exit 0, all CI/CD validations passed",
+    "git diff 3ff2f6ea..31d8b96c -- package.json -> script forms only, no dependency change",
+    "git diff 3ff2f6ea..31d8b96c -- package-lock.json and -- '*lock*' -> empty",
+    "git diff 3ff2f6ea..31d8b96c -- AGENTS.md measure/workflow.md -> only the named guardrail lines changed",
+    "git diff --unified=0 3ff2f6ea..31d8b96c | grep '^+' | grep secret-patterns -> only documentation references, no secret value",
+    "cat measure/runs/vinext-oxc-toolchain_20261114/gates/s5/audit.txt -> critical=0 high=9 moderate=7 low=5",
+    "git diff --name-only 3ff2f6ea..31d8b96c -- measure/tracks.md -> empty"
+  ],
+  "changed_files": [
+    ".github/workflows/ci.yml",
+    "package.json",
+    "AGENTS.md",
+    "measure/workflow.md",
+    "measure/tech-stack.md",
+    "README.md",
+    "INTEGRATION.md",
+    "apps/bus-math-v2/DEVELOPMENT.md",
+    "apps/danielson/README.md",
+    "packages/_template/README.md",
+    "measure/tech-debt.md"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "opencode-go/hy4-flash-free#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 5,
+      "evidence": "Spec D7 is met: ci.yml has no deploy job while cloudflare-deploy.yml keeps the same blob 0edfc435 and workflow_dispatch."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 4,
+      "evidence": "jr-green-s5-d04944f4.log lines 6-15 record S5 cases red first (6 failed) then green (10 passed), but the npm audit equality is evidence-based rather than test-driven."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 4,
+      "evidence": "The range edits only planned documents, scripts, and CI text; jr-green-s5-d04944f4.log lines 50-55 record one extra parity edit in quality-inventory.mjs with a handoff note."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 5,
+      "evidence": "Each audit claim in evidence cites a command result or a file:line, including the blob SHA match and gates/s5/audit.txt line 1."
+    }
+  ]
+}

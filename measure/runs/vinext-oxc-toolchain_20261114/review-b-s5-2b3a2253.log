@@ -1,0 +1,32 @@
+Measure Review B (security and data handling) log — vinext-oxc-toolchain_20261114, Phase S5: Gate rules and CI.
+Date: 2026-11-20. Route: opencode-go/hy4-flash-free#high.
+Provenance: phase_base_sha 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6; role_base_sha 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6; audited_head_sha 2b3a2253ce900bf9e74c723dc418e7690cae0d51. HEAD is current (git rev-parse HEAD matches). The phase base resolves to a commit and is an ancestor of HEAD.
+Applicability: applicable. test-strategy.md line 1929 names Review B for the ci.yml deploy removal, and the phase_base..HEAD diff changes .github/workflows/ci.yml.
+
+Audit result: pass. No blocking finding. No nonblocking finding.
+
+Checks and evidence:
+1. Delta scope. git diff --name-status 31d8b96c..2b3a2253 lists only the S5 gate test file, plan.md, oxc-evidence.md, and four added run logs. No workflow, permission, deploy, dependency, manifest, or lockfile path changed.
+2. Secret and network scan. The added-lines diff filtered for secret, token, api key, password, credential, CLOUDFLARE, network URL, fetch, curl, and install patterns finds only test string literals. Those literals are fixtures that prove the scanner detects a secret reference. No secret value, network call, or install appears.
+3. Temp folder cleanup. The new S5 adversarial fanout test at line 3359 creates a folder with os.tmpdir() and pushes it to tempDirs. The afterEach at lines 279-283 removes every registered folder with fs.rmSync recursive and force. No tracked or user file is deleted.
+4. Widened regexes. S5_TSC_CALL_RE, S5_TSC_FLAG_RE, and S5_ESLINT_CALL_RE gain one optional quote around tsc and eslint. This change only adds matches, so it cannot hide a failing call. Adv 3 proves the quoted form is detected.
+5. Re-verified ci.yml. At HEAD, grep shows only push, pull_request, and workflow_dispatch triggers, plus checkout@v4 and setup-node@v4 actions. No secrets.* reference, no environment block, no permissions block, no pull_request_target, no wrangler line, and no deploy command remains.
+6. Re-verified deploy path. The cloudflare-deploy.yml blob hash is 0edfc43556dfe73a7b9776863c4e7af181a57e71 at both the phase base and the audited HEAD. The file keeps workflow_dispatch and both Cloudflare secrets. No deploy path moved.
+7. CI validator. node scripts/validate-ci.mjs exits 0 and reports deployment gating on cloudflare-deploy.yml.
+8. Test evidence. The test file blob 3ee97109 at HEAD equals the blob at Green commit 4f095f29. jr-green-s5-r3-4f095f29.log records S5 adversarial exit 0 with 10 passed and 2 todo, and role-gate exit 0. The heavy lock was held by other sessions, so a fresh vitest run timed out at the lock wait and was killed.
+9. A2 is not applicable: no draft-to-published status flip, consent artifact, or named publication exists in the delta. A6 is not applicable: measure/tracks.md is unchanged, so no registry security claim needs a green adversarial proof.
+10. The six generated files stay unstaged. No production code, test, plan, or registry file was edited.
+11. The shell denied git add -f for the two result artifacts. The artifacts stay on disk and uncommitted. No push was attempted.
+
+MEASURE_AGENT_RESULT
+role: measure-review-b-security
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S5: Gate rules and CI
+commits: none in production; this audit writes only measure/runs/vinext-oxc-toolchain_20261114/review-b-s5-2b3a2253.{json,log}
+tests_run: git diff and grep checks over the delta and the phase range; node scripts/validate-ci.mjs exit 0; a fresh vitest run timed out at the contended heavy lock and was killed; recorded S5 adversarial result read from jr-green-s5-r3-4f095f29.log
+files_changed: measure/runs/vinext-oxc-toolchain_20261114/review-b-s5-2b3a2253.json and review-b-s5-2b3a2253.log only
+plan_updates: none (audit-only)
+known_failures: none in the audited security scope; the six generated files remain unstaged as required; a fresh test rerun was blocked by heavy-lock contention, so the Green-recorded result is used
+handoff: Security re-review passes with zero findings. The delta adds only adversarial tests, three match-widening regexes, plan and evidence notes, and run logs. No secret, network call, workflow, permission, deploy, dependency, or lockfile change. New temp folders are removed in afterEach. Earlier security results hold: ci.yml has no deploy job or secret, and cloudflare-deploy.yml is byte-identical to the base. audited_head_sha 2b3a2253 is current. The shell denied git add -f, so these two artifacts stay on disk and uncommitted. The six generated files stay unstaged. No push.
+END_MEASURE_AGENT_RESULT

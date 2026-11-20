@@ -1,0 +1,16 @@
+Role-gate exit code: 1
+Role-gate output:
+FAIL: current phase still has 1 non-deferred incomplete tasks
+
+MEASURE_AGENT_RESULT
+role: measure-review-c-ux-api
+status: blocked
+track: vinext-oxc-toolchain_20261114
+phase: Phase S5: Gate rules and CI
+commits: none
+tests_run: Wrapped S5 suites pass: 20 passed, 62 skipped, two todo. Wrapped CI validation passes. Inventory passes. Role gate exits 1.
+files_changed: Only the supplied JSON and log under measure/runs/.
+plan_updates: none
+known_failures: Role gate reports: FAIL: current phase still has 1 non-deferred incomplete tasks. F1-F4 remain record-only. The wrapper retries passed.
+handoff: Settle the concurrent ADV-S5-4 task before repeating the gate. HEAD remains current. The command interface is unchanged. Staging was denied. Facts changed: none.
+END_MEASURE_AGENT_RESULT

@@ -1,0 +1,57 @@
+Review C: Phase S5 command contract audit.
+Route: openai/gpt-6.1-sol#high
+phase_base_sha: 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6
+role_base_sha: 31d8b96cf44d0f94e6494a32985949ef5e0b80d2
+audited_head_sha: 31d8b96cf44d0f94e6494a32985949ef5e0b80d2
+The audited HEAD is current. The provisional files preceded the test runs.
+
+Verdict: PASS with three record-only findings. No implementation blocker exists.
+The JSON holds the findings, path evidence, commands, and ratings.
+Contract applicability: applicable. Strategy 18.5 names the four root script interfaces.
+Browser inspection: not applicable. The phase changes no application route or API payload.
+
+Direct checks:
+- slot check: exit 0; 7 of 14 busy.
+- S5 filter through heavy-run.sh: exit 0; ten passed, 95 skipped.
+- validate-ci.mjs through heavy-run.sh: exit 0.
+- check-quality-parity.mjs through heavy-run.sh: exit 0; 26 non-template workspaces.
+- Two architecture test files through heavy-run.sh: exit 0; fourteen passed.
+- Root format:check through heavy-run.sh: exit 0; 3717 files.
+- Root lint through heavy-run.sh: exit 0; six apps and 21 packages.
+- Root typecheck through heavy-run.sh: exit 1; all 27 workspaces ran.
+- IM3 retains 55 diagnostics. PreCalc retains four diagnostics. Green records these baseline failures explicitly.
+- Recorded file-plus-code key sets match baseline-m2 for both failing apps.
+- The four fallback apps keep tsc --noEmit. The other 23 workspace scripts use oxlint with tsrs.
+- All 24 ws:* aliases name existing app scripts. No workspace manifest changed.
+- The independent CI inventory found one unique missing script: root curriculum:check.
+- git show confirms that missing script and its CI call exist at both audit endpoints.
+- Scoped marker grep: exit 1, no matches. The unrestricted grep finds only historical and test quotations.
+- Installed versions match the new current-state table: vinext 1.4.6; oxlint 1.93.0; oxfmt 0.78.0; tsrs 0.25.0-ts7.1.0-beta.
+- The first combined lint/format call timed out after 120 seconds. Both separate reruns completed.
+
+Record-only findings for Green:
+F1 [Nit] review-c: Clarify root versus app command contexts and the four tsc fallbacks in the command documentation.
+F2 [Nit] review-c: Record the existing missing root curriculum:check command at ci.yml:266 outside S5 remediation.
+F3 [Nit] review-c: Split the two instructions in AGENTS.md:134 in a later wording correction.
+These findings hide no failure and delete no tracked or user file. The PM cap keeps them nonblocking.
+
+The audit changes only its supplied JSON and log. The six generated files remain unstaged.
+The shell denied git add -f with permission.rejected: Permission denied: shell.
+The two supplied artifacts remain on disk and uncommitted. The audit role also forbids commits.
+The orchestrator can commit the supplied artifacts.
+Facts changed: none.
+Role gate: exit 0. Exact output: PASS: review-c gate passed.
+Command: python3 /home/daniebo/Desktop/measure/skills/measure-orchestrator/scripts/measure_interphase_checks.py role-gate --repo . --role measure-review-c-ux-api --track vinext-oxc-toolchain_20261114 --phase "Phase S5: Gate rules and CI" --baseline 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6 --log-file measure/runs/vinext-oxc-toolchain_20261114/review-c-s5-31d8b96c.log --result-file measure/runs/vinext-oxc-toolchain_20261114/review-c-s5-31d8b96c.json
+
+MEASURE_AGENT_RESULT
+role: measure-review-c-ux-api
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S5: Gate rules and CI
+commits: none
+tests_run: S5 10 passed; architecture 14 passed; CI validator and parity exit 0; lint and format exit 0; typecheck exit 1 with baseline diagnostics
+files_changed: the supplied review-c JSON and log under measure/runs/
+plan_updates: none; audit only
+known_failures: baseline IM3 and PreCalc typecheck diagnostics; existing missing root curriculum:check; no new blocking failure
+handoff: Record F1-F3 for Green without S5 remediation. Role gate exit 0: PASS: review-c gate passed. Staging was denied; artifacts remain uncommitted. The six generated files stay unstaged. Facts changed: none.
+END_MEASURE_AGENT_RESULT

@@ -1,0 +1,18 @@
+Role-gate exit code: 1.
+Role-gate output:
+INFO: no heavy-run wrapper found; running gate commands directly
+FAIL: audit status must be pass, got 'fail'; ADV-S5-1 [Blocker] adversarial-testing: scripts/__tests__/oxc-toolchain-gates.test.ts:2993-2996 misses quoted tsc and ESLint executables. Adv 3 reproduces both misses at line 3453. Green must fix the scanner without changing these cases. Rationale: Strategy 18.3 requires detection of other command spellings.
+FAIL: PROJECT_TESTS is required but unset
+
+MEASURE_AGENT_RESULT
+role: measure-adversarial-testing
+status: fail
+track: vinext-oxc-toolchain_20261114
+phase: Phase S5: Gate rules and CI
+commits: 04b5f0e5
+tests_run: S5 adversarial exit 1 (8 passed, 2 failed, 2 todo); S5 gate rules exit 0 (10 passed); scripts exit 1 (112 passed, 3 failed, 2 todo); format, lint, direct test lint, and root package build exit 0; root typecheck exit 1 with 59 recorded diagnostics; role-gate exit 1
+files_changed: scripts/__tests__/oxc-toolchain-gates.test.ts; adversarial-s5-31d8b96c.json; adversarial-s5-31d8b96c.log
+plan_updates: none; the brief prohibits plan edits
+known_failures: ADV-S5-1: the scanner misses quoted tsc and ESLint executables; the scripts suite retains its accepted production-scan failure; root typecheck retains its recorded diagnostics
+handoff: Route ADV-S5-1 to Green. Preserve the two failing adv 3 cases. Keep ADV-S5-2 and ADV-S5-3 record-only. Phase base is 3ff2f6ea; role base and pre-adversarial HEAD are 31d8b96c; audited HEAD is 04b5f0e5. Restore PROJECT_TESTS before the next role-gate invocation. Rerun the adversarial gate after any implementation commit. Both audit artifacts are staged. The six generated files remain unstaged. No production file or plan task changed. No push ran.
+END_MEASURE_AGENT_RESULT

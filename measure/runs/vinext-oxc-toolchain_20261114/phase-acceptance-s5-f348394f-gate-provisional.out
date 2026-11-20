@@ -1,0 +1,2 @@
+FAIL: audit status must be pass, got 'inconclusive'; no blocking_findings provided
+GATE_EXIT=1

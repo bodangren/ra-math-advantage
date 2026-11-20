@@ -589,8 +589,9 @@ format issue, and the formatter scanned 3717 files. The two counts differ from t
 first scan by the two `workbooks-manifest.json` files that
 `**/workbooks-manifest.json` ignores (3501 and 3719 before that ignore rule).
 The format commit `dec3be20` holds those same 3499 files, zero paths that match
-an `ignorePatterns` entry, and none of the six dirty generated paths. The second
-`npm run format` run changed nothing, and `oxfmt --check` exits 0 with
+an `ignorePatterns` entry, and none of the six dirty generated paths. The first pass
+formats the tree; the second pass changes 4 files; the third pass changes none.
+`oxfmt --check` exits 0 with
 `All matched files use the correct format.`
 
 **Exact command and config.** The command is `npm run format:check` at the
@@ -771,8 +772,9 @@ this section rests on an empty collector (A5).
 - `npm run format` reaches a second-pass fixed point. The first pass formats the tree; the
   second pass changes 4 files; the third pass changes none. The fixed point is the third
   pass, and `npm run format:check` then exits 0.
-- The before-sweep logs of S4 live under the `gates/s4-before` label. A later `s4` run does
-  not overwrite them. The label is separate from the after-sweep label.
+- The S4 sweep logs live under the `gates/s4` label. No `gates/s4-before` label exists.
+  The git ref `gates/s4-before` does not resolve. The earlier claim of a separate
+  before-sweep label is withdrawn.
 - Accepted residual (Review A F8, S3): the `gates.sh` sweep has no age guard. Two overlapping
   runs in one checkout can interfere.
 - Accepted residual (adversarial F3r2, S3): a trailer-only disk-full line in the npm output
@@ -1184,7 +1186,7 @@ Phase S5 writes this section from the measured values of sections 1 to 10.
 | Format | oxfmt 0.78.0 (exact) formats 3717 files from one root `.oxfmtrc.json` with 17 ignore patterns. `npm run format:check` exits 0. |
 | Dependencies | S1 set every declared range to `^<latest>`. Section 4 lists no held package. |
 | Audit | At S4: critical 0, high 9, moderate 7, low 5. The baseline held high 11. |
-| CI | Each workflow uses Node 24. `ci.yml` runs `npm run format:check` in the boundary job, and it has no `deploy` job. `cloudflare-deploy.yml` keeps `workflow_dispatch`. |
+| CI | The workflows that set up Node use Node 24. `jsdoc-typed-params.yml` has no `setup-node` step. `ci.yml` runs `npm run format:check` in the boundary job, and it has no `deploy` job. `cloudflare-deploy.yml` keeps `workflow_dispatch`. |
 
 `oxfmt` stays at 0.78.0 exact while the registry latest is 0.79.0
 (`npm view oxfmt version`, 2026-11-19). The exact pin keeps the format output the same

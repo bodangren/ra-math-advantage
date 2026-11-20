@@ -1615,7 +1615,7 @@ adds the `format:check` step. The changed contract of S4 is the pair of root scr
 | `sortPackageJson` reorders manifests | oxfmt defaults `sortPackageJson=true`. Parse each `package.json` before and after the format. All dependency maps and script strings keep the same values. Falsifies when a value changes or a text-only gate reads a reordered key. |
 | The tool version drifts from the pin | `npx --no-install oxfmt --version` prints `0.78.0` and the lockfile has one `node_modules/oxfmt` key at that version. Record `0.79.0` as the registry latest. Falsifies when a different version is installed. |
 | Blame ignore does not work | Plan case 3 plus `git blame --ignore-revs-file .git-blame-ignore-revs -L <n>,<n> <file>` on a reformatted line. The output shows a commit older than the format commit. Falsifies when the blame shows the format commit. |
-| S4 changes CI or Measure prose | The format diff holds 5 workflow YAML files, all inside `apps/`, and S4 edits no `.github/workflows/` path in a commit. Falsifies when an S4 commit diff holds a `.github/workflows/` path. Section 18 supersedes this row for S5. |
+| S4 changes CI or Measure prose | The format diff at `dec3be20` holds six workflow YAML files: five under `.github/workflows` and one under `apps/bus-math-v2`. All six changes are format only. Section 18 supersedes this row for S5. |
 
 ### 17.4 S4 gate values and closeout
 

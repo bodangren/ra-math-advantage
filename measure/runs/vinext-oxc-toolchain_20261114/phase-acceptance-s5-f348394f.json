@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "role": "measure-phase-acceptance",
+  "track": "vinext-oxc-toolchain_20261114",
+  "phase": "Phase S5: Gate rules and CI",
+  "baseline_sha": "3ff2f6ea2d706c26e7b750e3202d36891f2a83d6",
+  "role_base_sha": "f348394f51bc144bcaa50d4155dbec7182fe2233",
+  "audited_head_sha": "f348394f51bc144bcaa50d4155dbec7182fe2233",
+  "status": "pass",
+  "summary": "Phase S5 passes acceptance at f348394f over 3ff2f6ea..f348394f (34 commits, 26 files). No blocker exists, and all nine counted S5 tasks hold [x] with a commit that resolves. The two [b] tasks stay open for the checkpoint round and the closeout steward. The seven Story S5 criteria and spec AC6, AC7, AC9, and AC10 hold at HEAD. My own runs reproduce every count that the plan states for HEAD. Five new record-only Nits join the carried list.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "PA1 [Nit] phase-acceptance: Commit 732a9d90 also changes scripts/architecture/quality-inventory.mjs, scripts/architecture/__tests__/live-quality-parity.test.mjs, and scripts/architecture/__tests__/oxlint-migration.test.mjs. No plan line, no evidence line, and no commit message names these files. Only jr-green-s5-d04944f4.log records the change. Rationale: the change is correct and needed, because check-quality-parity.mjs reports 20 missing workspaces without it. Record-only: add one plan line in the next phase.",
+    "PA2 [Nit] phase-acceptance: The S5 tests pin the rule 'no deploy on a push' only for ci.yml (case 7, adv 6) and for cloudflare-deploy.yml (adv 6). business-math-deploy.yml deploys with wrangler-action and runs only on workflow_dispatch, but no S5 case pins that trigger. plan.md:654 also calls cloudflare-deploy.yml the only deploy workflow. Rationale: AC10 holds at HEAD, because only ci.yml and jsdoc-typed-params.yml run on push, and neither deploys. A later push trigger on business-math-deploy.yml would pass every S5 case. Record-only: pin that trigger in a later test.",
+    "PA3 [Nit] phase-acceptance: oxc-evidence.md:1187 (section 11, CI row) says 'Each workflow uses Node 24'. jsdoc-typed-params.yml has no setup-node step, and S1 case 7 pins that count at zero. Rationale: AC9 needs Node 22 or later, and the jsdoc workflow runs a bash guard and jq, so no failure hides. The sentence overstates one fact. Record-only: reword the sentence.",
+    "PA4 [Nit] phase-acceptance: Root `npm run typecheck` exits 1 at HEAD with 59 baseline diagnostics: IM3 55 and PreCalc 4. measure/workflow.md:114 says 'Type check passes', and the && chain at measure/workflow.md:136 stops at typecheck while those diagnostics remain. AGENTS.md:135 names neither the four tsc fallback apps nor the baseline. Rationale: spec AC3 says 'no new failure', so exit 1 is legal under the baseline rule, and plan.md:730 records it. This extends Review C F1. Record-only: add one baseline sentence to the guardrail text.",
+    "PA5 [Nit] phase-acceptance: S5 case 8 (scripts/__tests__/oxc-toolchain-gates.test.ts:3258) holds a mutant that evaluates the literal expression 20 >= 22. The mutant does not run the scan code. Rationale: no vacuous pass exists today, because S1 case 7 pins the setup-node step counts and HEAD holds nine node-version steps. An edit of case 8 alone could still pass an empty scan. Record-only: run the mutant through the scan."
+  ],
+  "evidence": [
+    "Provenance: `git rev-parse HEAD`, audited_head_sha, and role_base_sha all equal f348394f51bc144bcaa50d4155dbec7182fe2233. The value did not change during my runs. The phase base 3ff2f6ea is an ancestor of HEAD. The range holds 34 commits and 26 files. `git diff --check` over the range exits 0.",
+    "Prerequisite binding: review-a-s5-f348394f, review-b-s5-f348394f, review-c-s5-f348394f, and adversarial-s5-r3-f348394f each hold audited_head_sha f348394f. Each one holds status pass, retry_recommendation none, and confidence high. The earlier adversarial results r1 (04b5f0e5) and r2 (807bd098) hold status fail, and r3 supersedes them. The last Green result is jr-green-s5-r4-526c0ea2.log. The one later commit, f348394f, touches only a measure/runs log. red-s5-9879f0a0.log records 6 failed and 4 passed cases, and I needed no test-only exception.",
+    "Task map: `phase_counts` of the role gate gives total 9, complete 9, in_progress 0, incomplete 0, and complete_with_sha 9. Each of the 14 commits that the plan names resolves with `git log -1` to the planned subject. Two [b] tasks stay open: the manual verification at plan.md:752 and the closeout at plan.md:761. Both carry deferred:closeout-steward. I do not count either one as done.",
+    "Story S5 criteria 1 and 2: AGENTS.md:134-135 name `npm run format:check`, `npm run lint`, and `npm run typecheck`. The file holds no `npx tsc` line. The Quality Gates block of measure/workflow.md (lines 113-115) names the three scripts, and line 136 chains them. The AGENTS.md diff changes only those two guardrail lines. A12 does not apply, because measure/automation-supervisor.py no longer exists (removed in f19620f8).",
+    "Story S5 criterion 3: the root scripts `lint`, `typecheck`, `format`, and `format:check` hold the target values. The values are `npm run lint --workspaces --if-present`, `npm run typecheck --workspaces --if-present`, `oxfmt`, and `oxfmt --check`. The six ws:*:typecheck scripts keep no tsc call. The package.json diff changes only these eight script lines. It changes no dependency field.",
+    "Story S5 criteria 4 and 5, file ci.yml: it has the step 'Run format check' (`npm run format:check`) in boundary-check, after 'Install dependencies'. It has six jobs, no deploy job, and no secrets, wrangler, environment, or permissions line. The six jobs are packages, boundary-check, im3, bm2, e2e-im3, and app-foundations. The cloudflare-deploy.yml blob 0edfc435 is equal at the phase base and at HEAD.",
+    "Story S5 criteria 4 and 5, other workflows: a js-yaml parse of the five workflows gives these triggers. ci.yml and jsdoc-typed-params.yml run on push, pull_request, and workflow_dispatch. business-math-deploy.yml and cloudflare-deploy.yml run only on workflow_dispatch. scale-benchmarks.yml runs on workflow_dispatch and schedule. `grep -n -i` for tsc and eslint over .github/workflows finds nothing (exit 1). Every setup-node step uses Node 24 or 24.4.0.",
+    "Story S5 criteria 6 and 7: measure/tech-debt.md has 46 lines (limit 50). Line 46 is the Open row 'Scale Benchmarks workflow fails each week'. oxc-evidence.md has 11 sections with bodies of 65 to 37,355 characters. Section 11 holds the main results, the speed values, the blocking gaps, and a 7-step order for other repositories. `git grep` for the planned marker of this track finds nothing outside measure/tracks, measure/archive, measure/runs, and the S5 test file.",
+    "Versions: the tech-stack.md table (lines 13-26) matches the install. vinext is ^1.4.5 (installed 1.4.6), oxlint is ^1.79.0 (installed 1.93.0), oxfmt is 0.78.0 (exact), and tsrs is 0.25.0-ts7.1.0-beta (exact). typescript is 7.0.2, vite is 8.3.8, and react is 19.3.1. The six apps declare vite ^8.3.8 and react ^19.3.1, and four apps declare typescript ^7.0.2. No manifest declares next, and the root has no overrides.",
+    "Section 11 numbers match sections 5 and 7. Build ratios run from 0.34 (BM2, line 420) to 0.59 (PreCalc, line 419). The tsc 7.0.2 type-check ratios run from 0.13 (BM2) to 0.22 (IM1). The tsrs ratios run from 0.23 (IM2) to 1.47 (_template). The format check takes 0.29 s (line 581). Section 7 lists 38 IM3 rows (line 681) and 69 missed rows (line 695).",
+    "Script forms of the 27 workspace manifests: 26 lint scripts run oxlint with the root config, and packages/_template holds one echo stub. 23 typecheck scripts run tsrs. 4 typecheck scripts run `tsc --noEmit` (BM2, IM1, IM3, PreCalc).",
+    "My tests at HEAD ran through heavy-run.sh with --maxWorkers=1. The S5 gate rules filter gives 10 passed and 111 skipped, exit 0. The full verbose scripts suite gives 'Tests 1 failed | 118 passed | 2 todo (121)'. The one failure is the title 'production scan reports the honest count for the current repo state' in remediate-concept-blueprints.test.ts (S1 Q3). The wrapper line for the vitest exit code printed an empty value. I read the result from the summary line: one failed test means exit 1.",
+    "The 14 tests of live-quality-parity.test.mjs and oxlint-migration.test.mjs pass under `node --test`, exit 0. These tests pin the root script values, so the quality-inventory.mjs change keeps the parity check honest.",
+    "Passing cases by describe in the verbose run, part 1: S1 vinext 1.x 11, S1 adversarial 5, S2 oxlint 7, S2 adversarial 13, and S3 tsrs 8. Part 2: S3 adversarial 9, S4 oxfmt 5, S5 gate rules 10, S5 adversarial 10, and S5 escaped-source adversarial 4. The three S5 describes total 24 cases.",
+    "Other cases in the verbose run: vinext-oxc-gates-script.test.ts holds 26 passing cases, including 5 of S3 adversarial and 2 of S1 adversarial. remediate-concept-blueprints.test.ts holds 10 passing cases and the 1 known failure. S5 adversarial also holds 2 todo entries. They record the debt of ADV-S5-2 and ADV-S5-3. No stale intentional-red case remains.",
+    "Root commands at HEAD: `npm run lint` exits 0 and visits 27 workspaces. `npm run format:check` exits 0 on 3717 files. `npm run typecheck` exits 1 with 59 error TS lines and 20 unique file-plus-code keys. All of them sit in apps/integrated-math-3 (55) and apps/pre-calculus (4). The 21 package workspaces still ran after the two failures. The two typecheck logs of gates/s5 hold the same 55 and 4 lines as baseline-m2.",
+    "Light gates at HEAD: `node scripts/validate-ci.mjs` exits 0 and prints 'All CI/CD validations passed'. `node scripts/check-monorepo-boundaries.mjs` exits 0 (26 workspaces, 620 internal imports, package DAG acyclic). `node scripts/architecture/check-quality-parity.mjs` exits 0 (26 workspaces, each exactly once).",
+    "Gate re-derivation: I extracted DISK_FULL_RE and key() from gates.sh and compared each gates/s5 log with its baseline-m2 log. 113 of 114 logs have a peer. typecheck-bus-math-v2.log has none, because the baseline has no BM2 typecheck job, and its exit is 0. The comparison gives 0 new keys in the 6 failing test logs, the 2 failing typecheck logs, and the 7 step logs. It gives 14 new keys in 6 build logs that exit 0: asset names that match the key pattern and one danielson INEFFECTIVE_DYNAMIC_IMPORT line. gates.sh:133-139 compare only a job that exits non-zero, so the gate ignores those 14 keys.",
+    "Exit files: lint.exit, test.exit, and build.exit equal baseline-m2. Each of the four exit files has 27 lines and the same workspace set as baseline-m2. typecheck.exit differs in 3 workspaces, and each change is an improvement: BM2 n/a to 0, IM3 2 to 1, PreCalc 2 to 1. The step next-absent moves from 1 to 0. audit.txt gives critical=0 high=9 moderate=7 low=5 against the baseline critical=0 high=11 moderate=6 low=5.",
+    "Counts in the gates/s5 test logs equal baseline-m2 or improve. BM2 gives 7 failed and 2688 passed, IM1 54 failed and 427 passed, and PreCalc 52 failed and 6134 passed. IM3 gives 218 failed and 6845 passed, one more pass than the baseline, from 8337aa23. math-content gives 2 failed against 3. step-scripts-suite.log gives 1 failed, 118 passed, and 2 todo. step-audit-suites.log gives 5 failed and 187 passed of 192.",
+    "Sweep age: the typecheck and build logs of gates/s5 date from 01:36 to 01:39 on 2026-11-20. The last workspace-file commit, 8337aa23, is at 01:07. The lint logs date from 00:00, before the two test edits 09ca840d (00:37) and 8337aa23. My own root lint run at HEAD (exit 0, 27 workspaces) covers those edits. The test logs date from 11:53 to 13:28, and the two suite step logs from 13:30 and 13:39. `git diff --name-only 87e8a165..HEAD` lists no workspace file.",
+    "A3 holds. `grep -nE` for the digit-only count recipe over the five changed test files gives no hit. The S5 cases compare labeled integers. Adv 1 asserts 27 workspaces. Case 8 asserts `Number.isInteger` for each node-version major. Case 9 asserts the ws:* key count and a mutant hit count of 3.",
+    "A4 holds. S5 changes no marker classifier. Case 5 closes a dangling-needs mutant, and case 6 checks a non-empty folder, the `git grep` exit 1, and a seeded positive control. Case 7 reads the parsed job keys. Case 9 names its one path exclusion with a sentinel and runs three seeded mutants through the scan. Case 8 relies on the S1 case 7 sentinels (PA5).",
+    "A5 holds. The A5 recipe, run as `grep -nE` with the same pattern, gives no hit in plan.md, oxc-evidence.md, or test-strategy.md. The count at plan.md:732 (104 passed of 105) describes the Verify run at 87e8a165. plan.md:742 and :751 hold the later counts. Each numeric claim at plan.md:730-753 matches a gates log or one of my runs. The record errors of Review A F1 to F3 are not pass-count claims.",
+    "A6 holds. The phase diff changes measure/tracks.md in one inserted line (244), and that line claims no resolved item. The A6 recipe gives one unrelated hit at line 1343 of an unchanged entry. Line 244 is stale, not overstated. It says Green owns the ADV-S5-4 fix after cb14a046 fixed it (Review A F6).",
+    "A7 holds. gates.sh is not in the phase diff. I read the three S5 regexes from the test file at run time. They hit 21 of 21 real call forms, including forms next to never, do not, forbidden, and prohibited. They hit none of 15 bare-word controls. The A7 recipe over the changed test files gives no hit.",
+    "Missing-caller check: grep for run-workspace-quality, capability lint, and ws:*:typecheck finds four architecture files, four audit fixtures, README.md, INTEGRATION.md, package.json, and historical track documents. The architecture files are the runner, quality-inventory.mjs, and two tests that S5 updated or that accept both forms. The audit fixtures are data and did not change. README.md and INTEGRATION.md list the six ws:*:typecheck scripts, which still exist. The only workflow that calls the root `npm run lint` is business-math-deploy.yml:38. No test that pins the old root script text fails: the audit-suites step holds 0 new keys, and the 14 architecture tests pass.",
+    "Review A F1 holds: the gates/s4-before folder is absent from measure/runs/vinext-oxc-toolchain_20261114/gates. F2 holds: `git show dec3be20` lists five files under .github/workflows and one under apps/bus-math-v2. F3 holds: oxc-evidence.md:593-594 contradicts 771-773. F4 holds: apps/integrated-math-2/package.json:16 runs `tsc --noEmit -p convex/tsconfig.json`. F5 holds: case 3 checks only tsc in the ws:* values, and adv 4 scans every manifest script. F6 holds: tracks.md:244 is stale.",
+    "Other items re-checked. Review C F2 holds, because curriculum:check is absent from the root scripts and present at line 261 of the phase-base ci.yml. ADV-S5-5 holds: the form with a quoted eslint name and a quoted src argument gives no hit. A folded YAML scalar that splits npx --no-install, tsc, and --noEmit over three lines gives no line hit, but it resolves to a real call. No workflow file holds the word tsc or eslint, so no live instance exists. ADV-S5-6 holds: gates.sh:69 is the key() grep that keeps any line with the word error.",
+    "S4 carry items 1 to 8 of strategy 18.7 are present at oxc-evidence.md:246-249, plan.md:518, plan.md:479 with oxc-evidence.md:598, plan.md:550 with oxc-evidence.md:771-773, plan.md:473-475, test-strategy.md:1618, oxc-evidence.md:774-775, and oxc-evidence.md:776-781. Items 6 and 7 carry the false statements of Review A F2 and F1, because the strategy text prescribed them. I do not class F1 to F3 as A5, because they are not pass-count claims. The orchestrator ruled them record-only.",
+    "Scope: no dependency field, lockfile, supervisor file, or fixture changed in the range. origin/master is 5ca9187b (measure(plan): mark Phase S4 complete), so no push occurred. Git notes exist on 3 of the 34 commits (04b5f0e5, c0ea258e, cb14a046), and the S4 range holds none.",
+    "Role gate: measure_interphase_checks.py:1274 and :1276 run the dispositions check and the result-block check for each role. Lines 1342-1363 run `passing_audit_feedback` and the plan counts for phase-acceptance. Lines 1364-1365 run PROJECT_TESTS only for adversarial-testing. The gate of this role takes seconds and cannot fail on the ADV-S5-6 queue warning. The run on the provisional file failed only on 'audit status must be pass, got inconclusive'.",
+    "Heavy queue: my heavy jobs waited behind jobs of other projects. The output of one job holds a 'heavy-run: lock wait over 600 s' line that quotes the holder command. This is the line class of ADV-S5-6, and it did not reach a gate.",
+    "Brief check: the brief names jr-green-s5-31d8b96c.log, and that file does not exist. The Green log is jr-green-s5-d04944f4.log, and commit 31d8b96c edited only that file. The A3, A5, A6, and A7 recipes of measure/anti-patterns.md use `rg -nE`. ripgrep exits 2 with 'unknown encoding', so I ran the same patterns with `grep -nE`.",
+    "Artifacts: I wrote only files under measure/runs/vinext-oxc-toolchain_20261114/. I used no shell redirection. The shell guard denied `git add -f` for the two result artifacts, as in Review B and Review C. The six generated files stay unstaged, and the adversarial artifacts stay staged."
+  ],
+  "commands": [
+    "~/Desktop/advantage-pr/scripts/jobs/slot check: exit 0, ok",
+    "git rev-parse HEAD; git merge-base --is-ancestor 3ff2f6ea HEAD; git log --oneline 3ff2f6ea..HEAD; git diff --name-only 3ff2f6ea..HEAD; git diff --check 3ff2f6ea..HEAD",
+    "git log -1 --format='%h %s' for 732a9d90 f9e8a879 4f73155b f54a49ca bfef104b 9879f0a0 2b2e7ff1 b8733002 87e8a165 09ca840d 8337aa23 c0ea258e cb14a046 c64dfddd: all resolve to the planned subject",
+    "python3 -I (import of phase_counts from measure_interphase_checks.py): (9, 9, 0, 0, 9)",
+    "heavy-run.sh -c 'npx vitest run --config scripts/vitest.config.ts --maxWorkers=1 -t S5 gate rules': 10 passed, 111 skipped, exit 0",
+    "heavy-run.sh -c 'npx vitest run --config scripts/vitest.config.ts --maxWorkers=1 --reporter=verbose | grep': Tests 1 failed | 118 passed | 2 todo (121)",
+    "heavy-run.sh -c 'node --test scripts/architecture/__tests__/live-quality-parity.test.mjs scripts/architecture/__tests__/oxlint-migration.test.mjs': 14 passed, exit 0",
+    "heavy-run.sh -c 'CI=true npm run lint': exit 0, 27 workspaces",
+    "heavy-run.sh -c 'CI=true npm run typecheck': exit 1, 59 error TS lines, 20 unique keys, IM3 and PreCalc only",
+    "npm run format:check: exit 0, 3717 files",
+    "node scripts/validate-ci.mjs; node scripts/check-monorepo-boundaries.mjs; CI=true node scripts/architecture/check-quality-parity.mjs: each exit 0",
+    "eval of DISK_FULL_RE and key() extracted from gates.sh, then comm -13 over 113 log pairs of gates/s5 and gates/baseline-m2: 0 new keys in failing jobs and steps",
+    "diff of the exit, steps, audit, and test-summary lines of gates/s5 against gates/baseline-m2",
+    "grep -nE detectors for A3, A5, A6, and A7 over the changed tests, plan.md, oxc-evidence.md, test-strategy.md, and measure/tracks.md",
+    "node -e probes: workflow trigger and node-version parse with js-yaml; evidence section lengths; installed and declared versions; script-form counts of the 27 manifests; the three S5 regexes read from the test file against 21 real forms and 15 controls",
+    "git show --name-only dec3be20; ls measure/runs/vinext-oxc-toolchain_20261114/gates; git rev-parse 3ff2f6ea:.github/workflows/cloudflare-deploy.yml HEAD:.github/workflows/cloudflare-deploy.yml; git notes list; git rev-parse origin/master",
+    "git add -f for the two result artifacts: denied by the shell guard (permission.rejected)",
+    "Role gate on the provisional file (background): exit 1, only 'audit status must be pass, got inconclusive'",
+    "Role gate on the final files (background): output and exit code in phase-acceptance-s5-f348394f-gate.out and phase-acceptance-s5-f348394f-gate.exit"
+  ],
+  "changed_files": [
+    "measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s5-f348394f.json",
+    "measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s5-f348394f.log",
+    "measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s5-f348394f-gate-provisional.out",
+    "measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s5-f348394f-gate-provisional.exit",
+    "measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s5-f348394f-gate.out",
+    "measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s5-f348394f-gate.exit"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "claude-code/claude-sonnet-5-5#max",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 4,
+      "evidence": "The S5 gate rules filter gives 10 passed and root `npm run lint` exits 0, but the record errors of Review A F1 to F3 remain."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 4,
+      "evidence": "Each claim has a failing-first case (red-s5-9879f0a0.log gives 6 failed cases), but the S5 case 8 mutant checks a literal (PA5)."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 4,
+      "evidence": "The 26-file diff is the planned change plus the needed quality-inventory.mjs change inside 732a9d90 (PA1)."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 4,
+      "evidence": "Each count at plan.md:730-753 reproduces in my runs, but oxc-evidence.md:774 names a gates/s4-before folder that does not exist."
+    }
+  ],
+  "reviewer_ratings": [
+    {
+      "reviewer_role": "review-a",
+      "reviewer_route": "openai/gpt-6.1-sol#high",
+      "agreed": true,
+      "score": 5,
+      "evidence": "I re-checked F1, F2, F3, F4, F5, and F6, and its 118 passed, 1 failed, 2 todo reproduces in my run."
+    },
+    {
+      "reviewer_role": "review-b",
+      "reviewer_route": "opencode-go/hy4-flash-free#high",
+      "agreed": true,
+      "score": 4,
+      "evidence": "The no-finding verdict holds (the cloudflare-deploy.yml blob is equal at base and HEAD), but the review used the Green log for test proof."
+    },
+    {
+      "reviewer_role": "review-c",
+      "reviewer_route": "openai/gpt-6.1-sol#high",
+      "agreed": true,
+      "score": 4,
+      "evidence": "F2 reproduces and its 24 S5 cases pass in my full-suite run, but I did not re-count the ASD-STE100 limits of F3 and F4."
+    },
+    {
+      "reviewer_role": "adversarial",
+      "reviewer_route": "openai/gpt-6.1-sol#high",
+      "agreed": true,
+      "score": 5,
+      "evidence": "ADV-S5-5 and ADV-S5-6 reproduce, and its retry result of 118 passed, 1 known failed, 2 todo matches my full-suite run."
+    }
+  ]
+}

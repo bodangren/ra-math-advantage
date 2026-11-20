@@ -1,0 +1,31 @@
+Measure Review B (security and data handling) log — vinext-oxc-toolchain_20261114, Phase S5: Gate rules and CI.
+Date: 2026-11-20. Route: opencode-go/hy4-flash-free#high.
+Provenance: phase_base_sha 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6; role_base_sha 31d8b96cf44d0f94e6494a32985949ef5e0b80d2; audited_head_sha 31d8b96cf44d0f94e6494a32985949ef5e0b80d2. HEAD is current (git rev-parse HEAD matches). role_base_sha equals the audited HEAD. The phase base is an ancestor of HEAD (jr-green-s5-d04944f4.log line 3).
+Applicability: applicable. test-strategy.md line 1929 names Review B for the ci.yml deploy removal, and the diff changes .github/workflows/ci.yml.
+
+Audit result: pass. No blocking finding. No nonblocking finding.
+
+Checks and evidence:
+1. D7 deploy removal. The ci.yml diff deletes the 'Phase 6: Deploy' comment and the whole deploy job. The deleted job held environment production, cloudflare/wrangler-action@v3, secrets.CLOUDFLARE_API_TOKEN, secrets.CLOUDFLARE_ACCOUNT_ID, and 'deploy --config wrangler.jsonc'. No deploy step remains in ci.yml.
+2. Sole deploy path intact. The cloudflare-deploy.yml blob hash is 0edfc43556dfe73a7b9776863c4e7af181a57e71 at both base and HEAD. The file keeps workflow_dispatch, job deploy-production, environment production, both Cloudflare secrets, and wrangler-action@v3. Only ci.yml changed under .github/. No permission, trigger, secret, or deploy path moved. ci.yml has no permissions: block before or after; triggers are unchanged; no pull_request_target exists in any workflow.
+3. Format-check step (f9e8a879). The diff adds only the step name, 'run: npm run format:check', and 'env: CI: true'. No new uses: line; all actions stay checkout@v4 and setup-node@v4. The run line holds no ${{ }} interpolation, so PR input cannot inject script text.
+4. Root package.json. lint and typecheck now use 'npm run <cap> --workspaces --if-present'. Six root ws:*:typecheck fallbacks now use 'npm run typecheck --prefix ...' instead of 'npx tsc --noEmit --project ...'. No untrusted input, network call, dependency, or lockfile change. package-lock.json is unchanged.
+5. Guardrails. AGENTS.md changes only the TDD and typecheck lines; the Secrets, Deploys and cloud cleanup, and Paid spend rules stay verbatim (lines 138-147). measure/workflow.md changes only the quality-gate and command lines; the security-vulnerability gate stays.
+6. Secret scan. The added-lines grep for secret-like tokens finds only documentation references to cloudflare-deploy.yml and Review B notes. No secret value was added.
+7. npm audit. gates/s5/audit.txt line 1 and s5-gate-checks-all.log line 1 record critical=0 high=9 moderate=7 low=5. This equals S3 and S4 and is below the merged-tree baseline high=11. No new high.
+8. A2 is not applicable: no draft-to-published status flip, consent artifact, or named publication exists in the range. A6 is not applicable: measure/tracks.md is unchanged, so no registry security claim needs a green adversarial proof.
+9. node scripts/validate-ci.mjs exits 0 and reports deployment gating on cloudflare-deploy.yml.
+10. The six generated files stay unstaged. No production code, test, plan, or registry file was edited.
+
+MEASURE_AGENT_RESULT
+role: measure-review-b-security
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S5: Gate rules and CI
+commits: none in production; this audit writes only measure/runs/vinext-oxc-toolchain_20261114/review-b-s5-31d8b96c.{json,log}
+tests_run: git diff and grep checks over 3ff2f6ea..31d8b96c; node scripts/validate-ci.mjs exit 0; audit figures read from gates/s5/audit.txt
+files_changed: measure/runs/vinext-oxc-toolchain_20261114/review-b-s5-31d8b96c.json and review-b-s5-31d8b96c.log only
+plan_updates: none (audit-only)
+known_failures: none in the audited security scope; the six generated files remain unstaged as required
+handoff: Security audit passes with zero findings. Deploy removal preserves the only deploy path in the byte-identical cloudflare-deploy.yml. No secret, permission, trigger, dependency, lockfile, or guardrail regression. audited_head_sha 31d8b96c is current. The shell denied git add -f, so these two artifacts stay on disk and uncommitted. The six generated files stay unstaged. No push.
+END_MEASURE_AGENT_RESULT

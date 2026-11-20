@@ -1,0 +1,12 @@
+MEASURE_AGENT_RESULT
+role: measure-review-a-correctness
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S5: Gate rules and CI
+commits: none
+tests_run: heavy-run S5 filter exit 0, 20 passed and 2 todo; full scripts suite exit 1, 114 passed and 1 accepted baseline failure
+files_changed: measure/runs/vinext-oxc-toolchain_20261114/review-a-s5-2b3a2253.json and .log
+plan_updates: none
+known_failures: accepted baseline failure; two todo cases; optional fixture probe did not execute; role gate exit 1: FAIL: current phase still has 1 non-deferred incomplete tasks
+handoff: The immutable audit passes. F1-F5 remain record-only. Staging was denied; both artifacts remain on disk. The orchestrator must rerun the gate after the concurrent ADV-S5-4 task reaches a valid state. The six generated files remain unstaged. Facts changed: none.
+END_MEASURE_AGENT_RESULT

@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "role": "review-b",
+  "track": "vinext-oxc-toolchain_20261114",
+  "phase": "Phase S5: Gate rules and CI",
+  "baseline_sha": "3ff2f6ea2d706c26e7b750e3202d36891f2a83d6",
+  "audited_head_sha": "f348394f51bc144bcaa50d4155dbec7182fe2233",
+  "status": "pass",
+  "summary": "Security re-review of the delta 2b3a2253..f348394f found no finding. The delta adds four escaped-source adversarial cases, three match-widening regexes, one test-only fix commit, plan and evidence notes, a registry note, and one run log. All spawned commands use fixed literals. No secret, network install, workflow, permission, deploy, dependency, or lockfile change appears. Earlier security results hold at the new HEAD. The role gate passed with exit code 0.",
+  "blocking_findings": [],
+  "nonblocking_findings": [],
+  "evidence": [
+    "Provenance: git rev-parse HEAD returns f348394f51bc144bcaa50d4155dbec7182fe2233, which equals the immutable audited HEAD and role base. The phase base 3ff2f6ea resolves to a commit and is an ancestor of HEAD. The prior run 2b3a2253 is an ancestor of HEAD.",
+    "Security applicability: test-strategy.md lines 133 and 1929 mark Review B applicable for S5 because the phase removes the deploy job from ci.yml. The phase_base..HEAD diff changes .github/workflows/ci.yml.",
+    "Delta scope: git diff --name-status 2b3a2253..f348394f lists five paths: the S5 gate test file, plan.md, tracks.md, oxc-evidence.md, and one added run log. No workflow, permission, deploy, dependency, manifest, or lockfile path is in the delta.",
+    "Delta commits: five commits touch the range. c0ea258e adds four failing cases. 807bd098 and 526c0ea2 record plan notes. cb14a046 fixes the scanner. f348394f adds the Green round 4 log.",
+    "Scanner fix location: s5ScanCommands is a local test helper at line 3028 of the test file. The fix cb14a046 changes only that test file. No production source file changed in this delta.",
+    "Fixed-string spawn: adv 7 calls spawnSync('sh', ['-c', versionCommand]) with one of two fixed literals: npx --no-install \"tsc\" --version or npm exec -- \"eslint\" --version. adv 8 calls spawnSync(process.execPath, ['--eval', sourceFor(versionCommand)]) where sourceFor wraps a fixed literal with JSON.stringify. No user input, no secret, and no network install feed these calls.",
+    "No file deletion: the four new cases only run version commands and scan in-memory strings. They create no temp folder and delete no tracked or user file.",
+    "Widened regexes: S5_TSC_CALL_RE, S5_TSC_FLAG_RE, and S5_ESLINT_CALL_RE gain one optional backslash before the optional quote. This change only adds matches, so it cannot hide a failing call. The Green round 4 log records the A7 bare-word check as PASS.",
+    "Secret and network scan: added lines filtered for secret, token, api key, password, credential, CLOUDFLARE, fetch, curl, http URL, and install patterns return no match.",
+    "Re-verified ci.yml at HEAD: grep finds no secrets.* reference, no environment block, no permissions block, no pull_request_target, no wrangler line, and no deploy command. Only push, pull_request, and workflow_dispatch triggers and checkout@v4 and setup-node@v4 actions remain.",
+    "Re-verified deploy path: the cloudflare-deploy.yml blob hash is 0edfc43556dfe73a7b9776863c4e7af181a57e71 at both the phase base and the audited HEAD. The file keeps workflow_dispatch and both Cloudflare secrets.",
+    "Test evidence: jr-green-s5-r4-526c0ea2.log records the targeted Red command with 4 failed before the fix, then 4 passed for the escaped-source filter, 10 passed and 2 todo for S5 adversarial, 10 passed for S5 gate rules, 118 passed with 1 known production-scan failure and 2 todo for the full scripts suite, format:check exit 0, lint exit 0, and role-gate exit 0.",
+    "A2 consent-blind publish gate is not applicable: the delta changes no application runtime, no draft-to-published status flip, and no consent or anonymization artifact. No named subject is published.",
+    "A6 registry overstatement is not applicable: the tracks.md delta records an open defect and names Green as the owner. It does not claim a security state is resolved. The ADV-S5-4 adversarial proof is green in the Green round 4 log, so the record does not outrun the implementation.",
+    "The six generated files stay unstaged. The audit edits no production code, test, plan, or registry file.",
+    "My targeted vitest rerun waited on the shared heavy lock held by another job and was stopped. I used the Green recorded failing-first and green results as the test evidence.",
+    "The shell denied git add -f for the two result artifacts. They stay on disk and uncommitted. The six generated files stay unstaged. No push was attempted.",
+    "The role gate passed with exit code 0 and printed PASS: review-b gate passed."
+  ],
+  "commands": [
+    "git rev-parse HEAD -> f348394f51bc144bcaa50d4155dbec7182fe2233",
+    "git rev-parse --verify 3ff2f6ea^{commit} and f348394f^{commit} -> both resolve",
+    "git merge-base --is-ancestor 3ff2f6ea HEAD -> YES; 2b3a2253 HEAD -> YES",
+    "git diff --name-status 2b3a2253..f348394f -> test file, plan.md, tracks.md, oxc-evidence.md, one added run log",
+    "git log --oneline 2b3a2253..f348394f -> c0ea258e, 807bd098, cb14a046, 526c0ea2, f348394f",
+    "grep -nE secrets|permissions|wrangler|deploy|pull_request_target|environment .github/workflows/ci.yml -> no match",
+    "git rev-parse <sha>:.github/workflows/cloudflare-deploy.yml -> 0edfc435 at base and HEAD",
+    "git diff --unified=0 2b3a2253..f348394f | grep '^+' | grep secret/network patterns -> no match",
+    "git diff --name-only 2b3a2253..f348394f | grep workflow/lockfile/dependency -> no match",
+    "sed -n 3621,3677p scripts/__tests__/oxc-toolchain-gates.test.ts -> adv 7 and adv 8 use fixed literals",
+    "cat measure/runs/vinext-oxc-toolchain_20261114/jr-green-s5-r4-526c0ea2.log -> 4 failed before fix, 4 passed after, role-gate exit 0"
+  ],
+  "changed_files": [
+    "scripts/__tests__/oxc-toolchain-gates.test.ts",
+    "measure/tracks/vinext-oxc-toolchain_20261114/plan.md",
+    "measure/tracks.md",
+    "measure/tracks/vinext-oxc-toolchain_20261114/oxc-evidence.md",
+    "measure/runs/vinext-oxc-toolchain_20261114/jr-green-s5-r4-526c0ea2.log"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "opencode-go/hy4-flash-free#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 5,
+      "evidence": "The regex widening only adds matches and stays inside the local test helper at line 3028; the Green round 4 log records 4 escaped-source cases passing after failing first."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 5,
+      "evidence": "jr-green-s5-r4-526c0ea2.log records the targeted Red command with 4 failed before the fix and 4 passed after, and the A7 bare-word check as PASS."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "The delta touches one test file, three track documents, and one run log, with no workflow, permission, secret, or lockfile change."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 5,
+      "evidence": "Each claim cites a command result or a file line, including blob SHA 0edfc435, the fixed-literal source at lines 3621-3677, and the Green log command results."
+    }
+  ]
+}

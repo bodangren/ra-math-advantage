@@ -1,0 +1,111 @@
+Final verdict: pass. The authorized infrastructure retry exits 0 at unchanged HEAD f348394f.
+The initial provisional verdict was pass after the direct tests.
+phase_base_sha: 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6
+role_base_sha and pre-adversarial HEAD: f348394f51bc144bcaa50d4155dbec7182fe2233
+
+Direct verification:
+- The escaped-source filter exits 0: 4 passed.
+- The adversarial filter exits 0: 10 passed and 2 todo.
+- The gate filter exits 0: 10 passed.
+- The full configured scripts suite exits 1: 118 passed, 1 failed, and 2 todo.
+- Only the recorded remediate-concept-blueprints production-scan case fails.
+- All final commands run through heavy-run.sh with one worker and named files.
+- Dots in the filter patterns match the spaces in the requested titles.
+- Green changed only the three regexes and their explanatory comment in the test file.
+- Every S5 case body is byte-identical to 807bd098.
+- The 49-entry fixture is byte-identical. Green added no path exclusion.
+- No implementation or test commit makes the parallel reviews stale.
+
+Scratch probe output:
+S5 case bodies: byte-identical
+fixture: byte-identical; entries=49
+controls: 12 of 12 detected (shell, YAML, JavaScript; both quote types)
+A7: 3 filter-word hits preserved; 3 bare prose controls clear
+Quoted argument: npm exec -- "eslint" "src"; scanner hits=0.
+Folded YAML: run: >- with separate npx, "tsc", and --noEmit lines; scanner hits=0.
+js-yaml resolves that scalar to: npx --no-install "tsc" --noEmit.
+Neither residual occurs in the bounded live-file search.
+Neither residual hides a current failure or deletes a file.
+ADV-S5-5 stays on the next-phase list under the PM cap.
+No scratch file was added to the repository.
+
+First role-gate attempt:
+The gate runs detached with an exit file. Runner PID: 962582.
+PROJECT_GATE_TIMEOUT_SECONDS=14400 prevents the earlier one-hour timeout.
+The first 10-minute wait ended with zero workspace results. The heavy queue remains occupied.
+The bus-math-v2 job records exit 1 after 6818 seconds, including queue time.
+It reports 2688 passed, 7 failed, and one error. These are baseline diagnostics.
+The symmetric key comparison adds only the heavy-run queue warning.
+That warning quotes another command containing the text Unknown system error -122.
+ADV-S5-6 records this false alarm for the next phase under the PM cap.
+All 27 workspace jobs and both suite steps complete before the four-hour timeout.
+The final scripts-suite step reports 118 passed, one known failed, and two todos.
+The final audit-suites step reports 187 passed and five baseline failures.
+Every nonzero workspace and both suite steps retain their baseline diagnostic keys.
+The only added key is the bus-math-v2 queue warning.
+No owned gate child remains. No timeout occurs.
+The six generated files stay unstaged. The four supplied audit artifacts stay staged.
+No .oxlint-adv folder was created. The scratch probe is removed.
+
+Requested role-gate command, with the supported timeout setting:
+env HEAVY_HANG_NOTIFY_CMD=true PROJECT_GATE_TIMEOUT_SECONDS=14400 PROJECT_TESTS="GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s5" python3 -u /home/daniebo/Desktop/measure/skills/measure-orchestrator/scripts/measure_interphase_checks.py role-gate --repo . --role measure-adversarial-testing --track vinext-oxc-toolchain_20261114 --phase "Phase S5: Gate rules and CI" --baseline 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6 --log-file measure/runs/vinext-oxc-toolchain_20261114/adversarial-s5-r3-f348394f.log --result-file measure/runs/vinext-oxc-toolchain_20261114/adversarial-s5-r3-f348394f.json
+The command ran under nohup with an exit file. Each wait slice lasted ten minutes or less.
+Role-gate exit code: 1.
+Captured role-gate output:
+INFO: no heavy-run wrapper found; running gate commands directly
+
+gates.sh supplies its own heavy-run wrappers for the jobs and steps.
+The role-gate capture contains no further output.
+At final inspection, /tmp/opencode is a symlink dated 08:13. The gate started at 07:54.
+The cached comparison below retains the complete aggregate output.
+The supported cached comparison proves the failure cause without repeating a heavy job.
+Command: env GATES_RESUME=1 GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s5
+Cached comparison exit code: 1.
+Cached comparison output:
+NEW FAILURE: test apps/bus-math-v2 has a new diagnostic
+NEWFAIL=1
+
+The symmetric key comparison adds only the heavy-run queue warning.
+The warning quotes another job's command, which contains Unknown system error -122.
+The warning does not report a test failure in this repository.
+ADV-S5-5 and ADV-S5-6 remain record-only next-phase items under the PM cap.
+The required gate did not pass. Retry it after the shared queue clears.
+No implementation change is requested. No commit invalidates the parallel reviews.
+The owned scratch scripts and temporary outputs are removed after their results are recorded here.
+Facts changed: none.
+
+Authorized infrastructure retry:
+The orchestrator classified ADV-S5-6 as infrastructure only and authorized one retry.
+slot check reports ok, 8 of 14 busy. HEAD remains f348394f51bc144bcaa50d4155dbec7182fe2233.
+The same PROJECT_TESTS value and the 14400-second timeout apply.
+The retry first used a provisional implementation verdict. The final result below replaces it.
+The retry output and exit file stay under measure/runs/ to avoid changes to the scratch path.
+The command ran detached with the same PROJECT_TESTS value. Every wait slice lasted ten minutes or less.
+Retry exit code: 0.
+Complete retry output:
+INFO: no heavy-run wrapper found; running gate commands directly
+PASS: adversarial-testing gate passed
+
+The retry completed all 27 workspace jobs and both suite steps. No timeout occurred.
+Every nonzero workspace and both suite steps add no diagnostic key against baseline-m2.
+The queue-warning key did not recur. No other new key appeared.
+The scripts suite reports 118 passed, one known failed, and two todos.
+The audit suites report 187 passed and five baseline failures.
+ADV-S5-2, ADV-S5-3, ADV-S5-5, and ADV-S5-6 remain nonblocking.
+Output file: measure/runs/vinext-oxc-toolchain_20261114/adversarial-s5-r3-f348394f-gate-retry.out
+Exit file: measure/runs/vinext-oxc-toolchain_20261114/adversarial-s5-r3-f348394f-gate-retry.exit
+HEAD remains f348394f51bc144bcaa50d4155dbec7182fe2233. No commit or push ran.
+The six generated files remain unstaged. The four supplied audit artifacts remain staged.
+
+MEASURE_AGENT_RESULT
+role: measure-adversarial-testing
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S5: Gate rules and CI
+commits: none
+tests_run: escaped-source 4 passed; adversarial 10 passed and 2 todo; gate rules 10 passed; scripts suite 118 passed, one known failure, 2 todo; audit suites 187 passed and 5 baseline failures; authorized role-gate retry exit 0 after all 27 workspace jobs and both suite steps
+files_changed: adversarial-s5-r3-f348394f.json; adversarial-s5-r3-f348394f.log
+plan_updates: none
+known_failures: the recorded baseline failures; ADV-S5-2/3/5/6 remain nonblocking
+handoff: ADV-S5-4 is fixed. The authorized gate retry passed at f348394f. Keep ADV-S5-2/3/5/6 nonblocking. No implementation change or commit is requested. Parallel reviews remain current. Preserve the six unstaged generated files and the four supplied staged artifacts. No push ran.
+END_MEASURE_AGENT_RESULT
