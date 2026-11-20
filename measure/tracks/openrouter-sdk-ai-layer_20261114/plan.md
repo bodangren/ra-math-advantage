@@ -133,7 +133,7 @@ _Red retry r2 (`c6a0627f`):_ the SDK mock used `mockReturnValue`, which Vitest
     - [ ] In `.github/workflows/ci.yml` job `packages`, add the step "Run workerd SDK probe" with `if: matrix.package == 'ai-tutoring'` and `run: npm run test:workerd --workspace=packages/ai-tutoring`.
     - [ ] If the probe fails because the SDK cannot run in workerd, stop the phase and report to the user. The fallback is the current `fetch` wrapper.
     - [ ] Commit: `test(ai-tutoring): add the workerd SDK probe`.
-- [ ] Task: S1 Implement — add the SDK route tests
+- [x] Task: S1 Implement — add the SDK route tests `07975959`
     - [ ] Create `apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.sdk.test.ts`. Mock auth and the Convex rate limit as the existing route test does. Do not mock `@math-platform/ai-tutoring`.
     - [ ] Mock `globalThis.fetch` with an OpenRouter answer. Assert HTTP 200, the answer text, and one request to a URL that ends with `/chat/completions`.
     - [ ] Create `apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.sdk.test.ts` in the same way, with the IM3 Convex mocks.
