@@ -3,6 +3,7 @@
   "track_id": "vinext-oxc-toolchain_20261114",
   "closeout_date": "2026-11-20",
   "head_at_closeout": "ff7f005ab8040af856adf55ba557c261fbc840f4",
+  "closeout_commit_sha": "33a9ab12c376b2135ad5aaad0a216b2e44a73a64",
   "role_base_sha": "ff7f005ab8040af856adf55ba557c261fbc840f4",
   "baseline_sha": "d475273969aee1e1248d4aa3b13e55fb3726b63f",
   "final_acceptance_sha": "ff7f005ab8040af856adf55ba557c261fbc840f4",
