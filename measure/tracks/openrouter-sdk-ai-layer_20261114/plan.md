@@ -58,7 +58,15 @@ reach the provider. It asserts that no captured string contains any fixture valu
 ## Phase S1: Adopt the OpenRouter SDK
 _Story ref: spec.md#story-s1_
 
-- [ ] Task: S1 Contract — record the SDK API and the baseline
+_Orchestrator decisions (2026-11-20):_ Red owns Contract, Install, Test (Red), in
+this order; Green owns Implement, Verify, Docs & Doctor. Install runs `npm install`
+for `@openrouter/sdk` only. The gate script follows the archive pattern; each
+baseline gate runs detached with an exit file. RED_TEST_COMMAND targets
+`SDK transport` (6 cases, must fail on assertions, not on a missing module).
+GREEN_TEST_COMMAND is the targeted three-workspace command. The two
+`route.sdk.test.ts` files belong to Green.
+
+- [x] Task: S1 Contract — record the SDK API and the baseline `13e36a6`
     - [ ] Create `evidence.md` in this track folder with these sections: SDK API, Bundle sizes, workerd probe, zod check, Live smoke test.
     - [ ] In `measure/tech-stack.md` "Key Dependencies", add a dated row for `@openrouter/sdk` (workflow principle 2).
     - [ ] Build IM3 and BM2 on the start commit. Record the size of each `.js` file under `dist/server/`, raw and gzip (`gzip -c <file> | wc -c`), and the totals.
