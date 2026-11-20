@@ -1,0 +1,7 @@
+Verification report for Phase S5 checkpoint.
+
+Phase acceptance: pass at f348394f51bc144bcaa50d4155dbec7182fe2233. The gate exited 0.
+Reviews A, B, and C: pass at f348394f.
+Adversarial run 3 at f348394f: pass. The gate exited 0.
+Manual verification is deferred to the closeout steward. No user confirmation is faked.
+Text fixes and the S5 carry list are in this commit.
