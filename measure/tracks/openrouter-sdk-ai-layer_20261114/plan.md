@@ -66,6 +66,15 @@ baseline gate runs detached with an exit file. RED_TEST_COMMAND targets
 GREEN_TEST_COMMAND is the targeted three-workspace command. The two
 `route.sdk.test.ts` files belong to Green.
 
+_Orchestrator deviations (2026-11-21):_ (a) Red ran S1 Install, so Red changed
+`packages/ai-tutoring/package.json` and `package-lock.json`. The orchestrator
+assigned the task to Red and the PM accepted it. (b) Red left no `[~]` task.
+Green set "S1 Implement — move the providers to the SDK" to `[~]` at the start
+of the Green phase.
+
+_Red retry r2 (`c6a0627f`):_ the SDK mock used `mockReturnValue`, which Vitest
+4 rejects under `new`. Red changed only the mock setup.
+
 - [x] Task: S1 Contract — record the SDK API and the baseline `13e36a6`
     - [ ] Create `evidence.md` in this track folder with these sections: SDK API, Bundle sizes, workerd probe, zod check, Live smoke test.
     - [ ] In `measure/tech-stack.md` "Key Dependencies", add a dated row for `@openrouter/sdk` (workflow principle 2).
@@ -100,7 +109,7 @@ GREEN_TEST_COMMAND is the targeted three-workspace command. The two
       of an `AbortError`. No `Cannot find module` failure. Log: `/tmp/red-run.log`
       (machine-local; the gate logs hold the Green rerun).
     - [ ] Commit: `test(ai-tutoring): specify the SDK transport (Red)`.
-- [ ] Task: S1 Implement — move the providers to the SDK
+- [x] Task: S1 Implement — move the providers to the SDK `45256fca`
     - [ ] Create `packages/ai-tutoring/src/openrouter-client.ts`. It makes the SDK client from the API key and the base URL.
     - [ ] The client sends `httpReferer` `https://github.com/bodangren/ra-integrated-math-3` and `appTitle` `Integrated Math 3`, the same values as now.
     - [ ] Turn off the SDK retries. `withRetry` stays the only retry layer, with the same settings.
@@ -110,6 +119,9 @@ GREEN_TEST_COMMAND is the targeted three-workspace command. The two
     - [ ] Map an SDK abort error to `new DOMException('Aborted', 'AbortError')`.
     - [ ] Keep `EmptyResponseError` for empty or whitespace content.
     - [ ] In `src/providers.ts`, replace each `fetch` call with the client. Keep each exported name and type of `src/index.ts`.
+    - Green assertion changes (test-strategy section 6, "Keep each existing test"):
+      - `packages/ai-tutoring/src/__tests__/providers.test.ts`: the 10 pre-SDK cases no longer assert global `fetch`. They stub the shared SDK client and assert the `chat.send` call and the client options. Old: `expect(mockFetch).toHaveBeenCalledWith("<url>/chat/completions", objectContaining({body: JSON.stringify({model, messages})}))`. New: `expect(OpenRouterCtor).toHaveBeenCalledWith(objectContaining({apiKey, httpReferer, appTitle, retryConfig, timeoutMs, serverURL}))` and `expect(legacySend.mock.calls[0][0].chatRequest.model).toBe(model)`. The 6 Red "SDK transport" cases are unchanged.
+      - `apps/bus-math-v2/__tests__/lib/ai/providers.test.ts`: the mock fetch response now has a `text()` body with an SDK-valid `ChatResult` (`finish_reason`). Old: `expect(mockFetch.mock.calls[0][0]).toBe("<url>/chat/completions")`. New: `expect((mockFetch.mock.calls[0][0] as Request).url).toBe("<url>/chat/completions")`. The body asserts `model` and `messages`.
     - [ ] Commit: `feat(ai-tutoring): send OpenRouter requests through the SDK`.
 - [ ] Task: S1 Implement — prove the SDK in workerd
     - [ ] Create `packages/ai-tutoring/workerd-probe/worker.ts`. Its `fetch` handler calls `createOpenRouterProvider` with the API key and base URL from `env`, and returns the provider text.
