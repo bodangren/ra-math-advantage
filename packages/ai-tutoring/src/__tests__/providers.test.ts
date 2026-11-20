@@ -1,9 +1,13 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import {
   createOpenRouterProvider,
+  createOpenRouterProviderWithMessages,
   resolveOpenRouterProviderFromEnv,
   clearProviderCache,
 } from "../providers";
+import { OpenRouter } from "@openrouter/sdk";
+
+vi.mock("@openrouter/sdk", () => ({ OpenRouter: vi.fn() }));
 
 const mockFetch = vi.fn();
 
@@ -198,6 +202,122 @@ describe("createOpenRouterProvider", () => {
     setTimeout(() => abortController.abort(), 10);
 
     await expect(provider("test", abortController.signal)).rejects.toThrow();
+  });
+});
+
+describe("SDK transport", () => {
+  const mockSend = vi.fn();
+  const MockOpenRouter = vi.mocked(OpenRouter);
+
+  function sdkTextResponse(content: string, model = "vendor/model-a") {
+    return {
+      id: "gen-1",
+      created: 1,
+      model,
+      choices: [{ message: { role: "assistant", content }, finishReason: "stop" }],
+      usage: { promptTokens: 3, completionTokens: 2, totalTokens: 5 },
+    };
+  }
+
+  function sdkStatusError(status: number, message: string) {
+    return Object.assign(new Error(message), { statusCode: status });
+  }
+
+  function sentPayload(callArgs: unknown[]): { model?: unknown; messages?: unknown } {
+    const first = (callArgs[0] ?? {}) as Record<string, unknown>;
+    const nested = first["chatRequest"] as Record<string, unknown> | undefined;
+    const payload = (nested ?? first) as Record<string, unknown>;
+    return { model: payload["model"], messages: payload["messages"] };
+  }
+
+  beforeEach(() => {
+    mockSend.mockReset();
+    MockOpenRouter.mockReset();
+    MockOpenRouter.mockReturnValue({
+      chat: { send: mockSend },
+    } as unknown as InstanceType<typeof OpenRouter>);
+  });
+
+  it("sends model and one user message through the SDK and returns trimmed content", async () => {
+    mockSend.mockResolvedValueOnce(sdkTextResponse("  trimmed  "));
+
+    const provider = createOpenRouterProvider({ apiKey: "test-key", model: "vendor/model-a" });
+    const result = await provider("hello");
+
+    expect(result).toBe("trimmed");
+    expect(mockSend).toHaveBeenCalledTimes(1);
+    expect(sentPayload(mockSend.mock.calls[0]).model).toBe("vendor/model-a");
+    expect(sentPayload(mockSend.mock.calls[0]).messages).toEqual([
+      { role: "user", content: "hello" },
+    ]);
+  });
+
+  it("passes the messages array to the SDK without change", async () => {
+    mockSend.mockResolvedValueOnce(sdkTextResponse("ok"));
+    const messages = [
+      { role: "system", content: "Be brief." },
+      { role: "user", content: "First." },
+      { role: "assistant", content: "Answer." },
+      { role: "user", content: "Second." },
+    ] as const;
+
+    const provider = createOpenRouterProviderWithMessages({
+      apiKey: "test-key",
+      model: "vendor/model-a",
+    });
+    await provider([...messages]);
+
+    expect(mockSend).toHaveBeenCalledTimes(1);
+    expect(sentPayload(mockSend.mock.calls[0]).messages).toEqual(messages);
+  });
+
+  it("retries once on an SDK 429 error and returns the success", async () => {
+    mockSend
+      .mockRejectedValueOnce(sdkStatusError(429, "rate limited"))
+      .mockResolvedValueOnce(sdkTextResponse("recovered"));
+
+    const provider = createOpenRouterProvider({ apiKey: "test-key", model: "vendor/model-a" });
+    const result = await provider("hello");
+
+    expect(result).toBe("recovered");
+    expect(mockSend).toHaveBeenCalledTimes(2);
+  });
+
+  it("does not retry an SDK 400 error and reports status 400", async () => {
+    mockSend.mockRejectedValue(sdkStatusError(400, "bad request"));
+
+    const provider = createOpenRouterProvider({ apiKey: "test-key", model: "vendor/model-a" });
+
+    await expect(provider("hello")).rejects.toThrow(/^OpenRouter API error: 400/);
+    expect(mockSend).toHaveBeenCalledTimes(1);
+  });
+
+  it("retries an SDK connection error as a network error", async () => {
+    const connectionError = Object.assign(new Error("connection reset"), {
+      name: "ConnectionError",
+    });
+    mockSend.mockRejectedValueOnce(connectionError).mockResolvedValueOnce(
+      sdkTextResponse("recovered"),
+    );
+
+    const provider = createOpenRouterProvider({ apiKey: "test-key", model: "vendor/model-a" });
+    const result = await provider("hello");
+
+    expect(result).toBe("recovered");
+    expect(mockSend).toHaveBeenCalledTimes(2);
+  });
+
+  it("reports an external abort as AbortError without a retry", async () => {
+    mockSend.mockRejectedValue(new DOMException("Aborted", "AbortError"));
+    const controller = new AbortController();
+    controller.abort();
+
+    const provider = createOpenRouterProvider({ apiKey: "test-key", model: "vendor/model-a" });
+
+    await expect(provider("hello", controller.signal)).rejects.toMatchObject({
+      name: "AbortError",
+    });
+    expect(mockSend).toHaveBeenCalledTimes(1);
   });
 });
 

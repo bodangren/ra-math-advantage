@@ -79,7 +79,7 @@ GREEN_TEST_COMMAND is the targeted three-workspace command. The two
     - [ ] Also record: the response fields for the content, the served `model`, and the token `usage`, and each error class with its HTTP status field.
     - [ ] Also record: whether the SDK sends requests through `globalThis.fetch`, and whether `RUNTIMES.md` names Cloudflare Workers.
     - [ ] Commit: `chore(deps): add @openrouter/sdk to ai-tutoring`.
-- [ ] Task: S1 Test (Red) — specify the SDK transport
+- [~] Task: S1 Test (Red) — specify the SDK transport
     - [ ] In `packages/ai-tutoring/src/__tests__/providers.test.ts`, add `describe('SDK transport')`.
     - [ ] Normal case 1: with `@openrouter/sdk` mocked, `createOpenRouterProvider` calls the SDK chat send method with `model` and one user message, and returns the trimmed content.
     - [ ] Normal case 2: with the SDK mocked, `createOpenRouterProviderWithMessages` passes the messages without change.
@@ -90,6 +90,15 @@ GREEN_TEST_COMMAND is the targeted three-workspace command. The two
     - [ ] Keep each existing test. If a test checks a transport detail that the SDK changes (for example the exact header set), change only that assertion. Record each change in this plan.
     - [ ] Apply the same rule to `apps/bus-math-v2/__tests__/lib/ai/providers.test.ts`. It calls `createOpenRouterProvider({ apiKey: 'test-key' })` and checks the `fetch` URL and body.
     - [ ] Run `CI=true npm run test --workspace=packages/ai-tutoring`. Confirm that cases 1 to 6 fail.
+    - RED run (2026-11-21, role mid-red): `CI=true npm run test
+      --workspace=packages/ai-tutoring -- -t 'SDK transport'` ran 6 cases, 6
+      failed, 75 skipped. Cases 1, 2, 3, 5 reject with `TypeError: Cannot read
+      properties of undefined (reading 'ok')` at `src/providers.ts:62` because
+      production still calls `fetch` and the mocked SDK `chat.send` is never
+      called. Case 4 rejects with that `TypeError` instead of
+      `OpenRouter API error: 400`. Case 6 rejects with that `TypeError` instead
+      of an `AbortError`. No `Cannot find module` failure. Log: `/tmp/red-run.log`
+      (machine-local; the gate logs hold the Green rerun).
     - [ ] Commit: `test(ai-tutoring): specify the SDK transport (Red)`.
 - [ ] Task: S1 Implement — move the providers to the SDK
     - [ ] Create `packages/ai-tutoring/src/openrouter-client.ts`. It makes the SDK client from the API key and the base URL.
