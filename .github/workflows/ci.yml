@@ -73,6 +73,10 @@ jobs:
       - name: Run package lint
         run: npm run lint --workspace=packages/${{ matrix.package }}
 
+      - name: Run workerd SDK probe
+        if: matrix.package == 'ai-tutoring'
+        run: npm run test:workerd --workspace=packages/ai-tutoring
+
   # Phase 2: Boundary guard checks (runs after packages)
   boundary-check:
     name: Boundary Guard Checks

@@ -14,6 +14,7 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest watch",
+    "test:workerd": "node workerd-probe/run.mjs",
     "lint": "oxlint --config ../../.oxlintrc.json src --max-warnings 0",
     "typecheck": "TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src",
     "build": "npm run typecheck"
