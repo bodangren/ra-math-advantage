@@ -79,7 +79,7 @@ GREEN_TEST_COMMAND is the targeted three-workspace command. The two
     - [ ] Also record: the response fields for the content, the served `model`, and the token `usage`, and each error class with its HTTP status field.
     - [ ] Also record: whether the SDK sends requests through `globalThis.fetch`, and whether `RUNTIMES.md` names Cloudflare Workers.
     - [ ] Commit: `chore(deps): add @openrouter/sdk to ai-tutoring`.
-- [~] Task: S1 Test (Red) — specify the SDK transport
+- [x] Task: S1 Test (Red) — specify the SDK transport `3e10073`
     - [ ] In `packages/ai-tutoring/src/__tests__/providers.test.ts`, add `describe('SDK transport')`.
     - [ ] Normal case 1: with `@openrouter/sdk` mocked, `createOpenRouterProvider` calls the SDK chat send method with `model` and one user message, and returns the trimmed content.
     - [ ] Normal case 2: with the SDK mocked, `createOpenRouterProviderWithMessages` passes the messages without change.
