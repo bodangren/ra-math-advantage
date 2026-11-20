@@ -102,6 +102,7 @@ PII in prompts (planned: openrouter-sdk-ai-layer_20261114).
 | `recharts` | Data visualization (charts) - NOT used for graphing activities |
 | `@hello-pangea/dnd` | Drag-and-drop activities |
 | `zod` ^4 | Schema validation |
+| `@openrouter/sdk` ^1.5.102 | OpenRouter chat API client for `packages/ai-tutoring` (2026-11-20, track `openrouter-sdk-ai-layer_20261114` S1; install lands in the S1 Install task, this row records the decision before the code change) |
 | `ts-fsrs` 5.4.1 | FSRS scheduler (through `packages/srs-engine`) |
 | `class-variance-authority` | Component variants |
 | `clsx` + `tailwind-merge` | Class name utilities |
