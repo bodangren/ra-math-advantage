@@ -1,10 +1,17 @@
 /**
  * Shared AI provider adapters for both teacher and student features.
+ *
+ * Requests go through the typed OpenRouter SDK client in `openrouter-client.ts`.
+ * The SDK retry layer is off; `withRetry` stays the only retry layer.
  */
 
 import { withRetry, EmptyResponseError } from "./retry";
+import { createOpenRouterClient, type OpenRouterClientOptions } from "./openrouter-client";
 
 const OPENROUTER_API_BASE = "https://openrouter.ai/api/v1";
+
+type OpenRouterClient = ReturnType<typeof createOpenRouterClient>;
+type SdkMessages = Parameters<OpenRouterClient["chat"]["send"]>[0]["chatRequest"]["messages"];
 
 export interface OpenRouterProviderOptions {
   apiKey: string;
@@ -14,73 +21,120 @@ export interface OpenRouterProviderOptions {
 }
 
 /**
+ * Maps an SDK error to the error shapes that `withRetry` already understands.
+ * HTTP errors keep the `OpenRouter API error:` prefix, connection errors start
+ * with `fetch failed:`, and abort errors become an `AbortError`.
+ */
+function mapSdkError(error: unknown): Error {
+  if (!(error instanceof Error)) {
+    return new Error(String(error));
+  }
+
+  const status = (error as Error & { statusCode?: unknown }).statusCode;
+  if (typeof status === "number") {
+    return new Error(`OpenRouter API error: ${status} ${error.message}`);
+  }
+
+  if (error.name === "AbortError" || error.name === "RequestAbortedError") {
+    return new DOMException("Aborted", "AbortError");
+  }
+
+  if (
+    error.name === "ConnectionError" ||
+    error.name === "RequestTimeoutError" ||
+    error.name === "UnexpectedClientError" ||
+    error.message.includes("fetch failed")
+  ) {
+    return new Error(`fetch failed: ${error.message}`);
+  }
+
+  return error;
+}
+
+/**
+ * Reads the text of the first choice. The SDK returns a string or content blocks.
+ */
+function extractContent(content: unknown): string | null {
+  if (typeof content === "string") {
+    return content;
+  }
+  if (Array.isArray(content)) {
+    return content
+      .map((item) => {
+        if (item && typeof item === "object" && "text" in item) {
+          return String((item as { text: unknown }).text);
+        }
+        return "";
+      })
+      .join("");
+  }
+  return null;
+}
+
+/**
+ * Sends one chat request through the SDK inside the existing retry wrapper.
+ */
+async function sendChat(
+  client: OpenRouterClient,
+  model: string,
+  messages: SdkMessages,
+  timeoutMs: number,
+  abortSignal?: AbortSignal,
+): Promise<string> {
+  return withRetry(async () => {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), timeoutMs);
+
+    if (abortSignal) {
+      if (abortSignal.aborted) {
+        controller.abort();
+      } else {
+        const onAbort = () => controller.abort();
+        abortSignal.addEventListener("abort", onAbort, { once: true });
+      }
+    }
+
+    try {
+      const result = await client.chat.send(
+        { chatRequest: { stream: false as const, model, messages } },
+        { signal: controller.signal },
+      );
+      const content = extractContent(result.choices?.[0]?.message?.content);
+      if (content === null || content.trim().length === 0) {
+        throw new EmptyResponseError();
+      }
+      return content.trim();
+    } catch (error) {
+      throw mapSdkError(error);
+    } finally {
+      clearTimeout(timeout);
+    }
+  });
+}
+
+function clientOptions(options: OpenRouterProviderOptions): OpenRouterClientOptions {
+  const { apiKey, baseUrl = OPENROUTER_API_BASE, timeoutMs = 15000 } = options;
+  return { apiKey, baseUrl, timeoutMs };
+}
+
+/**
  * Creates an OpenRouter provider function for single-prompt chat completion.
- * @param {OpenRouterProviderOptions} options - Provider configuration (apiKey, model, baseUrl, timeoutMs)
- * @returns {(prompt: string, abortSignal?: AbortSignal) => Promise<string>} Async provider function (prompt, abortSignal?) => response text
  */
 export function createOpenRouterProvider(options: OpenRouterProviderOptions) {
-  const {
-    apiKey,
-    model = "openrouter/free",
-    baseUrl = OPENROUTER_API_BASE,
-    timeoutMs = 15000,
-  } = options;
+  const { model = "openrouter/free", timeoutMs = 15000 } = options;
+  const client = createOpenRouterClient(clientOptions(options));
 
   return async function openRouterProvider(
     prompt: string,
     abortSignal?: AbortSignal,
   ): Promise<string> {
-    return withRetry(async () => {
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), timeoutMs);
-
-      if (abortSignal) {
-        if (abortSignal.aborted) {
-          controller.abort();
-        } else {
-          const onAbort = () => controller.abort();
-          abortSignal.addEventListener("abort", onAbort, { once: true });
-        }
-      }
-
-      try {
-        const response = await fetch(`${baseUrl}/chat/completions`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`,
-            "HTTP-Referer": "https://github.com/bodangren/ra-integrated-math-3",
-            "X-Title": "Integrated Math 3",
-          },
-          body: JSON.stringify({
-            model,
-            messages: [{ role: "user", content: prompt }],
-          }),
-          signal: controller.signal,
-        });
-
-        if (!response.ok) {
-          throw new Error(`OpenRouter API error: ${response.status} ${response.statusText}`);
-        }
-
-        interface OpenRouterResponse {
-          choices?: Array<{
-            message?: {
-              content?: string;
-            };
-          }>;
-        }
-
-        const data = (await response.json()) as OpenRouterResponse;
-        const content = data.choices?.[0]?.message?.content;
-        if (typeof content !== "string" || content.trim().length === 0) {
-          throw new EmptyResponseError();
-        }
-        return content.trim();
-      } finally {
-        clearTimeout(timeout);
-      }
-    });
+    return sendChat(
+      client,
+      model,
+      [{ role: "user", content: prompt }] as SdkMessages,
+      timeoutMs,
+      abortSignal,
+    );
   };
 }
 
@@ -91,72 +145,16 @@ export interface ChatMessage {
 
 /**
  * Creates an OpenRouter provider function for multi-message chat completion.
- * @param {OpenRouterProviderOptions} options - Provider configuration (apiKey, model, baseUrl, timeoutMs)
- * @returns {(messages: ChatMessage[], abortSignal?: AbortSignal) => Promise<string>} Async provider function (messages, abortSignal?) => response text
  */
 export function createOpenRouterProviderWithMessages(options: OpenRouterProviderOptions) {
-  const {
-    apiKey,
-    model = "openrouter/free",
-    baseUrl = OPENROUTER_API_BASE,
-    timeoutMs = 15000,
-  } = options;
+  const { model = "openrouter/free", timeoutMs = 15000 } = options;
+  const client = createOpenRouterClient(clientOptions(options));
 
   return async function openRouterProviderWithMessages(
     messages: ChatMessage[],
     abortSignal?: AbortSignal,
   ): Promise<string> {
-    return withRetry(async () => {
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), timeoutMs);
-
-      if (abortSignal) {
-        if (abortSignal.aborted) {
-          controller.abort();
-        } else {
-          const onAbort = () => controller.abort();
-          abortSignal.addEventListener("abort", onAbort, { once: true });
-        }
-      }
-
-      try {
-        const response = await fetch(`${baseUrl}/chat/completions`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`,
-            "HTTP-Referer": "https://github.com/bodangren/ra-integrated-math-3",
-            "X-Title": "Integrated Math 3",
-          },
-          body: JSON.stringify({
-            model,
-            messages,
-          }),
-          signal: controller.signal,
-        });
-
-        if (!response.ok) {
-          throw new Error(`OpenRouter API error: ${response.status} ${response.statusText}`);
-        }
-
-        interface OpenRouterResponse {
-          choices?: Array<{
-            message?: {
-              content?: string;
-            };
-          }>;
-        }
-
-        const data = (await response.json()) as OpenRouterResponse;
-        const content = data.choices?.[0]?.message?.content;
-        if (typeof content !== "string" || content.trim().length === 0) {
-          throw new EmptyResponseError();
-        }
-        return content.trim();
-      } finally {
-        clearTimeout(timeout);
-      }
-    });
+    return sendChat(client, model, messages as SdkMessages, timeoutMs, abortSignal);
   };
 }
 
@@ -164,8 +162,6 @@ export { EmptyResponseError } from "./retry";
 
 /**
  * Type guard to check if an error is an OpenRouter API error.
- * @param {unknown} error - Error to check
- * @returns {error is Error &} - True if error has OpenRouter API error format
  */
 export function isOpenRouterError(error: unknown): error is Error & { status?: number } {
   return error instanceof Error && error.message.startsWith("OpenRouter API error:");
@@ -173,8 +169,6 @@ export function isOpenRouterError(error: unknown): error is Error & { status?: n
 
 /**
  * Extracts HTTP status code from an OpenRouter error message.
- * @param {Error} error - Error with message containing status code
- * @returns {number | null} - Status code number or null if not found
  */
 export function getErrorStatus(error: Error): number | null {
   const match = error.message.match(/error:\s*(\d{3})/);
@@ -197,7 +191,6 @@ export function clearProviderCache(): void {
 
 /**
  * Resolves OpenRouter provider from environment variables (single-prompt variant).
- * @returns {((prompt: string, abortSignal?: AbortSignal) => Promise<string>) | null} - Provider function or null if OPENROUTER_API_KEY not set
  */
 export function resolveOpenRouterProviderFromEnv():
   | ((prompt: string, abortSignal?: AbortSignal) => Promise<string>)
@@ -222,7 +215,6 @@ export function resolveOpenRouterProviderFromEnv():
 
 /**
  * Resolve OpenRouter multi-message provider from environment variables.
- * @returns {((messages: ChatMessage[], abortSignal?: AbortSignal) => Promise<string>) | null} - Messages provider function or null if OPENROUTER_API_KEY not set
  */
 export function resolveOpenRouterProviderWithMessagesFromEnv():
   | ((messages: ChatMessage[], abortSignal?: AbortSignal) => Promise<string>)

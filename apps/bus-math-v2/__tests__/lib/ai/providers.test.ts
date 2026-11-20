@@ -13,11 +13,27 @@ describe("lib/ai/providers", () => {
     });
 
     it("should call OpenRouter API with correct parameters", async () => {
+      const responseBody = JSON.stringify({
+        id: "gen-1",
+        created: 1,
+        model: "openrouter/free",
+        object: "chat.completion",
+        system_fingerprint: null,
+        choices: [
+          {
+            index: 0,
+            message: { role: "assistant", content: "Test response" },
+            finish_reason: "stop",
+          },
+        ],
+        usage: { prompt_tokens: 1, completion_tokens: 1, total_tokens: 2 },
+      });
       const mockFetch = vi.fn().mockResolvedValue({
         ok: true,
-        json: async () => ({
-          choices: [{ message: { content: "Test response" } }],
-        }),
+        status: 200,
+        statusText: "OK",
+        headers: new Headers({ "content-type": "application/json" }),
+        text: async () => responseBody,
       });
       vi.stubGlobal("fetch", mockFetch);
 
@@ -26,7 +42,14 @@ describe("lib/ai/providers", () => {
 
       expect(result).toBe("Test response");
       expect(mockFetch).toHaveBeenCalledTimes(1);
-      expect(mockFetch.mock.calls[0][0]).toBe("https://openrouter.ai/api/v1/chat/completions");
+      const request = mockFetch.mock.calls[0][0] as Request;
+      expect(request.url).toBe("https://openrouter.ai/api/v1/chat/completions");
+      const body = JSON.parse(await request.clone().text()) as {
+        model: string;
+        messages: Array<{ role: string; content: string }>;
+      };
+      expect(body.model).toBe("openrouter/free");
+      expect(body.messages).toEqual([{ role: "user", content: "Test prompt" }]);
     });
   });
 });

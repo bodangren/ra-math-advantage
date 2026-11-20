@@ -9,9 +9,27 @@ import { OpenRouter } from "@openrouter/sdk";
 
 vi.mock("@openrouter/sdk", () => ({ OpenRouter: vi.fn() }));
 
-const mockFetch = vi.fn();
+const legacySend = vi.fn();
+const OpenRouterCtor = vi.mocked(OpenRouter);
 
-vi.stubGlobal("fetch", mockFetch);
+function legacyTextResponse(content: string) {
+  return {
+    id: "gen-1",
+    created: 1,
+    model: "vendor/model-a",
+    choices: [{ message: { role: "assistant", content }, finishReason: "stop" }],
+    usage: { promptTokens: 3, completionTokens: 2, totalTokens: 5 },
+  };
+}
+
+// Shared constructor-safe mock. The SDK transport block replaces this send spy.
+beforeEach(() => {
+  legacySend.mockReset();
+  OpenRouterCtor.mockReset();
+  OpenRouterCtor.mockImplementation(function () {
+    return { chat: { send: legacySend } } as unknown as InstanceType<typeof OpenRouter>;
+  });
+});
 
 describe("createOpenRouterProvider", () => {
   beforeEach(() => {
@@ -28,40 +46,26 @@ describe("createOpenRouterProvider", () => {
   });
 
   it("calls OpenRouter API with correct headers", async () => {
-    mockFetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({
-        choices: [{ message: { content: "Hello!" } }],
-      }),
-    });
+    legacySend.mockResolvedValueOnce(legacyTextResponse("Hello!"));
 
     const provider = createOpenRouterProvider({ apiKey: "test-key" });
     const result = await provider("Hello AI");
 
-    expect(mockFetch).toHaveBeenCalledWith(
-      "https://openrouter.ai/api/v1/chat/completions",
+    expect(result).toBe("Hello!");
+    expect(OpenRouterCtor).toHaveBeenCalledWith(
       expect.objectContaining({
-        method: "POST",
-        headers: expect.objectContaining({
-          "Content-Type": "application/json",
-          Authorization: "Bearer test-key",
-        }),
-        body: JSON.stringify({
-          model: "openrouter/free",
-          messages: [{ role: "user", content: "Hello AI" }],
-        }),
+        apiKey: "test-key",
+        httpReferer: "https://github.com/bodangren/ra-integrated-math-3",
+        appTitle: "Integrated Math 3",
+        retryConfig: { strategy: "none" },
+        timeoutMs: 15000,
+        serverURL: "https://openrouter.ai/api/v1",
       }),
     );
-    expect(result).toBe("Hello!");
   });
 
   it("uses custom model when provided", async () => {
-    mockFetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({
-        choices: [{ message: { content: "Response" } }],
-      }),
-    });
+    legacySend.mockResolvedValueOnce(legacyTextResponse("Response"));
 
     const provider = createOpenRouterProvider({
       apiKey: "test-key",
@@ -69,24 +73,12 @@ describe("createOpenRouterProvider", () => {
     });
     await provider("test");
 
-    expect(mockFetch).toHaveBeenCalledWith(
-      "https://openrouter.ai/api/v1/chat/completions",
-      expect.objectContaining({
-        body: JSON.stringify({
-          model: "openrouter/premium",
-          messages: [{ role: "user", content: "test" }],
-        }),
-      }),
-    );
+    const request = legacySend.mock.calls[0][0] as { chatRequest: { model: unknown } };
+    expect(request.chatRequest.model).toBe("openrouter/premium");
   });
 
   it("uses custom baseUrl when provided", async () => {
-    mockFetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({
-        choices: [{ message: { content: "Response" } }],
-      }),
-    });
+    legacySend.mockResolvedValueOnce(legacyTextResponse("Response"));
 
     const provider = createOpenRouterProvider({
       apiKey: "test-key",
@@ -94,18 +86,13 @@ describe("createOpenRouterProvider", () => {
     });
     await provider("test");
 
-    expect(mockFetch).toHaveBeenCalledWith(
-      "https://custom.api/v1/chat/completions",
-      expect.any(Object),
+    expect(OpenRouterCtor).toHaveBeenCalledWith(
+      expect.objectContaining({ serverURL: "https://custom.api/v1" }),
     );
   });
 
   it("throws on non-ok response", async () => {
-    mockFetch.mockResolvedValueOnce({
-      ok: false,
-      status: 401,
-      statusText: "Unauthorized",
-    });
+    legacySend.mockRejectedValue(Object.assign(new Error("Unauthorized"), { statusCode: 401 }));
 
     const provider = createOpenRouterProvider({ apiKey: "bad-key" });
 
@@ -113,38 +100,25 @@ describe("createOpenRouterProvider", () => {
   });
 
   it("retries on empty response content then throws", async () => {
-    mockFetch.mockResolvedValue({
-      ok: true,
-      json: async () => ({
-        choices: [{ message: { content: "   " } }],
-      }),
-    });
+    legacySend.mockResolvedValue(legacyTextResponse("   "));
 
     const provider = createOpenRouterProvider({ apiKey: "test-key" });
 
     await expect(provider("test")).rejects.toThrow("Empty response from AI provider");
-    expect(mockFetch.mock.calls.length).toBeGreaterThanOrEqual(1);
+    expect(legacySend.mock.calls.length).toBeGreaterThanOrEqual(1);
   });
 
   it("retries when no choices returned then throws", async () => {
-    mockFetch.mockResolvedValue({
-      ok: true,
-      json: async () => ({ choices: [] }),
-    });
+    legacySend.mockResolvedValue({ ...legacyTextResponse(""), choices: [] });
 
     const provider = createOpenRouterProvider({ apiKey: "test-key" });
 
     await expect(provider("test")).rejects.toThrow("Empty response from AI provider");
-    expect(mockFetch.mock.calls.length).toBeGreaterThanOrEqual(1);
+    expect(legacySend.mock.calls.length).toBeGreaterThanOrEqual(1);
   });
 
   it("trims whitespace from response", async () => {
-    mockFetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({
-        choices: [{ message: { content: "  Hello world  " } }],
-      }),
-    });
+    legacySend.mockResolvedValueOnce(legacyTextResponse("  Hello world  "));
 
     const provider = createOpenRouterProvider({ apiKey: "test-key" });
     const result = await provider("test");
@@ -153,12 +127,14 @@ describe("createOpenRouterProvider", () => {
   });
 
   it("aborts on timeout", async () => {
-    let abortFn: () => void = () => {};
-    mockFetch.mockImplementationOnce(
-      () =>
-        new Promise((_, reject) => {
-          abortFn = reject.bind(null, new DOMException("Aborted", "AbortError"));
-          setTimeout(abortFn, 100);
+    legacySend.mockImplementation(
+      (_request: unknown, options: { signal?: AbortSignal }) =>
+        new Promise((_resolve, reject) => {
+          options.signal?.addEventListener(
+            "abort",
+            () => reject(new DOMException("Aborted", "AbortError")),
+            { once: true },
+          );
         }),
     );
 
@@ -171,12 +147,7 @@ describe("createOpenRouterProvider", () => {
   });
 
   it("accepts external AbortSignal", async () => {
-    mockFetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({
-        choices: [{ message: { content: "Response" } }],
-      }),
-    });
+    legacySend.mockResolvedValueOnce(legacyTextResponse("Response"));
 
     const provider = createOpenRouterProvider({ apiKey: "test-key" });
     const abortController = new AbortController();
@@ -186,10 +157,14 @@ describe("createOpenRouterProvider", () => {
   });
 
   it("aborts request when external AbortSignal is triggered", async () => {
-    mockFetch.mockImplementationOnce(
-      () =>
-        new Promise((_, reject) => {
-          setTimeout(() => reject(new DOMException("Aborted", "AbortError")), 100);
+    legacySend.mockImplementation(
+      (_request: unknown, options: { signal?: AbortSignal }) =>
+        new Promise((_resolve, reject) => {
+          options.signal?.addEventListener(
+            "abort",
+            () => reject(new DOMException("Aborted", "AbortError")),
+            { once: true },
+          );
         }),
     );
 
@@ -363,44 +338,26 @@ describe("resolveOpenRouterProviderFromEnv", () => {
     process.env.OPENROUTER_API_KEY = "sk-test";
     process.env.OPENROUTER_MODEL = "openrouter/premium";
 
-    mockFetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({
-        choices: [{ message: { content: "OK" } }],
-      }),
-    });
+    legacySend.mockResolvedValueOnce(legacyTextResponse("OK"));
 
     const provider = resolveOpenRouterProviderFromEnv()!;
     await provider("test");
 
-    expect(mockFetch).toHaveBeenCalledWith(
-      "https://openrouter.ai/api/v1/chat/completions",
-      expect.objectContaining({
-        body: JSON.stringify({
-          model: "openrouter/premium",
-          messages: [{ role: "user", content: "test" }],
-        }),
-      }),
-    );
+    const request = legacySend.mock.calls[0][0] as { chatRequest: { model: unknown } };
+    expect(request.chatRequest.model).toBe("openrouter/premium");
   });
 
   it("uses custom base URL from OPENROUTER_API_BASE", async () => {
     process.env.OPENROUTER_API_KEY = "sk-test";
     process.env.OPENROUTER_API_BASE = "https://custom.openrouter.ai/api/v1";
 
-    mockFetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({
-        choices: [{ message: { content: "OK" } }],
-      }),
-    });
+    legacySend.mockResolvedValueOnce(legacyTextResponse("OK"));
 
     const provider = resolveOpenRouterProviderFromEnv()!;
     await provider("test");
 
-    expect(mockFetch).toHaveBeenCalledWith(
-      "https://custom.openrouter.ai/api/v1/chat/completions",
-      expect.any(Object),
+    expect(OpenRouterCtor).toHaveBeenCalledWith(
+      expect.objectContaining({ serverURL: "https://custom.openrouter.ai/api/v1" }),
     );
   });
 });
