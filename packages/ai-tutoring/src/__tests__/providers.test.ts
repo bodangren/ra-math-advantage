@@ -296,9 +296,9 @@ describe("SDK transport", () => {
     const connectionError = Object.assign(new Error("connection reset"), {
       name: "ConnectionError",
     });
-    mockSend.mockRejectedValueOnce(connectionError).mockResolvedValueOnce(
-      sdkTextResponse("recovered"),
-    );
+    mockSend
+      .mockRejectedValueOnce(connectionError)
+      .mockResolvedValueOnce(sdkTextResponse("recovered"));
 
     const provider = createOpenRouterProvider({ apiKey: "test-key", model: "vendor/model-a" });
     const result = await provider("hello");
