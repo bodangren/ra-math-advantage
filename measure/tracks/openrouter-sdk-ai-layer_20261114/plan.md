@@ -75,6 +75,7 @@ of the Green phase.
 _Red retry r2 (`c6a0627f`):_ the SDK mock used `mockReturnValue`, which Vitest
 4 rejects under `new`. Red changed only the mock setup.
 Next-phase list (record-only, PM cap): Review A F2 (gates.sh accepts a missing current log), F3 (empty-response tests assert at least one call); Review B F1 (OPENROUTER_DEBUG logs the auth header; pass a redacting debugLogger), F2 (upstream text in HTTP error message), F4 (SDK release age), F5 (no test pins 429 order and 503 body), F6 (gates.sh compares audit counts, not IDs), F10 (Bearer strip is case-sensitive and removes one space).
+Next-phase list (acceptance, record-only): Acceptance F1 (Major, fix first in S2 and before any deploy of S1 code: the SDK rejects HTTP 200 bodies the old transport accepted, including the OpenRouter documented example; a 200 error-only body no longer retries); F2 (gates.sh cannot see a new or larger [EXCEEDS] bundle entry); F3 (evidence.md bundle-growth text and stale gates/green citations); F4 (tech-stack.md lines 73, 77-79, 105 stale); F5 (no test pins that the non-HTTP path copies no SDK fields; the source-guard test of test-strategy.md section 8 is missing); F6 (three remediation rounds without an escalation key; plan pins test counts).
 
 - [x] Task: S1 Contract — record the SDK API and the baseline `13e36a6`
     - [ ] Create `evidence.md` in this track folder with these sections: SDK API, Bundle sizes, workerd probe, zod check, Live smoke test.
