@@ -233,21 +233,27 @@ targets() {
 bundle() {
   local app=$1 script=$2 name=${1##*/} code
   step "bundle-$name" npm run "$script" --workspace="$app"
-  step "total-$name" node -e '
-    const fs = require("node:fs"), path = require("node:path");
-    function size(dir) { return fs.readdirSync(dir, {withFileTypes:true}).reduce((n, e) => n + (e.isDirectory() ? size(path.join(dir,e.name)) : fs.statSync(path.join(dir,e.name)).size), 0); }
-    const total = size(process.argv[1]);
-    if (!total) throw Error("empty bundle");
-    console.log(`TOTAL_BYTES=${total}`);
-  ' "$app/dist"
+  local total_script="$OUT/total-bytes.cjs"
+  cat > "$total_script" <<'TOTAL_EOF'
+const fs = require("node:fs");
+const path = require("node:path");
+function size(dir) {
+  return fs.readdirSync(dir, { withFileTypes: true }).reduce((n, e) =>
+    n + (e.isDirectory() ? size(path.join(dir, e.name)) : fs.statSync(path.join(dir, e.name)).size), 0);
+}
+const total = size(process.argv[2]);
+if (!total) throw Error("empty bundle");
+console.log(`TOTAL_BYTES=${total}`);
+TOTAL_EOF
+  step "total-$name" node "$total_script" "$app/dist"
   node -e '
     const fs = require("node:fs");
     const [out, base, name, source, record] = process.argv.slice(1);
     const text = fs.readFileSync(`${out}/step-bundle-${name}.log`, "utf8");
     const patterns = [...fs.readFileSync(source, "utf8").matchAll(/(?:pattern: |^  )"([^"\n]+)"(?::|,)/gm)].map(m => m[1]);
-    const parse = t => [...t.matchAll(/\[(OK|EXCEEDS)\] (.+?): ([\d.]+) KB/g)].map(m => ({status:m[1], key:m[2].replace(/-[A-Za-z0-9_-]{8}(?=\.(?:js|css)$)/g, "-*"), label:m[2]}));
+    const parse = t => [...t.matchAll(/\[(OK|EXCEEDS)\] (.+?): ([\d.]+) KB/g)].map(m => ({status:m[1], key:m[2].replace(/-[A-Za-z0-9_-]{8}(?=\.(?:js|css)$)/g, "-*"), label:m[2], kb:Number(m[3])}));
     const entries = parse(text);
-    if (!entries.length || patterns.some(p => !entries.some(e => e.label.startsWith(p + " → ")))) throw Error("missing bundle budget match");
+    if (!entries.length || !patterns.some(p => entries.some(e => e.label.startsWith(p + " → ")))) throw Error("missing bundle budget match");
     const total = dir => {
       const n = Number(fs.readFileSync(`${dir}/step-total-${name}.log`, "utf8").match(/^TOTAL_BYTES=(\d+)$/m)?.[1]);
       if (!(n > 0)) throw Error("missing bundle total");
@@ -258,9 +264,10 @@ bundle() {
     const old = parse(fs.readFileSync(`${base}/step-bundle-${name}.log`, "utf8"));
     let failed = false;
     for (const entry of entries) {
-      if (entry.status === "EXCEEDS" && !old.some(e => e.key === entry.key && e.status === "EXCEEDS")) {
-        console.error(`New budget failure: ${name} ${entry.key}`); failed = true;
-      }
+      if (entry.status !== "EXCEEDS") continue;
+      const prev = old.find(e => e.key === entry.key && e.status === "EXCEEDS");
+      if (!prev) { console.error(`New budget failure: ${name} ${entry.key}`); failed = true; }
+      else if (entry.kb > prev.kb) { console.error(`Larger budget failure: ${name} ${entry.key} ${prev.kb} -> ${entry.kb} KB`); failed = true; }
     }
     const before = total(base);
     console.log(`${name} total bytes: ${before} -> ${now}`);

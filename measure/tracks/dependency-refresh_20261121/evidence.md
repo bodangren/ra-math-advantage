@@ -175,6 +175,16 @@ Two runner defects affect the support-group bundle comparison; both are recorded
 - The bundle-entry parser finds only 1 of 3 IM3 budget patterns in the fresh `dist/` output (`server/assets` and `client/assets` hold no audited files after a passing build). It throws `missing bundle budget match` for IM3 and BM2. This sets `NEWFAIL=1` at baseline capture.
 - The `total-*` steps print an empty `TOTAL_BYTES` when they run through `heavy-run.sh`. A multi-line `node -e` script loses the `${total}` interpolation to the runner (`Referenced but unset environment variable evaluates to an empty string`). The same command prints the correct total outside the runner. Green must account for both defects before it trusts a bundle comparison.
 
+## D1 Green — runner repair (Step 0)
+
+The two support-group runner defects from the D1 Red capture are fixed in `gates.sh` before any dependency change.
+
+- The `total-*` step now writes a CommonJS helper file into the gate output folder with a quoted here-doc and runs `node <helper> <dist>`. The command passed through `heavy-run.sh` holds no `${...}` expression. A smoke test through `heavy-run.sh` printed `TOTAL_BYTES=12734760` for IM3, matching the direct baseline total.
+- The bundle-entry parser now requires at least one parsed entry and at least one budget pattern match, instead of a match for every pattern. A passing build leaves some patterns without audited files. Record-mode parsing now exits 0 for IM3 (1 of 3 patterns) and BM2 (1 of 4 patterns). Both previously threw `missing bundle budget match`.
+- The support comparison now stores each entry size in KB. It reports `New budget failure` for a new EXCEEDS key and `Larger budget failure` when an EXCEEDS key grows. A fabricated smaller baseline log produced `Larger budget failure: bus-math-v2 Total dist/server 10 -> 9926.36 KB` and exit 1.
+
+Verification: `bash -n gates.sh` passed; usage paths exit 2; total helper printed the real byte count through `heavy-run.sh`; parser record mode exited 0 for both apps; larger-EXCEEDS smoke test exited 1. No budget file, deploy trigger, or dependency changed in this step.
+
 ## D1 High Exceptions
 
 No exception is selected during planning.
