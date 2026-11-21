@@ -143,9 +143,15 @@ _Red retry r2 (`c6a0627f`):_ the SDK mock used `mockReturnValue`, which Vitest
     - [ ] Build IM3 and BM2. Record the sizes after the change, in the same form as the baseline.
     - [ ] Run both bundle audits. If a budget fails, do not change the budget. Stop the phase and report the sizes to the user.
     - [ ] Commit the evidence file: `measure(openrouter-sdk): record the S1 results`.
-- [ ] Task: S1 Docs & Doctor
+- [x] Task: S1 Docs & Doctor `10fa30ae`
     - [ ] Run `npm run generate`. Confirm exit code 0.
     - [ ] Run `npm run doctor`. Confirm exit code 0.
+    - Green deviation (strategy F5): `npm run generate` exited 0, but
+      `measure/generated/routes.md` still holds `../../../daniel-bo/...` paths.
+      The file is not staged. `npm run doctor` exited 0 with all checks passed.
+      `tech-debt.md` is at the 50-line limit, so no row was added.
+    - Logs: `measure/runs/openrouter-sdk-ai-layer_20261114/generate-s1.log`
+      and `.../doctor-s1.log`.
 - [ ] Task: Measure - User Manual Verification 'Phase S1: Adopt the OpenRouter SDK' (Protocol in workflow.md)
     - [ ] Run the protocol: the automated tests, the manual verification plan, and the user confirmation.
     - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S1`.
