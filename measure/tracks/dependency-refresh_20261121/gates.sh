@@ -25,7 +25,7 @@ key() {
     grep -vE '^[[:space:]]*[+-]' |
     grep -vE '^[[:space:]]*[0-9]+\|' |
     LC_ALL=C sed -E "s/^(AssertionError: expected )'.*'( to )/\1'<value>'\2/" |
-    LC_ALL=C sed -E 's/^([^ (]+)\([0-9]+,[0-9]+\): error (TS[0-9]+):.*/\1 \2/; s/^npm error code [0-9]+$/npm error code/; s#^(npm error A complete log of this run can be found in: ).*#\1<log path>#; s/\([0-9]+,[0-9]+\)//g; s/:[0-9]+:[0-9]+//g; s/ in [0-9.]+ ?m?s//g; s/[0-9.]+ ?m?s( |$)/\1/g; s/[[:space:]]+$//' | LC_ALL=C sort -u
+    LC_ALL=C sed -E 's/^([^ (]+)\([0-9]+,[0-9]+\): error (TS[0-9]+):.*/\1 \2/; s/^npm error code [0-9]+$/npm error code/; s#^(npm error A complete log of this run can be found in: ).*#\1<log path>#; s/\([0-9]+,[0-9]+\)//g; s/:[0-9]+:[0-9]+//g; s/[[:space:]]+(in )?[0-9.]+ ?m?s$//; s/[[:space:]]+$//' | LC_ALL=C sort -u
 }
 
 new_keys() {
@@ -33,6 +33,11 @@ new_keys() {
   [ -n "$(comm -13 <(key "$1") <(key "$2"))" ]
 }
 base_code() { awk -v n="$2" '$1==n{v=$2} END{print v}' "$1" 2>/dev/null; }
+resume_valid() {
+  local log=$1 cmdfile=$2; shift 2
+  [ -s "$log" ] && [ -s "$cmdfile" ] || return 1
+  [ "$(cat "$cmdfile")" = "$(printf '%q ' "$@")" ]
+}
 is_infra() { [[ "$INFRA" == *" $1 "* ]]; }
 is_record_only() { case "$LABEL" in *-baseline*|baseline*) return 0 ;; *) return 1 ;; esac; }
 
@@ -79,7 +84,7 @@ sweep() {
     name=${ws//\//-}
     rec=$(base_code "$OUT/$s.exit" "$ws")
     if [ "$RESUME" = 1 ] && [ -n "$rec" ] && ! is_infra "$rec" &&
-      { [ "$rec" = n/a ] || [ -f "$OUT/$s-$name.log" ]; }; then
+      { [ "$rec" = n/a ] || resume_valid "$OUT/$s-$name.log" "$OUT/$s-$name.log.command" npm run "$s" --workspace="$ws"; }; then
       code=$rec
     else
       if has_script "$ws" "$s"; then
@@ -109,7 +114,8 @@ step() {
   local n=$1 c bc rec
   shift
   rec=$(base_code "$OUT/$GATE.steps" "$n")
-  if [ "$RESUME" = 1 ] && [ -n "$rec" ] && ! is_infra "$rec" && [ -f "$OUT/step-$n.log" ]; then
+  if [ "$RESUME" = 1 ] && [ -n "$rec" ] && ! is_infra "$rec" &&
+     resume_valid "$OUT/step-$n.log" "$OUT/step-$n.log.command" "$@"; then
     c=$rec
   else
     run_job step "$n" "$OUT/step-$n.log" "$@"
@@ -138,7 +144,11 @@ audit_step() {
     for (const s of ["critical", "high", "moderate", "low"]) {
       if (!Number.isInteger(v[s]) || v[s] < 0) { console.log(`invalid ${s} count`); process.exit(0); }
     }
-    if (!d.vulnerabilities || typeof d.vulnerabilities !== "object" || Array.isArray(d.vulnerabilities)) console.log("missing vulnerabilities");
+    if (!d.vulnerabilities || typeof d.vulnerabilities !== "object" || Array.isArray(d.vulnerabilities)) { console.log("missing vulnerabilities"); process.exit(0); }
+    for (const s of ["critical", "high", "moderate", "low"]) {
+      const n = Object.values(d.vulnerabilities).filter(x => x && x.severity === s).length;
+      if (n !== v[s]) { console.log(`${s} count mismatch: metadata ${v[s]} entries ${n}`); process.exit(0); }
+    }
   ' "$OUT/audit.json") || reason="report could not be validated"
   if [ -n "$reason" ] || { [ "$code" != 0 ] && [ "$code" != 1 ]; }; then
     echo "INFRA FAILURE: audit ${reason:-unexpected exit $code}"; infra=1; return
@@ -162,10 +172,13 @@ audit_high() {
     const fs = require("node:fs");
     const d = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
     const text = fs.readFileSync(process.argv[2], "utf8").split("## D1 High Exceptions")[1]?.split(/\n## /)[0] || "";
-    const exceptions = new Set();
+    const exceptions = new Map();
     for (const line of text.split("\n")) {
       const cells = line.split("|").slice(1, -1).map(s => s.trim().replace(/`/g, ""));
-      if (/^(GHSA-[\w-]+|npm:\d+)$/.test(cells[0] || "") && cells.length === 5 && cells.every(Boolean)) exceptions.add(cells[0]);
+      if (/^(GHSA-[\w-]+|npm:\d+)$/.test(cells[0] || "") && cells.length === 5 && cells.every(Boolean)) {
+        if (!exceptions.has(cells[0])) exceptions.set(cells[0], new Set());
+        exceptions.get(cells[0]).add(cells[1]);
+      }
     }
     function ids(name, seen = new Set()) {
       if (seen.has(name)) return [];
@@ -183,7 +196,8 @@ audit_high() {
         const found = ids(name);
         if (!found.length || found.some(id => !id)) throw Error(`missing advisory identifier: ${name}`);
         for (const id of new Set(found)) {
-          if (!exceptions.has(id)) { console.error(`Unresolved high/critical: ${name} ${id}`); failed = true; }
+          const disclosed = exceptions.get(id);
+          if (!disclosed || !disclosed.has(name)) { console.error(`Unresolved high/critical: ${name} ${id}`); failed = true; }
           else console.log(`Named exception: ${name} ${id}`);
         }
       }
@@ -251,7 +265,15 @@ TOTAL_EOF
     const [out, base, name, source, record] = process.argv.slice(1);
     const text = fs.readFileSync(`${out}/step-bundle-${name}.log`, "utf8");
     const patterns = [...fs.readFileSync(source, "utf8").matchAll(/(?:pattern: |^  )"([^"\n]+)"(?::|,)/gm)].map(m => m[1]);
-    const parse = t => [...t.matchAll(/\[(OK|EXCEEDS)\] (.+?): ([\d.]+) KB/g)].map(m => ({status:m[1], key:m[2].replace(/-[A-Za-z0-9_-]{8}(?=\.(?:js|css)$)/g, "-*"), label:m[2], kb:Number(m[3])}));
+    const lineRe = /^\[(OK|EXCEEDS)\] (.+?): ([\d.]+) KB \(threshold: [\d.]+ KB\)$/;
+    const parse = t => {
+      const lines = t.split("\n").map(s => s.trim()).filter(s => /^\[(OK|EXCEEDS)\]/.test(s));
+      for (const line of lines) if (!lineRe.test(line)) throw Error(`malformed bundle report entry: ${line}`);
+      return lines.map(line => {
+        const m = line.match(lineRe);
+        return { status: m[1], label: m[2], key: m[2].replace(/-[A-Za-z0-9_-]{8}(?=\.(?:js|css)$)/g, "-*"), kb: Number(m[3]) };
+      });
+    };
     const entries = parse(text);
     if (!entries.length || !patterns.some(p => entries.some(e => e.label.startsWith(p + " → ")))) throw Error("missing bundle budget match");
     const total = dir => {
@@ -262,16 +284,10 @@ TOTAL_EOF
     const now = total(out);
     if (record === "1") process.exit(0);
     const old = parse(fs.readFileSync(`${base}/step-bundle-${name}.log`, "utf8"));
+    if (!old.length) throw Error("empty baseline budget report");
     let failed = false;
-    for (const p of patterns) {
-      if (old.some(e => e.label.startsWith(p + " → ")) && !entries.some(e => e.label.startsWith(p + " → "))) {
-        console.error(`Missing baseline budget pattern: ${name} ${p}`); failed = true;
-      }
-    }
-    for (const e of old) {
-      if (!patterns.some(p => e.label.startsWith(p + " → ")) && !entries.some(c => c.key === e.key)) {
-        console.error(`Missing baseline budget entry: ${name} ${e.key}`); failed = true;
-      }
+    for (const key of new Set(old.map(e => e.key))) {
+      if (!entries.some(e => e.key === key)) { console.error(`Missing baseline budget chunk: ${name} ${key}`); failed = true; }
     }
     for (const entry of entries) {
       if (entry.status !== "EXCEEDS") continue;

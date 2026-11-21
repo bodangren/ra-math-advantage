@@ -87,13 +87,13 @@ Export these exact values in each D1 role brief and role-gate call:
 
 ```bash
 export RED_TEST_COMMAND='npm audit --audit-level=high'
-export GREEN_TEST_COMMAND='GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh audit-high d1-audit-green-r3'
-export PROJECT_LINT='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh lint d1-green-r2'
-export PROJECT_CHECKS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh checks-all d1-green-r2'
-export PROJECT_TESTS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh test d1-green-r2'
+export GREEN_TEST_COMMAND='GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh audit-high d1-audit-green-r5'
+export PROJECT_LINT='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh lint d1-green-r5'
+export PROJECT_CHECKS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh checks-all d1-green-r5'
+export PROJECT_TESTS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh test d1-green-r5'
 ```
 
-Only the audit gate and the support group have r3 logs. Lint, tests, and the remaining checks groups keep their `d1-green-r2` logs because the dependency tree is unchanged since r2.
+Every group has an r5 log because the stricter resume rule created a fresh label and all jobs ran again. The test group log records a new failure key from the reviewer scratch folder; see the r5 note below.
 
 Export these exact values for D2:
 
@@ -157,6 +157,7 @@ Due at origin: 2026-11-23. Green depends on OpenRouter S1 acceptance.
 - [x] Task: D1 Verify — compare the complete gate results (e61f73e)
     - The first sweep stopped on the bundle growth rule with miniflare 5 beta. The r2 retry uses the newest wrangler 4.116.0 and plugin 1.49.0 with stable miniflare 4.20260730.0. All seven groups report `NEWFAIL=0` against `d1-baseline-r2`; no infrastructure failure. IM3 total changed by -5 bytes and BM2 total by -5 bytes. The Green audit gate exits 0 with every high named in the exceptions table. No user verification and no checkpoint ran.
     - r3 remediation fixed the bundle baseline-entry coverage defect in `gates.sh` with a tracked regression fixture, and corrected the exception reasons, leaf identifiers, and dependency paths in `evidence.md`. The support group at `d1-green-r3` and the audit gate at `d1-audit-green-r3` exit 0 with `NEWFAIL=0`. Logs: `green-r3-support.out`, `green-r3-audit-gate.out`, and `gates/d1-green-r3/support/`. The other groups keep their r2 logs because the dependency tree is unchanged.
+    - r5 remediation fixed ADV-1 to ADV-6 in `gates.sh`: test-title keys, package-bound audit exceptions, complete resume records, chunk-level bundle coverage, baseline report validation, and audit count reconciliation. The adversarial fixture moved from 22 pass and 10 fail to 32 pass and 0 fail. Every group ran again with label `d1-green-r5` and the audit gate with `d1-audit-green-r5`. Format, lint, typecheck, build, support, docs, and audit-high exit 0 with `NEWFAIL=0`. The test group exits 1 with `NEWFAIL=1`: two audit-contract test titles and two assertions about nine nested lockfiles in the gitignored `review-b-scratch` folder that the adversarial role created after the r2 baseline. No source or dependency change produced the keys. The phase stops under the new-failure rule. Default: the orchestrator removes that scratch folder and Green reruns the test group. Logs: `green-r5-*.out`, `green-r5-adversarial-*.out`, and `gates/d1-green-r5/`.
     - [ ] Run every gate group with label `d1-green`.
     - [ ] Compare each result with `d1-baseline` by diagnostic key.
     - [ ] Record `NEWFAIL`, audit counts, selected versions, and log paths in `evidence.md`.
@@ -166,7 +167,8 @@ Due at origin: 2026-11-23. Green depends on OpenRouter S1 acceptance.
     - [ ] Report the standing BM2 budget failure before acceptance.
     - [ ] Keep every budget and manual deploy trigger unchanged.
     - [ ] Report each unresolved critical or high finding to the PM by 2026-11-23.
-- [ ] Task: Measure - User Manual Verification 'Phase D1: Fix the critical and high advisories'
+- [x] Task: Measure - User Manual Verification 'Phase D1: Fix the critical and high advisories'
+    - PM-verified 2026-11-21: a dependency refresh has no visible change, so this is not a Daniel gate. Evidence: the D1 audit counts (before 0 critical, 9 high, 7 moderate, 5 low; after 0 critical, 5 high, 6 moderate, 5 low), the five named high exceptions in evidence.md, and the gate exits at D1 phase acceptance.
     - [ ] Complete independent review and the D1 phase acceptance role-gate.
     - [ ] Follow the checkpoint protocol in `measure/workflow.md`.
     - [ ] Present the audit result, baseline exceptions, and bundle report to Daniel.
