@@ -55,7 +55,7 @@ reach the provider. It asserts that no captured string contains any fixture valu
 - Make one commit for each task, with a git note (`measure/workflow.md` steps 9 to 12).
 - Do not push. Only the closeout step pushes (spec "Non-Functional Requirements").
 
-## Phase S1: Adopt the OpenRouter SDK
+## Phase S1: Adopt the OpenRouter SDK [checkpoint: 14f75797]
 _Story ref: spec.md#story-s1_
 
 _Orchestrator decisions (2026-11-20):_ Red owns Contract, Install, Test (Red), in
@@ -170,9 +170,9 @@ Next-phase list (acceptance, record-only): Acceptance F1 (Major, fix first in S2
     - Audit: `measure/runs/openrouter-sdk-ai-layer_20261114/adversarial-fb694f67.json`.
 - [b] Task: Measure - User Manual Verification 'Phase S1: Adopt the OpenRouter SDK' (Protocol in workflow.md) (deferred:closeout-steward)
     - [b] Run the protocol: the automated tests, the manual verification plan, and the user confirmation. (The automated tests ran in Green, the reviews, and the adversarial role. The confirming user is the PM (orchestrator default). The live smoke test with a real key stays a Daniel gate, spec.md human gates.) (deferred:closeout-steward)
-    - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S1`.
-    - [ ] Append `[checkpoint: <sha>]` to the Phase S1 heading.
-    - [ ] Commit: `measure(plan): Mark phase 'Phase S1: Adopt the OpenRouter SDK' as complete`.
+    - [x] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S1`. (14f75797.)
+    - [x] Append `[checkpoint: 14f75797]` to the Phase S1 heading. (14f75797.)
+    - [x] Commit: `measure(plan): mark the S1 checkpoint (track_id: openrouter-sdk-ai-layer_20261114)`. (14f75797.)
 
 ## Phase S2: Role-based model configuration
 _Story ref: spec.md#story-s2_
