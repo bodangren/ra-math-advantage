@@ -87,10 +87,10 @@ Export these exact values in each D1 role brief and role-gate call:
 
 ```bash
 export RED_TEST_COMMAND='npm audit --audit-level=high'
-export GREEN_TEST_COMMAND='GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh audit-high d1-audit-green'
-export PROJECT_LINT='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh lint d1-green'
-export PROJECT_CHECKS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh checks-all d1-green'
-export PROJECT_TESTS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh test d1-green'
+export GREEN_TEST_COMMAND='GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh audit-high d1-audit-green-r2'
+export PROJECT_LINT='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh lint d1-green-r2'
+export PROJECT_CHECKS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh checks-all d1-green-r2'
+export PROJECT_TESTS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh test d1-green-r2'
 ```
 
 Export these exact values for D2:
@@ -138,7 +138,7 @@ Due at origin: 2026-11-23. Green depends on OpenRouter S1 acceptance.
     - [ ] Record both bundle results and report every budget failure to the PM.
     - [ ] Commit the Red evidence before Green changes.
     - Red commands: `npm audit --audit-level=high` exits 1 (9 high); `npm audit --json` gives critical=0 high=9 moderate=7 low=5; gate groups with label `d1-baseline` give `NEWFAIL=0` for format, lint, typecheck, test, build, docs and `NEWFAIL=1` for support (bundle-entry parse misses, no infra). Logs: `measure/runs/dependency-refresh_20261121/` (gitignored).
-- [x] Task: D1 Green — update the vulnerable dependency chains (ee469e8)
+- [x] Task: D1 Green — update the vulnerable dependency chains (e61f73e)
     - [ ] Confirm OpenRouter S1 acceptance and exclusive dependency changes through the checkpoint.
     - [ ] Refresh the baseline if code or the lockfile changed after capture.
     - [ ] Read each affected package declaration and its real dependency path.
@@ -152,8 +152,8 @@ Due at origin: 2026-11-23. Green depends on OpenRouter S1 acceptance.
     - [ ] Record unresolved findings in the `D1 High Exceptions` table with identifiers, paths, versions, and named reasons.
     - [ ] Run `GREEN_TEST_COMMAND`; require no high or critical identifier outside that table.
     - [ ] Keep the selected SDK version compatible with the S1 tests and workerd probe.
-- [~] Task: D1 Verify — compare the complete gate results
-    - Stopped on the bundle total growth rule. IM3 grew 121.5 percent and BM2 grew 142.8 percent against `d1-baseline-r2` because the new Cloudflare toolchain emits sourcemaps. One new support key is only the npm debug-log time stamp. See `evidence.md` section `D1 Verify — stop condition`. Orchestrator decision pending; no user verification and no checkpoint ran.
+- [x] Task: D1 Verify — compare the complete gate results (e61f73e)
+    - The first sweep stopped on the bundle growth rule with miniflare 5 beta. The r2 retry uses the newest wrangler 4.116.0 and plugin 1.49.0 with stable miniflare 4.20260730.0. All seven groups report `NEWFAIL=0` against `d1-baseline-r2`; no infrastructure failure. IM3 total changed by -5 bytes and BM2 total by -5 bytes. The Green audit gate exits 0 with every high named in the exceptions table. No user verification and no checkpoint ran.
     - [ ] Run every gate group with label `d1-green`.
     - [ ] Compare each result with `d1-baseline` by diagnostic key.
     - [ ] Record `NEWFAIL`, audit counts, selected versions, and log paths in `evidence.md`.
@@ -250,6 +250,7 @@ Due: 2026-11-25. Depends on D1 acceptance.
     - [ ] Obtain Daniel's confirmation before the checkpoint.
     - [ ] Record the checkpoint commit in this phase heading.
     - [ ] Update the registry and commit the plan update.
+- [ ] Task: At phase close (11-25), run `npm view miniflare dist-tags`. If a stable 5.x exists, adopt it in this phase and clear the D1 Cloudflare exceptions (PM a778067f).
 
 ## Closeout
 

@@ -78,7 +78,7 @@ Preserve exact logs under `measure/runs/dependency-refresh_20261121/gates/`.
 
 | Phase | Base commit | Audit counts | New failure keys | Bundle report | Acceptance |
 |---|---|---|---|---|---|
-| D1 | `0228cfd7` (Red), `808a8ece` (r2 base) | before critical=0 high=9 moderate=7 low=5; after critical=0 high=0 moderate=6 low=5 | `NEWFAIL=0` for format, lint, typecheck, test, build, docs; support `NEWFAIL=1` from bundle growth and the npm debug-log key | IM3 12734760 to 28206981 bytes; BM2 18777416 to 45595085 bytes; both above the 5 percent stop | Green audit passed; Verify stopped; no checkpoint |
+| D1 | `0228cfd7` (Red), `808a8ece` (r2 base) | before critical=0 high=9 moderate=7 low=5; final critical=0 high=5 moderate=6 low=5, all five high packages named as exceptions | `NEWFAIL=0` for every group at `d1-green-r2` against `d1-baseline-r2`; no infrastructure failure | IM3 12734760 to 12734755 bytes; BM2 18777416 to 18777411 bytes; both within 5 percent | Green audit gate exits 0; Verify passed; no checkpoint |
 | D2 | Pending | Pending | Pending | Pending | Pending |
 
 ## Deferred Updates and Overrides
