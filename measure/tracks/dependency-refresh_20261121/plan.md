@@ -60,8 +60,8 @@ bash measure/tracks/dependency-refresh_20261121/gates.sh support <label>
 bash measure/tracks/dependency-refresh_20261121/gates.sh docs <label>
 ```
 
-Labels: `d1-baseline`, `d1-green`, `d2-baseline`, and `d2-green`.
-Set `GATES_BASE=d1-baseline` for D1 comparisons and `GATES_BASE=d2-baseline` for D2 comparisons.
+Labels: `d1-baseline`, `d1-baseline-r2`, `d1-green`, `d2-baseline`, and `d2-green`.
+Set `GATES_BASE=d1-baseline-r2` for D1 comparisons and `GATES_BASE=d2-baseline` for D2 comparisons. The `d1-baseline-r2` label replaced `d1-baseline` after the OpenRouter r4 and r5 code changes and the Step 0 runner repair; earlier `d1-baseline` logs stay as evidence.
 Set `GATES_RESUME=1` to reuse completed jobs and retry infrastructure jobs once.
 Use a new label suffix after a code change; preserve earlier logs.
 The script calls `~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh` for each job.
@@ -88,9 +88,9 @@ Export these exact values in each D1 role brief and role-gate call:
 ```bash
 export RED_TEST_COMMAND='npm audit --audit-level=high'
 export GREEN_TEST_COMMAND='GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh audit-high d1-audit-green'
-export PROJECT_LINT='GATES_BASE=d1-baseline GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh lint d1-green'
-export PROJECT_CHECKS='GATES_BASE=d1-baseline GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh checks-all d1-green'
-export PROJECT_TESTS='GATES_BASE=d1-baseline GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh test d1-green'
+export PROJECT_LINT='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh lint d1-green'
+export PROJECT_CHECKS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh checks-all d1-green'
+export PROJECT_TESTS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh test d1-green'
 ```
 
 Export these exact values for D2:
@@ -138,7 +138,7 @@ Due at origin: 2026-11-23. Green depends on OpenRouter S1 acceptance.
     - [ ] Record both bundle results and report every budget failure to the PM.
     - [ ] Commit the Red evidence before Green changes.
     - Red commands: `npm audit --audit-level=high` exits 1 (9 high); `npm audit --json` gives critical=0 high=9 moderate=7 low=5; gate groups with label `d1-baseline` give `NEWFAIL=0` for format, lint, typecheck, test, build, docs and `NEWFAIL=1` for support (bundle-entry parse misses, no infra). Logs: `measure/runs/dependency-refresh_20261121/` (gitignored).
-- [ ] Task: D1 Green — update the vulnerable dependency chains
+- [x] Task: D1 Green — update the vulnerable dependency chains (ee469e8)
     - [ ] Confirm OpenRouter S1 acceptance and exclusive dependency changes through the checkpoint.
     - [ ] Refresh the baseline if code or the lockfile changed after capture.
     - [ ] Read each affected package declaration and its real dependency path.
@@ -152,7 +152,8 @@ Due at origin: 2026-11-23. Green depends on OpenRouter S1 acceptance.
     - [ ] Record unresolved findings in the `D1 High Exceptions` table with identifiers, paths, versions, and named reasons.
     - [ ] Run `GREEN_TEST_COMMAND`; require no high or critical identifier outside that table.
     - [ ] Keep the selected SDK version compatible with the S1 tests and workerd probe.
-- [ ] Task: D1 Verify — compare the complete gate results
+- [~] Task: D1 Verify — compare the complete gate results
+    - Stopped on the bundle total growth rule. IM3 grew 121.5 percent and BM2 grew 142.8 percent against `d1-baseline-r2` because the new Cloudflare toolchain emits sourcemaps. One new support key is only the npm debug-log time stamp. See `evidence.md` section `D1 Verify — stop condition`. Orchestrator decision pending; no user verification and no checkpoint ran.
     - [ ] Run every gate group with label `d1-green`.
     - [ ] Compare each result with `d1-baseline` by diagnostic key.
     - [ ] Record `NEWFAIL`, audit counts, selected versions, and log paths in `evidence.md`.
