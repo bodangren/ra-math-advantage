@@ -21,20 +21,31 @@ export interface OpenRouterProviderOptions {
 }
 
 /**
+ * Replaces every occurrence of the configured API key with a redaction marker.
+ */
+function redactApiKey(text: string, apiKey: string): string {
+  if (apiKey.length === 0 || !text.includes(apiKey)) {
+    return text;
+  }
+  return text.split(apiKey).join("[redacted]");
+}
+
+/**
  * Maps an SDK error to the error shapes that `withRetry` already understands.
  * HTTP errors keep the `OpenRouter API error:` prefix, connection errors start
- * with `fetch failed:`, and abort errors become an `AbortError`.
+ * with `fetch failed:`, and abort errors become an `AbortError`. Upstream text
+ * never carries the configured API key into the thrown error.
  */
-function mapSdkError(error: unknown): Error {
+function mapSdkError(error: unknown, apiKey: string): Error {
   if (!(error instanceof Error)) {
     return new Error(String(error));
   }
 
   const status = (error as Error & { statusCode?: unknown }).statusCode;
   if (typeof status === "number") {
-    const mapped = new Error(`OpenRouter API error: ${status} ${error.message}`) as Error & {
-      status: number;
-    };
+    const mapped = new Error(
+      `OpenRouter API error: ${status} ${redactApiKey(error.message, apiKey)}`,
+    ) as Error & { status: number };
     mapped.status = status;
     return mapped;
   }
@@ -49,7 +60,7 @@ function mapSdkError(error: unknown): Error {
     error.name === "UnexpectedClientError" ||
     error.message.includes("fetch failed")
   ) {
-    return new Error(`fetch failed: ${error.message}`);
+    return new Error(`fetch failed: ${redactApiKey(error.message, apiKey)}`);
   }
 
   return error;
@@ -80,6 +91,7 @@ function extractContent(content: unknown): string | null {
  */
 async function sendChat(
   client: OpenRouterClient,
+  apiKey: string,
   model: string,
   messages: SdkMessages,
   timeoutMs: number,
@@ -109,7 +121,7 @@ async function sendChat(
       }
       return content.trim();
     } catch (error) {
-      throw mapSdkError(error);
+      throw mapSdkError(error, apiKey);
     } finally {
       clearTimeout(timeout);
     }
@@ -134,6 +146,7 @@ export function createOpenRouterProvider(options: OpenRouterProviderOptions) {
   ): Promise<string> {
     return sendChat(
       client,
+      options.apiKey,
       model,
       [{ role: "user", content: prompt }] as SdkMessages,
       timeoutMs,
@@ -158,7 +171,7 @@ export function createOpenRouterProviderWithMessages(options: OpenRouterProvider
     messages: ChatMessage[],
     abortSignal?: AbortSignal,
   ): Promise<string> {
-    return sendChat(client, model, messages as SdkMessages, timeoutMs, abortSignal);
+    return sendChat(client, options.apiKey, model, messages as SdkMessages, timeoutMs, abortSignal);
   };
 }
 

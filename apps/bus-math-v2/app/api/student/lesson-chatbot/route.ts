@@ -178,14 +178,13 @@ export async function POST(request: NextRequest) {
     },
   );
 
-  const provider = resolveOpenRouterProviderWithMessagesFromEnv();
-  if (!provider) {
-    return NextResponse.json({ error: "AI provider not configured" }, { status: 503 });
-  }
-
   const messages = buildMessages(context, sanitizedQuestion);
 
   try {
+    const provider = resolveOpenRouterProviderWithMessagesFromEnv();
+    if (!provider) {
+      return NextResponse.json({ error: "AI provider not configured" }, { status: 503 });
+    }
     const aiResponse = await provider(messages);
     return NextResponse.json({ response: aiResponse });
   } catch (error) {
