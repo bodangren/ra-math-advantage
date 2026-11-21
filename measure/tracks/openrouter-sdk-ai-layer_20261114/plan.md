@@ -138,7 +138,7 @@ _Red retry r2 (`c6a0627f`):_ the SDK mock used `mockReturnValue`, which Vitest
     - [ ] Mock `globalThis.fetch` with an OpenRouter answer. Assert HTTP 200, the answer text, and one request to a URL that ends with `/chat/completions`.
     - [ ] Create `apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.sdk.test.ts` in the same way, with the IM3 Convex mocks.
     - [ ] Commit: `test(chatbot): run the chatbot routes through the SDK`.
-- [ ] Task: S1 Verify — run the gates and record the bundle sizes
+- [x] Task: S1 Verify — run the gates and record the bundle sizes `f90015bb`
     - [ ] Run each gate, with the workerd probe. Confirm that each gate passes.
     - [ ] Build IM3 and BM2. Record the sizes after the change, in the same form as the baseline.
     - [ ] Run both bundle audits. If a budget fails, do not change the budget. Stop the phase and report the sizes to the user.
