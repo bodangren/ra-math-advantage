@@ -159,6 +159,10 @@ _Red retry r2 (`c6a0627f`):_ the SDK mock used `mockReturnValue`, which Vitest
     - The detached role gate exits 1 with `NEWFAIL=1`. Only the two adversarial tests add failure keys.
     - IM3 218, BM2 7, scripts 27, and audit 5 retain their baseline failure keys.
     - [x] Remediation r4 (ADV-1 and ADV-2): redact the API key from mapped errors and contain BM2 provider resolution failures in the 502 handler `bf5ef00b`.
+    - Adversarial rerun r2: all 23 original cases pass. Test commit `eaaf7a6b` adds two failing cases for non-HTTP body-read errors.
+    - Green owns the remaining key exposure. The r2 role gate uses label `green-r2` and exits 1 with `NEWFAIL=1`.
+    - Only the two new package cases add failure keys. Every baseline failure key remains unchanged.
+    - [x] Remediation r5 (ADV-3, Review B F8/F9, Review A F4): redact the key on every SDK error path and apply padded-key and minimum-length rules `96f8d20c`.
 - [ ] Task: Measure - User Manual Verification 'Phase S1: Adopt the OpenRouter SDK' (Protocol in workflow.md)
     - [ ] Run the protocol: the automated tests, the manual verification plan, and the user confirmation.
     - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S1`.
