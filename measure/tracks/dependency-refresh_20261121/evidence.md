@@ -274,6 +274,40 @@ No infrastructure failure occurred. The S1 tests, the SDK suite, and the workerd
 
 The phase stops here. The orchestrator must decide how to treat the sourcemap growth and the npm debug-log key. No user verification or checkpoint ran.
 
+## D1 Verify retry r2 — stable Cloudflare runtime
+
+The orchestrator narrowed the retry. miniflare 5 is published only as a prerelease. The resolved toolchain must stay on stable miniflare 4.x.
+
+Registry checks with `npm view <pkg>@<ver> dependencies.miniflare`:
+
+| Package | Version | Resolved miniflare | Note |
+|---|---|---|---|
+| `wrangler` | 4.116.0 | 4.20260730.0 | Newest stable miniflare; selected |
+| `wrangler` | 4.117.0 | 5.20260730.0-alpha | Newest wrangler with a stable miniflare is 4.116.0 |
+| `@cloudflare/vite-plugin` | 1.49.0 | 4.20260730.0 | Newest stable miniflare; selected |
+| `@cloudflare/vite-plugin` | 1.50.0 | 5.20260730.0-alpha | Newest plugin with a stable miniflare is 1.49.0 |
+
+Both selected parents stay above the Red advisory ranges. wrangler 4.116.0 is above 4.113.0 and plugin 1.49.0 is above 1.46.0. The resolved Cloudflare chain has no new prerelease: miniflare is 4.20260730.0 and workerd is 1.20260730.1. The chain keeps `unenv` 2.0.0-rc.24 and `youch` 4.1.0-beta.10. Both were present at the accepted Red baseline in wrangler 4.98.0 and miniflare 4.20260603.0, so they are unchanged, not newly adopted.
+
+The npm advisory data changed after Red. The current report gives wrangler range `4.16.0 - 4.130.0`, plugin range `1.2.3 - 1.54.6`, and miniflare range `4.20250508.3 - 5.20260908.0-alpha`. The Red ranges were `4.16.0 - 4.113.0`, `0.1.5 - 1.46.0`, and `3.20250204.0 - 5.20260801.0-alpha`. The expanded ranges keep all three parents high at the newest stable versions. Only miniflare 5 beta clears them, and the track forbids prereleases.
+
+Commands run one at a time through `heavy-run.sh`:
+
+| Command | Log | Exit |
+|---|---|---|
+| `npm install --save-dev wrangler@4.116.0 @cloudflare/vite-plugin@1.49.0 --workspace=...` (four course apps, first attempt) | `green-r2-install-stable-cloudflare.out` | 146, network ETIMEDOUT; no file changed |
+| Same command, retry | `green-r2-install-stable-cloudflare-retry.out` | 0 |
+| `npm install` after adding root overrides | `green-r2-install-overrides.out` | 0 |
+| `npm install --save-dev wrangler@4.116.0 @cloudflare/vite-plugin@1.49.0 --workspace=...` (re-resolve) | `green-r2-install-workspaces-with-overrides.out` | 0 |
+| `npm install --package-lock-only` | `green-r2-lock-only.out` | 0 |
+| `npm install` with the final two-entry override | `green-r2-install-final-overrides.out` | 0 |
+
+Root overrides: `sharp` 0.35.5 and `undici` 7.30.2. Proof of need: `npm view miniflare@4.20260730.0 dependencies.sharp` returns 0.35.2 and `dependencies.undici` returns 7.28.0. `npm view miniflare version` returns 4.20260730.0. There is no stable miniflare 4.x release with fixed sharp or undici. The overrides fix the root copies, `node_modules/sharp` 0.35.5 and `node_modules/undici` 7.30.2. npm keeps the nested copies under `node_modules/miniflare/node_modules/` at 0.35.2 and 7.28.0. `npm ls sharp undici --all` shows both nested copies. No `ws` override was needed: the resolved ws is 8.21.0, above the 8.20.1 advisory end. No `npm audit fix --force` ran and vinext was not downgraded.
+
+Audit before the r2 change: critical=0 high=0 moderate=6 low=5. Audit after the r2 change: critical=0 high=5 moderate=6 low=5, total 16. Reports: `green-r2-audit-before-overrides.json`, `green-r2-audit-after-overrides.json`, `green-r2-audit-after-overrides-2.json`. The expanded advisory ranges account for the five high packages: `@cloudflare/vite-plugin`, `miniflare`, `sharp`, `undici`, and `wrangler`. They resolve to nine unique advisory identifiers. The table below names each identifier for each affected package with its reason. The Green audit gate accepts them as named exceptions; the full audit stays unresolved.
+
+The `key()` function in `gates.sh` now normalizes the npm debug-log line to `<log path>`. Baseline and current tree logs then produce no new key from the time stamp.
+
 ## D1 High Exceptions
 
 No exception is selected during planning.
@@ -284,6 +318,33 @@ The full audit remains unresolved when this table permits the exception gate.
 
 | Advisory | Package | Version | Dependency path | Reason |
 |---|---|---|---|---|
+| GHSA-rgj7-g3m4-5g8c | miniflare | 4.20260730.0 | wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | Fixed only in miniflare 5.x, which npm publishes only as a prerelease (`beta` dist-tag); the track forbids prereleases; miniflare is the local dev and test simulator and is not in the deployed Worker. |
+| GHSA-wq5f-xc86-pv6w | miniflare | 4.20260730.0 | wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | Fixed only in miniflare 5.x, which npm publishes only as a prerelease (`beta` dist-tag); the track forbids prereleases; miniflare is the local dev and test simulator and is not in the deployed Worker. |
+| GHSA-4cwx-7wf7-3272 | miniflare | 4.20260730.0 | wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | Fixed only in miniflare 5.x, which npm publishes only as a prerelease (`beta` dist-tag); the track forbids prereleases; miniflare is the local dev and test simulator and is not in the deployed Worker. |
+| GHSA-rfgv-xxqx-mfg5 | miniflare | 4.20260730.0 | wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | Fixed only in miniflare 5.x, which npm publishes only as a prerelease (`beta` dist-tag); the track forbids prereleases; miniflare is the local dev and test simulator and is not in the deployed Worker. |
+| GHSA-w293-vg96-wgc3 | miniflare | 4.20260730.0 | wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | Fixed only in miniflare 5.x, which npm publishes only as a prerelease (`beta` dist-tag); the track forbids prereleases; miniflare is the local dev and test simulator and is not in the deployed Worker. |
+| GHSA-xjj6-f33q-929c | miniflare | 4.20260730.0 | wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | Fixed only in miniflare 5.x, which npm publishes only as a prerelease (`beta` dist-tag); the track forbids prereleases; miniflare is the local dev and test simulator and is not in the deployed Worker. |
+| GHSA-4w7w-5xrc-9h26 | miniflare | 4.20260730.0 | wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | Fixed only in miniflare 5.x, which npm publishes only as a prerelease (`beta` dist-tag); the track forbids prereleases; miniflare is the local dev and test simulator and is not in the deployed Worker. |
+| GHSA-2m5v-pch6-74hx | miniflare | 4.20260730.0 | wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | Fixed only in miniflare 5.x, which npm publishes only as a prerelease (`beta` dist-tag); the track forbids prereleases; miniflare is the local dev and test simulator and is not in the deployed Worker. |
+| GHSA-qrxm-fqhp-jwvm | miniflare | 4.20260730.0 | wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | Fixed only in miniflare 5.x, which npm publishes only as a prerelease (`beta` dist-tag); the track forbids prereleases; miniflare is the local dev and test simulator and is not in the deployed Worker. |
+| GHSA-rgj7-g3m4-5g8c | @cloudflare/vite-plugin, wrangler | 1.49.0, 4.116.0 | four course apps > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 | The npm advisory ranges expanded after Red: wrangler 4.16.0-4.130.0 and plugin 1.2.3-1.54.6. Only miniflare 5 beta clears them, and the track forbids prereleases. |
+| GHSA-wq5f-xc86-pv6w | @cloudflare/vite-plugin, wrangler | 1.49.0, 4.116.0 | four course apps > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 | The npm advisory ranges expanded after Red: wrangler 4.16.0-4.130.0 and plugin 1.2.3-1.54.6. Only miniflare 5 beta clears them, and the track forbids prereleases. |
+| GHSA-4cwx-7wf7-3272 | @cloudflare/vite-plugin, wrangler | 1.49.0, 4.116.0 | four course apps > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 | The npm advisory ranges expanded after Red: wrangler 4.16.0-4.130.0 and plugin 1.2.3-1.54.6. Only miniflare 5 beta clears them, and the track forbids prereleases. |
+| GHSA-rfgv-xxqx-mfg5 | @cloudflare/vite-plugin, wrangler | 1.49.0, 4.116.0 | four course apps > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 | The npm advisory ranges expanded after Red: wrangler 4.16.0-4.130.0 and plugin 1.2.3-1.54.6. Only miniflare 5 beta clears them, and the track forbids prereleases. |
+| GHSA-w293-vg96-wgc3 | @cloudflare/vite-plugin, wrangler | 1.49.0, 4.116.0 | four course apps > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 | The npm advisory ranges expanded after Red: wrangler 4.16.0-4.130.0 and plugin 1.2.3-1.54.6. Only miniflare 5 beta clears them, and the track forbids prereleases. |
+| GHSA-xjj6-f33q-929c | @cloudflare/vite-plugin, wrangler | 1.49.0, 4.116.0 | four course apps > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 | The npm advisory ranges expanded after Red: wrangler 4.16.0-4.130.0 and plugin 1.2.3-1.54.6. Only miniflare 5 beta clears them, and the track forbids prereleases. |
+| GHSA-4w7w-5xrc-9h26 | @cloudflare/vite-plugin, wrangler | 1.49.0, 4.116.0 | four course apps > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 | The npm advisory ranges expanded after Red: wrangler 4.16.0-4.130.0 and plugin 1.2.3-1.54.6. Only miniflare 5 beta clears them, and the track forbids prereleases. |
+| GHSA-2m5v-pch6-74hx | @cloudflare/vite-plugin, wrangler | 1.49.0, 4.116.0 | four course apps > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 | The npm advisory ranges expanded after Red: wrangler 4.16.0-4.130.0 and plugin 1.2.3-1.54.6. Only miniflare 5 beta clears them, and the track forbids prereleases. |
+| GHSA-qrxm-fqhp-jwvm | @cloudflare/vite-plugin, wrangler | 1.49.0, 4.116.0 | four course apps > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 | The npm advisory ranges expanded after Red: wrangler 4.16.0-4.130.0 and plugin 1.2.3-1.54.6. Only miniflare 5 beta clears them, and the track forbids prereleases. |
+| GHSA-rgj7-g3m4-5g8c | sharp | 0.35.2 | nested under miniflare 4.20260730.0 in wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | miniflare 4.20260730.0 pins sharp 0.35.2 at an exact version. The newest stable miniflare has no fixed release. The root override sets the root copy to a fixed version, but npm keeps the nested copy at the pinned version. |
+| GHSA-wq5f-xc86-pv6w | sharp | 0.35.2 | nested under miniflare 4.20260730.0 in wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | miniflare 4.20260730.0 pins sharp 0.35.2 at an exact version. The newest stable miniflare has no fixed release. The root override sets the root copy to a fixed version, but npm keeps the nested copy at the pinned version. |
+| GHSA-4cwx-7wf7-3272 | undici | 7.28.0 | nested under miniflare 4.20260730.0 in wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | miniflare 4.20260730.0 pins undici 7.28.0 at an exact version. The newest stable miniflare has no fixed release. The root override sets the root copy to a fixed version, but npm keeps the nested copy at the pinned version. |
+| GHSA-rfgv-xxqx-mfg5 | undici | 7.28.0 | nested under miniflare 4.20260730.0 in wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | miniflare 4.20260730.0 pins undici 7.28.0 at an exact version. The newest stable miniflare has no fixed release. The root override sets the root copy to a fixed version, but npm keeps the nested copy at the pinned version. |
+| GHSA-w293-vg96-wgc3 | undici | 7.28.0 | nested under miniflare 4.20260730.0 in wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | miniflare 4.20260730.0 pins undici 7.28.0 at an exact version. The newest stable miniflare has no fixed release. The root override sets the root copy to a fixed version, but npm keeps the nested copy at the pinned version. |
+| GHSA-xjj6-f33q-929c | undici | 7.28.0 | nested under miniflare 4.20260730.0 in wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | miniflare 4.20260730.0 pins undici 7.28.0 at an exact version. The newest stable miniflare has no fixed release. The root override sets the root copy to a fixed version, but npm keeps the nested copy at the pinned version. |
+| GHSA-4w7w-5xrc-9h26 | undici | 7.28.0 | nested under miniflare 4.20260730.0 in wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | miniflare 4.20260730.0 pins undici 7.28.0 at an exact version. The newest stable miniflare has no fixed release. The root override sets the root copy to a fixed version, but npm keeps the nested copy at the pinned version. |
+| GHSA-2m5v-pch6-74hx | undici | 7.28.0 | nested under miniflare 4.20260730.0 in wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | miniflare 4.20260730.0 pins undici 7.28.0 at an exact version. The newest stable miniflare has no fixed release. The root override sets the root copy to a fixed version, but npm keeps the nested copy at the pinned version. |
+| GHSA-qrxm-fqhp-jwvm | undici | 7.28.0 | nested under miniflare 4.20260730.0 in wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | miniflare 4.20260730.0 pins undici 7.28.0 at an exact version. The newest stable miniflare has no fixed release. The root override sets the root copy to a fixed version, but npm keeps the nested copy at the pinned version. |
 
 ## Remaining Moderate and Low Advisories
 
