@@ -405,6 +405,16 @@ The test group reports one new failure: `step audit-suites has a new diagnostic 
 
 The phase stops here under the rule that a new failure key stops verification. Default for the orchestrator: remove the gitignored `review-b-scratch` folder and rerun the test group with a fresh r5 label. Green does not delete another role's artifact and does not weaken the single-root-lockfile check. All other r5 groups and the audit gate pass.
 
+## D1 r6 — scratch move and test rerun (2026-11-21)
+
+The orchestrator chose option 1 from the r5 stop, with a move instead of a delete. No tracked file changed.
+
+1. Created `/home/daniebo/.cache/ra-math-scratch`.
+2. Moved `measure/runs/dependency-refresh_20261121/review-b-scratch` to `/home/daniebo/.cache/ra-math-scratch/review-b-scratch-20261121`. The folder is intact and still holds `check.py` and the nine trial folders with their nine nested `package-lock.json` files. Nothing was deleted.
+3. Left the single-root-lockfile audit test and every baseline key unchanged.
+
+Only the test group ran again, with label `d1-green-r6` and `GATES_BASE=d1-baseline-r2`. It exited 0 with `NEWFAIL=0`. Log: `green-r6-test.out`; exit file `green-r6-test.exit`; gate folder `gates/d1-green-r6/test/`. The `audit-suites` step now has no new key against `d1-baseline-r2`. The other seven groups keep their r5 logs because no tracked file changed. The audit gate stays at `d1-audit-green-r5` with exit 0 and `NEWFAIL=0`. Bundle totals are unchanged from r2, r3, and r5, and remain within 5 percent.
+
 ## D1 High Exceptions
 
 No exception is selected during planning.
