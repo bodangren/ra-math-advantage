@@ -6,7 +6,7 @@ Workflow: `measure/workflow.md`.
 
 ## Spec Review Amendment
 
-- [x] Apply the Round 1 decisions and verify the amended gate runner.
+- [x] Apply the Round 1 decisions and verify the amended gate runner. (e84735c)
   This is planning work, not a dependency change or a phase acceptance.
 
 ## Start and Scope Rules
@@ -168,7 +168,7 @@ Due at origin: 2026-11-23. Green depends on OpenRouter S1 acceptance.
     - [ ] Report the standing BM2 budget failure before acceptance.
     - [ ] Keep every budget and manual deploy trigger unchanged.
     - [ ] Report each unresolved critical or high finding to the PM by 2026-11-23.
-- [x] Task: Measure - User Manual Verification 'Phase D1: Fix the critical and high advisories'
+- [x] Task: Measure - User Manual Verification 'Phase D1: Fix the critical and high advisories' (cfecbe9)
     - PM-verified 2026-11-21: a dependency refresh has no visible change, so this is not a Daniel gate. Evidence: the D1 audit counts (before 0 critical, 9 high, 7 moderate, 5 low; after 0 critical, 5 high, 6 moderate, 5 low), the five named high exceptions in evidence.md, and the gate exits at D1 phase acceptance.
     - [ ] Complete independent review and the D1 phase acceptance role-gate.
     - [ ] Follow the checkpoint protocol in `measure/workflow.md`.
