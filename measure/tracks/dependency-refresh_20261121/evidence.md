@@ -185,6 +185,34 @@ The two support-group runner defects from the D1 Red capture are fixed in `gates
 
 Verification: `bash -n gates.sh` passed; usage paths exit 2; total helper printed the real byte count through `heavy-run.sh`; parser record mode exited 0 for both apps; larger-EXCEEDS smoke test exited 1. No budget file, deploy trigger, or dependency changed in this step.
 
+## D1 Green — refreshed baseline r2 (Step 1)
+
+### OpenRouter S1 acceptance
+
+OpenRouter S1 acceptance is complete. The phase-acceptance role-gate passed at commit `328862b6`; the gate result is `measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-328862b6.json`. The checkpoint commit is `14f75797` (`measure(checkpoint): Checkpoint end of Phase S1`). The plan marker commit is `808a8ece`, which is this role's base. The orchestrator confirms exclusive dependency changes for this track through the D1 checkpoint. No other role changes `package.json` or `package-lock.json` in that interval. Daniel's manual check stays deferred and is outside S1 acceptance.
+
+The code changed after the D1 Red capture: the OpenRouter r4 and r5 remediations landed between the Red capture and this role base. This baseline refresh uses the current code before any dependency change.
+
+### Baseline capture
+
+Label: `d1-baseline-r2`. Base commit: `808a8ece`. Command for each group: `bash measure/tracks/dependency-refresh_20261121/gates.sh <group> d1-baseline-r2` with `GATES_RESUME=1`. All groups are record-only. Output: `measure/runs/dependency-refresh_20261121/d1-baseline-r2-<group>.out` with matching `.exit` files. Gate folders: `measure/runs/dependency-refresh_20261121/gates/d1-baseline-r2/<group>/`.
+
+| Group | Exit | NEWFAIL | INFRA | Audit |
+|---|---|---|---|---|
+| format | 0 | 0 | none | n/a |
+| lint | 0 | 0 | none | n/a |
+| typecheck | 0 | 0 | none | n/a |
+| test | 0 | 0 | none | n/a |
+| build | 0 | 0 | none | n/a |
+| support | 0 | 0 | none | critical=0 high=9 moderate=7 low=5 |
+| docs | 0 | 0 | none | n/a |
+
+The support group now exits 0. The D1 Red capture recorded exit 1 and `NEWFAIL=1` from the two runner defects that Step 0 repaired. The diagnostic keys are unchanged from the D1 Red capture: IM3 typecheck 55 TS lines, pre-calculus typecheck 4 TS lines, the standing test failures, the `npm ls --all` invalid edges, and the BM2 `Total dist/server` EXCEEDS entry. Counts describe the report only; the logs hold every key.
+
+Bundle totals at r2: IM3 `dist/` 12734760 bytes; BM2 `dist/` 18777416 bytes. Both match the direct totals at Red. Parsed entries: IM3 `[OK] server/ssr/index.js → index.js: 292.85 KB`; BM2 `[EXCEEDS] Total dist/server: 9926.36 KB` and `[OK] server/index.js → index.js: 1154.38 KB`. The BM2 total failure is the known standing failure. Budgets and manual deploy triggers stay unchanged.
+
+D1 comparisons use `GATES_BASE=d1-baseline-r2`. The role briefs use the label `d1-baseline-r2` in place of `d1-baseline`; this change is recorded in `plan.md`.
+
 ## D1 High Exceptions
 
 No exception is selected during planning.
