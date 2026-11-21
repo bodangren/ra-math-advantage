@@ -153,6 +153,12 @@ _Red retry r2 (`c6a0627f`):_ the SDK mock used `mockReturnValue`, which Vitest
       `tech-debt.md` is at the 50-line limit, so no row was added.
     - Logs: `measure/runs/openrouter-sdk-ai-layer_20261114/generate-s1.log`
       and `.../doctor-s1.log`.
+- [~] Task: S1 Adversarial testing — test SDK failure paths and run the role gate
+    - Test commit `4b1d1aaf` adds 23 cases. Two cases fail: an HTTP error exposes the key, and BM2 lets a constructor error escape.
+    - Green owns both failures. The audit result is `measure/runs/openrouter-sdk-ai-layer_20261114/adversarial-b3401a2e.json`.
+    - The detached role gate exits 1 with `NEWFAIL=1`. Only the two adversarial tests add failure keys.
+    - IM3 218, BM2 7, scripts 27, and audit 5 retain their baseline failure keys.
+    - [x] Remediation r4 (ADV-1 and ADV-2): redact the API key from mapped errors and contain BM2 provider resolution failures in the 502 handler `bf5ef00b`.
 - [ ] Task: Measure - User Manual Verification 'Phase S1: Adopt the OpenRouter SDK' (Protocol in workflow.md)
     - [ ] Run the protocol: the automated tests, the manual verification plan, and the user confirmation.
     - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S1`.
