@@ -245,6 +245,11 @@ packages omitted from CI, shallow regex-only boundary guards, and an inverted
    *Chore, story-shaped spec with 4 phases: S1 adopt `@openrouter/sdk` in `packages/ai-tutoring` (workerd probe, bundle sizes), S2 one model variable for each role with no default and fail-closed behavior, usage logging, and the PII flag, S3 structured output for BM2 spreadsheet feedback and the BM2 teacher summary (lesson-level prompt without the student name), S4 removal of the OpenAI paths and role docs. AI prompts contain no PII. Depends on: the completed vinext 1.x and Oxc toolchain track (archived 2026-11-20). User decisions 2026-11-14.*
    *Link: [./tracks/openrouter-sdk-ai-layer_20261114/](./tracks/openrouter-sdk-ai-layer_20261114/)*
 
+- [ ] **Track: Dependency Refresh** — **PLANNED** (PM P2, 2026-11-21)
+   *Chore, light lane. Update every external package to the latest working version. Fix critical and high advisories by 2026-11-23. Complete remaining updates by 2026-11-25. Record each remaining advisory and its reason.*
+   *Green starts after openrouter-sdk-ai-layer S1 acceptance. Preserve manual deploy triggers and the accepted S1 tests. Spec review is pending.*
+   *Link: [./tracks/dependency-refresh_20261121/](./tracks/dependency-refresh_20261121/)*
+
 - [x] **Track: Danielson App Import** — **SUPERSEDED / ARCHIVED** (2026-11-16)
    *Chore, story-shaped spec with 3 phases: S1 import `github.com/bodangren/hdkwa-danielson` as `apps/danielson` in one snapshot commit of `c047df1` with no source history, replace the Danielson Framework text with own-word paraphrases and own-word labels (no exact Danielson Framework text; element IDs stay), move its open Measure tracks into this registry, remove the duplicate files, and join the npm workspaces; S2 the repository toolchain (vinext 1.x, oxlint, oxfmt, tsrs) and CI; S3 a static export to the new Worker `danielson` and a report to the PM. Depends on: the completed vinext 1.x and Oxc toolchain track (S1 and S2; archived 2026-11-20) and `prod-deploy-pipeline_20261114` (S3 only). Runs before the track set Unified Math App. Orchestrator decision 2026-11-14.*
    *Superseded by the open apps/danielson tracks (danielson-observation-cycle_20260819, danielson-admin-growth_20260907, danielson-slt-deck_20260907), PM 2026-11-16.*
