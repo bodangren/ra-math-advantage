@@ -153,7 +153,7 @@ _Red retry r2 (`c6a0627f`):_ the SDK mock used `mockReturnValue`, which Vitest
       `tech-debt.md` is at the 50-line limit, so no row was added.
     - Logs: `measure/runs/openrouter-sdk-ai-layer_20261114/generate-s1.log`
       and `.../doctor-s1.log`.
-- [~] Task: S1 Adversarial testing — test SDK failure paths and run the role gate
+- [x] Task: S1 Adversarial testing — test SDK failure paths and run the role gate `fb694f67`
     - Test commit `4b1d1aaf` adds 23 cases. Two cases fail: an HTTP error exposes the key, and BM2 lets a constructor error escape.
     - Green owns both failures. The audit result is `measure/runs/openrouter-sdk-ai-layer_20261114/adversarial-b3401a2e.json`.
     - The detached role gate exits 1 with `NEWFAIL=1`. Only the two adversarial tests add failure keys.
@@ -163,6 +163,9 @@ _Red retry r2 (`c6a0627f`):_ the SDK mock used `mockReturnValue`, which Vitest
     - Green owns the remaining key exposure. The r2 role gate uses label `green-r2` and exits 1 with `NEWFAIL=1`.
     - Only the two new package cases add failure keys. Every baseline failure key remains unchanged.
     - [x] Remediation r5 (ADV-3, Review B F8/F9, Review A F4): redact the key on every SDK error path and apply padded-key and minimum-length rules `96f8d20c`.
+    - Adversarial rerun r3 at `fb694f67`: all 25 cases and four redaction probes pass. No new test is needed.
+    - The detached role gate uses `green-r3` and exits 0. Every baseline failure key remains unchanged.
+    - Audit: `measure/runs/openrouter-sdk-ai-layer_20261114/adversarial-fb694f67.json`.
 - [ ] Task: Measure - User Manual Verification 'Phase S1: Adopt the OpenRouter SDK' (Protocol in workflow.md)
     - [ ] Run the protocol: the automated tests, the manual verification plan, and the user confirmation.
     - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S1`.
