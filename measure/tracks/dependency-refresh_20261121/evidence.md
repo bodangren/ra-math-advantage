@@ -213,6 +213,67 @@ Bundle totals at r2: IM3 `dist/` 12734760 bytes; BM2 `dist/` 18777416 bytes. Bot
 
 D1 comparisons use `GATES_BASE=d1-baseline-r2`. The role briefs use the label `d1-baseline-r2` in place of `d1-baseline`; this change is recorded in `plan.md`.
 
+## D1 Green — dependency update (Step 2)
+
+No root `overrides` entry was needed. No `npm audit fix --force` ran. vinext was not downgraded. Declared `@types/node` pins stay at 24.19.2 in every workspace. `@openrouter/sdk` stays at 1.5.125.
+
+Commands run one at a time through `heavy-run.sh`. Logs are under `measure/runs/dependency-refresh_20261121/`.
+
+| Command | Log | Exit |
+|---|---|---|
+| `npm install --save-dev wrangler@latest @cloudflare/vite-plugin@latest --workspace=apps/integrated-math-1 --workspace=apps/integrated-math-2 --workspace=apps/integrated-math-3 --workspace=apps/pre-calculus` (first attempt) | `green-d1-install-parents.out` | 146, network ETIMEDOUT; no file changed |
+| Same command, retry | `green-d1-install-parents-retry.out` | 0 |
+| `npm install --save-dev tsx@latest --workspace=apps/integrated-math-3 --workspace=apps/bus-math-v2` | `green-d1-install-tsx.out` | 0 |
+| `npm update brace-expansion browserslist fast-uri sharp undici ws` | `green-d1-update-leaves.out` | 0 |
+
+The first parent install stopped on a network timeout before it changed any file. The retry completed. The ETIMEDOUT is a transient network error, not an audit or gate result.
+
+Selected versions from `package-lock.json`:
+
+| Package | Before | After | Path |
+|---|---|---|---|
+| `wrangler` | 4.98.0 | 4.166.0 | Declared in four course apps; declaration `^4.81.1` to `^4.166.0` |
+| `@cloudflare/vite-plugin` | 1.40.0 | 1.70.1 | Declared in four course apps; declaration `^1.31.2` to `^1.70.1` |
+| `tsx` | 4.22.4 | 4.23.15 | Declared in IM3 and BM2; declaration `^4.20.6` to `^4.23.15` |
+| `miniflare` | 4.20260603.0 | 5.20261117.0-beta | Transitive through the updated Cloudflare parents; no declaration changed |
+| `brace-expansion` | 1.1.x | 1.1.22 | Resolved leaf |
+| `browserslist` | 4.x | 4.29.6 | Resolved leaf |
+| `fast-uri` | 3.1.x | 3.1.9 | Resolved leaf |
+| `sharp` | 0.35.5-rc line | 0.35.5 | Resolved leaf |
+| `undici` | 7.30.x | 7.30.2 | Resolved leaf |
+| `ws` | 8.20.1 | 8.22.0 | Resolved leaf and Cloudflare parent |
+| `@openrouter/sdk` | 1.5.125 | 1.5.125 | Unchanged; S1 tests and workerd probe pass |
+| `vinext` | 1.4.6 | 1.4.6 | Unchanged; no downgrade |
+
+Audit counts before: critical=0 high=9 moderate=7 low=5, total 21. Full report: `red-d1-0228cfd7-audit.json`. Audit after parents: critical=0 high=3 moderate=7 low=5; report `green-d1-audit-after-parents.json`. Audit after leaves: critical=0 high=0 moderate=6 low=5, total 11; report `green-d1-audit-after-leaves.json`. The Green audit gate exit 0: `audit: critical=0 high=0 moderate=6 low=5`, `NEWFAIL=0`; log `green-d1-audit-gate.out`, label `d1-audit-green`. The `D1 High Exceptions` table stays empty because no high or critical advisory remains.
+
+The declared wrangler and plugin ranges fix six high advisories at their parents: `wrangler`, `@cloudflare/vite-plugin`, `miniflare`, `sharp`, `undici`, and `ws`. `npm update` fixed the three leaf highs: `brace-expansion`, `browserslist`, and `fast-uri`. A root override was not required for any advisory.
+
+A new nested `cloudflare/node_modules/@types/node@18.19.130` appears in the lockfile. It is a transitive requirement of the updated `cloudflare` package. No workspace declaration changed.
+
+## D1 Verify — stop condition (2026-11-21)
+
+Comparison label `d1-green`; base `d1-baseline-r2`. Output files: `d1-green-PROJECT_LINT.out`, `d1-green-PROJECT_TESTS.out`, `d1-green-PROJECT_CHECKS.out`, with matching `.exit` files.
+
+| Group | Exit | NEWFAIL | INFRA |
+|---|---|---|---|
+| format | 0 | 0 | none |
+| lint | 0 | 0 | none |
+| typecheck | 0 | 0 | none |
+| test | 0 | 0 | none |
+| build | 0 | 0 | none |
+| support | 1 | 1 | none |
+| docs | 0 | 0 | none |
+
+The support group has two stop findings.
+
+1. Bundle totals grew above 5%. IM3 `dist/` grew from 12734760 to 28206981 bytes, a rise of 121.5 percent. BM2 `dist/` grew from 18777416 to 45595085 bytes, a rise of 142.8 percent. The BM2 `Total dist/server` entry grew from 9926.36 KB to 36115.49 KB. The repaired comparison reported `Larger budget failure: bus-math-v2 Total dist/server 9926.36 -> 36115.49 KB` and `Bundle growth exceeds 5%` for both apps. Every dist file has the green build timestamp; no stale file explains the growth. The current dist holds 17680087 bytes of `.map` files for IM3 and 27939161 bytes for BM2. The updated Cloudflare toolchain emits these sourcemaps. Budgets stay unchanged.
+2. `step tree` reported one new key: the npm debug log path `2026-11-21T08_34_59_576Z-debug-0.log`. The baseline holds the same line with path `2026-11-21T07_37_10_971Z-debug-0.log`. No new package diagnostic exists. The `key()` normalizer does not remove the time stamp from that npm line.
+
+No infrastructure failure occurred. The S1 tests, the SDK suite, and the workerd probe passed inside the support group. Format, lint, typecheck, test, build, and docs all report `NEWFAIL=0` against `d1-baseline-r2`. Budgets and manual deploy triggers are unchanged. The six generated files remain unstaged.
+
+The phase stops here. The orchestrator must decide how to treat the sourcemap growth and the npm debug-log key. No user verification or checkpoint ran.
+
 ## D1 High Exceptions
 
 No exception is selected during planning.
