@@ -179,4 +179,27 @@ describe("adversarial real SDK transport", () => {
     expect(JSON.stringify(error)).not.toContain(API_KEY);
     expect(String(error)).not.toContain(API_KEY);
   });
+
+  it.each(["Error", "string"] as const)(
+    "redacts repeated keys after an SDK body-read rejection (%s)",
+    async (kind) => {
+      const message = `read failed ${API_KEY} repeated ${API_KEY}`;
+      mockFetch.mockImplementation(async () => {
+        const body = new ReadableStream({
+          start(controller) {
+            controller.error(kind === "Error" ? new Error(message) : message);
+          },
+        });
+        return new Response(body, { headers: { "content-type": "application/json" } });
+      });
+
+      const error = await provider()("hello").catch((caught: unknown) => caught);
+      expect(error).toBeInstanceOf(Error);
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(String(error)).not.toContain(API_KEY);
+      expect(JSON.stringify(error, Object.getOwnPropertyNames(error as Error))).not.toContain(
+        API_KEY,
+      );
+    },
+  );
 });
