@@ -32,7 +32,11 @@ function mapSdkError(error: unknown): Error {
 
   const status = (error as Error & { statusCode?: unknown }).statusCode;
   if (typeof status === "number") {
-    return new Error(`OpenRouter API error: ${status} ${error.message}`);
+    const mapped = new Error(`OpenRouter API error: ${status} ${error.message}`) as Error & {
+      status: number;
+    };
+    mapped.status = status;
+    return mapped;
   }
 
   if (error.name === "AbortError" || error.name === "RequestAbortedError") {

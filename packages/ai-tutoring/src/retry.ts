@@ -48,6 +48,11 @@ function isRetryableError(error: unknown): boolean {
   }
 
   if (error instanceof Error) {
+    const structuredStatus = (error as Error & { status?: unknown }).status;
+    if (typeof structuredStatus === "number") {
+      return isRetryableStatus(structuredStatus);
+    }
+
     const message = error.message;
     const statusMatch = message.match(/\((\d{3})\)/);
     if (statusMatch) {

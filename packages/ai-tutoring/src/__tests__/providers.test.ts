@@ -361,3 +361,49 @@ describe("resolveOpenRouterProviderFromEnv", () => {
     );
   });
 });
+
+describe("SDK status classification", () => {
+  const statusSend = vi.fn();
+  const StatusCtor = vi.mocked(OpenRouter);
+
+  function statusError(status: number, message: string) {
+    return Object.assign(new Error(message), { statusCode: status });
+  }
+
+  function textAnswer(content: string) {
+    return {
+      id: "gen-1",
+      created: 1,
+      model: "vendor/model-a",
+      choices: [{ message: { role: "assistant", content } }],
+    };
+  }
+
+  beforeEach(() => {
+    statusSend.mockReset();
+    StatusCtor.mockReset();
+    StatusCtor.mockImplementation(function () {
+      return { chat: { send: statusSend } } as unknown as InstanceType<typeof OpenRouter>;
+    });
+  });
+
+  it("retries a 503 whose message text holds a 400 code", async () => {
+    statusSend
+      .mockRejectedValueOnce(statusError(503, "upstream error (400)"))
+      .mockResolvedValueOnce(textAnswer("recovered"));
+
+    const provider = createOpenRouterProvider({ apiKey: "test-key", model: "vendor/model-a" });
+    await expect(provider("hello")).resolves.toBe("recovered");
+    expect(statusSend).toHaveBeenCalledTimes(2);
+  });
+
+  it("rejects a 400 whose message text holds a 503 code after one attempt", async () => {
+    statusSend.mockRejectedValue(statusError(400, "upstream error (503)"));
+
+    const provider = createOpenRouterProvider({ apiKey: "test-key", model: "vendor/model-a" });
+    await expect(provider("hello")).rejects.toThrow(
+      /^OpenRouter API error: 400 upstream error \(503\)$/,
+    );
+    expect(statusSend).toHaveBeenCalledTimes(1);
+  });
+});
