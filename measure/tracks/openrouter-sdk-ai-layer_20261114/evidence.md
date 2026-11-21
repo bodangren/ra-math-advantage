@@ -80,9 +80,35 @@ Code tree: Contract commit `13e36a6d` (gate runs at `24083d4d`; the range
   This failure predates S1 and stays allowed with the same entry and a similar
   size (strategy section 9).
 
-### After the change (label `s1`)
+### After the change (label `green`)
 
-TBD.
+Code tree: Green head `f64047da` (implementation commits `45256fca`, `22b4e233`,
+`07975959`; the later commits change plan text only). The four app and package
+builds of the `checks-all` gate exited 0 (`gates/green/build.exit`).
+
+- IM3: 233 `.js` files. TOTAL raw=4028512 gzip=1077934.
+  `dist/server/index.js`: raw=321900 gzip=74503.
+  `dist/server/ssr/index.js`: raw=299876 gzip=93662.
+  Full table: `gates/green/sizes-integrated-math-3.txt`.
+- BM2: 346 `.js` files. TOTAL raw=8804933 gzip=2752552.
+  `dist/server/index.js`: raw=1182087 gzip=672059.
+  `dist/server/ssr/index.js`: raw=302523 gzip=94279.
+  Full table: `gates/green/sizes-bus-math-v2.txt`.
+- The two audited entry files are unchanged from baseline in raw bytes (gzip
+  differs by at most 1 byte). Most of the total delta comes from hashed
+  `_next/static/` chunk names and contents that differ between the two builds.
+  This is a comparison of the two size tables
+  (`gates/baseline/sizes-*.txt`, `gates/green/sizes-*.txt`).
+- IM3 bundle audit (`gates/green/step-bundle-size-im3.log`): exit 0, one entry:
+  `[OK] server/ssr/index.js → index.js: 292.85 KB (threshold: 700.00 KB)`.
+  The F7 coverage gap stays: the audit patterns match one entry.
+- BM2 bundle audit (`gates/green/step-bundle-bm2.log`): exit 1, two entries:
+  `[EXCEEDS] Total dist/server: 9925.93 KB (threshold: 3000.00 KB)` and
+  `[OK] server/index.js → index.js: 1154.38 KB (threshold: 2500.00 KB)`.
+  The over-budget entry is the baseline entry with the same name and a similar
+  size (9104.97 KB at baseline). No budget changed. No new over-budget entry
+  appeared. The bundle audit step is not a new failure (see the gate result
+  below).
 
 ## workerd probe
 
@@ -90,6 +116,14 @@ At baseline the `test:workerd` script does not exist (finding F2); the
 `checks-all` baseline gate records the probe step as pending
 (`gates/baseline/step-workerd-probe.log`, `workerd-probe pending` in
 `gates/baseline/checks-all.steps`).
+
+After S1 the probe passed. `npm run test:workerd --workspace=packages/ai-tutoring`
+exited 0 and printed `workerd probe: probe-ok`. Log:
+`measure/runs/openrouter-sdk-ai-layer_20261114/workerd-probe-s1.log`. The
+`checks-all` gate also ran the script (`gates/green/step-workerd-probe.log`,
+exit 0, `workerd-probe 0` in `gates/green/checks-all.steps`). The probe runs the
+real SDK client inside workerd against the local mock server; no fetch fallback
+exists in `packages/ai-tutoring/src/`.
 
 ## zod check
 
@@ -167,3 +201,41 @@ diagnostic key (strategy section 5), not per workspace.
 Per-key comparison per strategy section 5; a workspace-level pass or fail
 is not the unit of comparison. The keys are listed in the gate-results
 section above.
+
+## Green gate results (label `green`)
+
+Each gate ran with label `green` and compared per key with label `baseline`
+(strategy section 5). Driver logs and exit files live under
+`measure/runs/openrouter-sdk-ai-layer_20261114/`.
+
+- `lint`: exit 0, `NEWFAIL=0` (`gates-green-lint.driver.log`,
+  `gates-green-lint.exit`). All four workspaces exit 0 and `format-check`
+  exits 0 (`gates/green/lint.exit`, `gates/green/lint.steps`).
+- `checks-all`: exit 0, `NEWFAIL=0` (`gates-green-checks.driver.log`,
+  `gates-green-checks.exit`). Typecheck: ai-tutoring 0, practice-core 0,
+  bus-math-v2 0, integrated-math-3 1 with the same 55 diagnostic lines as
+  baseline (`gates/green/typecheck.exit`,
+  `gates/green/typecheck-integrated-math-3.log`). boundary 0, ci-check 0,
+  tree 0 (`gates/green/checks-all.steps`). Audit: critical=0 high=9
+  moderate=7 low=5 (`gates/green/audit.txt`). The nine high advisory IDs are
+  the same as baseline (`gates/green/audit.json`, `gates/baseline/audit.json`).
+  Builds exit 0 in all four workspaces (`gates/green/build.exit`). Bundle
+  audits, size tables and the workerd probe are recorded above.
+- `test`: exit 0, `NEWFAIL=0` (`gates-green-test.driver.log`,
+  `gates-green-test.exit`). ai-tutoring 0 (81 tests pass), practice-core 0,
+  integrated-math-3 1 (218 failures, 6846 pass, 5 skip), bus-math-v2 1
+  (7 failures, 2689 pass), scripts-suite 1 (27 failures), audit-suites 1
+  (5 failures). Each failure key matches a baseline key
+  (`gates/green/test.exit`, `gates/green/test.steps`, and the step logs).
+
+## Green behavior tests
+
+- Targeted RED_TEST_COMMAND after the implementation: 6 passed, 75 skipped,
+  exit 0. Log: `measure/runs/openrouter-sdk-ai-layer_20261114/green-red-rerun.log`.
+  Red r2 changed only the mock setup (`c6a0627f`); all six assertions stayed.
+- GREEN_TEST_COMMAND: exit 0. ai-tutoring 81/81, BM2 17/17, IM3 11/11 pass.
+  Log: `measure/runs/openrouter-sdk-ai-layer_20261114/green-test-command.log`.
+- `npm run format:check` exit 0; `npm run typecheck --workspace=packages/ai-tutoring`
+  exit 0; `npm run lint --workspace=packages/ai-tutoring` and both app lint
+  commands exit 0. These ran directly in the session; the gate logs above are
+  the audit record for the same commands.
