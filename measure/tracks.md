@@ -246,8 +246,8 @@ packages omitted from CI, shallow regex-only boundary guards, and an inverted
    *Link: [./tracks/openrouter-sdk-ai-layer_20261114/](./tracks/openrouter-sdk-ai-layer_20261114/)*
 
 - [ ] **Track: Dependency Refresh** — **PLANNED** (PM P2, 2026-11-21)
-   *Chore, light lane. Update every external package to the latest working version. Fix critical and high advisories by 2026-11-23. Complete remaining updates by 2026-11-25. Record each remaining advisory and its reason.*
-   *Green starts after openrouter-sdk-ai-layer S1 acceptance. Preserve manual deploy triggers and the accepted S1 tests. Spec review is pending.*
+   *Chore, light lane. Update every external package to the latest working version. Push the D1 critical and high fixes by 2026-11-23. Push D2 at closeout by 2026-11-25. Record each remaining advisory and its reason.*
+   *Green starts after OpenRouter S1 acceptance. Preserve manual deploy triggers and the accepted S1 tests. Round 1 amendments are complete; strategy confirmation is pending.*
    *Link: [./tracks/dependency-refresh_20261121/](./tracks/dependency-refresh_20261121/)*
 
 - [x] **Track: Danielson App Import** — **SUPERSEDED / ARCHIVED** (2026-11-16)

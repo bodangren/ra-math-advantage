@@ -7,21 +7,28 @@ Source: Daniel, 2026-11-21 07:52; PM assignment, 2026-11-21.
 ## Overview
 
 Update every external package to the latest version that works with this repository.
-Fix critical and high advisories by 2026-11-23.
+Push the critical and high fixes to origin by 2026-11-23.
 Complete the remaining updates by 2026-11-25.
 Record a specific reason for each deferred update and each remaining advisory.
 This track does not migrate the AI provider.
 
 ## Start Gate
 
-Track creation and read-only inventory can proceed now.
-Implementation starts after the separate spec review.
-Green starts only after S1 acceptance of `openrouter-sdk-ai-layer_20261114`.
-The orchestrator records the accepted S1 commit before dependency changes.
-A lockfile change would invalidate the S1 audits.
-`measure/gates.json` also belongs to the active phase.
-This track must not change that file before the S1 handoff.
-The PM coordinates exclusive dependency changes with later OpenRouter phases.
+OpenRouter S1 acceptance has two requirements:
+
+- The `measure-phase-acceptance` role-gate passes for `Phase S1: Adopt the OpenRouter SDK` in `openrouter-sdk-ai-layer_20261114`.
+- The S1 checkpoint commit exists.
+
+Daniel's manual check stays deferred and is not part of OpenRouter S1 acceptance.
+Strategy and Red baseline capture may run before OpenRouter S1 acceptance.
+Red changes no dependencies.
+Green requires the separate spec review and OpenRouter S1 acceptance.
+Record the S1 checkpoint and phase acceptance evidence before Green.
+Refresh the baseline if code or the lockfile changes after capture.
+The PM confirms exclusive dependency changes from each final baseline through its checkpoint.
+OpenRouter S3 later installs `zod` and rebases on this track's resulting dependencies.
+This track never edits `measure/gates.json`.
+Role briefs export the commands in `plan.md`; environment values take precedence over that file.
 
 ## Functional Requirements
 
@@ -34,33 +41,48 @@ Use `scripts/architecture/architecture.manifest.json` as the existing workspace 
 `packages/_template` is not an active workspace.
 
 Record the current, wanted, and latest versions before each phase.
-Run `npm outdated --workspaces --json` and the root check.
-Check each app when the workspace output omits it.
-Use read-only registry queries for missing package entries.
+Run root `npm outdated --json` and `npm outdated --json --workspaces`.
+Run `npm ls --all` for the complete dependency tree.
+Inspect every active manifest, including apps that npm omits.
+Query `npm view <name> version --json` for every external declaration.
+Query `npm view '<name>@<declared-range>' version --json` for omitted wanted versions.
+Query the package behind an npm alias, not the alias name.
+Record declaration ranges, installed versions, wanted versions, and registry results in `evidence.md`.
 An empty or incomplete npm report does not prove that every package is current.
 
 ### FR-2: Remove critical and high advisories
 
 D1 records the audit baseline and each gate baseline before Green.
-`RED_TEST_COMMAND` is `npm audit --audit-level=high`.
+The D1 Red command is `npm audit --audit-level=high`.
 The current report fails with exit 1 because it contains high advisories.
-The expected Green result is exit 0 with zero critical and zero high findings.
+The normal Green result has zero critical and zero high findings.
 An infrastructure failure does not satisfy Red.
 
 Update parent packages first, including Wrangler, the Cloudflare Vite plugin, and the Miniflare chain.
 Inspect tsx and other parents of vulnerable transitive packages.
-Use a root `overrides` entry only when the parent has no fixed release.
+The blocking parent is the first package whose dependency range excludes the fixed version, starting at the vulnerable leaf.
+Update that parent before considering an override.
+Use a root `overrides` entry only when that parent has no fixed release.
 Record the parent, fixed transitive version, and compatibility proof for each override.
 Never use `npm audit fix --force`.
 Never downgrade vinext to 0.2.1 to satisfy the audit recommendation.
 
 If a critical or high advisory remains, name its identifier, package, version, dependency path, and reason.
 Report each exception to the PM by 2026-11-23.
-An exception is a disclosed unresolved finding, not a passing audit.
+List each exception by advisory identifier and reason in the `D1 High Exceptions` table in `evidence.md`.
+The D1 Green command validates the full audit JSON and rejects each high or critical advisory absent from that table.
+The command uses no `--omit` option.
+A disclosed exception permits the Green gate; it does not mean the npm audit passes.
+Report propagated parent findings with their underlying advisory identifiers.
 
 ### FR-3: Update the remaining packages
 
 D2 tries the latest stable version of each outdated external package.
+Keep `@types/node` on 24.x to match the Node 24 runtime.
+Move exact pins, including `oxfmt` and `tsrs`, only to released versions that pass the gates.
+Never adopt a prerelease.
+Retain an existing prerelease pin if no compatible released replacement exists, with the registry evidence and reason.
+Do not perform a repository-wide reformat for a formatter update.
 Keep the latest version that passes the phase gates without new diagnostic keys.
 Make only compatibility changes required by the update.
 Keep `@openrouter/sdk` at a version that passes the accepted S1 tests and the workerd probe.
@@ -80,6 +102,9 @@ Use `no upstream fix` or `breaking major deferred` as the reason category.
 Support each reason with a registry result or a failed compatibility gate.
 Include affected parent packages that npm reports as vulnerable.
 Do not mistake an npm downgrade recommendation for a safe fix.
+For each moderate or low chain without a fixed blocking parent, try a root override.
+Keep the override only when the complete gate sweep has no new failure key.
+Otherwise remove that trial and record the advisory, attempted version, failing gate, and failure keys.
 
 ### FR-5: Verify each phase
 
@@ -92,24 +117,32 @@ Run Measure generation and Doctor during phase verification.
 
 Compare each command with its pre-change baseline by diagnostic key.
 Known failures remain allowed only with the same keys.
-The reported baseline includes 55 IM3 typecheck lines and test failures of IM3 218, BM2 7, scripts 27, and audit-suites 5.
-These counts do not authorize new failures or substitute for fresh baseline logs.
+Use the baseline logs linked from `evidence.md`, not fixed failure counts.
 Record other workspace baseline failures by key before Green.
 
 The BM2 `Total dist/server` budget failure is known.
 Report any bundle budget failure to the PM before phase acceptance.
 Do not change a budget.
-A new over-budget entry or an unapproved increase stops the phase.
+A budget entry that fails after passing at baseline stops the phase.
+A total bundle size more than 5% above baseline also stops the phase.
+Measure each app's total under `dist/` and retain both existing budget reports.
+Send either stop condition to the orchestrator before continuing.
+The known BM2 `Total dist/server` failure remains a baseline key, not an exemption from the growth rule.
 
 ### FR-6: Complete the tracked workflow
 
 Use Red and Green in each phase.
-The audit command and existing compatibility gates provide Red evidence without new test code.
+D1 uses the audit command for Red evidence.
+D2 records target versions in the plan and runs a command that fails while an installed package is below its target.
+Green raises those packages or records tested deferrals before revising the targets.
 Add a regression test only when a real behavior change requires it.
 Complete the checkpoint protocol in `measure/workflow.md` for each phase.
 Keep user confirmation with Daniel; automation does not provide it.
 Commit tasks with Git notes and update the plan and registry.
-Push only at track closeout through `safe-push`.
+The orchestrator pushes the accepted D1 checkpoint through `safe-push` by 2026-11-23.
+The orchestrator pushes D2 at closeout through `safe-push` by 2026-11-25.
+These are the only push points, per the PM decision of 2026-11-21 and the PM push rule of 2026-11-20.
+This decision permits the D1 push before closeout, as an exception to AGENTS.md.
 
 ## Non-Functional Requirements
 
@@ -135,10 +168,11 @@ Push only at track closeout through `safe-push`.
 6. Deploy triggers and bundle budgets remain unchanged.
 7. The generated files remain unstaged.
 8. Both phase checkpoints complete before closeout.
-9. Closeout synchronizes with origin and pushes through `safe-push` without a deploy.
+9. The D1 checkpoint reaches origin by 2026-11-23; D2 reaches origin at closeout by 2026-11-25 through `safe-push`.
 
 ## Out of Scope
 
 Provider migration, auth migration, curriculum repair, baseline defect repair, and unrelated refactoring are outside this track.
 New dependency policy systems, audit machinery, and automated deploy triggers are also outside this track.
+Recurring dependency audits and Dependabot configuration require a separate assignment.
 Facts changed: none expected.

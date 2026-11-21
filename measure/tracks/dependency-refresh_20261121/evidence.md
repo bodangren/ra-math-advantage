@@ -3,7 +3,7 @@
 Status: track creation only. Implementation and phase acceptance are pending.
 Date: 2026-11-21.
 Inspection HEAD: `4710566e9acf3c3a16c3aa2a29388781ee7c9e37`.
-Accepted OpenRouter S1 commit: pending.
+OpenRouter S1 acceptance checkpoint: pending.
 
 ## Read-Only Audit Confirmation
 
@@ -49,7 +49,8 @@ The IM3 prefix check also returns `{}`.
 Do not conclude that all root and app dependencies are current.
 D1 and D2 must inspect every declaration and query omitted packages before selecting versions.
 
-Vitest 5 and Node types 26 are major-version candidates, not approved deferrals.
+Vitest 5 is a major-version candidate, not an approved deferral.
+Node types stay on 24.x for the Node 24 runtime, per the Round 1 decision.
 Keep the coverage provider compatible with the selected Vitest version.
 Verify Node types against the existing Node 24 runtime.
 Verify any SDK update against accepted S1 tests and the workerd probe.
@@ -107,6 +108,34 @@ The authoring session changes only this track and its registry entry.
 Deploy triggers remain manual.
 No install, update, audit fix, deploy, or push runs during track creation.
 Facts changed: none.
+
+## Round 1 Amendment Checks
+
+Status: planning amendments only; the strategy remains a draft for confirmation.
+The amended runner reuses the archived toolchain comparison and resume logic.
+The original authoring checks above describe the initial raw runner, not the amended runner.
+- Shell syntax and Git whitespace checks: passed.
+- Isolated command checks: passed, including diagnostic keys, infrastructure failures, missing results, workspace parity, and resume behavior.
+- Audit checks: passed for valid reports, invalid reports, propagated advisory identifiers, named exceptions, and unresolved paths.
+- D2 checks: passed for missing targets, below-target versions, workspace resolution, stable targets, and unchanged deferred prerelease pins.
+- Bundle checks: passed at 5% growth; rejected growth above 5%, new budget failures, and missing matches.
+- Scratch fixtures: `/home/daniebo/.cache/opencode/dependency-refresh-review-hqja7zb1`.
+- Root `npm run format:check` and `npm run lint`: passed through serial `heavy-run.sh` jobs.
+- Metadata, local links, role exports, and planned task count: passed.
+- The scope check found a concurrent OpenRouter plan edit; this session leaves that edit unstaged and unchanged.
+These are runner checks, not implementation gates or phase acceptance evidence.
+This session changes no dependency, OpenRouter file, or file under `measure/runs/`.
+
+## D1 High Exceptions
+
+No exception is selected during planning.
+Green records each unresolved critical or high advisory here before its gate runs.
+Use the underlying advisory identifier for propagated parent findings.
+Repeat an identifier when different paths need separate reasons.
+The full audit remains unresolved when this table permits the exception gate.
+
+| Advisory | Package | Version | Dependency path | Reason |
+|---|---|---|---|---|
 
 ## Remaining Moderate and Low Advisories
 

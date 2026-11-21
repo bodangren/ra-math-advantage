@@ -1,9 +1,6 @@
 # Spec Review: dependency-refresh_20261121
 
 Author model: openai/gpt-6.1-sol#high
-Status: pending
-Date: 2026-11-21
-Reviewer: pending
 
 The PM schedules a separate reviewer from another model family.
 The author does not approve this specification.
@@ -11,17 +8,43 @@ Implementation waits for the review and the start gate in `spec.md`.
 
 ## Round 1
 
+Date: 2026-11-21
+Reviewer: measure-spec-review subagent, claude-code/claude-sonnet-5-5#max (the orchestrator substituted this model: `ra-quota pick spec-review --not-family openai` exited 3)
+Verdict: pass (0 Blocker, 11 Major, 4 Nit). Audited HEAD: 334fab55.
+
 ### What this track proposes
 
-Pending independent review.
+This track updates the external packages of the root, six apps, and 20 shared packages to the latest working versions.
+Phase D1 clears the critical and high `npm audit` findings by 2026-11-23, and Phase D2 updates the rest by 2026-11-25.
+Each fix updates the parent package first and adds a root override only when no fixed parent release exists.
+Each phase compares every format, lint, typecheck, test, build, and bundle gate with a fresh baseline and allows no new failure key.
+Green starts after OpenRouter S1 acceptance, and the track pushes once at closeout through `safe-push`.
 
 ### How the current system works, per this spec
 
-Pending independent review.
+The repository is one npm workspace with the root, six apps, and 20 active shared packages, listed in `scripts/architecture/architecture.manifest.json`.
+The baseline `npm audit` exits 1 with 0 critical, 9 high, 7 moderate, and 5 low vulnerable packages.
+`npm outdated --workspaces --json` lists six package names and omits the apps, so the spec requires extra registry queries.
+Standing failures already exist in IM3 typecheck, four test suites, and the BM2 bundle budget, so gates compare keys with a baseline.
+`measure/gates.json` holds the OpenRouter track's gate commands, and OpenRouter S1 is built but not yet accepted.
 
 ### Findings
 
-Pending independent review.
+- F1 [Major] spec.md FR-1: Comprehension gap: "the root check" has no command. The evidence names `--workspaces=false`, which returns `{}`, and `--include-workspace-root`, which returns the same six names. Plain `npm outdated --json` at the root returns 12 names and 38 entries. The extra names are `@oxlint/plugins`, `@vitest/coverage-v8`, `oxfmt`, `oxlint`, `oxlint-plugin-eslint`, and `tsrs`. No `npm outdated` form lists the packages that only an app declares. `wrangler` (4.98.0, latest 4.166.0), `@cloudflare/vite-plugin` (1.40.0, latest 1.70.1), `tsx`, `baseline-browser-mapping`, `jsdom` (29.1.1, latest 31.0.1), and `@tailwindcss/typography` are outdated and absent from every form. Rationale: A literal run of the named forms reports a false "the root is current" and misses the packages that D1 must update first. Default: name one inventory command for the root and all 27 manifests, for example plain `npm outdated --json` plus a read-only `npm view <name> version` loop over every declared name, and name `evidence.md` as its output.
+- F2 [Major] spec.md Start Gate; plan.md Start and Scope Rules, D1 Red: Zero-decision (edge-case behavior): One gate has three names: "S1 acceptance", "S1 handoff", and "the orchestrator hands over the active phase". The spec holds only Green, but the D1 Red task records "the accepted S1 commit". The plan does not say whether Red or the `d1-baseline` sweep may run before the acceptance. It does not say whether Daniel's S1 checkpoint belongs to the acceptance. The OpenRouter plan runs `npm install` for `zod` in its S3 phase, and the spec leaves later phases to the PM. Rationale: A baseline of an S1 tree that review fixes later change gives false or hidden NEWFAIL results. A lockfile change between S1 acceptance and Daniel's checkpoint changes what Daniel verifies. Default: use one name, the S1 `[checkpoint: <sha>]` on the OpenRouter plan heading, and allow read-only inventory before it. Run `d1-baseline` from that commit, and rerun it under a retry label when a later commit changes code or `package-lock.json`. Let no OpenRouter phase write `package-lock.json` between the `d1-baseline` sweep and the D1 checkpoint, and likewise for D2. The PM confirms this order at each Green start.
+- F3 [Major] spec.md Start Gate; plan.md Start and Scope Rules: Zero-decision (file location): The plan keeps `measure/gates.json` unchanged "until the orchestrator hands over the active phase". It names no writer, no values, and no restore. The file holds the five commands of the OpenRouter track. The role gates read `RED_TEST_COMMAND`, `GREEN_TEST_COMMAND`, and the `PROJECT_*` commands from it, and an environment variable wins over the file (`gate_value` in `measure_interphase_checks.py`). The strategy sets only `RED_TEST_COMMAND` and `GREEN_TEST_COMMAND`. `PROJECT_LINT`, `PROJECT_CHECKS`, and `PROJECT_TESTS` stay open. Rationale: Two tracks cannot share one file, and a wrong command passes or fails a role gate for the wrong reason. Default: this track never edits the file. The orchestrator passes the five commands of this track as environment variables on each role gate, and the plan lists the five values. Set `PROJECT_TESTS` too, because adversarial testing reads it.
+- F4 [Major] plan.md Gate Commands for Each Phase; test-strategy.md Baseline Comparison; gates.sh: Reuse (Zoom-out check 4): The strategy requires key comparison, audit-JSON validation, infrastructure-failure detection, one retry, workspace-set parity, and removed-script detection. `gates.sh` records raw exits only, and the plan names no tool, key rule, or output file for the comparison. `measure/archive/vinext-oxc-toolchain_20261114/gates.sh` already holds this logic as `key`, `new_keys`, `sweep`, `audit_step`, `has_infra_output`, `GATES_BASE`, and `GATES_RESUME`. The plan of the OpenRouter track says its script follows that archive pattern. Rationale: A hand comparison of about 120 logs per sweep, with hundreds of failure keys, is error-prone. A raw-exit script cannot serve a `PROJECT_*` role gate, which needs exit 0 for "no new failure". The Ponytail rule says to reuse existing code. Default: copy the archived script, replace its four-workspace list with the manifest list, and keep the new `support` and `docs` groups.
+- F5 [Major] test-strategy.md Red and Green; plan.md D2 Red, D1 Green: Zero-decision (API or CLI shape): The strategy sets one pair, `npm audit --audit-level=high`, for the whole track. After D1 Green this command exits 0. The Mid Red gate requires `RED_TEST_COMMAND` to fail, unless the result block declares `red_kind: gap_closing` with `gaps:` and `breakage_proof:` lines. D2 Red adds no test, so its gate cannot pass as written. In D1, a named exception keeps the audit at exit 1, so the Jr Green gate also fails. Rationale: The role gates run these commands, and an unsatisfiable pair forces an unrecorded deviation. Default: define a D2 pair, for example `npm audit --audit-level=moderate` (7 moderate findings at HEAD) when F6 clears them, or record the D2 Red deviation in `plan.md`. State that a D1 exception makes the D1 Green gate `blocked` for a PM decision.
+- F6 [Major] spec.md FR-2, FR-4; plan.md D2 Green: Zero-decision (dependency): The override rule says "only when the parent has no fixed release" but not which parent of a path counts. D2 says only "inspect ... for safe parent fixes". A registry check finds no fixed parent in the three moderate and low chains. `satori@latest` pins `fflate` 0.7.3, although 0.7.5 and 0.8.x exist, and `@vercel/og@latest` pins `satori` 0.33.5. `@tailwindcss/typography@latest` (0.5.20) pins `postcss-selector-parser` 6.0.10. `rehype-katex` 7.0.1 and `micromark-extension-math` 3.1.0 need `katex` ^0.16.0, but the advisory needs 0.18.2 or later. Rationale: The spec allows both an override and the reason `no upstream fix`, so a choice left to Green gives a different D2 result on each run. Daniel asked for up-to-date packages. Default: define the parent as the first package of the path whose range excludes the fixed version. Require D2 to try an override for each chain without a fixed parent, and keep it only when the full gate sweep shows no new key. Otherwise record `no upstream fix` with the failed gate.
+- F7 [Major] spec.md FR-3; plan.md D2 Green: Zero-decision (dependency): FR-3 says "latest stable version" and D2 says "try each latest stable major", but three cases of the inventory have no rule. `@types/node` 26.6.6 targets Node 26, while the runtime and CI use Node 24. `oxfmt` 0.78.0 and `tsrs` 0.25.0-ts7.1.0-beta are exact pins in `tech-stack.md`, the latest `oxfmt` is 0.79.0, and the `tsrs` latest tag is a prerelease (7.1.0-beta.tsrs4) with a new version scheme. Rationale: `@types/node` 26 lets code call Node 26 APIs that Node 24 lacks, and passing gates cannot show that. An `oxfmt` bump can force a repo-wide reformat that touches the files of other tracks. Default: keep `@types/node` on the major of the supported runtime (24.x) and record the deferral. Try `oxfmt` and `tsrs` only when the gates show no new key and no reformat is needed. Treat a prerelease-only package as deferred, with the registry result as the reason.
+- F8 [Major] spec.md FR-5 (bundle paragraph); test-strategy.md Baseline Comparison: Zero-decision (edge-case behavior): FR-5 stops a phase on "an unapproved increase", and the strategy compares "the reported bytes". Neither names an approver, a threshold, or a scope. Dependency updates change bundle bytes, so a literal reading stops every phase. The BM2 `Total dist/server` entry already exceeds its budget (`apps/bus-math-v2/scripts/bundle-size-audit.mjs`), so any growth there is an increase of a failing entry. The Git-diff check of "unchanged budgets" names no file. Rationale: Green cannot decide between stop and continue. Default: stop when an entry that passed at baseline fails. Record the growth of an entry that stays within its budget. Send the before and after bytes of the BM2 total to the PM, and let the PM approve its growth. Name these files for the budget diff: `apps/bus-math-v2/scripts/bundle-size-audit.mjs`, `apps/integrated-math-3/scripts/bundle-size-audit.mjs`, and `.github/workflows/`.
+- F9 [Major] spec.md Overview, FR-6, Acceptance Criterion 9; plan.md Closeout: Requirement conflict: The spec sets 2026-11-23 for the critical and high fixes but pushes only at closeout, after D2 (2026-11-25). AGENTS.md allows no push before the closeout. The D1 fix reaches origin after D2 at the earliest. Rationale: The PM done-when says "pushed with safe-push". If the PM date means origin, the plan misses it by design. Question for the PM: does 2026-11-23 mean the D1 checkpoint plus a PM report, or the state of origin? Default: the D1 checkpoint plus the PM report, stated in `spec.md`. If the PM means origin, split D1 into its own track (one closeout push each), or record a PM exception for one interim `safe-push` after the D1 checkpoint.
+- F10 [Major] plan.md D1 Green: Zero-decision (file location): D1 Green names no manifest, no command, and no order. At HEAD all nine high entries report `fixAvailable: true`. `wrangler` ^4.81.1 and `@cloudflare/vite-plugin` ^1.31.2 in four apps (IM1, IM2, IM3, PreCalc) bring `miniflare`, `sharp`, `undici`, and `ws`. `jsdom` ^29.0.0 brings the root `undici`. `eslint-plugin-react` brings `brace-expansion`, `react-server-dom-webpack` brings `fast-uri`, and `autoprefixer`, Babel, and webpack bring `browserslist`. The plan names `tsx`, which has only a Low advisory, and omits `jsdom`. Rationale: Green must choose between lockfile-only updates and manifest range changes, and a reviewer cannot check that choice. A named list also shortens the path to the 2026-11-23 date. Default: `npm update <name>` (lockfile only) for the six leaf packages, and targeted `npm install <name>@latest --workspace=<app>` for `wrangler` and `@cloudflare/vite-plugin`. Name `package-lock.json` and the four app manifests as the expected changed files.
+- F11 [Major] plan.md Gate Commands for Each Phase; test-strategy.md Gate Coverage (`tree` job): Zero-decision (edge-case behavior): The `tree` job runs `npm ls --workspaces --depth=0`, which exits 0 at HEAD. The installed tree already has an invalid edge: `katex@0.17.0` against `^0.16.0` from `rehype-katex` and `micromark-extension-math`. `npm ls` at depth 1 exits with `ELSPROBLEMS`. Rationale: Version bumps and overrides create invalid, missing, and extraneous edges below depth 0. The gate cannot see them, and it hides the real state of the KaTeX chain. Default: run `npm ls --all` in the `support` group, and compare its `invalid`, `missing`, and `extraneous` lines by key like the other commands.
+- F12 [Nit] plan.md Closeout: The bullet "Complete final acceptance before archive changes" conflicts with `"lane": "light"` in `metadata.json`. The closeout check skips final acceptance for that lane and prints `INFO: light lane, no final acceptance`. Rationale: The closeout role may look for a `final-acceptance-*.json` that no role writes. Replace the bullet with "Confirm the D2 phase acceptance and checkpoint".
+- F13 [Nit] spec.md FR-5; plan.md Files That Stay Unstaged, Gate Commands for Each Phase; test-strategy.md Red and Green, Baseline Comparison: The orchestrator rule says to write no test or check count in `spec.md` or `plan.md`, and to cite the log file instead. `spec.md` FR-5 pins five standing-failure counts. `plan.md` pins "six package names and 32 workspace entries" and "50 lines". `test-strategy.md` pins the same standing counts and "nine high findings". Rationale: A pinned count drifts and starts a record-fix round, and FR-5 already says that fresh logs prevail. Keep the counts in `evidence.md` only.
+- F14 [Nit] plan.md D2 Red: The `d2-baseline` sweep repeats `d1-green` when no commit changed code or `package-lock.json` between them. Rationale: Each sweep takes serial `heavy-run.sh` time on a shared machine, and the Ponytail rule says to reuse existing results. Allow D2 Red to cite the `d1-green` logs as the D2 baseline in that case.
+- F15 [Nit] spec.md Out of Scope: The spec excludes dependency policy and audit machinery, and the repository has no recurring check (`.github/dependabot.yml` is absent). The refresh will age within days. Rationale: Daniel wrote that hundreds of vulnerabilities arrived in two weeks. No change is needed here; the PM may want a follow-up item for a scheduled audit or a Dependabot configuration.
 
 ### Author Response
 
@@ -30,3 +53,32 @@ Pending findings.
 ## Accepted Risks
 
 None accepted during track creation.
+
+## Round 1 response
+
+The author preserves the Round 1 review above unchanged.
+These amendments apply the orchestrator's decisions; the strategy remains a draft for the strategy role.
+
+- F1: Closed. The inventory names both root outdated commands, every active declaration, registry queries, and `evidence.md` as the output.
+- F2: Closed. OpenRouter S1 acceptance requires its passing phase role-gate and checkpoint commit, not Daniel's deferred manual check.
+  Strategy and Red baseline capture may precede that gate; Green may not.
+  Baselines refresh after code or lockfile changes; OpenRouter S3 rebases its later `zod` install on this track's result.
+- F3: Closed. The track never edits `measure/gates.json`; the plan exports all five role commands for each phase.
+- F4: Closed. The runner reuses the archived key comparison, audit validation, infrastructure detection, workspace comparison, and resume logic.
+  It keeps the manifest workspace list and the support and docs groups.
+- F5: Closed. D2 uses a plan target table and a failing version-check command, not a new unit test.
+  D1 Green accepts only audit identifiers with named reasons in the evidence exception table; the full audit remains disclosed.
+- F6: Closed. D2 tries an override for every moderate or low chain without a fixed blocking parent.
+  Green keeps it only with no new failure keys; otherwise it records the failed gate and advisory reason.
+- F7: Closed. Node types stay on 24.x; exact pins move only to passing released versions, without new prereleases or repository-wide formatting.
+- F8: Closed. A newly failing budget entry or total growth above 5% stops the phase for the orchestrator.
+  Both budget files stay unchanged; the BM2 total remains a baseline key.
+- F9: Closed. The orchestrator pushes D1 by 2026-11-23 and D2 at closeout by 2026-11-25, through `safe-push`.
+  The plan records the PM exception to the closeout-only push rule.
+- F10: Closed. The plan names the root and affected app manifests, the lockfile, the targeted commands, and the parent-first order.
+- F11: Closed. The support group uses `npm ls --all`; diagnostic keys include invalid, missing, and extraneous edges.
+- F12: Closed. Light-lane closeout requires D2 phase acceptance and its checkpoint, not a separate final acceptance role.
+  `measure/workflow.md` requires phase checkpoints but does not require that role for every track.
+- F13: Closed. Specs and plans reference baseline evidence instead of fixed test or diagnostic counts.
+- F14: Closed. D2 can reuse the complete D1 Green logs when no intervening code or lockfile change occurred.
+- F15: Closed as out of scope. Recurring audits and Dependabot require a separate assignment; the debt registry is at its line limit.
