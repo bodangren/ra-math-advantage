@@ -87,11 +87,13 @@ Export these exact values in each D1 role brief and role-gate call:
 
 ```bash
 export RED_TEST_COMMAND='npm audit --audit-level=high'
-export GREEN_TEST_COMMAND='GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh audit-high d1-audit-green-r2'
+export GREEN_TEST_COMMAND='GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh audit-high d1-audit-green-r3'
 export PROJECT_LINT='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh lint d1-green-r2'
 export PROJECT_CHECKS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh checks-all d1-green-r2'
 export PROJECT_TESTS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh test d1-green-r2'
 ```
+
+Only the audit gate and the support group have r3 logs. Lint, tests, and the remaining checks groups keep their `d1-green-r2` logs because the dependency tree is unchanged since r2.
 
 Export these exact values for D2:
 
@@ -154,6 +156,7 @@ Due at origin: 2026-11-23. Green depends on OpenRouter S1 acceptance.
     - [ ] Keep the selected SDK version compatible with the S1 tests and workerd probe.
 - [x] Task: D1 Verify — compare the complete gate results (e61f73e)
     - The first sweep stopped on the bundle growth rule with miniflare 5 beta. The r2 retry uses the newest wrangler 4.116.0 and plugin 1.49.0 with stable miniflare 4.20260730.0. All seven groups report `NEWFAIL=0` against `d1-baseline-r2`; no infrastructure failure. IM3 total changed by -5 bytes and BM2 total by -5 bytes. The Green audit gate exits 0 with every high named in the exceptions table. No user verification and no checkpoint ran.
+    - r3 remediation fixed the bundle baseline-entry coverage defect in `gates.sh` with a tracked regression fixture, and corrected the exception reasons, leaf identifiers, and dependency paths in `evidence.md`. The support group at `d1-green-r3` and the audit gate at `d1-audit-green-r3` exit 0 with `NEWFAIL=0`. Logs: `green-r3-support.out`, `green-r3-audit-gate.out`, and `gates/d1-green-r3/support/`. The other groups keep their r2 logs because the dependency tree is unchanged.
     - [ ] Run every gate group with label `d1-green`.
     - [ ] Compare each result with `d1-baseline` by diagnostic key.
     - [ ] Record `NEWFAIL`, audit counts, selected versions, and log paths in `evidence.md`.

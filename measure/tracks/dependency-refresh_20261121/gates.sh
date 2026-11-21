@@ -263,6 +263,16 @@ TOTAL_EOF
     if (record === "1") process.exit(0);
     const old = parse(fs.readFileSync(`${base}/step-bundle-${name}.log`, "utf8"));
     let failed = false;
+    for (const p of patterns) {
+      if (old.some(e => e.label.startsWith(p + " → ")) && !entries.some(e => e.label.startsWith(p + " → "))) {
+        console.error(`Missing baseline budget pattern: ${name} ${p}`); failed = true;
+      }
+    }
+    for (const e of old) {
+      if (!patterns.some(p => e.label.startsWith(p + " → ")) && !entries.some(c => c.key === e.key)) {
+        console.error(`Missing baseline budget entry: ${name} ${e.key}`); failed = true;
+      }
+    }
     for (const entry of entries) {
       if (entry.status !== "EXCEEDS") continue;
       const prev = old.find(e => e.key === entry.key && e.status === "EXCEEDS");

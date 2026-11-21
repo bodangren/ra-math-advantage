@@ -1,9 +1,9 @@
 # Evidence: dependency-refresh_20261121
 
-Status: D1 Red baseline recorded. Green waits for OpenRouter S1 acceptance.
+Status: D1 Green and Verify complete at r3. The Green audit gate accepts five named high exceptions. No checkpoint or user verification ran.
 Date: 2026-11-21.
 Phase base commit: `0228cfd75f2766ac72e45385cf06c2b884edf034`.
-OpenRouter S1 acceptance checkpoint: pending.
+OpenRouter S1 acceptance: phase role-gate passed at `328862b6`; checkpoint `14f75797`; plan marker `808a8ece`.
 
 ## Read-Only Audit Confirmation
 
@@ -57,8 +57,7 @@ Verify any SDK update against accepted S1 tests and the workerd probe.
 
 ## Baseline Gate Evidence
 
-Pending D1 Red. The authoring session did not run the implementation gate sweep.
-The PM supplied these standing failures from the OpenRouter baseline:
+Superseded by the D1 Red baseline and the r2 and r3 gate sweeps recorded below. The PM supplied these standing failures from the OpenRouter baseline:
 
 | Gate | Reported standing result | Required treatment |
 |---|---|---|
@@ -83,7 +82,7 @@ Preserve exact logs under `measure/runs/dependency-refresh_20261121/gates/`.
 
 ## Deferred Updates and Overrides
 
-None selected during track creation.
+At track creation none were selected. The r2 retry selected wrangler 4.116.0 and `@cloudflare/vite-plugin` 1.49.0 with stable miniflare 4.20260730.0. No override remains in the final tree (PM a778067f).
 Record every attempted breaking major, failed gate, and retained version here.
 Record each necessary override and the parent's missing fixed release here.
 
@@ -213,7 +212,9 @@ Bundle totals at r2: IM3 `dist/` 12734760 bytes; BM2 `dist/` 18777416 bytes. Bot
 
 D1 comparisons use `GATES_BASE=d1-baseline-r2`. The role briefs use the label `d1-baseline-r2` in place of `d1-baseline`; this change is recorded in `plan.md`.
 
-## D1 Green — dependency update (Step 2)
+## D1 Green — dependency update (Step 2, superseded by the r2 retry)
+
+This first sweep used wrangler 4.166.0, `@cloudflare/vite-plugin` 1.70.1, and miniflare 5 beta. The r2 retry replaced those versions with 4.116.0, 1.49.0, and stable 4.20260730.0. Read the r2 sections below for the current state. The first sweep produced audit critical=0 high=0 moderate=6 low=5 and Green audit gate label `d1-audit-green`.
 
 No root `overrides` entry was needed. No `npm audit fix --force` ran. vinext was not downgraded. Declared `@types/node` pins stay at 24.19.2 in every workspace. `@openrouter/sdk` stays at 1.5.125.
 
@@ -289,7 +290,7 @@ Registry checks with `npm view <pkg>@<ver> dependencies.miniflare`:
 
 Both selected parents stay above the Red advisory ranges. wrangler 4.116.0 is above 4.113.0 and plugin 1.49.0 is above 1.46.0. The resolved Cloudflare chain has no new prerelease: miniflare is 4.20260730.0 and workerd is 1.20260730.1. The chain keeps `unenv` 2.0.0-rc.24 and `youch` 4.1.0-beta.10. Both were present at the accepted Red baseline in wrangler 4.98.0 and miniflare 4.20260603.0, so they are unchanged, not newly adopted.
 
-The npm advisory data changed after Red. The current report gives wrangler range `4.16.0 - 4.130.0`, plugin range `1.2.3 - 1.54.6`, and miniflare range `4.20250508.3 - 5.20260908.0-alpha`. The Red ranges were `4.16.0 - 4.113.0`, `0.1.5 - 1.46.0`, and `3.20250204.0 - 5.20260801.0-alpha`. The expanded ranges keep all three parents high at the newest stable versions. Only miniflare 5 beta clears them, and the track forbids prereleases.
+The npm advisory data changed after Red. The current report gives wrangler range `4.16.0 - 4.130.0`, plugin range `1.2.3 - 1.54.6`, and miniflare range `4.20250508.3 - 5.20260908.0-alpha`. The Red ranges were `4.16.0 - 4.113.0`, `0.1.5 - 1.46.0`, and `3.20250204.0 - 5.20260801.0-alpha`. The expanded ranges keep all three parents high at the newest stable versions. Only miniflare 5 clears the parent highs, and npm publishes 5.x only as a prerelease; the track forbids prereleases. The leaf highs have an override path, but PM a778067f rejects it because it creates new failure keys (see below).
 
 Commands run one at a time through `heavy-run.sh`:
 
@@ -302,7 +303,7 @@ Commands run one at a time through `heavy-run.sh`:
 | `npm install --package-lock-only` | `green-r2-lock-only.out` | 0 |
 | `npm install` with the final two-entry override | `green-r2-install-final-overrides.out` | 0 |
 
-Root overrides were tried: `sharp` 0.35.5 and `undici` 7.30.2. Proof of need: `npm view miniflare@4.20260730.0 dependencies.sharp` returns 0.35.2 and `dependencies.undici` returns 7.28.0. `npm view miniflare version` returns 4.20260730.0. There is no stable miniflare 4.x release with fixed sharp or undici. The overrides fixed the root copies but npm kept the nested copies under `node_modules/miniflare/node_modules/` at 0.35.2 and 7.28.0. `npm ls sharp undici --all` showed both nested copies. The audit high count did not change. Per PM a778067f, an override for a nested leaf stays only if it clears the high. These did not clear it, so both overrides were removed. A `npm install --package-lock-only` after removal produced a byte-identical lockfile; the resolved tree is unchanged. Both leaves are named exceptions below. No `ws` override was needed: the resolved ws is 8.21.0, above the 8.20.1 advisory end. No `npm audit fix --force` ran and vinext was not downgraded. The PM reason is used for each exception row. The plan also records a phase-close check of `npm view miniflare dist-tags` for a stable 5.x release.
+Root overrides `sharp` 0.35.5 and `undici` 7.30.2 do clear all five highs, but only after the nested lock nodes re-resolve. Proof: `npm view miniflare@4.20260730.0 dependencies.sharp` returns 0.35.2 and `dependencies.undici` returns 7.28.0. `npm view miniflare version` returns 4.20260730.0. No stable miniflare 4.x release has fixed sharp or undici. The r2 trial added the overrides to an already locked tree, so npm reported "up to date" and kept the nested copies at 0.35.2 and 7.28.0. A fresh resolution of the nested nodes removes those copies and gives critical=0 high=0 moderate=6 low=5. That resolution has a cost: `npm ls --all` exits 1 with two new `invalid:` lines for the miniflare edges. The tree step counts both lines as new failure keys and the support group prints NEWFAIL=1. PM a778067f keeps an override only when it clears the high with no new failure key. The override fails that test, so no override remains in the final tree and both leaves stay exceptions. The parent highs stay because their only fixed releases need the miniflare 5 prerelease. No `ws` override was needed: the resolved ws is 8.21.0, above the 8.20.1 advisory end. No `npm audit fix --force` ran and vinext was not downgraded. Each exception row states these facts. The plan also records a phase-close check of `npm view miniflare dist-tags` for a stable 5.x release.
 
 Audit before the r2 change: critical=0 high=0 moderate=6 low=5. Audit after the r2 change: critical=0 high=5 moderate=6 low=5, total 16. Reports: `green-r2-audit-before-overrides.json`, `green-r2-audit-after-overrides.json`, `green-r2-audit-after-overrides-2.json`. The expanded advisory ranges account for the five high packages: `@cloudflare/vite-plugin`, `miniflare`, `sharp`, `undici`, and `wrangler`. They resolve to nine unique advisory identifiers. The table below names each identifier for each affected package with its reason. The Green audit gate accepts them as named exceptions; the full audit stays unresolved.
 
@@ -332,6 +333,38 @@ Selected wrangler in `apps/integrated-math-3`: 4.116.0. Verified with `npm ls wr
 
 Dry-run command in `apps/integrated-math-3`: `npx wrangler deploy --dry-run --outdir /home/daniebo/Desktop/ra-math-advantage/measure/runs/dependency-refresh_20261121/dry-run-im3` through `heavy-run.sh`. Exit 0. Log: `green-r2-im3-wrangler-dry-run.out`. The log ends with `--dry-run: exiting now.` No deploy ran. The dry-run lists 232 modules at 3620.16 KiB and a total upload of 3934.52 KiB, gzip 979.33 KiB. It reads 171 files from `dist/client`. No `.map` file appears in the dry-run module list; the count of `.map` lines is zero. The larger `dist/` total includes `.map` files under `dist/server`, but those are local build outputs and are not part of the Worker upload. No wrapper settings were changed and no sourcemap was suppressed.
 
+## D1 r3 remediation (2026-11-21)
+
+Reviews A and B failed at `527e18a4`. This round fixes A F1, B F1, A F2 with B F3, and B F4. A F3, B F2, and B F5 are recorded only and move to the next-phase list by the orchestrator. This round does not edit `test-strategy.md`, `measure/gates.json`, `package.json`, or `package-lock.json`.
+
+### A F1 — baseline budget coverage
+
+A regression fixture now lives at `measure/tracks/dependency-refresh_20261121/bundle-comparison-fixture.cjs`. It extracts the production comparison from `gates.sh`, builds a baseline report with the IM3 SSR entry and a client page entry, then runs two cases. The missing case removes `server/ssr/index.js` and keeps the client entry and equal totals. The complete case keeps both entries. A pattern absent from both reports stays allowed.
+
+Before the fix, the fixture printed `MISSING_ENTRY=FAIL: the comparison accepted a report without [OK] server/ssr/index.js → index.js: 292.85 KB (threshold: 700.00 KB)`, `COMPLETE=PASS`, and `FIXTURE=FAIL` with exit 1. The production comparison had exited 0 for the missing case.
+
+The production comparison now requires every budget pattern seen in the baseline report to appear in the current report. It also requires every baseline fixed entry that matches no configured pattern, such as `Total dist/server`, to appear in the current report. Each missing item sets a non-zero exit. Patterns absent from both reports stay allowed. After the fix the fixture printed `MISSING_ENTRY=PASS: status 1`, `COMPLETE=PASS: status 0`, and `FIXTURE=PASS` with exit 0. `bash -n gates.sh` passed. The fixture can run with `node measure/tracks/dependency-refresh_20261121/bundle-comparison-fixture.cjs`.
+
+### B F1, A F2, B F3, B F4 — evidence corrections
+
+The exception reason now states the tested facts. Root overrides `sharp` 0.35.5 and `undici` 7.30.2 clear all five highs after the nested lock nodes re-resolve. That resolution makes `npm ls --all` print two new `invalid:` lines, which are new failure keys. PM a778067f keeps an override only with no new failure key, so no override remains and the leaves stay exceptions. The parent highs stay because their only fixed releases need the miniflare 5 prerelease. The earlier claim that the overrides did not clear the highs was wrong and is corrected above.
+
+Each exception row now names one affected leaf and its own advisory identifiers. The two sharp identifiers sit on sharp 0.35.2. The seven undici identifiers sit on undici 7.28.0. Each path follows the lockfile direction: `@cloudflare/vite-plugin 1.49.0 > wrangler 4.116.0 > miniflare 4.20260730.0 > <leaf>`. The stale opening status, the pending S1 checkpoint line, the pending baseline-gate line, the deferred-updates line, and the Step 2 version table are marked superseded or updated. The first-sweep table keeps its original numbers as a record of the r1 state.
+
+`measure/tracks.md` still describes the track as PLANNED with strategy confirmation pending. This round does not edit the registry. The handoff to the orchestrator records that stale registry text.
+
+### r3 verification
+
+The dependency tree is unchanged since r2, so lint, typecheck, test, build, and docs keep their `d1-green-r2` log sets. Only the support group and the audit gate were rerun.
+
+| Command | Label | Exit | Result |
+|---|---|---|---|
+| `GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh support d1-green-r3` | `d1-green-r3` | 0 | `NEWFAIL=0`; audit critical=0 high=5 moderate=6 low=5 |
+| `GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh audit-high d1-audit-green-r3` | `d1-audit-green-r3` | 0 | every high named; `NEWFAIL=0` |
+| `npm run format:check` | n/a | 0 | all 3725 files correctly formatted |
+
+Logs: `green-r3-support.out`, `green-r3-audit-gate.out`, `green-r3-format-check.out`, and the gate folder `gates/d1-green-r3/support/`. The r3 support comparison printed the same totals as r2: IM3 12734760 to 12734755 bytes and BM2 18777416 to 18777411 bytes. Both stay within 5 percent. The bundle fixture is a new tracked file under this track folder; no generated file was staged.
+
 ## D1 High Exceptions
 
 No exception is selected during planning.
@@ -342,16 +375,15 @@ The full audit remains unresolved when this table permits the exception gate.
 
 | Advisory | Package | Version | Dependency path | Reason |
 |---|---|---|---|---|
-| GHSA-rgj7-g3m4-5g8c | wrangler, @cloudflare/vite-plugin, miniflare, sharp, undici | 4.116.0, 1.49.0, 4.20260730.0, 0.35.2, 7.28.0 | wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | local dev and test chain, not in the deployed Worker; the only fix is the miniflare 5 prerelease; the no-prerelease rule stays (PM a778067f) |
-| GHSA-wq5f-xc86-pv6w | wrangler, @cloudflare/vite-plugin, miniflare, sharp, undici | 4.116.0, 1.49.0, 4.20260730.0, 0.35.2, 7.28.0 | wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | local dev and test chain, not in the deployed Worker; the only fix is the miniflare 5 prerelease; the no-prerelease rule stays (PM a778067f) |
-| GHSA-4cwx-7wf7-3272 | wrangler, @cloudflare/vite-plugin, miniflare, sharp, undici | 4.116.0, 1.49.0, 4.20260730.0, 0.35.2, 7.28.0 | wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | local dev and test chain, not in the deployed Worker; the only fix is the miniflare 5 prerelease; the no-prerelease rule stays (PM a778067f) |
-| GHSA-rfgv-xxqx-mfg5 | wrangler, @cloudflare/vite-plugin, miniflare, sharp, undici | 4.116.0, 1.49.0, 4.20260730.0, 0.35.2, 7.28.0 | wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | local dev and test chain, not in the deployed Worker; the only fix is the miniflare 5 prerelease; the no-prerelease rule stays (PM a778067f) |
-| GHSA-w293-vg96-wgc3 | wrangler, @cloudflare/vite-plugin, miniflare, sharp, undici | 4.116.0, 1.49.0, 4.20260730.0, 0.35.2, 7.28.0 | wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | local dev and test chain, not in the deployed Worker; the only fix is the miniflare 5 prerelease; the no-prerelease rule stays (PM a778067f) |
-| GHSA-xjj6-f33q-929c | wrangler, @cloudflare/vite-plugin, miniflare, sharp, undici | 4.116.0, 1.49.0, 4.20260730.0, 0.35.2, 7.28.0 | wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | local dev and test chain, not in the deployed Worker; the only fix is the miniflare 5 prerelease; the no-prerelease rule stays (PM a778067f) |
-| GHSA-4w7w-5xrc-9h26 | wrangler, @cloudflare/vite-plugin, miniflare, sharp, undici | 4.116.0, 1.49.0, 4.20260730.0, 0.35.2, 7.28.0 | wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | local dev and test chain, not in the deployed Worker; the only fix is the miniflare 5 prerelease; the no-prerelease rule stays (PM a778067f) |
-| GHSA-2m5v-pch6-74hx | wrangler, @cloudflare/vite-plugin, miniflare, sharp, undici | 4.116.0, 1.49.0, 4.20260730.0, 0.35.2, 7.28.0 | wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | local dev and test chain, not in the deployed Worker; the only fix is the miniflare 5 prerelease; the no-prerelease rule stays (PM a778067f) |
-| GHSA-qrxm-fqhp-jwvm | wrangler, @cloudflare/vite-plugin, miniflare, sharp, undici | 4.116.0, 1.49.0, 4.20260730.0, 0.35.2, 7.28.0 | wrangler 4.116.0 > @cloudflare/vite-plugin 1.49.0 > miniflare 4.20260730.0 > sharp 0.35.2 / undici 7.28.0 | local dev and test chain, not in the deployed Worker; the only fix is the miniflare 5 prerelease; the no-prerelease rule stays (PM a778067f) |
-
+| GHSA-rgj7-g3m4-5g8c | sharp | 0.35.2 | @cloudflare/vite-plugin 1.49.0 > wrangler 4.116.0 > miniflare 4.20260730.0 > sharp 0.35.2 | Dev-only chain, absent from the deployed Worker. Root overrides sharp 0.35.5 and undici 7.30.2 clear the highs after the nested lock nodes re-resolve, but npm ls --all then prints two new invalid: lines, which are new failure keys. PM a778067f keeps an override only with no new failure key, so the leaves stay exceptions. The parent highs stay because their only fixed releases need the miniflare 5 prerelease, which the no-prerelease rule forbids. |
+| GHSA-wq5f-xc86-pv6w | sharp | 0.35.2 | @cloudflare/vite-plugin 1.49.0 > wrangler 4.116.0 > miniflare 4.20260730.0 > sharp 0.35.2 | Dev-only chain, absent from the deployed Worker. Root overrides sharp 0.35.5 and undici 7.30.2 clear the highs after the nested lock nodes re-resolve, but npm ls --all then prints two new invalid: lines, which are new failure keys. PM a778067f keeps an override only with no new failure key, so the leaves stay exceptions. The parent highs stay because their only fixed releases need the miniflare 5 prerelease, which the no-prerelease rule forbids. |
+| GHSA-4cwx-7wf7-3272 | undici | 7.28.0 | @cloudflare/vite-plugin 1.49.0 > wrangler 4.116.0 > miniflare 4.20260730.0 > undici 7.28.0 | Dev-only chain, absent from the deployed Worker. Root overrides sharp 0.35.5 and undici 7.30.2 clear the highs after the nested lock nodes re-resolve, but npm ls --all then prints two new invalid: lines, which are new failure keys. PM a778067f keeps an override only with no new failure key, so the leaves stay exceptions. The parent highs stay because their only fixed releases need the miniflare 5 prerelease, which the no-prerelease rule forbids. |
+| GHSA-rfgv-xxqx-mfg5 | undici | 7.28.0 | @cloudflare/vite-plugin 1.49.0 > wrangler 4.116.0 > miniflare 4.20260730.0 > undici 7.28.0 | Dev-only chain, absent from the deployed Worker. Root overrides sharp 0.35.5 and undici 7.30.2 clear the highs after the nested lock nodes re-resolve, but npm ls --all then prints two new invalid: lines, which are new failure keys. PM a778067f keeps an override only with no new failure key, so the leaves stay exceptions. The parent highs stay because their only fixed releases need the miniflare 5 prerelease, which the no-prerelease rule forbids. |
+| GHSA-w293-vg96-wgc3 | undici | 7.28.0 | @cloudflare/vite-plugin 1.49.0 > wrangler 4.116.0 > miniflare 4.20260730.0 > undici 7.28.0 | Dev-only chain, absent from the deployed Worker. Root overrides sharp 0.35.5 and undici 7.30.2 clear the highs after the nested lock nodes re-resolve, but npm ls --all then prints two new invalid: lines, which are new failure keys. PM a778067f keeps an override only with no new failure key, so the leaves stay exceptions. The parent highs stay because their only fixed releases need the miniflare 5 prerelease, which the no-prerelease rule forbids. |
+| GHSA-xjj6-f33q-929c | undici | 7.28.0 | @cloudflare/vite-plugin 1.49.0 > wrangler 4.116.0 > miniflare 4.20260730.0 > undici 7.28.0 | Dev-only chain, absent from the deployed Worker. Root overrides sharp 0.35.5 and undici 7.30.2 clear the highs after the nested lock nodes re-resolve, but npm ls --all then prints two new invalid: lines, which are new failure keys. PM a778067f keeps an override only with no new failure key, so the leaves stay exceptions. The parent highs stay because their only fixed releases need the miniflare 5 prerelease, which the no-prerelease rule forbids. |
+| GHSA-4w7w-5xrc-9h26 | undici | 7.28.0 | @cloudflare/vite-plugin 1.49.0 > wrangler 4.116.0 > miniflare 4.20260730.0 > undici 7.28.0 | Dev-only chain, absent from the deployed Worker. Root overrides sharp 0.35.5 and undici 7.30.2 clear the highs after the nested lock nodes re-resolve, but npm ls --all then prints two new invalid: lines, which are new failure keys. PM a778067f keeps an override only with no new failure key, so the leaves stay exceptions. The parent highs stay because their only fixed releases need the miniflare 5 prerelease, which the no-prerelease rule forbids. |
+| GHSA-2m5v-pch6-74hx | undici | 7.28.0 | @cloudflare/vite-plugin 1.49.0 > wrangler 4.116.0 > miniflare 4.20260730.0 > undici 7.28.0 | Dev-only chain, absent from the deployed Worker. Root overrides sharp 0.35.5 and undici 7.30.2 clear the highs after the nested lock nodes re-resolve, but npm ls --all then prints two new invalid: lines, which are new failure keys. PM a778067f keeps an override only with no new failure key, so the leaves stay exceptions. The parent highs stay because their only fixed releases need the miniflare 5 prerelease, which the no-prerelease rule forbids. |
+| GHSA-qrxm-fqhp-jwvm | undici | 7.28.0 | @cloudflare/vite-plugin 1.49.0 > wrangler 4.116.0 > miniflare 4.20260730.0 > undici 7.28.0 | Dev-only chain, absent from the deployed Worker. Root overrides sharp 0.35.5 and undici 7.30.2 clear the highs after the nested lock nodes re-resolve, but npm ls --all then prints two new invalid: lines, which are new failure keys. PM a778067f keeps an override only with no new failure key, so the leaves stay exceptions. The parent highs stay because their only fixed releases need the miniflare 5 prerelease, which the no-prerelease rule forbids. |
 ## Remaining Moderate and Low Advisories
 
 This is the initial report, not the final exception table.
