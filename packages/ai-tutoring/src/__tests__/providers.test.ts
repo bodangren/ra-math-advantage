@@ -407,3 +407,65 @@ describe("SDK status classification", () => {
     expect(statusSend).toHaveBeenCalledTimes(1);
   });
 });
+
+describe("API key redaction on SDK errors", () => {
+  const redactSend = vi.fn();
+  const RedactCtor = vi.mocked(OpenRouter);
+
+  function withStatus(status: number, message: string) {
+    return Object.assign(new Error(message), { statusCode: status });
+  }
+
+  beforeEach(() => {
+    redactSend.mockReset();
+    RedactCtor.mockReset();
+    RedactCtor.mockImplementation(function () {
+      return { chat: { send: redactSend } } as unknown as InstanceType<typeof OpenRouter>;
+    });
+  });
+
+  it("redacts a padded key echoed by its trimmed form in an HTTP error", async () => {
+    const key = "sk-padded-private-key-4242\n ";
+    redactSend.mockRejectedValue(withStatus(400, `denied ${key.trim()} again`));
+    const provider = createOpenRouterProvider({ apiKey: key, model: "vendor/model-a" });
+    const error = await provider("hello").catch((caught: unknown) => caught as Error);
+    expect(String(error)).not.toContain(key.trim());
+  });
+
+  it("redacts a Bearer-prefixed key echoed without the scheme", async () => {
+    const key = "Bearer sk-bearer-private-key-5555";
+    const token = key.slice("Bearer ".length);
+    redactSend.mockRejectedValue(withStatus(401, `denied ${token}`));
+    const provider = createOpenRouterProvider({ apiKey: key, model: "vendor/model-a" });
+    const error = await provider("hello").catch((caught: unknown) => caught as Error);
+    expect(String(error)).not.toContain(token);
+  });
+
+  it("redacts repeated key echoes on the connection path", async () => {
+    const key = "sk-conn-private-key-6666";
+    redactSend.mockRejectedValue(
+      Object.assign(new Error(`fetch failed ${key} and ${key}`), { name: "ConnectionError" }),
+    );
+    const provider = createOpenRouterProvider({ apiKey: key, model: "vendor/model-a" });
+    const error = (await provider("hello").catch((caught: unknown) => caught)) as Error;
+    expect(error.message).toContain("fetch failed:");
+    expect(String(error)).not.toContain(key);
+  });
+
+  it("redacts a string rejection", async () => {
+    const key = "sk-string-private-key-7777";
+    redactSend.mockRejectedValue(`upstream said ${key}`);
+    const provider = createOpenRouterProvider({ apiKey: key, model: "vendor/model-a" });
+    const error = await provider("hello").catch((caught: unknown) => caught as Error);
+    expect(error).toBeInstanceOf(Error);
+    expect(String(error)).not.toContain(key);
+  });
+
+  it("does not redact a short key into unrelated text", async () => {
+    const key = "abc";
+    redactSend.mockRejectedValue(withStatus(400, "abc is fine here"));
+    const provider = createOpenRouterProvider({ apiKey: key, model: "vendor/model-a" });
+    const error = await provider("hello").catch((caught: unknown) => caught as Error);
+    expect(String(error)).toContain("abc is fine here");
+  });
+});

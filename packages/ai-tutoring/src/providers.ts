@@ -20,32 +20,60 @@ export interface OpenRouterProviderOptions {
   timeoutMs?: number;
 }
 
+const MIN_REDACT_KEY_LENGTH = 8;
+const BEARER_PREFIX = "Bearer ";
+
 /**
- * Replaces every occurrence of the configured API key with a redaction marker.
+ * Lists the configured key forms that an upstream error may echo.
+ * A short key is never redacted, so ordinary text stays unchanged.
+ */
+function redactionTargets(apiKey: string): string[] {
+  if (apiKey.length === 0) {
+    return [];
+  }
+  const trimmed = apiKey.trim();
+  if (trimmed.length < MIN_REDACT_KEY_LENGTH) {
+    return [];
+  }
+  const token = trimmed.startsWith(BEARER_PREFIX) ? trimmed.slice(BEARER_PREFIX.length) : trimmed;
+  const targets = [apiKey, trimmed, token];
+  return [...new Set(targets.filter((target) => target.length >= MIN_REDACT_KEY_LENGTH))];
+}
+
+/**
+ * Replaces every occurrence of a configured key form with a redaction marker.
  */
 function redactApiKey(text: string, apiKey: string): string {
-  if (apiKey.length === 0 || !text.includes(apiKey)) {
-    return text;
+  let redacted = text;
+  for (const target of redactionTargets(apiKey)) {
+    redacted = redacted.split(target).join("[redacted]");
   }
-  return text.split(apiKey).join("[redacted]");
+  return redacted;
 }
 
 /**
  * Maps an SDK error to the error shapes that `withRetry` already understands.
  * HTTP errors keep the `OpenRouter API error:` prefix, connection errors start
- * with `fetch failed:`, and abort errors become an `AbortError`. Upstream text
- * never carries the configured API key into the thrown error.
+ * with `fetch failed:`, and abort errors stay `AbortError`. Every other path
+ * returns a new error with redacted text. An `EmptyResponseError` stays itself.
  */
 function mapSdkError(error: unknown, apiKey: string): Error {
+  if (error instanceof EmptyResponseError) {
+    return error;
+  }
+
+  const message = error instanceof Error ? error.message : String(error);
+  const redacted = redactApiKey(message, apiKey);
+
   if (!(error instanceof Error)) {
-    return new Error(String(error));
+    return new Error(redacted);
   }
 
   const status = (error as Error & { statusCode?: unknown }).statusCode;
   if (typeof status === "number") {
-    const mapped = new Error(
-      `OpenRouter API error: ${status} ${redactApiKey(error.message, apiKey)}`,
-    ) as Error & { status: number };
+    const mapped = new Error(`OpenRouter API error: ${status} ${redacted}`) as Error & {
+      status: number;
+    };
     mapped.status = status;
     return mapped;
   }
@@ -60,10 +88,10 @@ function mapSdkError(error: unknown, apiKey: string): Error {
     error.name === "UnexpectedClientError" ||
     error.message.includes("fetch failed")
   ) {
-    return new Error(`fetch failed: ${redactApiKey(error.message, apiKey)}`);
+    return new Error(`fetch failed: ${redacted}`);
   }
 
-  return error;
+  return new Error(redacted);
 }
 
 /**
