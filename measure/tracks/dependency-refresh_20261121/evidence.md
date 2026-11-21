@@ -1,8 +1,8 @@
 # Evidence: dependency-refresh_20261121
 
-Status: track creation only. Implementation and phase acceptance are pending.
+Status: D1 Red baseline recorded. Green waits for OpenRouter S1 acceptance.
 Date: 2026-11-21.
-Inspection HEAD: `4710566e9acf3c3a16c3aa2a29388781ee7c9e37`.
+Phase base commit: `0228cfd75f2766ac72e45385cf06c2b884edf034`.
 OpenRouter S1 acceptance checkpoint: pending.
 
 ## Read-Only Audit Confirmation
@@ -78,7 +78,7 @@ Preserve exact logs under `measure/runs/dependency-refresh_20261121/gates/`.
 
 | Phase | Base commit | Audit counts | New failure keys | Bundle report | Acceptance |
 |---|---|---|---|---|---|
-| D1 | Pending | Pending | Pending | Pending | Pending |
+| D1 | `0228cfd7` | critical=0 high=9 moderate=7 low=5 | `NEWFAIL=0` for format, lint, typecheck, test, build, docs; support `NEWFAIL=1` from bundle-entry parse misses (record-only, no infra) | IM3 total 12734760 bytes, BM2 total 18777416 bytes with standing `Total dist/server` EXCEEDS | Pending (Green waits for S1) |
 | D2 | Pending | Pending | Pending | Pending | Pending |
 
 ## Deferred Updates and Overrides
@@ -125,6 +125,55 @@ The original authoring checks above describe the initial raw runner, not the ame
 - The scope check found a concurrent OpenRouter plan edit; this session leaves that edit unstaged and unchanged.
 These are runner checks, not implementation gates or phase acceptance evidence.
 This session changes no dependency, OpenRouter file, or file under `measure/runs/`.
+
+## D1 Red Baseline (2026-11-21)
+
+Base: `0228cfd75f2766ac72e45385cf06c2b884edf034`. Role base equals the phase base. The Red run changed no dependency, manifest, or lockfile. The six generated files in `plan.md` changed during gate runs and stay unstaged.
+
+### OpenRouter S1 acceptance
+
+S1 acceptance is not complete. The OpenRouter plan has no `[checkpoint: <sha>]` on any phase heading. Its S1 verification task is still open. Green waits for the passing S1 phase role-gate and the checkpoint commit. The accepted S1 tests and the workerd probe pass at this baseline (see support keys). Daniel's manual check stays outside S1 acceptance.
+
+### Audit baseline (Red)
+
+Command: `npm audit --audit-level=high` through `heavy-run.sh`. Exit: 1. The failure comes from high advisories, not infrastructure. Log: `measure/runs/dependency-refresh_20261121/red-d1-0228cfd7-audit-high.out`.
+
+Full report: `npm audit --json` through `heavy-run.sh`. Exit: 1. Counts: critical=0 high=9 moderate=7 low=5. Report version: 2. Logs: `measure/runs/dependency-refresh_20261121/red-d1-0228cfd7-audit.json` and `red-d1-0228cfd7-audit.stderr`.
+
+High packages (9): `@cloudflare/vite-plugin`, `brace-expansion`, `browserslist`, `fast-uri`, `miniflare`, `sharp`, `undici`, `wrangler`, `ws`. The JSON resolves 28 unique high or critical advisory identifiers across these packages. `evidence.md` of the `D1 High Exceptions` table stays empty at Red. No exception is selected.
+
+### Outdated and tree inventory
+
+Root `npm outdated --json`: exit 1. It names 12 packages and 38 entries: `@openrouter/sdk`, `@oxlint/plugins`, `@types/node`, `@vitest/coverage-v8`, `convex`, `lucide-react`, `oxfmt`, `oxlint`, `oxlint-plugin-eslint`, `tailwind-merge`, `tsrs`, `vitest`. Log: `measure/runs/dependency-refresh_20261121/red-d1-0228cfd7-outdated-root.json`.
+
+Workspaces `npm outdated --json --workspaces`: exit 1. It names 6 packages and 32 entries. It omits every app declaration. Log: `measure/runs/dependency-refresh_20261121/red-d1-0228cfd7-outdated-ws.json`.
+
+Declaration inventory: 26 workspaces from `scripts/architecture/architecture.manifest.json`. They hold 66 external declarations. Two npm aliases exist: `@typescript/native` points to `typescript`, and `typescript6` points to `@typescript/typescript6`. Registry query `npm view <name> version --json` resolved all 66 names (through the real package behind each alias). Wanted queries confirm compatible ranges for the D1 parents: `wrangler@^4.81.1`, `@cloudflare/vite-plugin@^1.31.2`, `jsdom@^29.0.0`, `tsx@^4.20.6`, `baseline-browser-mapping@^2.8.32`, `@tailwindcss/typography@^0.5.19`, `convex@^1.40.0`, `vitest@^4.1.8`, `eslint-plugin-react@^7.37.5`. Installed versions from the lockfile: `wrangler` 4.98.0, `@cloudflare/vite-plugin` 1.40.0, `jsdom` 29.1.1, `tsx` 4.22.4, `baseline-browser-mapping` 2.10.34, `@tailwindcss/typography` 0.5.19, `eslint-plugin-react` 7.37.5, `react-server-dom-webpack` 19.3.1. Logs: `measure/runs/dependency-refresh_20261121/red-d1-0228cfd7-decls.json` and `red-d1-0228cfd7-registry-latest.txt`.
+
+`npm ls --all`: exit 1. It reports invalid edges, not missing packages. Invalid keys: `katex@0.17.0` against `^0.16.0` from `rehype-katex` and `micromark-extension-math`; `lightningcss-linux-x64-musl-x64` and sharp platform packages under `@vercel/og`. Log: `measure/runs/dependency-refresh_20261121/red-d1-0228cfd7-tree.txt`.
+
+### Gate baselines (label `d1-baseline`)
+
+Base folder: `measure/runs/dependency-refresh_20261121/gates/d1-baseline/`. Group logs: `measure/runs/dependency-refresh_20261121/d1-baseline-<group>.out` with matching `.exit` files.
+
+- Format: exit 0, `NEWFAIL=0`. One `format` step, exit 0.
+- Lint: exit 0, `NEWFAIL=0`. All 26 workspaces exit 0.
+- Typecheck: exit 0, `NEWFAIL=0`. `apps/integrated-math-3` exits 1 with 55 `TS` diagnostic lines. `apps/pre-calculus` exits 1 with 4 `TS` diagnostic lines. All other workspaces exit 0.
+- Test: exit 0, `NEWFAIL=0`. Failing workspaces: `apps/bus-math-v2` 7 failed of 2698; `apps/integrated-math-1` 54 failed of 481 across 16 files; `apps/integrated-math-3` 218 failed of 7069 (5 skipped) across 37 files; `apps/pre-calculus` 52 failed of 6186 across 25 files; `packages/math-content` 2 failed of 886 across 2 files. `scripts-suite` step: 28 failed. `audit-suites` step: 5 failed. All other workspaces pass, including `apps/danielson` and `apps/integrated-math-2`. The scripts-suite count is 28 at capture against the earlier reported 27; the log holds every key. The IM1 and pre-calculus test failures and the math-content failures are baseline keys from this capture.
+- Build: exit 0, `NEWFAIL=0`. All workspaces with a build script exit 0. `packages/practice-test-engine` has no build script (`n/a`).
+- Support: exit 1, `NEWFAIL=1` (record-only; no infrastructure failure). Keys: `boundary` 0, `ci-check` 0, `tree` 1 (invalid edges above), audit `critical=0 high=9 moderate=7 low=5`, `sdk` 0, `s1-bm2` 0, `s1-im3` 0, `workerd` 0, `bundle-integrated-math-3` 0 (npm script passes), `total-integrated-math-3` 0 (empty total, see runner note), `bundle-bus-math-v2` 1 (npm script fails on the standing budget EXCEEDS), `total-bus-math-v2` 0 (empty total, see runner note).
+- Docs: exit 0, `NEWFAIL=0`. `generate` and `doctor` both exit 0.
+
+### Bundle report and runner notes
+
+BM2 `Total dist/server` EXCEEDS its budget: 9926.36 KB against 3000 KB. This is the known standing failure. The budget files stay unchanged. The PM receives this report in the handoff. A passing entry that fails later, or a total growth above 5%, stops the phase.
+
+Direct totals at baseline: IM3 `dist/` is 12734760 bytes; BM2 `dist/` is 18777416 bytes. Green compares against these totals.
+
+Two runner defects affect the support-group bundle comparison; both are recorded here without a scope change:
+
+- The bundle-entry parser finds only 1 of 3 IM3 budget patterns in the fresh `dist/` output (`server/assets` and `client/assets` hold no audited files after a passing build). It throws `missing bundle budget match` for IM3 and BM2. This sets `NEWFAIL=1` at baseline capture.
+- The `total-*` steps print an empty `TOTAL_BYTES` when they run through `heavy-run.sh`. A multi-line `node -e` script loses the `${total}` interpolation to the runner (`Referenced but unset environment variable evaluates to an empty string`). The same command prints the correct total outside the runner. Green must account for both defects before it trusts a bundle comparison.
 
 ## D1 High Exceptions
 
