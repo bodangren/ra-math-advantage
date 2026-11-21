@@ -74,6 +74,7 @@ of the Green phase.
 
 _Red retry r2 (`c6a0627f`):_ the SDK mock used `mockReturnValue`, which Vitest
 4 rejects under `new`. Red changed only the mock setup.
+Next-phase list (record-only, PM cap): Review A F2 (gates.sh accepts a missing current log), F3 (empty-response tests assert at least one call); Review B F1 (OPENROUTER_DEBUG logs the auth header; pass a redacting debugLogger), F2 (upstream text in HTTP error message), F4 (SDK release age), F5 (no test pins 429 order and 503 body), F6 (gates.sh compares audit counts, not IDs), F10 (Bearer strip is case-sensitive and removes one space).
 
 - [x] Task: S1 Contract — record the SDK API and the baseline `13e36a6`
     - [ ] Create `evidence.md` in this track folder with these sections: SDK API, Bundle sizes, workerd probe, zod check, Live smoke test.
@@ -166,8 +167,8 @@ _Red retry r2 (`c6a0627f`):_ the SDK mock used `mockReturnValue`, which Vitest
     - Adversarial rerun r3 at `fb694f67`: all 25 cases and four redaction probes pass. No new test is needed.
     - The detached role gate uses `green-r3` and exits 0. Every baseline failure key remains unchanged.
     - Audit: `measure/runs/openrouter-sdk-ai-layer_20261114/adversarial-fb694f67.json`.
-- [ ] Task: Measure - User Manual Verification 'Phase S1: Adopt the OpenRouter SDK' (Protocol in workflow.md)
-    - [ ] Run the protocol: the automated tests, the manual verification plan, and the user confirmation.
+- [b] Task: Measure - User Manual Verification 'Phase S1: Adopt the OpenRouter SDK' (Protocol in workflow.md) (deferred:closeout-steward)
+    - [b] Run the protocol: the automated tests, the manual verification plan, and the user confirmation. (The automated tests ran in Green, the reviews, and the adversarial role. The confirming user is the PM (orchestrator default). The live smoke test with a real key stays a Daniel gate, spec.md human gates.) (deferred:closeout-steward)
     - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S1`.
     - [ ] Append `[checkpoint: <sha>]` to the Phase S1 heading.
     - [ ] Commit: `measure(plan): Mark phase 'Phase S1: Adopt the OpenRouter SDK' as complete`.
