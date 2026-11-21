@@ -126,7 +126,7 @@ An unchanged prerelease pin can appear only with `Deferred:` and its registry re
 
 Due at origin: 2026-11-23. Green depends on OpenRouter S1 acceptance.
 
-- [ ] Task: D1 Red — record the audit and compatibility baseline
+- [x] Task: D1 Red — record the audit and compatibility baseline (b979734)
     - [ ] Record the phase base commit and whether OpenRouter S1 acceptance is complete.
     - [ ] Capture `npm audit --json`, including all severities and advisory identifiers.
     - [ ] Run `npm audit --audit-level=high` through `heavy-run.sh`.
@@ -137,6 +137,7 @@ Due at origin: 2026-11-23. Green depends on OpenRouter S1 acceptance.
     - [ ] Record exact baseline keys and log paths in `evidence.md`.
     - [ ] Record both bundle results and report every budget failure to the PM.
     - [ ] Commit the Red evidence before Green changes.
+    - Red commands: `npm audit --audit-level=high` exits 1 (9 high); `npm audit --json` gives critical=0 high=9 moderate=7 low=5; gate groups with label `d1-baseline` give `NEWFAIL=0` for format, lint, typecheck, test, build, docs and `NEWFAIL=1` for support (bundle-entry parse misses, no infra). Logs: `measure/runs/dependency-refresh_20261121/` (gitignored).
 - [ ] Task: D1 Green — update the vulnerable dependency chains
     - [ ] Confirm OpenRouter S1 acceptance and exclusive dependency changes through the checkpoint.
     - [ ] Refresh the baseline if code or the lockfile changed after capture.
