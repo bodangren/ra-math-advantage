@@ -239,3 +239,13 @@ Each gate ran with label `green` and compared per key with label `baseline`
   exit 0; `npm run lint --workspace=packages/ai-tutoring` and both app lint
   commands exit 0. These ran directly in the session; the gate logs above are
   the audit record for the same commands.
+
+## Docs & Doctor (S1)
+
+- `npm run generate`: exit 0. Log:
+  `measure/runs/openrouter-sdk-ai-layer_20261114/generate-s1.log`.
+- `npm run doctor`: exit 0 with the line `[doctor] All checks passed`. Log:
+  `measure/runs/openrouter-sdk-ai-layer_20261114/doctor-s1.log`.
+- F5 deviation: `npm run generate` did not fix the `../../../daniel-bo/...`
+  paths in `measure/generated/routes.md`. That file is not staged.
+  `tech-debt.md` has 50 lines, the limit, so no row was added.
