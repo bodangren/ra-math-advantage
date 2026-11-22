@@ -46,14 +46,18 @@ The three reads are read-only registry and local queries, so they ran
 directly with the same commands. The outputs above are the records.
 
 MEASURE_AGENT_RESULT
-status: pass
-baseline_sha: 43f2962725d31ceb2a01985ee21361739bf293c1
 role: measure-mid-red
+status: pass
 track: dependency-refresh_20261121
-phase: D2: Update the remaining packages
+phase: Phase D2: Update the remaining packages
+commits: 98a6d3fe, dd2aede8
+tests_run: RED_TEST_COMMAND='bash measure/tracks/dependency-refresh_20261121/gates.sh targets' exits 1 with 130 Below target lines of 131 rows; one Deferred existing pin (tsrs 0.25.0-ts7.1.0-beta exact match)
+files_changed: measure/tracks/dependency-refresh_20261121/plan.md (131-row D2 Targets table, D2 env block with GATES_BASE=d1-green-r11, task [x] mark); measure/tracks/dependency-refresh_20261121/evidence.md (D2 Red section, Phase Results D2 row)
+plan_updates: D2 Targets table filled with 131 rows; D2 env block uses GATES_BASE=d1-green-r11 with reuse proof; D2 Red task marked [x] with Red commit 98a6d3f
+known_failures: targets exit 1 (expected Red state: 130 installed versions below stable targets, listed in the D2 Targets table for Green); audit exit 1 from 5 named high exceptions (expected, unchanged from r11)
+handoff: Green tries each stable major from the 131-row D2 Targets table (wrangler 4.166.0, plugin 1.70.1, vitest 5.1.1, dotenv 18.0.10, jsdom 31.0.1, jest-dom 8.0.0, radix majors) and defers only with a failed gate recorded in evidence.md. The tsrs pin stays Deferred. Miniflare has no stable 5.x (latest 4.20260730.0, beta 5.20261119.0-beta), so the D1 Cloudflare exceptions stay pending the 11-25 recheck.
 red_kind: failing_first
+baseline_sha: 43f2962725d31ceb2a01985ee21361739bf293c1
 red_commit: 98a6d3fec08b892063a91a8249f8618b525338c1
-resulting_head: 98a6d3fec08b892063a91a8249f8618b525338c1
-tests: RED_TEST_COMMAND='bash measure/tracks/dependency-refresh_20261121/gates.sh targets' exits 1 with 130 Below target lines of 131 rows; one Deferred existing pin (tsrs 0.25.0-ts7.1.0-beta exact match)
-files: measure/tracks/dependency-refresh_20261121/plan.md (131-row D2 Targets table, D2 env block with GATES_BASE=d1-green-r11, task [x] mark); measure/tracks/dependency-refresh_20261121/evidence.md (D2 Red section, Phase Results D2 row)
-remaining_failures: targets exit 1 (expected Red state: 130 installed versions below stable targets, listed in the D2 Targets table for Green); audit exit 1 from 5 named high exceptions (expected, unchanged from r11)
+resulting_head: dd2aede8
+END_MEASURE_AGENT_RESULT
