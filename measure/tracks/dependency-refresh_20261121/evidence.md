@@ -459,6 +459,34 @@ The audit gate printed `audit: critical=0 high=5 moderate=6 low=5` and named eve
 
 Two transient conditions occurred during the sweep and were resolved before the final records. A `key()` refinement removed a false new key on a `×` result line that carries a trailing `4ms` execution timing; the final `key()` strips timing only from parenthesised fields and from `×` result lines, and keeps every test title intact. One workspace test job first exited 2 because the shared `heavy-run.sh` was momentarily unparseable while another session edited it; `bash -n` passed on the next check and a fresh resolution of that workspace exited 0. Two duplicate gate drivers were stopped, and the final records were re-verified after the last driver finished.
 
+## D1 r9 — complete test titles and record clarity (2026-11-22)
+
+Review A failed at `f00e6923` on F7 and noted F6. This round changes no dependency, lockfile, app, or package file.
+
+### F7 — complete test titles
+
+`key()` removed a trailing `(10ms)` or `(20ms)` from every diagnostic line. That expression also removed parentheses that belong to a FAIL title. Two FAIL headers with different parenthesized title endings became one key. The expression is now confined to runner result lines: a `×` result line loses its trailing bare or parenthesised timing. No other line loses timing text, so a complete FAIL title stays in the key.
+
+Two cases were added to `adversarial-gates-fixture.cjs` before the fix. `KEY_PARENTHESIZED_TITLE_DURATION` uses FAIL headers ending in `(10ms)` and `(20ms)` and requires exit 1. `KEY_RUNNER_TIMING_ONLY` changes only the timing on a `×` result line, from `(12 ms)` to `(15 ms)`, and requires exit 0.
+
+Before the fix the fixture exited 1 with `FIXTURE_PASSED=36 FIXTURE_FAILED=1`. The parenthesized-title case reported `expected=1 actual=0`; the runner-timing control passed. Log: `green-r9-adversarial-before.out`. After the fix the fixture exited 0 with `FIXTURE_PASSED=37 FIXTURE_FAILED=0`. Both new cases and the earlier title cases pass. Log: `green-r9-adversarial-final.out`. The `bundle-comparison-fixture.cjs` still exits 0 with `MISSING_ENTRY=PASS`, `COMPLETE=PASS`, and `FIXTURE=PASS`.
+
+### F6 — superseded r8 records
+
+The saved `green-r8-test.exit` holds 1 and `r8-rerun.progress` records `test exit=1`. Those records describe an earlier comparison, before the transient heavy-run parse fault was resolved. The final `green-r8-test.out` contains `NEWFAIL=0` with no `INFRA=1`, and the dispatcher returned exit 0 for that comparison. Both exit-1 records stay in place as superseded evidence. The final comparison exit is 0. The r9 records write each exit file from the final group exit, so output and sidecar agree.
+
+### r9 gate results
+
+Only the groups whose comparisons invoke `key()` were rerun: typecheck, test, and support. Format, lint, build, and docs had no failed job at r8, so `compare_result` never called `new_keys`; those groups keep their r8 records. The audit-high gate does not use `key()` and keeps its `d1-audit-green-r8` record. All three r9 groups use label `d1-green-r9` and `GATES_BASE=d1-baseline-r2`.
+
+| Group | Exit | NEWFAIL | INFRA |
+|---|---|---|---|
+| typecheck | 0 | 0 | none |
+| test | 0 | 0 | none |
+| support | 0 | 0 | none |
+
+Logs: `green-r9-<group>.out` with matching `.exit` files and gate folder `gates/d1-green-r9/<group>/`. Bundle totals are unchanged: IM3 12734760 to 12734755 bytes and BM2 18777416 to 18777411 bytes, both within 5 percent. No new failure key or infrastructure failure remains.
+
 ## D1 High Exceptions
 
 No exception is selected during planning.

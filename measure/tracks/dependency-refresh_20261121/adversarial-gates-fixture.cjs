@@ -113,6 +113,18 @@ try {
     "FAIL tests/window.test.ts > retains error window 20ms",
     1,
   );
+  compareKeys(
+    "KEY_PARENTHESIZED_TITLE_DURATION",
+    "FAIL tests/window.test.ts > retains error window (10ms)",
+    "FAIL tests/window.test.ts > retains error window (20ms)",
+    1,
+  );
+  compareKeys(
+    "KEY_RUNNER_TIMING_ONLY",
+    "× reports a clear error (12 ms)",
+    "× reports a clear error (15 ms)",
+    0,
+  );
 
   const bundle = source.slice(source.indexOf("bundle() {")).match(/^\s*node -e '\n([\s\S]*?)\n\s*' "\$OUT"/m);
   if (!bundle) throw Error("FIXTURE SETUP FAIL: bundle comparison extraction failed");
