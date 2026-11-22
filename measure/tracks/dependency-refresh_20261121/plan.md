@@ -124,7 +124,7 @@ An unchanged prerelease pin can appear only with `Deferred:` and its registry re
 | Manifest | Package | Target | Decision |
 |---|---|---|---|
 
-## Phase D1: Fix the critical and high advisories
+## Phase D1: Fix the critical and high advisories [checkpoint: 71450a85]
 
 Due at origin: 2026-11-23. Green depends on OpenRouter S1 acceptance.
 
