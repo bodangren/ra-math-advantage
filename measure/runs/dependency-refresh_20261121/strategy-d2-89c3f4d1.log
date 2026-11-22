@@ -1,0 +1,32 @@
+Strategy role: D2 refresh at authoring role base 89c3f4d1bc081bb667d50ccfc2cde43d78f0b161.
+The strategy commit lands first. The orchestrator captures the immutable D2 phase_base_sha with git rev-parse HEAD immediately after that commit, before any other commit. No SHA in the strategy predates that commit.
+
+MEASURE_AGENT_RESULT
+role: measure-strategy
+track: dependency-refresh_20261121
+phase: Phase D2: Update the remaining packages
+status: strategy-written
+strategy_file: measure/tracks/dependency-refresh_20261121/test-strategy.md
+role_base_sha: 89c3f4d1bc081bb667d50ccfc2cde43d78f0b161
+phase_base_sha: capture_with_git_rev_parse_HEAD_after_this_strategy_commit
+phase_base_capture_point: immediately after the strategy commit, before any other commit; the strategy log is in that same commit so only the six generated files remain dirty
+phase_base_invalid_value: 89c3f4d1bc081bb667d50ccfc2cde43d78f0b161 (role base, predates strategy, void as phase base)
+risk: high
+review_a: applicable
+review_b: applicable
+review_c: not_applicable
+adversarial: applicable_bounded_by_pm_cap
+browser: not_applicable
+red_command: bash measure/tracks/dependency-refresh_20261121/gates.sh targets
+green_command: bash measure/tracks/dependency-refresh_20261121/gates.sh targets && GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh audit-high d2-audit-green
+audit_remaining: 6 moderate, 5 low, plus 5 named high exceptions
+miniflare_recheck: npm view miniflare dist-tags at the 11-25 phase close; adopt stable 5.x in D2 if it exists, else keep wrangler 4.116.0 and plugin 1.49.0 as Deferred rows
+d2_carried_items: ADV-12, ADV-13, F8, F9, F-PA1, F-PA3, Review B F2, Review B F5
+pm_cap: a gate-tool finding that hides no failure in the D2 results is tech debt, not a blocker; the gate tool must not grow without end
+umv: D2 manual verification is PM-verified, not a Daniel gate
+build_graph: skipped, no exported TypeScript symbol changes; graph.db is a tracked binary and the pre-commit hook blocks a graph-only commit
+independence: D1 Red was Muse, D1 Green was Hunyuan; D2 Red and Green from different families, Review A not Red family, Review B not Green family, adversarial independent of gate-tool author
+changed_files: measure/tracks/dependency-refresh_20261121/test-strategy.md; measure/runs/dependency-refresh_20261121/strategy-d2-89c3f4d1.log
+push: none
+handoff: none
+END_MEASURE_AGENT_RESULT
