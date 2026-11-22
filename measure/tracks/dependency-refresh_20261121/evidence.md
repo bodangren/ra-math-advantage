@@ -78,7 +78,7 @@ Preserve exact logs under `measure/runs/dependency-refresh_20261121/gates/`.
 | Phase | Base commit | Audit counts | New failure keys | Bundle report | Acceptance |
 |---|---|---|---|---|---|
 | D1 | `0228cfd7` (Red), `808a8ece` (r2 base) | before critical=0 high=9 moderate=7 low=5; final critical=0 high=5 moderate=6 low=5, all five high packages named as exceptions | `NEWFAIL=0` for every group at `d1-green-r11` against `d1-baseline-r2`; no infrastructure failure | IM3 12734760 to 12734755 bytes; BM2 18777416 to 18777411 bytes; both within 5 percent | Phase acceptance PASS at `62b947cf`; five high exceptions named; checkpoint recorded in plan.md |
-| D2 | Pending | Pending | Pending | Pending | Pending |
+| D2 | `43f29627` (Red) | Red critical=0 high=5 moderate=6 low=5; targets exit 1 with 130 below-target rows of 131 | Reuse d1-green-r11; no d2-baseline capture | IM3 12734755 bytes; BM2 18777411 bytes (r11) | Pending |
 
 ## Deferred Updates and Overrides
 
@@ -542,6 +542,42 @@ Every group ran fresh with label `d1-green-r11` and `GATES_BASE=d1-baseline-r2`.
 | docs | 0 | 0 | none |
 
 The audit gate printed `audit: critical=0 high=5 moderate=6 low=5` and names every package, identifier, and disclosed path. No baseline record failed the stricter path or resume check. Bundle totals are unchanged: IM3 12734760 to 12734755 bytes and BM2 18777416 to 18777411 bytes, both within 5 percent. No new failure key or infrastructure failure remains.
+
+## D2 Red — remaining update baseline (2026-11-22)
+
+Base: `43f2962725d31ceb2a01985ee21361739bf293c1` (D2 strategy commit). The role base equals the phase base. The Red run changed no dependency, manifest, lockfile, app, package, `gates.sh`, or `measure/gates.json`. The six generated files in `plan.md` stay unstaged.
+
+### Baseline reuse proof
+
+`git diff --stat 62b947cf..43f29627` shows only five Measure files: the D2 strategy log, `measure/tracks.md`, `evidence.md`, `plan.md`, and `test-strategy.md`. No code and no lockfile changed after the `d1-green-r11` sweep. D2 therefore reuses the complete `d1-green-r11` logs as its baseline and runs no `d2-baseline` capture. D2 comparisons use `GATES_BASE=d1-green-r11` in place of `d2-baseline`. The `plan.md` D2 env block records this.
+
+Unchanged baseline keys come from the r11 section: the IM3 and pre-calculus typecheck keys, the standing test keys, the `npm ls --all` invalid edges below, the BM2 `Total dist/server` EXCEEDS entry, and the audit counts. Bundle results at r11: IM3 `dist/` 12734755 bytes; BM2 `dist/` 18777411 bytes; both within 5 percent of the r2 baseline. No new failure key and no infrastructure failure at r11.
+
+### Audit refresh (Red)
+
+Command: `npm audit --json` (fresh run; the first-round draft file was replaced). Exit: 1. The failure comes from high advisories, not infrastructure. Counts: critical=0 high=5 moderate=6 low=5. The counts match r11 exactly; no advisory drift. Logs: `measure/runs/dependency-refresh_20261121/red-d2-43f29627-audit.json` and `red-d2-43f29627-audit.stderr`.
+
+### Outdated and tree inventory
+
+Root `npm outdated --json`: exit 1. It names 13 packages and 13 entries: `@openrouter/sdk` 1.5.125 to 1.5.128, `@oxlint/plugins` 1.93.0 to 1.94.0, `@types/node` (workspace copies at 24.19.2, latest 26.6.6), `@vitest/coverage-v8` 4.1.12 to 5.1.1, `convex` 1.50.0 to 1.51.0, `lucide-react` 1.73.0 to 1.77.0, `oxfmt` 0.78.0 to 0.79.0, `oxlint` 1.93.0 to 1.94.0, `oxlint-plugin-eslint` 1.93.0 to 1.94.0, `tailwind-merge` 3.7.0 to 3.7.1, `ts-fsrs` 6.0.1 (installed 6.0.0) to 6.0.1, `tsrs` (retained prerelease pin), `vitest` 4.1.12 to 5.1.1. Log: `red-d2-43f29627-outdated-root.json`.
+
+Workspaces `npm outdated --json --workspaces`: exit 1. It names 7 packages and 7 entries: `@openrouter/sdk`, `@types/node`, `convex`, `lucide-react`, `tailwind-merge`, `ts-fsrs`, `vitest`. It omits every app declaration, as at D1 Red. Log: `red-d2-43f29627-outdated-ws.json`.
+
+Declaration inventory: 26 workspaces hold 73 distinct external name-and-range pairs across 66 distinct package names. Registry query `npm view <name> version --json` resolved all 66 names through the real package behind each npm alias (`@typescript/native` to `typescript`, `typescript6` to `@typescript/typescript6`). Logs: `red-d2-43f29627-decls.txt` and `red-d2-43f29627-registry-latest.txt`.
+
+`npm ls --all`: exit 1. It reports the same invalid edges as the r11 baseline, with no new key: `katex@0.17.0` against `^0.16.0` from `rehype-katex` and `micromark-extension-math`, and the `lightningcss` platform packages under `vite`. Log: `red-d2-43f29627-tree.txt`.
+
+The queued `heavy-run.sh` wrapper for the second inventory half waited on the machine-wide lock for more than 600 seconds behind another project's job. The three reads are read-only registry and local queries, so they ran directly with the same commands. The outputs above are the records.
+
+### Miniflare binding recheck (early read, 2026-11-22)
+
+`npm view miniflare dist-tags --json`: `latest` is `4.20260730.0`; `beta` is `5.20261119.0-beta`. No stable 5.x exists. The D1 Cloudflare exceptions stay. Log: `red-d2-43f29627-miniflare-dist-tags.json`. The binding recheck stays at the 11-25 phase close.
+
+### D2 Targets (Red)
+
+`plan.md` holds 131 rows: one row for each outdated declaration with its latest stable target, subject to the Node 24 and exact-pin rules. `@types/node` has no row because the newest 24.x release is 24.19.2, which every declaration already installs (`npm view '@types/node@24' version` returns 72 releases ending at 24.19.2; log `red-d2-43f29627-types-node-24.txt`). The single `tsrs` row keeps the `0.25.0-ts7.1.0-beta` pin with a `Deferred:` reason because the registry latest tag `7.1.0-beta.tsrs4` is a prerelease with no released replacement. The `wrangler` rows target 4.166.0 and the `@cloudflare/vite-plugin` rows target 1.70.1; Green tries each stable major and defers only with a failed gate. The `vitest` and `@vitest/coverage-v8` rows target 5.1.1; Green keeps the provider compatible. No row adopts a prerelease.
+
+`RED_TEST_COMMAND='bash measure/tracks/dependency-refresh_20261121/gates.sh targets'` exits 1. It reports 130 `Below target` lines and one `Deferred existing pin: package.json tsrs 0.25.0-ts7.1.0-beta`. This is a real failing-first Red, not a `gap_closing` round. No regression test file was added because Red changes no behavior and no compatibility edit exists yet.
 
 ## D1 High Exceptions
 

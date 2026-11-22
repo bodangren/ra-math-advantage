@@ -100,10 +100,12 @@ Export these exact values for D2:
 ```bash
 export RED_TEST_COMMAND='bash measure/tracks/dependency-refresh_20261121/gates.sh targets'
 export GREEN_TEST_COMMAND='bash measure/tracks/dependency-refresh_20261121/gates.sh targets && GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh audit-high d2-audit-green'
-export PROJECT_LINT='GATES_BASE=d2-baseline GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh lint d2-green'
-export PROJECT_CHECKS='GATES_BASE=d2-baseline GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh checks-all d2-green'
-export PROJECT_TESTS='GATES_BASE=d2-baseline GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh test d2-green'
+export PROJECT_LINT='GATES_BASE=d1-green-r11 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh lint d2-green'
+export PROJECT_CHECKS='GATES_BASE=d1-green-r11 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh checks-all d2-green'
+export PROJECT_TESTS='GATES_BASE=d1-green-r11 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh test d2-green'
 ```
+
+D2 reuses the `d1-green-r11` logs as its baseline. No code or lockfile changed after the r11 sweep: `git diff --stat 62b947cf..43f29627` shows only Measure files (strategy log, tracks.md, evidence.md, plan.md, test-strategy.md). No `d2-baseline` capture runs. D2 comparisons use `GATES_BASE=d1-green-r11` in place of `d2-baseline`.
 
 The environment overrides `measure/gates.json`, including `PROJECT_TESTS` for adversarial testing.
 The gate runner wraps each job through `heavy-run.sh`; do not wrap these runner commands again.
@@ -123,6 +125,137 @@ An unchanged prerelease pin can appear only with `Deferred:` and its registry re
 
 | Manifest | Package | Target | Decision |
 |---|---|---|---|
+| apps/bus-math-v2/package.json | @playwright/test | 1.65.1 | Update |
+| apps/bus-math-v2/package.json | @radix-ui/react-avatar | 1.3.1 | Update |
+| apps/bus-math-v2/package.json | @radix-ui/react-checkbox | 1.4.1 | Update |
+| apps/bus-math-v2/package.json | @radix-ui/react-dropdown-menu | 2.2.1 | Update |
+| apps/bus-math-v2/package.json | @radix-ui/react-label | 2.1.17 | Update |
+| apps/bus-math-v2/package.json | @radix-ui/react-slot | 1.5.0 | Update |
+| apps/bus-math-v2/package.json | @radix-ui/react-tabs | 1.2.1 | Update |
+| apps/bus-math-v2/package.json | @tailwindcss/postcss | 4.3.5 | Update |
+| apps/bus-math-v2/package.json | @tailwindcss/typography | 0.5.20 | Update |
+| apps/bus-math-v2/package.json | @testing-library/jest-dom | 8.0.0 | Update |
+| apps/bus-math-v2/package.json | @testing-library/user-event | 14.6.13 | Update |
+| apps/bus-math-v2/package.json | autoprefixer | 10.7.0 | Update |
+| apps/bus-math-v2/package.json | convex | 1.51.0 | Update |
+| apps/bus-math-v2/package.json | dotenv | 18.0.10 | Update |
+| apps/bus-math-v2/package.json | jsdom | 31.0.1 | Update |
+| apps/bus-math-v2/package.json | lucide-react | 1.77.0 | Update |
+| apps/bus-math-v2/package.json | postcss | 8.5.33 | Update |
+| apps/bus-math-v2/package.json | recharts | 3.11.0 | Update |
+| apps/bus-math-v2/package.json | tailwind-merge | 3.7.1 | Update |
+| apps/bus-math-v2/package.json | tailwindcss | 4.3.5 | Update |
+| apps/bus-math-v2/package.json | ts-fsrs | 6.0.1 | Update |
+| apps/bus-math-v2/package.json | vitest | 5.1.1 | Update |
+| apps/danielson/package.json | @testing-library/jest-dom | 8.0.0 | Update |
+| apps/danielson/package.json | convex | 1.51.0 | Update |
+| apps/danielson/package.json | jsdom | 31.0.1 | Update |
+| apps/danielson/package.json | vitest | 5.1.1 | Update |
+| apps/integrated-math-1/package.json | @cloudflare/vite-plugin | 1.70.1 | Update |
+| apps/integrated-math-1/package.json | @tailwindcss/postcss | 4.3.5 | Update |
+| apps/integrated-math-1/package.json | @tailwindcss/typography | 0.5.20 | Update |
+| apps/integrated-math-1/package.json | @testing-library/dom | 10.4.2 | Update |
+| apps/integrated-math-1/package.json | @testing-library/jest-dom | 8.0.0 | Update |
+| apps/integrated-math-1/package.json | autoprefixer | 10.7.0 | Update |
+| apps/integrated-math-1/package.json | convex | 1.51.0 | Update |
+| apps/integrated-math-1/package.json | dotenv | 18.0.10 | Update |
+| apps/integrated-math-1/package.json | jsdom | 31.0.1 | Update |
+| apps/integrated-math-1/package.json | lucide-react | 1.77.0 | Update |
+| apps/integrated-math-1/package.json | postcss | 8.5.33 | Update |
+| apps/integrated-math-1/package.json | tailwind-merge | 3.7.1 | Update |
+| apps/integrated-math-1/package.json | tailwindcss | 4.3.5 | Update |
+| apps/integrated-math-1/package.json | vitest | 5.1.1 | Update |
+| apps/integrated-math-1/package.json | wrangler | 4.166.0 | Update |
+| apps/integrated-math-2/package.json | @cloudflare/vite-plugin | 1.70.1 | Update |
+| apps/integrated-math-2/package.json | @tailwindcss/postcss | 4.3.5 | Update |
+| apps/integrated-math-2/package.json | @tailwindcss/typography | 0.5.20 | Update |
+| apps/integrated-math-2/package.json | @testing-library/dom | 10.4.2 | Update |
+| apps/integrated-math-2/package.json | @testing-library/jest-dom | 8.0.0 | Update |
+| apps/integrated-math-2/package.json | autoprefixer | 10.7.0 | Update |
+| apps/integrated-math-2/package.json | convex | 1.51.0 | Update |
+| apps/integrated-math-2/package.json | dotenv | 18.0.10 | Update |
+| apps/integrated-math-2/package.json | jsdom | 31.0.1 | Update |
+| apps/integrated-math-2/package.json | lucide-react | 1.77.0 | Update |
+| apps/integrated-math-2/package.json | postcss | 8.5.33 | Update |
+| apps/integrated-math-2/package.json | tailwind-merge | 3.7.1 | Update |
+| apps/integrated-math-2/package.json | tailwindcss | 4.3.5 | Update |
+| apps/integrated-math-2/package.json | vitest | 5.1.1 | Update |
+| apps/integrated-math-2/package.json | wrangler | 4.166.0 | Update |
+| apps/integrated-math-3/package.json | @axe-core/playwright | 4.14.0 | Update |
+| apps/integrated-math-3/package.json | @cloudflare/vite-plugin | 1.70.1 | Update |
+| apps/integrated-math-3/package.json | @convex-dev/migrations | 0.3.9 | Update |
+| apps/integrated-math-3/package.json | @playwright/test | 1.65.1 | Update |
+| apps/integrated-math-3/package.json | @radix-ui/react-avatar | 1.3.1 | Update |
+| apps/integrated-math-3/package.json | @radix-ui/react-checkbox | 1.4.1 | Update |
+| apps/integrated-math-3/package.json | @radix-ui/react-dropdown-menu | 2.2.1 | Update |
+| apps/integrated-math-3/package.json | @radix-ui/react-label | 2.1.17 | Update |
+| apps/integrated-math-3/package.json | @radix-ui/react-slot | 1.5.0 | Update |
+| apps/integrated-math-3/package.json | @radix-ui/react-tabs | 1.2.1 | Update |
+| apps/integrated-math-3/package.json | @tailwindcss/postcss | 4.3.5 | Update |
+| apps/integrated-math-3/package.json | @tailwindcss/typography | 0.5.20 | Update |
+| apps/integrated-math-3/package.json | @testing-library/dom | 10.4.2 | Update |
+| apps/integrated-math-3/package.json | @testing-library/jest-dom | 8.0.0 | Update |
+| apps/integrated-math-3/package.json | @testing-library/user-event | 14.6.13 | Update |
+| apps/integrated-math-3/package.json | autoprefixer | 10.7.0 | Update |
+| apps/integrated-math-3/package.json | convex | 1.51.0 | Update |
+| apps/integrated-math-3/package.json | dotenv | 18.0.10 | Update |
+| apps/integrated-math-3/package.json | jsdom | 31.0.1 | Update |
+| apps/integrated-math-3/package.json | lucide-react | 1.77.0 | Update |
+| apps/integrated-math-3/package.json | postcss | 8.5.33 | Update |
+| apps/integrated-math-3/package.json | recharts | 3.11.0 | Update |
+| apps/integrated-math-3/package.json | tailwind-merge | 3.7.1 | Update |
+| apps/integrated-math-3/package.json | tailwindcss | 4.3.5 | Update |
+| apps/integrated-math-3/package.json | ts-fsrs | 6.0.1 | Update |
+| apps/integrated-math-3/package.json | vitest | 5.1.1 | Update |
+| apps/integrated-math-3/package.json | wrangler | 4.166.0 | Update |
+| apps/pre-calculus/package.json | @cloudflare/vite-plugin | 1.70.1 | Update |
+| apps/pre-calculus/package.json | @tailwindcss/postcss | 4.3.5 | Update |
+| apps/pre-calculus/package.json | @tailwindcss/typography | 0.5.20 | Update |
+| apps/pre-calculus/package.json | @testing-library/dom | 10.4.2 | Update |
+| apps/pre-calculus/package.json | @testing-library/jest-dom | 8.0.0 | Update |
+| apps/pre-calculus/package.json | autoprefixer | 10.7.0 | Update |
+| apps/pre-calculus/package.json | convex | 1.51.0 | Update |
+| apps/pre-calculus/package.json | dotenv | 18.0.10 | Update |
+| apps/pre-calculus/package.json | jsdom | 31.0.1 | Update |
+| apps/pre-calculus/package.json | lucide-react | 1.77.0 | Update |
+| apps/pre-calculus/package.json | postcss | 8.5.33 | Update |
+| apps/pre-calculus/package.json | tailwind-merge | 3.7.1 | Update |
+| apps/pre-calculus/package.json | tailwindcss | 4.3.5 | Update |
+| apps/pre-calculus/package.json | vitest | 5.1.1 | Update |
+| apps/pre-calculus/package.json | wrangler | 4.166.0 | Update |
+| package.json | @oxlint/plugins | 1.94.0 | Update |
+| package.json | @vitest/coverage-v8 | 5.1.1 | Update |
+| package.json | oxfmt | 0.79.0 | Update |
+| package.json | oxlint | 1.94.0 | Update |
+| package.json | oxlint-plugin-eslint | 1.94.0 | Update |
+| package.json | tsrs | 0.25.0-ts7.1.0-beta | Deferred: keep the 0.25.0-ts7.1.0-beta pin; the registry latest tag 7.1.0-beta.tsrs4 is a prerelease and no released replacement exists. |
+| packages/activity-components/package.json | vitest | 5.1.1 | Update |
+| packages/activity-runtime/package.json | vitest | 5.1.1 | Update |
+| packages/ai-tutoring/package.json | @openrouter/sdk | 1.5.128 | Update |
+| packages/ai-tutoring/package.json | vitest | 5.1.1 | Update |
+| packages/app-shell/package.json | convex | 1.51.0 | Update |
+| packages/app-shell/package.json | lucide-react | 1.77.0 | Update |
+| packages/app-shell/package.json | vitest | 5.1.1 | Update |
+| packages/component-approval/package.json | vitest | 5.1.1 | Update |
+| packages/core-auth/package.json | vitest | 5.1.1 | Update |
+| packages/core-convex/package.json | convex | 1.51.0 | Update |
+| packages/core-convex/package.json | vitest | 5.1.1 | Update |
+| packages/efficacy-core/package.json | vitest | 5.1.1 | Update |
+| packages/graphing-core/package.json | vitest | 5.1.1 | Update |
+| packages/knowledge-space-core/package.json | vitest | 5.1.1 | Update |
+| packages/knowledge-space-practice/package.json | vitest | 5.1.1 | Update |
+| packages/lesson-renderer/package.json | lucide-react | 1.77.0 | Update |
+| packages/lesson-renderer/package.json | tailwind-merge | 3.7.1 | Update |
+| packages/lesson-renderer/package.json | vitest | 5.1.1 | Update |
+| packages/math-content/package.json | vitest | 5.1.1 | Update |
+| packages/practice-core/package.json | vitest | 5.1.1 | Update |
+| packages/practice-test-engine/package.json | vitest | 5.1.1 | Update |
+| packages/rate-limiter/package.json | vitest | 5.1.1 | Update |
+| packages/srs-engine/package.json | ts-fsrs | 6.0.1 | Update |
+| packages/srs-engine/package.json | vitest | 5.1.1 | Update |
+| packages/study-hub-core/package.json | vitest | 5.1.1 | Update |
+| packages/teacher-reporting-core/package.json | vitest | 5.1.1 | Update |
+| packages/workbook-pipeline/package.json | vitest | 5.1.1 | Update |
 
 ## Phase D1: Fix the critical and high advisories [checkpoint: 71450a85]
 
@@ -228,7 +361,7 @@ D2 deferred gate findings (next-phase under the PM 2026-11-22 cap):
 - F-PA1 — the lint `.out` file contains root output rather than a group `NEWFAIL` marker; D2 records its provenance with the workspace records.
 - F-PA3 — the Review A F8 sentence needs a corrected dependency path; D2 rewrites it with the verified parent chain.
 
-- [ ] Task: D2 Red — refresh the remaining update baseline
+- [~] Task: D2 Red — refresh the remaining update baseline
     - [ ] Record the phase base commit.
     - [ ] Refresh the audit and outdated reports for every declared external package.
     - [ ] Fill `D2 Targets` with the stable targets, subject to the Node 24 and exact-pin rules.
