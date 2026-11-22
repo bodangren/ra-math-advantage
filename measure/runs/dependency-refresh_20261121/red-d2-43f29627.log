@@ -1,0 +1,59 @@
+Red · D2 · dependency-refresh_20261121 · r2 · 2026-11-22
+
+Phase base: 43f2962725d31ceb2a01985ee21361739bf293c1 (D2 strategy commit).
+Role base: 43f2962725d31ceb2a01985ee21361739bf293c1 (= HEAD at start).
+Red commit: 98a6d3fec08b892063a91a8249f8618b525338c1.
+
+Scope proof: git diff --stat 62b947cf..43f29627 shows only Measure files
+(strategy log, tracks.md, evidence.md, plan.md, test-strategy.md).
+No code and no lockfile changed after the d1-green-r11 sweep.
+D2 reuses the complete d1-green-r11 logs. No d2-baseline capture runs.
+D2 comparisons use GATES_BASE=d1-green-r11. The plan D2 env block records this.
+
+Audit refresh: npm audit --json exits 1 from high advisories, not infra.
+Counts: critical=0 high=5 moderate=6 low=5. The counts match r11. No drift.
+Log: red-d2-43f29627-audit.json and red-d2-43f29627-audit.stderr.
+
+Outdated: root npm outdated --json exits 1 with 13 packages and 13 entries.
+Workspaces npm outdated --json --workspaces exits 1 with 7 packages and 7 entries.
+Logs: red-d2-43f29627-outdated-root.json and red-d2-43f29627-outdated-ws.json.
+
+Inventory: 73 distinct external name-and-range pairs across 66 names.
+Registry npm view resolved all 66 names, with aliases mapped to real packages.
+Logs: red-d2-43f29627-decls.txt and red-d2-43f29627-registry-latest.txt.
+
+Tree: npm ls --all exits 1 on the standing katex and lightningcss invalid edges.
+No new key against r11. Log: red-d2-43f29627-tree.txt.
+
+Types-node: npm view '@types/node@24' version ends at 24.19.2, already installed.
+No @types/node target row exists. Log: red-d2-43f29627-types-node-24.txt.
+
+Miniflare: dist-tags latest is 4.20260730.0; beta is 5.20261119.0-beta.
+No stable 5.x exists. The D1 Cloudflare exceptions stay.
+Log: red-d2-43f29627-miniflare-dist-tags.json.
+
+Targets: plan.md holds 131 D2 Targets rows (130 Update, 1 tsrs Deferred pin).
+RED_TEST_COMMAND (gates.sh targets) exits 1 with 130 Below target lines and
+one Deferred existing pin for tsrs. This is a failing-first Red round.
+No regression test file was added. Red changes no behavior.
+
+Bundle results at r11: IM3 dist 12734755 bytes; BM2 dist 18777411 bytes.
+Both stay within 5 percent of the r2 baseline.
+
+The queued heavy-run.sh wrapper for the second inventory half waited on the
+machine-wide lock for more than 600 seconds behind another project job.
+The three reads are read-only registry and local queries, so they ran
+directly with the same commands. The outputs above are the records.
+
+MEASURE_AGENT_RESULT
+status: pass
+baseline_sha: 43f2962725d31ceb2a01985ee21361739bf293c1
+role: measure-mid-red
+track: dependency-refresh_20261121
+phase: D2: Update the remaining packages
+red_kind: failing_first
+red_commit: 98a6d3fec08b892063a91a8249f8618b525338c1
+resulting_head: 98a6d3fec08b892063a91a8249f8618b525338c1
+tests: RED_TEST_COMMAND='bash measure/tracks/dependency-refresh_20261121/gates.sh targets' exits 1 with 130 Below target lines of 131 rows; one Deferred existing pin (tsrs 0.25.0-ts7.1.0-beta exact match)
+files: measure/tracks/dependency-refresh_20261121/plan.md (131-row D2 Targets table, D2 env block with GATES_BASE=d1-green-r11, task [x] mark); measure/tracks/dependency-refresh_20261121/evidence.md (D2 Red section, Phase Results D2 row)
+remaining_failures: targets exit 1 (expected Red state: 130 installed versions below stable targets, listed in the D2 Targets table for Green); audit exit 1 from 5 named high exceptions (expected, unchanged from r11)

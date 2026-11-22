@@ -361,7 +361,7 @@ D2 deferred gate findings (next-phase under the PM 2026-11-22 cap):
 - F-PA1 — the lint `.out` file contains root output rather than a group `NEWFAIL` marker; D2 records its provenance with the workspace records.
 - F-PA3 — the Review A F8 sentence needs a corrected dependency path; D2 rewrites it with the verified parent chain.
 
-- [~] Task: D2 Red — refresh the remaining update baseline
+- [x] Task: D2 Red — refresh the remaining update baseline (98a6d3f)
     - [ ] Record the phase base commit.
     - [ ] Refresh the audit and outdated reports for every declared external package.
     - [ ] Fill `D2 Targets` with the stable targets, subject to the Node 24 and exact-pin rules.
