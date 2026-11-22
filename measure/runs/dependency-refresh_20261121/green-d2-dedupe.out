@@ -1,0 +1,23 @@
+
+added 11 packages, removed 74 packages, changed 13 packages, and audited 845 packages in 26s
+
+273 packages are looking for funding
+  run `npm fund` for details
+
+15 vulnerabilities (4 low, 8 moderate, 3 high)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+npm warn allow-scripts 5 packages have install scripts not yet covered by allowScripts:
+npm warn allow-scripts   @openrouter/sdk@1.5.128 (postinstall: node scripts/check-types.js || true)
+npm warn allow-scripts   esbuild@0.27.0 (postinstall: node install.js)
+npm warn allow-scripts   workerd@1.20260730.1 (postinstall: node install.js)
+npm warn allow-scripts   esbuild@0.28.1 (postinstall: node install.js)
+npm warn allow-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn allow-scripts
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.

@@ -20,7 +20,7 @@
     "build": "npm run typecheck"
   },
   "dependencies": {
-    "@openrouter/sdk": "^1.5.102"
+    "@openrouter/sdk": "^1.5.128"
   },
   "devDependencies": {
     "@types/node": "^24.19.2",

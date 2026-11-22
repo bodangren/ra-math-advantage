@@ -1,0 +1,169 @@
+Target met: apps/bus-math-v2/package.json @playwright/test 1.65.1 >= 1.65.1
+Target met: apps/bus-math-v2/package.json @radix-ui/react-avatar 1.3.1 >= 1.3.1
+Target met: apps/bus-math-v2/package.json @radix-ui/react-checkbox 1.4.1 >= 1.4.1
+Target met: apps/bus-math-v2/package.json @radix-ui/react-dropdown-menu 2.2.1 >= 2.2.1
+Target met: apps/bus-math-v2/package.json @radix-ui/react-label 2.1.17 >= 2.1.17
+Target met: apps/bus-math-v2/package.json @radix-ui/react-slot 1.5.0 >= 1.5.0
+Target met: apps/bus-math-v2/package.json @radix-ui/react-tabs 1.2.1 >= 1.2.1
+Target met: apps/bus-math-v2/package.json @tailwindcss/postcss 4.3.5 >= 4.3.5
+Target met: apps/bus-math-v2/package.json @tailwindcss/typography 0.5.20 >= 0.5.20
+Target met: apps/bus-math-v2/package.json @testing-library/jest-dom 6.9.1 >= 6.9.1
+Target met: apps/bus-math-v2/package.json @testing-library/user-event 14.6.13 >= 14.6.13
+Target met: apps/bus-math-v2/package.json autoprefixer 10.7.0 >= 10.7.0
+Target met: apps/bus-math-v2/package.json convex 1.51.0 >= 1.51.0
+Target met: apps/bus-math-v2/package.json dotenv 18.0.10 >= 18.0.10
+Target met: apps/bus-math-v2/package.json jsdom 29.1.1 >= 29.1.1
+Target met: apps/bus-math-v2/package.json lucide-react 1.77.0 >= 1.77.0
+Target met: apps/bus-math-v2/package.json postcss 8.5.33 >= 8.5.33
+Target met: apps/bus-math-v2/package.json recharts 3.11.0 >= 3.11.0
+Target met: apps/bus-math-v2/package.json tailwind-merge 3.7.1 >= 3.7.1
+Target met: apps/bus-math-v2/package.json tailwindcss 4.3.5 >= 4.3.5
+Target met: apps/bus-math-v2/package.json ts-fsrs 6.0.1 >= 6.0.1
+Target met: apps/bus-math-v2/package.json vitest 4.1.12 >= 4.1.12
+Target met: apps/danielson/package.json @testing-library/jest-dom 6.9.1 >= 6.9.1
+Target met: apps/danielson/package.json convex 1.51.0 >= 1.51.0
+Target met: apps/danielson/package.json jsdom 29.1.1 >= 29.1.1
+Target met: apps/danielson/package.json vitest 4.1.12 >= 4.1.12
+Target met: apps/integrated-math-1/package.json @cloudflare/vite-plugin 1.49.0 >= 1.49.0
+Target met: apps/integrated-math-1/package.json @tailwindcss/postcss 4.3.5 >= 4.3.5
+Target met: apps/integrated-math-1/package.json @tailwindcss/typography 0.5.20 >= 0.5.20
+Target met: apps/integrated-math-1/package.json @testing-library/dom 10.4.2 >= 10.4.2
+Target met: apps/integrated-math-1/package.json @testing-library/jest-dom 6.9.1 >= 6.9.1
+Target met: apps/integrated-math-1/package.json autoprefixer 10.7.0 >= 10.7.0
+Target met: apps/integrated-math-1/package.json convex 1.51.0 >= 1.51.0
+Target met: apps/integrated-math-1/package.json dotenv 18.0.10 >= 18.0.10
+Target met: apps/integrated-math-1/package.json jsdom 29.1.1 >= 29.1.1
+Target met: apps/integrated-math-1/package.json lucide-react 1.77.0 >= 1.77.0
+Target met: apps/integrated-math-1/package.json postcss 8.5.33 >= 8.5.33
+Target met: apps/integrated-math-1/package.json tailwind-merge 3.7.1 >= 3.7.1
+Target met: apps/integrated-math-1/package.json tailwindcss 4.3.5 >= 4.3.5
+Target met: apps/integrated-math-1/package.json vitest 4.1.12 >= 4.1.12
+Target met: apps/integrated-math-1/package.json wrangler 4.116.0 >= 4.116.0
+Target met: apps/integrated-math-2/package.json @cloudflare/vite-plugin 1.49.0 >= 1.49.0
+Target met: apps/integrated-math-2/package.json @tailwindcss/postcss 4.3.5 >= 4.3.5
+Target met: apps/integrated-math-2/package.json @tailwindcss/typography 0.5.20 >= 0.5.20
+Target met: apps/integrated-math-2/package.json @testing-library/dom 10.4.2 >= 10.4.2
+Target met: apps/integrated-math-2/package.json @testing-library/jest-dom 6.9.1 >= 6.9.1
+Target met: apps/integrated-math-2/package.json autoprefixer 10.7.0 >= 10.7.0
+Target met: apps/integrated-math-2/package.json convex 1.51.0 >= 1.51.0
+Target met: apps/integrated-math-2/package.json dotenv 18.0.10 >= 18.0.10
+Target met: apps/integrated-math-2/package.json jsdom 29.1.1 >= 29.1.1
+Target met: apps/integrated-math-2/package.json lucide-react 1.77.0 >= 1.77.0
+Target met: apps/integrated-math-2/package.json postcss 8.5.33 >= 8.5.33
+Target met: apps/integrated-math-2/package.json tailwind-merge 3.7.1 >= 3.7.1
+Target met: apps/integrated-math-2/package.json tailwindcss 4.3.5 >= 4.3.5
+Target met: apps/integrated-math-2/package.json vitest 4.1.12 >= 4.1.12
+Target met: apps/integrated-math-2/package.json wrangler 4.116.0 >= 4.116.0
+Target met: apps/integrated-math-3/package.json @axe-core/playwright 4.14.0 >= 4.14.0
+Target met: apps/integrated-math-3/package.json @cloudflare/vite-plugin 1.49.0 >= 1.49.0
+Target met: apps/integrated-math-3/package.json @convex-dev/migrations 0.3.9 >= 0.3.9
+Target met: apps/integrated-math-3/package.json @playwright/test 1.65.1 >= 1.65.1
+Target met: apps/integrated-math-3/package.json @radix-ui/react-avatar 1.3.1 >= 1.3.1
+Target met: apps/integrated-math-3/package.json @radix-ui/react-checkbox 1.4.1 >= 1.4.1
+Target met: apps/integrated-math-3/package.json @radix-ui/react-dropdown-menu 2.2.1 >= 2.2.1
+Target met: apps/integrated-math-3/package.json @radix-ui/react-label 2.1.17 >= 2.1.17
+Target met: apps/integrated-math-3/package.json @radix-ui/react-slot 1.5.0 >= 1.5.0
+Target met: apps/integrated-math-3/package.json @radix-ui/react-tabs 1.2.1 >= 1.2.1
+Target met: apps/integrated-math-3/package.json @tailwindcss/postcss 4.3.5 >= 4.3.5
+Target met: apps/integrated-math-3/package.json @tailwindcss/typography 0.5.20 >= 0.5.20
+Target met: apps/integrated-math-3/package.json @testing-library/dom 10.4.2 >= 10.4.2
+Target met: apps/integrated-math-3/package.json @testing-library/jest-dom 6.9.1 >= 6.9.1
+Target met: apps/integrated-math-3/package.json @testing-library/user-event 14.6.13 >= 14.6.13
+Target met: apps/integrated-math-3/package.json autoprefixer 10.7.0 >= 10.7.0
+Target met: apps/integrated-math-3/package.json convex 1.51.0 >= 1.51.0
+Target met: apps/integrated-math-3/package.json dotenv 18.0.10 >= 18.0.10
+Target met: apps/integrated-math-3/package.json jsdom 29.1.1 >= 29.1.1
+Target met: apps/integrated-math-3/package.json lucide-react 1.77.0 >= 1.77.0
+Target met: apps/integrated-math-3/package.json postcss 8.5.33 >= 8.5.33
+Target met: apps/integrated-math-3/package.json recharts 3.11.0 >= 3.11.0
+Target met: apps/integrated-math-3/package.json tailwind-merge 3.7.1 >= 3.7.1
+Target met: apps/integrated-math-3/package.json tailwindcss 4.3.5 >= 4.3.5
+Target met: apps/integrated-math-3/package.json ts-fsrs 6.0.1 >= 6.0.1
+Target met: apps/integrated-math-3/package.json vitest 4.1.12 >= 4.1.12
+Target met: apps/integrated-math-3/package.json wrangler 4.116.0 >= 4.116.0
+Target met: apps/pre-calculus/package.json @cloudflare/vite-plugin 1.49.0 >= 1.49.0
+Target met: apps/pre-calculus/package.json @tailwindcss/postcss 4.3.5 >= 4.3.5
+Target met: apps/pre-calculus/package.json @tailwindcss/typography 0.5.20 >= 0.5.20
+Target met: apps/pre-calculus/package.json @testing-library/dom 10.4.2 >= 10.4.2
+Target met: apps/pre-calculus/package.json @testing-library/jest-dom 6.9.1 >= 6.9.1
+Target met: apps/pre-calculus/package.json autoprefixer 10.7.0 >= 10.7.0
+Target met: apps/pre-calculus/package.json convex 1.51.0 >= 1.51.0
+Target met: apps/pre-calculus/package.json dotenv 18.0.10 >= 18.0.10
+Target met: apps/pre-calculus/package.json jsdom 29.1.1 >= 29.1.1
+Target met: apps/pre-calculus/package.json lucide-react 1.77.0 >= 1.77.0
+Target met: apps/pre-calculus/package.json postcss 8.5.33 >= 8.5.33
+Target met: apps/pre-calculus/package.json tailwind-merge 3.7.1 >= 3.7.1
+Target met: apps/pre-calculus/package.json tailwindcss 4.3.5 >= 4.3.5
+Target met: apps/pre-calculus/package.json vitest 4.1.12 >= 4.1.12
+Target met: apps/pre-calculus/package.json wrangler 4.116.0 >= 4.116.0
+Target met: package.json @oxlint/plugins 1.94.0 >= 1.94.0
+Target met: package.json @vitest/coverage-v8 4.1.12 >= 4.1.12
+Target met: package.json oxfmt 0.79.0 >= 0.79.0
+Target met: package.json oxlint 1.94.0 >= 1.94.0
+Target met: package.json oxlint-plugin-eslint 1.94.0 >= 1.94.0
+Deferred existing pin: package.json tsrs 0.25.0-ts7.1.0-beta
+Target met: packages/activity-components/package.json vitest 4.1.12 >= 4.1.12
+Target met: packages/activity-runtime/package.json vitest 4.1.12 >= 4.1.12
+Target met: packages/ai-tutoring/package.json @openrouter/sdk 1.5.128 >= 1.5.128
+Target met: packages/ai-tutoring/package.json vitest 4.1.12 >= 4.1.12
+Target met: packages/app-shell/package.json convex 1.51.0 >= 1.51.0
+Target met: packages/app-shell/package.json lucide-react 1.77.0 >= 1.77.0
+Target met: packages/app-shell/package.json vitest 4.1.12 >= 4.1.12
+Target met: packages/component-approval/package.json vitest 4.1.12 >= 4.1.12
+Target met: packages/core-auth/package.json vitest 4.1.12 >= 4.1.12
+Target met: packages/core-convex/package.json convex 1.51.0 >= 1.51.0
+Target met: packages/core-convex/package.json vitest 4.1.12 >= 4.1.12
+Target met: packages/efficacy-core/package.json vitest 4.1.12 >= 4.1.12
+Target met: packages/graphing-core/package.json vitest 4.1.12 >= 4.1.12
+Target met: packages/knowledge-space-core/package.json vitest 4.1.12 >= 4.1.12
+Target met: packages/knowledge-space-practice/package.json vitest 4.1.12 >= 4.1.12
+Target met: packages/lesson-renderer/package.json lucide-react 1.77.0 >= 1.77.0
+Target met: packages/lesson-renderer/package.json tailwind-merge 3.7.1 >= 3.7.1
+Target met: packages/lesson-renderer/package.json vitest 4.1.12 >= 4.1.12
+Target met: packages/math-content/package.json vitest 4.1.12 >= 4.1.12
+Target met: packages/practice-core/package.json vitest 4.1.12 >= 4.1.12
+Target met: packages/practice-test-engine/package.json vitest 4.1.12 >= 4.1.12
+Target met: packages/rate-limiter/package.json vitest 4.1.12 >= 4.1.12
+Target met: packages/srs-engine/package.json ts-fsrs 6.0.1 >= 6.0.1
+Target met: packages/srs-engine/package.json vitest 4.1.12 >= 4.1.12
+Target met: packages/study-hub-core/package.json vitest 4.1.12 >= 4.1.12
+Target met: packages/teacher-reporting-core/package.json vitest 4.1.12 >= 4.1.12
+Target met: packages/workbook-pipeline/package.json vitest 4.1.12 >= 4.1.12
+audit: critical=0 high=5 moderate=6 low=5
+Named exception: @cloudflare/vite-plugin GHSA-rgj7-g3m4-5g8c
+Named exception: @cloudflare/vite-plugin GHSA-wq5f-xc86-pv6w
+Named exception: @cloudflare/vite-plugin GHSA-4cwx-7wf7-3272
+Named exception: @cloudflare/vite-plugin GHSA-rfgv-xxqx-mfg5
+Named exception: @cloudflare/vite-plugin GHSA-w293-vg96-wgc3
+Named exception: @cloudflare/vite-plugin GHSA-xjj6-f33q-929c
+Named exception: @cloudflare/vite-plugin GHSA-4w7w-5xrc-9h26
+Named exception: @cloudflare/vite-plugin GHSA-2m5v-pch6-74hx
+Named exception: @cloudflare/vite-plugin GHSA-qrxm-fqhp-jwvm
+Named exception: miniflare GHSA-rgj7-g3m4-5g8c
+Named exception: miniflare GHSA-wq5f-xc86-pv6w
+Named exception: miniflare GHSA-4cwx-7wf7-3272
+Named exception: miniflare GHSA-rfgv-xxqx-mfg5
+Named exception: miniflare GHSA-w293-vg96-wgc3
+Named exception: miniflare GHSA-xjj6-f33q-929c
+Named exception: miniflare GHSA-4w7w-5xrc-9h26
+Named exception: miniflare GHSA-2m5v-pch6-74hx
+Named exception: miniflare GHSA-qrxm-fqhp-jwvm
+Named exception: sharp GHSA-rgj7-g3m4-5g8c
+Named exception: sharp GHSA-wq5f-xc86-pv6w
+Named exception: undici GHSA-4cwx-7wf7-3272
+Named exception: undici GHSA-rfgv-xxqx-mfg5
+Named exception: undici GHSA-w293-vg96-wgc3
+Named exception: undici GHSA-xjj6-f33q-929c
+Named exception: undici GHSA-4w7w-5xrc-9h26
+Named exception: undici GHSA-2m5v-pch6-74hx
+Named exception: undici GHSA-qrxm-fqhp-jwvm
+Named exception: wrangler GHSA-rgj7-g3m4-5g8c
+Named exception: wrangler GHSA-wq5f-xc86-pv6w
+Named exception: wrangler GHSA-4cwx-7wf7-3272
+Named exception: wrangler GHSA-rfgv-xxqx-mfg5
+Named exception: wrangler GHSA-w293-vg96-wgc3
+Named exception: wrangler GHSA-xjj6-f33q-929c
+Named exception: wrangler GHSA-4w7w-5xrc-9h26
+Named exception: wrangler GHSA-2m5v-pch6-74hx
+Named exception: wrangler GHSA-qrxm-fqhp-jwvm
+NEWFAIL=0

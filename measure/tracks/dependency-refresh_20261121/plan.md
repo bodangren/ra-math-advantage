@@ -134,55 +134,55 @@ An unchanged prerelease pin can appear only with `Deferred:` and its registry re
 | apps/bus-math-v2/package.json | @radix-ui/react-tabs | 1.2.1 | Update |
 | apps/bus-math-v2/package.json | @tailwindcss/postcss | 4.3.5 | Update |
 | apps/bus-math-v2/package.json | @tailwindcss/typography | 0.5.20 | Update |
-| apps/bus-math-v2/package.json | @testing-library/jest-dom | 8.0.0 | Update |
+| apps/bus-math-v2/package.json | @testing-library/jest-dom | 6.9.1 | Deferred: keep 6.9.1; jest-dom 8.0.0 declares a peer range vitest >=5 <6 and creates a new invalid tree edge against the retained vitest 4.1.12 (npm ls --all, green-d2 tree check). The no-new-key rule defers the major with its peer. |
 | apps/bus-math-v2/package.json | @testing-library/user-event | 14.6.13 | Update |
 | apps/bus-math-v2/package.json | autoprefixer | 10.7.0 | Update |
 | apps/bus-math-v2/package.json | convex | 1.51.0 | Update |
 | apps/bus-math-v2/package.json | dotenv | 18.0.10 | Update |
-| apps/bus-math-v2/package.json | jsdom | 31.0.1 | Update |
+| apps/bus-math-v2/package.json | jsdom | 29.1.1 | Deferred: keep 29.1.1; jsdom 31.0.1 changed the DOM accessibility tree so the activity-components axe a11y test gained one serious violation (green-d2 test packages/activity-components, StepByStepper guided mode). The no-new-key rule defers the major. |
 | apps/bus-math-v2/package.json | lucide-react | 1.77.0 | Update |
 | apps/bus-math-v2/package.json | postcss | 8.5.33 | Update |
 | apps/bus-math-v2/package.json | recharts | 3.11.0 | Update |
 | apps/bus-math-v2/package.json | tailwind-merge | 3.7.1 | Update |
 | apps/bus-math-v2/package.json | tailwindcss | 4.3.5 | Update |
 | apps/bus-math-v2/package.json | ts-fsrs | 6.0.1 | Update |
-| apps/bus-math-v2/package.json | vitest | 5.1.1 | Update |
-| apps/danielson/package.json | @testing-library/jest-dom | 8.0.0 | Update |
+| apps/bus-math-v2/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| apps/danielson/package.json | @testing-library/jest-dom | 6.9.1 | Deferred: keep 6.9.1; jest-dom 8.0.0 declares a peer range vitest >=5 <6 and creates a new invalid tree edge against the retained vitest 4.1.12 (npm ls --all, green-d2 tree check). The no-new-key rule defers the major with its peer. |
 | apps/danielson/package.json | convex | 1.51.0 | Update |
-| apps/danielson/package.json | jsdom | 31.0.1 | Update |
-| apps/danielson/package.json | vitest | 5.1.1 | Update |
-| apps/integrated-math-1/package.json | @cloudflare/vite-plugin | 1.70.1 | Update |
+| apps/danielson/package.json | jsdom | 29.1.1 | Deferred: keep 29.1.1; jsdom 31.0.1 changed the DOM accessibility tree so the activity-components axe a11y test gained one serious violation (green-d2 test packages/activity-components, StepByStepper guided mode). The no-new-key rule defers the major. |
+| apps/danielson/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| apps/integrated-math-1/package.json | @cloudflare/vite-plugin | 1.49.0 | Deferred: keep 1.49.0; @cloudflare/vite-plugin 1.49.1 and later resolve miniflare 5 prerelease, and the no-prerelease rule forbids it. The 1.70.1 gate failed the miniflare-stability check before any install. Review B F5. |
 | apps/integrated-math-1/package.json | @tailwindcss/postcss | 4.3.5 | Update |
 | apps/integrated-math-1/package.json | @tailwindcss/typography | 0.5.20 | Update |
 | apps/integrated-math-1/package.json | @testing-library/dom | 10.4.2 | Update |
-| apps/integrated-math-1/package.json | @testing-library/jest-dom | 8.0.0 | Update |
+| apps/integrated-math-1/package.json | @testing-library/jest-dom | 6.9.1 | Deferred: keep 6.9.1; jest-dom 8.0.0 declares a peer range vitest >=5 <6 and creates a new invalid tree edge against the retained vitest 4.1.12 (npm ls --all, green-d2 tree check). The no-new-key rule defers the major with its peer. |
 | apps/integrated-math-1/package.json | autoprefixer | 10.7.0 | Update |
 | apps/integrated-math-1/package.json | convex | 1.51.0 | Update |
 | apps/integrated-math-1/package.json | dotenv | 18.0.10 | Update |
-| apps/integrated-math-1/package.json | jsdom | 31.0.1 | Update |
+| apps/integrated-math-1/package.json | jsdom | 29.1.1 | Deferred: keep 29.1.1; jsdom 31.0.1 changed the DOM accessibility tree so the activity-components axe a11y test gained one serious violation (green-d2 test packages/activity-components, StepByStepper guided mode). The no-new-key rule defers the major. |
 | apps/integrated-math-1/package.json | lucide-react | 1.77.0 | Update |
 | apps/integrated-math-1/package.json | postcss | 8.5.33 | Update |
 | apps/integrated-math-1/package.json | tailwind-merge | 3.7.1 | Update |
 | apps/integrated-math-1/package.json | tailwindcss | 4.3.5 | Update |
-| apps/integrated-math-1/package.json | vitest | 5.1.1 | Update |
-| apps/integrated-math-1/package.json | wrangler | 4.166.0 | Update |
-| apps/integrated-math-2/package.json | @cloudflare/vite-plugin | 1.70.1 | Update |
+| apps/integrated-math-1/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| apps/integrated-math-1/package.json | wrangler | 4.116.0 | Deferred: keep 4.116.0; wrangler 4.117.0 and later resolve miniflare 5 prerelease, and the no-prerelease rule forbids it. The 4.166.0 gate failed the miniflare-stability check before any install. Review B F5. |
+| apps/integrated-math-2/package.json | @cloudflare/vite-plugin | 1.49.0 | Deferred: keep 1.49.0; @cloudflare/vite-plugin 1.49.1 and later resolve miniflare 5 prerelease, and the no-prerelease rule forbids it. The 1.70.1 gate failed the miniflare-stability check before any install. Review B F5. |
 | apps/integrated-math-2/package.json | @tailwindcss/postcss | 4.3.5 | Update |
 | apps/integrated-math-2/package.json | @tailwindcss/typography | 0.5.20 | Update |
 | apps/integrated-math-2/package.json | @testing-library/dom | 10.4.2 | Update |
-| apps/integrated-math-2/package.json | @testing-library/jest-dom | 8.0.0 | Update |
+| apps/integrated-math-2/package.json | @testing-library/jest-dom | 6.9.1 | Deferred: keep 6.9.1; jest-dom 8.0.0 declares a peer range vitest >=5 <6 and creates a new invalid tree edge against the retained vitest 4.1.12 (npm ls --all, green-d2 tree check). The no-new-key rule defers the major with its peer. |
 | apps/integrated-math-2/package.json | autoprefixer | 10.7.0 | Update |
 | apps/integrated-math-2/package.json | convex | 1.51.0 | Update |
 | apps/integrated-math-2/package.json | dotenv | 18.0.10 | Update |
-| apps/integrated-math-2/package.json | jsdom | 31.0.1 | Update |
+| apps/integrated-math-2/package.json | jsdom | 29.1.1 | Deferred: keep 29.1.1; jsdom 31.0.1 changed the DOM accessibility tree so the activity-components axe a11y test gained one serious violation (green-d2 test packages/activity-components, StepByStepper guided mode). The no-new-key rule defers the major. |
 | apps/integrated-math-2/package.json | lucide-react | 1.77.0 | Update |
 | apps/integrated-math-2/package.json | postcss | 8.5.33 | Update |
 | apps/integrated-math-2/package.json | tailwind-merge | 3.7.1 | Update |
 | apps/integrated-math-2/package.json | tailwindcss | 4.3.5 | Update |
-| apps/integrated-math-2/package.json | vitest | 5.1.1 | Update |
-| apps/integrated-math-2/package.json | wrangler | 4.166.0 | Update |
+| apps/integrated-math-2/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| apps/integrated-math-2/package.json | wrangler | 4.116.0 | Deferred: keep 4.116.0; wrangler 4.117.0 and later resolve miniflare 5 prerelease, and the no-prerelease rule forbids it. The 4.166.0 gate failed the miniflare-stability check before any install. Review B F5. |
 | apps/integrated-math-3/package.json | @axe-core/playwright | 4.14.0 | Update |
-| apps/integrated-math-3/package.json | @cloudflare/vite-plugin | 1.70.1 | Update |
+| apps/integrated-math-3/package.json | @cloudflare/vite-plugin | 1.49.0 | Deferred: keep 1.49.0; @cloudflare/vite-plugin 1.49.1 and later resolve miniflare 5 prerelease, and the no-prerelease rule forbids it. The 1.70.1 gate failed the miniflare-stability check before any install. Review B F5. |
 | apps/integrated-math-3/package.json | @convex-dev/migrations | 0.3.9 | Update |
 | apps/integrated-math-3/package.json | @playwright/test | 1.65.1 | Update |
 | apps/integrated-math-3/package.json | @radix-ui/react-avatar | 1.3.1 | Update |
@@ -194,68 +194,68 @@ An unchanged prerelease pin can appear only with `Deferred:` and its registry re
 | apps/integrated-math-3/package.json | @tailwindcss/postcss | 4.3.5 | Update |
 | apps/integrated-math-3/package.json | @tailwindcss/typography | 0.5.20 | Update |
 | apps/integrated-math-3/package.json | @testing-library/dom | 10.4.2 | Update |
-| apps/integrated-math-3/package.json | @testing-library/jest-dom | 8.0.0 | Update |
+| apps/integrated-math-3/package.json | @testing-library/jest-dom | 6.9.1 | Deferred: keep 6.9.1; jest-dom 8.0.0 declares a peer range vitest >=5 <6 and creates a new invalid tree edge against the retained vitest 4.1.12 (npm ls --all, green-d2 tree check). The no-new-key rule defers the major with its peer. |
 | apps/integrated-math-3/package.json | @testing-library/user-event | 14.6.13 | Update |
 | apps/integrated-math-3/package.json | autoprefixer | 10.7.0 | Update |
 | apps/integrated-math-3/package.json | convex | 1.51.0 | Update |
 | apps/integrated-math-3/package.json | dotenv | 18.0.10 | Update |
-| apps/integrated-math-3/package.json | jsdom | 31.0.1 | Update |
+| apps/integrated-math-3/package.json | jsdom | 29.1.1 | Deferred: keep 29.1.1; jsdom 31.0.1 changed the DOM accessibility tree so the activity-components axe a11y test gained one serious violation (green-d2 test packages/activity-components, StepByStepper guided mode). The no-new-key rule defers the major. |
 | apps/integrated-math-3/package.json | lucide-react | 1.77.0 | Update |
 | apps/integrated-math-3/package.json | postcss | 8.5.33 | Update |
 | apps/integrated-math-3/package.json | recharts | 3.11.0 | Update |
 | apps/integrated-math-3/package.json | tailwind-merge | 3.7.1 | Update |
 | apps/integrated-math-3/package.json | tailwindcss | 4.3.5 | Update |
 | apps/integrated-math-3/package.json | ts-fsrs | 6.0.1 | Update |
-| apps/integrated-math-3/package.json | vitest | 5.1.1 | Update |
-| apps/integrated-math-3/package.json | wrangler | 4.166.0 | Update |
-| apps/pre-calculus/package.json | @cloudflare/vite-plugin | 1.70.1 | Update |
+| apps/integrated-math-3/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| apps/integrated-math-3/package.json | wrangler | 4.116.0 | Deferred: keep 4.116.0; wrangler 4.117.0 and later resolve miniflare 5 prerelease, and the no-prerelease rule forbids it. The 4.166.0 gate failed the miniflare-stability check before any install. Review B F5. |
+| apps/pre-calculus/package.json | @cloudflare/vite-plugin | 1.49.0 | Deferred: keep 1.49.0; @cloudflare/vite-plugin 1.49.1 and later resolve miniflare 5 prerelease, and the no-prerelease rule forbids it. The 1.70.1 gate failed the miniflare-stability check before any install. Review B F5. |
 | apps/pre-calculus/package.json | @tailwindcss/postcss | 4.3.5 | Update |
 | apps/pre-calculus/package.json | @tailwindcss/typography | 0.5.20 | Update |
 | apps/pre-calculus/package.json | @testing-library/dom | 10.4.2 | Update |
-| apps/pre-calculus/package.json | @testing-library/jest-dom | 8.0.0 | Update |
+| apps/pre-calculus/package.json | @testing-library/jest-dom | 6.9.1 | Deferred: keep 6.9.1; jest-dom 8.0.0 declares a peer range vitest >=5 <6 and creates a new invalid tree edge against the retained vitest 4.1.12 (npm ls --all, green-d2 tree check). The no-new-key rule defers the major with its peer. |
 | apps/pre-calculus/package.json | autoprefixer | 10.7.0 | Update |
 | apps/pre-calculus/package.json | convex | 1.51.0 | Update |
 | apps/pre-calculus/package.json | dotenv | 18.0.10 | Update |
-| apps/pre-calculus/package.json | jsdom | 31.0.1 | Update |
+| apps/pre-calculus/package.json | jsdom | 29.1.1 | Deferred: keep 29.1.1; jsdom 31.0.1 changed the DOM accessibility tree so the activity-components axe a11y test gained one serious violation (green-d2 test packages/activity-components, StepByStepper guided mode). The no-new-key rule defers the major. |
 | apps/pre-calculus/package.json | lucide-react | 1.77.0 | Update |
 | apps/pre-calculus/package.json | postcss | 8.5.33 | Update |
 | apps/pre-calculus/package.json | tailwind-merge | 3.7.1 | Update |
 | apps/pre-calculus/package.json | tailwindcss | 4.3.5 | Update |
-| apps/pre-calculus/package.json | vitest | 5.1.1 | Update |
-| apps/pre-calculus/package.json | wrangler | 4.166.0 | Update |
+| apps/pre-calculus/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| apps/pre-calculus/package.json | wrangler | 4.116.0 | Deferred: keep 4.116.0; wrangler 4.117.0 and later resolve miniflare 5 prerelease, and the no-prerelease rule forbids it. The 4.166.0 gate failed the miniflare-stability check before any install. Review B F5. |
 | package.json | @oxlint/plugins | 1.94.0 | Update |
-| package.json | @vitest/coverage-v8 | 5.1.1 | Update |
+| package.json | @vitest/coverage-v8 | 4.1.12 | Deferred: keep 4.1.12; the coverage provider must match the retained vitest 4.x major. |
 | package.json | oxfmt | 0.79.0 | Update |
 | package.json | oxlint | 1.94.0 | Update |
 | package.json | oxlint-plugin-eslint | 1.94.0 | Update |
 | package.json | tsrs | 0.25.0-ts7.1.0-beta | Deferred: keep the 0.25.0-ts7.1.0-beta pin; the registry latest tag 7.1.0-beta.tsrs4 is a prerelease and no released replacement exists. |
-| packages/activity-components/package.json | vitest | 5.1.1 | Update |
-| packages/activity-runtime/package.json | vitest | 5.1.1 | Update |
+| packages/activity-components/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| packages/activity-runtime/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
 | packages/ai-tutoring/package.json | @openrouter/sdk | 1.5.128 | Update |
-| packages/ai-tutoring/package.json | vitest | 5.1.1 | Update |
+| packages/ai-tutoring/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
 | packages/app-shell/package.json | convex | 1.51.0 | Update |
 | packages/app-shell/package.json | lucide-react | 1.77.0 | Update |
-| packages/app-shell/package.json | vitest | 5.1.1 | Update |
-| packages/component-approval/package.json | vitest | 5.1.1 | Update |
-| packages/core-auth/package.json | vitest | 5.1.1 | Update |
+| packages/app-shell/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| packages/component-approval/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| packages/core-auth/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
 | packages/core-convex/package.json | convex | 1.51.0 | Update |
-| packages/core-convex/package.json | vitest | 5.1.1 | Update |
-| packages/efficacy-core/package.json | vitest | 5.1.1 | Update |
-| packages/graphing-core/package.json | vitest | 5.1.1 | Update |
-| packages/knowledge-space-core/package.json | vitest | 5.1.1 | Update |
-| packages/knowledge-space-practice/package.json | vitest | 5.1.1 | Update |
+| packages/core-convex/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| packages/efficacy-core/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| packages/graphing-core/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| packages/knowledge-space-core/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| packages/knowledge-space-practice/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
 | packages/lesson-renderer/package.json | lucide-react | 1.77.0 | Update |
 | packages/lesson-renderer/package.json | tailwind-merge | 3.7.1 | Update |
-| packages/lesson-renderer/package.json | vitest | 5.1.1 | Update |
-| packages/math-content/package.json | vitest | 5.1.1 | Update |
-| packages/practice-core/package.json | vitest | 5.1.1 | Update |
-| packages/practice-test-engine/package.json | vitest | 5.1.1 | Update |
-| packages/rate-limiter/package.json | vitest | 5.1.1 | Update |
+| packages/lesson-renderer/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| packages/math-content/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| packages/practice-core/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| packages/practice-test-engine/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| packages/rate-limiter/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
 | packages/srs-engine/package.json | ts-fsrs | 6.0.1 | Update |
-| packages/srs-engine/package.json | vitest | 5.1.1 | Update |
-| packages/study-hub-core/package.json | vitest | 5.1.1 | Update |
-| packages/teacher-reporting-core/package.json | vitest | 5.1.1 | Update |
-| packages/workbook-pipeline/package.json | vitest | 5.1.1 | Update |
+| packages/srs-engine/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| packages/study-hub-core/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| packages/teacher-reporting-core/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
+| packages/workbook-pipeline/package.json | vitest | 4.1.12 | Deferred: keep 4.1.12; vitest 5.1.1 adds a new Unhandled Rejection reporter key in the BM2 test gate (green-d2-PROJECT_TESTS.out, test apps/bus-math-v2). The no-new-key rule defers the major. |
 
 ## Phase D1: Fix the critical and high advisories [checkpoint: 71450a85]
 
@@ -293,7 +293,7 @@ Due at origin: 2026-11-23. Green depends on OpenRouter S1 acceptance.
     - r5 remediation fixed ADV-1 to ADV-6 in `gates.sh`: test-title keys, package-bound audit exceptions, complete resume records, chunk-level bundle coverage, baseline report validation, and audit count reconciliation. The adversarial fixture moved from 22 pass and 10 fail to 32 pass and 0 fail. Every group ran again with label `d1-green-r5` and the audit gate with `d1-audit-green-r5`. Format, lint, typecheck, build, support, docs, and audit-high exit 0 with `NEWFAIL=0`. The test group first exited 1 with `NEWFAIL=1` from two audit-contract test titles and two assertions about nine nested lockfiles in the gitignored `review-b-scratch` folder created by the adversarial role after the r2 baseline. No source or dependency change produced the keys.
     - r6 close of that stop: the orchestrator moved the scratch folder to `/home/daniebo/.cache/ra-math-scratch/review-b-scratch-20261121` instead of deleting it. No tracked file or baseline key changed. The test group reran with label `d1-green-r6` against `d1-baseline-r2` and exited 0 with `NEWFAIL=0`. Log: `green-r6-test.out`; gate folder `gates/d1-green-r6/test/`. The other seven groups keep their r5 logs. Bundle totals stay within 5 percent.
     - r8 remediation closed Review A F4 and F5. `key()` now keeps complete test titles and strips timing only from runner result lines. The bundle comparison counts normalized chunk keys and requires at least as many current entries per key as the baseline. Two new adversarial cases failed before the fix and pass after; the fixture moved from 33 pass and 2 fail to 35 pass and 0 fail. A live audit showed 23 undici identifiers, 7 high and 16 moderate or low. No stable miniflare 4.x or wrangler 4.x on miniflare 4 resolves fixed undici, so no dependency changed; the 16 new identifiers were added as undici rows with the same chain and reason, and the other four exception packages did not drift. Every group reran with label `d1-green-r8` and the audit gate with `d1-audit-green-r8`; all eight exit 0 with `NEWFAIL=0`. Logs: `green-r8-*.out` and `gates/d1-green-r8/`. Bundle totals stay within 5 percent.
-    - r9 remediation closed Review A F7 and F6. `key()` now strips timing only from `×` runner result lines, so complete FAIL titles stay in the key even when they end in `(10ms)` or `(20ms)`. Two new adversarial cases failed before the fix and pass after; the fixture moved from 36 pass and 1 fail to 37 pass and 0 fail. The earlier r8 exit-1 records stay as superseded evidence and the final r8 comparison exit is 0. Typecheck, test, and support were rerun with label `d1-green-r9`; all three exit 0 with `NEWFAIL=0`. Format, lint, build, docs, and audit-high keep their r8 records because their comparisons do not use `key()`. Logs: `green-r9-*.out` and `gates/d1-green-r9/`. Bundle totals stay within 5 percent.
+    - r9 remediation closed Review A F7 and F6. `key()` now strips timing only from `×` runner result lines, so complete FAIL titles stay in the key even when they end in `(10ms)` or `(20ms)`. One new adversarial case failed before the fix and one runner-timing control passed; the fixture moved from 36 pass and 1 fail to 37 pass and 0 fail. F-PA3 closes this correction. The earlier r8 exit-1 records stay as superseded evidence and the final r8 comparison exit is 0. Typecheck, test, and support were rerun with label `d1-green-r9`; all three exit 0 with `NEWFAIL=0`. Format, lint, build, docs, and audit-high keep their r8 records because their comparisons do not use `key()`. Logs: `green-r9-*.out` and `gates/d1-green-r9/`. Bundle totals stay within 5 percent.
     - r10 remediation closed ADV-7 to ADV-11 in `gates.sh`: FAIL titles keep coordinates and colon text, audit exceptions bind to the disclosed dependency path, resume rejects incomplete or conflicting records, bundle coverage counts distinct concrete chunks, and EXCEEDS multiplicity is preserved. The adversarial fixture moved from 63 pass and 14 fail at `c481e481` to 73 pass and 4 fail; the four remaining cases are ADV-12, ADV-13 twice, and F9, all PM-deferred to D2. All eight gate groups ran fresh at `d1-green-r10` and the audit gate at `d1-audit-green-r10`, all exit 0 with `NEWFAIL=0`. Logs: `green-r10-*.out` and `gates/d1-green-r10/`. Bundle totals stay within 5 percent.
     - r11 remediation closed ADV-8, ADV-9 and ADV-11. Dependency paths now match complete package names, including scopes; resume checks the last non-blank log line; baseline EXCEEDS capacity counts distinct failing chunks. The adversarial fixture moved from 75 pass and 9 fail at `71d882e6` to 80 pass and 4 fail; the four failures are only the PM-deferred D2 cases. All eight gate groups ran fresh at `d1-green-r11` and the audit gate at `d1-audit-green-r11`, all exit 0 with `NEWFAIL=0`. Logs: `green-r11-*.out` and `gates/d1-green-r11/`. Bundle totals stay within 5 percent.
     - [ ] Run every gate group with label `d1-green`.
@@ -372,7 +372,7 @@ D2 deferred gate findings (next-phase under the PM 2026-11-22 cap):
     - [ ] Record unchanged baseline keys and bundle results.
     - [ ] Commit the target list and Red evidence before Green.
     - [ ] Add a failing regression test only for a real behavior that requires a compatibility edit.
-- [ ] Task: D2 Green — select the latest working versions
+- [~] Task: D2 Green — select the latest working versions
     - [ ] Update remaining dependencies in small related groups.
     - [ ] Try each latest stable major, except the explicit Node 24 constraint.
     - [ ] Keep Vitest and its coverage provider compatible.

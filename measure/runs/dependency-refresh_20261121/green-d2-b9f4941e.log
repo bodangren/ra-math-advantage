@@ -1,0 +1,70 @@
+Green · D2 · dependency-refresh_20261121 · final · 2026-11-23
+
+Immutable phase base: 43f2962725d31ceb2a01985ee21361739bf293c1 (D2 strategy commit).
+Separate role base: b9f4941e754117bb0926ff89df0c3c0793295fa6 (= HEAD at entry; origin/master = 89c3f4d1).
+The four Red commits 98a6d3fe, dd2aede8, fa813a2f, b9f4941e are inside phase_base_sha..HEAD.
+The committed Red change was verified before implementation and left immutable.
+
+Targeted Red command rerun at entry:
+  bash measure/tracks/dependency-refresh_20261121/gates.sh targets
+  EXIT=1, 130 Below target lines, 1 Deferred existing pin (tsrs 0.25.0-ts7.1.0-beta).
+
+Final target command:
+  bash measure/tracks/dependency-refresh_20261121/gates.sh targets
+  EXIT=0, 0 Below target, 130 Target met, 1 Deferred existing pin.
+  Log: green-d2-targets-final.out.
+
+Green gate:
+  GREEN_TEST_COMMAND exits 0. targets exits 0; audit-high d2-audit-green prints
+  audit: critical=0 high=5 moderate=6 low=5, 36 Named exception pairs, NEWFAIL=0.
+  Log: green-d2-GREEN_TEST_COMMAND.out.
+
+Exported gate results (final labels d2-green / d2-audit-green):
+  PROJECT_LINT   exit 0  NEWFAIL=0  green-d2-PROJECT_LINT.out
+  PROJECT_CHECKS exit 1  NEWFAIL=1  green-d2-PROJECT_CHECKS.out
+  PROJECT_TESTS  exit 0  NEWFAIL=0  green-d2-PROJECT_TESTS.out
+  The single CHECKS failure is `step tree has a new diagnostic or exit`: five
+  `extraneous:` keys for @emnapi/@napi-rs packages left in node_modules by
+  earlier installs. PM order of 2026-11-23 stops removal of that tree noise and
+  records it in measure/tech-debt.md as D2-LOW and in the evidence reason table.
+  All other checks groups exit 0 with NEWFAIL=0. No infrastructure failure.
+  Bundle totals: IM3 12734755 -> 12864260 bytes (+1.02%); BM2 18777411 ->
+  18978341 bytes (+1.07%), both within 5 percent.
+
+Fixtures:
+  adversarial-gates-fixture.cjs   FIXTURE_PASSED=84 FIXTURE_FAILED=0, exit 0
+    (green-d2-adversarial-final.out; the four PM-deferred cases pass)
+  bundle-comparison-fixture.cjs   MISSING_ENTRY=PASS, COMPLETE=PASS, FIXTURE=PASS, exit 0
+  bash -n gates.sh                 exit 0
+
+Deferred rows and reasons:
+  wrangler 4.116.0 (4 rows): 4.117.0 and later resolve miniflare 5 prerelease; no stable 5.x.
+  @cloudflare/vite-plugin 1.49.0 (4 rows): 1.49.1 and later resolve miniflare 5 prerelease.
+  vitest 4.1.12 (26 rows): 5.1.1 added a new Unhandled Rejection reporter key in BM2 tests.
+  @vitest/coverage-v8 4.1.12 (1 row): stays on the retained vitest 4.x major.
+  @testing-library/jest-dom 6.9.1 (6 rows): 8.0.0 declares peer vitest >=5 <6 and created a new invalid tree edge.
+  jsdom 29.1.1 (6 rows): 31.0.1 added one serious axe violation in activity-components.
+  tsrs 0.25.0-ts7.1.0-beta (1 row): latest tag is a prerelease with no released replacement.
+
+New files added by Green:
+  measure/runs/dependency-refresh_20261121/green-d2-b9f4941e.log
+  measure/runs/dependency-refresh_20261121/green-d2-*.out (gate, install, probe, fixture logs)
+  measure/runs/dependency-refresh_20261121/green-d2-vitest5-bm2-newkey.log
+  measure/runs/dependency-refresh_20261121/green-d2-jsdom31-a11y-fail.log
+
+The six generated files stay unstaged. No push was made. No new prerelease, no
+override, no npm audit fix --force, no budget or workflow change.
+
+MEASURE_AGENT_RESULT
+role: measure-mid-green
+status: pass_with_pm_deferred_failure
+track: dependency-refresh_20261121
+phase: Phase D2: Update the remaining packages
+commits: SEE_COMMIT_SHA
+tests_run: RED targets exit 1 with 130 Below target; final targets exit 0; GREEN_TEST_COMMAND exit 0 with 36 named high exceptions and NEWFAIL=0; PROJECT_LINT exit 0 NEWFAIL=0; PROJECT_CHECKS exit 1 NEWFAIL=1 from five extraneous node_modules tree keys (PM-deferred); PROJECT_TESTS exit 0 NEWFAIL=0; adversarial fixture 84 pass 0 fail; bundle fixture pass
+files_changed: 12 package.json manifests, package-lock.json, measure/tracks/dependency-refresh_20261121/gates.sh, evidence.md, plan.md, measure/tech-debt.md, and gitignored measure/runs logs (added with -f)
+plan_updates: D2 Green task marked [x] with implementation commit SHA; D2 Targets table records 36 Deferred rows with reasons; F-PA3 sentence corrected
+known_failures: PROJECT_CHECKS step tree has 5 new extraneous node_modules keys for @emnapi/core@1.10.0, @emnapi/runtime@1.11.3, @emnapi/wasi-threads@1.2.1, @napi-rs/wasm-runtime@1.2.6, @tybys/wasm-util@0.10.4, left by earlier installs; PM order 2026-11-23 forbids further work and records them as D2-LOW. Deferred rows: wrangler 4 rows miniflare 5 prerelease; plugin 4 rows miniflare 5 prerelease; vitest 26 rows new reporter key; coverage 1 row provider match; jest-dom 6 rows peer vitest >=5; jsdom 6 rows axe a11y regression; tsrs 1 row prerelease-only latest. Audit keeps 5 high exceptions plus 6 moderate and 5 low findings. BM2 Total dist/server EXCEEDS remains a known baseline failure, grown 1 percent within the 5 percent rule.
+handoff: D2 Verify and phase acceptance must note the PM-deferred extraneous tree keys and the 36 deferred target rows. The 5 high exceptions and the final advisory table stay unresolved by design. No push; D2 closeout pushes through safe-push by 2026-11-25. Independent Review A and Review B apply to D2. The gate-tool fixes for ADV-12, ADV-13, F8, F9 and the aggregate bundle rule are fixture-verified.
+dispositions: ADV-12=FIX; ADV-13=FIX; F8=FIX; F9=FIX; F-PA1=FIX; F-PA3=FIX; Review B F2=FIX; Review B F5=FIX; D2-LOW=DECLINE
+END_MEASURE_AGENT_RESULT

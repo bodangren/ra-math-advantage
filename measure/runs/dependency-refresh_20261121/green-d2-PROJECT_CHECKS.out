@@ -1,0 +1,9 @@
+NEWFAIL=0
+NEWFAIL=0
+NEWFAIL=0
+NEW FAILURE: step tree has a new diagnostic or exit
+audit: critical=0 high=5 moderate=6 low=5
+integrated-math-3 total bytes: 12734755 -> 12864260
+bus-math-v2 total bytes: 18777411 -> 18978341
+NEWFAIL=1
+NEWFAIL=0

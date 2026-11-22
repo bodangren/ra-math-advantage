@@ -1,0 +1,25 @@
+heavy-run: lock wait over 600 s — priority p2 — holder PID 181506: flock -n -E 201 /home/daniebo/Desktop/primary-parity-progress/heavy.lock /home/daniebo/Desktop/advantage-pr/scripts/jobs/heavy-run.sh --locked -c CI=true pnpm --filter www-reading-advantage exec vitest run --maxWorkers=1 --reporter=dot 
+/home/daniebo/Desktop/advantage-pr/scripts/jobs/heavy-run.sh: line 600: /proc/181506/cmdline: No such file or directory
+
+added 208 packages, changed 5 packages, and audited 1065 packages in 32s
+
+280 packages are looking for funding
+  run `npm fund` for details
+
+16 vulnerabilities (5 low, 6 moderate, 5 high)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+npm warn allow-scripts 5 packages have install scripts not yet covered by allowScripts:
+npm warn allow-scripts   @openrouter/sdk@1.5.125 (postinstall: node scripts/check-types.js || true)
+npm warn allow-scripts   esbuild@0.27.0 (postinstall: node install.js)
+npm warn allow-scripts   esbuild@0.28.0 (postinstall: node install.js)
+npm warn allow-scripts   workerd@1.20260730.1 (postinstall: node install.js)
+npm warn allow-scripts   esbuild@0.28.1 (postinstall: node install.js)
+npm warn allow-scripts
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.

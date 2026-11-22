@@ -19,7 +19,7 @@ has_infra_output() {
 
 # Keep workspace/file/code and test file/title keys. Remove positions and timings.
 key() {
-  grep -E 'TS[0-9]+|error|ERROR|FAIL|AssertionError|Failed to resolve|[0-9] (warning|error)|invalid:|missing:|extraneous:' "$1" 2>/dev/null |
+  grep -E 'TS[0-9]+|error|ERROR|FAIL|AssertionError|Failed to resolve|[0-9] (warning|error)|invalid:|missing:|extraneous:|not ok|›' "$1" 2>/dev/null |
     grep -vE "$DISK_FULL_RE|^heavy-run:" |
     grep -v '^[[:space:]]*✓' |
     grep -vE '^[[:space:]]*[+-]' |
@@ -106,6 +106,10 @@ sweep() {
         code=n/a
       fi
       echo "$ws $code" >> "$OUT/$s.exit"
+      if [ "$code" != 0 ] && [ "$code" != n/a ] && [ -f "$OUT/$s-$name.log" ] &&
+         [ -z "$(key "$OUT/$s-$name.log")" ]; then
+        echo "NEW FAILURE: $s $ws failed with no attributable key"; newfail=1
+      fi
     fi
     bc=$(base_code "$BASE/$s.exit" "$ws")
     compare_result "$s $ws" "$code" "$bc" "$BASE/$s-$name.log" "$OUT/$s-$name.log"
@@ -229,6 +233,7 @@ audit_high() {
       for (const [name, v] of Object.entries(d.vulnerabilities)) {
         if (!/^(high|critical)$/.test(v.severity)) continue;
         high = true;
+        if (v.severity === "critical") { console.error(`Critical severity not permitted: ${name}`); failed = true; continue; }
         const found = ids(name);
         if (!found.length || found.some(id => !id)) throw Error(`missing advisory identifier: ${name}`);
         for (const id of new Set(found)) {
@@ -351,6 +356,9 @@ TOTAL_EOF
     }
     for (const entry of entries) {
       if (entry.status !== "EXCEEDS") continue;
+      // Aggregate "Total dist/*" entries are already guarded by the 5% TOTAL_BYTES rule below.
+      // The spec permits growth below that threshold for an already-failing total.
+      if (entry.key.startsWith("Total dist/")) continue;
       const prev = old.find(e => e.key === entry.key && e.status === "EXCEEDS");
       if (prev && entry.kb > prev.kb) { console.error(`Larger budget failure: ${name} ${entry.key} ${prev.kb} -> ${entry.kb} KB`); failed = true; }
     }

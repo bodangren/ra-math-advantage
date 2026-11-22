@@ -18,7 +18,7 @@
     "build": "npm run typecheck"
   },
   "dependencies": {
-    "convex": "^1.50.0"
+    "convex": "^1.51.0"
   },
   "devDependencies": {
     "@types/node": "^24.19.2",

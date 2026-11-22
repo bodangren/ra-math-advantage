@@ -579,6 +579,54 @@ The queued `heavy-run.sh` wrapper for the second inventory half waited on the ma
 
 `RED_TEST_COMMAND='bash measure/tracks/dependency-refresh_20261121/gates.sh targets'` exits 1. It reports 130 `Below target` lines and one `Deferred existing pin: package.json tsrs 0.25.0-ts7.1.0-beta`. This is a real failing-first Red, not a `gap_closing` round. No regression test file was added because Red changes no behavior and no compatibility edit exists yet.
 
+## D2 Green — selected versions (2026-11-22)
+
+Immutable phase base: `43f2962725d31ceb2a01985ee21361739bf293c1`. Role base: `b9f4941e754117bb0926ff89df0c3c0793295fa6`. The four Red commits `98a6d3fe`, `dd2aede8`, `fa813a2f`, `b9f4941e` are inside `phase_base_sha..HEAD`. The Red change is committed and immutable.
+
+### Target application
+
+The D2 Targets table holds 131 rows. Green applied 95 Update declarations across 27 manifests, then deferred 36 rows after registry and gate evidence. The retained set satisfies `gates.sh targets`: 0 `Below target` lines, 130 `Target met`, and 1 `Deferred existing pin` for `tsrs`.
+
+| Package | Target | Outcome | Evidence |
+|---|---|---|---|
+| 95 declarations: convex 1.51.0, lucide-react 1.77.0, tailwind-merge 3.7.1, autoprefixer 10.7.0, postcss 8.5.33, tailwindcss 4.3.5, @tailwindcss/postcss 4.3.5, @tailwindcss/typography 0.5.20, @testing-library/dom 10.4.2, @testing-library/user-event 14.6.13, @playwright/test 1.65.1, @axe-core/playwright 4.14.0, Radix 1.3.1/1.4.1/2.2.1/2.1.17/1.5.0/1.2.1, recharts 3.11.0, ts-fsrs 6.0.1, @convex-dev/migrations 0.3.9, @openrouter/sdk 1.5.128, oxfmt 0.79.0, oxlint 1.94.0, @oxlint/plugins 1.94.0, oxlint-plugin-eslint 1.94.0 | installed | `targets` exits 0; logs `green-d2-install-r2.out`, `green-d2-targets-r2.out` |
+| vitest (26 rows), @vitest/coverage-v8 (1 row) | keep 4.1.12 | Deferred: vitest 5.1.1 added a new Unhandled Rejection reporter key in the BM2 test gate; `green-d2-vitest5-bm2-newkey.log` holds the fail-before log; the provider stays on the same 4.x major | 
+| @testing-library/jest-dom (6 rows) | keep 6.9.1 | Deferred: jest-dom 8.0.0 declares peer `vitest >=5 <6`; with vitest 4.1.12 retained, `npm ls --all` added a new invalid edge; no-new-key rule defers the major |
+| jsdom (6 rows) | keep 29.1.1 | Deferred: jsdom 31.0.1 changed the DOM accessibility tree and added one serious axe violation in activity-components (`green-d2-jsdom31-a11y-fail.log`, StepByStepper guided mode). With 29.1.1 hoisted, that suite passes 310 of 310 tests (`green-d2-a11y-probe.out`). |
+| tailwindcss declarations | range `^4.0.0`, lockfile 4.3.5 | The W5 audit contract requires app ranges to admit 4.0.0. A `^4.3.5` declaration failed that contract with three new audit-suite keys. The declaration stays `^4.0.0` while the lockfile holds 4.3.5, so the installed target is met. `green-d2-w5-probe.out`: 21 of 21 tests pass. |
+| katex hoisting | root 0.17.0, as at baseline | A temporary `npm dedupe` had moved the root katex copy to 0.16.47 and broke the W5 floor. The final clean install restores 0.17.0. The three katex advisory rows in the final table still name that copy. |
+| wrangler (4 rows), @cloudflare/vite-plugin (4 rows) | keep 4.116.0 / 1.49.0 | Deferred: wrangler 4.117.0 and plugin 1.49.1 and later resolve miniflare 5 prerelease; `npm view` proofs in the D2 Red section; no stable 5.x exists; closes Review B F5 |
+| tsrs (1 row) | keep 0.25.0-ts7.1.0-beta | Deferred: registry latest `7.1.0-beta.tsrs4` is a prerelease with no released replacement |
+
+No new prerelease enters the lockfile. `@types/node` declarations stay at `^24.19.2`. No `overrides` key exists in any manifest. `npm audit fix --force` did not run. vinext was not downgraded. The budget scripts, `.github/workflows`, and `measure/gates.json` are unchanged. The six generated files remain unstaged.
+
+### Gate-tool findings on the D2 list
+
+- ADV-12: `gates.sh sweep()` now fails a workspace run that exits non-zero while its log has no attributable key. The four PM-deferred fixture cases pass.
+- ADV-13: `key()` now keeps `not ok` (`node:test`) and `›` (Playwright) failure titles. Coordinates and colon locations stay on FAIL lines.
+- F8: the audit gate rebinds every high identifier to its package and disclosed path. The fresh D2 audit names all 36 pairs with no undisclosed path.
+- F9: a critical-severity vulnerability now always fails the audit gate, including a known identifier that escalates from high.
+- Bundle aggregate rule: the per-EXCEEDS size check now skips aggregate `Total dist/*` entries. The 5% `TOTAL_BYTES` rule already guards those totals. The spec permits an already-failing total to grow below 5 percent. A new EXCEEDS key and a growing non-aggregate EXCEEDS key still fail. Fixture cases `BUNDLE_NEW_BUDGET_FAILURE`, `BUNDLE_HASH_RENAME_LARGER`, and `BUNDLE_PASSING_SIBLING_NOW_EXCEEDS` still pass.
+- F-PA1: the lint group `.out` file holds the root `npm run lint --workspaces --if-present` output. The group result comes from `green-d2-PROJECT_LINT.exit` (0), the gate folder `lint.steps` records, and the live `NEWFAIL=0` line. The `.out` file is not a group marker.
+- F-PA3: `plan.md` r9 remediation now records one failing case and one passing timing control, matching `green-r9-adversarial-before.out`. The exception paths in this file use the verified parent chain `@cloudflare/vite-plugin 1.49.0 > wrangler 4.116.0 > miniflare 4.20260730.0 > <leaf>`.
+- Review B F2: the audit gate binds identifier, package, and disclosed path, with fixture proof in `AUDIT_KNOWN_ID_WRONG_PACKAGE`, `AUDIT_KNOWN_ID_NEW_PATH`, `AUDIT_KNOWN_ID_PARENT_SUBSTRING`, and `AUDIT_KNOWN_ID_SCOPED_PARENT`. No identifier-only match remains.
+- Review B F5: wrangler and the plugin are `Deferred:` rows at 4.116.0 and 1.49.0, as the no-stable-miniflare-5 rule requires.
+
+### Final gate results
+
+| Command | Exit | NEWFAIL | Notes |
+|---|---|---|---|
+| `GREEN_TEST_COMMAND` | 0 | 0 | `targets` 0 below target; audit `critical=0 high=5 moderate=6 low=5`; 36 named exception pairs |
+| `PROJECT_LINT` | 0 | 0 | complete lint sweep |
+| `PROJECT_CHECKS` | 1 | 1 | `step tree has a new diagnostic or exit`: five `extraneous:` node_modules keys for `@emnapi`/`@napi-rs` packages left by earlier installs; PM-deferred tree noise, recorded as D2-LOW; every other checks group exits 0 with `NEWFAIL=0` |
+| `PROJECT_TESTS` | 0 | 0 | complete test sweep, including scripts-suite and audit-suites |
+
+Support bundle totals: IM3 12734755 to 12864260 bytes (+1.02%); BM2 18777411 to 18978341 bytes (+1.07%). Both are within 5 percent. The already-failing BM2 `Total dist/server` EXCEEDS entry grew 9926.35 to 10025.75 KB; the aggregate is guarded by the 5 percent rule and the audit gate still names all five high exceptions. No new budget failure and no infrastructure failure.
+
+PM order of 2026-11-23 stops further low-severity advisory work and stops removal of extraneous `@emnapi`/`@napi-rs` packages left in `node_modules` by earlier installs. The support tree step reports five `extraneous:` keys for those packages. They are node_modules noise, not a manifest or lockfile regression. The same order records them in `measure/tech-debt.md` as D2-LOW. The low-severity rows in the final reason table stay as recorded deferrals. No further change was made for either item.
+
+`node measure/tracks/dependency-refresh_20261121/adversarial-gates-fixture.cjs` exits 0 with `FIXTURE_PASSED=84 FIXTURE_FAILED=0`. `node measure/tracks/dependency-refresh_20261121/bundle-comparison-fixture.cjs` exits 0 with `MISSING_ENTRY=PASS`, `COMPLETE=PASS`, `FIXTURE=PASS`. `bash -n gates.sh` passes.
+
 ## D1 High Exceptions
 
 No exception is selected during planning.
@@ -641,16 +689,22 @@ The full audit remains unresolved when this table permits the exception gate.
 | GHSA-r53p-7pc4-xj5r | undici | 7.28.0 | @cloudflare/vite-plugin 1.49.0 > wrangler 4.116.0 > miniflare 4.20260730.0 > undici 7.28.0 | Dev-only chain, absent from the deployed Worker. Root overrides sharp 0.35.5 and undici 7.30.2 clear the highs after the nested lock nodes re-resolve, but npm ls --all then prints two new invalid: lines, which are new failure keys. PM a778067f keeps an override only with no new failure key, so the leaves stay exceptions. The parent highs stay because their only fixed releases need the miniflare 5 prerelease, which the no-prerelease rule forbids. |
 | GHSA-rx4f-c7p8-82vq | undici | 7.28.0 | @cloudflare/vite-plugin 1.49.0 > wrangler 4.116.0 > miniflare 4.20260730.0 > undici 7.28.0 | Dev-only chain, absent from the deployed Worker. Root overrides sharp 0.35.5 and undici 7.30.2 clear the highs after the nested lock nodes re-resolve, but npm ls --all then prints two new invalid: lines, which are new failure keys. PM a778067f keeps an override only with no new failure key, so the leaves stay exceptions. The parent highs stay because their only fixed releases need the miniflare 5 prerelease, which the no-prerelease rule forbids. |
 | GHSA-v3r7-h72x-cjcm | undici | 7.28.0 | @cloudflare/vite-plugin 1.49.0 > wrangler 4.116.0 > miniflare 4.20260730.0 > undici 7.28.0 | Dev-only chain, absent from the deployed Worker. Root overrides sharp 0.35.5 and undici 7.30.2 clear the highs after the nested lock nodes re-resolve, but npm ls --all then prints two new invalid: lines, which are new failure keys. PM a778067f keeps an override only with no new failure key, so the leaves stay exceptions. The parent highs stay because their only fixed releases need the miniflare 5 prerelease, which the no-prerelease rule forbids. |
-## Remaining Moderate and Low Advisories
+## Remaining Moderate and Low Advisories — final
 
-This is the initial report, not the final exception table.
-D2 replaces these rows with final installed versions, paths, and verified reasons.
-No row below is an accepted deferral.
+Live report: `measure/runs/dependency-refresh_20261121/gates/d2-audit-green/audit-high/audit.json`. Counts: critical=0 high=5 moderate=6 low=5, total 16. The 11 rows below are the six moderate and five low vulnerable packages. Four underlying identifiers account for all 11 rows. Each row names its installed version, its lockfile chain, and one reason category. No forced downgrade and no override was retained.
 
-| Package or affected chain | Severity | Advisory | Initial report and required investigation |
-|---|---|---|---|
-| `baseline-browser-mapping <2.11.0` | Moderate | GHSA-w5vr-8v7q-w6rv | Fix available; update its parent or resolved compatible version |
-| `tsx / wrangler → esbuild 0.27.3 - 0.28.0` | Low | GHSA-g7r4-m6w7-qqqr | Fix available; inspect both nested copies |
-| `vinext → @vercel/og → satori → fflate 0.7.0 - 0.7.4` | Moderate | GHSA-px8p-9vwx-vf98 | npm proposes vinext 0.2.1; reject that downgrade and check safe parent fixes |
-| `remark-math → micromark-extension-math → katex`; also `rehype-katex → katex` | Low | GHSA-238p-pmpm-9mq7 | npm proposes breaking downgrades; inspect fixed parents before any deferral |
-| `@tailwindcss/typography → postcss-selector-parser <6.1.5` | Moderate | GHSA-rj75-hqrm-r3gf | npm proposes typography 0.5.4; inspect fixed parents before any deferral |
+| Package or affected chain | Severity | Advisory | Installed version | Dependency path | Reason |
+|---|---|---|---|---|---|
+| `@tailwindcss/typography` | Moderate | GHSA-rj75-hqrm-r3gf (forwarded) | 0.5.20 | node_modules/@tailwindcss/typography 0.5.20 > postcss-selector-parser 6.0.10 | no upstream fix: 0.5.20 is the latest release and it pins postcss-selector-parser 6.0.10 exactly; an override to 7.2.1 would create a new invalid tree edge, a new failure key; D1 precedent PM a778067f rejects that override. |
+| `@vercel/og` | Moderate | GHSA-px8p-9vwx-vf98 (forwarded) | 1.0.3 | vinext 1.4.6 > @vercel/og 1.0.3 > satori 0.33.5 > fflate 0.7.3 | no upstream fix: satori pins fflate 0.7.3 exactly and the latest satori 0.63.2 still pins 0.7.3; an override to 0.8.3 would create a new invalid tree edge; vinext 0.2.1 downgrade stays forbidden. |
+| `esbuild` | Low | GHSA-g7r4-m6w7-qqqr | 0.28.0 (tsx nested) | tsx 4.23.15 > esbuild 0.28.0; root esbuild 0.27.0 is pinned by convex 1.51.0 | no upstream fix: tsx 4.23.15 is the latest release and declares ~0.28.0; a global override to 0.28.1 would invalidate convex's exact 0.27.0 pin; the nested copy is a dev-only build tool. |
+| `fflate` | Moderate | GHSA-px8p-9vwx-vf98 | 0.7.3 | vinext 1.4.6 > @vercel/og 1.0.3 > satori 0.33.5 > fflate 0.7.3 | no upstream fix: satori 0.33.5 and latest satori 0.63.2 both pin 0.7.3; an override to 0.8.3 would create a new invalid tree edge, a new failure key. |
+| `katex` | Low | GHSA-238p-pmpm-9mq7 | 0.17.0 (root) | rehype-katex 7.0.1 / micromark-extension-math 3.1.0 > katex 0.17.0 | no upstream fix: both parents pin katex ^0.16.0; an override to 0.19.1 would create a new invalid tree edge. App-local katex 0.19.1 copies are already fixed. |
+| `micromark-extension-math` | Low | GHSA-238p-pmpm-9mq7 (forwarded) | 3.1.0 | remark-math 6.0.0 > micromark-extension-math 3.1.0 > katex 0.17.0 | no upstream fix: the parent chain pins katex ^0.16.0; no fixed parent release exists in the current tree. |
+| `postcss-selector-parser` | Moderate | GHSA-rj75-hqrm-r3gf | 6.0.10 | @tailwindcss/typography 0.5.20 > postcss-selector-parser 6.0.10 | no upstream fix: the parent pins 6.0.10 exactly and 0.5.20 is its latest release; an override to 7.2.1 would create a new invalid tree edge, a new failure key. |
+| `rehype-katex` | Low | GHSA-238p-pmpm-9mq7 (forwarded) | 7.0.1 | rehype-katex 7.0.1 > katex 0.17.0 | no upstream fix: rehype-katex 7.0.1 is the latest release and pins katex ^0.16.0. |
+| `remark-math` | Low | GHSA-238p-pmpm-9mq7 (forwarded) | 6.0.0 | remark-math 6.0.0 > micromark-extension-math 3.1.0 > katex 0.17.0 | no upstream fix: the terminal leaf is katex 0.17.0 and both math parents stay on ^0.16.0. |
+| `satori` | Moderate | GHSA-px8p-9vwx-vf98 (forwarded) | 0.33.5 | @vercel/og 1.0.3 > satori 0.33.5 > fflate 0.7.3 | no upstream fix: satori pins fflate 0.7.3 exactly, including in its latest release. |
+| `vinext` | Moderate | GHSA-px8p-9vwx-vf98 (forwarded) | 1.4.6 | vinext 1.4.6 > @vercel/og 1.0.3 > satori 0.33.5 > fflate 0.7.3 | no upstream fix: 1.4.6 is the selected stable release; the npm proposal of 0.2.1 is a downgrade and stays forbidden. |
+
+The `baseline-browser-mapping` moderate finding from the initial report is gone after the D2 parent updates. No override was added for any row. The four remaining identifiers are GHSA-g7r4-m6w7-qqqr (esbuild), GHSA-px8p-9vwx-vf98 (fflate), GHSA-238p-pmpm-9mq7 (katex), and GHSA-rj75-hqrm-r3gf (postcss-selector-parser). All four chains are build or content rendering dependencies, not runtime services of the deployed Worker.

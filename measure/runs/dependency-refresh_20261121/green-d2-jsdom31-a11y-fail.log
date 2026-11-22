@@ -1,0 +1,49 @@
+/home/daniebo/Desktop/advantage-pr/scripts/jobs/heavy-run.sh: line 600: /proc/2305299/cmdline: No such file or directory
+
+> @math-platform/activity-components@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/activity-components
+
+Not implemented: HTMLCanvasElement's getContext() method: without installing the @napi-rs/canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the @napi-rs/canvas npm package
+ ❯ src/__tests__/a11y/graphing-solver-a11y.test.tsx (8 tests | 1 failed) 452ms
+     × StepByStepper guided mode has zero critical or serious axe violations 51ms
+Not implemented: HTMLCanvasElement's getContext() method: without installing the @napi-rs/canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the @napi-rs/canvas npm package
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/a11y/graphing-solver-a11y.test.tsx > axe critical/serious violations > StepByStepper guided mode has zero critical or serious axe violations
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ src/__tests__/a11y/graphing-solver-a11y.test.tsx:194:48
+    192|     );
+    193|     const summary = await runAxeSummary(container);
+    194|     expect(summary.critical + summary.serious).toBe(0);
+       |                                                ^
+    195|   });
+    196| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 51 passed (52)
+      Tests  1 failed | 309 passed (310)
+   Start at  00:51:20
+   Duration  38.33s (transform 864ms, setup 158ms, import 8.12s, tests 7.89s, environment 17.43s)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /home/daniebo/Desktop/ra-math-advantage/packages/activity-components
+npm error workspace @math-platform/activity-components@0.1.0
+npm error location /home/daniebo/Desktop/ra-math-advantage/packages/activity-components
+npm error command failed
+npm error command sh -c vitest run
