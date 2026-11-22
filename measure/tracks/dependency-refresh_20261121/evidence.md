@@ -487,6 +487,35 @@ Only the groups whose comparisons invoke `key()` were rerun: typecheck, test, an
 
 Logs: `green-r9-<group>.out` with matching `.exit` files and gate folder `gates/d1-green-r9/<group>/`. Bundle totals are unchanged: IM3 12734760 to 12734755 bytes and BM2 18777416 to 18777411 bytes, both within 5 percent. No new failure key or infrastructure failure remains.
 
+## D1 r10 — adversarial r2 findings (2026-11-22)
+
+The adversarial role committed 14 false-pass cases at `c481e481`. This round fixes ADV-7 to ADV-11 in `gates.sh`. It changes no dependency, lockfile, app, or package file.
+
+- ADV-7: `key()` removes coordinates and colon locations only on lines without `FAIL`. Complete FAIL titles keep their `(1,2)` and `:1:2` text.
+- ADV-8: each audit exception now binds its identifier to a package and to the disclosed dependency path. A parent package from an audit node must appear in the disclosed path text. A known identifier on `packages/probe/node_modules/sharp` fails.
+- ADV-9: resume reuses a record only when its log and command are complete, its log does not end on a command echo, its saved exit agrees with failure output, and its timing exit agrees with the saved exit. A valid saved success still resumes.
+- ADV-10: bundle coverage counts distinct concrete chunk labels per normalized key. Repeating one label cannot replace a dropped sibling.
+- ADV-11: EXCEEDS entries are counted per normalized key. One baseline EXCEEDS cannot cover several current EXCEEDS entries. A larger EXCEEDS value still fails.
+
+`adversarial-gates-fixture.cjs` at `c481e481` exited 1 with `FIXTURE_PASSED=63 FIXTURE_FAILED=14` and is the fail-before proof. After the fix it exits with `FIXTURE_PASSED=73 FIXTURE_FAILED=4` and log `green-r10-adversarial-final.out`. The ten cases for ADV-7 to ADV-11 all pass, including `KEY_FAIL_COORDINATE_TUPLE`, `KEY_FAIL_COLON_TITLE`, `AUDIT_KNOWN_ID_NEW_PATH`, `RESUME_TRUNCATED_LOG`, `RESUME_EXIT_DISAGREES_WITH_FAILURE`, `RESUME_WORKSPACE_EXIT_DISAGREES`, `BUNDLE_DUPLICATE_HASH_ONLY_SIBLING`, and `BUNDLE_PASSING_SIBLING_NOW_EXCEEDS`. `RESUME_VALID_SUCCESS_CONTROL` still resumes. The four remaining failures are the PM-deferred next-phase cases: `KEY_NODE_TEST_TITLE` and `KEY_PLAYWRIGHT_TITLE` (ADV-13), `AUDIT_KNOWN_ID_CRITICAL_ESCALATION` (F9), and `FRESH_TRUNCATED_TEST_EXECUTION` (ADV-12). The PM 2026-11-22 cap puts each on the D2 list, and plan.md records them with reasons. No fixture case was changed, weakened, or deleted. `bundle-comparison-fixture.cjs` still exits 0.
+
+### r10 gate results
+
+Every group ran fresh with label `d1-green-r10` and `GATES_BASE=d1-baseline-r2`. The audit gate used `d1-audit-green-r10`. No r8 or r9 record was reused. Logs: `green-r10-<group>.out` with matching `.exit` files and gate folder `gates/d1-green-r10/<group>/`.
+
+| Group | Exit | NEWFAIL | INFRA |
+|---|---|---|---|
+| audit-high | 0 | 0 | none |
+| format | 0 | 0 | none |
+| lint | 0 | 0 | none |
+| typecheck | 0 | 0 | none |
+| test | 0 | 0 | none |
+| build | 0 | 0 | none |
+| support | 0 | 0 | none |
+| docs | 0 | 0 | none |
+
+The audit gate printed `audit: critical=0 high=5 moderate=6 low=5` and names every package, identifier, and disclosed path. No baseline record failed the stricter path or resume check. Bundle totals are unchanged: IM3 12734760 to 12734755 bytes and BM2 18777416 to 18777411 bytes, both within 5 percent. No new failure key or infrastructure failure remains.
+
 ## D1 High Exceptions
 
 No exception is selected during planning.

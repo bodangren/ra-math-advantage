@@ -87,13 +87,13 @@ Export these exact values in each D1 role brief and role-gate call:
 
 ```bash
 export RED_TEST_COMMAND='npm audit --audit-level=high'
-export GREEN_TEST_COMMAND='GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh audit-high d1-audit-green-r8'
-export PROJECT_LINT='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh lint d1-green-r8'
-export PROJECT_CHECKS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh checks-all d1-green-r8'
-export PROJECT_TESTS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh test d1-green-r9'
+export GREEN_TEST_COMMAND='GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh audit-high d1-audit-green-r10'
+export PROJECT_LINT='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh lint d1-green-r10'
+export PROJECT_CHECKS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh checks-all d1-green-r10'
+export PROJECT_TESTS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh test d1-green-r10'
 ```
 
-Every group has an r8 log. The r5 test log recorded a new failure key from the reviewer scratch folder; the orchestrator moved that folder and the r6 test rerun exited 0. The r8 sweep rechecked every group after the F4 and F5 gate fixes. At r9, only typecheck, test, and support were rerun because their comparisons invoke `key()`; they use the `d1-green-r9` label and all exit 0 with `NEWFAIL=0`. The audit, lint, and checks labels stay at r8: audit-high does not use `key()`, and format, lint, build, and docs had no failed job at r8.
+Every group has an r10 log. The r10 sweep ran fresh with no reuse of r8 or r9 records because the resume rule changed. All eight groups exit 0 with `NEWFAIL=0`. The four PM-deferred adversarial cases stay on the D2 list.
 
 Export these exact values for D2:
 
@@ -161,6 +161,7 @@ Due at origin: 2026-11-23. Green depends on OpenRouter S1 acceptance.
     - r6 close of that stop: the orchestrator moved the scratch folder to `/home/daniebo/.cache/ra-math-scratch/review-b-scratch-20261121` instead of deleting it. No tracked file or baseline key changed. The test group reran with label `d1-green-r6` against `d1-baseline-r2` and exited 0 with `NEWFAIL=0`. Log: `green-r6-test.out`; gate folder `gates/d1-green-r6/test/`. The other seven groups keep their r5 logs. Bundle totals stay within 5 percent.
     - r8 remediation closed Review A F4 and F5. `key()` now keeps complete test titles and strips timing only from runner result lines. The bundle comparison counts normalized chunk keys and requires at least as many current entries per key as the baseline. Two new adversarial cases failed before the fix and pass after; the fixture moved from 33 pass and 2 fail to 35 pass and 0 fail. A live audit showed 23 undici identifiers, 7 high and 16 moderate or low. No stable miniflare 4.x or wrangler 4.x on miniflare 4 resolves fixed undici, so no dependency changed; the 16 new identifiers were added as undici rows with the same chain and reason, and the other four exception packages did not drift. Every group reran with label `d1-green-r8` and the audit gate with `d1-audit-green-r8`; all eight exit 0 with `NEWFAIL=0`. Logs: `green-r8-*.out` and `gates/d1-green-r8/`. Bundle totals stay within 5 percent.
     - r9 remediation closed Review A F7 and F6. `key()` now strips timing only from `×` runner result lines, so complete FAIL titles stay in the key even when they end in `(10ms)` or `(20ms)`. Two new adversarial cases failed before the fix and pass after; the fixture moved from 36 pass and 1 fail to 37 pass and 0 fail. The earlier r8 exit-1 records stay as superseded evidence and the final r8 comparison exit is 0. Typecheck, test, and support were rerun with label `d1-green-r9`; all three exit 0 with `NEWFAIL=0`. Format, lint, build, docs, and audit-high keep their r8 records because their comparisons do not use `key()`. Logs: `green-r9-*.out` and `gates/d1-green-r9/`. Bundle totals stay within 5 percent.
+    - r10 remediation closed ADV-7 to ADV-11 in `gates.sh`: FAIL titles keep coordinates and colon text, audit exceptions bind to the disclosed dependency path, resume rejects incomplete or conflicting records, bundle coverage counts distinct concrete chunks, and EXCEEDS multiplicity is preserved. The adversarial fixture moved from 63 pass and 14 fail at `c481e481` to 73 pass and 4 fail; the four remaining cases are ADV-12, ADV-13 twice, and F9, all PM-deferred to D2. All eight gate groups ran fresh at `d1-green-r10` and the audit gate at `d1-audit-green-r10`, all exit 0 with `NEWFAIL=0`. Logs: `green-r10-*.out` and `gates/d1-green-r10/`. Bundle totals stay within 5 percent.
     - [ ] Run every gate group with label `d1-green`.
     - [ ] Compare each result with `d1-baseline` by diagnostic key.
     - [ ] Record `NEWFAIL`, audit counts, selected versions, and log paths in `evidence.md`.
@@ -179,6 +180,8 @@ Due at origin: 2026-11-23. Green depends on OpenRouter S1 acceptance.
     - [ ] Record the checkpoint commit in this phase heading.
     - [ ] Update the registry and commit the plan update.
     - [ ] Ask the orchestrator to synchronize and push this checkpoint through `safe-push` by 2026-11-23.
+
+PM 2026-11-22 adversarial limit: after Green r10, one adversarial run checks only ADV-7 to ADV-11. A new hole in an input type that no earlier round tested goes to the D2 list, unless it can hide a failure in the D1 results that exist now. Each such call is recorded here with its reason.
 
 ### D1 Files and Update Order
 
@@ -211,6 +214,13 @@ These commands belong to Green, not this authoring session.
 ## Phase D2: Update the remaining packages
 
 Due: 2026-11-25. Depends on D1 acceptance.
+
+D2 deferred gate findings (next-phase under the PM 2026-11-22 cap):
+
+- ADV-12 — a failed test run with no attributable key can pass a failing baseline; a new execution check belongs to D2.
+- ADV-13 — `key()` omits `node:test` and Playwright failure titles; adding those formats belongs to D2.
+- F8 — an audit exception on an undisclosed path is deferred with ADV-8 scope; D2 rechecks the bound path set after new dependency changes.
+- F9 — a critical escalation under a known high identifier needs a severity check; D2 adds it with the next audit table refresh.
 
 - [ ] Task: D2 Red — refresh the remaining update baseline
     - [ ] Record the phase base commit.

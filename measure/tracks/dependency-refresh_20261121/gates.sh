@@ -26,7 +26,7 @@ key() {
     grep -vE '^[[:space:]]*[0-9]+\|' |
     LC_ALL=C sed -E "s/^(AssertionError: expected )'.*'( to )/\1'<value>'\2/" |
     LC_ALL=C sed -E 's/^([[:space:]]*× .*)[[:space:]]+\(?[0-9.]+ ?m?s\)?$/\1/' |
-    LC_ALL=C sed -E 's/^([^ (]+)\([0-9]+,[0-9]+\): error (TS[0-9]+):.*/\1 \2/; s/^npm error code [0-9]+$/npm error code/; s#^(npm error A complete log of this run can be found in: ).*#\1<log path>#; s/\([0-9]+,[0-9]+\)//g; s/:[0-9]+:[0-9]+//g; s/[[:space:]]+$//' | LC_ALL=C sort -u
+    LC_ALL=C sed -E 's/^([^ (]+)\([0-9]+,[0-9]+\): error (TS[0-9]+):.*/\1 \2/; s/^npm error code [0-9]+$/npm error code/; s#^(npm error A complete log of this run can be found in: ).*#\1<log path>#; /FAIL/! s/\([0-9]+,[0-9]+\)//g; /FAIL/! s/:[0-9]+:[0-9]+//g; s/[[:space:]]+$//' | LC_ALL=C sort -u
 }
 
 new_keys() {
@@ -34,10 +34,19 @@ new_keys() {
   [ -n "$(comm -13 <(key "$1") <(key "$2"))" ]
 }
 base_code() { awk -v n="$2" '$1==n{v=$2} END{print v}' "$1" 2>/dev/null; }
+timing_code() {
+  awk -v k="$2" -v n="$3" '$1==k && $2==n {for(i=1;i<=NF;i++) if($i ~ /^exit=/) v=substr($i,6)} END{print v}' "$1" 2>/dev/null
+}
 resume_valid() {
-  local log=$1 cmdfile=$2; shift 2
+  local log=$1 cmdfile=$2 kind=$3 item=$4 record=$5; shift 5
   [ -s "$log" ] && [ -s "$cmdfile" ] || return 1
-  [ "$(cat "$cmdfile")" = "$(printf '%q ' "$@")" ]
+  [ "$(cat "$cmdfile")" = "$(printf '%q ' "$@")" ] || return 1
+  [ -z "$(tail -n 1 "$log" | grep -E '^[[:space:]]*>[[:space:]]')" ] || return 1
+  if [ "$record" = 0 ] && grep -qE '(^|[[:space:]])FAIL |^error:|^AssertionError|[[:space:]]error:' "$log"; then return 1; fi
+  local tc
+  tc=$(timing_code "$OUT/timing.txt" "$kind" "$item")
+  [ -z "$tc" ] || [ "$tc" = "$record" ] || return 1
+  return 0
 }
 is_infra() { [[ "$INFRA" == *" $1 "* ]]; }
 is_record_only() { case "$LABEL" in *-baseline*|baseline*) return 0 ;; *) return 1 ;; esac; }
@@ -85,7 +94,7 @@ sweep() {
     name=${ws//\//-}
     rec=$(base_code "$OUT/$s.exit" "$ws")
     if [ "$RESUME" = 1 ] && [ -n "$rec" ] && ! is_infra "$rec" &&
-      { [ "$rec" = n/a ] || resume_valid "$OUT/$s-$name.log" "$OUT/$s-$name.log.command" npm run "$s" --workspace="$ws"; }; then
+      { [ "$rec" = n/a ] || resume_valid "$OUT/$s-$name.log" "$OUT/$s-$name.log.command" "$s" "$ws" "$rec" npm run "$s" --workspace="$ws"; }; then
       code=$rec
     else
       if has_script "$ws" "$s"; then
@@ -116,7 +125,7 @@ step() {
   shift
   rec=$(base_code "$OUT/$GATE.steps" "$n")
   if [ "$RESUME" = 1 ] && [ -n "$rec" ] && ! is_infra "$rec" &&
-     resume_valid "$OUT/step-$n.log" "$OUT/step-$n.log.command" "$@"; then
+     resume_valid "$OUT/step-$n.log" "$OUT/step-$n.log.command" step "$n" "$rec" "$@"; then
     c=$rec
   else
     run_job step "$n" "$OUT/step-$n.log" "$@"
@@ -177,9 +186,18 @@ audit_high() {
     for (const line of text.split("\n")) {
       const cells = line.split("|").slice(1, -1).map(s => s.trim().replace(/`/g, ""));
       if (/^(GHSA-[\w-]+|npm:\d+)$/.test(cells[0] || "") && cells.length === 5 && cells.every(Boolean)) {
-        if (!exceptions.has(cells[0])) exceptions.set(cells[0], new Set());
-        exceptions.get(cells[0]).add(cells[1]);
+        if (!exceptions.has(cells[0])) exceptions.set(cells[0], []);
+        exceptions.get(cells[0]).push({ pkg: cells[1], path: cells[3] });
       }
+    }
+    function parents(node) {
+      const parts = String(node).split("/node_modules/");
+      const out = [];
+      for (let i = 0; i < parts.length - 1; i++) {
+        const s = parts[i].split("/").pop();
+        if (s && s !== "node_modules" && s !== ".") out.push(s);
+      }
+      return out;
     }
     function ids(name, seen = new Set()) {
       if (seen.has(name)) return [];
@@ -197,8 +215,12 @@ audit_high() {
         const found = ids(name);
         if (!found.length || found.some(id => !id)) throw Error(`missing advisory identifier: ${name}`);
         for (const id of new Set(found)) {
-          const disclosed = exceptions.get(id);
-          if (!disclosed || !disclosed.has(name)) { console.error(`Unresolved high/critical: ${name} ${id}`); failed = true; }
+          const rows = (exceptions.get(id) || []).filter(r => r.pkg === name);
+          if (!rows.length) { console.error(`Unresolved high/critical: ${name} ${id}`); failed = true; continue; }
+          const nodes = Array.isArray(v.nodes) && v.nodes.length ? v.nodes : [`node_modules/${name}`];
+          const covered = nodes.every(node => parents(node).every(p =>
+            rows.some(r => r.path.toLowerCase().includes(p.toLowerCase()))));
+          if (!covered) { console.error(`Undisclosed dependency path: ${name} ${id} ${nodes.join(", ")}`); failed = true; }
           else console.log(`Named exception: ${name} ${id}`);
         }
       }
@@ -288,17 +310,29 @@ TOTAL_EOF
     if (!old.length) throw Error("empty baseline budget report");
     let failed = false;
     const counts = new Map();
-    for (const e of entries) counts.set(e.key, (counts.get(e.key) || 0) + 1);
+    for (const e of entries) {
+      if (!counts.has(e.key)) counts.set(e.key, new Set());
+      counts.get(e.key).add(e.label);
+    }
     for (const key of new Set(old.map(e => e.key))) {
-      const want = old.filter(e => e.key === key).length;
-      const got = counts.get(key) || 0;
+      const want = new Set(old.filter(e => e.key === key).map(e => e.label)).size;
+      const got = counts.has(key) ? counts.get(key).size : 0;
       if (got < want) { console.error(`Missing baseline budget chunk: ${name} ${key} ${got} of ${want}`); failed = true; }
+    }
+    const exceedCounts = list => {
+      const m = new Map();
+      for (const e of list) if (e.status === "EXCEEDS") m.set(e.key, (m.get(e.key) || 0) + 1);
+      return m;
+    };
+    const oldExceeds = exceedCounts(old);
+    for (const [key, n] of exceedCounts(entries)) {
+      const want = oldExceeds.get(key) || 0;
+      if (n > want) { console.error(`New budget failures: ${name} ${key} ${want} -> ${n}`); failed = true; }
     }
     for (const entry of entries) {
       if (entry.status !== "EXCEEDS") continue;
       const prev = old.find(e => e.key === entry.key && e.status === "EXCEEDS");
-      if (!prev) { console.error(`New budget failure: ${name} ${entry.key}`); failed = true; }
-      else if (entry.kb > prev.kb) { console.error(`Larger budget failure: ${name} ${entry.key} ${prev.kb} -> ${entry.kb} KB`); failed = true; }
+      if (prev && entry.kb > prev.kb) { console.error(`Larger budget failure: ${name} ${entry.key} ${prev.kb} -> ${entry.kb} KB`); failed = true; }
     }
     const before = total(base);
     console.log(`${name} total bytes: ${before} -> ${now}`);
