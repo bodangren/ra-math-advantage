@@ -77,7 +77,7 @@ Preserve exact logs under `measure/runs/dependency-refresh_20261121/gates/`.
 
 | Phase | Base commit | Audit counts | New failure keys | Bundle report | Acceptance |
 |---|---|---|---|---|---|
-| D1 | `0228cfd7` (Red), `808a8ece` (r2 base) | before critical=0 high=9 moderate=7 low=5; final critical=0 high=5 moderate=6 low=5, all five high packages named as exceptions | `NEWFAIL=0` for every group at `d1-green-r2` against `d1-baseline-r2`; no infrastructure failure | IM3 12734760 to 12734755 bytes; BM2 18777416 to 18777411 bytes; both within 5 percent | Green audit gate exits 0; Verify passed; no checkpoint |
+| D1 | `0228cfd7` (Red), `808a8ece` (r2 base) | before critical=0 high=9 moderate=7 low=5; final critical=0 high=5 moderate=6 low=5, all five high packages named as exceptions | `NEWFAIL=0` for every group at `d1-green-r11` against `d1-baseline-r2`; no infrastructure failure | IM3 12734760 to 12734755 bytes; BM2 18777416 to 18777411 bytes; both within 5 percent | Phase acceptance PASS at `62b947cf`; five high exceptions named; checkpoint recorded in plan.md |
 | D2 | Pending | Pending | Pending | Pending | Pending |
 
 ## Deferred Updates and Overrides

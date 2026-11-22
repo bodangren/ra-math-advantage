@@ -185,6 +185,7 @@ Due at origin: 2026-11-23. Green depends on OpenRouter S1 acceptance.
 PM 2026-11-22 adversarial limit: after Green r10, one adversarial run checks only ADV-7 to ADV-11. A new hole in an input type that no earlier round tested goes to the D2 list, unless it can hide a failure in the D1 results that exist now. Each such call is recorded here with its reason.
 Adversarial r3 (71d882e6): ADV-7 and ADV-10 closed. ADV-8, ADV-9 and ADV-11 BLOCKING, same input types as earlier rounds; fixed in r11. ADV-12, ADV-13, F8 and F9 stay D2 by the PM deferral. No new input type produced a finding. Per the PM limit, no adversarial r4 runs; phase acceptance checks the r11 fixture result.
 PM ruling 2026-11-22: ADV-8, ADV-9 and ADV-11 are gate-tool tech debt, not D1 blockers. No r12 and no adversarial r4. All three were fixed in r11; none went to measure/tech-debt.md.
+Adversarial r3 gate at `71d882e6` exited 1 with 80 pass and 4 fail. The four cases are the PM-deferred D2 items. Phase acceptance passed by the PM deferral of 2026-11-22.
 
 ### D1 Files and Update Order
 
@@ -224,6 +225,8 @@ D2 deferred gate findings (next-phase under the PM 2026-11-22 cap):
 - ADV-13 — `key()` omits `node:test` and Playwright failure titles; adding those formats belongs to D2.
 - F8 — an audit exception on an undisclosed path is deferred with ADV-8 scope; D2 rechecks the bound path set after new dependency changes.
 - F9 — a critical escalation under a known high identifier needs a severity check; D2 adds it with the next audit table refresh.
+- F-PA1 — the lint `.out` file contains root output rather than a group `NEWFAIL` marker; D2 records its provenance with the workspace records.
+- F-PA3 — the Review A F8 sentence needs a corrected dependency path; D2 rewrites it with the verified parent chain.
 
 - [ ] Task: D2 Red — refresh the remaining update baseline
     - [ ] Record the phase base commit.
