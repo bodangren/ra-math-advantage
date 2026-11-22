@@ -516,6 +516,33 @@ Every group ran fresh with label `d1-green-r10` and `GATES_BASE=d1-baseline-r2`.
 
 The audit gate printed `audit: critical=0 high=5 moderate=6 low=5` and names every package, identifier, and disclosed path. No baseline record failed the stricter path or resume check. Bundle totals are unchanged: IM3 12734760 to 12734755 bytes and BM2 18777416 to 18777411 bytes, both within 5 percent. No new failure key or infrastructure failure remains.
 
+## D1 r11 — adversarial r3 scoped variants (2026-11-22)
+
+The adversarial r3 result at `69888ded` reported 75 pass and 9 fail at test commit `71d882e6`. Three findings were blocking variants of input types that earlier rounds had tested. This round fixes ADV-8, ADV-9 and ADV-11 in `gates.sh`. No fixture case changed. No dependency, lockfile, app, or package file changed.
+
+- ADV-8: dependency paths now match complete package identities. The parser keeps a scope such as `@application/miniflare` and compares whole names rather than substrings. `flare` cannot pass as `miniflare`.
+- ADV-9: resume checks the last non-blank line of a saved log. A truncated log with blank lines no longer reuses the record.
+- ADV-11: baseline EXCEEDS capacity counts distinct failing chunk labels per normalized key. A repeated baseline failure cannot authorize a second failing chunk.
+
+`adversarial-gates-fixture.cjs` before the fix exited 1 with `FIXTURE_PASSED=75 FIXTURE_FAILED=9`; log `green-r11-adversarial-before.out`. After the fix it exits with `FIXTURE_PASSED=80 FIXTURE_FAILED=4`; log `green-r11-adversarial-final.out`. The four remaining failures are only the PM-deferred D2 cases `KEY_NODE_TEST_TITLE`, `KEY_PLAYWRIGHT_TITLE`, `AUDIT_KNOWN_ID_CRITICAL_ESCALATION` and `FRESH_TRUNCATED_TEST_EXECUTION`. `bundle-comparison-fixture.cjs` exits 0. The PM ruling of 2026-11-22 states that all three fixed findings are gate-tool tech debt, not D1 blockers; no r12 and no adversarial r4 run.
+
+### r11 gate results
+
+Every group ran fresh with label `d1-green-r11` and `GATES_BASE=d1-baseline-r2`. The audit gate used `d1-audit-green-r11`. No r10 record was reused. Logs: `green-r11-<group>.out` with matching `.exit` files and gate folder `gates/d1-green-r11/<group>/`.
+
+| Group | Exit | NEWFAIL | INFRA |
+|---|---|---|---|
+| audit-high | 0 | 0 | none |
+| format | 0 | 0 | none |
+| lint | 0 | 0 | none |
+| typecheck | 0 | 0 | none |
+| test | 0 | 0 | none |
+| build | 0 | 0 | none |
+| support | 0 | 0 | none |
+| docs | 0 | 0 | none |
+
+The audit gate printed `audit: critical=0 high=5 moderate=6 low=5` and names every package, identifier, and disclosed path. No baseline record failed the stricter path or resume check. Bundle totals are unchanged: IM3 12734760 to 12734755 bytes and BM2 18777416 to 18777411 bytes, both within 5 percent. No new failure key or infrastructure failure remains.
+
 ## D1 High Exceptions
 
 No exception is selected during planning.

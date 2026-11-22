@@ -41,7 +41,9 @@ resume_valid() {
   local log=$1 cmdfile=$2 kind=$3 item=$4 record=$5; shift 5
   [ -s "$log" ] && [ -s "$cmdfile" ] || return 1
   [ "$(cat "$cmdfile")" = "$(printf '%q ' "$@")" ] || return 1
-  [ -z "$(tail -n 1 "$log" | grep -E '^[[:space:]]*>[[:space:]]')" ] || return 1
+  local last
+  last=$(grep -v '^[[:space:]]*$' "$log" | tail -n 1)
+  [ -z "$(printf '%s' "$last" | grep -E '^[[:space:]]*>[[:space:]]')" ] || return 1
   if [ "$record" = 0 ] && grep -qE '(^|[[:space:]])FAIL |^error:|^AssertionError|[[:space:]]error:' "$log"; then return 1; fi
   local tc
   tc=$(timing_code "$OUT/timing.txt" "$kind" "$item")
@@ -191,11 +193,26 @@ audit_high() {
       }
     }
     function parents(node) {
-      const parts = String(node).split("/node_modules/");
+      const s = String(node);
       const out = [];
-      for (let i = 0; i < parts.length - 1; i++) {
-        const s = parts[i].split("/").pop();
-        if (s && s !== "node_modules" && s !== ".") out.push(s);
+      const re = /node_modules\/((?:@[^/]+\/)?[^/]+)/g;
+      let m;
+      while ((m = re.exec(s)) !== null) out.push(m[1]);
+      if (out.length > 1) return out.slice(0, -1);
+      const idx = s.indexOf("/node_modules/");
+      if (idx > 0) {
+        const w = s.slice(0, idx).split("/").pop();
+        if (w) return [w];
+      }
+      return [];
+    }
+    function pathPackages(p) {
+      const out = new Set();
+      for (const seg of p.split(">")) {
+        for (const part of seg.split(/\s+\/\s+/)) {
+          const name = part.trim().replace(/\s+\d[\w.-]*$/, "");
+          if (name) out.add(name);
+        }
       }
       return out;
     }
@@ -219,7 +236,7 @@ audit_high() {
           if (!rows.length) { console.error(`Unresolved high/critical: ${name} ${id}`); failed = true; continue; }
           const nodes = Array.isArray(v.nodes) && v.nodes.length ? v.nodes : [`node_modules/${name}`];
           const covered = nodes.every(node => parents(node).every(p =>
-            rows.some(r => r.path.toLowerCase().includes(p.toLowerCase()))));
+            rows.some(r => pathPackages(r.path).has(p))));
           if (!covered) { console.error(`Undisclosed dependency path: ${name} ${id} ${nodes.join(", ")}`); failed = true; }
           else console.log(`Named exception: ${name} ${id}`);
         }
@@ -321,13 +338,16 @@ TOTAL_EOF
     }
     const exceedCounts = list => {
       const m = new Map();
-      for (const e of list) if (e.status === "EXCEEDS") m.set(e.key, (m.get(e.key) || 0) + 1);
+      for (const e of list) if (e.status === "EXCEEDS") {
+        if (!m.has(e.key)) m.set(e.key, new Set());
+        m.get(e.key).add(e.label);
+      }
       return m;
     };
     const oldExceeds = exceedCounts(old);
-    for (const [key, n] of exceedCounts(entries)) {
-      const want = oldExceeds.get(key) || 0;
-      if (n > want) { console.error(`New budget failures: ${name} ${key} ${want} -> ${n}`); failed = true; }
+    for (const [key, labels] of exceedCounts(entries)) {
+      const want = oldExceeds.has(key) ? oldExceeds.get(key).size : 0;
+      if (labels.size > want) { console.error(`New budget failures: ${name} ${key} ${want} -> ${labels.size}`); failed = true; }
     }
     for (const entry of entries) {
       if (entry.status !== "EXCEEDS") continue;

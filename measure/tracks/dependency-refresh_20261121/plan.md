@@ -87,13 +87,13 @@ Export these exact values in each D1 role brief and role-gate call:
 
 ```bash
 export RED_TEST_COMMAND='npm audit --audit-level=high'
-export GREEN_TEST_COMMAND='GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh audit-high d1-audit-green-r10'
-export PROJECT_LINT='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh lint d1-green-r10'
-export PROJECT_CHECKS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh checks-all d1-green-r10'
-export PROJECT_TESTS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh test d1-green-r10'
+export GREEN_TEST_COMMAND='GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh audit-high d1-audit-green-r11'
+export PROJECT_LINT='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh lint d1-green-r11'
+export PROJECT_CHECKS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh checks-all d1-green-r11'
+export PROJECT_TESTS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh test d1-green-r11'
 ```
 
-Every group has an r10 log. The r10 sweep ran fresh with no reuse of r8 or r9 records because the resume rule changed. All eight groups exit 0 with `NEWFAIL=0`. The four PM-deferred adversarial cases stay on the D2 list.
+Every group has an r11 log. The r11 sweep ran fresh with no reuse of r10 records because the audit path and resume rules changed. All eight groups exit 0 with `NEWFAIL=0`. The four PM-deferred adversarial cases stay on the D2 list.
 
 Export these exact values for D2:
 
@@ -162,6 +162,7 @@ Due at origin: 2026-11-23. Green depends on OpenRouter S1 acceptance.
     - r8 remediation closed Review A F4 and F5. `key()` now keeps complete test titles and strips timing only from runner result lines. The bundle comparison counts normalized chunk keys and requires at least as many current entries per key as the baseline. Two new adversarial cases failed before the fix and pass after; the fixture moved from 33 pass and 2 fail to 35 pass and 0 fail. A live audit showed 23 undici identifiers, 7 high and 16 moderate or low. No stable miniflare 4.x or wrangler 4.x on miniflare 4 resolves fixed undici, so no dependency changed; the 16 new identifiers were added as undici rows with the same chain and reason, and the other four exception packages did not drift. Every group reran with label `d1-green-r8` and the audit gate with `d1-audit-green-r8`; all eight exit 0 with `NEWFAIL=0`. Logs: `green-r8-*.out` and `gates/d1-green-r8/`. Bundle totals stay within 5 percent.
     - r9 remediation closed Review A F7 and F6. `key()` now strips timing only from `×` runner result lines, so complete FAIL titles stay in the key even when they end in `(10ms)` or `(20ms)`. Two new adversarial cases failed before the fix and pass after; the fixture moved from 36 pass and 1 fail to 37 pass and 0 fail. The earlier r8 exit-1 records stay as superseded evidence and the final r8 comparison exit is 0. Typecheck, test, and support were rerun with label `d1-green-r9`; all three exit 0 with `NEWFAIL=0`. Format, lint, build, docs, and audit-high keep their r8 records because their comparisons do not use `key()`. Logs: `green-r9-*.out` and `gates/d1-green-r9/`. Bundle totals stay within 5 percent.
     - r10 remediation closed ADV-7 to ADV-11 in `gates.sh`: FAIL titles keep coordinates and colon text, audit exceptions bind to the disclosed dependency path, resume rejects incomplete or conflicting records, bundle coverage counts distinct concrete chunks, and EXCEEDS multiplicity is preserved. The adversarial fixture moved from 63 pass and 14 fail at `c481e481` to 73 pass and 4 fail; the four remaining cases are ADV-12, ADV-13 twice, and F9, all PM-deferred to D2. All eight gate groups ran fresh at `d1-green-r10` and the audit gate at `d1-audit-green-r10`, all exit 0 with `NEWFAIL=0`. Logs: `green-r10-*.out` and `gates/d1-green-r10/`. Bundle totals stay within 5 percent.
+    - r11 remediation closed ADV-8, ADV-9 and ADV-11. Dependency paths now match complete package names, including scopes; resume checks the last non-blank log line; baseline EXCEEDS capacity counts distinct failing chunks. The adversarial fixture moved from 75 pass and 9 fail at `71d882e6` to 80 pass and 4 fail; the four failures are only the PM-deferred D2 cases. All eight gate groups ran fresh at `d1-green-r11` and the audit gate at `d1-audit-green-r11`, all exit 0 with `NEWFAIL=0`. Logs: `green-r11-*.out` and `gates/d1-green-r11/`. Bundle totals stay within 5 percent.
     - [ ] Run every gate group with label `d1-green`.
     - [ ] Compare each result with `d1-baseline` by diagnostic key.
     - [ ] Record `NEWFAIL`, audit counts, selected versions, and log paths in `evidence.md`.
@@ -182,6 +183,8 @@ Due at origin: 2026-11-23. Green depends on OpenRouter S1 acceptance.
     - [ ] Ask the orchestrator to synchronize and push this checkpoint through `safe-push` by 2026-11-23.
 
 PM 2026-11-22 adversarial limit: after Green r10, one adversarial run checks only ADV-7 to ADV-11. A new hole in an input type that no earlier round tested goes to the D2 list, unless it can hide a failure in the D1 results that exist now. Each such call is recorded here with its reason.
+Adversarial r3 (71d882e6): ADV-7 and ADV-10 closed. ADV-8, ADV-9 and ADV-11 BLOCKING, same input types as earlier rounds; fixed in r11. ADV-12, ADV-13, F8 and F9 stay D2 by the PM deferral. No new input type produced a finding. Per the PM limit, no adversarial r4 runs; phase acceptance checks the r11 fixture result.
+PM ruling 2026-11-22: ADV-8, ADV-9 and ADV-11 are gate-tool tech debt, not D1 blockers. No r12 and no adversarial r4. All three were fixed in r11; none went to measure/tech-debt.md.
 
 ### D1 Files and Update Order
 
