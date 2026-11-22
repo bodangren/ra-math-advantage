@@ -372,7 +372,8 @@ D2 deferred gate findings (next-phase under the PM 2026-11-22 cap):
     - [ ] Record unchanged baseline keys and bundle results.
     - [ ] Commit the target list and Red evidence before Green.
     - [ ] Add a failing regression test only for a real behavior that requires a compatibility edit.
-- [~] Task: D2 Green — select the latest working versions
+- [x] Task: D2 Green — select the latest working versions (db7b4bb)
+    - Applied 95 stable target updates in 12 manifests and the lockfile. Deferred 36 rows with recorded reasons. GREEN_TEST_COMMAND exits 0; PROJECT_LINT and PROJECT_TESTS exit 0 with NEWFAIL=0; PROJECT_CHECKS exits 1 with NEWFAIL=1 only from five PM-deferred extraneous node_modules tree keys (recorded as D2-LOW). Adversarial fixture 84 pass / 0 fail; bundle fixture passes.
     - [ ] Update remaining dependencies in small related groups.
     - [ ] Try each latest stable major, except the explicit Node 24 constraint.
     - [ ] Keep Vitest and its coverage provider compatible.

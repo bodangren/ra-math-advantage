@@ -60,7 +60,7 @@ role: measure-mid-green
 status: pass_with_pm_deferred_failure
 track: dependency-refresh_20261121
 phase: Phase D2: Update the remaining packages
-commits: SEE_COMMIT_SHA
+commits: db7b4bb300acd9a4991e93161beb8bbadbd45689 (implementation); plan-evidence commit is this branch HEAD
 tests_run: RED targets exit 1 with 130 Below target; final targets exit 0; GREEN_TEST_COMMAND exit 0 with 36 named high exceptions and NEWFAIL=0; PROJECT_LINT exit 0 NEWFAIL=0; PROJECT_CHECKS exit 1 NEWFAIL=1 from five extraneous node_modules tree keys (PM-deferred); PROJECT_TESTS exit 0 NEWFAIL=0; adversarial fixture 84 pass 0 fail; bundle fixture pass
 files_changed: 12 package.json manifests, package-lock.json, measure/tracks/dependency-refresh_20261121/gates.sh, evidence.md, plan.md, measure/tech-debt.md, and gitignored measure/runs logs (added with -f)
 plan_updates: D2 Green task marked [x] with implementation commit SHA; D2 Targets table records 36 Deferred rows with reasons; F-PA3 sentence corrected
