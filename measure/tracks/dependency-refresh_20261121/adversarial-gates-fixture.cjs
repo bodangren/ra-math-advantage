@@ -133,6 +133,7 @@ try {
     ["TAB", "rejects\terror alpha", "rejects\terror beta"],
     ["COORDINATE_TUPLE", "rejects point (1,2)", "rejects point (3,4)"],
     ["COLON_TITLE", "rejects ratio :1:2", "rejects ratio :3:4"],
+    ["COORDINATE_AND_COLON", "rejects point (1,2) at :3:4", "rejects point (1,2) at :5:6"],
   ];
   for (const [name, before, after] of titlePairs) {
     compareKeys(`KEY_FAIL_${name}`, `FAIL tests/probe.test.ts > ${before}`, `FAIL tests/probe.test.ts > ${after}`, 1);
@@ -215,6 +216,20 @@ try {
     "3000000",
   );
   bundleCase(
+    "BUNDLE_DUPLICATE_BASELINE_EXCEEDS_CAPACITY",
+    [ssr, hashOnly("abc12345", "EXCEEDS", 950), hashOnly("abc12345", "EXCEEDS", 950), hashOnly("def12345")].join("\n"),
+    [ssr, hashOnly("abc12345", "EXCEEDS", 950), hashOnly("def12345", "EXCEEDS", 901)].join("\n"),
+    1,
+    "3000000",
+    "3000000",
+  );
+  bundleCase(
+    "BUNDLE_DUPLICATE_BASELINE_OK_CONTROL",
+    [ssr, hashOnly("abc12345"), hashOnly("abc12345"), hashOnly("def12345")].join("\n"),
+    [ssr, hashOnly("abc12345"), hashOnly("def12345")].join("\n"),
+    0,
+  );
+  bundleCase(
     "BUNDLE_BOTH_HASHES_RENAMED_CONTROL",
     [ssr, hashOnly("abc12345"), hashOnly("def12345")].join("\n"),
     [ssr, hashOnly("xyz12345"), hashOnly("uvw12345")].join("\n"),
@@ -264,6 +279,13 @@ try {
   audit("AUDIT_DISCLOSED_PATH_CONTROL", report({ sharp: disclosedLeaf }), 0);
   const newPath = { ...disclosedLeaf, nodes: [...disclosedLeaf.nodes, "packages/probe/node_modules/sharp"] };
   audit("AUDIT_KNOWN_ID_NEW_PATH", report({ sharp: newPath }), 1);
+  for (const [name, node] of [
+    ["PARENT_SUBSTRING", "node_modules/flare/node_modules/sharp"],
+    ["SCOPED_PARENT", "node_modules/@application/miniflare/node_modules/sharp"],
+  ]) {
+    const undisclosed = { ...disclosedLeaf, nodes: [...disclosedLeaf.nodes, node] };
+    audit(`AUDIT_KNOWN_ID_${name}`, report({ sharp: undisclosed }), 1);
+  }
   audit(
     "AUDIT_KNOWN_ID_CRITICAL_ESCALATION",
     report({ sharp: { ...disclosedLeaf, severity: "critical", via: [{ ...disclosedLeaf.via[0], severity: "critical" }] } }, 0, 1),
@@ -305,6 +327,7 @@ try {
   resume("RESUME_MISSING_COMMAND", "fixture-no-command", "Earlier command passed\n", undefined, 1);
   resume("RESUME_VALID_SUCCESS_CONTROL", "fixture-valid-success", "All files correctly formatted\n", formatCommand, 0, 0, 0, "");
   resume("RESUME_TRUNCATED_LOG", "fixture-truncated", "> format:check\n> oxfmt --check", formatCommand, 1);
+  resume("RESUME_TRUNCATED_LOG_BLANK_TAIL", "fixture-truncated-blank-tail", "> format:check\n> oxfmt --check\n\n", formatCommand, 1);
   resume(
     "RESUME_EXIT_DISAGREES_WITH_FAILURE",
     "fixture-false-zero",
