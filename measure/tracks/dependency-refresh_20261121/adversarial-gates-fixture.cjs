@@ -1,14 +1,14 @@
 // Run the production gate functions against isolated reports and command results.
 // The runner intercepts HEAVY_RUN. It never runs npm, npx, or a repository sweep.
 const fs = require("node:fs");
-const os = require("node:os");
 const path = require("node:path");
 const { spawnSync } = require("node:child_process");
 
 const track = __dirname;
 const source = fs.readFileSync(path.join(track, "gates.sh"), "utf8");
-const cache = path.join(os.homedir(), ".cache/opencode");
-const root = fs.mkdtempSync(path.join(cache, "dependency-refresh-adversarial-"));
+const scratch = path.resolve(track, "../../runs/dependency-refresh_20261121/adversarial-r2-scratch");
+fs.mkdirSync(scratch, { recursive: true });
+const root = fs.mkdtempSync(path.join(scratch, "fixture-"));
 const scratchTrack = path.join(root, "measure/tracks/dependency-refresh_20261121");
 fs.mkdirSync(scratchTrack, { recursive: true });
 fs.writeFileSync(path.join(scratchTrack, "gates.sh"), source);
@@ -125,6 +125,45 @@ try {
     "× reports a clear error (15 ms)",
     0,
   );
+  const titlePairs = [
+    ["UNICODE", "rejects π ≤ 1", "rejects π ≤ 2"],
+    ["TRAILING_BRACKETS", "rejects error [alpha]", "rejects error [beta]"],
+    ["SECOND_DURATION", "rejects error in 1.2s", "rejects error in 1.3s"],
+    ["RETRY_SUFFIX", "rejects error (1 retry)", "rejects error (2 retry)"],
+    ["TAB", "rejects\terror alpha", "rejects\terror beta"],
+    ["COORDINATE_TUPLE", "rejects point (1,2)", "rejects point (3,4)"],
+    ["COLON_TITLE", "rejects ratio :1:2", "rejects ratio :3:4"],
+  ];
+  for (const [name, before, after] of titlePairs) {
+    compareKeys(`KEY_FAIL_${name}`, `FAIL tests/probe.test.ts > ${before}`, `FAIL tests/probe.test.ts > ${after}`, 1);
+  }
+  compareKeys(
+    "KEY_ANSI_DISTINCT_TITLE",
+    "\u001b[31mFAIL\u001b[0m tests/probe.test.ts > rejects error [alpha]",
+    "\u001b[31mFAIL\u001b[0m tests/probe.test.ts > rejects error [beta]",
+    1,
+  );
+  compareKeys(
+    "KEY_PASSED_TITLE_IGNORED",
+    "FAIL tests/probe.test.ts > retained\n✓ accepts error alpha 1.2s",
+    "FAIL tests/probe.test.ts > retained\n✓ accepts error beta 1.3s",
+    0,
+  );
+  compareKeys("KEY_RUNNER_SECONDS_ONLY", "× rejects error alpha (1.2s)", "× rejects error alpha (1.3s)", 0);
+  compareKeys("KEY_RUNNER_TITLE_AND_SECONDS", "× rejects error alpha (1.2s)", "× rejects error beta (1.3s)", 1);
+  compareKeys(
+    "KEY_NODE_TEST_TITLE",
+    "not ok 1 - rejects alpha\n  error: assertion failed\n  code: ERR_ASSERTION",
+    "not ok 1 - rejects beta\n  error: assertion failed\n  code: ERR_ASSERTION",
+    1,
+  );
+  compareKeys(
+    "KEY_PLAYWRIGHT_TITLE",
+    "  1) [chromium] › tests/probe.spec.ts:10:3 › rejects alpha\n    Error: expect(received).toBe(expected)",
+    "  1) [chromium] › tests/probe.spec.ts:10:3 › rejects beta\n    Error: expect(received).toBe(expected)",
+    1,
+  );
+  compareKeys("KEY_DO_NOT_PRESERVES_HIT", "error: original failure", "error: do not accept a leaked token", 1);
 
   const bundle = source.slice(source.indexOf("bundle() {")).match(/^\s*node -e '\n([\s\S]*?)\n\s*' "\$OUT"/m);
   if (!bundle) throw Error("FIXTURE SETUP FAIL: bundle comparison extraction failed");
@@ -160,6 +199,28 @@ try {
     `[${status}] client/assets/page-*.js → page-${hash}.js: ${kb.toFixed(2)} KB (threshold: 900.00 KB)`;
   bundleCase("BUNDLE_MISSING_HASH_ONLY_SIBLING", [ssr, hashOnly("abc12345"), hashOnly("def12345")].join("\n"), [ssr, hashOnly("abc12345")].join("\n"), 1);
   bundleCase("BUNDLE_HASH_ONLY_RENAME", [ssr, hashOnly("abc12345")].join("\n"), [ssr, hashOnly("xyz12345")].join("\n"), 0);
+  bundleCase("BUNDLE_DUPLICATE_NAMED_SIBLING", complete, [ssr, page("alpha", "abc12345"), page("alpha", "abc12345")].join("\n"), 1);
+  bundleCase(
+    "BUNDLE_DUPLICATE_HASH_ONLY_SIBLING",
+    [ssr, hashOnly("abc12345"), hashOnly("def12345")].join("\n"),
+    [ssr, hashOnly("abc12345"), hashOnly("abc12345")].join("\n"),
+    1,
+  );
+  bundleCase(
+    "BUNDLE_PASSING_SIBLING_NOW_EXCEEDS",
+    [ssr, hashOnly("abc12345", "EXCEEDS", 950), hashOnly("def12345", "OK", 100)].join("\n"),
+    [ssr, hashOnly("abc12345", "EXCEEDS", 950), hashOnly("def12345", "EXCEEDS", 901)].join("\n"),
+    1,
+    "3000000",
+    "3000000",
+  );
+  bundleCase(
+    "BUNDLE_BOTH_HASHES_RENAMED_CONTROL",
+    [ssr, hashOnly("abc12345"), hashOnly("def12345")].join("\n"),
+    [ssr, hashOnly("xyz12345"), hashOnly("uvw12345")].join("\n"),
+    0,
+  );
+  bundleCase("BUNDLE_STEM_RENAMED", complete, [ssr, page("gamma", "abc12345"), page("beta", "def12345")].join("\n"), 1);
 
   let sequence = 0;
   const known = "GHSA-rgj7-g3m4-5g8c";
@@ -198,28 +259,63 @@ try {
   audit("AUDIT_PARTIAL_HIGH_ENTRIES", report({ sharp: entry("sharp", known) }, 2), 3);
   const propagated = { severity: "high", via: ["sharp"], nodes: ["node_modules/miniflare"] };
   audit("AUDIT_PROPAGATED_PARENT", report({ sharp: entry("sharp", known), miniflare: propagated }, 2), 0);
+  const disclosedLeaf = entry("sharp", known);
+  disclosedLeaf.nodes = ["node_modules/miniflare/node_modules/sharp"];
+  audit("AUDIT_DISCLOSED_PATH_CONTROL", report({ sharp: disclosedLeaf }), 0);
+  const newPath = { ...disclosedLeaf, nodes: [...disclosedLeaf.nodes, "packages/probe/node_modules/sharp"] };
+  audit("AUDIT_KNOWN_ID_NEW_PATH", report({ sharp: newPath }), 1);
+  audit(
+    "AUDIT_KNOWN_ID_CRITICAL_ESCALATION",
+    report({ sharp: { ...disclosedLeaf, severity: "critical", via: [{ ...disclosedLeaf.via[0], severity: "critical" }] } }, 0, 1),
+    1,
+  );
+  const extraAdvisory = { ...disclosedLeaf, via: [...disclosedLeaf.via, entry("sharp", unknown).via[0]] };
+  audit("AUDIT_KNOWN_PACKAGE_NEW_ADVISORY", report({ sharp: extraAdvisory }), 1);
+  const evidenceFile = path.join(scratchTrack, "evidence.md");
+  const savedEvidence = fs.readFileSync(evidenceFile, "utf8");
+  fs.writeFileSync(evidenceFile, "## D1 High Exceptions\n\n| Advisory | Package | Version | Dependency path | Reason |\n|---|---|---|---|---|\n");
+  audit("AUDIT_EMPTY_EXCEPTION_TABLE", report({ sharp: disclosedLeaf }), 1);
+  fs.writeFileSync(evidenceFile, savedEvidence);
 
   const gatesRoot = path.join(root, "measure/runs/dependency-refresh_20261121/gates");
-  function formatRecord(label, log, command) {
+  const formatCommand = "npm run format:check \n";
+  function formatRecord(label, log, command, code = 0, timingCode = code) {
     const dir = path.join(gatesRoot, label, "format");
     fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(path.join(dir, "format.steps"), "format 0\n");
+    fs.writeFileSync(path.join(dir, "format.steps"), `format ${code}\n`);
     fs.writeFileSync(path.join(dir, "step-format.log"), log);
+    fs.writeFileSync(path.join(dir, "timing.txt"), `step format 1 exit=${timingCode}\n`);
     if (command !== undefined) fs.writeFileSync(path.join(dir, "step-format.log.command"), command);
   }
-  formatRecord("fixture-base", "All files correctly formatted\n", "npm run format:check\n");
-  function resume(name, label, log, command, expected) {
-    formatRecord(label, log, command);
+  formatRecord("fixture-base", "All files correctly formatted\n", formatCommand);
+  function resume(name, label, log, command, expected, recordCode = 0, timingCode = recordCode, expectedCalls = "npm run format:check") {
+    formatRecord(label, log, command, recordCode, timingCode);
     const result = main("format", label, "error: current format check fails\n", 1, "", {
       GATES_RESUME: "1",
       GATES_BASE: "fixture-base",
     });
     check(name, result, expected);
     console.log(`${name}_COMMAND_CALLS=${result.calls || "(none)"}`);
+    if (expectedCalls !== null) {
+      check(`${name}_EXECUTION`, { status: result.calls === expectedCalls ? 0 : 1, output: result.calls }, 0);
+    }
   }
-  resume("RESUME_EMPTY_LOG", "fixture-empty-log", "", "npm run format:check\n", 1);
+  resume("RESUME_EMPTY_LOG", "fixture-empty-log", "", formatCommand, 1);
   resume("RESUME_WRONG_COMMAND", "fixture-wrong-command", "Earlier command passed\n", "npm run lint\n", 1);
   resume("RESUME_MISSING_COMMAND", "fixture-no-command", "Earlier command passed\n", undefined, 1);
+  resume("RESUME_VALID_SUCCESS_CONTROL", "fixture-valid-success", "All files correctly formatted\n", formatCommand, 0, 0, 0, "");
+  resume("RESUME_TRUNCATED_LOG", "fixture-truncated", "> format:check\n> oxfmt --check", formatCommand, 1);
+  resume(
+    "RESUME_EXIT_DISAGREES_WITH_FAILURE",
+    "fixture-false-zero",
+    "error: current format check fails\n",
+    formatCommand,
+    1,
+    0,
+    1,
+  );
+  resume("RESUME_EMPTY_EXIT_CODE", "fixture-empty-exit", "All files correctly formatted\n", formatCommand, 1, "");
+  resume("RESUME_INVALID_EXIT_CODE", "fixture-invalid-exit", "error: current format check fails\n", formatCommand, 1, "garbage", "garbage", null);
   const fresh = main("format", "fixture-fresh", "error: current format check fails\n", 1, "", { GATES_BASE: "fixture-base" });
   check("RESUME_FRESH_FAILURE_CONTROL", fresh, 1, /NEWFAIL=1/);
   if (fresh.calls !== "npm run format:check") throw Error("FIXTURE SETUP FAIL: format command interception failed");
@@ -229,10 +325,14 @@ try {
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(path.join(dir, "test.exit"), "packages/probe 0\n");
     fs.writeFileSync(path.join(dir, "test-packages-probe.log"), partial ? "" : "Tests 1 passed\n");
-    fs.writeFileSync(path.join(dir, "test-packages-probe.log.command"), "npm run test --workspace=packages/probe\n");
+    fs.writeFileSync(path.join(dir, "test-packages-probe.log.command"), "npm run test --workspace=packages/probe \n");
     fs.writeFileSync(path.join(dir, "test.steps"), "scripts-suite 0\naudit-suites 0\n");
     for (const name of ["scripts-suite", "audit-suites"]) {
       fs.writeFileSync(path.join(dir, `step-${name}.log`), "Tests 1 passed\n");
+      const cmd = name === "scripts-suite"
+        ? "npx --no-install vitest run --config scripts/vitest.config.ts"
+        : "npx --no-install vitest run scripts/audit/__tests__";
+      fs.writeFileSync(path.join(dir, `step-${name}.log.command`), `${cmd} \n`);
     }
   }
   testRecords("fixture-base", false);
@@ -243,9 +343,40 @@ try {
   });
   check("RESUME_WORKSPACE_EMPTY_LOG", resumedTest, 1);
   console.log(`RESUME_WORKSPACE_EMPTY_LOG_COMMAND_CALLS=${resumedTest.calls || "(none)"}`);
+  check(
+    "RESUME_WORKSPACE_EMPTY_LOG_EXECUTION",
+    { status: resumedTest.calls === "npm run test --workspace=packages/probe" ? 0 : 1, output: resumedTest.calls },
+    0,
+  );
+  testRecords("fixture-false-workspace-zero", false);
+  const falseWorkspace = path.join(gatesRoot, "fixture-false-workspace-zero/test");
+  fs.writeFileSync(path.join(falseWorkspace, "test-packages-probe.log"), "FAIL tests/new.test.ts > new failure\nTests 1 failed\n");
+  fs.writeFileSync(path.join(falseWorkspace, "timing.txt"), "test packages/probe 1 exit=1\n");
+  const disagreedTest = main("test", "fixture-false-workspace-zero", "FAIL tests/new.test.ts > new failure\n", 1, "", {
+    GATES_RESUME: "1",
+    GATES_BASE: "fixture-base",
+  });
+  check("RESUME_WORKSPACE_EXIT_DISAGREES", disagreedTest, 1);
+  testRecords("fixture-failed-base", false);
+  const failedBase = path.join(gatesRoot, "fixture-failed-base/test");
+  fs.writeFileSync(path.join(failedBase, "test.exit"), "packages/probe 1\n");
+  fs.writeFileSync(path.join(failedBase, "test-packages-probe.log"), "FAIL tests/old.test.ts > baseline failure\nTests 1 failed\n");
+  testRecords("fixture-truncated-new-run", false);
+  fs.writeFileSync(path.join(gatesRoot, "fixture-truncated-new-run/test/test.exit"), "");
+  const truncatedRun = main("test", "fixture-truncated-new-run", "> vitest run\n", 1, "", {
+    GATES_RESUME: "1",
+    GATES_BASE: "fixture-failed-base",
+  });
+  check("FRESH_TRUNCATED_TEST_EXECUTION", truncatedRun, 1);
+  check(
+    "FRESH_TRUNCATED_TEST_EXECUTION_CONTROL",
+    { status: truncatedRun.calls === "npm run test --workspace=packages/probe" ? 0 : 1, output: truncatedRun.calls },
+    0,
+  );
 
   const passed = results.filter((r) => r.pass).length;
   console.log(`FIXTURE_PASSED=${passed} FIXTURE_FAILED=${results.length - passed}`);
+  fs.writeFileSync(path.join(scratch, "last-results.json"), JSON.stringify(results, null, 2) + "\n");
   process.exitCode = passed === results.length ? 0 : 1;
 } finally {
   fs.rmSync(root, { recursive: true, force: true });
