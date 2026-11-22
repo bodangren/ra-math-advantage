@@ -25,7 +25,8 @@ key() {
     grep -vE '^[[:space:]]*[+-]' |
     grep -vE '^[[:space:]]*[0-9]+\|' |
     LC_ALL=C sed -E "s/^(AssertionError: expected )'.*'( to )/\1'<value>'\2/" |
-    LC_ALL=C sed -E 's/^([^ (]+)\([0-9]+,[0-9]+\): error (TS[0-9]+):.*/\1 \2/; s/^npm error code [0-9]+$/npm error code/; s#^(npm error A complete log of this run can be found in: ).*#\1<log path>#; s/\([0-9]+,[0-9]+\)//g; s/:[0-9]+:[0-9]+//g; s/[[:space:]]+(in )?[0-9.]+ ?m?s$//; s/[[:space:]]+$//' | LC_ALL=C sort -u
+    LC_ALL=C sed -E 's/^(.* × .*)[[:space:]]+[0-9.]+ ?m?s$/\1/' |
+    LC_ALL=C sed -E 's/^([^ (]+)\([0-9]+,[0-9]+\): error (TS[0-9]+):.*/\1 \2/; s/^npm error code [0-9]+$/npm error code/; s#^(npm error A complete log of this run can be found in: ).*#\1<log path>#; s/\([0-9]+,[0-9]+\)//g; s/:[0-9]+:[0-9]+//g; s/[[:space:]]+\([0-9.]+ ?m?s\)$//; s/[[:space:]]+$//' | LC_ALL=C sort -u
 }
 
 new_keys() {
@@ -286,8 +287,12 @@ TOTAL_EOF
     const old = parse(fs.readFileSync(`${base}/step-bundle-${name}.log`, "utf8"));
     if (!old.length) throw Error("empty baseline budget report");
     let failed = false;
+    const counts = new Map();
+    for (const e of entries) counts.set(e.key, (counts.get(e.key) || 0) + 1);
     for (const key of new Set(old.map(e => e.key))) {
-      if (!entries.some(e => e.key === key)) { console.error(`Missing baseline budget chunk: ${name} ${key}`); failed = true; }
+      const want = old.filter(e => e.key === key).length;
+      const got = counts.get(key) || 0;
+      if (got < want) { console.error(`Missing baseline budget chunk: ${name} ${key} ${got} of ${want}`); failed = true; }
     }
     for (const entry of entries) {
       if (entry.status !== "EXCEEDS") continue;

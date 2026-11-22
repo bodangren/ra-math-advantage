@@ -107,6 +107,12 @@ try {
     "FAIL tests/window.test.ts > retains 20ms error window",
     1,
   );
+  compareKeys(
+    "KEY_TRAILING_TITLE_DURATION",
+    "FAIL tests/window.test.ts > retains error window 10ms",
+    "FAIL tests/window.test.ts > retains error window 20ms",
+    1,
+  );
 
   const bundle = source.slice(source.indexOf("bundle() {")).match(/^\s*node -e '\n([\s\S]*?)\n\s*' "\$OUT"/m);
   if (!bundle) throw Error("FIXTURE SETUP FAIL: bundle comparison extraction failed");
@@ -138,6 +144,10 @@ try {
   bundleCase("BUNDLE_NEW_BUDGET_FAILURE", complete, [ssr, page("alpha", "abc12345", "EXCEEDS", 901), page("beta", "def12345")].join("\n"), 1);
   bundleCase("BUNDLE_HASH_RENAME", [ssr, page("alpha", "abc12345", "EXCEEDS", 901)].join("\n"), [ssr, page("alpha", "xyz12345", "EXCEEDS", 901)].join("\n"), 0);
   bundleCase("BUNDLE_HASH_RENAME_LARGER", [ssr, page("alpha", "abc12345", "EXCEEDS", 901)].join("\n"), [ssr, page("alpha", "xyz12345", "EXCEEDS", 902)].join("\n"), 1);
+  const hashOnly = (hash, status = "OK", kb = 100) =>
+    `[${status}] client/assets/page-*.js → page-${hash}.js: ${kb.toFixed(2)} KB (threshold: 900.00 KB)`;
+  bundleCase("BUNDLE_MISSING_HASH_ONLY_SIBLING", [ssr, hashOnly("abc12345"), hashOnly("def12345")].join("\n"), [ssr, hashOnly("abc12345")].join("\n"), 1);
+  bundleCase("BUNDLE_HASH_ONLY_RENAME", [ssr, hashOnly("abc12345")].join("\n"), [ssr, hashOnly("xyz12345")].join("\n"), 0);
 
   let sequence = 0;
   const known = "GHSA-rgj7-g3m4-5g8c";

@@ -87,13 +87,13 @@ Export these exact values in each D1 role brief and role-gate call:
 
 ```bash
 export RED_TEST_COMMAND='npm audit --audit-level=high'
-export GREEN_TEST_COMMAND='GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh audit-high d1-audit-green-r5'
-export PROJECT_LINT='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh lint d1-green-r5'
-export PROJECT_CHECKS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh checks-all d1-green-r5'
-export PROJECT_TESTS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh test d1-green-r6'
+export GREEN_TEST_COMMAND='GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh audit-high d1-audit-green-r8'
+export PROJECT_LINT='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh lint d1-green-r8'
+export PROJECT_CHECKS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh checks-all d1-green-r8'
+export PROJECT_TESTS='GATES_BASE=d1-baseline-r2 GATES_RESUME=1 bash measure/tracks/dependency-refresh_20261121/gates.sh test d1-green-r8'
 ```
 
-Every group has an r5 log because the stricter resume rule created a fresh label and all jobs ran again. The r5 test log recorded a new failure key from the reviewer scratch folder. The orchestrator moved that folder out of the repo, and the test group rerun at `d1-green-r6` exited 0 with `NEWFAIL=0`. Only the test label changed; the audit, lint, and checks labels stay at r5.
+Every group has an r8 log. The r5 test log recorded a new failure key from the reviewer scratch folder; the orchestrator moved that folder and the r6 test rerun exited 0. The r8 sweep rechecked every group after the F4 and F5 gate fixes, and all eight groups exit 0 with `NEWFAIL=0`.
 
 Export these exact values for D2:
 
@@ -159,6 +159,7 @@ Due at origin: 2026-11-23. Green depends on OpenRouter S1 acceptance.
     - r3 remediation fixed the bundle baseline-entry coverage defect in `gates.sh` with a tracked regression fixture, and corrected the exception reasons, leaf identifiers, and dependency paths in `evidence.md`. The support group at `d1-green-r3` and the audit gate at `d1-audit-green-r3` exit 0 with `NEWFAIL=0`. Logs: `green-r3-support.out`, `green-r3-audit-gate.out`, and `gates/d1-green-r3/support/`. The other groups keep their r2 logs because the dependency tree is unchanged.
     - r5 remediation fixed ADV-1 to ADV-6 in `gates.sh`: test-title keys, package-bound audit exceptions, complete resume records, chunk-level bundle coverage, baseline report validation, and audit count reconciliation. The adversarial fixture moved from 22 pass and 10 fail to 32 pass and 0 fail. Every group ran again with label `d1-green-r5` and the audit gate with `d1-audit-green-r5`. Format, lint, typecheck, build, support, docs, and audit-high exit 0 with `NEWFAIL=0`. The test group first exited 1 with `NEWFAIL=1` from two audit-contract test titles and two assertions about nine nested lockfiles in the gitignored `review-b-scratch` folder created by the adversarial role after the r2 baseline. No source or dependency change produced the keys.
     - r6 close of that stop: the orchestrator moved the scratch folder to `/home/daniebo/.cache/ra-math-scratch/review-b-scratch-20261121` instead of deleting it. No tracked file or baseline key changed. The test group reran with label `d1-green-r6` against `d1-baseline-r2` and exited 0 with `NEWFAIL=0`. Log: `green-r6-test.out`; gate folder `gates/d1-green-r6/test/`. The other seven groups keep their r5 logs. Bundle totals stay within 5 percent.
+    - r8 remediation closed Review A F4 and F5. `key()` now strips a trailing parenthesised timing field and timing on `×` result lines, never a number inside a test title. The bundle comparison counts normalized chunk keys and requires at least as many current entries per key as the baseline. Two new adversarial cases failed before the fix and pass after; the fixture moved from 33 pass and 2 fail to 35 pass and 0 fail. A live audit showed 23 undici identifiers, 7 high and 16 moderate or low. No stable miniflare 4.x or wrangler 4.x on miniflare 4 resolves fixed undici, so no dependency changed; the 16 new identifiers were added as undici rows with the same chain and reason, and the other four exception packages did not drift. Every group reran with label `d1-green-r8` and the audit gate with `d1-audit-green-r8`; all eight exit 0 with `NEWFAIL=0`. Logs: `green-r8-*.out` and `gates/d1-green-r8/`. Bundle totals stay within 5 percent.
     - [ ] Run every gate group with label `d1-green`.
     - [ ] Compare each result with `d1-baseline` by diagnostic key.
     - [ ] Record `NEWFAIL`, audit counts, selected versions, and log paths in `evidence.md`.
