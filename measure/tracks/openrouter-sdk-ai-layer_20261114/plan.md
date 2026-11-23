@@ -408,7 +408,11 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
       `GATES_BASE=s2` each exit 0 with `NEWFAIL=0`. Logs:
       `green-s3-fix-455dc41c.log`.
 
-- [ ] Task: S3 Contract — define the helper and the teacher summary
+- [x] Task: S3 Contract — define the helper and the teacher summary
+    - Evidence: implemented at `d156ce06` (helper, exports, zod dependency,
+      lockfile entry, architecture manifest, tech-stack note) and `54f8c772`
+      (teacher summary). The zod check prints `function` with version 4.6.7.
+      See the "S3 main group" section of `evidence.md`.
     - [ ] Add `"zod": "^4.1.12"` to the `dependencies` of `packages/ai-tutoring/package.json` (spec "Non-Functional Requirements"). Run `npm install`.
     - [ ] Run `node -e "import('zod').then((z) => console.log(typeof z.toJSONSchema))"` in `packages/ai-tutoring`. Record the zod version and the result in the "zod check" section. The result must be `function`.
     - [ ] Helper file: `packages/ai-tutoring/src/structured.ts` with `resolveStructuredProviderFromEnv(role)`. It returns a `StructuredProvider` or `null`, with the S2 logging for a missing setting.
@@ -433,7 +437,11 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
     - [ ] The generator sends the prompt as one user message, with the schema name `teacher_error_summary`, temperature 0.3, and 500 max tokens (the current `ai-interpretation.ts` values).
     - [ ] It returns the data with `type` and `generatedAt` for `ok: true`, and `null` for each typed failure.
     - [ ] In `measure/tech-stack.md`, add a dated note on the structured-output helper and the teacher summary.
-- [~] Task: S3 Test (Red) — specify the helper and the two moves
+- [x] Task: S3 Test (Red) — specify the helper and the two moves
+    - Evidence: Red proof recorded at `b72c6f33` and the Mid Red fixture fix
+      at `ff30c052`. At the S3 base the targeted command failed 8 of 9 cases
+      on the missing module. The fixed no-PII fixture sends one neutral part;
+      case 16 is unchanged. See the "S3 main group" section of `evidence.md`.
     - [ ] Create `packages/ai-tutoring/src/__tests__/structured.test.ts`.
     - [ ] Normal case 1: a valid JSON answer that matches the schema gives `{ ok: true, data, raw }`.
     - [ ] Normal case 2: the request body has `response_format` with the `name`, `strict: true`, and the `z.toJSONSchema` output of the schema.
@@ -489,10 +497,16 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
           typecheck clean in both. No production source changed. No S2 or Fix
           assertion changed.
     - [ ] Commit: `test(ai): specify the structured-output helper and the evaluation moves (Red)`.
-- [ ] Task: S3 Implement — build the helper
+- [x] Task: S3 Implement — build the helper [d156ce06]
+    - Evidence: the targeted command
+      `CI=true npm run test --workspace=packages/ai-tutoring -- -t 'structured output'`
+      exits 0 with 9 passed and 147 skipped. The full package suite is
+      156 of 156. See `measure/runs/openrouter-sdk-ai-layer_20261114/green-s3-3e0e1d50.log`.
     - [ ] Implement `src/structured.ts` as the S3 Contract says. Export it from `src/index.ts`, and add the `"./structured"` subpath to `package.json` `exports`.
     - [ ] Commit: `feat(ai-tutoring): add the structured-output helper`.
-- [ ] Task: S3 Implement — move the spreadsheet feedback to the helper
+- [x] Task: S3 Implement — move the spreadsheet feedback to the helper [66d1ed25]
+    - Evidence: `CI=true npm run test --workspace=apps/bus-math-v2 -- -t 'spreadsheet-feedback'`
+      exits 0 with 10 passed and 2706 skipped. See `green-s3-3e0e1d50.log`.
     - [ ] In `apps/bus-math-v2/lib/ai/spreadsheet-feedback.ts`, change `AiFeedbackResponseSchema` to `z.strictObject` with the same 4 fields.
     - [ ] Replace the "Response Format" block of the prompt with one line: "Fill each field of the JSON schema."
     - [ ] Call `resolveStructuredProviderFromEnv('spreadsheetEval')` with the schema name `spreadsheet_feedback`.
@@ -501,7 +515,11 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
     - [ ] `request_failed`, `empty_response`, and `aborted` throw an `Error`, as the provider error does now.
     - [ ] `ok: true` gives the parsed fields, the score clamped to 0 to 40, at most 3 items in each list, and `rawAiResponse: raw`.
     - [ ] Commit: `feat(bm2): use structured output for spreadsheet feedback`.
-- [ ] Task: S3 Implement — build the teacher summary on the accounting role
+- [x] Task: S3 Implement — build the teacher summary on the accounting role [54f8c772]
+    - Evidence: `teacher AI error summary` exits 0 with 8 passed;
+      `GET /api/teacher/ai-error-summary` exits 0 with 12 passed; `no-PII`
+      exits 0 with 3 passed. The Red case 18 assertions are unchanged.
+      See `green-s3-3e0e1d50.log`.
     - [ ] Create `apps/bus-math-v2/lib/teacher/ai-error-summary.ts` as the S3 Contract says.
     - [ ] In `apps/bus-math-v2/app/api/teacher/ai-error-summary/route.ts`, build `const lessonSummary = buildLessonErrorSummary(detail)`.
     - [ ] If the type checker reports that `detail` is not a `SubmissionDetail`, map its fields to `SubmissionDetail` in the route. Do not change `buildLessonErrorSummary`.
@@ -509,9 +527,16 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
     - [ ] Keep `envelopes`, `deterministicSummary`, `studentName: detail.studentName`, and `lessonTitle`. Set `aiEnabled: generator !== null`.
     - [ ] Do not put the student name into the AI text.
     - [ ] Commit: `feat(bm2): build the teacher error summary on the accounting role with structured output`.
-- [ ] Task: S3 Verify — run the gates
+- [x] Task: S3 Verify — run the gates
+    - Evidence: gate sweeps with `GATES_BASE=s2` and label `s3` each exit 0
+      with `NEWFAIL=0` for lint, test, and checks-all. The audit line is
+      `critical=0 high=5 moderate=6 low=5`. The workerd probe answers
+      `probe-ok`. See the "S3 main group" section of `evidence.md`.
     - [ ] Run each gate, with the workerd probe. Confirm that each gate passes.
-- [ ] Task: S3 Docs & Doctor
+- [x] Task: S3 Docs & Doctor
+    - Evidence: `npm run generate` and `bash measure/doctor.sh` each exit 0
+      at `54f8c772` after the architecture manifest gained the `./structured`
+      entry point. No generated file is staged.
     - [ ] Run `npm run generate`. Confirm exit code 0.
     - [ ] Run `npm run doctor`. Confirm exit code 0.
 - [ ] Task: Measure - User Manual Verification 'Phase S3: Structured output for the evaluation features' (Protocol in workflow.md)

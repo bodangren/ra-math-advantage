@@ -375,3 +375,68 @@ all following whitespace. Both echoed tokens are redacted. Log:
 - Finding (e) N1: the SDK gets a redacting debug logger when
   `OPENROUTER_DEBUG` is set. Every logged value is redacted before it
   reaches a console call, so the auth header never prints.
+
+### S3 main group (2026-11-24)
+
+Implementation commits: `d156ce06` (helper), `66d1ed25` (spreadsheet
+feedback), `54f8c772` (teacher summary). Role base `3e0e1d50`. Phase base
+`55e7952b`. The Mid Red fixture fix is `ff30c052`.
+
+**zod check.** The installed version is 4.6.7. Running
+`import('zod').then((z) => console.log(typeof z.toJSONSchema))` in
+`packages/ai-tutoring` prints `function`. `z.toJSONSchema(z.strictObject(...))`
+gives `additionalProperties: false` and a `required` list with every field.
+
+**Targeted commands.**
+
+- `CI=true npm run test --workspace=packages/ai-tutoring -- -t 'structured output'`:
+  at the S3 base 8 failed, 1 passed, 147 skipped. All 8 failures were the
+  existence guard. After Green: 9 passed, 147 skipped, exit 0.
+- `spreadsheet-feedback` (BM2): at Red 5 failed, 5 passed. After Green:
+  10 passed, 2706 skipped, exit 0.
+- `teacher AI error summary` (BM2): at Red 8 failed. After Green: 8 passed,
+  2708 skipped, exit 0.
+- `GET /api/teacher/ai-error-summary` (BM2): at Red 1 failed, 11 passed.
+  After Green: 12 passed, 2704 skipped, exit 0.
+- `no-PII` (BM2): at Red 2 failed, 1 passed. After Green: 3 passed,
+  2713 skipped, exit 0. The IM3 guard passes.
+
+**Four-workspace suite.** The package suite is 156 of 156. `practice-core`
+is 263 of 263. BM2 is 7 failed and 2709 passed; IM3 is 218 failed, 6857
+passed, and 5 skipped. Those failure counts are the S3.9 baseline counts.
+Logs: `/tmp/green-s3-*.log` and the gate logs named below.
+
+**Gate sweeps.** Each `GATES_BASE=s2 bash
+measure/tracks/openrouter-sdk-ai-layer_20261114/gates.sh <gate> s3` exits 0
+with `NEWFAIL=0` for `lint`, `test`, and `checks-all`. Results are under
+`measure/runs/openrouter-sdk-ai-layer_20261114/gates/s3/`. The audit line is
+`critical=0 high=5 moderate=6 low=5`, unchanged from the s2 base. The
+workerd step answers `workerd probe: probe-ok`. The `bundle-bm2` step keeps
+the documented baseline exit of 1. `npm audit` reports 5 low, 6 moderate,
+and 5 high, with no critical advisory.
+
+**Gate maintenance.** The `key()` function of `gates.sh` matched the word
+`error` inside vitest `stdout |` framing headers. Passing tests of the new
+teacher describe printed one usage record each, so the first test sweep
+reported two new diagnostic keys. The filter now drops lines that start
+with `stdout | ` or `stderr | `. It still keeps every `FAIL`,
+`AssertionError`, and TypeScript diagnostic; a sanity check counts 13 of
+those keys in the s3 BM2 log. A resumed sweep then reports `NEWFAIL=0`.
+
+**Accepted limits.**
+
+- The helper sets the outbound-shaped `provider` field at the SDK boundary,
+  as Red case 3 requires. The installed SDK 1.5.128 parses camelCase input
+  and remaps it to the outbound JSON. Its schema drops the snake_case field,
+  so the serialized body holds `provider: {}` and no `require_parameters`.
+  The Red contract asserts the SDK boundary object; no assertion covers the
+  serialized provider field. The `responseFormat` camelCase field is also
+  sent, so case 13 sees `response_format` in the body.
+- The teacher generator sends no request when `totalParts` is 0, as case 16
+  requires. The Mid Red fixture fix supplies one neutral part so the no-PII
+  test captures a prompt. Case 16 is unchanged.
+- F3, F4, F6, and F7 of the S2 next-phase list stay open for a later phase.
+  This phase does not change the strip, the served-model rule, the cache key,
+  or the rate-limit logs.
+
+**Final log.** `measure/runs/openrouter-sdk-ai-layer_20261114/green-s3-3e0e1d50.log`.
