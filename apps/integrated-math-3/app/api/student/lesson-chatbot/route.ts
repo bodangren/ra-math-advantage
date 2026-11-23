@@ -35,15 +35,17 @@ function sanitizeInput(input: string): string {
 
 const PERSON_DETAIL_LABELS = "Student|Teacher|Instructor|Name|Email|Username|Account\\s*ID";
 const PERSON_DETAIL = new RegExp(
-  `\\b(?:${PERSON_DETAIL_LABELS})\\s*:[^]*?(?=\\b(?:${PERSON_DETAIL_LABELS})\\s*:|$)`,
+  `\\b(?:${PERSON_DETAIL_LABELS})\\s*:[^]*?(?:[.!?](?=\\s|$)|\\r?\\n|(?=\\b(?:${PERSON_DETAIL_LABELS})\\s*:)|$)`,
   "gi",
 );
 const EMAIL = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g;
 
 /**
- * Removes person details from lesson markdown before it enters a prompt.
- * The studentTutor role has no PII flag, so no name, email, username,
- * account ID, or teacher detail may reach the provider.
+ * Removes each labeled person-detail clause from lesson markdown before it
+ * enters a prompt. A clause ends at a line break, a sentence end, or the next
+ * label. All later lesson text stays. The studentTutor role has no PII flag,
+ * so no name, email, username, account ID, or teacher detail may reach the
+ * provider.
  *
  * @param {string} markdown - Raw lesson markdown.
  * @returns {string} Markdown with person detail clauses removed.

@@ -336,3 +336,16 @@ all following whitespace. Both echoed tokens are redacted. Log:
   `adversarial-a34ab162.json`. After the fix the package suite is 141/141 and
   the IM3 chatbot suite is 14/14. Logs: `green-s2-r3-package.log`,
   `green-s2-r3-im3.log`. No adversarial assertion changed.
+
+### Remediation r4 (Reviews A and C F1 on HEAD 15c1d523)
+
+- F1: `stripPersonDetails` removed every character from a personal-detail
+  label through the next label or the end of the lesson markdown. A detail
+  label followed by math text on the same line or on later lines removed that
+  math text. The clause matcher now stops at the first line break, sentence
+  end, or next label. Later lesson text stays.
+- Test-first proof: the new `route.pii-scope.test.ts` failed before the fix;
+  the system message held no lesson math. After the fix the IM3 chatbot suite
+  is 15/15 and the package suite is 141/141. The six adversarial tests still
+  pass. Logs: `green-s2-r4-before-fix.log`, `green-s2-r4-im3.log`,
+  `green-s2-r4-package.log`. No adversarial assertion changed.
