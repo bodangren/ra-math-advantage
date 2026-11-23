@@ -290,6 +290,16 @@ _Story ref: spec.md#story-s2_
       14/14. Lint, test and checks-all gate sweeps with label `s2` each exit 0
       with `NEWFAIL=0`. Logs: `green-s2-r3-package.log`, `green-s2-r3-im3.log`,
       `green-s2-r3-gates.exit`.
+    - [x] Remediation r4 (Reviews A and C F1): `ea1e7920`.
+      `stripPersonDetails` now ends a labeled clause at a line break, sentence
+      end, or next label. Later lesson text stays in the prompt. The new
+      `route.pii-scope.test.ts` failed first with no lesson math, then passed.
+      The six adversarial tests still pass. Package suite 141/141, IM3 chatbot
+      suite 15/15. Lint, test and checks-all gate sweeps with label `s2` each
+      exit 0 with `NEWFAIL=0`. Logs: `green-s2-r4-before-fix.log`,
+      `green-s2-r4-im3.log`, `green-s2-r4-package.log`, `green-s2-r4-gates.exit`.
+      Review B nonblocking findings stay on the next-phase list: BM2 strip,
+      fixture-shaped regex, MODEL_ID charset, cache key, rate-limit log.
 - [ ] Task: S2 Verify — run the gates
     - [ ] Run each gate, with the workerd probe. Confirm that each gate passes.
     - [ ] Run `git grep -n "OPENROUTER_MODEL\b\|openrouter/free" -- apps packages ':!**/.env.example'`. Confirm that no code matches.
