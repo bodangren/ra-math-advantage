@@ -361,8 +361,10 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
           The configured-model guard passes. Finding (c) fails at
           `roles.test.ts:314`: the `cacheKey` source lines hold `apiKey`. The
           warm-cache recheck guards in the same test pass. Finding (e) N1 fails
-          at `role-configuration.adversarial.test.ts:278`: the SDK debug log
-          holds `authorization: Bearer sk-test-role-fixture-7391`. Findings
+          at `openrouter-debug-logging.test.ts:70`: the SDK debug log holds
+          `authorization: Bearer sk-test-debug-fixture-6642`. N1 lives in its
+          own file because the SDK memoizes `env()` on first use; an in-file
+          variant passed in the full suite. Findings
           (e) N3 and N5 pass at HEAD, so the behaviors already hold and no new
           contract is invented for them.
         - IM3: `CI=true npm run test --workspace=apps/integrated-math-3 --
@@ -374,7 +376,10 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
           strip. The math-text assertions hold. Finding (d) IM3 fails at
           `route.pii-scope.test.ts:240`: the console call holds the raw error
           marker. Finding (d) BM2 fails at `route.test.ts:239` with the same
-          cause.
+          cause. The IM3 rate-limit test queues exactly the two query mocks
+          it consumes, so no stale value leaks into the committed pii-scope
+          test (the first version leaked one and failed that test with 500 in
+          the gate).
         - Finding (e) N2: no runnable test fits a grep-command correction. The
           S2 Verify grep now excludes `__tests__` paths, where the case-9
           fixture lines and the adversarial live complement live.
