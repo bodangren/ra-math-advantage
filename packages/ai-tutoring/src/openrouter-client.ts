@@ -10,6 +10,11 @@ export interface OpenRouterClientOptions {
   apiKey: string;
   baseUrl?: string;
   timeoutMs?: number;
+  debugLogger?: {
+    group(label?: string): void;
+    groupEnd(): void;
+    log(message: unknown, ...args: unknown[]): void;
+  };
 }
 
 /**
@@ -23,5 +28,6 @@ export function createOpenRouterClient(options: OpenRouterClientOptions): OpenRo
     appTitle: "Integrated Math 3",
     retryConfig: { strategy: "none" },
     timeoutMs: options.timeoutMs,
+    debugLogger: options.debugLogger,
   });
 }

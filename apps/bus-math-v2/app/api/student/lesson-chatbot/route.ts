@@ -98,8 +98,11 @@ export async function POST(request: NextRequest) {
         { status: 429 },
       );
     }
-  } catch (error) {
-    console.error("[lesson-chatbot] Rate limit check failed:", error);
+  } catch {
+    console.error(
+      "[lesson-chatbot] Rate limit check failed",
+      JSON.stringify({ role: "studentTutor", status: null }),
+    );
     return NextResponse.json(
       { error: "Service temporarily unavailable. Please try again later." },
       { status: 503 },
@@ -177,6 +180,7 @@ export async function POST(request: NextRequest) {
         .map((s) => (s.content as { markdown?: string }).markdown || "")
         .join("\n\n"),
     },
+    [session.displayName, session.email, session.username, session.sub],
   );
 
   const messages = buildMessages(context, sanitizedQuestion);

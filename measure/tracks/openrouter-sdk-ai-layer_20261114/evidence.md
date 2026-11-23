@@ -349,3 +349,29 @@ all following whitespace. Both echoed tokens are redacted. Log:
   is 15/15 and the package suite is 141/141. The six adversarial tests still
   pass. Logs: `green-s2-r4-before-fix.log`, `green-s2-r4-im3.log`,
   `green-s2-r4-package.log`. No adversarial assertion changed.
+
+### S3 Fix group (2026-11-23)
+
+- Fix 1: the BM2 lesson-chatbot route passes the student account values to
+  the shared `assembleLessonChatbotContext`. That function applies the single
+  person-detail strip before HTML stripping. The captured prompt holds no
+  fixture value and keeps both math sentences.
+- Finding (a): the single strip covers colon, dash, em-dash, and fullwidth
+  colon labels, generic capitalized labels, obfuscated email, and known
+  account values. Accepted limit: a teacher-authored lesson line that starts
+  with a capitalized `Word:` label is treated as a detail clause. Math on
+  that line would be removed. No live fixture uses that form. All six
+  committed forms pass, and the later math lines stay.
+- Finding (b): the validator rejects key-shaped `sk-` tokens and records an
+  invalid served model as null. The plan line that requires strict
+  configured-model equality conflicts with S2 case 3, which records
+  `served-model-r2` for configured model `vendor/model-a`. The key-form
+  rejection satisfies both the S2 assertion and the bare-key test.
+- Finding (c): the cache key holds role and model only. The cached entry
+  holds the key value and is compared on every call. A removed key fails
+  closed, and a rotated key creates a new provider.
+- Finding (d): both rate-limit catches log role and status only. The raw
+  error object reaches no console call.
+- Finding (e) N1: the SDK gets a redacting debug logger when
+  `OPENROUTER_DEBUG` is set. Every logged value is redacted before it
+  reaches a console call, so the auth header never prints.

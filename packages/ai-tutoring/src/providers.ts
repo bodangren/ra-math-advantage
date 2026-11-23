@@ -66,6 +66,44 @@ function redactApiKey(text: string, apiKey: string): string {
   return redacted;
 }
 
+interface RedactingDebugLogger {
+  group(label?: string): void;
+  groupEnd(): void;
+  log(message: unknown, ...args: unknown[]): void;
+}
+
+/**
+ * Builds the SDK debug logger. Every value is redacted before it reaches a
+ * console call, so an auth header never prints. The logger is only supplied
+ * when debug logging is on; the SDK otherwise stays quiet.
+ */
+function redactingDebugLogger(apiKey: string): RedactingDebugLogger {
+  const redact = (value: unknown): unknown => {
+    if (typeof value === "string") {
+      return redactApiKey(value, apiKey);
+    }
+    if (value && typeof value === "object") {
+      try {
+        return JSON.parse(redactApiKey(JSON.stringify(value), apiKey));
+      } catch {
+        return value;
+      }
+    }
+    return value;
+  };
+  return {
+    group: (label) => {
+      console.group(label === undefined ? undefined : (redact(label) as string));
+    },
+    groupEnd: () => console.groupEnd(),
+    log: (message, ...args) => console.log(redact(message), ...args.map(redact)),
+  };
+}
+
+function debugLoggerFor(apiKey: string): RedactingDebugLogger | undefined {
+  return process.env.OPENROUTER_DEBUG ? redactingDebugLogger(apiKey) : undefined;
+}
+
 /**
  * Maps an SDK error to the error shapes that `withRetry` already understands.
  * HTTP errors keep only the status, so an upstream body never reaches a log.
@@ -146,7 +184,7 @@ interface UsageCounts {
 
 interface ChatOutcome {
   content: string;
-  servedModel: string;
+  servedModel: string | null;
   usage: UsageCounts;
 }
 
@@ -167,7 +205,11 @@ function readUsage(value: unknown): UsageCounts {
   };
 }
 
-const MODEL_ID = /^[A-Za-z0-9_.:~/-]{1,128}$/;
+// A served model is a bounded model id. A key-shaped token (for example
+// `sk-...`) is never a model and never reaches a usage record. A model id
+// equal to the configured model, or the configured model plus a bounded
+// suffix, stays valid. Other bounded ids stay valid for upstream variants.
+const MODEL_ID = /^(?!sk-)[A-Za-z0-9_.:~/-]{1,128}$/;
 
 /**
  * Accepts only a bounded model identifier for a usage record. Any other text,
@@ -182,7 +224,7 @@ function safeModel(value: unknown): string | null {
  * The documented OpenRouter example and an error-only 200 body both reach this
  * path. A body without content is reported as empty so `withRetry` retries it.
  */
-function recoverValidatedBody(error: unknown, fallbackModel: string): ChatOutcome | null {
+function recoverValidatedBody(error: unknown): ChatOutcome | null {
   if (!(error instanceof Error)) {
     return null;
   }
@@ -213,7 +255,7 @@ function recoverValidatedBody(error: unknown, fallbackModel: string): ChatOutcom
 
   return {
     content: content === null ? "" : content.trim(),
-    servedModel: safeModel(body.model) ?? fallbackModel,
+    servedModel: safeModel(body.model),
     usage: readUsage(body.usage),
   };
 }
@@ -267,11 +309,11 @@ async function sendChat(
         }
         return {
           content: content.trim(),
-          servedModel: safeModel(result.model) ?? model,
+          servedModel: safeModel(result.model),
           usage: readUsage(result.usage),
         };
       } catch (error) {
-        const recovered = recoverValidatedBody(error, model);
+        const recovered = recoverValidatedBody(error);
         if (recovered) {
           if (recovered.content.trim().length === 0) {
             throw new EmptyResponseError();
@@ -316,7 +358,7 @@ async function sendChat(
 
 function clientOptions(options: OpenRouterProviderOptions): OpenRouterClientOptions {
   const { apiKey, baseUrl = OPENROUTER_API_BASE, timeoutMs = 15000 } = options;
-  return { apiKey, baseUrl, timeoutMs };
+  return { apiKey, baseUrl, timeoutMs, debugLogger: debugLoggerFor(apiKey) };
 }
 
 /**
@@ -390,8 +432,13 @@ export function getErrorStatus(error: Error): number | null {
   return match ? parseInt(match[1], 10) : null;
 }
 
-const providerCache = new Map<string, PromptProvider>();
-const messagesProviderCache = new Map<string, MessagesProvider>();
+interface CachedProvider<T> {
+  apiKey: string;
+  provider: T;
+}
+
+const providerCache = new Map<string, CachedProvider<PromptProvider>>();
+const messagesProviderCache = new Map<string, CachedProvider<MessagesProvider>>();
 
 /** Clears the cached OpenRouter providers of every role. */
 export function clearProviderCache(): void {
@@ -399,13 +446,18 @@ export function clearProviderCache(): void {
   messagesProviderCache.clear();
 }
 
+interface RoleSettings {
+  ok: true;
+  apiKey: string;
+  model: string;
+  cacheKey: string;
+}
+
 /**
  * Checks the environment before a cache hit. A removed key or role model must
  * fail closed on the next call, even when a provider was resolved before.
  */
-function roleSettings(
-  role: AiRole,
-): { ok: true; apiKey: string; model: string; cacheKey: string } | { ok: false } {
+function roleSettings(role: AiRole): RoleSettings | { ok: false } {
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey || apiKey.trim().length === 0) {
     logRoleNotConfigured(role, "OPENROUTER_API_KEY", "missing");
@@ -422,7 +474,7 @@ function roleSettings(
     ok: true,
     apiKey,
     model: modelResult.model,
-    cacheKey: `${role}\u0000${apiKey}\u0000${modelResult.model}`,
+    cacheKey: `${role}\u0000${modelResult.model}`,
   };
 }
 
@@ -437,8 +489,8 @@ export function resolveOpenRouterProviderFromEnv(role: AiRole): PromptProvider |
   }
 
   const cached = providerCache.get(settings.cacheKey);
-  if (cached) {
-    return cached;
+  if (cached && cached.apiKey === settings.apiKey) {
+    return cached.provider;
   }
 
   const provider = createOpenRouterProvider({
@@ -447,7 +499,8 @@ export function resolveOpenRouterProviderFromEnv(role: AiRole): PromptProvider |
     role,
     baseUrl: process.env.OPENROUTER_API_BASE || OPENROUTER_API_BASE,
   });
-  providerCache.set(settings.cacheKey, provider);
+  const entry = { apiKey: settings.apiKey, provider };
+  providerCache.set(settings.cacheKey, entry);
   return provider;
 }
 
@@ -464,8 +517,8 @@ export function resolveOpenRouterProviderWithMessagesFromEnv(
   }
 
   const cached = messagesProviderCache.get(settings.cacheKey);
-  if (cached) {
-    return cached;
+  if (cached && cached.apiKey === settings.apiKey) {
+    return cached.provider;
   }
 
   const provider = createOpenRouterProviderWithMessages({
@@ -474,6 +527,7 @@ export function resolveOpenRouterProviderWithMessagesFromEnv(
     role,
     baseUrl: process.env.OPENROUTER_API_BASE || OPENROUTER_API_BASE,
   });
-  messagesProviderCache.set(settings.cacheKey, provider);
+  const entry = { apiKey: settings.apiKey, provider };
+  messagesProviderCache.set(settings.cacheKey, entry);
   return provider;
 }

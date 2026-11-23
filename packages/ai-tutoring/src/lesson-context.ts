@@ -64,17 +64,48 @@ function truncate(text: string, maxLength: number): string {
   return (lastSpace > 0 ? truncated.slice(0, lastSpace) : truncated) + "...";
 }
 
+const DETAIL_LABEL =
+  "(?:Student|Teacher|Instructor|Guardian|Parent|Tutor|Name|Email|Username|Account\\s*ID|[A-Z][A-Za-z]{1,24})";
+const DETAIL_SEPARATOR = "\\s*(?::|：|-|–|—)\\s*";
+const DETAIL_END = "(?:[.!?。！？](?=\\s|$)|\\r?\\n|(?=" + DETAIL_LABEL + DETAIL_SEPARATOR + ")|$)";
+const PERSON_DETAIL = new RegExp(
+  "\\b" + DETAIL_LABEL + DETAIL_SEPARATOR + "[^]*?" + DETAIL_END,
+  "gi",
+);
+const EMAIL = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g;
+const OBFUSCATED_EMAIL = /\b[A-Za-z0-9._%+-]+\s+at\s+[A-Za-z0-9.-]+\s+dot\s+[A-Za-z]{2,}\b/gi;
+
+/**
+ * Removes person-detail clauses from lesson markdown before it enters a prompt.
+ * A clause ends at a sentence end, a line break, or the next label. Later
+ * lesson text stays. Known account values are removed everywhere.
+ * @param {string} markdown - Raw lesson markdown.
+ * @param {string[]} knownDetails - Account values to remove everywhere.
+ * @returns {string} - Markdown with person details removed.
+ */
+function stripPersonDetails(markdown: string, knownDetails: string[] = []): string {
+  let result = markdown.replace(PERSON_DETAIL, "").replace(EMAIL, "").replace(OBFUSCATED_EMAIL, "");
+  for (const value of knownDetails) {
+    if (typeof value === "string" && value.trim().length > 0) {
+      result = result.split(value).join("");
+    }
+  }
+  return result.replace(/[ \t]{2,}/g, " ").trim();
+}
+
 /**
  * Assembles lesson chatbot context from lesson and phase data.
  * @param {MinimalLesson} lesson - Minimal lesson object with title and unit
  * @param {MinimalPhase} phase - Minimal phase with title, objectives, and content
+ * @param {string[]} knownDetails - Account values to remove from the lesson content
  * @returns {LessonChatbotContext} - LessonChatbotContext for AI prompt injection
  */
 export function assembleLessonChatbotContext(
   lesson: MinimalLesson,
   phase: MinimalPhase,
+  knownDetails: string[] = [],
 ): LessonChatbotContext {
-  const strippedContent = stripHtml(phase.content);
+  const strippedContent = stripHtml(stripPersonDetails(phase.content, knownDetails));
   const sanitizedContent = sanitizeMarkdownForPrompt(strippedContent);
   const contentSummary = truncate(sanitizedContent, 2000);
 
