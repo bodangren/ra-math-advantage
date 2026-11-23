@@ -78,6 +78,16 @@ Planned: `@openrouter/sdk`, one model variable for each role with no default,
 `openrouter/free` for development only, structured output for the evaluation roles, and no
 PII in prompts (planned: openrouter-sdk-ai-layer_20261114).
 
+Note (2026-11-23, Phase S2 of `openrouter-sdk-ai-layer_20261114`, Red): each AI
+role reads its model from its own environment variable with no default. The
+roles are `studentTutor` (`OPENROUTER_MODEL_STUDENT_TUTOR`, chatbots, no
+structured output), `spreadsheetEval` (`OPENROUTER_MODEL_SPREADSHEET_EVAL`,
+spreadsheet feedback, structured output), and `accountingEval`
+(`OPENROUTER_MODEL_ACCOUNTING_EVAL`, teacher error summary, structured
+output). Each role has a PII flag, `false` for every current role. Each AI
+request writes one usage record with the role, the served model, the latency,
+the token counts, the outcome, and the status, and no prompt or answer text.
+
 ## Styling & UI
 
 | Layer | Technology |

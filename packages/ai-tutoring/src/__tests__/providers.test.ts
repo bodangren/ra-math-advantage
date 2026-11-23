@@ -5,6 +5,7 @@ import {
   resolveOpenRouterProviderFromEnv,
   clearProviderCache,
 } from "../providers";
+import { EmptyResponseError } from "../retry";
 import { OpenRouter } from "@openrouter/sdk";
 
 vi.mock("@openrouter/sdk", () => ({ OpenRouter: vi.fn() }));
@@ -467,5 +468,110 @@ describe("API key redaction on SDK errors", () => {
     const provider = createOpenRouterProvider({ apiKey: key, model: "vendor/model-a" });
     const error = await provider("hello").catch((caught: unknown) => caught as Error);
     expect(String(error)).toContain("abc is fine here");
+  });
+});
+
+describe("documented 200 bodies (F1)", () => {
+  const F1Ctor = vi.mocked(OpenRouter);
+
+  const DOCUMENTED_EXAMPLE_BODY = {
+    id: "gen-xxxxxxxxxxxxxx",
+    choices: [
+      {
+        finish_reason: "stop",
+        native_finish_reason: "stop",
+        message: { role: "assistant", content: "Hello there!" },
+      },
+    ],
+    usage: {
+      prompt_tokens: 10,
+      completion_tokens: 4,
+      total_tokens: 14,
+      prompt_tokens_details: { cached_tokens: 0 },
+      completion_tokens_details: { reasoning_tokens: 0 },
+      cost: 0.00014,
+    },
+    model: "openai/gpt-4o",
+  };
+
+  async function useRealSdk() {
+    const actual = await vi.importActual<typeof import("@openrouter/sdk")>("@openrouter/sdk");
+    F1Ctor.mockReset();
+    F1Ctor.mockImplementation(function () {
+      return new actual.OpenRouter({
+        apiKey: "test-key",
+        serverURL: "https://openrouter.ai/api/v1",
+        retryConfig: { strategy: "none" },
+        timeoutMs: 15000,
+      }) as unknown as InstanceType<typeof OpenRouter>;
+    });
+  }
+
+  function jsonResponse(body: unknown) {
+    return new Response(JSON.stringify(body), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it("F1a: returns the content of the OpenRouter documented example body", async () => {
+    await useRealSdk();
+    const fetchMock = vi.fn().mockResolvedValue(jsonResponse(DOCUMENTED_EXAMPLE_BODY));
+    vi.stubGlobal("fetch", fetchMock);
+
+    const provider = createOpenRouterProvider({ apiKey: "test-key", model: "vendor/model-a" });
+
+    await expect(provider("hello")).resolves.toBe("Hello there!");
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("F1b: retries a 200 error-only body and reports an empty response", async () => {
+    await useRealSdk();
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValue(jsonResponse({ error: { code: 503, message: "Service unavailable" } }));
+    vi.stubGlobal("fetch", fetchMock);
+
+    const provider = createOpenRouterProvider({ apiKey: "test-key", model: "vendor/model-a" });
+
+    await expect(provider("hello")).rejects.toThrow(EmptyResponseError);
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+  });
+});
+
+describe("case-insensitive Bearer strip (F10)", () => {
+  const tokenSend = vi.fn();
+  const TokenCtor = vi.mocked(OpenRouter);
+
+  beforeEach(() => {
+    tokenSend.mockReset();
+    TokenCtor.mockReset();
+    TokenCtor.mockImplementation(function () {
+      return { chat: { send: tokenSend } } as unknown as InstanceType<typeof OpenRouter>;
+    });
+  });
+
+  it("F10a: redacts a lowercase bearer scheme echo", async () => {
+    const key = "bearer sk-bearer-lower-6666";
+    tokenSend.mockRejectedValue(
+      Object.assign(new Error("denied sk-bearer-lower-6666"), { statusCode: 401 }),
+    );
+    const provider = createOpenRouterProvider({ apiKey: key, model: "vendor/model-a" });
+    const error = await provider("hello").catch((caught: unknown) => caught as Error);
+    expect(String(error)).not.toContain("sk-bearer-lower-6666");
+  });
+
+  it("F10b: redacts an uppercase bearer scheme with an extra space echo", async () => {
+    const key = "BEARER  sk-bearer-upper-7777";
+    tokenSend.mockRejectedValue(
+      Object.assign(new Error("denied sk-bearer-upper-7777"), { statusCode: 401 }),
+    );
+    const provider = createOpenRouterProvider({ apiKey: key, model: "vendor/model-a" });
+    const error = await provider("hello").catch((caught: unknown) => caught as Error);
+    expect(String(error)).not.toContain("sk-bearer-upper-7777");
   });
 });
