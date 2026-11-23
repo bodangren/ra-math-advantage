@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "role": "adversarial-testing",
+  "track": "openrouter-sdk-ai-layer_20261114",
+  "phase": "Phase S2: Role-based model configuration",
+  "baseline_sha": "d8e08cded75dac2fc33cb857c85f10f86036861d",
+  "phase_base_sha": "d8e08cded75dac2fc33cb857c85f10f86036861d",
+  "role_base_sha": "a34ab1626f8d0f77678258545aad065497756a1a",
+  "audited_head_sha": "a34ab1626f8d0f77678258545aad065497756a1a",
+  "status": "fail",
+  "summary": "Six tests fail on five implementation defects. The defects affect fail-closed behavior, response parity, log privacy, and the IM3 message sent to OpenRouter.",
+  "blocking_findings": [
+    "ADV-S2-1 [Blocker] adversarial-testing: The caches return providers before the resolvers check the environment. A removed tutor model or API key still permits a second request, and neither resolver logs the missing variable. See packages/ai-tutoring/src/providers.ts:398-414 and :430-448.",
+    "ADV-S2-2 [Blocker] adversarial-testing: The F1 recovery path returns untrimmed content. For equivalent HTTP 200 answers, the strict path returns the trimmed answer, but the recovered path returns the surrounding whitespace. See packages/ai-tutoring/src/providers.ts:260-271.",
+    "ADV-S2-3 [Blocker] adversarial-testing: The usage record accepts unrestricted served model text. An unexpected response model value that includes the prompt, answer, and key causes all three fixture values to appear in the usage record. See packages/ai-tutoring/src/providers.ts:260-264 and :284-291.",
+    "ADV-S2-4 [Blocker] adversarial-testing: The IM3 chatbot sends student and teacher details from lesson markdown to OpenRouter with no ZDR flag. The route forwards all six lesson fixture values in the system message. See apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts:195-215.",
+    "ADV-S2-5 [Blocker] adversarial-testing: The IM3 chatbot writes the prompt to the error log when the upstream HTTP error echoes it. The key is redacted, but the prompt remains. See packages/ai-tutoring/src/providers.ts:89-103 and apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts:218-220."
+  ],
+  "nonblocking_findings": [],
+  "evidence": [
+    "The checkout matched the brief at role start. The exact S2 range is d8e08cded75dac2fc33cb857c85f10f86036861d..a34ab1626f8d0f77678258545aad065497756a1a.",
+    "The S2 strategy, specification, plan, anti-pattern catalog, Review A/B/C results, and Green r2 handoff informed the probes.",
+    "The graph returned no callers for the two resolvers. Source inspection confirmed the IM3 and BM2 chatbot routes and the BM2 spreadsheet caller.",
+    "adversarial-s2-package.log records 137 tests passed and four failed. The new tests use the real SDK and replace only external I/O and test controls.",
+    "The two warm-cache tests show two fetch calls instead of one. Cold missing, Unicode whitespace, and Unicode-padded preset cases fail closed and log the exact reason.",
+    "The concurrent role test confirms that each role sends its own configured model. It also confirms exact padding, no tutor preferences, and spreadsheet require_parameters without zdr.",
+    "The documented-shape body returns whitespace that the strict body removes. An HTTP 200 error body with usage retries three times and produces one failure record without the fixture values.",
+    "The real SDK maps all three mixed-case or padded Bearer variants to a 401 error without either token echo. The usage records hold no token.",
+    "adversarial-s2-im3.log records 12 tests passed and two failed. Both new tests capture the real route and SDK path without making a network call.",
+    "The no-PII route tests at the audited HEAD replace the context assembler and use lesson text without fixture PII. The new IM3 test uses the real assembler and inserts fixture PII into the lesson text, not the question.",
+    "adversarial-s2-bm2.log records 16 targeted tests passed. BM2 lesson-text and error-log paths are similar by inspection. This run has no new BM2 reproduction.",
+    "A4: the real Review A role checker exits 1 for an all-[~] fixture and reports two incomplete tasks.",
+    "A7: the live gate key filter preserves a banned-term line with both 'never' and 'do not'.",
+    "A5: npm run doctor exits 0 and prints 'All checks passed', as the plan's only matched claim states.",
+    "Commit 47a5c224 adds two adversarial test files. Commit 1833c526 adds the SDK's required system_fingerprint field to the strict fixture. No production file or plan changed.",
+    "The corrected fixture proves that the first answer passes and the recovery answer fails at the second assertion. The six unrelated generated files stayed unstaged.",
+    "The new findings name delivered behavior and show wrong output or a request that must not occur. Apply the late-finding rule and the round limit without a second adversarial run under this brief."
+  ],
+  "commands": [
+    "~/Desktop/advantage-pr/scripts/jobs/slot check: exit 0.",
+    "git rev-parse HEAD; git diff d8e08cde a34ab162; git diff --check d8e08cde a34ab162: verified the audited range.",
+    "heavy-run.sh: build-graph callers for both resolvers returned no results.",
+    "heavy-run.sh: CI=true npm run test --workspace=packages/ai-tutoring: exit 1, four failures in the new tests.",
+    "heavy-run.sh: CI=true npm run test --workspace=apps/integrated-math-3 -- __tests__/app/api/student/lesson-chatbot: exit 1, two failures in the new tests.",
+    "heavy-run.sh: CI=true npm run test --workspace=apps/bus-math-v2 -- __tests__/app/api/student/lesson-chatbot __tests__/lib/ai/spreadsheet-feedback.test.ts: exit 0.",
+    "heavy-run.sh: npm run format:check on the two files, package lint, direct route test lint, package typecheck, and npm run doctor: exit 0 for each.",
+    "measure_interphase_checks.py role-gate on an all-[~] fixture; gates.sh key on the banned-term fixture: both probes met their expected results."
+  ],
+  "changed_files": [
+    "apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.s2.adversarial.test.ts",
+    "packages/ai-tutoring/src/__tests__/role-configuration.adversarial.test.ts"
+  ],
+  "test_strategy_violations": [
+    "The existing no-PII route tests do not put the fixture in the lesson data or run the real context assembler, as shown by ADV-S2-4."
+  ],
+  "live_contract_violations": [
+    "ADV-S2-1: A cached role can send a request when its model or key is absent.",
+    "ADV-S2-2: The F1 recovered answer differs from the prior transport for padded content.",
+    "ADV-S2-3: The usage record can contain prompt text, answer text, and the API key.",
+    "ADV-S2-4: The non-PII tutor sends PII from the IM3 lesson fixture.",
+    "ADV-S2-5: An upstream HTTP error can cause the IM3 route to log prompt text."
+  ],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "retry_implementation",
+  "confidence": "high",
+  "route": "openai/gpt-6.2-sol#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 2,
+      "evidence": "The real SDK tests pass cold role checks but fail warm fail-closed, F1 parity, and privacy checks."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 3,
+      "evidence": "The new SDK and route tests capture actual request bodies and logs, but route.no-pii.test.ts uses a simulated context assembler."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "Commits 47a5c224 and 1833c526 change only the two new adversarial test files."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 5,
+      "evidence": "The package and IM3 test logs contain assertion failures for all five findings."
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+MEASURE_AGENT_RESULT
+role: adversarial-testing
+status: partial
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S2: Role-based model configuration
+commits: 47a5c224 (tests); 1833c526 (strict response fixture)
+tests_run: ai-tutoring suite exit 1 (four new failures); IM3 chatbot suite exit 1 (two new failures); BM2 targeted suite exit 0; scoped format, lint, package typecheck, doctor, and A4/A7 probes pass
+files_changed: two new *.adversarial.test.ts files; audit JSON and logs
+plan_updates: none
+known_failures: ADV-S2-1 warm caches bypass missing settings; ADV-S2-2 F1 recovery returns untrimmed answers; ADV-S2-3 usage record exposes fixture values; ADV-S2-4 IM3 sends lesson fixture PII; ADV-S2-5 IM3 logs echoed prompt text
+handoff: Route the five implementation findings to Green, subject to the late-finding rule and the round limit. Keep phase acceptance closed. This brief permits one adversarial run only.
+END_MEASURE_AGENT_RESULT

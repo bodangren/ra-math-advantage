@@ -1,0 +1,54 @@
+Finished in 1ms on 2 files using 12 threads.
+
+> format:check
+> oxfmt --check apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.s2.adversarial.test.ts packages/ai-tutoring/src/__tests__/role-configuration.adversarial.test.ts
+
+Checking formatting...
+
+All matched files use the correct format.
+Finished in 1ms on 2 files using 12 threads.
+FORMAT=0
+PACKAGE_TEST=1
+IM3_TARGETED=1
+BM2_TARGETED=0
+
+> @math-platform/ai-tutoring@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+PACKAGE_LINT=0
+ROUTE_TEST_LINT=0
+
+> @math-platform/ai-tutoring@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+PACKAGE_TYPECHECK=0
+
+> doctor
+> bash measure/scripts/doctor.sh
+
+[doctor] Checking generated documentation...
+[architecture-reports] Verified 5 files.
+[doctor] Running monorepo boundary lint...
+[OK] Architecture manifest covers 26 workspaces; 620 internal imports checked; package DAG acyclic.
+[doctor] All checks passed.
+DOCTOR=0
+
+> format:check
+> oxfmt --check apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.s2.adversarial.test.ts packages/ai-tutoring/src/__tests__/role-configuration.adversarial.test.ts
+
+Checking formatting...
+
+All matched files use the correct format.
+Finished in 1ms on 2 files using 12 threads.
+FIXTURE_FORMAT=0
+
+> @math-platform/ai-tutoring@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+FIXTURE_LINT=0
+
+> @math-platform/ai-tutoring@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+FIXTURE_TYPECHECK=0
+PACKAGE_TEST_FINAL=1

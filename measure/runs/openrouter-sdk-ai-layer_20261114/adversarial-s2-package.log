@@ -1,0 +1,206 @@
+
+> @math-platform/ai-tutoring@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+
+ ❯ src/__tests__/role-configuration.adversarial.test.ts (12 tests | 4 failed) 831ms
+     × fails closed when the tutor model is removed after the cache is warm 14ms
+     × fails closed when the API key is removed after the spreadsheet cache is warm 3ms
+     × returns the same trimmed answer for a strict 200 body and a documented-shape 200 body 4ms
+     × does not log prompt, answer, or key values from unexpected served model metadata 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/role-configuration.adversarial.test.ts > S2 role selection through the real SDK > fails closed when the tutor model is removed after the cache is warm
+AssertionError: expected "vi.fn()" to be called 1 times, but got 2 times
+ ❯ src/__tests__/role-configuration.adversarial.test.ts:162:28
+    160|     if (nextTutor) await nextTutor(MESSAGES);
+    161|
+    162|     expect.soft(fetchMock).toHaveBeenCalledTimes(1);
+       |                            ^
+    163|     expect.soft(nextTutor).toBeNull();
+    164|     expect(logs.error.mock.calls).toEqual([
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+ FAIL  src/__tests__/role-configuration.adversarial.test.ts > S2 role selection through the real SDK > fails closed when the tutor model is removed after the cache is warm
+AssertionError: expected [Function: openRouterProviderWithMessages] to be null
+
+- Expected:
+null
+
++ Received:
+[Function openRouterProviderWithMessages]
+
+ ❯ src/__tests__/role-configuration.adversarial.test.ts:163:28
+    161|
+    162|     expect.soft(fetchMock).toHaveBeenCalledTimes(1);
+    163|     expect.soft(nextTutor).toBeNull();
+       |                            ^
+    164|     expect(logs.error.mock.calls).toEqual([
+    165|       [
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+
+ FAIL  src/__tests__/role-configuration.adversarial.test.ts > S2 role selection through the real SDK > fails closed when the tutor model is removed after the cache is warm
+AssertionError: expected [] to deeply equal [ [ …(2) ] ]
+
+- Expected
++ Received
+
+- [
+-   [
+-     "[ai-tutoring] AI role not configured",
+-     "{\"role\":\"studentTutor\",\"missing\":\"OPENROUTER_MODEL_STUDENT_TUTOR\",\"reason\":\"missing\"}",
+-   ],
+- ]
++ []
+
+ ❯ src/__tests__/role-configuration.adversarial.test.ts:164:35
+    162|     expect.soft(fetchMock).toHaveBeenCalledTimes(1);
+    163|     expect.soft(nextTutor).toBeNull();
+    164|     expect(logs.error.mock.calls).toEqual([
+       |                                   ^
+    165|       [
+    166|         "[ai-tutoring] AI role not configured",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+
+ FAIL  src/__tests__/role-configuration.adversarial.test.ts > S2 role selection through the real SDK > fails closed when the API key is removed after the spreadsheet cache is warm
+AssertionError: expected "vi.fn()" to be called 1 times, but got 2 times
+ ❯ src/__tests__/role-configuration.adversarial.test.ts:183:28
+    181|     if (nextSheet) await nextSheet(PROMPT);
+    182|
+    183|     expect.soft(fetchMock).toHaveBeenCalledTimes(1);
+       |                            ^
+    184|     expect.soft(nextSheet).toBeNull();
+    185|     expect(logs.error.mock.calls).toEqual([
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/10]⎯
+
+ FAIL  src/__tests__/role-configuration.adversarial.test.ts > S2 role selection through the real SDK > fails closed when the API key is removed after the spreadsheet cache is warm
+AssertionError: expected [Function openRouterProvider] to be null
+
+- Expected:
+null
+
++ Received:
+[Function openRouterProvider]
+
+ ❯ src/__tests__/role-configuration.adversarial.test.ts:184:28
+    182|
+    183|     expect.soft(fetchMock).toHaveBeenCalledTimes(1);
+    184|     expect.soft(nextSheet).toBeNull();
+       |                            ^
+    185|     expect(logs.error.mock.calls).toEqual([
+    186|       [
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/10]⎯
+
+ FAIL  src/__tests__/role-configuration.adversarial.test.ts > S2 role selection through the real SDK > fails closed when the API key is removed after the spreadsheet cache is warm
+AssertionError: expected [] to deeply equal [ [ …(2) ] ]
+
+- Expected
++ Received
+
+- [
+-   [
+-     "[ai-tutoring] AI role not configured",
+-     "{\"role\":\"spreadsheetEval\",\"missing\":\"OPENROUTER_API_KEY\",\"reason\":\"missing\"}",
+-   ],
+- ]
++ []
+
+ ❯ src/__tests__/role-configuration.adversarial.test.ts:185:35
+    183|     expect.soft(fetchMock).toHaveBeenCalledTimes(1);
+    184|     expect.soft(nextSheet).toBeNull();
+    185|     expect(logs.error.mock.calls).toEqual([
+       |                                   ^
+    186|       [
+    187|         "[ai-tutoring] AI role not configured",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/10]⎯
+
+ FAIL  src/__tests__/role-configuration.adversarial.test.ts > S2 responses and logs through the real SDK > returns the same trimmed answer for a strict 200 body and a documented-shape 200 body
+AssertionError: expected ' \nS2 answer fixture 9832\t ' to be 'S2 answer fixture 9832' // Object.is equality
+
+- Expected
++ Received
+
+- S2 answer fixture 9832
++
++ S2 answer fixture 9832
+
+ ❯ src/__tests__/role-configuration.adversarial.test.ts:211:31
+    209|     const send = provider();
+    210|     await expect(send(PROMPT)).resolves.toBe(ANSWER);
+    211|     await expect(send(PROMPT)).resolves.toBe(ANSWER);
+       |                               ^
+    212|     expect(fetchMock).toHaveBeenCalledTimes(2);
+    213|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/10]⎯
+
+ FAIL  src/__tests__/role-configuration.adversarial.test.ts > S2 responses and logs through the real SDK > does not log prompt, answer, or key values from unexpected served model metadata
+AssertionError: expected '[[["[ai-tutoring] request","{\"role\"…' not to contain 'sk-test-role-fixture-7391'
+
+Expected: "sk-test-role-fixture-7391"
+Received: "[[["[ai-tutoring] request","{\"role\":\"studentTutor\",\"model\":\"S2 prompt fixture 4917 S2 answer fixture 9832 sk-test-role-fixture-7391\",\"latencyMs\":0,\"promptTokens\":7,\"completionTokens\":3,\"totalTokens\":10,\"outcome\":\"ok\",\"status\":null}"]],[],[],[],[]]"
+
+ ❯ src/__tests__/role-configuration.adversarial.test.ts:240:77
+    238|       expect.objectContaining({ role: "studentTutor", outcome: "ok", t…
+    239|     ]);
+    240|     for (const value of [KEY, PROMPT, ANSWER]) expect.soft(logs.text()…
+       |                                                                             ^
+    241|   });
+    242|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/10]⎯
+
+ FAIL  src/__tests__/role-configuration.adversarial.test.ts > S2 responses and logs through the real SDK > does not log prompt, answer, or key values from unexpected served model metadata
+AssertionError: expected '[[["[ai-tutoring] request","{\"role\"…' not to contain 'S2 prompt fixture 4917'
+
+Expected: "S2 prompt fixture 4917"
+Received: "[[["[ai-tutoring] request","{\"role\":\"studentTutor\",\"model\":\"S2 prompt fixture 4917 S2 answer fixture 9832 sk-test-role-fixture-7391\",\"latencyMs\":0,\"promptTokens\":7,\"completionTokens\":3,\"totalTokens\":10,\"outcome\":\"ok\",\"status\":null}"]],[],[],[],[]]"
+
+ ❯ src/__tests__/role-configuration.adversarial.test.ts:240:77
+    238|       expect.objectContaining({ role: "studentTutor", outcome: "ok", t…
+    239|     ]);
+    240|     for (const value of [KEY, PROMPT, ANSWER]) expect.soft(logs.text()…
+       |                                                                             ^
+    241|   });
+    242|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/10]⎯
+
+ FAIL  src/__tests__/role-configuration.adversarial.test.ts > S2 responses and logs through the real SDK > does not log prompt, answer, or key values from unexpected served model metadata
+AssertionError: expected '[[["[ai-tutoring] request","{\"role\"…' not to contain 'S2 answer fixture 9832'
+
+Expected: "S2 answer fixture 9832"
+Received: "[[["[ai-tutoring] request","{\"role\":\"studentTutor\",\"model\":\"S2 prompt fixture 4917 S2 answer fixture 9832 sk-test-role-fixture-7391\",\"latencyMs\":0,\"promptTokens\":7,\"completionTokens\":3,\"totalTokens\":10,\"outcome\":\"ok\",\"status\":null}"]],[],[],[],[]]"
+
+ ❯ src/__tests__/role-configuration.adversarial.test.ts:240:77
+    238|       expect.objectContaining({ role: "studentTutor", outcome: "ok", t…
+    239|     ]);
+    240|     for (const value of [KEY, PROMPT, ANSWER]) expect.soft(logs.text()…
+       |                                                                             ^
+    241|   });
+    242|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/10]⎯
+
+
+ Test Files  1 failed | 8 passed (9)
+      Tests  4 failed | 137 passed (141)
+   Start at  13:46:55
+   Duration  17.56s (transform 98ms, setup 0ms, import 1.98s, tests 14.77s, environment 1ms)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+npm error workspace @math-platform/ai-tutoring@0.1.0
+npm error location /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+npm error command failed
+npm error command sh -c vitest run
