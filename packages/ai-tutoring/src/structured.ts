@@ -9,7 +9,7 @@
 import { z } from "zod";
 
 import { createOpenRouterClient } from "./openrouter-client";
-import { safeModel } from "./providers";
+import { safeModel } from "./model-id";
 import { withRetry, EmptyResponseError } from "./retry";
 import { resolveRoleModel, type AiRole } from "./roles";
 import { logAiRequest, logRoleNotConfigured } from "./usage-log";
