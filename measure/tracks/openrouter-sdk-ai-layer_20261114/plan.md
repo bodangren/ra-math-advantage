@@ -314,6 +314,10 @@ _Story ref: spec.md#story-s2_
     - [ ] Append `[checkpoint: <sha>]` to the Phase S2 heading.
     - [ ] Commit: `measure(plan): Mark phase 'Phase S2: Role-based model configuration' as complete`.
 
+Next-phase list (acceptance, record-only): F1 (Major: the BM2 lesson chatbot embeds lesson markdown without the `stripPersonDetails` fix; fix first in S3). F2 (the evidence log citation for the F1 4/4 claim is the mid-fix run; cite a fresh run at the next evidence commit). F3 (the IM3 strip is fixture-shaped; make it robust or accept the limit in writing). F4 (`MODEL_ID` accepts a bare key form; record the model only when it equals the configured model or the configured model plus a known suffix). F5 (the stale tech-stack current-state lines; fixed in `595430f6`). F6 (process records: the third-round PM approval is in `metadata.json`; the S2 Contract and Test (Red) task lines now cite `8e803b83` and `c80b7352`; eight run files were force-added; commit `1833c526` has no note). F7 (carried: the cache key holds the API key; both rate-limit catches log the raw error object; `OPENROUTER_DEBUG` logs the auth header; `gates.sh` cannot see a new or larger BM2 bundle entry).
+
+Checkpoint record (2026-11-23): Phase acceptance passed at `8bc7469a`. The PM decision accepts the third Green round (r4, `ea1e7920`). The S2 Verify, Docs & Doctor, and manual-verification tasks are [x], and the tech-stack current state is correct in `595430f6`.
+
 ## Phase S3: Structured output for the evaluation features
 _Story ref: spec.md#story-s3_
 
