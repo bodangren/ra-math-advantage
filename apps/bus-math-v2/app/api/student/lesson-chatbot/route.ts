@@ -180,7 +180,7 @@ export async function POST(request: NextRequest) {
         .map((s) => (s.content as { markdown?: string }).markdown || "")
         .join("\n\n"),
     },
-    [session.displayName, session.email, session.username, session.sub],
+    [session.username, session.sub],
   );
 
   const messages = buildMessages(context, sanitizedQuestion);
