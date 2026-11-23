@@ -230,7 +230,13 @@ _Story ref: spec.md#story-s2_
       `chat.send`. (d) The Red tests call the provider resolvers with a role
       argument through a cast; the signature change is Green's.
     - [ ] Commit: `test(ai-tutoring): specify the role configuration (Red)`.
-- [ ] Task: S2 Implement — read the model from the role
+- [x] Task: S2 Implement — read the model from the role (6883bb9d.)
+    - Green replaced the Red stubs with the Contract values and behavior. F1a
+      returns the documented-body content, F1b retries an error-only 200 body
+      three times, and F10 strips the Bearer scheme without case sensitivity.
+      Targeted role cases 12/12, F1 4/4, F10 2/2, package suite 127/127. Logs:
+      `green-s2-targeted-role.log`, `green-s2-targeted-F1.log`,
+      `green-s2-targeted-F10.log`, `green-s2-package-test.log`.
     - [ ] In `src/providers.ts`, make `model` and `role` required in `OpenRouterProviderOptions`. Remove each `'openrouter/free'` default and each read of `OPENROUTER_MODEL`.
     - [ ] Change `resolveOpenRouterProviderFromEnv` and `resolveOpenRouterProviderWithMessagesFromEnv` to take an `AiRole`. Cache one provider for each role. `clearProviderCache` clears all roles.
     - [ ] Use `resolveRoleModel` and the API key check. On a missing setting, log it and return `null`.
@@ -239,7 +245,15 @@ _Story ref: spec.md#story-s2_
     - [ ] Export `AI_ROLES`, `AiRole`, `resolveRoleModel`, and `buildProviderPreferences` from `src/index.ts`.
     - [ ] Update `packages/ai-tutoring/workerd-probe/worker.ts` to pass `role: 'studentTutor'` and a model.
     - [ ] Commit: `feat(ai-tutoring): read each model from its role variable`.
-- [ ] Task: S2 Implement — move the callers to their roles
+- [x] Task: S2 Implement — move the callers to their roles (3e4a6d56.)
+    - Both chatbots pass `studentTutor` and the spreadsheet feedback passes
+      `spreadsheetEval`. `S2_GREEN_TEST_COMMAND` exits 0 for the passing
+      workspaces; BM2 and IM3 keep their 7 and 218 baseline failure keys. The
+      workerd probe answers `probe-ok`. Lint, test and checks-all gate sweeps
+      with label `s2` each exit 0 with `NEWFAIL=0`. Logs:
+      `green-s2-test-bm2.log`, `green-s2-test-im3.log`,
+      `green-s2-test-practice-core.log`, `green-s2-workerd.log`,
+      `green-s2-gates.exit`.
     - [ ] `apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts`: call `resolveOpenRouterProviderWithMessagesFromEnv('studentTutor')`. Keep the 503 response.
     - [ ] `apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts`: the same change.
     - [ ] `apps/bus-math-v2/lib/ai/spreadsheet-feedback.ts`: call `resolveOpenRouterProviderFromEnv('spreadsheetEval')`. Keep the deterministic feedback for `null`.
