@@ -145,7 +145,16 @@ describe("GET teacher ai-error-summary no-PII", () => {
                     attemptNumber: 1,
                     submittedAt: new Date().toISOString(),
                     answers: { q1: "wrong-answer" },
-                    parts: [],
+                    parts: [
+                      {
+                        partId: "q1",
+                        rawAnswer: "wrong-answer",
+                        isCorrect: false,
+                        score: 0,
+                        maxScore: 1,
+                        misconceptionTags: ["debit-credit-confusion"],
+                      },
+                    ],
                   },
                 },
               ],
