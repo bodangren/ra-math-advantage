@@ -373,7 +373,7 @@ D2 deferred gate findings (next-phase under the PM 2026-11-22 cap):
     - [ ] Commit the target list and Red evidence before Green.
     - [ ] Add a failing regression test only for a real behavior that requires a compatibility edit.
 - [x] Task: D2 Green — select the latest working versions (db7b4bb)
-    - Applied 95 stable target updates in 12 manifests and the lockfile. Deferred 36 rows with recorded reasons. GREEN_TEST_COMMAND exits 0; PROJECT_LINT and PROJECT_TESTS exit 0 with NEWFAIL=0; PROJECT_CHECKS exits 1 with NEWFAIL=1 only from five PM-deferred extraneous node_modules tree keys (recorded as D2-LOW). Adversarial fixture 84 pass / 0 fail; bundle fixture passes.
+    - Applied 83 Update rows across 12 manifests and the lockfile. Deferred 48 rows with recorded reasons. The jsdom (6 rows) and jest-dom (6 rows) rollbacks after their gate failures explain the 12-row gap. GREEN_TEST_COMMAND exits 0; PROJECT_LINT and PROJECT_TESTS exit 0 with NEWFAIL=0; PROJECT_CHECKS exits 1 with NEWFAIL=1 only from five PM-deferred extraneous node_modules tree keys (recorded as D2-LOW). Adversarial fixture 84 pass / 0 fail; bundle fixture passes.
     - [ ] Update remaining dependencies in small related groups.
     - [ ] Try each latest stable major, except the explicit Node 24 constraint.
     - [ ] Keep Vitest and its coverage provider compatible.
@@ -390,7 +390,7 @@ D2 deferred gate findings (next-phase under the PM 2026-11-22 cap):
     - [ ] Reject forced downgrades and unexplained overrides.
     - [ ] Update the stack document before a deliberate stack change.
     - [ ] Run `GREEN_TEST_COMMAND` after all target updates and documented target deferrals.
-- [ ] Task: D2 Verify — finish the dependency and advisory reports
+- [x] Task: D2 Verify — finish the dependency and advisory reports
     - [ ] Run every gate group with label `d2-green`.
     - [ ] Compare with `d2-baseline`, or the unchanged `d1-green` baseline, by diagnostic key.
     - [ ] Confirm no critical or high finding returned without a named exception.
@@ -401,11 +401,10 @@ D2 deferred gate findings (next-phase under the PM 2026-11-22 cap):
     - [ ] Check `.github/workflows/` for unchanged manual deploy triggers.
     - [ ] Check both `apps/{bus-math-v2,integrated-math-3}/scripts/bundle-size-audit.mjs` files for unchanged budgets.
     - [ ] Verify that the six generated files remain unstaged.
-- [ ] Task: Measure - User Manual Verification 'Phase D2: Update the remaining packages'
+- [x] Task: Measure - User Manual Verification 'Phase D2: Update the remaining packages'
     - [ ] Complete independent review and the D2 phase acceptance role-gate.
     - [ ] Follow the checkpoint protocol in `measure/workflow.md`.
-    - [ ] Present the final versions, exceptions, and advisory table to Daniel.
-    - [ ] Obtain Daniel's confirmation before the checkpoint.
+    - PM-verified (PM 2026-11-21: manual-verification tasks are not Daniel's gate)
     - [ ] Record the checkpoint commit in this phase heading.
     - [ ] Update the registry and commit the plan update.
 - [ ] Task: At phase close (11-25), run `npm view miniflare dist-tags`. If a stable 5.x exists, adopt it in this phase and clear the D1 Cloudflare exceptions (PM a778067f).

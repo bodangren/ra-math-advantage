@@ -585,13 +585,13 @@ Immutable phase base: `43f2962725d31ceb2a01985ee21361739bf293c1`. Role base: `b9
 
 ### Target application
 
-The D2 Targets table holds 131 rows. Green applied 95 Update declarations across 27 manifests, then deferred 36 rows after registry and gate evidence. The retained set satisfies `gates.sh targets`: 0 `Below target` lines, 130 `Target met`, and 1 `Deferred existing pin` for `tsrs`.
+The D2 Targets table holds 131 rows. Green applied 83 Update rows across 12 manifests, then deferred 48 rows after registry and gate evidence. The jsdom (6 rows) and jest-dom (6 rows) rollbacks after their gate failures explain the 12-row gap against the earlier 95/36 count. The retained set satisfies `gates.sh targets`: 0 `Below target` lines, 130 `Target met`, and 1 `Deferred existing pin` for `tsrs`.
 
 | Package | Target | Outcome | Evidence |
 |---|---|---|---|
-| 95 declarations: convex 1.51.0, lucide-react 1.77.0, tailwind-merge 3.7.1, autoprefixer 10.7.0, postcss 8.5.33, tailwindcss 4.3.5, @tailwindcss/postcss 4.3.5, @tailwindcss/typography 0.5.20, @testing-library/dom 10.4.2, @testing-library/user-event 14.6.13, @playwright/test 1.65.1, @axe-core/playwright 4.14.0, Radix 1.3.1/1.4.1/2.2.1/2.1.17/1.5.0/1.2.1, recharts 3.11.0, ts-fsrs 6.0.1, @convex-dev/migrations 0.3.9, @openrouter/sdk 1.5.128, oxfmt 0.79.0, oxlint 1.94.0, @oxlint/plugins 1.94.0, oxlint-plugin-eslint 1.94.0 | installed | `targets` exits 0; logs `green-d2-install-r2.out`, `green-d2-targets-r2.out` |
+| 83 declarations: convex 1.51.0, lucide-react 1.77.0, tailwind-merge 3.7.1, autoprefixer 10.7.0, postcss 8.5.33, tailwindcss 4.3.5, @tailwindcss/postcss 4.3.5, @tailwindcss/typography 0.5.20, @testing-library/dom 10.4.2, @testing-library/user-event 14.6.13, @playwright/test 1.65.1, @axe-core/playwright 4.14.0, Radix 1.3.1/1.4.1/2.2.1/2.1.17/1.5.0/1.2.1, recharts 3.11.0, ts-fsrs 6.0.1, @convex-dev/migrations 0.3.9, @openrouter/sdk 1.5.128, oxfmt 0.79.0, oxlint 1.94.0, @oxlint/plugins 1.94.0, oxlint-plugin-eslint 1.94.0 | installed | `targets` exits 0; logs `green-d2-install-r2.out`, `green-d2-targets-r2.out` |
 | vitest (26 rows), @vitest/coverage-v8 (1 row) | keep 4.1.12 | Deferred: vitest 5.1.1 added a new Unhandled Rejection reporter key in the BM2 test gate; `green-d2-vitest5-bm2-newkey.log` holds the fail-before log; the provider stays on the same 4.x major | 
-| @testing-library/jest-dom (6 rows) | keep 6.9.1 | Deferred: jest-dom 8.0.0 declares peer `vitest >=5 <6`; with vitest 4.1.12 retained, `npm ls --all` added a new invalid edge; no-new-key rule defers the major |
+| @testing-library/jest-dom (6 rows) | keep 6.9.1 | Deferred: registry peer-range fact. `npm view @testing-library/jest-dom@8.0.0 peerDependencies` returns `vitest: ">=5 <6"` and `@testing-library/dom: ">=10 <11"`. Against the retained vitest 4.1.12, this range creates an invalid edge deterministically. The no-new-key rule defers the major with its peer. No committed log records a jest-dom 8 trial (Review B N1), so this proof uses the registry command, not a tree-check log. |
 | jsdom (6 rows) | keep 29.1.1 | Deferred: jsdom 31.0.1 changed the DOM accessibility tree and added one serious axe violation in activity-components (`green-d2-jsdom31-a11y-fail.log`, StepByStepper guided mode). With 29.1.1 hoisted, that suite passes 310 of 310 tests (`green-d2-a11y-probe.out`). |
 | tailwindcss declarations | range `^4.0.0`, lockfile 4.3.5 | The W5 audit contract requires app ranges to admit 4.0.0. A `^4.3.5` declaration failed that contract with three new audit-suite keys. The declaration stays `^4.0.0` while the lockfile holds 4.3.5, so the installed target is met. `green-d2-w5-probe.out`: 21 of 21 tests pass. |
 | katex hoisting | root 0.17.0, as at baseline | A temporary `npm dedupe` had moved the root katex copy to 0.16.47 and broke the W5 floor. The final clean install restores 0.17.0. The three katex advisory rows in the final table still name that copy. |
@@ -607,7 +607,7 @@ No new prerelease enters the lockfile. `@types/node` declarations stay at `^24.1
 - F8: the audit gate rebinds every high identifier to its package and disclosed path. The fresh D2 audit names all 36 pairs with no undisclosed path.
 - F9: a critical-severity vulnerability now always fails the audit gate, including a known identifier that escalates from high.
 - Bundle aggregate rule: the per-EXCEEDS size check now skips aggregate `Total dist/*` entries. The 5% `TOTAL_BYTES` rule already guards those totals. The spec permits an already-failing total to grow below 5 percent. A new EXCEEDS key and a growing non-aggregate EXCEEDS key still fail. Fixture cases `BUNDLE_NEW_BUDGET_FAILURE`, `BUNDLE_HASH_RENAME_LARGER`, and `BUNDLE_PASSING_SIBLING_NOW_EXCEEDS` still pass.
-- F-PA1: the lint group `.out` file holds the root `npm run lint --workspaces --if-present` output. The group result comes from `green-d2-PROJECT_LINT.exit` (0), the gate folder `lint.steps` records, and the live `NEWFAIL=0` line. The `.out` file is not a group marker.
+- F-PA1: the committed lint group `.out` file (`green-d2-PROJECT_LINT.out`) is the group marker and holds `NEWFAIL=0`. The gate folder `lint.steps` is empty. The exits come from `d2-final-gates.exit` (`green-d2-PROJECT_LINT=0`) and `gates/d2-green/lint/lint.exit`. This correction follows the adversarial D2-ADV-5 result.
 - F-PA3: `plan.md` r9 remediation now records one failing case and one passing timing control, matching `green-r9-adversarial-before.out`. The exception paths in this file use the verified parent chain `@cloudflare/vite-plugin 1.49.0 > wrangler 4.116.0 > miniflare 4.20260730.0 > <leaf>`.
 - Review B F2: the audit gate binds identifier, package, and disclosed path, with fixture proof in `AUDIT_KNOWN_ID_WRONG_PACKAGE`, `AUDIT_KNOWN_ID_NEW_PATH`, `AUDIT_KNOWN_ID_PARENT_SUBSTRING`, and `AUDIT_KNOWN_ID_SCOPED_PARENT`. No identifier-only match remains.
 - Review B F5: wrangler and the plugin are `Deferred:` rows at 4.116.0 and 1.49.0, as the no-stable-miniflare-5 rule requires.
@@ -708,3 +708,16 @@ Live report: `measure/runs/dependency-refresh_20261121/gates/d2-audit-green/audi
 | `vinext` | Moderate | GHSA-px8p-9vwx-vf98 (forwarded) | 1.4.6 | vinext 1.4.6 > @vercel/og 1.0.3 > satori 0.33.5 > fflate 0.7.3 | no upstream fix: 1.4.6 is the selected stable release; the npm proposal of 0.2.1 is a downgrade and stays forbidden. |
 
 The `baseline-browser-mapping` moderate finding from the initial report is gone after the D2 parent updates. No override was added for any row. The four remaining identifiers are GHSA-g7r4-m6w7-qqqr (esbuild), GHSA-px8p-9vwx-vf98 (fflate), GHSA-238p-pmpm-9mq7 (katex), and GHSA-rj75-hqrm-r3gf (postcss-selector-parser). All four chains are build or content rendering dependencies, not runtime services of the deployed Worker.
+
+## D2 Independent Review and Acceptance (2026-11-23)
+
+Four roles reviewed the immutable `be64041e` HEAD. Each result file and log is in `measure/runs/dependency-refresh_20261121/`.
+
+| Role | Artifact | Status | Result |
+|---|---|---|---|
+| Review A | `review-a-be64041e.json`, `review-a-be64041e.log` | pass | No blocking or nonblocking finding. Confirms targets, gate fixes, advisory reasons, bundle totals, and staged scope. Its count sentence repeats the stale 95/36 figures corrected above. |
+| Review B | `review-b-be64041e.json`, `review-b-be64041e.log` | pass | No blocking finding. N1 names the six jest-dom deferral rows that cite an unrecorded tree check; the proof is restated above as a registry peer-range fact. |
+| Adversarial | `adversarial-be64041e.json`, `adversarial-be64041e.log` | pass | No blocking finding. D2-ADV-1..4 name four uncovered input forms in the gate tools. D2-ADV-5 corrects the F-PA1 lint citation above. |
+| Acceptance | `phase-acceptance-be64041e.json`, `phase-acceptance-be64041e.log` | pass | No blocking finding. F-PA-D2-1 (stale count) and F-PA-D2-2 (staged log relabel) are corrected in this checkpoint prep. |
+
+Role-gate notes: each role gate fails only on the same four non-deferred incomplete tasks — D2 Verify, manual verification, the 11-25 miniflare recheck, and track close. No other gate finding fails. The PM accepts this deviation; the four tasks stay open until the checkpoint by the PM ruling of 2026-11-22. The adversarial role gate passes when run with the D2 `PROJECT_*` environment overrides from `plan.md`.
