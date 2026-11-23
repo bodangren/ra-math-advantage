@@ -348,7 +348,7 @@ Record any additional declaring workspace manifest from the fresh inventory befo
 Record every targeted command and its changed files in `evidence.md`.
 These commands belong to Green, not this authoring session.
 
-## Phase D2: Update the remaining packages
+## Phase D2: Update the remaining packages [checkpoint: 294877eb]
 
 Due: 2026-11-25. Depends on D1 acceptance.
 
