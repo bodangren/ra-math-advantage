@@ -1,0 +1,56 @@
+# Red log S2: Role-based model configuration (role mid-red)
+
+Route: opencode-go/muse-spark-1.3-contributor#high.
+phase_base_sha d8e08cde and role_base_sha d8e08cde both resolve and equaled
+HEAD at start. role_base_sha is an ancestor of the Red commit 8e803b83, which
+proves this role committed new Red work. The six generated files stayed
+unstaged throughout.
+
+## Steps
+
+1. Marked the S2 Contract and S2 Test (Red) tasks `[~]` in plan.md before
+   work started.
+2. Created the Contract stubs `packages/ai-tutoring/src/roles.ts` and
+   `packages/ai-tutoring/src/usage-log.ts` with placeholder values and no
+   behavior. Created `packages/ai-tutoring/src/__tests__/roles.test.ts` with
+   the 12 S2 cases, appended the F1 and F10 tests to
+   `packages/ai-tutoring/src/__tests__/providers.test.ts`, and created the two
+   `route.no-pii.test.ts` guards. Added the dated S2 roles note to
+   `measure/tech-stack.md`.
+3. Ran oxfmt on the new files (clean).
+4. RED run: `CI=true npm run test --workspace=packages/ai-tutoring -- -t
+   'role configuration'` => 12 run, 12 failed, 115 skipped. Case 1 sends
+   `openrouter/free` instead of `vendor/model-a`. Case 2 sends
+   `openrouter/free` instead of `~google/gemini-latest`. Cases 3 and 11 find
+   zero usage records. Case 4 finds `sendsPii: true` in the stub. Case 5 finds
+   `{ require_parameters: true }` where the contract needs `undefined`. Cases
+   6 to 9 return a provider instead of `null`. Case 10 returns `null` but logs
+   no missing key name. Case 12 finds the stub preferences object instead of
+   `undefined`. No mock-mechanism failure and no missing-module failure.
+5. F1/F10 run: `CI=true npm run test --workspace=packages/ai-tutoring -- -t
+   'F1'` => 4 run, 4 failed, 123 skipped. F1a rejects with `OpenRouter API
+   error: 200 Response validation failed` instead of returning `Hello
+   there!`. F1b rejects with the same 200 API error after 1 fetch call
+   instead of `EmptyResponseError` after 3 calls. F10a and F10b keep the
+   echoed token in the mapped error text. The real SDK runs through a mocked
+   `fetch`; `chat.send` is not stubbed in F1.
+6. No-PII guards: IM3 ` -t 'no-PII'` => 1 passed, 7069 skipped. BM2
+   ` -t 'no-PII'` => 1 passed, 2698 skipped.
+7. Committed the Red tests and stubs as 8e803b83 with a git note, then the
+   plan evidence and `[x]` marks as c80b7352 with a git note.
+8. Role gate was not run in this session; the orchestrator runs it. No `[~]`
+   task remains in the plan.
+
+MEASURE_AGENT_RESULT
+role: measure-mid-red
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S2: Role-based model configuration
+baseline_sha: d8e08cde
+commits: 8e803b83, c80b7352
+tests_run: role configuration => 12 run, 12 failed, 115 skipped (fails on assertions, not on mock mechanism or missing module); F1 filter => 4 run, 4 failed, 123 skipped (F1a documented-example 200 rejected, F1b error-only 200 not retried, F10a/F10b token kept); IM3 no-PII => 1 passed, 7069 skipped; BM2 no-PII => 1 passed, 2698 skipped
+files_changed: packages/ai-tutoring/src/roles.ts, packages/ai-tutoring/src/usage-log.ts, packages/ai-tutoring/src/__tests__/roles.test.ts, packages/ai-tutoring/src/__tests__/providers.test.ts, apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts, apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts, measure/tech-stack.md
+plan_updates: S2 Contract and S2 Test (Red) marked [x] with RED run evidence and four record-only deviations (F13 camelCase fields, stub values, F1 importActual placement, role-arg cast)
+known_failures: the 12 role cases, F1a, F1b, F10a, and F10b fail as required for Red; Green owns every failure. No unexpected failure. Both no-PII guards pass.
+handoff: Green implements roles.ts, usage-log.ts, provider role plumbing, caller moves, env examples, and F1/F10 fixes against these tests. Open questions: none; defaults stand (F13 camelCase requireParameters/zdr, F1 real-SDK-through-mocked-fetch, no-PII guards pass at Red).
+END_MEASURE_AGENT_RESULT
