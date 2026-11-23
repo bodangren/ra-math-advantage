@@ -1,8 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import {
-  clearProviderCache,
-  resolveOpenRouterProviderWithMessagesFromEnv,
-} from "../providers";
+import { clearProviderCache, resolveOpenRouterProviderWithMessagesFromEnv } from "../providers";
 
 const KEY = "sk-test-debug-fixture-6642";
 const TUTOR_ENV = "OPENROUTER_MODEL_STUDENT_TUTOR";
