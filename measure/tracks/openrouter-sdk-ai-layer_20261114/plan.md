@@ -55,6 +55,10 @@ reach the provider. It asserts that no captured string contains any fixture valu
 - Make one commit for each task, with a git note (`measure/workflow.md` steps 9 to 12).
 - Do not push. Only the closeout step pushes (spec "Non-Functional Requirements").
 
+### Track Notes and Gates
+
+- Gate: no student-facing release of the BM2 chatbot before the PII strip passes. (PM decision 2026-11-23)
+
 ## Phase S1: Adopt the OpenRouter SDK [checkpoint: 14f75797]
 _Story ref: spec.md#story-s1_
 
@@ -320,6 +324,26 @@ Checkpoint record (2026-11-23): Phase acceptance passed at `8bc7469a`. The PM de
 
 ## Phase S3: Structured output for the evaluation features
 _Story ref: spec.md#story-s3_
+
+Gate: no student-facing release of the BM2 chatbot before the PII strip passes. (PM decision 2026-11-23)
+
+- [ ] Task: S3 Fix — BM2 lesson-chatbot PII strip (do first)
+    - The BM2 route `apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts` maps the lesson markdown into the `studentTutor` prompt with no person-detail strip (lines 175 to 178 at `8bc7469a`).
+    - Invariant: every AI prompt contains no PII. No live BM2 curriculum markdown holds a person detail today. The path is still unproven.
+    - Test first. Add a no-PII test that runs the real `assembleLessonChatbotContext` with fixture person details in the lesson markdown. The current mock test puts no fixture value in that markdown, so it proves the session and account paths only.
+    - Reuse the `stripPersonDetails` behavior of `apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts`. Move it to `packages/ai-tutoring` only when the move needs no new layer. Do not add a second implementation.
+    - Acceptance: the captured prompt holds no fixture value, and the later lesson text stays in the prompt.
+- [ ] Task: S3 Fix — close the S2 review findings (Review B r3 and acceptance)
+    - (a) Make the IM3 strip robust beyond the colon-labeled fixture. Cover the dash form, the em-dash form, unlisted labels, prose names, an obfuscated email, and a fullwidth label. Add one test for each form. If a conservative sentence-level detector is too broad, accept the limit in writing.
+    - (b) Tighten `MODEL_ID`. Record the served model in a usage record only when it equals the configured model or the configured model plus a known suffix. A bare API key form must give `model: null`. Add a test.
+    - (c) Stop keeping the raw API key in the provider cache key. Key the cache on a stable non-secret value. Keep the warm-cache recheck of the key and the role model.
+    - (d) Log the status and the role only in the rate-limit catch of both chatbot routes: `apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts` near line 196 and `apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts` near line 102. Add a test that the raw error object reaches no console call.
+    - (e) Carried items:
+        - N1: pass a redacting `debugLogger` for `OPENROUTER_DEBUG`, so the auth header never prints.
+        - N2: make the S2 Verify grep ignore the case-9 fixture lines in `roles.test.ts` and the live complement in `role-configuration.adversarial.test.ts`.
+        - N3: add a two-role cache isolation test.
+        - N5: add a padded preset test.
+    - Do not change an adversarial assertion. Record each test-first proof in this plan.
 
 - [ ] Task: S3 Contract — define the helper and the teacher summary
     - [ ] Add `"zod": "^4.1.12"` to the `dependencies` of `packages/ai-tutoring/package.json` (spec "Non-Functional Requirements"). Run `npm install`.
