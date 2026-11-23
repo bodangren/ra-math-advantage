@@ -558,3 +558,380 @@ Decision: do not adopt `npx emulate --service ai`; no `emulate` binary or depend
 | F13 | The SDK field names for `buildProviderPreferences` are `requireParameters` and `zdr`; the outbound JSON uses snake_case. | Assert the names recorded in `evidence.md`. Do not guess a field name. |
 | F14 | The two no-PII route tests may pass at Red. | Record them as guards. The Red proof is the 12 failing role cases. |
 | F15 | F1 and F10 are S1 findings fixed in S2. | Treat both as deploy blockers. Close them before any deploy of S1 code. |
+
+---
+
+## Phase S3: Structured output for the evaluation features
+
+This section refreshes the strategy for S3. It wins over sections 1 to 13 and the
+"Phase S2" section when a rule disagrees. The gate capture and per-key comparison
+rules of sections 4 and 5 still apply to each S3 gate. Label the S3 gate logs `s3`
+instead of `s1` or `s2`. Store the logs under
+`measure/runs/openrouter-sdk-ai-layer_20261114/gates/s3/`.
+
+### S3.0 Red order and the release gate
+
+Red starts with the two "S3 Fix" tasks of the plan. These two tasks are the FIRST
+Red group. Red writes and runs them before the S3 Contract task and before the
+main S3 Red group.
+
+1. Fix 1 comes first: the BM2 lesson-chatbot PII strip. Red writes the no-PII test
+   that runs the real `assembleLessonChatbotContext` with fixture person details in
+   the lesson markdown. This is the first S3 test Red writes and runs.
+2. Fix 2 comes next: the S2 review findings (a) to (e).
+
+Both fixes use the vitest filter `S3 fix`. Put each Fix test in a
+`describe('S3 fix', ...)` block in its test file. The BM2 PII strip test sits in the
+BM2 lesson-chatbot route test file.
+
+`S3_FIX_RED_TEST_COMMAND` is the first Red command. Run the three invocations in
+this order:
+
+```
+CI=true npm run test --workspace=apps/bus-math-v2 -- -t 'S3 fix'
+CI=true npm run test --workspace=packages/ai-tutoring -- -t 'S3 fix'
+CI=true npm run test --workspace=apps/integrated-math-3 -- -t 'S3 fix'
+```
+
+The first invocation proves Fix 1. The remaining invocations prove Fix 2 findings
+(a) to (e). A run with zero executed cases, or a `Cannot find module` failure, is
+invalid (A4). Record the first failing assertion line of each case.
+
+**PM gate (2026-11-23).** No student-facing release of the BM2 chatbot before the
+PII strip passes. This is a human release gate. The Fix 1 no-PII test is its
+automated proof. A release of the BM2 chatbot while that test is red fails the
+gate. The gate stays with the orchestrator until the test passes.
+
+### S3.1 What this phase proves
+
+S3 adds a structured-output helper and moves the two evaluation features onto it.
+The helper sends a strict JSON Schema `response_format`, returns typed failures,
+and never throws. The spreadsheet feedback and the teacher error summary keep
+their deterministic fallbacks. The teacher summary uses the lesson-level prompt
+with no student name.
+
+The proof has three parts:
+
+1. Live behavior tests. The Fix group, the main Red cases 1 to 18, and the four
+   no-PII tests.
+2. Gate sweeps. Each gate runs on the S3 base commit and after the change. Compare
+   by diagnostic key, not by workspace level (section 5).
+3. Artifact checks. The zod check, the `tech-stack.md` dated note, and the
+   `evidence.md` records are supporting evidence only. Section S3.10 names the
+   live complement of each artifact check.
+
+### S3.2 Risk and applicable roles
+
+S3 risk: **critical**. Reason: the Fix group guards a student-facing PII boundary
+under a PM release gate, and the phase adds a new parse path that can silently
+drop evaluation feedback. A strip that is too narrow leaks PII. A strip that is
+too broad drops lesson math. A wrong fallback hides a failed model call.
+
+| Role | Applicable | Reason |
+|------|-----------|--------|
+| Security review | yes | The BM2 PII strip and the four no-PII tests defend the student prompt boundary. No prompt holds a name, email, username, or account ID. Typed failures keep deterministic fallbacks. No log holds a key or a text body. `zdr` appears only for a role with the PII flag. |
+| UX/API review | yes (API) | The helper returns `StructuredResult<T>` with a typed `reason`. The teacher summary route keeps the keys `studentName`, `lessonTitle`, `deterministicSummary`, `aiSummary`, and `aiEnabled`. Only the value of `aiSummary` changes. No page or component changes. |
+| Adversarial testing | yes | Run the S3 ADV list in section S3.11. Try to pass without a real `response_format`, with a name in a prompt, with a masked typed failure, or with a raw key in a cache key or log. |
+| Browser review | no | S3 changes no page, component, or route rendering. Route tests assert the HTTP response and the captured prompt. The student name stays on the app side. No browser state exists to compare. |
+
+The live smoke test stays a manual human gate in S4. S3 does not run it.
+
+### S3.3 Red commands, fixtures, mocks, and live proof
+
+The main S3 Red command targets the new helper describe. The new file
+`packages/ai-tutoring/src/__tests__/structured.test.ts` uses
+`describe('structured output', ...)` with 9 cases.
+
+`S3_RED_TEST_COMMAND`:
+
+```
+CI=true npm run test --workspace=packages/ai-tutoring -- -t 'structured output'
+```
+
+The move tests run in BM2 with these filters:
+
+```
+CI=true npm run test --workspace=apps/bus-math-v2 -- -t 'spreadsheet-feedback'
+CI=true npm run test --workspace=apps/bus-math-v2 -- -t 'teacher AI error summary'
+CI=true npm run test --workspace=apps/bus-math-v2 -- -t 'GET /api/teacher/ai-error-summary'
+```
+
+The four no-PII tests use the guard filter `no-PII` in their workspaces. They may
+pass at Red. They do not count toward the failing main cases.
+
+`S3_GREEN_TEST_COMMAND` is the S2 four-workspace command:
+
+```
+CI=true npm run test --workspace=packages/ai-tutoring
+CI=true npm run test --workspace=packages/practice-core
+CI=true npm run test --workspace=apps/bus-math-v2
+CI=true npm run test --workspace=apps/integrated-math-3
+```
+
+**Fixtures.**
+
+- Structured answer fixture: valid JSON that matches each schema, plus a `raw`
+  string.
+- Typed failure fixtures: text that is not JSON, JSON that fails the schema, empty
+  content on each attempt, HTTP 400, HTTP 503 then a success, and an external
+  abort.
+- Schema fixture: `AiFeedbackResponseSchema` and `teacherAiSummarySchema`.
+- Teacher summary fixture: a `LessonErrorSummary` with a lesson title, correctness
+  line, misconception tags with counts and part IDs, scaffold counts, and an
+  activity breakdown. Its `studentName` is
+  `Avery Quinn (avery.quinn@example.org)`.
+- Strip fixtures: person-detail clauses in the colon form, dash form, em-dash
+  form, an unlisted label, a prose name, an obfuscated email, and a fullwidth
+  label. Each fixture places math text after the detail.
+- Model fixtures: a served model equal to the configured model, a served model
+  plus a known suffix, and a bare API key form.
+- No-PII Fixture from the plan "Rules for All Phases": 2 names (`Avery Quinn`,
+  `Jordan Lee`), 2 emails (`avery.quinn@example.org`, `jordan.lee@example.org`),
+  1 username (`aquinn42`), and 1 account ID (`k17pii0000account`).
+
+**Mocks.** Package tests use `vi.mock('@openrouter/sdk')`. Route tests mock auth,
+the Convex rate limit, and the structured provider. They capture the messages and
+the prompt that reach the provider. No test calls the live OpenRouter API.
+
+**Live-behavior proof.** The workerd probe answers `probe-ok` through the SDK in
+workerd. A unit test does not replace this proof. Route tests assert the HTTP
+response and the captured prompt. Both app builds exit 0 and both typechecks pass,
+since vinext build does not enforce types. The no-PII tests capture the real
+prompt builder or the real context assembler. A grep of the source is not the
+proof.
+
+### S3.4 Spec-to-test map
+
+| Spec item | Test | Falsification condition |
+|-----------|------|-------------------------|
+| S3 AC: `response_format` uses `json_schema`, `name`, `strict: true`, and `z.toJSONSchema()` | Main case 2 | Fails on a wrong field name, a missing `strict`, or a guessed schema form. Parse the request body. |
+| S3 AC: `provider` is exactly `{"require_parameters": true}` for a non-PII role | Main case 3 | Fails on any extra field, on `zdr: true`, or on a missing object. Compare the object by deep equality. |
+| S3 AC: bad JSON or a schema mismatch gives a typed failure and no throw | Main cases 4 and 5 | Fails on a thrown error, a wrong `reason`, or a missing `raw`. Assert the fields. |
+| S3 AC: spreadsheet feedback parses valid fields; score clamped 0 to 40; invalid gives deterministic feedback | Spreadsheet cases and case 10 | Fails on an out-of-range score, a dropped field, or a wrong fallback. Assert each labeled field. |
+| S3 AC: teacher summary uses `OPENROUTER_MODEL_ACCOUNTING_EVAL`, the lesson-level prompt, and the 4 fields | Teacher cases 11 to 13 | Fails on a wrong model, a wrong schema name, a missing field, or a missing prompt line. |
+| S3 AC: a failed call or a failed Zod check gives `aiSummary: null` and the deterministic summary | Cases 15 and 18 | Fails on a non-null `aiSummary` or a changed response key. Assert the 5 keys. |
+| S3 AC: the name and email stay out of the prompt; the prompt says "the student" | Case 17 and the teacher no-PII test | Fails if either value appears or the phrase is absent. |
+| S3 AC: submit and route prompts hold no fixture value | The two no-PII route tests | Fails on any captured fixture value or on no captured message. |
+| AC10: every prompt builder has a no-PII test | The four no-PII tests | Fails if any builder lacks a capturing test. |
+
+### S3.5 Fix group tests
+
+**Fix 1 — BM2 lesson-chatbot PII strip.** Add a no-PII test in the BM2 lesson-chatbot
+route test file. Put fixture person details in the lesson markdown. Run the real
+`assembleLessonChatbotContext` with those fixtures. Capture the prompt. Reuse the
+`stripPersonDetails` behavior of IM3. Move it to `packages/ai-tutoring` only when the
+move needs no new layer. Do not add a second implementation.
+
+Falsification: the captured prompt holds a fixture value, or the later lesson text
+is missing. Both conditions fail the test. A test that captures no prompt also
+fails. This test is the proof for the PM gate of S3.0.
+
+**Fix 2 — the S2 review findings.**
+
+- (a) IM3 strip robustness. Add one test for each form: dash, em-dash, unlisted
+  label, prose name, obfuscated email, and fullwidth label. Falsification: a
+  fixture value survives the strip, or the math text after the detail is removed.
+  If a conservative sentence-level detector is too broad, accept the limit in
+  writing in `evidence.md`.
+- (b) Tighten `MODEL_ID`. Record the served model only when it equals the
+  configured model or the configured model plus a known suffix. A bare API key
+  form gives `model: null`. Falsification: a bare key form reaches the usage
+  record as a model, or a valid known-suffix form is dropped. Parse the labeled
+  field.
+- (c) Remove the raw API key from the provider cache key. Key the cache on a
+  stable non-secret value. Keep the warm-cache recheck of the key and the role
+  model. Falsification: the cache key holds the key value, or a removed setting
+  still yields a cached provider.
+- (d) Rate-limit catch in both chatbot routes. Log the status and the role only.
+  Falsification: the raw error object reaches any console call in either route.
+  Two routes, two tests.
+- (e) Carried items. N1: a redacting `debugLogger` for `OPENROUTER_DEBUG` keeps the
+  auth header out of every log line. N2: the S2 Verify grep ignores the case-9
+  fixture lines in `roles.test.ts` and the live complement in
+  `role-configuration.adversarial.test.ts`. N3: a two-role cache isolation test.
+  N5: a padded preset test. Falsification for each: the auth header appears, the
+  grep flags a fixture line, one role returns the other role's provider, or a
+  padded preset is accepted.
+
+Do not change an adversarial assertion. Record each test-first proof in `plan.md`.
+
+### S3.6 Helper and move cases
+
+| ID | Assertion | Falsification condition |
+|----|-----------|-------------------------|
+| 1 | A valid JSON answer that matches the schema gives `{ok: true, data, raw}`. | Fails on a thrown error, a missing field, or a changed `ok` value. |
+| 2 | The request body holds `response_format` with the name, `strict: true`, and the `z.toJSONSchema` output. | Fails on a wrong field or a value that differs from `z.toJSONSchema`. |
+| 3 | The request `provider` object is exactly `{"require_parameters": true}`. | Fails on an extra field or a missing object. |
+| 4 | Text that is not JSON gives `invalid_json` with `raw`. | Fails on a throw or a wrong `reason`. |
+| 5 | JSON that fails the schema gives `schema_mismatch` with `raw`. | Fails on a throw or a wrong `reason`. |
+| 6 | Empty content on each attempt gives `empty_response`. | Fails if no retry occurs or the reason differs. Assert the call count. |
+| 7 | HTTP 400 gives `request_failed` with no retry. HTTP 503 then a success gives `ok: true`. | Fails on a retry for 400 or no retry for 503. Assert both call counts. |
+| 8 | An external abort gives `aborted`. | Fails on a throw or a wrong `reason`. |
+| 9 | `z.toJSONSchema` gives `additionalProperties: false` and lists all keys in `required` for both schemas. | Fails if a key is absent or the flag is missing. |
+| 10 | `request_failed`, `empty_response`, or `aborted` makes `generateAiFeedback` throw. | Fails if the submit route stores AI feedback on these reasons. |
+| 11 | The teacher prompt holds the lesson title, correctness line, misconception tags with counts and part IDs, scaffold line, and activity breakdown. | Fails on any missing prompt line. |
+| 12 | The teacher prompt holds `the student` and the 4 field names. | Fails on a missing phrase or field name. |
+| 13 | With the role variable and the key, the generator sends the model from `OPENROUTER_MODEL_ACCOUNTING_EVAL` and the schema name `teacher_error_summary`, and returns a `TeacherAiSummary`. | Fails on a wrong model, a wrong schema name, or a missing field. |
+| 14 | A missing role variable makes the generator resolver return `null` and log the variable name. | Fails on a returned generator or a log without the name. |
+| 15 | A typed failure makes the generator return `null`. | Fails on a non-null result. |
+| 16 | `totalParts: 0` makes the generator return `null` and send no request. | Fails on a request or a non-null result. |
+| 17 | The teacher prompt holds neither `Avery Quinn` nor `avery.quinn@example.org`. | Fails if either value appears. |
+| 18 | A generator that returns `null` gives `aiSummary: null` and the deterministic summary, with all 5 response keys. | Fails on a changed key or a non-null `aiSummary`. |
+
+Keep the 6 existing `spreadsheet-feedback` tests. Change only the mock to
+`resolveStructuredProviderFromEnv` and keep each expected result. The no-PII submit
+test captures the messages from the mocked structured provider. The no-PII teacher
+test also asserts that the response `studentName` is the fixture name, so the name
+stays on the app side.
+
+### S3.7 Architecture guardrails and changed-contract risks
+
+- No package imports from `apps/` or `convex/_generated/`.
+- `packages/practice-core` does not depend on `packages/ai-tutoring`.
+- `node scripts/check-monorepo-boundaries.mjs` and `node scripts/validate-ci.mjs` exit 0.
+- `zod` `^4.1.12` is a declared dependency of `packages/ai-tutoring`. Run the zod
+  check of the plan. The result of `typeof z.toJSONSchema` must be `function`.
+  Record the zod version and the result in `evidence.md`.
+- Export `resolveStructuredProviderFromEnv` and the new types from `src/index.ts`.
+  Add the `./structured` subpath to `package.json` `exports`. Keep every existing
+  export.
+- The teacher summary file and the `LessonErrorSummary` input type stay in BM2.
+  Do not move a type into a package.
+- Response schemas use `z.strictObject`, `z.string()`, `z.number()`, and
+  `z.array(z.string())` only. Do not add length or count limits.
+- The `provider` object is sent only by the structured helper. For a non-PII role
+  it is exactly `{require_parameters: true}`. Do not add `zdr`.
+- `stripPersonDetails` has one implementation. Reuse the IM3 behavior for BM2.
+  A second implementation fails review.
+- The provider cache key holds no secret. The warm-cache recheck of the key and
+  the role model stays.
+- The usage record holds the served model only under the rule of finding (b).
+  No log line holds a prompt, an answer, or the key.
+- No code puts the student name into the AI text. The route adds the name to the
+  response, as it does now.
+
+### S3.8 Green gate and closeout gate
+
+**Green gate.** The Fix group and main cases 1 to 18 pass. The four no-PII tests
+pass. `S3_GREEN_TEST_COMMAND` exits 0 for the four named workspaces, with only the
+baseline failure keys of section S3.9. The workerd probe answers `probe-ok`.
+`PROJECT_LINT`, `PROJECT_TESTS`, and `PROJECT_CHECKS` print `NEWFAIL=0` with label
+`s3`. The zod check returns `function`. `evidence.md` records the zod result and
+every cited log path.
+
+**Closeout gate (phase acceptance).** The Green gate. The PM gate of S3.0 is open
+because the Fix 1 no-PII test passes. Both app builds and typechecks exit 0.
+Boundary and CI checks exit 0. The export diff of `src/index.ts` holds only the
+planned structured exports. `npm run generate` and `npm run doctor` exit 0, or the
+S1 F5 deviation is recorded again. No generated file is staged. The manual
+verification protocol of `measure/workflow.md` completes. The phase checkpoint and
+plan update follow.
+
+### S3.9 Intentionally-red aggregate suites
+
+The suites below are red or partly red at the S3 base commit. Do not fix them in
+S3 and do not call the whole suite green on a raw exit code.
+
+- The scripts suite holds the `remediate-concept-blueprints` honest-count failure
+  and the `vinext-oxc-gates-script` failures.
+- The audit suites hold the five baseline failure keys.
+- IM3 typecheck holds the same 55 baseline diagnostic lines. IM3 tests hold 218
+  baseline failures and BM2 tests hold 7.
+- The BM2 bundle audit fails at baseline on `Total dist/server`. A bigger size with
+  the same entry is allowed. A new over-budget entry or a changed budget stops the
+  phase.
+- `npm audit` holds the baseline high advisory IDs. A new critical or high ID stops
+  the phase for a report.
+
+GREEN uses the targeted commands of S3.3. An aggregate failure with only baseline
+keys is accepted and recorded in `evidence.md` with its log path.
+
+### S3.10 Artifact checks versus live behavior checks
+
+| Artifact check | Live complement |
+|----------------|-----------------|
+| zod check prints `typeof z.toJSONSchema === 'function'` | Main case 2 calls `z.toJSONSchema` and parses the request body |
+| `tech-stack.md` dated note on the helper and the teacher summary | Cases 1 to 13 |
+| `evidence.md` Fix (a) limit note, if any | Fix (a) robustness tests |
+| S2 Verify grep ignores the case-9 fixture lines | Finding (e) N2 and the case-9 live test |
+| Export diff of `src/index.ts` and the `./structured` subpath | A package test imports each new export and calls it |
+| `plan.md` test-first notes for the Fix group | The Fix group runs at Red with recorded assertion lines |
+
+A phase that holds only artifact checks fails acceptance. An artifact grep is a
+complement, never the proof.
+
+### S3.11 Adversarial list for the adversarial role
+
+Run each attack against the Red and Green trees. Do not change an adversarial
+assertion.
+
+| ID | Attack | Defense and falsification |
+|----|--------|---------------------------|
+| ADV-S3-1 | Mock ignores the request and returns valid JSON, so no real `response_format` is sent. | Parse the request body. Fails if `response_format` lacks `name`, `strict: true`, or the schema. |
+| ADV-S3-2 | The helper throws, and a broad catch hides the failure behind deterministic feedback. | Assert the typed `reason` and the exact reasons that trigger a fallback (case 4 to 8, 10, 15). Fails on a throw or a silent reason. |
+| ADV-S3-3 | Put a name and email in `LessonErrorSummary`. | Case 17 and the teacher no-PII test. Fails if either value appears. |
+| ADV-S3-4 | Put person details in the BM2 lesson markdown. | Fix 1. Fails if a value appears or the later math text is gone. |
+| ADV-S3-5 | Put a detail label directly before math text. | Finding (a). Fails if the strip removes the math. |
+| ADV-S3-6 | Corrupt the score or a list. | Spreadsheet cases. Fails if the score leaves 0 to 40 or a list holds more than 3 items. |
+| ADV-S3-7 | Add `zdr` or another provider field to a non-PII structured request. | Case 3. Fails on any field besides `require_parameters`. |
+| ADV-S3-8 | Put the raw key in a cache key, a log, or a debug line. | Findings (c) and (e) N1, and case 11 of S2. Fails if the key value appears. |
+| ADV-S3-9 | Echo a bare API key as the served model. | Finding (b). Fails if the bare key form is recorded as a model. |
+| ADV-S3-10 | Put one role's provider in another role's cache entry. | Finding (e) N3. Fails if the second role gets the first role's model. |
+
+### S3.12 Anti-pattern coverage
+
+The catalog holds A1 to A12. Each row gives an S3 defense and a falsification condition.
+
+| Anti-pattern | S3 defense | Falsification |
+|--------------|-----------|---------------|
+| A1 substring-as-structured-signal | Cases 4, 5, 7, and 8 assert the `reason` field. Finding (b) parses the labeled model field. | Replacing a field assertion with `includes('json')` or a digit match fails review. |
+| A2 consent-blind publish gate | Not applicable. S3 publishes nothing. The PM release gate of S3.0 is a human gate, not a publish automation. | A publish gate added in S3 is out of scope and fails review. |
+| A3 digit-only as labeled count | Case 6 and case 7 assert call counts as labeled integers. The score clamp uses a labeled value. | A regex that matches any digit fails review. |
+| A4 vacuous-pass on nothing-done | The Fix filter runs Fix 1 first. The `structured output` describe holds 9 cases. A skipped or empty run is invalid. | A run with zero executed cases fails the mid-red gate. |
+| A5 false-claim text vs test reality | Each `evidence.md` claim names a log path. The orchestrator re-runs the cited command. | A claim with an absent log or a non-zero command fails the artifact check. |
+| A6 registry-note overstatement | No `measure/tracks.md` claim of structured output before Red and Green pass, or while the PM gate is closed. | A claim while a main case is red fails review. |
+| A7 over-broad filter swallowing real hits | `'S3 fix'`, `'structured output'`, and `'no-PII'` target named describes. No bare-English-word exclusion. Gate compare is per key. | A filter that drops a case or a workspace-level compare fails review. |
+| A8 `[ ]` marker ambiguity | The live smoke task stays `[b]`. The two Fix tasks use `[ ]`, `[~]`, and `[x]` structurally. | A `[ ]` task counted as in progress or a `[b]` task automated fails review. |
+| A9 pre-existing test references archived track paths | No test reads `measure/tracks/vinext-oxc-toolchain_20261114/`. Use `measure/archive/...` only in documents. | A test path that breaks after an archive move fails the path check. |
+| A10 generated-facts drift | Never stage the six dirty generated files. Check `git status --porcelain` at the S3 capture. | A staged generated file or a capture with another modified file stops the capture. |
+| A11 missing live contract-test suite | The Fix group, cases 1 to 18, the four no-PII tests, and the probe are live tests. Artifact greps are complements. | A phase that relies only on evidence text fails acceptance. |
+| A12 missing supervisor peer-review rule | Not applicable. S3 touches no `AGENTS.md` and no supervisor. | A change to either file in S3 is out of scope and fails review. |
+
+### S3.13 `phase_base_sha` capture point for S3
+
+1. This S3 strategy commit lands first. It holds `test-strategy.md` only. It must
+   land right after the
+   `measure(plan): Mark phase 'Phase S2: Role-based model configuration' as complete`
+   commit.
+2. **Captured point.** Immediately after that strategy commit, before any other S3
+   commit, run `git status --porcelain`. Only these entries may appear, each with
+   status ` M`:
+   `apps/bus-math-v2/lib/workbooks-manifest.json`, the four
+   `apps/*/.next/types/routes.d.ts` files, and `measure/generated/routes.md`.
+   `measure/runs/` is gitignored. Any staged file, untracked file, or other modified
+   file stops the capture.
+3. Run `git rev-parse HEAD`. Store the value as `phase_base_sha` for S3 in the
+   orchestrator run log and the role handoff. Do not write it into `plan.md`,
+   `spec.md`, or this file.
+4. The S2 checkpoint SHA and the base HEAD of this strategy role predate this
+   commit. Neither is the S3 `phase_base_sha`. No SHA in this file is the S3
+   capture point.
+5. Capture before the first S3 task commit, which is Fix 1 of S3.0.
+6. An S3 `phase_base_sha` that is not a descendant of this strategy commit is
+   invalid. Stop and report.
+
+### S3.14 emulate decision
+
+Same decision as S2. Do not adopt `npx emulate --service ai`. No `emulate` binary or
+dependency is present. S3 keeps the pinned `vi.mock('@openrouter/sdk')` fakes and
+the local mock server.
+
+### S3.15 Plan drifts and defaults for S3
+
+| ID | Finding | Default |
+|----|---------|---------|
+| F16 | The two S3 Fix tasks precede the S3 Contract task. | Red starts with the Fix group. Fix 1 runs first. Do not reorder. |
+| F17 | The four no-PII tests may pass at Red. | Record them as guards. The Red proof is the Fix group and main cases 1 to 18. |
+| F18 | `evidence.md` holds `zod check: TBD` from S1. | Run the plan zod check in S3. Record the version and `function`. |
+| F19 | `stripPersonDetails` lives in IM3 today. | Reuse the IM3 behavior for BM2. Move it to a package only when no new layer is needed. Keep one implementation. |
+| F20 | The 6 spreadsheet-feedback tests are changed in place. | Change only the mock and keep every expected result. Record any assertion change in `plan.md`. |
