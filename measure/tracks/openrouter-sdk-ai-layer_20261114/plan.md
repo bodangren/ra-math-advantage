@@ -307,7 +307,7 @@ _Story ref: spec.md#story-s2_
 - [x] Task: S2 Verify — run the gates
     - Evidence: every gate passed at HEAD `8bc7469a` with `NEWFAIL=0`, and the Verify grep matched test files only. See `measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-8bc7469a.json`.
     - [ ] Run each gate, with the workerd probe. Confirm that each gate passes.
-    - [ ] Run `git grep -n "OPENROUTER_MODEL\b\|openrouter/free" -- apps packages ':!**/.env.example'`. Confirm that no code matches.
+    - [ ] Run `git grep -n "OPENROUTER_MODEL\b\|openrouter/free" -- apps packages ':!**/.env.example' ':!**/__tests__/**'`. Confirm that no code matches. (N2, S3 Fix: the exclusion drops only the case-9 fixture lines and the adversarial live complement.)
 - [x] Task: S2 Docs & Doctor
     - Evidence: `npm run generate` and `npm run doctor` exited 0 at HEAD `8bc7469a`. See `measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-8bc7469a.json`.
     - [ ] Run `npm run generate`. Confirm exit code 0.
@@ -327,13 +327,21 @@ _Story ref: spec.md#story-s3_
 
 Gate: no student-facing release of the BM2 chatbot before the PII strip passes. (PM decision 2026-11-23)
 
-- [ ] Task: S3 Fix — BM2 lesson-chatbot PII strip (do first)
+- [~] Task: S3 Fix — BM2 lesson-chatbot PII strip (do first)
     - The BM2 route `apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts` maps the lesson markdown into the `studentTutor` prompt with no person-detail strip (lines 175 to 178 at `8bc7469a`).
     - Invariant: every AI prompt contains no PII. No live BM2 curriculum markdown holds a person detail today. The path is still unproven.
     - Test first. Add a no-PII test that runs the real `assembleLessonChatbotContext` with fixture person details in the lesson markdown. The current mock test puts no fixture value in that markdown, so it proves the session and account paths only.
     - Reuse the `stripPersonDetails` behavior of `apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts`. Move it to `packages/ai-tutoring` only when the move needs no new layer. Do not add a second implementation.
     - Acceptance: the captured prompt holds no fixture value, and the later lesson text stays in the prompt.
-- [ ] Task: S3 Fix — close the S2 review findings (Review B r3 and acceptance)
+    - Red proof (2026-11-23, role mid-red): `CI=true npm run test
+      --workspace=apps/bus-math-v2 -- -t 'S3 fix'` ran 2 cases, 2 failed,
+      2699 skipped. The Fix 1 case fails at `route.no-pii.test.ts:119`
+      (`expect(sent).not.toContain(value)`): the captured prompt holds `Avery
+      Quinn` because the BM2 route maps lesson markdown with no person-detail
+      strip. No missing-module failure. The math-head and math-tail assertions
+      hold. The second failing case is finding (d) BM2; the Fix 2 note records
+      it.
+- [~] Task: S3 Fix — close the S2 review findings (Review B r3 and acceptance)
     - (a) Make the IM3 strip robust beyond the colon-labeled fixture. Cover the dash form, the em-dash form, unlisted labels, prose names, an obfuscated email, and a fullwidth label. Add one test for each form. If a conservative sentence-level detector is too broad, accept the limit in writing.
     - (b) Tighten `MODEL_ID`. Record the served model in a usage record only when it equals the configured model or the configured model plus a known suffix. A bare API key form must give `model: null`. Add a test.
     - (c) Stop keeping the raw API key in the provider cache key. Key the cache on a stable non-secret value. Keep the warm-cache recheck of the key and the role model.
@@ -344,6 +352,36 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
         - N3: add a two-role cache isolation test.
         - N5: add a padded preset test.
     - Do not change an adversarial assertion. Record each test-first proof in this plan.
+    - Red proof (2026-11-23, role mid-red):
+        - Package: `CI=true npm run test --workspace=packages/ai-tutoring --
+          -t 'S3 fix'` ran 6 cases, 3 failed, 3 passed, 141 skipped. Finding
+          (b) fails at `roles.test.ts:286`
+          (`expect(records[0]).toMatchObject({ model: null })`): the usage
+          record holds the bare key form `sk-test-bare-key-9921` as the model.
+          The configured-model guard passes. Finding (c) fails at
+          `roles.test.ts:314`: the `cacheKey` source lines hold `apiKey`. The
+          warm-cache recheck guards in the same test pass. Finding (e) N1 fails
+          at `role-configuration.adversarial.test.ts:278`: the SDK debug log
+          holds `authorization: Bearer sk-test-role-fixture-7391`. Findings
+          (e) N3 and N5 pass at HEAD, so the behaviors already hold and no new
+          contract is invented for them.
+        - IM3: `CI=true npm run test --workspace=apps/integrated-math-3 --
+          -t 'S3 fix'` ran 7 cases, 7 failed, 7073 skipped. Each finding (a)
+          form fails at its `expect(system).not.toContain(...)` line
+          (`route.pii-scope.test.ts:173` and the five sibling lines): the dash
+          form, the em-dash form, the unlisted label `Guardian:`, the prose
+          name, the obfuscated email, and the fullwidth label each survive the
+          strip. The math-text assertions hold. Finding (d) IM3 fails at
+          `route.pii-scope.test.ts:240`: the console call holds the raw error
+          marker. Finding (d) BM2 fails at `route.test.ts:239` with the same
+          cause.
+        - Finding (e) N2: no runnable test fits a grep-command correction. The
+          S2 Verify grep now excludes `__tests__` paths, where the case-9
+          fixture lines and the adversarial live complement live.
+    - Static checks: `npm run format:check` passes. Lint passes in
+      `packages/ai-tutoring`, `apps/bus-math-v2`, and
+      `apps/integrated-math-3`. Typecheck passes in the package and BM2. IM3
+      typecheck holds the 55 baseline lines with no new key.
 
 - [ ] Task: S3 Contract — define the helper and the teacher summary
     - [ ] Add `"zod": "^4.1.12"` to the `dependencies` of `packages/ai-tutoring/package.json` (spec "Non-Functional Requirements"). Run `npm install`.
