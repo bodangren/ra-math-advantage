@@ -1,9 +1,9 @@
 import type { SpreadsheetData } from "@/components/activities/spreadsheet";
 import type { ValidationResult, TargetCell } from "@/lib/activities/spreadsheet-validation";
-import { resolveOpenRouterProviderFromEnv } from "@math-platform/ai-tutoring";
+import { resolveStructuredProviderFromEnv } from "@math-platform/ai-tutoring";
 import { z } from "zod";
 
-const AiFeedbackResponseSchema = z.object({
+export const AiFeedbackResponseSchema = z.strictObject({
   preliminaryScore: z.number(),
   strengths: z.array(z.string()),
   improvements: z.array(z.string()),
@@ -90,81 +90,61 @@ ${formatValidationResult(validationResult)}
 6. Reference specific cells and values in your feedback.
 7. Keep feedback concise and actionable.
 
-## Response Format (JSON only, no other text)
-{
-  "preliminaryScore": number,
-  "strengths": ["string", "string"],
-  "improvements": ["string", "string"],
-  "nextSteps": ["string", "string"]
+Fill each field of the JSON schema.`;
 }
 
-Respond only with the JSON object, no other text.`;
+/** Builds the deterministic fallback from the validation result. */
+function deterministicFeedback(
+  validationResult: ValidationResult,
+  rawAiResponse: string,
+): AiFeedback {
+  const correctRatio = validationResult.correctCells / Math.max(1, validationResult.totalCells);
+  const preliminaryScore = Math.round(correctRatio * 40);
+
+  return {
+    preliminaryScore,
+    strengths: ["Completed the spreadsheet submission"],
+    improvements: ["Review your work for possible errors"],
+    nextSteps: ["Ask your teacher for feedback"],
+    rawAiResponse,
+  };
 }
 
 /**
  * Generates AI feedback for a spreadsheet submission.
  * @param options - Feedback generation options with spreadsheet data and validation
  * @returns AI feedback object with score, strengths, improvements, and next steps
- * @throws Error if AI provider is configured but fails
+ * @throws Error if the structured provider fails for a transport reason
  */
 export async function generateAiFeedback(options: GenerateAiFeedbackOptions): Promise<AiFeedback> {
-  const provider = resolveOpenRouterProviderFromEnv("spreadsheetEval");
+  const provider = resolveStructuredProviderFromEnv("spreadsheetEval");
 
   if (!provider) {
-    const correctRatio =
-      options.validationResult.correctCells / Math.max(1, options.validationResult.totalCells);
-    const preliminaryScore = Math.round(correctRatio * 40);
-
-    return {
-      preliminaryScore,
-      strengths: ["Completed the spreadsheet submission"],
-      improvements: ["Review your work for possible errors"],
-      nextSteps: ["Ask your teacher for feedback"],
-      rawAiResponse: "AI provider not configured; using deterministic feedback only",
-    };
+    return deterministicFeedback(
+      options.validationResult,
+      "AI provider not configured; using deterministic feedback only",
+    );
   }
 
   const prompt = buildFeedbackPrompt(options);
-  const rawResponse = await provider(prompt);
+  const result = await provider({
+    schemaName: "spreadsheet_feedback",
+    schema: AiFeedbackResponseSchema,
+    messages: [{ role: "user", content: prompt }],
+  });
 
-  try {
-    const parsed = JSON.parse(rawResponse);
-    const validated = AiFeedbackResponseSchema.safeParse(parsed);
-
-    if (!validated.success) {
-      const correctRatio =
-        options.validationResult.correctCells / Math.max(1, options.validationResult.totalCells);
-      const preliminaryScore = Math.round(correctRatio * 40);
-
-      return {
-        preliminaryScore,
-        strengths: ["Completed the spreadsheet submission"],
-        improvements: ["Review your work for possible errors"],
-        nextSteps: ["Ask your teacher for feedback"],
-        rawAiResponse: rawResponse,
-      };
+  if (!result.ok) {
+    if (result.reason === "invalid_json" || result.reason === "schema_mismatch") {
+      return deterministicFeedback(options.validationResult, result.raw ?? "");
     }
-
-    const clampedScore = Math.round(Math.max(0, Math.min(40, validated.data.preliminaryScore)));
-
-    return {
-      preliminaryScore: clampedScore,
-      strengths: validated.data.strengths.slice(0, 3),
-      improvements: validated.data.improvements.slice(0, 3),
-      nextSteps: validated.data.nextSteps.slice(0, 3),
-      rawAiResponse: rawResponse,
-    };
-  } catch {
-    const correctRatio =
-      options.validationResult.correctCells / Math.max(1, options.validationResult.totalCells);
-    const preliminaryScore = Math.round(correctRatio * 40);
-
-    return {
-      preliminaryScore,
-      strengths: ["Completed the spreadsheet submission"],
-      improvements: ["Review your work for possible errors"],
-      nextSteps: ["Ask your teacher for feedback"],
-      rawAiResponse: rawResponse,
-    };
+    throw new Error(`Spreadsheet feedback request failed: ${result.reason}`);
   }
+
+  return {
+    preliminaryScore: Math.round(Math.max(0, Math.min(40, result.data.preliminaryScore))),
+    strengths: result.data.strengths.slice(0, 3),
+    improvements: result.data.improvements.slice(0, 3),
+    nextSteps: result.data.nextSteps.slice(0, 3),
+    rawAiResponse: result.raw,
+  };
 }
