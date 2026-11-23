@@ -6,6 +6,7 @@ const mockFetchInternalMutation = vi.fn();
 const mockGenerateAISummary = vi.fn();
 const mockBuildDeterministicSummary = vi.fn();
 const mockResolveAIProviderFromEnv = vi.fn();
+const mockResolveTeacherAiSummaryGenerator = vi.fn();
 const mockIsPracticeSubmissionEnvelope = vi.fn();
 
 vi.mock("@/lib/auth/server", () => ({
@@ -40,6 +41,10 @@ vi.mock("@math-platform/practice-core/contract", () => ({
 
 vi.mock("@/lib/practice/error-analysis/providers", () => ({
   resolveAIProviderFromEnv: mockResolveAIProviderFromEnv,
+}));
+
+vi.mock("@/lib/teacher/ai-error-summary", () => ({
+  resolveTeacherAiSummaryGenerator: mockResolveTeacherAiSummaryGenerator,
 }));
 
 const { GET } = await import("@/app/api/teacher/ai-error-summary/route");
@@ -96,6 +101,7 @@ describe("GET /api/teacher/ai-error-summary", () => {
       exp: 2,
     });
     mockResolveAIProviderFromEnv.mockReturnValue(null);
+    mockResolveTeacherAiSummaryGenerator.mockReturnValue(null);
     mockBuildDeterministicSummary.mockReturnValue(DET_SUMMARY);
     mockIsPracticeSubmissionEnvelope.mockReturnValue(true);
     mockFetchInternalMutation.mockImplementation(async (name: string) => {
@@ -232,6 +238,7 @@ describe("GET /api/teacher/ai-error-summary", () => {
     const mockProvider = vi.fn();
     mockResolveAIProviderFromEnv.mockReturnValue(mockProvider);
     mockGenerateAISummary.mockResolvedValue(aiResult);
+    mockResolveTeacherAiSummaryGenerator.mockReturnValue(async () => aiResult);
 
     mockFetchInternalQuery
       .mockResolvedValueOnce({
@@ -268,7 +275,7 @@ describe("GET /api/teacher/ai-error-summary", () => {
     const payload = await response.json();
     expect(payload.aiEnabled).toBe(true);
     expect(payload.aiSummary).toEqual(aiResult);
-    expect(mockGenerateAISummary).toHaveBeenCalledTimes(1);
+    expect(mockResolveTeacherAiSummaryGenerator).toHaveBeenCalledTimes(1);
   });
 
   it("returns null aiSummary when AI provider throws", async () => {
@@ -277,6 +284,7 @@ describe("GET /api/teacher/ai-error-summary", () => {
     const mockProvider = vi.fn();
     mockResolveAIProviderFromEnv.mockReturnValue(mockProvider);
     mockGenerateAISummary.mockResolvedValue(null);
+    mockResolveTeacherAiSummaryGenerator.mockReturnValue(async () => null);
 
     mockFetchInternalQuery
       .mockResolvedValueOnce({

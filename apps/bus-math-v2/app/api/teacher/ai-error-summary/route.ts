@@ -4,13 +4,12 @@ import { z } from "zod";
 import { requireActiveTeacherRequestClaims } from "@/lib/auth/server";
 import { fetchInternalQuery, fetchInternalMutation, internal } from "@/lib/convex/server";
 import { formatRateLimitError } from "@/convex/apiRateLimits";
-import {
-  generateAISummary,
-  buildDeterministicSummary,
-} from "@math-platform/practice-core/error-analysis";
+import { buildDeterministicSummary } from "@math-platform/practice-core/error-analysis";
 import type { PracticeSubmissionEnvelope } from "@math-platform/practice-core/contract";
 import { isPracticeSubmissionEnvelope } from "@math-platform/practice-core/contract";
-import { resolveAIProviderFromEnv } from "@/lib/practice/error-analysis/providers";
+import { buildLessonErrorSummary } from "@/lib/teacher/error-summary";
+import type { SubmissionDetail } from "@/lib/teacher/submission-detail";
+import { resolveTeacherAiSummaryGenerator } from "@/lib/teacher/ai-error-summary";
 import type { Id } from "@/convex/_generated/dataModel";
 
 const querySchema = z.object({
@@ -112,31 +111,27 @@ export async function GET(request: Request) {
       new Map(envelopes.map((e) => [e.activityId, studentId])),
     );
 
-    let aiSummary = null;
-    const provider = resolveAIProviderFromEnv();
-
-    if (provider && envelopes.length > 0) {
-      const latestSubmission = envelopes.reduce((a, b) => (a.submittedAt >= b.submittedAt ? a : b));
-
-      aiSummary = await generateAISummary(
-        {
-          submission: latestSubmission,
-          deterministicSummary,
-          rawEvidence: {
-            answers: latestSubmission.answers,
-            artifact: latestSubmission.artifact,
-          },
-        },
-        provider,
-      );
-    }
+    const submissionDetail: SubmissionDetail = {
+      studentName: detail.studentName,
+      lessonTitle: detail.lessonTitle,
+      phases: detail.phases.map((phase) => ({
+        ...phase,
+        completedAt:
+          typeof phase.completedAt === "number"
+            ? new Date(phase.completedAt).toISOString()
+            : phase.completedAt,
+      })) as SubmissionDetail["phases"],
+    };
+    const lessonSummary = buildLessonErrorSummary(submissionDetail);
+    const generator = resolveTeacherAiSummaryGenerator();
+    const aiSummary = generator ? await generator(lessonSummary) : null;
 
     return NextResponse.json({
       studentName: detail.studentName,
       lessonTitle: detail.lessonTitle,
       deterministicSummary,
       aiSummary,
-      aiEnabled: provider !== null,
+      aiEnabled: generator !== null,
     });
   } catch (error) {
     console.error("[ai-error-summary] Unexpected error:", error);
