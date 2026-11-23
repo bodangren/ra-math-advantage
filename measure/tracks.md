@@ -245,9 +245,9 @@ packages omitted from CI, shallow regex-only boundary guards, and an inverted
    *Chore, story-shaped spec with 4 phases: S1 adopt `@openrouter/sdk` in `packages/ai-tutoring` (workerd probe, bundle sizes), S2 one model variable for each role with no default and fail-closed behavior, usage logging, and the PII flag, S3 structured output for BM2 spreadsheet feedback and the BM2 teacher summary (lesson-level prompt without the student name), S4 removal of the OpenAI paths and role docs. AI prompts contain no PII. Depends on: the completed vinext 1.x and Oxc toolchain track (archived 2026-11-20). User decisions 2026-11-14.*
    *Link: [./tracks/openrouter-sdk-ai-layer_20261114/](./tracks/openrouter-sdk-ai-layer_20261114/)*
 
-- [ ] **Track: Dependency Refresh** — **D1 PASSED, D2 NEXT** (PM P2, 2026-11-21)
+- [ ] **Track: Dependency Refresh** — **D1 PASSED, D2 PASSED** (PM P2, 2026-11-21)
    *Chore, light lane. Update every external package to the latest working version. Push the D1 critical and high fixes by 2026-11-23. Push D2 at closeout by 2026-11-25. Record each remaining advisory and its reason.*
-   *D1 phase acceptance passed at 62b947cf with five named high exceptions. D2 is next. Strategy confirmation and OpenRouter S1 acceptance are complete. Preserve manual deploy triggers and the accepted S1 tests.*
+   *D2 phase acceptance passed at be64041e with five named high exceptions, six moderate and five low advisories. The 11-25 miniflare dist-tags recheck stays open as the only D2 item (PM a778067f). Strategy confirmation and OpenRouter S1 acceptance are complete. Preserve manual deploy triggers and the accepted S1 tests.*
    *Link: [./tracks/dependency-refresh_20261121/](./tracks/dependency-refresh_20261121/)*
 
 - [x] **Track: Danielson App Import** — **SUPERSEDED / ARCHIVED** (2026-11-16)

@@ -407,6 +407,8 @@ D2 deferred gate findings (next-phase under the PM 2026-11-22 cap):
     - PM-verified (PM 2026-11-21: manual-verification tasks are not Daniel's gate)
     - [ ] Record the checkpoint commit in this phase heading.
     - [ ] Update the registry and commit the plan update.
+
+Phase acceptance PASS at `be64041e` with five named high exceptions, six moderate and five low advisories. Review A, Review B, adversarial and acceptance all pass at the same immutable HEAD. Adversarial fixture 84 pass and 0 fail; lint, tests, targets and audit print `NEWFAIL=0`; checks-all reports `NEWFAIL=1` only from five PM-deferred extraneous `node_modules` tree keys (D2-LOW). Bundle growth is IM3 +1.02 percent and BM2 +1.07 percent, both within 5 percent. The 11-25 miniflare dist-tags recheck stays open as the only D2 item left (PM a778067f); it is not a gate of this checkpoint.
 - [ ] Task: At phase close (11-25), run `npm view miniflare dist-tags`. If a stable 5.x exists, adopt it in this phase and clear the D1 Cloudflare exceptions (PM a778067f).
 
 ## Closeout
