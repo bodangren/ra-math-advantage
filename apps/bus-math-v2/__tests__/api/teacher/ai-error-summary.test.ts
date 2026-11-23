@@ -371,4 +371,59 @@ describe("GET /api/teacher/ai-error-summary", () => {
     expect(response.status).toBe(200);
     expect(mockBuildDeterministicSummary).toHaveBeenCalledWith("lesson_1", [], expect.any(Map));
   });
+
+  it("returns null aiSummary and the deterministic summary when the generator returns null", async () => {
+    const envelope = makeEnvelope();
+    const aiResult = {
+      type: "ai-assisted" as const,
+      likelyMisunderstanding: "Student confuses debits and credits",
+      evidenceObserved: ["q1 answered with wrong side"],
+      suggestedReteach: "Review T-account basics",
+      groundedIn: ["activity-1:q1"],
+      generatedAt: Date.now(),
+    };
+
+    const mockProvider = vi.fn();
+    mockResolveAIProviderFromEnv.mockReturnValue(mockProvider);
+    mockGenerateAISummary.mockResolvedValue(aiResult);
+
+    mockFetchInternalQuery
+      .mockResolvedValueOnce({
+        id: "teacher_profile_1",
+        role: "teacher",
+        organizationId: "org_1",
+      })
+      .mockResolvedValueOnce({
+        id: "student_1",
+        role: "student",
+        organizationId: "org_1",
+        displayName: "Alice",
+        username: "alice",
+      })
+      .mockResolvedValueOnce({
+        studentName: "Alice",
+        lessonTitle: "Lesson 1",
+        phases: [
+          {
+            phaseNumber: 3,
+            evidence: [
+              {
+                kind: "practice",
+                submissionData: envelope,
+              },
+            ],
+          },
+        ],
+      });
+
+    const response = await GET(buildRequest({ lessonId: "lesson_1", studentId: "student_1" }));
+
+    expect(response.status).toBe(200);
+    const payload = await response.json();
+    expect(payload.studentName).toBe("Alice");
+    expect(payload.lessonTitle).toBe("Lesson 1");
+    expect(payload.deterministicSummary).toEqual(DET_SUMMARY);
+    expect(payload.aiSummary).toBeNull();
+    expect(payload.aiEnabled).toBe(false);
+  });
 });
