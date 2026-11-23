@@ -177,7 +177,7 @@ Next-phase list (acceptance, record-only): Acceptance F1 (Major, fix first in S2
 ## Phase S2: Role-based model configuration
 _Story ref: spec.md#story-s2_
 
-- [x] Task: S2 Contract — define the roles, the PII flag, and the usage record (Red owns the stubs; Green owns the behavior)
+- [x] Task: S2 Contract — define the roles, the PII flag, and the usage record (Red owns the stubs; Green owns the behavior) (8e803b83.)
     - [ ] Create `packages/ai-tutoring/src/roles.ts` with `AI_ROLES`. Each entry has `env` (the variable name), `structured` (boolean), and `sendsPii` (boolean). The values come from the spec "Roles" table.
     - [ ] Export `type AiRole = keyof typeof AI_ROLES` (`studentTutor`, `spreadsheetEval`, `accountingEval`).
     - [ ] Export `resolveRoleModel(role)`. It returns `{ ok: true, model }` or `{ ok: false, missing, reason }`.
@@ -187,7 +187,7 @@ _Story ref: spec.md#story-s2_
     - [ ] The record fields are `role`, `model` (the served model of the response), `latencyMs`, `promptTokens`, `completionTokens`, `totalTokens`, `outcome` (`ok` or `error`), and `status` (the HTTP status or `null`).
     - [ ] A missing setting logs `console.error('[ai-tutoring] AI role not configured', JSON.stringify({ role, missing, reason }))`.
     - [ ] In `measure/tech-stack.md`, add a dated note with the roles, the PII flag, and the usage record.
-- [x] Task: S2 Test (Red) — specify the roles
+- [x] Task: S2 Test (Red) — specify the roles (c80b7352.)
     - [ ] Create `packages/ai-tutoring/src/__tests__/roles.test.ts`.
     - [ ] Normal case 1: with `OPENROUTER_MODEL_STUDENT_TUTOR=vendor/model-a`, the studentTutor provider sends `model: 'vendor/model-a'`.
     - [ ] Normal case 2: the value `~google/gemini-latest` reaches the request without change.
@@ -300,14 +300,16 @@ _Story ref: spec.md#story-s2_
       `green-s2-r4-im3.log`, `green-s2-r4-package.log`, `green-s2-r4-gates.exit`.
       Review B nonblocking findings stay on the next-phase list: BM2 strip,
       fixture-shaped regex, MODEL_ID charset, cache key, rate-limit log.
-- [ ] Task: S2 Verify — run the gates
+- [x] Task: S2 Verify — run the gates
+    - Evidence: every gate passed at HEAD `8bc7469a` with `NEWFAIL=0`, and the Verify grep matched test files only. See `measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-8bc7469a.json`.
     - [ ] Run each gate, with the workerd probe. Confirm that each gate passes.
     - [ ] Run `git grep -n "OPENROUTER_MODEL\b\|openrouter/free" -- apps packages ':!**/.env.example'`. Confirm that no code matches.
-- [ ] Task: S2 Docs & Doctor
+- [x] Task: S2 Docs & Doctor
+    - Evidence: `npm run generate` and `npm run doctor` exited 0 at HEAD `8bc7469a`. See `measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-8bc7469a.json`.
     - [ ] Run `npm run generate`. Confirm exit code 0.
     - [ ] Run `npm run doctor`. Confirm exit code 0.
-- [ ] Task: Measure - User Manual Verification 'Phase S2: Role-based model configuration' (Protocol in workflow.md)
-    - [ ] Run the protocol: the automated tests, the manual verification plan, and the user confirmation.
+- [x] Task: Measure - User Manual Verification 'Phase S2: Role-based model configuration' (Protocol in workflow.md) (PM-verified 2026-11-23)
+    - PM-verified: the automated checks ran at HEAD `8bc7469a`. The acceptance result is `measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-8bc7469a.json`.
     - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S2`.
     - [ ] Append `[checkpoint: <sha>]` to the Phase S2 heading.
     - [ ] Commit: `measure(plan): Mark phase 'Phase S2: Role-based model configuration' as complete`.
