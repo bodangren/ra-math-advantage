@@ -1,5 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { clearProviderCache, resolveOpenRouterProviderWithMessagesFromEnv } from "../providers";
+import { resolveStructuredProviderFromEnv } from "../structured";
+import { z } from "zod";
 
 const KEY = "sk-test-debug-fixture-6642";
 const TUTOR_ENV = "OPENROUTER_MODEL_STUDENT_TUTOR";
@@ -69,5 +71,39 @@ describe("S3 fix", () => {
       group.mockRestore();
       groupEnd.mockRestore();
     }
+  });
+});
+
+describe("S3 adversarial", () => {
+  // Expected red at b0bb87d4. Do not mask the gate failure.
+  it("ADV-S3-8: structured SDK debug output omits the key, prompt, and answer", async () => {
+    vi.stubEnv("OPENROUTER_MODEL_ACCOUNTING_EVAL", "vendor/accounting-model");
+    const logs = captureLogs();
+    vi.spyOn(console, "group").mockImplementation(() => {});
+    vi.spyOn(console, "groupEnd").mockImplementation(() => {});
+    const data = { note: ANSWER };
+    const raw = JSON.stringify(data);
+    fetchMock.mockImplementation(async (input, init) => {
+      const request = new Request(input, init);
+      expect(request.headers.get("authorization")).toBe(`Bearer ${KEY}`);
+      return Response.json(completion(raw));
+    });
+    const provider = resolveStructuredProviderFromEnv("accountingEval");
+    if (!provider) throw new Error("The configured structured provider must resolve");
+
+    await expect(
+      provider({
+        schemaName: "debug_note",
+        schema: z.strictObject({ note: z.string() }),
+        messages: MESSAGES,
+      }),
+    ).resolves.toStrictEqual({ ok: true, data, raw });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    const output = logs.text();
+    expect({
+      key: output.includes(KEY),
+      prompt: output.includes(PROMPT),
+      answer: output.includes(ANSWER),
+    }).toStrictEqual({ key: false, prompt: false, answer: false });
   });
 });

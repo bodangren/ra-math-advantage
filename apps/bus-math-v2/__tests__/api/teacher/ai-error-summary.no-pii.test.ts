@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const mockRequireActiveTeacherRequestClaims = vi.fn();
 const mockFetchInternalQuery = vi.fn();
@@ -177,5 +177,81 @@ describe("GET teacher ai-error-summary no-PII", () => {
     for (const value of NO_PII_VALUES) {
       expect(sent).not.toContain(value);
     }
+  });
+
+  describe("S3 adversarial wire", () => {
+    afterEach(() => {
+      vi.unstubAllGlobals();
+      vi.unstubAllEnvs();
+    });
+
+    it.each([
+      [JSON.stringify({ evidenceObserved: [42] }), 200],
+      ["Upstream rejected the request", 400],
+    ])(
+      "ADV-S3-2 and ADV-S3-3: keeps the deterministic route response for %s (%i)",
+      async (raw, status) => {
+        const actual = await vi.importActual<typeof import("@math-platform/ai-tutoring")>(
+          "@math-platform/ai-tutoring",
+        );
+        vi.stubEnv("OPENROUTER_API_KEY", "sk-test-s3-teacher-wire");
+        vi.stubEnv("OPENROUTER_API_BASE", "https://openrouter-fixture.invalid/api/v1");
+        vi.stubEnv("OPENROUTER_DEBUG", undefined);
+        vi.stubEnv("OPENROUTER_MODEL_ACCOUNTING_EVAL", "vendor/accounting");
+        mockResolveStructuredProviderFromEnv.mockImplementation(
+          actual.resolveStructuredProviderFromEnv,
+        );
+        const requests: Array<{
+          model: string;
+          messages: Array<{ role: string; content: string }>;
+        }> = [];
+        const fetchMock = vi.fn<typeof fetch>(async (input, init) => {
+          requests.push(await new Request(input, init).json());
+          if (status === 400)
+            return Response.json({ error: { message: raw, code: status } }, { status });
+          return Response.json({
+            id: "gen-teacher-s3",
+            object: "chat.completion",
+            created: 1,
+            model: "vendor/accounting",
+            system_fingerprint: null,
+            choices: [
+              { index: 0, finish_reason: "stop", message: { role: "assistant", content: raw } },
+            ],
+          });
+        });
+        vi.stubGlobal("fetch", fetchMock);
+        const nameWithEmail = "Avery Quinn (avery.quinn@example.org)";
+        const defaultQuery = mockFetchInternalQuery.getMockImplementation();
+        mockFetchInternalQuery.mockImplementation(async (name: string, ...args: unknown[]) => {
+          const value = await defaultQuery?.(name, ...args);
+          return name === "internal.teacher.getSubmissionDetail"
+            ? { ...value, studentName: nameWithEmail }
+            : value;
+        });
+
+        const response = await GET(
+          buildRequest({ lessonId: "lesson_1", studentId: "k17pii0000account" }),
+        );
+
+        expect(response.status).toBe(200);
+        expect(await response.json()).toStrictEqual({
+          studentName: nameWithEmail,
+          lessonTitle: "Balancing the Ledger",
+          deterministicSummary: DET_SUMMARY,
+          aiSummary: null,
+          aiEnabled: true,
+        });
+        expect(requests).toHaveLength(1);
+        expect(requests[0]?.model).toBe("vendor/accounting");
+        const [message] = requests[0]?.messages ?? [];
+        expect(message?.role).toBe("user");
+        expect(message?.content).toContain("Lesson: Balancing the Ledger");
+        expect(message?.content).toContain('"the student"');
+        for (const value of NO_PII_VALUES) {
+          expect(message?.content).not.toContain(value);
+        }
+      },
+    );
   });
 });

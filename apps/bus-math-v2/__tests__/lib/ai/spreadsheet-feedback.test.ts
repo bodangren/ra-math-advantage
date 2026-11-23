@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { afterEach, beforeEach, describe, it, expect, vi } from "vitest";
 import { z } from "zod";
 import { generateAiFeedback, type AiFeedback } from "@/lib/ai/spreadsheet-feedback";
 import * as feedbackModule from "@/lib/ai/spreadsheet-feedback";
@@ -209,6 +209,92 @@ describe("spreadsheet-feedback", () => {
         "improvements",
         "nextSteps",
       ]);
+    });
+
+    describe("S3 adversarial wire", () => {
+      const items = ["first", "second", "third", "fourth"];
+      let fetchMock: ReturnType<typeof vi.fn<typeof fetch>>;
+
+      beforeEach(async () => {
+        const actual = await vi.importActual<typeof import("@math-platform/ai-tutoring")>(
+          "@math-platform/ai-tutoring",
+        );
+        mockResolveStructuredProviderFromEnv.mockImplementation(
+          actual.resolveStructuredProviderFromEnv,
+        );
+        vi.stubEnv("OPENROUTER_API_KEY", "sk-test-s3-sheet-wire");
+        vi.stubEnv("OPENROUTER_API_BASE", "https://openrouter-fixture.invalid/api/v1");
+        vi.stubEnv("OPENROUTER_DEBUG", undefined);
+        vi.stubEnv("OPENROUTER_MODEL_SPREADSHEET_EVAL", "vendor/sheet");
+        fetchMock = vi.fn<typeof fetch>();
+        vi.stubGlobal("fetch", fetchMock);
+      });
+
+      afterEach(() => {
+        mockResolveStructuredProviderFromEnv.mockReset();
+        vi.unstubAllGlobals();
+        vi.unstubAllEnvs();
+      });
+
+      function returnAnswer(raw: string) {
+        fetchMock.mockResolvedValueOnce(
+          Response.json({
+            id: "gen-sheet-s3",
+            object: "chat.completion",
+            created: 1,
+            model: "vendor/sheet",
+            system_fingerprint: null,
+            choices: [
+              { index: 0, finish_reason: "stop", message: { role: "assistant", content: raw } },
+            ],
+          }),
+        );
+      }
+
+      it.each([
+        [-1, 0],
+        [41, 40],
+      ])(
+        "ADV-S3-6: clamps score %i to %i and keeps the first three items of each list",
+        async (score, expectedScore) => {
+          const raw = JSON.stringify({
+            preliminaryScore: score,
+            strengths: items,
+            improvements: items,
+            nextSteps: items,
+          });
+          returnAnswer(raw);
+          const firstThree = ["first", "second", "third"];
+          await expect(
+            generateAiFeedback(optionsWith(mockValidationResult)),
+          ).resolves.toStrictEqual({
+            preliminaryScore: expectedScore,
+            strengths: firstThree,
+            improvements: firstThree,
+            nextSteps: firstThree,
+            rawAiResponse: raw,
+          });
+          expect(fetchMock).toHaveBeenCalledTimes(1);
+        },
+      );
+
+      it("ADV-S3-6: rejects a non-string fourth item before trimming the list", async () => {
+        const raw = JSON.stringify({
+          preliminaryScore: 29,
+          strengths: items,
+          improvements: [...items.slice(0, 3), 4],
+          nextSteps: items,
+        });
+        returnAnswer(raw);
+        await expect(generateAiFeedback(optionsWith(mockValidationResult))).resolves.toStrictEqual({
+          preliminaryScore: 13,
+          strengths: ["Completed the spreadsheet submission"],
+          improvements: ["Review your work for possible errors"],
+          nextSteps: ["Ask your teacher for feedback"],
+          rawAiResponse: raw,
+        });
+        expect(fetchMock).toHaveBeenCalledTimes(1);
+      });
     });
   });
 });

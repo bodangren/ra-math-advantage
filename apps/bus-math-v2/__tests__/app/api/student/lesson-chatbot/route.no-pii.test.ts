@@ -70,7 +70,7 @@ describe("S3 fix", () => {
     POST = routeModule.POST;
   });
 
-  it("strips fixture person details from the lesson markdown before the provider call", async () => {
+  async function sendLessonMarkdown(markdown: string) {
     mockRequireActiveStudentRequestClaims.mockResolvedValue({
       sub: "k17pii0000account",
       username: "aquinn42",
@@ -97,7 +97,7 @@ describe("S3 fix", () => {
             {
               phaseNumber: 1,
               title: "Test Phase",
-              sections: [{ sectionType: "text", content: { markdown: FIXTURE_MARKDOWN } }],
+              sections: [{ sectionType: "text", content: { markdown } }],
             },
           ],
         },
@@ -114,12 +114,23 @@ describe("S3 fix", () => {
 
     expect(response.status).toBe(200);
     expect(mockProvider).toHaveBeenCalledTimes(1);
-    const sent = JSON.stringify(mockProvider.mock.calls[0][0]);
+    return JSON.stringify(mockProvider.mock.calls[0][0]);
+  }
+
+  it("strips fixture person details from the lesson markdown before the provider call", async () => {
+    const sent = await sendLessonMarkdown(FIXTURE_MARKDOWN);
     for (const value of NO_PII_VALUES) {
       expect(sent).not.toContain(value);
     }
     expect(sent).toContain(MATH_HEAD);
     expect(sent).toContain(MATH_TAIL);
+  });
+
+  // Expected red at b0bb87d4. The accepted limit covers the label line only.
+  it("ADV-S3-5: keeps the first math sentence on the line after an empty detail label", async () => {
+    const sent = await sendLessonMarkdown(`Teacher:\n${MATH_HEAD}\n${MATH_TAIL}`);
+    expect(sent).toContain(MATH_TAIL);
+    expect(sent).toContain(MATH_HEAD);
   });
 });
 describe("POST /api/student/lesson-chatbot no-PII", () => {
