@@ -294,3 +294,24 @@ all following whitespace. Both echoed tokens are redacted. Log:
 - workerd probe: `probe-ok`, exit 0. Log: `green-s2-workerd.log`.
 - Gate sweeps with label `s2`: `lint`, `test`, and `checks-all` each exit 0
   with `NEWFAIL=0`. Results: `gates/s2/`. Driver log: `green-s2-gates.exit`.
+
+### Remediation r2 (Reviews A, B, C on HEAD 1f266be2)
+
+- RA1 (blocker, Review A): `resolveRoleModel` returned the trimmed value. It now
+  returns the configured value unchanged. A blank or whitespace-only value
+  still gives `reason: 'missing'`, and a preset is still rejected. The new
+  `model value preservation` test failed first with
+  `'vendor/model-padded'` where `'  vendor/model-padded  '` was required. After
+  the fix the package suite is 129/129. Log:
+  `green-s2-r2-before-fix.log`, `green-s2-r2-package-test.log`.
+- B1 (blocker, Review B): Red case 8 asserted `toContain("preset")` on joined
+  log lines. The test now parses the logged JSON record and asserts the
+  structured fields `role`, `missing`, and `reason: 'preset'`. This is a
+  test-only edit to a committed Red assertion, routed and disclosed by the
+  orchestrator. The behavior in `roles.ts` was already correct.
+- N4 (Review B) and F1 (Review C): a new package-level test imports
+  `AI_ROLES`, `resolveRoleModel`, `buildProviderPreferences`, and the `AiRole`
+  type from `src/index.ts`, and `logAiRequest` from `src/usage-log.ts`. It calls
+  each value and checks the entry-point wiring. `logAiRequest` stays off the
+  public entry so the export diff keeps only the four planned exports.
+  Log: `green-s2-r2-package-test.log`.

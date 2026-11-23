@@ -166,7 +166,21 @@ describe("role configuration", () => {
     const provider = resolveRole("studentTutor");
 
     expect(provider).toBeNull();
-    expect(loggedLines(errorSpy).join("\n")).toContain("preset");
+    const records = loggedLines(errorSpy)
+      .map((line) => {
+        try {
+          return JSON.parse(line.slice(line.indexOf("{"))) as Record<string, unknown>;
+        } catch {
+          return null;
+        }
+      })
+      .filter((record) => record !== null);
+    expect(records).toHaveLength(1);
+    expect(records[0]).toMatchObject({
+      role: "studentTutor",
+      missing: "OPENROUTER_MODEL_STUDENT_TUTOR",
+      reason: "preset",
+    });
   });
 
   it("case 9: only the old OPENROUTER_MODEL set returns null", () => {

@@ -35,6 +35,7 @@ export type RoleModelResult =
 /**
  * Reads the model of a role from its own environment variable.
  * An absent, empty, or whitespace value is missing. A preset is rejected.
+ * A configured value is returned without change.
  */
 export function resolveRoleModel(role: AiRole): RoleModelResult {
   const { env } = AI_ROLES[role];
@@ -44,12 +45,11 @@ export function resolveRoleModel(role: AiRole): RoleModelResult {
     return { ok: false, missing: env, reason: "missing" };
   }
 
-  const model = raw.trim();
-  if (model.startsWith("@preset/")) {
+  if (raw.trim().startsWith("@preset/")) {
     return { ok: false, missing: env, reason: "preset" };
   }
 
-  return { ok: true, model };
+  return { ok: true, model: raw };
 }
 
 /** The SDK provider preference fields of a request. */
