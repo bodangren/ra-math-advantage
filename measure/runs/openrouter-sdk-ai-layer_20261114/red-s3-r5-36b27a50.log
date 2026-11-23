@@ -1,0 +1,39 @@
+Red S3 remediation round r5 result log (mid-red)
+Track: openrouter-sdk-ai-layer_20261114, Phase S3
+Role base: ed397155 (HEAD at handoff). Phase base: 55e7952b15b3e36dc8b44dea76f252ded4c9c12e.
+
+Scope
+- Two blocking review findings, tests only, additions only, no production change, no earlier assertion changed:
+  - R-A1 (Review A F1): structured request must send provider preference require_parameters: true in the SERIALIZED wire body. New test captures the real serialized body through the real SDK with a mocked global fetch and asserts provider.require_parameters === true.
+  - R-B1 (Review B F1): the structured path logged the unvalidated response-body model string. New test mirrors roles.test.ts finding (b): a key-shaped served model must not appear in the usage record nor in any console output; a valid model still passes through.
+
+Dirty-path classification at start (git status --short): 7 modified files, all generated/ignorable and left unstaged (apps/bus-math-v2/lib/workbooks-manifest.json, four apps/*/.next/types/routes.d.ts, measure/generated/exports.md, measure/generated/routes.md). No unrelated user work present. No [~] marker changed: every S3 test task is [x] and the brief forbids marking Green tasks; the Red evidence line went under the new S3 remediation note in plan.md.
+
+Commands and evidence
+- oxfmt: `npx oxfmt --check packages/ai-tutoring/src/__tests__/structured.test.ts` first flagged the new block; after `npx oxfmt` it exits 0. `npm run typecheck --workspace=packages/ai-tutoring` exits 0. `npm run lint --workspace=packages/ai-tutoring` exits 0.
+- Targeted Red: `CI=true npm run test --workspace=packages/ai-tutoring -- -t 'S3 remediation'` -> 2 failed, 156 skipped, exit 1. Full log: /home/daniebo/.cache/opencode/red-s3-r5-targeted.log (machine-local).
+  - R-A1 fails at structured.test.ts:295 with `AssertionError: expected undefined to be true`: the wire body carries no provider preference (the real SDK 1.5.128 strips the snake_case `provider` input, so the serialized body has no `provider` field at all). Debug note: the mocked fetch response had to satisfy the full SDK ChatResult inbound schema (created, object: chat.completion, system_fingerprint, choice index); the documented-example shape alone fails SDK validation with ResponseValidationError statusCode 200, which the structured helper (no recovery path) reports as request_failed. The committed test uses the SDK-valid shape, so it fails on the provider assertion, the expected reason.
+  - R-B1 fails at structured.test.ts:328 with `expected { role: 'spreadsheetEval', ... } to match object { model: null }`, received `"model": "sk-test-bare-key-9921"`. The second half (valid model `vendor/spreadsheet-model` recorded) passes at HEAD, as designed.
+- Role gate (GATES_BASE=s2, label s3), driver log /home/daniebo/.cache/opencode/gates-s3-r5-driver.log:
+  - `gates.sh lint s3` -> exit 0, NEWFAIL=0.
+  - `gates.sh test s3` -> exit 1, NEWFAIL=1. New keys: exactly the two new S3 remediation tests (plus their assertion echoes), and one scripts-suite ENOENT key that is byte-identical to the s2 baseline modulo random /tmp suffixes (pre-existing `vinext-oxc-gates-script.test.ts` reference to the archived `measure/tracks/vinext-oxc-toolchain_20261114/gates.sh` path; FAIL titles identical between s2 and s3; archived before the phase base; unrelated to this change). BM2 FAIL titles identical (7 baseline), IM3 FAIL titles identical (218 baseline), practice-core no new keys.
+  - `gates.sh checks-all s3` -> exit 0, NEWFAIL=0.
+
+Commits
+- 36b27a50 test(ai-tutoring): add S3 remediation Red tests for R-A1 and R-B1 (track_id: openrouter-sdk-ai-layer_20261114) + git note. Files: packages/ai-tutoring/src/__tests__/structured.test.ts (describe `S3 remediation`, +112 lines), measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md (Red evidence note, no marker change).
+
+Deferred
+- Review B nonblocking F2-F4 go to tech-debt per the brief; no tests added for them.
+
+MEASURE_AGENT_RESULT
+  baseline_sha: 55e7952b15b3e36dc8b44dea76f252ded4c9c12e
+  role_base_sha: ed397155
+  role: mid-red (S3 remediation Red round r5)
+  track: openrouter-sdk-ai-layer_20261114
+  phase: S3
+  head: 36b27a50
+  commits: 36b27a50 test(ai-tutoring): add S3 remediation Red tests for R-A1 and R-B1 (track_id: openrouter-sdk-ai-layer_20261114) + git note
+  tests: packages/ai-tutoring -t 'S3 remediation': 2 failed, 156 skipped. R-A1 fails at structured.test.ts:295 (wire body has no provider.require_parameters). R-B1 fails at structured.test.ts:328 (usage record holds sk-test-bare-key-9921 instead of null).
+  files: packages/ai-tutoring/src/__tests__/structured.test.ts, measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md
+  remaining_failures: the 2 new Red tests (expected failing-first; Green owns the fix). Gate sweeps GATES_BASE=s2 label s3: lint NEWFAIL=0, test NEWFAIL=1 (new keys are the 2 Red tests plus one pre-existing scripts-suite ENOENT key identical to baseline modulo random /tmp suffixes), checks-all NEWFAIL=0.
+  handoff: no open questions; Green implements the wire provider preference (camelCase requireParameters input) and the shared served-model validator reuse in structured.ts, then re-runs the S3 suite. Default: proceed with Green on this plan.
