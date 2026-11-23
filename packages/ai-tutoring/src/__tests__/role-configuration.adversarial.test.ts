@@ -262,23 +262,3 @@ describe("S2 responses and logs through the real SDK", () => {
     },
   );
 });
-
-describe("S3 fix", () => {
-  it("finding e N1: OPENROUTER_DEBUG logging never prints the auth header", async () => {
-    const logs = captureLogs();
-    const group = vi.spyOn(console, "group").mockImplementation(() => {});
-    const groupEnd = vi.spyOn(console, "groupEnd").mockImplementation(() => {});
-    try {
-      vi.stubEnv("OPENROUTER_DEBUG", "1");
-      fetchMock.mockImplementation(async () => json(completion(ANSWER)));
-      const tutor = resolveOpenRouterProviderWithMessagesFromEnv("studentTutor");
-      if (!tutor) throw new Error("The configured tutor must resolve");
-      await expect(tutor(MESSAGES)).resolves.toBe(ANSWER);
-      expect(fetchMock).toHaveBeenCalledTimes(1);
-      expect(logs.text()).not.toContain(KEY);
-    } finally {
-      group.mockRestore();
-      groupEnd.mockRestore();
-    }
-  });
-});

@@ -229,6 +229,17 @@ describe("S3 fix", () => {
     const RATE_LIMIT_MARKER = "rate-limit-boom-im3-9921";
     const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
     try {
+      query.mockReset();
+      query
+        .mockResolvedValueOnce({
+          id: ACCOUNT_ID,
+          username: USERNAME,
+          displayName: STUDENT_NAME,
+          email: STUDENT_EMAIL,
+          organizationId: "test-org",
+          role: "student",
+        })
+        .mockResolvedValueOnce(true);
       mutate.mockReset();
       mutate.mockRejectedValueOnce(new Error(RATE_LIMIT_MARKER));
       const result = await POST(request());
