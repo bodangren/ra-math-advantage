@@ -327,7 +327,7 @@ _Story ref: spec.md#story-s3_
 
 Gate: no student-facing release of the BM2 chatbot before the PII strip passes. (PM decision 2026-11-23)
 
-- [~] Task: S3 Fix — BM2 lesson-chatbot PII strip (do first)
+- [x] Task: S3 Fix — BM2 lesson-chatbot PII strip (do first) [69a8b17a, 455dc41c]
     - The BM2 route `apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts` maps the lesson markdown into the `studentTutor` prompt with no person-detail strip (lines 175 to 178 at `8bc7469a`).
     - Invariant: every AI prompt contains no PII. No live BM2 curriculum markdown holds a person detail today. The path is still unproven.
     - Test first. Add a no-PII test that runs the real `assembleLessonChatbotContext` with fixture person details in the lesson markdown. The current mock test puts no fixture value in that markdown, so it proves the session and account paths only.
@@ -341,7 +341,16 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
       strip. No missing-module failure. The math-head and math-tail assertions
       hold. The second failing case is finding (d) BM2; the Fix 2 note records
       it.
-- [~] Task: S3 Fix — close the S2 review findings (Review B r3 and acceptance)
+    - Green proof (2026-11-23): commits `69a8b17a` and `455dc41c`. One
+      `stripPersonDetails` lives in `packages/ai-tutoring/src/lesson-context.ts`
+      and runs inside `assembleLessonChatbotContext` before HTML stripping.
+      The BM2 route passes the account values of its session claims. The
+      captured prompt holds no fixture value and keeps both math sentences.
+      `CI=true npm run test --workspace=apps/bus-math-v2 -- -t 'S3 fix'`
+      exits 0: 2 passed, 2699 skipped. Gate sweeps lint, test, and checks-all
+      with label `s3` and `GATES_BASE=s2` each exit 0 with `NEWFAIL=0`.
+      Logs: `green-s3-fix-455dc41c.log`.
+- [x] Task: S3 Fix — close the S2 review findings (Review B r3 and acceptance) [69a8b17a, 455dc41c]
     - (a) Make the IM3 strip robust beyond the colon-labeled fixture. Cover the dash form, the em-dash form, unlisted labels, prose names, an obfuscated email, and a fullwidth label. Add one test for each form. If a conservative sentence-level detector is too broad, accept the limit in writing.
     - (b) Tighten `MODEL_ID`. Record the served model in a usage record only when it equals the configured model or the configured model plus a known suffix. A bare API key form must give `model: null`. Add a test.
     - (c) Stop keeping the raw API key in the provider cache key. Key the cache on a stable non-secret value. Keep the warm-cache recheck of the key and the role model.
@@ -387,6 +396,17 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
       `packages/ai-tutoring`, `apps/bus-math-v2`, and
       `apps/integrated-math-3`. Typecheck passes in the package and BM2. IM3
       typecheck holds the 55 baseline lines with no new key.
+    - Green proof (2026-11-23): commits `69a8b17a` and `455dc41c`. The single
+      strip covers all six forms. The accepted limit is in `evidence.md`. The
+      model validator rejects key-shaped `sk-` tokens and records an invalid
+      served model as null. The provider cache key holds role and model only,
+      with an exact key recheck in the cached entry. Both rate-limit catches
+      log role and status only. The SDK gets a redacting debug logger for
+      `OPENROUTER_DEBUG`. Package S3 fix exits 0: 6 passed, 141 skipped; full
+      package suite 147/147. IM3 S3 fix exits 0: 7 passed, 7073 skipped.
+      Gate sweeps lint, test, and checks-all with label `s3` and
+      `GATES_BASE=s2` each exit 0 with `NEWFAIL=0`. Logs:
+      `green-s3-fix-455dc41c.log`.
 
 - [ ] Task: S3 Contract — define the helper and the teacher summary
     - [ ] Add `"zod": "^4.1.12"` to the `dependencies` of `packages/ai-tutoring/package.json` (spec "Non-Functional Requirements"). Run `npm install`.
