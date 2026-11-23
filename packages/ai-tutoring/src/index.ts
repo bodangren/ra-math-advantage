@@ -17,6 +17,15 @@ export { AI_ROLES, resolveRoleModel, buildProviderPreferences, type AiRole } fro
 export { assembleLessonChatbotContext, type LessonChatbotContext } from "./lesson-context";
 
 export {
+  resolveStructuredProviderFromEnv,
+  type StructuredProvider,
+  type StructuredRequest,
+  type StructuredResult,
+  type StructuredFailureReason,
+  type ChatMessage as StructuredChatMessage,
+} from "./structured";
+
+export {
   detectPromptInjection,
   isInjectionAttempt,
   normalizeInput,

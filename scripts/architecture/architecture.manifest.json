@@ -273,7 +273,7 @@
       "domainClassification": "domain-neutral",
       "domain": null,
       "allowedDependencies": [],
-      "publicEntryPoints": [".", "./retry", "./providers", "./lesson-context"],
+      "publicEntryPoints": [".", "./retry", "./providers", "./lesson-context", "./structured"],
       "qualityCommands": {
         "lint": "npm run lint --workspace=packages/ai-tutoring",
         "test": "npm run test --workspace=packages/ai-tutoring",

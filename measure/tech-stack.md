@@ -88,6 +88,15 @@ output). Each role has a PII flag, `false` for every current role. Each AI
 request writes one usage record with the role, the served model, the latency,
 the token counts, the outcome, and the status, and no prompt or answer text.
 
+Note (2026-11-24, Phase S3 of `openrouter-sdk-ai-layer_20261114`, Green): the
+structured-output helper lives in `packages/ai-tutoring/src/structured.ts`.
+It sends a strict JSON Schema response format, validates the answer with Zod,
+and returns typed failures without throwing. BM2 spreadsheet feedback and the
+BM2 teacher error summary use the helper. The teacher summary lives in
+`apps/bus-math-v2/lib/teacher/ai-error-summary.ts` and uses the `accountingEval`
+role with a lesson-level prompt that holds no student name. Both features keep
+their deterministic fallbacks.
+
 ## Styling & UI
 
 | Layer | Technology |

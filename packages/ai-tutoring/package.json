@@ -9,7 +9,8 @@
     ".": "./src/index.ts",
     "./retry": "./src/retry.ts",
     "./providers": "./src/providers.ts",
-    "./lesson-context": "./src/lesson-context.ts"
+    "./lesson-context": "./src/lesson-context.ts",
+    "./structured": "./src/structured.ts"
   },
   "scripts": {
     "test": "vitest run",
@@ -20,7 +21,8 @@
     "build": "npm run typecheck"
   },
   "dependencies": {
-    "@openrouter/sdk": "^1.5.128"
+    "@openrouter/sdk": "^1.5.128",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@types/node": "^24.19.2",
