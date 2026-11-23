@@ -279,6 +279,17 @@ _Story ref: spec.md#story-s2_
       file holds 60 lines against a 50-line limit: N1 (OPENROUTER_DEBUG
       debugLogger), N2 (S2 Verify grep matches the case-9 fixture), N3 (two-role
       cache isolation test).
+    - [x] Remediation r3 (adversarial ADV-S2-1 to ADV-S2-5): `e5680156`.
+      The resolvers recheck the key and role model before a cache hit and key
+      the cache on role, key and model. F1 recovery trims content. Usage
+      records accept only a bounded model id. The IM3 chatbot strips person
+      details from lesson markdown. HTTP errors carry the status only, and
+      both chatbot routes log status and role. Two S1 error-text tests and the
+      short-key test moved to the paths that still retain message text. No
+      adversarial assertion changed. Package suite 141/141, IM3 chatbot suite
+      14/14. Lint, test and checks-all gate sweeps with label `s2` each exit 0
+      with `NEWFAIL=0`. Logs: `green-s2-r3-package.log`, `green-s2-r3-im3.log`,
+      `green-s2-r3-gates.exit`.
 - [ ] Task: S2 Verify — run the gates
     - [ ] Run each gate, with the workerd probe. Confirm that each gate passes.
     - [ ] Run `git grep -n "OPENROUTER_MODEL\b\|openrouter/free" -- apps packages ':!**/.env.example'`. Confirm that no code matches.
