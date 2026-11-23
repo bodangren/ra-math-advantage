@@ -486,3 +486,30 @@ rate-limit status null), and F4 (teacher route raw error log) are recorded in
 ### Review B F2 to F4 — carried debt
 
 See `measure/tech-debt.md`, section "S3 remediation r5".
+
+### S3 remediation r4 (2026-11-24)
+
+Role base `8eee12fc`. Phase base `55e7952b`. Review C passed Reviews A and
+B at the role base and found one blocker. No dependency change in this round.
+
+**Review C F1 — internal validator.** `safeModel` was exported from
+`providers.ts`, which the package exposes through the `./providers` subpath.
+That widened the package API beyond the S3 plan. Commit `43f08c9d` moves
+`MODEL_ID` and `safeModel` into `src/model-id.ts`. The new module is not in
+`package.json` exports and is not re-exported from `index.ts`. Both
+`providers.ts` and `structured.ts` import the same internal function, so one
+implementation remains. The planned structured exports are unchanged. No
+existing test imports `safeModel` through a public path. Behavior is
+unchanged; no assertion was edited.
+
+**Tests.** The full package suite is 158 of 158, including both S3
+remediation cases and the findings (b) tests. BM2 targeted filters pass:
+`spreadsheet-feedback` 10 passed, `teacher AI error summary` 8 passed,
+`no-PII` 3 passed. IM3 `-t 'S3 fix'` passes 7 cases with 7073 skipped.
+
+**Gates.** `GATES_BASE=s2 ... gates.sh <lint|test|checks-all> s3` each exits
+0 with `NEWFAIL=0`. The workerd probe answers `probe-ok`. The audit line stays
+`critical=0 high=5 moderate=6 low=5`. `bash measure/doctor.sh`, package
+typecheck, `oxlint`, and `oxfmt --check` pass at the final source tree.
+
+**Final log.** `measure/runs/openrouter-sdk-ai-layer_20261114/green-s3-r4-<shorthead>.log`.

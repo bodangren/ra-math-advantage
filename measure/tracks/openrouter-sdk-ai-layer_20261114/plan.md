@@ -565,6 +565,13 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
   passed and 156 skipped. The full package suite is 158 of 158. All three
   gate sweeps exit 0 with `NEWFAIL=0`; workerd answers `probe-ok`; audit
   counts are unchanged. See the "S3 remediation r5" section of `evidence.md`.
+- Green proof r4 (2026-11-24): commit `43f08c9d` moves `MODEL_ID` and
+  `safeModel` into the internal `src/model-id.ts`. The module is absent from
+  `package.json` exports, so Review C F1 is closed. `providers.ts` and
+  `structured.ts` import the same internal validator. The full package suite
+  is 158 of 158, IM3 S3 fix is 7 passed, BM2 targeted filters pass, and all
+  three gate sweeps exit 0 with `NEWFAIL=0`. See the "S3 remediation r4"
+  section of `evidence.md`.
 
 ## Phase S4: Remove the OpenAI paths and document the roles
 _Story ref: spec.md#story-s4_
