@@ -23,6 +23,7 @@ function completion(content: string, model = SERVED_MODEL) {
     id: "gen-s2-fixture",
     created: 1,
     object: "chat.completion",
+    system_fingerprint: null,
     model,
     choices: [{ index: 0, message: { role: "assistant", content }, finish_reason: "stop" }],
     usage: { prompt_tokens: 7, completion_tokens: 3, total_tokens: 10 },
