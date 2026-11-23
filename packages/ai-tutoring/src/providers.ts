@@ -215,7 +215,7 @@ const MODEL_ID = /^(?!sk-)[A-Za-z0-9_.:~/-]{1,128}$/;
  * Accepts only a bounded model identifier for a usage record. Any other text,
  * including prompt, answer, or key text, is recorded as null.
  */
-function safeModel(value: unknown): string | null {
+export function safeModel(value: unknown): string | null {
   return typeof value === "string" && MODEL_ID.test(value) ? value : null;
 }
 

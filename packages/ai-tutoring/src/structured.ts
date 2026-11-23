@@ -9,6 +9,7 @@
 import { z } from "zod";
 
 import { createOpenRouterClient } from "./openrouter-client";
+import { safeModel } from "./providers";
 import { withRetry, EmptyResponseError } from "./retry";
 import { resolveRoleModel, type AiRole } from "./roles";
 import { logAiRequest, logRoleNotConfigured } from "./usage-log";
@@ -158,8 +159,15 @@ export function resolveStructuredProviderFromEnv(role: AiRole): StructuredProvid
     const startedAt = Date.now();
     const jsonSchema = z.toJSONSchema(request.schema);
     // The SDK input shape uses camelCase and remaps it to the outbound JSON.
-    // The outbound-shaped fields are also set so the contract holds at the
-    // SDK boundary.
+    // The outbound-shaped field is also set so the contract holds at the SDK
+    // boundary. The SDK reads the camelCase provider key by name, so that key
+    // is non-enumerable: the boundary object keeps only the outbound key, and
+    // the SDK still remaps the preference onto the wire body.
+    const providerPreference = Object.defineProperty(
+      { require_parameters: true },
+      "requireParameters",
+      { value: true, enumerable: false },
+    );
     const contractFields = {
       response_format: {
         type: "json_schema" as const,
@@ -169,7 +177,7 @@ export function resolveStructuredProviderFromEnv(role: AiRole): StructuredProvid
           schema: jsonSchema,
         },
       },
-      provider: { require_parameters: true },
+      provider: providerPreference,
     };
     let outcome: "ok" | "error" = "error";
     let status: number | null = null;
@@ -212,7 +220,7 @@ export function resolveStructuredProviderFromEnv(role: AiRole): StructuredProvid
           if (answer === null || answer.trim().length === 0) {
             throw new EmptyResponseError();
           }
-          servedModel = typeof result.model === "string" ? result.model : null;
+          servedModel = safeModel(result.model);
           usage = readUsage(result.usage);
           return answer.trim();
         },
@@ -229,7 +237,7 @@ export function resolveStructuredProviderFromEnv(role: AiRole): StructuredProvid
       const reason = reasonFor(mapped);
       logAiRequest({
         role,
-        model,
+        model: safeModel(model),
         latencyMs: Date.now() - startedAt,
         promptTokens: 0,
         completionTokens: 0,
@@ -242,7 +250,7 @@ export function resolveStructuredProviderFromEnv(role: AiRole): StructuredProvid
 
     logAiRequest({
       role,
-      model: servedModel ?? model,
+      model: servedModel,
       latencyMs: Date.now() - startedAt,
       ...usage,
       outcome,
