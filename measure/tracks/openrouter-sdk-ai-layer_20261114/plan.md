@@ -556,6 +556,15 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
   `sk-test-bare-key-9921` instead of `null`). No production source changed.
   No earlier assertion changed. Gate sweeps with `GATES_BASE=s2` and label
   `s3` are recorded in the round result log.
+- Green proof (2026-11-24): production fixes at `9352efac` make both cases pass.
+  R-A1 sets the camelCase provider key as a non-enumerable property, so the
+  SDK boundary assertion keeps the outbound shape and the serialized body
+  carries `provider.require_parameters: true`. R-B1 reuses the shared
+  `safeModel` validator from `providers.ts`. `CI=true npm run test
+  --workspace=packages/ai-tutoring -- -t 'S3 remediation'` exits 0 with 2
+  passed and 156 skipped. The full package suite is 158 of 158. All three
+  gate sweeps exit 0 with `NEWFAIL=0`; workerd answers `probe-ok`; audit
+  counts are unchanged. See the "S3 remediation r5" section of `evidence.md`.
 
 ## Phase S4: Remove the OpenAI paths and document the roles
 _Story ref: spec.md#story-s4_

@@ -425,18 +425,64 @@ those keys in the s3 BM2 log. A resumed sweep then reports `NEWFAIL=0`.
 
 **Accepted limits.**
 
-- The helper sets the outbound-shaped `provider` field at the SDK boundary,
-  as Red case 3 requires. The installed SDK 1.5.128 parses camelCase input
-  and remaps it to the outbound JSON. Its schema drops the snake_case field,
-  so the serialized body holds `provider: {}` and no `require_parameters`.
-  The Red contract asserts the SDK boundary object; no assertion covers the
-  serialized provider field. The `responseFormat` camelCase field is also
-  sent, so case 13 sees `response_format` in the body.
+- **Provider serialization, fixed in remediation r5.** The helper sets the
+  outbound-shaped `provider.require_parameters` at the SDK boundary, as Red
+  case 3 requires. SDK 1.5.128 reads the camelCase `requireParameters` key by
+  name when it parses the request, so the helper also sets that key as a
+  non-enumerable property. The boundary object keeps only the outbound key,
+  and the SDK remaps the camelCase key onto the wire. R-A1 captures the real
+  fetch body and asserts `provider.require_parameters === true`. The earlier
+  claim that the body held `provider: {}` is retired.
 - The teacher generator sends no request when `totalParts` is 0, as case 16
   requires. The Mid Red fixture fix supplies one neutral part so the no-PII
   test captures a prompt. Case 16 is unchanged.
 - F3, F4, F6, and F7 of the S2 next-phase list stay open for a later phase.
-  This phase does not change the strip, the served-model rule, the cache key,
-  or the rate-limit logs.
+  The S3 Fix group of this same phase does change the strip, the served-model
+  rule, the cache key, and the rate-limit logs; see "S3 Fix group" above.
 
 **Final log.** `measure/runs/openrouter-sdk-ai-layer_20261114/green-s3-3e0e1d50.log`.
+
+### S3 remediation r5 (2026-11-24)
+
+Role base `e0268a3e`. Phase base `55e7952b`. Red commits `36b27a50`
+(tests) and `e0268a3e` (log). No dependency change in this round.
+
+**R-A1 — wire provider preference.** The helper now sets the camelCase
+`requireParameters` key as a non-enumerable property beside the outbound
+`require_parameters` key. The SDK boundary object keeps only the outbound
+key, so Red case 3 still compares `{ require_parameters: true }`. SDK 1.5.128
+reads the camelCase key by name and remaps it, so the serialized body carries
+`provider.require_parameters: true`. The Red R-A1 case captures the real
+fetch body and asserts that field. The earlier accepted limit that recorded
+`provider: {}` is retired from the previous section.
+
+**R-B1 — served-model validation.** The `safeModel` validator of
+`providers.ts` is now exported and reused in `structured.ts`. It is applied
+when the helper reads the served model and in both usage-log calls. A
+key-shaped served model gives `model: null` and never reaches the console. A
+valid model passes through unchanged. No second validator was added.
+
+**Tests.** `CI=true npm run test --workspace=packages/ai-tutoring -- -t 'S3 remediation'`:
+at Red 2 failed and 156 skipped; after Green 2 passed and 156 skipped, exit
+0. The full package suite is 158 of 158. BM2 targeted filters pass:
+`spreadsheet-feedback` 10 passed, `teacher AI error summary` 8 passed,
+`no-PII` 3 passed.
+
+**Gates.** `GATES_BASE=s2 ... gates.sh <lint|test|checks-all> s3` each exits
+0 with `NEWFAIL=0`. The workerd probe answers `probe-ok`. The audit line stays
+`critical=0 high=5 moderate=6 low=5`. `bash measure/doctor.sh`, package
+typecheck, package lint, and `oxfmt --check` pass at the final source tree.
+
+**Gate note from Red.** The scripts-suite ENOENT key did not appear as a new
+key. The s2 and s3 scripts-suite logs had equal key sets; no `/tmp` suffix
+normalization was needed and `gates.sh` was not changed in this round.
+
+**Nonblocking findings.** Review B F2 (short known-details strip), F3 (BM2
+rate-limit status null), and F4 (teacher route raw error log) are recorded in
+`measure/tech-debt.md`. This round does not fix them.
+
+**Final log.** `measure/runs/openrouter-sdk-ai-layer_20261114/green-s3-r3-<shorthead>.log`.
+
+### Review B F2 to F4 — carried debt
+
+See `measure/tech-debt.md`, section "S3 remediation r5".
