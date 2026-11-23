@@ -174,7 +174,7 @@ Next-phase list (acceptance, record-only): Acceptance F1 (Major, fix first in S2
     - [x] Append `[checkpoint: 14f75797]` to the Phase S1 heading. (14f75797.)
     - [x] Commit: `measure(plan): mark the S1 checkpoint (track_id: openrouter-sdk-ai-layer_20261114)`. (14f75797.)
 
-## Phase S2: Role-based model configuration
+## Phase S2: Role-based model configuration [checkpoint: e661e619]
 _Story ref: spec.md#story-s2_
 
 - [x] Task: S2 Contract — define the roles, the PII flag, and the usage record (Red owns the stubs; Green owns the behavior) (8e803b83.)
@@ -310,9 +310,9 @@ _Story ref: spec.md#story-s2_
     - [ ] Run `npm run doctor`. Confirm exit code 0.
 - [x] Task: Measure - User Manual Verification 'Phase S2: Role-based model configuration' (Protocol in workflow.md) (PM-verified 2026-11-23)
     - PM-verified: the automated checks ran at HEAD `8bc7469a`. The acceptance result is `measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-8bc7469a.json`.
-    - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S2`.
-    - [ ] Append `[checkpoint: <sha>]` to the Phase S2 heading.
-    - [ ] Commit: `measure(plan): Mark phase 'Phase S2: Role-based model configuration' as complete`.
+    - [x] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S2`. (e661e619.)
+    - [x] Append `[checkpoint: e661e619]` to the Phase S2 heading. (e661e619.)
+    - [x] Commit: `measure(plan): mark the S2 checkpoint (track_id: openrouter-sdk-ai-layer_20261114)`. (e661e619.)
 
 Next-phase list (acceptance, record-only): F1 (Major: the BM2 lesson chatbot embeds lesson markdown without the `stripPersonDetails` fix; fix first in S3). F2 (the evidence log citation for the F1 4/4 claim is the mid-fix run; cite a fresh run at the next evidence commit). F3 (the IM3 strip is fixture-shaped; make it robust or accept the limit in writing). F4 (`MODEL_ID` accepts a bare key form; record the model only when it equals the configured model or the configured model plus a known suffix). F5 (the stale tech-stack current-state lines; fixed in `595430f6`). F6 (process records: the third-round PM approval is in `metadata.json`; the S2 Contract and Test (Red) task lines now cite `8e803b83` and `c80b7352`; eight run files were force-added; commit `1833c526` has no note). F7 (carried: the cache key holds the API key; both rate-limit catches log the raw error object; `OPENROUTER_DEBUG` logs the auth header; `gates.sh` cannot see a new or larger BM2 bundle entry).
 
