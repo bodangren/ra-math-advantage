@@ -14,6 +14,7 @@ export default {
     const provider = createOpenRouterProvider({
       apiKey: env.OPENROUTER_API_KEY,
       baseUrl: env.OPENROUTER_API_BASE,
+      role: "studentTutor",
       model: "probe/model",
     });
     const text = await provider("probe");

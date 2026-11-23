@@ -3,29 +3,43 @@
  *
  * Requests go through the typed OpenRouter SDK client in `openrouter-client.ts`.
  * The SDK retry layer is off; `withRetry` stays the only retry layer.
+ * Each role resolves its own model. Each request writes one usage record.
  */
 
 import { withRetry, EmptyResponseError } from "./retry";
 import { createOpenRouterClient, type OpenRouterClientOptions } from "./openrouter-client";
+import {
+  AI_ROLES,
+  resolveRoleModel,
+  buildProviderPreferences,
+  type AiRole,
+  type ProviderPreferences,
+} from "./roles";
+import { logAiRequest, logRoleNotConfigured } from "./usage-log";
 
 const OPENROUTER_API_BASE = "https://openrouter.ai/api/v1";
 
 type OpenRouterClient = ReturnType<typeof createOpenRouterClient>;
 type SdkMessages = Parameters<OpenRouterClient["chat"]["send"]>[0]["chatRequest"]["messages"];
+type PromptProvider = (prompt: string, abortSignal?: AbortSignal) => Promise<string>;
+type MessagesProvider = (messages: ChatMessage[], abortSignal?: AbortSignal) => Promise<string>;
 
 export interface OpenRouterProviderOptions {
   apiKey: string;
-  model?: string;
+  model: string;
+  role: AiRole;
   baseUrl?: string;
   timeoutMs?: number;
 }
 
 const MIN_REDACT_KEY_LENGTH = 8;
-const BEARER_PREFIX = "Bearer ";
+const BEARER_SCHEME = /^bearer\s+/i;
 
 /**
  * Lists the configured key forms that an upstream error may echo.
  * A short key is never redacted, so ordinary text stays unchanged.
+ * The bearer scheme is removed without case sensitivity and with any
+ * following whitespace.
  */
 function redactionTargets(apiKey: string): string[] {
   if (apiKey.length === 0) {
@@ -35,7 +49,8 @@ function redactionTargets(apiKey: string): string[] {
   if (trimmed.length < MIN_REDACT_KEY_LENGTH) {
     return [];
   }
-  const token = trimmed.startsWith(BEARER_PREFIX) ? trimmed.slice(BEARER_PREFIX.length) : trimmed;
+  const scheme = BEARER_SCHEME.exec(trimmed);
+  const token = scheme ? trimmed.slice(scheme[0].length) : trimmed;
   const targets = [apiKey, trimmed, token];
   return [...new Set(targets.filter((target) => target.length >= MIN_REDACT_KEY_LENGTH))];
 }
@@ -60,6 +75,15 @@ function redactApiKey(text: string, apiKey: string): string {
 function mapSdkError(error: unknown, apiKey: string): Error {
   if (error instanceof EmptyResponseError) {
     return error;
+  }
+
+  // A response whose body cannot be read holds no answer. Treat it as empty
+  // so the retry layer gives the request another attempt.
+  if (
+    error instanceof Error &&
+    (error.message.includes("Body is unusable") || error.message.includes("already been read"))
+  ) {
+    return new EmptyResponseError();
   }
 
   const message = error instanceof Error ? error.message : String(error);
@@ -114,46 +138,172 @@ function extractContent(content: unknown): string | null {
   return null;
 }
 
+interface UsageCounts {
+  promptTokens: number;
+  completionTokens: number;
+  totalTokens: number;
+}
+
+interface ChatOutcome {
+  content: string;
+  servedModel: string;
+  usage: UsageCounts;
+}
+
+/** Reads token counts from an SDK result or a raw response body. */
+function readUsage(value: unknown): UsageCounts {
+  if (!value || typeof value !== "object") {
+    return { promptTokens: 0, completionTokens: 0, totalTokens: 0 };
+  }
+  const usage = value as Record<string, unknown>;
+  const count = (camel: string, snake: string): number => {
+    const candidate = usage[camel] ?? usage[snake];
+    return typeof candidate === "number" ? candidate : 0;
+  };
+  return {
+    promptTokens: count("promptTokens", "prompt_tokens"),
+    completionTokens: count("completionTokens", "completion_tokens"),
+    totalTokens: count("totalTokens", "total_tokens"),
+  };
+}
+
+/**
+ * Recovers a content answer from an SDK 200 body that failed strict validation.
+ * The documented OpenRouter example and an error-only 200 body both reach this
+ * path. A body without content is reported as empty so `withRetry` retries it.
+ */
+function recoverValidatedBody(error: unknown, fallbackModel: string): ChatOutcome | null {
+  if (!(error instanceof Error)) {
+    return null;
+  }
+  const validationError = error as Error & {
+    name: string;
+    statusCode?: unknown;
+    rawValue?: unknown;
+  };
+  if (validationError.name !== "ResponseValidationError" || validationError.statusCode !== 200) {
+    return null;
+  }
+
+  const raw = validationError.rawValue;
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
+    return null;
+  }
+  const body = raw as Record<string, unknown>;
+  const choices = Array.isArray(body.choices) ? body.choices : [];
+  const first =
+    choices.length > 0 && choices[0] && typeof choices[0] === "object"
+      ? (choices[0] as Record<string, unknown>)
+      : null;
+  const message =
+    first && first.message && typeof first.message === "object"
+      ? (first.message as Record<string, unknown>)
+      : null;
+  const content = message ? extractContent(message.content) : null;
+  const servedModel =
+    typeof body.model === "string" && body.model.length > 0 ? body.model : fallbackModel;
+
+  return {
+    content: content ?? "",
+    servedModel,
+    usage: readUsage(body.usage),
+  };
+}
+
 /**
  * Sends one chat request through the SDK inside the existing retry wrapper.
+ * One usage record is written after success or after the last retry.
  */
 async function sendChat(
   client: OpenRouterClient,
   apiKey: string,
+  role: AiRole,
   model: string,
   messages: SdkMessages,
   timeoutMs: number,
+  preferences: ProviderPreferences | undefined,
   abortSignal?: AbortSignal,
 ): Promise<string> {
-  return withRetry(async () => {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  const startedAt = Date.now();
+  let lastStatus: number | null = null;
 
-    if (abortSignal) {
-      if (abortSignal.aborted) {
-        controller.abort();
-      } else {
-        const onAbort = () => controller.abort();
-        abortSignal.addEventListener("abort", onAbort, { once: true });
-      }
-    }
+  try {
+    const outcome = await withRetry(async () => {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), timeoutMs);
 
-    try {
-      const result = await client.chat.send(
-        { chatRequest: { stream: false as const, model, messages } },
-        { signal: controller.signal },
-      );
-      const content = extractContent(result.choices?.[0]?.message?.content);
-      if (content === null || content.trim().length === 0) {
-        throw new EmptyResponseError();
+      if (abortSignal) {
+        if (abortSignal.aborted) {
+          controller.abort();
+        } else {
+          const onAbort = () => controller.abort();
+          abortSignal.addEventListener("abort", onAbort, { once: true });
+        }
       }
-      return content.trim();
-    } catch (error) {
-      throw mapSdkError(error, apiKey);
-    } finally {
-      clearTimeout(timeout);
-    }
-  });
+
+      try {
+        const result = await client.chat.send(
+          {
+            chatRequest: {
+              stream: false as const,
+              model,
+              messages,
+              ...(preferences ? { provider: preferences } : {}),
+            },
+          },
+          { signal: controller.signal },
+        );
+        const content = extractContent(result.choices?.[0]?.message?.content);
+        if (content === null || content.trim().length === 0) {
+          throw new EmptyResponseError();
+        }
+        return {
+          content: content.trim(),
+          servedModel: typeof result.model === "string" ? result.model : model,
+          usage: readUsage(result.usage),
+        };
+      } catch (error) {
+        const recovered = recoverValidatedBody(error, model);
+        if (recovered) {
+          if (recovered.content.trim().length === 0) {
+            throw new EmptyResponseError();
+          }
+          return recovered;
+        }
+        const mapped = mapSdkError(error, apiKey);
+        const mappedStatus = (mapped as Error & { status?: unknown }).status;
+        if (typeof mappedStatus === "number") {
+          lastStatus = mappedStatus;
+        }
+        throw mapped;
+      } finally {
+        clearTimeout(timeout);
+      }
+    });
+
+    logAiRequest({
+      role,
+      model: outcome.servedModel,
+      latencyMs: Date.now() - startedAt,
+      ...outcome.usage,
+      outcome: "ok",
+      status: null,
+    });
+    return outcome.content;
+  } catch (error) {
+    const status = (error as Error & { status?: unknown }).status;
+    logAiRequest({
+      role,
+      model,
+      latencyMs: Date.now() - startedAt,
+      promptTokens: 0,
+      completionTokens: 0,
+      totalTokens: 0,
+      outcome: "error",
+      status: typeof status === "number" ? status : lastStatus,
+    });
+    throw error;
+  }
 }
 
 function clientOptions(options: OpenRouterProviderOptions): OpenRouterClientOptions {
@@ -164,20 +314,20 @@ function clientOptions(options: OpenRouterProviderOptions): OpenRouterClientOpti
 /**
  * Creates an OpenRouter provider function for single-prompt chat completion.
  */
-export function createOpenRouterProvider(options: OpenRouterProviderOptions) {
-  const { model = "openrouter/free", timeoutMs = 15000 } = options;
+export function createOpenRouterProvider(options: OpenRouterProviderOptions): PromptProvider {
+  const { model, role, timeoutMs = 15000 } = options;
   const client = createOpenRouterClient(clientOptions(options));
+  const preferences = buildProviderPreferences(AI_ROLES[role]);
 
-  return async function openRouterProvider(
-    prompt: string,
-    abortSignal?: AbortSignal,
-  ): Promise<string> {
+  return function openRouterProvider(prompt: string, abortSignal?: AbortSignal): Promise<string> {
     return sendChat(
       client,
       options.apiKey,
+      role,
       model,
       [{ role: "user", content: prompt }] as SdkMessages,
       timeoutMs,
+      preferences,
       abortSignal,
     );
   };
@@ -191,15 +341,27 @@ export interface ChatMessage {
 /**
  * Creates an OpenRouter provider function for multi-message chat completion.
  */
-export function createOpenRouterProviderWithMessages(options: OpenRouterProviderOptions) {
-  const { model = "openrouter/free", timeoutMs = 15000 } = options;
+export function createOpenRouterProviderWithMessages(
+  options: OpenRouterProviderOptions,
+): MessagesProvider {
+  const { model, role, timeoutMs = 15000 } = options;
   const client = createOpenRouterClient(clientOptions(options));
+  const preferences = buildProviderPreferences(AI_ROLES[role]);
 
-  return async function openRouterProviderWithMessages(
+  return function openRouterProviderWithMessages(
     messages: ChatMessage[],
     abortSignal?: AbortSignal,
   ): Promise<string> {
-    return sendChat(client, options.apiKey, model, messages as SdkMessages, timeoutMs, abortSignal);
+    return sendChat(
+      client,
+      options.apiKey,
+      role,
+      model,
+      messages as SdkMessages,
+      timeoutMs,
+      preferences,
+      abortSignal,
+    );
   };
 }
 
@@ -220,64 +382,77 @@ export function getErrorStatus(error: Error): number | null {
   return match ? parseInt(match[1], 10) : null;
 }
 
-let cachedProvider: ((prompt: string, abortSignal?: AbortSignal) => Promise<string>) | null = null;
+const providerCache = new Map<AiRole, PromptProvider>();
+const messagesProviderCache = new Map<AiRole, MessagesProvider>();
 
-let cachedMessagesProvider:
-  | ((messages: ChatMessage[], abortSignal?: AbortSignal) => Promise<string>)
-  | null = null;
-
-/**
- * Clears the cached OpenRouter providers (prompt and messages variants).
- */
+/** Clears the cached OpenRouter providers of every role. */
 export function clearProviderCache(): void {
-  cachedProvider = null;
-  cachedMessagesProvider = null;
+  providerCache.clear();
+  messagesProviderCache.clear();
 }
 
 /**
- * Resolves OpenRouter provider from environment variables (single-prompt variant).
+ * Resolves the OpenRouter provider of a role from environment variables.
+ * A missing key or model is logged and returns null.
  */
-export function resolveOpenRouterProviderFromEnv():
-  | ((prompt: string, abortSignal?: AbortSignal) => Promise<string>)
-  | null {
+export function resolveOpenRouterProviderFromEnv(role: AiRole): PromptProvider | null {
+  const cached = providerCache.get(role);
+  if (cached) {
+    return cached;
+  }
+
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey || apiKey.trim().length === 0) {
+    logRoleNotConfigured(role, "OPENROUTER_API_KEY", "missing");
     return null;
   }
 
-  if (cachedProvider) {
-    return cachedProvider;
+  const modelResult = resolveRoleModel(role);
+  if (!modelResult.ok) {
+    logRoleNotConfigured(role, modelResult.missing, modelResult.reason);
+    return null;
   }
 
-  cachedProvider = createOpenRouterProvider({
+  const provider = createOpenRouterProvider({
     apiKey,
-    model: process.env.OPENROUTER_MODEL || "openrouter/free",
+    model: modelResult.model,
+    role,
     baseUrl: process.env.OPENROUTER_API_BASE || OPENROUTER_API_BASE,
   });
-
-  return cachedProvider;
+  providerCache.set(role, provider);
+  return provider;
 }
 
 /**
- * Resolve OpenRouter multi-message provider from environment variables.
+ * Resolves the OpenRouter multi-message provider of a role from environment.
+ * A missing key or model is logged and returns null.
  */
-export function resolveOpenRouterProviderWithMessagesFromEnv():
-  | ((messages: ChatMessage[], abortSignal?: AbortSignal) => Promise<string>)
-  | null {
+export function resolveOpenRouterProviderWithMessagesFromEnv(
+  role: AiRole,
+): MessagesProvider | null {
+  const cached = messagesProviderCache.get(role);
+  if (cached) {
+    return cached;
+  }
+
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey || apiKey.trim().length === 0) {
+    logRoleNotConfigured(role, "OPENROUTER_API_KEY", "missing");
     return null;
   }
 
-  if (cachedMessagesProvider) {
-    return cachedMessagesProvider;
+  const modelResult = resolveRoleModel(role);
+  if (!modelResult.ok) {
+    logRoleNotConfigured(role, modelResult.missing, modelResult.reason);
+    return null;
   }
 
-  cachedMessagesProvider = createOpenRouterProviderWithMessages({
+  const provider = createOpenRouterProviderWithMessages({
     apiKey,
-    model: process.env.OPENROUTER_MODEL || "openrouter/free",
+    model: modelResult.model,
+    role,
     baseUrl: process.env.OPENROUTER_API_BASE || OPENROUTER_API_BASE,
   });
-
-  return cachedMessagesProvider;
+  messagesProviderCache.set(role, provider);
+  return provider;
 }

@@ -42,14 +42,22 @@ describe("createOpenRouterProvider", () => {
   });
 
   it("creates a provider function", () => {
-    const provider = createOpenRouterProvider({ apiKey: "test-key" });
+    const provider = createOpenRouterProvider({
+      apiKey: "test-key",
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
     expect(typeof provider).toBe("function");
   });
 
   it("calls OpenRouter API with correct headers", async () => {
     legacySend.mockResolvedValueOnce(legacyTextResponse("Hello!"));
 
-    const provider = createOpenRouterProvider({ apiKey: "test-key" });
+    const provider = createOpenRouterProvider({
+      apiKey: "test-key",
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
     const result = await provider("Hello AI");
 
     expect(result).toBe("Hello!");
@@ -71,6 +79,7 @@ describe("createOpenRouterProvider", () => {
     const provider = createOpenRouterProvider({
       apiKey: "test-key",
       model: "openrouter/premium",
+      role: "studentTutor",
     });
     await provider("test");
 
@@ -83,6 +92,8 @@ describe("createOpenRouterProvider", () => {
 
     const provider = createOpenRouterProvider({
       apiKey: "test-key",
+      model: "vendor/model-a",
+      role: "studentTutor",
       baseUrl: "https://custom.api/v1",
     });
     await provider("test");
@@ -95,7 +106,11 @@ describe("createOpenRouterProvider", () => {
   it("throws on non-ok response", async () => {
     legacySend.mockRejectedValue(Object.assign(new Error("Unauthorized"), { statusCode: 401 }));
 
-    const provider = createOpenRouterProvider({ apiKey: "bad-key" });
+    const provider = createOpenRouterProvider({
+      apiKey: "bad-key",
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
 
     await expect(provider("test")).rejects.toThrow("OpenRouter API error: 401 Unauthorized");
   });
@@ -103,7 +118,11 @@ describe("createOpenRouterProvider", () => {
   it("retries on empty response content then throws", async () => {
     legacySend.mockResolvedValue(legacyTextResponse("   "));
 
-    const provider = createOpenRouterProvider({ apiKey: "test-key" });
+    const provider = createOpenRouterProvider({
+      apiKey: "test-key",
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
 
     await expect(provider("test")).rejects.toThrow("Empty response from AI provider");
     expect(legacySend.mock.calls.length).toBeGreaterThanOrEqual(1);
@@ -112,7 +131,11 @@ describe("createOpenRouterProvider", () => {
   it("retries when no choices returned then throws", async () => {
     legacySend.mockResolvedValue({ ...legacyTextResponse(""), choices: [] });
 
-    const provider = createOpenRouterProvider({ apiKey: "test-key" });
+    const provider = createOpenRouterProvider({
+      apiKey: "test-key",
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
 
     await expect(provider("test")).rejects.toThrow("Empty response from AI provider");
     expect(legacySend.mock.calls.length).toBeGreaterThanOrEqual(1);
@@ -121,7 +144,11 @@ describe("createOpenRouterProvider", () => {
   it("trims whitespace from response", async () => {
     legacySend.mockResolvedValueOnce(legacyTextResponse("  Hello world  "));
 
-    const provider = createOpenRouterProvider({ apiKey: "test-key" });
+    const provider = createOpenRouterProvider({
+      apiKey: "test-key",
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
     const result = await provider("test");
 
     expect(result).toBe("Hello world");
@@ -141,6 +168,8 @@ describe("createOpenRouterProvider", () => {
 
     const provider = createOpenRouterProvider({
       apiKey: "test-key",
+      model: "vendor/model-a",
+      role: "studentTutor",
       timeoutMs: 10,
     });
 
@@ -150,7 +179,11 @@ describe("createOpenRouterProvider", () => {
   it("accepts external AbortSignal", async () => {
     legacySend.mockResolvedValueOnce(legacyTextResponse("Response"));
 
-    const provider = createOpenRouterProvider({ apiKey: "test-key" });
+    const provider = createOpenRouterProvider({
+      apiKey: "test-key",
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
     const abortController = new AbortController();
 
     const result = await provider("test", abortController.signal);
@@ -171,6 +204,8 @@ describe("createOpenRouterProvider", () => {
 
     const provider = createOpenRouterProvider({
       apiKey: "test-key",
+      model: "vendor/model-a",
+      role: "studentTutor",
       timeoutMs: 10000,
     });
 
@@ -217,7 +252,11 @@ describe("SDK transport", () => {
   it("sends model and one user message through the SDK and returns trimmed content", async () => {
     mockSend.mockResolvedValueOnce(sdkTextResponse("  trimmed  "));
 
-    const provider = createOpenRouterProvider({ apiKey: "test-key", model: "vendor/model-a" });
+    const provider = createOpenRouterProvider({
+      apiKey: "test-key",
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
     const result = await provider("hello");
 
     expect(result).toBe("trimmed");
@@ -240,6 +279,7 @@ describe("SDK transport", () => {
     const provider = createOpenRouterProviderWithMessages({
       apiKey: "test-key",
       model: "vendor/model-a",
+      role: "studentTutor",
     });
     await provider([...messages]);
 
@@ -252,7 +292,11 @@ describe("SDK transport", () => {
       .mockRejectedValueOnce(sdkStatusError(429, "rate limited"))
       .mockResolvedValueOnce(sdkTextResponse("recovered"));
 
-    const provider = createOpenRouterProvider({ apiKey: "test-key", model: "vendor/model-a" });
+    const provider = createOpenRouterProvider({
+      apiKey: "test-key",
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
     const result = await provider("hello");
 
     expect(result).toBe("recovered");
@@ -262,7 +306,11 @@ describe("SDK transport", () => {
   it("does not retry an SDK 400 error and reports status 400", async () => {
     mockSend.mockRejectedValue(sdkStatusError(400, "bad request"));
 
-    const provider = createOpenRouterProvider({ apiKey: "test-key", model: "vendor/model-a" });
+    const provider = createOpenRouterProvider({
+      apiKey: "test-key",
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
 
     await expect(provider("hello")).rejects.toThrow(/^OpenRouter API error: 400/);
     expect(mockSend).toHaveBeenCalledTimes(1);
@@ -276,7 +324,11 @@ describe("SDK transport", () => {
       .mockRejectedValueOnce(connectionError)
       .mockResolvedValueOnce(sdkTextResponse("recovered"));
 
-    const provider = createOpenRouterProvider({ apiKey: "test-key", model: "vendor/model-a" });
+    const provider = createOpenRouterProvider({
+      apiKey: "test-key",
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
     const result = await provider("hello");
 
     expect(result).toBe("recovered");
@@ -288,7 +340,11 @@ describe("SDK transport", () => {
     const controller = new AbortController();
     controller.abort();
 
-    const provider = createOpenRouterProvider({ apiKey: "test-key", model: "vendor/model-a" });
+    const provider = createOpenRouterProvider({
+      apiKey: "test-key",
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
 
     await expect(provider("hello", controller.signal)).rejects.toMatchObject({
       name: "AbortError",
@@ -304,7 +360,7 @@ describe("resolveOpenRouterProviderFromEnv", () => {
     clearProviderCache();
     process.env = { ...originalEnv };
     delete process.env.OPENROUTER_API_KEY;
-    delete process.env.OPENROUTER_MODEL;
+    delete process.env.OPENROUTER_MODEL_STUDENT_TUTOR;
     delete process.env.OPENROUTER_API_BASE;
   });
 
@@ -314,34 +370,36 @@ describe("resolveOpenRouterProviderFromEnv", () => {
   });
 
   it("returns null when OPENROUTER_API_KEY is missing", () => {
-    expect(resolveOpenRouterProviderFromEnv()).toBeNull();
+    expect(resolveOpenRouterProviderFromEnv("studentTutor")).toBeNull();
   });
 
   it("returns null when OPENROUTER_API_KEY is empty string", () => {
     process.env.OPENROUTER_API_KEY = "   ";
-    expect(resolveOpenRouterProviderFromEnv()).toBeNull();
+    expect(resolveOpenRouterProviderFromEnv("studentTutor")).toBeNull();
   });
 
   it("returns a provider function when OPENROUTER_API_KEY is set", () => {
     process.env.OPENROUTER_API_KEY = "sk-test";
-    const provider = resolveOpenRouterProviderFromEnv();
+    process.env.OPENROUTER_MODEL_STUDENT_TUTOR = "vendor/model-a";
+    const provider = resolveOpenRouterProviderFromEnv("studentTutor");
     expect(typeof provider).toBe("function");
   });
 
   it("caches the provider across multiple calls", () => {
     process.env.OPENROUTER_API_KEY = "sk-test";
-    const first = resolveOpenRouterProviderFromEnv();
-    const second = resolveOpenRouterProviderFromEnv();
+    process.env.OPENROUTER_MODEL_STUDENT_TUTOR = "vendor/model-a";
+    const first = resolveOpenRouterProviderFromEnv("studentTutor");
+    const second = resolveOpenRouterProviderFromEnv("studentTutor");
     expect(first).toBe(second);
   });
 
-  it("uses custom model from OPENROUTER_MODEL", async () => {
+  it("uses the model of the role variable", async () => {
     process.env.OPENROUTER_API_KEY = "sk-test";
-    process.env.OPENROUTER_MODEL = "openrouter/premium";
+    process.env.OPENROUTER_MODEL_STUDENT_TUTOR = "openrouter/premium";
 
     legacySend.mockResolvedValueOnce(legacyTextResponse("OK"));
 
-    const provider = resolveOpenRouterProviderFromEnv()!;
+    const provider = resolveOpenRouterProviderFromEnv("studentTutor")!;
     await provider("test");
 
     const request = legacySend.mock.calls[0][0] as { chatRequest: { model: unknown } };
@@ -350,11 +408,12 @@ describe("resolveOpenRouterProviderFromEnv", () => {
 
   it("uses custom base URL from OPENROUTER_API_BASE", async () => {
     process.env.OPENROUTER_API_KEY = "sk-test";
+    process.env.OPENROUTER_MODEL_STUDENT_TUTOR = "vendor/model-a";
     process.env.OPENROUTER_API_BASE = "https://custom.openrouter.ai/api/v1";
 
     legacySend.mockResolvedValueOnce(legacyTextResponse("OK"));
 
-    const provider = resolveOpenRouterProviderFromEnv()!;
+    const provider = resolveOpenRouterProviderFromEnv("studentTutor")!;
     await provider("test");
 
     expect(OpenRouterCtor).toHaveBeenCalledWith(
@@ -393,7 +452,11 @@ describe("SDK status classification", () => {
       .mockRejectedValueOnce(statusError(503, "upstream error (400)"))
       .mockResolvedValueOnce(textAnswer("recovered"));
 
-    const provider = createOpenRouterProvider({ apiKey: "test-key", model: "vendor/model-a" });
+    const provider = createOpenRouterProvider({
+      apiKey: "test-key",
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
     await expect(provider("hello")).resolves.toBe("recovered");
     expect(statusSend).toHaveBeenCalledTimes(2);
   });
@@ -401,7 +464,11 @@ describe("SDK status classification", () => {
   it("rejects a 400 whose message text holds a 503 code after one attempt", async () => {
     statusSend.mockRejectedValue(statusError(400, "upstream error (503)"));
 
-    const provider = createOpenRouterProvider({ apiKey: "test-key", model: "vendor/model-a" });
+    const provider = createOpenRouterProvider({
+      apiKey: "test-key",
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
     await expect(provider("hello")).rejects.toThrow(
       /^OpenRouter API error: 400 upstream error \(503\)$/,
     );
@@ -428,7 +495,11 @@ describe("API key redaction on SDK errors", () => {
   it("redacts a padded key echoed by its trimmed form in an HTTP error", async () => {
     const key = "sk-padded-private-key-4242\n ";
     redactSend.mockRejectedValue(withStatus(400, `denied ${key.trim()} again`));
-    const provider = createOpenRouterProvider({ apiKey: key, model: "vendor/model-a" });
+    const provider = createOpenRouterProvider({
+      apiKey: key,
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
     const error = await provider("hello").catch((caught: unknown) => caught as Error);
     expect(String(error)).not.toContain(key.trim());
   });
@@ -437,7 +508,11 @@ describe("API key redaction on SDK errors", () => {
     const key = "Bearer sk-bearer-private-key-5555";
     const token = key.slice("Bearer ".length);
     redactSend.mockRejectedValue(withStatus(401, `denied ${token}`));
-    const provider = createOpenRouterProvider({ apiKey: key, model: "vendor/model-a" });
+    const provider = createOpenRouterProvider({
+      apiKey: key,
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
     const error = await provider("hello").catch((caught: unknown) => caught as Error);
     expect(String(error)).not.toContain(token);
   });
@@ -447,7 +522,11 @@ describe("API key redaction on SDK errors", () => {
     redactSend.mockRejectedValue(
       Object.assign(new Error(`fetch failed ${key} and ${key}`), { name: "ConnectionError" }),
     );
-    const provider = createOpenRouterProvider({ apiKey: key, model: "vendor/model-a" });
+    const provider = createOpenRouterProvider({
+      apiKey: key,
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
     const error = (await provider("hello").catch((caught: unknown) => caught)) as Error;
     expect(error.message).toContain("fetch failed:");
     expect(String(error)).not.toContain(key);
@@ -456,7 +535,11 @@ describe("API key redaction on SDK errors", () => {
   it("redacts a string rejection", async () => {
     const key = "sk-string-private-key-7777";
     redactSend.mockRejectedValue(`upstream said ${key}`);
-    const provider = createOpenRouterProvider({ apiKey: key, model: "vendor/model-a" });
+    const provider = createOpenRouterProvider({
+      apiKey: key,
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
     const error = await provider("hello").catch((caught: unknown) => caught as Error);
     expect(error).toBeInstanceOf(Error);
     expect(String(error)).not.toContain(key);
@@ -465,7 +548,11 @@ describe("API key redaction on SDK errors", () => {
   it("does not redact a short key into unrelated text", async () => {
     const key = "abc";
     redactSend.mockRejectedValue(withStatus(400, "abc is fine here"));
-    const provider = createOpenRouterProvider({ apiKey: key, model: "vendor/model-a" });
+    const provider = createOpenRouterProvider({
+      apiKey: key,
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
     const error = await provider("hello").catch((caught: unknown) => caught as Error);
     expect(String(error)).toContain("abc is fine here");
   });
@@ -523,7 +610,11 @@ describe("documented 200 bodies (F1)", () => {
     const fetchMock = vi.fn().mockResolvedValue(jsonResponse(DOCUMENTED_EXAMPLE_BODY));
     vi.stubGlobal("fetch", fetchMock);
 
-    const provider = createOpenRouterProvider({ apiKey: "test-key", model: "vendor/model-a" });
+    const provider = createOpenRouterProvider({
+      apiKey: "test-key",
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
 
     await expect(provider("hello")).resolves.toBe("Hello there!");
     expect(fetchMock).toHaveBeenCalledTimes(1);
@@ -536,7 +627,11 @@ describe("documented 200 bodies (F1)", () => {
       .mockResolvedValue(jsonResponse({ error: { code: 503, message: "Service unavailable" } }));
     vi.stubGlobal("fetch", fetchMock);
 
-    const provider = createOpenRouterProvider({ apiKey: "test-key", model: "vendor/model-a" });
+    const provider = createOpenRouterProvider({
+      apiKey: "test-key",
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
 
     await expect(provider("hello")).rejects.toThrow(EmptyResponseError);
     expect(fetchMock).toHaveBeenCalledTimes(3);
@@ -560,7 +655,11 @@ describe("case-insensitive Bearer strip (F10)", () => {
     tokenSend.mockRejectedValue(
       Object.assign(new Error("denied sk-bearer-lower-6666"), { statusCode: 401 }),
     );
-    const provider = createOpenRouterProvider({ apiKey: key, model: "vendor/model-a" });
+    const provider = createOpenRouterProvider({
+      apiKey: key,
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
     const error = await provider("hello").catch((caught: unknown) => caught as Error);
     expect(String(error)).not.toContain("sk-bearer-lower-6666");
   });
@@ -570,7 +669,11 @@ describe("case-insensitive Bearer strip (F10)", () => {
     tokenSend.mockRejectedValue(
       Object.assign(new Error("denied sk-bearer-upper-7777"), { statusCode: 401 }),
     );
-    const provider = createOpenRouterProvider({ apiKey: key, model: "vendor/model-a" });
+    const provider = createOpenRouterProvider({
+      apiKey: key,
+      model: "vendor/model-a",
+      role: "studentTutor",
+    });
     const error = await provider("hello").catch((caught: unknown) => caught as Error);
     expect(String(error)).not.toContain("sk-bearer-upper-7777");
   });

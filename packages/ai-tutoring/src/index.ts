@@ -12,6 +12,8 @@ export {
   type ChatMessage,
 } from "./providers";
 
+export { AI_ROLES, resolveRoleModel, buildProviderPreferences, type AiRole } from "./roles";
+
 export { assembleLessonChatbotContext, type LessonChatbotContext } from "./lesson-context";
 
 export {

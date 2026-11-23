@@ -1,10 +1,8 @@
 /**
- * Usage logging for the OpenRouter AI layer (STUB).
+ * Usage logging for the OpenRouter AI layer.
  *
- * Red phase S2 owns this stub only. It exports the names of the S2 Contract
- * task with no behavior, so the Red tests fail on assertions. Green replaces
- * this file with the Contract implementation: one `console.info` line for
- * each request and the `console.error` line for a missing setting.
+ * One usage record is written for each request. No record holds a key, a
+ * prompt, or an answer. A missing setting writes one error line.
  */
 
 /**
@@ -22,9 +20,12 @@ export interface AiRequestRecord {
   status: number | null;
 }
 
-/**
- * Logs one usage record (STUB). It writes nothing.
- */
-export function logAiRequest(_record: AiRequestRecord): void {
-  // STUB: Green writes console.info('[ai-tutoring] request', JSON.stringify(record)).
+/** Writes one usage record for a request. */
+export function logAiRequest(record: AiRequestRecord): void {
+  console.info("[ai-tutoring] request", JSON.stringify(record));
+}
+
+/** Writes one line when a role setting or the API key is missing. */
+export function logRoleNotConfigured(role: string, missing: string, reason: string): void {
+  console.error("[ai-tutoring] AI role not configured", JSON.stringify({ role, missing, reason }));
 }

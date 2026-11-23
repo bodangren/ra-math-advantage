@@ -36,7 +36,12 @@ function httpError(status: number, message = "upstream error (400)") {
 }
 
 function provider(timeoutMs = 15000) {
-  return createOpenRouterProvider({ apiKey: API_KEY, model: MODEL, timeoutMs });
+  return createOpenRouterProvider({
+    apiKey: API_KEY,
+    model: MODEL,
+    role: "studentTutor",
+    timeoutMs,
+  });
 }
 
 function abortableFetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
@@ -73,6 +78,7 @@ describe("adversarial real SDK transport", () => {
     const send = createOpenRouterProviderWithMessages({
       apiKey: API_KEY,
       model: MODEL,
+      role: "studentTutor",
       baseUrl: "https://adversarial.invalid/api/v1",
     });
 
