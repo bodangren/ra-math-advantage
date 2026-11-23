@@ -433,7 +433,7 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
     - [ ] The generator sends the prompt as one user message, with the schema name `teacher_error_summary`, temperature 0.3, and 500 max tokens (the current `ai-interpretation.ts` values).
     - [ ] It returns the data with `type` and `generatedAt` for `ok: true`, and `null` for each typed failure.
     - [ ] In `measure/tech-stack.md`, add a dated note on the structured-output helper and the teacher summary.
-- [ ] Task: S3 Test (Red) — specify the helper and the two moves
+- [~] Task: S3 Test (Red) — specify the helper and the two moves
     - [ ] Create `packages/ai-tutoring/src/__tests__/structured.test.ts`.
     - [ ] Normal case 1: a valid JSON answer that matches the schema gives `{ ok: true, data, raw }`.
     - [ ] Normal case 2: the request body has `response_format` with the `name`, `strict: true`, and the `z.toJSONSchema` output of the schema.
@@ -460,6 +460,34 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
     - [ ] Create the no-PII test `apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.no-pii.test.ts`. Put the No-PII Fixture in the teacher profile, the student profile, the student name of the submission detail, and the student ID.
     - [ ] In that test, capture the prompt from the mocked structured provider, and assert that it holds no fixture value. Assert that the response `studentName` is the fixture name, so the name stays on the app side.
     - [ ] Run the tests. Confirm that cases 1 to 18 fail.
+    - Red proof (2026-11-24, role mid-red):
+        - `structured output` (package): 8 failed, 1 passed, 147 skipped.
+          Cases 1 to 8 fail at the existence guard (`structured.test.ts:65`
+          `expect(structured).not.toBeNull()`): the helper module does not
+          exist yet. Each test imports it through a non-literal specifier, so
+          collection succeeds and typecheck holds. Case 9 passes: it asserts
+          the installed zod `toJSONSchema` behavior on a local strict schema.
+          The real-schema halves fail in the BM2 files below.
+        - `spreadsheet-feedback` (BM2): 5 failed, 5 passed, 2706 skipped. The
+          "AI feedback when available" test fails at line 111: the structured
+          resolver gets 0 calls at HEAD. Case 10 fails 3 times at line 193:
+          no throw at HEAD. The schema strictness test fails at line 200:
+          `AiFeedbackResponseSchema` is not exported. The 6 re-mocked tests
+          keep every expected result; only the mock target and the two call
+          assertions changed (lines 111 to 112).
+        - `teacher AI error summary` (BM2): 8 failed, 2708 skipped. Each case
+          fails at its existence guard (first at line 101): the teacher
+          summary module does not exist yet.
+        - `GET /api/teacher/ai-error-summary` (BM2): 1 failed, 11 passed.
+          Case 18 fails at line 426: the old route returns a non-null
+          `aiSummary`. The generator module is not mocked because it does not
+          exist; the fail-closed null path proves case 18 under Green.
+        - `no-PII` (BM2): 2 failed, 1 passed, 2713 skipped. Both new tests
+          fail on the empty structured capture. The Fix 1 guard passes.
+        - `no-PII` (IM3): 1 passed, 7079 skipped (guard).
+        - Static checks: format clean, lint clean in both touched workspaces,
+          typecheck clean in both. No production source changed. No S2 or Fix
+          assertion changed.
     - [ ] Commit: `test(ai): specify the structured-output helper and the evaluation moves (Red)`.
 - [ ] Task: S3 Implement — build the helper
     - [ ] Implement `src/structured.ts` as the S3 Contract says. Export it from `src/index.ts`, and add the `"./structured"` subpath to `package.json` `exports`.
