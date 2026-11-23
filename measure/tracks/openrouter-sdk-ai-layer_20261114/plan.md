@@ -545,6 +545,18 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
     - [ ] Append `[checkpoint: <sha>]` to the Phase S3 heading.
     - [ ] Commit: `measure(plan): Mark phase 'Phase S3: Structured output for the evaluation features' as complete`.
 
+### S3 remediation round r5 (Red) — failing-first tests for review findings R-A1 and R-B1
+
+- Red proof (2026-11-24, role mid-red): `CI=true npm run test
+  --workspace=packages/ai-tutoring -- -t 'S3 remediation'` ran 2 cases, 2
+  failed, 156 skipped. R-A1 fails at `structured.test.ts:295`
+  (`require_parameters` is `undefined` on the serialized wire body: the real
+  SDK strips the snake_case `provider` input, so the body carries no provider
+  preference). R-B1 fails at `structured.test.ts:328` (the usage record holds
+  `sk-test-bare-key-9921` instead of `null`). No production source changed.
+  No earlier assertion changed. Gate sweeps with `GATES_BASE=s2` and label
+  `s3` are recorded in the round result log.
+
 ## Phase S4: Remove the OpenAI paths and document the roles
 _Story ref: spec.md#story-s4_
 

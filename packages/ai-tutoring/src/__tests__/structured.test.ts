@@ -232,3 +232,119 @@ describe("structured output", () => {
     ]);
   });
 });
+
+describe("S3 remediation", () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it("R-A1: the serialized wire body sends provider.require_parameters true", async () => {
+    const structured = await loadStructured();
+    expect(structured).not.toBeNull();
+    const actual = await vi.importActual<typeof import("@openrouter/sdk")>("@openrouter/sdk");
+    MockOpenRouter.mockReset();
+    MockOpenRouter.mockImplementation(function () {
+      return new actual.OpenRouter({
+        apiKey: "test-key",
+        serverURL: "https://openrouter.ai/api/v1",
+        retryConfig: { strategy: "none" },
+        timeoutMs: 15000,
+      }) as unknown as InstanceType<typeof OpenRouter>;
+    });
+    const wireBodies: unknown[] = [];
+    const fetchMock = vi.fn(async (input: unknown, init?: { body?: unknown }) => {
+      if (typeof input === "string") {
+        wireBodies.push(JSON.parse(String(init?.body)));
+      } else if (input instanceof Request) {
+        wireBodies.push(await input.json());
+      }
+      return new Response(
+        JSON.stringify({
+          id: "gen-structured-wire-r1",
+          created: 2,
+          object: "chat.completion",
+          system_fingerprint: null,
+          choices: [
+            {
+              index: 0,
+              finish_reason: "stop",
+              native_finish_reason: "stop",
+              message: { role: "assistant", content: validFeedbackJson() },
+            },
+          ],
+          usage: { prompt_tokens: 7, completion_tokens: 5, total_tokens: 12 },
+          model: "vendor/spreadsheet-model",
+        }),
+        { status: 200, headers: { "Content-Type": "application/json" } },
+      );
+    });
+    vi.stubGlobal("fetch", fetchMock);
+
+    const provider = structured.resolveStructuredProviderFromEnv("spreadsheetEval");
+    expect(provider).not.toBeNull();
+    const result = await provider({
+      schemaName: "test_schema",
+      schema: TEST_SCHEMA,
+      messages: MESSAGES,
+    });
+
+    expect(result).toEqual({ ok: true, data: { score: 35 }, raw: validFeedbackJson() });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(wireBodies).toHaveLength(1);
+    const wire = wireBodies[0] as Record<string, unknown>;
+    expect((wire["provider"] as Record<string, unknown> | undefined)?.["require_parameters"]).toBe(
+      true,
+    );
+  });
+
+  it("R-B1: a key-shaped served model stays out of the usage record and the console; a valid model passes through", async () => {
+    const structured = await loadStructured();
+    expect(structured).not.toBeNull();
+    const infoSpy = vi.spyOn(console, "info").mockImplementation(() => {});
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    const records = (): Array<Record<string, unknown>> =>
+      infoSpy.mock.calls
+        .map((call) => call.map((part) => String(part)).join(" "))
+        .map((line) => {
+          try {
+            return JSON.parse(line.slice(line.indexOf("{"))) as Record<string, unknown>;
+          } catch {
+            return null;
+          }
+        })
+        .filter((record): record is Record<string, unknown> => record !== null);
+
+    mockSend.mockResolvedValueOnce(roleTextResponse(validFeedbackJson(), "sk-test-bare-key-9921"));
+    const provider = structured.resolveStructuredProviderFromEnv("spreadsheetEval");
+    expect(provider).not.toBeNull();
+    const first = await provider({
+      schemaName: "test_schema",
+      schema: TEST_SCHEMA,
+      messages: MESSAGES,
+    });
+
+    expect(first).toEqual({ ok: true, data: { score: 35 }, raw: validFeedbackJson() });
+    expect(records()).toHaveLength(1);
+    expect(records()[0]).toMatchObject({ model: null });
+    const consoleText = [...infoSpy.mock.calls, ...errorSpy.mock.calls]
+      .map((call) => call.map((part) => String(part)).join(" "))
+      .join("\n");
+    expect(consoleText).not.toContain("sk-test-bare-key-9921");
+
+    mockSend.mockResolvedValueOnce(
+      roleTextResponse(validFeedbackJson(), "vendor/spreadsheet-model"),
+    );
+    const second = await provider({
+      schemaName: "test_schema",
+      schema: TEST_SCHEMA,
+      messages: MESSAGES,
+    });
+
+    expect(second).toEqual({ ok: true, data: { score: 35 }, raw: validFeedbackJson() });
+    expect(records()).toHaveLength(2);
+    expect(records()[1]).toMatchObject({
+      role: "spreadsheetEval",
+      model: "vendor/spreadsheet-model",
+    });
+  });
+});
