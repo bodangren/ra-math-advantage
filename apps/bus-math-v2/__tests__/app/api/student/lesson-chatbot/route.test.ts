@@ -198,3 +198,47 @@ describe("POST /api/student/lesson-chatbot", () => {
     expect(data.error).toContain("invalid content");
   });
 });
+
+describe("S3 fix", () => {
+  const RATE_LIMIT_MARKER = "rate-limit-boom-bm2-5517";
+
+  beforeEach(async () => {
+    vi.clearAllMocks();
+    mockFetchInternalMutation.mockResolvedValue({ allowed: true });
+    mockDetectPromptInjection.mockReturnValue(null);
+    vi.resetModules();
+    const routeModule = await import("@/app/api/student/lesson-chatbot/route");
+    POST = routeModule.POST;
+  });
+
+  it("logs the rate-limit catch without the raw error object", async () => {
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    try {
+      mockRequireActiveStudentRequestClaims.mockResolvedValue({
+        sub: "profile_123",
+        username: "student",
+        role: "student",
+        iat: 1,
+        exp: 2,
+      });
+      mockFetchInternalMutation.mockRejectedValueOnce(new Error(RATE_LIMIT_MARKER));
+
+      const response = await POST(
+        buildRequest({
+          lessonId: "lesson_01_01",
+          phaseNumber: 1,
+          question: "What is this lesson about?",
+        }),
+      );
+
+      expect(response.status).toBe(503);
+      expect(errorSpy).toHaveBeenCalled();
+      const logged = errorSpy.mock.calls
+        .map((call) => call.map((part) => String(part)).join(" "))
+        .join("\n");
+      expect(logged).not.toContain(RATE_LIMIT_MARKER);
+    } finally {
+      errorSpy.mockRestore();
+    }
+  });
+});

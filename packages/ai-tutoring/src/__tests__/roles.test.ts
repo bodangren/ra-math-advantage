@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { readFileSync } from "node:fs";
 import { OpenRouter } from "@openrouter/sdk";
 import { resolveOpenRouterProviderFromEnv, clearProviderCache } from "../providers";
 import { AI_ROLES, buildProviderPreferences } from "../roles";
@@ -258,5 +259,113 @@ describe("role configuration", () => {
 
     expect(mockSend).toHaveBeenCalledTimes(1);
     expect("provider" in sentChatRequest(mockSend.mock.calls[0])).toBe(false);
+  });
+});
+
+describe("S3 fix", () => {
+  it("finding b: a bare API key form as the served model gives model null", async () => {
+    process.env.OPENROUTER_API_KEY = "sk-test";
+    process.env.OPENROUTER_MODEL_STUDENT_TUTOR = "vendor/model-a";
+    mockSend.mockResolvedValueOnce(roleTextResponse("hello", "sk-test-bare-key-9921"));
+
+    const provider = resolveRole("studentTutor") as (prompt: string) => Promise<string>;
+    await provider("hello");
+
+    expect(mockSend).toHaveBeenCalledTimes(1);
+    const records = loggedLines(infoSpy)
+      .map((line) => {
+        try {
+          return JSON.parse(line.slice(line.indexOf("{"))) as Record<string, unknown>;
+        } catch {
+          return null;
+        }
+      })
+      .filter((record) => record !== null);
+    expect(records).toHaveLength(1);
+    expect(records[0]).toMatchObject({ role: "studentTutor", outcome: "ok" });
+    expect(records[0]).toMatchObject({ model: null });
+  });
+
+  it("finding b guard: the configured served model is still recorded", async () => {
+    process.env.OPENROUTER_API_KEY = "sk-test";
+    process.env.OPENROUTER_MODEL_STUDENT_TUTOR = "vendor/model-a";
+    mockSend.mockResolvedValueOnce(roleTextResponse("hello", "vendor/model-a"));
+
+    const provider = resolveRole("studentTutor") as (prompt: string) => Promise<string>;
+    await provider("hello");
+
+    const records = loggedLines(infoSpy)
+      .map((line) => {
+        try {
+          return JSON.parse(line.slice(line.indexOf("{"))) as Record<string, unknown>;
+        } catch {
+          return null;
+        }
+      })
+      .filter((record) => record !== null);
+    expect(records).toHaveLength(1);
+    expect(records[0]).toMatchObject({ role: "studentTutor", model: "vendor/model-a" });
+  });
+
+  it("finding c: the provider cache key holds no raw API key", () => {
+    const source = readFileSync(new URL("../providers.ts", import.meta.url), "utf8");
+    const cacheKeyLines = source.split("\n").filter((line) => line.includes("cacheKey"));
+    expect(cacheKeyLines.length).toBeGreaterThan(0);
+    expect(cacheKeyLines.join("\n")).not.toContain("apiKey");
+
+    process.env.OPENROUTER_API_KEY = "sk-test-cache-check-4417";
+    process.env.OPENROUTER_MODEL_STUDENT_TUTOR = "vendor/model-a";
+    const first = resolveRole("studentTutor");
+    expect(first).not.toBeNull();
+    const second = resolveRole("studentTutor");
+    expect(second).toBe(first);
+
+    process.env.OPENROUTER_API_KEY = "sk-test-cache-check-4418";
+    const rotated = resolveRole("studentTutor");
+    expect(rotated).not.toBeNull();
+    expect(rotated).not.toBe(first);
+  });
+
+  it("finding e N3: two roles resolve isolated cache entries", async () => {
+    process.env.OPENROUTER_API_KEY = "sk-test";
+    process.env.OPENROUTER_MODEL_STUDENT_TUTOR = "vendor/tutor-model";
+    process.env.OPENROUTER_MODEL_SPREADSHEET_EVAL = "vendor/sheet-model";
+    mockSend.mockResolvedValue(roleTextResponse("hello"));
+
+    const tutor = resolveRole("studentTutor") as (prompt: string) => Promise<string>;
+    const sheet = resolveRole("spreadsheetEval") as (prompt: string) => Promise<string>;
+    expect(tutor).not.toBeNull();
+    expect(sheet).not.toBeNull();
+    expect(tutor).not.toBe(sheet);
+    await tutor("question one");
+    await sheet("question two");
+
+    expect(mockSend).toHaveBeenCalledTimes(2);
+    const models = mockSend.mock.calls.map((call) => sentChatRequest(call).model);
+    expect(models).toEqual(["vendor/tutor-model", "vendor/sheet-model"]);
+  });
+
+  it("finding e N5: a padded preset value fails closed with reason preset", () => {
+    process.env.OPENROUTER_API_KEY = "sk-test";
+    process.env.OPENROUTER_MODEL_STUDENT_TUTOR = "  @preset/tutor  ";
+
+    const provider = resolveRole("studentTutor");
+
+    expect(provider).toBeNull();
+    const records = loggedLines(errorSpy)
+      .map((line) => {
+        try {
+          return JSON.parse(line.slice(line.indexOf("{"))) as Record<string, unknown>;
+        } catch {
+          return null;
+        }
+      })
+      .filter((record) => record !== null);
+    expect(records).toHaveLength(1);
+    expect(records[0]).toMatchObject({
+      role: "studentTutor",
+      missing: "OPENROUTER_MODEL_STUDENT_TUTOR",
+      reason: "preset",
+    });
   });
 });

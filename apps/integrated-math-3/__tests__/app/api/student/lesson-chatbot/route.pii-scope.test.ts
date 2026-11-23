@@ -114,6 +114,135 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 
+describe("S3 fix", () => {
+  async function runWithMarkdown(markdown: string): Promise<{ status: number; system: string }> {
+    query.mockReset();
+    query
+      .mockResolvedValueOnce({
+        id: ACCOUNT_ID,
+        username: USERNAME,
+        displayName: STUDENT_NAME,
+        email: STUDENT_EMAIL,
+        organizationId: "test-org",
+        role: "student",
+      })
+      .mockResolvedValueOnce(true)
+      .mockResolvedValueOnce({
+        lessonTitle: "Quadratics",
+        unitTitle: "Algebra",
+        learningObjectives: ["Factor a quadratic"],
+        phases: [
+          {
+            phaseNumber: 1,
+            title: "Practice",
+            sections: [{ sectionType: "text", content: { markdown } }],
+          },
+        ],
+      });
+    fetchMock.mockReset();
+    fetchMock.mockResolvedValue(
+      Response.json({
+        id: "gen-pii-scope",
+        created: 1,
+        model: MODEL,
+        object: "chat.completion",
+        system_fingerprint: null,
+        choices: [
+          {
+            index: 0,
+            message: { role: "assistant", content: "Try factoring." },
+            finish_reason: "stop",
+          },
+        ],
+      }),
+    );
+    vi.spyOn(console, "info").mockImplementation(() => {});
+    const result = await POST(request());
+    const outbound = (await (fetchMock.mock.calls[0][0] as Request).json()) as {
+      messages: Array<{ role: string; content: string }>;
+    };
+    const system = outbound.messages.find((message) => message.role === "system");
+    return { status: result.status, system: system?.content ?? "" };
+  }
+
+  it("strips the dash form of a person detail", async () => {
+    const { status, system } = await runWithMarkdown(
+      `Student - ${STUDENT_NAME}.\n${MATH_SAME_LINE}\n${MATH_LATER_LINE}`,
+    );
+    expect(status).toBe(200);
+    expect(system).not.toContain(STUDENT_NAME);
+    expect(system).toContain(MATH_SAME_LINE);
+    expect(system).toContain(MATH_LATER_LINE);
+  });
+
+  it("strips the em-dash form of a person detail", async () => {
+    const { status, system } = await runWithMarkdown(
+      `Student \u2014 ${STUDENT_NAME}.\n${MATH_SAME_LINE}\n${MATH_LATER_LINE}`,
+    );
+    expect(status).toBe(200);
+    expect(system).not.toContain(STUDENT_NAME);
+    expect(system).toContain(MATH_SAME_LINE);
+    expect(system).toContain(MATH_LATER_LINE);
+  });
+
+  it("strips an unlisted detail label", async () => {
+    const { status, system } = await runWithMarkdown(
+      `Guardian: ${TEACHER_NAME}.\n${MATH_SAME_LINE}\n${MATH_LATER_LINE}`,
+    );
+    expect(status).toBe(200);
+    expect(system).not.toContain(TEACHER_NAME);
+    expect(system).toContain(MATH_SAME_LINE);
+    expect(system).toContain(MATH_LATER_LINE);
+  });
+
+  it("strips a prose name with no label", async () => {
+    const { status, system } = await runWithMarkdown(
+      `${STUDENT_NAME} reviewed the lesson.\n${MATH_SAME_LINE}\n${MATH_LATER_LINE}`,
+    );
+    expect(status).toBe(200);
+    expect(system).not.toContain(STUDENT_NAME);
+    expect(system).toContain(MATH_SAME_LINE);
+    expect(system).toContain(MATH_LATER_LINE);
+  });
+
+  it("strips an obfuscated email", async () => {
+    const { status, system } = await runWithMarkdown(
+      `Contact avery.quinn at example dot org.\n${MATH_SAME_LINE}\n${MATH_LATER_LINE}`,
+    );
+    expect(status).toBe(200);
+    expect(system).not.toContain("avery.quinn at example dot org");
+    expect(system).toContain(MATH_SAME_LINE);
+    expect(system).toContain(MATH_LATER_LINE);
+  });
+
+  it("strips a fullwidth detail label", async () => {
+    const { status, system } = await runWithMarkdown(
+      `\uFF33\uFF54\uFF55\uFF44\uFF45\uFF4E\uFF54\uFF1A${STUDENT_NAME}\u3002\n${MATH_SAME_LINE}\n${MATH_LATER_LINE}`,
+    );
+    expect(status).toBe(200);
+    expect(system).not.toContain(STUDENT_NAME);
+    expect(system).toContain(MATH_SAME_LINE);
+    expect(system).toContain(MATH_LATER_LINE);
+  });
+
+  it("logs the rate-limit catch without the raw error object", async () => {
+    const RATE_LIMIT_MARKER = "rate-limit-boom-im3-9921";
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    try {
+      mutate.mockReset();
+      mutate.mockRejectedValueOnce(new Error(RATE_LIMIT_MARKER));
+      const result = await POST(request());
+      expect(result.status).toBe(503);
+      expect(errorSpy).toHaveBeenCalled();
+      const logged = errorSpy.mock.calls
+        .map((call) => call.map((part) => String(part)).join(" "))
+        .join("\n");
+      expect(logged).not.toContain(RATE_LIMIT_MARKER);
+    } finally {
+      errorSpy.mockRestore();
+    }
+  });
+});
 describe("IM3 person-detail stripping keeps lesson content", () => {
   it("keeps math text after a detail label on the same line and on later lines", async () => {
     vi.spyOn(console, "info").mockImplementation(() => {});
