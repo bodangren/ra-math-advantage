@@ -70,13 +70,13 @@ custom JWT auth in the math app and in BM2 (planned: math-app-base_20261114)
 
 | Layer | Technology | Notes |
 |-------|-----------|-------|
-| Provider | OpenRouter API through `fetch` | `packages/ai-tutoring/src/providers.ts` |
+| Provider | OpenRouter API through `@openrouter/sdk` | `packages/ai-tutoring/src/openrouter-client.ts` and `providers.ts` |
 | Key | `OPENROUTER_API_KEY` | Server-only; the chatbot returns 503 when it is not set |
-| Default model | `openrouter/free` | `OPENROUTER_MODEL` can change it |
+| Default model | None | Each role reads its own model variable and fails closed when the value is missing |
 
-Planned: `@openrouter/sdk`, one model variable for each role with no default,
-`openrouter/free` for development only, structured output for the evaluation roles, and no
-PII in prompts (planned: openrouter-sdk-ai-layer_20261114).
+The AI layer uses `@openrouter/sdk`. Each role reads one model variable. No role has a
+default model. `openrouter/free` is for development only. The evaluation roles use
+structured output. AI prompts contain no PII.
 
 Note (2026-11-23, Phase S2 of `openrouter-sdk-ai-layer_20261114`, Red): each AI
 role reads its model from its own environment variable with no default. The
@@ -112,7 +112,7 @@ the token counts, the outcome, and the status, and no prompt or answer text.
 | `recharts` | Data visualization (charts) - NOT used for graphing activities |
 | `@hello-pangea/dnd` | Drag-and-drop activities |
 | `zod` ^4 | Schema validation |
-| `@openrouter/sdk` ^1.5.102 | OpenRouter chat API client for `packages/ai-tutoring` (2026-11-20, track `openrouter-sdk-ai-layer_20261114` S1; install lands in the S1 Install task, this row records the decision before the code change) |
+| `@openrouter/sdk` ^1.5.128 | OpenRouter chat API client for `packages/ai-tutoring` (current since S1 of `openrouter-sdk-ai-layer_20261114`, 2026-11-21) |
 | `ts-fsrs` 5.4.1 | FSRS scheduler (through `packages/srs-engine`) |
 | `class-variance-authority` | Component variants |
 | `clsx` + `tailwind-merge` | Class name utilities |
@@ -257,11 +257,15 @@ skips it.
 NEXT_PUBLIC_CONVEX_URL=http://127.0.0.1:3210
 AUTH_JWT_SECRET=replace-with-a-long-random-secret
 OPENROUTER_API_KEY=
-# OPENROUTER_MODEL=openrouter/free
+# OPENROUTER_MODEL_STUDENT_TUTOR=
 # OPENROUTER_API_BASE=https://openrouter.ai/api/v1
 # NEXT_PUBLIC_SITE_URL=http://localhost:3000
 # CONVEX_DEPLOY_KEY=
 ```
+
+The IM3 chatbot reads `OPENROUTER_MODEL_STUDENT_TUTOR`. BM2 also reads
+`OPENROUTER_MODEL_SPREADSHEET_EVAL` and `OPENROUTER_MODEL_ACCOUNTING_EVAL`.
+Each role has no default model.
 
 ## Dev Commands
 
