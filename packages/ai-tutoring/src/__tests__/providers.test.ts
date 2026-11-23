@@ -112,7 +112,7 @@ describe("createOpenRouterProvider", () => {
       role: "studentTutor",
     });
 
-    await expect(provider("test")).rejects.toThrow("OpenRouter API error: 401 Unauthorized");
+    await expect(provider("test")).rejects.toThrow(/^OpenRouter API error: 401$/);
   });
 
   it("retries on empty response content then throws", async () => {
@@ -469,9 +469,7 @@ describe("SDK status classification", () => {
       model: "vendor/model-a",
       role: "studentTutor",
     });
-    await expect(provider("hello")).rejects.toThrow(
-      /^OpenRouter API error: 400 upstream error \(503\)$/,
-    );
+    await expect(provider("hello")).rejects.toThrow(/^OpenRouter API error: 400$/);
     expect(statusSend).toHaveBeenCalledTimes(1);
   });
 });
@@ -547,14 +545,16 @@ describe("API key redaction on SDK errors", () => {
 
   it("does not redact a short key into unrelated text", async () => {
     const key = "abc";
-    redactSend.mockRejectedValue(withStatus(400, "abc is fine here"));
+    redactSend.mockRejectedValue(
+      Object.assign(new Error("abc is fine here"), { name: "ConnectionError" }),
+    );
     const provider = createOpenRouterProvider({
       apiKey: key,
       model: "vendor/model-a",
       role: "studentTutor",
     });
     const error = await provider("hello").catch((caught: unknown) => caught as Error);
-    expect(String(error)).toContain("abc is fine here");
+    expect(String(error)).toContain("fetch failed: abc is fine here");
   });
 });
 

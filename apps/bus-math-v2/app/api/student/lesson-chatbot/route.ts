@@ -4,6 +4,7 @@ import {
   resolveOpenRouterProviderWithMessagesFromEnv,
   assembleLessonChatbotContext,
   detectPromptInjection,
+  getErrorStatus,
 } from "@math-platform/ai-tutoring";
 import { buildPublishedCurriculumManifest } from "@/lib/curriculum/published-manifest";
 import { fetchInternalMutation, internal } from "@/lib/convex/server";
@@ -188,7 +189,11 @@ export async function POST(request: NextRequest) {
     const aiResponse = await provider(messages);
     return NextResponse.json({ response: aiResponse });
   } catch (error) {
-    console.error("[lesson-chatbot] AI provider error:", error);
+    const status = error instanceof Error ? getErrorStatus(error) : null;
+    console.error(
+      "[lesson-chatbot] AI provider error",
+      JSON.stringify({ role: "studentTutor", status }),
+    );
     return NextResponse.json(
       { error: "Unable to get a response. Please try again later." },
       { status: 502 },

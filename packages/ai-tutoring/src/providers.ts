@@ -68,9 +68,9 @@ function redactApiKey(text: string, apiKey: string): string {
 
 /**
  * Maps an SDK error to the error shapes that `withRetry` already understands.
- * HTTP errors keep the `OpenRouter API error:` prefix, connection errors start
- * with `fetch failed:`, and abort errors stay `AbortError`. Every other path
- * returns a new error with redacted text. An `EmptyResponseError` stays itself.
+ * HTTP errors keep only the status, so an upstream body never reaches a log.
+ * Connection errors start with `fetch failed:`, and abort errors stay
+ * `AbortError`. An `EmptyResponseError` stays itself.
  */
 function mapSdkError(error: unknown, apiKey: string): Error {
   if (error instanceof EmptyResponseError) {
@@ -95,7 +95,7 @@ function mapSdkError(error: unknown, apiKey: string): Error {
 
   const status = (error as Error & { statusCode?: unknown }).statusCode;
   if (typeof status === "number") {
-    const mapped = new Error(`OpenRouter API error: ${status} ${redacted}`) as Error & {
+    const mapped = new Error(`OpenRouter API error: ${status}`) as Error & {
       status: number;
     };
     mapped.status = status;
@@ -167,6 +167,16 @@ function readUsage(value: unknown): UsageCounts {
   };
 }
 
+const MODEL_ID = /^[A-Za-z0-9_.:~/-]{1,128}$/;
+
+/**
+ * Accepts only a bounded model identifier for a usage record. Any other text,
+ * including prompt, answer, or key text, is recorded as null.
+ */
+function safeModel(value: unknown): string | null {
+  return typeof value === "string" && MODEL_ID.test(value) ? value : null;
+}
+
 /**
  * Recovers a content answer from an SDK 200 body that failed strict validation.
  * The documented OpenRouter example and an error-only 200 body both reach this
@@ -200,12 +210,10 @@ function recoverValidatedBody(error: unknown, fallbackModel: string): ChatOutcom
       ? (first.message as Record<string, unknown>)
       : null;
   const content = message ? extractContent(message.content) : null;
-  const servedModel =
-    typeof body.model === "string" && body.model.length > 0 ? body.model : fallbackModel;
 
   return {
-    content: content ?? "",
-    servedModel,
+    content: content === null ? "" : content.trim(),
+    servedModel: safeModel(body.model) ?? fallbackModel,
     usage: readUsage(body.usage),
   };
 }
@@ -259,7 +267,7 @@ async function sendChat(
         }
         return {
           content: content.trim(),
-          servedModel: typeof result.model === "string" ? result.model : model,
+          servedModel: safeModel(result.model) ?? model,
           usage: readUsage(result.usage),
         };
       } catch (error) {
@@ -283,7 +291,7 @@ async function sendChat(
 
     logAiRequest({
       role,
-      model: outcome.servedModel,
+      model: safeModel(outcome.servedModel),
       latencyMs: Date.now() - startedAt,
       ...outcome.usage,
       outcome: "ok",
@@ -294,7 +302,7 @@ async function sendChat(
     const status = (error as Error & { status?: unknown }).status;
     logAiRequest({
       role,
-      model,
+      model: safeModel(model),
       latencyMs: Date.now() - startedAt,
       promptTokens: 0,
       completionTokens: 0,
@@ -382,8 +390,8 @@ export function getErrorStatus(error: Error): number | null {
   return match ? parseInt(match[1], 10) : null;
 }
 
-const providerCache = new Map<AiRole, PromptProvider>();
-const messagesProviderCache = new Map<AiRole, MessagesProvider>();
+const providerCache = new Map<string, PromptProvider>();
+const messagesProviderCache = new Map<string, MessagesProvider>();
 
 /** Clears the cached OpenRouter providers of every role. */
 export function clearProviderCache(): void {
@@ -392,34 +400,54 @@ export function clearProviderCache(): void {
 }
 
 /**
- * Resolves the OpenRouter provider of a role from environment variables.
- * A missing key or model is logged and returns null.
+ * Checks the environment before a cache hit. A removed key or role model must
+ * fail closed on the next call, even when a provider was resolved before.
  */
-export function resolveOpenRouterProviderFromEnv(role: AiRole): PromptProvider | null {
-  const cached = providerCache.get(role);
-  if (cached) {
-    return cached;
-  }
-
+function roleSettings(
+  role: AiRole,
+): { ok: true; apiKey: string; model: string; cacheKey: string } | { ok: false } {
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey || apiKey.trim().length === 0) {
     logRoleNotConfigured(role, "OPENROUTER_API_KEY", "missing");
-    return null;
+    return { ok: false };
   }
 
   const modelResult = resolveRoleModel(role);
   if (!modelResult.ok) {
     logRoleNotConfigured(role, modelResult.missing, modelResult.reason);
+    return { ok: false };
+  }
+
+  return {
+    ok: true,
+    apiKey,
+    model: modelResult.model,
+    cacheKey: `${role}\u0000${apiKey}\u0000${modelResult.model}`,
+  };
+}
+
+/**
+ * Resolves the OpenRouter provider of a role from environment variables.
+ * A missing key or model is logged and returns null.
+ */
+export function resolveOpenRouterProviderFromEnv(role: AiRole): PromptProvider | null {
+  const settings = roleSettings(role);
+  if (!settings.ok) {
     return null;
   }
 
+  const cached = providerCache.get(settings.cacheKey);
+  if (cached) {
+    return cached;
+  }
+
   const provider = createOpenRouterProvider({
-    apiKey,
-    model: modelResult.model,
+    apiKey: settings.apiKey,
+    model: settings.model,
     role,
     baseUrl: process.env.OPENROUTER_API_BASE || OPENROUTER_API_BASE,
   });
-  providerCache.set(role, provider);
+  providerCache.set(settings.cacheKey, provider);
   return provider;
 }
 
@@ -430,29 +458,22 @@ export function resolveOpenRouterProviderFromEnv(role: AiRole): PromptProvider |
 export function resolveOpenRouterProviderWithMessagesFromEnv(
   role: AiRole,
 ): MessagesProvider | null {
-  const cached = messagesProviderCache.get(role);
+  const settings = roleSettings(role);
+  if (!settings.ok) {
+    return null;
+  }
+
+  const cached = messagesProviderCache.get(settings.cacheKey);
   if (cached) {
     return cached;
   }
 
-  const apiKey = process.env.OPENROUTER_API_KEY;
-  if (!apiKey || apiKey.trim().length === 0) {
-    logRoleNotConfigured(role, "OPENROUTER_API_KEY", "missing");
-    return null;
-  }
-
-  const modelResult = resolveRoleModel(role);
-  if (!modelResult.ok) {
-    logRoleNotConfigured(role, modelResult.missing, modelResult.reason);
-    return null;
-  }
-
   const provider = createOpenRouterProviderWithMessages({
-    apiKey,
-    model: modelResult.model,
+    apiKey: settings.apiKey,
+    model: settings.model,
     role,
     baseUrl: process.env.OPENROUTER_API_BASE || OPENROUTER_API_BASE,
   });
-  messagesProviderCache.set(role, provider);
+  messagesProviderCache.set(settings.cacheKey, provider);
   return provider;
 }

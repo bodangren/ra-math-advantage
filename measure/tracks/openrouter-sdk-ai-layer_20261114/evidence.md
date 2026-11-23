@@ -315,3 +315,24 @@ all following whitespace. Both echoed tokens are redacted. Log:
   each value and checks the entry-point wiring. `logAiRequest` stays off the
   public entry so the export diff keeps only the four planned exports.
   Log: `green-s2-r2-package-test.log`.
+
+### Remediation r3 (adversarial findings on HEAD a34ab162)
+
+- ADV-S2-1: both resolvers check the API key and role model before a cache hit.
+  The cache is keyed on role, key value, and model value. Removing either
+  setting now fails closed and logs the exact missing variable on the next call.
+- ADV-S2-2: the F1 recovery path trims content, so the strict body and the
+  documented-shape body return the same answer.
+- ADV-S2-3: a usage record accepts a served model only when it matches a bounded
+  model identifier. Other text is recorded as null. Prompt, answer, and key text
+  from an unexpected response model no longer reach the record.
+- ADV-S2-4: the IM3 chatbot strips person-detail clauses and email addresses
+  from lesson markdown before it assembles the system message. The math text
+  stays. The studentTutor role keeps no provider object.
+- ADV-S2-5: HTTP errors carry only the status in the error text. Both chatbot
+  routes log status and role, never the upstream message or body. The S1 short
+  key test now uses the connection path, where message text is still retained.
+- Test-first proof: the six adversarial tests failed before the fix per
+  `adversarial-a34ab162.json`. After the fix the package suite is 141/141 and
+  the IM3 chatbot suite is 14/14. Logs: `green-s2-r3-package.log`,
+  `green-s2-r3-im3.log`. No adversarial assertion changed.

@@ -4,6 +4,7 @@ import {
   resolveOpenRouterProviderWithMessagesFromEnv,
   assembleLessonChatbotContext,
   detectPromptInjection,
+  getErrorStatus,
 } from "@math-platform/ai-tutoring";
 import { fetchInternalMutation, fetchInternalQuery } from "@/lib/convex/server";
 import { internal } from "@/convex/_generated/api";
@@ -29,6 +30,29 @@ function sanitizeInput(input: string): string {
     .replace(/`/g, "")
     .replace(/~/g, "")
     .replace(/"""/g, '\\"\\"\\"')
+    .trim();
+}
+
+const PERSON_DETAIL_LABELS = "Student|Teacher|Instructor|Name|Email|Username|Account\\s*ID";
+const PERSON_DETAIL = new RegExp(
+  `\\b(?:${PERSON_DETAIL_LABELS})\\s*:[^]*?(?=\\b(?:${PERSON_DETAIL_LABELS})\\s*:|$)`,
+  "gi",
+);
+const EMAIL = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g;
+
+/**
+ * Removes person details from lesson markdown before it enters a prompt.
+ * The studentTutor role has no PII flag, so no name, email, username,
+ * account ID, or teacher detail may reach the provider.
+ *
+ * @param {string} markdown - Raw lesson markdown.
+ * @returns {string} Markdown with person detail clauses removed.
+ */
+function stripPersonDetails(markdown: string): string {
+  return markdown
+    .replace(PERSON_DETAIL, "")
+    .replace(EMAIL, "")
+    .replace(/[ \t]{2,}/g, " ")
     .trim();
 }
 
@@ -202,7 +226,7 @@ export async function POST(request: NextRequest) {
       {
         title: phase.title,
         learningObjectives: lessonData.learningObjectives || [],
-        content: textSections,
+        content: stripPersonDetails(textSections),
       },
     );
 
@@ -216,7 +240,8 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ response: aiResponse });
   } catch (error) {
-    console.error("[lesson-chatbot] Error:", error);
+    const status = error instanceof Error ? getErrorStatus(error) : null;
+    console.error("[lesson-chatbot] Error", JSON.stringify({ role: "studentTutor", status }));
     return NextResponse.json({ error: "Failed to process request" }, { status: 500 });
   }
 }

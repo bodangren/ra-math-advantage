@@ -11,7 +11,7 @@
  */
 export interface AiRequestRecord {
   role: string;
-  model: string;
+  model: string | null;
   latencyMs: number;
   promptTokens: number;
   completionTokens: number;
