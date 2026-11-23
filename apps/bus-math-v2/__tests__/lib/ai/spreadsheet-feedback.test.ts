@@ -83,6 +83,7 @@ describe("spreadsheet-feedback", () => {
       });
 
       expect(mockProvider).toHaveBeenCalled();
+      expect(providers.resolveOpenRouterProviderFromEnv).toHaveBeenCalledWith("spreadsheetEval");
       expect(feedback.preliminaryScore).toBe(35);
       expect(feedback.strengths).toHaveLength(2);
       expect(feedback.improvements).toHaveLength(2);

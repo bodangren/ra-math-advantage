@@ -181,7 +181,7 @@ export async function POST(request: NextRequest) {
   const messages = buildMessages(context, sanitizedQuestion);
 
   try {
-    const provider = resolveOpenRouterProviderWithMessagesFromEnv();
+    const provider = resolveOpenRouterProviderWithMessagesFromEnv("studentTutor");
     if (!provider) {
       return NextResponse.json({ error: "AI provider not configured" }, { status: 503 });
     }

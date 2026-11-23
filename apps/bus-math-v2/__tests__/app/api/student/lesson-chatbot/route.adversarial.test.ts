@@ -34,7 +34,7 @@ function request() {
 beforeEach(async () => {
   vi.clearAllMocks();
   vi.stubEnv("OPENROUTER_API_KEY", "adversarial-route-key");
-  vi.stubEnv("OPENROUTER_MODEL", "vendor/model-a");
+  vi.stubEnv("OPENROUTER_MODEL_STUDENT_TUTOR", "vendor/model-a");
   claims.mockResolvedValue({ sub: "profile_123", username: "student", role: "student" });
   mutation.mockResolvedValue({ allowed: true });
   manifest.mockReturnValue({

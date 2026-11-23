@@ -8,7 +8,11 @@ describe("lib/ai/providers", () => {
 
   describe("createOpenRouterProvider", () => {
     it("should create a provider function", () => {
-      const provider = createOpenRouterProvider({ apiKey: "test-key" });
+      const provider = createOpenRouterProvider({
+        apiKey: "test-key",
+        model: "vendor/model-a",
+        role: "studentTutor",
+      });
       expect(typeof provider).toBe("function");
     });
 
@@ -16,7 +20,7 @@ describe("lib/ai/providers", () => {
       const responseBody = JSON.stringify({
         id: "gen-1",
         created: 1,
-        model: "openrouter/free",
+        model: "vendor/model-a",
         object: "chat.completion",
         system_fingerprint: null,
         choices: [
@@ -37,7 +41,11 @@ describe("lib/ai/providers", () => {
       });
       vi.stubGlobal("fetch", mockFetch);
 
-      const provider = createOpenRouterProvider({ apiKey: "test-key" });
+      const provider = createOpenRouterProvider({
+        apiKey: "test-key",
+        model: "vendor/model-a",
+        role: "studentTutor",
+      });
       const result = await provider("Test prompt");
 
       expect(result).toBe("Test response");
@@ -48,7 +56,7 @@ describe("lib/ai/providers", () => {
         model: string;
         messages: Array<{ role: string; content: string }>;
       };
-      expect(body.model).toBe("openrouter/free");
+      expect(body.model).toBe("vendor/model-a");
       expect(body.messages).toEqual([{ role: "user", content: "Test prompt" }]);
     });
   });

@@ -69,7 +69,7 @@ describe("POST /api/student/lesson-chatbot (SDK transport)", () => {
     process.env = {
       ...originalEnv,
       OPENROUTER_API_KEY: "sdk-route-key",
-      OPENROUTER_MODEL: "vendor/model-a",
+      OPENROUTER_MODEL_STUDENT_TUTOR: "vendor/model-a",
     };
     mockGetRequestSessionClaims.mockResolvedValue({
       sub: "p1",

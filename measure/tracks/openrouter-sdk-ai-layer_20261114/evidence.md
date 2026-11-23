@@ -249,3 +249,48 @@ Each gate ran with label `green` and compared per key with label `baseline`
 - F5 deviation: `npm run generate` did not fix the `../../../daniel-bo/...`
   paths in `measure/generated/routes.md`. That file is not staged.
   `tech-debt.md` has 50 lines, the limit, so no row was added.
+
+## Phase S2: role-based model configuration (Green)
+
+### F1 documented 200 bodies
+
+The F1 tests drive the real OpenRouter SDK through a mocked `globalThis.fetch`.
+They do not stub `chat.send`. The two bodies and their results follow.
+
+- F1a body: the OpenRouter documented example, verbatim. It holds `choices`
+  with `finish_reason`, `native_finish_reason`, and `message.content`
+  `"Hello there!"`, plus a snake_case `usage` object and `model`.
+  Before: the SDK threw `OpenRouter API error: 200 Response validation failed`,
+  because the strict inbound schema requires fields that the example omits.
+  After: `recoverValidatedBody` reads the rejected body from the SDK error
+  `rawValue` and returns the content. The provider resolves to `Hello there!`
+  with one fetch call. Log: `green-s2-targeted-F1.log`.
+- F1b body: a 200 body that holds only
+  `{"error":{"code":503,"message":"Service unavailable"}}` and no `choices`.
+  Before: the SDK rejected the body once and the provider threw a 200 API error
+  after one fetch call. After: the missing content gives an
+  `EmptyResponseError`; `withRetry` retries it. An unreadable response body on
+  a retry also maps to `EmptyResponseError`. The provider throws
+  `EmptyResponseError` after three fetch calls. Log: `green-s2-targeted-F1.log`.
+
+### F10 case-insensitive Bearer strip
+
+Before: the strip matched only the exact prefix `Bearer `. Keys configured as
+`bearer <token>` or `BEARER  <token>` left the token in a mapped error.
+After: a case-insensitive scheme match with `^bearer\s+` removes the scheme and
+all following whitespace. Both echoed tokens are redacted. Log:
+`green-s2-targeted-F10.log`.
+
+### S2 Green gate evidence
+
+- Targeted `RED_TEST_COMMAND`: 12 passed, 115 skipped, exit 0.
+  Log: `green-s2-targeted-role.log`.
+- F1 filter: 4 passed, exit 0. F10 filter: 2 passed, exit 0.
+  Logs: `green-s2-targeted-F1.log`, `green-s2-targeted-F10.log`.
+- `S2_GREEN_TEST_COMMAND`: ai-tutoring 127/127 pass, practice-core 263/263
+  pass; BM2 and IM3 keep their baseline failure keys (7 and 218). Logs:
+  `green-s2-package-test.log`, `green-s2-test-practice-core.log`,
+  `green-s2-test-bm2.log`, `green-s2-test-im3.log`.
+- workerd probe: `probe-ok`, exit 0. Log: `green-s2-workerd.log`.
+- Gate sweeps with label `s2`: `lint`, `test`, and `checks-all` each exit 0
+  with `NEWFAIL=0`. Results: `gates/s2/`. Driver log: `green-s2-gates.exit`.

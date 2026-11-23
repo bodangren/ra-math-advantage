@@ -185,6 +185,7 @@ describe("POST /api/student/lesson-chatbot", () => {
       makeRequest({ lessonId: "lesson-1", phaseNumber: 1, question: "What is x?" }),
     );
     expect(res.status).toBe(200);
+    expect(mockResolveOpenRouterProviderWithMessagesFromEnv).toHaveBeenCalledWith("studentTutor");
     expect(mockFetchInternalMutation).toHaveBeenCalledWith(
       "rateLimits:checkAndIncrementRateLimit",
       { userId: "p1" },

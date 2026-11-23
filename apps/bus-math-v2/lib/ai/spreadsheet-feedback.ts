@@ -108,7 +108,7 @@ Respond only with the JSON object, no other text.`;
  * @throws Error if AI provider is configured but fails
  */
 export async function generateAiFeedback(options: GenerateAiFeedbackOptions): Promise<AiFeedback> {
-  const provider = resolveOpenRouterProviderFromEnv();
+  const provider = resolveOpenRouterProviderFromEnv("spreadsheetEval");
 
   if (!provider) {
     const correctRatio =

@@ -144,6 +144,7 @@ describe("POST /api/student/lesson-chatbot", () => {
       buildRequest({ lessonId: "lesson-1", phaseNumber: 1, question: "Hello" }),
     );
     expect(response.status).toBe(200);
+    expect(mockResolveOpenRouterProviderWithMessagesFromEnv).toHaveBeenCalledWith("studentTutor");
     const payload = await response.json();
     expect(payload.response).toBe("AI response");
   });

@@ -165,6 +165,7 @@ describe("POST /api/student/lesson-chatbot", () => {
     );
 
     expect(response.status).toBe(200);
+    expect(mockResolveOpenRouterProviderWithMessagesFromEnv).toHaveBeenCalledWith("studentTutor");
     const data = await response.json();
     expect(data.response).toBe("This is a lesson-scoped response.");
   });
