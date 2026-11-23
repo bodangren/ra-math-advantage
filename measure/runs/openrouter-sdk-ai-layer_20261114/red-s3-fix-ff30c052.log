@@ -1,0 +1,63 @@
+Red S3 fixture fix log — teacher ai-error-summary no-PII fixture
+Track: openrouter-sdk-ai-layer_20261114 | Phase: S3 | Role: mid-red (fixture fix)
+Date: 2026-11-24 UTC | Fixture commit: ff30c052
+
+Defect (reported by Green, blocked): the no-PII test mocked
+getSubmissionDetail with submissionData.parts = []. buildLessonErrorSummary
+then gives totalParts = 0, and the generator must return null with no
+request at totalParts = 0 (case 16 of the lib/teacher test, unchanged).
+The no-PII test asserts mockStructuredProvider.mock.calls.length > 0.
+Both could not hold, so the fixture could not prove the no-PII property.
+
+Fix (option A, fixture only, no assertion changed, case 16 unchanged):
+apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.no-pii.test.ts —
+submissionData.parts now holds one neutral part:
+  partId "q1", rawAnswer "wrong-answer", isCorrect false, score 0,
+  maxScore 1, misconceptionTags ["debit-credit-confusion"].
+No NO_PII_VALUES text in the part. Same shape as the sibling route
+test makeEnvelope. totalParts is now 1, so under Green the generator
+must send one structured request whose prompt the test scans for PII.
+
+Evidence:
+- npx oxfmt --check on the file: clean ("All matched files use the
+  correct format").
+- CI=true npm run test --workspace=apps/bus-math-v2 --
+  __tests__/api/teacher/ai-error-summary.no-pii.test.ts
+  (via heavy-run.sh): 1 passed, 8ms. Passes for the right reason with
+  Green's production code in the tree: response 200, app-side
+  studentName "Avery Quinn", one structured call, captured prompt holds
+  no fixture value.
+- Red-baseline reason (no Green production, by HEAD inspection):
+  HEAD route apps/bus-math-v2/app/api/teacher/ai-error-summary/route.ts
+  uses resolveAIProviderFromEnv (mocked null) and never calls the
+  structured provider, so the same test fails first at
+  expect(mockStructuredProvider.mock.calls.length).toBeGreaterThan(0).
+  Failing-first holds at baseline; Green unblocks it, case 16 stays
+  valid because the fixture no longer sits on the totalParts = 0 path.
+
+Scope guard: committed ONLY the fixture file with
+git commit --only (leaves Green's staged green-s3-91bb94c1.log staged
+and all Green working-tree files untouched). Verified with
+git show --name-only HEAD (1 file) and git diff --cached --name-only.
+No plan.md change: the S3 Red proof already records the no-PII Red
+state and S3 Test (Red) stays [~]; no Green task marked. No push.
+
+Untouched Green working-tree files (still present, not staged/committed
+by this role): apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.test.ts,
+app/api/teacher/ai-error-summary/route.ts, lib/ai/spreadsheet-feedback.ts,
+lib/teacher/ai-error-summary.ts (untracked), packages/ai-tutoring/src/structured.ts
+(untracked), packages/ai-tutoring/src/index.ts, packages/ai-tutoring/package.json,
+package-lock.json, tech-stack.md, generated/manifest files, staged green log.
+
+MEASURE_AGENT_RESULT
+  baseline_sha: 55e7952b15b3e36dc8b44dea76f252ded4c9c12e
+  role_base_sha: 91bb94c1
+  role: mid-red (S3 fixture fix)
+  track: openrouter-sdk-ai-layer_20261114
+  phase: S3
+  head: ff30c0521b75a809aed106d82e4f10bf0c037b63
+  commits: ff30c052 test(bm2) fixture fix (only the no-PII test file) + git note
+  tests: apps/bus-math-v2 no-PII file 1/1 pass in-tree (Green code present); fails first at Red baseline on calls.length > 0
+  files: apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.no-pii.test.ts
+  remaining_failures: none from this fix; S3 Test (Red) stays [~] for the orchestrator; Green re-run owns the full S3 gate
+  handoff: no open questions; Green can re-run the S3 suite (fixture now sends totalParts 1; case 16 unchanged)
