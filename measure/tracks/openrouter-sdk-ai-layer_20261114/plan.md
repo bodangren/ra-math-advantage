@@ -262,6 +262,23 @@ _Story ref: spec.md#story-s2_
     - [ ] Assert in each chatbot route test that the resolver gets `'studentTutor'`. Assert in the spreadsheet test that it gets `'spreadsheetEval'`.
     - [ ] In `apps/integrated-math-3/.env.example` and `apps/bus-math-v2/.env.example`, replace `OPENROUTER_MODEL` with the role variables of each app, as comments. Add the `openrouter/free` development note.
     - [ ] Commit: `feat(ai): move the chatbots and spreadsheet feedback to their roles`.
+    - [x] Remediation r2 (Review A RA1, Review B B1, Review B N4, Review C F1): `b212125b`.
+      RA1: `resolveRoleModel` returns the configured value unchanged; a blank
+      or whitespace-only value still gives `reason: 'missing'`. The new
+      preservation test failed first on the trimmed value, then passed.
+      B1: one committed Red assertion changed, with orchestrator routing and
+      disclosure. `roles.test.ts` case 8 now parses the logged JSON record and
+      asserts `role`, `missing`, and `reason: 'preset'` instead of
+      `toContain("preset")`. No behavior changed for B1.
+      N4 and C-F1: a package test imports and calls the four planned exports
+      from `src/index.ts` and `logAiRequest` from `src/usage-log.ts`.
+      Package suite 129/129; lint, test and checks-all gate sweeps with label
+      `s2` each exit 0 with `NEWFAIL=0`. Logs: `green-s2-r2-before-fix.log`,
+      `green-s2-r2-package-test.log`, `green-s2-r2-gates.exit`.
+      Deferred to the next-phase list, not added to `tech-debt.md` because that
+      file holds 60 lines against a 50-line limit: N1 (OPENROUTER_DEBUG
+      debugLogger), N2 (S2 Verify grep matches the case-9 fixture), N3 (two-role
+      cache isolation test).
 - [ ] Task: S2 Verify — run the gates
     - [ ] Run each gate, with the workerd probe. Confirm that each gate passes.
     - [ ] Run `git grep -n "OPENROUTER_MODEL\b\|openrouter/free" -- apps packages ':!**/.env.example'`. Confirm that no code matches.
