@@ -1,10 +1,12 @@
 # Test Strategy: openrouter-sdk-ai-layer_20261114
 
 Track: `openrouter-sdk-ai-layer_20261114` (Chore, 4 phases S1 to S4).
-Strategy revision: r1 (2026-11-20). Scope: Phase S1 only. Refresh this file at the start
-of each later phase. A later section wins when an earlier rule disagrees with it.
+Strategy revision: r2 (2026-11-23). Scope: Phase S1 (sections 1 to 13) and Phase S2 (the
+section with that name below). Refresh this file at the start of each later phase. A later
+section wins when an earlier rule disagrees with it.
 Role base SHA `bce9613ae515114a552cba65ba16d9ebe6d466a6` predates this strategy. It is
-not the `phase_base_sha`. Section 11 gives the capture point.
+not a `phase_base_sha`. Section 11 gives the S1 capture point. The "Phase S2" section gives
+the S2 capture point. Do not use any SHA in this file as the S2 `phase_base_sha`.
 
 ## 1. What this phase proves
 
@@ -284,3 +286,275 @@ checks exit 0. The export surface of `src/index.ts` is unchanged apart from plan
 exports. `npm run generate` and `npm run doctor` exit 0, or the F5 deviation is
 recorded. No generated file is staged. The manual verification protocol of
 `measure/workflow.md` completes. The phase checkpoint and plan update follow.
+
+---
+
+## Phase S2: Role-based model configuration
+
+This section refreshes the strategy for S2. It wins over sections 1 to 13 when a rule
+disagrees. The gate capture and per-key comparison rules of sections 4 and 5 still apply
+to each S2 gate. Label the S2 gate logs `s2` instead of `s1`.
+
+### S2.1 What this phase proves
+
+S2 gives each AI role its own model variable. No code has a default model. A missing
+setting makes the feature fail closed. Each request logs one usage record with no prompt
+or answer text. The PII flag controls the `zdr` field. Two chatbots get a no-PII test.
+Two S1 findings, F1 and F10, block any deploy and are fixed here.
+
+The proof has two parts:
+
+1. Live behavior tests. Red cases 1 to 12, the two no-PII route tests, the F1 and F10
+   tests, and the workerd probe.
+2. Gate sweeps. Each gate runs on the S2 base commit and after the change. Compare by
+   diagnostic key, not by workspace level (section 5).
+
+Artifact and document checks are supporting evidence only. A `.env.example` comment, a
+tech-stack note, or a `git grep` match proves text. It does not prove role behavior.
+Section S2.10 names the live complement of each artifact check.
+
+### S2.2 Risk and applicable roles
+
+S2 risk: **high**. Reason: the resolver signature changes for every AI caller, fail-closed
+behavior is a privacy boundary, usage logging must not leak text, and F1 and F10 block any
+deploy of S1 code.
+
+| Role | Applicable | Reason |
+|------|-----------|--------|
+| Security review | yes | A missing key or model must fail closed. No log holds prompt text, answer text, or the key. F10 redacts each Bearer scheme form. No message holds PII. |
+| UX/API review | yes (API) | `resolveOpenRouterProvider*FromEnv` take an `AiRole`; `OpenRouterProviderOptions` requires `model` and `role`; four exports are added to `src/index.ts`. The chatbot HTTP 503 response stays. No page or component changes. |
+| Adversarial testing | yes | Try to pass without reading the role variable, with a hidden default, with PII in a message, or with prompt text in a log. |
+| Browser review | no | S2 changes no page, component, or route rendering. Route tests assert HTTP status and captured messages. The workerd probe proves the runtime. No browser state exists to compare. |
+
+### S2.3 Red command, fixtures, mocks, and live proof
+
+`S2_RED_TEST_COMMAND`:
+`CI=true npm run test --workspace=packages/ai-tutoring -- -t 'role configuration'`
+
+The new describe in `packages/ai-tutoring/src/__tests__/roles.test.ts` holds exactly 12
+cases. The SDK is installed from S1, so a `Cannot find module` failure is invalid. Record
+the first failing assertion line of each case. A run with fewer than 12 executed cases
+fails the mid-red gate (A4).
+
+The two no-PII route tests run with
+`CI=true npm run test --workspace=apps/integrated-math-3 -- -t 'no-PII'` and
+`CI=true npm run test --workspace=apps/bus-math-v2 -- -t 'no-PII'`. These tests are guards.
+They may pass at Red. They do not count toward the 12 failing cases.
+
+The F1 and F10 tests live in `packages/ai-tutoring/src/__tests__/providers.test.ts`.
+Run them with `CI=true npm run test --workspace=packages/ai-tutoring`.
+
+`S2_GREEN_TEST_COMMAND` is the S1 `GREEN_TEST_COMMAND` (three workspaces) plus
+`CI=true npm run test --workspace=packages/practice-core`.
+
+**Fixtures.**
+
+- Role variables: `vendor/model-a`, `~google/gemini-latest`, `@preset/tutor`, and an
+  environment that holds only the old `OPENROUTER_MODEL`.
+- Response fixture: served `model`, `promptTokens`, `completionTokens`, and
+  `totalTokens` as labeled fields, taken from the mocked `chat.send` result.
+- Log guard markers: prompt `PROMPT-MARKER-7` and answer `ANSWER-MARKER-9`.
+- No-PII Fixture from the plan "Rules for All Phases": 2 names (`Avery Quinn`,
+  `Jordan Lee`), 2 emails (`avery.quinn@example.org`, `jordan.lee@example.org`),
+  1 username (`aquinn42`), 1 account ID (`k17pii0000account`).
+- F1 fixtures: the OpenRouter documented example response body, recorded verbatim in
+  `evidence.md` "SDK API", and a 200 body that holds only an `error` object.
+- F10 fixtures: API keys configured as `bearer <token>` and `BEARER  <token>`, each
+  echoed as a token-only HTTP error message.
+
+**Mocks.** Package tests use `vi.mock('@openrouter/sdk')`. F1 uses the real SDK client
+with a mocked `globalThis.fetch` that returns the raw 200 body, so SDK validation runs.
+Route tests mock auth, the Convex rate limit, and `globalThis.fetch`, and capture the
+messages that reach the provider. No test calls the live OpenRouter API.
+
+**Live-behavior proof.** The workerd probe passes `role: 'studentTutor'` and a model and
+answers `probe-ok` through the SDK in workerd. A unit test does not replace this proof.
+The probe fails if it answers from a fetch fallback or omits the role and model. Route
+tests assert HTTP status and captured messages. Both app builds exit 0 and both typechecks
+pass, since vinext build does not enforce types.
+
+### S2.4 Red cases 1 to 12
+
+| ID | Assertion | Falsification condition |
+|----|-----------|-------------------------|
+| 1 | With `OPENROUTER_MODEL_STUDENT_TUTOR=vendor/model-a`, the studentTutor provider sends `model: 'vendor/model-a'`. | Fails on a default model, a read of `OPENROUTER_MODEL`, or a changed value. |
+| 2 | The value `~google/gemini-latest` reaches the request without change. | Fails if the value is normalized, rejected, or rewritten. |
+| 3 | One successful request logs one usage record with the served model and the token counts of the mocked response. | Fails on zero or more than one record, on the requested model in place of the served model, or on a wrong token field. Parse labeled fields. |
+| 4 | Every entry of `AI_ROLES` has `sendsPii: false`. | Fails if a role sets the flag true or omits it. |
+| 5 | `buildProviderPreferences` maps the four input pairs to `undefined`, `{require_parameters: true}`, `{zdr: true}`, and `{require_parameters: true, zdr: true}`. | Fails on a wrong mapping, an extra field, or a guessed field name. Use the SDK names in `evidence.md`. |
+| 6 | A missing role variable makes the resolver return `null` and log the variable name. | Fails if a provider is returned or the log omits the name. |
+| 7 | An empty or whitespace value gives the result of case 6. | Fails if whitespace is accepted. |
+| 8 | The value `@preset/tutor` makes the resolver return `null` and log `reason: 'preset'`. | Fails if the preset is accepted or the reason field is not `preset`. Assert the field, not substring text (A1). |
+| 9 | Only `OPENROUTER_MODEL` set makes the resolver return `null`. | Fails if the old variable is used as a fallback. This is the live complement of the S2 Verify `git grep` (A11). |
+| 10 | A missing `OPENROUTER_API_KEY` makes the resolver return `null` and log `missing: 'OPENROUTER_API_KEY'`. | Fails if a provider is returned or the missing name is wrong. |
+| 11 | A request with prompt `PROMPT-MARKER-7` and answer `ANSWER-MARKER-9` logs no line with either marker. A failed request logs `outcome: 'error'` and its status. | Fails if any log line holds a marker, or if the failed record lacks `outcome` or `status`. |
+| 12 | A studentTutor request has no `provider` field. | Fails if `provider` is present, even as an empty object. |
+
+### S2.5 The two no-PII route tests
+
+Create `apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts`
+and `apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts`. Put
+the No-PII Fixture in session claims, the profile, and the lesson data mocks. Capture the
+messages that reach the mocked provider. Assert that no captured string holds any fixture
+value.
+
+Falsification: a captured message that holds `Avery Quinn`, `Jordan Lee`, either email,
+`aquinn42`, or `k17pii0000account` fails the test. A test that captures no message also
+fails. The two apps are separate tests; a pass in one does not prove the other.
+
+### S2.6 Deploy blockers F1 and F10
+
+Both findings come from S1 review and acceptance. S2 fixes them. A deploy of S1 code with
+either finding open fails review.
+
+**F1 (Acceptance, Major): the SDK rejects 200 bodies that the old transport accepted.**
+Add two cases to `providers.test.ts`. Drive the real SDK client through a mocked
+`globalThis.fetch` that returns HTTP 200 with the target body. Do not stub `chat.send`.
+
+- F1a. Return the OpenRouter documented example body verbatim. Assert that the provider
+  returns its content text. Falsification: the SDK rejects the body and the provider
+  throws, or the provider returns no content.
+- F1b. Return a 200 body that holds only an `error` object and no `choices`. Assert that
+  the failure is retried by `withRetry` and gives the result that the pre-S1 transport
+  gave for that body. Falsification: no retry occurs, the error is treated as
+  non-retryable, or the call count is wrong. Assert the call count as a labeled integer.
+
+Record the exact bodies and the before and after results in `evidence.md`, with log paths.
+The fix must land before any deploy of S1 code.
+
+**F10 (Review B): case-insensitive Bearer strip in `mapSdkError`.** The strip at
+`packages/ai-tutoring/src/providers.ts:38` checks the exact string `Bearer `. Add two cases
+to the redaction describe in `providers.test.ts`. Configure the key with the scheme in the
+value and make `chat.send` reject with an HTTP error that echoes the token alone.
+
+- F10a. Key `bearer sk-bearer-lower-6666`, lowercase scheme. Falsification: the token
+  `sk-bearer-lower-6666` stays in the mapped error text or in `JSON.stringify` of it.
+- F10b. Key `BEARER  sk-bearer-upper-7777`, uppercase scheme with an extra space.
+  Falsification: the token `sk-bearer-upper-7777` stays in the mapped error text.
+
+The fix must match the scheme without case sensitivity and remove the scheme and its
+following whitespace. A case-sensitive match or a one-space strip fails these tests.
+
+### S2.7 Caller moves, architecture guardrails, and changed-contract risks
+
+**Caller moves.** Resolvers take an `AiRole`. `OpenRouterProviderOptions` requires `model`
+and `role`. Update these six test files for the new signature and assert the role
+argument: `packages/ai-tutoring/src/__tests__/providers.test.ts`,
+`apps/bus-math-v2/__tests__/lib/ai/providers.test.ts`,
+`apps/bus-math-v2/__tests__/lib/ai/spreadsheet-feedback.test.ts`, both
+`lesson-chatbot/route.test.ts` files, and
+`apps/bus-math-v2/__tests__/api/student/lesson-chatbot.test.ts`. Each chatbot test asserts
+that the resolver gets `'studentTutor'`. The spreadsheet test asserts `'spreadsheetEval'`.
+
+**Guardrails.**
+
+- No package imports from `apps/` or `convex/_generated/`.
+- `packages/practice-core` does not depend on `packages/ai-tutoring`.
+- `node scripts/check-monorepo-boundaries.mjs` and `node scripts/validate-ci.mjs` exit 0.
+- Existing exports of `src/index.ts` stay. Add `AI_ROLES`, `AiRole`, `resolveRoleModel`,
+  and `buildProviderPreferences`.
+- `provider` is sent only when `buildProviderPreferences` returns an object (case 12).
+- The provider cache holds one entry per role. `clearProviderCache` clears all roles. A
+  test that resolves two roles fails if the second returns the first role's model.
+- No code reads `OPENROUTER_MODEL` and no code holds `openrouter/free` as a default. The
+  S2 Verify `git grep` is an artifact check; cases 1, 2, and 9 are its live complement.
+- Usage log fields and logger text match the contract. No log holds a key, a prompt, or an
+  answer (case 11).
+
+### S2.8 Green gate and closeout gate
+
+**Green gate.** The 12 role cases, the two no-PII route tests, the F1 cases, and the F10
+cases pass. `S2_GREEN_TEST_COMMAND` exits 0 for the four named workspaces. The workerd
+probe answers `probe-ok` with a role and a model. `PROJECT_LINT`, `PROJECT_TESTS`, and
+`PROJECT_CHECKS` print `NEWFAIL=0` with label `s2`. Every baseline failure key stays
+unchanged. `evidence.md` records the F1 bodies and results and every cited log path.
+
+**Closeout gate (phase acceptance).** The Green gate. Both app builds and typechecks exit
+0. The S2 Verify `git grep` returns no code match. Boundary and CI checks exit 0. The
+export diff of `src/index.ts` holds only the four planned exports. `npm run generate` and
+`npm run doctor` exit 0, or the S1 F5 deviation is recorded again. No generated file is
+staged. The manual verification protocol of `measure/workflow.md` completes. The phase
+checkpoint and plan update follow. The S1 deploy blockers F1 and F10 are closed.
+
+### S2.9 Intentionally-red aggregate suites
+
+The suites below are red or partly red at the S2 base commit. Do not fix them in S2 and do
+not call the whole suite green on a raw exit code.
+
+- The scripts suite holds the pre-existing `remediate-concept-blueprints` honest-count
+  failure and the `vinext-oxc-gates-script` failures.
+- The audit suites hold five baseline failure keys.
+- IM3 typecheck holds the same 55 baseline diagnostic lines. IM3 tests hold 218 baseline
+  failures and BM2 tests hold 7.
+- The BM2 bundle audit fails at baseline on `Total dist/server`. A bigger size with the
+  same entry is allowed. A new over-budget entry or a changed budget stops the phase.
+- `npm audit` holds nine high advisory IDs at baseline. A new critical or high ID stops
+  the phase for a report.
+
+GREEN uses the targeted commands of S2.3. An aggregate failure with only baseline keys is
+accepted and recorded in `evidence.md` with its log path.
+
+### S2.10 Artifact checks versus live behavior checks
+
+| Artifact check | Live complement |
+|----------------|-----------------|
+| `.env.example` holds role variables as comments | Cases 1, 2, and 9 read the real variables |
+| `tech-stack.md` dated note on roles, the PII flag, and the usage record | Cases 3, 4, 5, and 11 |
+| S2 Verify `git grep` for `OPENROUTER_MODEL` and `openrouter/free` | Case 9 and resolver cases 6 to 10 |
+| `evidence.md` records the F1 bodies | F1a and F1b drive the real SDK through a mocked fetch |
+| Export diff of `src/index.ts` | A package test imports each new export and calls it |
+
+A phase that holds only artifact checks fails acceptance. An artifact grep is a
+complement, never the proof.
+
+### S2.11 Anti-pattern coverage
+
+The catalog holds A1 to A12. Each row gives an S2 defense and a falsification condition.
+
+| Anti-pattern | S2 defense | Falsification |
+|--------------|-----------|---------------|
+| A1 substring-as-structured-signal | Case 8 asserts the `reason` field. Case 3 asserts the `outcome` field. `mapSdkError` keeps the `statusCode` field from S1. | Replacing a field assertion with `includes('preset')` or `includes('error')` fails review. |
+| A2 consent-blind publish gate | Not applicable. S2 publishes nothing. No draft-to-published gate exists. | A publish gate added in S2 is out of scope and fails review. |
+| A3 digit-only as labeled count | Token counts, call counts, `NEWFAIL`, and advisory IDs use labeled fields and integers. | A regex that matches any digit fails review. |
+| A4 vacuous-pass on nothing-done | The RED describe holds exactly 12 cases. A skipped or "no test files found" run is invalid. | A RED run with fewer than 12 executed cases fails the mid-red gate. |
+| A5 false-claim text vs test reality | Each `evidence.md` claim names a log path. The orchestrator re-runs the cited command. | A claim with an absent log or a non-zero command fails the artifact check. |
+| A6 registry-note overstatement | No `measure/tracks.md` claim of role configuration before Red and Green pass. | A claim while a role case is red fails review. |
+| A7 over-broad filter swallowing real hits | `-t 'role configuration'` targets one describe. No bare-English-word exclusion. Gate compare is per key. | A filter that drops a case or a workspace-level compare fails review. |
+| A8 `[ ]` marker ambiguity | The live smoke task stays `[b]`. Tasks use `[ ]`, `[~]`, `[x]`, and `[b]` structurally. | A `[ ]` task counted as in progress or a `[b]` task automated fails review. |
+| A9 pre-existing test references archived track paths | No test reads `measure/tracks/vinext-oxc-toolchain_20261114/`. Use `measure/archive/...` only in documents. | A test path that breaks after an archive move fails the path check. |
+| A10 generated-facts drift | Never stage the six dirty generated files. Check `git status --porcelain` at the S2 capture. | A staged generated file or a capture with another modified file stops the capture. |
+| A11 missing live contract-test suite | The 12 cases, the two no-PII tests, F1a, F1b, F10a, F10b, and the probe are live tests. Artifact greps are complements. | A phase that relies only on evidence text fails acceptance. |
+| A12 missing supervisor peer-review rule | Not applicable. S2 touches no `AGENTS.md` and no supervisor. | A change to either file in S2 is out of scope and fails review. |
+
+### S2.12 `phase_base_sha` capture point for S2
+
+1. This S2 strategy commit lands first. It holds `test-strategy.md` only.
+2. **Captured point.** Immediately after that commit, before any other S2 commit, run
+   `git status --porcelain`. Only these entries may appear, each with status ` M`:
+   `apps/bus-math-v2/lib/workbooks-manifest.json`, the four
+   `apps/*/.next/types/routes.d.ts` files, and `measure/generated/routes.md`.
+   `measure/runs/` is gitignored. Any staged file, untracked file, or other modified
+   file stops the capture.
+3. Run `git rev-parse HEAD`. Store the value as `phase_base_sha` for S2 in the
+   orchestrator run log and the role handoff. Do not write it into `plan.md`, `spec.md`,
+   or this file.
+4. The S1 checkpoint SHA and the base HEAD of this strategy role predate this commit.
+   Neither is the S2 `phase_base_sha`. No SHA in this file is the S2 capture point.
+5. Capture before the first S2 task commit, which is S2 Contract.
+6. An S2 `phase_base_sha` that is not a descendant of this strategy commit is invalid.
+   Stop and report.
+7. For S3, capture the next `phase_base_sha` right after the
+   `measure(plan): Mark phase 'Phase S2: Role-based model configuration' as complete`
+   commit, with the same status rule.
+
+### S2.13 emulate decision
+
+Decision: do not adopt `npx emulate --service ai`; no `emulate` binary or dependency is present and no evidence shows it models the strict 200-body parse or `withRetry` classification, so S2 keeps the pinned `vi.mock('@openrouter/sdk')` fakes and the local mock server.
+
+### S2.14 Plan drifts and defaults for S2
+
+| ID | Finding | Default |
+|----|---------|---------|
+| F13 | The SDK field names for `buildProviderPreferences` are `requireParameters` and `zdr`; the outbound JSON uses snake_case. | Assert the names recorded in `evidence.md`. Do not guess a field name. |
+| F14 | The two no-PII route tests may pass at Red. | Record them as guards. The Red proof is the 12 failing role cases. |
+| F15 | F1 and F10 are S1 findings fixed in S2. | Treat both as deploy blockers. Close them before any deploy of S1 code. |
