@@ -177,7 +177,7 @@ Next-phase list (acceptance, record-only): Acceptance F1 (Major, fix first in S2
 ## Phase S2: Role-based model configuration
 _Story ref: spec.md#story-s2_
 
-- [ ] Task: S2 Contract — define the roles, the PII flag, and the usage record
+- [x] Task: S2 Contract — define the roles, the PII flag, and the usage record (Red owns the stubs; Green owns the behavior)
     - [ ] Create `packages/ai-tutoring/src/roles.ts` with `AI_ROLES`. Each entry has `env` (the variable name), `structured` (boolean), and `sendsPii` (boolean). The values come from the spec "Roles" table.
     - [ ] Export `type AiRole = keyof typeof AI_ROLES` (`studentTutor`, `spreadsheetEval`, `accountingEval`).
     - [ ] Export `resolveRoleModel(role)`. It returns `{ ok: true, model }` or `{ ok: false, missing, reason }`.
@@ -187,7 +187,7 @@ _Story ref: spec.md#story-s2_
     - [ ] The record fields are `role`, `model` (the served model of the response), `latencyMs`, `promptTokens`, `completionTokens`, `totalTokens`, `outcome` (`ok` or `error`), and `status` (the HTTP status or `null`).
     - [ ] A missing setting logs `console.error('[ai-tutoring] AI role not configured', JSON.stringify({ role, missing, reason }))`.
     - [ ] In `measure/tech-stack.md`, add a dated note with the roles, the PII flag, and the usage record.
-- [ ] Task: S2 Test (Red) — specify the roles
+- [x] Task: S2 Test (Red) — specify the roles
     - [ ] Create `packages/ai-tutoring/src/__tests__/roles.test.ts`.
     - [ ] Normal case 1: with `OPENROUTER_MODEL_STUDENT_TUTOR=vendor/model-a`, the studentTutor provider sends `model: 'vendor/model-a'`.
     - [ ] Normal case 2: the value `~google/gemini-latest` reaches the request without change.
@@ -203,6 +203,32 @@ _Story ref: spec.md#story-s2_
     - [ ] Edge case 12: a studentTutor request has no `provider` field.
     - [ ] Create the no-PII tests `apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts` and `apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts`. Use the No-PII Fixture in the session claims, the profile, and the lesson data mocks. Capture the messages from the mocked provider.
     - [ ] Run the tests. Confirm that cases 1 to 12 fail. The no-PII tests can pass now; they guard the rule.
+    - RED run (2026-11-23, role mid-red): `CI=true npm run test
+      --workspace=packages/ai-tutoring -- -t 'role configuration'` ran 12 cases,
+      12 failed, 115 skipped. Case 1 sends `openrouter/free` instead of
+      `vendor/model-a`. Case 2 sends `openrouter/free` instead of
+      `~google/gemini-latest`. Cases 3 and 11 find zero usage records. Case 4
+      finds `sendsPii: true` in the stub. Case 5 finds
+      `{ require_parameters: true }` where the contract needs `undefined`, and
+      the stub shape differs on the other three pairs. Cases 6 to 9 return a
+      provider instead of `null`. Case 10 returns `null` but logs no missing
+      key name. Case 12 finds the stub preferences object instead of
+      `undefined`. No `Cannot find module` failure. F1a rejects with
+      `OpenRouter API error: 200 Response validation failed` instead of
+      returning `Hello there!`. F1b rejects with the same 200 API error after
+      1 fetch call instead of `EmptyResponseError` after 3 calls. F10a and F10b
+      keep the echoed token in the mapped error text. IM3 no-PII: 1 passed,
+      7069 skipped. BM2 no-PII: 1 passed, 2698 skipped.
+    - Red deviations (record-only): (a) case 5 and case 12 assert the SDK
+      TypeScript field names (`requireParameters`, `zdr`) per strategy F13,
+      which wins over the snake_case literals of the plan Contract. (b) The
+      stubs use `sendsPii: true`, `structured: true`, and a constant
+      preferences object so that cases 4, 5, and 12 fail on assertions.
+      Green replaces the stubs with the Contract values. (c) F1a and F1b live
+      in `providers.test.ts` per the strategy; they use the real SDK through
+      `vi.importActual` with a mocked `fetch`, and they do not stub
+      `chat.send`. (d) The Red tests call the provider resolvers with a role
+      argument through a cast; the signature change is Green's.
     - [ ] Commit: `test(ai-tutoring): specify the role configuration (Red)`.
 - [ ] Task: S2 Implement — read the model from the role
     - [ ] In `src/providers.ts`, make `model` and `role` required in `OpenRouterProviderOptions`. Remove each `'openrouter/free'` default and each read of `OPENROUTER_MODEL`.
