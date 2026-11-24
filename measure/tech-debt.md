@@ -64,3 +64,7 @@
 - **Review B F2** (Major, Open): `packages/ai-tutoring/src/lesson-context.ts:89-92` removes known account values of any length. BM2 `convex/auth.ts:117` accepts any string username, so a one- or two-character value can delete substrings from lesson math in the prompt. No leak occurs. Add a minimum length or a word-boundary match with one test.
 - **Review B F3** (Nit, Open): the BM2 student lesson-chatbot rate-limit catch (`route.ts:101-105`) logs a fixed `status: null`. Bind the error and extract the status as the IM3 route does at `route.ts:172-177`.
 - **Review B F4** (Nit, Open): the teacher ai-error-summary route outer catch (`route.ts:137`) logs the raw error object. The structured helper never throws, so the error holds Convex and mapping text only. Redact when the route is next touched.
+
+## S3 checkpoint — flaky IM3 queue session tests (2026-11-24)
+
+- **IM3 queue sessions UTC-day flake** (Low, Open): three tests in `apps/integrated-math-3/__tests__/convex/queue/sessions.test.ts` fail only between 00:00 and 01:00 UTC. They set `startedAt: now - 3600000` and assume that value is the same UTC day. The affected tests are "resumes existing active session when one exists for today", "enforces daily session limit - cannot start second session on same day", and "returns current day active session and queue". Inject a fixed clock or a fixed UTC day.
