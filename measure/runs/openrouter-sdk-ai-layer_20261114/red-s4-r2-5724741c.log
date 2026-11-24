@@ -1,0 +1,47 @@
+Red role log r2: Phase S4 registry-test fix, track openrouter-sdk-ai-layer_20261114.
+Date: 2026-11-24. Role: mid-red.
+
+Scope: fix the IM3 FR-14 tech-debt-registry drift as a test-only change.
+Green must not own it. No S4 Red assertion changed. No other test changed.
+
+Base SHAs: phase_base_sha = 8283f9fa192be2afc78a2e731fac1e267c3535b5
+(verified ancestor of HEAD). role_base_sha = 7c3d9de3
+(round start HEAD, verified before the first commit). git status holds only
+the known generated dirty files. Those stay unstaged.
+
+Cause: commit 80f4ceff pruned the Resolved row "IM3 auth wrapper inline
+duplication" from measure/tech-debt.md to
+measure/archive/tech-debt-resolved.md. The test
+apps/integrated-math-3/__tests__/lib/auth/server-composition.test.ts read
+only measure/tech-debt.md, so the "tech-debt registry" case failed. The
+failure pre-existed at the S4 base and was not caused by the S4 Red change.
+
+Fix (commit 5724741c, test-only, one file): techDebtSrc now concatenates
+measure/tech-debt.md and measure/archive/tech-debt-resolved.md. Every row
+assertion (present, Resolved, closing evidence) is unchanged. Nothing else in
+the file changed.
+
+Proof: CI=true npm run test --workspace=apps/integrated-math-3 --
+__tests__/lib/auth/server-composition.test.ts exits 0 with 16 passed.
+npm run format:check exits 0. Gate sweep GATES_BASE=s3 label s4
+(gates.sh test s4) exits 1 with NEWFAIL=1. New keys are exactly the 3 S4 Red
+failures in step-scripts-suite (openrouter-only cases 1 to 3 with their
+assertion lines). IM3 keys now match the s3 base exactly (362 = 362).
+
+Plan note: one R2 line added to the S4 Red evidence (commit 23d28c1d).
+
+MEASURE_AGENT_RESULT
+role: mid-red
+status: done
+track: openrouter-sdk-ai-layer_20261114
+phase: S4
+baseline_sha: 8283f9fa192be2afc78a2e731fac1e267c3535b5
+role_base_sha: 7c3d9de3
+head: 23d28c1d
+commits: 5724741c 23d28c1d
+tests_run: server-composition.test.ts 16 passed; gates test s4 NEWFAIL=1
+files_changed: apps/integrated-math-3/__tests__/lib/auth/server-composition.test.ts, measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md
+plan_updates: R2 fix line in the S4 Red evidence; S4 Test (Red) stays [~]
+known_failures: 3 S4 Red cases still fail first (banned-token scan, removal-path count, generateAISummary present); no other new failure
+handoff: Green owns the 3 Red failures per the S4 Contract removals 1 to 5; tests need no structural edits
+END_MEASURE_AGENT_RESULT
