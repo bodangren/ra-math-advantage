@@ -304,15 +304,15 @@ _Story ref: spec.md#story-s2_
       `green-s2-r4-im3.log`, `green-s2-r4-package.log`, `green-s2-r4-gates.exit`.
       Review B nonblocking findings stay on the next-phase list: BM2 strip,
       fixture-shaped regex, MODEL_ID charset, cache key, rate-limit log.
-- [x] Task: S2 Verify — run the gates
+- [x] Task: S2 Verify — run the gates `92ef37e0`
     - Evidence: every gate passed at HEAD `8bc7469a` with `NEWFAIL=0`, and the Verify grep matched test files only. See `measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-8bc7469a.json`.
     - [ ] Run each gate, with the workerd probe. Confirm that each gate passes.
     - [ ] Run `git grep -n "OPENROUTER_MODEL\b\|openrouter/free" -- apps packages ':!**/.env.example' ':!**/__tests__/**'`. Confirm that no code matches. (N2, S3 Fix: the exclusion drops only the case-9 fixture lines and the adversarial live complement.)
-- [x] Task: S2 Docs & Doctor
+- [x] Task: S2 Docs & Doctor `92ef37e0`
     - Evidence: `npm run generate` and `npm run doctor` exited 0 at HEAD `8bc7469a`. See `measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-8bc7469a.json`.
     - [ ] Run `npm run generate`. Confirm exit code 0.
     - [ ] Run `npm run doctor`. Confirm exit code 0.
-- [x] Task: Measure - User Manual Verification 'Phase S2: Role-based model configuration' (Protocol in workflow.md) (PM-verified 2026-11-23)
+- [x] Task: Measure - User Manual Verification 'Phase S2: Role-based model configuration' (Protocol in workflow.md) (PM-verified 2026-11-23) `e661e619`
     - PM-verified: the automated checks ran at HEAD `8bc7469a`. The acceptance result is `measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-8bc7469a.json`.
     - [x] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S2`. (e661e619.)
     - [x] Append `[checkpoint: e661e619]` to the Phase S2 heading. (e661e619.)
@@ -408,7 +408,7 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
       `GATES_BASE=s2` each exit 0 with `NEWFAIL=0`. Logs:
       `green-s3-fix-455dc41c.log`.
 
-- [x] Task: S3 Contract — define the helper and the teacher summary
+- [x] Task: S3 Contract — define the helper and the teacher summary [d156ce06, 54f8c772]
     - Evidence: implemented at `d156ce06` (helper, exports, zod dependency,
       lockfile entry, architecture manifest, tech-stack note) and `54f8c772`
       (teacher summary). The zod check prints `function` with version 4.6.7.
@@ -437,7 +437,7 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
     - [ ] The generator sends the prompt as one user message, with the schema name `teacher_error_summary`, temperature 0.3, and 500 max tokens (the current `ai-interpretation.ts` values).
     - [ ] It returns the data with `type` and `generatedAt` for `ok: true`, and `null` for each typed failure.
     - [ ] In `measure/tech-stack.md`, add a dated note on the structured-output helper and the teacher summary.
-- [x] Task: S3 Test (Red) — specify the helper and the two moves
+- [x] Task: S3 Test (Red) — specify the helper and the two moves [b72c6f33, ff30c052]
     - Evidence: Red proof recorded at `b72c6f33` and the Mid Red fixture fix
       at `ff30c052`. At the S3 base the targeted command failed 8 of 9 cases
       on the missing module. The fixed no-PII fixture sends one neutral part;
@@ -527,20 +527,20 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
     - [ ] Keep `envelopes`, `deterministicSummary`, `studentName: detail.studentName`, and `lessonTitle`. Set `aiEnabled: generator !== null`.
     - [ ] Do not put the student name into the AI text.
     - [ ] Commit: `feat(bm2): build the teacher error summary on the accounting role with structured output`.
-- [x] Task: S3 Verify — run the gates
+- [x] Task: S3 Verify — run the gates `e0b03ba8`
     - Evidence: gate sweeps with `GATES_BASE=s2` and label `s3` each exit 0
       with `NEWFAIL=0` for lint, test, and checks-all. The audit line is
       `critical=0 high=5 moderate=6 low=5`. The workerd probe answers
       `probe-ok`. See the "S3 main group" section of `evidence.md`.
     - [ ] Run each gate, with the workerd probe. Confirm that each gate passes.
-- [x] Task: S3 Docs & Doctor
+- [x] Task: S3 Docs & Doctor `e0b03ba8`
     - Evidence: `npm run generate` and `bash measure/doctor.sh` each exit 0
       at `54f8c772` after the architecture manifest gained the `./structured`
       entry point. No generated file is staged.
     - [ ] Run `npm run generate`. Confirm exit code 0.
     - [ ] Run `npm run doctor`. Confirm exit code 0.
-- [x] Task: Measure - User Manual Verification 'Phase S3: Structured output for the evaluation features' (Protocol in workflow.md) (PM-verified 2026-11-24)
-    - [x] Run the protocol: the automated tests, the manual verification plan, and the user confirmation. (PM-verified 2026-11-24)
+- [x] Task: Measure - User Manual Verification 'Phase S3: Structured output for the evaluation features' (Protocol in workflow.md) (PM-verified 2026-11-24) `0f5c4b68`
+    - [x] Run the protocol: the automated tests, the manual verification plan, and the user confirmation. (PM-verified 2026-11-24) `0f5c4b68`
     - PM-verified: Reviews A, B, and C pass at HEAD `18563a0a`. Phase acceptance passed at `18563a0a`, and the adversarial findings ADV-S3-5 and ADV-S3-8 are fixed at `2d1c875e`. The acceptance result is `measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-18563a0a.json`.
     - [x] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S3`. (0f5c4b68.)
     - [x] Append `[checkpoint: 0f5c4b68]` to the Phase S3 heading. (0f5c4b68.)
@@ -692,8 +692,8 @@ _Story ref: spec.md#story-s4_
       is staged.
     - [ ] Run `npm run generate`. Confirm exit code 0.
     - [ ] Run `npm run doctor`. Confirm exit code 0.
-- [x] Task: Measure - User Manual Verification 'Phase S4: Remove the OpenAI paths and document the roles' (Protocol in workflow.md) (PM-verified 2026-11-24)
-    - [x] Run the protocol: the automated tests, the manual verification plan, and the user confirmation. (PM-verified 2026-11-24.)
+- [x] Task: Measure - User Manual Verification 'Phase S4: Remove the OpenAI paths and document the roles' (Protocol in workflow.md) (PM-verified 2026-11-24) `987a919e`
+    - [x] Run the protocol: the automated tests, the manual verification plan, and the user confirmation. (PM-verified 2026-11-24.) `987a919e`
     - PM-verified: Phase acceptance passed at `8b66cbf4`. The acceptance result is `measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-8b66cbf4.json`. Reviews A, B, and C and the adversarial run pass at `3bcf2b31`. The live smoke test stays [b] (deferred:daniel).
     - [x] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S4`. (987a919e.)
     - [x] Append `[checkpoint: 987a919e]` to the Phase S4 heading. (987a919e.)
