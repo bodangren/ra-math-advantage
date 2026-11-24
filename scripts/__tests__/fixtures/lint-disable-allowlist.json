@@ -203,14 +203,6 @@
       "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
     },
     {
-      "path": "apps/bus-math-v2/lib/practice/error-analysis/providers.ts",
-      "kinds": ["next-line"],
-      "directiveCount": 1,
-      "blanketBlocks": 0,
-      "hiddenRules": ["typescript(no-explicit-any)"],
-      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
-    },
-    {
       "path": "apps/danielson/lib/convex/server.ts",
       "kinds": ["block"],
       "directiveCount": 1,

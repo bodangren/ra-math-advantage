@@ -86,15 +86,6 @@ export interface DeterministicErrorSummary {
   averageAccuracy: number;
 }
 
-export interface AISummaryInput {
-  submission: PracticeSubmissionEnvelope;
-  deterministicSummary: DeterministicErrorSummary;
-  rawEvidence: {
-    answers: Record<string, unknown>;
-    artifact?: unknown;
-  };
-}
-
 export interface AISummaryOutput {
   type: "ai-assisted";
   likelyMisunderstanding: string;
@@ -321,91 +312,6 @@ export function buildDeterministicSummary(
     topMisconceptions: topMisconceptions.slice(0, 10),
     studentCount: studentProfiles.length,
     averageAccuracy: totalParts > 0 ? totalCorrect / totalParts : 0,
-  };
-}
-
-// ── AI-Assisted Interpretation ─────────────────────────────────────────────
-
-/**
- * Generate an AI-assisted error summary from a submission and deterministic data.
- * @param {AISummaryInput} input - Summary input with submission, deterministic summary, and evidence
- * @param {(prompt: string) => Promise<string>} aiProvider - Optional async function that processes a prompt string
- * @returns {Promise<AISummaryOutput | null>} - AI summary output, or null if no provider or on failure
- */
-export async function generateAISummary(
-  input: AISummaryInput,
-  aiProvider?: (prompt: string) => Promise<string>,
-): Promise<AISummaryOutput | null> {
-  if (!aiProvider) {
-    return null;
-  }
-
-  try {
-    const prompt = buildAIPrompt(input);
-    const response = await aiProvider(prompt);
-    return parseAIResponse(response, input);
-  } catch (err) {
-    console.error("[error-analysis] generateAISummary failed:", err);
-    return null;
-  }
-}
-
-/**
- * Build a prompt string for the AI summary provider.
- * @param {AISummaryInput} input - Summary input with submission and evidence
- * @returns {string} - Formatted prompt string
- */
-function buildAIPrompt(input: AISummaryInput): string {
-  const { submission, deterministicSummary, rawEvidence } = input;
-
-  return `
-Analyze this student practice submission and provide teacher-facing feedback.
-
-Submission ID: ${submission.activityId}-${submission.attemptNumber}
-Activity: ${submission.activityId}
-Mode: ${submission.mode}
-
-Student Answers:
-${JSON.stringify(rawEvidence.answers, null, 2)}
-
-Part Results:
-${submission.parts.map((p) => `- ${p.partId}: ${p.isCorrect ? "Correct" : "Incorrect"} (Score: ${p.score ?? "N/A"}/${p.maxScore ?? "N/A"})`).join("\n")}
-
-Misconception Tags:
-${submission.parts.flatMap((p) => p.misconceptionTags ?? []).join(", ") || "None"}
-
-Class Average Accuracy: ${(deterministicSummary.averageAccuracy * 100).toFixed(1)}%
-
-Provide:
-1. Likely misunderstanding (1-2 sentences)
-2. Evidence observed in the submission (reference specific answers)
-3. Suggested reteach or intervention direction
-`.trim();
-}
-
-/**
- * Parse a raw AI response into a structured summary output.
- * @param {string} response - Raw text response from the AI provider
- * @param {AISummaryInput} input - Original summary input for context
- * @returns {AISummaryOutput} - Structured AI summary output
- */
-function parseAIResponse(response: string, input: AISummaryInput): AISummaryOutput {
-  const lines = response.split("\n").filter((l) => l.trim());
-  const misconceptionTags = Array.from(
-    new Set(input.submission.parts.flatMap((p) => p.misconceptionTags ?? [])),
-  );
-
-  return {
-    type: "ai-assisted",
-    likelyMisunderstanding: lines[0] || "Unable to determine misunderstanding",
-    evidenceObserved: lines[1] || "No specific evidence identified",
-    suggestedIntervention: lines[2] || "Review with student individually",
-    sourceSubmissionId: `${input.submission.activityId}-${input.submission.attemptNumber}`,
-    sourceEvidence: {
-      partIds: input.submission.parts.map((p) => p.partId),
-      misconceptionTags,
-    },
-    generatedAt: Date.now(),
   };
 }
 

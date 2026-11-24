@@ -6,7 +6,6 @@ export {
   type StudentErrorProfile,
   type LessonErrorSummary,
   type DeterministicErrorSummary,
-  type AISummaryInput,
   type AISummaryOutput,
   type TeacherErrorView,
   canTeacherAccessSubmission,
@@ -15,6 +14,5 @@ export {
   summarizePartOutcomes,
   buildStudentProfiles,
   buildDeterministicSummary,
-  generateAISummary,
   buildTeacherErrorView,
 } from "@math-platform/practice-core";

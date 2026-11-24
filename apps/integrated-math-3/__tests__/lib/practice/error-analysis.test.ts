@@ -7,7 +7,6 @@ import {
   summarizePartOutcomes,
   buildStudentProfiles,
   buildDeterministicSummary,
-  generateAISummary,
   buildTeacherErrorView,
 } from "@math-platform/practice-core/error-analysis";
 import type { PracticeSubmissionEnvelope } from "@math-platform/practice-core/contract";
@@ -341,54 +340,6 @@ describe("buildDeterministicSummary", () => {
     const after = Date.now();
     expect(result.generatedAt).toBeGreaterThanOrEqual(before);
     expect(result.generatedAt).toBeLessThanOrEqual(after);
-  });
-});
-
-describe("generateAISummary", () => {
-  it("returns null when no AI provider", async () => {
-    const submission = makeSubmission({ parts: [makePart("p1", false, ["sign-error"])] });
-    const result = await generateAISummary({
-      submission,
-      deterministicSummary: buildDeterministicSummary("lesson-1", [submission]),
-      rawEvidence: { answers: {} },
-    });
-    expect(result).toBeNull();
-  });
-
-  it("calls AI provider with prompt", async () => {
-    const submission = makeSubmission({
-      parts: [makePart("p1", false, ["sign-error"])],
-    });
-    const mockProvider = async (prompt: string) => {
-      expect(prompt).toContain("sign-error");
-      return "Misunderstanding evident\nEvidence shown\nIntervention suggested";
-    };
-    const result = await generateAISummary(
-      {
-        submission,
-        deterministicSummary: buildDeterministicSummary("lesson-1", [submission]),
-        rawEvidence: { answers: {} },
-      },
-      mockProvider,
-    );
-    expect(result).not.toBeNull();
-    expect(result?.type).toBe("ai-assisted");
-  });
-
-  it("returns null when AI provider throws", async () => {
-    const submission = makeSubmission({ parts: [makePart("p1", false)] });
-    const mockProvider = async () => {
-      throw new Error("AI failed");
-    };
-    const result = await generateAISummary(
-      {
-        submission,
-        deterministicSummary: buildDeterministicSummary("lesson-1", [submission]),
-        rawEvidence: { answers: {} },
-      },
-      mockProvider,
-    );
-    expect(result).toBeNull();
   });
 });
 

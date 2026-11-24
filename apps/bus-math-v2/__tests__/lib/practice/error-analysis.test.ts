@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect } from "vitest";
 
 import type { PracticeSubmissionEnvelope } from "@/lib/practice/contract";
 import { toConvexActivityId } from "@math-platform/practice-core";
@@ -9,7 +9,6 @@ import {
   summarizePartOutcomes,
   buildStudentProfiles,
   buildDeterministicSummary,
-  generateAISummary,
   buildTeacherErrorView,
 } from "@/lib/practice/error-analysis";
 
@@ -347,100 +346,6 @@ describe("buildDeterministicSummary", () => {
     expect(result.studentCount).toBe(0);
     expect(result.averageAccuracy).toBe(0);
     expect(result.partSummaries).toEqual([]);
-  });
-});
-
-// ── AI Summary Tests ───────────────────────────────────────────────────────
-
-describe("generateAISummary", () => {
-  it("should return null when no AI provider is given", async () => {
-    const submission = makeSubmission();
-    const deterministicSummary = buildDeterministicSummary("lesson-1", [submission]);
-
-    const result = await generateAISummary({
-      submission,
-      deterministicSummary,
-      rawEvidence: { answers: submission.answers },
-    });
-
-    expect(result).toBeNull();
-  });
-
-  it("should return null when AI provider throws", async () => {
-    const submission = makeSubmission();
-    const deterministicSummary = buildDeterministicSummary("lesson-1", [submission]);
-    const failingProvider = vi.fn().mockRejectedValue(new Error("API error"));
-
-    const result = await generateAISummary(
-      {
-        submission,
-        deterministicSummary,
-        rawEvidence: { answers: submission.answers },
-      },
-      failingProvider,
-    );
-
-    expect(result).toBeNull();
-  });
-
-  it("should include source evidence references", async () => {
-    const submission = makeSubmission();
-    const deterministicSummary = buildDeterministicSummary("lesson-1", [submission]);
-    const provider = vi.fn().mockResolvedValue("Misunderstanding\nEvidence\nIntervention");
-
-    const result = await generateAISummary(
-      {
-        submission,
-        deterministicSummary,
-        rawEvidence: { answers: submission.answers },
-      },
-      provider,
-    );
-
-    expect(result).not.toBeNull();
-    expect(result!.sourceSubmissionId).toBe("test-activity-1");
-    expect(result!.sourceEvidence.partIds).toContain("q1");
-    expect(result!.sourceEvidence.partIds).toContain("q2");
-  });
-
-  it("should include misconception tags in source evidence", async () => {
-    const submission = makeSubmission();
-    const deterministicSummary = buildDeterministicSummary("lesson-1", [submission]);
-    const provider = vi.fn().mockResolvedValue("Misunderstanding\nEvidence\nIntervention");
-
-    const result = await generateAISummary(
-      {
-        submission,
-        deterministicSummary,
-        rawEvidence: { answers: submission.answers },
-      },
-      provider,
-    );
-
-    expect(result!.sourceEvidence.misconceptionTags).toContain("debit-credit-confusion");
-  });
-
-  it("should never replace raw evidence access", async () => {
-    const submission = makeSubmission();
-    const deterministicSummary = buildDeterministicSummary("lesson-1", [submission]);
-    const provider = vi.fn().mockResolvedValue("Misunderstanding\nEvidence\nIntervention");
-
-    const result = await generateAISummary(
-      {
-        submission,
-        deterministicSummary,
-        rawEvidence: { answers: submission.answers },
-      },
-      provider,
-    );
-
-    // AI summary should reference evidence but not contain raw answers
-    expect(result).not.toBeNull();
-    expect(result!.type).toBe("ai-assisted");
-    // The view builder should still expose raw parts
-    const view = buildTeacherErrorView(submission, deterministicSummary, result);
-    expect(view.rawParts).toEqual(submission.parts);
-    expect(view.rawAnswers).toEqual(submission.answers);
   });
 });
 
