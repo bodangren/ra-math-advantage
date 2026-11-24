@@ -6,7 +6,7 @@ Generated export coverage: 20 packages.
 |---|---|---|
 | `@math-platform/activity-components` | `pkg.activity-components` | `.`<br>`./registry`<br>`./types`<br>`./schemas`<br>`./schemas/comprehension-quiz`<br>`./schemas/fill-in-the-blank`<br>`./schemas/graphing-explorer`<br>`./schemas/step-by-step-solver`<br>`./schemas/rate-of-change-calculator`<br>`./schemas/discriminant-analyzer`<br>`./quiz`<br>`./blanks`<br>`./discriminant`<br>`./roc`<br>`./algebraic`<br>`./graphing`<br>`./renderer` |
 | `@math-platform/activity-runtime` | `pkg.activity-runtime` | `.`<br>`./phase-types`<br>`./modes`<br>`./completion` |
-| `@math-platform/ai-tutoring` | `pkg.ai-tutoring` | `.`<br>`./retry`<br>`./providers`<br>`./lesson-context` |
+| `@math-platform/ai-tutoring` | `pkg.ai-tutoring` | `.`<br>`./retry`<br>`./providers`<br>`./lesson-context`<br>`./structured` |
 | `@math-platform/app-shell` | `pkg.app-shell` | `.`<br>`./providers`<br>`./auth`<br>`./components`<br>`./layout` |
 | `@math-platform/component-approval` | `pkg.component-approval` | `.`<br>`./content-hash`<br>`./review-queue` |
 | `@math-platform/core-auth` | `pkg.core-auth` | `.`<br>`./constants`<br>`./session`<br>`./password-policy`<br>`./demo-provisioning` |
