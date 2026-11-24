@@ -539,8 +539,9 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
       entry point. No generated file is staged.
     - [ ] Run `npm run generate`. Confirm exit code 0.
     - [ ] Run `npm run doctor`. Confirm exit code 0.
-- [ ] Task: Measure - User Manual Verification 'Phase S3: Structured output for the evaluation features' (Protocol in workflow.md)
-    - [ ] Run the protocol: the automated tests, the manual verification plan, and the user confirmation.
+- [x] Task: Measure - User Manual Verification 'Phase S3: Structured output for the evaluation features' (Protocol in workflow.md) (PM-verified 2026-11-24)
+    - [x] Run the protocol: the automated tests, the manual verification plan, and the user confirmation. (PM-verified 2026-11-24)
+    - PM-verified: Reviews A, B, and C pass at HEAD `18563a0a`. Phase acceptance passed at `18563a0a`, and the adversarial findings ADV-S3-5 and ADV-S3-8 are fixed at `2d1c875e`. The acceptance result is `measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-18563a0a.json`.
     - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S3`.
     - [ ] Append `[checkpoint: <sha>]` to the Phase S3 heading.
     - [ ] Commit: `measure(plan): Mark phase 'Phase S3: Structured output for the evaluation features' as complete`.
