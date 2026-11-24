@@ -1,0 +1,12 @@
+MEASURE_AGENT_RESULT
+role: measure-strategy
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S4: Remove the OpenAI paths and document the roles
+commits: 8283f9fa strategy commit (test-strategy.md only, with git note); result log commit follows
+tests_run: slot check ok; git diff --check on test-strategy.md exit 0; no behavior suite run by this role; gate sweeps are specified for the Green role, not run here
+files_changed: measure/tracks/openrouter-sdk-ai-layer_20261114/test-strategy.md (S4 section appended, header set to r4); measure/runs/openrouter-sdk-ai-layer_20261114/strategy-s4-80f4ceff.log (this log)
+plan_updates: none; this role owns only test-strategy.md
+known_failures: none new. Carried open and untouched: Review B F2 (short known-details strip), F3 (BM2 rate-limit status null), F4 (teacher route raw error log), IM3 queue sessions UTC-day flake, and the five D1 exceptions of dependency-refresh. Baseline aggregate failures stay recorded in evidence.md.
+handoff: The immutable phase_base_sha capture point is immediately after strategy commit 8283f9fa, before any other S4 commit. At that point git status --porcelain shows only these unstaged entries: graph.db, four apps/*/.next/types/routes.d.ts files, apps/bus-math-v2/lib/workbooks-manifest.json, measure/generated/exports.md, measure/generated/routes.md. The orchestrator must run git rev-parse HEAD at that point and store the value as S4 phase_base_sha. No SHA that predates commit 8283f9fa is the capture point; the role base 80f4ceff is not it. S4 strategy: medium risk, one ADV-S4 adversarial run, RED guard scripts/__tests__/openrouter-only.test.ts with three failing-first cases, regression guards for chat/spreadsheet/teacher behavior, GATES_BASE=s3 with label s4, role docs matched to the spec Roles table, all new prose in ASD-STE100, and the PM release gate line retained. Strategy does not touch the carried debt or the D1 exceptions. No push performed.
+END_MEASURE_AGENT_RESULT
