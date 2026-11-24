@@ -21,6 +21,30 @@ const REMOVAL_PATHS = [
 
 const EXCLUDED_DIR_NAMES = new Set(["node_modules", ".next", "dist"]);
 
+const BINARY_EXTENSIONS = new Set([
+  ".png",
+  ".jpg",
+  ".jpeg",
+  ".gif",
+  ".webp",
+  ".ico",
+  ".woff",
+  ".woff2",
+  ".ttf",
+  ".pdf",
+  ".db",
+  ".sqlite",
+  ".zip",
+  ".gz",
+  ".mp3",
+  ".mp4",
+  ".wasm",
+]);
+
+function isBinaryPath(file: string): boolean {
+  return BINARY_EXTENSIONS.has(path.extname(file).toLowerCase());
+}
+
 const PRACTICE_CORE_SPECIFIER: string = "@math-platform/practice-core";
 
 async function loadPracticeCore(): Promise<any> {
@@ -51,13 +75,13 @@ function listScannedFiles(): string[] {
 function findBannedTokenMatches(files: string[]): string[] {
   const hits: string[] = [];
   for (const file of files) {
+    if (isBinaryPath(file)) continue;
     let text: string;
     try {
       text = fs.readFileSync(file, "utf8");
     } catch {
       continue;
     }
-    if (text.includes("\0")) continue;
     for (const token of BANNED_TOKENS) {
       if (text.includes(token)) hits.push(`${path.relative(REPO_ROOT, file)}: ${token}`);
     }

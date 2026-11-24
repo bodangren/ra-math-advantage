@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -32,6 +33,37 @@ const GUARD_SENTINELS = [
 ];
 
 const EXCLUDED_DIR_NAMES = new Set(["node_modules", ".next", "dist"]);
+const BINARY_EXTENSIONS = new Set([
+  ".png",
+  ".jpg",
+  ".jpeg",
+  ".gif",
+  ".webp",
+  ".ico",
+  ".woff",
+  ".woff2",
+  ".ttf",
+  ".pdf",
+  ".db",
+  ".sqlite",
+  ".zip",
+  ".gz",
+  ".mp3",
+  ".mp4",
+  ".wasm",
+]);
+
+function isBinaryPath(file: string): boolean {
+  return BINARY_EXTENSIONS.has(path.extname(file).toLowerCase());
+}
+
+function findBannedTokensInText(text: string): string[] {
+  const hits: string[] = [];
+  for (const token of BANNED_TOKENS) {
+    if (text.includes(token)) hits.push(token);
+  }
+  return hits.sort();
+}
 const SOURCE_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".mjs", ".cjs"]);
 const KEY_SHAPED = /(?:sk-ant-|sk-)[A-Za-z0-9_-]{16,}/;
 
@@ -89,13 +121,32 @@ describe("openrouter-s4-adversarial", () => {
     expect(files.length).toBeGreaterThan(0);
     const hits: string[] = [];
     for (const file of files) {
+      if (isBinaryPath(file)) continue;
       const text = readText(file);
-      if (text.includes("\0")) continue;
       for (const token of BANNED_TOKENS) {
         if (text.includes(token)) hits.push(`${path.relative(REPO_ROOT, file)}: ${token}`);
       }
     }
     expect(hits, `Banned token match count: ${hits.length}`).toEqual([]);
+  });
+
+  it("ADV-S4-1 NUL regression: a source with a NUL in a comment still reports the banned token", () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "openrouter-nul-"));
+    const file = path.join(dir, "probe.ts");
+    fs.writeFileSync(
+      file,
+      '// probe comment with a NUL marker \0\nconst endpoint = "https://api.openai.com/v1";\n',
+      "utf8",
+    );
+    try {
+      expect(isBinaryPath(file)).toBe(false);
+      const text = fs.readFileSync(file, "utf8");
+      expect(text.includes("\0")).toBe(true);
+      const hits = findBannedTokensInText(text);
+      expect(hits, "NUL-bearing source hit count: 1").toEqual(["api.openai.com"]);
+    } finally {
+      fs.rmSync(dir, { recursive: true, force: true });
+    }
   });
 
   it("ADV-S4-2 and ADV-S4-8: the edited documents hold no banned token or key-shaped value", () => {
