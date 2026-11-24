@@ -5,7 +5,9 @@ import { dirname, resolve } from "node:path";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const serverSrc = readFileSync(resolve(here, "../../../lib/auth/server.ts"), "utf8");
-const techDebtSrc = readFileSync(resolve(here, "../../../../../measure/tech-debt.md"), "utf8");
+const techDebtSrc =
+  readFileSync(resolve(here, "../../../../../measure/tech-debt.md"), "utf8") +
+  readFileSync(resolve(here, "../../../../../measure/archive/tech-debt-resolved.md"), "utf8");
 
 // ---------------------------------------------------------------------------
 // Task 5.1 — FR-14 arch-lint: IM3 server.ts composes core-auth
