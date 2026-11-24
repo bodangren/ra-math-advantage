@@ -1,0 +1,84 @@
+Red r4 log — S4 F4 fix (test-only, gap-closing round)
+Track: openrouter-sdk-ai-layer_20261114, Phase S4
+Role base: 98cd2333d3eed79e2c9b081a2e8a1453ac3a8ba5
+Phase base: 8283f9fa192be2afc78a2e731fac1e267c3535b5
+HEAD: e46ee5256dbda051ff6cf3073d1736b54cbffc0f
+Date: 2026-11-24
+
+Scope
+- Phase acceptance finding F4 is the only item. The NUL regression case
+  called findBannedTokensInText, a helper that no scan uses.
+- F2, F3, and F5 stay untouched for tech-debt at checkpoint.
+- No production file changed. No gate, config, or dependency changed.
+
+Task markers
+- No marker changed. S4 tasks stay [x] except Manual verification [ ] (PM)
+  and Live smoke [b] (deferred:daniel). Rounds r2 and r3 set this precedent:
+  test-gap fixes add evidence lines only.
+
+Fix (commit e46ee525, test-only, 4 files)
+- New helper scripts/__tests__/openrouter-scan-shared.ts exports
+  scanFilesForBannedTokens. It skips binaries by extension only.
+- scripts/__tests__/openrouter-only.test.ts: findBannedTokenMatches now
+  delegates to the shared helper. Tokens, exclusions, and 3 cases unchanged.
+- scripts/__tests__/openrouter-s4-adversarial.test.ts: the real-repo scan
+  now uses scanRepoFilesForBannedTokens, a wrapper over the shared helper.
+  The dead findBannedTokensInText helper is gone.
+- The rewritten NUL regression case builds a temp NUL-bearing source with
+  one banned token. It calls the shared scan in both input styles: an
+  explicit file list (gate style) and a temp-dir listing (repo style).
+  New logic reports 1 hit in each style.
+
+Commands and results
+- slot check: exit 0.
+- git status: only the 8 known generated entries are dirty. Nothing staged
+  except the 4 fix files. Unrelated user work is preserved.
+- Targeted (heavy-run): npx vitest run --config scripts/vitest.config.ts
+  openrouter → 2 files passed, 10 tests passed.
+- Mutation proof (heavy-run): with the old includes("\0") skip put back in
+  the shared helper, -t "NUL regression" fails 1 test with "Gate-style
+  scan NUL hit count: 0: expected +0 to be 1". Old logic gives 0 hits.
+  New logic gives 1 hit. The helper was restored byte-identical after.
+- Targeted rerun after restore: 10 passed.
+- npx oxfmt --check on the 3 test files: exit 0 (one format pass applied).
+- npx oxlint on the 3 test files: exit 0.
+- Gates with GATES_BASE=s3 and label s4-r4: lint exit 0 NEWFAIL=0,
+  test exit 0 NEWFAIL=0, checks-all exit 0 NEWFAIL=0.
+- npm audit: critical=0 high=5 moderate=6 low=5, same as s3.
+- Workerd probe step in checks-all: probe-ok.
+- role-gate (mid-red, full S4 phase name, baseline role_base): the Red
+  command passed and the scope is clean. It reports one FAIL: it expects a
+  task marked [~]. The only incomplete S4 task is the PM-owned Manual
+  verification task. This gap-closing round owns no incomplete task, so no
+  honest [~] exists.
+
+Plan update
+- plan.md S4 Test (Red) gains the R4 evidence line. It names the shared
+  helper, both input styles, and the old-vs-new hit counts. No marker
+  changed. The R3 wording stays as history.
+
+Handoff
+- F4 is closed test-side. Green owns nothing new. If a gate flags the open
+  manual-verification task, that is expected and owned by closeout.
+- role-gate note: the single FAIL is the [~] technicality above. Default
+  proposal: the orchestrator waives the [~] rule for gap-closing rounds and
+  proceeds, since every owned task is complete.
+
+MEASURE_AGENT_RESULT
+role: mid-red
+status: done
+red_kind: gap_closing
+track: openrouter-sdk-ai-layer_20261114
+phase: S4
+baseline_sha: 8283f9fa192be2afc78a2e731fac1e267c3535b5
+role_base_sha: 98cd2333d3eed79e2c9b081a2e8a1453ac3a8ba5
+head: e46ee5256dbda051ff6cf3073d1736b54cbffc0f
+commits: e46ee5256dbda051ff6cf3073d1736b54cbffc0f
+tests_run: scripts openrouter filter 10 passed; NUL mutation 1 failed as expected then 10 passed after restore; oxfmt check 0; oxlint 0; gates s4-r4 lint/test/checks-all each exit 0 NEWFAIL=0
+files_changed: scripts/__tests__/openrouter-scan-shared.ts, scripts/__tests__/openrouter-only.test.ts, scripts/__tests__/openrouter-s4-adversarial.test.ts, measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md
+plan_updates: R4 evidence line in S4 Test (Red); no marker changed
+known_failures: none from this change; Manual verification stays open (human gate, owned by closeout)
+gaps: F4 NUL regression case called a dead helper instead of the real scans
+breakage_proof: old skip reinserted in shared helper makes the NUL case fail with Gate-style scan NUL hit count 0 vs new logic 1 hit
+handoff: Green owns nothing new; manual verification stays with closeout
+END_MEASURE_AGENT_RESULT
