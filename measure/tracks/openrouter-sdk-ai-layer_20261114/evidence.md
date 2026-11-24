@@ -570,7 +570,8 @@ documents). Plan evidence: `4863d132`. Role base `15087532`. Phase base
 `8283f9fa`.
 
 **Red proof.** The three `openrouter-only` cases failed first at the S4 base.
-Case 1 failed at `openrouter-only.test.ts:74` with 4 banned-token matches.
+Case 1 failed at `openrouter-only.test.ts:74`: the Red log records
+`Banned token match count: 10`, which is 10 file/token pairs.
 Case 2 failed at line 80 with 4 existing removal paths. Case 3 failed at
 line 86 because the namespace held `generateAISummary`. The Red commit is
 `30073327`. The Mid Red registry fix is `5724741c`.
