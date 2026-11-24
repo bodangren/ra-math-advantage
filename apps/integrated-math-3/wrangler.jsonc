@@ -14,4 +14,5 @@
   // Required secrets via `wrangler secret put`:
   // - CONVEX_DEPLOY_KEY
   // - AUTH_JWT_SECRET
+  // - OPENROUTER_API_KEY (optional)
 }

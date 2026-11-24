@@ -66,17 +66,58 @@ Planned: Convex Auth v2 (`@convex-dev/auth` 2.x) with username and password repl
 custom JWT auth in the math app and in BM2 (planned: math-app-base_20261114)
 (planned: bm2-convex-auth-v2_20261114).
 
-## AI
+## AI Layer
 
 | Layer | Technology | Notes |
 |-------|-----------|-------|
-| Provider | OpenRouter API through `@openrouter/sdk` | `packages/ai-tutoring/src/openrouter-client.ts` and `providers.ts` |
+| Provider | OpenRouter API through `@openrouter/sdk` | `packages/ai-tutoring/src/openrouter-client.ts`, `providers.ts`, and `structured.ts` |
 | Key | `OPENROUTER_API_KEY` | Server-only; the chatbot returns 503 when it is not set |
 | Default model | None | Each role reads its own model variable and fails closed when the value is missing |
 
 The AI layer uses `@openrouter/sdk`. Each role reads one model variable. No role has a
 default model. `openrouter/free` is for development only. The evaluation roles use
 structured output. AI prompts contain no PII.
+
+### Roles
+
+| Role key | Variable | Feature | Structured output | PII flag | Initial value |
+|----------|----------|---------|-------------------|----------|---------------|
+| `studentTutor` | `OPENROUTER_MODEL_STUDENT_TUTOR` | IM3 and BM2 lesson chatbots | No | `false` | Not chosen. `openrouter/free` for development only. |
+| `spreadsheetEval` | `OPENROUTER_MODEL_SPREADSHEET_EVAL` | BM2 spreadsheet feedback | Yes | `false` | `google/gemini-4-hydrogen` |
+| `accountingEval` | `OPENROUTER_MODEL_ACCOUNTING_EVAL` | BM2 teacher AI error summary | Yes | `false` | `google/gemini-4-hydrogen` |
+| (reserved) | `OPENROUTER_MODEL_MATH_EVAL` | A later track. This track documents it only, with no code. | — | — | `z-ai/glm-5.3-flash` |
+
+The initial values live in the spec and in the `.env.example` comments. The code holds no
+default model for any role.
+
+### PII rule and flag
+
+PII means a student or teacher name, email, username, or account ID. The PII flag is the
+per-role setting of the roles table. When the flag is `true`, the request adds `zdr: true`
+to the `provider` object. No current role has the flag. AI prompts hold no PII.
+
+### Structured output
+
+The two evaluation roles send a strict JSON Schema `response_format`. The code checks the
+answer with the same Zod schema. A typed failure returns `ok: false` and a reason. It never
+throws. Both evaluation features keep their deterministic fallback.
+
+### Usage record
+
+Each AI request writes one usage record. The record holds the role, the served model, the
+latency in milliseconds, the token usage, and the outcome. It never holds prompt text,
+answer text, or the API key.
+
+### Production prerequisites
+
+These steps are human gates for Daniel. Production use of the AI features needs them.
+
+| ID | Prerequisite |
+|----|---------------|
+| PR1 | Make the app API key in OpenRouter and set a spend limit on it. |
+| PR2 | Choose the production model for `OPENROUTER_MODEL_STUDENT_TUTOR`. |
+| PR3 | Set `OPENROUTER_API_KEY` and the role variables in each deployed Worker. |
+| PR4 | Run the live smoke test with a real key. |
 
 Note (2026-11-23, Phase S2 of `openrouter-sdk-ai-layer_20261114`, Red): each AI
 role reads its model from its own environment variable with no default. The
@@ -267,6 +308,7 @@ NEXT_PUBLIC_CONVEX_URL=http://127.0.0.1:3210
 AUTH_JWT_SECRET=replace-with-a-long-random-secret
 OPENROUTER_API_KEY=
 # OPENROUTER_MODEL_STUDENT_TUTOR=
+# OPENROUTER_MODEL_MATH_EVAL=z-ai/glm-5.3-flash
 # OPENROUTER_API_BASE=https://openrouter.ai/api/v1
 # NEXT_PUBLIC_SITE_URL=http://localhost:3000
 # CONVEX_DEPLOY_KEY=
@@ -274,7 +316,7 @@ OPENROUTER_API_KEY=
 
 The IM3 chatbot reads `OPENROUTER_MODEL_STUDENT_TUTOR`. BM2 also reads
 `OPENROUTER_MODEL_SPREADSHEET_EVAL` and `OPENROUTER_MODEL_ACCOUNTING_EVAL`.
-Each role has no default model.
+Each role has no default model. No code reads `OPENROUTER_MODEL_MATH_EVAL` yet.
 
 ## Dev Commands
 
