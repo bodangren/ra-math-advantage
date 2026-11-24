@@ -322,7 +322,7 @@ Next-phase list (acceptance, record-only): F1 (Major: the BM2 lesson chatbot emb
 
 Checkpoint record (2026-11-23): Phase acceptance passed at `8bc7469a`. The PM decision accepts the third Green round (r4, `ea1e7920`). The S2 Verify, Docs & Doctor, and manual-verification tasks are [x], and the tech-stack current state is correct in `595430f6`.
 
-## Phase S3: Structured output for the evaluation features
+## Phase S3: Structured output for the evaluation features [checkpoint: 0f5c4b68]
 _Story ref: spec.md#story-s3_
 
 Gate: no student-facing release of the BM2 chatbot before the PII strip passes. (PM decision 2026-11-23)
@@ -542,9 +542,9 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
 - [x] Task: Measure - User Manual Verification 'Phase S3: Structured output for the evaluation features' (Protocol in workflow.md) (PM-verified 2026-11-24)
     - [x] Run the protocol: the automated tests, the manual verification plan, and the user confirmation. (PM-verified 2026-11-24)
     - PM-verified: Reviews A, B, and C pass at HEAD `18563a0a`. Phase acceptance passed at `18563a0a`, and the adversarial findings ADV-S3-5 and ADV-S3-8 are fixed at `2d1c875e`. The acceptance result is `measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-18563a0a.json`.
-    - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S3`.
-    - [ ] Append `[checkpoint: <sha>]` to the Phase S3 heading.
-    - [ ] Commit: `measure(plan): Mark phase 'Phase S3: Structured output for the evaluation features' as complete`.
+    - [x] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S3`. (0f5c4b68.)
+    - [x] Append `[checkpoint: 0f5c4b68]` to the Phase S3 heading. (0f5c4b68.)
+    - [x] Commit: `measure(plan): mark the S3 checkpoint (track_id: openrouter-sdk-ai-layer_20261114)`. (0f5c4b68.)
 
 ### S3 remediation round r5 (Red) — failing-first tests for review findings R-A1 and R-B1
 
