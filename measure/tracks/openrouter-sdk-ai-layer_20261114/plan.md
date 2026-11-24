@@ -589,7 +589,9 @@ Checkpoint record (2026-11-24): Phase acceptance passed at `18563a0a`. Reviews A
 ## Phase S4: Remove the OpenAI paths and document the roles
 _Story ref: spec.md#story-s4_
 
-- [ ] Task: S4 Contract — list the removals
+- [x] Task: S4 Contract — list the removals `0e192c88`
+    - Evidence: the removal list of removals 1 to 5 was written at `0e192c88`.
+      The Green commit `e13a8dfc` makes removals 1 to 5.
     - [ ] Write this removal list in this plan. The S4 Implement task makes the removals.
     - [ ] Removal 1: the files `apps/bus-math-v2/lib/practice/error-analysis/providers.ts` (OpenAI provider) and `apps/bus-math-v2/__tests__/lib/practice/error-analysis-providers.test.ts`.
     - [ ] Removal 2: the files `apps/bus-math-v2/lib/teacher/ai-interpretation.ts` and `apps/bus-math-v2/__tests__/lib/teacher/ai-interpretation.test.ts`.
@@ -597,7 +599,11 @@ _Story ref: spec.md#story-s4_
     - [ ] Removal 4: the exports of removal 3 in `packages/practice-core/src/index.ts` and in `apps/bus-math-v2/lib/practice/error-analysis/index.ts`.
     - [ ] Removal 5: the `generateAISummary` tests in `apps/bus-math-v2/__tests__/lib/practice/error-analysis.test.ts` and `apps/integrated-math-3/__tests__/lib/practice/error-analysis.test.ts`. The other tests stay.
     - [ ] `AISummaryOutput`, `TeacherErrorView`, and `buildTeacherErrorView` stay without change.
-- [~] Task: S4 Test (Red) — guard the single provider
+- [x] Task: S4 Test (Red) — guard the single provider `30073327`, `5724741c`
+    - Evidence: the Red proof is at `30073327` and the Mid Red registry fix is
+      at `5724741c`. The three cases failed first at the S4 base. After Green,
+      `npx vitest run --config scripts/vitest.config.ts -t 'openrouter-only'`
+      exits 0 with 3 passed and 121 skipped. No Red assertion changed.
     - [ ] Create `scripts/__tests__/openrouter-only.test.ts`. Add it to `include` in `scripts/vitest.config.ts`.
     - [ ] Normal case 1: no file under `apps/` or `packages/` (outside `node_modules`) contains `api.openai.com`, `api.anthropic.com`, `OPENAI_API_KEY`, or `AI_INTERPRETATION_`.
     - [ ] Normal case 2: the 4 files of removals 1 and 2 do not exist.
@@ -619,10 +625,29 @@ _Story ref: spec.md#story-s4_
       reads `measure/tech-debt.md` plus
       `measure/archive/tech-debt-resolved.md`, row assertions unchanged.
     - [ ] Commit: `test(ai): guard the single AI provider (Red)`.
-- [ ] Task: S4 Implement — remove the old AI code
+- [x] Task: S4 Implement — remove the old AI code `e13a8dfc`
+    - Evidence: commit `e13a8dfc` makes removals 1 to 5. The four files of
+      removals 1 and 2 do not exist. The `practice-core` namespace holds no
+      `generateAISummary`, and it keeps `buildTeacherErrorView`,
+      `AISummaryOutput`, and `TeacherErrorView`. No file under `apps/` or
+      `packages/` holds `api.openai.com`, `api.anthropic.com`,
+      `OPENAI_API_KEY`, or `AI_INTERPRETATION_`. The targeted command exits 0
+      with 3 passed. The six regression guards pass. The package suites are
+      165 of 165 and 263 of 263. See the "S4 Green group" section of
+      `evidence.md`.
     - [ ] Make removals 1 to 5 of the S4 Contract.
     - [ ] Commit: `chore(ai): remove the OpenAI code paths and the dead summary code`.
-- [ ] Task: S4 Implement — document the roles
+- [x] Task: S4 Implement — document the roles `89946220`
+    - Evidence: commit `89946220` edits the two `.env.example` files, the two
+      `wrangler.jsonc` files, and `measure/tech-stack.md`. The BM2
+      `.env.example` holds no `OPENAI_*` or `AI_INTERPRETATION_*` line. The
+      four OpenRouter entries of BM2 and the four entries of IM3 hold the
+      initial values of the spec and the `openrouter/free` development note.
+      Both `wrangler.jsonc` files name `OPENROUTER_API_KEY` as an optional
+      secret. The "AI Layer" section of `measure/tech-stack.md` holds the SDK,
+      the four role rows, the PII rule and flag, structured output, the usage
+      record, and the four production prerequisites. No file holds a
+      key-shaped token. See the "S4 Green group" section of `evidence.md`.
     - [ ] In `apps/bus-math-v2/.env.example`, remove the `OPENAI_*` and `AI_INTERPRETATION_*` lines.
     - [ ] Add `OPENROUTER_API_KEY`, and add the 3 BM2 role variables as comments with the initial values of the spec "Roles" table and the `openrouter/free` development note.
     - [ ] In `apps/integrated-math-3/.env.example`, keep `OPENROUTER_API_KEY` and `OPENROUTER_API_BASE`.
@@ -630,15 +655,28 @@ _Story ref: spec.md#story-s4_
     - [ ] In both `wrangler.jsonc` files, add `OPENROUTER_API_KEY` to the comment list of secrets, as an optional secret.
     - [ ] In `measure/tech-stack.md`, add the "AI Layer" section: the SDK, the roles table, the PII rule and flag, structured output, the usage record, and the production prerequisites of the spec.
     - [ ] Commit: `docs(ai): document the AI roles and the OpenRouter layer`.
-- [ ] Task: Live smoke test (manual, human gate)
+- [b] Task: Live smoke test (manual, human gate) (deferred:daniel)
+    - Evidence: the task needs a real `OPENROUTER_API_KEY` and the role
+      variables in a local `.env.local`. It is not part of CI. The Green role
+      does not run it and does not write a result. It stays a human gate for
+      Daniel.
     - [ ] This task is for Daniel. It needs a real key and is not part of CI.
     - [ ] Set a real `OPENROUTER_API_KEY` and the role variables in a local `.env.local`. Start each app with `vinext dev`.
     - [ ] Send one chatbot question in IM3 and in BM2. Submit one BM2 spreadsheet activity. Request one BM2 teacher error summary.
     - [ ] Record each result and each usage record line in the "Live smoke test" section. Record no prompt or answer text.
-- [ ] Task: S4 Verify — run the gates
+- [x] Task: S4 Verify — run the gates `e13a8dfc`, `89946220`
+    - Evidence: the three gate sweeps with `GATES_BASE=s3` and label `s4`
+      exit 0 with `NEWFAIL=0` for `lint`, `test`, and `checks-all`. The audit
+      line is `critical=0 high=5 moderate=6 low=5`. The workerd probe answers
+      `probe-ok`. The six regression guards pass. The BM2 bundle audit keeps
+      the same baseline entry and the same size. See the "S4 Green group"
+      section of `evidence.md`.
     - [ ] Run each gate, with the workerd probe and the scripts suite. Confirm that each gate passes.
     - [ ] Commit the evidence file: `measure(openrouter-sdk): record the S4 results`.
-- [ ] Task: S4 Docs & Doctor
+- [x] Task: S4 Docs & Doctor `89946220`
+    - Evidence: `npm run generate` and `bash measure/doctor.sh` each exit 0
+      at `89946220`. The doctor reports all checks passed. No generated file
+      is staged.
     - [ ] Run `npm run generate`. Confirm exit code 0.
     - [ ] Run `npm run doctor`. Confirm exit code 0.
 - [ ] Task: Measure - User Manual Verification 'Phase S4: Remove the OpenAI paths and document the roles' (Protocol in workflow.md)
