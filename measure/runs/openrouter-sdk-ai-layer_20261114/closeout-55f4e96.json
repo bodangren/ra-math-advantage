@@ -25,7 +25,8 @@
     "measure/gates.json: PROJECT_LINT, PROJECT_CHECKS and PROJECT_TESTS point to measure/archive/openrouter-sdk-ai-layer_20261114/gates.sh. GENERATED_CHECK_COMMAND is npm run generate (F8).",
     "A9 pre-move grep found 44 files with the fixed path measure/tracks/openrouter-sdk-ai-layer_20261114/: the archived track's own gates.sh, one historical artifact of dependency-refresh_20261121, and 42 historical artifacts under measure/runs/openrouter-sdk-ai-layer_20261114/. Tests/ and scripts/ held 0 hits. The full list is in closeout-a9-pre-move-hits.txt.",
     "Project test gate through heavy-run.sh -c 'npm run test': 12 workspaces ran. Eleven passed. packages/math-content held 2 failed | 884 passed of 886, the recorded baseline. The two failing files are quadratic-formula-activity.schema.test.ts and scaffold.test.ts. Neither names an archived path, so the move caused no failure. Summary lines are in closeout-project-test-summary.txt.",
-    "tech-debt.md stayed at 50 lines; no row was added in closeout. lessons-learned.md was not changed because closeout produced no durable reusable knowledge."
+    "tech-debt.md stayed at 50 lines; no row was added in closeout. lessons-learned.md was not changed because closeout produced no durable reusable knowledge.",
+    "The archive commit a9a39f52 recorded the original metadata.json content because git mv stages the index version of a renamed file. The follow-up record commit stages the edited metadata.json with status done, completed 2026-11-24, and the escalation key, and records the closeout commit SHA in the manifest."
   ],
   "commands": [
     "slot check: ok, 2 of 14 busy, MemAvailable 21558 MB",
