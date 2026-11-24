@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { scanFilesForBannedTokens } from "./openrouter-scan-shared";
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 
@@ -73,20 +74,7 @@ function listScannedFiles(): string[] {
 }
 
 function findBannedTokenMatches(files: string[]): string[] {
-  const hits: string[] = [];
-  for (const file of files) {
-    if (isBinaryPath(file)) continue;
-    let text: string;
-    try {
-      text = fs.readFileSync(file, "utf8");
-    } catch {
-      continue;
-    }
-    for (const token of BANNED_TOKENS) {
-      if (text.includes(token)) hits.push(`${path.relative(REPO_ROOT, file)}: ${token}`);
-    }
-  }
-  return hits.sort();
+  return scanFilesForBannedTokens(files, BANNED_TOKENS, isBinaryPath, REPO_ROOT);
 }
 
 describe("openrouter-only", () => {

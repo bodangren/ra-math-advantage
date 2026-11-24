@@ -3,6 +3,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { scanFilesForBannedTokens } from "./openrouter-scan-shared";
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 const GATE_FILE = path.join(REPO_ROOT, "scripts/__tests__/openrouter-only.test.ts");
@@ -57,12 +58,8 @@ function isBinaryPath(file: string): boolean {
   return BINARY_EXTENSIONS.has(path.extname(file).toLowerCase());
 }
 
-function findBannedTokensInText(text: string): string[] {
-  const hits: string[] = [];
-  for (const token of BANNED_TOKENS) {
-    if (text.includes(token)) hits.push(token);
-  }
-  return hits.sort();
+function scanRepoFilesForBannedTokens(files: string[]): string[] {
+  return scanFilesForBannedTokens(files, BANNED_TOKENS, isBinaryPath, REPO_ROOT);
 }
 const SOURCE_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".mjs", ".cjs"]);
 const KEY_SHAPED = /(?:sk-ant-|sk-)[A-Za-z0-9_-]{16,}/;
@@ -119,18 +116,11 @@ describe("openrouter-s4-adversarial", () => {
       ...listFiles(path.join(REPO_ROOT, "packages")),
     ];
     expect(files.length).toBeGreaterThan(0);
-    const hits: string[] = [];
-    for (const file of files) {
-      if (isBinaryPath(file)) continue;
-      const text = readText(file);
-      for (const token of BANNED_TOKENS) {
-        if (text.includes(token)) hits.push(`${path.relative(REPO_ROOT, file)}: ${token}`);
-      }
-    }
+    const hits = scanRepoFilesForBannedTokens(files);
     expect(hits, `Banned token match count: ${hits.length}`).toEqual([]);
   });
 
-  it("ADV-S4-1 NUL regression: a source with a NUL in a comment still reports the banned token", () => {
+  it("ADV-S4-1 NUL regression: a NUL-bearing source still reports the banned token in both real scans", () => {
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), "openrouter-nul-"));
     const file = path.join(dir, "probe.ts");
     fs.writeFileSync(
@@ -142,8 +132,23 @@ describe("openrouter-s4-adversarial", () => {
       expect(isBinaryPath(file)).toBe(false);
       const text = fs.readFileSync(file, "utf8");
       expect(text.includes("\0")).toBe(true);
-      const hits = findBannedTokensInText(text);
-      expect(hits, "NUL-bearing source hit count: 1").toEqual(["api.openai.com"]);
+      const listed = listFiles(dir);
+      expect(listed.length, `Temp dir file count: ${listed.length}`).toBe(1);
+      const gateStyleHits = scanFilesForBannedTokens(
+        [file],
+        BANNED_TOKENS,
+        isBinaryPath,
+        REPO_ROOT,
+      );
+      expect(gateStyleHits.length, `Gate-style scan NUL hit count: ${gateStyleHits.length}`).toBe(
+        1,
+      );
+      expect(gateStyleHits[0]).toContain("api.openai.com");
+      const repoStyleHits = scanRepoFilesForBannedTokens(listed);
+      expect(repoStyleHits.length, `Repo-style scan NUL hit count: ${repoStyleHits.length}`).toBe(
+        1,
+      );
+      expect(repoStyleHits[0]).toContain("api.openai.com");
     } finally {
       fs.rmSync(dir, { recursive: true, force: true });
     }

@@ -627,6 +627,16 @@ _Story ref: spec.md#story-s4_
     - R3 (2026-11-24, `a330414e`): the NUL skip is removed from both scans;
       binaries skip by extension only; the new NUL regression case passes and
       the old logic misses it (0 vs 1 hit).
+    - R4 (2026-11-24): F4 fix, test-only, no production change. Both scans
+      delegate to the shared `scanFilesForBannedTokens` helper in
+      `scripts/__tests__/openrouter-scan-shared.ts`. The dead
+      `findBannedTokensInText` helper is gone. The rewritten NUL regression
+      case builds a temp NUL-bearing source with one banned token. It calls
+      the shared scan in both input styles (file list and temp-dir listing).
+      New logic reports 1 hit in each style. Mutation proof: with the old
+      skip back in the helper, the case fails at `Gate-style scan NUL hit
+      count: 0` (old 0 vs new 1). The targeted openrouter run exits 0 with
+      10 passed. `oxfmt --check` and `oxlint` exit 0 on the three files.
     - [ ] Commit: `test(ai): guard the single AI provider (Red)`.
 - [x] Task: S4 Implement — remove the old AI code `e13a8dfc`
     - Evidence: commit `e13a8dfc` makes removals 1 to 5. The four files of
