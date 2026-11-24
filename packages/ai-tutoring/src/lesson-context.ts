@@ -66,7 +66,10 @@ function truncate(text: string, maxLength: number): string {
 
 const DETAIL_LABEL =
   "(?:Student|Teacher|Instructor|Guardian|Parent|Tutor|Name|Email|Username|Account\\s*ID|[A-Z][A-Za-z]{1,24})";
-const DETAIL_SEPARATOR = "\\s*(?::|：|-|–|—)\\s*";
+// A detail separator consumes horizontal space only. A newline after the
+// label ends the clause, so the next lesson line is never treated as the
+// detail value and removed with it.
+const DETAIL_SEPARATOR = "\\s*(?::|：|-|–|—)[ \\t]*";
 const DETAIL_END = "(?:[.!?。！？](?=\\s|$)|\\r?\\n|(?=" + DETAIL_LABEL + DETAIL_SEPARATOR + ")|$)";
 const PERSON_DETAIL = new RegExp(
   "\\b" + DETAIL_LABEL + DETAIL_SEPARATOR + "[^]*?" + DETAIL_END,

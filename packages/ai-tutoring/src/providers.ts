@@ -9,6 +9,7 @@
 import { withRetry, EmptyResponseError } from "./retry";
 import { createOpenRouterClient, type OpenRouterClientOptions } from "./openrouter-client";
 import { safeModel } from "./model-id";
+import { redactApiKey, debugLoggerFor } from "./debug-logger";
 import {
   AI_ROLES,
   resolveRoleModel,
@@ -31,78 +32,6 @@ export interface OpenRouterProviderOptions {
   role: AiRole;
   baseUrl?: string;
   timeoutMs?: number;
-}
-
-const MIN_REDACT_KEY_LENGTH = 8;
-const BEARER_SCHEME = /^bearer\s+/i;
-
-/**
- * Lists the configured key forms that an upstream error may echo.
- * A short key is never redacted, so ordinary text stays unchanged.
- * The bearer scheme is removed without case sensitivity and with any
- * following whitespace.
- */
-function redactionTargets(apiKey: string): string[] {
-  if (apiKey.length === 0) {
-    return [];
-  }
-  const trimmed = apiKey.trim();
-  if (trimmed.length < MIN_REDACT_KEY_LENGTH) {
-    return [];
-  }
-  const scheme = BEARER_SCHEME.exec(trimmed);
-  const token = scheme ? trimmed.slice(scheme[0].length) : trimmed;
-  const targets = [apiKey, trimmed, token];
-  return [...new Set(targets.filter((target) => target.length >= MIN_REDACT_KEY_LENGTH))];
-}
-
-/**
- * Replaces every occurrence of a configured key form with a redaction marker.
- */
-function redactApiKey(text: string, apiKey: string): string {
-  let redacted = text;
-  for (const target of redactionTargets(apiKey)) {
-    redacted = redacted.split(target).join("[redacted]");
-  }
-  return redacted;
-}
-
-interface RedactingDebugLogger {
-  group(label?: string): void;
-  groupEnd(): void;
-  log(message: unknown, ...args: unknown[]): void;
-}
-
-/**
- * Builds the SDK debug logger. Every value is redacted before it reaches a
- * console call, so an auth header never prints. The logger is only supplied
- * when debug logging is on; the SDK otherwise stays quiet.
- */
-function redactingDebugLogger(apiKey: string): RedactingDebugLogger {
-  const redact = (value: unknown): unknown => {
-    if (typeof value === "string") {
-      return redactApiKey(value, apiKey);
-    }
-    if (value && typeof value === "object") {
-      try {
-        return JSON.parse(redactApiKey(JSON.stringify(value), apiKey));
-      } catch {
-        return value;
-      }
-    }
-    return value;
-  };
-  return {
-    group: (label) => {
-      console.group(label === undefined ? undefined : (redact(label) as string));
-    },
-    groupEnd: () => console.groupEnd(),
-    log: (message, ...args) => console.log(redact(message), ...args.map(redact)),
-  };
-}
-
-function debugLoggerFor(apiKey: string): RedactingDebugLogger | undefined {
-  return process.env.OPENROUTER_DEBUG ? redactingDebugLogger(apiKey) : undefined;
 }
 
 /**

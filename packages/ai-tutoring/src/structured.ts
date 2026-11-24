@@ -10,6 +10,7 @@ import { z } from "zod";
 
 import { createOpenRouterClient } from "./openrouter-client";
 import { safeModel } from "./model-id";
+import { debugLoggerFor } from "./debug-logger";
 import { withRetry, EmptyResponseError } from "./retry";
 import { resolveRoleModel, type AiRole } from "./roles";
 import { logAiRequest, logRoleNotConfigured } from "./usage-log";
@@ -150,6 +151,7 @@ export function resolveStructuredProviderFromEnv(role: AiRole): StructuredProvid
   const client = createOpenRouterClient({
     apiKey,
     baseUrl: process.env.OPENROUTER_API_BASE || OPENROUTER_API_BASE,
+    debugLogger: debugLoggerFor(apiKey),
   });
   const model = modelResult.model;
 
