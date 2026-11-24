@@ -1,0 +1,56 @@
+Red role log: Phase S4, track openrouter-sdk-ai-layer_20261114.
+Date: 2026-11-24. Role: mid-red.
+
+Scope: the S4 Test (Red) task only (test-strategy S4.1 to S4.4). Tests only.
+No production source changed. Additions only. No S1 to S3 assertion changed.
+
+Base SHAs: phase_base_sha = 8283f9fa192be2afc78a2e731fac1e267c3535b5
+(S4 phase base, verified ancestor of HEAD). role_base_sha = 114a4c6cb822955597ad8360ca19497b19c3ff10
+(role start HEAD, verified ancestor before the first commit). git status at
+start and end holds only the known generated dirty files (graph.db, the four
+apps/*/.next/types/routes.d.ts files, apps/bus-math-v2/lib/workbooks-manifest.json,
+measure/generated/*.md). Those stay unstaged. No unrelated user work was present.
+
+New tests (3 failing-first cases):
+- scripts/__tests__/openrouter-only.test.ts (new): cases 1 to 3 in
+  describe('openrouter-only'). Case 1 scans apps/ and packages/ for the four
+  exact banned tokens and fails at line 74 (Banned token match count: 10).
+  Exclusions are path contexts only (node_modules, .next, dist). Case 2 counts
+  the four removal paths and fails at line 80 (Existing removal path count: 4).
+  Case 3 imports the real @math-platform/practice-core namespace through a
+  non-literal specifier and fails at line 86 (generateAISummary still present).
+  No missing-module failure. Typecheck on the new file exits 0.
+- scripts/vitest.config.ts: the include list gains
+  __tests__/openrouter-only.test.ts. No other scripts config changed.
+
+Red proof: npx vitest run --config scripts/vitest.config.ts -t 'openrouter-only'
+ran 3 cases, 3 failed, 121 skipped. Format check exits 0.
+
+Gate sweeps (GATES_BASE=s3, label s4):
+- lint: exit 0, NEWFAIL=0.
+- test: exit 1, NEWFAIL=1. New keys are exactly the 3 openrouter-only Red
+  failures in step-scripts-suite plus 1 IM3 diagnostic:
+  server-composition.test.ts FR-14 tech-debt-registry expects the resolved
+  FR-14 row in measure/tech-debt.md, but commit 80f4ceff pruned that row to
+  the archive before the S4 base. The failure pre-exists this Red change. This
+  role changed no IM3 or tech-debt file.
+- checks-all: exit 0, NEWFAIL=0. Audit line critical=0 high=5 moderate=6 low=5.
+  The workerd probe answers probe-ok (step log).
+
+gates.sh needed no new base row. No edit to measure/gates.json.
+
+MEASURE_AGENT_RESULT
+role: mid-red
+status: done
+track: openrouter-sdk-ai-layer_20261114
+phase: S4
+baseline_sha: 8283f9fa192be2afc78a2e731fac1e267c3535b5
+role_base_sha: 114a4c6cb822955597ad8360ca19497b19c3ff10
+head: 30073327
+commits: 30073327
+tests_run: openrouter-only 3 failed/121 skipped; gates lint s4 NEWFAIL=0; gates test s4 NEWFAIL=1; gates checks-all s4 NEWFAIL=0
+files_changed: scripts/__tests__/openrouter-only.test.ts, scripts/vitest.config.ts, measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md
+plan_updates: S4 Test (Red) marked [~]; Red proof lines with first-failing-assertion lines recorded
+known_failures: 3 S4 Red cases (banned-token scan, removal-path count, generateAISummary present); 1 pre-existing IM3 FR-14 tech-debt-registry drift from commit 80f4ceff (not caused by this role)
+handoff: Green owns the 3 Red failures per the S4 Contract removals 1 to 5; tests need no structural edits; Green must also resolve the IM3 FR-14 tech-debt-registry drift (row pruned to the archive in 80f4ceff)
+END_MEASURE_AGENT_RESULT
