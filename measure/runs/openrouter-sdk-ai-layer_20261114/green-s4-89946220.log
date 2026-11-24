@@ -64,6 +64,16 @@ Accepted limits: the two remaining OpenAI word fixtures, the stale vi.mock of
 the deleted providers path in two BM2 route tests, and no dependency change.
 See the "S4 Green group" section of evidence.md.
 
+Role gate: python3 measure_interphase_checks.py role-gate --role
+measure-jr-green --track openrouter-sdk-ai-layer_20261114 --phase "Phase S4:
+Remove the OpenAI paths and document the roles" --baseline 15087532, with the
+PROJECT_LINT, PROJECT_CHECKS, PROJECT_TESTS, and GREEN_TEST_COMMAND values of
+this phase, exits 1 with one line: "FAIL: current phase still has 1
+non-deferred incomplete tasks". The line names the S4 manual verification
+task. That task stays [ ] for the PM at the checkpoint, as in S2 and S3. The
+GREEN_TEST_COMMAND exits 0. The result block of this log is accepted, and
+every [x] task of the phase holds commit SHA evidence.
+
 MEASURE_AGENT_RESULT
 role: measure-jr-green
 status: done
@@ -77,5 +87,6 @@ tests_run: openrouter-only 3 passed 121 skipped exit 0; G-CHAT-IM3 12 passed; G-
 files_changed: apps/bus-math-v2/lib/practice/error-analysis/providers.ts (deleted); apps/bus-math-v2/__tests__/lib/practice/error-analysis-providers.test.ts (deleted); apps/bus-math-v2/lib/teacher/ai-interpretation.ts (deleted); apps/bus-math-v2/__tests__/lib/teacher/ai-interpretation.test.ts (deleted); packages/practice-core/src/practice/error-analysis/index.ts; packages/practice-core/src/index.ts; apps/bus-math-v2/lib/practice/error-analysis/index.ts; apps/bus-math-v2/__tests__/lib/practice/error-analysis.test.ts; apps/integrated-math-3/__tests__/lib/practice/error-analysis.test.ts; scripts/__tests__/fixtures/lint-disable-allowlist.json; apps/bus-math-v2/.env.example; apps/integrated-math-3/.env.example; apps/bus-math-v2/wrangler.jsonc; apps/integrated-math-3/wrangler.jsonc; measure/tech-stack.md; measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md; measure/tracks/openrouter-sdk-ai-layer_20261114/evidence.md
 plan_updates: S4 Contract, S4 Test (Red), S4 Implement remove, S4 Implement document, S4 Verify, and S4 Docs & Doctor are [x] with SHA evidence; the live smoke test is [b] with (deferred:daniel); the S4 manual verification task and its checkpoint lines stay [ ] for the PM
 known_failures: no new failure; the s3 baseline keys stay, the IM3 typecheck holds the same 55 diagnostic lines, the BM2 bundle audit keeps the baseline exit of 1, and the scripts suite keeps its two baseline failing files; the Red-phase gate folder is kept at measure/runs/openrouter-sdk-ai-layer_20261114/gates/s4-red/
+role_gate: exit 1 with one FAIL line; the line names the open S4 manual verification task; the GREEN_TEST_COMMAND exits 0
 handoff: the phase acceptance role reviews HEAD 923426c0; the live smoke test with a real key and the S4 manual verification protocol stay human gates for Daniel and the PM; the carried items Review B F2 to F4, the IM3 queue sessions UTC-day flake, and the five D1 exceptions stay open and unchanged
 END_MEASURE_AGENT_RESULT
