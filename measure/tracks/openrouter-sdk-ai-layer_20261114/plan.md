@@ -582,6 +582,10 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
   `NEWFAIL=0`; workerd answers `probe-ok`; audit counts are unchanged. See
   the "S3 adversarial r5b" section of `evidence.md`.
 
+Next-phase list (acceptance, record-only): Acceptance F1 to F4 are fixed at this checkpoint. F1: the zod section records version 4.6.7 and the `function` result. F2: the two remediation log citations name `green-s3-r3-e0268a3e.log` and `green-s3-r4-8eee12fc.log`. F3: the S3 Fix line (b) records the key-shaped-only `safeModel` rule, as S2 case 3 requires. F4: the S3 Contract provider line records the inlined R-A1 preference and the unset `sendsPii` flag. Review B F2 (short known-details strip), F3 (BM2 rate-limit status null), and F4 (teacher route raw error log) stay open in `measure/tech-debt.md`. The IM3 queue sessions UTC-day flake (three tests, 00:00 to 01:00 UTC) also stays open in `measure/tech-debt.md`.
+
+Checkpoint record (2026-11-24): Phase acceptance passed at `18563a0a`. Reviews A, B, and C pass at `18563a0a`. The adversarial findings ADV-S3-5 and ADV-S3-8 are fixed in `2d1c875e`, with tests at `b39b1c57`. The S3 Verify, Docs & Doctor, and manual-verification tasks are [x].
+
 ## Phase S4: Remove the OpenAI paths and document the roles
 _Story ref: spec.md#story-s4_
 
