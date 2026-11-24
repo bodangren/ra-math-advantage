@@ -127,8 +127,11 @@ exists in `packages/ai-tutoring/src/`.
 
 ## zod check
 
-TBD (belongs to S3; the S1 baseline only records that `zod` is not yet a declared
-dependency of `packages/ai-tutoring`).
+The installed version is 4.6.7. Running
+`import('zod').then((z) => console.log(typeof z.toJSONSchema))` in
+`packages/ai-tutoring` prints `function`. The S3 main group section below
+records the full check. The S1 baseline records only that `zod` was not yet a
+declared dependency.
 
 ## Live smoke test
 
@@ -481,7 +484,7 @@ normalization was needed and `gates.sh` was not changed in this round.
 rate-limit status null), and F4 (teacher route raw error log) are recorded in
 `measure/tech-debt.md`. This round does not fix them.
 
-**Final log.** `measure/runs/openrouter-sdk-ai-layer_20261114/green-s3-r3-<shorthead>.log`.
+**Final log.** `measure/runs/openrouter-sdk-ai-layer_20261114/green-s3-r3-e0268a3e.log`.
 
 ### Review B F2 to F4 — carried debt
 
@@ -512,7 +515,7 @@ remediation cases and the findings (b) tests. BM2 targeted filters pass:
 `critical=0 high=5 moderate=6 low=5`. `bash measure/doctor.sh`, package
 typecheck, `oxlint`, and `oxfmt --check` pass at the final source tree.
 
-**Final log.** `measure/runs/openrouter-sdk-ai-layer_20261114/green-s3-r4-<shorthead>.log`.
+**Final log.** `measure/runs/openrouter-sdk-ai-layer_20261114/green-s3-r4-8eee12fc.log`.
 
 ### S3 adversarial r5b (2026-11-24)
 
