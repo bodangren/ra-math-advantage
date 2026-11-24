@@ -586,7 +586,7 @@ Next-phase list (acceptance, record-only): Acceptance F1 to F4 are fixed at this
 
 Checkpoint record (2026-11-24): Phase acceptance passed at `18563a0a`. Reviews A, B, and C pass at `18563a0a`. The adversarial findings ADV-S3-5 and ADV-S3-8 are fixed in `2d1c875e`, with tests at `b39b1c57`. The S3 Verify, Docs & Doctor, and manual-verification tasks are [x].
 
-## Phase S4: Remove the OpenAI paths and document the roles
+## Phase S4: Remove the OpenAI paths and document the roles [checkpoint: 987a919e]
 _Story ref: spec.md#story-s4_
 
 - [x] Task: S4 Contract — list the removals `0e192c88`
@@ -693,11 +693,11 @@ _Story ref: spec.md#story-s4_
     - [ ] Run `npm run generate`. Confirm exit code 0.
     - [ ] Run `npm run doctor`. Confirm exit code 0.
 - [x] Task: Measure - User Manual Verification 'Phase S4: Remove the OpenAI paths and document the roles' (Protocol in workflow.md) (PM-verified 2026-11-24)
-    - [ ] Run the protocol: the automated tests, the manual verification plan, and the user confirmation.
+    - [x] Run the protocol: the automated tests, the manual verification plan, and the user confirmation. (PM-verified 2026-11-24.)
     - PM-verified: Phase acceptance passed at `8b66cbf4`. The acceptance result is `measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-8b66cbf4.json`. Reviews A, B, and C and the adversarial run pass at `3bcf2b31`. The live smoke test stays [b] (deferred:daniel).
-    - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S4`.
-    - [ ] Append `[checkpoint: <sha>]` to the Phase S4 heading.
-    - [ ] Commit: `measure(plan): Mark phase 'Phase S4: Remove the OpenAI paths and document the roles' as complete`.
+    - [x] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S4`. (987a919e.)
+    - [x] Append `[checkpoint: 987a919e]` to the Phase S4 heading. (987a919e.)
+    - [x] Commit: `measure(plan): mark the S4 checkpoint (track_id: openrouter-sdk-ai-layer_20261114)`. (987a919e.)
 
 Next-phase list (acceptance, record-only): This checkpoint fixes Acceptance F3: evidence.md line 573 records 10 file/token pairs, and the Red log records the same count. F2, F5, and F6 stay open in `measure/tech-debt.md`. F2: two BM2 teacher route tests still mock the removed providers path and `generateAISummary`. Two test fixtures still say "OpenAI". F5: the scans skip 17 binary extensions beyond the F21 directories and skip unreadable files silently. The NUL case does not call the gate wrapper, so a mutation in the wrapper alone passes. F6: the S4 plan and evidence additions hold 3 sentences over 25 words and 6 passive ones.
 
