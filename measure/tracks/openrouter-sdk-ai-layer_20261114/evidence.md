@@ -513,3 +513,49 @@ remediation cases and the findings (b) tests. BM2 targeted filters pass:
 typecheck, `oxlint`, and `oxfmt --check` pass at the final source tree.
 
 **Final log.** `measure/runs/openrouter-sdk-ai-layer_20261114/green-s3-r4-<shorthead>.log`.
+
+### S3 adversarial r5b (2026-11-24)
+
+Role base `b39b1c57`. Phase base `55e7952b`. Adversarial review at
+`b0bb87d4` found two blockers. No dependency change in this round.
+
+**ADV-S3-5 — empty detail label.** The detail separator previously let
+`\s*` consume the newline after a label such as `Teacher:`. The lazy detail
+body then consumed the first math line. Commit `2d1c875e` changes the
+separator to consume horizontal space only. A newline ends the clause, so
+only the label and its own value are removed. The test that sends
+`Teacher:\n<math>\n<math>` now keeps both math lines. The six earlier strip
+forms and the S3 Fix strip tests remain green.
+
+**ADV-S3-8 — structured debug output.** The redacting debug logger moved to
+the internal module `src/debug-logger.ts`, which is not a package export.
+Both the chat path and the structured client import it. The logger replaces
+object arguments with `[body redacted]`, so request and response bodies
+never reach the console. Header strings keep the existing key redaction.
+The adversarial test confirms that the key, prompt, and answer are absent.
+
+**Accepted limit.** With `OPENROUTER_DEBUG` on, debug output no longer holds
+request or response bodies. Header names, status, and the redaction marker
+remain. This is a deliberate trade: diagnostics stay, text content does not.
+
+**Tests.** Both adversarial cases pass. The full package suite is 165 of
+165. BM2 targeted filters pass: `spreadsheet-feedback` 13 passed,
+`teacher AI error summary` 8 passed, `no-PII` 5 passed. IM3 `-t 'S3 fix'`
+passes 7 cases and `-t 'no-PII'` passes 1 case.
+
+**Gates.** `GATES_BASE=s2 ... gates.sh <lint|test|checks-all> s3` each exits
+0 with `NEWFAIL=0`. The workerd probe answers `probe-ok`. The audit line stays
+`critical=0 high=5 moderate=6 low=5`. `bash measure/doctor.sh`, package
+typecheck, `oxlint`, and `oxfmt --check` pass at the final source tree.
+
+**Gate maintenance.** The `key()` filter of `gates.sh` now drops lines that
+start with `[ai-tutoring] request `. Those lines are usage records; their
+JSON carries `outcome: "error"` for a handled request and is not a test
+diagnostic. FAIL, AssertionError, and TypeScript diagnostics remain.
+
+**Environmental note.** The first sweep ran at 00:49 UTC. Three IM3
+`queue/sessions` tests failed because they assume `now - 1h` is the same UTC
+day. A direct rerun at 01:02 UTC passed all 13 cases, and a full rerun of the
+test gate then reported `NEWFAIL=0`. No source change was made for that flake.
+
+**Final log.** `measure/runs/openrouter-sdk-ai-layer_20261114/green-s3-r5b-<shorthead>.log`.

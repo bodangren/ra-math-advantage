@@ -572,6 +572,14 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
   is 158 of 158, IM3 S3 fix is 7 passed, BM2 targeted filters pass, and all
   three gate sweeps exit 0 with `NEWFAIL=0`. See the "S3 remediation r4"
   section of `evidence.md`.
+- Green proof r5b (2026-11-24): commit `2d1c875e` fixes both adversarial
+  blockers. The detail separator consumes horizontal space only, so an empty
+  label no longer removes the next math line. The structured client uses the
+  internal redacting debug logger, which replaces body objects with a marker.
+  Both ADV-S3-5 and ADV-S3-8 pass. The full package suite is 165 of 165;
+  BM2 and IM3 targeted filters pass; all three gate sweeps exit 0 with
+  `NEWFAIL=0`; workerd answers `probe-ok`; audit counts are unchanged. See
+  the "S3 adversarial r5b" section of `evidence.md`.
 
 ## Phase S4: Remove the OpenAI paths and document the roles
 _Story ref: spec.md#story-s4_

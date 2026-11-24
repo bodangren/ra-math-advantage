@@ -42,7 +42,9 @@ has_infra_output() { grep -qE "$DISK_FULL_RE" "$1" 2>/dev/null; }
 # diagnostics and are dropped. Vitest console framing lines (`stdout |` and
 # `stderr |`) are not diagnostics either. A passing test whose title or file
 # name holds the word "error" would otherwise add a new key when it logs a
-# usage record. FAIL, AssertionError, and TS lines remain in the key.
+# usage record. Usage-record lines themselves are not diagnostics either:
+# their JSON holds outcome "error" for a handled request. FAIL,
+# AssertionError, and TS lines remain in the key.
 # Diff lines (`+`/`-`), code-frame lines (`<line>|`), and received values inside
 # assertion messages are echoes of files, not diagnostics, so they are dropped
 # or normalized. The failing test title and file stay in the key.
@@ -50,6 +52,7 @@ has_infra_output() { grep -qE "$DISK_FULL_RE" "$1" 2>/dev/null; }
 key() {
   grep -E 'TS[0-9]+|error|ERROR|FAIL|AssertionError|Failed to resolve|[0-9] (warning|error)' "$1" 2>/dev/null |
     grep -vE '^(stdout|stderr) \| ' |
+    grep -v '^\[ai-tutoring\] request ' |
     grep -vE "$DISK_FULL_RE" |
     grep -v '^[[:space:]]*✓' |
     grep -vE '^[[:space:]]*[+-]' |
