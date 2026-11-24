@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "role": "review-b",
+  "track": "openrouter-sdk-ai-layer_20261114",
+  "phase": "Phase S1: Adopt the OpenRouter SDK",
+  "baseline_sha": "dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c",
+  "audited_head_sha": "dcfa6d071d33724a76676780aac13dc0fdeb1437",
+  "status": "pass",
+  "summary": "Round 3 passes with no blocking finding, because the PM cap makes each new defect record-only. The delta b3401a2e..dcfa6d07 closes F3 and F7, narrows F2 and F5, and keeps the BM2 auth check and rate limit first. The brief criterion that the key cannot reach thrown errors on any SDK path is not fully met. F8 (Major): an echoed key escapes the exact-match redaction when the configured key ends with a newline or a space, or starts with Bearer. F9 (Nit): in Node, a header error holds a key with an embedded newline, but workerd does not. I recommend one more small Green fix for F8 and F9 before S2.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "F1 [Major] review-b: Open and record-only, unchanged by the delta, because openrouter-client.ts is not in the range. OPENROUTER_DEBUG=true makes the SDK log the authorization header and the bodies with no redaction (node_modules/@openrouter/sdk/esm/lib/sdks.js:60 and :234-303), and openrouter-client.ts:19-26 passes no debugLogger. Rationale: spec.md:284 forbids a log line with prompt text, answer text, or the API key. Fix: pass a no-op debugLogger in createOpenRouterClient. Add a test that sets OPENROUTER_DEBUG=1. S2 can carry both changes.",
+    "F2 [Nit] review-b: Narrowed by bf5ef00b; two parts stay open. Part 1: the mapped HTTP message still holds upstream response text, up to 10000 characters, and both routes log it. Part 2: SDKValidationError keeps the request text in rawValue, so run P2 shows student text in the logged view. Rationale: the routes build valid messages and return fixed bodies, so no student sees either text. Fix: decide whether the mapped HTTP message keeps upstream text. The fix of F9 closes part 2.",
+    "F4 [Nit] review-b: Open and record-only, unchanged by the delta. The SDK version was 3 hours 49 minutes old at install, and the repository has no minimum-release-age rule. The lockfile and the package manifest are unchanged in the delta. The dependency-refresh track can add a release-age rule or re-pin after a soak period.",
+    "F5 [Nit] review-b: Narrowed by 4b1d1aaf; open and record-only. The BM2 503 body is now pinned (route.adversarial.test.ts:71-79). No BM2 test pins the 429 response or its order before the provider call, and no IM3 test pins the fixed 503 body. Rationale: a later edit can move the provider call before the rate limit, or change the 503 body, with no test failure. Fix: S2 can add one BM2 test for the 429 order and one IM3 test for the 503 body.",
+    "F6 [Nit] review-b: Open and record-only, unchanged by the delta, because the gates.sh of this track is not in the range. The gate script compares only the critical and high counts of npm audit, but test-strategy.md:267 (row F8 of its review table) requires advisory IDs. My compare by advisory ID shows no difference at dcfa6d07. Fix: compare the sorted advisory IDs between the baseline label and the current label.",
+    "F8 [Major] review-b: The key redaction at providers.ts:26-31 matches the configured key text exactly, but the runtime sends a trimmed header value. An echo of the sent key escapes redaction when the configured key ends with a newline, ends with a space, or starts with `Bearer `. Runs G, H, and G3 put the full key in the thrown message and in the logged view of both routes. Rationale: providers.ts:36-37 says upstream text never carries the key into the thrown error, but the new test pins one exact echo (providers.adversarial.test.ts:174-181). Fix: redact the raw key, the trimmed key, and the key without a `Bearer ` prefix. Add one test for each form.",
+    "F9 [Nit] review-b: providers.ts:66 returns each unmapped error unchanged, and providers.ts:41 does not redact a non-Error value. In Node, a configured key with an embedded newline or NUL gives a TypeError that holds the full key (runs N and O). In workerd, the same error has the fixed text `Invalid header value.`, so the production runtime is not affected. Rationale: the brief requires that the key cannot reach thrown errors on any SDK path. Fix: return a new Error with redacted text for each branch, except EmptyResponseError. Add one test for the pass-through path."
+  ],
+  "evidence": [
+    "Provenance: git rev-parse HEAD returns dcfa6d071d33724a76676780aac13dc0fdeb1437, which equals the immutable audited head. The role base b3401a2e and the phase base dbf4d65e are ancestors of HEAD. The delta holds 5 commits: 4b1d1aaf (adversarial tests), e84735ca and 0228cfd7 (Dependency Refresh documents), bf5ef00b (Green r4 fix), and dcfa6d07 (plan). I changed no tracked file.",
+    "HEAD movement: after my runs, HEAD moved to eaaf7a6b, a commit from another role that changes only providers.adversarial.test.ts. My vitest runs started at 11:17:26 to 11:17:44, before that commit (11:21:28). The package run counted 60 tests, which matches the file at dcfa6d07. providers.ts and the route files are identical at HEAD and at dcfa6d07. The audited head stays dcfa6d07, as the brief states. I did not review eaaf7a6b.",
+    "Security applicability: applicable. The delta changes providers.ts, which maps the errors of the call that carries the API key, and the BM2 chatbot route, which handles student input.",
+    "Delta scope: git diff --name-status b3401a2e..dcfa6d07 lists 13 paths. Five are in scope: providers.ts, the BM2 route.ts, the two new adversarial test files, and the plan.md of this track. Eight are the Dependency Refresh registry entry and track files. No auth, Convex, manifest, lockfile, workflow, probe, or IM3 file changed. openrouter-client.ts, retry.ts, and the gates.sh of this track did not change. No file was deleted.",
+    "Redaction code: providers.ts:26-31 splits and joins on the exact configured key. providers.ts:44-51 (HTTP branch) and :57-64 (connection branch) apply it. The abort branch (:53-55) returns a fixed DOMException. The branches at :41 (non-Error value) and :66 (unmapped error) do not redact. Both factories pass options.apiKey (providers.ts:149 and :174).",
+    "Method of the runs: I ran the real repository code (an esbuild bundle piped to node) with a stubbed fetch, with no network and no file write. A run sets a configured key, makes the stub echo text, and checks the thrown error and its util.inspect view (the logged view) for the key.",
+    "Redaction works for runs A (one echo), B (three echoes, one inside JSON text), E (Bearer echo), F (key inside other text), and J (regex characters in the key). It also works for runs K, L, and M (a connection error, another client error, and a thrown string, each with the key): the message is fetch failed with [redacted].",
+    "Partial echoes: run C (first 12 characters) and run D (last 6 characters) keep only the fragment. A masked fragment does not give the key, so this behavior is sensible.",
+    "F8 runs: G (trailing newline), H (trailing space), and G3 (Bearer prefix, echo of the key) put the full key in the mapped message and in the logged view. In G and H, the wire value equals the trimmed key. G4 (echo of the whole header) is redacted. Run I (leading space) gives bad credential[redacted], because the match consumed the space of the echo.",
+    "F9 runs: N (key with an embedded newline) and O (embedded NUL) throw a Node TypeError that holds the full key in the message and in the logged view. Run P2 (invalid message role) throws an SDKValidationError with the own keys name, cause, rawValue, and rawMessage. Its logged view holds the student text and does not hold the key. Run P3 (200 response with a bad body) maps to the fixed text OpenRouter API error: 200 Response validation failed.",
+    "workerd check (Miniflare, in-process): new Headers with Bearer abc plus a newline, and with Bearer abc plus a space, both return Bearer abc. An embedded newline or NUL throws the fixed text Invalid header value., which holds no value. Node 24 gives the long message of runs N and O. So F9 affects Node only, and F8 affects both runtimes.",
+    "Routes: the BM2 route runs the auth check (route.ts:77-80), the role check (:82-84), the rate limit (:88-106), the body and injection checks, and only then the try block (:183-196) with the provider resolution. A provider failure returns the fixed 502 body, and an absent key returns the fixed 503 body AI provider not configured. The IM3 route is unchanged: its provider resolution sits inside its try block (route.ts:179-220), and its bodies stay fixed (500 and 503). The BM2 spreadsheet submit route discards provider errors with no log and no response (submit/route.ts:247-249). So the key reaches no response on any path I traced.",
+    "F3 withdrawn: closed by bf5ef00b. I checked route.ts:183-196 (the resolver call now sits inside the try block), route.adversarial.test.ts:81-91 (a malformed OPENROUTER_API_BASE gives the fixed 502 with no outbound request), and a passing vitest run of that file.",
+    "F7 withdrawn: closed by 4b1d1aaf. providers.adversarial.test.ts:174-181 asserts that Object.keys of the mapped error equals the list with status only, and that JSON.stringify and String of the error exclude the key. My run A1 agrees: no key in the logged view.",
+    "Tests at dcfa6d07: vitest in packages/ai-tutoring (providers, retry, providers.adversarial) passes 60 tests in 3 files. vitest in apps/bus-math-v2 (retry, providers, error-analysis-providers, lesson-chatbot, and the three route test files) passes 44 tests in 7 files. vitest in apps/integrated-math-3 (chatbot route tests) passes 11 tests in 2 files. The tests stub fetch and reach no network.",
+    "Test meaning: the adversarial file uses the real SDK and stubs only fetch. The key claim has one test: one exact echo on HTTP 400 (providers.adversarial.test.ts:174-181). No test covers a repeated echo, a padded key, the connection path, or the pass-through path. My runs B, K, G, and N cover those cases and show the gaps of F8 and F9.",
+    "Dependencies: package.json, packages/ai-tutoring/package.json, and package-lock.json are unchanged in the delta. npm audit --json at HEAD matches gates/baseline/audit.json by package, severity, and advisory source (21 of 21; critical 0, high 9, moderate 7, low 5). No entry names @openrouter/sdk or zod.",
+    "Secret scan: a pattern scan of the added lines of the delta finds only the fake test key sk-adversarial-private-key-7391 (providers.adversarial.test.ts:10). The scan covered the Dependency Refresh files, and I did not review that track. No env, key, or credential file is in the delta, and the delta adds no log line.",
+    "A2: not applicable. The delta has no draft-to-published flip, no consent artifact, and no named subject. A6: the change in measure/tracks.md edits only the Dependency Refresh entry (PLANNED), so it claims no resolved security state. The r4 line in plan.md says the key is redacted from mapped errors. That claim holds for an exact echo only, so keep it at that scope until F8 is fixed.",
+    "PM cap: F8 and F9 hide no failure and delete no tracked or user file, so I list them as record-only. Without the cap, F8 would fail the brief criterion that the key cannot reach thrown errors on any SDK path.",
+    "Limits: I did not run the workerd probe, a heavy job, and I ran only the short Miniflare header check. I did not read the adversarial result file, the parallel adversarial rerun, or the Dependency Refresh spec and D1 Red work. I did not read any other reviewer result file."
+  ],
+  "commands": [
+    "git rev-parse HEAD -> dcfa6d071d33724a76676780aac13dc0fdeb1437",
+    "git merge-base --is-ancestor b3401a2e HEAD and dbf4d65e HEAD -> exit 0 for both",
+    "git log --format='%h %s' b3401a2e..dcfa6d07 -> 5 commits",
+    "git log and git diff --name-status dcfa6d07..HEAD after the runs -> eaaf7a6b; one test file; providers.ts and the routes unchanged",
+    "git diff --stat and --name-status b3401a2e..dcfa6d07 -> 13 files, 1082 insertions, 255 deletions; 5 in scope; no deleted file",
+    "git diff b3401a2e..dcfa6d07 -- providers.ts route.ts -> redactApiKey, the apiKey parameter, the resolver moved inside the try block",
+    "git diff b3401a2e..dcfa6d07 -- measure/tracks.md plan.md -> Dependency Refresh entry text and 6 plan lines",
+    "git diff --name-only b3401a2e..dcfa6d07 over the manifests, the lockfile, IM3, openrouter-client.ts, retry.ts, gates.sh, and .github -> no output",
+    "git diff --diff-filter=D --name-only b3401a2e..dcfa6d07 -> no output",
+    "git diff -U0 b3401a2e..dcfa6d07 with a secret-pattern grep -> only the fake key sk-adversarial-private-key-7391",
+    "esbuild bundle of providers.ts piped to node with a stubbed fetch, runs A to J -> G and H leak the key; the others are redacted or show fragments",
+    "same method, runs K to P3 -> K, L, and M redacted; N and O leak in Node; P2 shows student text; P3 gives the fixed text",
+    "same method, runs A1, G3, and G4 -> G3 leaks in the logged view",
+    "Miniflare (workerd) Headers check -> values trimmed; an embedded newline or NUL gives Invalid header value.",
+    "CI=true npx vitest run providers.test.ts retry.test.ts providers.adversarial.test.ts (packages/ai-tutoring) -> 60 passed in 3 files",
+    "CI=true npx vitest run 5 BM2 paths: retry, providers, error-analysis-providers, lesson-chatbot, route tests (apps/bus-math-v2) -> 44 passed in 7 files",
+    "CI=true npx vitest run __tests__/app/api/student/lesson-chatbot (apps/integrated-math-3) -> 11 passed in 2 files",
+    "grep 429 and AI provider not configured in the BM2 and IM3 route tests -> BM2 503 pinned by the adversarial test only; IM3 429 pinned; BM2 429 and IM3 503 not pinned",
+    "grep resolveOpenRouterProvider and createOpenRouterProvider across apps and packages -> 2 chatbot routes, spreadsheet-feedback.ts, and the workerd probe",
+    "npm audit --json plus a python3 compare with gates/baseline/audit.json -> 21 of 21 packages unchanged; critical=0 high=9 moderate=7 low=5"
+  ],
+  "changed_files": [
+    "apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.adversarial.test.ts",
+    "apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts",
+    "measure/tracks.md",
+    "measure/tracks/dependency-refresh_20261121/evidence.md",
+    "measure/tracks/dependency-refresh_20261121/gates.sh",
+    "measure/tracks/dependency-refresh_20261121/metadata.json",
+    "measure/tracks/dependency-refresh_20261121/plan.md",
+    "measure/tracks/dependency-refresh_20261121/spec-review.md",
+    "measure/tracks/dependency-refresh_20261121/spec.md",
+    "measure/tracks/dependency-refresh_20261121/test-strategy.md",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md",
+    "packages/ai-tutoring/src/__tests__/providers.adversarial.test.ts",
+    "packages/ai-tutoring/src/providers.ts"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "claude-code/claude-sonnet-5-5#max",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 3,
+      "evidence": "providers.ts:26-31 redacts the exact key on the HTTP and connection paths (runs A, B, J, K), but runs G, H, and G3 leak the full key when the configured value is padded or has a Bearer prefix."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 3,
+      "evidence": "providers.adversarial.test.ts:174-181 tests one exact echo on HTTP 400, and no test covers a repeated echo, a padded key, the connection path, or the pass-through path."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "bf5ef00b changes only providers.ts and a short move in the BM2 route.ts, and dcfa6d07 adds only the plan lines."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 4,
+      "evidence": "The r4 plan line cites bf5ef00b and the adversarial tests pass (60 package tests), but its claim that the key is redacted from mapped errors has no run for a padded key."
+    }
+  ]
+}

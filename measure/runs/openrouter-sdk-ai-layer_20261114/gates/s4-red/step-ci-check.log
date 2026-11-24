@@ -1,0 +1,8 @@
+PASS: ci.yml job 'im3' does not have continue-on-error
+PASS: ci.yml job 'bm2' does not have continue-on-error
+PASS: ci.yml job 'im3' has no '|| true' step commands
+PASS: ci.yml job 'bm2' has no '|| true' step commands
+PASS: ci.yml job 'packages' has no '|| true' step commands
+PASS: cloudflare-deploy.yml has deployment gating (workflow_dispatch/staging/environment)
+
+All CI/CD validations passed.

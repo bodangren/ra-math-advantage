@@ -1,0 +1,56 @@
+# Red log: S1 Adopt the OpenRouter SDK (role mid-red)
+
+Route: opencode-go/muse-spark-1.3-contributor#high (from `ra-quota pick red --why`).
+phase_base_sha = role_base_sha = dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c (both resolve).
+Dirty check at start: only the 6 allowed generated files were modified
+(`apps/bus-math-v2/lib/workbooks-manifest.json`, four
+`apps/*/.next/types/routes.d.ts`, `measure/generated/routes.md`). They were never
+staged. No unrelated user work was present.
+
+## Tasks owned (orchestrator D1): Contract, Install, Test (Red), in this order
+
+- Contract [x] 13e36a6d: `gates.sh` (lint, checks-all, test; archive key/compare
+  pattern; workerd probe pending when the script is absent), `evidence.md`
+  skeleton, dated `@openrouter/sdk` row in `measure/tech-stack.md`.
+- Baseline at the Contract code tree (D4): `lint baseline`, `checks-all baseline`,
+  `test baseline`, each detached with an exit file, 10-minute slices.
+  Evidence commit 5ddadb76. Baseline: lint green; typecheck IM3-only failure (55
+  lines, quadratic-formula keys); builds green; audit critical=0 high=9
+  moderate=7 low=5; IM3 bundle audit one OK entry (F7 gap noted); BM2 bundle
+  audit EXCEEDS Total dist/server (pre-existing); sizes IM3 233 files, BM2 346
+  files; workerd probe pending (F2); tests ai-tutoring 75 pass, IM3 218 fail,
+  BM2 7 fail, scripts 27 fail, audit-suites 5 fail.
+- Gate-script fix: `sizes_step` split one `local` line into two and fixed the
+  totals `awk`; baseline size tables regenerated from the unchanged baseline
+  `dist/` trees.
+- Install [x] fa35361e: `@openrouter/sdk ^1.5.102` in `packages/ai-tutoring`
+  (installed 1.5.125; lockfile adds only the SDK entry). SDK API recorded in
+  `evidence.md` from installed files only. Key facts for Green:
+  `new OpenRouter({apiKey, httpReferer, appTitle, serverURL, retryConfig,
+  timeoutMs})`; `chat.send(request, {signal, timeoutMs, retries})`;
+  non-stream returns `ChatResult` (`choices[].message.content`, served `model`,
+  `usage`); HTTP status field is `statusCode` on `OpenRouterError`; transport
+  errors `RequestAbortedError`/`RequestTimeoutError`/`ConnectionError`;
+  retry off via `{strategy:"none"}`; transport is bare global `fetch`;
+  `RUNTIMES.md` does not name Workers (probe decides). The package has no
+  `docs/` folder (plan deviation, recorded in evidence).
+- Test (Red) [x] 3e100736 (+ format 767ac344): `describe('SDK transport')` with
+  6 cases in `packages/ai-tutoring/src/__tests__/providers.test.ts`.
+  RED run: 6 run, 6 fail on assertions, 75 skipped, no module-resolution error.
+
+Existing tests unchanged. BM2 providers test unchanged. Route SDK tests left to
+Green (D6). No production source changed. Nothing pushed.
+
+MEASURE_AGENT_RESULT
+role: measure-mid-red
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S1: Adopt the OpenRouter SDK
+baseline_sha: dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c
+commits: 13e36a6d 24083d4d 5ddadb76 fa35361e 16b0f12b 3e100736 d382766d 767ac344
+tests_run: CI=true npm run test --workspace=packages/ai-tutoring -- -t 'SDK transport' => 6 run, 6 fail, 75 skipped (fails on assertions, not on missing module); baseline gates lint/checks-all/test all recorded NEWFAIL=0 (record-only)
+files_changed: measure/tracks/openrouter-sdk-ai-layer_20261114/gates.sh, evidence.md, plan.md; measure/tech-stack.md; packages/ai-tutoring/package.json, package-lock.json, src/__tests__/providers.test.ts
+plan_updates: Contract/Install/Test(Red) marked [x] with SHAs; orchestrator decisions D1-D6 and RED run evidence recorded in plan.md
+known_failures: none in new tests beyond the intended Red failures; baseline failures recorded in evidence.md (IM3 typecheck, IM3/BM2 suites, scripts/audit suites, BM2 bundle budget, pending workerd probe)
+handoff: Green implements per plan S1 Implement tasks. App test scripts are bare 'vitest run', so GREEN_TEST_COMMAND file filters work as written. SDK facts Green needs: status field is statusCode; retry off is {strategy:'none'}; signal via RequestOptions.signal; RUNTIMES.md omits Workers so the workerd probe is decisive. Default question (no tool use): none pending; no user decision needed.
+END_MEASURE_AGENT_RESULT

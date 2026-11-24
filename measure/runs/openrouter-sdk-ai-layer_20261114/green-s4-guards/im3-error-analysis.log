@@ -1,0 +1,14 @@
+
+> test
+> vitest run __tests__/lib/practice/error-analysis.test.ts
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/apps/integrated-math-3
+
+ ✓ __tests__/lib/practice/error-analysis.test.ts (31 tests) 10ms
+
+ Test Files  1 passed (1)
+      Tests  31 passed (31)
+   Start at  11:48:49
+   Duration  724ms (transform 76ms, setup 92ms, import 104ms, tests 10ms, environment 426ms)
+

@@ -1,0 +1,40 @@
+ADVERSARIAL S4 PROBE LOG
+Audited HEAD: 3bcf2b3124a4ae042e79851b51ae3e6a08327a93
+Phase base: 8283f9fa192be2afc78a2e731fac1e267c3535b5
+Role base: 150875327a7f3db1e093f80d2fa14fc94f17bba4
+
+Slot check: ok, 1 of 14 busy.
+Ancestry: phase_base is ancestor of audited HEAD; git diff --check clean.
+
+ATTACK RESULTS (one run, Red and Green trees considered)
+ADV-S4-1 aliased import + banned token: gate case 1 FAILS (count 1). Banned string in config comment: gate case 1 FAILS (count 2). Aliased import with no banned token: case 1 passes, build is the complement. No openai package in the lockfile.
+ADV-S4-2 OPENAI_API_KEY in BM2 .env.example: absent; doc scan passes.
+ADV-S4-3 openrouter/free code default: only allowed .env.example comments hold the string; new source scan passes; case 1 does not ban the string by design.
+ADV-S4-4 delete retained practice-core export: real namespace keeps buildTeacherErrorView and drops generateAISummary; build-graph shows no dangling callers.
+ADV-S4-5 delete the wrong test: all seven guards run 12/16/13/8/12/1/5 cases; no guard has zero cases; new static test passes.
+ADV-S4-6 change a teacher route key: G-TEACHER-ROUTE asserts all five keys by name; 12 cases pass.
+ADV-S4-7 name or email in a prompt: no-PII fixtures assert absence; 1 IM3 and 5 BM2 cases pass.
+ADV-S4-8 key-shaped token in a doc: none in the four edited configs or tech-stack.md; new doc scan passes; artifact-check boundary confirmed in an isolated probe.
+
+ANTI-PATTERN PROBES
+A4: gate holds exactly 3 cases. A5: no literal all-pass claim in S4 plan text. A7: gate excludes only node_modules, .next, dist.
+
+COMMITTED TEST
+Commit 6583ec4e adds scripts/__tests__/openrouter-s4-adversarial.test.ts (6 passing tests) and one include entry in scripts/vitest.config.ts, with a git note and the track id tag. No production code changed. Generated and graph files left unstaged.
+
+VERDICT: PASS. No blocking or nonblocking finding. The open S4 manual-verification task is PM-verified and the live smoke test is deferred:daniel; both are non-findings per the brief.
+
+ROLE GATE: python3 measure_interphase_checks.py role-gate --role adversarial-testing (PROJECT_TESTS with GATES_BASE=s3 gates.sh test s4) -> PASS, exit 0.
+
+MEASURE_AGENT_RESULT
+role: adversarial-testing
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S4: Remove the OpenAI paths and document the roles
+commits: 6583ec4e
+tests_run: npx vitest run --config scripts/vitest.config.ts -t 'openrouter-s4-adversarial' -> 6 passed, 124 skipped, exit 0; isolated case-1 probe S0-S5 (S1 and S3 detect the token, S2/S4/S5 pass by design); oxfmt --check and oxlint clean
+files_changed: scripts/__tests__/openrouter-s4-adversarial.test.ts (new), scripts/vitest.config.ts (one include entry)
+plan_updates: none
+known_failures: none (no defect found; S4 baseline keys unchanged)
+handoff: Result JSON at measure/runs/openrouter-sdk-ai-layer_20261114/measure-adversarial-testing-3bcf2b31.json. All eight ADV-S4 attacks defeated. Gate case 1 does not ban openrouter/free or scan measure/, so S2 live cases and the new doc scan are the complements, as S4.5/S4.9 state. Open manual-verification task is PM-verified and live smoke test is deferred:daniel; both non-findings. Generated and graph files left unstaged.
+END_MEASURE_AGENT_RESULT

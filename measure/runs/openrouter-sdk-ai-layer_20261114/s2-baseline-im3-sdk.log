@@ -1,0 +1,11 @@
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/apps/integrated-math-3
+
+ ✓ __tests__/app/api/student/lesson-chatbot/route.sdk.test.ts (1 test) 665ms
+     ✓ returns the SDK answer and sends one chat completion request  663ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  10:56:36
+   Duration  1.60s (transform 56ms, setup 131ms, import 22ms, tests 665ms, environment 607ms)
+

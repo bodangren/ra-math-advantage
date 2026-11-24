@@ -1,0 +1,6 @@
+FAIL: current phase still has 2 non-deferred incomplete tasks
+A4_EXIT=1
+FAIL: do not print OPENROUTER_API_KEY
+FAIL: never print OPENROUTER_API_KEY
+A5 literal claims in the S3 plan section:
+none

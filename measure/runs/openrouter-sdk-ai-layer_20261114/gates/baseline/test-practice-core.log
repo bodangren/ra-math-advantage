@@ -1,0 +1,14 @@
+heavy-run: lock wait over 600 s — priority p2 — holder PID 927090: flock -w 1800 -E 201 /home/daniebo/Desktop/primary-parity-progress/heavy.lock /home/daniebo/Desktop/advantage-pr/scripts/jobs/heavy-run.sh --locked -c cd /home/daniebo/Desktop/rama-worktrees/storytime-entry-redesign && bash apps/storytime/__tests__/entry-browser-gate.sh > /tmp/st-entry-look2.log 2>&1; echo ENTRY_EXIT=$?; grep -E "^FAIL:|^=== Total:|screenshots=" /tmp/st-entry-look2.log | tail -10 
+
+> @math-platform/practice-core@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/practice-core
+
+
+ Test Files  21 passed (21)
+      Tests  263 passed (263)
+   Start at  00:46:56
+   Duration  2.63s (transform 141ms, setup 0ms, import 677ms, tests 135ms, environment 2ms)
+

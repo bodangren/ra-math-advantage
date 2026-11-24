@@ -1,0 +1,42 @@
+> @math-platform/activity-components@0.1.0 test
+ Test Files  52 passed (52)
+      Tests  310 passed (310)
+> @math-platform/activity-runtime@0.1.0 test
+ Test Files  3 passed (3)
+      Tests  37 passed (37)
+> @math-platform/ai-tutoring@0.1.0 test
+ Test Files  12 passed (12)
+      Tests  165 passed (165)
+> @math-platform/app-shell@0.1.0 test
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+> @math-platform/component-approval@0.1.0 test
+ Test Files  2 passed (2)
+      Tests  25 passed (25)
+> @math-platform/core-auth@0.1.0 test
+ Test Files  2 passed (2)
+      Tests  57 passed (57)
+> @math-platform/core-convex@0.1.0 test
+ Test Files  2 passed (2)
+      Tests  14 passed (14)
+> @math-platform/efficacy-core@0.1.0 test
+ Test Files  8 passed (8)
+      Tests  72 passed (72)
+> @math-platform/graphing-core@0.1.0 test
+ Test Files  5 passed (5)
+      Tests  79 passed (79)
+> @math-platform/knowledge-space-core@0.1.0 test
+ Test Files  54 passed (54)
+      Tests  701 passed (701)
+> @math-platform/knowledge-space-practice@0.1.0 test
+ Test Files  29 passed (29)
+      Tests  469 passed (469)
+> @math-platform/lesson-renderer@0.1.0 test
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+> @math-platform/math-content@0.1.0 test
+ FAIL  src/schemas/__tests__/quadratic-formula-activity.schema.test.ts > quadraticFormulaActivitySchema > registers the public quadratic-formula schema
+ FAIL  src/problem-families/im1/__tests__/scaffold.test.ts > IM1 scaffold — vertical-slice module coverage (Phase 2 Task 1) > vertical-slice module entries cover every module-1 skill from the rollout gap queue
+ Test Files  2 failed | 89 passed (91)
+      Tests  2 failed | 884 passed (886)
+EXIT=1

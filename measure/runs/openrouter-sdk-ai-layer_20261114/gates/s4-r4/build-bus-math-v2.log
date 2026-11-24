@@ -1,0 +1,1087 @@
+
+> build
+> tsx scripts/generate-workbook-manifest.ts && vinext build
+
+Generated workbook manifest with 71 files at /home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2/lib/workbooks-manifest.json
+[vinext] Tip: migrate from `vinext build` to `vite build`.
+The "middleware" file convention is deprecated. Please use "proxy" instead.
+
+  To migrate automatically, run:
+  npx @next/codemod@canary middleware-to-proxy .
+
+  Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+[34m[1/5] analyze client references...[39m
+[36mvite v8.3.8 [32mbuilding rsc environment for production...[36m[39m
+[warn] `manualChunks` option is ignored because the `codeSplitting` option is specified.
+transforming...
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Heart" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ChevronLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ChevronLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ChevronLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "BookOpen" in barrel export map
+✓ 4502 modules transformed.
+rendering chunks...
+Using secrets defined in .env.local
+[32m✓ built in 3.17s[39m
+[34m[2/5] analyze server references...[39m
+[36mvite v8.3.8 [32mbuilding ssr environment for production...[36m[39m
+transforming...
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ChevronLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "BookOpen" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ChevronLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Download" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "FileSpreadsheet" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ChevronRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ChevronLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "X" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Download" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowUp" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowUpDown" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ChevronRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "RotateCcw" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "RotateCcw" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "InfoIcon" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "DollarSign" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "RotateCcw" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "AlertTriangle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Download" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "RotateCcw" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Check" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowUp" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "BarChart3" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "FileDown" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "UserPlus" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Loader2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "SlidersHorizontal" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Users" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ExternalLink" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Brain" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "AlertTriangle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowUp" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowUp" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "RefreshCw" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "BookCheck" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Circle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "RefreshCw" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "MessageCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Target" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "AlertCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Play" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Check" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Printer" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Laptop" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "AlertTriangle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Loader2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Download" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "DollarSign" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "TrendingUp" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Presentation" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "DollarSign" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Lightbulb" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "DollarSign" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "AlertCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "AlertTriangle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Building2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Clock" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Coffee" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "AlertTriangle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "DollarSign" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "DollarSign" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Calculator" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowDownRight" in barrel export map
+✓ 3765 modules transformed.
+rendering chunks...
+[32m✓ built in 2.33s[39m
+[34m[3/5] build rsc environment...[39m
+[36mvite v8.3.8 [32mbuilding rsc environment for production...[36m[39m
+[warn] `manualChunks` option is ignored because the `codeSplitting` option is specified.
+transforming...
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Heart" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ChevronLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ChevronLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ChevronLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "BookOpen" in barrel export map
+✓ 4558 modules transformed.
+rendering chunks...
+Using secrets defined in .env.local
+computing gzip size...
+dist/server/__vinext_cacheability_manifest.js                                                                                                  0.02 kB
+dist/server/__vinext_cacheability_request_projection.js                                                                                        0.02 kB
+dist/server/__vinext_pregenerated_concrete_paths.js                                                                                            0.05 kB
+dist/server/.dev.vars                                                                                                                          0.16 kB
+dist/server/wrangler.json                                                                                                                      1.40 kB │ gzip:   0.73 kB
+dist/server/.vite/manifest.json                                                                                                               69.47 kB │ gzip:   7.62 kB
+dist/server/_next/static/css/Bt_Ll1tE.css                                                                                                    184.23 kB │ gzip:  26.99 kB
+dist/server/_next/static/constants-DqUYoDoh.js                                                                                                 0.03 kB │ gzip:   0.05 kB
+dist/server/_next/static/contract-EJgBOitQ.js                                                                                                  0.03 kB │ gzip:   0.05 kB
+dist/server/_next/static/navigation.react-server-COiMc9pe.js                                                                                   0.04 kB │ gzip:   0.06 kB
+dist/server/_next/static/cacheability-limits-BTpP4ZoO.js                                                                                       0.05 kB │ gzip:   0.07 kB
+dist/server/_next/static/page-CIQrsJvr.js                                                                                                      0.06 kB │ gzip:   0.08 kB
+dist/server/_next/static/websocket-upgrade-response-Br6dDtPT.js                                                                                0.06 kB │ gzip:   0.08 kB
+dist/server/_next/static/segment-labels-D6pzyfes.js                                                                                            0.08 kB │ gzip:   0.09 kB
+dist/server/_next/static/server-B2_8mcTl.js                                                                                                    0.08 kB │ gzip:   0.09 kB
+dist/server/_next/static/work-unit-async-storage-DfLYVwR3.js                                                                                   0.13 kB │ gzip:   0.13 kB
+dist/server/_next/static/navigation-DSXtQ_NI.js                                                                                                0.14 kB │ gzip:   0.11 kB
+dist/server/_next/static/page-Roi9sUJD.js                                                                                                      0.14 kB │ gzip:   0.13 kB
+dist/server/_next/static/chevron-left-D5plc6MI.js                                                                                              0.17 kB │ gzip:   0.17 kB
+dist/server/_next/static/link-DliVSpgn.js                                                                                                      0.17 kB │ gzip:   0.16 kB
+dist/server/_next/static/carousel-DWndt64S.js                                                                                                  0.17 kB │ gzip:   0.16 kB
+dist/server/_next/static/error-BxjKeON5.js                                                                                                     0.18 kB │ gzip:   0.16 kB
+dist/server/_next/static/error-W9f3aZMO.js                                                                                                     0.18 kB │ gzip:   0.16 kB
+dist/server/_next/static/error-vCV5nveS.js                                                                                                     0.18 kB │ gzip:   0.16 kB
+dist/server/_next/static/page-BTtd0G3t.js                                                                                                      0.18 kB │ gzip:   0.16 kB
+dist/server/_next/static/page-BYT0HXfi.js                                                                                                      0.18 kB │ gzip:   0.16 kB
+dist/server/_next/static/page-CtNRgowK.js                                                                                                      0.18 kB │ gzip:   0.16 kB
+dist/server/_next/static/page-DLe0ndFl.js                                                                                                      0.18 kB │ gzip:   0.16 kB
+dist/server/_next/static/page-DpN2Fjou.js                                                                                                      0.18 kB │ gzip:   0.16 kB
+dist/server/_next/static/page-Dx-8w2Gg.js                                                                                                      0.18 kB │ gzip:   0.15 kB
+dist/server/_next/static/arrow-right-CuTeAytk.js                                                                                               0.20 kB │ gzip:   0.18 kB
+dist/server/_next/static/route-B_nifVlD.js                                                                                                     0.20 kB │ gzip:   0.17 kB
+dist/server/_next/static/route-Oal8jiXL.js                                                                                                     0.23 kB │ gzip:   0.19 kB
+dist/server/_next/static/framework~index-D0jyfw49.js                                                                                           0.24 kB │ gzip:   0.16 kB
+dist/server/_next/static/compare-c1f121CO.js                                                                                                   0.24 kB │ gzip:   0.17 kB
+dist/server/_next/static/route-CahSxQ6n.js                                                                                                     0.29 kB │ gzip:   0.23 kB
+dist/server/_next/static/route-BHOYA9pL.js                                                                                                     0.30 kB │ gzip:   0.23 kB
+dist/server/_next/static/client-trace-metadata-DUR2PiYt.js                                                                                     0.34 kB │ gzip:   0.21 kB
+dist/server/_next/static/revalidation-request-D7kjvNza.js                                                                                      0.35 kB │ gzip:   0.24 kB
+dist/server/_next/static/base-path-DhuerTYQ.js                                                                                                 0.37 kB │ gzip:   0.24 kB
+dist/server/_next/static/asset-prefix-DG5zdfn4.js                                                                                              0.39 kB │ gzip:   0.24 kB
+dist/server/_next/static/hash-lY2-Pf5M.js                                                                                                      0.43 kB │ gzip:   0.28 kB
+dist/server/_next/static/isolate-shared-promise-ETr9WF6Q.js                                                                                    0.45 kB │ gzip:   0.29 kB
+dist/server/_next/static/page-DDq6tBeg.js                                                                                                      0.47 kB │ gzip:   0.31 kB
+dist/server/_next/static/page-Bd3DaZmh.js                                                                                                      0.47 kB │ gzip:   0.31 kB
+dist/server/_next/static/page-BG9sKpEV.js                                                                                                      0.47 kB │ gzip:   0.31 kB
+dist/server/_next/static/page-GMotNoC1.js                                                                                                      0.47 kB │ gzip:   0.31 kB
+dist/server/_next/static/page-DHaQ-is9.js                                                                                                      0.48 kB │ gzip:   0.32 kB
+dist/server/_next/static/page-DJHC7hHU.js                                                                                                      0.48 kB │ gzip:   0.31 kB
+dist/server/_next/static/page-c7qD57I4.js                                                                                                      0.48 kB │ gzip:   0.32 kB
+dist/server/_next/static/prerender-cache-life-header-BRHgJ1G3.js                                                                               0.49 kB │ gzip:   0.29 kB
+dist/server/_next/static/page-D7poGU9E.js                                                                                                      0.50 kB │ gzip:   0.32 kB
+dist/server/_next/static/route-U_CpVSZF.js                                                                                                     0.50 kB │ gzip:   0.35 kB
+dist/server/_next/static/page-ColVfwEQ.js                                                                                                      0.50 kB │ gzip:   0.33 kB
+dist/server/_next/static/als-registry-Ca9CZnfN.js                                                                                              0.53 kB │ gzip:   0.31 kB
+dist/server/_next/static/page-CRR1UVBE.js                                                                                                      0.53 kB │ gzip:   0.33 kB
+dist/server/_next/static/route-COUZY1Xq.js                                                                                                     0.57 kB │ gzip:   0.38 kB
+dist/server/_next/static/request-context-BOsk2-tl.js                                                                                           0.59 kB │ gzip:   0.38 kB
+dist/server/_next/static/server-Co0oxsOe.js                                                                                                    0.65 kB │ gzip:   0.41 kB
+dist/server/_next/static/config-headers-fGk7fsXm.js                                                                                            0.67 kB │ gzip:   0.42 kB
+dist/server/_next/static/navigation-errors-DAOpTDSc.js                                                                                         0.68 kB │ gzip:   0.42 kB
+dist/server/_next/static/page-DjXFRWXO.js                                                                                                      0.69 kB │ gzip:   0.43 kB
+dist/server/_next/static/page-8jgM5EpH.js                                                                                                      0.71 kB │ gzip:   0.42 kB
+dist/server/_next/static/page-BS4V71Dk.js                                                                                                      0.71 kB │ gzip:   0.45 kB
+dist/server/_next/static/page-Cq948PIP.js                                                                                                      0.71 kB │ gzip:   0.43 kB
+dist/server/_next/static/dist-Bk_6Kxep.js                                                                                                      0.75 kB │ gzip:   0.41 kB
+dist/server/_next/static/isr-decision-Cv6rnjY0.js                                                                                              0.76 kB │ gzip:   0.36 kB
+dist/server/_next/static/implicit-tags-CYrCCDaI.js                                                                                             0.78 kB │ gzip:   0.45 kB
+dist/server/_next/static/page-_m0XEo51.js                                                                                                      0.79 kB │ gzip:   0.42 kB
+dist/server/_next/static/utils-JoVumalc.js                                                                                                     0.80 kB │ gzip:   0.36 kB
+dist/server/_next/static/root-params-DtZ8qA02.js                                                                                               0.81 kB │ gzip:   0.46 kB
+dist/server/_next/static/page-CmH3paMP.js                                                                                                      0.81 kB │ gzip:   0.44 kB
+dist/server/_next/static/route-DZd-lQZI.js                                                                                                     0.81 kB │ gzip:   0.47 kB
+dist/server/_next/static/framework~index~page~page~page~page~page~page~page~page~layout~page~page~loading~page~page~~lur40oi5-DbeafLO4.js      0.82 kB │ gzip:   0.52 kB
+dist/server/_next/static/worker-prerender-discovery-ZjYteAYY.js                                                                                0.83 kB │ gzip:   0.48 kB
+dist/server/_next/static/page-bcpOLgBu.js                                                                                                      0.83 kB │ gzip:   0.47 kB
+dist/server/_next/static/route-95oQvmdF.js                                                                                                     0.84 kB │ gzip:   0.48 kB
+dist/server/_next/static/page-D6r0PA0s.js                                                                                                      0.84 kB │ gzip:   0.42 kB
+dist/server/_next/static/route-DAn3QJTm.js                                                                                                     0.84 kB │ gzip:   0.49 kB
+dist/server/_next/static/route-B0e4cxVh.js                                                                                                     0.86 kB │ gzip:   0.50 kB
+dist/server/_next/static/student-accounts-DWeNLSQR.js                                                                                          0.90 kB │ gzip:   0.41 kB
+dist/server/_next/static/rolldown-runtime-BWaJ3C7D.js                                                                                          0.91 kB │ gzip:   0.51 kB
+dist/server/_next/static/app-static-generation-BX8cz43B.js                                                                                     0.91 kB │ gzip:   0.51 kB
+dist/server/_next/static/page-nAFSoRe9.js                                                                                                      0.92 kB │ gzip:   0.48 kB
+dist/server/_next/static/navigation-context-state-DSJVr46f.js                                                                                  0.93 kB │ gzip:   0.44 kB
+dist/server/_next/static/app-action-request-verHfK6N.js                                                                                        0.94 kB │ gzip:   0.52 kB
+dist/server/_next/static/http-error-responses-B2gV-Vqb.js                                                                                      0.95 kB │ gzip:   0.42 kB
+dist/server/_next/static/route-BiVR1ZIC.js                                                                                                     0.98 kB │ gzip:   0.52 kB
+dist/server/_next/static/route-CGBs69AR.js                                                                                                     0.98 kB │ gzip:   0.49 kB
+dist/server/_next/static/createLucideIcon-DRc5SJYU.js                                                                                          1.02 kB │ gzip:   0.62 kB
+dist/server/_next/static/route-DDQqMKWY.js                                                                                                     1.22 kB │ gzip:   0.68 kB
+dist/server/_next/static/middleware-response-headers-DBycCSfk.js                                                                               1.27 kB │ gzip:   0.66 kB
+dist/server/_next/static/cdn-cache-DSvi6k_H.js                                                                                                 1.29 kB │ gzip:   0.70 kB
+dist/server/_next/static/route-BMrYoZZ0.js                                                                                                     1.32 kB │ gzip:   0.67 kB
+dist/server/_next/static/route-DJusTnoc.js                                                                                                     1.37 kB │ gzip:   0.65 kB
+dist/server/_next/static/dashboard-VQb_DImb.js                                                                                                 1.41 kB │ gzip:   0.56 kB
+dist/server/_next/static/route-BQjia8Np.js                                                                                                     1.44 kB │ gzip:   0.60 kB
+dist/server/_next/static/route-DdT7zV2K.js                                                                                                     1.44 kB │ gzip:   0.68 kB
+dist/server/_next/static/route-Do0hUA5E.js                                                                                                     1.45 kB │ gzip:   0.78 kB
+dist/server/_next/static/route-B6yF8zPs.js                                                                                                     1.48 kB │ gzip:   0.70 kB
+dist/server/_next/static/route-CSoC9sU1.js                                                                                                     1.49 kB │ gzip:   0.67 kB
+dist/server/_next/static/route-BMCOwB7c.js                                                                                                     1.50 kB │ gzip:   0.74 kB
+dist/server/_next/static/published-lesson-presentation-2MFhOzN6.js                                                                             1.50 kB │ gzip:   0.65 kB
+dist/server/_next/static/page-CRvpSCkf.js                                                                                                      1.51 kB │ gzip:   0.74 kB
+dist/server/_next/static/page-ByKrnS0p.js                                                                                                      1.56 kB │ gzip:   0.67 kB
+dist/server/_next/static/loading-C3oWEKTh.js                                                                                                   1.62 kB │ gzip:   0.42 kB
+dist/server/_next/static/badge-jAjH1VrE.js                                                                                                     1.62 kB │ gzip:   0.78 kB
+dist/server/_next/static/page-CvMhne9Z.js                                                                                                      1.65 kB │ gzip:   0.82 kB
+dist/server/_next/static/page-VryHSHlY.js                                                                                                      1.65 kB │ gzip:   0.78 kB
+dist/server/_next/static/app-prerender-static-params-Da_LrSS9.js                                                                               1.65 kB │ gzip:   0.72 kB
+dist/server/_next/static/route-CC__Yq2A.js                                                                                                     1.67 kB │ gzip:   0.73 kB
+dist/server/_next/static/app-page-segment-state-DlZunaTL.js                                                                                    1.68 kB │ gzip:   0.76 kB
+dist/server/_next/static/middleware-request-headers-CgjXJ-L3.js                                                                                1.79 kB │ gzip:   0.82 kB
+dist/server/_next/static/page-DNWFoOwz.js                                                                                                      1.81 kB │ gzip:   0.91 kB
+dist/server/_next/static/route-C6Z7N7SE.js                                                                                                     1.82 kB │ gzip:   0.81 kB
+dist/server/_next/static/route-iIbIYP-Z.js                                                                                                     1.88 kB │ gzip:   0.93 kB
+dist/server/_next/static/worker-image-optimization-zYRSyEho.js                                                                                 2.07 kB │ gzip:   1.01 kB
+dist/server/_next/static/route-pattern-BLvVlmk6.js                                                                                             2.18 kB │ gzip:   0.83 kB
+dist/server/_next/static/ppr-fallback-shell-Bsn4mtxE.js                                                                                        2.19 kB │ gzip:   0.96 kB
+dist/server/_next/static/route-BM375XeC.js                                                                                                     2.26 kB │ gzip:   0.97 kB
+dist/server/_next/static/session-CxyPpS_w.js                                                                                                   2.34 kB │ gzip:   1.11 kB
+dist/server/_next/static/page-CINwdiVX.js                                                                                                      2.38 kB │ gzip:   1.04 kB
+dist/server/_next/static/route-DvnHowP8.js                                                                                                     2.39 kB │ gzip:   1.06 kB
+dist/server/_next/static/route-aU-zsTMs.js                                                                                                     2.42 kB │ gzip:   0.77 kB
+dist/server/_next/static/app-prerender-endpoints-TpoZGli0.js                                                                                   2.56 kB │ gzip:   1.02 kB
+dist/server/_next/static/headers-Dp8euWUq.js                                                                                                   2.70 kB │ gzip:   1.12 kB
+dist/server/_next/static/server-D9LPEXvN.js                                                                                                    2.72 kB │ gzip:   1.07 kB
+dist/server/_next/static/structured-WV6g-ugm.js                                                                                                2.77 kB │ gzip:   1.26 kB
+dist/server/_next/static/thenable-params-5ZJepzCX.js                                                                                           2.78 kB │ gzip:   1.05 kB
+dist/server/_next/static/route-Wmia4cZ6.js                                                                                                     2.80 kB │ gzip:   0.96 kB
+dist/server/_next/static/app-page-cache-render-DQEC1iA5.js                                                                                     2.91 kB │ gzip:   1.29 kB
+dist/server/_next/static/page-3MraRfEN.js                                                                                                      3.14 kB │ gzip:   1.01 kB
+dist/server/_next/static/next-error-digest-Cuzrb2Dy.js                                                                                         3.25 kB │ gzip:   1.39 kB
+dist/server/_next/static/isr-cache-DptYRyF4.js                                                                                                 3.44 kB │ gzip:   1.66 kB
+dist/server/_next/static/contract-Br7vEluZ.js                                                                                                  3.55 kB │ gzip:   1.26 kB
+dist/server/_next/static/route-Bel0d6uf.js                                                                                                     3.74 kB │ gzip:   1.45 kB
+dist/server/_next/static/metadata-routes-Co3fVXwC.js                                                                                           4.15 kB │ gzip:   1.51 kB
+dist/server/_next/static/request-pipeline-BLH-lEtz.js                                                                                          4.21 kB │ gzip:   1.73 kB
+dist/server/_next/static/cache-headers-DIiXkmsk.js                                                                                             4.40 kB │ gzip:   1.77 kB
+dist/server/_next/static/cache-handler-48CvfaEa.js                                                                                             4.43 kB │ gzip:   1.63 kB
+dist/server/_next/static/cache-control-CkAI0kwV.js                                                                                             4.47 kB │ gzip:   1.76 kB
+dist/server/_next/static/app-page-tracing-BIZEGSsi.js                                                                                          4.57 kB │ gzip:   2.26 kB
+dist/server/_next/static/unified-request-context-DrSvrtHO.js                                                                                   4.84 kB │ gzip:   1.93 kB
+dist/server/_next/static/layout-BaBvK8tL.js                                                                                                    5.16 kB │ gzip:   2.11 kB
+dist/server/_next/static/page-PvjYdluP.js                                                                                                      5.30 kB │ gzip:   1.95 kB
+dist/server/_next/static/framework~index~page~page~route~page~page~page~page~page~page~page~page~page~page~page~page~eregajpe-D4dlXqt_.js      5.71 kB │ gzip:   2.35 kB
+dist/server/_next/static/page-CXQW9slg.js                                                                                                      6.05 kB │ gzip:   1.56 kB
+dist/server/_next/static/NextLessonCard-M6rHwCJo.js                                                                                            6.18 kB │ gzip:   2.57 kB
+dist/server/_next/static/page-D02HuJVo.js                                                                                                      6.39 kB │ gzip:   2.35 kB
+dist/server/_next/static/file-based-metadata-NI2OvNWP.js                                                                                       6.74 kB │ gzip:   2.49 kB
+dist/server/_next/static/response-stage-policy-Cpqnrw7B.js                                                                                     6.91 kB │ gzip:   2.40 kB
+dist/server/_next/static/app-rsc-response-stage-CJixXj4N.js                                                                                    7.62 kB │ gzip:   2.65 kB
+dist/server/_next/static/route-miss-response-BKnDxeEU.js                                                                                       7.94 kB │ gzip:   2.71 kB
+dist/server/_next/static/page-CubREkM8.js                                                                                                      8.16 kB │ gzip:   2.67 kB
+dist/server/_next/static/page-BEbXb6gO.js                                                                                                      8.16 kB │ gzip:   2.65 kB
+dist/server/_next/static/app-page-cache-B7Z003fY.js                                                                                            8.19 kB │ gzip:   2.84 kB
+dist/server/_next/static/app-worker-stages-Dl-l0otB.js                                                                                         8.24 kB │ gzip:   3.31 kB
+dist/server/_next/static/page-DeVz2xSV.js                                                                                                      8.28 kB │ gzip:   2.18 kB
+dist/server/_next/static/route-CqNHwbNQ.js                                                                                                     8.71 kB │ gzip:   3.21 kB
+dist/server/_next/static/route-Cy2kW3Ty.js                                                                                                     8.84 kB │ gzip:   3.73 kB
+dist/server/_next/static/page-221a57d4.js                                                                                                      8.91 kB │ gzip:   2.86 kB
+dist/server/_next/static/app-page-cache-finalizer-CSNvd3MH.js                                                                                  9.81 kB │ gzip:   3.37 kB
+dist/server/_next/static/config-matchers-mGUBCKKS.js                                                                                          10.10 kB │ gzip:   4.14 kB
+dist/server/_next/static/page-Bq_8uiRv.js                                                                                                     10.45 kB │ gzip:   3.27 kB
+dist/server/_next/static/cacheability-request-BKyq66vy.js                                                                                     10.89 kB │ gzip:   3.78 kB
+dist/server/_next/static/app-route-handler-dispatch-CTPJCM2y.js                                                                               10.93 kB │ gzip:   4.09 kB
+dist/server/_next/static/app-page-request-DGg_pmFD.js                                                                                         11.79 kB │ gzip:   3.82 kB
+dist/server/_next/static/glossary-BbSfKYae.js                                                                                                 12.16 kB │ gzip:   4.19 kB
+dist/server/_next/static/metadata-route-response-DvxNR4yI.js                                                                                  12.59 kB │ gzip:   4.43 kB
+dist/server/_next/static/app-page-execution-DF3Ae3J_.js                                                                                       12.71 kB │ gzip:   4.53 kB
+dist/server/_next/static/client-build-files-D-bv2ukL.js                                                                                       12.91 kB │ gzip:   5.25 kB
+dist/server/_next/static/headers-DVdQp-RB.js                                                                                                  13.88 kB │ gzip:   4.77 kB
+dist/server/_next/static/src-xQ_bVpy5.js                                                                                                      18.53 kB │ gzip:   6.22 kB
+dist/server/_next/static/text-stream-BlqphMn_.js                                                                                              19.63 kB │ gzip:   6.18 kB
+dist/server/_next/static/app-route-handler-execution-CvAL1oC_.js                                                                              21.72 kB │ gzip:   7.24 kB
+dist/server/_next/static/fetch-cache-Y9jZTYlI.js                                                                                              24.53 kB │ gzip:   8.50 kB
+dist/server/_next/static/page-DUigzM5k.js                                                                                                     24.83 kB │ gzip:   7.55 kB
+dist/server/_next/static/apiRateLimits-jugA5oG6.js                                                                                            27.35 kB │ gzip:   7.35 kB
+dist/server/_next/static/card-D178Yi69.js                                                                                                     30.14 kB │ gzip:   9.55 kB
+dist/server/_next/static/server-BsmYiy-4.js                                                                                                   33.51 kB │ gzip:  12.99 kB
+dist/server/_next/static/framework~index~page~page~page~page~page~page~page~page~page~page~page~layout~page~page~err~n7q2oin6-CGnLp5dM.js     56.39 kB │ gzip:  17.16 kB
+dist/server/_next/static/route-B_Xb50mw.js                                                                                                    81.74 kB │ gzip:  22.10 kB
+dist/server/_next/static/schemas-7OkBEgux.js                                                                                                 102.36 kB │ gzip:  28.58 kB
+dist/server/_next/static/page-PklNjMgy.js                                                                                                    281.20 kB │ gzip:  53.06 kB
+dist/server/_next/static/route-s3z19lPx.js                                                                                                   303.60 kB │ gzip:  88.95 kB
+dist/server/_next/static/published-manifest-BVRShJVt.js                                                                                      311.65 kB │ gzip:  83.60 kB
+dist/server/_next/static/lesson-assets-GKjBYnfT.js                                                                                           677.85 kB │ gzip: 269.08 kB
+dist/server/_next/static/src-nA6h1sTD.js                                                                                                     843.47 kB │ gzip: 138.28 kB
+dist/server/index.js                                                                                                                       1,182.08 kB │ gzip: 669.27 kB
+
+[32m✓ built in 4.24s[39m
+[34m[4/5] build client environment...[39m
+[36mvite v8.3.8 [32mbuilding client environment for production...[36m[39m
+[warn] `manualChunks` option is ignored because the `codeSplitting` option is specified.
+[33m`output.codeSplitting.groups[0].name` is a function. Set `output.codeSplitting.groups[0].debugName` so the bundler timing report can identify this group.[39m
+[33m`output.codeSplitting.groups[1].name` is a function. Set `output.codeSplitting.groups[1].debugName` so the bundler timing report can identify this group.[39m
+[33m`output.codeSplitting.groups[2].name` is a function. Set `output.codeSplitting.groups[2].debugName` so the bundler timing report can identify this group.[39m
+transforming...
+✓ 3961 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/client/.assetsignore                                                  0.02 kB
+dist/client/_next/static/media/KaTeX_Size3-Regular.gV2CO0n9.woff2          3.62 kB
+dist/client/_next/static/media/KaTeX_Size3-Regular.CTq5MqoE.woff           4.42 kB
+dist/client/.vite/vinext-client-reference-sources.json                     4.77 kB │ gzip:   1.28 kB
+dist/client/_next/static/media/KaTeX_Size4-Regular.Dl5lxZxV.woff2          4.92 kB
+dist/client/_next/static/media/KaTeX_Size2-Regular.Dy4dx90m.woff2          5.20 kB
+dist/client/_next/static/media/KaTeX_Size1-Regular.mCD8mA8B.woff2          5.46 kB
+dist/client/_next/static/media/KaTeX_Size4-Regular.BF-4gkZK.woff           5.98 kB
+dist/client/_next/static/media/KaTeX_Size2-Regular.oD1tc_U0.woff           6.18 kB
+dist/client/_next/static/media/KaTeX_Size1-Regular.C195tn64.woff           6.49 kB
+dist/client/_next/static/media/KaTeX_Caligraphic-Regular.Di6jR-x-.woff2    6.90 kB
+dist/client/_next/static/media/KaTeX_Caligraphic-Bold.Dq_IR9rO.woff2       6.91 kB
+dist/client/_next/static/media/KaTeX_Size3-Regular.DgpXs0kz.ttf            7.58 kB
+dist/client/_next/static/media/KaTeX_Caligraphic-Regular.CTRA-rTL.woff     7.65 kB
+dist/client/_next/static/media/KaTeX_Caligraphic-Bold.BEiXGLvX.woff        7.71 kB
+dist/client/_next/static/media/KaTeX_Script-Regular.D3wIWfF6.woff2         9.64 kB
+dist/client/_next/static/media/KaTeX_SansSerif-Regular.DDBCnlJ7.woff2     10.34 kB
+dist/client/_next/static/media/KaTeX_Size4-Regular.DWFBv043.ttf           10.36 kB
+dist/client/_next/static/media/KaTeX_Script-Regular.D5yQViql.woff         10.58 kB
+dist/client/_next/static/media/KaTeX_Fraktur-Regular.CTYiF6lA.woff2       11.31 kB
+dist/client/_next/static/media/KaTeX_Fraktur-Bold.CL6g_b3V.woff2          11.34 kB
+dist/client/_next/static/media/KaTeX_Size2-Regular.B7gKUWhC.ttf           11.50 kB
+dist/client/_next/static/media/KaTeX_SansSerif-Italic.C3H0VqGB.woff2      12.02 kB
+dist/client/_next/static/media/KaTeX_SansSerif-Bold.D1sUS0GD.woff2        12.21 kB
+dist/client/_next/static/media/KaTeX_Size1-Regular.Dbsnue_I.ttf           12.22 kB
+dist/client/_next/static/media/KaTeX_SansSerif-Regular.CS6fqUqJ.woff      12.31 kB
+dist/client/_next/static/media/KaTeX_Caligraphic-Regular.wX97UBjC.ttf     12.34 kB
+dist/client/_next/static/media/KaTeX_Caligraphic-Bold.ATXxdsX0.ttf        12.36 kB
+dist/client/_next/static/media/KaTeX_Fraktur-Regular.Dxdc4cR9.woff        13.20 kB
+dist/client/_next/static/media/KaTeX_Fraktur-Bold.BsDP51OF.woff           13.29 kB
+dist/client/_next/static/media/KaTeX_Typewriter-Regular.CO6r4hn1.woff2    13.56 kB
+dist/client/_next/static/media/KaTeX_SansSerif-Italic.DN2j7dab.woff       14.11 kB
+dist/client/_next/static/media/KaTeX_SansSerif-Bold.DbIhKOiC.woff         14.40 kB
+dist/client/_next/static/media/KaTeX_Typewriter-Regular.C0xS9mPB.woff     16.02 kB
+dist/client/_next/static/media/KaTeX_Math-BoldItalic.CZnvNsCZ.woff2       16.40 kB
+dist/client/_next/static/media/KaTeX_Math-Italic.t53AETM-.woff2           16.44 kB
+dist/client/_next/static/media/KaTeX_Script-Regular.C5JkGWo-.ttf          16.64 kB
+dist/client/_next/static/media/KaTeX_Main-BoldItalic.DxDJ3AOS.woff2       16.78 kB
+dist/client/_next/static/media/KaTeX_Main-Italic.NWA7e6Wa.woff2           16.98 kB
+dist/client/_next/static/media/KaTeX_Math-BoldItalic.iY-2wyZ7.woff        18.66 kB
+dist/client/_next/static/media/KaTeX_Math-Italic.DA0__PXp.woff            18.74 kB
+dist/client/_next/static/media/KaTeX_Main-BoldItalic.SpSLRI95.woff        19.41 kB
+dist/client/_next/static/media/KaTeX_SansSerif-Regular.BNo7hRIc.ttf       19.43 kB
+dist/client/_next/static/media/KaTeX_Fraktur-Regular.CB_wures.ttf         19.57 kB
+dist/client/_next/static/media/KaTeX_Fraktur-Bold.BdnERNNW.ttf            19.58 kB
+dist/client/_next/static/media/KaTeX_Main-Italic.BMLOBm91.woff            19.67 kB
+dist/client/_next/static/media/KaTeX_SansSerif-Italic.YYjJ1zSn.ttf        22.36 kB
+dist/client/_next/static/media/KaTeX_SansSerif-Bold.CFMepnvq.ttf          24.50 kB
+dist/client/_next/static/media/KaTeX_Main-Bold.Cx986IdX.woff2             25.32 kB
+dist/client/_next/static/media/KaTeX_Main-Regular.B22Nviop.woff2          26.27 kB
+dist/client/_next/static/media/KaTeX_Typewriter-Regular.D3Ib7_Hf.ttf      27.55 kB
+dist/client/_next/static/media/KaTeX_AMS-Regular.BQhdFMY1.woff2           28.07 kB
+dist/client/_next/static/media/KaTeX_Main-Bold.Jm3AIy58.woff              29.91 kB
+dist/client/_next/static/media/KaTeX_Main-Regular.Dr94JaBh.woff           30.77 kB
+dist/client/vinext-client-entry-manifest.json                             30.97 kB │ gzip:   2.90 kB
+dist/client/_next/static/media/KaTeX_Math-BoldItalic.B3XSjfu4.ttf         31.19 kB
+dist/client/_next/static/media/KaTeX_Math-Italic.flOr_0UB.ttf             31.30 kB
+dist/client/_next/static/media/KaTeX_Main-BoldItalic.DzxPMmG6.ttf         32.96 kB
+dist/client/_next/static/media/KaTeX_AMS-Regular.DMm9YOAa.woff            33.51 kB
+dist/client/_next/static/media/KaTeX_Main-Italic.3WenGoN9.ttf             33.58 kB
+dist/client/_next/static/media/KaTeX_Main-Bold.waoOVXN0.ttf               51.33 kB
+dist/client/_next/static/media/KaTeX_Main-Regular.ypZvNtVU.ttf            53.58 kB
+dist/client/_next/static/media/KaTeX_AMS-Regular.DRggAlZN.ttf             63.63 kB
+dist/client/.vite/manifest.json                                          107.28 kB │ gzip:  11.57 kB
+dist/client/_next/static/css/DFJfPE9s.css                                 25.70 kB │ gzip:   4.03 kB
+dist/client/_next/static/css/Bt_Ll1tE.css                                184.23 kB │ gzip:  26.99 kB
+dist/client/_next/static/chunks/BZfGHMDv.js                                0.02 kB │ gzip:   0.04 kB
+dist/client/_next/static/chunks/CrlkGLHv.js                                0.02 kB │ gzip:   0.04 kB
+dist/client/_next/static/chunks/Dfvzj6n2.js                                0.03 kB │ gzip:   0.05 kB
+dist/client/_next/static/chunks/CJ8DkyL-.js                                0.05 kB │ gzip:   0.07 kB
+dist/client/_next/static/chunks/DlM-QS-S.js                                0.05 kB │ gzip:   0.07 kB
+dist/client/_next/static/chunks/g7dhuT6g.js                                0.05 kB │ gzip:   0.07 kB
+dist/client/_next/static/chunks/DOIR8fcw.js                                0.06 kB │ gzip:   0.08 kB
+dist/client/_next/static/chunks/Bg3y_JCt.js                                0.06 kB │ gzip:   0.08 kB
+dist/client/_next/static/chunks/DAgVlS84.js                                0.07 kB │ gzip:   0.09 kB
+dist/client/_next/static/chunks/DlJT_5Bh.js                                0.07 kB │ gzip:   0.08 kB
+dist/client/_next/static/chunks/Oo0sitdq.js                                0.08 kB │ gzip:   0.10 kB
+dist/client/_next/static/chunks/D6pzyfes.js                                0.08 kB │ gzip:   0.09 kB
+dist/client/_next/static/chunks/DM1W_e6Z.js                                0.09 kB │ gzip:   0.10 kB
+dist/client/_next/static/chunks/C19Bft5N.js                                0.09 kB │ gzip:   0.11 kB
+dist/client/_next/static/chunks/Cmvo8ek8.js                                0.10 kB │ gzip:   0.11 kB
+dist/client/_next/static/chunks/DqgDv7J6.js                                0.10 kB │ gzip:   0.10 kB
+dist/client/_next/static/chunks/DMRxXX5a.js                                0.10 kB │ gzip:   0.09 kB
+dist/client/_next/static/chunks/76tFOoUt.js                                0.10 kB │ gzip:   0.11 kB
+dist/client/_next/static/chunks/C1RZc9Qk.js                                0.10 kB │ gzip:   0.11 kB
+dist/client/_next/static/chunks/DCNOIZ5A.js                                0.10 kB │ gzip:   0.11 kB
+dist/client/_next/static/chunks/kMFMLh4S.js                                0.11 kB │ gzip:   0.11 kB
+dist/client/_next/static/chunks/DPS11P3E.js                                0.11 kB │ gzip:   0.12 kB
+dist/client/_next/static/chunks/BKay6Hp3.js                                0.11 kB │ gzip:   0.12 kB
+dist/client/_next/static/chunks/DhgFPDgR.js                                0.11 kB │ gzip:   0.12 kB
+dist/client/_next/static/chunks/CEmn1qF4.js                                0.12 kB │ gzip:   0.13 kB
+dist/client/_next/static/chunks/EVRe7_eT.js                                0.13 kB │ gzip:   0.13 kB
+dist/client/_next/static/chunks/D6_5hoj-.js                                0.13 kB │ gzip:   0.12 kB
+dist/client/_next/static/chunks/DSPidx-O.js                                0.14 kB │ gzip:   0.12 kB
+dist/client/_next/static/chunks/DKe8Z_Ue.js                                0.14 kB │ gzip:   0.15 kB
+dist/client/_next/static/chunks/BEsYcjvZ.js                                0.15 kB │ gzip:   0.15 kB
+dist/client/_next/static/chunks/fnlHGszf.js                                0.15 kB │ gzip:   0.15 kB
+dist/client/_next/static/chunks/DNNVGIXp.js                                0.15 kB │ gzip:   0.15 kB
+dist/client/_next/static/chunks/DfteRBdn.js                                0.15 kB │ gzip:   0.15 kB
+dist/client/_next/static/chunks/WeX48sT6.js                                0.15 kB │ gzip:   0.15 kB
+dist/client/_next/static/chunks/CwoEnZjQ.js                                0.17 kB │ gzip:   0.16 kB
+dist/client/_next/static/chunks/BQeujMCK.js                                0.18 kB │ gzip:   0.17 kB
+dist/client/_next/static/chunks/BFZsXKbF.js                                0.18 kB │ gzip:   0.18 kB
+dist/client/_next/static/chunks/By5MywBH.js                                0.18 kB │ gzip:   0.17 kB
+dist/client/_next/static/chunks/CnJ7GHgY.js                                0.18 kB │ gzip:   0.17 kB
+dist/client/_next/static/chunks/DtBgQJkI.js                                0.19 kB │ gzip:   0.18 kB
+dist/client/_next/static/chunks/2sM8HQ4G.js                                0.19 kB │ gzip:   0.18 kB
+dist/client/_next/static/chunks/DTH2mYuu.js                                0.20 kB │ gzip:   0.18 kB
+dist/client/_next/static/chunks/DLYx_Qj_.js                                0.21 kB │ gzip:   0.19 kB
+dist/client/_next/static/chunks/95mOnZtb.js                                0.21 kB │ gzip:   0.19 kB
+dist/client/_next/static/chunks/BhImnG5d.js                                0.21 kB │ gzip:   0.18 kB
+dist/client/_next/static/chunks/DLzEFimg.js                                0.21 kB │ gzip:   0.19 kB
+dist/client/_next/static/chunks/C9k3lPoU.js                                0.22 kB │ gzip:   0.20 kB
+dist/client/_next/static/chunks/BidFNWmk.js                                0.22 kB │ gzip:   0.19 kB
+dist/client/_next/static/chunks/CP2LbwfK.js                                0.23 kB │ gzip:   0.20 kB
+dist/client/_next/static/chunks/B0TxrGvq.js                                0.23 kB │ gzip:   0.20 kB
+dist/client/_next/static/chunks/BWbC1QeE.js                                0.24 kB │ gzip:   0.20 kB
+dist/client/_next/static/chunks/xKjvKjjD.js                                0.24 kB │ gzip:   0.21 kB
+dist/client/_next/static/chunks/Cdn3MSNr.js                                0.24 kB │ gzip:   0.17 kB
+dist/client/_next/static/chunks/Ds9ms7YH.js                                0.24 kB │ gzip:   0.21 kB
+dist/client/_next/static/chunks/DVNYHgLl.js                                0.24 kB │ gzip:   0.17 kB
+dist/client/_next/static/chunks/C9vmxzOQ.js                                0.25 kB │ gzip:   0.20 kB
+dist/client/_next/static/chunks/82FRgyOE.js                                0.25 kB │ gzip:   0.20 kB
+dist/client/_next/static/chunks/DX9M3H9H.js                                0.26 kB │ gzip:   0.20 kB
+dist/client/_next/static/chunks/C0pG8Ytp.js                                0.27 kB │ gzip:   0.21 kB
+dist/client/_next/static/chunks/CpIW9mbR.js                                0.27 kB │ gzip:   0.21 kB
+dist/client/_next/static/chunks/C0OOjcPf.js                                0.28 kB │ gzip:   0.23 kB
+dist/client/_next/static/chunks/Dp0UT2Ns.js                                0.28 kB │ gzip:   0.23 kB
+dist/client/_next/static/chunks/DahdBsUf.js                                0.29 kB │ gzip:   0.23 kB
+dist/client/_next/static/chunks/MB3zCwnP.js                                0.29 kB │ gzip:   0.22 kB
+dist/client/_next/static/chunks/Dnu-kqUA.js                                0.30 kB │ gzip:   0.24 kB
+dist/client/_next/static/chunks/CQSVOnJe.js                                0.30 kB │ gzip:   0.24 kB
+dist/client/_next/static/chunks/DwoIts_o.js                                0.31 kB │ gzip:   0.23 kB
+dist/client/_next/static/chunks/CpGI2ST0.js                                0.31 kB │ gzip:   0.24 kB
+dist/client/_next/static/chunks/RahMIK8t.js                                0.31 kB │ gzip:   0.25 kB
+dist/client/_next/static/chunks/RqJDeBll.js                                0.32 kB │ gzip:   0.24 kB
+dist/client/_next/static/chunks/CAHc_j-v.js                                0.32 kB │ gzip:   0.23 kB
+dist/client/_next/static/chunks/B6fI6OvR.js                                0.32 kB │ gzip:   0.25 kB
+dist/client/_next/static/chunks/CJFf3jt5.js                                0.32 kB │ gzip:   0.22 kB
+dist/client/_next/static/chunks/BM6bfHfc.js                                0.32 kB │ gzip:   0.24 kB
+dist/client/_next/static/chunks/CGKcJ3gv.js                                0.34 kB │ gzip:   0.26 kB
+dist/client/_next/static/chunks/1VuSpxP8.js                                0.34 kB │ gzip:   0.24 kB
+dist/client/_next/static/chunks/DIqVnnme.js                                0.34 kB │ gzip:   0.25 kB
+dist/client/_next/static/chunks/DHOL5yi4.js                                0.35 kB │ gzip:   0.22 kB
+dist/client/_next/static/chunks/BxpRUyQE.js                                0.36 kB │ gzip:   0.25 kB
+dist/client/_next/static/chunks/Dd6z_Vjj.js                                0.39 kB │ gzip:   0.29 kB
+dist/client/_next/static/chunks/CgI_w4bL.js                                0.39 kB │ gzip:   0.27 kB
+dist/client/_next/static/chunks/BZXlrpdH.js                                0.39 kB │ gzip:   0.26 kB
+dist/client/_next/static/chunks/wiB8UpE3.js                                0.39 kB │ gzip:   0.23 kB
+dist/client/_next/static/chunks/BaK9fQBM.js                                0.40 kB │ gzip:   0.25 kB
+dist/client/_next/static/chunks/BSB4nH1w.js                                0.40 kB │ gzip:   0.26 kB
+dist/client/_next/static/chunks/Caz6tbag.js                                0.41 kB │ gzip:   0.29 kB
+dist/client/_next/static/chunks/fhZHYVcR.js                                0.41 kB │ gzip:   0.27 kB
+dist/client/_next/static/chunks/C0BgMOmv.js                                0.43 kB │ gzip:   0.27 kB
+dist/client/_next/static/chunks/h2RMc6co.js                                0.43 kB │ gzip:   0.27 kB
+dist/client/_next/static/chunks/0JYzmtCi.js                                0.44 kB │ gzip:   0.31 kB
+dist/client/_next/static/chunks/B4YxPVs5.js                                0.44 kB │ gzip:   0.31 kB
+dist/client/_next/static/chunks/BPr_O6Ut.js                                0.44 kB │ gzip:   0.30 kB
+dist/client/_next/static/chunks/DchV6-TB.js                                0.45 kB │ gzip:   0.27 kB
+dist/client/_next/static/chunks/Uw67j-iY.js                                0.45 kB │ gzip:   0.31 kB
+dist/client/_next/static/chunks/CeSA2uha.js                                0.46 kB │ gzip:   0.32 kB
+dist/client/_next/static/chunks/B2ER3Muv.js                                0.52 kB │ gzip:   0.36 kB
+dist/client/_next/static/chunks/CKrKSs4a.js                                0.55 kB │ gzip:   0.29 kB
+dist/client/_next/static/chunks/fgUsOaCz.js                                0.58 kB │ gzip:   0.29 kB
+dist/client/_next/static/chunks/B6FHpYpK.js                                0.59 kB │ gzip:   0.32 kB
+dist/client/_next/static/chunks/DOMtxEcr.js                                0.60 kB │ gzip:   0.34 kB
+dist/client/_next/static/chunks/iZUbzGKJ.js                                0.63 kB │ gzip:   0.39 kB
+dist/client/_next/static/chunks/DiJgH4jF.js                                0.67 kB │ gzip:   0.33 kB
+dist/client/_next/static/chunks/DEvXRrQN.js                                0.71 kB │ gzip:   0.41 kB
+dist/client/_next/static/chunks/y0dwqXqm.js                                0.75 kB │ gzip:   0.47 kB
+dist/client/_next/static/chunks/CZzCrIS6.js                                0.77 kB │ gzip:   0.40 kB
+dist/client/_next/static/chunks/CXTbGptE.js                                0.78 kB │ gzip:   0.50 kB
+dist/client/_next/static/chunks/C9lqSPHG.js                                0.79 kB │ gzip:   0.44 kB
+dist/client/_next/static/chunks/DJsGoHlj.js                                0.94 kB │ gzip:   0.53 kB
+dist/client/_next/static/chunks/Bpnfl5hi.js                                1.04 kB │ gzip:   0.50 kB
+dist/client/_next/static/chunks/BdCmcKaB.js                                1.06 kB │ gzip:   0.54 kB
+dist/client/_next/static/chunks/D_ZyFM76.js                                1.07 kB │ gzip:   0.40 kB
+dist/client/_next/static/chunks/CYyJT3Ut.js                                1.08 kB │ gzip:   0.54 kB
+dist/client/_next/static/chunks/BU1djHX4.js                                1.20 kB │ gzip:   0.69 kB
+dist/client/_next/static/chunks/Cs1NaDLF.js                                1.37 kB │ gzip:   0.73 kB
+dist/client/_next/static/chunks/DeO3QSOB.js                                1.41 kB │ gzip:   0.68 kB
+dist/client/_next/static/chunks/B61DXuMn.js                                1.46 kB │ gzip:   0.68 kB
+dist/client/_next/static/chunks/CD4CKyR0.js                                1.64 kB │ gzip:   0.79 kB
+dist/client/_next/static/chunks/BGDr5ZQY.js                                1.66 kB │ gzip:   0.68 kB
+dist/client/_next/static/chunks/BGLqJyIE.js                                1.67 kB │ gzip:   0.75 kB
+dist/client/_next/static/chunks/BcatUJqB.js                                1.75 kB │ gzip:   0.69 kB
+dist/client/_next/static/chunks/DvFi1p53.js                                1.78 kB │ gzip:   0.86 kB
+dist/client/_next/static/chunks/CxlCpYTj.js                                1.94 kB │ gzip:   0.85 kB
+dist/client/_next/static/chunks/BnY7GQJX.js                                1.98 kB │ gzip:   1.02 kB
+dist/client/_next/static/chunks/CKvCm7CR.js                                2.09 kB │ gzip:   0.90 kB
+dist/client/_next/static/chunks/COJxbE_S.js                                2.48 kB │ gzip:   0.88 kB
+dist/client/_next/static/chunks/Bnu-8hOI.js                                2.59 kB │ gzip:   1.08 kB
+dist/client/_next/static/chunks/BROqjnOr.js                                2.60 kB │ gzip:   1.26 kB
+dist/client/_next/static/chunks/BKgZmYST.js                                2.72 kB │ gzip:   1.17 kB
+dist/client/_next/static/chunks/DLWG1b27.js                                2.82 kB │ gzip:   1.22 kB
+dist/client/_next/static/chunks/B5pADfyT.js                                3.06 kB │ gzip:   1.40 kB
+dist/client/_next/static/chunks/Bt37b4-O.js                                3.19 kB │ gzip:   1.41 kB
+dist/client/_next/static/chunks/B0CSE6d4.js                                3.43 kB │ gzip:   1.23 kB
+dist/client/_next/static/chunks/BUYGH2YP.js                                3.52 kB │ gzip:   1.38 kB
+dist/client/_next/static/chunks/3r1wrxUN.js                                3.68 kB │ gzip:   1.22 kB
+dist/client/_next/static/chunks/BoolT536.js                                3.91 kB │ gzip:   1.56 kB
+dist/client/_next/static/chunks/BO3NPBmN.js                                4.10 kB │ gzip:   1.65 kB
+dist/client/_next/static/chunks/bpRUNlmE.js                                4.20 kB │ gzip:   1.60 kB
+dist/client/_next/static/chunks/D9ueZ4pc.js                                4.23 kB │ gzip:   1.73 kB
+dist/client/_next/static/chunks/CuOnIA8Y.js                                4.31 kB │ gzip:   1.91 kB
+dist/client/_next/static/chunks/BZQuPcBG.js                                4.46 kB │ gzip:   1.64 kB
+dist/client/_next/static/chunks/BQKh_whS.js                                4.58 kB │ gzip:   1.75 kB
+dist/client/_next/static/chunks/DIJf5fdg.js                                4.59 kB │ gzip:   1.93 kB
+dist/client/_next/static/chunks/_EaS56Zp.js                                4.74 kB │ gzip:   1.79 kB
+dist/client/_next/static/chunks/ClvETQwi.js                                4.74 kB │ gzip:   1.61 kB
+dist/client/_next/static/chunks/rHI55jLQ.js                                4.82 kB │ gzip:   1.87 kB
+dist/client/_next/static/chunks/B7idKdF2.js                                4.83 kB │ gzip:   0.95 kB
+dist/client/_next/static/chunks/SfZTLqql.js                                4.84 kB │ gzip:   1.93 kB
+dist/client/_next/static/chunks/Bbs6HhKx.js                                5.42 kB │ gzip:   1.69 kB
+dist/client/_next/static/chunks/DsIgddYi.js                                5.65 kB │ gzip:   2.06 kB
+dist/client/_next/static/chunks/CrIZXR6N.js                                6.14 kB │ gzip:   2.20 kB
+dist/client/_next/static/chunks/B3rfAiQh.js                                6.17 kB │ gzip:   1.87 kB
+dist/client/_next/static/chunks/BTHmhOHq.js                                6.17 kB │ gzip:   2.10 kB
+dist/client/_next/static/chunks/Bc564BKK.js                                6.44 kB │ gzip:   2.12 kB
+dist/client/_next/static/chunks/CUBjH8Oj.js                                6.46 kB │ gzip:   2.17 kB
+dist/client/_next/static/chunks/BBVREF-C.js                                6.51 kB │ gzip:   2.46 kB
+dist/client/_next/static/chunks/B67qLm22.js                                6.67 kB │ gzip:   2.10 kB
+dist/client/_next/static/chunks/De_P6dJq.js                                6.74 kB │ gzip:   2.19 kB
+dist/client/_next/static/chunks/D_M60QPZ.js                                7.00 kB │ gzip:   2.39 kB
+dist/client/_next/static/chunks/wCgpltj5.js                                7.37 kB │ gzip:   2.26 kB
+dist/client/_next/static/chunks/DOQDlqBO.js                                7.39 kB │ gzip:   2.16 kB
+dist/client/_next/static/chunks/BEiUkXmb.js                                7.40 kB │ gzip:   2.51 kB
+dist/client/_next/static/chunks/kfptqrlr.js                                7.40 kB │ gzip:   2.37 kB
+dist/client/_next/static/chunks/BdIurO0V.js                                7.60 kB │ gzip:   2.93 kB
+dist/client/_next/static/chunks/Da5MI57L.js                                7.61 kB │ gzip:   2.47 kB
+dist/client/_next/static/chunks/dhjoSWhK.js                                7.67 kB │ gzip:   2.61 kB
+dist/client/_next/static/chunks/Ihykn5zP.js                                7.71 kB │ gzip:   2.39 kB
+dist/client/_next/static/chunks/Bry0qdom.js                                7.72 kB │ gzip:   2.94 kB
+dist/client/_next/static/chunks/DxITi-0O.js                                7.86 kB │ gzip:   2.41 kB
+dist/client/_next/static/chunks/1cBTRIV6.js                                7.91 kB │ gzip:   2.38 kB
+dist/client/_next/static/chunks/DHCXAUev.js                                7.98 kB │ gzip:   2.02 kB
+dist/client/_next/static/chunks/Df1OnEsu.js                                7.98 kB │ gzip:   2.47 kB
+dist/client/_next/static/chunks/BbF0q9ZM.js                                8.28 kB │ gzip:   2.28 kB
+dist/client/_next/static/chunks/Bi3SpvDm.js                                8.44 kB │ gzip:   2.23 kB
+dist/client/_next/static/chunks/Bcq84Eh_.js                                8.52 kB │ gzip:   2.54 kB
+dist/client/_next/static/chunks/bWrL4nDN.js                                8.67 kB │ gzip:   2.40 kB
+dist/client/_next/static/chunks/Bex2b4sP.js                                8.81 kB │ gzip:   2.94 kB
+dist/client/_next/static/chunks/BWfcx1yr.js                                8.90 kB │ gzip:   2.06 kB
+dist/client/_next/static/chunks/CI8KLM-i.js                                8.90 kB │ gzip:   0.99 kB
+dist/client/_next/static/chunks/CphxOnnz.js                                8.92 kB │ gzip:   2.75 kB
+dist/client/_next/static/chunks/BLbt88Mn.js                                9.16 kB │ gzip:   2.84 kB
+dist/client/_next/static/chunks/YnXo8SYr.js                                9.18 kB │ gzip:   3.61 kB
+dist/client/_next/static/chunks/BCoWxphj.js                                9.32 kB │ gzip:   2.84 kB
+dist/client/_next/static/chunks/BQ5ZSM1W.js                                9.39 kB │ gzip:   3.22 kB
+dist/client/_next/static/chunks/DC_Db82J.js                                9.42 kB │ gzip:   2.81 kB
+dist/client/_next/static/chunks/DtL19jr0.js                                9.44 kB │ gzip:   2.86 kB
+dist/client/_next/static/chunks/xvgRtnmM.js                                9.76 kB │ gzip:   3.11 kB
+dist/client/_next/static/chunks/7L9Hi9DR.js                                9.80 kB │ gzip:   1.83 kB
+dist/client/_next/static/chunks/Cm0HahNK.js                                9.97 kB │ gzip:   3.22 kB
+dist/client/_next/static/chunks/CE3EW72h.js                               10.27 kB │ gzip:   3.27 kB
+dist/client/_next/static/chunks/BbsgsDUM.js                               10.31 kB │ gzip:   2.76 kB
+dist/client/_next/static/chunks/M6FNnPIr.js                               10.34 kB │ gzip:   2.98 kB
+dist/client/_next/static/chunks/CoVUbsTj.js                               10.40 kB │ gzip:   3.27 kB
+dist/client/_next/static/chunks/D_4XNAxC.js                               10.45 kB │ gzip:   2.50 kB
+dist/client/_next/static/chunks/BqV06RPN.js                               10.92 kB │ gzip:   3.09 kB
+dist/client/_next/static/chunks/Bn5c1ne8.js                               11.09 kB │ gzip:   4.29 kB
+dist/client/_next/static/chunks/D8JKccH4.js                               11.22 kB │ gzip:   2.96 kB
+dist/client/_next/static/chunks/CveYTvam.js                               11.32 kB │ gzip:   3.47 kB
+dist/client/_next/static/chunks/Cz20qbvF.js                               11.39 kB │ gzip:   3.00 kB
+dist/client/_next/static/chunks/mf4jL6Ca.js                               11.43 kB │ gzip:   4.33 kB
+dist/client/_next/static/chunks/CTUdqnqr.js                               11.74 kB │ gzip:   3.56 kB
+dist/client/_next/static/chunks/CW23Kwd6.js                               11.97 kB │ gzip:   3.27 kB
+dist/client/_next/static/chunks/OkzWHBY0.js                               12.39 kB │ gzip:   4.32 kB
+dist/client/_next/static/chunks/DKv4PNL9.js                               12.83 kB │ gzip:   3.47 kB
+dist/client/_next/static/chunks/rHvOub2R.js                               13.00 kB │ gzip:   4.04 kB
+dist/client/_next/static/chunks/B1ic_Vk2.js                               13.06 kB │ gzip:   3.51 kB
+dist/client/_next/static/chunks/BEuExne5.js                               13.22 kB │ gzip:   2.88 kB
+dist/client/_next/static/chunks/8U8tfngT.js                               13.71 kB │ gzip:   5.22 kB
+dist/client/_next/static/chunks/t_zSq84y.js                               14.38 kB │ gzip:   3.76 kB
+dist/client/_next/static/chunks/DIdrlKjz.js                               14.78 kB │ gzip:   4.41 kB
+dist/client/_next/static/chunks/Cb-S_eeW.js                               15.20 kB │ gzip:   4.60 kB
+dist/client/_next/static/chunks/DN-ypfK1.js                               15.81 kB │ gzip:   4.29 kB
+dist/client/_next/static/chunks/3pd0KhIx.js                               17.61 kB │ gzip:   4.55 kB
+dist/client/_next/static/chunks/Bu79kLPf.js                               17.69 kB │ gzip:   4.49 kB
+dist/client/_next/static/chunks/DpgJh4yq.js                               20.02 kB │ gzip:   5.11 kB
+dist/client/_next/static/chunks/CezyVepp.js                               20.04 kB │ gzip:   5.25 kB
+dist/client/_next/static/chunks/BGKVPv8-.js                               20.75 kB │ gzip:   4.07 kB
+dist/client/_next/static/chunks/BgwJ_9FB.js                               20.92 kB │ gzip:   4.88 kB
+dist/client/_next/static/chunks/DGKUSMrJ.js                               20.93 kB │ gzip:   5.80 kB
+dist/client/_next/static/chunks/DeUcAwsQ.js                               21.58 kB │ gzip:   6.53 kB
+dist/client/_next/static/chunks/CUWO3BKt.js                               21.77 kB │ gzip:   5.57 kB
+dist/client/_next/static/chunks/DVWlQ_K8.js                               22.79 kB │ gzip:   5.29 kB
+dist/client/_next/static/chunks/BslKMxjS.js                               23.00 kB │ gzip:   5.85 kB
+dist/client/_next/static/chunks/CI1aJuUW.js                               24.42 kB │ gzip:   6.43 kB
+dist/client/_next/static/chunks/DUa8_l7p.js                               27.05 kB │ gzip:   6.65 kB
+dist/client/_next/static/chunks/B8UHhbSE.js                               29.44 kB │ gzip:   9.39 kB
+dist/client/_next/static/chunks/B4d-nS_n.js                               31.10 kB │ gzip:   8.75 kB
+dist/client/_next/static/chunks/Dy8YsZYT.js                               44.98 kB │ gzip:  14.44 kB
+dist/client/_next/static/chunks/Dk-y-Q4b.js                               58.09 kB │ gzip:  13.04 kB
+dist/client/_next/static/chunks/BlL8ATTI.js                               69.44 kB │ gzip:  10.49 kB
+dist/client/_next/static/chunks/CGVg3xVi.js                               70.00 kB │ gzip:  19.64 kB
+dist/client/_next/static/chunks/B6Gca6I1.js                               83.21 kB │ gzip:  25.28 kB
+dist/client/_next/static/chunks/oVvAVu3p.js                               86.46 kB │ gzip:  28.12 kB
+dist/client/_next/static/chunks/C0XJh3xX.js                              101.52 kB │ gzip:  28.47 kB
+dist/client/_next/static/chunks/CVDZFvmS.js                              109.25 kB │ gzip:  32.26 kB
+dist/client/_next/static/chunks/C_AEHkvb.js                              146.47 kB │ gzip:  44.67 kB
+dist/client/_next/static/chunks/0LmdcQN2.js                              167.95 kB │ gzip:  37.40 kB
+dist/client/_next/static/chunks/BGcpudv1.js                              192.89 kB │ gzip:  58.22 kB
+dist/client/_next/static/chunks/BDlKZ0JE.js                              199.41 kB │ gzip:  50.36 kB
+dist/client/_next/static/chunks/DGNqLM60.js                              219.27 kB │ gzip:  68.42 kB
+dist/client/_next/static/chunks/CgGRwLV6.js                              258.28 kB │ gzip:  77.53 kB
+dist/client/_next/static/chunks/Bj-dAsQZ.js                              339.20 kB │ gzip:  98.92 kB
+dist/client/_next/static/chunks/CEoStSik.js                              476.73 kB │ gzip: 133.86 kB
+dist/client/_next/static/chunks/CU5pjh2H.js                              501.60 kB │ gzip: 106.78 kB
+
+[33m[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+[33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0m../../packages/activity-components/src/components/algebraic/index.ts is dynamically imported by app/(dev)/blueprint-qa/components/register-activities.ts but also statically imported by ../../packages/math-content/src/schemas/quadratic-formula-activity.schema.ts, dynamic import will not move module into another chunk.
+[39m
+[32m✓ built in 2.65s[39m
+[34m[5/5] build ssr environment...[39m
+[36mvite v8.3.8 [32mbuilding ssr environment for production...[36m[39m
+transforming...
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ChevronLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ChevronLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "BookOpen" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "RotateCcw" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "FileSpreadsheet" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowUpDown" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ChevronRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowUp" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "RotateCcw" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ChevronLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Download" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Download" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ChevronRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "DollarSign" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "InfoIcon" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "X" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "RotateCcw" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "AlertTriangle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Download" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "RotateCcw" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Check" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "FileDown" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "BarChart3" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "UserPlus" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Loader2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Brain" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "AlertTriangle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowUp" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "SlidersHorizontal" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Users" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ExternalLink" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowUp" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "BookCheck" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "RefreshCw" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "RefreshCw" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Circle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "MessageCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowUp" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Target" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "AlertCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Play" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Check" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Printer" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "AlertTriangle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Loader2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Laptop" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Download" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "TrendingUp" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Presentation" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "DollarSign" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowLeft" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "DollarSign" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Lightbulb" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "AlertCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Clock" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Coffee" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Building2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "AlertTriangle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "DollarSign" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "AlertTriangle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle2" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "CheckCircle" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "DollarSign" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowDownRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "Calculator" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "ArrowRight" in barrel export map
+[vinext:optimize-imports] skipping "lucide-react": could not resolve specifier "DollarSign" in barrel export map
+✓ 3910 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/server/ssr/_next/static/media/KaTeX_Size3-Regular.CTq5MqoE.woff              4.42 kB
+dist/server/ssr/_next/static/media/KaTeX_Size4-Regular.Dl5lxZxV.woff2             4.92 kB
+dist/server/ssr/_next/static/media/KaTeX_Size2-Regular.Dy4dx90m.woff2             5.20 kB
+dist/server/ssr/_next/static/media/KaTeX_Size1-Regular.mCD8mA8B.woff2             5.46 kB
+dist/server/ssr/_next/static/media/KaTeX_Size4-Regular.BF-4gkZK.woff              5.98 kB
+dist/server/ssr/_next/static/media/KaTeX_Size2-Regular.oD1tc_U0.woff              6.18 kB
+dist/server/ssr/_next/static/media/KaTeX_Size1-Regular.C195tn64.woff              6.49 kB
+dist/server/ssr/_next/static/media/KaTeX_Caligraphic-Regular.Di6jR-x-.woff2       6.90 kB
+dist/server/ssr/_next/static/media/KaTeX_Caligraphic-Bold.Dq_IR9rO.woff2          6.91 kB
+dist/server/ssr/_next/static/media/KaTeX_Size3-Regular.DgpXs0kz.ttf               7.58 kB
+dist/server/ssr/_next/static/media/KaTeX_Caligraphic-Regular.CTRA-rTL.woff        7.65 kB
+dist/server/ssr/_next/static/media/KaTeX_Caligraphic-Bold.BEiXGLvX.woff           7.71 kB
+dist/server/ssr/_next/static/media/KaTeX_Script-Regular.D3wIWfF6.woff2            9.64 kB
+dist/server/ssr/_next/static/media/KaTeX_SansSerif-Regular.DDBCnlJ7.woff2        10.34 kB
+dist/server/ssr/_next/static/media/KaTeX_Size4-Regular.DWFBv043.ttf              10.36 kB
+dist/server/ssr/_next/static/media/KaTeX_Script-Regular.D5yQViql.woff            10.58 kB
+dist/server/ssr/_next/static/media/KaTeX_Fraktur-Regular.CTYiF6lA.woff2          11.31 kB
+dist/server/ssr/_next/static/media/KaTeX_Fraktur-Bold.CL6g_b3V.woff2             11.34 kB
+dist/server/ssr/_next/static/media/KaTeX_Size2-Regular.B7gKUWhC.ttf              11.50 kB
+dist/server/ssr/_next/static/media/KaTeX_SansSerif-Italic.C3H0VqGB.woff2         12.02 kB
+dist/server/ssr/_next/static/media/KaTeX_SansSerif-Bold.D1sUS0GD.woff2           12.21 kB
+dist/server/ssr/_next/static/media/KaTeX_Size1-Regular.Dbsnue_I.ttf              12.22 kB
+dist/server/ssr/_next/static/media/KaTeX_SansSerif-Regular.CS6fqUqJ.woff         12.31 kB
+dist/server/ssr/_next/static/media/KaTeX_Caligraphic-Regular.wX97UBjC.ttf        12.34 kB
+dist/server/ssr/_next/static/media/KaTeX_Caligraphic-Bold.ATXxdsX0.ttf           12.36 kB
+dist/server/ssr/_next/static/media/KaTeX_Fraktur-Regular.Dxdc4cR9.woff           13.20 kB
+dist/server/ssr/_next/static/media/KaTeX_Fraktur-Bold.BsDP51OF.woff              13.29 kB
+dist/server/ssr/_next/static/media/KaTeX_Typewriter-Regular.CO6r4hn1.woff2       13.56 kB
+dist/server/ssr/_next/static/media/KaTeX_SansSerif-Italic.DN2j7dab.woff          14.11 kB
+dist/server/ssr/_next/static/media/KaTeX_SansSerif-Bold.DbIhKOiC.woff            14.40 kB
+dist/server/ssr/_next/static/media/KaTeX_Typewriter-Regular.C0xS9mPB.woff        16.02 kB
+dist/server/ssr/_next/static/media/KaTeX_Math-BoldItalic.CZnvNsCZ.woff2          16.40 kB
+dist/server/ssr/_next/static/media/KaTeX_Math-Italic.t53AETM-.woff2              16.44 kB
+dist/server/ssr/_next/static/media/KaTeX_Script-Regular.C5JkGWo-.ttf             16.64 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-BoldItalic.DxDJ3AOS.woff2          16.78 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-Italic.NWA7e6Wa.woff2              16.98 kB
+dist/server/ssr/_next/static/media/KaTeX_Math-BoldItalic.iY-2wyZ7.woff           18.66 kB
+dist/server/ssr/_next/static/media/KaTeX_Math-Italic.DA0__PXp.woff               18.74 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-BoldItalic.SpSLRI95.woff           19.41 kB
+dist/server/ssr/_next/static/media/KaTeX_SansSerif-Regular.BNo7hRIc.ttf          19.43 kB
+dist/server/ssr/_next/static/media/KaTeX_Fraktur-Regular.CB_wures.ttf            19.57 kB
+dist/server/ssr/_next/static/media/KaTeX_Fraktur-Bold.BdnERNNW.ttf               19.58 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-Italic.BMLOBm91.woff               19.67 kB
+dist/server/ssr/_next/static/media/KaTeX_SansSerif-Italic.YYjJ1zSn.ttf           22.36 kB
+dist/server/ssr/_next/static/media/KaTeX_SansSerif-Bold.CFMepnvq.ttf             24.50 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-Bold.Cx986IdX.woff2                25.32 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-Regular.B22Nviop.woff2             26.27 kB
+dist/server/ssr/_next/static/media/KaTeX_Typewriter-Regular.D3Ib7_Hf.ttf         27.55 kB
+dist/server/ssr/_next/static/media/KaTeX_AMS-Regular.BQhdFMY1.woff2              28.07 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-Bold.Jm3AIy58.woff                 29.91 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-Regular.Dr94JaBh.woff              30.77 kB
+dist/server/ssr/_next/static/media/KaTeX_Math-BoldItalic.B3XSjfu4.ttf            31.19 kB
+dist/server/ssr/_next/static/media/KaTeX_Math-Italic.flOr_0UB.ttf                31.30 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-BoldItalic.DzxPMmG6.ttf            32.96 kB
+dist/server/ssr/_next/static/media/KaTeX_AMS-Regular.DMm9YOAa.woff               33.51 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-Italic.3WenGoN9.ttf                33.58 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-Bold.waoOVXN0.ttf                  51.33 kB
+dist/server/ssr/_next/static/media/KaTeX_Main-Regular.ypZvNtVU.ttf               53.58 kB
+dist/server/ssr/_next/static/media/KaTeX_AMS-Regular.DRggAlZN.ttf                63.63 kB
+dist/server/ssr/_next/static/css/DJ7sEWYW.css                                    30.51 kB │ gzip:   7.99 kB
+dist/server/ssr/_next/static/component-keys-Dfvzj6n2.js                           0.03 kB │ gzip:   0.05 kB
+dist/server/ssr/_next/static/contract-CGs66mV1.js                                 0.03 kB │ gzip:   0.05 kB
+dist/server/ssr/_next/static/navigation-server-CGs66mV1.js                        0.03 kB │ gzip:   0.05 kB
+dist/server/ssr/_next/static/spreadsheet-4JiEBZOu.js                              0.04 kB │ gzip:   0.06 kB
+dist/server/ssr/_next/static/ConvexClientProvider-BOrosJEr.js                     0.06 kB │ gzip:   0.08 kB
+dist/server/ssr/_next/static/app-nav-failure-handler-BW2-CIfV.js                  0.07 kB │ gzip:   0.07 kB
+dist/server/ssr/_next/static/api-Dhq_4vGp.js                                      0.07 kB │ gzip:   0.09 kB
+dist/server/ssr/_next/static/segment-labels-D6pzyfes.js                           0.08 kB │ gzip:   0.09 kB
+dist/server/ssr/_next/static/navigation-DMRxXX5a.js                               0.10 kB │ gzip:   0.09 kB
+dist/server/ssr/_next/static/AuthProvider-D6dQu3fM.js                             0.14 kB │ gzip:   0.14 kB
+dist/server/ssr/_next/static/static.edge-Cx0-NLgQ.js                              0.21 kB │ gzip:   0.16 kB
+dist/server/ssr/_next/static/vendor-convex-core-CYEy0iVl.js                       0.22 kB │ gzip:   0.18 kB
+dist/server/ssr/_next/static/separator-DYi8N1ym.js                                0.23 kB │ gzip:   0.19 kB
+dist/server/ssr/_next/static/hybrid-client-route-owner-qKddDGEW.js                0.26 kB │ gzip:   0.20 kB
+dist/server/ssr/_next/static/utils-DHOL5yi4.js                                    0.35 kB │ gzip:   0.22 kB
+dist/server/ssr/_next/static/utils-fhZHYVcR.js                                    0.41 kB │ gzip:   0.27 kB
+dist/server/ssr/_next/static/progress-CQfXJWCh.js                                 0.46 kB │ gzip:   0.31 kB
+dist/server/ssr/_next/static/error-C_AhJV8y.js                                    0.47 kB │ gzip:   0.33 kB
+dist/server/ssr/_next/static/error-mkVbCvFu.js                                    0.47 kB │ gzip:   0.33 kB
+dist/server/ssr/_next/static/label-6Y7P4CFF.js                                    0.49 kB │ gzip:   0.32 kB
+dist/server/ssr/_next/static/FlashcardPlayer-CdPQA1SZ.js                          0.50 kB │ gzip:   0.35 kB
+dist/server/ssr/_next/static/vendor-auth-ityEQPPg.js                              0.50 kB │ gzip:   0.26 kB
+dist/server/ssr/_next/static/vendor-approval-BoPD0Dfd.js                          0.50 kB │ gzip:   0.33 kB
+dist/server/ssr/_next/static/layout-segment-context-D75nNQBi.js                   0.52 kB │ gzip:   0.36 kB
+dist/server/ssr/_next/static/header-simple-DPsAVMY4.js                            0.62 kB │ gzip:   0.40 kB
+dist/server/ssr/_next/static/simulation-submission-DJBm7K47.js                    0.63 kB │ gzip:   0.36 kB
+dist/server/ssr/_next/static/gradebook-DiJgH4jF.js                                0.67 kB │ gzip:   0.33 kB
+dist/server/ssr/_next/static/ReviewSession-DPIAN56U.js                            0.69 kB │ gzip:   0.40 kB
+dist/server/ssr/_next/static/input-Ng3Sijw4.js                                    0.70 kB │ gzip:   0.43 kB
+dist/server/ssr/_next/static/utils-JKJHl0_a.js                                    0.73 kB │ gzip:   0.43 kB
+dist/server/ssr/_next/static/streamed-icons-DhlO6T9g.js                           0.74 kB │ gzip:   0.48 kB
+dist/server/ssr/_next/static/error-DoP1bUV0.js                                    0.80 kB │ gzip:   0.49 kB
+dist/server/ssr/_next/static/checkbox-DbsDRdib.js                                 0.82 kB │ gzip:   0.46 kB
+dist/server/ssr/_next/static/badge-8oXwrWhC.js                                    0.85 kB │ gzip:   0.45 kB
+dist/server/ssr/_next/static/rolldown-runtime-BWaJ3C7D.js                         0.91 kB │ gzip:   0.51 kB
+dist/server/ssr/_next/static/client-page-root-DPEABt7I.js                         0.94 kB │ gzip:   0.56 kB
+dist/server/ssr/_next/static/CapstoneWorkbookDownloads-D2mxryiF.js                0.99 kB │ gzip:   0.48 kB
+dist/server/ssr/_next/static/app-router-scroll-state-Chjrq4uf.js                  1.07 kB │ gzip:   0.55 kB
+dist/server/ssr/_next/static/error-fallback-B-_YUKZ1.js                           1.10 kB │ gzip:   0.57 kB
+dist/server/ssr/_next/static/card-CDq783ni.js                                     1.15 kB │ gzip:   0.44 kB
+dist/server/ssr/_next/static/alert-Bwx0tTXv.js                                    1.16 kB │ gzip:   0.58 kB
+dist/server/ssr/_next/static/button-BWpdRYaA.js                                   1.38 kB │ gzip:   0.68 kB
+dist/server/ssr/_next/static/ClassificationActivity-CVt6BTRe.js                   1.47 kB │ gzip:   0.78 kB
+dist/server/ssr/_next/static/vendor-workbook-XAcjamN9.js                          1.48 kB │ gzip:   0.50 kB
+dist/server/ssr/_next/static/TeachingModePanel-CC1jqkhZ.js                        1.57 kB │ gzip:   0.74 kB
+dist/server/ssr/_next/static/PracticeTestSelection-AxcrCtSz.js                    1.68 kB │ gzip:   0.76 kB
+dist/server/ssr/_next/static/practiceSubmission-fkV-Npln.js                       1.69 kB │ gzip:   0.70 kB
+dist/server/ssr/_next/static/forgot-password-form-Br4ww_6h.js                     1.71 kB │ gzip:   0.83 kB
+dist/server/ssr/_next/static/misconception-taxonomy-BcatUJqB.js                   1.75 kB │ gzip:   0.69 kB
+dist/server/ssr/_next/static/useStudy-BAwl8XF1.js                                 1.81 kB │ gzip:   0.88 kB
+dist/server/ssr/_next/static/carousel-CwRvYwsj.js                                 1.96 kB │ gzip:   0.86 kB
+dist/server/ssr/_next/static/StudentCompetencyDetailGrid-DsiossPP.js              2.44 kB │ gzip:   0.87 kB
+dist/server/ssr/_next/static/app-router-scroll-BCnM2LqX.js                        2.47 kB │ gzip:   1.12 kB
+dist/server/ssr/_next/static/useCategorizationExercise-C22Ys4x1.js                2.62 kB │ gzip:   1.10 kB
+dist/server/ssr/_next/static/vendor-graphing-DLWG1b27.js                          2.82 kB │ gzip:   1.22 kB
+dist/server/ssr/_next/static/update-password-form-DuiEIt1O.js                     3.14 kB │ gzip:   1.25 kB
+dist/server/ssr/_next/static/workbooks.client-xkRsJe16.js                         3.41 kB │ gzip:   0.55 kB
+dist/server/ssr/_next/static/CourseOverviewGrid-CcjeGDrc.js                       3.57 kB │ gzip:   1.31 kB
+dist/server/ssr/_next/static/ExportPage-CNJ4Qs9b.js                               3.64 kB │ gzip:   1.45 kB
+dist/server/ssr/_next/static/BaseReviewSession-CttB2Rgo.js                        3.74 kB │ gzip:   1.28 kB
+dist/server/ssr/_next/static/MatchingGame-DvRDNsiA.js                             3.99 kB │ gzip:   1.61 kB
+dist/server/ssr/_next/static/page-Bih56Fmf.js                                     4.26 kB │ gzip:   1.63 kB
+dist/server/ssr/_next/static/ComprehensionCheck-1-34tmyb.js                       4.30 kB │ gzip:   1.78 kB
+dist/server/ssr/_next/static/SpreadsheetWrapper-QNIZJVaj.js                       4.32 kB │ gzip:   1.93 kB
+dist/server/ssr/_next/static/login-form-DSUJsi3D.js                               4.54 kB │ gzip:   1.69 kB
+dist/server/ssr/_next/static/BudgetWorksheet-Czp7ASg_.js                          4.64 kB │ gzip:   1.80 kB
+dist/server/ssr/_next/static/ProfitCalculator-BJcSDzpY.js                         4.79 kB │ gzip:   1.66 kB
+dist/server/ssr/_next/static/FillInTheBlank-D3XqQ3Uz.js                           4.84 kB │ gzip:   1.85 kB
+dist/server/ssr/_next/static/ScenarioSwitchShowTell-Aw6aEeCj.js                   4.93 kB │ gzip:   1.98 kB
+dist/server/ssr/_next/static/ReflectionJournal-CYwI1xHH.js                        4.94 kB │ gzip:   1.94 kB
+dist/server/ssr/_next/static/page-DvZ-ht_c.js                                     5.36 kB │ gzip:   1.92 kB
+dist/server/ssr/_next/static/CompetencyHeatmapClient-CCMQycN9.js                  5.43 kB │ gzip:   1.70 kB
+dist/server/ssr/_next/static/ProgressDashboard-DvBRTDV4.js                        5.89 kB │ gzip:   1.72 kB
+dist/server/ssr/_next/static/CrossSheetLinkSimulator-8gQPl4C4.js                  5.94 kB │ gzip:   2.11 kB
+dist/server/ssr/_next/static/SpeedRoundGame-q0k-jkW8.js                           5.99 kB │ gzip:   1.94 kB
+dist/server/ssr/_next/static/PercentageCalculationSorting-CSyJ3oWd.js             6.06 kB │ gzip:   2.06 kB
+dist/server/ssr/_next/static/error-boundary-OslMgzqx.js                           6.25 kB │ gzip:   1.98 kB
+dist/server/ssr/_next/static/DataCleaningActivity-DsEkBzxo.js                     6.53 kB │ gzip:   2.24 kB
+dist/server/ssr/_next/static/ErrorCheckingSystem-CU4f_nyA.js                      6.61 kB │ gzip:   2.13 kB
+dist/server/ssr/_next/static/SelectionMatrix-DfZtSfCN.js                          6.64 kB │ gzip:   2.54 kB
+dist/server/ssr/_next/static/MethodComparisonSimulator-BgIzzg30.js                6.73 kB │ gzip:   2.15 kB
+dist/server/ssr/_next/static/registry-BwzJ2VaH.js                                 6.96 kB │ gzip:   2.17 kB
+dist/server/ssr/_next/static/AccountingEquationEventActivity-JAhyN0Yn.js          7.19 kB │ gzip:   2.48 kB
+dist/server/ssr/_next/static/PeerCritiqueForm-bUTRhQhh.js                         7.30 kB │ gzip:   2.72 kB
+dist/server/ssr/_next/static/AssetTimeMachine-_1DF9pJu.js                         7.37 kB │ gzip:   2.54 kB
+dist/server/ssr/_next/static/CashFlowTimeline-BFOBHXr8.js                         7.40 kB │ gzip:   2.41 kB
+dist/server/ssr/_next/static/TrialBalanceErrorMatrix-CetQgLMv.js                  7.42 kB │ gzip:   2.29 kB
+dist/server/ssr/_next/static/PracticeTestPage-AhLP8Guj.js                         7.50 kB │ gzip:   2.42 kB
+dist/server/ssr/_next/static/AccountingEquationLayout-BT8NqzZh.js                 7.54 kB │ gzip:   2.25 kB
+dist/server/ssr/_next/static/StudyHubHome-B-eRwyjL.js                             7.59 kB │ gzip:   1.94 kB
+dist/server/ssr/_next/static/AssetRegisterSimulator-DD0SxFYH.js                   7.74 kB │ gzip:   2.44 kB
+dist/server/ssr/_next/static/page-mkFMVz2O.js                                     7.78 kB │ gzip:   2.09 kB
+dist/server/ssr/_next/static/InventoryAlgorithmShowtell-p4F8veSn.js               7.93 kB │ gzip:   2.42 kB
+dist/server/ssr/_next/static/TAccountInteractive-20K43O7F.js                      7.93 kB │ gzip:   2.45 kB
+dist/server/ssr/_next/static/ChartLinkingSimulator-GFgFYtjw.js                    7.97 kB │ gzip:   2.04 kB
+dist/server/ssr/_next/static/DepreciationMethodComparisonSimulator-Bz_kQGJY.js    8.01 kB │ gzip:   2.52 kB
+dist/server/ssr/_next/static/TeacherStudentActions-RJwNg_vM.js                    8.25 kB │ gzip:   2.42 kB
+dist/server/ssr/_next/static/CapitalNegotiation-DMFZPlIp.js                       8.39 kB │ gzip:   2.79 kB
+dist/server/ssr/_next/static/InventoryFlowDiagram-Ct5w7Jg1.js                     8.55 kB │ gzip:   2.59 kB
+dist/server/ssr/_next/static/DynamicMethodSelector-DjwZdBax.js                    8.88 kB │ gzip:   3.00 kB
+dist/server/ssr/_next/static/AdjustmentPractice-Bl5XH8Ga.js                       9.16 kB │ gzip:   2.87 kB
+dist/server/ssr/_next/static/TieredAssessment-Dd3dGYrx.js                         9.26 kB │ gzip:   3.67 kB
+dist/server/ssr/_next/static/BalanceSheetPractice-Bdr1nL-1.js                     9.32 kB │ gzip:   2.87 kB
+dist/server/ssr/_next/static/IncomeStatementPractice-Dlk6L8hO.js                  9.42 kB │ gzip:   2.84 kB
+dist/server/ssr/_next/static/page-CqpTfGfp.js                                     9.43 kB │ gzip:   2.97 kB
+dist/server/ssr/_next/static/CashFlowPractice-VxL6zV_9.js                         9.44 kB │ gzip:   2.89 kB
+dist/server/ssr/_next/static/GrowthPuzzle-Bm4-Z_mx.js                             9.65 kB │ gzip:   3.13 kB
+dist/server/ssr/_next/static/BusinessStressTest-COYKsYvN.js                       9.69 kB │ gzip:   3.03 kB
+dist/server/ssr/_next/static/ClosingEntryPractice-BVkAm46o.js                    10.32 kB │ gzip:   2.79 kB
+dist/server/ssr/_next/static/MonthEndClosePractice-CS0SBthU.js                   10.34 kB │ gzip:   3.01 kB
+dist/server/ssr/_next/static/CapitalizationExpenseMastery-BGllDIGA.js            10.40 kB │ gzip:   3.31 kB
+dist/server/ssr/_next/static/MarkupMarginMastery-CCJB3qbs.js                     10.92 kB │ gzip:   3.13 kB
+dist/server/ssr/_next/static/app-elements-Dnz7x1WD.js                            11.06 kB │ gzip:   3.44 kB
+dist/server/ssr/_next/static/CafeSupplyChaos-CIqqd1-c.js                         11.28 kB │ gzip:   3.37 kB
+dist/server/ssr/_next/static/JournalEntryTable-CJc-sfKe.js                       11.29 kB │ gzip:   3.00 kB
+dist/server/ssr/_next/static/DDBComparisonMastery-qyPZgWUf.js                    11.35 kB │ gzip:   3.51 kB
+dist/server/ssr/_next/static/StatementLayout-DwbXAdZV.js                         11.46 kB │ gzip:   3.04 kB
+dist/server/ssr/_next/static/BreakEvenMastery-BF_k1jf1.js                        11.98 kB │ gzip:   3.31 kB
+dist/server/ssr/_next/static/glossary-OkzWHBY0.js                                12.39 kB │ gzip:   4.32 kB
+dist/server/ssr/_next/static/NotebookOrganizer-D26-EUjZ.js                       12.40 kB │ gzip:   3.81 kB
+dist/server/ssr/_next/static/StraightLineMastery-DUJ97ZvB.js                     12.83 kB │ gzip:   3.51 kB
+dist/server/ssr/_next/static/SpreadsheetActivityAdapter-CoBUACVo.js              12.95 kB │ gzip:   3.25 kB
+dist/server/ssr/_next/static/PayStructureDecisionLab-WfOOz8BS.js                 14.81 kB │ gzip:   4.46 kB
+dist/server/ssr/_next/static/SpreadsheetEvaluator-CjeCK1px.js                    14.99 kB │ gzip:   4.50 kB
+dist/server/ssr/_next/static/CategorizationList-BnFx2pjM.js                      15.96 kB │ gzip:   4.40 kB
+dist/server/ssr/_next/static/CashFlowChallenge-DUmZgt0F.js                       16.94 kB │ gzip:   4.22 kB
+dist/server/ssr/_next/static/FinancialDashboard-D4ICNRw4.js                      17.17 kB │ gzip:   5.20 kB
+dist/server/ssr/_next/static/question-banks-3pd0KhIx.js                          17.61 kB │ gzip:   4.55 kB
+dist/server/ssr/_next/static/PitchPresentationBuilder-DBOg6ITx.js                19.05 kB │ gzip:   4.77 kB
+dist/server/ssr/_next/static/StartupJourney-D3zCodDH.js                          19.30 kB │ gzip:   4.96 kB
+dist/server/ssr/_next/static/TeacherSRSDashboardClient-C1lbhqDQ.js               20.37 kB │ gzip:   4.68 kB
+dist/server/ssr/_next/static/errors-BGKVPv8-.js                                  20.75 kB │ gzip:   4.07 kB
+dist/server/ssr/_next/static/JournalEntryActivity-DBuY2GOM.js                    20.80 kB │ gzip:   5.81 kB
+dist/server/ssr/_next/static/LemonadeStand-YY0Xyise.js                           21.08 kB │ gzip:   5.37 kB
+dist/server/ssr/_next/static/GraphingExplorer-BMpX3KXY.js                        21.66 kB │ gzip:   6.58 kB
+dist/server/ssr/_next/static/BudgetBalancer-jz-v_UWa.js                          21.96 kB │ gzip:   4.94 kB
+dist/server/ssr/_next/static/InventoryManager-gfBVeD68.js                        22.22 kB │ gzip:   5.54 kB
+dist/server/ssr/_next/static/TeacherLessonPlanPageContent-BfgMkUa7.js            22.56 kB │ gzip:   5.69 kB
+dist/server/ssr/_next/static/GradebookGrid-CrsxrLSE.js                           27.01 kB │ gzip:   6.68 kB
+dist/server/ssr/_next/static/vendor-utils-Cv8v4xlm.js                            28.42 kB │ gzip:   8.99 kB
+dist/server/ssr/_next/static/TeacherDashboardContent-DiX6aFKt.js                 30.18 kB │ gzip:   8.36 kB
+dist/server/ssr/_next/static/page-DD8wilC_.js                                    35.28 kB │ gzip:   9.17 kB
+dist/server/ssr/_next/static/vendor-icons--Swjsljs.js                            35.73 kB │ gzip:  11.96 kB
+dist/server/ssr/_next/static/LessonRendererClient-DAW4jtAW.js                    37.76 kB │ gzip:  11.67 kB
+dist/server/ssr/_next/static/image-DR418crJ.js                                   45.47 kB │ gzip:  14.61 kB
+dist/server/ssr/_next/static/app-router-navigation-CSBcdWf3.js                   47.07 kB │ gzip:  13.51 kB
+dist/server/ssr/_next/static/vendor-convex-DuYaJiR7.js                           69.57 kB │ gzip:  19.59 kB
+dist/server/ssr/_next/static/vendor-dnd-CkraZCQZ.js                              83.13 kB │ gzip:  25.29 kB
+dist/server/ssr/_next/static/vendor-radix-bg4171zS.js                            92.76 kB │ gzip:  30.69 kB
+dist/server/ssr/_next/static/family-registry-BpqrxbDm.js                        168.01 kB │ gzip:  37.43 kB
+dist/server/ssr/_next/static/vendor-markdown-D9tJQ6DB.js                        186.33 kB │ gzip:  59.82 kB
+dist/server/ssr/index.js                                                        302.52 kB │ gzip:  95.49 kB
+dist/server/ssr/_next/static/vendor-spreadsheet-CpXj7ZJ8.js                     338.40 kB │ gzip:  98.67 kB
+dist/server/ssr/_next/static/vendor-charts-BLzJqFke.js                          481.49 kB │ gzip: 136.07 kB
+dist/server/ssr/_next/static/DailyPracticeSession-DwcE_KP8.js                   501.69 kB │ gzip: 106.84 kB
+dist/server/ssr/_next/static/vendor-monorepo-DdQZrqKT.js                        742.82 kB │ gzip: 193.44 kB
+
+[33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0m../../node_modules/vinext/dist/shims/slot.js is dynamically imported by \0virtual:vite-rsc/client-references but also statically imported by ../../node_modules/vinext/dist/server/app-route-tree.js, ../../node_modules/vinext/dist/server/app-ssr-entry.js, ../../node_modules/vinext/dist/shims/client-page-root.js, dynamic import will not move module into another chunk.
+[39m
+[33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0m../../node_modules/vinext/dist/shims/default-global-error.js is dynamically imported by \0virtual:vite-rsc/client-references but also statically imported by ../../node_modules/vinext/dist/server/app-ssr-entry.js, ../../node_modules/vinext/dist/shims/error-boundary.js, dynamic import will not move module into another chunk.
+[39m
+[32m✓ built in 2.89s[39m
+
+  Route (app)
+  ┌ ? /                                                  
+  ├ ? /acknowledgments                                   
+  ├ λ /api/activities/:activityId                        
+  ├ λ /api/activities/complete                           
+  ├ λ /api/activities/spreadsheet/:activityId/draft      
+  ├ λ /api/activities/spreadsheet/:activityId/submit     
+  ├ λ /api/auth/change-password                          
+  ├ λ /api/auth/login                                    
+  ├ λ /api/auth/logout                                   
+  ├ λ /api/auth/session                                  
+  ├ λ /api/datasets/:filename                            
+  ├ λ /api/dev/curriculum-graph                          
+  ├ λ /api/dev/curriculum-source                         
+  ├ λ /api/learning-evidence/bm2-pilot                   
+  ├ λ /api/lessons/:lessonId/progress                    
+  ├ λ /api/pdfs/:pdfName                                 
+  ├ λ /api/phases/complete                               
+  ├ λ /api/progress/assessment                           
+  ├ λ /api/progress/phase                                
+  ├ λ /api/srs                                           
+  ├ λ /api/student/lesson-chatbot                        
+  ├ λ /api/study                                         
+  ├ λ /api/teacher/ai-error-summary                      
+  ├ λ /api/teacher/error-summary                         
+  ├ λ /api/teacher/learning-evidence/bm2-pilot           
+  ├ λ /api/teacher/srs                                   
+  ├ λ /api/teacher/submission-detail                     
+  ├ λ /api/users/bulk-create-students                    
+  ├ λ /api/users/create-student                          
+  ├ λ /api/users/ensure-demo                             
+  ├ λ /api/users/reset-student-password                  
+  ├ λ /api/users/update-student                          
+  ├ λ /api/workbooks/:unit/:lesson/:type                 
+  ├ λ /api/workbooks/capstone/:type                      
+  ├ λ /auth/confirm                                      
+  ├ ? /auth/error                                        
+  ├ ? /auth/forgot-password                              
+  ├ ? /auth/login                                        
+  ├ ? /auth/update-password                              
+  ├ ? /backmatter/glossary                               
+  ├ ? /blueprint-qa                                      
+  ├ ƒ /capstone                                          
+  ├ ? /capstone/guidelines                               
+  ├ ? /capstone/rubrics                                  
+  ├ ƒ /curriculum                                        
+  ├ ? /dev/component-review                              
+  ├ ƒ /dev/component-review/harness/activity/:componentId
+  ├ ƒ /dev/component-review/harness/example/:componentId 
+  ├ ƒ /dev/component-review/harness/practice/:componentId
+  ├ ? /dev/practice-preview                              
+  ├ ƒ /preface                                           
+  ├ ? /search                                            
+  ├ ? /settings                                          
+  ├ ? /student                                           
+  ├ ƒ /student/dashboard                                 
+  ├ ƒ /student/lesson/:lessonSlug                        
+  ├ ƒ /student/practice                                  
+  ├ ƒ /student/study                                     
+  ├ ƒ /student/study/export                              
+  ├ ƒ /student/study/flashcards                          
+  ├ ƒ /student/study/matching                            
+  ├ ƒ /student/study/practice-tests                      
+  ├ ƒ /student/study/practice-tests/:unitNumber          
+  ├ ƒ /student/study/progress                            
+  ├ ƒ /student/study/review                              
+  ├ ƒ /student/study/speed-round                         
+  ├ ? /teacher                                           
+  ├ ? /teacher/competency                                
+  ├ ? /teacher/course-overview/backward-design           
+  ├ ? /teacher/course-overview/pbl-methodology           
+  ├ ? /teacher/dashboard                                 
+  ├ ? /teacher/gradebook                                 
+  ├ ? /teacher/srs                                       
+  ├ ƒ /teacher/students/:studentId                       
+  ├ ƒ /teacher/students/:studentId/competency            
+  ├ ƒ /teacher/units/:unitNumber                         
+  └ ƒ /teacher/units/:unitNumber/lessons/:lessonId       
+
+  λ API  ƒ Dynamic  ? Unknown
+
+  ? Some routes could not be classified. vinext currently uses static analysis
+    and cannot detect dynamic API usage (headers(), cookies(), etc.) at build time.
+    Automatic classification will be improved in a future release.
+
+  Build complete.
+

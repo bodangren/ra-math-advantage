@@ -1,7 +1,8 @@
 {
   "RED_TEST_COMMAND": "CI=true npm run test --workspace=packages/ai-tutoring -- -t 'SDK transport'",
   "GREEN_TEST_COMMAND": "CI=true npm run test --workspace=packages/ai-tutoring && CI=true npm run test --workspace=apps/bus-math-v2 -- __tests__/lib/ai/providers.test.ts __tests__/app/api/student/lesson-chatbot __tests__/api/student/lesson-chatbot.test.ts && CI=true npm run test --workspace=apps/integrated-math-3 -- __tests__/app/api/student/lesson-chatbot",
-  "PROJECT_LINT": "bash measure/tracks/openrouter-sdk-ai-layer_20261114/gates.sh lint green",
-  "PROJECT_CHECKS": "bash measure/tracks/openrouter-sdk-ai-layer_20261114/gates.sh checks-all green",
-  "PROJECT_TESTS": "bash measure/tracks/openrouter-sdk-ai-layer_20261114/gates.sh test green"
+  "PROJECT_LINT": "bash measure/archive/openrouter-sdk-ai-layer_20261114/gates.sh lint green",
+  "PROJECT_CHECKS": "bash measure/archive/openrouter-sdk-ai-layer_20261114/gates.sh checks-all green",
+  "PROJECT_TESTS": "bash measure/archive/openrouter-sdk-ai-layer_20261114/gates.sh test green",
+  "GENERATED_CHECK_COMMAND": "npm run generate"
 }

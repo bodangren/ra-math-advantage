@@ -1,0 +1,65 @@
+Review A audited dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c..4710566e9acf3c3a16c3aa2a29388781ee7c9e37.
+Initial HEAD matched the supplied audited commit.
+The review used that commit as role_base_sha.
+The review changed only its supplied result artifacts.
+
+Targeted tests, through heavy-run.sh, exited 0:
+- packages/ai-tutoring: providers.test.ts and retry.test.ts; 37 passed.
+- apps/bus-math-v2: route.sdk.test.ts, providers.test.ts, and spreadsheet-feedback.test.ts; 9 passed.
+- apps/integrated-math-3: route.sdk.test.ts; 1 passed.
+- test:workerd: exit 0; workerd probe: probe-ok.
+
+The first test attempt timed out during the shared-slot wait.
+The later targeted run completed.
+The first fixture harness failed because TypeScript 7 removed transpileModule.
+The corrected harness used node:module.stripTypeScriptTypes and completed.
+
+Fixture method:
+1. Read providers.ts from each pinned Git commit with git show.
+2. Read retry.ts and openrouter-client.ts from the audited commit.
+3. Strip TypeScript types in memory.
+4. Replace local import paths with data module URLs.
+5. Resolve the SDK import to the installed package entry.
+6. Mock global fetch with Response objects, not the SDK.
+7. Send one HTTP error response, followed by a valid SDK success response.
+8. Compare the actual request count with the expected count.
+9. Check real-SDK timeout and external-abort results.
+10. Source gates.sh and compare an existing baseline log with an absent current log.
+No fixture wrote a source file, a test file, or a log file.
+The exact inline command appears in the session tool transcript.
+
+Fixture outputs:
+{"fixture":"authoritative-http-status","label":"baseline","status":503,"message":"upstream error (400)","expectedCalls":2,"actualCalls":2,"outcome":"recovered","pass":true}
+{"fixture":"authoritative-http-status","label":"baseline","status":400,"message":"upstream error (503)","expectedCalls":1,"actualCalls":1,"outcome":"OpenRouter API error: 400 Bad Request","pass":true}
+{"fixture":"authoritative-http-status","label":"head","status":503,"message":"upstream error (400)","expectedCalls":2,"actualCalls":1,"outcome":"OpenRouter API error: 503 upstream error (400)","pass":false}
+{"fixture":"authoritative-http-status","label":"head","status":400,"message":"upstream error (503)","expectedCalls":1,"actualCalls":2,"outcome":"recovered","pass":false}
+{"fixture":"timeout","name":"AbortError","actualCalls":1,"pass":true}
+{"fixture":"external-abort","name":"AbortError","actualCalls":1,"pass":true}
+{"fixture":"missing-current-log","output":"MISSING_CURRENT_LOG_DETECTED=0","exit":0,"expected":"MISSING_CURRENT_LOG_DETECTED=1","pass":false}
+AUDIT_REGRESSIONS=3
+Fixture command exit: 1.
+
+F1 blocks acceptance. Green must preserve authoritative status classification.
+F2 and F3 are record-only corrections for the next phase under the PM cap.
+The final role gate exited 1 with two findings:
+- The audit status is fail because F1 blocks acceptance.
+- The current phase has one incomplete task: the expected manual verification task.
+The gate did not report the later HEAD.
+
+HEAD advanced during the audit to 334fab55f0f0fb1e961d3b05a953e052c7270686.
+That commit adds dependency-refresh track documents and a registry entry only.
+The audited implementation and tests did not change.
+The result remains bound to the supplied audited commit.
+
+MEASURE_AGENT_RESULT
+role: review-a
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S1: Adopt the OpenRouter SDK
+commits: none
+tests_run: Targeted provider/retry 37, BM2 9, and IM3 1 tests passed; workerd probe passed; inline fixtures failed with AUDIT_REGRESSIONS=3; role gate exited 1 for F1 and the expected open manual task.
+files_changed: measure/runs/openrouter-sdk-ai-layer_20261114/review-a-4710566e.json; measure/runs/openrouter-sdk-ai-layer_20261114/review-a-4710566e.log
+plan_updates: none
+known_failures: F1 changes HTTP retry behavior; accepted baseline suite, typecheck, bundle, and F5 failures remain unchanged.
+handoff: Route F1 to Green. Record F2 and F3 for the next phase. The orchestrator owns manual verification and checkpointing. HEAD advanced through unrelated track documents only; keep this audit pinned to 4710566e.
+END_MEASURE_AGENT_RESULT

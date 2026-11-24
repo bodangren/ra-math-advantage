@@ -1,0 +1,28 @@
+# Phase acceptance log: Phase S1, Adopt the OpenRouter SDK
+
+Route: claude-code/claude-sonnet-5-5#max. HEAD and audited head: 328862b628a02792a55a1e8c81615ff28499704b.
+Phase base: dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c. The audit changed no tracked file and made no commit.
+
+Verdict: pass, with six nonblocking findings (F1 and F2 Major, F3 to F6 Nit). The result JSON holds the evidence.
+
+- AC1 to AC5 have passing evidence at HEAD. Package suite 111 of 111. BM2 adversarial route test 2 of 2.
+  Workerd probe prints probe-ok. IM3 and BM2 vinext builds exit 0. Failure keys equal the baseline.
+- The remediation chain (Review A F1, ADV-1, ADV-2, ADV-3, Review B F8 and F9, Review A F4) is fixed.
+  Mutation check: control 67 of 67, 11 of 12 mutants fail a test, mutant M10 survives (F5).
+- Plan-only commit 328862b6 is acceptable. The [b] deferral matches the archived vinext-oxc-toolchain pattern.
+- F1 is a behavior drift for HTTP 200 bodies. It stays record-only under the PM cap. The PM can overrule it.
+- Role gate: python3 measure_interphase_checks.py role-gate (phase-acceptance) exits 0 with
+  "PASS: phase-acceptance gate passed". HEAD stayed 328862b6 and nothing is staged at the end.
+
+MEASURE_AGENT_RESULT
+role: phase-acceptance
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S1: Adopt the OpenRouter SDK
+commits: none
+tests_run: package suite 111 of 111 pass; BM2 route.adversarial 2 of 2 pass; workerd probe probe-ok; IM3 and BM2 builds exit 0; both bundle audits at baseline entries; doctor, format:check, lint, typecheck, boundary, and ci checks exit 0; mutation check 11 of 12 mutants detected; role-gate exit 0 (PASS: phase-acceptance gate passed)
+files_changed: measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-328862b6.json and .log (gitignored); no tracked file
+plan_updates: none (gate-only role); add F1 to F6 of the result JSON to the next-phase list in plan.md
+known_failures: baseline failures unchanged with the same keys (IM3 218, BM2 7, scripts 27, audit 5); BM2 bundle audit exits 1 on the baseline entry Total dist/server; no new failure
+handoff: Phase S1 passes at 328862b6 with no blocking finding. Add F1 to F6 to the next-phase list in plan.md. F1 and F2 are Major and stay record-only under the PM cap. Question for the PM, default stands: does F1 (SDK strict validation of 200 bodies, no retry of a 200 error body) violate AC2? Default: no, and S2 fixes it in mapSdkError with tests. Option: ask Daniel for a free-model OpenRouter key and run one live chatbot request before S2. Next: the closeout role makes the checkpoint commit, appends the checkpoint marker to the phase heading, and marks the phase complete.
+END_MEASURE_AGENT_RESULT

@@ -1,0 +1,72 @@
+
+> @math-platform/ai-tutoring@0.1.0 test
+> vitest run src/__tests__/providers.adversarial.test.ts
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+
+
+ Test Files  1 passed (1)
+      Tests  23 passed (23)
+   Start at  12:34:29
+   Duration  7.88s (transform 29ms, setup 0ms, import 651ms, tests 7.14s, environment 0ms)
+
+
+> test
+> vitest run __tests__/app/api/student/lesson-chatbot/route.adversarial.test.ts
+
+[33m(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vitest.config.ts:49:35). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.[39m
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2
+
+ ✓ __tests__/app/api/student/lesson-chatbot/route.adversarial.test.ts (2 tests) 834ms
+     ✓ returns the fixed 503 body without a request when the API key is absent  827ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  12:34:37
+   Duration  1.58s (transform 101ms, setup 130ms, import 17ms, tests 834ms, environment 446ms)
+
+http-repeated calls=1 expectedCalls=1 keyLeaked=false errorName=Error
+(node:2685523) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+connection-repeated calls=3 expectedCalls=3 keyLeaked=false errorName=Error
+non-http-body-read-repeated calls=1 expectedCalls=1 keyLeaked=false errorName=Error
+non-error-body-read-repeated calls=1 expectedCalls=1 keyLeaked=false errorName=Error
+REDACTION_PROBE_FAILURES=0
+
+> format:check
+> oxfmt --check
+
+Checking formatting...
+
+All matched files use the correct format.
+Finished in 492ms on 3725 files using 12 threads.
+
+> @math-platform/ai-tutoring@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/ai-tutoring@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+
+> @math-platform/ai-tutoring@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/ai-tutoring@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+
+> doctor
+> bash measure/scripts/doctor.sh
+
+[doctor] Checking generated documentation...
+[architecture-reports] Verified 5 files.
+[doctor] Running monorepo boundary lint...
+[OK] Architecture manifest covers 26 workspaces; 620 internal imports checked; package DAG acyclic.
+[doctor] All checks passed.
+PACKAGE_EXIT=0 ROUTE_EXIT=0 PROBE_EXIT=0 FORMAT_EXIT=0 LINT_EXIT=0 TYPES_EXIT=0 BUILD_EXIT=0 DOCTOR_EXIT=0

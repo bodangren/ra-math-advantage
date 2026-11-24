@@ -1,0 +1,115 @@
+import { describe, expect, it } from "vitest";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { scanFilesForBannedTokens } from "./openrouter-scan-shared";
+
+const REPO_ROOT = "/home/daniebo/Desktop/ra-math-advantage";
+
+const BANNED_TOKENS = [
+  "api.openai.com",
+  "api.anthropic.com",
+  "OPENAI_API_KEY",
+  "AI_INTERPRETATION_",
+];
+
+const REMOVAL_PATHS = [
+  "apps/bus-math-v2/lib/practice/error-analysis/providers.ts",
+  "apps/bus-math-v2/__tests__/lib/practice/error-analysis-providers.test.ts",
+  "apps/bus-math-v2/lib/teacher/ai-interpretation.ts",
+  "apps/bus-math-v2/__tests__/lib/teacher/ai-interpretation.test.ts",
+];
+
+const EXCLUDED_DIR_NAMES = new Set(["node_modules", ".next", "dist"]);
+
+const BINARY_EXTENSIONS = new Set([
+  ".png",
+  ".jpg",
+  ".jpeg",
+  ".gif",
+  ".webp",
+  ".ico",
+  ".woff",
+  ".woff2",
+  ".ttf",
+  ".pdf",
+  ".db",
+  ".sqlite",
+  ".zip",
+  ".gz",
+  ".mp3",
+  ".mp4",
+  ".wasm",
+]);
+
+function isBinaryPath(file: string): boolean {
+  return BINARY_EXTENSIONS.has(path.extname(file).toLowerCase());
+}
+
+const PRACTICE_CORE_SPECIFIER: string = "@math-platform/practice-core";
+
+async function loadPracticeCore(): Promise<any> {
+  try {
+    return await import(PRACTICE_CORE_SPECIFIER);
+  } catch {
+    return null;
+  }
+}
+
+function listScannedFiles(): string[] {
+  const roots = [path.join(REPO_ROOT, "apps"), path.join(REPO_ROOT, "packages")];
+  const out: string[] = [];
+  const visit = (dir: string): void => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (entry.isDirectory()) {
+        if (EXCLUDED_DIR_NAMES.has(entry.name)) continue;
+        visit(path.join(dir, entry.name));
+      } else if (entry.isFile()) {
+        out.push(path.join(dir, entry.name));
+      }
+    }
+  };
+  for (const root of roots) visit(root);
+  return out.sort();
+}
+
+function findBannedTokenMatches(files: string[]): string[] {
+  const hits: string[] = [];
+  for (const file of files) {
+    if (isBinaryPath(file)) continue;
+    let text: string;
+    try {
+      text = fs.readFileSync(file, "utf8");
+    } catch {
+      continue;
+    }
+    if (text.includes("\0")) continue;
+    for (const token of BANNED_TOKENS) {
+      if (text.includes(token)) hits.push(`${path.relative(REPO_ROOT, file)}: ${token}`);
+    }
+  }
+  return hits.sort();
+}
+
+describe("openrouter-only", () => {
+  it("case 1: no file under apps or packages holds an OpenAI or Anthropic token", () => {
+    const files = listScannedFiles();
+    expect(files.length).toBeGreaterThan(0);
+    expect(files).toContain(path.join(REPO_ROOT, "packages/practice-core/src/index.ts"));
+    const matches = findBannedTokenMatches(files);
+    expect(matches, `Banned token match count: ${matches.length}`).toEqual([]);
+  });
+
+  it("case 2: the four removed OpenAI paths do not exist", () => {
+    expect(REMOVAL_PATHS.length).toBe(4);
+    const existing = REMOVAL_PATHS.filter((rel) => fs.existsSync(path.join(REPO_ROOT, rel)));
+    expect(existing, `Existing removal path count: ${existing.length}`).toEqual([]);
+  });
+
+  it("case 3: practice-core has no generateAISummary and keeps buildTeacherErrorView", async () => {
+    const ns = await loadPracticeCore();
+    expect(ns).not.toBeNull();
+    expect("generateAISummary" in ns, "generateAISummary must be removed").toBe(false);
+    expect("buildTeacherErrorView" in ns, "buildTeacherErrorView must stay").toBe(true);
+  });
+});

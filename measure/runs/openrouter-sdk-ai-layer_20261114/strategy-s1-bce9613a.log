@@ -1,0 +1,19 @@
+MEASURE_AGENT_RESULT
+role: measure-strategy
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S1: Adopt the OpenRouter SDK
+commits: dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c
+tests_run: none; strategy role reads only, no builds or test sweeps per brief
+files_changed: measure/tracks/openrouter-sdk-ai-layer_20261114/test-strategy.md
+plan_updates: none; plan.md is outside this role's ownership
+known_failures: baseline records the scripts-suite remediate-concept-blueprints failure, the BM2 bundle audit Total dist/server budget miss, the npm audit advisory drift, the audit-suite baseline failures, and the measure/generated/routes.md path bug (F5)
+handoff: Capture the immutable phase_base_sha now, at HEAD dbf4d65e immediately after this strategy commit and before any other commit; git status --porcelain must show only the 6 known generated files with status ' M'; store the SHA in the orchestrator run log and role handoff, never in plan.md or spec.md. The role_base_sha bce9613a predates this strategy and is void as phase_base_sha. S1 risk high. Applicable roles: Review A yes, Review B yes, Review C yes, adversarial yes, UX browser no because S1 changes no page, component, or route rendering. RED: CI=true npm run test --workspace=packages/ai-tutoring -- -t 'SDK transport'. GREEN: the three workspace test commands for ai-tutoring, bus-math-v2, and integrated-math-3. Gate commands, baseline capture, new-failure counting, and the 12 plan drifts with defaults are in test-strategy.md sections 4, 5, and 12. Do not stage the 6 dirty generated files. No push performed.
+route: opencode-go/hy4-flash-free#high
+route_note: ra-quota pick strategy --why skipped Claude (WAIT), DeepSeek free and Go, MiMo, Kimi, and MiniMax; selected opencode-go/hy4-flash-free#high
+risk_level: high
+applicable_roles: Review A yes; Review B yes; Review C yes; adversarial yes; UX browser no (no UI or route-rendering change in S1)
+test_commands: RED_TEST_COMMAND=CI=true npm run test --workspace=packages/ai-tutoring -- -t 'SDK transport'; GREEN_TEST_COMMAND=CI=true npm run test --workspace=packages/ai-tutoring && CI=true npm run test --workspace=apps/bus-math-v2 && CI=true npm run test --workspace=apps/integrated-math-3; PROJECT_LINT=format:check plus lint on the 4 workspaces; PROJECT_TESTS=tests on the 4 workspaces plus scripts and audit suites; PROJECT_CHECKS=typecheck on the 4 workspaces plus boundary, ci-check, tree, npm audit, both builds, both bundle audits, and the workerd probe after it exists
+phase_base_sha_point: immediately after commit dbf4d65e, before any other commit, with only the 6 generated files modified
+drifts: F1 no gates.sh, use direct commands with key comparison; F2 test:workerd script not yet present; F3 BM2 build rewrites workbooks-manifest.json; F4 four routes.d.ts files are dirty; F5 routes.md path bug persists; F6 dist/server recursive vs top-level; F7 IM3 audit patterns can match zero files; F8 npm advisory drift; F9 aggregate suites have baseline failures; F10 gate table uses 4 workspaces; F11 probe compatibility_date 2026-04-11; F12 SDK referrer and title values stay current
+END_MEASURE_AGENT_RESULT

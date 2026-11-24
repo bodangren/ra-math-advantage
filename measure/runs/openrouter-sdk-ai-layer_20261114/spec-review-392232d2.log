@@ -1,0 +1,27 @@
+# Spec Review Round 2: openrouter-sdk-ai-layer_20261114
+
+Reviewer: Measure Spec Review subagent (kimi-for-coding)
+Head: 392232d202f98b33b63f3942cf71f50db6576b11 (matches current HEAD)
+
+## Checks run
+
+- F1 (FIX): plan.md S1 Test (Red) line 83 names apps/bus-math-v2/__tests__/lib/ai/providers.test.ts and applies the assertion-change rule. The file exists and calls createOpenRouterProvider({ apiKey: 'test-key' }) and checks the fetch URL and body, as the plan says. plan.md S2 lines 169-170 name each test file to update. All six files exist:
+  - packages/ai-tutoring/src/__tests__/providers.test.ts
+  - apps/bus-math-v2/__tests__/lib/ai/providers.test.ts
+  - apps/bus-math-v2/__tests__/lib/ai/spreadsheet-feedback.test.ts
+  - apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.test.ts
+  - apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.test.ts
+  - apps/bus-math-v2/__tests__/api/student/lesson-chatbot.test.ts
+  Result: F1 resolved.
+
+- F2 (FIX): plan.md Gate Commands table now has the Scripts suite, the Audit suites, the Boundary check, the CI check, the Tree check, and the Advisories gate. Line 36 defines "Run each gate" as each row of the table. Command targets exist in the checkout: scripts/vitest.config.ts, scripts/audit/__tests__/, scripts/validate-ci.mjs, scripts/check-monorepo-boundaries.mjs. Bundle audit scripts exist in both apps.
+  Result: F2 resolved.
+
+- F3 (Nit, DECLINE): valid disposition for a Nit. No open item.
+- F4 (Nit, DECLINE): valid disposition for a Nit. No open item.
+
+- No CONTEST or ESCALATE item, so no keep/withdraw decision is due.
+
+## Verdict
+
+No Blocker, no Major, no new finding. Status: pass.

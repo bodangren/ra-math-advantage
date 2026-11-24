@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "role": "review-a",
+  "track": "openrouter-sdk-ai-layer_20261114",
+  "phase": "Phase S3: Structured output for the evaluation features",
+  "baseline_sha": "55e7952b15b3e36dc8b44dea76f252ded4c9c12e",
+  "audited_head_sha": "ed3971550edae564a6d29bd1a168ea7b788e97c0",
+  "status": "fail",
+  "summary": "The BM2 features use the structured helper, but the serialized SDK request omits the required provider preference.",
+  "blocking_findings": [
+    "F1 [Blocker] review-a: `packages/ai-tutoring/src/structured.ts` adds snake_case `provider: { require_parameters: true }` to the SDK input, but SDK 1.5.128 drops that field and serializes `provider: {}`. This violates spec Story S3 acceptance criterion 2 and leaves the endpoint free to choose a provider that does not support structured output. The evidence explicitly says no test asserts the serialized provider field. Rationale: the delivered request does not enforce the required structured-output routing contract."
+  ],
+  "nonblocking_findings": [
+    "F2 [Nit] review-a: `measure/tracks/openrouter-sdk-ai-layer_20261114/evidence.md` lines 438-440 says this phase does not change the PII strip, served-model rule, cache key, or rate-limit logs, although the same phase's S3 Fix group changes each of them. Rationale: this evidence statement is stale and conflicts with lines 353-377 of the same file."
+  ],
+  "evidence": [
+    "HEAD resolves to ed3971550edae564a6d29bd1a168ea7b788e97c0, matching the audited head; audited diff scope is 55e7952b15b3e36dc8b44dea76f252ded4c9c12e..ed3971550edae564a6d29bd1a168ea7b788e97c0.",
+    "The plan's PM release gate requires the BM2 chatbot PII strip test to pass before release (plan.md:328-352); the changed BM2 route sends lesson markdown through shared `assembleLessonChatbotContext` with account values supplied (route.ts:180-186).",
+    "`packages/ai-tutoring/package.json` declares zod ^4.1.12 and exports `./structured` (lines 8-14, 23-26).",
+    "`structured.ts` creates `contractFields.provider` with snake_case at lines 166-178, then passes the object to SDK `chat.send`; the evidence records SDK 1.5.128 serializes an empty provider object (evidence.md:428-434).",
+    "The targeted package structured-output suite passed: 9 passed, 147 skipped.",
+    "The BM2 targeted suite passed: 33 passed, 2683 skipped, including spreadsheet feedback, teacher summary, route, and no-PII tests.",
+    "The teacher summary has an explicit no-request assertion at `apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts:179-190` and no-PII prompt capture at `apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.no-pii.test.ts:169-180`.",
+    "The S3 Green log reports the workerd probe and three gate sweeps passing, and records provider serialization behavior (green-s3-3e0e1d50.log:43-48, 75-78).",
+    "Review B's five earlier findings are addressed in the S3 Fix group: lesson PII strip, expanded IM3 regex coverage, key-shaped MODEL_ID rejection, secret-free cache key with API-key recheck, and rate-limit log redaction (plan.md:353-409)."
+  ],
+  "commands": [
+    "git rev-parse HEAD -> ed3971550edae564a6d29bd1a168ea7b788e97c0",
+    "git diff --stat 55e7952b15b3e36dc8b44dea76f252ded4c9c12e..ed3971550edae564a6d29bd1a168ea7b788e97c0 -> 32 files changed, 2516 insertions(+), 208 deletions(-)",
+    "~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh bash -c \"CI=true npm run test --workspace=packages/ai-tutoring -- -t 'structured output'\" -> exit 0, 9 passed, 147 skipped",
+    "~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh bash -c \"CI=true npm run test --workspace=apps/bus-math-v2 -- -t 'spreadsheet-feedback|teacher AI error summary|ai-error-summary|no-PII'\" -> exit 0, 33 passed, 2683 skipped",
+    "Build-graph scan was attempted through heavy-run but could not complete its callers query: lock wait exceeded 600 seconds; the scan reported only 1 node and 1 edge, then no matches."
+  ],
+  "changed_files": [
+    "apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.no-pii.test.ts",
+    "apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.test.ts",
+    "apps/bus-math-v2/__tests__/app/api/activities/spreadsheet/submit.no-pii.test.ts",
+    "apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts",
+    "apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.test.ts",
+    "apps/bus-math-v2/__tests__/lib/ai/spreadsheet-feedback.test.ts",
+    "apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts",
+    "apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts",
+    "apps/bus-math-v2/app/api/teacher/ai-error-summary/route.ts",
+    "apps/bus-math-v2/lib/ai/spreadsheet-feedback.ts",
+    "apps/bus-math-v2/lib/teacher/ai-error-summary.ts",
+    "apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.pii-scope.test.ts",
+    "apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/green-s3-3e0e1d50.log",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/green-s3-fix-455dc41c.log",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/red-s3-cc7bb7b4.log",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/red-s3-fix-ff30c052.log",
+    "measure/tech-stack.md",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/evidence.md",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/gates.sh",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md",
+    "package-lock.json",
+    "packages/ai-tutoring/package.json",
+    "packages/ai-tutoring/src/__tests__/openrouter-debug-logging.test.ts",
+    "packages/ai-tutoring/src/__tests__/roles.test.ts",
+    "packages/ai-tutoring/src/__tests__/structured.test.ts",
+    "packages/ai-tutoring/src/index.ts",
+    "packages/ai-tutoring/src/lesson-context.ts",
+    "packages/ai-tutoring/src/openrouter-client.ts",
+    "packages/ai-tutoring/src/providers.ts",
+    "packages/ai-tutoring/src/structured.ts",
+    "scripts/architecture/architecture.manifest.json"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [
+    "F1 [Blocker] review-a: the structured request serializes `provider: {}` rather than `provider: { require_parameters: true }`, contrary to spec Story S3 acceptance criterion 2."
+  ],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "retry_implementation",
+  "confidence": "high",
+  "route": "openai/gpt-6-luna#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 3,
+      "evidence": "The teacher summary and spreadsheet flows pass their targeted tests, but `structured.ts` sends an empty serialized provider preference."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 3,
+      "evidence": "`structured.test.ts` verifies the SDK-boundary object, while evidence.md:428-434 confirms the serialized provider field is absent."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 4,
+      "evidence": "The 32-file diff covers the planned S3 fixes, helper, callers, tests, dependency, and gate maintenance."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 4,
+      "evidence": "The targeted test commands passed, and evidence.md:428-434 records the SDK request serialization gap."
+    }
+  ]
+}

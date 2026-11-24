@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "role": "phase-acceptance",
+  "track": "openrouter-sdk-ai-layer_20261114",
+  "phase": "Phase S4: Remove the OpenAI paths and document the roles",
+  "baseline_sha": "98cd2333d3eed79e2c9b081a2e8a1453ac3a8ba5",
+  "phase_base_sha": "8283f9fa192be2afc78a2e731fac1e267c3535b5",
+  "role_base_sha": "98cd2333d3eed79e2c9b081a2e8a1453ac3a8ba5",
+  "audited_head_sha": "98cd2333d3eed79e2c9b081a2e8a1453ac3a8ba5",
+  "status": "fail",
+  "summary": "Acceptance fails on one blocker, F4. The F1 fix works in the real scan code. The NUL regression case calls neither scan, so it cannot catch the old skip. All sweeps report NEWFAIL=0 and every targeted test passes.",
+  "blocking_findings": [
+    "F4 [Blocker] phase-acceptance: The NUL regression case does not test the scans. It calls findBannedTokensInText (openrouter-s4-adversarial.test.ts:145), a helper that no scan uses. If a developer restores the NUL skip in either scan, every S4 test still passes."
+  ],
+  "nonblocking_findings": [
+    "F2 [Nit] phase-acceptance: Review A F1 remains. Two BM2 teacher route tests mock the deleted provider path and the removed generateAISummary function. The production route imports neither.",
+    "F3 [Nit] phase-acceptance: evidence.md:573 records four Red matches. gates/s4-red/step-scripts-suite.log:44 records ten file and token pairs across four distinct tokens.",
+    "F5 [Nit] phase-acceptance: Both scans skip 17 binary file extensions in addition to node_modules, .next, and dist. The gate scan also skips a file silently on a read error (openrouter-only.test.ts:80-84). S4.14 F21 names the three directories only. The real repo holds no banned token in any skipped file."
+  ],
+  "evidence": [
+    "Git confirmed the audited HEAD 98cd2333d3eed79e2c9b081a2e8a1453ac3a8ba5 at role start and role end. Only generated files and graph.db were modified, and nothing was staged.",
+    "Reviews A, B, C and adversarial testing pass at 3bcf2b3124a4ae042e79851b51ae3e6a08327a93. The diff from that commit to HEAD holds no production file. I allowed 6583ec4e (adversarial test file and one include line), a330414e (two test files), f4cf6b45 (three evidence lines in plan.md), and 98cd2333 (a run log). The plan.md edit is not a test file. I allowed it because it changes no implementation content.",
+    "Browser review does not apply (test-strategy.md:1002). The ux-paths command printed no path and exited 0.",
+    "F1 closed in the scan code: neither scan holds a content-based skip. Commit a330414e removes the line if (text.includes(\"\\0\")) continue; from openrouter-only.test.ts and from the adversarial scan. In acceptance2-f1-check.cjs part B, the real findBannedTokenMatches reports a NUL-bearing source (2 hits). With the old skip put back in memory, it reports 1 hit.",
+    "No other filter hid a real hit on the real repo. A byte-level scan of 11434 files outside node_modules found 0 banned tokens: 0 in the 5870 gate-scanned files, 0 in the 1515 binary-extension files, 0 in the 4049 files under .next or dist, and 0 in UTF-16 form. 0 files were unreadable. The old skip hid 346 gate-scanned files that hold a NUL. The new logic scans them.",
+    "F4 evidence: the regression case at openrouter-s4-adversarial.test.ts:133-150 references findBannedTokensInText once (line 145). That helper is defined at line 60, and no scan calls it. The real-repo scan (lines 116-131) and findBannedTokenMatches (openrouter-only.test.ts:75-90) hold their own loops. The plan line at plan.md:627-629 and the Red log describe the case as a guard of the scan.",
+    "The sweeps at gates/s4-acceptance2/ (GATES_BASE=s3) exit 0 with NEWFAIL=0 for lint, test, and checks-all. The raw IM3 typecheck, IM3 and BM2 tests, scripts suite, audit suites, and BM2 bundle audit still fail on baseline keys only.",
+    "The independent key comparison with the gate key function covers 25 logs. It finds 0 new keys against s3 and against s4-r3, apart from one IM3 chunk-name hash with unchanged raw size. The lost keys are the console lines of the removed tests: IM3 4 and BM2 2.",
+    "Failure counts match S4.8: IM3 218 failed, BM2 7, scripts suite 27, audit suites 5. Passed counts moved only by the planned test changes: IM3 minus 3, BM2 minus 29, scripts suite plus 10.",
+    "npm audit reports critical=0 high=5 moderate=6 low=5, the same as s3, with no new high or critical advisory ID. The BM2 bundle audit keeps [EXCEEDS] Total dist/server: 10035.04 KB. Both app builds, the boundary check, the CI check, the tree check, and the workerd probe exit 0. The probe prints probe-ok.",
+    "Targeted tests (gates/s4-acceptance2/targeted.exit): openrouter-only 3 passed; openrouter-s4-adversarial 7; G-CHAT IM3 12 and BM2 16; G-SHEET 13; G-TEACHER 8; G-TEACHER-ROUTE 12; G-NO-PII IM3 1 and BM2 5; exact BM2 PII strip 1; ai-tutoring 165; practice-core 263. Each job ran at least one case and failed none.",
+    "npm run generate and bash measure/doctor.sh exit 0 at HEAD. Doctor prints All checks passed. HEAD stayed the same and nothing was staged afterward.",
+    "Plan tasks: each [x] S4 task cites an existing commit that matches its content. The cited commits are 0e192c88 (Contract), 30073327 and 5724741c (Red), e13a8dfc (removals), 89946220 (docs and Docs & Doctor), and e13a8dfc with 89946220 (Verify). The live smoke test is [b] deferred:daniel. The manual verification task stays open for the PM.",
+    "Contract removals 1 to 5 at 0e192c88 match the diff of e13a8dfc. It deletes four files. It removes four names from practice-core (94 deleted lines, no added line). It removes two export lines in each barrel. It removes 5 BM2 and 3 IM3 generateAISummary tests. The other cases stay (BM2 36 to 31, IM3 34 to 31).",
+    "The role documents match the spec.md Roles table. Both .env.example files and the AI Layer section of measure/tech-stack.md name OPENROUTER_API_KEY, the four role variables, the initial values, and the openrouter/free development note. BM2 .env.example holds no OPENAI_ or AI_INTERPRETATION_ line. Both wrangler.jsonc files add only the comment line for OPENROUTER_API_KEY.",
+    "ASD-STE100: the five edited documents hold 28 added sentences. None is over 25 words (the longest has 18 words), and none is passive in my read.",
+    "No dependency change: the phase diff holds no package.json or lockfile file, and package-lock.json holds no openai or @anthropic-ai package.",
+    "No stale artifact: git grep finds the removed names only in the two BM2 route tests (F2) and in the gate tests. OPENROUTER_MODEL appears only in tests that assert the old variable is ignored. openrouter/free appears only in two .env.example comments.",
+    "PM release gate: plan.md:60 is unchanged in the phase diff. The BM2 test 'strips fixture person details from the lesson markdown before the provider call' passes. It runs the real assembleLessonChatbotContext and asserts that no fixture value reaches the provider.",
+    "A3: the new tests assert arrays or numeric counts, not digit presence. A4 and A6 do not apply: the phase diff changes no marker check and no line of measure/tracks.md. A5: the numeric claims in the S4 plan and evidence text reproduce at HEAD, with two exceptions. The 121 skipped cases of the openrouter-only filter are 128 at HEAD, because the permitted adversarial tests joined the suite. The four Red matches are ten file and token pairs (F3).",
+    "A7: the NUL skip is gone and no real hit is dropped on the real repo. The ADV-S4-3 comment filter drops nothing, because no non-test source line holds openrouter/free or OPENROUTER_MODEL. F5 records the two latent filters.",
+    "The three IM3 queue and sessions tests fail only between 00:00 and 01:00 UTC. The sweep ran from 08:18 to 09:23 UTC, so the flake did not occur. This is not a finding.",
+    "The live smoke test stays [b] (deferred:daniel). The open manual verification task stays with the PM. Neither is automated acceptance evidence."
+  ],
+  "commands": [
+    "slot check: exit 0",
+    "git rev-parse HEAD; git status --short; git diff --cached --name-only; git diff --name-status 8283f9fa..HEAD; git diff 3bcf2b31..HEAD --stat; git show a330414e",
+    "git grep and grep on the legacy tokens, the removed names, OPENROUTER_MODEL, and openrouter/free: only the known stale mocks and the old-variable tests match",
+    "node measure/runs/openrouter-sdk-ai-layer_20261114/acceptance2-f1-check.cjs: exit 0 (parts A, B, C)",
+    "node measure/runs/openrouter-sdk-ai-layer_20261114/acceptance2-asd-check.cjs: exit 0, 28 sentences, 0 over 25 words",
+    "python3 measure_interphase_checks.py ux-paths --baseline 8283f9fa --track openrouter-sdk-ai-layer_20261114: exit 0, no path",
+    "node measure/runs/openrouter-sdk-ai-layer_20261114/acceptance2-sweep-driver.cjs: gates.sh lint, test, and checks-all with GATES_BASE=s3 and label s4-acceptance2 each exit 0 with NEWFAIL=0",
+    "node measure/runs/openrouter-sdk-ai-layer_20261114/acceptance2-compare.cjs: 0 new keys, no new advisory ID, same BM2 bundle line",
+    "node measure/runs/openrouter-sdk-ai-layer_20261114/acceptance2-targeted-driver.cjs: 15 jobs through heavy-run.sh, one at a time, all verified",
+    "python3 measure_interphase_checks.py audit-result --role phase-acceptance --file phase-acceptance-98cd2333.json: exit 0, PASS: audit result is valid",
+    "python3 measure_interphase_checks.py role-gate --role phase-acceptance --phase S4 --result-file phase-acceptance-98cd2333.json --log-file phase-acceptance-98cd2333.log: exit 1 for audit status fail (F4) and for 1 non-deferred incomplete task, the PM manual verification task"
+  ],
+  "changed_files": [
+    "measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-98cd2333.json",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-98cd2333.log",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/acceptance2-f1-check.cjs",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/acceptance2-asd-check.cjs",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/acceptance2-compare.cjs",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/acceptance2-sweep-driver.cjs",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/acceptance2-targeted-driver.cjs",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/acceptance2-wait.cjs",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/gates/s4-acceptance2/ (sweep and targeted logs)"
+  ],
+  "test_strategy_violations": [
+    "S4.11 requires a falsification condition for every test. The NUL regression case cannot fail when the NUL skip returns to either scan."
+  ],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "retry_tests",
+  "confidence": "high",
+  "route": "claude-agent/sonnet#max",
+  "ratings": [
+    {"axis": "correctness", "score": 4, "evidence": "e13a8dfc makes removals 1 to 5 as the Contract lists, and the real findBannedTokenMatches now reports a NUL-bearing source (acceptance2-f1-check.cjs part B), but the binary-extension filter and the silent read-error skip remain."},
+    {"axis": "test_meaning", "score": 3, "evidence": "openrouter-s4-adversarial.test.ts:133-150 calls only findBannedTokensInText, so the NUL case cannot fail when the skip returns; the other cases read the real tree and namespace."},
+    {"axis": "scope_discipline", "score": 4, "evidence": "a330414e changes two test files only (77 insertions, 2 deletions) and the phase diff has no manifest or production-route change; the extension list goes beyond the three directories of S4.14 F21."},
+    {"axis": "evidence_quality", "score": 3, "evidence": "The Red r3 log gives commands and counts (10 passed, NEWFAIL=0), but plan.md:627-629 and the log describe the case as a scan guard, which the code does not support."}
+  ],
+  "reviewer_ratings": [
+    {"reviewer_role": "review-a", "reviewer_route": "openai/gpt-6-luna#high", "agreed": false, "score": 1, "evidence": "Review A passed 3bcf2b31 while scripts/__tests__/openrouter-only.test.ts held the NUL skip that a330414e removed."},
+    {"reviewer_role": "review-b", "reviewer_route": "opencode-go/hy4-flash-free#high", "agreed": true, "score": 4, "evidence": "The byte-level scan (acceptance2-f1-check.cjs part A) finds 0 banned tokens in 11434 files, which supports its security verdict."},
+    {"reviewer_role": "review-c", "reviewer_route": "openai/gpt-6-luna#high", "agreed": true, "score": 4, "evidence": "G-TEACHER-ROUTE passes 12 cases and Case 3 keeps buildTeacherErrorView, so the API surface verdict holds."},
+    {"reviewer_role": "adversarial", "reviewer_route": "opencode-go/hy4-flash-free#high", "agreed": false, "score": 1, "evidence": "Its ADV-S4-1 scan carried the NUL skip until a330414e, and its attacks did not expose the same skip in the gate."}
+  ]
+}

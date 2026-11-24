@@ -1,0 +1,70 @@
+Phase acceptance r2 log. Track openrouter-sdk-ai-layer_20261114, Phase S4.
+Audited HEAD: 98cd2333d3eed79e2c9b081a2e8a1453ac3a8ba5. phase_base_sha: 8283f9fa192be2afc78a2e731fac1e267c3535b5.
+Route: claude-agent/sonnet#max. Date: 2026-11-24.
+
+Verdict: FAIL. One blocker (F4). Everything else passes.
+
+F1 closure check (the brief asked for five checks):
+1. No content-based skip remains. PASS. Commit a330414e removes the NUL skip from both scans.
+2. The NUL regression case is a real check. FAIL (F4). The case at
+   scripts/__tests__/openrouter-s4-adversarial.test.ts:133-150 calls findBannedTokensInText.
+   That helper has one caller, the case itself (line 145). The real-repo scan at lines 116-131
+   and findBannedTokenMatches at scripts/__tests__/openrouter-only.test.ts:75-90 hold their own
+   loops. Restoring the old skip in either loop leaves the case unchanged, so it still passes.
+   Case 1 and the adversarial real-repo scan also still pass, because no NUL-bearing file in
+   the repo holds a banned token. No S4 test can detect a restored skip.
+3. Case 1 bans the tokens on the real repo. PASS. The real findBannedTokenMatches reports a
+   NUL-bearing source (2 hits in the check; 1 hit when the old skip is put back in memory).
+   The targeted run of openrouter-only passes 3 cases. The byte-level scan finds 0 banned tokens.
+4. No other hit-hiding filter drops a real hit. PASS on the real repo. 11434 files, 0 tokens in
+   the 5870 gate-scanned files, the 1515 binary-extension files, the 4049 files under .next or
+   dist, and in UTF-16 form. 0 unreadable files. F5 records two latent filters (nonblocking).
+5. The old skip hid 346 gate-scanned files that hold a NUL (xlsx workbooks and local wrangler
+   state). The new logic scans them and finds 0 tokens.
+
+Helper scripts (read-only except one temp folder that the script removes):
+  acceptance2-f1-check.cjs  parts A (real repo inventory), B (real scan function, in memory),
+                            C (reference map of the regression case)
+  acceptance2-asd-check.cjs sentence length of the added prose (28 sentences, 0 over 25 words)
+  acceptance2-compare.cjs   key comparison with the gate key function, advisory IDs, bundle sizes
+  acceptance2-sweep-driver.cjs, acceptance2-targeted-driver.cjs, acceptance2-wait.cjs
+                            detached drivers with JSON exit files; no shell redirection
+
+Sweeps (GATES_BASE=s3, label s4-acceptance2, results in gates/s4-acceptance2/):
+  lint exit 0 NEWFAIL=0; test exit 0 NEWFAIL=0; checks-all exit 0 NEWFAIL=0.
+  Audit line: critical=0 high=5 moderate=6 low=5 (same as s3). Workerd probe: probe-ok.
+  IM3 tests 218 failed, BM2 tests 7, scripts suite 27, audit suites 5, IM3 typecheck 55 TS lines.
+  Each count equals the s3 base. The sweep waited about 25 minutes on the shared heavy lock.
+  Key comparison (25 logs): 0 new keys against s3 and against s4-r3, except one IM3 chunk-name
+  hash with unchanged raw size. No new high or critical advisory ID. BM2 bundle line unchanged.
+
+Targeted tests (gates/s4-acceptance2/targeted.exit, one heavy job at a time):
+  openrouter-only 3; openrouter-s4-adversarial 7; G-CHAT IM3 12; G-CHAT BM2 16; G-SHEET 13;
+  G-TEACHER 8; G-TEACHER-ROUTE 12; G-NO-PII IM3 1; G-NO-PII BM2 5; BM2 PII strip 1;
+  ai-tutoring 165; practice-core 263; workerd probe-ok; npm run generate exit 0;
+  bash measure/doctor.sh exit 0 (All checks passed).
+
+Other checks: Contract removals 1 to 5 match e13a8dfc. Role documents match the spec Roles table.
+Plan SHAs exist and match. No dependency change. No stale artifact. PM release gate test passes.
+Browser review does not apply (ux-paths printed no path). No file staged. HEAD unchanged.
+
+Gate commands:
+  audit-result --role phase-acceptance: exit 0 (PASS: audit result is valid).
+  role-gate --role phase-acceptance: exit 1. It reports audit status fail (F4) and 1 non-deferred
+  incomplete task. That task is the PM manual verification task. It is expected and PM-owned.
+
+Retry route: the test owner (Red, test-only) fixes F4. Acceptance then reruns on the new HEAD.
+Production code is unchanged since the passing reviews at 3bcf2b31, so no review rerun is needed.
+
+MEASURE_AGENT_RESULT
+role: phase-acceptance
+status: blocked
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S4: Remove the OpenAI paths and document the roles
+commits: none
+tests_run: lint, test and checks-all sweeps (GATES_BASE=s3, label s4-acceptance2): exit 0, NEWFAIL=0 each. Workerd probe-ok, generate and Doctor exit 0. Targeted: openrouter-only 3; adversarial 7; G-CHAT 12 and 16; G-SHEET 13; G-TEACHER 8; G-TEACHER-ROUTE 12; G-NO-PII 1 and 5; BM2 PII strip 1; ai-tutoring 165; practice-core 263. F1 scan check: real scan reports a NUL-bearing hit; 0 banned tokens in 11434 files. audit-result exit 0; role-gate exit 1 (F4 and the open PM task).
+files_changed: acceptance JSON and log; six helper scripts and the gates/s4-acceptance2 logs under measure/runs
+plan_updates: none
+known_failures: F4: the NUL regression case calls findBannedTokensInText, which no scan uses, so restoring the old skip in either scan still passes every S4 test.
+handoff: Route F4 to the test owner (Red, test-only). Make the NUL regression case call the real scan. Share one scan function among the gate, the adversarial scan, and the case, or pass a file list to the scan. Show that restoring the old skip fails the case. Align the plan.md:627-629 line with the result. Rerun acceptance on the new HEAD. Do not checkpoint 98cd2333. F2, F3, and F5 go to tech-debt or evidence at the checkpoint. The PM keeps manual verification. Daniel keeps the live smoke test.
+END_MEASURE_AGENT_RESULT

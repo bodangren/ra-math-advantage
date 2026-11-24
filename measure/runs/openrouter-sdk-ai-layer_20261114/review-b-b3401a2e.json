@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "role": "review-b",
+  "track": "openrouter-sdk-ai-layer_20261114",
+  "phase": "Phase S1: Adopt the OpenRouter SDK",
+  "baseline_sha": "dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c",
+  "audited_head_sha": "b3401a2e1d421f2dcd11d341f5aa80bf7d6c3db9",
+  "status": "pass",
+  "summary": "Round 2 passes with no blocking finding. The delta 4710566e..b3401a2e adds one numeric status field to the mapped error, and the field holds no key, header, or response body. Student-facing messages stay fixed because no route file changed. F2 is closed for the retry decision on the SDK path. Seven record-only findings remain open: F1 (Major) and F2 to F7 (Nit).",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "F1 [Major] review-b: Open and record-only, unchanged by the delta, because openrouter-client.ts is not in the range. OPENROUTER_DEBUG=true makes the SDK log the authorization header and the request and response bodies, with no redaction (node_modules/@openrouter/sdk/esm/lib/sdks.js:60 and :234-280). openrouter-client.ts:19-26 passes no debugLogger. Rationale: spec.md:284 forbids a log line with prompt text, answer text, or the API key. Fix: pass a no-op debugLogger in createOpenRouterClient. Add a test that sets OPENROUTER_DEBUG=1. S2 can carry this fix with its usage-record tests.",
+    "F2 [Nit] review-b: Partly closed by 9193d28b. The retry decision on the SDK path no longer reads upstream text. providers.ts:35-39 sets a numeric status from statusCode, and retry.ts:51-54 reads that status first. Rationale for the open part: the mapped message still holds upstream response text. The default SDK error class adds up to 10000 characters of body to it. Both routes log the full error object on each provider failure, so this text reaches the server log, and no student-visible path exists. mapSdkError still returns each non-HTTP SDK error unchanged (providers.ts:55), and SDKValidationError keeps the request input in rawValue. Fix for the open part: map each other SDK error to a new Error with a short message and no raw payload.",
+    "F3 [Nit] review-b: Open and record-only, unchanged by the delta, because no app file is in the range. The BM2 chatbot route resolves the provider at route.ts:181, outside its try block that starts at line 188. The SDK constructor throws on a malformed OPENROUTER_API_BASE or OPENROUTER_BASE_URL, and vinext then returns an empty 500. Fix: move the resolver call inside the try block. S2 edits this line and can carry the change.",
+    "F4 [Nit] review-b: Open and record-only, unchanged by the delta. The SDK version was 3 hours 49 minutes old at install, and the repository has no minimum-release-age rule. The lockfile and the package manifest are unchanged in the delta. The dependency-refresh track can add a release-age rule or re-pin after a soak period.",
+    "F5 [Nit] review-b: Open and record-only, unchanged by the delta. No test pins the 429 order and the fixed 503 body of the BM2 chatbot routes, or the fixed 503 body of the IM3 route. The delta changes neither route. S2 can add one test for each route.",
+    "F6 [Nit] review-b: Open and record-only, unchanged by the delta, because gates.sh is not in the range. The gate script compares only the critical and high counts of npm audit, but test-strategy.md finding F8 requires advisory IDs. My compare by advisory ID shows no difference at b3401a2e. Fix: compare the sorted advisory IDs between the baseline label and the current label.",
+    "F7 [Nit] review-b: No test pins the shape of the mapped error. The new status field is a number, and the mapped Error has no cause, body, headers, or raw response (providers.ts:35-39). The new tests check the retry count and the message only. A later edit can copy more SDK fields into the mapped error without a test failure. Rationale: S2 and S3 reuse this mapping, and error objects must never hold the key or a student prompt. Fix: add one test that checks Object.keys of the mapped error equals [\"status\"]. Check in the same test that the serialized error holds neither the key nor the SDK body."
+  ],
+  "evidence": [
+    "Provenance: git rev-parse HEAD and git rev-parse b3401a2e both return b3401a2e1d421f2dcd11d341f5aa80bf7d6c3db9, which equals the immutable audited HEAD. The delta base 4710566e and the phase base dbf4d65e are ancestors of HEAD. The brief gives the delta base 4710566e, so it is the role base for this round.",
+    "Security applicability: applicable. The delta changes packages/ai-tutoring/src/providers.ts and packages/ai-tutoring/src/retry.ts, which map and classify the errors of the network call that carries the API key.",
+    "Delta scope: git diff --name-status 4710566e..b3401a2e lists 13 paths. Four are in scope: providers.ts, retry.ts, providers.test.ts, and the plan.md of this track. Nine are the Dependency Refresh registry entry and its track files from 334fab55. No app, route, auth, Convex, package.json, lockfile, workflow, or probe file is in the delta, and no file is deleted. 334fab55 touches only measure/ files.",
+    "Status field: providers.ts:35-39 builds a new Error and sets one extra own property, status, from a value that passed the typeof number check. The new Error has no cause. The SDK body, headers, and raw response stay on the SDK error, which mapSdkError drops. So the field holds a number only. The SDK sets statusCode from the HTTP response status line (esm/models/errors/openroutererror.js:8), not from the body.",
+    "Retry read: retry.ts:50-54 reads the status field after the EmptyResponseError check and after the AbortError check, so an abort stays non-retryable. A numeric status returns isRetryableStatus of that status. An error without the field keeps the old message path. The two other withRetry callers (apps/bus-math-v2/lib/practice/error-analysis/providers.ts and lib/teacher/ai-interpretation.ts) throw message-only errors, so their behavior does not change.",
+    "F2 retry decision closed for the SDK path: a python3 copy of the new order (not a run of the repository code) gives these results. Status 400 with text (503) gives no retry. Status 503 with text (400) gives retry. Status 429 gives retry. Status 200 gives no retry. A connection error without the field gives retry through the network pattern. Green logs agree: r3-regression-before.log shows both new tests failing (one with 3 calls instead of 1), and r3-regression-after.log shows them passing.",
+    "Round 1 findings F1 and F3 to F6 stay open as record-only and are unchanged by the delta: openrouter-client.ts, both chatbot routes, gates.sh, the lockfile, and the package manifest are not in the delta. The finding F2 keeps only its open part.",
+    "Student-facing messages: no route file changed. The routes keep their fixed bodies (BM2 route.ts:188-197 returns 502 Unable to get a response, IM3 route.ts:218-221 returns 500 Failed to process request, and both 503 bodies are AI provider not configured). The status number reaches the server log only.",
+    "Tests at the audited HEAD: npx vitest run src/__tests__/providers.test.ts src/__tests__/retry.test.ts in packages/ai-tutoring passes 39 tests. In apps/bus-math-v2, the retry, provider, and chatbot route tests pass 32 tests in 5 files. In apps/integrated-math-3, the chatbot route tests pass 11 tests in 2 files. No test reaches the network.",
+    "Dependencies: package-lock.json and packages/ai-tutoring/package.json are unchanged in the delta. npm audit --json at b3401a2e returns critical=0 high=9 moderate=7 low=5, with the same 21 packages, severities, and advisory sources as gates/baseline/audit.json. No entry names @openrouter/sdk or zod.",
+    "Secret scan: the added lines of the delta show only the fake key test-key. No env, key, or credential file is in the delta. The dependency-refresh gates.sh has no secret, network, delete, or push command. I scanned that file for these items only and did not review that track.",
+    "Anti-pattern A2 is not applicable: the delta has no draft-to-published flip, no consent artifact, and no named subject. Anti-pattern A6 is not applicable: measure/tracks.md changes only by the Dependency Refresh registry entry, which says PLANNED and holds no resolved security claim.",
+    "Limits: I did not run the workerd probe, which is a heavy job. Green's r3-workerd.log shows probe-ok after the change. I did not revert the fix to reproduce the red state. Green's r3-regression-before.log is the record. Review A and Review C result files for b3401a2e exist in the run folder, and I did not read them. I ignored the dependency-refresh spec review."
+  ],
+  "commands": [
+    "git rev-parse b3401a2e and git rev-parse HEAD -> b3401a2e1d421f2dcd11d341f5aa80bf7d6c3db9 for both",
+    "git merge-base --is-ancestor 4710566e HEAD -> exit 0",
+    "git diff --stat 4710566e..b3401a2e -> 13 files, 726 insertions, 1 deletion",
+    "git diff --name-status 4710566e..b3401a2e -> 13 paths; 4 in scope; no app, route, auth, Convex, manifest, lockfile, or deleted file",
+    "git diff 4710566e..b3401a2e -- providers.ts retry.ts providers.test.ts plan.md -> status field, structured-first read, 2 regression tests, 1 plan line",
+    "git diff -U0 4710566e..b3401a2e with a secret-pattern grep -> only the fake key test-key",
+    "git diff --name-only 4710566e..b3401a2e -- package-lock.json packages/ai-tutoring/package.json -> no output",
+    "grep withRetry( across the repository -> 3 callers: providers.ts, BM2 error-analysis/providers.ts, BM2 ai-interpretation.ts",
+    "grep this.statusCode in esm/models/errors/openroutererror.js -> line 8, set from httpMeta.response.status",
+    "CI=true npx vitest run src/__tests__/providers.test.ts src/__tests__/retry.test.ts (packages/ai-tutoring) -> 39 passed",
+    "CI=true npx vitest run retry, providers, and 3 chatbot route test files (apps/bus-math-v2) -> 32 passed in 5 files",
+    "CI=true npx vitest run __tests__/app/api/student/lesson-chatbot (apps/integrated-math-3) -> 11 passed in 2 files",
+    "npm audit --json plus python3 compare with gates/baseline/audit.json -> 21 of 21 packages unchanged; critical=0 high=9 moderate=7 low=5",
+    "python3 copy of the new classification order on six sample messages -> as in the F2 evidence entry",
+    "tail of the Green logs r3-regression-before, r3-regression-after, r3-workerd, r3-format, r3-lint, r3-typecheck -> red then green, probe-ok, format, lint, and typecheck clean"
+  ],
+  "changed_files": [
+    "measure/tracks.md",
+    "measure/tracks/dependency-refresh_20261121/evidence.md",
+    "measure/tracks/dependency-refresh_20261121/gates.sh",
+    "measure/tracks/dependency-refresh_20261121/index.md",
+    "measure/tracks/dependency-refresh_20261121/metadata.json",
+    "measure/tracks/dependency-refresh_20261121/plan.md",
+    "measure/tracks/dependency-refresh_20261121/spec-review.md",
+    "measure/tracks/dependency-refresh_20261121/spec.md",
+    "measure/tracks/dependency-refresh_20261121/test-strategy.md",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md",
+    "packages/ai-tutoring/src/__tests__/providers.test.ts",
+    "packages/ai-tutoring/src/providers.ts",
+    "packages/ai-tutoring/src/retry.ts"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "claude-code/claude-sonnet-5-5#max",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 5,
+      "evidence": "retry.ts:50-54 reads the numeric status first, and the replica gives the HTTP status for both spoof cases (400 with text (503) gives no retry)."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 4,
+      "evidence": "r3-regression-before.log shows both new tests failing first (3 calls instead of 1), but no test pins the shape of the mapped error (F7)."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "The fix commit 9193d28b changes only providers.ts, retry.ts, and providers.test.ts, and b3401a2e adds one plan line."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 5,
+      "evidence": "r3-regression-before.log, r3-regression-after.log, and r3-workerd.log back each claim, and my vitest run at HEAD passes 39 package tests."
+    }
+  ]
+}

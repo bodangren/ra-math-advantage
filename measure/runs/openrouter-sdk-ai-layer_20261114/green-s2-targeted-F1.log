@@ -1,0 +1,49 @@
+
+> @math-platform/ai-tutoring@0.1.0 test
+> vitest run -t F1
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+
+stdout | src/__tests__/providers.test.ts > documented 200 bodies (F1) > F1b: retries a 200 error-only body and reports an empty response
+[ai-tutoring] request {"role":"studentTutor","model":"vendor/model-a","latencyMs":383,"promptTokens":0,"completionTokens":0,"totalTokens":0,"outcome":"error","status":null}
+
+ ❯ src/__tests__/providers.test.ts (34 tests | 1 failed | 30 skipped) 1016ms
+     × F1b: retries a 200 error-only body and reports an empty response 389ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/providers.test.ts > documented 200 bodies (F1) > F1b: retries a 200 error-only body and reports an empty response
+AssertionError: expected error to be instance of EmptyResponseError
+
+- Expected:
+[Function EmptyResponseError]
+
++ Received:
+Error {
+  "message": "Body is unusable: Body has already been read",
+}
+
+ ❯ src/__tests__/providers.test.ts:633:36
+    631|     });
+    632|
+    633|     await expect(provider("hello")).rejects.toThrow(EmptyResponseError…
+       |                                    ^
+    634|     expect(fetchMock).toHaveBeenCalledTimes(3);
+    635|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 5 skipped (6)
+      Tests  1 failed | 3 passed | 123 skipped (127)
+   Start at  11:06:15
+   Duration  2.28s (transform 81ms, setup 0ms, import 752ms, tests 1.02s, environment 0ms)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+npm error workspace @math-platform/ai-tutoring@0.1.0
+npm error location /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+npm error command failed
+npm error command sh -c vitest run -t F1

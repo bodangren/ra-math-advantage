@@ -1,0 +1,10 @@
+heavy-run: lock wait over 600 s — priority p2 — holder PID 1761626: flock -w 1800 -E 201 /home/daniebo/Desktop/primary-parity-progress/heavy.lock /home/daniebo/Desktop/advantage-pr/scripts/jobs/heavy-run.sh --locked -c cd /home/daniebo/Desktop/rama-worktrees/storytime-entry-redesign && out=$(env TURBO_FORCE=true bash apps/storytime/__tests__/phase1-quality-gates.sh); rc=$?; printf "%s\n" "$out" | sed "s/\x1b\[[0-9;]*m//g" | grep -E "PASS=|^FAIL|^PASS:|Tasks:|Cached:|cache bypass|cache hit|cache miss|Test Files|      Tests|Failed Tests| FAIL |AssertionError|run failed|Duration"; echo PHASE1_FORCED_EXIT=$rc 
+/home/daniebo/Desktop/advantage-pr/scripts/jobs/heavy-run.sh: line 586: /proc/2010155/cmdline: No such file or directory
+
+> @math-platform/practice-core@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/practice-core@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+

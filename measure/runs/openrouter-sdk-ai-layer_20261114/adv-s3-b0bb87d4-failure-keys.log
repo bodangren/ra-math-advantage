@@ -1,0 +1,12 @@
+Source: measure/runs/openrouter-sdk-ai-layer_20261114/adv-s3-b0bb87d4-final-checks.log
+ FAIL  src/__tests__/openrouter-debug-logging.test.ts > S3 adversarial > ADV-S3-8: structured SDK debug output omits the key, prompt, and answer
+Source: measure/runs/openrouter-sdk-ai-layer_20261114/adv-s3-b0bb87d4-targeted.log
+ FAIL  __tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts > S3 fix > ADV-S3-5: keeps the first math sentence on the line after an empty detail label
+
+Tracked test commit:
+b39b1c57a5da463508eff64e7b25b9a00e90382a test(ai): cover S3 adversarial contract boundaries (track_id: openrouter-sdk-ai-layer_20261114)
+apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.no-pii.test.ts
+apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts
+apps/bus-math-v2/__tests__/lib/ai/spreadsheet-feedback.test.ts
+packages/ai-tutoring/src/__tests__/openrouter-debug-logging.test.ts
+packages/ai-tutoring/src/__tests__/structured.adversarial.test.ts

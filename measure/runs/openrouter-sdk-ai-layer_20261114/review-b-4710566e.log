@@ -1,0 +1,42 @@
+Date: 2026-11-21. Route: claude-code/claude-sonnet-5-5#max.
+Provenance: phase_base_sha dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c. audited_head_sha 4710566e9acf3c3a16c3aa2a29388781ee7c9e37. The brief gave no separate role_base_sha, so the role base equals the audited HEAD. git rev-parse HEAD returns the audited HEAD, so HEAD is current. The phase base is an ancestor of HEAD.
+Applicability: applicable. test-strategy.md line 32 names Review B for the new dependency. The range changes package-lock.json, packages/ai-tutoring/package.json, src/openrouter-client.ts, src/providers.ts, .github/workflows/ci.yml, and the three workerd-probe files.
+Independence: Review A and Review C result files exist in the run folder. I did not read them.
+
+Audit result: pass. No blocking finding. Six nonblocking findings: F1 [Major], and F2 to F6 [Nit]. The PM cap makes each of them record-only, because none hides a failure and none deletes a tracked or user file.
+
+Checks and results:
+1. API key. openrouter-client.ts:18-27 passes the key only to the SDK constructor. The package source has no console call and no fetch call. mapSdkError copies only the status and the message into a new Error, so the SDK body, headers, and raw response do not travel on. The SDK error classes build their text from the response body or the cause, never from request headers.
+2. Env read. The key is read at call time inside the two resolve functions, on the server. No use-client file imports the package.
+3. Routes. The S1 range changes neither chatbot route. In BM2, auth runs at route.ts:77-84, the rate limit at :89-106, and the provider at :181. In IM3, auth runs at :85-92, enrollment at :147-157, the rate limit at :159-177, and the provider at :209. Both 503 bodies are the fixed string AI provider not configured. Student-visible errors are fixed strings. The spreadsheet route swallows provider errors.
+4. workerd probe. It uses the dummy key probe-key, a loopback mock, wrangler dev with --local, and a fixed argv. wrangler is a local dependency, so npx downloads nothing. The CI step has no env block and no secret. The Green log shows probe-ok. I did not run the probe.
+5. Dependency. License Apache-2.0. The postinstall script is node scripts/check-types.js || true. It returns when CI is set and skips when src/types/models.ts is absent, so it makes no request in an installed copy. The lockfile adds one package. zod dedupes to 4.6.7. npm audit equals the baseline by package, severity, and advisory source (21 of 21). No advisory names @openrouter/sdk or zod. npm audit signatures reports no failure on the second run (the first run hit ECONNRESET on prettier).
+6. SDK network use. The analytics hostnames in the SDK are Zod default values in management-API schemas. No code calls them. The request body adds only stream:false. No identifier is added.
+7. Secrets. The added lines hold only the fake keys test-key, sk-test, sdk-route-key, and probe-key. No env file, key file, or credential file is in the range.
+8. Tests at the audited HEAD. The package provider tests pass (23, with the 6 SDK transport cases). The BM2 SDK route and provider tests pass (3). The IM3 SDK route test passes (1). No test reaches the network.
+9. A2 is not applicable. A6 is not applicable: measure/tracks.md is not in the range and holds no resolved security claim for this track.
+
+Findings (full text in the JSON file):
+F1 [Major] OPENROUTER_DEBUG makes the SDK log the authorization header and the bodies. Fix: pass a no-op debugLogger. Latent: no repository file sets the flag.
+F2 [Nit] The mapped error text holds upstream text, and retry.ts:52 reads a status from it. Fix: carry statusCode on the mapped error.
+F3 [Nit] The BM2 route resolves the provider outside its try block, and the SDK constructor can now throw.
+F4 [Nit] The SDK version was under 4 hours old at install, and the repository has no release-age rule.
+F5 [Nit] No test pins the 429 order and the fixed 503 body of the chatbot routes.
+F6 [Nit] gates.sh compares audit counts, not advisory IDs, and test-strategy.md F8 asks for IDs.
+
+Gate: python3 measure_interphase_checks.py role-gate --role review-b prints one line: FAIL: current phase still has 1 non-deferred incomplete tasks. This is the expected finding for the open User Manual Verification task. The audit JSON passes every other check.
+Not run: the workerd probe (heavy job) and the full workspace test suites (the Green gates cover them).
+Question for the user: none.
+
+MEASURE_AGENT_RESULT
+role: measure-review-b-security
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S1: Adopt the OpenRouter SDK
+commits: none
+tests_run: vitest run providers.test.ts in packages/ai-tutoring pass (23 tests); vitest run route.sdk.test.ts and providers.test.ts in apps/bus-math-v2 pass (3 tests); vitest run route.sdk.test.ts in apps/integrated-math-3 pass (1 test); npm audit --json equals the baseline by advisory ID; npm audit signatures pass on the second run; python3 role-gate exit 1 with only the expected incomplete-task finding
+files_changed: measure/runs/openrouter-sdk-ai-layer_20261114/review-b-4710566e.json and review-b-4710566e.log only
+plan_updates: none (audit-only)
+known_failures: none in the audited security scope; the role gate prints only the expected finding: current phase still has 1 non-deferred incomplete tasks (the open User Manual Verification task, which belongs to the orchestrator)
+handoff: Audit result is pass with 0 blocking findings and 6 nonblocking findings (F1 Major, F2 to F6 Nit); each is record-only under the PM cap. Route F1 to Green: pass a no-op debugLogger in openrouter-client.ts and test OPENROUTER_DEBUG=1, best in S2 with the usage-log tests. Route F2 and F3 to S2 (providers.ts, retry.ts, and the BM2 route). F5 gives S2 two route tests. F6 goes to the gate-script owner. F4 goes to the dependency-refresh track. No question for the user. audited_head_sha 4710566e is current. The six generated files stay unstaged. measure/runs/ is gitignored, so the two result files stay on disk and uncommitted. No push.
+END_MEASURE_AGENT_RESULT

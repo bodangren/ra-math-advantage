@@ -1,0 +1,13 @@
+MEASURE_AGENT_RESULT
+role: measure-jr-green
+status: blocked
+track: openrouter-sdk-ai-layer_20261114
+phase: S1
+baseline_sha: dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c
+commits: a3b8a58b measure(gates): add the gate commands for openrouter-sdk-ai-layer (track_id: openrouter-sdk-ai-layer_20261114)
+tests_run: RED_TEST_COMMAND rerun exit 1 (6 failed, 75 skipped). Full ai-tutoring exit 1 (18 failed, 63 passed). All 18 failures occur when the provider calls the mocked SDK client.
+files_changed: committed measure/gates.json. Uncommitted: packages/ai-tutoring/src/providers.ts rewritten to use the SDK; packages/ai-tutoring/src/openrouter-client.ts added; plan.md marked [~] and recorded the two orchestrator deviations. No committed Red test was edited. No generated file was staged.
+plan_updates: S1 Implement marked [~]; two orchestrator deviations added under S1 decisions (Red ran Install; Red left no [~] task).
+known_failures: The immutable Red test contract blocks Green. Evidence: (1) packages/ai-tutoring/src/__tests__/providers.test.ts:236-238 configures MockOpenRouter.mockReturnValue({chat:{send:mockSend}}). (2) The real SDK exports a class: node --input-type=module test shows OpenRouter() throws "Class constructor OpenRouter cannot be invoked without 'new'" and new OpenRouter() works. (3) Vitest 4.1.12 rejects mockReturnValue on a mock called with new: "Cannot use mockReturnValue when called with new. Use mockImplementation with a class keyword instead." (4) The 6 SDK transport cases fail on this mechanism error, not on assertions. (5) A corrected mock pattern using MockOpenRouter.mockImplementation(function(){return {chat:{send:mockSend}}}) was verified to pass with new in an untracked temporary probe, which was deleted. Calling OpenRouter() without new is not an option: it breaks the real SDK and the workerd probe.
+handoff: Mid Red retry required. Question: The committed Red SDK transport tests use a mock pattern that no correct SDK implementation can satisfy. Request a Mid Red retry that fixes only the Red mock setup and keeps all six case assertions? Options: A (default) Mid Red retry: in packages/ai-tutoring/src/__tests__/providers.test.ts replace MockOpenRouter.mockReturnValue({chat:{send:mockSend}}) with MockOpenRouter.mockImplementation(function(){return {chat:{send:mockSend}} as unknown as InstanceType<typeof OpenRouter>}); keep every assertion unchanged; Green then reruns the RED and GREEN commands. B Escalate to the orchestrator for a different Red mock strategy. Green did not edit any committed Red test and did not commit failing implementation code.
+END_MEASURE_AGENT_RESULT

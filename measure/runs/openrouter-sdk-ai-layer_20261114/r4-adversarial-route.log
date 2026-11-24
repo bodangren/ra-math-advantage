@@ -1,0 +1,18 @@
+
+> test
+> vitest run __tests__/app/api/student/lesson-chatbot/route.adversarial.test.ts
+
+[33m(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vitest.config.ts:49:35). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.[39m
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2
+
+ ✓ __tests__/app/api/student/lesson-chatbot/route.adversarial.test.ts (2 tests) 627ms
+     ✓ returns the fixed 503 body without a request when the API key is absent  621ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  10:59:39
+   Duration  1.24s (transform 47ms, setup 96ms, import 8ms, tests 627ms, environment 417ms)
+

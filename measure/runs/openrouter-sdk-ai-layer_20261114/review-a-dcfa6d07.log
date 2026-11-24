@@ -1,0 +1,75 @@
+Review A round 3: no blocking finding under the PM cap.
+phase_base_sha: dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c
+role_base_sha: dcfa6d071d33724a76676780aac13dc0fdeb1437
+audited_head_sha: dcfa6d071d33724a76676780aac13dc0fdeb1437
+HEAD matches the audited commit before and after the test runs.
+The review focuses on b3401a2e..dcfa6d07 within the pinned phase range.
+The unrelated dependency-refresh documents remain outside the review scope.
+
+Independent verification through heavy-run.sh:
+- ai-tutoring: 104 tests passed.
+- BM2 provider, retry, and chatbot suites: 34 tests passed.
+- IM3 chatbot suites: 11 tests passed.
+- workerd probe: exit 0; workerd probe: probe-ok.
+The BM2 route tests prove the exact missing-key 503 and constructor-error 502 responses.
+Neither failure case makes an outbound request.
+
+Pinned-source fixture method:
+1. Read the provider, client, and retry modules from dcfa6d07 with git show.
+2. Strip TypeScript types in memory.
+3. Import the installed SDK through its resolved entry.
+4. Mock only global fetch.
+5. Check repeated, empty, and short keys in both provider variants.
+6. Check conflicting HTTP codes and repeated keys in the same error.
+7. Check repeated keys in a connection error.
+8. Compare committed Red and adversarial source exactly.
+The fixture writes no source file or test file.
+The exact inline command appears in the session transcript.
+
+Fixture outputs:
+{"fixture":"all-occurrences","pass":true,"kind":"prompt","actualCalls":1,"outcome":"OpenRouter API error: 400 bad key [redacted] then [redacted][redacted]","status":400}
+{"fixture":"empty-key","pass":true,"kind":"prompt","actualCalls":1,"outcome":"OpenRouter API error: 400 invalid syntax in expression","status":400}
+{"fixture":"short-key","pass":false,"kind":"prompt","actualCalls":1,"outcome":"OpenRouter API error: 400 invalid synta[redacted] in e[redacted]pression","status":400}
+{"fixture":"all-occurrences","pass":true,"kind":"messages","actualCalls":1,"outcome":"OpenRouter API error: 400 bad key [redacted] then [redacted][redacted]","status":400}
+{"fixture":"empty-key","pass":true,"kind":"messages","actualCalls":1,"outcome":"OpenRouter API error: 400 invalid syntax in expression","status":400}
+{"fixture":"short-key","pass":false,"kind":"messages","actualCalls":1,"outcome":"OpenRouter API error: 400 invalid synta[redacted] in e[redacted]pression","status":400}
+{"fixture":"status-and-redaction","pass":true,"status":503,"actualCalls":2,"outcome":"recovered"}
+{"fixture":"status-and-redaction","pass":true,"status":400,"actualCalls":1,"outcome":"OpenRouter API error: 400 upstream error (503) [redacted]","structuredStatus":400}
+{"fixture":"connection-redaction","pass":true,"actualCalls":3,"outcome":"Error: fetch failed: Unable to make request: TypeError: fetch failed for [redacted] and [redacted]","fields":[]}
+{"fixture":"red-assertions-unchanged","pass":true}
+{"fixture":"existing-provider-tests-unchanged","pass":true}
+{"fixture":"adversarial-assertions-unchanged","pass":true,"file":"packages/ai-tutoring/src/__tests__/providers.adversarial.test.ts"}
+{"fixture":"adversarial-assertions-unchanged","pass":true,"file":"apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.adversarial.test.ts"}
+CORE_FAILURES=0
+SHORT_KEY_DIAGNOSTIC_FAILURES=2
+Fixture command exit: 1.
+
+F1 remains withdrawn; the numeric HTTP status controls retries after redaction.
+F2 and F3 remain record-only.
+F4 records the failed short-key diagnostic check.
+The short-key case still exposes status 400 and rejects after one request.
+It changes no route response or retry outcome and deletes no file.
+The PM cap therefore makes F4 record-only for the next phase.
+The review does not claim that every inline fixture passed.
+
+Green changed no committed Red or adversarial assertion.
+The original SDK transport block matches c6a0627f exactly.
+Both adversarial files match their 4b1d1aaf versions exactly.
+The concurrent adversarial role owns its temporary test edits and open task.
+The dependency-refresh role owns its dirty plan.
+The review changes only its supplied JSON and log artifacts.
+The final role gate exited 1 for the two expected open tasks only.
+The audit payload passed its checks.
+
+MEASURE_AGENT_RESULT
+role: review-a
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S1: Adopt the OpenRouter SDK
+commits: none
+tests_run: 149 tests and workerd probe passed; retry and repeated-key fixtures passed; two short-key checks failed record-only; role gate exited 1 for the two expected open tasks.
+files_changed: review-a-dcfa6d07.json; review-a-dcfa6d07.log
+plan_updates: none
+known_failures: F4 alters unrelated diagnostics with short keys. F2 and F3 remain record-only. The adversarial and manual tasks remain open.
+handoff: Audit PASS under the PM cap. Carry F2, F3, and F4 into the next-phase list. The adversarial role and orchestrator own their open tasks.
+END_MEASURE_AGENT_RESULT

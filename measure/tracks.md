@@ -241,10 +241,6 @@ packages omitted from CI, shallow regex-only boundary guards, and an inverted
    *Link: [./tracks/live-classroom-presentation_20260703/](./tracks/live-classroom-presentation_20260703/)*
 
 
-- [ ] **Track: OpenRouter SDK AI Layer**
-   *Chore, story-shaped spec with 4 phases: S1 adopt `@openrouter/sdk` in `packages/ai-tutoring` (workerd probe, bundle sizes), S2 one model variable for each role with no default and fail-closed behavior, usage logging, and the PII flag, S3 structured output for BM2 spreadsheet feedback and the BM2 teacher summary (lesson-level prompt without the student name), S4 removal of the OpenAI paths and role docs. AI prompts contain no PII. Depends on: the completed vinext 1.x and Oxc toolchain track (archived 2026-11-20). User decisions 2026-11-14.*
-   *Link: [./tracks/openrouter-sdk-ai-layer_20261114/](./tracks/openrouter-sdk-ai-layer_20261114/)*
-
 - [ ] **Track: Dependency Refresh** — **D1 PASSED, D2 PASSED** (PM P2, 2026-11-21)
    *Chore, light lane. Update every external package to the latest working version. Push the D1 critical and high fixes by 2026-11-23. Push D2 at closeout by 2026-11-25. Record each remaining advisory and its reason.*
    *D2 phase acceptance passed at be64041e with five named high exceptions, six moderate and five low advisories. The 11-25 miniflare dist-tags recheck stays open as the only D2 item (PM a778067f). Strategy confirmation and OpenRouter S1 acceptance are complete. Preserve manual deploy triggers and the accepted S1 tests.*
@@ -1266,6 +1262,10 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
 - [x] **Track: vinext 1.x Upgrade and Oxc Toolchain Move** — **COMPLETED / ARCHIVED** (2026-11-20)
    *Link: [./archive/vinext-oxc-toolchain_20261114/](./archive/vinext-oxc-toolchain_20261114/)*
   *Upgrade vinext 0.0.55 to 1.x and update all packages, then move the toolchain to Oxc: oxlint in place of ESLint, TypeScript 7 with tsrs as the type-check gate, and oxfmt as the formatter. Record speed, conformance gaps, rule gaps, and workarounds for other repositories.*
+
+- [x] **Track: OpenRouter SDK AI Layer** — **COMPLETED / ARCHIVED** (2026-11-24)
+   *Link: [./archive/openrouter-sdk-ai-layer_20261114/](./archive/openrouter-sdk-ai-layer_20261114/)*
+  *Move every AI feature to OpenRouter through @openrouter/sdk: one model variable for each role with no default model, fail-closed behavior, usage logging without prompt text, no PII in prompts, a structured-output helper for the two BM2 evaluation features (the teacher summary reuses the lesson-level ai-interpretation prompt without the student name), and removal of the OpenAI paths. Depends on vinext-oxc-toolchain_20261114.*
 
 - [x] **Track: Teacher Content Authoring** — **COMPLETED / ARCHIVED** (2026-07-03)
    *Tools for teachers to create/edit lesson content and activities, not just assign existing ones, gated by the component-approval workflow and activity schemas. All 4 phases complete with commit-SHA evidence (checkpoints: e51561e4, 01752a0c, 11745f94, 96000632). FR1–FR6 met via the passing E2E lifecycle (content-authoring-e2e.test.tsx). Final-acceptance verdict: PASS (final-acceptance-result.json). 4 per-phase UMV tasks deferred:user.*

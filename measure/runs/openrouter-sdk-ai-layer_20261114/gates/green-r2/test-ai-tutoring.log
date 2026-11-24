@@ -1,0 +1,43 @@
+
+> @math-platform/ai-tutoring@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+
+ ❯ src/__tests__/providers.adversarial.test.ts (23 tests | 2 failed) 7138ms
+     × redacts repeated keys after an SDK body-read rejection (Error) 4ms
+     × redacts repeated keys after an SDK body-read rejection (string) 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/providers.adversarial.test.ts > adversarial real SDK transport > redacts repeated keys after an SDK body-read rejection (Error)
+ FAIL  src/__tests__/providers.adversarial.test.ts > adversarial real SDK transport > redacts repeated keys after an SDK body-read rejection (string)
+AssertionError: expected 'Error: read failed sk-adversarial-pri…' not to contain 'sk-adversarial-private-key-7391'
+
+Expected: "sk-adversarial-private-key-7391"
+Received: "Error: read failed sk-adversarial-private-key-7391 repeated sk-adversarial-private-key-7391"
+
+ ❯ src/__tests__/providers.adversarial.test.ts:199:33
+    197|       expect(error).toBeInstanceOf(Error);
+    198|       expect(mockFetch).toHaveBeenCalledTimes(1);
+    199|       expect(String(error)).not.toContain(API_KEY);
+       |                                 ^
+    200|       expect(JSON.stringify(error, Object.getOwnPropertyNames(error as…
+    201|         API_KEY,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  2 failed | 104 passed (106)
+   Start at  11:22:45
+   Duration  11.97s (transform 66ms, setup 0ms, import 724ms, tests 10.80s, environment 0ms)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+npm error workspace @math-platform/ai-tutoring@0.1.0
+npm error location /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+npm error command failed
+npm error command sh -c vitest run

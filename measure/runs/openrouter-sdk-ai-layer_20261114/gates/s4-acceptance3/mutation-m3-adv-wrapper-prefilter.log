@@ -1,0 +1,36 @@
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/measure/runs/openrouter-sdk-ai-layer_20261114/acceptance3-mutation/copy-m3-adv-wrapper-prefilter
+
+ ❯ adversarial.test.ts (7 tests | 1 failed) 3096ms
+     × ADV-S4-1 NUL regression: a NUL-bearing source still reports the banned token in both real scans 5ms
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 9 passed (10)
+   Start at  17:59:37
+   Duration  4.35s (transform 65ms, setup 0ms, import 44ms, tests 4.14s, environment 0ms)
+
+[33m(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (measure/runs/openrouter-sdk-ai-layer_20261114/acceptance3-mutation/copy-m3-adv-wrapper-prefilter/copy.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.[39m
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  adversarial.test.ts > openrouter-s4-adversarial > ADV-S4-1 NUL regression: a NUL-bearing source still reports the banned token in both real scans
+AssertionError: Repo-style scan NUL hit count: 0: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ adversarial.test.ts:155:94
+    153|       expect(gateStyleHits[0]).toContain("api.openai.com");
+    154|       const repoStyleHits = scanRepoFilesForBannedTokens(listed);
+    155|       expect(repoStyleHits.length, `Repo-style scan NUL hit count: ${r…
+       |                                                                                              ^
+    156|         1,
+    157|       );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

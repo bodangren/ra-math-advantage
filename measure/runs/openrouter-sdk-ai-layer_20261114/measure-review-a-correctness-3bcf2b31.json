@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "role": "review-a",
+  "track": "openrouter-sdk-ai-layer_20261114",
+  "phase": "Phase S4: Remove the OpenAI paths and document the roles",
+  "baseline_sha": "8283f9fa192be2afc78a2e731fac1e267c3535b5",
+  "phase_base_sha": "8283f9fa192be2afc78a2e731fac1e267c3535b5",
+  "role_base_sha": "150875327a7f3db1e093f80d2fa14fc94f17bba4",
+  "audited_head_sha": "3bcf2b3124a4ae042e79851b51ae3e6a08327a93",
+  "status": "pass",
+  "summary": "S4 removals, behavior guards, and role documentation match the phase contract. One nonblocking stale-mock cleanup remains.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "F1 [Nit] review-a: Two BM2 teacher route tests retain mocks and setup calls for removed generateAISummary and error-analysis/providers APIs; remove the obsolete mock seams. Evidence: apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.test.ts:6-47 and apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.no-pii.test.ts:6-45."
+  ],
+  "evidence": [
+    "HEAD is 3bcf2b3124a4ae042e79851b51ae3e6a08327a93; it equals audited_head_sha. The audited diff is exactly 8283f9fa192be2afc78a2e731fac1e267c3535b5..3bcf2b3124a4ae042e79851b51ae3e6a08327a93.",
+    "Red S4 proof: red-s4-30073327.log:14-27 records all three openrouter-only cases failing first on the banned-token scan, removal paths, and exported symbol.",
+    "Green regression guards: green-s4-guards/guard-summary.txt:1-12 records exit 0 for all seven behavior/no-PII guards and both package suites; BM2 and IM3 error-analysis logs each retain 31 passing cases.",
+    "S4 gate evidence: green-s4-89946220.log:44-56 records lint, test, and checks-all with NEWFAIL=0, workerd probe success, and generate/doctor success.",
+    "Deleted test cases match removed code: the provider test covered only createOpenAIProvider and resolveAIProviderFromEnv; interpretation tests covered only ai-interpretation configuration and generation; BM2 and IM3 generateAISummary tests exclusively exercised the removed API. The remaining error-analysis suites pass.",
+    "openrouter-only.test.ts uses labeled match/path counts, checks a non-empty scan and the retained package index, asserts a non-null namespace, and checks the retained export. No vacuous deliverable check or bare-digit count assertion was found.",
+    "tech-stack.md:81-120 and the edited .env.example files agree with spec.md:144-154 on the roles, variables, features, structured output, PII flags, initial values, and development-only openrouter/free note.",
+    "The open S4 manual-verification task is PM-verified per the handoff and is not a finding. The live smoke test remains deferred to Daniel and is not a finding."
+  ],
+  "commands": [
+    "git rev-parse HEAD -> 3bcf2b3124a4ae042e79851b51ae3e6a08327a93",
+    "git merge-base --is-ancestor 8283f9fa192be2afc78a2e731fac1e267c3535b5 3bcf2b3124a4ae042e79851b51ae3e6a08327a93 -> exit 0",
+    "git diff --check 8283f9fa192be2afc78a2e731fac1e267c3535b5..HEAD -> exit 0",
+    "git diff --name-status 8283f9fa192be2afc78a2e731fac1e267c3535b5..HEAD -> 24 changed paths; source deletions and retained-contract edits reviewed",
+    "npx vitest run --config scripts/vitest.config.ts -t 'openrouter-only' (through heavy-run.sh) -> 3 passed, 121 skipped, exit 0; runner reported a lock wait over 600 seconds before the test completed"
+  ],
+  "changed_files": [
+    "apps/bus-math-v2/.env.example",
+    "apps/bus-math-v2/__tests__/lib/practice/error-analysis-providers.test.ts",
+    "apps/bus-math-v2/__tests__/lib/practice/error-analysis.test.ts",
+    "apps/bus-math-v2/__tests__/lib/teacher/ai-interpretation.test.ts",
+    "apps/bus-math-v2/lib/practice/error-analysis/index.ts",
+    "apps/bus-math-v2/lib/practice/error-analysis/providers.ts",
+    "apps/bus-math-v2/lib/teacher/ai-interpretation.ts",
+    "apps/bus-math-v2/wrangler.jsonc",
+    "apps/integrated-math-3/.env.example",
+    "apps/integrated-math-3/__tests__/lib/auth/server-composition.test.ts",
+    "apps/integrated-math-3/__tests__/lib/practice/error-analysis.test.ts",
+    "apps/integrated-math-3/wrangler.jsonc",
+    "measure/tech-stack.md",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/evidence.md",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md",
+    "packages/practice-core/src/index.ts",
+    "packages/practice-core/src/practice/error-analysis/index.ts",
+    "scripts/__tests__/fixtures/lint-disable-allowlist.json",
+    "scripts/__tests__/openrouter-only.test.ts",
+    "scripts/vitest.config.ts"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "retry_implementation",
+  "confidence": "high",
+  "route": "openai/gpt-6-luna#high",
+  "ratings": [
+    {"axis": "correctness", "score": 5, "evidence": "S4 regression results in green-s4-guards/guard-summary.txt:1-12 show retained behavior guards pass."},
+    {"axis": "test_meaning", "score": 4, "evidence": "red-s4-30073327.log:14-27 records failing-first cases; green-s4-guards/guard-summary.txt:1-12 records regression passes."},
+    {"axis": "scope_discipline", "score": 4, "evidence": "The diff contains the planned removals and docs plus the Red-discovered FR-14 test correction in apps/integrated-math-3/__tests__/lib/auth/server-composition.test.ts."},
+    {"axis": "evidence_quality", "score": 5, "evidence": "green-s4-89946220.log:44-56 records gate exits, NEWFAIL=0, workerd, generate, and doctor results."}
+  ]
+}

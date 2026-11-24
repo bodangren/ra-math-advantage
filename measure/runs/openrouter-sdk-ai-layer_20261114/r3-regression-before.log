@@ -1,0 +1,44 @@
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+
+ ❯ src/__tests__/providers.test.ts (25 tests | 2 failed | 23 skipped) 963ms
+     × retries a 503 whose message text holds a 400 code 5ms
+     × rejects a 400 whose message text holds a 503 code after one attempt 956ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/providers.test.ts > SDK status classification > retries a 503 whose message text holds a 400 code
+AssertionError: promise rejected "Error: OpenRouter API error: 503 upstream…" instead of resolving
+ ❯ src/__tests__/providers.test.ts:396:36
+    394|
+    395|     const provider = createOpenRouterProvider({ apiKey: "test-key", mo…
+    396|     await expect(provider("hello")).resolves.toBe("recovered");
+       |                                    ^
+    397|     expect(statusSend).toHaveBeenCalledTimes(2);
+    398|   });
+
+Caused by: Error: OpenRouter API error: 503 upstream error (400)
+ ❯ mapSdkError src/providers.ts:35:12
+ ❯ src/providers.ts:108:13
+ ❯ withRetry src/retry.ts:127:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/__tests__/providers.test.ts > SDK status classification > rejects a 400 whose message text holds a 503 code after one attempt
+AssertionError: expected "vi.fn()" to be called 1 times, but got 3 times
+ ❯ src/__tests__/providers.test.ts:405:24
+    403|     const provider = createOpenRouterProvider({ apiKey: "test-key", mo…
+    404|     await expect(provider("hello")).rejects.toThrow(/^OpenRouter API e…
+    405|     expect(statusSend).toHaveBeenCalledTimes(1);
+       |                        ^
+    406|   });
+    407| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 23 skipped (25)
+   Start at  09:59:57
+   Duration  1.12s (transform 49ms, setup 0ms, import 67ms, tests 963ms, environment 0ms)
+

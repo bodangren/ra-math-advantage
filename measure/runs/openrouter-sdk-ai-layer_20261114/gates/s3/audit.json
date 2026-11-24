@@ -1,0 +1,781 @@
+{
+  "auditReportVersion": 2,
+  "vulnerabilities": {
+    "@cloudflare/vite-plugin": {
+      "name": "@cloudflare/vite-plugin",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "miniflare",
+        "wrangler"
+      ],
+      "effects": [],
+      "range": "<=0.0.0-7ae5dd357 || 1.2.3 - 1.54.6",
+      "nodes": [
+        "node_modules/@cloudflare/vite-plugin"
+      ],
+      "fixAvailable": true
+    },
+    "@tailwindcss/typography": {
+      "name": "@tailwindcss/typography",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "postcss-selector-parser"
+      ],
+      "effects": [],
+      "range": "<=0.0.0-insiders.fda8ce5 || >=0.5.5",
+      "nodes": [
+        "node_modules/@tailwindcss/typography"
+      ],
+      "fixAvailable": {
+        "name": "@tailwindcss/typography",
+        "version": "0.5.4",
+        "isSemVerMajor": true
+      }
+    },
+    "@vercel/og": {
+      "name": "@vercel/og",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "satori"
+      ],
+      "effects": [
+        "vinext"
+      ],
+      "range": ">=1.0.2",
+      "nodes": [
+        "node_modules/@vercel/og"
+      ],
+      "fixAvailable": {
+        "name": "vinext",
+        "version": "0.2.1",
+        "isSemVerMajor": true
+      }
+    },
+    "esbuild": {
+      "name": "esbuild",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1120680,
+          "name": "esbuild",
+          "dependency": "esbuild",
+          "title": "esbuild allows arbitrary file read when running the development server on Windows",
+          "url": "https://github.com/advisories/GHSA-g7r4-m6w7-qqqr",
+          "severity": "low",
+          "cwe": [
+            "CWE-22"
+          ],
+          "cvss": {
+            "score": 2.5,
+            "vectorString": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:N/I:L/A:N"
+          },
+          "range": ">=0.27.3 <0.28.1"
+        }
+      ],
+      "effects": [],
+      "range": "0.27.3 - 0.28.0",
+      "nodes": [
+        "node_modules/tsx/node_modules/esbuild"
+      ],
+      "fixAvailable": true
+    },
+    "fflate": {
+      "name": "fflate",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1164783,
+          "name": "fflate",
+          "dependency": "fflate",
+          "title": "fflate unzipSync can enter an infinite loop when parsing malformed ZIP64 archives",
+          "url": "https://github.com/advisories/GHSA-px8p-9vwx-vf98",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-400"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=0.7.0 <0.7.5"
+        }
+      ],
+      "effects": [
+        "satori"
+      ],
+      "range": "0.7.0 - 0.7.4",
+      "nodes": [
+        "node_modules/fflate"
+      ],
+      "fixAvailable": {
+        "name": "vinext",
+        "version": "0.2.1",
+        "isSemVerMajor": true
+      }
+    },
+    "katex": {
+      "name": "katex",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1241206,
+          "name": "katex",
+          "dependency": "katex",
+          "title": "KaTeX: Existing prototype pollution can bypass trust restrictions",
+          "url": "https://github.com/advisories/GHSA-238p-pmpm-9mq7",
+          "severity": "low",
+          "cwe": [
+            "CWE-807"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": ">=0.11.0 <0.18.2"
+        }
+      ],
+      "effects": [
+        "micromark-extension-math",
+        "rehype-katex"
+      ],
+      "range": "0.11.0 - 0.18.1",
+      "nodes": [
+        "node_modules/katex"
+      ],
+      "fixAvailable": {
+        "name": "rehype-katex",
+        "version": "1.2.0",
+        "isSemVerMajor": true
+      }
+    },
+    "micromark-extension-math": {
+      "name": "micromark-extension-math",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "katex"
+      ],
+      "effects": [
+        "remark-math"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/micromark-extension-math"
+      ],
+      "fixAvailable": {
+        "name": "remark-math",
+        "version": "3.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    "miniflare": {
+      "name": "miniflare",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "sharp",
+        "undici"
+      ],
+      "effects": [
+        "@cloudflare/vite-plugin",
+        "wrangler"
+      ],
+      "range": "<=0.0.0-fec45ed61 || 4.20250508.3 - 5.20260908.0-alpha",
+      "nodes": [
+        "node_modules/miniflare"
+      ],
+      "fixAvailable": true
+    },
+    "postcss-selector-parser": {
+      "name": "postcss-selector-parser",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1243379,
+          "name": "postcss-selector-parser",
+          "dependency": "postcss-selector-parser",
+          "title": "PostCSS: Quadratic complexity in flat selector parsing allows CPU exhaustion",
+          "url": "https://github.com/advisories/GHSA-rj75-hqrm-r3gf",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-400",
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<6.1.5"
+        }
+      ],
+      "effects": [
+        "@tailwindcss/typography"
+      ],
+      "range": "<6.1.5",
+      "nodes": [
+        "node_modules/postcss-selector-parser"
+      ],
+      "fixAvailable": {
+        "name": "@tailwindcss/typography",
+        "version": "0.5.4",
+        "isSemVerMajor": true
+      }
+    },
+    "rehype-katex": {
+      "name": "rehype-katex",
+      "severity": "low",
+      "isDirect": true,
+      "via": [
+        "katex"
+      ],
+      "effects": [],
+      "range": ">=2.0.0",
+      "nodes": [
+        "node_modules/rehype-katex"
+      ],
+      "fixAvailable": {
+        "name": "rehype-katex",
+        "version": "1.2.0",
+        "isSemVerMajor": true
+      }
+    },
+    "remark-math": {
+      "name": "remark-math",
+      "severity": "low",
+      "isDirect": true,
+      "via": [
+        "micromark-extension-math"
+      ],
+      "effects": [],
+      "range": ">=4.0.0",
+      "nodes": [
+        "node_modules/remark-math"
+      ],
+      "fixAvailable": {
+        "name": "remark-math",
+        "version": "3.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    "satori": {
+      "name": "satori",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "fflate"
+      ],
+      "effects": [
+        "@vercel/og"
+      ],
+      "range": ">=0.33.0",
+      "nodes": [
+        "node_modules/satori"
+      ],
+      "fixAvailable": {
+        "name": "vinext",
+        "version": "0.2.1",
+        "isSemVerMajor": true
+      }
+    },
+    "sharp": {
+      "name": "sharp",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1193725,
+          "name": "sharp",
+          "dependency": "sharp",
+          "title": "sharp: Vulnerabilities in libheif: GHSA-g89c-p67h-r497 and GHSA-2jg2-4ch7-h545",
+          "url": "https://github.com/advisories/GHSA-rgj7-g3m4-5g8c",
+          "severity": "high",
+          "cwe": [
+            "CWE-122"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<0.35.4"
+        },
+        {
+          "source": 1241331,
+          "name": "sharp",
+          "dependency": "sharp",
+          "title": "sharp : Vulnerability in librsvg dependency CVE-2026-96889",
+          "url": "https://github.com/advisories/GHSA-wq5f-xc86-pv6w",
+          "severity": "high",
+          "cwe": [
+            "CWE-416",
+            "CWE-1395"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<0.35.5"
+        }
+      ],
+      "effects": [
+        "miniflare"
+      ],
+      "range": "<=0.35.5-rc.1",
+      "nodes": [
+        "node_modules/miniflare/node_modules/sharp"
+      ],
+      "fixAvailable": true
+    },
+    "undici": {
+      "name": "undici",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1130715,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to downstream response desynchronization via retry interceptor",
+          "url": "https://github.com/advisories/GHSA-8xcm-r25x-g524",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-444"
+          ],
+          "cvss": {
+            "score": 4.8,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N"
+          },
+          "range": ">=7.0.0 <7.29.0"
+        },
+        {
+          "source": 1130718,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to cross-user information disclosure and parse-time crash via degenerate private cache directives",
+          "url": "https://github.com/advisories/GHSA-4cwx-7wf7-3272",
+          "severity": "high",
+          "cwe": [
+            "CWE-200",
+            "CWE-248",
+            "CWE-525"
+          ],
+          "cvss": {
+            "score": 7.4,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:H"
+          },
+          "range": ">=7.0.0 <7.29.0"
+        },
+        {
+          "source": 1130726,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to CRLF Injection via blob-like body 'type' property",
+          "url": "https://github.com/advisories/GHSA-m8rv-5g2x-5cg5",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-93"
+          ],
+          "cvss": {
+            "score": 4.2,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N"
+          },
+          "range": ">=7.0.0 <7.29.0"
+        },
+        {
+          "source": 1130729,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to cross-user information disclosure via whitespace around equals in Cache-Control directives",
+          "url": "https://github.com/advisories/GHSA-jr45-8vmc-qm54",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-436",
+            "CWE-524"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N"
+          },
+          "range": ">=7.0.0 <7.29.0"
+        },
+        {
+          "source": 1130731,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to cookie attribute injection via unsanitized domain and unparsed setCookie fields",
+          "url": "https://github.com/advisories/GHSA-v3r7-h72x-cjcm",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-74"
+          ],
+          "cvss": {
+            "score": 4.8,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N"
+          },
+          "range": ">=7.0.0 <7.29.0"
+        },
+        {
+          "source": 1239933,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to Denial of Service via unhandled error in WebSocket permessage-deflate decompression",
+          "url": "https://github.com/advisories/GHSA-3wwx-pv8p-q78v",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-248"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=7.28.0 <7.29.1"
+        },
+        {
+          "source": 1240036,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to Denial of Service via orphaned RetryHandler response body",
+          "url": "https://github.com/advisories/GHSA-pmjh-fq2x-6v4x",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-772"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=7.11.0 <7.29.1"
+        },
+        {
+          "source": 1240038,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to downstream response splitting via retry interceptor",
+          "url": "https://github.com/advisories/GHSA-r53p-7pc4-xj5r",
+          "severity": "low",
+          "cwe": [
+            "CWE-444"
+          ],
+          "cvss": {
+            "score": 3.7,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"
+          },
+          "range": ">=7.0.0 <7.29.1"
+        },
+        {
+          "source": 1240041,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to Denial of Service via unrequested WebSocket subprotocol",
+          "url": "https://github.com/advisories/GHSA-rfgv-xxqx-mfg5",
+          "severity": "high",
+          "cwe": [
+            "CWE-248",
+            "CWE-252"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=7.0.0 <7.29.1"
+        },
+        {
+          "source": 1240044,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to Denial of Service via unbounded decompression of compressed responses",
+          "url": "https://github.com/advisories/GHSA-3xpg-4rpp-hhhm",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-770"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=7.15.0 <7.29.1"
+        },
+        {
+          "source": 1240046,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to cross-user cookie disclosure via Set-Cookie caching in shared caches",
+          "url": "https://github.com/advisories/GHSA-2jfj-6hjv-fm6j",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-200",
+            "CWE-524"
+          ],
+          "cvss": {
+            "score": 6.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:L/A:N"
+          },
+          "range": ">=7.0.0 <7.29.1"
+        },
+        {
+          "source": 1240048,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to response truncation via oversized chunked responses in the dump interceptor",
+          "url": "https://github.com/advisories/GHSA-2gqq-gqf2-x968",
+          "severity": "low",
+          "cwe": [
+            "CWE-20",
+            "CWE-248"
+          ],
+          "cvss": {
+            "score": 3.7,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"
+          },
+          "range": ">=7.1.0 <7.29.1"
+        },
+        {
+          "source": 1240050,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to TLS certificate validation bypass via dropped connect options in BalancedPool",
+          "url": "https://github.com/advisories/GHSA-w293-vg96-wgc3",
+          "severity": "high",
+          "cwe": [
+            "CWE-295"
+          ],
+          "cvss": {
+            "score": 7.4,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N"
+          },
+          "range": ">=7.24.1 <7.29.1"
+        },
+        {
+          "source": 1240052,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to caching and replay of unsafe HTTP method responses",
+          "url": "https://github.com/advisories/GHSA-8436-99hf-9mmv",
+          "severity": "low",
+          "cwe": [
+            "CWE-345"
+          ],
+          "cvss": {
+            "score": 3.7,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"
+          },
+          "range": ">=7.0.0 <7.29.1"
+        },
+        {
+          "source": 1240055,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to Denial of Service via WebSocketStream unclean close",
+          "url": "https://github.com/advisories/GHSA-rx4f-c7p8-82vq",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-248",
+            "CWE-754"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=7.0.0 <7.29.1"
+        },
+        {
+          "source": 1243078,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to Denial of Service via unbounded memory in the EventSource parser",
+          "url": "https://github.com/advisories/GHSA-4qv8-2p9j-2685",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-770"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=7.0.0 <7.30.1"
+        },
+        {
+          "source": 1243081,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to Subresource Integrity bypass via non-lowercase algorithm tokens",
+          "url": "https://github.com/advisories/GHSA-f72v-6w45-q472",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-178"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N"
+          },
+          "range": ">=7.15.0 <7.30.1"
+        },
+        {
+          "source": 1243113,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to Denial of Service via unhandled error on excessive content-encodings",
+          "url": "https://github.com/advisories/GHSA-xjj6-f33q-929c",
+          "severity": "high",
+          "cwe": [
+            "CWE-248",
+            "CWE-459"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=7.18.0 <7.30.1"
+        },
+        {
+          "source": 1243473,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to cache poisoning and cross-user disclosure via cross-origin redirects",
+          "url": "https://github.com/advisories/GHSA-4w7w-5xrc-9h26",
+          "severity": "high",
+          "cwe": [
+            "CWE-346",
+            "CWE-524"
+          ],
+          "cvss": {
+            "score": 7.4,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N"
+          },
+          "range": ">=7.0.0 <7.30.1"
+        },
+        {
+          "source": 1243475,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to TLS certificate validation bypass via dropped tls options in Agent",
+          "url": "https://github.com/advisories/GHSA-2m5v-pch6-74hx",
+          "severity": "high",
+          "cwe": [
+            "CWE-295"
+          ],
+          "cvss": {
+            "score": 7.4,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N"
+          },
+          "range": ">=7.0.0 <7.30.1"
+        },
+        {
+          "source": 1243478,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to Denial of Service via TLS 1.2 certificate-changing renegotiation",
+          "url": "https://github.com/advisories/GHSA-qrxm-fqhp-jwvm",
+          "severity": "high",
+          "cwe": [
+            "CWE-248",
+            "CWE-617"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=7.0.0 <7.30.1"
+        },
+        {
+          "source": 1243481,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici WebSocket client vulnerable to Denial of Service via unbounded automatic PONG buffering",
+          "url": "https://github.com/advisories/GHSA-9fm3-97px-rjf6",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-400",
+            "CWE-405",
+            "CWE-770"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=7.0.0 <7.30.1"
+        },
+        {
+          "source": 1243484,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici vulnerable to Denial of Service via unhandled exception in the decompress interceptor",
+          "url": "https://github.com/advisories/GHSA-55wc-3pg8-jfw6",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-248"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=7.15.0 <7.30.1"
+        }
+      ],
+      "effects": [
+        "miniflare"
+      ],
+      "range": "7.0.0 - 7.30.0",
+      "nodes": [
+        "node_modules/miniflare/node_modules/undici"
+      ],
+      "fixAvailable": true
+    },
+    "vinext": {
+      "name": "vinext",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        "@vercel/og"
+      ],
+      "effects": [],
+      "range": ">=1.0.0-beta.0",
+      "nodes": [
+        "node_modules/vinext"
+      ],
+      "fixAvailable": {
+        "name": "vinext",
+        "version": "0.2.1",
+        "isSemVerMajor": true
+      }
+    },
+    "wrangler": {
+      "name": "wrangler",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "miniflare"
+      ],
+      "effects": [],
+      "range": "<=0.0.0-7ae5dd357 || 4.16.0 - 4.130.0",
+      "nodes": [
+        "node_modules/wrangler"
+      ],
+      "fixAvailable": true
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 5,
+      "moderate": 6,
+      "high": 5,
+      "critical": 0,
+      "total": 16
+    },
+    "dependencies": {
+      "prod": 416,
+      "dev": 579,
+      "optional": 257,
+      "peer": 123,
+      "peerOptional": 0,
+      "total": 1090
+    }
+  }
+}

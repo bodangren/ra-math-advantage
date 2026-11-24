@@ -1,0 +1,26 @@
+MEASURE_AGENT_RESULT
+role: strategy
+status: pass
+track: openrouter-sdk-ai-layer_20261114
+phase: S3 (Structured output for the evaluation features)
+commits: measure(strategy): add the S3 test strategy (track_id: openrouter-sdk-ai-layer_20261114) -- single commit, test-strategy.md only
+tests_run: none (strategy role; no Red/Green execution in this role)
+files_changed:
+  - measure/tracks/openrouter-sdk-ai-layer_20261114/test-strategy.md (appended Phase S3 section)
+plan_updates: none (strategy role owns only test-strategy.md)
+known_failures: none
+handoff: >-
+  Appended Phase S3 strategy in the S2 format: risk critical, role applicability
+  (security yes, UX/API yes-API, adversarial yes with ADV-S3-1..10, browser no),
+  spec-to-test map for all 8 S3 ACs and AC10, Fix group as FIRST Red group with
+  BM2 PII strip first and the filter 'S3 fix', main helper filter 'structured output',
+  green commands for the four workspaces, gate logs labeled s3, fixture/mock/live
+  proof policy, architecture guardrails, intentionally-red aggregate handling,
+  artifact-vs-live table, A1-A12 anti-pattern coverage with falsification per row,
+  and the phase_base_sha capture point immediately after this strategy commit.
+  PM gate recorded: no student-facing release of the BM2 chatbot before the PII strip passes.
+  Red Fix-1 command: CI=true npm run test --workspace=apps/bus-math-v2 -- -t 'S3 fix'
+  graph.db predates the track (Aug 8) and build-graph is heavy-only, so no graph query was run.
+  No SHA predating the strategy was embedded as phase_base_sha.
+  Six generated files left unstaged. No push. No hashing additions.
+END_MEASURE_AGENT_RESULT

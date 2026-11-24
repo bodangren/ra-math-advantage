@@ -1,0 +1,14 @@
+MEASURE_AGENT_RESULT
+role: measure-jr-green
+status: pass
+track: openrouter-sdk-ai-layer_20261114
+phase: S1
+baseline_sha: dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c
+commits: bf5ef00b fix(ai-tutoring): keep the API key out of errors and contain BM2 provider errors (track_id: openrouter-sdk-ai-layer_20261114); dcfa6d07 measure(plan): Mark remediation r4 (ADV-1 and ADV-2) as complete (track_id: openrouter-sdk-ai-layer_20261114). Final Green HEAD dcfa6d07. Role base 0228cfd7.
+tests_run: providers.adversarial.test.ts 21/21 pass (r4-adversarial-package.log); route.adversarial.test.ts 2/2 pass (r4-adversarial-route.log). RED_TEST_COMMAND exit 0, 27 SDK transport matches including the six Red cases (r4-red-test.log). GREEN_TEST_COMMAND exit 0, ai-tutoring 104/104, BM2 19/19, IM3 11/11 (r4-green-test.log). workerd probe exit 0, probe-ok (r4-workerd.log). ai-tutoring typecheck and lint exit 0 (r4-typecheck-ai.log, r4-lint-ai.log). BM2 typecheck and lint exit 0 (r4-typecheck-bm2.log, r4-lint-bm2.log). format:check exit 0 (r4-format.log). Every command ran through heavy-run.sh, one at a time.
+files_changed: packages/ai-tutoring/src/providers.ts (redact the configured API key from mapped HTTP and connection error text; pass the key into mapSdkError), apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts (provider resolution and the 503 branch moved inside the existing try), measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md (remediation r4 note and SHA, plus the adversarial role's existing [~] task note). No test file was edited. No dependency-refresh track file was staged. The six generated files remain unstaged.
+plan_updates: added remediation r4 under the adversarial task, marked [~] at the start and [x] with SHA bf5ef00b. The adversarial [~] task note stays as the adversarial role wrote it; that role owns and closes it. No other task state changed.
+known_failures: none new. Baseline IM3, BM2, scripts and audit-suite failures stay unchanged. The D1 Red role of dependency-refresh_20261121 owns its plan file; this role did not touch or stage it.
+handoff: ADV-1 fixed by redacting every occurrence of the configured key from upstream error text with a [redacted] marker. The numeric status field and the OpenRouter API error prefix stay, so r3 retry classification is unchanged. ADV-2 fixed by resolving the BM2 provider inside the existing try; a malformed base URL now returns the fixed 502 body, and a missing key still returns 503. No committed Red or adversarial assertion changed. The immutable phase_base_sha dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c is unchanged. The orchestrator owns the S1 manual verification task and the phase checkpoint.
+dispositions: ADV-1=FIX; ADV-2=FIX
+END_MEASURE_AGENT_RESULT

@@ -1,0 +1,5 @@
+FAIL: current phase still has 2 non-deferred incomplete tasks
+ALL_TILDE_GATE_EXIT=1
+A4_ASSERT_EXIT=0
+A7_FILTER_OUTPUT=FAIL banned api.openai.com never hide this hit
+A7_ASSERT_EXIT=0

@@ -1,0 +1,13 @@
+MEASURE_AGENT_RESULT
+role: measure-review-a-correctness
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S3: Structured output for the evaluation features
+commits: none
+tests_run: `~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh bash -c "CI=true npm run test --workspace=packages/ai-tutoring -- -t 'structured output'"` passed (9 passed, 147 skipped); BM2 targeted spreadsheet, teacher-summary, and no-PII suite passed (33 passed, 2683 skipped).
+files_changed: measure/runs/openrouter-sdk-ai-layer_20261114/measure-review-a-correctness-ed397155.json and .log
+plan_updates: none
+known_failures: F1 [Blocker] the serialized SDK request omits required provider preferences; F2 [Nit] stale S3 evidence statement conflicts with S3 Fix changes.
+handoff: Route F1 to Green. `structured.ts` supplies snake_case `provider`, but SDK 1.5.128 serializes `provider: {}`; this violates spec Story S3 acceptance criterion 2. F2 identifies stale evidence.md lines 438-440. The BM2 PII release gate and the five prior Review B fixes are covered by current plan evidence and tests. Gate script A3/A4 checks show labeled counts and explicit executed-case checks; the S3 framing-line filter does not remove test failure summaries. Build-graph could not complete: heavy-run reported a 600-second lock wait, then only 1 node and 1 edge.
+dispositions: none
+END_MEASURE_AGENT_RESULT

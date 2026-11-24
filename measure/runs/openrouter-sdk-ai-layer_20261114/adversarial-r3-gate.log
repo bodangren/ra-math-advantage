@@ -1,0 +1,2 @@
+INFO: no heavy-run wrapper found; running gate commands directly
+PASS: adversarial-testing gate passed

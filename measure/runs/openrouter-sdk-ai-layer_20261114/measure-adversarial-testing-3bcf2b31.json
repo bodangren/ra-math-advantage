@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "role": "adversarial-testing",
+  "track": "openrouter-sdk-ai-layer_20261114",
+  "phase": "Phase S4: Remove the OpenAI paths and document the roles",
+  "baseline_sha": "8283f9fa192be2afc78a2e731fac1e267c3535b5",
+  "phase_base_sha": "8283f9fa192be2afc78a2e731fac1e267c3535b5",
+  "role_base_sha": "150875327a7f3db1e093f80d2fa14fc94f17bba4",
+  "audited_head_sha": "3bcf2b3124a4ae042e79851b51ae3e6a08327a93",
+  "status": "pass",
+  "summary": "All eight ADV-S4 attacks were run once. The removal gate, retained exports, teacher route keys, PII guards, and guard-has-cases rule each defeated the intended attack. No blocking or nonblocking defect found. Six passing adversarial tests were committed at 6583ec4e.",
+  "blocking_findings": [],
+  "nonblocking_findings": [],
+  "evidence": [
+    "Provenance: HEAD is 3bcf2b3124a4ae042e79851b51ae3e6a08327a93; phase_base_sha 8283f9fa... is its ancestor (git merge-base exit 0); git diff --check over the phase range is clean. Reviews A, B, C pass on this HEAD. Slot check returned ok.",
+    "ADV-S4-1: a copy of the real scripts/__tests__/openrouter-only.test.ts case 1 was run in an isolated tree. An aliased import carrying OPENAI_API_KEY failed case 1 with 'Banned token match count: 1'. A banned token inside a config comment failed case 1 with count 2. An aliased import with no banned token passes case 1, so build and typecheck remain the stated complement; no openai package exists in the lockfile (evidence.md:648).",
+    "ADV-S4-2: apps/bus-math-v2/.env.example:13-22 holds no OPENAI_* or AI_INTERPRETATION_ line; only OPENROUTER role comments remain. The doc scan in the new test also checks this file and passes.",
+    "ADV-S4-3: a code default 'openrouter/free' passes case 1 by design (not a banned token); case 1 plus the S2 live cases is the stated defense. A grep of apps/ finds 'openrouter/free' only in the two .env.example development comments (BM2:17, IM3:14), which the spec allows. The new test fails on any non-comment source default and passes at HEAD.",
+    "ADV-S4-4: packages/practice-core/src/index.ts:121-129 retains AISummaryOutput, TeacherErrorView, and buildTeacherErrorView and drops the four removal-3 names. The real namespace import has buildTeacherErrorView and no generateAISummary. build-graph callers returns no results for either removed or retained symbol, so no dangling caller remains.",
+    "ADV-S4-5: green-s4-guards/guard-summary.txt records exit 0 for all seven guards. Per-guard vitest counts are 12, 16, 13, 8, 12, 1, and 5 passing cases, so no guard runs zero cases. The new static test fails if any guard filter loses its last matching title.",
+    "ADV-S4-6: apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.test.ts:219-223, 431-435 asserts each of the five keys (studentName, lessonTitle, deterministicSummary, aiSummary, aiEnabled) by name. G-TEACHER-ROUTE runs 12 cases; a renamed key would leave an asserted value undefined and fail.",
+    "ADV-S4-7: route.no-pii.test.ts in both workspaces places the six fixture values in claims, profiles, and lesson data and asserts each captured string omits every value (IM3:113). G-NO-PII runs 1 IM3 case and 5 BM2 cases with exit 0; no PII file changed in the S4 diff.",
+    "ADV-S4-8: no key-shaped token or banned token appears in the four edited config files or measure/tech-stack.md. Review B:19 also checked the AI Layer text. Case 1 does not scan measure/, so the new doc scan is the durable complement. The key-shaped probe in an isolated measure/ path passes case 1, confirming the artifact-check boundary stated in S4.5 and S4.9.",
+    "A4 check: the openrouter-only describe holds exactly 3 it() cases and the new test asserts that count. A7 check: EXCLUDED_DIR_NAMES is exactly node_modules, .next, dist with no bare-word filter. A5 check: no literal all-pass or PASS=N FAIL=0 claim appears in the S4 plan text; evidence.md claims cite log paths.",
+    "The open S4 manual-verification task is PM-verified per the brief and the live smoke test stays deferred:daniel. Both are recorded as non-findings, as the brief directs.",
+    "Review A F1 (two stale vi.mock seams) and the two fixtures that hold the word OpenAI outside removals 1-5 are known nonblocking items from the brief and are not re-reported.",
+    "Commit 6583ec4e changes only scripts/__tests__/openrouter-s4-adversarial.test.ts and scripts/vitest.config.ts, with a git note and the track id tag. graph.db, the four routes.d.ts files, workbooks-manifest.json, and measure/generated/*.md remain unstaged."
+  ],
+  "commands": [
+    "slot check -> ok, 1 of 14 busy",
+    "git rev-parse HEAD -> 3bcf2b3124a4ae042e79851b51ae3e6a08327a93; git merge-base --is-ancestor 8283f9fa... HEAD -> exit 0; git diff --check 8283f9fa..HEAD -> exit 0",
+    "isolated case-1 probe (six scenarios S0-S5) -> S0 pass; S1 fail (banned token count 1); S2 pass; S3 fail (count 2); S4 pass; S5 pass",
+    "build-graph stats graph.db -> 14709 nodes, 21266 edges; build-graph callers graph.db buildTeacherErrorView / generateAISummary -> no results for either",
+    "npx vitest run --config scripts/vitest.config.ts -t 'openrouter-s4-adversarial' (heavy-run) -> 6 passed, 124 skipped, exit 0",
+    "oxfmt --check on the two changed files -> clean; oxlint on the two changed files -> no findings",
+    "git commit 6583ec4e (explicit paths, git note, track tag); git status --porcelain -> only generated and graph files remain dirty",
+    "role-gate --role adversarial-testing with PROJECT_TESTS=GATES_BASE=s3 gates.sh test s4 -> PASS, exit 0; the s4 test gate reports the s3 baseline keys only (ai-tutoring 0, practice-core 0, IM3 1, BM2 1)"
+  ],
+  "changed_files": [
+    "scripts/__tests__/openrouter-s4-adversarial.test.ts (new, 6 tests)",
+    "scripts/vitest.config.ts (one include entry)"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "opencode-go/hy4-flash-free#high",
+  "ratings": [
+    {"axis": "correctness", "score": 5, "evidence": "All eight ADV-S4 attacks were probed; the removal gate and live guards rejected each intended attack."},
+    {"axis": "test_meaning", "score": 4, "evidence": "red-s4-30073327.log records cases 1-3 failing first; the isolated case-1 probe exercises the real gate file; six new tests pass at HEAD."},
+    {"axis": "scope_discipline", "score": 4, "evidence": "Commit 6583ec4e adds one test file and one test-config entry; no production code changed and generated files are unstaged."},
+    {"axis": "evidence_quality", "score": 5, "evidence": "Every claim cites a command result or file:line, for example the six-scenario probe and openrouter-only.test.ts:61-88."}
+  ]
+}

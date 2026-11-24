@@ -1,0 +1,57 @@
+# Phase acceptance log: Phase S3, Structured output for the evaluation features
+
+Route: opencode-go/glm-5.3#high. HEAD and audited head:
+18563a0ae803e4a2a01be48cd7210d282c7d36ef. Phase base: 55e7952b. The audit
+changes no tracked file and makes no commit.
+
+Verdict: pass, with four non-blocking findings (F1 to F4, all Minor
+evidence-text or latent-plan-text gaps). The result JSON holds the evidence.
+
+- This audit re-ran the full gate evidence at HEAD with label
+  s3-acceptance and GATES_BASE=s2: lint, test, and checks-all each print
+  NEWFAIL=0. The audit line is critical=0 high=5 moderate=6 low=5. The
+  workerd probe answers probe-ok. The test gate needed one resume after a
+  tool-side timeout; the recorded results were kept and the rest re-ran.
+- Targeted filters at HEAD: package 'structured output' 9 passed, 'S3 fix'
+  6 passed, 'S3 remediation' 2 passed, 'ADV-S3' 7 passed; BM2
+  'spreadsheet-feedback' 13 passed, 'teacher AI error summary' 8 passed,
+  'no-PII' 5 passed, 'S3 fix' 3 passed; IM3 'S3 fix' 7 passed with 7073
+  skipped, 'no-PII' 1 passed. Each count matches the plan claim at its
+  round head.
+- The review chain is closed at the audited HEAD: A, B, and C PASS at
+  18563a0a. The adversarial run at b0bb87d4 found ADV-S3-5 and ADV-S3-8;
+  both are fixed in 2d1c875e, with failing-first tests at b39b1c57 that
+  pass at HEAD. The single adversarial run per phase stands (PM
+  2026-11-22). Review B F2 to F4 are recorded as carried debt in
+  measure/tech-debt.md.
+- The zod ^4.1.12 dependency change is required by the S3 Contract and
+  the spec (D7: the helper calls z.toJSONSchema). Installed zod 4.6.7;
+  the toJSONSchema check prints function. No other dependency changed.
+- The PM release gate is met at test level: the BM2 lesson-chatbot PII
+  strip tests pass at HEAD (BM2 'no-PII' and 'S3 fix' filters), the strip
+  covers the six committed forms, and ADV-S3-5 passes.
+- generate and doctor exit 0 at HEAD.
+- The mechanical role gates of Reviews A and C exited 1 only for the open
+  plan task 'User Manual Verification Phase S3' (plan.md:542). That task
+  is PM-verified at the checkpoint by a build session after acceptance,
+  as in S2 (the S2 mark commit 92ef37e0 came after S2 acceptance). This
+  audit does not mark it.
+- Findings F1 to F4 are non-blocking text and latent-plan gaps: the stale
+  TBD zod-check section header in evidence.md, two '<shorthead>' citation
+  placeholders in evidence.md, the stale served-model plan line that S2
+  case 3 supersedes, and the stale provider-origin plan line
+  (buildProviderPreferences and the sendsPii flag) that remediation R-A1
+  superseded. Correct them at the checkpoint; none changes behavior.
+
+MEASURE_AGENT_RESULT
+role: phase-acceptance
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S3: Structured output for the evaluation features
+commits: none (gate-only role; the audit wrote only these two result files)
+tests_run: fresh gate sweeps at HEAD with GATES_BASE=s2 and label s3-acceptance: lint NEWFAIL=0; test NEWFAIL=0 (ai-tutoring 165/165, practice-core 263/263, IM3 218 and BM2 7 and scripts 27 and audit 5 baseline failures with the same keys as the s2 base); checks-all NEWFAIL=0 with audit critical=0 high=5 moderate=6 low=5 and workerd probe probe-ok; targeted filters all pass (package structured output 9, S3 fix 6, S3 remediation 2, ADV-S3 7; BM2 spreadsheet-feedback 13, teacher AI error summary 8, no-PII 5, S3 fix 3; IM3 S3 fix 7, no-PII 1); npm run generate exit 0; bash measure/doctor.sh exit 0; zod check prints function on 4.6.7; Verify grep returns no code match
+files_changed: measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-18563a0a.json and .log (gitignored); s3-acceptance gate logs under measure/runs (gitignored)
+plan_updates: none (gate-only role); add F1 to F4 of the result JSON to the next-phase list in plan.md at the checkpoint, and correct the four cited text lines
+known_failures: baseline failures unchanged with the same keys (IM3 tests 218, BM2 tests 7, scripts 27, audit suites 5, IM3 typecheck 55 diagnostics); BM2 bundle audit exits 1 on the baseline entry; npm audit critical=0 high=5 (the D2-accepted high advisories); no new failure; the IM3 queue/sessions date-boundary flake did not occur (all sweeps ran outside 00:00 to 01:00 UTC)
+handoff: Phase S3 passes at 18563a0a with no blocking finding. The orchestrator runs the checkpoint protocol next: the user manual verification task (plan.md:542) by a build session, the checkpoint commit, the plan mark, and the F1 to F4 text corrections (evidence.md zod-check section, the two '<shorthead>' citations, the served-model plan line, and the provider-origin plan line with the sendsPii note). Reviews A, B, and C PASS at the audited HEAD and the two adversarial blockers are closed; no re-review is needed.
+END_MEASURE_AGENT_RESULT

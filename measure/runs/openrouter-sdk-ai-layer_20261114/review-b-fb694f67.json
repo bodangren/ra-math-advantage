@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "role": "review-b",
+  "track": "openrouter-sdk-ai-layer_20261114",
+  "phase": "Phase S1: Adopt the OpenRouter SDK",
+  "baseline_sha": "dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c",
+  "audited_head_sha": "fb694f67221949c3f3e234649d41e307aff003a3",
+  "status": "pass",
+  "summary": "Round 4 passes with no blocking finding. F8 and F9 are closed by 96f8d20c: runs G, H, G3, N, O, and the ADV-3 cases give no key at HEAD. The new code returns a new redacted Error on every branch except EmptyResponseError, and the 67 package tests pass. One new record-only finding remains: F10 (Nit), because the Bearer strip is case-sensitive and the SDK is not (runs G5, G5b, G6). F2 narrows to its HTTP-text part, and F1, F4, F5, and F6 are unchanged. No route, manifest, or lockfile file changed in the delta.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "F1 [Major] review-b: Open and record-only, unchanged by the delta, because openrouter-client.ts is not in the range. OPENROUTER_DEBUG=true makes the SDK log the authorization header and the bodies with no redaction (node_modules/@openrouter/sdk/esm/lib/sdks.js:60 and :234-303), and openrouter-client.ts:19-26 passes no debugLogger. Rationale: spec.md:284 forbids a log line with prompt text, answer text, or the API key. Fix: pass a no-op debugLogger in createOpenRouterClient. Add a test that sets OPENROUTER_DEBUG=1. S2 can carry both changes.",
+    "F2 [Nit] review-b: Narrowed again by 96f8d20c; one part stays open. The mapped HTTP message still holds upstream response text, up to 10000 characters, and both routes log it. Rationale: no student sees that text, because both routes return fixed bodies. The other part is closed: run P2 now gives a new Error with no rawValue, and the student text is absent from the logged view. Fix: decide whether the mapped HTTP message keeps upstream text.",
+    "F4 [Nit] review-b: Open and record-only, unchanged by the delta. The SDK version was 3 hours 49 minutes old at install, and the repository has no minimum-release-age rule. The lockfile and the package manifest are unchanged in the delta. The dependency-refresh track can add a release-age rule or re-pin after a soak period.",
+    "F5 [Nit] review-b: Narrowed by 4b1d1aaf; open and record-only, unchanged by this delta. The BM2 503 body is pinned (route.adversarial.test.ts:71-79). No BM2 test pins the 429 response or its order before the provider call, and no IM3 test pins the fixed 503 body. Rationale: a later edit can move the provider call before the rate limit, or change the 503 body, with no test failure. Fix: S2 can add one BM2 test for the 429 order and one IM3 test for the 503 body.",
+    "F6 [Nit] review-b: Open and record-only, unchanged by the delta, because the gates.sh of this track is not in the range. The gate script compares only the critical and high counts of npm audit, but test-strategy.md:267 (row F8 of its review table) requires advisory IDs. My compare by advisory ID shows no difference at fb694f67. Fix: compare the sorted advisory IDs between the baseline label and the current label.",
+    "F10 [Nit] review-b: The Bearer strip at providers.ts:38 is exact: it matches `Bearer ` with a capital B and removes one space. The SDK treats the scheme without regard to case (node_modules/@openrouter/sdk/esm/lib/security.js:113) and sends the configured value unchanged. An echo of the bare token escapes redaction for the schemes `bearer ` and `BEARER `, and for `Bearer ` plus extra spaces (runs G5, G5b, G6). Rationale: the F8 fix covers the usual paste, but the r5 plan line says the key is redacted on every SDK error path. Fix: strip the scheme with a case-insensitive pattern for the word bearer plus white space. Add one test for a lowercase scheme and one test for extra spaces."
+  ],
+  "evidence": [
+    "Provenance: git rev-parse HEAD returns fb694f67221949c3f3e234649d41e307aff003a3, which equals the immutable audited head. My round 3 head dcfa6d07 is the role base for this round, and it is an ancestor of the audited head. The phase base dbf4d65e is also an ancestor. The delta holds 3 commits: eaaf7a6b (ADV-3 tests), 96f8d20c (Green r5 fix and regression tests), and fb694f67 (plan). I changed no tracked file.",
+    "Security applicability: applicable. The delta changes providers.ts, which maps the errors of the call that carries the API key.",
+    "Delta scope: git diff --name-status dcfa6d07..fb694f67 lists 4 paths: providers.ts, providers.test.ts, providers.adversarial.test.ts, and the plan.md of this track. No route, app, auth, Convex, manifest, lockfile, workflow, probe, retry.ts, or openrouter-client.ts file changed. No file was deleted, and measure/tracks.md did not change.",
+    "Redaction code: providers.ts:30-41 builds the target list: the raw key, the trimmed key, and the key without a `Bearer ` prefix. providers.ts:46-52 splits and joins on each target of 8 characters or more. providers.ts:60-95 computes one redacted message and returns a new Error on every branch except EmptyResponseError (:61-63). The abort branch (:81-83) returns a fixed DOMException. The new Error has no cause and no copied field, except the numeric status of an HTTP error (:74-77).",
+    "Method of the runs: I ran the real repository code at HEAD (an esbuild bundle piped to node) with a stubbed fetch, with no network and no file write. A run sets a configured key, makes the stub echo text, and checks the thrown error and its util.inspect view (the logged view) for the key.",
+    "F8 re-run at HEAD: G (trailing newline), H (trailing space), G3 (Bearer prefix with a key echo), and G7 (Bearer prefix plus newline) now give redacted messages. G4 and I stay redacted. Runs A, A1, B, E, F, J, and R1 (HTTP 503 echo after three attempts, status 503) stay redacted. Runs C and D keep only the fragment, as before. H2 (tabs, spaces, and CRLF around the key) and H3 (key plus a no-break space) are redacted.",
+    "F9 re-run at HEAD: N (key with an embedded newline) and O (embedded NUL) now give a new Error with the text Headers.append: Bearer [redacted] is an invalid header value. Runs K, L, and M stay redacted. Run P2 gives a new Error with no own keys, and the student text is absent from the logged view. Run P3 keeps the fixed text with status 200.",
+    "ADV-3 cases at HEAD: a body-read rejection with the key twice gives the message read failed [redacted] repeated [redacted], for an Error and for a string. A rejection with the key in cause, detail, and rawValue gives the message read failed with no own keys. The two package tests of eaaf7a6b pass.",
+    "Residual runs: G5 (lowercase bearer), G5b (BEARER), and G6 (Bearer plus 3 spaces) leak the token when the stub echoes it without the scheme. The wire value is the configured value unchanged. K7 (7-character key) is not redacted by design (providers.ts:23 and :35-37), and K8 (8 characters) is redacted. Run S1 (null-prototype rejection) gives the text Cannot convert object to primitive value, which holds no key.",
+    "F8 withdrawn: closed by 96f8d20c. I checked providers.ts:30-52 and ran G, H, G3, and G7 at HEAD: the thrown message and the logged view hold no key. The remaining scheme variants are the new finding F10.",
+    "F9 withdrawn: closed by 96f8d20c. I checked providers.ts:61-70 and :94 and ran N, O, P2, and the ADV-3 cases at HEAD: each gives a new Error with redacted text. EmptyResponseError stays unchanged, and the existing tests that retry empty content pass.",
+    "Test meaning: the 5 new tests of providers.test.ts mock the SDK and use the real mapping. Green's r5-regression-before.log shows 4 of them failing first (padded key, Bearer prefix, string rejection, short key), and the connection-path test is a guard that passes before the fix. The 2 ADV-3 tests use the real SDK with a failing body stream. No test covers a lowercase scheme, extra spaces after Bearer, or the 7-versus-8 character boundary.",
+    "Routes: no route file changed in the delta. The BM2 route still runs the auth check (route.ts:77-80), the rate limit (:88-106), and the provider resolution inside its try block (:183-196), with fixed 502 and 503 bodies. The IM3 route is unchanged (route.ts:179-220). The route tests pass: 44 tests in 7 BM2 files and 11 tests in 2 IM3 files.",
+    "Tests at fb694f67: vitest in packages/ai-tutoring (providers, retry, providers.adversarial) passes 67 tests in 3 files. vitest in apps/bus-math-v2 (retry, providers, error-analysis-providers, lesson-chatbot, and the three route test files) passes 44 tests in 7 files. vitest in apps/integrated-math-3 (chatbot route tests) passes 11 tests in 2 files. Green's r5-workerd.log shows probe-ok, and I did not run the probe.",
+    "Dependencies: package.json, packages/ai-tutoring/package.json, and package-lock.json are unchanged in the delta. npm audit --json at HEAD matches gates/baseline/audit.json by package, severity, and advisory source (21 of 21; critical 0, high 9, moderate 7, low 5). No entry names @openrouter/sdk or zod.",
+    "Secret scan: a pattern scan of the added lines of the delta finds only four fake test keys in providers.test.ts (sk-padded-private-key-4242, Bearer sk-bearer-private-key-5555, sk-conn-private-key-6666, and sk-string-private-key-7777). No env, key, or credential file is in the delta. The delta adds no log line.",
+    "A2: not applicable. The delta has no draft-to-published flip, no consent artifact, and no named subject. A6: measure/tracks.md did not change, and its entry for this track claims no resolved security state. The r5 line in plan.md says the key is redacted on every SDK error path, and the ADV-3 tests are green. That claim is wider than the implementation by F10 and by the 8-character minimum, so reword it or fix F10.",
+    "PM cap: F10 hides no failure and deletes no tracked or user file, so I list it as record-only.",
+    "Limits: I did not run the workerd probe, a heavy job. I did not read the adversarial result files, the Review A result files, or any other reviewer result file. I did not review the Dependency Refresh track."
+  ],
+  "commands": [
+    "git rev-parse HEAD and git rev-parse fb694f67 -> both fb694f67221949c3f3e234649d41e307aff003a3",
+    "git merge-base --is-ancestor dcfa6d07 fb694f67 and dbf4d65e fb694f67 -> exit 0 for both",
+    "git log --format='%h %ad %an %s' dcfa6d07..fb694f67 -> 3 commits",
+    "git diff --stat and --name-status dcfa6d07..fb694f67 -> 4 files, 129 insertions, 12 deletions",
+    "git diff dcfa6d07..fb694f67 -- providers.ts plan.md -> redactionTargets, redactApiKey, the mapSdkError rewrite, 4 plan lines",
+    "git diff dcfa6d07..fb694f67 -- packages/ai-tutoring/src/__tests__/ -> 2 ADV-3 cases and 5 regression tests",
+    "git diff --name-only dcfa6d07..fb694f67 over the apps, manifests, lockfile, retry.ts, openrouter-client.ts, index.ts, probe, tracks.md, gates.sh, and .github -> no output",
+    "git diff --diff-filter=D --name-only dcfa6d07..fb694f67 -> no output",
+    "git diff -U0 dcfa6d07..fb694f67 with a secret-pattern grep -> four fake test keys in providers.test.ts",
+    "grep Bearer in node_modules/@openrouter/sdk/esm/lib -> security.js:113 compares the first 7 characters in lower case",
+    "tail of r5-red-test.log, r5-regression-before.log, r5-regression-after.log, r5-workerd.log, and green-s1-r5.log -> 4 of 5 new tests red first, 5 green after, probe-ok",
+    "esbuild bundle of providers.ts piped to node with a stubbed fetch, runs A, A1, B to J, G3, G4, G7 -> all redacted except the fragments of C and D",
+    "same method, runs K to P3 and the ADV-3 cases -> all redacted, including N and O",
+    "same method, runs G5, G5b, G6, H2, H3, K7, K8, R1, S1 -> G5, G5b, and G6 leak; K7 is not redacted; the others are redacted",
+    "CI=true npx vitest run providers.test.ts retry.test.ts providers.adversarial.test.ts (packages/ai-tutoring) -> 67 passed in 3 files",
+    "CI=true npx vitest run 5 BM2 paths: retry, providers, error-analysis-providers, lesson-chatbot, route tests (apps/bus-math-v2) -> 44 passed in 7 files",
+    "CI=true npx vitest run __tests__/app/api/student/lesson-chatbot (apps/integrated-math-3) -> 11 passed in 2 files",
+    "npm audit --json plus a python3 compare with gates/baseline/audit.json -> 21 of 21 packages unchanged; critical=0 high=9 moderate=7 low=5",
+    "grep openrouter and resolved in measure/tracks.md -> no resolved claim for this track"
+  ],
+  "changed_files": [
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md",
+    "packages/ai-tutoring/src/__tests__/providers.adversarial.test.ts",
+    "packages/ai-tutoring/src/__tests__/providers.test.ts",
+    "packages/ai-tutoring/src/providers.ts"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "claude-code/claude-sonnet-5-5#max",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 4,
+      "evidence": "providers.ts:30-52 and :60-95 close runs G, H, G3, N, and O at HEAD, but runs G5, G5b, and G6 still leak a lowercase or multi-space Bearer scheme (F10)."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 4,
+      "evidence": "r5-regression-before.log shows 4 of the 5 new tests failing first and r5-regression-after.log shows 5 passing, but no test covers a lowercase scheme, extra spaces, or the 7-versus-8 boundary."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "git diff --name-status dcfa6d07..fb694f67 lists only providers.ts, two test files, and the plan.md of this track."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 4,
+      "evidence": "My runs at HEAD and Green's r5 logs back the F8 and F9 closure, but the plan claim of every SDK error path has no run for the F10 scheme variants."
+    }
+  ]
+}

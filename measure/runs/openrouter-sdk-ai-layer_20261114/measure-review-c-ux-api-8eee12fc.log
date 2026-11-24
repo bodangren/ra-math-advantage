@@ -1,0 +1,13 @@
+S3 API audit failed on the public safeModel export. The targeted package and BM2 contract tests passed.
+MEASURE_AGENT_RESULT
+role: measure-review-c-ux-api
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S3: Structured output for the evaluation features
+commits: none
+tests_run: heavy-run package structured and index export tests 12/12 pass; heavy-run BM2 teacher and spreadsheet tests 32/32 pass
+files_changed: measure/runs/openrouter-sdk-ai-layer_20261114/measure-review-c-ux-api-8eee12fc.json; measure/runs/openrouter-sdk-ai-layer_20261114/measure-review-c-ux-api-8eee12fc.log
+plan_updates: none
+known_failures: F1 blocker: safeModel is exported from the public ./providers subpath, widening the package API beyond the S3 plan; role-gate also reports the PM-verified manual-verification task as incomplete
+handoff: Route F1 to Green. Keep safeModel internal to the package; preserve the planned structured export and its types. Teacher and spreadsheet response contracts remain unchanged. The S3 manual-verification plan task is PM-verified and is not a blocker.
+END_MEASURE_AGENT_RESULT

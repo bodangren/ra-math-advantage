@@ -1,0 +1,13 @@
+
+> bundle:audit
+> node scripts/bundle-size-audit.mjs
+
+[EXCEEDS] Total dist/server: 10035.04 KB (threshold: 3000.00 KB)
+[OK] server/index.js → index.js: 1154.38 KB (threshold: 2500.00 KB)
+npm error Lifecycle script `bundle:audit` failed with error:
+npm error code 1
+npm error path /home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2
+npm error workspace undefined
+npm error location /home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2
+npm error command failed
+npm error command sh -c node scripts/bundle-size-audit.mjs

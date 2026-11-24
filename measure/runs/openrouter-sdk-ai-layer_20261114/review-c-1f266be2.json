@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "role": "review-c",
+  "track": "openrouter-sdk-ai-layer_20261114",
+  "phase": "Phase S2: Role-based model configuration",
+  "phase_base_sha": "d8e08cded75dac2fc33cb857c85f10f86036861d",
+  "role_base_sha": "d8e08cde",
+  "audited_head_sha": "1f266be2c53c44fccc05c0baaa9912b52dd39add",
+  "status": "pass",
+  "contract_applicability": "applicable",
+  "summary": "Role configuration and route wiring follow the S2 contract, but tests do not exercise the package's four new public exports through its package entry point.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "F1 [Nit] review-c: The role tests import AI_ROLES and buildProviderPreferences from ../roles and the resolver from ../providers, so they do not verify the four planned exports through packages/ai-tutoring/src/index.ts. Rationale: test-strategy.md S2.10 requires a package test to import and call each new export, so a broken public package export could pass the current role suite."
+  ],
+  "evidence": [
+    "test-strategy.md:325 marks the API review applicable and defines the new resolver signature and required provider options.",
+    "test-strategy.md:454-455 lists the four planned public exports; test-strategy.md:505 requires a package test to import and call each new export.",
+    "packages/ai-tutoring/src/index.ts:15 exports AI_ROLES, resolveRoleModel, buildProviderPreferences, and AiRole.",
+    "packages/ai-tutoring/src/__tests__/roles.test.ts:2-4 imports new symbols from ../providers and ../roles rather than the package entry point.",
+    "Both chatbot routes still return HTTP 503 with { error: 'AI provider not configured' } when the role resolver returns null: apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts:184-187 and apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts:209-212.",
+    "Route tests assert studentTutor resolver wiring: apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.test.ts:168 and apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.test.ts:188.",
+    "No page or component production paths appear in the phase diff; only the two chatbot route handlers change under app paths.",
+    "Green evidence records S2 targeted role tests 12/12, both app route tests and no-PII tests; see measure/runs/openrouter-sdk-ai-layer_20261114/green-s2-1f266be2.log:8-10."
+  ],
+  "commands": [
+    "git rev-parse HEAD -> 1f266be2c53c44fccc05c0baaa9912b52dd39add; matches audited_head_sha.",
+    "git diff --check d8e08cde..1f266be2 -> exit 0.",
+    "git diff --name-only d8e08cde..1f266be2 -- 'apps/*/app/**' 'apps/*/components/**' -> only the two expected chatbot route handlers plus their tests; no component changes.",
+    "~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh -c \"CI=true npm run test --workspace=packages/ai-tutoring -- -t 'role configuration'\" -> exit 0, 12 passed, 115 skipped.",
+    "~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh -c \"CI=true npm run test --workspace=apps/bus-math-v2 -- -t 'POST /api/student/lesson-chatbot'\" -> exit 0, 16 passed, 2683 skipped, including route, SDK, and no-PII cases."
+  ],
+  "changed_files": [],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "openai/gpt-6-luna#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 5,
+      "evidence": "Both route handlers preserve the 503 response when the role resolver returns null, at apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts:184-187 and apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts:209-212."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 3,
+      "evidence": "The role suite passes 12 cases, but roles.test.ts:2-4 bypasses the package entry point and does not prove its four new exports."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "The phase diff changes the planned AI package, environment examples, caller wiring, and tests; git diff --name-only found no page or component change."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 5,
+      "evidence": "The role suite passed 12 tests, git diff --check exited 0, and the audited HEAD matched 1f266be2c53c44fccc05c0baaa9912b52dd39add."
+    }
+  ]
+}

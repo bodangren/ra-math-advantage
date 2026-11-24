@@ -1,0 +1,12 @@
+MEASURE_AGENT_RESULT
+role: adversarial-testing
+status: blocked
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S3: Structured output for the evaluation features
+commits: b39b1c57 (tests only; Git note attached)
+tests_run: Format, lint, typecheck, and IM3 PII checks passed. The full S3 role gate exited 1 with NEWFAIL=1. The two expected-red tests are the only new failure titles.
+files_changed: Five test files; audit JSON and log.
+plan_updates: none
+known_failures: ADV-S3-5: keeps the first math sentence on the line after an empty detail label; ADV-S3-8: structured SDK debug output omits the key, prompt, and answer
+handoff: Keep S3 acceptance blocked. Should Green fix ADV-S3-5 and ADV-S3-8 in one approved remediation round, or should S3 acceptance stay blocked? Options: Approve one bounded Green round; Keep S3 acceptance blocked.
+END_MEASURE_AGENT_RESULT

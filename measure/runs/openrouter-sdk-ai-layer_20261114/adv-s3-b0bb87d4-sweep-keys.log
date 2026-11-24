@@ -1,0 +1,28 @@
+Role-gate exit: 1
+
+test-ai-tutoring
+ Test Files  1 failed | 11 passed (12)
+      Tests  1 failed | 164 passed (165)
+ FAIL  src/__tests__/openrouter-debug-logging.test.ts > S3 adversarial > ADV-S3-8: structured SDK debug output omits the key, prompt, and answer
+
+test-practice-core
+ Test Files  21 passed (21)
+      Tests  263 passed (263)
+
+test-integrated-math-3
+ Test Files  37 failed | 527 passed (564)
+      Tests  218 failed | 6857 passed | 5 skipped (7080)
+
+test-bus-math-v2
+ Test Files  5 failed | 400 passed (405)
+      Tests  8 failed | 2714 passed (2722)
+ FAIL  __tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts > S3 fix > ADV-S3-5: keeps the first math sentence on the line after an empty detail label
+
+step-scripts-suite
+ Test Files  2 failed | 1 passed (3)
+      Tests  27 failed | 92 passed | 2 todo (121)
+
+step-audit-suites
+ Test Files  2 failed | 4 passed (6)
+      Tests  5 failed | 187 passed (192)
+b39b1c57a5da463508eff64e7b25b9a00e90382a

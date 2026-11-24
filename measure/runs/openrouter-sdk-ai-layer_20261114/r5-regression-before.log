@@ -1,0 +1,81 @@
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+
+ ❯ src/__tests__/providers.test.ts (30 tests | 4 failed | 25 skipped) 1077ms
+     × redacts a padded key echoed by its trimmed form in an HTTP error 6ms
+     × redacts a Bearer-prefixed key echoed without the scheme 1ms
+     × redacts a string rejection 1ms
+     × does not redact a short key into unrelated text 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/providers.test.ts > API key redaction on SDK errors > redacts a padded key echoed by its trimmed form in an HTTP error
+AssertionError: expected 'Error: OpenRouter API error: 400 deni…' not to contain 'sk-padded-private-key-4242'
+
+Expected: "sk-padded-private-key-4242"
+Received: "Error: OpenRouter API error: 400 denied sk-padded-private-key-4242 again"
+
+ ❯ src/__tests__/providers.test.ts:432:31
+    430|     const provider = createOpenRouterProvider({ apiKey: key, model: "v…
+    431|     const error = await provider("hello").catch((caught: unknown) => c…
+    432|     expect(String(error)).not.toContain(key.trim());
+       |                               ^
+    433|   });
+    434|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  src/__tests__/providers.test.ts > API key redaction on SDK errors > redacts a Bearer-prefixed key echoed without the scheme
+AssertionError: expected 'Error: OpenRouter API error: 401 deni…' not to contain 'sk-bearer-private-key-5555'
+
+Expected: "sk-bearer-private-key-5555"
+Received: "Error: OpenRouter API error: 401 denied sk-bearer-private-key-5555"
+
+ ❯ src/__tests__/providers.test.ts:441:31
+    439|     const provider = createOpenRouterProvider({ apiKey: key, model: "v…
+    440|     const error = await provider("hello").catch((caught: unknown) => c…
+    441|     expect(String(error)).not.toContain(token);
+       |                               ^
+    442|   });
+    443|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  src/__tests__/providers.test.ts > API key redaction on SDK errors > redacts a string rejection
+AssertionError: expected 'Error: upstream said sk-string-privat…' not to contain 'sk-string-private-key-7777'
+
+Expected: "sk-string-private-key-7777"
+Received: "Error: upstream said sk-string-private-key-7777"
+
+ ❯ src/__tests__/providers.test.ts:461:31
+    459|     const error = await provider("hello").catch((caught: unknown) => c…
+    460|     expect(error).toBeInstanceOf(Error);
+    461|     expect(String(error)).not.toContain(key);
+       |                               ^
+    462|   });
+    463|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  src/__tests__/providers.test.ts > API key redaction on SDK errors > does not redact a short key into unrelated text
+AssertionError: expected 'Error: OpenRouter API error: 400 [red…' to contain 'abc is fine here'
+
+Expected: "abc is fine here"
+Received: "Error: OpenRouter API error: 400 [redacted] is fine here"
+
+ ❯ src/__tests__/providers.test.ts:469:27
+    467|     const provider = createOpenRouterProvider({ apiKey: key, model: "v…
+    468|     const error = await provider("hello").catch((caught: unknown) => c…
+    469|     expect(String(error)).toContain("abc is fine here");
+       |                           ^
+    470|   });
+    471| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 1 passed | 25 skipped (30)
+   Start at  11:54:09
+   Duration  1.23s (transform 41ms, setup 0ms, import 56ms, tests 1.08s, environment 0ms)
+

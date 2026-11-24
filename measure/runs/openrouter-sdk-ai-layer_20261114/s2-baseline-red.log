@@ -1,0 +1,261 @@
+
+> @math-platform/ai-tutoring@0.1.0 test
+> vitest run -t role configuration
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+
+ ❯ src/__tests__/roles.test.ts (12 tests | 12 failed) 21ms
+     × case 1: the studentTutor provider sends the role variable value as the model 7ms
+     × case 2: a tilde alias value reaches the request without change 1ms
+     × case 3: a successful request logs one usage record with the served model and token counts 2ms
+     × case 4: every AI role has sendsPii false 1ms
+     × case 5: buildProviderPreferences maps the four input pairs 5ms
+     × case 6: a missing role variable returns null and logs the variable name 1ms
+     × case 7: an empty or whitespace value returns null and logs the variable name 1ms
+     × case 8: a preset value returns null and logs reason preset 0ms
+     × case 9: only the old OPENROUTER_MODEL set returns null 0ms
+     × case 10: a missing API key returns null and logs the key name 1ms
+     × case 11: no log line holds prompt or answer markers, and a failed request logs outcome error with status 1ms
+     × case 12: a studentTutor request sends contract-undefined preferences and no provider field 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 12 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/roles.test.ts > role configuration > case 1: the studentTutor provider sends the role variable value as the model
+AssertionError: expected 'openrouter/free' to be 'vendor/model-a' // Object.is equality
+
+Expected: "vendor/model-a"
+Received: "openrouter/free"
+
+ ❯ src/__tests__/roles.test.ts:74:59
+     72|
+     73|     expect(mockSend).toHaveBeenCalledTimes(1);
+     74|     expect(sentChatRequest(mockSend.mock.calls[0]).model).toBe("vendor…
+       |                                                           ^
+     75|   });
+     76|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/12]⎯
+
+ FAIL  src/__tests__/roles.test.ts > role configuration > case 2: a tilde alias value reaches the request without change
+AssertionError: expected 'openrouter/free' to be '~google/gemini-latest' // Object.is equality
+
+Expected: "~google/gemini-latest"
+Received: "openrouter/free"
+
+ ❯ src/__tests__/roles.test.ts:87:59
+     85|
+     86|     expect(mockSend).toHaveBeenCalledTimes(1);
+     87|     expect(sentChatRequest(mockSend.mock.calls[0]).model).toBe("~googl…
+       |                                                           ^
+     88|   });
+     89|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/12]⎯
+
+ FAIL  src/__tests__/roles.test.ts > role configuration > case 3: a successful request logs one usage record with the served model and token counts
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ src/__tests__/roles.test.ts:107:21
+    105|       })
+    106|       .filter((record) => record !== null);
+    107|     expect(records).toHaveLength(1);
+       |                     ^
+    108|     expect(records[0]).toMatchObject({
+    109|       role: "studentTutor",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/12]⎯
+
+ FAIL  src/__tests__/roles.test.ts > role configuration > case 4: every AI role has sendsPii false
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/__tests__/roles.test.ts:125:29
+    123|     ]);
+    124|     for (const role of Object.values(AI_ROLES)) {
+    125|       expect(role.sendsPii).toBe(false);
+       |                             ^
+    126|     }
+    127|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/12]⎯
+
+ FAIL  src/__tests__/roles.test.ts > role configuration > case 5: buildProviderPreferences maps the four input pairs
+AssertionError: expected { require_parameters: true } to be undefined
+
+- Expected:
+undefined
+
++ Received:
+{
+  "require_parameters": true,
+}
+
+ ❯ src/__tests__/roles.test.ts:130:78
+    128|
+    129|   it("case 5: buildProviderPreferences maps the four input pairs", () …
+    130|     expect(buildProviderPreferences({ structured: false, sendsPii: fal…
+       |                                                                              ^
+    131|     expect(buildProviderPreferences({ structured: true, sendsPii: fals…
+    132|       requireParameters: true,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/12]⎯
+
+ FAIL  src/__tests__/roles.test.ts > role configuration > case 6: a missing role variable returns null and logs the variable name
+AssertionError: expected [AsyncFunction openRouterProvider] to be null
+
+- Expected:
+null
+
++ Received:
+[Function openRouterProvider]
+
+ ❯ src/__tests__/roles.test.ts:148:22
+    146|     const provider = resolveRole("studentTutor");
+    147|
+    148|     expect(provider).toBeNull();
+       |                      ^
+    149|     expect(loggedLines(errorSpy).join("\n")).toContain("OPENROUTER_MOD…
+    150|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/12]⎯
+
+ FAIL  src/__tests__/roles.test.ts > role configuration > case 7: an empty or whitespace value returns null and logs the variable name
+AssertionError: expected [AsyncFunction openRouterProvider] to be null
+
+- Expected:
+null
+
++ Received:
+[Function openRouterProvider]
+
+ ❯ src/__tests__/roles.test.ts:158:22
+    156|     const provider = resolveRole("studentTutor");
+    157|
+    158|     expect(provider).toBeNull();
+       |                      ^
+    159|     expect(loggedLines(errorSpy).join("\n")).toContain("OPENROUTER_MOD…
+    160|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/12]⎯
+
+ FAIL  src/__tests__/roles.test.ts > role configuration > case 8: a preset value returns null and logs reason preset
+AssertionError: expected [AsyncFunction openRouterProvider] to be null
+
+- Expected:
+null
+
++ Received:
+[Function openRouterProvider]
+
+ ❯ src/__tests__/roles.test.ts:168:22
+    166|     const provider = resolveRole("studentTutor");
+    167|
+    168|     expect(provider).toBeNull();
+       |                      ^
+    169|     expect(loggedLines(errorSpy).join("\n")).toContain("preset");
+    170|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/12]⎯
+
+ FAIL  src/__tests__/roles.test.ts > role configuration > case 9: only the old OPENROUTER_MODEL set returns null
+AssertionError: expected [AsyncFunction openRouterProvider] to be null
+
+- Expected:
+null
+
++ Received:
+[Function openRouterProvider]
+
+ ❯ src/__tests__/roles.test.ts:178:22
+    176|     const provider = resolveRole("studentTutor");
+    177|
+    178|     expect(provider).toBeNull();
+       |                      ^
+    179|   });
+    180|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/12]⎯
+
+ FAIL  src/__tests__/roles.test.ts > role configuration > case 10: a missing API key returns null and logs the key name
+AssertionError: expected '' to contain 'OPENROUTER_API_KEY'
+
+- Expected
++ Received
+
+- OPENROUTER_API_KEY
+
+ ❯ src/__tests__/roles.test.ts:187:46
+    185|
+    186|     expect(provider).toBeNull();
+    187|     expect(loggedLines(errorSpy).join("\n")).toContain("OPENROUTER_API…
+       |                                              ^
+    188|   });
+    189|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/12]⎯
+
+ FAIL  src/__tests__/roles.test.ts > role configuration > case 11: no log line holds prompt or answer markers, and a failed request logs outcome error with status
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ src/__tests__/roles.test.ts:210:21
+    208|       })
+    209|       .filter((record) => record !== null);
+    210|     expect(records).toHaveLength(1);
+       |                     ^
+    211|
+    212|     clearProviderCache();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/12]⎯
+
+ FAIL  src/__tests__/roles.test.ts > role configuration > case 12: a studentTutor request sends contract-undefined preferences and no provider field
+AssertionError: expected { require_parameters: true } to be undefined
+
+- Expected:
+undefined
+
++ Received:
+{
+  "require_parameters": true,
+}
+
+ ❯ src/__tests__/roles.test.ts:240:7
+    238|         sendsPii: AI_ROLES.studentTutor.sendsPii,
+    239|       }),
+    240|     ).toBeUndefined();
+       |       ^
+    241|
+    242|     const provider = resolveRole("studentTutor") as (prompt: string) =…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/12]⎯
+
+
+ Test Files  1 failed | 5 skipped (6)
+      Tests  12 failed | 115 skipped (127)
+   Start at  10:46:18
+   Duration  1.27s (transform 82ms, setup 0ms, import 737ms, tests 21ms, environment 0ms)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+npm error workspace @math-platform/ai-tutoring@0.1.0
+npm error location /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+npm error command failed
+npm error command sh -c vitest run -t 'role configuration'

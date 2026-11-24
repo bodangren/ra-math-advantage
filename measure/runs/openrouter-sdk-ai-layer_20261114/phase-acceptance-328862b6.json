@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "role": "phase-acceptance",
+  "track": "openrouter-sdk-ai-layer_20261114",
+  "phase": "Phase S1: Adopt the OpenRouter SDK",
+  "baseline_sha": "dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c",
+  "phase_base_sha": "dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c",
+  "role_base_sha": "328862b628a02792a55a1e8c81615ff28499704b",
+  "audited_head_sha": "328862b628a02792a55a1e8c81615ff28499704b",
+  "audited_head": "328862b628a02792a55a1e8c81615ff28499704b",
+  "status": "pass",
+  "summary": "Phase S1 passes acceptance at 328862b6. Every S1 acceptance criterion has passing evidence, and I re-ran tests, both vinext builds, the workerd probe, and the gates at HEAD. The remediation chain is fixed: 11 of 12 mutants of the fixed behavior fail a test. No blocking finding exists. Six nonblocking findings stay record-only under the PM cap, and F1 and F2 are Major. F1 is a behavior drift for HTTP 200 bodies that the PM can overrule.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "F1 [Major] phase-acceptance: The SDK transport rejects HTTP 200 bodies that the old transport accepted or retried. A probe ran the old code (dbf4d65e) and HEAD against the same stubbed responses. The example response of the OpenRouter API reference gives 'Hello there!' on the old code. It gives 'OpenRouter API error: 200 Response validation failed' after one call on HEAD. HEAD also fails after one call when a 200 body lacks id, object, created, model, system_fingerprint, choices[0].index, choices[0].finish_reason, or choices[0].message.role. A 200 body with only an error object gave three calls and EmptyResponseError on the old code. It gives one call and status 200 on HEAD. Rationale: story S1 says the current behavior stays the same, and AC2 names the empty-response behavior. The OpenRouter errors page documents a 200 body with only an error object, and the API reference marks system_fingerprint as optional. No test covers these bodies, because each fixture holds every field that the SDK requires (node_modules/@openrouter/sdk/esm/models/chatresult.js). Fix: in S2, map a 2xx SDK error to a retryable empty-response error in providers.ts, and add tests for these bodies. Run one live request (PR4) before S2 if Daniel can give a free-model key.",
+    "F2 [Major] phase-acceptance: gates.sh cannot see a new or larger over-budget entry in the BM2 bundle audit. The key function in gates.sh keeps only lines with error words, so the [EXCEEDS] lines drop out. With the baseline log and the green log, new_keys reports no new failure, although the total grew from 9104.97 to 9925.93 KB. A synthetic extra [EXCEEDS] entry also gave no new failure. Rationale: test-strategy.md section 9 stops the phase on a new over-budget entry, and section 7 says to compare entries by name and size. This phase hides no failure, because my manual comparison at HEAD shows the same two entries as the baseline. Fix: in S2, compare the labeled [EXCEEDS|OK] name and KB entries in gates.sh, and fail on a new entry.",
+    "F3 [Nit] phase-acceptance: evidence.md misdescribes the bundle growth and two cited logs. (a) It says the total delta comes from hashed chunk names. The delta is one new SDK chunk in each app: IM3 _next/static/route-vVe6QTM5.js (847946 raw, 137251 gzip) and BM2 _next/static/providers-xKdSirEB.js (840854 raw, 134242 gzip). BM2 Total dist/server grew 9.0 percent against a 3000 KB budget that it already exceeded. (b) It says the baseline BM2 audit had one entry. The baseline log holds two entries, as the green log does. (c) It cites gates/green/test.exit for ai-tutoring exit 0. The first adversarial gate run overwrote that folder, and it now shows exit 1. The final gate evidence is in gates/green-r3. Rationale: the verdict stays correct, but the text hides the SDK cost from the PM. Fix: correct these lines at the next evidence commit and cite green-r3.",
+    "F4 [Nit] phase-acceptance: measure/tech-stack.md has stale current-state lines. Line 73 says the provider uses OpenRouter through fetch. Lines 77 to 79 list @openrouter/sdk as planned. Line 105 says the install lands in a later task. Rationale: S1 moved the transport to the SDK, and AGENTS.md says a current item must not read as planned. Fix: S2 edits tech-stack.md for the roles note, so fix these lines in the same commit.",
+    "F5 [Nit] phase-acceptance: Two test gaps remain. (a) A mutant that copies the SDK error fields onto the mapped error on the non-HTTP path (providers.ts:94) passes all 67 provider tests. No test pins that the mapped error holds no rawValue or cause. (b) test-strategy.md section 8 names a source guard test for 'no fetch in package code'. No such test exists. Rationale: the real-SDK tests read the SDK request object (providers.adversarial.test.ts:81-89), so they catch a leftover fetch path. Fix: add both tests in S2.",
+    "F6 [Nit] phase-acceptance: Two process records need a decision. (a) S1 ran three remediation rounds (r3, r4, r5). contracts.md (Round limit) allows a third round only with an escalation key in metadata.json, and the file has no such key. (b) plan.md pins test counts in lines 158 to 169 (23 cases, 25 cases, 218, 7, 27, 5), and SKILL.md says to cite logs instead. Each count matches the logs at HEAD today. Rationale: the code is correct, so this is record-only. Fix: the closeout role records the PM approval for the third round, and the next plan edit cites logs instead of counts."
+  ],
+  "evidence": [
+    "HEAD, the audited head, and the role base equal 328862b628a02792a55a1e8c81615ff28499704b at the start and at the end of the audit. The phase base dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c is an ancestor. The working tree holds only the six accepted generated files, all unstaged.",
+    "Review A, Review B, Review C, and the adversarial result all target fb694f67. The delta fb694f67..328862b6 changes no file under apps, packages, scripts, convex, .github, or the lockfile. It changes plan.md of this track in 21967f8a and 328862b6. The brief excludes the two dependency-refresh commits. So the four results still apply.",
+    "Plan-only commit 328862b6 (3 lines added, 2 removed) adds the next-phase record list. It sets the manual verification task and its first sub-item to [b] with (deferred:closeout-steward). The archived vinext-oxc-toolchain plan uses the same form for its S4 and S5 manual verification tasks (lines 618, 620, 752, 754). The three checkpoint sub-items stay [ ] for the closeout role. Accepted.",
+    "S1 marker census by script: 9 top-level [x] tasks and 1 [b] task. Each SHA that the S1 block cites resolves, is an ancestor of HEAD, and matches its task subject. The S1 tasks have git notes. The recorded deviations (Red ran S1 Install, Red left no [~] task) appear in plan.md lines 69 to 73.",
+    "AC1: providers.ts:142-146 sends each request through client.chat.send. A search finds no fetch call in packages/ai-tutoring/src outside tests. Only openrouter-client.ts builds the SDK client. No other app or package code calls OpenRouter.",
+    "AC2: the package suite passes 111 of 111 tests at HEAD. Real-SDK cases show that 429, 500, 503, and 599 give three attempts, that 400 to 422 give one attempt, that empty content gives three attempts, and that a timeout or an external abort gives one AbortError. My probe shows the same call counts on the old and new code for 429, 500, 502, and 404.",
+    "AC3: the gates.sh key function gives NEW_KEYS=0 and REMOVED_KEYS=0 for the baseline and green-r3 logs of IM3 (367 keys), BM2 (45), the scripts suite (41), and the audit suites (10). Failure counts match the baseline: IM3 218, BM2 7, scripts 27, audit 5. Pass counts rise by the new tests only. No red key names the chatbot, provider, retry, or ai-tutoring code.",
+    "AC4: I re-ran both vinext builds at HEAD, and both exit 0 with Build complete. The workerd probe exits 0 and prints probe-ok. The last recorded builds ran at f64047da, before the r3 to r5 code changes, so this re-run closes that gap.",
+    "AC5: evidence.md records the sizes before and after the change. My re-measure at HEAD with the gate method gives IM3 4028947 raw and 1078132 gzip, and BM2 8805372 raw and 2752943 gzip. These differ from the recorded sizes by less than 0.5 KB raw.",
+    "Bundle audits at HEAD: IM3 exits 0 with [OK] 292.85 KB. BM2 exits 1 with the two baseline entries: [EXCEEDS] Total dist/server 9926.36 KB and [OK] server/index.js 1154.38 KB. No budget changed. No new over-budget entry exists.",
+    "Gate re-runs at HEAD all exit 0: format:check, lint and typecheck for ai-tutoring and bus-math-v2, check-monorepo-boundaries.mjs, validate-ci.mjs, and npm run doctor (All checks passed).",
+    "Review A F1 (retry by status): r3-regression-before.log shows 2 failing tests and r3-regression-after.log shows 2 passing tests. Mutant M3 (structured status ignored) fails 13 tests.",
+    "ADV-1, ADV-3, Review B F8 and F9, and Review A F4 (key redaction): mutant M1 (no redaction) fails 7 tests, M2 (raw key form only) fails the padded-key and Bearer tests, M11 (minimum length 1) fails the short-key test, and M13 (EmptyResponseError wrapped) fails 4 tests. r5-regression-before.log shows 4 of 5 new tests failing first.",
+    "ADV-2 (BM2 route containment): route.adversarial.test.ts passes 2 of 2 in my re-run, and adversarial-gate.log holds the failing-first record. The IM3 route resolves the provider inside its try block (route.ts:179-221), so IM3 needs no equal change. The BM2 submit route wraps generateAiFeedback in a try block, so a constructor error there gives no AI feedback, as before.",
+    "Other SDK behaviors: mutant M4 (SDK retry switch removed) fails 7 tests, M5 (status field dropped) 14, M6 (signal not passed) 5, M7 (whitespace not empty) 3, M9 (connection error unmapped) 1, and M14 (abort name) 3. The control copy passes 67 of 67 tests. Mutant M10 survives (F5).",
+    "Record-only list: plan.md line 77 lists Review A F2 and F3, and Review B F1, F2, F4, F5, F6, and F10. This matches the open nonblocking findings of the four fb694f67 results. Review B F1 is real: sdks.js:60 sets console as the logger when OPENROUTER_DEBUG is set, and openrouter-client.ts passes no debugLogger. Review B F10 is real: security.js:113 compares the Bearer scheme in lower case.",
+    "UX browser review does not apply. test-strategy.md section 2 says S1 changes no page or component, and the phase diff holds no UI file.",
+    "A3: gates.sh parses the critical and high counts with a labeled pattern (lines 188 to 193) and prints NEWFAIL=<n>. A4: gates.sh fails a sweep that ran in no workspace (lines 118 to 120), and S1 has 9 [x] tasks. A5: each exit 0 claim in the S1 block holds: doctor exits 0 in my re-run, adversarial-r3-gate.exit holds 0, and tech-debt.md has 50 lines. A6: the tracks.md diff only adds the Dependency Refresh entry, and the entry of this track has no resolved claim. A7: the diff changes no bare-word banned-term filter. The key function gap is F2.",
+    "Behavior probe outside the repo: the old code (dbf4d65e) and HEAD ran against 11 stubbed responses, and then against the documented example plus a field-removal matrix. The results differ for 200 bodies (F1). HEAD accepts a body without usage, as the old code did.",
+    "Documentation facts for F1: the OpenRouter API reference marks system_fingerprint as optional and prints an example response without object, created, index, or system_fingerprint. The OpenRouter errors page says a non-streaming 200 response can hold only an error object. The fetch was read-only.",
+    "This audit wrote only the two result files under measure/runs (gitignored). The mutation and probe copies lived under /tmp and were deleted. The builds rewrote only the six accepted generated files. I made no commit."
+  ],
+  "commands": [
+    "git rev-parse HEAD; git rev-parse 328862b6: both return 328862b628a02792a55a1e8c81615ff28499704b.",
+    "heavy-run.sh -c 'CI=true npm run test --workspace=packages/ai-tutoring': 5 files, 111 tests pass.",
+    "heavy-run.sh -c 'CI=true npm run test --workspace=apps/bus-math-v2 -- __tests__/app/api/student/lesson-chatbot/route.adversarial.test.ts': 2 tests pass.",
+    "heavy-run.sh -c 'npm run test:workerd --workspace=packages/ai-tutoring': workerd probe: probe-ok.",
+    "heavy-run.sh -c 'npm run build --workspace=apps/integrated-math-3' and the same for apps/bus-math-v2: both exit 0.",
+    "heavy-run.sh -c 'npm run bundle-size:audit --prefix apps/integrated-math-3' exits 0. 'npm run bundle:audit --workspace=apps/bus-math-v2' exits 1 with the baseline entries.",
+    "heavy-run.sh -c 'npm run doctor': exit 0, All checks passed.",
+    "heavy-run.sh -c 'npm run format:check; npm run lint and typecheck for ai-tutoring and bus-math-v2; node scripts/check-monorepo-boundaries.mjs; node scripts/validate-ci.mjs': every exit code is 0.",
+    "bash -c 'source gates.sh; key and new_keys on the baseline and green-r3 logs': NEW_KEYS=0 and REMOVED_KEYS=0 for the four red suites.",
+    "python3 -I with a /tmp copy and vitest through heavy-run.sh: control 67 of 67 pass. Of 12 mutants, 11 fail at least one test and M10 survives.",
+    "python3 -I probes of dbf4d65e and HEAD with stubbed fetch: 11 responses, then the documented example and a field-removal matrix.",
+    "git diff --name-only fb694f67 328862b6; git diff --check dbf4d65e..328862b6: no production change, exit 0.",
+    "python3 measure_interphase_checks.py role-gate --repo . --role phase-acceptance --track openrouter-sdk-ai-layer_20261114 --phase 'Phase S1: Adopt the OpenRouter SDK' --result-file measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-328862b6.json: exit 0, PASS: phase-acceptance gate passed."
+  ],
+  "changed_files": [
+    "measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-328862b6.json",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-328862b6.log"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "medium",
+  "route": "claude-code/claude-sonnet-5-5#max",
+  "ratings": [
+    {"axis": "correctness", "score": 4, "evidence": "providers.ts:142-152 passes 111 package tests and both builds, but a probe shows the 200-body drift in F1."},
+    {"axis": "test_meaning", "score": 4, "evidence": "11 of 12 mutants fail a test, but mutant M10 survives and no test uses a non-conforming 200 body."},
+    {"axis": "scope_discipline", "score": 4, "evidence": "The phase diff holds the planned files plus remediation changes in retry.ts and the BM2 route.ts, and no unplanned file."},
+    {"axis": "evidence_quality", "score": 4, "evidence": "Each criterion has a log or command, but evidence.md cites overwritten gates/green logs and misattributes the bundle growth (F3)."}
+  ],
+  "reviewer_ratings": [
+    {"reviewer_role": "review-a", "reviewer_route": "openai/gpt-6.1-sol#high", "agreed": true, "score": 4, "evidence": "Its F2 and F3 and its F4 closure hold in my mutants M2 and M11, but it did not probe non-conforming 200 bodies (F1)."},
+    {"reviewer_role": "review-b", "reviewer_route": "claude-code/claude-sonnet-5-5#max", "agreed": true, "score": 5, "evidence": "Its F1 matches sdks.js:60 and its F10 matches security.js:113, and mutants M1 and M2 confirm the F8 closure."},
+    {"reviewer_role": "review-c", "reviewer_route": "openai/gpt-6.1-sol#high", "agreed": true, "score": 4, "evidence": "Its claims of unchanged exports and caller contracts hold (no diff in index.ts), but it did not test 200-body results (F1)."},
+    {"reviewer_role": "adversarial", "reviewer_route": "openai/gpt-6.1-sol#high", "agreed": true, "score": 4, "evidence": "I re-ran its 23 package and 2 BM2 cases and they pass, but all 25 use SDK-valid bodies and miss F1."}
+  ]
+}

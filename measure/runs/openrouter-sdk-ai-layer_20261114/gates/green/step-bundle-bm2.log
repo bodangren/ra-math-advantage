@@ -1,0 +1,14 @@
+heavy-run: lock wait over 600 s — priority p2 — holder PID 3465167: flock -w 1800 -E 201 /home/daniebo/Desktop/primary-parity-progress/heavy.lock /home/daniebo/Desktop/advantage-pr/scripts/jobs/heavy-run.sh --locked -c ./forge cutout sprout-grandma --out out/chibi-sprouts/r1/week2-7/gestures-adult --clip "gesture-hop" --at "0.15" --stem "hop-crouch" --ppm 1080 --canvas 1760x1856 --hide-sing 
+
+> bundle:audit
+> node scripts/bundle-size-audit.mjs
+
+[EXCEEDS] Total dist/server: 9925.93 KB (threshold: 3000.00 KB)
+[OK] server/index.js → index.js: 1154.38 KB (threshold: 2500.00 KB)
+npm error Lifecycle script `bundle:audit` failed with error:
+npm error code 1
+npm error path /home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2
+npm error workspace undefined
+npm error location /home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2
+npm error command failed
+npm error command sh -c node scripts/bundle-size-audit.mjs

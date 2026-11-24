@@ -1,0 +1,9 @@
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+
+
+ Test Files  1 passed (1)
+      Tests  5 passed | 25 skipped (30)
+   Start at  11:55:29
+   Duration  1.10s (transform 42ms, setup 0ms, import 57ms, tests 955ms, environment 0ms)
+

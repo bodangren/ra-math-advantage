@@ -1,0 +1,107 @@
+Phase acceptance r3 log. Track openrouter-sdk-ai-layer_20261114, Phase S4.
+Audited HEAD: 8b66cbf41490f5478a37c1d74b9088e3cc52448f. phase_base_sha: 8283f9fa192be2afc78a2e731fac1e267c3535b5.
+Route: claude-agent/sonnet#max. Date: 2026-11-24.
+
+Verdict: PASS. No blocker. F4 is closed. Four nonblocking nits remain (F2, F3, F5, F6).
+The role-gate exits 1 for one reason only: the PM-owned manual verification task is open.
+
+Brief check 1: F4 is closed
+- Both real scans use the shared helper. findBannedTokenMatches (openrouter-only.test.ts:76-78) and
+  scanRepoFilesForBannedTokens (openrouter-s4-adversarial.test.ts:61-63) are one-statement wrappers of
+  scanFilesForBannedTokens (openrouter-scan-shared.ts:17-37). The real-repo scan (adversarial lines
+  113-121) uses the wrapper. No other scan loop exists in the three files.
+- No content-based skip remains. acceptance3-f1-check.cjs Part C finds no NUL, byte, or binary-heuristic
+  test in the helper or in the gate. The adversarial file holds the NUL probe text and its assertion only.
+- The dead findBannedTokensInText has no reference left.
+- The NUL case (adversarial lines 123-155) calls the helper directly and calls the adversarial wrapper.
+  It fails when the old skip returns. I ran the mutations myself (see the table).
+
+Mutation proof. The driver acceptance3-heavy-driver.cjs ran each job through heavy-run.sh, one at a time.
+M0 to M2 run the real, unmodified test files. A vitest alias points the helper import at a mutated copy.
+M3 and M4 run mutated test copies next to a copy of the real helper.
+  Run  Mutation                                              Result
+  M0   byte-identical helper copy (control)                  exit 0, 10 passed
+  M1   old includes-NUL skip in the helper loop              exit 1, 9 passed, 1 failed at adversarial:143
+                                                             'Gate-style scan NUL hit count: 0: expected +0 to be 1'
+  M2   skip a file with a NUL in its first 8192 characters   exit 1, the same failure
+  M3   the NUL skip in the adversarial wrapper only          exit 1, 1 failed: 'Repo-style scan NUL hit count: 0'
+  M4   the gate wrapper bypasses the helper, with the skip   exit 0, 10 passed (the residual gap, F5)
+The driver compared the three real sources before and after the runs. They are byte-identical.
+git diff --quiet -- scripts/ exited 0. The real files were never edited. I renamed the two mutated test
+copies to .txt after the runs, so that no vitest run can find a failing copy.
+The failure text of M1 equals the text that the Red r4 log and plan.md R4 line quote.
+
+Brief check 2: no other hit-hiding filter regressed
+- The gate scan keeps its behavior. Its filters are the 17 binary extensions and the silent read-error skip.
+- The adversarial scan changed in one way. A read error now skips the file silently. Before r4, readText threw.
+  The real repo holds 0 unreadable files, so no real hit hides. F5 records this change.
+- Byte-level scan of the real repo (acceptance3-f1-check.cjs Part A): 11434 files outside node_modules.
+  0 banned tokens in the 5870 scanned files, the 1515 binary-extension files, the 4049 files under .next
+  or dist, and in UTF-16 form. 0 unreadable files. 346 scanned files hold a NUL and report 0 tokens.
+- In memory, the real helper reports a NUL-bearing source. With the old skip put back, it misses it.
+- The ADV-S4-3 comment and test-directory filters drop nothing. No non-test source holds openrouter/free
+  or OPENROUTER_MODEL. The 3 symlinks of the repo point into a Python venv.
+
+Brief check 3: sweeps and targeted runs (GATES_BASE=s3, label s4-acceptance3, results in gates/s4-acceptance3/)
+- lint exit 0 NEWFAIL=0. test exit 0 NEWFAIL=0. checks-all exit 0 NEWFAIL=0.
+- Audit line: critical=0 high=5 moderate=6 low=5, the same as s3. No new high or critical advisory ID.
+- Workerd probe: probe-ok. Both app builds, boundary, CI check, and tree exit 0.
+- Baseline-only failures: IM3 tests 218 failed, BM2 tests 7, scripts suite 27, audit suites 5,
+  IM3 typecheck 55 TS lines, BM2 bundle audit [EXCEEDS] Total dist/server: 10035.04 KB.
+- Key comparison (25 logs) against s3, s4-r4, and s4-acceptance2: 0 new keys, except one IM3 chunk-name
+  hash with unchanged raw size. The hash differs between two runs of the same production code.
+- Targeted jobs, all verified: openrouter-only 3; openrouter-s4-adversarial 7; both files 10; G-CHAT IM3 12
+  and BM2 16; G-SHEET 13; G-TEACHER 8; G-TEACHER-ROUTE 12; G-NO-PII IM3 1 and BM2 5; BM2 PII strip 1;
+  ai-tutoring 165; practice-core 263; workerd probe-ok; npm run generate exit 0;
+  bash measure/doctor.sh exit 0 (All checks passed).
+- oxfmt --check on the three scan test files: exit 0. oxlint: exit 0, with no weight, because the oxlint
+  config turns every category off and sets rules for apps/** only.
+
+Brief check 4: production code unchanged since 3bcf2b31
+- git diff --name-only 3bcf2b31..HEAD lists test files, scripts/vitest.config.ts, plan.md, and run logs.
+- Reviews A, B, C and adversarial testing pass at 3bcf2b31 and still apply.
+- Allowed commits: 6583ec4e, a330414e, f4cf6b45, 98cd2333, e46ee525, 8b66cbf4. The two plan.md edits add
+  evidence lines only. No marker or task line changed.
+
+Brief check 5: plan, removals, docs, PM gate, dependencies
+- Plan SHAs: 0e192c88 (before the phase base, from the track-creation commit), 30073327, 5724741c,
+  e13a8dfc, 89946220, a330414e all exist and match their tasks. The R4 line cites no SHA.
+- Contract removals 1 to 5 match e13a8dfc. The lint-disable allowlist loses the one entry of providers.ts.
+- Role documents match the spec.md Roles table and the production prerequisites PR1 to PR4.
+- PM release gate: plan.md:60 is unchanged. The BM2 PII strip test passes.
+- No dependency change. No package.json or lockfile file is in the phase diff.
+- Anti-patterns: A3 no digit-only regex. A4 and A6 do not apply. A5 reproduces (two exceptions in the
+  JSON evidence). A7 no real hit dropped.
+
+Nonblocking findings
+- F2 Two BM2 route tests keep dead mocks (Review A F1).
+- F3 evidence.md:573 says four Red matches. The Red log says ten file and token pairs.
+- F5 Latent filters: 17 binary extensions, the silent read-error skip (now in both scans), and the NUL case
+  does not call the gate wrapper (M4 passes). Its title 'both real scans' overstates.
+- F6 ASD-STE100 in plan.md and evidence.md: 3 sentences over 25 words, 6 passive sentences.
+
+Gate commands
+- audit-result --role phase-acceptance: exit 0 (PASS: audit result is valid).
+- role-gate --role phase-acceptance (PROJECT_LINT, PROJECT_CHECKS, PROJECT_TESTS set): exit 1.
+  Output: FAIL: current phase still has 1 non-deferred incomplete tasks.
+  That task is the PM manual verification task. The brief names it as PM-owned. It is the only failure.
+
+Questions for the orchestrator (default in brackets)
+- F6: fix the long and passive sentences before the checkpoint, or record them in tech-debt? [Record in tech-debt.]
+- The Red r4 mid-red gate wanted a [~] task. Waive it for gap-closing rounds? [Waive. It does not affect this result.]
+
+Scope note: this acceptance covers HEAD 8b66cbf4. A later commit that touches only measure/runs/, the plan,
+or tech-debt keeps this result valid. A production change needs a new acceptance run.
+
+MEASURE_AGENT_RESULT
+role: phase-acceptance
+status: done
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S4: Remove the OpenAI paths and document the roles
+commits: none
+tests_run: Mutation proof M0 to M4 (control 10 passed; M1, M2, M3 fail the NUL case; M4 passes). Sweeps lint, test, checks-all (GATES_BASE=s3, label s4-acceptance3): exit 0, NEWFAIL=0 each. Targeted: openrouter-only 3; adversarial 7; both files 10; G-CHAT 12 and 16; G-SHEET 13; G-TEACHER 8; G-TEACHER-ROUTE 12; G-NO-PII 1 and 5; BM2 PII strip 1; ai-tutoring 165; practice-core 263; workerd probe-ok; generate and doctor exit 0. Byte-level scan: 0 banned tokens in 11434 files. audit-result exit 0; role-gate exit 1 (only the open PM manual verification task).
+files_changed: acceptance JSON and log; helper scripts and the acceptance3-mutation and gates/s4-acceptance3 folders under measure/runs
+plan_updates: none
+known_failures: none new. Baseline failures only (IM3 218, BM2 7, scripts suite 27, audit suites 5, IM3 typecheck 55 lines, BM2 bundle audit). Nonblocking F2, F3, F5, F6.
+handoff: Acceptance passes at 8b66cbf4. Record F2, F3, F5 (text updated for r4), and F6 in tech-debt at the checkpoint. The PM keeps the manual verification task, which is the only role-gate failure. Daniel keeps the live smoke test. Checkpoint 8b66cbf4, or a later HEAD that changes only measure/runs/, the plan, or tech-debt.
+END_MEASURE_AGENT_RESULT

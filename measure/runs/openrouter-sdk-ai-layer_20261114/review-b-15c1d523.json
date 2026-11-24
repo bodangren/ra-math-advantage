@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "role": "review-b",
+  "track": "openrouter-sdk-ai-layer_20261114",
+  "phase": "Phase S2: Role-based model configuration",
+  "baseline_sha": "d8e08cde",
+  "phase_base_sha": "d8e08cded75dac2fc33cb857c85f10f86036861d",
+  "role_base_sha": "d8e08cded75dac2fc33cb857c85f10f86036861d",
+  "audited_head_sha": "15c1d52368298f59392a3850059c5366bbeb43b5",
+  "security_applicability": "applicable",
+  "status": "pass",
+  "summary": "Security applicability is applicable. The audited HEAD 15c1d523 is current and provenance-bound to d8e08cde..15c1d523. The r3 commit e5680156 closes all five adversarial findings and my own heavy-runs reproduce the Green results: the package suite passes 141/141 and the IM3 lesson-chatbot suite passes 14/14, including the six formerly failing adversarial tests. Fail-closed cache re-check: roleSettings runs before each cache lookup and both resolvers cache on role+key+model, so a removed key or model returns null with a logged reason before any fetch (verified by the two warm-cache adversarial tests). Usage-record bounding: safeModel gates the model field of every logAiRequest record. Status-only logging: mapSdkError keeps only 'OpenRouter API error: <status>' for HTTP errors and both chatbot routes log JSON of role and status only; the IM3 error-log test asserts neither the prompt nor the key reaches any console call. IM3 PII stripping: the labeled colon fixture is fully removed before the prompt. No blocking finding and no contract violation exists. Five nonblocking findings remain: the BM2 route embeds lesson markdown without the strip (F1), the strip is fixture-shaped against dash, unlisted-label, prose, obfuscated-email, and fullwidth-unicode inputs (F2), the MODEL_ID charset admits bare key text into the usage log (F3), the cache key retains a rotated API key in memory (F4), and the rate-limit catch in both routes still logs the raw error object (F5). Per the late-finding stop rule these are late findings after round 2 of the phase, so they route to measure/tech-debt.md or the user, not to a third Green round; measure/tracks/openrouter-sdk-ai-layer_20261114/metadata.json holds no escalation key. Prior deferred items N1 and N2 stay on the S3 list; N3 and N5 are now covered by the adversarial suite.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "F1 [Major] review-b: The BM2 lesson-chatbot embeds lesson markdown into the studentTutor prompt without the stripPersonDetails fix. apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts:175-178 maps phase.sections markdown into assembleLessonChatbotContext content, and the r3 commit e5680156 added the strip only to the IM3 route (apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts:229). The labeled fixture that drove ADV-S2-4 reproduces in BM2 through the same flow. The spec invariant 'AI prompts contain no PII' (measure/tracks.md:245) is enforced in one route and not in its sibling. The adversarial audit itself recorded BM2 as 'similar by inspection' with no reproduction, so the gap was known and unraised.",
+    "F2 [Major] review-b: The IM3 stripPersonDetails regex is fixture-shaped, not robust. My node probe of the exact production regexes shows these easy bypasses pass through unchanged: a dash form ('Student - John Doe'), an em-dash form ('Student — John Doe'), unlisted labels ('Parent: Bob Jones. Author: Jane Roe. Principal: Dr. West.'), prose names ('This lesson was prepared by Ms. Jane Smith'), a prose email ('jane dot smith at school dot edu'), an obfuscated email ('john(at)example(dot)com'), and a fullwidth unicode label ('Ｓｔｕｄｅｎｔ: John Doe.'). Only the six listed labels in colon form and a bare RFC-style email are removed (apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts:37-53). The committed test covers only the colon-labeled fixture (route.s2.adversarial.test.ts:95-96).",
+    "F3 [Major] review-b: The MODEL_ID bound cannot keep key text out of the usage log. My probe shows a bare OpenRouter key form such as 'sk-or-v1-0123456789abcdef' matches /^[A-Za-z0-9_.:~/-]{1,128}$/, so an upstream 200 body that echoes the bare API key in the model field passes safeModel and logAiRequest persists the key into the console log (packages/ai-tutoring/src/providers.ts:170-178, :270, :284-291). The function doc comment claims key text is recorded as null, which is false for a bare key. The routed ADV-S2-3 reproduction, a space-joined prompt-answer-key string, stays closed. The precondition is a malicious or compromised upstream that already holds the key, so the marginal risk is the persisted copy in the observability log. A tightening candidate for S3 is to record the model only when it equals the configured model or the configured model plus a known OpenRouter suffix.",
+    "F4 [Nit] review-b: roleSettings embeds the raw API key into the providerCache and messagesProviderCache key strings (packages/ai-tutoring/src/providers.ts, roleSettings cacheKey). After a key rotation, the stale entry keeps the old key text in worker memory until clearProviderCache runs. The key never reaches a log. Low risk.",
+    "F5 [Nit] review-b: Both chatbot routes still log the raw error object in the rate-limit catch (apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts:196, apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts:102). The r3 status-only change covered the provider catch only. A Convex failure there could carry request context into the log. Not changed by e5680156."
+  ],
+  "evidence": [
+    "Provenance: git rev-parse HEAD returned 15c1d52368298f59392a3850059c5366bbeb43b5, which equals the audited_head_sha. The reviewed range is phase_base_sha d8e08cded75dac2fc33cb857c85f10f86036861d..15c1d523. The unstaged files are generated artifacts only (routes.d.ts files, workbooks-manifest.json, measure/generated/routes.md), which matches the Green handoff note.",
+    "Security applicability: applicable. test-strategy.md:324 names the security review: a missing key or model must fail closed, no log holds prompt text, answer text, or the key, and no message holds PII. The range changes roles, providers, usage-log, both chatbot routes, and the tests for them.",
+    "Fail-closed cache re-check (ADV-S2-1): git show e5680156 -- packages/ai-tutoring/src/providers.ts shows roleSettings checks OPENROUTER_API_KEY and resolveRoleModel before any cache read, and both resolvers store under a role+key+model cache key. The warm-cache tests at packages/ai-tutoring/src/__tests__/role-configuration.adversarial.test.ts:150-174 and :176-190 remove the tutor model and the API key after a successful call and assert the resolver returns null, fetch is called once only, and the reason is logged. Both pass in my run.",
+    "Usage-record bounding (ADV-S2-3): providers.ts:170-178 defines MODEL_ID and safeModel; :270, :284-291, and the recovered path at :213-216 route every logged model value through safeModel, and usage-log.ts:14 allows null. The test at role-configuration.adversarial.test.ts:232-241 feeds the served model as a space-joined prompt-answer-key string and asserts none of the three values reaches the log. It passes in my run.",
+    "Status-only error logging (ADV-S2-5): providers.ts:96-103 maps an HTTP error to 'OpenRouter API error: <status>' with no upstream body. Both routes log JSON.stringify({ role, status }) only (apps/integrated-math-3/.../route.ts:244, apps/bus-math-v2/.../route.ts:193-196). The IM3 test at route.s2.adversarial.test.ts:141-158 feeds a 401 body that echoes the question and the key and asserts neither value reaches any console call. It passes in my run.",
+    "IM3 PII stripping (ADV-S2-4): route.ts:37-53 defines PERSON_DETAIL and EMAIL and route.ts:229 applies stripPersonDetails to the lesson text sections before assembleLessonChatbotContext. The test at route.s2.adversarial.test.ts:92-139 asserts none of the six fixture values reaches the outbound fetch body and the provider object stays absent. It passes in my run. My regex probe proves the strip is fixture-shaped; see F2 for the named bypasses.",
+    "My verification runs: HEAVY via heavy-run.sh 'CI=true npm run test --workspace=packages/ai-tutoring' passes 141 tests in 9 files, exit 0, and 'CI=true npm run test --workspace=apps/integrated-math-3 -- __tests__/app/api/student/lesson-chatbot' passes 14 tests in 4 files, exit 0, at HEAD 15c1d523. Both results reproduce the Green log numbers in green-s2-r3-package.log and green-s2-r3-im3.log.",
+    "No adversarial assertion changed in r3: git show e5680156 --stat lists 6 files and neither adversarial test file is among them. The two providers.test.ts adjustments follow the production change: the 401 and 400 assertions now require the status-only error text, and the short-key test moved to the ConnectionError path. The privacy assertions live in the adversarial files and stayed byte-identical.",
+    "MODEL_ID probe: node with the exact production regex accepts 'sk-or-v1-0123456789abcdef0123456789abcdef' and a 31-character underscore token. See F3.",
+    "Strip probe: node with the exact production PERSON_DETAIL and EMAIL regexes returns the labeled fixture stripped to 'Solve x.' and returns the dash form, the unlisted-label form, the prose forms, the obfuscated email, and the fullwidth-unicode label unchanged. See F2.",
+    "A2 consent-blind publish gate: not applicable. The range flips no draft-to-published status and publishes nothing.",
+    "A6 registry overstatement: measure/tracks.md:244-246 keeps this track open with planned phase text and no resolved security claim. plan.md:282 marks the r3 remediation item complete at e5680156, and my own runs at that HEAD reproduce the claimed test results, so the claim does not outrun the implementation. Every log named in the Green handoff exists under measure/runs/openrouter-sdk-ai-layer_20261114/.",
+    "Late-finding handling: this re-review runs after two remediation rounds of the phase. The stop rule in skills/measure-orchestrator/references/contracts.md sends each new finding after round 2 to measure/tech-debt.md instead of Green, and the Round limit bars a third remediation round because measure/tracks/openrouter-sdk-ai-layer_20261114/metadata.json holds no escalation key. F1 to F5 are new findings, so they are nonblocking and route to the tech-debt path or the user.",
+    "Prior deferred findings: N1 (OPENROUTER_DEBUG gap) and N2 (grep matches in the roles test fixture) stay open on the S3 list per the Green handoff. N3 (two-role cache isolation) is resolved by role-configuration.adversarial.test.ts:86-118, the concurrent role test through the real SDK. N5 (padded preset) is resolved by the it.each case '\u2003 @preset/tutor \u00a0' at role-configuration.adversarial.test.ts:136-139. N4 was fixed in r2.",
+    "Secrets: the r3 diff holds no key value, no token, and no credential text. The env examples in the range hold variable names and placeholders only."
+  ],
+  "commands": [
+    "~/Desktop/advantage-pr/scripts/jobs/slot check: ok, 9 of 14 busy",
+    "git rev-parse HEAD: 15c1d52368298f59392a3850059c5366bbeb43b5",
+    "git show e5680156 --stat: 6 files, 122 insertions, 50 deletions, no adversarial test file",
+    "git diff a34ab162..15c1d523 --stat -- <adversarial test files>: both files appear only as additions from the adversarial commits 47a5c224 and 1833c526; e5680156 touches neither",
+    "heavy-run.sh -c 'CI=true npm run test --workspace=packages/ai-tutoring': 141 passed, 9 files, exit 0",
+    "heavy-run.sh -c 'CI=true npm run test --workspace=apps/integrated-math-3 -- __tests__/app/api/student/lesson-chatbot': 14 passed, 4 files, exit 0",
+    "node probe of PERSON_DETAIL, EMAIL, and MODEL_ID regexes: labeled fixture stripped; dash, unlisted-label, prose, obfuscated-email, and fullwidth forms unchanged; bare key and underscore token pass MODEL_ID",
+    "grep 'escalation' measure/tracks/openrouter-sdk-ai-layer_20261114/metadata.json: no match, exit 1"
+  ],
+  "changed_files": [
+    "apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts",
+    "apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/evidence.md",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md",
+    "packages/ai-tutoring/src/__tests__/providers.test.ts",
+    "packages/ai-tutoring/src/providers.ts",
+    "packages/ai-tutoring/src/usage-log.ts"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "opencode-go/glm-5.3#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 5,
+      "evidence": "All five adversarial findings are closed in code and my heavy-runs pass 141/141 package tests and 14/14 IM3 chatbot tests at HEAD 15c1d523, including the two warm-cache fail-closed tests at role-configuration.adversarial.test.ts:150-190."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 4,
+      "evidence": "The six formerly failing adversarial tests now pass against the real SDK and real route, but the strip test covers only the colon-labeled fixture (route.s2.adversarial.test.ts:95-96) and no test feeds a bare key as the served model value (F2, F3)."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "git show e5680156 --stat lists 6 files, all routed r3 remediation items; no adversarial assertion and no generated file changed."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 5,
+      "evidence": "Every finding and pass claim has a file:line, a command result, or a regex probe output; my own suite runs reproduce the Green numbers."
+    }
+  ]
+}

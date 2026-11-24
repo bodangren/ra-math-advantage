@@ -1,0 +1,5 @@
+
+> bundle-size:audit
+> node scripts/bundle-size-audit.mjs
+
+[OK] server/ssr/index.js → index.js: 292.85 KB (threshold: 700.00 KB)

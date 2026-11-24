@@ -1,0 +1,197 @@
+FAIL: plan task is not complete: - [ ] Create `evidence.md` in this track folder with these sections: SDK API, Bundle sizes, workerd probe, zod check, Live smoke test.
+FAIL: plan task is not complete: - [ ] In `measure/tech-stack.md` "Key Dependencies", add a dated row for `@openrouter/sdk` (workflow principle 2).
+FAIL: plan task is not complete: - [ ] Build IM3 and BM2 on the start commit. Record the size of each `.js` file under `dist/server/`, raw and gzip (`gzip -c <file> | wc -c`), and the totals.
+FAIL: plan task is not complete: - [ ] Run `npm run bundle-size:audit --prefix apps/integrated-math-3` and `npm run bundle:audit --workspace=apps/bus-math-v2`. Record the results.
+FAIL: plan task is not complete: - [ ] Add `"@openrouter/sdk": "^1.5.102"` to the `dependencies` of `packages/ai-tutoring/package.json`. Run `npm install`.
+FAIL: plan task is not complete: - [ ] Read `node_modules/@openrouter/sdk/README.md`, `RUNTIMES.md`, and the `docs/` pages for `chat`. Read the `.d.ts` files under `esm/models/errors/`.
+FAIL: plan task is not complete: - [ ] Record these facts in the "SDK API" section, from the installed files only: the client constructor options (API key, server URL, `httpReferer`, `appTitle`, retry settings, timeout).
+FAIL: plan task is not complete: - [ ] Also record: the chat send method, its request fields (`model`, `messages`, `responseFormat`, `provider`, `temperature`, max tokens), and the request options for an `AbortSignal`.
+FAIL: plan task is not complete: - [ ] Also record: the response fields for the content, the served `model`, and the token `usage`, and each error class with its HTTP status field.
+FAIL: plan task is not complete: - [ ] Also record: whether the SDK sends requests through `globalThis.fetch`, and whether `RUNTIMES.md` names Cloudflare Workers.
+FAIL: plan task is not complete: - [ ] Commit: `chore(deps): add @openrouter/sdk to ai-tutoring`.
+FAIL: plan task is not complete: - [ ] In `packages/ai-tutoring/src/__tests__/providers.test.ts`, add `describe('SDK transport')`.
+FAIL: plan task is not complete: - [ ] Normal case 1: with `@openrouter/sdk` mocked, `createOpenRouterProvider` calls the SDK chat send method with `model` and one user message, and returns the trimmed content.
+FAIL: plan task is not complete: - [ ] Normal case 2: with the SDK mocked, `createOpenRouterProviderWithMessages` passes the messages without change.
+FAIL: plan task is not complete: - [ ] Edge case 3: an SDK error with status 429, then a success, gives one retry and the success.
+FAIL: plan task is not complete: - [ ] Edge case 4: an SDK error with status 400 gives no retry, and the thrown message starts with `OpenRouter API error: 400`.
+FAIL: plan task is not complete: - [ ] Edge case 5: an SDK connection error is retried, as a network error is now.
+FAIL: plan task is not complete: - [ ] Edge case 6: an external abort gives an `AbortError` and no retry.
+FAIL: plan task is not complete: - [ ] Keep each existing test. If a test checks a transport detail that the SDK changes (for example the exact header set), change only that assertion. Record each change in this plan.
+FAIL: plan task is not complete: - [ ] Apply the same rule to `apps/bus-math-v2/__tests__/lib/ai/providers.test.ts`. It calls `createOpenRouterProvider({ apiKey: 'test-key' })` and checks the `fetch` URL and body.
+FAIL: plan task is not complete: - [ ] Run `CI=true npm run test --workspace=packages/ai-tutoring`. Confirm that cases 1 to 6 fail.
+FAIL: plan task is not complete: - [ ] Commit: `test(ai-tutoring): specify the SDK transport (Red)`.
+FAIL: plan task is not complete: - [ ] Create `packages/ai-tutoring/src/openrouter-client.ts`. It makes the SDK client from the API key and the base URL.
+FAIL: plan task is not complete: - [ ] The client sends `httpReferer` `https://github.com/bodangren/ra-integrated-math-3` and `appTitle` `Integrated Math 3`, the same values as now.
+FAIL: plan task is not complete: - [ ] Turn off the SDK retries. `withRetry` stays the only retry layer, with the same settings.
+FAIL: plan task is not complete: - [ ] Keep the 15000 ms timeout and the external-signal link through an `AbortController`. Pass its signal through the SDK request options.
+FAIL: plan task is not complete: - [ ] Map each SDK HTTP error to `Error('OpenRouter API error: <status> <message>')`. This keeps `isOpenRouterError`, `getErrorStatus`, and `withRetry` without change.
+FAIL: plan task is not complete: - [ ] Map each SDK connection error to an `Error` whose message starts with `fetch failed:`, so `withRetry` retries it.
+FAIL: plan task is not complete: - [ ] Map an SDK abort error to `new DOMException('Aborted', 'AbortError')`.
+FAIL: plan task is not complete: - [ ] Keep `EmptyResponseError` for empty or whitespace content.
+FAIL: plan task is not complete: - [ ] In `src/providers.ts`, replace each `fetch` call with the client. Keep each exported name and type of `src/index.ts`.
+FAIL: plan task is not complete: - [ ] Commit: `feat(ai-tutoring): send OpenRouter requests through the SDK`.
+FAIL: plan task is not complete: - [ ] Create `packages/ai-tutoring/workerd-probe/worker.ts`. Its `fetch` handler calls `createOpenRouterProvider` with the API key and base URL from `env`, and returns the provider text.
+FAIL: plan task is not complete: - [ ] Create `packages/ai-tutoring/workerd-probe/wrangler.jsonc` with `compatibility_date` `2026-04-11` and `compatibility_flags` `["nodejs_compat"]`, the same as IM3.
+FAIL: plan task is not complete: - [ ] Create `packages/ai-tutoring/workerd-probe/run.mjs`. It starts a mock OpenRouter server on `127.0.0.1:4299` that answers `/api/v1/chat/completions` with the content `probe-ok`.
+FAIL: plan task is not complete: - [ ] `run.mjs` then starts `npx wrangler dev --config workerd-probe/wrangler.jsonc --port 4298` with `--var OPENROUTER_API_KEY:probe-key` and `--var OPENROUTER_API_BASE:http://127.0.0.1:4299/api/v1`.
+FAIL: plan task is not complete: - [ ] `run.mjs` requests `http://127.0.0.1:4298/`, checks that the body is `probe-ok`, stops both processes, and exits with code 0 or 1.
+FAIL: plan task is not complete: - [ ] Add `"test:workerd": "node workerd-probe/run.mjs"` to `packages/ai-tutoring/package.json`.
+FAIL: plan task is not complete: - [ ] In `.github/workflows/ci.yml` job `packages`, add the step "Run workerd SDK probe" with `if: matrix.package == 'ai-tutoring'` and `run: npm run test:workerd --workspace=packages/ai-tutoring`.
+FAIL: plan task is not complete: - [ ] If the probe fails because the SDK cannot run in workerd, stop the phase and report to the user. The fallback is the current `fetch` wrapper.
+FAIL: plan task is not complete: - [ ] Commit: `test(ai-tutoring): add the workerd SDK probe`.
+FAIL: plan task is not complete: - [ ] Create `apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.sdk.test.ts`. Mock auth and the Convex rate limit as the existing route test does. Do not mock `@math-platform/ai-tutoring`.
+FAIL: plan task is not complete: - [ ] Mock `globalThis.fetch` with an OpenRouter answer. Assert HTTP 200, the answer text, and one request to a URL that ends with `/chat/completions`.
+FAIL: plan task is not complete: - [ ] Create `apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.sdk.test.ts` in the same way, with the IM3 Convex mocks.
+FAIL: plan task is not complete: - [ ] Commit: `test(chatbot): run the chatbot routes through the SDK`.
+FAIL: plan task is not complete: - [ ] Run each gate, with the workerd probe. Confirm that each gate passes.
+FAIL: plan task is not complete: - [ ] Build IM3 and BM2. Record the sizes after the change, in the same form as the baseline.
+FAIL: plan task is not complete: - [ ] Run both bundle audits. If a budget fails, do not change the budget. Stop the phase and report the sizes to the user.
+FAIL: plan task is not complete: - [ ] Commit the evidence file: `measure(openrouter-sdk): record the S1 results`.
+FAIL: plan task is not complete: - [ ] Run `npm run generate`. Confirm exit code 0.
+FAIL: plan task is not complete: - [ ] Run `npm run doctor`. Confirm exit code 0.
+FAIL: plan task is not complete: - [ ] Create `packages/ai-tutoring/src/roles.ts` with `AI_ROLES`. Each entry has `env` (the variable name), `structured` (boolean), and `sendsPii` (boolean). The values come from the spec "Roles" table.
+FAIL: plan task is not complete: - [ ] Export `type AiRole = keyof typeof AI_ROLES` (`studentTutor`, `spreadsheetEval`, `accountingEval`).
+FAIL: plan task is not complete: - [ ] Export `resolveRoleModel(role)`. It returns `{ ok: true, model }` or `{ ok: false, missing, reason }`.
+FAIL: plan task is not complete: - [ ] The `reason` is `missing` for an absent, empty, or whitespace value, and `preset` for a value that starts with `@preset/`.
+FAIL: plan task is not complete: - [ ] Export `buildProviderPreferences({ structured, sendsPii })`. It returns `undefined`, `{ require_parameters: true }`, `{ zdr: true }`, or `{ require_parameters: true, zdr: true }`, in the SDK field names from the "SDK API" evidence.
+FAIL: plan task is not complete: - [ ] Create `packages/ai-tutoring/src/usage-log.ts` with `logAiRequest(record)`. It writes `console.info('[ai-tutoring] request', JSON.stringify(record))`.
+FAIL: plan task is not complete: - [ ] The record fields are `role`, `model` (the served model of the response), `latencyMs`, `promptTokens`, `completionTokens`, `totalTokens`, `outcome` (`ok` or `error`), and `status` (the HTTP status or `null`).
+FAIL: plan task is not complete: - [ ] A missing setting logs `console.error('[ai-tutoring] AI role not configured', JSON.stringify({ role, missing, reason }))`.
+FAIL: plan task is not complete: - [ ] In `measure/tech-stack.md`, add a dated note with the roles, the PII flag, and the usage record.
+FAIL: plan task is not complete: - [ ] Create `packages/ai-tutoring/src/__tests__/roles.test.ts`.
+FAIL: plan task is not complete: - [ ] Normal case 1: with `OPENROUTER_MODEL_STUDENT_TUTOR=vendor/model-a`, the studentTutor provider sends `model: 'vendor/model-a'`.
+FAIL: plan task is not complete: - [ ] Normal case 2: the value `~google/gemini-latest` reaches the request without change.
+FAIL: plan task is not complete: - [ ] Normal case 3: a successful request logs one usage record with the served model and the token counts of the mocked response.
+FAIL: plan task is not complete: - [ ] Normal case 4: each entry of `AI_ROLES` has `sendsPii: false`.
+FAIL: plan task is not complete: - [ ] Normal case 5: `buildProviderPreferences` gives the four results of the S2 Contract for the four input pairs.
+FAIL: plan task is not complete: - [ ] Edge case 6: a missing role variable makes the resolver return `null` and log the variable name.
+FAIL: plan task is not complete: - [ ] Edge case 7: an empty or whitespace value gives the result of case 6.
+FAIL: plan task is not complete: - [ ] Edge case 8: the value `@preset/tutor` makes the resolver return `null` and log `reason: 'preset'`.
+FAIL: plan task is not complete: - [ ] Edge case 9: only `OPENROUTER_MODEL` set makes the resolver return `null`.
+FAIL: plan task is not complete: - [ ] Edge case 10: a missing `OPENROUTER_API_KEY` makes the resolver return `null` and log `missing: 'OPENROUTER_API_KEY'`.
+FAIL: plan task is not complete: - [ ] Edge case 11: a request with the prompt `PROMPT-MARKER-7` and the answer `ANSWER-MARKER-9` logs no line that contains either marker. A failed request logs `outcome: 'error'` and its status.
+FAIL: plan task is not complete: - [ ] Edge case 12: a studentTutor request has no `provider` field.
+FAIL: plan task is not complete: - [ ] Create the no-PII tests `apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts` and `apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts`. Use the No-PII Fixture in the session claims, the profile, and the lesson data mocks. Capture the messages from the mocked provider.
+FAIL: plan task is not complete: - [ ] Run the tests. Confirm that cases 1 to 12 fail. The no-PII tests can pass now; they guard the rule.
+FAIL: plan task is not complete: - [ ] Commit: `test(ai-tutoring): specify the role configuration (Red)`.
+FAIL: plan task is not complete: - [ ] In `src/providers.ts`, make `model` and `role` required in `OpenRouterProviderOptions`. Remove each `'openrouter/free'` default and each read of `OPENROUTER_MODEL`.
+FAIL: plan task is not complete: - [ ] Change `resolveOpenRouterProviderFromEnv` and `resolveOpenRouterProviderWithMessagesFromEnv` to take an `AiRole`. Cache one provider for each role. `clearProviderCache` clears all roles.
+FAIL: plan task is not complete: - [ ] Use `resolveRoleModel` and the API key check. On a missing setting, log it and return `null`.
+FAIL: plan task is not complete: - [ ] Send `provider` only when `buildProviderPreferences` returns an object.
+FAIL: plan task is not complete: - [ ] Call `logAiRequest` once for each request: on success after the response, on failure after the last retry.
+FAIL: plan task is not complete: - [ ] Export `AI_ROLES`, `AiRole`, `resolveRoleModel`, and `buildProviderPreferences` from `src/index.ts`.
+FAIL: plan task is not complete: - [ ] Update `packages/ai-tutoring/workerd-probe/worker.ts` to pass `role: 'studentTutor'` and a model.
+FAIL: plan task is not complete: - [ ] Commit: `feat(ai-tutoring): read each model from its role variable`.
+FAIL: plan task is not complete: - [ ] `apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts`: call `resolveOpenRouterProviderWithMessagesFromEnv('studentTutor')`. Keep the 503 response.
+FAIL: plan task is not complete: - [ ] `apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts`: the same change.
+FAIL: plan task is not complete: - [ ] `apps/bus-math-v2/lib/ai/spreadsheet-feedback.ts`: call `resolveOpenRouterProviderFromEnv('spreadsheetEval')`. Keep the deterministic feedback for `null`.
+FAIL: plan task is not complete: - [ ] Update these tests for the new signatures (role argument, required `model` and `role`): `packages/ai-tutoring/src/__tests__/providers.test.ts`, `apps/bus-math-v2/__tests__/lib/ai/providers.test.ts`, and `apps/bus-math-v2/__tests__/lib/ai/spreadsheet-feedback.test.ts`.
+FAIL: plan task is not complete: - [ ] Also update `apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.test.ts`, `apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.test.ts`, and `apps/bus-math-v2/__tests__/api/student/lesson-chatbot.test.ts`.
+FAIL: plan task is not complete: - [ ] Assert in each chatbot route test that the resolver gets `'studentTutor'`. Assert in the spreadsheet test that it gets `'spreadsheetEval'`.
+FAIL: plan task is not complete: - [ ] In `apps/integrated-math-3/.env.example` and `apps/bus-math-v2/.env.example`, replace `OPENROUTER_MODEL` with the role variables of each app, as comments. Add the `openrouter/free` development note.
+FAIL: plan task is not complete: - [ ] Commit: `feat(ai): move the chatbots and spreadsheet feedback to their roles`.
+FAIL: plan task is not complete: - [ ] Run each gate, with the workerd probe. Confirm that each gate passes.
+FAIL: plan task is not complete: - [ ] Run `git grep -n "OPENROUTER_MODEL\b\|openrouter/free" -- apps packages ':!**/.env.example' ':!**/__tests__/**'`. Confirm that no code matches. (N2, S3 Fix: the exclusion drops only the case-9 fixture lines and the adversarial live complement.)
+FAIL: plan task is not complete: - [ ] Run `npm run generate`. Confirm exit code 0.
+FAIL: plan task is not complete: - [ ] Run `npm run doctor`. Confirm exit code 0.
+FAIL: plan task is not complete: - [ ] Add `"zod": "^4.1.12"` to the `dependencies` of `packages/ai-tutoring/package.json` (spec "Non-Functional Requirements"). Run `npm install`.
+FAIL: plan task is not complete: - [ ] Run `node -e "import('zod').then((z) => console.log(typeof z.toJSONSchema))"` in `packages/ai-tutoring`. Record the zod version and the result in the "zod check" section. The result must be `function`.
+FAIL: plan task is not complete: - [ ] Helper file: `packages/ai-tutoring/src/structured.ts` with `resolveStructuredProviderFromEnv(role)`. It returns a `StructuredProvider` or `null`, with the S2 logging for a missing setting.
+FAIL: plan task is not complete: - [ ] `StructuredProvider` takes `{ schemaName, schema, messages, abortSignal?, temperature?, maxTokens? }` and returns `Promise<StructuredResult<T>>`.
+FAIL: plan task is not complete: - [ ] `StructuredResult<T>` is `{ ok: true, data: T, raw: string }` or `{ ok: false, reason, raw?: string }`.
+FAIL: plan task is not complete: - [ ] The `reason` values are `request_failed`, `empty_response`, `aborted`, `invalid_json`, and `schema_mismatch`.
+FAIL: plan task is not complete: - [ ] The request sends `response_format` `{ type: 'json_schema', json_schema: { name: schemaName, strict: true, schema: z.toJSONSchema(schema) } }`, in the SDK field names from the evidence.
+FAIL: plan task is not complete: - [ ] The request sends the `provider` object from `buildProviderPreferences({ structured: true, sendsPii })`. Note: `structured.ts` inlines the preference `{ require_parameters: true }` with the non-enumerable camelCase key of R-A1. It does not read `sendsPii`, and no current role sets that flag. Wire the flag through when a PII role is added.
+FAIL: plan task is not complete: - [ ] The helper uses `withRetry` for the transport, with the S1 error mapping. It never throws.
+FAIL: plan task is not complete: - [ ] It parses the content with `JSON.parse`, then checks it with `schema.safeParse`. It logs one usage record for each request.
+FAIL: plan task is not complete: - [ ] Response schemas use `z.strictObject`, `z.string()`, `z.number()`, and `z.array(z.string())` only. They use no length or count limits, so the JSON Schema holds only basic keywords.
+FAIL: plan task is not complete: - [ ] Teacher summary file: `apps/bus-math-v2/lib/teacher/ai-error-summary.ts`. It exports `teacherAiSummarySchema`, `type TeacherAiSummary`, `buildTeacherSummaryPrompt`, and `resolveTeacherAiSummaryGenerator`.
+FAIL: plan task is not complete: - [ ] `teacherAiSummarySchema` is `z.strictObject({ likelyMisunderstanding: z.string(), evidenceObserved: z.array(z.string()), suggestedReteach: z.string(), groundedIn: z.array(z.string()) })`.
+FAIL: plan task is not complete: - [ ] `TeacherAiSummary` is the schema type plus `type: 'ai-assisted'` and `generatedAt: number` (spec "Terms").
+FAIL: plan task is not complete: - [ ] `buildTeacherSummaryPrompt(summary: LessonErrorSummary)` copies the prompt lines of `buildAIPrompt` in `lib/teacher/ai-interpretation.ts`, with three changes.
+FAIL: plan task is not complete: - [ ] Change 1: remove the line `Student: ${summary.studentName}`. Keep `Lesson: ${summary.lessonTitle}`.
+FAIL: plan task is not complete: - [ ] Change 2: add the line `Refer to the learner only as "the student". Do not use a name.` after the first two lines.
+FAIL: plan task is not complete: - [ ] Change 3: replace "Return a JSON object with these fields:" with "Fill each field of the JSON schema:". Keep the 4 field descriptions and the last two lines.
+FAIL: plan task is not complete: - [ ] `resolveTeacherAiSummaryGenerator()` returns `null` when `resolveStructuredProviderFromEnv('accountingEval')` returns `null`.
+FAIL: plan task is not complete: - [ ] Otherwise it returns `(summary: LessonErrorSummary) => Promise<TeacherAiSummary | null>`.
+FAIL: plan task is not complete: - [ ] The generator returns `null` with no request when `summary.totalParts` is 0, as `ai-interpretation.ts` does now.
+FAIL: plan task is not complete: - [ ] The generator sends the prompt as one user message, with the schema name `teacher_error_summary`, temperature 0.3, and 500 max tokens (the current `ai-interpretation.ts` values).
+FAIL: plan task is not complete: - [ ] It returns the data with `type` and `generatedAt` for `ok: true`, and `null` for each typed failure.
+FAIL: plan task is not complete: - [ ] In `measure/tech-stack.md`, add a dated note on the structured-output helper and the teacher summary.
+FAIL: plan task is not complete: - [ ] Create `packages/ai-tutoring/src/__tests__/structured.test.ts`.
+FAIL: plan task is not complete: - [ ] Normal case 1: a valid JSON answer that matches the schema gives `{ ok: true, data, raw }`.
+FAIL: plan task is not complete: - [ ] Normal case 2: the request body has `response_format` with the `name`, `strict: true`, and the `z.toJSONSchema` output of the schema.
+FAIL: plan task is not complete: - [ ] Normal case 3: the request `provider` object is exactly `{ "require_parameters": true }`.
+FAIL: plan task is not complete: - [ ] Edge case 4: an answer that is not JSON gives `invalid_json` with `raw`.
+FAIL: plan task is not complete: - [ ] Edge case 5: JSON that does not match the schema gives `schema_mismatch` with `raw`.
+FAIL: plan task is not complete: - [ ] Edge case 6: empty content on each attempt gives `empty_response`.
+FAIL: plan task is not complete: - [ ] Edge case 7: an HTTP 400 gives `request_failed` with no retry. A 503, then a success, gives `ok: true`.
+FAIL: plan task is not complete: - [ ] Edge case 8: an external abort gives `aborted`.
+FAIL: plan task is not complete: - [ ] Edge case 9: for `AiFeedbackResponseSchema` and `teacherAiSummarySchema`, `z.toJSONSchema` gives `additionalProperties: false` and lists all keys in `required`.
+FAIL: plan task is not complete: - [ ] In `apps/bus-math-v2/__tests__/lib/ai/spreadsheet-feedback.test.ts`, change the 6 existing tests to mock `resolveStructuredProviderFromEnv`. Keep each expected result.
+FAIL: plan task is not complete: - [ ] Edge case 10: `request_failed`, `empty_response`, or `aborted` makes `generateAiFeedback` throw, so the submit route stores no AI feedback, as now.
+FAIL: plan task is not complete: - [ ] Create `apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts`.
+FAIL: plan task is not complete: - [ ] Normal case 11: `buildTeacherSummaryPrompt` holds the lesson title, the correctness line, the top misconception tags with counts and part IDs, the scaffold line, and the activity breakdown of the fixture.
+FAIL: plan task is not complete: - [ ] Normal case 12: the prompt holds `the student` and the 4 field names.
+FAIL: plan task is not complete: - [ ] Normal case 13: with the role variable and the key set, the generator sends `model` from `OPENROUTER_MODEL_ACCOUNTING_EVAL` and the schema name `teacher_error_summary`, and returns a `TeacherAiSummary`.
+FAIL: plan task is not complete: - [ ] Edge case 14: a missing role variable makes `resolveTeacherAiSummaryGenerator` return `null` and log the variable name.
+FAIL: plan task is not complete: - [ ] Edge case 15: a typed failure makes the generator return `null`.
+FAIL: plan task is not complete: - [ ] Edge case 16: `totalParts: 0` makes the generator return `null` and send no request.
+FAIL: plan task is not complete: - [ ] No-PII case 17: a `LessonErrorSummary` fixture has `studentName: 'Avery Quinn (avery.quinn@example.org)'`. The prompt holds neither `Avery Quinn` nor `avery.quinn@example.org`.
+FAIL: plan task is not complete: - [ ] Update `apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.test.ts` to mock `resolveTeacherAiSummaryGenerator`. Assert the response keys `studentName`, `lessonTitle`, `deterministicSummary`, `aiSummary`, and `aiEnabled`.
+FAIL: plan task is not complete: - [ ] Edge case 18: a generator that returns `null` gives `aiSummary: null` and the deterministic summary.
+FAIL: plan task is not complete: - [ ] Create the no-PII test `apps/bus-math-v2/__tests__/app/api/activities/spreadsheet/submit.no-pii.test.ts`. Run the submit route with the No-PII Fixture in the session claims and the Convex profile mocks. Capture the messages from the mocked structured provider.
+FAIL: plan task is not complete: - [ ] Create the no-PII test `apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.no-pii.test.ts`. Put the No-PII Fixture in the teacher profile, the student profile, the student name of the submission detail, and the student ID.
+FAIL: plan task is not complete: - [ ] In that test, capture the prompt from the mocked structured provider, and assert that it holds no fixture value. Assert that the response `studentName` is the fixture name, so the name stays on the app side.
+FAIL: plan task is not complete: - [ ] Run the tests. Confirm that cases 1 to 18 fail.
+FAIL: plan task is not complete: - [ ] Commit: `test(ai): specify the structured-output helper and the evaluation moves (Red)`.
+FAIL: plan task is not complete: - [ ] Implement `src/structured.ts` as the S3 Contract says. Export it from `src/index.ts`, and add the `"./structured"` subpath to `package.json` `exports`.
+FAIL: plan task is not complete: - [ ] Commit: `feat(ai-tutoring): add the structured-output helper`.
+FAIL: plan task is not complete: - [ ] In `apps/bus-math-v2/lib/ai/spreadsheet-feedback.ts`, change `AiFeedbackResponseSchema` to `z.strictObject` with the same 4 fields.
+FAIL: plan task is not complete: - [ ] Replace the "Response Format" block of the prompt with one line: "Fill each field of the JSON schema."
+FAIL: plan task is not complete: - [ ] Call `resolveStructuredProviderFromEnv('spreadsheetEval')` with the schema name `spreadsheet_feedback`.
+FAIL: plan task is not complete: - [ ] Map the results: `null` (not configured) gives the deterministic feedback with the current `rawAiResponse` text.
+FAIL: plan task is not complete: - [ ] `invalid_json` and `schema_mismatch` give the deterministic feedback with `rawAiResponse: raw`.
+FAIL: plan task is not complete: - [ ] `request_failed`, `empty_response`, and `aborted` throw an `Error`, as the provider error does now.
+FAIL: plan task is not complete: - [ ] `ok: true` gives the parsed fields, the score clamped to 0 to 40, at most 3 items in each list, and `rawAiResponse: raw`.
+FAIL: plan task is not complete: - [ ] Commit: `feat(bm2): use structured output for spreadsheet feedback`.
+FAIL: plan task is not complete: - [ ] Create `apps/bus-math-v2/lib/teacher/ai-error-summary.ts` as the S3 Contract says.
+FAIL: plan task is not complete: - [ ] In `apps/bus-math-v2/app/api/teacher/ai-error-summary/route.ts`, build `const lessonSummary = buildLessonErrorSummary(detail)`.
+FAIL: plan task is not complete: - [ ] If the type checker reports that `detail` is not a `SubmissionDetail`, map its fields to `SubmissionDetail` in the route. Do not change `buildLessonErrorSummary`.
+FAIL: plan task is not complete: - [ ] Replace `resolveAIProviderFromEnv()` and `generateAISummary(...)` with `resolveTeacherAiSummaryGenerator()` and the generator call on `lessonSummary`.
+FAIL: plan task is not complete: - [ ] Keep `envelopes`, `deterministicSummary`, `studentName: detail.studentName`, and `lessonTitle`. Set `aiEnabled: generator !== null`.
+FAIL: plan task is not complete: - [ ] Do not put the student name into the AI text.
+FAIL: plan task is not complete: - [ ] Commit: `feat(bm2): build the teacher error summary on the accounting role with structured output`.
+FAIL: plan task is not complete: - [ ] Run each gate, with the workerd probe. Confirm that each gate passes.
+FAIL: plan task is not complete: - [ ] Run `npm run generate`. Confirm exit code 0.
+FAIL: plan task is not complete: - [ ] Run `npm run doctor`. Confirm exit code 0.
+FAIL: plan task is not complete: - [ ] Write this removal list in this plan. The S4 Implement task makes the removals.
+FAIL: plan task is not complete: - [ ] Removal 1: the files `apps/bus-math-v2/lib/practice/error-analysis/providers.ts` (OpenAI provider) and `apps/bus-math-v2/__tests__/lib/practice/error-analysis-providers.test.ts`.
+FAIL: plan task is not complete: - [ ] Removal 2: the files `apps/bus-math-v2/lib/teacher/ai-interpretation.ts` and `apps/bus-math-v2/__tests__/lib/teacher/ai-interpretation.test.ts`.
+FAIL: plan task is not complete: - [ ] Removal 3: `generateAISummary`, `buildAIPrompt`, `parseAIResponse`, and `AISummaryInput` in `packages/practice-core/src/practice/error-analysis/index.ts`.
+FAIL: plan task is not complete: - [ ] Removal 4: the exports of removal 3 in `packages/practice-core/src/index.ts` and in `apps/bus-math-v2/lib/practice/error-analysis/index.ts`.
+FAIL: plan task is not complete: - [ ] Removal 5: the `generateAISummary` tests in `apps/bus-math-v2/__tests__/lib/practice/error-analysis.test.ts` and `apps/integrated-math-3/__tests__/lib/practice/error-analysis.test.ts`. The other tests stay.
+FAIL: plan task is not complete: - [ ] `AISummaryOutput`, `TeacherErrorView`, and `buildTeacherErrorView` stay without change.
+FAIL: plan task is not complete: - [ ] Create `scripts/__tests__/openrouter-only.test.ts`. Add it to `include` in `scripts/vitest.config.ts`.
+FAIL: plan task is not complete: - [ ] Normal case 1: no file under `apps/` or `packages/` (outside `node_modules`) contains `api.openai.com`, `api.anthropic.com`, `OPENAI_API_KEY`, or `AI_INTERPRETATION_`.
+FAIL: plan task is not complete: - [ ] Normal case 2: the 4 files of removals 1 and 2 do not exist.
+FAIL: plan task is not complete: - [ ] Normal case 3: the `@math-platform/practice-core` module exports no `generateAISummary`, and it exports `buildTeacherErrorView`.
+FAIL: plan task is not complete: - [ ] Run the scripts suite. Confirm that cases 1 to 3 fail.
+FAIL: plan task is not complete: - [ ] Commit: `test(ai): guard the single AI provider (Red)`.
+FAIL: plan task is not complete: - [ ] Make removals 1 to 5 of the S4 Contract.
+FAIL: plan task is not complete: - [ ] Commit: `chore(ai): remove the OpenAI code paths and the dead summary code`.
+FAIL: plan task is not complete: - [ ] In `apps/bus-math-v2/.env.example`, remove the `OPENAI_*` and `AI_INTERPRETATION_*` lines.
+FAIL: plan task is not complete: - [ ] Add `OPENROUTER_API_KEY`, and add the 3 BM2 role variables as comments with the initial values of the spec "Roles" table and the `openrouter/free` development note.
+FAIL: plan task is not complete: - [ ] In `apps/integrated-math-3/.env.example`, keep `OPENROUTER_API_KEY` and `OPENROUTER_API_BASE`.
+FAIL: plan task is not complete: - [ ] Add `OPENROUTER_MODEL_STUDENT_TUTOR` with the development note, and `OPENROUTER_MODEL_MATH_EVAL=z-ai/glm-5.3-flash` as a comment that says no code reads it yet.
+FAIL: plan task is not complete: - [ ] In both `wrangler.jsonc` files, add `OPENROUTER_API_KEY` to the comment list of secrets, as an optional secret.
+FAIL: plan task is not complete: - [ ] In `measure/tech-stack.md`, add the "AI Layer" section: the SDK, the roles table, the PII rule and flag, structured output, the usage record, and the production prerequisites of the spec.
+FAIL: plan task is not complete: - [ ] Commit: `docs(ai): document the AI roles and the OpenRouter layer`.
+FAIL: plan task is not complete: - [ ] This task is for Daniel. It needs a real key and is not part of CI.
+FAIL: plan task is not complete: - [ ] Set a real `OPENROUTER_API_KEY` and the role variables in a local `.env.local`. Start each app with `vinext dev`.
+FAIL: plan task is not complete: - [ ] Send one chatbot question in IM3 and in BM2. Submit one BM2 spreadsheet activity. Request one BM2 teacher error summary.
+FAIL: plan task is not complete: - [ ] Record each result and each usage record line in the "Live smoke test" section. Record no prompt or answer text.
+FAIL: plan task is not complete: - [ ] Run each gate, with the workerd probe and the scripts suite. Confirm that each gate passes.
+FAIL: plan task is not complete: - [ ] Commit the evidence file: `measure(openrouter-sdk): record the S4 results`.
+FAIL: plan task is not complete: - [ ] Run `npm run generate`. Confirm exit code 0.
+FAIL: plan task is not complete: - [ ] Run `npm run doctor`. Confirm exit code 0.

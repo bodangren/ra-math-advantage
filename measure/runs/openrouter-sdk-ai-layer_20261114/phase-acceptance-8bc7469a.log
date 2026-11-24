@@ -1,0 +1,33 @@
+# Phase acceptance log: Phase S2, Role-based model configuration
+
+Route: opencode-go/glm-5.3#high. HEAD and audited head: 8bc7469a41746bc7e6280749e281372aeb348992.
+Phase base: d8e08cde. The audit changed no tracked file and made no commit.
+
+Verdict: pass, with seven nonblocking findings (F1 to F4 Major record-only or
+orchestrator-deferred, F5 to F7 Nit). The result JSON holds the evidence.
+
+- The Green role gate was not re-run, so this audit re-ran the full gate evidence at HEAD
+  with label s2-acceptance: lint, test, and checks-all each print NEWFAIL=0; the workerd
+  probe answers probe-ok; the targeted role filter passes 12/12 and the F1 filter 4/4.
+- The review chain is closed at the audited HEAD: A r4 and C r4 PASS at 8bc7469a; B r3
+  PASS at 15c1d523, and the only code delta to HEAD is the IM3 sanitizer that A and C
+  re-reviewed. The five adversarial blockers are fixed and their tests pass at HEAD.
+- The S2 Verify grep matches only test files (the case-9 fixture, accepted N2).
+- generate and doctor exit 0; the S1 F5 routes.md deviation is still recorded.
+- The mechanical role-gate reports only "current phase still has 3 non-deferred incomplete
+  tasks": the S2 Verify, Docs & Doctor, and manual-verification tasks, which stay open
+  until after acceptance per the checkpoint protocol. The substance of Verify and
+  Docs & Doctor is discharged by this audit. No other role-gate item failed.
+
+MEASURE_AGENT_RESULT
+role: phase-acceptance
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S2: Role-based model configuration
+commits: none (gate-only role; the audit wrote only these two result files)
+tests_run: fresh gate sweeps at HEAD with label s2-acceptance: lint NEWFAIL=0, test NEWFAIL=0 (ai-tutoring 141/141, practice-core 263/263, IM3 218 and BM2 7 and scripts 27 and audit 5 baseline failures with the same keys), checks-all NEWFAIL=0 with audit critical=0 high=5 and workerd probe probe-ok; targeted 'role configuration' 12/12 pass; targeted F1 filter 4/4 pass; npm run generate exit 0; npm run doctor exit 0; Verify grep returns no code match
+files_changed: measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-8bc7469a.json and .log (gitignored); s2-acceptance gate logs under measure/runs (gitignored)
+plan_updates: none (gate-only role); add F1 to F7 of the result JSON to the next-phase list in plan.md at the checkpoint
+known_failures: baseline failures unchanged with the same keys (IM3 tests 218, BM2 tests 7, scripts 27, audit suites 5, IM3 typecheck 55 diagnostics); BM2 bundle audit exits 1 on the baseline entry Total dist/server; npm audit critical=0 high=5 (the D2-accepted high advisories); no new failure
+handoff: Phase S2 passes at 8bc7469a with no blocking finding. The orchestrator runs the checkpoint protocol next: the S2 Verify, Docs & Doctor, and manual-verification tasks, the checkpoint commit, and the plan mark; the mechanical role-gate passes once those three tasks close. Add F1 to F7 to the next-phase list. Two questions for the PM, defaults stand: (1) keep Review B F1 (BM2 lesson-markdown strip) on the S3 list as planned, or pull it into S3 as a must? Default: keep on the S3 list; S3 touches BM2 feedback and can add the strip with a real-assembler no-PII test. (2) approve the third S2 remediation round retroactively and record the approval in metadata.json deviation_notes? Default: approve, because r4 fixed a routed blocker with test-first proof and two PASS re-reviews. Also record the F2 evidence-text fix (the F1 filter log citation) at the next evidence commit.
+END_MEASURE_AGENT_RESULT

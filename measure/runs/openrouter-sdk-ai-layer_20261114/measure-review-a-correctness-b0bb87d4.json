@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "role": "review-a",
+  "track": "openrouter-sdk-ai-layer_20261114",
+  "phase": "Phase S3: Structured output for the evaluation features",
+  "baseline_sha": "55e7952b15b3e36dc8b44dea76f252ded4c9c12e",
+  "phase_base_sha": "55e7952b15b3e36dc8b44dea76f252ded4c9c12e",
+  "role_base_sha": "8eee12fce21ce892dc2a82f02a9be421bb4deab3",
+  "audited_head_sha": "b0bb87d4c331840ff08cc5e7849f205c93e04b8f",
+  "status": "pass",
+  "summary": "The complete S3 diff remains correct. The internal model validator has one implementation, both runtime paths import it, and the full package suite passes.",
+  "blocking_findings": [],
+  "nonblocking_findings": [],
+  "evidence": [
+    "HEAD is b0bb87d4c331840ff08cc5e7849f205c93e04b8f, equal to audited_head_sha; reviewed diff is phase_base_sha 55e7952b15b3e36dc8b44dea76f252ded4c9c12e..HEAD.",
+    "Delta commit 43f08c9d adds src/model-id.ts. MODEL_ID and safeModel occur only there; providers.ts and structured.ts import safeModel from that module.",
+    "packages/ai-tutoring/package.json exports only the root, retry, providers, lesson-context, and structured paths. model-id.ts is not a package subpath; src/index.ts does not expose safeModel.",
+    "grep across the package source finds no duplicate MODEL_ID or safeModel implementation and confirms callers in providers.ts and structured.ts.",
+    "The full Phase S3 work was reviewed in the prior passing round 8eee12fc. Current plan evidence identifies the remaining manual verification as PM-verified; this is not a finding.",
+    "The current plan records the internal-validator change in the S3 remediation r4 evidence, and that record matches commit 43f08c9d."
+  ],
+  "commands": [
+    "git rev-parse HEAD -> b0bb87d4c331840ff08cc5e7849f205c93e04b8f.",
+    "git diff --check 55e7952b15b3e36dc8b44dea76f252ded4c9c12e..b0bb87d4c331840ff08cc5e7849f205c93e04b8f -> exit 0.",
+    "git grep -n safeModel|MODEL_ID b0bb87d4 -- packages/ai-tutoring -> one implementation and expected imports/calls only.",
+    "~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh -c CI=true npm run test --workspace=packages/ai-tutoring -> 11 files, 158 tests passed, exit 0.",
+    "Prior exact-S3 Green evidence in green-s3-r4-8eee12fc.log records three NEWFAIL=0 gate sweeps, workerd probe-ok, typecheck, format, and doctor success."
+  ],
+  "changed_files": [
+    "apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.no-pii.test.ts",
+    "apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.test.ts",
+    "apps/bus-math-v2/__tests__/app/api/activities/spreadsheet/submit.no-pii.test.ts",
+    "apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts",
+    "apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.test.ts",
+    "apps/bus-math-v2/__tests__/lib/ai/spreadsheet-feedback.test.ts",
+    "apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts",
+    "apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts",
+    "apps/bus-math-v2/app/api/teacher/ai-error-summary/route.ts",
+    "apps/bus-math-v2/lib/ai/spreadsheet-feedback.ts",
+    "apps/bus-math-v2/lib/teacher/ai-error-summary.ts",
+    "apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.pii-scope.test.ts",
+    "apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts",
+    "measure/tech-stack.md",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/evidence.md",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/gates.sh",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md",
+    "measure/tech-debt.md",
+    "packages/ai-tutoring/package.json",
+    "packages/ai-tutoring/src/__tests__/openrouter-debug-logging.test.ts",
+    "packages/ai-tutoring/src/__tests__/roles.test.ts",
+    "packages/ai-tutoring/src/__tests__/structured.test.ts",
+    "packages/ai-tutoring/src/index.ts",
+    "packages/ai-tutoring/src/lesson-context.ts",
+    "packages/ai-tutoring/src/model-id.ts",
+    "packages/ai-tutoring/src/openrouter-client.ts",
+    "packages/ai-tutoring/src/providers.ts",
+    "packages/ai-tutoring/src/structured.ts",
+    "scripts/architecture/architecture.manifest.json",
+    "package-lock.json"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "openai/gpt-6-luna#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 5,
+      "evidence": "The shared implementation is at packages/ai-tutoring/src/model-id.ts:13-20, and both runtime modules import it."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 4,
+      "evidence": "The full package suite passes 158 tests; the S3 wire and model cases remain in structured.test.ts."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "The latest delta only relocates the validator to an unexported internal module and updates its two imports."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 5,
+      "evidence": "HEAD, exact phase diff, grep output, test output, and S3 gate evidence are recorded above."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+heavy-run: lock wait over 600 s — priority p2 — holder PID 2299362: flock -w 1800 -E 201 /home/daniebo/Desktop/primary-parity-progress/heavy.lock /home/daniebo/Desktop/advantage-pr/scripts/jobs/heavy-run.sh --locked -c set -o pipefail; cd dashboard && CI=true npx vitest run --exclude __tests__/storytime-unit2-sound-stage.test.ts --exclude __tests__/constants.test.ts --exclude __tests__/origins-thai-support.test.ts --exclude __tests__/default-look-new-editions.test.ts 
+
+> test
+> vitest run __tests__/app/api/student/lesson-chatbot/route.adversarial.test.ts
+
+[33m(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vitest.config.ts:49:35). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.[39m
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2
+
+ ✓ __tests__/app/api/student/lesson-chatbot/route.adversarial.test.ts (2 tests) 645ms
+     ✓ returns the fixed 503 body without a request when the API key is absent  639ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  12:23:37
+   Duration  1.27s (transform 59ms, setup 96ms, import 9ms, tests 645ms, environment 422ms)
+

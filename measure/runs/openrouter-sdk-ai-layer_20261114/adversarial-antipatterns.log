@@ -1,0 +1,5 @@
+FAIL: current phase still has 2 non-deferred incomplete tasks
+ALL_TILDE_GATE_EXIT=1
+A7_FILTER_OUTPUT=FAIL banned api.openai.com never hide this hit
+A7_FILTER_ASSERT_EXIT=0
+152:      The file is not staged. `npm run doctor` exited 0 with all checks passed.

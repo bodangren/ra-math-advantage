@@ -1,0 +1,117 @@
+Review B (security and data handling) — delta round 4 — openrouter-sdk-ai-layer_20261114 — Phase S3
+Audited HEAD: 18563a0ae803e4a2a01be48cd7210d282c7d36ef (current, git rev-parse verified)
+Delta: b0bb87d4..18563a0a = b39b1c57 (adversarial tests, tests only), 2d1c875e (Green fix),
+c2ab99b1 (plan evidence), 18563a0a (run log).
+
+FINAL VERDICT: PASS.
+
+Checks requested by the orchestrator brief:
+
+1. PII strip after the separator change (ADV-S3-5).
+   lesson-context.ts:72 now ends the detail clause at a newline: the separator
+   consumes horizontal space only after the label punctuation. I compared the
+   old and new separators side by side on regexes copied verbatim from
+   lesson-context.ts:67-77 (scratch-strip-compare.mjs under this run folder,
+   deleted after use).
+   - bare label: still stripped; the next math line now stays (old ate it).
+   - label plus value same line: still stripped, identical output.
+   - label at end of text: still stripped.
+   - CRLF: value plus its line end still stripped.
+   - tab: still stripped.
+   - label directly before math: label stripped, math kept (the fix).
+   Pre-existing over-removal of capitalized-word clauses ("Math: 2+2=4") is
+   unchanged: both separators match it. Accepted limit, documented in the
+   ADV-S3-5 test comment and evidence.md r5b: a value on the line after a
+   bare label now survives the clause strip. Real account PII still leaves
+   through the knownDetails loop (lesson-context.ts:91-95), which both routes
+   feed (BM2 route.ts:188 [session.username, session.sub]; IM3 route.ts:215
+   [displayName, email, username, id]). Not a finding: deliberate, documented
+   trade that protects lesson math, and account PII stays covered.
+   Release gates at HEAD, all through heavy-run.sh:
+   - BM2 -t no-PII: 5 passed of 5 (lesson-chatbot, spreadsheet submit,
+     teacher ai-error-summary). The ADV-S3-2/3 wire cases ran green inside
+     that group and asserted NO_PII_VALUES absent from the wire prompt.
+   - BM2 -t "S3 fix": 3 passed of 3 (fixture strip, ADV-S3-5, route S3 case).
+   - IM3 -t "no-PII|S3 fix": 8 passed of 8 (route.pii-scope 7 plus
+     route.no-pii 1), 7072 skipped. Both no-PII gates hold.
+
+2. Structured SDK debug output (ADV-S3-8).
+   Before the fix, structured.ts built the client with no debugLogger, and the
+   SDK falls back to raw console when OPENROUTER_DEBUG is set
+   (node_modules/@openrouter/sdk/esm/lib/sdks.js:60-61). The structured path
+   therefore printed the Authorization header. 2d1c875e wires the shared
+   redacting logger in (structured.ts:154). Now:
+   - object arguments (request and response bodies) print "[body redacted]"
+     (debug-logger.ts:44-47), so no prompt, answer, or response body on any
+     path;
+   - header strings keep the configured key forms redacted: raw key,
+     trimmed key, and the bearer-stripped token, all length >= 8
+     (debug-logger.ts:17-37);
+   - retry adds no logging (retry.ts has no console call) and each attempt
+     reuses the same redacting logger;
+   - error mapping keeps HTTP errors status-only and applies redactApiKey to
+     error text (providers.ts:41-77); route handlers log role plus status only;
+   - usage records carry role, model, latency, tokens, outcome, status only
+     (usage-log.ts:12-26).
+   The ADV-S3-8 test proves the leak is closed: the mocked fetch asserts the
+   wire header is "Bearer <KEY>" while the captured console output holds no
+   key, prompt, or answer. It ran green in my full package heavy-run
+   (165 of 165).
+
+3. Chat path redaction unchanged in strength.
+   providers.ts imports the same debugLoggerFor (providers.ts:12). The only
+   chat-path change is that object bodies now print "[body redacted]" instead
+   of key-redacted JSON, which removes prompts and answers from chat debug
+   output too. The round-2 chat redaction test (finding e N1) still passes in
+   the full package run.
+
+4. No new export.
+   package.json exports list only ., ./retry, ./providers, ./lesson-context,
+   ./structured. src/index.ts re-exports no debug-logger symbol. The module
+   header documents itself as internal (debug-logger.ts:1-13).
+
+5. gates.sh key() change hides no real failure.
+   I sourced the real gates.sh and ran key() on a synthetic log
+   (scratch-key-test.sh, deleted after use): FAIL, AssertionError, and TS
+   lines stay in the key; both the raw "[ai-tutoring] request" line and the
+   "stdout |" framed one drop. gates.sh detects a new failure first by exit
+   code (gates.sh:118-123); key() only refines the case where baseline and
+   current share a nonzero exit code. A genuine new failure always adds
+   FAIL/AssertionError/TS diagnostics that remain in the key. The filter is
+   fixed-string and line-anchored, so no error message that merely contains
+   the phrase is dropped.
+
+A2: not applicable. The delta flips no draft-to-published status and touches
+no publish or consent path.
+A6: the tracks.md entry and the evidence.md r5b section claim nothing beyond
+what I verified: separator scope, [body redacted], no new export, key()
+maintenance, and the suite counts all match the code and my runs.
+
+Carried debt (nonblocking, open in measure/tech-debt.md, unchanged in this
+delta): F2 short-username substring deletion, F3 fixed status null in the
+BM2 rate-limit catch, F4 raw error log in the teacher ai-error-summary outer
+catch. The delta did not touch the knownDetails loop or either route file.
+
+Verification runs (heavy-run.sh, one at a time):
+- slot check: ok
+- full packages/ai-tutoring: 165 passed of 165 (12 files)
+- BM2 -t no-PII: 5 passed, 2717 skipped (release gate holds)
+- BM2 -t "S3 fix": 3 passed, 2719 skipped (ADV-S3-5 green)
+- IM3 -t "no-PII|S3 fix": 8 passed, 7072 skipped
+
+Scratch files deleted after the audit: scratch-strip-compare.mjs,
+scratch-strip-forms.mjs, scratch-key-test.sh.
+
+MEASURE_AGENT_RESULT
+role: measure-review-b-security
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: S3 — fourth review round (delta round)
+commits: none (audit only; delta under review: b39b1c57, 2d1c875e, c2ab99b1, 18563a0a)
+tests_run: heavy-run packages/ai-tutoring full: 165/165 pass; heavy-run BM2 -t no-PII: 5 pass (release gate holds); heavy-run BM2 -t "S3 fix": 3 pass (ADV-S3-5 green); heavy-run IM3 -t "no-PII|S3 fix": 8 pass
+files_changed: measure/runs/openrouter-sdk-ai-layer_20261114/measure-review-b-security-18563a0a.json, measure-review-b-security-18563a0a.log
+plan_updates: none (audit only)
+known_failures: none; the IM3 queue/sessions UTC-midnight flake window (00:00-01:00 UTC) is outside my runs
+handoff: All five brief checks verified and green; no blocker, status pass. The pre-fix structured debug path did leak the Authorization header through the SDK console fallback, and 2d1c875e closes it. Carried debt F2-F4 remain open in measure/tech-debt.md, unchanged by the delta. No routed CONTEST items this round.
+END_MEASURE_AGENT_RESULT
+RESULT: PASS

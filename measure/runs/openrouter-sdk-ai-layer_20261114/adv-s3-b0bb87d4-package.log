@@ -1,0 +1,30 @@
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage
+
+ ❯ packages/ai-tutoring/src/__tests__/openrouter-debug-logging.test.ts (2 tests | 1 failed) 65ms
+     × ADV-S3-8: structured SDK debug output keeps the authorization key out of the console 23ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/ai-tutoring/src/__tests__/openrouter-debug-logging.test.ts > S3 adversarial > ADV-S3-8: structured SDK debug output keeps the authorization key out of the console
+AssertionError: expected '[[["[ai-tutoring] request","{\"role\"…' not to contain 'sk-test-debug-fixture-6642'
+
+Expected: "sk-test-debug-fixture-6642"
+Received: "[[["[ai-tutoring] request","{\"role\":\"accountingEval\",\"model\":\"vendor/served-model\",\"latencyMs\":7,\"promptTokens\":7,\"completionTokens\":3,\"totalTokens\":10,\"outcome\":\"ok\",\"status\":null}"]],[],[],[],[["accept: application/json"],["authorization: Bearer sk-test-debug-fixture-6642"],["content-type: application/json"],["cookie: "],["http-referer: https://github.com/bodangren/ra-integrated-math-3"],["user-agent: speakeasy-sdk/typescript 1.5.128 2.960.8 1.0.0 @openrouter/sdk"],["x-openrouter-title: Integrated Math 3"],[{"messages":[{"content":"S3 debug prompt fixture 2214","role":"user"}],"model":"vendor/accounting-model","provider":{"require_parameters":true},"response_format":{"json_schema":{"name":"debug_score","schema":{"$schema":"https://json-schema.org/draft/2020-12/schema","type":"object","properties":{"score":{"type":"number"}},"required":["score"],"additionalProperties":false},"strict":true},"type":"json_schema"},"stream":false}],["Status Code:",200,""],["content-type: application/json"],[{"id":"gen-s3-debug","created":1,"object":"chat.completion","system_fingerprint":null,"model":"vendor/served-model","choices":[{"index":0,"message":{"role":"assistant","content":"{\"score\":7}"},"finish_reason":"stop"}],"usage":{"prompt_tokens":7,"completion_tokens":3,"total_tokens":10}}]]]"
+
+ ❯ packages/ai-tutoring/src/__tests__/openrouter-debug-logging.test.ts:97:29
+     95|     ).resolves.toStrictEqual({ ok: true, data: { score: 7 }, raw });
+     96|     expect(fetchMock).toHaveBeenCalledTimes(1);
+     97|     expect(logs.text()).not.toContain(KEY);
+       |                             ^
+     98|   });
+     99| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 47 passed (48)
+   Start at  06:31:57
+   Duration  6.54s (transform 91ms, setup 0ms, import 2.03s, tests 4.08s, environment 0ms)
+

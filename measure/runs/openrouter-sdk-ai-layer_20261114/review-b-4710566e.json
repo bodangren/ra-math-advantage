@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "role": "review-b",
+  "track": "openrouter-sdk-ai-layer_20261114",
+  "phase": "Phase S1: Adopt the OpenRouter SDK",
+  "baseline_sha": "dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c",
+  "audited_head_sha": "4710566e9acf3c3a16c3aa2a29388781ee7c9e37",
+  "status": "pass",
+  "summary": "Phase S1 passes the security review with six nonblocking findings and no blocker. The API key reaches only the SDK constructor, and no package code logs it. Both chatbot routes keep auth and the rate limit before the provider call, and their error bodies stay fixed strings. The new dependency has a benign postinstall script, an Apache-2.0 license, one added package, and no new advisory. One latent risk remains: the SDK logs headers and bodies when OPENROUTER_DEBUG is set (F1).",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "F1 [Major] review-b: The SDK logs the API key, the prompts, and the answers when OPENROUTER_DEBUG is true, 1, yes, or on. With no debugLogger option, the SDK uses console as its logger (node_modules/@openrouter/sdk/esm/lib/sdks.js:60). The logger prints each request header, including authorization, without redaction (sdks.js:234-237). It also prints the request body and the response body (sdks.js:243, sdks.js:280). packages/ai-tutoring/src/openrouter-client.ts:19-26 passes no debugLogger. No file in the repository sets the flag, so the risk is latent. Rationale: spec.md:284 forbids a log line with prompt text, answer text, or the API key. A Worker variable with this name breaks that rule in production. Fix: pass a no-op debugLogger with group, groupEnd, and log methods in createOpenRouterClient. The SDK reads options.debugLogger before the env flag. Add a test that sets OPENROUTER_DEBUG=1 and checks that no console method receives the key or the prompt. S2 can carry this fix with its usage-record log tests.",
+    "F2 [Nit] review-b: The mapped error text now holds upstream response text, and withRetry reads a status from that text. providers.ts:35 puts the SDK message, which comes from the response body, after the status. Before S1, the text held only the status and the status text. retry.ts:52 tests /\\((\\d{3})\\)/ on the whole message before the error: <status> test at retry.ts:56. So OpenRouter API error: 400 Bad request (503) is retried, and OpenRouter API error: 503 Provider said (400) is not. mapSdkError also returns each non-HTTP SDK error unchanged (providers.ts:51), and SDKValidationError keeps the request input in rawValue. Rationale: upstream text now controls a retry decision, which is the A1 pattern (a substring used as a structured signal). The default SDK error class adds up to 10000 characters of the body to the message (esm/models/errors/openrouterdefaulterror.js). Both routes log the full error object on each provider failure, so this text reaches the server log, and no student-visible path exists. Fix: copy statusCode onto the mapped error. Let isRetryableError read that field first. Map each other SDK error to a new Error with a short message and no raw payload.",
+    "F3 [Nit] review-b: The BM2 chatbot route calls the provider resolver outside its try block, and the SDK constructor can now throw. apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts:181 resolves the provider, and the try block starts at line 188. The SDK constructor throws on a malformed OPENROUTER_API_BASE or OPENROUTER_BASE_URL (esm/lib/config.js, esm/hooks/base-url-env.js). The old constructor could not throw. vinext then logs the error and returns an empty 500 (vinext/dist/server/app-route-handler-execution.js:354 and :365), so no text reaches the student. The IM3 route resolves the provider inside its try block (apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts:209), so it returns its JSON 500. Rationale: a malformed variable changes the failure mode only, and no key or message leaks. Fix: move the resolver call inside the try block, so the route returns its JSON 502. S2 edits this line and can carry the change.",
+    "F4 [Nit] review-b: The repository has no minimum-release-age rule, and the new SDK version was under 4 hours old at install. The registry shows 1.5.125 published on 2026-11-20 15:34 UTC, and the install commit fa35361e is dated 2026-11-20 19:23 UTC. The lockfile pins the version with an integrity hash. The registry now shows 1.5.126 and 1.5.127, and the package ships about four patch versions each day. The package runs a postinstall script, but the script makes no request and reads no secret in this repository (see the dependency evidence entry). Rationale: the facts show no defect today. The npm audit signatures run reports no failure, and the registry lists an SLSA provenance attestation. The dependency-refresh track can add a release-age rule or re-pin after a soak period.",
+    "F5 [Nit] review-b: No test pins three security behaviors of the unchanged chatbot routes. The BM2 route tests have no 429 case and no 503 case, so no test shows that a denied rate limit skips the provider call. The IM3 route tests have a 429 case but no 503 case, so no test pins the fixed body AI provider not configured. The new route.sdk.test.ts files cover the happy path only. Source reading shows the correct order in both routes (BM2 route.ts:77-106 before :181, and IM3 route.ts:85-177 before :209), and S1 did not change these routes. Rationale: S2 changes the 503 path to fail closed. S2 can add one test for each route: a 429 skips the provider, and a missing key returns the fixed 503 body with no outbound request.",
+    "F6 [Nit] review-b: The gate script compares only the critical and high counts of npm audit, so a swapped advisory ID passes. measure/tracks/openrouter-sdk-ai-layer_20261114/gates.sh:184-193 reads the critical and high counts from audit.txt and compares the numbers. test-strategy.md finding F8 says that a new critical or high advisory ID is a new failure. The script saves audit.json but does not compare the IDs. Rationale: one fixed high advisory plus one new high advisory keeps the count equal and hides the new one. My compare by advisory ID shows no difference for S1. Fix: compare the sorted advisory IDs of the critical and high entries of audit.json between the baseline label and the current label."
+  ],
+  "evidence": [
+    "Provenance: git rev-parse HEAD returns 4710566e9acf3c3a16c3aa2a29388781ee7c9e37, which equals the immutable audited HEAD. The phase base dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c resolves to a commit and is an ancestor of HEAD. The brief gave no separate role_base_sha, so the role base equals the audited HEAD, as in earlier Review B runs.",
+    "Security applicability: applicable. test-strategy.md line 32 names Review B for the new dependency. The range dbf4d65e..4710566e changes package-lock.json, packages/ai-tutoring/package.json, packages/ai-tutoring/src/openrouter-client.ts, packages/ai-tutoring/src/providers.ts, .github/workflows/ci.yml, and packages/ai-tutoring/workerd-probe/run.mjs, worker.ts, and wrangler.jsonc.",
+    "Scope: git diff --name-status dbf4d65e..4710566e -- apps packages lists 10 paths, all with status A or M. No route, auth, Convex, schema, migration, or rate-limit file is in the range. git diff --diff-filter=D lists no deleted file. Tenant scoping, persistence, and migration safety are not touched.",
+    "API key in the client: openrouter-client.ts:18-27 passes the key only to the OpenRouter constructor. grep for console. in packages/ai-tutoring/src (non-test) finds no match, so the package logs nothing. F1 covers the SDK flag.",
+    "API key in errors: mapSdkError (providers.ts:28-52) copies only statusCode and message into a new Error, and it drops body, headers, and rawResponse. The SDK error classes (openroutererror.js, unauthorizedresponseerror.js, openrouterdefaulterror.js, httpclienterrors.js) build messages from the response body or the cause, never from request headers.",
+    "Env read: process.env.OPENROUTER_API_KEY is read inside the two resolve functions at call time (providers.ts:198 and :222). The non-test importers of @math-platform/ai-tutoring are route and lib files only, and none is a use-client file. The SDK itself reads OPENROUTER_API_KEY, OPENROUTER_HTTP_REFERER, OPENROUTER_APP_TITLE, OPENROUTER_APP_CATEGORIES, OPENROUTER_DEBUG, and OPENROUTER_BASE_URL (esm/lib/env.js, esm/hooks/base-url-env.js). No repository file sets any of them.",
+    "Routes: the S1 range does not change either chatbot route. BM2 order: auth route.ts:77-84, rate limit :89-106, provider :181. IM3 order: auth :85-92, enrollment :147-157, rate limit :159-177, provider :209. Both 503 bodies are the fixed string AI provider not configured. Student-visible errors stay fixed strings: BM2 502 Unable to get a response, IM3 500 Failed to process request.",
+    "Spreadsheet path: apps/bus-math-v2/app/api/activities/spreadsheet/[activityId]/submit/route.ts wraps generateAiFeedback in catch { aiFeedback = null }, so no provider error text reaches the client. spreadsheet-feedback.ts is imported only by that route.",
+    "workerd probe: run.mjs uses the dummy key probe-key, the loopback mock http://127.0.0.1:4299/api/v1, wrangler dev with --local, and a fixed argv with no shell. wrangler 4.98.0 is in node_modules/.bin, so npx downloads nothing. The state folder workerd-probe/.wrangler/ is gitignored. The Green log workerd-probe-s1.log ends with the line: workerd probe: probe-ok. I did not run the probe.",
+    "CI: the new ci.yml step (Run workerd SDK probe) has no env block and no secret. The workflow triggers are push, pull_request, and workflow_dispatch. No pull_request_target trigger exists. npm ci runs the SDK postinstall with CI set, so the script returns at once.",
+    "Secret scan: the added lines of the range, without package-lock.json, show only the fake keys test-key, sk-test, sdk-route-key, and probe-key. No .env, .dev.vars, key, or credential file is in the range. The lockfile diff holds one sha512 integrity line for the SDK.",
+    "Dependency: license Apache-2.0 (package-lock.json entry and package.json). The only lifecycle scripts are postinstall (node scripts/check-types.js || true) and prepare (npm run build); prepare does not run for a registry install. The postinstall script returns when CI is set, and it skips when src/types/models.ts is absent. The installed package has no src folder, so the script makes no request. The lockfile diff adds one package, @openrouter/sdk 1.5.125. Its only dependency, zod, dedupes to 4.6.7.",
+    "Install timing: the SDK 1.5.125 publish time is 2026-11-20T15:34:17Z, and the install commit fa35361e is dated 2026-11-21T02:23:10+07:00 (2026-11-20T19:23:10Z). The version was 3 hours 49 minutes old at install.",
+    "Advisories: npm audit --json returns critical=0 high=9 moderate=7 low=5. A python3 compare with gates/baseline/audit.json finds the same 21 packages with the same severity and advisory sources. No entry names @openrouter/sdk or zod. npm audit signatures (the first run hit ECONNRESET on prettier, and the second run passed) reports 805 verified registry signatures, 205 verified attestations, and no failure.",
+    "SDK network use: the runtime JavaScript names analytics hosts only as Zod default values in observability-destination schemas (for example esm/models/observabilityposthogdestination.js). No code calls these hosts. The outbound body adds only stream:false (esm/models/chatrequest.js:202). The headers are HTTP-Referer, X-OpenRouter-Title, and the SDK user-agent. The SDK adds no identifier.",
+    "Tests at the audited HEAD: npx vitest run src/__tests__/providers.test.ts in packages/ai-tutoring passes 23 tests, with the 6 SDK transport cases. BM2 route.sdk.test.ts and providers.test.ts pass 3 tests. IM3 route.sdk.test.ts passes 1 test. No test reaches the network: the package tests mock @openrouter/sdk, and the route tests stub fetch.",
+    "Anti-pattern A2 is not applicable: the range has no draft-to-published flip, no consent artifact, and no named subject. Anti-pattern A6 is not applicable: measure/tracks.md is not in the range diff and holds no resolved security claim for this track.",
+    "gates.sh: it writes only under measure/runs/openrouter-sdk-ai-layer_20261114/gates/<label>, which is gitignored. Its only network use is npm audit --json. It has no secret, delete, or push command. Its audit step compares the critical and high counts only (F6). My own compare by advisory ID found no difference.",
+    "Retry replica (logic check, not a run of the repository code): a python3 copy of the three patterns at retry.ts:52, 56, and 60 gives these results. The pre-S1 shape 400 gives no retry. A benign S1 message with status 400 gives no retry. The message 400 with (503) gives retry. The message 503 with (400) gives no retry. The existing SDK-transport cases use messages with no parentheses, so none of them shows this. The replica supports F2.",
+    "F1 evidence limit: I read esm/lib/sdks.js and esm/lib/env.js. I did not run the SDK logger. The reading is direct: logRequest iterates req.headers.entries() and logs each pair, and the Authorization header is part of req.headers before the log call."
+  ],
+  "commands": [
+    "git rev-parse HEAD -> 4710566e9acf3c3a16c3aa2a29388781ee7c9e37",
+    "git merge-base --is-ancestor dbf4d65e HEAD -> exit 0",
+    "git diff --stat dbf4d65e..4710566e -> 17 files, 1361 insertions, 245 deletions",
+    "git diff --name-status dbf4d65e..4710566e -- apps packages -> 10 paths, status A or M only",
+    "git diff --diff-filter=D --name-only dbf4d65e..4710566e -> no output",
+    "git diff -U0 dbf4d65e..4710566e (without package-lock.json) with a secret-pattern grep -> only fake test keys",
+    "git log -1 --format=%cI fa35361e -> 2026-11-21T02:23:10+07:00",
+    "npm view @openrouter/sdk@1.5.125 -> Apache-2.0, SLSA provenance attestation listed, 2 registry signatures",
+    "npm view @openrouter/sdk time --json -> 1.5.125 on 2026-11-20T15:34Z; 1.5.127 on 2026-11-21T00:41Z",
+    "npm ls @openrouter/sdk zod --all -> one @openrouter/sdk@1.5.125; zod@4.6.7 deduped",
+    "npm audit --json plus python3 compare with gates/baseline/audit.json -> 21 of 21 packages unchanged; critical=0 high=9 moderate=7 low=5",
+    "npm audit signatures -> first run ECONNRESET on prettier (infrastructure); second run 805 signatures, 205 attestations, no failure",
+    "grep process.env, OPENROUTER_DEBUG, console. in node_modules/@openrouter/sdk/esm -> lib/env.js and lib/sdks.js only",
+    "read of SDK scripts/check-types.js, hooks/base-url-env.js, hooks/registration.js, lib/sdks.js, lib/security.js, models/errors/*.js -> findings F1, F2, F3 and the postinstall result",
+    "grep console. in packages/ai-tutoring/src (non-test) -> no match; grep fetch( in the same folder -> no match",
+    "CI=true npx vitest run src/__tests__/providers.test.ts (packages/ai-tutoring) -> 23 passed",
+    "CI=true npx vitest run __tests__/app/api/student/lesson-chatbot/route.sdk.test.ts __tests__/lib/ai/providers.test.ts (apps/bus-math-v2) -> 3 passed",
+    "CI=true npx vitest run __tests__/app/api/student/lesson-chatbot/route.sdk.test.ts (apps/integrated-math-3) -> 1 passed",
+    "python3 replica of retry.ts regex order on four sample messages -> as in the Retry replica evidence entry"
+  ],
+  "changed_files": [
+    ".github/workflows/ci.yml",
+    "apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.sdk.test.ts",
+    "apps/bus-math-v2/__tests__/lib/ai/providers.test.ts",
+    "apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.sdk.test.ts",
+    "measure/gates.json",
+    "measure/tech-stack.md",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/evidence.md",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/gates.sh",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md",
+    "package-lock.json",
+    "packages/ai-tutoring/package.json",
+    "packages/ai-tutoring/src/__tests__/providers.test.ts",
+    "packages/ai-tutoring/src/openrouter-client.ts",
+    "packages/ai-tutoring/src/providers.ts",
+    "packages/ai-tutoring/workerd-probe/run.mjs",
+    "packages/ai-tutoring/workerd-probe/worker.ts",
+    "packages/ai-tutoring/workerd-probe/wrangler.jsonc"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "claude-code/claude-sonnet-5-5#max",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 4,
+      "evidence": "The key reaches only the SDK constructor (openrouter-client.ts:19-26), but edge gaps remain at sdks.js:60 (F1) and retry.ts:52 (F2)."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 3,
+      "evidence": "The 6 SDK transport cases and both route.sdk.test.ts files pass (27 tests), but no test covers F1, F2, or F5."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "git diff --name-status lists only A or M paths from the plan tasks, with no route, auth, Convex, or deleted file."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 4,
+      "evidence": "evidence.md names a log for each claim, and my npm audit compare by advisory ID matched gates/baseline/audit.json (21 of 21 packages)."
+    }
+  ]
+}

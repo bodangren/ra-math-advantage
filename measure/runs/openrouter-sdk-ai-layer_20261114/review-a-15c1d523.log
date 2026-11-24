@@ -1,0 +1,13 @@
+MEASURE_AGENT_RESULT
+role: review-a
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S2: Role-based model configuration
+commits: none
+tests_run: `heavy-run.sh -c "CI=true npm run test --workspace=packages/ai-tutoring -- -t 'S2 role selection through the real SDK|S2 responses and logs through the real SDK|documented 200 bodies|case-insensitive Bearer strip'"` passed 16 tests; `heavy-run.sh -c "CI=true npm run test --workspace=apps/integrated-math-3 -- __tests__/app/api/student/lesson-chatbot"` passed 14 tests; `git diff --check d8e08cde..15c1d523` passed
+files_changed: review-a-15c1d523.json and review-a-15c1d523.log
+plan_updates: none
+known_failures: F1: IM3 lesson markdown after a person-detail label is removed from chatbot context. The exact fixture returns an empty string.
+handoff: Route F1 to Green. The r3 late finding meets the wrong-result exception: the planned IM3 route can send the tutor no lesson math context. Fix the sanitizer to remove personal details without removing following lesson text, and add a test with math after the detail label. The 47a5c224 and 1833c526 adversarial assertions remain unchanged; only the SDK-required system_fingerprint field was added. The plan still has S2 Verify, Docs & Doctor, and manual verification tasks open.
+dispositions: none
+END_MEASURE_AGENT_RESULT

@@ -1,0 +1,85 @@
+Phase acceptance r4 log (record-only delta). Track openrouter-sdk-ai-layer_20261114, Phase S4.
+Audited HEAD: 55f4e967dfadba9d8f1c17af7fe9db8e9ca7b79d. phase_base_sha: 8283f9fa192be2afc78a2e731fac1e267c3535b5.
+Route: claude-agent/sonnet#xhigh. Date: 2026-11-24.
+
+Verdict: PASS. No blocker. One Major nonblocking finding (F1) and three nits (F2, F3, F4).
+
+Brief check 1: the delta touches no production code, test, config, or gate
+- git diff --name-only 8b66cbf4 HEAD lists five paths: measure/generated/exports.md, measure/tech-debt.md,
+  and evidence.md, metadata.json, plan.md under measure/tracks/openrouter-sdk-ai-layer_20261114/.
+- The same diff restricted to package files, apps, packages, scripts, .github, gates.json, tracks.md,
+  archive, and measure/scripts prints nothing. No dependency change.
+- Since 3bcf2b31 only four scripts test or config files changed (the Red r3 and r4 files). Acceptance r3
+  passed them at 8b66cbf4. Reviews A, B, and C and adversarial testing pass at 3bcf2b31 and still apply.
+- Allowed record-only commits: 987a919e, 635e9308, 4cddbebc, 51cc734e, 55f4e967.
+- I did not rerun the lint, test, or checks-all sweeps. The delta holds no code or config change.
+
+Brief check 2: exports.md equals the generator output at HEAD
+- acceptance4-exports-check.mjs (one heavy-run.sh job) renders the five reports in memory and compares each
+  with git show HEAD:measure/generated/<file>. 5 of 5 equal. exports.md lists ./structured for ai-tutoring.
+- I did not run npm run generate. It rewrites the dirty routes.md. The in-memory render is the same function.
+- bash measure/doctor.sh: exit 0, All checks passed. With a clean exports.md this proves the committed file.
+  Final acceptance F3 is closed.
+
+Brief check 3: plan SHAs and markers
+- 51cc734e changes exactly 11 task lines. Each of the 9 distinct SHAs resolves and is an ancestor of HEAD:
+  92ef37e0 (S2 verify, docs, manual marks), e661e619 (S2 checkpoint), d156ce06 and 54f8c772 (S3 Contract),
+  b72c6f33 and ff30c052 (S3 Red), e0b03ba8 (S3 Verify and Docs marks), 0f5c4b68 (S3 checkpoint),
+  987a919e (S4 checkpoint). Each commit subject fits its task. The S4 heading tag matches 987a919e.
+- plan_closeout_feedback at HEAD: 0 completed [x] lines without a SHA. Final acceptance F2 part 2 is closed.
+- Markers: top level 33 [x], 2 [b], 0 [~], 0 [ ]. [b] = S1 manual verification (deferred:closeout-steward)
+  and the live smoke test (deferred:daniel). S4 manual verification is [x] with (PM-verified 2026-11-24)
+  and 987a919e. Its cited acceptance result phase-acceptance-8b66cbf4.json has status pass. Markers are honest.
+- F1: 197 nested [ ] sub-boxes remain (193 under [x] tasks, 4 under the [b] live smoke test, 30 inside S4).
+  That is final acceptance F2 part 1. The role gate counts top-level tasks only.
+- PM PII release gate: plan.md:60 is unchanged in the phase diff.
+
+Brief check 4: tech-debt.md
+- 50 lines (limit 50). Line 47 holds the structured helper timeout row (Major, Open). Its references hold.
+- The only test that reads tech-debt.md (IM3 server-composition.test.ts) passes 16 of 16. Its row sits in
+  the archive file, which the delta does not touch.
+
+Other checks
+- evidence.md:573 now says 10 file/token pairs. The Red logs print 'Banned token match count: 10'.
+- metadata.json parses. Only deviation_notes grew.
+- ASD-STE100 on the 44 added sentences: none over 25 words (real sentences), one passive (F4).
+- A3, A4, A6, A7 do not apply (the delta changes no filter, contract test, marker check, or tracks.md).
+  A5: every numeric claim that the delta adds reproduces at HEAD.
+
+Nonblocking findings
+- F1 [Major] 197 nested [ ] sub-boxes remain in plan.md. Decide before final acceptance: tick or waive.
+- F2 [Nit] tech-debt.md is at the 50-line limit.
+- F3 [Nit] The timeout row omits the optional request.abortSignal that no caller sets.
+- F4 [Nit] One passive sentence in metadata.json deviation_notes.
+
+Process note
+- The brief's verify command passes --phase S4 and no --result-file. The role gate matches the full phase
+  heading (measure_interphase_checks.py:394) and needs --result-file for audit roles. I ran it with the full
+  heading, the result file, and this log.
+
+Gate commands
+- audit-result --role phase-acceptance --file phase-acceptance-55f4e96.json: exit 0 (PASS: audit result is valid).
+- role-gate --role phase-acceptance with the full phase heading, --result-file, and --log-file: exit 0
+  (PASS: phase-acceptance gate passed). The S4 manual verification task is [x] now, so no incomplete task remains.
+- role-gate exactly as the brief wrote it (--phase S4, no --result-file): exit 1. Output: '--result-file is
+  required for audit roles' and 'could not find phase S4'. Both failures come from the missing arguments.
+
+Questions for the orchestrator (default in brackets)
+- F1: tick the 193 sub-boxes and mark the 4 smoke-test boxes [b] (deferred:daniel) in a record-only build
+  edit before final acceptance, or waive the check at closeout? [Tick them. Final acceptance will fail on them.]
+
+Scope note: this acceptance covers HEAD 55f4e967. A later commit that touches only measure/runs/, the plan,
+tech-debt, or generated docs keeps this result valid. A production change needs a new acceptance run.
+
+MEASURE_AGENT_RESULT
+role: phase-acceptance
+status: done
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S4: Remove the OpenAI paths and document the roles
+commits: none
+tests_run: Record-only delta since 8b66cbf4 (5 measure/ files, no code, test, config, or gate file). exports.md equals the in-memory generator output (5 of 5 reports equal the HEAD blobs). doctor exit 0 (All checks passed). IM3 server-composition test 16 passed. Plan SHAs 9 of 9 resolve and are ancestors of HEAD. plan_closeout_feedback 197 items (0 [x] without SHA, 197 nested [ ] sub-boxes). tech-debt.md 50 lines. Sweeps not rerun (no code or config change; r3 and final acceptance sweeps stand). audit-result exit 0; role-gate exit 0 (full phase heading, result file, and log file).
+files_changed: acceptance JSON and log; acceptance4-exports-check.mjs, acceptance4-sha-check.cjs, acceptance4-plan-check.py, acceptance4-asd-check.cjs under measure/runs
+plan_updates: none
+known_failures: none new. Nonblocking F1 (197 nested [ ] sub-boxes, final acceptance F2 part 1), F2 to F4 nits. Final acceptance F4 (structured helper timeout) stays an open Major row in tech-debt.md.
+handoff: Acceptance passes at 55f4e967. Final acceptance F1 (coverage), F2 part 2 (11 SHAs), and F3 (exports.md) are closed. Open before the next final acceptance: F1 here (197 nested [ ] sub-boxes, final acceptance F2 part 1). Decision for the orchestrator: tick them in a record-only edit, or waive the check. The live smoke test stays [b] (deferred:daniel). The structured helper timeout stays a Major tech-debt row to fix before PR3.
+END_MEASURE_AGENT_RESULT

@@ -1,0 +1,207 @@
+import { describe, expect, it } from "vitest";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { scanFilesForBannedTokens } from "./openrouter-scan-shared";
+
+const REPO_ROOT = "/home/daniebo/Desktop/ra-math-advantage";
+const GATE_FILE = "/home/daniebo/Desktop/ra-math-advantage/measure/runs/openrouter-sdk-ai-layer_20261114/acceptance3-mutation/copy-m4-gate-wrapper-bypass/gate.test.ts";
+
+const BANNED_TOKENS = [
+  "api.openai.com",
+  "api.anthropic.com",
+  "OPENAI_API_KEY",
+  "AI_INTERPRETATION_",
+];
+
+const EDITED_DOCUMENTS = [
+  "apps/bus-math-v2/.env.example",
+  "apps/integrated-math-3/.env.example",
+  "apps/bus-math-v2/wrangler.jsonc",
+  "apps/integrated-math-3/wrangler.jsonc",
+  "measure/tech-stack.md",
+];
+
+const GUARD_SENTINELS = [
+  { workspace: "apps/integrated-math-3", title: "POST /api/student/lesson-chatbot" },
+  { workspace: "apps/bus-math-v2", title: "POST /api/student/lesson-chatbot" },
+  { workspace: "apps/bus-math-v2", title: "spreadsheet-feedback" },
+  { workspace: "apps/bus-math-v2", title: "teacher AI error summary" },
+  { workspace: "apps/bus-math-v2", title: "GET /api/teacher/ai-error-summary" },
+  { workspace: "apps/integrated-math-3", title: "no-PII" },
+  { workspace: "apps/bus-math-v2", title: "no-PII" },
+];
+
+const EXCLUDED_DIR_NAMES = new Set(["node_modules", ".next", "dist"]);
+const BINARY_EXTENSIONS = new Set([
+  ".png",
+  ".jpg",
+  ".jpeg",
+  ".gif",
+  ".webp",
+  ".ico",
+  ".woff",
+  ".woff2",
+  ".ttf",
+  ".pdf",
+  ".db",
+  ".sqlite",
+  ".zip",
+  ".gz",
+  ".mp3",
+  ".mp4",
+  ".wasm",
+]);
+
+function isBinaryPath(file: string): boolean {
+  return BINARY_EXTENSIONS.has(path.extname(file).toLowerCase());
+}
+
+function scanRepoFilesForBannedTokens(files: string[]): string[] {
+  return scanFilesForBannedTokens(files, BANNED_TOKENS, isBinaryPath, REPO_ROOT);
+}
+const SOURCE_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".mjs", ".cjs"]);
+const KEY_SHAPED = /(?:sk-ant-|sk-)[A-Za-z0-9_-]{16,}/;
+
+function listFiles(root: string): string[] {
+  const out: string[] = [];
+  const visit = (dir: string): void => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (entry.isDirectory()) {
+        if (EXCLUDED_DIR_NAMES.has(entry.name)) continue;
+        visit(path.join(dir, entry.name));
+      } else if (entry.isFile()) {
+        out.push(path.join(dir, entry.name));
+      }
+    }
+  };
+  if (fs.existsSync(root)) visit(root);
+  return out.sort();
+}
+
+function readText(file: string): string {
+  return fs.readFileSync(file, "utf8");
+}
+
+function isCommentLine(line: string): boolean {
+  const trimmed = line.trim();
+  return (
+    trimmed.startsWith("//") ||
+    trimmed.startsWith("/*") ||
+    trimmed.startsWith("*") ||
+    trimmed.startsWith("#") ||
+    trimmed === ""
+  );
+}
+
+describe("openrouter-s4-adversarial", () => {
+  it("ADV-S4-1: the removal gate keeps the four exact banned tokens", () => {
+    const src = readText(GATE_FILE);
+    const block = src.match(/const BANNED_TOKENS = \[([\s\S]*?)\];/);
+    expect(block, "BANNED_TOKENS block must exist").not.toBeNull();
+    const found = Array.from(block![1].matchAll(/"([^"]+)"/g)).map((m) => m[1]);
+    expect(found.sort(), "Banned token fixture must stay exact").toEqual([...BANNED_TOKENS].sort());
+    expect(src.includes('new Set(["node_modules", ".next", "dist"])'), "No bare-word exclude").toBe(
+      true,
+    );
+    const describeBody = src.match(/describe\("openrouter-only"[\s\S]*$/);
+    const caseCount = (describeBody?.[0].match(/\bit\(/g) ?? []).length;
+    expect(caseCount, "Removal gate case count").toBe(3);
+  });
+
+  it("ADV-S4-1: no scanned file under apps or packages holds a banned token", () => {
+    const files = [
+      ...listFiles(path.join(REPO_ROOT, "apps")),
+      ...listFiles(path.join(REPO_ROOT, "packages")),
+    ];
+    expect(files.length).toBeGreaterThan(0);
+    const hits = scanRepoFilesForBannedTokens(files);
+    expect(hits, `Banned token match count: ${hits.length}`).toEqual([]);
+  });
+
+  it("ADV-S4-1 NUL regression: a NUL-bearing source still reports the banned token in both real scans", () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "openrouter-nul-"));
+    const file = path.join(dir, "probe.ts");
+    fs.writeFileSync(
+      file,
+      '// probe comment with a NUL marker \0\nconst endpoint = "https://api.openai.com/v1";\n',
+      "utf8",
+    );
+    try {
+      expect(isBinaryPath(file)).toBe(false);
+      const text = fs.readFileSync(file, "utf8");
+      expect(text.includes("\0")).toBe(true);
+      const listed = listFiles(dir);
+      expect(listed.length, `Temp dir file count: ${listed.length}`).toBe(1);
+      const gateStyleHits = scanFilesForBannedTokens(
+        [file],
+        BANNED_TOKENS,
+        isBinaryPath,
+        REPO_ROOT,
+      );
+      expect(gateStyleHits.length, `Gate-style scan NUL hit count: ${gateStyleHits.length}`).toBe(
+        1,
+      );
+      expect(gateStyleHits[0]).toContain("api.openai.com");
+      const repoStyleHits = scanRepoFilesForBannedTokens(listed);
+      expect(repoStyleHits.length, `Repo-style scan NUL hit count: ${repoStyleHits.length}`).toBe(
+        1,
+      );
+      expect(repoStyleHits[0]).toContain("api.openai.com");
+    } finally {
+      fs.rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it("ADV-S4-2 and ADV-S4-8: the edited documents hold no banned token or key-shaped value", () => {
+    const hits: string[] = [];
+    for (const rel of EDITED_DOCUMENTS) {
+      const text = readText(path.join(REPO_ROOT, rel));
+      for (const token of BANNED_TOKENS) {
+        if (text.includes(token)) hits.push(`${rel}: ${token}`);
+      }
+      const keys = text.match(KEY_SHAPED);
+      if (keys) hits.push(`${rel}: key-shaped token`);
+    }
+    expect(hits, `Document token match count: ${hits.length}`).toEqual([]);
+  });
+
+  it("ADV-S4-3: no source file holds a provider default outside a comment", () => {
+    const files = [
+      ...listFiles(path.join(REPO_ROOT, "apps")),
+      ...listFiles(path.join(REPO_ROOT, "packages")),
+    ];
+    const hits: string[] = [];
+    for (const file of files) {
+      if (!SOURCE_EXTENSIONS.has(path.extname(file))) continue;
+      if (file.includes(`${path.sep}__tests__${path.sep}`)) continue;
+      for (const line of readText(file).split(/\r?\n/)) {
+        if (isCommentLine(line)) continue;
+        if (line.includes("openrouter/free") || /OPENROUTER_MODEL\b/.test(line)) {
+          hits.push(path.relative(REPO_ROOT, file));
+        }
+      }
+    }
+    expect(hits, `Source default match count: ${hits.length}`).toEqual([]);
+  });
+
+  it("ADV-S4-4: practice-core keeps buildTeacherErrorView and drops generateAISummary", async () => {
+    const ns: Record<string, unknown> = await import("@math-platform/practice-core");
+    expect("buildTeacherErrorView" in ns, "buildTeacherErrorView must stay").toBe(true);
+    expect("generateAISummary" in ns, "generateAISummary must be removed").toBe(false);
+  });
+
+  it("ADV-S4-5: each S4 regression guard still matches at least one test title", () => {
+    const empty: string[] = [];
+    for (const guard of GUARD_SENTINELS) {
+      const testFiles = listFiles(path.join(REPO_ROOT, guard.workspace)).filter(
+        (f) =>
+          f.includes(`${path.sep}__tests__${path.sep}`) && /\.(test|spec)\.[cm]?[jt]sx?$/.test(f),
+      );
+      const matched = testFiles.filter((f) => readText(f).includes(guard.title));
+      if (matched.length === 0) empty.push(`${guard.workspace}: ${guard.title}`);
+    }
+    expect(empty, `Guards with zero cases: ${empty.length}`).toEqual([]);
+  });
+});

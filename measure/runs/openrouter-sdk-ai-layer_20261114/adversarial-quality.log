@@ -1,0 +1,40 @@
+
+> format:check
+> oxfmt --check
+
+Checking formatting...
+
+[38;2;244;191;117;1mpackages/ai-tutoring/src/__tests__/providers.adversarial.test.ts[0m (0ms)
+
+Format issues found in above 1 files. Run without `--check` to fix.
+Finished in 253ms on 3725 files using 12 threads.
+
+> @math-platform/ai-tutoring@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> lint
+> oxlint --config ../../.oxlintrc.json . --max-warnings 0
+
+
+> @math-platform/ai-tutoring@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+
+> typecheck
+> tsc --noEmit
+
+
+> @math-platform/ai-tutoring@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/ai-tutoring@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+
+> @math-platform/ai-tutoring@0.1.0 test:workerd
+> node workerd-probe/run.mjs
+
+workerd probe: probe-ok
+FORMAT_EXIT=1 PACKAGE_LINT_EXIT=0 ROUTE_LINT_EXIT=0 PACKAGE_TYPES_EXIT=0 ROUTE_TYPES_EXIT=0 PACKAGE_BUILD_EXIT=0 WORKERD_EXIT=0

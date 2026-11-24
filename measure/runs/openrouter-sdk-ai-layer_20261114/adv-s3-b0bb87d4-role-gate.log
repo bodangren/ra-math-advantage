@@ -1,0 +1,7 @@
+INFO: no heavy-run wrapper found; running gate commands directly
+FAIL: audit status must be pass, got 'fail'; ADV-S3-8 [Blocker] adversarial-testing: structured.ts:150 passes no safe debug logger. The real SDK logs the authorization key when OPENROUTER_DEBUG=1. Failing test: ADV-S3-8: structured SDK debug output omits the key, prompt, and answer.; ADV-S3-5 [Blocker] adversarial-testing: lesson-context.ts:69 matches a newline after the detail separator. A blank Teacher: label removes the next math sentence from the BM2 system prompt. Failing test: ADV-S3-5: keeps the first math sentence on the line after an empty detail label.
+FAIL: PROJECT_TESTS failed (expected success, exit 1): bash measure/tracks/openrouter-sdk-ai-layer_20261114/gates.sh test s3
+FAIL: NEW FAILURE: test packages/ai-tutoring exit 1
+NEW FAILURE: test apps/bus-math-v2 has a new diagnostic
+NEWFAIL=1
+

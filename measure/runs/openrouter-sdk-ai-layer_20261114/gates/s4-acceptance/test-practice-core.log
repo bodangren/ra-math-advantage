@@ -1,0 +1,13 @@
+
+> @math-platform/practice-core@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/practice-core
+
+
+ Test Files  21 passed (21)
+      Tests  263 passed (263)
+   Start at  13:24:41
+   Duration  2.60s (transform 142ms, setup 0ms, import 674ms, tests 137ms, environment 2ms)
+

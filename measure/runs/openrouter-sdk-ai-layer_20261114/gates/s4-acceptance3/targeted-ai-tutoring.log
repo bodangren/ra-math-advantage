@@ -1,0 +1,13 @@
+
+> @math-platform/ai-tutoring@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+
+
+ Test Files  12 passed (12)
+      Tests  165 passed (165)
+   Start at  19:06:46
+   Duration  24.31s (transform 146ms, setup 0ms, import 4.06s, tests 19.03s, environment 1ms)
+

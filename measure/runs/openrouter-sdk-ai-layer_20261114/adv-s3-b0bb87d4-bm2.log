@@ -1,0 +1,212 @@
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage
+
+ ❯ apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.test.ts (0 test)
+ ❯ apps/bus-math-v2/__tests__/lib/ai/spreadsheet-feedback.test.ts (0 test)
+ ❯ apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.no-pii.test.ts (0 test)
+ ❯ apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts (8 tests | 8 failed) 15ms
+     × case 11: the teacher prompt holds the lesson, correctness, misconception, scaffold, and activity lines 6ms
+     × case 12: the teacher prompt says the student and names the four fields 1ms
+     × case 13: the generator sends the accounting model and the schema name, and returns a teacher summary 2ms
+     × case 14: a missing role variable makes the generator resolver return null and log the variable name 1ms
+     × case 15: a typed failure makes the generator return null 1ms
+     × case 16: zero total parts makes the generator return null and send no request 1ms
+     × case 17: a student name with a name and an email stays out of the teacher prompt 1ms
+     × case 9 complement: the teacher summary schema is strict with four required fields 1ms
+ ❯ apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts (3 tests | 3 failed) 715ms
+     × strips fixture person details from the lesson markdown before the provider call 710ms
+     × ADV-S3-5: keeps the first math sentence on the line after an empty detail label 3ms
+     × sends no session or account value to the provider 1ms
+ ❯ apps/bus-math-v2/__tests__/app/api/activities/spreadsheet/submit.no-pii.test.ts (0 test)
+ ❯ apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.no-pii.test.ts [ apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.no-pii.test.ts ]
+Error: Cannot find package '@/app/api/teacher/ai-error-summary/route' imported from /home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.no-pii.test.ts
+ ❯ apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.no-pii.test.ts:53:17
+     51| }));
+     52|
+     53| const { GET } = await import("@/app/api/teacher/ai-error-summary/route…
+       |                 ^
+     54|
+     55| const NO_PII_VALUES = [
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/16]⎯
+
+ FAIL  apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.test.ts [ apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.test.ts ]
+Error: Cannot find package '@/app/api/teacher/ai-error-summary/route' imported from /home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.test.ts
+ ❯ apps/bus-math-v2/__tests__/api/teacher/ai-error-summary.test.ts:50:17
+     48| }));
+     49|
+     50| const { GET } = await import("@/app/api/teacher/ai-error-summary/route…
+       |                 ^
+     51|
+     52| function buildRequest(params: Record<string, string>) {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/16]⎯
+
+ FAIL  apps/bus-math-v2/__tests__/lib/ai/spreadsheet-feedback.test.ts [ apps/bus-math-v2/__tests__/lib/ai/spreadsheet-feedback.test.ts ]
+Error: Cannot find package '@/lib/ai/spreadsheet-feedback' imported from /home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2/__tests__/lib/ai/spreadsheet-feedback.test.ts
+ ❯ apps/bus-math-v2/__tests__/lib/ai/spreadsheet-feedback.test.ts:3:1
+      1| import { afterEach, beforeEach, describe, it, expect, vi } from "vites…
+      2| import { z } from "zod";
+      3| import { generateAiFeedback, type AiFeedback } from "@/lib/ai/spreadsh…
+       | ^
+      4| import * as feedbackModule from "@/lib/ai/spreadsheet-feedback";
+      5|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/16]⎯
+
+ FAIL  apps/bus-math-v2/__tests__/app/api/activities/spreadsheet/submit.no-pii.test.ts [ apps/bus-math-v2/__tests__/app/api/activities/spreadsheet/submit.no-pii.test.ts ]
+Error: Cannot find package 'next/server' imported from /home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2/app/api/activities/spreadsheet/[activityId]/submit/route.ts
+ ❯ apps/bus-math-v2/app/api/activities/spreadsheet/[activityId]/submit/route.ts:1:1
+      1| import { NextResponse } from "next/server";
+       | ^
+      2| import { z } from "zod";
+      3| import {
+ ❯ apps/bus-math-v2/__tests__/app/api/activities/spreadsheet/submit.no-pii.test.ts:56:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/16]⎯
+
+ FAIL  apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts [ apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts ]
+Error: Cannot find package 'next/server' imported from /home/daniebo/Desktop/ra-math-advantage/apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts
+ ❯ apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts:2:1
+      1| import { describe, it, expect, vi, beforeEach } from "vitest";
+      2| import { NextRequest } from "next/server";
+       | ^
+      3|
+      4| const mockGetRequestSessionClaims = vi.fn();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/16]⎯
+
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts > teacher AI error summary > case 11: the teacher prompt holds the lesson, correctness, misconception, scaffold, and activity lines
+AssertionError: expected null not to be null
+ ❯ apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts:101:25
+     99|   it("case 11: the teacher prompt holds the lesson, correctness, misco…
+    100|     const teacher = await loadTeacherSummary();
+    101|     expect(teacher).not.toBeNull();
+       |                         ^
+    102|
+    103|     const prompt: string = teacher.buildTeacherSummaryPrompt(SUMMARY_F…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/16]⎯
+
+ FAIL  apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts > teacher AI error summary > case 12: the teacher prompt says the student and names the four fields
+AssertionError: expected null not to be null
+ ❯ apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts:115:25
+    113|   it("case 12: the teacher prompt says the student and names the four …
+    114|     const teacher = await loadTeacherSummary();
+    115|     expect(teacher).not.toBeNull();
+       |                         ^
+    116|
+    117|     const prompt: string = teacher.buildTeacherSummaryPrompt(SUMMARY_F…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/16]⎯
+
+ FAIL  apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts > teacher AI error summary > case 13: the generator sends the accounting model and the schema name, and returns a teacher summary
+AssertionError: expected null not to be null
+ ❯ apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts:129:25
+    127|   it("case 13: the generator sends the accounting model and the schema…
+    128|     const teacher = await loadTeacherSummary();
+    129|     expect(teacher).not.toBeNull();
+       |                         ^
+    130|     vi.stubEnv(ACCOUNTING_ENV, ACCOUNTING_MODEL);
+    131|     fetchMock.mockResolvedValue(jsonResponse(completion(JSON.stringify…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/16]⎯
+
+ FAIL  apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts > teacher AI error summary > case 14: a missing role variable makes the generator resolver return null and log the variable name
+AssertionError: expected null not to be null
+ ❯ apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts:153:25
+    151|   it("case 14: a missing role variable makes the generator resolver re…
+    152|     const teacher = await loadTeacherSummary();
+    153|     expect(teacher).not.toBeNull();
+       |                         ^
+    154|     delete process.env[ACCOUNTING_ENV];
+    155|     const errorSpy = vi.spyOn(console, "error").mockImplementation(() …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/16]⎯
+
+ FAIL  apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts > teacher AI error summary > case 15: a typed failure makes the generator return null
+AssertionError: expected null not to be null
+ ❯ apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts:167:25
+    165|   it("case 15: a typed failure makes the generator return null", async…
+    166|     const teacher = await loadTeacherSummary();
+    167|     expect(teacher).not.toBeNull();
+       |                         ^
+    168|     vi.stubEnv(ACCOUNTING_ENV, ACCOUNTING_MODEL);
+    169|     fetchMock.mockResolvedValue(jsonResponse(completion("definitely no…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/16]⎯
+
+ FAIL  apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts > teacher AI error summary > case 16: zero total parts makes the generator return null and send no request
+AssertionError: expected null not to be null
+ ❯ apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts:181:25
+    179|   it("case 16: zero total parts makes the generator return null and se…
+    180|     const teacher = await loadTeacherSummary();
+    181|     expect(teacher).not.toBeNull();
+       |                         ^
+    182|     vi.stubEnv(ACCOUNTING_ENV, ACCOUNTING_MODEL);
+    183|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/16]⎯
+
+ FAIL  apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts > teacher AI error summary > case 17: a student name with a name and an email stays out of the teacher prompt
+AssertionError: expected null not to be null
+ ❯ apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts:194:25
+    192|   it("case 17: a student name with a name and an email stays out of th…
+    193|     const teacher = await loadTeacherSummary();
+    194|     expect(teacher).not.toBeNull();
+       |                         ^
+    195|
+    196|     const prompt: string = teacher.buildTeacherSummaryPrompt({
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/16]⎯
+
+ FAIL  apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts > teacher AI error summary > case 9 complement: the teacher summary schema is strict with four required fields
+AssertionError: expected null not to be null
+ ❯ apps/bus-math-v2/__tests__/lib/teacher/ai-error-summary.test.ts:207:25
+    205|   it("case 9 complement: the teacher summary schema is strict with fou…
+    206|     const teacher = await loadTeacherSummary();
+    207|     expect(teacher).not.toBeNull();
+       |                         ^
+    208|
+    209|     const schema = teacher.teacherAiSummarySchema;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/16]⎯
+
+ FAIL  apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts > S3 fix > strips fixture person details from the lesson markdown before the provider call
+ FAIL  apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts > S3 fix > ADV-S3-5: keeps the first math sentence on the line after an empty detail label
+Error: Cannot find package '@/app/api/student/lesson-chatbot/route' imported from /home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts
+ ❯ apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts:69:25
+     67|     );
+     68|     vi.resetModules();
+     69|     const routeModule = await import("@/app/api/student/lesson-chatbot…
+       |                         ^
+     70|     POST = routeModule.POST;
+     71|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/16]⎯
+
+ FAIL  apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts > POST /api/student/lesson-chatbot no-PII > sends no session or account value to the provider
+Error: Cannot find package '@/app/api/student/lesson-chatbot/route' imported from /home/daniebo/Desktop/ra-math-advantage/apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts
+ ❯ apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts:142:25
+    140|     mockDetectPromptInjection.mockReturnValue(null);
+    141|     vi.resetModules();
+    142|     const routeModule = await import("@/app/api/student/lesson-chatbot…
+       |                         ^
+    143|     POST = routeModule.POST;
+    144|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/16]⎯
+
+
+ Test Files  7 failed (7)
+      Tests  11 failed (11)
+   Start at  06:32:05
+   Duration  1.55s (transform 161ms, setup 0ms, import 29ms, tests 730ms, environment 1ms)
+

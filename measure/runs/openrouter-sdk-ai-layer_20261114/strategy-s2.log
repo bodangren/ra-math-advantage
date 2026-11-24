@@ -1,0 +1,62 @@
+Strategy role — Phase S2: Role-based model configuration
+Track: openrouter-sdk-ai-layer_20261114
+Strategy revision: r2 (2026-11-23)
+Role base HEAD supplied by orchestrator: 18802902 (predates this strategy commit;
+not the phase_base_sha and not recorded as one).
+
+Work done
+- Refreshed measure/tracks/openrouter-sdk-ai-layer_20261114/test-strategy.md with a
+  dedicated Phase S2 section (header updated to r2).
+- Covered the S2 Contract, Red cases 1 to 12 with falsification conditions, the two
+  no-PII route tests, and the six caller-move test files.
+- Gave S2 a targeted RED command, a GREEN gate, a closeout gate, fixtures, mocks,
+  live-behavior proof, architecture guardrails, changed-contract risks, aggregate-suite
+  handling, an artifact-versus-live table, a high risk classification, and explicit
+  applicability for security review, UX/API review, adversarial testing, and browser
+  review.
+- Added per-phase anti-pattern coverage for A1 to A12, each with a defense and a
+  falsification condition.
+- Named the exact phase_base_sha capture point: immediately after this strategy commit,
+  before any other S2 commit, after git status --porcelain shows only the six known
+  generated files as " M". No pre-strategy SHA is embedded as the capture point.
+
+PM items
+1. emulate: not adopted. No emulate binary or dependency is present and no evidence
+   shows that npx emulate --service ai models the strict 200-body parse or the withRetry
+   classification. Kept the pinned vi.mock('@openrouter/sdk') fakes and local mock server.
+   Reported in one line in strategy section S2.13.
+2. Acceptance F1: specified F1a (OpenRouter documented example 200 body) and F1b (200
+   error-only body must still retry). Marked as a deploy blocker; fix before any deploy
+   of S1 code. Strategy section S2.6.
+3. Review B F10: specified two tests for a case-insensitive Bearer strip in mapSdkError
+   (F10a lowercase scheme, F10b uppercase scheme with extra whitespace). Strategy
+   section S2.6.
+
+Verification
+- Slot check: ok (8 of 14 busy).
+- graph.db is stale (2026-08-08) and does not index the new ai-tutoring SDK symbols;
+  relied on direct source reading of providers.ts and the existing test files.
+- Only the strategy file was staged and committed. The six generated files remain
+  unstaged. No production code or test was changed.
+
+MEASURE_AGENT_RESULT
+{
+  "role": "strategy",
+  "phase": "Phase S2: Role-based model configuration",
+  "track": "openrouter-sdk-ai-layer_20261114",
+  "status": "pass",
+  "retry_recommendation": "none",
+  "strategy_revision": "r2",
+  "phase_base_sha_capture_point": "immediately after the S2 strategy commit and before any other S2 commit, after git status --porcelain shows only the six known generated files as ' M'; no SHA that predates the strategy is the capture point",
+  "blocking_findings": [],
+  "nonblocking_findings": [],
+  "pm_items": {
+    "emulate": "not adopted; no binary or dependency and no evidence it models strict 200-body parse or withRetry classification; kept vi.mock fakes and local mock server",
+    "F1": "F1a documented-example 200 body and F1b 200 error-only body retry specified; deploy blocker; fix before any deploy of S1 code",
+    "F10": "two case-insensitive Bearer strip tests specified (lowercase, and uppercase with extra space)"
+  },
+  "artifacts": [
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/test-strategy.md",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/strategy-s2.log"
+  ]
+}

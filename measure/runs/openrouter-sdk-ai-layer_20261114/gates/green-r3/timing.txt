@@ -1,0 +1,6 @@
+test packages/ai-tutoring 14 exit=0
+test packages/practice-core 3 exit=0
+test apps/integrated-math-3 440 exit=1
+test apps/bus-math-v2 354 exit=1
+step scripts-suite 85 exit=1
+step audit-suites 7 exit=1

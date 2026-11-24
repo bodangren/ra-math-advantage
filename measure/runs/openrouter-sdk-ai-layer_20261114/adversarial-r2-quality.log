@@ -1,0 +1,68 @@
+
+> format:check
+> oxfmt --check
+
+Checking formatting...
+
+All matched files use the correct format.
+Finished in 177ms on 3725 files using 12 threads.
+
+> @math-platform/ai-tutoring@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+
+
+> @math-platform/ai-tutoring@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+
+> @math-platform/ai-tutoring@0.1.0 build
+> npm run typecheck
+
+
+> @math-platform/ai-tutoring@0.1.0 typecheck
+> TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src
+
+
+> @math-platform/ai-tutoring@0.1.0 test
+> vitest run src/__tests__/providers.adversarial.test.ts
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+
+ ❯ src/__tests__/providers.adversarial.test.ts (23 tests | 2 failed) 7136ms
+     × redacts repeated keys after an SDK body-read rejection (Error) 4ms
+     × redacts repeated keys after an SDK body-read rejection (string) 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/providers.adversarial.test.ts > adversarial real SDK transport > redacts repeated keys after an SDK body-read rejection (Error)
+ FAIL  src/__tests__/providers.adversarial.test.ts > adversarial real SDK transport > redacts repeated keys after an SDK body-read rejection (string)
+AssertionError: expected 'Error: read failed sk-adversarial-pri…' not to contain 'sk-adversarial-private-key-7391'
+
+Expected: "sk-adversarial-private-key-7391"
+Received: "Error: read failed sk-adversarial-private-key-7391 repeated sk-adversarial-private-key-7391"
+
+ ❯ src/__tests__/providers.adversarial.test.ts:199:33
+    197|       expect(error).toBeInstanceOf(Error);
+    198|       expect(mockFetch).toHaveBeenCalledTimes(1);
+    199|       expect(String(error)).not.toContain(API_KEY);
+       |                                 ^
+    200|       expect(JSON.stringify(error, Object.getOwnPropertyNames(error as…
+    201|         API_KEY,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 21 passed (23)
+   Start at  11:20:43
+   Duration  7.87s (transform 29ms, setup 0ms, import 642ms, tests 7.14s, environment 0ms)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+npm error workspace @math-platform/ai-tutoring@0.1.0
+npm error location /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+npm error command failed
+npm error command sh -c vitest run src/__tests__/providers.adversarial.test.ts
+FORMAT_EXIT=0 LINT_EXIT=0 TYPES_EXIT=0 BUILD_EXIT=0 ADVERSARIAL_EXIT=1

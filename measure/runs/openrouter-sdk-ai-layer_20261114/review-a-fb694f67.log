@@ -1,0 +1,63 @@
+Review A round 4: F4 is closed; no blocking finding remains.
+phase_base_sha: dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c
+role_base_sha: fb694f67221949c3f3e234649d41e307aff003a3
+audited_head_sha: fb694f67221949c3f3e234649d41e307aff003a3
+HEAD matches the audited commit before and after verification.
+The review audits dcfa6d07..fb694f67 within the pinned phase range.
+
+Independent verification through heavy-run.sh:
+- ai-tutoring: 111 tests passed.
+- BM2 provider, retry, and chatbot suites: 34 tests passed.
+- IM3 chatbot suites: 11 tests passed.
+- workerd probe: exit 0; workerd probe: probe-ok.
+- All 18 independent behavioral and source checks passed.
+The fixture command exited 0 and printed AUDIT_FAILURES=0.
+
+The fixture loads source from the audited Git commit.
+It strips TypeScript types in memory and imports the installed SDK.
+Only global fetch is mocked.
+It writes no source file or test file.
+The exact inline command appears in the session transcript.
+
+Fixture results:
+- Repeated and adjacent long-key echoes: both occurrences become [redacted].
+- Padded key: raw and trimmed forms become [redacted].
+- Bearer-prefixed key: raw, trimmed, and stripped forms become [redacted].
+- Empty key: the diagnostic stays unchanged.
+- Short key x: 'invalid syntax in expression' stays unchanged.
+- Seven-character key: the diagnostic stays unchanged.
+- Eight-character key: the key becomes [redacted].
+- HTTP 503 with '(400)' and the key: recovered after two requests.
+- HTTP 400 with '(503)' and the key: rejected once with status=400 and redacted text.
+- Empty response: EmptyResponseError after three attempts.
+- Timeout: DOMException AbortError after one request.
+- External abort: DOMException AbortError after one request.
+- Non-HTTP Error body rejection: one request; redacted message and serialized fields.
+- Non-HTTP string body rejection: one request; redacted message and serialized fields.
+- Original Red block: unchanged from c6a0627f.
+- Earlier provider assertions: unchanged from dcfa6d07; new cases append only.
+- Package adversarial assertions: unchanged from eaaf7a6b.
+- BM2 adversarial assertions: unchanged from 4b1d1aaf.
+
+F4 withdrawn: its original short-key fixture now passes.
+F1 remains withdrawn; the structured HTTP status still controls retries.
+F2 and F3 remain record-only.
+The public exports, retry module, client settings, and BM2 route remain unchanged.
+The plan's r5 note matches the implementation and the Green log.
+The concurrent roles retain ownership of their files and open tasks.
+The review changes only its supplied JSON and log artifacts.
+The final role gate exited 1 for the two expected open tasks only.
+The audit payload passed its checks.
+
+MEASURE_AGENT_RESULT
+role: review-a
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S1: Adopt the OpenRouter SDK
+commits: none
+tests_run: 156 tests, 18 independent checks, and workerd probe passed; role gate exited 1 for the two expected open tasks only.
+files_changed: review-a-fb694f67.json; review-a-fb694f67.log
+plan_updates: none
+known_failures: No blocking audit finding remains. F2 and F3 remain record-only. The adversarial and manual tasks remain open.
+handoff: Audit PASS. F4 withdrawn. Carry F2 and F3 into the next-phase list. The adversarial role and orchestrator own the two open tasks.
+END_MEASURE_AGENT_RESULT

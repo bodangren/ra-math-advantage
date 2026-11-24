@@ -1,0 +1,58 @@
+Review A round 2: F1 is fixed.
+phase_base_sha: dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c
+role_base_sha: b3401a2e1d421f2dcd11d341f5aa80bf7d6c3db9
+audited_head_sha: b3401a2e1d421f2dcd11d341f5aa80bf7d6c3db9
+HEAD matched the audited commit before the audit and after the test runs.
+The review covered the full phase and focused on the remediation delta.
+The unrelated 334fab55 authoring commit does not change the implementation.
+
+Independent verification:
+- ai-tutoring: 83 tests passed.
+- BM2 callers and retry suites: 56 tests passed.
+- IM3 chatbot suites: 11 tests passed.
+- workerd probe: exit 0; workerd probe: probe-ok.
+- Existing test content comparison: EXISTING_TESTS_UNCHANGED=1.
+- Red block comparison with c6a0627f: RED_ASSERTIONS_UNCHANGED=1.
+- Public exports compared with phase_base_sha: PUBLIC_EXPORTS_UNCHANGED=1.
+Every test ran through heavy-run.sh without shell redirection.
+
+A combined inline fixture command was denied before execution.
+The narrower fixture command completed with exit 0.
+It loaded source from the audited commit with git show.
+It stripped TypeScript types in memory and imported the installed SDK.
+Only global fetch was mocked.
+The mock returned the error once, followed by a valid SDK answer.
+
+Fixture outputs:
+{"status":503,"message":"upstream error (400)","expectedCalls":2,"actualCalls":2,"outcome":"recovered","pass":true}
+{"status":400,"message":"upstream error (503)","expectedCalls":1,"actualCalls":1,"outcome":"OpenRouter API error: 400 upstream error (503)","structuredStatus":400,"pass":true}
+AUDIT_FAILURES=0
+
+F1 withdrawn: the status fixtures now pass through the real SDK.
+providers.ts preserves the error message and adds only the structured status field.
+retry.ts reads that field before message patterns.
+Empty-response and abort checks retain their order.
+The legacy message patterns, retry settings, and public signatures remain unchanged.
+Both student routes retain their generic error responses.
+The caller suites include both BM2 legacy providers that share withRetry.
+
+F2 and F3 remain record-only corrections for the next phase.
+The round-one missing-log fixture remains F2 evidence; this remediation does not change gates.sh.
+The stale graph returned no relevant symbols, so source reads supplied caller coverage.
+The current plan note matches the implementation and the failing-first test log.
+No generated file was staged.
+The final role gate exited 1 for the expected incomplete manual verification task only.
+The audit payload passed its checks.
+
+MEASURE_AGENT_RESULT
+role: review-a
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S1: Adopt the OpenRouter SDK
+commits: none
+tests_run: 150 tests passed; workerd probe passed; real-SDK status fixtures passed; source comparisons passed; role gate exited 1 for the expected open manual task only.
+files_changed: review-a-b3401a2e.json; review-a-b3401a2e.log
+plan_updates: none
+known_failures: No blocking audit finding remains. F2 and F3 remain record-only. The manual verification task remains open.
+handoff: F1 withdrawn. Accept the remediation at b3401a2e. The orchestrator owns manual verification and the phase checkpoint. Carry F2 and F3 into the next-phase list.
+END_MEASURE_AGENT_RESULT

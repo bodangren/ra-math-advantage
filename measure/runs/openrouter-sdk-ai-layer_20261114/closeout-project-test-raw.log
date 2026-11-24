@@ -1,0 +1,614 @@
+
+> test
+> node scripts/architecture/run-workspace-quality.mjs --kind package --capability test
+
+[quality] packages/activity-components test: npm run test --workspace=packages/activity-components
+
+> @math-platform/activity-components@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/activity-components
+
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+
+ Test Files  52 passed (52)
+      Tests  310 passed (310)
+   Start at  22:18:20
+   Duration  46.85s (transform 1.01s, setup 181ms, import 8.10s, tests 11.83s, environment 22.10s)
+
+[quality] packages/activity-runtime test: npm run test --workspace=packages/activity-runtime
+
+> @math-platform/activity-runtime@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/activity-runtime
+
+
+ Test Files  3 passed (3)
+      Tests  37 passed (37)
+   Start at  22:19:07
+   Duration  358ms (transform 40ms, setup 0ms, import 72ms, tests 14ms, environment 0ms)
+
+[quality] packages/ai-tutoring test: npm run test --workspace=packages/ai-tutoring
+
+> @math-platform/ai-tutoring@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+
+
+ Test Files  12 passed (12)
+      Tests  165 passed (165)
+   Start at  22:19:08
+   Duration  22.50s (transform 218ms, setup 0ms, import 3.39s, tests 18.07s, environment 1ms)
+
+[quality] packages/app-shell test: npm run test --workspace=packages/app-shell
+
+> @math-platform/app-shell@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/app-shell
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  22:19:30
+   Duration  561ms (transform 21ms, setup 0ms, import 33ms, tests 2ms, environment 428ms)
+
+[quality] packages/component-approval test: npm run test --workspace=packages/component-approval
+
+> @math-platform/component-approval@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/component-approval
+
+
+ Test Files  2 passed (2)
+      Tests  25 passed (25)
+   Start at  22:19:31
+   Duration  247ms (transform 32ms, setup 0ms, import 54ms, tests 16ms, environment 0ms)
+
+[quality] packages/core-auth test: npm run test --workspace=packages/core-auth
+
+> @math-platform/core-auth@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/core-auth
+
+
+ Test Files  2 passed (2)
+      Tests  57 passed (57)
+   Start at  22:19:32
+   Duration  288ms (transform 39ms, setup 0ms, import 63ms, tests 48ms, environment 0ms)
+
+[quality] packages/core-convex test: npm run test --workspace=packages/core-convex
+
+> @math-platform/core-convex@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/core-convex
+
+
+ Test Files  2 passed (2)
+      Tests  14 passed (14)
+   Start at  22:19:32
+   Duration  272ms (transform 38ms, setup 0ms, import 86ms, tests 9ms, environment 0ms)
+
+[quality] packages/efficacy-core test: npm run test --workspace=packages/efficacy-core
+
+> @math-platform/efficacy-core@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/efficacy-core
+
+
+ Test Files  8 passed (8)
+      Tests  72 passed (72)
+   Start at  22:19:33
+   Duration  1.58s (transform 238ms, setup 0ms, import 728ms, tests 137ms, environment 1ms)
+
+[quality] packages/graphing-core test: npm run test --workspace=packages/graphing-core
+
+> @math-platform/graphing-core@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/graphing-core
+
+
+ Test Files  5 passed (5)
+      Tests  79 passed (79)
+   Start at  22:19:35
+   Duration  554ms (transform 38ms, setup 0ms, import 83ms, tests 25ms, environment 0ms)
+
+[quality] packages/knowledge-space-core test: npm run test --workspace=packages/knowledge-space-core
+
+> @math-platform/knowledge-space-core@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/knowledge-space-core
+
+
+ Test Files  54 passed (54)
+      Tests  701 passed (701)
+   Start at  22:19:36
+   Duration  11.31s (transform 514ms, setup 0ms, import 3.23s, tests 3.10s, environment 4ms)
+
+[quality] packages/knowledge-space-practice test: npm run test --workspace=packages/knowledge-space-practice
+
+> @math-platform/knowledge-space-practice@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/knowledge-space-practice
+
+
+ Test Files  29 passed (29)
+      Tests  469 passed (469)
+   Start at  22:19:48
+   Duration  5.27s (transform 449ms, setup 0ms, import 2.25s, tests 356ms, environment 2ms)
+
+[quality] packages/lesson-renderer test: npm run test --workspace=packages/lesson-renderer
+
+> @math-platform/lesson-renderer@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/lesson-renderer
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  22:19:53
+   Duration  558ms (transform 18ms, setup 0ms, import 27ms, tests 4ms, environment 436ms)
+
+[quality] packages/math-content test: npm run test --workspace=packages/math-content
+
+> @math-platform/math-content@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/math-content
+
+ ❯ src/schemas/__tests__/quadratic-formula-activity.schema.test.ts (6 tests | 1 failed) 13ms
+     × registers the public quadratic-formula schema 6ms
+ ❯ src/problem-families/im1/__tests__/scaffold.test.ts (14 tests | 1 failed) 14ms
+     × vertical-slice module entries cover every module-1 skill from the rollout gap queue 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/schemas/__tests__/quadratic-formula-activity.schema.test.ts > quadraticFormulaActivitySchema > registers the public quadratic-formula schema
+AssertionError: expected undefined to be ZodDiscriminatedUnion{ …(5) } // Object.is equality
+
+- Expected:
+ZodDiscriminatedUnion {
+  "def": {
+    "discriminator": "presentationMode",
+    "inclusive": false,
+    "options": [
+      ZodObject {
+        "def": {
+          "catchall": ZodNever {
+            "def": {
+              "type": "never",
+            },
+            "type": "never",
+          },
+          "shape": {
+            "equation": ZodString {
+              "def": {
+                "checks": [Array],
+                "type": "string",
+              },
+              "type": "string",
+            },
+            "presentationMode": ZodLiteral {
+              "def": {
+                "type": "literal",
+                "values": [Array],
+              },
+              "type": "literal",
+              "values": Set {
+                "worked",
+              },
+            },
+            "prompt": ZodString {
+              "def": {
+                "checks": [Array],
+                "type": "string",
+              },
+              "type": "string",
+            },
+            "title": ZodOptional {
+              "def": {
+                "innerType": [ZodString],
+                "type": "optional",
+              },
+              "type": "optional",
+              "unwrap": [Function anonymous],
+            },
+            "workedSteps": ZodArray {
+              "def": {
+                "checks": [Array],
+                "element": [ZodObject],
+                "type": "array",
+              },
+              "element": ZodObject {
+                "def": [Object],
+                "type": "object",
+              },
+              "type": "array",
+            },
+          },
+          "type": "object",
+        },
+        "type": "object",
+      },
+      ZodObject {
+        "def": {
+          "catchall": ZodNever {
+            "def": {
+              "type": "never",
+            },
+            "type": "never",
+          },
+          "shape": {
+            "equation": ZodString {
+              "def": {
+                "checks": [Array],
+                "type": "string",
+              },
+              "type": "string",
+            },
+            "fieldHelp": ZodOptional {
+              "def": {
+                "innerType": [ZodObject],
+                "type": "optional",
+              },
+              "type": "optional",
+              "unwrap": [Function anonymous],
+            },
+            "presentationMode": ZodLiteral {
+              "def": {
+                "type": "literal",
+                "values": [Array],
+              },
+              "type": "literal",
+              "values": Set {
+                "guided",
+              },
+            },
+            "prompt": ZodString {
+              "def": {
+                "checks": [Array],
+                "type": "string",
+              },
+              "type": "string",
+            },
+            "title": ZodOptional {
+              "def": {
+                "innerType": [ZodString],
+                "type": "optional",
+              },
+              "type": "optional",
+              "unwrap": [Function anonymous],
+            },
+          },
+          "type": "object",
+        },
+        "type": "object",
+      },
+      ZodObject {
+        "def": {
+          "catchall": ZodNever {
+            "def": {
+              "type": "never",
+            },
+            "type": "never",
+          },
+          "shape": {
+            "equation": ZodString {
+              "def": {
+                "checks": [Array],
+                "type": "string",
+              },
+              "type": "string",
+            },
+            "presentationMode": ZodLiteral {
+              "def": {
+                "type": "literal",
+                "values": [Array],
+              },
+              "type": "literal",
+              "values": Set {
+                "independent",
+              },
+            },
+            "prompt": ZodString {
+              "def": {
+                "checks": [Array],
+                "type": "string",
+              },
+              "type": "string",
+            },
+            "title": ZodOptional {
+              "def": {
+                "innerType": [ZodString],
+                "type": "optional",
+              },
+              "type": "optional",
+              "unwrap": [Function anonymous],
+            },
+          },
+          "type": "object",
+        },
+        "type": "object",
+      },
+    ],
+    "type": "union",
+  },
+  "options": [
+    ZodObject {
+      "def": {
+        "catchall": ZodNever {
+          "def": {
+            "type": "never",
+          },
+          "type": "never",
+        },
+        "shape": {
+          "equation": ZodString {
+            "def": {
+              "checks": [
+                [$ZodCheckMinLength],
+              ],
+              "type": "string",
+            },
+            "type": "string",
+          },
+          "presentationMode": ZodLiteral {
+            "def": {
+              "type": "literal",
+              "values": [
+                "worked",
+              ],
+            },
+            "type": "literal",
+            "values": Set {
+              "worked",
+            },
+          },
+          "prompt": ZodString {
+            "def": {
+              "checks": [
+                [$ZodCheckMinLength],
+              ],
+              "type": "string",
+            },
+            "type": "string",
+          },
+          "title": ZodOptional {
+            "def": {
+              "innerType": ZodString {
+                "def": [Object],
+                "optional": [Function bound optional],
+                "type": "string",
+              },
+              "type": "optional",
+            },
+            "type": "optional",
+            "unwrap": [Function anonymous],
+          },
+          "workedSteps": ZodArray {
+            "def": {
+              "checks": [
+                [$ZodCheckMinLength],
+              ],
+              "element": ZodObject {
+                "def": [Object],
+                "type": "object",
+              },
+              "type": "array",
+            },
+            "element": ZodObject {
+              "def": {
+                "catchall": [ZodNever],
+                "shape": [Object],
+                "type": "object",
+              },
+              "type": "object",
+            },
+            "type": "array",
+          },
+        },
+        "type": "object",
+      },
+      "type": "object",
+    },
+    ZodObject {
+      "def": {
+        "catchall": ZodNever {
+          "def": {
+            "type": "never",
+          },
+          "type": "never",
+        },
+        "shape": {
+          "equation": ZodString {
+            "def": {
+              "checks": [
+                [$ZodCheckMinLength],
+              ],
+              "type": "string",
+            },
+            "type": "string",
+          },
+          "fieldHelp": ZodOptional {
+            "def": {
+              "innerType": ZodObject {
+                "def": [Object],
+                "optional": [Function bound optional],
+                "type": "object",
+              },
+              "type": "optional",
+            },
+            "type": "optional",
+            "unwrap": [Function anonymous],
+          },
+          "presentationMode": ZodLiteral {
+            "def": {
+              "type": "literal",
+              "values": [
+                "guided",
+              ],
+            },
+            "type": "literal",
+            "values": Set {
+              "guided",
+            },
+          },
+          "prompt": ZodString {
+            "def": {
+              "checks": [
+                [$ZodCheckMinLength],
+              ],
+              "type": "string",
+            },
+            "type": "string",
+          },
+          "title": ZodOptional {
+            "def": {
+              "innerType": ZodString {
+                "def": [Object],
+                "optional": [Function bound optional],
+                "type": "string",
+              },
+              "type": "optional",
+            },
+            "type": "optional",
+            "unwrap": [Function anonymous],
+          },
+        },
+        "type": "object",
+      },
+      "type": "object",
+    },
+    ZodObject {
+      "def": {
+        "catchall": ZodNever {
+          "def": {
+            "type": "never",
+          },
+          "type": "never",
+        },
+        "shape": {
+          "equation": ZodString {
+            "def": {
+              "checks": [
+                [$ZodCheckMinLength],
+              ],
+              "type": "string",
+            },
+            "type": "string",
+          },
+          "presentationMode": ZodLiteral {
+            "def": {
+              "type": "literal",
+              "values": [
+                "independent",
+              ],
+            },
+            "type": "literal",
+            "values": Set {
+              "independent",
+            },
+          },
+          "prompt": ZodString {
+            "def": {
+              "checks": [
+                [$ZodCheckMinLength],
+              ],
+              "type": "string",
+            },
+            "type": "string",
+          },
+          "title": ZodOptional {
+            "def": {
+              "innerType": ZodString {
+                "def": [Object],
+                "optional": [Function bound optional],
+                "type": "string",
+              },
+              "type": "optional",
+            },
+            "type": "optional",
+            "unwrap": [Function anonymous],
+          },
+        },
+        "type": "object",
+      },
+      "type": "object",
+    },
+  ],
+  "parse": [Function bound _parse],
+  "type": "union",
+}
+
++ Received:
+undefined
+
+ ❯ src/schemas/__tests__/quadratic-formula-activity.schema.test.ts:44:49
+     42|
+     43|   it("registers the public quadratic-formula schema", () => {
+     44|     expect(getPropsSchema("quadratic-formula")).toBe(quadraticFormulaA…
+       |                                                 ^
+     45|   });
+     46| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/problem-families/im1/__tests__/scaffold.test.ts > IM1 scaffold — vertical-slice module coverage (Phase 2 Task 1) > vertical-slice module entries cover every module-1 skill from the rollout gap queue
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/problem-families/im1/__tests__/scaffold.test.ts:161:45
+    159|     }
+    160|     for (const skillId of expectedSkillIds) {
+    161|       expect(generatorNodeIds.has(skillId)).toBe(true);
+       |                                             ^
+    162|     }
+    163|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 89 passed (91)
+      Tests  2 failed | 884 passed (886)
+   Start at  22:19:54
+   Duration  57.17s (transform 1.21s, setup 0ms, import 9.55s, tests 39.18s, environment 7ms)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /home/daniebo/Desktop/ra-math-advantage/packages/math-content
+npm error workspace @math-platform/math-content@0.1.0
+npm error location /home/daniebo/Desktop/ra-math-advantage/packages/math-content
+npm error command failed
+npm error command sh -c vitest run
+EXIT=1

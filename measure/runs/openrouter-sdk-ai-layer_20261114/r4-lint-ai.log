@@ -1,0 +1,4 @@
+
+> @math-platform/ai-tutoring@0.1.0 lint
+> oxlint --config ../../.oxlintrc.json src --max-warnings 0
+

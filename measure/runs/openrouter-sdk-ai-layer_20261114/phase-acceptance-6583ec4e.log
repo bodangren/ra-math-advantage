@@ -1,0 +1,12 @@
+MEASURE_AGENT_RESULT
+role: phase-acceptance
+status: blocked
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S4: Remove the OpenAI paths and document the roles
+commits: none
+tests_run: lint, test and checks-all sweeps: exit 0, NEWFAIL=0. Both app builds, boundary and CI checks, workerd, generate and Doctor passed. Targeted tests passed: openrouter-only 3; adversarial 6; G-CHAT 12 and 16; G-SHEET 13; G-TEACHER 8; G-TEACHER-ROUTE 12; G-NO-PII 1 and 5; exact BM2 PII strip 1; ai-tutoring 165; practice-core 263. The in-memory scanner check confirmed an A7 failure.
+files_changed: acceptance JSON and log
+plan_updates: none
+known_failures: F1: the S4 scan skips an exact banned token in valid JavaScript when a NUL appears elsewhere in the file.
+handoff: Route F1 to the test owner. Rerun acceptance on the new HEAD. Do not checkpoint 6583ec4e. The PM retains manual verification, and Daniel retains the live smoke test.
+END_MEASURE_AGENT_RESULT

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "role": "closeout",
+  "track": "openrouter-sdk-ai-layer_20261114",
+  "phase": "track closeout",
+  "baseline_sha": "55f4e967dfadba9d8f1c17af7fe9db8e9ca7b79d",
+  "audited_head_sha": "55f4e967dfadba9d8f1c17af7fe9db8e9ca7b79d",
+  "status": "pass",
+  "summary": "Closeout archives openrouter-sdk-ai-layer_20261114 at HEAD 55f4e967. Final acceptance passed at the same HEAD. The track moved to measure/archive, the registry entry moved to the Archived Tracks section, metadata has status done with a completion date, and measure/gates.json is repointed with GENERATED_CHECK_COMMAND. Every closeout check passes except the PM-waived known checker gap of 197 nested [ ] sub-boxes in plan.md. No box was ticked.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "F1 [Major] closeout: Known checker gap (PM decision 2026-11-24). plan_closeout_feedback on the archived plan reports 197 items, all 'plan task is not complete' for nested [ ] sub-boxes: 193 sit under [x] tasks and 4 sit under the deferred live smoke test at plan.md:671. Top-level markers are 33 [x], 2 [b], 0 [~], 0 [ ], and no completed line lacks a SHA. Measure owns the checker fix. This is the only failing item of the closeout gate, so the PM waiver permits closeout to proceed without ticking a box.",
+    "F2 [Major] final-acceptance carried row: the structured helper has no request timeout (tech-debt.md:47). The first task of the next track restores 15000 ms with a stalled-provider test.",
+    "F3 [Nit] closeout process record: measure/gates.json now points to the archived gates.sh path and records GENERATED_CHECK_COMMAND. The archived gates.sh usage comment still names the former measure/tracks path; the script resolves its own location, so no gate breaks.",
+    "F4 [Nit] final-acceptance carried row: tests/measure_orchestrator_audit.sh fails at HEAD with the A12 AGENTS.md rule. The failure predates the track base and belongs to the orchestrator audit.",
+    "F5 [Nit] closeout: the project test gate through heavy-run.sh exits 1 on the recorded packages/math-content baseline (2 failed | 884 passed of 886). The two failures do not name an archived path and are not caused by the move."
+  ],
+  "evidence": [
+    "git rev-parse HEAD printed 55f4e967dfadba9d8f1c17af7fe9db8e9ca7b79d at role start. final-acceptance-55f4e96.json records audited_head_sha 55f4e967dfadba9d8f1c17af7fe9db8e9ca7b79d and status pass. The two values are equal, so provenance binds.",
+    "measure_interphase_checks direct calls at the pre-commit tree: active_registry_contains=False, registry_description_feedback=[], metadata_closeout_feedback=[], final_acceptance_feedback=[], plan_closeout_feedback count=197 with every item in the 'plan task is not complete' category.",
+    "The 197 items are the PM-waived checker gap. The plan holds no top-level [~] or [ ] task. The two [b] tasks carry trailing deferred fields: S1 manual verification (deferred:closeout-steward) and live smoke test (deferred:daniel). No box was ticked.",
+    "git mv moved measure/tracks/openrouter-sdk-ai-layer_20261114 to measure/archive/openrouter-sdk-ai-layer_20261114. The active folder is absent and the archive folder is present.",
+    "measure/tracks.md: the active entry was removed. A new [x] entry in the Archived Tracks section links to ./archive/openrouter-sdk-ai-layer_20261114/ and its description equals the collapsed metadata.json description.",
+    "metadata.json: status is done, completed is 2026-11-24, and an escalation key records the PM-approved remediation rounds beyond two (F7).",
+    "measure/gates.json: PROJECT_LINT, PROJECT_CHECKS and PROJECT_TESTS point to measure/archive/openrouter-sdk-ai-layer_20261114/gates.sh. GENERATED_CHECK_COMMAND is npm run generate (F8).",
+    "A9 pre-move grep found 44 files with the fixed path measure/tracks/openrouter-sdk-ai-layer_20261114/: the archived track's own gates.sh, one historical artifact of dependency-refresh_20261121, and 42 historical artifacts under measure/runs/openrouter-sdk-ai-layer_20261114/. Tests/ and scripts/ held 0 hits. The full list is in closeout-a9-pre-move-hits.txt.",
+    "Project test gate through heavy-run.sh -c 'npm run test': 12 workspaces ran. Eleven passed. packages/math-content held 2 failed | 884 passed of 886, the recorded baseline. The two failing files are quadratic-formula-activity.schema.test.ts and scaffold.test.ts. Neither names an archived path, so the move caused no failure. Summary lines are in closeout-project-test-summary.txt.",
+    "tech-debt.md stayed at 50 lines; no row was added in closeout. lessons-learned.md was not changed because closeout produced no durable reusable knowledge."
+  ],
+  "commands": [
+    "slot check: ok, 2 of 14 busy, MemAvailable 21558 MB",
+    "git rev-parse HEAD; git status --short; git branch --show-current",
+    "grep -rln 'measure/tracks/openrouter-sdk-ai-layer_20261114' --include=*.sh --include=*.ts --include=*.js --include=*.mjs --include=*.json . --exclude-dir=node_modules --exclude-dir=.git",
+    "grep -rn 'measure/tracks/openrouter-sdk-ai-layer_20261114' tests/ scripts/: no match",
+    "git mv measure/tracks/openrouter-sdk-ai-layer_20261114 measure/archive/openrouter-sdk-ai-layer_20261114",
+    "python3 -I (import measure_interphase_checks): active_registry_contains, registry_description_feedback, metadata_closeout_feedback, final_acceptance_feedback, plan_closeout_feedback",
+    "heavy-run.sh -c 'npm run test': exit 1 on the recorded math-content baseline; no new failure and no archived-path reference",
+    "python3 -I measure_interphase_checks.py closeout --repo . --track openrouter-sdk-ai-layer_20261114",
+    "python3 -I measure_interphase_checks.py audit-result --role closeout --file closeout-55f4e96.json"
+  ],
+  "changed_files": [
+    "measure/gates.json",
+    "measure/tracks.md",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/metadata.json (moved to measure/archive/openrouter-sdk-ai-layer_20261114/metadata.json)",
+    "measure/archive/openrouter-sdk-ai-layer_20261114/automation-supervisor-closeout-manifest.json",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/closeout-55f4e96.json",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/closeout-55f4e96.log",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/closeout-a9-pre-move-hits.txt",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/closeout-project-test-raw.log",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/closeout-project-test-summary.txt"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high"
+}

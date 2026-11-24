@@ -1,0 +1,2 @@
+audit: critical=0 high=5 moderate=6 low=5
+NEWFAIL=0

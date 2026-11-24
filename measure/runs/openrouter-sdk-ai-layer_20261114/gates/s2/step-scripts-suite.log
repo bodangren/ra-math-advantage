@@ -1,0 +1,508 @@
+[33m(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (scripts/vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.[39m
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/scripts
+
+ ❯ __tests__/remediate-concept-blueprints.test.ts (11 tests | 1 failed) 176ms
+     × production scan reports the honest count for the current repo state 34ms
+ ❯ __tests__/vinext-oxc-gates-script.test.ts (26 tests | 26 failed) 78ms
+     × treats a registry error object as an infrastructure failure 12ms
+     × treats a registry error with the baseline label as an infrastructure failure 4ms
+     × rejects a response that is not JSON 4ms
+     × rejects a response with no metadata 4ms
+     × rejects vulnerability counts that are not numbers 4ms
+     × accepts a valid report with zero counts and exit 0 4ms
+     × accepts valid nonzero counts below the baseline and exit 1 4ms
+     × flags valid nonzero counts above the baseline and exit 1 4ms
+     × resolves the root from the script location and writes results under it 1ms
+     × fails with a clear message when the heavy-job wrapper is missing 1ms
+     × fails with a clear message when the root has no package.json 0ms
+     × flags a base workspace that the run lacks 0ms
+     × flags a run workspace that the base lacks 0ms
+     × classifies an ENOSPC job log as infrastructure 0ms
+     × classifies an EDQUOT job log as infrastructure 0ms
+     × still reports a normal TS2322 line as a new failure, not infrastructure 0ms
+     × classifies the Rust os error 28 job log as infrastructure 0ms
+     × classifies the Node spawn ENOSPC job log as infrastructure 0ms
+     × still reports a failing test title that names spawn ENOSPC in prose as a new failure 0ms
+     × adv 6 (R18): a sweep whose tree drops apps/danielson reports a new failure that names it 0ms
+     × adv 7 (R18, A4): removing the danielson lint script is a new failure, not a pass 0ms
+     × a diagnostic that only mentions the disk-space errno word stays a diagnostic 9ms
+     × r2 a: a real failure whose diagnostic carries an errno data form is still hidden as infrastructure and dropped from the compare 3ms
+     × r2 c: a job log that holds one real disk-full line and a real failure still classifies the job as infrastructure 5ms
+     × r2 d: the real Node and npm disk-full outputs are caught, and the npm trailer-only lines are not 11ms
+     × r2 e: the canonical field forms stay infrastructure and the near-miss variants stay diagnostics 3ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 27 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  __tests__/remediate-concept-blueprints.test.ts > remediate-concept-blueprints: production-scan true count (FR-12 closeout) > production scan reports the honest count for the current repo state
+AssertionError: expected [ …(17) ] to include '/home/daniebo/Desktop/ra-math-advanta…'
+ ❯ __tests__/remediate-concept-blueprints.test.ts:230:21
+    228|     for (const required of requiredArtifacts) {
+    229|       const expected = path.join(REPO_ROOT, required);
+    230|       expect(files).toContain(expected);
+       |                     ^
+    231|     }
+    232|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > gates.sh audit_step (#3) > treats a registry error object as an infrastructure failure
+AssertionError: expected 'infra=0\nnewfail=0\n/tmp/gates-audit-…' to contain 'INFRA FAILURE: audit'
+
+- Expected
++ Received
+
+- INFRA FAILURE: audit
++ infra=0
++ newfail=0
++ /tmp/gates-audit-fLvO6B/harness.sh: line 8: /home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh: No such file or directory
++ /tmp/gates-audit-fLvO6B/harness.sh: line 9: audit_step: command not found
++
+
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:133:22
+    131|       baseline: BASELINE,
+    132|     });
+    133|     expect(r.output).toContain("INFRA FAILURE: audit");
+       |                      ^
+    134|     expect(r.infra).toBe("1");
+    135|     expect(r.newfail).toBe("0");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > gates.sh audit_step (#3) > treats a registry error with the baseline label as an infrastructure failure
+AssertionError: expected 'infra=0\nnewfail=0\n/tmp/gates-audit-…' to contain 'INFRA FAILURE: audit'
+
+- Expected
++ Received
+
+- INFRA FAILURE: audit
++ infra=0
++ newfail=0
++ /tmp/gates-audit-TMaOxj/harness.sh: line 8: /home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh: No such file or directory
++ /tmp/gates-audit-TMaOxj/harness.sh: line 9: audit_step: command not found
++
+
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:147:22
+    145|       label: "baseline",
+    146|     });
+    147|     expect(r.output).toContain("INFRA FAILURE: audit");
+       |                      ^
+    148|     expect(r.infra).toBe("1");
+    149|     expect(fs.existsSync(path.join(r.outDir, "audit.txt"))).toBe(false…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > gates.sh audit_step (#3) > rejects a response that is not JSON
+AssertionError: expected 'infra=0\nnewfail=0\n/tmp/gates-audit-…' to contain 'INFRA FAILURE: audit'
+
+- Expected
++ Received
+
+- INFRA FAILURE: audit
++ infra=0
++ newfail=0
++ /tmp/gates-audit-sofxeE/harness.sh: line 8: /home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh: No such file or directory
++ /tmp/gates-audit-sofxeE/harness.sh: line 9: audit_step: command not found
++
+
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:154:22
+    152|   it("rejects a response that is not JSON", () => {
+    153|     const r = runAuditCase({ response: "Registry unavailable", exitCod…
+    154|     expect(r.output).toContain("INFRA FAILURE: audit");
+       |                      ^
+    155|     expect(r.infra).toBe("1");
+    156|     expect(fs.existsSync(path.join(r.outDir, "audit.txt"))).toBe(false…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > gates.sh audit_step (#3) > rejects a response with no metadata
+AssertionError: expected 'infra=0\nnewfail=0\n/tmp/gates-audit-…' to contain 'INFRA FAILURE: audit'
+
+- Expected
++ Received
+
+- INFRA FAILURE: audit
++ infra=0
++ newfail=0
++ /tmp/gates-audit-ENCcEP/harness.sh: line 8: /home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh: No such file or directory
++ /tmp/gates-audit-ENCcEP/harness.sh: line 9: audit_step: command not found
++
+
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:161:22
+    159|   it("rejects a response with no metadata", () => {
+    160|     const r = runAuditCase({ response: "{}", exitCode: 0, baseline: BA…
+    161|     expect(r.output).toContain("INFRA FAILURE: audit");
+       |                      ^
+    162|     expect(r.infra).toBe("1");
+    163|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > gates.sh audit_step (#3) > rejects vulnerability counts that are not numbers
+AssertionError: expected 'infra=0\nnewfail=0\n/tmp/gates-audit-…' to contain 'INFRA FAILURE: audit'
+
+- Expected
++ Received
+
+- INFRA FAILURE: audit
++ infra=0
++ newfail=0
++ /tmp/gates-audit-kFrGZN/harness.sh: line 8: /home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh: No such file or directory
++ /tmp/gates-audit-kFrGZN/harness.sh: line 9: audit_step: command not found
++
+
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:173:22
+    171|       baseline: BASELINE,
+    172|     });
+    173|     expect(r.output).toContain("INFRA FAILURE: audit");
+       |                      ^
+    174|     expect(r.infra).toBe("1");
+    175|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > gates.sh audit_step (#3) > accepts a valid report with zero counts and exit 0
+AssertionError: expected 'infra=0\nnewfail=0\n/tmp/gates-audit-…' to contain 'critical=0 high=0 moderate=0 low=0'
+
+- Expected
++ Received
+
+- critical=0 high=0 moderate=0 low=0
++ infra=0
++ newfail=0
++ /tmp/gates-audit-LpjS2d/harness.sh: line 8: /home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh: No such file or directory
++ /tmp/gates-audit-LpjS2d/harness.sh: line 9: audit_step: command not found
++
+
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:185:22
+    183|       baseline: BASELINE,
+    184|     });
+    185|     expect(r.output).toContain("critical=0 high=0 moderate=0 low=0");
+       |                      ^
+    186|     expect(r.infra).toBe("0");
+    187|     expect(r.newfail).toBe("0");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > gates.sh audit_step (#3) > accepts valid nonzero counts below the baseline and exit 1
+AssertionError: expected 'infra=0\nnewfail=0\n/tmp/gates-audit-…' to contain 'critical=1 high=10 moderate=20 low=3'
+
+- Expected
++ Received
+
+- critical=1 high=10 moderate=20 low=3
++ infra=0
++ newfail=0
++ /tmp/gates-audit-ROslFO/harness.sh: line 8: /home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh: No such file or directory
++ /tmp/gates-audit-ROslFO/harness.sh: line 9: audit_step: command not found
++
+
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:201:22
+    199|       baseline: BASELINE,
+    200|     });
+    201|     expect(r.output).toContain("critical=1 high=10 moderate=20 low=3");
+       |                      ^
+    202|     expect(r.infra).toBe("0");
+    203|     expect(r.newfail).toBe("0");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > gates.sh audit_step (#3) > flags valid nonzero counts above the baseline and exit 1
+AssertionError: expected 'infra=0\nnewfail=0\n/tmp/gates-audit-…' to contain 'NEW FAILURE: audit critical 2 -> 3'
+
+- Expected
++ Received
+
+- NEW FAILURE: audit critical 2 -> 3
++ infra=0
++ newfail=0
++ /tmp/gates-audit-JbwfRE/harness.sh: line 8: /home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh: No such file or directory
++ /tmp/gates-audit-JbwfRE/harness.sh: line 9: audit_step: command not found
++
+
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:214:22
+    212|       baseline: BASELINE,
+    213|     });
+    214|     expect(r.output).toContain("NEW FAILURE: audit critical 2 -> 3");
+       |                      ^
+    215|     expect(r.infra).toBe("0");
+    216|     expect(r.newfail).toBe("1");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > gates.sh repository root (#4) > resolves the root from the script location and writes results under it
+Error: ENOENT: no such file or directory, copyfile '/home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh' -> '/tmp/gates-repo-kALIb5/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh'
+ ❯ makeFakeRepo __tests__/vinext-oxc-gates-script.test.ts:89:6
+     87|   const trackDir = path.join(tmp, "measure", "tracks", TRACK_SLUG);
+     88|   fs.mkdirSync(trackDir, { recursive: true });
+     89|   fs.copyFileSync(GATES_SH, path.join(trackDir, "gates.sh"));
+       |      ^
+     90|   const appDir = path.join(tmp, "apps", "x");
+     91|   fs.mkdirSync(appDir, { recursive: true });
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:222:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > gates.sh repository root (#4) > fails with a clear message when the heavy-job wrapper is missing
+Error: ENOENT: no such file or directory, copyfile '/home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh' -> '/tmp/gates-repo-vXymmY/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh'
+ ❯ makeFakeRepo __tests__/vinext-oxc-gates-script.test.ts:89:6
+     87|   const trackDir = path.join(tmp, "measure", "tracks", TRACK_SLUG);
+     88|   fs.mkdirSync(trackDir, { recursive: true });
+     89|   fs.copyFileSync(GATES_SH, path.join(trackDir, "gates.sh"));
+       |      ^
+     90|   const appDir = path.join(tmp, "apps", "x");
+     91|   fs.mkdirSync(appDir, { recursive: true });
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:239:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > gates.sh repository root (#4) > fails with a clear message when the root has no package.json
+Error: ENOENT: no such file or directory, copyfile '/home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh' -> '/tmp/gates-repo-RLgff7/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh'
+ ❯ makeFakeRepo __tests__/vinext-oxc-gates-script.test.ts:89:6
+     87|   const trackDir = path.join(tmp, "measure", "tracks", TRACK_SLUG);
+     88|   fs.mkdirSync(trackDir, { recursive: true });
+     89|   fs.copyFileSync(GATES_SH, path.join(trackDir, "gates.sh"));
+       |      ^
+     90|   const appDir = path.join(tmp, "apps", "x");
+     91|   fs.mkdirSync(appDir, { recursive: true });
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:250:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > gates.sh workspace set (#5) > flags a base workspace that the run lacks
+Error: ENOENT: no such file or directory, copyfile '/home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh' -> '/tmp/gates-repo-pvcZDS/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh'
+ ❯ makeFakeRepo __tests__/vinext-oxc-gates-script.test.ts:89:6
+     87|   const trackDir = path.join(tmp, "measure", "tracks", TRACK_SLUG);
+     88|   fs.mkdirSync(trackDir, { recursive: true });
+     89|   fs.copyFileSync(GATES_SH, path.join(trackDir, "gates.sh"));
+       |      ^
+     90|   const appDir = path.join(tmp, "apps", "x");
+     91|   fs.mkdirSync(appDir, { recursive: true });
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:272:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > gates.sh workspace set (#5) > flags a run workspace that the base lacks
+Error: ENOENT: no such file or directory, copyfile '/home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh' -> '/tmp/gates-repo-TiZcv2/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh'
+ ❯ makeFakeRepo __tests__/vinext-oxc-gates-script.test.ts:89:6
+     87|   const trackDir = path.join(tmp, "measure", "tracks", TRACK_SLUG);
+     88|   fs.mkdirSync(trackDir, { recursive: true });
+     89|   fs.copyFileSync(GATES_SH, path.join(trackDir, "gates.sh"));
+       |      ^
+     90|   const appDir = path.join(tmp, "apps", "x");
+     91|   fs.mkdirSync(appDir, { recursive: true });
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:288:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > gates.sh errno classification (S3) > classifies an ENOSPC job log as infrastructure
+Error: ENOENT: no such file or directory, copyfile '/home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh' -> '/tmp/gates-errno-Y2JInq/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh'
+ ❯ makeErrnoRepo __tests__/vinext-oxc-gates-script.test.ts:319:8
+    317|     const trackDir = path.join(tmp, "measure", "tracks", TRACK_SLUG);
+    318|     fs.mkdirSync(trackDir, { recursive: true });
+    319|     fs.copyFileSync(GATES_SH, path.join(trackDir, "gates.sh"));
+       |        ^
+    320|     const appDir = path.join(tmp, "apps", "x");
+    321|     fs.mkdirSync(appDir, { recursive: true });
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:359:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > gates.sh errno classification (S3) > classifies an EDQUOT job log as infrastructure
+Error: ENOENT: no such file or directory, copyfile '/home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh' -> '/tmp/gates-errno-dFzxsr/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh'
+ ❯ makeErrnoRepo __tests__/vinext-oxc-gates-script.test.ts:319:8
+    317|     const trackDir = path.join(tmp, "measure", "tracks", TRACK_SLUG);
+    318|     fs.mkdirSync(trackDir, { recursive: true });
+    319|     fs.copyFileSync(GATES_SH, path.join(trackDir, "gates.sh"));
+       |        ^
+    320|     const appDir = path.join(tmp, "apps", "x");
+    321|     fs.mkdirSync(appDir, { recursive: true });
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:368:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > gates.sh errno classification (S3) > still reports a normal TS2322 line as a new failure, not infrastructure
+Error: ENOENT: no such file or directory, copyfile '/home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh' -> '/tmp/gates-errno-bDQg9j/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh'
+ ❯ makeErrnoRepo __tests__/vinext-oxc-gates-script.test.ts:319:8
+    317|     const trackDir = path.join(tmp, "measure", "tracks", TRACK_SLUG);
+    318|     fs.mkdirSync(trackDir, { recursive: true });
+    319|     fs.copyFileSync(GATES_SH, path.join(trackDir, "gates.sh"));
+       |        ^
+    320|     const appDir = path.join(tmp, "apps", "x");
+    321|     fs.mkdirSync(appDir, { recursive: true });
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:377:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > gates.sh Rust and spawn disk-full forms (S4) > classifies the Rust os error 28 job log as infrastructure
+Error: ENOENT: no such file or directory, copyfile '/home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh' -> '/tmp/gates-s4-OxL9e0/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh'
+ ❯ makeLineRepo __tests__/vinext-oxc-gates-script.test.ts:412:8
+    410|     const trackDir = path.join(tmp, "measure", "tracks", TRACK_SLUG);
+    411|     fs.mkdirSync(trackDir, { recursive: true });
+    412|     fs.copyFileSync(GATES_SH, path.join(trackDir, "gates.sh"));
+       |        ^
+    413|     const appDir = path.join(tmp, "apps", "x");
+    414|     fs.mkdirSync(appDir, { recursive: true });
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:452:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > gates.sh Rust and spawn disk-full forms (S4) > classifies the Node spawn ENOSPC job log as infrastructure
+Error: ENOENT: no such file or directory, copyfile '/home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh' -> '/tmp/gates-s4-57btaC/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh'
+ ❯ makeLineRepo __tests__/vinext-oxc-gates-script.test.ts:412:8
+    410|     const trackDir = path.join(tmp, "measure", "tracks", TRACK_SLUG);
+    411|     fs.mkdirSync(trackDir, { recursive: true });
+    412|     fs.copyFileSync(GATES_SH, path.join(trackDir, "gates.sh"));
+       |        ^
+    413|     const appDir = path.join(tmp, "apps", "x");
+    414|     fs.mkdirSync(appDir, { recursive: true });
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:461:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > gates.sh Rust and spawn disk-full forms (S4) > still reports a failing test title that names spawn ENOSPC in prose as a new failure
+Error: ENOENT: no such file or directory, copyfile '/home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh' -> '/tmp/gates-s4-WhBQeM/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh'
+ ❯ makeLineRepo __tests__/vinext-oxc-gates-script.test.ts:412:8
+    410|     const trackDir = path.join(tmp, "measure", "tracks", TRACK_SLUG);
+    411|     fs.mkdirSync(trackDir, { recursive: true });
+    412|     fs.copyFileSync(GATES_SH, path.join(trackDir, "gates.sh"));
+       |        ^
+    413|     const appDir = path.join(tmp, "apps", "x");
+    414|     fs.mkdirSync(appDir, { recursive: true });
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:470:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > S1 adversarial: gates.sh workspace set > adv 6 (R18): a sweep whose tree drops apps/danielson reports a new failure that names it
+Error: ENOENT: no such file or directory, copyfile '/home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh' -> '/tmp/gates-adv-QJDeSK/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh'
+ ❯ makeAdvRepo __tests__/vinext-oxc-gates-script.test.ts:493:8
+    491|     const trackDir = path.join(tmp, "measure", "tracks", TRACK_SLUG);
+    492|     fs.mkdirSync(trackDir, { recursive: true });
+    493|     fs.copyFileSync(GATES_SH, path.join(trackDir, "gates.sh"));
+       |        ^
+    494|     for (const [name, hasLint] of Object.entries(lintScripts)) {
+    495|       const dir = path.join(tmp, "apps", name);
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:521:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > S1 adversarial: gates.sh workspace set > adv 7 (R18, A4): removing the danielson lint script is a new failure, not a pass
+Error: ENOENT: no such file or directory, copyfile '/home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh' -> '/tmp/gates-adv-hdJHWf/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh'
+ ❯ makeAdvRepo __tests__/vinext-oxc-gates-script.test.ts:493:8
+    491|     const trackDir = path.join(tmp, "measure", "tracks", TRACK_SLUG);
+    492|     fs.mkdirSync(trackDir, { recursive: true });
+    493|     fs.copyFileSync(GATES_SH, path.join(trackDir, "gates.sh"));
+       |        ^
+    494|     for (const [name, hasLint] of Object.entries(lintScripts)) {
+    495|       const dir = path.join(tmp, "apps", name);
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:542:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > S3 adversarial > a diagnostic that only mentions the disk-space errno word stays a diagnostic
+AssertionError: a real disk-full message is infrastructure: expected 127 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 127
+
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:619:7
+    617|       runBashFn(`has_infra_output "${realLog}"`).status,
+    618|       "a real disk-full message is infrastructure",
+    619|     ).toBe(0);
+       |       ^
+    620|
+    621|     // 2. key() keeps the word-bearing diagnostic, so the compare sees…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > S3 adversarial > r2 a: a real failure whose diagnostic carries an errno data form is still hidden as infrastructure and dropped from the compare
+AssertionError: [r2a-1]: the data-form diagnostic is classified infrastructure: expected 127 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 127
+
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:689:9
+    687|         runBashFn(`has_infra_output "${hitLog}"`).status,
+    688|         `${marker}: the data-form diagnostic is classified infrastruct…
+    689|       ).toBe(0);
+       |         ^
+    690|       expect(
+    691|         runBashFn(`has_infra_output "${controlLog}"`).status,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > S3 adversarial > r2 c: a job log that holds one real disk-full line and a real failure still classifies the job as infrastructure
+AssertionError: expected 'bash: line 1: /home/daniebo/Desktop/r…' to contain 'JOB_CODE=290'
+
+- Expected
++ Received
+
+- JOB_CODE=290
++ bash: line 1: /home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh: No such file or directory
++ /tmp/gates-adv-errno-r2c-lWLYhE/harness.sh: line 2: /home/daniebo/Desktop/ra-math-advantage/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh: No such file or directory
++ /tmp/gates-adv-errno-r2c-lWLYhE/harness.sh: line 5: run_job: command not found
++ /tmp/gates-adv-errno-r2c-lWLYhE/harness.sh: line 6: JOB_CODE: unbound variable
++
+
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:757:51
+    755|     // The job itself exited 1 for a real reason, but the real disk-fu…
+    756|     // upgrades the recorded code to 290 (infrastructure, one re-run).
+    757|     expect(runBashFn(`bash "${harness}"`).output).toContain("JOB_CODE=…
+       |                                                   ^
+    758|   });
+    759|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > S3 adversarial > r2 d: the real Node and npm disk-full outputs are caught, and the npm trailer-only lines are not
+AssertionError: npm-block: a real disk-full output is infrastructure: expected 127 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 127
+
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:792:78
+    790|       const status = runBashFn(`has_infra_output "${log}"`).status;
+    791|       if (infra) {
+    792|         expect(status, `${name}: a real disk-full output is infrastruc…
+       |                                                                              ^
+    793|       } else {
+    794|         // Pinned miss: the trailer-only line classifies as a normal
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/27]⎯
+
+ FAIL  __tests__/vinext-oxc-gates-script.test.ts > S3 adversarial > r2 e: the canonical field forms stay infrastructure and the near-miss variants stay diagnostics
+AssertionError: errno-122: the infra flag must match the recorded decision: expected 127 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 127
+
+ ❯ __tests__/vinext-oxc-gates-script.test.ts:822:82
+    820|       fs.writeFileSync(log, `${content}\n`);
+    821|       const status = runBashFn(`has_infra_output "${log}"`).status;
+    822|       expect(status, `${name}: the infra flag must match the recorded …
+       |                                                                                  ^
+    823|         infra ? 0 : 1,
+    824|       );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/27]⎯
+
+
+ Test Files  2 failed | 1 passed (3)
+      Tests  27 failed | 92 passed | 2 todo (121)
+   Start at  15:23:46
+   Duration  71.88s (transform 88ms, setup 0ms, import 308ms, tests 71.27s, environment 0ms)
+

@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "role": "review-a",
+  "track": "openrouter-sdk-ai-layer_20261114",
+  "phase": "Phase S2: Role-based model configuration",
+  "baseline_sha": "d8e08cde",
+  "phase_base_sha": "d8e08cded75dac2fc33cb857c85f10f86036861d",
+  "role_base_sha": "d8e08cded75dac2fc33cb857c85f10f86036861d",
+  "audited_head_sha": "15c1d52368298f59392a3850059c5366bbeb43b5",
+  "status": "fail",
+  "summary": "The r3 cache, recovery, usage logging, and error logging changes pass focused tests. The IM3 markdown scrub can remove all lesson content after a personal-detail label.",
+  "blocking_findings": [
+    "F1 [Blocker] review-a: `stripPersonDetails` removes the entire remainder of lesson markdown after a `Student:`, `Teacher:`, or other recognized label, up to the next label or end of input. For example, `Student: Avery Quinn\\nFactor x^2 - 5x + 6 = 0 by finding two numbers.` becomes an empty string, so the chatbot loses the math context it should receive. `apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts:36-56,224-230`; the test only checks math text before the detail labels at `route.s2.adversarial.test.ts:93-97,119-126`."
+  ],
+  "nonblocking_findings": [],
+  "evidence": [
+    "HEAD is 15c1d52368298f59392a3850059c5366bbeb43b5. The exact reviewed range is d8e08cded75dac2fc33cb857c85f10f86036861d..15c1d52368298f59392a3850059c5366bbeb43b5.",
+    "The prior Review A result confirms phase_base_sha and role_base_sha are both d8e08cded75dac2fc33cb857c85f10f86036861d. It had no findings or CONTEST items.",
+    "The r3 cache checks the key and model before cache lookup, and keys providers by role, key, and model in packages/ai-tutoring/src/providers.ts:397-476.",
+    "F1 recovery trims recovered content in packages/ai-tutoring/src/providers.ts:184-224. HTTP errors expose status only at lines 95-100, and both chatbot routes log role and status without upstream error text.",
+    "The bounded model identifier rejects the adversarial served-model fixture; the focused provider tests pass 16 cases.",
+    "A direct execution of the production regex with `Student: Avery Quinn\\nFactor x^2 - 5x + 6 = 0 by finding two numbers.` returned an empty string.",
+    "The no-PII test checks preserved math text only when it precedes the labels; it does not test lesson text after a detail label.",
+    "Adversarial tests from commits 47a5c224 and 1833c526 remain unchanged except for adding the SDK-required `system_fingerprint: null` response field. No assertion was weakened.",
+    "Plan r3 claims match the available evidence: package suite 141 passed, IM3 chatbot suite 14 passed, and lint/test/checks-all each exited 0 with NEWFAIL=0.",
+    "Current S2 Verify, Docs & Doctor, and manual verification tasks remain incomplete in plan.md:293-303. The S2 phase is not ready for checkpoint."
+  ],
+  "commands": [
+    "git rev-parse HEAD: 15c1d52368298f59392a3850059c5366bbeb43b5.",
+    "git diff --check d8e08cde..15c1d523: exit 0.",
+    "~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh -c \"CI=true npm run test --workspace=packages/ai-tutoring -- -t 'S2 role selection through the real SDK|S2 responses and logs through the real SDK|documented 200 bodies|case-insensitive Bearer strip'\": exit 0, 16 passed, 125 skipped.",
+    "~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh -c \"CI=true npm run test --workspace=apps/integrated-math-3 -- __tests__/app/api/student/lesson-chatbot\": exit 0, 14 passed.",
+    "node -e using the exact strip regex and markdown fixture above: output was \"\".",
+    "git diff --stat 47a5c224..15c1d523 -- the two adversarial test files: one addition, `system_fingerprint: null`; no assertion changed.",
+    "git diff --stat d8e08cde..15c1d523: 38 paths changed.",
+    "Existing Green records: green-s2-r3-package.log (141 passed), green-s2-r3-im3.log (14 passed), green-s2-r3-gates.exit (lint/test/checks-all exit 0), each gate log records NEWFAIL=0."
+  ],
+  "changed_files": [
+    "apps/bus-math-v2/.env.example",
+    "apps/bus-math-v2/__tests__/api/student/lesson-chatbot.test.ts",
+    "apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.adversarial.test.ts",
+    "apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts",
+    "apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.sdk.test.ts",
+    "apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.test.ts",
+    "apps/bus-math-v2/__tests__/lib/ai/providers.test.ts",
+    "apps/bus-math-v2/__tests__/lib/ai/spreadsheet-feedback.test.ts",
+    "apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts",
+    "apps/bus-math-v2/lib/ai/spreadsheet-feedback.ts",
+    "apps/integrated-math-3/.env.example",
+    "apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts",
+    "apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.s2.adversarial.test.ts",
+    "apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.sdk.test.ts",
+    "apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.test.ts",
+    "apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/adversarial-a34ab162.json",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/adversarial-a34ab162.log",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/adversarial-s2-antipatterns.log",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/adversarial-s2-bm2.log",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/adversarial-s2-driver.log",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/adversarial-s2-im3.log",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/adversarial-s2-package.log",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/red-s2-d8e08cde.log",
+    "measure/tech-stack.md",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/evidence.md",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md",
+    "packages/ai-tutoring/src/__tests__/index-exports.test.ts",
+    "packages/ai-tutoring/src/__tests__/providers.adversarial.test.ts",
+    "packages/ai-tutoring/src/__tests__/providers.test.ts",
+    "packages/ai-tutoring/src/__tests__/role-configuration.adversarial.test.ts",
+    "packages/ai-tutoring/src/__tests__/roles-preservation.test.ts",
+    "packages/ai-tutoring/src/__tests__/roles.test.ts",
+    "packages/ai-tutoring/src/index.ts",
+    "packages/ai-tutoring/src/providers.ts",
+    "packages/ai-tutoring/src/roles.ts",
+    "packages/ai-tutoring/src/usage-log.ts",
+    "packages/ai-tutoring/workerd-probe/worker.ts"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [
+    "F1: the IM3 chatbot can omit all lesson math text after a recognized person-detail label from the prompt. See route.ts:36-56,224-230."
+  ],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "retry_implementation",
+  "confidence": "high",
+  "route": "openai/gpt-6-luna#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 2,
+      "evidence": "The exact markdown fixture becomes empty at route.ts:36-56, so lesson math after a personal-detail label is lost."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 3,
+      "evidence": "The focused provider run passes 16 cases, but route.s2.adversarial.test.ts:93-97 only puts math before PII labels."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "The d8e08cde..15c1d523 diff contains S2 role configuration, caller updates, tests, and phase evidence."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 5,
+      "evidence": "The exact diff check, two heavy-run test results, Green gate logs, and regex reproduction support the findings."
+    }
+  ]
+}

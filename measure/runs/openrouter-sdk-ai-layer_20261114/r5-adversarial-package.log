@@ -1,0 +1,13 @@
+
+> @math-platform/ai-tutoring@0.1.0 test
+> vitest run src/__tests__/providers.adversarial.test.ts
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+
+
+ Test Files  1 passed (1)
+      Tests  23 passed (23)
+   Start at  11:57:36
+   Duration  7.89s (transform 27ms, setup 0ms, import 659ms, tests 7.13s, environment 0ms)
+

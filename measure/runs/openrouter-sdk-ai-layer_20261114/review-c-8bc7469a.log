@@ -1,0 +1,13 @@
+MEASURE_AGENT_RESULT
+role: review-c
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S2: Role-based model configuration
+commits: none
+tests_run: integrated-math-3 chatbot targeted suite passed (13 tests); bus-math-v2 chatbot targeted suite passed (16 tests); ai-tutoring export, roles, and provider suite passed (47 tests), all through heavy-run.sh
+files_changed: measure/runs/openrouter-sdk-ai-layer_20261114/review-c-8bc7469a.json and .log
+plan_updates: none
+known_failures: none
+handoff: F1 is withdrawn. Commit ea1e7920 adds a route integration test that proves math and instruction text after a detail label remain in the prompt and student and teacher identity fixture values are removed. The public chatbot 503, 502, and 500 response bodies and statuses remain unchanged. The role API package tests and both route test suites pass. Current HEAD matches audited_head_sha 8bc7469a41746bc7e6280749e281372aeb348992.
+dispositions: C-F1=FIX
+END_MEASURE_AGENT_RESULT

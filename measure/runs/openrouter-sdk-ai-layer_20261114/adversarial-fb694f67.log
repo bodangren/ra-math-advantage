@@ -1,0 +1,12 @@
+MEASURE_AGENT_RESULT
+role: adversarial-testing
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S1: Adopt the OpenRouter SDK
+commits: 21967f8a
+tests_run: all 25 adversarial cases and four redaction probes pass; quality checks pass; detached green-r3 role gate exits 0 with no new failure key
+files_changed: plan task; audit JSON and log
+plan_updates: S1 adversarial task marked [x] with audited SHA fb694f67 in one plan-only commit
+known_failures: unchanged baseline failures IM3 218, BM2 7, scripts 27, audit 5; no new failure key
+handoff: ADV-3 is withdrawn. ADV-1 and ADV-2 remain withdrawn. Ready for phase acceptance. The manual verification task remains open. No production file or test assertion changed.
+END_MEASURE_AGENT_RESULT

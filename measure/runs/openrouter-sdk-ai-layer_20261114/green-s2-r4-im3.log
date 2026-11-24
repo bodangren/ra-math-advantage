@@ -1,0 +1,24 @@
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/apps/integrated-math-3
+
+ ✓ __tests__/app/api/student/lesson-chatbot/route.pii-scope.test.ts (1 test) 24ms
+stdout | __tests__/app/api/student/lesson-chatbot/route.sdk.test.ts > POST /api/student/lesson-chatbot (SDK transport) > returns the SDK answer and sends one chat completion request
+[ai-tutoring] request {"role":"studentTutor","model":"vendor/model-a","latencyMs":14,"promptTokens":1,"completionTokens":1,"totalTokens":2,"outcome":"ok","status":null}
+
+ ✓ __tests__/app/api/student/lesson-chatbot/route.sdk.test.ts (1 test) 612ms
+     ✓ returns the SDK answer and sends one chat completion request  610ms
+ ✓ __tests__/app/api/student/lesson-chatbot/route.s2.adversarial.test.ts (2 tests) 33ms
+stderr | __tests__/app/api/student/lesson-chatbot/route.test.ts > POST /api/student/lesson-chatbot > returns 400 when prompt injection is detected
+[lesson-chatbot] Prompt injection detected: {
+  reason: 'role-play: attempts to ignore or override instructions',
+  pattern: 'ignore.*instruction'
+}
+
+ ✓ __tests__/app/api/student/lesson-chatbot/route.test.ts (10 tests) 15ms
+ ✓ __tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts (1 test) 9ms
+
+ Test Files  5 passed (5)
+      Tests  15 passed (15)
+   Start at  14:56:44
+   Duration  4.92s (transform 82ms, setup 387ms, import 1.29s, tests 693ms, environment 2.09s)
+

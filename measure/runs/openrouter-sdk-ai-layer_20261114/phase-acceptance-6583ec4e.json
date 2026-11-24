@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "role": "phase-acceptance",
+  "track": "openrouter-sdk-ai-layer_20261114",
+  "phase": "Phase S4: Remove the OpenAI paths and document the roles",
+  "baseline_sha": "6583ec4e8ee0c2859287c88f4d2b368009d03dae",
+  "phase_base_sha": "8283f9fa192be2afc78a2e731fac1e267c3535b5",
+  "role_base_sha": "6583ec4e8ee0c2859287c88f4d2b368009d03dae",
+  "audited_head_sha": "6583ec4e8ee0c2859287c88f4d2b368009d03dae",
+  "status": "fail",
+  "summary": "Acceptance fails A7: the S4 banned-token scan drops a real hit in valid JavaScript. All requested targeted checks pass. The sweeps report no new failures.",
+  "blocking_findings": [
+    "F1 [Blocker] phase-acceptance: The S4 banned-token scan skips an entire valid source file when the file contains a NUL. A7 requires the filter to retain real hits. The in-memory check of scripts/__tests__/openrouter-only.test.ts:51-65 reported one hit without a NUL and zero hits with a NUL in a comment. Node parsed both sources. The adversarial test repeats the same skip at scripts/__tests__/openrouter-s4-adversarial.test.ts:91-96."
+  ],
+  "nonblocking_findings": [
+    "F2 [Nit] phase-acceptance: Review A F1 remains. The two BM2 teacher route tests mock the deleted provider path and the removed generateAISummary function. The production route imports neither.",
+    "F3 [Nit] phase-acceptance: evidence.md:575 records four Red matches. gates/s4-red/step-scripts-suite.log:44 records ten file and token pairs across four distinct tokens."
+  ],
+  "evidence": [
+    "Git confirmed the full audited HEAD at role start and end. Only generated files and graph.db were modified, and nothing was staged.",
+    "Reviews A, B, C and adversarial testing pass at 3bcf2b3124a4ae042e79851b51ae3e6a08327a93. The only allowed intervening commit is 6583ec4e8ee0c2859287c88f4d2b368009d03dae. It adds one adversarial test file and one Vitest include entry.",
+    "Browser review does not apply per test-strategy.md:1002. The phase diff does not change UI or route rendering. ux-paths listed no applicable paths.",
+    "The S4 Contract at 0e192c88 lists removals 1 to 5. e13a8dfc deletes four BM2 files, four code names, and eight tests for the removed function. Both public barrels remove only the two names that they re-exported. The retained declarations and behavior have no source diff.",
+    "The S4 Red source at 30073327 has no subsequent diff. The Red log records three assertion failures. The FR-14 test at 5724741c reads both registries and retains the original assertions.",
+    "The two env examples, two Wrangler comments, and the AI Layer section at 89946220 match the spec Roles table. The phase has no package manifest, lockfile, deployment or production route change.",
+    "The acceptance sweeps at gates/s4-acceptance/ use the s3 comparison and each report NEWFAIL=0. The raw IM3 typecheck, IM3 and BM2 test suites, scripts suite, audit suites and BM2 bundle audit still fail on baseline keys. The IM3 typecheck still reports 55 diagnostic lines.",
+    "Both app builds, boundary validation, CI validation and workerd exit 0. The BM2 bundle audit retains the baseline over-budget entry and size. Direct comparison found no new high or critical advisory ID.",
+    "The BM2 release test passes both in the aggregate and on its own. It checks that the real assembler removes fixture PII and retains the math text. The plan release gate at line 60 stays unchanged. This result does not approve a release.",
+    "A5: the three baseline comparisons, generation, and Doctor all exit 0. Doctor prints All checks passed. The extra six skipped cases in the current openrouter-only filter come from the permitted adversarial test commit.",
+    "A3: both new test files assert arrays or numeric counts, not the presence of digits. No marker-check or tracks registry change triggers A4 or A6.",
+    "The targeted exit record is gates/s4-acceptance/targeted.exit. Each test filter ran at least one case and exited 0.",
+    "The open PM manual verification remains a checkpoint task. The live smoke test remains [b], deferred:daniel. Neither is automated acceptance evidence."
+  ],
+  "commands": [
+    "slot check: exit 0",
+    "git rev-parse HEAD; git status --short; git diff --check 8283f9fa..HEAD",
+    "git diff --name-status 3bcf2b31..HEAD; git show 6583ec4e -- scripts/vitest.config.ts",
+    "git diff --exit-code 30073327..HEAD -- scripts/__tests__/openrouter-only.test.ts: exit 0",
+    "node: run the real findBannedTokenMatches function against two valid in-memory sources; plain banned_hits=1, with NUL banned_hits=0",
+    "Git grep at HEAD on the legacy provider domains and variables: no matches",
+    "GATES_BASE=s3, label s4-acceptance: gates.sh lint, test and checks-all each exit 0 with NEWFAIL=0. The runner sources the gate and captures each heavy-run step in a subprocess pipe instead of shell redirection.",
+    "Node audit report comparison: no new high or critical advisory ID; audit summary critical=0 high=5 moderate=6 low=5.",
+    "npx vitest run --config scripts/vitest.config.ts -t: openrouter-only 3 passed; openrouter-s4-adversarial 6 passed.",
+    "CI=true npm run test with the S4 guard filters: G-CHAT IM3 12 and BM2 16; G-SHEET 13; G-TEACHER 8; G-TEACHER-ROUTE 12; G-NO-PII IM3 1 and BM2 5.",
+    "CI=true npm run test --workspace=apps/bus-math-v2 -- __tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts -t 'strips fixture person details from the lesson markdown before the provider call': 1 passed.",
+    "CI=true npm run test for packages/ai-tutoring and packages/practice-core: 165 and 263 passed.",
+    "npm run test:workerd --workspace=packages/ai-tutoring: exit 0, probe-ok; npm run generate and bash measure/doctor.sh: exit 0.",
+    "python3 measure_interphase_checks.py role-gate --role phase-acceptance: exit 1 for audit failure and the open PM checkpoint task.",
+    "python3 measure_interphase_checks.py audit-result --role phase-acceptance: exit 0."
+  ],
+  "changed_files": [
+    "measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-6583ec4e.json",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/phase-acceptance-6583ec4e.log"
+  ],
+  "test_strategy_violations": [
+    "S4.4 case 1 and S4.11 A7: the scan skips a valid source file with an exact banned token outside the three allowed directory exclusions."
+  ],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "retry_implementation",
+  "confidence": "high",
+  "route": "openai/gpt-6.2-sol#high",
+  "ratings": [
+    {"axis": "correctness", "score": 4, "evidence": "The diff at packages/practice-core/src/practice/error-analysis/index.ts removes the specified names and preserves the retained declarations."},
+    {"axis": "test_meaning", "score": 2, "evidence": "The in-memory scanner check reports zero hits for a valid JavaScript source with a banned token and a NUL in a comment."},
+    {"axis": "scope_discipline", "score": 4, "evidence": "The exact phase diff has no production route, manifest or lockfile change."},
+    {"axis": "evidence_quality", "score": 3, "evidence": "The Red log records ten file and token pairs, but evidence.md:575 records four."}
+  ],
+  "reviewer_ratings": [
+    {"reviewer_role": "review-a", "reviewer_route": "openai/gpt-6-luna#high", "agreed": false, "score": 1, "evidence": "Review A confirms the planned removals but misses the scanner's NUL skip at openrouter-only.test.ts:60."},
+    {"reviewer_role": "review-b", "reviewer_route": "opencode-go/hy4-flash-free#high", "agreed": true, "score": 4, "evidence": "Git grep confirms the removed endpoint tokens and key variables are absent from the committed app and package files."},
+    {"reviewer_role": "review-c", "reviewer_route": "openai/gpt-6-luna#high", "agreed": true, "score": 4, "evidence": "Git diff confirms no S4 change to the chatbot, spreadsheet or teacher route implementations."},
+    {"reviewer_role": "adversarial", "reviewer_route": "opencode-go/hy4-flash-free#high", "agreed": false, "score": 1, "evidence": "The new adversarial scan repeats the same unchecked NUL skip at openrouter-s4-adversarial.test.ts:93."}
+  ]
+}

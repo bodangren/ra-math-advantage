@@ -1,0 +1,14 @@
+heavy-run: lock wait over 600 s — priority p2 — holder PID 3945871: flock -w 1800 -E 201 /home/daniebo/Desktop/primary-parity-progress/heavy.lock /home/daniebo/Desktop/advantage-pr/scripts/jobs/heavy-run.sh --locked -c ./forge all sprout-dad 
+
+> @math-platform/ai-tutoring@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage/packages/ai-tutoring
+
+
+ Test Files  4 passed (4)
+      Tests  75 passed (75)
+   Start at  00:35:11
+   Duration  3.25s (transform 47ms, setup 0ms, import 84ms, tests 2.80s, environment 0ms)
+

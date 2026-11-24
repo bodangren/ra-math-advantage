@@ -1,0 +1,12 @@
+MEASURE_AGENT_RESULT
+role: adversarial-testing
+status: partial
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S1: Adopt the OpenRouter SDK
+commits: eaaf7a6b
+tests_run: original 23 adversarial cases pass; two new non-HTTP cases fail; format, scoped lint, scoped types, and package build pass; detached role gate exits 1 with NEWFAIL=1
+files_changed: one adversarial test file; local plan note; audit JSON and log
+plan_updates: S1 adversarial task remains [~]
+known_failures: ADV-3 retains repeated keys in non-HTTP body-read failures; unchanged baseline failures IM3 218, BM2 7, scripts 27, audit 5
+handoff: ADV-1 and ADV-2 are withdrawn. Green owns ADV-3; retry_recommendation=retry_implementation. Re-review scope makes ADV-3 nonblocking, but its two failing tests prevent the role gate from passing. Commit the local plan note separately. No production file changed.
+END_MEASURE_AGENT_RESULT

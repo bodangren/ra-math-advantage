@@ -1,0 +1,12 @@
+MEASURE_AGENT_RESULT
+role: adversarial-testing
+status: partial
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S1: Adopt the OpenRouter SDK
+commits: 4b1d1aaf
+tests_run: 23 adversarial tests, 21 pass and 2 fail; format, scoped lint, scoped types, package build, workerd, and doctor pass; detached role gate exits 1 with NEWFAIL=1
+files_changed: two adversarial test files; local plan note; audit JSON and log
+plan_updates: S1 adversarial task marked [~]; implementation remains unchanged
+known_failures: ADV-1 API key in thrown HTTP error; ADV-2 BM2 constructor error escapes POST; unchanged baseline failures IM3 218, BM2 7, scripts 27, audit 5
+handoff: Green owns ADV-1 and ADV-2; retry_recommendation=retry_implementation. Keep numeric retry classification. Rerun this gate after implementation changes. Commit the local plan note separately. No production file changed.
+END_MEASURE_AGENT_RESULT

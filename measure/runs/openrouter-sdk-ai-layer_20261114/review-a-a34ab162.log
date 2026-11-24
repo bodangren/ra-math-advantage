@@ -1,0 +1,13 @@
+MEASURE_AGENT_RESULT
+role: review-a
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S2: Role-based model configuration
+commits: none
+tests_run: Targeted ai-tutoring role/preservation/entry tests passed: 14 passed, 115 skipped. IM3 and BM2 no-PII tests each passed: 1 passed. S2 Green gate record shows lint, test, and checks-all exit 0 with NEWFAIL=0.
+files_changed: measure/runs/openrouter-sdk-ai-layer_20261114/review-a-a34ab162.json and .log
+plan_updates: none
+known_failures: none
+handoff: RA1 is withdrawn. The implementation returns the configured model value unchanged, and the preservation test fails before the fix. Exact phase diff and HEAD provenance are recorded in the JSON result. No new findings.
+dispositions: RA1=FIX
+END_MEASURE_AGENT_RESULT

@@ -1,0 +1,43 @@
+# Red retry r2 log: S1 Adopt the OpenRouter SDK (role mid-red)
+
+Route: opencode-go/muse-spark-1.3-contributor#high.
+role_base_sha a3b8a58b resolves and equaled HEAD at start. Green's three uncommitted
+paths were present at start. The 6 generated files stayed unstaged throughout.
+
+## Steps
+
+1. Stashed Green's work (`providers.ts`, `openrouter-client.ts`, `plan.md`) to prove
+   RED against committed production code.
+2. Replaced `MockOpenRouter.mockReturnValue(...)` with a constructor-safe
+   `mockImplementation(function () { ... })`. The `vi.mock` factory already returns
+   a plain mock function, so `new` works on it. No assertion changed.
+3. Ran oxfmt on the test file (clean).
+4. RED run: `CI=true npm run test --workspace=packages/ai-tutoring -- -t
+   'SDK transport'` => 6 run, 6 fail, 75 skipped. Cases 1, 2, 3, 5 reject with
+   `TypeError: Cannot read properties of undefined (reading 'ok')` at
+   `src/providers.ts:62` (production still calls `fetch`; the mocked SDK send is
+   never called). Case 4 rejects with that `TypeError` instead of
+   `OpenRouter API error: 400`. Case 6 rejects with that `TypeError` instead of
+   an `AbortError`. No mock-mechanism failure and no missing-module failure.
+5. Committed the test file only: `c6a0627f` with a git note.
+6. Role gate output (recorded in full):
+   `INFO: no heavy-run wrapper found; running gate commands directly`
+   `FAIL: expected at least one current phase task marked [~]`
+   `Exited with code 1`
+   This is the expected `[~]` finding: `plan.md` was stashed during the gate, so
+   the committed plan shows no in-progress task.
+7. Popped the stash without conflict. Green's three paths are back.
+
+MEASURE_AGENT_RESULT
+role: measure-mid-red
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S1: Adopt the OpenRouter SDK
+baseline_sha: a3b8a58b
+commits: c6a0627f
+tests_run: CI=true npm run test --workspace=packages/ai-tutoring -- -t 'SDK transport' => 6 run, 6 fail, 75 skipped (fails on assertions/fetch path, not on mock mechanism or missing module); role-gate => FAIL only on expected [~] finding (plan.md stashed), exit 1
+files_changed: packages/ai-tutoring/src/__tests__/providers.test.ts
+plan_updates: none (Green records this retry in plan.md)
+known_failures: role-gate [~] finding is expected and accepted (plan.md was stashed); real gate runs after Green restores plan.md
+handoff: Green can rebase on c6a0627f; `new OpenRouter(...)` now passes the mock. No open question; default stands.
+END_MEASURE_AGENT_RESULT

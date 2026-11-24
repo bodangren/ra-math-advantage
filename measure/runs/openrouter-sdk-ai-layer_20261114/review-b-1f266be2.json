@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "role": "review-b",
+  "track": "openrouter-sdk-ai-layer_20261114",
+  "phase": "Phase S2: Role-based model configuration",
+  "baseline_sha": "d8e08cde",
+  "phase_base_sha": "d8e08cded75dac2fc33cb857c85f10f86036861d",
+  "role_base_sha": "d8e08cded75dac2fc33cb857c85f10f86036861d",
+  "audited_head_sha": "1f266be2c53c44fccc05c0baaa9912b52dd39add",
+  "security_applicability": "applicable",
+  "status": "fail",
+  "summary": "Security applicability is applicable. The phase diff is provenance-bound to d8e08cde..1f266be2 and the audited HEAD is current. Fail-closed behavior, the role variables, the PII flag, usage-record hygiene, F1 recovery, and F10 redaction are implemented and pass my own targeted runs (12/12 role cases, 4/4 F1, 2/2 F10, both no-PII guards 1 passed each). One blocking test-contract violation remains: Red case 8 asserts substring text where the strategy requires the reason field (A1). Four nonblocking findings: the S1 OPENROUTER_DEBUG gap is still open, the S2 Verify grep will match the case-9 test fixture lines, the two-role cache isolation test is missing, and no test imports the new exports from the package surface.",
+  "blocking_findings": [
+    "B1 [Blocker] review-b: Red case 8 asserts substring text, not the reason field. packages/ai-tutoring/src/__tests__/roles.test.ts:169 uses toContain(\"preset\") on joined log lines. test-strategy.md S2.4 case 8 requires asserting the reason field, and S2.11 row A1 names includes('preset') as the exact pattern that fails review. The behavior is correct in code (roles.ts:48-49 returns reason 'preset'), so the fix is test-only: parse the logged JSON record and assert reason === 'preset', as cases 3 and 11 already do. Route to Green."
+  ],
+  "nonblocking_findings": [
+    "N1 [Major] review-b: The S1 Review B OPENROUTER_DEBUG finding is still open after S2. packages/ai-tutoring/src/openrouter-client.ts:18-27 passes no debugLogger, so a Worker variable OPENROUTER_DEBUG=1 makes the SDK log the authorization header and the request and response bodies (node_modules/@openrouter/sdk/esm/lib/sdks.js:59-62). No repository file sets the flag, so the risk stays latent. Spec D9 keeps the no-PII rule. Default: fix in S3 by passing a no-op debugLogger and adding a test with OPENROUTER_DEBUG=1.",
+    "N2 [Nit] review-b: The S2 Verify command git grep 'OPENROUTER_MODEL\\b\\|openrouter/free' -- apps packages ':!**/.env.example' will match packages/ai-tutoring/src/__tests__/roles.test.ts:51, :172, and :174. These lines are the case-9 fixture that proves the old variable is not used. My grep confirms no production code matches either pattern. Default: the verifier records the three test-file matches as the live complement of the artifact check and does not block on them.",
+    "N3 [Nit] review-b: No test resolves two roles and asserts the second role keeps its own model. test-strategy.md S2.7 names this guardrail: a test that resolves two roles must fail when the second returns the first role's model. The implementation uses a Map keyed by AiRole (providers.ts:385-387), correct by inspection, and case 1 covers one role only. Default: add the two-role cache isolation test in S3, which edits the resolvers again.",
+    "N4 [Nit] review-b: No package test imports the four new exports (AI_ROLES, AiRole, resolveRoleModel, buildProviderPreferences) from src/index.ts. test-strategy.md S2.10 names this complement row. The role tests import from ../roles directly, and no app uses the new exports yet, so an index wiring error is invisible to every test. Default: import the new exports from the package surface in an S3 test."
+  ],
+  "evidence": [
+    "Provenance: git rev-parse HEAD returns 1f266be2c53c44fccc05c0baaa9912b52dd39add, which equals the audited_head_sha. The reviewed range is phase_base_sha d8e08cded75dac2fc33cb857c85f10f86036861d..1f266be2.",
+    "Security applicability: applicable. test-strategy.md S2.2 names the security review with the reason that fail-closed behavior is a privacy boundary and usage logging must not leak text. The range changes roles.ts, usage-log.ts, providers.ts, both chatbot routes, spreadsheet-feedback.ts, and both .env.example files.",
+    "PII flag: roles.ts:9-25 holds AI_ROLES with sendsPii false for studentTutor, spreadsheetEval, and accountingEval. Case 4 passes in my run. No role sets zdr today, so no request sends a provider object for PII (case 12).",
+    "zdr and require_parameters mapping: roles.ts:67-83 maps the four input pairs to undefined, {requireParameters}, {zdr}, and both. The SDK TypeScript field names requireParameters and zdr match node_modules/@openrouter/sdk/esm/models/providerpreferences.d.ts:123 and :131, and the outbound JSON uses snake_case per the same file line 179. Strategy F13 and evidence.md 'SDK API' record this.",
+    "Usage logs: usage-log.ts:12-31 holds role, model, latencyMs, promptTokens, completionTokens, totalTokens, outcome, and status only. No key, prompt, or answer field exists in the record type. providers.ts:248-285 writes one record after success and one after the last retry, with the served model on success and the requested model on failure. Neither is a secret.",
+    "Log-marker guard: my run of the 'role configuration' filter passes case 11: no log line holds PROMPT-MARKER-7 or ANSWER-MARKER-9, and the failed request logs outcome 'error' with status 503 (roles.test.ts:190-228).",
+    "F10 redaction: providers.ts:52-53 strips the bearer scheme with /^bearer\\s+/i, so case and extra spaces do not matter. redactionTargets (providers.ts:44-56) covers the raw, trimmed, and token forms with the 8-character minimum. My F10 filter run passes F10a and F10b; my F1 filter run passes all four cases.",
+    "Every mapSdkError path returns redacted or fixed text: the HTTP path (providers.ts:96-102), the connection path (:109-116), the string rejection (:92-93), and the fallback (:118). The EmptyResponseError and body-read branches return new errors with no upstream text (:76-87).",
+    "No secrets in env examples: the range's .env.example diffs hold commented variable names, the openrouter/free development note, and placeholder text only. No key value appears in either file.",
+    "Fail closed: resolveRoleModel (roles.ts:39-53) rejects absent, empty, whitespace, and @preset/ values. Both resolvers return null and log the missing name through logRoleNotConfigured (usage-log.ts:29-31). Both chatbot routes keep the 503 fixed body, and spreadsheet-feedback.ts keeps the deterministic fallback when the resolver returns null. Cases 6 to 10 pass in my run.",
+    "Route input validation: unchanged by this range. Both routes keep the session claims check, profile lookup, enrollment check, rate limit, body validation, sanitizeInput, and detectPromptInjection before the provider call (IM3 route.ts:100-177 before :209). The BM2 route now resolves the provider inside its try block (route.ts:183), which closes the prior S1 Review B F3. retry.ts:51 reads the structured status field before message text, which closes the prior S1 Review B F2 mechanism.",
+    "A2 consent-blind publish gate: not applicable. The range flips no draft-to-published status and publishes nothing.",
+    "A6 registry overstatement: measure/tracks.md:243-247 marks the track open and describes planned phases only; no security state is claimed as resolved. Every evidence.md S2 claim names a log that exists under measure/runs/openrouter-sdk-ai-layer_20261114/, and my own runs reproduce the targeted results.",
+    "Test-contract integrity: git diff 8e803b83..1f266be2 -- roles.test.ts is empty, so no Red role assertion changed. The providers.test.ts changes are the planned signature updates; the removed 'uses custom model from OPENROUTER_MODEL' test is replaced by case 9, which asserts the old variable is not used.",
+    "IM3 no-PII guard: my heavy-run.sh run of the IM3 no-PII filter passes 1 test, 7069 skipped; the test asserts all six fixture values are absent from the captured messages and that the provider was called once (route.no-pii.test.ts:109-114).",
+    "BM2 no-PII guard: my run of the single test file passes 1 test, exit 0. The full-workspace filter run through heavy-run.sh timed out after 600 seconds, so the single-file run is the verification record; the test is self-contained, mocks every dependency, and asserts all six fixture values are absent from the captured messages with the provider called once (route.no-pii.test.ts:110-113)."
+  ],
+  "commands": [
+    "~/Desktop/advantage-pr/scripts/jobs/slot check: ok, 8 of 14 busy",
+    "git rev-parse HEAD: 1f266be2c53c44fccc05c0baaa9912b52dd39add",
+    "git diff --stat d8e08cde..1f266be2: 27 files, all in the planned scope",
+    "git grep -n 'OPENROUTER_MODEL\\b\\|openrouter/free' -- apps packages ':!**/.env.example': matches only roles.test.ts:51, :172, :174; no production code matches",
+    "CI=true npm run test --workspace=packages/ai-tutoring -- -t 'role configuration': 12 passed, 115 skipped, exit 0",
+    "CI=true npm run test --workspace=packages/ai-tutoring -- -t 'F1': 4 passed, exit 0",
+    "CI=true npm run test --workspace=packages/ai-tutoring -- -t 'F10': 2 passed, exit 0",
+    "~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh -c 'CI=true npm run test --workspace=apps/integrated-math-3 -- -t \"no-PII\"': 1 passed, 7069 skipped",
+    "CI=true npm run test --workspace=apps/bus-math-v2 -- __tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts: 1 passed, exit 0 (the full-workspace filter run timed out after 600 seconds, so the single-file run is the record)",
+    "grep requireParameters/zdr node_modules/@openrouter/sdk/esm/models/providerpreferences.d.ts: lines 123 and 131"
+  ],
+  "changed_files": [
+    "apps/bus-math-v2/.env.example",
+    "apps/bus-math-v2/__tests__/api/student/lesson-chatbot.test.ts",
+    "apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.adversarial.test.ts",
+    "apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts",
+    "apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.sdk.test.ts",
+    "apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.test.ts",
+    "apps/bus-math-v2/__tests__/lib/ai/providers.test.ts",
+    "apps/bus-math-v2/__tests__/lib/ai/spreadsheet-feedback.test.ts",
+    "apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts",
+    "apps/bus-math-v2/lib/ai/spreadsheet-feedback.ts",
+    "apps/integrated-math-3/.env.example",
+    "apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts",
+    "apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.sdk.test.ts",
+    "apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.test.ts",
+    "apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/red-s2-d8e08cde.log",
+    "measure/tech-stack.md",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/evidence.md",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md",
+    "packages/ai-tutoring/src/__tests__/providers.adversarial.test.ts",
+    "packages/ai-tutoring/src/__tests__/providers.test.ts",
+    "packages/ai-tutoring/src/__tests__/roles.test.ts",
+    "packages/ai-tutoring/src/index.ts",
+    "packages/ai-tutoring/src/providers.ts",
+    "packages/ai-tutoring/src/roles.ts",
+    "packages/ai-tutoring/src/usage-log.ts",
+    "packages/ai-tutoring/workerd-probe/worker.ts"
+  ],
+  "test_strategy_violations": [
+    "A1: Red case 8 (roles.test.ts:169) asserts toContain('preset') on joined log lines. test-strategy.md S2.4 case 8 requires the reason-field assertion and S2.11 row A1 names includes('preset') as failing review. This is blocking finding B1."
+  ],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "retry_tests",
+  "confidence": "high",
+  "route": "opencode-go/glm-5.3#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 4,
+      "evidence": "resolveRoleModel, buildProviderPreferences, usage-log, fail-closed, and F10 redaction match the spec Contract, and my runs pass 12/12 role cases, 4/4 F1, and 2/2 F10; the only gap is a weak test assertion, not behavior."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 3,
+      "evidence": "12 role cases, 2 no-PII guards, F1, and F10 are real failing-first tests (red-s2-d8e08cde.log), but case 8 uses substring text instead of the required field assertion (roles.test.ts:169), no two-role cache test exists, and no test imports the new exports from src/index.ts."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "git diff --stat d8e08cde..1f266be2 lists 27 files, all named by plan.md S2 tasks and the strategy caller-move list; no unrelated file is in the range."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 4,
+      "evidence": "Every claim in this audit has a file:line or a command result; the SDK field names were verified against the installed providerpreferences.d.ts lines 123 and 131."
+    }
+  ]
+}

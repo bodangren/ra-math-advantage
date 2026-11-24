@@ -1,0 +1,14 @@
+MEASURE_AGENT_RESULT
+role: measure-jr-green
+status: pass
+track: openrouter-sdk-ai-layer_20261114
+phase: S1
+baseline_sha: dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c
+commits: 9193d28b fix(ai-tutoring): classify retries by HTTP status, not message text (track_id: openrouter-sdk-ai-layer_20261114); b3401a2e measure(plan): Mark remediation r3 (Review A F1) as complete (track_id: openrouter-sdk-ai-layer_20261114). Final Green HEAD b3401a2e. Role base 334fab55.
+tests_run: regression tests before fix: 2 failed, 23 skipped (r3-regression-before.log). Regression tests after fix: 2 passed (r3-regression-after.log). RED_TEST_COMMAND: 6 passed, 77 skipped, exit 0 (r3-red-test.log). GREEN_TEST_COMMAND: exit 0, ai-tutoring 83/83, BM2 17/17, IM3 11/11 (r3-green-test.log). workerd probe: exit 0, probe-ok (r3-workerd.log). typecheck, lint, format:check: all exit 0 (r3-typecheck.log, r3-lint.log, r3-format.log). providers plus retry suites after formatting: 39/39 (r3-regression-after-format.log). Every command ran through heavy-run.sh, one at a time.
+files_changed: packages/ai-tutoring/src/providers.ts (attach structured status to mapped HTTP errors), packages/ai-tutoring/src/retry.ts (structured status wins in isRetryableError), packages/ai-tutoring/src/__tests__/providers.test.ts (two new regression cases), measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md (remediation note and [x] SHA). No committed Red assertion changed. No file outside packages/ai-tutoring and plan.md changed.
+plan_updates: remediation sub-task under S1 Implement marked [~] at the start and [x] with SHA 9193d28b. No other task state changed. No task flipped to [b].
+known_failures: none new. Review A F2/F3 and Review B F1-F6 are record-only and were not changed, as the brief directs. The six unrelated generated files remain modified and unstaged.
+handoff: Review A F1 fixed. mapSdkError stores statusCode in a structured status field while keeping the student-facing message unchanged. retry.ts reads that field before the legacy message patterns, so a 503 with text '(400)' retries and a 400 with text '(503)' rejects after one attempt. Message-based classification stays as a fallback, so existing retry tests keep their behavior. The immutable phase_base_sha dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c and the role base 334fab55 are unchanged by this remediation. The orchestrator owns the S1 manual verification task and the phase checkpoint.
+dispositions: F1=FIX; F2=DECLINE; F3=DECLINE; RB-F1=DECLINE; RB-F2=DECLINE; RB-F3=DECLINE; RB-F4=DECLINE; RB-F5=DECLINE; RB-F6=DECLINE
+END_MEASURE_AGENT_RESULT

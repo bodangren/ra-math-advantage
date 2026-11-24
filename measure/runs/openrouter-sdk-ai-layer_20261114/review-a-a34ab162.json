@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "role": "review-a",
+  "track": "openrouter-sdk-ai-layer_20261114",
+  "phase": "Phase S2: Role-based model configuration",
+  "baseline_sha": "d8e08cde",
+  "phase_base_sha": "d8e08cded75dac2fc33cb857c85f10f86036861d",
+  "role_base_sha": "d8e08cded75dac2fc33cb857c85f10f86036861d",
+  "audited_head_sha": "a34ab1626f8d0f77678258545aad065497756a1a",
+  "status": "pass",
+  "summary": "The S2 diff preserves configured model values exactly. The RA1 regression test fails before the fix and passes after it; targeted role and no-PII tests pass.",
+  "blocking_findings": [],
+  "nonblocking_findings": [],
+  "evidence": [
+    "HEAD resolves to a34ab1626f8d0f77678258545aad065497756a1a, matching audited_head_sha.",
+    "The exact reviewed range is d8e08cded75dac2fc33cb857c85f10f86036861d..a34ab1626f8d0f77678258545aad065497756a1a.",
+    "packages/ai-tutoring/src/roles.ts:42-54 uses trim() only to reject blank values and identify presets; success returns the original raw value.",
+    "packages/ai-tutoring/src/__tests__/roles-preservation.test.ts:18-32 asserts that a padded nonblank model remains unchanged and whitespace-only input remains missing.",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/green-s2-r2-before-fix.log records the preservation test failing before the fix because the padded value was trimmed.",
+    "The targeted package test run passed: 14 passed, 115 skipped, exit 0; it covered model value preservation, role configuration, and package entry exports.",
+    "The targeted IM3 and BM2 no-PII runs each passed their single test: 1 passed, 7069 skipped and 1 passed, 2698 skipped.",
+    "The S2 gate record reports lint, test, and checks-all exit 0; each comparison reports NEWFAIL=0 in green-s2-r2-gates-*.log.",
+    "rg found resolver callers in both chatbot routes, BM2 spreadsheet feedback, the workerd probe, and the expected package and route tests."
+  ],
+  "commands": [
+    "git rev-parse HEAD: a34ab1626f8d0f77678258545aad065497756a1a",
+    "git diff --name-status d8e08cde..a34ab162: reviewed the exact phase diff; 29 paths changed.",
+    "HEAVY_PRIORITY=p1 HEAVY_MIN_AVAIL_MB=1500 ~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh -c \"CI=true npm run test --workspace=packages/ai-tutoring -- -t 'model value preservation|role configuration|package entry exports'\": exit 0, 14 passed, 115 skipped.",
+    "HEAVY_PRIORITY=p1 HEAVY_MIN_AVAIL_MB=1500 ~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh -c \"CI=true npm run test --workspace=apps/integrated-math-3 -- -t 'no-PII' && CI=true npm run test --workspace=apps/bus-math-v2 -- -t 'no-PII'\": exit 0; IM3 1 passed, BM2 1 passed.",
+    "HEAVY_PRIORITY=p1 HEAVY_MIN_AVAIL_MB=1500 ~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh -c 'build-graph update measure/runs/openrouter-sdk-ai-layer_20261114/review-a-1f266be2.graph.db packages/ai-tutoring/src/roles.ts packages/ai-tutoring/src/providers.ts packages/ai-tutoring/src/index.ts packages/ai-tutoring/src/usage-log.ts apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts apps/bus-math-v2/lib/ai/spreadsheet-feedback.ts': updated 7 files, 101 nodes, 102 edges.",
+    "cat measure/runs/openrouter-sdk-ai-layer_20261114/green-s2-r2-gates.exit: lint, test, and checks-all each exit 0."
+  ],
+  "changed_files": [
+    "apps/bus-math-v2/.env.example",
+    "apps/bus-math-v2/__tests__/api/student/lesson-chatbot.test.ts",
+    "apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.adversarial.test.ts",
+    "apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts",
+    "apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.sdk.test.ts",
+    "apps/bus-math-v2/__tests__/app/api/student/lesson-chatbot/route.test.ts",
+    "apps/bus-math-v2/__tests__/lib/ai/providers.test.ts",
+    "apps/bus-math-v2/__tests__/lib/ai/spreadsheet-feedback.test.ts",
+    "apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts",
+    "apps/bus-math-v2/lib/ai/spreadsheet-feedback.ts",
+    "apps/integrated-math-3/.env.example",
+    "apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.no-pii.test.ts",
+    "apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.sdk.test.ts",
+    "apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.test.ts",
+    "apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts",
+    "measure/runs/openrouter-sdk-ai-layer_20261114/red-s2-d8e08cde.log",
+    "measure/tech-stack.md",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/evidence.md",
+    "measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md",
+    "packages/ai-tutoring/src/__tests__/index-exports.test.ts",
+    "packages/ai-tutoring/src/__tests__/providers.adversarial.test.ts",
+    "packages/ai-tutoring/src/__tests__/providers.test.ts",
+    "packages/ai-tutoring/src/__tests__/roles-preservation.test.ts",
+    "packages/ai-tutoring/src/__tests__/roles.test.ts",
+    "packages/ai-tutoring/src/index.ts",
+    "packages/ai-tutoring/src/providers.ts",
+    "packages/ai-tutoring/src/roles.ts",
+    "packages/ai-tutoring/src/usage-log.ts",
+    "packages/ai-tutoring/workerd-probe/worker.ts"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "openai/gpt-6-luna#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 5,
+      "evidence": "packages/ai-tutoring/src/roles.ts:42-54 returns the raw configured value, and the preservation test covers padded and whitespace-only inputs."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 4,
+      "evidence": "The targeted package run passed 14 role and preservation tests, and Green recorded a failing-first proof for the padded model value."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "The d8e08cde..a34ab162 diff contains the S2 role resolver, usage logging, planned caller moves, and associated tests."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 5,
+      "evidence": "HEAD, the exact diff, spec.md:217, the Green first-failure log, targeted test results, and S2 gate records were checked."
+    }
+  ]
+}

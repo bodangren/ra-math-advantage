@@ -1,0 +1,12 @@
+MEASURE_AGENT_RESULT
+role: measure-review-b-security
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: Phase S4: Remove the OpenAI paths and document the roles
+commits: none (audit-only; result artifacts written under measure/runs/)
+tests_run: heavy-run.sh -c "npx vitest run --config scripts/vitest.config.ts -t 'openrouter-only'" -> 1 file passed, 3 tests passed, 121 skipped, exit 0; git diff/grep provenance checks passed
+files_changed: measure/runs/openrouter-sdk-ai-layer_20261114/measure-review-b-security-3bcf2b31.json, measure/runs/openrouter-sdk-ai-layer_20261114/measure-review-b-security-3bcf2b31.log
+plan_updates: none (audit-only role; no plan, code, test, registry, or gate file edited)
+known_failures: none in this audit; full gate sweeps not re-run by this auditor due to heavy-lock contention from another session, but Green records NEWFAIL=0 at evidence.md:610-618
+handoff: Security verdict PASS. Audited HEAD 3bcf2b3124a4ae042e79851b51ae3e6a08327a93 current; phase_base_sha 8283f9fa..., role_base_sha bce9613a... No secret/token in config or docs; no non-OpenRouter path, env var, or default model string in source; removed controls have S1/S3 replacements; PII strip, four no-PII guards and BM2 release gate untouched; no new production export or dependency; A2 and A6 not triggered. No blocking or nonblocking findings. Route blockers to Green only if a finding is raised (none here). Live smoke test stays a deferred:daniel human gate, not a finding.
+END_MEASURE_AGENT_RESULT

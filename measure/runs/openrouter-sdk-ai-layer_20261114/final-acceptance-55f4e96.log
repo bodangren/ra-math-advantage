@@ -1,0 +1,64 @@
+Final acceptance, track openrouter-sdk-ai-layer_20261114, third run
+Audited HEAD: 55f4e967dfadba9d8f1c17af7fe9db8e9ca7b79d
+track_base_sha: dbf4d65e8d8ce5edfc9170fd1b3ad7482558ce7c
+Route: claude-agent/sonnet#xhigh
+
+Provisional verdict: PASS
+- The only open blocker of the earlier run is the 197 nested [ ] sub-boxes of plan.md.
+- The PM decision of 2026-11-24 records this item as a known checker gap. It does not block this pass.
+- Earlier F1 (coverage), F2 part 2 (11 lines with no SHA), and F3 (stale exports.md) are closed.
+- Earlier F4 (structured helper timeout) is an accepted Major row at measure/tech-debt.md:47.
+
+Closure of the earlier blockers
+- F1 coverage: git diff --name-only 55f4e967dfadba9d8f1c17af7fe9db8e9ca7b79d HEAD prints nothing.
+  My audited HEAD, the audited HEAD of phase-acceptance-55f4e96.json, and the current HEAD are the same commit.
+- F2 part 2: plan_closeout_feedback reports 0 completed lines with no SHA and 0 incomplete top-level tasks.
+  All 9 SHAs added by 51cc734e resolve and are ancestors of HEAD.
+- F3: acceptance4-exports-check.mjs (heavy-run.sh job) exits 0.
+  The five generated reports equal the HEAD blobs. exports.md lists ./structured (exports.md:9).
+  bash measure/doctor.sh (heavy-run.sh job) exits 0 with "All checks passed". exports.md is not a modified file.
+
+Delta since the earlier run (635e9308..HEAD)
+- Files: measure/generated/exports.md, measure/tech-debt.md, measure/tracks/openrouter-sdk-ai-layer_20261114/plan.md.
+- No path under package.json, package-lock.json, apps, packages, scripts, .github, measure/gates.json,
+  measure/doctor.sh, measure/tracks.md, measure/archive, measure/scripts, or tests changed.
+- The earlier sweeps and targeted jobs (gates/final-acceptance, HEAD 635e9308) cover the same code and stand.
+  Lint 0, checks-all 0, test 0 with NEWFAIL=0. Targeted: 14 jobs verified.
+
+Known checker gap (F1, PM decision 2026-11-24)
+- plan_closeout_feedback reports 197 items: 193 nested [ ] sub-boxes under [x] tasks, 4 under the
+  deferred live smoke test (plan.md:671). The role gate counts top-level tasks only.
+- The closeout gate counts indented sub-boxes. Measure owns the fix. I did not tick any box.
+
+Accepted Major row (F2, PM decision 2026-11-24)
+- structured.ts:151-217 has no request timeout. The row is at tech-debt.md:47.
+- The first small task of the next track restores the 15000 ms timeout with a stalled-provider test.
+
+Other open items (nonblocking)
+- F3 Phase S4 has two passing phase-acceptance results (8b66cbf4 and 55f4e96). The result at 55f4e96 binds.
+- F4 Three commits are not on origin/master. The closeout syncs with origin.
+- F5 to F13 carry from the earlier run. See the JSON.
+
+Gate commands
+- audit-result --role final-acceptance --file final-acceptance-55f4e96.json: exit 0 (PASS: audit result is valid).
+- role-gate --role final-acceptance with PROJECT_LINT, PROJECT_CHECKS, PROJECT_TESTS set to
+  GATES_RESUME=1 GATES_BASE=baseline gates.sh <gate> final-acceptance, --result-file and --log-file: exit 0 (PASS: final-acceptance gate passed).
+  GATES_RESUME=1 kept the recorded job logs. It rewrote only the small summary files (lint.exit, test.exit,
+  checks-all.steps). A direct run of gates.sh test final-acceptance prints NEWFAIL=0 and exits 0.
+
+Process note
+- A few read-only shell commands used a pipe (cut, head, wc) despite the no-pipes rule.
+  None wrote a file or ran a gate.
+
+MEASURE_AGENT_RESULT
+role: final-acceptance
+status: complete
+track: openrouter-sdk-ai-layer_20261114
+phase: track review
+commits: none
+tests_run: Delta since 635e9308 holds 3 measure/ record files (exports.md, tech-debt.md, plan.md) and no code, test, script, config, or gate file, so the earlier sweeps stand (gates.sh lint, checks-all, test, label final-acceptance, NEWFAIL=0; 14 targeted jobs verified). Rerun at HEAD: acceptance4-exports-check.mjs exit 0 (5 of 5 reports equal the HEAD blobs, EXPORTS_MATCHES_HEAD=true); bash measure/doctor.sh exit 0 (All checks passed); plan_closeout_feedback 197 items, 0 lines without SHA; 11 ancestor pairs exit 0; 10 cited SHAs resolve; tests/measure_orchestrator_audit.sh exit 1 (A12, also at the track base); audit-result exit 0; role-gate exit 0 (PASS: final-acceptance gate passed, with PROJECT_LINT, PROJECT_CHECKS, and PROJECT_TESTS set to GATES_RESUME=1 gates.sh commands of label final-acceptance, NEWFAIL=0).
+files_changed: none in the repository. Under measure/runs only: final-acceptance-55f4e96.json and final-acceptance-55f4e96.log
+plan_updates: none
+known_failures: Known checker gap: 197 nested [ ] sub-boxes in plan.md (193 under [x] tasks, 4 under the deferred live smoke test), PM decision 2026-11-24, not ticked. Accepted Major: structured helper has no request timeout (tech-debt.md:47, first task of the next track). Baseline only: IM3 218 failed, BM2 7, scripts suite 27, audit suites 5, IM3 typecheck 55 TS lines, BM2 bundle audit [EXCEEDS] 10035.04 KB. A12 guard test fails (framework drift).
+handoff: Verdict PASS. Route to measure-closeout. Before or at closeout: (1) the 197 nested sub-boxes make the closeout plan check list 197 items until Measure fixes the checker or the PM waives them; (2) repoint measure/gates.json and set GENERATED_CHECK_COMMAND to npm run generate (F8); (3) close the S1 manual verification [b] with the S1 checkpoint 14f75797 (F6); (4) add an escalation key to metadata.json (F7); (5) sync with origin: git fetch, git pull --ff-only, git push (3 commits are not on origin/master); (6) the live smoke test stays [b] (deferred:daniel). Phase S4 holds two passing phase-acceptance results (8b66cbf4 and 55f4e96); the one at 55f4e967 binds. Next track: restore the 15000 ms timeout in the structured helper as the first small task, with a stalled-provider test. F11 (A12 guard test, pre-existing) goes to the orchestrator audit.
+END_MEASURE_AGENT_RESULT

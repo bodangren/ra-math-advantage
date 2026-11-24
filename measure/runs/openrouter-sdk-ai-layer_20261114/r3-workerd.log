@@ -1,0 +1,5 @@
+
+> @math-platform/ai-tutoring@0.1.0 test:workerd
+> node workerd-probe/run.mjs
+
+workerd probe: probe-ok

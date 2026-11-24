@@ -1,0 +1,189 @@
+
+ RUN  v4.1.12 /home/daniebo/Desktop/ra-math-advantage
+
+ ❯ scripts/audit/__tests__/audit-contract.test.ts (36 tests | 4 failed) 110ms
+     × reports exactly the 5 first-class apps in apps/ 5ms
+     × reports all 21 shared packages (excludes _template from active list) 1ms
+     × counts external (non-workspace, non-`*`) deps per first-class app — Red on under-count 2ms
+     × getAuditReport() returns a coherent AuditReport matching the baseline 1ms
+ ❯ scripts/audit/__tests__/in-range-wave-w3.test.ts (38 tests | 1 failed) 27ms
+     × PTE vitest 4.1.8 is installed in the lockfile (post-W2 invariant) 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  scripts/audit/__tests__/audit-contract.test.ts > audit-contract — first-class app coverage (Red on missing app, Red on under-count) > reports exactly the 5 first-class apps in apps/
+AssertionError: expected [ 'apps/bus-math-v2', …(5) ] to deeply equal [ 'apps/bus-math-v2', …(4) ]
+
+- Expected
++ Received
+
+  [
+    "apps/bus-math-v2",
++   "apps/danielson",
+    "apps/integrated-math-1",
+    "apps/integrated-math-2",
+    "apps/integrated-math-3",
+    "apps/pre-calculus",
+  ]
+
+ ❯ scripts/audit/__tests__/audit-contract.test.ts:161:34
+    159|       .map((m) => m.workspace_path)
+    160|       .sort();
+    161|     expect(firstClassWorkspaces).toEqual(BASELINE.first_class_apps.map…
+       |                                  ^
+    162|   });
+    163|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  scripts/audit/__tests__/audit-contract.test.ts > audit-contract — first-class app coverage (Red on missing app, Red on under-count) > reports all 21 shared packages (excludes _template from active list)
+AssertionError: expected [ …(20) ] to deeply equal [ …(19) ]
+
+- Expected
++ Received
+
+@@ -4,10 +4,11 @@
+    "packages/ai-tutoring",
+    "packages/app-shell",
+    "packages/component-approval",
+    "packages/core-auth",
+    "packages/core-convex",
++   "packages/efficacy-core",
+    "packages/graphing-core",
+    "packages/knowledge-space-core",
+    "packages/knowledge-space-practice",
+    "packages/lesson-renderer",
+    "packages/math-content",
+
+ ❯ scripts/audit/__tests__/audit-contract.test.ts:169:30
+    167|       .map((m) => m.workspace_path)
+    168|       .sort();
+    169|     expect(sharedWorkspaces).toEqual(BASELINE.shared_packages.map((a) …
+       |                              ^
+    170|   });
+    171|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  scripts/audit/__tests__/audit-contract.test.ts > audit-contract — first-class app coverage (Red on missing app, Red on under-count) > counts external (non-workspace, non-`*`) deps per first-class app — Red on under-count
+AssertionError: first-class app dep count drift: [
+  {
+    "workspace": "apps/bus-math-v2",
+    "expected": 48,
+    "actual": 45,
+    "ok": false
+  },
+  {
+    "workspace": "apps/integrated-math-1",
+    "expected": 35,
+    "actual": 32,
+    "ok": false
+  },
+  {
+    "workspace": "apps/integrated-math-2",
+    "expected": 35,
+    "actual": 31,
+    "ok": false
+  },
+  {
+    "workspace": "apps/integrated-math-3",
+    "expected": 52,
+    "actual": 50,
+    "ok": false
+  },
+  {
+    "workspace": "apps/pre-calculus",
+    "expected": 35,
+    "actual": 32,
+    "ok": false
+  }
+]: expected [ { …(4) }, { …(4) }, { …(4) }, …(2) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "actual": 45,
++     "expected": 48,
++     "ok": false,
++     "workspace": "apps/bus-math-v2",
++   },
++   {
++     "actual": 32,
++     "expected": 35,
++     "ok": false,
++     "workspace": "apps/integrated-math-1",
++   },
++   {
++     "actual": 31,
++     "expected": 35,
++     "ok": false,
++     "workspace": "apps/integrated-math-2",
++   },
++   {
++     "actual": 50,
++     "expected": 52,
++     "ok": false,
++     "workspace": "apps/integrated-math-3",
++   },
++   {
++     "actual": 32,
++     "expected": 35,
++     "ok": false,
++     "workspace": "apps/pre-calculus",
++   },
++ ]
+
+ ❯ scripts/audit/__tests__/audit-contract.test.ts:178:7
+    176|       offenders,
+    177|       `first-class app dep count drift: ${JSON.stringify(offenders, nu…
+    178|     ).toEqual([]);
+       |       ^
+    179|     for (const c of coverage) {
+    180|       expect(c.actual).toBe(c.expected);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  scripts/audit/__tests__/audit-contract.test.ts > audit-contract — full report integration > getAuditReport() returns a coherent AuditReport matching the baseline
+AssertionError: expected 6 to be 5 // Object.is equality
+
+- Expected
++ Received
+
+- 5
++ 6
+
+ ❯ scripts/audit/__tests__/audit-contract.test.ts:338:42
+    336|     const report: AuditReport = getAuditReport(REPO_ROOT, BASELINE, MA…
+    337|
+    338|     expect(report.firstClassApps.length).toBe(BASELINE.totals.first_cl…
+       |                                          ^
+    339|     expect(report.sharedPackages.length).toBe(BASELINE.totals.shared_p…
+    340|     expect(report.securityTotals).toEqual(BASELINE.security_totals);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  scripts/audit/__tests__/in-range-wave-w3.test.ts > in-range-wave (W3) — PTE vitest post-W2 invariant > PTE vitest 4.1.8 is installed in the lockfile (post-W2 invariant)
+AssertionError: installed vitest must be 4.1.8 (post-W2 lockfile target): expected '4.1.12' to be '4.1.8' // Object.is equality
+
+Expected: "4.1.8"
+Received: "4.1.12"
+
+ ❯ scripts/audit/__tests__/in-range-wave-w3.test.ts:834:88
+    832|     const entry = PACKAGE_LOCK.packages["node_modules/vitest"];
+    833|     expect(entry, "vitest missing from lockfile").toBeDefined();
+    834|     expect(entry!.version, "installed vitest must be 4.1.8 (post-W2 lo…
+       |                                                                                        ^
+    835|       "4.1.8",
+    836|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  2 failed | 4 passed (6)
+      Tests  5 failed | 187 passed (192)
+   Start at  18:15:00
+   Duration  1.15s (transform 91ms, setup 0ms, import 245ms, tests 371ms, environment 0ms)
+
