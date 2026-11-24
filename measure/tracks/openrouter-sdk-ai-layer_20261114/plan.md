@@ -624,6 +624,9 @@ _Story ref: spec.md#story-s4_
       test-only in `server-composition.test.ts` (`5724741c`): `techDebtSrc`
       reads `measure/tech-debt.md` plus
       `measure/archive/tech-debt-resolved.md`, row assertions unchanged.
+    - R3 (2026-11-24, `a330414e`): the NUL skip is removed from both scans;
+      binaries skip by extension only; the new NUL regression case passes and
+      the old logic misses it (0 vs 1 hit).
     - [ ] Commit: `test(ai): guard the single AI provider (Red)`.
 - [x] Task: S4 Implement — remove the old AI code `e13a8dfc`
     - Evidence: commit `e13a8dfc` makes removals 1 to 5. The four files of
