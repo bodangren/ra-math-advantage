@@ -597,12 +597,23 @@ _Story ref: spec.md#story-s4_
     - [ ] Removal 4: the exports of removal 3 in `packages/practice-core/src/index.ts` and in `apps/bus-math-v2/lib/practice/error-analysis/index.ts`.
     - [ ] Removal 5: the `generateAISummary` tests in `apps/bus-math-v2/__tests__/lib/practice/error-analysis.test.ts` and `apps/integrated-math-3/__tests__/lib/practice/error-analysis.test.ts`. The other tests stay.
     - [ ] `AISummaryOutput`, `TeacherErrorView`, and `buildTeacherErrorView` stay without change.
-- [ ] Task: S4 Test (Red) — guard the single provider
+- [~] Task: S4 Test (Red) — guard the single provider
     - [ ] Create `scripts/__tests__/openrouter-only.test.ts`. Add it to `include` in `scripts/vitest.config.ts`.
     - [ ] Normal case 1: no file under `apps/` or `packages/` (outside `node_modules`) contains `api.openai.com`, `api.anthropic.com`, `OPENAI_API_KEY`, or `AI_INTERPRETATION_`.
     - [ ] Normal case 2: the 4 files of removals 1 and 2 do not exist.
     - [ ] Normal case 3: the `@math-platform/practice-core` module exports no `generateAISummary`, and it exports `buildTeacherErrorView`.
     - [ ] Run the scripts suite. Confirm that cases 1 to 3 fail.
+    - RED run (2026-11-24, role mid-red): `npx vitest run
+      --config scripts/vitest.config.ts -t 'openrouter-only'` ran 3 cases, 3
+      failed, 121 skipped. Case 1 fails at `openrouter-only.test.ts:74`
+      (`Banned token match count`): scanned files under `apps/` and
+      `packages/` hold the four banned tokens. Case 2 fails at line 80
+      (`Existing removal path count: 4`): all four removal paths exist at
+      HEAD. Case 3 fails at line 86 (`generateAISummary must be removed`):
+      the real `@math-platform/practice-core` namespace still exports
+      `generateAISummary`. No missing-module failure: case 3 imports the
+      real package through a non-literal specifier. Exclusions are path
+      contexts only (`node_modules`, `.next`, `dist`).
     - [ ] Commit: `test(ai): guard the single AI provider (Red)`.
 - [ ] Task: S4 Implement — remove the old AI code
     - [ ] Make removals 1 to 5 of the S4 Contract.
