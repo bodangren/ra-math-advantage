@@ -614,6 +614,10 @@ _Story ref: spec.md#story-s4_
       `generateAISummary`. No missing-module failure: case 3 imports the
       real package through a non-literal specifier. Exclusions are path
       contexts only (`node_modules`, `.next`, `dist`).
+    - R2 (2026-11-24): the IM3 FR-14 tech-debt-registry drift is fixed
+      test-only in `server-composition.test.ts` (`5724741c`): `techDebtSrc`
+      reads `measure/tech-debt.md` plus
+      `measure/archive/tech-debt-resolved.md`, row assertions unchanged.
     - [ ] Commit: `test(ai): guard the single AI provider (Red)`.
 - [ ] Task: S4 Implement — remove the old AI code
     - [ ] Make removals 1 to 5 of the S4 Contract.
