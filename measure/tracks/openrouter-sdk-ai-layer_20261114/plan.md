@@ -352,7 +352,7 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
       Logs: `green-s3-fix-455dc41c.log`.
 - [x] Task: S3 Fix — close the S2 review findings (Review B r3 and acceptance) [69a8b17a, 455dc41c]
     - (a) Make the IM3 strip robust beyond the colon-labeled fixture. Cover the dash form, the em-dash form, unlisted labels, prose names, an obfuscated email, and a fullwidth label. Add one test for each form. If a conservative sentence-level detector is too broad, accept the limit in writing.
-    - (b) Tighten `MODEL_ID`. Record the served model in a usage record only when it equals the configured model or the configured model plus a known suffix. A bare API key form must give `model: null`. Add a test.
+    - (b) Tighten `MODEL_ID`. The implemented `safeModel` in `src/model-id.ts` rejects key-shaped `sk-` tokens only and records any other served model. A bare API key form gives `model: null`. S2 case 3 requires this result: it records `served-model-r2` for the configured model `vendor/model-a`, so a strict configured-model equality does not apply. The test covers the bare key form. See finding (b) of the "S3 Fix group" in `evidence.md`.
     - (c) Stop keeping the raw API key in the provider cache key. Key the cache on a stable non-secret value. Keep the warm-cache recheck of the key and the role model.
     - (d) Log the status and the role only in the rate-limit catch of both chatbot routes: `apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts` near line 196 and `apps/bus-math-v2/app/api/student/lesson-chatbot/route.ts` near line 102. Add a test that the raw error object reaches no console call.
     - (e) Carried items:
@@ -420,7 +420,7 @@ Gate: no student-facing release of the BM2 chatbot before the PII strip passes. 
     - [ ] `StructuredResult<T>` is `{ ok: true, data: T, raw: string }` or `{ ok: false, reason, raw?: string }`.
     - [ ] The `reason` values are `request_failed`, `empty_response`, `aborted`, `invalid_json`, and `schema_mismatch`.
     - [ ] The request sends `response_format` `{ type: 'json_schema', json_schema: { name: schemaName, strict: true, schema: z.toJSONSchema(schema) } }`, in the SDK field names from the evidence.
-    - [ ] The request sends the `provider` object from `buildProviderPreferences({ structured: true, sendsPii })`.
+    - [ ] The request sends the `provider` object from `buildProviderPreferences({ structured: true, sendsPii })`. Note: `structured.ts` inlines the preference `{ require_parameters: true }` with the non-enumerable camelCase key of R-A1. It does not read `sendsPii`, and no current role sets that flag. Wire the flag through when a PII role is added.
     - [ ] The helper uses `withRetry` for the transport, with the S1 error mapping. It never throws.
     - [ ] It parses the content with `JSON.parse`, then checks it with `schema.safeParse`. It logs one usage record for each request.
     - [ ] Response schemas use `z.strictObject`, `z.string()`, `z.number()`, and `z.array(z.string())` only. They use no length or count limits, so the JSON Schema holds only basic keywords.
