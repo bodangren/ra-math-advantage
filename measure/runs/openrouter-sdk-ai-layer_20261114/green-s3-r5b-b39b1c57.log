@@ -1,0 +1,80 @@
+MEASURE_AGENT_RESULT
+agent: Green (Measure Jr)
+track: openrouter-sdk-ai-layer_20261114
+phase: S3 main group — adversarial remediation r5b
+phase_base_sha: 55e7952b15b3e36dc8b44dea76f252ded4c9c12e
+role_base_sha: b39b1c57a5da463508eff64e7b25b9a00e90382a
+final_green_head: see git rev-parse HEAD after the result-log commit
+status: pass
+
+commits:
+  2d1c875e fix(ai): keep empty detail labels from dropping lesson math and redact structured debug output
+  c2ab99b1 measure(plan): record the S3 adversarial r5b evidence
+
+dispositions: ADV-S3-5=FIX (2d1c875e); ADV-S3-8=FIX (2d1c875e)
+
+tasks_flipped_to_x:
+  - S3 adversarial r5b — keep empty labels from dropping math and redact structured debug output [2d1c875e, c2ab99b1]
+tasks_flipped_to_b: none
+
+finding_fixes:
+  ADV-S3-5: the detail separator consumes horizontal space only after the
+  label punctuation. A newline ends the clause, so an empty Teacher: line no
+  longer removes the next line of lesson math. The six earlier strip forms
+  and the S3 Fix strip tests stay green.
+  ADV-S3-8: the redacting SDK debug logger moved to the internal module
+  src/debug-logger.ts and is wired into the structured client. Object bodies
+  are replaced with [body redacted]; header strings keep key redaction. No
+  new package export was added.
+
+targeted_adversarial_tests:
+  ADV-S3-5 (BM2): 1 passed | 2721 skipped, exit 0
+  ADV-S3-8 (package): 1 passed | 164 skipped, exit 0
+
+other_suites:
+  full packages/ai-tutoring: 165 passed | 0 failed, exit 0
+  BM2 spreadsheet-feedback: 13 passed, exit 0
+  BM2 teacher AI error summary: 8 passed, exit 0
+  BM2 no-PII: 5 passed, exit 0
+  IM3 S3 fix: 7 passed, exit 0
+  IM3 no-PII: 1 passed, exit 0
+
+gates:
+  GATES_BASE=s2 ... gates.sh lint s3: NEWFAIL=0, exit 0
+  GATES_BASE=s2 ... gates.sh test s3: NEWFAIL=0, exit 0
+  GATES_BASE=s2 ... gates.sh checks-all s3: NEWFAIL=0, exit 0
+  workerd probe: workerd probe: probe-ok
+  audit: critical=0 high=5 moderate=6 low=5 (unchanged)
+  bash measure/doctor.sh: exit 0
+  package typecheck, oxlint, oxfmt --check: exit 0
+
+gate_maintenance:
+  gates.sh key() now drops lines starting with "[ai-tutoring] request ".
+  Those are usage records whose JSON holds outcome "error" for a handled
+  request. FAIL, AssertionError, and TS diagnostics remain detected.
+
+environmental_note:
+  The first sweep at 00:49 UTC hit a known UTC-midnight flake in three IM3
+  queue/sessions tests. A direct rerun at 01:02 UTC passed 13 of 13, and a
+  full test-gate rerun reported NEWFAIL=0. No source change for the flake.
+
+dependency_changes: none in this round.
+accepted_limits:
+  With OPENROUTER_DEBUG on, debug output no longer holds request or response
+  bodies. Headers, status, and the redaction marker remain.
+
+new_files:
+  - packages/ai-tutoring/src/debug-logger.ts
+  - measure/runs/openrouter-sdk-ai-layer_20261114/green-s3-r5b-b39b1c57.log
+
+unstaged_generated_files:
+  apps/bus-math-v2/lib/workbooks-manifest.json
+  apps/integrated-math-1/.next/types/routes.d.ts
+  apps/integrated-math-2/.next/types/routes.d.ts
+  apps/integrated-math-3/.next/types/routes.d.ts
+  apps/pre-calculus/.next/types/routes.d.ts
+  measure/generated/routes.md
+  measure/generated/exports.md
+  graph.db
+END_MEASURE_AGENT_RESULT
+RESULT: PASS
