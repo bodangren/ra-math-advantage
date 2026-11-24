@@ -1,12 +1,13 @@
 # Test Strategy: openrouter-sdk-ai-layer_20261114
 
 Track: `openrouter-sdk-ai-layer_20261114` (Chore, 4 phases S1 to S4).
-Strategy revision: r2 (2026-11-23). Scope: Phase S1 (sections 1 to 13) and Phase S2 (the
-section with that name below). Refresh this file at the start of each later phase. A later
-section wins when an earlier rule disagrees with it.
+Strategy revision: r4 (2026-11-24). Scope: Phase S1 (sections 1 to 13), Phase S2, Phase S3,
+and Phase S4 (the sections with those names below). Refresh this file at the start of each
+later phase. A later section wins when an earlier rule disagrees with it.
 Role base SHA `bce9613ae515114a552cba65ba16d9ebe6d466a6` predates this strategy. It is
-not a `phase_base_sha`. Section 11 gives the S1 capture point. The "Phase S2" section gives
-the S2 capture point. Do not use any SHA in this file as the S2 `phase_base_sha`.
+not a `phase_base_sha`. Section 11 gives the S1 capture point. The "Phase S2", "Phase S3",
+and "Phase S4" sections give the later capture points. Do not use any SHA in this file as
+a later `phase_base_sha`.
 
 ## 1. What this phase proves
 
@@ -935,3 +936,319 @@ the local mock server.
 | F18 | `evidence.md` holds `zod check: TBD` from S1. | Run the plan zod check in S3. Record the version and `function`. |
 | F19 | `stripPersonDetails` lives in IM3 today. | Reuse the IM3 behavior for BM2. Move it to a package only when no new layer is needed. Keep one implementation. |
 | F20 | The 6 spreadsheet-feedback tests are changed in place. | Change only the mock and keep every expected result. Record any assertion change in `plan.md`. |
+
+---
+
+## Phase S4: Remove the OpenAI paths and document the roles
+
+This section refreshes the strategy for S4. It wins over sections 1 to 13 and the
+"Phase S2" and "Phase S3" sections when a rule disagrees. The gate capture and
+per-key comparison rules of sections 4 and 5 still apply to each S4 gate. Label
+the S4 gate logs `s4`. Store the logs under
+`measure/runs/openrouter-sdk-ai-layer_20261114/gates/s4/`.
+
+### S4.0 Release gate, carried items, and removal scope
+
+**PM gate (2026-11-23).** No student-facing release of the BM2 chatbot before the
+PII strip passes. S3 satisfied this gate at test level with the Fix 1 no-PII test.
+The gate stays with the orchestrator. S4 keeps the gate line and does not weaken
+the test. A release of the BM2 chatbot while that test is red fails the gate.
+
+**Carried items.** Review B F2, F3, and F4 and the IM3 queue sessions UTC-day
+flake stay in `measure/tech-debt.md`. S4 does not touch them. The five D1 high
+exceptions of the dependency-refresh track are unrelated to this track. S4 does
+not touch them either. Default: no change to any carried item in S4. An
+orchestrator decision is required to change this default.
+
+**Removal scope.** The S4 Contract task lists removals 1 to 5. The Red cases
+below guard each removal. Removal 5 deletes only the `generateAISummary` tests.
+The other tests in both `error-analysis.test.ts` files stay.
+
+**One adversarial run.** The PM decision of 2026-11-22 allows one adversarial
+run for each phase. S4 uses one run. Section S4.10 holds the whole ADV-S4 list.
+Do not split the run into remediation rounds.
+
+### S4.1 What this phase proves
+
+S4 removes the OpenAI and Anthropic code paths, the unused interpretation module,
+the direct provider file, and the dead summary code of `practice-core`. S4 also
+documents the roles. The live behavior of the chat, the spreadsheet feedback, and
+the teacher summary must not change.
+
+The proof has three parts:
+
+1. Live behavior tests. The three `openrouter-only` cases, the regression guards
+   of S4.4, the four no-PII guards, and the workerd probe.
+2. Gate sweeps. Each gate runs on the S4 base commit and after the change. Compare
+   by diagnostic key, not by workspace level (section 5).
+3. Artifact checks. The string scan, the file non-existence check, the export
+   diff, and the document review. Section S4.9 names the live complement of each
+   artifact check.
+
+### S4.2 Risk and applicable roles
+
+S4 risk: **medium**. Reason: S4 is a deletion and documentation phase. No new
+runtime path or privacy boundary enters the code. The main risks are an
+incomplete removal and an accidental behavior drift. A missed OpenAI path leaves
+a dead direct-provider call in the tree. A broad deletion removes a live test or
+a retained export. The regression guards, the build, and the typecheck catch
+both risks.
+
+| Role | Applicable | Reason |
+|------|-----------|--------|
+| Security review | yes | Confirm that no OpenAI or Anthropic call, key variable, or direct-provider default remains in source or config. The `.env.example` edits must not add a real key. The no-PII guards stay green. |
+| UX/API review | yes (API) | The `practice-core` exports lose `generateAISummary`, `buildAIPrompt`, `parseAIResponse`, and `AISummaryInput`. `AISummaryOutput`, `TeacherErrorView`, and `buildTeacherErrorView` stay. The teacher route keeps its five response keys. No page or component changes. |
+| Adversarial testing | yes | Run the single ADV-S4 list in section S4.10. Try to pass with an aliased import, a banned string in a config comment, a default model in code, or a deleted live test. |
+| Browser review | no | S4 changes no page, component, or route rendering. It removes dead code and edits docs and config comments. Route tests and the workerd probe assert behavior. No browser state exists to compare. |
+
+### S4.3 Red command, gate rows, fixtures, mocks, and live proof
+
+The new file `scripts/__tests__/openrouter-only.test.ts` uses
+`describe('openrouter-only', ...)` with exactly three cases. Add
+`__tests__/openrouter-only.test.ts` to the `include` list of `scripts/vitest.config.ts`.
+
+`S4_RED_TEST_COMMAND`:
+
+```
+npx vitest run --config scripts/vitest.config.ts -t 'openrouter-only'
+```
+
+A run with zero executed cases, or with `No test files found`, is invalid (A4).
+Record the first failing assertion line of each case. Confirm that cases 1 to 3
+fail at the S4 base commit.
+
+**Gate env rows.** `gates.sh` needs no new base. Its `GATES_BASE` variable names
+the base folder. Set `GATES_BASE=s3` in the environment and pass `s4` as the
+label. `gates.sh` calls `heavy-run.sh` itself. Do not wrap a gate with
+`heavy-run.sh`. Run each gate in the background and read its log.
+
+| Name | Row |
+|------|-----|
+| `S4_GATES_BASE` | `s3` |
+| `S4_GATE_LABEL` | `s4` |
+| `S4_GATE_STORE` | `measure/runs/openrouter-sdk-ai-layer_20261114/gates/s4/` |
+| `S4_GATE_LINT` | `GATES_BASE=s3 bash measure/tracks/openrouter-sdk-ai-layer_20261114/gates.sh lint s4` |
+| `S4_GATE_TEST` | `GATES_BASE=s3 bash measure/tracks/openrouter-sdk-ai-layer_20261114/gates.sh test s4` |
+| `S4_GATE_CHECKS` | `GATES_BASE=s3 bash measure/tracks/openrouter-sdk-ai-layer_20261114/gates.sh checks-all s4` |
+| `S4_GREEN_TEST_COMMAND` | the four-workspace command of S3.3, then the `openrouter-only` scripts filter |
+
+Each gate prints `NEWFAIL=0` and exits 0. The s3 base holds the audit line
+`critical=0 high=5 moderate=6 low=5` and the s3 failure keys. A new critical or
+high advisory ID stops the phase for a report.
+
+**Fixtures.**
+
+- Banned-token fixture: the four exact tokens `api.openai.com`,
+  `api.anthropic.com`, `OPENAI_API_KEY`, and `AI_INTERPRETATION_`.
+- Removal-path fixture: the four file paths of removals 1 and 2.
+- Export fixture: the four removed names and the three retained names of
+  `practice-core`.
+- No-PII Fixture from the plan "Rules for All Phases": 2 names, 2 emails, 1
+  username, and 1 account ID. Reuse the S3 fixture values.
+- Doc fixture: the four role rows of the spec "Roles" table and the
+  `openrouter/free` development note.
+
+**Mocks.** The three cases read the real file tree and the real module. Cases 1
+and 2 use no mock. Case 3 imports the real `@math-platform/practice-core`
+namespace. Route guards mock auth, the Convex rate limit, and the provider. No
+test calls the live OpenRouter API.
+
+**Live-behavior proof.** The workerd probe answers `probe-ok` through the SDK in
+workerd. A grep of the source does not replace this proof. The regression guards
+of S4.4 run the real route and prompt builders. Both app builds exit 0 and both
+typechecks pass, since vinext build does not enforce types.
+
+### S4.4 Red cases, task map, and regression guards
+
+| ID | Assertion | Falsification condition |
+|----|-----------|-------------------------|
+| Case 1 | No file under `apps/` or `packages/` outside `node_modules`, `.next`, and `dist` holds any of the four banned tokens. | Fails on any exact-token match in a scanned file. Do not match a bare word such as `openai` (A1, A7). |
+| Case 2 | None of the four removal paths exists. | Fails if any path exists. Count existing paths as a labeled integer; the count must be 0 (A3). |
+| Case 3 | The `@math-platform/practice-core` namespace has no `generateAISummary` key and has a `buildTeacherErrorView` key. | Fails on a present removed key or an absent retained key. Read the namespace keys; do not grep the source (A11). |
+
+**Task map.**
+
+| Plan task | Test proof |
+|-----------|-----------|
+| S4 Contract | No test. The plan holds the removal list. |
+| S4 Test (Red) | Cases 1 to 3 fail first. |
+| S4 Implement — remove | Cases 1 to 3 pass; the regression guards stay green. |
+| S4 Implement — docs | The document checks of S4.5 pass. |
+| Live smoke test | Human gate `[b]`. No automated test. |
+| S4 Verify | The three gate sweeps of S4.3 print `NEWFAIL=0`. |
+| S4 Docs & Doctor | `npm run generate` and `npm run doctor` exit 0. |
+| Manual verification | The protocol of `measure/workflow.md` completes. |
+
+**Regression guards.** These filters may pass at Red. They prove that removal
+does not change behavior. Each guard must execute at least one case. A guard
+that runs zero cases fails the Green gate.
+
+| Guard | Command | Falsification condition |
+|-------|---------|-------------------------|
+| G-CHAT-IM3 | `CI=true npm run test --workspace=apps/integrated-math-3 -- -t 'POST /api/student/lesson-chatbot'` | Fails on a changed HTTP status, a dropped answer, or no outbound request. |
+| G-CHAT-BM2 | `CI=true npm run test --workspace=apps/bus-math-v2 -- -t 'POST /api/student/lesson-chatbot'` | Fails on the same three conditions in BM2. |
+| G-SHEET | `CI=true npm run test --workspace=apps/bus-math-v2 -- -t 'spreadsheet-feedback'` | Fails on a changed field, an out-of-range score, or a wrong fallback. |
+| G-TEACHER | `CI=true npm run test --workspace=apps/bus-math-v2 -- -t 'teacher AI error summary'` | Fails on a changed summary field, a missing four-field object, or a wrong model. |
+| G-TEACHER-ROUTE | `CI=true npm run test --workspace=apps/bus-math-v2 -- -t 'GET /api/teacher/ai-error-summary'` | Fails on a changed key among `studentName`, `lessonTitle`, `deterministicSummary`, `aiSummary`, and `aiEnabled`. |
+| G-NO-PII | the four `no-PII` filters of the two chatbot workspaces and the BM2 teacher no-PII filter | Fails on a captured fixture value or on no captured prompt. |
+
+The five response keys and the four summary fields are the S3 contract. S4 keeps
+them. A guard failure after the removal stops the phase.
+
+### S4.5 Document checks and ASD-STE100
+
+| Check | Falsification condition |
+|-------|-------------------------|
+| BM2 `.env.example` has no `OPENAI_*` or `AI_INTERPRETATION_*` line. | Fails if any such line stays. |
+| BM2 `.env.example` names `OPENROUTER_API_KEY` and the three BM2 role variables as comments with the spec initial values and the `openrouter/free` development note. | Fails on a missing name, a missing initial value, or a missing note. Use a labeled count of the four expected entries. |
+| IM3 `.env.example` keeps `OPENROUTER_API_KEY` and `OPENROUTER_API_BASE`, adds `OPENROUTER_MODEL_STUDENT_TUTOR` with the development note, and adds the `OPENROUTER_MODEL_MATH_EVAL` comment with `z-ai/glm-5.3-flash` and the note that no code reads it. | Fails on any missing entry or note. |
+| Both `wrangler.jsonc` files name `OPENROUTER_API_KEY` as an optional secret in the comment list. | Fails if either file omits the name. |
+| `measure/tech-stack.md` holds the "AI Layer" section with the SDK, the four role rows, the PII rule and flag, structured output, the usage record, and the four production prerequisites of the spec. | Fails on a missing row or a missing item. Compare each role row with the spec "Roles" table by variable name and feature. |
+| All new prose in the four edited documents follows ASD-STE100. | Acceptance reads the changed prose. A sentence over 25 words, a passive sentence, a synonym for a defined term, or an idiom fails the check. |
+
+The role variables and the initial values come from the spec "Roles" table only.
+The `openrouter/free` value stays a development comment. No code uses it as a
+default. The docs name no real key. This is an artifact check. Case 1 and the
+regression guards are its live complement.
+
+### S4.6 Architecture guardrails and changed-contract risks
+
+- No package imports from `apps/` or `convex/_generated/`.
+- `packages/practice-core` does not depend on `packages/ai-tutoring`.
+- `node scripts/check-monorepo-boundaries.mjs` and `node scripts/validate-ci.mjs` exit 0.
+- Removals 1 to 5 are the only source deletions. A deletion outside the list
+  stops the phase for review.
+- `AISummaryOutput`, `TeacherErrorView`, and `buildTeacherErrorView` stay without
+  change. Case 3 and the build prove this.
+- The teacher summary file and the `LessonErrorSummary` input type stay in BM2.
+  No type moves into a package.
+- No code reads `OPENROUTER_MODEL` and no code holds `openrouter/free` as a
+  default. Case 1 and the S2 live cases prove this.
+- The five teacher route keys and the four summary fields stay unchanged. The
+  guards of S4.4 prove this.
+- No prompt builder changes in S4. The four no-PII guards stay green.
+- The scripts `include` list gains one file. No other scripts config changes.
+
+### S4.7 Green gate and closeout gate
+
+**Green gate.** Cases 1 to 3 pass. Every regression guard of S4.4 executes at
+least one case and passes. `S4_GREEN_TEST_COMMAND` exits 0 for the four named
+workspaces with only the s3 baseline failure keys. The workerd probe answers
+`probe-ok`. The three gate sweeps of S4.3 print `NEWFAIL=0` with label `s4`.
+`evidence.md` records every cited log path and the audit line.
+
+**Closeout gate (phase acceptance).** The Green gate. Both app builds and
+typechecks exit 0. Boundary and CI checks exit 0. The export diff of
+`practice-core` holds only the four planned removals. The document checks of
+S4.5 pass. `npm run generate` and `npm run doctor` exit 0, or the S1 F5
+deviation is recorded again. No generated file is staged. The manual
+verification protocol of `measure/workflow.md` completes. The phase checkpoint
+and plan update follow. The live smoke test stays a human gate.
+
+### S4.8 Intentionally-red aggregate suites
+
+The suites below are red or partly red at the S4 base commit. Do not fix them in
+S4 and do not call the whole suite green on a raw exit code.
+
+- The scripts suite holds the `remediate-concept-blueprints` honest-count failure
+  and the `vinext-oxc-gates-script` failures.
+- The audit suites hold the five baseline failure keys.
+- IM3 typecheck holds the same 55 baseline diagnostic lines. IM3 tests hold 218
+  baseline failures and BM2 tests hold 7.
+- The BM2 bundle audit fails at baseline on `Total dist/server`. A bigger size
+  with the same entry is allowed. A new over-budget entry or a changed budget
+  stops the phase.
+- `npm audit` holds the s3 advisory line. A new critical or high ID stops the
+  phase for a report.
+- The carried items of S4.0 stay red or open. They are not new failures.
+
+GREEN uses the targeted commands of S4.3 and the guards of S4.4. An aggregate
+failure with only baseline keys is accepted and recorded in `evidence.md` with
+its log path.
+
+### S4.9 Artifact checks versus live behavior checks
+
+| Artifact check | Live complement |
+|----------------|-----------------|
+| Case 1 exact-token scan of source | Cases in S2 and S3 that send requests without a default model and without the old variable |
+| Case 2 file non-existence check | Build and typecheck; a still-imported deleted file breaks both |
+| Case 3 or export diff of `practice-core` | Case 3 imports the real namespace and reads its keys |
+| `.env.example` and `tech-stack.md` role rows | The S2 and S3 role cases read the real variables and send requests |
+| ASD-STE100 prose review | No live complement; acceptance reads the changed prose only |
+| `evidence.md` log paths | The orchestrator re-runs each cited command |
+
+A phase that holds only artifact checks fails acceptance. An artifact grep is a
+complement, never the proof.
+
+### S4.10 Adversarial list for the single adversarial run
+
+Run each attack once against the Red and Green trees. Do not change an
+adversarial assertion. Do not split the run into remediation rounds.
+
+| ID | Attack | Defense and falsification |
+|----|--------|---------------------------|
+| ADV-S4-1 | Add an OpenAI call under an aliased import. | Case 1 exact-token scan plus build and typecheck. Fails if a banned token appears or a build breaks. |
+| ADV-S4-2 | Leave `OPENAI_API_KEY` only in BM2 `.env.example`. | The first document check of S4.5. Fails if the token stays. |
+| ADV-S4-3 | Put `openrouter/free` back as a code default. | Case 1 plus the S2 live cases. Fails on a code default. The development comment in docs stays allowed. |
+| ADV-S4-4 | Delete a retained `practice-core` export. | Case 3 plus build and typecheck. Fails if `buildTeacherErrorView` is absent or a consumer breaks. |
+| ADV-S4-5 | Delete the wrong test during removal 5. | Every guard of S4.4 must execute at least one case. Fails on a guard with zero cases. |
+| ADV-S4-6 | Change a teacher route response key. | G-TEACHER-ROUTE. Fails on any changed key among the five. |
+| ADV-S4-7 | Put a name or email into a prompt during the edits. | G-NO-PII. Fails on a captured fixture value. |
+| ADV-S4-8 | Add a key-shaped token to a document. | The document checks of S4.5 and Security review. Fails if a key-shaped token appears in any edited document. |
+
+### S4.11 Anti-pattern coverage
+
+The catalog holds A1 to A12. Each row gives an S4 defense and a falsification
+condition. Every test in this section has a falsification condition.
+
+| Anti-pattern | S4 defense | Falsification |
+|--------------|-----------|---------------|
+| A1 substring-as-structured-signal | Case 1 matches exact tokens, not a bare word. Case 3 reads namespace keys. | A `includes('openai')` check or a source grep for an export fails review. |
+| A2 consent-blind publish gate | Not applicable. S4 publishes nothing. The live smoke test does not publish. | A publish gate added in S4 is out of scope and fails review. |
+| A3 digit-only as labeled count | Case 2 counts existing paths as a labeled integer equal to 0. Document checks use labeled counts. `NEWFAIL` and audit counts use labeled integers. | A regex that matches any digit fails review. |
+| A4 vacuous-pass on nothing-done | The `openrouter-only` describe holds exactly 3 cases. Each guard must execute at least one case. | A run with fewer than 3 cases, or a guard with zero cases, fails the mid-red gate. |
+| A5 false-claim text vs test reality | Each `evidence.md` claim names a log path. The orchestrator re-runs the cited command. | A claim with an absent log or a non-zero command fails the artifact check. |
+| A6 registry-note overstatement | No `measure/tracks.md` claim of removal before Red and Green pass. | A claim while case 1 is red fails review. |
+| A7 over-broad filter swallowing real hits | Case 1 excludes only path contexts: `node_modules`, `.next`, and `dist`. It never excludes bare English words. Gate compare is per key. | A filter that drops a real token match or a workspace-level compare fails review. |
+| A8 `[ ]` marker ambiguity | The live smoke task stays `[b]`. Tasks use `[ ]`, `[~]`, `[x]`, and `[b]` structurally. | A `[ ]` task counted as in progress or a `[b]` task automated fails review. |
+| A9 pre-existing test references archived track paths | No test reads a `measure/tracks/<archived-track>/` path. Use `measure/archive/` only in documents. | A test path that breaks after an archive move fails the path check. |
+| A10 generated-facts drift | Never stage `graph.db`, the four `routes.d.ts` files, `workbooks-manifest.json`, or `measure/generated/*.md`. Check `git status --porcelain` at capture. | A staged generated file or a capture with another modified file stops the capture. |
+| A11 missing live contract-test suite | Cases 1 to 3, the six regression guards, and the workerd probe are live tests. Artifact greps are complements. | A phase that relies only on evidence text fails acceptance. |
+| A12 missing supervisor peer-review rule | Not applicable. S4 touches no `AGENTS.md` and no supervisor. | A change to either file in S4 is out of scope and fails review. |
+
+### S4.12 `phase_base_sha` capture point for S4
+
+1. This S4 strategy commit lands first. It holds `test-strategy.md` only. It
+   must land after the `measure(plan): Mark phase 'Phase S3: Structured output
+   for the evaluation features' as complete` commit lineage.
+2. **Captured point.** Immediately after this strategy commit lands, before any
+   other S4 commit, run `git status --porcelain`. Only these entries may appear,
+   each with status ` M`: `graph.db`, the four `apps/*/.next/types/routes.d.ts`
+   files, `apps/bus-math-v2/lib/workbooks-manifest.json`, and the
+   `measure/generated/*.md` files. `measure/runs/` is gitignored. Any staged
+   file, untracked file, or other modified file stops the capture.
+3. Run `git rev-parse HEAD`. Store the value as `phase_base_sha` for S4 in the
+   orchestrator run log and the role handoff. Do not write it into `plan.md`,
+   `spec.md`, or this file.
+4. The base HEAD of this strategy role predates this commit. It is not the S4
+   `phase_base_sha`. No SHA in this file is the S4 capture point.
+5. Capture before the first S4 task commit, which is S4 Contract.
+6. An S4 `phase_base_sha` that is not a descendant of this strategy commit is
+   invalid. Stop and report.
+
+### S4.13 emulate decision
+
+Same decision as S2 and S3. Do not adopt `npx emulate --service ai`. No `emulate`
+binary or dependency is present. S4 keeps the pinned `vi.mock('@openrouter/sdk')`
+fakes and the local mock server.
+
+### S4.14 Plan drifts and defaults for S4
+
+| ID | Finding | Default |
+|----|---------|---------|
+| F21 | The plan normal case 1 says "no file under `apps/` or `packages/`". The build and generated path contexts can hold stale strings. | Exclude `node_modules`, `.next`, and `dist` only. Keep every other file in the scan. Do not exclude bare words. |
+| F22 | The plan lists three normal cases. AC7 also requires three retained `practice-core` names. | Keep the three cases. Add the retained-name assertion to case 3. The build proves the rest. |
+| F23 | The scripts `include` list holds three files. The new guard file needs an entry. | Add `__tests__/openrouter-only.test.ts` to `include`. Change no other scripts config. |
+| F24 | The live smoke task is `[b]` and needs a real key. | Leave it `[b]`. The orchestrator does not run it. Record it in the closeout as a human gate. |
+| F25 | The s3 gate results are the nearest base. | Use `GATES_BASE=s3`. Do not change `gates.sh`. Label the results `s4`. |
+| F26 | The carried items of S4.0 stay open. | Do not fix them in S4. Record them in the closeout note. |
