@@ -562,3 +562,92 @@ day. A direct rerun at 01:02 UTC passed all 13 cases, and a full rerun of the
 test gate then reported `NEWFAIL=0`. No source change was made for that flake.
 
 **Final log.** `measure/runs/openrouter-sdk-ai-layer_20261114/green-s3-r5b-<shorthead>.log`.
+
+### S4 Green group (2026-11-24)
+
+Implementation commits: `e13a8dfc` (removals 1 to 5) and `89946220` (the role
+documents). Plan evidence: `4863d132`. Role base `15087532`. Phase base
+`8283f9fa`.
+
+**Red proof.** The three `openrouter-only` cases failed first at the S4 base.
+Case 1 failed at `openrouter-only.test.ts:74` with 4 banned-token matches.
+Case 2 failed at line 80 with 4 existing removal paths. Case 3 failed at
+line 86 because the namespace held `generateAISummary`. The Red commit is
+`30073327`. The Mid Red registry fix is `5724741c`.
+
+**Targeted command.** `npx vitest run --config scripts/vitest.config.ts -t
+'openrouter-only'` exits 0 with 3 passed and 121 skipped.
+
+**Removals.** Commit `e13a8dfc` deletes the four files of removals 1 and 2.
+It removes `generateAISummary`, `buildAIPrompt`, `parseAIResponse`, and
+`AISummaryInput` from `packages/practice-core`. It removes the four exports
+from `packages/practice-core/src/index.ts` and from the BM2 re-export. It
+removes the `generateAISummary` tests from the BM2 and IM3
+`error-analysis.test.ts` files. The other tests stay. `AISummaryOutput`,
+`TeacherErrorView`, and `buildTeacherErrorView` stay without change. Commit
+`89946220` removes the `OPENAI_*` and `AI_INTERPRETATION_*` lines of the BM2
+`.env.example`, adds the `OPENROUTER_MODEL_MATH_EVAL` comment to the IM3
+`.env.example`, adds `OPENROUTER_API_KEY` as an optional secret to both
+`wrangler.jsonc` files, and writes the "AI Layer" section of
+`measure/tech-stack.md`.
+
+**Regression guards.** Each guard runs at least one case and passes. The logs
+are under `measure/runs/openrouter-sdk-ai-layer_20261114/green-s4-guards/`.
+
+| Guard | Command | Result |
+|-------|---------|--------|
+| G-CHAT-IM3 | `npm run test --workspace=apps/integrated-math-3 -- -t 'POST /api/student/lesson-chatbot'` | 12 passed, 7065 skipped, exit 0 |
+| G-CHAT-BM2 | `npm run test --workspace=apps/bus-math-v2 -- -t 'POST /api/student/lesson-chatbot'` | 16 passed, 2677 skipped, exit 0 |
+| G-SHEET | `npm run test --workspace=apps/bus-math-v2 -- -t 'spreadsheet-feedback'` | 13 passed, 2680 skipped, exit 0 |
+| G-TEACHER | `npm run test --workspace=apps/bus-math-v2 -- -t 'teacher AI error summary'` | 8 passed, 2685 skipped, exit 0 |
+| G-TEACHER-ROUTE | `npm run test --workspace=apps/bus-math-v2 -- -t 'GET /api/teacher/ai-error-summary'` | 12 passed, 2681 skipped, exit 0 |
+| G-NO-PII | `npm run test --workspace=apps/integrated-math-3 -- -t 'no-PII'` and `npm run test --workspace=apps/bus-math-v2 -- -t 'no-PII'` | 1 passed and 5 passed, exit 0 |
+
+The package suites are 165 of 165 for `packages/ai-tutoring` and 263 of 263 for
+`packages/practice-core`. The BM2 and IM3 `error-analysis.test.ts` files hold
+31 cases each.
+
+**Gate sweeps.** Each `GATES_BASE=s3 bash
+measure/tracks/openrouter-sdk-ai-layer_20261114/gates.sh <gate> s4` exits 0
+with `NEWFAIL=0` for `lint`, `test`, and `checks-all`. The results are under
+`measure/runs/openrouter-sdk-ai-layer_20261114/gates/s4/`. The Red-phase gate
+folder is kept at `.../gates/s4-red/`. The audit line is
+`critical=0 high=5 moderate=6 low=5`, unchanged from the s3 base. The workerd
+step answers `workerd probe: probe-ok`. The `bundle-bm2` step keeps the
+documented baseline exit of 1 with the same entry and the same size,
+`Total dist/server: 10035.04 KB`.
+
+**Key comparison.** The comparison with the s3 base holds 0 new keys in every
+log. The IM3 test log loses 4 keys and the BM2 test log loses 2 keys. Those
+keys are the console lines of the deleted `generateAISummary` tests. The IM3
+build log changes one chunk name, from `app-rsc-errors-DTsbZl4c.js` to
+`app-rsc-errors-ZdAilbH3.js`. The raw size stays 3.77 kB and the gzip size
+goes from 1.92 kB to 1.91 kB. The build exit code stays 0, so the gate reports
+no new failure. The scripts suite holds the same two baseline failing files,
+`remediate-concept-blueprints.test.ts` and `vinext-oxc-gates-script.test.ts`.
+
+**Docs and Doctor.** `npm run generate` and `bash measure/doctor.sh` each exit
+0 at `89946220`. The doctor reports all checks passed. The logs are
+`measure/runs/openrouter-sdk-ai-layer_20261114/generate-s4.log` and
+`.../doctor-s4.log`. No generated file is staged.
+
+**Accepted limits.**
+
+- Two test fixtures hold the word "OpenAI". The file
+  `apps/bus-math-v2/__tests__/lib/ai/retry.test.ts` holds three
+  `OpenAI API error` strings, and the file
+  `packages/ai-tutoring/src/__tests__/providers.test.ts` holds the model id
+  `openai/gpt-4o`. These files are outside removals 1 to 5, and the S4
+  Contract names no change for them. The strings are error text and a model
+  id. They hold no banned token, and the case 1 scan passes.
+- The two BM2 route tests `ai-error-summary.test.ts` and
+  `ai-error-summary.no-pii.test.ts` still call `vi.mock` for
+  `@/lib/practice/error-analysis/providers`. The module is gone. Vitest
+  accepts a factory mock for a path that no file holds, and both route tests
+  pass. The route does not import the module.
+- No dependency change. The `package-lock.json` holds no `openai` package and
+  no `@anthropic-ai` package, so no manifest entry became unused.
+
+**Carried items.** Review B F2, F3, and F4 and the IM3 queue sessions UTC-day
+flake stay open in `measure/tech-debt.md`. The five D1 high exceptions stay
+untouched. S4 changed none of them.
