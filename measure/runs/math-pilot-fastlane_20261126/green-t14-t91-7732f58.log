@@ -1,0 +1,12 @@
+MEASURE_AGENT_RESULT
+role: measure-jr-green
+status: pass
+track: math-pilot-fastlane_20261126
+phase: Phase P1 T1.4; Phase P9 T9.1
+commits: 30981a80 fix(ci): run IM2 curriculum check in workspace; 434f4929 chore(repo): stop tracking publisher PDFs; f1516c5a measure(plan): record T1.4 and T9.1 commit SHAs
+tests_run: npm run curriculum:check at root exited 1 before the fix with Missing script; node scripts/validate-ci.mjs exited 0; npm run curriculum:check --workspace=apps/integrated-math-2 exited 0 after 96 source lessons and 180 class periods; npm test --workspace=apps/pre-calculus -- __tests__/curriculum/source-inventory.test.ts exited 0 with 4 tests; npx vitest run --config scripts/vitest.config.ts exited 1 with 102 passed, 27 failed, and 2 todo; bash measure/doctor.sh exited 0; targeted oxlint exited 0; PDF verification reported 147 files on disk, 33 removed from tracking, and 114 still tracked
+files_changed: .github/workflows/ci.yml; .gitignore; apps/pre-calculus/__tests__/curriculum/source-inventory.test.ts; measure/tracks/math-pilot-fastlane_20261126/evidence.md; measure/tracks/math-pilot-fastlane_20261126/plan.md; 33 publisher PDF paths removed from the Git index while retained on disk; measure/runs/math-pilot-fastlane_20261126/green-t14-t91-7732f58.log added with force
+plan_updates: T1.4 flipped to [x] with commit 30981a80; T9.1 flipped to [x] with commit 434f4929; no task flipped to [b]
+known_failures: The scripts suite has 27 pre-existing failures in scripts/__tests__/vinext-oxc-gates-script.test.ts and scripts/__tests__/remediate-concept-blueprints.test.ts; the first expects the archived vinext-oxc-toolchain_20261114/gates.sh; the second expects an IM3 activity-map file absent at the phase base; no scripts test or script changed
+handoff: Immutable phase_base_sha=7732f580c5421ce185ffae035922dc3d8a207e0c; role_base_sha=7732f580c5421ce185ffae035922dc3d8a207e0c; no Red commit applies to T1.4 or T9.1; final Green HEAD=f1516c5a26cdaed9d22b96b69c68a2f8f1af75c7; T1.4 now calls the IM2 workspace script and validate-ci passes; T9.1 removes 33 publisher PDFs from Git, keeps 114 runtime PDFs, and keeps all 147 files on disk; the AP Precalculus source-inventory check skips absent local PDFs; evidence.md lists every removed and kept path; the only new file is this role log; unrelated dirty files remain unstaged
+END_MEASURE_AGENT_RESULT
