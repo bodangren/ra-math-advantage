@@ -163,7 +163,7 @@ See `measure/practice-component-contract.md` for the full spec.
   subagent). Start the role only when the check says ok.
 - Run each heavy job through `~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh`, one at a
   time.
-- Get the model of each role from `~/Desktop/advantage-pr/scripts/jobs/ra-quota pick <role>`.
+- Choose the model of each role yourself from the Lending Desk Bench model guide and results, other benchmarks, and `ra-quota status`.
 - The full rules are in `~/Desktop/advantage-pr/measure/pm-working-rules.md`.
 
 <!-- convex-ai-start -->
