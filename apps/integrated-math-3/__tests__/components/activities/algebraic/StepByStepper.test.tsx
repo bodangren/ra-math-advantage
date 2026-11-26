@@ -159,5 +159,4 @@ describe("StepByStepper initial problem display", () => {
       expect(screen.getByText("Problem:")).toBeInTheDocument();
     },
   );
-
 });
