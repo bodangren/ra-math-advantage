@@ -111,7 +111,7 @@ P9 acceptance verifies the whole track at immutable HEAD after the checkpoint an
     - Start with `measure/runs/openrouter-sdk-ai-layer_20261114/gates/s4/typecheck-integrated-math-3.log`.
     - Fix runtime errors in `app/`, `convex/`, `lib/`, and `components/`.
     - Done when the typecheck log has no runtime diagnostic. Record any remaining test-file keys as debt.
-- [~] Task: T1.4 — Fix the IM2 CI invocation (Green).
+- [x] Task: T1.4 — Fix the IM2 CI invocation (Green). Commit: `30981a80`.
     - Inspect `.github/workflows/ci.yml` and the IM2 `curriculum:check` script.
     - Use the workspace command if a one-line change suffices. Otherwise record the reason in debt.
     - Done when the CI step calls the IM2 script correctly or the evidence records why a one-line correction is insufficient.
@@ -377,7 +377,7 @@ Complete T8.1 through T8.4 for Stage A. Complete T8.5 through T8.7 after P5.
 
 ## Phase P9: Repository and close
 
-- [~] Task: T9.1 — Stop tracking publisher PDFs (Green).
+- [x] Task: T9.1 — Stop tracking publisher PDFs (Green). Commit: `434f4929`.
     - Inventory publisher files with `git ls-files "*.pdf"`, including files outside curriculum directories.
     - Search code and tests for references to those paths before removing them from Git.
     - Fix CI dependencies on tracked publisher PDFs or record a justified skip of the affected test.
