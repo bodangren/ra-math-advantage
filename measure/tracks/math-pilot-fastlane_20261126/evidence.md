@@ -8,6 +8,26 @@ This file contains no implementation or deployment result yet.
 Record the quadratic-formula decision and seed references.
 Record failure classifications, exact remaining keys, debt references, and gate logs.
 
+### T1.1 decision
+
+Decision: restore the quadratic-formula backend. `convex/seed/seed_lesson_1_6.ts:127,160,193`
+seeds three Lesson 1.6 activities with `componentKey: "step-by-step-solver"` and
+`problemType: "quadratic-formula"`. Its `buildIm3QuadraticFormulaDraftDocuments` helper
+also creates draft activity and practice-variant records with `componentKey: "quadratic-formula"`.
+`__tests__/convex/seed/seed-lesson-1-6.test.ts:313-322` verifies those records and their
+private generator metadata. The seeded student lesson therefore depends on the quadratic-formula
+activity path. The route handlers call `startQuadraticFormulaAttempt`,
+`getQuadraticFormulaAttempt`, and `checkQuadraticFormulaDiscriminant`, but the current
+`convex/activities.ts` exports none of these functions. The registry also lacks the
+`quadratic-formula` registration, while `__tests__/lib/activities/registry.test.ts:94-95`
+requires it.
+
+Red test evidence: from `apps/integrated-math-3`, run
+`npm test -- --run __tests__/convex/quadratic-formula-registered-functions.test.ts __tests__/lib/activities/registry.test.ts`
+through `/home/daniebo/Desktop/advantage-pr/scripts/jobs/heavy-run.sh`. The command exited 1.
+The three Convex export checks failed because each function export was undefined. The registry
+check failed because `"quadratic-formula"` was absent. The other 8 checks passed.
+
 ### T1.4 IM2 CI invocation
 
 The root command `npm run curriculum:check` failed because the script exists only in the IM2 workspace.

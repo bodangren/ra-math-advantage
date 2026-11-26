@@ -89,7 +89,7 @@ describe("registry", () => {
     });
   });
 
-  it("registers the shared quadratic-formula activity", async () => {
+  it("registers the seeded quadratic-formula activity", async () => {
     await import("@/lib/activities/registry");
     expect(getRegisteredActivityKeys()).toContain("quadratic-formula");
     expect(getActivityComponent("quadratic-formula")).toBeDefined();

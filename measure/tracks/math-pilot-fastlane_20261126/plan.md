@@ -85,7 +85,7 @@ P9 acceptance verifies the whole track at immutable HEAD after the checkpoint an
 
 ## Phase P1: IM3 master green
 
-- [ ] Task: T1.1 — Resolve the quadratic-formula backend mismatch (Red then Green).
+- [~] Task: T1.1 — Resolve the quadratic-formula backend mismatch (Red then Green).
     - Inspect seeded student lesson references to the quadratic-formula activity.
     - If any seeded student lesson uses it, restore the backend from `8142bd70^`.
     - Use `e4c9f688`, `360e2c02`, and related commits as reference.
@@ -95,6 +95,7 @@ P9 acceptance verifies the whole track at immutable HEAD after the checkpoint an
     - Reconcile `lib/activities/registry.ts` with `__tests__/lib/activities/registry.test.ts:94`.
     - Done when the routes and registry agree with the backend and tests prove the selected behavior.
     - Green records the branch of the decision rule and the seed evidence.
+    - Red command: `npm test -- --run __tests__/convex/quadratic-formula-registered-functions.test.ts __tests__/lib/activities/registry.test.ts` (exit 1; expected missing Convex exports and activity registration).
 - [ ] Task: T1.2 — Classify and fix IM3 test failures (Red then Green for sensitive changes).
     - Start with `measure/runs/openrouter-sdk-ai-layer_20261114/gates/s4/test-integrated-math-3.log`.
     - Classify each failure key as pilot-path, non-pilot, or stale-test.
@@ -109,7 +110,7 @@ P9 acceptance verifies the whole track at immutable HEAD after the checkpoint an
     - Start with `measure/runs/openrouter-sdk-ai-layer_20261114/gates/s4/typecheck-integrated-math-3.log`.
     - Fix runtime errors in `app/`, `convex/`, `lib/`, and `components/`.
     - Done when the typecheck log has no runtime diagnostic. Record any remaining test-file keys as debt.
-- [ ] Task: T1.4 — Fix the IM2 CI invocation (Green).
+- [~] Task: T1.4 — Fix the IM2 CI invocation (Green).
     - Inspect `.github/workflows/ci.yml` and the IM2 `curriculum:check` script.
     - Use the workspace command if a one-line change suffices. Otherwise record the reason in debt.
     - Done when the CI step calls the IM2 script correctly or the evidence records why a one-line correction is insufficient.
@@ -375,7 +376,7 @@ Complete T8.1 through T8.4 for Stage A. Complete T8.5 through T8.7 after P5.
 
 ## Phase P9: Repository and close
 
-- [ ] Task: T9.1 — Stop tracking publisher PDFs (Green).
+- [~] Task: T9.1 — Stop tracking publisher PDFs (Green).
     - Inventory publisher files with `git ls-files "*.pdf"`, including files outside curriculum directories.
     - Search code and tests for references to those paths before removing them from Git.
     - Fix CI dependencies on tracked publisher PDFs or record a justified skip of the affected test.
