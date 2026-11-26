@@ -267,7 +267,7 @@ jobs:
 
       - name: Check IM2 backend types and content bundle
         if: matrix.app.name == 'IM2'
-        run: npm run typecheck --workspace=apps/integrated-math-2 && npm run curriculum:check
+        run: npm run typecheck --workspace=apps/integrated-math-2 && npm run curriculum:check --workspace=apps/integrated-math-2
         env:
           CI: true
 

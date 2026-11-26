@@ -8,6 +8,13 @@ This file contains no implementation or deployment result yet.
 Record the quadratic-formula decision and seed references.
 Record failure classifications, exact remaining keys, debt references, and gate logs.
 
+### T1.4 IM2 CI invocation
+
+The root command `npm run curriculum:check` failed because the script exists only in the IM2 workspace.
+The CI step now calls `npm run curriculum:check --workspace=apps/integrated-math-2`.
+`node scripts/validate-ci.mjs` exited 0.
+`npm run curriculum:check --workspace=apps/integrated-math-2` exited 0 after it checked 96 source lessons and 180 class periods.
+
 ## P2: Unified base
 
 Record the move references, preserved history, course schema, route map, graph mapping, and P1 gate comparison.
