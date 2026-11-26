@@ -1,5 +1,8 @@
 import { normalizeSeedProps } from "./seed-props";
+import { gradeQuadraticFormulaResponse } from "./quadratic-formula-grader";
 import { getPropsSchema, normalizeSolverAnswer } from "@math-platform/activity-components/schemas";
+import { generateQuadraticFormula } from "@math-platform/math-content";
+import { quadraticFormulaActivitySchema } from "@math-platform/math-content/schemas";
 import {
   toConvexActivityId,
   type PracticeSubmissionEnvelope,
@@ -36,6 +39,63 @@ import {
   IM3_TWO_REAL_SOLUTIONS_INDEPENDENT_ACTIVITY_ID,
 } from "../practice/learning-evidence-pilot";
 
+/** Skill node that owns the Lesson 1.6 quadratic-formula practice. */
+export const IM3_QF_NODE = "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations";
+
+/** Draft activity mapping for each quadratic-formula practice mode. */
+export const IM3_QF_DRAFT_MAPPINGS = {
+  guided_practice: {
+    stableActivityId: `${IM3_QF_NODE}.guided_practice`,
+    seed: 1,
+    presentationMode: "guided",
+  },
+  independent_practice: {
+    stableActivityId: `${IM3_QF_NODE}.independent_practice`,
+    seed: 2,
+    presentationMode: "independent",
+  },
+} as const;
+
+/** Private generator seeds in allocation order for each practice mode. */
+export const IM3_QF_VARIANT_SCHEDULES = {
+  guided_practice: [1, 7, 12, 4],
+  independent_practice: [2, 8, 14, 30],
+} as const;
+
+/** Returns the practice variant key for one allocation index. */
+export function quadraticFormulaVariantKey(
+  mode: keyof typeof IM3_QF_DRAFT_MAPPINGS,
+  index: number,
+): string {
+  const mapping = IM3_QF_DRAFT_MAPPINGS[mode];
+  if (!Number.isInteger(index) || index < 0 || index >= IM3_QF_VARIANT_SCHEDULES[mode].length) {
+    throw new Error("Quadratic-formula schedule is exhausted");
+  }
+  return index === 0 ? mapping.stableActivityId : `${mapping.stableActivityId}.variant.${index}`;
+}
+
+/** Returns the public activity props for one private generator seed. */
+export function quadraticFormulaPublicProps(
+  mode: keyof typeof IM3_QF_DRAFT_MAPPINGS,
+  seed: number,
+) {
+  const generated = generateQuadraticFormula({ seed });
+  return quadraticFormulaActivitySchema.parse({
+    prompt: "Use the Quadratic Formula to solve the equation.",
+    equation: `${generated.quadratic} = 0`,
+    presentationMode: IM3_QF_DRAFT_MAPPINGS[mode].presentationMode,
+    ...(mode === "guided_practice"
+      ? {
+          fieldHelp: {
+            discriminant: "Calculate b² - 4ac.",
+            x1: "Enter one root.",
+            x2: "Enter the other root. Leave this blank for a repeated root.",
+          },
+        }
+      : {}),
+  });
+}
+
 export interface ServerGradingRule {
   readonly partId: string;
   readonly ruleType: "numeric_tolerance" | "exact_match" | "expression_equivalence";
@@ -56,6 +116,10 @@ export interface ServerOwnedActivity {
       readonly partId?: string;
       readonly points: number;
     }[];
+  };
+  readonly privateGenerator?: {
+    readonly generatorKey: "quadratic-formula";
+    readonly seed: number;
   };
 }
 
@@ -406,6 +470,47 @@ function matchesPilotPoints(
   return remaining.length === 0;
 }
 
+/** Rebuilds the private quadratic-formula problem from its generator seed. */
+function regenerateQuadraticFormula(activity: ServerOwnedActivity) {
+  if (activity.masteryNodeId !== IM3_QF_NODE || activity.componentKey !== "quadratic-formula") {
+    throw new Error("Invalid quadratic-formula activity");
+  }
+  const identity = activity.privateGenerator;
+  if (
+    !identity ||
+    identity.generatorKey !== "quadratic-formula" ||
+    !Number.isSafeInteger(identity.seed) ||
+    identity.seed < 0
+  ) {
+    throw new Error("Invalid private quadratic-formula generator identity");
+  }
+  const props = quadraticFormulaActivitySchema.parse(activity.props);
+  const problem = generateQuadraticFormula({ seed: identity.seed });
+  if (props.equation !== `${problem.quadratic} = 0`)
+    throw new Error("Quadratic-formula equation does not match its private seed");
+  return problem;
+}
+
+/** Grades one Guided discriminant answer from the private generator seed. */
+export function checkServerOwnedQuadraticDiscriminant(
+  activity: ServerOwnedActivity,
+  rawAnswer: string,
+): boolean {
+  if (
+    activity.stableActivityId !== IM3_QF_DRAFT_MAPPINGS.guided_practice.stableActivityId ||
+    activity.props.presentationMode !== "guided" ||
+    rawAnswer.length > 160
+  ) {
+    throw new Error("Invalid Guided discriminant check");
+  }
+  const problem = regenerateQuadraticFormula(activity);
+  return gradeQuadraticFormulaResponse(problem, {
+    discriminant: rawAnswer,
+    x1: "",
+    x2: "",
+  }).parts[0].isCorrect;
+}
+
 /**
  * Grades from the activity document, never from client-derived score fields.
  * Activities without a canonical rubric are stored as ungraded records so
@@ -416,6 +521,28 @@ export function gradeServerOwnedSubmission(
   envelope: PracticeSubmissionEnvelope,
 ): ServerGradedSubmission {
   activity = { ...activity, props: normalizeSeedProps(activity.componentKey, activity.props) };
+  if (activity.masteryNodeId === IM3_QF_NODE && activity.componentKey === "quadratic-formula") {
+    const problem = regenerateQuadraticFormula(activity);
+    const partsById = new Map(envelope.parts.map((part) => [part.partId, part]));
+    const grade = gradeQuadraticFormulaResponse(problem, {
+      discriminant: envelope.answers.discriminant,
+      x1: envelope.answers.x1,
+      x2: envelope.answers.x2,
+    });
+    return {
+      submissionData: {
+        ...envelope,
+        activityId: toConvexActivityId(activity.id),
+        status: "graded",
+        parts: grade.parts.map((part) => ({
+          ...part,
+          ...preserveStudentTelemetry(partsById.get(part.partId)),
+        })),
+      },
+      score: grade.score,
+      maxScore: grade.maxScore,
+    };
+  }
   const rules = getRules(activity);
   const expected = expectedAnswers(activity);
   const isPilot =

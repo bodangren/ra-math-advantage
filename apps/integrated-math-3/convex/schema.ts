@@ -613,6 +613,8 @@ export default defineSchema({
     masteryContractVersion: v.optional(v.literal("learning-evidence.v1")),
     // Server-owned attempt identity. Existing rows remain valid during rollout.
     attemptOrdinal: v.optional(v.number()),
+    // The allocated practice variant for one immutable quadratic-formula attempt.
+    allocatedVariantKey: v.optional(v.string()),
     // The create request key makes a lost create response recoverable without
     // storing client grading claims.
     idempotencyKey: v.optional(v.string()),
