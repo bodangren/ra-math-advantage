@@ -57,6 +57,9 @@ graph-bm2.db
 # python bytecode
 __pycache__/
 
+# Publisher source PDFs stay local. Runtime PDFs under public/ stay tracked.
+/apps/*/curriculum/**/*.pdf
+
 # measure automation-supervisor run outputs
 /measure/runs/
 
