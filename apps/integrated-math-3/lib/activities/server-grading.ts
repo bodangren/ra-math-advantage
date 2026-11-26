@@ -486,7 +486,10 @@ function regenerateQuadraticFormula(activity: ServerOwnedActivity) {
   }
   const props = quadraticFormulaActivitySchema.parse(activity.props);
   const problem = generateQuadraticFormula({ seed: identity.seed });
-  if (props.equation !== `${problem.quadratic} = 0`)
+  if (
+    props.equation !== problem.quadratic &&
+    props.equation !== `${problem.quadratic} = 0`
+  )
     throw new Error("Quadratic-formula equation does not match its private seed");
   return problem;
 }

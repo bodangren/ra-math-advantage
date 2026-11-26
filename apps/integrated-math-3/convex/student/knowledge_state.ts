@@ -17,7 +17,6 @@ import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
 import {
   loadFullCurriculumGraph,
-  includeHistoricalEvidenceNodes,
   projectApprovedReadinessGraph,
 } from "../../lib/curriculum/skill-graph-loader";
 import {
@@ -156,17 +155,8 @@ export async function getStudentKnowledgeStateHandler(
     }
   }
 
-  // 6. Project to visualization payload
-  const presentationGraph = includeHistoricalEvidenceNodes(
-    readinessGraph,
-    graph,
-    new Set(Object.keys(learnerState)),
-  );
-  return projectStudentVisualization(
-    presentationGraph.nodes,
-    presentationGraph.edges,
-    learnerState,
-  );
+  // 6. Project the full graph. Draft nodes stay visible as history only.
+  return projectStudentVisualization(graph.nodes, graph.edges, learnerState);
 }
 
 /**

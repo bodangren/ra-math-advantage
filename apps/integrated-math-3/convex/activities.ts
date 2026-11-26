@@ -69,6 +69,17 @@ import {
   IM3_TWO_REAL_SOLUTIONS_NODE,
   IM3_TEACHER_LED_ACTIVITY_ID,
 } from "../lib/practice/learning-evidence-pilot";
+import { resolveLatestPublishedLessonVersion } from "../lib/progress/published-curriculum";
+import {
+  canonicalLesson16QuizRequest,
+  gradeLesson16Quiz,
+  isExactLesson16QuizProps,
+  isLesson16QuizRequest,
+  LESSON_1_6_QUIZ_PHASE,
+  LESSON_1_6_QUIZ_SEQUENCE,
+  LESSON_1_6_QUIZ_SLUG,
+  validLesson16QuizRow,
+} from "./lib/lesson_1_6_quiz";
 
 type Im3PilotPublication = {
   nodes: ReadonlyArray<{ id: string; kind?: string; reviewStatus?: string }>;
@@ -424,6 +435,113 @@ export const getActivityById = internalQuery({
   },
 });
 
+/** Returns true when any physical item link identifies a quadratic-formula variant. */
+async function hasQuadraticFormulaVariantLink(
+  ctx: MutationCtx,
+  activityId: Id<"activities">,
+): Promise<boolean> {
+  for await (const item of ctx.db
+    .query("practice_items")
+    .withIndex("by_activityId", (q) => q.eq("activityId", activityId))) {
+    const variants = await ctx.db
+      .query("practice_variants")
+      .withIndex("by_variantKey", (q) => q.eq("variantKey", item.variantKey))
+      .take(2);
+    if (variants.length !== 1 || variants[0].componentKey === "quadratic-formula") return true;
+  }
+  return false;
+}
+
+/** Loads the exact published Lesson 1.6 quiz authority for one activity. */
+export async function loadLesson16QuizAuthority(
+  ctx: QueryCtx,
+  activityId: Id<"activities">,
+) {
+  const lesson = await ctx.db
+    .query("lessons")
+    .withIndex("by_slug", (q) => q.eq("slug", LESSON_1_6_QUIZ_SLUG))
+    .unique();
+  if (!lesson) return null;
+  const versions = await ctx.db
+    .query("lesson_versions")
+    .withIndex("by_lesson", (q) => q.eq("lessonId", lesson._id))
+    .collect();
+  const selected = resolveLatestPublishedLessonVersion(versions);
+  if (!selected) return null;
+  const phase = await ctx.db
+    .query("phase_versions")
+    .withIndex("by_lesson_version_and_phase", (q) =>
+      q.eq("lessonVersionId", selected._id).eq("phaseNumber", LESSON_1_6_QUIZ_PHASE),
+    )
+    .unique();
+  if (!phase) return null;
+  const sections = await ctx.db
+    .query("phase_sections")
+    .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phase._id))
+    .collect();
+  const sequenceSections = sections.filter(
+    (section) => section.sequenceOrder === LESSON_1_6_QUIZ_SEQUENCE && section.sectionType === "activity",
+  );
+  const matches = sequenceSections.filter(
+    (section) =>
+      (section.content as { activityId?: unknown; componentKey?: unknown }).activityId ===
+        activityId &&
+      (section.content as { componentKey?: unknown }).componentKey === "comprehension-quiz",
+  );
+  const activity = await ctx.db.get(activityId);
+  const grading = activity?.gradingConfig as Record<string, unknown> | undefined;
+  if (
+    sequenceSections.length !== 1 ||
+    matches.length !== 1 ||
+    !activity ||
+    activity.componentKey !== "comprehension-quiz" ||
+    !isExactLesson16QuizProps(activity.props) ||
+    Object.keys(grading ?? {}).sort().join("|") !== "autoGrade|partialCredit" ||
+    grading?.autoGrade !== true ||
+    grading.partialCredit !== true ||
+    activity.stableActivityId !== undefined ||
+    activity.masteryNodeId !== undefined ||
+    activity.learningEvidenceMode !== undefined ||
+    activity.approval !== undefined ||
+    activity.srsEligible !== undefined
+  )
+    return null;
+  return activity;
+}
+
+/** Canonicalizes one draft quadratic-formula submission for replay checks. */
+function canonicalQfPayload(value: PracticeSubmissionEnvelope): string {
+  const parts = [...value.parts]
+    .sort((left, right) => left.partId.localeCompare(right.partId))
+    .map(
+      ({ isCorrect: _isCorrect, score: _score, maxScore: _maxScore, ...part }) => part,
+    );
+  return JSON.stringify(
+    convexToJson({ ...value, status: "submitted", parts } as never),
+  );
+}
+
+/** Checks the immutable answer shape of a draft quadratic-formula submission. */
+function validateQfEnvelope(value: PracticeSubmissionEnvelope): void {
+  const ids = ["discriminant", "x1", "x2"];
+  if (
+    value.status !== "submitted" ||
+    !["guided_practice", "independent_practice"].includes(value.mode) ||
+    Object.keys(value.answers).sort().join("|") !== ids.slice().sort().join("|") ||
+    value.parts.length !== 3 ||
+    new Set(value.parts.map((part) => part.partId)).size !== 3 ||
+    value.parts.some(
+      (part) =>
+        !ids.includes(part.partId) ||
+        part.isCorrect !== undefined ||
+        part.score !== undefined ||
+        part.maxScore !== undefined ||
+        JSON.stringify(part.rawAnswer) !== JSON.stringify(value.answers[part.partId]),
+    )
+  )
+    throw new Error("Invalid quadratic-formula response envelope");
+}
+
 /**
  * Internal mutation that records a graded assessment submission (no
  * competency or SRS side effects — see `submitActivity` for that path).
@@ -439,6 +557,19 @@ export const submitAssessment = internalMutation({
     feedback: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    const activity = await ctx.db.get(args.activityId);
+    const hasQfLink = activity
+      ? await hasQuadraticFormulaVariantLink(ctx, activity._id)
+      : false;
+    if (
+      activity &&
+      (activity.stableActivityId === IM3_QF_DRAFT_MAPPINGS.guided_practice.stableActivityId ||
+        activity.stableActivityId === IM3_QF_DRAFT_MAPPINGS.independent_practice.stableActivityId ||
+        (activity.masteryNodeId === IM3_QF_NODE &&
+          activity.componentKey === "quadratic-formula") ||
+        hasQfLink)
+    )
+      throw new Error("Draft quadratic-formula submissions must use the server-owned create path");
     const now = Date.now();
 
     const id = await ctx.db.insert("activity_submissions", {
@@ -463,6 +594,7 @@ interface ServerOwnedSubmissionArgs {
   activityId: Id<"activities">;
   submissionData: PracticeSubmissionEnvelope;
   idempotencyKey: string;
+  pendingSubmissionId?: Id<"activity_submissions">;
 }
 
 interface LegacySubmissionArgs {
@@ -1617,11 +1749,222 @@ export const checkQuadraticFormulaDiscriminant = withDeclaredValidators(
   { args: qfDiscriminantArgs, returns: qfDiscriminantReturns },
 );
 
+/** Handles server-owned writes for draft quadratic-formula and Lesson 1.6 quiz activities. */
+async function createDraftServerOwnedSubmissionHandler(
+  ctx: MutationCtx,
+  args: ServerOwnedSubmissionArgs,
+  publication: Im3PilotPublication = currentIm3PilotPublication,
+) {
+  const key = args.idempotencyKey.trim();
+  if (!key || key.length > 80) throw new Error("Invalid idempotency key");
+  if (args.submissionData.contractVersion !== "practice.v1")
+    throw new Error("Invalid practice contract");
+  await requireActiveSubmissionStudent(ctx, args.userId);
+  const activity = await ctx.db.get(args.activityId);
+  const qfMapping = IM3_QF_DRAFT_MAPPINGS[args.submissionData.mode as QfMode];
+  const isQf = Boolean(
+    activity &&
+      qfMapping &&
+      (activity.stableActivityId === qfMapping.stableActivityId ||
+        (activity.masteryNodeId === IM3_QF_NODE &&
+          activity.componentKey === "quadratic-formula")),
+  );
+  const isQuiz = activity?.componentKey === "comprehension-quiz";
+  let qfPrivateGenerator: { generatorKey: "quadratic-formula"; seed: number } | undefined;
+  if (isQf && activity && qfMapping) {
+    validateQfEnvelope(args.submissionData);
+    qfPrivateGenerator = await loadQuadraticFormulaAuthority(
+      ctx,
+      activity,
+      args.submissionData.mode as QfMode,
+      publication,
+    );
+  } else if (isQuiz) {
+    if (
+      args.pendingSubmissionId ||
+      !isLesson16QuizRequest(args.submissionData) ||
+      !(await loadLesson16QuizAuthority(ctx, args.activityId))
+    )
+      throw new Error("Invalid Lesson 1.6 quiz submission");
+  }
+  const existing = await ctx.db
+    .query("activity_submissions")
+    .withIndex("by_user_activity_idempotency_key", (q) =>
+      q
+        .eq("userId", args.userId)
+        .eq("activityId", args.activityId)
+        .eq("idempotencyKey", key),
+    )
+    .unique();
+  if (
+    isQf &&
+    existing &&
+    args.pendingSubmissionId &&
+    args.pendingSubmissionId !== existing._id
+  )
+    throw new Error("Invalid pending quadratic-formula attempt");
+  if (
+    existing &&
+    !(
+      isQf &&
+      existing.allocatedVariantKey &&
+      existing.submissionData.status === "draft"
+    )
+  ) {
+    if (isQf && existing.allocatedVariantKey) {
+      await loadQuadraticFormulaAuthority(
+        ctx,
+        activity!,
+        args.submissionData.mode as QfMode,
+        publication,
+        existing.allocatedVariantKey,
+      );
+    }
+    const canonical = isQf ? canonicalQfPayload : isQuiz ? canonicalLesson16QuizRequest : null;
+    if (
+      canonical &&
+      canonical(existing.submissionData as PracticeSubmissionEnvelope) !==
+        canonical(args.submissionData)
+    )
+      throw new Error("idempotency_conflict");
+    if (existing.attemptOrdinal === undefined || existing.score === undefined || existing.maxScore === undefined)
+      throw new Error("Stored IM3 submission is incomplete");
+    if (
+      isQuiz &&
+      !validLesson16QuizRow(existing, String(args.userId), String(args.activityId))
+    )
+      throw new Error("Stored Lesson 1.6 quiz submission is incomplete");
+    return {
+      id: existing._id,
+      submissionId: existing._id,
+      score: existing.score,
+      maxScore: existing.maxScore,
+    };
+  }
+  const prior = await ctx.db
+    .query("activity_submissions")
+    .withIndex("by_user_activity_attempt_ordinal", (q) =>
+      q.eq("userId", args.userId).eq("activityId", args.activityId),
+    )
+    .order("desc")
+    .first();
+  const attemptOrdinal = (prior?.attemptOrdinal ?? 0) + 1;
+  let pending: Doc<"activity_submissions"> | null = null;
+  if (isQf) {
+    if (!args.pendingSubmissionId)
+      throw new Error("A pending quadratic-formula attempt is required");
+    pending = await ctx.db.get(args.pendingSubmissionId);
+    if (
+      !pending ||
+      !validPendingQfRow(pending, {
+        userId: args.userId,
+        activityId: args.activityId,
+        mode: args.submissionData.mode as QfMode,
+      }) ||
+      pending.idempotencyKey !== key ||
+      args.submissionData.attemptNumber !== pending.attemptOrdinal
+    )
+      throw new Error("Invalid pending quadratic-formula attempt");
+    qfPrivateGenerator = await loadQuadraticFormulaAuthority(
+      ctx,
+      activity!,
+      args.submissionData.mode as QfMode,
+      publication,
+      pending.allocatedVariantKey,
+    );
+  } else if (args.pendingSubmissionId) {
+    throw new Error("Pending handle is only valid for quadratic-formula submissions");
+  }
+  const graded = isQuiz
+    ? (() => {
+        const submissionData = gradeLesson16Quiz(args.submissionData);
+        return {
+          submissionData,
+          score: submissionData.parts.reduce((sum, part) => sum + (part.score ?? 0), 0),
+          maxScore: 2,
+          masteryContractVersion: undefined,
+        };
+      })()
+    : gradeServerOwnedSubmission(
+        {
+          id: String(activity!._id),
+          stableActivityId: activity!.stableActivityId,
+          masteryNodeId: activity!.masteryNodeId,
+          componentKey: activity!.componentKey,
+          srsEligible: activity!.srsEligible,
+          props: qfPrivateGenerator
+            ? quadraticFormulaPublicProps(
+                args.submissionData.mode as QfMode,
+                qfPrivateGenerator.seed,
+              )
+            : (activity!.props as Record<string, unknown>),
+          gradingConfig: activity!.gradingConfig,
+          ...(qfPrivateGenerator ? { privateGenerator: qfPrivateGenerator } : {}),
+        },
+        args.submissionData,
+      );
+  if (graded.score === undefined || graded.maxScore === undefined)
+    throw new Error("IM3 pilot did not produce a server grade");
+  const now = Date.now();
+  const submissionData = {
+    ...graded.submissionData,
+    attemptNumber: isQf ? pending!.attemptOrdinal! : attemptOrdinal,
+  };
+  if (pending) {
+    await ctx.db.patch(pending._id, {
+      submissionData,
+      score: graded.score,
+      maxScore: graded.maxScore,
+      gradedAt: now,
+      submittedAt: now,
+      updatedAt: now,
+    });
+    return {
+      id: pending._id,
+      submissionId: pending._id,
+      score: graded.score,
+      maxScore: graded.maxScore,
+    };
+  }
+  const submissionId = await ctx.db.insert("activity_submissions", {
+    userId: args.userId,
+    activityId: args.activityId,
+    submissionData,
+    attemptOrdinal,
+    idempotencyKey: key,
+    score: graded.score,
+    maxScore: graded.maxScore,
+    gradedAt: now,
+    submittedAt: now,
+    createdAt: now,
+    updatedAt: now,
+  });
+  return {
+    id: submissionId,
+    submissionId,
+    score: graded.score,
+    maxScore: graded.maxScore,
+  };
+}
+
 export async function createServerOwnedSubmissionHandler(
   ctx: MutationCtx,
   args: ServerOwnedSubmissionArgs,
   publication: Im3PilotPublication = currentIm3PilotPublication,
 ) {
+  const draftActivity = await ctx.db.get(args.activityId);
+  const draftMapping = draftActivity
+    ? IM3_QF_DRAFT_MAPPINGS[args.submissionData.mode as QfMode]
+    : undefined;
+  const isDraftSubmission = Boolean(
+    draftActivity &&
+      draftMapping &&
+      (draftActivity.stableActivityId === draftMapping.stableActivityId ||
+        (draftActivity.masteryNodeId === IM3_QF_NODE &&
+          draftActivity.componentKey === "quadratic-formula")),
+  );
+  if (isDraftSubmission || draftActivity?.componentKey === "comprehension-quiz")
+    return createDraftServerOwnedSubmissionHandler(ctx, args, publication);
   if (String(args.activityId) !== args.submissionData.activityId) {
     throw new Error("Submission activityId must match the server activity document");
   }
@@ -2006,6 +2349,15 @@ async function legacySubmitActivityHandler(ctx: MutationCtx, args: LegacySubmiss
     throw new Error("Activity not found");
   }
 
+  const hasQfLink = await hasQuadraticFormulaVariantLink(ctx, activity._id);
+  if (
+    activity.stableActivityId === IM3_QF_DRAFT_MAPPINGS.guided_practice.stableActivityId ||
+    activity.stableActivityId === IM3_QF_DRAFT_MAPPINGS.independent_practice.stableActivityId ||
+    (activity.masteryNodeId === IM3_QF_NODE && activity.componentKey === "quadratic-formula") ||
+    hasQfLink
+  )
+    throw new Error("Draft quadratic-formula submissions must use the server-owned create path");
+
   if (activity.stableActivityId === IM3_MASTERY_ADVANTAGE_ACTIVITY_ID) {
     throw new Error("IM3 Mastery Advantage submissions must use the server-owned create path");
   }
@@ -2355,6 +2707,56 @@ export const getSelectedWorkedAcknowledgement = internalQuery({
     v.object({ submissionId: v.id("activity_submissions"), acknowledged: v.literal(true) }),
   ),
   handler: getSelectedWorkedAcknowledgementHandler,
+});
+
+/** Reads the newest valid Lesson 1.6 quiz receipt for one student. */
+export async function getLesson16QuizReceiptHandler(
+  ctx: QueryCtx,
+  args: { userId: Id<"profiles">; activityId: Id<"activities"> },
+) {
+  try {
+    await requireActiveSubmissionStudent(ctx, args.userId);
+  } catch {
+    return null;
+  }
+  if (!(await loadLesson16QuizAuthority(ctx, args.activityId))) return null;
+  const row = await ctx.db
+    .query("activity_submissions")
+    .withIndex("by_user_and_activity", (query) =>
+      query.eq("userId", args.userId).eq("activityId", args.activityId),
+    )
+    .order("desc")
+    .first();
+  if (!row || !validLesson16QuizRow(row, String(args.userId), String(args.activityId)))
+    return null;
+  return {
+    submissionId: row._id,
+    score: row.score!,
+    maxScore: 2 as const,
+    answers: {
+      "discriminant-purpose": row.submissionData.answers["discriminant-purpose"] as string,
+      "zero-discriminant-real-solution-count": row.submissionData.answers[
+        "zero-discriminant-real-solution-count"
+      ] as string,
+    },
+  };
+}
+
+export const getLesson16QuizReceipt = internalQuery({
+  args: { userId: v.id("profiles"), activityId: v.id("activities") },
+  returns: v.union(
+    v.null(),
+    v.object({
+      submissionId: v.id("activity_submissions"),
+      score: v.number(),
+      maxScore: v.literal(2),
+      answers: v.object({
+        "discriminant-purpose": v.string(),
+        "zero-discriminant-real-solution-count": v.string(),
+      }),
+    }),
+  ),
+  handler: getLesson16QuizReceiptHandler,
 });
 
 /**

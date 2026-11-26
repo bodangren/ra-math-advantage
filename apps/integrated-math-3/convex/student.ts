@@ -1,6 +1,6 @@
 import { normalizeSeedProps } from "../lib/activities/seed-props";
 import { internalMutation, internalQuery, type QueryCtx } from "./_generated/server";
-import { v, ConvexError } from "convex/values";
+import { v, ConvexError, convexToJson } from "convex/values";
 import { Id } from "./_generated/dataModel";
 import { coerceNullableString } from "./dashboardHelpers";
 import {
@@ -21,7 +21,19 @@ import {
   getSelectedWorkedAcknowledgementHandler,
   isIm3GraphPilotPublished,
   isSelectedWorkedActivity,
+  loadLesson16QuizAuthority,
 } from "./activities";
+import {
+  lesson16QuizPublicProps,
+  LESSON_1_6_QUIZ_PHASE,
+  LESSON_1_6_QUIZ_SEQUENCE,
+  LESSON_1_6_QUIZ_SLUG,
+} from "./lib/lesson_1_6_quiz";
+import {
+  IM3_QF_DRAFT_MAPPINGS,
+  IM3_QF_NODE,
+  quadraticFormulaPublicProps,
+} from "../lib/activities/server-grading";
 import {
   IM3_PILOT_NODE,
   IM3_TEACHER_LED_ACTIVITY_ID,
@@ -29,6 +41,96 @@ import {
 const IM3_SELECTED_LESSON_SLUG = "module-1-lesson-1";
 const IM3_SELECTED_PHASE_NUMBER = 4;
 const IM3_SELECTED_SECTION_SEQUENCE = 2;
+
+async function projectDraftActivitySection(
+  ctx: QueryCtx,
+  content: Record<string, unknown>,
+  selectedLesson16Quiz: boolean,
+  selectedSourceSection: boolean,
+): Promise<{ handled: boolean; content: Record<string, unknown> }> {
+  const unavailable = () => {
+    const {
+      stableActivityId: _stableActivityId,
+      masteryNodeId: _masteryNodeId,
+      learningEvidenceMode: _learningEvidenceMode,
+      srsEligible: _srsEligible,
+      activityProps: _activityProps,
+      ...storedContent
+    } = content;
+    return { ...storedContent, componentKey: "unavailable" };
+  };
+  const activityId = content.activityId
+    ? ctx.db.normalizeId("activities", content.activityId as string)
+    : null;
+  const activity = activityId ? await ctx.db.get(activityId) : null;
+  const claimsSelectedIdentity =
+    selectedSourceSection ||
+    activity?.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID ||
+    content.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID ||
+    content.masteryNodeId === IM3_PILOT_NODE;
+  if (claimsSelectedIdentity) {
+    if (!isIm3GraphPilotPublished() || !activity || !isSelectedWorkedActivity(activity))
+      return { handled: true, content: unavailable() };
+    return { handled: false, content };
+  }
+  if (selectedLesson16Quiz) {
+    if (
+      !activityId ||
+      content.componentKey !== "comprehension-quiz" ||
+      !(await loadLesson16QuizAuthority(ctx, activityId))
+    )
+      return { handled: true, content: unavailable() };
+    return {
+      handled: true,
+      content: {
+        activityId: content.activityId,
+        componentKey: "comprehension-quiz",
+        activityProps: lesson16QuizPublicProps(),
+      },
+    };
+  }
+  const mappings = Object.entries(IM3_QF_DRAFT_MAPPINGS).filter(
+    ([, mapping]) => mapping.stableActivityId === activity?.stableActivityId,
+  );
+  const claimsQfIdentity =
+    content.componentKey === "quadratic-formula" ||
+    content.masteryNodeId === IM3_QF_NODE ||
+    activity?.componentKey === "quadratic-formula" ||
+    activity?.masteryNodeId === IM3_QF_NODE ||
+    mappings.length > 0 ||
+    content.stableActivityId === IM3_QF_DRAFT_MAPPINGS.guided_practice.stableActivityId ||
+    content.stableActivityId === IM3_QF_DRAFT_MAPPINGS.independent_practice.stableActivityId;
+  if (!claimsQfIdentity) return { handled: false, content };
+  if (!activity || mappings.length !== 1)
+    return { handled: true, content: unavailable() };
+  const [mode, mapping] = mappings[0] as [
+    keyof typeof IM3_QF_DRAFT_MAPPINGS,
+    (typeof IM3_QF_DRAFT_MAPPINGS)[keyof typeof IM3_QF_DRAFT_MAPPINGS],
+  ];
+  const expectedProps = quadraticFormulaPublicProps(mode, mapping.seed);
+  const valid =
+    activity.componentKey === "quadratic-formula" &&
+    activity.masteryNodeId === IM3_QF_NODE &&
+    activity.srsEligible === false &&
+    activity.approval?.status === "unreviewed" &&
+    (activity.props as { presentationMode?: unknown }).presentationMode ===
+      mapping.presentationMode &&
+    JSON.stringify(convexToJson(activity.props as never)) ===
+      JSON.stringify(convexToJson(expectedProps as never));
+  if (!valid) return { handled: true, content: unavailable() };
+  return {
+    handled: true,
+    content: {
+      activityId: content.activityId,
+      componentKey: activity.componentKey,
+      stableActivityId: activity.stableActivityId,
+      masteryNodeId: activity.masteryNodeId,
+      learningEvidenceMode: mode,
+      srsEligible: activity.srsEligible,
+      activityProps: activity.props,
+    },
+  };
+}
 /**
  * Convex internalQuery wrapper: get dashboard data.
  * @returns {Promise<unknown>} The wrapper result.
@@ -146,11 +248,34 @@ export const getLessonProgress = internalQuery({
             sectionType: section.sectionType,
             content: section.content,
           };
+          const isLesson16QuizLesson =
+            lesson.slug === LESSON_1_6_QUIZ_SLUG &&
+            phase.phaseNumber === LESSON_1_6_QUIZ_PHASE;
+          const isLesson16QuizSection =
+            isLesson16QuizLesson &&
+            section.sectionType === "activity" &&
+            section.sequenceOrder === LESSON_1_6_QUIZ_SEQUENCE;
           const isSelectedSourceSection =
             lesson.slug === IM3_SELECTED_LESSON_SLUG &&
             phase.phaseNumber === IM3_SELECTED_PHASE_NUMBER &&
             section.sectionType === "activity" &&
             section.sequenceOrder === IM3_SELECTED_SECTION_SEQUENCE;
+          if (
+            section.sectionType === "activity" &&
+            typeof section.content === "object" &&
+            section.content !== null &&
+            !Array.isArray(section.content)
+          ) {
+            const projected = await projectDraftActivitySection(
+              ctx,
+              section.content as Record<string, unknown>,
+              isLesson16QuizSection,
+              isSelectedSourceSection,
+            );
+            if (projected.handled)
+              return { ...originalSection, content: projected.content };
+            if (isLesson16QuizLesson) return originalSection;
+          }
           const sectionContent =
             typeof section.content === "object" &&
             section.content !== null &&
