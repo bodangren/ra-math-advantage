@@ -1,0 +1,12 @@
+MEASURE_AGENT_RESULT
+role: Green T1.2c, G6 and test-only G5
+status: blocked
+track: math-pilot-fastlane_20261126
+phase: Phase P1: IM3 master green
+commits: e603d65c; 45c5b3ee; bc332916; 0633453b
+tests_run: Targeted G6 passed (9 files, 208 tests); targeted G5 passed (3 files, 21 tests); full test gate at 0633453b exited 1 with four new keys; checks-all and lint gates exited 1
+files_changed: 12 scoped test files; measure/tracks/math-pilot-fastlane_20261126/plan.md; measure/tracks/math-pilot-fastlane_20261126/evidence.md
+plan_updates: T1.2 remains [~]; added T1.2c done 0633453b; recorded evidence and failed gate results
+known_failures: Full test gate added graph-readiness-boundary-consumers.test.ts (2), seed/all-lesson-contracts.test.ts (1), and studentVisualizationMultiModule.test.ts (1). Checks-all found concurrent quadratic-formula-server-writer TS2339 errors and format issues in concurrent production files. Lint found concurrent no-explicit-any errors in convex/activities.ts. Gate logs used HEAD 0633453b. A concurrent commit advanced HEAD to d8920cca after the gate runs.
+handoff: Targeted stale-test updates pass. Do not close T1.2. Assign the four new test keys and concurrent gate failures to their owning roles, then rerun the full gates. Immutable phase_base_sha=7732f580c5421ce185ffae035922dc3d8a207e0c. role_base_sha=3ea6f7ea6ed288528c7142243a676db09b56284c. Final Green HEAD=d8920cca2b682595520581d75867e03b76d95e4b. No production files changed by this role.
+END_MEASURE_AGENT_RESULT

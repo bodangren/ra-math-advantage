@@ -100,7 +100,7 @@ P9 acceptance verifies the whole track at immutable HEAD after the checkpoint an
     - Green commit: `e74a71b6`.
     - Green command: `npm test -- --run __tests__/convex/quadratic-formula-registered-functions.test.ts __tests__/lib/activities/registry.test.ts` (exit 0; 12 checks passed).
     - Green gates: `lint`, `test`, and `checks-all` each reported `NEWFAIL=0` against the S4 baseline.
-- [ ] Task: T1.2 — Classify and fix IM3 test failures (Red then Green for sensitive changes).
+- [~] Task: T1.2 — Classify and fix IM3 test failures (Red then Green for sensitive changes).
     - Start with `measure/runs/openrouter-sdk-ai-layer_20261114/gates/s4/test-integrated-math-3.log`.
     - Classify each failure key as pilot-path, non-pilot, or stale-test.
     - Pilot paths: login, session, student lessons, quiz, step solver, daily queue, teacher dashboard, gradebook, classes, lesson assignment, and CSV export.
@@ -110,6 +110,7 @@ P9 acceptance verifies the whole track at immutable HEAD after the checkpoint an
     - Keep the debt registry at or below 50 lines. Merge related rows if necessary.
     - Exclude the known UTC-day queue session flake from the failure classification between 00:00 and 01:00 UTC.
     - Done when all pilot-path tests pass and each remaining failure has a documented disposition.
+    - T1.2c done `0633453b`.
 - [ ] Task: T1.3 — Fix IM3 runtime type errors (Green, or Red then Green for sensitive behavior).
     - Start with `measure/runs/openrouter-sdk-ai-layer_20261114/gates/s4/typecheck-integrated-math-3.log`.
     - Fix runtime errors in `app/`, `convex/`, `lib/`, and `components/`.

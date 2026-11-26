@@ -118,6 +118,40 @@ the seed helper as absent.
 
 T1.2 and T1.3 stay open. This section records no task closure.
 
+### T1.2c
+
+Scope: G6 stale component tests and the test-only part of G5. No production file changed.
+The phase base is `7732f580c5421ce185ffae035922dc3d8a207e0c`.
+The role base is `3ea6f7ea6ed288528c7142243a676db09b56284c`.
+No Red test applies to this low-risk scope.
+
+The implementation commits are `e603d65c`, `45c5b3ee`, `bc332916`, and `0633453b`.
+The targeted command passed with 12 files and 229 tests.
+The separate G6 command passed with 9 files and 208 tests.
+The separate G5 command passed with 3 files and 21 tests.
+
+The full IM3 test gate ran once through `heavy-run.sh`.
+It exited 1 and reported four new failure keys:
+`graph-readiness-boundary-consumers.test.ts` (two checks),
+`seed/all-lesson-contracts.test.ts` (one check), and
+`studentVisualizationMultiModule.test.ts` (one check).
+The log is `measure/runs/math-pilot-fastlane_20261126/gates/green/test/run.2LJC9jeG`.
+
+The lint gate exited 1. It reported three pre-existing `no-explicit-any` errors in the
+concurrent `convex/activities.ts` change. It also reported two test warnings that this role fixed
+in `0633453b`. The log is
+`measure/runs/math-pilot-fastlane_20261126/gates/green/lint/run.q4msckNV`.
+
+The checks-all gate exited 1. Format checking found changes in four concurrent production files
+and `StepByStepper.test.tsx`. This role fixed the test formatting in `0633453b`.
+Typecheck found new `TS2339` keys in the concurrent quadratic-formula server-writer test.
+It also found a `TS2790` key in this role's seed fixture test, fixed in `0633453b`.
+The build passed. The log is
+`measure/runs/math-pilot-fastlane_20261126/gates/green/checks-all/run.y7Sh0J8T`.
+
+T1.2c targeted tests pass. The P1 full-suite gate does not pass. Keep T1.2 open until the four
+new full-suite failure keys and the concurrent typecheck and lint failures receive owners.
+
 ### T1.4 IM2 CI invocation
 
 The root command `npm run curriculum:check` failed because the script exists only in the IM2 workspace.
