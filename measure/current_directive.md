@@ -8,6 +8,7 @@ Carry out the direction of 2026-11-14 through Measure tracks, in the order below
 
 ## Track Order
 
+0. `math-pilot-fastlane_20261126`: one math app for Integrated Math 3, then AP Precalculus, on the pilot URL.
 1. `vinext-oxc-toolchain_20261114`: vinext 1.x with no `next`, oxlint, oxfmt, and tsrs.
 2. `openrouter-sdk-ai-layer_20261114`: the OpenRouter SDK AI layer (after 1).
 3. `danielson-app-import_20261114` is archived (superseded, PM 2026-11-16). `apps/danielson`
@@ -29,6 +30,8 @@ registry `measure/tracks.md` also holds older open tracks, for example
 
 ## Rules in Force
 
+- `math-pilot-fastlane_20261126` has top priority (PM 2026-11-26).
+- The pilot track pulls forward the necessary parts of `prod-deploy-pipeline_20261114` and `unified-math-app_20261114`. The remaining work waits until the pilot track closes.
 - Each phase ends with the checkpoint protocol of `measure/workflow.md`. Each track ends
   with a sync with origin.
 - Until 2026-12-01 (PM rule), Math runs at most two sessions at one time: the build session

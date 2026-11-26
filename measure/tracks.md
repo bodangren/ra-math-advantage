@@ -70,6 +70,10 @@ Dependencies:
 
 ## Active Tracks
 
+- [ ] **Track: Math Pilot Fast Lane** — **PLANNED** (PM 2026-11-26)
+   *Prepare one math app for Integrated Math 3 and AP Precalculus classes on a live URL in a Chinese high school.*
+   *Link: [./tracks/math-pilot-fastlane_20261126/](./tracks/math-pilot-fastlane_20261126/)*
+
 - [x] **Track: Worktree Atomic Integration (2026-09-17)** — **SUPERSEDED / ARCHIVED** (2026-11-16)
   *Reconcile the existing mixed worktree with Measure ownership. Commit reviewed source groups atomically. Keep generated output outside commits until the owning workflow requires it.*
   *Superseded by the sync merge 2b2d9952, PM 2026-11-16.*

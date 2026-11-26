@@ -1,0 +1,12 @@
+{
+  "track_id": "math-pilot-fastlane_20261126",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-11-26T00:00:00Z",
+  "updated_at": "2026-11-26T00:00:00Z",
+  "description": "Prepare one math app for Integrated Math 3 and AP Precalculus classes on a live URL in a Chinese high school.",
+  "estimated_tasks": 56,
+  "actual_tasks": null,
+  "deviation_notes": "PM amendment of 2026-11-26. Use the light lane. Pull forward the unified base, Precalculus import, and pilot deployment only. The remaining set work waits.",
+  "lane": "light"
+}
