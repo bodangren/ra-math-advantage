@@ -80,6 +80,44 @@ tests `__tests__/lib/activities/server-grading-quadratic-formula.test.ts` build 
 the ` = 0` suffix that the production props carry, so two of its three checks fail. Every one of
 these failures also exists in the S4 baseline.
 
+### T1.2 classification
+
+The full classification is in `measure/tracks/math-pilot-fastlane_20261126/t12-classification.md`.
+
+The IM3 test suite ran once at HEAD `344e6569b2b468a53e9511eaa6e54424932e321b` through
+`/home/daniebo/Desktop/advantage-pr/scripts/jobs/heavy-run.sh`. The command was
+`CI=true npm run test --workspace=apps/integrated-math-3`. The command exited 1. The log is
+`measure/runs/math-pilot-fastlane_20261126/gates/p1-classify/test-integrated-math-3.log`. The run
+held 36 failed test files and 215 failed tests. The S4 baseline log holds 37 failed test files and
+218 failed tests. The key comparison holds 0 new failure keys and 3 fixed keys. The three fixed
+keys come from the T1.1 restore commit `e74a71b6`. The run took place from 02:37 UTC to 02:45 UTC,
+so the known UTC-day queue session flake did not occur.
+
+The classification holds 36 failing test files. Each file has a failure count, a root cause, and
+one class. The classes are pilot-path (18 files, 159 tests), stale-test (15 files, 51 tests), and
+non-pilot (3 files, 5 tests). The file holds 8 fix groups. The T1.2a restore fixes 132 failing
+tests in 11 files. The stale-test class names the commit that changed each contract.
+
+The IM3 typecheck ran once through `heavy-run.sh`. The command was
+`npm run typecheck --workspace=apps/integrated-math-3`. The command exited 1. The log is
+`measure/runs/math-pilot-fastlane_20261126/gates/p1-classify/typecheck-integrated-math-3.log`. The
+log holds 30 diagnostic lines and 27 unique diagnostic keys. Every key sits in a test file.
+
+The T1.2a role wrote `apps/integrated-math-3/convex/seed/seed_lesson_1_6.ts` at 09:45:20. The
+typecheck ran from 09:45:19 to 09:45:34. That write landed inside the run, so the stored log does
+not hold the 5 seed helper keys. The clean HEAD set holds 32 keys. The T1.1 Green log at
+`measure/runs/math-pilot-fastlane_20261126/gates/green/checks-all/run.n9SmcXfe/typecheck-apps-integrated-math-3.log`
+holds the same 32 keys and ran the same committed code.
+
+The S4 baseline log holds 51 keys, and 3 of them sit in runtime route files. No runtime diagnostic
+remains at this HEAD. The key comparison holds 0 new keys. The T1.1 restore commit `e74a71b6`
+fixed the 3 runtime keys and 16 test keys.
+
+The test log of this role is clean at HEAD. The test run ended at 09:45:18, and the log reports
+the seed helper as absent.
+
+T1.2 and T1.3 stay open. This section records no task closure.
+
 ### T1.4 IM2 CI invocation
 
 The root command `npm run curriculum:check` failed because the script exists only in the IM2 workspace.
