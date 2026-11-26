@@ -665,7 +665,8 @@ describe("seedLesson1 IM3 pilot upgrade state", () => {
       expect(seedZeroActivities).toHaveLength(1);
       expect(guidedSeedOneActivities).toHaveLength(1);
       expect(guidedSeedTwoActivities).toHaveLength(1);
-      const { createdAt: _createdAt, ...expectedSeedZeroActivity } = expectedSeedZero.activity;
+      const expectedSeedZeroActivity = { ...expectedSeedZero.activity };
+      delete expectedSeedZeroActivity.createdAt;
       expect(seedZeroActivities[0]).toMatchObject(expectedSeedZeroActivity);
       expect(guidedSeedOneActivities[0]).toMatchObject(expectedGuidedSeedOne.activity);
       expect(guidedSeedTwoActivities[0]).toMatchObject(expectedGuidedSeedTwo.activity);

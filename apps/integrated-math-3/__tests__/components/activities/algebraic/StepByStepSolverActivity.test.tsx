@@ -2,7 +2,6 @@ import { describe, it, expect, vi } from "vitest";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { StepByStepSolverActivity } from "@/components/activities/algebraic/StepByStepSolverActivity";
 import type { AlgebraicStep } from "@math-platform/activity-components/algebraic";
-import * as distractors from "@/lib/activities/algebraic/distractors";
 import "katex/dist/katex.min.css";
 
 describe("StepByStepSolverActivity", () => {
