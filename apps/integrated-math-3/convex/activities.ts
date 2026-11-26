@@ -435,13 +435,22 @@ export const getActivityById = internalQuery({
   },
 });
 
+type QueryRow = Record<string, unknown>;
+
+interface QueryDouble {
+  collect?: () => Promise<QueryRow[]>;
+  take?: (limit: number) => Promise<QueryRow[]>;
+  first?: () => Promise<QueryRow | null>;
+  [Symbol.asyncIterator]?: () => AsyncIterator<QueryRow>;
+}
+
 /** Reads a bounded result from a Convex query or a test query double. */
-async function readQueryRows(query: any, limit: number): Promise<any[]> {
+async function readQueryRows(query: QueryDouble, limit: number): Promise<QueryRow[]> {
   if (typeof query.collect === "function") return await query.collect();
   if (typeof query.take === "function") return await query.take(limit);
   if (typeof query[Symbol.asyncIterator] === "function") {
-    const rows: any[] = [];
-    for await (const row of query) {
+    const rows: QueryRow[] = [];
+    for await (const row of query as AsyncIterable<QueryRow>) {
       rows.push(row);
       if (rows.length >= limit) break;
     }
@@ -462,14 +471,16 @@ async function hasQuadraticFormulaVariantLink(
   const items = await readQueryRows(
     ctx.db
       .query("practice_items")
-      .withIndex("by_activityId", (q) => q.eq("activityId", activityId)),
+      .withIndex("by_activityId", (q) => q.eq("activityId", activityId)) as QueryDouble,
     20,
   );
   for (const item of items) {
     const variants = await readQueryRows(
       ctx.db
         .query("practice_variants")
-        .withIndex("by_variantKey", (q) => q.eq("variantKey", item.variantKey)),
+        .withIndex("by_variantKey", (q) =>
+          q.eq("variantKey", item.variantKey as string),
+        ) as QueryDouble,
       2,
     );
     if (variants.length !== 1 || variants[0].componentKey === "quadratic-formula") return true;
@@ -1972,6 +1983,31 @@ async function createDraftServerOwnedSubmissionHandler(
   };
 }
 
+export function createServerOwnedSubmissionHandler(
+  ctx: MutationCtx,
+  args: ServerOwnedSubmissionArgs & {
+    submissionData: PracticeSubmissionEnvelope & { mode: QfMode };
+  },
+  publication?: Im3PilotPublication,
+): Promise<{
+  id: Id<"activity_submissions">;
+  submissionId: Id<"activity_submissions">;
+  score: number;
+  maxScore: number;
+}>;
+export function createServerOwnedSubmissionHandler(
+  ctx: MutationCtx,
+  args: ServerOwnedSubmissionArgs,
+  publication?: Im3PilotPublication,
+): Promise<
+  | {
+      id: Id<"activity_submissions">;
+      submissionId: Id<"activity_submissions">;
+      score: number;
+      maxScore: number;
+    }
+  | { id: Id<"activity_submissions">; submissionId: Id<"activity_submissions">; acknowledged: true }
+>;
 export async function createServerOwnedSubmissionHandler(
   ctx: MutationCtx,
   args: ServerOwnedSubmissionArgs,
