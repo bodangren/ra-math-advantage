@@ -29,58 +29,116 @@ export function buildIm3QuadraticFormulaDraftDocuments(
   const variantKey = mapping.stableActivityId;
   return {
     activity: {
-      componentKey: "quadratic-formula", displayName: mode === "guided_practice" ? "Guided quadratic-formula practice" : "Independent quadratic-formula practice",
-      description: "Solve a generated quadratic equation by using the Quadratic Formula.", props,
-      gradingConfig: { autoGrade: true, partialCredit: true, passingScore: 3, partIds: ["discriminant", "x1", "x2"] },
-      stableActivityId: mapping.stableActivityId, masteryNodeId: IM3_QF_NODE,
-      approval: { status: "unreviewed" as const }, srsEligible: false, createdAt: now, updatedAt: now,
+      componentKey: "quadratic-formula",
+      displayName:
+        mode === "guided_practice"
+          ? "Guided quadratic-formula practice"
+          : "Independent quadratic-formula practice",
+      description: "Solve a generated quadratic equation by using the Quadratic Formula.",
+      props,
+      gradingConfig: {
+        autoGrade: true,
+        partialCredit: true,
+        passingScore: 3,
+        partIds: ["discriminant", "x1", "x2"],
+      },
+      stableActivityId: mapping.stableActivityId,
+      masteryNodeId: IM3_QF_NODE,
+      approval: { status: "unreviewed" as const },
+      srsEligible: false,
+      createdAt: now,
+      updatedAt: now,
     },
-    variant: { variantKey, componentKey: "quadratic-formula", displayName: mode === "guided_practice" ? "Guided quadratic-formula practice" : "Independent quadratic-formula practice", description: "A draft generated quadratic-formula variant.", objectiveIds: [IM3_QF_NODE], difficulty: "standard", metadata: { generatorKey: "quadratic-formula", seed: mapping.seed, stableActivityId: mapping.stableActivityId, mode } },
-    item: { practiceItemId: `${variantKey}:seed-${mapping.seed}`, activityId, variantKey, variantLabel: `Seed ${mapping.seed}` },
+    variant: {
+      variantKey,
+      componentKey: "quadratic-formula",
+      displayName:
+        mode === "guided_practice"
+          ? "Guided quadratic-formula practice"
+          : "Independent quadratic-formula practice",
+      description: "A draft generated quadratic-formula variant.",
+      objectiveIds: [IM3_QF_NODE],
+      difficulty: "standard",
+      metadata: {
+        generatorKey: "quadratic-formula",
+        seed: mapping.seed,
+        stableActivityId: mapping.stableActivityId,
+        mode,
+      },
+    },
+    item: {
+      practiceItemId: `${variantKey}:seed-${mapping.seed}`,
+      activityId,
+      variantKey,
+      variantLabel: `Seed ${mapping.seed}`,
+    },
   };
 }
 
 function qfActivityContent(value: Record<string, unknown>) {
   return convexToJson({
-    componentKey: value.componentKey, displayName: value.displayName, description: value.description,
-    props: value.props, gradingConfig: value.gradingConfig, stableActivityId: value.stableActivityId,
-    masteryNodeId: value.masteryNodeId, approval: value.approval, srsEligible: value.srsEligible,
+    componentKey: value.componentKey,
+    displayName: value.displayName,
+    description: value.description,
+    props: value.props,
+    gradingConfig: value.gradingConfig,
+    stableActivityId: value.stableActivityId,
+    masteryNodeId: value.masteryNodeId,
+    approval: value.approval,
+    srsEligible: value.srsEligible,
   } as never);
 }
 
-export async function upsertIm3QuadraticFormulaDrafts(ctx: MutationCtx, now: number): Promise<void> {
+export async function upsertIm3QuadraticFormulaDrafts(
+  ctx: MutationCtx,
+  now: number,
+): Promise<void> {
   const drafts = [];
   for (const mode of ["guided_practice", "independent_practice"] as const) {
     const mapping = IM3_QF_DRAFT_MAPPINGS[mode];
-    const existing = await ctx.db.query("activities").withIndex("by_stable_activity_id", q => q.eq("stableActivityId", mapping.stableActivityId)).unique();
-    if (existing && (existing.approval?.status !== "unreviewed"
-      || existing.stableActivityId !== mapping.stableActivityId
-      || existing.masteryNodeId !== IM3_QF_NODE
-      || existing.componentKey !== "quadratic-formula"
-      || existing.srsEligible !== false
-      || (existing.props as { presentationMode?: unknown }).presentationMode !== mapping.presentationMode)) {
+    const existing = await ctx.db
+      .query("activities")
+      .withIndex("by_stable_activity_id", (q) => q.eq("stableActivityId", mapping.stableActivityId))
+      .unique();
+    if (
+      existing &&
+      (existing.approval?.status !== "unreviewed" ||
+        existing.stableActivityId !== mapping.stableActivityId ||
+        existing.masteryNodeId !== IM3_QF_NODE ||
+        existing.componentKey !== "quadratic-formula" ||
+        existing.srsEligible !== false ||
+        (existing.props as { presentationMode?: unknown }).presentationMode !==
+          mapping.presentationMode)
+    ) {
       throw new Error("Existing quadratic-formula activity is not the exact unreviewed draft");
     }
-    const provisional = buildIm3QuadraticFormulaDraftDocuments(mode, (existing?._id ?? "activities:pending") as Id<"activities">, now);
+    const provisional = buildIm3QuadraticFormulaDraftDocuments(
+      mode,
+      (existing?._id ?? "activities:pending") as Id<"activities">,
+      now,
+    );
     const expectedContent = JSON.stringify(qfActivityContent(provisional.activity));
     const legacyEquation = provisional.activity.props.equation.replace(/ = 0$/, "");
-    const legacyContent = JSON.stringify(qfActivityContent({
-      ...provisional.activity,
-      props: { ...provisional.activity.props, equation: legacyEquation },
-    }));
-    const existingContent = existing
-      ? JSON.stringify(qfActivityContent(existing))
-      : undefined;
+    const legacyContent = JSON.stringify(
+      qfActivityContent({
+        ...provisional.activity,
+        props: { ...provisional.activity.props, equation: legacyEquation },
+      }),
+    );
+    const existingContent = existing ? JSON.stringify(qfActivityContent(existing)) : undefined;
     if (existing && existingContent !== expectedContent && existingContent !== legacyContent)
       throw new Error("Existing quadratic-formula activity content changed");
-    drafts.push({ mode, existing, provisional, reconcileLegacy: existingContent === legacyContent });
+    drafts.push({
+      mode,
+      existing,
+      provisional,
+      reconcileLegacy: existingContent === legacyContent,
+    });
   }
   for (const { mode, existing, provisional, reconcileLegacy } of drafts) {
     if (existing && reconcileLegacy)
       await ctx.db.patch(existing._id, { props: provisional.activity.props, updatedAt: now });
-    const activityId =
-      existing?._id ??
-      (await ctx.db.insert("activities", provisional.activity));
+    const activityId = existing?._id ?? (await ctx.db.insert("activities", provisional.activity));
     const docs = buildIm3QuadraticFormulaDraftDocuments(mode, activityId, now);
     const activityItems = await ctx.db
       .query("practice_items")
@@ -94,14 +152,8 @@ export async function upsertIm3QuadraticFormulaDrafts(ctx: MutationCtx, now: num
           ).includes(item.variantKey),
       )
     )
-      throw new Error(
-        "Existing quadratic-formula storage relation is inconsistent",
-      );
-    for (
-      let index = 0;
-      index < IM3_QF_VARIANT_SCHEDULES[mode].length;
-      index++
-    ) {
+      throw new Error("Existing quadratic-formula storage relation is inconsistent");
+    for (let index = 0; index < IM3_QF_VARIANT_SCHEDULES[mode].length; index++) {
       const seed = IM3_QF_VARIANT_SCHEDULES[mode][index];
       const variantKey = quadraticFormulaVariantKey(mode, index);
       const expectedVariant = {
@@ -119,9 +171,7 @@ export async function upsertIm3QuadraticFormulaDrafts(ctx: MutationCtx, now: num
         .query("practice_variants")
         .withIndex("by_variantKey", (q) => q.eq("variantKey", variantKey))
         .take(2);
-      const items = activityItems.filter(
-        (item) => item.variantKey === variantKey,
-      );
+      const items = activityItems.filter((item) => item.variantKey === variantKey);
       const reverseItems = await ctx.db
         .query("practice_items")
         .withIndex("by_variantKey", (q) => q.eq("variantKey", variantKey))
@@ -139,9 +189,7 @@ export async function upsertIm3QuadraticFormulaDrafts(ctx: MutationCtx, now: num
             JSON.stringify(convexToJson(expectedVariant.metadata as never)) &&
           items[0].practiceItemId === expectedItem.practiceItemId;
         if (!coherent)
-          throw new Error(
-            "Existing quadratic-formula storage relation is inconsistent",
-          );
+          throw new Error("Existing quadratic-formula storage relation is inconsistent");
       } else if (index === 0) {
         await ctx.db.insert("practice_variants", expectedVariant);
         await ctx.db.insert("practice_items", expectedItem);
@@ -171,7 +219,8 @@ export const seedLesson6 = internalMutation({
           unitNumber: 1,
           title: "Using the Quadratic Formula and the Discriminant",
           slug: lessonSlug,
-          description: "Use the Quadratic Formula to solve equations and the discriminant to determine the number and type of solutions.",
+          description:
+            "Use the Quadratic Formula to solve equations and the discriminant to determine the number and type of solutions.",
           orderIndex: 6,
           createdAt: now,
           updatedAt: now,
@@ -188,7 +237,8 @@ export const seedLesson6 = internalMutation({
           lessonId,
           version: 1,
           title: "Using the Quadratic Formula and the Discriminant",
-          description: "Use the Quadratic Formula to solve equations and the discriminant to determine the number and type of solutions.",
+          description:
+            "Use the Quadratic Formula to solve equations and the discriminant to determine the number and type of solutions.",
           status: "published",
           createdAt: now,
         });
@@ -204,7 +254,8 @@ export const seedLesson6 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Explore: The Discriminant\n\n**Inquiry Question**: How can you predict the number and type of solutions of a quadratic equation without solving it?\n\nConsider these three equations:\n- $x^2 + 5x + 6 = 0$\n- $x^2 - 4x - 1 = 0$\n- $x^2 + 2x + 5 = 0$\n\nCan you determine how many solutions each has just by looking?",
+              markdown:
+                "## Explore: The Discriminant\n\n**Inquiry Question**: How can you predict the number and type of solutions of a quadratic equation without solving it?\n\nConsider these three equations:\n- $x^2 + 5x + 6 = 0$\n- $x^2 - 4x - 1 = 0$\n- $x^2 + 2x + 5 = 0$\n\nCan you determine how many solutions each has just by looking?",
             },
           },
         ],
@@ -219,7 +270,8 @@ export const seedLesson6 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Key Terms\n\n- **Quadratic Formula**: The solutions to $ax^2 + bx + c = 0$ are given by:\n$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$\n- **Discriminant**: The expression $b^2 - 4ac$ under the square root\n- **Standard form**: $ax^2 + bx + c = 0$ where $a \\neq 0$\n\n**Remember**: The discriminant tells you how many real roots you'll get before you solve!",
+              markdown:
+                "## Key Terms\n\n- **Quadratic Formula**: The solutions to $ax^2 + bx + c = 0$ are given by:\n$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$\n- **Discriminant**: The expression $b^2 - 4ac$ under the square root\n- **Standard form**: $ax^2 + bx + c = 0$ where $a \\neq 0$\n\n**Remember**: The discriminant tells you how many real roots you'll get before you solve!",
             },
           },
         ],
@@ -234,7 +286,8 @@ export const seedLesson6 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## The Quadratic Formula\n\nFor a quadratic equation in standard form:\n\n$$ax^2 + bx + c = 0, \\quad a \\neq 0$$\n\nThe solutions are given by:\n\n$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$\n\n### When to Use the Quadratic Formula\n\n- When factoring is difficult or impossible\n- When the coefficients are large\n- When you need exact (not approximate) solutions",
+              markdown:
+                "## The Quadratic Formula\n\nFor a quadratic equation in standard form:\n\n$$ax^2 + bx + c = 0, \\quad a \\neq 0$$\n\nThe solutions are given by:\n\n$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$\n\n### When to Use the Quadratic Formula\n\n- When factoring is difficult or impossible\n- When the coefficients are large\n- When you need exact (not approximate) solutions",
             },
           },
         ],
@@ -245,7 +298,12 @@ export const seedLesson6 = internalMutation({
         title: "Worked Example 1",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
-        sections: [{ sequenceOrder: 1, sectionType: "text" as const, content: { markdown: `## Example 1 Real Roots, $c$ Is Positive
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: `## Example 1 Real Roots, $c$ Is Positive
 
 **CONTEST** At the World Championship Punkin Chunkin contest in Bridgeville, Delaware, pumpkins are launched hundreds of yards. The path of a pumpkin can be modeled by $h = -4.9t^2 + 11.7t + 42$, where $h$ is the height and $t$ is the number of seconds after launch.
 
@@ -271,7 +329,10 @@ The approximate solutions are $4.4$ seconds and $-2.0$ seconds.
 
 Interpret the roots.
 
-The negative root does not make sense in this context because the pumpkin launches at 0 seconds. The pumpkin lands after 4.4 seconds.` } }],
+The negative root does not make sense in this context because the pumpkin launches at 0 seconds. The pumpkin lands after 4.4 seconds.`,
+            },
+          },
+        ],
       },
       // math.im3.example.1.6.037 — curriculum/IM3-reveal-module-1.pdf, page 44.
       {
@@ -279,7 +340,12 @@ The negative root does not make sense in this context because the pumpkin launch
         title: "Worked Example 2",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
-        sections: [{ sequenceOrder: 1, sectionType: "text" as const, content: { markdown: `## Example 2 Real Roots, $c$ Is Negative
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: `## Example 2 Real Roots, $c$ Is Negative
 
 Solve $x^2 + 4x - 17 = 0$ by using the Quadratic Formula.
 
@@ -295,7 +361,10 @@ $$x = \\frac{-4 \\pm \\sqrt{4} \\cdot \\sqrt{21}}{2}$$
 
 $$x = \\frac{-4 \\pm 2\\sqrt{21}}{2}$$
 
-$$x = -2 \\pm \\sqrt{21}$$` } }],
+$$x = -2 \\pm \\sqrt{21}$$`,
+            },
+          },
+        ],
       },
       // math.im3.example.1.6.038 — curriculum/IM3-reveal-module-1.pdf, page 44.
       {
@@ -303,7 +372,12 @@ $$x = -2 \\pm \\sqrt{21}$$` } }],
         title: "Worked Example 3",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
-        sections: [{ sequenceOrder: 1, sectionType: "text" as const, content: { markdown: `## Example 3 Complex Roots
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: `## Example 3 Complex Roots
 
 Solve $5x^2 + 8x + 11 = 0$ by using the Quadratic Formula.
 
@@ -319,7 +393,10 @@ $$x = \\frac{-8 \\pm \\sqrt{-1} \\cdot \\sqrt{4} \\cdot \\sqrt{39}}{10}$$
 
 $$x = \\frac{-8 \\pm 2i\\sqrt{39}}{10}$$
 
-$$x = \\frac{-4 \\pm i\\sqrt{39}}{5}$$` } }],
+$$x = \\frac{-4 \\pm i\\sqrt{39}}{5}$$`,
+            },
+          },
+        ],
       },
       {
         phaseNumber: 7,
@@ -331,7 +408,8 @@ $$x = \\frac{-4 \\pm i\\sqrt{39}}{5}$$` } }],
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## The Discriminant\n\nThe expression under the square root is called the **discriminant**:\n\n$$D = b^2 - 4ac$$\n\n### Key Concept: Interpreting the Discriminant\n\n| Value of D | Number and Type of Solutions |\n|------------|------------------------------|\n| $D > 0$ | Two distinct real solutions |\n| $D = 0$ | One repeated real solution |\n| $D < 0$ | Two complex solutions |\n\n**Tip**: Use the discriminant to check your work — if you expect real roots but get $D < 0$, check your arithmetic!",
+              markdown:
+                "## The Discriminant\n\nThe expression under the square root is called the **discriminant**:\n\n$$D = b^2 - 4ac$$\n\n### Key Concept: Interpreting the Discriminant\n\n| Value of D | Number and Type of Solutions |\n|------------|------------------------------|\n| $D > 0$ | Two distinct real solutions |\n| $D = 0$ | One repeated real solution |\n| $D < 0$ | Two complex solutions |\n\n**Tip**: Use the discriminant to check your work — if you expect real roots but get $D < 0$, check your arithmetic!",
             },
           },
         ],
@@ -406,7 +484,8 @@ The discriminant is nonzero, so there are two roots. The discriminant is negativ
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Discussion Questions\n\n1. Why is the discriminant useful before solving?\n2. When is the quadratic formula more efficient than factoring?\n3. How does the discriminant connect to completing the square?\n4. Can you have exactly one imaginary solution? Why or why not?",
+              markdown:
+                "## Discussion Questions\n\n1. Why is the discriminant useful before solving?\n2. When is the quadratic formula more efficient than factoring?\n3. How does the discriminant connect to completing the square?\n4. Can you have exactly one imaginary solution? Why or why not?",
             },
           },
           {
@@ -429,7 +508,8 @@ The discriminant is nonzero, so there are two roots. The discriminant is negativ
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Reflection\n\nToday you learned the Quadratic Formula and how to use the discriminant.\n\n- When would you use the quadratic formula instead of factoring?\n- How does the discriminant help you predict solution types?\n- What patterns in the discriminant correspond to special cases?\n\n**Preview**: Next, you'll learn to solve quadratic inequalities — equations with $>$, $<$, $\\geq$, or $\\leq$ signs!",
+              markdown:
+                "## Reflection\n\nToday you learned the Quadratic Formula and how to use the discriminant.\n\n- When would you use the quadratic formula instead of factoring?\n- How does the discriminant help you predict solution types?\n- What patterns in the discriminant correspond to special cases?\n\n**Preview**: Next, you'll learn to solve quadratic inequalities — equations with $>$, $<$, $\\geq$, or $\\leq$ signs!",
             },
           },
         ],
@@ -443,7 +523,7 @@ The discriminant is nonzero, so there are two roots. The discriminant is negativ
       const existingPhase = await ctx.db
         .query("phase_versions")
         .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
+          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber),
         )
         .first();
 

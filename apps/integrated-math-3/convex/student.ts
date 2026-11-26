@@ -101,8 +101,7 @@ async function projectDraftActivitySection(
     content.stableActivityId === IM3_QF_DRAFT_MAPPINGS.guided_practice.stableActivityId ||
     content.stableActivityId === IM3_QF_DRAFT_MAPPINGS.independent_practice.stableActivityId;
   if (!claimsQfIdentity) return { handled: false, content };
-  if (!activity || mappings.length !== 1)
-    return { handled: true, content: unavailable() };
+  if (!activity || mappings.length !== 1) return { handled: true, content: unavailable() };
   const [mode, mapping] = mappings[0] as [
     keyof typeof IM3_QF_DRAFT_MAPPINGS,
     (typeof IM3_QF_DRAFT_MAPPINGS)[keyof typeof IM3_QF_DRAFT_MAPPINGS],
@@ -249,8 +248,7 @@ export const getLessonProgress = internalQuery({
             content: section.content,
           };
           const isLesson16QuizLesson =
-            lesson.slug === LESSON_1_6_QUIZ_SLUG &&
-            phase.phaseNumber === LESSON_1_6_QUIZ_PHASE;
+            lesson.slug === LESSON_1_6_QUIZ_SLUG && phase.phaseNumber === LESSON_1_6_QUIZ_PHASE;
           const isLesson16QuizSection =
             isLesson16QuizLesson &&
             section.sectionType === "activity" &&
@@ -272,8 +270,7 @@ export const getLessonProgress = internalQuery({
               isLesson16QuizSection,
               isSelectedSourceSection,
             );
-            if (projected.handled)
-              return { ...originalSection, content: projected.content };
+            if (projected.handled) return { ...originalSection, content: projected.content };
             if (isLesson16QuizLesson) return originalSection;
           }
           const sectionContent =

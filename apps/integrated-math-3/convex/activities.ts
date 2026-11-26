@@ -489,10 +489,7 @@ async function hasQuadraticFormulaVariantLink(
 }
 
 /** Loads the exact published Lesson 1.6 quiz authority for one activity. */
-export async function loadLesson16QuizAuthority(
-  ctx: QueryCtx,
-  activityId: Id<"activities">,
-) {
+export async function loadLesson16QuizAuthority(ctx: QueryCtx, activityId: Id<"activities">) {
   const lesson = await ctx.db
     .query("lessons")
     .withIndex("by_slug", (q) => q.eq("slug", LESSON_1_6_QUIZ_SLUG))
@@ -516,7 +513,8 @@ export async function loadLesson16QuizAuthority(
     .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phase._id))
     .collect();
   const sequenceSections = sections.filter(
-    (section) => section.sequenceOrder === LESSON_1_6_QUIZ_SEQUENCE && section.sectionType === "activity",
+    (section) =>
+      section.sequenceOrder === LESSON_1_6_QUIZ_SEQUENCE && section.sectionType === "activity",
   );
   const matches = sequenceSections.filter(
     (section) =>
@@ -532,7 +530,9 @@ export async function loadLesson16QuizAuthority(
     !activity ||
     activity.componentKey !== "comprehension-quiz" ||
     !isExactLesson16QuizProps(activity.props) ||
-    Object.keys(grading ?? {}).sort().join("|") !== "autoGrade|partialCredit" ||
+    Object.keys(grading ?? {})
+      .sort()
+      .join("|") !== "autoGrade|partialCredit" ||
     grading?.autoGrade !== true ||
     grading.partialCredit !== true ||
     activity.stableActivityId !== undefined ||
@@ -549,12 +549,8 @@ export async function loadLesson16QuizAuthority(
 function canonicalQfPayload(value: PracticeSubmissionEnvelope): string {
   const parts = [...value.parts]
     .sort((left, right) => left.partId.localeCompare(right.partId))
-    .map(
-      ({ isCorrect: _isCorrect, score: _score, maxScore: _maxScore, ...part }) => part,
-    );
-  return JSON.stringify(
-    convexToJson({ ...value, status: "submitted", parts } as never),
-  );
+    .map(({ isCorrect: _isCorrect, score: _score, maxScore: _maxScore, ...part }) => part);
+  return JSON.stringify(convexToJson({ ...value, status: "submitted", parts } as never));
 }
 
 /** Checks the immutable answer shape of a draft quadratic-formula submission. */
@@ -594,15 +590,12 @@ export const submitAssessment = internalMutation({
   },
   handler: async (ctx, args) => {
     const activity = await ctx.db.get(args.activityId);
-    const hasQfLink = activity
-      ? await hasQuadraticFormulaVariantLink(ctx, activity._id)
-      : false;
+    const hasQfLink = activity ? await hasQuadraticFormulaVariantLink(ctx, activity._id) : false;
     if (
       activity &&
       (activity.stableActivityId === IM3_QF_DRAFT_MAPPINGS.guided_practice.stableActivityId ||
         activity.stableActivityId === IM3_QF_DRAFT_MAPPINGS.independent_practice.stableActivityId ||
-        (activity.masteryNodeId === IM3_QF_NODE &&
-          activity.componentKey === "quadratic-formula") ||
+        (activity.masteryNodeId === IM3_QF_NODE && activity.componentKey === "quadratic-formula") ||
         hasQfLink)
     )
       throw new Error("Draft quadratic-formula submissions must use the server-owned create path");
@@ -1800,10 +1793,9 @@ async function createDraftServerOwnedSubmissionHandler(
   const qfMapping = IM3_QF_DRAFT_MAPPINGS[args.submissionData.mode as QfMode];
   const isQf = Boolean(
     activity &&
-      qfMapping &&
-      (activity.stableActivityId === qfMapping.stableActivityId ||
-        (activity.masteryNodeId === IM3_QF_NODE &&
-          activity.componentKey === "quadratic-formula")),
+    qfMapping &&
+    (activity.stableActivityId === qfMapping.stableActivityId ||
+      (activity.masteryNodeId === IM3_QF_NODE && activity.componentKey === "quadratic-formula")),
   );
   const isQuiz = activity?.componentKey === "comprehension-quiz";
   let qfPrivateGenerator: { generatorKey: "quadratic-formula"; seed: number } | undefined;
@@ -1826,26 +1818,14 @@ async function createDraftServerOwnedSubmissionHandler(
   const existing = await ctx.db
     .query("activity_submissions")
     .withIndex("by_user_activity_idempotency_key", (q) =>
-      q
-        .eq("userId", args.userId)
-        .eq("activityId", args.activityId)
-        .eq("idempotencyKey", key),
+      q.eq("userId", args.userId).eq("activityId", args.activityId).eq("idempotencyKey", key),
     )
     .unique();
-  if (
-    isQf &&
-    existing &&
-    args.pendingSubmissionId &&
-    args.pendingSubmissionId !== existing._id
-  )
+  if (isQf && existing && args.pendingSubmissionId && args.pendingSubmissionId !== existing._id)
     throw new Error("Invalid pending quadratic-formula attempt");
   if (
     existing &&
-    !(
-      isQf &&
-      existing.allocatedVariantKey &&
-      existing.submissionData.status === "draft"
-    )
+    !(isQf && existing.allocatedVariantKey && existing.submissionData.status === "draft")
   ) {
     if (isQf && existing.allocatedVariantKey) {
       await loadQuadraticFormulaAuthority(
@@ -1863,12 +1843,13 @@ async function createDraftServerOwnedSubmissionHandler(
         canonical(args.submissionData)
     )
       throw new Error("idempotency_conflict");
-    if (existing.attemptOrdinal === undefined || existing.score === undefined || existing.maxScore === undefined)
-      throw new Error("Stored IM3 submission is incomplete");
     if (
-      isQuiz &&
-      !validLesson16QuizRow(existing, String(args.userId), String(args.activityId))
+      existing.attemptOrdinal === undefined ||
+      existing.score === undefined ||
+      existing.maxScore === undefined
     )
+      throw new Error("Stored IM3 submission is incomplete");
+    if (isQuiz && !validLesson16QuizRow(existing, String(args.userId), String(args.activityId)))
       throw new Error("Stored Lesson 1.6 quiz submission is incomplete");
     return {
       id: existing._id,
@@ -2019,10 +2000,10 @@ export async function createServerOwnedSubmissionHandler(
     : undefined;
   const isDraftSubmission = Boolean(
     draftActivity &&
-      draftMapping &&
-      (draftActivity.stableActivityId === draftMapping.stableActivityId ||
-        (draftActivity.masteryNodeId === IM3_QF_NODE &&
-          draftActivity.componentKey === "quadratic-formula")),
+    draftMapping &&
+    (draftActivity.stableActivityId === draftMapping.stableActivityId ||
+      (draftActivity.masteryNodeId === IM3_QF_NODE &&
+        draftActivity.componentKey === "quadratic-formula")),
   );
   if (isDraftSubmission || draftActivity?.componentKey === "comprehension-quiz")
     return createDraftServerOwnedSubmissionHandler(ctx, args, publication);
@@ -2789,8 +2770,7 @@ export async function getLesson16QuizReceiptHandler(
     )
     .order("desc")
     .first();
-  if (!row || !validLesson16QuizRow(row, String(args.userId), String(args.activityId)))
-    return null;
+  if (!row || !validLesson16QuizRow(row, String(args.userId), String(args.activityId))) return null;
   return {
     submissionId: row._id,
     score: row.score!,

@@ -159,13 +159,8 @@ export async function getStudentKnowledgeStateHandler(
 
   // 6. Keep the approved readiness boundary. Show a practiced draft node as history only.
   const historicalIds = new Set(Object.keys(learnerState));
-  if (srsCards.some((card) => card.objectiveId === IM3_QF_NODE))
-    historicalIds.add(IM3_QF_NODE);
-  const presentationGraph = includeHistoricalEvidenceNodes(
-    readinessGraph,
-    graph,
-    historicalIds,
-  );
+  if (srsCards.some((card) => card.objectiveId === IM3_QF_NODE)) historicalIds.add(IM3_QF_NODE);
+  const presentationGraph = includeHistoricalEvidenceNodes(readinessGraph, graph, historicalIds);
   return projectStudentVisualization(
     presentationGraph.nodes,
     presentationGraph.edges,
