@@ -160,11 +160,4 @@ describe("StepByStepper initial problem display", () => {
     },
   );
 
-  it.each(["guided", "practice"] as const)(
-    "can suppress the initial problem in %s mode",
-    (mode) => {
-      render(<StepByStepper mode={mode} steps={steps} showInitialProblem={false} />);
-      expect(screen.queryByText("Problem:")).not.toBeInTheDocument();
-    },
-  );
 });

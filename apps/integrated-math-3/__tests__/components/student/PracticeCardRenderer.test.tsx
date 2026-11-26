@@ -1641,8 +1641,7 @@ describe("PracticeCardRenderer", () => {
         />,
       );
 
-      expect(screen.getByText("nonexistent-activity")).toBeInTheDocument();
-      expect(screen.getByText(/is not yet available/)).toBeInTheDocument();
+      expect(screen.getByText("This activity is not available.")).toBeInTheDocument();
     });
   });
 

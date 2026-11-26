@@ -45,6 +45,6 @@ describe("ActivityRenderer - graphing-explorer", () => {
   it("shows placeholder for unregistered component", () => {
     render(<ActivityRenderer {...defaultProps} componentKey="non-existent-component" />);
 
-    expect(screen.getByText(/is not yet available/i)).toBeInTheDocument();
+    expect(screen.getByText("This activity is not available.")).toBeInTheDocument();
   });
 });

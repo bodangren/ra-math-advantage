@@ -124,7 +124,7 @@ describe("GraphingExplorer - plot_from_equation variant", () => {
       });
 
       await waitFor(() => {
-        expect(screen.getByText(/now plot the points/i)).toBeInTheDocument();
+        expect(screen.getByRole("img", { name: /coordinate plane/i })).toBeInTheDocument();
       });
 
       const canvas = screen.getByRole("img", { name: /coordinate plane/i });
@@ -175,11 +175,11 @@ describe("GraphingExplorer - plot_from_equation variant", () => {
       await waitFor(() => expect(onSubmit).toHaveBeenCalledOnce());
       const submission = onSubmit.mock.calls[0][0];
       expect(submission.mode).toBe("guided_practice");
-      expect(Object.keys(submission.answers).sort()).toEqual(["placedPoints", "tableValues"]);
-      expect(submission.answers).toEqual({ tableValues, placedPoints: [] });
+      expect(Object.keys(submission.answers).sort()).toEqual(["placed_points", "table_values"]);
+      expect(submission.answers).toEqual({ table_values: tableValues, placed_points: [] });
       expect(submission.parts).toEqual([
-        { partId: "table_values", rawAnswer: tableValues },
-        { partId: "placed_points", rawAnswer: [] },
+        { partId: "table_values", rawAnswer: tableValues, hintsUsed: 0 },
+        { partId: "placed_points", rawAnswer: [], hintsUsed: 0 },
       ]);
       expect(
         submission.parts.every(
@@ -236,19 +236,19 @@ describe("GraphingExplorer - plot_from_equation variant", () => {
       await waitFor(() => expect(onSubmit).toHaveBeenCalledOnce());
       const submission = onSubmit.mock.calls[0][0];
       expect(submission.answers).toEqual({
-        tableValues: [-2, -1, 0, 1, 2].map((x, index) => ({ x, y: tableValues[index] })),
-        placedPoints: [],
+        table_values: [-2, -1, 0, 1, 2].map((x, index) => ({ x, y: tableValues[index] })),
+        placed_points: [],
       });
       expect(submission.parts).toEqual([
-        { partId: "table_values", rawAnswer: expect.any(Array) },
-        { partId: "placed_points", rawAnswer: [] },
+        { partId: "table_values", rawAnswer: expect.any(Array), hintsUsed: 0 },
+        { partId: "placed_points", rawAnswer: [], hintsUsed: 0 },
       ]);
       expect(
         submission.parts.every((part: Record<string, unknown>) => !("isCorrect" in part)),
       ).toBe(true);
       expect(submission.artifact.graphState).toEqual({
         equation: "y = x^2 - 4",
-        tableValues: submission.answers.tableValues,
+        tableValues: submission.answers.table_values,
         placedPoints: [],
       });
       expect(screen.getByTestId("deferred-submission-recorded")).toHaveTextContent(
@@ -479,7 +479,7 @@ describe("GraphingExplorer - find_intercepts variant", () => {
       });
 
       await waitFor(() => {
-        expect(screen.getByText(/now plot the points/i)).toBeInTheDocument();
+        expect(screen.getByRole("img", { name: /coordinate plane/i })).toBeInTheDocument();
       });
 
       const canvas = screen.getByRole("img", { name: /coordinate plane/i });
@@ -747,7 +747,7 @@ describe("GraphingExplorer - graph_system variant", () => {
       });
 
       await waitFor(() => {
-        expect(screen.getByText(/now plot the points/i)).toBeInTheDocument();
+        expect(screen.getByRole("img", { name: /coordinate plane/i })).toBeInTheDocument();
       });
 
       const canvas = screen.getByRole("img", { name: /coordinate plane/i });

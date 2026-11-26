@@ -335,8 +335,8 @@ describe("GraphingExplorerActivity IM3 pilot table-and-graph input", () => {
       placed_points: placedPoints,
     });
     expect(submission.parts).toEqual([
-      { partId: "table_values", rawAnswer: expectedTableValues },
-      { partId: "placed_points", rawAnswer: placedPoints },
+      { partId: "table_values", rawAnswer: expectedTableValues, hintsUsed: 0 },
+      { partId: "placed_points", rawAnswer: placedPoints, hintsUsed: 0 },
     ]);
     expect(submission.artifact.graphState).toEqual({
       equation: pilotRendererProps.equation,

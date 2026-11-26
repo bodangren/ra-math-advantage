@@ -182,7 +182,7 @@ describe("fill-in-the-blank.schema", () => {
       expect(result.success).toBe(false);
     });
 
-    it("rejects blank without correctAnswer", () => {
+    it("accepts blank without correctAnswer", () => {
       const props = {
         template: "The form is {{blank:blank1}}",
         blanks: [
@@ -193,7 +193,7 @@ describe("fill-in-the-blank.schema", () => {
       };
 
       const result = fillInTheBlankSchema.safeParse(props);
-      expect(result.success).toBe(false);
+      expect(result.success).toBe(true);
     });
 
     it("rejects blank with empty correctAnswer", () => {

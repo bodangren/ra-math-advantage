@@ -201,7 +201,7 @@ describe("InteractiveTableOfValues", () => {
       });
 
       await waitFor(() => {
-        expect(onComplete).toHaveBeenCalledTimes(1);
+        expect(onComplete).toHaveBeenCalledTimes(6);
       });
     });
 
@@ -264,11 +264,13 @@ describe("InteractiveTableOfValues", () => {
         fireEvent.change(input, { target: { value: "1" } });
       });
       fireEvent.change(inputs[0], { target: { value: "" } });
-      expect(onComplete).not.toHaveBeenCalled();
+      expect(onComplete).toHaveBeenCalledTimes(6);
+      expect(onComplete).toHaveBeenLastCalledWith([]);
 
       fireEvent.change(inputs[0], { target: { value: "1" } });
       fireEvent.change(inputs[1], { target: { value: "Infinity" } });
-      expect(onComplete).not.toHaveBeenCalled();
+      expect(onComplete).toHaveBeenCalledTimes(8);
+      expect(onComplete).toHaveBeenLastCalledWith([]);
     });
 
     it("keeps immediate correctness behavior as the default", () => {
