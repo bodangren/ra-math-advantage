@@ -29,6 +29,57 @@ The three Convex export checks failed because each function export was undefined
 check failed because `"quadratic-formula"` was absent. The other 8 checks passed.
 The failing-first test commit is `e362e70e`.
 
+#### T1.1 Green result
+
+Branch: restore. Green restored the quadratic-formula backend from `8142bd70^`.
+
+Restored code:
+
+- `convex/activities.ts` exports `getQuadraticFormulaAttempt`, `startQuadraticFormulaAttempt`, and
+  `checkQuadraticFormulaDiscriminant`. Each function declares the arguments and the return value
+  that the two route handlers call.
+- `lib/activities/server-grading.ts` exports `IM3_QF_NODE`, `IM3_QF_DRAFT_MAPPINGS`,
+  `IM3_QF_VARIANT_SCHEDULES`, `quadraticFormulaVariantKey`, `quadraticFormulaPublicProps`, and
+  `checkServerOwnedQuadraticDiscriminant`. The function `gradeServerOwnedSubmission` now grades a
+  quadratic-formula activity from its private generator seed.
+- `convex/schema.ts` adds the optional field `allocatedVariantKey` to `activity_submissions`.
+- `lib/activities/registry.ts` registers `quadratic-formula` with the shared
+  `QuadraticFormulaActivity` component.
+
+The Convex runtime keeps the declared validators private. The helper
+`withDeclaredValidators` keeps them on the export, so a test can read the declared contract.
+
+Green command: from `apps/integrated-math-3`, run
+`npm test -- --run __tests__/convex/quadratic-formula-registered-functions.test.ts __tests__/lib/activities/registry.test.ts`
+through `/home/daniebo/Desktop/advantage-pr/scripts/jobs/heavy-run.sh`. The command exited 0 with
+12 passing checks. The implementation commit is `e74a71b6`.
+
+Seed evidence: the restore branch holds because Lesson 1.6 seeds three activities with
+`problemType: "quadratic-formula"` at `convex/seed/seed_lesson_1_6.ts:127,160,193`. The graph node
+`math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations` declares the renderer
+`step-by-step-solver` in `curriculum/skill-graph/nodes.json`. The test
+`__tests__/curriculum/lesson-1-6-binding-projection.test.ts:30` expects the renderer
+`math.im3.renderer.quadratic-formula`.
+
+Typecheck comparison: the baseline log
+`measure/runs/openrouter-sdk-ai-layer_20261114/gates/s4/typecheck-integrated-math-3.log` holds 51
+diagnostic keys. The new log holds 32 keys, and every key is in a test file. The three runtime
+route keys and 16 test keys are fixed. No new key exists.
+
+Gate results: `gates.sh lint green`, `gates.sh test green`, and `gates.sh checks-all green` each
+reported `NEWFAIL=0` against the S4 baseline. The gate logs are under
+`measure/runs/math-pilot-fastlane_20261126/gates/green/`.
+
+Remaining known failures: Green did not restore the seed helper `upsertIm3QuadraticFormulaDrafts`
+and did not restore the server-owned writer branch for quadratic-formula submissions. Both change
+seeds or answer grading, so each one needs its own Red then Green pair in task T1.2. Because of
+that, the seed creates no `quadratic-formula` activity and no practice-variant records. The tests
+`__tests__/convex/quadratic-formula-allocation.test.ts` and
+`__tests__/convex/quadratic-formula-server-writer.test.ts` fail on that missing seed data. The
+tests `__tests__/lib/activities/server-grading-quadratic-formula.test.ts` build an equation without
+the ` = 0` suffix that the production props carry, so two of its three checks fail. Every one of
+these failures also exists in the S4 baseline.
+
 ### T1.4 IM2 CI invocation
 
 The root command `npm run curriculum:check` failed because the script exists only in the IM2 workspace.

@@ -85,7 +85,7 @@ P9 acceptance verifies the whole track at immutable HEAD after the checkpoint an
 
 ## Phase P1: IM3 master green
 
-- [~] Task: T1.1 — Resolve the quadratic-formula backend mismatch (Red then Green).
+- [x] Task: T1.1 — Resolve the quadratic-formula backend mismatch (Red then Green). Commit: `e74a71b6`.
     - Inspect seeded student lesson references to the quadratic-formula activity.
     - If any seeded student lesson uses it, restore the backend from `8142bd70^`.
     - Use `e4c9f688`, `360e2c02`, and related commits as reference.
@@ -97,6 +97,9 @@ P9 acceptance verifies the whole track at immutable HEAD after the checkpoint an
     - Green records the branch of the decision rule and the seed evidence.
     - Red commit: `e362e70e`.
     - Red command: `npm test -- --run __tests__/convex/quadratic-formula-registered-functions.test.ts __tests__/lib/activities/registry.test.ts` (exit 1; expected missing Convex exports and activity registration).
+    - Green commit: `e74a71b6`.
+    - Green command: `npm test -- --run __tests__/convex/quadratic-formula-registered-functions.test.ts __tests__/lib/activities/registry.test.ts` (exit 0; 12 checks passed).
+    - Green gates: `lint`, `test`, and `checks-all` each reported `NEWFAIL=0` against the S4 baseline.
 - [ ] Task: T1.2 — Classify and fix IM3 test failures (Red then Green for sensitive changes).
     - Start with `measure/runs/openrouter-sdk-ai-layer_20261114/gates/s4/test-integrated-math-3.log`.
     - Classify each failure key as pilot-path, non-pilot, or stale-test.
