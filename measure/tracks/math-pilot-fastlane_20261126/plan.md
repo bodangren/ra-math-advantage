@@ -95,6 +95,7 @@ P9 acceptance verifies the whole track at immutable HEAD after the checkpoint an
     - Reconcile `lib/activities/registry.ts` with `__tests__/lib/activities/registry.test.ts:94`.
     - Done when the routes and registry agree with the backend and tests prove the selected behavior.
     - Green records the branch of the decision rule and the seed evidence.
+    - Red commit: `e362e70e`.
     - Red command: `npm test -- --run __tests__/convex/quadratic-formula-registered-functions.test.ts __tests__/lib/activities/registry.test.ts` (exit 1; expected missing Convex exports and activity registration).
 - [ ] Task: T1.2 — Classify and fix IM3 test failures (Red then Green for sensitive changes).
     - Start with `measure/runs/openrouter-sdk-ai-layer_20261114/gates/s4/test-integrated-math-3.log`.

@@ -27,6 +27,7 @@ Red test evidence: from `apps/integrated-math-3`, run
 through `/home/daniebo/Desktop/advantage-pr/scripts/jobs/heavy-run.sh`. The command exited 1.
 The three Convex export checks failed because each function export was undefined. The registry
 check failed because `"quadratic-formula"` was absent. The other 8 checks passed.
+The failing-first test commit is `e362e70e`.
 
 ### T1.4 IM2 CI invocation
 
