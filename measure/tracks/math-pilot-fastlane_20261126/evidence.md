@@ -118,6 +118,30 @@ the seed helper as absent.
 
 T1.2 and T1.3 stay open. This section records no task closure.
 
+### T1.2a
+
+Scope: restore the quadratic-formula seed helper and the server-owned writer branch for IM3.
+The phase base is `7732f580c5421ce185ffae035922dc3d8a207e0c`.
+The role base is `344e6569b2b468a53e9511eaa6e54424932e321b`.
+The committed Red tests are unchanged. The source is `8142bd70^`, the same DRAFT state.
+
+The first targeted command failed with 95 failing tests and 4 passing tests.
+The final targeted command passed three files and 99 tests.
+The expanded targeted command passed six files and 347 tests.
+`npm run validate:seeds --workspace=apps/integrated-math-3` passed with 52 seed files.
+The seed file and the other quadratic-formula tests passed.
+
+The full IM3 test suite ran once at HEAD `ab6fd19c` through `heavy-run.sh`.
+It exited 1 with 84 failing tests. The S4 baseline holds 218 failing tests.
+The key comparison found 0 new failure keys. The gate reported `NEWFAIL=0`.
+
+The implementation commits are `0ffe015b`, `099b0423`, `d8920cca`, `77b59fc1`, and `ab6fd19c`.
+Gate logs: lint `run.eOEa79YX`, checks-all `run.gCPeBxmf`, test `run.GrTttyfJ`.
+The files changed are `convex/activities.ts`, `convex/seed/seed_lesson_1_6.ts`,
+`convex/student.ts`, `convex/student/knowledge_state.ts`,
+`lib/activities/server-grading.ts`, and `lib/activities/schemas/index.ts`.
+No lesson content was invented. No record was published. T1.2 stays open.
+
 ### T1.2c
 
 Scope: G6 stale component tests and the test-only part of G5. No production file changed.

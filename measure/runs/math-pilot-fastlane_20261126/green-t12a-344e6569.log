@@ -1,0 +1,12 @@
+MEASURE_AGENT_RESULT
+role: measure-jr-green T1.2a
+status: PASS
+track: math-pilot-fastlane_20261126
+phase: Phase P1: IM3 master green
+commits: 0ffe015b, 099b0423, d8920cca, 77b59fc1, ab6fd19c; phase_base_sha 7732f580c5421ce185ffae035922dc3d8a207e0c; role_base_sha 344e6569b2b468a53e9511eaa6e54424932e321b; final Green HEAD ab6fd19ce1071df68751d7b68848eae3328ca091
+tests_run: targeted Red command first exit 1 with 95 failed and 4 passed; final targeted command exit 0 with 3 files and 99 passed; expanded target exit 0 with 6 files and 347 passed; validate:seeds passed with 52 files; seed and QF tests passed; full IM3 suite exit 1 with 84 failed versus 218 baseline and 0 new keys; lint NEWFAIL=0, checks-all NEWFAIL=0, test NEWFAIL=0
+files_changed: apps/integrated-math-3/convex/activities.ts; apps/integrated-math-3/convex/seed/seed_lesson_1_6.ts; apps/integrated-math-3/convex/student.ts; apps/integrated-math-3/convex/student/knowledge_state.ts; apps/integrated-math-3/lib/activities/server-grading.ts; apps/integrated-math-3/lib/activities/schemas/index.ts; no new source file added; this log and measure/tracks/math-pilot-fastlane_20261126/{plan.md,evidence.md} added as evidence
+plan_updates: T1.2a done ab6fd19c added under T1.2; T1.2 not marked [x]; evidence.md section T1.2a written only
+known_failures: 84 baseline IM3 test failures remain with 0 new keys; typecheck keeps only baseline test-file diagnostics; no pilot-path failure from this task remains
+handoff: T1.2a restored the DRAFT seed helper and server-owned writer from 8142bd70^, kept records unreviewed, and added no invented lesson content. Reviewers should scope the six source files. No user decision needed. Default: keep T1.2 open for the other classification roles.
+END_MEASURE_AGENT_RESULT

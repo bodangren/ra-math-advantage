@@ -111,6 +111,7 @@ P9 acceptance verifies the whole track at immutable HEAD after the checkpoint an
     - Exclude the known UTC-day queue session flake from the failure classification between 00:00 and 01:00 UTC.
     - Done when all pilot-path tests pass and each remaining failure has a documented disposition.
     - T1.2c done `0633453b`.
+    - T1.2a done `ab6fd19c`.
 - [ ] Task: T1.3 — Fix IM3 runtime type errors (Green, or Red then Green for sensitive behavior).
     - Start with `measure/runs/openrouter-sdk-ai-layer_20261114/gates/s4/typecheck-integrated-math-3.log`.
     - Fix runtime errors in `app/`, `convex/`, `lib/`, and `components/`.
