@@ -9,19 +9,17 @@ Verification and Checkpointing Protocol)
 
 ### Start Gate
 
-Do not start S1 until both conditions are true:
+Do not start S1 until these conditions are true:
 
 - `kst-srs-v3-2-im3-runtime-migration_20260710` is complete in `measure/tracks.md`.
-- A folder `/home/daniebo/Desktop/handoff/a58-math-graph-release-us-hs-<label>/` exists. The
-  `<label>` follows the label pattern of `release-path.md`
-  (`^math-us-hs-[0-9]{8}-r[0-9]{2}$`). Use the folder with the highest label (the date, then
-  `rNN`).
+- The graph release folder is available. The label follows the pattern of `release-path.md`
+  (`^math-us-hs-[0-9]{8}-r[0-9]{2}$`). Use the highest available label.
 - The ID scheme is accepted (hand-off folder `graph-math-id-scheme-95aae15`, source commit
   `95aae15`). The four contract files stay read-only and are not copied into the repository.
 
 ### Read-Only Rule
 
-Do not write in the hand-off folders or in `/home/daniebo/Desktop/mastery-advantage`.
+Read the input release files from their source location.
 
 ### Gate Commands
 
@@ -60,7 +58,7 @@ _Story ref: spec.md#story-s1_
     - [ ] Create `evidence.md` in this track folder with these sections: Baseline, Release, Mapping Format, Code Form, Validation, Readers, Literals, Kept Files, Dropped Entries, Scripts, Removal.
     - [ ] Run each gate on the start commit. Record each result and each test count under "Baseline".
     - [ ] Under "Release", record the hand-off folder, the label, each of the six files, its size, its SHA-256 value from `MANIFEST.txt`, and the source commit, the date, and the sender of `MANIFEST.txt`. Record any extra file (spec G1).
-    - [ ] Record the format of `id-map.json` under "Mapping Format" (spec G4): the statuses, the seed prefix of the keys, the count of `removed` entries (each names a generator or a renderer seed node, including the draft-only IDs), and the 4 container keys with their course nodes (`math.us-hs.course.im1`, `.im2`, `.im3`, `.ap-precalc`). If the release differs from the spec G4 (the example of `id-map-format.md` that maps `math.im1` to the domain is stale), stop and report to the PM.
+    - [ ] Record the format of `id-map.json` under "Mapping Format" (spec G4): the statuses, the seed prefix of the keys, the count of `removed` entries (each names a generator or a renderer seed node, including the draft-only IDs), and the 4 container keys with their course nodes (`math.us-hs.course.im1`, `.im2`, `.im3`, `.ap-precalc`). If the release differs from the spec G4 (the example of `id-map-format.md` that maps `math.im1` to the domain is stale), stop and record the mismatch.
     - [ ] Record the form of `metadata.code` of the released CCSS standard nodes under "Code Form" (spec G6), with the form of `metadata.ccssPlus` and of the standard node IDs.
     - [ ] Record under "Validation" the alignment-required kinds of the M2 check, the form of `metadata.legacyGeneratorIds`, and how the release links an exception node to an AP-only standard (spec G3, G11).
     - [ ] Write the contract of `scripts/graph/ingest-release.ts <folder>` (spec G1 to G4): its checks, its output files, and its exit codes.
@@ -79,8 +77,7 @@ _Story ref: spec.md#story-s1_
     - [ ] Commit: `feat(graph): add the release ingestion script`.
 - [ ] Task: S1 Ingest — take the release into the repository
     - [ ] Run `npx tsx scripts/graph/ingest-release.ts <hand-off folder>`. Record the output under "Validation".
-    - [ ] If the SHA-256 check or the validation fails, stop and report to the PM. Copy nothing.
-    - [ ] Send one line to the PM orchestrator and to the sender session: the folder, the six file names, and "SHA-256 verified" (spec G1).
+    - [ ] If the SHA-256 check or the validation fails, stop and record the mismatch. Copy nothing.
     - [ ] Commit: `feat(math): add the math.us-hs graph release <label>`.
 - [ ] Task: S1 Verify — run the gates
     - [ ] Run each gate. Confirm that each gate passes.
@@ -106,7 +103,7 @@ _Story ref: spec.md#story-s2_
     - [ ] Run `git grep -n "equivalent_to" -- apps/math packages ':!*.json' ':!*.md'`. Record each reader of `equivalent_to` edges with its path and line (spec G13). Record that `teacher-evidence.ts` and `srs.ts` stay unchanged. The release has no `equivalent_to` edge.
     - [ ] Record the contract of `scripts/graph/rekey-node-ids.ts` and the kept files that it changes under "Kept Files" (spec G8).
     - [ ] Record the contract of `migrateGraphNodeIds` in `apps/math/convex/graph/migrate.ts` (spec G10): the handling of each status (`mapped`, `merged`, `removed`) and the container keys. Edge IDs of the release are opaque keys.
-    - [ ] If the "Code Form" needs a new form in `canonicalCcssCode`, record it. If two released codes give one canonical code, or a competency has no released standard node, stop and report to the PM (spec G6).
+    - [ ] If the "Code Form" needs a new form in `canonicalCcssCode`, record it. If two released codes give one canonical code, or a competency has no released standard node, stop and record the mismatch (spec G6).
     - [ ] Commit: `measure(math-graph-consume): record the S2 contract`.
 - [ ] Task: S2 Test (Red) — specify the switch
     - [ ] `apps/math/__tests__/lib/curriculum/skill-graph-loader.test.ts`: `loadMathGraph()` returns the nodes of the released file. The module exports no `GRAPH_SOURCES`.
@@ -215,4 +212,4 @@ _Story ref: spec.md#story-s4_
     - [ ] Run `git fetch origin`.
     - [ ] Run `git pull --ff-only origin master`. If the pull cannot fast-forward, stop and report.
     - [ ] Run `git push origin master`.
-    - [ ] Report to the PM: after the next prod deploy of the math app, run `npx convex run graph/migrate:migrateGraphNodeIds --prod` one time (spec G10).
+    - [ ] Record the production migration in the closeout. After the next prod deploy of the math app, run `npx convex run graph/migrate:migrateGraphNodeIds --prod` one time (spec G10).

@@ -34,11 +34,15 @@ registry `measure/tracks.md` also holds older open tracks, for example
 - The pilot track pulls forward the necessary parts of `prod-deploy-pipeline_20261114` and `unified-math-app_20261114`. The remaining work waits until the pilot track closes.
 - Each phase ends with the checkpoint protocol of `measure/workflow.md`. Each track ends
   with a sync with origin.
-- Until 2026-12-01 (PM rule), Math runs at most two sessions at one time: the build session
-  and one role. The PM queues the spec reviews and starts each one.
-- Run `~/Desktop/advantage-pr/scripts/jobs/slot check` before a role.
+
+## Next High School Graph Task
+
+Audit all practice components and bindings connected to the prerelease graph skills.
+Use `graph-node-practice-program_20260907`. Use the results to select one set of
+practice components for Integrated Math 1–3 and AP Precalculus in `apps/math`.
+Keep Business Math in `apps/bus-math-v2`. Reuse shared packages that fit its workflows.
 
 ## Known Blockers
 
-- The first release of the merged math graph from mastery-advantage. The ID scheme has the
-  confirmation target 2026-11-21. `math-graph-consume_20261114` waits for the release.
+- `math-graph-consume_20261114` requires a versioned package for the corrected graph.
+  The practice component audit can use the prerelease candidate now.

@@ -4,7 +4,12 @@ Status: Implementation authorized on 2026-09-07.
 
 ## Objective
 
-Correct the knowledge space graphs and provide worked examples, guided practice, and independent practice for all required instructional capabilities in IM1, IM2, IM3, AP Precalculus, and Business Math. Use gpt-5.6-sol with low reasoning effort for bounded agent tasks. The parent agent controls scope, integration, and acceptance.
+Correct the knowledge space graphs and provide worked examples, guided practice, and independent practice for all required instructional capabilities in IM1, IM2, IM3, AP Precalculus, and Business Math.
+
+Integrated Math 1–3 and AP Precalculus use one graph and one set of practice
+components in `apps/math`. Course data supplies the content for those components.
+Business Math stays in `apps/bus-math-v2`. Both apps reuse shared packages where
+the same contracts and interactions apply.
 
 ## Role of the graph
 

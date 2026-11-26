@@ -93,22 +93,18 @@ The contracts are `id-scheme.md`, `id-map-format.md`, `validator.md`, and `relea
 in the hand-off folder `graph-math-id-scheme-95aae15` (source commit `95aae15` of
 mastery-advantage). The repository holds no copy of them.
 
-- **G1 Hand-off and check:** the release arrives in
-  `/home/daniebo/Desktop/handoff/a58-math-graph-release-us-hs-<label>/`. The `<label>` follows
-  the label pattern of `release-path.md` (`^math-us-hs-[0-9]{8}-r[0-9]{2}$`). A changed
-  release has a new label (`r02` and so on) in a new folder. The track uses the folder with
-  the highest label.
+- **G1 Release input and check:** the ingest command takes the release folder as input.
+  The label follows the pattern of `release-path.md` (`^math-us-hs-[0-9]{8}-r[0-9]{2}$`).
+  A changed release has a new label in a new folder. The track uses the highest available label.
   - The folder holds the six fixed files of the release: `math-us-hs-knowledge-space.json`
     (the graph), `id-map.json`, `equivalence-candidates.json`, `ccss-notice.txt`,
     `standards-exceptions.json`, and `MANIFEST.txt`. A missing file stops the track. The
     track records an extra file in the evidence and does not copy it.
   - `MANIFEST.txt` gives the SHA-256 of each file, the source commit, the date, and the
     sender. The track checks each SHA-256 of `MANIFEST.txt` before use. A mismatch stops the
-    track, and the track reports it to the PM.
+    track. Record the mismatched file.
   - The track also checks that the label of the folder matches the pattern and equals
     `metadata.schemaVersion` of the domain node.
-  - After the check, the track sends one line to the PM orchestrator and to the sender
-    session: the folder, the six file names, and "SHA-256 verified".
 - **G2 Files in the repository:** the six files go into `apps/math/curriculum/graph/release/`
   byte for byte (Daniel confirmed, 2026-11-14; no license gate). All six are public-bound
   files of the release path contract.
@@ -157,12 +153,11 @@ mastery-advantage). The repository holds no copy of them.
     its own `mapped` entry to its course node: `math.us-hs.course.im1`, `.im2`, `.im3`, and
     `.ap-precalc` (Graph default OI-17). The example of `id-map-format.md` that maps
     `math.im1` to the domain is stale, and the Graph session changes it. If the release maps
-    a container to another node, stop and report to the PM.
+    a container to another node, stop and record the mismatch.
   - The ingestion check: each seed node ID of the 47 files has an entry, each key names a
     seed node ID, each status is one of the three, each `newId` names a node of the release,
     and each `removed` entry names a generator node or a renderer node.
-  - If the `id-map.json` of the release differs from `id-map-format.md`, stop and report to
-    the PM.
+  - If the `id-map.json` of the release differs from `id-map-format.md`, stop and record the mismatch.
 - **G5 Graph source:** `GRAPH_SOURCES` goes away. `loadMathGraph()` reads the released graph
   file only. `courseView` and `objectiveNodeIds` keep their contracts, with the course node
   below.
@@ -187,7 +182,7 @@ mastery-advantage). The repository holds no copy of them.
   - If `canonicalCcssCode` does not give one canonical code for each released CCSS code,
     `canonicalCcssCode` gets the extra form, with a test.
   - If two released codes give one canonical code, or a competency code has no released
-    standard node, stop and report to the PM.
+    standard node, stop and record the mismatch.
   - No stored code changes.
 - **G7 Runtime bindings:** the release has no generator node and no renderer node. Each
   generator and renderer seed ID that leaves the graph has a `removed` entry (G4). The
@@ -242,9 +237,8 @@ mastery-advantage). The repository holds no copy of them.
   Math reads them as opaque keys. A kept second node of the duplicate slug has its own entry
   (G8). The track runs the mutation on the dev deployment.
   The prod deploy of the release rule (`prod-deploy-pipeline_20261114` D11) comes after the
-  closeout. Right after that deploy, the orchestrator runs
-  `npx convex run graph/migrate:migrateGraphNodeIds --prod` one time. The closeout report
-  to the PM names this step.
+  closeout. Run `npx convex run graph/migrate:migrateGraphNodeIds --prod` once after that deploy.
+  Record this step in the closeout report.
 - **G11 CCSS tags in reporting:** teacher reporting shows the CCSS code of each node from
   the released graph, primary first. A node on the exception list of
   `standards-exceptions.json` shows its AP CED code only. The app shows no College Board
@@ -292,7 +286,6 @@ mastery-advantage). The repository holds no copy of them.
 - Given a node that needs a generator and has neither a `generated_by` edge nor a `generator` entry, or a node of an alignment-required kind with neither an alignment edge nor an `alignment` entry, When the validation runs, Then it fails with the M1 or the M2 code and names the node.
 - Given an `id-map.json` with a seed node ID that has no entry, an unknown status, or a `newId` that is not a node of the release, When the validation runs, Then it fails and names the entry.
 - Given the repository after S1, When `graph-release.test.ts` runs, Then each SHA-256 of `MANIFEST.txt` matches.
-- Given the check, When it passes, Then the PM orchestrator and the sender session get the one-line notice of G1.
 
 **Estimate:** M
 **Priority:** Must
@@ -376,13 +369,11 @@ mastery-advantage). The repository holds no copy of them.
 - The first release of `math.us-hs` from mastery-advantage. The ID scheme is accepted
   (2026-11-15, hand-off `graph-math-id-scheme-95aae15` at `95aae15`). The track still waits
   for the first release folder and does not start before the folder exists.
-- The PM-approved exception list of the release: a checker from a different model family
-  confirms each AP exception, then the PM approves the list. Daniel sees it in the release
-  report and can overrule it.
+- The release includes the reviewed exceptions. Record these exceptions in the release report.
 
 ## Out of Scope
 
 - A history rewrite of the repository (Daniel's decision).
 - The curriculum module files.
 - The Danielson graph domain.
-- A change of the graph in mastery-advantage. A wrong node goes to the PM as a report.
+- A change of the graph in mastery-advantage. Record any incorrect node in the review.

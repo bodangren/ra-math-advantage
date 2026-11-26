@@ -71,8 +71,7 @@ Do not enlarge an allowed baseline to accept a new failure.
 The test and typecheck gates compare diagnostic keys rather than totals.
 The P1 evidence must show that no pilot-path failure or runtime type error remains.
 Later gates must preserve that result.
-The runner never calls `heavy-run.sh`. The caller runs the runner through that wrapper.
-Run groups serially. Run the doctor and generated check at each phase checkpoint through the caller's wrapper.
+Run the gate runner directly. Run the doctor and the generated file check at each phase checkpoint.
 
 ### Light checkpoints
 

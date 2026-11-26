@@ -8,6 +8,8 @@ All development runs through the **Measure** spec-driven development framework e
 2. Read `measure/index.md` to understand the project context
 3. Follow the workflow defined in `measure/workflow.md`
 
+Use the current workspace tools for delegated reviews and verification. Treat references to the previous agent harness in earlier records as history.
+
 Key reference files:
 - `measure/tracks.md` — Active work registry
 - `measure/tracks/<track_id>/plan.md` — Task checklist
@@ -145,26 +147,6 @@ See `measure/practice-component-contract.md` for the full spec.
   log. The orchestrator gets each manual secret (for example the OpenRouter API key) from
   Daniel through a secret card.
 - **Paid spend:** paid generation and paid model use need Daniel's word.
-
-## Cross-Project Rules
-
-- The PM orchestrator session (project advantage-pr) is the only cross-project coordinator.
-- Send work for another project to the PM orchestrator, with what, why, done-when, and the
-  date needed.
-- Never write in another project's repository. Facts and files move by handoff through the
-  PM orchestrator (for example the folders under `/home/daniebo/Desktop/handoff/`).
-- Direct read-only questions between sessions are allowed. Log each exchange in your next
-  report.
-- Close every PM assignment with a "facts changed" list.
-
-## Shared Machine Rules
-
-- Run `~/Desktop/advantage-pr/scripts/jobs/slot check` before you start a role (a
-  subagent). Start the role only when the check says ok.
-- Run each heavy job through `~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh`, one at a
-  time.
-- Choose the model of each role yourself from the Lending Desk Bench model guide and results, other benchmarks, and `ra-quota status`.
-- The full rules are in `~/Desktop/advantage-pr/measure/pm-working-rules.md`.
 
 <!-- convex-ai-start -->
 

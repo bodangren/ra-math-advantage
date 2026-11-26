@@ -9,24 +9,23 @@ Read [spec.md](./spec.md) and [investigation.md](./investigation.md).
 - [x] Inspect graph scope, reusable components, runtime paths, and existing tracks.
 - [x] Prepare the draft specification and parallel execution plan.
 
-## Orchestration rules
+## Delegated work
 
-- The parent agent owns scope, shared integration, review decisions, and Measure updates.
-- Use gpt-5.6-sol with `reasoning_effort: low` for all delegated work. This is the available setting that matches the requested low/light effort.
-- The current limit is four concurrent agents, including the parent. Run at most three workers. Reuse worker slots as batches finish.
-- Assign concrete tasks with exact node IDs, source pages, allowed paths, acceptance tests, and dependencies. Do not assign a whole course in one prompt.
-- Start with one capability per pilot. After the pilot, use batches of three to five related capabilities. Expand to five to ten only when first-pass quality supports it.
-- Each worker owns a complete Worked/Guided/Independent bundle for its capability set. Do not assign the three modes of one capability to separate authors.
-- Different workers may read the same files. Only one worker may write a given file. Shared registries, exports, root course catalogs, projections, and plans have one integration owner.
-- Two authors and one independent reviewer are the default after the pilots. Three authors may run while they have independent work and the review queue is empty. Reassign a slot to review before integration.
-- Reviewers check source alignment and solve representative problems independently. Authors cannot approve their own work. Automated review does not replace required human curriculum approval.
-- Preserve pending changes. Use isolated worktrees from an agreed integration baseline when needed. Do not create user-owned Codex tasks for subagents.
-- Workers return bounded changes and test results. The integration owner handles atomic commits, Git notes, and plan updates under Measure. Do not stage unrelated changes or the full dirty registry.
-- Keep the existing phase verification steps. Record human feedback where the workflow requires it. Do not mark a phase approved from test counts.
+- Give each review a specific scope and the applicable sources.
+- Check each change before you integrate it. Preserve pending changes.
+- Record the results in the Measure plan.
 
 ## Execution order clarification
 
 The user authorized the full plan. Source inventory continues by bounded groups. Shared safety repairs with settled contracts can run while source review continues. This does not approve curriculum rows or activate broad practice. Manual curriculum review remains pending for source groups.
+
+## Next task — High school practice component audit
+
+- [x] Pin the prerelease graph and ID map. Use commit `af29a758bbc4593b6ba59dbe0cd0bf261df1b258` in `mastery-advantage`, under `math/us-hs/review/prerelease-20261127/`.
+- [ ] Inventory graph skill bindings across Integrated Math 1–3 and AP Precalculus. Trace blueprint and activity records through projection, component registration, generation, grading, and evidence. Report graph skills with missing bindings and app bindings with missing graph IDs.
+  Record the app revision for each inventory. Start with the course `curriculum/skill-graph/` files, the activity-map projector in `packages/knowledge-space-practice`, and the renderer registry in `packages/activity-components`. Verify the paths the app uses at runtime.
+- [ ] Check Worked, Guided, and Independent practice for each binding. Verify that each mode measures the correct skill. Cite the textbook, Word practice set, and applicable standard. Check the AP course guide for AP Precalculus.
+- [ ] Record which components can be reused as they are, which need changes, which duplicate an existing component, and which are missing. Base the shared component set on the verified interactions. Keep Business Math outside the high school app and use shared packages where the same contract applies.
 
 ## Phase 1 — Contract and scope definition
 
@@ -63,8 +62,21 @@ This is in-scope implementation. Use the existing graph repair plans as detailed
 - [~] Task 3.1: Correct the canonical graph assembly and review boundary.
   Reconcile standalone and embedded catalogs. Resolve missing standards and conflicting definitions. Prevent unreviewed graph suggestions from controlling learning decisions. Preserve valid node and evidence identities.
 - [~] Task 3.2: Correct IM1 and IM2 capabilities and relationships from sources.
+  - [x] Reviewed 51 staged IM2 Module 6 worked examples. Corrected 39 Common Core mappings, documented one exception, and removed seven old review notes. The Module 6 report cites the available Quick Review handbook, Word practice, the local lesson, and Common Core. Graph validation and the crosswalk checks passed. The textbook opener remains open.
+  - [x] Reviewed 25 staged IM2 Module 7 worked examples. Corrected 14 Common Core mappings and documented three exceptions. Added Grade 7 standard 7.SP.C.8b for representing compound sample spaces. Graph validation and the crosswalk checks passed. The Module 7 textbook opener remains open.
+  - [x] Reviewed 35 staged IM2 Module 8 worked examples. Corrected 16 Common Core mappings and documented one exception. Added Grade 8 standard 8.F.A.3 for distinguishing linear and nonlinear functions. Verified the graph and crosswalk. The report cites printed textbook pages for Lessons 8-1, 8-2, and 8-4. The Module 8 textbook opener remains open.
+  - [x] Reviewed 40 staged IM2 Module 9 worked examples. Corrected 27 Common Core mappings and replaced three exceptions with component links. Verified the staged graph and crosswalk. The report records the Lesson 9-1 inequality examples that are missing and the worked-method differences in Lessons 9-4 and 9-5. The textbook opener remains open.
+  - [x] Reviewed 26 staged IM2 Module 10 worked examples. Corrected 17 Common Core mappings and replaced two exceptions with standards links. Added 8.EE.A.3 for orders of magnitude and verified the staged graph and crosswalk. The report records the required domain conditions in Lessons 10-1 and 10-2. The textbook opener remains open.
+  - [x] Reviewed 33 staged IM2 Module 11 worked examples. Corrected 15 Common Core mappings and removed six outdated review notes. Verified the staged graph and crosswalk. Recorded two Word practice wording corrections and two local title corrections. The textbook opener remains open.
+  - [x] Reviewed 37 staged IM2 Module 12 worked examples. Corrected 19 Common Core mappings and removed 14 outdated review notes. Verified the staged graph and crosswalk. The report records source corrections and the scope question for Lesson 12-10. The textbook opener remains open.
+  - [x] Reviewed all 25 staged IM2 Module 13 worked examples. Corrected 14 Common Core mappings and confirmed the trigonometric inequality exception. Verified all staged standards links. The report records source corrections and the missing textbook opener.
+  - [x] Map IM2 skills and worked examples to the 121 module objectives and two lesson objectives in the school sources. Reviewed 224 skill placements and 403 worked examples. Assigned at least one school objective to 600 placements across 94 lessons. Indirect proof and parabola equations have separate source evidence. Added three draft skills for circle similarity, coordinate circumcircles, and zero exponents. Verified the staged graph and crosswalk.
+  - [x] Record the remaining IM2 coverage gaps. Twelve school objectives lack a direct worked example. Two lessons have no matching school objective. The source review gives the Word and publisher evidence for both lessons.
+  - [x] Checked all 40 staged prerequisites. Retained 29, changed 11 to support, and added three source-based links between consecutive courses. The staged graph and local readiness checks passed.
   Review all module and lesson capabilities. Correct mixed granularity, missing example mappings, unsupported prerequisites, and source coverage gaps. Execute the named lesson tasks in the semantic repair plan.
 - [~] Task 3.3: Correct IM3 and Precalculus capabilities and relationships from sources.
+  - [x] Verified lesson coverage for all 52 IM3 lessons and 58 AP Precalculus topics. Added the vector angle skill as a draft. Linked the existing vector magnitude operation to the same AP objective. Recorded six cross-module evidence links for the IM1 objective on parallel and perpendicular line equations.
+  - [x] Record the remaining IM3 and AP source gaps. The IM3 sources lack direct worked tasks for geometric-series derivation and probability-weighted means. The AP sources give partial evidence for construction of inverse trigonometric graphs.
   Resolve the concept/skill contract before changing target types. Review all modules and units. Correct containment, capability bindings, and missing or overbroad skills. Do not assign a concept's evidence to an arbitrary child or all children without assessment support.
 - [ ] Task 3.4: Correct cross-course prerequisites and equivalence.
   Compare actual capability scope, representations, conditions, and evidence demands. Reject standard overlap and lesson order as sufficient proof. Test direction, hard prerequisites, equivalence closure, and missing foreign learner state.
@@ -75,7 +87,7 @@ This is in-scope implementation. Use the existing graph repair plans as detailed
   Add failing cases before each repair. Show that a false prerequisite cannot block or unlock work, false equivalence cannot grant credit, a valid hard prerequisite still controls readiness, and unrelated skills do not receive evidence. Verify role projections and deterministic regeneration. Preserve valid positive behavior.
 - [ ] Task 3.7: Measure — User Manual Verification: Corrected knowledge space graphs.
 
-Scheduling: one worker owns shared graph mechanisms. Two workers can review disjoint course source groups. After shared repairs, assign separate course writers and retain one reviewer slot. The parent integrates cross-course edges after endpoint identities are resolved. Pilot work can prepare against reviewed bounded groups, but broad authoring cannot bypass graph acceptance.
+Delegate scoped source reviews. Assign one owner to each shared graph change. Integrate cross-course edges after you verify both node IDs.
 
 ### Bounded graph repair tasks
 
@@ -196,24 +208,11 @@ Workers may author different course files concurrently. Workers that share a cou
   Close only accepted node tasks. Update overlapping track status and relevant debt. Record commit IDs, test results, human feedback, and any hosted verification that remains outside scope.
 - [ ] Task 7.4: Measure — User Manual Verification: Final acceptance.
 
-## Worker task template
-
-Use this plain-text structure in each agent assignment:
-
-- Objective: complete one named capability bundle or one bounded shared repair.
-- Model: gpt-5.6-sol. Reasoning effort: low.
-- Context: active track, exact node IDs, source pages, relevant contracts, app design rules.
-- Ownership: allowed files; integration-owned files that the worker must not edit.
-- Behavior: required Worked, Guided, and Independent interaction and grading policy.
-- Verification: failing cases first, independently solved fixtures, required focused tests.
-- Output: changed files, observed Red/Green results, mathematical review notes, unresolved issues.
-- Limits: no new dependencies, deployment, unrelated edits, automatic approval, or private orchestration framework.
-
 ## Schedule and cost estimation
 
 Do not use the provisional 624 skill rows as the final workload. Count remaining accepted capability bundles after graph review. Separate reuse-only content tasks, generator tasks, new interaction tasks, and app integration tasks.
 
-Record elapsed time, agent token use when available, review time, and rework for the five pilots and the first two small batches. Estimate each category from those observations. Total worker effort is the sum of remaining bundles multiplied by observed category effort. Elapsed time also includes serial integration and human review. Three worker slots set the concurrency ceiling; they do not guarantee a threefold speedup.
+Use the observed pilot and batch results to estimate the remaining work.
 
 Task 1.1 is complete. The first bounded graph and projection repairs are in progress. Broad authoring starts only after the applicable graph and pilot gates pass.
 

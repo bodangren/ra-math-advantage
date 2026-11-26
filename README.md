@@ -109,8 +109,10 @@ track order.
    (planned: math-app-course-im1_20261114)
    (planned: math-app-course-im2_20261114)
    (planned: math-app-course-precalc_20261114).
+   All four courses use one set of practice components (planned: graph-node-practice-program_20260907).
    AP Calculus and AP Statistics come later. The old apps retire with no redirects
-   (planned: math-app-retire-old-apps_20261114). BM2 stays a separate app.
+   (planned: math-app-retire-old-apps_20261114). Business Math stays in `apps/bus-math-v2`
+   and reuses shared packages where they fit its workflows.
 2. **Danielson app.** `apps/danielson` is in the tree since the merge of 2026-11-16. The app
    holds no code from `hdkwa-danielson`.
 3. **Students across years.** One student account and one history across courses and
