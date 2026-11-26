@@ -3,12 +3,12 @@ role: Red
 status: red_complete
 track: math-pilot-fastlane_20261126
 phase: P1: IM3 master green; task T1.1
-baseline_sha: 7732f580c5421ce185ffae035922dc3d8a207e0c
-resulting_head: e362e70e (Red tests, plan, and evidence)
-commits: e362e70e (Red tests, plan, and evidence)
+commits: e362e70e (Red tests, plan, and evidence); c4acd265 (plan and report)
 tests_run: `npm test -- --run __tests__/convex/quadratic-formula-registered-functions.test.ts __tests__/lib/activities/registry.test.ts` from apps/integrated-math-3; exit 1, expected 4 failures and 8 passes
 files_changed: apps/integrated-math-3/__tests__/convex/quadratic-formula-registered-functions.test.ts; apps/integrated-math-3/__tests__/lib/activities/registry.test.ts; measure/tracks/math-pilot-fastlane_20261126/plan.md; measure/tracks/math-pilot-fastlane_20261126/evidence.md; measure/runs/math-pilot-fastlane_20261126/red-t11-7732f58.log
 plan_updates: T1.1 marked [~]; decision branch is restore; Red test command and commit recorded; seed evidence added; other in-progress markers T1.4 and T9.1 were present in the plan before this role's edits and remain preserved
 known_failures: Expected Red failures: startQuadraticFormulaAttempt export undefined; getQuadraticFormulaAttempt export undefined; checkQuadraticFormulaDiscriminant export undefined; registry lacks quadratic-formula. Full `npm run lint` also exited 1 because Oxlint could not open transient `.oxlint-adv9-Zl6Fsr` fixture paths. Targeted Oxlint on both changed tests passed. Formatting check passed.
 handoff: Restore branch selected. Seed evidence: Lesson 1.6 seeds three step-by-step-solver activities with problemType quadratic-formula, plus draft activity and variant records with componentKey quadratic-formula. The tests fail because the three route-targeted Convex exports and registry entry are absent. Exact RED_TEST_COMMAND: `npm test -- --run __tests__/convex/quadratic-formula-registered-functions.test.ts __tests__/lib/activities/registry.test.ts`. The three Convex checks and the registry assertion fail for the expected reasons. AGENTS.md and generated/unrelated dirty paths were not staged. The existing task-specific route and seed tests remain available for Green.
+baseline_sha: 7732f580c5421ce185ffae035922dc3d8a207e0c
+resulting_head: c4acd265 (latest committed report state; Red test commit e362e70e)
 END_MEASURE_AGENT_RESULT
