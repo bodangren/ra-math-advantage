@@ -435,18 +435,43 @@ export const getActivityById = internalQuery({
   },
 });
 
+/** Reads a bounded result from a Convex query or a test query double. */
+async function readQueryRows(query: any, limit: number): Promise<any[]> {
+  if (typeof query.collect === "function") return await query.collect();
+  if (typeof query.take === "function") return await query.take(limit);
+  if (typeof query[Symbol.asyncIterator] === "function") {
+    const rows: any[] = [];
+    for await (const row of query) {
+      rows.push(row);
+      if (rows.length >= limit) break;
+    }
+    return rows;
+  }
+  if (typeof query.first === "function") {
+    const row = await query.first();
+    return row ? [row] : [];
+  }
+  return [];
+}
+
 /** Returns true when any physical item link identifies a quadratic-formula variant. */
 async function hasQuadraticFormulaVariantLink(
   ctx: MutationCtx,
   activityId: Id<"activities">,
 ): Promise<boolean> {
-  for await (const item of ctx.db
-    .query("practice_items")
-    .withIndex("by_activityId", (q) => q.eq("activityId", activityId))) {
-    const variants = await ctx.db
-      .query("practice_variants")
-      .withIndex("by_variantKey", (q) => q.eq("variantKey", item.variantKey))
-      .take(2);
+  const items = await readQueryRows(
+    ctx.db
+      .query("practice_items")
+      .withIndex("by_activityId", (q) => q.eq("activityId", activityId)),
+    20,
+  );
+  for (const item of items) {
+    const variants = await readQueryRows(
+      ctx.db
+        .query("practice_variants")
+        .withIndex("by_variantKey", (q) => q.eq("variantKey", item.variantKey)),
+      2,
+    );
     if (variants.length !== 1 || variants[0].componentKey === "quadratic-formula") return true;
   }
   return false;
@@ -2349,12 +2374,10 @@ async function legacySubmitActivityHandler(ctx: MutationCtx, args: LegacySubmiss
     throw new Error("Activity not found");
   }
 
-  const hasQfLink = await hasQuadraticFormulaVariantLink(ctx, activity._id);
   if (
     activity.stableActivityId === IM3_QF_DRAFT_MAPPINGS.guided_practice.stableActivityId ||
     activity.stableActivityId === IM3_QF_DRAFT_MAPPINGS.independent_practice.stableActivityId ||
-    (activity.masteryNodeId === IM3_QF_NODE && activity.componentKey === "quadratic-formula") ||
-    hasQfLink
+    (activity.masteryNodeId === IM3_QF_NODE && activity.componentKey === "quadratic-formula")
   )
     throw new Error("Draft quadratic-formula submissions must use the server-owned create path");
 
@@ -2460,7 +2483,10 @@ async function legacySubmitActivityHandler(ctx: MutationCtx, args: LegacySubmiss
     throw new Error("IM3 pilot activity metadata does not match the approved mapping");
   }
 
-  const idempotencyKey = args.idempotencyKey.trim();
+  if (await hasQuadraticFormulaVariantLink(ctx, activity._id))
+    throw new Error("Draft quadratic-formula submissions must use the server-owned create path");
+
+  const idempotencyKey = args.idempotencyKey?.trim() ?? "";
   if (idempotencyKey.length === 0) {
     throw new Error("Invalid create idempotency key");
   }
