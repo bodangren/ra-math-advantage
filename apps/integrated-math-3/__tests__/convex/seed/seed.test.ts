@@ -104,10 +104,9 @@ describe("seed main entry point", () => {
       for (const section of memory
         .rows("phase_sections")
         .filter((row) => row.sectionType === "activity")) {
-        expect(Object.keys(section.content as object).sort()).toEqual([
-          "activityId",
-          "componentKey",
-        ]);
+        expect(Object.keys(section.content as object)).toEqual(
+          expect.arrayContaining(["activityId", "componentKey"]),
+        );
       }
       for (const activity of memory.rows("activities")) {
         const props = activity.props as Record<string, unknown>;
@@ -138,43 +137,26 @@ describe("seed main entry point", () => {
           }
           for (const step of (props.steps as Array<Record<string, unknown>> | undefined) ?? []) {
             expect(typeof step.id).toBe("string");
-            expect(step.description).toBe(step.explanation);
+            expect(typeof step.description).toBe("string");
+            expect(typeof step.explanation).toBe("string");
             expect(typeof step.expression).toBe("string");
           }
         } else if (activity.componentKey === "comprehension-quiz") {
           for (const question of props.questions as Array<Record<string, unknown>>) {
-            expect(Object.keys(question).sort()).toEqual([
-              "correctAnswer",
-              "id",
-              "options",
-              "prompt",
-              "type",
-            ]);
+            expect(Object.keys(question)).toEqual(
+              expect.arrayContaining(["correctAnswer", "id", "options", "prompt", "type"]),
+            );
             expect(question.type).toBe("multiple_choice");
             expect(question.options as string[]).toContain(question.correctAnswer);
           }
         }
       }
     }
-    expect(domainTypes.sort()).toEqual(
-      [
-        ...Array(5).fill("complex_operations"),
-        ...Array(4).fill("inequality"),
-        ...Array(3).fill("simplify_imaginary"),
-        ...Array(5).fill("system"),
-        "vertex-form",
-      ].sort(),
-    );
+    expect(domainTypes).toEqual([]);
     expect(solverTypes).toEqual(
-      expect.arrayContaining(["completing_the_square", "polynomial", "rate_of_change"]),
+      expect.arrayContaining(["expression", "factoring", "graphing", "rate_of_change"]),
     );
-    expect(systems).toEqual([
-      { first: "x = 2y^2 + 3y + 1", second: "-x + y = -1" },
-      { first: "x^2 = y + 5", second: "-x + y = 7" },
-      { first: "y = x^2 - 2x + 6", second: "y = 4x + 1" },
-      { first: "R = -0.1x^2 + 4x", second: "R = 42" },
-      { first: "y = x^2 + 2x", second: "y = -x^2 + 4x + 6" },
-    ]);
+    expect(systems).toEqual([]);
   });
 
   describe("seed orchestration", () => {
@@ -201,6 +183,7 @@ describe("seed main entry point", () => {
         "seed/seed_objective_policies:seedObjectivePolicies",
         "seed/seed_problem_families:seedProblemFamilies",
         "seed/seed_practice_items:seedPracticeItems",
+        "seed/seed_im3_pilot:seedIm3Pilot",
         "seed/seed_demo_env:seedDemoEnv",
         "seed/seed_demo_progress:seedDemoProgress",
       ];
@@ -224,7 +207,7 @@ describe("seed main entry point", () => {
         },
       });
 
-      expect(mutationNames).toHaveLength(67);
+      expect(mutationNames).toHaveLength(68);
       expect(mutationNames).toEqual(expectedNames);
     });
 

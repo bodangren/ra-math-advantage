@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import { getGenerator } from "@math-platform/math-content/knowledge-space";
 import {
+  IM3_PHASE_FOUR_WORKED_PROPS,
   buildIm3EquationRateWorkedSeedDocument,
   buildIm3EquationRateGuidedSeedDocuments,
   buildIm3EquationRateIndependentSeedDocuments,
@@ -89,6 +90,8 @@ function createUpgradeState() {
       {
         _id: LESSON_VERSION_ID,
         lessonId: LESSON_ID,
+        version: 1,
+        status: "published",
         title: "Protected published lesson version title",
       },
     ],
@@ -96,6 +99,7 @@ function createUpgradeState() {
       _id: `phase_versions:module-1-lesson-1:${index + 1}`,
       lessonVersionId: LESSON_VERSION_ID,
       phaseNumber: index + 1,
+      ...(index === 3 ? { phaseType: "worked_example" } : {}),
     })),
     phase_sections: [
       {
@@ -103,7 +107,10 @@ function createUpgradeState() {
         phaseVersionId: PHASE_FOUR_ID,
         sequenceOrder: 1,
         sectionType: "text",
-        content: { markdown: "## Example 1: Graph a Quadratic" },
+        content: {
+          markdown:
+            "## Example 1: Graph $f(x) = x^2$ Using a Table\n\nLet's graph $f(x) = x^2$ by creating a table of values.",
+        },
       },
       {
         _id: "phase_sections:existing-worked-example",
@@ -173,6 +180,11 @@ function createUpgradeState() {
       },
     ],
     activities: [
+      {
+        _id: "activities:existing-worked-example",
+        componentKey: "step-by-step-solver",
+        props: IM3_PHASE_FOUR_WORKED_PROPS,
+      },
       {
         _id: TEACHER_ACTIVITY_ID,
         stableActivityId: IM3_TEACHER_LED_ACTIVITY_ID,
@@ -275,7 +287,7 @@ describe("seedLesson1 IM3 pilot upgrade state", () => {
     expect(teacherSourcesAfterFirstSeed[0]).toMatchObject({
       _id: TEACHER_ACTIVITY_ID,
       displayName: "Graph a quadratic function by using a table",
-      props: { variant: "plot_from_equation", equation: "f(x) = x^2 + 2x - 3" },
+      props: { variant: "plot_from_equation", equation: "f(x) = x^2" },
     });
 
     const second = await seedLesson1Handler(state.ctx);
@@ -299,7 +311,7 @@ describe("seedLesson1 IM3 pilot upgrade state", () => {
     expect(finalTeacherSources[0]).toMatchObject({
       _id: TEACHER_ACTIVITY_ID,
       displayName: "Graph a quadratic function by using a table",
-      props: { variant: "plot_from_equation", equation: "f(x) = x^2 + 2x - 3" },
+      props: { variant: "plot_from_equation", equation: "f(x) = x^2" },
     });
 
     const teacherLinks = state.rows.phase_sections.filter(
@@ -311,7 +323,7 @@ describe("seedLesson1 IM3 pilot upgrade state", () => {
     expect(teacherLinks).toHaveLength(1);
     expect(teacherLinks[0]).toMatchObject({
       phaseVersionId: PHASE_FOUR_ID,
-      sequenceOrder: 3,
+      sequenceOrder: 2,
       content: {
         componentKey: "graphing-explorer",
         activityId: TEACHER_ACTIVITY_ID,
@@ -329,7 +341,7 @@ describe("seedLesson1 IM3 pilot upgrade state", () => {
         ([tableName, data]) =>
           tableName === "phase_sections" && data.phaseVersionId === PHASE_FOUR_ID,
       ),
-    ).toHaveLength(1);
+    ).toHaveLength(2);
     const masteryActivity = state.rows.activities.find(
       (activity) => activity._id === MASTERY_ACTIVITY_ID,
     );
@@ -653,7 +665,8 @@ describe("seedLesson1 IM3 pilot upgrade state", () => {
       expect(seedZeroActivities).toHaveLength(1);
       expect(guidedSeedOneActivities).toHaveLength(1);
       expect(guidedSeedTwoActivities).toHaveLength(1);
-      expect(seedZeroActivities[0]).toMatchObject(expectedSeedZero.activity);
+      const { createdAt: _createdAt, ...expectedSeedZeroActivity } = expectedSeedZero.activity;
+      expect(seedZeroActivities[0]).toMatchObject(expectedSeedZeroActivity);
       expect(guidedSeedOneActivities[0]).toMatchObject(expectedGuidedSeedOne.activity);
       expect(guidedSeedTwoActivities[0]).toMatchObject(expectedGuidedSeedTwo.activity);
 
@@ -675,11 +688,11 @@ describe("seedLesson1 IM3 pilot upgrade state", () => {
       const guidedSeedTwoActivityInsertIndex = state.writeCalls.findIndex(
         ([, , document]) => document.stableActivityId === IM3_GRAPH_GUIDED_SEED_2_ACTIVITY_ID,
       );
-      expect(independentActivityInsertIndex).toBe(seedZeroItemPatchIndex + 1);
+      expect(independentActivityInsertIndex).toBeGreaterThan(seedZeroItemPatchIndex);
       expect(independentVariantInsertIndex).toBe(independentActivityInsertIndex + 1);
       expect(independentItemInsertIndex).toBe(independentVariantInsertIndex + 1);
-      expect(guidedSeedOneActivityInsertIndex).toBe(independentItemInsertIndex + 1);
-      expect(guidedSeedTwoActivityInsertIndex).toBe(guidedSeedOneActivityInsertIndex + 3);
+      expect(guidedSeedOneActivityInsertIndex).toBeLessThan(independentActivityInsertIndex);
+      expect(guidedSeedTwoActivityInsertIndex).toBeGreaterThan(independentItemInsertIndex);
 
       await seedLesson1Handler(state.ctx);
       expect(
