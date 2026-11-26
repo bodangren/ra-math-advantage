@@ -16,9 +16,11 @@ import { internalQuery, type QueryCtx } from "../_generated/server";
 import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
 import {
+  includeHistoricalEvidenceNodes,
   loadFullCurriculumGraph,
   projectApprovedReadinessGraph,
 } from "../../lib/curriculum/skill-graph-loader";
+import { IM3_QF_NODE } from "../../lib/activities/server-grading";
 import {
   DefaultSrsToKstBridge,
   getOuterFringe,
@@ -155,8 +157,20 @@ export async function getStudentKnowledgeStateHandler(
     }
   }
 
-  // 6. Project the full graph. Draft nodes stay visible as history only.
-  return projectStudentVisualization(graph.nodes, graph.edges, learnerState);
+  // 6. Keep the approved readiness boundary. Show a practiced draft node as history only.
+  const historicalIds = new Set(Object.keys(learnerState));
+  if (srsCards.some((card) => card.objectiveId === IM3_QF_NODE))
+    historicalIds.add(IM3_QF_NODE);
+  const presentationGraph = includeHistoricalEvidenceNodes(
+    readinessGraph,
+    graph,
+    historicalIds,
+  );
+  return projectStudentVisualization(
+    presentationGraph.nodes,
+    presentationGraph.edges,
+    learnerState,
+  );
 }
 
 /**

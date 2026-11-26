@@ -1,4 +1,7 @@
-import { SCHEMA_REGISTRY as sharedSchemas } from "@math-platform/math-content/schemas";
+import {
+  quadraticFormulaActivitySchema,
+  SCHEMA_REGISTRY as sharedSchemas,
+} from "@math-platform/math-content/schemas";
 
 /** Only these activity components are registered in the IM3 renderer. */
 export const SCHEMA_REGISTRY = {
@@ -8,6 +11,7 @@ export const SCHEMA_REGISTRY = {
   "fill-in-the-blank": sharedSchemas["fill-in-the-blank"],
   "rate-of-change-calculator": sharedSchemas["rate-of-change-calculator"],
   "discriminant-analyzer": sharedSchemas["discriminant-analyzer"],
+  "quadratic-formula": quadraticFormulaActivitySchema,
 };
 
 export function getPropsSchema(key: string) {
